@@ -126,14 +126,12 @@ PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename, const std::
 	if (ret == INFO::OK)
 	{
 		// Found a cached XMB - load it
-		if (m_Data.ReadFromFile(vfs, xmbPath))
-		{
-			if(!Initialise(m_Data))
-				return PSRETURN_Xeromyces_XMLParseError;
+		if (m_Data.ReadFromFile(vfs, xmbPath) && Initialise(m_Data))
 			return PSRETURN_OK;
-		}
 		// If this fails then we'll continue and (re)create the loose cache -
-		// this failure legitimately happens due to partially-written XMB files.
+		// this failure legitimately happens due to partially-written XMB files or XMB version upgrades.
+		// NB: at this point xmbPath may point to an archived file, we want to write a loose cached version.
+		xmbPath = cacheLoader.LooseCachePath(filename, validatorGrammarHash, XMBStorage::XMBVersion);
 	}
 	else if (ret == INFO::SKIPPED)
 	{

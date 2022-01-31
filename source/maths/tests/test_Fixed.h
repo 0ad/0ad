@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -45,6 +45,14 @@ public:
 		TS_ASSERT_EQUALS(a.ToFloat(), 123.0f);
 		TS_ASSERT_EQUALS(a.ToDouble(), 123.0);
 		TS_ASSERT_EQUALS(a.ToInt_RoundToZero(), 123);
+	}
+
+	void test_FromFraction()
+	{
+		TS_ASSERT_EQUALS(fixed::FromFraction(340, 10), fixed::FromInt(340) / 10);
+		TS_ASSERT_EQUALS(fixed::FromFraction(-5, 11), fixed::FromInt(-5) / 11);
+		TS_ASSERT_EQUALS(fixed::FromFraction(4, -3), fixed::FromInt(4) / -3);
+		TS_ASSERT_EQUALS(fixed::FromFraction(2, 3), fixed::FromInt(2) / 3);
 	}
 
 	void test_FromFloat()

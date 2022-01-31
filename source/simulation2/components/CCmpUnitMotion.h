@@ -155,7 +155,7 @@ public:
 
 	bool m_IsFormationController;
 
-	fixed m_TemplateWalkSpeed, m_TemplateRunMultiplier, m_TemplateAcceleration;
+	fixed m_TemplateWalkSpeed, m_TemplateRunMultiplier, m_TemplateAcceleration, m_TemplateWeight;
 	pass_class_t m_PassClass;
 	std::string m_PassClassName;
 
@@ -270,6 +270,9 @@ public:
 			"<element name='PassabilityClass' a:help='Identifies the terrain passability class (values are defined in special/pathfinder.xml).'>"
 				"<text/>"
 			"</element>"
+			"<element name='Weight' a:help='Makes this unit both push harder and harder to push. 10 is considered the base value.'>"
+				"<ref name='positiveDecimal'/>"
+			"</element>"
 			"<optional>"
 				"<element name='DisablePushing'>"
 					"<data type='boolean'/>"
@@ -294,6 +297,8 @@ public:
 		m_InstantTurnAngle = paramNode.GetChild("InstantTurnAngle").ToFixed();
 
 		m_Acceleration = m_TemplateAcceleration = paramNode.GetChild("Acceleration").ToFixed();
+
+		m_TemplateWeight = paramNode.GetChild("Weight").ToFixed();
 
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
@@ -495,6 +500,11 @@ public:
 	virtual void SetAcceleration(fixed acceleration)
 	{
 		m_Acceleration = acceleration;
+	}
+
+	virtual entity_pos_t GetWeight() const
+	{
+		return m_TemplateWeight;
 	}
 
 	virtual pass_class_t GetPassabilityClass() const

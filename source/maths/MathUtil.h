@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -45,13 +45,14 @@ inline T SmoothStep(T edge0, T edge1, T value)
 	return value * value * (3 - 2 * value);
 }
 
-inline float sgn(float a)
+template<typename T>
+inline T Sign(const T value)
 {
-    if (a > 0.0f)
-    	return 1.0f;
-    if (a < 0.0f)
-    	return -1.0f;
-    return 0.0f;
+    if (value > T(0))
+    	return T(1);
+    if (value < T(0))
+    	return T(-1);
+    return T(0);
 }
 
 #endif // INCLUDED_MATHUTIL

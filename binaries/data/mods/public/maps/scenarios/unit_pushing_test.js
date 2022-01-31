@@ -242,6 +242,16 @@ experiments.overlapping = {
 	}
 };
 
+experiments.large_against_units = {
+	"spawn": (gx, gy) => {
+		for (let i = -18; i < 20; i += 2)
+			for (let j = 0; j < 40; j += 3)
+				WalkTo(gx, gy - 50, false, QuickSpawn(gx + i, gy + 10 + j, REG_UNIT_TEMPLATE));
+		WalkTo(gx - 5, gy + 100, false, QuickSpawn(gx - 5, gy, LARGE_UNIT_TEMPLATE));
+		WalkTo(gx + 5, gy + 100, false, QuickSpawn(gx + 5, gy, ELE_TEMPLATE));
+	}
+};
+
 var perf_experiments = {};
 
 // Perf check: put units everywhere, not moving.

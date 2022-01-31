@@ -75,8 +75,6 @@ ResourceGatherer.prototype.GiveResources = function(resources)
 {
 	for (let resource of resources)
 		this.carrying[resource.type] = +resource.amount;
-
-	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 };
 
 /**
@@ -284,8 +282,6 @@ ResourceGatherer.prototype.PerformGather = function(data, lateness)
 	if (cmpStatisticsTracker)
 		cmpStatisticsTracker.IncreaseResourceGatheredCounter(type.generic, status.amount, type.specific);
 
-	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
-
 	if (!this.CanCarryMore(type.generic))
 		this.StopGathering("InventoryFilled");
 	else if (status.exhausted)
@@ -399,17 +395,12 @@ ResourceGatherer.prototype.CommitResources = function(target)
 		return;
 
 	let change = cmpResourceDropsite.ReceiveResources(this.carrying, this.entity);
-	let changed = false;
 	for (let type in change)
 	{
 		this.carrying[type] -= change[type];
 		if (this.carrying[type] == 0)
 			delete this.carrying[type];
-		changed = true;
 	}
-
-	if (changed)
-		Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 };
 
 /**
@@ -420,8 +411,6 @@ ResourceGatherer.prototype.CommitResources = function(target)
 ResourceGatherer.prototype.DropResources = function()
 {
 	this.carrying = {};
-
-	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 };
 
 /**

@@ -179,27 +179,6 @@ AIProxy.prototype.OnGarrisonedUnitsChanged = function(msg)
 		this.cmpAIInterface.PushEvent("UnGarrison", { "entity": ent, "holder": this.entity });
 };
 
-AIProxy.prototype.OnResourceSupplyChanged = function(msg)
-{
-	if (!this.NotifyChange())
-		return;
-	this.changes.resourceSupplyAmount = msg.to;
-};
-
-AIProxy.prototype.OnResourceSupplyNumGatherersChanged = function(msg)
-{
-	if (!this.NotifyChange())
-		return;
-	this.changes.resourceSupplyNumGatherers = msg.to;
-};
-
-AIProxy.prototype.OnResourceCarryingChanged = function(msg)
-{
-	if (!this.NotifyChange())
-		return;
-	this.changes.resourceCarrying = msg.to;
-};
-
 AIProxy.prototype.OnFoundationProgressChanged = function(msg)
 {
 	if (!this.NotifyChange())
@@ -303,21 +282,6 @@ AIProxy.prototype.GetFullRepresentation = function()
 	{
 		// Updated by OnFoundationProgressChanged
 		ret.foundationProgress = cmpFoundation.GetBuildPercentage();
-	}
-
-	let cmpResourceSupply = Engine.QueryInterface(this.entity, IID_ResourceSupply);
-	if (cmpResourceSupply)
-	{
-		// Updated by OnResourceSupplyChanged
-		ret.resourceSupplyAmount = cmpResourceSupply.GetCurrentAmount();
-		ret.resourceSupplyNumGatherers = cmpResourceSupply.GetNumGatherers();
-	}
-
-	let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-	if (cmpResourceGatherer)
-	{
-		// Updated by OnResourceCarryingChanged
-		ret.resourceCarrying = cmpResourceGatherer.GetCarryingStatus();
 	}
 
 	let cmpResourceDropsite = Engine.QueryInterface(this.entity, IID_ResourceDropsite);

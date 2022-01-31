@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -510,11 +510,6 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 	if (m_EnableOOSLog)
 		DumpState();
 
-	// Start computing AI for the next turn
-	CmpPtr<ICmpAIManager> cmpAIManager(m_SimContext, SYSTEM_ENTITY);
-	if (cmpAIManager)
-		cmpAIManager->StartComputation();
-
 	++m_TurnNumber;
 }
 
@@ -535,10 +530,6 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 		componentManager.BroadcastMessage(msgTurnStart);
 	}
 
-	// Push AI commands onto the queue before we use them
-	CmpPtr<ICmpAIManager> cmpAIManager(simContext, SYSTEM_ENTITY);
-	if (cmpAIManager)
-		cmpAIManager->PushCommands();
 
 	CmpPtr<ICmpCommandQueue> cmpCommandQueue(simContext, SYSTEM_ENTITY);
 	if (cmpCommandQueue)
@@ -582,6 +573,14 @@ void CSimulation2Impl::UpdateComponents(CSimContext& simContext, fixed turnLengt
 
 	// Clean up any entities destroyed during the simulation update
 	componentManager.FlushDestroyedComponents();
+
+	// Compute AI immediately at turn's end.
+	CmpPtr<ICmpAIManager> cmpAIManager(simContext, SYSTEM_ENTITY);
+	if (cmpAIManager)
+	{
+		cmpAIManager->StartComputation();
+		cmpAIManager->PushCommands();
+	}
 
 	// Process all remaining moves
 	if (cmpPathfinder)

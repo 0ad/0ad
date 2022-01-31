@@ -70,6 +70,12 @@ constexpr int PUSHING_REDUCTION_FACTOR = 2;
 constexpr entity_pos_t MAX_DISTANCE_FACTOR = entity_pos_t::FromFraction(5, 2);
 
 /**
+ * Maximum pushing multiplier for a single push calculation.
+ * This exists for numerical stability of the system between a lightweight and a heavy unit.
+ */
+constexpr int MAX_PUSHING_MULTIPLIER = 4;
+
+/**
  * When two units collide, if their movement dot product is below this value, give them a perpendicular nudge instead of trying to push in the regular way.
  */
 constexpr entity_pos_t PERPENDICULAR_NUDGE_THRESHOLD = entity_pos_t::FromFraction(-1, 10);
@@ -745,9 +751,17 @@ void CCmpUnitMotionManager::Push(EntityMap<MotionState>::value_type& a, EntityMa
 
 	CFixedVector2D pushingDir = offset.Multiply(distanceFactor);
 
-	// Divide by an arbitrary constant to avoid pushing too much.
-	a.second.push += pushingDir.Multiply(dt / PUSHING_REDUCTION_FACTOR);
-	b.second.push -= pushingDir.Multiply(dt / PUSHING_REDUCTION_FACTOR);
+	// These cannot be zero, checked in the schema.
+	entity_pos_t aWeight = a.second.cmpUnitMotion->GetWeight();
+	entity_pos_t bWeight = b.second.cmpUnitMotion->GetWeight();
+
+	// Final corrections:
+	// - divide by an arbitrary constant to avoid pushing too much.
+	// - multiply by the weight ratio (limiting the maximum positive push for numerical accuracy).
+	entity_pos_t timeFactor = dt / PUSHING_REDUCTION_FACTOR;
+	entity_pos_t maxPushing = timeFactor * MAX_PUSHING_MULTIPLIER;
+	a.second.push += pushingDir.Multiply(std::min(bWeight.MulDiv(timeFactor, aWeight), maxPushing));
+	b.second.push -= pushingDir.Multiply(std::min(aWeight.MulDiv(timeFactor, bWeight), maxPushing));
 
 	// Use a constant factor to get a more general slowdown in crowded area.
 	// The distance factor heavily dampens units that are overlapping.
