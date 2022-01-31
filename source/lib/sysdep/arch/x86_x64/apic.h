@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -33,20 +33,20 @@ typedef u8 ApicId;	// not necessarily contiguous values
  * feasible. We also don't want to interfere with the OS's constant use of
  * the APIC registers.
  **/
-LIB_API ApicId GetApicId();
+ApicId GetApicId();
 
 // if this returns false, apicId = contiguousId = processor.
 // otherwise, there are unspecified but bijective mappings between
 // apicId<->contiguousId and apicId<->processor.
-LIB_API bool AreApicIdsReliable();
+bool AreApicIdsReliable();
 
 // we may get the apicId of a processor we don't have access to.
-LIB_API bool IsProcessorKnown(ApicId apicId);
+bool IsProcessorKnown(ApicId apicId);
 
-LIB_API size_t ProcessorFromApicId(ApicId apicId);
-LIB_API size_t ContiguousIdFromApicId(ApicId apicId);
+size_t ProcessorFromApicId(ApicId apicId);
+size_t ContiguousIdFromApicId(ApicId apicId);
 
-LIB_API ApicId ApicIdFromProcessor(size_t contiguousId);
-LIB_API ApicId ApicIdFromContiguousId(size_t contiguousId);
+ApicId ApicIdFromProcessor(size_t contiguousId);
+ApicId ApicIdFromContiguousId(size_t contiguousId);
 
 #endif	// #ifndef INCLUDED_X86_X64_APIC

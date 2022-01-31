@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -161,8 +161,6 @@ To summarize: +/-1SHHCC (S=subsystem, HH=header, CC=code number)
 #ifndef INCLUDED_STATUS
 #define INCLUDED_STATUS
 
-#include "lib/lib_api.h"
-
 // an integral type allows defining error codes in separate headers,
 // but is not as type-safe as an enum. use Lint's 'strong type' checking
 // to catch errors such as Status Func() { return 1; }.
@@ -206,7 +204,7 @@ struct StatusDefinitionBucket	// POD
  * (this function must be callable as a static initializer; initializing
  * next avoids the need for a separate dummy variable)
  **/
-LIB_API StatusDefinitionBucket* StatusAddDefinitions(StatusDefinitionBucket* bucket);
+StatusDefinitionBucket* StatusAddDefinitions(StatusDefinitionBucket* bucket);
 
 /**
  * add a module's array of StatusDefinition to the list.
@@ -224,7 +222,7 @@ LIB_API StatusDefinitionBucket* StatusAddDefinitions(StatusDefinitionBucket* buc
  * @param max_chars size of buffer [characters]
  * @return buf (allows using this function in expressions)
  **/
-LIB_API wchar_t* StatusDescription(Status status, wchar_t* buf, size_t max_chars);
+wchar_t* StatusDescription(Status status, wchar_t* buf, size_t max_chars);
 
 /**
  * @return the errno equivalent of a Status.

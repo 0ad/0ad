@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -44,11 +44,11 @@ namespace ERR
  * otherwise, the function raises a warning dialog for every
  * error/warning.
  **/
-LIB_API std::wstring wstring_from_utf8(const std::string& s, Status* err = 0);
+std::wstring wstring_from_utf8(const std::string& s, Status* err = 0);
 
 /**
  * opposite of wstring_from_utf8
  **/
-LIB_API std::string utf8_from_wstring(const std::wstring& s, Status* err = 0);
+std::string utf8_from_wstring(const std::wstring& s, Status* err = 0);
 
 #endif	// #ifndef INCLUDED_UTF8

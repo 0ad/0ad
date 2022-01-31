@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -40,7 +40,7 @@
  * enable or disable manual and automatic heap validity checking.
  * (enabled by default during critical_init.)
  **/
-LIB_API void wdbg_heap_Enable(bool);
+void wdbg_heap_Enable(bool);
 
 /**
  * check heap integrity.
@@ -48,12 +48,12 @@ LIB_API void wdbg_heap_Enable(bool);
  * no effect if called between wdbg_heap_Enable(false) and the next
  * wdbg_heap_Enable(true).
  **/
-LIB_API void wdbg_heap_Validate();
+void wdbg_heap_Validate();
 
 /**
  * @return the total number of alloc and realloc operations thus far.
  * used by the in-game profiler.
  **/
-LIB_API intptr_t wdbg_heap_NumberOfAllocations();
+intptr_t wdbg_heap_NumberOfAllocations();
 
 #endif	// #ifndef INCLUDED_WDBG_HEAP

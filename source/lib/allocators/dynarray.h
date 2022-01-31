@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -58,7 +58,7 @@ struct DynArray
  * (* rounded up to next page size multiple)
  * @return Status.
  **/
-LIB_API Status da_alloc(DynArray* da, size_t max_size);
+Status da_alloc(DynArray* da, size_t max_size);
 
 /**
  * free all memory (address space + physical) that constitutes the
@@ -69,7 +69,7 @@ LIB_API Status da_alloc(DynArray* da, size_t max_size);
  * @param da DynArray* zeroed afterwards.
  * @return Status
  **/
-LIB_API Status da_free(DynArray* da);
+Status da_free(DynArray* da);
 
 /**
  * expand or shrink the array: changes the amount of currently committed
@@ -80,7 +80,7 @@ LIB_API Status da_free(DynArray* da);
  * pages are added/removed until this is met.
  * @return Status.
  **/
-LIB_API Status da_set_size(DynArray* da, size_t new_size);
+Status da_set_size(DynArray* da, size_t new_size);
 
 /**
  * Make sure at least \<size\> bytes starting at da->pos are committed and
@@ -90,7 +90,7 @@ LIB_API Status da_set_size(DynArray* da, size_t new_size);
  * @param size Minimum amount to guarantee [bytes]
  * @return Status
  **/
-LIB_API Status da_reserve(DynArray* da, size_t size);
+Status da_reserve(DynArray* da, size_t size);
 
 /**
  * "write" to array, i.e. copy from the given buffer.
@@ -102,6 +102,6 @@ LIB_API Status da_reserve(DynArray* da, size_t size);
  * @param size [bytes] to copy
  * @return Status.
  **/
-LIB_API Status da_append(DynArray* da, const void* data_src, size_t size);
+Status da_append(DynArray* da, const void* data_src, size_t size);
 
 #endif	// #ifndef INCLUDED_ALLOCATORS_DYNARRAY

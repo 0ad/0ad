@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -40,8 +40,8 @@ typedef long suseconds_t;
 // <unistd.h>
 //
 
-LIB_API unsigned sleep(unsigned sec);
-LIB_API int usleep(useconds_t us);
+unsigned sleep(unsigned sec);
+int usleep(useconds_t us);
 
 
 //
@@ -50,6 +50,6 @@ LIB_API int usleep(useconds_t us);
 
 extern int nanosleep(const struct timespec* rqtp, struct timespec* rmtp);
 
-LIB_API char* strptime(const char* buf, const char* format, struct tm* timeptr);
+char* strptime(const char* buf, const char* format, struct tm* timeptr);
 
 #endif	// #ifndef INCLUDED_WTIME

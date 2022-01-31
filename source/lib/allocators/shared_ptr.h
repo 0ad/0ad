@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -50,7 +50,7 @@ struct ArrayDeleter
 };
 
 // (note: uses CheckedArrayDeleter)
-LIB_API std::shared_ptr<u8> Allocate(size_t size);
+std::shared_ptr<u8> Allocate(size_t size);
 
 
 struct AlignedDeleter

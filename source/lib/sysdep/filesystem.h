@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -91,26 +91,26 @@ extern int wclose(int fd);
 // however, ftruncate cannot be used since it is also subject to the
 // sector-alignment requirement. instead, the file must be closed and
 // this function called.
-LIB_API int wtruncate(const OsPath& pathname, off_t length);
+int wtruncate(const OsPath& pathname, off_t length);
 
-LIB_API int wunlink(const OsPath& pathname);
+int wunlink(const OsPath& pathname);
 
-LIB_API int wrmdir(const OsPath& path);
+int wrmdir(const OsPath& path);
 
 
 //
 // stdlib.h
 //
 
-LIB_API OsPath wrealpath(const OsPath& pathname);
+OsPath wrealpath(const OsPath& pathname);
 
 
 //
 // sys/stat.h
 //
 
-LIB_API int wstat(const OsPath& pathname, struct stat* buf);
+int wstat(const OsPath& pathname, struct stat* buf);
 
-LIB_API int wmkdir(const OsPath& path, mode_t mode);
+int wmkdir(const OsPath& path, mode_t mode);
 
 #endif	// #ifndef INCLUDED_SYSDEP_FILESYSTEM

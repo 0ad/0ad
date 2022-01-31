@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -32,6 +32,7 @@
  * avoids several common pitfalls; see discussion at
  * http://www.azillionmonkeys.com/qed/random.html
  **/
-LIB_API size_t rand(size_t min_inclusive, size_t max_exclusive);
+// TODO: replace the function by STL distributions.
+size_t rand(size_t min_inclusive, size_t max_exclusive);
 
 #endif	// #ifndef INCLUDED_RAND

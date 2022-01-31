@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -41,17 +41,17 @@
 /**
  * timer_Time will subsequently return values relative to the current time.
  **/
-LIB_API void timer_Init();
+void timer_Init();
 
 /**
  * @return high resolution (> 1 us) timestamp [s].
  **/
-LIB_API double timer_Time();
+double timer_Time();
 
 /**
  * @return resolution [s] of the timer.
  **/
-LIB_API double timer_Resolution();
+double timer_Resolution();
 
 
 // (allow using XADD (faster than CMPXCHG) in 64-bit builds without casting)
@@ -65,8 +65,8 @@ typedef i64 Cycles;
  * internal helper functions for returning an easily readable
  * string (i.e. re-scaled to appropriate units)
  **/
-LIB_API std::string StringForSeconds(double seconds);
-LIB_API std::string StringForCycles(Cycles cycles);
+std::string StringForSeconds(double seconds);
+std::string StringForCycles(Cycles cycles);
 
 
 //-----------------------------------------------------------------------------
@@ -299,7 +299,7 @@ struct TimerClient
  * - free() is not needed nor possible.
  * - description must remain valid until exit; a string literal is safest.
  **/
-LIB_API TimerClient* timer_AddClient(TimerClient* tc, const wchar_t* description);
+TimerClient* timer_AddClient(TimerClient* tc, const wchar_t* description);
 
 /**
  * "allocate" a new TimerClient that will keep track of the total time
@@ -343,7 +343,7 @@ struct BillingPolicy_Atomic
  * display all clients' totals; does not reset them.
  * typically called at exit.
  **/
-LIB_API void timer_DisplayClientTotals();
+void timer_DisplayClientTotals();
 
 
 /// used by TIMER_ACCRUE

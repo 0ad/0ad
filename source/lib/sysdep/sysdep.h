@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -72,15 +72,14 @@ extern ErrorReactionInternal sys_display_error(const wchar_t* text, size_t flags
  * (if so, it is safe to use debug_break; otherwise, that would
  * raise an exception)
  **/
-LIB_API bool sys_IsDebuggerPresent();
+bool sys_IsDebuggerPresent();
 
 /**
  * @return a wide string conversion of the platform's encoding of main's argv.
  *
- * (NB: wseh.cpp defines a wmain that converts argv to UTF-8 and calls main(),
- * but only if LIB_STATIC_LINK)
+ * (NB: wseh.cpp defines a wmain that converts argv to UTF-8 and calls main())
  **/
-LIB_API std::wstring sys_WideFromArgv(const char* argv_i);
+std::wstring sys_WideFromArgv(const char* argv_i);
 
 /**
  * describe the current OS error state.
@@ -111,7 +110,7 @@ Status sys_get_module_filename(void* addr, OsPath& pathname);
  *
  * this is useful for determining installation directory, e.g. for VFS.
  **/
-LIB_API OsPath sys_ExecutablePathname();
+OsPath sys_ExecutablePathname();
 
 /**
  * Get the current user's login name.
@@ -164,7 +163,7 @@ extern size_t sys_max_sector_size();
  * this should only be used with small numbers of bytes, to avoid
  * hogging the system's entropy.
  **/
-LIB_API Status sys_generate_random_bytes(u8* buf, size_t count);
+Status sys_generate_random_bytes(u8* buf, size_t count);
 
 /**
  * get the proxy address for accessing the given HTTP URL.
@@ -173,12 +172,12 @@ LIB_API Status sys_generate_random_bytes(u8* buf, size_t count);
  *
  * @return INFO::OK on success; INFO::SKIPPED if no proxy found.
  **/
-LIB_API Status sys_get_proxy_config(const std::wstring& url, std::wstring& proxy);
+Status sys_get_proxy_config(const std::wstring& url, std::wstring& proxy);
 
 /**
  * open a file like with fopen (but taking an OsPath argument).
  */
-LIB_API FILE* sys_OpenFile(const OsPath& pathname, const char* mode);
+FILE* sys_OpenFile(const OsPath& pathname, const char* mode);
 
 /**
  * directory separation character

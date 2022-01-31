@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -138,6 +138,6 @@ extern Status waio_close(int fd);
 // this function sets the valid data length to avoid the synchronous zero-fill.
 // to avoid exposing the previous disk contents until the application
 // successfully writes to the file, deny sharing when opening the file.
-LIB_API Status waio_Preallocate(int fd, off_t size);
+Status waio_Preallocate(int fd, off_t size);
 
 #endif	// #ifndef INCLUDED_WAIO

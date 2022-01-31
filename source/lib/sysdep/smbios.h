@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -1219,13 +1219,13 @@ struct Structures
  * thread-safe; return value should be cached (if possible) to avoid an
  * atomic comparison.
  **/
-LIB_API const Structures* GetStructures();
+const Structures* GetStructures();
 
 /**
  * @return a string describing all structures (omitting fields with
  * meaningless or dummy values).
  **/
-LIB_API std::string StringizeStructures(const Structures*);
+std::string StringizeStructures(const Structures*);
 
 }	// namespace SMBIOS
 

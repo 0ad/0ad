@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -39,7 +39,7 @@
 // @return the address of a sentinel element, suitable for initializing
 // a freelist pointer. subsequent mem_freelist_Detach on that freelist
 // will return 0.
-LIB_API void* mem_freelist_Sentinel();
+void* mem_freelist_Sentinel();
 
 static inline void mem_freelist_AddToFront(void*& freelist, void* el)
 {

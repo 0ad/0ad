@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -29,19 +29,19 @@
 /**
  * @return number of NUMA "nodes" (i.e. groups of CPUs with local memory).
  **/
-LIB_API size_t numa_NumNodes();
+size_t numa_NumNodes();
 
 /**
  * @param processor
  * @return node number (zero-based) to which \<processor\> belongs.
  **/
-LIB_API size_t numa_NodeFromProcessor(size_t processor);
+size_t numa_NodeFromProcessor(size_t processor);
 
 /**
  * @param node
  * @return bit-mask of all processors constituting \<node\>.
  **/
-LIB_API uintptr_t numa_ProcessorMaskFromNode(size_t node);
+uintptr_t numa_ProcessorMaskFromNode(size_t node);
 
 
 //-----------------------------------------------------------------------------
@@ -52,7 +52,7 @@ LIB_API uintptr_t numa_ProcessorMaskFromNode(size_t node);
  * @param node
  * @return bytes of memory available for allocation on \<node\>.
  **/
-LIB_API size_t numa_AvailableMemory(size_t node);
+size_t numa_AvailableMemory(size_t node);
 
 /**
  * @return the ratio between maximum and minimum times that one processor
@@ -60,7 +60,7 @@ LIB_API size_t numa_AvailableMemory(size_t node);
  * in other words, this is the maximum slowdown for NUMA-oblivious
  * memory accesses. Microsoft guidelines require it to be <= 3.
  **/
-LIB_API double numa_Factor();
+double numa_Factor();
 
 /**
  * @return an indication of whether memory pages are node-interleaved.
@@ -69,6 +69,6 @@ LIB_API double numa_Factor();
  * least-permission accounts. the default is to return false so as
  * not to cause callers to panic and trigger performance warnings.
  **/
-LIB_API bool numa_IsMemoryInterleaved();
+bool numa_IsMemoryInterleaved();
 
 #endif	// #ifndef INCLUDED_NUMA

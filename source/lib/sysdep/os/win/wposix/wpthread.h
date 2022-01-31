@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -57,45 +57,45 @@ enum
 typedef intptr_t pthread_once_t;	// required for cpu_CAS
 #define PTHREAD_ONCE_INIT 0	// static pthread_once_t x = PTHREAD_ONCE_INIT;
 
-LIB_API int pthread_once(pthread_once_t*, void (*init_routine)());
+int pthread_once(pthread_once_t*, void (*init_routine)());
 
 // thread
 typedef uintptr_t pthread_t;
 
-LIB_API int pthread_equal(pthread_t t1, pthread_t t2);
-LIB_API pthread_t pthread_self();
-LIB_API int pthread_getschedparam(pthread_t thread, int* policy, struct sched_param* param);
-LIB_API int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param* param);
-LIB_API int pthread_create(pthread_t* thread, const void* attr, void* (*func)(void*), void* arg);
-LIB_API int pthread_cancel(pthread_t thread);
-LIB_API int pthread_join(pthread_t thread, void** value_ptr);
+int pthread_equal(pthread_t t1, pthread_t t2);
+pthread_t pthread_self();
+int pthread_getschedparam(pthread_t thread, int* policy, struct sched_param* param);
+int pthread_setschedparam(pthread_t thread, int policy, const struct sched_param* param);
+int pthread_create(pthread_t* thread, const void* attr, void* (*func)(void*), void* arg);
+int pthread_cancel(pthread_t thread);
+int pthread_join(pthread_t thread, void** value_ptr);
 
 // mutex
 
 typedef void* pthread_mutexattr_t;
-LIB_API int pthread_mutexattr_init(pthread_mutexattr_t* attr);
-LIB_API int pthread_mutexattr_destroy(pthread_mutexattr_t* attr);
+int pthread_mutexattr_init(pthread_mutexattr_t* attr);
+int pthread_mutexattr_destroy(pthread_mutexattr_t* attr);
 enum { PTHREAD_MUTEX_RECURSIVE }; // the only one we support
-LIB_API int pthread_mutexattr_gettype(const pthread_mutexattr_t* attr, int* type);
-LIB_API int pthread_mutexattr_settype(pthread_mutexattr_t* attr, int type);
+int pthread_mutexattr_gettype(const pthread_mutexattr_t* attr, int* type);
+int pthread_mutexattr_settype(pthread_mutexattr_t* attr, int type);
 
 typedef void* pthread_mutex_t;	// pointer to critical section
-LIB_API pthread_mutex_t pthread_mutex_initializer();
+pthread_mutex_t pthread_mutex_initializer();
 #define PTHREAD_MUTEX_INITIALIZER pthread_mutex_initializer()
-LIB_API int pthread_mutex_init(pthread_mutex_t*, const pthread_mutexattr_t*);
-LIB_API int pthread_mutex_destroy(pthread_mutex_t*);
-LIB_API int pthread_mutex_lock(pthread_mutex_t*);
-LIB_API int pthread_mutex_trylock(pthread_mutex_t*);
-LIB_API int pthread_mutex_unlock(pthread_mutex_t*);
-LIB_API int pthread_mutex_timedlock(pthread_mutex_t*, const struct timespec*);
+int pthread_mutex_init(pthread_mutex_t*, const pthread_mutexattr_t*);
+int pthread_mutex_destroy(pthread_mutex_t*);
+int pthread_mutex_lock(pthread_mutex_t*);
+int pthread_mutex_trylock(pthread_mutex_t*);
+int pthread_mutex_unlock(pthread_mutex_t*);
+int pthread_mutex_timedlock(pthread_mutex_t*, const struct timespec*);
 
 // thread-local storage
 typedef unsigned int pthread_key_t;
 
-LIB_API int pthread_key_create(pthread_key_t*, void (*dtor)(void*));
-LIB_API int pthread_key_delete(pthread_key_t);
-LIB_API void* pthread_getspecific(pthread_key_t);
-LIB_API int   pthread_setspecific(pthread_key_t, const void* value);
+int pthread_key_create(pthread_key_t*, void (*dtor)(void*));
+int pthread_key_delete(pthread_key_t);
+void* pthread_getspecific(pthread_key_t);
+int   pthread_setspecific(pthread_key_t, const void* value);
 
 
 //
@@ -106,14 +106,14 @@ typedef uintptr_t sem_t;
 
 #define SEM_FAILED 0
 
-LIB_API sem_t* sem_open(const char* name, int oflag, ...);
-LIB_API int sem_close(sem_t* sem);
-LIB_API int sem_unlink(const char* name);
-LIB_API int sem_init(sem_t*, int pshared, unsigned value);
-LIB_API int sem_destroy(sem_t*);
-LIB_API int sem_post(sem_t*);
-LIB_API int sem_wait(sem_t*);
-LIB_API int sem_timedwait(sem_t*, const struct timespec*);
+sem_t* sem_open(const char* name, int oflag, ...);
+int sem_close(sem_t* sem);
+int sem_unlink(const char* name);
+int sem_init(sem_t*, int pshared, unsigned value);
+int sem_destroy(sem_t*);
+int sem_post(sem_t*);
+int sem_wait(sem_t*);
+int sem_timedwait(sem_t*, const struct timespec*);
 
 
 // wait until semaphore is locked or a message arrives. non-portable.
@@ -130,6 +130,6 @@ LIB_API int sem_timedwait(sem_t*, const struct timespec*);
 // -1 otherwise. errno differentiates what happened: ETIMEDOUT if a
 // message arrived (this is to ease switching between message waiting and
 // periodic timeout), or an error indication.
-LIB_API int sem_msgwait_np(sem_t* sem);
+int sem_msgwait_np(sem_t* sem);
 
 #endif	// #ifndef INCLUDED_WPTHREAD

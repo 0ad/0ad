@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -34,7 +34,7 @@
  * this function does not allocate memory from the CRT heap, which makes it
  * safe to use from an allocation hook.
  **/
-LIB_API void wdbg_printf(const wchar_t* fmt, ...);
+void wdbg_printf(const wchar_t* fmt, ...);
 
 /**
  * similar to ENSURE but safe to use during critical init or

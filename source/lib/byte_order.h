@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -93,38 +93,38 @@
 #endif
 
 /// read a little-endian number from memory into native byte order.
-LIB_API u16 read_le16(const void* p);
-LIB_API u32 read_le32(const void* p);	/// see read_le16
-LIB_API u64 read_le64(const void* p);	/// see read_le16
+u16 read_le16(const void* p);
+u32 read_le32(const void* p);	/// see read_le16
+u64 read_le64(const void* p);	/// see read_le16
 
 /// read a big-endian number from memory into native byte order.
-LIB_API u16 read_be16(const void* p);
-LIB_API u32 read_be32(const void* p);	/// see read_be16
-LIB_API u64 read_be64(const void* p);	/// see read_be16
+u16 read_be16(const void* p);
+u32 read_be32(const void* p);	/// see read_be16
+u64 read_be64(const void* p);	/// see read_be16
 
 /// write a little-endian number to memory in native byte order.
-LIB_API void write_le16(void* p, u16 x);
-LIB_API void write_le32(void* p, u32 x);	/// see write_le16
-LIB_API void write_le64(void* p, u64 x);	/// see write_le16
+void write_le16(void* p, u16 x);
+void write_le32(void* p, u32 x);	/// see write_le16
+void write_le64(void* p, u64 x);	/// see write_le16
 
 /// write a big-endian number to memory in native byte order.
-LIB_API void write_be16(void* p, u16 x);
-LIB_API void write_be32(void* p, u32 x);	/// see write_be16
-LIB_API void write_be64(void* p, u64 x);	/// see write_be16
+void write_be16(void* p, u16 x);
+void write_be32(void* p, u32 x);	/// see write_be16
+void write_be64(void* p, u64 x);	/// see write_be16
 
 /**
  * zero-extend \<size\> (truncated to 8) bytes of little-endian data to u64,
  * starting at address \<p\> (need not be aligned).
  **/
-LIB_API u64 movzx_le64(const u8* p, size_t size);
-LIB_API u64 movzx_be64(const u8* p, size_t size);
+u64 movzx_le64(const u8* p, size_t size);
+u64 movzx_be64(const u8* p, size_t size);
 
 /**
  * sign-extend \<size\> (truncated to 8) bytes of little-endian data to i64,
  * starting at address \<p\> (need not be aligned).
  **/
-LIB_API i64 movsx_le64(const u8* p, size_t size);
-LIB_API i64 movsx_be64(const u8* p, size_t size);
+i64 movsx_le64(const u8* p, size_t size);
+i64 movsx_be64(const u8* p, size_t size);
 
 
 #if ICC_VERSION
@@ -154,13 +154,13 @@ extern unsigned __int64 _byteswap_uint64(unsigned __int64);
 #endif
 
 #ifndef swap16
-LIB_API u16 swap16(const u16 x);
+u16 swap16(const u16 x);
 #endif
 #ifndef swap32
-LIB_API u32 swap32(const u32 x);
+u32 swap32(const u32 x);
 #endif
 #ifndef swap64
-LIB_API u64 swap64(const u64 x);
+u64 swap64(const u64 x);
 #endif
 
 #endif	// #ifndef INCLUDED_BYTE_ORDER

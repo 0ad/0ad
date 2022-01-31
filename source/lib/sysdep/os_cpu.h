@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -54,7 +54,7 @@ static const size_t os_cpu_MaxProcessors = sizeof(uintptr_t)*CHAR_BIT;
  * this process.
  * its population count is by definition equal to os_cpu_NumProcessors().
  **/
-LIB_API uintptr_t os_cpu_ProcessorMask();
+uintptr_t os_cpu_ProcessorMask();
 
 /**
  * @return the number of processors available to this process.
@@ -62,7 +62,7 @@ LIB_API uintptr_t os_cpu_ProcessorMask();
  * note: this function is necessary because POSIX sysconf _SC_NPROCESSORS_CONF
  * is not suppored on MacOSX, else we would use that.
  **/
-LIB_API size_t os_cpu_NumProcessors();
+size_t os_cpu_NumProcessors();
 
 
 //-----------------------------------------------------------------------------
@@ -72,36 +72,36 @@ LIB_API size_t os_cpu_NumProcessors();
  * @return a rough estimate of the CPU clock frequency.
  * this is usually accurate to a few MHz and is faster than measurement loops.
  **/
-LIB_API double os_cpu_ClockFrequency();
+double os_cpu_ClockFrequency();
 
 /**
  * @return the size [bytes] of a MMU page (4096 on most IA-32 systems)
  **/
-LIB_API size_t os_cpu_PageSize();
+size_t os_cpu_PageSize();
 
 /**
  * @return the size [bytes] of a large MMU page (4 MiB on most IA-32 systems)
  * or zero if they are not supported.
  **/
-LIB_API size_t os_cpu_LargePageSize();
+size_t os_cpu_LargePageSize();
 
 /**
  * @return the size [MB] of physical memory as reported by the OS;
  * no caching/validation is performed.
  **/
-LIB_API size_t os_cpu_QueryMemorySize();
+size_t os_cpu_QueryMemorySize();
 
 /**
  * @return the size [MB] of physical memory; caches the result of
  * os_cpu_QueryMemorySize and overrides it with a more exact value
  * if SMBIOS information is available.
  **/
-LIB_API size_t os_cpu_MemorySize();
+size_t os_cpu_MemorySize();
 
 /**
  * @return the current amount [MB] of available memory.
  **/
-LIB_API size_t os_cpu_MemoryAvailable();
+size_t os_cpu_MemoryAvailable();
 
 
 //-----------------------------------------------------------------------------
@@ -114,7 +114,7 @@ LIB_API size_t os_cpu_MemoryAvailable();
  * (bit index i corresponds to processor i)
  * @return the previous mask
  **/
-LIB_API uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask);
+uintptr_t os_cpu_SetThreadAffinityMask(uintptr_t processorMask);
 
 class os_cpu_ScopedSetThreadAffinityMask
 {
@@ -148,6 +148,6 @@ typedef void (*OsCpuCallback)(size_t processor, uintptr_t cbData);
  * order of processor ID.
  * fails if process affinity prevents running on all processors.
  **/
-LIB_API Status os_cpu_CallByEachCPU(OsCpuCallback cb, uintptr_t cbData);
+Status os_cpu_CallByEachCPU(OsCpuCallback cb, uintptr_t cbData);
 
 #endif	// #ifndef INCLUDED_OS_CPU

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -36,7 +36,7 @@ struct utsname
 	char machine[9];   // Name of the hardware type on which the system is running.
 };
 
-LIB_API int uname(struct utsname*);
+int uname(struct utsname*);
 
 
 #endif	// #ifndef INCLUDED_WUTSNAME

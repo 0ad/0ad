@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -52,7 +52,7 @@
 // <stdlib.h>
 //
 
-LIB_API int setenv(const char* envname, const char* envval, int overwrite);
+int setenv(const char* envname, const char* envval, int overwrite);
 
 
 //

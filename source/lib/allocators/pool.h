@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -95,7 +95,7 @@ private:
 	void* freelist;
 };
 
-LIB_API void TestPool();
+void TestPool();
 
 }	// namespace Allocators
 
@@ -146,7 +146,7 @@ const size_t POOL_VARIABLE_ALLOCS = ~(size_t)0u;
  * allow variable-sized allocations, but pool_free is then unusable.
  * @return Status
  **/
-LIB_API Status pool_create(Pool* p, size_t max_size, size_t el_size);
+Status pool_create(Pool* p, size_t max_size, size_t el_size);
 
 /**
  * free all memory (address space + physical) that constitutes the
@@ -160,7 +160,7 @@ LIB_API Status pool_create(Pool* p, size_t max_size, size_t el_size);
  * @param p Pool*
  * @return Status.
  **/
-LIB_API Status pool_destroy(Pool* p);
+Status pool_destroy(Pool* p);
 
 /**
  * indicate whether a pointer was allocated from the given pool.
@@ -171,7 +171,7 @@ LIB_API Status pool_destroy(Pool* p);
  * @param el
  * @return bool.
  **/
-LIB_API bool pool_contains(const Pool* p, void* el);
+bool pool_contains(const Pool* p, void* el);
 
 /**
  * Dole out memory from the pool.
@@ -182,7 +182,7 @@ LIB_API bool pool_contains(const Pool* p, void* el);
  * @return allocated memory, or 0 if the Pool would have to be expanded and
  * there isn't enough memory to do so.
  **/
-LIB_API void* pool_alloc(Pool* p, size_t size);
+void* pool_alloc(Pool* p, size_t size);
 
 /**
  * Make a fixed-size element available for reuse in the given Pool.
@@ -194,7 +194,7 @@ LIB_API void* pool_alloc(Pool* p, size_t size);
  * @param p Pool*
  * @param el Element returned by pool_alloc.
  **/
-LIB_API void pool_free(Pool* p, void* el);
+void pool_free(Pool* p, void* el);
 
 /**
  * "free" all user allocations that ensued from the given Pool.
@@ -204,7 +204,7 @@ LIB_API void pool_free(Pool* p, void* el);
  *
  * @param p Pool*
  **/
-LIB_API void pool_free_all(Pool* p);
+void pool_free_all(Pool* p);
 
 /**
  * Return the number of bytes committed in the pool's backing array.
@@ -215,6 +215,6 @@ LIB_API void pool_free_all(Pool* p);
  * @param p Pool*
  * @return number of bytes
  **/
-LIB_API size_t pool_committed(Pool* p);
+size_t pool_committed(Pool* p);
 
 #endif	// #ifndef INCLUDED_ALLOCATORS_POOL
