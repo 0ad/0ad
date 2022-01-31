@@ -5,6 +5,7 @@
 		<require context="PASS_REFLECTIONS"/>
 		<require shaders="arb"/>
 		<pass shader="arb/terrain_blend">
+			<depth mask="false"/>
 			<cull mode="FRONT"/>
 		</pass>
 	</technique>
@@ -13,18 +14,23 @@
 		<require context="PASS_REFLECTIONS"/>
 		<require shaders="glsl"/>
 		<pass shader="glsl/terrain_blend">
+			<depth mask="false"/>
 			<cull mode="FRONT"/>
 		</pass>
 	</technique>
 
 	<technique>
 		<require shaders="arb"/>
-		<pass shader="arb/terrain_blend"/>
+		<pass shader="arb/terrain_blend">
+			<depth mask="false"/>
+		</pass>
 	</technique>
 
 	<technique>
 		<require shaders="glsl"/>
-		<pass shader="glsl/terrain_blend"/>
+		<pass shader="glsl/terrain_blend">
+			<depth mask="false"/>
+		</pass>
 	</technique>
 
 </effect>

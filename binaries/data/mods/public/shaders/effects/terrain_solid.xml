@@ -7,6 +7,7 @@
 		<pass shader="arb/dummy">
 			<!-- See GLSL -->
 			<cull mode="FRONT"/>
+			<color mask_red="FALSE" mask_green="FALSE" mask_blue="FALSE" mask_alpha="FALSE"/>
 		</pass>
 	</technique>
 	<technique>
@@ -19,6 +20,7 @@
 				terrain (so silhouettes will still display when behind hills).
 			-->
 			<cull mode="FRONT"/>
+			<color mask_red="FALSE" mask_green="FALSE" mask_blue="FALSE" mask_alpha="FALSE"/>
 		</pass>
 	</technique>
 

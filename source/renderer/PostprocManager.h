@@ -75,7 +75,7 @@ public:
 	// Blits the final postprocessed texture to the system framebuffer. The system framebuffer
 	// is selected as the output buffer. Should be called before silhouette rendering.
 	// @note CPostprocManager must be initialized first
-	void ReleaseRenderOutput();
+	void ReleaseRenderOutput(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	// Returns true if we render main scene in the MSAA framebuffer.
 	bool IsMultisampleEnabled() const;

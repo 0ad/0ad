@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <effect>
-    <technique>
-        <require shaders="glsl"/>
-        <pass shader="glsl/fxaa"/>
-    </technique>
+	<technique>
+		<require shaders="glsl"/>
+		<pass shader="glsl/fxaa">
+			<depth mask="false"/>
+		</pass>
+	</technique>
 </effect>

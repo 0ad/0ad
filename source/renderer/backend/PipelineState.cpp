@@ -29,6 +29,9 @@ GraphicsPipelineStateDesc MakeDefaultGraphicsPipelineStateDesc()
 {
 	GraphicsPipelineStateDesc desc{};
 
+	desc.depthStencilState.depthCompareOp = CompareOp::LESS_OR_EQUAL;
+	desc.depthStencilState.depthWriteEnabled = true;
+
 	desc.blendState.enabled = false;
 	desc.blendState.srcColorBlendFactor = desc.blendState.srcAlphaBlendFactor =
 		BlendFactor::ONE;
@@ -36,10 +39,29 @@ GraphicsPipelineStateDesc MakeDefaultGraphicsPipelineStateDesc()
 		BlendFactor::ZERO;
 	desc.blendState.colorBlendOp = desc.blendState.alphaBlendOp = BlendOp::ADD;
 	desc.blendState.constant = CColor(0.0f, 0.0f, 0.0f, 0.0f);
+	desc.blendState.colorWriteMask =
+		ColorWriteMask::RED | ColorWriteMask::GREEN | ColorWriteMask::BLUE | ColorWriteMask::ALPHA;
 
 	desc.rasterizationState.cullMode = CullMode::BACK;
 	desc.rasterizationState.frontFace = FrontFace::COUNTER_CLOCKWISE;
 	return desc;
+}
+
+CompareOp ParseCompareOp(const CStr& str)
+{
+	// TODO: it might make sense to use upper case in XML for consistency.
+#define CASE(NAME, VALUE) if (str == NAME) return CompareOp::VALUE
+	CASE("never", NEVER);
+	CASE("less", LESS);
+	CASE("equal", EQUAL);
+	CASE("lequal", LESS_OR_EQUAL);
+	CASE("greater", GREATER);
+	CASE("notequal", NOT_EQUAL);
+	CASE("gequal", GREATER_OR_EQUAL);
+	CASE("always", ALWAYS);
+#undef CASE
+	debug_warn("Invalid compare op");
+	return CompareOp::NEVER;
 }
 
 BlendFactor ParseBlendFactor(const CStr& str)

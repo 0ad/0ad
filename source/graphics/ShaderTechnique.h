@@ -39,10 +39,6 @@ public:
 	 */
 	void SetShader(const CShaderProgramPtr& shader) { m_Shader = shader; }
 
-	// Add various bits of GL state to the pass:
-	void ColorMask(GLboolean r, GLboolean g, GLboolean b, GLboolean a);
-	void DepthMask(GLboolean mask);
-	void DepthFunc(GLenum func);
 	void SetPipelineStateDesc(
 		const Renderer::Backend::GraphicsPipelineStateDesc& pipelineStateDesc);
 
@@ -65,18 +61,6 @@ private:
 	CShaderProgramPtr m_Shader;
 
 	Renderer::Backend::GraphicsPipelineStateDesc m_PipelineStateDesc{};
-
-	bool m_HasColorMask = false;
-	GLboolean m_ColorMaskR;
-	GLboolean m_ColorMaskG;
-	GLboolean m_ColorMaskB;
-	GLboolean m_ColorMaskA;
-
-	bool m_HasDepthMask = false;
-	GLboolean m_DepthMask;
-
-	bool m_HasDepthFunc = false;
-	GLenum m_DepthFunc;
 };
 
 /**

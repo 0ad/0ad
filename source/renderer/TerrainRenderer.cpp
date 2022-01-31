@@ -174,7 +174,6 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 
 	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
 
-	glDepthMask(0);
 	glDisable(GL_DEPTH_TEST);
 
 	CShaderTechniquePtr debugOverlayTech =
@@ -216,8 +215,6 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 	}
 
 	debugOverlayTech->EndPass();
-
-	glDepthMask(1);
 #endif
 }
 
@@ -280,9 +277,6 @@ void TerrainRenderer::RenderTerrainShader(
 
 	CPatchRData::RenderBases(deviceCommandContext, visiblePatches, context, shadow);
 
-	// no need to write to the depth buffer a second time
-	glDepthMask(0);
-
 	// render blend passes for each patch
 	CPatchRData::RenderBlends(deviceCommandContext, visiblePatches, context, shadow);
 
@@ -292,8 +286,6 @@ void TerrainRenderer::RenderTerrainShader(
 	g_Renderer.BindTexture(1, 0);
 	g_Renderer.BindTexture(2, 0);
 	g_Renderer.BindTexture(3, 0);
-
-	glDepthMask(1);
 }
 
 
@@ -416,7 +408,6 @@ bool TerrainRenderer::RenderFancyWater(
 	const float repeatPeriod = waterManager.m_RepeatPeriod;
 
 	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LEQUAL);
 
 #if !CONFIG2_GLES
 	if (g_Renderer.GetSceneRenderer().GetWaterRenderMode() == WIREFRAME)
@@ -518,8 +509,6 @@ bool TerrainRenderer::RenderFancyWater(
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 #endif
 
-	glDepthFunc(GL_LEQUAL);
-
 	return true;
 }
 
@@ -538,7 +527,6 @@ void TerrainRenderer::RenderSimpleWater(
 	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
 
 	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LEQUAL);
 
 	if (g_Renderer.GetSceneRenderer().GetWaterRenderMode() == WIREFRAME)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -604,7 +592,6 @@ void TerrainRenderer::RenderWaterFoamOccluders(
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, waterManager.m_FancyEffectsFBO);
 
 	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LEQUAL);
 
 	// Overwrite waves that would be behind the ground.
 	CShaderTechniquePtr dummyTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);

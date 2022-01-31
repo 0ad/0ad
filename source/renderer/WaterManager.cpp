@@ -817,7 +817,6 @@ void WaterManager::RenderWaves(
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_ALWAYS);
 
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_water_waves);
 	tech->BeginPass();
@@ -868,8 +867,6 @@ void WaterManager::RenderWaves(
 	}
 	tech->EndPass();
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
-
-	glDepthFunc(GL_LEQUAL);
 #endif
 }
 

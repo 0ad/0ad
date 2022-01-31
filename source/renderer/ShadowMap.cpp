@@ -626,10 +626,7 @@ void ShadowMap::BeginRender()
 		// color buffer too, else Mali 400 drivers get confused.
 		// Might as well clear stencil too for completeness.
 		if (g_RenderingOptions.GetShadowAlphaFix())
-		{
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-			glColorMask(0, 0, 0, 0);
-		}
 		else
 			glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	}
@@ -671,9 +668,6 @@ void ShadowMap::EndRender()
 
 	const SViewPort vp = { 0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight() };
 	g_Renderer.SetViewport(vp);
-
-	if (g_RenderingOptions.GetShadowAlphaFix())
-		glColorMask(1, 1, 1, 1);
 }
 
 void ShadowMap::BindTo(const CShaderProgramPtr& shader) const
@@ -726,8 +720,6 @@ void ShadowMap::SetDepthTextureBits(int bits)
 
 void ShadowMap::RenderDebugBounds()
 {
-	glDepthMask(0);
-
 	// Render various shadow bounds:
 	//  Yellow = bounds of objects in view frustum that receive shadows
 	//  Red = culling frustum used to find potential shadow casters
@@ -754,8 +746,6 @@ void ShadowMap::RenderDebugBounds()
 		g_Renderer.GetDebugRenderer().DrawBrushOutline(frustumBrush, CColor(1.0f, 0.0f, 0.0f, 0.5f));
 	}
 
-	glDepthMask(1);
-
 	ogl_WarnIfError();
 }
 
@@ -764,8 +754,6 @@ void ShadowMap::RenderDebugTexture(
 {
 	if (!m->Texture)
 		return;
-
-	glDepthMask(0);
 
 	glDisable(GL_DEPTH_TEST);
 
@@ -812,7 +800,6 @@ void ShadowMap::RenderDebugTexture(
 #endif
 
 	glEnable(GL_DEPTH_TEST);
-	glDepthMask(1);
 
 	ogl_WarnIfError();
 }

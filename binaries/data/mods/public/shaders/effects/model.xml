@@ -20,13 +20,17 @@
 	<technique>
 		<require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
 		<require shaders="arb"/>
-		<pass shader="arb/model_solid"/>
+		<pass shader="arb/model_solid">
+			<color mask_red="FALSE" mask_green="FALSE" mask_blue="FALSE" mask_alpha="FALSE"/>
+		</pass>
 	</technique>
 
 	<technique>
 		<require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
 		<require shaders="glsl"/>
-		<pass shader="glsl/model_solid"/>
+		<pass shader="glsl/model_solid">
+			<color mask_red="FALSE" mask_green="FALSE" mask_blue="FALSE" mask_alpha="FALSE"/>
+		</pass>
 	</technique>
 
 
@@ -47,6 +51,7 @@
 		<require context="MODE_SILHOUETTEDISPLAY"/>
 		<require shaders="arb"/>
 		<pass shader="arb/model_solid_player">
+			<depth func="gequal"/>
 			<blend src="constant_alpha" dst="one_minus_constant_alpha" constant="0 0 0 191"/>
 		</pass>
 	</technique>
@@ -55,6 +60,7 @@
 		<require context="MODE_SILHOUETTEDISPLAY"/>
 		<require shaders="glsl"/>
 		<pass shader="glsl/model_solid_player">
+			<depth func="gequal"/>
 			<blend src="constant_alpha" dst="one_minus_constant_alpha" constant="0 0 0 191"/>
 		</pass>
 	</technique>

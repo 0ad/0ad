@@ -28,6 +28,32 @@ namespace Renderer
 namespace Backend
 {
 
+enum class CompareOp
+{
+	// Never passes the comparison.
+	NEVER,
+	// Passes if the source value is less than the destination value.
+	LESS,
+	// Passes if the source depth value is equal to the destination value.
+	EQUAL,
+	// Passes if the source depth value is less than or equal to the destination value.
+	LESS_OR_EQUAL,
+	// Passes if the source depth value is greater than the destination value.
+	GREATER,
+	// Passes if the source depth value is not equal to the destination value.
+	NOT_EQUAL,
+	// Passes if the source depth value is greater than or equal to the destination value.
+	GREATER_OR_EQUAL,
+	// Always passes the comparison.
+	ALWAYS
+};
+
+struct DepthStencilStateDesc
+{
+	CompareOp depthCompareOp;
+	bool depthWriteEnabled;
+};
+
 // TODO: add per constant description.
 
 enum class BlendFactor
@@ -62,6 +88,16 @@ enum class BlendOp
 	MAX
 };
 
+// Using a namespace instead of a enum allows using the same syntax while
+// avoiding adding operator overrides and additional checks on casts.
+namespace ColorWriteMask
+{
+constexpr uint8_t RED = 0x01;
+constexpr uint8_t GREEN = 0x02;
+constexpr uint8_t BLUE = 0x04;
+constexpr uint8_t ALPHA = 0x08;
+} // namespace ColorWriteMask
+
 struct BlendStateDesc
 {
 	bool enabled;
@@ -72,6 +108,7 @@ struct BlendStateDesc
 	BlendFactor dstAlphaBlendFactor;
 	BlendOp alphaBlendOp;
 	CColor constant;
+	uint8_t colorWriteMask;
 };
 
 enum class CullMode
@@ -96,6 +133,7 @@ struct RasterizationStateDesc
 // TODO: Add a shader program to the graphics pipeline state.
 struct GraphicsPipelineStateDesc
 {
+	DepthStencilStateDesc depthStencilState;
 	BlendStateDesc blendState;
 	RasterizationStateDesc rasterizationState;
 };
@@ -103,6 +141,8 @@ struct GraphicsPipelineStateDesc
 // We don't provide additional helpers intentionally because all custom states
 // should be described with a related shader and should be switched together.
 GraphicsPipelineStateDesc MakeDefaultGraphicsPipelineStateDesc();
+
+CompareOp ParseCompareOp(const CStr& str);
 
 BlendFactor ParseBlendFactor(const CStr& str);
 BlendOp ParseBlendOp(const CStr& str);

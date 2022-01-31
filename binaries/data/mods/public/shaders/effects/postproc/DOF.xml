@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <effect>
-    <technique>
-        <require shaders="glsl"/>
+	<technique>
+		<require shaders="glsl"/>
 		<pass shader="glsl/dof">
 			<define name="BLUR_FOV" value="3"/>
+			<depth mask="false"/>
 		</pass>
-		<pass shader="glsl/hdr"/>
-    </technique>
+		<pass shader="glsl/hdr">
+			<depth mask="false"/>
+		</pass>
+	</technique>
 </effect>

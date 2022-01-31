@@ -378,10 +378,6 @@ void OverlayRenderer::RenderOverlaysBeforeWater()
 #if CONFIG2_GLES
 #warning TODO: implement OverlayRenderer::RenderOverlaysBeforeWater for GLES
 #else
-	// Ignore z so that we draw behind terrain (but don't disable GL_DEPTH_TEST
-	// since we still want to write to the z buffer)
-	glDepthFunc(GL_ALWAYS);
-
 	for (SOverlayLine* line : m->lines)
 	{
 		if (line->m_Coords.empty())
@@ -389,8 +385,6 @@ void OverlayRenderer::RenderOverlaysBeforeWater()
 
 		g_Renderer.GetDebugRenderer().DrawLine(line->m_Coords, line->m_Color, static_cast<float>(line->m_Thickness));
 	}
-
-	glDepthFunc(GL_LEQUAL);
 #endif
 }
 
@@ -416,7 +410,6 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 	ogl_WarnIfError();
 
 	glActiveTextureARB(GL_TEXTURE0);
-	glDepthMask(0);
 
 	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 
@@ -427,6 +420,7 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 	{
 		Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
 			shaderTechTexLineNormal->GetGraphicsPipelineStateDesc();
+		pipelineStateDesc.depthStencilState.depthWriteEnabled = false;
 		pipelineStateDesc.blendState.enabled = true;
 		pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
 			Renderer::Backend::BlendFactor::SRC_ALPHA;
@@ -457,6 +451,7 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 	{
 		Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
 			shaderTechTexLineAlwaysVisible->GetGraphicsPipelineStateDesc();
+		pipelineStateDesc.depthStencilState.depthWriteEnabled = false;
 		pipelineStateDesc.blendState.enabled = true;
 		pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
 			Renderer::Backend::BlendFactor::SRC_ALPHA;
@@ -488,8 +483,6 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 	g_Renderer.BindTexture(0, 0);
 
 	CVertexBuffer::Unbind();
-
-	glDepthMask(1);
 }
 
 void OverlayRenderer::RenderTexturedOverlayLines(const CShaderProgramPtr& shader, bool alwaysVisible)
@@ -532,6 +525,7 @@ void OverlayRenderer::RenderQuadOverlays(
 
 	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
 		shaderTech->GetGraphicsPipelineStateDesc();
+	pipelineStateDesc.depthStencilState.depthWriteEnabled = false;
 	pipelineStateDesc.blendState.enabled = true;
 	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
 		Renderer::Backend::BlendFactor::SRC_ALPHA;
@@ -550,7 +544,6 @@ void OverlayRenderer::RenderQuadOverlays(
 #endif
 
 	glActiveTextureARB(GL_TEXTURE0);
-	glDepthMask(0);
 
 	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 
@@ -607,8 +600,6 @@ void OverlayRenderer::RenderQuadOverlays(
 	g_Renderer.BindTexture(0, 0);
 
 	CVertexBuffer::Unbind();
-
-	glDepthMask(1);
 
 #if !CONFIG2_GLES
 	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
@@ -762,14 +753,13 @@ void OverlayRenderer::RenderSphereOverlays(
 	if (m->spheres.empty())
 		return;
 
-	glDepthMask(0);
-
 	CShaderProgramPtr shader;
 	CShaderTechniquePtr tech;
 
 	tech = g_Renderer.GetShaderManager().LoadEffect(str_overlay_solid);
 	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
 		tech->GetGraphicsPipelineStateDesc();
+	pipelineStateDesc.depthStencilState.depthWriteEnabled = false;
 	pipelineStateDesc.blendState.enabled = true;
 	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
 		Renderer::Backend::BlendFactor::SRC_ALPHA;
@@ -807,7 +797,5 @@ void OverlayRenderer::RenderSphereOverlays(
 	}
 
 	tech->EndPass();
-
-	glDepthMask(1);
 #endif
 }

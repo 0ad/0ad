@@ -392,10 +392,14 @@ void CPostprocManager::CaptureRenderOutput()
 }
 
 
-void CPostprocManager::ReleaseRenderOutput()
+void CPostprocManager::ReleaseRenderOutput(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	ENSURE(m_IsInitialized);
 
+	const Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
+		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc();
+	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
@@ -424,7 +428,6 @@ void CPostprocManager::ApplyEffect(
 		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
 
 	glDisable(GL_DEPTH_TEST);
-	glDepthMask(GL_FALSE);
 
 	shaderTech1->BeginPass(pass);
 	deviceCommandContext->SetGraphicsPipelineState(
@@ -484,7 +487,6 @@ void CPostprocManager::ApplyEffect(
 
 	shaderTech1->EndPass(pass);
 
-	glDepthMask(GL_TRUE);
 	glEnable(GL_DEPTH_TEST);
 
 	m_WhichBuffer = !m_WhichBuffer;
@@ -834,7 +836,8 @@ void CPostprocManager::ApplyPostproc(
 {
 }
 
-void CPostprocManager::ReleaseRenderOutput()
+void CPostprocManager::ReleaseRenderOutput(
+	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext))
 {
 }
 
