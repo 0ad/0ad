@@ -36,9 +36,9 @@ namespace GL
 namespace
 {
 
-GLint CalculateMinFilter(const Sampler::Desc& defaultSamplerDesc, const uint32_t mipCount)
+GLint CalculateMinFilter(const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount)
 {
-	if (mipCount == 1)
+	if (MIPLevelCount == 1)
 		return defaultSamplerDesc.minFilter == Sampler::Filter::LINEAR ? GL_LINEAR : GL_NEAREST;
 
 	if (defaultSamplerDesc.minFilter == Sampler::Filter::LINEAR)
@@ -86,27 +86,27 @@ GLenum TypeToGLEnum(CTexture::Type type)
 // static
 std::unique_ptr<CTexture> CTexture::Create2D(const Format format,
 	const uint32_t width, const uint32_t height,
-	const Sampler::Desc& defaultSamplerDesc, const uint32_t mipCount, const uint32_t sampleCount)
+	const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount)
 {
-	return Create(Type::TEXTURE_2D, format, width, height, defaultSamplerDesc, mipCount, sampleCount);
+	return Create(Type::TEXTURE_2D, format, width, height, defaultSamplerDesc, MIPLevelCount, sampleCount);
 }
 
 // static
 std::unique_ptr<CTexture> CTexture::Create(const Type type, const Format format,
 	const uint32_t width, const uint32_t height,
-	const Sampler::Desc& defaultSamplerDesc, const uint32_t mipCount, const uint32_t sampleCount)
+	const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount)
 {
 	std::unique_ptr<CTexture> texture(new CTexture());
 
 	ENSURE(format != Format::UNDEFINED);
-	ENSURE(width > 0 && height > 0 && mipCount > 0);
+	ENSURE(width > 0 && height > 0 && MIPLevelCount > 0);
 	ENSURE((type == Type::TEXTURE_2D_MULTISAMPLE && sampleCount > 1) || sampleCount == 1);
 
 	texture->m_Format = format;
 	texture->m_Type = type;
 	texture->m_Width = width;
 	texture->m_Height = height;
-	texture->m_MipCount = mipCount;
+	texture->m_MIPLevelCount = MIPLevelCount;
 
 	glGenTextures(1, &texture->m_Handle);
 
@@ -121,7 +121,7 @@ std::unique_ptr<CTexture> CTexture::Create(const Type type, const Format format,
 	// It's forbidden to set sampler state for multisample textures.
 	if (type != Type::TEXTURE_2D_MULTISAMPLE)
 	{
-		glTexParameteri(target, GL_TEXTURE_MIN_FILTER, CalculateMinFilter(defaultSamplerDesc, mipCount));
+		glTexParameteri(target, GL_TEXTURE_MIN_FILTER, CalculateMinFilter(defaultSamplerDesc, MIPLevelCount));
 		glTexParameteri(target, GL_TEXTURE_MAG_FILTER, defaultSamplerDesc.magFilter == Sampler::Filter::LINEAR ? GL_LINEAR : GL_NEAREST);
 
 		ogl_WarnIfError();
@@ -139,7 +139,7 @@ std::unique_ptr<CTexture> CTexture::Create(const Type type, const Format format,
 
 #if !CONFIG2_GLES
 	glTexParameteri(target, GL_TEXTURE_BASE_LEVEL, 0);
-	glTexParameteri(target, GL_TEXTURE_MAX_LEVEL, mipCount - 1);
+	glTexParameteri(target, GL_TEXTURE_MAX_LEVEL, MIPLevelCount - 1);
 
 	if (defaultSamplerDesc.mipLODBias != 0.0f)
 		glTexParameteri(target, GL_TEXTURE_LOD_BIAS, defaultSamplerDesc.mipLODBias);
@@ -157,7 +157,7 @@ std::unique_ptr<CTexture> CTexture::Create(const Type type, const Format format,
 
 	ogl_WarnIfError();
 
-	ENSURE(mipCount == 1);
+	ENSURE(MIPLevelCount == 1);
 
 	if (type == CTexture::Type::TEXTURE_2D)
 	{
