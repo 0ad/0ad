@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -45,7 +45,7 @@ public:
 	/**
 	 * Set clipping rectangle, in pre-transform coordinates (i.e. text is clipped against
 	 * this rect based purely on the x,y values passed into Put()). Text fully outside the
-	 * clipping rectangle may not be rendered. Should be used in conjunction with glScissor
+	 * clipping rectangle may not be rendered. Should be used in conjunction with SetScissors
 	 * for precise clipping - this is just an optimisation.
 	 */
 	void SetClippingRect(const CRect& rect);

@@ -47,6 +47,22 @@ bool operator!=(const StencilOpState& lhs, const StencilOpState& rhs)
 	return !operator==(lhs, rhs);
 }
 
+bool operator==(
+	const CDeviceCommandContext::ScissorRect& lhs,
+	const CDeviceCommandContext::ScissorRect& rhs)
+{
+	return
+		lhs.x == rhs.x && lhs.y == rhs.y &&
+		lhs.width == rhs.width && lhs.height == rhs.height;
+}
+
+bool operator!=(
+	const CDeviceCommandContext::ScissorRect& lhs,
+	const CDeviceCommandContext::ScissorRect& rhs)
+{
+	return !operator==(lhs, rhs);
+}
+
 } // anonymous namespace
 
 // static
@@ -149,6 +165,7 @@ void CDeviceCommandContext::Flush()
 void CDeviceCommandContext::ResetStates()
 {
 	SetGraphicsPipelineStateImpl(MakeDefaultGraphicsPipelineStateDesc(), true);
+	SetScissors(0, nullptr);
 }
 
 void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
@@ -335,6 +352,28 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 	}
 
 	m_GraphicsPipelineStateDesc = pipelineStateDesc;
+}
+
+void CDeviceCommandContext::SetScissors(const uint32_t scissorCount, const ScissorRect* scissors)
+{
+	ENSURE(scissorCount <= 1);
+	if (scissorCount == 0)
+	{
+		if (m_ScissorCount != scissorCount)
+			glDisable(GL_SCISSOR_TEST);
+	}
+	else
+	{
+		if (m_ScissorCount != scissorCount)
+			glEnable(GL_SCISSOR_TEST);
+		if (m_ScissorCount != scissorCount || m_Scissors[0] != scissors[0])
+		{
+			ENSURE(scissors);
+			m_Scissors[0] = scissors[0];
+			glScissor(m_Scissors[0].x, m_Scissors[0].y, m_Scissors[0].width, m_Scissors[0].height);
+		}
+	}
+	m_ScissorCount = scissorCount;
 }
 
 } // namespace GL

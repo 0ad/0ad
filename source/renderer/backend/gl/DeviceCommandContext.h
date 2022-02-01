@@ -21,6 +21,7 @@
 #include "renderer/backend/Format.h"
 #include "renderer/backend/PipelineState.h"
 
+#include <array>
 #include <memory>
 #include <optional>
 
@@ -53,6 +54,14 @@ public:
 		const uint32_t width, const uint32_t height,
 		const uint32_t level = 0, const uint32_t layer = 0);
 
+	// TODO: maybe we should add a more common type, like CRectI.
+	struct ScissorRect
+	{
+		int32_t x, y;
+		int32_t width, height;
+	};
+	void SetScissors(const uint32_t scissorCount, const ScissorRect* scissors);
+
 	void Flush();
 
 private:
@@ -64,6 +73,9 @@ private:
 		const GraphicsPipelineStateDesc& pipelineStateDesc, const bool force);
 
 	GraphicsPipelineStateDesc m_GraphicsPipelineStateDesc{};
+	uint32_t m_ScissorCount = 0;
+	// GL2.1 doesn't support more than 1 scissor.
+	std::array<ScissorRect, 1> m_Scissors;
 };
 
 } // namespace GL
