@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -101,11 +101,11 @@ struct FADT	// signature is FACP!
  * note: the first call may be slow, e.g. if a kernel-mode driver is
  * loaded. subsequent requests will be faster since tables are cached.
  **/
-LIB_API const AcpiTable* acpi_GetTable(const char* signature);
+const AcpiTable* acpi_GetTable(const char* signature);
 
 /**
  * invalidates all pointers returned by acpi_GetTable.
  **/
-LIB_API void acpi_Shutdown();
+void acpi_Shutdown();
 
 #endif	// #ifndef INCLUDED_ACPI

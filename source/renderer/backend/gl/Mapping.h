@@ -33,9 +33,11 @@ namespace GL
 namespace Mapping
 {
 
-GLenum FromBlendFactor(BlendFactor blendFactor);
+GLenum DepthFuncFromCompareOp(const CompareOp compareOp);
 
-GLenum FromBlendOp(BlendOp blendOp);
+GLenum FromBlendFactor(const BlendFactor blendFactor);
+
+GLenum FromBlendOp(const BlendOp blendOp);
 
 } // namespace Mapping
 

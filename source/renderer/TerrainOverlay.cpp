@@ -121,7 +121,6 @@ void TerrainOverlay::RenderBeforeWater(
 	UNUSED2(deviceCommandContext);
 #warning TODO: implement TerrainOverlay::RenderOverlays for GLES
 #else
-	glDepthMask(GL_FALSE);
 	// To ensure that outlines are drawn on top of the terrain correctly (and
 	// don't Z-fight and flicker nastily), draw them as QUADS with the LINE
 	// PolygonMode, and use PolygonOffset to pull them towards the camera.
@@ -155,7 +154,6 @@ void TerrainOverlay::RenderBeforeWater(
 	//glDisable(GL_POLYGON_OFFSET_LINE);
 	glDisable(GL_POLYGON_OFFSET_FILL);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	glDepthMask(GL_TRUE);
 #endif
 }
 

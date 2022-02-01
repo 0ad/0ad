@@ -638,6 +638,9 @@ void CSceneRenderer::RenderReflections(
 	// try binding the framebuffer
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, wm.m_ReflectionFbo);
 
+	const Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
+		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc();
+	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 	glClearColor(0.5f, 0.5f, 1.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -718,6 +721,9 @@ void CSceneRenderer::RenderRefractions(
 	// try binding the framebuffer
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, wm.m_RefractionFbo);
 
+	const Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
+		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc();
+	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 	glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -760,8 +766,6 @@ void CSceneRenderer::RenderSilhouettes(
 
 	glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
-	glColorMask(0, 0, 0, 0);
-
 	// Render occluders:
 
 	{
@@ -778,9 +782,6 @@ void CSceneRenderer::RenderSilhouettes(
 		PROFILE("render transparent occluders");
 		m->CallTranspModelRenderers(deviceCommandContext, contextOccluder, CULL_SILHOUETTE_OCCLUDER, 0);
 	}
-
-	glDepthFunc(GL_GEQUAL);
-	glColorMask(1, 1, 1, 1);
 
 	// Since we can't sort, we'll use the stencil buffer to ensure we only draw
 	// a pixel once (using the color of whatever model happens to be drawn first).
@@ -799,7 +800,6 @@ void CSceneRenderer::RenderSilhouettes(
 	}
 
 	// Restore state
-	glDepthFunc(GL_LEQUAL);
 	glDisable(GL_STENCIL_TEST);
 }
 
@@ -980,7 +980,7 @@ void CSceneRenderer::RenderSubmissions(
 			g_Renderer.GetPostprocManager().ResolveMultisampleFramebuffer();
 
 		postprocManager.ApplyPostproc(deviceCommandContext);
-		postprocManager.ReleaseRenderOutput();
+		postprocManager.ReleaseRenderOutput(deviceCommandContext);
 	}
 
 	if (g_RenderingOptions.GetSilhouettes())
@@ -1031,15 +1031,11 @@ void CSceneRenderer::DisplayFrustum()
 #if CONFIG2_GLES
 #warning TODO: implement CSceneRenderer::DisplayFrustum for GLES
 #else
-	glDepthMask(0);
-
 	g_Renderer.GetDebugRenderer().DrawCameraFrustum(m_CullCamera, CColor(1.0f, 1.0f, 1.0f, 0.25f), 2);
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	g_Renderer.GetDebugRenderer().DrawCameraFrustum(m_CullCamera, CColor(1.0f, 1.0f, 1.0f, 1.0f), 2);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-	glDepthMask(1);
 #endif
 
 	ogl_WarnIfError();

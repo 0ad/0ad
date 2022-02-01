@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -149,7 +149,7 @@ struct AppHooks
  * override the previous function pointer value
  * (these default to the stub hooks which are functional but basic).
  **/
-LIB_API void app_hooks_update(AppHooks* ah);
+void app_hooks_update(AppHooks* ah);
 
 /**
  * was the app hook changed via app_hooks_update from its default value?

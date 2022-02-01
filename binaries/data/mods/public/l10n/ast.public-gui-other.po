@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-31 08:08+0000\n"
-"PO-Revision-Date: 2022-01-28 04:32+0000\n"
+"PO-Revision-Date: 2022-01-31 03:28+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgstr "Atayyu sin assignar: %(hotkeyName)s"
 #: gui/common/color.js:196
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr "Premi %(hotkey)s p’auto-completar nomes de jogadores."
+msgstr "Preme %(hotkey)s p’auto-completar nomes de jogadores."
 
 #: gui/common/color.js:198
 msgctxt "hotkey"
@@ -171,11 +171,11 @@ msgstr[1] "Spectadores"
 #: gui/common/gamedescription.js:188
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr "Incuontru infinitu"
+msgstr "Incuöntru infinitu"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr "L’incuontru vai seguir sin vincedor, magar qui todos stean vincidos."
+msgstr "L’incuöntru vai seguir sin vincedor, magar que todos stean vincidos."
 
 #: gui/common/gamedescription.js:202
 #, javascript-format
@@ -203,15 +203,15 @@ msgstr "Héroes ablogables"
 
 #: gui/common/gamedescription.js:240
 msgid "Heroes can be garrisoned."
-msgstr "Los héroes puoden ablogá-se."
+msgstr "Los héroes puöden ablogá-se."
 
 #: gui/common/gamedescription.js:244
 msgid "Exposed Heroes"
-msgstr "Héroes expuostos"
+msgstr "Héroes expuöstos"
 
 #: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr "Los héroes non puoden ablogá-se & son mas vulnerables."
+msgstr "Los héroes nun puöden ablogá-se & son mas vulnerables."
 
 #: gui/common/gamedescription.js:251
 msgid "Locked Teams"
@@ -219,7 +219,7 @@ msgstr "Quadriellas fixas"
 
 #: gui/common/gamedescription.js:252
 msgid "Players can't change the initial teams."
-msgstr "Los jogadores non puoden cambiar de quadriella."
+msgstr "Los jogadores nun puöden cambiar de quadriella."
 
 #: gui/common/gamedescription.js:256
 msgid "Diplomacy"
@@ -227,17 +227,17 @@ msgstr "Diplomacia"
 
 #: gui/common/gamedescription.js:257
 msgid "Players can make alliances and declare war on allies."
-msgstr "Los jogadores puoden colligá-se & imbellá-se contra colligados."
+msgstr "Los jogadores puöden colligá-se & imbellá-se contra colligados."
 
 #: gui/common/gamedescription.js:262
 msgid "Last Man Standing"
-msgstr "A vida ou muorte"
+msgstr "A vida ou muörte"
 
 #: gui/common/gamedescription.js:263
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr "Non puode haber ma un vincedor. Si tódolos jogadores vivos son colligados, l’incuontru sigue ta quedar solo unu."
+msgstr "Nun puöde haber ma un vincedor. Si tódolos jogadores vivos son colligados, l’incuöntru sigui ta quedar solo unu."
 
 #: gui/common/gamedescription.js:267
 msgid "Allied Victory"
@@ -247,7 +247,7 @@ msgstr "Victoria colligada"
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr "La victoria comparten-la los colligados del vincedor. Triumpha la última colligacion qui finque."
+msgstr "La victoria compartin-la los colligados del vincedor. Triumpha la última colligacion que finque."
 
 #: gui/common/gamedescription.js:273
 msgid "Ceasefire"
@@ -259,14 +259,14 @@ msgstr "N'inactivo"
 
 #: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
-msgstr "Dumentres el minutu primeiru, los outros jogadores van caltené-se neutrales."
+msgstr "Mentres el minutu primeiru, los outros jogadores van caltené-se neutrales."
 
 #: gui/common/gamedescription.js:279
 #, javascript-format
 msgid "For the first %(min)s minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] "Dumentres el minutu %(min)s, los outros jogadores van caltené-se neutrales."
-msgstr[1] "Dumentres los %(min)s minutos primeiros, los outros jogadores van caltené-se neutrales."
+msgstr[0] "Mentres el minutu %(min)s, los outros jogadores van caltené-se neutrales."
+msgstr[1] "Mentres los %(min)s minutos primeiros, los outros jogadores van caltené-se neutrales."
 
 #: gui/common/gamedescription.js:288
 msgctxt "Map Selection"
@@ -336,7 +336,7 @@ msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:365
 msgid "Population Limit"
-msgstr "Teito poblacional"
+msgstr "Teitho poblacional"
 
 #: gui/common/gamedescription.js:369
 msgctxt "population limit"
@@ -345,7 +345,7 @@ msgstr "Per jogador"
 
 #: gui/common/gamedescription.js:377
 msgid "World Population Cap"
-msgstr "Teito poblacional global"
+msgstr "Teitho poblacional global"
 
 #: gui/common/gamedescription.js:385
 msgid "Treasures"
@@ -385,7 +385,7 @@ msgstr "Al determinase'l vencedor del alcuentru, anuévase la puntuación n'ante
 
 #: gui/common/gamedescription.js:415 gui/common/gamedescription.js:420
 msgid "Rated game"
-msgstr "Incuontru classificadu"
+msgstr "Incuöntru classificadu"
 
 #: gui/common/gamedescription.js:421 gui/common/gamedescription.js:428
 msgctxt "game setup option"
@@ -446,11 +446,11 @@ msgstr "Mala conexón con %(player)s (%(milliseconds)sms)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr "Ello puode ser por un torna-fuogu, un programma antivirus ou la non remission del puortu UDP 20595 per parte del amphitryon."
+msgstr "Ello puöde ser por un torna-fhuögu, un programma antivirus ou la non remission del puörtu UDP 20595 per parte del amphitryon."
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr "L’amphitryon finou l’incuontru."
+msgstr "L’amphitryon finou l’incuöntru."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
@@ -462,7 +462,7 @@ msgstr "L'alcuentru está cargándose, volvi tentallo más sero."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr "Yá anició l'ancuentru, nun se permiten espectadores."
+msgstr "Ia iniciou l’incuöntru, non se permittin spectadores."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
@@ -511,7 +511,7 @@ msgstr "Nun pudo atopase'l puntu final de STUN."
 #: gui/common/network.js:84
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr "\\[valor non válidu %(id)s]"
+msgstr "\\[valor inválidu %(id)s]"
 
 #: gui/common/network.js:98
 msgid "Lost connection to the server."
@@ -527,7 +527,7 @@ msgstr "Desconectóse."
 
 #: gui/common/network.js:109
 msgid "Only the host can kick clients!"
-msgstr "¡Solo l’amphitryon puode expulsar a clientes!"
+msgstr "¡Solo l’amphitryon puöde expulsar a clientes!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
@@ -1006,7 +1006,7 @@ msgstr "Sanar:"
 #: gui/common/tooltips.js:563
 msgctxt "garrison tooltip"
 msgid "Health"
-msgstr "Vitalidat"
+msgstr "Vitalidá"
 
 #: gui/common/tooltips.js:577
 #, javascript-format
@@ -1237,8 +1237,8 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 #: gui/common/tooltips.js:1048
 msgid "Health"
 msgid_plural "Health"
-msgstr[0] "Vitalidat"
-msgstr[1] "Vitalidat"
+msgstr[0] "Vitalidá"
+msgstr[1] "Vitalidá"
 
 #: gui/common/tooltips.js:1072
 #, javascript-format
@@ -1295,7 +1295,7 @@ msgstr "Depósitu pa:"
 #. element will open the Template Details GUI page.
 #: gui/common/tooltips.js:1211
 msgid "Right-click to view more information."
-msgstr "Fai clic cunno botton direitu pa ver mas informacion."
+msgstr "Picca cul botton direithu pa ver mas informacion."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
@@ -1505,7 +1505,7 @@ msgstr "Gracies especiales a:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr "& gracias a la communidat toda por fazer possible 0 A.D."
+msgstr "& gracias a la communidá toda por fazer possible 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -1526,7 +1526,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr "Magar relativamente fácile pal jogador veteranu, al novatu la difficultat predefinida del agente intelligente puode supponé-lli un reptu. A esti aconseyya-se-lli practicar cunna difficultat del AI reduzida (Ẍole ou Per-fácile). Pa cambiar la difficultat del AI, fai clic na ícone de la ruoda dentada cabo’l jogador del quadro superior qui quieras commudar."
+msgstr "Magar relativamente fácile pal jogador veteranu, al novatu la difficultá predefinida del agente intelligente puöde supponé-lli un reptu. A esti aconseyya-se-lli practicar cula difficultá del AI reduzida (Ẍole ou Per-fácile). Pa cambiar la difficultá del AI, picca na ícone de la ruöda dentada cabo’l jogador del quadro superior que quieras commudar."
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
@@ -1543,7 +1543,7 @@ msgstr "(Calténlu calcáu p'asignallu)"
 
 #: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
-msgstr "Introduz l’atayyu nuovu, calten-lu calcadu p’assigná-llu."
+msgstr "Pon l’atayyu nuövu, calten-lu premidu p’assigná-llu."
 
 #: gui/hotkeys/HotkeyPicker.js:107
 msgctxt "Unassigned hotkey"
@@ -1566,7 +1566,7 @@ msgstr "Tódolos atayyos disponibles."
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
-msgstr "¿Reaffitar tódolos atayyos?\nAVISU: Esto non puode revertí-se."
+msgstr "¿Reaffitar tódolos atayyos?\nAVISU: Esto nun puöde revertí-se."
 
 #: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:250
 #: gui/pregame/MainMenuItems.js:274
@@ -1575,7 +1575,7 @@ msgstr "Confirmanza"
 
 #: gui/hotkeys/HotkeysPage.js:198
 msgid "No tooltip available."
-msgstr "Non ha hi conseyyos disponibles."
+msgstr "Nun ha hi conseyyos disponibles."
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -1641,7 +1641,7 @@ msgstr "Van perdese los cambeos ensin guardar"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
-msgstr "Fai clic p’affitar l’atayyu"
+msgstr "Picca p’affitar l’atayyu"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
@@ -1658,7 +1658,7 @@ msgstr "Los atayos van siguir igual"
 #: gui/hotkeys/spec/camera.jsoncategories.camera.desc
 msgctxt "hotkey metadata"
 msgid "Camera-related hotkeys."
-msgstr "Atayos rellacionaos cola cámara."
+msgstr "Atayyos relhacionados cula cámara."
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.name
 msgctxt "hotkey metadata"
@@ -1678,7 +1678,7 @@ msgstr "Desplazar/xirar abaxo"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.desc
 msgctxt "hotkey metadata"
 msgid "Follow the first unit in the selection."
-msgstr "Seguir la primeira unidat de la excolleita."
+msgstr "Seguir la primeira unidá de la excolleitha."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.name
 msgctxt "hotkey metadata"
@@ -1951,22 +1951,22 @@ msgstr "Alloñar"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera zoom speed."
-msgstr "Baẍar la velocidat d’approximacion de la cámara."
+msgstr "Baẍar la velocidá d’approximacion de la cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease zoom speed"
-msgstr "Baẍar la velocidat d’approximacion"
+msgstr "Baẍar la velocidá d’approximacion"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera zoom speed."
-msgstr "Subir la velocidat d’approximacion de la cámara."
+msgstr "Subir la velocidá d’approximacion de la cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase zoom speed"
-msgstr "Subir la velocidat d’approximacion"
+msgstr "Subir la velocidá d’approximacion"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.desc
 msgctxt "hotkey metadata"
@@ -2001,12 +2001,12 @@ msgstr "Xeneral"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take large BMP screenshot."
-msgstr "Fai una simeyya grande in formatu BMP."
+msgstr "Fai una semeyya grande in formatu BMP."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.name
 msgctxt "hotkey metadata"
 msgid "Big screenshot"
-msgstr "Simeyya"
+msgstr "Semeyya"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.desc
 msgctxt "hotkey metadata"
@@ -2051,7 +2051,7 @@ msgstr "Copiar al cartafueyu"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.desc
 msgctxt "hotkey metadata"
 msgid "Cut selected text and copy to the clipboard."
-msgstr "Cortar el textu esbillao y copiallo en cartafueyu."
+msgstr "Curtar el textu excoyyidu & copiá-llu in chartafhuöyyu."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.name
 msgctxt "hotkey metadata"
@@ -2123,7 +2123,7 @@ msgstr "Alternar l'analizador2"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take PNG screenshot."
-msgstr "Facer un semeyu en formatu PNG."
+msgstr "Fazer un semeyyu in formatu PNG."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.name
 msgctxt "hotkey metadata"
@@ -2193,7 +2193,7 @@ msgstr "Mover el punteru a la pallabra a manzorga"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the right of cursor."
-msgstr "Mover el cursor al impieçu de la palhabra a la direita del cursor."
+msgstr "Mover el cursor al impieçu de la palhabra a la direitha del cursor."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.name
 msgctxt "hotkey metadata"
@@ -2283,7 +2283,7 @@ msgstr "Acometer (namái unidades)"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to set the rally point on the building itself."
-msgstr "Commudador p’affitar el punto d’incuontru nun miesmo edificio."
+msgstr "Commudador p’affitar el punto d’incuöntru nun miesmo edificio."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.name
 msgctxt "hotkey metadata"
@@ -2336,7 +2336,7 @@ msgstr "Omitir el conxuntu"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare while this hotkey is pressed."
-msgstr "Fazer signas cunno cursor premiendo l’atayyu al calcar."
+msgstr "Fazer signas cul cursor premiendo l’atayyu al calcar."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
 msgctxt "hotkey metadata"
@@ -2346,7 +2346,7 @@ msgstr "Signar (premiendo)"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare. The hotkey can be released."
-msgstr "Fazer signas cunno cursor. L’atayyu puode soltá-se."
+msgstr "Fazer signas cul cursor. L’atayyu puöde soltá-se."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
 msgctxt "hotkey metadata"
@@ -2376,7 +2376,7 @@ msgstr "Ocupar"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to escort/guard when clicking on unit/building."
-msgstr "Commudador pa proteger unidades ou edificios al fazer clic nellos."
+msgstr "Commudador pa proteger unidades ou edificios al piccar nellos."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.name
 msgctxt "hotkey metadata"
@@ -2476,7 +2476,7 @@ msgstr "Rondar"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to execute this order, then go back to the current order."
-msgstr "Commudador pa executar esti mandado & lhuogo volver al mandado actual."
+msgstr "Commudador pa executar esti mandado & lhuögo volver al mandado actual."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.name
 msgctxt "hotkey metadata"
@@ -2870,7 +2870,7 @@ msgstr "Alternar el cursín"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarded units."
-msgstr "Señalar o non les unidades protexides."
+msgstr "Signalar ou non las unidades protegidas."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.name
 msgctxt "hotkey metadata"
@@ -2880,7 +2880,7 @@ msgstr "Alternar el señalamientu de lo curiao"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarding units."
-msgstr "Señalar o non les unidades protectores."
+msgstr "Signalar ou non las unidades protectoras."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.name
 msgctxt "hotkey metadata"
@@ -2912,7 +2912,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of status bars e.g. health indicator for all your "
 "buildings/units on the map (including unselected)."
-msgstr "Alternar la presencia de las barras de stadu, p. ex. l’indicador vital de tódolos edificios/unidades in mappa (incluses les non seleccionadas)."
+msgstr "Alternar la presencia de las barras de stadu, p. ex. l’indicador vital de tódolos edificios/unidades in mappa (inclusas las non seleccionadas)."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"
@@ -3154,7 +3154,7 @@ msgstr "Amestar el conxuntu 9"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.0.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 0."
-msgstr "Guardar la excolleita actual cumo Grea 0."
+msgstr "Guardar la excolleitha actual cumo Grea 0."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.0.name
 msgctxt "hotkey metadata"
@@ -3164,7 +3164,7 @@ msgstr "Affitar la Grea 0"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 1."
-msgstr "Guardar la excolleita actual cumo Grea 1."
+msgstr "Guardar la excolleitha actual cumo Grea 1."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.name
 msgctxt "hotkey metadata"
@@ -3174,7 +3174,7 @@ msgstr "Affitar la Grea 1"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 2."
-msgstr "Guardar la excolleita actual cumo Grea 2."
+msgstr "Guardar la excolleitha actual cumo Grea 2."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.name
 msgctxt "hotkey metadata"
@@ -3184,7 +3184,7 @@ msgstr "Affitar la Grea 2"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 3."
-msgstr "Guardar la excolleita actual cumo Grea 3."
+msgstr "Guardar la excolleitha actual cumo Grea 3."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.name
 msgctxt "hotkey metadata"
@@ -3194,7 +3194,7 @@ msgstr "Affitar la Grea 3"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 4."
-msgstr "Guardar la excolleita actual cumo Grea 4."
+msgstr "Guardar la excolleitha actual cumo Grea 4."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.name
 msgctxt "hotkey metadata"
@@ -3204,7 +3204,7 @@ msgstr "Affitar la Grea 4"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 5."
-msgstr "Guardar la excolleita actual cumo Grea 5."
+msgstr "Guardar la excolleitha actual cumo Grea 5."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.name
 msgctxt "hotkey metadata"
@@ -3214,7 +3214,7 @@ msgstr "Affitar la Grea 5"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 6."
-msgstr "Guardar la excolleita actual cumo Grea 6."
+msgstr "Guardar la excolleitha actual cumo Grea 6."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.name
 msgctxt "hotkey metadata"
@@ -3224,7 +3224,7 @@ msgstr "Affitar la Grea 6"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 7."
-msgstr "Guardar la excolleita actual cumo Grea 7."
+msgstr "Guardar la excolleitha actual cumo Grea 7."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.name
 msgctxt "hotkey metadata"
@@ -3234,7 +3234,7 @@ msgstr "Affitar la Grea 7"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 8."
-msgstr "Guardar la excolleita actual cumo Grea 8."
+msgstr "Guardar la excolleitha actual cumo Grea 8."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.name
 msgctxt "hotkey metadata"
@@ -3244,7 +3244,7 @@ msgstr "Affitar la Grea 8"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 9."
-msgstr "Guardar la excolleita actual cumo Grea 9."
+msgstr "Guardar la excolleitha actual cumo Grea 9."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.name
 msgctxt "hotkey metadata"
@@ -3638,7 +3638,7 @@ msgstr "Nengún"
 
 #: gui/locale_advanced/locale_advanced.js:91
 msgid "invalid locale"
-msgstr "locale non válida"
+msgstr "locale inválida"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):25
 msgid "Country:"
@@ -3718,15 +3718,15 @@ msgstr "Mapes nuevos"
 
 #: gui/maps/MapFilters.js:110
 msgid "Maps that are brand new in this release of the game."
-msgstr "Mappas qui son nuovos nesti lhanciamiento del juogu."
+msgstr "Mappas que son nuövos nesti lhanciamiento del juögu."
 
 #: gui/maps/MapFilters.js:115
 msgid "Best for MP"
-msgstr "Meyor pal modu multijogador"
+msgstr "Meyyor pal modu multijogador"
 
 #: gui/maps/MapFilters.js:116
 msgid "Maps that are recommended for Multiplayer play."
-msgstr "Mappas que s’incommientan pal modu multijogador."
+msgstr "Mappas que se recommiendan pal modu multijogador."
 
 #: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
@@ -3751,7 +3751,7 @@ msgstr "Navigador chartográphicu"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr "%(hotkey)s: Cerrar el navigador chartográphicu & discartar la excolleita."
+msgstr "%(hotkey)s: Cerrar el navigador chartográphicu & discartar la excolleitha."
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
@@ -3887,7 +3887,7 @@ msgstr "Nome del xugador (multixugador)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr "El yyamatu de tou nos incuontros de múltiplos jogadores (excepto nel antepar)."
+msgstr "El yyamatu de tou nos incuöntros multijogador (excepto nel antepar)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
@@ -3905,7 +3905,7 @@ msgstr "Activar pantalla d'acoyida"
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr "Si lla desactivas, la pantalla d’acoyida vai aparecer una vez, al star disponible una versión nuova. Siempre puodes lhanciá-lla d’inde’l menú principal."
+msgstr "Si lla desactivas, la pantalla d’acoyida vai aparecer una vez, al star disponible una version nuöva. Siempre puödes lhanciá-lla d’inde’l menú principal."
 
 #: gui/options/options.json[0].options[4].label
 msgid "FPS overlay"
@@ -4128,7 +4128,7 @@ msgstr "OpenGL"
 
 #: gui/options/options.json[2].options[0].list[0].tooltip
 msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
-msgstr "Motor d’OpenGL por defectu cun GLSL. REQUIER EL RE-INICIO DEL JUOGU"
+msgstr "Motor d’OpenGL por defectu cun GLSL. REQUIER EL RE-INICIO DEL JUÖGU"
 
 #: gui/options/options.json[2].options[0].list[1].label
 msgid "OpenGL ARB"
@@ -4136,11 +4136,11 @@ msgstr "OpenGL ARB"
 
 #: gui/options/options.json[2].options[0].list[1].tooltip
 msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
-msgstr "Motor d’OpenGL vieyu cun assolombradores ARB. REQUIER EL RE-INICIO DEL JUOGU"
+msgstr "Motor d’OpenGL vieyyu cun assolombradores ARB. REQUIER EL RE-INICIO DEL JUÖGU"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
-msgstr "Scuoyi’l motor del synthetizador gráphicu. REQUIER EL RE-INICIO DEL JUOGU"
+msgstr "Excuöyye’l motor del synthetizador gráphicu. REQUIER EL RE-INICIO DEL JUÖGU"
 
 #: gui/options/options.json[2].options[10].label
 msgid "Quality"
@@ -4277,7 +4277,7 @@ msgstr "MSAA (8×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr "Anti-scalonado qualidable perho lento q’usa uoito amostranças per píxel. Suffita’l GL3.3+."
+msgstr "Anti-scalonado qualidable perho lento q’usa uöitho amostranças per píxel. Suffita’l GL3.3+."
 
 #: gui/options/options.json[2].options[3].list[5].label
 msgid "MSAA (16×)"
@@ -4490,7 +4490,7 @@ msgstr "Guardar y restaurar esta configuración pa tenella preparada al agospeda
 
 #: gui/options/options.json[4].options[3].label
 msgid "Default AI difficulty"
-msgstr "Dificultat predefinida del AI"
+msgstr "Dificultá predefinida del AI"
 
 #: gui/options/options.json[4].options[3].list[0].label
 msgid "Sandbox"
@@ -4514,11 +4514,11 @@ msgstr "Per-diffícile"
 
 #: gui/options/options.json[4].options[3].tooltip
 msgid "Default difficulty of the AI."
-msgstr "La difficultat predefinida del agente intelligente."
+msgstr "La difficultá predefinida del agente intelligente."
 
 #: gui/options/options.json[4].options[4].label
 msgid "Default AI behavior"
-msgstr "Actitúdine predefinida del AI"
+msgstr "Actitú predefinida del AI"
 
 #: gui/options/options.json[4].options[4].list[0].label
 msgid "Random"
@@ -4538,7 +4538,7 @@ msgstr "Defensiva"
 
 #: gui/options/options.json[4].options[4].tooltip
 msgid "Default behavior of the AI."
-msgstr "L'actitúdine predefinida del agente intelligente."
+msgstr "L'actitú predefinida del agente intelligente."
 
 #: gui/options/options.json[4].options[5].label
 msgid "Assign players"
@@ -4562,7 +4562,7 @@ msgstr "Collacios"
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
-msgstr "Solo s’assigna a jogadores nuovos si son collacios del amphitryon & ha hi un spacio disponible."
+msgstr "Solo s’assigna a jogadores nuövos si son collacios del amphitryon & ha hi un spacio disponible."
 
 #: gui/options/options.json[4].options[5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
@@ -4611,7 +4611,7 @@ msgstr "Alvertencies de rede"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr "Amostrar qual jogador tien mala connexion in incuontros de múltiplos jogadores."
+msgstr "Amostrar qual jogador tien mala connexion in incuöntros de múltiplos jogadores."
 
 #: gui/options/options.json[5].options[4].label
 msgid "Late observer joins"
@@ -4639,7 +4639,7 @@ msgstr "Retrasu máximu pa los espectadores"
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
-msgstr "Al ahospedar, pousar l’incuontru si los spectadores atrassan mas d’esti númeru de turnos. Si s’affita a -1, non se llis faz casu."
+msgstr "Al ahospedar, pousar l’incuöntru si los spectadores atrassan mas d’esti númeru de turnos. Si s’affita a -1, non se llis faz casu."
 
 #: gui/options/options.json[5].options[7].label
 msgid "(Observer) Speed up when lagging."
@@ -4681,11 +4681,11 @@ msgstr "Amostrar l'algame curatible de les unidades esbillades. (Tamién puedes 
 
 #: gui/options/options.json[6].options[11].label
 msgid "Rank icon above status bar"
-msgstr "Ícones de gradu n riba l stadu"
+msgstr "Ícones de gradu in riba’l stadu"
 
 #: gui/options/options.json[6].options[11].tooltip
 msgid "Show rank icons above status bars."
-msgstr "Amostrar los iconos de grau enriba de les barres d'estáu."
+msgstr "Amostrar las ícones de gradu in riba de las barras de stadu."
 
 #: gui/options/options.json[6].options[12].label
 msgid "Experience status bar"
@@ -4854,7 +4854,7 @@ msgstr "Formaciones cohortales"
 
 #: gui/options/options.json[6].options[22].tooltip
 msgid "Whether formations are selected as a whole."
-msgstr "Si las formaciones s’excuoyen in junto."
+msgstr "Si las formaciones s’excuöyyen in junto."
 
 #: gui/options/options.json[6].options[2].label
 msgid "Scroll batch increment ratio"
@@ -4871,7 +4871,7 @@ msgstr "Duración de las signas"
 
 #: gui/options/options.json[6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
-msgstr "El tiempu in segundos que las signas s’amuostran in mappiquin."
+msgstr "El tiempu in segundos que las signas s’amuöstran in mappiquin."
 
 #: gui/options/options.json[6].options[4].label
 msgid "Chat notification attack"
@@ -5050,7 +5050,7 @@ msgstr "Entamar, cargar o repetir un alcuentru priváu."
 
 #: gui/pregame/MainMenuItems.js:87
 msgid "Matches"
-msgstr "Incuontros"
+msgstr "Incuöntros"
 
 #: gui/pregame/MainMenuItems.js:88
 msgid "Start a new single-player game."
@@ -5091,7 +5091,7 @@ msgstr "Xunise"
 
 #: gui/pregame/MainMenuItems.js:155
 msgid "Joining an existing multiplayer game."
-msgstr "Ajuntá-se a un incuontru multijogador."
+msgstr "Ajuntá-se a un incuöntru multijogador."
 
 #: gui/pregame/MainMenuItems.js:163
 msgid "Host Game"
@@ -5099,7 +5099,7 @@ msgstr "Agospedar"
 
 #: gui/pregame/MainMenuItems.js:164
 msgid "Host a multiplayer game."
-msgstr "Agospedar un incuontru multijogador."
+msgstr "Ahospedar un incuöntru multijogador."
 
 #: gui/pregame/MainMenuItems.js:172
 msgid "Game Lobby"
@@ -5204,7 +5204,7 @@ msgstr "Salir"
 
 #: gui/pregame/MainMenuItems.js:269
 msgid "Exit the game."
-msgstr "Salir del juogu."
+msgstr "Salir del juögu."
 
 #: gui/pregame/MainMenuItems.js:273
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -5230,7 +5230,7 @@ msgstr "Sitiu na rede"
 
 #: gui/pregame/ProjectInformation.js:26
 msgid "Click to open play0ad.com in your web browser."
-msgstr "Fai clic p’abrir play0ad.com in navigador."
+msgstr "Picca p’abrir play0ad.com in navigador."
 
 #: gui/pregame/ProjectInformation.js:33
 msgid "Chat"
@@ -5242,7 +5242,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr "Fai clic p’abrir la conversa IRC de 0 A.D. in navigador (#0ad in webchat.quakenet.org). Caltienen-la voluntarios occupados cun toda triba de jeiras, assina que poderhían tardar in responder. Cumo alternativa, puodes usar el foro (ver el sitiu na rede)."
+msgstr "Picca p’abrir la conversa IRC de 0 A.D. in navigador (#0ad in webchat.quakenet.org). Caltienen-la voluntarios occupados cun toda triba de jeiras, assina que poderhían tardar in responder. Cumo alternativa, puödes usar el foro (ver el sitiu na rede)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5259,7 +5259,7 @@ msgstr "Entrugues frecuentes"
 
 #: gui/pregame/ProjectInformation.js:50
 msgid "Click to visit the Frequently Asked Questions page in your browser."
-msgstr "Fai clic pa visitar la página Intrugas freqüentes no navigador."
+msgstr "Picca pa visitar la página Intrugas freqüentes in navigador."
 
 #: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
@@ -5267,7 +5267,7 @@ msgstr "Traducir el xuegu"
 
 #: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "Fai clic p’abrir la página Traduzir 0 A.D. in navigador."
+msgstr "Picca p’abrir la página Traduzir 0 A.D. in navigador."
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
@@ -6187,7 +6187,7 @@ msgstr "Activar l inriestru automáticu pa crear unidades de modu automáticu."
 
 #: gui/text/tips/autoqueue.txt:3
 msgid "Works as long as you have enough resources, then it will stop."
-msgstr "Funcciona mentanto tengas recursos abondos, intós lheiẍa de funccionar."
+msgstr "Funcciona mentanto tengas recursos abondos, intós deiẍa de funccionar."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -6197,7 +6197,7 @@ msgstr "CASTRU"
 msgid ""
 "Train all citizen soldiers. Some civilizations can unlock the training of "
 "champions as well."
-msgstr "Cría tódolos mílites civiles. Determinadas civilizaciones tamién puoden dispeslhar la creacion d’invictos."
+msgstr "Cría tódolos mílites civiles. Determinadas civilizaciones tamién puöden dispeslhar la creacion d’invictos."
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
@@ -6221,7 +6221,7 @@ msgstr "BIOMES"
 msgid ""
 "Biomes can be used on some random maps and determine which region of the "
 "world the map represents."
-msgstr "Los biomas puodes usá-llos in varios mappas aleatorios. Determinan la extaya del mundu que’l mappa representa."
+msgstr "Los biomas puödes usá-llos in varios mappas aleatorios. Determinan la extayya del mundu que’l mappa representa."
 
 #: gui/text/tips/biomes.txt:3
 msgid ""
@@ -6235,7 +6235,7 @@ msgstr "CANES BÉLICOS"
 
 #: gui/text/tips/briton_war_dog.txt:2
 msgid "A dog that the Britons can train at the cavalry stable."
-msgstr "Can que los britannos puoden crear in stablo."
+msgstr "Can que los britannos puöden crear in stablo."
 
 #: gui/text/tips/briton_war_dog.txt:3
 msgid "Has low health, but is fast and will fearlessly attack enemies."
@@ -6271,7 +6271,7 @@ msgstr "COTÓN CARTAXINÉS"
 
 #: gui/text/tips/carth_shipyard.txt:2
 msgid "Special dock of the Carthaginians to construct warships."
-msgstr "Puortu militar qui ie exclusivu de los carthagineses."
+msgstr "Puörtu militar que ie exclusivu de los carthagineses."
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."
@@ -6306,7 +6306,7 @@ msgstr "ESTABLU"
 #: gui/text/tips/cavalry_stable.txt:2
 msgid ""
 "Trains cavalry units and lets you research cavalry specific technologies."
-msgstr "Cría unidades eqüestres & permitte-ti disinvolver téchnicas eqüestres."
+msgstr "Cría unidades eqüestres & permitti-ti disinvolver téchnicas eqüestres."
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
@@ -6380,7 +6380,7 @@ msgstr "FORMACIÓN POR DEFECTU"
 msgid ""
 "Right-click an icon to set the default formation: units that are ordered to "
 "walk or patrol will automatically use it."
-msgstr "Cunno botton direitu, fai clic nuna ícone p’affitar la formacion por defectu: las unidades assumen-la automaticamente al andar ou rondar."
+msgstr "Cul botton direithu, picca nuna ícone p’affitar la formacion por defectu: las unidades assumen-la automaticamente al andar ou rondar."
 
 #: gui/text/tips/default_formation.txt:3
 msgid "Can be de-activated by choosing “no formation” as the default."
@@ -6409,7 +6409,7 @@ msgstr "Tienen muncha visión y tiren fleches al enemigu."
 msgid ""
 "You can garrison more infantry inside them to increase the number of arrows "
 "they shoot."
-msgstr "Puodes intsé-llas de mas pédites pa que tiren mas saiettas."
+msgstr "Puödes intsé-llas de mas pédites pa que tiren mas saiettas."
 
 #: gui/text/tips/elephant_stable.txt:1
 msgid "ELEPHANT STABLE"
@@ -6444,7 +6444,7 @@ msgstr "Pesca la mar pa una collecha bayurosa."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
-msgstr "Los pisqueiros lhevan muita comida per viaige."
+msgstr "Los pisqueiros lhevan muitha comida per viaije."
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
@@ -6481,7 +6481,7 @@ msgstr "Usa formaciones pa caltener l'orde entre les tues files al batallar."
 msgid ""
 "Formations are selected as a whole by default, but that can be changed in "
 "the game settings."
-msgstr "Las formaciones excuoyen-se in junto por defectu, pero esso puode cambiá-se nos ajustes del incuontru."
+msgstr "Las formaciones excuöyyen-se in junto por defectu, perho esso puöde cambiá-se nos ajustes del incuöntru."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -6491,7 +6491,7 @@ msgstr "CASTIELLU"
 msgid ""
 "Usually the strongest structure of a civilization and the place where you "
 "can train Heroes."
-msgstr "Suol ser la construcción mas fortificada de las civilizaciones & el sitiu unde se crían héroes."
+msgstr "Suöl ser la construccion mas fortificada de las civilizaciones & el sitiu unde se crían héroes."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Garrison soldiers inside to add more firepower to its defense."
@@ -6510,7 +6510,7 @@ msgstr "¡Da ventaya a les tues forcies asitiándoles estratéxicamente!"
 msgid ""
 "Therefore select some units, press and hold the right mouse button, draw any"
 " line, then release the button."
-msgstr "Pa ello, excuoyi dellas unidades, premi’l botton direitu del mure, designa una lhinia & d’a reo suolta’l botton."
+msgstr "Pa ello, excuöyye dellas unidades, preme’l botton direithu del mure, designa una lhinia & d’a reo suölta’l botton."
 
 #: gui/text/tips/freehand_position.txt:4
 msgid "Your units will now spread out on this line."
@@ -6540,7 +6540,7 @@ msgstr "Los équites civiles cacien más rápido."
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr "Quantu mas altu’l gradu del mílite civil, (superior, singular), meyyor lhuitarhá, perho tardarhá mas in obtener recursos."
+msgstr "Quantu mas altu’l gradu del mílite civil, (superior, singular), meyyor lhuitharhá, perho tardarhá mas in obtener recursos."
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
@@ -6562,7 +6562,7 @@ msgstr "Tienen aures que cambien les estadístiques d'otres unidades o construcc
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
-msgstr "Repara: ¡Cada héroe puode creá-se una sola vez per incuontru!"
+msgstr "Repara: ¡Cada héroe puöde creá-se una sola vez per incuöntru!"
 
 #: gui/text/tips/iber_fireship.txt:1
 msgid "IBERIAN FIRESHIP"
@@ -6592,7 +6592,7 @@ msgstr "SIGNAS"
 msgid ""
 "Use this feature to let your team know where on the map something important "
 "happens."
-msgstr "Fai signas p’avisar a la quadriella d’acontecemientos importantes no mappa."
+msgstr "Fai signas p’avisar a la quadriella d’acontecemientos importantes nel mappa."
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
@@ -6615,7 +6615,7 @@ msgstr "Les pirámides menores entaínen el llogru de recursos a obreros averaos
 msgid ""
 "The large pyramids increase the military capabilities of soldiers around "
 "them."
-msgstr "Las pyrámides maiores augmentan la marcialidat de mílites aveirados."
+msgstr "Las pyrámides maiores augmentan la marcialidá de mílites aveiraos."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -7019,7 +7019,7 @@ msgstr "carne"
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr "Extráyilo de mines o canteres. "
+msgstr "Extrahe-se de las jazedas & las canteiras."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -7072,7 +7072,7 @@ msgstr "ruines"
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
-msgstr "Extrayi de peñes, canteres o ruines."
+msgstr "Extrahe-se de las pennas, las canteiras & las ruinas."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.

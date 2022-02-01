@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,7 +27,7 @@
 #ifndef INCLUDED_RTL
 #define INCLUDED_RTL
 
-LIB_API void* rtl_AllocateAligned(size_t size, size_t alignment);
-LIB_API void rtl_FreeAligned(void* alignedPointer);
+void* rtl_AllocateAligned(size_t size, size_t alignment);
+void rtl_FreeAligned(void* alignedPointer);
 
 #endif	// #ifndef INCLUDED_RTL

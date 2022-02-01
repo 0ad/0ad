@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -41,7 +41,7 @@ const size_t WVERSION_10    = 0x0604;
 /**
  * @return one of the above WVERSION* values
  **/
-LIB_API size_t wversion_Number();
+size_t wversion_Number();
 
 /**
  * @return short textual representation of the version

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -52,7 +52,7 @@ typedef std::shared_ptr<DirWatch> PDirWatch;
  * convenient to store PDirWatch there instead of creating a second
  * tree structure here.
  **/
-LIB_API Status dir_watch_Add(const OsPath& path, PDirWatch& dirWatch);
+Status dir_watch_Add(const OsPath& path, PDirWatch& dirWatch);
 
 class DirWatchNotification
 {
@@ -99,6 +99,6 @@ typedef std::vector<DirWatchNotification> DirWatchNotifications;
  * typically want to receive change notifications at a single point,
  * rather than deal with the complexity of asynchronous notifications.
  **/
-LIB_API Status dir_watch_Poll(DirWatchNotifications& notifications);
+Status dir_watch_Poll(DirWatchNotifications& notifications);
 
 #endif	// #ifndef INCLUDED_DIR_WATCH

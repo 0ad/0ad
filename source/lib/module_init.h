@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -50,7 +50,7 @@ typedef intptr_t ModuleInitState;	// intptr_t is required by cpu_CAS
  * note that callbacks typically reference static data and thus do not
  * require a function argument, but that can later be added if necessary.
  **/
-LIB_API Status ModuleInit(volatile ModuleInitState* initState, Status (*init)());
+Status ModuleInit(volatile ModuleInitState* initState, Status (*init)());
 
 /**
  * calls a user-defined shutdown function if initState is "initialized".
@@ -69,6 +69,6 @@ LIB_API Status ModuleInit(volatile ModuleInitState* initState, Status (*init)())
  * cleanup is necessary (e.g. at exit before leak reporting) and
  * it is certain that the module is no longer in use.
  **/
-LIB_API Status ModuleShutdown(volatile ModuleInitState* initState, void (*shutdown)());
+Status ModuleShutdown(volatile ModuleInitState* initState, void (*shutdown)());
 
 #endif	// #ifndef INCLUDED_MODULE_INIT

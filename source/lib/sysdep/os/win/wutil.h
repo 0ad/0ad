@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -181,7 +181,7 @@ private:
 
 //-----------------------------------------------------------------------------
 
-LIB_API Status wutil_SetPrivilege(const wchar_t* privilege, bool enable);
+Status wutil_SetPrivilege(const wchar_t* privilege, bool enable);
 
 /**
  * @return module handle of lib code (that of the main EXE if

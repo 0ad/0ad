@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -32,10 +32,10 @@
 
 #include <vector>
 
-LIB_API bool DirectoryExists(const OsPath& path);
-LIB_API bool FileExists(const OsPath& pathname);
+bool DirectoryExists(const OsPath& path);
+bool FileExists(const OsPath& pathname);
 
-LIB_API u64 FileSize(const OsPath& pathname);
+u64 FileSize(const OsPath& pathname);
 
 
 // (bundling size and mtime avoids a second expensive call to stat())
@@ -72,22 +72,22 @@ private:
 	time_t mtime;
 };
 
-LIB_API Status GetFileInfo(const OsPath& pathname, CFileInfo* fileInfo);
+Status GetFileInfo(const OsPath& pathname, CFileInfo* fileInfo);
 
 typedef std::vector<CFileInfo> CFileInfos;
 typedef std::vector<OsPath> DirectoryNames;
 
-LIB_API Status GetDirectoryEntries(const OsPath& path, CFileInfos* files, DirectoryNames* subdirectoryNames);
+Status GetDirectoryEntries(const OsPath& path, CFileInfos* files, DirectoryNames* subdirectoryNames);
 
 // same as boost::filesystem::create_directories, except that mkdir is invoked with
 // <mode> instead of 0755.
 // If the breakpoint is enabled, debug_break will be called if the directory didn't exist and couldn't be created.
-LIB_API Status CreateDirectories(const OsPath& path, mode_t mode, bool breakpoint = true);
+Status CreateDirectories(const OsPath& path, mode_t mode, bool breakpoint = true);
 
-LIB_API Status DeleteDirectory(const OsPath& dirPath);
+Status DeleteDirectory(const OsPath& dirPath);
 
-LIB_API Status CopyFile(const OsPath& path, const OsPath& newPath, bool override_if_exists = false);
+Status CopyFile(const OsPath& path, const OsPath& newPath, bool override_if_exists = false);
 
-LIB_API Status RenameFile(const OsPath& path, const OsPath& newPath);
+Status RenameFile(const OsPath& path, const OsPath& newPath);
 
 #endif	// #ifndef INCLUDED_FILE_SYSTEM

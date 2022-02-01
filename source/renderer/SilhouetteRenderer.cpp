@@ -450,8 +450,6 @@ void SilhouetteRenderer::RenderDebugOverlays(
 	if (m_DebugBounds.empty() && m_DebugRects.empty())
 		return;
 
-	glDepthMask(0);
-
 	for (size_t i = 0; i < m_DebugBounds.size(); ++i)
 		g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m_DebugBounds[i].bounds, m_DebugBounds[i].color);
 
@@ -492,8 +490,6 @@ void SilhouetteRenderer::RenderDebugOverlays(
 	}
 
 	shaderTech->EndPass();
-
-	glDepthMask(1);
 }
 
 void SilhouetteRenderer::EndFrame()

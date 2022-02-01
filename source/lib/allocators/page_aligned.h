@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,11 +27,11 @@
 
 // very thin wrapper on top of sys/mman.h that makes the intent more obvious
 // (its commit/decommit semantics are difficult to tell apart)
-LIB_API Status mem_Reserve(size_t size, u8** pp);
-LIB_API Status mem_Release(u8* p, size_t size);
-LIB_API Status mem_Commit(u8* p, size_t size, int prot);
-LIB_API Status mem_Decommit(u8* p, size_t size);
-LIB_API Status mem_Protect(u8* p, size_t size, int prot);
+Status mem_Reserve(size_t size, u8** pp);
+Status mem_Release(u8* p, size_t size);
+Status mem_Commit(u8* p, size_t size, int prot);
+Status mem_Decommit(u8* p, size_t size);
+Status mem_Protect(u8* p, size_t size, int prot);
 
 
 /**
@@ -49,7 +49,7 @@ LIB_API Status mem_Protect(u8* p, size_t size, int prot);
  * @param unaligned_size minimum size [bytes] to allocate.
  * @return page-aligned and -padded memory or 0 on error / out of memory.
  **/
-LIB_API void* page_aligned_alloc(size_t unaligned_size);
+void* page_aligned_alloc(size_t unaligned_size);
 
 /**
  * free a previously allocated page-aligned region.
@@ -57,6 +57,6 @@ LIB_API void* page_aligned_alloc(size_t unaligned_size);
  * @param p Exact value returned from page_aligned_alloc
  * @param unaligned_size Exact value passed to page_aligned_alloc
  **/
-LIB_API void page_aligned_free(void* p, size_t unaligned_size);
+void page_aligned_free(void* p, size_t unaligned_size);
 
 #endif	// #ifndef INCLUDED_ALLOCATORS_PAGE_ALIGNED

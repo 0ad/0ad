@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -34,9 +34,9 @@
 #define RTLD_GLOBAL 0x04	// semantics are unsupported, so complain if set.
 #define RTLD_LOCAL  0x08
 
-LIB_API int dlclose(void* handle);
-LIB_API char* dlerror();
-LIB_API void* dlopen(const char* so_name, int flags);
-LIB_API void* dlsym(void* handle, const char* sym_name);
+int dlclose(void* handle);
+char* dlerror();
+void* dlopen(const char* so_name, int flags);
+void* dlsym(void* handle, const char* sym_name);
 
 #endif	// #ifndef INCLUDED_WDLFCN

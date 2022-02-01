@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -26,8 +26,6 @@
 
 #ifndef INCLUDED_X86_X64
 #define INCLUDED_X86_X64
-
-#include "lib/lib_api.h"
 
 #if !ARCH_X86_X64
 #error "including x86_x64.h without ARCH_X86_X64=1"
@@ -62,7 +60,7 @@ struct CpuidRegs
  *     and allows graceful expansion to functions that require further inputs.
  * @return true on success or false if the sub-function isn't supported.
  **/
-LIB_API bool cpuid(CpuidRegs* regs);
+bool cpuid(CpuidRegs* regs);
 
 /**
  * CPU vendor.
@@ -76,7 +74,7 @@ enum Vendors
 	VENDOR_AMD
 };
 
-LIB_API Vendors Vendor();
+Vendors Vendor();
 
 
 enum Models
@@ -92,16 +90,16 @@ enum Models
 	MODEL_SANDY_BRIDGE_2 = 0x2D, // (E5-26xx, E5-46xx)
 };
 
-LIB_API size_t Model();
+size_t Model();
 
-LIB_API size_t Family();
+size_t Family();
 
 
 /**
  * @return the colloquial processor generation
  * (5 = Pentium, 6 = Pentium Pro/II/III / K6, 7 = Pentium4 / Athlon, 8 = Core / Opteron)
  **/
-LIB_API size_t Generation();
+size_t Generation();
 
 
 /**
@@ -141,9 +139,9 @@ enum Caps
 /**
  * @return whether the CPU supports the indicated Cap / feature flag.
  **/
-LIB_API bool Cap(Caps cap);
+bool Cap(Caps cap);
 
-LIB_API void GetCapBits(u32* d0, u32* d1, u32* d2, u32* d3);
+void GetCapBits(u32* d0, u32* d1, u32* d2, u32* d3);
 
 
 //-----------------------------------------------------------------------------
@@ -161,13 +159,13 @@ LIB_API void GetCapBits(u32* d0, u32* d1, u32* d2, u32* d3);
 #if MSC_VERSION
 static inline u64 rdtsc() { return __rdtsc(); }
 #else
-LIB_API u64 rdtsc();
+u64 rdtsc();
 #endif
 
 /**
  * trigger a breakpoint inside this function when it is called.
  **/
-LIB_API void DebugBreak();
+void DebugBreak();
 
 /**
  * measure the CPU clock frequency via rdtsc and timer_Time.
@@ -175,7 +173,7 @@ LIB_API void DebugBreak();
  * this takes several milliseconds (i.e. much longer than
  * os_cpu_ClockFrequency) but delivers accurate measurements.
  **/
-LIB_API double ClockFrequency();
+double ClockFrequency();
 
 }	// namespace x86_x64
 

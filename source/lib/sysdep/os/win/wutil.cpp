@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -372,30 +372,10 @@ Status wutil_SetPrivilege(const wchar_t* privilege, bool enable)
 //-----------------------------------------------------------------------------
 // module handle
 
-#ifndef LIB_STATIC_LINK
-
-#include "lib/sysdep/os/win/wdll_main.h"
-
-HMODULE wutil_LibModuleHandle()
-{
-	HMODULE hModule;
-	const DWORD flags = GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS|GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT;
-	const BOOL ok = GetModuleHandleEx(flags, (LPCWSTR)&wutil_LibModuleHandle, &hModule);
-	// (avoid ENSURE etc. because we're called from debug_DisplayError)
-	wdbg_assert(ok);
-	return hModule;
-}
-
-#else
-
 HMODULE wutil_LibModuleHandle()
 {
 	return GetModuleHandle(0);
 }
-
-#endif
-
-
 
 //-----------------------------------------------------------------------------
 // find main window

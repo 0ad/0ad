@@ -8,6 +8,7 @@
 			<define name="REQUIRE_ALPHA_GEQUAL" value="0.4"/>
 			<!-- Disable face-culling for two-sided models -->
 			<cull mode="NONE"/>
+			<color mask_red="FALSE" mask_green="FALSE" mask_blue="FALSE" mask_alpha="FALSE"/>
 		</pass>
 	</technique>
 
@@ -18,6 +19,7 @@
 			<define name="REQUIRE_ALPHA_GEQUAL" value="0.4"/>
 			<!-- Disable face-culling for two-sided models -->
 			<cull mode="NONE"/>
+			<color mask_red="FALSE" mask_green="FALSE" mask_blue="FALSE" mask_alpha="FALSE"/>
 		</pass>
 	</technique>
 
@@ -27,13 +29,30 @@
 		make it obviously buggy if CRenderer is changed to render these models.
 	-->
 	<technique>
-		<require context="MODE_SILHOUETTEDISPLAY || MODE_WIREFRAME"/>
+		<require context="MODE_SILHOUETTEDISPLAY"/>
+		<require shaders="arb"/>
+		<pass shader="arb/model_solid_player">
+			<depth func="gequal"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require context="MODE_SILHOUETTEDISPLAY"/>
+		<require shaders="glsl"/>
+		<pass shader="glsl/model_solid_player">
+			<depth func="gequal"/>
+		</pass>
+	</technique>
+
+
+	<technique>
+		<require context="MODE_WIREFRAME"/>
 		<require shaders="arb"/>
 		<pass shader="arb/model_solid_player"/>
 	</technique>
 
 	<technique>
-		<require context="MODE_SILHOUETTEDISPLAY || MODE_WIREFRAME"/>
+		<require context="MODE_WIREFRAME"/>
 		<require shaders="glsl"/>
 		<pass shader="glsl/model_solid_player"/>
 	</technique>

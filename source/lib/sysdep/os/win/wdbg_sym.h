@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -59,8 +59,8 @@ typedef Status (*StackFrameCallback)(const _tagSTACKFRAME64* frame, uintptr_t cb
  *   stack trace (which is triggered by ENSURE et al. in app code) because
  *   nested stack traces are ignored and only the error is displayed.
  **/
-LIB_API Status wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, CONTEXT& context, const wchar_t* lastFuncToSkip = 0);
+Status wdbg_sym_WalkStack(StackFrameCallback cb, uintptr_t cbData, CONTEXT& context, const wchar_t* lastFuncToSkip = 0);
 
-LIB_API void wdbg_sym_WriteMinidump(EXCEPTION_POINTERS* ep);
+void wdbg_sym_WriteMinidump(EXCEPTION_POINTERS* ep);
 
 #endif	// #ifndef INCLUDED_WDBG_SYM

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -27,14 +27,6 @@
 
 #if MSC_VERSION
 # define BOOST_HAS_STDINT_H
-#endif
-
-// Boost
-// .. if this package isn't going to be statically linked, we're better off
-// using Boost via DLL. (otherwise, we would have to ensure the exact same
-// compiler is used, which is a pain because MSC8, MSC9 and ICC 10 are in use)
-#ifndef LIB_STATIC_LINK
-# define BOOST_ALL_DYN_LINK
 #endif
 
 // don't compile get_system_category() etc, since we don't use them and they

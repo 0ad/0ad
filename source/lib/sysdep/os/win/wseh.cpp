@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -350,8 +350,6 @@ C++ classes. this way is more reliable/documented, but has several drawbacks:
 
 */
 
-#ifdef LIB_STATIC_LINK
-
 #include "lib/utf8.h"
 
 EXTERN_C int wmainCRTStartup();
@@ -390,5 +388,3 @@ EXTERN_C int wseh_EntryPoint()
 #endif
 	return CallStartupWithinTryBlock();
 }
-
-#endif

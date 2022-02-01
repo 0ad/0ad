@@ -206,10 +206,6 @@ function project_set_build_flags()
 		defines { "CONFIG2_MINIUPNPC=0" }
 	end
 
-	-- required for the lowlevel library. must be set from all projects that use it, otherwise it assumes it is
-	-- being used as a DLL (which is currently not the case in 0ad)
-	defines { "LIB_STATIC_LINK" }
-
 	-- Enable C++17 standard.
 	filter "action:vs*"
 		buildoptions { "/std:c++17" }

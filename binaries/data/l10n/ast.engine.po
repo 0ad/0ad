@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-01-07 08:19+0000\n"
-"PO-Revision-Date: 2022-01-25 03:52+0000\n"
+"PO-Revision-Date: 2022-01-31 03:33+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -20,32 +20,32 @@ msgstr ""
 #: graphics/CameraController.cpp:657
 #, c-format
 msgid "Scroll speed increased to %.1f"
-msgstr "La velocidat de dislocacion augmentou a %.1f"
+msgstr "La velocidá de dislocacion augmentou a %.1f"
 
 #: graphics/CameraController.cpp:663
 #, c-format
 msgid "Scroll speed decreased to %.1f"
-msgstr "La velocidat de dislocacion diminuiu a %.1f"
+msgstr "La velocidá de dislocacion diminuiu a %.1f"
 
 #: graphics/CameraController.cpp:670
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr "La velocidat gyratoria augmentou a X=%.3f, Y=%.3f"
+msgstr "La velocidá gyratoria augmentou a X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:677
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr "La velocidat gyratoria diminuiu a X=%.3f, Y=%.3f"
+msgstr "La velocidá gyratoria diminuiu a X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:683
 #, c-format
 msgid "Zoom speed increased to %.1f"
-msgstr "La velocidat d’approximacion augmentou a %.1f"
+msgstr "La velocidá d’approximacion augmentou a %.1f"
 
 #: graphics/CameraController.cpp:689
 #, c-format
 msgid "Zoom speed decreased to %.1f"
-msgstr "La velocidat d’approximacion diminuiu a %.1f"
+msgstr "La velocidá d’approximacion diminuiu a %.1f"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
@@ -57,7 +57,7 @@ msgstr "disconnoz-se el subtypu (veia-se los registros)"
 
 #: lobby/XmppClient.cpp:1355
 msgid "The certificate is not trusted."
-msgstr "El certificado non ie d’infoutu."
+msgstr "El certificado nun ie d’infoutu."
 
 #: lobby/XmppClient.cpp:1356
 msgid "The certificate hasn't got a known issuer."
@@ -73,15 +73,15 @@ msgstr "El certificado caducou."
 
 #: lobby/XmppClient.cpp:1359
 msgid "The certificate is not yet active."
-msgstr "El certificado sigue inactivo."
+msgstr "El certificado sigui inactivo."
 
 #: lobby/XmppClient.cpp:1360
 msgid "The certificate has not been issued for the peer connected to."
-msgstr "El certificado non se diou pal par al qui stas connectadu."
+msgstr "El certificado non se diou pal par al que stas connectadu."
 
 #: lobby/XmppClient.cpp:1361
 msgid "The certificate signer is not a certificate authority."
-msgstr "Quien robrou’l certificado non tenía authorizacion."
+msgstr "Quien robrou’l certificado nun tenía authorizacion."
 
 #: lobby/XmppClient.cpp:1383 lobby/XmppClient.cpp:1427
 #: lobby/XmppClient.cpp:1466
@@ -90,7 +90,7 @@ msgstr "Error"
 
 #: lobby/XmppClient.cpp:1386 lobby/XmppClient.cpp:1430
 msgid "No error"
-msgstr "Non ha hi errores"
+msgstr "Nun ha hi errores"
 
 #: lobby/XmppClient.cpp:1388
 msgid "Player already logged in"
@@ -98,7 +98,7 @@ msgstr "El jogador ia iniciou session"
 
 #: lobby/XmppClient.cpp:1390
 msgid "Forbidden"
-msgstr "Prohibe-se"
+msgstr "Prohibi-se"
 
 #: lobby/XmppClient.cpp:1392
 msgid "Internal server error"
@@ -106,7 +106,7 @@ msgstr "Error internu del servidor"
 
 #: lobby/XmppClient.cpp:1396
 msgid "Not allowed"
-msgstr "Non se permitte"
+msgstr "Non se permitti"
 
 #: lobby/XmppClient.cpp:1397
 msgid "Not authorized"
@@ -114,7 +114,7 @@ msgstr "Non s’authoriza"
 
 #: lobby/XmppClient.cpp:1400
 msgid "Recipient temporarily unavailable"
-msgstr "El receptor non sta disponible temporalmente"
+msgstr "El receptor nun sta disponible temporalmente"
 
 #: lobby/XmppClient.cpp:1402
 msgid "Registration required"
@@ -122,7 +122,7 @@ msgstr "Requier-se registro"
 
 #: lobby/XmppClient.cpp:1406
 msgid "Service unavailable"
-msgstr "El servicio non sta disponible"
+msgstr "El servicio nun sta disponible"
 
 #: lobby/XmppClient.cpp:1411 lobby/XmppClient.cpp:1450
 msgid "Unknown error"
@@ -138,7 +138,7 @@ msgstr "Non se suffita la version del fluxu intrante"
 
 #: lobby/XmppClient.cpp:1433
 msgid "The stream has been closed by the server"
-msgstr "El fluxu concludeu-llu el servidor"
+msgstr "El fluxu concludiu-llu el servidor"
 
 #: lobby/XmppClient.cpp:1437
 msgid "An I/O error occurred"
@@ -160,15 +160,15 @@ msgstr "Exhauriu-se la memoria’l systema"
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr "Ou non pudo verificá-se el certificado del servidor ou la negociacion TLS non se completou cun éxitu"
+msgstr "Ou nun pudo verificá-se el certificado del servidor ou la negociacion TLS non se completou cun éxitu"
 
 #: lobby/XmppClient.cpp:1444
 msgid "The server did not offer required TLS encryption"
-msgstr "El servidor non offriu’l cifrado TLS qui se requier"
+msgstr "El servidor nun offriu’l cifrado TLS que se requier"
 
 #: lobby/XmppClient.cpp:1446
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Fallou l’authenticacion. La clave non ie correcta ou la cuonta non existe"
+msgstr "Fallou l’authenticacion. La clave nun ie correcta ou la cuönta nun existi"
 
 #: lobby/XmppClient.cpp:1447
 msgid "The user or system requested a disconnect"
@@ -176,11 +176,11 @@ msgstr "L’usuariu ou’l systema pidiu disconnectá-se"
 
 #: lobby/XmppClient.cpp:1448
 msgid "There is no active connection"
-msgstr "Non ha hi connexiones activas"
+msgstr "Nun ha hi connexiones activas"
 
 #: lobby/XmppClient.cpp:1469
 msgid "Your account has been successfully registered"
-msgstr "Registrou-se cun éxitu la tua cuonta"
+msgstr "Registrou-se cun éxitu la tua cuönta"
 
 #: lobby/XmppClient.cpp:1470
 msgid "Not all necessary information provided"
@@ -188,19 +188,19 @@ msgstr "Non s’aporriu toda la informacion precisa"
 
 #: lobby/XmppClient.cpp:1471
 msgid "Username already exists"
-msgstr "Ia existe’l nome d’usuariu"
+msgstr "Ia existi’l nome d’usuariu"
 
 #: ps/Mod.cpp:82
 #, c-format
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr "Non pudo scribí-se un mod.json externu pal commudu comprimidu “%s”. Ha hi qui reinstallar el commudu."
+msgstr "Nun pudo scribí-se un mod.json externu pal commudu comprimidu “%s”. Ha hi que reinstallar el commudu."
 
 #: ps/ModIo.cpp:264
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Houbo un fallu al iniciar a consultar subre la identificacion del juogu. Error: %s; %s."
+msgstr "Houbo un fallu al iniciar a consultar subre la identificacion del juögu. Error: %s; %s."
 
 #: ps/ModIo.cpp:294
 #, c-format
@@ -210,12 +210,12 @@ msgstr "Houbo un fallu al iniciar a consultar subre commudos. Error: %s; %s."
 #: ps/ModIo.cpp:320
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr "Non pudo creá-se el directorio del commudu: %s."
+msgstr "Nun pudo creá-se el directorio del commudu: %s."
 
 #: ps/ModIo.cpp:345
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "Non pudo abrí-se l’archivo temporal p’abaẍar el commudu: %s."
+msgstr "Nun pudo abrí-se l’archivo temporal p’abaẍar el commudu: %s."
 
 #: ps/ModIo.cpp:355
 #, c-format
@@ -230,11 +230,11 @@ msgstr "Fallu de baẍada asýnchrona: %s, %s."
 #: ps/ModIo.cpp:428
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Fallou la baẍada. Respuosta del servidor: %s; %s."
+msgstr "Fallou la baẍada. Respuösta del servidor: %s; %s."
 
 #: ps/ModIo.cpp:534
 msgid "Mismatched filesize."
-msgstr "Los tammagnos de los archivos non concasan."
+msgstr "Los tammagnos de los archivos nun concasan."
 
 #: ps/ModIo.cpp:552
 #, c-format
@@ -262,4 +262,4 @@ msgstr "compilacion personalizada"
 #: renderer/Renderer.cpp:754 renderer/Renderer.cpp:757
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "La simeyya de la pantalla archivou-se in “%s”"
+msgstr "La semeyya de la pantalla archivou-se in “%s”"

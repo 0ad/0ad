@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -69,7 +69,6 @@ double __cdecl abs(double x);	// not declared by mathimf
 #include "lib/sysdep/arch.h"
 #include "lib/sysdep/os.h"
 #include "lib/sysdep/stl.h"
-#include "lib/lib_api.h"
 #include "lib/types.h"
 #include "lib/debug.h"
 #include "lib/lib.h"

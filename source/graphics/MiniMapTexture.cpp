@@ -387,8 +387,11 @@ void CMiniMapTexture::RenderFinalTexture(
 		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
 	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
 		Renderer::Backend::BlendOp::ADD;
+	pipelineStateDesc.blendState.colorWriteMask =
+		Renderer::Backend::ColorWriteMask::RED |
+		Renderer::Backend::ColorWriteMask::GREEN |
+		Renderer::Backend::ColorWriteMask::BLUE;
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
-	glColorMask(1, 1, 1, 0);
 
 	// Draw territory boundaries
 	CTerritoryTexture& territoryTexture = g_Game->GetView()->GetTerritoryTexture();
@@ -400,8 +403,9 @@ void CMiniMapTexture::RenderFinalTexture(
 	DrawTexture(shader);
 
 	pipelineStateDesc.blendState.enabled = false;
+	pipelineStateDesc.blendState.colorWriteMask =
+		Renderer::Backend::ColorWriteMask::ALPHA;
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
-	glColorMask(0, 0, 0, 1);
 
 	shader->BindTexture(str_baseTex, losTexture.GetTexture());
 	shader->Uniform(str_transform, baseTransform);
@@ -410,8 +414,6 @@ void CMiniMapTexture::RenderFinalTexture(
 	DrawTexture(shader);
 
 	tech->EndPass();
-
-	glColorMask(1, 1, 1, 1);
 
 	CShaderDefines pointDefines;
 	pointDefines.Add(str_MINIMAP_POINT, str_1);

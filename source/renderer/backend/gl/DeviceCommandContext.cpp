@@ -136,6 +136,17 @@ void CDeviceCommandContext::ResetStates()
 void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 	const GraphicsPipelineStateDesc& pipelineStateDesc, const bool force)
 {
+	const DepthStencilStateDesc& currentDepthStencilStateDesc = m_GraphicsPipelineStateDesc.depthStencilState;
+	const DepthStencilStateDesc& nextDepthStencilStateDesc = pipelineStateDesc.depthStencilState;
+	if (force || currentDepthStencilStateDesc.depthCompareOp != nextDepthStencilStateDesc.depthCompareOp)
+	{
+		glDepthFunc(Mapping::DepthFuncFromCompareOp(nextDepthStencilStateDesc.depthCompareOp));
+	}
+	if (force || currentDepthStencilStateDesc.depthWriteEnabled != nextDepthStencilStateDesc.depthWriteEnabled)
+	{
+		glDepthMask(nextDepthStencilStateDesc.depthWriteEnabled ? GL_TRUE : GL_FALSE);
+	}
+
 	const BlendStateDesc& currentBlendStateDesc = m_GraphicsPipelineStateDesc.blendState;
 	const BlendStateDesc& nextBlendStateDesc = pipelineStateDesc.blendState;
 	if (force || currentBlendStateDesc.enabled != nextBlendStateDesc.enabled)
@@ -192,6 +203,16 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 			nextBlendStateDesc.constant.g,
 			nextBlendStateDesc.constant.b,
 			nextBlendStateDesc.constant.a);
+	}
+
+	if (force ||
+		currentBlendStateDesc.colorWriteMask != nextBlendStateDesc.colorWriteMask)
+	{
+		glColorMask(
+			(nextBlendStateDesc.colorWriteMask & ColorWriteMask::RED) != 0 ? GL_TRUE : GL_FALSE,
+			(nextBlendStateDesc.colorWriteMask & ColorWriteMask::GREEN) != 0 ? GL_TRUE : GL_FALSE,
+			(nextBlendStateDesc.colorWriteMask & ColorWriteMask::BLUE) != 0 ? GL_TRUE : GL_FALSE,
+			(nextBlendStateDesc.colorWriteMask & ColorWriteMask::ALPHA) != 0 ? GL_TRUE : GL_FALSE);
 	}
 
 	const RasterizationStateDesc& currentRasterizationStateDesc = m_GraphicsPipelineStateDesc.rasterizationState;

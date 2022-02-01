@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -40,6 +40,6 @@ struct IFrequencyFilter
 typedef std::shared_ptr<IFrequencyFilter> PIFrequencyFilter;
 
 // expectedFrequency is a guess that hopefully speeds up convergence
-LIB_API PIFrequencyFilter CreateFrequencyFilter(double resolution, double expectedFrequency);
+PIFrequencyFilter CreateFrequencyFilter(double resolution, double expectedFrequency);
 
 #endif	// #ifndef INCLUDED_FREQUENCY_FILTER

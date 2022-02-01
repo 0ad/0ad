@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -63,7 +63,7 @@ enum PageType
  *   (an error dialog will also be raised).
  *   must be freed via ReleaseAddressSpace.
 **/
-LIB_API void* ReserveAddressSpace(size_t size, size_t commitSize = g_LargePageSize, PageType pageType = kDefault, int prot = PROT_READ|PROT_WRITE);
+void* ReserveAddressSpace(size_t size, size_t commitSize = g_LargePageSize, PageType pageType = kDefault, int prot = PROT_READ|PROT_WRITE);
 
 /**
  * release address space and decommit any memory.
@@ -72,7 +72,7 @@ LIB_API void* ReserveAddressSpace(size_t size, size_t commitSize = g_LargePageSi
  * @param size is required by the POSIX implementation and
  *   ignored on Windows.
  **/
-LIB_API void ReleaseAddressSpace(void* p, size_t size = 0);
+void ReleaseAddressSpace(void* p, size_t size = 0);
 
 
 /**
@@ -90,14 +90,14 @@ LIB_API void ReleaseAddressSpace(void* p, size_t size = 0);
  *
  * (this is surprisingly slow in XP, possibly due to PFN lock contention)
  **/
-LIB_API bool Commit(uintptr_t address, size_t size, PageType pageType = kDefault, int prot = PROT_READ|PROT_WRITE);
+bool Commit(uintptr_t address, size_t size, PageType pageType = kDefault, int prot = PROT_READ|PROT_WRITE);
 
 /**
  * unmap physical memory.
  *
  * @return whether the operation succeeded.
  **/
-LIB_API bool Decommit(uintptr_t address, size_t size);
+bool Decommit(uintptr_t address, size_t size);
 
 
 /**
@@ -108,7 +108,7 @@ LIB_API bool Decommit(uintptr_t address, size_t size);
  * @param prot memory protection flags: PROT_NONE or a combination of
  *   PROT_READ, PROT_WRITE, PROT_EXEC.
  **/
-LIB_API bool Protect(uintptr_t address, size_t size, int prot);
+bool Protect(uintptr_t address, size_t size, int prot);
 
 
 /**
@@ -119,7 +119,7 @@ LIB_API bool Protect(uintptr_t address, size_t size, int prot);
  * @return zero-initialized memory aligned to the respective
  *   page size.
  **/
-LIB_API void* Allocate(size_t size, PageType pageType = kDefault, int prot = PROT_READ|PROT_WRITE);
+void* Allocate(size_t size, PageType pageType = kDefault, int prot = PROT_READ|PROT_WRITE);
 
 /**
  * decommit memory and release address space.
@@ -131,23 +131,23 @@ LIB_API void* Allocate(size_t size, PageType pageType = kDefault, int prot = PRO
  * (this differs from ReleaseAddressSpace, which must account for
  * extra padding/alignment to largePageSize.)
  **/
-LIB_API void Free(void* p, size_t size = 0);
+void Free(void* p, size_t size = 0);
 
 
 /**
  * install a handler that attempts to commit memory whenever a
  * read/write page fault is encountered. thread-safe.
  **/
-LIB_API void BeginOnDemandCommits();
+void BeginOnDemandCommits();
 
 /**
  * decrements the reference count begun by BeginOnDemandCommit and
  * removes the page fault handler when it reaches 0. thread-safe.
  **/
-LIB_API void EndOnDemandCommits();
+void EndOnDemandCommits();
 
 
-LIB_API void DumpStatistics();
+void DumpStatistics();
 
 }	// namespace vm
 

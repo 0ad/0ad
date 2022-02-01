@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -46,7 +46,7 @@ namespace ERR
  * @return string identifying the CPU (usually a cleaned-up version of the
  * brand string)
  **/
-LIB_API const char* cpu_IdentifierString();
+const char* cpu_IdentifierString();
 
 
 //-----------------------------------------------------------------------------
@@ -58,7 +58,7 @@ LIB_API const char* cpu_IdentifierString();
  *
  * @return the previous value.
  **/
-LIB_API intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment);
+intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment);
 
 /**
  * atomic "compare and swap".
@@ -69,8 +69,8 @@ LIB_API intptr_t cpu_AtomicAdd(volatile intptr_t* location, intptr_t increment);
  * @return false if the target word doesn't match the expected value,
  * otherwise true (also overwriting the contents of location)
  **/
-LIB_API bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue);
-LIB_API bool cpu_CAS64(volatile i64* location, i64 expected, i64 newValue);
+bool cpu_CAS(volatile intptr_t* location, intptr_t expected, intptr_t newValue);
+bool cpu_CAS64(volatile i64* location, i64 expected, i64 newValue);
 
 /**
  * specialization of cpu_CAS for pointer types. this avoids error-prone
@@ -83,7 +83,7 @@ inline bool cpu_CAS(volatile T* location, T expected, T new_value)
 }
 
 
-LIB_API void cpu_Test();
+void cpu_Test();
 
 /**
  * pause in spin-wait loops, as a performance optimisation.

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -226,8 +226,8 @@ private:
 #pragma pack(pop)
 
 
-LIB_API Status Issue(aiocb& cb, size_t queueDepth);
-LIB_API Status WaitUntilComplete(aiocb& cb, size_t queueDepth);
+Status Issue(aiocb& cb, size_t queueDepth);
+Status WaitUntilComplete(aiocb& cb, size_t queueDepth);
 
 
 //-----------------------------------------------------------------------------

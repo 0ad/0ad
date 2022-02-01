@@ -26,50 +26,11 @@ CShaderPass::CShaderPass() = default;
 void CShaderPass::Bind()
 {
 	m_Shader->Bind();
-
-	if (m_HasColorMask)
-		glColorMask(m_ColorMaskR, m_ColorMaskG, m_ColorMaskB, m_ColorMaskA);
-
-	if (m_HasDepthMask)
-		glDepthMask(m_DepthMask);
-
-	if (m_HasDepthFunc)
-		glDepthFunc(m_DepthFunc);
 }
 
 void CShaderPass::Unbind()
 {
 	m_Shader->Unbind();
-
-	if (m_HasColorMask)
-		glColorMask(1, 1, 1, 1);
-
-	if (m_HasDepthMask)
-		glDepthMask(1);
-
-	if (m_HasDepthFunc)
-		glDepthFunc(GL_LEQUAL);
-}
-
-void CShaderPass::ColorMask(GLboolean r, GLboolean g, GLboolean b, GLboolean a)
-{
-	m_HasColorMask = true;
-	m_ColorMaskR = r;
-	m_ColorMaskG = g;
-	m_ColorMaskB = b;
-	m_ColorMaskA = a;
-}
-
-void CShaderPass::DepthMask(GLboolean mask)
-{
-	m_HasDepthMask = true;
-	m_DepthMask = mask;
-}
-
-void CShaderPass::DepthFunc(GLenum func)
-{
-	m_HasDepthFunc = true;
-	m_DepthFunc = func;
 }
 
 void CShaderPass::SetPipelineStateDesc(

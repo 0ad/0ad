@@ -207,8 +207,6 @@ void SkyManager::RenderSky(
 	if (m_SkySet.empty() || !m_SkyCubeMap)
 		return;
 
-	glDepthMask(GL_FALSE);
-
 	const CCamera& camera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
 	CShaderTechniquePtr skytech =
@@ -294,8 +292,6 @@ void SkyManager::RenderSky(
 	glDrawArrays(GL_QUADS, 0, 6 * 4);
 
 	skytech->EndPass();
-
-	glDepthMask(GL_TRUE);
 
 #endif
 }

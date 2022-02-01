@@ -272,28 +272,6 @@ bool CShaderManager::NewProgram(const char* name, const CShaderDefines& baseDefi
 	return true;
 }
 
-static GLenum ParseComparisonFunc(const CStr& str)
-{
-	if (str == "never")
-		return GL_NEVER;
-	if (str == "always")
-		return GL_ALWAYS;
-	if (str == "less")
-		return GL_LESS;
-	if (str == "lequal")
-		return GL_LEQUAL;
-	if (str == "equal")
-		return GL_EQUAL;
-	if (str == "gequal")
-		return GL_GEQUAL;
-	if (str == "greater")
-		return GL_GREATER;
-	if (str == "notequal")
-		return GL_NOTEQUAL;
-	debug_warn("Invalid comparison func");
-	return GL_ALWAYS;
-}
-
 size_t CShaderManager::EffectCacheKeyHash::operator()(const EffectCacheKey& key) const
 {
 	size_t hash = 0;
@@ -348,6 +326,7 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 #define EL(x) int el_##x = XeroFile.GetElementID(#x)
 #define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
 	EL(blend);
+	EL(color);
 	EL(cull);
 	EL(define);
 	EL(depth);
@@ -359,13 +338,17 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 	AT(dst);
 	AT(front_face);
 	AT(func);
+	AT(mask);
+	AT(mask_red);
+	AT(mask_green);
+	AT(mask_blue);
+	AT(mask_alpha);
 	AT(mode);
+	AT(name);
 	AT(op);
 	AT(shader);
 	AT(shaders);
 	AT(src);
-	AT(mask);
-	AT(name);
 	AT(value);
 #undef AT
 #undef EL
@@ -483,6 +466,19 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 						}
 					}
 				}
+				else if (Element.GetNodeName() == el_color)
+				{
+					passPipelineStateDesc.blendState.colorWriteMask = 0;
+				#define MASK_CHANNEL(ATTRIBUTE, VALUE) \
+					if (Element.GetAttributes().GetNamedItem(ATTRIBUTE) == "TRUE") \
+						passPipelineStateDesc.blendState.colorWriteMask |= Renderer::Backend::ColorWriteMask::VALUE
+
+					MASK_CHANNEL(at_mask_red, RED);
+					MASK_CHANNEL(at_mask_green, GREEN);
+					MASK_CHANNEL(at_mask_blue, BLUE);
+					MASK_CHANNEL(at_mask_alpha, ALPHA);
+				#undef MASK_CHANNEL
+				}
 				else if (Element.GetNodeName() == el_cull)
 				{
 					if (!Element.GetAttributes().GetNamedItem(at_mode).empty())
@@ -499,10 +495,16 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 				else if (Element.GetNodeName() == el_depth)
 				{
 					if (!Element.GetAttributes().GetNamedItem(at_func).empty())
-						pass.DepthFunc(ParseComparisonFunc(Element.GetAttributes().GetNamedItem(at_func)));
+					{
+						passPipelineStateDesc.depthStencilState.depthCompareOp =
+							Renderer::Backend::ParseCompareOp(Element.GetAttributes().GetNamedItem(at_func));
+					}
 
 					if (!Element.GetAttributes().GetNamedItem(at_mask).empty())
-						pass.DepthMask(Element.GetAttributes().GetNamedItem(at_mask) == "true" ? 1 : 0);
+					{
+						passPipelineStateDesc.depthStencilState.depthWriteEnabled =
+							Element.GetAttributes().GetNamedItem(at_mask) == "true";
+					}
 				}
 			}
 

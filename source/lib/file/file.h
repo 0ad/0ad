@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -39,8 +39,8 @@ namespace ERR
 // @param oflag: either O_RDONLY or O_WRONLY (in which case O_CREAT and
 //   O_TRUNC are added), plus O_DIRECT if aio is desired
 // @return file descriptor or a negative Status
-LIB_API Status FileOpen(const OsPath& pathname, int oflag);
-LIB_API void FileClose(int& fd);
+Status FileOpen(const OsPath& pathname, int oflag);
+void FileClose(int& fd);
 
 class File
 {

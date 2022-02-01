@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -32,11 +32,11 @@
 /**
  * @return 0 if opening the archive failed (e.g. because an external program is holding on to it)
  **/
-LIB_API PIArchiveReader CreateArchiveReader_Zip(const OsPath& archivePathname);
+PIArchiveReader CreateArchiveReader_Zip(const OsPath& archivePathname);
 
 /**
  * @return 0 if opening the archive failed (e.g. because an external program is holding on to it)
  **/
-LIB_API PIArchiveWriter CreateArchiveWriter_Zip(const OsPath& archivePathname, bool noDeflate);
+PIArchiveWriter CreateArchiveWriter_Zip(const OsPath& archivePathname, bool noDeflate);
 
 #endif	// #ifndef INCLUDED_ARCHIVE_ZIP

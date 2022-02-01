@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -41,6 +41,6 @@
  *
  * this function is used for walking the call stack.
  **/
-LIB_API Status ia32_GetCallTarget(void* ret_addr, void*& target);
+Status ia32_GetCallTarget(void* ret_addr, void*& target);
 
 #endif	// #ifndef INCLUDED_IA32

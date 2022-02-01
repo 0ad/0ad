@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -33,7 +33,7 @@ to add the necessary parts to that generated manifest.
 ICC 10.1 IPO considers this string to be an input file, hence this
 is currently disabled there.
 */
-#if MSC_VERSION >= 1400 && !ICC_VERSION && defined(LIB_STATIC_LINK)
+#if MSC_VERSION >= 1400 && !ICC_VERSION
 # if ARCH_IA32
 #  pragma comment(linker, "\"/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='X86' publicKeyToken='6595b64144ccf1df'\"")
 # elif ARCH_AMD64

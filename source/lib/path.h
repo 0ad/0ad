@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -57,7 +57,7 @@ namespace ERR
  * @param s1, s2 comparand strings
  * @return bool
  **/
-LIB_API bool path_is_subpath(const wchar_t* s1, const wchar_t* s2);
+bool path_is_subpath(const wchar_t* s1, const wchar_t* s2);
 
 /**
  * Get the path component of a path.
@@ -66,7 +66,7 @@ LIB_API bool path_is_subpath(const wchar_t* s1, const wchar_t* s2);
  * @param path Input path.
  * @return pointer to path component within \<path\>.
  **/
-LIB_API const wchar_t* path_name_only(const wchar_t* path);
+const wchar_t* path_name_only(const wchar_t* path);
 
 
 // NB: there is a need for 'generic' paths (e.g. for Trace entry / archive pathnames).
