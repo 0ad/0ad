@@ -517,8 +517,6 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 		ogl_WarnIfError();
 	}
 
-	glDisable(GL_DEPTH_TEST);
-
 	if (renderGUI)
 	{
 		OGL_SCOPED_DEBUG_GROUP("Draw GUI");
@@ -548,8 +546,6 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 	// Profile information
 	g_ProfileViewer.RenderProfile();
 	ogl_WarnIfError();
-
-	glEnable(GL_DEPTH_TEST);
 
 	EndFrame();
 

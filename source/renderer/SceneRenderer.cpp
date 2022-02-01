@@ -785,10 +785,6 @@ void CSceneRenderer::RenderSilhouettes(
 
 	// Since we can't sort, we'll use the stencil buffer to ensure we only draw
 	// a pixel once (using the color of whatever model happens to be drawn first).
-	glEnable(GL_STENCIL_TEST);
-	glStencilFunc(GL_NOTEQUAL, 1, (GLuint)-1);
-	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
-
 	{
 		PROFILE("render model casters");
 		m->CallModelRenderers(deviceCommandContext, contextDisplay, CULL_SILHOUETTE_CASTER, 0);
@@ -798,9 +794,6 @@ void CSceneRenderer::RenderSilhouettes(
 		PROFILE("render transparent casters");
 		m->CallTranspModelRenderers(deviceCommandContext, contextDisplay, CULL_SILHOUETTE_CASTER, 0);
 	}
-
-	// Restore state
-	glDisable(GL_STENCIL_TEST);
 }
 
 void CSceneRenderer::RenderParticles(

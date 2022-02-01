@@ -4,7 +4,7 @@
 	<technique>
 		<require shaders="glsl"/>
 		<pass shader="glsl/hdr">
-			<depth mask="false"/>
+			<depth test="FALSE" mask="false"/>
 		</pass>
 	</technique>
 

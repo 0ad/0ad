@@ -31,6 +31,24 @@ namespace Backend
 namespace GL
 {
 
+namespace
+{
+
+bool operator==(const StencilOpState& lhs, const StencilOpState& rhs)
+{
+	return
+		lhs.failOp == rhs.failOp &&
+		lhs.passOp == rhs.passOp &&
+		lhs.depthFailOp == rhs.depthFailOp &&
+		lhs.compareOp == rhs.compareOp;
+}
+bool operator!=(const StencilOpState& lhs, const StencilOpState& rhs)
+{
+	return !operator==(lhs, rhs);
+}
+
+} // anonymous namespace
+
 // static
 std::unique_ptr<CDeviceCommandContext> CDeviceCommandContext::Create()
 {
@@ -138,13 +156,88 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 {
 	const DepthStencilStateDesc& currentDepthStencilStateDesc = m_GraphicsPipelineStateDesc.depthStencilState;
 	const DepthStencilStateDesc& nextDepthStencilStateDesc = pipelineStateDesc.depthStencilState;
+	if (force || currentDepthStencilStateDesc.depthTestEnabled != nextDepthStencilStateDesc.depthTestEnabled)
+	{
+		if (nextDepthStencilStateDesc.depthTestEnabled)
+			glEnable(GL_DEPTH_TEST);
+		else
+			glDisable(GL_DEPTH_TEST);
+	}
 	if (force || currentDepthStencilStateDesc.depthCompareOp != nextDepthStencilStateDesc.depthCompareOp)
 	{
-		glDepthFunc(Mapping::DepthFuncFromCompareOp(nextDepthStencilStateDesc.depthCompareOp));
+		glDepthFunc(Mapping::FromCompareOp(nextDepthStencilStateDesc.depthCompareOp));
 	}
 	if (force || currentDepthStencilStateDesc.depthWriteEnabled != nextDepthStencilStateDesc.depthWriteEnabled)
 	{
 		glDepthMask(nextDepthStencilStateDesc.depthWriteEnabled ? GL_TRUE : GL_FALSE);
+	}
+
+	if (force || currentDepthStencilStateDesc.stencilTestEnabled != nextDepthStencilStateDesc.stencilTestEnabled)
+	{
+		if (nextDepthStencilStateDesc.stencilTestEnabled)
+			glEnable(GL_STENCIL_TEST);
+		else
+			glDisable(GL_STENCIL_TEST);
+	}
+	if (force ||
+		currentDepthStencilStateDesc.stencilFrontFace != nextDepthStencilStateDesc.stencilFrontFace ||
+		currentDepthStencilStateDesc.stencilBackFace != nextDepthStencilStateDesc.stencilBackFace)
+	{
+		if (nextDepthStencilStateDesc.stencilFrontFace == nextDepthStencilStateDesc.stencilBackFace)
+		{
+			glStencilOp(
+				Mapping::FromStencilOp(nextDepthStencilStateDesc.stencilFrontFace.failOp),
+				Mapping::FromStencilOp(nextDepthStencilStateDesc.stencilFrontFace.depthFailOp),
+				Mapping::FromStencilOp(nextDepthStencilStateDesc.stencilFrontFace.passOp));
+		}
+		else
+		{
+			if (force || currentDepthStencilStateDesc.stencilFrontFace != nextDepthStencilStateDesc.stencilFrontFace)
+			{
+				glStencilOpSeparate(
+					GL_FRONT,
+					Mapping::FromStencilOp(nextDepthStencilStateDesc.stencilFrontFace.failOp),
+					Mapping::FromStencilOp(nextDepthStencilStateDesc.stencilFrontFace.depthFailOp),
+					Mapping::FromStencilOp(nextDepthStencilStateDesc.stencilFrontFace.passOp));
+			}
+			if (force || currentDepthStencilStateDesc.stencilBackFace != nextDepthStencilStateDesc.stencilBackFace)
+			{
+				glStencilOpSeparate(
+					GL_BACK,
+					Mapping::FromStencilOp(nextDepthStencilStateDesc.stencilBackFace.failOp),
+					Mapping::FromStencilOp(nextDepthStencilStateDesc.stencilBackFace.depthFailOp),
+					Mapping::FromStencilOp(nextDepthStencilStateDesc.stencilBackFace.passOp));
+			}
+		}
+	}
+	if (force || currentDepthStencilStateDesc.stencilWriteMask != nextDepthStencilStateDesc.stencilWriteMask)
+	{
+		glStencilMask(nextDepthStencilStateDesc.stencilWriteMask);
+	}
+	if (force ||
+		currentDepthStencilStateDesc.stencilReference != nextDepthStencilStateDesc.stencilReference ||
+		currentDepthStencilStateDesc.stencilReadMask != nextDepthStencilStateDesc.stencilReadMask ||
+		currentDepthStencilStateDesc.stencilFrontFace.compareOp != nextDepthStencilStateDesc.stencilFrontFace.compareOp ||
+		currentDepthStencilStateDesc.stencilBackFace.compareOp != nextDepthStencilStateDesc.stencilBackFace.compareOp)
+	{
+		if (nextDepthStencilStateDesc.stencilFrontFace.compareOp == nextDepthStencilStateDesc.stencilBackFace.compareOp)
+		{
+			glStencilFunc(
+				Mapping::FromCompareOp(nextDepthStencilStateDesc.stencilFrontFace.compareOp),
+				nextDepthStencilStateDesc.stencilReference,
+				nextDepthStencilStateDesc.stencilReadMask);
+		}
+		else
+		{
+			glStencilFuncSeparate(GL_FRONT,
+				Mapping::FromCompareOp(nextDepthStencilStateDesc.stencilFrontFace.compareOp),
+				nextDepthStencilStateDesc.stencilReference,
+				nextDepthStencilStateDesc.stencilReadMask);
+			glStencilFuncSeparate(GL_BACK,
+				Mapping::FromCompareOp(nextDepthStencilStateDesc.stencilBackFace.compareOp),
+				nextDepthStencilStateDesc.stencilReference,
+				nextDepthStencilStateDesc.stencilReadMask);
+		}
 	}
 
 	const BlendStateDesc& currentBlendStateDesc = m_GraphicsPipelineStateDesc.blendState;

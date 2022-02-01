@@ -149,8 +149,6 @@ void TerrainOverlay::RenderBeforeWater(
 
 	EndRender();
 
-	// Clean up state changes
-	glEnable(GL_DEPTH_TEST);
 	//glDisable(GL_POLYGON_OFFSET_LINE);
 	glDisable(GL_POLYGON_OFFSET_FILL);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -171,15 +169,6 @@ void TerrainOverlay::RenderTile(
 	// TODO: unnecessary computation calls has been removed but we should use
 	// a vertex buffer or a vertex shader with a texture.
 	// Not sure if it's possible on old OpenGL.
-
-	if (drawHidden)
-	{
-		glDisable(GL_DEPTH_TEST);
-	}
-	else
-	{
-		glEnable(GL_DEPTH_TEST);
-	}
 
 #if CONFIG2_GLES
 	UNUSED2(deviceCommandContext);
@@ -226,6 +215,7 @@ void TerrainOverlay::RenderTile(
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
 		overlayTech->GetGraphicsPipelineStateDesc();
+	pipelineStateDesc.depthStencilState.depthTestEnabled = !drawHidden;
 	pipelineStateDesc.blendState.enabled = true;
 	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
 		Renderer::Backend::BlendFactor::SRC_ALPHA;
@@ -264,15 +254,6 @@ void TerrainOverlay::RenderTileOutline(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
 	const CColor& color, int lineWidth, bool drawHidden, ssize_t i, ssize_t j)
 {
-	if (drawHidden)
-	{
-		glDisable(GL_DEPTH_TEST);
-	}
-	else
-	{
-		glEnable(GL_DEPTH_TEST);
-	}
-
 #if CONFIG2_GLES
 	UNUSED2(deviceCommandContext);
 	UNUSED2(color);
@@ -305,6 +286,7 @@ void TerrainOverlay::RenderTileOutline(
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
 		overlayTech->GetGraphicsPipelineStateDesc();
+	pipelineStateDesc.depthStencilState.depthTestEnabled = !drawHidden;
 	pipelineStateDesc.blendState.enabled = true;
 	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
 		Renderer::Backend::BlendFactor::SRC_ALPHA;

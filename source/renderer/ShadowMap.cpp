@@ -755,8 +755,6 @@ void ShadowMap::RenderDebugTexture(
 	if (!m->Texture)
 		return;
 
-	glDisable(GL_DEPTH_TEST);
-
 #if !CONFIG2_GLES
 	g_Renderer.BindTexture(0, m->Texture->GetHandle());
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
@@ -798,8 +796,6 @@ void ShadowMap::RenderDebugTexture(
 	g_Renderer.BindTexture(0, m->Texture->GetHandle());
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
 #endif
-
-	glEnable(GL_DEPTH_TEST);
 
 	ogl_WarnIfError();
 }

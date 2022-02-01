@@ -34,12 +34,12 @@ namespace GL
 namespace Mapping
 {
 
-GLenum DepthFuncFromCompareOp(const CompareOp compareOp)
+GLenum FromCompareOp(const CompareOp compareOp)
 {
-	GLenum detphFunc = GL_NEVER;
+	GLenum op = GL_NEVER;
 	switch (compareOp)
 	{
-#define CASE(NAME, GL_NAME) case CompareOp::NAME: detphFunc = GL_NAME; break
+#define CASE(NAME, GL_NAME) case CompareOp::NAME: op = GL_NAME; break
 	CASE(NEVER, GL_NEVER);
 	CASE(LESS, GL_LESS);
 	CASE(EQUAL, GL_EQUAL);
@@ -50,7 +50,26 @@ GLenum DepthFuncFromCompareOp(const CompareOp compareOp)
 	CASE(ALWAYS, GL_ALWAYS);
 #undef CASE
 	}
-	return detphFunc;
+	return op;
+}
+
+GLenum FromStencilOp(const StencilOp stencilOp)
+{
+	GLenum op = GL_KEEP;
+	switch (stencilOp)
+	{
+#define CASE(NAME, GL_NAME) case StencilOp::NAME: op = GL_NAME; break
+	CASE(KEEP, GL_KEEP);
+	CASE(ZERO, GL_ZERO);
+	CASE(REPLACE, GL_REPLACE);
+	CASE(INCREMENT_AND_CLAMP, GL_INCR);
+	CASE(DECREMENT_AND_CLAMP, GL_DECR);
+	CASE(INVERT, GL_INVERT);
+	CASE(INCREMENT_AND_WRAP, GL_INCR_WRAP);
+	CASE(DECREMENT_AND_WRAP, GL_DECR_WRAP);
+#undef CASE
+	}
+	return op;
 }
 
 GLenum FromBlendFactor(const BlendFactor blendFactor)

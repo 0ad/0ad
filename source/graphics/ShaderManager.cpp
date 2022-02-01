@@ -333,12 +333,17 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 	EL(pass);
 	EL(require);
 	EL(sort_by_distance);
+	EL(stencil);
+	AT(compare);
 	AT(constant);
 	AT(context);
+	AT(depth_fail);
 	AT(dst);
+	AT(fail);
 	AT(front_face);
 	AT(func);
 	AT(mask);
+	AT(mask_read);
 	AT(mask_red);
 	AT(mask_green);
 	AT(mask_blue);
@@ -346,9 +351,12 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 	AT(mode);
 	AT(name);
 	AT(op);
+	AT(pass);
+	AT(reference);
 	AT(shader);
 	AT(shaders);
 	AT(src);
+	AT(test);
 	AT(value);
 #undef AT
 #undef EL
@@ -494,6 +502,12 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 				}
 				else if (Element.GetNodeName() == el_depth)
 				{
+					if (!Element.GetAttributes().GetNamedItem(at_test).empty())
+					{
+						passPipelineStateDesc.depthStencilState.depthTestEnabled =
+							Element.GetAttributes().GetNamedItem(at_test) == "TRUE";
+					}
+
 					if (!Element.GetAttributes().GetNamedItem(at_func).empty())
 					{
 						passPipelineStateDesc.depthStencilState.depthCompareOp =
@@ -504,6 +518,55 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 					{
 						passPipelineStateDesc.depthStencilState.depthWriteEnabled =
 							Element.GetAttributes().GetNamedItem(at_mask) == "true";
+					}
+				}
+				else if (Element.GetNodeName() == el_stencil)
+				{
+					if (!Element.GetAttributes().GetNamedItem(at_test).empty())
+					{
+						passPipelineStateDesc.depthStencilState.stencilTestEnabled =
+							Element.GetAttributes().GetNamedItem(at_test) == "TRUE";
+					}
+
+					if (!Element.GetAttributes().GetNamedItem(at_reference).empty())
+					{
+						passPipelineStateDesc.depthStencilState.stencilReference =
+							Element.GetAttributes().GetNamedItem(at_reference).ToULong();
+					}
+					if (!Element.GetAttributes().GetNamedItem(at_mask_read).empty())
+					{
+						passPipelineStateDesc.depthStencilState.stencilReadMask =
+							Element.GetAttributes().GetNamedItem(at_mask_read).ToULong();
+					}
+					if (!Element.GetAttributes().GetNamedItem(at_mask).empty())
+					{
+						passPipelineStateDesc.depthStencilState.stencilWriteMask =
+							Element.GetAttributes().GetNamedItem(at_mask).ToULong();
+					}
+
+					if (!Element.GetAttributes().GetNamedItem(at_compare).empty())
+					{
+						passPipelineStateDesc.depthStencilState.stencilFrontFace.compareOp =
+							passPipelineStateDesc.depthStencilState.stencilBackFace.compareOp =
+								Renderer::Backend::ParseCompareOp(Element.GetAttributes().GetNamedItem(at_compare));
+					}
+					if (!Element.GetAttributes().GetNamedItem(at_fail).empty())
+					{
+						passPipelineStateDesc.depthStencilState.stencilFrontFace.failOp =
+							passPipelineStateDesc.depthStencilState.stencilBackFace.failOp =
+								Renderer::Backend::ParseStencilOp(Element.GetAttributes().GetNamedItem(at_fail));
+					}
+					if (!Element.GetAttributes().GetNamedItem(at_pass).empty())
+					{
+						passPipelineStateDesc.depthStencilState.stencilFrontFace.passOp =
+							passPipelineStateDesc.depthStencilState.stencilBackFace.passOp =
+							Renderer::Backend::ParseStencilOp(Element.GetAttributes().GetNamedItem(at_pass));
+					}
+					if (!Element.GetAttributes().GetNamedItem(at_depth_fail).empty())
+					{
+						passPipelineStateDesc.depthStencilState.stencilFrontFace.depthFailOp =
+							passPipelineStateDesc.depthStencilState.stencilBackFace.depthFailOp =
+							Renderer::Backend::ParseStencilOp(Element.GetAttributes().GetNamedItem(at_depth_fail));
 					}
 				}
 			}

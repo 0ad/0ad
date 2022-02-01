@@ -196,9 +196,6 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 	glPixelStorei(GL_PACK_ALIGNMENT, 1);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-	// Setup default state.
-	glEnable(GL_DEPTH_TEST);
-
 	return device;
 }
 

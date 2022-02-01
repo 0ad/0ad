@@ -4,7 +4,7 @@
 	<technique>
 		<require shaders="arb"/>
 		<pass shader="arb/canvas2d">
-			<depth mask="false"/>
+			<depth test="FALSE" mask="false"/>
 			<blend src="src_alpha" dst="one_minus_src_alpha"/>
 		</pass>
 	</technique>
@@ -12,7 +12,7 @@
 	<technique>
 		<require shaders="glsl"/>
 		<pass shader="glsl/canvas2d">
-			<depth mask="false"/>
+			<depth test="FALSE" mask="false"/>
 			<blend src="src_alpha" dst="one_minus_src_alpha"/>
 		</pass>
 	</technique>

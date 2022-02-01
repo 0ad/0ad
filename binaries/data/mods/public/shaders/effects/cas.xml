@@ -3,7 +3,7 @@
 	<technique>
 		<require shaders="glsl"/>
 		<pass shader="glsl/cas">
-			<depth mask="false"/>
+			<depth test="FALSE" mask="false"/>
 		</pass>
 	</technique>
 </effect>

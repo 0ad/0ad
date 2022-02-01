@@ -3,7 +3,7 @@
 	<technique>
 		<require shaders="glsl"/>
 		<pass shader="glsl/waves">
-			<depth func="always"/>
+			<depth test="TRUE" func="always"/>
 			<blend src="src_alpha" dst="one_minus_src_alpha"/>
 		</pass>
 	</technique>
