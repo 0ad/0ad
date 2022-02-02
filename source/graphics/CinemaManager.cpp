@@ -22,7 +22,6 @@
 #include "graphics/Camera.h"
 #include "graphics/Color.h"
 #include "graphics/GameView.h"
-#include "lib/ogl.h"
 #include "maths/MathUtil.h"
 #include "maths/Quaternion.h"
 #include "maths/Vector3D.h"
@@ -73,8 +72,6 @@ void CCinemaManager::DrawPaths() const
 	if (!cmpCinemaManager)
 		return;
 
-	glDisable(GL_DEPTH_TEST);
-
 	for (const std::pair<const CStrW, CCinemaPath>& p : cmpCinemaManager->GetPaths())
 	{
 		DrawSpline(p.second, CColor(0.2f, 0.2f, 1.f, 0.9f), 128);
@@ -86,8 +83,6 @@ void CCinemaManager::DrawPaths() const
 		DrawSpline(p.second.GetTargetSpline(), CColor(1.f, 0.3f, 0.4f, 0.9f), 128);
 		DrawNodes(p.second.GetTargetSpline(), CColor(1.f, 0.1f, 0.f, 1.f));
 	}
-
-	glEnable(GL_DEPTH_TEST);
 }
 
 void CCinemaManager::DrawSpline(const RNSpline& spline, const CColor& splineColor, int smoothness) const
@@ -105,7 +100,7 @@ void CCinemaManager::DrawSpline(const RNSpline& spline, const CColor& splineColo
 		const float time = start * i / spline.MaxDistance.ToFloat();
 		line.emplace_back(spline.GetPosition(time));
 	}
-	g_Renderer.GetDebugRenderer().DrawLine(line, splineColor, 0.2f);
+	g_Renderer.GetDebugRenderer().DrawLine(line, splineColor, 0.2f, false);
 
 	// Height indicator
 	if (g_Game && g_Game->GetWorld() && g_Game->GetWorld()->GetTerrain())
@@ -115,7 +110,7 @@ void CCinemaManager::DrawSpline(const RNSpline& spline, const CColor& splineColo
 			const float time = start * i / spline.MaxDistance.ToFloat();
 			const CVector3D tmp = spline.GetPosition(time);
 			const float groundY = g_Game->GetWorld()->GetTerrain()->GetExactGroundLevel(tmp.X, tmp.Z);
-			g_Renderer.GetDebugRenderer().DrawLine(tmp, CVector3D(tmp.X, groundY, tmp.Z), splineColor, 0.1f);
+			g_Renderer.GetDebugRenderer().DrawLine(tmp, CVector3D(tmp.X, groundY, tmp.Z), splineColor, 0.1f, false);
 		}
 	}
 }

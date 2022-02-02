@@ -427,8 +427,6 @@ void CPostprocManager::ApplyEffect(
 	else
 		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
 
-	glDisable(GL_DEPTH_TEST);
-
 	shaderTech1->BeginPass(pass);
 	deviceCommandContext->SetGraphicsPipelineState(
 		shaderTech1->GetGraphicsPipelineStateDesc(pass));
@@ -486,8 +484,6 @@ void CPostprocManager::ApplyEffect(
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	shaderTech1->EndPass(pass);
-
-	glEnable(GL_DEPTH_TEST);
 
 	m_WhichBuffer = !m_WhichBuffer;
 }

@@ -622,7 +622,6 @@ void OverlayRenderer::RenderForegroundOverlays(
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	glActiveTextureARB(GL_TEXTURE0);
-	glDisable(GL_DEPTH_TEST);
 
 	CVector3D right = -viewCamera.GetOrientation().GetLeft();
 	CVector3D up = viewCamera.GetOrientation().GetUp();
@@ -630,6 +629,7 @@ void OverlayRenderer::RenderForegroundOverlays(
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_foreground_overlay);
 	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
 		tech->GetGraphicsPipelineStateDesc();
+	pipelineStateDesc.depthStencilState.depthTestEnabled = false;
 	pipelineStateDesc.blendState.enabled = true;
 	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
 		Renderer::Backend::BlendFactor::SRC_ALPHA;
@@ -672,8 +672,6 @@ void OverlayRenderer::RenderForegroundOverlays(
 	}
 
 	tech->EndPass();
-
-	glEnable(GL_DEPTH_TEST);
 
 	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);

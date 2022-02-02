@@ -524,10 +524,8 @@ void ActorViewer::Render()
 
 	g_Renderer.GetSceneRenderer().RenderScene(g_Renderer.GetDeviceCommandContext(), m);
 
-	glDisable(GL_DEPTH_TEST);
 	g_Logger->Render();
 	g_ProfileViewer.RenderProfile();
-	glEnable(GL_DEPTH_TEST);
 
 	g_Renderer.EndFrame();
 

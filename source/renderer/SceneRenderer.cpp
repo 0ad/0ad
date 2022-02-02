@@ -632,8 +632,12 @@ void CSceneRenderer::RenderReflections(
 	screenScissor.x2 = (GLint)ceil((reflectionScissor[1].X*0.5f+0.5f)*vpWidth);
 	screenScissor.y2 = (GLint)ceil((reflectionScissor[1].Y*0.5f+0.5f)*vpHeight);
 
-	glEnable(GL_SCISSOR_TEST);
-	glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
+	Renderer::Backend::GL::CDeviceCommandContext::ScissorRect scissorRect;
+	scissorRect.x = screenScissor.x1;
+	scissorRect.y = screenScissor.y1;
+	scissorRect.width = screenScissor.x2 - screenScissor.x1;
+	scissorRect.height = screenScissor.y2 - screenScissor.y1;
+	deviceCommandContext->SetScissors(1, &scissorRect);
 
 	// try binding the framebuffer
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, wm.m_ReflectionFbo);
@@ -670,7 +674,7 @@ void CSceneRenderer::RenderReflections(
 		ogl_WarnIfError();
 	}
 
-	glDisable(GL_SCISSOR_TEST);
+	deviceCommandContext->SetScissors(0, nullptr);
 
 	// Reset old camera
 	m_ViewCamera = normalCamera;
@@ -715,8 +719,12 @@ void CSceneRenderer::RenderRefractions(
 	screenScissor.x2 = (GLint)ceil((refractionScissor[1].X*0.5f+0.5f)*vpWidth);
 	screenScissor.y2 = (GLint)ceil((refractionScissor[1].Y*0.5f+0.5f)*vpHeight);
 
-	glEnable(GL_SCISSOR_TEST);
-	glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
+	Renderer::Backend::GL::CDeviceCommandContext::ScissorRect scissorRect;
+	scissorRect.x = screenScissor.x1;
+	scissorRect.y = screenScissor.y1;
+	scissorRect.width = screenScissor.x2 - screenScissor.x1;
+	scissorRect.height = screenScissor.y2 - screenScissor.y1;
+	deviceCommandContext->SetScissors(1, &scissorRect);
 
 	// try binding the framebuffer
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, wm.m_RefractionFbo);
@@ -735,7 +743,7 @@ void CSceneRenderer::RenderRefractions(
 	RenderTransparentModels(deviceCommandContext, context, CULL_REFRACTIONS, TRANSPARENT_OPAQUE);
 	ogl_WarnIfError();
 
-	glDisable(GL_SCISSOR_TEST);
+	deviceCommandContext->SetScissors(0, nullptr);
 
 	// Reset old camera
 	m_ViewCamera = normalCamera;
@@ -785,10 +793,6 @@ void CSceneRenderer::RenderSilhouettes(
 
 	// Since we can't sort, we'll use the stencil buffer to ensure we only draw
 	// a pixel once (using the color of whatever model happens to be drawn first).
-	glEnable(GL_STENCIL_TEST);
-	glStencilFunc(GL_NOTEQUAL, 1, (GLuint)-1);
-	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
-
 	{
 		PROFILE("render model casters");
 		m->CallModelRenderers(deviceCommandContext, contextDisplay, CULL_SILHOUETTE_CASTER, 0);
@@ -798,9 +802,6 @@ void CSceneRenderer::RenderSilhouettes(
 		PROFILE("render transparent casters");
 		m->CallTranspModelRenderers(deviceCommandContext, contextDisplay, CULL_SILHOUETTE_CASTER, 0);
 	}
-
-	// Restore state
-	glDisable(GL_STENCIL_TEST);
 }
 
 void CSceneRenderer::RenderParticles(

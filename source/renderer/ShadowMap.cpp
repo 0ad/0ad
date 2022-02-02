@@ -632,8 +632,6 @@ void ShadowMap::BeginRender()
 	}
 
 	m->SavedViewCamera = g_Renderer.GetSceneRenderer().GetViewCamera();
-
-	glEnable(GL_SCISSOR_TEST);
 }
 
 void ShadowMap::PrepareCamera(const int cascade)
@@ -649,15 +647,18 @@ void ShadowMap::PrepareCamera(const int cascade)
 	g_Renderer.GetSceneRenderer().SetViewCamera(camera);
 
 	const SViewPort& cascadeViewPort = m->Cascades[cascade].ViewPort;
-	glScissor(
-		cascadeViewPort.m_X, cascadeViewPort.m_Y,
-		cascadeViewPort.m_Width, cascadeViewPort.m_Height);
+	Renderer::Backend::GL::CDeviceCommandContext::ScissorRect scissorRect;
+	scissorRect.x = cascadeViewPort.m_X;
+	scissorRect.y = cascadeViewPort.m_Y;
+	scissorRect.width = cascadeViewPort.m_Width;
+	scissorRect.height = cascadeViewPort.m_Height;
+	g_Renderer.GetDeviceCommandContext()->SetScissors(1, &scissorRect);
 }
 
 // Finish rendering into shadow map texture
 void ShadowMap::EndRender()
 {
-	glDisable(GL_SCISSOR_TEST);
+	g_Renderer.GetDeviceCommandContext()->SetScissors(0, nullptr);
 
 	g_Renderer.GetSceneRenderer().SetViewCamera(m->SavedViewCamera);
 
@@ -755,8 +756,6 @@ void ShadowMap::RenderDebugTexture(
 	if (!m->Texture)
 		return;
 
-	glDisable(GL_DEPTH_TEST);
-
 #if !CONFIG2_GLES
 	g_Renderer.BindTexture(0, m->Texture->GetHandle());
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
@@ -798,8 +797,6 @@ void ShadowMap::RenderDebugTexture(
 	g_Renderer.BindTexture(0, m->Texture->GetHandle());
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
 #endif
-
-	glEnable(GL_DEPTH_TEST);
 
 	ogl_WarnIfError();
 }

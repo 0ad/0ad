@@ -31,6 +31,40 @@ namespace Backend
 namespace GL
 {
 
+namespace
+{
+
+bool operator==(const StencilOpState& lhs, const StencilOpState& rhs)
+{
+	return
+		lhs.failOp == rhs.failOp &&
+		lhs.passOp == rhs.passOp &&
+		lhs.depthFailOp == rhs.depthFailOp &&
+		lhs.compareOp == rhs.compareOp;
+}
+bool operator!=(const StencilOpState& lhs, const StencilOpState& rhs)
+{
+	return !operator==(lhs, rhs);
+}
+
+bool operator==(
+	const CDeviceCommandContext::ScissorRect& lhs,
+	const CDeviceCommandContext::ScissorRect& rhs)
+{
+	return
+		lhs.x == rhs.x && lhs.y == rhs.y &&
+		lhs.width == rhs.width && lhs.height == rhs.height;
+}
+
+bool operator!=(
+	const CDeviceCommandContext::ScissorRect& lhs,
+	const CDeviceCommandContext::ScissorRect& rhs)
+{
+	return !operator==(lhs, rhs);
+}
+
+} // anonymous namespace
+
 // static
 std::unique_ptr<CDeviceCommandContext> CDeviceCommandContext::Create()
 {
@@ -131,6 +165,7 @@ void CDeviceCommandContext::Flush()
 void CDeviceCommandContext::ResetStates()
 {
 	SetGraphicsPipelineStateImpl(MakeDefaultGraphicsPipelineStateDesc(), true);
+	SetScissors(0, nullptr);
 }
 
 void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
@@ -138,13 +173,88 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 {
 	const DepthStencilStateDesc& currentDepthStencilStateDesc = m_GraphicsPipelineStateDesc.depthStencilState;
 	const DepthStencilStateDesc& nextDepthStencilStateDesc = pipelineStateDesc.depthStencilState;
+	if (force || currentDepthStencilStateDesc.depthTestEnabled != nextDepthStencilStateDesc.depthTestEnabled)
+	{
+		if (nextDepthStencilStateDesc.depthTestEnabled)
+			glEnable(GL_DEPTH_TEST);
+		else
+			glDisable(GL_DEPTH_TEST);
+	}
 	if (force || currentDepthStencilStateDesc.depthCompareOp != nextDepthStencilStateDesc.depthCompareOp)
 	{
-		glDepthFunc(Mapping::DepthFuncFromCompareOp(nextDepthStencilStateDesc.depthCompareOp));
+		glDepthFunc(Mapping::FromCompareOp(nextDepthStencilStateDesc.depthCompareOp));
 	}
 	if (force || currentDepthStencilStateDesc.depthWriteEnabled != nextDepthStencilStateDesc.depthWriteEnabled)
 	{
 		glDepthMask(nextDepthStencilStateDesc.depthWriteEnabled ? GL_TRUE : GL_FALSE);
+	}
+
+	if (force || currentDepthStencilStateDesc.stencilTestEnabled != nextDepthStencilStateDesc.stencilTestEnabled)
+	{
+		if (nextDepthStencilStateDesc.stencilTestEnabled)
+			glEnable(GL_STENCIL_TEST);
+		else
+			glDisable(GL_STENCIL_TEST);
+	}
+	if (force ||
+		currentDepthStencilStateDesc.stencilFrontFace != nextDepthStencilStateDesc.stencilFrontFace ||
+		currentDepthStencilStateDesc.stencilBackFace != nextDepthStencilStateDesc.stencilBackFace)
+	{
+		if (nextDepthStencilStateDesc.stencilFrontFace == nextDepthStencilStateDesc.stencilBackFace)
+		{
+			glStencilOp(
+				Mapping::FromStencilOp(nextDepthStencilStateDesc.stencilFrontFace.failOp),
+				Mapping::FromStencilOp(nextDepthStencilStateDesc.stencilFrontFace.depthFailOp),
+				Mapping::FromStencilOp(nextDepthStencilStateDesc.stencilFrontFace.passOp));
+		}
+		else
+		{
+			if (force || currentDepthStencilStateDesc.stencilFrontFace != nextDepthStencilStateDesc.stencilFrontFace)
+			{
+				glStencilOpSeparate(
+					GL_FRONT,
+					Mapping::FromStencilOp(nextDepthStencilStateDesc.stencilFrontFace.failOp),
+					Mapping::FromStencilOp(nextDepthStencilStateDesc.stencilFrontFace.depthFailOp),
+					Mapping::FromStencilOp(nextDepthStencilStateDesc.stencilFrontFace.passOp));
+			}
+			if (force || currentDepthStencilStateDesc.stencilBackFace != nextDepthStencilStateDesc.stencilBackFace)
+			{
+				glStencilOpSeparate(
+					GL_BACK,
+					Mapping::FromStencilOp(nextDepthStencilStateDesc.stencilBackFace.failOp),
+					Mapping::FromStencilOp(nextDepthStencilStateDesc.stencilBackFace.depthFailOp),
+					Mapping::FromStencilOp(nextDepthStencilStateDesc.stencilBackFace.passOp));
+			}
+		}
+	}
+	if (force || currentDepthStencilStateDesc.stencilWriteMask != nextDepthStencilStateDesc.stencilWriteMask)
+	{
+		glStencilMask(nextDepthStencilStateDesc.stencilWriteMask);
+	}
+	if (force ||
+		currentDepthStencilStateDesc.stencilReference != nextDepthStencilStateDesc.stencilReference ||
+		currentDepthStencilStateDesc.stencilReadMask != nextDepthStencilStateDesc.stencilReadMask ||
+		currentDepthStencilStateDesc.stencilFrontFace.compareOp != nextDepthStencilStateDesc.stencilFrontFace.compareOp ||
+		currentDepthStencilStateDesc.stencilBackFace.compareOp != nextDepthStencilStateDesc.stencilBackFace.compareOp)
+	{
+		if (nextDepthStencilStateDesc.stencilFrontFace.compareOp == nextDepthStencilStateDesc.stencilBackFace.compareOp)
+		{
+			glStencilFunc(
+				Mapping::FromCompareOp(nextDepthStencilStateDesc.stencilFrontFace.compareOp),
+				nextDepthStencilStateDesc.stencilReference,
+				nextDepthStencilStateDesc.stencilReadMask);
+		}
+		else
+		{
+			glStencilFuncSeparate(GL_FRONT,
+				Mapping::FromCompareOp(nextDepthStencilStateDesc.stencilFrontFace.compareOp),
+				nextDepthStencilStateDesc.stencilReference,
+				nextDepthStencilStateDesc.stencilReadMask);
+			glStencilFuncSeparate(GL_BACK,
+				Mapping::FromCompareOp(nextDepthStencilStateDesc.stencilBackFace.compareOp),
+				nextDepthStencilStateDesc.stencilReference,
+				nextDepthStencilStateDesc.stencilReadMask);
+		}
 	}
 
 	const BlendStateDesc& currentBlendStateDesc = m_GraphicsPipelineStateDesc.blendState;
@@ -242,6 +352,28 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 	}
 
 	m_GraphicsPipelineStateDesc = pipelineStateDesc;
+}
+
+void CDeviceCommandContext::SetScissors(const uint32_t scissorCount, const ScissorRect* scissors)
+{
+	ENSURE(scissorCount <= 1);
+	if (scissorCount == 0)
+	{
+		if (m_ScissorCount != scissorCount)
+			glDisable(GL_SCISSOR_TEST);
+	}
+	else
+	{
+		if (m_ScissorCount != scissorCount)
+			glEnable(GL_SCISSOR_TEST);
+		if (m_ScissorCount != scissorCount || m_Scissors[0] != scissors[0])
+		{
+			ENSURE(scissors);
+			m_Scissors[0] = scissors[0];
+			glScissor(m_Scissors[0].x, m_Scissors[0].y, m_Scissors[0].width, m_Scissors[0].height);
+		}
+	}
+	m_ScissorCount = scissorCount;
 }
 
 } // namespace GL

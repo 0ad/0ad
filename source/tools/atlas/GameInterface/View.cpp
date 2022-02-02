@@ -247,11 +247,15 @@ void AtlasViewGame::DrawCinemaPathTool()
 	const float axisLength = scale / 10.0f;
 	const float lineWidth = scale / 1e3f;
 
-	glDisable(GL_DEPTH_TEST);
-	g_Renderer.GetDebugRenderer().DrawLine(focus, focus + CVector3D(axisLength, 0, 0), CColor(1.0f, 0.0f, 0.0f, 1.0f), lineWidth);
-	g_Renderer.GetDebugRenderer().DrawLine(focus, focus + CVector3D(0, axisLength, 0), CColor(0.0f, 1.0f, 0.0f, 1.0f), lineWidth);
-	g_Renderer.GetDebugRenderer().DrawLine(focus, focus + CVector3D(0, 0, axisLength), CColor(0.0f, 0.0f, 1.0f, 1.0f), lineWidth);
-	glEnable(GL_DEPTH_TEST);
+	g_Renderer.GetDebugRenderer().DrawLine(
+		focus, focus + CVector3D(axisLength, 0, 0),
+		CColor(1.0f, 0.0f, 0.0f, 1.0f), lineWidth, false);
+	g_Renderer.GetDebugRenderer().DrawLine(
+		focus, focus + CVector3D(0, axisLength, 0),
+		CColor(0.0f, 1.0f, 0.0f, 1.0f), lineWidth, false);
+	g_Renderer.GetDebugRenderer().DrawLine(
+		focus, focus + CVector3D(0, 0, axisLength),
+		CColor(0.0f, 0.0f, 1.0f, 1.0f), lineWidth, false);
 }
 
 void AtlasViewGame::DrawOverlays(CCanvas2D& canvas)

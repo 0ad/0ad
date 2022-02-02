@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,6 +27,7 @@
 #include "gui/SettingTypes/CGUIString.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/VideoMode.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/Renderer.h"
 
 #include <math.h>
@@ -430,6 +431,9 @@ bool CGUIText::AssembleCalls(
 
 void CGUIText::Draw(CGUI& pGUI, CCanvas2D& canvas, const CGUIColor& DefaultColor, const CVector2D& pos, CRect clipping) const
 {
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
+		g_Renderer.GetDeviceCommandContext();
+
 	bool isClipped = clipping != CRect();
 	if (isClipped)
 	{
@@ -440,12 +444,13 @@ void CGUIText::Draw(CGUI& pGUI, CCanvas2D& canvas, const CGUIColor& DefaultColor
 		clipping.right = std::floor(clipping.right);
 
 		float scale = g_VideoMode.GetScale();
-		glEnable(GL_SCISSOR_TEST);
-		glScissor(
-			std::ceil(clipping.left * scale),
-			std::ceil(g_yres - clipping.bottom * scale),
-			std::floor(clipping.GetWidth() * scale),
-			std::floor(clipping.GetHeight() * scale));
+		Renderer::Backend::GL::CDeviceCommandContext::ScissorRect scissorRect;
+		scissorRect.x = std::ceil(clipping.left * scale);
+		scissorRect.y = std::ceil(g_yres - clipping.bottom * scale);
+		scissorRect.width = std::floor(clipping.GetWidth() * scale);
+		scissorRect.height = std::floor(clipping.GetHeight() * scale);
+		// TODO: move scissors to CCanvas2D.
+		deviceCommandContext->SetScissors(1, &scissorRect);
 	}
 
 	CTextRenderer textRenderer;
@@ -469,5 +474,5 @@ void CGUIText::Draw(CGUI& pGUI, CCanvas2D& canvas, const CGUIColor& DefaultColor
 		pGUI.DrawSprite(sc.m_Sprite, canvas, sc.m_Area + pos);
 
 	if (isClipped)
-		glDisable(GL_SCISSOR_TEST);
+		deviceCommandContext->SetScissors(0, nullptr);
 }

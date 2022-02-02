@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,8 +36,10 @@ public:
 	/**
 	 * Render the line in world space.
 	 */
-	void DrawLine(const CVector3D& from, const CVector3D& to, const CColor& color, const float width);
-	void DrawLine(const std::vector<CVector3D>& line, const CColor& color, const float width);
+	void DrawLine(const CVector3D& from, const CVector3D& to,
+		const CColor& color, const float width, const bool depthTestEnabled = true);
+	void DrawLine(const std::vector<CVector3D>& line,
+		const CColor& color, const float width, const bool depthTestEnabled = true);
 
 	/**
 	 * Render the circle in world space oriented to the view camera.

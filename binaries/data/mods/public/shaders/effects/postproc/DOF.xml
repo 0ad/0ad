@@ -4,10 +4,10 @@
 		<require shaders="glsl"/>
 		<pass shader="glsl/dof">
 			<define name="BLUR_FOV" value="3"/>
-			<depth mask="false"/>
+			<depth test="FALSE" mask="false"/>
 		</pass>
 		<pass shader="glsl/hdr">
-			<depth mask="false"/>
+			<depth test="FALSE" mask="false"/>
 		</pass>
 	</technique>
 </effect>

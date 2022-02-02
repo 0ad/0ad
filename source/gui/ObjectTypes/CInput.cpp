@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,6 +32,7 @@
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
 #include "ps/VideoMode.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/Renderer.h"
 
 #include <sstream>
@@ -1190,6 +1191,9 @@ void CInput::UpdateCachedSize()
 
 void CInput::Draw(CCanvas2D& canvas)
 {
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
+		g_Renderer.GetDeviceCommandContext();
+
 	if (m_CursorBlinkRate > 0.0)
 	{
 		// check if the cursor visibility state needs to be changed
@@ -1240,12 +1244,13 @@ void CInput::Draw(CCanvas2D& canvas)
 	if (cliparea != CRect())
 	{
 		float scale = g_VideoMode.GetScale();
-		glEnable(GL_SCISSOR_TEST);
-		glScissor(
-			cliparea.left * scale,
-			g_yres - cliparea.bottom * scale,
-			cliparea.GetWidth() * scale,
-			cliparea.GetHeight() * scale);
+		Renderer::Backend::GL::CDeviceCommandContext::ScissorRect scissorRect;
+		scissorRect.x = cliparea.left * scale;
+		scissorRect.y = g_yres - cliparea.bottom * scale;
+		scissorRect.width = cliparea.GetWidth() * scale;
+		scissorRect.height = cliparea.GetHeight() * scale;
+		// TODO: move scissors to CCanvas2D.
+		deviceCommandContext->SetScissors(1, &scissorRect);
 	}
 
 	// These are useful later.
@@ -1515,7 +1520,7 @@ void CInput::Draw(CCanvas2D& canvas)
 	canvas.DrawText(textRenderer);
 
 	if (cliparea != CRect())
-		glDisable(GL_SCISSOR_TEST);
+		deviceCommandContext->SetScissors(0, nullptr);
 
 	if (m_Caption->empty() && !m_PlaceholderText->GetRawString().empty())
 		DrawPlaceholderText(canvas, cliparea);

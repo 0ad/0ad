@@ -33,6 +33,7 @@
 		<require shaders="arb"/>
 		<pass shader="arb/model_solid_player">
 			<depth func="gequal"/>
+			<stencil test="TRUE" compare="notequal" reference="1" mask_read="-1" pass="REPLACE"/>
 		</pass>
 	</technique>
 
@@ -41,6 +42,7 @@
 		<require shaders="glsl"/>
 		<pass shader="glsl/model_solid_player">
 			<depth func="gequal"/>
+			<stencil test="TRUE" compare="notequal" reference="1" mask_read="-1" pass="REPLACE"/>
 		</pass>
 	</technique>
 

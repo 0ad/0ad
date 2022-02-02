@@ -19,6 +19,8 @@
 
 #include "PipelineState.h"
 
+#include <limits>
+
 namespace Renderer
 {
 
@@ -29,8 +31,18 @@ GraphicsPipelineStateDesc MakeDefaultGraphicsPipelineStateDesc()
 {
 	GraphicsPipelineStateDesc desc{};
 
+	desc.depthStencilState.depthTestEnabled = true;
 	desc.depthStencilState.depthCompareOp = CompareOp::LESS_OR_EQUAL;
 	desc.depthStencilState.depthWriteEnabled = true;
+	desc.depthStencilState.stencilTestEnabled = false;
+	desc.depthStencilState.stencilFrontFace.failOp = StencilOp::KEEP;
+	desc.depthStencilState.stencilFrontFace.passOp = StencilOp::KEEP;
+	desc.depthStencilState.stencilFrontFace.depthFailOp = StencilOp::KEEP;
+	desc.depthStencilState.stencilFrontFace.compareOp = CompareOp::ALWAYS;
+	desc.depthStencilState.stencilBackFace = desc.depthStencilState.stencilFrontFace;
+	desc.depthStencilState.stencilReadMask = desc.depthStencilState.stencilWriteMask =
+		std::numeric_limits<uint32_t>::max();
+	desc.depthStencilState.stencilReference = 0;
 
 	desc.blendState.enabled = false;
 	desc.blendState.srcColorBlendFactor = desc.blendState.srcAlphaBlendFactor =
@@ -62,6 +74,22 @@ CompareOp ParseCompareOp(const CStr& str)
 #undef CASE
 	debug_warn("Invalid compare op");
 	return CompareOp::NEVER;
+}
+
+StencilOp ParseStencilOp(const CStr& str)
+{
+#define CASE(NAME) if (str == #NAME) return StencilOp::NAME
+	CASE(KEEP);
+	CASE(ZERO);
+	CASE(REPLACE);
+	CASE(INCREMENT_AND_CLAMP);
+	CASE(DECREMENT_AND_CLAMP);
+	CASE(INVERT);
+	CASE(INCREMENT_AND_WRAP);
+	CASE(DECREMENT_AND_WRAP);
+#undef CASE
+	debug_warn("Invalid stencil op");
+	return StencilOp::KEEP;
 }
 
 BlendFactor ParseBlendFactor(const CStr& str)

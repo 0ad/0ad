@@ -48,10 +48,48 @@ enum class CompareOp
 	ALWAYS
 };
 
+enum class StencilOp
+{
+	// Keeps the current value.
+	KEEP,
+	// Sets the value to zero.
+	ZERO,
+	// Sets the value to reference.
+	REPLACE,
+	// Increments the value and clamps to the maximum representable unsigned
+	// value.
+	INCREMENT_AND_CLAMP,
+	// Decrements the value and clamps to zero.
+	DECREMENT_AND_CLAMP,
+	// Bitwise inverts the value.
+	INVERT,
+	// Increments the value and wraps it to zero when incrementing the maximum
+	// representable unsigned value.
+	INCREMENT_AND_WRAP,
+	// Decrements the value and wraps it to the maximum representable unsigned
+	// value when decrementing zero.
+	DECREMENT_AND_WRAP
+};
+
+struct StencilOpState
+{
+	StencilOp failOp;
+	StencilOp passOp;
+	StencilOp depthFailOp;
+	CompareOp compareOp;
+};
+
 struct DepthStencilStateDesc
 {
+	bool depthTestEnabled;
 	CompareOp depthCompareOp;
 	bool depthWriteEnabled;
+	bool stencilTestEnabled;
+	uint32_t stencilReadMask;
+	uint32_t stencilWriteMask;
+	uint32_t stencilReference;
+	StencilOpState stencilFrontFace;
+	StencilOpState stencilBackFace;
 };
 
 // TODO: add per constant description.
@@ -143,6 +181,8 @@ struct GraphicsPipelineStateDesc
 GraphicsPipelineStateDesc MakeDefaultGraphicsPipelineStateDesc();
 
 CompareOp ParseCompareOp(const CStr& str);
+
+StencilOp ParseStencilOp(const CStr& str);
 
 BlendFactor ParseBlendFactor(const CStr& str);
 BlendOp ParseBlendOp(const CStr& str);

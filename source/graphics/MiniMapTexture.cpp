@@ -497,8 +497,10 @@ void CMiniMapTexture::RenderFinalTexture(
 
 	if (m_EntitiesDrawn > 0)
 	{
-		glEnable(GL_SCISSOR_TEST);
-		glScissor(1, 1, FINAL_TEXTURE_SIZE - 2, FINAL_TEXTURE_SIZE - 2);
+		Renderer::Backend::GL::CDeviceCommandContext::ScissorRect scissorRect;
+		scissorRect.x = scissorRect.y = 1;
+		scissorRect.width = scissorRect.height = FINAL_TEXTURE_SIZE - 2;
+		deviceCommandContext->SetScissors(1, &scissorRect);
 #if !CONFIG2_GLES
 		glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 #endif
@@ -519,7 +521,7 @@ void CMiniMapTexture::RenderFinalTexture(
 #if !CONFIG2_GLES
 		glDisable(GL_VERTEX_PROGRAM_POINT_SIZE);
 #endif
-		glDisable(GL_SCISSOR_TEST);
+		deviceCommandContext->SetScissors(0, nullptr);
 	}
 
 	tech->EndPass();

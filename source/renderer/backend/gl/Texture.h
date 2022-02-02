@@ -52,12 +52,12 @@ public:
 	// an own default sampler.
 	static std::unique_ptr<CTexture> Create(const Type type, const Format format,
 		const uint32_t width, const uint32_t height,
-		const Sampler::Desc& defaultSamplerDesc, const uint32_t mipCount, const uint32_t sampleCount);
+		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount);
 
 	// Shorthands for particular types.
 	static std::unique_ptr<CTexture> Create2D(const Format format,
 		const uint32_t width, const uint32_t height,
-		const Sampler::Desc& defaultSamplerDesc, const uint32_t mipCount = 1, const uint32_t sampleCount = 1);
+		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount = 1, const uint32_t sampleCount = 1);
 
 	GLuint GetHandle() const { return m_Handle; }
 
@@ -65,7 +65,7 @@ public:
 	Format GetFormat() const { return m_Format; }
 	uint32_t GetWidth() const { return m_Width; }
 	uint32_t GetHeight() const { return m_Height; }
-	uint32_t GetMipCount() const { return m_MipCount; }
+	uint32_t GetMIPLevelCount() const { return m_MIPLevelCount; }
 
 private:
 	CTexture();
@@ -76,7 +76,7 @@ private:
 	Format m_Format = Format::UNDEFINED;
 	uint32_t m_Width = 0;
 	uint32_t m_Height = 0;
-	uint32_t m_MipCount = 0;
+	uint32_t m_MIPLevelCount = 0;
 };
 
 } // namespace GL

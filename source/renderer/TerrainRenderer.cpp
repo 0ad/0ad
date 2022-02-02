@@ -174,8 +174,6 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 
 	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
 
-	glDisable(GL_DEPTH_TEST);
-
 	CShaderTechniquePtr debugOverlayTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_overlay);
 	debugOverlayTech->BeginPass();
@@ -187,8 +185,6 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 	debugOverlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	debugOverlayShader->Uniform(str_textureTransform, textureMatrix);
 	CPatchRData::RenderStreams(visiblePatches, debugOverlayShader, STREAM_POS | STREAM_POSTOUV0);
-
-	glEnable(GL_DEPTH_TEST);
 
 	// To make the overlay visible over water, render an additional map-sized
 	// water-height patch.
@@ -407,8 +403,6 @@ bool TerrainRenderer::RenderFancyWater(
 	const double time = waterManager.m_WaterTexTimer;
 	const float repeatPeriod = waterManager.m_RepeatPeriod;
 
-	glEnable(GL_DEPTH_TEST);
-
 #if !CONFIG2_GLES
 	if (g_Renderer.GetSceneRenderer().GetWaterRenderMode() == WIREFRAME)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -526,8 +520,6 @@ void TerrainRenderer::RenderSimpleWater(
 	const WaterManager& waterManager = g_Renderer.GetSceneRenderer().GetWaterManager();
 	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
 
-	glEnable(GL_DEPTH_TEST);
-
 	if (g_Renderer.GetSceneRenderer().GetWaterRenderMode() == WIREFRAME)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
@@ -591,13 +583,12 @@ void TerrainRenderer::RenderWaterFoamOccluders(
 	// Render normals and foam to a framebuffer if we're using fancy effects.
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, waterManager.m_FancyEffectsFBO);
 
-	glEnable(GL_DEPTH_TEST);
-
 	// Overwrite waves that would be behind the ground.
 	CShaderTechniquePtr dummyTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	dummyTech->BeginPass();
 	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
 		dummyTech->GetGraphicsPipelineStateDesc();
+	pipelineStateDesc.depthStencilState.depthTestEnabled = true;
 	pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 	const CShaderProgramPtr& dummyShader = dummyTech->GetShader();

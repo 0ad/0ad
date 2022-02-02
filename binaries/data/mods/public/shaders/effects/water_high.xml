@@ -3,6 +3,7 @@
 	<technique>
 		<require shaders="glsl"/>
 		<pass shader="glsl/water_high">
+			<depth test="TRUE"/>
 			<blend src="src_alpha" dst="one_minus_src_alpha"/>
 		</pass>
 	</technique>

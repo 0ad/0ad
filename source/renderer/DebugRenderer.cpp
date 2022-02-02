@@ -40,9 +40,10 @@ namespace
 
 void SetGraphicsPipelineStateFromTechAndColor(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CShaderTechniquePtr& tech, const CColor& color)
+	const CShaderTechniquePtr& tech, const CColor& color, const bool depthTestEnabled = true)
 {
 	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc = tech->GetGraphicsPipelineStateDesc();
+	pipelineStateDesc.depthStencilState.depthTestEnabled = depthTestEnabled;
 	if (color.a != 1.0f)
 	{
 		pipelineStateDesc.blendState.enabled = true;
@@ -61,15 +62,19 @@ void SetGraphicsPipelineStateFromTechAndColor(
 
 } // anonymous namespace
 
-void CDebugRenderer::DrawLine(const CVector3D& from, const CVector3D& to, const CColor& color, const float width)
+void CDebugRenderer::DrawLine(
+	const CVector3D& from, const CVector3D& to, const CColor& color,
+	const float width, const bool depthTestEnabled)
 {
 	if (from == to)
 		return;
 
-	DrawLine({from, to}, color, width);
+	DrawLine({from, to}, color, width, depthTestEnabled);
 }
 
-void CDebugRenderer::DrawLine(const std::vector<CVector3D>& line, const CColor& color, const float width)
+void CDebugRenderer::DrawLine(
+	const std::vector<CVector3D>& line, const CColor& color,
+	const float width, const bool depthTestEnabled)
 {
 #if CONFIG2_GLES
 	UNUSED2(line); UNUSED2(color); UNUSED2(width);
@@ -78,7 +83,7 @@ void CDebugRenderer::DrawLine(const std::vector<CVector3D>& line, const CColor& 
 	CShaderTechniquePtr debugLineTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	debugLineTech->BeginPass();
-	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), debugLineTech, color);
+	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), debugLineTech, color, depthTestEnabled);
 
 	const CCamera& viewCamera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
