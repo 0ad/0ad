@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <effect>
 
-    <technique>
-        <require shaders="arb"/>
-        <pass shader="arb/minimap"/>
-    </technique>
+	<technique>
+		<require shaders="arb"/>
+		<pass shader="arb/minimap">
+			<depth test="FALSE" mask="false"/>
+		</pass>
+	</technique>
 
-    <technique>
-        <require shaders="glsl"/>
-        <pass shader="glsl/minimap"/>
-    </technique>
+	<technique>
+		<require shaders="glsl"/>
+		<pass shader="glsl/minimap">
+			<depth test="FALSE" mask="false"/>
+		</pass>
+	</technique>
 
 </effect>
