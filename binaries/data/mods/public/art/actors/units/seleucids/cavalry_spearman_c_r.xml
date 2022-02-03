@@ -6,19 +6,39 @@
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Helmet-Thracian-01">
+    <variant frequency="1" name="Helmet-hele_thracian_b5">
       <props>
-        <prop actor="props/units/helmets/hele_thracian_romanized_p1.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/hele_thracian_b5.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Helmet-Thracian-02">
+    <variant frequency="1" name="Helmet-hele_thracian_b5_crested">
       <props>
-        <prop actor="props/units/helmets/hele_thracian_romanized_p1_crested.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/hele_thracian_b5_crested.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="2" name="Helmet-hele_thracian_p3">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_p3.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="2" name="Helmet-hele_thracian_p3_crested">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_p3_crested.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="3" name="hele_thracian_romanized_b2_plume">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_romanized_b2_plume.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="hele_thracian_romanized_b2_crested">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_romanized_b2_crested.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
@@ -27,12 +47,6 @@
       <textures>
         <texture file="skeletal/sele_cataphract_a.png" name="baseTex"/>
         <texture file="skeletal/sele_cataphract_a_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Rider-Armour-Bronze">
-      <textures>
-        <texture file="skeletal/sele_hero_antiochus.png" name="baseTex"/>
-        <texture file="skeletal/sele_hero_antiochus_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="cataphract-splint-1-a">

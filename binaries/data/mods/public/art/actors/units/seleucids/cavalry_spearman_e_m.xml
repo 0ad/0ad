@@ -5,11 +5,10 @@
     <variant>
       <mesh>skeletal/horse_tessalian.dae</mesh>
       <props>
-        <prop actor="units/seleucids/cavalry_spearman_c_r.xml" attachpoint="rider"/>
-        <prop actor="props/horse/sele_crest.xml" attachpoint="head"/>
-        <prop actor="props/horse/cav_blanket_sele.xml" attachpoint="root"/>
-        <prop actor="props/horse/cav_front_armor_bronze.xml" attachpoint="root"/>
+        <prop actor="units/seleucids/cavalry_spearman_e_r.xml" attachpoint="rider"/>
+        <prop actor="props/horse/chest_colorband_01.xml" attachpoint="root"/>
         <prop actor="props/horse/cav_rein_leather.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_blanket_fur.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -30,6 +29,11 @@
     <variant file="quadraped/base_horse_trot.xml" name="Horse-Trot" frequency="1"/>
     <variant file="quadraped/base_horse_death.xml"/>
     <variant file="quadraped/base_horse_run.xml"/>
+    <variant file="quadraped/base_horse_gather_meat.xml" name="gather_meat">
+      <props>
+        <prop actor="units/seleucids/cavalry_spearman_e_r.xml" attachpoint="rider_R"/>
+      </props>
+    </variant>
   </group>
   <material>no_trans_parallax_spec.xml</material>
 </actor>
