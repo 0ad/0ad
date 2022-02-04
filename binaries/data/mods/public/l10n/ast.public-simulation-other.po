@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-11-19 08:08+0000\n"
-"PO-Revision-Date: 2022-01-31 03:31+0000\n"
+"PO-Revision-Date: 2022-02-03 23:35+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +100,7 @@ msgstr "Preciso de %(resource)s, ¿poderhías incontá-me? Compenso-ti-lo."
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr "Iou participarhía mas activamente nesta guerra si m’aporriesses %(resource)s."
+msgstr "Ieu participarhía mas activamente nesta guerra si m’aporriesses %(resource)s."
 
 #: simulation/ai/petra/chatHelper.js:35
 #, javascript-format
@@ -125,17 +125,17 @@ msgstr "Ha hi una vía commercial nuöva cun %(_player_)s. Aproveitha."
 #: simulation/ai/petra/chatHelper.js:45
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
-msgstr "%(_player_)s & iou colligämu-nos."
+msgstr "%(_player_)s & ieu colligämu-nos."
 
 #: simulation/ai/petra/chatHelper.js:48
 #, javascript-format
 msgid "%(_player_)s and I are now neutral."
-msgstr "%(_player_)s & iou volviemu-nos neutrales."
+msgstr "%(_player_)s & ieu volviemu-nos neutrales."
 
 #: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
-msgstr "%(_player_)s & iou imbellämu-nos."
+msgstr "%(_player_)s & ieu imbellämu-nos."
 
 #: simulation/ai/petra/chatHelper.js:58
 #, javascript-format
@@ -229,7 +229,7 @@ msgstr "Cumo mi tribúas %(_amount_)s de %(_resource_)s, colligo-me cun tigo, %(
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s "
 "before I accept an alliance with you."
-msgstr "%(_player_)s, tienes que mi tribuir %(_amount_)s de %(_resource_)s pa que iou me colligue cun tigo."
+msgstr "%(_player_)s, tienes que mi tribuir %(_amount_)s de %(_resource_)s pa que ieu me colligue cun tigo."
 
 #: simulation/ai/petra/chatHelper.js:82
 #, javascript-format
@@ -316,7 +316,7 @@ msgstr "Ah %(_player_)s, cumo nun intaínes a tribuí-mi %(_amount_)s de %(_reso
 msgid ""
 "%(_player_)s, it would help both of our civilizations if we formed an "
 "alliance. If you become allies with me, I will respond in kind."
-msgstr "Ah %(_player_)s, convien que nos colliguemus. Si tu te colligas cun migo, iou me colligo cun tigo."
+msgstr "Ah %(_player_)s, convien que nos colliguemus. Si tu te colligas cun migo, ieu me colligo cun tigo."
 
 #: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
@@ -334,14 +334,14 @@ msgstr "%(_player_)s, tengo retirao la offierta de colligacion."
 msgid ""
 "%(_player_)s, I would like to request a neutrality pact between our "
 "civilizations. If you become neutral with me, I will respond in kind."
-msgstr "Ah %(_player_)s, propongo un pactu de neutralidá. Si tu te vuölves neutral pa cun migo, iou faigo lo proprio cun tigo."
+msgstr "Ah %(_player_)s, propongo un pactu de neutralidá. Si tu te vuölves neutral pa cun migo, ieu faigo lo proprio cun tigo."
 
 #: simulation/ai/petra/chatHelper.js:126
 #, javascript-format
 msgid ""
 "%(_player_)s, it would be both to our benefit if we negotiated a neutrality "
 "pact. I will become neutral with you if you do the same."
-msgstr "Ah %(_player_)s, cal que negociemus un pactu de neutralidá. Iou me vuölvo neutral cun tigo si tu fazes lo proprio cun migo."
+msgstr "Ah %(_player_)s, cal que negociemus un pactu de neutralidá. Ieu me vuölvo neutral cun tigo si tu fazes lo proprio cun migo."
 
 #: simulation/ai/petra/chatHelper.js:129
 #, javascript-format
@@ -630,7 +630,7 @@ msgstr "Nanu"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
-msgstr "Nos mappas d’esti tammagnu mal caben a penas los recursos mas básicos."
+msgstr "Nos terreiros d’esti tammagnu mal caben a penas los recursos mas básicos."
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
@@ -640,7 +640,7 @@ msgstr "Pequennu"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr "Los mappas pequennos prestan-se pa duellos, d’ex que se puöde yyegar aína al adversariu &, al in par, tener daqué spacio pa spardé-se."
+msgstr "Los terreiros pequennos prestan-se pa duellos, d’ex que los jogadores puöden yyegar aína al adversariu &, al in par, tener daqué spacio pa spardé-se."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Normal"
@@ -650,7 +650,7 @@ msgstr "Normal"
 msgid ""
 "This map size provides plenty of space for two players, but even eight "
 "players fit."
-msgstr "Nos mappas d’esti tammagnu puöden caber guapamente dous jogadores, inclusive ha hi spacio pa uöitho."
+msgstr "Los terreiros d’esti tammagnu tienen abondu campu pa dous jogadores, on que caben uöitho."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""
@@ -666,7 +666,7 @@ msgstr "Grande"
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
-msgstr "El tammagnu grande aconseyya-se quando gran parte del mappa sta cobierta cun agua ou monte inaccessible."
+msgstr "El tammagnu grande aconseyya-se quando gran parte del terreiro sta cobierto cun agua ou monte inaccessible."
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
@@ -677,7 +677,7 @@ msgstr "Per-grande"
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr "Non s’aconseyyan los mappas per-grandes d’ex que te sitúan muitho lhonge del inimigu & puöden reduzir el rendimiento del juögu."
+msgstr "Non s’aconseyyan los terreiros per-grandes d’ex que te sitúan muitho lhonge del inimigu & puöden reduzir el rendimiento del juögu."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
@@ -795,7 +795,7 @@ msgstr "Excuöyye esta difficultá si non t’importa que te varran."
 msgid ""
 "Capture all relics spread across the map and keep them for a certain time to"
 " win the game."
-msgstr "Vence-se captando tódalas reliquias del mappa & calteniendo-las per un tiempu determinadu."
+msgstr "Vence-se captando tódalas reliquias del terreiro & calteniendo-las per un tiempu determinadu."
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture the Relic"
@@ -870,7 +870,7 @@ msgstr "(Trampa - mandar tódalas unidades)"
 
 #: simulation/helpers/Commands.js:149
 msgid "(Cheat - reveal map)"
-msgstr "(Trampa - discobrir mappa)"
+msgstr "(Trampa - revelar el terreiro)"
 
 #: simulation/helpers/Commands.js:473
 #, javascript-format

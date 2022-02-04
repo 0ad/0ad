@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-31 08:08+0000\n"
-"PO-Revision-Date: 2022-01-31 03:28+0000\n"
+"PO-Revision-Date: 2022-02-04 02:36+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -171,11 +171,11 @@ msgstr[1] "Spectadores"
 #: gui/common/gamedescription.js:188
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr "Incuöntru infinitu"
+msgstr "Partida infinita"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr "L’incuöntru vai seguir sin vincedor, magar que todos stean vincidos."
+msgstr "La partida vai seguir sin vincedor, magar que todos stean vincidos."
 
 #: gui/common/gamedescription.js:202
 #, javascript-format
@@ -237,7 +237,7 @@ msgstr "A vida ou muörte"
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr "Nun puöde haber ma un vincedor. Si tódolos jogadores vivos son colligados, l’incuöntru sigui ta quedar solo unu."
+msgstr "Nun puöde haber ma un vincedor. Si tódolos jogadores vivos son colligados, la partida sigui ta quedar solo unu."
 
 #: gui/common/gamedescription.js:267
 msgid "Allied Victory"
@@ -271,27 +271,27 @@ msgstr[1] "Mentres los %(min)s minutos primeiros, los outros jogadores van calte
 #: gui/common/gamedescription.js:288
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr "Mappa aleatoriu"
+msgstr "Terreiro aleatorio"
 
 #: gui/common/gamedescription.js:289
 msgid "Randomly select a map from the list."
-msgstr "Excoyyer un mappa aleatoriamente."
+msgstr "Excoyyer un terreiro aleatoriamente."
 
 #: gui/common/gamedescription.js:294
 msgid "Map Name"
-msgstr "Nome del mappa"
+msgstr "Nome del terreiro"
 
 #: gui/common/gamedescription.js:300
 msgid "Map Description"
-msgstr "Descripcion del mappa"
+msgstr "Descripcion del terreiro"
 
 #: gui/common/gamedescription.js:306
 msgid "Map Type"
-msgstr "Typu de mappa"
+msgstr "Typu de terreiro"
 
 #: gui/common/gamedescription.js:315
 msgid "Map Size"
-msgstr "Tammagnu del mappa"
+msgstr "Tammagnu del terreiro"
 
 #: gui/common/gamedescription.js:324
 msgctxt "biome"
@@ -359,15 +359,15 @@ msgstr "N'inactivo"
 #: gui/common/gamedescription.js:388
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr "Como les define'l mapa"
+msgstr "Predefinidas."
 
 #: gui/common/gamedescription.js:392
 msgid "Explored Map"
-msgstr "Mappa exploradu"
+msgstr "Terreiro explorado"
 
 #: gui/common/gamedescription.js:397
 msgid "Revealed Map"
-msgstr "Mappa reveladu"
+msgstr "Terreiro revelado"
 
 #: gui/common/gamedescription.js:402
 msgid "Allied View"
@@ -385,7 +385,7 @@ msgstr "Al determinase'l vencedor del alcuentru, anuévase la puntuación n'ante
 
 #: gui/common/gamedescription.js:415 gui/common/gamedescription.js:420
 msgid "Rated game"
-msgstr "Incuöntru classificadu"
+msgstr "Partida classificada"
 
 #: gui/common/gamedescription.js:421 gui/common/gamedescription.js:428
 msgctxt "game setup option"
@@ -450,7 +450,7 @@ msgstr "Ello puöde ser por un torna-fhuögu, un programma antivirus ou la non r
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr "L’amphitryon finou l’incuöntru."
+msgstr "L’amphitryon finou la partida."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
@@ -462,7 +462,7 @@ msgstr "L'alcuentru está cargándose, volvi tentallo más sero."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr "Ia iniciou l’incuöntru, non se permittin spectadores."
+msgstr "Ia s’iniciou la partida, non se permittin spectadores."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
@@ -608,7 +608,7 @@ msgstr "Confrontación"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr "Un mapa col rodiu y númberu de xugadores predefinidos. Los demás axustes puedes esbillallos."
+msgstr "Terreiro de rodiu & númeru de jogadores predefinidos. Los outros ajustes puödes excoyyé-llos."
 
 #: gui/common/settings.js:183
 msgctxt "map"
@@ -619,7 +619,7 @@ msgstr "Aleatorio"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr "Cría un mapa únicu con una distribución aleatoria de recursos. Esbilla llibremente'l númberu de xugadores y cuadrielles."
+msgstr "Cría un terreiro único u la distribucion de recursos ie aleatoria. Excuöyye-se el númeru de jogadores & quadriellas."
 
 #: gui/common/settings.js:192
 msgctxt "map"
@@ -628,7 +628,7 @@ msgstr "Scenario"
 
 #: gui/common/settings.js:193
 msgid "A map with a predefined landscape and matchsettings."
-msgstr "Mapa de rodiu y axustes predefinidos."
+msgstr "Terreiro de rodiu & ajustes predefinidos."
 
 #: gui/common/settings.js:271 gui/common/settings.js:294
 msgid "Unlimited"
@@ -1449,7 +1449,7 @@ msgstr "Campaña de donacionines 2"
 msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr "Campania Indiegogo 2013\nMas de 1000 donantes (!), inclusos:"
+msgstr "Campania Indiegogo 2013\nMas de 1000 donantes (!), inẍertos:"
 
 #: gui/credits/texts/donators.jsonTitle
 msgid "Donors"
@@ -1461,15 +1461,15 @@ msgstr "Referencies históriques"
 
 #: gui/credits/texts/maps.jsonContent[0].Title
 msgid "Map Making"
-msgstr "Fechura de mapes"
+msgstr "Disegnu terreiru"
 
 #: gui/credits/texts/maps.jsonContent[1].Title
 msgid "Random Map Scripts"
-msgstr "Scripts de mapes al debalu"
+msgstr "Scripts terreiros"
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr "Mapes"
+msgstr "Terreiros"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -1602,7 +1602,7 @@ msgstr "Descripción"
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr "Calca en cualquier asignación pa camudalla.\\n Puedes tener hasta 4 atayos distintos."
+msgstr "Picca nuna designacion pa modificá-lla.\\n Puödes tener ta 4 atayyos distintos."
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 #: gui/locale_advanced/locale_advanced.xml:(caption):75
@@ -1624,7 +1624,7 @@ msgstr "Nome"
 #: gui/hotkeys/hotkeys.xml:(heading):43
 msgctxt "hotkey list"
 msgid "Mapping"
-msgstr "Asignación"
+msgstr "Designacion"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):44
@@ -2128,12 +2128,12 @@ msgstr "Fazer un semeyyu in formatu PNG."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.name
 msgctxt "hotkey metadata"
 msgid "Screenshot"
-msgstr "Semeyu"
+msgstr "Semeyyu"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.desc
 msgctxt "hotkey metadata"
 msgid "Toggle product/company watermark for official screenshots."
-msgstr "Amostrar o anubrir la marca tresllúcida de la compaña/productu pa semeyos oficiales."
+msgstr "Amostrar ou anubrir la marca translúcida de la compania/productu nos semeyyos oficiales."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
 msgctxt "hotkey metadata"
@@ -2203,12 +2203,12 @@ msgstr "Mover el punteru a la pallabra a mandrecha"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.desc
 msgctxt "hotkey metadata"
 msgid "Toggle fullscreen/windowed mode."
-msgstr "Cambiar entre la pantalla completa y la ventana."
+msgstr "Cambiar entre los modos “vista completa” & “feniestra”."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.name
 msgctxt "hotkey metadata"
 msgid "Toggle Fullscreen"
-msgstr "Alternar la pantalla completa"
+msgstr "Alternar la vista completa"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.desc
 msgctxt "hotkey metadata"
@@ -2223,7 +2223,7 @@ msgstr "Alternar el modu cadarma"
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys active in the game setup screen."
-msgstr "Atayos activos na pantalla «Configuración d'alcuentru»."
+msgstr "Atayyos activos na página “Intamu de partida”."
 
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.name
 msgctxt "hotkey metadata"
@@ -2233,12 +2233,12 @@ msgstr "Configuración d'alcuentru"
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.desc
 msgctxt "hotkey metadata"
 msgid "Open the map browser."
-msgstr "Abrir el navigador chartográphicu."
+msgstr "Abrir el navigador terreiru."
 
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.name
 msgctxt "hotkey metadata"
 msgid "Open map browser"
-msgstr "Abrir el navigador chartográphicu"
+msgstr "Abrir el navigador terreiru"
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.desc
 msgctxt "hotkey metadata"
@@ -2912,7 +2912,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of status bars e.g. health indicator for all your "
 "buildings/units on the map (including unselected)."
-msgstr "Alternar la presencia de las barras de stadu, p. ex. l’indicador vital de tódolos edificios/unidades in mappa (inclusas las non seleccionadas)."
+msgstr "Alternar la presencia de las barras de stadu, p. ex. l’indicador vital de tódolos edificios/unidades in terreiro (inẍertas las non excoyyidas)."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"
@@ -2954,12 +2954,12 @@ msgstr "Alternar l'algame ofensible"
 msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of aura range overlays of selected units and structures."
-msgstr "Amostrar o anubrir l'algame aural de les unidades o construcciones esbillades."
+msgstr "Amostrar ou anubrir l’algame d’influencia de las unidades ou construcciones excoyyidas."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle aura ranges"
-msgstr "Alternar l'algame aural"
+msgstr "Alternar l’algame d’influencia"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.desc
 msgctxt "hotkey metadata"
@@ -3424,12 +3424,12 @@ msgstr "Esbillar civiles"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.desc
 msgctxt "hotkey metadata"
 msgid "Include offscreen units in selection."
-msgstr "Inxerir na esbilla unidades qu'están fora de campu."
+msgstr "Inẍerir na excolleitha unidades non vistas."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.name
 msgctxt "hotkey metadata"
 msgid "Include offscreen"
-msgstr "Includir el fora de campu"
+msgstr "Inẍerir los non vistos"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.desc
 msgctxt "hotkey metadata"
@@ -3578,12 +3578,12 @@ msgstr "Tiempu xugao:"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):32
 #: gui/replaymenu/replay_menu.xml:(caption):153
 msgid "Map Type:"
-msgstr "Tipu de mapa:"
+msgstr "Typu de terreiro:"
 
 #: gui/loadgame/load.xml:(caption):86
 #: gui/replaymenu/replay_menu.xml:(caption):168
 msgid "Map Size:"
-msgstr "Tamañu del mapa:"
+msgstr "Tammagnu del terreiro:"
 
 #: gui/loadgame/load.xml:(caption):90
 #: gui/replaymenu/replay_menu.xml:(caption):183
@@ -3599,13 +3599,13 @@ msgstr "Data / Hora"
 #: gui/loadgame/load.xml:(heading):31
 msgctxt "replay"
 msgid "Map Type"
-msgstr "Tipu de mapa"
+msgstr "Typu de terreiro"
 
 #: gui/loadgame/load.xml:(heading):35
 #: gui/replaymenu/replay_menu.xml:(heading):79
 msgctxt "replay"
 msgid "Map Name"
-msgstr "Nome del mapa"
+msgstr "Nome del terreiro"
 
 #: gui/loadgame/load.xml:(heading):39
 msgctxt "replay"
@@ -3686,7 +3686,7 @@ msgstr "Al debalu"
 
 #: gui/maps/MapCache.js:66
 msgid "A randomly selected map."
-msgstr "Un mapa esbilláu al debalu."
+msgstr "Un terreiro excoyyido aleatoriamente."
 
 #: gui/maps/MapFilters.js:91
 msgid "Default"
@@ -3694,31 +3694,31 @@ msgstr "Por defectu"
 
 #: gui/maps/MapFilters.js:92
 msgid "All maps except naval and demo maps."
-msgstr "Tódolos mapes sacantes los navales ya los de muestra."
+msgstr "Tódolos terreiros menus los navales & de muöstra."
 
 #: gui/maps/MapFilters.js:97
 msgid "Naval Maps"
-msgstr "Mapes navales"
+msgstr "Terreiros navales"
 
 #: gui/maps/MapFilters.js:98
 msgid "Maps where ships are needed to reach the enemy."
-msgstr "Mapes onde faen falta barcos."
+msgstr "Terreiros u se precisa de barcos p’algamar l’inimigu."
 
 #: gui/maps/MapFilters.js:103
 msgid "Demo Maps"
-msgstr "Mapes de muestra"
+msgstr "Terreiros de muöstra"
 
 #: gui/maps/MapFilters.js:104
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr "Estos mapes sirven de muestra, esto ye, nun son xugables."
+msgstr "Estos terreiros nun son jogables ma siervin de muöstra."
 
 #: gui/maps/MapFilters.js:109
 msgid "New Maps"
-msgstr "Mapes nuevos"
+msgstr "Terreiros nuövos"
 
 #: gui/maps/MapFilters.js:110
 msgid "Maps that are brand new in this release of the game."
-msgstr "Mappas que son nuövos nesti lhanciamiento del juögu."
+msgstr "Terreiros que son nuövos nesti lhanciamiento del juögu."
 
 #: gui/maps/MapFilters.js:115
 msgid "Best for MP"
@@ -3726,32 +3726,32 @@ msgstr "Meyyor pal modu multijogador"
 
 #: gui/maps/MapFilters.js:116
 msgid "Maps that are recommended for Multiplayer play."
-msgstr "Mappas que se recommiendan pal modu multijogador."
+msgstr "Terreiros que se recommiendan pal modu multijogador."
 
 #: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
-msgstr "Mapes con disparadores"
+msgstr "Terreiros programmados"
 
 #: gui/maps/MapFilters.js:122
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "Mapes que tienen eventos programaos y aprucirán unidades enemigues."
+msgstr "Terreiros que tienen eventos programmados & poderhían generar unidades inimigas."
 
 #: gui/maps/MapFilters.js:127
 msgid "All Maps"
-msgstr "Tódolos mapes"
+msgstr "Tódolos terreiros"
 
 #: gui/maps/MapFilters.js:128
 msgid "Every map of the chosen maptype."
-msgstr "Cada mapa del tipu escoyidu."
+msgstr "Tódalos terreiros del typu excoyyidu."
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
-msgstr "Navigador chartográphicu"
+msgstr "Navigador terreiru"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr "%(hotkey)s: Cerrar el navigador chartográphicu & discartar la excolleitha."
+msgstr "%(hotkey)s: Cerrar el navigador terreiru & discartar la excolleitha."
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
@@ -3763,7 +3763,7 @@ msgstr "Zarrar"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr "%(hotkey)s: Cerrar el navigador chartográphicu."
+msgstr "%(hotkey)s: Cerrar el navigador terreiru."
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -3777,15 +3777,15 @@ msgstr "−"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
-msgstr "Guetar mapa:"
+msgstr "Buscar un terreiro:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
 msgid "Map Filter:"
-msgstr "Peñera:"
+msgstr "Penneira terreira:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
 msgid "Pick Random Map"
-msgstr "Escoyer un mapa al debalu"
+msgstr "Excoyyer aleatoriamente un terreiro"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):54
 msgctxt "map selection dialog"
@@ -3802,16 +3802,16 @@ msgstr "Pasar a la páxina siguiente."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
-msgstr "Agrandar la previsualización del mapa."
+msgstr "Magnificar las previsualizaciones terreiras."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:33
 msgid "Decrease map preview size."
-msgstr "Apequeñar la previsualización del mapa."
+msgstr "Diminuir las previsualizaciones terreiras."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
 msgid "Maps: %(mapCount)s"
-msgstr "Mapes: %(mapCount)s"
+msgstr "Terreiros: %(mapCount)s"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:43
 #, javascript-format
@@ -3820,7 +3820,7 @@ msgstr "Páxina: %(currentPage)s/%(maxPage)s"
 
 #: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
-msgstr "Escoyer un mapa al debalu."
+msgstr "Excoyyer aleatoriamente un terreiro."
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -3887,7 +3887,7 @@ msgstr "Nome del xugador (multixugador)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr "El yyamatu de tou nos incuöntros multijogador (excepto nel antepar)."
+msgstr "El yyamatu de tou nas partidas de múltiplos jogadores (excepto nel antepar)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
@@ -3899,13 +3899,13 @@ msgstr "Posar l'alcuentru priváu al desenfocase la ventana."
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
-msgstr "Activar pantalla d'acoyida"
+msgstr "Activar l’acoyyida"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr "Si lla desactivas, la pantalla d’acoyida vai aparecer una vez, al star disponible una version nuöva. Siempre puödes lhanciá-lla d’inde’l menú principal."
+msgstr "Disactivada, l’acoyyida vai apparecer una sola vez al star disponible una version nuöva. Sí q’assí, puödes lhanciá-lla d’inde’l menú principal quando quieras."
 
 #: gui/options/options.json[0].options[4].label
 msgid "FPS overlay"
@@ -4017,7 +4017,7 @@ msgstr "Posprocesamientu"
 #: gui/options/options.json[1].options[2].tooltip
 #: gui/options/options.json[2].options[2].tooltip
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
-msgstr "Usa peñeres de posprocesamientu nel espaciu de la pantalla (HDR, Bloom, FDC, etc.)"
+msgstr "Usar penneiras de post-processamiento nel spacio visual (HDR, Bloom, FDC, etc.)."
 
 #: gui/options/options.json[1].options[3].label
 #: gui/options/options.json[2].options[9].label
@@ -4051,7 +4051,7 @@ msgstr "VSync"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Executar vertical sync pa iguar engurries na pantalla. RIQUE REANICIU DEL XUEGU"
+msgstr "Executar “sync vertical” pa eguar ingurrias na vista del visor. REQUIER EL REINICIO DEL JUÖGU"
 
 #: gui/options/options.json[1].options[7].label
 msgid "FPS throttling in menus"
@@ -4154,7 +4154,7 @@ msgstr "Peralto"
 msgid ""
 "Shadow map resolution. High values can crash the game when using a graphics "
 "card with low memory!"
-msgstr "Resolución del mapa solombres. ¡Los valores altos pueden facer que'l xuegu se bloquie si uses una tarxeta gráfica con poca memoria!"
+msgstr "Resolucion del mappa de sulombras. ¡Los valores altos puöden fazer que’l juögu falle al usar un adaptor gráphicu cun pouca memoria!"
 
 #: gui/options/options.json[2].options[11].label
 msgid "Filtering"
@@ -4174,13 +4174,13 @@ msgstr "Cortar solombres a una distancia determinada d'una cámara."
 
 #: gui/options/options.json[2].options[13].label
 msgid "Cover whole map"
-msgstr "Cobrir todu’l mappa"
+msgstr "Cobrir todo’l terreiro"
 
 #: gui/options/options.json[2].options[13].tooltip
 msgid ""
 "When ON shadows cover the whole map and shadows cutoff distance is ignored. "
 "Useful for making screenshots of a whole map."
-msgstr "Activao, les solombres cubren el mapa enteru, y ensin cortase. Val al facer semeyes de todu'l mapa."
+msgstr "Activado, las sulombras cubrin todo’l terreiro in sin curtá-se. Val pa fazer semeyyas de terreiros inteiros."
 
 #: gui/options/options.json[2].options[14].label
 msgid "Water effects"
@@ -4216,7 +4216,7 @@ msgstr "Refracción acuática"
 
 #: gui/options/options.json[2].options[17].tooltip
 msgid "Use a real water refraction map and not transparency."
-msgstr "Emplegar un mapa de refracción acuática real ya non una tresparencia."
+msgstr "Usar un authénticu mappa refractivu pa l’agua in vez d’una transparencia."
 
 #: gui/options/options.json[2].options[18].label
 msgid "Real water depth"
@@ -4611,7 +4611,7 @@ msgstr "Alvertencies de rede"
 
 #: gui/options/options.json[5].options[3].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr "Amostrar qual jogador tien mala connexion in incuöntros de múltiplos jogadores."
+msgstr "Amostrar qual jogador tien mala connexion in partidas de múltiplos jogadores."
 
 #: gui/options/options.json[5].options[4].label
 msgid "Late observer joins"
@@ -4639,7 +4639,7 @@ msgstr "Retrasu máximu pa los espectadores"
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
-msgstr "Al ahospedar, pousar l’incuöntru si los spectadores atrassan mas d’esti númeru de turnos. Si s’affita a -1, non se llis faz casu."
+msgstr "Al ahospedar, pousar la partida si los spectadores atrassan mas d’esti númeru de turnos. Si s’affita a -1, non se llis faz casu."
 
 #: gui/options/options.json[5].options[7].label
 msgid "(Observer) Speed up when lagging."
@@ -4871,7 +4871,7 @@ msgstr "Duración de las signas"
 
 #: gui/options/options.json[6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
-msgstr "El tiempu in segundos que las signas s’amuöstran in mappiquin."
+msgstr "El tiempu in segundos que las signas s’amuöstran in mappa."
 
 #: gui/options/options.json[6].options[4].label
 msgid "Chat notification attack"
@@ -4934,13 +4934,13 @@ msgstr "Amostrar l'algame ofensible de les construcciones esbillades. (Tamién p
 
 #: gui/options/options.json[6].options[9].label
 msgid "Aura range visualization"
-msgstr "Visualización del algame aural"
+msgstr "Visualizacion del algame d’influencia"
 
 #: gui/options/options.json[6].options[9].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
-msgstr "Amostrar l'algame aural de les unidades o construcciones esbillades. (Tamién puedes amostrallu col atayu al xugar)."
+msgstr "Amostrar l’algame d’influencia de las unidades ou construcciones excoyyidas. (Tamien puöde amostrá-se cul atayyu)."
 
 #: gui/options/options.json[6].tooltip
 msgid "Change options regarding the in-game settings."
@@ -5021,11 +5021,11 @@ msgstr "Comparar les ventayes de los catafalcos qu'aparecen en 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:58
 msgid "Map Overview"
-msgstr "Sinopsis de los mapes"
+msgstr "Católogu terreiru"
 
 #: gui/pregame/MainMenuItems.js:59
 msgid "View the different maps featured in 0 A.D."
-msgstr "Ver los mapes qu'aparecen en 0 A.D."
+msgstr "Ver los differentes terreiros q’apparecen in 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:67 gui/pregame/MainMenuItems.js:101
 msgid "Continue Campaign"
@@ -5050,7 +5050,7 @@ msgstr "Entamar, cargar o repetir un alcuentru priváu."
 
 #: gui/pregame/MainMenuItems.js:87
 msgid "Matches"
-msgstr "Incuöntros"
+msgstr "Partidas"
 
 #: gui/pregame/MainMenuItems.js:88
 msgid "Start a new single-player game."
@@ -5091,7 +5091,7 @@ msgstr "Xunise"
 
 #: gui/pregame/MainMenuItems.js:155
 msgid "Joining an existing multiplayer game."
-msgstr "Ajuntá-se a un incuöntru multijogador."
+msgstr "Ajuntá-se a una partida multijogador."
 
 #: gui/pregame/MainMenuItems.js:163
 msgid "Host Game"
@@ -5099,7 +5099,7 @@ msgstr "Agospedar"
 
 #: gui/pregame/MainMenuItems.js:164
 msgid "Host a multiplayer game."
-msgstr "Ahospedar un incuöntru multijogador."
+msgstr "Ahospedar una partida multijogador."
 
 #: gui/pregame/MainMenuItems.js:172
 msgid "Game Lobby"
@@ -5160,11 +5160,11 @@ msgstr "Esbillar y baxar camudos pal xuegu."
 
 #: gui/pregame/MainMenuItems.js:234
 msgid "Welcome Screen"
-msgstr "Pantalla d'acoyida"
+msgstr "Acoyyida"
 
 #: gui/pregame/MainMenuItems.js:235
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr "Volver amostrar la pantalla d'acoyida por si s'anubriera ensin querer."
+msgstr "Volver amostrar l’acoyyida, por si lla anubrieras in sin querer."
 
 #: gui/pregame/MainMenuItems.js:243
 msgid "Scenario Editor"
@@ -5738,13 +5738,13 @@ msgstr "[imgleft=\"constructionIcon\"]Esti xuegu sigue en desendolcu. Ye posible
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr "[imgleft=\"iconLag\"]Puede haber problemes de rindimientu, sobre manera nos mapes grandes y con abondes unidades."
+msgstr "[imgleft=\"iconLag\"]Puöden dá-se problemas de rendimiento, subre maneira si’l terreiro ie grande ou las unidades numerosas."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr "[imgleft=\"iconMap\"]0 A.D. ye un programa llibre: puedes participar nel so desendolcu."
+msgstr "[imgleft=\"iconMap\"]0 A.D. ie un programma lhibre: puödes participar nel sou disindolcu."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
@@ -5942,15 +5942,15 @@ msgstr "Población"
 
 #: gui/summary/layout.js:197
 msgid "Map control (peak)"
-msgstr "Dominiu del mapa (picu)"
+msgstr "Dominio del terreiro (cumal)"
 
 #: gui/summary/layout.js:198
 msgid "Map control (finish)"
-msgstr "Dominiu del mapa (fin)"
+msgstr "Dominio del terreiro (final)"
 
 #: gui/summary/layout.js:199
 msgid "Map exploration"
-msgstr "Exploración del mapa"
+msgstr "Exploracion del terreiro"
 
 #: gui/summary/layout.js:200
 msgid "Vegetarian ratio"
@@ -6221,13 +6221,13 @@ msgstr "BIOMES"
 msgid ""
 "Biomes can be used on some random maps and determine which region of the "
 "world the map represents."
-msgstr "Los biomas puödes usá-llos in varios mappas aleatorios. Determinan la extayya del mundu que’l mappa representa."
+msgstr "Los biomas puödes usá-llos nalgunos terreiros scriptígenos. Determinan la extayya del mundu que’l terreiru representa."
 
 #: gui/text/tips/biomes.txt:3
 msgid ""
 "They influence the appearence of the maps and also the amount of resources "
 "that are available."
-msgstr "Inflúin nel aspectu de los mapes y tamién na cantidá de recursos que tienen disponibles."
+msgstr "Inflúin nel aspectu de los terreiros & tamien na quantidá de recursos que tienen disponibles."
 
 #: gui/text/tips/briton_war_dog.txt:1
 msgid "WAR DOG"
@@ -6481,7 +6481,7 @@ msgstr "Usa formaciones pa caltener l'orde entre les tues files al batallar."
 msgid ""
 "Formations are selected as a whole by default, but that can be changed in "
 "the game settings."
-msgstr "Las formaciones excuöyyen-se in junto por defectu, perho esso puöde cambiá-se nos ajustes del incuöntru."
+msgstr "Las formaciones excuöyyen-se in junto por defectu, perho esso puöde cambiá-se nos ajustes de la partida."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -6558,11 +6558,11 @@ msgstr "Tienen muncha vida ya son perfuertes."
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
-msgstr "Tienen aures que cambien les estadístiques d'otres unidades o construcciones."
+msgstr "Inflúin nas statísticas d’outras unidades ou construcciones."
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
-msgstr "Repara: ¡Cada héroe puöde creá-se una sola vez per incuöntru!"
+msgstr "Repara: ¡Cada héroe puöde creá-se una sola vez per partida!"
 
 #: gui/text/tips/iber_fireship.txt:1
 msgid "IBERIAN FIRESHIP"
@@ -6592,11 +6592,11 @@ msgstr "SIGNAS"
 msgid ""
 "Use this feature to let your team know where on the map something important "
 "happens."
-msgstr "Fai signas p’avisar a la quadriella d’acontecemientos importantes nel mappa."
+msgstr "Fai signas in mappa p’avisar a la quadriella d’acontecemientos importantes."
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
-msgstr "Van ver la signa n mappiquín."
+msgstr "Van ver la signa in mappa."
 
 #: gui/text/tips/meroe_pyramids.txt:1
 msgid "PYRAMIDS OF MEROË"
@@ -6832,7 +6832,7 @@ msgstr "Desendolca técniques médiques."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
-msgstr "La sua aura sana a unidades averades."
+msgstr "La sua influencia sana a unidades próximas."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
