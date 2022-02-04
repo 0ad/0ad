@@ -3,7 +3,7 @@
   <castshadow/>
   <group>
     <variant>
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/helmets/hele_thracian_cart_hero_01.xml" attachpoint="helmet"/>
@@ -11,7 +11,8 @@
         <prop actor="props/units/capes/rider/elephant_driver_asian.xml" attachpoint="root"/>
       </props>
       <textures>
-        <texture file="skeletal/kart_hero_hannibal.dds" name="baseTex"/>
+        <texture file="skeletal/kart/cardiopylax_2_hero_a.png" name="baseTex"/>
+        <texture file="skeletal/rome_cardiopylax_2_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -24,5 +25,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
