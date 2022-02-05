@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="special/player/player">
+<Entity parent="special/player">
   <Auras datatype="tokens">
-    teambonuses/ptol_player_teambonus
+    teambonuses/sele_player_teambonus
   </Auras>
   <EntityLimits>
     <LimitRemovers>
@@ -11,4 +11,10 @@
       </CivilCentre>
     </LimitRemovers>
   </EntityLimits>
+  <Identity>
+    <Civ>sele</Civ>
+    <GenericName>Seleucids</GenericName>
+    <History>The Macedonian-Greek dynasty that ruled most of Alexander's former empire.</History>
+    <Icon>session/portraits/emblems/emblem_seleucids.png</Icon>
+  </Identity>
 </Entity>

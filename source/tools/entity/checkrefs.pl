@@ -536,8 +536,6 @@ sub add_civs
 
         my $civ = parse_json_file($f);
 
-        push @deps, [ $f, "art/textures/ui/" . $civ->{Emblem} ] if $civ->{Emblem};
-
         push @deps, [ $f, "audio/music/" . $_->{File} ] for @{$civ->{Music}};
     }
 }

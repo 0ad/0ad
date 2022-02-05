@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="special/player">
+  <Auras datatype="tokens">
+    teambonuses/rome_player_teambonus
+  </Auras>
+  <Identity>
+    <Civ>rome</Civ>
+    <GenericName>Romans</GenericName>
+    <History>The Romans controlled one of the largest empires of the ancient world, stretching at its peak from southern Scotland to the Sahara Desert, and containing between 60 million and 80 million inhabitants, one quarter of the Earth's population at that time. Rome also remained one of the strongest nations on earth for almost 800 years. The Romans were the supreme builders of the ancient world, excelled at siege warfare and had an exquisite infantry and navy.</History>
+    <Icon>session/portraits/emblems/emblem_romans.png</Icon>
+  </Identity>
+</Entity>

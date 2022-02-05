@@ -62,12 +62,14 @@ GuiInterface.prototype.GetSimulationState = function()
 	let numPlayers = cmpPlayerManager.GetNumPlayers();
 	for (let i = 0; i < numPlayers; ++i)
 	{
-		let cmpPlayer = QueryPlayerIDInterface(i);
-		let cmpPlayerEntityLimits = QueryPlayerIDInterface(i, IID_EntityLimits);
+		const playerEnt = cmpPlayerManager.GetPlayerByID(i);
+		const cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
+		const cmpPlayerEntityLimits = Engine.QueryInterface(playerEnt, IID_EntityLimits);
+		const cmpIdentity = Engine.QueryInterface(playerEnt, IID_Identity);
 
 		// Work out which phase we are in.
 		let phase = "";
-		let cmpTechnologyManager = QueryPlayerIDInterface(i, IID_TechnologyManager);
+		const cmpTechnologyManager = Engine.QueryInterface(playerEnt, IID_TechnologyManager);
 		if (cmpTechnologyManager)
 		{
 			if (cmpTechnologyManager.IsTechnologyResearched("phase_city"))
@@ -92,8 +94,8 @@ GuiInterface.prototype.GetSimulationState = function()
 		}
 
 		ret.players.push({
-			"name": cmpPlayer.GetName(),
-			"civ": cmpPlayer.GetCiv(),
+			"name": cmpIdentity.GetName(),
+			"civ": cmpIdentity.GetCiv(),
 			"color": cmpPlayer.GetColor(),
 			"controlsAll": cmpPlayer.CanControlAllUnits(),
 			"popCount": cmpPlayer.GetPopulationCount(),

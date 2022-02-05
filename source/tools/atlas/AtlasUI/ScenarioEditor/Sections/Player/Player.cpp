@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -583,12 +583,11 @@ void PlayerSettingsControl::CreateWidgets()
 	wxArrayString civCodes;
 	AtlasMessage::qGetCivData qryCiv;
 	qryCiv.Post();
-	std::vector<std::string> civData = *qryCiv.data;
-	for (size_t i = 0; i < civData.size(); ++i)
+	std::vector<std::vector<std::wstring>> civData = *qryCiv.data;
+	for (const std::vector<std::wstring>& civ : civData)
 	{
-		AtObj civ = AtlasObject::LoadFromJSON(civData[i]);
-		civNames.Add(wxString::FromUTF8(civ["Name"]));
-		civCodes.Add(wxString::FromUTF8(civ["Code"]));
+		civCodes.Add(civ[0]);
+		civNames.Add(civ[1]);
 	}
 
 	// Load AI data

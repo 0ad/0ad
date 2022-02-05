@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -269,13 +269,13 @@ void CCmpRallyPointRenderer::UpdateMarkers()
 		if (!cmpPlayerManager)
 			continue;
 
-		CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(ownerId));
-		if (!cmpPlayer)
+		CmpPtr<ICmpIdentity> cmpIdentity(GetSimContext(), cmpPlayerManager->GetPlayerByID(ownerId));
+		if (!cmpIdentity)
 			continue;
 
 		CmpPtr<ICmpVisual> cmpVisualActor(GetSimContext(), m_MarkerEntityIds[i]);
 		if (cmpVisualActor)
-			cmpVisualActor->SetVariant("civ", CStrW(cmpPlayer->GetCiv()).ToUTF8());
+			cmpVisualActor->SetVariant("civ", CStrW(cmpIdentity->GetCiv()).ToUTF8());
 	}
 	m_LastMarkerCount = m_RallyPoints.size() - 1;
 }

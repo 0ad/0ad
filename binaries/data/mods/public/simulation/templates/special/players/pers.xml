@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="special/player">
+  <Auras datatype="tokens">
+    teambonuses/pers_player_teambonus
+  </Auras>
+  <Identity>
+    <Civ>pers</Civ>
+    <GenericName>Persians</GenericName>
+    <History>The Persian Empire, when ruled by the Achaemenid dynasty, was one of the greatest empires of antiquity, stretching at its zenith from the Indus Valley in the east to Greece in the west. The Persians were the pioneers of empire-building of the ancient world, successfully imposing a centralized rule over various peoples with different customs, laws, religions and languages, and building a cosmopolitan army made up of contingents from each of these nations.</History>
+    <Icon>session/portraits/emblems/emblem_persians.png</Icon>
+  </Identity>
+</Entity>

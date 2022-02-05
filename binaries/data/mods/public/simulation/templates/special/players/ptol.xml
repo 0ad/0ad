@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="special/player">
+  <Auras datatype="tokens">
+    teambonuses/ptol_player_teambonus
+  </Auras>
+  <EntityLimits>
+    <LimitRemovers>
+      <CivilCentre>
+        <RequiredTechs datatype="tokens">phase_town</RequiredTechs>
+        <RequiredClasses datatype="tokens">Hero</RequiredClasses>
+      </CivilCentre>
+    </LimitRemovers>
+  </EntityLimits>
+  <Identity>
+    <Civ>ptol</Civ>
+    <GenericName>Ptolemies</GenericName>
+    <History>The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient Egypt.</History>
+    <Icon>session/portraits/emblems/emblem_ptolemies.png</Icon>
+  </Identity>
+</Entity>

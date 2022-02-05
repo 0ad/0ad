@@ -39,9 +39,12 @@ AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 });
 
 AddMock(playerEntityID, IID_Player, {
-	"GetCiv": () => "iber",
 	"GetDisabledTemplates": () => ({}),
 	"GetPlayerID": () => playerID
+});
+
+AddMock(playerEntityID, IID_Identity, {
+	"GetCiv": () => "iber",
 });
 
 AddMock(entityID, IID_Ownership, {
@@ -72,7 +75,6 @@ AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
 });
 
 AddMock(playerEntityID, IID_Player, {
-	"GetCiv": () => "iber",
 	"GetDisabledTemplates": () => ({ "units/athen/infantry_swordsman_b": true }),
 	"GetPlayerID": () => playerID
 });
@@ -84,7 +86,6 @@ TS_ASSERT_UNEVAL_EQUALS(
 );
 
 AddMock(playerEntityID, IID_Player, {
-	"GetCiv": () => "iber",
 	"GetDisabledTemplates": () => ({ "units/iber/infantry_swordsman_b": true }),
 	"GetPlayerID": () => playerID
 });
@@ -96,9 +97,12 @@ TS_ASSERT_UNEVAL_EQUALS(
 );
 
 AddMock(playerEntityID, IID_Player, {
-	"GetCiv": () => "athen",
 	"GetDisabledTemplates": () => ({ "units/athen/infantry_swordsman_b": true }),
 	"GetPlayerID": () => playerID
+});
+
+AddMock(playerEntityID, IID_Identity, {
+	"GetCiv": () => "athen",
 });
 
 cmpTrainer.CalculateEntitiesMap();
@@ -108,9 +112,12 @@ TS_ASSERT_UNEVAL_EQUALS(
 );
 
 AddMock(playerEntityID, IID_Player, {
-	"GetCiv": () => "iber",
 	"GetDisabledTemplates": () => ({ "units/iber/infantry_swordsman_b": false }),
 	"GetPlayerID": () => playerID
+});
+
+AddMock(playerEntityID, IID_Identity, {
+	"GetCiv": () => "iber",
 });
 
 cmpTrainer.CalculateEntitiesMap();
@@ -150,7 +157,6 @@ AddMock(SYSTEM_ENTITY, IID_GuiInterface, {
 
 const cmpPlayer = AddMock(playerEntityID, IID_Player, {
 	"BlockTraining": () => {},
-	"GetCiv": () => "iber",
 	"GetPlayerID": () => playerID,
 	"RefundResources": (resources) => {
 		TS_ASSERT_UNEVAL_EQUALS(resources, cost);

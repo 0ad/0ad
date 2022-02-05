@@ -181,6 +181,22 @@ Identity.prototype.SetPhenotype = function(phenotype)
 	this.phenotype = phenotype;
 };
 
+/**
+ * @param {string} newName -
+ */
+Identity.prototype.SetName = function(newName)
+{
+	this.name = newName;
+};
+
+/**
+ * @return {string} -
+ */
+Identity.prototype.GetName = function()
+{
+	return this.name || this.template.GenericName;
+};
+
 function IdentityMirage() {}
 IdentityMirage.prototype.Init = function(cmpIdentity)
 {

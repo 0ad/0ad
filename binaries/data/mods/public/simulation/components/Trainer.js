@@ -513,7 +513,7 @@ Trainer.prototype.CalculateEntitiesMap = function()
 		toks.push(tok);
 
 	const nativeCiv = Engine.QueryInterface(this.entity, IID_Identity)?.GetCiv();
-	const playerCiv = cmpPlayer?.GetCiv();
+	const playerCiv = QueryOwnerInterface(this.entity, IID_Identity)?.GetCiv();
 
 	const addedDict = addedTokens.reduce((out, token) => { out[token] = true; return out; }, {});
 	this.entitiesMap = toks.reduce((entMap, token) => {

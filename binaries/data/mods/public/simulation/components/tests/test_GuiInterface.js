@@ -100,8 +100,6 @@ AddMock(SYSTEM_ENTITY, IID_Timer, {
 });
 
 AddMock(100, IID_Player, {
-	"GetName": function() { return "Player 1"; },
-	"GetCiv": function() { return "gaia"; },
 	"GetColor": function() { return { "r": 1, "g": 1, "b": 1, "a": 1 }; },
 	"CanControlAllUnits": function() { return false; },
 	"GetPopulationCount": function() { return 10; },
@@ -126,6 +124,11 @@ AddMock(100, IID_Player, {
 	"GetSpyCostMultiplier": function() { return 1; },
 	"HasSharedDropsites": function() { return false; },
 	"HasSharedLos": function() { return false; }
+});
+
+AddMock(100, IID_Identity, {
+	"GetName": function() { return "Player 1"; },
+	"GetCiv": function() { return "gaia"; },
 });
 
 AddMock(100, IID_EntityLimits, {
@@ -188,8 +191,6 @@ AddMock(100, IID_StatisticsTracker, {
 });
 
 AddMock(101, IID_Player, {
-	"GetName": function() { return "Player 2"; },
-	"GetCiv": function() { return "mace"; },
 	"GetColor": function() { return { "r": 1, "g": 0, "b": 0, "a": 1 }; },
 	"CanControlAllUnits": function() { return true; },
 	"GetPopulationCount": function() { return 40; },
@@ -214,6 +215,11 @@ AddMock(101, IID_Player, {
 	"GetSpyCostMultiplier": function() { return 1; },
 	"HasSharedDropsites": function() { return false; },
 	"HasSharedLos": function() { return false; }
+});
+
+AddMock(101, IID_Identity, {
+	"GetName": function() { return "Player 2"; },
+	"GetCiv": function() { return "mace"; },
 });
 
 AddMock(101, IID_EntityLimits, {

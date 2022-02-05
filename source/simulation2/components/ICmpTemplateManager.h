@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -102,6 +102,12 @@ public:
 	 * Intended for use by the map editor. This is likely to be quite slow.
 	 */
 	virtual std::vector<std::string> FindAllTemplates(bool includeActors) const = 0;
+
+	/**
+	 * Returns some data of the civs from the templates.
+	 * Intended for use by the map editor.
+	 */
+	virtual std::vector<std::vector<std::wstring>> GetCivData() = 0;
 
 	/**
 	 * Returns a list of strings that could be validly passed as @c templateName to LoadTemplate.

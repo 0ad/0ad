@@ -75,11 +75,10 @@ function LoadPlayerSettings(settings, newPlayers)
 	// Initialize the player data
 	for (var i = 0; i < numPlayers; ++i)
 	{
-		let cmpPlayer = QueryPlayerIDInterface(i);
-		cmpPlayer.SetName(getSetting(playerData, playerDefaults, i, "Name"));
-		cmpPlayer.SetCiv(getSetting(playerData, playerDefaults, i, "Civ"));
+		QueryPlayerIDInterface(i, IID_Identity).SetName(getSetting(playerData, playerDefaults, i, "Name"));
 
 		var color = getSetting(playerData, playerDefaults, i, "Color");
+		const cmpPlayer = QueryPlayerIDInterface(i);
 		cmpPlayer.SetColor(color.r, color.g, color.b);
 
 		// Special case for gaia
@@ -181,12 +180,7 @@ function getSetting(settings, defaults, idx, property)
 
 function GetPlayerTemplateName(civ)
 {
-	let path = "special/player/player";
-
-	if (Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).TemplateExists(path + "_" + civ))
-		return path + "_" + civ;
-
-	return path;
+	return "special/players/" + civ;
 }
 
 /**

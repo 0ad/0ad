@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,13 +21,14 @@
 
 #include "ps/Game.h"
 #include "simulation2/Simulation2.h"
-
+#include "simulation2/components/ICmpTemplateManager.h"
 
 namespace AtlasMessage {
 
 QUERYHANDLER(GetCivData)
 {
-	msg->data = g_Game->GetSimulation2()->GetCivData();
+	CmpPtr<ICmpTemplateManager> cmpTemplateManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	msg->data = cmpTemplateManager->GetCivData();
 }
 
 QUERYHANDLER(GetPlayerDefaults)

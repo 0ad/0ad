@@ -7,7 +7,7 @@
 function loadCivFiles(selectableOnly)
 {
 	let propertyNames = [
-		"Code", "Culture", "Name", "Emblem", "History", "Music", "CivBonuses", "StartEntities",
+		"Code", "Culture", "Music", "CivBonuses", "StartEntities",
 		"Formations", "AINames", "SkirmishReplacements", "SelectableInGameSetup"];
 
 	let civData = {};
@@ -20,8 +20,15 @@ function loadCivFiles(selectableOnly)
 			if (data[prop] === undefined)
 				throw new Error(filename + " doesn't contain " + prop);
 
-		if (!selectableOnly || data.SelectableInGameSetup)
-			civData[data.Code] = data;
+		if (selectableOnly && !data.SelectableInGameSetup)
+			continue;
+
+		const template = Engine.GetTemplate("special/players/" + data.Code);
+		data.Name = template.Identity.GenericName;
+		data.Emblem = template.Identity.Icon;
+		data.History = template.Identity.History;
+
+		civData[data.Code] = data;
 	}
 
 	return civData;

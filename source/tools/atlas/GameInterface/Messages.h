@@ -243,7 +243,7 @@ QUERY(VFSFileRealPath,
 
 QUERY(GetCivData,
 		,
-		((std::vector<std::string>, data))
+		((std::vector<std::vector<std::wstring>>, data))
 		);
 
 QUERY(GetVictoryConditionData,

@@ -50,8 +50,6 @@ var panelEntityClasses = "Hero Relic";
 Player.prototype.Init = function()
 {
 	this.playerID = undefined;
-	this.name = undefined;	// Define defaults elsewhere (supporting other languages).
-	this.civ = undefined;
 	this.color = undefined;
 	this.diplomacyColor = undefined;
 	this.displayDiplomacyColor = false;
@@ -110,34 +108,6 @@ Player.prototype.SetPlayerID = function(id)
 Player.prototype.GetPlayerID = function()
 {
 	return this.playerID;
-};
-
-Player.prototype.SetName = function(name)
-{
-	this.name = name;
-};
-
-Player.prototype.GetName = function()
-{
-	return this.name;
-};
-
-Player.prototype.SetCiv = function(civcode)
-{
-	let oldCiv = this.civ;
-	this.civ = civcode;
-	// Normally, the civ is only set once. But in Atlas, map designers can change civs at any time.
-	if (oldCiv && this.playerID && oldCiv != civcode)
-		Engine.BroadcastMessage(MT_CivChanged, {
-			"player": this.playerID,
-			"from": oldCiv,
-			"to": civcode
-		});
-};
-
-Player.prototype.GetCiv = function()
-{
-	return this.civ;
 };
 
 Player.prototype.SetColor = function(r, g, b)
@@ -773,9 +743,10 @@ Player.prototype.OnGlobalInitGame = function(msg)
 	// Replace the "{civ}" code with this civ ID.
 	let disabledTemplates = this.disabledTemplates;
 	this.disabledTemplates = {};
+	const civ = Engine.QueryInterface(this.entity, IID_Identity).GetCiv();
 	for (let template in disabledTemplates)
 		if (disabledTemplates[template])
-			this.disabledTemplates[template.replace(/\{civ\}/g, this.civ)] = true;
+			this.disabledTemplates[template.replace(/\{civ\}/g, civ)] = true;
 };
 
 /**

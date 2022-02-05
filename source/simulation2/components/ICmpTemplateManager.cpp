@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,5 +27,6 @@ DEFINE_INTERFACE_METHOD("GetTemplateWithoutValidation", ICmpTemplateManager, Get
 DEFINE_INTERFACE_METHOD("TemplateExists", ICmpTemplateManager, TemplateExists)
 DEFINE_INTERFACE_METHOD("GetCurrentTemplateName", ICmpTemplateManager, GetCurrentTemplateName)
 DEFINE_INTERFACE_METHOD("FindAllTemplates", ICmpTemplateManager, FindAllTemplates)
+DEFINE_INTERFACE_METHOD("GetCivData", ICmpTemplateManager, GetCivData)
 DEFINE_INTERFACE_METHOD("GetEntitiesUsingTemplate", ICmpTemplateManager, GetEntitiesUsingTemplate)
 END_INTERFACE_WRAPPER(TemplateManager)
