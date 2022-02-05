@@ -12,7 +12,7 @@
         <prop actor="props/units/capes/cape_long_black.xml" attachpoint="root"/>
       </props>
       <textures>
-        <texture file="skeletal/thrace_blackcloak_a.dds" name="baseTex"/>
+        <texture file="skeletal/thrac_tunic_black_1_a.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -72,6 +72,7 @@
     <variant file="biped/base_rhomphaia_shield_fast.xml" frequency="1" name="Swordsman-Rhomphaia-Fast"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_cape_black.xml"/>
   </group>
   <material>player_trans.xml</material>

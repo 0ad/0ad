@@ -5,14 +5,15 @@
 # Translators:
 # LaPingvino
 # Muhammad Furqon Abrori
+# rŋ̄ȷ̄lī ṗŋ̄ȷ̄īn̄ṡ-ṗrs̄iun̄ȷ̄
 # tuxayo/Victor Grousset
 # Vladim Štér
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-09-03 08:24+0000\n"
-"Last-Translator: Transifex Bot\n"
+"PO-Revision-Date: 2022-02-03 09:43+0000\n"
+"Last-Translator: Ramai Marvin\n"
 "Language-Team: Esperanto (http://www.transifex.com/wildfire-games/0ad/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,7 +108,7 @@ msgstr "Ĉefa Menuo"
 msgid ""
 "The command '%(cmd)s' is not supported. Try %(help)s to get more information"
 " about the supported commands."
-msgstr ""
+msgstr "La komando '%(cmd)s' ne estas subtenita. Provu je %(help)s por atingi plian informon pri la subtenitaj komandoj."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:45
 #, javascript-format
@@ -129,7 +130,7 @@ msgstr "Agordu vian staton al 'Konektita'."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:102
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "Piedi specifan uzanton el la vestiblo. Uzado: / piedi kromnomo kialo"
+msgstr "Forpei specifan uzanton el la vestiblo. Uzado: / forpeli kromnomo kialo"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:114
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
@@ -141,7 +142,7 @@ msgstr "Montru ĉi tiun helpon."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:129
 msgid "Chat commands:"
-msgstr "Babiladaj komandoj:"
+msgstr "Babilejaj komandoj:"
 
 #. Translation: Chat command help format
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:133
@@ -256,12 +257,12 @@ msgstr "%(nick)sne estas moreranto jam."
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:152
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to:"
-msgstr ""
+msgstr "%(nick)s ŝanĝis la vestiblan temon al:"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:153
 #, javascript-format
 msgid "%(nick)s deleted the lobby subject."
-msgstr ""
+msgstr "%(nick)s forigis la vestiblan temon."
 
 #. Translation: Chat status message
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
@@ -271,11 +272,11 @@ msgstr "== %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
 msgid "Connected."
-msgstr "Konektis."
+msgstr "Konektita."
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:56
 msgid "Disconnected."
-msgstr "Diskonektis."
+msgstr "Diskonektita."
 
 #. Translation: Caption for system notifications shown in the chat panel
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:25
@@ -307,11 +308,11 @@ msgstr "MALPERMESITA"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:45
 msgid "KICKED"
-msgstr "PIEDIS"
+msgstr "FORPELITA"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:61
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr "Vi estis malkonektita de la vestiblo. Ĉu vi volas rekonekti?"
+msgstr "Vi estis malkonektita el la vestiblo. Ĉu vi volas rekonekti?"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
 #: gui/lobby/LobbyPage/ConnectionHandler.js:62
@@ -355,7 +356,7 @@ msgstr "Senfina ludo"
 msgid ""
 "You have some incompatible mods:\n"
 "%(details)s"
-msgstr ""
+msgstr "Vi havas kelkajn nekongruajn modojn: %(details)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:123
 msgid "This mod does not affect MP compatibility"
@@ -386,7 +387,7 @@ msgstr "Modoj:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:153
 msgid "Mods (incompatible):"
-msgstr ""
+msgstr "Modoj (nekongruaj):"
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/LobbyPage/GameDetails.js:156
@@ -463,21 +464,21 @@ msgstr "< %(rating)s"
 
 #: gui/lobby/LobbyPage/KickStrings.js:39
 msgid "You have been kicked from the lobby!"
-msgstr ""
+msgstr "Vi estis forpelita el la vestiblo!"
 
 #: gui/lobby/LobbyPage/KickStrings.js:40
 msgid "You have been banned from the lobby!"
-msgstr ""
+msgstr "Vi estis malpermesita el la vestiblo!"
 
 #: gui/lobby/LobbyPage/KickStrings.js:43
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr ""
+msgstr "%(nick)s estis forpelita el la vestiblo."
 
 #: gui/lobby/LobbyPage/KickStrings.js:44
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr ""
+msgstr "%(nick)s estis malpermesita el la vestiblo."
 
 #: gui/lobby/LobbyPage/KickStrings.js:49
 #, javascript-format
@@ -1071,7 +1072,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-16"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Dokumenta Dato:[/font] 2018-10-16"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:5
 msgid ""
@@ -1119,7 +1120,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:15
 msgid "[font=\"sans-bold-14\"]Wildfire Games reserves the right to:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Wildfire Games rezervas la rajton:[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:16
 msgid ""
@@ -1275,7 +1276,7 @@ msgstr ""
 
 #: gui/prelobby/login/login.xml:(caption):13
 msgid "Connect to the game lobby"
-msgstr ""
+msgstr "Konekti al la ludvestiblo"
 
 #: gui/prelobby/register/register.js:5
 msgid "Register"

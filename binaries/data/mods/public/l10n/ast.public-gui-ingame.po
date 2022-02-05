@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-24 08:35+0000\n"
-"PO-Revision-Date: 2022-01-31 03:30+0000\n"
+"PO-Revision-Date: 2022-02-03 23:34+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
-msgstr "Affita la velocidá del juögu"
+msgstr "Affitar la velocidá del juögu"
 
 #: gui/session/Menu.js:41
 #, javascript-format
@@ -54,7 +54,7 @@ msgstr "Antepar"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr "Calca %(hotkey)s p’abrir la página “Antepar” in sin salir del juögu."
+msgstr "Calca %(hotkey)s p’abrir la página “Antepar” in sin salir de la partida."
 
 #: gui/session/MenuButtons.js:161
 msgid "Options"
@@ -75,7 +75,7 @@ msgstr "Pousar"
 #: gui/session/MenuButtons.js:221
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr "Calca %(hotkey)s pa pousar ou continuar el juögu."
+msgstr "Calca %(hotkey)s pa pousar ou continuar la partida."
 
 #: gui/session/MenuButtons.js:237
 msgid "Resign"
@@ -136,11 +136,11 @@ msgstr "Pousou-lu %(players)s"
 
 #: gui/session/PauseOverlay.xml:(caption):7
 msgid "Game Paused"
-msgstr "Pousou-se l’incuöntru"
+msgstr "Pousou-se la partida"
 
 #: gui/session/PauseOverlay.xml:(caption):11
 msgid "Click to Resume Game"
-msgstr "Picca pa continuar l’incuöntru"
+msgstr "Picca pa continuar la partida"
 
 #: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:272
 #: gui/session/selection_details.js:290 gui/session/selection_panels.js:582
@@ -283,18 +283,18 @@ msgstr "Preme %(hotkey)s p’abrir la última conversa privada excoyyida."
 #: gui/session/chat/ChatMessageFormatNetwork.js:24
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr "%(player)s sta intamando rejuntá-se al incuöntru."
+msgstr "%(player)s sta intamando rejuntá-se a la partida."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:26
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr "%(player)s sta intamando ajuntá-se al incuöntru."
+msgstr "%(player)s sta intamando ajuntá-se a la partida."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:37
 #, javascript-format
 msgid "%(player)s has left the game."
-msgstr "%(player)s colou del incuöntru."
+msgstr "%(player)s colou de la partida."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:51
 #, javascript-format
@@ -310,13 +310,13 @@ msgstr "Expulsou-se a %(username)s"
 #: gui/session/chat/ChatMessageFormatNetwork.js:71
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr "%(player)s rejuntou-se al incuöntru."
+msgstr "%(player)s rejuntou-se a la partida."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:73
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr "%(player)s ajuntou-se al incuöntru."
+msgstr "%(player)s ajuntou-se a la partida."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:62
 #, javascript-format
@@ -532,7 +532,7 @@ msgstr "Restringir la cámara"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:169
 msgid "Reveal map"
-msgstr "Discobrir el mappa"
+msgstr "Revelar el terreiro"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:195
 msgid "Enable time warp"
@@ -748,17 +748,17 @@ msgstr "Jogadores: %(players)s"
 #: gui/session/message_box/OutOfSyncNetwork.js:24
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr "El stadu del tou juögu ie ídenticu al stadu del juögu del amphitryon."
+msgstr "El stadu de partida concasa cul del amphitryon."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:25
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr "El stadu del tou juögu diffier del stadu del juögu del amphitryon."
+msgstr "El stadu de partida nun concasa cul del amphitryon."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:31
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr "¡Indhaghora nun sta suffitado rejuntá-se a incuöntros entre múltiplos jogadores & agentes intelligentes!"
+msgstr "¡Indhaghora nun sta suffitado rejuntá-se a partidas entre múltiplos jogadores & agentes intelligentes!"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:34
 msgctxt "Out-Of-Sync"
@@ -800,7 +800,7 @@ msgstr "Confirmacion"
 
 #: gui/session/message_box/QuitConfirmation.js:9
 msgid "The game has finished, what do you want to do?"
-msgstr "Acabou l’incuöntru, ¿que quieres fazer?"
+msgstr "Acabou la partida, ¿que quieres fazer?"
 
 #. Translation: Shown in the Dialog that shows up when the game finishes
 #: gui/session/message_box/QuitConfirmation.js:15

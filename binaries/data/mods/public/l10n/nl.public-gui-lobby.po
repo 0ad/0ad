@@ -23,12 +23,13 @@
 # Reginas -
 # Sander Deryckere
 # SuperVipers
+# Tjeerd ter Bogt
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-09-05 18:49+0000\n"
-"Last-Translator: rollieoo\n"
+"PO-Revision-Date: 2022-02-02 21:49+0000\n"
+"Last-Translator: Tjeerd ter Bogt\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,7 +76,7 @@ msgstr "Verwijder als Buddy"
 
 #: gui/lobby/LobbyPage/Buttons/HostButton.js:10
 msgid "Host Game"
-msgstr "Host een spel"
+msgstr "Spel hosten"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:40
 msgid "Your active mods do not match the mods of this game."
@@ -447,7 +448,7 @@ msgstr "Spelers"
 
 #: gui/lobby/LobbyPage/GameListFilters.xml:(caption):7
 msgid "Show only open games"
-msgstr "Toon enkel de vrije spelen"
+msgstr "Alleen spellen tonen waar nog plek is"
 
 #: gui/lobby/LobbyPage/GameListFilters/MapSize.js:9
 msgctxt "map size"
@@ -504,7 +505,7 @@ msgstr "Reden:  %(reason)s"
 #: gui/lobby/LobbyPage/LobbyPage.xml:(caption):13
 #: gui/prelobby/entrance/entrance.xml:(caption):14
 msgid "Multiplayer Lobby"
-msgstr "Multiplayer lobby"
+msgstr "Multiplayerlobby"
 
 #: gui/lobby/LobbyPage/PlayerColor.js:34
 #, javascript-format
@@ -607,7 +608,7 @@ msgstr "Voer spelersnaam in:"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):22
 msgid "View Profile"
-msgstr "Bekijk profiel"
+msgstr "Profiel bekijken"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):55
 msgid "Please enter a player name."
@@ -661,7 +662,7 @@ msgstr "Wachtwoord:"
 
 #: gui/prelobby/common/credentials/rememberpassword.xml:(caption):7
 msgid "Remember Password"
-msgstr "Onthoudt wachtwoord"
+msgstr "Wachtwoord onthouden"
 
 #: gui/prelobby/common/feedback/feedback.js:4
 msgid ""

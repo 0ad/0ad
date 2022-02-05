@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-11 07:08+0000\n"
-"PO-Revision-Date: 2022-01-31 03:28+0000\n"
+"PO-Revision-Date: 2022-02-04 03:06+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr "Puödes cambiar entre la pantalla completa & la feniestra premiendo Alternativa + Introduzir. Nel modu feniestra, puödes commudar las dimensiones de la feniestra. Si’l juögu vai a modin, puödes commudar las configuraciones nel menú “Opciones”: pruöba-llu culas opciones “Effectos aquáticos in alta qualidá” & “Solombras” disactivadas."
+msgstr "Puödes cambiar entre los modos “vista completa” & “feniestra” premiendo Alternativa + Introduzir. Nel modu feniestra, puödes commudar las dimensiones de la feniestra. Si’l juögu sta rastriegu por de mas, puödes commudar las configuraciones nel menú “Opciones”: pruöba-llu culas opciones “Effectos aquáticos in alta qualidá” & “Solombras” disactivadas."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -55,33 +55,33 @@ msgstr "El juögu al meyyor resultarhá connocidu pol semeyyu que tien cun outro
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls (by default):"
-msgstr "Mandos básicos (predefinidos):"
+msgstr "Mandos sinziellos (predefinidos):"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr "• Picca cul botton ezquierdu pa excoyyer unidades"
+msgstr "• Botton ezquierdu del mure: excoyyer"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr "• Picca cul botton ezquierdu & arrastra pa excoyyer greas d’unidades"
+msgstr "• Botton ezquierdu & arrastre del mure: excoyyer dellas cousas"
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr "• Picca cul botton direithu pa mandar unidades a un obiectivu"
+msgstr "• Botton direithu del mure: mandar"
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr "• Usa las teclas direccionales ou WASD pa mover la cámara"
+msgstr "• Teclas direccionales ou WASD: mover la vista"
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr "• Usa Control + las teclas direccionales, ou Maiúsculas + la ruöda del mure, pa gyrar la cámara"
+msgstr "• Control + teclas direccionales, ou Maiúsculas + ruöda del mure: gyrar la vista"
 
 #: gui/manual/intro.txt:16
 msgid ""
 "• Mouse wheel, or “hotkey.camera.zoom.in” and “hotkey.camera.zoom.out” keys,"
 " to zoom"
-msgstr "• Usa la ruöda del mure, ou las teclas “hotkey.camera.zoom.in” & “hotkey.camera.zoom.out”, p’approximar"
+msgstr "• Ruöda del mure, ou teclas “hotkey.camera.zoom.in” & “hotkey.camera.zoom.out”: approximar/alhongar"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -89,7 +89,7 @@ msgstr "[font=\"sans-bold-16\"]Modos[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
-msgstr "El menú principal da accessu a dous modos de juögu:"
+msgstr "El menú principal uffre dous modos de juögu:"
 
 #: gui/manual/intro.txt:20
 msgid ""
@@ -97,7 +97,7 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr "• [font=\"sans-bold-14\"]Un jogador[font=\"sans-14\"] – Jogar un incuöntru personalizadu contra un ou mas agentes intelligentes (AI). L’agente intelligente predefinida (Petra), magar funccional, sigui in disindolcu & puöde nun tener anovadas las suas characterísticas."
+msgstr "• [font=\"sans-bold-14\"]Un jogador[font=\"sans-14\"] – Jogar una partida personalizada contra un ou mas agentes intelligentes (AI). L’agente intelligente predefinida (Petra), magar funccional, sigui in disindolcu & puöde nun tener anovadas las suas characterísticas."
 
 #: gui/manual/intro.txt:21
 msgid ""
@@ -111,37 +111,37 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr "Pa configurar un incuöntru entre múltiplos jogadores, un jogador ha excoyyer la opcion “Ahospedar incuöntru”. L’incuöntru usa’l puörtu UDP 20595, & l’amphitryon ha permití-llu nel sou NAT/torna-fhuögu/etc. De puöis, outros jogadores puöden excoyyer “Ajuntá-se a incuöntru” & poner las signas IP del amphitryon."
+msgstr "Pa configurar una partida multijogador, alquien ha excoyyer la opcion “Ahospedar partida”. La partida usa’l puörtu UDP 20595, & l’amphitryon ha permití-llu nel sou NAT/torna-fhuögu/etc. De puöis, outros jogadores puöden excoyyer “Ajuntá-se a la partida” & poner las signas IP del amphitryon."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-16\"]Configuracion d’incuöntros[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-16\"]Configuracion de partidas[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:26
 msgid "In a multiplayer game, only the host can alter the game setup options."
-msgstr "Nos incuöntros entre múltiplos jogadores, solo l’amphitryon puöde alterar la configuracion del incuöntru."
+msgstr "Nas partidas entre múltiplos jogadores, solo l’amphitryon puöde alterar la configuracion de la partida."
 
 #: gui/manual/intro.txt:28
 msgid "First, select what type of map you want to play:"
-msgstr "De mano, excuöyye’l typu de mappa in que quieres jogar:"
+msgstr "De mano, excuöyye’l typu de terreiro in que quieres jogar:"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "• [font=\"sans-bold-14\"]Random map[font=\"sans-14\"] – A map created "
 "automatically from a script"
-msgstr "• [font=\"sans-bold-14\"]Aleatorio[font=\"sans-14\"] – Mappa creadu automaticamente a partir d’un script"
+msgstr "• [font=\"sans-bold-14\"]Scriptígeno[font=\"sans-14\"] – Terreiro creado automaticamente a partir d’un scripto"
 
 #: gui/manual/intro.txt:30
 msgid ""
 "• [font=\"sans-bold-14\"]Scenario map[font=\"sans-14\"] – A map created by "
 "map designers and with fixed civilizations"
-msgstr "• [font=\"sans-bold-14\"]Scenario[font=\"sans-14\"] – Mappa pre-disegnadu cun civilizaciones fixas"
+msgstr "• [font=\"sans-bold-14\"]Scenario[font=\"sans-14\"] – Terreiro pre-disegnado cun civilizaciones fixas"
 
 #: gui/manual/intro.txt:31
 msgid ""
 "• [font=\"sans-bold-14\"]Skirmish map[font=\"sans-14\"] – A map created by "
 "map designers but where the civilizations can be chosen"
-msgstr "• [font=\"sans-bold-14\"]Confrontacion[font=\"sans-14\"] – Mappa pre-disegnadu in sin civilizaciones fixas"
+msgstr "• [font=\"sans-bold-14\"]Incuöntru[font=\"sans-14\"] – Terreiro pre-disegnado in sin civilizaciones fixas"
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -150,7 +150,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr "Los mappas podemus definí-llos inda mas. Los mappas predefinidos son quasi siempre jogables. Los mappas navales son mappas u non se puöde algamar per tierra tódolos adversarios & las muöstras valin pa fazer pruöbas, (& pouco mas). La penneira “tódolos mappas” insigna tódolos mappas in orde alphabéticu."
+msgstr "Los terreiros podemus diẍebrá-llos inda mas. Los terreiros predefinidos son, in general, jogables. Los terreiros navales son terreiros in que se precisan de naves p’algamar l’adversariu & las muöstras valin pa fazer pruöbas, (& pouco mas). La penneira “tódolos terreiros” insigna tódolos terreiros in orde alphabéticu."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -159,11 +159,11 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr "Finalmente affita los ajustes. Nos mappas aleatorios estos inclúin el númeru de jogadores, el tammagnu del mappa, etc. Nos scenarios solo puödes excoyyer quien manda que civilizacion, (lo que determina u comiences, etc.). Ha hi tres opciones: una persona, un agente intelligente ou nenguna (el jogador vai quedar hi folgadu)."
+msgstr "Finalmente affita los ajustes. Nos terreiros scriptígenos estos inclúin el númeru de jogadores, el tammagnu del terreiro, etc. Nos scenarios solo puödes excoyyer quien manda que civilizacion (determina las posiciones iniciales, etc.). Ha hi tres opciones: una persona, un agente intelligente ou nenguna (el jogador vai quedar hi folgadu)."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr "Quando steas preparadu, picca in “Iniciar incuöntru”."
+msgstr "Quando steas preparadu, picca in “Iniciar la partida”."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
@@ -173,7 +173,7 @@ msgstr "[font=\"sans-bold-16\"]Atayyos[font=\"sans-14\"]"
 msgid ""
 "You may change hotkeys in [font=\"sans-bold-14\"]Options > "
 "Hotkeys[font=\"sans-14\"] to suit your liking."
-msgstr "Puödes afazer los atayyos in [font=\"sans-bold-14\"]Opciones > Atayyos[font=\"sans-14\"] al Querer de tou."
+msgstr "Puödes afazer los atayyos in [font=\"sans-bold-14\"]Opciones > Atayyos[font=\"sans-14\"] a los deleres de tou."
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
@@ -186,7 +186,7 @@ msgstr "  hotkey.exit – Cerrar el juögu nel intre, in sin pedir confirmacion"
 
 #: gui/manual/intro.txt:44
 msgid "  hotkey.togglefullscreen – Toggle between fullscreen and windowed"
-msgstr "  hotkey.togglefullscreen – Alternar entre la pantalla completa & la feniestra"
+msgstr "  hotkey.togglefullscreen – Alternar entre los modos “vista completa” & “feniestra”"
 
 #: gui/manual/intro.txt:45
 msgid "  hotkey.console.toggle – Toggle console"
@@ -200,26 +200,26 @@ msgstr "  hotkey.fps.toggle – Alternar el freqüencímetru (Q/s)"
 msgid ""
 "  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
 "displays of information)"
-msgstr "  hotkey.profile.toggle – Alternar l'analizador simultaneu (amuestra los informes ún tres otru)"
+msgstr "  hotkey.profile.toggle – Alternar las anályses in tiempu real (cambiar entre los informes)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  hotkey.profile.save – Save current profiler data to “logs/profile.txt”"
-msgstr "  hotkey.profile.save – Arquivar los datos actuales del analizador en «logs/profile.txt»"
+msgstr "  hotkey.profile.save – Archivar las anályses actuales in “logs/profile.txt”"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "  hotkey.screenshot – Take screenshot (in .png format, location is displayed"
 " in the top left of the GUI after the file has been saved, and can also be "
 "seen in the console/logs if you miss it there)"
-msgstr "  hotkey.screenshot – Fazer un semeyyu de la pantalla (in forma de .png. El camminu amuöstra-se a manzorga, no cimeiro de la interficie gráphica, in guardando-se l’archivo, inda que tamien puödes atopá-llu na consola/registros)"
+msgstr "  hotkey.screenshot – Fazer semeyyu (in forma de .png. El camminu amuöstra-se a manzorga, no cimeiro del visor, in guardando-se l’archivo, perho tamien puödes atopá-llu na consola/registros)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "  hotkey.bigscreenshot – Take huge screenshot (6400×4800 pixels, in .bmp "
 "format, location is displayed in the top left of the GUI after the file has "
 "been saved, and can also be seen in the console/logs if you miss it there)"
-msgstr "  hotkey.bigscreenshot – Fazer una semeyya de la pantalla (6400x4800 píxeles, in forma de .bmp. El camminu amuöstra-se a manzorga, no cimeiro de la interficie gráphica, in guardando-se l’archivo, inda que tamien puödes atopá-llu na consola/registros)"
+msgstr "  hotkey.bigscreenshot – Fazer semeyya (6400x4800 píxeles, in forma de .bmp. El camminu amuöstra-se a manzorga, no cimeiro del visor, in guardando-se l’archivo, perho tamien puödes atopá-llu na consola/registros)"
 
 #: gui/manual/intro.txt:51
 msgid "  hotkey.tab.next – Switch to the next tab"
@@ -231,7 +231,7 @@ msgstr "  hotkey.tab.prev – Tornar a la llingüeta anterior"
 
 #: gui/manual/intro.txt:54
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]En xuegu[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]In juögu[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:55
 msgid ""
@@ -249,13 +249,13 @@ msgstr "  Piccar cul botton ezquierdu tres vezes \\[nuna unidá] – Excoyyer t�
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
-msgstr "  Alternativa + Piccar cul botton ezquierdu duas vezes \\[nuna unidá] – Excoyyer tódalas unidades de la miesma classe in mappa (in sin reparar nel gradu)"
+msgstr "  Alternativa + Piccar cul botton ezquierdu duas vezes \\[nuna unidá] – Excoyyer tódalas unidades de la miesma classe in terreiro (in sin reparar nel gradu)"
 
 #: gui/manual/intro.txt:58
 msgid ""
 "  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
 "kind and rank on the entire map"
-msgstr "  Alternativa + Piccar cul botton ezquierda tres vezes \\[nuna unidá] – Excoyyer tódalas unidades de la miesma classe & gradu in todu’l mappa"
+msgstr "  Alternativa + Piccar cul botton ezquierda tres vezes \\[nuna unidá] – Excoyyer tódalas unidades de la miesma classe & gradu in todu’l terreiro"
 
 #: gui/manual/intro.txt:59
 msgid "  hotkey.quicksave – Quicksave"
@@ -293,7 +293,7 @@ msgstr "  hotkey.privatechat – Conversar in privado cul últimu contactu excoy
 
 #: gui/manual/intro.txt:67
 msgid "  hotkey.pause – Pause or resume the game"
-msgstr "  hotkey.pause – Pousar ou continuar l’incuöntru"
+msgstr "  hotkey.pause – Pousar ou continuar la partida"
 
 #: gui/manual/intro.txt:68
 msgid ""
@@ -354,7 +354,7 @@ msgstr "  hotkey.session.stop – Aparar les unidades esbillades"
 
 #: gui/manual/intro.txt:79
 msgid "  hotkey.session.backtowork – The unit will go back to work"
-msgstr "  hotkey.session.backtowork – Facer volver al llabor"
+msgstr "  hotkey.session.backtowork – Fazer volver al lhabor"
 
 #: gui/manual/intro.txt:80
 msgid ""
@@ -384,7 +384,7 @@ msgstr "  hotkey.selection.group.add.1 – Amestar el conxuntu 1 (hasta 0) a lo 
 msgid ""
 "  hotkey.camera.jump.set.1 – Mark the current camera position, for jumping "
 "back to later (by default, there are 4 possible positions)"
-msgstr "  hotkey.camera.jump.set.1 – Consignar la posicion de la cámara pa retornar lhuögo (por defectu, ha hi 4 posiciones possibles)"
+msgstr "  hotkey.camera.jump.set.1 – Consignar la posicion de la cámara pa tornar lhuögo (por defectu, ha hi 4 posiciones possibles)"
 
 #: gui/manual/intro.txt:85
 msgid ""
@@ -582,20 +582,20 @@ msgstr "[font=\"sans-bold-14\"]Subrecapas[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:123
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
-msgstr "  hotkey.session.gui.toggle – Alternar la interfaz gráfica del usuariu (IGU)"
+msgstr "  hotkey.session.gui.toggle – Alternar la interficie gráphica del usuariu (IGU)"
 
 #: gui/manual/intro.txt:124
 msgid ""
 "  hotkey.session.devcommands.toggle – Toggle developer overlay (with "
 "developer options)"
-msgstr "  hotkey.session.devcommands.toggle – Alternar la subrecapa disindolcadora (cun opciones pa disindolcadores)"
+msgstr "  hotkey.session.devcommands.toggle – Alternar la subrecapa disindolcadora (tien opciones pa disindolcadores)"
 
 #: gui/manual/intro.txt:125
 msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr "  hotkey.wireframe – Alternar el modu cadarma (premi una vez p'amostrar la cadarma de los modelos texturaos, dues veces p'amostrar namái la cadarma coloriao de les textures, tres veces pa volver al modu normal)"
+msgstr "  hotkey.wireframe – Alternar el modu contornadu (preme una vez p’amostrar los contornos & texturas de los modellos, duas vezes p’amostrar los contornos & texturas namai, & tres vezes pa volver al modu normal)"
 
 #: gui/manual/intro.txt:126
 msgid ""
@@ -605,132 +605,132 @@ msgstr "  hotkey.silhouettes – Alternar los contornos de las unidades (poderh�
 
 #: gui/manual/intro.txt:127
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
-msgstr "  hotkey.session.diplomacycolors – Alternar les colores diplomátiques"
+msgstr "  hotkey.session.diplomacycolors – Alternar los colores diplomáticos"
 
 #: gui/manual/intro.txt:128
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
-msgstr "  hotkey.session.toggleattackrange – Alternar l'algame ofensible de les unidades o construcciones esbillades"
+msgstr "  hotkey.session.toggleattackrange – Alternar las visualizaciones del algame d’aggression de las unidades ou construcciones excoyyidas"
 
 #: gui/manual/intro.txt:129
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
-msgstr "  hotkey.session.toggleaurasrange – Alternar l'algame aural de les unidades o construcciones esbillades"
+msgstr "  hotkey.session.toggleaurasrange – Alternar las visualizaciones del algame d’influencia de las unidades ou construcciones excoyyidas"
 
 #: gui/manual/intro.txt:130
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
-msgstr "  hotkey.session.togglehealrange – Alternar l'algame curatible de les unidades esbillades"
+msgstr "  hotkey.session.togglehealrange – Alternar las visualizaciones del algame de sanacion de las unidades excoyyidas"
 
 #: gui/manual/intro.txt:132
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]Remanar la cámara[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]Movemiento de la cámara[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:133
 msgid "  hotkey.camera.up – Pan screen up"
-msgstr "  hotkey.camera.up – Mover la vista p'arriba"
+msgstr "  hotkey.camera.up – Dislocar la vista a riba"
 
 #: gui/manual/intro.txt:134
 msgid "  hotkey.camera.down – Pan screen down"
-msgstr "  hotkey.camera.down – Mover la vista p'abaxo"
+msgstr "  hotkey.camera.down – Dislocar la vista a baẍo"
 
 #: gui/manual/intro.txt:135
 msgid "  hotkey.camera.left – Pan screen left"
-msgstr "  hotkey.camera.left – Mover la vista a manzorga"
+msgstr "  hotkey.camera.left – Dislocar la vista a manzorga"
 
 #: gui/manual/intro.txt:136
 msgid "  hotkey.camera.right – Pan screen right"
-msgstr "  hotkey.camera.right – Mover la vista a mandrecha"
+msgstr "  hotkey.camera.right – Dislocar la vista a mandreitha"
 
 #: gui/manual/intro.txt:137
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
-msgstr "  hotkey.camera.rotate.up – Xirar la cámara p'arriba"
+msgstr "  hotkey.camera.rotate.up – Gyrar la cámara a riba"
 
 #: gui/manual/intro.txt:138
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
-msgstr "  hotkey.camera.rotate.down – Xirar la cámara p'abaxo"
+msgstr "  hotkey.camera.rotate.down – Gyrar la cámara a baẍo"
 
 #: gui/manual/intro.txt:139
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
-msgstr "  hotkey.camera.rotate.wheel.cw – Xirar la cámara en sen horariu"
+msgstr "  hotkey.camera.rotate.wheel.cw – Gyrar la cámara in sentidu horariu"
 
 #: gui/manual/intro.txt:140
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
-msgstr "  hotkey.camera.rotate.ccw – Xirar la cámara en sen antihorariu"
+msgstr "  hotkey.camera.rotate.ccw – Gyrar la cámara in sentidu anti-horariu"
 
 #: gui/manual/intro.txt:141
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
-msgstr "  hotkey.camera.rotate.wheel.cw – Xirar la cámara en sen horariu"
+msgstr "  hotkey.camera.rotate.wheel.cw – Gyrar la cámara in sentidu horariu"
 
 #: gui/manual/intro.txt:142
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
-msgstr "  hotkey.camera.rotate.wheel.ccw – Xirar la cámara en sen antihorariu"
+msgstr "  hotkey.camera.rotate.wheel.ccw – Gyrar la cámara in sentidu anti-horariu"
 
 #: gui/manual/intro.txt:143
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
-msgstr "  hotkey.camera.follow – Siguir la unidá esbillada (movi la cámara pa dexar de siguilla)"
+msgstr "  hotkey.camera.follow – Seguir a la unidá excoyyida (move la cámara pa deiẍar de seguí-lla)"
 
 #: gui/manual/intro.txt:144
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
-msgstr "  hotkey.camera.reset – Reaffitar la orientacion, proximidá de la cámara"
+msgstr "  hotkey.camera.reset – Reaffitar la proximidá & orientacion de la cámara"
 
 #: gui/manual/intro.txt:145
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
-msgstr "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Averar (calténlu premíu p'averar de contino)"
+msgstr "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Approximar (calten-llo premido p’approximar de contino)"
 
 #: gui/manual/intro.txt:146
 msgid ""
 "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
 "pressed for continuous zoom)"
-msgstr "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Allonxar (calténlu premíu p'allonxar de contino)"
+msgstr "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Alhongar (calten-llo premido p’alhongar de contino)"
 
 #: gui/manual/intro.txt:147
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
-msgstr "  hotkey.camera.pan – Calténlu premíu y movi'l mure pa desplazar la vista."
+msgstr "  hotkey.camera.pan – Dislocar premiendo’l botton & moviendo’l mure."
 
 #: gui/manual/intro.txt:149
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]Al cimentar construcciones[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]Al assentar construcciones[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:150
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
-msgstr "  hotkey.session.rotate.ccw – Xirar la construcción 15 graos en sen antihorariu"
+msgstr "  hotkey.session.rotate.ccw – Gyrar 15 grados in sentidu anti-horariu"
 
 #: gui/manual/intro.txt:151
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
-msgstr "  hotkey.session.rotate.cw – Xirar la construcción 15 graos en sen horariu"
+msgstr "  hotkey.session.rotate.cw – Gyrar 15 grados in sentidu horariu"
 
 #: gui/manual/intro.txt:152
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
-msgstr "  Botón esquierdu + Arrastre – Xirar la construcción (pónense les murueques en soltando'l botón)"
+msgstr "  Arrastre ezquierdu – Gyrar pentre medias del mure (in soltando-llu ponen-se las muruöccas)"
 
 #: gui/manual/intro.txt:154
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]Al cargar partides guardades[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]Al cargar partidas guardadas[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:155
 msgid "  hotkey.cancel – Cancel"
-msgstr "  hotkey.cancel – Encaboxar"
+msgstr "  hotkey.cancel – Cancellar"
 
 #: gui/manual/intro.txt:156
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
-msgstr "  hotkey.session.savedgames.delete – Desaniciar l'alcuentru guardáu esbilláu con confirmanza"
+msgstr "  hotkey.session.savedgames.delete – Eliminar la partida guardada excoyyida & pedir confirmacion"
 
 #: gui/manual/intro.txt:157
 msgid ""

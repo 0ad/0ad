@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Base">
+      <mesh>props/shield/pelte_02_front.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/pelte_back_wooden.xml" attachpoint="back"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Normal Leather">
+      <textures>
+        <texture file="props/shield/pelte_round_leather_norm.png" name="normTex"/>
+        <texture file="props/shield/pelte_round_leather_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Normal Wood">
+      <textures>
+        <texture file="props/shield/pelte_round_wood_norm.png" name="normTex"/>
+        <texture file="props/shield/pelte_round_wood_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Shield-Leather-Round">
+      <textures>
+        <texture file="props/shield/pelte_round_leather.png" name="baseTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="Shield-Leather-Palm">
+      <textures>
+	    <texture file="props/shield/kart_leather_a.dds" name="baseTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="Shield-Leather-B">
+      <textures>
+	    <texture file="props/shield/kart_leather_b.dds" name="baseTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="Shield-Leather-C">
+      <textures>
+	    <texture file="props/shield/kart_leather_c.dds" name="baseTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="Shield-Leather-Tant">
+      <textures>
+	    <texture file="props/shield/kart_leather_d.dds" name="baseTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="Shield-Leather-E">
+      <textures>
+	    <texture file="props/shield/kart_leather_e.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+   <material>player_trans_parallax_spec.xml</material>
+</actor>

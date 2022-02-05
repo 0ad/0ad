@@ -133,7 +133,9 @@ void ParticleRenderer::RenderParticles(
 	{
 		CShaderTechnique* currentTech = nullptr;
 		if (solidColor)
-			solidColor = m->techSolid.get();
+		{
+			currentTech = m->techSolid.get();
+		}
 		else
 		{
 			switch (emitter->m_Type->m_BlendMode)

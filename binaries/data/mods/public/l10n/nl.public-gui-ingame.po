@@ -36,6 +36,7 @@
 # Stanislas Dolcini
 # SuperVipers
 # Sven Baars
+# Tjeerd ter Bogt
 # tnt
 # trick2011
 # Vincent
@@ -45,8 +46,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-24 08:35+0000\n"
-"PO-Revision-Date: 2021-12-24 10:25+0000\n"
-"Last-Translator: rollieoo\n"
+"PO-Revision-Date: 2022-02-02 20:29+0000\n"
+"Last-Translator: Tjeerd ter Bogt\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +57,7 @@ msgstr ""
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
-msgstr "Kies een snelheid voor het spel"
+msgstr "Spelsnelheid kiezen"
 
 #: gui/session/Menu.js:41
 #, javascript-format
@@ -252,32 +253,32 @@ msgstr "Chat en aankondigingen"
 #: gui/session/chat/ChatHistory.js:87
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr "Chat berichten"
+msgstr "Chatberichten"
 
 #: gui/session/chat/ChatHistory.js:92
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr "Spelers chat"
+msgstr "Spelerchat"
 
 #: gui/session/chat/ChatHistory.js:99
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr "Bondgenoten chat"
+msgstr "Bondgenotenchat"
 
 #: gui/session/chat/ChatHistory.js:106
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr "Vijanden chat"
+msgstr "Vijandenchat"
 
 #: gui/session/chat/ChatHistory.js:113
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr "Waarnemers chat"
+msgstr "Waarnemerchat"
 
 #: gui/session/chat/ChatHistory.js:120
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr "Privé chat"
+msgstr "Privéchat"
 
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
@@ -510,12 +511,12 @@ msgstr "Versturen"
 #: gui/session/chat/chat_window.xml:(tooltip):29
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr "Filter de chat geschiedenis."
+msgstr "Chatgeschiedenis filteren."
 
 #: gui/session/chat/chat_window.xml:(tooltip):55
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr "Selecteer chat geadresseerde. "
+msgstr "Chatgeadresseerde selecteren."
 
 #: gui/session/developer_overlay/DeveloperOverlay.js:80
 msgid "The Developer Overlay was opened."
@@ -527,19 +528,19 @@ msgstr "De ontwikkelingsmodus is gesloten."
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:15
 msgid "Control all units"
-msgstr "Bestuur alle eenheden"
+msgstr "Alle eenheden besturen"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:42
 msgid "Change perspective"
-msgstr "Wissel perspectief"
+msgstr "Perspectief wijzigen"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:60
 msgid "Display selection state"
-msgstr "Geef selectiestaat weer"
+msgstr "Selectiestaat tonen"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:73
 msgid "Pathfinder overlay"
-msgstr "Kortste-pad overlay"
+msgstr "Kortste-pad-overlay"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:86
 msgid "Hierarchical pathfinder overlay"
@@ -547,39 +548,39 @@ msgstr "Hiërarchische kortste-pad overlay"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:99
 msgid "Obstruction overlay"
-msgstr "Versperring overlay"
+msgstr "Versperring-overlay"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:112
 msgid "Unit motion overlay"
-msgstr "Eenhedenverplaatsingen overlay"
+msgstr "Eenhedenverplaatsingen-overlay"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:125
 msgid "Range overlay"
-msgstr "Bereik overlay"
+msgstr "Bereikoverlay"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:138
 msgid "Bounding box overlay"
-msgstr "Begrenzingskader overlay"
+msgstr "Begrenzingskaderoverlay"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:151
 msgid "Restrict camera"
-msgstr "Beperk camera"
+msgstr "Camera beperken"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:169
 msgid "Reveal map"
-msgstr "Toon kaart"
+msgstr "Kaart tonen"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:195
 msgid "Enable time warp"
-msgstr "Activeer teruggang in de tijd"
+msgstr "Terug-in-de-tijd inschakelen"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:214
 msgid "Activate Rejoin Test"
-msgstr "Activeer verbindingstest"
+msgstr "Verbindingstest activeren"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:248
 msgid "Promote selected units"
-msgstr "Promoveer geselecteerde eenheden"
+msgstr "Geselecteerde eenheden promoveren"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:269
 msgid "Enable culling"
@@ -591,23 +592,23 @@ msgstr "Cull camera vastzetten"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:305
 msgid "Display camera frustum"
-msgstr "Toon camera gezichtsveld"
+msgstr "Gezichtsveld van camera tonen"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:323
 msgid "Display shadows frustum"
-msgstr "Toon schaduwen in gezichtsveld camera."
+msgstr "Schaduwen in gezichtsveld camera tonen"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:22
 msgid "Render Debug Mode Disabled"
-msgstr "Render debug modus uitgeschakeld"
+msgstr "Render foutopsporingsmodus uitgeschakeld"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:23
 msgid "Render Debug Mode AO"
-msgstr "AO render debug modus"
+msgstr "AO render foutopsporingsmodus"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:24
 msgid "Render Debug Mode Alpha"
-msgstr "Alpha render debug modus"
+msgstr "Alpha render foutopsporingsmodus"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:25
 msgid "Render Debug Mode Custom"
@@ -615,7 +616,7 @@ msgstr "Custom render debug modus"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
-msgstr "Terug gaan in de tijd modus"
+msgstr "Terug-in-de-tijd-modus"
 
 #: gui/session/developer_overlay/TimeWarp.js:66
 msgid ""
@@ -680,7 +681,7 @@ msgstr "Resterend staakt-het-vuren:%(time)s"
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
 #: gui/session/minimap/MiniMapDiplomacyColorsButton.js:36
 msgid "Toggle Diplomacy Colors"
-msgstr "Zet Diplomatie Kleuren aan/uit."
+msgstr "Diplomatiekleuren aan- of uitzetten"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
@@ -793,7 +794,7 @@ msgstr "Uw spelstatus is anders dan de spelstatus van de gast."
 #: gui/session/message_box/OutOfSyncNetwork.js:31
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr "Opnieuw verbinden met multiplayer spellen met AI's is nog niet ondersteund."
+msgstr "Opnieuw verbinden met multiplayerspellen met AI's is nog niet ondersteund."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:34
 msgctxt "Out-Of-Sync"
@@ -835,7 +836,7 @@ msgstr "Bevestiging"
 
 #: gui/session/message_box/QuitConfirmation.js:9
 msgid "The game has finished, what do you want to do?"
-msgstr "Het spel is afgelopen, wat wilt U doen?"
+msgstr "Het spel is afgelopen, wat wilt u doen?"
 
 #. Translation: Shown in the Dialog that shows up when the game finishes
 #: gui/session/message_box/QuitConfirmation.js:15
@@ -864,11 +865,11 @@ msgstr "Wilt u stoppen?"
 #: gui/session/message_box/QuitConfirmationMenu.js:33
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "Bent u zeker dat u wilt stoppen? Door te stoppen worden alle andere spelers uit het spel gegooid."
+msgstr "Weet u zeker dat u wilt stoppen? Door te stoppen worden alle andere spelers uit het spel gegooid."
 
 #: gui/session/message_box/QuitConfirmationMenu.js:47
 msgid "Are you sure you want to quit?"
-msgstr "Bent u zeker dat u wilt stoppen?"
+msgstr "Weet u zeker dat u wilt stoppen?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:67
 msgid "Do you want to resign or will you return soon?"
@@ -890,11 +891,11 @@ msgstr "Bevestiging"
 #: gui/session/message_box/QuitConfirmationReplay.js:17
 msgctxt "replayFinished"
 msgid "The replay has finished. What do you want to do?"
-msgstr "De herhaling is afgelopen, wat wilt U doen?"
+msgstr "De herhaling is afgelopen, wat wilt u doen?"
 
 #: gui/session/message_box/ResignConfirmation.js:6
 msgid "Are you sure you want to resign?"
-msgstr "Ben u zeker dat u uzelf wilt overgeven?"
+msgstr "Weet u zeker dat u uzelf over wilt geven?"
 
 #: gui/session/messages.js:104
 msgid "You have won!"
@@ -934,7 +935,7 @@ msgstr "Plaats een vlag voor uw bondgenoten"
 msgid ""
 "Find idle worker\n"
 "Number of idle workers."
-msgstr "Zoek inactieve arbeider\nAantal inactieve arbeiders."
+msgstr "Inactieve arbeider zoeken\nAantal inactieve arbeiders."
 
 #: gui/session/selection_details.js:65
 #, javascript-format
@@ -1072,7 +1073,7 @@ msgstr ","
 
 #: gui/session/selection_panels.js:65
 msgid "Raise an alert!"
-msgstr "Luid de alarmklok!"
+msgstr "Alarmklok luiden!"
 
 #: gui/session/selection_panels.js:68
 msgid "End of alert."
@@ -1080,19 +1081,19 @@ msgstr "Einde van het stadsalarm."
 
 #: gui/session/selection_panels.js:277
 msgid "Default formation is disabled."
-msgstr "Standaard formatie is uitgeschakeld."
+msgstr "Standaardformatie is uitgeschakeld."
 
 #: gui/session/selection_panels.js:278
 msgid "Right-click to disable the default formation feature."
-msgstr "Klik rechts om de standaard formatie instelling uit te schakelen."
+msgstr "Klik rechts om de standaardformatieinstelling uit te schakelen."
 
 #: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
-msgstr "Dit is de standaard formatie bij verplaatsingen."
+msgstr "Dit is de standaardformatie bij verplaatsingen."
 
 #: gui/session/selection_panels.js:282
 msgid "Right-click to set this as the default formation."
-msgstr "Klik rechts om dit als de standaard formatie in te stellen."
+msgstr "Klik rechts om dit als de standaardformatie in te stellen."
 
 #: gui/session/selection_panels.js:338
 #, javascript-format
@@ -1126,11 +1127,11 @@ msgstr "Uitpakken"
 
 #: gui/session/selection_panels.js:450
 msgid "Cancel Packing"
-msgstr "Stop inpakken"
+msgstr "Inpakken annuleren"
 
 #: gui/session/selection_panels.js:458
 msgid "Cancel Unpacking"
-msgstr "Stop uitpakken"
+msgstr "Uitpakken annuleren"
 
 #: gui/session/selection_panels.js:558
 msgid "The auto-queue will try to train this item later."
@@ -1192,7 +1193,7 @@ msgstr "Upgrade naar een %(primaryName)s."
 
 #: gui/session/selection_panels.js:1185
 msgid "Cancel Upgrading"
-msgstr "Upgrade Annuleren"
+msgstr "Upgrade annuleren"
 
 #: gui/session/selection_panels.js:1200
 msgid ""
@@ -1442,7 +1443,7 @@ msgstr "Diplomatie"
 
 #: gui/session/top_panel/IconButtons/GameSpeedButton.xml:(tooltip):9
 msgid "Game Speed"
-msgstr "Spel Snelheid"
+msgstr "Spelsnelheid"
 
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):15
 #: gui/session/top_panel/IconButtons/ObjectivesDialogButton.js:23
@@ -1459,7 +1460,7 @@ msgstr "Waarnemer"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(caption):17
 msgid "Observer Mode"
-msgstr "Waarnemer modus"
+msgstr "Waarnemermodus"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(tooltip):13
 msgid "Choose player to view"
@@ -1708,7 +1709,7 @@ msgstr "Toren leegmaken."
 
 #: gui/session/unit_actions.js:1408
 msgid "Destroy the selected units or structures."
-msgstr "Vernietig de geselecteerde eenheden of gebouwen."
+msgstr "De geselecteerde eenheden of gebouwen vernietigen."
 
 #: gui/session/unit_actions.js:1410
 #, javascript-format
@@ -1717,7 +1718,7 @@ msgstr "Gebruik %(hotkey)s om de bevestigingsdialoog te vermijden."
 
 #: gui/session/unit_actions.js:1460
 msgid "Abort the current order."
-msgstr "Stop de huidige taak."
+msgstr "De huidige taak stoppen."
 
 #: gui/session/unit_actions.js:1481
 msgid ""
@@ -1755,7 +1756,7 @@ msgstr "Laat de geselecteerde eenheden een gebouw of eenheid bewaken."
 
 #: gui/session/unit_actions.js:1666
 msgid "Remove guard"
-msgstr "Verwijder bewaking"
+msgstr "Bewaking verwijderen"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
@@ -1765,7 +1766,7 @@ msgstr "Ruilen en handelen"
 
 #: gui/session/unit_actions.js:1705
 msgid "Patrol"
-msgstr "Patrouilleer"
+msgstr "Patrouilleren"
 
 #: gui/session/unit_actions.js:1706
 msgid "Attack all encountered enemy units while avoiding structures."

@@ -11,8 +11,13 @@
         <prop actor="props/units/shields/rome_parma_b.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/capes/rider/cape_long_player.xml" attachpoint="root"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="body-rome_subarmalis_1_a">
       <textures>
-        <texture file="skeletal/rome_csp_b.dds" name="baseTex"/>
+        <texture file="skeletal/rome_subarmalis_1_a.png" name="baseTex"/>
+        <texture file="skeletal/rome_subarmalis_1_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
