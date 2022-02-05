@@ -11,6 +11,12 @@ Player.prototype.Schema =
 			"</element>" +
 		"</interleave>" +
 	"</element>" +
+	"<element name='Formations' a:help='Space-separated list of formations this player can use.'>" +
+		"<attribute name='datatype'>" +
+			"<value>tokens</value>" +
+		"</attribute>" +
+		"<text/>" +
+	"</element>" +
 	"<element name='SharedLosTech' a:help='Allies will share los when this technology is researched. Leave empty to never share LOS.'>" +
 		"<text/>" +
 	"</element>" +
@@ -65,7 +71,7 @@ Player.prototype.Init = function()
 	this.state = "active"; // Game state. One of "active", "defeated", "won".
 	this.diplomacy = [];	// Array of diplomatic stances for this player with respect to other players (including gaia and self).
 	this.sharedDropsites = false;
-	this.formations = [];
+	this.formations = this.template.Formations._string.split(" ");
 	this.startCam = undefined;
 	this.controlAllUnits = false;
 	this.isAI = false;

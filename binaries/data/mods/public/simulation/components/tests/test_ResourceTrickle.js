@@ -51,6 +51,7 @@ let cmpPlayer = ConstructComponent(playerEnt, "Player", {
 			"metal": "1"
 		}
 	},
+	"Formations": { "_string": "" },
 });
 
 let QueryOwnerInterface = () => cmpPlayer;

@@ -87,7 +87,8 @@ const cmpPlayer = ConstructComponent(playerEntityID, "Player", {
 	"BarterMultiplier": {
 		"Buy": {},
 		"Sell": {}
-	}
+	},
+	"Formations": { "_string": "" }
 });
 const spyPlayerResSub = new Spy(cmpPlayer, "TrySubtractResources");
 const spyPlayerResRefund = new Spy(cmpPlayer, "RefundResources");

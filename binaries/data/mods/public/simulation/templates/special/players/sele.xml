@@ -17,4 +17,10 @@
     <History>The Macedonian-Greek dynasty that ruled most of Alexander's former empire.</History>
     <Icon>session/portraits/emblems/emblem_seleucids.png</Icon>
   </Identity>
+  <Player>
+    <Formations datatype="tokens">
+      special/formations/phalanx
+      special/formations/syntagma
+    </Formations>
+  </Player>
 </Entity>

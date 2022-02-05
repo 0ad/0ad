@@ -74,6 +74,18 @@
     <SharedLosTech>unlock_shared_los</SharedLosTech>
     <SharedDropsitesTech>unlock_shared_dropsites</SharedDropsitesTech>
     <SpyCostMultiplier>1.0</SpyCostMultiplier>
+    <Formations datatype="tokens">
+      special/formations/null
+      special/formations/box
+      special/formations/column_closed
+      special/formations/line_closed
+      special/formations/column_open
+      special/formations/line_open
+      special/formations/flank
+      special/formations/battle_line
+      special/formations/skirmish
+      special/formations/wedge
+    </Formations>
   </Player>
   <ResourceTrickle>
     <Rates>

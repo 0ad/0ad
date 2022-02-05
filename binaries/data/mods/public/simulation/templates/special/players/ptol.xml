@@ -17,4 +17,10 @@
     <History>The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient Egypt.</History>
     <Icon>session/portraits/emblems/emblem_ptolemies.png</Icon>
   </Identity>
+  <Player>
+    <Formations datatype="tokens">
+      special/formations/phalanx
+      special/formations/syntagma
+    </Formations>
+  </Player>
 </Entity>

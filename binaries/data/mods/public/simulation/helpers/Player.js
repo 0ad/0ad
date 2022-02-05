@@ -149,9 +149,9 @@ function LoadPlayerSettings(settings, newPlayers)
 			cmpPlayer.SetTeam(myTeam === undefined ? -1 : myTeam);
 		}
 
-		cmpPlayer.SetFormations(
-			getSetting(playerData, playerDefaults, i, "Formations") ||
-			Engine.ReadJSONFile("simulation/data/civs/" + cmpPlayer.GetCiv() + ".json").Formations);
+		const formations = getSetting(playerData, playerDefaults, i, "Formations");
+		if (formations)
+			cmpPlayer.SetFormations(formations);
 
 		var startCam = getSetting(playerData, playerDefaults, i, "StartingCamera");
 		if (startCam !== undefined)

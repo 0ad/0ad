@@ -75,7 +75,8 @@ let cmpPlayer = ConstructComponent(owner, "Player", {
 	"BarterMultiplier": {
 		"Buy": {},
 		"Sell": {}
-	}
+	},
+	"Formations": { "_string": "" }
 });
 let playerSpy = new Spy(cmpPlayer, "AddResources");
 
