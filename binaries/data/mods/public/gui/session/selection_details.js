@@ -80,9 +80,10 @@ function displaySingle(entState)
 	// Rank
 	if (entState.identity && entState.identity.rank && entState.identity.classes)
 	{
+		const rankObj = GetTechnologyData(entState.identity.rankTechName, playerState.civ);
 		Engine.GetGUIObjectByName("rankIcon").tooltip = sprintf(translate("%(rank)s Rank"), {
 			"rank": translateWithContext("Rank", entState.identity.rank)
-		});
+		}) + (rankObj ? "\n" + rankObj.tooltip : "");
 		Engine.GetGUIObjectByName("rankIcon").sprite = "stretched:session/icons/ranks/" + entState.identity.rank + ".png";
 		Engine.GetGUIObjectByName("rankIcon").hidden = false;
 	}

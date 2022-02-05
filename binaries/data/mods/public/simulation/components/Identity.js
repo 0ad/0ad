@@ -136,6 +136,11 @@ Identity.prototype.GetRank = function()
 	return this.template.Rank || "";
 };
 
+Identity.prototype.GetRankTechName = function()
+{
+	return this.template.Rank ? "unit_" + this.template.Rank.toLowerCase() : "";
+};
+
 Identity.prototype.GetClassesList = function()
 {
 	return this.classesList;

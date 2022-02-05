@@ -234,7 +234,10 @@ function GetTechnologyData(technologyName, civ)
 
 	if (!(technologyName in g_TechnologyData[civ]))
 	{
-		let template = GetTechnologyDataHelper(TechnologyTemplates.Get(technologyName), civ, g_ResourceData);
+		const tech = TechnologyTemplates.Get(technologyName);
+		if (!tech)
+			return;
+		let template = GetTechnologyDataHelper(tech, civ, g_ResourceData);
 		translateObjectKeys(template, ["specific", "generic", "description", "tooltip", "requirementsTooltip"]);
 		g_TechnologyData[civ][technologyName] = deepfreeze(template);
 	}

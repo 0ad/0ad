@@ -274,6 +274,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	if (cmpIdentity)
 		ret.identity = {
 			"rank": cmpIdentity.GetRank(),
+			"rankTechName": cmpIdentity.GetRankTechName(),
 			"classes": cmpIdentity.GetClassesList(),
 			"selectionGroupName": cmpIdentity.GetSelectionGroupName(),
 			"canDelete": !cmpIdentity.IsUndeletable(),
