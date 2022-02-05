@@ -35,6 +35,7 @@
 #include "ps/CStrInternStatic.h"
 #include "ps/Profile.h"
 #include "ps/VideoMode.h"
+#include "renderer/backend/gl/Device.h"
 #include "renderer/backend/gl/Texture.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
@@ -58,9 +59,7 @@ constexpr float DEFAULT_CASCADE_DISTANCE_RATIO = 1.7f;
  */
 struct ShadowMapInternals
 {
-	// the EXT_framebuffer_object framebuffer
-	GLuint Framebuffer;
-	// handle of shadow map
+	std::unique_ptr<Renderer::Backend::GL::CFramebuffer> Framebuffer;
 	std::unique_ptr<Renderer::Backend::GL::CTexture> Texture;
 
 	// bit depth for the depth texture
@@ -210,11 +209,9 @@ ShadowMap::ShadowMap()
 
 ShadowMap::~ShadowMap()
 {
+	m->Framebuffer.reset();
 	m->Texture.reset();
 	m->DummyTexture.reset();
-
-	if (m->Framebuffer)
-		glDeleteFramebuffersEXT(1, &m->Framebuffer);
 
 	delete m;
 }
@@ -223,13 +220,9 @@ ShadowMap::~ShadowMap()
 // size has changed
 void ShadowMap::RecreateTexture()
 {
+	m->Framebuffer.reset();
 	m->Texture.reset();
 	m->DummyTexture.reset();
-
-	if (m->Framebuffer)
-		glDeleteFramebuffersEXT(1, &m->Framebuffer);
-
-	m->Framebuffer = 0;
 
 	m->UpdateCascadesParameters();
 
@@ -476,16 +469,9 @@ void ShadowMapInternals::CalculateShadowMatrices(const int cascade)
 void ShadowMapInternals::CreateTexture()
 {
 	// Cleanup
+	Framebuffer.reset();
 	Texture.reset();
 	DummyTexture.reset();
-
-	if (Framebuffer)
-	{
-		glDeleteFramebuffersEXT(1, &Framebuffer);
-		Framebuffer = 0;
-	}
-
-	glGenFramebuffersEXT(1, &Framebuffer);
 
 	CFG_GET_VAL("shadowquality", QualityLevel);
 
@@ -573,39 +559,14 @@ void ShadowMapInternals::CreateTexture()
 
 	ogl_WarnIfError();
 
-	// bind to framebuffer object
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, Framebuffer);
+	Framebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+		g_RenderingOptions.GetShadowAlphaFix() ? DummyTexture.get() : nullptr, Texture.get());
 
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, Texture->GetHandle(), 0);
-
-	if (g_RenderingOptions.GetShadowAlphaFix())
+	if (!Framebuffer)
 	{
-		glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, DummyTexture->GetHandle(), 0);
-	}
-	else
-	{
-#if CONFIG2_GLES
-#warning TODO: figure out whether the glDrawBuffer/glReadBuffer stuff is needed, since it is not supported by GLES
-#else
-		glDrawBuffer(GL_NONE);
-#endif
-	}
+		LOGERROR("Failed to create shadows framebuffer");
 
-#if !CONFIG2_GLES
-	glReadBuffer(GL_NONE);
-#endif
-
-	ogl_WarnIfError();
-
-	GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
-
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
-
-	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
-	{
-		LOGWARNING("Framebuffer object incomplete: 0x%04X", status);
-
-		// Disable shadow rendering (but let the user try again if they want)
+		// Disable shadow rendering (but let the user try again if they want).
 		g_RenderingOptions.SetShadows(false);
 	}
 }
@@ -613,10 +574,13 @@ void ShadowMapInternals::CreateTexture()
 // Set up to render into shadow map texture
 void ShadowMap::BeginRender()
 {
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
+		g_Renderer.GetDeviceCommandContext();
+
 	{
 		PROFILE("bind framebuffer");
 		glBindTexture(GL_TEXTURE_2D, 0);
-		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m->Framebuffer);
+		deviceCommandContext->SetFramebuffer(m->Framebuffer.get());
 	}
 
 	// clear buffers
@@ -625,10 +589,7 @@ void ShadowMap::BeginRender()
 		// In case we used m_ShadowAlphaFix, we ought to clear the unused
 		// color buffer too, else Mali 400 drivers get confused.
 		// Might as well clear stencil too for completeness.
-		if (g_RenderingOptions.GetShadowAlphaFix())
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-		else
-			glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+		deviceCommandContext->ClearFramebuffer();
 	}
 
 	m->SavedViewCamera = g_Renderer.GetSceneRenderer().GetViewCamera();
@@ -664,7 +625,8 @@ void ShadowMap::EndRender()
 
 	{
 		PROFILE("unbind framebuffer");
-		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+		g_Renderer.GetDeviceCommandContext()->SetFramebuffer(
+			g_VideoMode.GetBackendDevice()->GetCurrentBackbuffer());
 	}
 
 	const SViewPort vp = { 0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight() };

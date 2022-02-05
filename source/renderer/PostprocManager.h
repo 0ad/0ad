@@ -19,11 +19,12 @@
 #define INCLUDED_POSTPROCMANAGER
 
 #include "graphics/ShaderTechniquePtr.h"
-#include "lib/ogl.h"
 #include "ps/CStr.h"
+#include "renderer/backend/gl/Framebuffer.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/backend/gl/Texture.h"
 
+#include <array>
 #include <vector>
 
 class CPostprocManager
@@ -64,7 +65,8 @@ public:
 	// Clears the two color buffers and depth buffer, and redirects all rendering
 	// to our textures instead of directly to the system framebuffer.
 	// @note CPostprocManager must be initialized first
-	void CaptureRenderOutput();
+	void CaptureRenderOutput(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	// First renders blur textures, then calls ApplyEffect for each effect pass,
 	// ping-ponging the buffers at each step.
@@ -81,14 +83,16 @@ public:
 	bool IsMultisampleEnabled() const;
 
 	// Resolves the MSAA framebuffer into the regular one.
-	void ResolveMultisampleFramebuffer();
+	void ResolveMultisampleFramebuffer(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 private:
 	void CreateMultisampleBuffer();
 	void DestroyMultisampleBuffer();
 
 	// Two framebuffers, that we flip between at each shader pass.
-	GLuint m_PingFbo, m_PongFbo;
+	std::unique_ptr<Renderer::Backend::GL::CFramebuffer>
+		m_CaptureFramebuffer, m_PingFramebuffer, m_PongFramebuffer;
 
 	// Unique color textures for the framebuffers.
 	std::unique_ptr<Renderer::Backend::GL::CTexture> m_ColorTex1, m_ColorTex2;
@@ -98,9 +102,16 @@ private:
 	float m_NearPlane, m_FarPlane;
 
 	// A framebuffer and textures x2 for each blur level we render.
-	GLuint m_BloomFbo;
-	std::unique_ptr<Renderer::Backend::GL::CTexture>
-		m_BlurTex2a, m_BlurTex2b, m_BlurTex4a, m_BlurTex4b, m_BlurTex8a, m_BlurTex8b;
+	struct BlurScale
+	{
+		struct Step
+		{
+			std::unique_ptr<Renderer::Backend::GL::CFramebuffer> framebuffer;
+			std::unique_ptr<Renderer::Backend::GL::CTexture> texture;
+		};
+		std::array<Step, 2> steps;
+	};
+	std::array<BlurScale, 3> m_BlurScales;
 
 	// Indicates which of the ping-pong buffers is used for reading and which for drawing.
 	bool m_WhichBuffer;
@@ -117,7 +128,7 @@ private:
 	CStr m_AAName;
 	CShaderTechniquePtr m_AATech;
 	bool m_UsingMultisampleBuffer;
-	GLuint m_MultisampleFBO;
+	std::unique_ptr<Renderer::Backend::GL::CFramebuffer> m_MultisampleFramebuffer;
 	std::unique_ptr<Renderer::Backend::GL::CTexture>
 		m_MultisampleColorTex, m_MultisampleDepthTex;
 	GLsizei m_MultisampleCount;
@@ -137,14 +148,20 @@ private:
 	// of inTex. inWidth and inHeight are the dimensions of inTex in texels.
 	void ApplyBlurDownscale2x(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		Renderer::Backend::GL::CTexture* inTex, Renderer::Backend::GL::CTexture* outTex, int inWidth, int inHeight);
+		Renderer::Backend::GL::CFramebuffer* framebuffer,
+		Renderer::Backend::GL::CTexture* inTex,
+		int inWidth, int inHeight);
 
 	// GPU-based Gaussian blur in two passes. inOutTex contains the input image and will be filled
 	// with the blurred image. tempTex must have the same size as inOutTex.
 	// inWidth and inHeight are the dimensions of the images in texels.
 	void ApplyBlurGauss(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		Renderer::Backend::GL::CTexture* inOutTex, Renderer::Backend::GL::CTexture* tempTex, int inWidth, int inHeight);
+		Renderer::Backend::GL::CTexture* inTex,
+		Renderer::Backend::GL::CTexture* tempTex,
+		Renderer::Backend::GL::CFramebuffer* tempFramebuffer,
+		Renderer::Backend::GL::CFramebuffer* outFramebuffer,
+		int inWidth, int inHeight);
 
 	// Applies a pass of a given effect to the entire current framebuffer. The shader is
 	// provided with a number of general-purpose variables, including the rendered screen so far,
@@ -152,7 +169,7 @@ private:
 	// some other parameters used by the optional bloom/HDR pass.
 	void ApplyEffect(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CShaderTechniquePtr& shaderTech1, int pass);
+		const CShaderTechniquePtr& shaderTech, int pass);
 
 	// Delete all allocated buffers/textures from GPU memory.
 	void Cleanup();

@@ -19,8 +19,12 @@
 
 #include "DeviceCommandContext.h"
 
+#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/gl/Framebuffer.h"
 #include "renderer/backend/gl/Mapping.h"
 #include "renderer/backend/gl/Texture.h"
+
+#include <limits>
 
 namespace Renderer
 {
@@ -63,17 +67,40 @@ bool operator!=(
 	return !operator==(lhs, rhs);
 }
 
+void ApplyDepthMask(const bool depthWriteEnabled)
+{
+	glDepthMask(depthWriteEnabled ? GL_TRUE : GL_FALSE);
+}
+
+void ApplyColorMask(const uint8_t colorWriteMask)
+{
+	glColorMask(
+		(colorWriteMask & ColorWriteMask::RED) != 0 ? GL_TRUE : GL_FALSE,
+		(colorWriteMask & ColorWriteMask::GREEN) != 0 ? GL_TRUE : GL_FALSE,
+		(colorWriteMask & ColorWriteMask::BLUE) != 0 ? GL_TRUE : GL_FALSE,
+		(colorWriteMask & ColorWriteMask::ALPHA) != 0 ? GL_TRUE : GL_FALSE);
+}
+
+void ApplyStencilMask(const uint32_t stencilWriteMask)
+{
+	glStencilMask(stencilWriteMask);
+}
+
 } // anonymous namespace
 
 // static
-std::unique_ptr<CDeviceCommandContext> CDeviceCommandContext::Create()
+std::unique_ptr<CDeviceCommandContext> CDeviceCommandContext::Create(CDevice* device)
 {
-	std::unique_ptr<CDeviceCommandContext> deviceCommandContext(new CDeviceCommandContext());
+	std::unique_ptr<CDeviceCommandContext> deviceCommandContext(new CDeviceCommandContext(device));
+	deviceCommandContext->m_Framebuffer = device->GetCurrentBackbuffer();
 	deviceCommandContext->ResetStates();
 	return deviceCommandContext;
 }
 
-CDeviceCommandContext::CDeviceCommandContext() = default;
+CDeviceCommandContext::CDeviceCommandContext(CDevice* device)
+	: m_Device(device)
+{
+}
 
 CDeviceCommandContext::~CDeviceCommandContext() = default;
 
@@ -99,6 +126,7 @@ void CDeviceCommandContext::UploadTextureRegion(
 	const uint32_t width, const uint32_t height,
 	const uint32_t level, const uint32_t layer)
 {
+	ENSURE(texture);
 	if (texture->GetType() == CTexture::Type::TEXTURE_2D)
 	{
 		ENSURE(level == 0 && layer == 0);
@@ -166,6 +194,7 @@ void CDeviceCommandContext::ResetStates()
 {
 	SetGraphicsPipelineStateImpl(MakeDefaultGraphicsPipelineStateDesc(), true);
 	SetScissors(0, nullptr);
+	SetFramebuffer(m_Device->GetCurrentBackbuffer());
 }
 
 void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
@@ -186,7 +215,7 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 	}
 	if (force || currentDepthStencilStateDesc.depthWriteEnabled != nextDepthStencilStateDesc.depthWriteEnabled)
 	{
-		glDepthMask(nextDepthStencilStateDesc.depthWriteEnabled ? GL_TRUE : GL_FALSE);
+		ApplyDepthMask(nextDepthStencilStateDesc.depthWriteEnabled);
 	}
 
 	if (force || currentDepthStencilStateDesc.stencilTestEnabled != nextDepthStencilStateDesc.stencilTestEnabled)
@@ -229,7 +258,7 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 	}
 	if (force || currentDepthStencilStateDesc.stencilWriteMask != nextDepthStencilStateDesc.stencilWriteMask)
 	{
-		glStencilMask(nextDepthStencilStateDesc.stencilWriteMask);
+		ApplyStencilMask(nextDepthStencilStateDesc.stencilWriteMask);
 	}
 	if (force ||
 		currentDepthStencilStateDesc.stencilReference != nextDepthStencilStateDesc.stencilReference ||
@@ -318,11 +347,7 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 	if (force ||
 		currentBlendStateDesc.colorWriteMask != nextBlendStateDesc.colorWriteMask)
 	{
-		glColorMask(
-			(nextBlendStateDesc.colorWriteMask & ColorWriteMask::RED) != 0 ? GL_TRUE : GL_FALSE,
-			(nextBlendStateDesc.colorWriteMask & ColorWriteMask::GREEN) != 0 ? GL_TRUE : GL_FALSE,
-			(nextBlendStateDesc.colorWriteMask & ColorWriteMask::BLUE) != 0 ? GL_TRUE : GL_FALSE,
-			(nextBlendStateDesc.colorWriteMask & ColorWriteMask::ALPHA) != 0 ? GL_TRUE : GL_FALSE);
+		ApplyColorMask(nextBlendStateDesc.colorWriteMask);
 	}
 
 	const RasterizationStateDesc& currentRasterizationStateDesc = m_GraphicsPipelineStateDesc.rasterizationState;
@@ -354,6 +379,77 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 	m_GraphicsPipelineStateDesc = pipelineStateDesc;
 }
 
+void CDeviceCommandContext::BlitFramebuffer(
+	CFramebuffer* destinationFramebuffer, CFramebuffer* sourceFramebuffer)
+{
+#if CONFIG2_GLES
+	UNUSED2(destinationFramebuffer);
+	UNUSED2(sourceFramebuffer);
+	debug_warn("CDeviceCommandContext::BlitFramebuffer is not implemented for GLES");
+#else
+	// Source framebuffer should not be backbuffer.
+	ENSURE( sourceFramebuffer->GetHandle() != 0);
+	ENSURE( destinationFramebuffer != sourceFramebuffer );
+	glBindFramebufferEXT(GL_READ_FRAMEBUFFER_EXT, sourceFramebuffer->GetHandle());
+	glBindFramebufferEXT(GL_DRAW_FRAMEBUFFER_EXT, destinationFramebuffer->GetHandle());
+	// TODO: add more check for internal formats. And currently we don't support
+	// scaling inside blit.
+	glBlitFramebufferEXT(
+		0, 0, sourceFramebuffer->GetWidth(), sourceFramebuffer->GetHeight(),
+		0, 0, sourceFramebuffer->GetWidth(), sourceFramebuffer->GetHeight(),
+		(sourceFramebuffer->GetAttachmentMask() & destinationFramebuffer->GetAttachmentMask()),
+		GL_NEAREST);
+#endif
+}
+
+void CDeviceCommandContext::ClearFramebuffer()
+{
+	ClearFramebuffer(true, true, true);
+}
+
+void CDeviceCommandContext::ClearFramebuffer(const bool color, const bool depth, const bool stencil)
+{
+	const bool needsColor = color && (m_Framebuffer->GetAttachmentMask() & GL_COLOR_BUFFER_BIT) != 0;
+	const bool needsDepth = depth && (m_Framebuffer->GetAttachmentMask() & GL_DEPTH_BUFFER_BIT) != 0;
+	const bool needsStencil = stencil && (m_Framebuffer->GetAttachmentMask() & GL_STENCIL_BUFFER_BIT) != 0;
+	GLbitfield mask = 0;
+	if (needsColor)
+	{
+		ApplyColorMask(ColorWriteMask::RED | ColorWriteMask::GREEN | ColorWriteMask::BLUE | ColorWriteMask::ALPHA);
+		glClearColor(
+			m_Framebuffer->GetClearColor().r,
+			m_Framebuffer->GetClearColor().g,
+			m_Framebuffer->GetClearColor().b,
+			m_Framebuffer->GetClearColor().a);
+		mask |= GL_COLOR_BUFFER_BIT;
+	}
+	if (needsDepth)
+	{
+		ApplyDepthMask(true);
+		mask |= GL_DEPTH_BUFFER_BIT;
+	}
+	if (needsStencil)
+	{
+		ApplyStencilMask(std::numeric_limits<uint32_t>::max());
+		mask |= GL_STENCIL_BUFFER_BIT;
+	}
+	glClear(mask);
+	if (needsColor)
+		ApplyColorMask(m_GraphicsPipelineStateDesc.blendState.colorWriteMask);
+	if (needsDepth)
+		ApplyDepthMask(m_GraphicsPipelineStateDesc.depthStencilState.depthWriteEnabled);
+	if (needsStencil)
+		ApplyStencilMask(m_GraphicsPipelineStateDesc.depthStencilState.stencilWriteMask);
+}
+
+void CDeviceCommandContext::SetFramebuffer(CFramebuffer* framebuffer)
+{
+	ENSURE(framebuffer);
+	ENSURE(framebuffer->GetHandle() == 0 || (framebuffer->GetWidth() > 0 && framebuffer->GetHeight() > 0));
+	m_Framebuffer = framebuffer;
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, framebuffer->GetHandle());
+}
+
 void CDeviceCommandContext::SetScissors(const uint32_t scissorCount, const ScissorRect* scissors)
 {
 	ENSURE(scissorCount <= 1);
@@ -366,9 +462,9 @@ void CDeviceCommandContext::SetScissors(const uint32_t scissorCount, const Sciss
 	{
 		if (m_ScissorCount != scissorCount)
 			glEnable(GL_SCISSOR_TEST);
+		ENSURE(scissors);
 		if (m_ScissorCount != scissorCount || m_Scissors[0] != scissors[0])
 		{
-			ENSURE(scissors);
 			m_Scissors[0] = scissors[0];
 			glScissor(m_Scissors[0].x, m_Scissors[0].y, m_Scissors[0].width, m_Scissors[0].height);
 		}

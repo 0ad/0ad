@@ -24,6 +24,7 @@
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/Profile.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "scriptinterface/JSON.h"
 #include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -195,6 +196,8 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 	// Set packing parameters for uploading and downloading data.
 	glPixelStorei(GL_PACK_ALIGNMENT, 1);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+	device->m_Backbuffer = CFramebuffer::CreateBackbuffer();
 
 	return device;
 }
@@ -592,6 +595,11 @@ void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 		}
 	}
 #endif // SDL_VIDEO_DRIVER_X11
+}
+
+std::unique_ptr<CDeviceCommandContext> CDevice::CreateCommandContext()
+{
+	return CDeviceCommandContext::Create(this);
 }
 
 void CDevice::Present()

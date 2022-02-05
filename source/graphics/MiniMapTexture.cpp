@@ -37,6 +37,7 @@
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "ps/XML/Xeromyces.h"
+#include "renderer/backend/gl/Device.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/SceneRenderer.h"
@@ -236,17 +237,9 @@ void CMiniMapTexture::CreateTextures(
 	m_FinalTexture = Renderer::Backend::GL::CTexture::Create2D(
 		Renderer::Backend::Format::R8G8B8A8, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE, defaultSamplerDesc);
 
-	glGenFramebuffersEXT(1, &m_FinalTextureFBO);
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FinalTextureFBO);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_FinalTexture->GetHandle(), 0);
-
-	GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
-	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
-	{
-		LOGWARNING("MiniMapTexture Framebuffer object incomplete (A): 0x%04X", status);
-	}
-
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	m_FinalTextureFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+		m_FinalTexture.get(), nullptr);
+	ENSURE(m_FinalTextureFramebuffer);
 }
 
 void CMiniMapTexture::DestroyTextures()
@@ -337,7 +330,7 @@ void CMiniMapTexture::RenderFinalTexture(
 		return;
 	m_FinalTextureDirty = false;
 
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FinalTextureFBO);
+	deviceCommandContext->SetFramebuffer(m_FinalTextureFramebuffer.get());
 
 	const SViewPort oldViewPort = g_Renderer.GetViewport();
 	const SViewPort viewPort = { 0, 0, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE };
@@ -525,8 +518,8 @@ void CMiniMapTexture::RenderFinalTexture(
 	}
 
 	tech->EndPass();
-
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	deviceCommandContext->SetFramebuffer(
+		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 	g_Renderer.SetViewport(oldViewPort);
 }
 

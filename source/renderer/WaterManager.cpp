@@ -32,10 +32,11 @@
 #include "ps/Game.h"
 #include "ps/VideoMode.h"
 #include "ps/World.h"
-#include "renderer/WaterManager.h"
+#include "renderer/backend/gl/Device.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/SceneRenderer.h"
+#include "renderer/WaterManager.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpWaterManager.h"
 #include "simulation2/components/ICmpRangeManager.h"
@@ -81,10 +82,6 @@ WaterManager::WaterManager()
 
 	m_RefTextureSize = 0;
 
-	m_ReflectionFbo = 0;
-	m_RefractionFbo = 0;
-	m_FancyEffectsFBO = 0;
-
 	m_WaterTexTimer = 0.0;
 
 	m_WindAngle = 0.0f;
@@ -123,17 +120,14 @@ WaterManager::~WaterManager()
 	m_DistanceHeightmap.reset();
 	m_WindStrength.reset();
 
-	if (!g_Renderer.GetCapabilities().m_PrettyWater)
-		return;
+	m_FancyEffectsFramebuffer.reset();
+	m_RefractionFramebuffer.reset();
+	m_ReflectionFramebuffer.reset();
 
 	m_FancyTexture.reset();
 	m_FancyTextureDepth.reset();
 	m_ReflFboDepthTexture.reset();
 	m_RefrFboDepthTexture.reset();
-
-	glDeleteFramebuffersEXT(1, &m_FancyEffectsFBO);
-	glDeleteFramebuffersEXT(1, &m_RefractionFbo);
-	glDeleteFramebuffersEXT(1, &m_ReflectionFbo);
 }
 
 
@@ -190,9 +184,7 @@ int WaterManager::LoadWaterTextures()
 	}
 
 	// Use screen-sized textures for minimum artifacts.
-	m_RefTextureSize = g_Renderer.GetHeight();
-
-	m_RefTextureSize = round_up_to_pow2(m_RefTextureSize);
+	m_RefTextureSize = round_up_to_pow2(g_Renderer.GetHeight());
 
 	// Create reflection texture
 	m_ReflectionTexture = Renderer::Backend::GL::CTexture::Create2D(
@@ -225,54 +217,29 @@ int WaterManager::LoadWaterTextures()
 
 	// Create the water framebuffers
 
-	m_ReflectionFbo = 0;
-	glGenFramebuffersEXT(1, &m_ReflectionFbo);
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_ReflectionFbo);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_ReflectionTexture->GetHandle(), 0);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_ReflFboDepthTexture->GetHandle(), 0);
-
-	ogl_WarnIfError();
-
-	GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
-	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
+	m_ReflectionFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+		m_ReflectionTexture.get(), m_ReflFboDepthTexture.get(), CColor(0.5f, 0.5f, 1.0f, 0.0f));
+	if (!m_ReflectionFramebuffer)
 	{
-		LOGWARNING("Reflection framebuffer object incomplete: 0x%04X", status);
 		g_RenderingOptions.SetWaterReflection(false);
 		UpdateQuality();
 	}
 
-	m_RefractionFbo = 0;
-	glGenFramebuffersEXT(1, &m_RefractionFbo);
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_RefractionFbo);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_RefractionTexture->GetHandle(), 0);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_RefrFboDepthTexture->GetHandle(), 0);
-
-	ogl_WarnIfError();
-
-	status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
-	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
+	m_RefractionFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+		m_RefractionTexture.get(), m_RefrFboDepthTexture.get(), CColor(1.0f, 0.0f, 0.0f, 0.0f));
+	if (!m_RefractionFramebuffer)
 	{
-		LOGWARNING("Refraction framebuffer object incomplete: 0x%04X", status);
 		g_RenderingOptions.SetWaterRefraction(false);
 		UpdateQuality();
 	}
 
-	glGenFramebuffersEXT(1, &m_FancyEffectsFBO);
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FancyEffectsFBO);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_FancyTexture->GetHandle(), 0);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_FancyTextureDepth->GetHandle(), 0);
-
-	ogl_WarnIfError();
-
-	status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
-	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
+	m_FancyEffectsFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+		m_FancyTexture.get(), m_FancyTextureDepth.get());
+	if (!m_FancyEffectsFramebuffer)
 	{
-		LOGWARNING("Fancy Effects framebuffer object incomplete: 0x%04X", status);
 		g_RenderingOptions.SetWaterRefraction(false);
 		UpdateQuality();
 	}
-
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 
 	// Enable rendering, now that we've succeeded this far
 	m_RenderWater = true;
@@ -328,10 +295,10 @@ void WaterManager::UnloadWaterTextures()
 	for (size_t i = 0; i < ARRAY_SIZE(m_NormalMap); i++)
 		m_NormalMap[i].reset();
 
+	m_RefractionFramebuffer.reset();
+	m_ReflectionFramebuffer.reset();
 	m_ReflectionTexture.reset();
 	m_RefractionTexture.reset();
-	glDeleteFramebuffersEXT(1, &m_RefractionFbo);
-	glDeleteFramebuffersEXT(1, &m_ReflectionFbo);
 }
 
 template<bool Transpose>
@@ -808,13 +775,8 @@ void WaterManager::RenderWaves(
 	if (!m_WaterFancyEffects)
 		return;
 
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FancyEffectsFBO);
-
-	GLuint attachments[1] = { GL_COLOR_ATTACHMENT0_EXT };
-	glDrawBuffers(1, attachments);
-
-	glClearColor(0.0f,0.0f, 0.0f,0.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	deviceCommandContext->SetFramebuffer(m_FancyEffectsFramebuffer.get());
+	deviceCommandContext->ClearFramebuffer();
 
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_water_waves);
 	tech->BeginPass();
@@ -864,7 +826,8 @@ void WaterManager::RenderWaves(
 		CVertexBuffer::Unbind();
 	}
 	tech->EndPass();
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	deviceCommandContext->SetFramebuffer(
+		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 #endif
 }
 

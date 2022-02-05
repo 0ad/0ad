@@ -34,6 +34,8 @@ namespace Backend
 namespace GL
 {
 
+class CDevice;
+class CFramebuffer;
 class CTexture;
 
 class CDeviceCommandContext
@@ -41,9 +43,15 @@ class CDeviceCommandContext
 public:
 	~CDeviceCommandContext();
 
-	static std::unique_ptr<CDeviceCommandContext> Create();
+	CDevice* GetDevice() { return m_Device; }
 
 	void SetGraphicsPipelineState(const GraphicsPipelineStateDesc& pipelineStateDesc);
+
+	void BlitFramebuffer(CFramebuffer* destinationFramebuffer, CFramebuffer* sourceFramebuffer);
+
+	void ClearFramebuffer();
+	void ClearFramebuffer(const bool color, const bool depth, const bool stencil);
+	void SetFramebuffer(CFramebuffer* framebuffer);
 
 	void UploadTexture(CTexture* texture, const Format dataFormat,
 		const void* data, const size_t dataSize,
@@ -65,14 +73,21 @@ public:
 	void Flush();
 
 private:
-	CDeviceCommandContext();
+	friend class CDevice;
+
+	static std::unique_ptr<CDeviceCommandContext> Create(CDevice* device);
+
+	CDeviceCommandContext(CDevice* device);
 
 	void ResetStates();
 
 	void SetGraphicsPipelineStateImpl(
 		const GraphicsPipelineStateDesc& pipelineStateDesc, const bool force);
 
+	CDevice* m_Device = nullptr;
+
 	GraphicsPipelineStateDesc m_GraphicsPipelineStateDesc{};
+	CFramebuffer* m_Framebuffer = nullptr;
 	uint32_t m_ScissorCount = 0;
 	// GL2.1 doesn't support more than 1 scissor.
 	std::array<ScissorRect, 1> m_Scissors;

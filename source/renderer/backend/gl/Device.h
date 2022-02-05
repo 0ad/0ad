@@ -18,6 +18,7 @@
 #ifndef INCLUDED_RENDERER_BACKEND_GL_DEVICE
 #define INCLUDED_RENDERER_BACKEND_GL_DEVICE
 
+#include "renderer/backend/gl/Framebuffer.h"
 #include "scriptinterface/ScriptForward.h"
 
 #include <memory>
@@ -36,6 +37,8 @@ namespace Backend
 namespace GL
 {
 
+class CDeviceCommandContext;
+
 class CDevice
 {
 public:
@@ -53,6 +56,10 @@ public:
 
 	void Report(const ScriptRequest& rq, JS::HandleValue settings);
 
+	CFramebuffer* GetCurrentBackbuffer() { return m_Backbuffer.get(); }
+
+	std::unique_ptr<CDeviceCommandContext> CreateCommandContext();
+
 	void Present();
 
 private:
@@ -65,6 +72,8 @@ private:
 	std::string m_Version;
 	std::string m_DriverInformation;
 	std::vector<std::string> m_Extensions;
+
+	std::unique_ptr<CFramebuffer> m_Backbuffer;
 };
 
 } // namespace GL

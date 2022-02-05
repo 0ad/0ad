@@ -387,7 +387,7 @@ bool CRenderer::Open(int width, int height)
 	// Validate the currently selected render path
 	SetRenderPath(g_RenderingOptions.GetRenderPath());
 
-	m->deviceCommandContext = Renderer::Backend::GL::CDeviceCommandContext::Create();
+	m->deviceCommandContext = g_VideoMode.GetBackendDevice()->CreateCommandContext();
 
 	if (m->postprocManager.IsEnabled())
 		m->postprocManager.Initialize();
@@ -501,6 +501,9 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 		g_Game->GetView()->Render();
 		ogl_WarnIfError();
 	}
+
+	m->deviceCommandContext->SetFramebuffer(
+		m->deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 
 	m->sceneRenderer.RenderTextOverlays();
 

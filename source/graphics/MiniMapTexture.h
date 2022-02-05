@@ -18,7 +18,6 @@
 #ifndef INCLUDED_MINIMAPTEXTURE
 #define INCLUDED_MINIMAPTEXTURE
 
-#include "lib/ogl.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/backend/gl/Texture.h"
 #include "renderer/VertexArray.h"
@@ -73,7 +72,8 @@ private:
 	std::unique_ptr<Renderer::Backend::GL::CTexture>
 		m_TerrainTexture, m_FinalTexture;
 
-	GLuint m_FinalTextureFBO = 0;
+	std::unique_ptr<Renderer::Backend::GL::CFramebuffer>
+		m_FinalTextureFramebuffer;
 
 	// texture data
 	std::unique_ptr<u32[]> m_TerrainData;

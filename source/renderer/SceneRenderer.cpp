@@ -44,6 +44,7 @@
 #include "ps/Profile.h"
 #include "ps/VideoMode.h"
 #include "ps/World.h"
+#include "renderer/backend/gl/Device.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/HWLightingModelRenderer.h"
 #include "renderer/InstancingModelRenderer.h"
@@ -194,20 +195,8 @@ CSceneRenderer::CSceneRenderer()
 	m_WaterRenderMode = SOLID;
 	m_ModelRenderMode = SOLID;
 	m_OverlayRenderMode = SOLID;
-	m_ClearColor[0] = m_ClearColor[1] = m_ClearColor[2] = m_ClearColor[3] = 0;
 
 	m_DisplayTerrainPriorities = false;
-
-	CStr skystring = "0 0 0";
-	CColor skycolor;
-	CFG_GET_VAL("skycolor", skystring);
-	if (skycolor.ParseString(skystring, 255.f))
-	{
-		m_ClearColor[0] = skycolor.r;
-		m_ClearColor[1] = skycolor.g;
-		m_ClearColor[2] = skycolor.b;
-		m_ClearColor[3] = skycolor.a;
-	}
 
 	m_LightEnv = nullptr;
 
@@ -639,14 +628,8 @@ void CSceneRenderer::RenderReflections(
 	scissorRect.height = screenScissor.y2 - screenScissor.y1;
 	deviceCommandContext->SetScissors(1, &scissorRect);
 
-	// try binding the framebuffer
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, wm.m_ReflectionFbo);
-
-	const Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
-		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc();
-	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
-	glClearColor(0.5f, 0.5f, 1.0f, 0.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	deviceCommandContext->SetFramebuffer(wm.m_ReflectionFramebuffer.get());
+	deviceCommandContext->ClearFramebuffer();
 
 	if (!g_RenderingOptions.GetWaterReflection())
 	{
@@ -680,7 +663,8 @@ void CSceneRenderer::RenderReflections(
 	m_ViewCamera = normalCamera;
 	g_Renderer.SetViewport(m_ViewCamera.GetViewPort());
 
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	deviceCommandContext->SetFramebuffer(
+		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 }
 
 // RenderRefractions: render the water refractions to the refraction texture
@@ -726,14 +710,8 @@ void CSceneRenderer::RenderRefractions(
 	scissorRect.height = screenScissor.y2 - screenScissor.y1;
 	deviceCommandContext->SetScissors(1, &scissorRect);
 
-	// try binding the framebuffer
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, wm.m_RefractionFbo);
-
-	const Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
-		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc();
-	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
-	glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	deviceCommandContext->SetFramebuffer(wm.m_RefractionFramebuffer.get());
+	deviceCommandContext->ClearFramebuffer();
 
 	// Render terrain and models
 	RenderPatches(deviceCommandContext, context, CULL_REFRACTIONS);
@@ -749,7 +727,8 @@ void CSceneRenderer::RenderRefractions(
 	m_ViewCamera = normalCamera;
 	g_Renderer.SetViewport(m_ViewCamera.GetViewPort());
 
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	deviceCommandContext->SetFramebuffer(
+		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 }
 
 void CSceneRenderer::RenderSilhouettes(
@@ -772,7 +751,7 @@ void CSceneRenderer::RenderSilhouettes(
 	// inverted depth test so any behind an occluder will get drawn in a constant
 	// color.
 
-	glClear(GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	deviceCommandContext->ClearFramebuffer(false, true, true);
 
 	// Render occluders:
 
@@ -901,13 +880,17 @@ void CSceneRenderer::RenderSubmissions(
 			m_ViewCamera.GetNearPlane(), m_ViewCamera.GetFarPlane()
 		);
 		postprocManager.Initialize();
-		postprocManager.CaptureRenderOutput();
+		postprocManager.CaptureRenderOutput(deviceCommandContext);
+	}
+	else
+	{
+		deviceCommandContext->SetFramebuffer(
+			deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 	}
 
 	{
 		PROFILE3_GPU("clear buffers");
-		glClearColor(m_ClearColor[0], m_ClearColor[1], m_ClearColor[2], m_ClearColor[3]);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+		deviceCommandContext->ClearFramebuffer();
 	}
 
 	m->skyManager.RenderSky(deviceCommandContext);
@@ -978,7 +961,7 @@ void CSceneRenderer::RenderSubmissions(
 	if (postprocManager.IsEnabled())
 	{
 		if (g_Renderer.GetPostprocManager().IsMultisampleEnabled())
-			g_Renderer.GetPostprocManager().ResolveMultisampleFramebuffer();
+			g_Renderer.GetPostprocManager().ResolveMultisampleFramebuffer(deviceCommandContext);
 
 		postprocManager.ApplyPostproc(deviceCommandContext);
 		postprocManager.ReleaseRenderOutput(deviceCommandContext);

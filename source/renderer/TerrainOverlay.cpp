@@ -173,6 +173,7 @@ void TerrainOverlay::RenderTile(
 #if CONFIG2_GLES
 	UNUSED2(deviceCommandContext);
 	UNUSED2(color);
+	UNUSED2(drawHidden);
 	UNUSED2(i);
 	UNUSED2(j);
 	#warning TODO: implement TerrainOverlay::RenderTile for GLES
@@ -258,6 +259,7 @@ void TerrainOverlay::RenderTileOutline(
 	UNUSED2(deviceCommandContext);
 	UNUSED2(color);
 	UNUSED2(lineWidth);
+	UNUSED2(drawHidden);
 	UNUSED2(i);
 	UNUSED2(j);
 	#warning TODO: implement TerrainOverlay::RenderTileOutline for GLES
