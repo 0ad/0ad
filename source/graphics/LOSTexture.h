@@ -18,11 +18,10 @@
 #ifndef INCLUDED_LOSTEXTURE
 #define INCLUDED_LOSTEXTURE
 
-#include "lib/ogl.h"
-
 #include "graphics/ShaderTechniquePtr.h"
 #include "maths/Matrix3D.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/gl/Framebuffer.h"
 #include "renderer/backend/gl/Texture.h"
 
 #include <memory>
@@ -89,14 +88,15 @@ private:
 	bool m_ShaderInitialized = false;
 
 	std::unique_ptr<Renderer::Backend::GL::CTexture>
-		m_Texture, m_TextureSmooth1, m_TextureSmooth2;
+		m_Texture, m_SmoothTextures[2];
 
-	bool m_WhichTex = true;
+	uint32_t m_WhichTexture = 0;
 
-	// We update textures once a frame, so we change a FBO once a frame. That
-	// allows us to use two ping-pong FBOs instead of checking completeness of
-	// FBO each frame.
-	GLuint m_SmoothFBO1 = 0, m_SmoothFBO2 = 0;
+	// We update textures once a frame, so we change a Framebuffer once a frame.
+	// That allows us to use two ping-pong FBOs instead of checking completeness
+	// of Framebuffer each frame.
+	std::unique_ptr<Renderer::Backend::GL::CFramebuffer>
+		m_SmoothFramebuffers[2];
 	CShaderTechniquePtr m_SmoothTech;
 
 	size_t m_MapSize = 0; // vertexes per side

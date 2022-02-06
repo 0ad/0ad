@@ -32,6 +32,7 @@
 #include "ps/Game.h"
 #include "ps/VideoMode.h"
 #include "ps/World.h"
+#include "renderer/backend/gl/Device.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
@@ -39,9 +40,8 @@
 #if !CONFIG2_GLES
 
 CPostprocManager::CPostprocManager()
-	: m_IsInitialized(false), m_PingFbo(0), m_PongFbo(0), m_PostProcEffect(L"default"),
-	  m_BloomFbo(0), m_WhichBuffer(true), m_Sharpness(0.3f), m_UsingMultisampleBuffer(false),
-	  m_MultisampleFBO(0), m_MultisampleCount(0)
+	: m_IsInitialized(false), m_PostProcEffect(L"default"), m_WhichBuffer(true),
+	m_Sharpness(0.3f), m_UsingMultisampleBuffer(false), m_MultisampleCount(0)
 {
 }
 
@@ -61,21 +61,23 @@ void CPostprocManager::Cleanup()
 	if (!m_IsInitialized) // Only cleanup if previously used
 		return;
 
-	if (m_PingFbo) glDeleteFramebuffersEXT(1, &m_PingFbo);
-	if (m_PongFbo) glDeleteFramebuffersEXT(1, &m_PongFbo);
-	if (m_BloomFbo) glDeleteFramebuffersEXT(1, &m_BloomFbo);
-	m_PingFbo = m_PongFbo = m_BloomFbo = 0;
+	m_CaptureFramebuffer.reset();
+
+	m_PingFramebuffer.reset();
+	m_PongFramebuffer.reset();
 
 	m_ColorTex1.reset();
 	m_ColorTex2.reset();
 	m_DepthTex.reset();
 
-	m_BlurTex2a.reset();
-	m_BlurTex2b.reset();
-	m_BlurTex4a.reset();
-	m_BlurTex4b.reset();
-	m_BlurTex8a.reset();
-	m_BlurTex8b.reset();
+	for (BlurScale& scale : m_BlurScales)
+	{
+		for (BlurScale::Step& step : scale.steps)
+		{
+			step.framebuffer.reset();
+			step.texture.reset();
+		}
+	}
 }
 
 void CPostprocManager::Initialize()
@@ -136,14 +138,18 @@ void CPostprocManager::RecreateBuffers()
 	// m_BlurTex2b, thus avoiding the need for m_BlurTex4b and m_BlurTex8b, though given
 	// that these are fairly small it's probably not worth complicating the coordinates passed
 	// to the blur helper functions.
-	GEN_BUFFER_RGBA(m_BlurTex2a, m_Width / 2, m_Height / 2);
-	GEN_BUFFER_RGBA(m_BlurTex2b, m_Width / 2, m_Height / 2);
-
-	GEN_BUFFER_RGBA(m_BlurTex4a, m_Width / 4, m_Height / 4);
-	GEN_BUFFER_RGBA(m_BlurTex4b, m_Width / 4, m_Height / 4);
-
-	GEN_BUFFER_RGBA(m_BlurTex8a, m_Width / 8, m_Height / 8);
-	GEN_BUFFER_RGBA(m_BlurTex8b, m_Width / 8, m_Height / 8);
+	uint32_t width = m_Width / 2, height = m_Height / 2;
+	for (BlurScale& scale : m_BlurScales)
+	{
+		for (BlurScale::Step& step : scale.steps)
+		{
+			GEN_BUFFER_RGBA(step.texture, width, height);
+			step.framebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+				step.texture.get(), nullptr);
+		}
+		width /= 2;
+		height /= 2;
+	}
 
 	#undef GEN_BUFFER_RGBA
 
@@ -159,68 +165,35 @@ void CPostprocManager::RecreateBuffers()
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	// Set up the framebuffers with some initial textures.
+	m_CaptureFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+		m_ColorTex1.get(), m_DepthTex.get(),
+		g_VideoMode.GetBackendDevice()->GetCurrentBackbuffer()->GetClearColor());
 
-	glGenFramebuffersEXT(1, &m_PingFbo);
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
+	m_PingFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+		m_ColorTex1.get(), nullptr);
+	m_PongFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+		m_ColorTex2.get(), nullptr);
 
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
-							   GL_TEXTURE_2D, m_ColorTex1->GetHandle(), 0);
-
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
-							   GL_TEXTURE_2D, m_DepthTex->GetHandle(), 0);
-
-	GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
-	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
+	if (!m_CaptureFramebuffer || !m_PingFramebuffer || !m_PongFramebuffer)
 	{
-		LOGWARNING("Framebuffer object incomplete (A): 0x%04X", status);
+		LOGWARNING("Failed to create postproc framebuffers");
+		g_RenderingOptions.SetPostProc(false);
 	}
-
-	glGenFramebuffersEXT(1, &m_PongFbo);
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
-
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
-							   GL_TEXTURE_2D, m_ColorTex2->GetHandle(), 0);
-
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
-							   GL_TEXTURE_2D, m_DepthTex->GetHandle(), 0);
-
-	status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
-	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
-	{
-		LOGWARNING("Framebuffer object incomplete (B): 0x%04X", status);
-	}
-
-	glGenFramebuffersEXT(1, &m_BloomFbo);
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
-
-	/*
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
-							   GL_TEXTURE_2D, m_BloomTex1, 0);
-
-	status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
-	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
-	{
-		LOGWARNING("Framebuffer object incomplete (B): 0x%04X", status);
-	}
-	*/
 
 	if (m_UsingMultisampleBuffer)
 	{
 		DestroyMultisampleBuffer();
 		CreateMultisampleBuffer();
 	}
-
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
 
 
 void CPostprocManager::ApplyBlurDownscale2x(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CTexture* inTex, Renderer::Backend::GL::CTexture* outTex, int inWidth, int inHeight)
+	Renderer::Backend::GL::CFramebuffer* framebuffer,
+	Renderer::Backend::GL::CTexture* inTex, int inWidth, int inHeight)
 {
-	// Bind inTex to framebuffer for rendering.
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, outTex->GetHandle(), 0);
+	deviceCommandContext->SetFramebuffer(framebuffer);
 
 	// Get bloom shader with instructions to simply copy texels.
 	CShaderDefines defines;
@@ -270,11 +243,13 @@ void CPostprocManager::ApplyBlurDownscale2x(
 
 void CPostprocManager::ApplyBlurGauss(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CTexture* inOutTex, Renderer::Backend::GL::CTexture* tempTex, int inWidth, int inHeight)
+	Renderer::Backend::GL::CTexture* inTex,
+	Renderer::Backend::GL::CTexture* tempTex,
+	Renderer::Backend::GL::CFramebuffer* tempFramebuffer,
+	Renderer::Backend::GL::CFramebuffer* outFramebuffer,
+	int inWidth, int inHeight)
 {
-	// Set tempTex as our rendering target.
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, tempTex->GetHandle(), 0);
+	deviceCommandContext->SetFramebuffer(tempFramebuffer);
 
 	// Get bloom shader, for a horizontal Gaussian blur pass.
 	CShaderDefines defines2;
@@ -285,7 +260,7 @@ void CPostprocManager::ApplyBlurGauss(
 	deviceCommandContext->SetGraphicsPipelineState(
 		tech->GetGraphicsPipelineStateDesc());
 	CShaderProgramPtr shader = tech->GetShader();
-	shader->BindTexture(str_renderedTex, inOutTex);
+	shader->BindTexture(str_renderedTex, inTex);
 	shader->Uniform(str_texSize, inWidth, inHeight, 0.0f, 0.0f);
 
 	const SViewPort oldVp = g_Renderer.GetViewport();
@@ -321,9 +296,7 @@ void CPostprocManager::ApplyBlurGauss(
 
 	tech->EndPass();
 
-	// Set result texture as our render target.
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, inOutTex->GetHandle(), 0);
+	deviceCommandContext->SetFramebuffer(outFramebuffer);
 
 	// Get bloom shader, for a vertical Gaussian blur pass.
 	CShaderDefines defines3;
@@ -352,43 +325,35 @@ void CPostprocManager::ApplyBlurGauss(
 void CPostprocManager::ApplyBlur(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
-	int width = m_Width, height = m_Height;
+	uint32_t width = m_Width, height = m_Height;
+	Renderer::Backend::GL::CTexture* previousTexture =
+		(m_WhichBuffer ? m_ColorTex1 : m_ColorTex2).get();
 
-	#define SCALE_AND_BLUR(tex1, tex2, temptex) \
-		ApplyBlurDownscale2x(deviceCommandContext, (tex1).get(), (tex2).get(), width, height); \
-		width /= 2; \
-		height /= 2; \
-		ApplyBlurGauss(deviceCommandContext, (tex2).get(), (temptex).get(), width, height);
-
-	// We do the same thing for each scale, incrementally adding more and more blur.
-	SCALE_AND_BLUR(m_WhichBuffer ? m_ColorTex1 : m_ColorTex2, m_BlurTex2a, m_BlurTex2b);
-	SCALE_AND_BLUR(m_BlurTex2a, m_BlurTex4a, m_BlurTex4b);
-	SCALE_AND_BLUR(m_BlurTex4a, m_BlurTex8a, m_BlurTex8b);
-
-	#undef SCALE_AND_BLUR
+	for (BlurScale& scale : m_BlurScales)
+	{
+		ApplyBlurDownscale2x(deviceCommandContext, scale.steps[0].framebuffer.get(), previousTexture, width, height);
+		width /= 2;
+		height /= 2;
+		ApplyBlurGauss(deviceCommandContext, scale.steps[0].texture.get(),
+			scale.steps[1].texture.get(), scale.steps[1].framebuffer.get(),
+			scale.steps[0].framebuffer.get(), width, height);
+	}
 }
 
 
-void CPostprocManager::CaptureRenderOutput()
+void CPostprocManager::CaptureRenderOutput(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	ENSURE(m_IsInitialized);
 
 	// Leaves m_PingFbo selected for rendering; m_WhichBuffer stays true at this point.
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
-
-	GLenum buffers[] = { GL_COLOR_ATTACHMENT0_EXT, GL_COLOR_ATTACHMENT1_EXT };
-	glDrawBuffers(1, buffers);
-
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
-	glDrawBuffers(1, buffers);
-
-	m_WhichBuffer = true;
 
 	if (m_UsingMultisampleBuffer)
-	{
-		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_MultisampleFBO);
-		glDrawBuffers(1, buffers);
-	}
+		deviceCommandContext->SetFramebuffer(m_MultisampleFramebuffer.get());
+	else
+		deviceCommandContext->SetFramebuffer(m_CaptureFramebuffer.get());
+
+	m_WhichBuffer = true;
 }
 
 
@@ -397,40 +362,27 @@ void CPostprocManager::ReleaseRenderOutput(
 {
 	ENSURE(m_IsInitialized);
 
-	const Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
-		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc();
-	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	// We blit to the backbuffer from the previous active buffer.
+	deviceCommandContext->BlitFramebuffer(
+		deviceCommandContext->GetDevice()->GetCurrentBackbuffer(),
+		(m_WhichBuffer ? m_PingFramebuffer : m_PongFramebuffer).get());
 
-	// we blit to screen from the previous active buffer
-	if (m_WhichBuffer)
-		glBindFramebufferEXT(GL_READ_FRAMEBUFFER_EXT, m_PingFbo);
-	else
-		glBindFramebufferEXT(GL_READ_FRAMEBUFFER_EXT, m_PongFbo);
-
-	glBindFramebufferEXT(GL_DRAW_FRAMEBUFFER_EXT, 0);
-	glBlitFramebufferEXT(0, 0, m_Width, m_Height, 0, 0, m_Width, m_Height,
-			      GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT, GL_NEAREST);
-	glBindFramebufferEXT(GL_READ_FRAMEBUFFER_EXT, 0);
-
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	deviceCommandContext->SetFramebuffer(
+		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 }
 
 void CPostprocManager::ApplyEffect(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CShaderTechniquePtr& shaderTech1, int pass)
+	const CShaderTechniquePtr& shaderTech, int pass)
 {
 	// select the other FBO for rendering
-	if (!m_WhichBuffer)
-		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
-	else
-		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
+	deviceCommandContext->SetFramebuffer(
+		(m_WhichBuffer ? m_PongFramebuffer : m_PingFramebuffer).get());
 
-	shaderTech1->BeginPass(pass);
+	shaderTech->BeginPass(pass);
 	deviceCommandContext->SetGraphicsPipelineState(
-		shaderTech1->GetGraphicsPipelineStateDesc(pass));
-	const CShaderProgramPtr& shader = shaderTech1->GetShader(pass);
+		shaderTech->GetGraphicsPipelineStateDesc(pass));
+	const CShaderProgramPtr& shader = shaderTech->GetShader(pass);
 
 	// Use the textures from the current FBO as input to the shader.
 	// We also bind a bunch of other textures and parameters, but since
@@ -442,9 +394,9 @@ void CPostprocManager::ApplyEffect(
 
 	shader->BindTexture(str_depthTex, m_DepthTex.get());
 
-	shader->BindTexture(str_blurTex2, m_BlurTex2a.get());
-	shader->BindTexture(str_blurTex4, m_BlurTex4a.get());
-	shader->BindTexture(str_blurTex8, m_BlurTex8a.get());
+	shader->BindTexture(str_blurTex2, m_BlurScales[0].steps[0].texture.get());
+	shader->BindTexture(str_blurTex4, m_BlurScales[1].steps[0].texture.get());
+	shader->BindTexture(str_blurTex8, m_BlurScales[2].steps[0].texture.get());
 
 	shader->Uniform(str_width, m_Width);
 	shader->Uniform(str_height, m_Height);
@@ -483,7 +435,7 @@ void CPostprocManager::ApplyEffect(
 	shader->AssertPointersBound();
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 
-	shaderTech1->EndPass(pass);
+	shaderTech->EndPass(pass);
 
 	m_WhichBuffer = !m_WhichBuffer;
 }
@@ -501,28 +453,11 @@ void CPostprocManager::ApplyPostproc(
 	if (!hasEffects && !hasAA && !hasSharp)
 		return;
 
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT1_EXT, GL_TEXTURE_2D, 0, 0);
-
-	GLenum buffers[] = { GL_COLOR_ATTACHMENT0_EXT };
-	glDrawBuffers(1, buffers);
-
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT1_EXT, GL_TEXTURE_2D, 0, 0);
-	glDrawBuffers(1, buffers);
-
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, 0, 0);
-
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, 0, 0);
-
 	if (hasEffects)
 	{
 		// First render blur textures. Note that this only happens ONLY ONCE, before any effects are applied!
 		// (This may need to change depending on future usage, however that will have a fps hit)
 		ApplyBlur(deviceCommandContext);
-		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
 		for (int pass = 0; pass < m_PostProcTech->GetNumPasses(); ++pass)
 			ApplyEffect(deviceCommandContext, m_PostProcTech, pass);
 	}
@@ -538,12 +473,6 @@ void CPostprocManager::ApplyPostproc(
 		for (int pass = 0; pass < m_SharpTech->GetNumPasses(); ++pass)
 			ApplyEffect(deviceCommandContext, m_SharpTech, pass);
 	}
-
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthTex->GetHandle(), 0);
-
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthTex->GetHandle(), 0);
 }
 
 
@@ -692,35 +621,23 @@ void CPostprocManager::CreateMultisampleBuffer()
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1, m_MultisampleCount);
 
 	// Set up the framebuffers with some initial textures.
-	glGenFramebuffersEXT(1, &m_MultisampleFBO);
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_MultisampleFBO);
+	m_MultisampleFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+		m_MultisampleColorTex.get(), m_MultisampleDepthTex.get(),
+		g_VideoMode.GetBackendDevice()->GetCurrentBackbuffer()->GetClearColor());
 
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
-		GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleColorTex->GetHandle(), 0);
-
-	glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
-		GL_TEXTURE_2D_MULTISAMPLE, m_MultisampleDepthTex->GetHandle(), 0);
-
-	GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
-	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
+	if (!m_MultisampleFramebuffer)
 	{
-		LOGWARNING("Multisample framebuffer object incomplete (A): 0x%04X", status);
+		LOGERROR("Failed to create postproc multisample framebuffer");
 		m_UsingMultisampleBuffer = false;
 		DestroyMultisampleBuffer();
 	}
-
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
-
-	glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);
-	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void CPostprocManager::DestroyMultisampleBuffer()
 {
 	if (m_UsingMultisampleBuffer)
 		return;
-	if (m_MultisampleFBO)
-		glDeleteFramebuffersEXT(1, &m_MultisampleFBO);
+	m_MultisampleFramebuffer.reset();
 	m_MultisampleColorTex.reset();
 	m_MultisampleDepthTex.reset();
 	glDisable(GL_MULTISAMPLE);
@@ -731,16 +648,15 @@ bool CPostprocManager::IsMultisampleEnabled() const
 	return m_UsingMultisampleBuffer;
 }
 
-void CPostprocManager::ResolveMultisampleFramebuffer()
+void CPostprocManager::ResolveMultisampleFramebuffer(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	if (!m_UsingMultisampleBuffer)
 		return;
 
-	glBindFramebufferEXT(GL_DRAW_FRAMEBUFFER_EXT, m_PingFbo);
-	glBlitFramebufferEXT(0, 0, m_Width, m_Height, 0, 0, m_Width, m_Height,
-		GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT, GL_NEAREST);
-
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
+	deviceCommandContext->BlitFramebuffer(
+		m_PingFramebuffer.get(), m_MultisampleFramebuffer.get());
+	deviceCommandContext->SetFramebuffer(m_PingFramebuffer.get());
 }
 
 #else
@@ -749,23 +665,25 @@ void CPostprocManager::ResolveMultisampleFramebuffer()
 
 void ApplyBlurDownscale2x(
 	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext),
+	Renderer::Backend::GL::CFramebuffer* UNUSED(framebuffer),
 	Renderer::Backend::GL::CTexture* UNUSED(inTex),
-	Renderer::Backend::GL::CTexture* UNUSED(outTex),
 	int UNUSED(inWidth), int UNUSED(inHeight))
 {
 }
 
 void CPostprocManager::ApplyBlurGauss(
 	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext),
-	Renderer::Backend::GL::CTexture* UNUSED(inOutTex),
+	Renderer::Backend::GL::CTexture* UNUSED(inTex),
 	Renderer::Backend::GL::CTexture* UNUSED(tempTex),
+	Renderer::Backend::GL::CFramebuffer* UNUSED(tempFramebuffer),
+	Renderer::Backend::GL::CFramebuffer* UNUSED(outFramebuffer),
 	int UNUSED(inWidth), int UNUSED(inHeight))
 {
 }
 
 void CPostprocManager::ApplyEffect(
 	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext),
-	const CShaderTechniquePtr& UNUSED(shaderTech1), int UNUSED(pass))
+	const CShaderTechniquePtr& UNUSED(shaderTech), int UNUSED(pass))
 {
 }
 
@@ -823,7 +741,8 @@ void CPostprocManager::UpdateSharpnessFactor()
 {
 }
 
-void CPostprocManager::CaptureRenderOutput()
+void CPostprocManager::CaptureRenderOutput(
+	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext))
 {
 }
 
@@ -850,7 +769,8 @@ bool CPostprocManager::IsMultisampleEnabled() const
 	return false;
 }
 
-void CPostprocManager::ResolveMultisampleFramebuffer()
+void CPostprocManager::ResolveMultisampleFramebuffer(
+	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext))
 {
 }
 

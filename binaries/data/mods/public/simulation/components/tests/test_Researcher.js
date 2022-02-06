@@ -23,8 +23,11 @@ AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 });
 
 AddMock(playerEntityID, IID_Player, {
-	"GetCiv": () => "iber",
 	"GetDisabledTechnologies": () => ({}) // ToDo: Should be in the techmanager.
+});
+
+AddMock(playerEntityID, IID_Identity, {
+	"GetCiv": () => "iber",
 });
 
 AddMock(playerEntityID, IID_TechnologyManager, {
@@ -53,8 +56,10 @@ TS_ASSERT_UNEVAL_EQUALS(
 );
 
 AddMock(playerEntityID, IID_Player, {
-	"GetCiv": () => "athen",
 	"GetDisabledTechnologies": () => ({ "gather_fishing_net": true })
+});
+AddMock(playerEntityID, IID_Identity, {
+	"GetCiv": () => "athen",
 });
 TS_ASSERT_UNEVAL_EQUALS(cmpResearcher.GetTechnologiesList(), ["phase_town_athen", "phase_city_athen"]);
 
@@ -66,8 +71,10 @@ AddMock(playerEntityID, IID_TechnologyManager, {
 TS_ASSERT_UNEVAL_EQUALS(cmpResearcher.GetTechnologiesList(), [undefined, "phase_city_athen"]);
 
 AddMock(playerEntityID, IID_Player, {
-	"GetCiv": () => "iber",
 	"GetDisabledTechnologies": () => ({})
+});
+AddMock(playerEntityID, IID_Identity, {
+	"GetCiv": () => "iber",
 });
 TS_ASSERT_UNEVAL_EQUALS(
 	cmpResearcher.GetTechnologiesList(),
@@ -95,9 +102,12 @@ Engine.RegisterGlobal("TechnologyTemplates", {
 });
 
 const cmpPlayer = AddMock(playerEntityID, IID_Player, {
-	"GetCiv": () => "iber",
 	"GetDisabledTechnologies": () => ({}),
 	"GetPlayerID": () => playerID,
+});
+
+AddMock(playerEntityID, IID_Identity, {
+	"GetCiv": () => "iber",
 });
 const techManager = AddMock(playerEntityID, IID_TechnologyManager, {
 	"CheckTechnologyRequirements": () => true,

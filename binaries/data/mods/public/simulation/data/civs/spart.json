@@ -1,9 +1,6 @@
 {
 	"Code": "spart",
 	"Culture": "hele",
-	"Name": "Spartans",
-	"Emblem": "session/portraits/emblems/emblem_spartans.png",
-	"History": "Sparta was a prominent city-state in ancient Greece, and its dominant military power on land from circa 650 B.C. Spartan culture was obsessed with military training and excellence, with rigorous training for boys beginning at age seven. Thanks to its military might, Sparta led a coalition of Greek forces during the Greco-Persian Wars, and won over Athens in the Peloponnesian Wars, though at great cost.",
 	"Music": [
 		{
 			"File": "Helen_Leaves_Sparta.ogg",
@@ -52,19 +49,6 @@
 		{
 			"Template": "units/spart/cavalry_javelineer_b"
 		}
-	],
-	"Formations": [
-		"special/formations/null",
-		"special/formations/box",
-		"special/formations/column_closed",
-		"special/formations/line_closed",
-		"special/formations/column_open",
-		"special/formations/line_open",
-		"special/formations/flank",
-		"special/formations/battle_line",
-		"special/formations/skirmish",
-		"special/formations/wedge",
-		"special/formations/phalanx"
 	],
 	"AINames": [
 		"Leonidas",

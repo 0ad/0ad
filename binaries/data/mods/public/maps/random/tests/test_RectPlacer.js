@@ -1,3 +1,13 @@
+Engine.GetTemplate = (path) => {
+	return {
+		"Identity": {
+			"GenericName": null,
+			"Icon": null,
+			"History": null
+		}
+	};
+};
+
 Engine.LoadLibrary("rmgen");
 
 var g_MapSettings = { "Size": 512 };

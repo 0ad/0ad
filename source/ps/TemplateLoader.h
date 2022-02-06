@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -66,6 +66,12 @@ public:
 	 * (This includes "actor|foo" etc names).
 	 */
 	std::vector<std::string> FindTemplates(const std::string& path, bool includeSubdirectories, ETemplatesType templatesType) const;
+
+	/**
+	 * Returns a list of strings that could validly be passed as @c templateName to LoadTemplateFile.
+	 * Not ignoring any special directories.
+	 */
+	std::vector<std::string> FindTemplatesUnrestricted(const std::string& path, bool includeSubdirectories) const;
 
 private:
 	/**

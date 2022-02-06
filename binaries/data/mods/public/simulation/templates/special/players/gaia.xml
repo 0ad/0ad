@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity>
+  <Identity>
+    <Civ>gaia</Civ>
+    <GenericName>Gaia</GenericName>
+    <Undeletable>true</Undeletable>
+  </Identity>
   <Player>
     <SharedLosTech/>
     <SharedDropsitesTech/>
@@ -18,5 +23,11 @@
         <metal>1.0</metal>
       </Sell>
     </BarterMultiplier>
+    <Formations datatype="tokens">
+      special/formations/phalanx
+      special/formations/syntagma
+      special/formations/testudo
+      special/formations/anti_cavalry
+    </Formations>
   </Player>
 </Entity>

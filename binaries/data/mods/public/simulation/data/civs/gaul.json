@@ -1,9 +1,6 @@
 {
 	"Code": "gaul",
 	"Culture": "celt",
-	"Name": "Gauls",
-	"Emblem": "session/portraits/emblems/emblem_celts.png",
-	"History": "The Gauls were the Celtic tribes of continental Europe. Dominated by a priestly class of Druids, they featured a sophisticated culture of advanced metalworking, agriculture, trade and even road engineering. With heavy infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign of conquest and Rome's authoritarian rule.",
 	"Music": [
 		{
 			"File": "Celtic_Pride.ogg",
@@ -50,18 +47,6 @@
 		{
 			"Template": "units/gaul/cavalry_javelineer_b"
 		}
-	],
-	"Formations": [
-		"special/formations/null",
-		"special/formations/box",
-		"special/formations/column_closed",
-		"special/formations/line_closed",
-		"special/formations/column_open",
-		"special/formations/line_open",
-		"special/formations/flank",
-		"special/formations/battle_line",
-		"special/formations/skirmish",
-		"special/formations/wedge"
 	],
 	"AINames": [
 		"Viridomarus",

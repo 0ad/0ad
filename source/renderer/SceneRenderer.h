@@ -271,8 +271,6 @@ protected:
 	Scene* m_CurrentScene;
 	int m_CurrentCullGroup;
 
-	// color used to clear screen in BeginFrame
-	float m_ClearColor[4];
 	// current lighting setup
 	CLightEnv* m_LightEnv;
 

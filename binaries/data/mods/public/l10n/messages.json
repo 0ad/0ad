@@ -12,11 +12,20 @@
                 ],
                 "options": {
                     "keywords": [
-                        "Name",
-                        "Description",
-                        "History",
                         "Special",
                         "AINames"
+                    ]
+                }
+            },
+            {
+                "extractor": "xml",
+                "filemasks": [
+                    "simulation/templates/special/players/**.xml"
+                ],
+                "options": {
+                    "keywords": [
+                        "GenericName": {},
+                        "History": {}
                     ]
                 }
             }

@@ -136,6 +136,11 @@ Identity.prototype.GetRank = function()
 	return this.template.Rank || "";
 };
 
+Identity.prototype.GetRankTechName = function()
+{
+	return this.template.Rank ? "unit_" + this.template.Rank.toLowerCase() : "";
+};
+
 Identity.prototype.GetClassesList = function()
 {
 	return this.classesList;
@@ -179,6 +184,22 @@ Identity.prototype.SetControllable = function(controllability)
 Identity.prototype.SetPhenotype = function(phenotype)
 {
 	this.phenotype = phenotype;
+};
+
+/**
+ * @param {string} newName -
+ */
+Identity.prototype.SetName = function(newName)
+{
+	this.name = newName;
+};
+
+/**
+ * @return {string} -
+ */
+Identity.prototype.GetName = function()
+{
+	return this.name || this.template.GenericName;
 };
 
 function IdentityMirage() {}

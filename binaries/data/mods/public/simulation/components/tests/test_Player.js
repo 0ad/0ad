@@ -37,6 +37,7 @@ var cmpPlayer = ConstructComponent(10, "Player", {
 			"metal": 1.0
 		}
 	},
+	"Formations": { "_string": "" },
 });
 
 var playerID = 1;

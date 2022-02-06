@@ -43,7 +43,7 @@ Builder.prototype.GetEntitiesList = function()
 	if (cmpIdentity)
 		string = string.replace(/\{native\}/g, cmpIdentity.GetCiv());
 
-	let entities = string.replace(/\{civ\}/g, cmpPlayer.GetCiv()).split(/\s+/);
+	const entities = string.replace(/\{civ\}/g, QueryOwnerInterface(this.entity, IID_Identity).GetCiv()).split(/\s+/);
 
 	let disabledTemplates = cmpPlayer.GetDisabledTemplates();
 

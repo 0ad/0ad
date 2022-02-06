@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
 * This file is part of 0 A.D.
 *
 * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@
 #include "renderer/Renderer.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/components/ICmpFootprint.h"
+#include "simulation2/components/ICmpIdentity.h"
 #include "simulation2/components/ICmpObstructionManager.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPathfinder.h"

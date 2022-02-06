@@ -180,18 +180,26 @@ Researcher.prototype.GetTechnologiesList = function()
 	if (!string)
 		return [];
 
-	const cmpTechnologyManager = QueryOwnerInterface(this.entity, IID_TechnologyManager);
+	const owner = Engine.QueryInterface(this.entity, IID_Ownership)?.GetOwner();
+	if (!owner || owner === INVALID_PLAYER)
+		return [];
+
+	const playerEnt = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetPlayerByID(owner);
+	if (!playerEnt)
+		return [];
+
+	const cmpTechnologyManager = Engine.QueryInterface(playerEnt, IID_TechnologyManager);
 	if (!cmpTechnologyManager)
 		return [];
 
-	const cmpPlayer = QueryOwnerInterface(this.entity);
+	const cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
 	if (!cmpPlayer)
 		return [];
-	const civ = cmpPlayer.GetCiv();
 
 	let techs = string.split(/\s+/);
 
 	// Replace the civ specific technologies.
+	const civ = Engine.QueryInterface(playerEnt, IID_Identity).GetCiv();
 	for (let i = 0; i < techs.length; ++i)
 	{
 		const tech = techs[i];

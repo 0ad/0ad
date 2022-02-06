@@ -222,11 +222,13 @@ class TemplateLoader
 	 */
 	buildPlayerTemplateName(civCode)
 	{
-		let templateName = this.PlayerPath + this.PlayerTemplatePrefix + civCode;
+		let templateName = this.PlayerPath + civCode;
 		if (Engine.TemplateExists(templateName))
 			return templateName;
 
-		return this.PlayerPath + this.PlayerTemplateFallback;
+		warn("No template found for civ " + civCode + ".");
+
+		return this.PlayerPath + this.DefaultCiv;
 	}
 
 	/**
@@ -321,16 +323,10 @@ class TemplateLoader
  * It might be nice if we could get these from somewhere, instead of having them hardcoded here.
  */
 TemplateLoader.prototype.AuraPath = "simulation/data/auras/";
-TemplateLoader.prototype.PlayerPath = "special/player/";
+TemplateLoader.prototype.PlayerPath = "special/players/";
 TemplateLoader.prototype.TechnologyPath = "simulation/data/technologies/";
 
 TemplateLoader.prototype.DefaultCiv = "gaia";
-
-/**
- * Expected prefix for player templates, and the file to use if a civ doesn't have its own.
- */
-TemplateLoader.prototype.PlayerTemplatePrefix = "player_";
-TemplateLoader.prototype.PlayerTemplateFallback = "player";
 
 /**
  * Keys of template values that are to be translated on load.

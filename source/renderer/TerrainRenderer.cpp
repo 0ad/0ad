@@ -37,6 +37,7 @@
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/World.h"
+#include "renderer/backend/gl/Device.h"
 #include "renderer/DecalRData.h"
 #include "renderer/PatchRData.h"
 #include "renderer/Renderer.h"
@@ -581,7 +582,7 @@ void TerrainRenderer::RenderWaterFoamOccluders(
 		return;
 
 	// Render normals and foam to a framebuffer if we're using fancy effects.
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, waterManager.m_FancyEffectsFBO);
+	deviceCommandContext->SetFramebuffer(waterManager.m_FancyEffectsFramebuffer.get());
 
 	// Overwrite waves that would be behind the ground.
 	CShaderTechniquePtr dummyTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
@@ -599,7 +600,8 @@ void TerrainRenderer::RenderWaterFoamOccluders(
 		data->RenderWaterShore(dummyShader);
 	dummyTech->EndPass();
 
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	deviceCommandContext->SetFramebuffer(
+		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 }
 
 void TerrainRenderer::RenderPriorities(int cullGroup)

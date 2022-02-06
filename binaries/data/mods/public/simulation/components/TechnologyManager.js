@@ -316,7 +316,7 @@ TechnologyManager.prototype.CanResearch = function(tech)
 	if (this.IsTechnologyResearched(tech))
 		return false;
 
-	return this.CheckTechnologyRequirements(DeriveTechnologyRequirements(template, Engine.QueryInterface(this.entity, IID_Player).GetCiv()));
+	return this.CheckTechnologyRequirements(DeriveTechnologyRequirements(template, Engine.QueryInterface(this.entity, IID_Identity).GetCiv()));
 };
 
 /**

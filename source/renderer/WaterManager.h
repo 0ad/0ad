@@ -27,6 +27,7 @@
 #include "maths/Matrix3D.h"
 #include "maths/Vector2D.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/gl/Framebuffer.h"
 #include "renderer/backend/gl/Texture.h"
 #include "renderer/VertexBufferManager.h"
 
@@ -105,9 +106,9 @@ public:
 	size_t m_RefTextureSize;
 
 	// framebuffer objects
-	GLuint m_RefractionFbo;
-	GLuint m_ReflectionFbo;
-	GLuint m_FancyEffectsFBO;
+	std::unique_ptr<Renderer::Backend::GL::CFramebuffer> m_RefractionFramebuffer;
+	std::unique_ptr<Renderer::Backend::GL::CFramebuffer> m_ReflectionFramebuffer;
+	std::unique_ptr<Renderer::Backend::GL::CFramebuffer> m_FancyEffectsFramebuffer;
 
 	// Model-view-projection matrices for reflected & refracted cameras
 	// (used to let the vertex shader do projective texturing)

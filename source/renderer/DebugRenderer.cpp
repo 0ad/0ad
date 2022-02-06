@@ -77,7 +77,7 @@ void CDebugRenderer::DrawLine(
 	const float width, const bool depthTestEnabled)
 {
 #if CONFIG2_GLES
-	UNUSED2(line); UNUSED2(color); UNUSED2(width);
+	UNUSED2(line); UNUSED2(color); UNUSED2(width); UNUSED2(depthTestEnabled);
 	#warning TODO: implement drawing line for GLES
 #else
 	CShaderTechniquePtr debugLineTech =

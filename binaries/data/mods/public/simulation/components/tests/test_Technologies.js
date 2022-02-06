@@ -74,7 +74,9 @@ AddMock(researcherID, IID_Ownership, {
 AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 	"GetPlayerByID": id => playerEntityID
 });
-
+AddMock(playerEntityID, IID_Identity, {
+	"GetCiv": () => "gaia"
+});
 template.cost = {
 	"food": 100
 };
@@ -85,7 +87,8 @@ const cmpPlayer = ConstructComponent(playerEntityID, "Player", {
 	"BarterMultiplier": {
 		"Buy": {},
 		"Sell": {}
-	}
+	},
+	"Formations": { "_string": "" }
 });
 const spyPlayerResSub = new Spy(cmpPlayer, "TrySubtractResources");
 const spyPlayerResRefund = new Spy(cmpPlayer, "RefundResources");

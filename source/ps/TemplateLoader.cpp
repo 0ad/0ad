@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -105,6 +105,21 @@ static Status AddToTemplates(const VfsPath& pathname, const CFileInfo& UNUSED(fi
 	return INFO::OK;
 }
 
+static Status AddToTemplatesUnrestricted(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)
+{
+	std::vector<std::string>& templates = *(std::vector<std::string>*)cbData;
+
+	VfsPath pathstem = pathname.ChangeExtension(L"");
+	std::string name = pathstem.string8().substr(ARRAY_SIZE(TEMPLATE_ROOT)-1);
+
+	// We want to ignore template_*.xml templates, since they may be incomplete.
+	if (name.substr(0, 9) == "template_")
+		return INFO::OK;
+
+	templates.push_back(name);
+	return INFO::OK;
+}
+
 static Status AddActorToTemplates(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 {
 	std::vector<std::string>& templates = *(std::vector<std::string>*)cbData;
@@ -140,6 +155,17 @@ std::vector<std::string> CTemplateLoader::FindTemplates(const std::string& path,
 
 	if (templatesType == ACTOR_TEMPLATES || templatesType == ALL_TEMPLATES)
 		WARN_IF_ERR(vfs::ForEachFile(g_VFS, VfsPath(ACTOR_ROOT) / path, AddActorToTemplates, (uintptr_t)&templates, L"*.xml", flags));
+
+	return templates;
+}
+
+std::vector<std::string> CTemplateLoader::FindTemplatesUnrestricted(const std::string& path, bool includeSubdirectories) const
+{
+	std::vector<std::string> templates;
+
+	size_t flags = includeSubdirectories ? vfs::DIR_RECURSIVE : 0;
+
+	WARN_IF_ERR(vfs::ForEachFile(g_VFS, VfsPath(TEMPLATE_ROOT) / path, AddToTemplatesUnrestricted, (uintptr_t)&templates, L"*.xml", flags));
 
 	return templates;
 }

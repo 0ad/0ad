@@ -40,9 +40,12 @@ function testEntitiesList()
 	});
 
 	AddMock(playerEntityID, IID_Player, {
-		"GetCiv": () => "iber",
 		"GetDisabledTemplates": () => ({}),
 		"GetPlayerID": () => playerId
+	});
+
+	AddMock(playerEntityID, IID_Identity, {
+		"GetCiv": () => "iber",
 	});
 
 	AddMock(builderId, IID_Ownership, {
@@ -66,7 +69,6 @@ function testEntitiesList()
 	});
 
 	AddMock(playerEntityID, IID_Player, {
-		"GetCiv": () => "iber",
 		"GetDisabledTemplates": () => ({ "structures/athen/barracks": true }),
 		"GetPlayerID": () => playerId
 	});
@@ -74,7 +76,6 @@ function testEntitiesList()
 	TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetEntitiesList(), ["structures/iber/barracks", "structures/iber/civil_centre", "structures/iber/house"]);
 
 	AddMock(playerEntityID, IID_Player, {
-		"GetCiv": () => "iber",
 		"GetDisabledTemplates": () => ({ "structures/iber/barracks": true }),
 		"GetPlayerID": () => playerId
 	});
@@ -82,9 +83,12 @@ function testEntitiesList()
 	TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetEntitiesList(), ["structures/iber/civil_centre", "structures/iber/house"]);
 
 	AddMock(playerEntityID, IID_Player, {
-		"GetCiv": () => "athen",
 		"GetDisabledTemplates": () => ({ "structures/athen/barracks": true }),
 		"GetPlayerID": () => playerId
+	});
+
+	AddMock(playerEntityID, IID_Identity, {
+		"GetCiv": () => "athen",
 	});
 
 	TS_ASSERT_UNEVAL_EQUALS(cmpBuilder.GetEntitiesList(), ["structures/athen/civil_centre", "structures/iber/house"]);

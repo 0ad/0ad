@@ -945,11 +945,6 @@ std::vector<std::string> CSimulation2::GetRMSData()
 	return GetJSONData(L"maps/random/");
 }
 
-std::vector<std::string> CSimulation2::GetCivData()
-{
-	return GetJSONData(L"simulation/data/civs/");
-}
-
 std::vector<std::string> CSimulation2::GetVictoryConditiondData()
 {
 	return GetJSONData(L"simulation/data/settings/victory_conditions/");

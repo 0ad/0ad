@@ -26,6 +26,7 @@
 #include "ps/CStrInternStatic.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
+#include "renderer/backend/gl/Device.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/TimeManager.h"
@@ -68,10 +69,8 @@ CLOSTexture::CLOSTexture(CSimulation2& simulation)
 
 CLOSTexture::~CLOSTexture()
 {
-	if (m_SmoothFBO1)
-		glDeleteFramebuffersEXT(1, &m_SmoothFBO1);
-	if (m_SmoothFBO2)
-		glDeleteFramebuffersEXT(1, &m_SmoothFBO2);
+	m_SmoothFramebuffers[0].reset();
+	m_SmoothFramebuffers[1].reset();
 
 	if (m_Texture)
 		DeleteTexture();
@@ -92,16 +91,14 @@ bool CLOSTexture::CreateShader()
 		return false;
 	}
 
-	glGenFramebuffersEXT(1, &m_SmoothFBO1);
-	glGenFramebuffersEXT(1, &m_SmoothFBO2);
 	return true;
 }
 
 void CLOSTexture::DeleteTexture()
 {
 	m_Texture.reset();
-	m_TextureSmooth1.reset();
-	m_TextureSmooth2.reset();
+	m_SmoothTextures[0].reset();
+	m_SmoothTextures[1].reset();
 }
 
 void CLOSTexture::MakeDirty()
@@ -114,7 +111,7 @@ Renderer::Backend::GL::CTexture* CLOSTexture::GetTextureSmooth()
 	if (CRenderer::IsInitialised() && !g_RenderingOptions.GetSmoothLOS())
 		return GetTexture();
 	else
-		return (m_WhichTex ? m_TextureSmooth1 : m_TextureSmooth2).get();
+		return m_SmoothTextures[m_WhichTexture].get();
 }
 
 void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
@@ -141,7 +138,7 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* d
 	if (skipSmoothLOS)
 		return;
 
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, (m_WhichTex ? m_SmoothFBO2 : m_SmoothFBO1));
+	deviceCommandContext->SetFramebuffer(m_SmoothFramebuffers[m_WhichTexture].get());
 
 	m_SmoothTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(
@@ -150,7 +147,7 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* d
 	const CShaderProgramPtr& shader = m_SmoothTech->GetShader();
 
 	shader->BindTexture(str_losTex1, m_Texture.get());
-	shader->BindTexture(str_losTex2, (m_WhichTex ? m_TextureSmooth1 : m_TextureSmooth2).get());
+	shader->BindTexture(str_losTex2, m_SmoothTextures[m_WhichTexture].get());
 
 	shader->Uniform(str_delta, (float)g_Renderer.GetTimeManager().GetFrameDelta() * 4.0f, 0.0f, 0.0f, 0.0f);
 
@@ -192,9 +189,10 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* d
 
 	m_SmoothTech->EndPass();
 
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	deviceCommandContext->SetFramebuffer(
+		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 
-	m_WhichTex = !m_WhichTex;
+	m_WhichTexture = 1u - m_WhichTexture;
 }
 
 
@@ -241,27 +239,23 @@ void CLOSTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext*
 
 	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS())
 	{
-		m_TextureSmooth1 = Renderer::Backend::GL::CTexture::Create2D(
+		m_SmoothTextures[0] = Renderer::Backend::GL::CTexture::Create2D(
 			Renderer::Backend::Format::A8, textureSize, textureSize, defaultSamplerDesc);
-		m_TextureSmooth2 = Renderer::Backend::GL::CTexture::Create2D(
+		m_SmoothTextures[1] = Renderer::Backend::GL::CTexture::Create2D(
 			Renderer::Backend::Format::A8, textureSize, textureSize, defaultSamplerDesc);
 
-		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_SmoothFBO1);
-		glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D,
-			m_TextureSmooth1->GetHandle(), 0);
-		GLenum status1 = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
-		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_SmoothFBO2);
-		glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D,
-			m_TextureSmooth2->GetHandle(), 0);
-		GLenum status2 = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
-		if (status1 != GL_FRAMEBUFFER_COMPLETE_EXT || status2 != GL_FRAMEBUFFER_COMPLETE_EXT)
+		m_SmoothFramebuffers[0] = Renderer::Backend::GL::CFramebuffer::Create(
+			m_SmoothTextures[0].get(), nullptr);
+		m_SmoothFramebuffers[1] = Renderer::Backend::GL::CFramebuffer::Create(
+			m_SmoothTextures[1].get(), nullptr);
+		if (!m_SmoothFramebuffers[0] || !m_SmoothFramebuffers[1])
 		{
-			LOGWARNING("LOS framebuffer object incomplete: 0x%04X 0x%04X", status1, status2);
+			LOGERROR("Failed to create LOS framebuffers");
+			g_RenderingOptions.SetSmoothLOS(false);
 		}
-		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 
-		deviceCommandContext->UploadTexture(m_TextureSmooth1.get(), Renderer::Backend::Format::A8, texData.get(), textureSize * textureSize);
-		deviceCommandContext->UploadTexture(m_TextureSmooth2.get(), Renderer::Backend::Format::A8, texData.get(), textureSize * textureSize);
+		deviceCommandContext->UploadTexture(m_SmoothTextures[0].get(), Renderer::Backend::Format::A8, texData.get(), textureSize * textureSize);
+		deviceCommandContext->UploadTexture(m_SmoothTextures[1].get(), Renderer::Backend::Format::A8, texData.get(), textureSize * textureSize);
 	}
 
 	deviceCommandContext->UploadTexture(m_Texture.get(), Renderer::Backend::Format::A8, texData.get(), textureSize * textureSize);
@@ -331,10 +325,10 @@ void CLOSTexture::RecomputeTexture(Renderer::Backend::GL::CDeviceCommandContext*
 	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS() && recreated)
 	{
 		deviceCommandContext->UploadTextureRegion(
-			m_TextureSmooth1.get(), Renderer::Backend::Format::A8, losData.get(),
+			m_SmoothTextures[0].get(), Renderer::Backend::Format::A8, losData.get(),
 			pitch * m_MapSize, 0, 0, pitch, m_MapSize);
 		deviceCommandContext->UploadTextureRegion(
-			m_TextureSmooth2.get(), Renderer::Backend::Format::A8, losData.get(),
+			m_SmoothTextures[1].get(), Renderer::Backend::Format::A8, losData.get(),
 			pitch * m_MapSize, 0, 0, pitch, m_MapSize);
 	}
 
