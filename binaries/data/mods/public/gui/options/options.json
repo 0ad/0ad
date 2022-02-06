@@ -154,7 +154,7 @@
 			{
 				"type": "dropdownNumber",
 				"label": "GUI scale",
-				"timeout": 500,
+				"timeout": 5000,
 				"tooltip": "GUI scale",
 				"config": "gui.scale",
 				"function": "SetGUIScale",

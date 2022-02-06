@@ -15,7 +15,7 @@ function messageBox(mbWidth, mbHeight, mbMessage, mbTitle, mbButtonCaptions, mbB
 		});
 }
 
-function timedConfirmation(width, height, message, timeout, title, buttonCaptions, btnCode, callbackArgs)
+function timedConfirmation(width, height, message, timeParameter, timeout, title, buttonCaptions, btnCode, callbackArgs)
 {
 	Engine.PushGuiPage(
 		"page_timedconfirmation.xml",
@@ -23,6 +23,7 @@ function timedConfirmation(width, height, message, timeout, title, buttonCaption
 			"width": width,
 			"height": height,
 			"message": message,
+			"timeParameter": timeParameter,
 			"timeout": timeout,
 			"title": title,
 			"buttonCaptions": buttonCaptions

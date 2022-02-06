@@ -167,8 +167,9 @@ var g_OptionType = {
 				return;
 			timedConfirmation(
 				500, 200,
-				translate("Do you want to keep changes?"),
-				500,
+				translate("Changes will be reverted in %(time)s seconds. Do you want to keep changes?"),
+				"time",
+				option.timeout,
 				translate("Warning"),
 				[translate("No"), translate("Yes")],
 				[() => {this.revertChange(option, +oldValue, hasChanges);}, null]
