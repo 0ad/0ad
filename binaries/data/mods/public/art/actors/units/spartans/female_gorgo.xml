@@ -4,12 +4,13 @@
   <group>
     <variant>
       <mesh>skeletal/new/f_dress.dae</mesh>
-      <textures>
-	    <texture file="skeletal/gown_green.dds" name="baseTex"/>
-	  </textures>
       <props>
-        <prop actor="props/units/heads/new/dudette_head.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_female_dudette_b.xml" attachpoint="head"/>
       </props>
+      <textures>
+	    <texture file="skeletal/spart/female_gorgo_01.png" name="baseTex"/>
+	    <texture file="skeletal/spart/female_gorgo_01_spec.png" name="specTex"/>
+	  </textures>
     </variant>
   </group>
   <group>
@@ -38,4 +39,5 @@
     <variant file="biped/female_build.xml"/>
     <variant file="biped/female_build_farm.xml"/>
   </group>
+  <material>player_trans_spec.xml</material>
 </actor>
