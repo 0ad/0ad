@@ -1,68 +1,55 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant>
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_a.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/spear_lance_cavalry.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/aspis_ptol_e.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/capes/rider/cape_med_player.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/sheath_xiphos.xml" attachpoint="sheath_02_L"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="Helmet Thracian B5 Crested">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b5_crested.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ptol_padded_agema_01">
       <textures>
-        <texture file="skeletal/spart_phalangite_officer.dds" name="baseTex"/>
+        <texture file="skeletal/ptol_padded_agema_01.png" name="baseTex"/>
+        <texture file="skeletal/ptol_thureophoros_e_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ptol_padded_agema_02">
+      <textures>
+        <texture file="skeletal/ptol_padded_agema_02.png" name="baseTex"/>
+        <texture file="skeletal/ptol_thureophoros_e_1_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="ptol_padded_agema_03">
+      <textures>
+        <texture file="skeletal/ptol_padded_agema_03.png" name="baseTex"/>
+        <texture file="skeletal/ptol_thureophoros_e_1_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Helmet-Thracian-01">
-      <props>
-        <prop actor="props/units/helmets/hele_thracian_romanized_b1.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Helmet-Thracian-02">
-      <props>
-        <prop actor="props/units/helmets/hele_thracian_romanized_b1_crested.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Greave-01">
-      <props>
-        <prop actor="props/units/armor/greave_07_bronze_l.xml" attachpoint="leg_L"/>
-        <prop actor="props/units/armor/greave_07_bronze_r.xml" attachpoint="leg_R"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Greave-02">
-      <props>
-        <prop actor="props/units/armor/greave_12_bronze_l.xml" attachpoint="leg_L"/>
-        <prop actor="props/units/armor/greave_12_bronze_r.xml" attachpoint="leg_R"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Greave-03">
-      <props>
-        <prop actor="props/units/armor/greave_09_bronze_l.xml" attachpoint="leg_L"/>
-        <prop actor="props/units/armor/greave_09_bronze_r.xml" attachpoint="leg_R"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Greave-04">
-      <props>
-        <prop actor="props/units/armor/greave_02_bronze_l.xml" attachpoint="leg_L"/>
-        <prop actor="props/units/armor/greave_02_bronze_r.xml" attachpoint="leg_R"/>
-      </props>
-    </variant>
-  </group>
-  <group>
-    <variant file="biped/rider/cavalry/base_spearman_relax_shield_aspis.xml" name="Spearman-Relax-Shield-Aspis" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_ready_shield_aspis_reverse.xml" name="Spearman-Relax-Shield-Aspis-Reverse" frequency="1"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/rider/attack_slaughter_shield_hele.xml"/>
-    <variant file="biped/rider/promotion_shield.xml" />
+    <variant file="biped/rider/promotion.xml" />
     <variant file="biped/gather_meat.xml"/>
-    <variant file="biped/rider/death_aspis.xml"/>
+    <variant file="biped/rider/death.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>
