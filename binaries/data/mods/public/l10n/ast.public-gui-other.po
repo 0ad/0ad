@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-31 08:08+0000\n"
-"PO-Revision-Date: 2022-02-04 02:36+0000\n"
+"PO-Revision-Date: 2022-02-06 01:00+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -462,7 +462,7 @@ msgstr "L'alcuentru está cargándose, volvi tentallo más sero."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr "Ia s’iniciou la partida, non se permittin spectadores."
+msgstr "Ya s’iniciou la partida, non se permittin spectadores."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
@@ -602,7 +602,7 @@ msgstr "Aggressivu"
 #: gui/common/settings.js:173
 msgctxt "map"
 msgid "Skirmish"
-msgstr "Confrontación"
+msgstr "Reincuöntru"
 
 #: gui/common/settings.js:174
 msgid ""
@@ -619,7 +619,7 @@ msgstr "Aleatorio"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr "Cría un terreiro único u la distribucion de recursos ie aleatoria. Excuöyye-se el númeru de jogadores & quadriellas."
+msgstr "Cría un terreiro único u la distribucion de recursos ye aleatoria. Excuöyye-se el númeru de jogadores & quadriellas."
 
 #: gui/common/settings.js:192
 msgctxt "map"
@@ -1614,7 +1614,7 @@ msgstr "Aceptar"
 #: gui/locale_advanced/locale_advanced.xml:(caption):65
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):51
 msgid "Cancel"
-msgstr "Encaboxar"
+msgstr "Incaboẍar"
 
 #: gui/hotkeys/hotkeys.xml:(heading):39
 msgctxt "hotkey list"
@@ -2011,12 +2011,12 @@ msgstr "Semeyya"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Close or cancel the current dialog box/popup."
-msgstr "Zarrar o encaboxar el ventanu de diálogu."
+msgstr "Cerrar ou incaboẍar la feniestra de diálogu."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.name
 msgctxt "hotkey metadata"
 msgid "Close/Cancel"
-msgstr "Zarrar/encaboxar"
+msgstr "Cerrar/incaboẍar"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
 msgctxt "hotkey metadata"
@@ -2031,12 +2031,12 @@ msgstr "Confimar"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the console."
-msgstr "Alternar la consola."
+msgstr "Alternar el terminal."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle Console"
-msgstr "Alternar la consola"
+msgstr "Alternar el terminal"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.desc
 msgctxt "hotkey metadata"
@@ -2203,7 +2203,7 @@ msgstr "Mover el punteru a la pallabra a mandrecha"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.desc
 msgctxt "hotkey metadata"
 msgid "Toggle fullscreen/windowed mode."
-msgstr "Cambiar entre los modos “vista completa” & “feniestra”."
+msgstr "Cambiar entre los modos “pantalla completa” & “feniestra”."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.name
 msgctxt "hotkey metadata"
@@ -2688,12 +2688,12 @@ msgstr "Desocupar un tipu d'unidá"
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys for the in-game user interface."
-msgstr "Los atayos de la interfaz del usuariu al xugar."
+msgstr "Atayyos del quadro de mandu in juögu."
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.name
 msgctxt "hotkey metadata"
 msgid "In-game GUI"
-msgstr "Interfaz del xuegu"
+msgstr "Quadro de mandu in juögu"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.desc
 msgctxt "hotkey metadata"
@@ -2850,12 +2850,12 @@ msgstr "Alternar los obxectivos"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle visibility of the in-game user interface."
-msgstr "Amostrar o anubrir la interfaz del usuariu al xugar."
+msgstr "Amostrar ou anubrir el quadro de mandu in juögu."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle GUI visibility"
-msgstr "Alternar l'interfaz del usuariu"
+msgstr "Alternar la visibilidá del quadro de mandu"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.desc
 msgctxt "hotkey metadata"
@@ -3044,12 +3044,12 @@ msgstr "Amestar a la esbilla"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Un-select all units and cancel building placement."
-msgstr "Desesbillar unidades o encaboxar l'allugamientu d'edificios."
+msgstr "Dis-excoyyer unidades ou incaboẍar l’edificio."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
 msgctxt "hotkey metadata"
 msgid "Cancel selection"
-msgstr "Encaboxar la esbilla"
+msgstr "Incaboẍar la excolleitha"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.0.desc
 msgctxt "hotkey metadata"
@@ -4051,7 +4051,7 @@ msgstr "VSync"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Executar “sync vertical” pa eguar ingurrias na vista del visor. REQUIER EL REINICIO DEL JUÖGU"
+msgstr "Executar “sync vertical” pa eguar ingurrias na pantalla. REQUIER EL REINICIO DEL JUÖGU"
 
 #: gui/options/options.json[1].options[7].label
 msgid "FPS throttling in menus"
@@ -4076,7 +4076,7 @@ msgstr "Tasar la frecuencia gráfica nos alcuentros p'aforrar trabayu al ordenad
 #: gui/options/options.json[1].options[9].label
 #: gui/options/options.json[1].options[9].tooltip
 msgid "GUI scale"
-msgstr "Escala de la interfaz gráfica"
+msgstr "Scala del quadro de mandu"
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "75%"
@@ -5738,13 +5738,13 @@ msgstr "[imgleft=\"constructionIcon\"]Esti xuegu sigue en desendolcu. Ye posible
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr "[imgleft=\"iconLag\"]Puöden dá-se problemas de rendimiento, subre maneira si’l terreiro ie grande ou las unidades numerosas."
+msgstr "[imgleft=\"iconLag\"]Puöden dá-se problemas de rendimiento, subre maneira si’l terreiro ye grande ou las unidades numerosas."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr "[imgleft=\"iconMap\"]0 A.D. ie un programma lhibre: puödes participar nel sou disindolcu."
+msgstr "[imgleft=\"iconMap\"]0 A.D. ye un programma lhibre: puödes participar nel sou disindolcu."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
@@ -6263,7 +6263,7 @@ msgstr "Todos dous se crían in Templo n vez del Castiello, a differencia de la 
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr "Usa los hasteiros paha baltiar équites. Usa los équites p’acabar cun máchines bélliques & excursores."
+msgstr "Usa los hasteiros p’acabar cun éqüites. Usa los éqüites p’acabar cun máchinas béllicas & excursores."
 
 #: gui/text/tips/carth_shipyard.txt:1
 msgid "CARTHAGINIAN NAVAL SHIPYARD"
@@ -6271,7 +6271,7 @@ msgstr "COTÓN CARTAXINÉS"
 
 #: gui/text/tips/carth_shipyard.txt:2
 msgid "Special dock of the Carthaginians to construct warships."
-msgstr "Puörtu militar que ie exclusivu de los carthagineses."
+msgstr "Puörtu militar que ye exclusivu de los carthagineses."
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."

@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-01-24 08:09+0000\n"
-"PO-Revision-Date: 2022-01-31 02:54+0000\n"
+"POT-Creation-Date: 2022-02-04 08:08+0000\n"
+"PO-Revision-Date: 2022-02-05 21:50+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -459,7 +459,7 @@ msgstr "Can béllicu"
 
 #: simulation/templates/template_unit_dog.xml:32
 msgid "Cannot attack Structures, Ships, or Siege Engines."
-msgstr "Nun ie a aggredir construcciones, barcos nin máchinas."
+msgstr "Nun ye a aggredir construcciones, barcos nin máchinas."
 
 #: simulation/templates/template_unit_dog.xml:34
 msgid "Dog"
@@ -658,7 +658,7 @@ msgstr "Amburiega"
 
 #: simulation/templates/template_unit_ship_fire.xml:41
 msgid "Unrepairable. Gradually loses health. Can only attack Ships."
-msgstr "Nun ie eguable. Vai perdiendo vida. Solo puöde aggredir barcos."
+msgstr "Nun ye eguable. Vai perdiendo vida. Solo puöde aggredir barcos."
 
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Fireship"
@@ -760,7 +760,7 @@ msgstr "Ariete"
 
 #: simulation/templates/template_unit_siege_ram.xml:36
 msgid "Cannot attack Fields or Organic Units."
-msgstr "Nun ie a aggredir panales nin unidades orgánicas."
+msgstr "Nun ye a aggredir panales nin unidades orgánicas."
 
 #: simulation/templates/template_unit_siege_ram.xml:37
 msgid "Ram"
@@ -1170,7 +1170,6 @@ msgid "Ploîon Phortēgikón"
 msgstr "Ploîon Phortēgikón"
 
 #: simulation/templates/units/athen/ship_trireme.xml:8
-#: simulation/templates/units/mace/ship_trireme.xml:9
 #: simulation/templates/units/spart/ship_trireme.xml:9
 msgid "Triḗrēs Athēnaía"
 msgstr "Triḗrēs Athēnaía"
@@ -2040,9 +2039,13 @@ msgstr "Sphendonḗtēs Rhódios"
 msgid "Hemiolos"
 msgstr "Hēmíolos"
 
+#: simulation/templates/units/mace/ship_trireme.xml:9
+msgid "Triḗrēs Makedonikḗ"
+msgstr "Triḗrēs Makedonikḗ"
+
 #: simulation/templates/units/mace/ship_trireme.xml:10
 msgid "Macedonian Trireme"
-msgstr "Triere athenea"
+msgstr "Triere macedónica"
 
 #: simulation/templates/units/mace/siege_tower.xml:5
 #: simulation/templates/units/ptol/siege_tower.xml:5

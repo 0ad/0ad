@@ -20,6 +20,7 @@
 # giangy
 # Gianluca Luparini
 # Giuseppe D'Addio
+# Ioma Taani
 # Italang
 # Luca Errani
 # Martin Falanga
@@ -45,8 +46,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-31 08:08+0000\n"
-"PO-Revision-Date: 2021-12-31 08:25+0000\n"
-"Last-Translator: Transifex Bot\n"
+"PO-Revision-Date: 2022-02-06 14:34+0000\n"
+"Last-Translator: Ioma Taani\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -293,7 +294,7 @@ msgstr "disabilitato"
 
 #: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
-msgstr ""
+msgstr "Per il primo minuto, gli altri giocatori rimangono neutrali."
 
 #: gui/common/gamedescription.js:279
 #, javascript-format
@@ -4154,27 +4155,27 @@ msgstr "Grafiche (avanzate)"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Renderer backend"
-msgstr ""
+msgstr "Renderer di backend"
 
 #: gui/options/options.json[2].options[0].list[0].label
 msgid "OpenGL"
-msgstr ""
+msgstr "OpenGL"
 
 #: gui/options/options.json[2].options[0].list[0].tooltip
 msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Backend OpenGL predefinito con GLSL. RICHIEDE IL RIAVVIO DEL GIOCO"
 
 #: gui/options/options.json[2].options[0].list[1].label
 msgid "OpenGL ARB"
-msgstr ""
+msgstr "OpenGL ARB"
 
 #: gui/options/options.json[2].options[0].list[1].tooltip
 msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Backend OpenGL legacy con shader ARB. RICHIEDE IL RIAVVIO DEL GIOCO"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Scegli il renderer di backend. RICHIEDE IL RIAVVIO DEL GIOCO"
 
 #: gui/options/options.json[2].options[10].label
 msgid "Quality"
