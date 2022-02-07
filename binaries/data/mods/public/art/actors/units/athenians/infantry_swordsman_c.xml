@@ -65,29 +65,29 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="hele-padded-marine-1a">
+    <variant frequency="1" name="padded_marine_01_01">
       <textures>
-        <texture file="skeletal/hele_padded_marine_1_a.png" name="baseTex"/>
+        <texture file="skeletal/athen/padded_marine_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="hele-tunic-marine-1a">
+    <variant frequency="1" name="tunic_marine_01_01">
       <textures>
-        <texture file="skeletal/hele_tunic_marine_1_a.png" name="baseTex"/>
+        <texture file="skeletal/athen/tunic_marine_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="hele-tunic-marine-1b">
+    <variant frequency="1" name="tunic_marine_01_02">
       <textures>
-        <texture file="skeletal/hele_tunic_marine_1_b.png" name="baseTex"/>
+        <texture file="skeletal/athen/tunic_marine_01_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="hele-tunic-marine-1c">
+    <variant frequency="1" name="tunic_marine_01_03">
       <textures>
-        <texture file="skeletal/hele_tunic_marine_1_c.png" name="baseTex"/>
+        <texture file="skeletal/athen/tunic_marine_01_03.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="hele-tunic-marine-1d">
+    <variant frequency="1" name="tunic_marine_01_04">
       <textures>
-        <texture file="skeletal/hele_tunic_marine_1_d.png" name="baseTex"/>
+        <texture file="skeletal/athen/tunic_marine_01_04.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -95,6 +95,7 @@
     <variant file="biped/base_swordsman_shieldarm_relax.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>

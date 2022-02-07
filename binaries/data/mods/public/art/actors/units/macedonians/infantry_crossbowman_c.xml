@@ -13,24 +13,24 @@
     </variant>
   </group>
   <group>
-    <variant name="Armor-Padded-Linothorax-01">
+    <variant name="epilektoi-4">
       <textures>
-        <texture file="skeletal/hele_epilektoi_8.png" name="baseTex"/>
+        <texture file="skeletal/athen/epilektos_04.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="Armor-Padded-Linothorax-02">
+    <variant name="epilektoi-7">
       <textures>
-        <texture file="skeletal/hele_epilektoi_9.png" name="baseTex"/>
+        <texture file="skeletal/athen/epilektos_07.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="Armor-Padded-Psiloi-01">
+    <variant name="epilektoi-8">
       <textures>
-        <texture file="skeletal/hele_psiloi_padded_1_c.png" name="baseTex"/>
+        <texture file="skeletal/athen/epilektos_08.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="Armor-Padded-Psiloi-02">
+    <variant name="epilektoi-10">
       <textures>
-        <texture file="skeletal/hele_psiloi_padded_1_d.png" name="baseTex"/>
+        <texture file="skeletal/athen/epilektos_10.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -39,6 +39,7 @@
     <variant file="biped/attack_ranged_gastraphetes_fire.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
