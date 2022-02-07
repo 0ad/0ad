@@ -9,9 +9,6 @@
         <prop actor="props/units/shields/aspis_athen_c.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
       </props>
-      <textures>
-        <texture file="skeletal/athen_epilektos_1.png" name="baseTex"/>
-      </textures>
     </variant>
   </group>
   <group>
@@ -47,60 +44,54 @@
     </variant>
   </group>
   <group>
-    <variant name="epilektoi-original">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
-      <textures>
-        <texture file="skeletal/athen_epilektos_1.png" name="baseTex"/>
-      </textures>
-    </variant>
     <variant name="epilektoi-1">
       <textures>
-        <texture file="skeletal/hele_epilektoi_1.png" name="baseTex"/>
+        <texture file="skeletal/athen/epilektos_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant name="epilektoi-2">
       <textures>
-        <texture file="skeletal/hele_epilektoi_2.png" name="baseTex"/>
+        <texture file="skeletal/athen/epilektos_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant name="epilektoi-3">
       <textures>
-        <texture file="skeletal/hele_epilektoi_3.png" name="baseTex"/>
+        <texture file="skeletal/athen/epilektos_03.png" name="baseTex"/>
       </textures>
     </variant>
     <variant name="epilektoi-4">
       <textures>
-        <texture file="skeletal/hele_epilektoi_4.png" name="baseTex"/>
+        <texture file="skeletal/athen/epilektos_04.png" name="baseTex"/>
       </textures>
     </variant>
     <variant name="epilektoi-5">
       <textures>
-        <texture file="skeletal/hele_epilektoi_5.png" name="baseTex"/>
+        <texture file="skeletal/athen/epilektos_05.png" name="baseTex"/>
       </textures>
     </variant>
     <variant name="epilektoi-6">
       <textures>
-        <texture file="skeletal/hele_epilektoi_6.png" name="baseTex"/>
+        <texture file="skeletal/athen/epilektos_06.png" name="baseTex"/>
       </textures>
     </variant>
     <variant name="epilektoi-7">
       <textures>
-        <texture file="skeletal/hele_epilektoi_7.png" name="baseTex"/>
+        <texture file="skeletal/athen/epilektos_07.png" name="baseTex"/>
       </textures>
     </variant>
     <variant name="epilektoi-8">
       <textures>
-        <texture file="skeletal/hele_epilektoi_8.png" name="baseTex"/>
+        <texture file="skeletal/athen/epilektos_08.png" name="baseTex"/>
       </textures>
     </variant>
     <variant name="epilektoi-9">
       <textures>
-        <texture file="skeletal/hele_epilektoi_9.png" name="baseTex"/>
+        <texture file="skeletal/athen/epilektos_09.png" name="baseTex"/>
       </textures>
     </variant>
     <variant name="epilektoi-10">
       <textures>
-        <texture file="skeletal/hele_epilektoi_10.png" name="baseTex"/>
+        <texture file="skeletal/athen/epilektos_10.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -115,6 +106,7 @@
       </props>
     </variant>
     <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <group>

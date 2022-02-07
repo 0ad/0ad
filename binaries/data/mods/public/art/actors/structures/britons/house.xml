@@ -3,6 +3,9 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Briton House">
+      <props>
+        <prop actor="particle/smoke_small_light.xml" attachpoint="smoke"/>
+      </props>
       <textures>
         <texture file="structural/brit_struct_1.png" name="baseTex"/>
         <texture file="structural/celt_struct_1_norm.png" name="normTex"/>
@@ -11,45 +14,53 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Briton House A">
-      <mesh>structural/brit_house_a.dae</mesh>
+    <variant frequency="1" name="House 01">
+      <mesh>structural/brit_house_01.dae</mesh>
       <props>
-        <prop actor="props/structures/britons/house_a_props_1.xml" attachpoint="root"/>
-        <prop actor="props/structures/britons/house_a_props_new.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/house_a_props_1.xml" attachpoint="props"/>
+        <prop actor="props/structures/britons/house_a_props_new.xml" attachpoint="props"/>
       </props>
       <textures>
         <texture file="structural/ao/brit_house_a.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Briton House B">
-      <mesh>structural/brit_house_b.dae</mesh>
+    <variant frequency="1" name="House 02">
+      <mesh>structural/brit_house_02.dae</mesh>
       <props>
-        <prop actor="props/structures/britons/house_b_props_new.xml" attachpoint="root"/>
-        <prop actor="props/structures/britons/house_b_props_1.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/house_b_props_new.xml" attachpoint="props"/>
+        <prop actor="props/structures/britons/house_b_props_1.xml" attachpoint="props"/>
       </props>
       <textures>
         <texture file="structural/ao/brit_house_b.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Briton House C">
-      <mesh>structural/brit_house_c.dae</mesh>
+    <variant frequency="1" name="House 03">
+      <mesh>structural/brit_house_03.dae</mesh>
       <props>
-        <prop actor="props/structures/britons/house_c_props_new.xml" attachpoint="root"/>
-        <prop actor="props/structures/britons/house_c_props_1.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/house_c_props_new.xml" attachpoint="props"/>
+        <prop actor="props/structures/britons/house_c_props_1.xml" attachpoint="props"/>
       </props>
       <textures>
         <texture file="structural/ao/brit_house_c.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Briton House D">
-      <mesh>structural/brit_house_d.dae</mesh>
+    <variant frequency="1" name="House 04">
+      <mesh>structural/brit_house_04.dae</mesh>
       <props>
-        <prop actor="props/structures/britons/house_d_props_new.xml" attachpoint="root"/>
-        <prop actor="props/structures/britons/house_d_props_1.xml" attachpoint="root"/>
+        <prop actor="props/structures/britons/house_d_props_new.xml" attachpoint="props"/>
+        <prop actor="props/structures/britons/house_d_props_1.xml" attachpoint="props"/>
       </props>
       <textures>
         <texture file="structural/ao/brit_house_d.png" name="aoTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_celt.xml" attachpoint="garrisoned"/>
+      </props>
     </variant>
   </group>
   <group>

@@ -14,28 +14,64 @@
     </variant>
   </group>
   <group>
-    <variant frequency="3" name="new_1">
-      <mesh>structural/ptol_house_new_1.dae</mesh>
+    <variant frequency="1" name="House 01">
+      <mesh>structural/ptol_house_01.dae</mesh>
       <textures>
-        <texture file="structural/ao/ptol_house_new_1_AO.png" name="aoTex"/>
+        <texture file="structural/ao/ptol_house_01.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="3" name="new_2">
-      <mesh>structural/ptol_house_new_2.dae</mesh>
+    <variant frequency="1" name="House 02">
+      <mesh>structural/ptol_house_02.dae</mesh>
       <textures>
-        <texture file="structural/ao/ptol_house_new_2_AO.png" name="aoTex"/>
+        <texture file="structural/ao/ptol_house_02.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="3" name="new_3">
-      <mesh>structural/ptol_house_new_3.dae</mesh>
+    <variant frequency="1" name="House 03">
+      <mesh>structural/ptol_house_03.dae</mesh>
       <textures>
-        <texture file="structural/ao/ptol_house_new_3_AO.png" name="aoTex"/>
+        <texture file="structural/ao/ptol_house_03.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="3" name="new_4">
-      <mesh>structural/ptol_house_new_4.dae</mesh>
+    <variant frequency="1" name="House 04">
+      <mesh>structural/ptol_house_04.dae</mesh>
       <textures>
-        <texture file="structural/ao/ptol_house_new_4_AO.png" name="aoTex"/>
+        <texture file="structural/ao/ptol_house_04.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="House 05">
+      <mesh>structural/ptol_house_05.dae</mesh>
+      <textures>
+        <texture file="structural/ao/ptol_house_05.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="House 06">
+      <mesh>structural/ptol_house_06.dae</mesh>
+      <textures>
+        <texture file="structural/ao/ptol_house_06.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="House 07">
+      <mesh>structural/ptol_house_07.dae</mesh>
+      <textures>
+        <texture file="structural/ao/ptol_house_07.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="House 08">
+      <mesh>structural/ptol_house_08.dae</mesh>
+      <textures>
+        <texture file="structural/ao/ptol_house_08.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="House 09">
+      <mesh>structural/ptol_house_09.dae</mesh>
+      <textures>
+        <texture file="structural/ao/ptol_house_09.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="House 10">
+      <mesh>structural/ptol_house_10.dae</mesh>
+      <textures>
+        <texture file="structural/ao/ptol_house_10.png" name="aoTex"/>
       </textures>
     </variant>
   </group>

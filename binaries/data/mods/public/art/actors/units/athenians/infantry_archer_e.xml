@@ -66,50 +66,29 @@
     </variant>
   </group>
   <group>
-    <variant name="psiloi-original">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
-      <textures>
-        <texture file="skeletal/hele_iar_e.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant name="psiloi-1">
-      <textures>
-        <texture file="skeletal/hele_psiloi_padded_1_a.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant name="psiloi-2">
+    <variant name="psiloi_padded_01_02">
       <textures>
         <texture file="skeletal/hele_psiloi_padded_1_b.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="psiloi-3">
+    <variant name="psiloi_padded_01_03">
       <textures>
         <texture file="skeletal/hele_psiloi_padded_1_c.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="psiloi-4">
+    <variant name="epilektos_03">
       <textures>
-        <texture file="skeletal/hele_psiloi_padded_1_d.png" name="baseTex"/>
+        <texture file="skeletal/athen/epilektos_03.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="psiloi-5">
+    <variant name="epilektos_08">
       <textures>
-        <texture file="skeletal/hele_epilektoi_7.png" name="baseTex"/>
+        <texture file="skeletal/athen/epilektos_08.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="psiloi-6">
+    <variant name="epilektos_09">
       <textures>
-        <texture file="skeletal/hele_epilektoi_4.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant name="psiloi-7">
-      <textures>
-        <texture file="skeletal/hele_epilektoi_9.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant name="psiloi-8">
-      <textures>
-        <texture file="skeletal/hele_epilektoi_10.png" name="baseTex"/>
+        <texture file="skeletal/athen/epilektos_09.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

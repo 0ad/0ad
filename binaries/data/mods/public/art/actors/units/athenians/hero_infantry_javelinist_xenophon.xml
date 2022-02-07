@@ -11,7 +11,7 @@
         <prop actor="props/units/weapons/spear_reverse.xml" attachpoint="weapon_R"/>
       </props>
       <textures>
-        <texture file="skeletal/hele_xenophon.dds" name="baseTex"/>
+        <texture file="skeletal/athen/linothorax_lamellar_xenophon.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -20,6 +20,7 @@
     <variant file="biped/attack_ranged_javelinist.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
