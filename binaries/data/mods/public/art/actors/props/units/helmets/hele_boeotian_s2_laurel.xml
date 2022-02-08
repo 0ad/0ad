@@ -7,10 +7,6 @@
       <props>
         <prop actor="props/units/helmets/props/laurel_boeotian.xml" attachpoint="root"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Silver">
       <textures>
         <texture file="props/helmet/hele_boeotian_02_silver.png" name="baseTex"/>
         <texture file="props/helmet/hele_boeotian_02_norm.png" name="normTex"/>
@@ -24,11 +20,7 @@
         <prop actor="props/units/helmets/props/hele_crest_bronze_01.xml" attachpoint="crest"/>
       </props>
     </variant>
-    <variant frequency="3" name="No Crest">
-      <props>
-        <prop actor="" attachpoint="crest"/>
-      </props>
-    </variant>
+    <variant frequency="3" name="No Crest"/>
   </group>
-  <material>basic_trans_parallax_spec.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

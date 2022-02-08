@@ -8,6 +8,7 @@
         <prop actor="props/units/heads/new/head_hele_e.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/aspis_spart_c.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/weapons/sheath_xiphos.xml" attachpoint="sheath_02_L"/>
         <prop actor="props/units/capes/cape_long_player.xml" attachpoint="root"/>
       </props>
     </variant>
@@ -87,13 +88,14 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_hoplite_fast.xml" name="Hoplite-Fast" frequency="1"/>
+    <variant file="biped/base_hoplite.xml" name="Hoplite-Relax" frequency="1"/>
     <variant file="biped/attack_capture.xml">
       <props>
         <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>
       </props>
     </variant>
     <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_cape_long.xml"/>
     <variant file="biped/formations/phalanx_front.xml"/>
     <variant file="biped/formations/phalanx_mid.xml"/>

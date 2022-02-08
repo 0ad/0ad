@@ -3,7 +3,7 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/shields/iberian_buckler_elite.xml" attachpoint="shield"/>
@@ -23,52 +23,19 @@
     </variant>
   </group>
   <group>
-    <variant frequency="0" name="Padded-1a">
-      <textures>
-        <texture file="skeletal/cart_padded_1_a.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="0" name="Padded-1b">
-      <textures>
-        <texture file="skeletal/cart_padded_1_b.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="0" name="Padded-1c">
-      <textures>
-        <texture file="skeletal/cart_padded_1_c.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="0" name="Linothorax-1c">
-      <textures>
-        <texture file="skeletal/cart_linothorax_1_c.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="0" name="Linothorax-1d">
-      <textures>
-        <texture file="skeletal/cart_linothorax_1_d.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="0" name="Linothorax-1e">
-      <textures>
-        <texture file="skeletal/cart_linothorax_1_e.png" name="baseTex"/>
-      </textures>
-    </variant>
     <variant frequency="1" name="Arab-Padded-1a">
-      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/arab_padded_1_a.png" name="baseTex"/>
+        <texture file="skeletal/arab/padded_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Arab-Padded-1b">
-      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/arab_padded_1_b.png" name="baseTex"/>
+        <texture file="skeletal/arab/padded_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Arab-Padded-1c">
-      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/arab_padded_1_c.png" name="baseTex"/>
+        <texture file="skeletal/arab/padded_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

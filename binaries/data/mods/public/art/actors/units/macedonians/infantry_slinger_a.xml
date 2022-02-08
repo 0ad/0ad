@@ -9,40 +9,37 @@
         <prop actor="props/units/helmets/hele_straw_01.xml" attachpoint="helmet"/>
         <prop actor="props/units/mace_sling_pouch.xml" attachpoint="sheath_L"/>
       </props>
-      <textures>
-        <texture file="skeletal/hele_isp_b_2.dds" name="baseTex"/>
-      </textures>
     </variant>
   </group>
   <group>
-    <variant name="illy-tunic-basic-01-d">
+    <variant frequency="1" name="illy-tunic-basic-01-d">
       <textures>
         <texture file="skeletal/illy_tunic_01_basic_d.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="illy-tunic-basic-01-e">
+    <variant frequency="1" name="illy-tunic-basic-01-e">
       <textures>
         <texture file="skeletal/illy_tunic_01_basic_e.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="illy-tunic-basic-01-f">
+    <variant frequency="1" name="illy-tunic-basic-01-f">
       <textures>
         <texture file="skeletal/illy_tunic_01_basic_f.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="hele-tunic-marine-1a">
+    <variant frequency="1" name="tunic_marine_01_01">
       <textures>
-        <texture file="skeletal/hele_tunic_marine_1_a.png" name="baseTex"/>
+        <texture file="skeletal/athen/tunic_marine_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="hele-tunic-marine-1b">
+    <variant frequency="1" name="tunic_marine_01_02">
       <textures>
-        <texture file="skeletal/hele_tunic_marine_1_b.png" name="baseTex"/>
+        <texture file="skeletal/athen/tunic_marine_01_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="hele-tunic-marine-1c">
+    <variant frequency="1" name="tunic_marine_01_03">
       <textures>
-        <texture file="skeletal/hele_tunic_marine_1_c.png" name="baseTex"/>
+        <texture file="skeletal/athen/tunic_marine_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

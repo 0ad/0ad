@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-01-07 08:19+0000\n"
-"PO-Revision-Date: 2022-02-04 02:02+0000\n"
+"PO-Revision-Date: 2022-02-05 23:49+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr "disconnoz-se el subtypu (veia-se los registros)"
 
 #: lobby/XmppClient.cpp:1355
 msgid "The certificate is not trusted."
-msgstr "El certificado nun ie d’infoutu."
+msgstr "El certificado nun ye d’infoutu."
 
 #: lobby/XmppClient.cpp:1356
 msgid "The certificate hasn't got a known issuer."
@@ -94,7 +94,7 @@ msgstr "Nun ha hi errores"
 
 #: lobby/XmppClient.cpp:1388
 msgid "Player already logged in"
-msgstr "El jogador ia iniciou session"
+msgstr "El jogador ya iniciou session"
 
 #: lobby/XmppClient.cpp:1390
 msgid "Forbidden"
@@ -138,7 +138,7 @@ msgstr "Non se suffita la version del fluxu intrante"
 
 #: lobby/XmppClient.cpp:1433
 msgid "The stream has been closed by the server"
-msgstr "El fluxu concludiu-llu el servidor"
+msgstr "El fluxu concluiu-llu el servidor"
 
 #: lobby/XmppClient.cpp:1437
 msgid "An I/O error occurred"
@@ -168,7 +168,7 @@ msgstr "El servidor nun offriu’l cifrado TLS que se requier"
 
 #: lobby/XmppClient.cpp:1446
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Fallou l’authenticacion. La clave nun ie correcta ou la cuönta nun existi"
+msgstr "Fallou l’authenticacion. La clave nun ye correcta ou la cuönta nun existi"
 
 #: lobby/XmppClient.cpp:1447
 msgid "The user or system requested a disconnect"
@@ -188,7 +188,7 @@ msgstr "Non s’aporriu toda la informacion precisa"
 
 #: lobby/XmppClient.cpp:1471
 msgid "Username already exists"
-msgstr "Ia existi’l nome d’usuariu"
+msgstr "Ya existi’l nome d’usuariu"
 
 #: ps/Mod.cpp:82
 #, c-format
@@ -262,4 +262,4 @@ msgstr "compilacion personalizada"
 #: renderer/Renderer.cpp:754 renderer/Renderer.cpp:757
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "El/la semeyyu/a archivou-se in “%s”"
+msgstr "El semeyyu archivou-se in “%s”"
