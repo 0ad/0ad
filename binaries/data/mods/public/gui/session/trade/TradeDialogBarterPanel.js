@@ -20,7 +20,7 @@ TradeDialog.prototype.BarterPanel = class
 	update()
 	{
 		let playerState = GetSimState().players[g_ViewedPlayer];
-		let canBarter = playerState && playerState.canBarter;
+		const canBarter = playerState && playerState.canBarter || false;
 
 		this.barterButtonManager.setViewedPlayer(g_ViewedPlayer);
 		this.barterButtonManager.update();
