@@ -9,6 +9,9 @@
         <prop actor="props/units/weapons/spear_lance_cavalry.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/aspis_kart_b.xml" attachpoint="shield_arm"/>
       </props>
+      <textures>
+        <texture file="skeletal/ital/tunic_belt_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -39,25 +42,35 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="tunic-1">
+    <variant frequency="1" name="tunic_pattern_02_01">
       <textures>
-        <texture file="skeletal/kart_csp_b_1.dds" name="baseTex"/>
-      </textures>
+	    <texture file="skeletal/ital/tunic_pattern_02_01.png" name="baseTex"/>
+	  </textures>
     </variant>
-    <variant frequency="1" name="tunic-2">
+    <variant frequency="1" name="tunic_pattern_02_02">
       <textures>
-        <texture file="skeletal/kart_csp_b_2.dds" name="baseTex"/>
-      </textures>
+	    <texture file="skeletal/ital/tunic_pattern_02_02.png" name="baseTex"/>
+	  </textures>
     </variant>
-    <variant frequency="1" name="tunic-3">
+    <variant frequency="1" name="tunic_pattern_02_03">
       <textures>
-        <texture file="skeletal/kart_csp_b_3.dds" name="baseTex"/>
-      </textures>
+	    <texture file="skeletal/ital/tunic_pattern_02_03.png" name="baseTex"/>
+	  </textures>
     </variant>
-    <variant frequency="1" name="tunic-4">
+    <variant frequency="1" name="tunic_pattern_05_01">
       <textures>
-        <texture file="skeletal/kart_csp_b_4.dds" name="baseTex"/>
-      </textures>
+	    <texture file="skeletal/ital/tunic_pattern_05_01.png" name="baseTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="tunic_pattern_05_02">
+      <textures>
+	    <texture file="skeletal/ital/tunic_pattern_05_02.png" name="baseTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="tunic_pattern_05_03">
+      <textures>
+	    <texture file="skeletal/ital/tunic_pattern_05_03.png" name="baseTex"/>
+	  </textures>
     </variant>
   </group>
   <group>
@@ -71,5 +84,5 @@
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death_aspis.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
