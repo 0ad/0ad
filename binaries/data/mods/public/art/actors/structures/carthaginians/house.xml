@@ -2,44 +2,52 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="10" name="House A">
-      <mesh>structural/kart_house_a.dae</mesh>
+    <variant frequency="1" name="Carthaginian House">
       <props>
-        <prop actor="props/structures/carthaginians/house_a.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
       </props>
-      <textures>
-        <texture file="structural/ao/kart_house_a_AO.png" name="aoTex"/>
-      </textures>
-    </variant>
-    <variant frequency="10" name="House B">
-      <mesh>structural/kart_house_b.dae</mesh>
-      <props>
-        <prop actor="props/structures/carthaginians/house_b.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="structural/ao/kart_house_b_AO.png" name="aoTex"/>
-      </textures>
-    </variant>
-    <variant frequency="10" name="House C">
-      <mesh>structural/kart_house_c.dae</mesh>
-      <props>
-        <prop actor="props/structures/carthaginians/house_c.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_small.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="structural/ao/kart_house_c_AO.png" name="aoTex"/>
-      </textures>
-    </variant>
-  </group>
-  <group>
-    <variant>
       <textures>
         <texture file="structural/kart_struct.dds" name="baseTex"/>
         <texture file="structural/kart_struct_norm.png" name="normTex"/>
         <texture file="structural/kart_struct_spec.png" name="specTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="House 01">
+      <mesh>structural/kart_house_01.dae</mesh>
+      <props>
+        <prop actor="props/structures/carthaginians/house_a.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/ao/kart_house_01.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="House 02">
+      <mesh>structural/kart_house_02.dae</mesh>
+      <props>
+        <prop actor="props/structures/carthaginians/house_b.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/ao/kart_house_02.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="House 03">
+      <mesh>structural/kart_house_03.dae</mesh>
+      <props>
+        <prop actor="props/structures/carthaginians/house_c.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/ao/kart_house_03.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_kart.xml" attachpoint="garrisoned"/>
+      </props>
     </variant>
   </group>
   <group>
