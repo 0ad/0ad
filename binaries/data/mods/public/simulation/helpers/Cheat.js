@@ -35,11 +35,12 @@ function Cheat(input)
 		return;
 	}
 	case "convertunit":
+		const playerID = (input.parameter > 1 && QueryPlayerIDInterface(input.parameter) || cmpPlayer).GetPlayerID();
 		for (let ent of input.selected)
 		{
 			let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 			if (cmpOwnership)
-				cmpOwnership.SetOwner(cmpPlayer.GetPlayerID());
+				cmpOwnership.SetOwner(playerID);
 		}
 		return;
 	case "killunits":
