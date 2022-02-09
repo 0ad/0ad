@@ -3,15 +3,56 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_numid_all.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
-        <prop actor="props/units/shields/numidian_round_3.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/kush_nubian_thureos.xml" attachpoint="shield"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="helmet-persian-conical-plume">
+      <props>
+        <prop actor="props/units/helmets/pers_conical_a1.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="helmet-persian-conical-no-plume">
+      <props>
+        <prop actor="props/units/helmets/pers_conical_b1.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Arab-Padded-1a">
       <textures>
-        <texture file="skeletal/kart_cjv_e_1.dds" name="baseTex"/>
+        <texture file="skeletal/arab/padded_01_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Arab-Padded-1b">
+      <textures>
+        <texture file="skeletal/arab/padded_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Arab-Padded-1c">
+      <textures>
+        <texture file="skeletal/arab/padded_01_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Cart-Padded-1a">
+      <textures>
+        <texture file="skeletal/cart/padded_01_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Cart-Padded-1b">
+      <textures>
+        <texture file="skeletal/cart/padded_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Cart-Padded-1c">
+      <textures>
+        <texture file="skeletal/cart/padded_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

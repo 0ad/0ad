@@ -3,15 +3,51 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_numid_all.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/kush_dread_hair_fem.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
-        <prop actor="props/units/shields/numidian_round_1.xml" attachpoint="shield"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="shield-numidian_round_1">
+      <props>
+        <prop actor="props/units/shields/numidian_round_1.xml" attachpoint="shield_arm"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="shield-numidian_round_2">
+      <props>
+        <prop actor="props/units/shields/numidian_round_2.xml" attachpoint="shield_arm"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="shield-numidian_round_3">
+      <props>
+        <prop actor="props/units/shields/numidian_round_3.xml" attachpoint="shield_arm"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="judea-tunic-1a">
       <textures>
-        <texture file="skeletal/kart_cjv_a_1.dds" name="baseTex"/>
+        <texture file="skeletal/judea_tunic_basic_1_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="judea-tunic-1b">
+      <textures>
+        <texture file="skeletal/judea_tunic_basic_1_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="judea-tunic-1c">
+      <textures>
+        <texture file="skeletal/judea_tunic_basic_1_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="judea-tunic-1d">
+      <textures>
+        <texture file="skeletal/judea_tunic_basic_1_d.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_kart_hannibal.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/aspis_kart_c.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/helmets/hele_thracian_br_crested.xml" attachpoint="helmet"/>
+        <prop actor="props/units/capes/cape_med_hamilcar.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/sheath_falcata_e.xml" attachpoint="sheath_01_L"/>
+        <prop actor="props/units/armor/greave_13_bronze_r.xml" attachpoint="leg_R"/>
+        <prop actor="props/units/armor/greave_13_bronze_l.xml" attachpoint="leg_L"/>
+      </props>
+      <textures>
+        <texture file="skeletal/cart/cuirass_hero_01.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/base_swordsman_shield_relax_celt.xml" name="Swordsman-Shield-Relax-Celt" frequency="1"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

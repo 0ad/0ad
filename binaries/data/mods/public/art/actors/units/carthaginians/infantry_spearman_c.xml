@@ -8,6 +8,7 @@
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/aspis_kart_c.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/weapons/sheath_xiphos.xml" attachpoint="sheath_02_L"/>
         <prop actor="props/units/armor/greave_02_bronze_r.xml" attachpoint="leg_R"/>
         <prop actor="props/units/armor/greave_02_bronze_l.xml" attachpoint="leg_L"/>
         <prop actor="props/units/capes/cape_long_player.xml" attachpoint="root"/>
@@ -23,14 +24,9 @@
         <prop actor="props/units/helmets/hele_thracian_br_crested.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Helmet-Thracian-Bronze-01">
+    <variant frequency="1" name="Helmet-Thracian-Bronze">
       <props>
         <prop actor="props/units/helmets/hele_thracian_b6_crested.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Helmet-Thracian-Bronze-02">
-      <props>
-        <prop actor="props/units/helmets/hele_thracian_b9_crested.xml" attachpoint="helmet"/>
       </props>
     </variant>
     <variant frequency="1" name="Helmet-Phrygian-Bronze">
@@ -38,40 +34,35 @@
         <prop actor="props/units/helmets/hele_phrygian_b10.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Helmet-Persian-Conical">
-      <props>
-        <prop actor="props/units/helmets/pers_conical_a1.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
   </group>
   <group>
     <variant frequency="2" name="Scale-1b">
       <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/cart_scale_1_b.png" name="baseTex"/>
-        <texture file="skeletal/cart_scale_1_spec.png" name="specTex"/>
+        <texture file="skeletal/cart/scale_01_02.png" name="baseTex"/>
+        <texture file="skeletal/cart/scale_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Lamellar-1b">
       <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/cart_lamellar_1_b.png" name="baseTex"/>
+        <texture file="skeletal/cart/lamellar_01_02.png" name="baseTex"/>
         <texture file="skeletal/hele_lamellar_1_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Linothorax-1a">
       <textures>
-        <texture file="skeletal/cart_linothorax_champion_1_a.png" name="baseTex"/>
+        <texture file="skeletal/cart/linothorax_champion_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Linothorax-1b">
       <textures>
-        <texture file="skeletal/cart_linothorax_champion_1_b.png" name="baseTex"/>
+        <texture file="skeletal/cart/linothorax_champion_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Linothorax-1c">
       <textures>
-        <texture file="skeletal/cart_linothorax_champion_1_c.png" name="baseTex"/>
+        <texture file="skeletal/cart/linothorax_champion_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -84,6 +75,7 @@
     </variant>
     <variant file="biped/death_cape_long.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/formations/phalanx_front.xml"/>
     <variant file="biped/formations/phalanx_mid.xml"/>
     <variant file="biped/formations/phalanx_back.xml"/>

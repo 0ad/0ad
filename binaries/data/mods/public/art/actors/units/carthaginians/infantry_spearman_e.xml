@@ -69,30 +69,25 @@
     </variant>
   </group>
   <group>
-    <variant frequency="0" name="Liby-Phoenician-Chainmail-1">
-      <textures>
-        <texture file="skeletal/kart_isp_e_1.dds" name="baseTex"/>
-      </textures>
-    </variant>
     <variant frequency="1" name="Cuirass-1a">
       <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/cart_cuirass_1_a.png" name="baseTex"/>
+        <texture file="skeletal/cart/cuirass_01_01.png" name="baseTex"/>
         <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Lamellar-1a">
       <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/cart_lamellar_1_a.png" name="baseTex"/>
+        <texture file="skeletal/cart/lamellar_01_01.png" name="baseTex"/>
         <texture file="skeletal/hele_lamellar_1_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Scale-1a">
       <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/cart_scale_1_a.png" name="baseTex"/>
-        <texture file="skeletal/cart_scale_1_spec.png" name="specTex"/>
+        <texture file="skeletal/cart/scale_01_01.png" name="baseTex"/>
+        <texture file="skeletal/cart/scale_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
