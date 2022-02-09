@@ -981,6 +981,8 @@ Formation.prototype.OnGlobalOwnershipChanged = function(msg)
 	// controlled by this formation.
 	if (this.members.indexOf(msg.entity) != -1)
 		this.RemoveMembers([msg.entity]);
+	if (msg.entity === this.entity && msg.to !== INVALID_PLAYER)
+		Engine.QueryInterface(this.entity, IID_Visual)?.SetVariant("animationVariant", QueryPlayerIDInterface(msg.to, IID_Identity).GetCiv());
 };
 
 Formation.prototype.OnGlobalEntityRenamed = function(msg)

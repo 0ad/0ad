@@ -14,12 +14,6 @@
       </Texture>
     </Overlay>
   </Selectable>
-  <VisualActor>
-    <Actor>props/special/common/waypoint_flag.xml</Actor>
-    <SilhouetteDisplay>true</SilhouetteDisplay>
-    <SilhouetteOccluder>false</SilhouetteOccluder>
-    <VisibleInAtlasOnly>false</VisibleInAtlasOnly>
-  </VisualActor>
   -->
   <Formation>
     <RequiredMemberCount>2</RequiredMemberCount>
@@ -76,4 +70,10 @@
     <PassabilityClass>large</PassabilityClass>
     <Weight>100</Weight>
   </UnitMotion>
+  <VisualActor>
+    <Actor>props/special/common/waypoint_flag.xml</Actor>
+    <SilhouetteDisplay>true</SilhouetteDisplay>
+    <SilhouetteOccluder>false</SilhouetteOccluder>
+    <VisibleInAtlasOnly>false</VisibleInAtlasOnly>
+  </VisualActor>
 </Entity>
