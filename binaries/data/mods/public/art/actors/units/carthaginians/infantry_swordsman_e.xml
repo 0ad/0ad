@@ -9,6 +9,9 @@
         <prop actor="props/units/weapons/xiphos.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/heads/new/head_hele_e.xml" attachpoint="head"/>
       </props>
+      <textures>
+        <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -44,22 +47,19 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="armor-ital_cuirass_1_a">
+    <variant frequency="1" name="cuirass_01_01">
       <textures>
-        <texture file="skeletal/ital_cuirass_1_a.png" name="baseTex"/>
-        <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
+        <texture file="skeletal/ital/cuirass_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="armor-ital_cuirass_1_b">
+    <variant frequency="1" name="cuirass_01_02">
       <textures>
-        <texture file="skeletal/ital_cuirass_1_b.png" name="baseTex"/>
-        <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
+        <texture file="skeletal/ital/cuirass_01_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="armor-ital_cuirass_1_c">
+    <variant frequency="1" name="cuirass_01_03">
       <textures>
-        <texture file="skeletal/ital_cuirass_1_c.png" name="baseTex"/>
-        <texture file="skeletal/hele_cuirass_2_spec.png" name="specTex"/>
+        <texture file="skeletal/ital/cuirass_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

@@ -10,6 +10,9 @@
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
       </props>
+      <textures>
+        <texture file="skeletal/ital/tunic_belt_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -40,25 +43,35 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Tunic-1">
+    <variant frequency="1" name="tunic_pattern_03_sleeveless_01">
       <textures>
-        <texture file="skeletal/kart_csp_b_1.dds" name="baseTex"/>
-      </textures>
+	    <texture file="skeletal/ital/tunic_pattern_03_sleeveless_01.png" name="baseTex"/>
+	  </textures>
     </variant>
-    <variant frequency="1" name="Tunic-2">
+    <variant frequency="1" name="tunic_pattern_03_sleeveless_02">
       <textures>
-        <texture file="skeletal/kart_csp_b_2.dds" name="baseTex"/>
-      </textures>
+	    <texture file="skeletal/ital/tunic_pattern_03_sleeveless_02.png" name="baseTex"/>
+	  </textures>
     </variant>
-    <variant frequency="1" name="Tunic-3">
+    <variant frequency="1" name="tunic_pattern_03_sleeveless_03">
       <textures>
-        <texture file="skeletal/kart_csp_b_3.dds" name="baseTex"/>
-      </textures>
+	    <texture file="skeletal/ital/tunic_pattern_03_sleeveless_03.png" name="baseTex"/>
+	  </textures>
     </variant>
-    <variant frequency="1" name="Tunic-4">
+    <variant frequency="1" name="tunic_pattern_01_sleeveless_01">
       <textures>
-        <texture file="skeletal/kart_csp_b_4.dds" name="baseTex"/>
-      </textures>
+	    <texture file="skeletal/ital/tunic_pattern_01_sleeveless_01.png" name="baseTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="tunic_pattern_06_02">
+      <textures>
+	    <texture file="skeletal/ital/tunic_pattern_06_02.png" name="baseTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="tunic_pattern_06_03">
+      <textures>
+	    <texture file="skeletal/ital/tunic_pattern_06_03.png" name="baseTex"/>
+	  </textures>
     </variant>
   </group>
   <group>

@@ -25,7 +25,7 @@ function loadCivFiles(selectableOnly)
 
 		const template = Engine.GetTemplate("special/players/" + data.Code);
 		data.Name = template.Identity.GenericName;
-		data.Emblem = template.Identity.Icon;
+		data.Emblem = "session/portraits/" + template.Identity.Icon;
 		data.History = template.Identity.History;
 
 		civData[data.Code] = data;

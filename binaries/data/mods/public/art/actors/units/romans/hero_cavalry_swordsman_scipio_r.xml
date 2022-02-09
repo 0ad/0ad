@@ -5,11 +5,13 @@
     <variant>
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/helmets/rome_attic_silver.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/hele_thracian_b7_crested_hero.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/rome_head_hero_scipio.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/sheath_gladius_e.xml" attachpoint="sheath_01_R"/>
         <prop actor="props/units/weapons/spatha.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/rome_parma_hero_3.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/shields/rome_parma_hero_2.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/armor/greave_02_silver_r.xml" attachpoint="leg_R"/>
+        <prop actor="props/units/armor/greave_02_silver_l.xml" attachpoint="leg_L"/>
         <prop actor="props/units/capes/rider/cape_long_player.xml" attachpoint="root"/>
       </props>
       <textures>

@@ -6,17 +6,14 @@
       <mesh>skeletal/horse_lusitano.dae</mesh>
       <props>
         <prop actor="units/romans/hero_cavalry_swordsman_maximus_r.xml" attachpoint="rider"/>
-        <prop actor="props/horse/chest_colorband_01.xml" attachpoint="root"/>
         <prop actor="props/horse/cav_blanket_rome.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_straps_kush_adv.xml" attachpoint="root"/>
         <prop actor="props/horse/cav_rein_leather.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant file="quadraped/horse/black.xml" frequency="1" name="black"/>
-    <variant file="quadraped/horse/brown.xml" frequency="1" name="brown"/>
-    <variant file="quadraped/horse/cherrybay.xml" frequency="1" name="cherrybay"/>
-    <variant file="quadraped/horse/white.xml" frequency="1" name="white"/>
+    <variant file="quadraped/horse/black.xml" frequency="1" name="white"/>
   </group>
   <group>
     <variant file="quadraped/base_horse_trot.xml" name="Horse-Trot" frequency="1"/>
