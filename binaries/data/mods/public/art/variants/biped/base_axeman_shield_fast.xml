@@ -13,10 +13,10 @@
     <animation file="biped/infantry/swordsman/run_relax_shield.dae" name="Run" id="run1" speed="8"/>
     <animation file="biped/infantry/swordsman/run_relax_shield.dae" name="Run" id="run2" speed="9"/>
     <animation file="biped/infantry/swordsman/run_relax_shield.dae" name="Run" id="run3" speed="10"/>
-    <animation event="0.5" file="biped/attack_mace_axe_shieldarm.dae" name="attack_melee" id="attack1" speed="180"/>
-	<animation event="0.5" file="biped/attack_mace_axe_shield.dae" name="attack_melee" id="attack2" speed="160"/>
-	<animation event="0.5" file="biped/attack_mace_axe_shieldarm.dae" name="attack_melee" id="attack3" speed="150"/>
-	<animation event="0.5" file="biped/attack_mace_axe_shield.dae" name="attack_melee" id="attack4" speed="160"/>
+    <animation event="0.5" file="biped/infantry/axe/attack_melee_shield_01.dae" name="attack_melee" id="attack1" speed="180"/>
+	<animation event="0.5" file="biped/infantry/axe/attack_melee_shieldarm_01.dae" name="attack_melee" id="attack2" speed="160"/>
+    <animation event="0.5" file="biped/infantry/axe/attack_melee_shield_01.dae" name="attack_melee" id="attack1" speed="170"/>
+	<animation event="0.5" file="biped/infantry/axe/attack_melee_shieldarm_01.dae" name="attack_melee" id="attack2" speed="150"/>
     <animation file="biped/infantry/promotion.dae" name="promotion" speed="80"/>
   </animations>
 </variant>
