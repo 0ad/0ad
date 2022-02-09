@@ -94,6 +94,9 @@ class Validator:
         logger.addHandler(ch)
         self.logger = logger
 
+    def get_mod_path(self, mod_name, vfs_path):
+        return os.path.join(mod_name, vfs_path)
+
     def get_physical_path(self, mod_name, vfs_path):
         return os.path.realpath(os.path.join(self.vfs_root, mod_name, vfs_path))
 
