@@ -39,29 +39,33 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Carth-Sacred Band-ShortSleeve">
+    <variant frequency="2" name="Scale-1b">
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/kart_su1_sacredband_1.dds" name="baseTex"/>
+        <texture file="skeletal/cart/scale_01_02.png" name="baseTex"/>
+        <texture file="skeletal/cart/scale_01_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Carth-Sacred Band-LongSleeve">
+    <variant frequency="1" name="Lamellar-1b">
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/kart_su1_sacredband_2.dds" name="baseTex"/>
+        <texture file="skeletal/cart/lamellar_01_02.png" name="baseTex"/>
+        <texture file="skeletal/hele_lamellar_1_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Carth-Sacred Band-LongSleeve-dirty">
+    <variant frequency="1" name="Linothorax-1a">
       <textures>
-        <texture file="skeletal/kart_su1_sacredband_4.dds" name="baseTex"/>
+        <texture file="skeletal/cart/linothorax_champion_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="2" name="Carth-Sacred Band-Brown">
+    <variant frequency="1" name="Linothorax-1b">
       <textures>
-        <texture file="skeletal/kart_su1_sacredband_3.dds" name="baseTex"/>
+        <texture file="skeletal/cart/linothorax_champion_01_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="2" name="Carth-Sacred Band-Yellow">
+    <variant frequency="1" name="Linothorax-1c">
       <textures>
-        <texture file="skeletal/kart_su1_sacredband_5.dds" name="baseTex"/>
+        <texture file="skeletal/cart/linothorax_champion_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

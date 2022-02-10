@@ -3,7 +3,7 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_iber_su1.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="weapon_R"/>
@@ -11,8 +11,52 @@
         <prop actor="props/units/helmets/iber_cloth_helmet_01.xml" attachpoint="helmet"/>
         <prop actor="props/units/shields/iber_round_small_01_advanced.xml" attachpoint="shield"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="Iber-Padded-Leather-01-01">
       <textures>
-        <texture file="skeletal/kart_ijv_a_1.dds" name="baseTex"/>
+        <texture file="skeletal/iber/padded_leather_01_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Iber-Padded-Leather-01-02">
+      <textures>
+        <texture file="skeletal/iber/padded_leather_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Padded-Leather-01-03">
+      <textures>
+        <texture file="skeletal/iber/padded_leather_01_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Padded-Quilted-Slinger-01-01">
+      <textures>
+        <texture file="skeletal/iber/padded_quilted_slinger_01_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Padded-Quilted-Slinger-01-02">
+      <textures>
+        <texture file="skeletal/iber/padded_quilted_slinger_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Padded-Quilted-Slinger-01-03">
+      <textures>
+        <texture file="skeletal/iber/padded_quilted_slinger_01_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="Iber-Vest-Strap-01-01">
+      <textures>
+        <texture file="skeletal/iber/vest_strap_01_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Iber-Vest-Strap-01-02">
+      <textures>
+        <texture file="skeletal/iber/vest_strap_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Iber-Vest-Strap-01-03">
+      <textures>
+        <texture file="skeletal/iber/vest_strap_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -23,6 +67,14 @@
     <variant file="biped/carry_wood.xml"/>
     <variant file="biped/carry_stone.xml"/>
     <variant file="biped/carry_metal.xml"/>
+    <variant file="biped/approach_tree.xml"/>
+    <variant file="biped/approach_grain.xml"/>
+    <variant file="biped/approach_fruit.xml"/>
+    <variant file="biped/approach_meat.xml"/>
+    <variant file="biped/approach_rock.xml"/>
+    <variant file="biped/approach_ore.xml"/>
+    <variant file="biped/approach_ruins.xml"/>
+    <variant file="biped/approach_praise.xml"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>

@@ -37,67 +37,67 @@
   <group>
     <variant frequency="1" name="Iber-Chainmail-01-01">
       <textures>
-        <texture file="skeletal/iber_chainmail_01_01.png" name="baseTex"/>
+        <texture file="skeletal/iber/chainmail_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Iber-Chainmail-01-02">
       <textures>
-        <texture file="skeletal/iber_chainmail_01_02.png" name="baseTex"/>
+        <texture file="skeletal/iber/chainmail_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Iber-Chainmail-01-03">
       <textures>
-        <texture file="skeletal/iber_chainmail_01_03.png" name="baseTex"/>
+        <texture file="skeletal/iber/chainmail_01_03.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Iber-Chainmail-02-05">
       <textures>
-        <texture file="skeletal/iber_chainmail_02_05.png" name="baseTex"/>
+        <texture file="skeletal/iber/chainmail_02_05.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Iber-Chainmail-02-06">
       <textures>
-        <texture file="skeletal/iber_chainmail_02_06.png" name="baseTex"/>
+        <texture file="skeletal/iber/chainmail_02_06.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Iber-Scale-01-01">
       <textures>
-        <texture file="skeletal/iber_scale_01_01.png" name="baseTex"/>
+        <texture file="skeletal/iber/scale_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Iber-Scale-01-02">
       <textures>
-        <texture file="skeletal/iber_scale_01_02.png" name="baseTex"/>
+        <texture file="skeletal/iber/scale_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Iber-Linothorax-02-01">
       <textures>
-        <texture file="skeletal/iber_linothorax_02_01.png" name="baseTex"/>
+        <texture file="skeletal/iber/linothorax_02_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Iber-Linothorax-02-02">
       <textures>
-        <texture file="skeletal/iber_linothorax_02_02.png" name="baseTex"/>
+        <texture file="skeletal/iber/linothorax_02_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Iber-Linothorax-02-03">
       <textures>
-        <texture file="skeletal/iber_linothorax_02_03.png" name="baseTex"/>
+        <texture file="skeletal/iber/linothorax_02_03.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Iber-Padded-Cardiophylax-01-01">
       <textures>
-        <texture file="skeletal/iber_padded_cardiophylax_01_01.png" name="baseTex"/>
+        <texture file="skeletal/iber/padded_cardiophylax_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Iber-Padded-Cardiophylax-01-02">
       <textures>
-        <texture file="skeletal/iber_padded_cardiophylax_01_02.png" name="baseTex"/>
+        <texture file="skeletal/iber/padded_cardiophylax_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Iber-Padded-Cardiophylax-01-03">
       <textures>
-        <texture file="skeletal/iber_padded_cardiophylax_01_03.png" name="baseTex"/>
+        <texture file="skeletal/iber/padded_cardiophylax_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -105,6 +105,7 @@
     <variant file="biped/base_swordsman_shield_ready.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
