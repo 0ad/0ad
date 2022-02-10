@@ -28,12 +28,9 @@ strip the e-mails using this script.
 
 import sys, os, glob, re, fileinput
 
-from i18n_helper import l10nToolsDirectory, projectRootDirectory
+from i18n_helper import l10nFolderName, transifexClientFolder, projectRootDirectory
 
 def main():
-    l10nFolderName = "l10n"
-    transifexClientFolder = ".tx"
-
     # Prepare some regexes.
     commentMatch = re.compile('#.*')
     translatorMatch = re.compile("(# [^,<]*)(?: <.*>)?(?:, [0-9,-]{4,9})")

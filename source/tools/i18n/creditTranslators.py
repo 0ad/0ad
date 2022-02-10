@@ -31,6 +31,8 @@ once before updateTemplates.py.
 
 import json, os, glob, re
 
+from i18n_helper import l10nFolderName, transifexClientFolder, projectRootDirectory
+
 # We credit everyone that helps translating even if the translations don't
 # make it into the game.
 # Note: Needs to be edited manually when new languages are added on Transifex.
@@ -110,14 +112,14 @@ langs = {
     'zh': '中文, 汉语, 漢語 (Chinese)',
     'zh_TW': '臺灣話 Chinese (Taiwan)'}
 
-root = '../../../'
+poLocations = []
+for root, folders, filenames in os.walk(projectRootDirectory):
+    for folder in folders:
+        if folder == l10nFolderName:
+            if os.path.exists(os.path.join(root, folder, transifexClientFolder)):
+                poLocations.append(os.path.join(root, folder))
 
-poLocations = [
-    'binaries/data/l10n/',
-    'binaries/data/mods/public/l10n/',
-    'binaries/data/mods/mod/l10n/']
-
-creditsLocation = 'binaries/data/mods/public/gui/credits/texts/translators.json'
+creditsLocation = os.path.join(projectRootDirectory, 'binaries', 'data', 'mods', 'public', 'gui', 'credits', 'texts', 'translators.json')
 
 # This dictionnary will hold creditors lists for each language, indexed by code
 langsLists = {}
@@ -137,7 +139,7 @@ for lang in langs.keys():
         langsLists[lang] = []
 
     for location in poLocations:
-        files = glob.glob(root + location + lang + '.*.po')
+        files = glob.glob(os.path.join(location, lang + '.*.po'))
         for file in files:
             poFile = open(file.replace('\\', '/'), encoding='utf-8')
             reached = False
@@ -165,6 +167,6 @@ for (langCode, langList) in sorted(langsLists.items()):
         newJSONData['Content'][-1]['List'].append({'name': name})
 
 # Save the JSON data to the credits file
-creditsFile = open(root + creditsLocation, 'w', encoding='utf-8')
+creditsFile = open(creditsLocation, 'w', encoding='utf-8')
 json.dump(newJSONData, creditsFile, indent=4)
 creditsFile.close()

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright (C) 2020 Wildfire Games.
+# Copyright (C) 2021 Wildfire Games.
 # This file is part of 0 A.D.
 #
 # 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,11 +22,9 @@ from importlib import import_module
 
 from lxml import etree
 
-from i18n_helper import l10nToolsDirectory, projectRootDirectory
+from i18n_helper import l10nFolderName, projectRootDirectory
 from i18n_helper.catalog import Catalog
 from extractors import extractors
-
-l10nFolderName = "l10n"
 messagesFilename = "messages.json"
 
 

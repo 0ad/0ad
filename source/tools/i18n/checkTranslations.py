@@ -16,16 +16,11 @@
 # You should have received a copy of the GNU General Public License
 # along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
 
-import os
-import re
-import sys
-import multiprocessing
+import sys, os, re, multiprocessing
 
-from i18n_helper import projectRootDirectory
+from i18n_helper import l10nFolderName, projectRootDirectory
 from i18n_helper.catalog import Catalog
 from i18n_helper.globber import getCatalogs
-
-l10nFolderName = "l10n"
 
 VERBOSE = 0
 
@@ -110,7 +105,7 @@ def main():
     foundPots = 0
     for root, folders, filenames in os.walk(projectRootDirectory):
         for filename in filenames:
-            if len(filename) > 4 and filename[-4:] == ".pot" and os.path.basename(root) == "l10n":
+            if len(filename) > 4 and filename[-4:] == ".pot" and os.path.basename(root) == l10nFolderName:
                 foundPots += 1
                 multiprocessing.Process(
                     target=check_translations,
