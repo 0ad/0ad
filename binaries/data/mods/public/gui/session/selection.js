@@ -295,6 +295,7 @@ EntitySelection.prototype.checkRenamedEntities = function()
  */
 EntitySelection.prototype.addList = function(ents, quiet, force = false, addFormationMembers = true)
 {
+	force = force || g_SimState.players[g_ViewedPlayer]?.controlsAll;
 	// If someone else's player is the sole selected unit, don't allow adding to the selection.
 	const firstEntState = this.selected.size == 1 && GetEntityState(this.getFirstSelected());
 	if (firstEntState && firstEntState.player != g_ViewedPlayer && !force)
@@ -317,7 +318,6 @@ EntitySelection.prototype.addList = function(ents, quiet, force = false, addForm
 		let isUnowned = g_ViewedPlayer != -1 && entState.player != g_ViewedPlayer ||
 		                g_ViewedPlayer == -1 && entState.player == 0;
 
-		// Don't add unowned entities to the list, unless a single entity was selected
 		if (isUnowned && (ents.length > 1 || this.selected.size) && !force)
 			continue;
 

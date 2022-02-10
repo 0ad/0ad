@@ -15,23 +15,6 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Greave-01">
-      <props>
-        <prop actor="props/units/armor/greave_11_bronze_l.xml" attachpoint="leg_L"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Greave-02">
-      <props>
-        <prop actor="props/units/armor/greave_07_bronze_l.xml" attachpoint="leg_L"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Greave-03">
-      <props>
-        <prop actor="props/units/armor/greave_09_bronze_l.xml" attachpoint="leg_L"/>
-      </props>
-    </variant>
-  </group>
-  <group>
     <variant frequency="1" name="Helmet-Carthaginian-Bronze-01">
       <props>
         <prop actor="props/units/helmets/cart_helmet_a.xml" attachpoint="helmet"/>
@@ -64,64 +47,34 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Liby-Phoenician-Armour-1">
+    <variant frequency="1" name="padded_01_01">
       <textures>
-        <texture file="skeletal/kart_isp_a_1.dds" name="baseTex"/>
+        <texture file="skeletal/cart/padded_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Liby-Phoenician-Armour-2">
+    <variant frequency="1" name="padded_01_02">
       <textures>
-        <texture file="skeletal/kart_isp_a_2.dds" name="baseTex"/>
+        <texture file="skeletal/cart/padded_01_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Liby-Phoenician-Armour-3">
+    <variant frequency="1" name="padded_01_03">
       <textures>
-        <texture file="skeletal/kart_isp_a_3.dds" name="baseTex"/>
+        <texture file="skeletal/cart/padded_01_03.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Liby-Phoenician-Armour-4-Scale Reinforcement">
+    <variant frequency="1" name="linothorax_01_01">
       <textures>
-        <texture file="skeletal/kart_isp_a_4.dds" name="baseTex"/>
+        <texture file="skeletal/cart/linothorax_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Linothorax-1a">
+    <variant frequency="1" name="linothorax_01_02">
       <textures>
-        <texture file="skeletal/cart_linothorax_1_a.png" name="baseTex"/>
+        <texture file="skeletal/cart/linothorax_01_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Linothorax-1b">
+    <variant frequency="1" name="linothorax_01_03">
       <textures>
-        <texture file="skeletal/cart_linothorax_1_b.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Linothorax-1c">
-      <textures>
-        <texture file="skeletal/cart_linothorax_1_c.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Linothorax-1d">
-      <textures>
-        <texture file="skeletal/cart_linothorax_1_d.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Linothorax-1e">
-      <textures>
-        <texture file="skeletal/cart_linothorax_1_e.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Padded-1a">
-      <textures>
-        <texture file="skeletal/cart_padded_1_a.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Padded-1b">
-      <textures>
-        <texture file="skeletal/cart_padded_1_b.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Padded-1c">
-      <textures>
-        <texture file="skeletal/cart_padded_1_c.png" name="baseTex"/>
+        <texture file="skeletal/cart/linothorax_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

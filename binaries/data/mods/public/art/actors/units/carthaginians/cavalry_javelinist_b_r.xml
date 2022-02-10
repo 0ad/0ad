@@ -6,24 +6,31 @@
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_numid_all.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/kush_dread_hair_fem.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/buckler_small_cart_leather.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="tunic1">
+    <variant frequency="1" name="tunic_sleeveless_01_01">
       <textures>
-        <texture file="skeletal/kart_cjv_b_1.dds" name="baseTex"/>
+        <texture file="skeletal/cart/tunic_sleeveless_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="tunic2">
+    <variant frequency="1" name="tunic_sleeveless_01_02">
       <textures>
-        <texture file="skeletal/kart_cjv_b_2.dds" name="baseTex"/>
+        <texture file="skeletal/cart/tunic_sleeveless_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic_sleeveless_01_03">
+      <textures>
+        <texture file="skeletal/cart/tunic_sleeveless_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant file="biped/rider/cavalry/base_javelin_relax.xml" name="Javelinist-Relax" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_javelin_fast.xml" name="Javelinist-Fast" frequency="1"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>
