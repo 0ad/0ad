@@ -14,64 +14,64 @@
     </variant>
   </group>
   <group>
-    <variant frequency="0" name="Scutarius-Body-Texture-2">
+    <variant frequency="1" name="Scutarius-Body-Texture-2">
       <props>
         <prop actor="props/units/heads/new/head_iber_adv_hood_1.xml" attachpoint="head"/>
         <prop actor="props/units/helmets/old/iber_helmet_yellow_ridges.xml" attachpoint="helmet"/>
       </props>
       <textures>
-        <texture file="skeletal/iber_isp_a_2.dds" name="baseTex"/>
+        <texture file="skeletal/iber/isp_a_2.dds" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="3" name="Iber-Padded-Leather-01-01">
       <mesh>skeletal/new/m_armor_tunic_short_short_sleeves.dae</mesh>
       <textures>
-        <texture file="skeletal/iber_padded_leather_01_01.png" name="baseTex"/>
+        <texture file="skeletal/iber/padded_leather_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="Iber-Padded-Leather-01-02">
       <mesh>skeletal/new/m_armor_tunic_short_short_sleeves.dae</mesh>
       <textures>
-        <texture file="skeletal/iber_padded_leather_01_02.png" name="baseTex"/>
+        <texture file="skeletal/iber/padded_leather_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Iber-Padded-Leather-01-03">
       <mesh>skeletal/new/m_armor_tunic_short_short_sleeves.dae</mesh>
       <textures>
-        <texture file="skeletal/iber_padded_leather_01_03.png" name="baseTex"/>
+        <texture file="skeletal/iber/padded_leather_01_03.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="3" name="Iber-Vest-Strap-01-01">
       <textures>
-        <texture file="skeletal/iber_vest_strap_01_01.png" name="baseTex"/>
+        <texture file="skeletal/iber/vest_strap_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="Iber-Vest-Strap-01-02">
       <textures>
-        <texture file="skeletal/iber_vest_strap_01_02.png" name="baseTex"/>
+        <texture file="skeletal/iber/vest_strap_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Iber-Vest-Strap-01-03">
       <textures>
-        <texture file="skeletal/iber_vest_strap_01_03.png" name="baseTex"/>
+        <texture file="skeletal/iber/vest_strap_01_03.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Iber-Padded-Quilted-Slinger-01-01">
       <mesh>skeletal/new/m_armor_tunic_short_short_sleeves.dae</mesh>
       <textures>
-        <texture file="skeletal/iber_padded_quilted_slinger_01_01.png" name="baseTex"/>
+        <texture file="skeletal/iber/padded_quilted_slinger_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Iber-Padded-Quilted-Slinger-01-02">
       <mesh>skeletal/new/m_armor_tunic_short_short_sleeves.dae</mesh>
       <textures>
-        <texture file="skeletal/iber_padded_quilted_slinger_01_02.png" name="baseTex"/>
+        <texture file="skeletal/iber/padded_quilted_slinger_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Iber-Padded-Quilted-Slinger-01-03">
       <mesh>skeletal/new/m_armor_tunic_short_short_sleeves.dae</mesh>
       <textures>
-        <texture file="skeletal/iber_padded_quilted_slinger_01_03.png" name="baseTex"/>
+        <texture file="skeletal/iber/padded_quilted_slinger_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

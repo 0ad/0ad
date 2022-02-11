@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright (C) 2021 Wildfire Games.
+# Copyright (C) 2022 Wildfire Games.
 # This file is part of 0 A.D.
 #
 # 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,7 +21,7 @@ import os
 import sys
 import multiprocessing
 
-from i18n_helper import projectRootDirectory
+from i18n_helper import l10nFolderName, projectRootDirectory
 from i18n_helper.catalog import Catalog
 from i18n_helper.globber import getCatalogs
 
@@ -142,7 +142,7 @@ def main():
     found_pot_files = 0
     for root, _, filenames in os.walk(projectRootDirectory):
         for filename in filenames:
-            if len(filename) > 4 and filename[-4:] == ".pot" and os.path.basename(root) == "l10n":
+            if len(filename) > 4 and filename[-4:] == ".pot" and os.path.basename(root) == l10nFolderName:
                 found_pot_files += 1
                 if args.debug:
                     multiprocessing.Process(

@@ -14,7 +14,7 @@
         <prop actor="props/units/armor/greave_04_bronze_r.xml" attachpoint="leg_R"/>
       </props>
       <textures>
-        <texture file="skeletal/iber_hero_caros_01_01.png" name="baseTex"/>
+        <texture file="skeletal/iber/hero_caros_01_01.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -22,6 +22,7 @@
     <variant file="biped/base_swordsman_shield_fast.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>

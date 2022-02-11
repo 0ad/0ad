@@ -7,6 +7,7 @@
       <props>
         <prop actor="props/units/heads/new/head_hele_a.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear_lance_cavalry.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/capes/rider/cape_med_player.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -37,9 +38,19 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Helmet Boeotian Bronze-01">
+    <variant frequency="2" name="hele_boeotian_b2">
       <props>
         <prop actor="props/units/helmets/hele_boeotian_b2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="hele_boeotian_a_plume">
+      <props>
+        <prop actor="props/units/helmets/hele_boeotian_a_plume.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="hele_boeotian_b_plume">
+      <props>
+        <prop actor="props/units/helmets/hele_boeotian_b_plume.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>

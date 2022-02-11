@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright (C) 2021 Wildfire Games.
+# Copyright (C) 2022 Wildfire Games.
 # This file is part of 0 A.D.
 #
 # 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,12 +20,9 @@ import os, sys
 
 from txclib.project import Project
 
-from i18n_helper import l10nToolsDirectory, projectRootDirectory
+from i18n_helper import l10nFolderName, transifexClientFolder, projectRootDirectory
 
 def main():
-    l10nFolderName = "l10n"
-    transifexClientFolder = ".tx"
-
     for root, folders, filenames in os.walk(projectRootDirectory):
         for folder in folders:
             if folder == l10nFolderName:
