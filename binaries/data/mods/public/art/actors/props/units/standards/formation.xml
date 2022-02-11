@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="100">
+      <mesh>props/standard/formation_pole.dae</mesh>
+      <textures>
+        <texture file="props/kart_standard.png" name="baseTex"/>
+        <texture file="props/kart_standard_norm.png" name="normTex"/>
+        <texture file="props/kart_standard_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="athen">
+      <props>
+        <prop actor="props/units/standards/formation_flag_athen.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="brit">
+      <props>
+        <prop actor="props/units/standards/formation_flag_brit.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="cart">
+      <props>
+        <prop actor="props/units/standards/formation_flag_cart.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="gaul">
+      <props>
+        <prop actor="props/units/standards/formation_flag_gaul.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="han">
+      <props>
+        <prop actor="props/units/standards/formation_flag_han.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="iber">
+      <props>
+        <prop actor="props/units/standards/formation_flag_iber.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="kush">
+      <props>
+        <prop actor="props/units/standards/formation_flag_kush.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="mace">
+      <props>
+        <prop actor="props/units/standards/formation_flag_mace.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="maur">
+      <props>
+        <prop actor="props/units/standards/formation_flag_maur.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="pers">
+      <props>
+        <prop actor="props/units/standards/formation_flag_pers.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="ptol">
+      <props>
+        <prop actor="props/units/standards/formation_flag_ptol.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="rome">
+      <props>
+        <prop actor="props/units/standards/formation_flag_rome.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="sele">
+      <props>
+        <prop actor="props/units/standards/formation_flag_sele.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant name="spart">
+      <props>
+        <prop actor="props/units/standards/formation_flag_spart.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>no_trans_norm_spec.xml</material>
+</actor>
