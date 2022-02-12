@@ -3,6 +3,7 @@
   <castshadow/>
   <group>
     <variant>
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/celt_hood_priest.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
@@ -11,13 +12,8 @@
         <prop actor="props/units/weapons/sheath_celt_iron_e.xml" attachpoint="sheath_01_R"/>
         <prop actor="props/units/capes/rider/cape_long_player.xml" attachpoint="root"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="cunobelin-druid">
-      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/celt_druid_2.png" name="baseTex"/>
+        <texture file="skeletal/celt/druid_02.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
