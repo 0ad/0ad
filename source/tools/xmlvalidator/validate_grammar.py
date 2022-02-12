@@ -4,8 +4,20 @@ from pathlib import Path
 from os.path import sep, join, realpath, exists, basename, dirname
 from json import load, loads
 from re import split, match
-from logging import getLogger, StreamHandler, INFO, Formatter
+from logging import getLogger, StreamHandler, INFO, WARNING, Filter, Formatter
 import lxml.etree
+import sys
+
+class SingleLevelFilter(Filter):
+    def __init__(self, passlevel, reject):
+        self.passlevel = passlevel
+        self.reject = reject
+
+    def filter(self, record):
+        if self.reject:
+            return (record.levelno != self.passlevel)
+        else:
+            return (record.levelno == self.passlevel)
 
 class VFS_File:
     def __init__(self, mod_name, vfs_path):
@@ -24,11 +36,16 @@ class RelaxNGValidator:
         logger = getLogger(__name__)
         logger.setLevel(INFO)
         # create a console handler, seems nicer to Windows and for future uses
-        ch = StreamHandler()
+        ch = StreamHandler(sys.stdout)
         ch.setLevel(INFO)
         ch.setFormatter(Formatter('%(levelname)s - %(message)s'))
-        # ch.setFormatter(Formatter('%(message)s')) # same output as perl
+        f1 = SingleLevelFilter(INFO, False)
+        ch.addFilter(f1)
         logger.addHandler(ch)
+        errorch = StreamHandler(sys.stderr)
+        errorch.setLevel(WARNING)
+        errorch.setFormatter(Formatter('%(levelname)s - %(message)s'))
+        logger.addHandler(errorch)
         self.logger = logger
 
     def run (self):

@@ -1,10 +1,21 @@
 #!/usr/bin/env python3
 import argparse
 import os
+import sys
 import re
-import time
 import xml.etree.ElementTree
-from logging import getLogger, StreamHandler, INFO, Formatter
+from logging import getLogger, StreamHandler, INFO, WARNING, Formatter, Filter
+
+class SingleLevelFilter(Filter):
+    def __init__(self, passlevel, reject):
+        self.passlevel = passlevel
+        self.reject = reject
+
+    def filter(self, record):
+        if self.reject:
+            return (record.levelno != self.passlevel)
+        else:
+            return (record.levelno == self.passlevel)
 
 class Actor:
     def __init__(self, mod_name, vfs_path):
@@ -19,7 +30,7 @@ class Actor:
         try:
             tree = xml.etree.ElementTree.parse(physical_path)
         except xml.etree.ElementTree.ParseError as err:
-            self.logger.error('"%s": %s\n' % (physical_path, err.msg))
+            self.logger.error('"%s": %s' % (physical_path, err.msg))
             return False
         root = tree.getroot()
         # Special case: particles don't need a diffuse texture.
@@ -41,7 +52,7 @@ class Actor:
         try:
             tree = xml.etree.ElementTree.parse(physical_path)
         except xml.etree.ElementTree.ParseError as err:
-            self.logger.error('"%s": %s\n' % (physical_path, err.msg))
+            self.logger.error('"%s": %s' % (physical_path, err.msg))
             return False
 
         root = tree.getroot()
@@ -64,7 +75,7 @@ class Material:
         try:
             root = xml.etree.ElementTree.parse(physical_path).getroot()
         except xml.etree.ElementTree.ParseError as err:
-            self.logger.error('"%s": %s\n' % (physical_path, err.msg))
+            self.logger.error('"%s": %s' % (physical_path, err.msg))
             return False
         for element in root.findall('.//required_texture'):
             texture_name = element.get('name')
@@ -88,10 +99,17 @@ class Validator:
     def __init_logger(self):
         logger = getLogger(__name__)
         logger.setLevel(INFO)
-        ch = StreamHandler()
+        # create a console handler, seems nicer to Windows and for future uses
+        ch = StreamHandler(sys.stdout)
         ch.setLevel(INFO)
         ch.setFormatter(Formatter('%(levelname)s - %(message)s'))
+        f1 = SingleLevelFilter(INFO, False)
+        ch.addFilter(f1)
         logger.addHandler(ch)
+        errorch = StreamHandler(sys.stderr)
+        errorch.setLevel(WARNING)
+        errorch.setFormatter(Formatter('%(levelname)s - %(message)s'))
+        logger.addHandler(errorch)
         self.logger = logger
 
     def get_mod_path(self, mod_name, vfs_path):
@@ -126,6 +144,7 @@ class Validator:
         return result
 
     def find_materials(self, vfs_path):
+        self.logger.info('Collecting materials...')
         material_files = self.find_all_mods_files(vfs_path, re.compile(r'.*\.xml'))
         for material_file in material_files:
             material_name = os.path.basename(material_file['vfs_path'])
@@ -138,6 +157,8 @@ class Validator:
                 self.invalid_materials[material_name] = material
 
     def find_actors(self, vfs_path):
+        self.logger.info('Collecting actors...')
+
         actor_files = self.find_all_mods_files(vfs_path, re.compile(r'.*\.xml'))
         for actor_file in actor_files:
             actor = Actor(actor_file['mod_name'], actor_file['vfs_path'])
@@ -145,12 +166,9 @@ class Validator:
                 self.actors.append(actor)
 
     def run(self):
-        start_time = time.time()
-
-        self.logger.info('Collecting list of files to check\n')
-
         self.find_materials(os.path.join('art', 'materials'))
         self.find_actors(os.path.join('art', 'actors'))
+        self.logger.info('Validating textures...')
 
         for actor in self.actors:
             if not actor.material:
@@ -179,9 +197,6 @@ class Validator:
                     extra_textures,
                     material.name
                 ))
-
-        finish_time = time.time()
-        self.logger.info('Total execution time: %.3f seconds.\n' % (finish_time - start_time))
 
 if __name__ == '__main__':
     script_dir = os.path.dirname(os.path.realpath(__file__))
