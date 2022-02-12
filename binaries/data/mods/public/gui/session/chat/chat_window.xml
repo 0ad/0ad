@@ -15,7 +15,7 @@
 	<object type="image" name="chatHistoryPage" size="0 0 100% 100%-120">
 
 		<!-- Chat History Filter -->
-		<object type="text" size="16 12 60 32" style="ModernLeftLabelText">
+		<object type="text" name="chatHistoryFilterCaption" size="16 12 60 32" style="ModernLeftLabelText">
 			<translatableAttribute id="caption" context="chat input">Filter:</translatableAttribute>
 		</object>
 
@@ -42,7 +42,7 @@
 	<object name="chatPage" size="0 100%-120 100% 100%">
 
 		<!-- Message addressee -->
-		<object size="16 100%-106 50 100%-82" type="text" style="ModernLeftLabelText">
+		<object type="text" name="chatAddresseeCaption" size="16 100%-106 50 100%-82" style="ModernLeftLabelText">
 			<translatableAttribute id="caption" context="chat input">To:</translatableAttribute>
 		</object>
 		<object
@@ -56,7 +56,7 @@
 		</object>
 
 		<!-- Message text -->
-		<object type="text" size="16 100%-74 50 100%-50" style="ModernLeftLabelText">
+		<object type="text" name="chatInputCaption" size="16 100%-74 50 100%-50" style="ModernLeftLabelText">
 			<translatableAttribute id="caption" context="chat input">Text:</translatableAttribute>
 		</object>
 		<object

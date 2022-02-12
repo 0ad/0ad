@@ -3,12 +3,17 @@
  */
 class ChatAddressees
 {
-	constructor()
+	constructor(alignmentHelper)
 	{
 		this.selectionChangeHandlers = [];
 
+		this.chatAddresseeCaption = Engine.GetGUIObjectByName("chatAddresseeCaption");
+		resizeGUIObjectToCaption(this.chatAddresseeCaption, "right", this.CaptionMargin);
+
 		this.chatAddressee = Engine.GetGUIObjectByName("chatAddressee");
 		this.chatAddressee.onSelectionChange = this.onSelectionChange.bind(this);
+
+		alignmentHelper.setObject(this.chatAddressee, "left", this.chatAddresseeCaption.size.right + this.DropdownMargin);
 	}
 
 	registerSelectionChangeHandler(handler)
@@ -125,3 +130,6 @@ ChatAddressees.prototype.AddresseeTypes = [
 		"isAddressee": (senderID, addresseeGUID) => addresseeGUID == Engine.GetPlayerGUID()
 	}
 ];
+
+ChatAddressees.prototype.CaptionMargin = 10;
+ChatAddressees.prototype.DropdownMargin = 5;

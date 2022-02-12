@@ -12,13 +12,15 @@ class Chat
 		this.ChatHistory = new ChatHistory();
 		this.ChatHistory.registerSelectionChangeHandler(this.ChatWindow.onSelectionChange.bind(this.ChatWindow));
 
-		this.ChatInput = new ChatInput();
+		const alignmentHelper = new AlignmentHelper("max");
+
+		this.ChatInput = new ChatInput(alignmentHelper);
 		this.ChatInput.registerChatSubmitHandler(executeNetworkCommand);
 		this.ChatInput.registerChatSubmitHandler(cheats.executeCheat.bind(cheats));
 		this.ChatInput.registerChatSubmitHandler(this.submitChat.bind(this));
 		this.ChatInput.registerChatSubmittedHandler(this.closePage.bind(this));
 
-		this.ChatAddressees = new ChatAddressees();
+		this.ChatAddressees = new ChatAddressees(alignmentHelper);
 		this.ChatAddressees.registerSelectionChangeHandler(this.ChatInput.onSelectionChange.bind(this.ChatInput));
 		this.ChatAddressees.registerSelectionChangeHandler(this.ChatWindow.onSelectionChange.bind(this.ChatWindow));
 

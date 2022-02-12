@@ -221,6 +221,29 @@ function horizontallySpaceObjects(parentName, margin = 0)
 }
 
 /**
+ * Change the width of a GUIObject to make the caption fits nicely.
+ * @param object - The GUIObject to consider.
+ * @param direction - Direction to change the side either "left" or "right".
+ * @param margin - Margin to be added to the width (can be negative).
+ */
+function resizeGUIObjectToCaption(object, align, margin = 0)
+{
+	const objectSize = object.size;
+	const width = Engine.GetTextWidth(object.font, object.caption) + margin;
+	switch (align)
+	{
+	case "right":
+		objectSize.right = object.size.left + width;
+		break;
+	case "left":
+		objectSize.left = object.size.right - width;
+		break;
+	default:
+	}
+	object.size = objectSize;
+}
+
+/**
  * Hide all children after a certain index
  */
 function hideRemaining(parentName, start = 0)

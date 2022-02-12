@@ -13,12 +13,19 @@ class ChatHistory
 
 		this.selectionChangeHandlers = [];
 
+		this.chatHistoryFilterCaption = Engine.GetGUIObjectByName("chatHistoryFilterCaption");
+		resizeGUIObjectToCaption(this.chatHistoryFilterCaption, "right", this.CaptionMargin);
+
 		this.chatHistoryFilter = Engine.GetGUIObjectByName("chatHistoryFilter");
 		let filters = prepareForDropdown(this.Filters.filter(chatFilter => !chatFilter.hidden));
 		this.chatHistoryFilter.list = filters.text.map(text => translateWithContext("chat history filter", text));
 		this.chatHistoryFilter.list_data = filters.key;
 		this.chatHistoryFilter.selected = 0;
 		this.chatHistoryFilter.onSelectionChange = this.onSelectionChange.bind(this);
+
+		const chatHistoryFilterSize = this.chatHistoryFilter.size;
+		chatHistoryFilterSize.left = this.chatHistoryFilterCaption.size.right + this.FilterMargin;
+		this.chatHistoryFilter.size = chatHistoryFilterSize;
 
 		this.chatHistoryText = Engine.GetGUIObjectByName("chatHistoryText");
 	}
@@ -132,3 +139,6 @@ ChatHistory.prototype.Filters = [
 		"hidden": !Engine.HasNetClient()
 	}
 ];
+
+ChatHistory.prototype.CaptionMargin = 10;
+ChatHistory.prototype.FilterMargin = 5;
