@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-11 07:08+0000\n"
-"PO-Revision-Date: 2022-02-06 01:22+0000\n"
+"PO-Revision-Date: 2022-02-10 21:30+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -39,7 +39,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “HQ "
 "Water Effects” and “Shadows” options."
-msgstr "Puödes cambiar entre los modos “pantalla completa” & “feniestra” premiendo Alternativa + Introduzir. Nel modu feniestra, puödes commudar las dimensiones de la feniestra. Si’l juögu vai rastriegu, puödes commudar las configuraciones nel menú “Opciones”: pruöba-llu culas opciones “Effectos aquáticos in alta qualidá” & “Sulombras” disactivadas."
+msgstr "Puödes alternar entre los modos “pantalla completa” & “feniestra” premiendo Alternativa + Introduzir. Nel modu feniestra, puödes commudar las dimensiones de la feniestra. Si’l juögu vai rastriegu, puödes commudar las configuraciones nel menú “Opciones”: pruöba-llu culas opciones “Effectos aquáticos in alta qualidá” & “Sulombras” disactivadas."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -55,7 +55,7 @@ msgstr "El juögu al meyyor resultarhá connocidu pol semeyyu que tien cun outro
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls (by default):"
-msgstr "Mandos sinziellos (predefinidos):"
+msgstr "Mandos básicos (predefinidos):"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
@@ -81,7 +81,7 @@ msgstr "• Control + teclas direccionales, ou Maiúsculas + ruöda del mure: gy
 msgid ""
 "• Mouse wheel, or “hotkey.camera.zoom.in” and “hotkey.camera.zoom.out” keys,"
 " to zoom"
-msgstr "• Ruöda del mure, ou teclas “hotkey.camera.zoom.in” & “hotkey.camera.zoom.out”: approximar/alhongar"
+msgstr "• Ruöda del mure, ou teclas “hotkey.camera.zoom.in” & “hotkey.camera.zoom.out”: approximar/alhongar la vista"
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -97,7 +97,7 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr "• [font=\"sans-bold-14\"]Un jogador[font=\"sans-14\"] – Jogar una partida personalizada contra un ou mas agentes intelligentes (AI). L’agente intelligente predefinida (Petra), magar funccional, sigui in disindolcu & puöde nun tener anovadas las suas characterísticas."
+msgstr "• [font=\"sans-bold-14\"]Un jogador[font=\"sans-14\"] – Jogar una partida personalizada contra un ou mas agentes intelligentes (AI). L’agente intelligente predefinida (Petra), magar funccional, sigui in disindolcu & puöde nun tener integradas las characterísticas nuövas."
 
 #: gui/manual/intro.txt:21
 msgid ""
@@ -111,7 +111,7 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr "Pa configurar una partida multijogador, alquien ha excoyyer la opcion “Ahospedar partida”. La partida usa’l puörtu UDP 20595, & l’amphitryon ha permití-llu nel sou NAT/torna-fhuögu/etc. De puöis, outros jogadores puöden excoyyer “Ajuntá-se a la partida” & poner las signas IP del amphitryon."
+msgstr "Pa configurar una partida multijogador, alquien ha excoyyer la opcion “Ahospedar partida”. La partida usa’l puörtu UDP 20595, & l’amphitryon ha permití-llu nel sou NAT/torna-fhuögu/etc. D’ex puös, outros jogadores puöden excoyyer “Ajuntá-se a la partida” & poner las signas IP del amphitryon."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -173,11 +173,11 @@ msgstr "[font=\"sans-bold-16\"]Atayyos[font=\"sans-14\"]"
 msgid ""
 "You may change hotkeys in [font=\"sans-bold-14\"]Options > "
 "Hotkeys[font=\"sans-14\"] to suit your liking."
-msgstr "Puödes afazer los atayyos in [font=\"sans-bold-14\"]Opciones > Atayyos[font=\"sans-14\"] a los deleres de tou."
+msgstr "Puödes afazer los atayyos al tou gustu in [font=\"sans-bold-14\"]Opciones > Atayyos[font=\"sans-14\"]."
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]Todu’l programma[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]Del programma[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:43
 msgid ""
@@ -200,7 +200,7 @@ msgstr "  hotkey.fps.toggle – Alternar el freqüencímetru (Q/s)"
 msgid ""
 "  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
 "displays of information)"
-msgstr "  hotkey.profile.toggle – Alternar las anályses in tiempu real (cambiar entre los informes)"
+msgstr "  hotkey.profile.toggle – Alternar las anályses in tiempu real (demudar d’informes)"
 
 #: gui/manual/intro.txt:48
 msgid ""
@@ -231,7 +231,7 @@ msgstr "  hotkey.tab.prev – Tornar a la lhingüeta anterior"
 
 #: gui/manual/intro.txt:54
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]Al jogar[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]Del juögu[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:55
 msgid ""
@@ -311,19 +311,19 @@ msgstr "    • Con hotkey.session.noconfirmation – Disiniciar lo excoyyido ne
 msgid ""
 "  hotkey.selection.add – Modifier – add to selection (works with clicking "
 "and hotkeys, e.g. the idle hotkeys)"
-msgstr "  hotkey.selection.add – Commudador – amixtar a la excolleitha (ou piccando ou culos atayyos)"
+msgstr "  hotkey.selection.add – Commudador – amicer a la excolleitha (ou piccando ou culos atayyos)"
 
 #: gui/manual/intro.txt:71
 msgid ""
 "  hotkey.selection.remove – Modifier – remove from selection (works with "
 "clicking and hotkeys, e.g. the idle hotkeys)"
-msgstr "  hotkey.selection.remove – Commudador – eliminar de la excolleitha (ou piccando ou culos atayyos)"
+msgstr "  hotkey.selection.remove – Commudador – disamicer de la excolleitha (ou piccando ou culos atayyos)"
 
 #: gui/manual/intro.txt:72
 msgid ""
 "  hotkey.selection.offscreen – Modifier – add all units, including offscreen"
 " units, to selection."
-msgstr "  hotkey.selection.offscreen – Commudador – amixtar a la excolleitha tódalas unidades, inda que nun stean a la vista."
+msgstr "  hotkey.selection.offscreen – Commudador – amicer a la excolleitha tódalas unidades, inda que nun stean a la vista."
 
 #: gui/manual/intro.txt:73
 msgid ""
@@ -378,7 +378,7 @@ msgstr "  hotkey.selection.group.select.1 – Excoyyer las unidades, construccio
 msgid ""
 "  hotkey.selection.group.add.1 – Add control group 1 (to 0) to the selected "
 "unit(s)/structure(s)"
-msgstr "  hotkey.selection.group.add.1 – amixtar la grea 1 (ta 0) a la excolleitha"
+msgstr "  hotkey.selection.group.add.1 – Amicer la grea 1 (ta 0) a la excolleitha"
 
 #: gui/manual/intro.txt:84
 msgid ""
@@ -399,47 +399,47 @@ msgid ""
 "hotkey.session.queueunit.5, hotkey.session.queueunit.6, "
 "hotkey.session.queueunit.7 – With training structure selected. Add the 1st, "
 "2nd, … unit shown to the training queue for all the selected structures"
-msgstr "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – Cun una ou varias construcciones creadores excoyyidas. Innadder la 1a, 2a, … unidá signalada a las riestras de tódalas construcciones excoyyidas"
+msgstr "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – Cun construcciones creadores excoyyidas. Amicer la 1a, 2a, … unidá signalada a las riestras de tódalas construcciones excoyyidas"
 
 #: gui/manual/intro.txt:87
 msgid ""
 "  hotkey.session.highlightguarded with unit(s) selected – Highlight the "
 "unit(s)/structure(s) guarded by the selection"
-msgstr "  hotkey.session.highlightguarded, con una o varias unidades esbillades – Resaltar lo que protexe la esbilla"
+msgstr "  hotkey.session.highlightguarded, cun unidades excoyyidas – Resaltar lo que custodian las unidades excoyyidas"
 
 #: gui/manual/intro.txt:88
 msgid ""
 "  hotkey.session.highlightguarding with unit(s)/structure(s) selected – "
 "Highlight the unit(s) guarding the selection"
-msgstr "  hotkey.session.highlightguarding, con una o varias unidades o construcciones esbillades – Resaltar la unidá o unidades qu'están protexendo la esbilla"
+msgstr "  hotkey.session.highlightguarding, cun unidades/construcciones excoyyidas – Resaltar las unidades que stean custodiando lo excoyyido"
 
 #: gui/manual/intro.txt:89
 msgid ""
 "  highlightguarding.showstatusbars – See all status bars (which would also "
 "show the building progress)"
-msgstr "  highlightguarding.showstatusbars – Ver tódolos estaos (y, poro, l'avance les obres)"
+msgstr "  highlightguarding.showstatusbars – Ver tódalas barras de stadu (&, porho, l’abance de las obras)"
 
 #: gui/manual/intro.txt:90
 msgid "  hotkey.summary – Toggle summary window"
-msgstr "  hotkey.summary – Alternar el resume"
+msgstr "  hotkey.summary – Alternar el quadro de resume"
 
 #: gui/manual/intro.txt:91
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
-msgstr "  hotkey.lobby – Amostrar l'antepar nuna feniestra dialogal"
+msgstr "  hotkey.lobby – Amostrar l’antepar nuna feniestra de diálogu"
 
 #: gui/manual/intro.txt:92
 msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
-msgstr "  hotkey.session.gui.diplomacy.toggle – Alternar el panel diplomáticu"
+msgstr "  hotkey.session.gui.diplomacy.toggle – Alternar el quadro diplomáticu"
 
 #: gui/manual/intro.txt:93
 msgid ""
 "  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel"
-msgstr "  hotkey.session.gui.barter.toggle – Alternar el panel comercial"
+msgstr "  hotkey.session.gui.barter.toggle – Alternar el quadro commercial"
 
 #: gui/manual/intro.txt:94
 msgid ""
 "  hotkey.session.gui.objectives.toggle – Toggle in-game objectives panel"
-msgstr "  hotkey.session.gui.objectives.toggle – Alternar los obxectivos"
+msgstr "  hotkey.session.gui.objectives.toggle – Alternar el quadro d’obiectivos"
 
 #: gui/manual/intro.txt:95
 msgid "  hotkey.session.gui.tutorial.toggle – Toggle in-game tutorial panel"
@@ -451,42 +451,42 @@ msgstr "  hotkey.structree – Alternar l’árbole de construcciones"
 
 #: gui/manual/intro.txt:97
 msgid "  hotkey.civinfo – Toggle civilization info panel"
-msgstr "  hotkey.civinfo – Alternar el panel civilizacional"
+msgstr "  hotkey.civinfo – Alternar el quadro de synopses culturales"
 
 #: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]Commudar l’accion del mure[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]Del mure[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:100
 msgid "  hotkey.session.garrison + Right Click on structure – Garrison"
-msgstr "  hotkey.session.garrison + Calcar col botón derechu nuna construcción – Ocupar"
+msgstr "  hotkey.session.garrison + Botton direithu del mure nuna construcción – Ablogar"
 
 #: gui/manual/intro.txt:101
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
-msgstr "  hotkey.session.repair + Calcar col botón derechu nuna construcción – Iguar"
+msgstr "  hotkey.session.repair + Botton direithu del mure nuna construccion – Eguar"
 
 #: gui/manual/intro.txt:102
 msgid "  hotkey.session.patrol + Right Click – Patrol"
-msgstr "  hotkey.session.patrol + Calcar col botón derechu – Rondar"
+msgstr "  hotkey.session.patrol + Botton direithu del mure – Rondar"
 
 #: gui/manual/intro.txt:103
 msgid ""
 "  hotkey.session.queue + Right Click – Queue the move/build/gather/etc. "
 "order"
-msgstr "  hotkey.session.queue + Calcar col botón derechu – Enrestrar mandaos de movimientu/construcción/llogru/etc."
+msgstr "  hotkey.session.queue + Botton direithu del mure – Inrestrar el mandado de mocion/construccion/obtencion/etc."
 
 #: gui/manual/intro.txt:104
 msgid ""
 "  hotkey.session.pushorderfront + Right Click – Modifier to push any order "
 "in front of the order queue."
-msgstr "  hotkey.session.pushorderfront + Calcar col botón derechu – Camudador pa mover un mandáu al entamu de la riestra."
+msgstr "  hotkey.session.pushorderfront + Botton direithu del mure – Commudador pa mover mandados al impieçu de la riestra."
 
 #: gui/manual/intro.txt:105
 msgid ""
 "  hotkey.session.orderone + Right Click – Order one unit from the current "
 "selection to move/build/gather/etc. and unselect it. Used to quickly "
 "dispatch units with specific tasks"
-msgstr "  hotkey.session.orderone + Calcar col botón derechu – Mandar facer daqué y quitar de la esbilla a una unidá. Val pa encargar les unidades de xeres concretes nun tris."
+msgstr "  hotkey.session.orderone + Botton direithu del mure – Mandar mové-se/construir/coyyer/etc. & disamicer de la excolleitha a una unidá. Val pa fazer mandados de forma rápida."
 
 #: gui/manual/intro.txt:106
 msgid ""
@@ -498,73 +498,73 @@ msgstr "  hotkey.session.batchtrain + Botton ezquierdu del mure al crear unidade
 msgid ""
 "  hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit"
 " to selection"
-msgstr "  hotkey.selection.add + Arrastrar o calcar col botón esquierdu nuna unidá – Amestar a la esbilla"
+msgstr "  hotkey.selection.add + Arrastrar, ou Bot. ezq. del mure, in daqué – Amicer a la excolleitha"
 
 #: gui/manual/intro.txt:108
 msgid ""
 "  hotkey.selection.remove + Left Click or Left Drag over unit on map – "
 "Remove unit from selection"
-msgstr "  hotkey.selection.remove + Arrastrar o calcar col botón esquierdu nuna unidá – Quitar de la esbilla"
+msgstr "  hotkey.selection.remove + Arrastrar, Bot. ezq. del mure, in daqué – Disamicer de la excolleitha"
 
 #: gui/manual/intro.txt:109
 msgid ""
 "  hotkey.selection.militaryonly + Left Drag over units on map – Only select "
 "military units"
-msgstr "  hotkey.selection.militaryonly + Botón esq. del mure, calcáu o arrastráu nuna unidá – Esbillar namái unidades militares"
+msgstr "  hotkey.selection.militaryonly + Botton ezq. & arrastre del mure in unidades – Excoyyer solo unidades militares"
 
 #: gui/manual/intro.txt:110
 msgid ""
 "  hotkey.selection.nonmilitaryonly + Left Drag over units on map – Only "
 "select non-military units"
-msgstr "  hotkey.selection.nonmilitaryonly + Calcar col botón esquierdu y arrastrar nuna unidá – Esbillar namái unidades civiles"
+msgstr "  hotkey.selection.nonmilitaryonly + Botton ezq. & arrastre del mure in unidades – Excoyyer solo unidades civiles"
 
 #: gui/manual/intro.txt:111
 msgid ""
 "  hotkey.selection.idleonly + Left Drag over units on map – Only select idle"
 " units"
-msgstr "  hotkey.selection.idleonly + Calcar col botón esquierdu y arrastrar nuna unidá – Esbillar namái unidades vagades"
+msgstr "  hotkey.selection.idleonly + Botton ezq. & arrastre del mure in unidades – Excoyyer solo unidades vagadas"
 
 #: gui/manual/intro.txt:112
 msgid ""
 "  hotkey.selection.woundedonly + Left Drag over units on map – Only select "
 "wounded units"
-msgstr "  hotkey.selection.woundedonly + Calcar col botón esquierdu y arrastrar nuna unidá – Esbillar namái unidades mancades"
+msgstr "  hotkey.selection.woundedonly + Botton ezq. & arrastre del mure in unidades – Excoyyer solo unidades mancadas"
 
 #: gui/manual/intro.txt:113
 msgid ""
 "  hotkey.selection.singleselection – Modifier to select units individually, "
 "opposed to per formation."
-msgstr "  hotkey.selection.singleselection – Camudador pa esbillar les unidades xebradamente, en cuenta de por formación."
+msgstr "  hotkey.selection.singleselection – Commudador pa excoyyer unidades individuales in vez de formaciones."
 
 #: gui/manual/intro.txt:114
 msgid ""
 "  Right Click with a structure(s) selected – Set a rally point for units "
 "created/ungarrisoned from that structure"
-msgstr "  Piccar cul botton direithu teniendo una ou varias construcciones excoyyidas – Affitar un punto d’incuöntru pa las unidades que salan d’essa construccion"
+msgstr "  Botton direithu del mure cun construcciones excoyyidas – Affitar un punto d’incuöntru pa las unidades que salgan d’essa construccion"
 
 #: gui/manual/intro.txt:115
 msgid ""
 "  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
-msgstr "  hotkey.session.garrison + Calcar col botón derechu teniendo una o varias unidades esbillades – Ocupar (al estar el punteru enriba d'una construcción propria o amiga)"
+msgstr "  hotkey.session.garrison + Botton direithu del mure cun unidades excoyyidas – Ablogar (si’l cursor sta in riba d’una construccion propria ou colligada)"
 
 #: gui/manual/intro.txt:116
 msgid ""
 "  hotkey.session.attack + Right Click with unit(s) selected – Attack "
 "(instead of capture or gather)"
-msgstr "  hotkey.session.attack + Calcar col botón derechu teniendo una o varias unidades esbillades – Agredir (en vez d'apropriase o llograr)"
+msgstr "  hotkey.session.attack + Botton direithu del mure cun unidades excoyyidas – Acomitter (in vez d’appropriá-se ou obtener)"
 
 #: gui/manual/intro.txt:117
 msgid ""
 "  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
-msgstr "  hotkey.session.attackmove + Piccar cul botton direithu teniendo una ou varias unidades excoyyidas – Acommitter (aggrediendo todo lo q’atopen de camminu al obiectivu)"
+msgstr "  hotkey.session.attackmove + Botton direithu del mure cun unidades excoyyidas – Mover & acommitter (por defectu, aggredin todo lo q’atopen de camminu)"
 
 #: gui/manual/intro.txt:118
 msgid ""
 "  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack"
 " move, only units along the way are targeted"
-msgstr "  hotkey.session.attackmoveUnit + Calcar col botón derechu teniendo una o varias unidades esbillades – Acometer, agrediendo solo unidades de camín al obxectivu"
+msgstr "  hotkey.session.attackmoveUnit + Botton direithu del mure cun unidades excoyyidas – Mover & acomitter, aggrediendo las unidades q’atopen de camminu"
 
 #: gui/manual/intro.txt:119
 msgid ""
@@ -574,11 +574,11 @@ msgstr "  hotkey.session.snaptoedges + Movimiento del Mure a la veira de constru
 
 #: gui/manual/intro.txt:120
 msgid "  hotkey.session.flare + Right Click – Send a flare to your allies"
-msgstr "  hotkey.session.flare + Piccar cul botton direithu – Signar a los colligados"
+msgstr "  hotkey.session.flare + Botton direithu del mure – Signar a los colligados"
 
 #: gui/manual/intro.txt:122
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]Subrecapas[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]De las subrecapas[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:123
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
@@ -595,7 +595,7 @@ msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr "  hotkey.wireframe – Alternar el modu contornadu (preme una vez p’amostrar los contornos & texturas de los modellos, duas vezes p’amostrar los contornos & texturas namai, & tres vezes pa volver al modu normal)"
+msgstr "  hotkey.wireframe – Alternar el modu contornu (preme una vez p’amostrar los contornos & texturas de los modellos, duas vezes p’amostrar los contornos & texturas namai, & tres vezes pa volver al modu normal)"
 
 #: gui/manual/intro.txt:126
 msgid ""
@@ -627,7 +627,7 @@ msgstr "  hotkey.session.togglehealrange – Alternar las visualizaciones del al
 
 #: gui/manual/intro.txt:132
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]Movemiento de la cámara[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]De la cámara[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:133
 msgid "  hotkey.camera.up – Pan screen up"
@@ -701,7 +701,7 @@ msgstr "  hotkey.camera.pan – Dislocar premiendo’l botton & moviendo’l mur
 
 #: gui/manual/intro.txt:149
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]Al assentar construcciones[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]Q’orientan las previsualizaciones de construcciones[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:150
 msgid ""
@@ -720,7 +720,7 @@ msgstr "  Arrastre ezquierdu – Gyrar pentre medias del mure (in soltando-llu p
 
 #: gui/manual/intro.txt:154
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]Al cargar partidas guardadas[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]Que gestionan las partidas guardadas[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:155
 msgid "  hotkey.cancel – Cancel"

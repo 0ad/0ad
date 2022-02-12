@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-24 08:35+0000\n"
-"PO-Revision-Date: 2022-02-05 21:27+0000\n"
+"PO-Revision-Date: 2022-02-11 02:10+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -346,16 +346,16 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr "%(icon)s ¡%(attacker)s sta aggrediendo los reses!"
+msgstr "%(icon)s ¡%(attacker)s sta acomittiendo los reses!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr "%(icon)s ¡%(attacker)s sta aggrediendo-te!"
+msgstr "%(icon)s ¡%(attacker)s sta acomittiendo-te!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
-msgstr "Picca pa infocar ex contra la unidá aggredida."
+msgstr "Picca pa infocar ex contra la unidá acomittida."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
@@ -649,7 +649,7 @@ msgstr "Alternar colores diplomáticos"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
-msgstr "Pedir a los colligados q’aggredan esti inimigu"
+msgstr "Pedir a los colligados q’acomettan esti inimigu"
 
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
 msgctxt "team"
@@ -1037,11 +1037,11 @@ msgstr ","
 
 #: gui/session/selection_panels.js:65
 msgid "Raise an alert!"
-msgstr "¡Xubíi'l nivel d'alerta!"
+msgstr "¡Da l’alarma!"
 
 #: gui/session/selection_panels.js:68
 msgid "End of alert."
-msgstr "Fin de l'alerta."
+msgstr "Fin de l’alarma."
 
 #: gui/session/selection_panels.js:277
 msgid "Default formation is disabled."
@@ -1053,7 +1053,7 @@ msgstr "Picca cul botton direithu pa disactivar la funccion “formacion predefi
 
 #: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
-msgstr "Esta ye la formacion predefinida, que s’assume in dando mandados de movemiento."
+msgstr "Esta ye la formacion predefinida, que s’assume in dando mandados de mocion."
 
 #: gui/session/selection_panels.js:282
 msgid "Right-click to set this as the default formation."
@@ -1062,11 +1062,11 @@ msgstr "Picca cul botton direithu pa predefinir esta formacion."
 #: gui/session/selection_panels.js:338
 #, javascript-format
 msgid "Unload %(name)s"
-msgstr "Descargar %(name)s"
+msgstr "Disablogar %(name)s"
 
 #: gui/session/selection_panels.js:339
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "Picca una vez pa discargar 1. Calca cun Maiúsculas premida pa discargar tódolos d’esti typu."
+msgstr "Picca una vez pa disablogar 1. Calca cun Maiúsculas premida pa disablogar tódolos d’esti typu."
 
 #: gui/session/selection_panels.js:341 gui/session/selection_panels.js:906
 #, javascript-format
@@ -1114,8 +1114,8 @@ msgstr "%(population)s %(neededSlots)s"
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] "%(number)s ente de clas %(class)s"
-msgstr[1] "%(number)s entes de clas %(class)s"
+msgstr[0] "%(number)s ente de classe %(class)s"
+msgstr[1] "%(number)s entes de classe %(class)s"
 
 #: gui/session/selection_panels.js:777
 #, javascript-format
@@ -1187,54 +1187,54 @@ msgstr "Defensivu"
 #: gui/session/selection_panels_helpers.js:59
 msgctxt "stance"
 msgid "Passive"
-msgstr "Pasivu"
+msgstr "Passivu"
 
 #: gui/session/selection_panels_helpers.js:61
 msgctxt "stance"
 msgid "Standground"
-msgstr "Fincase"
+msgstr "Quedu"
 
 #: gui/session/selection_panels_helpers.js:73
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr "Aggredir inimigos próximos, centrando-se in aggresores & perseguiendo-los ta perdé-los de vista"
+msgstr "Acomitter inimigos aveirados, centrando-se in aggresores & perseguiendo-los ta perdé-los de vista"
 
 #: gui/session/selection_panels_helpers.js:75
 msgctxt "stance"
 msgid "Attack nearby opponents"
-msgstr "Aggredir inimigos aveirados"
+msgstr "Acomitter inimigos aveirados"
 
 #: gui/session/selection_panels_helpers.js:77
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr "Aggredir inimigos aveirados, perseguiéndo-llos un poco & d’a reo tornando al sou puöstu"
+msgstr "Acomitter inimigos aveirados, perseguiéndo-llos un poco & d’a reo tornando al sou puöstu"
 
 #: gui/session/selection_panels_helpers.js:79
 msgctxt "stance"
 msgid "Flee if attacked"
-msgstr "Fugir al vé-se aggredidu"
+msgstr "Fugir al vé-se acomittidu"
 
 #: gui/session/selection_panels_helpers.js:81
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr "Aggredir inimigos aveirados in sin perseguí-llos"
+msgstr "Acomitter inimigos aveirados in sin perseguí-llos"
 
 #: gui/session/selection_panels_helpers.js:95
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
-msgstr "Cifra actual: %(count)s, Llende: %(limit)s."
+msgstr "Númeru actual: %(count)s, Lhinde: %(limit)s."
 
 #: gui/session/selection_panels_helpers.js:109
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
-msgstr "%(changer)s enanta la llende con %(change)s."
+msgstr "%(changer)s subi la lhinde cun %(change)s."
 
 #: gui/session/selection_panels_helpers.js:110
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
-msgstr "%(changer)s amenorga la llende con %(change)s."
+msgstr "%(changer)s baẍa la lhinde cun %(change)s."
 
 #: gui/session/selection_panels_helpers.js:140
 msgid "Can be constructed only once."
@@ -1398,7 +1398,7 @@ msgstr "Coyyedores: actuales"
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
 msgctxt "observer mode"
 msgid "Follow Player"
-msgstr "Seguir a jogador"
+msgstr "Seguir al jogador"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):10
 #: gui/session/top_panel/IconButtons/DiplomacyDialogButton.js:29
@@ -1420,11 +1420,11 @@ msgstr "Menú"
 
 #: gui/session/top_panel/PlayerViewControl.js:123
 msgid "Observer"
-msgstr "Espectador"
+msgstr "Spectador"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(caption):17
 msgid "Observer Mode"
-msgstr "Modu espectador"
+msgstr "Modu spectador"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(tooltip):13
 msgid "Choose player to view"
@@ -1641,12 +1641,12 @@ msgstr "Picca cul botton direithu p’affitar cumo mercadu de destinu."
 #: gui/session/unit_actions.js:771 gui/session/unit_actions.js:1118
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
-msgstr "Torretes: %(occupied)s/%(capacity)s"
+msgstr "Turretas: %(occupied)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:837 gui/session/unit_actions.js:1101
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
-msgstr "Ocupantes actuales: %(garrisoned)s/%(capacity)s"
+msgstr "Occupantes actuales: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:1177
 msgid "Right-click to establish a default route for new traders."
@@ -1665,15 +1665,15 @@ msgstr[1] "A essos entes non llis puödes mandar."
 
 #: gui/session/unit_actions.js:1353
 msgid "Unload All."
-msgstr "Descargallo todo."
+msgstr "Disoccupá-llas todas."
 
 #: gui/session/unit_actions.js:1388
 msgid "Unload Turrets."
-msgstr "Desocupar les torretes."
+msgstr "Disoccupar las turretas."
 
 #: gui/session/unit_actions.js:1408
 msgid "Destroy the selected units or structures."
-msgstr "Destrúi las unidades ou construcciones excoyyidas."
+msgstr "Destruir las unidades ou construcciones excoyyidas."
 
 #: gui/session/unit_actions.js:1410
 #, javascript-format
@@ -1700,7 +1700,7 @@ msgstr "Mandar que las unidades exociyydas occupen una turreta."
 
 #: gui/session/unit_actions.js:1547
 msgid "Unload"
-msgstr "Discargar"
+msgstr "Disablogar"
 
 #: gui/session/unit_actions.js:1567
 msgid "Order the selected units to repair a structure, ship, or siege engine."
@@ -1716,7 +1716,7 @@ msgstr "Volver al llabor"
 
 #: gui/session/unit_actions.js:1646
 msgid "Order the selected units to guard a structure or unit."
-msgstr "Mandar que las unidades excoyyidas protejan una construccion ou unidá."
+msgstr "Mandar que las unidades excoyyidas custodien una construccion ou unidá."
 
 #: gui/session/unit_actions.js:1666
 msgid "Remove guard"
@@ -1726,7 +1726,7 @@ msgstr "Quitar la guardia"
 #: gui/session/trade/TradeDialog.xml:(caption):9
 #: gui/session/unit_actions.js:1685
 msgid "Barter & Trade"
-msgstr "Comerciu"
+msgstr "Commercio"
 
 #: gui/session/unit_actions.js:1705
 msgid "Patrol"
@@ -1734,7 +1734,7 @@ msgstr "Velar"
 
 #: gui/session/unit_actions.js:1706
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr "Aggredir tódalas unidades inimigas incontradas evitando construcciones."
+msgstr "Acomitter tódalas unidades inimigas incontradas evitando construcciones."
 
 #: gui/session/unit_actions.js:1734
 msgid "Press to allow allies to use this dropsite"
@@ -1771,7 +1771,7 @@ msgstr "Esso ha hi que lo matar pa explotá-llo"
 #: gui/session/unit_actions.js:1888
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr "Nun puödes eliminar esti ente, d’ex que ti correspuönde menus del dimidio de la sua fidelidá"
+msgstr "Nun puödes disiniciar esti ente, d’ex que ti correspuönde menus del dimidio de la sua fidelidá"
 
 #: gui/session/unit_actions.js:1891
 msgid "This entity is undeletable"
