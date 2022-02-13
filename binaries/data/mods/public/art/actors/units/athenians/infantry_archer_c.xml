@@ -17,79 +17,79 @@
   <group>
     <variant frequency="1" name="scyth-tunic-coat-01-01">
       <textures>
-        <texture file="skeletal/scyth_tunic_coat_01_01.png" name="baseTex"/>
+        <texture file="skeletal/scyth/tunic_coat_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scyth-tunic-coat-01-02">
       <textures>
-        <texture file="skeletal/scyth_tunic_coat_01_02.png" name="baseTex"/>
+        <texture file="skeletal/scyth/tunic_coat_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scyth-tunic-coat-01-03">
       <textures>
-        <texture file="skeletal/scyth_tunic_coat_01_03.png" name="baseTex"/>
+        <texture file="skeletal/scyth/tunic_coat_01_03.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scyth-tunic-coat-01-04">
       <textures>
-        <texture file="skeletal/scyth_tunic_coat_01_04.png" name="baseTex"/>
+        <texture file="skeletal/scyth/tunic_coat_01_04.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scyth-tunic-coat-02-01">
       <textures>
-        <texture file="skeletal/scyth_tunic_coat_02_01.png" name="baseTex"/>
+        <texture file="skeletal/scyth/tunic_coat_02_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scyth-tunic-coat-02-02">
       <textures>
-        <texture file="skeletal/scyth_tunic_coat_02_02.png" name="baseTex"/>
+        <texture file="skeletal/scyth/tunic_coat_02_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scyth-tunic-coat-02-03">
       <textures>
-        <texture file="skeletal/scyth_tunic_coat_02_03.png" name="baseTex"/>
+        <texture file="skeletal/scyth/tunic_coat_02_03.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scyth-tunic-ornate-01-01">
       <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/scyth_tunic_ornate_01_01.png" name="baseTex"/>
+        <texture file="skeletal/scyth/tunic_ornate_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scyth-tunic-ornate-01-02">
       <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/scyth_tunic_ornate_01_02.png" name="baseTex"/>
+        <texture file="skeletal/scyth/tunic_ornate_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scyth-tunic-suit-01-01">
       <textures>
-        <texture file="skeletal/scyth_tunic_suit_01_01.png" name="baseTex"/>
+        <texture file="skeletal/scyth/tunic_suit_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scyth-tunic-suit-01-02">
       <textures>
-        <texture file="skeletal/scyth_tunic_suit_01_02.png" name="baseTex"/>
+        <texture file="skeletal/scyth/tunic_suit_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scyth-tunic-suit-01-03">
       <textures>
-        <texture file="skeletal/scyth_tunic_suit_01_03.png" name="baseTex"/>
+        <texture file="skeletal/scyth/tunic_suit_01_03.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scyth-tunic-suit-01-04">
       <textures>
-        <texture file="skeletal/scyth_tunic_suit_01_04.png" name="baseTex"/>
+        <texture file="skeletal/scyth/tunic_suit_01_04.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scyth-tunic-suit-01-05">
       <textures>
-        <texture file="skeletal/scyth_tunic_suit_01_05.png" name="baseTex"/>
+        <texture file="skeletal/scyth/tunic_suit_01_05.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scyth-tunic-suit-01-06">
       <textures>
-        <texture file="skeletal/scyth_tunic_suit_01_06.png" name="baseTex"/>
+        <texture file="skeletal/scyth/tunic_suit_01_06.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -98,6 +98,7 @@
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/attack_ranged_archer_hip.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml">
       <props>
         <prop actor="props/units/capes/cape_med_player.xml" attachpoint="root"/>
