@@ -215,11 +215,10 @@ void CSceneRenderer::ReloadShaders()
 {
 	m->globalContext = CShaderDefines();
 
-	const CRenderer::Caps& capabilities = g_Renderer.GetCapabilities();
-	if (capabilities.m_Shadows && g_RenderingOptions.GetShadows())
+	if (g_RenderingOptions.GetShadows())
 	{
 		m->globalContext.Add(str_USE_SHADOW, str_1);
-		if (capabilities.m_ARBProgramShadow && g_RenderingOptions.GetARBProgramShadow())
+		if (g_VideoMode.GetBackendDevice()->GetCapabilities().ARBShadersShadow)
 			m->globalContext.Add(str_USE_FP_SHADOW, str_1);
 		if (g_RenderingOptions.GetShadowPCF())
 			m->globalContext.Add(str_USE_SHADOW_PCF, str_1);
@@ -351,9 +350,8 @@ void CSceneRenderer::RenderPatches(
 #endif
 
 	// render all the patches, including blend pass
-	const CRenderer::Caps& capabilities = g_Renderer.GetCapabilities();
 	m->terrainRenderer.RenderTerrainShader(deviceCommandContext, context, cullGroup,
-		(capabilities.m_Shadows && g_RenderingOptions.GetShadows()) ? &m->shadow : 0);
+		g_RenderingOptions.GetShadows() ? &m->shadow : nullptr);
 
 #if !CONFIG2_GLES
 	if (m_TerrainRenderMode == WIREFRAME)
@@ -846,8 +844,7 @@ void CSceneRenderer::RenderSubmissions(
 
 	m->particleRenderer.PrepareForRendering(context);
 
-	const CRenderer::Caps& capabilities = g_Renderer.GetCapabilities();
-	if (capabilities.m_Shadows && g_RenderingOptions.GetShadows())
+	if (g_RenderingOptions.GetShadows())
 	{
 		RenderShadowMap(deviceCommandContext, context);
 	}
@@ -1042,9 +1039,8 @@ void CSceneRenderer::SetSceneCamera(const CCamera& viewCamera, const CCamera& cu
 {
 	m_ViewCamera = viewCamera;
 	m_CullCamera = cullCamera;
-	
-	const CRenderer::Caps& capabilities = g_Renderer.GetCapabilities();
-	if (capabilities.m_Shadows && g_RenderingOptions.GetShadows())
+
+	if (g_RenderingOptions.GetShadows())
 		m->shadow.SetupFrame(m_CullCamera, m_LightEnv->GetSunDir());
 }
 
@@ -1179,8 +1175,7 @@ void CSceneRenderer::RenderScene(
 		m->silhouetteRenderer.RenderSubmitCasters(*this);
 	}
 
-	const CRenderer::Caps& capabilities = g_Renderer.GetCapabilities();
-	if (capabilities.m_Shadows && g_RenderingOptions.GetShadows())
+	if (g_RenderingOptions.GetShadows())
 	{
 		for (int cascade = 0; cascade <= m->shadow.GetCascadeCount(); ++cascade)
 		{

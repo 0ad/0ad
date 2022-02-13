@@ -131,8 +131,8 @@ private:
 	std::unique_ptr<Renderer::Backend::GL::CFramebuffer> m_MultisampleFramebuffer;
 	std::unique_ptr<Renderer::Backend::GL::CTexture>
 		m_MultisampleColorTex, m_MultisampleDepthTex;
-	GLsizei m_MultisampleCount;
-	std::vector<GLsizei> m_AllowedSampleCounts;
+	uint32_t m_MultisampleCount;
+	std::vector<uint32_t> m_AllowedSampleCounts;
 
 	// The current screen dimensions in pixels.
 	int m_Width, m_Height;

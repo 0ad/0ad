@@ -67,16 +67,6 @@ public:
 		size_t m_Particles;
 	};
 
-	struct Caps
-	{
-		bool m_ARBProgram;
-		bool m_ARBProgramShadow;
-		bool m_VertexShader;
-		bool m_FragmentShader;
-		bool m_Shadows;
-		bool m_PrettyWater;
-	};
-
 	enum class ScreenShotType
 	{
 		NONE,
@@ -133,13 +123,6 @@ public:
 	CDebugRenderer& GetDebugRenderer();
 
 	/**
-	 * GetCapabilities: Return which OpenGL capabilities are available and enabled.
-	 *
-	 * @return capabilities structure
-	 */
-	const Caps& GetCapabilities() const { return m_Caps; }
-
-	/**
 	 * Performs a complete frame without presenting to force loading all needed
 	 * resources. It's used for the first frame on a game start.
 	 * TODO: It might be better to preload resources without a complete frame
@@ -186,10 +169,6 @@ protected:
 
 	SViewPort m_Viewport;
 
-	// card capabilities
-	Caps m_Caps;
-	// build card cap bits
-	void EnumCaps();
 	// per-frame renderer stats
 	Stats m_Stats;
 

@@ -44,6 +44,17 @@ class CTexture;
 class CDevice
 {
 public:
+	struct Capabilities
+	{
+		bool S3TC;
+		bool ARBShaders;
+		bool ARBShadersShadow;
+		bool multisampling;
+		bool anisotropicFiltering;
+		uint32_t maxSampleCount;
+		float maxAnisotropy;
+	};
+
 	~CDevice();
 
 	/**
@@ -76,6 +87,8 @@ public:
 
 	bool IsFormatSupported(const Format format) const;
 
+	const Capabilities& GetCapabilities() const { return m_Capabilities; }
+
 private:
 	CDevice();
 
@@ -94,7 +107,7 @@ private:
 
 	std::unique_ptr<CFramebuffer> m_Backbuffer;
 
-	bool m_HasS3TC = false;
+	Capabilities m_Capabilities{};
 };
 
 } // namespace GL

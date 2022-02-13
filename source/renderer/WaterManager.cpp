@@ -153,12 +153,10 @@ int WaterManager::LoadWaterTextures()
 		m_WaterTexture[i] = texture;
 	}
 
-	if (!g_Renderer.GetCapabilities().m_PrettyWater)
-	{
-		// Enable rendering, now that we've succeeded this far
-		m_RenderWater = true;
+	m_RenderWater = true;
+
+	if (!WillRenderFancyWater())
 		return 0;
-	}
 
 #if CONFIG2_GLES
 #warning Fix WaterManager::LoadWaterTextures on GLES
@@ -245,9 +243,6 @@ int WaterManager::LoadWaterTextures()
 		g_RenderingOptions.SetWaterRefraction(false);
 		UpdateQuality();
 	}
-
-	// Enable rendering, now that we've succeeded this far
-	m_RenderWater = true;
 #endif
 	return 0;
 }
@@ -296,9 +291,6 @@ void WaterManager::UnloadWaterTextures()
 {
 	for (size_t i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
 		m_WaterTexture[i].reset();
-
-	if (!g_Renderer.GetCapabilities().m_PrettyWater)
-		return;
 
 	for (size_t i = 0; i < ARRAY_SIZE(m_NormalMap); i++)
 		m_NormalMap[i].reset();
@@ -1019,7 +1011,7 @@ bool WaterManager::WillRenderFancyWater() const
 {
 	return
 		m_RenderWater && g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB &&
-		g_RenderingOptions.GetWaterEffects() && g_Renderer.GetCapabilities().m_PrettyWater;
+		g_RenderingOptions.GetWaterEffects();
 }
 
 size_t WaterManager::GetCurrentTextureIndex(const double& period) const

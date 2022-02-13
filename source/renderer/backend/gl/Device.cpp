@@ -200,15 +200,36 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 
 	device->m_Backbuffer = CFramebuffer::CreateBackbuffer();
 
+	Capabilities& capabilities = device->m_Capabilities;
+	capabilities.ARBShaders = !ogl_HaveExtensions(0, "GL_ARB_vertex_program", "GL_ARB_fragment_program", nullptr);
+	if (capabilities.ARBShaders)
+		capabilities.ARBShadersShadow = ogl_HaveExtension("GL_ARB_fragment_program_shadow");
 #if CONFIG2_GLES
 	// Some GLES implementations have GL_EXT_texture_compression_dxt1
 	// but that only supports DXT1 so we can't use it.
-	device->m_HasS3TC = ogl_HaveExtensions(0, "GL_EXT_texture_compression_s3tc", nullptr) == 0;
+	capabilities.S3TC = ogl_HaveExtensions(0, "GL_EXT_texture_compression_s3tc", nullptr) == 0;
 #else
 	// Note: we don't bother checking for GL_S3_s3tc - it is incompatible
 	// and irrelevant (was never widespread).
-	device->m_HasS3TC = ogl_HaveExtensions(0, "GL_ARB_texture_compression", "GL_EXT_texture_compression_s3tc", nullptr) == 0;
+	capabilities.S3TC = ogl_HaveExtensions(0, "GL_ARB_texture_compression", "GL_EXT_texture_compression_s3tc", nullptr) == 0;
 #endif
+	capabilities.multisampling =
+		ogl_HaveVersion(3, 3) &&
+		ogl_HaveExtension("GL_ARB_multisample") &&
+		ogl_HaveExtension("GL_ARB_texture_multisample");
+	if (capabilities.multisampling)
+	{
+		GLint maxSamples = 1;
+		glGetIntegerv(GL_MAX_SAMPLES, &maxSamples);
+		capabilities.maxSampleCount = maxSamples;
+	}
+	capabilities.anisotropicFiltering = ogl_HaveExtension("GL_EXT_texture_filter_anisotropic");
+	if (capabilities.anisotropicFiltering)
+	{
+		GLfloat maxAnisotropy = 1.0f;
+		glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &maxAnisotropy);
+		capabilities.maxAnisotropy = maxAnisotropy;
+	}
 
 	return device;
 }
@@ -683,7 +704,7 @@ bool CDevice::IsFormatSupported(const Format format) const
 	case Format::BC1_RGBA: FALLTHROUGH;
 	case Format::BC2: FALLTHROUGH;
 	case Format::BC3:
-		supported = m_HasS3TC;
+		supported = m_Capabilities.S3TC;
 		break;
 	}
 	return supported;

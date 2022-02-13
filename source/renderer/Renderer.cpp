@@ -326,46 +326,6 @@ CRenderer::~CRenderer()
 	m.reset();
 }
 
-void CRenderer::EnumCaps()
-{
-	// assume support for nothing
-	m_Caps.m_ARBProgram = false;
-	m_Caps.m_ARBProgramShadow = false;
-	m_Caps.m_VertexShader = false;
-	m_Caps.m_FragmentShader = false;
-	m_Caps.m_Shadows = false;
-	m_Caps.m_PrettyWater = false;
-
-	// now start querying extensions
-	if (0 == ogl_HaveExtensions(0, "GL_ARB_vertex_program", "GL_ARB_fragment_program", NULL))
-	{
-		m_Caps.m_ARBProgram = true;
-		if (ogl_HaveExtension("GL_ARB_fragment_program_shadow"))
-			m_Caps.m_ARBProgramShadow = true;
-	}
-
-	// GLSL shaders are in core since GL2.0.
-	if (ogl_HaveVersion(2, 0))
-		m_Caps.m_VertexShader = m_Caps.m_FragmentShader = true;
-
-#if CONFIG2_GLES
-	m_Caps.m_Shadows = true;
-#else
-	if (0 == ogl_HaveExtensions(0, "GL_ARB_shadow", "GL_ARB_depth_texture", NULL))
-	{
-		if (ogl_max_tex_units >= 4)
-			m_Caps.m_Shadows = true;
-	}
-#endif
-
-#if CONFIG2_GLES
-	m_Caps.m_PrettyWater = true;
-#else
-	if (m_Caps.m_VertexShader && m_Caps.m_FragmentShader)
-		m_Caps.m_PrettyWater = true;
-#endif
-}
-
 void CRenderer::ReloadShaders()
 {
 	ENSURE(m->IsOpen);
@@ -377,10 +337,6 @@ void CRenderer::ReloadShaders()
 bool CRenderer::Open(int width, int height)
 {
 	m->IsOpen = true;
-
-	// Must query card capabilities before creating renderers that depend
-	// on card capabilities.
-	EnumCaps();
 
 	// Dimensions
 	m_Width = width;
@@ -416,9 +372,12 @@ void CRenderer::SetRenderPath(RenderPath rp)
 	}
 
 	// Renderer has been opened, so validate the selected renderpath
+	const bool hasShadersSupport =
+		g_VideoMode.GetBackendDevice()->GetCapabilities().ARBShaders ||
+		g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB;
 	if (rp == RenderPath::DEFAULT)
 	{
-		if (m_Caps.m_ARBProgram || (m_Caps.m_VertexShader && m_Caps.m_FragmentShader && g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB))
+		if (hasShadersSupport)
 			rp = RenderPath::SHADER;
 		else
 			rp = RenderPath::FIXED;
@@ -426,7 +385,7 @@ void CRenderer::SetRenderPath(RenderPath rp)
 
 	if (rp == RenderPath::SHADER)
 	{
-		if (!(m_Caps.m_ARBProgram || (m_Caps.m_VertexShader && m_Caps.m_FragmentShader && g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB)))
+		if (!hasShadersSupport)
 		{
 			LOGWARNING("Falling back to fixed function\n");
 			rp = RenderPath::FIXED;
