@@ -10,7 +10,7 @@
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
       </props>
       <textures>
-        <texture file="skeletal/celt_leather_01_spec.png" name="specTex"/>
+        <texture file="skeletal/celt/leather_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -56,12 +56,12 @@
   <group>
     <variant frequency="1" name="padded-1a">
       <textures>
-        <texture file="skeletal/brit_padded_1_a.png" name="baseTex"/>
+        <texture file="skeletal/brit/padded_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="padded-1b">
       <textures>
-        <texture file="skeletal/brit_padded_1_b.png" name="baseTex"/>
+        <texture file="skeletal/brit/padded_01_02.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

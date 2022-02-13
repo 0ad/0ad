@@ -3,15 +3,20 @@
  */
 class ChatInput
 {
-	constructor()
+	constructor(alignmentHelper)
 	{
 		this.selectedCommand = "";
 		this.chatSubmitHandlers = [];
 		this.chatSubmittedHandlers = [];
 
+		this.chatInputCaption = Engine.GetGUIObjectByName("chatInputCaption");
+		resizeGUIObjectToCaption(this.chatInputCaption, "right", this.CaptionMargin);
+
 		this.chatInput = Engine.GetGUIObjectByName("chatInput");
 		this.chatInput.onPress = this.submitChatInput.bind(this);
 		this.chatInput.onTab = this.autoComplete.bind(this);
+
+		alignmentHelper.setObject(this.chatInput, "left", this.chatInputCaption.size.right + this.InputMargin);
 
 		this.sendChat = Engine.GetGUIObjectByName("sendChat");
 		this.sendChat.onPress = this.submitChatInput.bind(this);
@@ -88,3 +93,6 @@ class ChatInput
 			handler();
 	}
 }
+
+ChatInput.prototype.CaptionMargin = 10;
+ChatInput.prototype.InputMargin = 5;

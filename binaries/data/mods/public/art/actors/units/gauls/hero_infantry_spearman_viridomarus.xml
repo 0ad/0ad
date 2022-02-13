@@ -17,12 +17,12 @@
   <group>
     <variant frequency="1" name="padded-1b">
       <textures>
-        <texture file="skeletal/gaul_padded_1_b.png" name="baseTex"/>
+        <texture file="skeletal/gaul/padded_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="padded-1c">
       <textures>
-        <texture file="skeletal/gaul_padded_1_c.png" name="baseTex"/>
+        <texture file="skeletal/gaul/padded_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -30,6 +30,7 @@
     <variant file="biped/base_spearman_shield_relax_celt_fast.xml" name="Spearman-Shield-Relax-Fast"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_cape_gaul.xml"/>
   </group>
   <material>player_trans.xml</material>
