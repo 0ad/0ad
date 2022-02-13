@@ -16,17 +16,18 @@
         <prop actor="props/units/heads/hele_hood_priest.xml" attachpoint="helmet"/>
       </props>
       <textures>
-        <texture file="skeletal/hele_healer_1.dds" name="baseTex"/>
+        <texture file="skeletal/hele/toga_healer_01.dds" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="healer-robe-2">
       <textures>
-        <texture file="skeletal/hele_healer_2.dds" name="baseTex"/>
+        <texture file="skeletal/hele/toga_healer_02.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>skeletal/new/m_naked.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/sheath_celt_iron.xml" attachpoint="sheath_01_R"/>
+        <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/capes/cape_long_gaul.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Celt-Shield-02">
+      <props>
+        <prop actor="props/units/shields/gaul_shield_spear_oval_b_03.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="6" name="No helmet 1">
+      <props>
+        <prop actor="" attachpoint="helmet"/>
+        <prop actor="props/units/heads/new/head_celt_fanatic.xml" attachpoint="head"/>
+      </props>
+    </variant>
+    <variant frequency="6" name="No helmet 2">
+      <props>
+        <prop actor="" attachpoint="helmet"/>
+        <prop actor="props/units/heads/new/head_lime.xml" attachpoint="head"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Ciumesti Helmet1">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_ciumesti_01.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Ciumesti Helmet2">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_ciumesti_02.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Berru Helmet1">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_berru_01.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Berru Helmet2">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_berru_02.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Celtic Berru Helmet3">
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_berru_03.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="nekkid 01">
+      <textures>
+        <texture file="skeletal/gaul/naked_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="nekkid 02">
+      <textures>
+        <texture file="skeletal/gaul/naked_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/base_spearman_shield_relax_celt_fast.xml" name="Spearman-Shield-Relax-Fast"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/death_cape_gaul.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

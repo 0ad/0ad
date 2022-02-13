@@ -20,6 +20,11 @@
         <prop actor="props/units/helmets/hele_boeotian_a2.xml" attachpoint="helmet"/>
       </props>
     </variant>
+    <variant frequency="1" name="Helmet Boeotian Bronze-Plume">
+      <props>
+        <prop actor="props/units/helmets/hele_boeotian_a_plume.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
     <variant frequency="1" name="Helmet Boeotian Bronze-02">
       <props>
         <prop actor="props/units/helmets/hele_boeotian_b2_laurel.xml" attachpoint="helmet"/>
@@ -30,6 +35,11 @@
         <prop actor="props/units/helmets/hele_boeotian_s2.xml" attachpoint="helmet"/>
       </props>
     </variant>
+    <variant frequency="1" name="Helmet Boeotian Silver-Plume">
+      <props>
+        <prop actor="props/units/helmets/hele_boeotian_s_plume.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
     <variant frequency="1" name="Helmet Boeotian Silver-02">
       <props>
         <prop actor="props/units/helmets/hele_boeotian_s2_laurel.xml" attachpoint="helmet"/>
@@ -37,73 +47,63 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="armor-linen linothorax">
-      <textures>
-        <texture file="skeletal/hele_pezhetairoi_3.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="armor-scale mail">
-      <textures>
-        <texture file="skeletal/hele_pezhetairoi.dds" name="baseTex"/>
-      </textures>
-    </variant>
     <variant frequency="1" name="mace-linothorax-1a">
       <textures>
-        <texture file="skeletal/mace_linothorax_1_a.png" name="baseTex"/>
+        <texture file="skeletal/mace/linothorax_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-linothorax-1b">
       <textures>
-        <texture file="skeletal/mace_linothorax_1_b.png" name="baseTex"/>
+        <texture file="skeletal/mace/linothorax_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-linothorax-1c">
       <textures>
-        <texture file="skeletal/mace_linothorax_1_c.png" name="baseTex"/>
+        <texture file="skeletal/mace/linothorax_01_03.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-linothorax-1d">
       <textures>
-        <texture file="skeletal/mace_linothorax_1_d.png" name="baseTex"/>
+        <texture file="skeletal/mace/linothorax_01_04.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-linothorax-1e">
       <textures>
-        <texture file="skeletal/mace_linothorax_1_e.png" name="baseTex"/>
+        <texture file="skeletal/mace/linothorax_01_05.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-linothorax-1f">
       <textures>
-        <texture file="skeletal/mace_linothorax_1_f.png" name="baseTex"/>
+        <texture file="skeletal/mace/linothorax_01_06.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-linothorax-1g">
       <textures>
-        <texture file="skeletal/mace_linothorax_1_g.png" name="baseTex"/>
+        <texture file="skeletal/mace/linothorax_01_07.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-scale-2a">
       <textures>
-        <texture file="skeletal/mace_scale_2_a.png" name="baseTex"/>
-        <texture file="skeletal/hele_scale_2_spec.png" name="specTex"/>
+        <texture file="skeletal/mace/scale_02_01.png" name="baseTex"/>
+        <texture file="skeletal/hele/scale_02_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="3" name="mace-scale-3a">
+    <variant frequency="4" name="mace-scale-4a">
       <textures>
-        <texture file="skeletal/mace_scale_3_a.png" name="baseTex"/>
-        <texture file="skeletal/hele_scale_3_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="mace-scale-4a">
-      <textures>
-        <texture file="skeletal/mace_scale_4_a.png" name="baseTex"/>
-        <texture file="skeletal/hele_scale_4_spec.png" name="specTex"/>
+        <texture file="skeletal/mace/scale_04_01.png" name="baseTex"/>
+        <texture file="skeletal/hele/scale_04_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-lamellar-1a">
       <textures>
-        <texture file="skeletal/mace_lamellar_1_a.png" name="baseTex"/>
-        <texture file="skeletal/hele_lamellar_1_spec.png" name="specTex"/>
+        <texture file="skeletal/mace/lamellar_01_01.png" name="baseTex"/>
+        <texture file="skeletal/hele/lamellar_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="mace-cuirass-1a">
+      <textures>
+        <texture file="skeletal/mace/cuirass_01_03.png" name="baseTex"/>
+        <texture file="skeletal/hele/cuirass_02_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
