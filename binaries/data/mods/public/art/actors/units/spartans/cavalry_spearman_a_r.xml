@@ -10,8 +10,32 @@
         <prop actor="props/units/weapons/spear_lance_cavalry.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/capes/rider/cape_long_player.xml" attachpoint="root"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="epilektoi-1">
       <textures>
-        <texture file="skeletal/mace_bronzeshield_2.png" name="baseTex"/>
+        <texture file="skeletal/athen/epilektos_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="epilektoi-3">
+      <textures>
+        <texture file="skeletal/athen/epilektos_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="epilektoi-5">
+      <textures>
+        <texture file="skeletal/athen/epilektos_05.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="epilektoi-7">
+      <textures>
+        <texture file="skeletal/athen/epilektos_07.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="epilektoi-9">
+      <textures>
+        <texture file="skeletal/athen/epilektos_09.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
