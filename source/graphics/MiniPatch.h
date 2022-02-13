@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,11 +22,8 @@
 #ifndef INCLUDED_MINIPATCH
 #define INCLUDED_MINIPATCH
 
-#include "lib/res/handle.h"
-
 class CTerrainTextureEntry;
 
-///////////////////////////////////////////////////////////////////////////////
 // CMiniPatch: definition of a single terrain tile
 class CMiniPatch
 {
@@ -43,5 +40,4 @@ public:
 	int GetPriority() { return Priority; }
 };
 
-
-#endif
+#endif // INCLUDED_MINIPATCH

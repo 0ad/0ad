@@ -30,8 +30,6 @@
 #include "lib/external_libraries/libsdl.h"
 #include "lib/file/common/file_stats.h"
 #include "lib/input.h"
-#include "lib/ogl.h"
-#include "lib/res/h_mgr.h"
 #include "lib/timer.h"
 #include "lobby/IXmppClient.h"
 #include "network/NetServer.h"
@@ -422,10 +420,6 @@ from_config:
 
 		g_VFS.reset();
 
-		// this forcibly frees all open handles (thus preventing real leaks),
-		// and makes further access to h_mgr impossible.
-		h_mgr_shutdown();
-
 		file_stats_dump();
 
 	TIMER_END(L"resource modules");
@@ -551,8 +545,6 @@ bool AutostartVisualReplay(const std::string& replayFile);
 
 bool Init(const CmdLineArgs& args, int flags)
 {
-	h_mgr_init();
-
 	// Do this as soon as possible, because it chdirs
 	// and will mess up the error reporting if anything
 	// crashes before the working directory is set.

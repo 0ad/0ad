@@ -22,7 +22,6 @@
 #include "graphics/TerrainTextureManager.h"
 #include "lib/timer.h"
 #include "lib/file/file_system.h"
-#include "lib/res/h_mgr.h"
 #include "lib/tex/tex.h"
 #include "ps/CLogger.h"
 #include "ps/Game.h"
@@ -247,9 +246,6 @@ void CReplayPlayer::Replay(const bool serializationtest, const int rejointesttur
 				g_Game->GetSimulation2()->EnableRejoinTest(rejointestturn);
 			if (ooslog)
 				g_Game->GetSimulation2()->EnableOOSLog();
-
-			// Initialise h_mgr so it doesn't crash when emitting sounds
-			h_mgr_init();
 
 			ScriptRequest rq(g_Game->GetSimulation2()->GetScriptInterface());
 			JS::RootedValue attribs(rq.cx);
