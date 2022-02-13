@@ -2,10 +2,16 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant>
+    <variant name="flag_01" frequency="1">
       <mesh>props/standard/formation_flag.dae</mesh>
       <textures>
         <texture file="props/standards/gaul_infantry_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="flag_02" frequency="1">
+      <mesh>props/standard/formation_flag.dae</mesh>
+      <textures>
+        <texture file="props/standards/gaul_infantry_02.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
