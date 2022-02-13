@@ -15,26 +15,22 @@
   <group>
     <variant frequency="1" name="tunic_hellenistic_elite_1">
       <textures>
-        <texture file="skeletal/hele_tunic_hellenistic_elite_1.png" name="baseTex"/>
-        <texture file="skeletal/ptol_thureophoros_e_1_spec.png" name="specTex"/>
+        <texture file="skeletal/mace/tunic_hellenistic_e_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="tunic_hellenistic_elite_2">
       <textures>
-        <texture file="skeletal/hele_tunic_hellenistic_elite_2.png" name="baseTex"/>
-        <texture file="skeletal/ptol_thureophoros_e_1_spec.png" name="specTex"/>
+        <texture file="skeletal/mace/tunic_hellenistic_e_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="tunic_hellenistic_elite_3">
+    <variant frequency="2" name="tunic_hellenistic_elite_3">
       <textures>
-        <texture file="skeletal/hele_tunic_hellenistic_elite_3.png" name="baseTex"/>
-        <texture file="skeletal/ptol_thureophoros_e_1_spec.png" name="specTex"/>
+        <texture file="skeletal/mace/tunic_hellenistic_e_03.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="tunic_hellenistic_elite_4">
       <textures>
-        <texture file="skeletal/hele_tunic_hellenistic_elite_4.png" name="baseTex"/>
-        <texture file="skeletal/ptol_thureophoros_e_1_spec.png" name="specTex"/>
+        <texture file="skeletal/mace/tunic_hellenistic_e_04.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -76,5 +72,5 @@
   <group>
     <variant name="Idle"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans.xml</material>
 </actor>

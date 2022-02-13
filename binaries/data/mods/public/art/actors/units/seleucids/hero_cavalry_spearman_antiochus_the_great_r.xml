@@ -3,7 +3,7 @@
   <castshadow/>
   <group>
     <variant>
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/helmets/hele_thracian_romanized_b2_plume.xml" attachpoint="helmet"/>
@@ -11,8 +11,8 @@
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
       </props>
       <textures>
-        <texture file="skeletal/sele_hero_antiochus.png" name="baseTex"/>
-        <texture file="skeletal/sele_hero_antiochus_spec.png" name="specTex"/>
+        <texture file="skeletal/sele/cuirass_hero_antiochus.png" name="baseTex"/>
+        <texture file="skeletal/sele/cuirass_hero_antiochus_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="base">
+      <mesh>props/shield/shield_arab_round_no_boss.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="wicker-dark">
+      <textures>
+        <texture file="props/shield/wicker_dark.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="wicker-light">
+      <textures>
+        <texture file="props/shield/wicker_light.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
