@@ -57,8 +57,7 @@ Status Tex::validate() const
 	if(m_Flags & TEX_UNDEFINED_FLAGS)
 		WARN_RETURN(ERR::_1);
 
-	// pixel data (only check validity if the image is still in memory;
-	// ogl_tex frees the data after uploading to GL)
+	// pixel data (only check validity if the image is still in memory).
 	if(m_Data)
 	{
 		// file size smaller than header+pixels.
@@ -249,7 +248,7 @@ static Status add_mipmaps(Tex* t, size_t w, size_t h, size_t bpp, void* newData,
 {
 	// this code assumes the image is of POT dimension; we don't
 	// go to the trouble of implementing image scaling because
-	// the only place this is used (ogl_tex_upload) requires POT anyway.
+	// the only place this is used (backend textures) requires POT anyway.
 	if(!is_pow2(w) || !is_pow2(h))
 		WARN_RETURN(ERR::TEX_INVALID_SIZE);
 	t->m_Flags |= TEX_MIPMAPS;	// must come before tex_img_size!
@@ -281,10 +280,7 @@ TIMER_ADD_CLIENT(tc_plain_transform);
 // somewhat optimized (loops are hoisted, cache associativity accounted for)
 static Status plain_transform(Tex* t, size_t transforms)
 {
-TIMER_ACCRUE(tc_plain_transform);
-
-	// (this is also called directly instead of through ogl_tex, so
-	// we need to validate)
+	TIMER_ACCRUE(tc_plain_transform);
 	CHECK_TEX(t);
 
 	// extract texture info
@@ -614,9 +610,7 @@ void Tex::free()
 
 	m_Data.reset();
 
-	// do not zero out the fields! that could lead to trouble since
-	// ogl_tex_upload followed by ogl_tex_free is legit, but would
-	// cause OglTex_validate to fail (since its Tex.w is == 0).
+	// TODO: refactor fields zeroing.
 }
 
 
