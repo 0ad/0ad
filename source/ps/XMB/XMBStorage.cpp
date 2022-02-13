@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -129,7 +129,7 @@ bool XMBStorageWriter::Load(WriteBuffer& writeBuffer, Args&&... args)
 void XMBStorageWriter::OutputNames(WriteBuffer& writeBuffer, const std::unordered_map<std::string, int>& names) const
 {
 	std::vector<std::pair<std::string, int>> orderedElements;
-	for (const std::pair<std::string, int>& n : names)
+	for (const std::pair<const std::string, int>& n : names)
 		orderedElements.emplace_back(n);
 	std::sort(orderedElements.begin(), orderedElements.end(), [](const auto& a, const auto&b) { return a.second < b.second; });
 	for (const std::pair<std::string, int>& n : orderedElements)
@@ -181,7 +181,7 @@ bool XMBStorageWriter::OutputElements<JSNodeData&, const u32&, JS::HandleValue&&
 	data.Output(writeBuffer, value);
 
 	// Output attributes
-	for (const std::pair<u32, std::string> attr : data.m_Attributes)
+	for (const std::pair<const u32, std::string> attr : data.m_Attributes)
 	{
 		writeBuffer.Append(&attr.first, 4);
 		u32 attrLen = u32(attr.second.size())+1;
