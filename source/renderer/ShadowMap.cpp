@@ -527,14 +527,14 @@ void ShadowMapInternals::CreateTexture()
 
 	if (g_RenderingOptions.GetShadowAlphaFix())
 	{
-		DummyTexture = Renderer::Backend::GL::CTexture::Create2D(
+		DummyTexture = g_VideoMode.GetBackendDevice()->CreateTexture2D("ShadowMapDummy",
 			Renderer::Backend::Format::R8G8B8A8, Width, Height,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::NEAREST,
 				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
 	}
 
-	Texture = Renderer::Backend::GL::CTexture::Create2D(
+	Texture = g_VideoMode.GetBackendDevice()->CreateTexture2D("ShadowMapDepth",
 		backendFormat, Width, Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 #if CONFIG2_GLES
@@ -549,12 +549,12 @@ void ShadowMapInternals::CreateTexture()
 
 
 #if !CONFIG2_GLES
-	g_Renderer.BindTexture(0, Texture->GetHandle());
+	g_Renderer.GetDeviceCommandContext()->BindTexture(0, GL_TEXTURE_2D, Texture->GetHandle());
 	// Enable automatic depth comparisons
 	glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_INTENSITY);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
-	glBindTexture(GL_TEXTURE_2D, 0);
+	g_Renderer.GetDeviceCommandContext()->BindTexture(0, GL_TEXTURE_2D, 0);
 #endif
 
 	ogl_WarnIfError();
@@ -579,7 +579,6 @@ void ShadowMap::BeginRender()
 
 	{
 		PROFILE("bind framebuffer");
-		glBindTexture(GL_TEXTURE_2D, 0);
 		deviceCommandContext->SetFramebuffer(m->Framebuffer.get());
 	}
 
@@ -719,7 +718,7 @@ void ShadowMap::RenderDebugTexture(
 		return;
 
 #if !CONFIG2_GLES
-	g_Renderer.BindTexture(0, m->Texture->GetHandle());
+	deviceCommandContext->BindTexture(0, GL_TEXTURE_2D, m->Texture->GetHandle());
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
 #endif
 
@@ -756,7 +755,7 @@ void ShadowMap::RenderDebugTexture(
 	texTech->EndPass();
 
 #if !CONFIG2_GLES
-	g_Renderer.BindTexture(0, m->Texture->GetHandle());
+	deviceCommandContext->BindTexture(0, GL_TEXTURE_2D, m->Texture->GetHandle());
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
 #endif
 

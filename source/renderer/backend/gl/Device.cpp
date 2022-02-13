@@ -25,6 +25,7 @@
 #include "ps/ConfigDB.h"
 #include "ps/Profile.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/gl/Texture.h"
 #include "scriptinterface/JSON.h"
 #include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -198,6 +199,16 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	device->m_Backbuffer = CFramebuffer::CreateBackbuffer();
+
+#if CONFIG2_GLES
+	// Some GLES implementations have GL_EXT_texture_compression_dxt1
+	// but that only supports DXT1 so we can't use it.
+	device->m_HasS3TC = ogl_HaveExtensions(0, "GL_EXT_texture_compression_s3tc", nullptr) == 0;
+#else
+	// Note: we don't bother checking for GL_S3_s3tc - it is incompatible
+	// and irrelevant (was never widespread).
+	device->m_HasS3TC = ogl_HaveExtensions(0, "GL_ARB_texture_compression", "GL_EXT_texture_compression_s3tc", nullptr) == 0;
+#endif
 
 	return device;
 }
@@ -599,7 +610,25 @@ void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 
 std::unique_ptr<CDeviceCommandContext> CDevice::CreateCommandContext()
 {
-	return CDeviceCommandContext::Create(this);
+	std::unique_ptr<CDeviceCommandContext> commandContet = CDeviceCommandContext::Create(this);
+	m_ActiveCommandContext = commandContet.get();
+	return commandContet;
+}
+
+std::unique_ptr<CTexture> CDevice::CreateTexture(const char* name, const CTexture::Type type,
+	const Format format, const uint32_t width, const uint32_t height,
+	const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount)
+{
+	return CTexture::Create(this, name, type,
+		format, width, height, defaultSamplerDesc, MIPLevelCount, sampleCount);
+}
+
+std::unique_ptr<CTexture> CDevice::CreateTexture2D(const char* name,
+	const Format format, const uint32_t width, const uint32_t height,
+	const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount)
+{
+	return CreateTexture(name, CTexture::Type::TEXTURE_2D,
+		format, width, height, defaultSamplerDesc, MIPLevelCount, sampleCount);
 }
 
 void CDevice::Present()
@@ -622,6 +651,42 @@ void CDevice::Present()
 	// synchronizations during rendering.
 	if (GLenum err = glGetError())
 		ONCE(LOGERROR("GL error %s (0x%04x) occurred", ogl_GetErrorName(err), err));
+}
+
+bool CDevice::IsFormatSupported(const Format format) const
+{
+	bool supported = false;
+	switch (format)
+	{
+	case Format::UNDEFINED:
+		break;
+
+	case Format::R8G8B8: FALLTHROUGH;
+	case Format::R8G8B8A8: FALLTHROUGH;
+	case Format::A8: FALLTHROUGH;
+	case Format::L8:
+		supported = true;
+		break;
+
+	case Format::D16: FALLTHROUGH;
+	case Format::D24: FALLTHROUGH;
+	case Format::D32:
+		supported = true;
+		break;
+	case Format::D24_S8:
+#if !CONFIG2_GLES
+		supported = true;
+#endif
+		break;
+
+	case Format::BC1_RGB: FALLTHROUGH;
+	case Format::BC1_RGBA: FALLTHROUGH;
+	case Format::BC2: FALLTHROUGH;
+	case Format::BC3:
+		supported = m_HasS3TC;
+		break;
+	}
+	return supported;
 }
 
 } // namespace GL

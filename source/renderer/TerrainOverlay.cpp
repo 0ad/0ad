@@ -30,6 +30,7 @@
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/World.h"
+#include "renderer/backend/gl/Device.h"
 #include "renderer/Renderer.h"
 #include "renderer/SceneRenderer.h"
 #include "renderer/TerrainRenderer.h"
@@ -128,8 +129,6 @@ void TerrainOverlay::RenderBeforeWater(
 	glPolygonOffset(-1.f, -1.f);
 	//glEnable(GL_POLYGON_OFFSET_LINE);
 	glEnable(GL_POLYGON_OFFSET_FILL);
-
-	glActiveTextureARB(GL_TEXTURE0);
 
 	StartRender();
 
@@ -338,12 +337,10 @@ void TerrainTextureOverlay::RenderAfterWater(
 	const uint32_t requiredWidth = round_up_to_pow2(w);
 	const uint32_t requiredHeight = round_up_to_pow2(h);
 
-	glActiveTextureARB(GL_TEXTURE0);
-
 	// Recreate the texture with new size if necessary
 	if (!m_Texture || m_Texture->GetWidth() != requiredWidth || m_Texture->GetHeight() != requiredHeight)
 	{
-		m_Texture = Renderer::Backend::GL::CTexture::Create2D(
+		m_Texture = deviceCommandContext->GetDevice()->CreateTexture2D("TerrainOverlayTexture",
 			Renderer::Backend::Format::R8G8B8A8, requiredWidth, requiredHeight,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::NEAREST,

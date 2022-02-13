@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,89 +24,163 @@
 #include "lib/allocators/shared_ptr.h"
 #include "lib/file/vfs/vfs_tree.h"
 #include "lib/hash.h"
-#include "lib/res/graphics/ogl_tex.h"
-#include "lib/res/h_mgr.h"
 #include "lib/timer.h"
 #include "maths/MD5.h"
 #include "ps/CacheLoader.h"
 #include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
+#include "ps/VideoMode.h"
+#include "renderer/backend/gl/Device.h"
+#include "renderer/Renderer.h"
 
+#include <algorithm>
 #include <boost/filesystem.hpp>
 #include <iomanip>
 #include <set>
+#include <sstream>
 #include <unordered_map>
 #include <unordered_set>
+
+namespace
+{
+
+Renderer::Backend::Format ChooseFormatAndTransformTextureDataIfNeeded(Tex& textureData, const bool hasS3TC)
+{
+	const bool alpha = (textureData.m_Flags & TEX_ALPHA) != 0;
+	const bool grey = (textureData.m_Flags & TEX_GREY) != 0;
+	const size_t dxt = textureData.m_Flags & TEX_DXT;
+
+	// Some backends don't support BGR as an internal format (like GLES).
+	// TODO: add a check that the format is internally supported.
+	if ((textureData.m_Flags & TEX_BGR) != 0)
+	{
+		LOGWARNING("Using slow path to convert BGR texture.");
+		textureData.transform_to(textureData.m_Flags & ~TEX_BGR);
+	}
+
+	if (dxt)
+	{
+		if (hasS3TC)
+		{
+			switch (dxt)
+			{
+			case DXT1A:
+				return Renderer::Backend::Format::BC1_RGBA;
+			case 1:
+				return Renderer::Backend::Format::BC1_RGB;
+			case 3:
+				return Renderer::Backend::Format::BC2;
+			case 5:
+				return Renderer::Backend::Format::BC3;
+			default:
+				LOGERROR("Unknown DXT compression.");
+				return Renderer::Backend::Format::UNDEFINED;
+			}
+		}
+		else
+			textureData.transform_to(textureData.m_Flags & ~TEX_DXT);
+	}
+
+	switch (textureData.m_Bpp)
+	{
+	case 8:
+		ENSURE(grey);
+		return Renderer::Backend::Format::L8;
+	case 24:
+		ENSURE(!alpha);
+		return Renderer::Backend::Format::R8G8B8;
+	case 32:
+		ENSURE(alpha);
+		return Renderer::Backend::Format::R8G8B8A8;
+	default:
+		LOGERROR("Unsupported BPP: %zu", textureData.m_Bpp);
+	}
+
+	return Renderer::Backend::Format::UNDEFINED;
+}
+
+} // anonymous namespace
 
 class SingleColorTexture
 {
 public:
-	SingleColorTexture(const CColor& color, PIVFS vfs, const VfsPath& pathPlaceholder, const bool disableGL, CTextureManagerImpl* textureManager)
-		: m_Handle(0)
+	SingleColorTexture(const CColor& color, const VfsPath& pathPlaceholder,
+		const bool disableGL, CTextureManagerImpl* textureManager)
+		: m_Color(color)
 	{
 		if (disableGL)
 			return;
 
-		const SColor4ub color32 = color.AsSColor4ub();
-		// Construct 1x1 32-bit texture
-		std::shared_ptr<u8> data(new u8[4], ArrayDeleter());
-		data.get()[0] = color32.R;
-		data.get()[1] = color32.G;
-		data.get()[2] = color32.B;
-		data.get()[3] = color32.A;
+		std::stringstream textureName;
+		textureName << "SingleColorTexture (";
+		textureName << "R: " << m_Color.r << ",";
+		textureName << "G: " << m_Color.g << ",";
+		textureName << "B: " << m_Color.b << ",";
+		textureName << "A: " << m_Color.a << ")";
 
-		Tex t;
-		ignore_result(t.wrap(1, 1, 32, TEX_ALPHA, data, 0));
-
-		m_Handle = ogl_tex_wrap(&t, vfs, pathPlaceholder);
-		ignore_result(ogl_tex_set_filter(m_Handle, GL_LINEAR));
-		if (!disableGL)
-			ignore_result(ogl_tex_upload(m_Handle));
+		std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture =
+			g_VideoMode.GetBackendDevice()->CreateTexture2D(
+				textureName.str().c_str(),
+				Renderer::Backend::Format::R8G8B8A8,
+				1, 1, Renderer::Backend::Sampler::MakeDefaultSampler(
+					Renderer::Backend::Sampler::Filter::LINEAR,
+					Renderer::Backend::Sampler::AddressMode::REPEAT));
+		Renderer::Backend::GL::CTexture* fallback = backendTexture.get();
 
 		CTextureProperties props(pathPlaceholder);
-		m_Texture = CTexturePtr(new CTexture(m_Handle, props, textureManager));
-		m_Texture->m_State = CTexture::LOADED;
+		m_Texture = CTexturePtr(new CTexture(
+			std::move(backendTexture), fallback, props, textureManager));
+		m_Texture->m_State = CTexture::UPLOADED;
 		m_Texture->m_Self = m_Texture;
 	}
 
-	~SingleColorTexture()
-	{
-		ignore_result(ogl_tex_free(m_Handle));
-	}
-
-	CTexturePtr GetTexture()
+	const CTexturePtr& GetTexture()
 	{
 		return m_Texture;
 	}
 
-	Handle GetHandle()
+	void Upload(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 	{
-		return m_Handle;
+		if (!m_Texture || !m_Texture->GetBackendTexture())
+			return;
+
+		const SColor4ub color32 = m_Color.AsSColor4ub();
+		// Construct 1x1 32-bit texture
+		const u8 data[4] =
+		{
+			color32.R,
+			color32.G,
+			color32.B,
+			color32.A
+		};
+		deviceCommandContext->UploadTexture(m_Texture->GetBackendTexture(),
+			Renderer::Backend::Format::R8G8B8A8, data, std::size(data));
 	}
 
 private:
-	Handle m_Handle;
 	CTexturePtr m_Texture;
+	CColor m_Color;
 };
 
 struct TPhash
 {
-	std::size_t operator()(CTextureProperties const& a) const
+	std::size_t operator()(const CTextureProperties& textureProperties) const
 	{
 		std::size_t seed = 0;
-		hash_combine(seed, m_PathHash(a.m_Path));
-		hash_combine(seed, a.m_Filter);
-		hash_combine(seed, a.m_WrapS);
-		hash_combine(seed, a.m_WrapT);
-		hash_combine(seed, a.m_Aniso);
-		hash_combine(seed, a.m_Format);
+		hash_combine(seed, m_PathHash(textureProperties.m_Path));
+		hash_combine(seed, textureProperties.m_AddressModeU);
+		hash_combine(seed, textureProperties.m_AddressModeV);
+		hash_combine(seed, textureProperties.m_AnisotropicFilterEnabled);
+		hash_combine(seed, textureProperties.m_FormatOverride);
+		hash_combine(seed, textureProperties.m_IgnoreQuality);
 		return seed;
 	}
 
-	std::size_t operator()(CTexturePtr const& a) const
+	std::size_t operator()(const CTexturePtr& texture) const
 	{
-		return (*this)(a->m_Properties);
+		return this->operator()(texture->m_Properties);
 	}
 
 private:
@@ -115,15 +189,20 @@ private:
 
 struct TPequal_to
 {
-	bool operator()(CTextureProperties const& a, CTextureProperties const& b) const
+	bool operator()(const CTextureProperties& lhs, const CTextureProperties& rhs) const
 	{
-		return a.m_Path == b.m_Path && a.m_Filter == b.m_Filter
-			&& a.m_WrapS == b.m_WrapS && a.m_WrapT == b.m_WrapT
-			&& a.m_Aniso == b.m_Aniso && a.m_Format == b.m_Format;
+		return
+			lhs.m_Path == rhs.m_Path &&
+			lhs.m_AddressModeU == rhs.m_AddressModeU &&
+			lhs.m_AddressModeV == rhs.m_AddressModeV &&
+			lhs.m_AnisotropicFilterEnabled == rhs.m_AnisotropicFilterEnabled &&
+			lhs.m_FormatOverride == rhs.m_FormatOverride &&
+			lhs.m_IgnoreQuality == rhs.m_IgnoreQuality;
 	}
-	bool operator()(CTexturePtr const& a, CTexturePtr const& b) const
+
+	bool operator()(const CTexturePtr& lhs, const CTexturePtr& rhs) const
 	{
-		return (*this)(a->m_Properties, b->m_Properties);
+		return this->operator()(lhs->m_Properties, rhs->m_Properties);
 	}
 };
 
@@ -134,13 +213,23 @@ public:
 	CTextureManagerImpl(PIVFS vfs, bool highQuality, bool disableGL) :
 		m_VFS(vfs), m_CacheLoader(vfs, L".dds"), m_DisableGL(disableGL),
 		m_TextureConverter(vfs, highQuality),
-		m_DefaultTexture(CColor(0.25f, 0.25f, 0.25f, 1.0f), vfs, L"(default texture)", disableGL, this),
-		m_ErrorTexture(CColor(1.0f, 0.0f, 1.0f, 1.0f), vfs, L"(error texture)", disableGL, this),
-		m_WhiteTexture(CColor(1.0f, 1.0f, 1.0f, 1.0f), vfs, L"(white texture)", disableGL, this),
-		m_TransparentTexture(CColor(0.0f, 0.0f, 0.0f, 0.0f), vfs, L"(transparent texture)", disableGL, this)
+		m_DefaultTexture(CColor(0.25f, 0.25f, 0.25f, 1.0f), L"(default texture)", disableGL, this),
+		m_ErrorTexture(CColor(1.0f, 0.0f, 1.0f, 1.0f), L"(error texture)", disableGL, this),
+		m_WhiteTexture(CColor(1.0f, 1.0f, 1.0f, 1.0f), L"(white texture)", disableGL, this),
+		m_TransparentTexture(CColor(0.0f, 0.0f, 0.0f, 0.0f), L"(transparent texture)", disableGL, this)
 	{
 		// Allow hotloading of textures
 		RegisterFileReloadFunc(ReloadChangedFileCB, this);
+
+		if (disableGL)
+			return;
+
+		Renderer::Backend::GL::CDevice* backendDevice = g_VideoMode.GetBackendDevice();
+		m_HasS3TC =
+			backendDevice->IsFormatSupported(Renderer::Backend::Format::BC1_RGB) &&
+			backendDevice->IsFormatSupported(Renderer::Backend::Format::BC1_RGBA) &&
+			backendDevice->IsFormatSupported(Renderer::Backend::Format::BC2) &&
+			backendDevice->IsFormatSupported(Renderer::Backend::Format::BC3);
 	}
 
 	~CTextureManagerImpl()
@@ -148,17 +237,17 @@ public:
 		UnregisterFileReloadFunc(ReloadChangedFileCB, this);
 	}
 
-	CTexturePtr GetErrorTexture()
+	const CTexturePtr& GetErrorTexture()
 	{
 		return m_ErrorTexture.GetTexture();
 	}
 
-	CTexturePtr GetWhiteTexture()
+	const CTexturePtr& GetWhiteTexture()
 	{
 		return m_WhiteTexture.GetTexture();
 	}
 
-	CTexturePtr GetTransparentTexture()
+	const CTexturePtr& GetTransparentTexture()
 	{
 		return m_TransparentTexture.GetTexture();
 	}
@@ -169,7 +258,9 @@ public:
 	CTexturePtr CreateTexture(const CTextureProperties& props)
 	{
 		// Construct a new default texture with the given properties to use as the search key
-		CTexturePtr texture(new CTexture(m_DefaultTexture.GetHandle(), props, this));
+		CTexturePtr texture(new CTexture(
+			nullptr, m_DisableGL ? nullptr : m_DefaultTexture.GetTexture()->GetBackendTexture(),
+			props, this));
 
 		// Try to find an existing texture with the given properties
 		TextureCache::iterator it = m_TextureCache.find(texture);
@@ -196,60 +287,104 @@ public:
 		PROFILE2("load texture");
 		PROFILE2_ATTR("name: %ls", path.string().c_str());
 
-		Handle h = ogl_tex_load(m_VFS, path, RES_UNIQUE);
-		if (h <= 0)
+		std::shared_ptr<u8> fileData;
+		size_t fileSize;
+		texture->m_TextureData = std::make_unique<Tex>();
+		Tex& textureData = *texture->m_TextureData;
+		if (g_VFS->LoadFile(path, fileData, fileSize) != INFO::OK ||
+			textureData.decode(fileData, fileSize) != INFO::OK)
 		{
 			LOGERROR("Texture failed to load; \"%s\"", texture->m_Properties.m_Path.string8());
-
-			// Replace with error texture to make it obvious
-			texture->SetHandle(m_ErrorTexture.GetHandle());
+			texture->ResetBackendTexture(
+				nullptr, m_ErrorTexture.GetTexture()->GetBackendTexture());
 			return;
 		}
-
-		// Get some flags for later use
-		size_t flags = 0;
-		ignore_result(ogl_tex_get_format(h, &flags, NULL));
 
 		// Initialise base color from the texture
-		ignore_result(ogl_tex_get_average_color(h, &texture->m_BaseColor));
+		texture->m_BaseColor = textureData.get_average_color();
 
-		// Set GL upload properties
-		ignore_result(ogl_tex_set_wrap(h, texture->m_Properties.m_WrapS, texture->m_Properties.m_WrapT));
-		ignore_result(ogl_tex_set_anisotropy(h, texture->m_Properties.m_Aniso));
-
-		// Prevent ogl_tex automatically generating mipmaps (which is slow and unwanted),
-		// by avoiding mipmapped filters unless the source texture already has mipmaps
-		GLint filter = texture->m_Properties.m_Filter;
-		if (!(flags & TEX_MIPMAPS))
+		Renderer::Backend::Format format = Renderer::Backend::Format::UNDEFINED;
+		if (texture->m_Properties.m_FormatOverride != Renderer::Backend::Format::UNDEFINED)
 		{
-			switch (filter)
+			format = texture->m_Properties.m_FormatOverride;
+			// TODO: it'd be good to remove the override hack and provide information
+			// via XML.
+			ENSURE((textureData.m_Flags & TEX_DXT) == 0);
+			if (format == Renderer::Backend::Format::A8)
 			{
-			case GL_NEAREST_MIPMAP_NEAREST:
-			case GL_NEAREST_MIPMAP_LINEAR:
-				filter = GL_NEAREST;
-				break;
-			case GL_LINEAR_MIPMAP_NEAREST:
-			case GL_LINEAR_MIPMAP_LINEAR:
-				filter = GL_LINEAR;
-				break;
+				ENSURE(textureData.m_Bpp == 8 && (textureData.m_Flags & TEX_GREY));
 			}
+			else if (format == Renderer::Backend::Format::R8G8B8A8)
+			{
+				ENSURE(textureData.m_Bpp == 32 && (textureData.m_Flags & TEX_ALPHA));
+			}
+			else
+				debug_warn("Unsupported format override.");
 		}
-		ignore_result(ogl_tex_set_filter(h, filter));
-
-		// Upload to GL
-		if (!m_DisableGL && ogl_tex_upload(h, texture->m_Properties.m_Format) < 0)
+		else
 		{
-			LOGERROR("Texture failed to upload: \"%s\"", texture->m_Properties.m_Path.string8());
+			format = ChooseFormatAndTransformTextureDataIfNeeded(textureData, m_HasS3TC);
+		}
 
-			ogl_tex_free(h);
-
-			// Replace with error texture to make it obvious
-			texture->SetHandle(m_ErrorTexture.GetHandle());
+		if (format == Renderer::Backend::Format::UNDEFINED)
+		{
+			LOGERROR("Texture failed to choose format; \"%s\"", texture->m_Properties.m_Path.string8());
+			texture->ResetBackendTexture(
+				nullptr, m_ErrorTexture.GetTexture()->GetBackendTexture());
 			return;
 		}
 
-		// Let the texture object take ownership of this handle
-		texture->SetHandle(h, true);
+		const uint32_t width = texture->m_TextureData->m_Width;
+		const uint32_t height = texture->m_TextureData->m_Height ;
+		const uint32_t MIPLevelCount = texture->m_TextureData->GetMIPLevels().size();
+		texture->m_BaseLevelOffset = 0;
+
+		Renderer::Backend::Sampler::Desc defaultSamplerDesc =
+			Renderer::Backend::Sampler::MakeDefaultSampler(
+				Renderer::Backend::Sampler::Filter::LINEAR,
+				Renderer::Backend::Sampler::AddressMode::REPEAT);
+
+		defaultSamplerDesc.addressModeU = texture->m_Properties.m_AddressModeU;
+		defaultSamplerDesc.addressModeV = texture->m_Properties.m_AddressModeV;
+		if (texture->m_Properties.m_AnisotropicFilterEnabled)
+		{
+			int maxAnisotropy = 1;
+			CFG_GET_VAL("textures.maxanisotropy", maxAnisotropy);
+			const int allowedValues[] = {2, 4, 8, 16};
+			if (std::find(std::begin(allowedValues), std::end(allowedValues), maxAnisotropy) != std::end(allowedValues))
+			{
+				defaultSamplerDesc.anisotropyEnabled = true;
+				defaultSamplerDesc.maxAnisotropy = maxAnisotropy;
+			}
+		}
+
+		if (!texture->m_Properties.m_IgnoreQuality)
+		{
+			int quality = 2;
+			CFG_GET_VAL("textures.quality", quality);
+			if (quality == 1)
+			{
+				if (MIPLevelCount > 1 && std::min(width, height) > 8)
+					texture->m_BaseLevelOffset += 1;
+			}
+			else if (quality == 0)
+			{
+				if (MIPLevelCount > 2 && std::min(width, height) > 16)
+					texture->m_BaseLevelOffset += 2;
+				while (std::min(width >> texture->m_BaseLevelOffset, height >> texture->m_BaseLevelOffset) > 256 &&
+					MIPLevelCount > texture->m_BaseLevelOffset + 1)
+				{
+					texture->m_BaseLevelOffset += 1;
+				}
+				defaultSamplerDesc.mipFilter = Renderer::Backend::Sampler::Filter::NEAREST;
+				defaultSamplerDesc.anisotropyEnabled = false;
+			}
+		}
+
+		texture->m_BackendTexture = g_VideoMode.GetBackendDevice()->CreateTexture2D(
+			texture->m_Properties.m_Path.string8().c_str(),
+			format, (width >> texture->m_BaseLevelOffset), (height >> texture->m_BaseLevelOffset),
+			defaultSamplerDesc, MIPLevelCount - texture->m_BaseLevelOffset);
 	}
 
 	/**
@@ -299,7 +434,8 @@ public:
 			// No source file or archive cache was found, so we can't load the
 			// real texture at all - return the error texture instead
 			LOGERROR("CCacheLoader failed to find archived or source file for: \"%s\"", texture->m_Properties.m_Path.string8());
-			texture->SetHandle(m_ErrorTexture.GetHandle());
+			texture->ResetBackendTexture(
+				nullptr, m_ErrorTexture.GetTexture()->GetBackendTexture());
 			return true;
 		}
 	}
@@ -372,7 +508,8 @@ public:
 				else
 				{
 					LOGERROR("Texture failed to convert: \"%s\"", texture->m_Properties.m_Path.string8());
-					texture->SetHandle(m_ErrorTexture.GetHandle());
+					texture->ResetBackendTexture(
+						nullptr, m_ErrorTexture.GetTexture()->GetBackendTexture());
 				}
 				texture->m_State = CTexture::LOADED;
 				return true;
@@ -431,6 +568,21 @@ public:
 			}
 		}
 
+		return false;
+	}
+
+	bool MakeUploadProgress(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	{
+		if (!m_SingleColorTexturesUploaded)
+		{
+			m_DefaultTexture.Upload(deviceCommandContext);
+			m_ErrorTexture.Upload(deviceCommandContext);
+			m_WhiteTexture.Upload(deviceCommandContext);
+			m_TransparentTexture.Upload(deviceCommandContext);
+			m_SingleColorTexturesUploaded = true;
+			return true;
+		}
 		return false;
 	}
 
@@ -495,17 +647,30 @@ public:
 		if (files != m_HotloadFiles.end())
 		{
 			// Flag all textures using this file as needing reloading
-			for (std::set<std::weak_ptr<CTexture> >::iterator it = files->second.begin(); it != files->second.end(); ++it)
+			for (std::set<std::weak_ptr<CTexture>>::iterator it = files->second.begin(); it != files->second.end(); ++it)
 			{
 				if (std::shared_ptr<CTexture> texture = it->lock())
 				{
 					texture->m_State = CTexture::UNLOADED;
-					texture->SetHandle(m_DefaultTexture.GetHandle());
+					texture->ResetBackendTexture(
+						nullptr, m_DefaultTexture.GetTexture()->GetBackendTexture());
+					texture->m_TextureData.reset();
 				}
 			}
 		}
 
 		return INFO::OK;
+	}
+
+	void ReloadAllTextures()
+	{
+		for (const CTexturePtr& texture : m_TextureCache)
+		{
+			texture->m_State = CTexture::UNLOADED;
+			texture->ResetBackendTexture(
+				nullptr, m_DefaultTexture.GetTexture()->GetBackendTexture());
+			texture->m_TextureData.reset();
+		}
 	}
 
 	size_t GetBytesUploaded() const
@@ -514,6 +679,11 @@ public:
 		for (TextureCache::const_iterator it = m_TextureCache.begin(); it != m_TextureCache.end(); ++it)
 			size += (*it)->GetUploadedSize();
 		return size;
+	}
+
+	void OnQualityChanged()
+	{
+		ReloadAllTextures();
 	}
 
 private:
@@ -526,6 +696,7 @@ private:
 	SingleColorTexture m_ErrorTexture;
 	SingleColorTexture m_WhiteTexture;
 	SingleColorTexture m_TransparentTexture;
+	bool m_SingleColorTexturesUploaded = false;
 
 	// Cache of all loaded textures
 	using TextureCache =
@@ -536,44 +707,68 @@ private:
 	// Store the set of textures that need to be reloaded when the given file
 	// (a source file or settings.xml) is modified
 	using HotloadFilesMap =
-		std::unordered_map<VfsPath, std::set<std::weak_ptr<CTexture>, std::owner_less<std::weak_ptr<CTexture> > > >;
+		std::unordered_map<VfsPath, std::set<std::weak_ptr<CTexture>, std::owner_less<std::weak_ptr<CTexture>>>>;
 	HotloadFilesMap m_HotloadFiles;
 
 	// Cache for the conversion settings files
 	using SettingsFilesMap =
 		std::unordered_map<VfsPath, std::shared_ptr<CTextureConverter::SettingsFile>>;
 	SettingsFilesMap m_SettingsFiles;
+
+	bool m_HasS3TC = false;
 };
 
-CTexture::CTexture(Handle handle, const CTextureProperties& props, CTextureManagerImpl* textureManager) :
-	m_Handle(handle), m_BaseColor(0), m_State(UNLOADED), m_Properties(props), m_TextureManager(textureManager)
+CTexture::CTexture(
+	std::unique_ptr<Renderer::Backend::GL::CTexture> texture,
+	Renderer::Backend::GL::CTexture* fallback,
+	const CTextureProperties& props, CTextureManagerImpl* textureManager) :
+	m_BackendTexture(std::move(texture)), m_FallbackBackendTexture(fallback),
+	m_BaseColor(0), m_State(UNLOADED), m_Properties(props),
+	m_TextureManager(textureManager)
 {
-	// Add a reference to the handle (it might be shared by multiple CTextures
-	// so we can't take ownership of it)
-	if (m_Handle)
-		h_add_ref(m_Handle);
 }
 
-CTexture::~CTexture()
+CTexture::~CTexture() = default;
+
+void CTexture::UploadBackendTextureIfNeeded(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
-	if (m_Handle)
-		ogl_tex_free(m_Handle);
+	if (IsUploaded())
+		return;
+
+	if (!IsLoaded())
+		TryLoad();
+
+	if (!IsLoaded())
+		return;
+	else if (!m_TextureData)
+	{
+		ResetBackendTexture(nullptr, m_TextureManager->GetErrorTexture()->GetBackendTexture());
+		m_State = UPLOADED;
+		return;
+	}
+
+	m_UploadedSize = 0;
+	for (uint32_t textureDataLevel = m_BaseLevelOffset, level = 0; textureDataLevel < m_TextureData->GetMIPLevels().size(); ++textureDataLevel)
+	{
+		const Tex::MIPLevel& levelData = m_TextureData->GetMIPLevels()[textureDataLevel];
+		deviceCommandContext->UploadTexture(m_BackendTexture.get(), m_BackendTexture->GetFormat(),
+			levelData.data, levelData.dataSize, level++);
+		m_UploadedSize += levelData.dataSize;
+	}
+	m_TextureData.reset();
+
+	m_State = UPLOADED;
 }
 
-void CTexture::Bind(size_t unit)
+Renderer::Backend::GL::CTexture* CTexture::GetBackendTexture()
 {
-	ogl_tex_bind(GetHandle(), unit);
+	return m_BackendTexture && IsUploaded() ? m_BackendTexture.get() : m_FallbackBackendTexture;
 }
 
-Handle CTexture::GetHandle()
+const Renderer::Backend::GL::CTexture* CTexture::GetBackendTexture() const
 {
-	// TODO: TryLoad might call ogl_tex_upload which enables GL_TEXTURE_2D
-	// on texture unit 0, regardless of 'unit', which callers might
-	// not be expecting. Ideally that wouldn't happen.
-
-	TryLoad();
-
-	return m_Handle;
+	return m_BackendTexture && IsUploaded() ? m_BackendTexture.get() : m_FallbackBackendTexture;
 }
 
 bool CTexture::TryLoad()
@@ -591,7 +786,7 @@ bool CTexture::TryLoad()
 		}
 	}
 
-	return (m_State == LOADED);
+	return IsLoaded();
 }
 
 void CTexture::Prefetch()
@@ -605,42 +800,33 @@ void CTexture::Prefetch()
 	}
 }
 
-bool CTexture::IsLoaded()
+void CTexture::ResetBackendTexture(
+	std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture,
+	Renderer::Backend::GL::CTexture* fallbackBackendTexture)
 {
-	return (m_State == LOADED);
-}
-
-void CTexture::SetHandle(Handle handle, bool takeOwnership)
-{
-	if (handle == m_Handle)
-		return;
-
-	if (!takeOwnership)
-		h_add_ref(handle);
-
-	ogl_tex_free(m_Handle);
-	m_Handle = handle;
+	m_BackendTexture = std::move(backendTexture);
+	m_FallbackBackendTexture = fallbackBackendTexture;
 }
 
 size_t CTexture::GetWidth() const
 {
-	size_t w = 0;
-	ignore_result(ogl_tex_get_size(m_Handle, &w, 0, 0));
-	return w;
+	return GetBackendTexture()->GetWidth();
 }
 
 size_t CTexture::GetHeight() const
 {
-	size_t h = 0;
-	ignore_result(ogl_tex_get_size(m_Handle, 0, &h, 0));
-	return h;
+	return GetBackendTexture()->GetHeight();
 }
 
 bool CTexture::HasAlpha() const
 {
-	size_t flags = 0;
-	ignore_result(ogl_tex_get_format(m_Handle, &flags, 0));
-	return (flags & TEX_ALPHA) != 0;
+	const Renderer::Backend::Format format = GetBackendTexture()->GetFormat();
+	return
+		format == Renderer::Backend::Format::A8 ||
+		format == Renderer::Backend::Format::R8G8B8A8 ||
+		format == Renderer::Backend::Format::BC1_RGBA ||
+		format == Renderer::Backend::Format::BC2 ||
+		format == Renderer::Backend::Format::BC3;
 }
 
 u32 CTexture::GetBaseColor() const
@@ -650,11 +836,8 @@ u32 CTexture::GetBaseColor() const
 
 size_t CTexture::GetUploadedSize() const
 {
-	size_t size = 0;
-	ignore_result(ogl_tex_get_uploaded_size(m_Handle, &size));
-	return size;
+	return m_UploadedSize;
 }
-
 
 // CTextureManager: forward all calls to impl:
 
@@ -678,17 +861,17 @@ bool CTextureManager::TextureExists(const VfsPath& path) const
 	return m->TextureExists(path);
 }
 
-CTexturePtr CTextureManager::GetErrorTexture()
+const CTexturePtr& CTextureManager::GetErrorTexture()
 {
 	return m->GetErrorTexture();
 }
 
-CTexturePtr CTextureManager::GetWhiteTexture()
+const CTexturePtr& CTextureManager::GetWhiteTexture()
 {
 	return m->GetWhiteTexture();
 }
 
-CTexturePtr CTextureManager::GetTransparentTexture()
+const CTexturePtr& CTextureManager::GetTransparentTexture()
 {
 	return m->GetTransparentTexture();
 }
@@ -696,6 +879,12 @@ CTexturePtr CTextureManager::GetTransparentTexture()
 bool CTextureManager::MakeProgress()
 {
 	return m->MakeProgress();
+}
+
+bool CTextureManager::MakeUploadProgress(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+{
+	return m->MakeUploadProgress(deviceCommandContext);
 }
 
 bool CTextureManager::GenerateCachedTexture(const VfsPath& path, VfsPath& outputPath)
@@ -706,4 +895,9 @@ bool CTextureManager::GenerateCachedTexture(const VfsPath& path, VfsPath& output
 size_t CTextureManager::GetBytesUploaded() const
 {
 	return m->GetBytesUploaded();
+}
+
+void CTextureManager::OnQualityChanged()
+{
+	m->OnQualityChanged();
 }

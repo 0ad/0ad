@@ -157,7 +157,7 @@ void ParticleRenderer::RenderParticles(
 			shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 			shader->Uniform(str_modelViewMatrix, g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetInverse());
 		}
-		emitter->Bind(lastTech->GetShader());
+		emitter->Bind(deviceCommandContext, lastTech->GetShader());
 		emitter->RenderArray(lastTech->GetShader());
 	}
 

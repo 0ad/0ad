@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -43,12 +43,16 @@ SOverlayTexturedLine::LineCapType SOverlayTexturedLine::StrToLineCapType(const s
 void SOverlayTexturedLine::CreateOverlayTexture(const SOverlayDescriptor* overlayDescriptor)
 {
 	CTextureProperties texturePropsBase(overlayDescriptor->m_LineTexture.c_str());
-	texturePropsBase.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
-	texturePropsBase.SetMaxAnisotropy(4.f);
+	texturePropsBase.SetAddressMode(
+		Renderer::Backend::Sampler::AddressMode::CLAMP_TO_BORDER,
+		Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
+	texturePropsBase.SetAnisotropicFilter(true);
 
 	CTextureProperties texturePropsMask(overlayDescriptor->m_LineTextureMask.c_str());
-	texturePropsMask.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
-	texturePropsMask.SetMaxAnisotropy(4.f);
+	texturePropsMask.SetAddressMode(
+		Renderer::Backend::Sampler::AddressMode::CLAMP_TO_BORDER,
+		Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
+	texturePropsMask.SetAnisotropicFilter(true);
 
 	m_AlwaysVisible = false;
 	m_Closed = true;

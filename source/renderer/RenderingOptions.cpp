@@ -19,6 +19,7 @@
 
 #include "RenderingOptions.h"
 
+#include "graphics/TextureManager.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/CStr.h"
@@ -221,6 +222,15 @@ void CRenderingOptions::ReadConfigAndSetupHooks()
 	});
 
 	m_ConfigHooks->Setup("renderactors", m_RenderActors);
+
+	m_ConfigHooks->Setup("textures.quality", []() {
+		if (CRenderer::IsInitialised())
+			g_Renderer.GetTextureManager().OnQualityChanged();
+	});
+	m_ConfigHooks->Setup("textures.maxanisotropy", []() {
+		if (CRenderer::IsInitialised())
+			g_Renderer.GetTextureManager().OnQualityChanged();
+	});
 }
 
 void CRenderingOptions::ClearHooks()

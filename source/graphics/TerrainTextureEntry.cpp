@@ -125,12 +125,8 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 	for (size_t i = 0; i < samplers.size(); ++i)
 	{
 		CTextureProperties texture(samplers[i].second);
-		texture.SetWrap(GL_REPEAT);
-
-		// TODO: anisotropy should probably be user-configurable, but we want it to be
-		// at least 2 for terrain else the ground looks very blurry when you tilt the
-		// camera upwards
-		texture.SetMaxAnisotropy(2.0f);
+		texture.SetAddressMode(Renderer::Backend::Sampler::AddressMode::REPEAT);
+		texture.SetAnisotropicFilter(true);
 
 		if (CRenderer::IsInitialised())
 		{

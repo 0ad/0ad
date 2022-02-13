@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,9 +26,9 @@
 #include "gui/GUIRenderer.h"
 #include "gui/SettingTypes/CGUISize.h"
 #include "gui/SettingTypes/CGUIColor.h"
-#include "lib/ogl.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
+#include "renderer/backend/Sampler.h"
 
 #include <map>
 #include <memory>
@@ -55,7 +55,7 @@ public:
 	SGUIImage() :
 		m_FixedHAspectRatio(0.f),
 		m_RoundCoordinates(true),
-		m_WrapMode(GL_REPEAT),
+		m_AddressMode(Renderer::Backend::Sampler::AddressMode::REPEAT),
 		m_Effects(),
 		m_Size(CGUISize::Full()),
 		m_TextureSize(CGUISize::Full())
@@ -89,9 +89,9 @@ public:
 	bool m_RoundCoordinates;
 
 	/**
-	 * Texture wrapping mode (GL_REPEAT, GL_CLAMP_TO_EDGE, etc)
+	 * Texture address mode (REPEAT, CLAMP_TO_EDGE, etc).
 	 */
-	GLint m_WrapMode;
+	Renderer::Backend::Sampler::AddressMode m_AddressMode;
 
 	// Visual effects (e.g. color modulation)
 	std::shared_ptr<SGUIImageEffects> m_Effects;

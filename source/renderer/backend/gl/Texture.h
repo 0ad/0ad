@@ -23,6 +23,7 @@
 #include "renderer/backend/Sampler.h"
 
 #include <cstdint>
+#include <memory>
 
 namespace Renderer
 {
@@ -32,6 +33,8 @@ namespace Backend
 
 namespace GL
 {
+
+class CDevice;
 
 /**
  * Represents a low-level GL texture, encapsulates all properties initialization.
@@ -48,17 +51,6 @@ public:
 
 	~CTexture();
 
-	// GL before 3.3 doesn't support sampler objects, so each texture should have
-	// an own default sampler.
-	static std::unique_ptr<CTexture> Create(const Type type, const Format format,
-		const uint32_t width, const uint32_t height,
-		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount);
-
-	// Shorthands for particular types.
-	static std::unique_ptr<CTexture> Create2D(const Format format,
-		const uint32_t width, const uint32_t height,
-		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount = 1, const uint32_t sampleCount = 1);
-
 	GLuint GetHandle() const { return m_Handle; }
 
 	Type GetType() const { return m_Type; }
@@ -68,7 +60,17 @@ public:
 	uint32_t GetMIPLevelCount() const { return m_MIPLevelCount; }
 
 private:
+	friend class CDevice;
+
 	CTexture();
+
+	CDevice* m_Device = nullptr;
+
+	// GL before 3.3 doesn't support sampler objects, so each texture should have
+	// an own default sampler.
+	static std::unique_ptr<CTexture> Create(CDevice* device, const char* name,
+		const Type type, const Format format, const uint32_t width, const uint32_t height,
+		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount);
 
 	GLuint m_Handle = 0;
 

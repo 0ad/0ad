@@ -243,6 +243,8 @@ class CRenderer::Internals
 {
 	NONCOPYABLE(Internals);
 public:
+	std::unique_ptr<Renderer::Backend::GL::CDeviceCommandContext> deviceCommandContext;
+
 	/// true if CRenderer::Open has been called
 	bool IsOpen;
 
@@ -270,10 +272,10 @@ public:
 
 	CFontManager fontManager;
 
-	std::unique_ptr<Renderer::Backend::GL::CDeviceCommandContext> deviceCommandContext;
-
 	Internals() :
-		IsOpen(false), ShadersDirty(true), profileTable(g_Renderer.m_Stats), textureManager(g_VFS, false, false)
+		IsOpen(false), ShadersDirty(true), profileTable(g_Renderer.m_Stats),
+		deviceCommandContext(g_VideoMode.GetBackendDevice()->CreateCommandContext()),
+		textureManager(g_VFS, false, false)
 	{
 	}
 };
@@ -387,8 +389,6 @@ bool CRenderer::Open(int width, int height)
 	// Validate the currently selected render path
 	SetRenderPath(g_RenderingOptions.GetRenderPath());
 
-	m->deviceCommandContext = g_VideoMode.GetBackendDevice()->CreateCommandContext();
-
 	if (m->postprocManager.IsEnabled())
 		m->postprocManager.Initialize();
 
@@ -483,6 +483,8 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 	ogl_WarnIfError();
 
 	g_TexMan.UploadResourcesIfNeeded(m->deviceCommandContext.get());
+
+	m->textureManager.MakeUploadProgress(m->deviceCommandContext.get());
 
 	// prepare before starting the renderer frame
 	if (g_Game && g_Game->IsGameStarted())
@@ -756,8 +758,6 @@ void CRenderer::EndFrame()
 	PROFILE3("end frame");
 
 	m->sceneRenderer.EndFrame();
-
-	BindTexture(0, 0);
 }
 
 void CRenderer::SetViewport(const SViewPort &vp)
@@ -769,13 +769,6 @@ void CRenderer::SetViewport(const SViewPort &vp)
 SViewPort CRenderer::GetViewport()
 {
 	return m_Viewport;
-}
-
-void CRenderer::BindTexture(int unit, GLuint tex)
-{
-	glActiveTextureARB(GL_TEXTURE0+unit);
-
-	glBindTexture(GL_TEXTURE_2D, tex);
 }
 
 void CRenderer::MakeShadersDirty()

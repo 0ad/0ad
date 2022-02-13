@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,12 +27,21 @@ namespace Backend
 enum class Format
 {
 	UNDEFINED,
+	R8G8B8,
 	R8G8B8A8,
+
 	A8,
+	L8,
+
 	D16,
 	D24,
 	D24_S8,
-	D32
+	D32,
+
+	BC1_RGB,
+	BC1_RGBA,
+	BC2,
+	BC3
 };
 
 } // namespace Backend

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,8 +20,9 @@
 
 #include "graphics/Texture.h"
 #include "lib/file/vfs/vfs.h"
-#include "lib/ogl.h"
-#include "lib/res/handle.h"
+#include "lib/tex/tex.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/gl/Texture.h"
 
 #include <memory>
 
@@ -92,17 +93,17 @@ public:
 	 * Returns a magenta texture. Use this for highlighting errors
 	 * (e.g. missing terrain textures).
 	 */
-	CTexturePtr GetErrorTexture();
+	const CTexturePtr& GetErrorTexture();
 
 	/**
 	 * Returns a single color RGBA texture with CColor(1.0f, 1.0f, 1.0f, 1.0f).
 	 */
-	CTexturePtr GetWhiteTexture();
+	const CTexturePtr& GetWhiteTexture();
 
 	/**
 	 * Returns a single color RGBA texture with CColor(0.0f, 0.0f, 0.0f, 0.0f).
 	 */
-	CTexturePtr GetTransparentTexture();
+	const CTexturePtr& GetTransparentTexture();
 
 	/**
 	 * Work on asynchronous texture loading operations, if any.
@@ -111,6 +112,12 @@ public:
 	 * false or exceeds the allocated time for this frame.
 	 */
 	bool MakeProgress();
+
+	/**
+	 * Work on asynchronous texture uploading operations, if any.
+	 * Returns true if it did any work. Mostly the same as MakeProgress.
+	 */
+	bool MakeUploadProgress(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Synchronously converts and compresses and saves the texture,
@@ -131,6 +138,11 @@ public:
 	 */
 	size_t GetBytesUploaded() const;
 
+	/**
+	 * Should be called on any quality or anisotropic change.
+	 */
+	void OnQualityChanged();
+
 private:
 	CTextureManagerImpl* m;
 };
@@ -150,38 +162,41 @@ public:
 	/**
 	 * Use the given texture name, and default GL parameters.
 	 */
-	explicit CTextureProperties(const VfsPath& path) :
-		m_Path(path), m_Filter(GL_LINEAR_MIPMAP_LINEAR),
-		m_WrapS(GL_REPEAT), m_WrapT(GL_REPEAT), m_Aniso(1.0f), m_Format(0)
+	explicit CTextureProperties(const VfsPath& path)
+		: m_Path(path)
+	{
+	}
+
+	CTextureProperties(
+		const VfsPath& path, const Renderer::Backend::Format formatOverride)
+		: m_Path(path), m_FormatOverride(formatOverride)
 	{
 	}
 
 	/**
-	 * Set min/mag filter mode (typically GL_LINEAR_MIPMAP_LINEAR, GL_NEAREST, etc).
+	 * Set sampler address mode.
 	 */
-	void SetFilter(GLint filter) { m_Filter = filter; }
+	void SetAddressMode(const Renderer::Backend::Sampler::AddressMode addressMode)
+	{
+		m_AddressModeU = m_AddressModeV = addressMode;
+	}
 
 	/**
-	 * Set wrapping mode (typically GL_REPEAT, GL_CLAMP_TO_EDGE, etc).
+	 * Set sampler address mode separately for different coordinates.
 	 */
-	void SetWrap(GLint wrap) { m_WrapS = wrap; m_WrapT = wrap; }
+	void SetAddressMode(
+		const Renderer::Backend::Sampler::AddressMode addressModeU,
+		const Renderer::Backend::Sampler::AddressMode addressModeV)
+	{
+		m_AddressModeU = addressModeU;
+		m_AddressModeV = addressModeV;
+	}
 
 	/**
-	 * Set wrapping mode (typically GL_REPEAT, GL_CLAMP_TO_EDGE, etc),
-	 * separately for S and T.
+	 * The value of max anisotropy is set by options. Though it might make sense
+	 * to add an override.
 	 */
-	void SetWrap(GLint wrap_s, GLint wrap_t) { m_WrapS = wrap_s; m_WrapT = wrap_t; }
-
-	/**
-	 * Set maximum anisotropy value. Must be >= 1.0. Should be a power of 2.
-	 */
-	void SetMaxAnisotropy(float aniso) { m_Aniso = aniso; }
-
-	/**
-	 * Set GL texture upload format, to override the default.
-	 * Typically GL_ALPHA or GL_LUMINANCE for 8-bit textures.
-	 */
-	void SetFormatOverride(GLenum format) { m_Format = format; }
+	void SetAnisotropicFilter(const bool enabled) { m_AnisotropicFilterEnabled = enabled; }
 
 	// TODO: rather than this static definition of texture properties
 	// (especially anisotropy), maybe we want something that can be more
@@ -200,14 +215,20 @@ public:
 	//
 	// or something a bit like that.
 
+	void SetIgnoreQuality(bool ignore) { m_IgnoreQuality = ignore; }
+
 private:
 	// Must update TPhash, TPequal_to when changing these fields
 	VfsPath m_Path;
-	GLint m_Filter;
-	GLint m_WrapS;
-	GLint m_WrapT;
-	float m_Aniso;
-	GLenum m_Format;
+
+	Renderer::Backend::Sampler::AddressMode m_AddressModeU =
+		Renderer::Backend::Sampler::AddressMode::REPEAT;
+	Renderer::Backend::Sampler::AddressMode m_AddressModeV =
+		Renderer::Backend::Sampler::AddressMode::REPEAT;
+	bool m_AnisotropicFilterEnabled = false;
+	Renderer::Backend::Format m_FormatOverride =
+		Renderer::Backend::Format::UNDEFINED;
+	bool m_IgnoreQuality = false;
 };
 
 /**
@@ -218,19 +239,8 @@ private:
  */
 class CTexture
 {
-	friend class CTextureManagerImpl;
-	friend class SingleColorTexture;
-	friend struct TextureCacheCmp;
-	friend struct TPequal_to;
-	friend struct TPhash;
-
-	// Only the texture manager can create these
-	explicit CTexture(Handle handle, const CTextureProperties& props, CTextureManagerImpl* textureManager);
-
 	NONCOPYABLE(CTexture);
-
 public:
-
 	~CTexture();
 
 	/**
@@ -261,29 +271,37 @@ public:
 	size_t GetUploadedSize() const;
 
 	/**
-	 * Bind the texture to the given GL texture unit.
+	 * Uploads a texture data to a backend texture if successfully loaded.
 	 * If the texture data hasn't been loaded yet, this may wait a short while to
 	 * load it. If loading takes too long then it will return sooner and the data will
 	 * be loaded in a background thread, so this does not guarantee the texture really
-	 * will be loaded.
+	 * will be uploaded.
 	 */
-	void Bind(size_t unit = 0);
+	void UploadBackendTextureIfNeeded(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	/**
-	 * Returns a ogl_tex handle, for later binding. See comments from Bind().
+	 * Returns a backend texture if successfully uploaded, else fallback.
 	 */
-	Handle GetHandle();
+	Renderer::Backend::GL::CTexture* GetBackendTexture();
+	const Renderer::Backend::GL::CTexture* GetBackendTexture() const;
 
 	/**
-	 * Attempt to load the texture data quickly, as with Bind().
-	 * Returns whether the texture data is currently loaded.
+	 * Attempt to load the texture data quickly, as with
+	 * GetUploadedBackendTextureIfNeeded(). Returns whether the texture data is
+	 * currently loaded (but not uploaded).
 	 */
 	bool TryLoad();
 
 	/**
 	 * Returns whether the texture data is currently loaded.
 	 */
-	bool IsLoaded();
+	bool IsLoaded() const { return m_State == LOADED; }
+
+	/**
+	 * Returns whether the texture data is currently uploaded.
+	 */
+	bool IsUploaded() const { return m_State == UPLOADED; }
 
 	/**
 	 * Activate the prefetching optimisation for this texture.
@@ -294,25 +312,42 @@ public:
 	void Prefetch();
 
 private:
-	/**
-	 * Replace the Handle stored by this object.
-	 * If takeOwnership is true, it will not increment the Handle's reference count.
-	 */
-	void SetHandle(Handle handle, bool takeOwnership = false);
+	friend class CTextureManagerImpl;
+	friend class SingleColorTexture;
+	friend struct TextureCacheCmp;
+	friend struct TPequal_to;
+	friend struct TPhash;
+
+	// Only the texture manager can create these
+	explicit CTexture(
+		std::unique_ptr<Renderer::Backend::GL::CTexture> texture,
+		Renderer::Backend::GL::CTexture* fallback,
+		const CTextureProperties& props, CTextureManagerImpl* textureManager);
+
+	void ResetBackendTexture(
+		std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture,
+		Renderer::Backend::GL::CTexture* fallbackBackendTexture);
 
 	const CTextureProperties m_Properties;
 
-	Handle m_Handle;
+	std::unique_ptr<Renderer::Backend::GL::CTexture> m_BackendTexture;
+	// It's possible to m_FallbackBackendTexture references m_BackendTexture.
+	Renderer::Backend::GL::CTexture* m_FallbackBackendTexture = nullptr;
 	u32 m_BaseColor;
+	std::unique_ptr<Tex> m_TextureData;
+	size_t m_UploadedSize = 0;
+	uint32_t m_BaseLevelOffset = 0;
 
-	enum {
+	enum
+	{
 		UNLOADED, // loading has not started
 		PREFETCH_NEEDS_LOADING, // was prefetched; currently waiting to try loading from cache
 		PREFETCH_NEEDS_CONVERTING, // was prefetched; currently waiting to be sent to the texture converter
 		PREFETCH_IS_CONVERTING, // was prefetched; currently being processed by the texture converter
 		HIGH_NEEDS_CONVERTING, // high-priority; currently waiting to be sent to the texture converter
 		HIGH_IS_CONVERTING, // high-priority; currently being processed by the texture converter
-		LOADED // loading has completed (successfully or not)
+		LOADED, // loading texture data has completed (successfully or not)
+		UPLOADED // uploading to backend has completed (successfully or not)
 	} m_State;
 
 	CTextureManagerImpl* m_TextureManager;

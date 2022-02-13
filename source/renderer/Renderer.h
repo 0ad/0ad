@@ -115,9 +115,6 @@ public:
 	// get the last viewport
 	SViewPort GetViewport();
 
-	// bind a GL texture object to active unit
-	void BindTexture(int unit, unsigned int tex);
-
 	// return stats accumulated for current frame
 	Stats& GetStats() { return m_Stats; }
 

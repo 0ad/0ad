@@ -23,6 +23,8 @@
 #include "graphics/Terrain.h"
 #include "lib/bits.h"
 #include "ps/Profile.h"
+#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/Renderer.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/helpers/Grid.h"
@@ -84,7 +86,7 @@ void CTerritoryTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandCo
 
 	const uint32_t textureSize = round_up_to_pow2(static_cast<uint32_t>(m_MapSize));
 
-	m_Texture = Renderer::Backend::GL::CTexture::Create2D(
+	m_Texture = deviceCommandContext->GetDevice()->CreateTexture2D("TerritoryTexture",
 		Renderer::Backend::Format::R8G8B8A8, textureSize, textureSize,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
@@ -95,7 +97,8 @@ void CTerritoryTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandCo
 	std::unique_ptr<u8[]> texData = std::make_unique<u8[]>(textureSize * textureSize * 4);
 	memset(texData.get(), 0x00, textureSize * textureSize * 4);
 	deviceCommandContext->UploadTexture(
-		m_Texture.get(), Renderer::Backend::Format::R8G8B8A8, texData.get(), textureSize * textureSize * 4);
+		m_Texture.get(), Renderer::Backend::Format::R8G8B8A8,
+		texData.get(), textureSize * textureSize * 4);
 	texData.reset();
 
 	{

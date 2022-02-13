@@ -34,7 +34,9 @@
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
 #include "ps/Loader.h"
+#include "ps/VideoMode.h"
 #include "ps/World.h"
+#include "renderer/backend/gl/Device.h"
 #include "renderer/Renderer.h"
 #include "renderer/SceneRenderer.h"
 #include "renderer/RenderingOptions.h"
@@ -111,7 +113,7 @@ void SkyManager::LoadAndUploadSkyTexturesIfNeeded(
 		}
 	}
 
-	m_SkyCubeMap = Renderer::Backend::GL::CTexture::Create(
+	m_SkyCubeMap = g_VideoMode.GetBackendDevice()->CreateTexture("SkyCubeMap",
 		Renderer::Backend::GL::CTexture::Type::TEXTURE_CUBE,
 		Renderer::Backend::Format::R8G8B8A8, textures[0].m_Width, textures[0].m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(

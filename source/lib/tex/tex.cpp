@@ -474,12 +474,14 @@ Status Tex::transform(size_t transforms)
 			return INFO::OK;
 
 		Status ret = tex_codec_transform(this, remaining_transforms);
+		UpdateMIPLevels();
 		if(ret != INFO::OK)
 			break;
 	}
 
 	// last chance
 	RETURN_STATUS_IF_ERR(plain_transform(this, remaining_transforms));
+	UpdateMIPLevels();
 	return INFO::OK;
 }
 
@@ -596,6 +598,9 @@ Status Tex::wrap(size_t w, size_t h, size_t bpp, size_t flags, const std::shared
 	m_Ofs      = ofs;
 
 	CHECK_TEX(this);
+
+	UpdateMIPLevels();
+
 	return INFO::OK;
 }
 
@@ -630,31 +635,6 @@ u8* Tex::get_data()
 	if(!p)
 		return nullptr;
 	return p + m_Ofs;
-}
-
-u8* Tex::GetMipLevelData(const u32 level)
-{
-	// (can't use normal CHECK_TEX due to u8* return value)
-	WARN_IF_ERR(validate());
-
-	u8* levelData = m_Data.get();
-	if (!levelData)
-		return nullptr;
-	levelData += m_Ofs;
-	const size_t dataPadding = (m_Flags & TEX_DXT) != 0 ? 4 : 1;
-	size_t levelWidth = m_Width, levelHeight = m_Height;
-	for (u32 currentLevel = 0; levelWidth > 1 || levelHeight > 1; ++currentLevel)
-	{
-		if (currentLevel == level)
-			return levelData;
-
-		const size_t levelDataSize = round_up(levelWidth, dataPadding) * round_up(levelHeight, dataPadding) * m_Bpp / 8;
-		levelData += levelDataSize;
-
-		levelWidth = std::max<u32>(levelWidth / 2, 1);
-		levelHeight = std::max<u32>(levelHeight / 2, 1);
-	}
-	return nullptr;
 }
 
 // returns color of 1x1 mipmap level
@@ -765,6 +745,8 @@ Status Tex::decode(const std::shared_ptr<u8>& Data, size_t DataSize)
 
 	CHECK_TEX(this);
 
+	UpdateMIPLevels();
+
 	return INFO::OK;
 }
 
@@ -794,4 +776,40 @@ Status Tex::encode(const OsPath& extension, DynArray* da)
 	}
 
 	return INFO::OK;
+}
+
+void Tex::UpdateMIPLevels()
+{
+	m_MIPLevels.clear();
+
+	if (m_Flags & TEX_MIPMAPS)
+	{
+		// We add one because we need to account the smallest 1x1 level.
+		m_MIPLevels.reserve(ceil_log2(std::max(m_Width, m_Height)) + 1);
+	}
+
+	u8* levelData = m_Data.get();
+	levelData += m_Ofs;
+
+	const u32 dataPadding = (m_Flags & TEX_DXT) != 0 ? 4 : 1;
+	u32 levelWidth = m_Width, levelHeight = m_Height;
+	for (u32 level = 0; ; ++level)
+	{
+		const u32 levelDataSize = round_up(levelWidth, dataPadding) * round_up(levelHeight, dataPadding) * m_Bpp / 8;
+		m_MIPLevels.emplace_back();
+		m_MIPLevels.back().data = levelData;
+		m_MIPLevels.back().dataSize = levelDataSize;
+		m_MIPLevels.back().width = levelWidth;
+		m_MIPLevels.back().height = levelHeight;
+
+		if (!(m_Flags & TEX_MIPMAPS))
+			break;
+
+		if (levelWidth == 1 && levelHeight == 1)
+			break;
+
+		levelData += levelDataSize;
+		levelWidth = std::max<u32>(levelWidth / 2, 1);
+		levelHeight = std::max<u32>(levelHeight / 2, 1);
+	}
 }

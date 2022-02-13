@@ -368,7 +368,6 @@ void CSceneRenderer::RenderPatches(
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 		// setup some renderstate ..
-		glActiveTextureARB(GL_TEXTURE0);
 		glLineWidth(2.0f);
 
 		// render tiles edges

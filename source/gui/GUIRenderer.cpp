@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,8 +26,6 @@
 #include "gui/GUIMatrix.h"
 #include "gui/SettingTypes/CGUIColor.h"
 #include "i18n/L10n.h"
-#include "lib/ogl.h"
-#include "lib/res/graphics/ogl_tex.h"
 #include "lib/tex/tex.h"
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
@@ -204,7 +202,8 @@ void GUIRenderer::UpdateDrawCallCache(const CGUI& pGUI, DrawCalls& Calls, const 
 		if (!(*cit)->m_TextureName.empty())
 		{
 			CTextureProperties textureProps(g_L10n.LocalizePath((*cit)->m_TextureName));
-			textureProps.SetWrap((*cit)->m_WrapMode);
+			textureProps.SetAddressMode((*cit)->m_AddressMode);
+			textureProps.SetIgnoreQuality(true);
 			CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 			texture->Prefetch();
 			hasTexture = true;
@@ -323,9 +322,8 @@ void GUIRenderer::Draw(DrawCalls& Calls, CCanvas2D& canvas)
 	// Iterate through each DrawCall, and execute whatever drawing code is being called
 	for (DrawCalls::const_iterator cit = Calls.begin(); cit != Calls.end(); ++cit)
 	{
-		// A hack to preload the handle to get a correct texture size.
-		GLuint h;
-		ogl_tex_get_texture_id(cit->m_Texture->GetHandle(), &h);
+		// A hack to get a correct backend texture size.
+		cit->m_Texture->UploadBackendTextureIfNeeded(g_Renderer.GetDeviceCommandContext());
 
 		CRect texCoords = cit->ComputeTexCoords().Scale(
 			cit->m_Texture->GetWidth(), cit->m_Texture->GetHeight());

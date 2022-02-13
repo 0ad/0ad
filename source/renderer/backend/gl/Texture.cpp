@@ -21,8 +21,10 @@
 
 #include "lib/code_annotation.h"
 #include "lib/config2.h"
-#include "lib/res/graphics/ogl_tex.h"
 #include "renderer/backend/gl/Device.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
+
+#include <algorithm>
 
 namespace Renderer
 {
@@ -84,16 +86,8 @@ GLenum TypeToGLEnum(CTexture::Type type)
 } // anonymous namespace
 
 // static
-std::unique_ptr<CTexture> CTexture::Create2D(const Format format,
-	const uint32_t width, const uint32_t height,
-	const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount)
-{
-	return Create(Type::TEXTURE_2D, format, width, height, defaultSamplerDesc, MIPLevelCount, sampleCount);
-}
-
-// static
-std::unique_ptr<CTexture> CTexture::Create(const Type type, const Format format,
-	const uint32_t width, const uint32_t height,
+std::unique_ptr<CTexture> CTexture::Create(CDevice* device, const char* name,
+	const Type type, const Format format, const uint32_t width, const uint32_t height,
 	const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount)
 {
 	std::unique_ptr<CTexture> texture(new CTexture());
@@ -102,6 +96,7 @@ std::unique_ptr<CTexture> CTexture::Create(const Type type, const Format format,
 	ENSURE(width > 0 && height > 0 && MIPLevelCount > 0);
 	ENSURE((type == Type::TEXTURE_2D_MULTISAMPLE && sampleCount > 1) || sampleCount == 1);
 
+	texture->m_Device = device;
 	texture->m_Format = format;
 	texture->m_Type = type;
 	texture->m_Width = width;
@@ -112,11 +107,9 @@ std::unique_ptr<CTexture> CTexture::Create(const Type type, const Format format,
 
 	ogl_WarnIfError();
 
-	glActiveTextureARB(GL_TEXTURE0);
-
 	const GLenum target = TypeToGLEnum(type);
 
-	glBindTexture(target, texture->m_Handle);
+	texture->m_Device->GetActiveCommandContext()->BindTexture(0, target, texture->m_Handle);
 
 	// It's forbidden to set sampler state for multisample textures.
 	if (type != Type::TEXTURE_2D_MULTISAMPLE)
@@ -145,7 +138,8 @@ std::unique_ptr<CTexture> CTexture::Create(const Type type, const Format format,
 		glTexParameteri(target, GL_TEXTURE_LOD_BIAS, defaultSamplerDesc.mipLODBias);
 #endif // !CONFIG2_GLES
 
-	if (type == Type::TEXTURE_2D && defaultSamplerDesc.anisotropyEnabled && ogl_tex_has_anisotropy())
+	// TODO: ask anisotropy feature from Device.
+	if (type == Type::TEXTURE_2D && defaultSamplerDesc.anisotropyEnabled && ogl_HaveExtension("GL_EXT_texture_filter_anisotropic"))
 		glTexParameterf(target, GL_TEXTURE_MAX_ANISOTROPY_EXT, defaultSamplerDesc.maxAnisotropy);
 
 	if (defaultSamplerDesc.addressModeU == Sampler::AddressMode::CLAMP_TO_BORDER ||
@@ -157,10 +151,9 @@ std::unique_ptr<CTexture> CTexture::Create(const Type type, const Format format,
 
 	ogl_WarnIfError();
 
-	ENSURE(MIPLevelCount == 1);
-
 	if (type == CTexture::Type::TEXTURE_2D)
 	{
+		bool compressedFormat = false;
 		GLint internalFormat = GL_RGBA;
 		// Actually pixel data is nullptr so it doesn't make sense to account
 		// it, but in theory some buggy drivers might complain about invalid
@@ -174,9 +167,19 @@ std::unique_ptr<CTexture> CTexture::Create(const Type type, const Format format,
 			break;
 		case Format::R8G8B8A8:
 			break;
+		case Format::R8G8B8:
+			internalFormat = GL_RGB;
+			pixelFormat = GL_RGB;
+			pixelType = GL_UNSIGNED_BYTE;
+			break;
 		case Format::A8:
 			internalFormat = GL_ALPHA;
 			pixelFormat = GL_ALPHA;
+			pixelType = GL_UNSIGNED_BYTE;
+			break;
+		case Format::L8:
+			internalFormat = GL_LUMINANCE;
+			pixelFormat = GL_LUMINANCE;
 			pixelType = GL_UNSIGNED_BYTE;
 			break;
 #if CONFIG2_GLES
@@ -213,11 +216,27 @@ std::unique_ptr<CTexture> CTexture::Create(const Type type, const Format format,
 			pixelType = GL_UNSIGNED_INT_24_8_EXT;
 			break;
 #endif
+		case Format::BC1_RGB: FALLTHROUGH;
+		case Format::BC1_RGBA: FALLTHROUGH;
+		case Format::BC2: FALLTHROUGH;
+		case Format::BC3:
+			compressedFormat = true;
+			break;
 		}
-		glTexImage2D(target, 0, internalFormat, width, height, 0, pixelFormat, pixelType, nullptr);
+		// glCompressedTexImage2D can't accept a null data, so we will initialize it during uploading.
+		if (!compressedFormat)
+		{
+			for (uint32_t level = 0; level < MIPLevelCount; ++level)
+			{
+				glTexImage2D(target, level, internalFormat,
+					std::max(1u, width >> level), std::max(1u, height >> level),
+					0, pixelFormat, pixelType, nullptr);
+			}
+		}
 	}
 	else if (type == CTexture::Type::TEXTURE_2D_MULTISAMPLE)
 	{
+		ENSURE(MIPLevelCount == 1);
 #if !CONFIG2_GLES
 		if (format == Format::R8G8B8A8)
 		{
@@ -236,7 +255,13 @@ std::unique_ptr<CTexture> CTexture::Create(const Type type, const Format format,
 
 	ogl_WarnIfError();
 
-	glBindTexture(target, 0);
+#if KHR_DEBUG_ENABLED
+	glObjectLabel(GL_TEXTURE, texture->m_Handle, -1, name);
+#else
+	UNUSED2(name);
+#endif
+
+	texture->m_Device->GetActiveCommandContext()->BindTexture(0, target, 0);
 
 	return texture;
 }

@@ -24,6 +24,7 @@
 #include "renderer/backend/gl/Mapping.h"
 #include "renderer/backend/gl/Texture.h"
 
+#include <algorithm>
 #include <limits>
 
 namespace Renderer
@@ -100,6 +101,10 @@ std::unique_ptr<CDeviceCommandContext> CDeviceCommandContext::Create(CDevice* de
 CDeviceCommandContext::CDeviceCommandContext(CDevice* device)
 	: m_Device(device)
 {
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	for (std::pair<GLenum, GLuint>& unit : m_BoundTextures)
+		unit.first = unit.second = 0;
 }
 
 CDeviceCommandContext::~CDeviceCommandContext() = default;
@@ -116,7 +121,10 @@ void CDeviceCommandContext::UploadTexture(
 	const uint32_t level, const uint32_t layer)
 {
 	UploadTextureRegion(texture, format, data, dataSize,
-		0, 0, texture->GetWidth(), texture->GetHeight(), level, layer);
+		0, 0,
+		std::max(1u, texture->GetWidth() >> level),
+		std::max(1u, texture->GetHeight() >> level),
+		level, layer);
 }
 
 void CDeviceCommandContext::UploadTextureRegion(
@@ -127,24 +135,73 @@ void CDeviceCommandContext::UploadTextureRegion(
 	const uint32_t level, const uint32_t layer)
 {
 	ENSURE(texture);
+	ENSURE(width > 0 && height > 0);
 	if (texture->GetType() == CTexture::Type::TEXTURE_2D)
 	{
-		ENSURE(level == 0 && layer == 0);
-		if (texture->GetFormat() == Format::R8G8B8A8 || texture->GetFormat() == Format::A8)
+		ENSURE(layer == 0);
+		if (texture->GetFormat() == Format::R8G8B8A8 ||
+			texture->GetFormat() == Format::R8G8B8 ||
+			texture->GetFormat() == Format::A8)
 		{
-			ENSURE(width > 0 && height > 0);
 			ENSURE(texture->GetFormat() == dataFormat);
-			const size_t bpp = dataFormat == Format::R8G8B8A8 ? 4 : 1;
-			ENSURE(dataSize == width * height * bpp);
-			ENSURE(xOffset + width <= texture->GetWidth());
-			ENSURE(yOffset + height <= texture->GetHeight());
+			size_t bytesPerPixel = 4;
+			GLenum pixelFormat = GL_RGBA;
+			switch (dataFormat)
+			{
+			case Format::R8G8B8A8:
+				break;
+			case Format::R8G8B8:
+				pixelFormat = GL_RGB;
+				bytesPerPixel = 3;
+				break;
+			case Format::A8:
+				pixelFormat = GL_ALPHA;
+				bytesPerPixel = 1;
+				break;
+			case Format::L8:
+				pixelFormat = GL_LUMINANCE;
+				bytesPerPixel = 1;
+				break;
+			default:
+				debug_warn("Unexpected format.");
+				break;
+			}
+			ENSURE(dataSize == width * height * bytesPerPixel);
 
-			glBindTexture(GL_TEXTURE_2D, texture->GetHandle());
+			ScopedBind scopedBind(this, GL_TEXTURE_2D, texture->GetHandle());
 			glTexSubImage2D(GL_TEXTURE_2D, level,
 				xOffset, yOffset, width, height,
-				dataFormat == Format::R8G8B8A8 ? GL_RGBA : GL_ALPHA, GL_UNSIGNED_BYTE, data);
-			glBindTexture(GL_TEXTURE_2D, 0);
+				pixelFormat, GL_UNSIGNED_BYTE, data);
+			ogl_WarnIfError();
+		}
+		else if (
+			texture->GetFormat() == Format::BC1_RGB ||
+			texture->GetFormat() == Format::BC1_RGBA ||
+			texture->GetFormat() == Format::BC2 ||
+			texture->GetFormat() == Format::BC3)
+		{
+			ENSURE(xOffset == 0 && yOffset == 0);
+			ENSURE(texture->GetFormat() == dataFormat);
+			// TODO: add data size check.
 
+			GLenum internalFormat = GL_COMPRESSED_RGB_S3TC_DXT1_EXT;
+			switch (texture->GetFormat())
+			{
+			case Format::BC1_RGBA:
+				internalFormat = GL_COMPRESSED_RGBA_S3TC_DXT1_EXT;
+				break;
+			case Format::BC2:
+				internalFormat = GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
+				break;
+			case Format::BC3:
+				internalFormat = GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
+				break;
+			default:
+				break;
+			}
+
+			ScopedBind scopedBind(this, GL_TEXTURE_2D, texture->GetHandle());
+			glCompressedTexImage2DARB(GL_TEXTURE_2D, level, internalFormat, width, height, 0, dataSize, data);
 			ogl_WarnIfError();
 		}
 		else
@@ -172,10 +229,8 @@ void CDeviceCommandContext::UploadTextureRegion(
 				GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
 			};
 
-			glBindTexture(GL_TEXTURE_CUBE_MAP, texture->GetHandle());
+			ScopedBind scopedBind(this, GL_TEXTURE_CUBE_MAP, texture->GetHandle());
 			glTexImage2D(targets[layer], level, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-			glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
-
 			ogl_WarnIfError();
 		}
 		else
@@ -185,9 +240,33 @@ void CDeviceCommandContext::UploadTextureRegion(
 		debug_warn("Unsupported type");
 }
 
+void CDeviceCommandContext::BindTexture(const uint32_t unit, const GLenum target, const GLuint handle)
+{
+	ENSURE(unit < m_BoundTextures.size());
+#if CONFIG2_GLES
+	ENSURE(target == GL_TEXTURE_2D || target == GL_TEXTURE_CUBE_MAP);
+#else
+	ENSURE(target == GL_TEXTURE_2D || target == GL_TEXTURE_CUBE_MAP || target == GL_TEXTURE_2D_MULTISAMPLE);
+#endif
+	if (m_BoundTextures[unit].first == target && m_BoundTextures[unit].second == handle)
+		return;
+	if (m_ActiveTextureUnit != unit)
+	{
+		glActiveTexture(GL_TEXTURE0 + unit);
+		m_ActiveTextureUnit = unit;
+	}
+	if (m_BoundTextures[unit].first != target && m_BoundTextures[unit].first && m_BoundTextures[unit].second)
+		glBindTexture(m_BoundTextures[unit].first, 0);
+	if (m_BoundTextures[unit].second != handle)
+		glBindTexture(target, handle);
+	m_BoundTextures[unit] = {target, handle};
+}
+
 void CDeviceCommandContext::Flush()
 {
 	ResetStates();
+
+	BindTexture(0, GL_TEXTURE_2D, 0);
 }
 
 void CDeviceCommandContext::ResetStates()
@@ -470,6 +549,22 @@ void CDeviceCommandContext::SetScissors(const uint32_t scissorCount, const Sciss
 		}
 	}
 	m_ScissorCount = scissorCount;
+}
+
+CDeviceCommandContext::ScopedBind::ScopedBind(
+	CDeviceCommandContext* deviceCommandContext,
+	const GLenum target, const GLuint handle)
+	: m_DeviceCommandContext(deviceCommandContext),
+	m_OldBindUnit(deviceCommandContext->m_BoundTextures[deviceCommandContext->m_ActiveTextureUnit])
+{
+	m_DeviceCommandContext->BindTexture(
+		m_DeviceCommandContext->m_ActiveTextureUnit, target, handle);
+}
+
+CDeviceCommandContext::ScopedBind::~ScopedBind()
+{
+	m_DeviceCommandContext->BindTexture(
+		m_DeviceCommandContext->m_ActiveTextureUnit, m_OldBindUnit.first, m_OldBindUnit.second);
 }
 
 } // namespace GL

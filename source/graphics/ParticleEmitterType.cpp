@@ -394,7 +394,8 @@ bool CParticleEmitterType::LoadXML(const VfsPath& path)
 		if (Child.GetNodeName() == el_texture)
 		{
 			CTextureProperties textureProps(Child.GetText().FromUTF8());
-			textureProps.SetWrap(GL_CLAMP_TO_EDGE);
+			textureProps.SetAddressMode(
+				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
 			m_Texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 		}
 		else if (Child.GetNodeName() == el_blend)

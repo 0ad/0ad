@@ -107,7 +107,8 @@ public:
 	 * (i.e. rendered behind other objects in the normal 3D way)
 	 * and should be drawn after water (i.e. may be visible on top of the water)
 	 */
-	void RenderOverlaysAfterWater(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+	void RenderOverlaysAfterWater(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Render all the submitted overlays that should appear on top of everything
@@ -136,7 +137,9 @@ private:
 	 * batch rendering the overlay lines according to their alwaysVisible status, as this
 	 * requires a separate shader to be used.
 	 */
-	void RenderTexturedOverlayLines(const CShaderProgramPtr& shader, bool alwaysVisible);
+	void RenderTexturedOverlayLines(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderProgramPtr& shader, bool alwaysVisible);
 
 	/**
 	 * Helper method; batch-renders all registered quad overlays, batched by their texture for effiency.

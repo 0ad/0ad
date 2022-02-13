@@ -343,6 +343,30 @@
 				"tooltip": "Use actual water depth in rendering calculations.",
 				"dependencies": ["watereffects", "waterrefraction"],
 				"config": "waterrealdepth"
+			},
+			{
+				"type": "dropdown",
+				"label": "Texture quality",
+				"tooltip": "Decrease texture quality making them blurrier but increases game performance.",
+				"config": "textures.quality",
+				"list": [
+					{ "value": 0, "label": "Low", "tooltip": "Low" },
+					{ "value": 1, "label": "Medium", "tooltip": "Medium" },
+					{ "value": 2, "label": "High", "tooltip": "High" }
+				]
+			},
+			{
+				"type": "dropdown",
+				"label": "Texture anisotropic filter",
+				"tooltip": "Makes textures look better, especially terrain. If the anisotropic filter value is unsupported it will be set to the max supported value.",
+				"config": "textures.maxanisotropy",
+				"list": [
+					{ "value": 1, "label": "1x", "tooltip": "Disabled" },
+					{ "value": 2, "label": "2x", "tooltip": "2x" },
+					{ "value": 4, "label": "4x", "tooltip": "4x" },
+					{ "value": 8, "label": "8x", "tooltip": "8x" },
+					{ "value": 16, "label": "16x", "tooltip": "16x" }
+				]
 			}
 		]
 	},

@@ -177,7 +177,9 @@ void CDecalRData::RenderDecals(
 
 				const CMaterial::SamplersVector& samplers = material.GetSamplers();
 				for (const CMaterial::TextureSampler& sampler : samplers)
-					shader->BindTexture(sampler.Name, sampler.Sampler);
+					sampler.Sampler->UploadBackendTextureIfNeeded(deviceCommandContext);
+				for (const CMaterial::TextureSampler& sampler : samplers)
+					shader->BindTexture(sampler.Name, sampler.Sampler->GetBackendTexture());
 
 				material.GetStaticUniforms().BindUniforms(shader);
 

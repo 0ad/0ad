@@ -124,8 +124,8 @@ void CPostprocManager::RecreateBuffers()
 	Cleanup();
 
 	#define GEN_BUFFER_RGBA(name, w, h) \
-		name = Renderer::Backend::GL::CTexture::Create2D( \
-			Renderer::Backend::Format::R8G8B8A8, w, h, \
+		name = g_VideoMode.GetBackendDevice()->CreateTexture2D( \
+			"PostProc" #name, Renderer::Backend::Format::R8G8B8A8, w, h, \
 			Renderer::Backend::Sampler::MakeDefaultSampler( \
 				Renderer::Backend::Sampler::Filter::LINEAR, \
 				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
@@ -154,15 +154,15 @@ void CPostprocManager::RecreateBuffers()
 	#undef GEN_BUFFER_RGBA
 
 	// Allocate the Depth/Stencil texture.
-	m_DepthTex = Renderer::Backend::GL::CTexture::Create2D(
+	m_DepthTex = g_VideoMode.GetBackendDevice()->CreateTexture2D("PostPRocDepthTexture",
 		Renderer::Backend::Format::D24_S8, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
 
-	glBindTexture(GL_TEXTURE_2D, m_DepthTex->GetHandle());
+	g_Renderer.GetDeviceCommandContext()->BindTexture(0, GL_TEXTURE_2D, m_DepthTex->GetHandle());
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
-	glBindTexture(GL_TEXTURE_2D, 0);
+	g_Renderer.GetDeviceCommandContext()->BindTexture(0, GL_TEXTURE_2D, 0);
 
 	// Set up the framebuffers with some initial textures.
 	m_CaptureFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
@@ -605,7 +605,7 @@ void CPostprocManager::CreateMultisampleBuffer()
 {
 	glEnable(GL_MULTISAMPLE);
 
-	m_MultisampleColorTex = Renderer::Backend::GL::CTexture::Create(
+	m_MultisampleColorTex = g_VideoMode.GetBackendDevice()->CreateTexture("PostProcColorMS",
 		Renderer::Backend::GL::CTexture::Type::TEXTURE_2D_MULTISAMPLE,
 		Renderer::Backend::Format::R8G8B8A8, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
@@ -613,7 +613,7 @@ void CPostprocManager::CreateMultisampleBuffer()
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1, m_MultisampleCount);
 
 	// Allocate the Depth/Stencil texture.
-	m_MultisampleDepthTex = Renderer::Backend::GL::CTexture::Create(
+	m_MultisampleDepthTex = g_VideoMode.GetBackendDevice()->CreateTexture("PostProcDepthMS",
 		Renderer::Backend::GL::CTexture::Type::TEXTURE_2D_MULTISAMPLE,
 		Renderer::Backend::Format::D24_S8, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(

@@ -757,11 +757,13 @@ void CPatchRData::RenderBases(
 			TextureBatches& textureBatches = itTech->second;
 			for (TextureBatches::iterator itt = textureBatches.begin(); itt != textureBatches.end(); ++itt)
 			{
-				if (itt->first->GetMaterial().GetSamplers().size() != 0)
+				if (!itt->first->GetMaterial().GetSamplers().empty())
 				{
 					const CMaterial::SamplersVector& samplers = itt->first->GetMaterial().GetSamplers();
 					for(const CMaterial::TextureSampler& samp : samplers)
-						shader->BindTexture(samp.Name, samp.Sampler);
+						samp.Sampler->UploadBackendTextureIfNeeded(deviceCommandContext);
+					for(const CMaterial::TextureSampler& samp : samplers)
+						shader->BindTexture(samp.Name, samp.Sampler->GetBackendTexture());
 
 					itt->first->GetMaterial().GetStaticUniforms().BindUniforms(shader);
 
@@ -771,7 +773,7 @@ void CPatchRData::RenderBases(
 				}
 				else
 				{
-					shader->BindTexture(str_baseTex, g_Renderer.GetTextureManager().GetErrorTexture());
+					shader->BindTexture(str_baseTex, g_Renderer.GetTextureManager().GetErrorTexture()->GetBackendTexture());
 				}
 
 				for (VertexBufferBatches::iterator itv = itt->second.begin(); itv != itt->second.end(); ++itv)
@@ -974,7 +976,9 @@ void CPatchRData::RenderBlends(
 				{
 					const CMaterial::SamplersVector& samplers = itt->m_Texture->GetMaterial().GetSamplers();
 					for (const CMaterial::TextureSampler& samp : samplers)
-						shader->BindTexture(samp.Name, samp.Sampler);
+						samp.Sampler->UploadBackendTextureIfNeeded(deviceCommandContext);
+					for (const CMaterial::TextureSampler& samp : samplers)
+						shader->BindTexture(samp.Name, samp.Sampler->GetBackendTexture());
 
 					Renderer::Backend::GL::CTexture* currentBlendTex = itt->m_Texture->m_TerrainAlpha->second.m_CompositeAlphaMap.get();
 					if (currentBlendTex != lastBlendTex)
@@ -991,7 +995,7 @@ void CPatchRData::RenderBlends(
 				}
 				else
 				{
-					shader->BindTexture(str_baseTex, g_Renderer.GetTextureManager().GetErrorTexture());
+					shader->BindTexture(str_baseTex, g_Renderer.GetTextureManager().GetErrorTexture()->GetBackendTexture());
 				}
 
 				for (VertexBufferBatches::iterator itv = itt->m_Batches.begin(); itv != itt->m_Batches.end(); ++itv)

@@ -109,6 +109,7 @@ library and IO layer. Read and write are zero-copy.
 #include "lib/file/vfs/vfs_path.h"
 #include "lib/allocators/dynarray.h"
 
+#include <vector>
 
 namespace ERR
 {
@@ -202,12 +203,21 @@ enum TexFlags
 };
 
 /**
- * stores all data describing an image.
- * we try to minimize size, since this is stored in OglTex resources
- * (which are big and pushing the h_mgr limit).
+ * Stores all data describing an image.
+ * TODO: rename to TextureData.
  **/
-struct Tex
+class Tex
 {
+public:
+	struct MIPLevel
+	{
+		// A pointer to the mip level image data (pixels).
+		u8* data;
+		u32 dataSize;
+		u32 width;
+		u32 height;
+	};
+
 	/**
 	 * file buffer or image data. note: during the course of transforms
 	 * (which may occur when being loaded), this may be replaced with
@@ -332,13 +342,7 @@ struct Tex
 	 **/
 	u8* get_data();
 
-	/**
-	 * return a pointer to the mip level image data (pixels).
-	 *
-	 * @param level which level's data should be returned.
-	 * @return pointer to the data.
-	 **/
-	u8* GetMipLevelData(const u32 level);
+	const std::vector<MIPLevel>& GetMIPLevels() const { return m_MIPLevels; }
 
 	/**
 	 * return the ARGB value of the 1x1 mipmap level of the texture.
@@ -356,6 +360,10 @@ struct Tex
 	 **/
 	size_t img_size() const;
 
+private:
+	void UpdateMIPLevels();
+
+	std::vector<MIPLevel> m_MIPLevels;
 };
 
 

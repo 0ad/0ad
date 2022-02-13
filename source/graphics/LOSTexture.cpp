@@ -229,7 +229,7 @@ void CLOSTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext*
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
 
-	m_Texture = Renderer::Backend::GL::CTexture::Create2D(
+	m_Texture = deviceCommandContext->GetDevice()->CreateTexture2D("LOSTexture",
 		Renderer::Backend::Format::A8, textureSize, textureSize, defaultSamplerDesc);
 
 	// Initialise texture with SoD color, for the areas we don't
@@ -239,9 +239,9 @@ void CLOSTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext*
 
 	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS())
 	{
-		m_SmoothTextures[0] = Renderer::Backend::GL::CTexture::Create2D(
+		m_SmoothTextures[0] = deviceCommandContext->GetDevice()->CreateTexture2D("LOSSmoothTexture0",
 			Renderer::Backend::Format::A8, textureSize, textureSize, defaultSamplerDesc);
-		m_SmoothTextures[1] = Renderer::Backend::GL::CTexture::Create2D(
+		m_SmoothTextures[1] = deviceCommandContext->GetDevice()->CreateTexture2D("LOSSmoothTexture1",
 			Renderer::Backend::Format::A8, textureSize, textureSize, defaultSamplerDesc);
 
 		m_SmoothFramebuffers[0] = Renderer::Backend::GL::CFramebuffer::Create(
@@ -254,11 +254,17 @@ void CLOSTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext*
 			g_RenderingOptions.SetSmoothLOS(false);
 		}
 
-		deviceCommandContext->UploadTexture(m_SmoothTextures[0].get(), Renderer::Backend::Format::A8, texData.get(), textureSize * textureSize);
-		deviceCommandContext->UploadTexture(m_SmoothTextures[1].get(), Renderer::Backend::Format::A8, texData.get(), textureSize * textureSize);
+		deviceCommandContext->UploadTexture(
+			m_SmoothTextures[0].get(), Renderer::Backend::Format::A8,
+			texData.get(), textureSize * textureSize);
+		deviceCommandContext->UploadTexture(
+			m_SmoothTextures[1].get(), Renderer::Backend::Format::A8,
+			texData.get(), textureSize * textureSize);
 	}
 
-	deviceCommandContext->UploadTexture(m_Texture.get(), Renderer::Backend::Format::A8, texData.get(), textureSize * textureSize);
+	deviceCommandContext->UploadTexture(
+		m_Texture.get(), Renderer::Backend::Format::A8,
+		texData.get(), textureSize * textureSize);
 
 	texData.reset();
 

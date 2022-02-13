@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,7 +19,6 @@
 #define INCLUDED_SHADERPROGRAM
 
 #include "graphics/ShaderProgramPtr.h"
-#include "graphics/Texture.h"
 #include "lib/ogl.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "renderer/backend/gl/Texture.h"
@@ -143,8 +142,6 @@ public:
 	virtual Binding GetTextureBinding(texture_id_t id) = 0;
 
 	// Variants of texture binding:
-	void BindTexture(texture_id_t id, const CTexturePtr& tex);
-	void BindTexture(Binding id, const CTexturePtr& tex);
 	void BindTexture(texture_id_t id, const Renderer::Backend::GL::CTexture* tex);
 	void BindTexture(Binding id, const Renderer::Backend::GL::CTexture* tex);
 

@@ -178,8 +178,12 @@ void CParticleEmitter::PrepareForRendering()
 	m_VertexArray.PrepareForRendering();
 }
 
-void CParticleEmitter::Bind(const CShaderProgramPtr& shader)
+void CParticleEmitter::Bind(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderProgramPtr& shader)
 {
+	m_Type->m_Texture->UploadBackendTextureIfNeeded(deviceCommandContext);
+
 	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 	shader->BindTexture(str_losTex, los.GetTextureSmooth());
 	shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
@@ -189,7 +193,7 @@ void CParticleEmitter::Bind(const CShaderProgramPtr& shader)
 	shader->Uniform(str_fogColor, lightEnv.m_FogColor);
 	shader->Uniform(str_fogParams, lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
 
-	shader->BindTexture(str_baseTex, m_Type->m_Texture);
+	shader->BindTexture(str_baseTex, m_Type->m_Texture->GetBackendTexture());
 }
 
 void CParticleEmitter::RenderArray(const CShaderProgramPtr& shader)
