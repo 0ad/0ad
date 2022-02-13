@@ -31,7 +31,6 @@
 #include "lib/file/common/file_stats.h"
 #include "lib/input.h"
 #include "lib/ogl.h"
-#include "lib/res/graphics/ogl_tex.h"
 #include "lib/res/h_mgr.h"
 #include "lib/timer.h"
 #include "lobby/IXmppClient.h"
@@ -104,67 +103,8 @@ ERROR_TYPE(System, RequiredExtensionsMissing);
 
 thread_local std::shared_ptr<ScriptContext> g_ScriptContext;
 
-static const int SANE_TEX_QUALITY_DEFAULT = 5;	// keep in sync with code
-
 bool g_InDevelopmentCopy;
 bool g_CheckedIfInDevelopmentCopy = false;
-
-static void SetTextureQuality(int quality)
-{
-	int q_flags;
-	GLint filter;
-
-retry:
-	// keep this in sync with SANE_TEX_QUALITY_DEFAULT
-	switch(quality)
-	{
-		// worst quality
-	case 0:
-		q_flags = OGL_TEX_HALF_RES|OGL_TEX_HALF_BPP;
-		filter = GL_NEAREST;
-		break;
-		// [perf] add bilinear filtering
-	case 1:
-		q_flags = OGL_TEX_HALF_RES|OGL_TEX_HALF_BPP;
-		filter = GL_LINEAR;
-		break;
-		// [vmem] no longer reduce resolution
-	case 2:
-		q_flags = OGL_TEX_HALF_BPP;
-		filter = GL_LINEAR;
-		break;
-		// [vmem] add mipmaps
-	case 3:
-		q_flags = OGL_TEX_HALF_BPP;
-		filter = GL_NEAREST_MIPMAP_LINEAR;
-		break;
-		// [perf] better filtering
-	case 4:
-		q_flags = OGL_TEX_HALF_BPP;
-		filter = GL_LINEAR_MIPMAP_LINEAR;
-		break;
-		// [vmem] no longer reduce bpp
-	case SANE_TEX_QUALITY_DEFAULT:
-		q_flags = OGL_TEX_FULL_QUALITY;
-		filter = GL_LINEAR_MIPMAP_LINEAR;
-		break;
-		// [perf] add anisotropy
-	case 6:
-		// TODO: add anisotropic filtering
-		q_flags = OGL_TEX_FULL_QUALITY;
-		filter = GL_LINEAR_MIPMAP_LINEAR;
-		break;
-		// invalid
-	default:
-		debug_warn(L"SetTextureQuality: invalid quality");
-		quality = SANE_TEX_QUALITY_DEFAULT;
-		// careful: recursion doesn't work and we don't want to duplicate
-		// the "sane" default values.
-		goto retry;
-	}
-
-	ogl_tex_set_defaults(q_flags, filter);
-}
 
 ErrorReactionInternal psDisplayError(const wchar_t* UNUSED(text), size_t UNUSED(flags))
 {
@@ -729,15 +669,6 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 	}
 
 	RunHardwareDetection();
-
-	if (g_AtlasGameLoop && g_AtlasGameLoop->view)
-		SetTextureQuality(SANE_TEX_QUALITY_DEFAULT);
-	else
-	{
-		int textureQuality = SANE_TEX_QUALITY_DEFAULT;
-		CFG_GET_VAL("texturequality", textureQuality);
-		SetTextureQuality(textureQuality);
-	}
 
 	ogl_WarnIfError();
 
