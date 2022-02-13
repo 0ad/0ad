@@ -5,7 +5,7 @@
     <variant frequency="1" name="Base">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/helmets/hele_kausia_cap_white.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/hele_kausia_cap_player.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/shields/ptol_thureos_basic.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
@@ -18,29 +18,48 @@
     <variant frequency="1" name="basic-hellenistic-1">
       <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/ptol_thureophoros_a_1.png" name="baseTex"/>
-        <texture file="skeletal/ptol_thureophoros_a_1_spec.png" name="specTex"/>
+        <texture file="skeletal/ptol/tunic_thureophoros_a_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="basic-sleeved-hellenistic-2">
+    <variant frequency="1" name="Tunic-Sleeveless-a">
       <textures>
-        <texture file="skeletal/hele_tunic_hellenistic_basic_1_a.png" name="baseTex"/>
-      </textures>
+	    <texture file="skeletal/mace/tunic_hellenistic_b_01_01.png" name="baseTex"/>
+	  </textures>
     </variant>
-    <variant frequency="1" name="basic-sleeved-hellenistic-3">
+    <variant frequency="1" name="Tunic-Sleeveless-b">
       <textures>
-        <texture file="skeletal/hele_tunic_hellenistic_basic_1_b.png" name="baseTex"/>
-      </textures>
+	    <texture file="skeletal/mace/tunic_hellenistic_b_01_02.png" name="baseTex"/>
+	  </textures>
     </variant>
-    <variant frequency="1" name="basic-sleeved-hellenistic-4">
+    <variant frequency="1" name="Tunic-Sleeveless-c">
       <textures>
-        <texture file="skeletal/hele_tunic_hellenistic_basic_1_c.png" name="baseTex"/>
-      </textures>
+	    <texture file="skeletal/mace/tunic_hellenistic_b_01_03.png" name="baseTex"/>
+	  </textures>
     </variant>
-    <variant frequency="1" name="basic-sleeved-hellenistic-5">
+    <variant frequency="1" name="Tunic-Sleeveless-d">
       <textures>
-        <texture file="skeletal/hele_tunic_hellenistic_basic_1_d.png" name="baseTex"/>
-      </textures>
+	    <texture file="skeletal/mace/tunic_hellenistic_b_01_04.png" name="baseTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="Tunic-Sleeveless-2a">
+      <textures>
+	    <texture file="skeletal/mace/tunic_hellenistic_b_02_01.png" name="baseTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="Tunic-Sleeveless-2b">
+      <textures>
+	    <texture file="skeletal/mace/tunic_hellenistic_b_02_02.png" name="baseTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="Tunic-Sleeveless-2c">
+      <textures>
+	    <texture file="skeletal/mace/tunic_hellenistic_b_02_03.png" name="baseTex"/>
+	  </textures>
+    </variant>
+    <variant frequency="1" name="Tunic-Sleeveless-2d">
+      <textures>
+	    <texture file="skeletal/mace/tunic_hellenistic_b_02_04.png" name="baseTex"/>
+	  </textures>
     </variant>
   </group>
   <group>

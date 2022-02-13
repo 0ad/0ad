@@ -6,6 +6,7 @@
       <mesh>skeletal/horse_persian.dae</mesh>
       <props>
         <prop actor="units/ptolemies/cavalry_spearman_e_r.xml" attachpoint="rider"/>
+        <prop actor="props/horse/cav_blanket_fur.xml" attachpoint="root"/>
         <prop actor="props/horse/chest_colorband_01.xml" attachpoint="root"/>
       </props>
     </variant>

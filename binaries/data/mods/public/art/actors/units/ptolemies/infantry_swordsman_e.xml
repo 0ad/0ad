@@ -6,18 +6,14 @@
       <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/ptol_thureos_galatian_e.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/sheath_celt_iron_e.xml" attachpoint="sheath_01_R"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/ptol_thureos_galatian_e.xml" attachpoint="shield"/>
         <prop actor="props/units/capes/cape_long_gaul.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Celtic Port Helmet">
-      <props>
-        <prop actor="props/units/helmets/celt_helmet_port.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
     <variant frequency="1" name="Celtic Montefortino Helmet-01">
       <props>
         <prop actor="props/units/helmets/celt_helmet_montefortino_01.xml" attachpoint="helmet"/>
@@ -33,19 +29,14 @@
         <prop actor="props/units/helmets/celt_helmet_montefortino_03.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Celtic Coolus Helmet-01">
+    <variant frequency="1" name="Celtic Ciumesti Helmet-01">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_coolus_01.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/celt_helmet_ciumesti_01.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Celtic Coolus Helmet-02">
+    <variant frequency="1" name="Celtic Ciumesti Helmet-02">
       <props>
-        <prop actor="props/units/helmets/celt_helmet_coolus_02.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Celtic Meyrick Helmet">
-      <props>
-        <prop actor="props/units/helmets/celt_helmet_meyrick.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/celt_helmet_ciumesti_02.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>

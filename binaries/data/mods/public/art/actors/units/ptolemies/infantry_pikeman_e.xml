@@ -8,9 +8,10 @@
         <prop actor="props/units/heads/new/head_egyptian_e.xml" attachpoint="head"/>
         <prop actor="props/units/shields/pelte_ptol_p.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/sheath_xiphos.xml" attachpoint="sheath_02_L"/>
       </props>
       <textures>
-        <texture file="skeletal/ptol_isp_e_1_spec.png" name="specTex"/>
+        <texture file="skeletal/ptol/linothorax_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -34,17 +35,17 @@
   <group>
     <variant frequency="1" name="Armor-Old">
       <textures>
-        <texture file="skeletal/ptol_isp_e_1.png" name="baseTex"/>
+        <texture file="skeletal/ptol/linothorax_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Armor-Linothorax-Machimoi-01">
       <textures>
-        <texture file="skeletal/ptol_linothorax_machimoi_01.png" name="baseTex"/>
+        <texture file="skeletal/ptol/linothorax_machimoi_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Armor-Linothorax-Machimoi-02">
       <textures>
-        <texture file="skeletal/ptol_linothorax_machimoi_02.png" name="baseTex"/>
+        <texture file="skeletal/ptol/linothorax_machimoi_02.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

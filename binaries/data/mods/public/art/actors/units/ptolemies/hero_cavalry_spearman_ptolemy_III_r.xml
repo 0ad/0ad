@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
+        <prop actor="props/units/helmets/hele_boeotian_g3.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/sele_cavalry_a.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/weapons/sheath_falcata.xml" attachpoint="sheath_02_L"/>
+        <prop actor="props/units/capes/rider/cape_long_player.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="skeletal/ptol/cuirass_gorgon_01_01.png" name="baseTex"/>
+        <texture file="skeletal/ptol/cuirass_gorgon_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/rider/cavalry/base_spearman_relax_shield_01.xml" name="Spearman-Relax-Shield-01" frequency="1"/>
+    <variant file="biped/rider/death.xml"/>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

@@ -15,34 +15,29 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Thureophoros Tunic Elite">
+    <variant frequency="1" name="tunic_hellenistic_e_01">
       <textures>
-        <texture file="skeletal/mace_tunic_hellenistic_greaves_1_a.png" name="baseTex"/>
-        <texture file="skeletal/ptol_thureophoros_e_1_spec.png" name="specTex"/>
+        <texture file="skeletal/mace/tunic_hellenistic_e_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Thureophoros Tunic b">
+    <variant frequency="1" name="tunic_hellenistic_e_02">
       <textures>
-        <texture file="skeletal/mace_tunic_hellenistic_greaves_1_b.png" name="baseTex"/>
-        <texture file="skeletal/ptol_thureophoros_e_1_spec.png" name="specTex"/>
+        <texture file="skeletal/mace/tunic_hellenistic_e_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Thureophoros Tunic b2">
+    <variant frequency="1" name="tunic_hellenistic_e_03">
       <textures>
-        <texture file="skeletal/mace_tunic_hellenistic_greaves_1_c.png" name="baseTex"/>
-        <texture file="skeletal/ptol_thureophoros_e_1_spec.png" name="specTex"/>
+        <texture file="skeletal/mace/tunic_hellenistic_e_03.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Thureophoros Tunic b3">
+    <variant frequency="1" name="tunic_hellenistic_e_04">
       <textures>
-        <texture file="skeletal/mace_tunic_hellenistic_sleeveless_boots_1_b.png" name="baseTex"/>
-        <texture file="skeletal/ptol_thureophoros_e_1_spec.png" name="specTex"/>
+        <texture file="skeletal/mace/tunic_hellenistic_e_04.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Thureophoros Tunic b4">
+    <variant frequency="1" name="tunic_hellenistic_sleeveless_boots_01_02">
       <textures>
-        <texture file="skeletal/mace_tunic_hellenistic_sleeveless_boots_1_a.png" name="baseTex"/>
-        <texture file="skeletal/ptol_thureophoros_e_1_spec.png" name="specTex"/>
+        <texture file="skeletal/mace/tunic_hellenistic_sleeveless_boots_01_02.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -79,5 +74,5 @@
     <variant file="biped/build_farm.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans.xml</material>
 </actor>

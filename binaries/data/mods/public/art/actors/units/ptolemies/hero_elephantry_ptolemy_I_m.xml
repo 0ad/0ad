@@ -6,13 +6,14 @@
       <mesh>skeletal/elephant_asian_male.dae</mesh>
       <props>
         <prop actor="units/ptolemies/hero_elephantry_ptolemy_I_d.xml" attachpoint="rider"/>
-        <prop actor="props/units/turret_ptolemy_I.xml" attachpoint="turret"/>
+        <prop actor="props/units/elephant/howdah_ptol.xml" attachpoint="turret"/>
+        <prop actor="props/units/elephant/cushion_small.xml" attachpoint="turret"/>
         <prop actor="units/ptolemies/hero_elephantry_ptolemy_I_r.xml" attachpoint="turret"/>
       </props>
       <textures>
-        <texture file="skeletal/maur_elephant_worker.png" name="baseTex"/>
-        <texture file="skeletal/maur_elephant_worker_spec.png" name="specTex"/>
-        <texture file="skeletal/maur_elephant_worker_norm.png" name="normTex"/>
+        <texture file="skeletal/maur/elephant_worker.png" name="baseTex"/>
+        <texture file="skeletal/maur/elephant_worker_spec.png" name="specTex"/>
+        <texture file="skeletal/maur/elephant_worker_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>

@@ -6,34 +6,46 @@
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_a.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/spear_lance_cavalry.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/ptol_cav_spear_a.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/capes/rider/cape_med_player.xml" attachpoint="root"/>
       </props>
       <textures>
-        <texture file="skeletal/mace_bronzeshield_2.png" name="baseTex"/>
+        <texture file="skeletal/hele/linothorax_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Hele Thracian Helmet-01">
+    <variant frequency="1" name="Helmet Phrygian Bronze-03">
       <props>
-        <prop actor="props/units/helmets/hele_thracian_b2.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/hele_phrygian_b8.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Hele Thracian Helmet-02">
+    <variant frequency="1" name="Helmet Phrygian Bronze-04">
       <props>
-        <prop actor="props/units/helmets/hele_thracian_b4.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Hele Thracian Helmet-03">
-      <props>
-        <prop actor="props/units/helmets/hele_thracian_b5.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/hele_phrygian_b9.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant file="biped/rider/cavalry/base_spearman_relax_shield_aspis.xml" name="Spearman-Relax-Shield-Aspis" frequency="1"/>
+    <variant frequency="1" name="linothorax_01_01">
+      <textures>
+        <texture file="skeletal/mace/linothorax_01_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="linothorax_01_02">
+      <textures>
+        <texture file="skeletal/mace/linothorax_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="linothorax_01_09">
+      <textures>
+        <texture file="skeletal/mace/linothorax_01_09.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/rider/cavalry/base_spearman_ready_shield_aspis_reverse.xml" name="Spearman-Relax-Shield-Aspis-Reverse" frequency="1"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>
@@ -43,5 +55,5 @@
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death_aspis.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
