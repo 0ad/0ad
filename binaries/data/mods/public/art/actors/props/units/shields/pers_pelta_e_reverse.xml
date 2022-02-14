@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="base">
-      <mesh>props/shield/pelta_b_f.dae</mesh>
+      <mesh>props/shield/pelta_pers_back_b_f.dae</mesh>
       <props>
-        <prop actor="props/units/shields/pelta_b_back_reverse.xml" attachpoint="back"/>
+        <prop actor="props/units/shields/pers_pelta_e_back_reverse.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="pers-pelta-c">
-      <textures><texture file="props/shield/hele_pelta_i.dds" name="baseTex"/></textures>
+      <textures>
+	    <texture file="props/shield/hele_pelta_i.dds" name="baseTex"/>
+	  </textures>
     </variant>
   </group>
-
 </actor>

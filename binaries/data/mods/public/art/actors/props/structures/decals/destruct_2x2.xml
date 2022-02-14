@@ -2,11 +2,13 @@
 <actor version="1">
   <group>
     <variant name="decal_dirt_3x3">
-      <decal angle="0" depth="14" offsetx="0" offsetz="0" width="14"/>
+      <decal angle="0" depth="15" offsetx="0" offsetz="0" width="15"/>
       <textures>
-        <texture file="props/decal_destruct_medium.png" name="baseTex"/>
+        <texture file="props/decal_destruct_small.png" name="baseTex"/>
+        <texture file="props/decal_destruct_small_norm.png" name="normTex"/>
+        <texture file="props/decal_destruct_small_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>terrain_base.xml</material>
+  <material>terrain_norm_spec.xml</material>
 </actor>

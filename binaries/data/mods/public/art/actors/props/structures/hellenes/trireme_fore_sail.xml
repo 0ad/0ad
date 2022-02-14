@@ -6,11 +6,11 @@
     <variant file="others/ships/rome_fore_sail_base.xml" name="Hellenic sail">
       <mesh>props/hele_fore_sail.dae</mesh>
       <textures>
-		    <texture file="props/sail_blank_netting_new.png" name="baseTex"/>
+        <texture file="props/sail_blank_netting_new.png" name="baseTex"/>
         <texture file="props/sail_norm_1.png" name="normTex"/>
         <texture file="props/sail_spec_1.png" name="specTex"/>
-	    </textures>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

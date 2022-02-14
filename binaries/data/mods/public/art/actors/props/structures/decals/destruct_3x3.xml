@@ -4,9 +4,11 @@
     <variant name="decal_dirt_3x3">
       <decal angle="0" depth="22" offsetx="0" offsetz="0" width="22"/>
       <textures>
-        <texture file="props/decal_destruct_medium.png" name="baseTex"/>
+        <texture file="props/decal_destruct_medium.png" name="baseTex"/>    
+        <texture file="props/decal_destruct_medium_norm.png" name="normTex"/>    
+        <texture file="props/decal_destruct_medium_spec.png" name="specTex"/> 
       </textures>
     </variant>
   </group>
-  <material>terrain_base.xml</material>
+  <material>terrain_norm_spec.xml</material>
 </actor>

@@ -2,7 +2,19 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="shields/spart_aspis_dokana_03.xml" name="Spart-Dokana">
+    <variant file="shields/spart_aspis_dokana_01.xml" name="Spart-Dokana-01">
+      <props>
+        <prop actor="props/units/shields/props/aspis_back_bronze_black_01.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/props/aspis_handgrip_bronze_02.xml" attachpoint="handgrip"/>
+      </props>
+    </variant>
+    <variant file="shields/spart_aspis_dokana_02.xml" name="Spart-Dokana-02">
+      <props>
+        <prop actor="props/units/shields/props/aspis_back_bronze_black_01.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/props/aspis_handgrip_bronze_02.xml" attachpoint="handgrip"/>
+      </props>
+    </variant>
+    <variant file="shields/spart_aspis_dokana_03.xml" name="Spart-Dokana-03">
       <props>
         <prop actor="props/units/shields/props/aspis_back_bronze_black_01.xml" attachpoint="root"/>
         <prop actor="props/units/shields/props/aspis_handgrip_bronze_02.xml" attachpoint="handgrip"/>
