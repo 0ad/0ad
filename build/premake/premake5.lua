@@ -305,7 +305,9 @@ function project_set_build_flags()
 						-- while tuning for generic to have good performance on every
 						-- supported CPU.
 						-- Note that all these features are already supported on amd64.
-						"-march=pentium3 -mtune=generic"
+						"-march=pentium3 -mtune=generic",
+						-- This allows x86 operating systems to handle the 2GB+ public mod.
+						"-D_FILE_OFFSET_BITS=64"
 					}
 				end
 			end
