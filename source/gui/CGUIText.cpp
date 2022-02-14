@@ -36,46 +36,46 @@ extern int g_xres, g_yres;
 
 // TODO Gee: CRect => CPoint ?
 void SGenerateTextImage::SetupSpriteCall(
-	const bool Left, CGUIText::SSpriteCall& SpriteCall, const float width, const float y,
-	const CSize2D& Size, const CStr& TextureName, const float BufferZone)
+	const bool left, CGUIText::SSpriteCall& spriteCall, const float width, const float y,
+	const CSize2D& size, const CStr& textureName, const float bufferZone)
 {
 	// TODO Gee: Temp hardcoded values
-	SpriteCall.m_Area.top = y + BufferZone;
-	SpriteCall.m_Area.bottom = y + BufferZone + Size.Height;
+	spriteCall.m_Area.top = y + bufferZone;
+	spriteCall.m_Area.bottom = y + bufferZone + size.Height;
 
-	if (Left)
+	if (left)
 	{
-		SpriteCall.m_Area.left = BufferZone;
-		SpriteCall.m_Area.right = Size.Width + BufferZone;
+		spriteCall.m_Area.left = bufferZone;
+		spriteCall.m_Area.right = size.Width + bufferZone;
 	}
 	else
 	{
-		SpriteCall.m_Area.left = width-BufferZone - Size.Width;
-		SpriteCall.m_Area.right = width-BufferZone;
+		spriteCall.m_Area.left = width - bufferZone - size.Width;
+		spriteCall.m_Area.right = width - bufferZone;
 	}
 
-	SpriteCall.m_Sprite = TextureName;
+	spriteCall.m_Sprite = textureName;
 
-	m_YFrom = SpriteCall.m_Area.top - BufferZone;
-	m_YTo = SpriteCall.m_Area.bottom + BufferZone;
-	m_Indentation = Size.Width + BufferZone * 2;
+	m_YFrom = spriteCall.m_Area.top - bufferZone;
+	m_YTo = spriteCall.m_Area.bottom + bufferZone;
+	m_Indentation = size.Width + bufferZone * 2;
 }
 
-CGUIText::CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& FontW, const float Width, const float BufferZone, const EAlign align, const IGUIObject* pObject)
+CGUIText::CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& fontW, const float width, const float bufferZone, const EAlign align, const IGUIObject* pObject)
 {
 	if (string.m_Words.empty())
 		return;
 
-	CStrIntern Font(FontW.ToUTF8());
-	float x = BufferZone, y = BufferZone; // drawing pointer
+	CStrIntern font(fontW.ToUTF8());
+	float x = bufferZone, y = bufferZone; // drawing pointer
 	int from = 0;
 
-	bool FirstLine = true;	// Necessary because text in the first line is shorter
+	bool firstLine = true;	// Necessary because text in the first line is shorter
 							// (it doesn't count the line spacing)
 
 	// Images on the left or the right side.
-	SGenerateTextImages Images;
-	int pos_last_img = -1;	// Position in the string where last img (either left or right) were encountered.
+	SGenerateTextImages images;
+	int posLastImage = -1;	// Position in the string where last img (either left or right) were encountered.
 							//  in order to avoid duplicate processing.
 
 	// Go through string word by word
@@ -84,25 +84,25 @@ CGUIText::CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& Font
 		// Pre-process each line one time, so we know which floating images
 		//  will be added for that line.
 
-		// Generated stuff is stored in Feedback.
-		CGUIString::SFeedback Feedback;
+		// Generated stuff is stored in feedback.
+		CGUIString::SFeedback feedback;
 
 		// Preliminary line height, used for word-wrapping with floating images.
-		float prelim_line_height = 0.f;
+		float prelimLineHeight = 0.f;
 
 		// Width and height of all text calls generated.
-		string.GenerateTextCall(pGUI, Feedback, Font, string.m_Words[i], string.m_Words[i+1], FirstLine);
+		string.GenerateTextCall(pGUI, feedback, font, string.m_Words[i], string.m_Words[i+1], firstLine);
 
-		SetupSpriteCalls(pGUI, Feedback.m_Images, y, Width, BufferZone, i, pos_last_img, Images);
+		SetupSpriteCalls(pGUI, feedback.m_Images, y, width, bufferZone, i, posLastImage, images);
 
-		pos_last_img = std::max(pos_last_img, i);
+		posLastImage = std::max(posLastImage, i);
 
-		x += Feedback.m_Size.Width;
-		prelim_line_height = std::max(prelim_line_height, Feedback.m_Size.Height);
+		x += feedback.m_Size.Width;
+		prelimLineHeight = std::max(prelimLineHeight, feedback.m_Size.Height);
 
-		// If Width is 0, then there's no word-wrapping, disable NewLine.
-		if (((Width != 0 && (x > Width - BufferZone || Feedback.m_NewLine)) || i == static_cast<int>(string.m_Words.size()) - 2) &&
-		    ProcessLine(pGUI, string, Font, pObject, Images, align, prelim_line_height, Width, BufferZone, FirstLine, x, y, i, from))
+		// If width is 0, then there's no word-wrapping, disable NewLine.
+		if (((width != 0 && (x > width - bufferZone || feedback.m_NewLine)) || i == static_cast<int>(string.m_Words.size()) - 2) &&
+		    ProcessLine(pGUI, string, font, pObject, images, align, prelimLineHeight, width, bufferZone, firstLine, x, y, i, from))
 			return;
 	}
 }
@@ -110,42 +110,42 @@ CGUIText::CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& Font
 // Loop through our images queues, to see if images have been added.
 void CGUIText::SetupSpriteCalls(
 	const CGUI& pGUI,
-	const std::array<std::vector<CStr>, 2>& FeedbackImages,
+	const std::array<std::vector<CStr>, 2>& feedbackImages,
 	const float y,
-	const float Width,
-	const float BufferZone,
+	const float width,
+	const float bufferZone,
 	const int i,
-	const int pos_last_img,
-	SGenerateTextImages& Images)
+	const int posLastImage,
+	SGenerateTextImages& images)
 {
 	// Check if this has already been processed.
 	//  Also, floating images are only applicable if Word-Wrapping is on
-	if (Width == 0 || i <= pos_last_img)
+	if (width == 0 || i <= posLastImage)
 		return;
 
 	// Loop left/right
 	for (int j = 0; j < 2; ++j)
-		for (const CStr& imgname : FeedbackImages[j])
+		for (const CStr& imgname : feedbackImages[j])
 		{
-			SSpriteCall SpriteCall;
-			SGenerateTextImage Image;
+			SSpriteCall spriteCall;
+			SGenerateTextImage image;
 
 			// Y is if no other floating images is above, y. Else it is placed
 			//  after the last image, like a stack downwards.
 			float _y;
-			if (!Images[j].empty())
-				_y = std::max(y, Images[j].back().m_YTo);
+			if (!images[j].empty())
+				_y = std::max(y, images[j].back().m_YTo);
 			else
 				_y = y;
 
 			const SGUIIcon& icon = pGUI.GetIcon(imgname);
-			Image.SetupSpriteCall(j == CGUIString::SFeedback::Left, SpriteCall, Width, _y, icon.m_Size, icon.m_SpriteName, BufferZone);
+			image.SetupSpriteCall(j == CGUIString::SFeedback::Left, spriteCall, width, _y, icon.m_Size, icon.m_SpriteName, bufferZone);
 
 			// Check if image is the lowest thing.
-			m_Size.Height = std::max(m_Size.Height, Image.m_YTo);
+			m_Size.Height = std::max(m_Size.Height, image.m_YTo);
 
-			Images[j].emplace_back(Image);
-			m_SpriteCalls.emplace_back(std::move(SpriteCall));
+			images[j].emplace_back(image);
+			m_SpriteCalls.emplace_back(std::move(spriteCall));
 		}
 }
 
@@ -159,101 +159,101 @@ void CGUIText::SetupSpriteCalls(
 void CGUIText::ComputeLineSize(
 	const CGUI& pGUI,
 	const CGUIString& string,
-	const CStrIntern& Font,
-	const bool FirstLine,
-	const float Width,
-	const float width_range_to,
+	const CStrIntern& font,
+	const bool firstLine,
+	const float width,
+	const float widthRangeTo,
 	const int i,
-	const int temp_from,
+	const int tempFrom,
 	float& x,
-	CSize2D& line_size) const
+	CSize2D& lineSize) const
 {
-	for (int j = temp_from; j <= i; ++j)
+	for (int j = tempFrom; j <= i; ++j)
 	{
-		// We don't want to use Feedback now, so we'll have to use another one.
-		CGUIString::SFeedback Feedback2;
+		// We don't want to use feedback now, so we'll have to use another one.
+		CGUIString::SFeedback feedback2;
 
 		// Don't attach object, it'll suppress the errors
 		//  we want them to be reported in the final GenerateTextCall()
 		//  so that we don't get duplicates.
-		string.GenerateTextCall(pGUI, Feedback2, Font, string.m_Words[j], string.m_Words[j+1], FirstLine);
+		string.GenerateTextCall(pGUI, feedback2, font, string.m_Words[j], string.m_Words[j+1], firstLine);
 
 		// Append X value.
-		x += Feedback2.m_Size.Width;
+		x += feedback2.m_Size.Width;
 
-		if (Width != 0 && x > width_range_to && j != temp_from && !Feedback2.m_NewLine)
+		if (width != 0 && x > widthRangeTo && j != tempFrom && !feedback2.m_NewLine)
 		{
 			// The calculated width of each word includes the space between the current
 			// word and the next. When we're wrapping, we need subtract the width of the
 			// space after the last word on the line before the wrap.
-			CFontMetrics currentFont(Font);
-			line_size.Width -= currentFont.GetCharacterWidth(*L" ");
+			CFontMetrics currentFont(font);
+			lineSize.Width -= currentFont.GetCharacterWidth(*L" ");
 			break;
 		}
 
-		// Let line_size.cy be the maximum m_Height we encounter.
-		line_size.Height = std::max(line_size.Height, Feedback2.m_Size.Height);
+		// Let lineSize.cy be the maximum m_Height we encounter.
+		lineSize.Height = std::max(lineSize.Height, feedback2.m_Size.Height);
 
 		// If the current word is an explicit new line ("\n"),
 		// break now before adding the width of this character.
 		// ("\n" doesn't have a glyph, thus is given the same width as
 		// the "missing glyph" character by CFont::GetCharacterWidth().)
-		if (Width != 0 && Feedback2.m_NewLine)
+		if (width != 0 && feedback2.m_NewLine)
 			break;
 
-		line_size.Width += Feedback2.m_Size.Width;
+		lineSize.Width += feedback2.m_Size.Width;
 	}
 }
 
 bool CGUIText::ProcessLine(
 	const CGUI& pGUI,
 	const CGUIString& string,
-	const CStrIntern& Font,
+	const CStrIntern& font,
 	const IGUIObject* pObject,
-	const SGenerateTextImages& Images,
+	const SGenerateTextImages& images,
 	const EAlign align,
-	const float prelim_line_height,
-	const float Width,
-	const float BufferZone,
-	bool& FirstLine,
+	const float prelimLineHeight,
+	const float width,
+	const float bufferZone,
+	bool& firstLine,
 	float& x,
 	float& y,
 	int& i,
 	int& from)
 {
 	// Change 'from' to 'i', but first keep a copy of its value.
-	int temp_from = from;
+	int tempFrom = from;
 	from = i;
 
-	float width_range_from = BufferZone;
-	float width_range_to = Width - BufferZone;
-	ComputeLineRange(Images, y, Width, prelim_line_height, width_range_from, width_range_to);
+	float widthRangeFrom = bufferZone;
+	float widthRangeTo = width - bufferZone;
+	ComputeLineRange(images, y, width, prelimLineHeight, widthRangeFrom, widthRangeTo);
 
 	// Reset X for the next loop
-	x = width_range_from;
+	x = widthRangeFrom;
 
-	CSize2D line_size;
-	ComputeLineSize(pGUI, string, Font, FirstLine, Width, width_range_to, i, temp_from, x, line_size);
+	CSize2D lineSize;
+	ComputeLineSize(pGUI, string, font, firstLine, width, widthRangeTo, i, tempFrom, x, lineSize);
 
 	// Reset x once more
-	x = width_range_from;
+	x = widthRangeFrom;
 
 	// Move down, because font drawing starts from the baseline
-	y += line_size.Height;
+	y += lineSize.Height;
 
-	const float dx = GetLineOffset(align, width_range_from, width_range_to, line_size);
+	const float dx = GetLineOffset(align, widthRangeFrom, widthRangeTo, lineSize);
 
 	// Do the real processing now
-	const bool done = AssembleCalls(pGUI, string, Font, pObject, FirstLine, Width, width_range_to, dx, y, temp_from, i, x, from);
+	const bool done = AssembleCalls(pGUI, string, font, pObject, firstLine, width, widthRangeTo, dx, y, tempFrom, i, x, from);
 
 	// Reset X
-	x = BufferZone;
+	x = bufferZone;
 
 	// Update dimensions
-	m_Size.Width = std::max(m_Size.Width, line_size.Width + BufferZone * 2);
-	m_Size.Height = std::max(m_Size.Height, y + BufferZone);
+	m_Size.Width = std::max(m_Size.Width, lineSize.Width + bufferZone * 2);
+	m_Size.Height = std::max(m_Size.Height, y + bufferZone);
 
-	FirstLine = false;
+	firstLine = false;
 
 	// Now if we entered as from = i, then we want
 	//  i being one minus that, so that it will become
@@ -265,7 +265,7 @@ bool CGUIText::ProcessLine(
 }
 
 // Decide width of the line. We need to iterate our floating images.
-//  this won't be exact because we're assuming the line_size.cy
+//  this won't be exact because we're assuming the lineSize.cy
 //  will be as our preliminary calculation said. But that may change,
 //  although we'd have to add a couple of more loops to try straightening
 //  this problem out, and it is very unlikely to happen noticeably if one
@@ -273,34 +273,34 @@ bool CGUIText::ProcessLine(
 //  is still quite unlikely it will happen.
 // Loop through left and right side, from and to.
 void CGUIText::ComputeLineRange(
-	const SGenerateTextImages& Images,
+	const SGenerateTextImages& images,
 	const float y,
-	const float Width,
-	const float prelim_line_height,
-	float& width_range_from,
-	float& width_range_to) const
+	const float width,
+	const float prelimLineHeight,
+	float& widthRangeFrom,
+	float& widthRangeTo) const
 {
 	// Floating images are only applicable if word-wrapping is enabled.
-	if (Width == 0)
+	if (width == 0)
 		return;
 
 	for (int j = 0; j < 2; ++j)
-		for (const SGenerateTextImage& img : Images[j])
+		for (const SGenerateTextImage& img : images[j])
 		{
 			// We're working with two intervals here, the image's and the line height's.
 			//  let's find the union of these two.
-			float union_from, union_to;
+			float unionFrom, unionTo;
 
-			union_from = std::max(y, img.m_YFrom);
-			union_to = std::min(y + prelim_line_height, img.m_YTo);
+			unionFrom = std::max(y, img.m_YFrom);
+			unionTo = std::min(y + prelimLineHeight, img.m_YTo);
 
 			// The union is not empty
-			if (union_to > union_from)
+			if (unionTo > unionFrom)
 			{
 				if (j == 0)
-					width_range_from = std::max(width_range_from, img.m_Indentation);
+					widthRangeFrom = std::max(widthRangeFrom, img.m_Indentation);
 				else
-					width_range_to = std::min(width_range_to, Width - img.m_Indentation);
+					widthRangeTo = std::min(widthRangeTo, width - img.m_Indentation);
 			}
 		}
 }
@@ -308,9 +308,9 @@ void CGUIText::ComputeLineRange(
 // compute offset based on what kind of alignment
 float CGUIText::GetLineOffset(
 	const EAlign align,
-	const float width_range_from,
-	const float width_range_to,
-	const CSize2D& line_size) const
+	const float widthRangeFrom,
+	const float widthRangeTo,
+	const CSize2D& lineSize) const
 {
 	switch (align)
 	{
@@ -319,10 +319,10 @@ float CGUIText::GetLineOffset(
 		return 0.f;
 
 	case EAlign::CENTER:
-		return ((width_range_to - width_range_from) - line_size.Width) / 2;
+		return ((widthRangeTo - widthRangeFrom) - lineSize.Width) / 2;
 
 	case EAlign::RIGHT:
-		return width_range_to - line_size.Width;
+		return widthRangeTo - lineSize.Width;
 
 	default:
 		debug_warn(L"Broken EAlign in CGUIText()");
@@ -333,94 +333,94 @@ float CGUIText::GetLineOffset(
 bool CGUIText::AssembleCalls(
 	const CGUI& pGUI,
 	const CGUIString& string,
-	const CStrIntern& Font,
+	const CStrIntern& font,
 	const IGUIObject* pObject,
-	const bool FirstLine,
-	const float Width,
-	const float width_range_to,
+	const bool firstLine,
+	const float width,
+	const float widthRangeTo,
 	const float dx,
 	const float y,
-	const int temp_from,
+	const int tempFrom,
 	const int i,
 	float& x,
 	int& from)
 {
 	bool done = false;
 
-	for (int j = temp_from; j <= i; ++j)
+	for (int j = tempFrom; j <= i; ++j)
 	{
-		// We don't want to use Feedback now, so we'll have to use another one.
-		CGUIString::SFeedback Feedback2;
+		// We don't want to use feedback now, so we'll have to use another one.
+		CGUIString::SFeedback feedback2;
 
 		// Defaults
-		string.GenerateTextCall(pGUI, Feedback2, Font, string.m_Words[j], string.m_Words[j+1], FirstLine, pObject);
+		string.GenerateTextCall(pGUI, feedback2, font, string.m_Words[j], string.m_Words[j+1], firstLine, pObject);
 
 		// Iterate all and set X/Y values
 		// Since X values are not set, we need to make an internal
 		//  iteration with an increment that will append the internal
-		//  x, that is what x_pointer is for.
-		float x_pointer = 0.f;
+		//  x, that is what xPointer is for.
+		float xPointer = 0.f;
 
-		for (STextCall& tc : Feedback2.m_TextCalls)
+		for (STextCall& tc : feedback2.m_TextCalls)
 		{
-			tc.m_Pos = CVector2D(dx + x + x_pointer, y);
+			tc.m_Pos = CVector2D(dx + x + xPointer, y);
 
-			x_pointer += tc.m_Size.Width;
+			xPointer += tc.m_Size.Width;
 
 			if (tc.m_pSpriteCall)
 				tc.m_pSpriteCall->m_Area += tc.m_Pos - CSize2D(0, tc.m_pSpriteCall->m_Area.GetHeight());
 		}
 
 		// Append X value.
-		x += Feedback2.m_Size.Width;
+		x += feedback2.m_Size.Width;
 
 		// The first word overrides the width limit, what we
 		//  do, in those cases, are just drawing that word even
 		//  though it'll extend the object.
-		if (Width != 0) // only if word-wrapping is applicable
+		if (width != 0) // only if word-wrapping is applicable
 		{
-			if (Feedback2.m_NewLine)
+			if (feedback2.m_NewLine)
 			{
 				from = j + 1;
 
 				// Sprite call can exist within only a newline segment,
 				//  therefore we need this.
-				if (!Feedback2.m_SpriteCalls.empty())
+				if (!feedback2.m_SpriteCalls.empty())
 				{
-					auto newEnd = std::remove_if(Feedback2.m_TextCalls.begin(), Feedback2.m_TextCalls.end(), [](const STextCall& call) { return !call.m_pSpriteCall; });
+					auto newEnd = std::remove_if(feedback2.m_TextCalls.begin(), feedback2.m_TextCalls.end(), [](const STextCall& call) { return !call.m_pSpriteCall; });
 					m_TextCalls.insert(
 						m_TextCalls.end(),
-						std::make_move_iterator(Feedback2.m_TextCalls.begin()),
+						std::make_move_iterator(feedback2.m_TextCalls.begin()),
 						std::make_move_iterator(newEnd));
 					m_SpriteCalls.insert(
 						m_SpriteCalls.end(),
-						std::make_move_iterator(Feedback2.m_SpriteCalls.begin()),
-						std::make_move_iterator(Feedback2.m_SpriteCalls.end()));
+						std::make_move_iterator(feedback2.m_SpriteCalls.begin()),
+						std::make_move_iterator(feedback2.m_SpriteCalls.end()));
 				}
 				break;
 			}
-			else if (x > width_range_to && j == temp_from)
+			else if (x > widthRangeTo && j == tempFrom)
 			{
 				from = j+1;
 				// do not break, since we want it to be added to m_TextCalls
 			}
-			else if (x > width_range_to)
+			else if (x > widthRangeTo)
 			{
 				from = j;
 				break;
 			}
 		}
 
-		// Add the whole Feedback2.m_TextCalls to our m_TextCalls.
+		// Add the whole feedback2.m_TextCalls to our m_TextCalls.
 		m_TextCalls.insert(
 			m_TextCalls.end(),
-			std::make_move_iterator(Feedback2.m_TextCalls.begin()),
-			std::make_move_iterator(Feedback2.m_TextCalls.end()));
+			std::make_move_iterator(feedback2.m_TextCalls.begin()),
+			std::make_move_iterator(feedback2.m_TextCalls.end()));
 
 		m_SpriteCalls.insert(
 			m_SpriteCalls.end(),
-			std::make_move_iterator(Feedback2.m_SpriteCalls.begin()),
-			std::make_move_iterator(Feedback2.m_SpriteCalls.end()));
+			std::make_move_iterator(feedback2.m_SpriteCalls.begin()),
+			std::make_move_iterator(feedback2.m_SpriteCalls.end()));
 
 		if (j == static_cast<int>(string.m_Words.size()) - 2)
 			done = true;

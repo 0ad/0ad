@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -155,16 +155,16 @@ public:
 	 * will be sent to the Renderer. Also, horizontal alignment
 	 * is taken into acount in this method but NOT vertical alignment.
 	 *
-	 * @param Text Text to generate CGUIText object from
-	 * @param Font Default font, notice both Default color and default font
+	 * @param string Text to generate CGUIText object from.
+	 * @param font Default font, notice both Default color and default font
 	 *		  can be changed by tags.
-	 * @param Width Width, 0 if no word-wrapping.
-	 * @param BufferZone space between text and edge, and space between text and images.
-	 * @param Align Horizontal alignment (left / center / right).
+	 * @param width Width, 0 if no word-wrapping.
+	 * @param bufferZone Space between text and edge, and space between text and images.
+	 * @param align Horizontal alignment (left / center / right).
 	 * @param pObject Optional parameter for error output. Used *only* if error parsing fails,
 	 *		  and we need to be able to output which object the error occurred in to aid the user.
 	 */
-	CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& FontW, const float Width, const float BufferZone, const EAlign align, const IGUIObject* pObject);
+	CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& fontW, const float width, const float bufferZone, const EAlign align, const IGUIObject* pObject);
 
 	/**
 	 * Draw this CGUIText object
@@ -181,14 +181,14 @@ public:
 	bool ProcessLine(
 		const CGUI& pGUI,
 		const CGUIString& string,
-		const CStrIntern& Font,
+		const CStrIntern& font,
 		const IGUIObject* pObject,
-		const SGenerateTextImages& Images,
+		const SGenerateTextImages& images,
 		const EAlign align,
-		const float prelim_line_height,
-		const float Width,
-		const float BufferZone,
-		bool& FirstLine,
+		const float prelimLineHeight,
+		const float width,
+		const float bufferZone,
+		bool& firstLine,
 		float& x,
 		float& y,
 		int& i,
@@ -196,51 +196,51 @@ public:
 
 	void SetupSpriteCalls(
 		const CGUI& pGUI,
-		const std::array<std::vector<CStr>, 2>& FeedbackImages,
+		const std::array<std::vector<CStr>, 2>& feedbackImages,
 		const float y,
-		const float Width,
-		const float BufferZone,
+		const float width,
+		const float bufferZone,
 		const int i,
-		const int pos_last_img,
-		SGenerateTextImages& Images);
+		const int posLastImage,
+		SGenerateTextImages& images);
 
 	float GetLineOffset(
 		const EAlign align,
-		const float width_range_from,
-		const float width_range_to,
-		const CSize2D& line_size) const;
+		const float widthRangeFrom,
+		const float widthRangeTo,
+		const CSize2D& lineSize) const;
 
 	void ComputeLineRange(
-		const SGenerateTextImages& Images,
+		const SGenerateTextImages& images,
 		const float y,
-		const float Width,
-		const float prelim_line_height,
-		float& width_range_from,
-		float& width_range_to) const;
+		const float width,
+		const float prelimLineHeight,
+		float& widthRangeFrom,
+		float& widthRangeTo) const;
 
 	void ComputeLineSize(
 		const CGUI& pGUI,
 		const CGUIString& string,
-		const CStrIntern& Font,
-		const bool FirstLine,
-		const float Width,
-		const float width_range_to,
+		const CStrIntern& font,
+		const bool firstLine,
+		const float width,
+		const float widthRangeTo,
 		const int i,
-		const int temp_from,
+		const int tempFrom,
 		float& x,
-		CSize2D& line_size) const;
+		CSize2D& lineSize) const;
 
 	bool AssembleCalls(
 		const CGUI& pGUI,
 		const CGUIString& string,
-		const CStrIntern& Font,
+		const CStrIntern& font,
 		const IGUIObject* pObject,
-		const bool FirstLine,
-		const float Width,
-		const float width_range_to,
+		const bool firstLine,
+		const float width,
+		const float widthRangeTo,
 		const float dx,
 		const float y,
-		const int temp_from,
+		const int tempFrom,
 		const int i,
 		float& x,
 		int& from);
@@ -275,8 +275,8 @@ struct SGenerateTextImage
 	float m_Indentation;
 
 	void SetupSpriteCall(
-		const bool Left, CGUIText::SSpriteCall& SpriteCall, const float width, const float y,
-		const CSize2D& Size, const CStr& TextureName, const float BufferZone);
+		const bool left, CGUIText::SSpriteCall& spriteCall, const float width, const float y,
+		const CSize2D& size, const CStr& textureName, const float bufferZone);
 };
 
 #endif // INCLUDED_GUITEXT
