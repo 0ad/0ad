@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Base">
+      <mesh>props/helmet/old/mace_helmet_alexander.dae</mesh>
+      <textures>
+        <texture file="props/helmet/old/hele_alexander.dds" name="baseTex"/>
+        <texture file="props/helmet/old/hele_alexander_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_spec_helmet.xml</material>
+</actor>

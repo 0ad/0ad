@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="helmet hero 01">
+      <mesh>props/helmet/old/iber_hero_01.dae</mesh>
+      <textures><texture file="props/helmet/old/iber_hero_01.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>
