@@ -62,7 +62,7 @@
   <group>
     <variant frequency="1" name="rome-gladiator-tunic">
       <textures>
-        <texture file="skeletal/rome_ijv_b.png" name="baseTex"/>
+        <texture file="skeletal/rome/tunic_basic_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-gladiator-1-african">
@@ -71,13 +71,13 @@
         <prop actor="props/units/heads/head_kush_meroitic.xml" attachpoint="head"/>
       </props>
       <textures>
-        <texture file="skeletal/rome_gladiator_1_african.png" name="baseTex"/>
+        <texture file="skeletal/rome/gladiator_01_african.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-gladiator-1-caucasian">
       <mesh>skeletal/new/m_naked.dae</mesh>
       <textures>
-        <texture file="skeletal/rome_gladiator_1_caucasian.png" name="baseTex"/>
+        <texture file="skeletal/rome/gladiator_01_caucasian.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-gladiator-1-eastern">
@@ -86,7 +86,7 @@
         <prop actor="props/units/heads/new/head_pers_b.xml" attachpoint="head"/>
       </props>
       <textures>
-        <texture file="skeletal/rome_gladiator_1_eastern.png" name="baseTex"/>
+        <texture file="skeletal/rome/gladiator_01_eastern.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-gladiator-2-african">
@@ -95,7 +95,7 @@
         <prop attachpoint="leg_R"/>
       </props>
       <textures>
-        <texture file="skeletal/rome_gladiator_2_african.png" name="baseTex"/>
+        <texture file="skeletal/rome/gladiator_02_african.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-gladiator-2-caucasian">
@@ -103,7 +103,7 @@
         <prop attachpoint="leg_R"/>
       </props>
       <textures>
-        <texture file="skeletal/rome_gladiator_2_caucasian.png" name="baseTex"/>
+        <texture file="skeletal/rome/gladiator_02_caucasian.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-gladiator-2-eastern">
@@ -112,7 +112,7 @@
         <prop attachpoint="leg_R"/>
       </props>
       <textures>
-        <texture file="skeletal/rome_gladiator_2_eastern.png" name="baseTex"/>
+        <texture file="skeletal/rome/gladiator_02_eastern.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

@@ -13,30 +13,30 @@
         <prop actor="props/units/helmets/old/rome_helmet_wolfskin.xml" attachpoint="helmet"/>
       </props>
       <textures>
-        <texture file="skeletal/rome_tunic_1_spec.png" name="specTex"/>
+        <texture file="skeletal/rome/tunic_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="0" name="rome-tunic">
+    <variant frequency="1" name="rome-tunic">
       <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/rome_ijv_a.png" name="baseTex"/>
+        <texture file="skeletal/rome/tunic_advanced_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-tunic-1a">
       <textures>
-        <texture file="skeletal/rome_tunic_1_a.png" name="baseTex"/>
+        <texture file="skeletal/rome/tunic_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-tunic-1b">
       <textures>
-        <texture file="skeletal/rome_tunic_1_b.png" name="baseTex"/>
+        <texture file="skeletal/rome/tunic_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-tunic-1c">
       <textures>
-        <texture file="skeletal/rome_tunic_1_c.png" name="baseTex"/>
+        <texture file="skeletal/rome/tunic_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

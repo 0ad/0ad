@@ -14,10 +14,22 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="body-rome_subarmalis_1_a">
+    <variant frequency="1" name="subarmalis_01_01">
       <textures>
-        <texture file="skeletal/rome_subarmalis_1_a.png" name="baseTex"/>
-        <texture file="skeletal/rome_subarmalis_1_spec.png" name="specTex"/>
+        <texture file="skeletal/rome/subarmalis_01_01.png" name="baseTex"/>
+        <texture file="skeletal/rome/subarmalis_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="subarmalis_02_01">
+      <textures>
+        <texture file="skeletal/rome/subarmalis_02_01.png" name="baseTex"/>
+        <texture file="skeletal/rome/subarmalis_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="subarmalis_03_01">
+      <textures>
+        <texture file="skeletal/rome/subarmalis_03_01.png" name="baseTex"/>
+        <texture file="skeletal/rome/subarmalis_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>

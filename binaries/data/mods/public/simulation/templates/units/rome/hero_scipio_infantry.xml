@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_infantry_swordsman">
+  <Auras datatype="tokens">
+    units/heroes/rome_hero_scipio
+  </Auras>
+  <Identity>
+    <Civ>rome</Civ>
+    <Lang>latin</Lang>
+    <SpecificName>Pūblius Cornēlius Scīpiō Āfricānus</SpecificName>
+    <Icon>units/rome_hero_scipio.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/romans/hero_infantry_swordsman_scipio.xml</Actor>
+  </VisualActor>
+</Entity>

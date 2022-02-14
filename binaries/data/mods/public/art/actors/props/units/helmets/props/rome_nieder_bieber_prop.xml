@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Base">
+      <mesh>props/helmet/props/rome_nieder_bieber_prop.dae</mesh>
+      <textures>
+        <texture file="props/helmet/rome_nieder_bieber_prop.png" name="baseTex"/>
+        <texture file="props/helmet/rome_nieder_bieber_prop_norm.png" name="normTex"/>
+        <texture file="props/helmet/rome_nieder_bieber_prop_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

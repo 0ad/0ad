@@ -4,7 +4,9 @@
   <group>
     <variant frequency="100" name="rome sambuca">
       <mesh>structural/sambuca.dae</mesh>
-      <textures><texture file="structural/sambuca.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/sambuca.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
 </actor>

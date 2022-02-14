@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="base">
+      <mesh>props/lorica_shoulderpad_r.dae</mesh>
+      <textures>
+        <texture file="skeletal/imp/lorica_segmentata_02_01.png" name="baseTex"/>
+        <texture file="skeletal/imp/lorica_segmentata_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>no_trans_spec.xml</material>
+</actor>
