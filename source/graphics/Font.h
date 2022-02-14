@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,7 +19,6 @@
 #define INCLUDED_FONT
 
 #include "graphics/Texture.h"
-#include "lib/res/handle.h"
 
 /**
  * Storage for a bitmap font. Loaded by CFontManager.
