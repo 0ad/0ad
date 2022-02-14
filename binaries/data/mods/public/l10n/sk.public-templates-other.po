@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-06-12 10:05+0000\n"
-"Last-Translator: Zuzana Miadoková\n"
+"POT-Creation-Date: 2022-02-11 08:08+0000\n"
+"PO-Revision-Date: 2022-02-11 10:23+0000\n"
+"Last-Translator: MiroslavR\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1109,18 +1109,196 @@ msgstr "Iba Jazda, vyžaduje aspoň 6."
 msgid "Wedge"
 msgstr "Klin"
 
-#: simulation/templates/special/player/player.xml:58
-msgid "Player"
-msgstr "Hráč"
+#: simulation/templates/special/players/athen.xml:8
+msgid "Athenians"
+msgstr "Aténčania"
+
+#: simulation/templates/special/players/athen.xml:9
+msgid ""
+"As the cradle of Western civilization and the birthplace of democracy, "
+"Athens was famed as a center for the arts, learning and philosophy. The "
+"Athenians were also powerful warriors, particularly at sea. At its peak, "
+"Athens dominated a large part of the Hellenic world for several decades."
+msgstr "Ako kolíska Západnej civilizácie a rodisko demokracie, Atény boli preslávené ako centrum umenia, výuky a filozofie. Aténčania boli taktiež mocnými bojovníkmi, obzvlášť na mori. Na vrchole svojej slávy vládli Atény po niekoľko desaťročí veľkej časti helénskeho sveta."
+
+#: simulation/templates/special/players/brit.xml:8
+msgid "Britons"
+msgstr "Briti"
+
+#: simulation/templates/special/players/brit.xml:9
+msgid ""
+"The Britons were the Celtic tribes of the British Isles. Using chariots, "
+"longswordsmen and powerful melee soldiers, they staged fearsome revolts "
+"against Rome to protect their customs and interests. Also, they built "
+"thousands of unique structures such as hill forts, crannogs and brochs."
+msgstr "Briti boli keltské kmene z Britských ostrovov. Za pomoci vozov a silných bojovníkov uskutočňovali hrôzostrašné povstania proti Rímu, aby ochránili svoje zvyky a záujmy. Tiež vybudovali tisíce unikátnych stavieb ako napríklad pevnosti, palisády a obranné veže."
+
+#: simulation/templates/special/players/cart.xml:8
+msgid "Carthaginians"
+msgstr "Kartáginci"
+
+#: simulation/templates/special/players/cart.xml:9
+msgid ""
+"Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
+"western Mediterranean, eventually taking over much of North Africa and "
+"modern-day Spain in the third century B.C. The sailors of Carthage were "
+"among the fiercest contenders on the high seas, and masters of naval trade. "
+"They deployed towered War Elephants on the battlefield to fearsome effect, "
+"and had defensive walls so strong, they were never breached."
+msgstr "Kartágo, mestský štát v dnešnom Tunisku, bolo impozantnou mocnosťou v západnom Stredomorí, ktorá v treťom storočí pred Kristom časom ovládla väčšinu severnej Afriky a dnešného Španielska. Kartáginskí námorníci boli jednými z najdivokejších protivníkov na otvorenom mori a zároveň aj majstrami námorného obchodu. Zvykli rozmiestňovať bojových slonov s vežami na bojisko za účelom vyvolania hrôzy u protivníka a mali obranné múry také silné, že sa ich nikdy nepodarilo prekonať."
+
+#: simulation/templates/special/players/gaul.xml:8
+msgid "Gauls"
+msgstr "Galovia"
+
+#: simulation/templates/special/players/gaul.xml:9
+msgid ""
+"The Gauls were the Celtic tribes of continental Europe. Dominated by a "
+"priestly class of Druids, they featured a sophisticated culture of advanced "
+"metalworking, agriculture, trade and even road engineering. With heavy "
+"infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
+"of conquest and Rome's authoritarian rule."
+msgstr "Galovia boli keltskými kmeňmi kontinentálnej Európy. Riadení kňazskou triedou Druidov predstavovali sofistikovanú kultúru pokročilého kovoobrábania, poľnohospodárstva, obchodu a dokonca aj cestného staviteľstva. S ťažkou pechotou a jazdou galskí bojovníci statočne odolávali Cézarovmu dobyvateľskému vojnovému ťaženiu a autoritárskej vláde Ríma."
+
+#: simulation/templates/special/players/iber.xml:8
+msgid "Iberians"
+msgstr "Iberi"
+
+#: simulation/templates/special/players/iber.xml:9
+msgid ""
+"The Iberians were a people of mysterious origins and language, with a strong"
+" tradition of horsemanship and metalworking. A relatively peaceful culture, "
+"they usually fought in other's battles only as mercenaries. However, they "
+"proved tenacious when Rome sought to take their land and freedom from them, "
+"and employed pioneering guerrilla tactics and flaming javelins as they "
+"fought back."
+msgstr "Iberi boli ľudia zahadného pôvodu a jazyka so silnou tradíciou v jazdectve a kovoobrábaní. Relatívne mierumilovná kultúra, zvyčajne bojovali v bitkách ostatných iba ako žoldnieri. Prejavili sa však nakoniec ako húževnatý ľud, keď sa im Rím snažil vziať ich pôdu a slobodu, využívajúc pri obrane partizánsky spôsob boja a horiace oštepy."
+
+#: simulation/templates/special/players/kush.xml:8
+msgid "Kushites"
+msgstr "Kušiti"
+
+#: simulation/templates/special/players/kush.xml:9
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "Kráľovstvo Kush bolo starodávne africké kráľovstvo, ktoré sa rozprestieralo na sútoku Modrého Nílu, Bieleho Nílu a rieky Atbara na území dnešného Sudánu. Kušitská éra panovania v oblasti sa začala po kolapse Nového Kráľovstva v Egypte v dobe bronzovej a v ranej fáze bolo centrum v Napate. Kušiti vtrhli do Egypta v 8. storočí pred Kristom a Kušitskí panovníci vládli ako faraóni 25. dynastie Egypta po jedno storočie, dokým neboli vyhnaní Asýrčanmi. Kušitská kultúra bola silne ovplyvnená Egypťanmi, najmä kušitské pyramídy a monumentálna chrámová architektúra. Kušiti dokonca uctievali mnoho egyptských bohov, vrátane Amona. Počas klasickej antiky bolo kušitské hlavné mesto v Meroe. V ranom gréckom zemepise bolo Meroitické kráľovstvo označované ako Aethiopia. Kušitské kráľovstvo vytrvalo do 4. storočia po Kristovi, kedy sa oslabilo a rozložilo kvôli vnútornej vzbure, až nakoniec podľahlo čoraz silnejšiemu Aksumskému kráľovstvu."
+
+#: simulation/templates/special/players/mace.xml:8
+msgid "Macedonians"
+msgstr "Macedónci"
+
+#: simulation/templates/special/players/mace.xml:9
+msgid ""
+"Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
+" the Greek peninsula. Under the leadership of Alexander the Great, "
+"Macedonian forces and allies took over most of the world they knew, "
+"including Egypt, Persia and parts of the Indian subcontinent, allowing a "
+"diffusion of Hellenic and eastern cultures for years to come."
+msgstr "Macedónsko bolo starovekým gréckym kráľovstvom sústredeným v severovýchodnej časti gréckeho poloostrova. Pod vedením Alexandra Veľkého dobili macedónske sily a ich spojenci väčšinu im známeho sveta, vrátane Egypta, Perzie a časti indického subkontinentu, čím umožnili prelínanie helénskej a východných kultúr v nasledujúcich rokoch."
+
+#: simulation/templates/special/players/maur.xml:8
+msgid "Mauryas"
+msgstr "Maurjovci"
+
+#: simulation/templates/special/players/maur.xml:9
+msgid ""
+"Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first"
+" to rule most of the Indian subcontinent, and was one of the largest and "
+"most populous empires of antiquity. Its military featured bowmen who used "
+"the long-range bamboo longbow, fierce female warriors, chariots, and "
+"thousands of armored war elephants. Its philosophers, especially the famous "
+"Acharya Chanakya, contributed to such varied fields such as economics, "
+"religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
+"the Great, the empire saw 40 years of peace, harmony, and prosperity."
+msgstr "Založená v roku 322 pred Kristom Čandraguptom Maurjom, bola Maurská ríša prvou, ktorá vládla väčšine indického subkontinentu, a zároveň aj jednou z najväčších a najľudnatejších ríš staroveku. Vojenstvo tejto ríše pozostávalo z lukostrelcov používajúcich bambusové luky s dlhým dostrelom, divokých bojových žien, kočov a tísicok ozbrojených vojnových slonov. Jej filozofi, najmä Acharya Chanakya, prispeli do množstva rôznych oblastí ako je ekonomika, diplomacia, vojenstvo a dobrá správa vecí verejných. Pod vládou Ašóku Veľkého zažila ríša 40 rokov mieru, harmónie a prosperity."
+
+#: simulation/templates/special/players/pers.xml:8
+msgid "Persians"
+msgstr "Peržania"
+
+#: simulation/templates/special/players/pers.xml:9
+msgid ""
+"The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
+"greatest empires of antiquity, stretching at its zenith from the Indus "
+"Valley in the east to Greece in the west. The Persians were the pioneers of "
+"empire-building of the ancient world, successfully imposing a centralized "
+"rule over various peoples with different customs, laws, religions and "
+"languages, and building a cosmopolitan army made up of contingents from each"
+" of these nations."
+msgstr "Perzská ríša, keď na jej čele stála Achajmenská dynastia, bola jednou z najväčších ríš starovekého sveta, v dobe svojho vrcholu sa rozprestierajúca od údolia rieky Indus na východe až po Grécko na západe. Peržania boli priekopníkmi v oblasti staviteľstva budov, ktorí úspešne zaviedli centralizovanú vládu nad ľuďmi s rôznymi zvykmi, zákonmi, náboženstvami a jazykmi, budujúc pritom kozmopolitnú armádu zloženú z kontingentov každého z týchto národov."
+
+#: simulation/templates/special/players/ptol.xml:16
+msgid "Ptolemies"
+msgstr "Ptolemaiovci"
+
+#: simulation/templates/special/players/ptol.xml:17
+msgid ""
+"The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
+"Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
+"for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
+"Egypt."
+msgstr "Dynastia Ptolemaiovcov bola macedónsko-gréckou kráľovskou rodinou vládnucou Ptolemaiovskej ríši v Egypte počas helénskeho obdobia. Ich vláda trvala 275 rokov, od 305 pred Kristom po 30 pred Kristom. Boli poslednou dynastiou starovekého Egypta."
+
+#: simulation/templates/special/players/rome.xml:8
+msgid "Romans"
+msgstr "Rimania"
+
+#: simulation/templates/special/players/rome.xml:9
+msgid ""
+"The Romans controlled one of the largest empires of the ancient world, "
+"stretching at its peak from southern Scotland to the Sahara Desert, and "
+"containing between 60 million and 80 million inhabitants, one quarter of the"
+" Earth's population at that time. Rome also remained one of the strongest "
+"nations on earth for almost 800 years. The Romans were the supreme builders "
+"of the ancient world, excelled at siege warfare and had an exquisite "
+"infantry and navy."
+msgstr "Rimania ovládali jednu z najväčších ríš starovekého sveta, ktorá sa v dobe svojej slávy ťahala od južného Škótska až po Saharu, pričom mala zhruba 60 až 80 miliónov obyvateľov, čiže jednu štvrtinu všetkých vtedajších ľudí na Zemi. Rímu sa teda podarilo zostať jedným z najsilnejších národov planéty po dobu takmer 800 rokov. Boli to najlepší stavitelia v starovekom svete, vynikajúci v obliehaniach, majúci zároveň aj skvelú pechotu a námorníctvo. "
+
+#: simulation/templates/special/players/sele.xml:16
+msgid "Seleucids"
+msgstr "Seleukovci"
+
+#: simulation/templates/special/players/sele.xml:17
+msgid ""
+"The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
+msgstr "Macedónsko-grécka dynastia vládnuca väčšine bývalej Alexandrovej ríše."
+
+#: simulation/templates/special/players/spart.xml:6
+msgid "Spartans"
+msgstr "Sparťania"
+
+#: simulation/templates/special/players/spart.xml:7
+msgid ""
+"Sparta was a prominent city-state in ancient Greece, and its dominant "
+"military power on land from circa 650 B.C. Spartan culture was obsessed with"
+" military training and excellence, with rigorous training for boys beginning"
+" at age seven. Thanks to its military might, Sparta led a coalition of Greek"
+" forces during the Greco-Persian Wars, and won over Athens in the "
+"Peloponnesian Wars, though at great cost."
+msgstr "Sparta bola popredným mestským štátom starovekého Grécka, a zároveň aj jeho dominantnou vojenskou silou od roku približne 650 pred Kristom. Spartská kultúra bola posadnutá vojenským výcvikom a dokonalosťou, pričom samotný výcvik sa pre chlapcov začínal vo veku 7 rokov. Vďaka svojej moci viedla Sparta počas grécko-perzských vojen grécku armádu a takisto zvíťazila aj nad Aténami v peloponézskych vojnách, hoci za veľkú cenu."
 
 #: simulation/templates/special/spy.xml:16
 msgid "Spy"
 msgstr "Špeh"
 
-#: simulation/templates/template_formation.xml:26
+#: simulation/templates/template_formation.xml:20
 msgid "Requires at least 2 Soldiers or Siege Engines."
 msgstr "Sú nevyhnutní najmenej 2 vojaci alebo obliehacie stroje."
 
+#: simulation/templates/special/players/gaia.xml:5
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
 msgstr "Gaia"

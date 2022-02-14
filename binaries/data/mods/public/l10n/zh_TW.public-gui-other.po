@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -23,8 +23,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-12-31 08:08+0000\n"
-"PO-Revision-Date: 2022-01-28 14:33+0000\n"
+"POT-Creation-Date: 2022-02-11 08:08+0000\n"
+"PO-Revision-Date: 2022-02-13 12:32+0000\n"
 "Last-Translator: Yuan Chang\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -914,18 +914,18 @@ msgstr "友軍火力：%(enabled)s"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:173
-#: gui/options/options.js:348 gui/options/options.js:413
-#: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
+#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:174
+#: gui/options/options.js:349 gui/options/options.js:414
+#: gui/options/options.js:440 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "是"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:173
-#: gui/options/options.js:348 gui/options/options.js:413
-#: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
+#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:174
+#: gui/options/options.js:349 gui/options/options.js:414
+#: gui/options/options.js:440 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "否"
@@ -3524,9 +3524,9 @@ msgstr "這個存檔需要使用不同的模組："
 msgid "Do you still want to proceed?"
 msgstr "您仍要繼續嗎？"
 
-#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:172
-#: gui/options/options.js:347 gui/options/options.js:412
-#: gui/options/options.js:438
+#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:173
+#: gui/options/options.js:348 gui/options/options.js:413
+#: gui/options/options.js:439
 msgid "Warning"
 msgstr "警告"
 
@@ -3844,26 +3844,28 @@ msgid "Max: %(max)s"
 msgstr "最大值：%(max)s"
 
 #: gui/options/options.js:170
-msgid "Do you want to keep changes?"
-msgstr "你想要保留修改嗎？"
+#, javascript-format
+msgid ""
+"Changes will be reverted in %(time)s seconds. Do you want to keep changes?"
+msgstr "變更將在 %(time)s 秒後還原。您想保留這些變更嗎？"
 
-#: gui/options/options.js:191
+#: gui/options/options.js:192
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "值：%(val)s（最小：%(min)s，最大：%(max)s）"
 
-#: gui/options/options.js:346
+#: gui/options/options.js:347
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "重置選項將會抹除您儲存的設定。您想要繼續嗎？"
 
-#: gui/options/options.js:411
+#: gui/options/options.js:412
 msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr "部份設定值無效！您確定您要儲存它們嗎？"
 
-#: gui/options/options.js:437
+#: gui/options/options.js:438
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "您有未儲存的變更，您想要關閉這個視窗嗎？"
 

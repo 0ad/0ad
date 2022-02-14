@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-28 10:21+0000\n"
+"POT-Creation-Date: 2022-02-11 08:08+0000\n"
+"PO-Revision-Date: 2022-02-11 10:23+0000\n"
 "Last-Translator: Irriep Nala Novram\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -1098,18 +1098,196 @@ msgstr ""
 msgid "Wedge"
 msgstr "Genn"
 
-#: simulation/templates/special/player/player.xml:58
-msgid "Player"
-msgstr "C'hoarier"
+#: simulation/templates/special/players/athen.xml:8
+msgid "Athenians"
+msgstr "Ateniz"
+
+#: simulation/templates/special/players/athen.xml:9
+msgid ""
+"As the cradle of Western civilization and the birthplace of democracy, "
+"Athens was famed as a center for the arts, learning and philosophy. The "
+"Athenians were also powerful warriors, particularly at sea. At its peak, "
+"Athens dominated a large part of the Hellenic world for several decades."
+msgstr "Evel kavell ar sevenadurezh Kornogat ha lec'h ganedigezh an demokratelezh, brudet e oa Aten evel bezañ ur greizenn evit an arzoù, an deskiñ hag ar brederouriezh. Brezelourien ampart e oa an Ateniz ivez ha dreist-holl war vor. E barr he brud, Aten a vestronie ul lodenn vras eus ar bed Hellenat war meur a zek-vloaziad."
+
+#: simulation/templates/special/players/brit.xml:8
+msgid "Britons"
+msgstr "Britoned"
+
+#: simulation/templates/special/players/brit.xml:9
+msgid ""
+"The Britons were the Celtic tribes of the British Isles. Using chariots, "
+"longswordsmen and powerful melee soldiers, they staged fearsome revolts "
+"against Rome to protect their customs and interests. Also, they built "
+"thousands of unique structures such as hill forts, crannogs and brochs."
+msgstr "Ar Vritoned a oa meuriadoù keltiek Inizi Breizh-Veur. Implijout a raent karrigennoù, klezeier-hir ha brezelourien kreñv er veskadegoù, ha nerzhus e oa oc'h emsavadegoù a-enep Roma da zifenn o c'hustumoù hag o madoù. Sevel a rejont miliadoù a savadurioù dibar ivez, evel tuchennoù kreñvaet, krannogoù ha brochoù."
+
+#: simulation/templates/special/players/cart.xml:8
+msgid "Carthaginians"
+msgstr "Kartajinianed"
+
+#: simulation/templates/special/players/cart.xml:9
+msgid ""
+"Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
+"western Mediterranean, eventually taking over much of North Africa and "
+"modern-day Spain in the third century B.C. The sailors of Carthage were "
+"among the fiercest contenders on the high seas, and masters of naval trade. "
+"They deployed towered War Elephants on the battlefield to fearsome effect, "
+"and had defensive walls so strong, they were never breached."
+msgstr "Kartago, ur gêr-stad e Tunizia a-vremañ, a oa bet un nerzh dibar e Kornôg ar mor Kreizdouarel, en ur gemer ar galloud war ul lodenn vras eus Afrika an Hanternoz ha war spagn a-vremañ en deirvet kantved a-raok J.-K.. Martoloded Kartago a oa e-touez ar gevezerien fervañ war donvorioù, ha mistri war ar c'henwerzh war vor. Dispaket o doa Olifanted-Brezel tourennet war an dachenn-emgann evit un efed spontus, ha bez o doa mogerioù difenn ken kreñv ha ne vezent bet torret morse."
+
+#: simulation/templates/special/players/gaul.xml:8
+msgid "Gauls"
+msgstr "Galianed"
+
+#: simulation/templates/special/players/gaul.xml:9
+msgid ""
+"The Gauls were the Celtic tribes of continental Europe. Dominated by a "
+"priestly class of Druids, they featured a sophisticated culture of advanced "
+"metalworking, agriculture, trade and even road engineering. With heavy "
+"infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
+"of conquest and Rome's authoritarian rule."
+msgstr "Ar C'halianed a oa ar meuriadoù Kelt eus Europa ar C'hornôg. Mestret gant ur c'hloer a zDrouized, o doa kinniget ur sevenadur labour-houarn araokaet, labour-douar, kenwerzh hag ijin-hent zoken. Gant soudarded war droad ha marc'hegerezh ponner, ar soudarded Galian o doa talet en un doare kalonek-tre ouzh kampagn aloubiñ Kaesar ha lezenn aotrouniek Roma."
+
+#: simulation/templates/special/players/iber.xml:8
+msgid "Iberians"
+msgstr "Ibered"
+
+#: simulation/templates/special/players/iber.xml:9
+msgid ""
+"The Iberians were a people of mysterious origins and language, with a strong"
+" tradition of horsemanship and metalworking. A relatively peaceful culture, "
+"they usually fought in other's battles only as mercenaries. However, they "
+"proved tenacious when Rome sought to take their land and freedom from them, "
+"and employed pioneering guerrilla tactics and flaming javelins as they "
+"fought back."
+msgstr "An Ibered a oa ur bobl a oa kevrinus hec'h orin hag he yezh ivez, gant ur c'hiz kreñv a varc'hegerezh hag a labour-metal. Ur sevenadur peoc'hiek a-walc'h o doa, en em gannañ a rae,t e meur a emgann all evel goprsoudarded hepken. Nemet, o doa prouet e oant lerek pa lakaas en he fenn Roma pakañ o douar hag o frankiz diganto, en ur implijout taktikoù gerilha nevezus ha spegoù entanet p'o deus rebourset."
+
+#: simulation/templates/special/players/kush.xml:8
+msgid "Kushites"
+msgstr "Kouchited"
+
+#: simulation/templates/special/players/kush.xml:9
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "Rouantelezh Kouch a oa ur rouantelezh kozh lec'hiet war kemberioù an Nil glas, an Nil gwenn hag ar ster Atbara e-barzh ar pezh a zo en devezh a hiziv Republik ar Soudan. Oadvezh an dominasion Kouchit war ar rannvro a zo bet diazezet goude ma vefe kouezhet en e boull rouantelezh Bro-Ejipt da vare oadvezh an arem, ha kreizennet e oa e Napata en he fazenn gentañ. Aloubet o deus Bro-Ejipt en  8ved kantved kent J.K., hag an impalaerien Kouchit o deus renet evel faraoned adalek ar pempvet tierniezh warn-ugent a vro-Ejipt e-pad ur c'hantved, betek ma vefent bet kaset da skrapat gant an Asirianed. Ar sevenadur Kouchit a zo bet levezonet kalzig gant Egiptiz, evel da skouer savadur ar biramidenn Kouchit hag astenn sevel-tiez bras-divent an temploù. Kouchited a azeule kalzig a zoueed Ejispian, Amon en o mesk. E-pad an Henamzer glasel, ar gêrbenn Kouchit a oa e Meroe. Er c’heografiezh c'hresian kozh, ar rouantelezh meroitek a oa anavezet dindan an anv Etiopia. Dalc'het en deus ar rouantelezh Kouchit betek ar 4re kantved goude J.k, pa 'z eo deuet da vezañ bresk ha diempret abalamour d'un emsavadeg diabarzh, ober a reas e zalaroù a-benn ar fin ar gont dindan galloud Axum o tont war-wel."
+
+#: simulation/templates/special/players/mace.xml:8
+msgid "Macedonians"
+msgstr "Makedonied"
+
+#: simulation/templates/special/players/mace.xml:9
+msgid ""
+"Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
+" the Greek peninsula. Under the leadership of Alexander the Great, "
+"Macedonian forces and allies took over most of the world they knew, "
+"including Egypt, Persia and parts of the Indian subcontinent, allowing a "
+"diffusion of Hellenic and eastern cultures for years to come."
+msgstr "Makedonia a oa ur rouantelezh Grek kozh, lec'hiet e biz al ledenez Grek. Dindan levierezh Aleksañdr ar Meur, nerzhioù Makedonian hag ar re a oa kevredet ganto a dapas ar galloud war darn vrasañ ar bed a veze anavezet ganto da lavaret eo, Ejipt, Persia hag ul lodenn eus an iskevandir Indian, pezh a roas an tu da reiñ ur skign d'ar sevenadurioù Hellenel hag eus ar reter evit meur a vloavezh."
+
+#: simulation/templates/special/players/maur.xml:8
+msgid "Mauryas"
+msgstr "Mauryas"
+
+#: simulation/templates/special/players/maur.xml:9
+msgid ""
+"Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first"
+" to rule most of the Indian subcontinent, and was one of the largest and "
+"most populous empires of antiquity. Its military featured bowmen who used "
+"the long-range bamboo longbow, fierce female warriors, chariots, and "
+"thousands of armored war elephants. Its philosophers, especially the famous "
+"Acharya Chanakya, contributed to such varied fields such as economics, "
+"religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
+"the Great, the empire saw 40 years of peace, harmony, and prosperity."
+msgstr "Savet e 322 a-raok J.-K. gant Chandragupta Maurya, an Impalaeriezh Maurian a la an hini kentañ da ren al lodenn vrasañ eus an iskevandir Indian, hag e oa unan eus Impalaeriezhoù al ledanañ ha brudetañ en Henamzer. Gwaregerien a oa gant hec'h arme hag a implije ar wareg hed-tenn hir e bambouz, brezelourezed ferv, karrigennoù ha miliadoù a olifanted brezel gwarezet gant harnezioù. He frederourien, dreist-holl Acharya Chankya brudet, a gemere perzh e meur a zachenn evel an armerzh, ar relijion, an diplomatiezh, ar brezel hag ar gouarnerezh mat. Dindan ren Ashoka ar Bras e welas an Impalaeriezh 40 vloaz a beoc'h, heson ha berzh-mat."
+
+#: simulation/templates/special/players/pers.xml:8
+msgid "Persians"
+msgstr "Persianed"
+
+#: simulation/templates/special/players/pers.xml:9
+msgid ""
+"The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
+"greatest empires of antiquity, stretching at its zenith from the Indus "
+"Valley in the east to Greece in the west. The Persians were the pioneers of "
+"empire-building of the ancient world, successfully imposing a centralized "
+"rule over various peoples with different customs, laws, religions and "
+"languages, and building a cosmopolitan army made up of contingents from each"
+" of these nations."
+msgstr "An impalaeriezh Pers, pa veze renet gant ar riez Akemeniat, a oa unan eus impalaeriezhioù brasañ an Henamzer, en em astenn a rae pa oa en e barr uhelañ eus Traoñienn an Induz er reter betek Bro-C'hres er c'hornôg. Ar Bersianed a oa diaraogerien ar sevel-impalaeriezh an Henamzer, o tont a-benn da vountañ ur reolenn greizennel war veur a bobl gant boazioù, lezennoù, relijionoù ha yezhoù disheñvel, hag da sevel un arme eus a lies bro frammet gant soudarded eus an holl vroadoù-mañ galvet d'ober o c'hoñje."
+
+#: simulation/templates/special/players/ptol.xml:16
+msgid "Ptolemies"
+msgstr "Ptolemied"
+
+#: simulation/templates/special/players/ptol.xml:17
+msgid ""
+"The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
+"Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
+"for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
+"Egypt."
+msgstr "An dierniezh bPtolemek a oa ur familh roueel Makedonian Gresian a renas an Impalaeriezh bPtolemek en Ejipt e-pad ar prantad Hellenek. Padout a reas o ren 275 vloaz, adalek 305 kent J.-K. betek 30 a-raok J.-K. An dierniezh ziwezhañ e oant bet en Hen-Ejipt."
+
+#: simulation/templates/special/players/rome.xml:8
+msgid "Romans"
+msgstr "Romaned"
+
+#: simulation/templates/special/players/rome.xml:9
+msgid ""
+"The Romans controlled one of the largest empires of the ancient world, "
+"stretching at its peak from southern Scotland to the Sahara Desert, and "
+"containing between 60 million and 80 million inhabitants, one quarter of the"
+" Earth's population at that time. Rome also remained one of the strongest "
+"nations on earth for almost 800 years. The Romans were the supreme builders "
+"of the ancient world, excelled at siege warfare and had an exquisite "
+"infantry and navy."
+msgstr "Ren a rae ar Romaned war unan eus impalaerezhioù brasañ an Henamzer, eus menezioù Bro-Skos an Dehoù da c'houezva ar Sahara, gant ur boblañs etre 60 ha 80 milion den, da lavarout eo ur c'hard eus poblañs an Douar d'ar mare se. Bez e oa Roma unan eus broioù kreñvañ an Douar e-pad hogos 800 bloaz. Saverien dispar e oant en Henamzer, talantet er brezel-seziz ha gant soudarded war-droad hag ur morlu eus ar c'hentañ."
+
+#: simulation/templates/special/players/sele.xml:16
+msgid "Seleucids"
+msgstr "Seleukided"
+
+#: simulation/templates/special/players/sele.xml:17
+msgid ""
+"The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
+msgstr "An dierniezh Gresian-Makedonian an hini eo he deus renet war al lodenn vrasañ eus Impalaerezh kozh Aleksandr."
+
+#: simulation/templates/special/players/spart.xml:6
+msgid "Spartans"
+msgstr "Spartaned"
+
+#: simulation/templates/special/players/spart.xml:7
+msgid ""
+"Sparta was a prominent city-state in ancient Greece, and its dominant "
+"military power on land from circa 650 B.C. Spartan culture was obsessed with"
+" military training and excellence, with rigorous training for boys beginning"
+" at age seven. Thanks to its military might, Sparta led a coalition of Greek"
+" forces during the Greco-Persian Wars, and won over Athens in the "
+"Peloponnesian Wars, though at great cost."
+msgstr "Bez e oa Sparta ur gêr-stad e Bro-Hellaz a-wechall, ha kentañ galloud milourel ar vro war an douar adalek war-dro 650 a-raok J.K. Sorc'hennet e oa sevenadur Sparta gant ar stummadur milourel ha gant ar wellentez, o stummañ ar baotred en un doare strizh adalek o seizhvet bloavezh. A-drugarez d'he nerzh milourel e sturias Sparta ur c'hengevredad armeoù grek e-pad ar brezelioù Greko-Persian, hag e trec'has Aten e Brezelioù ar Peloponnes, daoust ma oa uhel ar c'holl."
 
 #: simulation/templates/special/spy.xml:16
 msgid "Spy"
 msgstr "Spiañ"
 
-#: simulation/templates/template_formation.xml:26
+#: simulation/templates/template_formation.xml:20
 msgid "Requires at least 2 Soldiers or Siege Engines."
 msgstr ""
 
+#: simulation/templates/special/players/gaia.xml:5
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
 msgstr "Gaia"

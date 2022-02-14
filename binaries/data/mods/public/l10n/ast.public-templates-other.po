@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2022-02-07 19:42+0000\n"
+"POT-Creation-Date: 2022-02-11 08:08+0000\n"
+"PO-Revision-Date: 2022-02-12 18:24+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +51,7 @@ msgstr "Danno"
 #: simulation/data/damage_types/crush.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "Danno frayyante, cumo’l que fazen las clavas, la calcadura."
+msgstr "Danno frayyante, cumo’l que fhazen las clavas, la calcadura."
 
 #: simulation/data/damage_types/crush.jsonname
 msgctxt "damage type"
@@ -61,7 +61,7 @@ msgstr "Frayyura"
 #: simulation/data/damage_types/fire.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by burning objects, like a torch or a flaming arrow."
-msgstr "Danno queimante, cumo’l que fazen los fatsucos, las saiettas ardientes."
+msgstr "Danno queimante, cumo’l que fhazen los fatsucos, las saiettas ardientes."
 
 #: simulation/data/damage_types/fire.jsonname
 msgctxt "damage type"
@@ -73,7 +73,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
-msgstr "Danno curtante, cumo’l que fazen las spadas, las seguras."
+msgstr "Danno curtante, cumo’l que fhazen las spadas, las seguras."
 
 #: simulation/data/damage_types/hack.jsonname
 msgctxt "damage type"
@@ -83,7 +83,7 @@ msgstr "Corte"
 #: simulation/data/damage_types/pierce.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr "Danno perforante, cumo’l que fazen las saiettas, las hastas."
+msgstr "Danno perforante, cumo’l que fhazen las saiettas, las hastas."
 
 #: simulation/data/damage_types/pierce.jsonname
 msgctxt "damage type"
@@ -95,7 +95,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by venomous or poisoned objects, like a snake or a poisoned "
 "weapon."
-msgstr "Danno tóxico, cumo’l que fazen las coluöbras, las armas venenadas."
+msgstr "Danno tóxico, cumo’l que fhazen las coluöbras, las armas venenadas."
 
 #: simulation/data/damage_types/poison.jsonname
 msgctxt "damage type"
@@ -105,7 +105,7 @@ msgstr "Toxicidá"
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes fire damage."
-msgstr "Esta unidá faz queimar."
+msgstr "Esta unidá fhaz queimar."
 
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
@@ -144,7 +144,7 @@ msgstr "Exércitu d’Aleẍandre Magnu"
 #: simulation/templates/campaigns/army_mace_standard.xml:21
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:26
 msgid "This is what an army would look like on the Strat Map."
-msgstr "Assí ye un exércitu in mappa stratégicu."
+msgstr "Assí ye un exércitu in mappa stratéxhicu."
 
 #: simulation/templates/campaigns/army_mace_standard.xml:19
 msgid "Army of Macedonia"
@@ -412,16 +412,16 @@ msgstr "Eudorcas thomsonii"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:11
 msgid "Giraffe"
-msgstr "Giraffa"
+msgstr "Xhiraffa"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:12
 msgid "Giraffa camelopardalis"
-msgstr "Giraffa camelopardalis"
+msgstr "Xhiraffa camelopardalis"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:11
 msgid "Juvenile Giraffe"
-msgstr "Cría de giraffa"
+msgstr "Cría de xhiraffa"
 
 #: simulation/templates/gaia/fauna_goat.xml:17
 msgid "Goat"
@@ -558,7 +558,7 @@ msgstr "Balaenoptera physalus"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:11
 msgid "Humpback Whale"
-msgstr "Gibbarte"
+msgstr "Xhibbarte"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:12
 msgid "Megaptera novaeangliae"
@@ -624,7 +624,7 @@ msgstr "Palmeira datileira"
 
 #: simulation/templates/gaia/fruit/fig.xml:8
 msgid "Fig"
-msgstr "Figal"
+msgstr "Fhigal"
 
 #: simulation/templates/gaia/fruit/grapes.xml:4
 msgid "Grapes"
@@ -640,7 +640,7 @@ msgstr "Ruinas antiguas"
 
 #: simulation/templates/gaia/ruins/metal_statue_isis.xml:9
 msgid "Isis Cult Image"
-msgstr "Image d’Isis"
+msgstr "Imaxhe d’Isis"
 
 #: simulation/templates/gaia/ruins/pyramid_great.xml:8
 msgid "Great Pyramid"
@@ -726,7 +726,7 @@ msgstr "Tapetes persas"
 
 #: simulation/templates/gaia/treasure/metal_weapons_small.xml:8
 msgid "Iron Weapons"
-msgstr "Armas de fierro"
+msgstr "Armas de fhierro"
 
 #: simulation/templates/gaia/treasure/pegasus.xml:8
 msgid "Pegasus"
@@ -737,11 +737,11 @@ msgstr "Pégasu"
 #: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:8
 #: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:8
 msgid "Shipwreck"
-msgstr "Naufragio"
+msgstr "Naufraxhio"
 
 #: simulation/templates/gaia/treasure/shipwreck_debris.xml:8
 msgid "Shipwreck Cargo"
-msgstr "Carga de naufragio"
+msgstr "Carga de naufraxhio"
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"
@@ -783,7 +783,7 @@ msgstr "Bambú"
 
 #: simulation/templates/gaia/tree/bamboo_dragon.xml:8
 msgid "Dragon Bamboo"
-msgstr "Bambú gigante"
+msgstr "Bambú xhigante"
 
 #: simulation/templates/gaia/tree/banyan.xml:8
 msgid "Banyan"
@@ -857,7 +857,7 @@ msgstr "Lhameira"
 #: simulation/templates/gaia/tree/euro_beech.xml:4
 #: simulation/templates/gaia/tree/euro_beech_aut.xml:4
 msgid "European Beech"
-msgstr "Faia"
+msgstr "Fhaia"
 
 #: simulation/templates/gaia/tree/euro_birch.xml:4
 msgid "Silver Birch"
@@ -874,7 +874,7 @@ msgstr "Pollascu d’abetu commun"
 
 #: simulation/templates/gaia/tree/juniper_prickly.xml:4
 msgid "Prickly Juniper"
-msgstr "Ginebru castellanu"
+msgstr "Xhinebru castellanu"
 
 #: simulation/templates/gaia/tree/mangrove.xml:4
 msgid "Mangrove"
@@ -999,13 +999,13 @@ msgstr "Factoría"
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
 "for other civs"
-msgstr "Commuda-se nuna casa de 10 pers. al compartir la cultura del jogador, outramente se disinicia"
+msgstr "Commuda-se nuna casa de 10 pers. al compartir la cultura del xhogador, outramente se disinicia"
 
 #: simulation/templates/skirmish/structures/default_house_5.xml:8
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
-msgstr "Commuda-se nuna casa de 5 pers. al compartir la cultura del jogador, outramente se disinicia"
+msgstr "Commuda-se nuna casa de 5 pers. al compartir la cultura del xhogador, outramente se disinicia"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
@@ -1062,7 +1062,7 @@ msgstr "Solo Hoplitas combattientes, requier pelo menus 10."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
-msgstr "Phalange"
+msgstr "Phalanxhe"
 
 #: simulation/templates/special/formations/scatter.xml:5
 msgid "Scatter"
@@ -1096,18 +1096,196 @@ msgstr "Solo éqüites, requier pelo menus 6."
 msgid "Wedge"
 msgstr "Cuniu"
 
-#: simulation/templates/special/player/player.xml:58
-msgid "Player"
-msgstr "Jogador"
+#: simulation/templates/special/players/athen.xml:8
+msgid "Athenians"
+msgstr "atheneos"
+
+#: simulation/templates/special/players/athen.xml:9
+msgid ""
+"As the cradle of Western civilization and the birthplace of democracy, "
+"Athens was famed as a center for the arts, learning and philosophy. The "
+"Athenians were also powerful warriors, particularly at sea. At its peak, "
+"Athens dominated a large part of the Hellenic world for several decades."
+msgstr "Cumo’l verciu de la civilizacion occidental & la madre de la democracia, Athenas tenía fama de ser un centro d’arte, erudicion & philosophía. Los Atheneos tamien yeran distinguidos guerreiros, subre todo nel mar. Nel sou cume, Athenas dominou gran parte del mundu hellénicu per varias décadas."
+
+#: simulation/templates/special/players/brit.xml:8
+msgid "Britons"
+msgstr "britannos"
+
+#: simulation/templates/special/players/brit.xml:9
+msgid ""
+"The Britons were the Celtic tribes of the British Isles. Using chariots, "
+"longswordsmen and powerful melee soldiers, they staged fearsome revolts "
+"against Rome to protect their customs and interests. Also, they built "
+"thousands of unique structures such as hill forts, crannogs and brochs."
+msgstr "Los britannos yeran los habitantes célticos de la islha d’Albion. Usando carros, spadonas & combattientes potentes, imbellarun-se contra Roma pa defender los sous costumes & interesses. Arriendas d’ello, fhazían milles de construcciones únicas cumo “cagrī”, “inissyās” & “dūnā”."
+
+#: simulation/templates/special/players/cart.xml:8
+msgid "Carthaginians"
+msgstr "carthaxhineses"
+
+#: simulation/templates/special/players/cart.xml:9
+msgid ""
+"Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
+"western Mediterranean, eventually taking over much of North Africa and "
+"modern-day Spain in the third century B.C. The sailors of Carthage were "
+"among the fiercest contenders on the high seas, and masters of naval trade. "
+"They deployed towered War Elephants on the battlefield to fearsome effect, "
+"and had defensive walls so strong, they were never breached."
+msgstr "Carthago/Qart-Hadašt, una cívitas no q’inguanno ye Tunes, yera una potencia del mediterraneo occidental q’acabou conquistando muĩtha de l’África septentrional & la Península Ibérica nel sieglo III a.C. Los marineiros de Carthago yeran entre los meyyores combattientes de l’alta mar, & maiestros del commercio naval. Na battalla, utilizaban elephantes turríxheros cun terrible éxitu & posseían murias tan maciças que nunca naide llas atravessou."
+
+#: simulation/templates/special/players/gaul.xml:8
+msgid "Gauls"
+msgstr "gallos"
+
+#: simulation/templates/special/players/gaul.xml:9
+msgid ""
+"The Gauls were the Celtic tribes of continental Europe. Dominated by a "
+"priestly class of Druids, they featured a sophisticated culture of advanced "
+"metalworking, agriculture, trade and even road engineering. With heavy "
+"infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
+"of conquest and Rome's authoritarian rule."
+msgstr "Los gallos yeran habitantes célticos de la Europa continental. Dominados por un cleru druídicu, posseían una cultura sophisticada de metallurxhia abançada, agricultura, commercio & inclusive inxheniería vial. A pie & a caballu, cun valor & armas pesadas, los guerreiros gállicos resistierun a Caesar & l’authoritarismo de Roma."
+
+#: simulation/templates/special/players/iber.xml:8
+msgid "Iberians"
+msgstr "íberos"
+
+#: simulation/templates/special/players/iber.xml:9
+msgid ""
+"The Iberians were a people of mysterious origins and language, with a strong"
+" tradition of horsemanship and metalworking. A relatively peaceful culture, "
+"they usually fought in other's battles only as mercenaries. However, they "
+"proved tenacious when Rome sought to take their land and freedom from them, "
+"and employed pioneering guerrilla tactics and flaming javelins as they "
+"fought back."
+msgstr "Los íberos yeran un puöblo d’oríxhenes & lhingua obscuros, cun una fhuörte tradicion eqüestre & metallúrxhica. De cultura mas bien pacífica, lhuithaban in battallas ayyenas cumo mercenarios. Sí q’assí, ante la minacia de Roma, amostrarun-se tenazes & usarun guerras de guerrinas & lhancias flamíxheras al defender la sua tierra & lhibertá."
+
+#: simulation/templates/special/players/kush.xml:8
+msgid "Kushites"
+msgstr "qesanos"
+
+#: simulation/templates/special/players/kush.xml:9
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "El reino de Qesa yera un antiguu reino africano situado nas miestas de los Nilos Azul, Blancu & Prietu no q’inguanno ye la República del Sudan. La dómina qesana cominçou in Napata tras el collapsu del Imperio Nuövo d’Egypto a finales de la Edade del Bronze. Nel sieglo VIII a.C., los reies qesanos invadierun Egypto & gubernarun-llo cumo pharaones de la XXV dynastía egypcia, ta que llos expulsarun los assyrios. La cultura qesana bebía de la egypcia, exemplo d’ello siendo los abundantes pyrámides & templos monumentales que deiẍarun. Tamien adoraban a muĩthos dieuses egypcios, inẍertu Amun. Ya na antigüidá clássica, la capital del reino yera Medewi & al reino los griegos nomaban-llo Meroe ou Ethiopía. El reino qesano persistiu ta’l IV d.C., quando, por culpa de rebelliones internas, decaeu, se disintegrou & finalmente succumbiu ante’l poder ascendente d’Áxum."
+
+#: simulation/templates/special/players/mace.xml:8
+msgid "Macedonians"
+msgstr "macedones"
+
+#: simulation/templates/special/players/mace.xml:9
+msgid ""
+"Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
+" the Greek peninsula. Under the leadership of Alexander the Great, "
+"Macedonian forces and allies took over most of the world they knew, "
+"including Egypt, Persia and parts of the Indian subcontinent, allowing a "
+"diffusion of Hellenic and eastern cultures for years to come."
+msgstr "Macedonia yera un antiguu reino hellénico, centrado na parte oriental septentrional de la península griega. Sul mandu d’Aleẍandre Magnu, las fhuörcias & socios de Macedonia conquistou quasi todu’l mundu que connocían—Egypto, Persia & secciones del subcontinente índicu—& assí permittiu la diffusion de las culturas hellénicas & orientales per muĩthos annos."
+
+#: simulation/templates/special/players/maur.xml:8
+msgid "Mauryas"
+msgstr "Mauryas"
+
+#: simulation/templates/special/players/maur.xml:9
+msgid ""
+"Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first"
+" to rule most of the Indian subcontinent, and was one of the largest and "
+"most populous empires of antiquity. Its military featured bowmen who used "
+"the long-range bamboo longbow, fierce female warriors, chariots, and "
+"thousands of armored war elephants. Its philosophers, especially the famous "
+"Acharya Chanakya, contributed to such varied fields such as economics, "
+"religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
+"the Great, the empire saw 40 years of peace, harmony, and prosperity."
+msgstr "Fundado nel sieglo 322 a.C. por Candragupta Maurya, el mauryano fhoi’l primeiru imperio in conquistar la maioría del subcontinente índicu, & uno de los imperios mas grandes & poblados de l’antigüidá. El sou exércitu contaba cun saxhittarios q’usaban arcos lhongos de bambú, guerreiras ferozes, carros & milles d’elephantes armados. Los sous philósophos, specialmente Canakya’l Preceptor, abançarun per-muĩthos campos, talos cumo la economía, la relixhion, la diplomacia, la milicia & el bon gubiernu. Sul mandado d’Áśoka l’Amigu de los Divinos, l’Imperio viviu 40 annos de paz, harmonía & prosperidá."
+
+#: simulation/templates/special/players/pers.xml:8
+msgid "Persians"
+msgstr "Persas"
+
+#: simulation/templates/special/players/pers.xml:9
+msgid ""
+"The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
+"greatest empires of antiquity, stretching at its zenith from the Indus "
+"Valley in the east to Greece in the west. The Persians were the pioneers of "
+"empire-building of the ancient world, successfully imposing a centralized "
+"rule over various peoples with different customs, laws, religions and "
+"languages, and building a cosmopolitan army made up of contingents from each"
+" of these nations."
+msgstr "L’Imperio persa, quando llo gubernaba la dynastía acheménida, yera uno de los imperios mas grandiosos de l’antigüidá, exporriendo-se nel sou cume del valle del Indu in oriente a la Héllade in occidente. Los persas yeran los innovadores imperiales de l’antigüidá clássica, imponiendo cun éxitu un gubiernu centralizadu subre varios puöblos de costumes, lheis, relixhiones & lhinguas extremadas, & construendo un exércitu cosmopolita compuöstu de continxhentes de cada unu d’estos países."
+
+#: simulation/templates/special/players/ptol.xml:16
+msgid "Ptolemies"
+msgstr "Ptolemeos"
+
+#: simulation/templates/special/players/ptol.xml:17
+msgid ""
+"The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
+"Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
+"for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
+"Egypt."
+msgstr "La dynastía ptolemaica yera una casa real greco-macedonia que rexhiu l’Imperio ptolemaico in Egypto na dómina aleẍandrina. El sou gubiernu durou 275 annos, del 305 a.C. al 30 a.C. Fhoi la postreira dynastía del Egypto antiguo."
+
+#: simulation/templates/special/players/rome.xml:8
+msgid "Romans"
+msgstr "Romanos"
+
+#: simulation/templates/special/players/rome.xml:9
+msgid ""
+"The Romans controlled one of the largest empires of the ancient world, "
+"stretching at its peak from southern Scotland to the Sahara Desert, and "
+"containing between 60 million and 80 million inhabitants, one quarter of the"
+" Earth's population at that time. Rome also remained one of the strongest "
+"nations on earth for almost 800 years. The Romans were the supreme builders "
+"of the ancient world, excelled at siege warfare and had an exquisite "
+"infantry and navy."
+msgstr "Los romanos gubernarun uno de los imperios mas grandes de l’antigüidá, exporriendo-se nel sou cume de la Scocia meridiana al desiertu del Sáhara, & conteniendo entre 60 & 80 millones d’habitantes, un quartu de la poblacion de la Tierra d’aquella épocha. D’arriendas, Roma seguiu siendo una de las maiores potencias del mundu quasi 800 annos. Los romanos yeran constructores in sin par, distinguidos na arte del obsidio & soberbios nel combatte terrestre & naval."
+
+#: simulation/templates/special/players/sele.xml:16
+msgid "Seleucids"
+msgstr "Seléucidas"
+
+#: simulation/templates/special/players/sele.xml:17
+msgid ""
+"The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
+msgstr "La dynastía greco-macedónica que gubernaba la maioría del antiguu imperio aleẍandrino."
+
+#: simulation/templates/special/players/spart.xml:6
+msgid "Spartans"
+msgstr "Spartanos"
+
+#: simulation/templates/special/players/spart.xml:7
+msgid ""
+"Sparta was a prominent city-state in ancient Greece, and its dominant "
+"military power on land from circa 650 B.C. Spartan culture was obsessed with"
+" military training and excellence, with rigorous training for boys beginning"
+" at age seven. Thanks to its military might, Sparta led a coalition of Greek"
+" forces during the Greco-Persian Wars, and won over Athens in the "
+"Peloponnesian Wars, though at great cost."
+msgstr "Sparta fhoi una prominente polis de la Héllade, & el sou maior poder militar terrestre de magar cerca de 650 a.C. Los spartanos obsessionaban-se cula preparacion & excellencia marciales, impeçando a exercitar los sous rapazinos d’inde los siete annos d’edade. Gracias a la sua potencia militar, Sparta mandou una confederacion de fhuörcias hellénicas nas guerras médicas & vinceu a Athenas na guerra peloponnesíaca, on que llis costou caro."
 
 #: simulation/templates/special/spy.xml:16
 msgid "Spy"
 msgstr "Speculador"
 
-#: simulation/templates/template_formation.xml:26
+#: simulation/templates/template_formation.xml:20
 msgid "Requires at least 2 Soldiers or Siege Engines."
 msgstr "Requier pelo menus 2 Mílites ou Máchinas."
 
+#: simulation/templates/special/players/gaia.xml:5
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
 msgstr "Gaia"
@@ -1119,7 +1297,7 @@ msgstr "Peẍe"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
-msgstr "Fonte de comida."
+msgstr "Fhuönte de comida."
 
 #: simulation/templates/template_gaia_fruit.xml:8
 msgid "Fruit"
@@ -1127,15 +1305,15 @@ msgstr "Fruita"
 
 #: simulation/templates/template_gaia_fruit.xml:9
 msgid "Pick fruit for food."
-msgstr "Fonte de comida."
+msgstr "Fhuönte de comida."
 
 #: simulation/templates/template_gaia_ore.xml:8
 msgid "Metal Mine"
-msgstr "Jazeda"
+msgstr "Xhazeda"
 
 #: simulation/templates/template_gaia_ore.xml:9
 msgid "Mine ore for metal."
-msgstr "Fonte de metal."
+msgstr "Fhuönte de metal."
 
 #: simulation/templates/gaia/rock/aegean_cut.xml:8
 #: simulation/templates/gaia/rock/india_cut.xml:8
@@ -1148,7 +1326,7 @@ msgstr "Canteira"
 
 #: simulation/templates/template_gaia_rock.xml:9
 msgid "Quarry rock for stone."
-msgstr "Fonte de piedra."
+msgstr "Fhuönte de piedra."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
@@ -1156,7 +1334,7 @@ msgstr "Ruinas"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr "Fonte de piedra."
+msgstr "Fhuönte de piedra."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
@@ -1164,7 +1342,7 @@ msgstr "Ayyalga"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr "Fonte de recursos."
+msgstr "Fhuönte de recursos."
 
 #: simulation/templates/template_gaia_tree.xml:8
 msgid "Tree"
@@ -1172,7 +1350,7 @@ msgstr "Árbole"
 
 #: simulation/templates/template_gaia_tree.xml:9
 msgid "Chop trees for wood."
-msgstr "Fonte de madeira."
+msgstr "Fhuönte de madeira."
 
 #: simulation/templates/template_structure.xml:46
 msgid "Structure"
