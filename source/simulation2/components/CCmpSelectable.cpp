@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -563,12 +563,16 @@ void CCmpSelectable::UpdateDynamicOverlay(float frameOffset)
 
 		// Assuming we don't need the capability of swapping textures on-demand.
 		CTextureProperties texturePropsBase(m_OverlayDescriptor.m_QuadTexture.c_str());
-		texturePropsBase.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
-		texturePropsBase.SetMaxAnisotropy(4.f);
+		texturePropsBase.SetAddressMode(
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_BORDER,
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
+		texturePropsBase.SetAnisotropicFilter(true);
 
 		CTextureProperties texturePropsMask(m_OverlayDescriptor.m_QuadTextureMask.c_str());
-		texturePropsMask.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
-		texturePropsMask.SetMaxAnisotropy(4.f);
+		texturePropsMask.SetAddressMode(
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_BORDER,
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
+		texturePropsMask.SetAnisotropicFilter(true);
 
 		m_UnitOverlay->m_Texture = g_Renderer.GetTextureManager().CreateTexture(texturePropsBase);
 		m_UnitOverlay->m_TextureMask = g_Renderer.GetTextureManager().CreateTexture(texturePropsMask);

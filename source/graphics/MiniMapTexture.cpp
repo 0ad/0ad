@@ -219,7 +219,7 @@ void CMiniMapTexture::CreateTextures(
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
 
 	// Create terrain texture
-	m_TerrainTexture = Renderer::Backend::GL::CTexture::Create2D(
+	m_TerrainTexture = deviceCommandContext->GetDevice()->CreateTexture2D("MiniMapTerrainTexture",
 		Renderer::Backend::Format::R8G8B8A8, textureSize, textureSize, defaultSamplerDesc);
 
 	// Initialise texture with solid black, for the areas we don't
@@ -234,7 +234,7 @@ void CMiniMapTexture::CreateTextures(
 
 	m_TerrainData = std::make_unique<u32[]>((m_MapSize - 1) * (m_MapSize - 1));
 
-	m_FinalTexture = Renderer::Backend::GL::CTexture::Create2D(
+	m_FinalTexture = deviceCommandContext->GetDevice()->CreateTexture2D("MiniMapFinalTexture",
 		Renderer::Backend::Format::R8G8B8A8, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE, defaultSamplerDesc);
 
 	m_FinalTextureFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(

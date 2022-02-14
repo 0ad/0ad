@@ -145,19 +145,18 @@ int WaterManager::LoadWaterTextures()
 	{
 		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/default/diffuse%02d.dds", (int)i+1);
 		CTextureProperties textureProps(pathname);
-		textureProps.SetWrap(GL_REPEAT);
+		textureProps.SetAddressMode(
+			Renderer::Backend::Sampler::AddressMode::REPEAT);
 
 		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 		texture->Prefetch();
 		m_WaterTexture[i] = texture;
 	}
 
-	if (!g_Renderer.GetCapabilities().m_PrettyWater)
-	{
-		// Enable rendering, now that we've succeeded this far
-		m_RenderWater = true;
+	m_RenderWater = true;
+
+	if (!WillRenderFancyWater())
 		return 0;
-	}
 
 #if CONFIG2_GLES
 #warning Fix WaterManager::LoadWaterTextures on GLES
@@ -168,7 +167,8 @@ int WaterManager::LoadWaterTextures()
 	// Load CoastalWaves
 	{
 		CTextureProperties textureProps(L"art/textures/terrain/types/water/coastalWave.png");
-		textureProps.SetWrap(GL_REPEAT);
+		textureProps.SetAddressMode(
+			Renderer::Backend::Sampler::AddressMode::REPEAT);
 		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 		texture->Prefetch();
 		m_WaveTex = texture;
@@ -177,7 +177,8 @@ int WaterManager::LoadWaterTextures()
 	// Load Foam
 	{
 		CTextureProperties textureProps(L"art/textures/terrain/types/water/foam.png");
-		textureProps.SetWrap(GL_REPEAT);
+		textureProps.SetAddressMode(
+			Renderer::Backend::Sampler::AddressMode::REPEAT);
 		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 		texture->Prefetch();
 		m_FoamTex = texture;
@@ -186,28 +187,30 @@ int WaterManager::LoadWaterTextures()
 	// Use screen-sized textures for minimum artifacts.
 	m_RefTextureSize = round_up_to_pow2(g_Renderer.GetHeight());
 
+	Renderer::Backend::GL::CDevice* backendDevice = g_VideoMode.GetBackendDevice();
+
 	// Create reflection texture
-	m_ReflectionTexture = Renderer::Backend::GL::CTexture::Create2D(
+	m_ReflectionTexture = backendDevice->CreateTexture2D("WaterReflectionTexture",
 		Renderer::Backend::Format::R8G8B8A8, m_RefTextureSize, m_RefTextureSize,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::MIRRORED_REPEAT));
 
 	// Create refraction texture
-	m_RefractionTexture = Renderer::Backend::GL::CTexture::Create2D(
+	m_RefractionTexture = backendDevice->CreateTexture2D("WaterRefractionTexture",
 		Renderer::Backend::Format::R8G8B8A8, m_RefTextureSize, m_RefTextureSize,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::MIRRORED_REPEAT));
 
 	// Create depth textures
-	m_ReflFboDepthTexture = Renderer::Backend::GL::CTexture::Create2D(
+	m_ReflFboDepthTexture = backendDevice->CreateTexture2D("WaterReflectionDepthTexture",
 		Renderer::Backend::Format::D32, m_RefTextureSize, m_RefTextureSize,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::NEAREST,
 			Renderer::Backend::Sampler::AddressMode::REPEAT));
 
-	m_RefrFboDepthTexture = Renderer::Backend::GL::CTexture::Create2D(
+	m_RefrFboDepthTexture = backendDevice->CreateTexture2D("WaterRefractionDepthTexture",
 		Renderer::Backend::Format::D32, m_RefTextureSize, m_RefTextureSize,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::NEAREST,
@@ -240,9 +243,6 @@ int WaterManager::LoadWaterTextures()
 		g_RenderingOptions.SetWaterRefraction(false);
 		UpdateQuality();
 	}
-
-	// Enable rendering, now that we've succeeded this far
-	m_RenderWater = true;
 #endif
 	return 0;
 }
@@ -252,14 +252,16 @@ int WaterManager::LoadWaterTextures()
 // Resize: Updates the fancy water textures.
 void WaterManager::Resize()
 {
+	Renderer::Backend::GL::CDevice* backendDevice = g_VideoMode.GetBackendDevice();
+
 	// Create the Fancy Effects texture
-	m_FancyTexture = Renderer::Backend::GL::CTexture::Create2D(
+	m_FancyTexture = backendDevice->CreateTexture2D("WaterFancyTexture",
 		Renderer::Backend::Format::R8G8B8A8, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::REPEAT));
 
-	m_FancyTextureDepth = Renderer::Backend::GL::CTexture::Create2D(
+	m_FancyTextureDepth = backendDevice->CreateTexture2D("WaterFancyDepthTexture",
 		Renderer::Backend::Format::D32, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
@@ -273,8 +275,9 @@ void WaterManager::ReloadWaterNormalTextures()
 	{
 		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/%ls/normal00%02d.png", m_WaterType.c_str(), static_cast<int>(i) + 1);
 		CTextureProperties textureProps(pathname);
-		textureProps.SetWrap(GL_REPEAT);
-		textureProps.SetMaxAnisotropy(4);
+		textureProps.SetAddressMode(
+			Renderer::Backend::Sampler::AddressMode::REPEAT);
+		textureProps.SetAnisotropicFilter(true);
 
 		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 		texture->Prefetch();
@@ -288,9 +291,6 @@ void WaterManager::UnloadWaterTextures()
 {
 	for (size_t i = 0; i < ARRAY_SIZE(m_WaterTexture); i++)
 		m_WaterTexture[i].reset();
-
-	if (!g_Renderer.GetCapabilities().m_PrettyWater)
-		return;
 
 	for (size_t i = 0; i < ARRAY_SIZE(m_NormalMap); i++)
 		m_NormalMap[i].reset();
@@ -784,8 +784,10 @@ void WaterManager::RenderWaves(
 		tech->GetGraphicsPipelineStateDesc());
 	const CShaderProgramPtr& shader = tech->GetShader();
 
-	shader->BindTexture(str_waveTex, m_WaveTex);
-	shader->BindTexture(str_foamTex, m_FoamTex);
+	m_WaveTex->UploadBackendTextureIfNeeded(deviceCommandContext);
+	m_FoamTex->UploadBackendTextureIfNeeded(deviceCommandContext);
+	shader->BindTexture(str_waveTex, m_WaveTex->GetBackendTexture());
+	shader->BindTexture(str_foamTex, m_FoamTex->GetBackendTexture());
 
 	shader->Uniform(str_time, (float)m_WaterTexTimer);
 	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
@@ -1009,7 +1011,7 @@ bool WaterManager::WillRenderFancyWater() const
 {
 	return
 		m_RenderWater && g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB &&
-		g_RenderingOptions.GetWaterEffects() && g_Renderer.GetCapabilities().m_PrettyWater;
+		g_RenderingOptions.GetWaterEffects();
 }
 
 size_t WaterManager::GetCurrentTextureIndex(const double& period) const

@@ -18,12 +18,15 @@
 #ifndef INCLUDED_RENDERER_GL_DEVICECOMMANDCONTEXT
 #define INCLUDED_RENDERER_GL_DEVICECOMMANDCONTEXT
 
+#include "lib/ogl.h"
 #include "renderer/backend/Format.h"
 #include "renderer/backend/PipelineState.h"
 
 #include <array>
+#include <cstdint>
 #include <memory>
 #include <optional>
+#include <utility>
 
 namespace Renderer
 {
@@ -70,6 +73,9 @@ public:
 	};
 	void SetScissors(const uint32_t scissorCount, const ScissorRect* scissors);
 
+	// TODO: remove direct binding after moving shaders.
+	void BindTexture(const uint32_t unit, const GLenum target, const GLuint handle);
+
 	void Flush();
 
 private:
@@ -91,6 +97,21 @@ private:
 	uint32_t m_ScissorCount = 0;
 	// GL2.1 doesn't support more than 1 scissor.
 	std::array<ScissorRect, 1> m_Scissors;
+
+	uint32_t m_ActiveTextureUnit = 0;
+	using BindUnit = std::pair<GLenum, GLuint>;
+	std::array<BindUnit, 16> m_BoundTextures;
+	class ScopedBind
+	{
+	public:
+		ScopedBind(CDeviceCommandContext* deviceCommandContext,
+			const GLenum target, const GLuint handle);
+
+		~ScopedBind();
+	private:
+		CDeviceCommandContext* m_DeviceCommandContext = nullptr;
+		BindUnit m_OldBindUnit;
+	};
 };
 
 } // namespace GL

@@ -693,7 +693,8 @@ void ShaderModelRenderer::Render(
 							CTexture* newTex = samp.Sampler.get();
 							if (texBindings[s].Active() && newTex != currentTexs[s])
 							{
-								shader->BindTexture(texBindings[s], samp.Sampler);
+								newTex->UploadBackendTextureIfNeeded(deviceCommandContext);
+								shader->BindTexture(texBindings[s], newTex->GetBackendTexture());
 								currentTexs[s] = newTex;
 							}
 						}
@@ -733,9 +734,13 @@ void ShaderModelRenderer::Render(
 								const double period = 1.6;
 								const WaterManager& waterManager = g_Renderer.GetSceneRenderer().GetWaterManager();
 								if (waterManager.m_RenderWater && waterManager.WillRenderFancyWater())
-									shader->BindTexture(str_waterTex, waterManager.m_NormalMap[waterManager.GetCurrentTextureIndex(period)]);
+								{
+									const CTexturePtr& waterTexture = waterManager.m_NormalMap[waterManager.GetCurrentTextureIndex(period)];
+									waterTexture->UploadBackendTextureIfNeeded(deviceCommandContext);
+									shader->BindTexture(str_waterTex, waterTexture->GetBackendTexture());
+								}
 								else
-									shader->BindTexture(str_waterTex, g_Renderer.GetTextureManager().GetErrorTexture());
+									shader->BindTexture(str_waterTex, g_Renderer.GetTextureManager().GetErrorTexture()->GetBackendTexture());
 							}
 							else if (rq.first == RQUERY_SKY_CUBE)
 							{

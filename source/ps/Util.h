@@ -21,7 +21,7 @@
 #include "lib/os_path.h"
 #include "lib/file/vfs/vfs_path.h"
 
-struct Tex;
+class Tex;
 
 void WriteSystemInfo();
 

@@ -32,6 +32,7 @@
 #include "ps/XML/Xeromyces.h"
 #include "ps/XML/XMLWriter.h"
 #include "ps/VideoMode.h"
+#include "renderer/backend/gl/Device.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 
@@ -361,9 +362,6 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 #undef AT
 #undef EL
 
-	// Read some defines that influence how we pick techniques
-	const CRenderer::Caps& capabilities = g_Renderer.GetCapabilities();
-
 	// Prepare the preprocessor for conditional tests
 	CPreprocessorWrapper preprocessor;
 	preprocessor.AddDefines(baseDefines);
@@ -387,18 +385,15 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 				if (Attrs.GetNamedItem(at_shaders) == "arb")
 				{
 					if (g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB ||
-						!capabilities.m_ARBProgram)
+						!g_VideoMode.GetBackendDevice()->GetCapabilities().ARBShaders)
 					{
 						isUsable = false;
 					}
 				}
 				else if (Attrs.GetNamedItem(at_shaders) == "glsl")
 				{
-					if (g_VideoMode.GetBackend() != CVideoMode::Backend::GL ||
-						!(capabilities.m_FragmentShader && capabilities.m_VertexShader))
-					{
+					if (g_VideoMode.GetBackend() != CVideoMode::Backend::GL)
 						isUsable = false;
-					}
 				}
 				else if (!Attrs.GetNamedItem(at_context).empty())
 				{

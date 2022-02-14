@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,7 +20,6 @@
 #include "graphics/TextureManager.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/file/vfs/vfs.h"
-#include "lib/res/h_mgr.h"
 #include "lib/tex/tex.h"
 #include "lib/ogl.h"
 #include "ps/XML/Xeromyces.h"
@@ -39,16 +38,12 @@ public:
 		TS_ASSERT_OK(m_VFS->Mount(L"", DataDir() / "mods" / "_test.tex" / "", VFS_MOUNT_MUST_EXIST));
 		TS_ASSERT_OK(m_VFS->Mount(L"cache/", DataDir() / "_testcache" / "", 0, VFS_MAX_PRIORITY));
 
-		h_mgr_init();
-
 		CXeromyces::Startup();
 	}
 
 	void tearDown()
 	{
 		CXeromyces::Terminate();
-
-		h_mgr_shutdown();
 
 		m_VFS.reset();
 		DeleteDirectory(DataDir()/"_testcache");

@@ -24,11 +24,12 @@
 #include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
 #include "lib/timer.h"
-#include "lib/res/graphics/ogl_tex.h"
 #include "maths/Matrix3D.h"
 #include "maths/Vector3D.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/Renderer.h"
 
 #include <algorithm>
 
@@ -171,8 +172,7 @@ public:
 		int index = fPair.first;
 		if (index != -1)
 		{
-			glActiveTextureARB(GL_TEXTURE0 + index);
-			glBindTexture(fPair.second, tex);
+			g_Renderer.GetDeviceCommandContext()->BindTexture(index, fPair.second, tex);
 		}
 	}
 
@@ -181,8 +181,7 @@ public:
 		int index = id.second;
 		if (index != -1)
 		{
-			glActiveTextureARB(GL_TEXTURE0 + index);
-			glBindTexture(id.first, tex);
+			g_Renderer.GetDeviceCommandContext()->BindTexture(index, id.first, tex);
 		}
 	}
 
@@ -533,8 +532,7 @@ public:
 		if (it == m_Samplers.end())
 			return;
 
-		glActiveTexture(GL_TEXTURE0 + it->second.second);
-		glBindTexture(it->second.first, tex);
+		g_Renderer.GetDeviceCommandContext()->BindTexture(it->second.second, it->second.first, tex);
 	}
 
 	void BindTexture(Binding id, GLuint tex) override
@@ -542,8 +540,7 @@ public:
 		if (id.second == -1)
 			return;
 
-		glActiveTexture(GL_TEXTURE0 + id.second);
-		glBindTexture(id.first, tex);
+		g_Renderer.GetDeviceCommandContext()->BindTexture(id.second, id.first, tex);
 	}
 
 	Binding GetUniformBinding(uniform_id_t id) override
@@ -718,20 +715,6 @@ bool CShaderProgram::IsValid() const
 int CShaderProgram::GetStreamFlags() const
 {
 	return m_StreamFlags;
-}
-
-void CShaderProgram::BindTexture(texture_id_t id, const CTexturePtr& tex)
-{
-	GLuint h;
-	ogl_tex_get_texture_id(tex->GetHandle(), &h);
-	BindTexture(id, h);
-}
-
-void CShaderProgram::BindTexture(Binding id, const CTexturePtr& tex)
-{
-	GLuint h;
-	ogl_tex_get_texture_id(tex->GetHandle(), &h);
-	BindTexture(id, h);
 }
 
 void CShaderProgram::BindTexture(texture_id_t id, const Renderer::Backend::GL::CTexture* tex)

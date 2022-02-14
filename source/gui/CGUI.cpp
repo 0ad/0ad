@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -1083,11 +1083,11 @@ void CGUI::Xeromyces_ReadImage(const XMBData& xmb, XMBElement element, CGUISprit
 		else if (attr_name == "wrap_mode")
 		{
 			if (attr_value == L"repeat")
-				image->m_WrapMode = GL_REPEAT;
+				image->m_AddressMode = Renderer::Backend::Sampler::AddressMode::REPEAT;
 			else if (attr_value == L"mirrored_repeat")
-				image->m_WrapMode = GL_MIRRORED_REPEAT;
+				image->m_AddressMode = Renderer::Backend::Sampler::AddressMode::MIRRORED_REPEAT;
 			else if (attr_value == L"clamp_to_edge")
-				image->m_WrapMode = GL_CLAMP_TO_EDGE;
+				image->m_AddressMode = Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE;
 			else
 				LOGERROR("GUI: Error parsing '%s' (\"%s\")", attr_name, utf8_from_wstring(attr_value));
 		}

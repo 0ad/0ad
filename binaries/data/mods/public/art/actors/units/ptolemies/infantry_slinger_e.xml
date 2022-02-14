@@ -6,37 +6,51 @@
       <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/iberian_buckler_basic.xml" attachpoint="shield"/>
         <prop actor="props/units/mace_sling_pouch.xml" attachpoint="sheath_L"/>
+      </props>
+      <textures>
+        <texture file="skeletal/jude/scale_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="hele_thracian_b2">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b2.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="hele_thracian_b9">
+      <props>
+        <prop actor="props/units/helmets/hele_thracian_b9.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="quilted-helmet">
+    <variant frequency="1" name="shield leather">
       <props>
-        <prop actor="props/units/helmets/ptol_quilted_b.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shields/pelte_round_leather.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="shield wood">
+      <props>
+        <prop actor="props/units/shields/pelte_round_wood.xml" attachpoint="shield"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="judea-padded-1a">
       <textures>
-        <texture file="skeletal/judea_padded_1_a.png" name="baseTex"/>
+        <texture file="skeletal/jude/scale_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="judea-padded-1b">
       <textures>
-        <texture file="skeletal/judea_padded_1_b.png" name="baseTex"/>
+        <texture file="skeletal/jude/scale_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="judea-padded-1c">
       <textures>
-        <texture file="skeletal/judea_padded_1_c.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="judea-padded-1d">
-      <textures>
-        <texture file="skeletal/judea_padded_1_d.png" name="baseTex"/>
+        <texture file="skeletal/jude/scale_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -73,5 +87,5 @@
     <variant file="biped/build_farm.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

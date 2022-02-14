@@ -30,6 +30,7 @@
 #include "graphics/ShaderManager.h"
 #include "graphics/TerritoryTexture.h"
 #include "graphics/TextRenderer.h"
+#include "graphics/TextureManager.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/CStrInternStatic.h"
@@ -280,9 +281,9 @@ void TerrainRenderer::RenderTerrainShader(
 	CDecalRData::RenderDecals(deviceCommandContext, visibleDecals, context, shadow);
 
 	// restore OpenGL state
-	g_Renderer.BindTexture(1, 0);
-	g_Renderer.BindTexture(2, 0);
-	g_Renderer.BindTexture(3, 0);
+	deviceCommandContext->BindTexture(3, GL_TEXTURE_2D, 0);
+	deviceCommandContext->BindTexture(2, GL_TEXTURE_2D, 0);
+	deviceCommandContext->BindTexture(1, GL_TEXTURE_2D, 0);
 }
 
 
@@ -417,8 +418,13 @@ bool TerrainRenderer::RenderFancyWater(
 	const CCamera& camera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
 	const double period = 8.0;
-	fancyWaterShader->BindTexture(str_normalMap, waterManager.m_NormalMap[waterManager.GetCurrentTextureIndex(period)]);
-	fancyWaterShader->BindTexture(str_normalMap2, waterManager.m_NormalMap[waterManager.GetNextTextureIndex(period)]);
+	// TODO: move uploading to a prepare function during loading.
+	const CTexturePtr& currentNormalTexture = waterManager.m_NormalMap[waterManager.GetCurrentTextureIndex(period)];
+	const CTexturePtr& nextNormalTexture = waterManager.m_NormalMap[waterManager.GetNextTextureIndex(period)];
+	currentNormalTexture->UploadBackendTextureIfNeeded(deviceCommandContext);
+	nextNormalTexture->UploadBackendTextureIfNeeded(deviceCommandContext);
+	fancyWaterShader->BindTexture(str_normalMap, currentNormalTexture->GetBackendTexture());
+	fancyWaterShader->BindTexture(str_normalMap2, nextNormalTexture->GetBackendTexture());
 
 	if (waterManager.m_WaterFancyEffects)
 	{
@@ -533,7 +539,9 @@ void TerrainRenderer::RenderSimpleWater(
 		waterSimpleTech->GetGraphicsPipelineStateDesc());
 	const CShaderProgramPtr& waterSimpleShader = waterSimpleTech->GetShader();
 
-	waterSimpleShader->BindTexture(str_baseTex, waterManager.m_WaterTexture[waterManager.GetCurrentTextureIndex(1.6)]);
+	const CTexturePtr& waterTexture = waterManager.m_WaterTexture[waterManager.GetCurrentTextureIndex(1.6)];
+	waterTexture->UploadBackendTextureIfNeeded(deviceCommandContext);
+	waterSimpleShader->BindTexture(str_baseTex, waterTexture->GetBackendTexture());
 	waterSimpleShader->BindTexture(str_losTex, losTexture.GetTextureSmooth());
 	waterSimpleShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	waterSimpleShader->Uniform(str_losTransform, losTexture.GetTextureMatrix()[0], losTexture.GetTextureMatrix()[12], 0.f, 0.f);
@@ -547,9 +555,7 @@ void TerrainRenderer::RenderSimpleWater(
 		data->RenderWaterSurface(waterSimpleShader, false);
 	}
 
-	g_Renderer.BindTexture(1, 0);
-
-	glActiveTextureARB(GL_TEXTURE0_ARB);
+	deviceCommandContext->BindTexture(1, GL_TEXTURE_2D, 0);
 
 	waterSimpleTech->EndPass();
 

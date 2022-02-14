@@ -38,11 +38,14 @@ namespace
 // Array of 2D elements unrolled into 1D array.
 using PlaneArray2D = std::array<float, 8>;
 
-inline void DrawTextureImpl(const CShaderProgramPtr& shader, CTexturePtr texture,
+inline void DrawTextureImpl(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderProgramPtr& shader, const CTexturePtr& texture,
 	const PlaneArray2D& vertices, PlaneArray2D uvs,
 	const CColor& multiply, const CColor& add, const float grayscaleFactor)
 {
-	shader->BindTexture(str_tex, texture);
+	texture->UploadBackendTextureIfNeeded(deviceCommandContext);
+	shader->BindTexture(str_tex, texture->GetBackendTexture());
 	for (size_t idx = 0; idx < uvs.size(); idx += 2)
 	{
 		if (texture->GetWidth() > 0.0f)
@@ -67,6 +70,12 @@ inline void DrawTextureImpl(const CShaderProgramPtr& shader, CTexturePtr texture
 class CCanvas2D::Impl
 {
 public:
+	Impl()
+		// TODO: remove global renderer access as pass as an argument.
+		: DeviceCommandContext(g_Renderer.GetDeviceCommandContext())
+	{
+	}
+
 	void BindTechIfNeeded()
 	{
 		if (Tech)
@@ -76,8 +85,7 @@ public:
 		Tech = g_Renderer.GetShaderManager().LoadEffect(str_canvas2d, defines);
 		ENSURE(Tech);
 		Tech->BeginPass();
-		// TODO: remove global renderer access.
-		g_Renderer.GetDeviceCommandContext()->SetGraphicsPipelineState(
+		DeviceCommandContext->SetGraphicsPipelineState(
 			Tech->GetGraphicsPipelineStateDesc());
 	}
 
@@ -90,6 +98,7 @@ public:
 		Tech.reset();
 	}
 
+	Renderer::Backend::GL::CDeviceCommandContext* DeviceCommandContext;
 	CShaderTechniquePtr Tech;
 };
 
@@ -117,7 +126,7 @@ void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width
 	}
 
 	CShaderProgramPtr shader = m->Tech->GetShader();
-	shader->BindTexture(str_tex, g_Renderer.GetTextureManager().GetTransparentTexture());
+	shader->BindTexture(str_tex, g_Renderer.GetTextureManager().GetTransparentTexture()->GetBackendTexture());
 	shader->Uniform(str_transform, GetDefaultGuiMatrix());
 	shader->Uniform(str_colorAdd, color);
 	shader->Uniform(str_colorMul, CColor(0.0f, 0.0f, 0.0f, 0.0f));
@@ -151,7 +160,8 @@ void CCanvas2D::DrawRect(const CRect& rect, const CColor& color)
 
 	m->BindTechIfNeeded();
 	DrawTextureImpl(
-		m->Tech->GetShader(), g_Renderer.GetTextureManager().GetTransparentTexture(),
+		m->DeviceCommandContext, m->Tech->GetShader(),
+		g_Renderer.GetTextureManager().GetTransparentTexture(),
 		vertices, uvs, CColor(0.0f, 0.0f, 0.0f, 0.0f), color, 0.0f);
 }
 
@@ -180,7 +190,8 @@ void CCanvas2D::DrawTexture(
 	};
 
 	m->BindTechIfNeeded();
-	DrawTextureImpl(m->Tech->GetShader(), texture, vertices, uvs, multiply, add, grayscaleFactor);
+	DrawTextureImpl(m->DeviceCommandContext, m->Tech->GetShader(),
+		texture, vertices, uvs, multiply, add, grayscaleFactor);
 }
 
 void CCanvas2D::DrawText(CTextRenderer& textRenderer)
@@ -190,7 +201,7 @@ void CCanvas2D::DrawText(CTextRenderer& textRenderer)
 	CShaderProgramPtr shader = m->Tech->GetShader();
 	shader->Uniform(str_grayscaleFactor, 0.0f);
 
-	textRenderer.Render(shader, GetDefaultGuiMatrix());
+	textRenderer.Render(m->DeviceCommandContext, shader, GetDefaultGuiMatrix());
 }
 
 void CCanvas2D::Flush()

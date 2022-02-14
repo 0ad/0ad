@@ -3,13 +3,12 @@
   <castshadow/>
   <group>
     <variant file="biped/base_citizen_soldier.xml">
-      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_egyptian_e.xml" attachpoint="head"/>
       </props>
       <textures>
-        <texture file="skeletal/ptol_isp_a_1.png" name="baseTex"/>
-        <texture file="skeletal/ptol_isp_a_1_spec.png" name="specTex"/>
+        <texture file="skeletal/mace/tunic_hellenistic_e_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

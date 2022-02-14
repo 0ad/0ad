@@ -85,13 +85,12 @@ void CPostprocManager::Initialize()
 	if (m_IsInitialized)
 		return;
 
-	GLint maxSamples = 0;
-	glGetIntegerv(GL_MAX_SAMPLES, &maxSamples);
-	const GLsizei possibleSampleCounts[] = {2, 4, 8, 16};
+	const uint32_t maxSamples = g_VideoMode.GetBackendDevice()->GetCapabilities().maxSampleCount;
+	const uint32_t possibleSampleCounts[] = {2, 4, 8, 16};
 	std::copy_if(
 		std::begin(possibleSampleCounts), std::end(possibleSampleCounts),
 		std::back_inserter(m_AllowedSampleCounts),
-		[maxSamples](const GLsizei sampleCount) { return sampleCount <= maxSamples; } );
+		[maxSamples](const uint32_t sampleCount) { return sampleCount <= maxSamples; } );
 
 	// The screen size starts out correct and then must be updated with Resize()
 	m_Width = g_Renderer.GetWidth();
@@ -124,8 +123,8 @@ void CPostprocManager::RecreateBuffers()
 	Cleanup();
 
 	#define GEN_BUFFER_RGBA(name, w, h) \
-		name = Renderer::Backend::GL::CTexture::Create2D( \
-			Renderer::Backend::Format::R8G8B8A8, w, h, \
+		name = g_VideoMode.GetBackendDevice()->CreateTexture2D( \
+			"PostProc" #name, Renderer::Backend::Format::R8G8B8A8, w, h, \
 			Renderer::Backend::Sampler::MakeDefaultSampler( \
 				Renderer::Backend::Sampler::Filter::LINEAR, \
 				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
@@ -154,15 +153,15 @@ void CPostprocManager::RecreateBuffers()
 	#undef GEN_BUFFER_RGBA
 
 	// Allocate the Depth/Stencil texture.
-	m_DepthTex = Renderer::Backend::GL::CTexture::Create2D(
+	m_DepthTex = g_VideoMode.GetBackendDevice()->CreateTexture2D("PostPRocDepthTexture",
 		Renderer::Backend::Format::D24_S8, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
 
-	glBindTexture(GL_TEXTURE_2D, m_DepthTex->GetHandle());
+	g_Renderer.GetDeviceCommandContext()->BindTexture(0, GL_TEXTURE_2D, m_DepthTex->GetHandle());
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
-	glBindTexture(GL_TEXTURE_2D, 0);
+	g_Renderer.GetDeviceCommandContext()->BindTexture(0, GL_TEXTURE_2D, 0);
 
 	// Set up the framebuffers with some initial textures.
 	m_CaptureFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
@@ -541,16 +540,10 @@ void CPostprocManager::UpdateAntiAliasingTechnique()
 	}
 	else if (m_AAName.size() > msaaPrefix.size() && m_AAName.substr(0, msaaPrefix.size()) == msaaPrefix)
 	{
-#if !CONFIG2_GLES
 		// We don't want to enable MSAA in Atlas, because it uses wxWidgets and its canvas.
 		if (g_AtlasGameLoop && g_AtlasGameLoop->running)
 			return;
-		const bool is_msaa_supported =
-			ogl_HaveVersion(3, 3) &&
-			ogl_HaveExtension("GL_ARB_multisample") &&
-			ogl_HaveExtension("GL_ARB_texture_multisample") &&
-			!m_AllowedSampleCounts.empty();
-		if (!is_msaa_supported)
+		if (!g_VideoMode.GetBackendDevice()->GetCapabilities().multisampling && !m_AllowedSampleCounts.empty())
 		{
 			LOGWARNING("MSAA is unsupported.");
 			return;
@@ -565,10 +558,6 @@ void CPostprocManager::UpdateAntiAliasingTechnique()
 		}
 		m_UsingMultisampleBuffer = true;
 		CreateMultisampleBuffer();
-#else
-		#warning TODO: implement and test MSAA for GLES
-		LOGWARNING("MSAA is unsupported.");
-#endif
 	}
 }
 
@@ -605,7 +594,7 @@ void CPostprocManager::CreateMultisampleBuffer()
 {
 	glEnable(GL_MULTISAMPLE);
 
-	m_MultisampleColorTex = Renderer::Backend::GL::CTexture::Create(
+	m_MultisampleColorTex = g_VideoMode.GetBackendDevice()->CreateTexture("PostProcColorMS",
 		Renderer::Backend::GL::CTexture::Type::TEXTURE_2D_MULTISAMPLE,
 		Renderer::Backend::Format::R8G8B8A8, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
@@ -613,7 +602,7 @@ void CPostprocManager::CreateMultisampleBuffer()
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1, m_MultisampleCount);
 
 	// Allocate the Depth/Stencil texture.
-	m_MultisampleDepthTex = Renderer::Backend::GL::CTexture::Create(
+	m_MultisampleDepthTex = g_VideoMode.GetBackendDevice()->CreateTexture("PostProcDepthMS",
 		Renderer::Backend::GL::CTexture::Type::TEXTURE_2D_MULTISAMPLE,
 		Renderer::Backend::Format::D24_S8, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(

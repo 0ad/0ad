@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>skeletal/horse_tessalian.dae</mesh>
+      <props>
+        <prop actor="units/ptolemies/hero_cavalry_spearman_ptolemy_III_r.xml" attachpoint="rider"/>
+        <prop actor="props/horse/sele_crest.xml" attachpoint="head"/>
+        <prop actor="props/horse/cav_peytral_sele.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_blanket_mace_hero.xml" attachpoint="root"/>
+        <prop actor="props/horse/cav_rein_leather.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant file="quadraped/horse/beige.xml" frequency="1" name="beige"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_trot.xml" name="Horse-Trot" frequency="1"/>
+    <variant file="quadraped/base_horse_death.xml" name="Spearman Horse"/>
+    <variant file="quadraped/base_horse_run.xml" name="Spearman Horse"/>
+  </group>
+  <material>no_trans_norm_spec.xml</material>
+</actor>

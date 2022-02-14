@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "graphics/Font.h"
 #include "graphics/FontManager.h"
 #include "graphics/ShaderProgram.h"
+#include "graphics/TextureManager.h"
 #include "lib/ogl.h"
 #include "maths/Matrix3D.h"
 #include "ps/CStrIntern.h"
@@ -201,7 +202,9 @@ struct SBatchCompare
 	}
 };
 
-void CTextRenderer::Render(const CShaderProgramPtr& shader, const CMatrix3D& transform)
+void CTextRenderer::Render(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderProgramPtr& shader, const CMatrix3D& transform)
 {
 	std::vector<u16> indexes;
 	std::vector<t2f_v2i> vertexes;
@@ -232,7 +235,8 @@ void CTextRenderer::Render(const CShaderProgramPtr& shader, const CMatrix3D& tra
 		if (lastTexture != batch.font->GetTexture().get())
 		{
 			lastTexture = batch.font->GetTexture().get();
-			shader->BindTexture(str_tex, batch.font->GetTexture());
+			lastTexture->UploadBackendTextureIfNeeded(deviceCommandContext);
+			shader->BindTexture(str_tex, lastTexture->GetBackendTexture());
 		}
 
 		CMatrix3D translation;

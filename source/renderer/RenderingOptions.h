@@ -111,7 +111,6 @@ OPTION_CUSTOM_SETTER(NAME, TYPE); OPTION_GETTER(NAME, TYPE); OPTION_DEF(NAME, TY
 	OPTION(WaterReflection, bool);
 
 	OPTION(ShadowAlphaFix, bool);
-	OPTION(ARBProgramShadow, bool);
 	OPTION(Particles, bool);
 	OPTION(GPUSkinning, bool);
 	OPTION(Silhouettes, bool);

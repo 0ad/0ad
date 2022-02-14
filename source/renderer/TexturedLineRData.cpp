@@ -35,7 +35,9 @@
  * because it allows you to work with variable amounts of vertices and indices more easily. New code should prefer
  * to use VertexArray where possible, though. */
 
-void CTexturedLineRData::Render(const SOverlayTexturedLine& line, const CShaderProgramPtr& shader)
+void CTexturedLineRData::Render(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const SOverlayTexturedLine& line, const CShaderProgramPtr& shader)
 {
 	if (!m_VB || !m_VBIndices)
 		return; // might have failed to allocate
@@ -44,8 +46,10 @@ void CTexturedLineRData::Render(const SOverlayTexturedLine& line, const CShaderP
 
 	const int streamFlags = shader->GetStreamFlags();
 
-	shader->BindTexture(str_baseTex, line.m_TextureBase);
-	shader->BindTexture(str_maskTex, line.m_TextureMask);
+	line.m_TextureBase->UploadBackendTextureIfNeeded(deviceCommandContext);
+	line.m_TextureMask->UploadBackendTextureIfNeeded(deviceCommandContext);
+	shader->BindTexture(str_baseTex, line.m_TextureBase->GetBackendTexture());
+	shader->BindTexture(str_maskTex, line.m_TextureMask->GetBackendTexture());
 	shader->Uniform(str_objectColor, line.m_Color);
 
 	GLsizei stride = sizeof(CTexturedLineRData::SVertex);

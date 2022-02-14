@@ -21,7 +21,6 @@
 
 #include "lib/code_annotation.h"
 #include "lib/config2.h"
-#include "lib/res/graphics/ogl_tex.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "renderer/backend/gl/Device.h"

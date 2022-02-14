@@ -3,66 +3,33 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/helmets/hele_thracian_p3.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/pelte_sele_bronze_a.xml" attachpoint="shield_arm"/>
       </props>
+      <textures>
+        <texture file="skeletal/hele/linothorax_01_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="armor long">
-      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
+    <variant frequency="1" name="linothorax_01_03">
       <textures>
-        <texture file="skeletal/mace_bronzeshield_pikeman_a.png" name="baseTex"/>
+        <texture file="skeletal/sele/linothorax_01_03.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="armor long 02">
-      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
+    <variant frequency="1" name="linothorax_01_02">
       <textures>
-        <texture file="skeletal/mace_bronzeshield_pikeman_a_02.png" name="baseTex"/>
+        <texture file="skeletal/sele/linothorax_01_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="armor short">
+    <variant frequency="1" name="linothorax_01_01">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <textures>
-        <texture file="skeletal/mace_bronzeshield_2.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="mace-linothorax-1a">
-      <textures>
-        <texture file="skeletal/mace_linothorax_1_a.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="mace-linothorax-1b">
-      <textures>
-        <texture file="skeletal/mace_linothorax_1_b.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="mace-linothorax-1c">
-      <textures>
-        <texture file="skeletal/mace_linothorax_1_c.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="mace-linothorax-1d">
-      <textures>
-        <texture file="skeletal/mace_linothorax_1_d.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="mace-linothorax-1e">
-      <textures>
-        <texture file="skeletal/mace_linothorax_1_e.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="mace-linothorax-1f">
-      <textures>
-        <texture file="skeletal/mace_linothorax_1_f.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="mace-linothorax-1g">
-      <textures>
-        <texture file="skeletal/mace_linothorax_1_g.png" name="baseTex"/>
+        <texture file="skeletal/sele/linothorax_01_01.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -104,5 +71,5 @@
   <group>
     <variant name="Idle"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

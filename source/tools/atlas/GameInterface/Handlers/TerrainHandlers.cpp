@@ -91,11 +91,11 @@ sTerrainTexturePreview GetPreview(CTerrainTextureEntry* tex, size_t width, size_
 	if (canUsePreview)
 	{
 		size_t level = 0;
-		while ((texture.m_Width >> (level + 1)) >= width && (texture.m_Height >> (level + 1)) >= height)
+		while ((texture.m_Width >> (level + 1)) >= width && (texture.m_Height >> (level + 1)) >= height && level < texture.GetMIPLevels().size())
 			++level;
 		// Extract the middle section (as a representative preview),
 		// and copy into buffer.
-		u8* data = texture.GetMipLevelData(level);
+		u8* data = texture.GetMIPLevels()[level].data;
 		ENSURE(data);
 		const size_t levelWidth = texture.m_Width >> level;
 		const size_t levelHeight = texture.m_Height >> level;

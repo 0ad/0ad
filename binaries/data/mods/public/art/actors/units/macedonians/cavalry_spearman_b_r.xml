@@ -10,22 +10,8 @@
         <prop actor="props/units/weapons/spear_lance_cavalry.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/capes/rider/cape_med_player.xml" attachpoint="root"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="hele_tunic_hellenistic_basic_1_b">
       <textures>
-        <texture file="skeletal/hele_tunic_hellenistic_basic_1_b.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="hele_tunic_hellenistic_basic_1_c">
-      <textures>
-        <texture file="skeletal/hele_tunic_hellenistic_basic_1_c.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="hele_tunic_hellenistic_basic_2_a">
-      <textures>
-        <texture file="skeletal/hele_tunic_hellenistic_basic_2_a.png" name="baseTex"/>
+        <texture file="skeletal/mace/tunic_boots_01.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -40,5 +26,5 @@
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death.xml"/>
   </group>
-  <material>default.xml</material>
+  <material>player_trans.xml</material>
 </actor>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_hele_e.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/helmets/hele_phrygian_e1.xml" attachpoint="helmet"/>
+        <prop actor="props/units/armor/greave_12_silver_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/armor/greave_12_silver_r.xml" attachpoint="leg_R"/>
+      </props>
+      <textures>
+        <texture file="skeletal/mace/cuirass_hero_01.png" name="baseTex"/>
+        <texture file="skeletal/mace/cuirass_hero_01_norm.png" name="normTex"/>
+        <texture file="skeletal/mace/cuirass_hero_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/rider/cavalry/base_swordsman_ready.xml" name="Swordsman-Ready" frequency="1"/>
+    <variant file="biped/rider/death.xml"/>
+  </group>
+  <material>player_trans_norm_spec.xml</material>
+</actor>

@@ -5,51 +5,26 @@
     <variant>
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/new/head_hele_e.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_hele_a.xml" attachpoint="head"/>
+        <prop actor="props/units/helmets/hele_thracian_s2.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/aspis_mace_h_01.xml" attachpoint="shield_arm"/>
-        <prop actor="props/units/armor/greave_01_silver_r.xml" attachpoint="leg_R"/>
-        <prop actor="props/units/armor/greave_01_silver_l.xml" attachpoint="leg_L"/>
+        <prop actor="props/units/weapons/sheath_falcata_e.xml" attachpoint="sheath_02_L"/>
+        <prop actor="props/units/shields/aspis_mace_h_02.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/capes/cape_long_player.xml" attachpoint="root"/>
+        <prop actor="props/units/armor/greave_02_bronze_r.xml" attachpoint="leg_R"/>
+        <prop actor="props/units/armor/greave_02_bronze_l.xml" attachpoint="leg_L"/>
       </props>
       <textures>
-        <texture file="skeletal/mace_hero_craterus.png" name="baseTex"/>
-        <texture file="skeletal/mace_hero_craterus_norm.png" name="normTex"/>
-        <texture file="skeletal/mace_hero_craterus_spec.png" name="specTex"/>
+        <texture file="skeletal/mace/compound_linothorax_02_01.png" name="baseTex"/>
+        <texture file="skeletal/mace/compound_linothorax_02_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Helmet Chalcidean Silver-01">
-      <props>
-        <prop actor="props/units/helmets/hele_chalcidean_s1.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Helmet Chalcidean Silver-02">
-      <props>
-        <prop actor="props/units/helmets/hele_chalcidean_s2.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Helmet Chalcidean Silver-03">
-      <props>
-        <prop actor="props/units/helmets/hele_chalcidean_s3.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Helmet Chalcidean Silver-04">
-      <props>
-        <prop actor="props/units/helmets/hele_chalcidean_s4.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Helmet Chalcidean Silver-05">
-      <props>
-        <prop actor="props/units/helmets/hele_chalcidean_s5.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-  </group>
-  <group>
-    <variant file="biped/base_swordsman_shieldarm_ready.xml"/>
-    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/base_swordsman_shieldarm_ready.xml" name="Swordsman-Shieldarm-Ready" frequency="1"/>
     <variant file="biped/attack_capture.xml"/>
-    <variant file="biped/death_infantry.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/death_cape_long.xml"/>
   </group>
-  <material>player_trans_parallax_spec.xml</material>
+  <material>player_trans.xml</material>
 </actor>

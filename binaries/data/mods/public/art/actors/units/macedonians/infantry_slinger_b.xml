@@ -18,29 +18,41 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="shield leather">
+      <props>
+        <prop actor="props/units/shields/pelte_round_leather.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="shield wood">
+      <props>
+        <prop actor="props/units/shields/pelte_round_wood.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <group>
     <variant frequency="3" name="illy-tunic-basic-01-a">
       <textures>
-        <texture file="skeletal/illy_tunic_01_basic_a.png" name="baseTex"/>
+        <texture file="skeletal/illy/tunic_01_b_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="3" name="illy-tunic-basic-01-b">
       <textures>
-        <texture file="skeletal/illy_tunic_01_basic_b.png" name="baseTex"/>
+        <texture file="skeletal/illy/tunic_01_b_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="hele-tunic-02-a">
       <textures>
-        <texture file="skeletal/hele_tunic_2_a.png" name="baseTex"/>
+        <texture file="skeletal/hele/tunic_02_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="hele-tunic-02-b">
       <textures>
-        <texture file="skeletal/hele_tunic_2_b.png" name="baseTex"/>
+        <texture file="skeletal/hele/tunic_02_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="hele-tunic-02-c">
       <textures>
-        <texture file="skeletal/hele_tunic_2_c.png" name="baseTex"/>
+        <texture file="skeletal/hele/tunic_02_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

@@ -220,7 +220,8 @@ void CMiniMap::RecreateFlareTextures()
 	m_FlareTextures.reserve(m_FlareTextureCount);
 	for (u32 i = 0; i < m_FlareTextureCount; ++i)
 	{
-		const CTextureProperties textureProps(fmt::sprintf(textureNumberingFormat, i).c_str());
+		CTextureProperties textureProps(fmt::sprintf(textureNumberingFormat, i).c_str());
+		textureProps.SetIgnoreQuality(true);
 		m_FlareTextures.emplace_back(g_Renderer.GetTextureManager().CreateTexture(textureProps));
 	}
 }

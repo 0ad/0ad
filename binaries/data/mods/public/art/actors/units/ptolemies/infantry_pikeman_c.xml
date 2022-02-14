@@ -12,7 +12,7 @@
         <prop actor="props/units/weapons/sheath_xiphos.xml" attachpoint="sheath_02_L"/>
       </props>
       <textures>
-        <texture file="skeletal/ptol_isp_e_1_spec.png" name="specTex"/>
+        <texture file="skeletal/ptol/linothorax_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -31,32 +31,34 @@
   <group>
     <variant frequency="1" name="Linothorax-Agema-01">
       <textures>
-        <texture file="skeletal/ptol_linothorax_agema_01.png" name="baseTex"/>
+        <texture file="skeletal/ptol/linothorax_agema_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Linothorax-Agema-02">
       <textures>
-        <texture file="skeletal/ptol_linothorax_agema_02.png" name="baseTex"/>
+        <texture file="skeletal/ptol/linothorax_agema_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Linothorax-Agema-03">
       <textures>
-        <texture file="skeletal/ptol_linothorax_agema_03.png" name="baseTex"/>
+        <texture file="skeletal/ptol/linothorax_agema_03.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Linothorax-Agema-04">
       <textures>
-        <texture file="skeletal/ptol_linothorax_agema_04.png" name="baseTex"/>
+        <texture file="skeletal/ptol/linothorax_agema_04.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Scale-Agema-01">
       <textures>
-        <texture file="skeletal/ptol_scale_agema_01.png" name="baseTex"/>
+        <texture file="skeletal/ptol/scale_agema_01.png" name="baseTex"/>
+        <texture file="skeletal/hele/scale_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Scale-Agema-02">
       <textures>
-        <texture file="skeletal/ptol_scale_agema_02.png" name="baseTex"/>
+        <texture file="skeletal/ptol/scale_agema_02.png" name="baseTex"/>
+        <texture file="skeletal/hele/scale_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>

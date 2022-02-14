@@ -9,18 +9,31 @@
         <prop actor="props/units/helmets/ptol_quilted_b.xml" attachpoint="helmet"/>
         <prop actor="props/units/shields/pelte_sml_player_color.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/sarissa.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/sheath_xiphos.xml" attachpoint="sheath_02_L"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Tunic-Machimoi-01">
       <textures>
-        <texture file="skeletal/ptol_tunic_machimoi_01.png" name="baseTex"/>
+        <texture file="skeletal/ptol/tunic_machimoi_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Tunic-Machimoi-02">
       <textures>
-        <texture file="skeletal/ptol_tunic_machimoi_02.png" name="baseTex"/>
+        <texture file="skeletal/ptol/tunic_machimoi_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Tunic-Machimoi-01">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <textures>
+        <texture file="skeletal/ptol/tunic_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Tunic-Machimoi-02">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <textures>
+        <texture file="skeletal/ptol/tunic_02.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

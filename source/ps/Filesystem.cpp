@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -16,15 +16,14 @@
  */
 
 #include "precompiled.h"
+
 #include "Filesystem.h"
 
+#include "lib/sysdep/dir_watch.h"
+#include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "ps/Profile.h"
-
-#include "lib/res/h_mgr.h"	// h_reload
-#include "lib/sysdep/dir_watch.h"
-#include "lib/utf8.h"
 
 #include <boost/filesystem.hpp>
 
@@ -93,8 +92,6 @@ Status ReloadChangedFiles()
 
 			for (size_t j = 0; j < g_ReloadFuncs.size(); ++j)
 				g_ReloadFuncs[j].first(g_ReloadFuncs[j].second, pathname);
-
-			RETURN_STATUS_IF_ERR(h_reload(g_VFS, pathname));
 		}
 	}
 	return INFO::OK;

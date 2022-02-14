@@ -3,7 +3,7 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/mace_sling_pouch.xml" attachpoint="sheath_L"/>
@@ -18,19 +18,36 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="shield leather">
+      <props>
+        <prop actor="props/units/shields/pelte_round_leather.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="shield wood">
+      <props>
+        <prop actor="props/units/shields/pelte_round_wood.xml" attachpoint="shield"/>
+      </props>
+    </variant>
+  </group>
+  <group>
     <variant name="judea-tunic-1a">
       <textures>
-        <texture file="skeletal/judea_tunic_basic_1_a.png" name="baseTex"/>
+        <texture file="skeletal/jude/padded_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant name="judea-tunic-1b">
       <textures>
-        <texture file="skeletal/judea_tunic_basic_1_b.png" name="baseTex"/>
+        <texture file="skeletal/jude/padded_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant name="judea-tunic-1c">
       <textures>
-        <texture file="skeletal/judea_tunic_basic_1_c.png" name="baseTex"/>
+        <texture file="skeletal/jude/padded_01_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="judea-tunic-1d">
+      <textures>
+        <texture file="skeletal/jude/padded_01_04.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

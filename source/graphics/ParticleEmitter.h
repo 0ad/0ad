@@ -21,6 +21,7 @@
 #include "graphics/ModelAbstract.h"
 #include "graphics/ParticleEmitterType.h"
 #include "maths/Quaternion.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/VertexArray.h"
 
 #include <map>
@@ -120,7 +121,9 @@ public:
 	/**
 	 * Bind rendering state (textures and blend modes).
 	 */
-	void Bind(const CShaderProgramPtr& shader);
+	void Bind(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderProgramPtr& shader);
 
 	/**
 	 * Draw the vertex array.

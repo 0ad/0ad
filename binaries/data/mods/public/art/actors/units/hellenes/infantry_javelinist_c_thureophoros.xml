@@ -16,7 +16,7 @@
   <group>
     <variant name="hele-tunic-3-psiloi-b">
       <textures>
-        <texture file="skeletal/hele_tunic_3_psiloi_b.png" name="baseTex"/>
+        <texture file="skeletal/hele/tunic_03_psiloi_03.png" name="baseTex"/>
       </textures>
     </variant>
     <variant name="hele-epilektoi-2">
@@ -57,6 +57,7 @@
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/attack_ranged_javelinist.xml"/>
     <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_cape_long.xml"/>
   </group>
   <material>player_trans.xml</material>

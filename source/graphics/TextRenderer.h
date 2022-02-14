@@ -23,6 +23,7 @@
 #include "maths/Rect.h"
 #include "maths/Vector2D.h"
 #include "ps/CStrIntern.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 
 #include <list>
 
@@ -102,7 +103,9 @@ public:
 	/**
 	 * Render all of the previously printed text calls.
 	 */
-	void Render(const CShaderProgramPtr& shader, const CMatrix3D& transform);
+	void Render(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderProgramPtr& shader, const CMatrix3D& transform);
 
 private:
 	friend struct SBatchCompare;

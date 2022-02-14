@@ -67,16 +67,6 @@ public:
 		size_t m_Particles;
 	};
 
-	struct Caps
-	{
-		bool m_ARBProgram;
-		bool m_ARBProgramShadow;
-		bool m_VertexShader;
-		bool m_FragmentShader;
-		bool m_Shadows;
-		bool m_PrettyWater;
-	};
-
 	enum class ScreenShotType
 	{
 		NONE,
@@ -115,9 +105,6 @@ public:
 	// get the last viewport
 	SViewPort GetViewport();
 
-	// bind a GL texture object to active unit
-	void BindTexture(int unit, unsigned int tex);
-
 	// return stats accumulated for current frame
 	Stats& GetStats() { return m_Stats; }
 
@@ -134,13 +121,6 @@ public:
 	CSceneRenderer& GetSceneRenderer();
 
 	CDebugRenderer& GetDebugRenderer();
-
-	/**
-	 * GetCapabilities: Return which OpenGL capabilities are available and enabled.
-	 *
-	 * @return capabilities structure
-	 */
-	const Caps& GetCapabilities() const { return m_Caps; }
 
 	/**
 	 * Performs a complete frame without presenting to force loading all needed
@@ -189,10 +169,6 @@ protected:
 
 	SViewPort m_Viewport;
 
-	// card capabilities
-	Caps m_Caps;
-	// build card cap bits
-	void EnumCaps();
 	// per-frame renderer stats
 	Stats m_Stats;
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -607,13 +607,17 @@ void CCmpTerritoryManager::UpdateBoundaryLines()
 	std::vector<STerritoryBoundary> boundaries = ComputeBoundaries();
 
 	CTextureProperties texturePropsBase("art/textures/misc/territory_border.png");
-	texturePropsBase.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
-	texturePropsBase.SetMaxAnisotropy(2.f);
+	texturePropsBase.SetAddressMode(
+		Renderer::Backend::Sampler::AddressMode::CLAMP_TO_BORDER,
+		Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
+	texturePropsBase.SetAnisotropicFilter(true);
 	CTexturePtr textureBase = g_Renderer.GetTextureManager().CreateTexture(texturePropsBase);
 
 	CTextureProperties texturePropsMask("art/textures/misc/territory_border_mask.png");
-	texturePropsMask.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
-	texturePropsMask.SetMaxAnisotropy(2.f);
+	texturePropsMask.SetAddressMode(
+		Renderer::Backend::Sampler::AddressMode::CLAMP_TO_BORDER,
+		Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
+	texturePropsMask.SetAnisotropicFilter(true);
 	CTexturePtr textureMask = g_Renderer.GetTextureManager().CreateTexture(texturePropsMask);
 
 	CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());

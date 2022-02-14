@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,6 +39,7 @@ Desc MakeDefaultSampler(Filter filter, AddressMode addressMode)
 	desc.addressModeW = addressMode;
 	desc.anisotropyEnabled = false;
 	desc.mipLODBias = 0.0f;
+	desc.borderColor = CColor(0.0f, 0.0f, 0.0f, 0.0f);
 	return desc;
 }
 

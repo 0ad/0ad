@@ -3,13 +3,15 @@
   <castshadow/>
   <group>
     <variant file="biped/base_elephant_driver_relax_shield.xml" frequency="100" name="Base">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_numid_all.xml" attachpoint="head"/>
-        <prop actor="props/units/shields/kart_archer_e.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/shields/pelte_bronze_01.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
       </props>
-      <textures><texture file="skeletal/hele_isp_b_2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/ptol/tunic_01.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans.xml</material>

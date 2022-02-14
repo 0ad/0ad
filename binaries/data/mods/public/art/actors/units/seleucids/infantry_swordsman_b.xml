@@ -6,66 +6,38 @@
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_thrace.xml" attachpoint="head"/>
+        <prop actor="props/units/helmets/hele_kausia_cap_player.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/rhomphaia.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/thra_thureos_elite.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
+        <prop actor="props/units/capes/cape_thracian.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="tunic_basic_01_01">
-      <textures>
-        <texture file="skeletal/thrac/tunic_basic_01_01.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="tunic_basic_02_02">
-      <textures>
-        <texture file="skeletal/thrac/tunic_basic_02_02.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="tunic_basic_03_01">
-      <textures>
-        <texture file="skeletal/thrac/tunic_basic_03_01.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="tunic_basic_04_02">
-      <textures>
-        <texture file="skeletal/thrac/tunic_basic_04_02.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="tunic-illyrian-advanced-01-a">
-      <textures>
-        <texture file="skeletal/illy_tunic_01_advanced_a.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="tunic-illyrian-advanced-01-b">
-      <textures>
-        <texture file="skeletal/illy_tunic_01_advanced_b.png" name="baseTex"/>
-      </textures>
-    </variant>
     <variant frequency="1" name="tunic-hellenistic-2">
       <textures>
-        <texture file="skeletal/hele_tunic_hellenistic_elite_1.png" name="baseTex"/>
+        <texture file="skeletal/mace/tunic_hellenistic_b_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="tunic-hellenistic-3">
       <textures>
-        <texture file="skeletal/hele_tunic_hellenistic_elite_2.png" name="baseTex"/>
+        <texture file="skeletal/mace/tunic_hellenistic_b_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="tunic-hellenistic-4">
       <textures>
-        <texture file="skeletal/hele_tunic_hellenistic_elite_3.png" name="baseTex"/>
+        <texture file="skeletal/mace/tunic_hellenistic_b_01_03.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="tunic-hellenistic-5">
       <textures>
-        <texture file="skeletal/hele_tunic_hellenistic_elite_4.png" name="baseTex"/>
+        <texture file="skeletal/mace/tunic_hellenistic_b_01_04.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant file="biped/base_rhomphaia_shield_fast.xml"/>
+    <variant file="biped/base_rhomphaia_shield_fast.xml" frequency="1" name="Swordsman-Rhomphaia-Fast"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>

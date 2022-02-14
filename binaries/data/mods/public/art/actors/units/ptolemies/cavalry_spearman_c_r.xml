@@ -9,73 +9,71 @@
         <prop actor="props/units/weapons/spear_long.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/aspis_ptol_c.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/capes/rider/cape_med_player.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/sheath_xiphos.xml" attachpoint="sheath_02_L"/>
       </props>
       <textures>
-        <texture file="skeletal/ptol_isp_e_1_spec.png" name="specTex"/>
+        <texture file="skeletal/hele/linothorax_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Helmet-Thracian-01">
+    <variant frequency="1" name="Konon-01">
       <props>
-        <prop actor="props/units/helmets/hele_thracian_romanized_p1.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/hele_boeotian_b3.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="3" name="Helmet-Thracian-02">
+    <variant frequency="2" name="Konon-02">
       <props>
-        <prop actor="props/units/helmets/hele_thracian_romanized_p1_crested.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/hele_boeotian_g3.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Boeotian-g4">
+      <props>
+        <prop actor="props/units/helmets/hele_boeotian_g4.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Linothorax-Agema-01">
       <textures>
-        <texture file="skeletal/ptol_linothorax_agema_01.png" name="baseTex"/>
+        <texture file="skeletal/ptol/linothorax_agema_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Linothorax-Agema-02">
       <textures>
-        <texture file="skeletal/ptol_linothorax_agema_02.png" name="baseTex"/>
+        <texture file="skeletal/ptol/linothorax_agema_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Linothorax-Agema-03">
       <textures>
-        <texture file="skeletal/ptol_linothorax_agema_03.png" name="baseTex"/>
+        <texture file="skeletal/ptol/linothorax_agema_03.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Linothorax-Agema-04">
       <textures>
-        <texture file="skeletal/ptol_linothorax_agema_04.png" name="baseTex"/>
+        <texture file="skeletal/ptol/linothorax_agema_04.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Scale-Agema-01">
+    <variant frequency="2" name="Scale-Agema-01">
       <textures>
-        <texture file="skeletal/ptol_scale_agema_01.png" name="baseTex"/>
+        <texture file="skeletal/ptol/scale_agema_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Scale-Agema-02">
+    <variant frequency="2" name="Scale-Agema-02">
       <textures>
-        <texture file="skeletal/ptol_scale_agema_02.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Padded-Agema-01">
-      <textures>
-        <texture file="skeletal/ptol_padded_agema_01.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Padded-Agema-02">
-      <textures>
-        <texture file="skeletal/ptol_padded_agema_02.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Padded-Agema-03">
-      <textures>
-        <texture file="skeletal/ptol_padded_agema_03.png" name="baseTex"/>
+        <texture file="skeletal/ptol/scale_agema_02.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant file="biped/rider/cavalry/base_spearman_fast_shield_aspis.xml" frequency="1" name="Spearman-Fast-Shield-Aspis"/>
+    <variant file="biped/rider/cavalry/base_spearman_relax_shield_aspis.xml" name="Spearman-Relax-Shield-Aspis" frequency="1"/>
+    <variant file="biped/rider/carry_meat.xml"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/attack_slaughter_shield_hele.xml"/>
+    <variant file="biped/rider/promotion_shield.xml" />
+    <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death_aspis.xml"/>
   </group>
   <material>player_trans.xml</material>

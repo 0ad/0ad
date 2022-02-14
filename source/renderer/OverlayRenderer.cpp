@@ -409,8 +409,6 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 
 	ogl_WarnIfError();
 
-	glActiveTextureARB(GL_TEXTURE0);
-
 	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 
 	// ----------------------------------------------------------------------------------------
@@ -439,7 +437,7 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 		shaderTexLineNormal->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 
 		// batch render only the non-always-visible overlay lines using the normal shader
-		RenderTexturedOverlayLines(shaderTexLineNormal, false);
+		RenderTexturedOverlayLines(deviceCommandContext, shaderTexLineNormal, false);
 
 		shaderTechTexLineNormal->EndPass();
 	}
@@ -471,7 +469,7 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 		shaderTexLineAlwaysVisible->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 
 		// batch render only the always-visible overlay lines using the LoS-ignored shader
-		RenderTexturedOverlayLines(shaderTexLineAlwaysVisible, true);
+		RenderTexturedOverlayLines(deviceCommandContext, shaderTexLineAlwaysVisible, true);
 
 		shaderTechTexLineAlwaysVisible->EndPass();
 	}
@@ -479,13 +477,15 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 	// ----------------------------------------------------------------------------------------
 
 	// TODO: the shaders should probably be responsible for unbinding their textures
-	g_Renderer.BindTexture(1, 0);
-	g_Renderer.BindTexture(0, 0);
+	deviceCommandContext->BindTexture(1, GL_TEXTURE_2D, 0);
+	deviceCommandContext->BindTexture(0, GL_TEXTURE_2D, 0);
 
 	CVertexBuffer::Unbind();
 }
 
-void OverlayRenderer::RenderTexturedOverlayLines(const CShaderProgramPtr& shader, bool alwaysVisible)
+void OverlayRenderer::RenderTexturedOverlayLines(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderProgramPtr& shader, bool alwaysVisible)
 {
 #if !CONFIG2_GLES
 	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
@@ -500,7 +500,7 @@ void OverlayRenderer::RenderTexturedOverlayLines(const CShaderProgramPtr& shader
 			continue;
 
 		ENSURE(line->m_RenderData);
-		line->m_RenderData->Render(*line, shader);
+		line->m_RenderData->Render(deviceCommandContext, *line, shader);
 	}
 #if !CONFIG2_GLES
 	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
@@ -543,8 +543,6 @@ void OverlayRenderer::RenderQuadOverlays(
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 #endif
 
-	glActiveTextureARB(GL_TEXTURE0);
-
 	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 
 	shader->BindTexture(str_losTex, los.GetTexture());
@@ -569,8 +567,10 @@ void OverlayRenderer::RenderQuadOverlays(
 
 		const QuadBatchKey& maskPair = it->first;
 
-		shader->BindTexture(str_baseTex, maskPair.m_Texture);
-		shader->BindTexture(str_maskTex, maskPair.m_TextureMask);
+		maskPair.m_Texture->UploadBackendTextureIfNeeded(deviceCommandContext);
+		maskPair.m_TextureMask->UploadBackendTextureIfNeeded(deviceCommandContext);
+		shader->BindTexture(str_baseTex, maskPair.m_Texture->GetBackendTexture());
+		shader->BindTexture(str_maskTex, maskPair.m_TextureMask->GetBackendTexture());
 
 		int streamflags = shader->GetStreamFlags();
 
@@ -596,8 +596,8 @@ void OverlayRenderer::RenderQuadOverlays(
 	shaderTech->EndPass();
 
 	// TODO: the shader should probably be responsible for unbinding its textures
-	g_Renderer.BindTexture(1, 0);
-	g_Renderer.BindTexture(0, 0);
+	deviceCommandContext->BindTexture(1, GL_TEXTURE_2D, 0);
+	deviceCommandContext->BindTexture(0, GL_TEXTURE_2D, 0);
 
 	CVertexBuffer::Unbind();
 
@@ -620,8 +620,6 @@ void OverlayRenderer::RenderForegroundOverlays(
 #else
 	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-	glActiveTextureARB(GL_TEXTURE0);
 
 	CVector3D right = -viewCamera.GetOrientation().GetLeft();
 	CVector3D up = viewCamera.GetOrientation().GetUp();
@@ -652,7 +650,10 @@ void OverlayRenderer::RenderForegroundOverlays(
 	{
 		SOverlaySprite* sprite = m->sprites[i];
 		if (!i || sprite->m_Texture != m->sprites[i - 1]->m_Texture)
-			shader->BindTexture(str_baseTex, sprite->m_Texture);
+		{
+			sprite->m_Texture->UploadBackendTextureIfNeeded(deviceCommandContext);
+			shader->BindTexture(str_baseTex, sprite->m_Texture->GetBackendTexture());
+		}
 
 		shader->Uniform(str_colorMul, sprite->m_Color);
 

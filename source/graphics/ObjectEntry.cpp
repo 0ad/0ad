@@ -84,7 +84,7 @@ bool CObjectEntry::BuildVariation(const std::vector<const std::set<CStr>*>& comp
 		for (const CObjectBase::Samp& samp : m_Samplers)
 		{
 			CTextureProperties textureProps(samp.m_SamplerFile);
-			textureProps.SetWrap(GL_CLAMP_TO_BORDER);
+			textureProps.SetAddressMode(Renderer::Backend::Sampler::AddressMode::CLAMP_TO_BORDER);
 			CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 			// TODO: Should check which renderpath is selected and only preload the necessary textures.
 			texture->Prefetch();
@@ -141,7 +141,7 @@ bool CObjectEntry::BuildVariation(const std::vector<const std::set<CStr>*>& comp
 	for (const CObjectBase::Samp& samp : m_Samplers)
 	{
 		CTextureProperties textureProps(samp.m_SamplerFile);
-		textureProps.SetWrap(GL_CLAMP_TO_EDGE);
+		textureProps.SetAddressMode(Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
 		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 		// if we've loaded this model we're probably going to render it soon, so prefetch its texture.
 		// All textures are prefetched even in the fixed pipeline, including the normal maps etc.

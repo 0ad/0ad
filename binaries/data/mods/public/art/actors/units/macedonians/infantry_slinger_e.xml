@@ -7,8 +7,12 @@
       <props>
         <prop actor="props/units/heads/new/head_hele_e.xml" attachpoint="head"/>
         <prop actor="props/units/helmets/hele_kausia_cap_player.xml" attachpoint="helmet"/>
+        <prop actor="props/units/shields/pelte_cretan_bronze_02.xml" attachpoint="shield"/>
         <prop actor="props/units/mace_sling_pouch.xml" attachpoint="sheath_L"/>
       </props>
+      <textures>
+        <texture file="skeletal/hele/linothorax_01_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -19,17 +23,17 @@
     </variant>
     <variant frequency="1" name="illy-linothorax-01-a">
       <textures>
-        <texture file="skeletal/illy_linothorax_01_a.png" name="baseTex"/>
+        <texture file="skeletal/illy/linothorax_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="illy-linothorax-01-b">
       <textures>
-        <texture file="skeletal/illy_linothorax_01_b.png" name="baseTex"/>
+        <texture file="skeletal/illy/linothorax_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="illy-linothorax-01-c">
       <textures>
-        <texture file="skeletal/illy_linothorax_01_c.png" name="baseTex"/>
+        <texture file="skeletal/illy/linothorax_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -66,5 +70,5 @@
     <variant file="biped/build_farm.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

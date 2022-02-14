@@ -18,6 +18,7 @@
 #ifndef INCLUDED_RENDERER_BACKEND_GL_DEVICE
 #define INCLUDED_RENDERER_BACKEND_GL_DEVICE
 
+#include "renderer/backend/Format.h"
 #include "renderer/backend/gl/Framebuffer.h"
 #include "scriptinterface/ScriptForward.h"
 
@@ -38,10 +39,22 @@ namespace GL
 {
 
 class CDeviceCommandContext;
+class CTexture;
 
 class CDevice
 {
 public:
+	struct Capabilities
+	{
+		bool S3TC;
+		bool ARBShaders;
+		bool ARBShadersShadow;
+		bool multisampling;
+		bool anisotropicFiltering;
+		uint32_t maxSampleCount;
+		float maxAnisotropy;
+	};
+
 	~CDevice();
 
 	/**
@@ -60,7 +73,21 @@ public:
 
 	std::unique_ptr<CDeviceCommandContext> CreateCommandContext();
 
+	CDeviceCommandContext* GetActiveCommandContext() { return m_ActiveCommandContext; }
+
+	std::unique_ptr<CTexture> CreateTexture(const char* name, const CTexture::Type type,
+		const Format format, const uint32_t width, const uint32_t height,
+		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount);
+
+	std::unique_ptr<CTexture> CreateTexture2D(const char* name,
+		const Format format, const uint32_t width, const uint32_t height,
+		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount = 1, const uint32_t sampleCount = 1);
+
 	void Present();
+
+	bool IsFormatSupported(const Format format) const;
+
+	const Capabilities& GetCapabilities() const { return m_Capabilities; }
 
 private:
 	CDevice();
@@ -73,7 +100,14 @@ private:
 	std::string m_DriverInformation;
 	std::vector<std::string> m_Extensions;
 
+	// GL can have the only one command context at once.
+	// TODO: remove as soon as we have no GL code outside backend, currently
+	// it's used only as a helper for transition.
+	CDeviceCommandContext* m_ActiveCommandContext = nullptr;
+
 	std::unique_ptr<CFramebuffer> m_Backbuffer;
+
+	Capabilities m_Capabilities{};
 };
 
 } // namespace GL

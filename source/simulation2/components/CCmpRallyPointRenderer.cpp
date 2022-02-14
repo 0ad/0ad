@@ -112,13 +112,17 @@ void CCmpRallyPointRenderer::Init(const CParamNode& paramNode)
 	if (CRenderer::IsInitialised())
 	{
 		CTextureProperties texturePropsBase(m_LineTexturePath);
-		texturePropsBase.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
-		texturePropsBase.SetMaxAnisotropy(4.f);
+		texturePropsBase.SetAddressMode(
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_BORDER,
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
+		texturePropsBase.SetAnisotropicFilter(true);
 		m_Texture = g_Renderer.GetTextureManager().CreateTexture(texturePropsBase);
 
 		CTextureProperties texturePropsMask(m_LineTextureMaskPath);
-		texturePropsMask.SetWrap(GL_CLAMP_TO_BORDER, GL_CLAMP_TO_EDGE);
-		texturePropsMask.SetMaxAnisotropy(4.f);
+		texturePropsMask.SetAddressMode(
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_BORDER,
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
+		texturePropsMask.SetAnisotropicFilter(true);
 		m_TextureMask = g_Renderer.GetTextureManager().CreateTexture(texturePropsMask);
 	}
 }

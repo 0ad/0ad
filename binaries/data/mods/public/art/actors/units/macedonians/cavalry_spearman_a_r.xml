@@ -10,27 +10,25 @@
         <prop actor="props/units/weapons/spear_lance_cavalry.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/capes/rider/cape_med_player.xml" attachpoint="root"/>
       </props>
+      <textures>
+        <texture file="skeletal/hele/linothorax_01_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="armor-mace_bronzeshield_2">
+    <variant frequency="1" name="linothorax_01_01">
       <textures>
-        <texture file="skeletal/mace_bronzeshield_2.png" name="baseTex"/>
+        <texture file="skeletal/mace/linothorax_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="armor-mace_bronzeshield_pikeman_a">
+    <variant frequency="1" name="linothorax_01_02">
       <textures>
-        <texture file="skeletal/mace_bronzeshield_pikeman_a.png" name="baseTex"/>
+        <texture file="skeletal/mace/linothorax_01_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="armor-mace_linothorax_1_a">
+    <variant frequency="1" name="linothorax_01_09">
       <textures>
-        <texture file="skeletal/mace_linothorax_1_a.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="armor-mace_linothorax_1_g">
-      <textures>
-        <texture file="skeletal/mace_linothorax_1_g.png" name="baseTex"/>
+        <texture file="skeletal/mace/linothorax_01_09.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -45,5 +43,5 @@
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

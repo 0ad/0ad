@@ -5,8 +5,8 @@
     <variant file="biped/base_healer_male.xml">
       <mesh>skeletal/new/m_dress.dae</mesh>
       <textures>
-        <texture file="skeletal/ptol_healer.png" name="baseTex"/>
-        <texture file="skeletal/ptol_healer_spec.png" name="specTex"/>
+        <texture file="skeletal/ptol/robes_healer_01.png" name="baseTex"/>
+        <texture file="skeletal/ptol/robes_healer_01_spec.png" name="specTex"/>
       </textures>
       <props>
         <prop actor="props/units/heads/new/head_ptol_healer.xml" attachpoint="head"/>
@@ -16,6 +16,7 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans_spec.xml</material>

@@ -26,13 +26,13 @@
   <group>
     <variant frequency="1" name="rome-chainmail-1a">
       <textures>
-        <texture file="skeletal/rome_chainmail_1_a.png" name="baseTex"/>
-        <texture file="skeletal/rome_chainmail_1_spec.png" name="specTex"/>
+        <texture file="skeletal/rome/chainmail_01_01.png" name="baseTex"/>
+        <texture file="skeletal/rome/chainmail_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-linothorax-1a">
       <textures>
-        <texture file="skeletal/mace_linothorax_1_a.png" name="baseTex"/>
+        <texture file="skeletal/mace/linothorax_01_01.png" name="baseTex"/>
         <texture file="skeletal/hele/linothorax_01_spec.png" name="specTex"/>
       </textures>
     </variant>
@@ -41,6 +41,7 @@
     <variant file="biped/base_swordsman_shield_relax.xml" frequency="1" name="Swordsman-Shield-Ready"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_cape_long.xml"/>
   </group>
   <material>player_trans_spec.xml</material>

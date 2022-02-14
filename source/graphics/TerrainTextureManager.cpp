@@ -29,7 +29,9 @@
 #include "lib/timer.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "ps/VideoMode.h"
 #include "ps/XML/Xeromyces.h"
+#include "renderer/backend/gl/Device.h"
 #include "renderer/Renderer.h"
 
 #include <algorithm>
@@ -291,7 +293,7 @@ CTerrainTextureManager::LoadAlphaMap(const VfsPath& alphaMapType)
 	ignore_result(da_free(&da));
 #endif
 
-	result.m_CompositeAlphaMap = Renderer::Backend::GL::CTexture::Create2D(
+	result.m_CompositeAlphaMap = g_VideoMode.GetBackendDevice()->CreateTexture2D("CompositeAlphaMap",
 		Renderer::Backend::Format::A8, totalWidth, totalHeight,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
@@ -313,9 +315,10 @@ void CTerrainTextureManager::UploadResourcesIfNeeded(
 		if (!alphaMap.m_CompositeDataToUpload)
 			continue;
 		// Upload the composite texture.
-		deviceCommandContext->UploadTexture(alphaMap.m_CompositeAlphaMap.get(),
-			Renderer::Backend::Format::A8, alphaMap.m_CompositeDataToUpload.get(),
-			alphaMap.m_CompositeAlphaMap->GetWidth() * alphaMap.m_CompositeAlphaMap->GetHeight());
+		Renderer::Backend::GL::CTexture* texture = alphaMap.m_CompositeAlphaMap.get();
+		deviceCommandContext->UploadTexture(
+			texture, Renderer::Backend::Format::A8, alphaMap.m_CompositeDataToUpload.get(),
+			texture->GetWidth() * texture->GetHeight());
 		alphaMap.m_CompositeDataToUpload.reset();
 	}
 
