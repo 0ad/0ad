@@ -5,14 +5,26 @@
     <variant file="biped/base_elephant_driver_relax.xml" frequency="100" name="Base">
       <mesh>skeletal/new/m_pants.dae</mesh>
       <props>
-        <prop actor="props/units/heads/new/head_indian_a.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_maur_short_hair.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/maur_maiden_big_turban.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/axe_single.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/pers_buckler_1.xml" attachpoint="shield_arm"/>
       </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="tunic_leather_01_01">
       <textures>
-        <texture file="skeletal/pers_su2_mahout_1.dds" name="baseTex"/>
+        <texture file="skeletal/maur/tunic_leather_01_01.png" name="baseTex"/>
+        <texture file="skeletal/maur/tunic_leather_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic_leather_01_02">
+      <textures>
+        <texture file="skeletal/maur/tunic_leather_01_02.png" name="baseTex"/>
+        <texture file="skeletal/maur/tunic_leather_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

@@ -7,36 +7,35 @@
       <props>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/helmets/pers_kidaris_loose.xml" attachpoint="helmet"/>
-        <prop actor="props/units/shields/pers_pelta_e_reverse.xml" attachpoint="back"/>
         <prop actor="props/units/weapons/axe_sagaris.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/pers_buckler_1.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/shields/pelta_scyth_elite_bronze.xml" attachpoint="shield_arm"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="pers_isp_a_linothorax_1b">
       <textures>
-        <texture file="skeletal/pers_linothorax_1_b.png" name="baseTex"/>
+        <texture file="skeletal/pers/linothorax_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="pers_isp_a_linothorax_1c">
       <textures>
-        <texture file="skeletal/pers_linothorax_1_c.png" name="baseTex"/>
+        <texture file="skeletal/pers/linothorax_01_03.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="pers_isp_a_linothorax_1f">
       <textures>
-        <texture file="skeletal/pers_linothorax_1_f.png" name="baseTex"/>
+        <texture file="skeletal/pers/linothorax_01_06.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="pers_isp_a_padded_1b">
       <textures>
-        <texture file="skeletal/pers_padded_1_b.png" name="baseTex"/>
+        <texture file="skeletal/pers/padded_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="pers_isp_a_padded_1i">
       <textures>
-        <texture file="skeletal/pers_padded_1_i.png" name="baseTex"/>
+        <texture file="skeletal/pers/padded_01_09.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

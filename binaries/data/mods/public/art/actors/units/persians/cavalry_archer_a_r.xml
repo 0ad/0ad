@@ -3,7 +3,7 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_pants.dae</mesh>
+      <mesh>skeletal/new/m_armor_pants.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
         <prop actor="props/units/helmets/pers_kidaris_loose_yellow.xml" attachpoint="helmet"/>
@@ -14,14 +14,34 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Rider-Texture-1">
+    <variant frequency="1" name="linothorax_01_01">
       <textures>
-        <texture file="skeletal/pers_csw_a_01.dds" name="baseTex"/>
+        <texture file="skeletal/pers/linothorax_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Rider-Texture-2">
+    <variant frequency="1" name="linothorax_01_04">
       <textures>
-        <texture file="skeletal/pers_csw_a_02.dds" name="baseTex"/>
+        <texture file="skeletal/pers/linothorax_01_04.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="padded_01_01">
+      <textures>
+        <texture file="skeletal/scyth/padded_01_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="scyth_linothorax_01_01">
+      <textures>
+        <texture file="skeletal/scyth/linothorax_01_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="padded_01_07">
+      <textures>
+        <texture file="skeletal/pers/padded_01_07.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="padded_01_08">
+      <textures>
+        <texture file="skeletal/pers/padded_01_08.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

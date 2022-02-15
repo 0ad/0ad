@@ -6,7 +6,7 @@
       <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_darius.xml" attachpoint="head"/>
-        <prop actor="props/units/helmets/old/pers_crown.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/pers_crown.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/pers_hair_xerxes.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/arrow_back.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="weapon_bow"/>
@@ -14,7 +14,8 @@
         <prop actor="props/units/capes/rider/bow_chariot_hip.xml" attachpoint="root"/>
       </props>
       <textures>
-        <texture file="skeletal/pers_champ_cav_r_1.png" name="baseTex"/>
+        <texture file="skeletal/pers/scale_kardakes_01_02.png" name="baseTex"/>
+        <texture file="skeletal/pers/scale_kardakes_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -29,5 +30,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

@@ -6,6 +6,7 @@
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
+        <prop actor="props/units/helmets/hele_thracian_cap_leather.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/arrow_back.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="weapon_bow"/>
         <prop actor="props/units/quiver_hip.xml" attachpoint="sheath_L"/>
@@ -15,27 +16,27 @@
   <group>
     <variant frequency="1" name="scyth-tunic-coat-01-01">
       <textures>
-        <texture file="skeletal/scyth_tunic_coat_01_01.png" name="baseTex"/>
+        <texture file="skeletal/scyth/tunic_coat_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scyth-tunic-coat-01-02">
       <textures>
-        <texture file="skeletal/scyth_tunic_coat_01_02.png" name="baseTex"/>
+        <texture file="skeletal/scyth/tunic_coat_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scyth-tunic-coat-01-03">
       <textures>
-        <texture file="skeletal/scyth_tunic_coat_01_03.png" name="baseTex"/>
+        <texture file="skeletal/scyth/tunic_coat_01_03.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="3" name="tunic-basic-1g">
       <textures>
-        <texture file="skeletal/pers_tunic_basic_1_g.png" name="baseTex"/>
+        <texture file="skeletal/pers/tunic_basic_01_07.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="3" name="tunic-basic-1h">
       <textures>
-        <texture file="skeletal/pers_tunic_basic_1_h.png" name="baseTex"/>
+        <texture file="skeletal/pers/tunic_basic_01_08.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

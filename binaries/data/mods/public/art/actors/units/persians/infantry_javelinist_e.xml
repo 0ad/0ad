@@ -15,19 +15,24 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="pers_isp_a_padded_1g">
+    <variant frequency="1" name="padded_01_01">
       <textures>
-        <texture file="skeletal/pers_padded_1_g.png" name="baseTex"/>
+        <texture file="skeletal/pers/padded_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="pers_isp_a_padded_1h">
+    <variant frequency="1" name="padded_01_06">
       <textures>
-        <texture file="skeletal/pers_padded_1_h.png" name="baseTex"/>
+        <texture file="skeletal/pers/padded_01_06.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="pers_isp_a_padded_1i">
+    <variant frequency="1" name="padded_01_07">
       <textures>
-        <texture file="skeletal/pers_padded_1_i.png" name="baseTex"/>
+        <texture file="skeletal/pers/padded_01_07.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="padded_01_08">
+      <textures>
+        <texture file="skeletal/pers/padded_01_08.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
