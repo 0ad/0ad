@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,18 @@
 #include <vector>
 
 class FastSpatialSubdivision;
+
+/**
+ * Value assigned to a range we will always be in (caused by out of world or "too high" in parabolic ranges).
+ * TODO Add this for minRanges too.
+ */
+const entity_pos_t ALWAYS_IN_RANGE = entity_pos_t::FromInt(-1);
+
+/**
+ * Value assigned to a range we will never be in (caused by out of world or "too high" in parabolic ranges).
+ * TODO Add this to range queries too.
+ */
+const entity_pos_t NEVER_IN_RANGE = entity_pos_t::FromInt(-2);
 
 /**
  * Since GetVisibility queries are run by the range manager
@@ -156,17 +168,27 @@ public:
 	 * @param minRange non-negative minimum horizontal distance in metres (inclusive). MinRange doesn't do parabolic checks.
 	 * @param maxRange non-negative maximum distance in metres (inclusive) for units on the same elevation;
 	 *      or -1.0 to ignore distance.
-	 *      For units on a different elevation, a physical correct paraboloid with height=maxRange/2 above the unit is used to query them
-	 * @param elevationBonus extra bonus so the source can be placed higher and shoot further
+	 *      For units on a different height positions, a physical correct paraboloid with height=maxRange/2 above the unit is used to query them
+	 * @param yOrigin extra bonus so the source can be placed higher and shoot further
 	 * @param owners list of player IDs that matching entities may have; -1 matches entities with no owner.
 	 * @param requiredInterface if non-zero, an interface ID that matching entities must implement.
 	 * @param flags if a entity in range has one of the flags set it will show up.
 	 * NB: this one has no accountForSize parameter (assumed true), because we currently can only have 7 arguments for JS functions.
 	 * @return unique non-zero identifier of query.
 	 */
-	virtual tag_t CreateActiveParabolicQuery(entity_id_t source, entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t elevationBonus,
+	virtual tag_t CreateActiveParabolicQuery(entity_id_t source, entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t yOrigin,
 		const std::vector<int>& owners, int requiredInterface, u8 flags) = 0;
 
+
+	/**
+	 * Get the effective range in a parablic range query.
+	 * @param source The entity id at the origin of the query.
+	 * @param target A target entity id.
+	 * @param range The distance to compare terrain height with.
+	 * @param yOrigin Height the source gains over the target by default.
+	 * @return a fixed number representing the effective range correcting parabolicly for the height difference. Returns -1 when the target is too high compared to the source to be in range.
+	 */
+	virtual entity_pos_t GetEffectiveParabolicRange(entity_id_t source, entity_id_t target, entity_pos_t range, entity_pos_t yOrigin) const = 0;
 
 	/**
 	 * Get the average elevation over 8 points on distance range around the entity
@@ -174,7 +196,7 @@ public:
 	 * @param range the distance to compare terrain height with
 	 * @return a fixed number representing the average difference. It's positive when the entity is on average higher than the terrain surrounding it.
 	 */
-	virtual entity_pos_t GetElevationAdaptedRange(const CFixedVector3D& pos, const CFixedVector3D& rot, entity_pos_t range, entity_pos_t elevationBonus, entity_pos_t angle) const = 0;
+	virtual entity_pos_t GetElevationAdaptedRange(const CFixedVector3D& pos, const CFixedVector3D& rot, entity_pos_t range, entity_pos_t yOrigin, entity_pos_t angle) const = 0;
 
 	/**
 	 * Destroy a query and clean up resources. This must be called when an entity no longer needs its

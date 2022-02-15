@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -158,7 +158,7 @@ struct Query
 	CEntityHandle source; // TODO: this could crash if an entity is destroyed while a Query is still referencing it
 	entity_pos_t minRange;
 	entity_pos_t maxRange;
-	entity_pos_t elevationBonus; // Used for parabolas only.
+	entity_pos_t yOrigin; // Used for parabolas only.
 	u32 ownersMask;
 	i32 interface;
 	u8 flagsMask;
@@ -290,7 +290,7 @@ struct SerializeHelper<Query>
 	{
 		serialize.NumberFixed_Unbounded("min range", value.minRange);
 		serialize.NumberFixed_Unbounded("max range", value.maxRange);
-		serialize.NumberFixed_Unbounded("elevation bonus", value.elevationBonus);
+		serialize.NumberFixed_Unbounded("yOrigin", value.yOrigin);
 		serialize.NumberU32_Unbounded("owners mask", value.ownersMask);
 		serialize.NumberI32_Unbounded("interface", value.interface);
 		Serializer(serialize, "last match", value.lastMatch);
@@ -932,11 +932,11 @@ public:
 	}
 
 	virtual tag_t CreateActiveParabolicQuery(entity_id_t source,
-		entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t elevationBonus,
+		entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t yOrigin,
 		const std::vector<int>& owners, int requiredInterface, u8 flags)
 	{
 		tag_t id = m_QueryNext++;
-		m_Queries[id] = ConstructParabolicQuery(source, minRange, maxRange, elevationBonus, owners, requiredInterface, flags, true);
+		m_Queries[id] = ConstructParabolicQuery(source, minRange, maxRange, yOrigin, owners, requiredInterface, flags, true);
 
 		return id;
 	}
@@ -1195,8 +1195,8 @@ public:
 	void PerformQuery(const Query& q, std::vector<entity_id_t>& r, CFixedVector2D pos)
 	{
 
-		// Special case: range -1.0 means check all entities ignoring distance
-		if (q.maxRange == entity_pos_t::FromInt(-1))
+		// Special case: range is ALWAYS_IN_RANGE means check all entities ignoring distance.
+		if (q.maxRange == ALWAYS_IN_RANGE)
 		{
 			for (EntityMap<EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
 			{
@@ -1206,14 +1206,14 @@ public:
 				r.push_back(it->first);
 			}
 		}
-		// Not the entire world, so check a parabolic range, or a regular range
+		// Not the entire world, so check a parabolic range, or a regular range.
 		else if (q.parabolic)
 		{
-			// elevationBonus is part of the 3D position, as the source is really that much heigher
+			// The yOrigin is part of the 3D position, as the source is really that much heigher.
 			CmpPtr<ICmpPosition> cmpSourcePosition(q.source);
 			CFixedVector3D pos3d = cmpSourcePosition->GetPosition()+
-			    CFixedVector3D(entity_pos_t::Zero(), q.elevationBonus, entity_pos_t::Zero()) ;
-			// Get a quick list of entities that are potentially in range, with a cutoff of 2*maxRange
+			    CFixedVector3D(entity_pos_t::Zero(), q.yOrigin, entity_pos_t::Zero()) ;
+			// Get a quick list of entities that are potentially in range, with a cutoff of 2*maxRange.
 			m_SubdivisionResults.clear();
 			m_Subdivision.GetNear(m_SubdivisionResults, pos, q.maxRange * 2);
 
@@ -1279,12 +1279,35 @@ public:
 		}
 	}
 
-	virtual entity_pos_t GetElevationAdaptedRange(const CFixedVector3D& pos1, const CFixedVector3D& rot, entity_pos_t range, entity_pos_t elevationBonus, entity_pos_t angle) const
+	virtual entity_pos_t GetEffectiveParabolicRange(entity_id_t source, entity_id_t target, entity_pos_t range, entity_pos_t yOrigin) const
+	{
+		// For non-positive ranges, just return the range.
+		if (range < entity_pos_t::Zero())
+			return range;
+
+		CmpPtr<ICmpPosition> cmpSourcePosition(GetSimContext(), source);
+		if (!cmpSourcePosition || !cmpSourcePosition->IsInWorld())
+			return NEVER_IN_RANGE;
+
+		CmpPtr<ICmpPosition> cmpTargetPosition(GetSimContext(), target);
+		if (!cmpTargetPosition || !cmpTargetPosition->IsInWorld())
+			return NEVER_IN_RANGE;
+
+		entity_pos_t heightDifference = cmpSourcePosition->GetHeightOffset() - cmpTargetPosition->GetHeightOffset() + yOrigin;
+		if (heightDifference < -range / 2)
+			return NEVER_IN_RANGE;
+
+		entity_pos_t effectiveRange;
+		effectiveRange.SetInternalValue(static_cast<i32>(isqrt64(SQUARE_U64_FIXED(range) + static_cast<i64>(heightDifference.GetInternalValue()) * static_cast<i64>(range.GetInternalValue()) * 2)));
+		return effectiveRange;
+	}
+
+	virtual entity_pos_t GetElevationAdaptedRange(const CFixedVector3D& pos1, const CFixedVector3D& rot, entity_pos_t range, entity_pos_t yOrigin, entity_pos_t angle) const
 	{
 		entity_pos_t r = entity_pos_t::Zero();
 		CFixedVector3D pos(pos1);
 
-		pos.Y += elevationBonus;
+		pos.Y += yOrigin;
 		entity_pos_t orientation = rot.Y;
 
 		entity_pos_t maxAngle = orientation + angle/2;
@@ -1383,12 +1406,13 @@ public:
 		entity_pos_t minRange, entity_pos_t maxRange,
 		const std::vector<int>& owners, int requiredInterface, u8 flagsMask, bool accountForSize) const
 	{
-		// Min range must be non-negative
+		// Min range must be non-negative.
 		if (minRange < entity_pos_t::Zero())
 			LOGWARNING("CCmpRangeManager: Invalid min range %f in query for entity %u", minRange.ToDouble(), source);
 
-		// Max range must be non-negative, or else -1
-		if (maxRange < entity_pos_t::Zero() && maxRange != entity_pos_t::FromInt(-1))
+		// Max range must be non-negative, or else ALWAYS_IN_RANGE.
+		// TODO add NEVER_IN_RANGE.
+		if (maxRange < entity_pos_t::Zero() && maxRange != ALWAYS_IN_RANGE)
 			LOGWARNING("CCmpRangeManager: Invalid max range %f in query for entity %u", maxRange.ToDouble(), source);
 
 		Query q;
@@ -1397,10 +1421,10 @@ public:
 		q.source = GetSimContext().GetComponentManager().LookupEntityHandle(source);
 		q.minRange = minRange;
 		q.maxRange = maxRange;
-		q.elevationBonus = entity_pos_t::Zero();
+		q.yOrigin = entity_pos_t::Zero();
 		q.accountForSize = accountForSize;
 
-		if (q.accountForSize && q.source.GetId() != INVALID_ENTITY && q.maxRange != entity_pos_t::FromInt(-1))
+		if (q.accountForSize && q.source.GetId() != INVALID_ENTITY && q.maxRange != ALWAYS_IN_RANGE)
 		{
 			u32 size = 0;
 			if (ENTITY_IS_LOCAL(q.source.GetId()))
@@ -1435,12 +1459,12 @@ public:
 	}
 
 	Query ConstructParabolicQuery(entity_id_t source,
-		entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t elevationBonus,
+		entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t yOrigin,
 		const std::vector<int>& owners, int requiredInterface, u8 flagsMask, bool accountForSize) const
 	{
 		Query q = ConstructQuery(source, minRange, maxRange, owners, requiredInterface, flagsMask, accountForSize);
 		q.parabolic = true;
-		q.elevationBonus = elevationBonus;
+		q.yOrigin = yOrigin;
 		return q;
 	}
 
@@ -1475,9 +1499,9 @@ public:
 				}
 				else
 				{
-					// elevation bonus is part of the 3D position. As if the unit is really that much higher
+					// yOrigin is part of the 3D position. As if the unit is really that much higher.
 					CFixedVector3D pos3D = cmpSourcePosition->GetPosition();
-					pos3D.Y += q.elevationBonus;
+					pos3D.Y += q.yOrigin;
 
 					std::vector<entity_pos_t> coords;
 

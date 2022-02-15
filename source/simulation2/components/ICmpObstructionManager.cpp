@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,5 +30,6 @@ DEFINE_INTERFACE_METHOD("DistanceToTarget", ICmpObstructionManager, DistanceToTa
 DEFINE_INTERFACE_METHOD("MaxDistanceToTarget", ICmpObstructionManager, MaxDistanceToTarget)
 DEFINE_INTERFACE_METHOD("IsInPointRange", ICmpObstructionManager, IsInPointRange)
 DEFINE_INTERFACE_METHOD("IsInTargetRange", ICmpObstructionManager, IsInTargetRange)
+DEFINE_INTERFACE_METHOD("IsInTargetParabolicRange", ICmpObstructionManager, IsInTargetParabolicRange)
 DEFINE_INTERFACE_METHOD("IsPointInPointRange", ICmpObstructionManager, IsPointInPointRange)
 END_INTERFACE_WRAPPER(ObstructionManager)

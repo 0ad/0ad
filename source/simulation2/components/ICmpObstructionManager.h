@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -208,25 +208,31 @@ public:
 
 	/**
 	 * Check if the given entity is in range of the other point given those parameters.
-	 * @param maxRange - if -1, treated as infinite.
+	 * @param maxRange - Can be a nonnegative decimal, ALWAYS_IN_RANGE or NEVER_IN_RANGE.
 	 */
 	virtual bool IsInPointRange(entity_id_t ent, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const = 0;
 
 	/**
 	 * Check if the given entity is in range of the target given those parameters.
-	 * @param maxRange - if -1, treated as infinite.
+	 * @param maxRange - Can be a nonnegative decimal, ALWAYS_IN_RANGE or NEVER_IN_RANGE.
 	 */
 	virtual bool IsInTargetRange(entity_id_t ent, entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const = 0;
 
 	/**
+	 * Check if the given entity is in parabolic range of the target given those parameters.
+	 * @param maxRange - Can be a nonnegative decimal, ALWAYS_IN_RANGE or NEVER_IN_RANGE.
+	 */
+	virtual bool IsInTargetParabolicRange(entity_id_t ent, entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t yOrigin, bool opposite) const = 0;
+
+	/**
 	 * Check if the given point is in range of the other point given those parameters.
-	 * @param maxRange - if -1, treated as infinite.
+	 * @param maxRange - Can be a nonnegative decimal, ALWAYS_IN_RANGE or NEVER_IN_RANGE.
 	 */
 	virtual bool IsPointInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange) const = 0;
 
 	/**
 	 * Check if the given shape is in range of the target shape given those parameters.
-	 * @param maxRange - if -1, treated as infinite.
+	 * @param maxRange - Can be a nonnegative decimal, ALWAYS_IN_RANGE or NEVER_IN_RANGE.
 	 */
 	virtual bool AreShapesInRange(const ObstructionSquare& source, const ObstructionSquare& target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const = 0;
 

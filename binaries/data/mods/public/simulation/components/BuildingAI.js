@@ -332,36 +332,26 @@ BuildingAI.prototype.FireArrows = function()
 	// The obstruction manager performs approximate range checks.
 	// so we need to verify them here.
 	// TODO: perhaps an optional 'precise' mode to range queries would be more performant.
-	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
+	const cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
 	const range = cmpAttack.GetRange(attackType);
-
-	let thisCmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	if (!thisCmpPosition.IsInWorld())
-		return;
-	const y = thisCmpPosition.GetPosition().y + cmpAttack.GetAttackYOrigin(attackType);
+	const yOrigin = cmpAttack.GetAttackYOrigin(attackType);
 
 	let firedArrows = 0;
 	while (firedArrows < arrowsToFire && targets.length())
 	{
-		let selectedTarget = targets.randomItem();
-
-		let targetCmpPosition = Engine.QueryInterface(selectedTarget, IID_Position);
-		if (targetCmpPosition && targetCmpPosition.IsInWorld() && this.CheckTargetVisible(selectedTarget))
+		const selectedTarget = targets.randomItem();
+		if (this.CheckTargetVisible(selectedTarget) && cmpObstructionManager.IsInTargetParabolicRange(
+			this.entity,
+			selectedTarget,
+			range.min,
+			range.max,
+			yOrigin,
+			false))
 		{
-			// Parabolic range compuation is the same as in UnitAI's MoveToTargetAttackRange.
-			// h is positive when I'm higher than the target.
-			const h = y - targetCmpPosition.GetPosition().y;
-			if (h > -range.max / 2 && cmpObstructionManager.IsInTargetRange(
-				this.entity,
-				selectedTarget,
-				range.min,
-				Math.sqrt(Math.square(range.max) + 2 * range.max * h), false))
-			{
-				cmpAttack.PerformAttack(attackType, selectedTarget);
-				PlaySound("attack_" + attackType.toLowerCase(), this.entity);
-				++firedArrows;
-				continue;
-			}
+			cmpAttack.PerformAttack(attackType, selectedTarget);
+			PlaySound("attack_" + attackType.toLowerCase(), this.entity);
+			++firedArrows;
+			continue;
 		}
 
 		// Could not attack target, try a different target.
