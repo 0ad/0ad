@@ -106,8 +106,8 @@ function loadReplays(replaySelectionData, compareFiles)
 		sanitizeInitAttributes(replay.attribs);
 
 		// Extract map names
-		if (g_MapNames.indexOf(replay.attribs.settings.Name) == -1 && replay.attribs.settings.Name != "")
-			g_MapNames.push(replay.attribs.settings.Name);
+		if (g_MapNames.indexOf(replay.attribs.settings.mapName) == -1 && replay.attribs.settings.mapName != "")
+			g_MapNames.push(replay.attribs.settings.mapName);
 
 		// Extract playernames
 		for (let playerData of replay.attribs.settings.PlayerData)
@@ -168,8 +168,8 @@ function sanitizeInitAttributes(attribs)
 	if (!attribs.settings.Size)
 		attribs.settings.Size = -1;
 
-	if (!attribs.settings.Name)
-		attribs.settings.Name = "";
+	if (!attribs.settings.mapName)
+		attribs.settings.mapName = "";
 
 	if (!attribs.settings.PlayerData)
 		attribs.settings.PlayerData = [];
@@ -277,7 +277,7 @@ function displayReplayDetails()
 
 	let replay = g_ReplaysFiltered[selected];
 
-	Engine.GetGUIObjectByName("sgMapName").caption = translate(replay.attribs.settings.Name);
+	Engine.GetGUIObjectByName("sgMapName").caption = translate(replay.attribs.settings.mapName);
 	Engine.GetGUIObjectByName("sgMapSize").caption = translateMapSize(replay.attribs.settings.Size);
 	Engine.GetGUIObjectByName("sgMapType").caption = translateMapType(replay.attribs.mapType);
 	Engine.GetGUIObjectByName("sgVictory").caption = replay.attribs.settings.VictoryConditions.map(victoryConditionName =>
@@ -326,7 +326,7 @@ function getReplayPlayernames(replay)
  */
 function getReplayMapName(replay)
 {
-	return translate(replay.attribs.settings.Name);
+	return translate(replay.attribs.settings.mapName);
 }
 
 /**

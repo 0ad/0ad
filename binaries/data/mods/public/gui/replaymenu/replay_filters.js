@@ -280,7 +280,7 @@ function filterReplay(replay)
 
 	// Filter by map name
 	let mapNameFilter = Engine.GetGUIObjectByName("mapNameFilter");
-	if (mapNameFilter.selected > 0 && replay.attribs.settings.Name != mapNameFilter.list_data[mapNameFilter.selected])
+	if (mapNameFilter.selected > 0 && replay.attribs.settings.mapName != mapNameFilter.list_data[mapNameFilter.selected])
 		return false;
 
 	// Filter by map size

@@ -530,7 +530,7 @@ function initGUILabels()
 
 	Engine.GetGUIObjectByName("mapName").caption = sprintf(
 		translate("%(mapName)s - %(mapType)s"), {
-			"mapName": translate(g_GameData.sim.mapSettings.Name),
+			"mapName": translate(g_GameData.sim.mapSettings.mapName),
 			"mapType": mapSize ? mapSize.Name : (mapType ? mapType.Title : "")
 		});
 }

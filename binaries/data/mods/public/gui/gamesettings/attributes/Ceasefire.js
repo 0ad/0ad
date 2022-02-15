@@ -8,8 +8,6 @@ GameSettings.prototype.Attributes.Ceasefire = class Ceasefire extends GameSettin
 
 	toInitAttributes(attribs)
 	{
-		if (!this.value)
-			return;
 		attribs.settings.Ceasefire = this.value;
 	}
 

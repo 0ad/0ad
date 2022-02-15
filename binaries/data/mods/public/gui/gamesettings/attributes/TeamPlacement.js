@@ -9,7 +9,7 @@ GameSettings.prototype.Attributes.TeamPlacement = class TeamPlacement extends Ga
 
 	toInitAttributes(attribs)
 	{
-		if (this.value)
+		if (this.value !== undefined)
 			attribs.settings.TeamPlacement = this.value;
 	}
 

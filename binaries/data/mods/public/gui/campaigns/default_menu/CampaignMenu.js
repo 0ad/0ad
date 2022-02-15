@@ -40,10 +40,14 @@ class CampaignMenu extends AutoWatcher
 		if (!meetsRequirements(this.run, level))
 			return;
 
+		// TODO: level description should also be passed, ideally.
 		const settings = {
 			"mapType": level.MapType,
 			"map": "maps/" + level.Map,
 			"settings": {
+				// TODO: don't translate this here.
+				"mapName": this.getLevelName(level),
+				"mapPreview": level.Preview && "cropped:" + 400/512 + "," + 300/512 + ":" + level.Preview,
 				"CheatsEnabled": true
 			},
 			"campaignData": {
@@ -61,11 +65,6 @@ class CampaignMenu extends AutoWatcher
 
 		const gameSettings = new GameSettings().init();
 		gameSettings.fromInitAttributes(settings);
-
-		if (level.Preview)
-			gameSettings.mapPreview.setCustom("cropped:" + 400/512 + "," + 300/512 + ":" + level.Preview);
-		gameSettings.mapName.set(this.getLevelName(level));
-		// TODO: level description should also be passed, ideally.
 
 		if (level.useGameSetup)
 		{
@@ -98,7 +97,7 @@ class CampaignMenu extends AutoWatcher
 
 		gameSettings.launchGame(assignments);
 		Engine.SwitchGuiPage("page_loading.xml", {
-			"attribs": gameSettings.toInitAttributes(),
+			"attribs": gameSettings.finalizedAttributes,
 			"playerAssignments": assignments
 		});
 	}

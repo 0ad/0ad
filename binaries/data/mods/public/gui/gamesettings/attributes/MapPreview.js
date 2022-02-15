@@ -6,7 +6,7 @@ GameSettings.prototype.Attributes.MapPreview = class MapPreview extends GameSett
 {
 	init()
 	{
-		this.isDefault = true;
+		this.value = undefined;
 		this.settings.map.watch(() => this.updatePreview(), ["map"]);
 		this.settings.biome.watch(() => this.updatePreview(), ["biome"]);
 		this.settings.landscape.watch(() => this.updatePreview(), ["value"]);
@@ -15,14 +15,14 @@ GameSettings.prototype.Attributes.MapPreview = class MapPreview extends GameSett
 
 	toInitAttributes(attribs)
 	{
-		// TODO: this shouldn't be persisted, only serialised for the game proper.
-		if (this.value)
-			attribs.mapPreview = this.value;
+		if (this.value !== undefined)
+			attribs.settings.mapPreview = this.value;
 	}
 
 	fromInitAttributes(attribs)
 	{
-		// For now - this won't be deserialized or persisted match settings will be problematic.
+		if (!!this.getLegacySetting(attribs, "mapPreview"))
+			this.value = this.getLegacySetting(attribs, "mapPreview");
 	}
 
 	getPreviewForSubtype(basepath, subtype)
@@ -48,10 +48,6 @@ GameSettings.prototype.Attributes.MapPreview = class MapPreview extends GameSett
 
 	updatePreview()
 	{
-		// Don't overwrite the preview if it's been manually set.
-		if (!this.isDefault)
-			return;
-
 		if (!this.settings.map.map)
 		{
 			this.value = undefined;
@@ -64,11 +60,5 @@ GameSettings.prototype.Attributes.MapPreview = class MapPreview extends GameSett
 			this.getLandscapePreview() ||
 			this.getPreviewForSubtype(mapPath, this.settings.daytime.value) ||
 			this.settings.mapCache.getMapPreview(this.settings.map.type, this.settings.map.map);
-	}
-
-	setCustom(preview)
-	{
-		this.isDefault = false;
-		this.value = preview;
 	}
 };

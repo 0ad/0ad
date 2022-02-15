@@ -2,9 +2,8 @@
  * Stores in-game names for all players.
  *
  * NB: the regular gamesetup has a particular handling of this setting.
- * The names are loaded from the map, but the GUI also show playernames
- * and forces them when starting the game.
- * This is therefore just handling map-defined names & AI random bot names.
+ * The names are loaded from the map, but the GUI also show playernames.
+ * Force these at the start of the match.
  */
 GameSettings.prototype.Attributes.PlayerName = class PlayerName extends GameSetting
 {
@@ -25,6 +24,21 @@ GameSettings.prototype.Attributes.PlayerName = class PlayerName extends GameSett
 		for (let i in this.values)
 			if (this.values[i])
 				attribs.settings.PlayerData[i].Name = this.values[i];
+	}
+
+	fromInitAttributes(attribs)
+	{
+		if (!this.getLegacySetting(attribs, "PlayerData"))
+			return;
+		const pData = this.getLegacySetting(attribs, "PlayerData");
+		if (this.values.length < pData.length)
+			this._resize(pData.length);
+		for (const i in pData)
+			if (pData[i] && pData[i].Name !== undefined)
+			{
+				this.values[i] = pData[i].Name;
+				this.trigger("values");
+			}
 	}
 
 	_resize(nb)
@@ -90,6 +104,14 @@ GameSettings.prototype.Attributes.PlayerName = class PlayerName extends GameSett
 		if (picked)
 			this.trigger("values");
 		return picked;
+	}
+
+	onFinalizeAttributes(attribs, playerAssignments)
+	{
+		// Replace client player names with the real players.
+		for (const guid in playerAssignments)
+			if (playerAssignments[guid].player !== -1)
+				attribs.settings.PlayerData[playerAssignments[guid].player -1].Name = playerAssignments[guid].name;
 	}
 
 	_getMapData(i)

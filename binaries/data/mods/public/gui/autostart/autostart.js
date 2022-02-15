@@ -11,7 +11,7 @@ function init(initData)
 	settings.launchGame(assignments);
 
 	Engine.SwitchGuiPage("page_loading.xml", {
-		"attribs": settings.toInitAttributes(),
+		"attribs": settings.finalizedAttributes,
 		"playerAssignments": assignments
 	});
 }

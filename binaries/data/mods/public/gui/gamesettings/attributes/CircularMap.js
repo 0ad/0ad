@@ -5,19 +5,19 @@ GameSettings.prototype.Attributes.CircularMap = class CircularMap extends GameSe
 {
 	init()
 	{
-		this.value = undefined;
+		this.value = false;
 		this.settings.map.watch(() => this.onMapChange(), ["map"]);
 	}
 
 	toInitAttributes(attribs)
 	{
-		if (this.value)
-			attribs.settings.CircularMap = this.value;
+		attribs.settings.CircularMap = this.value;
 	}
 
-	/**
-	 * Exceptionally, this setting has no Deserialize: it's entirely determined by the map
-	 */
+	fromInitAttributes(attribs)
+	{
+		this.value = !!this.getLegacySetting(attribs, "CircularMap");
+	}
 
 	onMapChange()
 	{

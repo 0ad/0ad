@@ -17,14 +17,25 @@ GameSettings.prototype.Attributes.StartingCamera = class StartingCamera extends 
 			attribs.settings.PlayerData = [];
 		while (attribs.settings.PlayerData.length < this.values.length)
 			attribs.settings.PlayerData.push({});
-		for (let i in this.values)
+		for (const i in this.values)
 			if (this.values[i])
 				attribs.settings.PlayerData[i].StartingCamera = this.values[i];
 	}
 
-	/**
-	 * Exceptionally, this setting has no Deserialize: it's entirely determined by the map
-	 */
+	fromInitAttributes(attribs)
+	{
+		if (!this.getLegacySetting(attribs, "PlayerData"))
+			return;
+		const pData = this.getLegacySetting(attribs, "PlayerData");
+		if (this.values.length < pData.length)
+			this._resize(pData.length);
+		for (const i in pData)
+			if (pData[i] && pData[i].StartingCamera !== undefined)
+			{
+				this.values[i] = pData[i].StartingCamera;
+				this.trigger("values");
+			}
+	}
 
 	_resize(nb)
 	{

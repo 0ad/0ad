@@ -30,7 +30,7 @@ class LobbyRatingReporter
 		let report = {
 			"playerID": Engine.GetPlayerID(),
 			"matchID": g_InitAttributes.matchID,
-			"mapName": g_InitAttributes.settings.Name,
+			"mapName": g_InitAttributes.settings.mapName,
 			"timeElapsed": extendedSimState.timeElapsed,
 		};
 

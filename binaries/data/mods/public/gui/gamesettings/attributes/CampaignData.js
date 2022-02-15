@@ -4,10 +4,6 @@
  */
 GameSettings.prototype.Attributes.CampaignData = class CampaignData extends GameSetting
 {
-	init()
-	{
-	}
-
 	toInitAttributes(attribs)
 	{
 		if (this.value)

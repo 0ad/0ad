@@ -36,4 +36,9 @@ GameSettings.prototype.Attributes.Rating = class Rating extends GameSetting
 			!this.settings.cheats.enabled;
 		this.enabled = this.available;
 	}
+
+	onFinalizeAttributes()
+	{
+		Engine.SetRankedGame(this.enabled);
+	}
 };

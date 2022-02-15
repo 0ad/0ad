@@ -280,7 +280,7 @@ class GameSettingsController
 	switchToLoadingPage(attributes)
 	{
 		Engine.SwitchGuiPage("page_loading.xml", {
-			"attribs": attributes?.initAttributes || g_GameSettings.toInitAttributes(),
+			"attribs": attributes?.initAttributes || g_GameSettings.finalizedAttributes,
 			"playerAssignments": g_PlayerAssignments
 		});
 	}

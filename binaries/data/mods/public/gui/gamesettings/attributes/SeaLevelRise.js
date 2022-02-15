@@ -10,7 +10,7 @@ GameSettings.prototype.Attributes.SeaLevelRise = class SeaLevelRise extends Game
 
 	toInitAttributes(attribs)
 	{
-		if (this.value)
+		if (this.value !== undefined)
 			attribs.settings.SeaLevelRiseTime = this.value;
 	}
 
