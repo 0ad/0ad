@@ -6,10 +6,8 @@
       <mesh>props/helmet/props/hele_thracian_romanized_hair_r.dae</mesh>
       <textures>
         <texture file="props/helmet/sele_hero_seleucus_nikator_diffuse.png" name="baseTex"/>
-        <texture file="props/helmet/sele_hero_seleucus_nikator_spec.png" name="specTex"/>
-        <texture file="props/helmet/sele_hero_seleucus_nikator_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>objectcolor.xml</material>
+  <material>default.xml</material>
 </actor>

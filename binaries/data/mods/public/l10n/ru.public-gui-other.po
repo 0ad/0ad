@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -10,6 +10,7 @@
 # Bogdan Artemyev
 # Boris Karalnik
 # Dmitriy Kulikov
+# nskdmitry
 # Дмитрий Ошкало
 # Максим Дронь
 # Григорий Световидов
@@ -48,9 +49,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-12-31 08:08+0000\n"
-"PO-Revision-Date: 2022-02-04 15:25+0000\n"
-"Last-Translator: Дмитрий Ошкало\n"
+"POT-Creation-Date: 2022-02-11 08:08+0000\n"
+"PO-Revision-Date: 2022-02-11 13:19+0000\n"
+"Last-Translator: nskdmitry\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -966,18 +967,18 @@ msgstr "Огонь по своим: %(enabled)s"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:173
-#: gui/options/options.js:348 gui/options/options.js:413
-#: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
+#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:174
+#: gui/options/options.js:349 gui/options/options.js:414
+#: gui/options/options.js:440 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "Да"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:173
-#: gui/options/options.js:348 gui/options/options.js:413
-#: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
+#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:174
+#: gui/options/options.js:349 gui/options/options.js:414
+#: gui/options/options.js:440 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "Нет"
@@ -2938,22 +2939,22 @@ msgstr "Показать/скрыть обучение"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarded units."
-msgstr ""
+msgstr "Переключить подсветки гвардейцев."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarded highlight"
-msgstr ""
+msgstr "Подсветка гвардейцев."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarding units."
-msgstr ""
+msgstr "Подсветить охранников."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarding highlight"
-msgstr ""
+msgstr "Подсветка охранников"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.desc
 msgctxt "hotkey metadata"
@@ -3022,12 +3023,12 @@ msgstr "Включить области атаки"
 msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of aura range overlays of selected units and structures."
-msgstr ""
+msgstr "Переключение показа ауры  выбранных юнитов и зданий."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle aura ranges"
-msgstr ""
+msgstr "Ауры"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.desc
 msgctxt "hotkey metadata"
@@ -3594,9 +3595,9 @@ msgstr "Для этой сохранённой игры необходим др�
 msgid "Do you still want to proceed?"
 msgstr "Всё ещё хотите продолжить?"
 
-#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:172
-#: gui/options/options.js:347 gui/options/options.js:412
-#: gui/options/options.js:438
+#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:173
+#: gui/options/options.js:348 gui/options/options.js:413
+#: gui/options/options.js:439
 msgid "Warning"
 msgstr "Предупреждение"
 
@@ -3914,26 +3915,28 @@ msgid "Max: %(max)s"
 msgstr "Макс: %(max)s"
 
 #: gui/options/options.js:170
-msgid "Do you want to keep changes?"
-msgstr "Cохранить изменения?"
+#, javascript-format
+msgid ""
+"Changes will be reverted in %(time)s seconds. Do you want to keep changes?"
+msgstr ""
 
-#: gui/options/options.js:191
+#: gui/options/options.js:192
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr "Значение: %(val)s (мин.: %(min)s, макс.: %(max)s)"
 
-#: gui/options/options.js:346
+#: gui/options/options.js:347
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr "Восстановление удалит сохраненные настройки. Вы уверены, что хотите продолжить?"
 
-#: gui/options/options.js:411
+#: gui/options/options.js:412
 msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr "Некоторые параметры настроек некорректны! Вы уверены, что хотите сохранить их?"
 
-#: gui/options/options.js:437
+#: gui/options/options.js:438
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr "У вас есть не сохраненные изменения, вы уверены, что хотите закрыть окно?"
 
@@ -4904,7 +4907,7 @@ msgstr "Другие приказы расформируют существую�
 
 #: gui/options/options.json[6].options[21].list[1].label
 msgid "No override"
-msgstr ""
+msgstr "Не переопределять"
 
 #: gui/options/options.json[6].options[21].list[1].tooltip
 msgid "Units in formations stay in formations."
@@ -4918,7 +4921,7 @@ msgstr "Решите, используются ли боевые порядки 
 
 #: gui/options/options.json[6].options[22].label
 msgid "Battalion-style formations"
-msgstr ""
+msgstr "Виды строя"
 
 #: gui/options/options.json[6].options[22].tooltip
 msgid "Whether formations are selected as a whole."

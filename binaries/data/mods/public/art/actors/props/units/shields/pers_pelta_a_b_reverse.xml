@@ -3,9 +3,9 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="base">
-      <mesh>props/shield/pelta_a_f.dae</mesh>
+      <mesh>props/shield/pelta_pers_back_a_f.dae</mesh>
       <props>
-        <prop actor="props/units/shields/pers_pelta_a_back_reverse.xml" attachpoint="back"/>
+        <prop actor="props/units/shields/pers_pelta_a_back_reverse.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

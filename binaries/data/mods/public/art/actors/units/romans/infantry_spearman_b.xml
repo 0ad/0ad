@@ -10,7 +10,7 @@
         <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
       </props>
       <textures>
-        <texture file="skeletal/rome_chainmail_1_spec.png" name="specTex"/>
+        <texture file="skeletal/rome/chainmail_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -49,24 +49,19 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="rome-chainmail-old">
-      <textures>
-        <texture file="skeletal/rome_isw_a.dds" name="baseTex"/>
-      </textures>
-    </variant>
     <variant frequency="1" name="rome-chainmail-1a">
       <textures>
-        <texture file="skeletal/rome_chainmail_1_a.png" name="baseTex"/>
+        <texture file="skeletal/rome/chainmail_01_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-chainmail-1b">
       <textures>
-        <texture file="skeletal/rome_chainmail_1_b.png" name="baseTex"/>
+        <texture file="skeletal/rome/chainmail_01_02.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-chainmail-1c">
       <textures>
-        <texture file="skeletal/rome_chainmail_1_c.png" name="baseTex"/>
+        <texture file="skeletal/rome/chainmail_01_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

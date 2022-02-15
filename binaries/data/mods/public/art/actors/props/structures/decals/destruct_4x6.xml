@@ -5,9 +5,10 @@
       <decal angle="90" depth="26" offsetx="0" offsetz="0" width="40"/>
       <textures>
         <texture file="props/decal_destruct_llong.png" name="baseTex"/>
-        
+        <texture file="props/decal_destruct_llong_norm.png" name="normTex"/>
+        <texture file="props/decal_destruct_llong_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>terrain_base.xml</material>
+  <material>terrain_norm_spec.xml</material>
 </actor>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/shield/pelta_pers_back_b_b.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="back-i">
+      <textures>
+	    <texture file="props/shield/pers_pelta_c.dds" name="baseTex"/>
+	  </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

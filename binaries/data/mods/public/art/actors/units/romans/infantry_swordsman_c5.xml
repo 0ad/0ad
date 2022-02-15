@@ -6,16 +6,37 @@
       <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/rome_head_veteran.xml" attachpoint="head"/>
-        <prop actor="props/units/helmets/rome_gallic_type_h_cent.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/sheath_gladius_e.xml" attachpoint="sheath_01_R"/>
         <prop actor="props/units/weapons/gladius.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/scutum_rome_imp_praetorian.xml" attachpoint="shield"/>
         <prop actor="props/units/capes/cape_long_player.xml" attachpoint="root"/>
       </props>
       <textures>
-        <texture file="skeletal/imp/infantry_swordsman_c_a.dds" name="baseTex"/>
-        <texture file="skeletal/imp/infantry_swordsman_c_a_spec.png" name="specTex"/>
+        <texture file="skeletal/imp/scale_centurion_01_02.png" name="baseTex"/>
+        <texture file="skeletal/imp/scale_centurion_01_spec.png" name="specTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Helmet Italic Type A">
+      <props>
+        <prop actor="props/units/helmets/rome_italic_type_a.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet Nieder Mormter Type A">
+      <props>
+        <prop actor="props/units/helmets/rome_nieder_mormter_type_a.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet Nieder Mormter Type B">
+      <props>
+        <prop actor="props/units/helmets/rome_nieder_mormter_type_b.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Helmet Nieder Bieber">
+      <props>
+        <prop actor="props/units/helmets/rome_nieder_bieber.xml" attachpoint="helmet"/>
+      </props>
     </variant>
   </group>
   <group>
@@ -28,6 +49,7 @@
     <variant file="biped/formations/testudo_right.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_cape_long.xml"/>
   </group>
   <material>player_trans_spec.xml</material>

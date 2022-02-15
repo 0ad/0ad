@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-05-28 07:15+0000\n"
-"PO-Revision-Date: 2021-05-28 10:21+0000\n"
-"Last-Translator: AlexKR\n"
+"POT-Creation-Date: 2022-02-11 08:08+0000\n"
+"PO-Revision-Date: 2022-02-11 10:23+0000\n"
+"Last-Translator: Vladislav Trotsky\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1106,18 +1106,196 @@ msgstr "Тільки для кавалерії, потребує принайм�
 msgid "Wedge"
 msgstr "Клин"
 
-#: simulation/templates/special/player/player.xml:58
-msgid "Player"
-msgstr "Гравець"
+#: simulation/templates/special/players/athen.xml:8
+msgid "Athenians"
+msgstr "Афіняни"
+
+#: simulation/templates/special/players/athen.xml:9
+msgid ""
+"As the cradle of Western civilization and the birthplace of democracy, "
+"Athens was famed as a center for the arts, learning and philosophy. The "
+"Athenians were also powerful warriors, particularly at sea. At its peak, "
+"Athens dominated a large part of the Hellenic world for several decades."
+msgstr "Афіни, колиска Західної цивілізації та місце народження демократії, були відомі як центр мистецтв, освіти та філософії. Афіняни також були могутніми воїнами, особливо на морі. У час свого розквіту Афіни володіли великою частиною елліністичного світу протягом кількох десятиліть."
+
+#: simulation/templates/special/players/brit.xml:8
+msgid "Britons"
+msgstr "Брити"
+
+#: simulation/templates/special/players/brit.xml:9
+msgid ""
+"The Britons were the Celtic tribes of the British Isles. Using chariots, "
+"longswordsmen and powerful melee soldiers, they staged fearsome revolts "
+"against Rome to protect their customs and interests. Also, they built "
+"thousands of unique structures such as hill forts, crannogs and brochs."
+msgstr "Брити були кельтськими племенами на Британських островах. За допомогою колісниць, мечників та могутньої піхоти організовували жахливі повстання проти Риму на захист своїх традицій та інтересів. Також вони побудували тисячі унікальних об'єктів, таких як фортеці на пагорбах, житла на воді і болотах та круглі кам'яні башти."
+
+#: simulation/templates/special/players/cart.xml:8
+msgid "Carthaginians"
+msgstr "Карфагеняни"
+
+#: simulation/templates/special/players/cart.xml:9
+msgid ""
+"Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
+"western Mediterranean, eventually taking over much of North Africa and "
+"modern-day Spain in the third century B.C. The sailors of Carthage were "
+"among the fiercest contenders on the high seas, and masters of naval trade. "
+"They deployed towered War Elephants on the battlefield to fearsome effect, "
+"and had defensive walls so strong, they were never breached."
+msgstr "Карфаген, місто-держава на території сучасного Тунісу, було великою військовою силою у західній частині Середземного моря і зрештою захопило значну територію у Північній Африці і сучасній Іспанії у третьому столітті до н.е. Моряки з Карфагену були одними з найнебезпечніших супротивників у відкритому морі, а крім того і досвідченими морськими торговцями. Вони застосовували на полі бою військових слонів, які мали на собі башти для лучників, для залякування ворога. Їхні захисні стіни були настільки міцними, що нікому так і не вдалося їх зруйнувати."
+
+#: simulation/templates/special/players/gaul.xml:8
+msgid "Gauls"
+msgstr "Галли"
+
+#: simulation/templates/special/players/gaul.xml:9
+msgid ""
+"The Gauls were the Celtic tribes of continental Europe. Dominated by a "
+"priestly class of Druids, they featured a sophisticated culture of advanced "
+"metalworking, agriculture, trade and even road engineering. With heavy "
+"infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
+"of conquest and Rome's authoritarian rule."
+msgstr "Галли були кельтськими племенами континентальної Європи. Серед них переважали священники друїди, які несли складну культуру спеціальної обробки металів, обробітку землі, торгівлі і навіть будівництва доріг. Володіючи важкою піхотою і кавалерією, галльські воїни відважно чинили опір кампанії Цезаря з підкорення земель і нав'язування Римського авторитарного права."
+
+#: simulation/templates/special/players/iber.xml:8
+msgid "Iberians"
+msgstr "Ібери"
+
+#: simulation/templates/special/players/iber.xml:9
+msgid ""
+"The Iberians were a people of mysterious origins and language, with a strong"
+" tradition of horsemanship and metalworking. A relatively peaceful culture, "
+"they usually fought in other's battles only as mercenaries. However, they "
+"proved tenacious when Rome sought to take their land and freedom from them, "
+"and employed pioneering guerrilla tactics and flaming javelins as they "
+"fought back."
+msgstr "Ібери були народом із загадковим походженням і мовою, міцними традиціями конярства і ковальської справи. Будучи носіями відносно миролюбної культури, вони зазвичай брали участь у битвах в якості найманців у інших народів. Однак, коли Рим намагався забрати у них землі і свободу, вони показали свою завзятість, задіявши новаторську тактику партизанської війни і використання вогняних дротиків під час відповідних нападів."
+
+#: simulation/templates/special/players/kush.xml:8
+msgid "Kushites"
+msgstr "Кушити"
+
+#: simulation/templates/special/players/kush.xml:9
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "Царство Куш було древнім африканським царством, розташованим на місці злиття Блакитного Нілу, Білого Нілу і річки Атбара — там, де зараз знаходиться Республіка Судан. Епоха правління кушитів в регіоні почалася після катастрофи бронзового віку і занепаду Нового Царства Єгипту, і на ранньому етапі була зосереджена в Напаті. У 8 столітті до н.е. вони вторглися в Єгипет, а кушитські імператори правили як фараони XXV династії Єгипту протягом століття, поки їх не вигнали асирійці. Культура кушитів піддалася сильному впливу єгипетської: подібно єгиптянам кушити будували піраміди і зводили величні храми. Кушити навіть поклонялися багатьом єгипетським богам, в тому числі Амону. Під час класичного періоду столицею імперії кушитів був Мерое. У ранніх грецьких географічних джерелах Мероїтське царство було відоме як Ефіопія. Кушитське царство проіснувало до 4 століття н.е., поки воно, ослаблене і роздіране повстаннями, в кінці кінців не поступилося Аксумському царстві, що набирало сили."
+
+#: simulation/templates/special/players/mace.xml:8
+msgid "Macedonians"
+msgstr "Македонці"
+
+#: simulation/templates/special/players/mace.xml:9
+msgid ""
+"Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
+" the Greek peninsula. Under the leadership of Alexander the Great, "
+"Macedonian forces and allies took over most of the world they knew, "
+"including Egypt, Persia and parts of the Indian subcontinent, allowing a "
+"diffusion of Hellenic and eastern cultures for years to come."
+msgstr "Македонія була древнім грецьким царством, розташованим в північно-східній частині Балканського півострова. Під проводом Олександра Великого македонські війська та їхні союзники завоювали більшу частину відомого їм світу, включаючи Єгипет, Персію і частина Індійського субконтиненту, тим самим поклавши початок змішання еллінської та східної культури протягом багатьох років."
+
+#: simulation/templates/special/players/maur.xml:8
+msgid "Mauryas"
+msgstr "Маур'ї"
+
+#: simulation/templates/special/players/maur.xml:9
+msgid ""
+"Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first"
+" to rule most of the Indian subcontinent, and was one of the largest and "
+"most populous empires of antiquity. Its military featured bowmen who used "
+"the long-range bamboo longbow, fierce female warriors, chariots, and "
+"thousands of armored war elephants. Its philosophers, especially the famous "
+"Acharya Chanakya, contributed to such varied fields such as economics, "
+"religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
+"the Great, the empire saw 40 years of peace, harmony, and prosperity."
+msgstr "Заснована у 322 році до н.е. Чандрагуптою Маур'я імперія Маур'їв стала першою державою, що об'єднала індійський субконтинент і була однією з найбільш густонаселених імперій давнини. Військові сили імперії славилися лучниками з великими бамбуковими луками, які здатні були послати стрілу на величезну відстань, запеклими жінками-воїнами, колісницями і тисячами бойових слонів, закутих у броню. Філософи держави, особливо знаменитий Чанак'я, сприяли розвитку таких напрямків, як економіка, релігія, дипломатія, військова справа та державне управління. Під владою Ашоки Великого країна отримала 40 років миру, гармонії і процвітання."
+
+#: simulation/templates/special/players/pers.xml:8
+msgid "Persians"
+msgstr "Перси"
+
+#: simulation/templates/special/players/pers.xml:9
+msgid ""
+"The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
+"greatest empires of antiquity, stretching at its zenith from the Indus "
+"Valley in the east to Greece in the west. The Persians were the pioneers of "
+"empire-building of the ancient world, successfully imposing a centralized "
+"rule over various peoples with different customs, laws, religions and "
+"languages, and building a cosmopolitan army made up of contingents from each"
+" of these nations."
+msgstr "Перська імперія за часів правління династії Ахеменідів була однією з найбільших імперій давнини, що простягалася від долини річки Інд на сході до Греції на заході. Перси були першопрохідцями у створенні імперій стародавнього світу, успішно насаджуючи централізовану владу багатьом народам з різними звичаями, законами, віруваннями і мовами. Вони першими створили багатонаціональну армію, що складається з контингентів кожного із підкорених народів."
+
+#: simulation/templates/special/players/ptol.xml:16
+msgid "Ptolemies"
+msgstr "Птолемеї"
+
+#: simulation/templates/special/players/ptol.xml:17
+msgid ""
+"The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
+"Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
+"for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
+"Egypt."
+msgstr "Птолемеївська династія була греко-македонська королівська сім'я, яка правила Птолемеївською імперією в Єгипті в епоху еллінізму. Їхня влада тривала 275 років з 305 до 30 років до н. е. Остання династія Стародавнього Єгипту."
+
+#: simulation/templates/special/players/rome.xml:8
+msgid "Romans"
+msgstr "Римляни"
+
+#: simulation/templates/special/players/rome.xml:9
+msgid ""
+"The Romans controlled one of the largest empires of the ancient world, "
+"stretching at its peak from southern Scotland to the Sahara Desert, and "
+"containing between 60 million and 80 million inhabitants, one quarter of the"
+" Earth's population at that time. Rome also remained one of the strongest "
+"nations on earth for almost 800 years. The Romans were the supreme builders "
+"of the ancient world, excelled at siege warfare and had an exquisite "
+"infantry and navy."
+msgstr "Римляни правили однією з найбільших імперій давнього світу, що розтягнулася від північної Шотландії до пустелі Сахара, населення якої становило від 60 до 80 мільйонів жителів, що становило одну чверть від усього населення на Землі в ті часи. У Римі також проживала одна з найсильніших націй на землі протягом майже 800 років. Римляни були чудовими будівельниками в стародавньому світі, які досягнули успіху у веденні облогової війни. Також вони володіли досконалою піхотою і військовим флотом."
+
+#: simulation/templates/special/players/sele.xml:16
+msgid "Seleucids"
+msgstr "Селевкіди"
+
+#: simulation/templates/special/players/sele.xml:17
+msgid ""
+"The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
+msgstr "Греко-македонська династія, що правила більшою частиною колишньої імперії Олександра."
+
+#: simulation/templates/special/players/spart.xml:6
+msgid "Spartans"
+msgstr "Спартанці"
+
+#: simulation/templates/special/players/spart.xml:7
+msgid ""
+"Sparta was a prominent city-state in ancient Greece, and its dominant "
+"military power on land from circa 650 B.C. Spartan culture was obsessed with"
+" military training and excellence, with rigorous training for boys beginning"
+" at age seven. Thanks to its military might, Sparta led a coalition of Greek"
+" forces during the Greco-Persian Wars, and won over Athens in the "
+"Peloponnesian Wars, though at great cost."
+msgstr "Спарта була видатним містом-державою Стародавньої Греції та її домінуючою військовою силою на суші приблизно з 650 р. до н. е. Спартанці зводили в культ військову підготовку і майстерність, що досягалося безжальними тренуваннями хлопчиків, починаючи з семирічного віку. Завдяки своїй військової потужності Спарта очолила коаліцію грецьких сил у греко-перських війнах і здобула перемогу над Афінами у Пелопоннеській війні, хоча й заплатила за це велику ціну."
 
 #: simulation/templates/special/spy.xml:16
 msgid "Spy"
 msgstr "Шпигун"
 
-#: simulation/templates/template_formation.xml:26
+#: simulation/templates/template_formation.xml:20
 msgid "Requires at least 2 Soldiers or Siege Engines."
 msgstr "Потребує принаймні не менш 2 солдатів або облогових знарядь."
 
+#: simulation/templates/special/players/gaia.xml:5
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
 msgstr "Гея"

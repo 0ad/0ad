@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/shield/pelta_front_c.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/props/handgrip_leather_01.xml" attachpoint="handgrip"/>
+        <prop actor="props/units/shields/pelta_c_back_wicker.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="props/shield/pelta_scyth_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="pelta_elite_bronze">
+      <textures>
+        <texture file="props/shield/pelta_scyth_bronze.png" name="baseTex"/>
+        <texture file="props/shield/pelta_scyth_bronze.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

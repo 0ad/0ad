@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="base">
+      <textures>
+        <texture file="props/helmet/rome_nieder_bieber_type_a_01.png" name="baseTex"/>
+        <texture file="props/helmet/rome_nieder_bieber_type_a_01_norm.png" name="normTex"/>
+        <texture file="props/helmet/rome_nieder_bieber_type_a_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="No-Visor">
+      <mesh>props/helmet/rome_nieder_bieber_type_a_01.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/props/rome_nieder_bieber_prop.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Visor-01">
+      <mesh>props/helmet/rome_nieder_bieber_type_a_02.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/props/rome_nieder_bieber_prop.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

@@ -5,10 +5,11 @@
     <variant frequency="1" name="barrel">
       <mesh>props/rome_blacksmith_rome_su4_imperial_legion.dae</mesh>
       <textures>
-<texture file="skeletal/rome_su4_imperial_legion.dds" name="baseTex"/>
+        <texture file="skeletal/imp/lorica_segmentata_01_01.png" name="baseTex"/>
+        <texture file="skeletal/imp/lorica_segmentata_01_spec.png" name="specTex"/>
 	    <texture file="structural/ao/rome_blacksmith.png" name="aoTex"/>
-</textures>
+      </textures>
     </variant>
   </group>
-  <material>player_trans_ao.xml</material>
+  <material>no_trans_ao_spec.xml</material>
 </actor>

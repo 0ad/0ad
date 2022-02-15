@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -13,8 +13,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-12-31 08:08+0000\n"
-"PO-Revision-Date: 2021-12-31 08:25+0000\n"
+"POT-Creation-Date: 2022-02-11 08:08+0000\n"
+"PO-Revision-Date: 2022-02-11 08:26+0000\n"
 "Last-Translator: Transifex Bot\n"
 "Language-Team: Breton (http://www.transifex.com/wildfire-games/0ad/language/br/)\n"
 "MIME-Version: 1.0\n"
@@ -940,18 +940,18 @@ msgstr "Tennoù ar vignoned: %(enabled)s"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:173
-#: gui/options/options.js:348 gui/options/options.js:413
-#: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
+#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:174
+#: gui/options/options.js:349 gui/options/options.js:414
+#: gui/options/options.js:440 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "Ya"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
-#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:173
-#: gui/options/options.js:348 gui/options/options.js:413
-#: gui/options/options.js:439 gui/pregame/MainMenuItems.js:251
+#: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:174
+#: gui/options/options.js:349 gui/options/options.js:414
+#: gui/options/options.js:440 gui/pregame/MainMenuItems.js:251
 #: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "Ket"
@@ -3574,9 +3574,9 @@ msgstr ""
 msgid "Do you still want to proceed?"
 msgstr ""
 
-#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:172
-#: gui/options/options.js:347 gui/options/options.js:412
-#: gui/options/options.js:438
+#: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:173
+#: gui/options/options.js:348 gui/options/options.js:413
+#: gui/options/options.js:439
 msgid "Warning"
 msgstr "Diwallit"
 
@@ -3894,26 +3894,28 @@ msgid "Max: %(max)s"
 msgstr "Uc'hek: %(max)s"
 
 #: gui/options/options.js:170
-msgid "Do you want to keep changes?"
+#, javascript-format
+msgid ""
+"Changes will be reverted in %(time)s seconds. Do you want to keep changes?"
 msgstr ""
 
-#: gui/options/options.js:191
+#: gui/options/options.js:192
 #, javascript-format
 msgctxt "slider number"
 msgid "Value: %(val)s (min: %(min)s, max: %(max)s)"
 msgstr ""
 
-#: gui/options/options.js:346
+#: gui/options/options.js:347
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
 msgstr ""
 
-#: gui/options/options.js:411
+#: gui/options/options.js:412
 msgid "Some setting values are invalid! Are you sure you want to save them?"
 msgstr ""
 
-#: gui/options/options.js:437
+#: gui/options/options.js:438
 msgid "You have unsaved changes, do you want to close this window?"
 msgstr ""
 

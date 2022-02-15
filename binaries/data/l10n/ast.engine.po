@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-01-07 08:19+0000\n"
-"PO-Revision-Date: 2022-02-05 23:49+0000\n"
+"PO-Revision-Date: 2022-02-13 22:22+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -20,12 +20,12 @@ msgstr ""
 #: graphics/CameraController.cpp:657
 #, c-format
 msgid "Scroll speed increased to %.1f"
-msgstr "La velocidá de dislocacion augmentou a %.1f"
+msgstr "La velocidá de dislocaçon augmentou a %.1f"
 
 #: graphics/CameraController.cpp:663
 #, c-format
 msgid "Scroll speed decreased to %.1f"
-msgstr "La velocidá de dislocacion diminuiu a %.1f"
+msgstr "La velocidá de dislocaçon diminuîu a %.1f"
 
 #: graphics/CameraController.cpp:670
 #, c-format
@@ -35,53 +35,53 @@ msgstr "La velocidá gyratoria augmentou a X=%.3f, Y=%.3f"
 #: graphics/CameraController.cpp:677
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr "La velocidá gyratoria diminuiu a X=%.3f, Y=%.3f"
+msgstr "La velocidá gyratoria diminuîu a X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:683
 #, c-format
 msgid "Zoom speed increased to %.1f"
-msgstr "La velocidá d’approximacion augmentou a %.1f"
+msgstr "La velocidá d’approximaçon augmentou a %.1f"
 
 #: graphics/CameraController.cpp:689
 #, c-format
 msgid "Zoom speed decreased to %.1f"
-msgstr "La velocidá d’approximacion diminuiu a %.1f"
+msgstr "La velocidá d’approximaçon diminuîu a %.1f"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
-msgstr "Cadenas lhongas"
+msgstr "Cadenæs lhongæs"
 
 #: lobby/XmppClient.cpp:1024
 msgid "unknown subtype (see logs)"
-msgstr "disconnoz-se el subtypu (veia-se los registros)"
+msgstr "disconhoz-se l subtypu (veia-se los regïstros)"
 
 #: lobby/XmppClient.cpp:1355
 msgid "The certificate is not trusted."
-msgstr "El certificado nun ye d’infoutu."
+msgstr "El certificaho nun ye d’infhoutu."
 
 #: lobby/XmppClient.cpp:1356
 msgid "The certificate hasn't got a known issuer."
-msgstr "Non se sabe quien dieu’l certificado."
+msgstr "Non se sabe quien diêu l certificaho."
 
 #: lobby/XmppClient.cpp:1357
 msgid "The certificate has been revoked."
-msgstr "Revocou-se el certificado."
+msgstr "Revocou-se l certificaho."
 
 #: lobby/XmppClient.cpp:1358
 msgid "The certificate has expired."
-msgstr "El certificado caducou."
+msgstr "El certificaho caducou."
 
 #: lobby/XmppClient.cpp:1359
 msgid "The certificate is not yet active."
-msgstr "El certificado sigui inactivo."
+msgstr "El certificaho sigi inactivo."
 
 #: lobby/XmppClient.cpp:1360
 msgid "The certificate has not been issued for the peer connected to."
-msgstr "El certificado non se dieu pal par al que stas connectadu."
+msgstr "El certificaho non se diêu pal par al que stas connectau."
 
 #: lobby/XmppClient.cpp:1361
 msgid "The certificate signer is not a certificate authority."
-msgstr "Quien robrou’l certificado nun tenía authorizacion."
+msgstr "Quien roblrou l certificaho nun teníæ authorizaçon."
 
 #: lobby/XmppClient.cpp:1383 lobby/XmppClient.cpp:1427
 #: lobby/XmppClient.cpp:1466
@@ -94,7 +94,7 @@ msgstr "Nun ha hi errores"
 
 #: lobby/XmppClient.cpp:1388
 msgid "Player already logged in"
-msgstr "El jogador ya iniciou session"
+msgstr "El xhogador ya iniciou session"
 
 #: lobby/XmppClient.cpp:1390
 msgid "Forbidden"
@@ -102,7 +102,7 @@ msgstr "Prohibi-se"
 
 #: lobby/XmppClient.cpp:1392
 msgid "Internal server error"
-msgstr "Error internu del servidor"
+msgstr "Error internu de l servidor"
 
 #: lobby/XmppClient.cpp:1396
 msgid "Not allowed"
@@ -118,7 +118,7 @@ msgstr "El receptor nun sta disponible temporalmente"
 
 #: lobby/XmppClient.cpp:1402
 msgid "Registration required"
-msgstr "Requier-se registro"
+msgstr "Requier-se l regïstro"
 
 #: lobby/XmppClient.cpp:1406
 msgid "Service unavailable"
@@ -126,7 +126,7 @@ msgstr "El servicio nun sta disponible"
 
 #: lobby/XmppClient.cpp:1411 lobby/XmppClient.cpp:1450
 msgid "Unknown error"
-msgstr "Error disconnocidu"
+msgstr "Error disconhocidu"
 
 #: lobby/XmppClient.cpp:1431
 msgid "Stream error"
@@ -134,11 +134,11 @@ msgstr "Error de fluxu"
 
 #: lobby/XmppClient.cpp:1432
 msgid "The incoming stream version is unsupported"
-msgstr "Non se suffita la version del fluxu intrante"
+msgstr "Non se sufhita la version de l fluxu intrante"
 
 #: lobby/XmppClient.cpp:1433
 msgid "The stream has been closed by the server"
-msgstr "El fluxu concluiu-llu el servidor"
+msgstr "El fluxu concluîu-llu l servidor"
 
 #: lobby/XmppClient.cpp:1437
 msgid "An I/O error occurred"
@@ -146,120 +146,120 @@ msgstr "Houbo un error d’intrada/salida"
 
 #: lobby/XmppClient.cpp:1439
 msgid "The connection was refused by the server"
-msgstr "La connexion recusou-lla el servidor"
+msgstr "La connexion recusou-lla l servidor"
 
 #: lobby/XmppClient.cpp:1440
 msgid "Resolving the server's hostname failed"
-msgstr "Houbo un fallu al resolver el hostname del servidor"
+msgstr "Houbo un fallu al resolve’l hostname de l servidor"
 
 #: lobby/XmppClient.cpp:1441
 msgid "This system is out of memory"
-msgstr "Exhauriu-se la memoria’l systema"
+msgstr "Exhaurîu-se la memoria l systema"
 
 #: lobby/XmppClient.cpp:1443
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr "Ou nun pudo verificá-se el certificado del servidor ou la negociacion TLS non se completou cun éxitu"
+msgstr "Ou nun pudo verificase l certificaho de l servidor ou la negociaçon TLS non se completou cun éxitu"
 
 #: lobby/XmppClient.cpp:1444
 msgid "The server did not offer required TLS encryption"
-msgstr "El servidor nun offriu’l cifrado TLS que se requier"
+msgstr "El servidor nun offrîu l cifraho TLS que se requier"
 
 #: lobby/XmppClient.cpp:1446
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Fallou l’authenticacion. La clave nun ye correcta ou la cuönta nun existi"
+msgstr "Fallou l authenticaçon. La clave nun ye correcta ou la cuœnta nun existi"
 
 #: lobby/XmppClient.cpp:1447
 msgid "The user or system requested a disconnect"
-msgstr "L’usuariu ou’l systema pidiu disconnectá-se"
+msgstr "L usuariu ou l systema pidîu disconnectase"
 
 #: lobby/XmppClient.cpp:1448
 msgid "There is no active connection"
-msgstr "Nun ha hi connexiones activas"
+msgstr "Nun ha hi connexiones activæs"
 
 #: lobby/XmppClient.cpp:1469
 msgid "Your account has been successfully registered"
-msgstr "Registrou-se cun éxitu la tua cuönta"
+msgstr "Regïstrou-se cun éxitu la tuâ cuœnta"
 
 #: lobby/XmppClient.cpp:1470
 msgid "Not all necessary information provided"
-msgstr "Non s’aporriu toda la informacion precisa"
+msgstr "Non s’aporrîu toda la informaçon precisa"
 
 #: lobby/XmppClient.cpp:1471
 msgid "Username already exists"
-msgstr "Ya existi’l nome d’usuariu"
+msgstr "Ya existi l nome d’usuariu"
 
 #: ps/Mod.cpp:82
 #, c-format
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr "Nun pudo scribí-se un mod.json externu pal commudu comprimidu “%s”. Ha hi que reinstallar el commudu."
+msgstr "Nun pudo scribise un mod.json externu pala muda comprimida “%s”. Ha hi que reinstalla’ la muda."
 
 #: ps/ModIo.cpp:264
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Houbo un fallu al iniciar a consultar subre la identificacion del juögu. Error: %s; %s."
+msgstr "Houbo un fallu al iniciar a consultar subre la identificaçon de l xhuœw. Error: %s; %s."
 
 #: ps/ModIo.cpp:294
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "Houbo un fallu al iniciar a consultar subre commudos. Error: %s; %s."
+msgstr "Houbo un fallu al iniciar a consultar subre mudæs. Error: %s; %s."
 
 #: ps/ModIo.cpp:320
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr "Nun pudo creá-se el directorio del commudu: %s."
+msgstr "Nun pudo crease l directorio de la muda: %s."
 
 #: ps/ModIo.cpp:345
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "Nun pudo abrí-se l’archivo temporal p’abaẍar el commudu: %s."
+msgstr "Nun pudo abrise l archivo temporal p’abaxa’ la muda: %s."
 
 #: ps/ModIo.cpp:355
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "Houbo un fallu al iniciar la baẍada. Error: %s; %s."
+msgstr "Houbo un fallu al inicia’ la baxada. Error: %s; %s."
 
 #: ps/ModIo.cpp:400
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr "Fallu de baẍada asýnchrona: %s, %s."
+msgstr "Fallu de baxada asýnchrona: %s, %s."
 
 #: ps/ModIo.cpp:428
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Fallou la baẍada. Respuösta del servidor: %s; %s."
+msgstr "Fallou la baxada. Respuœsta de l servidor: %s; %s."
 
 #: ps/ModIo.cpp:534
 msgid "Mismatched filesize."
-msgstr "Los tammagnos de los archivos nun concasan."
+msgstr "Los tammagnos de los archivos nun concasæn."
 
 #: ps/ModIo.cpp:552
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr "Archivo inválido. Anticipaba-se el md5 “%s”, recibiu-se “%s”."
+msgstr "Archivo inválido. Anticipaba-se l md5 “%s”, recibîu-se “%s”."
 
 #: ps/ModIo.cpp:567
 msgid "Failed to compute final hash."
-msgstr "Houbo un fallu al calcular el hash final."
+msgstr "Houbo un fallu al calcula’l hash final."
 
 #: ps/ModIo.cpp:573
 msgid "Failed to verify signature."
-msgstr "Houbo un fallu al verificar la robra."
+msgstr "Houbo un fallu al verifica’ la roblra."
 
 #: ps/SavedGame.cpp:142
 #, c-format
 msgid "Saved game to '%s'"
-msgstr "La partida archivou-se in “%s”"
+msgstr "La partida archivou-se n “%s”"
 
 #: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
-msgstr "compilacion personalizada"
+msgstr "compilaçon personalizada"
 
 #: renderer/Renderer.cpp:614 renderer/Renderer.cpp:617
 #: renderer/Renderer.cpp:754 renderer/Renderer.cpp:757
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "El semeyyu archivou-se in “%s”"
+msgstr "El semeyu archivou-se n “%s”"
