@@ -344,7 +344,7 @@ placePlayerBases({
 		"outerTerrain": tShore,
 		"innerTerrain": tRoad
 	},
-	"Chicken": {
+	"StartingAnimal": {
 	},
 	"Berries": {
 		"template": oBerryBush

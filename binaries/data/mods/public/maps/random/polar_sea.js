@@ -73,7 +73,7 @@ placePlayerBases({
 		"outerTerrain": tRoadWild,
 		"innerTerrain": tRoad
 	},
-	"Chicken": {
+	"StartingAnimal": {
 		"template": oMuskox
 	},
 	// No berries, no trees, no decoratives

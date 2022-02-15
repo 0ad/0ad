@@ -221,7 +221,7 @@ placePlayerBases({
 		"outerTerrain": tRoad,
 		"innerTerrain": tRoad
 	},
-	"Chicken": {
+	"StartingAnimal": {
 		"template": oGazelle,
 		"distance": 18,
 		"minGroupDistance": 2,

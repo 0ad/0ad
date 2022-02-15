@@ -114,7 +114,7 @@ placePlayerBases({
 		"outerTerrain": tRoadWild,
 		"innerTerrain": tRoad
 	},
-	"Chicken": {
+	"StartingAnimal": {
 		"template": oDeer,
 		"distance": 18,
 		"minGroupDistance": 2,

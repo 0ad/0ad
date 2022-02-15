@@ -183,8 +183,8 @@ function createBase(playerID, playerPosition, walls)
 				new TileClassPainter(g_TileClasses.player)
 			]
 		},
-		"Chicken": {
-			"template": g_Gaia.chicken
+		"StartingAnimal": {
+			"template": g_Gaia.startingAnimal
 		},
 		"Berries": {
 			"template": g_Gaia.fruitBush

@@ -71,7 +71,7 @@ var connectPlayers = randBool();
 
 // Map layout
 var stripWidthsLeft = connectPlayers ?
-	[[0.03, 0.09], [0.14, 0.25], [0.36, 0.46]] : 
+	[[0.03, 0.09], [0.14, 0.25], [0.36, 0.46]] :
 	[[0, 0.06], [0.12, 0.23], [0.33, 0.43]];
 
 // Mirror
@@ -136,7 +136,7 @@ placePlayerBases({
 		"innerTerrain": tRoad,
 		"radius": playerRadius / 3
 	},
-	"Chicken": {
+	"StartingAnimal": {
 		"template": oPeacock
 	},
 	"Berries": {

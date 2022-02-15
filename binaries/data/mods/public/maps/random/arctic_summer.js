@@ -65,7 +65,7 @@ placePlayerBases({
 		"outerTerrain": tPrimary,
 		"innerTerrain": tSecondary
 	},
-	"Chicken": {
+	"StartingAnimal": {
 		"template": oRabbit
 	},
 	"Berries": {

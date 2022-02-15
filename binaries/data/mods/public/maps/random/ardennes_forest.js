@@ -141,7 +141,7 @@ placePlayerBases({
 		"radius": scaleByMapSize(5, 6),
 		"smoothness": 0.05
 	},
-	"Chicken": {
+	"StartingAnimal": {
 		"template": oPig
 	},
 	"Berries": {

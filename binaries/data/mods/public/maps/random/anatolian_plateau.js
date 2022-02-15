@@ -16,6 +16,7 @@ const oPoplar = "gaia/tree/poplar_lombardy";
 const oBush = "gaia/tree/bush_temperate";
 const oBerryBush = "gaia/fruit/berry_01";
 const oRabbit = "gaia/fauna_rabbit";
+const oAnimal = "gaia/fauna_sheep";
 const oSheep = "gaia/fauna_sheep";
 const oStoneLarge = "gaia/rock/mediterranean_large";
 const oStoneSmall = "gaia/rock/mediterranean_small";
@@ -54,7 +55,8 @@ placePlayerBases({
 		"outerTerrain": tRoadWild,
 		"innerTerrain": tRoad
 	},
-	"Chicken": {
+	"StartingAnimal": {
+		"template": oAnimal
 	},
 	"Berries": {
 		"template": oBerryBush

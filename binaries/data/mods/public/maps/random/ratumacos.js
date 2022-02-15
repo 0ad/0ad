@@ -129,7 +129,7 @@ placePlayerBases({
 			new SmoothElevationPainter(ELEVATION_SET, heightPlayer, 2)
 		]
 	},
-	"Chicken": {
+	"StartingAnimal": {
 	},
 	"Berries": {
 		"template": g_Gaia.fruitBush

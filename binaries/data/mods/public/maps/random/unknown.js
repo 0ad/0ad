@@ -1044,7 +1044,7 @@ function createUnknownPlayerBases()
 				new TileClassPainter(clPlayer)
 			]
 		},
-		"Chicken": {
+		"StartingAnimal": {
 		},
 		"Berries": {
 			"template": oFruitBush
