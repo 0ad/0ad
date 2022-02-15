@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>skeletal/horse_lusitano.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant file="quadraped/horse/palomino_01.xml" frequency="1" name="palomino_01"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_fauna.xml" name="Horse-Fauna" frequency="1"/>
+    <variant file="quadraped/base_horse_death.xml"/>
+    <variant file="quadraped/base_horse_run.xml"/>
+  </group>
+  <material>no_trans_parallax_spec.xml</material>
+</actor>
