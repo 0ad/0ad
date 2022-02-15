@@ -10,7 +10,8 @@
         <prop actor="props/units/quiver_back_bamboo.xml" attachpoint="back"/>
       </props>
       <textures>
-        <texture file="skeletal/maur_iar_b.png" name="baseTex"/>
+        <texture file="skeletal/maur/skirt_01_02.png" name="baseTex"/>
+        <texture file="skeletal/maur/skirt_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -20,5 +21,5 @@
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

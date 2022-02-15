@@ -3,7 +3,7 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_naked.dae</mesh>
       <props>
         <prop actor="props/units/shields/maur_tall_curved_b.xml" attachpoint="shield"/>
         <prop actor="props/units/heads/new/head_maur_tall_hair.xml" attachpoint="head"/>
@@ -11,7 +11,7 @@
         <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
       </props>
       <textures>
-        <texture file="skeletal/maur_isw_b.png" name="baseTex"/>
+        <texture file="skeletal/maur/loin_cloth_01_01.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_infantry_swordsman">
+  <Identity>
+    <Civ>maur</Civ>
+    <GenericName>Chandragupta Maurya</GenericName>
+    <SpecificName>Chandragupta Maurya</SpecificName>
+    <Icon>units/maur_hero_chandragupta.png</Icon>
+  </Identity>
+  <Upgrade>
+    <Mount>
+      <Entity>units/maur/hero_chandragupta</Entity>
+      <Tooltip>This gives Chandragupta Maurya his War Elephant.</Tooltip>
+	  <RequiredTechnology>phase_city</RequiredTechnology>
+      <Cost>
+        <food>200</food>
+        <metal>200</metal>
+      </Cost>
+      <Time>10</Time>
+    </Mount>
+  </Upgrade>
+  <VisualActor>
+    <Actor>units/mauryas/hero_infantry_swordsman_chandragupta.xml</Actor>
+  </VisualActor>
+</Entity>

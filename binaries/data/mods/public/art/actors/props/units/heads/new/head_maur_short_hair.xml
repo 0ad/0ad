@@ -28,17 +28,5 @@
       <mesh>props/new/head_mauryan_short_hair.dae</mesh>
     </variant>
   </group>
-  <group>
-    <variant frequency="1" name="No earrings">
-      <props>
-        <prop attachpoint="root"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="Earrings">
-      <props>
-        <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="root"/>
-      </props>
-    </variant>
-  </group>
   <material>player_trans.xml</material>
 </actor>

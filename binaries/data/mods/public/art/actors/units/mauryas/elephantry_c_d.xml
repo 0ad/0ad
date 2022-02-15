@@ -14,9 +14,16 @@
   <group>
     <variant frequency="1" name="Mahout-Texture-1">
       <textures>
-        <texture file="skeletal/maur_iar_e.png" name="baseTex"/>
+        <texture file="skeletal/maur/tunic_leather_01_01.png" name="baseTex"/>
+        <texture file="skeletal/maur/tunic_leather_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Mahout-Texture-2">
+      <textures>
+        <texture file="skeletal/maur/tunic_leather_01_02.png" name="baseTex"/>
+        <texture file="skeletal/maur/tunic_leather_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
