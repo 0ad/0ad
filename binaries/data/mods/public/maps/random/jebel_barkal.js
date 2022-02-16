@@ -594,7 +594,7 @@ for (let i = 0; i < numPlayers; ++i)
 			"outerTerrain": isDesert ? tRoadDesert : tRoadFertileLand,
 			"innerTerrain": isDesert ? tRoadDesert : tRoadFertileLand
 		},
-		"Chicken": {
+		"StartingAnimal": {
 			"template": oGazelle,
 			"distance": 15,
 			"minGroupDistance": 2,

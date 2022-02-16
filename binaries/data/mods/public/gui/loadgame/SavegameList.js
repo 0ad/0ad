@@ -105,8 +105,8 @@ class SavegameList
 				cmpB = +b.time;
 				break;
 			case 'mapName':
-				cmpA = translate(a.initAttributes.settings.Name);
-				cmpB = translate(b.initAttributes.settings.Name);
+				cmpA = translate(a.initAttributes.settings.mapName);
+				cmpB = translate(b.initAttributes.settings.mapName);
 				break;
 			case 'mapType':
 				cmpA = translateMapType(a.initAttributes.mapType);
@@ -131,7 +131,7 @@ class SavegameList
 			                   this.campaignFilter(metadata, this.campaignRun);
 			return {
 				"date": this.generateSavegameDateString(metadata, engineInfo),
-				"mapName": compatibilityColor(translate(metadata.initAttributes.settings.Name), isCompatible),
+				"mapName": compatibilityColor(translate(metadata.initAttributes.settings.mapName), isCompatible),
 				"mapType": compatibilityColor(translateMapType(metadata.initAttributes.mapType), isCompatible),
 				"description": compatibilityColor(metadata.description, isCompatible)
 			};

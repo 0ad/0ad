@@ -8,7 +8,7 @@ class TitleDisplay
 		let loadingMapName = Engine.GetGUIObjectByName("loadingMapName");
 		loadingMapName.caption = sprintf(
 			data.attribs.mapType == "random" ? this.Generating : this.Loading,
-			{ "map": translate(data.attribs.settings.Name) });
+			{ "map": translate(data.attribs.settings.mapName) });
 	}
 }
 

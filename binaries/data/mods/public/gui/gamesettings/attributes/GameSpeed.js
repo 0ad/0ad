@@ -13,9 +13,8 @@ GameSettings.prototype.Attributes.GameSpeed = class GameSpeed extends GameSettin
 
 	fromInitAttributes(attribs)
 	{
-		if (!attribs.gameSpeed)
-			return;
-		this.gameSpeed = +attribs.gameSpeed;
+		if (attribs.gameSpeed)
+			this.gameSpeed = +attribs.gameSpeed;
 	}
 
 	onMapChange()

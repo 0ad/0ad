@@ -4716,11 +4716,11 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 			return false;
 	}
 
-	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	const cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	if (!this.AbleToMove(cmpUnitMotion))
 		return false;
 
-	let cmpFormation = Engine.QueryInterface(target, IID_Formation);
+	const cmpFormation = Engine.QueryInterface(target, IID_Formation);
 	if (cmpFormation)
 		target = cmpFormation.GetClosestMember(this.entity);
 
@@ -4735,28 +4735,11 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 		return false;
 	const range = cmpAttack.GetRange(type);
 
-	let thisCmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	if (!thisCmpPosition.IsInWorld())
-		return false;
-	let s = thisCmpPosition.GetPosition();
-
-	let targetCmpPosition = Engine.QueryInterface(target, IID_Position);
-	if (!targetCmpPosition || !targetCmpPosition.IsInWorld())
-		return false;
-
-	// Parabolic range compuation is the same as in BuildingAI's FireArrows.
-	let t = targetCmpPosition.GetPosition();
-	// h is positive when I'm higher than the target
-	const h = s.y - t.y + cmpAttack.GetAttackYOrigin(type);
-
-	let parabolicMaxRange = Math.sqrt(Math.square(range.max) + 2 * range.max * h);
-	// No negative roots please
-	if (h <= -range.max / 2)
-		// return false? Or hope you come close enough?
-		parabolicMaxRange = 0;
+	// In case the range returns negative, we are probably too high compared to the target. Hope we come close enough.
+	const parabolicMaxRange = Math.max(0, Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEffectiveParabolicRange(this.entity, target, range.max, cmpAttack.GetAttackYOrigin(type)));
 
 	// The parabole changes while walking so be cautious:
-	let guessedMaxRange = parabolicMaxRange > range.max ? (range.max + parabolicMaxRange) / 2 : parabolicMaxRange;
+	const guessedMaxRange = parabolicMaxRange > range.max ? (range.max + parabolicMaxRange) / 2 : parabolicMaxRange;
 
 	return cmpUnitMotion && cmpUnitMotion.MoveToTargetRange(target, range.min, guessedMaxRange);
 };

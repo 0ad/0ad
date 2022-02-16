@@ -140,7 +140,7 @@ placePlayerBases({
 			new TileClassPainter(clCity)
 		]
 	},
-	"Chicken": {
+	"StartingAnimal": {
 	},
 	"Berries": {
 		"template": oBerryBush

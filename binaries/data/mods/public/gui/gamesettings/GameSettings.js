@@ -37,7 +37,8 @@ class GameSettings
 			this[name] = new GameSettings.prototype.Attributes[comp](this);
 		}
 		for (let comp in this)
-			this[comp].init();
+			if (this[comp].init)
+				this[comp].init();
 
 		return this;
 	}
@@ -114,18 +115,22 @@ class GameSettings
 	{
 		this.pickRandomItems();
 
-		Engine.SetRankedGame(this.rating.enabled);
+		// Let the settings finalize themselves. Let them do anything they need to do before the
+		// game starts and set any value in the attributes which mustn't be persisted.
+		const attribs = this.toInitAttributes();
+		for (const comp in this)
+			if (this[comp].onFinalizeAttributes)
+				this[comp].onFinalizeAttributes(attribs, playerAssignments);
 
-		// Replace player names with the real players.
-		for (let guid in playerAssignments)
-			if (playerAssignments[guid].player !== -1)
-				this.playerName.values[playerAssignments[guid].player -1] = playerAssignments[guid].name;
+		Object.defineProperty(this, "finalizedAttributes", {
+			"value": deepfreeze(attribs)
+		});
 
 		// NB: for multiplayer support, the clients must be listening to "start" net messages.
 		if (this.isNetworked)
-			Engine.StartNetworkGame(this.toInitAttributes());
+			Engine.StartNetworkGame(this.finalizedAttributes);
 		else
-			Engine.StartGame(this.toInitAttributes(), playerAssignments.local.player);
+			Engine.StartGame(this.finalizedAttributes, playerAssignments.local.player);
 	}
 }
 

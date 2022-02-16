@@ -144,7 +144,7 @@ for (let i = 0; i < teams.length; ++i)
 		});
 
 	for (let p = 0; p < teams[i].length; ++p)
-		placePlayerBaseChicken({
+		placePlayerBaseStartingAnimal({
 			"playerID": teams[i][p],
 			"playerPosition": playerPosition[p],
 			"BaseResourceClass": clBaseResource,

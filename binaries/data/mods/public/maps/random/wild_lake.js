@@ -284,7 +284,7 @@ function placeCamp(position,
 
 function placeStartLocationResources(
 	point,
-	foodEntities = [g_Gaia.fruitBush, g_Gaia.chicken],
+	foodEntities = [g_Gaia.fruitBush, g_Gaia.startingAnimal],
 	groveEntities = [
 		g_Gaia.tree1, g_Gaia.tree1, g_Gaia.tree1, g_Gaia.tree1, g_Gaia.tree1,
 		g_Gaia.tree2, g_Gaia.tree2, g_Gaia.tree2, g_Gaia.tree2,

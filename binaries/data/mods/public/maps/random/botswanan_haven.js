@@ -72,7 +72,7 @@ placePlayerBases({
 		"outerTerrain": tCityTile,
 		"innerTerrain": tCityTile
 	},
-	"Chicken": {
+	"StartingAnimal": {
 	},
 	"Berries": {
 		"template": oBerryBush

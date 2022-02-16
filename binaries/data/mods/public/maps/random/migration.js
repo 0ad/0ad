@@ -98,7 +98,7 @@ placePlayerBases({
 	"BaseResourceClass": clBaseResource,
 	"Walls": false,
 	// No city patch
-	"Chicken": {
+	"StartingAnimal": {
 	},
 	"Berries": {
 		"template": oFruitBush

@@ -3,6 +3,7 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
+      <mesh>skeletal/new/f_tunic_short.dae</mesh>
       <animations>
         <animation file="biped/infantry/pikeman/idle_relax_01.dae" name="Idle" speed="30"/>
       </animations>
@@ -14,11 +15,10 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Skirt-Long">
-      <mesh>skeletal/new/f_dress.dae</mesh>
+    <variant frequency="1" name="female_02_01">
       <textures>
-        <texture file="skeletal/maur_fem_b.png" name="baseTex"/>
-        <texture file="skeletal/maur_fem_b_spec.png" name="specTex"/>
+        <texture file="skeletal/maur/female_02_01.png" name="baseTex"/>
+        <texture file="skeletal/maur/female_02_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>

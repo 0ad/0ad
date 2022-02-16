@@ -16,38 +16,8 @@
   <group>
     <variant frequency="1" name="rome-chainmail-4a">
       <textures>
-        <texture file="skeletal/rome/chainmail_04_01.png" name="baseTex"/>
-        <texture file="skeletal/celt/chainmail_02_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="rome-chainmail-4b">
-      <textures>
-        <texture file="skeletal/rome/chainmail_04_02.png" name="baseTex"/>
-        <texture file="skeletal/celt/chainmail_02_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="rome-chainmail-4c">
-      <textures>
-        <texture file="skeletal/rome/chainmail_04_03.png" name="baseTex"/>
-        <texture file="skeletal/celt/chainmail_02_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="rome-chainmail-4d">
-      <textures>
-        <texture file="skeletal/rome/chainmail_04_04.png" name="baseTex"/>
-        <texture file="skeletal/celt/chainmail_02_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="rome-chainmail-4e">
-      <textures>
-        <texture file="skeletal/rome/chainmail_04_05.png" name="baseTex"/>
-        <texture file="skeletal/celt/chainmail_02_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="rome-chainmail-4f">
-      <textures>
-        <texture file="skeletal/rome/chainmail_04_06.png" name="baseTex"/>
-        <texture file="skeletal/celt/chainmail_02_spec.png" name="specTex"/>
+        <texture file="skeletal/imp/chain_03_01.png" name="baseTex"/>
+        <texture file="skeletal/imp/chain_03_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -64,7 +34,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_swordsman_shield_relax.xml"/>
+    <variant file="biped/base_swordsman_shield_relax_celt.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/gather_praise.xml"/>

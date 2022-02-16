@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 #include "ICmpObstructionManager.h"
 
 #include "ICmpPosition.h"
+#include "ICmpRangeManager.h"
 
 #include "simulation2/MessageTypes.h"
 #include "simulation2/helpers/Geometry.h"
@@ -475,6 +476,7 @@ public:
 
 	virtual bool IsInPointRange(entity_id_t ent, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const;
 	virtual bool IsInTargetRange(entity_id_t ent, entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const;
+	virtual bool IsInTargetParabolicRange(entity_id_t ent, entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t yOrigin, bool opposite) const;
 	virtual bool IsPointInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange) const;
 	virtual bool AreShapesInRange(const ObstructionSquare& source, const ObstructionSquare& target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const;
 
@@ -816,39 +818,43 @@ fixed CCmpObstructionManager::MaxDistanceBetweenShapes(const ObstructionSquare& 
  * to set the opposite bool false and use the edge to egde distance.
  *
  * We don't use squares because the are likely to overflow.
+ * TODO Avoid the overflows and use squares instead.
  * We use a 0.0001 margin to avoid rounding errors.
  */
 bool CCmpObstructionManager::IsInPointRange(entity_id_t ent, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const
 {
 	fixed dist = DistanceToPoint(ent, px, pz);
-	// Treat -1 max range as infinite
-	return dist != fixed::FromInt(-1) &&
-	      (dist <= (maxRange + fixed::FromFloat(0.0001f)) || maxRange < fixed::Zero()) &&
+	return maxRange != NEVER_IN_RANGE && dist != fixed::FromInt(-1) &&
+	      (dist <= (maxRange + fixed::FromFloat(0.0001f)) || maxRange == ALWAYS_IN_RANGE) &&
 	      (opposite ? MaxDistanceToPoint(ent, px, pz) : dist) >= minRange - fixed::FromFloat(0.0001f);
 }
 
 bool CCmpObstructionManager::IsInTargetRange(entity_id_t ent, entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const
 {
 	fixed dist = DistanceToTarget(ent, target);
-	// Treat -1 max range as infinite
-	return dist != fixed::FromInt(-1) &&
-	      (dist <= (maxRange + fixed::FromFloat(0.0001f)) || maxRange < fixed::Zero()) &&
+	return maxRange != NEVER_IN_RANGE && dist != fixed::FromInt(-1) &&
+	      (dist <= (maxRange + fixed::FromFloat(0.0001f)) || maxRange == ALWAYS_IN_RANGE) &&
 	      (opposite ? MaxDistanceToTarget(ent, target) : dist) >= minRange - fixed::FromFloat(0.0001f);
 }
+
+bool CCmpObstructionManager::IsInTargetParabolicRange(entity_id_t ent, entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t yOrigin, bool opposite) const
+{
+	CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
+	return IsInTargetRange(ent, target, minRange, cmpRangeManager->GetEffectiveParabolicRange(ent, target, maxRange, yOrigin), opposite);
+}
+
 bool CCmpObstructionManager::IsPointInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange) const
 {
 	entity_pos_t distance = (CFixedVector2D(x, z) - CFixedVector2D(px, pz)).Length();
-	// Treat -1 max range as infinite
-	return (distance <= (maxRange + fixed::FromFloat(0.0001f)) || maxRange < fixed::Zero()) &&
+	return maxRange != NEVER_IN_RANGE && (distance <= (maxRange + fixed::FromFloat(0.0001f)) || maxRange == ALWAYS_IN_RANGE) &&
 	        distance >= minRange - fixed::FromFloat(0.0001f);
 }
 
 bool CCmpObstructionManager::AreShapesInRange(const ObstructionSquare& source, const ObstructionSquare& target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const
 {
 	fixed dist = DistanceBetweenShapes(source, target);
-	// Treat -1 max range as infinite
-	return dist != fixed::FromInt(-1) &&
-	      (dist <= (maxRange + fixed::FromFloat(0.0001f)) || maxRange < fixed::Zero()) &&
+	return maxRange != NEVER_IN_RANGE && dist != fixed::FromInt(-1) &&
+	      (dist <= (maxRange + fixed::FromFloat(0.0001f)) || maxRange == ALWAYS_IN_RANGE) &&
 	      (opposite ? MaxDistanceBetweenShapes(source, target) : dist) >= minRange - fixed::FromFloat(0.0001f);
 }
 

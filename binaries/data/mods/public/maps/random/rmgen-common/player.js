@@ -22,7 +22,7 @@ var g_PlayerBaseFunctions = [
 	"Mines",
 	"Treasures",
 	"Berries",
-	"Chicken",
+	"StartingAnimal",
 	"Decoratives"
 ];
 
@@ -236,9 +236,13 @@ function placePlayerBaseCityPatch(args)
 		painters);
 }
 
-function placePlayerBaseChicken(args)
+function placePlayerBaseStartingAnimal(args)
 {
 	let [get, basePosition, baseResourceConstraint] = getPlayerBaseArgs(args);
+
+	const template = get("template", "gaia/fauna_chicken");
+	const count = template === "gaia/fauna_chicken" ? 5 :
+		Math.round(5 * (Engine.GetTemplate("gaia/fauna_chicken").ResourceSupply.Max / Engine.GetTemplate(get("template")).ResourceSupply.Max))
 
 	for (let i = 0; i < get("groupCount", 2); ++i)
 	{
@@ -250,9 +254,9 @@ function placePlayerBaseChicken(args)
 				new SimpleGroup(
 					[
 						new SimpleObject(
-							get("template", "gaia/fauna_chicken"),
-							get("minGroupCount", 5),
-							get("maxGroupCount", 5),
+							template,
+							get("minGroupCount", count),
+							get("maxGroupCount", count),
 							get("minGroupDistance", 0),
 							get("maxGroupDistance", 2))
 					],
@@ -269,7 +273,7 @@ function placePlayerBaseChicken(args)
 
 		if (!success)
 		{
-			error("Could not place chicken for player " + args.playerID);
+			error("Could not place startingAnimal for player " + args.playerID);
 			return;
 		}
 	}

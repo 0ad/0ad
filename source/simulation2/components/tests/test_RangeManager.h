@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -267,5 +267,47 @@ public:
 		nearby = cmp->ExecuteQuery(101, fixed::FromInt(6), fixed::FromInt(50), {1}, 0, true);
 		TS_ASSERT_EQUALS(nearby, std::vector<entity_id_t>{});
 
+	}
+
+	void test_IsInTargetParabolicRange()
+	{
+		ComponentTestHelper test(g_ScriptContext);
+		ICmpRangeManager* cmp = test.Add<ICmpRangeManager>(CID_RangeManager, "", SYSTEM_ENTITY);
+		const entity_id_t source = 200;
+		const entity_id_t target = 201;
+		entity_pos_t range = fixed::FromInt(-3);
+		entity_pos_t yOrigin = fixed::FromInt(-20);
+
+		// Invalid range.
+		TS_ASSERT_EQUALS(cmp->GetEffectiveParabolicRange(source, target, range, yOrigin), range);
+
+		// No source ICmpPosition.
+		range = fixed::FromInt(10);
+		TS_ASSERT_EQUALS(cmp->GetEffectiveParabolicRange(source, target, range, yOrigin), NEVER_IN_RANGE);
+
+		// No target ICmpPosition.
+		MockPositionRgm cmpSourcePosition;
+		test.AddMock(source, IID_Position, cmpSourcePosition);
+		TS_ASSERT_EQUALS(cmp->GetEffectiveParabolicRange(source, target, range, yOrigin), NEVER_IN_RANGE);
+
+		// Too much height difference.
+		MockPositionRgm cmpTargetPosition;
+		test.AddMock(target, IID_Position, cmpTargetPosition);
+		TS_ASSERT_EQUALS(cmp->GetEffectiveParabolicRange(source, target, range, yOrigin), NEVER_IN_RANGE);
+
+		// If no offset we get the range.
+		range = fixed::FromInt(20);
+		yOrigin = fixed::Zero();
+		TS_ASSERT_EQUALS(cmp->GetEffectiveParabolicRange(source, target, range, yOrigin), range);
+		TS_ASSERT_EQUALS(cmp->GetEffectiveParabolicRange(source, target, fixed::Zero(), yOrigin), fixed::Zero());
+
+		// Normal case.
+		yOrigin = fixed::FromInt(5);
+		range = fixed::FromInt(10);
+		TS_ASSERT_EQUALS(cmp->GetEffectiveParabolicRange(source, target, range, yOrigin), fixed::FromFloat(14.142136f));
+
+		// Big range.
+		range = fixed::FromInt(260);
+		TS_ASSERT_EQUALS(cmp->GetEffectiveParabolicRange(source, target, range, yOrigin), fixed::FromFloat(264.952820f));
 	}
 };

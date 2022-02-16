@@ -13,7 +13,7 @@
         <prop actor="props/units/quivers/pers_back.xml" attachpoint="back"/>
       </props>
       <textures>
-        <texture file="skeletal/pers_hero_xerxes.png" name="baseTex"/>
+        <texture file="skeletal/pers/robes_royal_02.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
@@ -21,6 +21,7 @@
     <variant file="biped/base_spearman_shield_relax.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>

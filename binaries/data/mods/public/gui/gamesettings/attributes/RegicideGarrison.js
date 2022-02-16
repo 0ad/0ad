@@ -9,7 +9,8 @@ GameSettings.prototype.Attributes.RegicideGarrison = class RegicideGarrison exte
 
 	toInitAttributes(attribs)
 	{
-		attribs.settings.RegicideGarrison = this.enabled;
+		if (this.available)
+			attribs.settings.RegicideGarrison = this.enabled;
 	}
 
 	fromInitAttributes(attribs)

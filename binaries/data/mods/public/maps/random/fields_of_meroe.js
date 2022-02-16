@@ -184,7 +184,7 @@ placePlayerBases({
 		"width": 3,
 		"painters": [new TileClassPainter(clPlayer)]
 	},
-	"Chicken": {
+	"StartingAnimal": {
 	},
 	"Berries": {
 		"template": oBush

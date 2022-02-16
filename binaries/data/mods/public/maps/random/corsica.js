@@ -229,7 +229,7 @@ placePlayerBases({
 			new TileClassPainter(clSettlement)
 		]
 	},
-	"Chicken": {
+	"StartingAnimal": {
 	},
 	"Berries": {
 		"template": eBush

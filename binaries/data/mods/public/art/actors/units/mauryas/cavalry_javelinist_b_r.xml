@@ -10,7 +10,8 @@
         <prop actor="props/units/shields/maur_small_a.xml" attachpoint="shield"/>
       </props>
       <textures>
-        <texture file="skeletal/maur_isp_b.png" name="baseTex"/>
+        <texture file="skeletal/maur/skirt_01_01.png" name="baseTex"/>
+        <texture file="skeletal/maur/skirt_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -26,5 +27,5 @@
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death_ranged.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

@@ -194,7 +194,7 @@ placePlayerBases({
 		"innerTerrain": tRoad,
 		"radius": playerCanyonRadius / 3
 	},
-	"Chicken": {
+	"StartingAnimal": {
 	},
 	"Berries": {
 		"template": oFruitBush

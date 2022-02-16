@@ -91,7 +91,7 @@ placePlayerBases({
 		"width": 3,
 		"radius": 10
 	},
-	"Chicken": {
+	"StartingAnimal": {
 	},
 	"Berries": {
 		"template": oBerryBush

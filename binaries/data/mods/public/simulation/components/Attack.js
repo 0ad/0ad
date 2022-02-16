@@ -739,28 +739,14 @@ Attack.prototype.PerformAttack = function(type, target)
  */
 Attack.prototype.IsTargetInRange = function(target, type)
 {
-	let range = this.GetRange(type);
-	if (type == "Ranged")
-	{
-		let cmpPositionTarget = Engine.QueryInterface(target, IID_Position);
-		if (!cmpPositionTarget || !cmpPositionTarget.IsInWorld())
-			return false;
-
-		let cmpPositionSelf = Engine.QueryInterface(this.entity, IID_Position);
-		if (!cmpPositionSelf || !cmpPositionSelf.IsInWorld())
-			return false;
-
-		let positionSelf = cmpPositionSelf.GetPosition();
-		let positionTarget = cmpPositionTarget.GetPosition();
-
-		const heightDifference = positionSelf.y + this.GetAttackYOrigin(type) - positionTarget.y;
-		range.max = Math.sqrt(Math.square(range.max) + 2 * range.max * heightDifference);
-
-		if (range.max < 0)
-			return false;
-	}
-	let cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
-	return cmpObstructionManager.IsInTargetRange(this.entity, target, range.min, range.max, false);
+	const range = this.GetRange(type);
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager).IsInTargetParabolicRange(
+		this.entity,
+		target,
+		range.min,
+		range.max,
+		this.GetAttackYOrigin(type),
+		false);
 };
 
 Attack.prototype.OnValueModification = function(msg)

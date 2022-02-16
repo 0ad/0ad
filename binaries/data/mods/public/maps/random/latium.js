@@ -334,7 +334,7 @@ placePlayerBases({
 			new SmoothElevationPainter(ELEVATION_SET, heightPlayer, 2)
 		]
 	},
-	"Chicken": {
+	"StartingAnimal": {
 	},
 	"Berries": {
 		"template": oBerryBush,
