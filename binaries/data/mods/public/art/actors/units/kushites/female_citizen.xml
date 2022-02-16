@@ -9,8 +9,8 @@
         <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="helmet"/>
       </props>
       <textures>
-        <texture file="skeletal/kush_support_female_citizen_light.png" name="baseTex"/>
-        <texture file="skeletal/kush_support_female_citizen_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/skirt_female_01_light.png" name="baseTex"/>
+        <texture file="skeletal/kush/skirt_female_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="5" name="Skirt Medium Skin">
@@ -20,8 +20,8 @@
         <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="helmet"/>
       </props>
       <textures>
-        <texture file="skeletal/kush_support_female_citizen_medium.png" name="baseTex"/>
-        <texture file="skeletal/kush_support_female_citizen_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/skirt_female_01_medium.png" name="baseTex"/>
+        <texture file="skeletal/kush/skirt_female_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="3" name="Skirt Dark Skin">
@@ -31,8 +31,8 @@
         <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="helmet"/>
       </props>
       <textures>
-        <texture file="skeletal/kush_support_female_citizen_dark.png" name="baseTex"/>
-        <texture file="skeletal/kush_support_female_citizen_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/skirt_female_01_dark.png" name="baseTex"/>
+        <texture file="skeletal/kush/skirt_female_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="White Dress Light Skin">
@@ -42,8 +42,8 @@
         <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="helmet"/>
       </props>
       <textures>
-        <texture file="skeletal/kush_support_female_citizen_dress_01_light.png" name="baseTex"/>
-        <texture file="skeletal/kush_support_female_citizen_dress_01_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/dress_female_01_light.png" name="baseTex"/>
+        <texture file="skeletal/kush/dress_female_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="5" name="White Dress Medium Skin">
@@ -53,8 +53,8 @@
         <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="helmet"/>
       </props>
       <textures>
-        <texture file="skeletal/kush_support_female_citizen_dress_01_medium.png" name="baseTex"/>
-        <texture file="skeletal/kush_support_female_citizen_dress_01_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/dress_female_01_medium.png" name="baseTex"/>
+        <texture file="skeletal/kush/dress_female_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="3" name="White Dress Dark Skin">
@@ -64,8 +64,8 @@
         <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="helmet"/>
       </props>
       <textures>
-        <texture file="skeletal/kush_support_female_citizen_dress_01_dark.png" name="baseTex"/>
-        <texture file="skeletal/kush_support_female_citizen_dress_01_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/dress_female_01_dark.png" name="baseTex"/>
+        <texture file="skeletal/kush/dress_female_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="0" name="Striped Dress Light Skin">
@@ -75,8 +75,8 @@
         <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="helmet"/>
       </props>
       <textures>
-        <texture file="skeletal/kush_support_female_citizen_dress_02_light.png" name="baseTex"/>
-        <texture file="skeletal/kush_support_female_citizen_dress_02_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/dress_female_02_light.png" name="baseTex"/>
+        <texture file="skeletal/kush/dress_female_02_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="0" name="Striped Dress Medium Skin">
@@ -86,8 +86,8 @@
         <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="helmet"/>
       </props>
       <textures>
-        <texture file="skeletal/kush_support_female_citizen_dress_02_medium.png" name="baseTex"/>
-        <texture file="skeletal/kush_support_female_citizen_dress_02_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/dress_female_02_medium.png" name="baseTex"/>
+        <texture file="skeletal/kush/dress_female_02_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="0" name="Striped Dress Dark Skin">
@@ -97,19 +97,19 @@
         <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="helmet"/>
       </props>
       <textures>
-        <texture file="skeletal/kush_support_female_citizen_dress_02_dark.png" name="baseTex"/>
-        <texture file="skeletal/kush_support_female_citizen_dress_02_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/dress_female_02_dark.png" name="baseTex"/>
+        <texture file="skeletal/kush/dress_female_02_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="0" name="Nuba Woman 01">
-      <mesh>skeletal/new/f_naked.dae</mesh>
+      <mesh>skeletal/new/f_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_kush_fem_dark_nuba.xml" attachpoint="head"/>
         <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="helmet"/>
       </props>
       <textures>
-        <texture file="skeletal/kush_support_female_nuba_dark.png" name="baseTex"/>
-        <texture file="skeletal/kush_support_female_nuba_dark_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/skirt_female_noba_01.png" name="baseTex"/>
+        <texture file="skeletal/kush/skirt_female_noba_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>

@@ -2,17 +2,44 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="Base">
+	<variant frequency="2" name="Nuba Woman 01">
       <mesh>skeletal/new/f_naked.dae</mesh>
+      <textures>
+        <texture file="skeletal/kush/naked_female_noba_01.png" name="baseTex"/>
+        <texture file="skeletal/kush/naked_female_noba_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+	<variant frequency="2" name="Nuba Woman 02">
+      <mesh>skeletal/new/f_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/kush/skirt_female_noba_01.png" name="baseTex"/>
+        <texture file="skeletal/kush/skirt_female_noba_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+	<variant frequency="1" name="Dreads">
       <props>
         <prop actor="props/units/heads/head_kush_fem_dark_nuba.xml" attachpoint="head"/>
         <prop actor="props/units/heads/kush_dread_hair_fem.xml" attachpoint="head"/>
+      </props>
+    </variant>
+	<variant frequency="1" name="No Dreads">
+      <props>
+        <prop actor="props/units/heads/head_kush_fem_dark_nuba.xml" attachpoint="head"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+	<variant frequency="1" name="Earrings">
+      <props>
         <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="helmet"/>
       </props>
-      <textures>
-        <texture file="skeletal/kush_support_female_nuba_dark.png" name="baseTex"/>
-        <texture file="skeletal/kush_support_female_nuba_dark_spec.png" name="specTex"/>
-      </textures>
+    </variant>
+	<variant frequency="1" name="No Earrings">
+      <props>
+        <prop actor="" attachpoint="helmet"/>
+      </props>
     </variant>
   </group>
   <group>

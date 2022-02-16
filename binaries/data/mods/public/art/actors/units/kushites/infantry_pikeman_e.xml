@@ -16,14 +16,14 @@
   <group>
     <variant frequency="2" name="Kushite Elite Pike Infantry 01">
       <textures>
-        <texture file="skeletal/kush_pike_e_01.png" name="baseTex"/>
-        <texture file="skeletal/kush_pike_e_01_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/padded_01_01.png" name="baseTex"/>
+        <texture file="skeletal/kush/padded_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="Kushite Elite Pike Infantry 02">
       <textures>
-        <texture file="skeletal/kush_pike_e_02.png" name="baseTex"/>
-        <texture file="skeletal/kush_pike_e_01_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/padded_01_02.png" name="baseTex"/>
+        <texture file="skeletal/kush/padded_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="Kushite Elite Pike Infantry 03">
@@ -31,26 +31,26 @@
         <prop actor="props/units/heads/head_kush_nubian.xml" attachpoint="head"/>
       </props>
       <textures>
-        <texture file="skeletal/kush_pike_e_03.png" name="baseTex"/>
-        <texture file="skeletal/kush_pike_e_03_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/padded_05_02.png" name="baseTex"/>
+        <texture file="skeletal/kush/padded_05_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="Kushite Elite Pike Infantry 04">
       <textures>
-        <texture file="skeletal/kush_pike_e_04.png" name="baseTex"/>
-        <texture file="skeletal/kush_pike_e_04_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/padded_04_01.png" name="baseTex"/>
+        <texture file="skeletal/kush/padded_04_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="Kushite Elite Pike Infantry 05">
       <textures>
-        <texture file="skeletal/kush_pike_e_05.png" name="baseTex"/>
-        <texture file="skeletal/kush_pike_e_03_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/padded_05_03.png" name="baseTex"/>
+        <texture file="skeletal/kush/padded_05_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="Kushite Elite Pike Infantry 06">
       <textures>
-        <texture file="skeletal/kush_pike_e_06.png" name="baseTex"/>
-        <texture file="skeletal/kush_pike_e_03_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/padded_05_01.png" name="baseTex"/>
+        <texture file="skeletal/kush/padded_05_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="Kushite Elite Pike Infantry 07">
@@ -59,25 +59,8 @@
         <prop actor="props/units/heads/head_kush_nubian.xml" attachpoint="head"/>
       </props>
       <textures>
-        <texture file="skeletal/kush_pike_e_07.png" name="baseTex"/>
-        <texture file="skeletal/kush_pike_e_05_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-    <variant frequency="2" name="Kushite Elite Pike Infantry 08">
-      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
-      <textures>
-        <texture file="skeletal/kush_pike_e_08.png" name="baseTex"/>
-        <texture file="skeletal/kush_pike_e_06_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-    <variant frequency="2" name="Kushite Elite Pike Infantry 09">
-      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
-      <props>
-        <prop actor="props/units/heads/head_kush_nubian.xml" attachpoint="head"/>
-      </props>
-      <textures>
-        <texture file="skeletal/kush_pike_e_09.png" name="baseTex"/>
-        <texture file="skeletal/kush_pike_e_06_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/padded_02_01.png" name="baseTex"/>
+        <texture file="skeletal/kush/padded_02_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="Kushite Elite Pike Infantry 10">
@@ -86,15 +69,32 @@
         <prop actor="props/units/heads/head_kush_nubian.xml" attachpoint="head"/>
       </props>
       <textures>
-        <texture file="skeletal/kush_pike_e_10.png" name="baseTex"/>
-        <texture file="skeletal/kush_pike_e_05_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/padded_02_02.png" name="baseTex"/>
+        <texture file="skeletal/kush/padded_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Kushite Elite Pike Infantry 08">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/kush/padded_03_01.png" name="baseTex"/>
+        <texture file="skeletal/kush/padded_03_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Kushite Elite Pike Infantry 09">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_kush_nubian.xml" attachpoint="head"/>
+      </props>
+      <textures>
+        <texture file="skeletal/kush/padded_03_02.png" name="baseTex"/>
+        <texture file="skeletal/kush/padded_03_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="Kushite Elite Pike Infantry 11">
       <mesh>skeletal/new/m_armor_dress.dae</mesh>
       <textures>
-        <texture file="skeletal/kush_pike_e_11.png" name="baseTex"/>
-        <texture file="skeletal/kush_pike_e_01_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/padded_dress_01.png" name="baseTex"/>
+        <texture file="skeletal/kush/padded_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Officer - Kushite Elite Pike Infantry 11">
@@ -103,8 +103,8 @@
         <prop actor="props/units/helmets/kush_skull_cap.xml" attachpoint="helmet"/>
       </props>
       <textures>
-        <texture file="skeletal/kush_pike_e_11.png" name="baseTex"/>
-        <texture file="skeletal/kush_pike_e_01_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/padded_dress_01.png" name="baseTex"/>
+        <texture file="skeletal/kush/padded_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>

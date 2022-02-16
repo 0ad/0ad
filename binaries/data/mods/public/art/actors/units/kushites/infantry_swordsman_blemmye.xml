@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_swordsman_shield_ready.xml">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_kush_blemmeye.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/spatha.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/kush_meroitic_scabbard.xml" attachpoint="back"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="tunic">
+      <textures>
+        <texture file="skeletal/kush/tunic_blemmye_01.png" name="baseTex"/>
+        <texture file="skeletal/kush/tunic_blemmye_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="tunic 2">
+      <textures>
+        <texture file="skeletal/kush/tunic_blemmye_02.png" name="baseTex"/>
+        <texture file="skeletal/kush/tunic_blemmye_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="beja-shield-large">
+      <props>
+        <prop actor="props/units/shields/kush_beja_rhino.xml" attachpoint="shield_arm"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="beja-shield-small">
+      <props>
+        <prop actor="props/units/shields/kush_beja_small_rhino.xml" attachpoint="shield_arm"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/build.xml"/>
+    <variant file="biped/build_farm.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

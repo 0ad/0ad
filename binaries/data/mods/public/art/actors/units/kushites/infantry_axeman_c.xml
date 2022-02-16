@@ -17,14 +17,14 @@
   <group>
     <variant frequency="1" name="kush_champion_01">
       <textures>
-        <texture file="skeletal/kush_champion_infantry_01.png" name="baseTex"/>
-        <texture file="skeletal/kush_champion_infantry_01_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/scale_01.png" name="baseTex"/>
+        <texture file="skeletal/kush/scale_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="kush_champion_02">
       <textures>
-        <texture file="skeletal/kush_champion_infantry_02.png" name="baseTex"/>
-        <texture file="skeletal/kush_champion_infantry_02_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/scale_02.png" name="baseTex"/>
+        <texture file="skeletal/kush/scale_02_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="kush_champion_03_lightskin">
@@ -33,8 +33,8 @@
         <prop actor="props/units/heads/new/head_african_1.xml" attachpoint="head"/>
       </props>
       <textures>
-        <texture file="skeletal/kush_champion_infantry_03.png" name="baseTex"/>
-        <texture file="skeletal/kush_champion_infantry_03_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/scale_03.png" name="baseTex"/>
+        <texture file="skeletal/kush/scale_03_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="kush_champion_04_lightskin">
@@ -43,8 +43,8 @@
         <prop actor="props/units/heads/new/head_african_1.xml" attachpoint="head"/>
       </props>
       <textures>
-        <texture file="skeletal/kush_champion_infantry_04.png" name="baseTex"/>
-        <texture file="skeletal/kush_champion_infantry_04_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/scale_04.png" name="baseTex"/>
+        <texture file="skeletal/kush/scale_04_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -52,6 +52,7 @@
     <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
