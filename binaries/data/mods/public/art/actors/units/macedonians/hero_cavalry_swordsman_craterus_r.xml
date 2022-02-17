@@ -6,27 +6,16 @@
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_a.xml" attachpoint="head"/>
+        <prop actor="props/units/helmets/hele_thracian_s2.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/falcata.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/shields/aspis_mace_h_02.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/capes/rider/cape_long_player.xml" attachpoint="root"/>
         <prop actor="props/units/armor/greave_02_bronze_r.xml" attachpoint="leg_R"/>
         <prop actor="props/units/armor/greave_02_bronze_l.xml" attachpoint="leg_L"/>
       </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Helmet Thracian Silver-02">
-      <props>
-        <prop actor="props/units/helmets/hele_thracian_s2.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="compound-linothorax-2a">
-      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <textures>
-        <texture file="skeletal/mace_compound_linothorax_2_a.png" name="baseTex"/>
-        <texture file="skeletal/mace_compound_linothorax_2_spec.png" name="specTex"/>
+        <texture file="skeletal/mace/compound_linothorax_02_01.png" name="baseTex"/>
+        <texture file="skeletal/mace/compound_linothorax_02_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>

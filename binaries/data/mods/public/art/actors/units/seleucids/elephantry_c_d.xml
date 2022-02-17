@@ -3,7 +3,7 @@
   <castshadow/>
   <group>
     <variant file="biped/base_elephant_driver_relax_shield_sele.xml" frequency="100" name="Base">
-      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
     </variant>
   </group>
   <group>
@@ -26,28 +26,22 @@
     </variant>
   </group>
   <group>
-    <variant frequency="2" name="texture">
+    <variant frequency="2" name="skirt_leather_01_01">
       <textures>
-        <texture file="skeletal/maur/iar_e.png" name="baseTex"/>
-        <texture file="skeletal/maur/isp_e_spec.png" name="specTex"/>
+        <texture file="skeletal/maur/skirt_leather_01_01.png" name="baseTex"/>
+        <texture file="skeletal/maur/skirt_leather_01_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="leather straps">
+    <variant frequency="1" name="tunic_leather_01_02">
       <textures>
-        <texture file="skeletal/maur/iar_a.png" name="baseTex"/>
-        <texture file="skeletal/maur/iar_a_spec.png" name="specTex"/>
+        <texture file="skeletal/maur/tunic_leather_01_02.png" name="baseTex"/>
+        <texture file="skeletal/maur/tunic_leather_01_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="leather straps+arm bands">
+    <variant frequency="1" name="tunic_leather_01_01">
       <textures>
-        <texture file="skeletal/maur/isp_e.png" name="baseTex"/>
-        <texture file="skeletal/maur/isp_e_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="bare chest">
-      <textures>
-        <texture file="skeletal/maur/isp_b.png" name="baseTex"/>
-        <texture file="skeletal/maur/isp_b_spec.png" name="specTex"/>
+        <texture file="skeletal/maur/tunic_leather_01_01.png" name="baseTex"/>
+        <texture file="skeletal/maur/tunic_leather_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
