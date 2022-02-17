@@ -10,7 +10,9 @@
         <prop actor="props/units/kush_hero_elephantry_arakamani_turret.xml" attachpoint="turret"/>
       </props>
       <textures>
-        <texture file="skeletal/kush_hero_elephantry_arakamani.png" name="baseTex"/>
+        <texture file="skeletal/kush/elephant_02.png" name="baseTex"/>
+        <texture file="skeletal/animal-elephant-asian-spec.png" name="specTex"/>
+        <texture file="skeletal/animal-elephant-asian-norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -19,5 +21,5 @@
     <variant file="quadraped/base_elephant_death.xml"/>
     <variant file="quadraped/base_elephant_run.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

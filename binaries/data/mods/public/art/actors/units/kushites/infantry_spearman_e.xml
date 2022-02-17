@@ -16,20 +16,27 @@
   <group>
     <variant frequency="1" name="Kushite Elite Spear Infantry Leather 01">
       <textures>
-        <texture file="skeletal/kush_iar_e_01.png" name="baseTex"/>
-        <texture file="skeletal/kush_iar_e_01_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/skirt_leather_01.png" name="baseTex"/>
+        <texture file="skeletal/kush/skirt_leather_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Kushite Elite Spear Infantry Leather 02">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <textures>
+        <texture file="skeletal/kush/skirt_leather_02.png" name="baseTex"/>
+        <texture file="skeletal/kush/skirt_leather_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Kushite Elite Spear Infantry Cloth 01">
       <textures>
-        <texture file="skeletal/kush_merc_cavalry_r_01.png" name="baseTex"/>
-        <texture file="skeletal/kush_merc_cavalry_r_01_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/tunic_blemmye_01.png" name="baseTex"/>
+        <texture file="skeletal/kush/tunic_blemmye_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Kushite Elite Spear Infantry Cloth 02">
       <textures>
-        <texture file="skeletal/kush_merc_cavalry_r_02.png" name="baseTex"/>
-        <texture file="skeletal/kush_merc_cavalry_r_02_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/tunic_blemmye_02.png" name="baseTex"/>
+        <texture file="skeletal/kush/tunic_blemmye_02_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>

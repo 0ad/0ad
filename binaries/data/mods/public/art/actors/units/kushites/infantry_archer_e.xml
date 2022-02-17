@@ -3,7 +3,6 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_kush_nubian.xml" attachpoint="head"/>
         <prop actor="props/units/heads/kush_dread_hair.xml" attachpoint="head"/>
@@ -17,21 +16,17 @@
   </group>
   <group>
     <variant frequency="1" name="Kushite Elite Archer Infantry Leather 01">
+      <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/kush_iar_e_01.png" name="baseTex"/>
-        <texture file="skeletal/kush_iar_e_01_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/skirt_leather_01.png" name="baseTex"/>
+        <texture file="skeletal/kush/skirt_leather_01_spec.png" name="specTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Kushite Elite Archer Infantry Cloth 01">
+    <variant frequency="1" name="Kushite Elite Archer Infantry Leather 02">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <textures>
-        <texture file="skeletal/kush_merc_cavalry_r_01.png" name="baseTex"/>
-        <texture file="skeletal/kush_merc_cavalry_r_01_spec.png" name="specTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Kushite Elite Archer Infantry Cloth 02">
-      <textures>
-        <texture file="skeletal/kush_merc_cavalry_r_02.png" name="baseTex"/>
-        <texture file="skeletal/kush_merc_cavalry_r_02_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/skirt_leather_02.png" name="baseTex"/>
+        <texture file="skeletal/kush/skirt_leather_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>

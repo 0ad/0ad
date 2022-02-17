@@ -13,8 +13,9 @@
         <prop actor="props/units/kush_quiver_hip.xml" attachpoint="sheath_L"/>
       </props>
       <textures>
-        <texture file="skeletal/kush_hero_1.png" name="baseTex"/>
-        <texture file="skeletal/kush_hero_1_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/scale_royal_female_01.png" name="baseTex"/>
+        <texture file="skeletal/kush/scale_royal_female_01_norm.png" name="normTex"/>
+        <texture file="skeletal/kush/scale_royal_female_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -23,7 +24,8 @@
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/attack_ranged_archer_hip.xml"/>
     <variant file="biped/attack_ranged_archer.xml"/>
+    <variant file="biped/gather_praise.xml"/>
     <variant file="biped/female_death.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

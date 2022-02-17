@@ -15,21 +15,25 @@
   <group>
     <variant name="Kushite Advanced Spear Infantry 01">
       <textures>
-        <texture file="skeletal/kush_iar_a_01.png" name="baseTex"/>
-        <texture file="skeletal/kush_iar_a_01_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/skirt_lion_01.png" name="baseTex"/>
+        <texture file="skeletal/kush/skirt_lion_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant name="Kushite Advanced Spear Infantry 02">
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_kush_meroitic.xml" attachpoint="head"/>
+      </props>
       <textures>
-        <texture file="skeletal/ptol_iar_01.png" name="baseTex"/>
-        <texture file="skeletal/ptol_iar_01_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/skirt_leopard_01_dark.png" name="baseTex"/>
+        <texture file="skeletal/kush/skirt_leopard_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant name="Kushite Advanced Spear Infantry 03">
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <textures>
-        <texture file="skeletal/kush_basic_nubian.png" name="baseTex"/>
-        <texture file="skeletal/kush_basic_spec.png" name="specTex"/>
+        <texture file="skeletal/kush/skirt_leopard_01_medium.png" name="baseTex"/>
+        <texture file="skeletal/kush/skirt_leopard_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
