@@ -1,189 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.0">
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <asset>
     <contributor>
-      <author></author>
-      <authoring_tool>FBX COLLADA exporter</authoring_tool>
-      <comments></comments>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.91.2 commit date:2021-01-19, commit time:16:15, hash:5be9ef417703</authoring_tool>
     </contributor>
-    <created>2010-11-14T23:52:11Z</created>
-    <modified>2010-11-14T23:52:11Z</modified>
-    <revision></revision>
-    <title></title>
-    <subject></subject>
-    <keywords></keywords>
-    <unit meter="0.025400"/>
-    <up_axis>Y_UP</up_axis>
+    <created>2022-01-06T02:50:45</created>
+    <modified>2022-01-06T02:50:45</modified>
+    <unit name="inch" meter="0.0254"/>
+    <up_axis>Z_UP</up_axis>
   </asset>
-  <library_images>
-    <image id="Map__325-image" name="Map__325">
-      <init_from>file://C:\Documents and Settings\Michael\My Documents\0 A.D\0 A.D. - New Revision\binaries\data\mods\public\art\textures\skins\structural\foundation.dds</init_from>
-    </image>
-  </library_images>
-  <library_materials>
-    <material id="_21___Default" name="_21___Default">
-      <instance_effect url="#_21___Default-fx"/>
-    </material>
-  </library_materials>
   <library_effects>
-    <effect id="_21___Default-fx" name="_21___Default">
+    <effect id="_21___Default_002-effect">
       <profile_COMMON>
-        <technique sid="standard">
-          <phong>
+        <technique sid="common">
+          <lambert>
             <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+              <color sid="emission">0 0 0 1</color>
             </emission>
-            <ambient>
-              <color sid="ambient">0.588235  0.588235 0.588235 1.000000</color>
-            </ambient>
             <diffuse>
-              <texture texture="Map__325-image" texcoord="CHANNEL0">
-                <extra>
-                  <technique profile="MAYA">
-                    <wrapU sid="wrapU0">TRUE</wrapU>
-                    <wrapV sid="wrapV0">TRUE</wrapV>
-                    <blend_mode>ADD</blend_mode>
-                  </technique>
-                </extra>
-              </texture>
+              <color sid="diffuse">0.8 0.8 0.8 1</color>
             </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
             <reflectivity>
-              <float sid="reflectivity">1.000000</float>
+              <float sid="specular">0.5</float>
             </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
         </technique>
       </profile_COMMON>
     </effect>
   </library_effects>
+  <library_images/>
+  <library_materials>
+    <material id="_21___Default_002-material" name="_21___Default.002">
+      <instance_effect url="#_21___Default_002-effect"/>
+    </material>
+  </library_materials>
   <library_geometries>
-    <geometry id="carry_stone-lib" name="carry_stoneMesh">
+    <geometry id="carry_stoneMesh_001-mesh" name="carry_stoneMesh.001">
       <mesh>
-        <source id="carry_stone-lib-Position">
-          <float_array id="carry_stone-lib-Position-array" count="24">
--0.557747 -0.186535 0.768360
--0.257248 -0.830982 0.768360
-1.236099 -0.134628 0.768360
-0.935585 0.509823 0.768360
--0.557747 -0.186535 0.000000
--0.257248 -0.830982 0.000000
-1.236099 -0.134628 0.000000
-0.935585 0.509823 0.000000
-</float_array>
+        <source id="carry_stoneMesh_001-mesh-positions">
+          <float_array id="carry_stoneMesh_001-mesh-positions-array" count="24">-0.557747 -0.186535 0.76836 -0.257248 -0.830982 0.76836 1.236099 -0.1346279 0.76836 0.935585 0.509823 0.76836 -0.557747 -0.186535 0 -0.257248 -0.830982 0 1.236099 -0.1346279 0 0.935585 0.509823 0</float_array>
           <technique_common>
-            <accessor source="#carry_stone-lib-Position-array" count="8" stride="3">
+            <accessor source="#carry_stoneMesh_001-mesh-positions-array" count="8" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="carry_stone-lib-Normal0">
-          <float_array id="carry_stone-lib-Normal0-array" count="90">
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
-0.000000 0.000000 1.000000
--0.906314 -0.422605 0.000000
--0.906314 -0.422605 0.000000
--0.906314 -0.422605 0.000000
--0.906314 -0.422605 0.000000
--0.906314 -0.422605 0.000000
--0.906314 -0.422605 0.000000
-0.422616 -0.906309 0.000000
-0.422616 -0.906309 0.000000
-0.422616 -0.906309 0.000000
-0.422616 -0.906309 0.000000
-0.422616 -0.906309 0.000000
-0.422616 -0.906309 0.000000
-0.906307 0.422620 0.000000
-0.906307 0.422620 0.000000
-0.906307 0.422620 0.000000
-0.906307 0.422620 0.000000
-0.906307 0.422620 0.000000
-0.906307 0.422620 0.000000
--0.422621 0.906307 0.000000
--0.422621 0.906307 0.000000
--0.422621 0.906306 0.000000
--0.422621 0.906307 0.000000
--0.422621 0.906307 0.000000
--0.422621 0.906306 0.000000
-</float_array>
+        <source id="carry_stoneMesh_001-mesh-normals">
+          <float_array id="carry_stoneMesh_001-mesh-normals-array" count="18">0 0 1 -0.906314 -0.4226049 0 0.4226157 -0.906309 0 0.9063069 0.4226201 0 -0.4226212 0.9063065 0 -0.4226213 0.9063065 0</float_array>
           <technique_common>
-            <accessor source="#carry_stone-lib-Normal0-array" count="30" stride="3">
+            <accessor source="#carry_stoneMesh_001-mesh-normals-array" count="6" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="carry_stone-lib-UV0">
-          <float_array id="carry_stone-lib-UV0-array" count="24">
-0.006322 0.774504
-0.119772 0.774504
-0.119772 1.000000
-0.006322 1.000000
-0.006322 0.774504
-0.119772 0.774504
-0.119772 1.000000
-0.006322 1.000000
-0.006322 0.774504
-0.119772 0.774504
-0.119772 1.000000
-0.006322 1.000000
-</float_array>
+        <source id="carry_stoneMesh_001-mesh-map-0">
+          <float_array id="carry_stoneMesh_001-mesh-map-0-array" count="60">0.8178212 0.3546237 0.8178212 0.6182955 0.5157727 0.6182956 0.5157727 0.6182956 0.5157727 0.3546238 0.8178212 0.3546237 0.8151778 0.09186309 0.9510238 0.09186309 0.9510238 0.3618736 0.9510238 0.3618736 0.8151778 0.3618736 0.8151778 0.09186309 0.5158081 0.08900761 0.8156539 0.08900761 0.8156539 0.3590764 0.8156539 0.3590764 0.5158081 0.3590764 0.5158081 0.08900761 0.8166765 0.6219087 0.9495251 0.6219087 0.9495251 0.8859614 0.9495251 0.8859614 0.8166765 0.8859614 0.8166765 0.6219087 0.5171915 0.6204192 0.8164025 0.6204192 0.8164025 0.8850837 0.8164025 0.8850837 0.5171915 0.8850837 0.5171915 0.6204192</float_array>
           <technique_common>
-            <accessor source="#carry_stone-lib-UV0-array" count="12" stride="2">
+            <accessor source="#carry_stoneMesh_001-mesh-map-0-array" count="30" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="carry_stone-lib-Vertex">
-          <input semantic="POSITION" source="#carry_stone-lib-Position"/>
+        <vertices id="carry_stoneMesh_001-mesh-vertices">
+          <input semantic="POSITION" source="#carry_stoneMesh_001-mesh-positions"/>
         </vertices>
-        <polygons material="_21___Default" count="10">
-          <input semantic="VERTEX" offset="0" source="#carry_stone-lib-Vertex"/>
-          <input semantic="NORMAL" offset="1" source="#carry_stone-lib-Normal0"/>
-          <input semantic="TEXCOORD" offset="2" set="0" source="#carry_stone-lib-UV0"/>
-          <p>0 0 0 1 1 1 2 2 2</p>
-          <p>2 3 2 3 4 3 0 5 0</p>
-          <p>4 6 4 5 7 5 1 8 6</p>
-          <p>1 9 6 0 10 7 4 11 4</p>
-          <p>5 12 8 6 13 9 2 14 10</p>
-          <p>2 15 10 1 16 11 5 17 8</p>
-          <p>6 18 4 7 19 5 3 20 6</p>
-          <p>3 21 6 2 22 7 6 23 4</p>
-          <p>7 24 8 4 25 9 0 26 10</p>
-          <p>0 27 10 3 28 11 7 29 8</p>
-        </polygons>
+        <triangles material="_21___Default_002-material" count="10">
+          <input semantic="VERTEX" source="#carry_stoneMesh_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#carry_stoneMesh_001-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#carry_stoneMesh_001-mesh-map-0" offset="2" set="0"/>
+          <p>0 0 0 1 0 1 2 0 2 2 0 3 3 0 4 0 0 5 4 1 6 5 1 7 1 1 8 1 1 9 0 1 10 4 1 11 5 2 12 6 2 13 2 2 14 2 2 15 1 2 16 5 2 17 6 3 18 7 3 19 3 3 20 3 3 21 2 3 22 6 3 23 7 4 24 4 4 25 0 4 26 0 5 27 3 5 28 7 5 29</p>
+        </triangles>
       </mesh>
     </geometry>
   </library_geometries>
   <library_visual_scenes>
-    <visual_scene id="RootNode" name="RootNode">
-      <node id="carry_stone" name="carry_stone">
-        <matrix sid="matrix">0.880744 0.410698 -0.000000 0.449269 0.071317 -0.152939 0.957030 0.063920 0.404458 -0.867364 -0.168750 -0.077243 0.000000 0.000000 0.000000 1.000000</matrix>
-        <instance_geometry url="#carry_stone-lib">
+    <visual_scene id="Scene" name="Scene">
+      <node id="carry_stone" name="carry_stone" type="NODE">
+        <matrix sid="transform">0.8807439 0.4106981 -1.16478e-7 0.03612605 -0.4044585 0.867364 0.1687498 0.077243 0.07131687 -0.1529392 0.9570301 -0.0119768 0 0 0 1</matrix>
+        <instance_geometry url="#carry_stoneMesh_001-mesh" name="carry_stone">
           <bind_material>
             <technique_common>
-              <instance_material symbol="_21___Default" target="#_21___Default"/>
+              <instance_material symbol="_21___Default_002-material" target="#_21___Default_002-material">
+                <bind_vertex_input semantic="carry_stoneMesh_001-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
             </technique_common>
           </bind_material>
         </instance_geometry>
@@ -191,7 +99,6 @@
     </visual_scene>
   </library_visual_scenes>
   <scene>
-    <instance_visual_scene url="#RootNode"/>
+    <instance_visual_scene url="#Scene"/>
   </scene>
 </COLLADA>
-

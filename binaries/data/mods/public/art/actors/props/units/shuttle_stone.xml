@@ -4,7 +4,12 @@
   <group>
     <variant name="carry stone">
       <mesh>props/special/stone_block.dae</mesh>
-      <textures><texture file="structural/foundation.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shuttle_blocks.png" name="baseTex"/>
+        <texture file="props/shuttle_blocks_norm.png" name="normTex"/>
+        <texture file="props/shuttle_blocks_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
+  <material>no_trans_norm_spec.xml</material>
 </actor>
