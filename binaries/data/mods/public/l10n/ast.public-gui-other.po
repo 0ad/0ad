@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-11 08:08+0000\n"
-"PO-Revision-Date: 2022-02-12 18:23+0000\n"
+"POT-Creation-Date: 2022-02-14 08:09+0000\n"
+"PO-Revision-Date: 2022-02-18 02:41+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,7 @@ msgstr "Abortou-se la carga"
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/common/functions_utility.js:236
+#: gui/common/functions_utility.js:259
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Compilacion: %(buildDate)s (%(revision)s)"
@@ -199,11 +199,11 @@ msgstr "Númeru de reliquias"
 
 #: gui/common/gamedescription.js:239
 msgid "Hero Garrison"
-msgstr "Héroes ablogables"
+msgstr "Heroes abelhogables"
 
 #: gui/common/gamedescription.js:240
 msgid "Heroes can be garrisoned."
-msgstr "Los héroes puöden ablogá-se."
+msgstr "Los heroes puœden abelhogase."
 
 #: gui/common/gamedescription.js:244
 msgid "Exposed Heroes"
@@ -211,7 +211,7 @@ msgstr "Héroes expuöstos"
 
 #: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr "Los héroes nun puöden ablogá-se & son mas vulnerables."
+msgstr "Los heroes nun puœden abelhogase & son mas vulnerables."
 
 #: gui/common/gamedescription.js:251
 msgid "Locked Teams"
@@ -291,7 +291,7 @@ msgstr "Typu de terreiro"
 
 #: gui/common/gamedescription.js:315
 msgid "Map Size"
-msgstr "Tammagnu del terreiro"
+msgstr "Grandura de l terreiro"
 
 #: gui/common/gamedescription.js:324
 msgctxt "biome"
@@ -1526,7 +1526,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr "Magar relativamente fácile pal xhogador veteranu, al novatu la difficultá predefinida del axhente intellixhente puöde supponé-lli un reptu. A esti aconseyya-se-lli practicar cula difficultá del AI reduzida (Ẍole ou Per-fácile). Pa cambiar la difficultá del AI, picca na ícone de la ruöda dentada cabo’l xhogador del quadro superior que quieras commudar."
+msgstr "Magar relativamente fácile pal xhogador veteranu, al novatu la difficultá predefinida de l AI puœde supponelli un reptu. A isti aconseyya-se-lli practicar cula difficultá de l AI aminorgada (Xole ou Per-fácile). Paha cambia’ la difficultá de l AI, picca na ícone de la ruœda dentada cabo l xhogador de l quadro superior que quieras commudar."
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
@@ -2001,7 +2001,7 @@ msgstr "Xeneral"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take large BMP screenshot."
-msgstr "Fhazer una semeyya grande in formatu BMP."
+msgstr "Fhazer una semeyya grande n formatu BMP."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.name
 msgctxt "hotkey metadata"
@@ -2123,7 +2123,7 @@ msgstr "Alternar l'analizador2"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take PNG screenshot."
-msgstr "Fhazer un semeyyu in formatu PNG."
+msgstr "Fhazer un simiyyu n formatu PNG."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.name
 msgctxt "hotkey metadata"
@@ -2456,7 +2456,7 @@ msgstr "Ocupar la torreta"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to order only one entity in selection."
-msgstr "Camudador pa mandar a namái un ente de la esbilla."
+msgstr "Commudador paha mandar a un solu ente de la scolleitha."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.name
 msgctxt "hotkey metadata"
@@ -2658,32 +2658,32 @@ msgstr "Alternar la formación por defectu"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.desc
 msgctxt "hotkey metadata"
 msgid "Unload garrisoned units when a building/mechanical unit is selected."
-msgstr "Desocupar les unidades d'un edificiu o máquina al esbillallu."
+msgstr "Disoccupa’ læs unidahes abelhogadæs d’un edificio ou máchina al scoyyello."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.name
 msgctxt "hotkey metadata"
 msgid "Unload"
-msgstr "Descargar"
+msgstr "Disoccupar"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.desc
 msgctxt "hotkey metadata"
 msgid "Unload turreted units."
-msgstr "Desocupar les unidades d'una torreta."
+msgstr "Disoccupa’ læs unidahes d’una turreta."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.name
 msgctxt "hotkey metadata"
 msgid "Unload Turrets"
-msgstr "Desocupar les torretes"
+msgstr "Disoccupa’ læs turretæs"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to unload all units of type."
-msgstr "Commudador pa disablogar tódalas unidades d’esti typu."
+msgstr "Commudador paha disoccupar todælæs unidahes d’esti typu."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.name
 msgctxt "hotkey metadata"
 msgid "Unload unit type"
-msgstr "Desocupar un tipu d'unidá"
+msgstr "Disoccupa’l typu d’unidá"
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.desc
 msgctxt "hotkey metadata"
@@ -3024,7 +3024,7 @@ msgstr "Alternar la sobrecapa cronométrica"
 #: gui/hotkeys/spec/selection.jsoncategories.selection.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys relating to modifying unit selection."
-msgstr "Atayos rellacionaos cola esbilldura d'unidades."
+msgstr "Atayyos relhacionahos cula scolleitha d’unidahes."
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.name
 msgctxt "hotkey metadata"
@@ -3487,7 +3487,7 @@ msgstr "DESANICIAR"
 #: gui/loadgame/SavegameDetails.js:43
 #, javascript-format
 msgid "Mods: %(mods)s"
-msgstr "Camudos: %(mods)s"
+msgstr "Modificaçones: %(mods)s"
 
 #: gui/loadgame/SavegameList.js:181
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -3520,7 +3520,7 @@ msgstr "Esti alcuentru guardáu precisa d'una versión anterior de 0 A.D."
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
-msgstr "Esti alcuentru guardáu precisa d'otra riestra de camudos:"
+msgstr "Esta partida guardada precisa d’outra sequencia de modificaçones:"
 
 #: gui/loadgame/SavegameLoader.js:55
 msgid "Do you still want to proceed?"
@@ -3583,7 +3583,7 @@ msgstr "Typu de terreiro:"
 #: gui/loadgame/load.xml:(caption):86
 #: gui/replaymenu/replay_menu.xml:(caption):168
 msgid "Map Size:"
-msgstr "Tammagnu del terreiro:"
+msgstr "Grandura de l terreiro:"
 
 #: gui/loadgame/load.xml:(caption):90
 #: gui/replaymenu/replay_menu.xml:(caption):183
@@ -3802,11 +3802,11 @@ msgstr "Pasar a la páxina siguiente."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
-msgstr "Magnificar las previsualizaciones terreiras."
+msgstr "Magnifica’ læs previsualizaçones de los terreiros."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:33
 msgid "Decrease map preview size."
-msgstr "Diminuir las previsualizaciones terreiras."
+msgstr "Diminui’ læs previsualizaçones de los terreiros."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
@@ -4228,10 +4228,55 @@ msgstr "Fondura real d'agua"
 msgid "Use actual water depth in rendering calculations."
 msgstr "Emplegar la fondura efectiva de l'agua nos cálculos de representación gráfica."
 
+#: gui/options/options.json[2].options[19].label
+msgid "Texture quality"
+msgstr "Qualidá textural"
+
+#: gui/options/options.json[2].options[19].tooltip
+msgid ""
+"Decrease texture quality making them blurrier but increases game "
+"performance."
+msgstr "Diminui’ la nidiura de læs texturæs, augmentando l rendimiento de l xhuœw."
+
+#: gui/options/options.json[2].options[20].label
+msgid "Texture anisotropic filter"
+msgstr "Penheira anisótropa"
+
+#: gui/options/options.json[2].options[20].list[0].label
+msgid "1x"
+msgstr "1x"
+
+#: gui/options/options.json[2].options[20].list[1].label
+#: gui/options/options.json[2].options[20].list[1].tooltip
+msgid "2x"
+msgstr "2x"
+
+#: gui/options/options.json[2].options[20].list[2].label
+#: gui/options/options.json[2].options[20].list[2].tooltip
+msgid "4x"
+msgstr "4x"
+
+#: gui/options/options.json[2].options[20].list[3].label
+#: gui/options/options.json[2].options[20].list[3].tooltip
+msgid "8x"
+msgstr "8x"
+
+#: gui/options/options.json[2].options[20].list[4].label
+#: gui/options/options.json[2].options[20].list[4].tooltip
+msgid "16x"
+msgstr "16x"
+
+#: gui/options/options.json[2].options[20].tooltip
+msgid ""
+"Makes textures look better, especially terrain. If the anisotropic filter "
+"value is unsupported it will be set to the max supported value."
+msgstr "Ameyyora l aspectu de læs texturæs, subre todo l de l terreno. Al non se sufhita’l valor signalau, la penheira anisótropa vaî passar al maior valor disponible."
+
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
 msgstr "Antiescalonáu"
 
+#: gui/options/options.json[2].options[20].list[0].tooltip
 #: gui/options/options.json[2].options[3].list[0].label
 #: gui/options/options.json[2].options[4].list[0].label
 #: gui/options/options.json[4].options[5].list[2].label
@@ -4328,6 +4373,8 @@ msgid "Model quality"
 msgstr "Calidá del modeláu"
 
 #: gui/options/options.json[2].options[10].list[0].label
+#: gui/options/options.json[2].options[19].list[0].label
+#: gui/options/options.json[2].options[19].list[0].tooltip
 #: gui/options/options.json[2].options[6].list[0].label
 msgid "Low"
 msgstr "Baxo"
@@ -4337,6 +4384,8 @@ msgid "Simpler models for better performance."
 msgstr "Modelos senciellos pa un rindimientu meyor."
 
 #: gui/options/options.json[2].options[10].list[1].label
+#: gui/options/options.json[2].options[19].list[1].label
+#: gui/options/options.json[2].options[19].list[1].tooltip
 #: gui/options/options.json[2].options[6].list[1].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
@@ -4347,6 +4396,8 @@ msgid "Average quality and average performance."
 msgstr "Calidá y rindimientu normales."
 
 #: gui/options/options.json[2].options[10].list[2].label
+#: gui/options/options.json[2].options[19].list[2].label
+#: gui/options/options.json[2].options[19].list[2].tooltip
 #: gui/options/options.json[2].options[6].list[2].label
 msgid "High"
 msgstr "Alto"
@@ -4788,7 +4839,7 @@ msgstr "Esta opción permítete alliniar construcciones nueves con construccione
 
 #: gui/options/options.json[6].options[1].label
 msgid "Batch training size"
-msgstr "Base de concreacion"
+msgstr "Base de concreaçon"
 
 #: gui/options/options.json[6].options[1].tooltip
 msgid "Number of units trained per batch by default."
@@ -5006,7 +5057,7 @@ msgstr "%(hotkey)s: Ver les construcciones de les civilizaciones qu'aparecen en 
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
-msgstr "Sinopsis civilizacional"
+msgstr "Synopsis cultural"
 
 #: gui/pregame/MainMenuItems.js:40
 #, javascript-format
@@ -5015,15 +5066,15 @@ msgstr "%(hotkey)s: Descubrir les civilizaciones qu'aparecen en 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:51
 msgid "Catafalque Overview"
-msgstr "Sinopsis de los catafalcos"
+msgstr "Synopsis reliquiaria"
 
 #: gui/pregame/MainMenuItems.js:52
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr "Comparar les ventayes de los catafalcos qu'aparecen en 0 A.D."
+msgstr "Compara’ læs ventayyæs de læs reliquiæs q’appahecen in 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:58
 msgid "Map Overview"
-msgstr "Católogu terreiru"
+msgstr "Católogu de terreiros"
 
 #: gui/pregame/MainMenuItems.js:59
 msgid "View the different maps featured in 0 A.D."
@@ -5154,11 +5205,11 @@ msgstr "Escoyer la llingua del xuegu."
 
 #: gui/pregame/MainMenuItems.js:227
 msgid "Mod Selection"
-msgstr "Esbilla de camudos"
+msgstr "Selecçon de modificaçones"
 
 #: gui/pregame/MainMenuItems.js:228
 msgid "Select and download mods for the game."
-msgstr "Esbillar y baxar camudos pal xuegu."
+msgstr "Scoyyer & baxar modificaçones pal xhuœw."
 
 #: gui/pregame/MainMenuItems.js:234
 msgid "Welcome Screen"
@@ -5355,11 +5406,11 @@ msgstr "Puedes unvianos informes automáticos p'ayudar a iguar fallos y ameyorar
 #: gui/reference/catafalque/CatafalquePage.js:41
 #, javascript-format
 msgid "%(hotkey)s: Close Catafalque Bonuses."
-msgstr "%(hotkey)s: Zarrar les ventayes de los catafalcos."
+msgstr "%(hotkey)s: Cerra’ la synopsis reliquiaria."
 
 #: gui/reference/catafalque/catafalque.xml:(caption):18
 msgid "Catafalque Bonuses"
-msgstr "Ventayes de los catafalcos"
+msgstr "Ventayyæs reliquiariæs"
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.
@@ -5384,7 +5435,7 @@ msgstr "• %(name)s %(info_icon)s%(description)s"
 #: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
-msgstr "%(hotkey)s: Zarrar la sinopsis civilizacional."
+msgstr "%(hotkey)s: Cerra’ la synopsis cultural."
 
 #: gui/reference/civinfo/Sections/GameplaySection.js:30
 #, javascript-format
@@ -5429,7 +5480,7 @@ msgstr[1] "Técniques úniques"
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr "%(hotkey)s: Cambiar a «Sinopsis civilizacional»."
+msgstr "%(hotkey)s: Passar a la Synopsis cultural."
 
 #: gui/reference/common/Buttons/StructreeButton.js:27
 #, javascript-format
@@ -5697,7 +5748,7 @@ msgstr "Xugadores"
 #: gui/replaymenu/replay_menu.xml:(heading):83
 msgctxt "replay"
 msgid "Size"
-msgstr "Tamañu"
+msgstr "Grandura"
 
 #: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
@@ -5814,7 +5865,7 @@ msgstr "Económiques"
 
 #: gui/summary/layout.js:37
 msgid "Outposts"
-msgstr "Miradorios"
+msgstr "Miradoîros"
 
 #: gui/summary/layout.js:38
 msgid "Military"
@@ -6362,7 +6413,7 @@ msgstr "La fundación de la tua colonia nueva."
 
 #: gui/text/tips/civic_centres.txt:3
 msgid "Claim large tracts of territory."
-msgstr "Toma posesión de grandes extensiones de tierra."
+msgstr "Toma possession de grandes extensiones de tierræ."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
@@ -6621,7 +6672,7 @@ msgstr "Las pyrámides maiores augmentan la marcialidá de mílites aveiraos."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
-msgstr "MIRADORIOS"
+msgstr "MIRADOÎROS"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral or own territory."
@@ -6635,7 +6686,7 @@ msgstr "Baratos ya rápidos de llevantar, pero sonces."
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr "Ocúpalu de pédites pa vixilar la redolada ya prevenir la perda del miradoriu."
+msgstr "Occupa-llo de pédites paha vigïla’ la redolada & preveni’ la perda de l miradoîro."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-12-24 18:34+0000\n"
+"PO-Revision-Date: 2022-02-18 02:35+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):28
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):61
 msgid "Back"
-msgstr "Atrás"
+msgstr "A tras"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):32
 msgid "Update"
@@ -29,7 +29,7 @@ msgstr "Anovar"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):17
 msgid "Rank"
-msgstr "Clasificación"
+msgstr "Classf."
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):20
 #: gui/lobby/LobbyPage/GameList.xml:(heading):13
@@ -41,59 +41,59 @@ msgstr "Nome"
 #: gui/lobby/LobbyPage/GameList.xml:(heading):28
 #: gui/lobby/LobbyPage/PlayerList.xml:(heading):24
 msgid "Rating"
-msgstr "Valoración"
+msgstr "Valoraçon"
 
 #: gui/lobby/LobbyPage/AnnouncementHandler.js:18
 msgid "Notice"
-msgstr "Anuncia"
+msgstr "Annuncia"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:69
 msgid "Mark as Buddy"
-msgstr "Conseñar como collaciu"
+msgstr "Consignar cumo collaçu"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:70
 msgid "Unmark as Buddy"
-msgstr "Nun conseñar como collaciu"
+msgstr "Disconsignar cumo collaçu"
 
 #: gui/lobby/LobbyPage/Buttons/HostButton.js:10
 msgid "Host Game"
-msgstr "Agospedar alcuentru"
+msgstr "Ahospedar partida"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:40
 msgid "Your active mods do not match the mods of this game."
-msgstr "Los camudos activos nun concasen colos d'esti alcuentru."
+msgstr "Læs tuæs modificaçones activæs nun concassæn culæs d’esta partida."
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
 msgid "Do you want to switch to the mod selection page?"
-msgstr "¿Quieres cambiar a la páxina d'esbilla de camudos?"
+msgstr "¿Quieres passar a la págïna “selecçon de modificaçones”?"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
 msgid "Incompatible mods"
-msgstr "Camudos non compatibles"
+msgstr "Modificaçones incompatibles"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
 msgid "The game has already started. Do you want to join as observer?"
-msgstr "Yá entamó l'alcuentru. ¿Quieres xunite como espectador?"
+msgstr "Ya intamou la partida. ¿Quieres axhuntate cumo spectador?"
 
 #. Translation: Join the game currently selected in the list.
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:104
 msgid "Join Game"
-msgstr "Xunise al alcuentru"
+msgstr "Axhuntase a la partida"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):12
 #: gui/lobby/LobbyPage/Buttons/LeaderboardButton.js:9
 msgid "Leaderboard"
-msgstr "Tabla de líderes"
+msgstr "Classificaçones"
 
 #: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):12
 msgid "Player Profile Lookup"
-msgstr "Gueta de perfiles de xugador"
+msgstr "Perfiles de xhogadores"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
 msgctxt "previous page"
 msgid "Back"
-msgstr "Atrás"
+msgstr "A tras"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:16
 msgctxt "previous page"
@@ -105,41 +105,41 @@ msgstr "Menú principal"
 msgid ""
 "The command '%(cmd)s' is not supported. Try %(help)s to get more information"
 " about the supported commands."
-msgstr "Nun se sofita la orde «%(cmd)s». Consulta %(help)s pa más información sobre les órdenes sofitades."
+msgstr "Non se sufhita la orde “%(cmd)s”. Consulta %(help)s p’algamar mas informaçon subre læs órdenes sufhitadæs."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:45
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr "La orde «%(cmd)s» está restrinxida a llendadores"
+msgstr "La orde “%(cmd)s” sta acoutada a lhindadores"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:67
 #, javascript-format
 msgid "The command '%(cmd)s' requires at least one argument."
-msgstr "La orde '%(cmd)s' rique pelo menus un argumentu."
+msgstr "La orde “%(cmd)s” requier pelo menus un argumento."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:88
 msgid "Set your state to 'Away'."
-msgstr "Afitar l'estáu en «Ausente»."
+msgstr "Afhita’l stau n “Ausente”."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:95
 msgid "Set your state to 'Online'."
-msgstr "Afitar l'estáu en «Na rede»."
+msgstr "Afhita’l stau n «Na rede»."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:102
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "Espuxar a un usuariu del antepar. Usu: /razón pa espuxallu"
+msgstr "Spuxar de l antepar a ciertu usuariu. Usu: /razon pala expulsion"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:114
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr "Torgar l'usu del antepar a un usuariu. Usu: /razón pa torgallu"
+msgstr "Torga’l usu de l antepar a ciertu usuariu. Usu: /razon pala torga"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:126
 msgid "Show this help."
-msgstr "Amostrar esta ayuda."
+msgstr "Amostrar esta axhuda."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:129
 msgid "Chat commands:"
-msgstr "Órdenes de la charra:"
+msgstr "Órdenes de la conversa:"
 
 #. Translation: Chat command help format
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:133
@@ -149,7 +149,7 @@ msgstr "%(command)s - %(description)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:147
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr "Unviar un mensaxe de charra sobre tigo. Exemplu:  /a migo préstame ñadar."
+msgstr "Inviar un recau subre ti. Exemplo:  /me goes swimming."
 
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:150
@@ -160,7 +160,7 @@ msgstr "/me"
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
-msgstr "Unviar textu como mensaxe (inda qu'entame per barra). Exemplu: /di /ayuda ye bona orde."
+msgstr "Inviar textu cumo recau (on que comience per barra). Exemplo: /say /help is a great command."
 
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:157
@@ -169,7 +169,7 @@ msgstr "/say"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:161
 msgid "Clear all chat scrollback."
-msgstr "Llimpiar toda la charra d'enriba."
+msgstr "Lhimpiar todu l textu incobiertu."
 
 #. Translation: Chat message issued using the ‘/me’ command.
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatMe.js:24
@@ -189,7 +189,7 @@ msgstr "%(sender)s %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:23
 msgid "Private"
-msgstr "Priváu"
+msgstr "Privau"
 
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:25
 #, javascript-format
@@ -198,68 +198,68 @@ msgstr "(%(private)s) %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatPanel.xml:(caption):12
 msgid "Send"
-msgstr "Unviar"
+msgstr "Inviar"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:47
 #, javascript-format
 msgid "%(nick)s has joined."
-msgstr "%(nick)s xunióse."
+msgstr "%(nick)s axhuntou-se."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:48
 #, javascript-format
 msgid "%(nick)s has left."
-msgstr "%(nick)s coló."
+msgstr "%(nick)s salîu."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:70
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
-msgstr "Agora a %(oldnick)s conózse-lly como %(newnick)s."
+msgstr "Haghora a %(oldnick)s conhoz-se-lli cumo %(newnick)s."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:107
 msgid "You have been muted."
-msgstr "Silenciáronte."
+msgstr "Stas silenciau."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:108
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr "Silencióse a %(nick)s."
+msgstr "%(nick)s sta silenciau."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:112
 msgid "You are now a moderator."
-msgstr "Agora yes un llendador."
+msgstr "Haghora yes un lhindador."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:113
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr "Agora %(nick)s ye un llendador."
+msgstr "Haghora %(nick)s ye un lhindador."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:118
 msgid "You have been unmuted."
-msgstr "Desilenciáronte."
+msgstr "Ya nun stas silenciau."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:119
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr "Desilencióse a %(nick)s."
+msgstr "%(nick)s ya nun sta silenciau."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:124
 msgid "You are not a moderator anymore."
-msgstr "Yá nun yes un llendador."
+msgstr "Ya nun yes un lhindador."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:125
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
-msgstr "%(nick)s yá nun ye un llendador."
+msgstr "%(nick)s ya nun ye un lhindador."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:152
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to:"
-msgstr "%(nick)s introduxo un asuntu nuevu:"
+msgstr "%(nick)s introduxo un assumptu nuœvu:"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:153
 #, javascript-format
 msgid "%(nick)s deleted the lobby subject."
-msgstr "%(nick)s desanició l'asuntu."
+msgstr "%(nick)s disiniciou l assumptu."
 
 #. Translation: Chat status message
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
@@ -269,16 +269,16 @@ msgstr "== %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
 msgid "Connected."
-msgstr "Conectáu."
+msgstr "Connectou-se."
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:56
 msgid "Disconnected."
-msgstr "Desconectóse."
+msgstr "Disconnectou-se."
 
 #. Translation: Caption for system notifications shown in the chat panel
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:25
 msgid "System:"
-msgstr "Sistema:"
+msgstr "Systema:"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
 #, javascript-format
@@ -301,21 +301,21 @@ msgstr "\\[%(time)s]"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:45
 msgid "BANNED"
-msgstr "TORGÁU"
+msgstr "TORGAU"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:45
 msgid "KICKED"
-msgstr "ESPUXÁU"
+msgstr "SPUXAU"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:61
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr "Perdióse la conexón col antepar. ¿Quieres volver conectar?"
+msgstr "Perdêu-se la connexion cul antepar. ¿Quieres tornar a connectar?"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
 #: gui/lobby/LobbyPage/ConnectionHandler.js:62
 #: gui/prelobby/common/credentials/credentials.js:55
 msgid "Confirmation"
-msgstr "Confirmanza"
+msgstr "Confirmaçon"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
@@ -346,32 +346,32 @@ msgstr "%(current)s/%(max)s"
 #: gui/lobby/LobbyPage/GameDetails.js:65
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr "Alcuentru infinitu"
+msgstr "Partida infinita"
 
 #: gui/lobby/LobbyPage/GameDetails.js:109
 #, javascript-format
 msgid ""
 "You have some incompatible mods:\n"
 "%(details)s"
-msgstr "Tienes dellos camudos incompatibles:\n%(details)s"
+msgstr "Tienes dellæs modificaçones incompatibles:\n%(details)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:123
 msgid "This mod does not affect MP compatibility"
-msgstr "Esti camudu nun cinca a la compatibilidá multixugador"
+msgstr "Esta modificaçon nun affecta a la compatibilidá multixhogador"
 
 #: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format
 msgid "Host: %(playername)s"
-msgstr "Anfitrión: %(playername)s"
+msgstr "Amphitryon: %(playername)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:144
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
-msgstr "Xugadores: %(current)s/%(total)s"
+msgstr "Xhogadores: %(current)s/%(total)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:146
 msgid "Victory Conditions:"
-msgstr "Condiciones de victoria:"
+msgstr "Condiçones de victoria:"
 
 #. Translation: Comma used to concatenate victory conditions
 #: gui/lobby/LobbyPage/GameDetails.js:149
@@ -380,17 +380,17 @@ msgstr ", "
 
 #: gui/lobby/LobbyPage/GameDetails.js:151
 msgid "Mods:"
-msgstr "Camudos:"
+msgstr "Modificaçones:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:153
 msgid "Mods (incompatible):"
-msgstr "Camudos (incompatibles):"
+msgstr "Modificaçones (incompatibles):"
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/LobbyPage/GameDetails.js:156
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr "L'alcuentru entamó a les %(time)s"
+msgstr "La partida imprimou a læs %(time)s"
 
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
 #: gui/lobby/LobbyPage/GameDetails.js:158
@@ -399,53 +399,53 @@ msgstr "HH:mm"
 
 #: gui/lobby/LobbyPage/GameDetails.js:160
 msgid "Map Type:"
-msgstr "Tipu de mapa:"
+msgstr "Typu de terreiro:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:162
 msgid "Map Size:"
-msgstr "Tamañu del mapa:"
+msgstr "Grandura de l terreiro:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:164
 msgid "Map Description:"
-msgstr "Descripción del mapa:"
+msgstr "Descripçon de l terreiro:"
 
 #: gui/lobby/LobbyPage/GameList.xml:(heading):16
 msgid "Map Name"
-msgstr "Nome del mapa"
+msgstr "Nome de l terreiro"
 
 #: gui/lobby/LobbyPage/GameList.xml:(heading):19
 msgctxt "map"
 msgid "Size"
-msgstr "Tamañu"
+msgstr "Grandura"
 
 #: gui/lobby/LobbyPage/GameList.xml:(heading):22
 msgctxt "map"
 msgid "Type"
-msgstr "Tipu"
+msgstr "Typu"
 
 #: gui/lobby/LobbyPage/GameList.xml:(heading):25
 msgid "Players"
-msgstr "Xugadores"
+msgstr "Xhogadores"
 
 #: gui/lobby/LobbyPage/GameListFilters.xml:(caption):7
 msgid "Show only open games"
-msgstr "Amostrar solo alcuentros abiertos"
+msgstr "Amostrar solo partidæs abiertæs"
 
 #: gui/lobby/LobbyPage/GameListFilters/MapSize.js:9
 msgctxt "map size"
 msgid "Any"
-msgstr "Cualquiera"
+msgstr "Qualesquiera"
 
 #: gui/lobby/LobbyPage/GameListFilters/MapType.js:9
 #: gui/lobby/LobbyPage/GameListFilters/Rating.js:11
 msgctxt "map"
 msgid "Any"
-msgstr "Cualquiera"
+msgstr "Qualesquiera"
 
 #: gui/lobby/LobbyPage/GameListFilters/PlayerCount.js:10
 msgctxt "player number"
 msgid "Any"
-msgstr "Cualquiera"
+msgstr "Qualesquiera"
 
 #: gui/lobby/LobbyPage/GameListFilters/Rating.js:19
 #, javascript-format
@@ -461,27 +461,27 @@ msgstr "< %(rating)s"
 
 #: gui/lobby/LobbyPage/KickStrings.js:39
 msgid "You have been kicked from the lobby!"
-msgstr "¡Espuxósete del antepar!"
+msgstr "¡Spuxou-se-ti de l antepar!"
 
 #: gui/lobby/LobbyPage/KickStrings.js:40
 msgid "You have been banned from the lobby!"
-msgstr "¡Quitósete l'usu del antepar!"
+msgstr "¡Torgou-se-ti l usu de l antepar!"
 
 #: gui/lobby/LobbyPage/KickStrings.js:43
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr "Espuxóse del antepar a %(nick)s."
+msgstr "Spuxou-se de l antepar a %(nick)s."
 
 #: gui/lobby/LobbyPage/KickStrings.js:44
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr "A %(nick)s quitóse-lly l'usu del antepar."
+msgstr "A %(nick)s torgou-se-lli l usu de l antepar."
 
 #: gui/lobby/LobbyPage/KickStrings.js:49
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr "Razón: %(reason)s"
+msgstr "Razon: %(reason)s"
 
 #: gui/lobby/LobbyPage/LobbyPage.xml:(caption):13
 #: gui/prelobby/entrance/entrance.xml:(caption):14
@@ -503,24 +503,24 @@ msgstr "Ausente"
 
 #: gui/lobby/LobbyPage/PlayerList.js:208
 msgid "Busy"
-msgstr "Entremanáu"
+msgstr "Entremanau"
 
 #: gui/lobby/LobbyPage/PlayerList.js:214
 msgid "Offline"
-msgstr "Fora de la rede"
+msgstr "Disconnectau"
 
 #: gui/lobby/LobbyPage/PlayerList.js:220
 msgctxt "lobby presence"
 msgid "Unknown"
-msgstr "Desconozse"
+msgstr "Disconhoz-se"
 
 #: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
 msgid "Status"
-msgstr "Estáu"
+msgstr "Stau"
 
 #: gui/lobby/LobbyPage/PlayerList.xml:(placeholder_text):4
 msgid "Search for Player"
-msgstr "Buscar un xugador"
+msgstr "Buscar un xhogador"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:106
 msgid "N/A"
@@ -528,15 +528,15 @@ msgstr "N/A"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:112
 msgid "Moderator"
-msgstr "Llendador"
+msgstr "Lhindador"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:113
 msgid "Player"
-msgstr "Xugador"
+msgstr "Xhogador"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:114
 msgid "Muted Player"
-msgstr "Xugador silenciáu"
+msgstr "Xhogador silenciau"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:120
 msgctxt "Used for an undefined winning rate"

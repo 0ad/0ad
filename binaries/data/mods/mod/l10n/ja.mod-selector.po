@@ -6,11 +6,12 @@
 # Kanetaka Suto
 # karubabu
 # llen_llen
+# Photon man
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-20 07:08+0000\n"
-"PO-Revision-Date: 2021-12-21 17:33+0000\n"
+"PO-Revision-Date: 2022-02-15 06:32+0000\n"
 "Last-Translator: Photon man\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -98,7 +99,7 @@ msgstr "有効：%(mods)s"
 msgid ""
 "[font=\"sans-bold-20\"]You tried to start the game with incompatible or "
 "missing mods![/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"]互換性のない、または不足しているMODを使用してゲームを開始しようとしました![/font]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
@@ -108,17 +109,17 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "Solve the compatibility issue by disabling invalid mods or enabling required"
 " dependencies. You can then save & start the game."
-msgstr ""
+msgstr "MODを無効にしたり、必要な依存関係を有効にしたりして、互換性の問題を解決してください。その後、ゲームを保存して起動することができます。"
 
 #: gui/incompatible_mods/incompatible_mods.txt:5
 msgid ""
 "Incompatible mods will appear in red in the list of enabled mods (bottom "
 "panel). Dependencies can be added by enabling them in the upper panel."
-msgstr ""
+msgstr "互換性のないMODは、有効なMODのリスト（下段）に赤色で表示されます。依存関係は、上部パネルで有効にすることで追加できます。"
 
 #: gui/incompatible_mods/incompatible_mods.txt:6
 msgid "[/font]"
-msgstr ""
+msgstr "[/font]"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):12
 msgid "Incompatible mods"
@@ -130,40 +131,40 @@ msgstr "Ok"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr ""
+msgstr "0 A.D. Empires Ascendant mod.io Disclaimer"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
-msgstr ""
+msgstr "Document Date: 2018-10-12"
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr ""
+msgstr "mod.ioのオンラインサービスに接続しようとしています"
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr ""
+msgstr "IndieDBやModDBを運営するDBolical Pty Ltdが提供する、コミュニティが作成したMODを簡単にダウンロード・インストールできるサービスです。"
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
-msgstr ""
+msgstr "13歳以上のユーザーを対象としています。"
 
 #: gui/modio/Disclaimer.txt:9
 msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr ""
+msgstr "Wildfire Gamesは、この接続が安全であるように配慮し、セキュリティ上の欠陥がないかMODを審査していますが、これが危険をもたらさないことを保証するものではありません。"
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr ""
+msgstr "本サービスを利用することにより、mod.ioの利用規約とプライバシーポリシーが適用され、Wildfire Gamesが本サービスから生じるいかなる損害にも責任を負わないことを理解しているものとします。"
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -172,7 +173,7 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "ゲームIDが取得できませんでした。\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
@@ -195,7 +196,7 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "Mod Listを取得できませんでした。\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
@@ -245,7 +246,7 @@ msgstr "キャンセル"
 #: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
-msgstr ""
+msgstr "無効なMOD:%(error)s"
 
 #: gui/modio/modio.js:246
 msgid "Fetching and updating list of available mods."
@@ -311,7 +312,7 @@ msgstr "利用可能なMOD"
 
 #: gui/modio/modio.xml:(caption):82
 msgid "Filter valid mods"
-msgstr ""
+msgstr "有効なMODをフィルタリングする"
 
 #: gui/modio/modio.xml:(caption):88
 msgid "Back"
@@ -358,7 +359,7 @@ msgstr "絞込み"
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr ""
+msgstr "0 A.D.は、簡単に改造できるように設計されています。MODは.pyromodファイルという形で配布され、.zipファイルのように開くことができます。"
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -368,13 +369,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr ""
+msgstr "MODをインストールするには、0 A.D.でファイルを開くだけです（ファイルをダブルクリックしてゲームで開くを選択するか、ターミナルで「pyrogenesis file.pyromod」を実行します）。すると、MODセレクタでMODが利用できるようになります。自由に有効化、無効化することができます。必要であれば、ファイルブラウザを使って手動でMODを削除することができます（https://trac.wildfiregames.com/wiki/GameDataPaths 参照）。"
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr ""
+msgstr "ゲーム改造の詳細については、オンラインの「改造ガイド」をご覧ください（下の「改造ガイド」ボタンをクリック）。"
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -383,11 +384,11 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr ""
+msgstr "mod.ioのサービスは、IndieDBやModDBを運営するDBolical社が開発したものです。それらのウェブサイトは、長い間、0 A.D.やその他のインディー・プロジェクトについて広めてきました 今日、mod.ioでは、チームによって検証されたすべてのMODをリストアップし、ダウンロードすることができます。「MODのダウンロード」をクリックして、いくつか試したりインストールしたりしてみてください"
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr ""
+msgstr "Pyrogenesis Mod Selector"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
@@ -399,11 +400,11 @@ msgstr "MOD導入ガイド"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr ""
+msgstr "mod.ioにアクセスする"
 
 #: gui/modmod/modmod.js:67
 msgid "This mod does not exist"
-msgstr ""
+msgstr "このMODは存在しません"
 
 #: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
 msgctxt "mod activation"
@@ -412,7 +413,7 @@ msgstr "有効化"
 
 #: gui/modmod/modmod.js:168
 msgid "Dependencies not met"
-msgstr ""
+msgstr "依存関係(Dependencies)が満たされていません"
 
 #: gui/modmod/modmod.js:450
 msgctxt "mod activation"
@@ -425,7 +426,7 @@ msgstr "MODが選択されていません。"
 
 #: gui/modmod/modmod.js:461
 msgid "Enable at least 0ad mod"
-msgstr ""
+msgstr "最低でも0AD MODを有効化する"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -437,7 +438,7 @@ msgstr "反転"
 
 #: gui/modmod/modmod.xml:(caption):51
 msgid "Filter compatible"
-msgstr ""
+msgstr "フィルター互換"
 
 #: gui/modmod/modmod.xml:(caption):63
 msgid "Description"
@@ -457,7 +458,7 @@ msgstr "中止"
 
 #: gui/modmod/modmod.xml:(caption):202
 msgid "Help"
-msgstr ""
+msgstr "ヘルプ"
 
 #: gui/modmod/modmod.xml:(caption):207
 msgid "Download Mods"
@@ -469,7 +470,7 @@ msgstr "設定の保存"
 
 #: gui/modmod/modmod.xml:(caption):217
 msgid "Save and Restart"
-msgstr ""
+msgstr "セーブしてリスタート"
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):137
 msgid "(Folder)"
@@ -489,13 +490,13 @@ msgid ""
 "overwrite settings of mods loaded earlier. It is advisable to have more "
 "complex mods loaded last. Use the arrows on the right to change the loading "
 "order."
-msgstr ""
+msgstr "有効なMODは上から下へロードされます。後からロードしたMODが先にロードしたMODの設定を上書きしてしまうことがあります。より複雑なMODは最後にロードすることをお勧めします。右の矢印でロード順を変更できます。"
 
 #: gui/modmod/modmod.xml:(tooltip):161 gui/modmod/modmod.xml:(tooltip):175
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr ""
+msgstr "MODの起動順を変更します。これはMODの依存関係と一致させる必要があります。"
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
@@ -503,11 +504,11 @@ msgstr "免責条項"
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
-msgstr ""
+msgstr "mod.io Terms"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr ""
+msgstr "mod.io Privacy Policy"
 
 #: gui/msgbox/msgbox.js:25
 msgid "OK"
@@ -518,7 +519,7 @@ msgstr "OK"
 #. default webbrowser.
 #: gui/termsdialog/termsdialog.js:30
 msgid "View online"
-msgstr ""
+msgstr "オンラインで閲覧"
 
 #: gui/termsdialog/termsdialog.js:38
 #, javascript-format
@@ -531,7 +532,7 @@ msgstr "言語"
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr ""
+msgstr "拒否"
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"

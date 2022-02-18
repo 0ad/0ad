@@ -23,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-11 08:08+0000\n"
-"PO-Revision-Date: 2022-02-13 12:32+0000\n"
-"Last-Translator: Yuan Chang\n"
+"POT-Creation-Date: 2022-02-14 08:09+0000\n"
+"PO-Revision-Date: 2022-02-14 08:24+0000\n"
+"Last-Translator: Transifex Bot\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,7 +67,7 @@ msgstr "已中止載入"
 msgid "Gaia"
 msgstr "大地之母"
 
-#: gui/common/functions_utility.js:236
+#: gui/common/functions_utility.js:259
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "組建： %(buildDate)s (%(revision)s)"
@@ -4226,10 +4226,55 @@ msgstr "真實水深"
 msgid "Use actual water depth in rendering calculations."
 msgstr "使用實際水深進行算圖"
 
+#: gui/options/options.json[2].options[19].label
+msgid "Texture quality"
+msgstr ""
+
+#: gui/options/options.json[2].options[19].tooltip
+msgid ""
+"Decrease texture quality making them blurrier but increases game "
+"performance."
+msgstr ""
+
+#: gui/options/options.json[2].options[20].label
+msgid "Texture anisotropic filter"
+msgstr ""
+
+#: gui/options/options.json[2].options[20].list[0].label
+msgid "1x"
+msgstr ""
+
+#: gui/options/options.json[2].options[20].list[1].label
+#: gui/options/options.json[2].options[20].list[1].tooltip
+msgid "2x"
+msgstr ""
+
+#: gui/options/options.json[2].options[20].list[2].label
+#: gui/options/options.json[2].options[20].list[2].tooltip
+msgid "4x"
+msgstr ""
+
+#: gui/options/options.json[2].options[20].list[3].label
+#: gui/options/options.json[2].options[20].list[3].tooltip
+msgid "8x"
+msgstr ""
+
+#: gui/options/options.json[2].options[20].list[4].label
+#: gui/options/options.json[2].options[20].list[4].tooltip
+msgid "16x"
+msgstr ""
+
+#: gui/options/options.json[2].options[20].tooltip
+msgid ""
+"Makes textures look better, especially terrain. If the anisotropic filter "
+"value is unsupported it will be set to the max supported value."
+msgstr ""
+
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
 msgstr "反鋸齒"
 
+#: gui/options/options.json[2].options[20].list[0].tooltip
 #: gui/options/options.json[2].options[3].list[0].label
 #: gui/options/options.json[2].options[4].list[0].label
 #: gui/options/options.json[4].options[5].list[2].label
@@ -4326,6 +4371,8 @@ msgid "Model quality"
 msgstr "模型品質"
 
 #: gui/options/options.json[2].options[10].list[0].label
+#: gui/options/options.json[2].options[19].list[0].label
+#: gui/options/options.json[2].options[19].list[0].tooltip
 #: gui/options/options.json[2].options[6].list[0].label
 msgid "Low"
 msgstr "低"
@@ -4335,6 +4382,8 @@ msgid "Simpler models for better performance."
 msgstr "簡單的模型帶來更好的效能。"
 
 #: gui/options/options.json[2].options[10].list[1].label
+#: gui/options/options.json[2].options[19].list[1].label
+#: gui/options/options.json[2].options[19].list[1].tooltip
 #: gui/options/options.json[2].options[6].list[1].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
@@ -4345,6 +4394,8 @@ msgid "Average quality and average performance."
 msgstr "平均品質的模型和平均的效能。"
 
 #: gui/options/options.json[2].options[10].list[2].label
+#: gui/options/options.json[2].options[19].list[2].label
+#: gui/options/options.json[2].options[19].list[2].tooltip
 #: gui/options/options.json[2].options[6].list[2].label
 msgid "High"
 msgstr "高"

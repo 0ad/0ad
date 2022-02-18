@@ -74,6 +74,7 @@
 # 吴善俊
 # 呂正
 # 子航 叶
+# 夏小正
 # 星臣
 # 晓东 沈
 # 武军 李
@@ -85,9 +86,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-11 08:08+0000\n"
-"PO-Revision-Date: 2022-02-12 07:01+0000\n"
-"Last-Translator: 三 张\n"
+"POT-Creation-Date: 2022-02-14 08:09+0000\n"
+"PO-Revision-Date: 2022-02-15 04:19+0000\n"
+"Last-Translator: 夏小正\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -129,7 +130,7 @@ msgstr "中断载入"
 msgid "Gaia"
 msgstr "盖亚——译注：大自然"
 
-#: gui/common/functions_utility.js:236
+#: gui/common/functions_utility.js:259
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "建造: %(buildDate)s (%(revision)s)"
@@ -4288,10 +4289,55 @@ msgstr "真实水深"
 msgid "Use actual water depth in rendering calculations."
 msgstr "在渲染计算中使用实际水深。"
 
+#: gui/options/options.json[2].options[19].label
+msgid "Texture quality"
+msgstr "纹理质量"
+
+#: gui/options/options.json[2].options[19].tooltip
+msgid ""
+"Decrease texture quality making them blurrier but increases game "
+"performance."
+msgstr "降低纹理质量使画面模糊，但是可以增加游戏性能。"
+
+#: gui/options/options.json[2].options[20].label
+msgid "Texture anisotropic filter"
+msgstr "纹理-各向异性过滤"
+
+#: gui/options/options.json[2].options[20].list[0].label
+msgid "1x"
+msgstr "1x"
+
+#: gui/options/options.json[2].options[20].list[1].label
+#: gui/options/options.json[2].options[20].list[1].tooltip
+msgid "2x"
+msgstr "2x"
+
+#: gui/options/options.json[2].options[20].list[2].label
+#: gui/options/options.json[2].options[20].list[2].tooltip
+msgid "4x"
+msgstr "4x"
+
+#: gui/options/options.json[2].options[20].list[3].label
+#: gui/options/options.json[2].options[20].list[3].tooltip
+msgid "8x"
+msgstr "8x"
+
+#: gui/options/options.json[2].options[20].list[4].label
+#: gui/options/options.json[2].options[20].list[4].tooltip
+msgid "16x"
+msgstr "16x"
+
+#: gui/options/options.json[2].options[20].tooltip
+msgid ""
+"Makes textures look better, especially terrain. If the anisotropic filter "
+"value is unsupported it will be set to the max supported value."
+msgstr "让材质看起来更好看，特别是地形；如果各向异性过滤值不被支持，它将会被设置为最大值。"
+
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
 msgstr "抗锯齿"
 
+#: gui/options/options.json[2].options[20].list[0].tooltip
 #: gui/options/options.json[2].options[3].list[0].label
 #: gui/options/options.json[2].options[4].list[0].label
 #: gui/options/options.json[4].options[5].list[2].label
@@ -4388,6 +4434,8 @@ msgid "Model quality"
 msgstr "模型质量"
 
 #: gui/options/options.json[2].options[10].list[0].label
+#: gui/options/options.json[2].options[19].list[0].label
+#: gui/options/options.json[2].options[19].list[0].tooltip
 #: gui/options/options.json[2].options[6].list[0].label
 msgid "Low"
 msgstr "低效"
@@ -4397,6 +4445,8 @@ msgid "Simpler models for better performance."
 msgstr "简易的模型可获得更好的游戏体验。"
 
 #: gui/options/options.json[2].options[10].list[1].label
+#: gui/options/options.json[2].options[19].list[1].label
+#: gui/options/options.json[2].options[19].list[1].tooltip
 #: gui/options/options.json[2].options[6].list[1].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
@@ -4407,6 +4457,8 @@ msgid "Average quality and average performance."
 msgstr "平均质量和平均性能。"
 
 #: gui/options/options.json[2].options[10].list[2].label
+#: gui/options/options.json[2].options[19].list[2].label
+#: gui/options/options.json[2].options[19].list[2].tooltip
 #: gui/options/options.json[2].options[6].list[2].label
 msgid "High"
 msgstr "高效"

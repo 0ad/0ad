@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-01-07 08:19+0000\n"
-"PO-Revision-Date: 2022-02-13 22:22+0000\n"
+"PO-Revision-Date: 2022-02-18 02:37+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -180,7 +180,7 @@ msgstr "Nun ha hi connexiones activæs"
 
 #: lobby/XmppClient.cpp:1469
 msgid "Your account has been successfully registered"
-msgstr "Regïstrou-se cun éxitu la tuâ cuœnta"
+msgstr "Regïstrou-se cun éxitu la tuæ cuœnta"
 
 #: lobby/XmppClient.cpp:1470
 msgid "Not all necessary information provided"
@@ -195,7 +195,7 @@ msgstr "Ya existi l nome d’usuariu"
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr "Nun pudo scribise un mod.json externu pala muda comprimida “%s”. Ha hi que reinstalla’ la muda."
+msgstr "Nun pudo scribise un mod.json externu pala modificaçon comprimida “%s”. Ha hi que reinstalla’ la modificaçon."
 
 #: ps/ModIo.cpp:264
 #, c-format
@@ -205,17 +205,17 @@ msgstr "Houbo un fallu al iniciar a consultar subre la identificaçon de l xhuœ
 #: ps/ModIo.cpp:294
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "Houbo un fallu al iniciar a consultar subre mudæs. Error: %s; %s."
+msgstr "Houbo un fallu al iniciar a consultar subre modificaçones. Error: %s; %s."
 
 #: ps/ModIo.cpp:320
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr "Nun pudo crease l directorio de la muda: %s."
+msgstr "Nun pudo crease l directorio de la modificaçon: %s."
 
 #: ps/ModIo.cpp:345
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "Nun pudo abrise l archivo temporal p’abaxa’ la muda: %s."
+msgstr "Nun pudo abrise l archivo temporal p’abaxa’ la modificaçon: %s."
 
 #: ps/ModIo.cpp:355
 #, c-format
@@ -234,7 +234,7 @@ msgstr "Fallou la baxada. Respuœsta de l servidor: %s; %s."
 
 #: ps/ModIo.cpp:534
 msgid "Mismatched filesize."
-msgstr "Los tammagnos de los archivos nun concasæn."
+msgstr "Læs granduræs de los archivos nun concasæn."
 
 #: ps/ModIo.cpp:552
 #, c-format
@@ -262,4 +262,4 @@ msgstr "compilaçon personalizada"
 #: renderer/Renderer.cpp:754 renderer/Renderer.cpp:757
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "El semeyu archivou-se n “%s”"
+msgstr "El simiyyu archivou-se n “%s”"

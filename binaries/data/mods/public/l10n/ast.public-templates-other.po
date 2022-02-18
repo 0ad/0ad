@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-02-11 08:08+0000\n"
-"PO-Revision-Date: 2022-02-12 18:24+0000\n"
+"PO-Revision-Date: 2022-02-17 17:30+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -26,12 +26,12 @@ msgstr "Varios effectos (temporales)"
 #: simulation/data/attack_effects/applystatus.jsonname
 msgctxt "effect caused by an attack"
 msgid "Apply Status"
-msgstr "Stadu d’applicacion"
+msgstr "Stau d’applicaçon"
 
 #: simulation/data/attack_effects/capture.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
-msgstr "Reduz la fidelidá del obiectivu."
+msgstr "Reduz la fidelidá de l obiectivu."
 
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
@@ -41,17 +41,17 @@ msgstr "Captura"
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces the health of a target."
-msgstr "Reduz la vitalidá del obiectivu."
+msgstr "Reduz la vitalidá de l obiectivu."
 
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
 msgid "Damage"
-msgstr "Danno"
+msgstr "Danho"
 
 #: simulation/data/damage_types/crush.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "Danno frayyante, cumo’l que fhazen las clavas, la calcadura."
+msgstr "Danho frayyante, cumo l que fhazen læs clavæs, la calcadura."
 
 #: simulation/data/damage_types/crush.jsonname
 msgctxt "damage type"
@@ -61,7 +61,7 @@ msgstr "Frayyura"
 #: simulation/data/damage_types/fire.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by burning objects, like a torch or a flaming arrow."
-msgstr "Danno queimante, cumo’l que fhazen los fatsucos, las saiettas ardientes."
+msgstr "Danho queimante, cumo l que fhazen los fatsucos, læs saiettæs ardientes."
 
 #: simulation/data/damage_types/fire.jsonname
 msgctxt "damage type"
@@ -73,7 +73,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
-msgstr "Danno curtante, cumo’l que fhazen las spadas, las seguras."
+msgstr "Danho curtante, cumo l que fhazen læs spadæs, læs seguræs."
 
 #: simulation/data/damage_types/hack.jsonname
 msgctxt "damage type"
@@ -83,19 +83,19 @@ msgstr "Corte"
 #: simulation/data/damage_types/pierce.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr "Danno perforante, cumo’l que fhazen las saiettas, las hastas."
+msgstr "Danho perforante, cumo l que fhazen læs saiettæs, læs hastæs."
 
 #: simulation/data/damage_types/pierce.jsonname
 msgctxt "damage type"
 msgid "Pierce"
-msgstr "Perforacion"
+msgstr "Perforaçon"
 
 #: simulation/data/damage_types/poison.jsondescription
 msgctxt "damage type"
 msgid ""
 "Damage caused by venomous or poisoned objects, like a snake or a poisoned "
 "weapon."
-msgstr "Danno tóxico, cumo’l que fhazen las coluöbras, las armas venenadas."
+msgstr "Danho tóxico, cumo l que fhazen læs coluœbræs, læs armæs venenadæs."
 
 #: simulation/data/damage_types/poison.jsonname
 msgctxt "damage type"
@@ -115,7 +115,7 @@ msgstr "Esta unidá sta queimando."
 #: simulation/data/status_effects/burning.jsonstatusName
 msgctxt "status effect"
 msgid "Burning"
-msgstr "In yyamas"
+msgstr "In tyamæs"
 
 #: simulation/data/status_effects/poisoned.jsonapplierTooltip
 msgctxt "status effect"
@@ -134,17 +134,17 @@ msgstr "Cun veneno"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
-msgstr "Exércitu d’Aleẍandre Magnu."
+msgstr "Exércitu d’Alexandre Magnu."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:25
 msgid "Army of Alexander the Great"
-msgstr "Exércitu d’Aleẍandre Magnu"
+msgstr "Exércitu d’Alexandre Magnu"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:26
 #: simulation/templates/campaigns/army_mace_standard.xml:21
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:26
 msgid "This is what an army would look like on the Strat Map."
-msgstr "Assí ye un exércitu in mappa stratéxhicu."
+msgstr "Assí ye un exércitu n mappa stratégïcu."
 
 #: simulation/templates/campaigns/army_mace_standard.xml:19
 msgid "Army of Macedonia"
@@ -165,7 +165,7 @@ msgstr "Exércitu de Leonidas I"
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:21
 #: simulation/templates/campaigns/campaign_city_test.xml:21
 msgid "Market"
-msgstr "Mercadu"
+msgstr "Mercau"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:22
 #: simulation/templates/campaigns/campaign_city_test.xml:22
@@ -178,7 +178,7 @@ msgstr "Micrópolis"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:24
 msgid "This is a minor Greek city."
-msgstr "Esta ye una pequenna polis griega."
+msgstr "Esta ye una pequenha polis griega."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:23
 msgid "Greek Polis"
@@ -203,11 +203,11 @@ msgstr "Sanctuario griego"
 #: simulation/templates/gaia/fauna_tiger.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Paws"
-msgstr "Patas"
+msgstr "Patæs"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:24
 msgid "Black Bear"
-msgstr "Ossu prietu"
+msgstr "Ussu prietu"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:25
 msgid "Ursus americanus"
@@ -215,7 +215,7 @@ msgstr "Ursus americanus"
 
 #: simulation/templates/gaia/fauna_bear_brown.xml:24
 msgid "Brown Bear"
-msgstr "Ossu"
+msgstr "Ussu"
 
 #: simulation/templates/gaia/fauna_bear_brown.xml:25
 msgid "Ursus arctos"
@@ -223,7 +223,7 @@ msgstr "Ursus arctos"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:24
 msgid "Polar Bear"
-msgstr "Ossu polar"
+msgstr "Ussu polar"
 
 #: simulation/templates/gaia/fauna_bear_polar.xml:25
 msgid "Ursus maritimus"
@@ -255,7 +255,7 @@ msgstr "Camelus dromedarius"
 #: simulation/templates/gaia/fauna_cattle_bull.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Horns"
-msgstr "Cuörnos"
+msgstr "Cuœrnos"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:25
 msgid "Bull"
@@ -272,7 +272,7 @@ msgstr "Vaca"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:17
 msgid "Sanga Cattle"
-msgstr "Buöi Sanga"
+msgstr "Wœi Sanga"
 
 #: simulation/templates/gaia/fauna_cattle_sanga.xml:18
 msgid "Bos taurus africanus"
@@ -301,7 +301,7 @@ msgstr "Dientes"
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:23
 msgid "Nile Crocodile"
-msgstr "Crocodylu del Nilu"
+msgstr "Crocodylu de l Nilu"
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:24
 msgid "Crocodylus niloticus"
@@ -309,7 +309,7 @@ msgstr "Crocodylus niloticus"
 
 #: simulation/templates/gaia/fauna_deer.xml:11
 msgid "Red Deer"
-msgstr "Venadu"
+msgstr "Venau"
 
 #: simulation/templates/gaia/fauna_deer.xml:12
 msgid "Cervus elaphus"
@@ -339,7 +339,7 @@ msgstr "Lhubeiru"
 
 #: simulation/templates/gaia/fauna_donkey.xml:11
 msgid "Donkey"
-msgstr "Pollinu"
+msgstr "Pullinu"
 
 #: simulation/templates/gaia/fauna_donkey.xml:12
 msgid "Equus africanus asinus"
@@ -465,7 +465,7 @@ msgstr "Lheona"
 
 #: simulation/templates/gaia/fauna_muskox.xml:11
 msgid "Muskox"
-msgstr "Buöi moschadu"
+msgstr "Wœi moschau"
 
 #: simulation/templates/gaia/fauna_muskox.xml:12
 msgid "Ovibos moschatus"
@@ -489,7 +489,7 @@ msgstr "Sus scrofa domesticus"
 
 #: simulation/templates/gaia/fauna_pig_flaming.xml:18
 msgid "Flaming Pig"
-msgstr "Gotsu in yyamas"
+msgstr "Gotsu n tyamæs"
 
 #: simulation/templates/gaia/fauna_piglet.xml:11
 msgid "Piglet"
@@ -506,11 +506,11 @@ msgstr "Oryctolagus cuniculus"
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Horn"
-msgstr "Cuörnu"
+msgstr "Cuœrnu"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:24
 msgid "White Rhinoceros"
-msgstr "Rhinoceronte blancu"
+msgstr "Rhinoceronte blrancu"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:25
 msgid "Ceratotherium simum"
@@ -518,7 +518,7 @@ msgstr "Ceratotherium simum"
 
 #: simulation/templates/gaia/fauna_shark.xml:12
 msgid "Great White Shark"
-msgstr "Tiburon blancu"
+msgstr "Tiburon blrancu"
 
 #: simulation/templates/gaia/fauna_shark.xml:13
 msgid "Carcharodon carcharias"
@@ -586,7 +586,7 @@ msgstr "Lhubu árcticu "
 
 #: simulation/templates/gaia/fauna_zebra.xml:11
 msgid "Common Zebra"
-msgstr "Zebra de yyanada"
+msgstr "Zebra de tyanada"
 
 #: simulation/templates/gaia/fauna_zebra.xml:12
 msgid "Equus quagga"
@@ -614,7 +614,7 @@ msgstr "Bananeira"
 #: simulation/templates/gaia/fruit/berry_04.xml:4
 #: simulation/templates/gaia/fruit/berry_05.xml:4
 msgid "Berries"
-msgstr "Bagas"
+msgstr "Bagæs"
 
 #: simulation/templates/gaia/fruit/date.xml:8
 #: simulation/templates/gaia/tree/date_palm.xml:4
@@ -624,11 +624,11 @@ msgstr "Palmeira datileira"
 
 #: simulation/templates/gaia/fruit/fig.xml:8
 msgid "Fig"
-msgstr "Fhigal"
+msgstr "Fhigalr"
 
 #: simulation/templates/gaia/fruit/grapes.xml:4
 msgid "Grapes"
-msgstr "Uvas"
+msgstr "Uvæs"
 
 #: simulation/templates/gaia/fruit/olive.xml:7
 msgid "Olive"
@@ -636,11 +636,11 @@ msgstr "Olivar"
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
-msgstr "Ruinas antiguas"
+msgstr "Ruinæs antiguæs"
 
 #: simulation/templates/gaia/ruins/metal_statue_isis.xml:9
 msgid "Isis Cult Image"
-msgstr "Imaxhe d’Isis"
+msgstr "Imagë d’Isis"
 
 #: simulation/templates/gaia/ruins/pyramid_great.xml:8
 msgid "Great Pyramid"
@@ -687,26 +687,26 @@ msgstr "Statua romana"
 
 #: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:8
 msgid "Unfinished Greek Temple"
-msgstr "Templo griego inacabao"
+msgstr "Templo griego inacabaho"
 
 #: simulation/templates/gaia/treasure/food_barrel.xml:8
 #: simulation/templates/gaia/treasure/food_bin.xml:8
 #: simulation/templates/gaia/treasure/food_crate.xml:8
 #: simulation/templates/gaia/treasure/food_jars.xml:8
 msgid "Food Treasure"
-msgstr "Ayyalga de comida"
+msgstr "Atyalga de comida"
 
 #: simulation/templates/gaia/treasure/food_barrels_buried.xml:8
 msgid "Half-buried Barrels"
-msgstr "Barriles medio soterraos"
+msgstr "Barriles medio sutterrahos"
 
 #: simulation/templates/gaia/treasure/food_persian_big.xml:8
 msgid "Persian Food Stores"
-msgstr "Reservas de comida persas"
+msgstr "Reservæs de comida persas"
 
 #: simulation/templates/gaia/treasure/food_persian_small.xml:8
 msgid "Persian Food Treasure"
-msgstr "Ayyalga de comida persa"
+msgstr "Atyalga de comida persa"
 
 #: simulation/templates/gaia/treasure/golden_fleece.xml:8
 msgid "Golden Fleece"
@@ -726,7 +726,7 @@ msgstr "Tapetes persas"
 
 #: simulation/templates/gaia/treasure/metal_weapons_small.xml:8
 msgid "Iron Weapons"
-msgstr "Armas de fhierro"
+msgstr "Armæs de fhierro"
 
 #: simulation/templates/gaia/treasure/pegasus.xml:8
 msgid "Pegasus"
@@ -737,19 +737,19 @@ msgstr "Pégasu"
 #: simulation/templates/gaia/treasure/shipwreck_sail_boat.xml:8
 #: simulation/templates/gaia/treasure/shipwreck_sail_boat_cut.xml:8
 msgid "Shipwreck"
-msgstr "Naufraxhio"
+msgstr "Naufragïo"
 
 #: simulation/templates/gaia/treasure/shipwreck_debris.xml:8
 msgid "Shipwreck Cargo"
-msgstr "Carga de naufraxhio"
+msgstr "Carga de naufragïo"
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"
-msgstr "Ayyalga de piedra"
+msgstr "Atyalga de piedra"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite.xml:4
 msgid "Cut Granite"
-msgstr "Piedra de grano curtao"
+msgstr "Piedra de grano curtada"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite_large.xml:8
 msgid "Cut Stone"
@@ -762,7 +762,7 @@ msgstr "Piedra parda curtada"
 
 #: simulation/templates/gaia/treasure/wood.xml:8
 msgid "Wood Treasure"
-msgstr "Ayyalga de madeira"
+msgstr "Atyalga de madeira"
 
 #: simulation/templates/gaia/treasure/wood_lumber.xml:4
 msgid "Milled Lumber"
@@ -783,11 +783,11 @@ msgstr "Bambú"
 
 #: simulation/templates/gaia/tree/bamboo_dragon.xml:8
 msgid "Dragon Bamboo"
-msgstr "Bambú xhigante"
+msgstr "Bambú gïgante"
 
 #: simulation/templates/gaia/tree/banyan.xml:8
 msgid "Banyan"
-msgstr "Figueira de Bengala"
+msgstr "Figeira de Bengala"
 
 #: simulation/templates/gaia/tree/baobab.xml:8
 #: simulation/templates/gaia/tree/baobab_3_mature.xml:8
@@ -797,7 +797,7 @@ msgstr "Baobab"
 
 #: simulation/templates/gaia/tree/baobab_1_sapling.xml:4
 msgid "Baobab Sapling"
-msgstr "Pollascu de Baobab"
+msgstr "Pullascu de Baobab"
 
 #: simulation/templates/gaia/tree/baobab_2_young.xml:4
 msgid "Young Baobab"
@@ -822,13 +822,13 @@ msgstr "Algarroba"
 
 #: simulation/templates/gaia/tree/cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
-msgstr "Pollascu de Cedru del Atlas"
+msgstr "Pullascu de Cedru l Atlæs"
 
 #: simulation/templates/gaia/tree/cedar_atlas_2_young.xml:4
 #: simulation/templates/gaia/tree/cedar_atlas_3_mature.xml:4
 #: simulation/templates/gaia/tree/cedar_atlas_4_dead.xml:4
 msgid "Atlas Cedar"
-msgstr "Cedru del Atlas"
+msgstr "Cedru l Atlæs"
 
 #: simulation/templates/gaia/tree/cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/tree/cretan_date_palm_short.xml:4
@@ -857,11 +857,11 @@ msgstr "Lhameira"
 #: simulation/templates/gaia/tree/euro_beech.xml:4
 #: simulation/templates/gaia/tree/euro_beech_aut.xml:4
 msgid "European Beech"
-msgstr "Fhaia"
+msgstr "Fhaiæ"
 
 #: simulation/templates/gaia/tree/euro_birch.xml:4
 msgid "Silver Birch"
-msgstr "Bedulu yyorosu"
+msgstr "Bedulu tyorosu"
 
 #: simulation/templates/gaia/tree/fir.xml:4
 #: simulation/templates/gaia/tree/fir_winter.xml:4
@@ -870,7 +870,7 @@ msgstr "Abetu commun"
 
 #: simulation/templates/gaia/tree/fir_sapling.xml:4
 msgid "Fir Sapling"
-msgstr "Pollascu d’abetu commun"
+msgstr "Pullascu d’abetu commun"
 
 #: simulation/templates/gaia/tree/juniper_prickly.xml:4
 msgid "Prickly Juniper"
@@ -882,7 +882,7 @@ msgstr "Mangle"
 
 #: simulation/templates/gaia/tree/maple.xml:4
 msgid "Maple"
-msgstr "Pládanu"
+msgstr "Plrádanu"
 
 #: simulation/templates/gaia/tree/medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -903,7 +903,7 @@ msgstr "Irzina"
 #: simulation/templates/gaia/tree/oak_hungarian.xml:4
 #: simulation/templates/gaia/tree/oak_hungarian_autumn.xml:4
 msgid "Hungarian Oak"
-msgstr "Carbayyu d’Hungría"
+msgstr "Carbayyu d’Hungríæ"
 
 #: simulation/templates/gaia/tree/oak_large.xml:4
 msgid "Large Oak"
@@ -965,7 +965,7 @@ msgstr "Mata-palu"
 
 #: simulation/templates/gaia/tree/tamarix.xml:4
 msgid "Tamarix"
-msgstr "Tamargueira"
+msgstr "Tamargeira"
 
 #: simulation/templates/gaia/tree/teak.xml:8
 msgid "Teak"
@@ -977,7 +977,7 @@ msgstr "Tuna"
 
 #: simulation/templates/gaia/tree/tropic_rainforest.xml:4
 msgid "Rainforest Tree"
-msgstr "Árbole tropical"
+msgstr "Árbolre tropical"
 
 #: simulation/templates/mixins/builder.xml:35
 msgid "Builder"
@@ -993,19 +993,19 @@ msgstr "Fano"
 
 #: simulation/templates/mixins/trading_post.xml:8
 msgid "Trading Post"
-msgstr "Factoría"
+msgstr "Factoríæ"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
 "for other civs"
-msgstr "Commuda-se nuna casa de 10 pers. al compartir la cultura del xhogador, outramente se disinicia"
+msgstr "Commuda-se n una casa de 10 pers. al comparti’ la cultura de l xhogador, outramente se disinicia"
 
 #: simulation/templates/skirmish/structures/default_house_5.xml:8
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
-msgstr "Commuda-se nuna casa de 5 pers. al compartir la cultura del xhogador, outramente se disinicia"
+msgstr "Commuda-se n una casa de 5 pers. al comparti’ la cultura de l xhogador, outramente se disinicia"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:6
 #: simulation/templates/special/formations/testudo.xml:6
@@ -1014,7 +1014,7 @@ msgstr "Solo pédites combattientes, requier pelo menus 16."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:7
 msgid "Anti Cavalry"
-msgstr "Anticaballeiría"
+msgstr "Anticaballeiríæ"
 
 #: simulation/templates/special/formations/battle_line.xml:5
 msgid "Battle Line"
@@ -1022,11 +1022,11 @@ msgstr "Az"
 
 #: simulation/templates/special/formations/box.xml:6
 msgid "Requires at least 4 Soldiers or Siege engines."
-msgstr "Requier pelo menus 4 Mílites ou Máchinas."
+msgstr "Requier pelo menus 4 Mílites ou Máchinæs."
 
 #: simulation/templates/special/formations/box.xml:7
 msgid "Box"
-msgstr "Quadrado"
+msgstr "Quadraho"
 
 #: simulation/templates/special/formations/column_closed.xml:5
 msgid "Forced March"
@@ -1038,15 +1038,15 @@ msgstr "Columna abierta"
 
 #: simulation/templates/special/formations/flank.xml:6
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr "Requier pelo menus 8 Mílites ou Máchinas."
+msgstr "Requier pelo menus 8 Mílites ou Máchinæs."
 
 #: simulation/templates/special/formations/flank.xml:7
 msgid "Flank"
-msgstr "Orde permediadu"
+msgstr "Orde permediau"
 
 #: simulation/templates/special/formations/line_closed.xml:5
 msgid "Close Order"
-msgstr "Orde cerradu"
+msgstr "Orde cerrau"
 
 #: simulation/templates/special/formations/line_open.xml:5
 msgid "Open Order"
@@ -1062,7 +1062,7 @@ msgstr "Solo Hoplitas combattientes, requier pelo menus 10."
 
 #: simulation/templates/special/formations/phalanx.xml:7
 msgid "Phalanx"
-msgstr "Phalanxhe"
+msgstr "Phalangë"
 
 #: simulation/templates/special/formations/scatter.xml:5
 msgid "Scatter"
@@ -1074,7 +1074,7 @@ msgstr "Solo Mílites emittientes, requier pelo menus 2."
 
 #: simulation/templates/special/formations/skirmish.xml:6
 msgid "Skirmish"
-msgstr "Reincuöntru"
+msgstr "Reincuœntru"
 
 #: simulation/templates/special/formations/syntagma.xml:6
 msgid "Infantry Pikemen only, requires at least 16."
@@ -1090,7 +1090,7 @@ msgstr "Testudo"
 
 #: simulation/templates/special/formations/wedge.xml:6
 msgid "Cavalry only, requires at least 6."
-msgstr "Solo éqüites, requier pelo menus 6."
+msgstr "Solo équites, requier pelo menus 6."
 
 #: simulation/templates/special/formations/wedge.xml:7
 msgid "Wedge"
@@ -1106,7 +1106,7 @@ msgid ""
 "Athens was famed as a center for the arts, learning and philosophy. The "
 "Athenians were also powerful warriors, particularly at sea. At its peak, "
 "Athens dominated a large part of the Hellenic world for several decades."
-msgstr "Cumo’l verciu de la civilizacion occidental & la madre de la democracia, Athenas tenía fama de ser un centro d’arte, erudicion & philosophía. Los Atheneos tamien yeran distinguidos guerreiros, subre todo nel mar. Nel sou cume, Athenas dominou gran parte del mundu hellénicu per varias décadas."
+msgstr "Cumo l vierçu de la cultura occidental & la madre de la democracia, Athenæs teníæ fama de ser un centro d’arte, erudiçon & philosophíæ. Los Atheneos tamien yeræn distinguidos gerreiros, subre todo nel mar. Nel sou cume, Athenæs dominou gran parte de l mundu hellénicu per variæs décadæs."
 
 #: simulation/templates/special/players/brit.xml:8
 msgid "Britons"
@@ -1118,11 +1118,11 @@ msgid ""
 "longswordsmen and powerful melee soldiers, they staged fearsome revolts "
 "against Rome to protect their customs and interests. Also, they built "
 "thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr "Los britannos yeran los habitantes célticos de la islha d’Albion. Usando carros, spadonas & combattientes potentes, imbellarun-se contra Roma pa defender los sous costumes & interesses. Arriendas d’ello, fhazían milles de construcciones únicas cumo “cagrī”, “inissyās” & “dūnā”."
+msgstr "Los britannos yeræn los habitantes célticos de la islha d’Albion. Usando carros, spadonæs & combattientes potentes, imbellarun-se contra Roma paha defende’ los sous costumes & interesses. Arriendæs d’ello, fhazíæn milles de construcçones únicæs cumo “cagrī”, “inissyās” & “dūnā”."
 
 #: simulation/templates/special/players/cart.xml:8
 msgid "Carthaginians"
-msgstr "carthaxhineses"
+msgstr "carthagïnenses"
 
 #: simulation/templates/special/players/cart.xml:9
 msgid ""
@@ -1132,7 +1132,7 @@ msgid ""
 "among the fiercest contenders on the high seas, and masters of naval trade. "
 "They deployed towered War Elephants on the battlefield to fearsome effect, "
 "and had defensive walls so strong, they were never breached."
-msgstr "Carthago/Qart-Hadašt, una cívitas no q’inguanno ye Tunes, yera una potencia del mediterraneo occidental q’acabou conquistando muĩtha de l’África septentrional & la Península Ibérica nel sieglo III a.C. Los marineiros de Carthago yeran entre los meyyores combattientes de l’alta mar, & maiestros del commercio naval. Na battalla, utilizaban elephantes turríxheros cun terrible éxitu & posseían murias tan maciças que nunca naide llas atravessou."
+msgstr "Carthago/Qart-Hadašt, una cívitas no q’inguanho ye Tunes, yera una potencia de l mediterraneo occidental q’acabou conquistando mũîtha de l África septentrional & la Península Ibérica nel sieglro III a.C. Los marineiros de Carthago yeræn entre los meyyores combattientes de l alta mar, & maiestros de l commercio naval. Na battalha, utilizabæn elephantes turrígëros cun terrible éxitu & posseíæn muriæs tan maciçæs que nunca naide llæs atravessou."
 
 #: simulation/templates/special/players/gaul.xml:8
 msgid "Gauls"
@@ -1145,7 +1145,7 @@ msgid ""
 "metalworking, agriculture, trade and even road engineering. With heavy "
 "infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
 "of conquest and Rome's authoritarian rule."
-msgstr "Los gallos yeran habitantes célticos de la Europa continental. Dominados por un cleru druídicu, posseían una cultura sophisticada de metallurxhia abançada, agricultura, commercio & inclusive inxheniería vial. A pie & a caballu, cun valor & armas pesadas, los guerreiros gállicos resistierun a Caesar & l’authoritarismo de Roma."
+msgstr "Los gallos yeræn habitantes célticos de la Europa continental. Dominahos por un cleru druídicu, posseíæn una cultura sophisticada de metallurgïa abançada, agricultura, commercio & inclusive ingënieríæ vial. A pie & a caballu, cun valor & armæs pesadæs, los gerreiros gállicos resistierun a Caesar & l authoritarismo de Roma."
 
 #: simulation/templates/special/players/iber.xml:8
 msgid "Iberians"
@@ -1159,7 +1159,7 @@ msgid ""
 "proved tenacious when Rome sought to take their land and freedom from them, "
 "and employed pioneering guerrilla tactics and flaming javelins as they "
 "fought back."
-msgstr "Los íberos yeran un puöblo d’oríxhenes & lhingua obscuros, cun una fhuörte tradicion eqüestre & metallúrxhica. De cultura mas bien pacífica, lhuithaban in battallas ayyenas cumo mercenarios. Sí q’assí, ante la minacia de Roma, amostrarun-se tenazes & usarun guerras de guerrinas & lhancias flamíxheras al defender la sua tierra & lhibertá."
+msgstr "Los íberos yeræn un puœblro d’orígënes & lhingua scuros, cun una fhuœrte tradiçon equestre & metallúrgïca. De cultura mas bien pacífica, lhuithabæn in battalhæs ayyenæs cumo mercenarios. Sí q’assí, ante la minaça de Roma, amostrarun-se tenazes & recurrierun a gerræs de gerrinæs & lhançæs flamígëræs paha defende’ la suæ tierræ & lhibertá."
 
 #: simulation/templates/special/players/kush.xml:8
 msgid "Kushites"
@@ -1181,7 +1181,7 @@ msgid ""
 "Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
 " the 4th century AD, when it weakened and disintegrated due to internal "
 "rebellion, eventually succumbing to the rising power of Axum."
-msgstr "El reino de Qesa yera un antiguu reino africano situado nas miestas de los Nilos Azul, Blancu & Prietu no q’inguanno ye la República del Sudan. La dómina qesana cominçou in Napata tras el collapsu del Imperio Nuövo d’Egypto a finales de la Edade del Bronze. Nel sieglo VIII a.C., los reies qesanos invadierun Egypto & gubernarun-llo cumo pharaones de la XXV dynastía egypcia, ta que llos expulsarun los assyrios. La cultura qesana bebía de la egypcia, exemplo d’ello siendo los abundantes pyrámides & templos monumentales que deiẍarun. Tamien adoraban a muĩthos dieuses egypcios, inẍertu Amun. Ya na antigüidá clássica, la capital del reino yera Medewi & al reino los griegos nomaban-llo Meroe ou Ethiopía. El reino qesano persistiu ta’l IV d.C., quando, por culpa de rebelliones internas, decaeu, se disintegrou & finalmente succumbiu ante’l poder ascendente d’Áxum."
+msgstr "El reyno de Qesa yera un antiguo reyno africano situaho nos mestos de los Nilos Azul, Blrancu & Prietu no q’inguanho ye la República de l Sudan. La dómina qesana cominçou n Napata tres el collapsu de l Imperio Nuœvo d’Egypto a finales de la Edá de l Bronze. Nel sieglro VIII a.C., los reys qesanos invadierun Egypto & gubernarun-llo cumo pharaones de la XXV dynastíæ egypcia, ta que llos spuxarun los assyrios. La cultura qesana bebíæ de la egypcia, exemplo d’ello siendo los abundantes pyrámides & templos monumentales que deixarun. Tamien adorabæn a mũîthos diœuses egypcios, inxertu Amun. Ya na antiguidá clássica, la capital de l reyno yera Medewi & al reyno los griegos nomabæn-llo Meroe ou Ethiopíæ. El reyno qesano persistîu ta l IV d.C., quando, por culpa de rebelliones internæs, decaêu, se disintegrou & finalmente succumbîu ante l poder ascendente d’Áxum."
 
 #: simulation/templates/special/players/mace.xml:8
 msgid "Macedonians"
@@ -1194,7 +1194,7 @@ msgid ""
 "Macedonian forces and allies took over most of the world they knew, "
 "including Egypt, Persia and parts of the Indian subcontinent, allowing a "
 "diffusion of Hellenic and eastern cultures for years to come."
-msgstr "Macedonia yera un antiguu reino hellénico, centrado na parte oriental septentrional de la península griega. Sul mandu d’Aleẍandre Magnu, las fhuörcias & socios de Macedonia conquistou quasi todu’l mundu que connocían—Egypto, Persia & secciones del subcontinente índicu—& assí permittiu la diffusion de las culturas hellénicas & orientales per muĩthos annos."
+msgstr "Macedonia yera un antiguo reyno hellénico, centraho na parte oriental septentrional de la península griega. Sul mandu d’Alexandre Magnu, læs fhœrçæs & socios de Macedonia conquistou quasj todu’l mundu que conhocíæn—Egypto, Persia & secçones de l subcontinente índicu—& assí permittîu la diffusion de læs culturæs hellénicæs & orientales per mũîthos anhos."
 
 #: simulation/templates/special/players/maur.xml:8
 msgid "Mauryas"
@@ -1210,7 +1210,7 @@ msgid ""
 "Acharya Chanakya, contributed to such varied fields such as economics, "
 "religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
 "the Great, the empire saw 40 years of peace, harmony, and prosperity."
-msgstr "Fundado nel sieglo 322 a.C. por Candragupta Maurya, el mauryano fhoi’l primeiru imperio in conquistar la maioría del subcontinente índicu, & uno de los imperios mas grandes & poblados de l’antigüidá. El sou exércitu contaba cun saxhittarios q’usaban arcos lhongos de bambú, guerreiras ferozes, carros & milles d’elephantes armados. Los sous philósophos, specialmente Canakya’l Preceptor, abançarun per-muĩthos campos, talos cumo la economía, la relixhion, la diplomacia, la milicia & el bon gubiernu. Sul mandado d’Áśoka l’Amigu de los Divinos, l’Imperio viviu 40 annos de paz, harmonía & prosperidá."
+msgstr "Fundaho nel sieglro 322 a.C. por Candragupta Maurya, el mauryano fhoi l primeiro imperio n conquista’ la maioríæ de l subcontinente índicu, & uno de los imperios mas grandes & poblrahos de l antiguidá. El sou exércitu contaba cun sagïttarios armahos cun arcos lhongos de bambú, gerreiræs ferozes, carros & milles d’elephantes béllicos. Los sous philósophos, specialmente Canakya l Preceptor, abançarun per-mũîthos campos, talos cumo la economíæ, la religïon, la diplomacia, la milicia & el bœn gubiernu. Sul mandaho d’Áśoka l Amigu los Divinos, l Imperio vivîu 40 anhos de paz, harmoníæ & prosperidá."
 
 #: simulation/templates/special/players/pers.xml:8
 msgid "Persians"
@@ -1225,7 +1225,7 @@ msgid ""
 "rule over various peoples with different customs, laws, religions and "
 "languages, and building a cosmopolitan army made up of contingents from each"
 " of these nations."
-msgstr "L’Imperio persa, quando llo gubernaba la dynastía acheménida, yera uno de los imperios mas grandiosos de l’antigüidá, exporriendo-se nel sou cume del valle del Indu in oriente a la Héllade in occidente. Los persas yeran los innovadores imperiales de l’antigüidá clássica, imponiendo cun éxitu un gubiernu centralizadu subre varios puöblos de costumes, lheis, relixhiones & lhinguas extremadas, & construendo un exércitu cosmopolita compuöstu de continxhentes de cada unu d’estos países."
+msgstr "L Imperio persa, quando llo gubernaba la dynastíæ acheménida, yera uno de los imperios mas grandiosos de l antiguidá, sporriendo-se nel sou cume de l valle de l Indu n oriente a la Héllade n occidente. Los persas yeræn los innovadores de l imperio de l antiguidá clássica, imponiendo cun éxitu un gubiernu centralizau subre varios puœblros de costumes, lheys, religïones & lhinguæs stremadæs, & construendo un exércitu cosmopolita compuœstu de contingëntes de cada unu d’estos países."
 
 #: simulation/templates/special/players/ptol.xml:16
 msgid "Ptolemies"
@@ -1237,7 +1237,7 @@ msgid ""
 "Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
 "for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
 "Egypt."
-msgstr "La dynastía ptolemaica yera una casa real greco-macedonia que rexhiu l’Imperio ptolemaico in Egypto na dómina aleẍandrina. El sou gubiernu durou 275 annos, del 305 a.C. al 30 a.C. Fhoi la postreira dynastía del Egypto antiguo."
+msgstr "La dynastíæ ptolemaica yera una casa real greco-macedonia que regîu l Imperio ptolemaico n Egypto na dómina alexandrina. El sou gubiernu durou 275 anhos, de l 305 a.C. al 30 a.C. Fhoi la postreira dynastíæ de l Egypto antiguo."
 
 #: simulation/templates/special/players/rome.xml:8
 msgid "Romans"
@@ -1252,7 +1252,7 @@ msgid ""
 "nations on earth for almost 800 years. The Romans were the supreme builders "
 "of the ancient world, excelled at siege warfare and had an exquisite "
 "infantry and navy."
-msgstr "Los romanos gubernarun uno de los imperios mas grandes de l’antigüidá, exporriendo-se nel sou cume de la Scocia meridiana al desiertu del Sáhara, & conteniendo entre 60 & 80 millones d’habitantes, un quartu de la poblacion de la Tierra d’aquella épocha. D’arriendas, Roma seguiu siendo una de las maiores potencias del mundu quasi 800 annos. Los romanos yeran constructores in sin par, distinguidos na arte del obsidio & soberbios nel combatte terrestre & naval."
+msgstr "Los romanos gubernarun uno de los imperios mas grandes de l antiguidá, sporriendo-se nel sou cume de la Scocia meridiana al desiertu de l Sáhara, & conteniendo entre 60 & 80 millones d’habitantes, un quartu de la poblraçon de la Tierræ d’aquella épocha. D’arriendæs, Roma segîu siendo una de læs maiores potenciæs de l mundu quasj 800 anhos. Los romanos yeræn constructores in sin par, distinguidos na arte de l obsidio & suberbios nel combatte terrestre & naval."
 
 #: simulation/templates/special/players/sele.xml:16
 msgid "Seleucids"
@@ -1261,7 +1261,7 @@ msgstr "Seléucidas"
 #: simulation/templates/special/players/sele.xml:17
 msgid ""
 "The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
-msgstr "La dynastía greco-macedónica que gubernaba la maioría del antiguu imperio aleẍandrino."
+msgstr "La dynastíæ greco-macedónica que gubernaba la maioríæ de l antiguo imperio alexandrino."
 
 #: simulation/templates/special/players/spart.xml:6
 msgid "Spartans"
@@ -1275,7 +1275,7 @@ msgid ""
 " at age seven. Thanks to its military might, Sparta led a coalition of Greek"
 " forces during the Greco-Persian Wars, and won over Athens in the "
 "Peloponnesian Wars, though at great cost."
-msgstr "Sparta fhoi una prominente polis de la Héllade, & el sou maior poder militar terrestre de magar cerca de 650 a.C. Los spartanos obsessionaban-se cula preparacion & excellencia marciales, impeçando a exercitar los sous rapazinos d’inde los siete annos d’edade. Gracias a la sua potencia militar, Sparta mandou una confederacion de fhuörcias hellénicas nas guerras médicas & vinceu a Athenas na guerra peloponnesíaca, on que llis costou caro."
+msgstr "Sparta fhoi una prominente polis de la Héllade, & el sou maior poder militar terrestre de magar cercæ de 650 a.C. Los spartanos obsessionabæn-se cula preparaçon & excellencia marciales, impeçando a exercita’ los sous rapazinos d’inde los siete anhos d’edá. Graçæs a la suæ potencia militar, Sparta mandou una confederaçon de fhœrçæs hellénicæs næs gerræs médicæs & vincêu a Athenæs na gerra peloponnesíaca, on que llis costou caro."
 
 #: simulation/templates/special/spy.xml:16
 msgid "Spy"
@@ -1283,7 +1283,7 @@ msgstr "Speculador"
 
 #: simulation/templates/template_formation.xml:20
 msgid "Requires at least 2 Soldiers or Siege Engines."
-msgstr "Requier pelo menus 2 Mílites ou Máchinas."
+msgstr "Requier pelo menus 2 Mílites ou Máchinæs."
 
 #: simulation/templates/special/players/gaia.xml:5
 #: simulation/templates/template_gaia.xml:7
@@ -1293,11 +1293,11 @@ msgstr "Gaia"
 #: simulation/templates/gaia/fish/generic.xml:4
 #: simulation/templates/template_gaia_fish.xml:8
 msgid "Fish"
-msgstr "Peẍe"
+msgstr "Pexe"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
-msgstr "Fhuönte de comida."
+msgstr "Fhœnte de comida."
 
 #: simulation/templates/template_gaia_fruit.xml:8
 msgid "Fruit"
@@ -1305,7 +1305,7 @@ msgstr "Fruita"
 
 #: simulation/templates/template_gaia_fruit.xml:9
 msgid "Pick fruit for food."
-msgstr "Fhuönte de comida."
+msgstr "Fhœnte de comida."
 
 #: simulation/templates/template_gaia_ore.xml:8
 msgid "Metal Mine"
@@ -1313,7 +1313,7 @@ msgstr "Xhazeda"
 
 #: simulation/templates/template_gaia_ore.xml:9
 msgid "Mine ore for metal."
-msgstr "Fhuönte de metal."
+msgstr "Fhœnte de metal."
 
 #: simulation/templates/gaia/rock/aegean_cut.xml:8
 #: simulation/templates/gaia/rock/india_cut.xml:8
@@ -1326,35 +1326,35 @@ msgstr "Canteira"
 
 #: simulation/templates/template_gaia_rock.xml:9
 msgid "Quarry rock for stone."
-msgstr "Fhuönte de piedra."
+msgstr "Fhœnte de piedra."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
-msgstr "Ruinas"
+msgstr "Ruinæs"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr "Fhuönte de piedra."
+msgstr "Fhœnte de piedra."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
-msgstr "Ayyalga"
+msgstr "Atyalga"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 msgid "Collect treasures for resources."
-msgstr "Fhuönte de recursos."
+msgstr "Fhœnte de recursos."
 
 #: simulation/templates/template_gaia_tree.xml:8
 msgid "Tree"
-msgstr "Árbole"
+msgstr "Árbolre"
 
 #: simulation/templates/template_gaia_tree.xml:9
 msgid "Chop trees for wood."
-msgstr "Fhuönte de madeira."
+msgstr "Fhœnte de madeira."
 
 #: simulation/templates/template_structure.xml:46
 msgid "Structure"
-msgstr "Construccion"
+msgstr "Construcçon"
 
 #: simulation/templates/template_unit.xml:39
 msgid "Unit"
