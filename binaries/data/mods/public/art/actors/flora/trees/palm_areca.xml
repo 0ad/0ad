@@ -3,10 +3,7 @@
   <castshadow/>
   <float/>
   <group>
-    <variant frequency="1" name="base"/>
-  </group>
-  <group>
-    <variant frequency="3" name="a">
+    <variant frequency="3" name="Areca Palm">
       <textures>
         <texture file="gaia/palm_areca.png" name="baseTex"/>
         <texture file="gaia/palm_areca_norm.png" name="normTex"/>
@@ -31,5 +28,5 @@
       <mesh>gaia/palm_areca_5.dae</mesh>
     </variant>
   </group>
-  <material>basic_trans_wind.xml</material>
+  <material>basic_trans_wind_norm_spec.xml</material>
 </actor>

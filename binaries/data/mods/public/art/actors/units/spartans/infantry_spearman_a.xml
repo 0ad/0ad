@@ -68,7 +68,7 @@
       </props>
     </variant>
   </group>
-  
+
   <group>
     <variant file="biped/base_hoplite.xml"/>
     <variant file="biped/formations/phalanx_front.xml"/>
@@ -108,5 +108,5 @@
   <group>
     <variant name="Idle"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>

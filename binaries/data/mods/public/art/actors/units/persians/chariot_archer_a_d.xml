@@ -3,12 +3,88 @@
   <castshadow/>
   <group>
     <variant file="biped/base_driver_chariot.xml">
-      <mesh>skeletal/new/m_pants_tunic_long.dae</mesh>
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_tiara_y.xml" attachpoint="head"/>
         <prop actor="props/units/helmets/pers_kidaris_tied_yellow.xml" attachpoint="helmet"/>
       </props>
-      <textures><texture file="skeletal/pers/car_b_1.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="pers_isp_a_linothorax_1a">
+      <textures>
+        <texture file="skeletal/pers/linothorax_01_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="pers_isp_a_linothorax_1b">
+      <textures>
+        <texture file="skeletal/pers/linothorax_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="pers_isp_a_linothorax_1c">
+      <textures>
+        <texture file="skeletal/pers/linothorax_01_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="pers_isp_a_linothorax_1d">
+      <textures>
+        <texture file="skeletal/pers/linothorax_01_04.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="pers_isp_a_linothorax_1e">
+      <textures>
+        <texture file="skeletal/pers/linothorax_01_05.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="pers_isp_a_linothorax_1f">
+      <textures>
+        <texture file="skeletal/pers/linothorax_01_06.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="pers_isp_a_padded_1a">
+      <textures>
+        <texture file="skeletal/pers/padded_01_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="pers_isp_a_padded_1b">
+      <textures>
+        <texture file="skeletal/pers/padded_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="pers_isp_a_padded_1c">
+      <textures>
+        <texture file="skeletal/pers/padded_01_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="pers_isp_a_padded_1d">
+      <textures>
+        <texture file="skeletal/pers/padded_01_04.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="pers_isp_a_padded_1e">
+      <textures>
+        <texture file="skeletal/pers/padded_01_05.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="pers_isp_a_padded_1f">
+      <textures>
+        <texture file="skeletal/pers/padded_01_06.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="pers_isp_a_padded_1g">
+      <textures>
+        <texture file="skeletal/pers/padded_01_07.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="pers_isp_a_padded_1h">
+      <textures>
+        <texture file="skeletal/pers/padded_01_08.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="pers_isp_a_padded_1i">
+      <textures>
+        <texture file="skeletal/pers/padded_01_09.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
