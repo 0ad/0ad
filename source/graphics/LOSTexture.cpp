@@ -138,6 +138,7 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* d
 	if (skipSmoothLOS)
 		return;
 
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render LOS texture");
 	deviceCommandContext->SetFramebuffer(m_SmoothFramebuffers[m_WhichTexture].get());
 
 	m_SmoothTech->BeginPass();

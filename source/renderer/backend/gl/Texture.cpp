@@ -259,11 +259,10 @@ std::unique_ptr<CTexture> CTexture::Create(CDevice* device, const char* name,
 
 	ogl_WarnIfError();
 
-#if KHR_DEBUG_ENABLED
-	glObjectLabel(GL_TEXTURE, texture->m_Handle, -1, name);
-#else
-	UNUSED2(name);
-#endif
+	if (texture->m_Device->GetCapabilities().debugLabels)
+	{
+		glObjectLabel(GL_TEXTURE, texture->m_Handle, -1, name);
+	}
 
 	texture->m_Device->GetActiveCommandContext()->BindTexture(0, target, 0);
 

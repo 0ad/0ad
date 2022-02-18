@@ -336,6 +336,25 @@ void CDeviceCommandContext::UploadBufferRegion(
 	glBindBufferARB(target, 0);
 }
 
+void CDeviceCommandContext::BeginScopedLabel(const char* name)
+{
+	if (!m_Device->GetCapabilities().debugScopedLabels)
+		return;
+
+	++m_ScopedLabelDepth;
+	glPushDebugGroup(GL_DEBUG_SOURCE_APPLICATION, 0x0AD, -1, name);
+}
+
+void CDeviceCommandContext::EndScopedLabel()
+{
+	if (!m_Device->GetCapabilities().debugScopedLabels)
+		return;
+
+	ENSURE(m_ScopedLabelDepth > 0);
+	--m_ScopedLabelDepth;
+	glPopDebugGroup();
+}
+
 void CDeviceCommandContext::BindTexture(const uint32_t unit, const GLenum target, const GLuint handle)
 {
 	ENSURE(unit < m_BoundTextures.size());
@@ -369,6 +388,8 @@ void CDeviceCommandContext::Flush()
 	ResetStates();
 
 	BindTexture(0, GL_TEXTURE_2D, 0);
+
+	ENSURE(m_ScopedLabelDepth == 0);
 }
 
 void CDeviceCommandContext::ResetStates()

@@ -49,8 +49,11 @@ std::unique_ptr<CBuffer> CBuffer::Create(
 	const GLenum target = type == Type::INDEX ? GL_ELEMENT_ARRAY_BUFFER : GL_ARRAY_BUFFER;
 	glBindBufferARB(target, buffer->m_Handle);
 	glBufferDataARB(target, size, nullptr, dynamic ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
-#if KHR_DEBUG_ENABLED && !CONFIG2_GLES
-	glObjectLabel(GL_BUFFER, buffer->m_Handle, -1, name);
+#if !CONFIG2_GLES
+	if (buffer->m_Device->GetCapabilities().debugLabels)
+	{
+		glObjectLabel(GL_BUFFER, buffer->m_Handle, -1, name);
+	}
 #else
 	UNUSED2(name);
 #endif

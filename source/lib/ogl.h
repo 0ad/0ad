@@ -150,21 +150,4 @@ extern bool ogl_SquelchError(GLenum err_to_ignore);
 extern GLint ogl_max_tex_size;				/// [pixels]
 extern GLint ogl_max_tex_units;				/// limit on GL_TEXTUREn
 
-
-#ifdef NDEBUG
-# define KHR_DEBUG_ENABLED 0
-# define OGL_SCOPED_DEBUG_GROUP(groupName)
-#else
-# define KHR_DEBUG_ENABLED 1
-# define OGL_SCOPED_DEBUG_GROUP(groupName) ogl_DebugScopedGroup glDebugScopedGroup(groupName)
-/**
- * RAII for glPushDebugGroup() and glPopDebugGroup().
- */
-struct ogl_DebugScopedGroup
-{
-	ogl_DebugScopedGroup(const char* message);
-	~ogl_DebugScopedGroup();
-};
-#endif
-
-#endif	// #ifndef INCLUDED_OGL
+#endif	// INCLUDED_OGL

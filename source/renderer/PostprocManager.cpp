@@ -361,6 +361,8 @@ void CPostprocManager::ReleaseRenderOutput(
 {
 	ENSURE(m_IsInitialized);
 
+	GPU_SCOPED_LABEL(deviceCommandContext, "Copy postproc to backbuffer");
+
 	// We blit to the backbuffer from the previous active buffer.
 	deviceCommandContext->BlitFramebuffer(
 		deviceCommandContext->GetDevice()->GetCurrentBackbuffer(),
@@ -451,6 +453,8 @@ void CPostprocManager::ApplyPostproc(
 	const bool hasSharp = m_SharpTech && !hasARB;
 	if (!hasEffects && !hasAA && !hasSharp)
 		return;
+
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render postproc");
 
 	if (hasEffects)
 	{
@@ -643,6 +647,7 @@ void CPostprocManager::ResolveMultisampleFramebuffer(
 	if (!m_UsingMultisampleBuffer)
 		return;
 
+	GPU_SCOPED_LABEL(deviceCommandContext, "Resolve postproc multisample");
 	deviceCommandContext->BlitFramebuffer(
 		m_PingFramebuffer.get(), m_MultisampleFramebuffer.get());
 	deviceCommandContext->SetFramebuffer(m_PingFramebuffer.get());

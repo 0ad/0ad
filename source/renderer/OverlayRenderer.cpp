@@ -393,6 +393,7 @@ void OverlayRenderer::RenderOverlaysAfterWater(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	PROFILE3_GPU("overlays (after)");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render overlays after water");
 
 	RenderTexturedOverlayLines(deviceCommandContext);
 	RenderQuadOverlays(deviceCommandContext);

@@ -59,9 +59,6 @@ static bool have_15 = false;
 static bool have_14 = false;
 static bool have_13 = false;
 static bool have_12 = false;
-#if KHR_DEBUG_ENABLED
-static bool have_KHR = false;
-#endif
 
 
 // return a C string of unspecified length containing a space-separated
@@ -375,87 +372,6 @@ void ogl_WarnIfErrorLoc(const char *file, int line)
 		debug_printf("%s:%d: OpenGL error(s) occurred: %s (%04x)\n", file, line, ogl_GetErrorName(first_error), (unsigned int)first_error);
 }
 
-#if KHR_DEBUG_ENABLED
-void GLAD_API_PTR ogl_OnDebugMessage(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei UNUSED(length), const GLchar* message, const void* UNUSED(user_param))
-{
-	std::string debugSource = "unknown";
-	std::string debugType = "unknown";
-	std::string debugSeverity = "unknown";
-
-	switch (source)
-	{
-	case GL_DEBUG_SOURCE_API:
-		debugSource = "the API";
-		break;
-	case GL_DEBUG_SOURCE_WINDOW_SYSTEM:
-		debugSource = "the window system";
-		break;
-	case GL_DEBUG_SOURCE_SHADER_COMPILER:
-		debugSource = "the shader compiler";
-		break;
-	case GL_DEBUG_SOURCE_THIRD_PARTY:
-		debugSource = "a third party";
-		break;
-	case GL_DEBUG_SOURCE_APPLICATION:
-		debugSource = "the application";
-		break;
-	case GL_DEBUG_SOURCE_OTHER:
-		debugSource = "somewhere";
-		break;
-	}
-
-	switch (type)
-	{
-	case GL_DEBUG_TYPE_ERROR:
-		debugType = "error";
-		break;
-	case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:
-		debugType = "deprecated behaviour";
-		break;
-	case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:
-		debugType = "undefined behaviour";
-		break;
-	case GL_DEBUG_TYPE_PORTABILITY:
-		debugType = "portability";
-		break;
-	case GL_DEBUG_TYPE_PERFORMANCE:
-		debugType = "performance";
-		break;
-	case GL_DEBUG_TYPE_OTHER:
-		debugType = "other";
-		break;
-	case GL_DEBUG_TYPE_MARKER:
-		debugType = "marker";
-		break;
-	case GL_DEBUG_TYPE_PUSH_GROUP:
-		debugType = "push group";
-		break;
-	case GL_DEBUG_TYPE_POP_GROUP:
-		debugType = "pop group";
-		break;
-	}
-
-	switch (severity)
-	{
-	case GL_DEBUG_SEVERITY_HIGH:
-		debugSeverity = "high";
-		break;
-	case GL_DEBUG_SEVERITY_MEDIUM:
-		debugSeverity = "medium";
-		break;
-	case GL_DEBUG_SEVERITY_LOW:
-		debugSeverity = "low";
-		break;
-	case GL_DEBUG_SEVERITY_NOTIFICATION:
-		debugSeverity = "notification";
-		break;
-	}
-
-	debug_printf("OpenGL | %s: %s source: %s id %u: %s\n", debugSeverity.c_str(), debugType.c_str(), debugSource.c_str(), id, message);
-}
-#endif
-
-
 // ignore and reset the specified error (as returned by glGetError).
 // any other errors that have occurred are reported as ogl_WarnIfError would.
 //
@@ -575,25 +491,6 @@ bool ogl_Init(void* (load)(const char*))
 
 	glEnable(GL_TEXTURE_2D);
 
-#if KHR_DEBUG_ENABLED
-#if CONFIG2_GLES
-	bool is_core = ogl_HaveVersion(3, 2);
-#else
-	bool is_core = ogl_HaveVersion(4, 3);
-#endif
-	have_KHR = is_core || ogl_HaveExtension("GL_KHR_debug");
-	if (have_KHR)
-	{
-		glEnable(GL_DEBUG_OUTPUT);
-		glDebugMessageCallback(ogl_OnDebugMessage, nullptr);
-
-		// Filter out our own debug group messages
-		GLuint id = 0x0ad;
-		glDebugMessageControl(GL_DEBUG_SOURCE_APPLICATION, GL_DEBUG_TYPE_PUSH_GROUP, GL_DONT_CARE, 1, &id, GL_FALSE);
-		glDebugMessageControl(GL_DEBUG_SOURCE_APPLICATION, GL_DEBUG_TYPE_POP_GROUP, GL_DONT_CARE, 1, &id, GL_FALSE);
-	}
-#endif
-
 	return true;
 }
 
@@ -612,21 +509,3 @@ void ogl_SetVsyncEnabled(bool enabled)
 	UNUSED2(enabled);
 #endif
 }
-
-#if KHR_DEBUG_ENABLED
-ogl_DebugScopedGroup::ogl_DebugScopedGroup(const char* message)
-{
-	if (!have_KHR)
-		return;
-
-	glPushDebugGroup(GL_DEBUG_SOURCE_APPLICATION, 0x0ad, -1, message);
-}
-
-ogl_DebugScopedGroup::~ogl_DebugScopedGroup()
-{
-	if (!have_KHR)
-		return;
-
-	glPopDebugGroup();
-}
-#endif

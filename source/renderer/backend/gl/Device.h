@@ -50,6 +50,8 @@ public:
 		bool S3TC;
 		bool ARBShaders;
 		bool ARBShadersShadow;
+		bool debugLabels;
+		bool debugScopedLabels;
 		bool multisampling;
 		bool anisotropicFiltering;
 		uint32_t maxSampleCount;

@@ -483,7 +483,7 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 
 	if (renderGUI)
 	{
-		OGL_SCOPED_DEBUG_GROUP("Draw GUI");
+		GPU_SCOPED_LABEL(m->deviceCommandContext.get(), "Render GUI");
 		// All GUI elements are drawn in Z order to render semi-transparent
 		// objects correctly.
 		g_GUI->Draw();

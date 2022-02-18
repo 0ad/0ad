@@ -84,6 +84,9 @@ public:
 	};
 	void SetScissors(const uint32_t scissorCount, const ScissorRect* scissors);
 
+	void BeginScopedLabel(const char* name);
+	void EndScopedLabel();
+
 	// TODO: remove direct binding after moving shaders.
 	void BindTexture(const uint32_t unit, const GLenum target, const GLuint handle);
 	void BindBuffer(const CBuffer::Type type, CBuffer* buffer);
@@ -110,6 +113,8 @@ private:
 	// GL2.1 doesn't support more than 1 scissor.
 	std::array<ScissorRect, 1> m_Scissors;
 
+	uint32_t m_ScopedLabelDepth = 0;
+
 	uint32_t m_ActiveTextureUnit = 0;
 	using BindUnit = std::pair<GLenum, GLuint>;
 	std::array<BindUnit, 16> m_BoundTextures;
@@ -131,5 +136,28 @@ private:
 } // namespace Backend
 
 } // namespace Renderer
+
+#define GPU_SCOPED_LABEL(deviceCommandContext, name) \
+	GPUScopedLabel scopedLabel((deviceCommandContext), (name));
+
+class GPUScopedLabel
+{
+public:
+	GPUScopedLabel(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const char* name)
+		: m_DeviceCommandContext(deviceCommandContext)
+	{
+		m_DeviceCommandContext->BeginScopedLabel(name);
+	}
+
+	~GPUScopedLabel()
+	{
+		m_DeviceCommandContext->EndScopedLabel();
+	}
+
+private:
+	Renderer::Backend::GL::CDeviceCommandContext* m_DeviceCommandContext = nullptr;
+};
 
 #endif // INCLUDED_RENDERER_GL_DEVICECOMMANDCONTEXT

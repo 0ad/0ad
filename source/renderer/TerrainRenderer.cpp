@@ -363,7 +363,7 @@ bool TerrainRenderer::RenderFancyWater(
 	const CShaderDefines& context, int cullGroup, ShadowMap* shadow)
 {
 	PROFILE3_GPU("fancy water");
-	OGL_SCOPED_DEBUG_GROUP("Render Fancy Water");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render fancy water");
 
 	CSceneRenderer& sceneRenderer = g_Renderer.GetSceneRenderer();
 
@@ -522,7 +522,7 @@ void TerrainRenderer::RenderSimpleWater(
 	UNUSED2(cullGroup);
 #else
 	PROFILE3_GPU("simple water");
-	OGL_SCOPED_DEBUG_GROUP("Render Simple Water");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render Simple Water");
 
 	const WaterManager& waterManager = g_Renderer.GetSceneRenderer().GetWaterManager();
 	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
@@ -586,6 +586,8 @@ void TerrainRenderer::RenderWaterFoamOccluders(
 	const WaterManager& waterManager = sceneRenderer.GetWaterManager();
 	if (!waterManager.WillRenderFancyWater())
 		return;
+
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render water foam occluders");
 
 	// Render normals and foam to a framebuffer if we're using fancy effects.
 	deviceCommandContext->SetFramebuffer(waterManager.m_FancyEffectsFramebuffer.get());
