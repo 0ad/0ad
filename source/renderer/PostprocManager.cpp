@@ -122,8 +122,10 @@ void CPostprocManager::RecreateBuffers()
 {
 	Cleanup();
 
+	Renderer::Backend::GL::CDevice* backendDevice = g_VideoMode.GetBackendDevice();
+
 	#define GEN_BUFFER_RGBA(name, w, h) \
-		name = g_VideoMode.GetBackendDevice()->CreateTexture2D( \
+		name = backendDevice->CreateTexture2D( \
 			"PostProc" #name, Renderer::Backend::Format::R8G8B8A8, w, h, \
 			Renderer::Backend::Sampler::MakeDefaultSampler( \
 				Renderer::Backend::Sampler::Filter::LINEAR, \
@@ -143,7 +145,7 @@ void CPostprocManager::RecreateBuffers()
 		for (BlurScale::Step& step : scale.steps)
 		{
 			GEN_BUFFER_RGBA(step.texture, width, height);
-			step.framebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+			step.framebuffer = backendDevice->CreateFramebuffer("BlurScaleSteoFramebuffer",
 				step.texture.get(), nullptr);
 		}
 		width /= 2;
@@ -153,7 +155,7 @@ void CPostprocManager::RecreateBuffers()
 	#undef GEN_BUFFER_RGBA
 
 	// Allocate the Depth/Stencil texture.
-	m_DepthTex = g_VideoMode.GetBackendDevice()->CreateTexture2D("PostPRocDepthTexture",
+	m_DepthTex = backendDevice->CreateTexture2D("PostPRocDepthTexture",
 		Renderer::Backend::Format::D24_S8, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
@@ -164,13 +166,13 @@ void CPostprocManager::RecreateBuffers()
 	g_Renderer.GetDeviceCommandContext()->BindTexture(0, GL_TEXTURE_2D, 0);
 
 	// Set up the framebuffers with some initial textures.
-	m_CaptureFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+	m_CaptureFramebuffer = backendDevice->CreateFramebuffer("PostprocCaptureFramebuffer",
 		m_ColorTex1.get(), m_DepthTex.get(),
 		g_VideoMode.GetBackendDevice()->GetCurrentBackbuffer()->GetClearColor());
 
-	m_PingFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+	m_PingFramebuffer = backendDevice->CreateFramebuffer("PostprocPingFramebuffer",
 		m_ColorTex1.get(), nullptr);
-	m_PongFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+	m_PongFramebuffer = backendDevice->CreateFramebuffer("PostprocPongFramebuffer",
 		m_ColorTex2.get(), nullptr);
 
 	if (!m_CaptureFramebuffer || !m_PingFramebuffer || !m_PongFramebuffer)
@@ -598,7 +600,9 @@ void CPostprocManager::CreateMultisampleBuffer()
 {
 	glEnable(GL_MULTISAMPLE);
 
-	m_MultisampleColorTex = g_VideoMode.GetBackendDevice()->CreateTexture("PostProcColorMS",
+	Renderer::Backend::GL::CDevice* backendDevice = g_VideoMode.GetBackendDevice();
+
+	m_MultisampleColorTex = backendDevice->CreateTexture("PostProcColorMS",
 		Renderer::Backend::GL::CTexture::Type::TEXTURE_2D_MULTISAMPLE,
 		Renderer::Backend::Format::R8G8B8A8, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
@@ -606,7 +610,7 @@ void CPostprocManager::CreateMultisampleBuffer()
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1, m_MultisampleCount);
 
 	// Allocate the Depth/Stencil texture.
-	m_MultisampleDepthTex = g_VideoMode.GetBackendDevice()->CreateTexture("PostProcDepthMS",
+	m_MultisampleDepthTex = backendDevice->CreateTexture("PostProcDepthMS",
 		Renderer::Backend::GL::CTexture::Type::TEXTURE_2D_MULTISAMPLE,
 		Renderer::Backend::Format::D24_S8, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
@@ -614,7 +618,7 @@ void CPostprocManager::CreateMultisampleBuffer()
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1, m_MultisampleCount);
 
 	// Set up the framebuffers with some initial textures.
-	m_MultisampleFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+	m_MultisampleFramebuffer = backendDevice->CreateFramebuffer("PostprocMultisampleFramebuffer",
 		m_MultisampleColorTex.get(), m_MultisampleDepthTex.get(),
 		g_VideoMode.GetBackendDevice()->GetCurrentBackbuffer()->GetClearColor());
 

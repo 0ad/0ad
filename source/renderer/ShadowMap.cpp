@@ -525,16 +525,18 @@ void ShadowMapInternals::CreateTexture()
 	LOGMESSAGE("Creating shadow texture (size %dx%d) (format = %s)",
 		Width, Height, formatName);
 
+	Renderer::Backend::GL::CDevice* backendDevice = g_VideoMode.GetBackendDevice();
+
 	if (g_RenderingOptions.GetShadowAlphaFix())
 	{
-		DummyTexture = g_VideoMode.GetBackendDevice()->CreateTexture2D("ShadowMapDummy",
+		DummyTexture = backendDevice->CreateTexture2D("ShadowMapDummy",
 			Renderer::Backend::Format::R8G8B8A8, Width, Height,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::NEAREST,
 				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
 	}
 
-	Texture = g_VideoMode.GetBackendDevice()->CreateTexture2D("ShadowMapDepth",
+	Texture = backendDevice->CreateTexture2D("ShadowMapDepth",
 		backendFormat, Width, Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 #if CONFIG2_GLES
@@ -559,7 +561,7 @@ void ShadowMapInternals::CreateTexture()
 
 	ogl_WarnIfError();
 
-	Framebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+	Framebuffer = backendDevice->CreateFramebuffer("ShadowMapFramebuffer",
 		g_RenderingOptions.GetShadowAlphaFix() ? DummyTexture.get() : nullptr, Texture.get());
 
 	if (!Framebuffer)

@@ -225,12 +225,14 @@ void CLOSTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext*
 
 	const size_t textureSize = round_up_to_pow2(round_up((size_t)m_MapSize + g_BlurSize - 1, g_SubTextureAlignment));
 
+	Renderer::Backend::GL::CDevice* backendDevice = deviceCommandContext->GetDevice();
+
 	const Renderer::Backend::Sampler::Desc defaultSamplerDesc =
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
 
-	m_Texture = deviceCommandContext->GetDevice()->CreateTexture2D("LOSTexture",
+	m_Texture = backendDevice->CreateTexture2D("LOSTexture",
 		Renderer::Backend::Format::A8, textureSize, textureSize, defaultSamplerDesc);
 
 	// Initialise texture with SoD color, for the areas we don't
@@ -240,14 +242,14 @@ void CLOSTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext*
 
 	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS())
 	{
-		m_SmoothTextures[0] = deviceCommandContext->GetDevice()->CreateTexture2D("LOSSmoothTexture0",
+		m_SmoothTextures[0] = backendDevice->CreateTexture2D("LOSSmoothTexture0",
 			Renderer::Backend::Format::A8, textureSize, textureSize, defaultSamplerDesc);
-		m_SmoothTextures[1] = deviceCommandContext->GetDevice()->CreateTexture2D("LOSSmoothTexture1",
+		m_SmoothTextures[1] = backendDevice->CreateTexture2D("LOSSmoothTexture1",
 			Renderer::Backend::Format::A8, textureSize, textureSize, defaultSamplerDesc);
 
-		m_SmoothFramebuffers[0] = Renderer::Backend::GL::CFramebuffer::Create(
+		m_SmoothFramebuffers[0] = backendDevice->CreateFramebuffer("LOSSmoothFramebuffer0",
 			m_SmoothTextures[0].get(), nullptr);
-		m_SmoothFramebuffers[1] = Renderer::Backend::GL::CFramebuffer::Create(
+		m_SmoothFramebuffers[1] = backendDevice->CreateFramebuffer("LOSSmoothFramebuffer1",
 			m_SmoothTextures[1].get(), nullptr);
 		if (!m_SmoothFramebuffers[0] || !m_SmoothFramebuffers[1])
 		{

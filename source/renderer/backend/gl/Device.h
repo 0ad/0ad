@@ -86,6 +86,14 @@ public:
 		const Format format, const uint32_t width, const uint32_t height,
 		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount = 1, const uint32_t sampleCount = 1);
 
+	std::unique_ptr<CFramebuffer> CreateFramebuffer(
+		const char* name, CTexture* colorAttachment,
+		CTexture* depthStencilAttachment);
+
+	std::unique_ptr<CFramebuffer> CreateFramebuffer(
+		const char* name, CTexture* colorAttachment,
+		CTexture* depthStencilAttachment, const CColor& clearColor);
+
 	std::unique_ptr<CBuffer> CreateBuffer(
 		const char* name, const CBuffer::Type type, const uint32_t size, const bool dynamic);
 

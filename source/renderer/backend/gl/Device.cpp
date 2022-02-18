@@ -287,7 +287,7 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 	glPixelStorei(GL_PACK_ALIGNMENT, 1);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-	device->m_Backbuffer = CFramebuffer::CreateBackbuffer();
+	device->m_Backbuffer = CFramebuffer::CreateBackbuffer(device.get());
 
 	Capabilities& capabilities = device->m_Capabilities;
 	capabilities.ARBShaders = !ogl_HaveExtensions(0, "GL_ARB_vertex_program", "GL_ARB_fragment_program", nullptr);
@@ -779,6 +779,20 @@ std::unique_ptr<CTexture> CDevice::CreateTexture2D(const char* name,
 {
 	return CreateTexture(name, CTexture::Type::TEXTURE_2D,
 		format, width, height, defaultSamplerDesc, MIPLevelCount, sampleCount);
+}
+
+std::unique_ptr<CFramebuffer> CDevice::CreateFramebuffer(
+	const char* name, CTexture* colorAttachment,
+	CTexture* depthStencilAttachment)
+{
+	return CreateFramebuffer(name, colorAttachment, depthStencilAttachment, CColor(0.0f, 0.0f, 0.0f, 0.0f));
+}
+
+std::unique_ptr<CFramebuffer> CDevice::CreateFramebuffer(
+	const char* name, CTexture* colorAttachment,
+	CTexture* depthStencilAttachment, const CColor& clearColor)
+{
+	return CFramebuffer::Create(this, name, colorAttachment, depthStencilAttachment, clearColor);
 }
 
 std::unique_ptr<CBuffer> CDevice::CreateBuffer(

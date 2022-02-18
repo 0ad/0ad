@@ -220,7 +220,7 @@ int WaterManager::LoadWaterTextures()
 
 	// Create the water framebuffers
 
-	m_ReflectionFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+	m_ReflectionFramebuffer = backendDevice->CreateFramebuffer("ReflectionFramebuffer",
 		m_ReflectionTexture.get(), m_ReflFboDepthTexture.get(), CColor(0.5f, 0.5f, 1.0f, 0.0f));
 	if (!m_ReflectionFramebuffer)
 	{
@@ -228,7 +228,7 @@ int WaterManager::LoadWaterTextures()
 		UpdateQuality();
 	}
 
-	m_RefractionFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+	m_RefractionFramebuffer = backendDevice->CreateFramebuffer("RefractionFramebuffer",
 		m_RefractionTexture.get(), m_RefrFboDepthTexture.get(), CColor(1.0f, 0.0f, 0.0f, 0.0f));
 	if (!m_RefractionFramebuffer)
 	{
@@ -236,7 +236,7 @@ int WaterManager::LoadWaterTextures()
 		UpdateQuality();
 	}
 
-	m_FancyEffectsFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+	m_FancyEffectsFramebuffer = backendDevice->CreateFramebuffer("FancyEffectsFramebuffer",
 		m_FancyTexture.get(), m_FancyTextureDepth.get());
 	if (!m_FancyEffectsFramebuffer)
 	{

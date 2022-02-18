@@ -39,11 +39,6 @@ class CDevice;
 class CFramebuffer
 {
 public:
-	static std::unique_ptr<CFramebuffer> Create(
-		CTexture* colorAttachment, CTexture* depthStencilAttachment);
-	static std::unique_ptr<CFramebuffer> Create(
-		CTexture* colorAttachment, CTexture* depthStencilAttachment, const CColor& clearColor);
-
 	~CFramebuffer();
 
 	GLuint GetHandle() const { return m_Handle; }
@@ -56,10 +51,14 @@ public:
 private:
 	friend class CDevice;
 
-	static std::unique_ptr<CFramebuffer> CreateBackbuffer();
+	static std::unique_ptr<CFramebuffer> Create(
+		CDevice* device, const char* name,
+		CTexture* colorAttachment, CTexture* depthStencilAttachment, const CColor& clearColor);
+	static std::unique_ptr<CFramebuffer> CreateBackbuffer(CDevice* device);
 
 	CFramebuffer();
 
+	CDevice* m_Device = nullptr;
 	GLuint m_Handle = 0;
 	uint32_t m_Width = 0, m_Height = 0;
 	GLbitfield m_AttachmentMask = 0;
