@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,11 +29,6 @@ class CCmpPlayerManagerScripted : public ICmpPlayerManager
 {
 public:
 	DEFAULT_SCRIPT_WRAPPER(PlayerManagerScripted)
-
-	virtual void AddPlayer(entity_id_t ent)
-	{
-		m_Script.CallVoid("AddPlayer", (int)ent);
-	}
 
 	virtual int32_t GetNumPlayers()
 	{

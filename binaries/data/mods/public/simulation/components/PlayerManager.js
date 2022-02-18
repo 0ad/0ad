@@ -12,8 +12,13 @@ PlayerManager.prototype.Init = function()
 	this.maxWorldPopulation = undefined;
 };
 
-PlayerManager.prototype.AddPlayer = function(ent)
+/**
+ * @param {string} templateName - The template name of the player to add.
+ * @return {number} - The player's ID (player number).
+ */
+PlayerManager.prototype.AddPlayer = function(templateName)
 {
+	const ent = Engine.AddEntity(templateName);
 	var id = this.playerEntities.length;
 	var cmpPlayer = Engine.QueryInterface(ent, IID_Player);
 	cmpPlayer.SetPlayerID(id);
@@ -42,9 +47,12 @@ PlayerManager.prototype.AddPlayer = function(ent)
  * To avoid possible problems,
  * we first remove all entities from this player, and add them back after the replacement.
  * Note: This should only be called during setup/init and not during the game
+ * @param {number} id - The player number to replace.
+ * @param {string} newTemplateName - The new template name for the player.
  */
-PlayerManager.prototype.ReplacePlayer = function(id, ent)
+PlayerManager.prototype.ReplacePlayerTemplate = function(id, newTemplateName)
 {
+	const ent = Engine.AddEntity(newTemplateName);
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	let entities = cmpRangeManager.GetEntitiesByPlayer(id);
 	for (let e of entities)
