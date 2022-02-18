@@ -20,11 +20,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/*
- * OpenGL helper functions.
- */
-
 #include "precompiled.h"
+
 #include "lib/ogl.h"
 
 #include "lib/code_annotation.h"
@@ -416,9 +413,6 @@ bool ogl_SquelchError(GLenum err_to_ignore)
 // feature and limit detect
 //----------------------------------------------------------------------------
 
-GLint ogl_max_tex_size = -1;				// [pixels]
-GLint ogl_max_tex_units = -1;				// limit on GL_TEXTUREn
-
 #if OS_WIN
 bool ogl_Init(void* (load)(const char*), void* hdc)
 #elif !CONFIG2_GLES && !OS_MACOSX && !OS_MAC
@@ -483,13 +477,6 @@ bool ogl_Init(void* (load)(const char*))
 	have_30 = ogl_HaveVersion(3, 0);
 
 	enableDummyFunctions();
-
-	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &ogl_max_tex_size);
-#if !CONFIG2_GLES
-	glGetIntegerv(GL_MAX_TEXTURE_UNITS, &ogl_max_tex_units);
-#endif
-
-	glEnable(GL_TEXTURE_2D);
 
 	return true;
 }

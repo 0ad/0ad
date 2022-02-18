@@ -56,6 +56,7 @@ public:
 		bool anisotropicFiltering;
 		uint32_t maxSampleCount;
 		float maxAnisotropy;
+		uint32_t maxTextureSize;
 	};
 
 	~CDevice();

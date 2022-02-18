@@ -287,6 +287,8 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 	glPixelStorei(GL_PACK_ALIGNMENT, 1);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
+	glEnable(GL_TEXTURE_2D);
+
 	device->m_Backbuffer = CFramebuffer::CreateBackbuffer(device.get());
 
 	Capabilities& capabilities = device->m_Capabilities;
@@ -324,6 +326,9 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 		glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &maxAnisotropy);
 		capabilities.maxAnisotropy = maxAnisotropy;
 	}
+	GLint maxTextureSize = 1024;
+	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxTextureSize);
+	capabilities.maxTextureSize = maxTextureSize;
 
 #if CONFIG2_GLES
 	const bool isDebugInCore = ogl_HaveVersion(3, 2);

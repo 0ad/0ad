@@ -473,6 +473,8 @@ void ShadowMapInternals::CreateTexture()
 	Texture.reset();
 	DummyTexture.reset();
 
+	Renderer::Backend::GL::CDevice* backendDevice = g_VideoMode.GetBackendDevice();
+
 	CFG_GET_VAL("shadowquality", QualityLevel);
 
 	// Get shadow map size as next power of two up from view width/height.
@@ -498,7 +500,8 @@ void ShadowMapInternals::CreateTexture()
 	}
 
 	// Clamp to the maximum texture size.
-	shadowMapSize = std::min(shadowMapSize, static_cast<int>(ogl_max_tex_size));
+	shadowMapSize = std::min(
+		shadowMapSize, static_cast<int>(backendDevice->GetCapabilities().maxTextureSize));
 
 	Width = Height = shadowMapSize;
 
@@ -524,8 +527,6 @@ void ShadowMapInternals::CreateTexture()
 
 	LOGMESSAGE("Creating shadow texture (size %dx%d) (format = %s)",
 		Width, Height, formatName);
-
-	Renderer::Backend::GL::CDevice* backendDevice = g_VideoMode.GetBackendDevice();
 
 	if (g_RenderingOptions.GetShadowAlphaFix())
 	{
