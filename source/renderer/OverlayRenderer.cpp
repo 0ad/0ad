@@ -154,7 +154,8 @@ struct OverlayRendererInternals
 const float OverlayRenderer::OVERLAY_VOFFSET = 0.2f;
 
 OverlayRendererInternals::OverlayRendererInternals()
-	: quadVertices(GL_DYNAMIC_DRAW), quadIndices(GL_STATIC_DRAW)
+	: quadVertices(Renderer::Backend::GL::CBuffer::Type::VERTEX, true),
+	quadIndices(false)
 {
 	quadAttributePos.elems = 3;
 	quadAttributePos.type = GL_FLOAT;
@@ -183,10 +184,10 @@ void OverlayRendererInternals::Initialize()
 	// only at this point can we safely allocate VBOs (in contrast to e.g. in the constructor),
 	// because their creation depends on the shader path, which is not reliably set before this point.
 
-	quadVertices.SetNumVertices(MAX_QUAD_OVERLAYS * 4);
+	quadVertices.SetNumberOfVertices(MAX_QUAD_OVERLAYS * 4);
 	quadVertices.Layout(); // allocate backing store
 
-	quadIndices.SetNumVertices(MAX_QUAD_OVERLAYS * 6);
+	quadIndices.SetNumberOfVertices(MAX_QUAD_OVERLAYS * 6);
 	quadIndices.Layout(); // allocate backing store
 
 	// Since the quads in the vertex array are independent and always consist of exactly 4 vertices per quad, the
@@ -480,7 +481,7 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 	deviceCommandContext->BindTexture(1, GL_TEXTURE_2D, 0);
 	deviceCommandContext->BindTexture(0, GL_TEXTURE_2D, 0);
 
-	CVertexBuffer::Unbind();
+	CVertexBuffer::Unbind(deviceCommandContext);
 }
 
 void OverlayRenderer::RenderTexturedOverlayLines(
@@ -551,8 +552,8 @@ void OverlayRenderer::RenderQuadOverlays(
 	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 
 	// Base offsets (in bytes) of the two backing stores relative to their owner VBO
-	u8* indexBase = m->quadIndices.Bind();
-	u8* vertexBase = m->quadVertices.Bind();
+	u8* indexBase = m->quadIndices.Bind(deviceCommandContext);
+	u8* vertexBase = m->quadVertices.Bind(deviceCommandContext);
 	GLsizei indexStride = m->quadIndices.GetStride();
 	GLsizei vertexStride = m->quadVertices.GetStride();
 
@@ -599,7 +600,7 @@ void OverlayRenderer::RenderQuadOverlays(
 	deviceCommandContext->BindTexture(1, GL_TEXTURE_2D, 0);
 	deviceCommandContext->BindTexture(0, GL_TEXTURE_2D, 0);
 
-	CVertexBuffer::Unbind();
+	CVertexBuffer::Unbind(deviceCommandContext);
 
 #if !CONFIG2_GLES
 	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)

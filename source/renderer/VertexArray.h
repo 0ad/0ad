@@ -18,6 +18,8 @@
 #ifndef INCLUDED_VERTEXARRAY
 #define INCLUDED_VERTEXARRAY
 
+#include "renderer/backend/gl/Buffer.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/VertexBufferManager.h"
 
 #include <vector>
@@ -159,15 +161,16 @@ public:
 	};
 
 public:
-	VertexArray(GLenum usage, GLenum target = GL_ARRAY_BUFFER);
+	VertexArray(
+		const Renderer::Backend::GL::CBuffer::Type type, const bool dynamic);
 	~VertexArray();
 
 	// Set the number of vertices stored in the array
-	void SetNumVertices(size_t num);
+	void SetNumberOfVertices(const size_t numberOfVertices);
 	// Add vertex attributes
 	void AddAttribute(Attribute* attr);
 
-	size_t GetNumVertices() const { return m_NumVertices; }
+	size_t GetNumberOfVertices() const { return m_NumberOfVertices; }
 	size_t GetStride() const { return m_Stride; }
 
 	// Layout the vertex array format and create backing buffer in RAM.
@@ -181,7 +184,7 @@ public:
 	// Make this vertex array's data available for the next series of calls to Bind
 	void PrepareForRendering();
 	// Bind this array, returns the base address for calls to glVertexPointer etc.
-	u8* Bind();
+	u8* Bind(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	// If you know for certain that you'll never have to change the data again,
 	// call this to free some memory.
@@ -197,9 +200,9 @@ private:
 		return VertexArrayIterator<T>(m_BackingStore + attr->offset, m_Stride);
 	}
 
-	GLenum m_Usage;
-	GLenum m_Target;
-	size_t m_NumVertices;
+	Renderer::Backend::GL::CBuffer::Type m_Type;
+	bool m_Dynamic;
+	size_t m_NumberOfVertices;
 	std::vector<Attribute*> m_Attributes;
 
 	CVertexBufferManager::Handle m_VB;
@@ -216,7 +219,7 @@ private:
 class VertexIndexArray : public VertexArray
 {
 public:
-	VertexIndexArray(GLenum usage);
+	VertexIndexArray(const bool dynamic);
 
 	/// Gets the iterator over the (only) attribute in this array, i.e. a u16.
 	VertexArrayIterator<u16> GetIterator() const;

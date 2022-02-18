@@ -19,7 +19,9 @@
 #define INCLUDED_RENDERER_BACKEND_GL_DEVICE
 
 #include "renderer/backend/Format.h"
+#include "renderer/backend/gl/Buffer.h"
 #include "renderer/backend/gl/Framebuffer.h"
+#include "renderer/backend/gl/Texture.h"
 #include "scriptinterface/ScriptForward.h"
 
 #include <memory>
@@ -39,7 +41,6 @@ namespace GL
 {
 
 class CDeviceCommandContext;
-class CTexture;
 
 class CDevice
 {
@@ -82,6 +83,9 @@ public:
 	std::unique_ptr<CTexture> CreateTexture2D(const char* name,
 		const Format format, const uint32_t width, const uint32_t height,
 		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount = 1, const uint32_t sampleCount = 1);
+
+	std::unique_ptr<CBuffer> CreateBuffer(
+		const char* name, const CBuffer::Type type, const uint32_t size, const bool dynamic);
 
 	void Present();
 

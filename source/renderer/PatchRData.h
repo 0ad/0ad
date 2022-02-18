@@ -48,8 +48,12 @@ public:
 	void RenderOutline();
 	void RenderPriorities(CTextRenderer& textRenderer);
 
-	void RenderWaterSurface(const CShaderProgramPtr& shader, const bool bindWaterData);
-	void RenderWaterShore(const CShaderProgramPtr& shader);
+	void RenderWaterSurface(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderProgramPtr& shader, const bool bindWaterData);
+	void RenderWaterShore(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderProgramPtr& shader);
 
 	CPatch* GetPatch() { return m_Patch; }
 
@@ -61,8 +65,12 @@ public:
 	static void RenderBlends(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
 		const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow);
-	static void RenderStreams(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, int streamflags);
-	static void RenderSides(const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader);
+	static void RenderStreams(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, int streamflags);
+	static void RenderSides(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader);
 
 	static void PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow);
 

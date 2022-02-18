@@ -56,7 +56,7 @@ struct IModelDef : public CModelDefRPrivate
 
 
 IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateTangents)
-	: m_IndexArray(GL_STATIC_DRAW), m_Array(GL_STATIC_DRAW)
+	: m_IndexArray(false), m_Array(Renderer::Backend::GL::CBuffer::Type::VERTEX, false)
 {
 	size_t numVertices = mdef->GetNumVertices();
 
@@ -129,7 +129,7 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 
 		// Copy the model data to graphics memory:-
 
-		m_Array.SetNumVertices(numVertices2);
+		m_Array.SetNumberOfVertices(numVertices2);
 		m_Array.Layout();
 
 		VertexArrayIterator<CVector3D> Position = m_Position.GetIterator<CVector3D>();
@@ -181,7 +181,7 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 		m_Array.Upload();
 		m_Array.FreeBackingStore();
 
-		m_IndexArray.SetNumVertices(mdef->GetNumFaces() * 3);
+		m_IndexArray.SetNumberOfVertices(mdef->GetNumFaces() * 3);
 		m_IndexArray.Layout();
 
 		VertexArrayIterator<u16> Indices = m_IndexArray.GetIterator();
@@ -203,7 +203,7 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 	{
 		// Upload model without calculating tangents:-
 
-		m_Array.SetNumVertices(numVertices);
+		m_Array.SetNumberOfVertices(numVertices);
 		m_Array.Layout();
 
 		VertexArrayIterator<CVector3D> Position = m_Position.GetIterator<CVector3D>();
@@ -235,7 +235,7 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 		m_Array.Upload();
 		m_Array.FreeBackingStore();
 
-		m_IndexArray.SetNumVertices(mdef->GetNumFaces()*3);
+		m_IndexArray.SetNumberOfVertices(mdef->GetNumFaces()*3);
 		m_IndexArray.Layout();
 		ModelRenderer::BuildIndices(mdef, m_IndexArray.GetIterator());
 		m_IndexArray.Upload();
@@ -307,23 +307,27 @@ void InstancingModelRenderer::BeginPass(int streamflags)
 }
 
 // Cleanup rendering pass.
-void InstancingModelRenderer::EndPass(int UNUSED(streamflags))
+void InstancingModelRenderer::EndPass(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	int UNUSED(streamflags))
 {
-	CVertexBuffer::Unbind();
+	CVertexBuffer::Unbind(deviceCommandContext);
 }
 
 
 // Prepare UV coordinates for this modeldef
-void InstancingModelRenderer::PrepareModelDef(const CShaderProgramPtr& shader, int streamflags, const CModelDef& def)
+void InstancingModelRenderer::PrepareModelDef(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderProgramPtr& shader, int streamflags, const CModelDef& def)
 {
 	m->imodeldef = (IModelDef*)def.GetRenderData(m);
 
 	ENSURE(m->imodeldef);
 
-	u8* base = m->imodeldef->m_Array.Bind();
+	u8* base = m->imodeldef->m_Array.Bind(deviceCommandContext);
 	GLsizei stride = (GLsizei)m->imodeldef->m_Array.GetStride();
 
-	m->imodeldefIndexBase = m->imodeldef->m_IndexArray.Bind();
+	m->imodeldefIndexBase = m->imodeldef->m_IndexArray.Bind(deviceCommandContext);
 
 	if (streamflags & STREAM_POS)
 		shader->VertexPointer(3, GL_FLOAT, stride, base + m->imodeldef->m_Position.offset);
@@ -356,7 +360,9 @@ void InstancingModelRenderer::PrepareModelDef(const CShaderProgramPtr& shader, i
 
 
 // Render one model
-void InstancingModelRenderer::RenderModel(const CShaderProgramPtr& shader, int UNUSED(streamflags), CModel* model, CModelRData* UNUSED(data))
+void InstancingModelRenderer::RenderModel(
+	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext),
+	const CShaderProgramPtr& shader, int UNUSED(streamflags), CModel* model, CModelRData* UNUSED(data))
 {
 	const CModelDefPtr& mdldef = model->GetModelDef();
 
@@ -378,7 +384,7 @@ void InstancingModelRenderer::RenderModel(const CShaderProgramPtr& shader, int U
 #if CONFIG2_GLES
 	glDrawElements(GL_TRIANGLES, (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->imodeldefIndexBase);
 #else
-	glDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)m->imodeldef->m_Array.GetNumVertices()-1,
+	glDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)m->imodeldef->m_Array.GetNumberOfVertices()-1,
 			(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->imodeldefIndexBase);
 #endif
 

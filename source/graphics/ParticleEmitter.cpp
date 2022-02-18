@@ -32,8 +32,8 @@
 CParticleEmitter::CParticleEmitter(const CParticleEmitterTypePtr& type) :
 	m_Type(type), m_Active(true), m_NextParticleIdx(0), m_EmissionRoundingError(0.f),
 	m_LastUpdateTime(type->m_Manager.GetCurrentTime()),
-	m_IndexArray(GL_STATIC_DRAW),
-	m_VertexArray(GL_DYNAMIC_DRAW),
+	m_IndexArray(false),
+	m_VertexArray(Renderer::Backend::GL::CBuffer::Type::VERTEX, true),
 	m_LastFrameNumber(-1)
 {
 	// If we should start with particles fully emitted, pretend that we
@@ -64,10 +64,10 @@ CParticleEmitter::CParticleEmitter(const CParticleEmitterTypePtr& type) :
 	m_AttributeColor.elems = 4;
 	m_VertexArray.AddAttribute(&m_AttributeColor);
 
-	m_VertexArray.SetNumVertices(m_Type->m_MaxParticles * 4);
+	m_VertexArray.SetNumberOfVertices(m_Type->m_MaxParticles * 4);
 	m_VertexArray.Layout();
 
-	m_IndexArray.SetNumVertices(m_Type->m_MaxParticles * 6);
+	m_IndexArray.SetNumberOfVertices(m_Type->m_MaxParticles * 6);
 	m_IndexArray.Layout();
 	VertexArrayIterator<u16> index = m_IndexArray.GetIterator();
 	for (u16 i = 0; i < m_Type->m_MaxParticles; ++i)
@@ -196,15 +196,17 @@ void CParticleEmitter::Bind(
 	shader->BindTexture(str_baseTex, m_Type->m_Texture->GetBackendTexture());
 }
 
-void CParticleEmitter::RenderArray(const CShaderProgramPtr& shader)
+void CParticleEmitter::RenderArray(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderProgramPtr& shader)
 {
 	// Some drivers apparently don't like count=0 in glDrawArrays here,
 	// so skip all drawing in that case
 	if (m_Particles.empty())
 		return;
 
-	u8* indexBase = m_IndexArray.Bind();
-	u8* base = m_VertexArray.Bind();
+	u8* indexBase = m_IndexArray.Bind(deviceCommandContext);
+	u8* base = m_VertexArray.Bind(deviceCommandContext);
 
 	GLsizei stride = (GLsizei)m_VertexArray.GetStride();
 

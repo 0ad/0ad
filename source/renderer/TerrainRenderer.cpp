@@ -186,7 +186,7 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 	debugOverlayShader->BindTexture(str_baseTex, texture);
 	debugOverlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	debugOverlayShader->Uniform(str_textureTransform, textureMatrix);
-	CPatchRData::RenderStreams(visiblePatches, debugOverlayShader, STREAM_POS | STREAM_POSTOUV0);
+	CPatchRData::RenderStreams(deviceCommandContext, visiblePatches, debugOverlayShader, STREAM_POS | STREAM_POSTOUV0);
 
 	// To make the overlay visible over water, render an additional map-sized
 	// water-height patch.
@@ -269,7 +269,7 @@ void TerrainRenderer::RenderTerrainShader(
 	shaderSolid->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	shaderSolid->Uniform(str_color, 0.0f, 0.0f, 0.0f, 1.0f);
 
-	CPatchRData::RenderSides(visiblePatches, shaderSolid);
+	CPatchRData::RenderSides(deviceCommandContext, visiblePatches, shaderSolid);
 
 	techSolid->EndPass();
 
@@ -315,7 +315,7 @@ void TerrainRenderer::RenderPatches(
 	solidShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	solidShader->Uniform(str_color, color);
 
-	CPatchRData::RenderStreams(visiblePatches, solidShader, STREAM_POS);
+	CPatchRData::RenderStreams(deviceCommandContext, visiblePatches, solidShader, STREAM_POS);
 	solidTech->EndPass();
 #endif
 }
@@ -499,9 +499,9 @@ bool TerrainRenderer::RenderFancyWater(
 
 	for (CPatchRData* data : m->visiblePatches[cullGroup])
 	{
-		data->RenderWaterSurface(fancyWaterShader, true);
+		data->RenderWaterSurface(deviceCommandContext, fancyWaterShader, true);
 		if (waterManager.m_WaterFancyEffects)
-			data->RenderWaterShore(fancyWaterShader);
+			data->RenderWaterShore(deviceCommandContext, fancyWaterShader);
 	}
 	m->fancyWaterTech->EndPass();
 
@@ -552,7 +552,7 @@ void TerrainRenderer::RenderSimpleWater(
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
 	{
 		CPatchRData* data = visiblePatches[i];
-		data->RenderWaterSurface(waterSimpleShader, false);
+		data->RenderWaterSurface(deviceCommandContext, waterSimpleShader, false);
 	}
 
 	deviceCommandContext->BindTexture(1, GL_TEXTURE_2D, 0);
@@ -603,7 +603,7 @@ void TerrainRenderer::RenderWaterFoamOccluders(
 	dummyShader->Uniform(str_transform, sceneRenderer.GetViewCamera().GetViewProjection());
 	dummyShader->Uniform(str_color, 0.0f, 0.0f, 0.0f, 0.0f);
 	for (CPatchRData* data : m->visiblePatches[cullGroup])
-		data->RenderWaterShore(dummyShader);
+		data->RenderWaterShore(deviceCommandContext, dummyShader);
 	dummyTech->EndPass();
 
 	deviceCommandContext->SetFramebuffer(

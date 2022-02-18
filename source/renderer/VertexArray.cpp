@@ -30,11 +30,11 @@
 #include "renderer/VertexBufferManager.h"
 
 
-VertexArray::VertexArray(GLenum usage, GLenum target)
+VertexArray::VertexArray(
+	const Renderer::Backend::GL::CBuffer::Type type, const bool dynamic)
+	: m_Type(type), m_Dynamic(dynamic)
 {
-	m_Usage = usage;
-	m_Target = target;
-	m_NumVertices = 0;
+	m_NumberOfVertices = 0;
 
 	m_BackingStore = 0;
 	m_Stride = 0;
@@ -55,13 +55,13 @@ void VertexArray::Free()
 }
 
 // Set the number of vertices stored in the array
-void VertexArray::SetNumVertices(size_t num)
+void VertexArray::SetNumberOfVertices(const size_t numberOfVertices)
 {
-	if (num == m_NumVertices)
+	if (numberOfVertices == m_NumberOfVertices)
 		return;
 
 	Free();
-	m_NumVertices = num;
+	m_NumberOfVertices = numberOfVertices;
 }
 
 // Add vertex attributes like Position, Normal, UV
@@ -215,8 +215,6 @@ void VertexArray::Layout()
 
 	m_Stride = 0;
 
-	//debug_printf("Layouting VertexArray\n");
-
 	for (ssize_t idx = m_Attributes.size()-1; idx >= 0; --idx)
 	{
 		Attribute* attr = m_Attributes[idx];
@@ -250,19 +248,15 @@ void VertexArray::Layout()
 
 		m_Stride += attrSize;
 
-		if (m_Target == GL_ARRAY_BUFFER)
+		if (m_Type == Renderer::Backend::GL::CBuffer::Type::VERTEX)
 			m_Stride = Align<4>(m_Stride);
-
-		//debug_printf("%i: offset: %u\n", idx, attr->offset);
 	}
 
-	if (m_Target == GL_ARRAY_BUFFER)
+	if (m_Type == Renderer::Backend::GL::CBuffer::Type::VERTEX)
 		m_Stride = RoundStride(m_Stride);
 
-	//debug_printf("Stride: %u\n", m_Stride);
-
 	if (m_Stride)
-		m_BackingStore = (char*)rtl_AllocateAligned(m_Stride * m_NumVertices, 16);
+		m_BackingStore = (char*)rtl_AllocateAligned(m_Stride * m_NumberOfVertices, 16);
 }
 
 void VertexArray::PrepareForRendering()
@@ -277,7 +271,10 @@ void VertexArray::Upload()
 	ENSURE(m_BackingStore);
 
 	if (!m_VB)
-		m_VB = g_VBMan.AllocateChunk(m_Stride, m_NumVertices, m_Usage, m_Target, m_BackingStore);
+	{
+		m_VB = g_VBMan.AllocateChunk(
+			m_Stride, m_NumberOfVertices, m_Type, m_Dynamic, m_BackingStore);
+	}
 
 	if (!m_VB)
 	{
@@ -290,12 +287,13 @@ void VertexArray::Upload()
 
 
 // Bind this array, returns the base address for calls to glVertexPointer etc.
-u8* VertexArray::Bind()
+u8* VertexArray::Bind(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	if (!m_VB)
 		return NULL;
 
-	u8* base = m_VB->m_Owner->Bind();
+	u8* base = m_VB->m_Owner->Bind(deviceCommandContext);
 	base += m_VB->m_Index*m_Stride;
 	return base;
 }
@@ -305,16 +303,14 @@ u8* VertexArray::Bind()
 void VertexArray::FreeBackingStore()
 {
 	// In streaming modes, the backing store must be retained
-	ENSURE(!CVertexBuffer::UseStreaming(m_Usage));
+	ENSURE(!CVertexBuffer::UseStreaming(m_Dynamic));
 
 	rtl_FreeAligned(m_BackingStore);
 	m_BackingStore = 0;
 }
 
-
-
-VertexIndexArray::VertexIndexArray(GLenum usage) :
-	VertexArray(usage, GL_ELEMENT_ARRAY_BUFFER)
+VertexIndexArray::VertexIndexArray(const bool dynamic) :
+	VertexArray(Renderer::Backend::GL::CBuffer::Type::INDEX, dynamic)
 {
 	m_Attr.type = GL_UNSIGNED_SHORT;
 	m_Attr.elems = 1;

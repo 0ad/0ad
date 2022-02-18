@@ -19,12 +19,15 @@
 
 #include "DeviceCommandContext.h"
 
+#include "ps/CLogger.h"
+#include "renderer/backend/gl/Buffer.h"
 #include "renderer/backend/gl/Device.h"
 #include "renderer/backend/gl/Framebuffer.h"
 #include "renderer/backend/gl/Mapping.h"
 #include "renderer/backend/gl/Texture.h"
 
 #include <algorithm>
+#include <cstring>
 #include <limits>
 
 namespace Renderer
@@ -85,6 +88,47 @@ void ApplyColorMask(const uint8_t colorWriteMask)
 void ApplyStencilMask(const uint32_t stencilWriteMask)
 {
 	glStencilMask(stencilWriteMask);
+}
+
+GLenum BufferTypeToGLTarget(const CBuffer::Type type)
+{
+	GLenum target = GL_ARRAY_BUFFER;
+	switch (type)
+	{
+	case CBuffer::Type::VERTEX:
+		target = GL_ARRAY_BUFFER;
+		break;
+	case CBuffer::Type::INDEX:
+		target = GL_ELEMENT_ARRAY_BUFFER;
+		break;
+	};
+	return target;
+}
+
+void UploadBufferRegionImpl(
+	const GLenum target, const uint32_t dataOffset, const uint32_t dataSize,
+	const CDeviceCommandContext::UploadBufferFunction& uploadFunction)
+{
+	ENSURE(dataOffset < dataSize);
+	while (true)
+	{
+		void* mappedData = glMapBufferARB(target, GL_WRITE_ONLY);
+		if (mappedData == nullptr)
+		{
+			// This shouldn't happen unless we run out of virtual address space
+			LOGERROR("glMapBuffer failed");
+			break;
+		}
+
+		uploadFunction(static_cast<u8*>(mappedData) + dataOffset);
+
+		if (glUnmapBufferARB(target) == GL_TRUE)
+			break;
+
+		// Unmap might fail on e.g. resolution switches, so just try again
+		// and hope it will eventually succeed
+		LOGMESSAGE("glUnmapBuffer failed, trying again...\n");
+	}
 }
 
 } // anonymous namespace
@@ -240,6 +284,58 @@ void CDeviceCommandContext::UploadTextureRegion(
 		debug_warn("Unsupported type");
 }
 
+void CDeviceCommandContext::UploadBuffer(CBuffer* buffer, const void* data, const uint32_t dataSize)
+{
+	UploadBufferRegion(buffer, data, dataSize, 0);
+}
+
+void CDeviceCommandContext::UploadBuffer(
+	CBuffer* buffer, const UploadBufferFunction& uploadFunction)
+{
+	UploadBufferRegion(buffer, 0, buffer->GetSize(), uploadFunction);
+}
+
+void CDeviceCommandContext::UploadBufferRegion(
+	CBuffer* buffer, const void* data, const uint32_t dataOffset, const uint32_t dataSize)
+{
+	ENSURE(data);
+	ENSURE(dataOffset + dataSize <= buffer->GetSize());
+	const GLenum target = BufferTypeToGLTarget(buffer->GetType());
+	glBindBufferARB(target, buffer->GetHandle());
+	if (buffer->IsDynamic())
+	{
+		// Tell the driver that it can reallocate the whole VBO
+		glBufferDataARB(target, buffer->GetSize(), nullptr, buffer->IsDynamic() ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
+
+		// (In theory, glMapBufferRange with GL_MAP_INVALIDATE_BUFFER_BIT could be used
+		// here instead of glBufferData(..., NULL, ...) plus glMapBuffer(), but with
+		// current Intel Windows GPU drivers (as of 2015-01) it's much faster if you do
+		// the explicit glBufferData.)
+
+		UploadBufferRegion(buffer, dataOffset, dataSize, [data, dataOffset, dataSize](u8* mappedData)
+		{
+			std::memcpy(mappedData, data, dataSize);
+		});
+	}
+	else
+	{
+		glBufferSubDataARB(target, dataOffset, dataSize, data);
+	}
+	glBindBufferARB(target, 0);
+}
+
+void CDeviceCommandContext::UploadBufferRegion(
+	CBuffer* buffer, const uint32_t dataOffset, const uint32_t dataSize,
+	const UploadBufferFunction& uploadFunction)
+{
+	ENSURE(dataOffset + dataSize <= buffer->GetSize());
+	const GLenum target = BufferTypeToGLTarget(buffer->GetType());
+	glBindBufferARB(target, buffer->GetHandle());
+	ENSURE(buffer->IsDynamic());
+	UploadBufferRegionImpl(target, dataOffset, dataSize, uploadFunction);
+	glBindBufferARB(target, 0);
+}
+
 void CDeviceCommandContext::BindTexture(const uint32_t unit, const GLenum target, const GLuint handle)
 {
 	ENSURE(unit < m_BoundTextures.size());
@@ -260,6 +356,12 @@ void CDeviceCommandContext::BindTexture(const uint32_t unit, const GLenum target
 	if (m_BoundTextures[unit].second != handle)
 		glBindTexture(target, handle);
 	m_BoundTextures[unit] = {target, handle};
+}
+
+void CDeviceCommandContext::BindBuffer(const CBuffer::Type type, CBuffer* buffer)
+{
+	ENSURE(!buffer || type == buffer->GetType());
+	glBindBufferARB(BufferTypeToGLTarget(type), buffer ? buffer->GetHandle() : 0);
 }
 
 void CDeviceCommandContext::Flush()

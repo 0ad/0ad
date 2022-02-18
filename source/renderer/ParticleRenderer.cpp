@@ -158,13 +158,13 @@ void ParticleRenderer::RenderParticles(
 			shader->Uniform(str_modelViewMatrix, g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetInverse());
 		}
 		emitter->Bind(deviceCommandContext, lastTech->GetShader());
-		emitter->RenderArray(lastTech->GetShader());
+		emitter->RenderArray(deviceCommandContext, lastTech->GetShader());
 	}
 
 	if (lastTech)
 		lastTech->EndPass();
 
-	CVertexBuffer::Unbind();
+	CVertexBuffer::Unbind(deviceCommandContext);
 }
 
 void ParticleRenderer::RenderBounds(int cullGroup)

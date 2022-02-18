@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,14 +36,18 @@ public:
 	ShaderModelVertexRenderer();
 	~ShaderModelVertexRenderer();
 
-	// Implementations
-	CModelRData* CreateModelData(const void* key, CModel* model);
-	void UpdateModelData(CModel* model, CModelRData* data, int updateflags);
+	CModelRData* CreateModelData(const void* key, CModel* model) override;
+	void UpdateModelData(CModel* model, CModelRData* data, int updateflags) override;
 
-	void BeginPass(int streamflags);
-	void EndPass(int streamflags);
-	void PrepareModelDef(const CShaderProgramPtr& shader, int streamflags, const CModelDef& def);
-	void RenderModel(const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data);
+	void BeginPass(int streamflags) override;
+	void EndPass(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, int streamflags) override;
+	void PrepareModelDef(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderProgramPtr& shader, int streamflags, const CModelDef& def) override;
+	void RenderModel(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data) override;
 
 protected:
 	struct ShaderModelRendererInternals;

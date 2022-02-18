@@ -74,15 +74,14 @@ void CVertexBufferManager::Shutdown()
  * given size), with the given type, and using the given texture - return null
  * if no free chunks available
  */
-CVertexBufferManager::Handle CVertexBufferManager::AllocateChunk(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore, Group group)
+CVertexBufferManager::Handle CVertexBufferManager::AllocateChunk(
+	const size_t vertexSize, const size_t numberOfVertices,
+	const Renderer::Backend::GL::CBuffer::Type type,
+	const bool dynamic, void* backingStore, Group group)
 {
 	CVertexBuffer::VBChunk* result = nullptr;
 
-	ENSURE(usage == GL_STREAM_DRAW || usage == GL_STATIC_DRAW || usage == GL_DYNAMIC_DRAW);
-
-	ENSURE(target == GL_ARRAY_BUFFER || target == GL_ELEMENT_ARRAY_BUFFER);
-
-	if (CVertexBuffer::UseStreaming(usage))
+	if (CVertexBuffer::UseStreaming(dynamic))
 		ENSURE(backingStore != NULL);
 
 	// TODO, RC - run some sanity checks on allocation request
@@ -93,7 +92,7 @@ CVertexBufferManager::Handle CVertexBufferManager::AllocateChunk(size_t vertexSi
 	debug_printf("\n============================\n# allocate vsize=%zu nverts=%zu\n\n", vertexSize, numVertices);
 	for (const std::unique_ptr<CVertexBuffer>& buffer : buffers)
 	{
-		if (buffer->CompatibleVertexType(vertexSize, usage, target))
+		if (buffer->CompatibleVertexType(vertexSize, type, dynamic))
 		{
 			debug_printf("%p\n", buffer.get());
 			buffer->DumpStatus();
@@ -105,7 +104,7 @@ CVertexBufferManager::Handle CVertexBufferManager::AllocateChunk(size_t vertexSi
 	// satisfy the allocation
 	for (const std::unique_ptr<CVertexBuffer>& buffer : buffers)
 	{
-		result = buffer->Allocate(vertexSize, numVertices, usage, target, backingStore);
+		result = buffer->Allocate(vertexSize, numberOfVertices, type, dynamic, backingStore);
 		if (result)
 			return Handle(result);
 	}
@@ -113,14 +112,14 @@ CVertexBufferManager::Handle CVertexBufferManager::AllocateChunk(size_t vertexSi
 	// got this far; need to allocate a new buffer
 	buffers.emplace_back(
 		group == Group::DEFAULT
-			? std::make_unique<CVertexBuffer>(vertexSize, usage, target)
+			? std::make_unique<CVertexBuffer>("VertexBuffer (Default)", vertexSize, type, dynamic)
 			// Reduces the buffer size for not so frequent buffers.
-			: std::make_unique<CVertexBuffer>(vertexSize, usage, target, 1024 * 1024));
-	result = buffers.back()->Allocate(vertexSize, numVertices, usage, target, backingStore);
+			: std::make_unique<CVertexBuffer>("VertexBuffer", vertexSize, type, dynamic, 1024 * 1024));
+	result = buffers.back()->Allocate(vertexSize, numberOfVertices, type, dynamic, backingStore);
 
 	if (!result)
 	{
-		LOGERROR("Failed to create VBOs (%zu*%zu)", vertexSize, numVertices);
+		LOGERROR("Failed to create VBOs (%zu*%zu)", vertexSize, numberOfVertices);
 		return Handle();
 	}
 

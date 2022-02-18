@@ -213,6 +213,10 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 	// and irrelevant (was never widespread).
 	capabilities.S3TC = ogl_HaveExtensions(0, "GL_ARB_texture_compression", "GL_EXT_texture_compression_s3tc", nullptr) == 0;
 #endif
+#if CONFIG2_GLES
+	capabilities.multisampling = false;
+	capabilities.maxSampleCount = 1;
+#else
 	capabilities.multisampling =
 		ogl_HaveVersion(3, 3) &&
 		ogl_HaveExtension("GL_ARB_multisample") &&
@@ -223,6 +227,7 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 		glGetIntegerv(GL_MAX_SAMPLES, &maxSamples);
 		capabilities.maxSampleCount = maxSamples;
 	}
+#endif
 	capabilities.anisotropicFiltering = ogl_HaveExtension("GL_EXT_texture_filter_anisotropic");
 	if (capabilities.anisotropicFiltering)
 	{
@@ -650,6 +655,12 @@ std::unique_ptr<CTexture> CDevice::CreateTexture2D(const char* name,
 {
 	return CreateTexture(name, CTexture::Type::TEXTURE_2D,
 		format, width, height, defaultSamplerDesc, MIPLevelCount, sampleCount);
+}
+
+std::unique_ptr<CBuffer> CDevice::CreateBuffer(
+	const char* name, const CBuffer::Type type, const uint32_t size, const bool dynamic)
+{
+	return CBuffer::Create(this, name, type, size, dynamic);
 }
 
 void CDevice::Present()

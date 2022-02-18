@@ -532,7 +532,7 @@ void WaterManager::CreateWaveMeshes()
 	// Generic indexes, max-length
 	m_ShoreWavesVBIndices = g_VBMan.AllocateChunk(
 		sizeof(GLushort), water_indices.size(),
-		GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER,
+		Renderer::Backend::GL::CBuffer::Type::INDEX, false,
 		nullptr, CVertexBufferManager::Group::WATER);
 	m_ShoreWavesVBIndices->m_Owner->UpdateChunkVertices(m_ShoreWavesVBIndices.Get(), &water_indices[0]);
 
@@ -753,7 +753,7 @@ void WaterManager::CreateWaveMeshes()
 
 			shoreWave->m_VBVertices = g_VBMan.AllocateChunk(
 				sizeof(SWavesVertex), vertices.size(),
-				GL_STATIC_DRAW, GL_ARRAY_BUFFER,
+				Renderer::Backend::GL::CBuffer::Type::VERTEX, false,
 				nullptr, CVertexBufferManager::Group::WATER);
 			shoreWave->m_VBVertices->m_Owner->UpdateChunkVertices(shoreWave->m_VBVertices.Get(), &vertices[0]);
 
@@ -798,7 +798,7 @@ void WaterManager::RenderWaves(
 			continue;
 
 		CVertexBuffer::VBChunk* VBchunk = m_ShoreWaves[a]->m_VBVertices.Get();
-		SWavesVertex* base = (SWavesVertex*)VBchunk->m_Owner->Bind();
+		SWavesVertex* base = (SWavesVertex*)VBchunk->m_Owner->Bind(deviceCommandContext);
 
 		// setup data pointers
 		GLsizei stride = sizeof(SWavesVertex);
@@ -815,7 +815,7 @@ void WaterManager::RenderWaves(
 		shader->Uniform(str_translation, m_ShoreWaves[a]->m_TimeDiff);
 		shader->Uniform(str_width, (int)m_ShoreWaves[a]->m_Width);
 
-		u8* indexBase = m_ShoreWavesVBIndices->m_Owner->Bind();
+		u8* indexBase = m_ShoreWavesVBIndices->m_Owner->Bind(deviceCommandContext);
 		glDrawElements(GL_TRIANGLES, (GLsizei) (m_ShoreWaves[a]->m_Width-1)*(7*6),
 					   GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_ShoreWavesVBIndices->m_Index));
 
@@ -825,7 +825,7 @@ void WaterManager::RenderWaves(
 		//g_Renderer.m_Stats.m_DrawCalls++;
 		//g_Renderer.m_Stats.m_WaterTris += m_ShoreWaves_VBIndices->m_Count / 3;
 
-		CVertexBuffer::Unbind();
+		CVertexBuffer::Unbind(deviceCommandContext);
 	}
 	tech->EndPass();
 	deviceCommandContext->SetFramebuffer(

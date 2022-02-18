@@ -198,7 +198,7 @@ void CDecalRData::RenderDecals(
 				{
 					lastVB = batch.vertices->m_Owner;
 					const GLsizei stride = sizeof(SDecalVertex);
-					SDecalVertex* base = (SDecalVertex*)batch.vertices->m_Owner->Bind();
+					SDecalVertex* base = (SDecalVertex*)batch.vertices->m_Owner->Bind(deviceCommandContext);
 
 					shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
 					shader->NormalPointer(GL_FLOAT, stride, &base->m_Normal[0]);
@@ -210,7 +210,7 @@ void CDecalRData::RenderDecals(
 				if (lastIB != batch.indices->m_Owner)
 				{
 					lastIB = batch.indices->m_Owner;
-					batch.indices->m_Owner->Bind();
+					batch.indices->m_Owner->Bind(deviceCommandContext);
 				}
 
 				u8* indexBase = nullptr;
@@ -225,7 +225,7 @@ void CDecalRData::RenderDecals(
 		}
 	}
 
-	CVertexBuffer::Unbind();
+	CVertexBuffer::Unbind(deviceCommandContext);
 }
 
 void CDecalRData::BuildVertexData()
@@ -279,7 +279,11 @@ void CDecalRData::BuildVertexData()
 	}
 
 	if (!m_VBDecals || m_VBDecals->m_Count != vertices.size())
-		m_VBDecals = g_VBMan.AllocateChunk(sizeof(SDecalVertex), vertices.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
+	{
+		m_VBDecals = g_VBMan.AllocateChunk(
+			sizeof(SDecalVertex), vertices.size(),
+			Renderer::Backend::GL::CBuffer::Type::VERTEX, false);
+	}
 	m_VBDecals->m_Owner->UpdateChunkVertices(m_VBDecals.Get(), vertices.data());
 
 	std::vector<u16> indices((i1 - i0) * (j1 - j0) * 6);
@@ -317,6 +321,10 @@ void CDecalRData::BuildVertexData()
 
 	// Construct vertex buffer.
 	if (!m_VBDecalsIndices || m_VBDecalsIndices->m_Count != indices.size())
-		m_VBDecalsIndices = g_VBMan.AllocateChunk(sizeof(u16), indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
+	{
+		m_VBDecalsIndices = g_VBMan.AllocateChunk(
+			sizeof(u16), indices.size(),
+			Renderer::Backend::GL::CBuffer::Type::INDEX, false);
+	}
 	m_VBDecalsIndices->m_Owner->UpdateChunkVertices(m_VBDecalsIndices.Get(), indices.data());
 }

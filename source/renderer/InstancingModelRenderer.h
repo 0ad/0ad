@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -43,9 +43,14 @@ public:
 	void UpdateModelData(CModel* model, CModelRData* data, int updateflags);
 
 	void BeginPass(int streamflags);
-	void EndPass(int streamflags);
-	void PrepareModelDef(const CShaderProgramPtr& shader, int streamflags, const CModelDef& def);
-	void RenderModel(const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data);
+	void EndPass(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		int streamflags);
+	void PrepareModelDef(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderProgramPtr& shader, int streamflags, const CModelDef& def);
+	void RenderModel(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data);
 
 protected:
 	InstancingModelRendererInternals* m;

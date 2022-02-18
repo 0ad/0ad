@@ -20,10 +20,12 @@
 
 #include "lib/ogl.h"
 #include "renderer/backend/Format.h"
+#include "renderer/backend/gl/Buffer.h"
 #include "renderer/backend/PipelineState.h"
 
 #include <array>
 #include <cstdint>
+#include <functional>
 #include <memory>
 #include <optional>
 #include <utility>
@@ -65,6 +67,15 @@ public:
 		const uint32_t width, const uint32_t height,
 		const uint32_t level = 0, const uint32_t layer = 0);
 
+	using UploadBufferFunction = std::function<void(u8*)>;
+	void UploadBuffer(CBuffer* buffer, const void* data, const uint32_t dataSize);
+	void UploadBuffer(CBuffer* buffer, const UploadBufferFunction& uploadFunction);
+	void UploadBufferRegion(
+		CBuffer* buffer, const void* data, const uint32_t dataOffset, const uint32_t dataSize);
+	void UploadBufferRegion(
+		CBuffer* buffer, const uint32_t dataOffset, const uint32_t dataSize,
+		const UploadBufferFunction& uploadFunction);
+
 	// TODO: maybe we should add a more common type, like CRectI.
 	struct ScissorRect
 	{
@@ -75,6 +86,7 @@ public:
 
 	// TODO: remove direct binding after moving shaders.
 	void BindTexture(const uint32_t unit, const GLenum target, const GLuint handle);
+	void BindBuffer(const CBuffer::Type type, CBuffer* buffer);
 
 	void Flush();
 
