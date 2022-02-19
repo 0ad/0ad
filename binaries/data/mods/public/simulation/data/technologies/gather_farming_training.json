@@ -6,7 +6,12 @@
 		"metal": 200
 	},
 	"supersedes": "gather_farming_plows",
-	"requirements": { "tech": "phase_town" },
+	"requirements": {
+		"all": [
+			{ "tech": "phase_town" },
+			{ "notciv": "han" }
+		]
+	},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "farming_training.png",
 	"researchTime": 50,

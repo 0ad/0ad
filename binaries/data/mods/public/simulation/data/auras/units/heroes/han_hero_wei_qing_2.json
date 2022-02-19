@@ -1,0 +1,17 @@
+{
+	"type": "range",
+	"radius": 30,
+	"affects": ["Cavalry"],
+	"affectedPlayers": ["Enemy"],
+	"modifications": [
+		{ "value": "Attack/Melee/Damage/Hack", "multiply": 0.9 },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 0.9 },
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 0.9 },
+		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 0.9 },
+		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 0.9 },
+		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 0.9 }
+	],
+	"auraName": "Mandate of Heaven",
+	"auraDescription": "Enemy Cavalry −10% melee and ranged attack damage.",
+	"overlayIcon": "art/textures/ui/session/auras/broken_sword.png"
+}

@@ -1,0 +1,10 @@
+{
+	"type": "global",
+	"affects": ["Trade"],
+	"affectedPlayers": ["ExclusiveMutualAlly"],
+	"modifications": [
+		{ "value": "Market/InternationalBonus", "multiply": 1.2 }
+	],
+	"auraName": "Silk Road",
+	"auraDescription": "Allies +20% international trade bonus."
+}

@@ -1,0 +1,23 @@
+{
+	"genericName": "Seed Drill",
+	"description": "Equip your workers with seed drills.",
+	"cost": {
+		"wood": 200,
+		"metal": 100
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_village" },
+			{ "civ": "han" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in Village Phase.",
+	"icon": "torsion_springs.png",
+	"researchTime": 50,
+	"tooltip": "Workers +25% rice gather rate.",
+	"modifications": [
+		{ "value": "ResourceGatherer/Rates/food.rice", "multiply": 1.25 }
+	],
+	"affects": ["Worker"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

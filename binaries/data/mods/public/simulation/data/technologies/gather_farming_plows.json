@@ -5,7 +5,12 @@
 		"wood": 200,
 		"metal": 100
 	},
-	"requirements": { "tech": "phase_village" },
+	"requirements": {
+		"all": [
+			{ "tech": "phase_village" },
+			{ "notciv": "han" }
+		]
+	},
 	"requirementsTooltip": "Unlocked in Village Phase.",
 	"icon": "plow.png",
 	"researchTime": 40,

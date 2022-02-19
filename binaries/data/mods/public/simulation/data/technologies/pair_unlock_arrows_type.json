@@ -1,0 +1,11 @@
+{
+	"genericName": "Fire Arrows vs Poison Arrows",
+	"top": "fire_arrows",
+	"bottom": "poison_arrows",
+	"requirements": {
+		"all": [
+			{ "civ": "han" },
+			{ "tech": "phase_city", "tech": "unlock_champion_infantry" }
+		]
+	}
+}

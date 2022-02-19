@@ -6,7 +6,12 @@
 		"metal": 300
 	},
 	"supersedes": "gather_farming_training",
-	"requirements": { "tech": "phase_city" },
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "notciv": "han" }
+		]
+	},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "olives.png",
 	"researchTime": 60,

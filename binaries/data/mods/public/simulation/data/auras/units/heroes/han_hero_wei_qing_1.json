@@ -1,0 +1,17 @@
+{
+	"type": "range",
+	"radius": 60,
+	"affects": ["Champion"],
+	"modifications": [
+		{ "value": "Attack/Capture/Capture", "add": 2 },
+		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.2 }
+	],
+	"auraName": "Mandate of Heaven",
+	"auraDescription": "Champions +2 capture attack strength, +20% melee and ranged attack damage.",
+	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
+}

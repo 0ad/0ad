@@ -2,6 +2,7 @@
 	"genericName": "Sentries",
 	"specificName": {
 		"athen": "Nyktophylakes",
+		"han": "Shàobīng",
 		"mace": "Nyktophylakes",
 		"ptol": "Nyktophylakes",
 		"rome": "Vigiles",
@@ -20,6 +21,6 @@
 	"modifications": [
 		{ "value": "BuildingAI/DefaultArrowCount", "add": 1 }
 	],
-	"affects": ["SentryTower", "StoneTower"],
+	"affects": ["SentryTower", "StoneTower", "GreatTower"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

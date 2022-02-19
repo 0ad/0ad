@@ -1,0 +1,12 @@
+{
+	"type": "garrison",
+	"affects": ["ImperialMinistry"],
+	"modifications": [
+		{ "value": "ResourceTrickle/Rates/wood", "add": 0.1 },
+		{ "value": "ResourceTrickle/Rates/stone", "add": 0.1 },
+		{ "value": "ResourceTrickle/Rates/metal", "add": 0.1 }
+	],
+	"auraName": "Nationalized Industries",
+	"auraDescription": "The Imperial Ministry gains a +0.1 wood, stone, metal trickle for each garrisoned minister.",
+	"stackable": true
+}

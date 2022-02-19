@@ -1,0 +1,25 @@
+{
+	"genericName": "Poison Arrows",
+	"description": "",
+	"cost": {
+		"food": 1200,
+		"wood": 1200
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "civ": "han" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "arrow_poison.png",
+	"researchTime": 50,
+	"tooltip": "Ranged Soldiers +20% attack damage.",
+	"modifications": [
+		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.2 },
+		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.2 }
+	],
+	"affects": ["Soldier"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

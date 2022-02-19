@@ -1,0 +1,12 @@
+{
+	"type": "range",
+	"radius": 75,
+	"affects": ["Human"],
+	"modifications": [
+		{ "value": "Health/RegenRate", "add": 1 },
+		{ "value": "Health/Max", "multiply": 1.25 }
+	],
+	"auraName": "Taoism",
+	"auraDescription": "Humans +1 health regeneration rate, +25% health",
+	"overlayIcon": "art/textures/ui/session/auras/health_bonus.png"
+}

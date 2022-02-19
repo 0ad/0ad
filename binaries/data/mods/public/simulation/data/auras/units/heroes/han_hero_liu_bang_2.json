@@ -1,0 +1,13 @@
+{
+	"type": "range",
+	"radius": 40,
+	"affects": ["Cavalry"],
+	"modifications": [
+		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2 }
+	],
+	"auraName": "Confucian Reforms",
+	"auraDescription": "Cavalry +20% attack damage.",
+	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
+}
