@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_ship_fire">
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Huǒ Chuán</SpecificName>
+    <Icon>units/han/ship_fire.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/han/fireship.xml</Actor>
+  </VisualActor>
+  <Footprint>
+    <Square depth="16.0" width="7.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+</Entity>

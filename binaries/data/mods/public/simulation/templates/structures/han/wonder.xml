@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_wonder">
+  <Footprint>
+    <Square depth="43.0" width="48.0"/>
+    <Height>14.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <List datatype="tokens">Minister</List>
+  </GarrisonHolder>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Míngtáng Bìyōng</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static depth="43.0" width="48.0"/>
+  </Obstruction>
+  <VisualActor>
+    <FoundationActor>structures/fndn_theater.xml</FoundationActor>
+    <Actor>structures/han/wonder.xml</Actor>
+  </VisualActor>
+</Entity>

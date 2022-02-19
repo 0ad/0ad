@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_infantry_pikeman">
+  <Auras datatype="tokens">
+    units/heroes/han_hero_han_xin_1
+    units/heroes/han_hero_han_xin_2
+  </Auras>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Hán Xìn</SpecificName>
+    <Icon>units/han/hero_han_xin.png</Icon>
+  </Identity>
+  <Promotion disable=""/>
+  <VisualActor>
+    <Actor>units/han/hero_infantry_han_xin.xml</Actor>
+  </VisualActor>
+</Entity>

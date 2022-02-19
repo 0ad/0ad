@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_range">
+  <Footprint>
+    <Square depth="22.0" width="22.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <List datatype="tokens">Minister</List>
+  </GarrisonHolder>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Bǎ Chǎng</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static depth="20.0" width="20.0"/>
+  </Obstruction>
+  <Trainer>
+    <Entities datatype="tokens">
+      units/{civ}/infantry_crossbowman_b
+    </Entities>
+  </Trainer>
+  <VisualActor>
+    <Actor>structures/han/range.xml</Actor>
+    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
+  </VisualActor>
+</Entity>

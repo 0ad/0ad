@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_dock">
+  <Footprint>
+    <Square depth="32.0" width="26.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>9</Max>
+    <EjectHealth>0</EjectHealth>
+    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
+    <List datatype="tokens">Minister</List>
+    <BuffHeal>1</BuffHeal>
+    <LoadingRange>1</LoadingRange>
+  </GarrisonHolder>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Mǎtóu</SpecificName>
+    <Icon>structures/dock.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Static depth="32.0" width="26.0"/>
+  </Obstruction>
+  <Trainer>
+    <Entities datatype="tokens">
+      -units/{civ}/ship_fire
+    </Entities>
+  </Trainer>
+  <VisualActor>
+    <Actor>structures/han/dock.xml</Actor>
+    <FoundationActor>structures/fndn_6x4_dock.xml</FoundationActor>
+  </VisualActor>
+</Entity>

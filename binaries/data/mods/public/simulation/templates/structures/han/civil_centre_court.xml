@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="structures/han/civil_centre">
+  <Capturable>
+    <CapturePoints op="mul">1.5</CapturePoints>
+  </Capturable>
+  <Cost>
+    <BuildTime>500</BuildTime>
+    <Resources>
+      <wood>850</wood>
+      <stone>700</stone>
+      <metal>500</metal>
+    </Resources>
+  </Cost>
+  <GarrisonHolder>
+    <Max op="mul">2</Max>
+  </GarrisonHolder>
+  <Health>
+    <Max op="mul">1.5</Max>
+  </Health>
+  <Identity>
+    <Civ>han</Civ>
+    <GenericName>Imperial Court</GenericName>
+    <SpecificName>Cháotíng</SpecificName>
+    <VisibleClasses datatype="tokens">Defensive ImperialCourt City</VisibleClasses>
+    <Classes datatype="tokens">CivCentre ImperialCourt CivSpecific</Classes>
+    <RequiredTechnology>phase_city</RequiredTechnology>
+    <Icon>structures/military_settlement.png</Icon>
+  </Identity>
+  <Population>
+    <Bonus>30</Bonus>
+  </Population>
+  <Researcher>
+    <Technologies datatype="tokens">
+      -phase_town_{civ}
+    </Technologies>
+  </Researcher>
+  <Trainer>
+    <Entities datatype="tokens">
+      units/{civ}/champion_infantry_archer
+      units/{civ}/champion_infantry_swordsman
+      units/{civ}/hero_han_xin_horse
+      units/{civ}/hero_liu_bang_horse
+      units/{civ}/hero_wei_qing_chariot
+      -units/{civ}/infantry_spearman_b
+      -units/{civ}/infantry_archer_b
+      -units/{civ}/cavalry_archer_b
+    </Entities>
+  </Trainer>
+  <Upgrade disable=""/>
+  <VisualActor>
+    <Actor>structures/han/imperial_court.xml</Actor>
+  </VisualActor>
+</Entity>

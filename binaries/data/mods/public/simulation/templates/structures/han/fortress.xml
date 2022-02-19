@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_fortress">
+  <Footprint>
+    <Square depth="32.0" width="32.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <List datatype="tokens">Minister</List>
+  </GarrisonHolder>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Bǎolěi</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static depth="28.0" width="28.0"/>
+  </Obstruction>
+  <Researcher>
+    <Technologies datatype="tokens">
+      -attack_soldiers_will
+      art_of_war
+      poison_blades
+      poison_arrows
+    </Technologies>
+  </Researcher>
+  <Trainer>
+    <Entities datatype="tokens">
+      units/{civ}/hero_han_xin_horse
+      units/{civ}/hero_liu_bang_horse
+      units/{civ}/hero_wei_qing_chariot
+    </Entities>
+  </Trainer>
+  <VisualActor>
+    <Actor>structures/han/fortress.xml</Actor>
+  </VisualActor>
+  <WallPiece>
+    <Length>34.0</Length>
+  </WallPiece>
+</Entity>

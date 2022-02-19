@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry_archer">
+  <Identity>
+    <Civ>han</Civ>
+    <GenericName>Palace Guard Archer</GenericName>
+    <SpecificName>Yǔ Lín</SpecificName>
+    <SelectionGroupName>units/han/champion_infantry_archer</SelectionGroupName>
+    <Icon>units/han/champion_infantry_archer.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/han/infantry_archer_c.xml</Actor>
+  </VisualActor>
+</Entity>

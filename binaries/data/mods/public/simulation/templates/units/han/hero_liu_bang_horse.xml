@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_cavalry_swordsman">
+  <Auras datatype="tokens">
+    units/heroes/han_hero_liu_bang_1
+    units/heroes/han_hero_liu_bang_2
+  </Auras>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Liú Bāng</SpecificName>
+    <Icon>units/han/hero_liu_bang.png</Icon>
+  </Identity>
+  <Promotion disable=""/>
+  <VisualActor>
+    <Actor>units/han/hero_cavalry_swordsman_liu_bang_m.xml</Actor>
+  </VisualActor>
+</Entity>

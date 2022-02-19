@@ -56,7 +56,7 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="32.0" depth="32.0"/>
+    <Square depth="32.0" width="32.0"/>
     <Height>8.0</Height>
   </Footprint>
   <GarrisonHolder>
@@ -85,7 +85,7 @@
     <metal>100</metal>
   </Loot>
   <Obstruction>
-    <Static width="30.0" depth="30.0"/>
+    <Static depth="30.0" width="30.0"/>
   </Obstruction>
   <Population>
     <Bonus>20</Bonus>
@@ -120,6 +120,7 @@
     <SoundGroups>
       <select>interface/select/building/sel_civ_center.xml</select>
       <constructed>interface/complete/building/complete_civ_center.xml</constructed>
+      <upgraded>interface/complete/building/complete_civ_center.xml</upgraded>
       <alert_raise>interface/alarm/alarm_alert_0.xml</alert_raise>
       <alert_end>interface/alarm/alarm_alert_1.xml</alert_end>
       <attack_ranged>attack/weapon/bow_attack.xml</attack_ranged>

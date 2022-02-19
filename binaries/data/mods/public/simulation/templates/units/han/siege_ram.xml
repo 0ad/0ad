@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_siege_ram">
+  <Footprint replace="">
+    <Square depth="10.0" width="8.0"/>
+    <Height>3.0</Height>
+  </Footprint>
+  <Identity>
+    <SpecificName>Gōngchéng Chuí</SpecificName>
+    <Icon>units/athen_siege_ram.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/athenians/siege_ram.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_support">
+  <Attack>
+    <Capture>
+      <AttackName>Capture</AttackName>
+      <Capture>20</Capture>
+      <MaxRange>4</MaxRange>
+      <RepeatTime>1000</RepeatTime>
+    </Capture>
+  </Attack>
+  <Auras datatype="tokens">
+    units/han_minister_garrison
+    units/han_minister_gathering
+    units/han_minister_building
+    units/han_minister_garrison_ministry
+  </Auras>
+  <Cost>
+    <Population>2</Population>
+    <BuildTime>15</BuildTime>
+    <Resources>
+      <food>100</food>
+      <metal>100</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max>150</Max>
+  </Health>
+  <Identity>
+    <Civ>han</Civ>
+    <GenericName>Imperial Minister</GenericName>
+    <SpecificName>Guānlì</SpecificName>
+    <Tooltip>Use to boost the efficiency of nearby units and buildings. Garrison within a building to boost the efficiency of its production queue. Only han buildings can garrison ministers.</Tooltip>
+    <Classes datatype="tokens">Organic Human</Classes>
+    <VisibleClasses datatype="tokens">Minister</VisibleClasses>
+    <Icon>units/han/minister.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
+  <Minimap>
+    <Type>hero</Type>
+  </Minimap>
+  <Position>
+    <TurnRate>8</TurnRate>
+  </Position>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>2</Hack>
+        <Pierce>4</Pierce>
+        <Crush>6</Crush>
+      </Damage>
+    </Entity>
+  </Resistance>
+  <Selectable>
+    <Overlay>
+      <AlwaysVisible/>
+      <Shape>
+        <Circle radius="2.5"/>
+      </Shape>
+      <Texture>
+        <MainTexture>128x128/octagram.png</MainTexture>
+        <MainTextureMask>128x128/octagram_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
+  <Sound>
+    <SoundGroups>
+      <attack>attack/weapon/sword.xml</attack>
+      <build>resource/construction/con_wood.xml</build>
+      <death>actor/human/death/{phenotype}_death.xml</death>
+      <order_attack>voice/{lang}/civ/civ_{phenotype}_attack.xml</order_attack>
+      <order_garrison>voice/{lang}/civ/civ_{phenotype}_garrison.xml</order_garrison>
+      <order_gather>voice/{lang}/civ/civ_{phenotype}_gather.xml</order_gather>
+      <order_repair>voice/{lang}/civ/civ_{phenotype}_repair.xml</order_repair>
+      <order_walk>voice/{lang}/civ/civ_{phenotype}_walk.xml</order_walk>
+      <run>actor/human/movement/run.xml</run>
+      <select>voice/{lang}/civ/civ_{phenotype}_select.xml</select>
+      <trained>interface/alarm/alarm_create_infantry.xml</trained>
+      <walk>actor/human/movement/walk.xml</walk>
+    </SoundGroups>
+  </Sound>
+  <TrainingRestrictions>
+    <Category>Minister</Category>
+  </TrainingRestrictions>
+  <Vision>
+    <Range>40</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>units/han/minister.xml</Actor>
+  </VisualActor>
+</Entity>

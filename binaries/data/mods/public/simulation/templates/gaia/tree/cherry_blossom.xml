@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_tree">
+  <Identity>
+    <SpecificName>Cherry Blossom</SpecificName>
+  </Identity>
+  <ResourceSupply>
+    <Max>200</Max>
+  </ResourceSupply>
+  <VisualActor>
+    <Actor>flora/trees/cherryblossom.xml</Actor>
+  </VisualActor>
+</Entity>

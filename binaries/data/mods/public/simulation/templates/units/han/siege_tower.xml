@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_siege_tower">
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Gōngchéng Tǎ</SpecificName>
+    <Icon>units/han/siege_tower.png</Icon>
+  </Identity>
+  <Promotion disable=""/>
+  <VisualActor>
+    <Actor>structures/han/siege_tower.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_support_female_citizen">
+  <Identity>
+    <Civ>han</Civ>
+    <GenericName>Fù Nǚ</GenericName>
+    <Icon>units/han/support_female_citizen.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/han/female_citizen.xml</Actor>
+  </VisualActor>
+  <ResourceGatherer>
+    <Rates>
+      <food.rice>0.6</food.rice>
+    </Rates>
+  </ResourceGatherer>
+</Entity>

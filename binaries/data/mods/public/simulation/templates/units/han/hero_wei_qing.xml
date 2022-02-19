@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_infantry_crossbowman">
+  <Auras datatype="tokens">
+    units/heroes/han_hero_wei_qing_1
+    units/heroes/han_hero_wei_qing_2
+  </Auras>
+  <Attack>
+    <Ranged>
+      <Damage>
+        <Crush>3</Crush>
+      </Damage>
+    </Ranged>
+  </Attack>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Wèi Qīng</SpecificName>
+    <Icon>units/han/hero_wei_qing.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/han/hero_infantry_wei_qing.xml</Actor>
+  </VisualActor>
+</Entity>

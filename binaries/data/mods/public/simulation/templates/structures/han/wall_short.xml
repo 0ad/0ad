@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defensive_wall_short">
+  <Footprint>
+    <Square depth="9.0" width="13.0"/>
+    <Height>11.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Chéng Yuán</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static depth="8.0" width="12.0"/>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>12.0</HeightOffset>
+  </StatusBars>
+  <VisualActor>
+    <Actor>structures/han/wall_short.xml</Actor>
+  </VisualActor>
+</Entity>

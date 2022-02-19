@@ -1,0 +1,72 @@
+{
+	"Code": "han",
+	"Culture": "china",
+	"Music":[
+		{ "File": "red_dawn.ogg", "Type": "peace" },
+		{ "File": "hill_of_sorrows.ogg", "Type": "peace" }
+	],
+	"CivBonuses": [],
+	"WallSets": [
+		"structures/han/wallset_stone"
+	],
+	"StartEntities": [
+		{
+			"Template": "structures/han/civil_centre"
+		},
+		{
+			"Template": "units/han/support_female_citizen",
+			"Count": 4
+		},
+		{
+			"Template": "units/han/infantry_spearman_b",
+			"Count": 2
+		},
+		{
+			"Template": "units/han/infantry_archer_b",
+			"Count": 2
+		},
+		{
+			"Template": "units/han/cavalry_archer_b"
+		},
+		{
+			"Template": "units/han/support_minister"
+		}
+	],
+	"AINames": [
+		"Liu Bang",
+		"Liu Ying",
+		"Liu Gong",
+		"Liu Hong",
+		"Liu Heng",
+		"Liu Qi",
+		"Liu Che",
+		"Liu Fuling",
+		"Liu He",
+		"Liu Bingyi",
+		"Liu Shi",
+		"Liu Ao",
+		"Liu Xin",
+		"Liu Kan",
+		"Liu Xuan",
+		"Liu Xiu",
+		"Liu Zhuang",
+		"Liu Da",
+		"Liu Zhao",
+		"Liu Long",
+		"Liu Hu",
+		"Liu Yi",
+		"Liu Bao",
+		"Liu Bing",
+		"Liu Zuan",
+		"Liu Zhi",
+		"Liu Hong",
+		"Liu Bian",
+		"Liu Xie"
+	],
+	"SkirmishReplacements": {
+		"skirmish/units/special_starting_unit": "units/han/support_minister",
+		"skirmish/units/default_infantry_ranged_b": "units/han/infantry_archer_b",
+		"skirmish/units/default_cavalry": "units/han/cavalry_archer_b"
+	},
+	"SelectableInGameSetup": true
+}

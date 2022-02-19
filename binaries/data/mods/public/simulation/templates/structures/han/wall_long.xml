@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defensive_wall_long">
+  <Footprint>
+    <Square depth="9.0" width="37.0"/>
+    <Height>11.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Chéng Yuán</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static depth="8.0" width="36.0"/>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>12.0</HeightOffset>
+  </StatusBars>
+  <TurretHolder>
+    <TurretPoints>
+      <One>
+        <X>1.5</X>
+        <Y>10</Y>
+        <Z>0</Z>
+      </One>
+      <Two>
+        <X>-1.5</X>
+        <Y>10</Y>
+        <Z>0</Z>
+      </Two>
+      <Three>
+        <X>4.5</X>
+        <Y>10</Y>
+        <Z>0</Z>
+      </Three>
+      <Four>
+        <X>-4.5</X>
+        <Y>10</Y>
+        <Z>0</Z>
+      </Four>
+      <Five>
+        <X>7.5</X>
+        <Y>10</Y>
+        <Z>0</Z>
+      </Five>
+      <Six>
+        <X>-7.5</X>
+        <Y>10</Y>
+        <Z>0</Z>
+      </Six>
+      <Seven>
+        <X>10.5</X>
+        <Y>10</Y>
+        <Z>0</Z>
+      </Seven>
+      <Eight>
+        <X>-10.5</X>
+        <Y>10</Y>
+        <Z>0</Z>
+      </Eight>
+    </TurretPoints>
+  </TurretHolder>
+  <VisualActor>
+    <Actor>structures/han/wall_long.xml</Actor>
+  </VisualActor>
+</Entity>

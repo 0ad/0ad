@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic">
+  <BuildRestrictions>
+    <Category>ImperialMinistry</Category>
+  </BuildRestrictions>
+  <Capturable>
+    <CapturePoints>3000</CapturePoints>
+    <RegenRate>5.0</RegenRate>
+  </Capturable>
+  <Cost>
+    <BuildTime>200</BuildTime>
+    <Resources>
+      <wood>0</wood>
+      <stone>200</stone>
+      <metal>200</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square depth="36.0" width="32.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>9</Max>
+    <EjectHealth>0</EjectHealth>
+    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
+    <List datatype="tokens">Support Minister Infantry</List>
+    <BuffHeal>1</BuffHeal>
+    <LoadingRange>1</LoadingRange>
+  </GarrisonHolder>
+  <Health>
+    <Max>3000</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_6x6</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>han</Civ>
+    <Classes datatype="tokens">CivSpecific</Classes>
+    <GenericName>Imperial Ministry</GenericName>
+    <SpecificName>Guān Shǔ</SpecificName>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+    <VisibleClasses datatype="tokens">ImperialMinistry Town</VisibleClasses>
+    <Tooltip>Train the Nine Ministers. Research a powerful suite of Administrative technologies.</Tooltip>
+    <Icon>structures/imperial_ministry.png</Icon>
+  </Identity>
+  <Loot>
+    <xp>200</xp>
+    <stone>40</stone>
+    <metal>40</metal>
+  </Loot>
+  <Obstruction>
+    <Static depth="32.0" width="28.0"/>
+  </Obstruction>
+  <Population>
+    <Bonus>20</Bonus>
+  </Population>
+  <ProductionQueue/>
+  <Researcher>
+    <Technologies datatype="tokens">
+      civil_service_01
+      civil_service_02
+      civil_engineering_01
+      civil_engineering_02
+      unlock_spies
+      spy_counter
+    </Technologies>
+  </Researcher>
+  <ResourceTrickle>
+    <Rates>
+      <food>0.0</food>
+      <wood>0.1</wood>
+      <stone>0.1</stone>
+      <metal>0.1</metal>
+    </Rates>
+    <Interval>2000</Interval>
+  </ResourceTrickle>
+  <TerritoryInfluence>
+    <Root>true</Root>
+    <Radius>60</Radius>
+    <Weight>30000</Weight>
+  </TerritoryInfluence>
+  <Trainer>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/han/support_minister
+    </Entities>
+  </Trainer>
+  <Vision>
+    <Range>80</Range>
+  </Vision>
+  <VisualActor>
+    <FoundationActor>structures/fndn_8x8.xml</FoundationActor>
+    <Actor>structures/han/imperial_ministry.xml</Actor>
+  </VisualActor>
+</Entity>

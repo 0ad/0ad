@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_temple">
+  <Footprint>
+    <Square depth="28.0" width="25.0"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <List datatype="tokens">Minister</List>
+  </GarrisonHolder>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Sìmiào</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static depth="26" width="23"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/han/temple.xml</Actor>
+    <FoundationActor>structures/fndn_6x7.xml</FoundationActor>
+  </VisualActor>
+</Entity>

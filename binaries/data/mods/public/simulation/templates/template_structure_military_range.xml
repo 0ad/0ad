@@ -7,7 +7,7 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="25.0" depth="25.0"/>
+    <Square depth="25.0" width="25.0"/>
     <Height>12.0</Height>
   </Footprint>
   <GarrisonHolder>
@@ -30,13 +30,13 @@
     <wood>40</wood>
   </Loot>
   <Obstruction>
-    <Static width="24.0" depth="24.0"/>
+    <Static depth="24.0" width="24.0"/>
   </Obstruction>
   <ProductionQueue/>
   <Sound>
     <SoundGroups>
       <constructed>interface/complete/building/complete_range.xml</constructed>
-      <select>interface/select/building/sel_barracks.xml</select>
+      <select>interface/select/building/sel_gymnasium.xml</select>
     </SoundGroups>
   </Sound>
   <Trainer>
@@ -45,6 +45,11 @@
       units/{civ}/infantry_javelineer_b
       units/{civ}/infantry_slinger_b
       units/{civ}/infantry_archer_b
+      units/{civ}/infantry_crossbowman_b
+      units/{civ}/champion_infantry_javelineer
+      units/{civ}/champion_infantry_slinger
+      units/{civ}/champion_infantry_archer
+      units/{civ}/champion_infantry_crossbowman
     </Entities>
   </Trainer>
   <Vision>

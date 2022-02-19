@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_ship_merchant">
+  <Footprint>
+    <Square depth="22.0" width="8.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Shāng Chuán</SpecificName>
+    <Icon>units/han/ship_merchant.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/han/merchant_ship.xml</Actor>
+  </VisualActor>
+</Entity>
