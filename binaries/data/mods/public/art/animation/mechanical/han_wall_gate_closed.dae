@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Stanislas Daniel Claude Dolcini</author>
+      <authoring_tool>Blender 2.79.0 commit date:2017-09-11, commit time:10:43, hash:5bd8ac9</authoring_tool>
+    </contributor>
+    <created>2018-01-11T16:32:51</created>
+    <modified>2018-01-11T16:32:51</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects/>
+  <library_geometries>
+    <geometry id="rome_gate_002-mesh" name="rome_gate.002">
+      <mesh>
+        <source id="rome_gate_002-mesh-positions">
+          <float_array id="rome_gate_002-mesh-positions-array" count="180">1.769168 0.4949069 3.901007 1.769168 0.03041487 3.901007 -1.646354 0.03041601 3.901007 -1.646353 0.4949069 3.901007 1.769168 0.4949069 4.365498 1.769168 0.03041487 4.365498 -1.646354 0.03041601 4.365498 -1.646354 0.4949069 4.365498 -1.301456 0.6066623 3.867628 -1.301456 0.0214942 3.867628 -0.9142978 0.0214942 3.867628 -0.9142978 0.6066623 3.867628 -1.301456 0.6066623 3.405445 -1.301456 -0.2951187 3.405445 -0.9142978 -0.2951187 3.405445 -0.9142978 0.6066623 3.405445 -1.301456 -0.2951187 4.731578 -0.9142978 -0.2951187 4.731578 -1.301456 0.0214942 4.73224 -0.9142978 0.0214942 4.73224 1.218639 0.0214942 4.73224 0.8314806 0.0214942 4.73224 1.218639 -0.2951187 4.731578 0.8314806 -0.2951187 4.731578 1.218639 0.6066623 3.405445 1.218639 -0.2951187 3.405445 0.8314806 -0.2951187 3.405445 0.8314806 0.6066623 3.405445 1.218639 0.6066623 3.867628 1.218639 0.0214942 3.867628 0.8314806 0.0214942 3.867628 0.8314806 0.6066623 3.867628 1.588357 0.7088391 4.709319 1.998716 0.7088391 4.468877 1.998716 0.7088391 3.987995 1.588357 0.7088391 3.747553 1.177997 0.7088391 3.987995 1.177997 0.7088391 4.468877 1.588357 0.3722036 4.709319 1.998716 0.3722036 4.468877 1.998716 0.3722036 3.987995 1.588357 0.3722036 3.747553 1.177998 0.3722036 3.987994 1.177997 0.3722036 4.468876 -0.06141996 0.9948343 0.1027584 -0.06141996 0.5914353 0.1027584 -3.445288 0.5914353 0.1027584 -3.445287 0.9948343 0.1027584 -0.0614196 0.9948343 9.191706 -0.06142044 0.5914353 9.191706 -3.445288 0.5914353 9.191706 -3.445288 0.9948343 9.191706 3.45021 0.9948343 9.191706 3.45021 0.5914353 9.191706 0.06634134 0.5914353 9.191706 0.06634074 0.9948343 9.191706 3.450209 0.9948343 0.1027584 3.45021 0.5914353 0.1027584 0.06634074 0.5914379 0.1027584 0.06634074 0.9948369 0.1027584</float_array>
+          <technique_common>
+            <accessor source="#rome_gate_002-mesh-positions-array" count="60" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="rome_gate_002-mesh-normals">
+          <float_array id="rome_gate_002-mesh-normals-array" count="123">0 0 -1 0 0 1 1 0 0 -3.16301e-7 -1 0 -1 0 -2.05316e-6 0 1 0 -1 0 0 0 0 1 0 -1 0 -1 -1.79667e-7 0 0 -0.002090394 0.9999979 0 -0.002090394 0.9999979 -1 -2.15989e-7 0 1 8.70944e-7 0 0.5055428 0 0.8628016 0.5055428 0 -0.8628016 -0.5055394 1.23004e-6 -0.8628035 -1 0 -1.98318e-6 -0.5055441 0 0.8628008 0 -1 0 -3.16302e-7 -1 0 -1 2.21012e-6 0 -1 8.70944e-7 0 0 -0.002090394 0.9999979 0 -0.002090394 0.9999979 0.5055417 0 -0.8628023 -0.5055419 0 -0.8628021 -1 -2.94558e-6 0 -0.5055419 -2.23366e-6 0.8628021 1 -1.98331e-6 0 -1 0 0 0 1 2.94575e-7 1 0 0 -7.75031e-7 -1 0 -1 -1.52813e-6 0 1 0 0 -1 3.12128e-6 0 7.75032e-7 1 0 1 3.12128e-6 0 0 -1 -3.10079e-7 0 0 -1</float_array>
+          <technique_common>
+            <accessor source="#rome_gate_002-mesh-normals-array" count="41" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="rome_gate_002-mesh-map-0">
+          <float_array id="rome_gate_002-mesh-map-0-array" count="564">0.3255056 0.4299849 0.3255056 0.4078889 0.2460073 0.407889 0.3255056 0.4078889 0.3255056 0.4299849 0.2460073 0.4299851 0.3482163 0.4083352 0.3482163 0.4173381 0.3216818 0.4173381 0.3391097 0.4078889 0.418608 0.4078888 0.418608 0.4299848 0.3482163 0.4173381 0.3482163 0.4083352 0.3216818 0.4083352 0.3255056 0.4078889 0.2460073 0.407889 0.2460073 0.4299851 0.319775 0.4043883 0.319775 0.3968843 0.2933724 0.3968843 0.2933724 0.4236478 0.319775 0.4175111 0.319775 0.4061692 0.319775 0.4061692 0.319775 0.4175111 0.2933724 0.4236478 0.361993 0.4043883 0.3285647 0.4043883 0.3285647 0.3968843 0.361993 0.4043883 0.3619929 0.3968843 0.310478 0.3968843 0.2933724 0.4356489 0.369129 0.4356487 0.369129 0.4431528 0.319775 0.4043883 0.3691667 0.4043882 0.3691666 0.3968843 0.2933724 0.4236478 0.319775 0.4175111 0.3691667 0.417511 0.2933724 0.4236478 0.369129 0.4236477 0.3691667 0.417511 0.3285648 0.4356488 0.3285648 0.4431528 0.310478 0.4431529 0.3285648 0.4330722 0.3285648 0.4405762 0.310478 0.4405762 0.2933724 0.4236478 0.369129 0.4236477 0.3691667 0.417511 0.2933724 0.4236478 0.319775 0.4175111 0.3691667 0.417511 0.319775 0.4018116 0.3691667 0.4018116 0.3691666 0.3943076 0.2933724 0.4330722 0.369129 0.4330721 0.369129 0.4405761 0.361993 0.4018116 0.3619929 0.3943076 0.310478 0.3943076 0.361993 0.4018116 0.3285647 0.4018116 0.3285647 0.3943076 0.319775 0.4061692 0.319775 0.4175111 0.2933724 0.4236478 0.2933724 0.4236478 0.319775 0.4175111 0.319775 0.4061692 0.319775 0.4018116 0.319775 0.3943076 0.2933724 0.3943076 0.3644443 0.4171033 0.3452136 0.4171033 0.3452136 0.4091496 0.3507361 0.4019106 0.3232653 0.4019106 0.3232653 0.3953858 0.3452136 0.4091496 0.3452136 0.4171033 0.3644443 0.4171033 0.3452136 0.4171033 0.3452136 0.425057 0.3644443 0.425057 0.3232653 0.4019106 0.350736 0.4019106 0.3507361 0.3953858 0.3452136 0.4250571 0.3452136 0.4171033 0.3644443 0.4171033 0.3644717 0.4171033 0.3507361 0.425057 0.3232653 0.425057 0.3644717 0.4171033 0.3095299 0.4171033 0.3232653 0.4091496 0.3644717 0.4171033 0.3095299 0.4171033 0.3232653 0.4250571 0.3232653 0.4091496 0.3095299 0.4171033 0.3644717 0.4171033 0.3391097 0.4299849 0.418608 0.4299848 0.3391097 0.4078889 0.3391097 0.4078889 0.418608 0.4078888 0.3391097 0.4299849 0.3216818 0.4083352 0.3482163 0.4083352 0.3216818 0.4173381 0.3391097 0.4299849 0.3391097 0.4078889 0.418608 0.4299848 0.3216818 0.4173381 0.3482163 0.4173381 0.3216818 0.4083352 0.3255056 0.4299849 0.3255056 0.4078889 0.2460073 0.4299851 0.2933724 0.4043883 0.319775 0.4043883 0.2933724 0.3968843 0.2933724 0.4061692 0.2933724 0.4236478 0.319775 0.4061692 0.2933724 0.4061692 0.319775 0.4061692 0.2933724 0.4236478 0.361993 0.4356487 0.361993 0.4431528 0.3285648 0.4356488 0.310478 0.4043883 0.361993 0.4043883 0.310478 0.3968843 0.2933724 0.4043883 0.2933724 0.3968843 0.3691289 0.4043882 0.319775 0.4356488 0.3197751 0.4431528 0.3691667 0.4356487 0.369129 0.4236477 0.2933724 0.4236478 0.3691667 0.417511 0.319775 0.4175111 0.2933724 0.4236478 0.3691667 0.417511 0.310478 0.4356488 0.3285648 0.4356488 0.310478 0.4431529 0.310478 0.4330722 0.3285648 0.4330722 0.310478 0.4405762 0.319775 0.4175111 0.2933724 0.4236478 0.3691667 0.417511 0.369129 0.4236477 0.2933724 0.4236478 0.3691667 0.417511 0.319775 0.4330722 0.319775 0.4405762 0.3691667 0.4330721 0.2933724 0.4018117 0.2933724 0.3943076 0.3691289 0.4018116 0.310478 0.4018117 0.361993 0.4018116 0.310478 0.3943076 0.361993 0.4330722 0.361993 0.4405761 0.3285648 0.4330722 0.2933724 0.4061692 0.319775 0.4061692 0.2933724 0.4236478 0.2933724 0.4061692 0.2933724 0.4236478 0.319775 0.4061692 0.2933724 0.4018117 0.319775 0.4018116 0.2933724 0.3943076 0.3644443 0.4091495 0.3644443 0.4171033 0.3452136 0.4091496 0.3507361 0.3953858 0.3507361 0.4019106 0.3232653 0.3953858 0.3644443 0.4091495 0.3452136 0.4091496 0.3644443 0.4171033 0.3644443 0.4171033 0.3452136 0.4171033 0.3644443 0.425057 0.3232653 0.3953858 0.3232653 0.4019106 0.3507361 0.3953858 0.3644443 0.425057 0.3452136 0.4250571 0.3644443 0.4171033 0.3095299 0.4171033 0.3644717 0.4171033 0.3232653 0.425057 0.3507361 0.4091496 0.3644717 0.4171033 0.3232653 0.4091496 0.3507362 0.425057 0.3644717 0.4171033 0.3232653 0.4250571 0.3507361 0.4091496 0.3232653 0.4091496 0.3644717 0.4171033 0.5068359 0.3027344 0.5068359 0.3027344 0.5068359 0.03417968 0.5068359 0.3027344 0.4536133 0.3027344 0.4536133 0.03417968 0.4414634 0.3519829 0.4414634 0.3255628 0.2400743 0.3255633 0.4536133 0.03417968 0.4536133 0.3027344 0.5068359 0.3027344 0.4527692 0.03466397 0.4527692 0.3031748 0.5075888 0.3031748 0.2400743 0.3255633 0.4414634 0.3255628 0.4414634 0.3519829 0.4527692 0.03466397 0.5075888 0.03466397 0.5075888 0.3031748 0.4527692 0.03466397 0.4527692 0.3031748 0.4527692 0.3031748 0.4536133 0.3027344 0.5068359 0.3027344 0.5068359 0.3027344 0.4527692 0.3031748 0.4527692 0.3031748 0.5075888 0.3031748 0.5068359 0.03417968 0.5068359 0.3027344 0.5068359 0.03417968 0.5068359 0.03417968 0.5068359 0.3027344 0.4536133 0.03417968 0.2400743 0.3519835 0.4414634 0.3519829 0.2400743 0.3255633 0.5068359 0.03417968 0.4536133 0.03417968 0.5068359 0.3027344 0.5075888 0.03466397 0.4527692 0.03466397 0.5075888 0.3031748 0.2400743 0.3519835 0.2400743 0.3255633 0.4414634 0.3519829 0.4527692 0.3031748 0.4527692 0.03466397 0.5075888 0.3031748 0.4527692 0.03466397 0.4527692 0.03466397 0.4527692 0.3031748 0.4536133 0.3027344 0.4536133 0.3027344 0.5068359 0.3027344 0.5075888 0.3031748 0.4527692 0.3031748 0.5075888 0.3031748 0.5075888 0.03466397 0.4527692 0.03466397 0.4527692 0.03466397 0.5075888 0.03466397 0.5075888 0.03466397 0.4527692 0.03466397</float_array>
+          <technique_common>
+            <accessor source="#rome_gate_002-mesh-map-0-array" count="282" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="rome_gate_002-mesh-vertices">
+          <input semantic="POSITION" source="#rome_gate_002-mesh-positions"/>
+        </vertices>
+        <triangles count="94">
+          <input semantic="VERTEX" source="#rome_gate_002-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#rome_gate_002-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#rome_gate_002-mesh-map-0" offset="2" set="0"/>
+          <p>2 0 0 3 0 1 0 0 2 7 1 3 6 1 4 5 1 5 4 2 6 5 2 7 1 2 8 5 3 9 6 3 10 2 3 11 6 4 12 7 4 13 3 4 14 7 5 15 4 5 16 0 5 17 8 5 18 11 5 19 15 5 20 13 6 21 9 6 22 8 6 23 11 2 24 10 2 25 14 2 26 8 7 27 9 7 28 10 7 29 12 0 30 15 0 31 14 0 32 14 8 33 17 8 34 16 8 35 9 5 36 18 5 37 19 5 38 14 2 39 10 2 40 19 2 41 13 9 42 16 9 43 18 9 44 19 10 45 18 10 46 16 10 47 20 11 48 21 11 49 23 11 50 26 12 51 23 12 52 21 12 53 25 13 54 29 13 55 20 13 56 30 5 57 21 5 58 20 5 59 25 8 60 22 8 61 23 8 62 27 0 63 24 0 64 25 0 65 31 7 66 30 7 67 29 7 68 28 2 69 29 2 70 25 2 71 26 6 72 30 6 73 31 6 74 31 5 75 28 5 76 24 5 77 32 14 78 38 14 79 39 14 80 39 2 81 40 2 82 34 2 83 40 15 84 41 15 85 35 15 86 41 16 87 42 16 88 36 16 89 42 17 90 43 17 91 37 17 92 43 18 93 38 18 94 32 18 95 38 19 96 43 19 97 42 19 98 38 8 99 41 8 100 40 8 101 32 5 102 35 5 103 36 5 104 34 5 105 35 5 106 32 5 107 1 0 108 2 0 109 0 0 110 4 7 111 7 7 112 5 7 113 0 2 114 4 2 115 1 2 116 1 20 117 5 20 118 2 20 119 2 21 120 6 21 121 3 21 122 3 5 123 7 5 124 0 5 125 12 5 126 8 5 127 15 5 128 12 6 129 13 6 130 8 6 131 15 2 132 11 2 133 14 2 134 11 7 135 8 7 136 10 7 137 13 0 138 12 0 139 14 0 140 13 8 141 14 8 142 16 8 143 10 5 144 9 5 145 19 5 146 17 2 147 14 2 148 19 2 149 9 22 150 13 22 151 18 22 152 17 23 153 19 23 154 16 23 155 22 24 156 20 24 157 23 24 158 30 6 159 26 6 160 21 6 161 22 2 162 25 2 163 20 2 164 29 5 165 30 5 166 20 5 167 26 8 168 25 8 169 23 8 170 26 0 171 27 0 172 25 0 173 28 7 174 31 7 175 29 7 176 24 2 177 28 2 178 25 2 179 27 6 180 26 6 181 31 6 182 27 5 183 31 5 184 24 5 185 33 14 186 32 14 187 39 14 188 33 2 189 39 2 190 34 2 191 34 25 192 40 25 193 35 25 194 35 26 195 41 26 196 36 26 197 36 27 198 42 27 199 37 27 200 37 28 201 43 28 202 32 28 203 41 8 204 38 8 205 42 8 206 39 8 207 38 8 208 40 8 209 37 5 210 32 5 211 36 5 212 33 5 213 34 5 214 32 5 215 48 29 216 49 29 217 45 29 218 49 8 219 50 8 220 46 8 221 50 30 222 51 30 223 47 30 224 47 5 225 51 5 226 48 5 227 59 31 228 55 31 229 52 31 230 56 32 231 52 32 232 53 32 233 58 33 234 57 33 235 53 33 236 58 34 237 54 34 238 55 34 239 50 7 240 49 7 241 48 7 242 55 7 243 54 7 244 53 7 245 44 35 246 48 35 247 45 35 248 45 8 249 49 8 250 46 8 251 46 36 252 50 36 253 47 36 254 44 5 255 47 5 256 48 5 257 56 37 258 59 37 259 52 37 260 57 38 261 56 38 262 53 38 263 54 39 264 58 39 265 53 39 266 59 6 267 58 6 268 55 6 269 51 7 270 50 7 271 48 7 272 52 7 273 55 7 274 53 7 275 56 0 276 58 0 277 59 0 278 56 40 279 57 40 280 58 40 281</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_animations>
+    <animation id="gate_origin_pose_matrix">
+      <source id="gate_origin_pose_matrix-input">
+        <float_array id="gate_origin_pose_matrix-input-array" count="2">0.04166662 2.083333</float_array>
+        <technique_common>
+          <accessor source="#gate_origin_pose_matrix-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="gate_origin_pose_matrix-output">
+        <float_array id="gate_origin_pose_matrix-output-array" count="32">1 0 1.68587e-7 -3.78836e-6 1.68587e-7 0 -0.9999999 -2.990606 0 0.9999999 1.19209e-7 1.42109e-14 0 0 0 1 1 0 1.68587e-7 -3.78836e-6 1.68587e-7 0 -0.9999999 -2.990606 0 0.9999999 1.19209e-7 1.42109e-14 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#gate_origin_pose_matrix-output-array" count="2" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="gate_origin_pose_matrix-interpolation">
+        <Name_array id="gate_origin_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#gate_origin_pose_matrix-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="gate_origin_pose_matrix-sampler">
+        <input semantic="INPUT" source="#gate_origin_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#gate_origin_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#gate_origin_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#gate_origin_pose_matrix-sampler" target="gate_origin/transform"/>
+    </animation>
+    <animation id="gate_door_left_pose_matrix">
+      <source id="gate_door_left_pose_matrix-input">
+        <float_array id="gate_door_left_pose_matrix-input-array" count="2">0.04166662 2.083333</float_array>
+        <technique_common>
+          <accessor source="#gate_door_left_pose_matrix-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="gate_door_left_pose_matrix-output">
+        <float_array id="gate_door_left_pose_matrix-output-array" count="32">-0.002134154 -0.9999972 -3.79939e-4 3.276501 -0.1438417 -6.90005e-5 0.989601 4.380001 -0.989598 0.002166657 -0.1438413 -2.153953 0 0 0 1 -0.002134154 -0.9999972 -3.79939e-4 3.276501 -0.1438417 -6.90005e-5 0.989601 4.380001 -0.989598 0.002166657 -0.1438413 -2.153953 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#gate_door_left_pose_matrix-output-array" count="2" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="gate_door_left_pose_matrix-interpolation">
+        <Name_array id="gate_door_left_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#gate_door_left_pose_matrix-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="gate_door_left_pose_matrix-sampler">
+        <input semantic="INPUT" source="#gate_door_left_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#gate_door_left_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#gate_door_left_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#gate_door_left_pose_matrix-sampler" target="gate_door_left/transform"/>
+    </animation>
+    <animation id="gate_lock_left_pose_matrix">
+      <source id="gate_lock_left_pose_matrix-input">
+        <float_array id="gate_lock_left_pose_matrix-input-array" count="2">0.04166662 2.083333</float_array>
+        <technique_common>
+          <accessor source="#gate_lock_left_pose_matrix-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="gate_lock_left_pose_matrix-output">
+        <float_array id="gate_lock_left_pose_matrix-output-array" count="32">-0.001537635 -0.1436714 -0.9896246 1.19209e-7 -0.9992383 -0.03838382 0.007125016 1.714236 -0.03900916 0.9888805 -0.1435027 0 0 0 0 1 -0.001537635 -0.1436714 -0.9896246 1.19209e-7 -0.9992383 -0.03838382 0.007125016 1.714236 -0.03900916 0.9888805 -0.1435027 0 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#gate_lock_left_pose_matrix-output-array" count="2" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="gate_lock_left_pose_matrix-interpolation">
+        <Name_array id="gate_lock_left_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#gate_lock_left_pose_matrix-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="gate_lock_left_pose_matrix-sampler">
+        <input semantic="INPUT" source="#gate_lock_left_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#gate_lock_left_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#gate_lock_left_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#gate_lock_left_pose_matrix-sampler" target="gate_lock_left/transform"/>
+    </animation>
+    <animation id="gate_door_right_pose_matrix">
+      <source id="gate_door_right_pose_matrix-input">
+        <float_array id="gate_door_right_pose_matrix-input-array" count="2">0.04166662 2.083333</float_array>
+        <technique_common>
+          <accessor source="#gate_door_right_pose_matrix-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="gate_door_right_pose_matrix-output">
+        <float_array id="gate_door_right_pose_matrix-output-array" count="32">-0.001752358 0.9999335 0.01137683 -3.27024 0.01138059 -0.01135616 0.9998708 4.380002 0.9999337 0.001881665 -0.01135994 -2.153937 0 0 0 1 -0.001752358 0.9999335 0.01137683 -3.27024 0.01138059 -0.01135616 0.9998708 4.380002 0.9999337 0.001881665 -0.01135994 -2.153937 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#gate_door_right_pose_matrix-output-array" count="2" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="gate_door_right_pose_matrix-interpolation">
+        <Name_array id="gate_door_right_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#gate_door_right_pose_matrix-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="gate_door_right_pose_matrix-sampler">
+        <input semantic="INPUT" source="#gate_door_right_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#gate_door_right_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#gate_door_right_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#gate_door_right_pose_matrix-sampler" target="gate_door_right/transform"/>
+    </animation>
+    <animation id="gate_lock_right_pose_matrix">
+      <source id="gate_lock_right_pose_matrix-input">
+        <float_array id="gate_lock_right_pose_matrix-input-array" count="2">0.04166662 2.083333</float_array>
+        <technique_common>
+          <accessor source="#gate_lock_right_pose_matrix-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="gate_lock_right_pose_matrix-output">
+        <float_array id="gate_lock_right_pose_matrix-output-array" count="32">-0.002734887 0.01148864 0.9999301 -1.19209e-7 0.9989288 -0.04615673 0.003262464 1.850171 0.04619101 0.9988682 -0.0113501 -4.76837e-7 0 0 0 1 -0.002734887 0.01148864 0.9999301 -1.19209e-7 0.9989288 -0.04615673 0.003262464 1.850171 0.04619101 0.9988682 -0.0113501 -4.76837e-7 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#gate_lock_right_pose_matrix-output-array" count="2" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="gate_lock_right_pose_matrix-interpolation">
+        <Name_array id="gate_lock_right_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#gate_lock_right_pose_matrix-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="gate_lock_right_pose_matrix-sampler">
+        <input semantic="INPUT" source="#gate_lock_right_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#gate_lock_right_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#gate_lock_right_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#gate_lock_right_pose_matrix-sampler" target="gate_lock_right/transform"/>
+    </animation>
+    <animation id="gate_prop_flag_left_pose_matrix">
+      <source id="gate_prop_flag_left_pose_matrix-input">
+        <float_array id="gate_prop_flag_left_pose_matrix-input-array" count="2">0.04166662 2.083333</float_array>
+        <technique_common>
+          <accessor source="#gate_prop_flag_left_pose_matrix-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="gate_prop_flag_left_pose_matrix-output">
+        <float_array id="gate_prop_flag_left_pose_matrix-output-array" count="32">2.08622e-6 -0.9999999 2.72848e-12 9.530815 -1.29547e-6 0 1 23.81587 -1 -2.08622e-6 -1.29547e-6 -3.193198 0 0 0 1 2.08622e-6 -0.9999999 2.72848e-12 9.530815 -1.29547e-6 0 1 23.81587 -1 -2.08622e-6 -1.29547e-6 -3.193198 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#gate_prop_flag_left_pose_matrix-output-array" count="2" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="gate_prop_flag_left_pose_matrix-interpolation">
+        <Name_array id="gate_prop_flag_left_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#gate_prop_flag_left_pose_matrix-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="gate_prop_flag_left_pose_matrix-sampler">
+        <input semantic="INPUT" source="#gate_prop_flag_left_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#gate_prop_flag_left_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#gate_prop_flag_left_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#gate_prop_flag_left_pose_matrix-sampler" target="gate_prop_flag_left/transform"/>
+    </animation>
+    <animation id="gate_prop_flag_right_pose_matrix">
+      <source id="gate_prop_flag_right_pose_matrix-input">
+        <float_array id="gate_prop_flag_right_pose_matrix-input-array" count="2">0.04166662 2.083333</float_array>
+        <technique_common>
+          <accessor source="#gate_prop_flag_right_pose_matrix-input-array" count="2" stride="1">
+            <param name="TIME" type="float"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="gate_prop_flag_right_pose_matrix-output">
+        <float_array id="gate_prop_flag_right_pose_matrix-output-array" count="32">5.45182e-6 -0.9999973 -0.002289832 -9.507461 -0.002291258 -0.002289838 0.9999948 23.3613 -0.9999973 -1.39147e-7 -0.002291264 -3.200354 0 0 0 1 5.45182e-6 -0.9999973 -0.002289832 -9.507461 -0.002291258 -0.002289838 0.9999948 23.3613 -0.9999973 -1.39147e-7 -0.002291264 -3.200354 0 0 0 1</float_array>
+        <technique_common>
+          <accessor source="#gate_prop_flag_right_pose_matrix-output-array" count="2" stride="16">
+            <param name="TRANSFORM" type="float4x4"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <source id="gate_prop_flag_right_pose_matrix-interpolation">
+        <Name_array id="gate_prop_flag_right_pose_matrix-interpolation-array" count="2">LINEAR LINEAR</Name_array>
+        <technique_common>
+          <accessor source="#gate_prop_flag_right_pose_matrix-interpolation-array" count="2" stride="1">
+            <param name="INTERPOLATION" type="name"/>
+          </accessor>
+        </technique_common>
+      </source>
+      <sampler id="gate_prop_flag_right_pose_matrix-sampler">
+        <input semantic="INPUT" source="#gate_prop_flag_right_pose_matrix-input"/>
+        <input semantic="OUTPUT" source="#gate_prop_flag_right_pose_matrix-output"/>
+        <input semantic="INTERPOLATION" source="#gate_prop_flag_right_pose_matrix-interpolation"/>
+      </sampler>
+      <channel source="#gate_prop_flag_right_pose_matrix-sampler" target="gate_prop_flag_right/transform"/>
+    </animation>
+  </library_animations>
+  <library_controllers>
+    <controller id="gate_rome_gate_001-skin" name="gate">
+      <skin source="#rome_gate_002-mesh">
+        <bind_shape_matrix>-1 1.51793e-6 0 0 -1.51793e-6 -1 0 0 0 0 1 0 0 0 0 1</bind_shape_matrix>
+        <source id="gate_rome_gate_001-skin-joints">
+          <Name_array id="gate_rome_gate_001-skin-joints-array" count="4">lock_right door_right door_left origin</Name_array>
+          <technique_common>
+            <accessor source="#gate_rome_gate_001-skin-joints-array" count="4" stride="1">
+              <param name="JOINT" type="name"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="gate_rome_gate_001-skin-bind_poses">
+          <float_array id="gate_rome_gate_001-skin-bind_poses-array" count="64">1 3e-6 0 1.420203 0 0 1 -4.358999 3e-6 -1 0 -0.842706 0 0 0 1 -0.003129959 -0.999931 0.01138597 -0.896731 0.99993 -0.003258943 -0.01134997 3.317001 0.01138699 0.01134997 0.999871 -4.3327 0 0 0 1 -0.003497958 0.989613 -0.143718 1.468897 -0.999994 -0.003534972 0 3.273522 -5.08e-4 0.143717 0.989619 -4.212626 0 0 0 1 1 3e-6 0 4e-6 0 0 1 0 3e-6 -1 0 -2.990606 0 0 0 1</float_array>
+          <technique_common>
+            <accessor source="#gate_rome_gate_001-skin-bind_poses-array" count="4" stride="16">
+              <param name="TRANSFORM" type="float4x4"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="gate_rome_gate_001-skin-weights">
+          <float_array id="gate_rome_gate_001-skin-weights-array" count="60">1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</float_array>
+          <technique_common>
+            <accessor source="#gate_rome_gate_001-skin-weights-array" count="60" stride="1">
+              <param name="WEIGHT" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <joints>
+          <input semantic="JOINT" source="#gate_rome_gate_001-skin-joints"/>
+          <input semantic="INV_BIND_MATRIX" source="#gate_rome_gate_001-skin-bind_poses"/>
+        </joints>
+        <vertex_weights count="60">
+          <input semantic="JOINT" source="#gate_rome_gate_001-skin-joints" offset="0"/>
+          <input semantic="WEIGHT" source="#gate_rome_gate_001-skin-weights" offset="1"/>
+          <vcount>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 </vcount>
+          <v>0 0 0 1 0 2 0 3 0 4 0 5 0 6 0 7 2 8 2 9 2 10 2 11 2 12 2 13 2 14 2 15 2 16 2 17 2 18 2 19 1 20 1 21 1 22 1 23 1 24 1 25 1 26 1 27 1 28 1 29 1 30 1 31 0 32 0 33 0 34 0 35 0 36 0 37 0 38 0 39 0 40 0 41 0 42 0 43 2 44 2 45 2 46 2 47 2 48 2 49 2 50 2 51 1 52 1 53 1 54 1 55 1 56 1 57 1 58 1 59</v>
+        </vertex_weights>
+      </skin>
+    </controller>
+  </library_controllers>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="gate" name="gate" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 1.73942e-4</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <node id="gate_origin" name="origin" sid="origin" type="JOINT">
+          <matrix sid="transform">1 0 0 -4e-6 0 0 -1 -2.990606 0 1 0 0 0 0 0 1</matrix>
+          <node id="gate_door_left" name="door_left" sid="door_left" type="JOINT">
+            <matrix sid="transform">-0.003495 -0.999994 -5.08e-4 3.276501 -0.143718 0 0.989619 4.380001 -0.989613 0.003531 -0.143717 -2.153954 0 0 0 1</matrix>
+            <node id="gate_lock_left" name="lock_left" sid="lock_left" type="JOINT">
+              <matrix sid="transform">-0.006538 -0.143729 -0.989595 0 -0.999968 -0.003598 0.007129 1.714236 -0.004585 0.98961 -0.143701 0 0 0 0 1</matrix>
+              <extra>
+                <technique profile="blender">
+                  <connect sid="connect" type="bool">1</connect>
+                  <layer sid="layer" type="string">1</layer>
+                  <roll sid="roll" type="float">1.22944e-7</roll>
+                  <tip_x sid="tip_x" type="float">0.009313344</tip_x>
+                  <tip_y sid="tip_y" type="float">0</tip_y>
+                  <tip_z sid="tip_z" type="float">2.588553</tip_z>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">1</layer>
+                <roll sid="roll" type="float">0.1442175</roll>
+              </technique>
+            </extra>
+          </node>
+          <node id="gate_door_right" name="door_right" sid="door_right" type="JOINT">
+            <matrix sid="transform">-0.003133 0.99993 0.011387 -3.27024 0.011387 -0.01135 0.999871 4.380001 0.99993 0.003263 -0.01135 -2.153937 0 0 0 1</matrix>
+            <node id="gate_lock_right" name="lock_right" sid="lock_right" type="JOINT">
+              <matrix sid="transform">-0.003133 0.011386 0.99993 0 0.99993 -0.01135 0.003262 1.850171 0.011387 0.999871 -0.01135 0 0 0 0 1</matrix>
+              <extra>
+                <technique profile="blender">
+                  <connect sid="connect" type="bool">1</connect>
+                  <layer sid="layer" type="string">1</layer>
+                  <tip_x sid="tip_x" type="float">0</tip_x>
+                  <tip_y sid="tip_y" type="float">0</tip_y>
+                  <tip_z sid="tip_z" type="float">2.586781</tip_z>
+                </technique>
+              </extra>
+            </node>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">1</layer>
+                <roll sid="roll" type="float">0</roll>
+              </technique>
+            </extra>
+          </node>
+          <node id="gate_prop_flag_left" name="prop_flag_left" sid="prop_flag_left" type="JOINT">
+            <matrix sid="transform">2e-6 -1 0 9.530815 -10e-7 0 1 23.81587 -1 -2e-6 -10e-7 -3.193198 0 0 0 1</matrix>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">1</layer>
+                <roll sid="roll" type="float">1.38622e-6</roll>
+                <tip_x sid="tip_x" type="float">-1.714236</tip_x>
+                <tip_y sid="tip_y" type="float">3.33786e-6</tip_y>
+                <tip_z sid="tip_z" type="float">0</tip_z>
+              </technique>
+            </extra>
+          </node>
+          <node id="gate_prop_flag_right" name="prop_flag_right" sid="prop_flag_right" type="JOINT">
+            <matrix sid="transform">5e-6 -0.999997 -0.00229 -9.507461 -0.002291 -0.00229 0.999995 23.3613 -0.999997 0 -0.002291 -3.20035 0 0 0 1</matrix>
+            <extra>
+              <technique profile="blender">
+                <layer sid="layer" type="string">1</layer>
+                <roll sid="roll" type="float">1.50478e-6</roll>
+                <tip_x sid="tip_x" type="float">-1.714231</tip_x>
+                <tip_y sid="tip_y" type="float">0</tip_y>
+                <tip_z sid="tip_z" type="float">-0.003925323</tip_z>
+              </technique>
+            </extra>
+          </node>
+          <extra>
+            <technique profile="blender">
+              <layer sid="layer" type="string">1</layer>
+              <roll sid="roll" type="float">1.68587e-7</roll>
+              <tip_x sid="tip_x" type="float">0</tip_x>
+              <tip_y sid="tip_y" type="float">0</tip_y>
+              <tip_z sid="tip_z" type="float">2.75187</tip_z>
+            </technique>
+          </extra>
+        </node>
+      </node>
+      <node id="rome_gate_001" name="rome_gate_001" type="NODE">
+        <translate sid="location">0 0 0</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 0</rotate>
+        <scale sid="scale">1 1 1</scale>
+        <instance_controller url="#gate_rome_gate_001-skin">
+          <skeleton>#gate_origin</skeleton>
+        </instance_controller>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

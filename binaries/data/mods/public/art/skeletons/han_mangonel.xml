@@ -1,0 +1,155 @@
+<skeletons>
+   <standard_skeleton title="Tb" id="Tb">
+    <bone name="Root">
+      <bone name="weapon_1">
+        <bone name="weapon_2">
+          <bone name="sling_rope_1">
+            <bone name="sling_rope_2">
+              <bone name="sling_rope_3">
+                <bone name="sling_rope_4">
+                  <bone name="sling_rope_5">
+                        <bone name="sling_rope_8">
+                          <bone name="sling_rope_9">
+                            <bone name="sling_rope_10">
+                              <bone name="sling_rope_11">
+                                <bone name="sling"></bone>
+                              </bone>            
+                            </bone>
+                          </bone>
+                        </bone>
+                  </bone>
+                </bone>  
+              </bone>    
+            </bone>      
+          </bone>
+          <bone name="weapon_rope_2"></bone>
+          <bone name="weapon_pulley"></bone>  
+        </bone>
+        <bone name="weapon_rope_1"></bone>
+        <bone name="weapon_weight">
+          <bone name="weapon_weight_arm">
+            <bone name="counter_weight"></bone>
+          </bone>
+          <bone name="rope_R_1">
+            <bone name="rope_R_2">
+              <bone name="rope_R_3">
+                <bone name="rope_R_4">
+                  <bone name="rope_R_5">
+                  </bone>
+                </bone>  
+              </bone>    
+            </bone>      
+          </bone>
+          <bone name="rope_M_1">
+            <bone name="rope_M_2">
+              <bone name="rope_M_3">
+                <bone name="rope_M_4">
+                  <bone name="rope_M_5">
+                  </bone>
+                </bone>  
+              </bone>    
+            </bone>      
+          </bone>
+          <bone name="rope_L_1">
+            <bone name="rope_L_2">
+              <bone name="rope_L_3">
+                <bone name="rope_L_4">
+                  <bone name="rope_L_5">
+                  </bone>
+                </bone>  
+              </bone>    
+            </bone>      
+          </bone>
+        </bone>
+      </bone>
+      <bone name="lever_A"></bone>
+      <bone name="lever_B"></bone>
+      <bone name="lever_base_R">
+        <bone name="lever_rope_R"></bone>
+      </bone>
+      <bone name="lever_base_L">
+        <bone name="lever_rope_L"></bone>
+      </bone>
+      <bone name="arm_L"></bone>
+      <bone name="arm_R"></bone>
+    </bone>
+</standard_skeleton>
+  <skeleton title="Tb" target="Tb">
+    <identifier>
+      <root>Tb_Root</root>
+    </identifier>
+    <bone name="Tb_Root"><target>Root</target>
+      <bone name="Tb_lever_A"><target>lever_A</target></bone>
+      <bone name="Tb_lever_B"><target>lever_B</target></bone>
+      <bone name="Tb_weapon_1"><target>weapon_1</target>
+        <bone name="Tb_weapon_2"><target>weapon_2</target>
+          <bone name="Tb_sling_rope_1"><target>sling_rope_1</target>
+            <bone name="Tb_sling_rope_2"><target>sling_rope_2</target>
+              <bone name="Tb_sling_rope_3"><target>sling_rope_3</target>
+                <bone name="Tb_sling_rope_4"><target>sling_rope_4</target>
+                  <bone name="Tb_sling_rope_5"><target>sling_rope_5</target>
+                        <bone name="Tb_sling_rope_8"><target>sling_rope_8</target>
+                          <bone name="Tb_sling_rope_9"><target>sling_rope_9</target>
+                            <bone name="Tb_sling_rope_10"><target>sling_rope_10</target>
+                              <bone name="Tb_sling_rope_11"><target>sling_rope_11</target>
+                                <bone name="Tb_sling"><target>sling</target></bone>
+                              </bone>            
+                            </bone>
+                          </bone>
+                        </bone>
+                  </bone>
+                </bone>  
+              </bone>    
+            </bone>      
+          </bone>
+          <bone name="Tb_weapon_rope_2"><target>weapon_rope_2</target></bone>
+          <bone name="Tb_weapon_pulley"><target>weapon_pulley</target></bone>  
+        </bone>
+        <bone name="Tb_weapon_rope_1"><target>weapon_rope_1</target></bone>
+        <bone name="Tb_weapon_weight"><target>weapon_weight</target>
+          <bone name="Tb_weapon_weight_arm"><target>weapon_weight_arm</target>
+            <bone name="Tb_counter_weight"><target>counter_weight</target></bone>
+          </bone>
+          <bone name="Tb_rope_R_1"><target>rope_R_1</target>
+            <bone name="Tb_rope_R_2"><target>rope_R_2</target>
+              <bone name="Tb_rope_R_3"><target>rope_R_3</target>
+                <bone name="Tb_rope_R_4"><target>rope_R_4</target>
+                  <bone name="Tb_rope_R_5"><target>rope_R_5</target>
+                  </bone>
+                </bone>  
+              </bone>    
+            </bone>      
+          </bone>
+          <bone name="Tb_rope_M_1"><target>rope_M_1</target>
+            <bone name="Tb_rope_M_2"><target>rope_M_2</target>
+              <bone name="Tb_rope_M_3"><target>rope_M_3</target>
+                <bone name="Tb_rope_M_4"><target>rope_M_4</target>
+                  <bone name="Tb_rope_M_5"><target>rope_M_5</target>
+                  </bone>
+                </bone>  
+              </bone>    
+            </bone>      
+          </bone>
+          <bone name="Tb_rope_L_1"><target>rope_L_1</target>
+            <bone name="Tb_rope_L_2"><target>rope_L_2</target>
+              <bone name="Tb_rope_L_3"><target>rope_L_3</target>
+                <bone name="Tb_rope_L_4"><target>rope_L_4</target>
+                  <bone name="Tb_rope_L_5"><target>rope_L_5</target>
+                  </bone>
+                </bone>  
+              </bone>    
+            </bone>      
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Tb_lever_base_R"><target>lever_base_R</target>
+        <bone name="Tb_lever_rope_R"><target>lever_rope_R</target></bone>
+      </bone>
+      <bone name="Tb_lever_base_L"><target>lever_base_L</target>
+        <bone name="Tb_lever_rope_L"><target>lever_rope_L</target></bone>
+      </bone>
+      <bone name="Tb_arm_L"><target>arm_L</target></bone>
+      <bone name="Tb_arm_R"><target>arm_R</target></bone>
+    </bone>
+  </skeleton>
+</skeletons>

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="Nu_chin_nu" title="Nu chin nu">
+    <bone name="Nu_base">
+      <bone name="Nu_pivot">
+        <bone name="Nu_slide" />
+        <bone name="Nu_sling" />
+        <bone name="Nu_crank" />
+        <bone name="Nu_arm_L" />
+        <bone name="Nu_arm_R" />
+      </bone>
+    </bone>
+  </standard_skeleton>
+  <skeleton target="Nu_chin_nu" title="Nu chin nu">
+    <identifier>
+      <root>Nu_base</root>
+    </identifier>
+    <bone name="Nu_base">
+      <target>Nu_base</target>
+      <bone name="Nu_pivot">
+        <target>Nu_pivot</target>
+        <bone name="Nu_slide">
+          <target>Nu_slide</target>
+        </bone>
+        <bone name="Nu_sling">
+          <target>Nu_sling</target>
+        </bone>
+        <bone name="Nu_crank">
+          <target>Nu_crank</target>
+        </bone>
+        <bone name="Nu_arm_L">
+          <target>Nu_arm_L</target>
+        </bone>
+        <bone name="Nu_arm_R">
+          <target>Nu_arm_R</target>
+        </bone>
+      </bone>
+    </bone>
+  </skeleton>
+</skeletons>

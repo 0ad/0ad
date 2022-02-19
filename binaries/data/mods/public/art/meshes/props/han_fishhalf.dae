@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.61.0 r42614</authoring_tool>
+    </contributor>
+    <created>2012-01-08T21:02:10</created>
+    <modified>2012-01-08T21:02:10</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_cameras/>
+  <library_geometries>
+    <geometry id="Tube_001-mesh">
+      <mesh>
+        <source id="Tube_001-mesh-positions">
+          <float_array id="Tube_001-mesh-positions-array" count="36">-0.03437614 0.9446147 1.305581 -0.0343762 0.9446147 1.653552 0.1929623 0.9446147 1.653552 0.1929623 0.9446147 1.305581 0.4210394 0.8464588 0.9564794 0.4210394 0.8464587 2.002654 -0.2624533 0.8464587 2.002654 -0.2624531 0.8464588 0.9564791 -0.4302772 0.7650577 0.6996023 -0.4302775 0.7650576 2.259531 0.5888635 0.7650576 2.259531 0.5888635 0.7650577 0.6996027</float_array>
+          <technique_common>
+            <accessor source="#Tube_001-mesh-positions-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Tube_001-mesh-normals">
+          <float_array id="Tube_001-mesh-normals-array" count="27">0 1 0 -0.395309 0.9185482 0 1.24063e-7 0.9626718 -0.2706714 0.395309 0.9185481 0 0 0.9626718 0.2706717 0 0.9532815 0.3020836 0.4364118 0.899747 0 1.25854e-7 0.9532815 -0.3020833 -0.4364117 0.899747 0</float_array>
+          <technique_common>
+            <accessor source="#Tube_001-mesh-normals-array" count="9" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Tube_001-mesh-map-0">
+          <float_array id="Tube_001-mesh-map-0-array" count="72">0.1081605 0.0715577 0.1081593 0.07741594 0.09919041 0.07741564 0.09919166 0.07155734 0.1081593 0.07741594 0.1171759 0.08335006 0.09021109 0.08334898 0.09919041 0.07741564 0.1171759 0.08335006 0.1081593 0.07741594 0.1081605 0.0715577 0.1171796 0.06573712 0.1171796 0.06573712 0.1081605 0.0715577 0.09919166 0.07155734 0.0902149 0.06573605 0.0902149 0.06573605 0.09919166 0.07155734 0.09919041 0.07741564 0.09021109 0.08334898 0.08361142 0.06145793 0.0902149 0.06573605 0.09021109 0.08334898 0.08360582 0.08772015 0.123818 0.06145948 0.1171796 0.06573712 0.0902149 0.06573605 0.08361142 0.06145793 0.1238124 0.08772176 0.1171759 0.08335006 0.1171796 0.06573712 0.123818 0.06145948 0.08360582 0.08772015 0.09021109 0.08334898 0.1171759 0.08335006 0.1238124 0.08772176</float_array>
+          <technique_common>
+            <accessor source="#Tube_001-mesh-map-0-array" count="36" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Tube_001-mesh-vertices">
+          <input semantic="POSITION" source="#Tube_001-mesh-positions"/>
+        </vertices>
+        <polylist count="9">
+          <input semantic="VERTEX" source="#Tube_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Tube_001-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Tube_001-mesh-map-0" offset="2" set="0"/>
+          <vcount>4 4 4 4 4 4 4 4 4 </vcount>
+          <p>3 0 0 0 0 1 1 0 2 2 0 3 0 1 4 7 1 5 6 1 6 1 1 7 7 2 8 0 2 9 3 2 10 4 2 11 4 3 12 3 3 13 2 3 14 5 3 15 5 4 16 2 4 17 1 4 18 6 4 19 10 5 20 5 5 21 6 5 22 9 5 23 11 6 24 4 6 25 5 6 26 10 6 27 8 7 28 7 7 29 4 7 30 11 7 31 9 8 32 6 8 33 7 8 34 8 8 35</p>
+        </polylist>
+      </mesh>
+      <extra><technique profile="MAYA"><double_sided>1</double_sided></technique></extra>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Tube_001" type="NODE">
+        <translate sid="location">-0.01638138 2.316216 -0.7571716</translate>
+        <rotate sid="rotationZ">0 0 1 0</rotate>
+        <rotate sid="rotationY">0 1 0 0</rotate>
+        <rotate sid="rotationX">1 0 0 90</rotate>
+        <scale sid="scale">1.660893 1.660893 1.660893</scale>
+        <instance_geometry url="#Tube_001-mesh"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

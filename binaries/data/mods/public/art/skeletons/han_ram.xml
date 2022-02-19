@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="Armature_004" title="Armature 004">
+    <bone name="Trunk_root">
+      <bone name="Trunk_weap" />
+    </bone>
+  </standard_skeleton>
+  <skeleton target="Armature_004" title="Armature 004">
+    <identifier>
+      <root>Trunk_root</root>
+    </identifier>
+    <bone name="Trunk_root">
+      <target>Trunk_root</target>
+      <bone name="Trunk_weap">
+        <target>Trunk_weap</target>
+      </bone>
+    </bone>
+  </skeleton>
+</skeletons>
