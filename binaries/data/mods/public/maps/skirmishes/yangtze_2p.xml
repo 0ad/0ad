@@ -38,40 +38,19 @@
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
-  "AISeed": 0,
-  "AllyView": false,
   "CircularMap": true,
   "Description": "The Yangtze River in China. ",
   "Keywords": [
     "naval",
     "new"
   ],
-  "LockTeams": false,
   "Name": "Chang Jiang (2 players)",
   "PlayerData": [
-    "",
-    {
-      "Color": {
-        "b": 255,
-        "g": 128,
-        "r": 0
-      },
-      "Name": "Player 1"
-    },
-    {
-      "Color": {
-        "b": 0,
-        "g": 128,
-        "r": 255
-      },
-      "Name": "Player 2"
-    }
+    null,
+    {},
+    {}
   ],
-  "Preview": "yangtze_2.png",
-  "RevealMap": false,
-  "VictoryConditions": [
-    "conquest_civiccentres"
-  ]
+  "Preview": "yangtze_2.png"
 }
 ]]></ScriptSettings>
 	<Entities>

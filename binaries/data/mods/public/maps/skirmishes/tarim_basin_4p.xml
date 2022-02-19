@@ -40,8 +40,9 @@
 {
   "CircularMap": true,
   "Description": "A barren desert basin surrounded by mountainous valleys, the Tarim Basin is also called \"The Western Regions\" by the Han Chinese, and represents the furthest extent of their power.\n\nThe basin itself is bereft of life  and offers little in the way of defensibility. The rugged mountain valleys harbor the only life, in the form of hearty shrub and tree species and some goats.",
-  "Keywords": [],
-  "LockTeams": false,
+  "Keywords": [
+    "new"
+  ],
   "Name": "Tarim Basin (4 players)",
   "PlayerData": [
     null,
@@ -50,11 +51,7 @@
     {},
     {}
   ],
-  "Preview": "tarim_basin_4.png",
-  "RevealMap": false,
-  "VictoryConditions": [
-    "conquest_civiccentres"
-  ]
+  "Preview": "tarim_basin_4.png"
 }
 ]]></ScriptSettings>
 	<Entities>
