@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant name="Chinese Fishing Ship">
+      <mesh>structural/han_ship_fishing.dae</mesh>
+      <textures>
+        <texture file="structural/han_struct.png" name="baseTex"/>
+        <texture file="structural/han_struct_norm.png" name="normTex"/>
+        <texture file="structural/han_struct_spec.png" name="specTex"/>
+        <texture file="structural/ao/han_ship_fishing.png" name="aoTex"/>
+      </textures>
+      <props>
+        <prop actor="units/han/fisherman.xml" attachpoint="fisher"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Base"/>
+    <variant name="carry_food">
+      <props>
+        <prop actor="props/structures/raft_fishfull.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="gather_fish">
+      <props>
+        <prop actor="props/structures/raft_fishhalf.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

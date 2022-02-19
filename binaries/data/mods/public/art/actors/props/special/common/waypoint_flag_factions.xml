@@ -11,28 +11,49 @@
   </group>
   <group>
     <variant name="waypoint_persians">
-      <textures><texture file="props/banner_persian.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/banner_persian.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="waypoint_hellenes">
-      <textures><texture file="props/banner_greek.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/banner_greek.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="waypoint_celts">
-      <textures><texture file="props/banner_celt.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/banner_celt.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="waypoint_carthaginians">
-      <textures><texture file="props/banner_carthage.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/banner_carthage.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="waypoint_iberians">
-      <textures><texture file="props/banner_iberians.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/banner_iberians.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="waypoint_romans">
-      <textures><texture file="props/banner_romans.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/banner_romans.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="waypoint_spartans">
-      <textures><texture file="props/banner_spartans.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/banner_spartans.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="waypoint_macedonians">
-      <textures><texture file="props/banner_macedonians.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/banner_macedonians.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="waypoint_han">
+      <textures>
+        <texture file="props/banner_han.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>basic_trans.xml</material>

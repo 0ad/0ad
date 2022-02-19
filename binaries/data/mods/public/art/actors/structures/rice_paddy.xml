@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<qualitylevels version="1">
+  <actor inline="" quality="low"/>
+  <actor inline="" quality="medium"/>
+  <actor inline=""/>
+  <inline version="1">
+    <group>
+      <variant frequency="1" name="Rice Paddy">
+        <mesh>structural/rice_paddy.dae</mesh>
+        <props>
+          <prop actor="props/structures/decals/rice_paddy_6x6.xml" attachpoint="root"/>
+        </props>
+        <textures>
+          <texture file="null_white.dds" name="baseTex"/>
+        </textures>
+      </variant>
+    </group>
+    <group>
+      <variant frequency="1" minquality="high" name="High">
+        <props>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_01" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_02" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_03" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_04" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_05" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_06" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_07" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_08" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_09" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_10" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_11" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_12" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_13" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_14" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_15" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_16" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_17" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_18" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_19" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_20" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_21" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_22" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_23" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_24" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_25" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_26" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_27" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_28" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_29" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_30" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_31" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_32" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_33" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_34" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_35" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_36" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_37" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_38" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_39" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_40" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_41" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_42" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_43" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_44" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_45" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_46" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_47" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_48" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_49" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_50" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_51" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_52" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_53" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_54" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_55" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_56" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_57" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_58" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_59" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_60" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_61" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_62" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_63" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_64" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_65" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_66" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_67" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_68" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_69" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_70" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_71" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_72" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_73" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_74" maxheight="20" minheight="-20"/>
+          <prop actor="flora/rice_sprout.xml" attachpoint="rice_sprout_75" maxheight="20" minheight="-20"/>
+          <prop actor="props/structures/decals/rice_paddy_6x6.xml" attachpoint="root"/>
+        </props>
+      </variant>
+      <variant frequency="1" maxquality="high" name="Low">
+        <props>
+          <prop actor="props/structures/decals/rice_paddy_6x6.xml" attachpoint="root"/>
+          <prop actor="flora/rice_sprout_paddy.xml" attachpoint="root"/>
+        </props>
+      </variant>
+    </group>
+    <material>default.xml</material>
+  </inline>
+</qualitylevels>

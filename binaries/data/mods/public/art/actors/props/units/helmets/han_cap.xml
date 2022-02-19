@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant name="Base">
+      <mesh>props/helmets/han_cap.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="cap-a">
+      <textures>
+        <texture file="props/heads/han_cap_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="cap-b">
+      <textures>
+        <texture file="props/heads/han_cap_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

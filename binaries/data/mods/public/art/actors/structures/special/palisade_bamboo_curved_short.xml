@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Short Curved Bamboo Palisade">
+      <mesh>structural/palisade_bamboo_curved_short.dae</mesh>
+      <props>
+        <prop actor="props/special/palisade_bamboo_curved_short_nature.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="props/dockprops.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>default.xml</material>
+</actor>

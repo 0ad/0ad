@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/han_arsenal.dae</mesh>
+      <props>
+        <prop actor="props/structures/han/arsenal_cloth.xml" attachpoint="root"/>
+        <prop actor="props/structures/han/arsenal_shoushe.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/han_struct_02.png" name="baseTex"/>
+        <texture file="structural/han_struct_02_norm.png" name="normTex"/>
+        <texture file="structural/han_struct_02_spec.png" name="specTex"/>
+        <texture file="structural/ao/han_arsenal.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_han.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="researching">
+      <props>
+        <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke01"/>
+        <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke02"/>
+      </props>
+    </variant>
+    <variant name="training">
+      <props>
+        <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke01"/>
+        <prop actor="particle/smoke_blacksmith.xml" attachpoint="smoke02"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant file="structures/destruction_medium.xml">
+      <props>
+        <prop actor="props/structures/han/arsenal_cloth.xml" attachpoint="root"/>
+        <prop actor="props/structures/han/arsenal_shoushe.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

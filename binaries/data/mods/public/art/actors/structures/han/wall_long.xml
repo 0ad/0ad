@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/han_wall_long.dae</mesh>
+      <props>
+        <prop actor="props/structures/han/wall_gutter.xml" attachpoint="gutter001"/>
+        <prop actor="props/structures/han/wall_gutter.xml" attachpoint="gutter002"/>
+        <prop actor="props/structures/han/wall_gutter.xml" attachpoint="gutter003"/>
+        <prop actor="props/structures/han/wall_gutter.xml" attachpoint="gutter004"/>
+        <prop actor="props/structures/han/wall_gutter.xml" attachpoint="gutter005"/>
+        <prop actor="props/structures/han/wall_gutter.xml" attachpoint="gutter006"/>
+      </props>
+      <textures>
+        <texture file="structural/han_struct_02.png" name="baseTex"/>
+        <texture file="structural/han_struct_02_norm.png" name="normTex"/>
+        <texture file="structural/han_struct_02_spec.png" name="specTex"/>
+        <texture file="structural/ao/han_wall_long.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="upgrading">
+      <props>
+        <prop actor="props/structures/construction/scaf_9x3_wall.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant file="structures/destruction_medium.xml"/>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

@@ -13,8 +13,8 @@
   <group>
     <variant name="kush">
       <textures>
-	    <texture file="props/banner_kushites.png" name="baseTex"/>
-	  </textures>
+        <texture file="props/banner_kushites.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="hele">
       <textures>
@@ -84,6 +84,11 @@
     <variant name="sele">
       <textures>
         <texture file="props/banner_seleucids.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="han">
+      <textures>
+        <texture file="props/banner_han.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

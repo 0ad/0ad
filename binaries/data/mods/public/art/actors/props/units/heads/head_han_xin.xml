@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="mesh">
+      <mesh>props/new/dude_head.dae</mesh>
+      <textures>
+        <texture file="props/heads/han_xin.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="hair-black">
+      <color>61 61 61</color>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

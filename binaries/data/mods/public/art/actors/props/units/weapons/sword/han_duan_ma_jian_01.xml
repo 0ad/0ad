@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <textures>
+        <texture file="props/prop_weap.dds" name="baseTex"/>
+        <texture file="props/prop_weap.dds" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="two-handed jian A">
+      <mesh>props/rhomphaia_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="two-handed jian B">
+      <mesh>props/rhomphaia_b.dae</mesh>
+    </variant>
+  </group>
+  <material>no_trans_spec.xml</material>
+</actor>

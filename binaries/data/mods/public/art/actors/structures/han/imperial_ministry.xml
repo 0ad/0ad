@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="structures/defensive_building.xml" frequency="1" name="Han Imperial Ministry">
+      <mesh>structural/han_ministry.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+        <prop actor="props/structures/han/ministry_bixie.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/han_struct_02.png" name="baseTex"/>
+        <texture file="structural/han_struct_02_norm.png" name="normTex"/>
+        <texture file="structural/han_struct_02_spec.png" name="specTex"/>
+        <texture file="structural/ao/han_ministry.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_han.xml" attachpoint="garrisoned_01"/>
+        <prop actor="props/special/common/garrison_flag_han.xml" attachpoint="garrisoned_02"/>
+        <prop actor="props/special/common/garrison_flag_han.xml" attachpoint="garrisoned_03"/>
+        <prop actor="props/special/common/garrison_flag_han.xml" attachpoint="garrisoned_04"/>
+        <prop actor="props/special/common/garrison_flag_han.xml" attachpoint="garrisoned_05"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant file="structures/destruction_large.xml"/>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

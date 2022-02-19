@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_china.xml" attachpoint="head"/>
+        <prop actor="props/units/helmets/han_hairbun.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/crossbow/han_nu.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/quivers/han_bolt_quiver.xml" attachpoint="back"/>
+        <prop actor="props/units/weapons/sheath/han_jian_sheath_right_d.xml" attachpoint="sheath_R"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="Han-Armor-Scale-Hero-01-Lacquered-01">
+      <textures>
+        <texture file="skeletal/han/scale_hero_01_lacquered_01.png" name="baseTex"/>
+        <texture file="skeletal/han/scale_hero_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/rider/cavalry/base_crossbowman_relax_back.xml" frequency="1" name="Crossbowman-Relax-Back"/>
+    <variant file="biped/rider/carry_meat.xml"/>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/rider/cavalry/attack_ranged_crossbowman_back.xml"/>
+    <variant file="biped/rider/promotion_shield.xml"/>
+    <variant file="biped/rider/attack_slaughter_shield_hele.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/rider/death_ranged.xml"/>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Bamboo Palisade Gate Doors">
+      <animations>
+        <animation file="mechanical/palisade_bamboo_gate_doors_closed.dae" name="gate_closed" speed="65"/>
+        <animation file="mechanical/palisade_bamboo_gate_doors_opening.dae" name="gate_opening" speed="65"/>
+        <animation file="mechanical/palisade_bamboo_gate_doors_opened.dae" name="gate_open" speed="65"/>
+        <animation file="mechanical/palisade_bamboo_gate_doors_closing.dae" name="gate_closing" speed="65"/>
+      </animations>
+      <mesh>structural/palisade_bamboo_gate_doors.dae</mesh>
+      <textures>
+        <texture file="props/dockprops.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>default.xml</material>
+</actor>

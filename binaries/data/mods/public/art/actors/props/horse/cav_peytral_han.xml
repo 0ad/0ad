@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="quadraped/props/han_peytral_01.xml" frequency="1" name="horse-armor-peytral-01"/>
+    <variant file="quadraped/props/han_peytral_02.xml" frequency="1" name="horse-armor-peytral-02"/>
+  </group>
+  <group>
+    <variant file="quadraped/base_horse_javelin_fast.xml" frequency="1" name="Javelinist-Fast-Horse"/>
+    <variant file="quadraped/base_horse_archer_fast.xml" frequency="1" name="Archer-Fast-Horse"/>
+    <variant file="quadraped/base_horse_javelin.xml" frequency="1" name="Javelinist-Horse"/>
+    <variant file="quadraped/base_horse_chariot.xml" frequency="1" name="Chariot-Horse"/>
+    <variant file="quadraped/base_horse_archer.xml" frequency="1" name="Archer-Horse"/>
+    <variant file="quadraped/base_horse_trot.xml" frequency="1" name="Horse-Trot"/>
+    <variant file="quadraped/base_horse_pace.xml" frequency="1" name="Horse-Pace"/>
+    <variant file="quadraped/base_horse_walk.xml" frequency="1" name="Horse-Walk"/>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>

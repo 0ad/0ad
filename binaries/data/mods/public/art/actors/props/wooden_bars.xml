@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>props/wooden_bars.dae</mesh>
+      <textures>
+        <texture file="props/wood_c.png" name="baseTex"/>
+        <texture file="structural/ao/hele_storehouse.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_ao.xml</material>
+</actor>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/han_temple.dae</mesh>
+      <props>
+        <prop actor="particle/smoke_blacksmith.xml" attachpoint="cauldron"/>
+        <prop actor="props/structures/han/temple_cauldron.xml" attachpoint="cauldron"/>
+        <prop actor="props/structures/han/temple_lantern.xml" attachpoint="lantern001" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/han/temple_lantern.xml" attachpoint="lantern002" maxheight="20" minheight="-20"/>
+      </props>
+      <textures>
+        <texture file="structural/han_struct_02.png" name="baseTex"/>
+        <texture file="structural/han_struct_02_norm.png" name="normTex"/>
+        <texture file="structural/han_struct_02_spec.png" name="specTex"/>
+        <texture file="structural/ao/han_temple.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_han.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant file="structures/destruction_medium.xml"/>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="han_gate_tiles">
+      <decal angle="0" depth="13" offsetx="0" offsetz="0" width="26"/>
+      <textures>
+        <texture file="props/decal_han_gate.png" name="baseTex"/>
+        <texture file="props/decal_han_gate_norm.png" name="normTex"/>
+        <texture file="props/decal_han_gate_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>terrain_norm_spec.xml</material>
+</actor>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Wall gate">
+      <animations>
+        <animation file="mechanical/han_wall_gate_closed.dae" name="gate_closed" speed="65"/>
+        <animation file="mechanical/han_wall_gate_opening.dae" name="gate_opening" speed="65"/>
+        <animation file="mechanical/han_wall_gate_opened.dae" name="gate_open" speed="65"/>
+        <animation file="mechanical/han_wall_gate_closing.dae" name="gate_closing" speed="65"/>
+      </animations>
+      <mesh>structural/han_wall_gate.dae</mesh>
+      <textures>
+        <texture file="structural/han_struct_02.png" name="baseTex"/>
+        <texture file="structural/han_struct_02_norm.png" name="normTex"/>
+        <texture file="structural/han_struct_02_spec.png" name="specTex"/>
+      </textures>
+      <props>
+        <prop actor="props/structures/han/wall_gate_gutters.xml" attachpoint="root"/>
+        <prop actor="props/structures/han/wall_gate_struct.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_han.xml" attachpoint="flag_right"/>
+        <prop actor="props/special/common/garrison_flag_han.xml" attachpoint="flag_left"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant file="structures/destruction_medium.xml">
+      <props>
+        <prop actor="props/structures/han/wall_gate_gutters.xml" attachpoint="root"/>
+        <prop actor="props/structures/han/wall_gate_struct.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
+</actor>

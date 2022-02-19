@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="quadraped/base_camel_trader.xml" frequency="100">
+      <mesh>skeletal/camel.dae</mesh>
+      <props>
+        <prop actor="props/units/pers_camel_props.xml" attachpoint="rider"/>
+        <prop actor="props/camel/teeths.xml" attachpoint="mouth_bot"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="Dark Brown">
+      <textures>
+        <texture file="skeletal/animal_camel_a_belt.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="Beige">
+      <textures>
+        <texture file="skeletal/animal_camel_b_belt.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="Light Brown">
+      <textures>
+        <texture file="skeletal/animal_camel_c_belt.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant file="quadraped/base_camel_run.xml"/>
+    <variant file="quadraped/base_camel_death.xml"/>
+  </group>
+  <material>default.xml</material>
+</actor>

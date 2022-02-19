@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant name="decal_dirt_4x4">
+      <decal angle="0" depth="25" offsetx="0" offsetz="0" width="25"/>
+      <textures>
+        <texture file="gaia/tropic_cliff_mud_rice.png" name="baseTex"/>
+        <texture file="gaia/tropic_cliff_mud_norm.png" name="normTex"/>
+        <texture file="gaia/tropic_cliff_mud_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>terrain_norm_spec.xml</material>
+</actor>

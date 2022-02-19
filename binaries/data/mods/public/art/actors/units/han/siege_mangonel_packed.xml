@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="wagon han rock">
+      <animations>
+        <animation file="mechanical/wagon_four_wheel_empty_idle.dae" id="idle1" name="Idle" speed="80"/>
+        <animation file="mechanical/wagon_four_wheel_empty_idle.dae" id="idle2" name="Idle" speed="80"/>
+        <animation file="mechanical/wagon_four_wheel_empty_idle.dae" id="idle3" name="Idle" speed="80"/>
+        <animation file="mechanical/wagon_four_wheel_empty_move.dae" name="Walk" speed="10"/>
+        <animation file="mechanical/wagon_four_wheel_empty_move.dae" name="Run" speed="10"/>
+      </animations>
+      <mesh>props/special/wagon_four_wheel_empty.dae</mesh>
+      <props>
+        <prop actor="props/units/han/mangonel_packed.xml" attachpoint="cargo"/>
+        <prop actor="fauna/zebu.xml" attachpoint="horse_l"/>
+        <prop actor="fauna/zebu.xml" attachpoint="horse_r"/>
+      </props>
+      <textures>
+        <texture file="props/wooden_wagon.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+</actor>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="structures/defensive_building.xml" frequency="1" name="base">
+      <mesh>structural/han_civic_center.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
+        <prop actor="props/structures/han/civic_center_leaves.xml" attachpoint="root"/>
+        <prop actor="props/structures/han/civic_center_trunks.xml" attachpoint="root"/>
+        <prop actor="props/structures/han/civic_center_nature.xml" attachpoint="root"/>
+        <prop actor="props/structures/han/civic_center_bixie_gold.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/han_struct_02.png" name="baseTex"/>
+        <texture file="structural/han_struct_02_norm.png" name="normTex"/>
+        <texture file="structural/han_struct_02_spec.png" name="specTex"/>
+        <texture file="structural/ao/han_civic_center.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_han.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant file="structures/destruction_large.xml">
+      <props>
+        <prop actor="props/structures/han/civic_center_leaves.xml" attachpoint="root"/>
+        <prop actor="props/structures/han/civic_center_trunks.xml" attachpoint="root"/>
+        <prop actor="props/structures/han/civic_center_nature.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

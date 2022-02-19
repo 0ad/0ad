@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>props/quivers/han_crossbow_quiver.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="bolt_a"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="bolt_b"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="bolt_c"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="bolt_d"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="bolt_e"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="bolt_f"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="bolt_g"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Base_a">
+      <textures>
+        <texture file="props/quivers/han_quiver.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

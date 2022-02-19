@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="helmetA">
+      <mesh>props/helmets/han_cavalry_swordsman_helmet.dae</mesh>
+      <textures>
+        <texture file="props/helmets/han_cavalry_swordsman_helmet_black.png" name="baseTex"/>
+        <texture file="props/helmets/han_cavalry_swordsman_helmet_norm.png" name="normTex"/>
+        <texture file="props/helmets/han_cavalry_swordsman_helmet_spec.png" name="specTex"/>
+        <texture file="props/helmets/ao/han_cavalry_swordsman_helmet.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_ao_parallax_spec.xml</material>
+</actor>

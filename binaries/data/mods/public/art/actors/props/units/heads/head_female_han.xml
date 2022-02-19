@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="dudette head a">
+      <mesh>props/new/head_female_shorthair.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Face-01">
+      <textures>
+        <texture file="props/heads/han_fem_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Face-02">
+      <textures>
+        <texture file="props/heads/han_fem_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Face-03">
+      <textures>
+        <texture file="props/heads/han_fem_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="color-black">
+      <color>20 20 20</color>
+    </variant>
+    <variant frequency="1" name="color-black1">
+      <color>35 35 35</color>
+    </variant>
+    <variant frequency="1" name="color-black2">
+      <color>10 10 10</color>
+    </variant>
+    <variant frequency="1" name="color-black3">
+      <color>60 60 60</color>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

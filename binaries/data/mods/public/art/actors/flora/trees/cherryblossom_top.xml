@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="canopy-mesh-a">
+      <mesh>gaia/tree_carob_top_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="canopy-mesh-b">
+      <mesh>gaia/tree_carob_top_b.dae</mesh>
+    </variant>
+    <variant frequency="1" name="canopy-mesh-c">
+      <mesh>gaia/tree_carob_top_c.dae</mesh>
+    </variant>
+    <variant frequency="1" name="canopy-mesh-d">
+      <mesh>gaia/tree_carob_top_d.dae</mesh>
+    </variant>
+    <variant frequency="1" name="canopy-mesh-e">
+      <mesh>gaia/tree_carob_top_e.dae</mesh>
+    </variant>
+    <variant frequency="1" name="canopy-mesh-f">
+      <mesh>gaia/tree_carob_top_f.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="leaf-texture-a">
+      <textures>
+        <texture file="gaia/tree_cherryblossom_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="leaf-texture-b">
+      <textures>
+        <texture file="gaia/tree_cherryblossom_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="leaf-texture-c">
+      <textures>
+        <texture file="gaia/tree_cherryblossom_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="leaf-texture-d">
+      <textures>
+        <texture file="gaia/tree_cherryblossom_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="leaf-texture-e">
+      <textures>
+        <texture file="gaia/tree_cherryblossom_e.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>skeletal/new/m_armor_tunic_long_sleeves.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/han_hairbun.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/head_minister.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/sword/han_jian_c.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/sheath/han_jian_sheath_left_c_e.xml" attachpoint="sheath_L"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="Han-Armor-Scale-Hero-01-Iron-01">
+      <textures>
+        <texture file="skeletal/han/scale_hero_01_iron_01.png" name="baseTex"/>
+        <texture file="skeletal/han/scale_hero_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/rider/cavalry/base_swordsman_ready_shield.xml" frequency="1" name="Swordsman-Ready-Shield"/>
+    <variant file="biped/rider/death_shield.xml"/>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>
