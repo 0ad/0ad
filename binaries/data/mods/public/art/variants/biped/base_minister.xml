@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variant file="biped/base_healer.xml">
+  <animations>
+    <animation file="biped/citizen/healing_m.dae" id="heal1" name="Heal" speed="100"/>
+    <animation file="biped/citizen/healing_m.dae" id="heal2" name="Heal" speed="100"/>
+    <animation file="biped/citizen/idle_minister_01.dae" id="idle1" name="Idle" speed="60"/>
+    <animation file="biped/citizen/idle_minister_02.dae" id="idle2" name="Idle" speed="62"/>
+    <animation file="biped/citizen/idle_minister_03.dae" id="idle3" name="Idle" speed="64"/>
+    <animation file="biped/citizen/walk_relax_minister.dae" id="walk1" name="Walk" speed="25"/>
+    <animation file="biped/citizen/walk_relax_minister.dae" id="walk2" name="Walk" speed="23"/>
+  </animations>
+</variant>

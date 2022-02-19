@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variant frequency="1" name="Base">
+  <animations>
+    <animation file="biped/infantry/crossbowman/idle_ready_01.dae" frequency="10" id="idle1" name="Idle" speed="80"/>
+    <animation file="biped/infantry/crossbowman/idle_ready_02.dae" frequency="1" id="idle2" name="Idle" speed="80"/>
+    <animation file="biped/infantry/crossbowman/idle_ready_03.dae" frequency="1" id="idle3" name="Idle" speed="80"/>
+    <animation file="biped/infantry/crossbowman/jog_ready.dae" id="walk1" name="Walk" speed="8"/>
+    <animation file="biped/infantry/crossbowman/jog_ready.dae" id="walk2" name="Walk" speed="7"/>
+    <animation file="biped/infantry/crossbowman/run_ready.dae" id="run1" name="Run" speed="10"/>
+    <animation file="biped/infantry/crossbowman/run_ready.dae" id="run2" name="Run" speed="11"/>
+    <animation file="biped/infantry/crossbowman/run_ready.dae" id="run3" name="Run" speed="9"/>
+    <animation file="biped/infantry/promotion.dae" name="promotion" speed="80"/>
+  </animations>
+</variant>

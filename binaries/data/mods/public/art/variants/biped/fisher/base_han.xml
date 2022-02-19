@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variant file="biped/fisher/base.xml">
+  <animations>
+    <animation file="biped/fisher/han_idle_01.dae" id="idle1" name="Idle" speed="35"/>
+    <animation file="biped/fisher/han_idle_02.dae" id="idle2" name="Idle" speed="35"/>
+    <animation file="biped/fisher/han_idle_03.dae" id="idle3" name="Idle" speed="35"/>
+    <animation file="biped/fisher/han_move.dae" id="walk1" name="Walk" speed="8"/>
+    <animation file="biped/fisher/han_move.dae" id="run1" name="Run" speed="8"/>
+  </animations>
+</variant>
