@@ -11,10 +11,13 @@
                     "simulation/data/civs/**.json"
                 ],
                 "options": {
-                    "keywords": [
-                        "Special",
-                        "AINames"
-                    ]
+                    "keywords": {
+                        "Name": {},
+                        "Description": {},
+                        "History": {},
+                        "Special": {},
+                        "AINames": {}
+                    }
                 }
             },
             {
@@ -23,10 +26,10 @@
                     "simulation/templates/special/players/**.xml"
                 ],
                 "options": {
-                    "keywords": [
-                        "GenericName",
-                        "History"
-                    ]
+                    "keywords": {
+                        "GenericName": {},
+                        "History": {}
+                    }
                 }
             }
         ]
@@ -299,10 +302,10 @@
                     "campaigns/**.json"
                 ],
                 "options": {
-                    "keywords": [
-                        "Name",
-                        "Description"
-                    ],
+                    "keywords": {
+                        "Name": {},
+                        "Description": {}
+                    },
                     "context": "Campaign Template"
                 }
             }
@@ -382,10 +385,10 @@
                     "gui/credits/texts/**.json"
                 ],
                 "options": {
-                    "keywords": [
-                        "Title",
-                        "Subtitle"
-                    ]
+                    "keywords": {
+                        "Title": {},
+                        "Subtitle": {}
+                    }
                 }
             },
             {
@@ -394,10 +397,10 @@
                     "gui/hotkeys/spec/**.json"
                 ],
                 "options": {
-                    "keywords": [
-                        "name",
-                        "desc"
-                    ],
+                    "keywords": {
+                        "name": {},
+                        "desc": {}
+                    },
                     "context": "hotkey metadata"
                 }
             },
@@ -407,10 +410,10 @@
                     "gui/options/**.json"
                 ],
                 "options": {
-                    "keywords": [
-                        "label",
-                        "tooltip"
-                    ]
+                    "keywords": {
+                        "label": {},
+                        "tooltip": {}
+                    }
                 }
             },
             {
@@ -419,9 +422,9 @@
                     "simulation/data/resources/**.json"
                 ],
                 "options": {
-                    "keywords": [
-                        "description"
-                    ]
+                    "keywords": {
+                        "description": {}
+                    }
                 }
             },
             {
@@ -430,10 +433,12 @@
                     "simulation/data/resources/**.json"
                 ],
                 "options": {
-                    "keywords": [
-                        "name",
-                        "subtypes"
-                    ],
+                    "keywords": {
+                        "name": {},
+                        "subtypes": {
+                            "extractFromInnerKeys": true
+                        }
+                    },
                     "comments": [
                         "Translation: Word as used at the beginning of a sentence or as a single-word sentence."
                     ],
@@ -446,10 +451,12 @@
                     "simulation/data/resources/**.json"
                 ],
                 "options": {
-                    "keywords": [
-                        "name",
-                        "subtypes"
-                    ],
+                    "keywords": {
+                        "name": {},
+                        "subtypes": {
+                            "extractFromInnerKeys": true
+                        }
+                    },
                     "comments": [
                         "Translation: Word as used in the middle of a sentence (which may require using lowercase for your language)."
                     ],
@@ -570,6 +577,7 @@
                         "simulation/templates/**.xml"
                     ],
                     "excludeMasks": [
+                        "simulation/templates/special/players/**.xml",
                         "simulation/templates/structures/**.xml",
                         "simulation/templates/template_structure_*.xml",
                         "simulation/templates/template_unit_*.xml",
@@ -603,10 +611,10 @@
                     "simulation/data/damage_types/*.json"
                 ],
                 "options": {
-                    "keywords": [
-                        "name",
-                        "description"
-                    ],
+                    "keywords": {
+                        "name": {},
+                        "description": {}
+                    },
                     "context": "damage type"
                 }
             },
@@ -616,11 +624,11 @@
                     "simulation/data/status_effects/*.json"
                 ],
                 "options": {
-                    "keywords": [
-                        "statusName",
-                        "applierTooltip",
-                        "receiverTooltip"
-                    ],
+                    "keywords": {
+                        "statusName": {},
+                        "applierTooltip": {},
+                        "receiverTooltip": {}
+                    },
                     "context": "status effect"
                 }
             },
@@ -630,10 +638,10 @@
                     "simulation/data/attack_effects/*.json"
                 ],
                 "options": {
-                    "keywords": [
-                        "name",
-                        "description"
-                    ],
+                    "keywords": {
+                        "name": {},
+                        "description": {}
+                    },
                     "context": "effect caused by an attack"
                 }
             }
@@ -651,10 +659,10 @@
                     "simulation/data/auras/**.json"
                 ],
                 "options": {
-                    "keywords": [
-                        "auraName",
-                        "auraDescription"
-                    ]
+                    "keywords": {
+                        "auraName": {},
+                        "auraDescription": {}
+                    }
                 }
             }
         ]
@@ -671,13 +679,15 @@
                     "simulation/data/technologies/**.json"
                 ],
                 "options": {
-                    "keywords": [
-                        "specificName",
-                        "genericName",
-                        "description",
-                        "tooltip",
-                        "requirementsTooltip"
-                    ]
+                    "keywords": {
+                        "specificName": {
+                            "extractFromInnerKeys": true
+                        },
+                        "genericName": {},
+                        "description": {},
+                        "tooltip": {},
+                        "requirementsTooltip": {}
+                    }
                 }
             }
         ]
@@ -717,9 +727,9 @@
                     "simulation/data/settings/player_defaults.json"
                 ],
                 "options": {
-                    "keywords": [
-                        "Name"
-                    ]
+                    "keywords": {
+                        "Name": {}
+                    }
                 }
             },
             {
@@ -728,7 +738,9 @@
                     "simulation/data/settings/game_speeds.json"
                 ],
                 "options": {
-                    "keywords": ["Title"]
+                    "keywords": {
+                        "Title": {}
+                    }
                 }
             },
             {
@@ -737,7 +749,10 @@
                     "simulation/data/settings/victory_conditions/*.json"
                 ],
                 "options": {
-                    "keywords": ["Title", "Description"]
+                    "keywords": {
+                        "Title": {},
+                        "Description": {}
+                    }
                 }
             },
             {
@@ -746,7 +761,9 @@
                     "simulation/data/settings/starting_resources.json"
                 ],
                 "options": {
-                    "keywords": ["Title"],
+                    "keywords": {
+                        "Title": {}
+                    },
                     "context": "startingResources"
                  }
              },
@@ -756,7 +773,10 @@
                     "simulation/data/settings/trigger_difficulties.json"
                 ],
                 "options": {
-                    "keywords": ["Title", "Tooltip"]
+                    "keywords": {
+                        "Title": {},
+                        "Tooltip": {}
+                    }
                 }
              },
              {
@@ -765,10 +785,10 @@
                     "simulation/data/settings/map_sizes.json"
                 ],
                 "options": {
-                    "keywords": [
-                        "Name",
-                        "Tooltip"
-                    ]
+                    "keywords": {
+                        "Name": {},
+                        "Tooltip": {}
+                    }
                 }
             },
             {
@@ -777,10 +797,10 @@
                     "simulation/ai/**.json"
                 ],
                 "options": {
-                    "keywords": [
-                        "name",
-                        "description"
-                    ]
+                    "keywords": {
+                        "name": {},
+                        "description": {}
+                    }
                 }
             }
         ]
@@ -802,10 +822,10 @@
                     ]
                 },
                 "options": {
-                    "keywords": [
-                        "Name",
-                        "Description"
-                    ]
+                    "keywords": {
+                        "Name": {},
+                        "Description": {}
+                    }
                 }
             },
             {
@@ -838,10 +858,14 @@
                     "keywords": {
                         "ScriptSettings": {
                             "extractJson": {
-                                "keywords": [
-                                    "Name",
-                                    "Description"
-                                ]
+                                "keywords": {
+                                    "Name": {
+                                        "extractFromInnerKeys": true
+                                    },
+                                    "Description": {
+                                        "extractFromInnerKeys": true
+                                    }
+                                }
                             }
                         }
                     }
@@ -853,7 +877,11 @@
                     "maps/random/rmbiome/**.json"
                 ],
                 "options": {
-                    "keywords": ["Description"],
+                    "keywords": {
+                        "Description": {
+                            "extractFromInnerKeys": true
+                        }
+                    },
                     "context": "biome definition"
                 }
             }
@@ -891,10 +919,10 @@
                     "keywords": {
                         "ScriptSettings": {
                             "extractJson": {
-                                "keywords": [
-                                    "Name",
-                                    "Description"
-                                ]
+                                "keywords": {
+                                    "Name": {},
+                                    "Description": {}
+                                }
                             }
                         }
                     }
