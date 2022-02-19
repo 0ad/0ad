@@ -372,9 +372,11 @@ void OverlayRenderer::PrepareForRendering()
 	m->quadVertices.PrepareForRendering();
 }
 
-void OverlayRenderer::RenderOverlaysBeforeWater()
+void OverlayRenderer::RenderOverlaysBeforeWater(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	PROFILE3_GPU("overlays (before)");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render overlays before water");
 
 #if CONFIG2_GLES
 #warning TODO: implement OverlayRenderer::RenderOverlaysBeforeWater for GLES
