@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,8 +26,6 @@
 class ICmpPlayerManager : public IComponent
 {
 public:
-	virtual void AddPlayer(entity_id_t ent) = 0;
-
 	virtual int32_t GetNumPlayers() = 0;
 
 	virtual entity_id_t GetPlayerByID(int32_t id) = 0;

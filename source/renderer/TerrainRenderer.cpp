@@ -186,7 +186,7 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 	debugOverlayShader->BindTexture(str_baseTex, texture);
 	debugOverlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	debugOverlayShader->Uniform(str_textureTransform, textureMatrix);
-	CPatchRData::RenderStreams(visiblePatches, debugOverlayShader, STREAM_POS | STREAM_POSTOUV0);
+	CPatchRData::RenderStreams(deviceCommandContext, visiblePatches, debugOverlayShader, STREAM_POS | STREAM_POSTOUV0);
 
 	// To make the overlay visible over water, render an additional map-sized
 	// water-height patch.
@@ -269,7 +269,7 @@ void TerrainRenderer::RenderTerrainShader(
 	shaderSolid->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	shaderSolid->Uniform(str_color, 0.0f, 0.0f, 0.0f, 1.0f);
 
-	CPatchRData::RenderSides(visiblePatches, shaderSolid);
+	CPatchRData::RenderSides(deviceCommandContext, visiblePatches, shaderSolid);
 
 	techSolid->EndPass();
 
@@ -315,7 +315,7 @@ void TerrainRenderer::RenderPatches(
 	solidShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	solidShader->Uniform(str_color, color);
 
-	CPatchRData::RenderStreams(visiblePatches, solidShader, STREAM_POS);
+	CPatchRData::RenderStreams(deviceCommandContext, visiblePatches, solidShader, STREAM_POS);
 	solidTech->EndPass();
 #endif
 }
@@ -363,7 +363,7 @@ bool TerrainRenderer::RenderFancyWater(
 	const CShaderDefines& context, int cullGroup, ShadowMap* shadow)
 {
 	PROFILE3_GPU("fancy water");
-	OGL_SCOPED_DEBUG_GROUP("Render Fancy Water");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render fancy water");
 
 	CSceneRenderer& sceneRenderer = g_Renderer.GetSceneRenderer();
 
@@ -499,9 +499,9 @@ bool TerrainRenderer::RenderFancyWater(
 
 	for (CPatchRData* data : m->visiblePatches[cullGroup])
 	{
-		data->RenderWaterSurface(fancyWaterShader, true);
+		data->RenderWaterSurface(deviceCommandContext, fancyWaterShader, true);
 		if (waterManager.m_WaterFancyEffects)
-			data->RenderWaterShore(fancyWaterShader);
+			data->RenderWaterShore(deviceCommandContext, fancyWaterShader);
 	}
 	m->fancyWaterTech->EndPass();
 
@@ -522,7 +522,7 @@ void TerrainRenderer::RenderSimpleWater(
 	UNUSED2(cullGroup);
 #else
 	PROFILE3_GPU("simple water");
-	OGL_SCOPED_DEBUG_GROUP("Render Simple Water");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render Simple Water");
 
 	const WaterManager& waterManager = g_Renderer.GetSceneRenderer().GetWaterManager();
 	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
@@ -552,7 +552,7 @@ void TerrainRenderer::RenderSimpleWater(
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
 	{
 		CPatchRData* data = visiblePatches[i];
-		data->RenderWaterSurface(waterSimpleShader, false);
+		data->RenderWaterSurface(deviceCommandContext, waterSimpleShader, false);
 	}
 
 	deviceCommandContext->BindTexture(1, GL_TEXTURE_2D, 0);
@@ -587,6 +587,8 @@ void TerrainRenderer::RenderWaterFoamOccluders(
 	if (!waterManager.WillRenderFancyWater())
 		return;
 
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render water foam occluders");
+
 	// Render normals and foam to a framebuffer if we're using fancy effects.
 	deviceCommandContext->SetFramebuffer(waterManager.m_FancyEffectsFramebuffer.get());
 
@@ -603,7 +605,7 @@ void TerrainRenderer::RenderWaterFoamOccluders(
 	dummyShader->Uniform(str_transform, sceneRenderer.GetViewCamera().GetViewProjection());
 	dummyShader->Uniform(str_color, 0.0f, 0.0f, 0.0f, 0.0f);
 	for (CPatchRData* data : m->visiblePatches[cullGroup])
-		data->RenderWaterShore(dummyShader);
+		data->RenderWaterShore(deviceCommandContext, dummyShader);
 	dummyTech->EndPass();
 
 	deviceCommandContext->SetFramebuffer(

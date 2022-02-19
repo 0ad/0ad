@@ -126,6 +126,95 @@ std::vector<std::string> GetExtensionsImpl()
 	return extensions;
 }
 
+void GLAD_API_PTR OnDebugMessage(
+	GLenum source, GLenum type, GLuint id, GLenum severity,
+	GLsizei UNUSED(length), const GLchar* message, const void* UNUSED(user_param))
+{
+	std::string debugSource = "unknown";
+	std::string debugType = "unknown";
+	std::string debugSeverity = "unknown";
+
+	switch (source)
+	{
+	case GL_DEBUG_SOURCE_API:
+		debugSource = "the API";
+		break;
+	case GL_DEBUG_SOURCE_WINDOW_SYSTEM:
+		debugSource = "the window system";
+		break;
+	case GL_DEBUG_SOURCE_SHADER_COMPILER:
+		debugSource = "the shader compiler";
+		break;
+	case GL_DEBUG_SOURCE_THIRD_PARTY:
+		debugSource = "a third party";
+		break;
+	case GL_DEBUG_SOURCE_APPLICATION:
+		debugSource = "the application";
+		break;
+	case GL_DEBUG_SOURCE_OTHER:
+		debugSource = "somewhere";
+		break;
+	}
+
+	switch (type)
+	{
+	case GL_DEBUG_TYPE_ERROR:
+		debugType = "error";
+		break;
+	case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:
+		debugType = "deprecated behaviour";
+		break;
+	case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:
+		debugType = "undefined behaviour";
+		break;
+	case GL_DEBUG_TYPE_PORTABILITY:
+		debugType = "portability";
+		break;
+	case GL_DEBUG_TYPE_PERFORMANCE:
+		debugType = "performance";
+		break;
+	case GL_DEBUG_TYPE_OTHER:
+		debugType = "other";
+		break;
+	case GL_DEBUG_TYPE_MARKER:
+		debugType = "marker";
+		break;
+	case GL_DEBUG_TYPE_PUSH_GROUP:
+		debugType = "push group";
+		break;
+	case GL_DEBUG_TYPE_POP_GROUP:
+		debugType = "pop group";
+		break;
+	}
+
+	switch (severity)
+	{
+	case GL_DEBUG_SEVERITY_HIGH:
+		debugSeverity = "high";
+		break;
+	case GL_DEBUG_SEVERITY_MEDIUM:
+		debugSeverity = "medium";
+		break;
+	case GL_DEBUG_SEVERITY_LOW:
+		debugSeverity = "low";
+		break;
+	case GL_DEBUG_SEVERITY_NOTIFICATION:
+		debugSeverity = "notification";
+		break;
+	}
+
+	if (severity == GL_DEBUG_SEVERITY_NOTIFICATION)
+	{
+		debug_printf(
+			"OpenGL | %s: %s source: %s id %u: %s\n", debugSeverity.c_str(), debugType.c_str(), debugSource.c_str(), id, message);
+	}
+	else
+	{
+		LOGWARNING(
+			"OpenGL | %s: %s source: %s id %u: %s\n", debugSeverity.c_str(), debugType.c_str(), debugSource.c_str(), id, message);
+	}
+}
+
 } // anonymous namespace
 
 // static
@@ -198,7 +287,9 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 	glPixelStorei(GL_PACK_ALIGNMENT, 1);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-	device->m_Backbuffer = CFramebuffer::CreateBackbuffer();
+	glEnable(GL_TEXTURE_2D);
+
+	device->m_Backbuffer = CFramebuffer::CreateBackbuffer(device.get());
 
 	Capabilities& capabilities = device->m_Capabilities;
 	capabilities.ARBShaders = !ogl_HaveExtensions(0, "GL_ARB_vertex_program", "GL_ARB_fragment_program", nullptr);
@@ -213,6 +304,10 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 	// and irrelevant (was never widespread).
 	capabilities.S3TC = ogl_HaveExtensions(0, "GL_ARB_texture_compression", "GL_EXT_texture_compression_s3tc", nullptr) == 0;
 #endif
+#if CONFIG2_GLES
+	capabilities.multisampling = false;
+	capabilities.maxSampleCount = 1;
+#else
 	capabilities.multisampling =
 		ogl_HaveVersion(3, 3) &&
 		ogl_HaveExtension("GL_ARB_multisample") &&
@@ -223,12 +318,51 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 		glGetIntegerv(GL_MAX_SAMPLES, &maxSamples);
 		capabilities.maxSampleCount = maxSamples;
 	}
+#endif
 	capabilities.anisotropicFiltering = ogl_HaveExtension("GL_EXT_texture_filter_anisotropic");
 	if (capabilities.anisotropicFiltering)
 	{
 		GLfloat maxAnisotropy = 1.0f;
 		glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &maxAnisotropy);
 		capabilities.maxAnisotropy = maxAnisotropy;
+	}
+	GLint maxTextureSize = 1024;
+	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxTextureSize);
+	capabilities.maxTextureSize = maxTextureSize;
+
+#if CONFIG2_GLES
+	const bool isDebugInCore = ogl_HaveVersion(3, 2);
+#else
+	const bool isDebugInCore = ogl_HaveVersion(4, 3);
+#endif
+	const bool hasDebug = isDebugInCore || ogl_HaveExtension("GL_KHR_debug");
+	if (hasDebug)
+	{
+#ifdef NDEBUG
+		bool enableDebugMessages = false;
+		CFG_GET_VAL("renderer.backend.debugmessages", enableDebugMessages);
+		capabilities.debugLabels = false;
+		CFG_GET_VAL("renderer.backend.debuglabels", capabilities.debugLabels);
+		capabilities.debugScopedLabels = false;
+		CFG_GET_VAL("renderer.backend.debugscopedlabels", capabilities.debugScopedLabels);
+#else
+		const bool enableDebugMessages = true;
+		capabilities.debugLabels = true;
+		capabilities.debugScopedLabels = true;
+#endif
+		if (enableDebugMessages)
+		{
+			glEnable(GL_DEBUG_OUTPUT);
+			glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+			glDebugMessageCallback(OnDebugMessage, nullptr);
+
+			// Filter out our own debug group messages
+			const GLuint id = 0x0AD;
+			glDebugMessageControl(
+				GL_DEBUG_SOURCE_APPLICATION, GL_DEBUG_TYPE_PUSH_GROUP, GL_DONT_CARE, 1, &id, GL_FALSE);
+			glDebugMessageControl(
+				GL_DEBUG_SOURCE_APPLICATION, GL_DEBUG_TYPE_POP_GROUP, GL_DONT_CARE, 1, &id, GL_FALSE);
+		}
 	}
 
 	return device;
@@ -650,6 +784,26 @@ std::unique_ptr<CTexture> CDevice::CreateTexture2D(const char* name,
 {
 	return CreateTexture(name, CTexture::Type::TEXTURE_2D,
 		format, width, height, defaultSamplerDesc, MIPLevelCount, sampleCount);
+}
+
+std::unique_ptr<CFramebuffer> CDevice::CreateFramebuffer(
+	const char* name, CTexture* colorAttachment,
+	CTexture* depthStencilAttachment)
+{
+	return CreateFramebuffer(name, colorAttachment, depthStencilAttachment, CColor(0.0f, 0.0f, 0.0f, 0.0f));
+}
+
+std::unique_ptr<CFramebuffer> CDevice::CreateFramebuffer(
+	const char* name, CTexture* colorAttachment,
+	CTexture* depthStencilAttachment, const CColor& clearColor)
+{
+	return CFramebuffer::Create(this, name, colorAttachment, depthStencilAttachment, clearColor);
+}
+
+std::unique_ptr<CBuffer> CDevice::CreateBuffer(
+	const char* name, const CBuffer::Type type, const uint32_t size, const bool dynamic)
+{
+	return CBuffer::Create(this, name, type, size, dynamic);
 }
 
 void CDevice::Present()

@@ -53,7 +53,8 @@ void CTexturedLineRData::Render(
 	shader->Uniform(str_objectColor, line.m_Color);
 
 	GLsizei stride = sizeof(CTexturedLineRData::SVertex);
-	CTexturedLineRData::SVertex* vertexBase = reinterpret_cast<CTexturedLineRData::SVertex*>(m_VB->m_Owner->Bind());
+	CTexturedLineRData::SVertex* vertexBase =
+		reinterpret_cast<CTexturedLineRData::SVertex*>(m_VB->m_Owner->Bind(deviceCommandContext));
 
 	if (streamFlags & STREAM_POS)
 		shader->VertexPointer(3, GL_FLOAT, stride, &vertexBase->m_Position[0]);
@@ -64,7 +65,7 @@ void CTexturedLineRData::Render(
 	if (streamFlags & STREAM_UV1)
 		shader->TexCoordPointer(GL_TEXTURE1, 2, GL_FLOAT, stride, &vertexBase->m_UVs[0]);
 
-	u8* indexBase = m_VBIndices->m_Owner->Bind();
+	u8* indexBase = m_VBIndices->m_Owner->Bind(deviceCommandContext);
 
 	shader->AssertPointersBound();
 	glDrawElements(GL_TRIANGLES, m_VBIndices->m_Count, GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*m_VBIndices->m_Index);
@@ -309,7 +310,8 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 	for (const SVertex& vertex : vertices)
 		m_BoundingBox += vertex.m_Position;
 
-	m_VB = g_VBMan.AllocateChunk(sizeof(SVertex), vertices.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
+	m_VB = g_VBMan.AllocateChunk(
+		sizeof(SVertex), vertices.size(), Renderer::Backend::GL::CBuffer::Type::VERTEX, false);
 	if (m_VB) // allocation might fail (e.g. due to too many vertices)
 	{
 		m_VB->m_Owner->UpdateChunkVertices(m_VB.Get(), &vertices[0]); // copy data into VBO
@@ -317,7 +319,8 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 		for (size_t k = 0; k < indices.size(); ++k)
 			indices[k] += static_cast<u16>(m_VB->m_Index);
 
-		m_VBIndices = g_VBMan.AllocateChunk(sizeof(u16), indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
+		m_VBIndices = g_VBMan.AllocateChunk(
+			sizeof(u16), indices.size(), Renderer::Backend::GL::CBuffer::Type::INDEX, false);
 		if (m_VBIndices)
 			m_VBIndices->m_Owner->UpdateChunkVertices(m_VBIndices.Get(), &indices[0]);
 	}

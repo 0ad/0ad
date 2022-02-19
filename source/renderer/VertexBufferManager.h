@@ -88,7 +88,10 @@ public:
 	 *            lifetime of the VBChunk
 	 * @return chunk, or empty handle if no free chunks available
 	 */
-	Handle AllocateChunk(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore = nullptr, Group group = Group::DEFAULT);
+	Handle AllocateChunk(
+		const size_t vertexSize, const size_t numberOfVertices,
+		const Renderer::Backend::GL::CBuffer::Type type,
+		const bool dynamic, void* backingStore = nullptr, Group group = Group::DEFAULT);
 
 	/// Returns the given @p chunk to its owning buffer
 	void Release(CVertexBuffer::VBChunk* chunk);

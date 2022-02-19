@@ -122,7 +122,8 @@ static void inline addVertex(const MinimapUnitVertex& v,
 } // anonymous namespace
 
 CMiniMapTexture::CMiniMapTexture(CSimulation2& simulation)
-	: m_Simulation(simulation), m_IndexArray(GL_STATIC_DRAW), m_VertexArray(GL_DYNAMIC_DRAW)
+	: m_Simulation(simulation), m_IndexArray(false),
+	m_VertexArray(Renderer::Backend::GL::CBuffer::Type::VERTEX, true)
 {
 	// Register Relax NG validator.
 	CXeromyces::AddValidator(g_VFS, "pathfinder", "simulation/data/pathfinder.rng");
@@ -146,10 +147,10 @@ CMiniMapTexture::CMiniMapTexture(CSimulation2& simulation)
 	m_AttributeColor.elems = 4;
 	m_VertexArray.AddAttribute(&m_AttributeColor);
 
-	m_VertexArray.SetNumVertices(MAX_ENTITIES_DRAWN);
+	m_VertexArray.SetNumberOfVertices(MAX_ENTITIES_DRAWN);
 	m_VertexArray.Layout();
 
-	m_IndexArray.SetNumVertices(MAX_ENTITIES_DRAWN);
+	m_IndexArray.SetNumberOfVertices(MAX_ENTITIES_DRAWN);
 	m_IndexArray.Layout();
 	VertexArrayIterator<u16> index = m_IndexArray.GetIterator();
 	for (u16 i = 0; i < MAX_ENTITIES_DRAWN; ++i)
@@ -218,8 +219,10 @@ void CMiniMapTexture::CreateTextures(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
 
+	Renderer::Backend::GL::CDevice* backendDevice = deviceCommandContext->GetDevice();
+
 	// Create terrain texture
-	m_TerrainTexture = deviceCommandContext->GetDevice()->CreateTexture2D("MiniMapTerrainTexture",
+	m_TerrainTexture = backendDevice->CreateTexture2D("MiniMapTerrainTexture",
 		Renderer::Backend::Format::R8G8B8A8, textureSize, textureSize, defaultSamplerDesc);
 
 	// Initialise texture with solid black, for the areas we don't
@@ -234,10 +237,10 @@ void CMiniMapTexture::CreateTextures(
 
 	m_TerrainData = std::make_unique<u32[]>((m_MapSize - 1) * (m_MapSize - 1));
 
-	m_FinalTexture = deviceCommandContext->GetDevice()->CreateTexture2D("MiniMapFinalTexture",
+	m_FinalTexture = backendDevice->CreateTexture2D("MiniMapFinalTexture",
 		Renderer::Backend::Format::R8G8B8A8, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE, defaultSamplerDesc);
 
-	m_FinalTextureFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+	m_FinalTextureFramebuffer = backendDevice->CreateFramebuffer("MiniMapFinalFramebuffer",
 		m_FinalTexture.get(), nullptr);
 	ENSURE(m_FinalTextureFramebuffer);
 }
@@ -330,6 +333,7 @@ void CMiniMapTexture::RenderFinalTexture(
 		return;
 	m_FinalTextureDirty = false;
 
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render minimap texture");
 	deviceCommandContext->SetFramebuffer(m_FinalTextureFramebuffer.get());
 
 	const SViewPort oldViewPort = g_Renderer.GetViewport();
@@ -498,8 +502,8 @@ void CMiniMapTexture::RenderFinalTexture(
 		glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
 #endif
 
-		u8* indexBase = m_IndexArray.Bind();
-		u8* base = m_VertexArray.Bind();
+		u8* indexBase = m_IndexArray.Bind(deviceCommandContext);
+		u8* base = m_VertexArray.Bind(deviceCommandContext);
 		const GLsizei stride = (GLsizei)m_VertexArray.GetStride();
 
 		shader->VertexPointer(2, GL_FLOAT, stride, base + m_AttributePos.offset);
@@ -509,7 +513,7 @@ void CMiniMapTexture::RenderFinalTexture(
 		glDrawElements(GL_POINTS, (GLsizei)(m_EntitiesDrawn), GL_UNSIGNED_SHORT, indexBase);
 
 		g_Renderer.GetStats().m_DrawCalls++;
-		CVertexBuffer::Unbind();
+		CVertexBuffer::Unbind(deviceCommandContext);
 
 #if !CONFIG2_GLES
 		glDisable(GL_VERTEX_PROGRAM_POINT_SIZE);

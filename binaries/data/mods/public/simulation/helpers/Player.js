@@ -1,7 +1,7 @@
 /**
  * Used to create player entities prior to reading the rest of a map,
  * all other initialization must be done after loading map (terrain/entities).
- * DO NOT use other components here, as they may fail unpredictably.
+ * Be VERY careful in using other components here, as they may not be properly initialised yet.
  * settings is the object containing settings for this map.
  * newPlayers if true will remove old player entities or add new ones until
  * the new number of player entities is obtained
@@ -9,94 +9,69 @@
  */
 function LoadPlayerSettings(settings, newPlayers)
 {
-	var playerDefaults = Engine.ReadJSONFile("simulation/data/settings/player_defaults.json").PlayerData;
+	const playerDefaults = Engine.ReadJSONFile("simulation/data/settings/player_defaults.json").PlayerData;
+	const playerData = settings.PlayerData;
+	if (!playerData)
+		warn("Player.js: Setup has no player data - using defaults.");
 
-	// Default settings
-	if (!settings)
-		settings = {};
+	const getPlayerSetting = (idx, property) => {
+		if (playerData && playerData[idx] && (property in playerData[idx]))
+			return playerData[idx][property];
+
+		if (playerDefaults && playerDefaults[idx] && (property in playerDefaults[idx]))
+			return playerDefaults[idx][property];
+
+		return undefined;
+	};
 
 	// Add gaia to simplify iteration
 	// (if gaia is not already the first civ such as when called from Atlas' ActorViewer)
-	if (settings.PlayerData && settings.PlayerData[0] &&
-		(!settings.PlayerData[0].Civ || settings.PlayerData[0].Civ != "gaia"))
-		settings.PlayerData.unshift(null);
+	if (playerData && playerData[0] && (!playerData[0].Civ || playerData[0].Civ != "gaia"))
+		playerData.unshift(null);
 
-	var playerData = settings.PlayerData;
-
-	// Disable the AIIinterface when no AI players are present
 	if (playerData && !playerData.some(v => v && !!v.AI))
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_AIInterface).Disable();
 
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var numPlayers = cmpPlayerManager.GetNumPlayers();
-	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	const cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	let numPlayers = cmpPlayerManager.GetNumPlayers();
 
 	// Remove existing players or add new ones
 	if (newPlayers)
 	{
-		var settingsNumPlayers = 9; // default 8 players + gaia
+		const settingsNumPlayers = playerData?.length ?? playerDefaults.length;
 
-		if (playerData)
-			settingsNumPlayers = playerData.length; // includes gaia (see above)
-		else
-			warn("Player.js: Setup has no player data - using defaults");
+		while (numPlayers < settingsNumPlayers)
+			cmpPlayerManager.AddPlayer(GetPlayerTemplateName(getPlayerSetting(numPlayers++, "Civ")));
 
-		while (settingsNumPlayers > numPlayers)
-		{
-			// Add player entity to engine
-			var entID = Engine.AddEntity(GetPlayerTemplateName(getSetting(playerData, playerDefaults, numPlayers, "Civ")));
-			var cmpPlayer = Engine.QueryInterface(entID, IID_Player);
-			if (!cmpPlayer)
-				throw new Error("Player.js: Error creating player entity " + numPlayers);
-
-			cmpPlayerManager.AddPlayer(entID);
-			++numPlayers;
-		}
-
-		while (settingsNumPlayers < numPlayers)
-		{
+		for (; numPlayers > settingsNumPlayers; numPlayers--)
 			cmpPlayerManager.RemoveLastPlayer();
-			--numPlayers;
-		}
 	}
 
-	// Even when no new player, we must check the template compatibility as player template may be civ dependent
-	for (var i = 0; i < numPlayers; ++i)
+	// Even when no new player, we must check the template compatibility as player templates are civ dependent.
+	const cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	for (let i = 0; i < numPlayers; ++i)
 	{
-		var template = GetPlayerTemplateName(getSetting(playerData, playerDefaults, i, "Civ"));
-		var entID = cmpPlayerManager.GetPlayerByID(i);
-		if (cmpTemplateManager.GetCurrentTemplateName(entID) === template)
-			continue;
-		// We need to recreate this player to have the right template
-		entID = Engine.AddEntity(template);
-		cmpPlayerManager.ReplacePlayer(i, entID);
+		const template = GetPlayerTemplateName(getPlayerSetting(i, "Civ"));
+		const entID = cmpPlayerManager.GetPlayerByID(i);
+		if (cmpTemplateManager.GetCurrentTemplateName(entID) !== template)
+			cmpPlayerManager.ReplacePlayerTemplate(i, template);
 	}
 
-	// Initialize the player data
-	for (var i = 0; i < numPlayers; ++i)
+	for (let i = 0; i < numPlayers; ++i)
 	{
-		QueryPlayerIDInterface(i, IID_Identity).SetName(getSetting(playerData, playerDefaults, i, "Name"));
+		QueryPlayerIDInterface(i, IID_Identity).SetName(getPlayerSetting(i, "Name"));
 
-		var color = getSetting(playerData, playerDefaults, i, "Color");
+		const color = getPlayerSetting(i, "Color");
 		const cmpPlayer = QueryPlayerIDInterface(i);
 		cmpPlayer.SetColor(color.r, color.g, color.b);
 
 		// Special case for gaia
 		if (i == 0)
-		{
-			// Gaia should be its own ally.
-			cmpPlayer.SetAlly(0);
-
-			// Gaia is everyone's enemy
-			for (var j = 1; j < numPlayers; ++j)
-				cmpPlayer.SetEnemy(j);
-
 			continue;
-		}
 
 		// PopulationLimit
 		{
-			let maxPopulation =
+			const maxPopulation =
 				settings.PlayerData[i].PopulationLimit !== undefined ?
 					settings.PlayerData[i].PopulationLimit :
 				settings.PopulationCap !== undefined ?
@@ -123,38 +98,25 @@ function LoadPlayerSettings(settings, newPlayers)
 		else if (playerDefaults[i].Resources !== undefined)
 			cmpPlayer.SetResourceCounts(playerDefaults[i].Resources);
 
-		// DisableSpies
 		if (settings.DisableSpies)
 		{
 			cmpPlayer.AddDisabledTechnology("unlock_spies");
 			cmpPlayer.AddDisabledTemplate("special/spy");
 		}
 
-		// If diplomacy explicitly defined, use that; otherwise use teams
-		if (getSetting(playerData, playerDefaults, i, "Diplomacy") !== undefined)
-			cmpPlayer.SetDiplomacy(getSetting(playerData, playerDefaults, i, "Diplomacy"));
+		// If diplomacy explicitly defined, use that; otherwise use teams.
+		const diplomacy = getPlayerSetting(i, "Diplomacy");
+		if (diplomacy !== undefined)
+			cmpPlayer.SetDiplomacy(diplomacy);
 		else
-		{
-			// Init diplomacy
-			var myTeam = getSetting(playerData, playerDefaults, i, "Team");
+			cmpPlayer.SetTeam(getPlayerSetting(i, "Team") ?? -1);
 
-			// Set all but self as enemies as SetTeam takes care of allies
-			for (var j = 0; j < numPlayers; ++j)
-			{
-				if (i == j)
-					cmpPlayer.SetAlly(j);
-				else
-					cmpPlayer.SetEnemy(j);
-			}
-			cmpPlayer.SetTeam(myTeam === undefined ? -1 : myTeam);
-		}
-
-		const formations = getSetting(playerData, playerDefaults, i, "Formations");
+		const formations = getPlayerSetting(i, "Formations");
 		if (formations)
 			cmpPlayer.SetFormations(formations);
 
-		var startCam = getSetting(playerData, playerDefaults, i, "StartingCamera");
-		if (startCam !== undefined)
+		const startCam = getPlayerSetting(i, "StartingCamera");
+		if (startCam)
 			cmpPlayer.SetStartingCamera(startCam.Position, startCam.Rotation);
 	}
 
@@ -163,19 +125,6 @@ function LoadPlayerSettings(settings, newPlayers)
 	if (settings.LockTeams)
 		for (let i = 0; i < numPlayers; ++i)
 			QueryPlayerIDInterface(i).SetLockTeams(true);
-}
-
-// Get a setting if it exists or return default
-function getSetting(settings, defaults, idx, property)
-{
-	if (settings && settings[idx] && (property in settings[idx]))
-		return settings[idx][property];
-
-	// Use defaults
-	if (defaults && defaults[idx] && (property in defaults[idx]))
-		return defaults[idx][property];
-
-	return undefined;
 }
 
 function GetPlayerTemplateName(civ)

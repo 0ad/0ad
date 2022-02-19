@@ -220,7 +220,7 @@ int WaterManager::LoadWaterTextures()
 
 	// Create the water framebuffers
 
-	m_ReflectionFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+	m_ReflectionFramebuffer = backendDevice->CreateFramebuffer("ReflectionFramebuffer",
 		m_ReflectionTexture.get(), m_ReflFboDepthTexture.get(), CColor(0.5f, 0.5f, 1.0f, 0.0f));
 	if (!m_ReflectionFramebuffer)
 	{
@@ -228,7 +228,7 @@ int WaterManager::LoadWaterTextures()
 		UpdateQuality();
 	}
 
-	m_RefractionFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+	m_RefractionFramebuffer = backendDevice->CreateFramebuffer("RefractionFramebuffer",
 		m_RefractionTexture.get(), m_RefrFboDepthTexture.get(), CColor(1.0f, 0.0f, 0.0f, 0.0f));
 	if (!m_RefractionFramebuffer)
 	{
@@ -236,7 +236,7 @@ int WaterManager::LoadWaterTextures()
 		UpdateQuality();
 	}
 
-	m_FancyEffectsFramebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+	m_FancyEffectsFramebuffer = backendDevice->CreateFramebuffer("FancyEffectsFramebuffer",
 		m_FancyTexture.get(), m_FancyTextureDepth.get());
 	if (!m_FancyEffectsFramebuffer)
 	{
@@ -377,8 +377,6 @@ void WaterManager::RecomputeDistanceHeightmap()
 // This requires m_DistanceHeightmap to be defined properly.
 void WaterManager::CreateWaveMeshes()
 {
-	OGL_SCOPED_DEBUG_GROUP("Create Wave Meshes");
-
 	if (m_MapSize == 0)
 		return;
 
@@ -532,7 +530,7 @@ void WaterManager::CreateWaveMeshes()
 	// Generic indexes, max-length
 	m_ShoreWavesVBIndices = g_VBMan.AllocateChunk(
 		sizeof(GLushort), water_indices.size(),
-		GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER,
+		Renderer::Backend::GL::CBuffer::Type::INDEX, false,
 		nullptr, CVertexBufferManager::Group::WATER);
 	m_ShoreWavesVBIndices->m_Owner->UpdateChunkVertices(m_ShoreWavesVBIndices.Get(), &water_indices[0]);
 
@@ -753,7 +751,7 @@ void WaterManager::CreateWaveMeshes()
 
 			shoreWave->m_VBVertices = g_VBMan.AllocateChunk(
 				sizeof(SWavesVertex), vertices.size(),
-				GL_STATIC_DRAW, GL_ARRAY_BUFFER,
+				Renderer::Backend::GL::CBuffer::Type::VERTEX, false,
 				nullptr, CVertexBufferManager::Group::WATER);
 			shoreWave->m_VBVertices->m_Owner->UpdateChunkVertices(shoreWave->m_VBVertices.Get(), &vertices[0]);
 
@@ -766,9 +764,8 @@ void WaterManager::RenderWaves(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
 	const CFrustum& frustrum)
 {
-	OGL_SCOPED_DEBUG_GROUP("Render Waves");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render Waves");
 #if CONFIG2_GLES
-	UNUSED2(deviceCommandContext);
 	UNUSED2(frustrum);
 	#warning Fix WaterManager::RenderWaves on GLES
 #else
@@ -798,7 +795,7 @@ void WaterManager::RenderWaves(
 			continue;
 
 		CVertexBuffer::VBChunk* VBchunk = m_ShoreWaves[a]->m_VBVertices.Get();
-		SWavesVertex* base = (SWavesVertex*)VBchunk->m_Owner->Bind();
+		SWavesVertex* base = (SWavesVertex*)VBchunk->m_Owner->Bind(deviceCommandContext);
 
 		// setup data pointers
 		GLsizei stride = sizeof(SWavesVertex);
@@ -815,7 +812,7 @@ void WaterManager::RenderWaves(
 		shader->Uniform(str_translation, m_ShoreWaves[a]->m_TimeDiff);
 		shader->Uniform(str_width, (int)m_ShoreWaves[a]->m_Width);
 
-		u8* indexBase = m_ShoreWavesVBIndices->m_Owner->Bind();
+		u8* indexBase = m_ShoreWavesVBIndices->m_Owner->Bind(deviceCommandContext);
 		glDrawElements(GL_TRIANGLES, (GLsizei) (m_ShoreWaves[a]->m_Width-1)*(7*6),
 					   GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_ShoreWavesVBIndices->m_Index));
 
@@ -825,7 +822,7 @@ void WaterManager::RenderWaves(
 		//g_Renderer.m_Stats.m_DrawCalls++;
 		//g_Renderer.m_Stats.m_WaterTris += m_ShoreWaves_VBIndices->m_Count / 3;
 
-		CVertexBuffer::Unbind();
+		CVertexBuffer::Unbind(deviceCommandContext);
 	}
 	tech->EndPass();
 	deviceCommandContext->SetFramebuffer(

@@ -48,8 +48,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-11 08:08+0000\n"
-"PO-Revision-Date: 2022-02-11 08:26+0000\n"
+"POT-Creation-Date: 2022-02-14 08:09+0000\n"
+"PO-Revision-Date: 2022-02-14 08:24+0000\n"
 "Last-Translator: Transifex Bot\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -92,7 +92,7 @@ msgstr "Carregamento Abortado"
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/common/functions_utility.js:236
+#: gui/common/functions_utility.js:259
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Versão: %(buildDate)s (%(revision)s)"
@@ -4266,10 +4266,55 @@ msgstr "Profundidade real da água"
 msgid "Use actual water depth in rendering calculations."
 msgstr "Use a profundidade real da água nos cálculos de renderização."
 
+#: gui/options/options.json[2].options[19].label
+msgid "Texture quality"
+msgstr ""
+
+#: gui/options/options.json[2].options[19].tooltip
+msgid ""
+"Decrease texture quality making them blurrier but increases game "
+"performance."
+msgstr ""
+
+#: gui/options/options.json[2].options[20].label
+msgid "Texture anisotropic filter"
+msgstr ""
+
+#: gui/options/options.json[2].options[20].list[0].label
+msgid "1x"
+msgstr ""
+
+#: gui/options/options.json[2].options[20].list[1].label
+#: gui/options/options.json[2].options[20].list[1].tooltip
+msgid "2x"
+msgstr ""
+
+#: gui/options/options.json[2].options[20].list[2].label
+#: gui/options/options.json[2].options[20].list[2].tooltip
+msgid "4x"
+msgstr ""
+
+#: gui/options/options.json[2].options[20].list[3].label
+#: gui/options/options.json[2].options[20].list[3].tooltip
+msgid "8x"
+msgstr ""
+
+#: gui/options/options.json[2].options[20].list[4].label
+#: gui/options/options.json[2].options[20].list[4].tooltip
+msgid "16x"
+msgstr ""
+
+#: gui/options/options.json[2].options[20].tooltip
+msgid ""
+"Makes textures look better, especially terrain. If the anisotropic filter "
+"value is unsupported it will be set to the max supported value."
+msgstr ""
+
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
 msgstr "Antialiasing."
 
+#: gui/options/options.json[2].options[20].list[0].tooltip
 #: gui/options/options.json[2].options[3].list[0].label
 #: gui/options/options.json[2].options[4].list[0].label
 #: gui/options/options.json[4].options[5].list[2].label
@@ -4366,6 +4411,8 @@ msgid "Model quality"
 msgstr ""
 
 #: gui/options/options.json[2].options[10].list[0].label
+#: gui/options/options.json[2].options[19].list[0].label
+#: gui/options/options.json[2].options[19].list[0].tooltip
 #: gui/options/options.json[2].options[6].list[0].label
 msgid "Low"
 msgstr "Baixo"
@@ -4375,6 +4422,8 @@ msgid "Simpler models for better performance."
 msgstr ""
 
 #: gui/options/options.json[2].options[10].list[1].label
+#: gui/options/options.json[2].options[19].list[1].label
+#: gui/options/options.json[2].options[19].list[1].tooltip
 #: gui/options/options.json[2].options[6].list[1].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
@@ -4385,6 +4434,8 @@ msgid "Average quality and average performance."
 msgstr ""
 
 #: gui/options/options.json[2].options[10].list[2].label
+#: gui/options/options.json[2].options[19].list[2].label
+#: gui/options/options.json[2].options[19].list[2].tooltip
 #: gui/options/options.json[2].options[6].list[2].label
 msgid "High"
 msgstr "Alto"

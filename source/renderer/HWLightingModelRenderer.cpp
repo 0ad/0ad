@@ -17,18 +17,17 @@
 
 #include "precompiled.h"
 
-#include "lib/bits.h"
-#include "lib/ogl.h"
-#include "lib/sysdep/rtl.h"
-#include "maths/Vector3D.h"
+#include "renderer/HWLightingModelRenderer.h"
 
 #include "graphics/Color.h"
 #include "graphics/LightEnv.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
 #include "graphics/ShaderProgram.h"
-
-#include "renderer/HWLightingModelRenderer.h"
+#include "lib/bits.h"
+#include "lib/ogl.h"
+#include "lib/sysdep/rtl.h"
+#include "maths/Vector3D.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderModifiers.h"
 #include "renderer/VertexArray.h"
@@ -50,7 +49,8 @@ struct ShaderModelDef : public CModelDefRPrivate
 
 
 ShaderModelDef::ShaderModelDef(const CModelDefPtr& mdef)
-	: m_IndexArray(GL_STATIC_DRAW), m_Array(GL_STATIC_DRAW)
+	: m_IndexArray(false),
+	m_Array(Renderer::Backend::GL::CBuffer::Type::VERTEX, false)
 {
 	size_t numVertices = mdef->GetNumVertices();
 
@@ -62,7 +62,7 @@ ShaderModelDef::ShaderModelDef(const CModelDefPtr& mdef)
 		m_Array.AddAttribute(&m_UVs[i]);
 	}
 
-	m_Array.SetNumVertices(numVertices);
+	m_Array.SetNumberOfVertices(numVertices);
 	m_Array.Layout();
 
 	for (size_t i = 0; i < mdef->GetNumUVsPerVertex(); ++i)
@@ -74,7 +74,7 @@ ShaderModelDef::ShaderModelDef(const CModelDefPtr& mdef)
 	m_Array.Upload();
 	m_Array.FreeBackingStore();
 
-	m_IndexArray.SetNumVertices(mdef->GetNumFaces()*3);
+	m_IndexArray.SetNumberOfVertices(mdef->GetNumFaces()*3);
 	m_IndexArray.Layout();
 	ModelRenderer::BuildIndices(mdef, m_IndexArray.GetIterator());
 	m_IndexArray.Upload();
@@ -91,7 +91,10 @@ struct ShaderModel : public CModelRData
 	VertexArray::Attribute m_Position;
 	VertexArray::Attribute m_Normal;
 
-	ShaderModel(const void* key) : CModelRData(key), m_Array(GL_DYNAMIC_DRAW) { }
+	ShaderModel(const void* key)
+		: CModelRData(key),
+		m_Array(Renderer::Backend::GL::CBuffer::Type::VERTEX, true)
+	{}
 };
 
 
@@ -140,7 +143,7 @@ CModelRData* ShaderModelVertexRenderer::CreateModelData(const void* key, CModel*
 	shadermodel->m_Normal.elems = 4;
 	shadermodel->m_Array.AddAttribute(&shadermodel->m_Normal);
 
-	shadermodel->m_Array.SetNumVertices(mdef->GetNumVertices());
+	shadermodel->m_Array.SetNumberOfVertices(mdef->GetNumVertices());
 	shadermodel->m_Array.Layout();
 
 	// Verify alignment
@@ -180,20 +183,23 @@ void ShaderModelVertexRenderer::BeginPass(int streamflags)
 }
 
 // Cleanup one rendering pass
-void ShaderModelVertexRenderer::EndPass(int UNUSED(streamflags))
+void ShaderModelVertexRenderer::EndPass(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, int UNUSED(streamflags))
 {
-	CVertexBuffer::Unbind();
+	CVertexBuffer::Unbind(deviceCommandContext);
 }
 
 
 // Prepare UV coordinates for this modeldef
-void ShaderModelVertexRenderer::PrepareModelDef(const CShaderProgramPtr& shader, int streamflags, const CModelDef& def)
+void ShaderModelVertexRenderer::PrepareModelDef(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderProgramPtr& shader, int streamflags, const CModelDef& def)
 {
 	m->shadermodeldef = (ShaderModelDef*)def.GetRenderData(m);
 
 	ENSURE(m->shadermodeldef);
 
-	u8* base = m->shadermodeldef->m_Array.Bind();
+	u8* base = m->shadermodeldef->m_Array.Bind(deviceCommandContext);
 	GLsizei stride = (GLsizei)m->shadermodeldef->m_Array.GetStride();
 
 	if (streamflags & STREAM_UV0)
@@ -205,15 +211,17 @@ void ShaderModelVertexRenderer::PrepareModelDef(const CShaderProgramPtr& shader,
 
 
 // Render one model
-void ShaderModelVertexRenderer::RenderModel(const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data)
+void ShaderModelVertexRenderer::RenderModel(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data)
 {
 	const CModelDefPtr& mdldef = model->GetModelDef();
 	ShaderModel* shadermodel = static_cast<ShaderModel*>(data);
 
-	u8* base = shadermodel->m_Array.Bind();
+	u8* base = shadermodel->m_Array.Bind(deviceCommandContext);
 	GLsizei stride = (GLsizei)shadermodel->m_Array.GetStride();
 
-	u8* indexBase = m->shadermodeldef->m_IndexArray.Bind();
+	u8* indexBase = m->shadermodeldef->m_IndexArray.Bind(deviceCommandContext);
 
 	if (streamflags & STREAM_POS)
 		shader->VertexPointer(3, GL_FLOAT, stride, base + shadermodel->m_Position.offset);

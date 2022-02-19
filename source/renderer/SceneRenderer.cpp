@@ -294,7 +294,7 @@ void CSceneRenderer::RenderShadowMap(
 	const CShaderDefines& context)
 {
 	PROFILE3_GPU("shadow map");
-	OGL_SCOPED_DEBUG_GROUP("Render shadow map");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render shadow map");
 
 	CShaderDefines shadowsContext = context;
 	shadowsContext.Add(str_PASS_SHADOWS, str_1);
@@ -337,7 +337,7 @@ void CSceneRenderer::RenderPatches(
 	const CShaderDefines& context, int cullGroup)
 {
 	PROFILE3_GPU("patches");
-	OGL_SCOPED_DEBUG_GROUP("Render patches");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render patches");
 
 #if CONFIG2_GLES
 #warning TODO: implement wireface/edged rendering mode GLES
@@ -388,7 +388,7 @@ void CSceneRenderer::RenderModels(
 	const CShaderDefines& context, int cullGroup)
 {
 	PROFILE3_GPU("models");
-	OGL_SCOPED_DEBUG_GROUP("Render models");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render models");
 
 	int flags = 0;
 
@@ -425,7 +425,7 @@ void CSceneRenderer::RenderTransparentModels(
 	const CShaderDefines& context, int cullGroup, ETransparentMode transparentMode)
 {
 	PROFILE3_GPU("transparent models");
-	OGL_SCOPED_DEBUG_GROUP("Render transparent models");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render transparent models");
 
 	int flags = 0;
 
@@ -593,7 +593,7 @@ void CSceneRenderer::RenderReflections(
 	const CShaderDefines& context, const CBoundingBoxAligned& scissor)
 {
 	PROFILE3_GPU("water reflections");
-	OGL_SCOPED_DEBUG_GROUP("Render water reflections");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render water reflections");
 
 	WaterManager& wm = m->waterManager;
 
@@ -670,7 +670,7 @@ void CSceneRenderer::RenderRefractions(
 	const CShaderDefines& context, const CBoundingBoxAligned &scissor)
 {
 	PROFILE3_GPU("water refractions");
-	OGL_SCOPED_DEBUG_GROUP("Render water refractions");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render water refractions");
 
 	WaterManager& wm = m->waterManager;
 
@@ -733,7 +733,7 @@ void CSceneRenderer::RenderSilhouettes(
 	const CShaderDefines& context)
 {
 	PROFILE3_GPU("silhouettes");
-	OGL_SCOPED_DEBUG_GROUP("Render water silhouettes");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render silhouettes");
 
 	CShaderDefines contextOccluder = context;
 	contextOccluder.Add(str_MODE_SILHOUETTEOCCLUDER, str_1);
@@ -785,7 +785,7 @@ void CSceneRenderer::RenderParticles(
 	int cullGroup)
 {
 	PROFILE3_GPU("particles");
-	OGL_SCOPED_DEBUG_GROUP("Render particles");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render particles");
 
 	m->particleRenderer.RenderParticles(
 		deviceCommandContext, cullGroup);
@@ -810,7 +810,7 @@ void CSceneRenderer::RenderSubmissions(
 	const CBoundingBoxAligned& waterScissor)
 {
 	PROFILE3("render submissions");
-	OGL_SCOPED_DEBUG_GROUP("Render submissions");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render submissions");
 
 	m->skyManager.LoadAndUploadSkyTexturesIfNeeded(deviceCommandContext);
 

@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-11 08:08+0000\n"
-"PO-Revision-Date: 2022-02-11 08:26+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-02-14 08:09+0000\n"
+"PO-Revision-Date: 2022-02-15 10:43+0000\n"
+"Last-Translator: Photon man\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,7 +59,7 @@ msgstr "読込みを中止しました"
 msgid "Gaia"
 msgstr "野生"
 
-#: gui/common/functions_utility.js:236
+#: gui/common/functions_utility.js:259
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Build: %(buildDate)s (%(revision)s)"
@@ -1011,7 +1011,7 @@ msgstr "%(label)s: %(garrisonSize)s %(extraSize)s"
 
 #: gui/common/tooltips.js:578
 msgid "Garrison Size"
-msgstr ""
+msgstr "駐留できる数"
 
 #: gui/common/tooltips.js:581
 msgctxt "nested garrison"
@@ -2016,7 +2016,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.name
 msgctxt "hotkey metadata"
 msgid "Confirm"
-msgstr ""
+msgstr "確認"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.desc
 msgctxt "hotkey metadata"
@@ -2305,7 +2305,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
-msgstr ""
+msgstr "選択したユニットを資源投了後に指定した位置まで攻撃移動させる。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.name
 msgctxt "hotkey metadata"
@@ -4218,10 +4218,55 @@ msgstr "水深"
 msgid "Use actual water depth in rendering calculations."
 msgstr ""
 
+#: gui/options/options.json[2].options[19].label
+msgid "Texture quality"
+msgstr ""
+
+#: gui/options/options.json[2].options[19].tooltip
+msgid ""
+"Decrease texture quality making them blurrier but increases game "
+"performance."
+msgstr ""
+
+#: gui/options/options.json[2].options[20].label
+msgid "Texture anisotropic filter"
+msgstr ""
+
+#: gui/options/options.json[2].options[20].list[0].label
+msgid "1x"
+msgstr ""
+
+#: gui/options/options.json[2].options[20].list[1].label
+#: gui/options/options.json[2].options[20].list[1].tooltip
+msgid "2x"
+msgstr ""
+
+#: gui/options/options.json[2].options[20].list[2].label
+#: gui/options/options.json[2].options[20].list[2].tooltip
+msgid "4x"
+msgstr ""
+
+#: gui/options/options.json[2].options[20].list[3].label
+#: gui/options/options.json[2].options[20].list[3].tooltip
+msgid "8x"
+msgstr ""
+
+#: gui/options/options.json[2].options[20].list[4].label
+#: gui/options/options.json[2].options[20].list[4].tooltip
+msgid "16x"
+msgstr ""
+
+#: gui/options/options.json[2].options[20].tooltip
+msgid ""
+"Makes textures look better, especially terrain. If the anisotropic filter "
+"value is unsupported it will be set to the max supported value."
+msgstr ""
+
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
 msgstr "アンチエイリアス"
 
+#: gui/options/options.json[2].options[20].list[0].tooltip
 #: gui/options/options.json[2].options[3].list[0].label
 #: gui/options/options.json[2].options[4].list[0].label
 #: gui/options/options.json[4].options[5].list[2].label
@@ -4318,6 +4363,8 @@ msgid "Model quality"
 msgstr "モデルクオリティ"
 
 #: gui/options/options.json[2].options[10].list[0].label
+#: gui/options/options.json[2].options[19].list[0].label
+#: gui/options/options.json[2].options[19].list[0].tooltip
 #: gui/options/options.json[2].options[6].list[0].label
 msgid "Low"
 msgstr "Low"
@@ -4327,6 +4374,8 @@ msgid "Simpler models for better performance."
 msgstr "よりシンプルなモデルで、より良いパフォーマンスを。"
 
 #: gui/options/options.json[2].options[10].list[1].label
+#: gui/options/options.json[2].options[19].list[1].label
+#: gui/options/options.json[2].options[19].list[1].tooltip
 #: gui/options/options.json[2].options[6].list[1].label
 #: gui/options/options.json[4].options[3].list[3].label
 msgid "Medium"
@@ -4337,6 +4386,8 @@ msgid "Average quality and average performance."
 msgstr "平均的な品質と平均的なパフォーマンス。"
 
 #: gui/options/options.json[2].options[10].list[2].label
+#: gui/options/options.json[2].options[19].list[2].label
+#: gui/options/options.json[2].options[19].list[2].tooltip
 #: gui/options/options.json[2].options[6].list[2].label
 msgid "High"
 msgstr "High"
@@ -4702,15 +4753,15 @@ msgstr ""
 
 #: gui/options/options.json[6].options[14].list[0].label
 msgid "Unordered"
-msgstr ""
+msgstr "順不同"
 
 #: gui/options/options.json[6].options[14].list[1].label
 msgid "Ascending"
-msgstr ""
+msgstr "昇順"
 
 #: gui/options/options.json[6].options[14].list[2].label
 msgid "Descending"
-msgstr ""
+msgstr "降順"
 
 #: gui/options/options.json[6].options[14].tooltip
 msgid ""
@@ -5208,7 +5259,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXVI: Z——"
-msgstr ""
+msgstr "Alpha XXVI: Z——"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,8 +22,10 @@
 #ifndef INCLUDED_VERTEXBUFFER
 #define INCLUDED_VERTEXBUFFER
 
-#include "lib/ogl.h"
+#include "renderer/backend/gl/Buffer.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 
+#include <memory>
 #include <vector>
 
 /**
@@ -87,16 +89,22 @@ public:
 
 public:
 	// constructor, destructor
-	CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target);
-	CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target, size_t maximumBufferSize);
+	CVertexBuffer(
+		const char* name, const size_t vertexSize,
+		const Renderer::Backend::GL::CBuffer::Type type, const bool dynamic);
+	CVertexBuffer(
+		const char* name, const size_t vertexSize,
+		const Renderer::Backend::GL::CBuffer::Type type, const bool dynamic,
+		const size_t maximumBufferSize);
 	~CVertexBuffer();
 
 	/// Bind to this buffer; return pointer to address required as parameter
 	/// to glVertexPointer ( + etc) calls
-	u8* Bind();
+	u8* Bind(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	/// Unbind any currently-bound buffer, so glVertexPointer etc calls will not attempt to use it
-	static void Unbind();
+	static void Unbind(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	/// Make the vertex data available for the next call to Bind()
 	void PrepareForRendering(VBChunk* chunk);
@@ -109,7 +117,9 @@ public:
 	size_t GetBytesAllocated() const;
 
 	/// Returns true if this vertex buffer is compatible with the specified vertex type and intended usage.
-	bool CompatibleVertexType(size_t vertexSize, GLenum usage, GLenum target) const;
+	bool CompatibleVertexType(
+		const size_t vertexSize, const Renderer::Backend::GL::CBuffer::Type type,
+		const bool dynamic) const;
 
 	void DumpStatus() const;
 
@@ -120,22 +130,22 @@ public:
 	 * so we will re-upload the entire buffer every frame using glMapBuffer.
 	 * This requires the buffer's owner to hold onto its backing store.
 	 *
-	 * If false, we assume it will change rarely, and use glSubBufferData to
+	 * If false, we assume it will change rarely, and use direct upload to
 	 * update it incrementally. The backing store can be freed to save memory.
 	 */
-	static bool UseStreaming(GLenum usage);
+	static bool UseStreaming(const bool dynamic);
 
-protected:
+private:
 	friend class CVertexBufferManager;		// allow allocate only via CVertexBufferManager
 
 	/// Try to allocate a buffer of given number of vertices (each of given size),
 	/// and with the given type - return null if no free chunks available
-	VBChunk* Allocate(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore);
+	VBChunk* Allocate(
+		const size_t vertexSize, const size_t numberOfVertices,
+		const Renderer::Backend::GL::CBuffer::Type type, const bool dynamic,
+		void* backingStore);
 	/// Return given chunk to this buffer
 	void Release(VBChunk* chunk);
-
-
-private:
 
 	/// Vertex size of this vertex buffer
 	size_t m_VertexSize;
@@ -147,13 +157,10 @@ private:
 	std::vector<VBChunk*> m_AllocList;
 	/// Available free vertices - total of all free vertices in the free list
 	size_t m_FreeVertices;
-	/// Handle to the actual GL vertex buffer object
-	GLuint m_Handle;
-	/// Usage type of the buffer (GL_STATIC_DRAW etc)
-	GLenum m_Usage;
-	/// Buffer target (GL_ARRAY_BUFFER, GL_ELEMENT_ARRAY_BUFFER)
-	GLenum m_Target;
+
+	std::unique_ptr<Renderer::Backend::GL::CBuffer> m_Buffer;
+
 	bool m_HasNeededChunks;
 };
 
-#endif
+#endif // INCLUDED_VERTEXBUFFER

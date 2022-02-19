@@ -54,7 +54,7 @@ void SkyManager::LoadAndUploadSkyTexturesIfNeeded(
 	if (m_SkyCubeMap)
 		return;
 
-	OGL_SCOPED_DEBUG_GROUP("Load Sky Textures");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Load Sky Textures");
 	static const CStrW images[NUMBER_OF_TEXTURES + 1] = {
 		L"front",
 		L"back",
@@ -193,7 +193,7 @@ std::vector<CStrW> SkyManager::GetSkySets() const
 void SkyManager::RenderSky(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
-	OGL_SCOPED_DEBUG_GROUP("Render Sky");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render sky");
 #if CONFIG2_GLES
 	UNUSED2(deviceCommandContext);
 #warning TODO: implement SkyManager::RenderSky for GLES

@@ -473,6 +473,8 @@ void ShadowMapInternals::CreateTexture()
 	Texture.reset();
 	DummyTexture.reset();
 
+	Renderer::Backend::GL::CDevice* backendDevice = g_VideoMode.GetBackendDevice();
+
 	CFG_GET_VAL("shadowquality", QualityLevel);
 
 	// Get shadow map size as next power of two up from view width/height.
@@ -498,7 +500,8 @@ void ShadowMapInternals::CreateTexture()
 	}
 
 	// Clamp to the maximum texture size.
-	shadowMapSize = std::min(shadowMapSize, static_cast<int>(ogl_max_tex_size));
+	shadowMapSize = std::min(
+		shadowMapSize, static_cast<int>(backendDevice->GetCapabilities().maxTextureSize));
 
 	Width = Height = shadowMapSize;
 
@@ -527,14 +530,14 @@ void ShadowMapInternals::CreateTexture()
 
 	if (g_RenderingOptions.GetShadowAlphaFix())
 	{
-		DummyTexture = g_VideoMode.GetBackendDevice()->CreateTexture2D("ShadowMapDummy",
+		DummyTexture = backendDevice->CreateTexture2D("ShadowMapDummy",
 			Renderer::Backend::Format::R8G8B8A8, Width, Height,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::NEAREST,
 				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
 	}
 
-	Texture = g_VideoMode.GetBackendDevice()->CreateTexture2D("ShadowMapDepth",
+	Texture = backendDevice->CreateTexture2D("ShadowMapDepth",
 		backendFormat, Width, Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 #if CONFIG2_GLES
@@ -559,7 +562,7 @@ void ShadowMapInternals::CreateTexture()
 
 	ogl_WarnIfError();
 
-	Framebuffer = Renderer::Backend::GL::CFramebuffer::Create(
+	Framebuffer = backendDevice->CreateFramebuffer("ShadowMapFramebuffer",
 		g_RenderingOptions.GetShadowAlphaFix() ? DummyTexture.get() : nullptr, Texture.get());
 
 	if (!Framebuffer)

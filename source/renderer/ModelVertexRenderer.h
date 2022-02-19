@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,7 @@
 
 #include "graphics/MeshManager.h"
 #include "graphics/ShaderProgramPtr.h"
+#include "renderer/backend/gl/DeviceCommandContext.h"
 
 class CModel;
 class CModelRData;
@@ -114,7 +115,7 @@ public:
 	 * This equals the streamflags parameter passed on the last call to
 	 * BeginPass.
 	 */
-	virtual void EndPass(int streamflags) = 0;
+	virtual void EndPass(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, int streamflags) = 0;
 
 
 	/**
@@ -131,7 +132,9 @@ public:
 	 * BeginPass.
 	 * @param def The model definition.
 	 */
-	virtual void PrepareModelDef(const CShaderProgramPtr& shader, int streamflags, const CModelDef& def) = 0;
+	virtual void PrepareModelDef(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderProgramPtr& shader, int streamflags, const CModelDef& def) = 0;
 
 
 	/**
@@ -153,7 +156,9 @@ public:
 	 * that use the same CModelDef object and the same texture must
 	 * succeed.
 	 */
-	virtual void RenderModel(const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data) = 0;
+	virtual void RenderModel(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data) = 0;
 };
 
 

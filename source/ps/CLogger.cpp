@@ -206,7 +206,6 @@ void CLogger::WriteWarning(const char* message)
 void CLogger::Render()
 {
 	PROFILE3_GPU("logger");
-	OGL_SCOPED_DEBUG_GROUP("Draw CLogger messages");
 
 	CleanupRenderQueue();
 

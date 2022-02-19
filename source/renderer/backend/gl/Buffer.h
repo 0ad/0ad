@@ -15,12 +15,10 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_RENDERER_BACKEND_GL_FRAMEBUFFER
-#define INCLUDED_RENDERER_BACKEND_GL_FRAMEBUFFER
+#ifndef INCLUDED_RENDERER_BACKEND_GL_BUFFER
+#define INCLUDED_RENDERER_BACKEND_GL_BUFFER
 
-#include "graphics/Color.h"
 #include "lib/ogl.h"
-#include "renderer/backend/gl/Texture.h"
 
 #include <cstdint>
 #include <memory>
@@ -36,33 +34,37 @@ namespace GL
 
 class CDevice;
 
-class CFramebuffer
+class CBuffer
 {
 public:
-	~CFramebuffer();
+	enum class Type
+	{
+		VERTEX,
+		INDEX
+	};
 
-	GLuint GetHandle() const { return m_Handle; }
-	GLbitfield GetAttachmentMask() const { return m_AttachmentMask; }
-	const CColor& GetClearColor() const { return m_ClearColor; }
+	~CBuffer();
 
-	uint32_t GetWidth() const { return m_Width; }
-	uint32_t GetHeight() const { return m_Height; }
+	Type GetType() const { return m_Type; }
+	uint32_t GetSize() const { return m_Size; }
+	bool IsDynamic() const { return m_Dynamic; }
+
+	GLuint GetHandle() { return m_Handle; }
 
 private:
 	friend class CDevice;
 
-	static std::unique_ptr<CFramebuffer> Create(
+	static std::unique_ptr<CBuffer> Create(
 		CDevice* device, const char* name,
-		CTexture* colorAttachment, CTexture* depthStencilAttachment, const CColor& clearColor);
-	static std::unique_ptr<CFramebuffer> CreateBackbuffer(CDevice* device);
+		const Type type, const uint32_t size, const bool dynamic);
 
-	CFramebuffer();
+	CBuffer();
 
 	CDevice* m_Device = nullptr;
+	Type m_Type = Type::VERTEX;
+	uint32_t m_Size = 0;
+	bool m_Dynamic = false;
 	GLuint m_Handle = 0;
-	uint32_t m_Width = 0, m_Height = 0;
-	GLbitfield m_AttachmentMask = 0;
-	CColor m_ClearColor;
 };
 
 } // namespace GL
@@ -71,4 +73,4 @@ private:
 
 } // namespace Renderer
 
-#endif // INCLUDED_RENDERER_BACKEND_GL_FRAMEBUFFER
+#endif // INCLUDED_RENDERER_BACKEND_GL_BUFFER

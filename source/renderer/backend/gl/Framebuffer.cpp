@@ -37,19 +37,14 @@ namespace GL
 
 // static
 std::unique_ptr<CFramebuffer> CFramebuffer::Create(
-	CTexture* colorAttachment, CTexture* depthStencilAttachment)
-{
-	return Create(colorAttachment, depthStencilAttachment, CColor(0.0f, 0.0f, 0.0f, 0.0f));
-}
-
-// static
-std::unique_ptr<CFramebuffer> CFramebuffer::Create(
+	CDevice* device, const char* name,
 	CTexture* colorAttachment, CTexture* depthStencilAttachment,
 	const CColor& clearColor)
 {
 	ENSURE(colorAttachment || depthStencilAttachment);
 
 	std::unique_ptr<CFramebuffer> framebuffer(new CFramebuffer());
+	framebuffer->m_Device = device;
 	framebuffer->m_ClearColor = clearColor;
 
 	glGenFramebuffersEXT(1, &framebuffer->m_Handle);
@@ -126,6 +121,13 @@ std::unique_ptr<CFramebuffer> CFramebuffer::Create(
 
 	ogl_WarnIfError();
 
+#if !CONFIG2_GLES
+	if (framebuffer->m_Device->GetCapabilities().debugLabels)
+	{
+		glObjectLabel(GL_FRAMEBUFFER, framebuffer->m_Handle, -1, name);
+	}
+#endif
+
 	const GLenum status = glCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
@@ -142,10 +144,12 @@ std::unique_ptr<CFramebuffer> CFramebuffer::Create(
 }
 
 // static
-std::unique_ptr<CFramebuffer> CFramebuffer::CreateBackbuffer()
+std::unique_ptr<CFramebuffer> CFramebuffer::CreateBackbuffer(
+	CDevice* device)
 {
 	// Backbuffer for GL is a special case with a zero framebuffer.
 	std::unique_ptr<CFramebuffer> framebuffer(new CFramebuffer());
+	framebuffer->m_Device = device;
 	framebuffer->m_AttachmentMask = GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT;
 	CStr skyString = "0 0 0";
 	CFG_GET_VAL("skycolor", skyString);

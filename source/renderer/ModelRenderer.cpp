@@ -704,7 +704,7 @@ void ShaderModelRenderer::Render(
 						if (newModeldef != currentModeldef)
 						{
 							currentModeldef = newModeldef;
-							m->vertexRenderer->PrepareModelDef(shader, streamflags, *currentModeldef);
+							m->vertexRenderer->PrepareModelDef(deviceCommandContext, shader, streamflags, *currentModeldef);
 						}
 
 						// Bind all uniforms when any change
@@ -753,11 +753,11 @@ void ShaderModelRenderer::Render(
 						CModelRData* rdata = static_cast<CModelRData*>(model->GetRenderData());
 						ENSURE(rdata->GetKey() == m->vertexRenderer.get());
 
-						m->vertexRenderer->RenderModel(shader, streamflags, model, rdata);
+						m->vertexRenderer->RenderModel(deviceCommandContext, shader, streamflags, model, rdata);
 					}
 				}
 
-				m->vertexRenderer->EndPass(streamflags);
+				m->vertexRenderer->EndPass(deviceCommandContext, streamflags);
 
 				currentTech->EndPass(pass);
 			}

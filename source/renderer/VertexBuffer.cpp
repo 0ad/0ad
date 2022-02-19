@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,11 +21,14 @@
 
 #include "lib/ogl.h"
 #include "lib/sysdep/cpu.h"
-#include "Renderer.h"
 #include "ps/CLogger.h"
 #include "ps/Errors.h"
+#include "ps/VideoMode.h"
+#include "renderer/backend/gl/Device.h"
+#include "renderer/Renderer.h"
 
 #include <algorithm>
+#include <cstring>
 #include <iterator>
 
 // Absolute maximum (bytewise) size of each GL vertex buffer object.
@@ -34,32 +37,34 @@
 // TODO: measure what influence this has on performance
 constexpr std::size_t MAX_VB_SIZE_BYTES = 4 * 1024 * 1024;
 
-CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target)
-	: CVertexBuffer(vertexSize, usage, target, MAX_VB_SIZE_BYTES)
+CVertexBuffer::CVertexBuffer(
+	const char* name, const size_t vertexSize,
+	const Renderer::Backend::GL::CBuffer::Type type, const bool dynamic)
+	: CVertexBuffer(name, vertexSize, type, dynamic, MAX_VB_SIZE_BYTES)
 {
 }
 
-CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target, size_t maximumBufferSize)
-	: m_VertexSize(vertexSize), m_Handle(0), m_Usage(usage), m_Target(target), m_HasNeededChunks(false)
+CVertexBuffer::CVertexBuffer(
+	const char* name, const size_t vertexSize,
+	const Renderer::Backend::GL::CBuffer::Type type, const bool dynamic,
+	const size_t maximumBufferSize)
+	: m_VertexSize(vertexSize), m_HasNeededChunks(false)
 {
 	size_t size = maximumBufferSize;
 
-	if (target == GL_ARRAY_BUFFER) // vertex data buffer
+	if (type == Renderer::Backend::GL::CBuffer::Type::VERTEX)
 	{
 		// We want to store 16-bit indices to any vertex in a buffer, so the
 		// buffer must never be bigger than vertexSize*64K bytes since we can
 		// address at most 64K of them with 16-bit indices
-		size = std::min(size, vertexSize*65536);
+		size = std::min(size, vertexSize * 65536);
 	}
 
 	// store max/free vertex counts
 	m_MaxVertices = m_FreeVertices = size / vertexSize;
 
-	// allocate raw buffer
-	glGenBuffersARB(1, &m_Handle);
-	glBindBufferARB(m_Target, m_Handle);
-	glBufferDataARB(m_Target, m_MaxVertices * m_VertexSize, 0, m_Usage);
-	glBindBufferARB(m_Target, 0);
+	m_Buffer = g_VideoMode.GetBackendDevice()->CreateBuffer(
+		name, type, m_MaxVertices * m_VertexSize, dynamic);
 
 	// create sole free chunk
 	VBChunk* chunk = new VBChunk;
@@ -74,46 +79,50 @@ CVertexBuffer::~CVertexBuffer()
 	// Must have released all chunks before destroying the buffer
 	ENSURE(m_AllocList.empty());
 
-	if (m_Handle)
-		glDeleteBuffersARB(1, &m_Handle);
+	m_Buffer.reset();
 
 	for (VBChunk* const& chunk : m_FreeList)
 		delete chunk;
 }
 
-
-bool CVertexBuffer::CompatibleVertexType(size_t vertexSize, GLenum usage, GLenum target) const
+bool CVertexBuffer::CompatibleVertexType(
+	const size_t vertexSize, const Renderer::Backend::GL::CBuffer::Type type,
+	const bool dynamic) const
 {
-	return usage == m_Usage && target == m_Target && vertexSize == m_VertexSize;
+	ENSURE(m_Buffer);
+	return type == m_Buffer->GetType() && dynamic == m_Buffer->IsDynamic() && vertexSize == m_VertexSize;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Allocate: try to allocate a buffer of given number of vertices (each of
 // given size), with the given type, and using the given texture - return null
 // if no free chunks available
-CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore)
+CVertexBuffer::VBChunk* CVertexBuffer::Allocate(
+	const size_t vertexSize, const size_t numberOfVertices,
+	const Renderer::Backend::GL::CBuffer::Type type, const bool dynamic,
+	void* backingStore)
 {
 	// check this is the right kind of buffer
-	if (!CompatibleVertexType(vertexSize, usage, target))
+	if (!CompatibleVertexType(vertexSize, type, dynamic))
 		return nullptr;
 
-	if (UseStreaming(usage))
+	if (UseStreaming(dynamic))
 		ENSURE(backingStore != nullptr);
 
 	// quick check there's enough vertices spare to allocate
-	if (numVertices > m_FreeVertices)
+	if (numberOfVertices > m_FreeVertices)
 		return nullptr;
 
 	// trawl free list looking for first free chunk with enough space
 	std::vector<VBChunk*>::iterator best_iter = m_FreeList.end();
 	for (std::vector<VBChunk*>::iterator iter = m_FreeList.begin(); iter != m_FreeList.end(); ++iter)
 	{
-		if (numVertices == (*iter)->m_Count)
+		if (numberOfVertices == (*iter)->m_Count)
 		{
 			best_iter = iter;
 			break;
 		}
-		else if (numVertices < (*iter)->m_Count && (best_iter == m_FreeList.end() || (*best_iter)->m_Count < (*iter)->m_Count))
+		else if (numberOfVertices < (*iter)->m_Count && (best_iter == m_FreeList.end() || (*best_iter)->m_Count < (*iter)->m_Count))
 			best_iter = iter;
 	}
 
@@ -131,17 +140,17 @@ CVertexBuffer::VBChunk* CVertexBuffer::Allocate(size_t vertexSize, size_t numVer
 
 	// split chunk into two; - allocate a new chunk using all unused vertices in the
 	// found chunk, and add it to the free list
-	if (chunk->m_Count > numVertices)
+	if (chunk->m_Count > numberOfVertices)
 	{
 		VBChunk* newchunk = new VBChunk;
 		newchunk->m_Owner = this;
-		newchunk->m_Count = chunk->m_Count - numVertices;
-		newchunk->m_Index = chunk->m_Index + numVertices;
+		newchunk->m_Count = chunk->m_Count - numberOfVertices;
+		newchunk->m_Index = chunk->m_Index + numberOfVertices;
 		m_FreeList.emplace_back(newchunk);
 		m_FreeVertices += newchunk->m_Count;
 
 		// resize given chunk
-		chunk->m_Count = numVertices;
+		chunk->m_Count = numberOfVertices;
 	}
 
 	// return found chunk
@@ -195,8 +204,8 @@ void CVertexBuffer::Release(VBChunk* chunk)
 // UpdateChunkVertices: update vertex data for given chunk
 void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk, void* data)
 {
-	ENSURE(m_Handle);
-	if (UseStreaming(m_Usage))
+	ENSURE(m_Buffer);
+	if (UseStreaming(m_Buffer->IsDynamic()))
 	{
 		// The VBO is now out of sync with the backing store
 		chunk->m_Dirty = true;
@@ -207,23 +216,24 @@ void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk, void* data)
 	}
 	else
 	{
-		glBindBufferARB(m_Target, m_Handle);
-		glBufferSubDataARB(m_Target, chunk->m_Index * m_VertexSize, chunk->m_Count * m_VertexSize, data);
-		glBindBufferARB(m_Target, 0);
+		g_Renderer.GetDeviceCommandContext()->UploadBufferRegion(
+			m_Buffer.get(), data, chunk->m_Index * m_VertexSize, chunk->m_Count * m_VertexSize);
 	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Bind: bind to this buffer; return pointer to address required as parameter
 // to glVertexPointer ( + etc) calls
-u8* CVertexBuffer::Bind()
+u8* CVertexBuffer::Bind(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
-	glBindBufferARB(m_Target, m_Handle);
-
-	if (UseStreaming(m_Usage))
+	if (UseStreaming(m_Buffer->IsDynamic()))
 	{
 		if (!m_HasNeededChunks)
+		{
+			deviceCommandContext->BindBuffer(m_Buffer->GetType(), m_Buffer.get());
 			return nullptr;
+		}
 
 		// If any chunks are out of sync with the current VBO, and are
 		// needed for rendering this frame, we'll need to re-upload the VBO
@@ -239,29 +249,13 @@ u8* CVertexBuffer::Bind()
 
 		if (needUpload)
 		{
-			// Tell the driver that it can reallocate the whole VBO
-			glBufferDataARB(m_Target, m_MaxVertices * m_VertexSize, NULL, m_Usage);
-
-			// (In theory, glMapBufferRange with GL_MAP_INVALIDATE_BUFFER_BIT could be used
-			// here instead of glBufferData(..., NULL, ...) plus glMapBuffer(), but with
-			// current Intel Windows GPU drivers (as of 2015-01) it's much faster if you do
-			// the explicit glBufferData.)
-
-			while (true)
+			deviceCommandContext->UploadBuffer(m_Buffer.get(), [&](u8* mappedData)
 			{
-				void* p = glMapBufferARB(m_Target, GL_WRITE_ONLY);
-				if (p == NULL)
-				{
-					// This shouldn't happen unless we run out of virtual address space
-					LOGERROR("glMapBuffer failed");
-					break;
-				}
-
 #ifndef NDEBUG
 				// To help detect bugs where PrepareForRendering() was not called,
 				// force all not-needed data to 0, so things won't get rendered
 				// with undefined (but possibly still correct-looking) data.
-				memset(p, 0, m_MaxVertices * m_VertexSize);
+				memset(mappedData, 0, m_MaxVertices * m_VertexSize);
 #endif
 
 				// Copy only the chunks we need. (This condition is helpful when
@@ -270,15 +264,8 @@ u8* CVertexBuffer::Bind()
 				// the rest.)
 				for (VBChunk* const& chunk : m_AllocList)
 					if (chunk->m_Needed)
-						memcpy((u8 *)p + chunk->m_Index * m_VertexSize, chunk->m_BackingStore, chunk->m_Count * m_VertexSize);
-
-				if (glUnmapBufferARB(m_Target) == GL_TRUE)
-					break;
-
-				// Unmap might fail on e.g. resolution switches, so just try again
-				// and hope it will eventually succeed
-				debug_printf("glUnmapBuffer failed, trying again...\n");
-			}
+						std::memcpy(mappedData + chunk->m_Index * m_VertexSize, chunk->m_BackingStore, chunk->m_Count * m_VertexSize);
+			});
 
 			// Anything we just uploaded is clean; anything else is dirty
 			// since the rest of the VBO content is now undefined
@@ -302,14 +289,18 @@ u8* CVertexBuffer::Bind()
 
 		m_HasNeededChunks = false;
 	}
+	deviceCommandContext->BindBuffer(m_Buffer->GetType(), m_Buffer.get());
 
 	return nullptr;
 }
 
-void CVertexBuffer::Unbind()
+void CVertexBuffer::Unbind(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
-	glBindBufferARB(GL_ARRAY_BUFFER, 0);
-	glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER, 0);
+	deviceCommandContext->BindBuffer(
+		Renderer::Backend::GL::CBuffer::Type::VERTEX, nullptr);
+	deviceCommandContext->BindBuffer(
+		Renderer::Backend::GL::CBuffer::Type::INDEX, nullptr);
 }
 
 size_t CVertexBuffer::GetBytesReserved() const
@@ -335,9 +326,9 @@ void CVertexBuffer::DumpStatus() const
 	debug_printf("max size = %d\n", static_cast<int>(maxSize));
 }
 
-bool CVertexBuffer::UseStreaming(GLenum usage)
+bool CVertexBuffer::UseStreaming(const bool dynamic)
 {
-	return usage == GL_DYNAMIC_DRAW || usage == GL_STREAM_DRAW;
+	return dynamic;
 }
 
 void CVertexBuffer::PrepareForRendering(VBChunk* chunk)

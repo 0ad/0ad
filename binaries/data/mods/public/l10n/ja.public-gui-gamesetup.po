@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2022-01-24 07:30+0000\n"
-"Last-Translator: Ray I\n"
+"PO-Revision-Date: 2022-02-15 04:45+0000\n"
+"Last-Translator: Photon man\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -615,7 +615,7 @@ msgstr "メインメニューに戻ります。"
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: 文明一覧／建設早見表を見る\nクリックすると、前回開いた画面が再度表示されます。"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
@@ -671,7 +671,7 @@ msgstr "現在の設定で新しいゲームを開始する（すべてのプレ
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatInputPanel.js:55
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr ""
+msgstr "プレイヤーネームや設定をオートコンプリートするには%(hotkey)sを押してください"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:27
 msgid "Unknown Player"
@@ -750,24 +750,24 @@ msgstr "チートを有効にしました。"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:43
 msgid "Rated game."
-msgstr ""
+msgstr "レーティングゲーム"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:74
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
-msgstr ""
+msgstr "%(name)sをクリックすると、設定タブが切り替わります。"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:27
 msgid "No selected map"
-msgstr ""
+msgstr "選択されたマップがありません"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr ""
+msgstr "クリックすると利用可能なマップの一覧が表示されます。"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):10
 msgid "Show this message in the future."
-msgstr ""
+msgstr "今後、このメッセージを表示します"
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
 msgid "Loading"
@@ -788,12 +788,12 @@ msgstr "%(name)sのゲーム"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:123
 msgid "Please enter a valid server name."
-msgstr ""
+msgstr "有効なサーバーネームを入力して下さい"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:131
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr ""
+msgstr "サーバーのポート番号は、以下の間である必要があります。%(min)s～%(max)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:150
 msgid "Connecting to server..."
@@ -801,7 +801,7 @@ msgstr "サーバーに接続しています…"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:165
 msgid "Server is not running."
-msgstr ""
+msgstr "サーバーが起動していません"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Password is invalid."
@@ -815,12 +815,12 @@ msgstr "あなたは締め出されました (ban)"
 msgid ""
 "Failed to get local IP of the server (it was assumed to be on the same "
 "network)."
-msgstr ""
+msgstr "サーバーのローカルIPの取得に失敗しました（同じネットワーク上にあることが前提です）"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
-msgstr ""
+msgstr "\\[無効な値 %(reason)s]"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
@@ -828,7 +828,7 @@ msgstr "サーバへの接続に失敗しました。"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
-msgstr ""
+msgstr "接続に失敗しました"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
@@ -878,7 +878,7 @@ msgstr "既存のゲームに参加します。"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr ""
+msgstr "プレイヤーネーム:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
@@ -887,7 +887,7 @@ msgstr "サーバーのホスト名かIPアドレス："
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):48
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):95
 msgid "Server Port:"
-msgstr ""
+msgstr "サーバーポート:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
 msgid "Set up your server to host."
@@ -895,15 +895,15 @@ msgstr "あなたのサーバーをホストにします。"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
-msgstr ""
+msgstr "サーバーネーム:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
 msgid "Server Password:"
-msgstr ""
+msgstr "サーバーパスワード:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
-msgstr ""
+msgstr "ファイアウォールを回避するためにSTUNを使用する"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):136
 msgid "Continue"
@@ -919,16 +919,16 @@ msgstr "パスワード："
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
 msgid "Confirm"
-msgstr ""
+msgstr "確認"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
-msgstr ""
+msgstr "デフォルトのポートを使用する場合は空白にしてください。"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr ""
+msgstr "必要ない場合は空白にしてください。"
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format
@@ -942,7 +942,7 @@ msgstr "%(percentage)s%%"
 #: gui/loading/TipDisplay.js:62
 #, javascript-format
 msgid "• %(tiptext)s"
-msgstr ""
+msgstr "• %(tiptext)s"
 
 #: gui/loading/TitleDisplay.js:15
 #, javascript-format

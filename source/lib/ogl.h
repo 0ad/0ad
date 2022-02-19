@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -143,28 +143,4 @@ extern const char* ogl_GetErrorName(GLenum err);
  **/
 extern bool ogl_SquelchError(GLenum err_to_ignore);
 
-
-//-----------------------------------------------------------------------------
-// implementation limits / feature detect
-
-extern GLint ogl_max_tex_size;				/// [pixels]
-extern GLint ogl_max_tex_units;				/// limit on GL_TEXTUREn
-
-
-#ifdef NDEBUG
-# define KHR_DEBUG_ENABLED 0
-# define OGL_SCOPED_DEBUG_GROUP(groupName)
-#else
-# define KHR_DEBUG_ENABLED 1
-# define OGL_SCOPED_DEBUG_GROUP(groupName) ogl_DebugScopedGroup glDebugScopedGroup(groupName)
-/**
- * RAII for glPushDebugGroup() and glPopDebugGroup().
- */
-struct ogl_DebugScopedGroup
-{
-	ogl_DebugScopedGroup(const char* message);
-	~ogl_DebugScopedGroup();
-};
-#endif
-
-#endif	// #ifndef INCLUDED_OGL
+#endif	// INCLUDED_OGL

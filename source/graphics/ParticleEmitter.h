@@ -128,7 +128,9 @@ public:
 	/**
 	 * Draw the vertex array.
 	 */
-	void RenderArray(const CShaderProgramPtr& shader);
+	void RenderArray(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		const CShaderProgramPtr& shader);
 
 	/**
 	 * Stop this emitter emitting new particles, and pass responsibility for rendering
