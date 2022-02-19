@@ -44,6 +44,7 @@
 #include <algorithm>
 
 SkyManager::SkyManager()
+	: m_VertexArray(Renderer::Backend::GL::CBuffer::Type::VERTEX, false)
 {
 	CFG_GET_VAL("showsky", m_RenderSky);
 }
@@ -201,13 +202,12 @@ void SkyManager::RenderSky(
 	if (!m_RenderSky)
 		return;
 
-	// Draw the sky as a small box around the map, with depth write enabled.
-	// This will be done before anything else is drawn so we'll be overlapped by
-	// everything else.
-
 	// Do nothing unless SetSkySet was called
 	if (m_SkySet.empty() || !m_SkyCubeMap)
 		return;
+
+	if (m_VertexArray.GetNumberOfVertices() == 0)
+		CreateSkyCube();
 
 	const CCamera& camera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
@@ -237,63 +237,100 @@ void SkyManager::RenderSky(
 		str_transform,
 		camera.GetViewProjection() * translate * rotate * scale);
 
-	std::vector<GLfloat> vertexData;
-	// 6 sides of cube with 4 vertices with 6 floats (3 uv and 3 position).
-	vertexData.reserve(6 * 4 * 6);
-#define ADD_VERTEX(U, V, W, X, Y, Z) \
+	m_VertexArray.PrepareForRendering();
+
+	u8* base = m_VertexArray.Bind(deviceCommandContext);
+	const GLsizei stride = static_cast<GLsizei>(m_VertexArray.GetStride());
+
+	shader->VertexPointer(
+		3, GL_FLOAT, stride, base + m_AttributePosition.offset);
+	shader->TexCoordPointer(
+		GL_TEXTURE0, 3, GL_FLOAT, stride, base + m_AttributeUV.offset);
+	shader->AssertPointersBound();
+
+	glDrawArrays(GL_TRIANGLES, 0, m_VertexArray.GetNumberOfVertices());
+
+	skytech->EndPass();
+#endif
+}
+
+void SkyManager::CreateSkyCube()
+{
+	m_AttributePosition.type = GL_FLOAT;
+	m_AttributePosition.elems = 3;
+	m_VertexArray.AddAttribute(&m_AttributePosition);
+
+	m_AttributeUV.type = GL_FLOAT;
+	m_AttributeUV.elems = 3;
+	m_VertexArray.AddAttribute(&m_AttributeUV);
+
+	// 6 sides of cube with 6 vertices.
+	m_VertexArray.SetNumberOfVertices(6 * 6);
+	m_VertexArray.Layout();
+
+	VertexArrayIterator<CVector3D> attrPosition = m_AttributePosition.GetIterator<CVector3D>();
+	VertexArrayIterator<CVector3D> attrUV = m_AttributeUV.GetIterator<CVector3D>();
+
+#define ADD_VERTEX(U, V, W, VX, VY, VZ) \
 	STMT( \
-		vertexData.push_back(X); \
-		vertexData.push_back(Y); \
-		vertexData.push_back(Z); \
-		vertexData.push_back(U); \
-		vertexData.push_back(V); \
-		vertexData.push_back(W);)
+		attrPosition->X = VX; \
+		attrPosition->Y = VY; \
+		attrPosition->Z = VZ; \
+		++attrPosition; \
+		attrUV->X = U; \
+		attrUV->Y = V; \
+		attrUV->Z = W; \
+		++attrUV;)
 
-	// GL_TEXTURE_CUBE_MAP_NEGATIVE_X
+	// Axis -X
 	ADD_VERTEX(+1, +1, +1, -1.0f, -1.0f, -1.0f);
 	ADD_VERTEX(+1, +1, -1, -1.0f, -1.0f, +1.0f);
 	ADD_VERTEX(+1, -1, -1, -1.0f, +1.0f, +1.0f);
+	ADD_VERTEX(+1, +1, +1, -1.0f, -1.0f, -1.0f);
+	ADD_VERTEX(+1, -1, -1, -1.0f, +1.0f, +1.0f);
 	ADD_VERTEX(+1, -1, +1, -1.0f, +1.0f, -1.0f);
 
-	// GL_TEXTURE_CUBE_MAP_POSITIVE_X
+	// Axis +X
 	ADD_VERTEX(-1, +1, -1, +1.0f, -1.0f, +1.0f);
 	ADD_VERTEX(-1, +1, +1, +1.0f, -1.0f, -1.0f);
 	ADD_VERTEX(-1, -1, +1, +1.0f, +1.0f, -1.0f);
+	ADD_VERTEX(-1, +1, -1, +1.0f, -1.0f, +1.0f);
+	ADD_VERTEX(-1, -1, +1, +1.0f, +1.0f, -1.0f);
 	ADD_VERTEX(-1, -1, -1, +1.0f, +1.0f, +1.0f);
 
-	// GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
+	// Axis -Y
 	ADD_VERTEX(-1, +1, +1, +1.0f, -1.0f, -1.0f);
 	ADD_VERTEX(-1, +1, -1, +1.0f, -1.0f, +1.0f);
 	ADD_VERTEX(+1, +1, -1, -1.0f, -1.0f, +1.0f);
+	ADD_VERTEX(-1, +1, +1, +1.0f, -1.0f, -1.0f);
+	ADD_VERTEX(+1, +1, -1, -1.0f, -1.0f, +1.0f);
 	ADD_VERTEX(+1, +1, +1, -1.0f, -1.0f, -1.0f);
 
-	// GL_TEXTURE_CUBE_MAP_POSITIVE_Y
+	// Axis +Y
 	ADD_VERTEX(+1, -1, +1, -1.0f, +1.0f, -1.0f);
 	ADD_VERTEX(+1, -1, -1, -1.0f, +1.0f, +1.0f);
 	ADD_VERTEX(-1, -1, -1, +1.0f, +1.0f, +1.0f);
+	ADD_VERTEX(+1, -1, +1, -1.0f, +1.0f, -1.0f);
+	ADD_VERTEX(-1, -1, -1, +1.0f, +1.0f, +1.0f);
 	ADD_VERTEX(-1, -1, +1, +1.0f, +1.0f, -1.0f);
 
-	// GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
+	// Axis -Z
 	ADD_VERTEX(-1, +1, +1, +1.0f, -1.0f, -1.0f);
 	ADD_VERTEX(+1, +1, +1, -1.0f, -1.0f, -1.0f);
 	ADD_VERTEX(+1, -1, +1, -1.0f, +1.0f, -1.0f);
+	ADD_VERTEX(-1, +1, +1, +1.0f, -1.0f, -1.0f);
+	ADD_VERTEX(+1, -1, +1, -1.0f, +1.0f, -1.0f);
 	ADD_VERTEX(-1, -1, +1, +1.0f, +1.0f, -1.0f);
 
-	// GL_TEXTURE_CUBE_MAP_POSITIVE_Z
+	// Axis +Z
 	ADD_VERTEX(+1, +1, -1, -1.0f, -1.0f, +1.0f);
 	ADD_VERTEX(-1, +1, -1, +1.0f, -1.0f, +1.0f);
+	ADD_VERTEX(-1, -1, -1, +1.0f, +1.0f, +1.0f);
+	ADD_VERTEX(+1, +1, -1, -1.0f, -1.0f, +1.0f);
 	ADD_VERTEX(-1, -1, -1, +1.0f, +1.0f, +1.0f);
 	ADD_VERTEX(+1, -1, -1, -1.0f, +1.0f, +1.0f);
 #undef ADD_VERTEX
 
-	shader->VertexPointer(3, GL_FLOAT, sizeof(GLfloat) * 6, &vertexData[0]);
-	shader->TexCoordPointer(
-		GL_TEXTURE0, 3, GL_FLOAT, sizeof(GLfloat) * 6, &vertexData[3]);
-	shader->AssertPointersBound();
-
-	glDrawArrays(GL_QUADS, 0, 6 * 4);
-
-	skytech->EndPass();
-
-#endif
+	m_VertexArray.Upload();
+	m_VertexArray.FreeBackingStore();
 }
