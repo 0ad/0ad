@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
-  <alternative material="player_trans_spec.xml" quality="7"/>
+  <alternative material="player_trans.xml" quality="7"/>
   <define name="USE_PLAYERCOLOR" value="1"/>
   <required_texture name="baseTex"/>
   <required_texture name="normTex" define="USE_NORMAL_MAP"/>
