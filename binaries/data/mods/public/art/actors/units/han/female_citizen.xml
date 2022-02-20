@@ -36,7 +36,11 @@
     <variant file="biped/attack_melee_female.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/female_death.xml"/>
-    <variant file="biped/female_gather_tree.xml"/>
+    <variant file="biped/female_gather_tree.xml">
+      <props>
+        <prop actor="props/units/helmets/han_ricehat.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
     <variant file="biped/female_gather_grain.xml">
       <props>
         <prop actor="props/units/helmets/han_ricehat.xml" attachpoint="helmet"/>
