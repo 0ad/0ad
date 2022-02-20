@@ -6,9 +6,8 @@
       <mesh>structural/han_wall_gate_gutters.dae</mesh>
       <textures>
         <texture file="structural/han_wall_gutter.png" name="baseTex"/>
-        <texture file="structural/ao/han_wall_gutter.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_ao.xml</material>
+  <material>default.xml</material>
 </actor>
