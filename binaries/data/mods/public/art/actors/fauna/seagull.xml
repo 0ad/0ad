@@ -5,7 +5,8 @@
   <group>
     <variant name="Seagull" frequency="1">
       <animations>
-        <animation file="other/seagull_flight.dae" name="Idle" speed="150"/>
+        <animation file="other/seagull_flight_01.dae" name="Idle" speed="150"/>
+        <animation file="other/seagull_flight_02.dae" name="Idle" speed="100"/>
       </animations>
       <textures>
         <texture file="skeletal/animal_seagull.png" name="baseTex"/>
