@@ -5,19 +5,19 @@
     <variant frequency="1" name="Base">
       <mesh>props/shields/han_boardshield.dae</mesh>
       <textures>
-        <texture file="props/shields/sh_c05.dds" name="baseTex"/>
+        <texture file="props/shield/sh_c05.dds" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="texture2">
       <mesh>props/shields/han_boardshield.dae</mesh>
       <textures>
-        <texture file="props/shields/sh_c06.dds" name="baseTex"/>
+        <texture file="props/shield/sh_c06.dds" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="small-shield">
       <mesh>props/shields/han_boardshield.dae</mesh>
       <textures>
-        <texture file="props/shields/sh_c07.png" name="baseTex"/>
+        <texture file="props/shield/sh_c07.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
