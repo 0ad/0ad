@@ -100,7 +100,8 @@ public:
 	 * (i.e. rendered behind other objects in the normal 3D way)
 	 * and should be drawn before water (i.e. may be visible under the water)
 	 */
-	void RenderOverlaysBeforeWater();
+	void RenderOverlaysBeforeWater(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Render all the submitted overlays that are embedded in the world

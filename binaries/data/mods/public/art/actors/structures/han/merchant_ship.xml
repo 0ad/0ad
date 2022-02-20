@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant name="Chinese Merchant Ship">
+      <mesh>structural/han_ship_merchant.dae</mesh>
+      <props>
+        <prop actor="units/han/fisherman.xml" attachpoint="driver"/>
+        <prop actor="props/special/common/garrison_flag_han.xml" attachpoint="flag"/>
+        <prop actor="props/structures/han/merchant_sail.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/han_ship.png" name="baseTex"/>
+        <texture file="structural/han_ship_norm.png" name="normTex"/>
+        <texture file="structural/han_ship_spec.png" name="specTex"/>
+        <texture file="structural/ao/han_ship_merchant.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

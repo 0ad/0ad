@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_ship_fishing">
+  <Footprint>
+    <Square depth="20.0" width="5.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Yú Chuán</SpecificName>
+    <Icon>units/han/ship_fishing.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/han/fishing_ship.xml</Actor>
+  </VisualActor>
+</Entity>

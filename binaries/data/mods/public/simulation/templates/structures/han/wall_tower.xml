@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defensive_wall_tower">
+  <Footprint>
+    <Square depth="11.0" width="11.0"/>
+    <Height>23.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Chéng Lóu</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static depth="10.0" width="10.0"/>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>24.0</HeightOffset>
+  </StatusBars>
+  <VisualActor>
+    <Actor>structures/han/wall_tower.xml</Actor>
+  </VisualActor>
+  <WallPiece>
+    <Length>10</Length>
+  </WallPiece>
+</Entity>

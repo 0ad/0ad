@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_defensive_wall_gate">
+  <Footprint>
+    <Square depth="11.0" width="37.0"/>
+    <Height>18.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Chéng Mén</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Obstructions>
+      <Right depth="10" width="14" x="12" z="0"/>
+      <Left depth="10" width="14" x="-12" z="0"/>
+      <Door depth="10" width="8" x="0" z="0"/>
+    </Obstructions>
+  </Obstruction>
+  <StatusBars>
+    <HeightOffset>19.0</HeightOffset>
+  </StatusBars>
+  <VisualActor>
+    <Actor>structures/han/wall_gate.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/han/siege_mangonel_unpacked">
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Tóushí Chē</SpecificName>
+    <Icon>units/han/siege_mangonel_packed.png</Icon>
+  </Identity>
+  <Pack>
+    <Entity>units/han/siege_mangonel_unpacked</Entity>
+    <State>packed</State>
+  </Pack>
+  <VisualActor>
+    <Actor>units/han/siege_mangonel_pivot_packed.xml</Actor>
+  </VisualActor>
+</Entity>

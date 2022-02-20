@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="5" name="bamboo-a">
+      <mesh>gaia/trees/bamboo_a.dae</mesh>
+      <textures>
+        <texture file="gaia/bamboo.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="bamboo-b">
+      <mesh>gaia/trees/bamboo_b.dae</mesh>
+      <textures>
+        <texture file="gaia/bamboo.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="bamboo-c">
+      <mesh>gaia/trees/bamboo_c.dae</mesh>
+      <textures>
+        <texture file="gaia/bamboo.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>

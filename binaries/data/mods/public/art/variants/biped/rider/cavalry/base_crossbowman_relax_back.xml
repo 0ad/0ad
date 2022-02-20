@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variant name="Base">
+  <animations>
+    <animation event="0.85" file="biped/rider/cavalry/crossbowman/attack_ranged_back.dae" id="Attack1" load="0.47" name="attack_ranged" speed="110"/>
+    <animation event="0.85" file="biped/rider/cavalry/crossbowman/attack_ranged_back.dae" id="Attack2" load="0.47" name="attack_ranged" speed="110"/>
+    <animation event="0.85" file="biped/rider/cavalry/crossbowman/attack_ranged_back.dae" id="Attack3" load="0.47" name="attack_ranged" speed="110"/>
+    <animation event="0.85" file="biped/rider/cavalry/crossbowman/attack_ranged_back.dae" id="Attack4" load="0.47" name="attack_ranged" speed="110"/>
+    <animation event="0.5" file="biped/rider/cavalry/generic/attack_melee_shield_01.dae" id="attack1" name="attack_slaughter" speed="60"/>
+    <animation event="0.5" file="biped/rider/cavalry/generic/attack_melee_shield_02.dae" id="attack2" name="attack_slaughter" speed="60"/>
+    <animation file="biped/rider/cavalry/crossbowman/idle_relax_01.dae" frequency="10" id="idle1" name="Idle" speed="80"/>
+    <animation file="biped/rider/cavalry/crossbowman/idle_relax_02.dae" frequency="3" id="idle2" name="Idle" speed="80"/>
+    <animation file="biped/rider/cavalry/crossbowman/idle_relax_03.dae" frequency="3" id="idle3" name="Idle" speed="80"/>
+    <animation file="biped/rider/cavalry/crossbowman/idle_relax_04.dae" frequency="4" id="idle4" name="Idle" speed="80"/>
+    <animation file="biped/rider/cavalry/crossbowman/idle_relax_05.dae" frequency="4" id="idle5" name="Idle" speed="80"/>
+    <animation file="biped/rider/cavalry/generic/attack_capture_shield.dae" name="attack_capture" speed="80"/>
+    <animation file="biped/rider/cavalry/archer/death_01.dae" id="death1" name="death" speed="120"/>
+    <animation file="biped/rider/cavalry/archer/death_02.dae" id="death2" name="death" speed="120"/>
+    <animation file="biped/rider/cavalry/promotion_shield.dae" name="promotion" speed="117"/>
+    <animation file="biped/rider/cavalry/crossbowman/gallop_ready.dae" name="Run" speed="3"/>
+    <animation file="biped/rider/cavalry/crossbowman/trot_relax.dae" name="Walk" speed="5"/>
+  </animations>
+</variant>

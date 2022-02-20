@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="50" name="trunk-mesh-a">
+      <mesh>gaia/trees/willow_a.dae</mesh>
+      <textures>
+        <texture file="gaia/willow_aut_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="50" name="trunk-mesh-b">
+      <mesh>gaia/trees/willow_a.dae</mesh>
+      <textures>
+        <texture file="gaia/willow_aut_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="50" name="trunk-mesh-c">
+      <mesh>gaia/trees/willow_a.dae</mesh>
+      <textures>
+        <texture file="gaia/willow_aut_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>

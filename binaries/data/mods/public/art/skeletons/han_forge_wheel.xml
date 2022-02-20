@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="Armature" title="Armature">
+    <bone name="wheel">
+      <bone name="pivot2">
+        <bone name="pivot3" />
+      </bone>
+    </bone>
+  </standard_skeleton>
+  <skeleton target="Armature" title="Armature">
+    <identifier>
+      <root>wheel</root>
+    </identifier>
+    <bone name="wheel">
+      <target>wheel</target>
+      <bone name="pivot2">
+        <target>pivot2</target>
+        <bone name="pivot3">
+          <target>pivot3</target>
+        </bone>
+      </bone>
+    </bone>
+  </skeleton>
+</skeletons>

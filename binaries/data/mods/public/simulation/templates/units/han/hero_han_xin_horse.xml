@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_cavalry_spearman">
+  <Auras datatype="tokens">
+    units/heroes/han_hero_han_xin_1
+    units/heroes/han_hero_han_xin_2
+  </Auras>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Hán Xìn</SpecificName>
+    <Icon>units/han/hero_han_xin.png</Icon>
+  </Identity>
+  <Promotion disable=""/>
+  <VisualActor>
+    <Actor>units/han/hero_cavalry_spearman_han_xin_m.xml</Actor>
+  </VisualActor>
+</Entity>

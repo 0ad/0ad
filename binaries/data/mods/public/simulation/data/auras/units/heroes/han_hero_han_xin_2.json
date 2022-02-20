@@ -1,0 +1,11 @@
+{
+	"type": "global",
+	"affects": ["Soldier"],
+	"affectedPlayers": ["Ally"],
+	"modifications": [
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.15 },
+		{ "value": "Vision/Range", "multiply": 1.25 }
+	],
+	"auraName": "Southern Army",
+	"auraDescription": "Own and Allied Soldiers +15% walk speed and +25% vision range."
+}

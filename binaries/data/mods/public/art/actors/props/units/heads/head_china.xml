@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="mesh">
+      <mesh>props/new/dude_head.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="face-a">
+      <textures>
+        <texture file="props/heads/han_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="face-b">
+      <textures>
+        <texture file="props/heads/han_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="face-c">
+      <textures>
+        <texture file="props/heads/han_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="face-d">
+      <textures>
+        <texture file="props/heads/han_d.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="face-f">
+      <textures>
+        <texture file="props/heads/han_f.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="face-g">
+      <textures>
+        <texture file="props/heads/han_old_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="hair-black">
+      <color>61 61 61</color>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

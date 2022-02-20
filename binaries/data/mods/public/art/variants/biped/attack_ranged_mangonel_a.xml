@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variant name="attack_ranged">
+  <animations>
+    <animation event="0.11" file="biped/infantry/siege_operators/mangonel_operator_attack_a.dae" load="0.44" name="attack_ranged" speed="80"/>
+  </animations>
+  <props>
+    <prop actor="" attachpoint="weapon_R"/>
+    <prop actor="props/units/weapons/rock.xml" attachpoint="loaded-projectile"/>
+  </props>
+</variant>

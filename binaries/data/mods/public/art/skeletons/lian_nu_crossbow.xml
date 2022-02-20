@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="lian_nu_crossbow" title="lian nu crossbow">
+    <bone name="lian_nu_crossbow_root">
+      <bone name="lian_nu_crossbow_stock">
+        <bone name="lian_nu_crossbowstock_Nub" />
+        <bone name="lian_nu_crossbow_lath_nub_R" />
+        <bone name="lian_nu_crossbow_lath_nub_L" />
+      </bone>
+      <bone name="lian_nu_crossbow_lower_lever">
+        <bone name="lian_nu_crossbow_upper_lever">
+          <bone name="lian_nu_crossbow_magazine">
+            <bone name="lian_nu_crossbow_sling" />
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+  </standard_skeleton>
+  <skeleton target="lian_nu_crossbow" title="lian nu crossbow">
+    <identifier>
+      <root>lian_nu_crossbow_root</root>
+    </identifier>
+    <bone name="lian_nu_crossbow_root">
+      <target>lian_nu_crossbow_root</target>
+      <bone name="lian_nu_crossbow_stock">
+        <target>lian_nu_crossbow_stock</target>
+        <bone name="lian_nu_crossbowstock_Nub">
+          <target>lian_nu_crossbowstock_Nub</target>
+        </bone>
+        <bone name="lian_nu_crossbow_lath_nub_R">
+          <target>lian_nu_crossbow_lath_nub_R</target>
+        </bone>
+        <bone name="lian_nu_crossbow_lath_nub_L">
+          <target>lian_nu_crossbow_lath_nub_L</target>
+        </bone>
+      </bone>
+      <bone name="lian_nu_crossbow_lower_lever">
+        <target>lian_nu_crossbow_lower_lever</target>
+        <bone name="lian_nu_crossbow_upper_lever">
+          <target>lian_nu_crossbow_upper_lever</target>
+          <bone name="lian_nu_crossbow_magazine">
+            <target>lian_nu_crossbow_magazine</target>
+            <bone name="lian_nu_crossbow_sling">
+              <target>lian_nu_crossbow_sling</target>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+    </bone>
+  </skeleton>
+</skeletons>

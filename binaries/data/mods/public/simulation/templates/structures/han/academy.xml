@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_barracks">
+  <BuildRestrictions>
+    <Category>Academy</Category>
+  </BuildRestrictions>
+  <Cost>
+    <BuildTime>200</BuildTime>
+    <Resources>
+      <stone>300</stone>
+      <metal>300</metal>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square depth="24.0" width="24.0"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <List datatype="tokens">Minister</List>
+  </GarrisonHolder>
+  <Health>
+    <Max>2000</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_5x5</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>han</Civ>
+    <GenericName>Imperial Academy</GenericName>
+    <SpecificName>Dìguó Xuéyuàn</SpecificName>
+    <SelectionGroupName>structures/han/academy</SelectionGroupName>
+    <Tooltip>Train Champions and research their technologies.</Tooltip>
+    <VisibleClasses datatype="tokens">-Village City Academy</VisibleClasses>
+    <Icon>structures/embassy_italic.png</Icon>
+    <RequiredTechnology>phase_city</RequiredTechnology>
+  </Identity>
+  <Obstruction>
+    <Static depth="22.0" width="22.0"/>
+  </Obstruction>
+  <Researcher>
+    <Technologies datatype="tokens">
+      -barracks_batch_training
+      -unlock_champion_infantry
+    </Technologies>
+  </Researcher>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_tholos.xml</select>
+      <constructed>interface/complete/building/complete_tholos.xml</constructed>
+      <upgraded>interface/complete/building/complete_tholos.xml</upgraded>
+    </SoundGroups>
+  </Sound>
+  <Trainer>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Entities datatype="tokens">
+      -units/{civ}/infantry_spearman_b
+      -units/{civ}/infantry_pikeman_b
+      -units/{civ}/infantry_maceman_b
+      -units/{civ}/infantry_axeman_b
+      -units/{civ}/infantry_swordsman_b
+      -units/{civ}/infantry_javelineer_b
+      -units/{civ}/infantry_slinger_b
+      -units/{civ}/infantry_archer_b
+      units/{civ}/champion_infantry_spearman
+      units/{civ}/champion_infantry_pikeman
+      units/{civ}/champion_infantry_maceman
+      units/{civ}/champion_infantry_axeman
+      units/{civ}/champion_infantry_swordsman
+      units/{civ}/champion_infantry_javelineer
+      units/{civ}/champion_infantry_slinger
+      units/{civ}/champion_infantry_archer
+      units/{civ}/champion_cavalry
+      units/{civ}/champion_cavalry_spearman
+      units/{civ}/champion_cavalry_swordsman
+      units/{civ}/champion_cavalry_javelineer
+      units/{civ}/champion_cavalry_archer
+      units/{civ}/champion_cavalry_crossbowman  
+      units/{civ}/champion_chariot
+      units/{civ}/war_dog
+    </Entities>
+  </Trainer>
+  <VisualActor>
+    <Actor>structures/han/academy.xml</Actor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+  </VisualActor>
+</Entity>

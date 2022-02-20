@@ -1,0 +1,25 @@
+{
+	"genericName": "Poison Blades",
+	"description": "",
+	"cost": {
+		"food": 1200,
+		"metal": 1200
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "civ": "han" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "sword_poison.png",
+	"researchTime": 50,
+	"tooltip": "Melee Soldiers +20% attack damage.",
+	"modifications": [
+		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.2 },
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.2 }
+ 	],
+	"affects": ["Soldier"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

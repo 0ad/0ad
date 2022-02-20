@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <textures>
+        <texture file="structural/han_struct_02.png" name="baseTex"/>
+        <texture file="structural/han_struct_02_norm.png" name="normTex"/>
+        <texture file="structural/han_struct_02_spec.png" name="specTex"/>
+      </textures>
+      <props>
+        <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="25" name="House Var-A">
+      <mesh>structural/han_house_a.dae</mesh>
+      <textures>
+        <texture file="structural/ao/han_house_a.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="25" name="House Var-B">
+      <mesh>structural/han_house_b.dae</mesh>
+      <textures>
+        <texture file="structural/ao/han_house_b.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="25" name="House Var-C">
+      <mesh>structural/han_house_c.dae</mesh>
+      <textures>
+        <texture file="structural/ao/han_house_c.png" name="aoTex"/>
+      </textures>
+    </variant>
+    <variant frequency="25" name="House Var-D">
+      <mesh>structural/han_house_d.dae</mesh>
+      <textures>
+        <texture file="structural/ao/han_house_d.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_han.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant file="structures/destruction_small.xml"/>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

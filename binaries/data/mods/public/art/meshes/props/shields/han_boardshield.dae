@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Daniel Morgado</author>
+      <authoring_tool>Blender 2.79.0 commit date:2018-03-22, commit time:14:10, hash:f4dc9f9d68b</authoring_tool>
+    </contributor>
+    <created>2018-06-04T18:46:03</created>
+    <modified>2018-06-04T18:46:03</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_effects>
+    <effect id="ColorMaterial_57E1C600-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <phong>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0 0 0 1</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.341176 0.882353 0.776471 1</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.5 0.5 0.5 1</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">33</float>
+            </shininess>
+            <transparent opaque="A_ONE">
+              <color>1 1 1 0</color>
+            </transparent>
+            <index_of_refraction>
+              <float sid="index_of_refraction">1</float>
+            </index_of_refraction>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_materials>
+    <material id="ColorMaterial_57E1C600-material" name="ColorMaterial_57E1C600">
+      <instance_effect url="#ColorMaterial_57E1C600-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Plane02_node-mesh" name="Plane02_node">
+      <mesh>
+        <source id="Plane02_node-mesh-positions">
+          <float_array id="Plane02_node-mesh-positions-array" count="84">7.1159e-4 -0.1116026 -0.9456382 0.5666447 -0.05358105 -0.9456382 7.12812e-4 -0.1118052 0.8756864 0.5666447 -0.05358088 0.8756864 -0.5651383 -0.05358141 -0.9456382 -0.5651383 -0.05358129 0.8756864 7.1159e-4 -0.1116026 -0.9456382 7.12812e-4 -0.1118052 0.8756864 -0.0900104 -0.09758234 0.1951302 0.09143877 -0.09757953 0.1951302 -0.090011 0.02465873 0.1951302 0.09143829 0.02466154 0.1951302 7.1241e-4 0.0838629 0.1951302 7.15822e-4 -0.1113986 0.1951302 0.05968952 8.3755e-4 -0.2961577 7.14853e-4 0.05103862 -0.2961577 -0.05845141 8.3749e-4 -0.2961577 7.12141e-4 -0.03871113 -0.2961521 0.05968952 8.37579e-4 0.1951192 7.14853e-4 0.05103862 0.1951192 -0.05845141 8.37535e-4 0.1951192 7.12141e-4 -0.03871107 0.1951192 -0.0900104 -0.09758239 -0.2961742 0.09143882 -0.09757953 -0.2961742 -0.090011 0.02465867 -0.2961743 0.09143829 0.02466148 -0.2961743 7.1241e-4 0.0838629 -0.2961743 7.15822e-4 -0.1113986 -0.2961742</float_array>
+          <technique_common>
+            <accessor source="#Plane02_node-mesh-positions-array" count="28" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane02_node-mesh-normals">
+          <float_array id="Plane02_node-mesh-normals-array" count="60">0 1 6.1037e-5 0.09332841 0.9956354 0 0.5133869 -0.04852485 -0.8567842 -0.5123891 -0.0485562 -0.8573796 -0.5415261 -0.05133265 0.8391153 0 -1 -6.1037e-5 -6.71819e-7 1.21899e-7 1 0 1.219e-7 1 1.70629e-7 0 1 0 0 1 0.998365 -0.05716186 0 7.93505e-4 0.9999998 0 0.9983632 -0.05719232 0 -0.9983668 -0.05713146 0 -0.9983685 -0.05710107 0 7.01947e-4 -0.9999998 0 0 2.43799e-7 1 0 2.43799e-7 1 0 1.23844e-7 1 0 1.98847e-7 1</float_array>
+          <technique_common>
+            <accessor source="#Plane02_node-mesh-normals-array" count="20" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Plane02_node-mesh-map-0">
+          <float_array id="Plane02_node-mesh-map-0-array" count="144">0.75 0 0.749558 0.855225 0.5 0.855195 0.5 0.855195 0.499988 0 0.75 0 1 0 0.99984 0.855225 0.749558 0.855225 0.749558 0.855225 0.75 0 1 0 0.25 1 0.25 0 0.499988 1 0.499988 0 0.499988 1 0.25 0 0 1 0 0 0.25 1 0.25 0 0.25 1 0 0 0.55 1 0.499988 1 0.55 0.9270001 0.5 0.855195 0.55 0.855225 0.499988 0.9270001 0.55 0.9270001 0.499988 1 0.55 0.855225 0.499988 0.9270001 0.55 0.855225 0.499988 1 0.55 0.9270001 0.99984 0.855225 1 0.9270001 0.55 0.9270001 0.55 0.855225 0.99984 0.855225 0.55 0.855225 1 0.9270001 0.99984 0.855225 0.55 0.855225 0.55 0.9270001 1 0.9270001 0.55 0.9270001 1 1 1 0.9270001 0.55 0.9270001 0.55 1 1 1 0.55 1 1 0.9270001 1 1 0.55 1 0.55 0.9270001 1 0.9270001 0.55 1 0.499988 1 0.55 0.9270001 0.5 0.855195 0.55 0.855225 0.499988 0.9270001 0.55 0.9270001 0.499988 1 0.55 0.855225 0.499988 0.9270001 0.55 0.855225 0.499988 1</float_array>
+          <technique_common>
+            <accessor source="#Plane02_node-mesh-map-0-array" count="72" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Plane02_node-mesh-vertices">
+          <input semantic="POSITION" source="#Plane02_node-mesh-positions"/>
+        </vertices>
+        <triangles material="ColorMaterial_57E1C600-material" count="24">
+          <input semantic="VERTEX" source="#Plane02_node-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Plane02_node-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Plane02_node-mesh-map-0" offset="2" set="0"/>
+          <p>0 0 0 2 0 1 3 1 2 3 1 3 1 2 4 0 0 5 4 3 6 5 4 7 2 0 8 2 0 9 0 0 10 4 3 11 7 5 12 6 5 13 3 1 14 1 2 15 3 1 16 6 5 17 5 4 18 4 3 19 7 5 20 6 5 21 7 5 22 4 3 23 10 6 24 8 6 25 12 6 26 9 7 27 11 7 28 13 7 29 12 8 30 8 8 31 11 8 32 13 9 33 11 9 34 8 9 35 14 10 36 19 11 37 18 12 38 14 10 39 15 11 40 19 11 41 15 11 42 20 13 43 19 11 44 15 11 45 16 14 46 20 13 47 16 14 48 21 15 49 20 13 50 16 14 51 17 15 52 21 15 53 17 15 54 18 12 55 21 15 56 17 15 57 14 10 58 18 12 59 24 16 60 22 16 61 26 16 62 23 17 63 25 17 64 27 17 65 26 18 66 22 18 67 25 18 68 27 19 69 25 19 70 22 19 71</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Plane02_node" name="Plane02_node" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Plane02_node-mesh" name="Plane02_node">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="ColorMaterial_57E1C600-material" target="#ColorMaterial_57E1C600-material"/>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant frequency="1" name="Han trebuchet pivot">
+      <mesh>structural/han_mangonel_packed_pivot.dae</mesh>
+      <props>
+        <prop actor="props/units/han/mangonel_infantry_a.xml" attachpoint="engineer_a" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/han/mangonel_infantry_b.xml" attachpoint="engineer_b" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/han/mangonel_infantry_c.xml" attachpoint="engineer_c" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/han/mangonel_infantry_d.xml" attachpoint="engineer_d" maxheight="20" minheight="-20"/>
+        <prop actor="units/han/siege_mangonel_packed.xml" attachpoint="whagon"/>
+      </props>
+      <textures>
+        <texture file="structural/hele_siege.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure">
+  <Auras datatype="tokens">
+    structures/han_laozi_gate
+  </Auras>
+  <BuildRestrictions>
+    <Category>LaoziGate</Category>
+    <Distance>
+      <FromClass>LaoziGate</FromClass>
+      <MinDistance>50</MinDistance>
+    </Distance>
+  </BuildRestrictions>
+  <Capturable disable=""/>
+  <Cost>
+    <BuildTime>120</BuildTime>
+    <Resources>
+      <stone>100</stone>
+      <wood>200</wood>
+    </Resources>
+  </Cost>
+  <Footprint>
+    <Square depth="8.0" width="24.0"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Health>
+    <Max>1200</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_4x2</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>han</Civ>
+    <GenericName>LaoziGate</GenericName>
+    <SpecificName>Lǎozǐ Mén</SpecificName>
+    <Classes datatype="tokens">CivSpecific</Classes>
+    <VisibleClasses datatype="tokens">LaoziGate Town</VisibleClasses>
+    <Icon>structures/paifang.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
+  <Loot>
+    <stone>20</stone>
+    <metal>20</metal>
+  </Loot>
+  <Obstruction>
+    <Static depth="7.0" width="23.0"/>
+    <BlockMovement>false</BlockMovement>
+    <BlockPathfinding>false</BlockPathfinding>
+  </Obstruction>
+  <ProductionQueue disable=""/>
+  <RallyPoint disable=""/>
+  <Researcher disable=""/>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack>20</Hack>
+        <Pierce>30</Pierce>
+        <Crush>3</Crush>
+      </Damage>
+    </Entity>
+  </Resistance>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_iber_monument.xml</select>
+      <constructed>interface/complete/building/complete_iber_monument.xml</constructed>
+    </SoundGroups>
+  </Sound>
+  <TerritoryDecay disable=""/>
+  <Trainer disable=""/>
+  <VisualActor>
+    <Actor>structures/han/shrine.xml</Actor>
+    <FoundationActor>structures/fndn_6x2.xml</FoundationActor>
+  </VisualActor>
+</Entity>

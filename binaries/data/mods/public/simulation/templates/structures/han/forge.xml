@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_forge">
+  <Footprint>
+    <Square depth="24.0" width="24.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <List datatype="tokens">Minister</List>
+  </GarrisonHolder>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Duànzào Chǎng</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static depth="24.0" width="24.0"/>
+  </Obstruction>
+  <Researcher>
+    <Technologies datatype="tokens">
+      -archer_attack_spread
+    </Technologies>
+  </Researcher>
+  <VisualActor>
+    <Actor>structures/han/forge.xml</Actor>
+  </VisualActor>
+</Entity>

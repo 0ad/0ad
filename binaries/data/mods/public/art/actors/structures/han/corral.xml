@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>structural/han_corral.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
+        <prop actor="props/structures/han/barrel.xml" attachpoint="barrel"/>
+        <prop actor="props/structures/han/box.xml" attachpoint="box"/>
+        <prop actor="props/structures/han/corral_feeding_box.xml" attachpoint="bucket_water"/>
+        <prop actor="props/structures/han/corral_water.xml" attachpoint="bucket_water"/>
+        <prop actor="props/structures/han/corral_feeding_box_full.xml" attachpoint="bucket_food"/>
+        <prop actor="props/structures/han/corral_decal.xml" attachpoint="root"/>
+        <prop actor="props/structures/han/corral_flowers.xml" attachpoint="flowers"/>
+      </props>
+      <textures>
+        <texture file="structural/han_struct_02.png" name="baseTex"/>
+        <texture file="structural/han_struct_02_norm.png" name="normTex"/>
+        <texture file="structural/han_struct_02_spec.png" name="specTex"/>
+        <texture file="structural/ao/han_corral.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="fauna/zebu.xml" attachpoint="root"/>
+        <prop actor="props/structures/han/corral_decal.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant file="structures/destruction_medium.xml"/>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright (C) 2020 Wildfire Games.
+# Copyright (C) 2022 Wildfire Games.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
@@ -326,20 +326,20 @@ class json(Extractor):
 
     def extractFromFile(self, filepath):
         with codecs.open(filepath, "r", 'utf-8') as fileObject:
-            for message, breadcrumbs in self.extractFromString(fileObject.read()):
-                yield message, None, self.context, self.formatBreadcrumbs(breadcrumbs), None, self.comments
+            for message, context, breadcrumbs in self.extractFromString(fileObject.read()):
+                yield message, None, context, self.formatBreadcrumbs(breadcrumbs), None, self.comments
 
     def extractFromString(self, string):
         self.breadcrumbs = []
         jsonDocument = jsonParser.loads(string)
         if isinstance(jsonDocument, list):
-            for message, breadcrumbs in self.parseList(jsonDocument):
+            for message, context, breadcrumbs in self.parseList(jsonDocument):
                 if message: # Skip empty strings.
-                    yield message, breadcrumbs
+                    yield message, context, breadcrumbs
         elif isinstance(jsonDocument, dict):
-            for message, breadcrumbs in self.parseDictionary(jsonDocument):
+            for message, context, breadcrumbs in self.parseDictionary(jsonDocument):
                 if message: # Skip empty strings.
-                    yield message, breadcrumbs
+                    yield message, context, breadcrumbs
         else:
             raise Exception("Unexpected JSON document parent structure (not a list or a dictionary). You must extend the JSON extractor to support it.")
 
@@ -348,11 +348,11 @@ class json(Extractor):
         for listItem in itemsList:
             self.breadcrumbs.append(index)
             if isinstance(listItem, list):
-                for message, breadcrumbs in self.parseList(listItem):
-                    yield message, breadcrumbs
+                for message, context, breadcrumbs in self.parseList(listItem):
+                    yield message, context, breadcrumbs
             elif isinstance(listItem, dict):
-                for message, breadcrumbs in self.parseDictionary(listItem):
-                    yield message, breadcrumbs
+                for message, context, breadcrumbs in self.parseDictionary(listItem):
+                    yield message, context, breadcrumbs
             del self.breadcrumbs[-1]
             index += 1
 
@@ -361,35 +361,79 @@ class json(Extractor):
             self.breadcrumbs.append(keyword)
             if keyword in self.keywords:
                 if isinstance(dictionary[keyword], str):
-                    yield dictionary[keyword], self.breadcrumbs
+                    yield self.extractString(dictionary[keyword], keyword)
                 elif isinstance(dictionary[keyword], list):
-                    for message, breadcrumbs in self.extractList(dictionary[keyword]):
-                        yield message, breadcrumbs
+                    for message, context, breadcrumbs in self.extractList(dictionary[keyword], keyword):
+                        yield message, context, breadcrumbs
                 elif isinstance(dictionary[keyword], dict):
-                    for message, breadcrumbs in self.extractDictionary(dictionary[keyword]):
-                        yield message, breadcrumbs
+                    extract = None
+                    if "extractFromInnerKeys" in self.keywords[keyword] and self.keywords[keyword]["extractFromInnerKeys"]:
+                        for message, context, breadcrumbs in self.extractDictionaryInnerKeys(dictionary[keyword], keyword):
+                            yield message, context, breadcrumbs
+                    else:
+                        extract = self.extractDictionary(dictionary[keyword], keyword)
+                        if extract:
+                            yield extract
             elif isinstance(dictionary[keyword], list):
-                for message, breadcrumbs in self.parseList(dictionary[keyword]):
-                    yield message, breadcrumbs
+                for message, context, breadcrumbs in self.parseList(dictionary[keyword]):
+                    yield message, context, breadcrumbs
             elif isinstance(dictionary[keyword], dict):
-                for message, breadcrumbs in self.parseDictionary(dictionary[keyword]):
-                    yield message, breadcrumbs
+                for message, context, breadcrumbs in self.parseDictionary(dictionary[keyword]):
+                    yield message, context, breadcrumbs
             del self.breadcrumbs[-1]
 
-    def extractList(self, itemsList):
+    def extractString(self, string, keyword):
+        context = None
+        if "tagAsContext" in self.keywords[keyword]:
+            context = keyword
+        elif "customContext" in self.keywords[keyword]:
+            context = self.keywords[keyword]["customContext"]
+        else:
+            context = self.context
+        return string, context, self.breadcrumbs
+
+    def extractList(self, itemsList, keyword):
         index = 0
         for listItem in itemsList:
             self.breadcrumbs.append(index)
             if isinstance(listItem, str):
-                yield listItem, self.breadcrumbs
+                yield self.extractString(listItem, keyword)
+            elif isinstance(listItem, dict):
+                extract = self.extractDictionary(dictionary[keyword], keyword)
+                if extract:
+                    yield extract
             del self.breadcrumbs[-1]
             index += 1
 
-    def extractDictionary(self, dictionary):
-        for keyword in dictionary:
-            self.breadcrumbs.append(keyword)
-            if isinstance(dictionary[keyword], str):
-                yield dictionary[keyword], self.breadcrumbs
+    def extractDictionary(self, dictionary, keyword):
+        message = dictionary.get("_string", None)
+        self.breadcrumbs.append("_string")
+        if message and isinstance(message, str):
+            context = None
+            if "context" in dictionary:
+                context = str(dictionary["context"])
+            elif "tagAsContext" in self.keywords[keyword]:
+                context = keyword
+            elif "customContext" in self.keywords[keyword]:
+                context = self.keywords[keyword]["customContext"]
+            else:
+                context = self.context
+            return message, context, self.breadcrumbs
+        del self.breadcrumbs[-1]
+        return None
+
+    def extractDictionaryInnerKeys(self, dictionary, keyword):
+        for innerKeyword in dictionary:
+            self.breadcrumbs.append(innerKeyword)
+            if isinstance(dictionary[innerKeyword], str):
+                yield self.extractString(dictionary[innerKeyword], keyword)
+            elif isinstance(dictionary[innerKeyword], list):
+                for message, context, breadcrumbs in self.extractList(dictionary[innerKeyword], keyword):
+                    yield message, context, breadcrumbs
+            elif isinstance(dictionary[innerKeyword], dict):
+                extract = self.extractDictionary(dictionary[innerKeyword], keyword)
+                if extract:
+                    yield extract
             del self.breadcrumbs[-1]
 
 
@@ -416,14 +460,14 @@ class xml(Extractor):
                 for element in xmlDocument.iter(keyword):
                     position = element.sourceline
                     if element.text is not None:
-                        context = None
                         comments = []
                         if "extractJson" in self.keywords[keyword]:
                             jsonExtractor = self.getJsonExtractor()
                             jsonExtractor.setOptions(self.keywords[keyword]["extractJson"])
-                            for message, breadcrumbs in jsonExtractor.extractFromString(element.text):
+                            for message, context, breadcrumbs in jsonExtractor.extractFromString(element.text):
                                 yield message, None, context, json.formatBreadcrumbs(breadcrumbs), position, comments
                         else:
+                            context = None
                             breadcrumb = None
                             if "locationAttributes" in self.keywords[keyword]:
                                 attributes = [element.get(attribute) for attribute in self.keywords[keyword]["locationAttributes"] if attribute in element.attrib]

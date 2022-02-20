@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="base">
+      <animations>
+        <animation file="mechanical/garrison_flag_idle.dae" name="Idle" speed="30"/>
+        <animation file="mechanical/garrison_flag_idle.dae" name="Walk" speed="10"/>
+        <animation file="mechanical/garrison_flag_idle.dae" name="Run" speed="8"/>
+      </animations>
+      <mesh>props/garrison_flag.dae</mesh>
+      <textures>
+        <texture file="props/garrison_flag_han.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

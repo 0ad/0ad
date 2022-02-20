@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <skeletons>
-  <standard_skeleton id="gate" title="Gate Skeleton">
+  <standard_skeleton id="gate" title="gate">
     <bone name="origin">
       <bone name="door_left">
         <bone name="lock_left" />
@@ -10,9 +10,9 @@
       </bone>
     </bone>
   </standard_skeleton>
-  <skeleton target="gate" title="Gate Skeleton">
+  <skeleton target="gate" title="gate">
     <identifier>
-      <root>gate</root>
+      <root>origin</root>
     </identifier>
     <bone name="origin">
       <target>origin</target>

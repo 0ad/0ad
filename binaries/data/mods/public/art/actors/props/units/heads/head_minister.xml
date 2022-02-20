@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="base">
+      <mesh>props/new/dude_head.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="variant 01">
+      <textures>
+        <texture file="props/heads/han_minister_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="variant 02">
+      <textures>
+        <texture file="props/heads/han_minister_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>default.xml</material>
+</actor>

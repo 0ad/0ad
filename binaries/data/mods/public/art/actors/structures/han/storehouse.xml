@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Han Chinese storehouse">
+      <mesh>structural/han_storehouse.dae</mesh>
+      <props>
+        <prop actor="props/wooden_planks.xml" attachpoint="below_side_shed"/>
+        <prop actor="props/wooden_cart.xml" attachpoint="main_building_west"/>
+        <prop actor="props/wooden_bars.xml" attachpoint="main_building_east"/>
+        <prop actor="props/wooden_bars.xml" attachpoint="small_wall_infront"/>
+        <prop actor="props/wooden_cart_big.xml" attachpoint="main_building_inside"/>
+        <prop actor="props/structures/han/storehouse_props.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/rome_corral_mud.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/han_struct_02.png" name="baseTex"/>
+        <texture file="structural/han_struct_02_norm.png" name="normTex"/>
+        <texture file="structural/han_struct_02_spec.png" name="specTex"/>
+        <texture file="structural/ao/han_storehouse.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="50" name="many">
+      <props>
+        <prop actor="props/structures/han/storehouse_props.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="50" name="few"/>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant file="structures/destruction_medium.xml"/>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

@@ -1,0 +1,12 @@
+{
+	"type": "range",
+	"radius": 40,
+	"affects": ["Worker"],
+	"modifications": [
+		{ "value": "Builder/Rate", "multiply": 1.02 }
+	],
+	"auraName": "Building Programs",
+	"auraDescription": "Builders construct buildings +2% faster for every nearby Minister.",
+	"overlayIcon": "art/textures/ui/session/auras/build_bonus.png",
+	"stackable": true
+}

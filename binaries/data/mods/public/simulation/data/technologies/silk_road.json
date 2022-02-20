@@ -1,0 +1,24 @@
+{
+	"genericName": "Silk Road",
+	"description": "",
+	"supersedes": "trade_gain_02",
+	"cost": {
+		"food": 500,
+		"wood": 500
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "civ": "han" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "trade_routes.png",
+	"researchTime": 50,
+	"tooltip": "Traders +20% international trade bonus.",
+	"modifications": [
+		{ "value": "Market/InternationalBonus", "multiply": 1.2 }
+	],
+	"affects": ["Trade"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

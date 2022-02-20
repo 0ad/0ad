@@ -1,0 +1,24 @@
+{
+	"genericName": "Chain Pump",
+	"description": "Install a chain pump for improved irrigation.",
+	"cost": {
+		"wood": 400,
+		"metal": 300
+	},
+	"supersedes": "gather_farming_water_weeding",
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "civ": "han" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "flood_control.png",
+	"researchTime": 70,
+	"tooltip": "Workers +25% rice gather rate.",
+	"modifications": [
+		{ "value": "ResourceGatherer/Rates/food.rice", "multiply": 1.25 }
+	],
+	"affects": ["Worker"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

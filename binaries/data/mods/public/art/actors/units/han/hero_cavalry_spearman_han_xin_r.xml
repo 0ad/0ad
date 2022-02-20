@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/han_hairbun.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/head_han_xin.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/spear/han_halb.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/sword/han_sword_han_xin.xml" attachpoint="sheath_R"/>
+        <prop actor="props/units/shields/han_shield_03.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/capes/rider/cape_long_player.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant file="clothes/han/uniform_e_05.xml"/>
+  </group>
+  <group>
+    <variant file="biped/rider/cavalry/base_spearman_ready_shield.xml" frequency="1" name="Spearman-Ready"/>
+    <variant file="biped/rider/death_shield.xml"/>
+  </group>
+  <material>player_trans_norm_spec.xml</material>
+</actor>

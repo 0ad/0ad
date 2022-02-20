@@ -14,6 +14,6 @@
 		{ "value": "Attack/Ranged/MaxRange", "add": 8 },
 		{ "value": "Vision/Range","add": 8 }
 	],
-	"affects": ["SentryTower", "StoneTower"],
+	"affects": ["SentryTower", "StoneTower", "GreatTower"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

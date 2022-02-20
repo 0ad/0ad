@@ -1,0 +1,24 @@
+{
+	"genericName": "Water Weeding",
+	"description": "Grow water weeds to to supply rice plants with nutricients.",
+	"cost": {
+		"wood": 300,
+		"metal": 200
+	},
+	"supersedes": "gather_farming_seed_drill",
+	"requirements": {
+		"all": [
+			{ "tech": "phase_town" },
+			{ "civ": "han" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "irrigation.png",
+	"researchTime": 60,
+	"tooltip": "Workers +25% rice gather rate.",
+	"modifications": [
+		{ "value": "ResourceGatherer/Rates/food.rice", "multiply": 1.25 }
+	],
+	"affects": ["Worker"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

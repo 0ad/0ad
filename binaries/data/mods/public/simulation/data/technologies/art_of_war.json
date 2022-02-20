@@ -1,0 +1,23 @@
+{
+	"genericName": "Sun Tzu's \"The Art of War\"",
+	"specificName": { "han": "Sūnzǐ BīngFǎ" },
+	"description": "This famous and most important work of the Seven Military Classics teaches Chinese commanders everything about planning battles, maintaining armies, and defeating one's enemies.",
+	"cost": {
+		"food": 800,
+		"metal": 800
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "civ": "han" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "patriotism.png",
+	"researchTime": 40,
+	"tooltip": "All Citizen-Soldiers -25% required promotion experience.",
+	"modifications": [
+		{ "value": "Promotion/RequiredXp", "multiply": 0.75 }
+	],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

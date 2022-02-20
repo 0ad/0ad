@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="mesh">
+      <mesh>props/new/head_beard_small.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="face-old">
+      <textures>
+        <texture file="props/heads/han_old_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>objectcolor.xml</material>
+</actor>

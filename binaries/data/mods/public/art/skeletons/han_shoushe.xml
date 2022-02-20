@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='utf-8'?>
+<skeletons>
+  <standard_skeleton id="Shoushe_Armature" title="Shoushe Armature">
+    <bone name="Shoushe_Root">
+      <bone name="Shoushe_base">
+        <bone name="Shoushe_pivot">
+          <bone name="Shoushe_slide" />
+        </bone>
+      </bone>
+      <bone name="Shoushe_Wheel_Back" />
+      <bone name="Shoushe_Wheel_Front" />
+      <bone name="Shoushe_Rear_Trunk_R" />
+      <bone name="Shoushe_Rear_Trunk_L" />
+      <bone name="Shoushe_Weap">
+        <bone name="Shoushe_sling" />
+        <bone name="Shoushe_Arm_01_R">
+          <bone name="Shoushe_Arm_02_R">
+            <bone name="Shoushe_Arm_03_R">
+              <bone name="Shoushe_Arm_04_R" />
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Shoushe_Arm_01_L">
+          <bone name="Shoushe_Arm_02_L">
+            <bone name="Shoushe_Arm_03_L">
+              <bone name="Shoushe_Arm_04_L" />
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Shoushe_Lower_Plank_R" />
+      <bone name="Shoushe_Lower_Plank_L" />
+      <bone name="Shoushe_Front_Trunk_Upper" />
+      <bone name="Shoushe_Front_Trunk_Lower" />
+      <bone name="Shoushe_Rear_Trunk_Upper" />
+      <bone name="Shoushe_Rear_Trunk_Lower" />
+      <bone name="Shoushe_Front_Trunk_L" />
+      <bone name="Shoushe_Front_Trunk_R" />
+    </bone>
+    <bone name="Shoushe" />
+  </standard_skeleton>
+  <skeleton target="Shoushe_Armature" title="Shoushe Armature">
+    <identifier>
+      <root>Shoushe_Root</root>
+    </identifier>
+    <bone name="Shoushe_Root">
+      <target>Shoushe_Root</target>
+      <bone name="Shoushe_base">
+        <target>Shoushe_base</target>
+        <bone name="Shoushe_pivot">
+          <target>Shoushe_pivot</target>
+          <bone name="Shoushe_slide">
+            <target>Shoushe_slide</target>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Shoushe_Wheel_Back">
+        <target>Shoushe_Wheel_Back</target>
+      </bone>
+      <bone name="Shoushe_Wheel_Front">
+        <target>Shoushe_Wheel_Front</target>
+      </bone>
+      <bone name="Shoushe_Rear_Trunk_R">
+        <target>Shoushe_Rear_Trunk_R</target>
+      </bone>
+      <bone name="Shoushe_Rear_Trunk_L">
+        <target>Shoushe_Rear_Trunk_L</target>
+      </bone>
+      <bone name="Shoushe_Weap">
+        <target>Shoushe_Weap</target>
+        <bone name="Shoushe_sling">
+          <target>Shoushe_sling</target>
+        </bone>
+        <bone name="Shoushe_Arm_01_R">
+          <target>Shoushe_Arm_01_R</target>
+          <bone name="Shoushe_Arm_02_R">
+            <target>Shoushe_Arm_02_R</target>
+            <bone name="Shoushe_Arm_03_R">
+              <target>Shoushe_Arm_03_R</target>
+              <bone name="Shoushe_Arm_04_R">
+                <target>Shoushe_Arm_04_R</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+        <bone name="Shoushe_Arm_01_L">
+          <target>Shoushe_Arm_01_L</target>
+          <bone name="Shoushe_Arm_02_L">
+            <target>Shoushe_Arm_02_L</target>
+            <bone name="Shoushe_Arm_03_L">
+              <target>Shoushe_Arm_03_L</target>
+              <bone name="Shoushe_Arm_04_L">
+                <target>Shoushe_Arm_04_L</target>
+              </bone>
+            </bone>
+          </bone>
+        </bone>
+      </bone>
+      <bone name="Shoushe_Lower_Plank_R">
+        <target>Shoushe_Lower_Plank_R</target>
+      </bone>
+      <bone name="Shoushe_Lower_Plank_L">
+        <target>Shoushe_Lower_Plank_L</target>
+      </bone>
+      <bone name="Shoushe_Front_Trunk_Upper">
+        <target>Shoushe_Front_Trunk_Upper</target>
+      </bone>
+      <bone name="Shoushe_Front_Trunk_Lower">
+        <target>Shoushe_Front_Trunk_Lower</target>
+      </bone>
+      <bone name="Shoushe_Rear_Trunk_Upper">
+        <target>Shoushe_Rear_Trunk_Upper</target>
+      </bone>
+      <bone name="Shoushe_Rear_Trunk_Lower">
+        <target>Shoushe_Rear_Trunk_Lower</target>
+      </bone>
+      <bone name="Shoushe_Front_Trunk_L">
+        <target>Shoushe_Front_Trunk_L</target>
+      </bone>
+      <bone name="Shoushe_Front_Trunk_R">
+        <target>Shoushe_Front_Trunk_R</target>
+      </bone>
+    </bone>
+    <bone name="Shoushe">
+      <target>Shoushe</target>
+    </bone>
+  </skeleton>
+</skeletons>

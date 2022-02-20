@@ -713,6 +713,9 @@ void CSceneRenderer::RenderRefractions(
 	// Render terrain and models
 	RenderPatches(deviceCommandContext, context, CULL_REFRACTIONS);
 	ogl_WarnIfError();
+	// Render debug-related terrain overlays to make it visible under water.
+	ITerrainOverlay::RenderOverlaysBeforeWater(deviceCommandContext);
+	ogl_WarnIfError();
 	RenderModels(deviceCommandContext, context, CULL_REFRACTIONS);
 	ogl_WarnIfError();
 	RenderTransparentModels(deviceCommandContext, context, CULL_REFRACTIONS, TRANSPARENT_OPAQUE);
@@ -900,7 +903,7 @@ void CSceneRenderer::RenderSubmissions(
 	ogl_WarnIfError();
 
 	// render other debug-related overlays before water (so they can be seen when underwater)
-	m->overlayRenderer.RenderOverlaysBeforeWater();
+	m->overlayRenderer.RenderOverlaysBeforeWater(deviceCommandContext);
 	ogl_WarnIfError();
 
 	RenderModels(deviceCommandContext, context, cullGroup);

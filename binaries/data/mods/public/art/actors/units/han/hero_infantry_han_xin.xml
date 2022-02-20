@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/han_hairbun.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/head_han_xin.xml" attachpoint="head"/>
+        <prop actor="props/units/weapons/spear/han_halb.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/sword/han_sword_han_xin.xml" attachpoint="sheath_R"/>
+        <prop actor="props/units/shields/han_shield_03.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/capes/cape_long_player.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant file="clothes/han/uniform_e_05.xml"/>
+  </group>
+  <group>
+    <variant frequency="1" name="open_helmet">
+      <props>
+        <prop actor="props/units/helmets/han_hairbun.xml" attachpoint="helmet"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/base_spearman_shield_relax.xml" name="Spearman-Shield-Relax"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans_norm_spec.xml</material>
+</actor>

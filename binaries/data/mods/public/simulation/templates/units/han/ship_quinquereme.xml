@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_ship_quinquereme">
+  <Footprint>
+    <Square depth="46.0" width="20.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Dà Lóu Chuán</SpecificName>
+    <Icon>units/han/ship_quinquereme.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>structures/han/towership.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variant frequency="1" name="Base">
+  <animations>
+    <animation file="biped/infantry/spearman/idle_relax.dae" id="idle1" name="Idle" speed="30"/>
+    <animation file="biped/infantry/spearman/idle_relax.dae" id="idle2" name="Idle" speed="31"/>
+    <animation file="biped/infantry/spearman/idle_relax.dae" id="idle3" name="Idle" speed="32"/>
+    <animation file="biped/infantry/spearman/idle_relax.dae" name="Walk" speed="10"/>
+    <animation file="biped/infantry/spearman/run_relax.dae" id="run1" name="Run" speed="4"/>
+    <animation file="biped/infantry/spearman/run_relax.dae" id="run2" name="Run" speed="4"/>
+    <animation file="biped/infantry/spearman/run_relax.dae" id="run3" name="Run" speed="4"/>
+    <animation event="0.5" file="biped/infantry/spearman/attack_melee_01.dae" id="attack1" name="Attack_melee" speed="30"/>
+    <animation event="0.5" file="biped/infantry/spearman/attack_melee_smallshield.dae" id="attack2" name="Attack_melee" speed="100"/>
+  </animations>
+</variant>

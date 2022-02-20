@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Entity>
   <Builder>
     <Rate>1.0</Rate>
     <Entities datatype="tokens">
       structures/{civ}/civil_centre
+      structures/{civ}/ministry
       structures/{civ}/crannog
       structures/{civ}/military_colony
       structures/{civ}/house
@@ -15,16 +16,20 @@
       structures/{civ}/dock
       structures/{civ}/barracks
       structures/{civ}/stable
+      structures/{civ}/practice_range
       structures/{civ}/elephant_stable
-      structures/{civ}/arsenal
       structures/{civ}/forge
       structures/{civ}/temple
       structures/{civ}/market
+      structures/{civ}/laozigate
       structures/{civ}/outpost
       structures/{civ}/sentry_tower
       structures/{civ}/defense_tower
+      structures/{civ}/arsenal
+      structures/{civ}/academy
       structures/{civ}/fortress
       structures/wallset_palisade
+      structures/{civ}/wallset_palisade
       structures/{civ}/wallset_siege
       structures/{civ}/wallset_stone
       structures/{civ}/theater

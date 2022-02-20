@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_siege_boltshooter">
+  <Footprint replace="">
+    <Square depth="8.0" width="5.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Nǔ Chē</SpecificName>
+    <Icon>units/han/siege_boltshooter.png</Icon>
+  </Identity>
+  <Pack disable=""/>
+  <Promotion disable=""/>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>128x256/rounded_rectangle.png</MainTexture>
+        <MainTextureMask>128x256/rounded_rectangle_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
+  <UnitMotion>
+    <WalkSpeed op="mul">0.9</WalkSpeed>
+    <Acceleration op="mul">0.9</Acceleration>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/han/siege_shoushe.xml</Actor>
+  </VisualActor>
+</Entity>

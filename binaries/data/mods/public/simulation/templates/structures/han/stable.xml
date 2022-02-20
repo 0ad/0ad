@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_military_stable">
+  <Footprint>
+    <Square depth="25.0" width="25.0"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <List datatype="tokens">Minister</List>
+  </GarrisonHolder>
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Mǎ Jiù</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static depth="20.0" width="20.0"/>
+  </Obstruction>
+  <Researcher>
+    <Technologies datatype="tokens">
+      -unlock_champion_cavalry
+    </Technologies>
+  </Researcher>
+  <Trainer>
+    <BatchTimeModifier>0.8</BatchTimeModifier>
+    <Entities datatype="tokens">
+      units/{civ}/cavalry_crossbowman_b
+      -units/{civ}/champion_cavalry
+      -units/{civ}/champion_chariot
+      -units/{civ}/war_dog
+    </Entities>
+  </Trainer>
+  <VisualActor>
+    <Actor>structures/han/stable.xml</Actor>
+    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+  </VisualActor>
+</Entity>

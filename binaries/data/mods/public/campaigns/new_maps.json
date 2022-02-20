@@ -1,7 +1,21 @@
 {
 	"Name": "Demo campaign - new maps",
 	"Description": "Discover the new maps in Alpha XXVI with a demo campaign, taking you through all of them.",
-	"Levels": {},
-	"Order": [],
+	"Levels": {
+		"tarim_basin_2p": {
+			"Map": "skirmishes/tarim_basin_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"yangtze_2p.pmp": {
+			"Map": "skirmishes/yangtze_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		}
+	},
+	"Order": [
+		"tarim_basin_2p",
+		"yangtze_2p"
+	],
 	"ShowUnavailable": true
 }

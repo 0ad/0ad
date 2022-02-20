@@ -25,6 +25,7 @@
 #include "graphics/Texture.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/backend/gl/Texture.h"
+#include "renderer/VertexArray.h"
 
 #include <memory>
 #include <vector>
@@ -84,6 +85,8 @@ public:
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 private:
+	void CreateSkyCube();
+
 	bool m_RenderSky = true;
 
 	/// Name of current skyset (a directory within art/textures/skies)
@@ -104,6 +107,10 @@ private:
 	CTexturePtr m_SkyTexture[NUMBER_OF_TEXTURES];
 
 	std::unique_ptr<Renderer::Backend::GL::CTexture> m_SkyCubeMap;
+
+	VertexArray m_VertexArray;
+	VertexArray::Attribute m_AttributePosition;
+	VertexArray::Attribute m_AttributeUV;
 };
 
 

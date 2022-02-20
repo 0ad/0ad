@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="structures/han/defense_tower">
+  <Attack>
+    <Ranged>
+      <MaxRange op="add">10</MaxRange>
+      <Origin>
+        <X>0</X>
+        <Y>20</Y>
+        <Z>0</Z>
+      </Origin>
+    </Ranged>
+  </Attack>
+  <BuildingAI>
+    <DefaultArrowCount>2</DefaultArrowCount>
+    <MaxArrowCount>10</MaxArrowCount>
+  </BuildingAI>
+  <BuildRestrictions>
+    <Category>GreatTower</Category>
+  </BuildRestrictions>
+  <Capturable>
+    <CapturePoints op="mul">2</CapturePoints>
+  </Capturable>
+  <GarrisonHolder>
+    <Max>10</Max>
+  </GarrisonHolder>
+  <Health>
+    <Max op="mul">2</Max>
+  </Health>
+  <Identity>
+    <Civ>han</Civ>
+    <GenericName>Great Tower</GenericName>
+    <SpecificName>Dà Fángyù Tǎ</SpecificName>
+    <Classes datatype="tokens">CivSpecific</Classes>
+    <VisibleClasses datatype="tokens">GreatTower</VisibleClasses>
+    <Icon>structures/tower_bolt.png</Icon>
+  </Identity>
+  <StatusBars>
+    <HeightOffset>19.0</HeightOffset>
+  </StatusBars>
+  <TerritoryInfluence>
+    <Radius op="add">10</Radius>
+  </TerritoryInfluence>
+  <Upgrade disable=""/>
+  <Vision>
+    <Range op="add">10</Range>
+  </Vision>
+  <VisualActor>
+    <Actor>structures/han/tower_great.xml</Actor>
+  </VisualActor>
+</Entity>
