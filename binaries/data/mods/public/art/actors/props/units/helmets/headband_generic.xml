@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="helmetA">
+    <variant frequency="1" name="headband">
       <mesh>props/helmets/han_bandana.dae</mesh>
       <textures>
         <texture file="props/helmets/han_bandana.png" name="baseTex"/>
@@ -10,5 +10,5 @@
       </textures>
     </variant>
   </group>
-  <material>player_trans_parallax.xml</material>
+  <material>player_trans_norm.xml</material>
 </actor>

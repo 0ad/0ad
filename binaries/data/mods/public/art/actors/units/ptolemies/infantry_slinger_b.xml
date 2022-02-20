@@ -6,14 +6,8 @@
       <mesh>skeletal/new/m_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_pers_a.xml" attachpoint="head"/>
+        <prop actor="props/units/helmets/headband_generic.xml" attachpoint="helmet"/>
         <prop actor="props/units/mace_sling_pouch.xml" attachpoint="sheath_L"/>
-      </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="headband">
-      <props>
-        <prop actor="props/units/helmets/headband_color.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
