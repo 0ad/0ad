@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="gaia/fauna_pig">
+  <Identity>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
   <Visibility>
     <RetainInFog>false</RetainInFog>
   </Visibility>
