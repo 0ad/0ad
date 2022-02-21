@@ -3,6 +3,7 @@
   <Identity>
     <Civ>gaia</Civ>
     <GenericName>Gaia</GenericName>
+    <Icon>emblems/emblem_gaia.png</Icon>
     <Undeletable>true</Undeletable>
   </Identity>
   <Player>
@@ -24,10 +25,21 @@
       </Sell>
     </BarterMultiplier>
     <Formations datatype="tokens">
+      special/formations/null
+      special/formations/box
+      special/formations/column_closed
+      special/formations/line_closed
+      special/formations/column_open
+      special/formations/line_open
+      special/formations/flank
+      special/formations/battle_line
+      special/formations/skirmish
+      special/formations/wedge
       special/formations/phalanx
       special/formations/syntagma
       special/formations/testudo
       special/formations/anti_cavalry
+      special/formations/scatter
     </Formations>
   </Player>
 </Entity>

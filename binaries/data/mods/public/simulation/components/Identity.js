@@ -72,11 +72,9 @@ Identity.prototype.Schema =
 			"<text/>" +
 		"</element>" +
 	"</optional>" +
-	"<optional>" +
-		"<element name='Icon'>" +
-			"<text/>" +
-		"</element>" +
-	"</optional>" +
+	"<element name='Icon'>" +
+		"<text/>" +
+	"</element>" +
 	"<optional>" +
 		"<element name='RequiredTechnology' a:help='Optional name of a technology which must be researched before the entity can be produced.'>" +
 			"<text/>" +
