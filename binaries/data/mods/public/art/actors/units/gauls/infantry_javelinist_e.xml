@@ -3,11 +3,12 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_armor_pants.dae</mesh>
+      <mesh>skeletal/new/m_armor_pants_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
+        <prop actor="props/units/capes/cape_long_gaul.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
@@ -54,44 +55,41 @@
         <prop actor="props/units/helmets/celt_helmet_berru_02.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant frequency="1" name="Celtic Berru Helmet-03">
+    <variant frequency="1" name="Gallic-Noble-Tunic-01-01">
       <props>
         <prop actor="props/units/helmets/celt_helmet_berru_03.xml" attachpoint="helmet"/>
       </props>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="linothorax-1a">
-      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
+    <variant frequency="1" name="Gallic-Tunic-Noble-01-01">
       <textures>
-        <texture file="skeletal/gaul/linothorax_01_01.png" name="baseTex"/>
+        <texture file="skeletal/gaul/tunic_noble_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="linothorax-1b">
-      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
+    <variant frequency="1" name="Gallic-Tunic-Noble-01-02">
       <textures>
-        <texture file="skeletal/gaul/linothorax_01_02.png" name="baseTex"/>
+        <texture file="skeletal/gaul/tunic_noble_01_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="linothorax-1c">
-      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
+    <variant frequency="1" name="Gallic-Tunic-Noble-01-03">
       <textures>
-        <texture file="skeletal/gaul/linothorax_01_03.png" name="baseTex"/>
+        <texture file="skeletal/gaul/tunic_noble_01_03.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="padded-1a">
+    <variant frequency="1" name="Gallic-Linothorax-03-01">
       <textures>
-        <texture file="skeletal/gaul/padded_01_01.png" name="baseTex"/>
+        <texture file="skeletal/gaul/linothorax_03_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="padded-1b">
+    <variant frequency="1" name="Gallic-Linothorax-03-02">
       <textures>
-        <texture file="skeletal/gaul/padded_01_02.png" name="baseTex"/>
+        <texture file="skeletal/gaul/linothorax_03_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="padded-1c">
+    <variant frequency="1" name="Gallic-Linothorax-03-03">
       <textures>
-        <texture file="skeletal/gaul/padded_01_03.png" name="baseTex"/>
+        <texture file="skeletal/gaul/linothorax_03_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

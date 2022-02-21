@@ -5,10 +5,22 @@
     <variant frequency="1" name="Base">
       <mesh>skeletal/new/m_armor_pants.dae</mesh>
       <props>
-        <prop actor="props/units/heads/new/head_lime.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/jav_loaded.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/weapons/jav_ammo.xml" attachpoint="ammo"/>
         <prop actor="props/units/shields/celt_shield_sq_a_01.xml" attachpoint="shield"/>
+        <prop actor="props/units/capes/cape_long_gaul.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="Head-Celt">
+      <props>
+        <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Head-Lime">
+      <props>
+        <prop actor="props/units/heads/new/head_lime.xml" attachpoint="head"/>
       </props>
     </variant>
   </group>
@@ -30,29 +42,26 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="Celtic-Tunic-Sleeveles-01">
+    <variant frequency="1" name="gaul-naked_01">
+      <mesh>skeletal/new/m_naked.dae</mesh>
       <textures>
-        <texture file="skeletal/gaul/tunic_sleeveless_01_01.png" name="baseTex"/>
+        <texture file="skeletal/gaul/naked_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Celtic-Tunic-Sleeveles-02">
+    <variant frequency="1" name="gaul-naked_02">
+      <mesh>skeletal/new/m_naked.dae</mesh>
       <textures>
-        <texture file="skeletal/gaul/tunic_sleeveless_01_02.png" name="baseTex"/>
+        <texture file="skeletal/gaul/naked_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Celtic-Tunic-Sleeveles-03">
+    <variant frequency="1" name="gaul-pants-basic-04">
       <textures>
-        <texture file="skeletal/gaul/tunic_sleeveless_01_03.png" name="baseTex"/>
+        <texture file="skeletal/gaul/pants_basic_04.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Celtic-Tunic-Sleeveles-04">
+    <variant frequency="1" name="gaul-pants-basic-06">
       <textures>
-        <texture file="skeletal/gaul/tunic_sleeveless_01_04.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant frequency="1" name="Celtic-Tunic-Sleeveles-05">
-      <textures>
-        <texture file="skeletal/gaul/tunic_sleeveless_01_05.png" name="baseTex"/>
+        <texture file="skeletal/gaul/pants_basic_06.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

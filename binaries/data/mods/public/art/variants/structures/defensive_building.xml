@@ -6,7 +6,7 @@
     <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
   </animations>
   <props>
-    <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
-    <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+    <prop actor="props/units/siege_artillery/bolt_projectile_med.xml" attachpoint="loaded-projectile"/>
+    <prop actor="props/units/siege_artillery/bolt_projectile_med.xml" attachpoint="projectile"/>
   </props>
 </variant>

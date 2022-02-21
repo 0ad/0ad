@@ -786,7 +786,7 @@ bool CTexture::TryLoad()
 		}
 	}
 
-	return IsLoaded();
+	return IsLoaded() || IsUploaded();
 }
 
 void CTexture::Prefetch()

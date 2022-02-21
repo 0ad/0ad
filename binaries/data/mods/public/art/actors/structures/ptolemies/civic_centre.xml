@@ -17,8 +17,9 @@
         <prop actor="particle/flame_firepit_1.xml" attachpoint="fire2"/>
         <prop actor="particle/flame_firepit_2.xml" attachpoint="fire2"/>
         <prop actor="particle/smoke_small_light.xml" attachpoint="fire2"/>
-        <prop actor="props/special/eyecandy/obelisk_b.xml" attachpoint="obelisk1" maxheight="20" minheight="-20"/>
-        <prop actor="props/special/eyecandy/obelisk_b.xml" attachpoint="obelisk2" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/obelisk_03.xml" attachpoint="obelisk1" maxheight="20" minheight="-20"/>
+        <prop actor="props/special/eyecandy/obelisk_03.xml" attachpoint="obelisk2" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/decals/paving_tile_sahara_9x9_round.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="structural/ptol_struct.png" name="baseTex"/>

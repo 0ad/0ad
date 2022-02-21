@@ -4,13 +4,13 @@ PlayerSettingControls.PlayerCiv = class PlayerCiv extends GameSettingControlDrop
 	{
 		super(...args);
 
-		this.values = prepareForDropdown(this.getItems());
+		g_GameSettings.playerCiv.watch(() => this.rebuild(), ["values", "locked"]);
 
-		this.dropdown.list = this.values.name;
-		this.dropdown.list_data = this.values.civ;
+		this.items = this.getItems(false);
+		this.allItems = this.getItems(true);
+		this.wasLocked = undefined;
 
-		g_GameSettings.playerCiv.watch(() => this.render(), ["values", "locked"]);
-		this.render();
+		this.rebuild();
 	}
 
 	setControl()
@@ -24,18 +24,36 @@ PlayerSettingControls.PlayerCiv = class PlayerCiv extends GameSettingControlDrop
 		this.dropdown.tooltip = this.values && this.values.tooltip[this.dropdown.hovered] || this.Tooltip;
 	}
 
+	rebuild()
+	{
+		const isLocked = g_GameSettings.playerCiv.locked[this.playerIndex];
+		if (this.wasLocked !== isLocked)
+		{
+			this.wasLocked = isLocked;
+			this.values = prepareForDropdown(isLocked ? this.allItems : this.items);
+
+			this.dropdown.list = this.values.name;
+			this.dropdown.list_data = this.values.civ;
+
+			// If not locked, reset selection, else we can end up with empty label.
+			if (!isLocked && g_IsController && g_GameSettings.playerCiv.values[this.playerIndex])
+				this.onSelectionChange(0);
+		}
+		this.render();
+	}
+
 	render()
 	{
 		this.setEnabled(!g_GameSettings.playerCiv.locked[this.playerIndex]);
 		this.setSelectedValue(g_GameSettings.playerCiv.values[this.playerIndex]);
 	}
 
-	getItems()
+	getItems(allItems)
 	{
 		let values = [];
 
 		for (let civ in g_CivData)
-			if (g_CivData[civ].SelectableInGameSetup)
+			if (allItems || g_CivData[civ].SelectableInGameSetup)
 				values.push({
 					"name": g_CivData[civ].Name,
 					"autocomplete": g_CivData[civ].Name,

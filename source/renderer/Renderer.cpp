@@ -498,18 +498,25 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 		ogl_WarnIfError();
 	}
 
-	g_Console->Render();
-	ogl_WarnIfError();
+	{
+		GPU_SCOPED_LABEL(m->deviceCommandContext.get(), "Render console");
+		g_Console->Render();
+		ogl_WarnIfError();
+	}
 
 	if (renderLogger)
 	{
+		GPU_SCOPED_LABEL(m->deviceCommandContext.get(), "Render logger");
 		g_Logger->Render();
 		ogl_WarnIfError();
 	}
 
-	// Profile information
-	g_ProfileViewer.RenderProfile();
-	ogl_WarnIfError();
+	{
+		GPU_SCOPED_LABEL(m->deviceCommandContext.get(), "Render profiler");
+		// Profile information
+		g_ProfileViewer.RenderProfile();
+		ogl_WarnIfError();
+	}
 
 	EndFrame();
 
