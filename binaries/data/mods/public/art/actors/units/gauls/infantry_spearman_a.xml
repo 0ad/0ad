@@ -1,13 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="1" name="Base">
-      <mesh>skeletal/new/m_pants_tunic_long.dae</mesh>
+      <mesh>skeletal/new/m_armor_pants_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/heads/new/head_lime.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/sheath_celt_iron.xml" attachpoint="sheath_01_L"/>
         <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/capes/cape_long_gaul.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="3" name="Head-Celt">
+      <props>
+        <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Head-Lime">
+      <props>
+        <prop actor="props/units/heads/new/head_lime.xml" attachpoint="head"/>
       </props>
     </variant>
   </group>
@@ -29,34 +41,45 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="tunic_01_01">
+    <variant frequency="1" name="Gallic-Tunic-Noble-01-01">
       <textures>
-        <texture file="skeletal/celt/tunic_01_01.png" name="baseTex"/>
+        <texture file="skeletal/gaul/tunic_noble_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="tunic_01_02">
+    <variant frequency="1" name="Gallic-Tunic-Noble-01-02">
       <textures>
-        <texture file="skeletal/celt/tunic_01_02.png" name="baseTex"/>
+        <texture file="skeletal/gaul/tunic_noble_01_02.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="tunic_01_03">
+    <variant frequency="1" name="Gallic-Tunic-Noble-01-03">
       <textures>
-        <texture file="skeletal/celt/tunic_01_03.png" name="baseTex"/>
+        <texture file="skeletal/gaul/tunic_noble_01_03.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="tunic_01_04">
+    <variant frequency="1" name="Gallic-Linothorax-01-01">
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <textures>
-        <texture file="skeletal/celt/tunic_01_04.png" name="baseTex"/>
+        <texture file="skeletal/gaul/linothorax_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="tunic_01_05">
+    <variant frequency="1" name="Gallic-Linothorax-03-01">
       <textures>
-        <texture file="skeletal/celt/tunic_01_05.png" name="baseTex"/>
+        <texture file="skeletal/gaul/linothorax_03_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Gallic-Linothorax-03-02">
+      <textures>
+        <texture file="skeletal/gaul/linothorax_03_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Gallic-Linothorax-03-03">
+      <textures>
+        <texture file="skeletal/gaul/linothorax_03_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant file="biped/base_spearman_shield_relax_celt.xml"/>
+    <variant file="biped/base_spearman_shield_relax_celt.xml" name="Spearman-Shield-Relax"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>
