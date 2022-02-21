@@ -24,14 +24,19 @@
     </variant>
   </group>
   <group>
-    <variant frequency="3" name="illy-tunic-basic-01-a">
+    <variant frequency="3" name="illy-tunic_basic_01_01">
       <textures>
-        <texture file="skeletal/illy/tunic_01_b_01.png" name="baseTex"/>
+        <texture file="skeletal/illy/tunic_basic_01_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="3" name="illy-tunic-basic-01-b">
+    <variant frequency="3" name="illy-tunic_basic_01_02">
       <textures>
-        <texture file="skeletal/illy/tunic_01_b_02.png" name="baseTex"/>
+        <texture file="skeletal/illy/tunic_basic_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="illy-tunic_basic_01_03">
+      <textures>
+        <texture file="skeletal/illy/tunic_basic_01_03.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="hele-tunic-02-a">
