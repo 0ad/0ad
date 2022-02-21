@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-02-14 08:09+0000\n"
-"PO-Revision-Date: 2022-02-15 09:36+0000\n"
+"PO-Revision-Date: 2022-02-18 11:48+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -4251,7 +4251,7 @@ msgstr "Μείωση ποιότητας υφής (γραφικα) ,κάνοντ�
 
 #: gui/options/options.json[2].options[20].label
 msgid "Texture anisotropic filter"
-msgstr ""
+msgstr "Φίλτρο ανισότροπης υφής (anisotropic filter texture)"
 
 #: gui/options/options.json[2].options[20].list[0].label
 msgid "1x"
@@ -4275,13 +4275,13 @@ msgstr "8x"
 #: gui/options/options.json[2].options[20].list[4].label
 #: gui/options/options.json[2].options[20].list[4].tooltip
 msgid "16x"
-msgstr ""
+msgstr "16x"
 
 #: gui/options/options.json[2].options[20].tooltip
 msgid ""
 "Makes textures look better, especially terrain. If the anisotropic filter "
 "value is unsupported it will be set to the max supported value."
-msgstr ""
+msgstr "Κανει τις υφές να φαίνονται καλύτερες, ιδιαίτερα του εδάφοτς. αν η τιμη του ανισοτροπικού φίλτρου είναι ρυθμισμένη στη μέγιστη υποστηριζόμενη τιμή."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"

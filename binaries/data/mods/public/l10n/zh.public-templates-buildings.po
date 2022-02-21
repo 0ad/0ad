@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -50,9 +50,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-10-29 07:25+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-02-18 08:08+0000\n"
+"PO-Revision-Date: 2022-02-19 03:17+0000\n"
+"Last-Translator: liulitchi\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -962,8 +962,8 @@ msgid "Bibliothēkē"
 msgstr "图书馆"
 
 #: simulation/templates/structures/mace/wonder.xml:9
-msgid "Hieron tou Dios tou Olympiou"
-msgstr "宙斯神殿"
+msgid "Anaktoron ton Aigai"
+msgstr "爱琴海宫殿"
 
 #: simulation/templates/structures/maur/barracks.xml:15
 msgid "Sainyavasa"
@@ -1348,7 +1348,7 @@ msgid ""
 "Construct Rams. Garrison Soldiers for additional arrows."
 msgstr "造在中立或敌方领土上，生产冲车及高阶近战步兵。 驻军后额外提供箭矢。"
 
-#: simulation/templates/structures/rome/army_camp.xml:37
+#: simulation/templates/structures/rome/army_camp.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:76
 msgid "ArmyCamp"
 msgstr "军营"
@@ -1671,9 +1671,9 @@ msgid ""
 "for additional arrows."
 msgstr "可建在中立土地或己方疆域内，扩张大片疆域。训练民兵，研发技术，驻守士兵来强化火力。"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:42
+#: simulation/templates/template_structure_civic_civil_centre.xml:37
 #: simulation/templates/template_structure_civic_civil_centre.xml:79
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:7
 msgid "CivilCentre"
 msgstr "市政中心"
 
@@ -1777,11 +1777,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "砲石"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:50
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:54
 msgid "Artillery Tower"
 msgstr "砲楼"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:52
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:56
 msgid "ArtilleryTower"
 msgstr "砲楼"
 
@@ -1790,38 +1790,38 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
 msgstr "重矢"
 
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:47
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:51
 msgid "Bolt Tower"
 msgstr "车弩楼"
 
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:49
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:53
 msgid "BoltTower"
 msgstr "车弩楼"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:28
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:32
 msgid "Sentry Tower"
 msgstr "箭楼"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:30
-#: simulation/templates/template_structure_defensive_tower_stone.xml:28
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:34
+#: simulation/templates/template_structure_defensive_tower_stone.xml:32
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
 msgstr "步兵驻军其中可强化火力，需要“悬眼”技术来取消最小射程。 "
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:31
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:35
 msgid "SentryTower"
 msgstr "箭楼"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:54
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:59
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "用石头加固并升级防御塔。"
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:26
+#: simulation/templates/template_structure_defensive_tower_stone.xml:30
 msgid "Stone Tower"
 msgstr "城楼"
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:29
+#: simulation/templates/template_structure_defensive_tower_stone.xml:33
 msgid "StoneTower"
 msgstr "城楼"
 
@@ -1981,7 +1981,7 @@ msgstr "兵器厂"
 msgid "Research attack damage and damage resistance technologies."
 msgstr "研究兵器和防护的改良。"
 
-#: simulation/templates/template_structure_military_fortress.xml:35
+#: simulation/templates/template_structure_military_fortress.xml:30
 #: simulation/templates/template_structure_military_fortress.xml:65
 #: simulation/templates/template_structure_military_fortress.xml:69
 msgid "Fortress"

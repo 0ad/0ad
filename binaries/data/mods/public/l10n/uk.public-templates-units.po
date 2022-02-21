@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # Andrew Novykov
+# Apheidas of Arcadia
 # Cecil Rhodes
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370
 # Dmytro Ryl'kov
@@ -23,9 +24,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-14 08:09+0000\n"
-"PO-Revision-Date: 2022-02-14 09:24+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-02-18 08:08+0000\n"
+"PO-Revision-Date: 2022-02-20 19:00+0000\n"
+"Last-Translator: Apheidas of Arcadia\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -58,7 +59,7 @@ msgstr "Захоплення"
 #: simulation/templates/template_unit_support_female_citizen.xml:14
 msgctxt "Name of an attack, usually the weapon."
 msgid "Slaughter"
-msgstr "Вбивство"
+msgstr "Різанина"
 
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_cavalry.xml:35
@@ -145,7 +146,7 @@ msgstr "Кавалеріський воїн з сокирою"
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:23
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:24
 msgid "Axeman"
-msgstr "Воїн с сокирою"
+msgstr "Воїн з сокирою"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:5
@@ -387,7 +388,7 @@ msgstr "Слон"
 #: simulation/templates/template_unit_hero_elephant_melee.xml:6
 msgctxt "Name of an attack, usually the weapon."
 msgid "Trunk"
-msgstr "Стовбур"
+msgstr "Хобот"
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
 #: simulation/templates/template_unit_hero_infantry.xml:14
@@ -1081,7 +1082,7 @@ msgstr "Афінська морська піхота"
 
 #: simulation/templates/units/athen/champion_marine.xml:5
 msgid "Epibátēs Athēnaîos"
-msgstr "Епібатес атенаіос"
+msgstr "Епібатес атхенайос"
 
 #: simulation/templates/units/athen/champion_ranged.xml:4
 msgid "Scythian Archer"
@@ -1089,7 +1090,7 @@ msgstr "Скіфський стрілець"
 
 #: simulation/templates/units/athen/champion_ranged.xml:5
 msgid "Toxótēs Skythikós"
-msgstr "Токсотес скітікос"
+msgstr "Токсотес скютхікос"
 
 #: simulation/templates/units/athen/hero_iphicrates.xml:8
 msgid "Iphicrates"
@@ -1149,7 +1150,7 @@ msgstr "Афінський пращник ополчення"
 
 #: simulation/templates/units/athen/infantry_slinger_b.xml:6
 msgid "Psilòs Athēnaîos"
-msgstr "Псілос атенаіос"
+msgstr "Псілос атхенайос"
 
 #: simulation/templates/units/athen/infantry_spearman_b.xml:5
 msgid "Athenian Hoplite"
@@ -1157,7 +1158,7 @@ msgstr "Афінський гопліт"
 
 #: simulation/templates/units/athen/infantry_spearman_b.xml:6
 msgid "Hoplítēs Athēnaîos"
-msgstr "Хоплітес атенаіос"
+msgstr "Хоплітес атхенайос"
 
 #: simulation/templates/units/athen/ship_bireme.xml:8
 msgid "Penteconter"
@@ -1187,7 +1188,7 @@ msgstr "Плоіон фортегікон"
 #: simulation/templates/units/athen/ship_trireme.xml:8
 #: simulation/templates/units/spart/ship_trireme.xml:9
 msgid "Triḗrēs Athēnaía"
-msgstr "Триерес атенаіа"
+msgstr "Триерес атхенайа"
 
 #: simulation/templates/units/athen/ship_trireme.xml:9
 msgid "Athenian Trireme"
@@ -1205,7 +1206,7 @@ msgstr "Літоболос"
 #: simulation/templates/units/mace/siege_oxybeles_packed.xml:5
 #: simulation/templates/units/spart/siege_oxybeles_packed.xml:5
 msgid "Oxybelḗs"
-msgstr "Оксібелес"
+msgstr "Оксюбелєс"
 
 #: simulation/templates/units/athen/siege_ram.xml:8
 #: simulation/templates/units/mace/siege_ram.xml:9
@@ -1217,7 +1218,7 @@ msgstr "Кріос"
 
 #: simulation/templates/units/athen/support_female_citizen.xml:4
 msgid "Gýnē Athēnaía"
-msgstr "Гіне атенаіа"
+msgstr "Гюне атхенайа"
 
 #: simulation/templates/units/athen/support_female_citizen.xml:5
 msgid "Athenian Woman"
@@ -1783,7 +1784,7 @@ msgstr "Напатанський храмовий охоронець"
 
 #: simulation/templates/units/kush/champion_infantry_amun.xml:13
 msgid "rs ʿImn"
-msgstr "Рес Іамен"
+msgstr "Рес Амен"
 
 #: simulation/templates/units/kush/champion_infantry_apedemak.xml:6
 msgid "Meroitic Temple Guard"
@@ -1791,7 +1792,7 @@ msgstr "Мероїтська храмова охорона"
 
 #: simulation/templates/units/kush/champion_infantry_apedemak.xml:7
 msgid "rs ʿIprmk"
-msgstr "Рес Іаперемек"
+msgstr "Рес Аперемек"
 
 #: simulation/templates/units/kush/champion_infantry_archer.xml:6
 msgid "Noble Archer"
@@ -1817,11 +1818,11 @@ msgstr "Ергамен"
 
 #: simulation/templates/units/kush/hero_arakamani.xml:12
 msgid "I͗rk-k-I͗mn H̱nm-ı͗-Rʿ"
-msgstr "Ірек-ке-Імен Хенем-і-Ре"
+msgstr "Арек-ке-Амен Хенем-а-Ре"
 
 #: simulation/templates/units/kush/hero_harsiotef.xml:6
 msgid "Ḥr-sȝ-it.f Sȝ-mrı͗-I͗mn"
-msgstr "Хер-са-ітеф Са-мері-Імен"
+msgstr "Хер-са-ітеф Са-мера-Амен"
 
 #: simulation/templates/units/kush/hero_nastasen.xml:10
 msgid "Nastasen"
@@ -1829,7 +1830,7 @@ msgstr "Настасен"
 
 #: simulation/templates/units/kush/hero_nastasen.xml:11
 msgid "N-ı͗-s-tȝ-s-nn Kȝ-ʿnḫ-Rʿ"
-msgstr "Ні-і-се-та-се-нен Ка-анх-Ре"
+msgstr "Ні-а-се-та-се-нен Ка-анх-Ре"
 
 #: simulation/templates/units/kush/infantry_archer_b.xml:16
 msgid "Nubian Archer"
@@ -2070,13 +2071,15 @@ msgstr "Хелеполіс"
 
 #: simulation/templates/units/mace/support_female_citizen.xml:5
 msgid "Gýnē Makedonikḗ"
-msgstr "Гіне македоніке"
+msgstr "Гюне македоніке"
 
 #: simulation/templates/units/mace/support_female_citizen.xml:6
 msgid "Macedonian Woman"
 msgstr "Македонська жінка"
 
 #: simulation/templates/units/maur/catafalque.xml:9
+#: simulation/templates/units/maur/hero_bindusara_infantry.xml:5
+#: simulation/templates/units/maur/hero_bindusara_infantry.xml:6
 msgid "Bindusara"
 msgstr "Біндусара"
 
@@ -2164,8 +2167,14 @@ msgstr "Ачар'я Чанак'я"
 
 #: simulation/templates/units/maur/hero_chandragupta.xml:5
 #: simulation/templates/units/maur/hero_chandragupta.xml:6
+#: simulation/templates/units/maur/hero_chandragupta_infantry.xml:5
+#: simulation/templates/units/maur/hero_chandragupta_infantry.xml:6
 msgid "Chandragupta Maurya"
 msgstr "Чандраґупта Маур'я"
+
+#: simulation/templates/units/maur/hero_chandragupta_infantry.xml:12
+msgid "This gives Chandragupta Maurya his War Elephant."
+msgstr ""
 
 #: simulation/templates/units/maur/infantry_archer_b.xml:12
 msgid "Longbowman"
@@ -2639,7 +2648,7 @@ msgstr "Поліболос"
 
 #: simulation/templates/units/ptol/support_female_citizen.xml:11
 msgid "Gýnē Aigýptia"
-msgstr "Гіне аігіптіа"
+msgstr "Гюне агюптіа"
 
 #: simulation/templates/units/ptol/support_female_citizen.xml:12
 msgid "Egyptian Woman"
@@ -2647,7 +2656,7 @@ msgstr "Єгипетська жінка"
 
 #: simulation/templates/units/rome/catafalque.xml:9
 msgid "Lūcius Iūnius Brūtus"
-msgstr "Луціус Іуніус Брутус"
+msgstr "Люціус Йуніус Брутус"
 
 #: simulation/templates/units/rome/cavalry_javelineer_b.xml:6
 msgid "Allied Cavalry"
@@ -2667,7 +2676,7 @@ msgstr "Еквес романус"
 
 #: simulation/templates/units/rome/champion_cavalry.xml:6
 msgid "Eques Cōnsulāris"
-msgstr "Еквес консуларіс"
+msgstr "Еквес консуляріс"
 
 #: simulation/templates/units/rome/champion_cavalry.xml:7
 msgid "Consular Bodyguard"
@@ -2676,7 +2685,7 @@ msgstr "Консульський охоронець"
 #: simulation/templates/units/rome/champion_infantry_spear_gladiator.xml:17
 #: simulation/templates/units/rome/champion_infantry_sword_gladiator.xml:17
 msgid "Gladiator"
-msgstr "Гладіатор"
+msgstr "Глядіатор"
 
 #: simulation/templates/units/rome/champion_infantry_spear_gladiator.xml:20
 msgid "Gladiator Spearman"
@@ -2684,7 +2693,7 @@ msgstr "Списоносець гладіатор"
 
 #: simulation/templates/units/rome/champion_infantry_spear_gladiator.xml:21
 msgid "Hoplomachus"
-msgstr "Хопломахус"
+msgstr "Гопльомахус"
 
 #: simulation/templates/units/rome/champion_infantry_sword_gladiator.xml:20
 msgid "Gladiator Swordsman"
@@ -2692,7 +2701,7 @@ msgstr "Мечник гладіатор"
 
 #: simulation/templates/units/rome/champion_infantry_sword_gladiator.xml:21
 msgid "Murmillo"
-msgstr "Мурмілло"
+msgstr "Мурмілльо"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman.xml:12
 msgid "Italic Heavy Infantry"
@@ -2710,7 +2719,7 @@ msgstr "Маріанський легіонер"
 #: simulation/templates/units/rome/champion_infantry_swordsman_02.xml:5
 #: simulation/templates/units/rome/champion_infantry_swordsman_03.xml:12
 msgid "Legiōnārius"
-msgstr "Легіонаріус"
+msgstr "Лєґіонаріус"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_04.xml:14
 msgid "Roman Centurion"
@@ -2722,21 +2731,21 @@ msgstr "Центуріо"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_05.xml:14
 msgid "Praetorian Guard"
-msgstr ""
+msgstr "Преторіанська гвардія"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_05.xml:15
 msgid "Praetorianus"
-msgstr ""
+msgstr "Преторіанус"
 
 #: simulation/templates/units/rome/hero_marcellus.xml:10
 #: simulation/templates/units/rome/hero_marcellus_infantry.xml:10
 msgid "Mārcus Claudius Mārcellus"
-msgstr "Маркус Клаудіус Марцеллус"
+msgstr "Маркус Клявдіус Марцеллюс"
 
 #: simulation/templates/units/rome/hero_maximus.xml:9
 #: simulation/templates/units/rome/hero_maximus_infantry.xml:9
 msgid "Quīntus Fabius Maximus Verrūcōsus Cūnctātor"
-msgstr "Квінтус Фабіус Максімус Веррукосус Кунктатор"
+msgstr "Квінтус Фабіус Максімус Веррукозус Кунктатор"
 
 #: simulation/templates/units/rome/hero_scipio.xml:9
 #: simulation/templates/units/rome/hero_scipio_infantry.xml:9
@@ -2749,7 +2758,7 @@ msgstr "Римський застрільник"
 
 #: simulation/templates/units/rome/infantry_javelineer_b.xml:14
 msgid "Vēles"
-msgstr "Велес"
+msgstr "Велєс"
 
 #: simulation/templates/units/rome/infantry_spearman_b.xml:19
 msgid "Veteran Spearman"
@@ -2765,7 +2774,7 @@ msgstr "Римський мечник"
 
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:20
 msgid "Hastātus"
-msgstr "Хастатус"
+msgstr "Гастатус"
 
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:20
 msgid "Servus"
@@ -2777,7 +2786,7 @@ msgstr "Лібурна"
 
 #: simulation/templates/units/rome/ship_fishing.xml:9
 msgid "Nāvicula Piscātōria"
-msgstr "Навікула піскаторіа"
+msgstr "Навікуля піскаторіа"
 
 #: simulation/templates/units/rome/ship_merchant.xml:9
 msgid "Corbīta"
@@ -2993,7 +3002,7 @@ msgstr "Селевкідська трирема"
 
 #: simulation/templates/units/sele/support_female_citizen.xml:6
 msgid "Syrías Gýnē"
-msgstr "Сіріас гіне"
+msgstr "Сюріас гюне"
 
 #: simulation/templates/units/sele/support_female_citizen.xml:7
 msgid "Syrian Woman"
@@ -3122,7 +3131,7 @@ msgstr "Фракійський чорний плащ"
 
 #: simulation/templates/units/thespian_melanochitones.xml:6
 msgid "Melanochitones"
-msgstr "Меланохітонес"
+msgstr "Мелянохітонес"
 
 #: simulation/templates/units/viking_longship.xml:8
 msgid "Longship"

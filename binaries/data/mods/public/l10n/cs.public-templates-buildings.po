@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-12-30 12:12+0000\n"
-"Last-Translator: fri\n"
+"POT-Creation-Date: 2022-02-18 08:08+0000\n"
+"PO-Revision-Date: 2022-02-18 10:24+0000\n"
+"Last-Translator: Transifex Bot\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -933,8 +933,8 @@ msgid "Bibliothēkē"
 msgstr "Knihovna"
 
 #: simulation/templates/structures/mace/wonder.xml:9
-msgid "Hieron tou Dios tou Olympiou"
-msgstr "Hieron tou Dios tou Olympiou"
+msgid "Anaktoron ton Aigai"
+msgstr ""
 
 #: simulation/templates/structures/maur/barracks.xml:15
 msgid "Sainyavasa"
@@ -1319,7 +1319,7 @@ msgid ""
 "Construct Rams. Garrison Soldiers for additional arrows."
 msgstr "Budujte na neutrálním nebo nepřátelském území. Vycvičte pokročilou pěchotu na blízko. Postavte beranidla. Umístěte posádku vojáků pro další šípy."
 
-#: simulation/templates/structures/rome/army_camp.xml:37
+#: simulation/templates/structures/rome/army_camp.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:76
 msgid "ArmyCamp"
 msgstr "Vojenský tábor"
@@ -1642,9 +1642,9 @@ msgid ""
 "for additional arrows."
 msgstr "Stavte na vlastním nebo neutrálním území. Získejte velké plochy území. Vytváří hranici území. Vycvičte občany a vyzkoumejte technologie. Umístěte posádku vojáků pro další šípy."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:42
+#: simulation/templates/template_structure_civic_civil_centre.xml:37
 #: simulation/templates/template_structure_civic_civil_centre.xml:79
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:7
 msgid "CivilCentre"
 msgstr "Správní středisko"
 
@@ -1748,11 +1748,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "Kámen"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:50
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:54
 msgid "Artillery Tower"
 msgstr "Odstřelovací věž"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:52
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:56
 msgid "ArtilleryTower"
 msgstr "Odstřelovací věž"
 
@@ -1761,38 +1761,38 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
 msgstr "Šipka"
 
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:47
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:51
 msgid "Bolt Tower"
 msgstr "Špičatá věž"
 
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:49
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:53
 msgid "BoltTower"
 msgstr "Špičatá věž"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:28
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:32
 msgid "Sentry Tower"
 msgstr "Strážní věž"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:30
-#: simulation/templates/template_structure_defensive_tower_stone.xml:28
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:34
+#: simulation/templates/template_structure_defensive_tower_stone.xml:32
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
 msgstr "Umístěte pěchotu pro další šípy. K ochraně úpatí potřebuje technologii „vražedných děr“."
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:31
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:35
 msgid "SentryTower"
 msgstr "Strážní věž"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:54
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:59
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Prosázet kameny a vylepšit na obrannou věž."
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:26
+#: simulation/templates/template_structure_defensive_tower_stone.xml:30
 msgid "Stone Tower"
 msgstr "Kamenná věž"
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:29
+#: simulation/templates/template_structure_defensive_tower_stone.xml:33
 msgid "StoneTower"
 msgstr "Kamenná věž"
 
@@ -1952,7 +1952,7 @@ msgstr "Tavící pec"
 msgid "Research attack damage and damage resistance technologies."
 msgstr "Zkoumejte technologie poškození při útoku a odolnosti proti poškození."
 
-#: simulation/templates/template_structure_military_fortress.xml:35
+#: simulation/templates/template_structure_military_fortress.xml:30
 #: simulation/templates/template_structure_military_fortress.xml:65
 #: simulation/templates/template_structure_military_fortress.xml:69
 msgid "Fortress"

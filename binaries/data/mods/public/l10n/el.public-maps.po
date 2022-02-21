@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-07-19 07:08+0000\n"
+"POT-Creation-Date: 2022-02-18 08:08+0000\n"
+"PO-Revision-Date: 2022-02-18 11:46+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -1337,7 +1337,6 @@ msgstr "Αρκαδία"
 #: maps/scenarios/sandbox_britons.xml:PlayerData[0].Name:38
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[1].Name:39
 #: maps/scenarios/sandbox_iberians.xml:PlayerData[0].Name:38
-#: maps/scenarios/sandbox_romans.xml:PlayerData[0].Name:38
 #: maps/scenarios/siwa_oasis.xml:PlayerData[0].Name:26
 #: maps/scenarios/the_massacre_of_delphi.xml:PlayerData[0].Name:38
 #: maps/scenarios/treasure_islands.xml:PlayerData[0].Name:38
@@ -1361,7 +1360,6 @@ msgstr "Παίκτης 1"
 #: maps/scenarios/sandbox_britons.xml:PlayerData[1].Name:38
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[2].Name:39
 #: maps/scenarios/sandbox_iberians.xml:PlayerData[1].Name:38
-#: maps/scenarios/sandbox_romans.xml:PlayerData[1].Name:38
 #: maps/scenarios/siwa_oasis.xml:PlayerData[1].Name:26
 #: maps/scenarios/the_massacre_of_delphi.xml:PlayerData[1].Name:38
 #: maps/scenarios/treasure_islands.xml:PlayerData[1].Name:38
@@ -1922,7 +1920,6 @@ msgid "Carthage"
 msgstr "Καρχηδών"
 
 #: maps/scenarios/sandbox_carthaginians.xml:PlayerData[1].Name:38
-#: maps/scenarios/sandbox_persians.xml:PlayerData[1].Name:38
 msgid "Creeps"
 msgstr "Σερνεταί"
 
@@ -1967,33 +1964,21 @@ msgstr "Sandbox - Οι Μακεδόνες"
 msgid "The Macedonians"
 msgstr "Οι Μακεδόνες"
 
-#: maps/scenarios/sandbox_mauryas.xml:Description:38
-msgid "Mauryan Indian faction showcase map."
-msgstr "Χάρτης βιτρίνα της φατρίας των Ινδών Μαουρύα."
+#: maps/scenarios/sandbox_mauryas.xml:Description:39
+msgid "A simple map showcasing the Maurya civilization's assets in the game."
+msgstr ""
 
-#: maps/scenarios/sandbox_mauryas.xml:Name:38
-msgid "Sandbox - The Mauryas"
-msgstr "Sandbox - Οι Μαουρυανοί"
+#: maps/scenarios/sandbox_mauryas.xml:Name:39
+msgid "Sandbox - The Maurya Indians"
+msgstr ""
 
-#: maps/scenarios/sandbox_mauryas.xml:PlayerData[0].Name:38
-msgid "Mauryan Indians"
-msgstr "Ινδοί Μαουρύα"
+#: maps/scenarios/sandbox_persians.xml:Description:39
+msgid "A simple map showcasing the Persian civilization's assets in the game."
+msgstr ""
 
-#: maps/scenarios/sandbox_mauryas.xml:PlayerData[1].Name:38
-msgid "Enemy"
-msgstr "Εχθρός"
-
-#: maps/scenarios/sandbox_persians.xml:Description:38
-msgid "Demo Map. Play with the Persian civilisation in a sandbox setting."
-msgstr "Δοκιμαστικός Χάρτης. Παίξτε με το πολιτισμό των Περσών με πανεύκολες ρυθμίσεις."
-
-#: maps/scenarios/sandbox_persians.xml:Name:38
-msgid "Sandbox - The Persians"
-msgstr "Sandbox - Οι Πέρσες"
-
-#: maps/scenarios/sandbox_persians.xml:PlayerData[0].Name:38
-msgid "Achaemenids"
-msgstr "Αχαιμενίδες"
+#: maps/scenarios/sandbox_persians.xml:Name:39
+msgid "Sandbox - The Achaemenid Persians"
+msgstr ""
 
 #: maps/scenarios/sandbox_ptolemies.xml:Description:38
 #: maps/skirmishes/sporades_islands_2p.xml:Description:39
@@ -2033,13 +2018,15 @@ msgstr "Σελευκίδες"
 msgid "Libyans"
 msgstr "Λίβυοι"
 
-#: maps/scenarios/sandbox_romans.xml:Description:38
-msgid "A sandbox scenario for players to try out the Roman civilisation."
-msgstr "Ένα πανεύκολο σενάριο για παίχτες που δοκιμάζουν το Ρωμαϊκό πολιτισμό."
+#: maps/scenarios/sandbox_romans.xml:Description:39
+msgid ""
+"A simple map showcasing the Republican Roman civilization's assets in the "
+"game."
+msgstr ""
 
-#: maps/scenarios/sandbox_romans.xml:Name:38
-msgid "Sandbox - The Republican Romans"
-msgstr "Sandbox - Οι Ρεπουμπλικάνοι Ρωμαίοι"
+#: maps/scenarios/sandbox_romans.xml:Name:39
+msgid "Sandbox - The Romans"
+msgstr "Sandbox - Οι Ρωμαίοι"
 
 #: maps/scenarios/sandbox_seleucids.xml:Description:38
 msgid "A sandbox scenario for players to try out the Seleucid civilisation."

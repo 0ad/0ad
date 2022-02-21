@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -23,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-11-08 14:57+0000\n"
-"Last-Translator: Csaba Balázs\n"
+"POT-Creation-Date: 2022-02-18 08:08+0000\n"
+"PO-Revision-Date: 2022-02-18 10:24+0000\n"
+"Last-Translator: Transifex Bot\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -935,8 +935,8 @@ msgid "Bibliothēkē"
 msgstr "Bibliothēkē"
 
 #: simulation/templates/structures/mace/wonder.xml:9
-msgid "Hieron tou Dios tou Olympiou"
-msgstr "Hieron tou Dios tou Olympiou"
+msgid "Anaktoron ton Aigai"
+msgstr ""
 
 #: simulation/templates/structures/maur/barracks.xml:15
 msgid "Sainyavasa"
@@ -1321,7 +1321,7 @@ msgid ""
 "Construct Rams. Garrison Soldiers for additional arrows."
 msgstr "Semleges és ellenséges területre építhető. Közelharci gyalogság kiképzése. Faltörő kosokat épít. Katonák beszállásolása további nyilakért."
 
-#: simulation/templates/structures/rome/army_camp.xml:37
+#: simulation/templates/structures/rome/army_camp.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:76
 msgid "ArmyCamp"
 msgstr "Katonai tábor"
@@ -1644,9 +1644,9 @@ msgid ""
 "for additional arrows."
 msgstr "Saját és semleges területre építhető. Nagy méretű területet szerez meg. Terület gyökere. Polgárok kiképzése és fejlesztések kutatása. Katonák beszállásolása további nyilakhoz."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:42
+#: simulation/templates/template_structure_civic_civil_centre.xml:37
 #: simulation/templates/template_structure_civic_civil_centre.xml:79
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:7
 msgid "CivilCentre"
 msgstr "Városháza"
 
@@ -1750,11 +1750,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "Kő"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:50
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:54
 msgid "Artillery Tower"
 msgstr "Tüzértorony"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:52
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:56
 msgid "ArtilleryTower"
 msgstr "Tüzérségi torony"
 
@@ -1763,38 +1763,38 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
 msgstr "Nyíl"
 
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:47
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:51
 msgid "Bolt Tower"
 msgstr "Nyílvető torony"
 
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:49
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:53
 msgid "BoltTower"
 msgstr "Nyílvető torony"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:28
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:32
 msgid "Sentry Tower"
 msgstr "Őrtorony"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:30
-#: simulation/templates/template_structure_defensive_tower_stone.xml:28
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:34
+#: simulation/templates/template_structure_defensive_tower_stone.xml:32
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
 msgstr "Gyalogság beszállásolása további nyilakhoz. A lábazat megvédéséhez a „Lőrések” fejlesztés szükséges."
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:31
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:35
 msgid "SentryTower"
 msgstr "Őrtorony"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:54
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:59
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Megerősítés kővel, és fejlesztés védőtoronnyá."
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:26
+#: simulation/templates/template_structure_defensive_tower_stone.xml:30
 msgid "Stone Tower"
 msgstr "Kőtorony"
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:29
+#: simulation/templates/template_structure_defensive_tower_stone.xml:33
 msgid "StoneTower"
 msgstr "Kőtorony"
 
@@ -1954,7 +1954,7 @@ msgstr "Kohó"
 msgid "Research attack damage and damage resistance technologies."
 msgstr "Sebzési és sebzésellenállási fejlesztések kutatása."
 
-#: simulation/templates/template_structure_military_fortress.xml:35
+#: simulation/templates/template_structure_military_fortress.xml:30
 #: simulation/templates/template_structure_military_fortress.xml:65
 #: simulation/templates/template_structure_military_fortress.xml:69
 msgid "Fortress"

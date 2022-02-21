@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-14 08:09+0000\n"
-"PO-Revision-Date: 2022-02-17 09:52+0000\n"
-"Last-Translator: Morris Lee\n"
+"POT-Creation-Date: 2022-02-18 08:08+0000\n"
+"PO-Revision-Date: 2022-02-19 02:09+0000\n"
+"Last-Translator: Yuan Chang\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2076,6 +2076,8 @@ msgid "Macedonian Woman"
 msgstr "馬其頓女性"
 
 #: simulation/templates/units/maur/catafalque.xml:9
+#: simulation/templates/units/maur/hero_bindusara_infantry.xml:5
+#: simulation/templates/units/maur/hero_bindusara_infantry.xml:6
 msgid "Bindusara"
 msgstr "賓頭娑羅"
 
@@ -2163,8 +2165,14 @@ msgstr "Acharya Chāṇakya"
 
 #: simulation/templates/units/maur/hero_chandragupta.xml:5
 #: simulation/templates/units/maur/hero_chandragupta.xml:6
+#: simulation/templates/units/maur/hero_chandragupta_infantry.xml:5
+#: simulation/templates/units/maur/hero_chandragupta_infantry.xml:6
 msgid "Chandragupta Maurya"
 msgstr "旃陀羅笈多"
+
+#: simulation/templates/units/maur/hero_chandragupta_infantry.xml:12
+msgid "This gives Chandragupta Maurya his War Elephant."
+msgstr "這給了旃陀羅笈多他的戰象。"
 
 #: simulation/templates/units/maur/infantry_archer_b.xml:12
 msgid "Longbowman"
