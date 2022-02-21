@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant name="crow" frequency="1">
+      <animations>
+        <animation file="other/crow_flight.dae" frequency="1" name="Idle" speed="150"/>
+        <animation file="other/crow_flight.dae" frequency="1" name="Idle" speed="200"/>
+        <animation file="other/crow_glide.dae" frequency="2" name="Idle" speed="30"/>
+        <animation file="other/crow_glide.dae" frequency="2" name="Idle" speed="75"/>
+      </animations>
+      <textures>
+        <texture file="skeletal/animal_crow.png" name="baseTex"/>
+      </textures>
+      <mesh>skeletal/crow.dae</mesh>
+    </variant>
+  </group>
+  <material>default.xml</material>
+</actor>
