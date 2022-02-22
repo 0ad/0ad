@@ -185,7 +185,7 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 
 	camera.GetViewQuad(camera.GetNearPlane(), nearPoints);
 	camera.GetViewQuad(camera.GetFarPlane(), farPoints);
-	for(int i = 0; i < 4; i++)
+	for (int i = 0; i < 4; ++i)
 	{
 		nearPoints[i] = camera.m_Orientation.Transform(nearPoints[i]);
 		farPoints[i] = camera.m_Orientation.Transform(farPoints[i]);
@@ -210,50 +210,56 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 	ADD(nearPoints[0]);
 	ADD(nearPoints[1]);
 	ADD(nearPoints[2]);
+	ADD(nearPoints[0]);
+	ADD(nearPoints[2]);
 	ADD(nearPoints[3]);
 
 	// Far plane.
 	ADD(farPoints[0]);
 	ADD(farPoints[1]);
 	ADD(farPoints[2]);
+	ADD(farPoints[0]);
+	ADD(farPoints[2]);
 	ADD(farPoints[3]);
 
 	// Intermediate planes.
 	CVector3D intermediatePoints[4];
-	for(int i = 0; i < intermediates; ++i)
+	for (int i = 0; i < intermediates; ++i)
 	{
 		const float t = (i + 1.0f) / (intermediates + 1.0f);
 
-		for(int j = 0; j < 4; ++j)
+		for (int j = 0; j < 4; ++j)
 			intermediatePoints[j] = nearPoints[j] * t + farPoints[j] * (1.0f - t);
 
 		ADD(intermediatePoints[0]);
 		ADD(intermediatePoints[1]);
+		ADD(intermediatePoints[2]);
+		ADD(intermediatePoints[0]);
 		ADD(intermediatePoints[2]);
 		ADD(intermediatePoints[3]);
 	}
 
 	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
 	overlayShader->AssertPointersBound();
-	glDrawArrays(GL_QUADS, 0, vertices.size() / 3);
+	glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 3);
 
 	vertices.clear();
 
 	// Connection lines.
-	ADD(nearPoints[0]);
-	ADD(farPoints[0]);
-	ADD(nearPoints[1]);
-	ADD(farPoints[1]);
-	ADD(nearPoints[2]);
-	ADD(farPoints[2]);
-	ADD(nearPoints[3]);
-	ADD(farPoints[3]);
-	ADD(nearPoints[0]);
-	ADD(farPoints[0]);
+	for (int i = 0; i < 4; ++i)
+	{
+		const int nextI = (i + 1) % 4;
+		ADD(nearPoints[i]);
+		ADD(farPoints[nextI]);
+		ADD(farPoints[i]);
+		ADD(nearPoints[i]);
+		ADD(nearPoints[nextI]);
+		ADD(farPoints[nextI]);
+	}
 
 	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
 	overlayShader->AssertPointersBound();
-	glDrawArrays(GL_QUAD_STRIP, 0, vertices.size() / 3);
+	glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 3);
 #undef ADD
 
 	overlayTech->EndPass();
