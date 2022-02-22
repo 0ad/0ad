@@ -9,6 +9,7 @@ GameSettings.prototype.Attributes.StartingCamera = class StartingCamera extends 
 	{
 		this.values = [];
 		this.settings.map.watch(() => this.onMapChange(), ["map"]);
+		this.settings.playerCount.watch(() => this.maybeUpdate(), ["nbPlayers"]);
 	}
 
 	toInitAttributes(attribs)
@@ -51,5 +52,13 @@ GameSettings.prototype.Attributes.StartingCamera = class StartingCamera extends 
 		this._resize(pData?.length || 0);
 		for (let i in pData)
 			this.values[i] = pData?.[i]?.StartingCamera;
+	}
+
+	maybeUpdate()
+	{
+		if (this.values.length === this.settings.playerCount.nbPlayers)
+			return;
+		this._resize(this.settings.playerCount.nbPlayers);
+		this.trigger("values");
 	}
 };
