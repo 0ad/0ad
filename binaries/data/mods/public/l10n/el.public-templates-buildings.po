@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -36,9 +36,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-10-29 07:08+0000\n"
-"PO-Revision-Date: 2021-10-29 07:25+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-02-18 08:08+0000\n"
+"PO-Revision-Date: 2022-02-18 11:45+0000\n"
+"Last-Translator: LOUKAS SKOUROLIAKOS\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -948,8 +948,8 @@ msgid "Bibliothēkē"
 msgstr "Βιβλιοθήκη"
 
 #: simulation/templates/structures/mace/wonder.xml:9
-msgid "Hieron tou Dios tou Olympiou"
-msgstr "Ιερόν του Ολύμπιου Διός"
+msgid "Anaktoron ton Aigai"
+msgstr "Ανάκτορο των Αιγών"
 
 #: simulation/templates/structures/maur/barracks.xml:15
 msgid "Sainyavasa"
@@ -1334,7 +1334,7 @@ msgid ""
 "Construct Rams. Garrison Soldiers for additional arrows."
 msgstr "Κτίστε σε ουδέτερη ή εχθρική περιοχή. Εκπαιδεύστε Προχωρημένο Αγχέμαχο Πεζικό. Κατασκευάστε Πολιορκητικούς Κριούς. Φρουρά Στρατιωτών για επιπλέον βέλη. "
 
-#: simulation/templates/structures/rome/army_camp.xml:37
+#: simulation/templates/structures/rome/army_camp.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:76
 msgid "ArmyCamp"
 msgstr "Στρατώνας"
@@ -1657,9 +1657,9 @@ msgid ""
 "for additional arrows."
 msgstr "Χτίστε σε δική σας ή ουδέτερη περιοχή. Αποκτηστε μεγάλα κομμάτια περιοχής. Κεντρική Περιοχή. Εκπαιδεύστε Πολίτες και ερευνήστε τεχνολογίες. Στρατιώτες Φρουράς για επιπλέον τόξα."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:42
+#: simulation/templates/template_structure_civic_civil_centre.xml:37
 #: simulation/templates/template_structure_civic_civil_centre.xml:79
-#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:10
+#: simulation/templates/template_structure_civic_civil_centre_military_colony.xml:7
 msgid "CivilCentre"
 msgstr "Κέντρο Πόλης"
 
@@ -1763,11 +1763,11 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "Πέτρα"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:50
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:54
 msgid "Artillery Tower"
 msgstr "Πύργος Πυροβολικού"
 
-#: simulation/templates/template_structure_defensive_tower_artillery.xml:52
+#: simulation/templates/template_structure_defensive_tower_artillery.xml:56
 msgid "ArtilleryTower"
 msgstr "Πύργος Πυροβολικού "
 
@@ -1776,38 +1776,38 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
 msgstr "Βέλος Βαλλίστρας"
 
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:47
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:51
 msgid "Bolt Tower"
 msgstr "Πύργος Στουπιών"
 
-#: simulation/templates/template_structure_defensive_tower_bolt.xml:49
+#: simulation/templates/template_structure_defensive_tower_bolt.xml:53
 msgid "BoltTower"
 msgstr "ΒαλλιστικόςΠύργος"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:28
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:32
 msgid "Sentry Tower"
 msgstr "Πύργος Φρουράς"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:30
-#: simulation/templates/template_structure_defensive_tower_stone.xml:28
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:34
+#: simulation/templates/template_structure_defensive_tower_stone.xml:32
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
 msgstr "Πεζικό Φρουράς για επιπλέον βέλη. Χρειάζεται την τεχνολογία \"Ταμπούρια\" για να προστατεύει τη βάση του."
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:31
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:35
 msgid "SentryTower"
 msgstr "Αμυντικός Πύργος"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:54
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:59
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Ενίσχυσε με πέτρα και αναβάθμισε σε πύργο άμυνας."
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:26
+#: simulation/templates/template_structure_defensive_tower_stone.xml:30
 msgid "Stone Tower"
 msgstr "Πέτρινος Πύργος"
 
-#: simulation/templates/template_structure_defensive_tower_stone.xml:29
+#: simulation/templates/template_structure_defensive_tower_stone.xml:33
 msgid "StoneTower"
 msgstr "Λίθινος Πύργος"
 
@@ -1967,7 +1967,7 @@ msgstr "Σιδηρουργείο"
 msgid "Research attack damage and damage resistance technologies."
 msgstr "Ερευνήστε ζημιά επίθεσης και τεχνολογίες αντίστασης ζημιάς."
 
-#: simulation/templates/template_structure_military_fortress.xml:35
+#: simulation/templates/template_structure_military_fortress.xml:30
 #: simulation/templates/template_structure_military_fortress.xml:65
 #: simulation/templates/template_structure_military_fortress.xml:69
 msgid "Fortress"

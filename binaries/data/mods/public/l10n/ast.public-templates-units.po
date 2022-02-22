@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-14 08:09+0000\n"
-"PO-Revision-Date: 2022-02-17 18:31+0000\n"
+"POT-Creation-Date: 2022-02-18 08:08+0000\n"
+"PO-Revision-Date: 2022-02-18 15:30+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgstr "Reliquia"
 
 #: simulation/templates/template_unit_catafalque.xml:17
 msgid "Catafalque"
-msgstr "Reliquiario"
+msgstr "Catafalco"
 
 #: simulation/templates/template_unit_catafalque.xml:20
 msgid "A catafalque that holds the remains of a great leader."
@@ -2062,6 +2062,8 @@ msgid "Macedonian Woman"
 msgstr "Macedónica"
 
 #: simulation/templates/units/maur/catafalque.xml:9
+#: simulation/templates/units/maur/hero_bindusara_infantry.xml:5
+#: simulation/templates/units/maur/hero_bindusara_infantry.xml:6
 msgid "Bindusara"
 msgstr "Bindusara"
 
@@ -2149,8 +2151,14 @@ msgstr "Ācārya Cāṇakya"
 
 #: simulation/templates/units/maur/hero_chandragupta.xml:5
 #: simulation/templates/units/maur/hero_chandragupta.xml:6
+#: simulation/templates/units/maur/hero_chandragupta_infantry.xml:5
+#: simulation/templates/units/maur/hero_chandragupta_infantry.xml:6
 msgid "Chandragupta Maurya"
 msgstr "Candragupta Maurya"
+
+#: simulation/templates/units/maur/hero_chandragupta_infantry.xml:12
+msgid "This gives Chandragupta Maurya his War Elephant."
+msgstr "Esto fhaz que Candragupta Maurya tenga elephante."
 
 #: simulation/templates/units/maur/infantry_archer_b.xml:12
 msgid "Longbowman"

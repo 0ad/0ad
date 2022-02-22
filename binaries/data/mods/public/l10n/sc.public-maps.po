@@ -1,14 +1,14 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-06-14 07:26+0000\n"
-"Last-Translator: Transifex Bot <>\n"
+"POT-Creation-Date: 2022-02-18 08:08+0000\n"
+"PO-Revision-Date: 2022-02-18 10:25+0000\n"
+"Last-Translator: Transifex Bot\n"
 "Language-Team: Sardinian (http://www.transifex.com/wildfire-games/0ad/language/sc/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1319,7 +1319,6 @@ msgstr ""
 #: maps/scenarios/sandbox_britons.xml:PlayerData[0].Name:38
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[1].Name:39
 #: maps/scenarios/sandbox_iberians.xml:PlayerData[0].Name:38
-#: maps/scenarios/sandbox_romans.xml:PlayerData[0].Name:38
 #: maps/scenarios/siwa_oasis.xml:PlayerData[0].Name:26
 #: maps/scenarios/the_massacre_of_delphi.xml:PlayerData[0].Name:38
 #: maps/scenarios/treasure_islands.xml:PlayerData[0].Name:38
@@ -1343,7 +1342,6 @@ msgstr ""
 #: maps/scenarios/sandbox_britons.xml:PlayerData[1].Name:38
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[2].Name:39
 #: maps/scenarios/sandbox_iberians.xml:PlayerData[1].Name:38
-#: maps/scenarios/sandbox_romans.xml:PlayerData[1].Name:38
 #: maps/scenarios/siwa_oasis.xml:PlayerData[1].Name:26
 #: maps/scenarios/the_massacre_of_delphi.xml:PlayerData[1].Name:38
 #: maps/scenarios/treasure_islands.xml:PlayerData[1].Name:38
@@ -1904,7 +1902,6 @@ msgid "Carthage"
 msgstr ""
 
 #: maps/scenarios/sandbox_carthaginians.xml:PlayerData[1].Name:38
-#: maps/scenarios/sandbox_persians.xml:PlayerData[1].Name:38
 msgid "Creeps"
 msgstr ""
 
@@ -1949,32 +1946,20 @@ msgstr ""
 msgid "The Macedonians"
 msgstr ""
 
-#: maps/scenarios/sandbox_mauryas.xml:Description:38
-msgid "Mauryan Indian faction showcase map."
+#: maps/scenarios/sandbox_mauryas.xml:Description:39
+msgid "A simple map showcasing the Maurya civilization's assets in the game."
 msgstr ""
 
-#: maps/scenarios/sandbox_mauryas.xml:Name:38
-msgid "Sandbox - The Mauryas"
+#: maps/scenarios/sandbox_mauryas.xml:Name:39
+msgid "Sandbox - The Maurya Indians"
 msgstr ""
 
-#: maps/scenarios/sandbox_mauryas.xml:PlayerData[0].Name:38
-msgid "Mauryan Indians"
+#: maps/scenarios/sandbox_persians.xml:Description:39
+msgid "A simple map showcasing the Persian civilization's assets in the game."
 msgstr ""
 
-#: maps/scenarios/sandbox_mauryas.xml:PlayerData[1].Name:38
-msgid "Enemy"
-msgstr ""
-
-#: maps/scenarios/sandbox_persians.xml:Description:38
-msgid "Demo Map. Play with the Persian civilisation in a sandbox setting."
-msgstr ""
-
-#: maps/scenarios/sandbox_persians.xml:Name:38
-msgid "Sandbox - The Persians"
-msgstr ""
-
-#: maps/scenarios/sandbox_persians.xml:PlayerData[0].Name:38
-msgid "Achaemenids"
+#: maps/scenarios/sandbox_persians.xml:Name:39
+msgid "Sandbox - The Achaemenid Persians"
 msgstr ""
 
 #: maps/scenarios/sandbox_ptolemies.xml:Description:38
@@ -2015,12 +2000,14 @@ msgstr ""
 msgid "Libyans"
 msgstr ""
 
-#: maps/scenarios/sandbox_romans.xml:Description:38
-msgid "A sandbox scenario for players to try out the Roman civilisation."
+#: maps/scenarios/sandbox_romans.xml:Description:39
+msgid ""
+"A simple map showcasing the Republican Roman civilization's assets in the "
+"game."
 msgstr ""
 
-#: maps/scenarios/sandbox_romans.xml:Name:38
-msgid "Sandbox - The Republican Romans"
+#: maps/scenarios/sandbox_romans.xml:Name:39
+msgid "Sandbox - The Romans"
 msgstr ""
 
 #: maps/scenarios/sandbox_seleucids.xml:Description:38

@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-02-14 08:09+0000\n"
-"PO-Revision-Date: 2022-02-14 08:24+0000\n"
-"Last-Translator: Transifex Bot\n"
+"PO-Revision-Date: 2022-02-20 09:09+0000\n"
+"Last-Translator: Jonatan Nyberg\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -268,7 +268,7 @@ msgstr "inaktiverad"
 
 #: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
-msgstr ""
+msgstr "Under den första minuten kommer andra spelare att förbli neutrala."
 
 #: gui/common/gamedescription.js:279
 #, javascript-format
@@ -3898,7 +3898,7 @@ msgstr "Spelarnamn (flerspelarläge)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr "Hur du vill bli adresserad i matcher med flera spelare (utom lobbyn)."
+msgstr "Hur du vill bli adresserad i flerspelarlägesmatcher (utom lobbyn)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
@@ -3960,7 +3960,7 @@ msgstr "Visa tiden när ett chattmeddelande skickades."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Naming of entities."
-msgstr ""
+msgstr "Namngivning av enheter."
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific names first"
@@ -3980,11 +3980,11 @@ msgstr "Visa generiska namn innan de specifika namnen."
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only specific names"
-msgstr "Bara specifika namn"
+msgstr "Endast specifika namn"
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
 msgid "Display only specific names for entities."
-msgstr ""
+msgstr "Visa endast specifika namn för enheter."
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only generic names"
@@ -4000,7 +4000,7 @@ msgstr ""
 
 #: gui/options/options.json[1].label
 msgid "Graphics (general)"
-msgstr "Grafik (generellt)"
+msgstr "Grafik (allmänt)"
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
@@ -4638,7 +4638,7 @@ msgstr "Tilldela anslutande spelare automatiskt till lediga spelarplatser i matc
 
 #: gui/options/options.json[5].label
 msgid "Networking / Lobby"
-msgstr ""
+msgstr "Nätverkande / Lobby"
 
 #: gui/options/options.json[5].options[0].label
 msgid "TLS encryption"
@@ -5124,11 +5124,11 @@ msgstr "Ladda ett sparat spel."
 
 #: gui/pregame/MainMenuItems.js:117
 msgid "New Campaign"
-msgstr "Ny Kampanj"
+msgstr "Ny kampanj"
 
 #: gui/pregame/MainMenuItems.js:124
 msgid "Load Campaign"
-msgstr "Ladda kampanj"
+msgstr "Läs in kampanj"
 
 #: gui/pregame/MainMenuItems.js:134 gui/pregame/MainMenuItems.js:184
 msgid "Replays"
@@ -5674,7 +5674,7 @@ msgstr "Enspelarläge"
 #: gui/replaymenu/replay_filters.js:147
 msgctxt "replay filter"
 msgid "Multiplayer"
-msgstr "Flera spelare"
+msgstr "Flerspelarläge"
 
 #: gui/replaymenu/replay_filters.js:148
 msgctxt "replay filter"
@@ -5794,7 +5794,7 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. You may "
 "encounter bugs, and some features are not as fleshed out as we would like."
-msgstr ""
+msgstr "[imgleft=\"constructionIcon\"]Detta spel är fortfarande under utveckling. Du kan stöta på problem och vissa funktioner är inte så detaljerade som vi skulle vilja."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
@@ -5806,13 +5806,13 @@ msgstr "[imgleft=\"iconLag\"]Spelet kan ha prestandaproblem, framförallt med st
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr "[imgleft=\"iconMap\"]0 A.D. är gratis mjukvara: du kan delta i dess utväckling."
+msgstr "[imgleft=\"iconMap\"]0 A.D. är fri programvara: du kan delta i dess utveckling."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
 "If you want to help with art, sound, gameplay or programming, make sure to "
 "join our official forum."
-msgstr ""
+msgstr "Om du vill hjälpa till med konst, ljud, spel eller programmering, se till att gå med i vårt officiella forum."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"

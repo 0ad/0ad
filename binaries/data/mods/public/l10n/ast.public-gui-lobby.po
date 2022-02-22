@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2022-02-18 02:35+0000\n"
+"PO-Revision-Date: 2022-02-21 03:19+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "Consignar cumo collaçu"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:70
 msgid "Unmark as Buddy"
-msgstr "Disconsignar cumo collaçu"
+msgstr "Dis-consignar cumo collaçu"
 
 #: gui/lobby/LobbyPage/Buttons/HostButton.js:10
 msgid "Host Game"
@@ -61,15 +61,15 @@ msgstr "Ahospedar partida"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:40
 msgid "Your active mods do not match the mods of this game."
-msgstr "Læs tuæs modificaçones activæs nun concassæn culæs d’esta partida."
+msgstr "Los tous commudos activos nun concassæn culos d’esta partida."
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
 msgid "Do you want to switch to the mod selection page?"
-msgstr "¿Quieres passar a la págïna “selecçon de modificaçones”?"
+msgstr "¿Quieres passar a la págïna “selecçon de commudos”?"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
 msgid "Incompatible mods"
-msgstr "Modificaçones incompatibles"
+msgstr "Commudos incompatibles"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
 msgid "The game has already started. Do you want to join as observer?"
@@ -123,15 +123,15 @@ msgstr "Afhita’l stau n “Ausente”."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:95
 msgid "Set your state to 'Online'."
-msgstr "Afhita’l stau n «Na rede»."
+msgstr "Afhita’l stau n “Na rede”."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:102
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "Spuxar de l antepar a ciertu usuariu. Usu: /razon pala expulsion"
+msgstr "Spuxar de l antepar a ciertu usuariu. Usu: /kick nick reason"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:114
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr "Torga’l usu de l antepar a ciertu usuariu. Usu: /razon pala torga"
+msgstr "Torga’l usu de l antepar a ciertu usuariu. Usu: /ban nick reason"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:126
 msgid "Show this help."
@@ -254,12 +254,12 @@ msgstr "%(nick)s ya nun ye un lhindador."
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:152
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to:"
-msgstr "%(nick)s introduxo un assumptu nuœvu:"
+msgstr "%(nick)s cambiou l assumptu de l antepar a:"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:153
 #, javascript-format
 msgid "%(nick)s deleted the lobby subject."
-msgstr "%(nick)s disiniciou l assumptu."
+msgstr "%(nick)s disiniciou l assumptu de l antepar."
 
 #. Translation: Chat status message
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
@@ -353,11 +353,11 @@ msgstr "Partida infinita"
 msgid ""
 "You have some incompatible mods:\n"
 "%(details)s"
-msgstr "Tienes dellæs modificaçones incompatibles:\n%(details)s"
+msgstr "Tienes dellos commudos incompatibles:\n%(details)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:123
 msgid "This mod does not affect MP compatibility"
-msgstr "Esta modificaçon nun affecta a la compatibilidá multixhogador"
+msgstr "Esti commudu nun affecta a la compatibilidá multixhogador"
 
 #: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format
@@ -380,11 +380,11 @@ msgstr ", "
 
 #: gui/lobby/LobbyPage/GameDetails.js:151
 msgid "Mods:"
-msgstr "Modificaçones:"
+msgstr "Commudos:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:153
 msgid "Mods (incompatible):"
-msgstr "Modificaçones (incompatibles):"
+msgstr "Commudos (incompatibles):"
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/LobbyPage/GameDetails.js:156
@@ -551,136 +551,136 @@ msgstr "%(percentage)s %%"
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):8
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):30
 msgid "Current Rank:"
-msgstr "Clasificación actual:"
+msgstr "Classificaçon actual:"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):12
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):34
 msgid "Highest Rating:"
-msgstr "Valoración más alta:"
+msgstr "Valoraçon mas alta:"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):16
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):38
 msgid "Total Games:"
-msgstr "Alcuentros totales:"
+msgstr "Partidæs in total:"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):20
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):42
 msgid "Wins:"
-msgstr "Victories:"
+msgstr "Victoriæs:"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):24
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):46
 msgid "Losses:"
-msgstr "Derrotes:"
+msgstr "Derrotæs:"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):28
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):50
 msgid "Win Rate:"
-msgstr "Tasa de victories:"
+msgstr "Taxa de victoria:"
 
 #: gui/lobby/ProfilePage/ProfilePage.js:70
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr "Nun s'atopó'l xugador «%(nick)s»"
+msgstr "Non s’atopou a “%(nick)s”"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):16
 msgid "Enter playername:"
-msgstr "Introduz el nome d'un xugador:"
+msgstr "Nome de l xhogador:"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):22
 msgid "View Profile"
-msgstr "Ver perfil"
+msgstr "Ve’l perfil"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):55
 msgid "Please enter a player name."
-msgstr "Introduz el nome d'un xugador, por favor."
+msgstr "Pon el nome d’un xhogador, por favor."
 
 #: gui/prelobby/common/credentials/confirmpassword.xml:(caption):4
 msgid "Password again:"
-msgstr "Clave outra vuölta:"
+msgstr "Confirma’ la tyave:"
 
 #: gui/prelobby/common/credentials/credentials.js:5
 msgid "Please enter your username"
-msgstr "Introduz el to nome d'usuariu, por favor"
+msgstr "Pon el tou nome d’usuariu, por favor"
 
 #: gui/prelobby/common/credentials/credentials.js:8
 msgid "Invalid username"
-msgstr "Nome d'usuariu non válidu"
+msgstr "El nome d’usuariu ye inválidu"
 
 #: gui/prelobby/common/credentials/credentials.js:19
 msgctxt "register"
 msgid "Please enter your password"
-msgstr "Introduz la clave, por favor"
+msgstr "Pon la tuæ tyave d’accessu, por favor"
 
 #: gui/prelobby/common/credentials/credentials.js:20
 msgctxt "login"
 msgid "Please enter your password"
-msgstr "Introduz la clave, por favor"
+msgstr "Pon la tuæ tyave d’accessu, por favor"
 
 #: gui/prelobby/common/credentials/credentials.js:23
 msgid "Please choose a longer password"
-msgstr "Escueyi una clave más llarga, por favor"
+msgstr "Scuœyye una tyave mas lharga, por favor"
 
 #: gui/prelobby/common/credentials/credentials.js:32
 msgid "Please enter your password again"
-msgstr "Volvi introducir la clave, por favor"
+msgstr "Torna a pone’ la tyave, por favor"
 
 #: gui/prelobby/common/credentials/credentials.js:36
 msgid "Passwords do not match"
-msgstr "Les claves nun concasen"
+msgstr "Læs tyaves nun concasæn"
 
 #: gui/prelobby/common/credentials/credentials.js:54
 msgid "Are you sure you want to delete the password after connecting?"
-msgstr "¿De xuru que quieres desaniciar la clave en conectando?"
+msgstr "¿Stas ciertu que quieres disinicia’ la tyave n connectando?"
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):6
 msgid "Login:"
-msgstr "Aniciu de sesión:"
+msgstr "Inicio de session:"
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):15
 msgid "Password:"
-msgstr "Clave:"
+msgstr "Tyave d’accessu:"
 
 #: gui/prelobby/common/credentials/rememberpassword.xml:(caption):7
 msgid "Remember Password"
-msgstr "Recordar la clave"
+msgstr "Rememora’ la tyave"
 
 #: gui/prelobby/common/feedback/feedback.js:4
 msgid ""
 "Unknown error. This usually occurs because the same IP address is not "
 "allowed to register more than one account within one hour."
-msgstr "Fallu desconocidu. Esto asocede davezu porque nun se permite'l rexistru de más d'una cuenta nuna hora coles mesmes señes IP."
+msgstr "Fallu disconhocidu. Polo commun, esto succede porque non se permitti a una mesma signa IP regïstrar mas d’una cuœnta per hora."
 
 #: gui/prelobby/common/feedback/feedback.xml:(caption):10
 #: gui/prelobby/entrance/entrance.xml:(caption):30
 msgid "Cancel"
-msgstr "Encaboxar"
+msgstr "Incaboxar"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:1
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy "
 "Policy[/font]"
-msgstr "[font=\"sans-bold-18\"]Política de privacidá del antepar de 0 A.D. Empires Ascendant[/font]"
+msgstr "[font=\"sans-bold-18\"]Política de privacidá de l antepar multixhogador de 0 A.D. Empires Ascendant[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2020-12-24"
-msgstr "[font=\"sans-bold-14\"]Fecha del documentu:[/font] 2020-12-24"
+msgstr "[font=\"sans-bold-14\"]Data de l documento:[/font] 2020-12-24"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:5
 msgid ""
 "[font=\"sans-bold-16\"]Personal data processed by Wildfire Games and "
 "purposes of processing:[/font]"
-msgstr "[font=\"sans-bold-16\"]Datos personales procesaos por Wildfire Games & envises del procesamientu:[/font]"
+msgstr "[font=\"sans-bold-16\"]Datos personales tractahos por Wildfire Games & propósitos de l tractamiento:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:6
 msgid "[font=\"sans-bold-14\"]1. Player name[/font]"
-msgstr "[font=\"sans-bold-14\"]1. Nome del xugador[/font]"
+msgstr "[font=\"sans-bold-14\"]1. Nome de l xhogador[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:7
 msgid ""
 "The player is identified by a name that the player chooses at the time of "
 "registration."
-msgstr "El xugador identifícase per aciu d'un nome que'l xugador escueya a la hora de rexistrase."
+msgstr "Al xhogador identifica-se-lli per accio d’un nome que l xhogador scuœyye a la hora de regïstrase."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:8
 msgid ""
@@ -688,7 +688,7 @@ msgid ""
 "players, moderators and developers to identify players they met before, "
 "communicate about the game, coordinate matches and enables moderators to "
 "enforce the Terms of Use."
-msgstr "Un nome ermunu ye preciso p'algamar una clasificación y dexa a los xugadores, llendadores y desendolcadores identificar los conocidos, falar del xuegu, coordinar los alcuentros y permite a los llendadores facer cumplir los términos d'usu."
+msgstr "Ye preciso tener un nome únicu p’algamar una classificaçon, paha permittir a los xhogadores, lhindadores & disindolrcadores identificar conhocidos, falar de l xhuœw, coordinar partidæs & deixa a los lhindadores fhazer complri’ los términos d’usu."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:9
 msgid ""
@@ -697,61 +697,61 @@ msgid ""
 " information (such as the real name) was disclosed on the Lobby Chat, other "
 "services of Wildfire Games or elsewhere in the public, or when the IP "
 "address is used to bring criminal proceedings."
-msgstr "El nome del xugador sirve de seudónimu. Wildfire Games desconoz la identidá (persona natural) de los xugadores, a nun ser que s'asoleyare información personalmente identificable (como'l nome real) n'antepar, n'otros servicios de Wildfire Games o en público, o cuando s'empleguen les señes IP pa formular procesos penales."
+msgstr "El nome de l xhogador siervi cumo pseudónimo. Wildfire Games disconhoz la identidá (persona natural) de los xhogadores, a nun ser que se revelás informaçon personalmente identificable (cumo l nome real) na conversa de l antepar, n outros servicios de Wildfire Games ou n público, ou quando s’usæn læs signæs IP paha formular processos penales."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
-msgstr "[font=\"sans-bold-14\"]2. Clave[/font]"
+msgstr "[font=\"sans-bold-14\"]2. Tyave d’accessu[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:12
 msgid ""
 "A player is authenticated using a password that the player chooses at the "
 "time of registration."
-msgstr "El xugador autentícase pentre medies d'una clave que'l xugador escueya a la hora of de rexistrase."
+msgstr "Al xhogador authentica-se-lli pentre mediæs d’una tyave que l xhogador scuœyye a la hora de regïstrase."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:13
 msgid ""
 "Wildfire Games only receives an encrypted version of the password, so that "
 "the password chosen by the user is not revealed to Wildfire Games or others "
 "in case of a breach."
-msgstr "Wildfire Games recibe namái una versión cifrada de la clave, pa que la clave escoyida pol usuariu nun s'asoleye nin a Wildfire Games nin a otros en casu d'un fallu de seguranza."
+msgstr "Wildfire Games solo recibi una version cifrada de la tyave, paha que la tyave scoyyida pol usuariu nun se revele a Wildfire Games nin a outros in casu d’un fallu de segurança."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:15
 msgid "[font=\"sans-bold-14\"]3. IP address[/font]"
-msgstr "[font=\"sans-bold-14\"]3. Señes IP[/font]"
+msgstr "[font=\"sans-bold-14\"]3. Signæs IP[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:16
 msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr "Cuando'l xugador agospeda un alcuentru n'antepar, les señes IP del xugador únviense a tódolos xugadores qu'estean na rede, pa qu'otros xugadores puedan xunise a esi alcuentru."
+msgstr "Quando l xhogador ahospeda una partida nel antepar multixhogador, inviæn-se læs signæs IP d’essi xhogador a todolos xhogadores que stan na rede, paha q’outros xhogadores puœdan axuntase a essa partida."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
 "Wildfire Games stores players IP addresses and may infer publicly available "
 "geolocation and internet service provider data (for example \"geolite2\") "
 "from the IP address in order to:"
-msgstr "Wildfire Games atroxa les señes IP de los xugadores y puede inferir un xeoallugamientu públicamente disponible y datos del fornidor del serviciu Internet (por exemplu «geolite2») de les señes IP al envís de:"
+msgstr "Wildfire Games atrousa signæs IP de xhogadores & puœde inferir datos públicamente disponibles de geo-localizaçon & de l provedor de l servicio Internet (por exemplo “geolite2”) de læs signæs IP in viso a:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:18
 msgid ""
 " 1. Enforce the Terms of Use where persons create multiple accounts without "
 "Wildfire Games permission, in particular after having been banned from the "
 "service for violating the Terms of Use."
-msgstr " 1. Facer cumplir los términos d'usu cuando heba persones que críen más d'una cuenta ensin el permisu de Wildfire Games, sobre manera depués que se-llys espuxaren del serviciu por violar los términos d'usu."
+msgstr " 1. Fhazer complri’ los términos d’usu quando hebia personæs que críæn mas d’una cuœnta sin el permisso de Wildfire Games, in particular de puœis que se llis quitassen d’utiliza’l servicio por viola’ los términos d’usu."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:19
 msgid ""
 "    IP addresses will not be saved for longer than three years for this "
 "purpose."
-msgstr "Les señes IP nun van guardase demientres más de tres años a esti envís."
+msgstr "Læs signæs IP nun van conservase per mas de trés anhos paha esti propósito."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:20
 msgid ""
 " 2. Make it possible to bring criminal proceedings in case of a cyberattack "
 "(EU Court of Justice Press Release No 112/16)."
-msgstr " 2. Facer que se pueda formular procesos criminales en casu d'un ciberataque (EU Court of Justice Press Release No 112/16)."
+msgstr " 2. Fhazer possible la formulaçon de processos criminales in casu de ciber-agression (EU Court of Justice Press Release No 112/16)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:21
 msgid ""
@@ -759,7 +759,7 @@ msgid ""
 "particular not for marketing, not otherwise disclose IP addresses to the "
 "public or third parties and erase IP addresses if they are not relevant for "
 "the stated purposes anymore."
-msgstr "Wildfire Games nun va emplegar el rexistru de señes IP pa dal otru propósitu, sobre manera non pa mercadexar, nin otramiente asoleyar señes IP al públicu o terceros y va esborrar señes IP si yá nun son relevantes pa dichos envises."
+msgstr "Wildfire Games nun vaî usa’l regïstro de signæs IP paha nengun outro propósito, in particular non paha mercadexhar, non revelar outramente signæs IP al público ou terceiros & vaî sburrar signæs IP si ya nun son relevantes paha dithos propósitos."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:23
 msgid "[font=\"sans-bold-14\"]4. Online presence[/font]"
@@ -769,56 +769,56 @@ msgstr "[font=\"sans-bold-14\"]4. Presencia na rede[/font]"
 msgid ""
 "Which players are currently connected to the Multiplayer Lobby and which "
 "match they joined is shown to all online players."
-msgstr "Los xugadores qu'estean conectaos col antepar y l'alcuentru al que se xunieren amuéstrase a tódolos xugadores na rede."
+msgstr "Los xhogadores que stan connectahos cul antepar multixhogador & la partida a la que s’axuntarun son amostrahos a todolos xhogadores na rede."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
-msgstr "[font=\"sans-bold-14\"]5. Mensaxes de la charra[/font]"
+msgstr "[font=\"sans-bold-14\"]5. Recahos[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:27
 msgid ""
 "The Multiplayer Lobby features a public chat room that enables players to "
 "discuss the game and organize multiplayer matches."
-msgstr "L'antepar tien una charra pública que permite a los xugadores aldericar sobre'l xuegu y entamar alcuentros entre dellos xugadores."
+msgstr "L antepar cuœnta cun una conversa pública que permitte a los xhogadores falar de l xhuœw & intamar partidæs entre múltiplos xhogadores."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:28
 msgid ""
 "Wildfire Games stores a log of the public chat messages and online presence "
 "to meet the following purposes:"
-msgstr "Wildfire Games atroxa un rexistru de los mensaxes de la charra pública y la presencia na rede pa cumplir los envises que siguen darréu:"
+msgstr "Wildfire Games caltien un regïstro de los recahos de la conversa pública & de presencia na rede paha complri’ los segientes propósitos:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:29
 msgid " 1. Moderators may screen chat messages to enforce the Terms of Use."
-msgstr " 1. Los llendadores pueden revisar mensaxes de la charra pa facer cumplir los términos d'usu."
+msgstr " 1. Pode’ los lhindadores revisa’ los recahos de la conversa paha fhazer complri’ los términos d’usu."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:30
 msgid ""
 " 2. Wildfire Games may address or resolve bug reports, balancing issues or "
 "feature proposals indicated by players in the chat room."
-msgstr " 2. Wildfire Games puede encetar o resolver informes de fallos, cuestiones d'equilibriu o propuestes d'elementos señalaos por xugadores na charra."
+msgstr " 2. Poder Wildfire Games attender a ou resolver informes de fallos, questiones d’equilibrio ou propuœstæs de characterísticæs fheithæs por xhogadores na conversa."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:31
 msgid ""
 " 3. Wildfire Games may assess trends amongst discussed topics, the growth of"
 " the active community and use these indicators as feedback to assess, "
 "improve and direct development of the game and the service."
-msgstr " 3. Wildfire Games puede valorar los enclinos de los asuntos aldericaos, la medra de la comunidá activa y emplegar estos indicadores como crítica pa valorar, ameyorar y empobinar el desendolcu del xuegu y el serviciu."
+msgstr " 3. Poder Wildfire Games invalora’ læs tendenciæs de los assumptos tractahos, la medra de la communidá activa & utilizar estos indicadores cumo comentarios paha invalorar, ameyyorar & impobina’l disindolrcu de l xhuœw & el servicio."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:33
 msgid "[font=\"sans-bold-14\"]6. Match statistics[/font]"
-msgstr "[font=\"sans-bold-14\"]6. Estadístiques d'alcuentros[/font]"
+msgstr "[font=\"sans-bold-14\"]6. Statísticæs de partida[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:34
 msgid ""
 "Players can gain a rating on the Multiplayer Lobby that reflects their skill"
 " at the game."
-msgstr "Los xugadores pueden llograr una clasificación n'antepar qu'espeye la sua habileza pal xuegu."
+msgstr "Los xhogadores puœden algamar una classificaçon n antepar que speyye la suæ habilidá pal xhuœw."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:35
 msgid ""
 "The rating of all players is published by Wildfire Games and allows players "
 "to focus on competitive or balanced matchmaking if they wish to."
-msgstr "La clasificación de tódolos xugadores publícala Wildfire Games; dexa que los xugadores se centren en facer alcuentros equilibraos y competitivos si eso quieren."
+msgstr "La classificaçon de todolos xhogadores ye publicada por Wildfire Games & deixa que los xhogadores se centren in partidæs equilibradæs ou competitivæs cumo quieran."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:36
 msgid ""
@@ -826,62 +826,62 @@ msgid ""
 "number of units trained, resources gathered and the winner of the match) to "
 "Wildfire Games, so that Wildfire Games can adapt the players ratings based "
 "on these statistics."
-msgstr "N'alcuentros clasificaos, los xugadores unvien datos venceyaos col alcuentru (talos como cuántes unidades exercitaron, cuántos recursos llograron y quién ganó l'alcuentru) a Wildfire Games, pa que Wildfire Games pueda afacer les clasificaciones de los xugadores acordies con eses estadístiques."
+msgstr "Næs partidæs classificadæs, los xhogadores inviæn datos relacionahos cula partida (talos cumo l númeru d’unidahes creadæs, recursos obtenidos & el vincedor de la partida) a Wildfire Games, paha que Wildfire Games puœda afhaze’ læs classificaçones de los xhogadores conforme a estæs statísticæs."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:37
 msgid "Wildfire Games stores match statistics to:"
-msgstr "Wildfire Games atroxa estadístiques d'alcuentros pa:"
+msgstr "Wildfire Games atrousa statísticæs de partida paha:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:38
 msgid ""
 " 1. Verify the accuracy of the rating score and identify and enforce Terms "
 "of Use violations relating to that."
-msgstr " 1. Comprobar la precisión de la clasificación ya identidá y facer cumplir violaciones de los términos d'usu cincantes a ello."
+msgstr " 1. Comproba’ la precision de la classificaçon & identidá & fhazer complri’ læs violaçones de los términos d’usu relacionadæs a ello."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:39
 msgid ""
 " 2. Compute and publish community statistics to improve the game and the "
 "service, for example to improve the balancing of the game or to make certain"
 " aspects of the game more appealing."
-msgstr " 2. Calcular y publicar estadístiques de la comunidá p'ameyorar el xuegu y el serviciu, por exemplu p'ameyorar l'equilibriu del xuegu o facer que ciertos aspeutos del xuegu presten más."
+msgstr " 2. Calcular & publicar statísticæs communitariæs p’ameyyora’l xhuœw & el servicio, por exemplo p’ameyyora’l equilibrio de l xhuœw ou fhazer que ciertos aspectos de l xhuœw presten mas."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:41
 msgid "[font=\"sans-bold-14\"]Security of processing:[/font]"
-msgstr "[font=\"sans-bold-14\"]Seguranza del procesamientu:[/font]"
+msgstr "[font=\"sans-bold-14\"]Segurança de tractamiento:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:42
 msgid ""
 "The transmission of personal data is secured using TLS encryption (GDPR 32)."
-msgstr "La tresmisión de datos personales asegúrase pentre medies del cifráu TLS (GDPR 32)."
+msgstr "La transmission de datos personales ye assegurada pentre mediæs de l cifraho TLS (GDPR 32)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:43
 msgid ""
 "Personal data is protected against unintentional loss in encrypted backups "
 "for additional time (GDPR 30.1.g, GDPR 32)."
-msgstr "Los datos personales protéxense escontra la perda accidental en copies de seguranza cifrades demientres más tiempu (GDPR 30.1.g, GDPR 32)."
+msgstr "Los datos personales protegën-se contra la perda accidental in copiæs cifradæs dumentres mas tiempu (GDPR 30.1.g, GDPR 32)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:45
 msgid ""
 "All personal data that Wildfire Games processes is obtained from the user "
 "(GDPR 14)."
-msgstr "Tódolos datos personales que trate Wildfire Games vienen del usuariu (GDPR 14)."
+msgstr "Todolos datos personales que tracta Wildfire Games obtienen-se de l usuariu (GDPR 14)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:46
 msgid ""
 "Wildfire Games reserves the right to delete any service data (including "
 "personal data) at any time, except where a user has objected to the erasure "
 "of his or her personal data for performance of a legal claim."
-msgstr "Wildfire Games acuta'l derechu a desaniciar cualesquier datos de serviciu (datos personales incluídos) en cualquier momentu, sacante cuando un usuariu o usuaria se tenga opuesto a la esborradura de los sos datos personales pal cumplimientu d'una demanda llegal."
+msgstr "Wildfire Games acouta l direithu a eliminar qualesquiera datos de servicio (inxertos los datos personales) in qualquiera momento, a nun ser q’un usuariu ou usuaria se tenga oppuœsto a la sburradura de los sous datos personales paha complrir una demanda legal."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:48
 msgid "[font=\"sans-bold-16\"]Legal basis for the processing:[/font]"
-msgstr "[font=\"sans-bold-16\"]Base llegal pal procesamientu:[/font]"
+msgstr "[font=\"sans-bold-16\"]Base legal pal tractamiento:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:49
 msgid ""
 "1. The processing is necessary for the performance of the service defined in"
 " the terms (GDPR 6.1.b)."
-msgstr "1. El procesamientu ye precisu pal rindimientu del serviciu definidu nos términos (GDPR 6.1.b)."
+msgstr "1. El tractamiento ye preciso pal rendimiento de l servicio definido nos términos (GDPR 6.1.b)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:50
 msgid ""
@@ -889,41 +889,41 @@ msgid ""
 "Lobby, in the development and improvement of 0 A.D. and the Multiplayer "
 "Lobby, in enforcing the Terms of Use and in the protection against "
 "cyberattacks (GDPR 6.1.f)."
-msgstr "2. Wildfire Games tien porgüeyos llexítimos n'aprovir l'antepar, nel desendolcu y ameyoramientu de 0 A.D. y l'antepar, en facer cumplir los términos d'usu y na proteición escontra ciberataques (GDPR 6.1.f)."
+msgstr "2. Wildfire Games tien interesses legítimos in forni’l antepar, nel disindolrcu & meyyora de 0 A.D. & l antepar, in fhazer complri’ los términos d’usu & na protecçon contra ciber-aggresiones (GDPR 6.1.f)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:51
 msgid ""
 "3. Wildfire Games does not process any further data for the Multiplayer "
 "Lobby and does not ask for consent to process data (GDPR 6.1.a, GDPR 7, GDPR"
 " 8, GDPR 13.2.c)."
-msgstr "3. Wildfire Games nun trata otros datos pal antepar y nun pide consentimientu pa tratar datos (GDPR 6.1.a, GDPR 7, GDPR 8, GDPR 13.2.c)."
+msgstr "3. Wildfire Games nun tracta outros datos pal antepar & nun piedi assenso paha tractar datos (GDPR 6.1.a, GDPR 7, GDPR 8, GDPR 13.2.c)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:53
 msgid "[font=\"sans-bold-16\"]User rights:[/font]"
-msgstr "[font=\"sans-bold-16\"]Drechos del usuariu:[/font]"
+msgstr "[font=\"sans-bold-16\"]Direithos de l usuariu:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:54
 msgid ""
 "1. Contact Wildfire Games, by sending an email to webmaster at wildfiregames"
 " dot com (GDPR 13.1.a, GDPR 13.1.b)."
-msgstr "1. Ponese en contactu con Wildfire Games, unviando un corréu-e a webmaster arroba wildfiregames puntu com (GDPR 13.1.a, GDPR 13.1.b)."
+msgstr "1. Ponese n contactu cun Wildfire Games, inviando un curreu electrónicu a webmaster arroba wildfiregames punto com (GDPR 13.1.a, GDPR 13.1.b)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:55
 msgid "   To exercise any user right, please refer to this contact."
-msgstr " Pa exercer cualquier derechu d'usuariu, diríxite a esti contactu, por favor."
+msgstr "   Paha exercer qualquiera direithu d’usuariu, refier-te a esti contactu, por favor."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:56
 msgid "2. Right of access to personal data concerning him or her (GDPR 15)."
-msgstr "2. Derechu d'acceder a datos personales tocántenes a elli o ella (GDPR 15)."
+msgstr "2. Direithu d’acceder a datos personales tocántenes a elli ou ella (GDPR 15)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:57
 msgid ""
 "3. Right to obtain personal data in a machine-readable format (GDPR 20)."
-msgstr "3. Derechu a llograr datos personales nun formatu lleíble por máquines (GDPR 20)."
+msgstr "3. Direithu a obtener datos personales n un formato legïble por máchina (GDPR 20)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:58
 msgid "4. Right to rectification of inaccurate personal data (GDPR 16)."
-msgstr "4. Derechu a la rectificación de datos personales inexautos (GDPR 16)."
+msgstr "4. Direithu a la rectificaçon de datos personales inexactos (GDPR 16)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:59
 msgid ""
@@ -959,7 +959,7 @@ msgstr "Los pidimientos que rescamplen por escarecer de fundamentu o ser excesiv
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:65
 msgid "[font=\"sans-bold-16\"]Wildfire Games obligations:[/font]"
-msgstr "[font=\"sans-bold-16\"]Obligaciones de Wildfire Games:[/font]"
+msgstr "[font=\"sans-bold-16\"]Oblrigaçones de Wildfire Games:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:66
 msgid ""
@@ -1233,19 +1233,19 @@ msgstr "Si un llendador xulga que'l to comportamientu nun s'aficiere a estos té
 
 #: gui/prelobby/common/terms/termslobby.js:9
 msgid "Terms of Service"
-msgstr "Términos del serviciu"
+msgstr "Términos de servicio"
 
 #: gui/prelobby/common/terms/termslobby.js:10
 msgid "Please read and accept the Terms of Service."
-msgstr "Llei y acepta los términos de serviciu, por favor."
+msgstr "Lheie & accepta los términos de servicio, por favor."
 
 #: gui/prelobby/common/terms/termslobby.js:19
 msgid "Terms of Use"
-msgstr "Términos d'usu"
+msgstr "Términos d’usu"
 
 #: gui/prelobby/common/terms/termslobby.js:20
 msgid "Please read and accept the Terms of Use."
-msgstr "Llei y acepta los términos d'usu, por favor."
+msgstr "Lheie & accepta los términos d’usu, por favor."
 
 #: gui/prelobby/common/terms/termslobby.js:29
 msgid "Privacy Policy"
@@ -1253,40 +1253,40 @@ msgstr "Política de privacidá"
 
 #: gui/prelobby/common/terms/termslobby.js:30
 msgid "Please read and accept the Privacy Policy."
-msgstr "Llei y acepta la política de privacidá, por favor."
+msgstr "Lheie & accepta la política de privacidá, por favor."
 
 #: gui/prelobby/entrance/entrance.xml:(caption):20
 msgid "Create a new account"
-msgstr "Criar una cuenta nueva"
+msgstr "Crear una cuœnta nuœva"
 
 #: gui/prelobby/entrance/entrance.xml:(caption):25
 msgid "Login to an existing account"
-msgstr "Aniciar sesión"
+msgstr "Iniciar session"
 
 #: gui/prelobby/login/login.js:5
 msgid "Connect"
-msgstr "Conectar"
+msgstr "Connectase"
 
 #: gui/prelobby/login/login.js:32
 msgid "Connecting…"
-msgstr "Conectando..."
+msgstr "Connectando-se..."
 
 #: gui/prelobby/login/login.xml:(caption):13
 msgid "Connect to the game lobby"
-msgstr "Conectase col antepar"
+msgstr "Connectase cul antepar"
 
 #: gui/prelobby/register/register.js:5
 msgid "Register"
-msgstr "Rexistrar"
+msgstr "Regïstrar"
 
 #: gui/prelobby/register/register.js:26
 msgid "Registering…"
-msgstr "Rexistrando..."
+msgstr "Regïstrando..."
 
 #: gui/prelobby/register/register.js:39
 msgid "Registered"
-msgstr "Rexistróse"
+msgstr "Regïstrou-se"
 
 #: gui/prelobby/register/register.xml:(caption):13
 msgid "Registration"
-msgstr "Rexistru"
+msgstr "Regïstro"

@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-02-14 08:09+0000\n"
-"PO-Revision-Date: 2022-02-14 08:24+0000\n"
-"Last-Translator: Transifex Bot\n"
+"PO-Revision-Date: 2022-02-19 02:07+0000\n"
+"Last-Translator: Yuan Chang\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4228,47 +4228,47 @@ msgstr "使用實際水深進行算圖"
 
 #: gui/options/options.json[2].options[19].label
 msgid "Texture quality"
-msgstr ""
+msgstr "材質品質"
 
 #: gui/options/options.json[2].options[19].tooltip
 msgid ""
 "Decrease texture quality making them blurrier but increases game "
 "performance."
-msgstr ""
+msgstr "降低材質品質會讓它們變模糊，但是增加遊戲效能。"
 
 #: gui/options/options.json[2].options[20].label
 msgid "Texture anisotropic filter"
-msgstr ""
+msgstr "材質異向性過濾"
 
 #: gui/options/options.json[2].options[20].list[0].label
 msgid "1x"
-msgstr ""
+msgstr "1x"
 
 #: gui/options/options.json[2].options[20].list[1].label
 #: gui/options/options.json[2].options[20].list[1].tooltip
 msgid "2x"
-msgstr ""
+msgstr "2x"
 
 #: gui/options/options.json[2].options[20].list[2].label
 #: gui/options/options.json[2].options[20].list[2].tooltip
 msgid "4x"
-msgstr ""
+msgstr "4x"
 
 #: gui/options/options.json[2].options[20].list[3].label
 #: gui/options/options.json[2].options[20].list[3].tooltip
 msgid "8x"
-msgstr ""
+msgstr "8x"
 
 #: gui/options/options.json[2].options[20].list[4].label
 #: gui/options/options.json[2].options[20].list[4].tooltip
 msgid "16x"
-msgstr ""
+msgstr "16x"
 
 #: gui/options/options.json[2].options[20].tooltip
 msgid ""
 "Makes textures look better, especially terrain. If the anisotropic filter "
 "value is unsupported it will be set to the max supported value."
-msgstr ""
+msgstr "讓材質看起來更好，特別是地形。如果異向性過濾值不支援，它會被設定成最大支援值。"
 
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"

@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -28,9 +28,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-06-14 07:08+0000\n"
-"PO-Revision-Date: 2021-08-14 01:09+0000\n"
-"Last-Translator: 周 桂标\n"
+"POT-Creation-Date: 2022-02-18 08:08+0000\n"
+"PO-Revision-Date: 2022-02-19 03:08+0000\n"
+"Last-Translator: liulitchi\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1341,7 +1341,6 @@ msgstr "阿卡狄亚"
 #: maps/scenarios/sandbox_britons.xml:PlayerData[0].Name:38
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[1].Name:39
 #: maps/scenarios/sandbox_iberians.xml:PlayerData[0].Name:38
-#: maps/scenarios/sandbox_romans.xml:PlayerData[0].Name:38
 #: maps/scenarios/siwa_oasis.xml:PlayerData[0].Name:26
 #: maps/scenarios/the_massacre_of_delphi.xml:PlayerData[0].Name:38
 #: maps/scenarios/treasure_islands.xml:PlayerData[0].Name:38
@@ -1365,7 +1364,6 @@ msgstr "玩家 1"
 #: maps/scenarios/sandbox_britons.xml:PlayerData[1].Name:38
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[2].Name:39
 #: maps/scenarios/sandbox_iberians.xml:PlayerData[1].Name:38
-#: maps/scenarios/sandbox_romans.xml:PlayerData[1].Name:38
 #: maps/scenarios/siwa_oasis.xml:PlayerData[1].Name:26
 #: maps/scenarios/the_massacre_of_delphi.xml:PlayerData[1].Name:38
 #: maps/scenarios/treasure_islands.xml:PlayerData[1].Name:38
@@ -1926,7 +1924,6 @@ msgid "Carthage"
 msgstr "迦太基"
 
 #: maps/scenarios/sandbox_carthaginians.xml:PlayerData[1].Name:38
-#: maps/scenarios/sandbox_persians.xml:PlayerData[1].Name:38
 msgid "Creeps"
 msgstr "爬行"
 
@@ -1971,33 +1968,21 @@ msgstr "沙盒——马其顿"
 msgid "The Macedonians"
 msgstr "马其顿"
 
-#: maps/scenarios/sandbox_mauryas.xml:Description:38
-msgid "Mauryan Indian faction showcase map."
-msgstr "一个对印度各部分的展示地图。"
+#: maps/scenarios/sandbox_mauryas.xml:Description:39
+msgid "A simple map showcasing the Maurya civilization's assets in the game."
+msgstr "小型地图，展示了孔雀王朝的特性。"
 
-#: maps/scenarios/sandbox_mauryas.xml:Name:38
-msgid "Sandbox - The Mauryas"
-msgstr "沙盒 —— 孔雀王朝"
+#: maps/scenarios/sandbox_mauryas.xml:Name:39
+msgid "Sandbox - The Maurya Indians"
+msgstr "沙盒 - 印度孔雀王朝"
 
-#: maps/scenarios/sandbox_mauryas.xml:PlayerData[0].Name:38
-msgid "Mauryan Indians"
-msgstr "孔雀王朝"
+#: maps/scenarios/sandbox_persians.xml:Description:39
+msgid "A simple map showcasing the Persian civilization's assets in the game."
+msgstr "小型地图，展示了波斯文明的特性。"
 
-#: maps/scenarios/sandbox_mauryas.xml:PlayerData[1].Name:38
-msgid "Enemy"
-msgstr "敌人"
-
-#: maps/scenarios/sandbox_persians.xml:Description:38
-msgid "Demo Map. Play with the Persian civilisation in a sandbox setting."
-msgstr "演示地图。在测试环境的波斯文明。"
-
-#: maps/scenarios/sandbox_persians.xml:Name:38
-msgid "Sandbox - The Persians"
-msgstr "沙盒——波斯"
-
-#: maps/scenarios/sandbox_persians.xml:PlayerData[0].Name:38
-msgid "Achaemenids"
-msgstr "阿契美尼德王朝"
+#: maps/scenarios/sandbox_persians.xml:Name:39
+msgid "Sandbox - The Achaemenid Persians"
+msgstr "沙盒 - 波斯阿契美尼德王朝"
 
 #: maps/scenarios/sandbox_ptolemies.xml:Description:38
 #: maps/skirmishes/sporades_islands_2p.xml:Description:39
@@ -2037,13 +2022,15 @@ msgstr "塞琉古"
 msgid "Libyans"
 msgstr "利比亚"
 
-#: maps/scenarios/sandbox_romans.xml:Description:38
-msgid "A sandbox scenario for players to try out the Roman civilisation."
-msgstr "测试罗马文明的场景。"
+#: maps/scenarios/sandbox_romans.xml:Description:39
+msgid ""
+"A simple map showcasing the Republican Roman civilization's assets in the "
+"game."
+msgstr "小型地图，展示了罗马共和国的特性。"
 
-#: maps/scenarios/sandbox_romans.xml:Name:38
-msgid "Sandbox - The Republican Romans"
-msgstr "沙盒 —— 罗马共和国"
+#: maps/scenarios/sandbox_romans.xml:Name:39
+msgid "Sandbox - The Romans"
+msgstr "测试区-罗马人"
 
 #: maps/scenarios/sandbox_seleucids.xml:Description:38
 msgid "A sandbox scenario for players to try out the Seleucid civilisation."
