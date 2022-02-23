@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Persian_Yakhchal_01">
+      <mesh>structural/pers_ice_house_01.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/pers_struct.png" name="baseTex"/>
+        <texture file="structural/pers_struct_norm.png" name="normTex"/>
+        <texture file="structural/pers_struct_spec.png" name="specTex"/>        
+        <texture file="structural/ao/pers_ice_house_01.png" name="aoTex"/>
+      </textures>      
+    </variant>
+    <variant frequency="1" name="Persian_Yakhchal_02">
+      <mesh>structural/pers_ice_house_02.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/pers_struct.png" name="baseTex"/>
+        <texture file="structural/pers_struct_norm.png" name="normTex"/>
+        <texture file="structural/pers_struct_spec.png" name="specTex"/>        
+        <texture file="structural/ao/pers_ice_house_02.png" name="aoTex"/>
+      </textures>      
+    </variant>
+    <variant frequency="1" name="Persian_Yakhchal_03">
+      <mesh>structural/pers_ice_house_03.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/pers_struct.png" name="baseTex"/>
+        <texture file="structural/pers_struct_norm.png" name="normTex"/>
+        <texture file="structural/pers_struct_spec.png" name="specTex"/>        
+        <texture file="structural/ao/pers_ice_house_03.png" name="aoTex"/>
+      </textures>      
+    </variant>
+    <variant frequency="1" name="Persian_Yakhchal_04">
+      <mesh>structural/pers_ice_house_04.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/pers_struct.png" name="baseTex"/>
+        <texture file="structural/pers_struct_norm.png" name="normTex"/>
+        <texture file="structural/pers_struct_spec.png" name="specTex"/>        
+        <texture file="structural/ao/pers_ice_house_04.png" name="aoTex"/>
+      </textures>      
+    </variant>
+    <variant frequency="1" name="Persian_Yakhchal_05">
+      <mesh>structural/pers_ice_house_05.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/pers_struct.png" name="baseTex"/>
+        <texture file="structural/pers_struct_norm.png" name="normTex"/>
+        <texture file="structural/pers_struct_spec.png" name="specTex"/>        
+        <texture file="structural/ao/pers_ice_house_05.png" name="aoTex"/>
+      </textures>      
+    </variant>
+    <variant frequency="1" name="Persian_Yakhchal_06">
+      <mesh>structural/pers_ice_house_06.dae</mesh>
+      <props>
+        <prop actor="props/structures/decals/dirt_4x4.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="structural/pers_struct.png" name="baseTex"/>
+        <texture file="structural/pers_struct_norm.png" name="normTex"/>
+        <texture file="structural/pers_struct_spec.png" name="specTex"/>        
+        <texture file="structural/ao/pers_ice_house_06.png" name="aoTex"/>
+      </textures>      
+    </variant>
+  </group>
+  <group>
+    <variant name="ungarrisoned" frequency="1"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_persians.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="alive" frequency="1"/>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>
