@@ -18,6 +18,14 @@ then
         export PYTHONPATH="$(pwd)/virtualenv:$PYTHONPATH"
         patch -p1 < ../FixVirtualEnv.diff
     fi
+else
+    # In python 3.10 `sysconfig._get_default_scheme()` was renamed to
+    # `sysconfig.get_default_scheme()`. This breaks the version of
+    # `virtualenv` bundled with the spidermonkey source code.
+    #
+    # It is assumed that the updated version fetched for macOS systems
+    # above does not have this problem.
+    patch -p1 < ../FixVirtualenvForPython310.diff
 fi
 
 # Mozglue symbols need to be linked against static builds.
@@ -51,6 +59,11 @@ patch -p1 < ../FixMSVCRootedVoid.diff
 # Upstream has changed this to 10.11 at the moment,
 # so this patches it to an arbitrarily high Mac OS 11
 patch -p1 < ../FixMacBuild.diff
+
+# In python 3.3, the Collections' Abstract Base Classes were moved from `collections` to
+# `collections.abc`, and aliases were set up for backwards compatibility.
+# In python 3.10, these aliases were removed, requiring all code that used them to update.
+patch -p1 < ../FixPythonCollectionABC.diff
 
 # Fix FP access breaking compilation on RPI3+
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1526653
