@@ -6,15 +6,15 @@
       <Damage>
         <Pierce>40</Pierce>
       </Damage>
-      <MaxRange>60</MaxRange>
-      <PrepareTime>200</PrepareTime>
+      <MaxRange>55</MaxRange>
+      <PrepareTime>600</PrepareTime>
       <RepeatTime>3000</RepeatTime>
       <Projectile>
-        <Speed>120</Speed>
-        <Spread>0.8</Spread>
+        <Speed>80</Speed>
+        <Spread>3</Spread>
         <Gravity>30</Gravity>
         <FriendlyFire>false</FriendlyFire>
-        <LaunchPoint y="5"/>
+        <LaunchPoint y="3"/>
       </Projectile>
       <PreferredClasses datatype="tokens">Human</PreferredClasses>
     </Ranged>

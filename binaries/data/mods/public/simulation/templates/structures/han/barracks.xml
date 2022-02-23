@@ -17,13 +17,13 @@
   <Researcher>
     <Technologies datatype="tokens">
       -unlock_champion_infantry
+      archer_attack_spread
+      crossbow_training
     </Technologies>
   </Researcher>
   <Trainer>
     <Entities datatype="tokens">
-      -units/{civ}/infantry_javelineer_b
-      -units/{civ}/infantry_slinger_b
-      -units/{civ}/infantry_archer_b
+      units/{civ}/infantry_crossbowman_b
       -units/{civ}/champion_infantry_spearman
       -units/{civ}/champion_infantry_pikeman
       -units/{civ}/champion_infantry_maceman

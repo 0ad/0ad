@@ -646,9 +646,17 @@ void OverlayRenderer::RenderForegroundOverlays(
 
 	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 
-	float uvs[8] = { 0,1, 1,1, 1,0, 0,0 };
+	const CVector2D uvs[6] =
+	{
+		{0.0f, 1.0f},
+		{1.0f, 1.0f},
+		{1.0f, 0.0f},
+		{0.0f, 1.0f},
+		{1.0f, 0.0f},
+		{0.0f, 0.0f},
+	};
 
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, sizeof(float)*2, &uvs[0]);
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, sizeof(CVector2D), &uvs[0]);
 
 	for (size_t i = 0; i < m->sprites.size(); ++i)
 	{
@@ -661,16 +669,19 @@ void OverlayRenderer::RenderForegroundOverlays(
 
 		shader->Uniform(str_colorMul, sprite->m_Color);
 
-		CVector3D pos[4] = {
+		const CVector3D position[6] =
+		{
 			sprite->m_Position + right*sprite->m_X0 + up*sprite->m_Y0,
 			sprite->m_Position + right*sprite->m_X1 + up*sprite->m_Y0,
+			sprite->m_Position + right*sprite->m_X1 + up*sprite->m_Y1,
+			sprite->m_Position + right*sprite->m_X0 + up*sprite->m_Y0,
 			sprite->m_Position + right*sprite->m_X1 + up*sprite->m_Y1,
 			sprite->m_Position + right*sprite->m_X0 + up*sprite->m_Y1
 		};
 
-		shader->VertexPointer(3, GL_FLOAT, sizeof(float)*3, &pos[0].X);
+		shader->VertexPointer(3, GL_FLOAT, sizeof(CVector3D), &position[0].X);
 
-		glDrawArrays(GL_QUADS, 0, (GLsizei)4);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 
 		g_Renderer.GetStats().m_DrawCalls++;
 		g_Renderer.GetStats().m_OverlayTris += 2;

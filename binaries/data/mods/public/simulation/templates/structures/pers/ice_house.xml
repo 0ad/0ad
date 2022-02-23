@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special">
+  <BuildRestrictions>
+    <Territory>own neutral</Territory>
+    <Category>Yakhchal</Category>
+  </BuildRestrictions>
+  <Cost>
+    <BuildTime>100</BuildTime>
+    <Resources>
+      <stone>100</stone>
+      <wood>100</wood>
+      <metal>0</metal>
+    </Resources>
+  </Cost>
+  <Footprint replace="">
+    <Circle radius="10.0"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <GarrisonHolder disable=""/>
+  <Health>
+    <Max>800</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_stone_3x3</SpawnEntityOnDeath>
+  </Health>
+  <Identity>
+    <Civ>pers</Civ>
+    <GenericName>Ice House</GenericName>
+    <SpecificName>Yakhchāl</SpecificName>
+    <VisibleClasses datatype="tokens">Village IceHouse</VisibleClasses>
+    <Classes datatype="tokens">
+	  CivSpecific
+	</Classes>
+    <RequiredTechnology>phase_village</RequiredTechnology>
+    <Icon>structures/yakhchal.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Static width="16.0" depth="16.0"/>
+  </Obstruction>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_farmstead.xml</select>
+      <constructed>interface/complete/building/complete_farmstead.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
+    </SoundGroups>
+  </Sound>
+  <TerritoryDecay>
+    <Territory>enemy</Territory>
+  </TerritoryDecay>
+  <TerritoryInfluence disable=""/>
+  <VisualActor>
+    <Actor>structures/persians/ice_house.xml</Actor>
+    <FoundationActor>structures/fndn_4x4.xml</FoundationActor>
+  </VisualActor>
+</Entity>
