@@ -3,6 +3,9 @@
   <BuildRestrictions>
     <Category>Academy</Category>
   </BuildRestrictions>
+  <Capturable>
+    <CapturePoints op="mul">3.0</CapturePoints>
+  </Capturable>
   <Cost>
     <BuildTime>200</BuildTime>
     <Resources>
@@ -18,7 +21,7 @@
     <List datatype="tokens">Minister</List>
   </GarrisonHolder>
   <Health>
-    <Max>2000</Max>
+    <Max>2500</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_5x5</SpawnEntityOnDeath>
   </Health>
   <Identity>
@@ -71,7 +74,6 @@
       units/{civ}/champion_cavalry_swordsman
       units/{civ}/champion_cavalry_javelineer
       units/{civ}/champion_cavalry_archer
-      units/{civ}/champion_cavalry_crossbowman  
       units/{civ}/champion_chariot
       units/{civ}/war_dog
     </Entities>

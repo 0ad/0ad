@@ -22,18 +22,17 @@
 			"Count": 2
 		},
 		{
-			"Template": "units/han/infantry_archer_b",
+			"Template": "units/han/infantry_crossbowman_b",
 			"Count": 2
 		},
 		{
-			"Template": "units/han/cavalry_archer_b"
+			"Template": "units/han/cavalry_swordsman_b"
 		},
 		{
 			"Template": "units/han/support_minister"
 		}
 	],
 	"AINames": [
-		"Liu Bang",
 		"Liu Ying",
 		"Liu Gong",
 		"Liu Hong",
@@ -65,8 +64,8 @@
 	],
 	"SkirmishReplacements": {
 		"skirmish/units/special_starting_unit": "units/han/support_minister",
-		"skirmish/units/default_infantry_ranged_b": "units/han/infantry_archer_b",
-		"skirmish/units/default_cavalry": "units/han/cavalry_archer_b"
+		"skirmish/units/default_infantry_ranged_b": "units/han/infantry_crossbowman_b",
+		"skirmish/units/default_cavalry": "units/han/cavalry_swordsman_b"
 	},
 	"SelectableInGameSetup": true
 }
