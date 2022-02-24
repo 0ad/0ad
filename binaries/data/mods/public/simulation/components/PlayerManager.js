@@ -7,9 +7,6 @@ PlayerManager.prototype.Init = function()
 {
 	// List of player entity IDs.
 	this.playerEntities = [];
-
-	// Maximum world population (if applicable will be distributed amongst living players).
-	this.maxWorldPopulation = undefined;
 };
 
 /**
@@ -19,16 +16,15 @@ PlayerManager.prototype.Init = function()
 PlayerManager.prototype.AddPlayer = function(templateName)
 {
 	const ent = Engine.AddEntity(templateName);
-	var id = this.playerEntities.length;
-	var cmpPlayer = Engine.QueryInterface(ent, IID_Player);
+	const id = this.playerEntities.length;
+	const cmpPlayer = Engine.QueryInterface(ent, IID_Player);
 	cmpPlayer.SetPlayerID(id);
 	this.playerEntities.push(ent);
-	// initialize / update the diplomacy arrays
-	var newDiplo = [];
-	for (var i = 0; i < id; i++)
+
+	const newDiplo = [];
+	for (let i = 0; i < id; i++)
 	{
-		var cmpOtherPlayer = Engine.QueryInterface(this.GetPlayerByID(i), IID_Player);
-		cmpOtherPlayer.diplomacy[id] = -1;
+		Engine.QueryInterface(this.GetPlayerByID(i), IID_Player).diplomacy[id] = -1;
 		newDiplo[i] = -1;
 	}
 	newDiplo[id] = 1;
@@ -53,25 +49,19 @@ PlayerManager.prototype.AddPlayer = function(templateName)
 PlayerManager.prototype.ReplacePlayerTemplate = function(id, newTemplateName)
 {
 	const ent = Engine.AddEntity(newTemplateName);
-	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	let entities = cmpRangeManager.GetEntitiesByPlayer(id);
-	for (let e of entities)
-	{
-		let cmpOwnership = Engine.QueryInterface(e, IID_Ownership);
-		if (cmpOwnership)
-			cmpOwnership.SetOwner(INVALID_PLAYER);
-	}
+	const entities = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).GetEntitiesByPlayer(id);
+	for (const e of entities)
+		Engine.QueryInterface(e, IID_Ownership)?.SetOwner(INVALID_PLAYER);
 
-	let oldent = this.playerEntities[id];
-	let oldCmpPlayer = Engine.QueryInterface(oldent, IID_Player);
-	let diplo = oldCmpPlayer.GetDiplomacy();
-	let color = oldCmpPlayer.GetColor();
+	const oldent = this.playerEntities[id];
+	const oldCmpPlayer = Engine.QueryInterface(oldent, IID_Player);
+	const newCmpPlayer = Engine.QueryInterface(ent, IID_Player);
 
-	let newCmpPlayer = Engine.QueryInterface(ent, IID_Player);
 	newCmpPlayer.SetPlayerID(id);
 	this.playerEntities[id] = ent;
-	newCmpPlayer.SetColor(color);
-	newCmpPlayer.SetDiplomacy(diplo);
+
+	newCmpPlayer.SetColor(oldCmpPlayer.GetColor());
+	newCmpPlayer.SetDiplomacy(oldCmpPlayer.GetDiplomacy());
 
 	Engine.BroadcastMessage(MT_PlayerEntityChanged, {
 		"player": id,
@@ -79,12 +69,8 @@ PlayerManager.prototype.ReplacePlayerTemplate = function(id, newTemplateName)
 		"to": ent
 	});
 
-	for (let e of entities)
-	{
-		let cmpOwnership = Engine.QueryInterface(e, IID_Ownership);
-		if (cmpOwnership)
-			cmpOwnership.SetOwner(id);
-	}
+	for (const e of entities)
+		Engine.QueryInterface(e, IID_Ownership)?.SetOwner(id);
 
 	Engine.DestroyEntity(oldent);
 	Engine.FlushDestroyedEntities();
@@ -103,7 +89,7 @@ PlayerManager.prototype.GetPlayerByID = function(id)
 	if (id == INVALID_PLAYER)
 		return INVALID_ENTITY;
 
-	let stack = new Error().stack.trimRight().replace(/^/mg, '  '); // indent each line
+	const stack = new Error().stack.trimRight().replace(/^/mg, '  '); // indent each line
 	warn("GetPlayerByID: no player defined for id '"+id+"'\n"+stack);
 
 	return INVALID_ENTITY;
@@ -122,7 +108,7 @@ PlayerManager.prototype.GetNumPlayers = function()
  */
 PlayerManager.prototype.GetAllPlayers = function()
 {
-	let players = [];
+	const players = [];
 	for (let i = 0; i < this.playerEntities.length; ++i)
 		players.push(i);
 	return players;
@@ -133,7 +119,7 @@ PlayerManager.prototype.GetAllPlayers = function()
  */
 PlayerManager.prototype.GetNonGaiaPlayers = function()
 {
-	let players = [];
+	const players = [];
 	for (let i = 1; i < this.playerEntities.length; ++i)
 		players.push(i);
 	return players;
@@ -144,31 +130,21 @@ PlayerManager.prototype.GetNonGaiaPlayers = function()
  */
 PlayerManager.prototype.GetActivePlayers = function()
 {
-	return this.GetNonGaiaPlayers().filter(playerID => QueryPlayerIDInterface(playerID).GetState() == "active");
+	return this.GetNonGaiaPlayers().filter(playerID =>
+		Engine.QueryInterface(this.GetPlayerByID(playerID), IID_Player).IsActive()
+	);
 };
 
-PlayerManager.prototype.RemoveAllPlayers = function()
-{
-	// Destroy existing player entities
-	for (let player in this.playerEntities)
-	{
-		Engine.BroadcastMessage(MT_PlayerEntityChanged, {
-			"player": player,
-			"from": this.playerEntities[player],
-			"to": INVALID_ENTITY
-		});
-		Engine.DestroyEntity(this.playerEntities[player]);
-	}
-
-	this.playerEntities = [];
-};
-
+/**
+ * Note: This should only be called during setup/init and not during a match
+ * since it doesn't change the owned entities.
+ */
 PlayerManager.prototype.RemoveLastPlayer = function()
 {
-	if (this.playerEntities.length == 0)
+	if (!this.playerEntities.length)
 		return;
 
-	var lastId = this.playerEntities.pop();
+	const lastId = this.playerEntities.pop();
 	Engine.BroadcastMessage(MT_PlayerEntityChanged, {
 		"player": this.playerEntities.length + 1,
 		"from": lastId,
@@ -190,17 +166,17 @@ PlayerManager.prototype.GetMaxWorldPopulation = function()
 
 PlayerManager.prototype.RedistributeWorldPopulation = function()
 {
-	let worldPopulation = this.GetMaxWorldPopulation();
+	const worldPopulation = this.GetMaxWorldPopulation();
 	if (!worldPopulation)
 		return;
 
-	let activePlayers = this.GetActivePlayers();
+	const activePlayers = this.GetActivePlayers();
 	if (!activePlayers.length)
 		return;
 
-	let newMaxPopulation = worldPopulation / activePlayers.length;
-	for (let playerID of activePlayers)
-		QueryPlayerIDInterface(playerID).SetMaxPopulation(newMaxPopulation);
+	const newMaxPopulation = worldPopulation / activePlayers.length;
+	for (const playerID of activePlayers)
+		Engine.QueryInterface(this.GetPlayerByID(playerID), IID_Player).SetMaxPopulation(newMaxPopulation);
 };
 
 PlayerManager.prototype.OnGlobalPlayerDefeated = function(msg)

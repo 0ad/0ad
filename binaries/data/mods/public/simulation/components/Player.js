@@ -433,6 +433,14 @@ Player.prototype.GetState = function()
 };
 
 /**
+ * @return {boolean} -
+ */
+Player.prototype.IsActive = function()
+{
+	return this.state === "active";
+};
+
+/**
  * @param {string} newState - Either "defeated" or "won".
  * @param {string|undefined} message - A string to be shown in chat, for example
  *     markForTranslation("%(player)s has been defeated (failed objective).").
