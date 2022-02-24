@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="boulder-01">
       <mesh>gaia/geo_desert_01.dae</mesh>
@@ -17,11 +15,9 @@
       <mesh>gaia/geo_desert_05.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant>
       <textures><texture file="gaia/stone_tropic_hi.dds" name="baseTex"/></textures>
     </variant>
   </group>
-
 </actor>

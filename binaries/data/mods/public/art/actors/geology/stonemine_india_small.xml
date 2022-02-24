@@ -2,12 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="textures">
+    <variant frequency="1" name="Texture">
       <textures>
-        <texture file="gaia/stonequarry_tropic.png" name="baseTex"/>
-        <texture file="gaia/ao/geo_stonemine_large_ao.png" name="aoTex"/>
-        <texture file="gaia/stonequarry_tropic_norm.png" name="normTex"/>
-        <texture file="gaia/stonequarry_tropic_spec.png" name="specTex"/>
+        <texture file="gaia/stone_india_01.png" name="baseTex"/>
+        <texture file="gaia/stone_india_01_norm.png" name="normTex"/>
+        <texture file="gaia/stone_india_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -31,4 +30,5 @@
       <mesh>gaia/stone_granite_boulder_c.dae</mesh>
     </variant>
   </group>
+  <material>rock_norm_spec.xml</material>
 </actor>

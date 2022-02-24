@@ -1,0 +1,87 @@
+--- a/python/mach/mach/config.py
++++ b/python/mach/mach/config.py
+@@ -144,7 +144,7 @@
+     return _
+ 
+ 
+-class ConfigSettings(collections.Mapping):
++class ConfigSettings(collections.abc.Mapping):
+     """Interface for configuration settings.
+ 
+     This is the main interface to the configuration.
+@@ -190,7 +190,7 @@
+     will result in exceptions being raised.
+     """
+ 
+-    class ConfigSection(collections.MutableMapping, object):
++    class ConfigSection(collections.abc.MutableMapping, object):
+         """Represents an individual config section."""
+         def __init__(self, config, name, settings):
+             object.__setattr__(self, '_config', config)
+--- a/python/mach/mach/decorators.py
++++ b/python/mach/mach/decorators.py
+@@ -159,7 +159,7 @@
+               'Conditions argument must take a list ' + \
+               'of functions. Found %s instead.'
+ 
+-        if not isinstance(command.conditions, collections.Iterable):
++        if not isinstance(command.conditions, collections.abc.Iterable):
+             msg = msg % (command.name, type(command.conditions))
+             raise MachError(msg)
+ 
+--- a/python/mach/mach/main.py
++++ b/python/mach/mach/main.py
+@@ -16,7 +16,7 @@
+ import sys
+ import traceback
+ import uuid
+-from collections import Iterable
++from collections.abc import Iterable
+ 
+ from six import string_types
+ 
+--- a/python/mozbuild/mozbuild/backend/configenvironment.py
++++ b/python/mozbuild/mozbuild/backend/configenvironment.py
+@@ -9,7 +9,8 @@
+ import sys
+ import json
+ 
+-from collections import Iterable, OrderedDict
++from collections import OrderedDict
++from collections.abc import Iterable
+ from types import ModuleType
+ 
+ import mozpack.path as mozpath
+--- a/python/mozbuild/mozbuild/makeutil.py
++++ b/python/mozbuild/mozbuild/makeutil.py
+@@ -7,7 +7,7 @@
+ import os
+ import re
+ import six
+-from collections import Iterable
++from collections.abc import Iterable
+ 
+ 
+ class Makefile(object):
+--- a/python/mozbuild/mozbuild/util.py
++++ b/python/mozbuild/mozbuild/util.py
+@@ -782,7 +782,7 @@
+         self._strings = StrictOrderingOnAppendList()
+         self._children = {}
+ 
+-    class StringListAdaptor(collections.Sequence):
++    class StringListAdaptor(collections.abc.Sequence):
+         def __init__(self, hsl):
+             self._hsl = hsl
+ 
+--- a/testing/mozbase/manifestparser/manifestparser/filters.py
++++ b/testing/mozbase/manifestparser/manifestparser/filters.py
+@@ -15,1 +15,2 @@
+-from collections import defaultdict, MutableSequence
++from collections import defaultdict
++from collections.abc import MutableSequence
+--- a/third_party/python/pipenv/pipenv/vendor/jinja2/sandbox.py
++++ b/third_party/python/pipenv/pipenv/vendor/jinja2/sandbox.py
+@@ -82,1 +82,1 @@
+-from collections import MutableSet, MutableMapping, MutableSequence
++from collections.abc import MutableSet, MutableMapping, MutableSequence

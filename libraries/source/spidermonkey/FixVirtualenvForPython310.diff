@@ -1,0 +1,15 @@
+--- a/third_party/python/virtualenv/virtualenv.py
++++ b/third_party/python/virtualenv/virtualenv.py
+@@ -1804,7 +1804,11 @@
+         pass
+     else:
+         # noinspection PyProtectedMember
+-        if sysconfig._get_default_scheme() == "posix_local":
++        try: # Python >= 3.10
++            default_scheme = sysconfig.get_default_scheme()
++        except: # Python < 3.10
++            default_scheme = sysconfig._get_default_scheme()
++        if default_scheme == "posix_local":
+             local_path = os.path.join(home_dir, "local")
+             if not os.path.exists(local_path):
+                 os.mkdir(local_path)
