@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity>
   <!--
-  <Identity>
-    <Civ>gaia</Civ>
-    <GenericName>Formation</GenericName>
-    <Undeletable>true</Undeletable>
-  </Identity>
   <Selectable>
     <Overlay>
       <Texture>
@@ -31,6 +26,10 @@
   <FormationAttack>
     <CanAttackAsFormation>false</CanAttackAsFormation>
   </FormationAttack>
+  <Identity>
+    <Civ/> <!-- Unused -->
+    <Undeletable>true</Undeletable>
+  </Identity>
   <Obstruction>
     <Unit/>
     <Active>true</Active>

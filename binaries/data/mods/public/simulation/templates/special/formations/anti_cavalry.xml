@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_formation">
   <Formation>
-    <Icon>formations/testudo.png</Icon>
     <RequiredMemberCount>16</RequiredMemberCount>
     <DisabledTooltip>Melee Infantry only, requires at least 16.</DisabledTooltip>
-    <FormationName>Anti Cavalry</FormationName>
     <FormationShape>square</FormationShape>
     <UnitSeparationWidthMultiplier>0.50</UnitSeparationWidthMultiplier>
     <UnitSeparationDepthMultiplier>0.37</UnitSeparationDepthMultiplier>
@@ -22,4 +20,8 @@
   <FormationAttack>
     <CanAttackAsFormation>false</CanAttackAsFormation>
   </FormationAttack>
+  <Identity>
+    <Icon>formations/testudo.png</Icon>
+    <GenericName>Anti Cavalry</GenericName>
+  </Identity>
 </Entity>

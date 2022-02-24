@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_formation">
   <Formation>
-    <Icon>formations/battle_line.png</Icon>
-    <FormationName>Battle Line</FormationName>
     <SortingClasses>Cavalry Melee Ranged</SortingClasses>
     <SortingOrder>fillFromTheSides</SortingOrder>
     <ShiftRows>true</ShiftRows>
@@ -11,4 +9,8 @@
     <MaxRows>4</MaxRows>
     <WidthDepthRatio>2</WidthDepthRatio>
   </Formation>
+  <Identity>
+    <GenericName>Battle Line</GenericName>
+    <Icon>formations/battle_line.png</Icon>
+  </Identity>
 </Entity>

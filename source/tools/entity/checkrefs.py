@@ -245,7 +245,10 @@ class CheckRefs:
                 if entity.find('Identity') is not None:
                     icon = entity.find('Identity').find('Icon')
                     if icon is not None and icon.text:
-                        self.deps.append((str(fp), f'art/textures/ui/session/portraits/{icon.text}'))
+                        if entity.find('Formation') is not None:
+                            self.deps.append((str(fp), f'art/textures/ui/session/icons/{icon.text}'))
+                        else:
+                            self.deps.append((str(fp), f'art/textures/ui/session/portraits/{icon.text}'))
                 if entity.find('Heal') is not None and entity.find('Heal').find('RangeOverlay') is not None:
                     range_overlay = entity.find('Heal').find('RangeOverlay')
                     for tag in ('LineTexture', 'LineTextureMask'):

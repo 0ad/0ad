@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_formation">
   <Formation>
-    <Icon>formations/line_closed.png</Icon>
-    <FormationName>Close Order</FormationName>
     <MinColumns>3</MinColumns>
     <WidthDepthRatio>4</WidthDepthRatio>
     <Sloppiness>0.25</Sloppiness>
   </Formation>
+  <Identity>
+    <GenericName>Close Order</GenericName>
+    <Icon>formations/line_closed.png</Icon>
+  </Identity>
 </Entity>

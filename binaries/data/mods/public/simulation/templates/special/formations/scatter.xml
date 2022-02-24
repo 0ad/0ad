@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_formation">
   <Formation>
-    <Icon>formations/scatter.png</Icon>
-    <FormationName>Scatter</FormationName>
     <FormationShape>special</FormationShape>
   </Formation>
+  <Identity>
+    <GenericName>Scatter</GenericName>
+    <Icon>formations/scatter.png</Icon>
+  </Identity>
 </Entity>

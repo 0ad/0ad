@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_formation">
   <Formation>
-    <Icon>formations/wedge.png</Icon>
     <RequiredMemberCount>6</RequiredMemberCount>
     <DisabledTooltip>Cavalry only, requires at least 6.</DisabledTooltip>
-    <FormationName>Wedge</FormationName>
     <FormationShape>triangle</FormationShape>
     <ShiftRows>true</ShiftRows>
     <Sloppiness>0.25</Sloppiness>
@@ -14,4 +12,8 @@
   <FormationAttack>
     <CanAttackAsFormation>false</CanAttackAsFormation>
   </FormationAttack>
+  <Identity>
+    <GenericName>Wedge</GenericName>
+    <Icon>formations/wedge.png</Icon>
+  </Identity>
 </Entity>
