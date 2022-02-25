@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,6 +27,8 @@
 #include "ps/Singleton.h"
 
 #include <vector>
+
+class CCanvas2D;
 
 /**
  * Struct ProfileColumn: Describes one column of an AbstractProfileTable.
@@ -138,7 +140,7 @@ public:
 	 * RenderProfile: Render the profile display using OpenGL if the user
 	 * has enabled it.
 	 */
-	void RenderProfile();
+	void RenderProfile(CCanvas2D& canvas);
 
 	/**
 	 * Input: Filter and handle any input events that the profile display

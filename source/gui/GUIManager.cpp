@@ -372,12 +372,12 @@ void CGUIManager::TickObjects()
 		p.gui->TickObjects();
 }
 
-void CGUIManager::Draw() const
+void CGUIManager::Draw(CCanvas2D& canvas) const
 {
 	PROFILE3_GPU("gui");
 
 	for (const SGUIPage& p : m_PageStack)
-		p.gui->Draw();
+		p.gui->Draw(canvas);
 }
 
 void CGUIManager::UpdateResolution()

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -13,11 +13,6 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/*
- * Implementation of profile display (containing only display routines,
- * the data model(s) are implemented elsewhere).
  */
 
 #include "precompiled.h"
@@ -40,8 +35,8 @@
 #include "scriptinterface/Object.h"
 
 #include <algorithm>
-#include <fstream>
 #include <ctime>
+#include <fstream>
 
 struct CProfileViewerInternals
 {
@@ -149,7 +144,7 @@ CProfileViewer::~CProfileViewer()
 
 
 // Render
-void CProfileViewer::RenderProfile()
+void CProfileViewer::RenderProfile(CCanvas2D& canvas)
 {
 	if (!m->profileVisible)
 		return;
@@ -169,8 +164,6 @@ void CProfileViewer::RenderProfile()
 	CStrIntern font_name("mono-stroke-10");
 	CFontMetrics font(font_name);
 	int lineSpacing = font.GetLineSpacing();
-
-	CCanvas2D canvas;
 
 	// Render background.
 	float estimateWidth = 50.0f;

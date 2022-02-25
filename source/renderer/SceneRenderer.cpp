@@ -1025,12 +1025,12 @@ void CSceneRenderer::DisplayFrustum()
 }
 
 // Text overlay rendering
-void CSceneRenderer::RenderTextOverlays()
+void CSceneRenderer::RenderTextOverlays(CCanvas2D& canvas)
 {
 	PROFILE3_GPU("text overlays");
 
 	if (m_DisplayTerrainPriorities)
-		m->terrainRenderer.RenderPriorities(CULL_DEFAULT);
+		m->terrainRenderer.RenderPriorities(canvas, CULL_DEFAULT);
 
 	ogl_WarnIfError();
 }

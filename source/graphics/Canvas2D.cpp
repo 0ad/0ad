@@ -27,7 +27,6 @@
 #include "maths/Rect.h"
 #include "maths/Vector2D.h"
 #include "ps/CStrInternStatic.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/Renderer.h"
 
 #include <array>
@@ -69,9 +68,8 @@ inline void DrawTextureImpl(
 class CCanvas2D::Impl
 {
 public:
-	Impl()
-		// TODO: remove global renderer access as pass as an argument.
-		: DeviceCommandContext(g_Renderer.GetDeviceCommandContext())
+	Impl(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+		: DeviceCommandContext(deviceCommandContext)
 	{
 	}
 
@@ -103,7 +101,9 @@ public:
 	CShaderTechniquePtr Tech;
 };
 
-CCanvas2D::CCanvas2D() : m(std::make_unique<Impl>())
+CCanvas2D::CCanvas2D(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	: m(std::make_unique<Impl>(deviceCommandContext))
 {
 
 }
@@ -319,7 +319,7 @@ void CCanvas2D::DrawText(CTextRenderer& textRenderer)
 {
 	m->BindTechIfNeeded();
 
-	CShaderProgramPtr shader = m->Tech->GetShader();
+	const CShaderProgramPtr& shader = m->Tech->GetShader();
 	shader->Uniform(str_grayscaleFactor, 0.0f);
 
 	textRenderer.Render(m->DeviceCommandContext, shader, GetDefaultGuiMatrix());

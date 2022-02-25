@@ -225,6 +225,8 @@ void CTextRenderer::Render(
 			++it;
 	}
 
+	bool transformChanged = false;
+
 	CTexture* lastTexture = nullptr;
 	for (std::list<SBatch>::iterator it = m_Batches.begin(); it != m_Batches.end(); ++it)
 	{
@@ -239,9 +241,13 @@ void CTextRenderer::Render(
 			shader->BindTexture(str_tex, lastTexture->GetBackendTexture());
 		}
 
-		CMatrix3D translation;
-		translation.SetTranslation(batch.translate.X, batch.translate.Y, 0.0f);
-		shader->Uniform(str_transform, transform * translation);
+		if (batch.translate.X != 0.0f || batch.translate.Y != 0.0f)
+		{
+			CMatrix3D translation;
+			translation.SetTranslation(batch.translate.X, batch.translate.Y, 0.0f);
+			shader->Uniform(str_transform, transform * translation);
+			transformChanged = true;
+		}
 
 		// ALPHA-only textures will have .rgb sampled as 0, so we need to
 		// replace it with white (but not affect RGBA textures)
@@ -320,4 +326,7 @@ void CTextRenderer::Render(
 	}
 
 	m_Batches.clear();
+
+	if (transformChanged)
+		shader->Uniform(str_transform, transform);
 }

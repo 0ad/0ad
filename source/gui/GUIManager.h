@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@
 #include <string>
 #include <unordered_set>
 
+class CCanvas2D;
 class CGUI;
 
 /**
@@ -106,7 +107,7 @@ public:
 	/**
 	 * See CGUI::Draw; applies to @em all loaded pages.
 	 */
-	void Draw() const;
+	void Draw(CCanvas2D& canvas) const;
 
 	/**
 	 * See CGUI::UpdateResolution; applies to @em all loaded pages.

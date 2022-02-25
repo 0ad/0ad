@@ -325,7 +325,7 @@ void CGUI::SendEventToAll(const CStr& eventName, const JS::HandleValueArray& par
 		object->ScriptEvent(eventName, paramData);
 }
 
-void CGUI::Draw()
+void CGUI::Draw(CCanvas2D& canvas)
 {
 	using Arena = Allocators::DynamicArena<128 * KiB>;
 	using ObjectListAllocator = ProxyAllocator<VisibleObject, Arena>;
@@ -342,7 +342,6 @@ void CGUI::Draw()
 		return visibleObject1.index < visibleObject2.index;
 	});
 
-	CCanvas2D canvas;
 	for (const VisibleObject& visibleObject : visibleObjects)
 		visibleObject.object->Draw(canvas);
 }

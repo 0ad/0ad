@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -203,7 +203,7 @@ void CLogger::WriteWarning(const char* message)
 	PushRenderMessage(Warning, message);
 }
 
-void CLogger::Render()
+void CLogger::Render(CCanvas2D& canvas)
 {
 	PROFILE3_GPU("logger");
 
@@ -255,7 +255,6 @@ void CLogger::Render()
 		textRenderer.Translate(0.0f, (float)lineSpacing);
 	}
 
-	CCanvas2D canvas;
 	canvas.DrawText(textRenderer);
 }
 

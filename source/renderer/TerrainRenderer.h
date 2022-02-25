@@ -29,6 +29,7 @@
 #include "renderer/backend/gl/Texture.h"
 
 class CCamera;
+class CCanvas2D;
 class CMatrix3D;
 class CModelDecal;
 class CPatch;
@@ -154,7 +155,7 @@ public:
 	/**
 	 * Render priority text for all submitted patches, for debugging.
 	 */
-	void RenderPriorities(int cullGroup);
+	void RenderPriorities(CCanvas2D& canvas, int cullGroup);
 
 	/**
 	 * Render texture unit 0 over the terrain mesh, with UV coords calculated
