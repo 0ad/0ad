@@ -17,7 +17,7 @@
 
 #include "precompiled.h"
 
-#include "Sampler.h"
+#include "CompareOp.h"
 
 namespace Renderer
 {
@@ -25,26 +25,22 @@ namespace Renderer
 namespace Backend
 {
 
-namespace Sampler
+CompareOp ParseCompareOp(const CStr& str)
 {
-
-Desc MakeDefaultSampler(Filter filter, AddressMode addressMode)
-{
-	Desc desc{};
-	desc.minFilter = filter;
-	desc.magFilter = filter;
-	desc.mipFilter = filter;
-	desc.addressModeU = addressMode;
-	desc.addressModeV = addressMode;
-	desc.addressModeW = addressMode;
-	desc.anisotropyEnabled = false;
-	desc.mipLODBias = 0.0f;
-	desc.borderColor = CColor(0.0f, 0.0f, 0.0f, 0.0f);
-	desc.compareEnabled = false;
-	return desc;
+	// TODO: it might make sense to use upper case in XML for consistency.
+#define CASE(NAME, VALUE) if (str == NAME) return CompareOp::VALUE
+	CASE("never", NEVER);
+	CASE("less", LESS);
+	CASE("equal", EQUAL);
+	CASE("lequal", LESS_OR_EQUAL);
+	CASE("greater", GREATER);
+	CASE("notequal", NOT_EQUAL);
+	CASE("gequal", GREATER_OR_EQUAL);
+	CASE("always", ALWAYS);
+#undef CASE
+	debug_warn("Invalid compare op");
+	return CompareOp::NEVER;
 }
-
-} // namespace Sampler
 
 } // namespace Backend
 

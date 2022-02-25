@@ -15,13 +15,12 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_RENDERER_BACKEND_SAMPLER
-#define INCLUDED_RENDERER_BACKEND_SAMPLER
+#ifndef INCLUDED_RENDERER_BACKEND_COMPAREOP
+#define INCLUDED_RENDERER_BACKEND_COMPAREOP
 
 #include "graphics/Color.h"
-#include "renderer/backend/CompareOp.h"
 
-#include <cstdint>
+class CStr;
 
 namespace Renderer
 {
@@ -29,46 +28,30 @@ namespace Renderer
 namespace Backend
 {
 
-namespace Sampler
+enum class CompareOp
 {
-
-enum class Filter
-{
-	NEAREST,
-	LINEAR
+	// Never passes the comparison.
+	NEVER,
+	// Passes if the source value is less than the destination value.
+	LESS,
+	// Passes if the source depth value is equal to the destination value.
+	EQUAL,
+	// Passes if the source depth value is less than or equal to the destination value.
+	LESS_OR_EQUAL,
+	// Passes if the source depth value is greater than the destination value.
+	GREATER,
+	// Passes if the source depth value is not equal to the destination value.
+	NOT_EQUAL,
+	// Passes if the source depth value is greater than or equal to the destination value.
+	GREATER_OR_EQUAL,
+	// Always passes the comparison.
+	ALWAYS
 };
 
-enum class AddressMode
-{
-	REPEAT,
-	MIRRORED_REPEAT,
-	CLAMP_TO_EDGE,
-	CLAMP_TO_BORDER,
-};
-
-struct Desc
-{
-	Filter magFilter;
-	Filter minFilter;
-	Filter mipFilter;
-	AddressMode addressModeU;
-	AddressMode addressModeV;
-	AddressMode addressModeW;
-	float mipLODBias;
-	bool anisotropyEnabled;
-	float maxAnisotropy;
-	// When some filter is CLAMP_TO_BORDER.
-	CColor borderColor;
-	bool compareEnabled;
-	CompareOp compareOp;
-};
-
-Desc MakeDefaultSampler(Filter filter, AddressMode addressMode);
-
-} // namespace Sampler
+CompareOp ParseCompareOp(const CStr& str);
 
 } // namespace Backend
 
 } // namespace Renderer
 
-#endif // INCLUDED_RENDERER_BACKEND_SAMPLER
+#endif // INCLUDED_RENDERER_BACKEND_COMPAREOP

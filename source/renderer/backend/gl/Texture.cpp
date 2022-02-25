@@ -23,6 +23,7 @@
 #include "lib/config2.h"
 #include "renderer/backend/gl/Device.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/gl/Mapping.h"
 
 #include <algorithm>
 
@@ -256,6 +257,23 @@ std::unique_ptr<CTexture> CTexture::Create(CDevice* device, const char* name,
 			debug_warn("Unsupported format");
 		}
 	}
+
+
+#if !CONFIG2_GLES
+	if (format == Format::D16 || format == Format::D24 || format == Format::D32 ||
+		format == Format::D24_S8)
+	{
+		if (defaultSamplerDesc.compareEnabled)
+		{
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
+			glTexParameteri(
+				GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC,
+				Mapping::FromCompareOp(defaultSamplerDesc.compareOp));
+		}
+		else
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
+	}
+#endif
 
 	ogl_WarnIfError();
 

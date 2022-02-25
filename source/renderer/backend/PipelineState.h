@@ -19,6 +19,7 @@
 #define INCLUDED_RENDERER_BACKEND_PIPELINESTATE
 
 #include "graphics/Color.h"
+#include "renderer/backend/CompareOp.h"
 
 class CStr;
 
@@ -27,26 +28,6 @@ namespace Renderer
 
 namespace Backend
 {
-
-enum class CompareOp
-{
-	// Never passes the comparison.
-	NEVER,
-	// Passes if the source value is less than the destination value.
-	LESS,
-	// Passes if the source depth value is equal to the destination value.
-	EQUAL,
-	// Passes if the source depth value is less than or equal to the destination value.
-	LESS_OR_EQUAL,
-	// Passes if the source depth value is greater than the destination value.
-	GREATER,
-	// Passes if the source depth value is not equal to the destination value.
-	NOT_EQUAL,
-	// Passes if the source depth value is greater than or equal to the destination value.
-	GREATER_OR_EQUAL,
-	// Always passes the comparison.
-	ALWAYS
-};
 
 enum class StencilOp
 {
@@ -179,8 +160,6 @@ struct GraphicsPipelineStateDesc
 // We don't provide additional helpers intentionally because all custom states
 // should be described with a related shader and should be switched together.
 GraphicsPipelineStateDesc MakeDefaultGraphicsPipelineStateDesc();
-
-CompareOp ParseCompareOp(const CStr& str);
 
 StencilOp ParseStencilOp(const CStr& str);
 

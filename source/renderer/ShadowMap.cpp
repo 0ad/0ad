@@ -537,8 +537,7 @@ void ShadowMapInternals::CreateTexture()
 				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
 	}
 
-	Texture = backendDevice->CreateTexture2D("ShadowMapDepth",
-		backendFormat, Width, Height,
+	Renderer::Backend::Sampler::Desc samplerDesc =
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 #if CONFIG2_GLES
 			// GLES doesn't do depth comparisons, so treat it as a
@@ -548,19 +547,13 @@ void ShadowMapInternals::CreateTexture()
 			// Use GL_LINEAR to trigger automatic PCF on some devices
 			Renderer::Backend::Sampler::Filter::LINEAR,
 #endif
-			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
-
-
-#if !CONFIG2_GLES
-	g_Renderer.GetDeviceCommandContext()->BindTexture(0, GL_TEXTURE_2D, Texture->GetHandle());
+			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
 	// Enable automatic depth comparisons
-	glTexParameteri(GL_TEXTURE_2D, GL_DEPTH_TEXTURE_MODE, GL_INTENSITY);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_FUNC, GL_LEQUAL);
-	g_Renderer.GetDeviceCommandContext()->BindTexture(0, GL_TEXTURE_2D, 0);
-#endif
+	samplerDesc.compareEnabled = true;
+	samplerDesc.compareOp = Renderer::Backend::CompareOp::LESS_OR_EQUAL;
 
-	ogl_WarnIfError();
+	Texture = backendDevice->CreateTexture2D("ShadowMapDepth",
+		backendFormat, Width, Height, samplerDesc);
 
 	Framebuffer = backendDevice->CreateFramebuffer("ShadowMapFramebuffer",
 		g_RenderingOptions.GetShadowAlphaFix() ? DummyTexture.get() : nullptr, Texture.get());

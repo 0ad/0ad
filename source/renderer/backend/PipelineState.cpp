@@ -59,23 +59,6 @@ GraphicsPipelineStateDesc MakeDefaultGraphicsPipelineStateDesc()
 	return desc;
 }
 
-CompareOp ParseCompareOp(const CStr& str)
-{
-	// TODO: it might make sense to use upper case in XML for consistency.
-#define CASE(NAME, VALUE) if (str == NAME) return CompareOp::VALUE
-	CASE("never", NEVER);
-	CASE("less", LESS);
-	CASE("equal", EQUAL);
-	CASE("lequal", LESS_OR_EQUAL);
-	CASE("greater", GREATER);
-	CASE("notequal", NOT_EQUAL);
-	CASE("gequal", GREATER_OR_EQUAL);
-	CASE("always", ALWAYS);
-#undef CASE
-	debug_warn("Invalid compare op");
-	return CompareOp::NEVER;
-}
-
 StencilOp ParseStencilOp(const CStr& str)
 {
 #define CASE(NAME) if (str == #NAME) return StencilOp::NAME
