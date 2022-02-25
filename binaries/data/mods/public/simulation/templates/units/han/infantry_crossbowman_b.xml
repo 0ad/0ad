@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_ranged_crossbowman">
-  <Attack>
-    <Ranged>
-      <Damage>
-        <Crush>1</Crush>
-      </Damage>
-    </Ranged>
-  </Attack>
   <Builder>
     <Entities datatype="tokens">
       -structures/wallset_palisade
@@ -17,6 +10,7 @@
     <SelectionGroupName>units/han/infantry_crossbowman_b</SelectionGroupName>
     <SpecificName>Nǔ Shǒu</SpecificName>
     <Icon>units/han/infantry_crossbowman.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Promotion>
     <Entity>units/han/infantry_crossbowman_a</Entity>
