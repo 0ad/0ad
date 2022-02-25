@@ -36,7 +36,7 @@ struct ParticleRendererInternals
 	CShaderTechniquePtr techSubtract;
 	CShaderTechniquePtr techOverlay;
 	CShaderTechniquePtr techMultiply;
-	CShaderTechniquePtr techSolid;
+	CShaderTechniquePtr techWireframe;
 	std::vector<CParticleEmitter*> emitters[CSceneRenderer::CULL_MAX];
 };
 
@@ -90,13 +90,15 @@ void ParticleRenderer::PrepareForRendering(const CShaderDefines& context)
 
 	// Can't load the shader in the constructor because it's called before the
 	// renderer initialisation is complete, so load it the first time through here
-	if (!m->techSolid)
+	if (!m->techWireframe)
 	{
 		m->techAdd = g_Renderer.GetShaderManager().LoadEffect(str_particle_add, context);
 		m->techSubtract = g_Renderer.GetShaderManager().LoadEffect(str_particle_subtract, context);
 		m->techOverlay = g_Renderer.GetShaderManager().LoadEffect(str_particle_overlay, context);
 		m->techMultiply = g_Renderer.GetShaderManager().LoadEffect(str_particle_multiply, context);
-		m->techSolid = g_Renderer.GetShaderManager().LoadEffect(str_particle_solid, context);
+		CShaderDefines contextWithWireframe = context;
+		contextWithWireframe.Add(str_MODE_WIREFRAME, str_1);
+		m->techWireframe = g_Renderer.GetShaderManager().LoadEffect(str_particle_solid, contextWithWireframe);
 	}
 
 	++m->frameNumber;
@@ -126,15 +128,15 @@ void ParticleRenderer::PrepareForRendering(const CShaderDefines& context)
 
 void ParticleRenderer::RenderParticles(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	int cullGroup, bool solidColor)
+	int cullGroup, bool wireframe)
 {
 	CShaderTechnique* lastTech = nullptr;
 	for (CParticleEmitter* emitter : m->emitters[cullGroup])
 	{
 		CShaderTechnique* currentTech = nullptr;
-		if (solidColor)
+		if (wireframe)
 		{
-			currentTech = m->techSolid.get();
+			currentTech = m->techWireframe.get();
 		}
 		else
 		{
@@ -173,6 +175,6 @@ void ParticleRenderer::RenderBounds(int cullGroup)
 	{
 		const CBoundingBoxAligned bounds =
 			emitter->m_Type->CalculateBounds(emitter->GetPosition(), emitter->GetParticleBounds());
-		g_Renderer.GetDebugRenderer().DrawBoundingBox(bounds, CColor(0.0f, 1.0f, 0.0f, 1.0f));
+		g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(bounds, CColor(0.0f, 1.0f, 0.0f, 1.0f));
 	}
 }

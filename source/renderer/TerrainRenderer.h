@@ -127,7 +127,9 @@ public:
 	 *
 	 * @param filtered If true then only render objects that passed CullPatches.
 	 */
-	void RenderOutlines(int cullGroup);
+	void RenderOutlines(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		int cullGroup);
 
 	/**
 	 * RenderWater: Render water for all patches that have been submitted

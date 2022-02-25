@@ -430,6 +430,8 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 			Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
 		pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
 			Renderer::Backend::BlendOp::ADD;
+		if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
+			pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
 		shaderTechTexLineNormal->BeginPass();
 		deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 
@@ -461,6 +463,8 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 			Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
 		pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
 			Renderer::Backend::BlendOp::ADD;
+		if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
+			pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
 		shaderTechTexLineAlwaysVisible->BeginPass();
 		deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 
@@ -491,10 +495,6 @@ void OverlayRenderer::RenderTexturedOverlayLines(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
 	const CShaderProgramPtr& shader, bool alwaysVisible)
 {
-#if !CONFIG2_GLES
-	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-#endif
 	for (size_t i = 0; i < m->texlines.size(); ++i)
 	{
 		SOverlayTexturedLine* line = m->texlines[i];
@@ -506,10 +506,6 @@ void OverlayRenderer::RenderTexturedOverlayLines(
 		ENSURE(line->m_RenderData);
 		line->m_RenderData->Render(deviceCommandContext, *line, shader);
 	}
-#if !CONFIG2_GLES
-	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-#endif
 }
 
 void OverlayRenderer::RenderQuadOverlays(
@@ -537,15 +533,12 @@ void OverlayRenderer::RenderQuadOverlays(
 		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
 	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
 		Renderer::Backend::BlendOp::ADD;
+	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
+		pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
 	shaderTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 
-	CShaderProgramPtr shader = shaderTech->GetShader();
-
-#if !CONFIG2_GLES
-	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-#endif
+	const CShaderProgramPtr& shader = shaderTech->GetShader();
 
 	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 
@@ -604,11 +597,6 @@ void OverlayRenderer::RenderQuadOverlays(
 	deviceCommandContext->BindTexture(0, GL_TEXTURE_2D, 0);
 
 	CVertexBuffer::Unbind(deviceCommandContext);
-
-#if !CONFIG2_GLES
-	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-#endif
 }
 
 void OverlayRenderer::RenderForegroundOverlays(
@@ -622,9 +610,6 @@ void OverlayRenderer::RenderForegroundOverlays(
 	UNUSED2(viewCamera);
 	#warning TODO: implement OverlayRenderer::RenderForegroundOverlays for GLES
 #else
-	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
 	CVector3D right = -viewCamera.GetOrientation().GetLeft();
 	CVector3D up = viewCamera.GetOrientation().GetUp();
 
@@ -639,10 +624,12 @@ void OverlayRenderer::RenderForegroundOverlays(
 		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
 	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
 		Renderer::Backend::BlendOp::ADD;
+	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
+		pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
 	tech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 
-	CShaderProgramPtr shader = tech->GetShader();
+	const CShaderProgramPtr& shader = tech->GetShader();
 
 	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 
@@ -688,9 +675,6 @@ void OverlayRenderer::RenderForegroundOverlays(
 	}
 
 	tech->EndPass();
-
-	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 #endif
 }
 

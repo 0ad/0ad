@@ -54,6 +54,7 @@ GraphicsPipelineStateDesc MakeDefaultGraphicsPipelineStateDesc()
 	desc.blendState.colorWriteMask =
 		ColorWriteMask::RED | ColorWriteMask::GREEN | ColorWriteMask::BLUE | ColorWriteMask::ALPHA;
 
+	desc.rasterizationState.polygonMode = PolygonMode::FILL;
 	desc.rasterizationState.cullMode = CullMode::BACK;
 	desc.rasterizationState.frontFace = FrontFace::COUNTER_CLOCKWISE;
 	return desc;
@@ -114,6 +115,16 @@ BlendOp ParseBlendOp(const CStr& str)
 #undef CASE
 	debug_warn("Invalid blend op");
 	return BlendOp::ADD;
+}
+
+PolygonMode ParsePolygonMode(const CStr& str)
+{
+	if (str == "FILL")
+		return PolygonMode::FILL;
+	else if (str == "LINE")
+		return PolygonMode::LINE;
+	debug_warn("Invalid polygon mode");
+	return PolygonMode::FILL;
 }
 
 CullMode ParseCullMode(const CStr& str)

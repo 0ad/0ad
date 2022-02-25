@@ -339,48 +339,27 @@ void CSceneRenderer::RenderPatches(
 	PROFILE3_GPU("patches");
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render patches");
 
-#if CONFIG2_GLES
-#warning TODO: implement wireface/edged rendering mode GLES
-#else
-	// switch on wireframe if we need it
+	// Switch on wireframe if we need it.
+	CShaderDefines localContext = context;
 	if (m_TerrainRenderMode == WIREFRAME)
-	{
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	}
-#endif
+		localContext.Add(str_MODE_WIREFRAME, str_1);
 
-	// render all the patches, including blend pass
-	m->terrainRenderer.RenderTerrainShader(deviceCommandContext, context, cullGroup,
+	// Render all the patches, including blend pass.
+	m->terrainRenderer.RenderTerrainShader(deviceCommandContext, localContext, cullGroup,
 		g_RenderingOptions.GetShadows() ? &m->shadow : nullptr);
 
-#if !CONFIG2_GLES
-	if (m_TerrainRenderMode == WIREFRAME)
+	if (m_TerrainRenderMode == EDGED_FACES)
 	{
-		// switch wireframe off again
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		localContext.Add(str_MODE_WIREFRAME, str_1);
+		// Edged faces: need to make a second pass over the data.
+
+		// Render tiles edges.
+		m->terrainRenderer.RenderPatches(
+			deviceCommandContext, cullGroup, localContext, CColor(0.5f, 0.5f, 1.0f, 1.0f));
+
+		// Render outline of each patch.
+		m->terrainRenderer.RenderOutlines(deviceCommandContext, cullGroup);
 	}
-	else if (m_TerrainRenderMode == EDGED_FACES)
-	{
-		// edged faces: need to make a second pass over the data:
-		// first switch on wireframe
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-		// setup some renderstate ..
-		glLineWidth(2.0f);
-
-		// render tiles edges
-		m->terrainRenderer.RenderPatches(deviceCommandContext, cullGroup, context, CColor(0.5f, 0.5f, 1.0f, 1.0f));
-
-		glLineWidth(4.0f);
-
-		// render outline of each patch
-		m->terrainRenderer.RenderOutlines(cullGroup);
-
-		// .. and restore the renderstates
-		glLineWidth(1.0f);
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	}
-#endif
 }
 
 void CSceneRenderer::RenderModels(
@@ -392,32 +371,18 @@ void CSceneRenderer::RenderModels(
 
 	int flags = 0;
 
-#if !CONFIG2_GLES
+	CShaderDefines localContext = context;
+
 	if (m_ModelRenderMode == WIREFRAME)
+		localContext.Add(str_MODE_WIREFRAME, str_1);
+
+	m->CallModelRenderers(deviceCommandContext, localContext, cullGroup, flags);
+
+	if (m_ModelRenderMode == EDGED_FACES)
 	{
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		localContext.Add(str_MODE_WIREFRAME_SOLID, str_1);
+		m->CallModelRenderers(deviceCommandContext, localContext, cullGroup, flags);
 	}
-#endif
-
-	m->CallModelRenderers(deviceCommandContext, context, cullGroup, flags);
-
-#if !CONFIG2_GLES
-	if (m_ModelRenderMode == WIREFRAME)
-	{
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	}
-	else if (m_ModelRenderMode == EDGED_FACES)
-	{
-		CShaderDefines contextWireframe = context;
-		contextWireframe.Add(str_MODE_WIREFRAME, str_1);
-
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-		m->CallModelRenderers(deviceCommandContext, contextWireframe, cullGroup, flags);
-
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	}
-#endif
 }
 
 void CSceneRenderer::RenderTransparentModels(
@@ -429,19 +394,17 @@ void CSceneRenderer::RenderTransparentModels(
 
 	int flags = 0;
 
-#if !CONFIG2_GLES
-	// switch on wireframe if we need it
-	if (m_ModelRenderMode == WIREFRAME)
-	{
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	}
-#endif
-
 	CShaderDefines contextOpaque = context;
 	contextOpaque.Add(str_ALPHABLEND_PASS_OPAQUE, str_1);
 
 	CShaderDefines contextBlend = context;
 	contextBlend.Add(str_ALPHABLEND_PASS_BLEND, str_1);
+
+	if (m_ModelRenderMode == WIREFRAME)
+	{
+		contextOpaque.Add(str_MODE_WIREFRAME, str_1);
+		contextBlend.Add(str_MODE_WIREFRAME, str_1);
+	}
 
 	if (transparentMode == TRANSPARENT || transparentMode == TRANSPARENT_OPAQUE)
 		m->CallTranspModelRenderers(deviceCommandContext, contextOpaque, cullGroup, flags);
@@ -449,24 +412,13 @@ void CSceneRenderer::RenderTransparentModels(
 	if (transparentMode == TRANSPARENT || transparentMode == TRANSPARENT_BLEND)
 		m->CallTranspModelRenderers(deviceCommandContext, contextBlend, cullGroup, flags);
 
-#if !CONFIG2_GLES
-	if (m_ModelRenderMode == WIREFRAME)
-	{
-		// switch wireframe off again
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-	}
-	else if (m_ModelRenderMode == EDGED_FACES)
+	if (m_ModelRenderMode == EDGED_FACES)
 	{
 		CShaderDefines contextWireframe = contextOpaque;
 		contextWireframe.Add(str_MODE_WIREFRAME, str_1);
 
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
 		m->CallTranspModelRenderers(deviceCommandContext, contextWireframe, cullGroup, flags);
-
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
-#endif
 }
 
 // SetObliqueFrustumClipping: change the near plane to the given clip plane (in world space)
@@ -791,20 +743,14 @@ void CSceneRenderer::RenderParticles(
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render particles");
 
 	m->particleRenderer.RenderParticles(
-		deviceCommandContext, cullGroup);
+		deviceCommandContext, cullGroup, m_ModelRenderMode == WIREFRAME);
 
-#if !CONFIG2_GLES
 	if (m_ModelRenderMode == EDGED_FACES)
 	{
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
 		m->particleRenderer.RenderParticles(
 			deviceCommandContext, cullGroup, true);
 		m->particleRenderer.RenderBounds(cullGroup);
-
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
-#endif
 }
 
 // RenderSubmissions: force rendering of any batched objects
@@ -1006,22 +952,10 @@ void CSceneRenderer::EndFrame()
 		m->Model.TranspUnskinned->EndFrame();
 }
 
-// DisplayFrustum: debug displays
-//  - white: cull camera frustum
-//  - red: bounds of shadow casting objects
 void CSceneRenderer::DisplayFrustum()
 {
-#if CONFIG2_GLES
-#warning TODO: implement CSceneRenderer::DisplayFrustum for GLES
-#else
 	g_Renderer.GetDebugRenderer().DrawCameraFrustum(m_CullCamera, CColor(1.0f, 1.0f, 1.0f, 0.25f), 2);
-
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	g_Renderer.GetDebugRenderer().DrawCameraFrustum(m_CullCamera, CColor(1.0f, 1.0f, 1.0f, 1.0f), 2);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-#endif
-
-	ogl_WarnIfError();
+	g_Renderer.GetDebugRenderer().DrawCameraFrustum(m_CullCamera, CColor(1.0f, 1.0f, 1.0f, 1.0f), 2, true);
 }
 
 // Text overlay rendering

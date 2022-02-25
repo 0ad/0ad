@@ -152,7 +152,6 @@ void TerrainOverlay::RenderBeforeWater(
 
 	//glDisable(GL_POLYGON_OFFSET_LINE);
 	glDisable(GL_POLYGON_OFFSET_FILL);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 #endif
 }
 
@@ -238,7 +237,6 @@ void TerrainOverlay::RenderTile(
 	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
 	overlayShader->AssertPointersBound();
 
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 3);
 
 	overlayTech->EndPass();
@@ -265,11 +263,6 @@ void TerrainOverlay::RenderTileOutline(
 	UNUSED2(j);
 	#warning TODO: implement TerrainOverlay::RenderTileOutline for GLES
 #else
-
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-	if (lineWidth != 1)
-		glLineWidth(static_cast<float>(lineWidth));
 
 	std::vector<float> vertices;
 #define ADD(i, j) \
@@ -299,8 +292,12 @@ void TerrainOverlay::RenderTileOutline(
 		Renderer::Backend::BlendOp::ADD;
 	pipelineStateDesc.rasterizationState.cullMode =
 		drawHidden ? Renderer::Backend::CullMode::NONE : Renderer::Backend::CullMode::BACK;
+	pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
 	overlayTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+
+	if (lineWidth != 1)
+		glLineWidth(static_cast<float>(lineWidth));
 
 	const CShaderProgramPtr& overlayShader = overlayTech->GetShader();
 

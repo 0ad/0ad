@@ -37,13 +37,34 @@
 	<technique>
 		<require context="MODE_WIREFRAME"/>
 		<require shaders="arb"/>
-		<pass shader="arb/model_solid_player"/>
+		<pass shader="arb/model_common">
+			<polygon mode="LINE"/>
+		</pass>
 	</technique>
 
 	<technique>
 		<require context="MODE_WIREFRAME"/>
 		<require shaders="glsl"/>
-		<pass shader="glsl/model_solid_player"/>
+		<pass shader="glsl/model_common">
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
+
+
+	<technique>
+		<require context="MODE_WIREFRAME_SOLID"/>
+		<require shaders="arb"/>
+		<pass shader="arb/model_solid_player">
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require context="MODE_WIREFRAME_SOLID"/>
+		<require shaders="glsl"/>
+		<pass shader="glsl/model_solid_player">
+			<polygon mode="LINE"/>
+		</pass>
 	</technique>
 
 

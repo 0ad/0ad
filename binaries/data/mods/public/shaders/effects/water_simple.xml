@@ -3,6 +3,25 @@
 
 	<technique>
 		<require shaders="arb"/>
+		<require context="MODE_WIREFRAME"/>
+		<pass shader="arb/water_simple">
+			<depth test="TRUE"/>
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require shaders="glsl"/>
+		<require context="MODE_WIREFRAME"/>
+		<pass shader="glsl/water_simple">
+			<depth test="TRUE"/>
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
+
+
+	<technique>
+		<require shaders="arb"/>
 		<pass shader="arb/water_simple">
 			<depth test="TRUE"/>
 		</pass>

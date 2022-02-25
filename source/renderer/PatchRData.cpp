@@ -714,6 +714,7 @@ void CPatchRData::RenderBases(
 	const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow)
 {
 	PROFILE3("render terrain bases");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render terrain bases");
 
 	Arena arena;
 
@@ -865,6 +866,7 @@ void CPatchRData::RenderBlends(
 	const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow)
 {
 	PROFILE3("render terrain blends");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render terrain blends");
 
 	Arena arena;
 
@@ -1158,6 +1160,7 @@ void CPatchRData::RenderSides(
 	const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader)
 {
 	PROFILE3("render terrain sides");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render terrain sides");
 
 	CVertexBuffer* lastVB = nullptr;
 	for (CPatchRData* patch : patches)

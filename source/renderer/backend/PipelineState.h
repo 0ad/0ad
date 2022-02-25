@@ -130,6 +130,12 @@ struct BlendStateDesc
 	uint8_t colorWriteMask;
 };
 
+enum class PolygonMode
+{
+	FILL,
+	LINE
+};
+
 enum class CullMode
 {
 	NONE,
@@ -145,6 +151,7 @@ enum class FrontFace
 
 struct RasterizationStateDesc
 {
+	PolygonMode polygonMode;
 	CullMode cullMode;
 	FrontFace frontFace;
 };
@@ -166,6 +173,7 @@ StencilOp ParseStencilOp(const CStr& str);
 BlendFactor ParseBlendFactor(const CStr& str);
 BlendOp ParseBlendOp(const CStr& str);
 
+PolygonMode ParsePolygonMode(const CStr& str);
 CullMode ParseCullMode(const CStr& str);
 FrontFace ParseFrontFace(const CStr& str);
 

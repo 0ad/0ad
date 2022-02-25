@@ -40,7 +40,8 @@ namespace
 
 void SetGraphicsPipelineStateFromTechAndColor(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CShaderTechniquePtr& tech, const CColor& color, const bool depthTestEnabled = true)
+	const CShaderTechniquePtr& tech, const CColor& color, const bool depthTestEnabled = true,
+	const bool wireframe = false)
 {
 	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc = tech->GetGraphicsPipelineStateDesc();
 	pipelineStateDesc.depthStencilState.depthTestEnabled = depthTestEnabled;
@@ -56,6 +57,8 @@ void SetGraphicsPipelineStateFromTechAndColor(
 	}
 	else
 		pipelineStateDesc.blendState.enabled = false;
+	if (wireframe)
+		pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
 	pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 }
@@ -174,7 +177,7 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 #endif
 }
 
-void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& color, int intermediates)
+void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& color, int intermediates, bool wireframe)
 {
 #if CONFIG2_GLES
 	UNUSED2(camera); UNUSED2(color); UNUSED2(intermediates);
@@ -194,7 +197,7 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 	CShaderTechniquePtr overlayTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	overlayTech->BeginPass();
-	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), overlayTech, color);
+	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), overlayTech, color, true, wireframe);
 
 	CShaderProgramPtr overlayShader = overlayTech->GetShader();
 	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
@@ -322,7 +325,7 @@ void CDebugRenderer::DrawBoundingBoxOutline(const CBoundingBoxAligned& boundingB
 {
 	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	shaderTech->BeginPass();
-	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), shaderTech, color);
+	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), shaderTech, color, true, true);
 
 	CShaderProgramPtr shader = shaderTech->GetShader();
 	shader->Uniform(str_color, color);

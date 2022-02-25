@@ -57,7 +57,7 @@ public:
 	 */
 	void RenderParticles(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		int cullGroup, bool solidColor = false);
+		int cullGroup, bool wireframe = false);
 
 	/**
 	 * Render bounding boxes for all the submitted emitters.
