@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="mesh_bush_1">
+      <mesh>gaia/temp_bush_01.dae</mesh>
+    </variant>
+    <variant frequency="1" name="mesh_bush_2">
+      <mesh>gaia/temp_bush_02.dae</mesh>
+    </variant>
+    <variant frequency="1" name="mesh_bush_3">
+      <mesh>gaia/temp_bush_03.dae</mesh>
+    </variant>
+    <variant frequency="1" name="mesh_bush_4">
+      <mesh>gaia/temp_bush_04.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="tex_aut_bush_1">
+      <textures>
+        <texture file="gaia/temperate_tree_04.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="tex_aut_bush_2">
+      <textures>
+        <texture file="gaia/temperate_tree_05.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="tex_aut_bush_3">
+      <textures>
+        <texture file="gaia/temperate_tree_06.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="tex_aut_bush_4">
+      <textures>
+        <texture file="gaia/temperate_tree_09.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="tex_sum_bush_1">
+      <textures>
+        <texture file="gaia/temperate_bush_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="tex_sum_bush_2">
+      <textures>
+        <texture file="gaia/temperate_bush_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>

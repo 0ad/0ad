@@ -28,11 +28,20 @@
     </variant>
   </group>
   <group>
-    <variant name="stone-desert-a">
-      <textures><texture file="gaia/stone_desert_a.dds" name="baseTex"/></textures>
+    <variant frequency="1" name="stone_sahara_01">
+      <textures>
+        <texture file="gaia/stone_sahara_01.png" name="baseTex"/>
+        <texture file="gaia/stone_sahara_01_norm.png" name="normTex"/>
+        <texture file="gaia/stone_sahara_01_spec.png" name="specTex"/>
+      </textures>
     </variant>
-    <variant name="stone-desert-b">
-      <textures><texture file="gaia/stone_desert_b.dds" name="baseTex"/></textures>
+    <variant frequency="1" name="stone_sahara_02">
+      <textures>
+        <texture file="gaia/stone_sahara_02.png" name="baseTex"/>
+        <texture file="gaia/stone_sahara_02_norm.png" name="normTex"/>
+        <texture file="gaia/stone_sahara_02_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
+  <material>rock_norm_spec.xml</material>
 </actor>

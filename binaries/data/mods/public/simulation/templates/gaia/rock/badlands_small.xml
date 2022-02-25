@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_gaia_rock_large">
+<Entity parent="template_gaia_rock">
   <Identity>
     <Icon>gaia/geology_stone_2.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>geology/stonemine_desert_badlands_large.xml</Actor>
+    <Actor>geology/stonemine_desert_badlands_small.xml</Actor>
   </VisualActor>
 </Entity>
