@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-18 08:08+0000\n"
-"PO-Revision-Date: 2022-02-18 09:24+0000\n"
+"POT-Creation-Date: 2022-02-21 08:09+0000\n"
+"PO-Revision-Date: 2022-02-21 09:24+0000\n"
 "Last-Translator: Transifex Bot\n"
 "Language-Team: Bengali (http://www.transifex.com/wildfire-games/0ad/language/bn/)\n"
 "MIME-Version: 1.0\n"
@@ -33,6 +33,7 @@ msgstr "একটি ক্যাটাফলিক যা একজন মহ�
 #: simulation/templates/template_unit_champion.xml:5
 #: simulation/templates/template_unit_hero.xml:5
 #: simulation/templates/template_unit_infantry.xml:5
+#: simulation/templates/units/han/support_minister.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Capture"
 msgstr ""
@@ -493,6 +494,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
 #: simulation/templates/units/brit/hero_boudicca.xml:20
+#: simulation/templates/units/han/support_minister.xml:56
 #: simulation/templates/units/kush/hero_amanirenas.xml:21
 #: simulation/templates/units/maur/hero_ashoka.xml:20
 #: simulation/templates/units/pers/hero_darius_i.xml:20
@@ -846,6 +848,16 @@ msgstr ""
 #: simulation/templates/units/gaul/infantry_slinger_a.xml:4
 #: simulation/templates/units/gaul/infantry_spearman_a.xml:4
 #: simulation/templates/units/gaul/support_healer_a.xml:4
+#: simulation/templates/units/han/cavalry_archer_a.xml:4
+#: simulation/templates/units/han/cavalry_crossbowman_a.xml:4
+#: simulation/templates/units/han/cavalry_spearman_a.xml:4
+#: simulation/templates/units/han/cavalry_swordsman_a.xml:4
+#: simulation/templates/units/han/infantry_archer_a.xml:4
+#: simulation/templates/units/han/infantry_crossbowman_a.xml:4
+#: simulation/templates/units/han/infantry_pikeman_a.xml:4
+#: simulation/templates/units/han/infantry_spearman_a.xml:4
+#: simulation/templates/units/han/infantry_swordsman_a.xml:4
+#: simulation/templates/units/han/support_healer_a.xml:4
 #: simulation/templates/units/iber/cavalry_javelineer_a.xml:4
 #: simulation/templates/units/iber/cavalry_spearman_a.xml:4
 #: simulation/templates/units/iber/infantry_javelineer_a.xml:4
@@ -953,6 +965,16 @@ msgstr ""
 #: simulation/templates/units/gaul/infantry_slinger_e.xml:4
 #: simulation/templates/units/gaul/infantry_spearman_e.xml:4
 #: simulation/templates/units/gaul/support_healer_e.xml:4
+#: simulation/templates/units/han/cavalry_archer_e.xml:4
+#: simulation/templates/units/han/cavalry_crossbowman_e.xml:4
+#: simulation/templates/units/han/cavalry_spearman_e.xml:4
+#: simulation/templates/units/han/cavalry_swordsman_e.xml:4
+#: simulation/templates/units/han/infantry_archer_e.xml:4
+#: simulation/templates/units/han/infantry_crossbowman_e.xml:4
+#: simulation/templates/units/han/infantry_pikeman_e.xml:4
+#: simulation/templates/units/han/infantry_spearman_e.xml:4
+#: simulation/templates/units/han/infantry_swordsman_e.xml:4
+#: simulation/templates/units/han/support_healer_e.xml:4
 #: simulation/templates/units/iber/cavalry_javelineer_e.xml:4
 #: simulation/templates/units/iber/cavalry_spearman_e.xml:4
 #: simulation/templates/units/iber/infantry_javelineer_e.xml:4
@@ -1266,6 +1288,7 @@ msgstr ""
 
 #: simulation/templates/units/brit/champion_chariot.xml:12
 #: simulation/templates/units/brit/hero_boudicca.xml:15
+#: simulation/templates/units/han/hero_wei_qing_chariot.xml:22
 #: simulation/templates/units/kush/hero_amanirenas.xml:16
 #: simulation/templates/units/maur/champion_chariot.xml:12
 #: simulation/templates/units/maur/hero_ashoka.xml:15
@@ -1617,6 +1640,163 @@ msgstr ""
 
 #: simulation/templates/units/gaul/hero_viridomarus.xml:9
 msgid "Britomaros"
+msgstr ""
+
+#: simulation/templates/units/han/catafalque.xml:9
+msgid "Emperor Wǔ (Liu Che)"
+msgstr ""
+
+#: simulation/templates/units/han/cavalry_archer_b.xml:6
+msgid "Gōng Qíbīng"
+msgstr ""
+
+#: simulation/templates/units/han/cavalry_crossbowman_b.xml:6
+msgid "Han Cavalry Crossbowman"
+msgstr ""
+
+#: simulation/templates/units/han/cavalry_spearman_b.xml:6
+msgid "Máo Qíbīng"
+msgstr ""
+
+#: simulation/templates/units/han/cavalry_swordsman_b.xml:6
+msgid "Dāo Qíbīng"
+msgstr ""
+
+#: simulation/templates/units/han/champion_cavalry_crossbowman.xml:5
+msgid "Sun Wu Trouble Freeing Forces"
+msgstr ""
+
+#: simulation/templates/units/han/champion_cavalry_spearman.xml:5
+msgid "Wu Wei Yin Cao Cao Guard"
+msgstr ""
+
+#: simulation/templates/units/han/champion_infantry_archer.xml:5
+msgid "Palace Guard Archer"
+msgstr ""
+
+#: simulation/templates/units/han/champion_infantry_archer.xml:6
+msgid "Yǔ Lín"
+msgstr ""
+
+#: simulation/templates/units/han/champion_infantry_swordsman.xml:5
+msgid "Palace Guard Swordsman"
+msgstr ""
+
+#: simulation/templates/units/han/champion_infantry_swordsman.xml:6
+msgid "Hǔ Bēn"
+msgstr ""
+
+#: simulation/templates/units/han/hero_han_xin.xml:9
+#: simulation/templates/units/han/hero_han_xin_horse.xml:9
+msgid "Hán Xìn"
+msgstr ""
+
+#: simulation/templates/units/han/hero_liu_bang.xml:9
+#: simulation/templates/units/han/hero_liu_bang_horse.xml:9
+msgid "Liú Bāng"
+msgstr ""
+
+#: simulation/templates/units/han/hero_wei_qing.xml:16
+#: simulation/templates/units/han/hero_wei_qing_chariot.xml:21
+#: simulation/templates/units/han/hero_wei_qing_horse.xml:16
+msgid "Wèi Qīng"
+msgstr ""
+
+#: simulation/templates/units/han/infantry_archer_b.xml:11
+msgid "Shè Shǒu"
+msgstr ""
+
+#: simulation/templates/units/han/infantry_crossbowman_b.xml:18
+msgid "Nǔ Shǒu"
+msgstr ""
+
+#: simulation/templates/units/han/infantry_pikeman_b.xml:5
+msgctxt "Name of an attack, usually the weapon."
+msgid "Halberdier"
+msgstr ""
+
+#: simulation/templates/units/han/infantry_pikeman_b.xml:20
+msgid "Jǐ Bīng"
+msgstr ""
+
+#: simulation/templates/units/han/infantry_spearman_b.xml:11
+msgid "Máo Bīng"
+msgstr ""
+
+#: simulation/templates/units/han/infantry_swordsman_b.xml:11
+msgid "Dāo Bīng"
+msgstr ""
+
+#: simulation/templates/units/han/ship_bireme.xml:5
+msgid "Zhàn Chuán"
+msgstr ""
+
+#: simulation/templates/units/han/ship_fire.xml:5
+msgid "Huǒ Chuán"
+msgstr ""
+
+#: simulation/templates/units/han/ship_fishing.xml:9
+msgid "Yú Chuán"
+msgstr ""
+
+#: simulation/templates/units/han/ship_merchant.xml:9
+msgid "Shāng Chuán"
+msgstr ""
+
+#: simulation/templates/units/han/ship_quinquereme.xml:9
+msgid "Dà Lóu Chuán"
+msgstr ""
+
+#: simulation/templates/units/han/ship_trireme.xml:9
+msgid "Lóu Chuán"
+msgstr ""
+
+#: simulation/templates/units/han/siege_mangonel_packed.xml:5
+#: simulation/templates/units/han/siege_mangonel_unpacked.xml:16
+msgid "Tóushí Chē"
+msgstr ""
+
+#: simulation/templates/units/han/siege_ram.xml:8
+msgid "Gōngchéng Chuí"
+msgstr ""
+
+#: simulation/templates/units/han/siege_shoushe.xml:9
+msgid "Nǔ Chē"
+msgstr ""
+
+#: simulation/templates/units/han/siege_tower.xml:5
+msgid "Gōngchéng Tǎ"
+msgstr ""
+
+#: simulation/templates/units/han/support_female_citizen.xml:10
+msgid "Fù Nǚ"
+msgstr ""
+
+#: simulation/templates/units/han/support_healer_b.xml:6
+msgid "Yīshī"
+msgstr ""
+
+#: simulation/templates/units/han/support_minister.xml:30
+msgid "Imperial Minister"
+msgstr ""
+
+#: simulation/templates/units/han/support_minister.xml:31
+msgid "Guānlì"
+msgstr ""
+
+#: simulation/templates/units/han/support_minister.xml:32
+msgid ""
+"Use to boost the efficiency of nearby units and buildings. Garrison within a"
+" building to boost the efficiency of its production queue. Only han "
+"buildings can garrison ministers."
+msgstr ""
+
+#: simulation/templates/units/han/support_minister.xml:34
+msgid "Minister"
+msgstr ""
+
+#: simulation/templates/units/han/support_trader.xml:9
+msgid "Shāngrén"
 msgstr ""
 
 #: simulation/templates/units/iber/catafalque.xml:9

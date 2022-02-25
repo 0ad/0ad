@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-18 08:08+0000\n"
-"PO-Revision-Date: 2022-02-18 10:25+0000\n"
+"POT-Creation-Date: 2022-02-21 08:09+0000\n"
+"PO-Revision-Date: 2022-02-21 10:25+0000\n"
 "Last-Translator: Transifex Bot\n"
 "Language-Team: Divehi (http://www.transifex.com/wildfire-games/0ad/language/dv/)\n"
 "MIME-Version: 1.0\n"
@@ -1909,6 +1909,15 @@ msgstr ""
 msgid "Sandbox - The Gauls"
 msgstr ""
 
+#: maps/scenarios/sandbox_han.xml:Description:39
+msgid ""
+"A simple map showcasing the Han Chinese civilization's assets in the game."
+msgstr ""
+
+#: maps/scenarios/sandbox_han.xml:Name:39
+msgid "Sandbox - The Han Chinese"
+msgstr ""
+
 #: maps/scenarios/sandbox_iberians.xml:Description:38
 msgid "A demo map for the Iberians."
 msgstr ""
@@ -2555,10 +2564,12 @@ msgid "Island of Meroë (2)"
 msgstr ""
 
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:39
+#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[2].Name:39
 msgid "West Player"
 msgstr ""
 
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[1].Name:39
 msgid "East Player"
 msgstr ""
 
@@ -3128,6 +3139,22 @@ msgstr ""
 msgid "Coele-Syria (2)"
 msgstr ""
 
+#: maps/skirmishes/tarim_basin_2p.xml:Description:39
+#: maps/skirmishes/tarim_basin_4p.xml:Description:39
+msgid ""
+"A barren desert basin surrounded by mountainous valleys, the Tarim Basin is also called \"The Western Regions\" by the Han Chinese, and represents the furthest extent of their power.\n"
+"\n"
+"The basin itself is bereft of life  and offers little in the way of defensibility. The rugged mountain valleys harbor the only life, in the form of hearty shrub and tree species and some goats."
+msgstr ""
+
+#: maps/skirmishes/tarim_basin_2p.xml:Name:39
+msgid "Tarim Basin (2 players)"
+msgstr ""
+
+#: maps/skirmishes/tarim_basin_4p.xml:Name:39
+msgid "Tarim Basin (4 players)"
+msgstr ""
+
 #: maps/skirmishes/team_oasis_2pv2p.xml:Description:38
 msgid ""
 "An oasis surrounded by mountains and desert. Farmlands near the water's edge"
@@ -3243,6 +3270,14 @@ msgstr ""
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[5].Name:39
 msgid "Invader 4"
+msgstr ""
+
+#: maps/skirmishes/yangtze_2p.xml:Description:39
+msgid "The Yangtze River in China. "
+msgstr ""
+
+#: maps/skirmishes/yangtze_2p.xml:Name:39
+msgid "Chang Jiang (2 players)"
 msgstr ""
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Description:38

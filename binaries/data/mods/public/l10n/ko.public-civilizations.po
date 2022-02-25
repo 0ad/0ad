@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -18,8 +18,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-09-24 20:02+0000\n"
+"POT-Creation-Date: 2022-02-21 08:09+0000\n"
+"PO-Revision-Date: 2022-02-21 08:45+0000\n"
 "Last-Translator: Jung Hee Lee\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -102,18 +102,6 @@ msgstr "아티카 지방의 라우리온 광산에서 생산하는 은은 아테
 msgid "Silver Owls"
 msgstr "올빼미 은화"
 
-#: simulation/data/civs/athen.jsonHistory
-msgid ""
-"As the cradle of Western civilization and the birthplace of democracy, "
-"Athens was famed as a center for the arts, learning and philosophy. The "
-"Athenians were also powerful warriors, particularly at sea. At its peak, "
-"Athens dominated a large part of the Hellenic world for several decades."
-msgstr "서구 문명의 요람이자, 민주주의의 발상지로 아테네는 예술, 학문, 철학의 중심지로 유명했습니다. 아테네는 특히 바다에서 강력한 군사력을 보여줬습니다. 전성기에는 아테네는 수십 년 동안 헬레니즘 세계의 대부분을 수십년 동안 지배했습니다."
-
-#: simulation/data/civs/athen.jsonName
-msgid "Athenians"
-msgstr "아테네"
-
 #: simulation/data/civs/brit.jsonAINames[0]
 msgid "Karatakos"
 msgstr "카라타쿠스"
@@ -157,18 +145,6 @@ msgstr "아도미니우스"
 #: simulation/data/civs/brit.jsonAINames[9]
 msgid "Dubnovellaunus"
 msgstr "두브노벨라우누스"
-
-#: simulation/data/civs/brit.jsonHistory
-msgid ""
-"The Britons were the Celtic tribes of the British Isles. Using chariots, "
-"longswordsmen and powerful melee soldiers, they staged fearsome revolts "
-"against Rome to protect their customs and interests. Also, they built "
-"thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr "브리턴족은 영국 제도의 켈트 부족인들이었습니다. 그들은 전차, 장검병, 그리고 막강한 근거리 병사를 이용하여, 그들의 관습과 이익을 보호하기 위해 로마에 대해 무시무시한 반란을 일으켰습니다. 또한, 그들은 언덕 요새, 호수위 집 및 원탑 와 같은 수천 개의 독특한 건축물을 지었습니다."
-
-#: simulation/data/civs/brit.jsonName
-msgid "Britons"
-msgstr "브리턴족"
 
 #: simulation/data/civs/cart.jsonAINames[0]
 msgid "Hannibal Barca"
@@ -250,20 +226,6 @@ msgstr "선착장 및 시장의 국제 교역 보너스가 +10% 증가합니다.
 msgid "Desirable Products"
 msgstr "가치있는 제작품"
 
-#: simulation/data/civs/cart.jsonHistory
-msgid ""
-"Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
-"western Mediterranean, eventually taking over much of North Africa and "
-"modern-day Spain in the third century B.C. The sailors of Carthage were "
-"among the fiercest contenders on the high seas, and masters of naval trade. "
-"They deployed towered War Elephants on the battlefield to fearsome effect, "
-"and had defensive walls so strong, they were never breached."
-msgstr "카르타고는 현재 튀니지에 있던 도시 국가에서 서쪽 지중해의 무서운 세력이며, 결국은 북아프리카의 대부분과 현재의 스페인 기원전 3 세기에 지배했습니다. 카르타고 선원은 가장 사나운 바다에서 경쟁자이며, 해상 교역의 달인이었습니다. 그들은 무시무시한 효과를 얻기 위해 전쟁터에 코끼리들을 배치했지만, 방어벽이 너무 강해서 결코 뚫리지 않았었습니다."
-
-#: simulation/data/civs/cart.jsonName
-msgid "Carthaginians"
-msgstr "카르타고"
-
 #: simulation/data/civs/gaul.jsonAINames[0]
 msgid "Viridomarus"
 msgstr "비리도마루스"
@@ -304,18 +266,118 @@ msgstr "바레티아쿠스"
 msgid "Viridovix"
 msgstr "비리도비스"
 
-#: simulation/data/civs/gaul.jsonHistory
-msgid ""
-"The Gauls were the Celtic tribes of continental Europe. Dominated by a "
-"priestly class of Druids, they featured a sophisticated culture of advanced "
-"metalworking, agriculture, trade and even road engineering. With heavy "
-"infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
-"of conquest and Rome's authoritarian rule."
-msgstr "갈리아족은 유럽 대륙의 켈트 부족이었습니다. 사제의 신관 계급이 지배하고 고급 금속 가공, 농업, 교역, 심지어는 도로 설계에 관한 정교한 문화가 특징이었습니다. 중장비 보병과 기병으로 갈리아 병사는 카이사르의 원정과 로마의 권위 주의적 통치에 용감하게 저항했습니다."
+#: simulation/data/civs/han.jsonAINames[0]
+msgid "Liu Bang"
+msgstr ""
 
-#: simulation/data/civs/gaul.jsonName
-msgid "Gauls"
-msgstr "갈리아족"
+#: simulation/data/civs/han.jsonAINames[10]
+msgid "Liu Shi"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[11]
+msgid "Liu Ao"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[12]
+msgid "Liu Xin"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[13]
+msgid "Liu Kan"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[14]
+msgid "Liu Xuan"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[15]
+msgid "Liu Xiu"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[16]
+msgid "Liu Zhuang"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[17]
+msgid "Liu Da"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[18]
+msgid "Liu Zhao"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[19]
+msgid "Liu Long"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[1]
+msgid "Liu Ying"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[20]
+msgid "Liu Hu"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[21]
+msgid "Liu Yi"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[22]
+msgid "Liu Bao"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[23]
+msgid "Liu Bing"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[24]
+msgid "Liu Zuan"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[25]
+msgid "Liu Zhi"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[27]
+msgid "Liu Bian"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[28]
+msgid "Liu Xie"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[2]
+msgid "Liu Gong"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[26]
+#: simulation/data/civs/han.jsonAINames[3]
+msgid "Liu Hong"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[4]
+msgid "Liu Heng"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[5]
+msgid "Liu Qi"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[6]
+msgid "Liu Che"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[7]
+msgid "Liu Fuling"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[8]
+msgid "Liu He"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[9]
+msgid "Liu Bingyi"
+msgstr ""
 
 #: simulation/data/civs/iber.jsonAINames[0]
 #: simulation/data/civs/iber.jsonAINames[1]
@@ -370,20 +432,6 @@ msgstr "돌 탑의 목재 비용이 -50% 감소하고, 석재 비용이 +150%, �
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Massive Towers"
 msgstr "크고 단단한 탑"
-
-#: simulation/data/civs/iber.jsonHistory
-msgid ""
-"The Iberians were a people of mysterious origins and language, with a strong"
-" tradition of horsemanship and metalworking. A relatively peaceful culture, "
-"they usually fought in other's battles only as mercenaries. However, they "
-"proved tenacious when Rome sought to take their land and freedom from them, "
-"and employed pioneering guerrilla tactics and flaming javelins as they "
-"fought back."
-msgstr "이베리아족의 기원과 언어는 베일에 쌓여 있었습니다. 그들은 전통적으로 강력한 기마술 금속 가공술이 뛰어났습니다. 비교적 평화로운 문화에서 그들은 대게 다른 전장에서 용병으로만 싸웠습니다. 그러나 로마가 그들의 땅과 자유를 빼앗으려 하자, 그들의 집요함은 증명했고 그들로부터 해방했고, 그들은 선구적으로 게릴라 전술과 불타는 투창을 사용해 반격했습니다."
-
-#: simulation/data/civs/iber.jsonName
-msgid "Iberians"
-msgstr "이베리아족"
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -451,28 +499,6 @@ msgstr "충차의 공격 피해량이 +20%, 주둔지 수용량이 +2 증가합�
 msgid "Large Rams"
 msgstr "대형 충차"
 
-#: simulation/data/civs/kush.jsonHistory
-msgid ""
-"The Kingdom of Kush was an ancient African kingdom situated on the "
-"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
-" Republic of Sudan. The Kushite era of rule in the region was established "
-"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
-"centered at Napata in its early phase. They invaded Egypt in the 8th century"
-" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
-"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
-"culture was influenced heavily by the Egyptians, with Kushite pyramid "
-"building and monumental temple architecture still extent. The Kushites even "
-"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
-"the Kushite imperial capital was at Meroe. In early Greek geography, the "
-"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
-" the 4th century AD, when it weakened and disintegrated due to internal "
-"rebellion, eventually succumbing to the rising power of Axum."
-msgstr "쿠시 왕국은 현재 수단 공화국에있는 블루 나일강, 화이트 나일강 아트바라 강이 합류한 위치에 놓여있는 고대 아프리카 왕국입니다. 이 지역의 쿠시 시대의 통치는 새로운 이집트 왕국의 청동기 시대 붕괴 이후 설립되었으며, 초기 단계에서 나파타를 중심으로 이루어졌습니다. 그들은 기원전 8세기에 이집트를 침략했고, 쿠시의 황제는 아시리아인들에 의해 쫒겨날때 까지 1세기 동안 이집트의 25번째 왕조의 파라오로서 지배했습니다. 쿠시의 문화는 쿠시의 피라미드 건물과 기념비적인 사원 건축 양식이 여전한 규모로 이집트인에 의해 크게 영행을 받았습니다. 쿠시는 아문을 포함한 많은 이집트의 신들을 숭배 했습니다. 고전 고대 동안, 쿠시 제국의 수도는 메로에 였습니다. 초기 그리스 지리학에서, 메로에 왕국은 아에티오피아로 알려졌습니다. 쿠시 왕국은 서기 4세기까지 지속되었습니다. 내부 반란으로 인해 약화되고 해체되었을 때, 결국 악숨 왕국의 상승하는 힘에 굴복했습니다."
-
-#: simulation/data/civs/kush.jsonName
-msgid "Kushites"
-msgstr "쿠시테인"
-
 #: simulation/data/civs/mace.jsonAINames[0]
 msgid "Alexander the Great"
 msgstr "알렉산드로스 대왕"
@@ -526,19 +552,6 @@ msgstr "데메트리오스 2세 아에톨리코스"
 msgid "Philip V"
 msgstr "필리포스 5세"
 
-#: simulation/data/civs/mace.jsonHistory
-msgid ""
-"Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
-" the Greek peninsula. Under the leadership of Alexander the Great, "
-"Macedonian forces and allies took over most of the world they knew, "
-"including Egypt, Persia and parts of the Indian subcontinent, allowing a "
-"diffusion of Hellenic and eastern cultures for years to come."
-msgstr "마케도니아는 고대 그리스왕국으로 그리스 반도 북동부를 중심으로 했습니다. 알렉산더 대왕의 지휘아래 마케도니아 군대와 동맹국들은 이집트, 페르시아, 인도 아대륙 (대륙보다는 작지만 그린란드 정도의 크기를 가진 땅덩이) 의 일부를 포함하여 그들이 알고있는 세계의 대부분을 점령하여 수년 동안 헬레니즘 동양 문화의 확산을 수년 동안 허용했습니다."
-
-#: simulation/data/civs/mace.jsonName
-msgid "Macedonians"
-msgstr "마케도니아"
-
 #: simulation/data/civs/maur.jsonAINames[0]
 msgid "Chandragupta Maurya"
 msgstr "찬드라굽타 마우리아"
@@ -574,22 +587,6 @@ msgstr "샤타단반 모리야"
 #: simulation/data/civs/maur.jsonAINames[8]
 msgid "Brihadratha Maurya"
 msgstr "브리하드라타 마우리아"
-
-#: simulation/data/civs/maur.jsonHistory
-msgid ""
-"Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first"
-" to rule most of the Indian subcontinent, and was one of the largest and "
-"most populous empires of antiquity. Its military featured bowmen who used "
-"the long-range bamboo longbow, fierce female warriors, chariots, and "
-"thousands of armored war elephants. Its philosophers, especially the famous "
-"Acharya Chanakya, contributed to such varied fields such as economics, "
-"religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
-"the Great, the empire saw 40 years of peace, harmony, and prosperity."
-msgstr "기원전 322년 찬드라굽타 마우리야에의해 설립된 마우리아 제국은 인도 아대륙의 대부분을 지배한 최초의 국가였고, 가장 광활하고 가장 인구가 많은 고대 제국 중 하나였습니다. 그 군대에는 사거리가 긴 대나무 장궁, 맹렬한 여전사, 전차, 수천 마리의 무장된 전투 코끼리를 사용하는 궁병이 등장했습니다.  그의 철학자, 특히 유명한 아차랴 차나캬는 경제, 종교, 외교, 전쟁, 훌륭한 정치와 같은 다양한 분야에 기여했습니다. 아쇼카 대왕의 통치 아래 제국은 40년간 평화, 조화, 번영을 누렸습니다."
-
-#: simulation/data/civs/maur.jsonName
-msgid "Mauryas"
-msgstr "마우리아"
 
 #: simulation/data/civs/pers.jsonAINames[0]
 msgid "Kurush II the Great"
@@ -646,21 +643,6 @@ msgstr "육로 상인의 교역 수입이 +25% 증가합니다."
 #: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Darics"
 msgstr "다릭"
-
-#: simulation/data/civs/pers.jsonHistory
-msgid ""
-"The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
-"greatest empires of antiquity, stretching at its zenith from the Indus "
-"Valley in the east to Greece in the west. The Persians were the pioneers of "
-"empire-building of the ancient world, successfully imposing a centralized "
-"rule over various peoples with different customs, laws, religions and "
-"languages, and building a cosmopolitan army made up of contingents from each"
-" of these nations."
-msgstr "페르시아 제국은 아케메네스 왕조에 의해 통치되었을때, 고대 최대의 제국중 하나로, 전성기 때에는 동쪽은 인더스 계곡까에서 서쪽으로는 그리스 까지 펼쳐져있었습니다. 페르시아는 고대 세력의 제국 건설의 선구자이며, 다양한 관습, 법률, 종교, 언어를 가진 다양한 민족에 대한 중앙 집권적 통치를 성공적으로 시행했고, 이러한 각 국가의 선발자로 구성된 전 세계 군대를 창설했습니다."
-
-#: simulation/data/civs/pers.jsonName
-msgid "Persians"
-msgstr "페르시아"
 
 #: simulation/data/civs/ptol.jsonAINames[0]
 msgid "Ptolemy Soter"
@@ -746,18 +728,6 @@ msgstr "쇠뇌의 공격 피해량과 공격 시간이 -33% 감소합니다."
 msgid "Polybolos"
 msgstr "연사형 석궁"
 
-#: simulation/data/civs/ptol.jsonHistory
-msgid ""
-"The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
-"Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
-"for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
-"Egypt."
-msgstr "프톨레마이오스 왕조는 헬레니즘 시대에 이집트에서 프톨레마이오스 제국을 통치한 마케도니아 그리스 왕실이었습니다. 그들의 통치는 기원전 305년에서 기원전 30년까지 275년간 지속되었습니다. 그들은 고대 이집트의 마지막 왕조였습니다."
-
-#: simulation/data/civs/ptol.jsonName
-msgid "Ptolemies"
-msgstr "프톨레마이오스"
-
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
 msgstr "루키우스 유니우스 브루투스"
@@ -836,21 +806,6 @@ msgstr "충차의 공격 피해량이 +20%, 투석기의 공격 피해량이 +10
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Legionary Engineers"
 msgstr "군단 수리공"
-
-#: simulation/data/civs/rome.jsonHistory
-msgid ""
-"The Romans controlled one of the largest empires of the ancient world, "
-"stretching at its peak from southern Scotland to the Sahara Desert, and "
-"containing between 60 million and 80 million inhabitants, one quarter of the"
-" Earth's population at that time. Rome also remained one of the strongest "
-"nations on earth for almost 800 years. The Romans were the supreme builders "
-"of the ancient world, excelled at siege warfare and had an exquisite "
-"infantry and navy."
-msgstr "로마인들은 남부 스코틀랜드에서 사하라 사막에 이르는 고대의 가장 큰 제국 중 하나를 지배했고, 당시 지구 인구의 4분의 1인 6천만에서 8천만 명의 거주자를 포함하고 있었습니다. 로마는 또한 거의 800년 동안 지구상에서 가장 강한 나라 중 하나로 남아 있었습니다. 로마인들은 고대 세계의 최고의 건축가였고, 공성전에서 탁월했으며 뛰어난 보병과 해군을 보유하고 있었습니다."
-
-#: simulation/data/civs/rome.jsonName
-msgid "Romans"
-msgstr "로마"
 
 #: simulation/data/civs/sele.jsonAINames[0]
 msgid "Seleucus I Nicator"
@@ -969,15 +924,6 @@ msgstr "안티오코스 5세 에우파토르"
 msgid "Demetrius I Soter"
 msgstr "데메트리오스 1세 소테르"
 
-#: simulation/data/civs/sele.jsonHistory
-msgid ""
-"The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
-msgstr "알렉산더의 옛 제국의 대부분을 지배했던 마케도니아-그리스 왕조."
-
-#: simulation/data/civs/sele.jsonName
-msgid "Seleucids"
-msgstr "셀레우코스"
-
 #: simulation/data/civs/spart.jsonAINames[0]
 msgid "Leonidas"
 msgstr "레오디나스"
@@ -1030,7 +976,197 @@ msgstr "여성 시민의 체력이 +40%, 근접 공격 난도질 피해량이 +5
 msgid "Spartan Women"
 msgstr "스파르타 여성"
 
-#: simulation/data/civs/spart.jsonHistory
+#: simulation/templates/special/players/athen.xml:8
+msgid "Athenians"
+msgstr "아테네"
+
+#: simulation/templates/special/players/athen.xml:9
+msgid ""
+"As the cradle of Western civilization and the birthplace of democracy, "
+"Athens was famed as a center for the arts, learning and philosophy. The "
+"Athenians were also powerful warriors, particularly at sea. At its peak, "
+"Athens dominated a large part of the Hellenic world for several decades."
+msgstr "서구 문명의 요람이자, 민주주의의 발상지로 아테네는 예술, 학문, 철학의 중심지로 유명했습니다. 아테네는 특히 바다에서 강력한 군사력을 보여줬습니다. 전성기에는 아테네는 수십 년 동안 헬레니즘 세계의 대부분을 수십년 동안 지배했습니다."
+
+#: simulation/templates/special/players/brit.xml:8
+msgid "Britons"
+msgstr "브리턴족"
+
+#: simulation/templates/special/players/brit.xml:9
+msgid ""
+"The Britons were the Celtic tribes of the British Isles. Using chariots, "
+"longswordsmen and powerful melee soldiers, they staged fearsome revolts "
+"against Rome to protect their customs and interests. Also, they built "
+"thousands of unique structures such as hill forts, crannogs and brochs."
+msgstr "브리턴족은 영국 제도의 켈트 부족인들이었습니다. 그들은 전차, 장검병, 그리고 막강한 근거리 병사를 이용하여, 그들의 관습과 이익을 보호하기 위해 로마에 대해 무시무시한 반란을 일으켰습니다. 또한, 그들은 언덕 요새, 호수위 집 및 원탑 와 같은 수천 개의 독특한 건축물을 지었습니다."
+
+#: simulation/templates/special/players/cart.xml:8
+msgid "Carthaginians"
+msgstr "카르타고"
+
+#: simulation/templates/special/players/cart.xml:9
+msgid ""
+"Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
+"western Mediterranean, eventually taking over much of North Africa and "
+"modern-day Spain in the third century B.C. The sailors of Carthage were "
+"among the fiercest contenders on the high seas, and masters of naval trade. "
+"They deployed towered War Elephants on the battlefield to fearsome effect, "
+"and had defensive walls so strong, they were never breached."
+msgstr "카르타고는 현재 튀니지에 있던 도시 국가에서 서쪽 지중해의 무서운 세력이며, 결국은 북아프리카의 대부분과 현재의 스페인 기원전 3 세기에 지배했습니다. 카르타고 선원은 가장 사나운 바다에서 경쟁자이며, 해상 교역의 달인이었습니다. 그들은 무시무시한 효과를 얻기 위해 전쟁터에 코끼리들을 배치했지만, 방어벽이 너무 강해서 결코 뚫리지 않았었습니다."
+
+#: simulation/templates/special/players/gaia.xml:5
+msgid "Gaia"
+msgstr "가이아"
+
+#: simulation/templates/special/players/gaul.xml:8
+msgid "Gauls"
+msgstr "갈리아족"
+
+#: simulation/templates/special/players/gaul.xml:9
+msgid ""
+"The Gauls were the Celtic tribes of continental Europe. Dominated by a "
+"priestly class of Druids, they featured a sophisticated culture of advanced "
+"metalworking, agriculture, trade and even road engineering. With heavy "
+"infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
+"of conquest and Rome's authoritarian rule."
+msgstr "갈리아족은 유럽 대륙의 켈트 부족이었습니다. 사제의 신관 계급이 지배하고 고급 금속 가공, 농업, 교역, 심지어는 도로 설계에 관한 정교한 문화가 특징이었습니다. 중장비 보병과 기병으로 갈리아 병사는 카이사르의 원정과 로마의 권위 주의적 통치에 용감하게 저항했습니다."
+
+#: simulation/templates/special/players/han.xml:16
+msgid "Han Chinese"
+msgstr ""
+
+#: simulation/templates/special/players/han.xml:17
+msgid ""
+"The Han dynasty (206 BC – AD 220) was the second imperial dynasty of China, "
+"preceded by the Qin dynasty (221–207 BC) and succeeded by the Three Kingdoms"
+" period (AD 220–280). It is considered a golden age in Chinese history, and "
+"China made significant progress in arts and sciences during the Han period. "
+"The core of the Han empire was around the Wei River, and the Han capital was"
+" Chang'an, very close to the Qin capital Xianyang (both are now part of "
+"Xi'an, Shaanxi)."
+msgstr ""
+
+#: simulation/templates/special/players/iber.xml:8
+msgid "Iberians"
+msgstr "이베리아족"
+
+#: simulation/templates/special/players/iber.xml:9
+msgid ""
+"The Iberians were a people of mysterious origins and language, with a strong"
+" tradition of horsemanship and metalworking. A relatively peaceful culture, "
+"they usually fought in other's battles only as mercenaries. However, they "
+"proved tenacious when Rome sought to take their land and freedom from them, "
+"and employed pioneering guerrilla tactics and flaming javelins as they "
+"fought back."
+msgstr "이베리아족의 기원과 언어는 베일에 쌓여 있었습니다. 그들은 전통적으로 강력한 기마술 금속 가공술이 뛰어났습니다. 비교적 평화로운 문화에서 그들은 대게 다른 전장에서 용병으로만 싸웠습니다. 그러나 로마가 그들의 땅과 자유를 빼앗으려 하자, 그들의 집요함은 증명했고 그들로부터 해방했고, 그들은 선구적으로 게릴라 전술과 불타는 투창을 사용해 반격했습니다."
+
+#: simulation/templates/special/players/kush.xml:8
+msgid "Kushites"
+msgstr "쿠시테인"
+
+#: simulation/templates/special/players/kush.xml:9
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "쿠시 왕국은 현재 수단 공화국에있는 블루 나일강, 화이트 나일강 아트바라 강이 합류한 위치에 놓여있는 고대 아프리카 왕국입니다. 이 지역의 쿠시 시대의 통치는 새로운 이집트 왕국의 청동기 시대 붕괴 이후 설립되었으며, 초기 단계에서 나파타를 중심으로 이루어졌습니다. 그들은 기원전 8세기에 이집트를 침략했고, 쿠시의 황제는 아시리아인들에 의해 쫒겨날때 까지 1세기 동안 이집트의 25번째 왕조의 파라오로서 지배했습니다. 쿠시의 문화는 쿠시의 피라미드 건물과 기념비적인 사원 건축 양식이 여전한 규모로 이집트인에 의해 크게 영행을 받았습니다. 쿠시는 아문을 포함한 많은 이집트의 신들을 숭배 했습니다. 고전 고대 동안, 쿠시 제국의 수도는 메로에 였습니다. 초기 그리스 지리학에서, 메로에 왕국은 아에티오피아로 알려졌습니다. 쿠시 왕국은 서기 4세기까지 지속되었습니다. 내부 반란으로 인해 약화되고 해체되었을 때, 결국 악숨 왕국의 상승하는 힘에 굴복했습니다."
+
+#: simulation/templates/special/players/mace.xml:8
+msgid "Macedonians"
+msgstr "마케도니아"
+
+#: simulation/templates/special/players/mace.xml:9
+msgid ""
+"Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
+" the Greek peninsula. Under the leadership of Alexander the Great, "
+"Macedonian forces and allies took over most of the world they knew, "
+"including Egypt, Persia and parts of the Indian subcontinent, allowing a "
+"diffusion of Hellenic and eastern cultures for years to come."
+msgstr "마케도니아는 고대 그리스왕국으로 그리스 반도 북동부를 중심으로 했습니다. 알렉산더 대왕의 지휘아래 마케도니아 군대와 동맹국들은 이집트, 페르시아, 인도 아대륙 (대륙보다는 작지만 그린란드 정도의 크기를 가진 땅덩이) 의 일부를 포함하여 그들이 알고있는 세계의 대부분을 점령하여 수년 동안 헬레니즘 동양 문화의 확산을 수년 동안 허용했습니다."
+
+#: simulation/templates/special/players/maur.xml:8
+msgid "Mauryas"
+msgstr "마우리아"
+
+#: simulation/templates/special/players/maur.xml:9
+msgid ""
+"Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first"
+" to rule most of the Indian subcontinent, and was one of the largest and "
+"most populous empires of antiquity. Its military featured bowmen who used "
+"the long-range bamboo longbow, fierce female warriors, chariots, and "
+"thousands of armored war elephants. Its philosophers, especially the famous "
+"Acharya Chanakya, contributed to such varied fields such as economics, "
+"religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
+"the Great, the empire saw 40 years of peace, harmony, and prosperity."
+msgstr "기원전 322년 찬드라굽타 마우리야에의해 설립된 마우리아 제국은 인도 아대륙의 대부분을 지배한 최초의 국가였고, 가장 광활하고 가장 인구가 많은 고대 제국 중 하나였습니다. 그 군대에는 사거리가 긴 대나무 장궁, 맹렬한 여전사, 전차, 수천 마리의 무장된 전투 코끼리를 사용하는 궁병이 등장했습니다.  그의 철학자, 특히 유명한 아차랴 차나캬는 경제, 종교, 외교, 전쟁, 훌륭한 정치와 같은 다양한 분야에 기여했습니다. 아쇼카 대왕의 통치 아래 제국은 40년간 평화, 조화, 번영을 누렸습니다."
+
+#: simulation/templates/special/players/pers.xml:8
+msgid "Persians"
+msgstr "페르시아"
+
+#: simulation/templates/special/players/pers.xml:9
+msgid ""
+"The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
+"greatest empires of antiquity, stretching at its zenith from the Indus "
+"Valley in the east to Greece in the west. The Persians were the pioneers of "
+"empire-building of the ancient world, successfully imposing a centralized "
+"rule over various peoples with different customs, laws, religions and "
+"languages, and building a cosmopolitan army made up of contingents from each"
+" of these nations."
+msgstr "페르시아 제국은 아케메네스 왕조에 의해 통치되었을때, 고대 최대의 제국중 하나로, 전성기 때에는 동쪽은 인더스 계곡까에서 서쪽으로는 그리스 까지 펼쳐져있었습니다. 페르시아는 고대 세력의 제국 건설의 선구자이며, 다양한 관습, 법률, 종교, 언어를 가진 다양한 민족에 대한 중앙 집권적 통치를 성공적으로 시행했고, 이러한 각 국가의 선발자로 구성된 전 세계 군대를 창설했습니다."
+
+#: simulation/templates/special/players/ptol.xml:16
+msgid "Ptolemies"
+msgstr "프톨레마이오스"
+
+#: simulation/templates/special/players/ptol.xml:17
+msgid ""
+"The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
+"Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
+"for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
+"Egypt."
+msgstr "프톨레마이오스 왕조는 헬레니즘 시대에 이집트에서 프톨레마이오스 제국을 통치한 마케도니아 그리스 왕실이었습니다. 그들의 통치는 기원전 305년에서 기원전 30년까지 275년간 지속되었습니다. 그들은 고대 이집트의 마지막 왕조였습니다."
+
+#: simulation/templates/special/players/rome.xml:8
+msgid "Romans"
+msgstr "로마"
+
+#: simulation/templates/special/players/rome.xml:9
+msgid ""
+"The Romans controlled one of the largest empires of the ancient world, "
+"stretching at its peak from southern Scotland to the Sahara Desert, and "
+"containing between 60 million and 80 million inhabitants, one quarter of the"
+" Earth's population at that time. Rome also remained one of the strongest "
+"nations on earth for almost 800 years. The Romans were the supreme builders "
+"of the ancient world, excelled at siege warfare and had an exquisite "
+"infantry and navy."
+msgstr "로마인들은 남부 스코틀랜드에서 사하라 사막에 이르는 고대의 가장 큰 제국 중 하나를 지배했고, 당시 지구 인구의 4분의 1인 6천만에서 8천만 명의 거주자를 포함하고 있었습니다. 로마는 또한 거의 800년 동안 지구상에서 가장 강한 나라 중 하나로 남아 있었습니다. 로마인들은 고대 세계의 최고의 건축가였고, 공성전에서 탁월했으며 뛰어난 보병과 해군을 보유하고 있었습니다."
+
+#: simulation/templates/special/players/sele.xml:16
+msgid "Seleucids"
+msgstr "셀레우코스"
+
+#: simulation/templates/special/players/sele.xml:17
+msgid ""
+"The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
+msgstr "알렉산더의 옛 제국의 대부분을 지배했던 마케도니아-그리스 왕조."
+
+#: simulation/templates/special/players/spart.xml:6
+msgid "Spartans"
+msgstr "스파르타"
+
+#: simulation/templates/special/players/spart.xml:7
 msgid ""
 "Sparta was a prominent city-state in ancient Greece, and its dominant "
 "military power on land from circa 650 B.C. Spartan culture was obsessed with"
@@ -1039,7 +1175,3 @@ msgid ""
 " forces during the Greco-Persian Wars, and won over Athens in the "
 "Peloponnesian Wars, though at great cost."
 msgstr "스파르타는 고대 그리스의 유명한 도시 국가였고, 기원전 650년경 부터 육지에 지배적인 군사력을 가지고 있었습니다. 스파르타 문화는 군사훈련과 우수성에 집착했으며, 남자는 7세부터 시작하는 엄격한 훈련을 시켰습니다. 강력한 군사력 덕분에, 스파르타는 그리스 군대의 연합을 이끌어 그레코-페르시안 전쟁을 치렀고, 펠레포네소스 전쟁에서 엄청난 희생을 치뤘지만 아테네에 승리했습니다."
-
-#: simulation/data/civs/spart.jsonName
-msgid "Spartans"
-msgstr "스파르타"

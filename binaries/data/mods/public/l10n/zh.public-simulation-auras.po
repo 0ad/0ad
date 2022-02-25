@@ -80,8 +80,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-01-24 08:09+0000\n"
-"PO-Revision-Date: 2022-02-09 20:57+0000\n"
+"POT-Creation-Date: 2022-02-21 08:09+0000\n"
+"PO-Revision-Date: 2022-02-22 13:47+0000\n"
 "Last-Translator: liulitchi\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -105,6 +105,14 @@ msgstr "有士兵驻扎的船舶生命恢复率 +10 ."
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
 msgstr "船坞维修"
+
+#: simulation/data/auras/structures/han_laozi_gate.jsonauraDescription
+msgid "Humans +1 health regeneration rate, +25% health"
+msgstr "妇女和士兵的生命值 +25，健康恢复率 +1 ."
+
+#: simulation/data/auras/structures/han_laozi_gate.jsonauraName
+msgid "Taoism"
+msgstr "黄老之道"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -247,6 +255,14 @@ msgstr "兵器厂技术的研究成本和时间 -15%."
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Products from Gaul"
 msgstr "高卢铁器"
+
+#: simulation/data/auras/teambonuses/han_player_teambonus.jsonauraDescription
+msgid "Allies +20% international trade bonus."
+msgstr "盟友贸易收入 + 20% ."
+
+#: simulation/data/auras/teambonuses/han_player_teambonus.jsonauraName
+msgid "Silk Road"
+msgstr "丝绸之路"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Citizen Javelineers −10% resource costs."
@@ -400,6 +416,26 @@ msgstr "当罗马军队的粮食短缺时，高卢部落被命令放弃本就微
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
 msgstr "向罗马上贡"
+
+#: simulation/data/auras/units/catafalques/han_catafalque_1.jsonauraDescription
+msgid ""
+"At its height, the Empire's borders spanned from the Fergana Valley in the west, to Korea in the east, and to northern Vietnam in the south.\n"
+"Territory influence bonus +20%."
+msgstr "鼎盛时期，帝国西至费尔干纳山谷、东抵朝鲜半岛、南达越南北部。\n地区影响力加成 +20% ."
+
+#: simulation/data/auras/units/catafalques/han_catafalque_1.jsonauraName
+msgid "Territorial Expansion"
+msgstr "开疆拓土"
+
+#: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraDescription
+msgid ""
+"The Music Bureau was charged directly, by the emperor to perform various tasks related to music, poetry, entertainment, or religious worship.\n"
+" Techcost -50%."
+msgstr "对皇帝直接负责，执行与音乐、诗歌、娱乐或教化有关的各类任务。\n 科技花费 -50% ."
+
+#: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraName
+msgid "Imperial Music Bureau"
+msgstr "乐府机构"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraDescription
 msgid ""
@@ -584,6 +620,50 @@ msgstr "建造速度 +25%"
 msgid "Elephant Workers"
 msgstr "劳力象"
 
+#: simulation/data/auras/units/han_minister_building.jsonauraDescription
+msgid "Builders construct buildings +2% faster for every nearby Minister."
+msgstr "位于长官附近的工人建造速度 +2% ."
+
+#: simulation/data/auras/units/han_minister_building.jsonauraName
+msgid "Building Programs"
+msgstr "建筑规划"
+
+#: simulation/data/auras/units/han_minister_cost.jsonauraDescription
+msgid "Cost +20% and build time +20% for each new Minister trained."
+msgstr "训练新大臣的花费 +20% ，时间 +20% ."
+
+#: simulation/data/auras/units/han_minister_cost.jsonauraName
+msgid "The Cost of Splendor"
+msgstr "盛世辉煌"
+
+#: simulation/data/auras/units/han_minister_garrison.jsonauraDescription
+msgid ""
+"Decrease resource costs and research time of technologies in a building by "
+"2% for each Minister garrisoned within."
+msgstr "每驻守一位大臣，资源花费及科研时间 -2% ."
+
+#: simulation/data/auras/units/han_minister_garrison.jsonauraName
+msgid "Excellency of Works"
+msgstr "能工巧匠"
+
+#: simulation/data/auras/units/han_minister_garrison_ministry.jsonauraDescription
+msgid ""
+"The Imperial Ministry gains a +0.1 wood, stone, metal trickle for each "
+"garrisoned minister."
+msgstr "每驻守一名大臣，可得 0.1 的木材、石头和金属涓流。"
+
+#: simulation/data/auras/units/han_minister_garrison_ministry.jsonauraName
+msgid "Nationalized Industries"
+msgstr "官山海"
+
+#: simulation/data/auras/units/han_minister_gathering.jsonauraDescription
+msgid "Gatherers +2% gathering rate for every nearby Minister."
+msgstr "大臣附近的采集者效率 +2% ."
+
+#: simulation/data/auras/units/han_minister_gathering.jsonauraName
+msgid "Minister over the Masses"
+msgstr "万民之牧"
+
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid ""
 "Soldiers in his formation +3 crush, hack, pierce resistance, +15% movement "
@@ -721,6 +801,59 @@ msgstr "凯尔特战神"
 msgid "Preparation for War"
 msgstr "备战"
 
+#: simulation/data/auras/units/heroes/han_hero_han_xin_1.jsonauraDescription
+msgid "Own and Allied Soldiers -50% promotion experience."
+msgstr "我方和盟友的士兵晋升经验花费 - 50% ."
+
+#: simulation/data/auras/units/heroes/han_hero_han_xin_1.jsonauraName
+msgid "Northern Army"
+msgstr "北军"
+
+#: simulation/data/auras/units/heroes/han_hero_han_xin_2.jsonauraDescription
+msgid "Own and Allied Soldiers +15% walk speed and +25% vision range."
+msgstr "我方和盟友的士兵的视野 +25%、移动速度 +15% ."
+
+#: simulation/data/auras/units/heroes/han_hero_han_xin_2.jsonauraName
+msgid "Southern Army"
+msgstr "南军"
+
+#: simulation/data/auras/units/heroes/han_hero_liu_bang_1.jsonauraDescription
+msgid "Walls +10 health regeneration rate."
+msgstr "城墙的恢复率 +10 ."
+
+#: simulation/data/auras/units/heroes/han_hero_liu_bang_1.jsonauraName
+#: simulation/data/auras/units/heroes/han_hero_liu_bang_2.jsonauraName
+msgid "Confucian Reforms"
+msgstr "儒家教化"
+
+#: simulation/data/auras/units/heroes/han_hero_liu_bang_2.jsonauraDescription
+msgid "Cavalry +20% attack damage."
+msgstr "骑兵攻击 +20% 。"
+
+#: simulation/data/auras/units/heroes/han_hero_wei_qing_1.jsonauraDescription
+#: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
+#: simulation/data/auras/units/heroes/mace_hero_philip_ii.jsonauraDescription
+msgid ""
+"Champions +2 capture attack strength, +20% melee and ranged attack damage."
+msgstr "冠勇单位夺占 +2，攻击 +20% ."
+
+#: simulation/data/auras/units/heroes/han_hero_wei_qing_1.jsonauraName
+#: simulation/data/auras/units/heroes/han_hero_wei_qing_2.jsonauraName
+msgid "Mandate of Heaven"
+msgstr "天命所在"
+
+#: simulation/data/auras/units/heroes/han_hero_wei_qing_2.jsonauraDescription
+msgid "Enemy Cavalry −10% melee and ranged attack damage."
+msgstr "敌方骑兵的远程及近战攻击 -10% ."
+
+#: simulation/data/auras/units/heroes/han_hero_wei_qing_3.jsonauraDescription
+msgid "Nearby enemy units -10 health/second."
+msgstr "附近敌方单位 -10 生命值/秒 ."
+
+#: simulation/data/auras/units/heroes/han_hero_wei_qing_3.jsonauraName
+msgid "Scythes"
+msgstr "战车"
+
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraDescription
 msgid ""
 "When garrisoned, the Structure has +2 capture points garrison regeneration "
@@ -766,12 +899,6 @@ msgstr "士兵和攻城机械劫掠的战利品 +100% ."
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraName
 msgid "Swag"
 msgstr "缴获"
-
-#: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
-#: simulation/data/auras/units/heroes/mace_hero_philip_ii.jsonauraDescription
-msgid ""
-"Champions +2 capture attack strength, +20% melee and ranged attack damage."
-msgstr "冠勇单位夺占 +2，攻击 +20% ."
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraName
 msgid "Warrior Queen"
