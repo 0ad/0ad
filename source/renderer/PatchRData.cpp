@@ -582,17 +582,24 @@ void CPatchRData::BuildSide(std::vector<SSideVertex>& vertices, CPatchSideFlags 
 		v1.m_Position = pos;
 		v1.m_Position.Y = 0;
 
-		// If this is the start of this tristrip, but we've already got a partial
-		// tristrip, add a couple of degenerate triangles to join the strips properly
-		if (k == 0 && !vertices.empty())
+		if (k == 0)
 		{
-			vertices.push_back(vertices.back());
-			vertices.push_back(v1);
+			vertices.emplace_back(v1);
+			vertices.emplace_back(v0);
 		}
-
-		// Now add the new triangles
-		vertices.push_back(v1);
-		vertices.push_back(v0);
+		if (k > 0)
+		{
+			const size_t lastIndex = vertices.size() - 1;
+			vertices.emplace_back(v1);
+			vertices.emplace_back(vertices[lastIndex]);
+			vertices.emplace_back(v0);
+			vertices.emplace_back(v1);
+			if (k + 1 < vsize)
+			{
+				vertices.emplace_back(v1);
+				vertices.emplace_back(v0);
+			}
+		}
 	}
 }
 
@@ -1180,11 +1187,11 @@ void CPatchRData::RenderSides(
 
 		shader->AssertPointersBound();
 
-		glDrawArrays(GL_TRIANGLE_STRIP, patch->m_VBSides->m_Index, (GLsizei)patch->m_VBSides->m_Count);
+		glDrawArrays(GL_TRIANGLES, patch->m_VBSides->m_Index, (GLsizei)patch->m_VBSides->m_Count);
 
 		// bump stats
 		g_Renderer.m_Stats.m_DrawCalls++;
-		g_Renderer.m_Stats.m_TerrainTris += patch->m_VBSides->m_Count - 2;
+		g_Renderer.m_Stats.m_TerrainTris += patch->m_VBSides->m_Count / 3;
 	}
 
 	CVertexBuffer::Unbind(deviceCommandContext);
