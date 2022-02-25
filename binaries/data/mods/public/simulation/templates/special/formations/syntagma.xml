@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_formation">
   <Formation>
-    <Icon>formations/syntagma.png</Icon>
     <RequiredMemberCount>16</RequiredMemberCount>
     <DisabledTooltip>Infantry Pikemen only, requires at least 16.</DisabledTooltip>
     <SortingClasses>Hero Champion Elite Advanced Basic</SortingClasses>
-    <FormationName>Syntagma</FormationName>
     <FormationShape>square</FormationShape>
     <UnitSeparationWidthMultiplier>0.86</UnitSeparationWidthMultiplier>
     <UnitSeparationDepthMultiplier>0.55</UnitSeparationDepthMultiplier>
@@ -27,4 +25,8 @@
   <FormationAttack>
     <CanAttackAsFormation>false</CanAttackAsFormation>
   </FormationAttack>
+  <Identity>
+    <GenericName>Syntagma</GenericName>
+    <Icon>formations/syntagma.png</Icon>
+  </Identity>
 </Entity>

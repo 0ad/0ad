@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_formation">
   <Formation>
-    <Icon>formations/skirmish.png</Icon>
     <DisabledTooltip>Ranged Soldiers only, requires at least 2.</DisabledTooltip>
-    <FormationName>Skirmish</FormationName>
     <ShiftRows>true</ShiftRows>
     <UnitSeparationWidthMultiplier>2</UnitSeparationWidthMultiplier>
     <MaxRows>2</MaxRows>
@@ -12,4 +10,8 @@
   <FormationAttack>
     <CanAttackAsFormation>false</CanAttackAsFormation>
   </FormationAttack>
+  <Identity>
+    <GenericName>Skirmish</GenericName>
+    <Icon>formations/skirmish.png</Icon>
+  </Identity>
 </Entity>

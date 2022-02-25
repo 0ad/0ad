@@ -217,7 +217,6 @@ function TestFormationExiting(mode)
 		});
 
 	let controllerFormation = ConstructComponent(controller, "Formation", {
-		"FormationName": "Line Closed",
 		"FormationShape": "square",
 		"ShiftRows": "false",
 		"SortingClasses": "",
@@ -391,7 +390,6 @@ function TestMoveIntoFormationWhileAttacking()
 	});
 
 	let controllerFormation = ConstructComponent(controller, "Formation", {
-		"FormationName": "Line Closed",
 		"FormationShape": "square",
 		"ShiftRows": "false",
 		"SortingClasses": "",

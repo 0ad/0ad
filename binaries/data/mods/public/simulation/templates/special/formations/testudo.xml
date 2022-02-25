@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_formation">
   <Formation>
-    <Icon>formations/testudo.png</Icon>
     <RequiredMemberCount>16</RequiredMemberCount>
     <DisabledTooltip>Melee Infantry only, requires at least 16.</DisabledTooltip>
     <SortingClasses>Hero Champion Elite Advanced Basic</SortingClasses>
-    <FormationName>Testudo</FormationName>
     <FormationShape>square</FormationShape>
     <UnitSeparationWidthMultiplier>0.5</UnitSeparationWidthMultiplier>
     <UnitSeparationDepthMultiplier>0.4</UnitSeparationDepthMultiplier>
@@ -67,4 +65,8 @@
   <FormationAttack>
     <CanAttackAsFormation>false</CanAttackAsFormation>
   </FormationAttack>
+  <Identity>
+    <GenericName>Testudo</GenericName>
+    <Icon>formations/testudo.png</Icon>
+  </Identity>
 </Entity>

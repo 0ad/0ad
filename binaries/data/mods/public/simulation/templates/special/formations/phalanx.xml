@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_formation">
   <Formation>
-    <Icon>formations/phalanx.png</Icon>
     <RequiredMemberCount>10</RequiredMemberCount>
     <DisabledTooltip>Infantry Hoplites only, requires at least 10.</DisabledTooltip>
-    <FormationName>Phalanx</FormationName>
     <UnitSeparationWidthMultiplier>0.6</UnitSeparationWidthMultiplier>
     <UnitSeparationDepthMultiplier>0.6</UnitSeparationDepthMultiplier>
     <WidthDepthRatio>4</WidthDepthRatio>
@@ -21,4 +19,8 @@
   <FormationAttack>
     <CanAttackAsFormation>false</CanAttackAsFormation>
   </FormationAttack>
+  <Identity>
+    <GenericName>Phalanx</GenericName>
+    <Icon>formations/phalanx.png</Icon>
+  </Identity>
 </Entity>

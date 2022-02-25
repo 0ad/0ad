@@ -1,12 +1,6 @@
 function Formation() {}
 
 Formation.prototype.Schema =
-	"<element name='FormationName' a:help='Name of the formation.'>" +
-		"<text/>" +
-	"</element>" +
-	"<element name='Icon'>" +
-		"<text/>" +
-	"</element>" +
 	"<element name='RequiredMemberCount' a:help='Minimum number of entities the formation should contain (at least 2).'>" +
 		"<data type='integer'>" +
 		  "<param name='minInclusive'>"+
@@ -714,7 +708,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 	}
 
 	// Define special formations here.
-	if (this.template.FormationName == "Scatter")
+	if (this.template.FormationShape == "special" && Engine.QueryInterface(this.entity, IID_Identity).GetGenericName() == "Scatter")
 	{
 		let width = Math.sqrt(count) * (separation.width + separation.depth) * 2.5;
 
