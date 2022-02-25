@@ -84,10 +84,16 @@ public:
 	~CTextureManager();
 
 	/**
-	 * Create a texture with the given GL properties.
+	 * Create a texture with the given properties.
 	 * The texture data will not be loaded immediately.
 	 */
 	CTexturePtr CreateTexture(const CTextureProperties& props);
+
+	/**
+	 * Wraps a backend texture.
+	 */
+	CTexturePtr WrapBackendTexture(
+		std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture);
 
 	/**
 	 * Returns a magenta texture. Use this for highlighting errors
@@ -104,6 +110,11 @@ public:
 	 * Returns a single color RGBA texture with CColor(0.0f, 0.0f, 0.0f, 0.0f).
 	 */
 	const CTexturePtr& GetTransparentTexture();
+
+	/**
+	 * Returns a white RGBA texture with alpha gradient.
+	 */
+	const CTexturePtr& GetAlphaGradientTexture();
 
 	/**
 	 * Work on asynchronous texture loading operations, if any.
@@ -313,7 +324,7 @@ public:
 
 private:
 	friend class CTextureManagerImpl;
-	friend class SingleColorTexture;
+	friend class CPredefinedTexture;
 	friend struct TextureCacheCmp;
 	friend struct TPequal_to;
 	friend struct TPhash;

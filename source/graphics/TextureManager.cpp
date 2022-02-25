@@ -25,6 +25,7 @@
 #include "lib/file/vfs/vfs_tree.h"
 #include "lib/hash.h"
 #include "lib/timer.h"
+#include "maths/MathUtil.h"
 #include "maths/MD5.h"
 #include "ps/CacheLoader.h"
 #include "ps/CLogger.h"
@@ -103,11 +104,35 @@ Renderer::Backend::Format ChooseFormatAndTransformTextureDataIfNeeded(Tex& textu
 
 } // anonymous namespace
 
-class SingleColorTexture
+class CPredefinedTexture
 {
 public:
-	SingleColorTexture(const CColor& color, const VfsPath& pathPlaceholder,
-		const bool disableGL, CTextureManagerImpl* textureManager)
+	const CTexturePtr& GetTexture()
+	{
+		return m_Texture;
+	}
+
+	void CreateTexture(
+		std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture,
+		CTextureManagerImpl* textureManager)
+	{
+		Renderer::Backend::GL::CTexture* fallback = backendTexture.get();
+		CTextureProperties props(VfsPath{});
+		m_Texture = CTexturePtr(new CTexture(
+			std::move(backendTexture), fallback, props, textureManager));
+		m_Texture->m_State = CTexture::UPLOADED;
+		m_Texture->m_Self = m_Texture;
+	}
+
+private:
+	CTexturePtr m_Texture;
+};
+
+class CSingleColorTexture final : public CPredefinedTexture
+{
+public:
+	CSingleColorTexture(const CColor& color, const bool disableGL,
+		CTextureManagerImpl* textureManager)
 		: m_Color(color)
 	{
 		if (disableGL)
@@ -115,10 +140,10 @@ public:
 
 		std::stringstream textureName;
 		textureName << "SingleColorTexture (";
-		textureName << "R: " << m_Color.r << ",";
-		textureName << "G: " << m_Color.g << ",";
-		textureName << "B: " << m_Color.b << ",";
-		textureName << "A: " << m_Color.a << ")";
+		textureName << "R:" << m_Color.r << ", ";
+		textureName << "G:" << m_Color.g << ", ";
+		textureName << "B:" << m_Color.b << ", ";
+		textureName << "A:" << m_Color.a << ")";
 
 		std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture =
 			g_VideoMode.GetBackendDevice()->CreateTexture2D(
@@ -127,23 +152,12 @@ public:
 				1, 1, Renderer::Backend::Sampler::MakeDefaultSampler(
 					Renderer::Backend::Sampler::Filter::LINEAR,
 					Renderer::Backend::Sampler::AddressMode::REPEAT));
-		Renderer::Backend::GL::CTexture* fallback = backendTexture.get();
-
-		CTextureProperties props(pathPlaceholder);
-		m_Texture = CTexturePtr(new CTexture(
-			std::move(backendTexture), fallback, props, textureManager));
-		m_Texture->m_State = CTexture::UPLOADED;
-		m_Texture->m_Self = m_Texture;
-	}
-
-	const CTexturePtr& GetTexture()
-	{
-		return m_Texture;
+		CreateTexture(std::move(backendTexture), textureManager);
 	}
 
 	void Upload(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 	{
-		if (!m_Texture || !m_Texture->GetBackendTexture())
+		if (!GetTexture() || !GetTexture()->GetBackendTexture())
 			return;
 
 		const SColor4ub color32 = m_Color.AsSColor4ub();
@@ -155,13 +169,89 @@ public:
 			color32.B,
 			color32.A
 		};
-		deviceCommandContext->UploadTexture(m_Texture->GetBackendTexture(),
+		deviceCommandContext->UploadTexture(GetTexture()->GetBackendTexture(),
 			Renderer::Backend::Format::R8G8B8A8, data, std::size(data));
 	}
 
 private:
-	CTexturePtr m_Texture;
 	CColor m_Color;
+};
+
+class CGradientTexture final : public CPredefinedTexture
+{
+public:
+	static const uint32_t WIDTH = 256;
+	static const uint32_t NUMBER_OF_LEVELS = 9;
+
+	CGradientTexture(const CColor& colorFrom, const CColor& colorTo,
+		const bool disableGL, CTextureManagerImpl* textureManager)
+		: m_ColorFrom(colorFrom), m_ColorTo(colorTo)
+	{
+		if (disableGL)
+			return;
+
+		std::stringstream textureName;
+		textureName << "GradientTexture";
+		textureName << " From (";
+		textureName << "R:" << m_ColorFrom.r << ", ";
+		textureName << "G:" << m_ColorFrom.g << ", ";
+		textureName << "B:" << m_ColorFrom.b << ", ";
+		textureName << "A:" << m_ColorFrom.a << ")";
+		textureName << " To (";
+		textureName << "R:" << m_ColorTo.r << ",";
+		textureName << "G:" << m_ColorTo.g << ",";
+		textureName << "B:" << m_ColorTo.b << ",";
+		textureName << "A:" << m_ColorTo.a << ")";
+
+		std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture =
+			g_VideoMode.GetBackendDevice()->CreateTexture2D(
+				textureName.str().c_str(),
+				Renderer::Backend::Format::R8G8B8A8,
+				WIDTH, 1, Renderer::Backend::Sampler::MakeDefaultSampler(
+					Renderer::Backend::Sampler::Filter::LINEAR,
+					Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE),
+				NUMBER_OF_LEVELS);
+		CreateTexture(std::move(backendTexture), textureManager);
+	}
+
+	void Upload(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	{
+		if (!GetTexture() || !GetTexture()->GetBackendTexture())
+			return;
+
+		std::array<std::array<u8, 4>, WIDTH> data;
+		for (uint32_t x = 0; x < WIDTH; ++x)
+		{
+			const float t = static_cast<float>(x) / (WIDTH - 1);
+			const CColor color(
+				Interpolate(m_ColorFrom.r, m_ColorTo.r, t),
+				Interpolate(m_ColorFrom.g, m_ColorTo.g, t),
+				Interpolate(m_ColorFrom.b, m_ColorTo.b, t),
+				Interpolate(m_ColorFrom.a, m_ColorTo.a, t));
+			const SColor4ub color32 = color.AsSColor4ub();
+			data[x][0] = color32.R;
+			data[x][1] = color32.G;
+			data[x][2] = color32.B;
+			data[x][3] = color32.A;
+		}
+		for (uint32_t level = 0; level < NUMBER_OF_LEVELS; ++level)
+		{
+			deviceCommandContext->UploadTexture(GetTexture()->GetBackendTexture(),
+				Renderer::Backend::Format::R8G8B8A8, data.data(), (WIDTH >> level) * data[0].size(), level);
+			// Prepare data for the next level.
+			const uint32_t nextLevelWidth = (WIDTH >> (level + 1));
+			if (nextLevelWidth > 0)
+			{
+				for (uint32_t x = 0; x < nextLevelWidth; ++x)
+					data[x] = data[(x << 1)];
+				// Border values should be the same.
+				data[nextLevelWidth - 1] = data[(WIDTH >> level) - 1];
+			}
+		}
+	}
+
+private:
+	CColor m_ColorFrom, m_ColorTo;
 };
 
 struct TPhash
@@ -213,10 +303,12 @@ public:
 	CTextureManagerImpl(PIVFS vfs, bool highQuality, bool disableGL) :
 		m_VFS(vfs), m_CacheLoader(vfs, L".dds"), m_DisableGL(disableGL),
 		m_TextureConverter(vfs, highQuality),
-		m_DefaultTexture(CColor(0.25f, 0.25f, 0.25f, 1.0f), L"(default texture)", disableGL, this),
-		m_ErrorTexture(CColor(1.0f, 0.0f, 1.0f, 1.0f), L"(error texture)", disableGL, this),
-		m_WhiteTexture(CColor(1.0f, 1.0f, 1.0f, 1.0f), L"(white texture)", disableGL, this),
-		m_TransparentTexture(CColor(0.0f, 0.0f, 0.0f, 0.0f), L"(transparent texture)", disableGL, this)
+		m_DefaultTexture(CColor(0.25f, 0.25f, 0.25f, 1.0f), disableGL, this),
+		m_ErrorTexture(CColor(1.0f, 0.0f, 1.0f, 1.0f), disableGL, this),
+		m_WhiteTexture(CColor(1.0f, 1.0f, 1.0f, 1.0f), disableGL, this),
+		m_TransparentTexture(CColor(0.0f, 0.0f, 0.0f, 0.0f), disableGL, this),
+		m_AlphaGradientTexture(
+			CColor(1.0f, 1.0f, 1.0f, 0.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f), disableGL, this)
 	{
 		// Allow hotloading of textures
 		RegisterFileReloadFunc(ReloadChangedFileCB, this);
@@ -252,6 +344,11 @@ public:
 		return m_TransparentTexture.GetTexture();
 	}
 
+	const CTexturePtr& GetAlphaGradientTexture()
+	{
+		return m_AlphaGradientTexture.GetTexture();
+	}
+
 	/**
 	 * See CTextureManager::CreateTexture
 	 */
@@ -272,6 +369,20 @@ public:
 		m_TextureCache.insert(texture);
 		m_HotloadFiles[props.m_Path].insert(texture);
 
+		return texture;
+	}
+
+	CTexturePtr WrapBackendTexture(
+		std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture)
+	{
+		ENSURE(backendTexture);
+		Renderer::Backend::GL::CTexture* fallback = backendTexture.get();
+
+		CTextureProperties props(VfsPath{});
+		CTexturePtr texture(new CTexture(
+			std::move(backendTexture), fallback, props, this));
+		texture->m_State = CTexture::UPLOADED;
+		texture->m_Self = texture;
 		return texture;
 	}
 
@@ -574,13 +685,14 @@ public:
 	bool MakeUploadProgress(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 	{
-		if (!m_SingleColorTexturesUploaded)
+		if (!m_PredefinedTexturesUploaded)
 		{
 			m_DefaultTexture.Upload(deviceCommandContext);
 			m_ErrorTexture.Upload(deviceCommandContext);
 			m_WhiteTexture.Upload(deviceCommandContext);
 			m_TransparentTexture.Upload(deviceCommandContext);
-			m_SingleColorTexturesUploaded = true;
+			m_AlphaGradientTexture.Upload(deviceCommandContext);
+			m_PredefinedTexturesUploaded = true;
 			return true;
 		}
 		return false;
@@ -692,11 +804,12 @@ private:
 	bool m_DisableGL;
 	CTextureConverter m_TextureConverter;
 
-	SingleColorTexture m_DefaultTexture;
-	SingleColorTexture m_ErrorTexture;
-	SingleColorTexture m_WhiteTexture;
-	SingleColorTexture m_TransparentTexture;
-	bool m_SingleColorTexturesUploaded = false;
+	CSingleColorTexture m_DefaultTexture;
+	CSingleColorTexture m_ErrorTexture;
+	CSingleColorTexture m_WhiteTexture;
+	CSingleColorTexture m_TransparentTexture;
+	CGradientTexture m_AlphaGradientTexture;
+	bool m_PredefinedTexturesUploaded = false;
 
 	// Cache of all loaded textures
 	using TextureCache =
@@ -856,6 +969,12 @@ CTexturePtr CTextureManager::CreateTexture(const CTextureProperties& props)
 	return m->CreateTexture(props);
 }
 
+CTexturePtr CTextureManager::WrapBackendTexture(
+	std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture)
+{
+	return m->WrapBackendTexture(std::move(backendTexture));
+}
+
 bool CTextureManager::TextureExists(const VfsPath& path) const
 {
 	return m->TextureExists(path);
@@ -874,6 +993,11 @@ const CTexturePtr& CTextureManager::GetWhiteTexture()
 const CTexturePtr& CTextureManager::GetTransparentTexture()
 {
 	return m->GetTransparentTexture();
+}
+
+const CTexturePtr& CTextureManager::GetAlphaGradientTexture()
+{
+	return m->GetAlphaGradientTexture();
 }
 
 bool CTextureManager::MakeProgress()
