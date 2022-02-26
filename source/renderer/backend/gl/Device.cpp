@@ -314,6 +314,8 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 		ogl_HaveExtension("GL_ARB_texture_multisample");
 	if (capabilities.multisampling)
 	{
+		// By default GL_MULTISAMPLE should be enabled, but enable it for buggy drivers.
+		glEnable(GL_MULTISAMPLE);
 		GLint maxSamples = 1;
 		glGetIntegerv(GL_MAX_SAMPLES, &maxSamples);
 		capabilities.maxSampleCount = maxSamples;

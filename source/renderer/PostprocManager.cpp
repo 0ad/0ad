@@ -594,8 +594,6 @@ void CPostprocManager::SetDepthBufferClipPlanes(float nearPlane, float farPlane)
 
 void CPostprocManager::CreateMultisampleBuffer()
 {
-	glEnable(GL_MULTISAMPLE);
-
 	Renderer::Backend::GL::CDevice* backendDevice = g_VideoMode.GetBackendDevice();
 
 	m_MultisampleColorTex = backendDevice->CreateTexture("PostProcColorMS",
@@ -633,7 +631,6 @@ void CPostprocManager::DestroyMultisampleBuffer()
 	m_MultisampleFramebuffer.reset();
 	m_MultisampleColorTex.reset();
 	m_MultisampleDepthTex.reset();
-	glDisable(GL_MULTISAMPLE);
 }
 
 bool CPostprocManager::IsMultisampleEnabled() const
