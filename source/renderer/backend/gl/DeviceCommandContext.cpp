@@ -552,8 +552,20 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 		ApplyColorMask(nextBlendStateDesc.colorWriteMask);
 	}
 
-	const RasterizationStateDesc& currentRasterizationStateDesc = m_GraphicsPipelineStateDesc.rasterizationState;
-	const RasterizationStateDesc& nextRasterizationStateDesc = pipelineStateDesc.rasterizationState;
+	const RasterizationStateDesc& currentRasterizationStateDesc =
+		m_GraphicsPipelineStateDesc.rasterizationState;
+	const RasterizationStateDesc& nextRasterizationStateDesc =
+		pipelineStateDesc.rasterizationState;
+	if (force ||
+		currentRasterizationStateDesc.polygonMode != nextRasterizationStateDesc.polygonMode)
+	{
+#if !CONFIG2_GLES
+		glPolygonMode(
+			GL_FRONT_AND_BACK,
+			nextRasterizationStateDesc.polygonMode == PolygonMode::LINE ? GL_LINE : GL_FILL);
+#endif
+	}
+
 	if (force ||
 		currentRasterizationStateDesc.cullMode != nextRasterizationStateDesc.cullMode)
 	{

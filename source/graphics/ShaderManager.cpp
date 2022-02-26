@@ -332,6 +332,7 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 	EL(define);
 	EL(depth);
 	EL(pass);
+	EL(polygon);
 	EL(require);
 	EL(sort_by_distance);
 	EL(stencil);
@@ -513,6 +514,14 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 					{
 						passPipelineStateDesc.depthStencilState.depthWriteEnabled =
 							Element.GetAttributes().GetNamedItem(at_mask) == "true";
+					}
+				}
+				else if (Element.GetNodeName() == el_polygon)
+				{
+					if (!Element.GetAttributes().GetNamedItem(at_mode).empty())
+					{
+						passPipelineStateDesc.rasterizationState.polygonMode =
+							Renderer::Backend::ParsePolygonMode(Element.GetAttributes().GetNamedItem(at_mode));
 					}
 				}
 				else if (Element.GetNodeName() == el_stencil)

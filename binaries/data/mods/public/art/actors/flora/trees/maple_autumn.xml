@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="maple_1">
+      <mesh>gaia/maple_a.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_tree_decal_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="maple_2">
+      <mesh>gaia/maple_b.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/ground_tree_decal_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="a">
+      <textures>
+        <texture file="gaia/maple_tree_autumn_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="b">
+      <textures>
+        <texture file="gaia/maple_tree_autumn_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="c">
+      <textures>
+        <texture file="gaia/maple_tree_autumn_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="d-green">
+      <textures>
+        <texture file="gaia/maple_tree_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>

@@ -92,6 +92,7 @@ void CDecalRData::RenderDecals(
 	const std::vector<CDecalRData*>& decals, const CShaderDefines& context, ShadowMap* shadow)
 {
 	PROFILE3("render terrain decals");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render terrain decals");
 
 	using Arena = Allocators::DynamicArena<256 * KiB>;
 

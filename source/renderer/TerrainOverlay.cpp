@@ -152,7 +152,6 @@ void TerrainOverlay::RenderBeforeWater(
 
 	//glDisable(GL_POLYGON_OFFSET_LINE);
 	glDisable(GL_POLYGON_OFFSET_FILL);
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 #endif
 }
 
@@ -238,7 +237,6 @@ void TerrainOverlay::RenderTile(
 	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
 	overlayShader->AssertPointersBound();
 
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 3);
 
 	overlayTech->EndPass();
@@ -247,14 +245,14 @@ void TerrainOverlay::RenderTile(
 
 void TerrainOverlay::RenderTileOutline(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CColor& color, int lineWidth, bool drawHidden)
+	const CColor& color, bool drawHidden)
 {
-	RenderTileOutline(deviceCommandContext, color, lineWidth, drawHidden, m_i, m_j);
+	RenderTileOutline(deviceCommandContext, color, drawHidden, m_i, m_j);
 }
 
 void TerrainOverlay::RenderTileOutline(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CColor& color, int lineWidth, bool drawHidden, ssize_t i, ssize_t j)
+	const CColor& color, bool drawHidden, ssize_t i, ssize_t j)
 {
 #if CONFIG2_GLES
 	UNUSED2(deviceCommandContext);
@@ -266,11 +264,6 @@ void TerrainOverlay::RenderTileOutline(
 	#warning TODO: implement TerrainOverlay::RenderTileOutline for GLES
 #else
 
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-	if (lineWidth != 1)
-		glLineWidth(static_cast<float>(lineWidth));
-
 	std::vector<float> vertices;
 #define ADD(i, j) \
 	m_Terrain->CalcPosition(i, j, position); \
@@ -279,10 +272,12 @@ void TerrainOverlay::RenderTileOutline(
 	vertices.emplace_back(position.Z);
 
 	CVector3D position;
-	ADD(i,   j);
-	ADD(i+1, j);
-	ADD(i+1, j+1);
-	ADD(i,   j+1);
+	ADD(i, j);
+	ADD(i + 1, j);
+	ADD(i + 1, j + 1);
+	ADD(i, j);
+	ADD(i + 1, j + 1);
+	ADD(i, j + 1);
 #undef ADD
 
 	CShaderTechniquePtr overlayTech =
@@ -299,6 +294,7 @@ void TerrainOverlay::RenderTileOutline(
 		Renderer::Backend::BlendOp::ADD;
 	pipelineStateDesc.rasterizationState.cullMode =
 		drawHidden ? Renderer::Backend::CullMode::NONE : Renderer::Backend::CullMode::BACK;
+	pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
 	overlayTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 
@@ -310,12 +306,9 @@ void TerrainOverlay::RenderTileOutline(
 	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
 	overlayShader->AssertPointersBound();
 
-	glDrawArrays(GL_QUADS, 0, vertices.size() / 3);
+	glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 3);
 
 	overlayTech->EndPass();
-
-	if (lineWidth != 1)
-		glLineWidth(1.0f);
 #endif
 }
 

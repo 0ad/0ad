@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-11 08:08+0000\n"
-"PO-Revision-Date: 2022-02-11 10:23+0000\n"
-"Last-Translator: abuyop\n"
+"POT-Creation-Date: 2022-02-21 08:09+0000\n"
+"PO-Revision-Date: 2022-02-21 10:18+0000\n"
+"Last-Translator: Transifex Bot\n"
 "Language-Team: Malay (http://www.transifex.com/wildfire-games/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -763,7 +763,7 @@ msgstr ""
 msgid "Wood Treasure"
 msgstr "Khazanah Kayu"
 
-#: simulation/templates/gaia/treasure/wood_lumber.xml:4
+#: simulation/templates/gaia/treasure/wood_lumber.xml:8
 msgid "Milled Lumber"
 msgstr ""
 
@@ -827,6 +827,10 @@ msgstr ""
 #: simulation/templates/gaia/tree/cedar_atlas_3_mature.xml:4
 #: simulation/templates/gaia/tree/cedar_atlas_4_dead.xml:4
 msgid "Atlas Cedar"
+msgstr ""
+
+#: simulation/templates/gaia/tree/cherry_blossom.xml:4
+msgid "Cherry Blossom"
 msgstr ""
 
 #: simulation/templates/gaia/tree/cretan_date_palm_patch.xml:8
@@ -978,7 +982,7 @@ msgstr ""
 msgid "Rainforest Tree"
 msgstr ""
 
-#: simulation/templates/mixins/builder.xml:35
+#: simulation/templates/mixins/builder.xml:40
 msgid "Builder"
 msgstr ""
 
@@ -1095,187 +1099,6 @@ msgstr ""
 msgid "Wedge"
 msgstr "Baji"
 
-#: simulation/templates/special/players/athen.xml:8
-msgid "Athenians"
-msgstr "Athens"
-
-#: simulation/templates/special/players/athen.xml:9
-msgid ""
-"As the cradle of Western civilization and the birthplace of democracy, "
-"Athens was famed as a center for the arts, learning and philosophy. The "
-"Athenians were also powerful warriors, particularly at sea. At its peak, "
-"Athens dominated a large part of the Hellenic world for several decades."
-msgstr "Pada awal ketamadunan Barat dan tempat kelahiran demokrasi, Athen terkenal sebagai pusat seni, pembelajaran dan falsafah. Puak Athen juga merupakan satria yang kuat, terutamanya di laut. Pada puncak ketamadunan mereka, Athen telah menguasai sebahagian besar dunai Yunani selama beberapa abad."
-
-#: simulation/templates/special/players/brit.xml:8
-msgid "Britons"
-msgstr "Briton"
-
-#: simulation/templates/special/players/brit.xml:9
-msgid ""
-"The Britons were the Celtic tribes of the British Isles. Using chariots, "
-"longswordsmen and powerful melee soldiers, they staged fearsome revolts "
-"against Rome to protect their customs and interests. Also, they built "
-"thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr "Briton merupakan puak Celt daripada Kepulauan British. Dengan menggunakan kereta kuda perang, pemain pedang panjang dan askar termpur yang kuat, mereka dapat memberontak terhadap puak Rom untuk melindungi budaya dan kehidupan mereka. Selain itu, mereka telah membina beribu-ribu struktur unik seperti kubu bukit, crannog dan broch."
-
-#: simulation/templates/special/players/cart.xml:8
-msgid "Carthaginians"
-msgstr "Carthage"
-
-#: simulation/templates/special/players/cart.xml:9
-msgid ""
-"Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
-"western Mediterranean, eventually taking over much of North Africa and "
-"modern-day Spain in the third century B.C. The sailors of Carthage were "
-"among the fiercest contenders on the high seas, and masters of naval trade. "
-"They deployed towered War Elephants on the battlefield to fearsome effect, "
-"and had defensive walls so strong, they were never breached."
-msgstr "Carthage, ibu negara yang berada di negara modern Tunisia, merupakan kuasa yang hebat di barat Mediterranean. Menguasai sebahagian besar Aftika Utara dan Sepanyol pada abad ketiga S.M. Kelasi Carthage merupakan pesaing yang terbaik di lautan bebas dan pakar dalam perdagangan laut. Mereka membangunkan teknologi Gajah Perang bermenara dalam medan perang yang memberikan kesan yang menakutkan pihak lawan, tembok pertahanan puak Carthage sangat kuat dan tidak pernah diruntuhkan atau dipecah masuk."
-
-#: simulation/templates/special/players/gaul.xml:8
-msgid "Gauls"
-msgstr "Gaul"
-
-#: simulation/templates/special/players/gaul.xml:9
-msgid ""
-"The Gauls were the Celtic tribes of continental Europe. Dominated by a "
-"priestly class of Druids, they featured a sophisticated culture of advanced "
-"metalworking, agriculture, trade and even road engineering. With heavy "
-"infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
-"of conquest and Rome's authoritarian rule."
-msgstr "Gaul merupakan puak Celt dari wilayah Eropah. Dipengaruhi oleh kelas pendeta Druid, mereka telah menerapkan budaya termahu kerja-kerja logam, pertanian, perdagangan dan juga kejuruteraan jalan. Dengan kemajuan askar infantri dan berkuda berat, satria  Gaul dapat bertahan dengan baik terhadap kempen-kempen penaklukan Caesar dan juga pemerintahan kuku besi Rom."
-
-#: simulation/templates/special/players/iber.xml:8
-msgid "Iberians"
-msgstr "Iberia"
-
-#: simulation/templates/special/players/iber.xml:9
-msgid ""
-"The Iberians were a people of mysterious origins and language, with a strong"
-" tradition of horsemanship and metalworking. A relatively peaceful culture, "
-"they usually fought in other's battles only as mercenaries. However, they "
-"proved tenacious when Rome sought to take their land and freedom from them, "
-"and employed pioneering guerrilla tactics and flaming javelins as they "
-"fought back."
-msgstr "Puak Iberia merupakan bangsa dengan asal dan bahasa misteri, dengan tradisi kemahiran menunggang kuda dan kerja logam yang hebat. Berbudaya aman, mereka biasanya berperang sebagai askar upahan. Walaubagaimanapun, mereka sukar dikalahkan ketika puak Rom cuba menakluk tanah dan kebebasan mereka, dan hebat dalam taktik gerila dan lembing berapi ketika berperang."
-
-#: simulation/templates/special/players/kush.xml:8
-msgid "Kushites"
-msgstr "Kush"
-
-#: simulation/templates/special/players/kush.xml:9
-msgid ""
-"The Kingdom of Kush was an ancient African kingdom situated on the "
-"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
-" Republic of Sudan. The Kushite era of rule in the region was established "
-"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
-"centered at Napata in its early phase. They invaded Egypt in the 8th century"
-" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
-"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
-"culture was influenced heavily by the Egyptians, with Kushite pyramid "
-"building and monumental temple architecture still extent. The Kushites even "
-"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
-"the Kushite imperial capital was at Meroe. In early Greek geography, the "
-"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
-" the 4th century AD, when it weakened and disintegrated due to internal "
-"rebellion, eventually succumbing to the rising power of Axum."
-msgstr ""
-
-#: simulation/templates/special/players/mace.xml:8
-msgid "Macedonians"
-msgstr "Macedonia"
-
-#: simulation/templates/special/players/mace.xml:9
-msgid ""
-"Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
-" the Greek peninsula. Under the leadership of Alexander the Great, "
-"Macedonian forces and allies took over most of the world they knew, "
-"including Egypt, Persia and parts of the Indian subcontinent, allowing a "
-"diffusion of Hellenic and eastern cultures for years to come."
-msgstr "Macedonia merupakan kerajaan Yunani purba, berada ditengah-tengah bahagian timur-laut semenanjung Yunani. Dibawah pimpinan Iskandar Agung, kuasa ketenteraan puak Macedonia dan sekutu beliau dapat menguasai hampir keseluruhan dunia mereka, termasuklah Mesir, Parsi dan sebahagian subbenua India, membolehkan penyaduran budaya Yunani dan timur tahun-tahun yang berikutnya."
-
-#: simulation/templates/special/players/maur.xml:8
-msgid "Mauryas"
-msgstr "Bangsa Maurya"
-
-#: simulation/templates/special/players/maur.xml:9
-msgid ""
-"Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first"
-" to rule most of the Indian subcontinent, and was one of the largest and "
-"most populous empires of antiquity. Its military featured bowmen who used "
-"the long-range bamboo longbow, fierce female warriors, chariots, and "
-"thousands of armored war elephants. Its philosophers, especially the famous "
-"Acharya Chanakya, contributed to such varied fields such as economics, "
-"religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
-"the Great, the empire saw 40 years of peace, harmony, and prosperity."
-msgstr "Diasaskan pada tahun 322 S.M. oleh Chandragupta Maurya, Empayar Maurya merupakan yang pertama menguasai benua kecil india, pada waktu itu merupakan empayar terbesar dengan jumlah rakyat yang paling ramai. Kuasa ketenteraannya terdiri daripaa pemanah jarak-jauh, askar wanita yang perkasa, tentera berkereta kuda, serta beribu-ribu unit tentera gajah berperisai. Ahli falsafahnya yang terkenal iaitu Acharya Chanakya, telah banyak memberi sumbangan dalam pelbagai bidang seperti ekonomi, keagamaan, diplomasi, perperangan, dan tadbir urus baik. Dibawah pemerintahan Ashoka yang Agung, empayar telah menikmati 40 tahun keamanan, keharmonian dan kemakmuran."
-
-#: simulation/templates/special/players/pers.xml:8
-msgid "Persians"
-msgstr "Parsi"
-
-#: simulation/templates/special/players/pers.xml:9
-msgid ""
-"The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
-"greatest empires of antiquity, stretching at its zenith from the Indus "
-"Valley in the east to Greece in the west. The Persians were the pioneers of "
-"empire-building of the ancient world, successfully imposing a centralized "
-"rule over various peoples with different customs, laws, religions and "
-"languages, and building a cosmopolitan army made up of contingents from each"
-" of these nations."
-msgstr "Empayar Parsi, ketika diperintah oleh dinasti Acaemenid, merupakan empayar terhebat pada era purba, bermula dari Lembah Indus di sebelah timur sehinggalah ke Yunani di sebelah barat. Puak Parsi juga adalah pencipta empayar di era purba, berjaya menubuhkan pemerintahan berpusat terdapat pelbagai etnik yang berlainan budaya, undang-undang, agama dan bahasa, begitu juga dengan tentera kompolitan yang terdiri daripada kontingen setiap negeri-negeri di bawahnya."
-
-#: simulation/templates/special/players/ptol.xml:16
-msgid "Ptolemies"
-msgstr "Ptolemy"
-
-#: simulation/templates/special/players/ptol.xml:17
-msgid ""
-"The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
-"Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
-"for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
-"Egypt."
-msgstr "Dinasti Ptolemaik adalah daripada keluarga diraja Yunani Macedonia yang telah mentadbir Empayar Ptolemaik di Mesir ketika era Hellenistik. Tempoh pemerintahan mereka dalam tempoh 275 tahun, dari 305 SM sehinggalah 30 Selepas Masihi. Mereka juga merupakan dinasti terakhir daripada Mesir Purba."
-
-#: simulation/templates/special/players/rome.xml:8
-msgid "Romans"
-msgstr "Rom"
-
-#: simulation/templates/special/players/rome.xml:9
-msgid ""
-"The Romans controlled one of the largest empires of the ancient world, "
-"stretching at its peak from southern Scotland to the Sahara Desert, and "
-"containing between 60 million and 80 million inhabitants, one quarter of the"
-" Earth's population at that time. Rome also remained one of the strongest "
-"nations on earth for almost 800 years. The Romans were the supreme builders "
-"of the ancient world, excelled at siege warfare and had an exquisite "
-"infantry and navy."
-msgstr ""
-
-#: simulation/templates/special/players/sele.xml:16
-msgid "Seleucids"
-msgstr "Seleucid"
-
-#: simulation/templates/special/players/sele.xml:17
-msgid ""
-"The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
-msgstr "Dinasti Macedonia-Yunani memerintah hampir kesemua empayar terdahulu Iskandar."
-
-#: simulation/templates/special/players/spart.xml:6
-msgid "Spartans"
-msgstr "Sparta"
-
-#: simulation/templates/special/players/spart.xml:7
-msgid ""
-"Sparta was a prominent city-state in ancient Greece, and its dominant "
-"military power on land from circa 650 B.C. Spartan culture was obsessed with"
-" military training and excellence, with rigorous training for boys beginning"
-" at age seven. Thanks to its military might, Sparta led a coalition of Greek"
-" forces during the Greco-Persian Wars, and won over Athens in the "
-"Peloponnesian Wars, though at great cost."
-msgstr "Sparta merupakan negara-bandar terkemuka pada era Yunani purba, dan kuasa ketenteraan mendominasi wilayah ini bermula 650 S.M. Kebudayaan Sparta telah dipengaruhi dengan latihan dan kecemerlangan ketenteraan, latihan ketat untuk lelaki seawal usia tujuh tahun. Dengan kekuatan ketenteraan, Sparta telah mengetuai gabungan kekuatan Yunani yang lain semasa perang Yunani-Parsi, dan menguasai Athen dalam Perperangan Peloponnesia, walaupun mengalami kerugian yang banyak."
-
 #: simulation/templates/special/spy.xml:16
 msgid "Spy"
 msgstr "Perisik"
@@ -1284,7 +1107,6 @@ msgstr "Perisik"
 msgid "Requires at least 2 Soldiers or Siege Engines."
 msgstr ""
 
-#: simulation/templates/special/players/gaia.xml:5
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
 msgstr "Gaia"

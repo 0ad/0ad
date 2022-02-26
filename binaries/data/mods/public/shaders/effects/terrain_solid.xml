@@ -26,6 +26,21 @@
 
 	<technique>
 		<require shaders="arb"/>
+		<require context="MODE_WIREFRAME"/>
+		<pass shader="arb/dummy">
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
+	<technique>
+		<require shaders="glsl"/>
+		<require context="MODE_WIREFRAME"/>
+		<pass shader="glsl/dummy">
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require shaders="arb"/>
 		<pass shader="arb/dummy"/>
 	</technique>
 	<technique>

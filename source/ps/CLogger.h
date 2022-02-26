@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,11 +19,12 @@
 #define INCLUDED_CLOGGER
 
 #include <deque>
+#include <fmt/printf.h>
 #include <mutex>
 #include <string>
 #include <sstream>
 
-#include <fmt/printf.h>
+class CCanvas2D;
 
 class CLogger;
 extern CLogger* g_Logger;
@@ -69,7 +70,7 @@ public:
 	void WriteWarning(const char* message);
 
 	// Render recent log messages onto the screen
-	void Render();
+	void Render(CCanvas2D& canvas);
 
 private:
 	void Init();

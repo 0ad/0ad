@@ -24,8 +24,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-18 08:08+0000\n"
-"PO-Revision-Date: 2022-02-19 21:32+0000\n"
+"POT-Creation-Date: 2022-02-21 08:09+0000\n"
+"PO-Revision-Date: 2022-02-22 18:02+0000\n"
 "Last-Translator: rollieoo\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -1927,6 +1927,15 @@ msgstr "Engerds"
 msgid "Sandbox - The Gauls"
 msgstr "Zandbak - De Galliërs"
 
+#: maps/scenarios/sandbox_han.xml:Description:39
+msgid ""
+"A simple map showcasing the Han Chinese civilization's assets in the game."
+msgstr "Een eenvoudige kaart om de kenmerken van de Han-Chinezen te leren kennen."
+
+#: maps/scenarios/sandbox_han.xml:Name:39
+msgid "Sandbox - The Han Chinese"
+msgstr "Zandbak - De Han-Chinezen"
+
 #: maps/scenarios/sandbox_iberians.xml:Description:38
 msgid "A demo map for the Iberians."
 msgstr "Een demo kaart voor de Iberiërs."
@@ -2573,10 +2582,12 @@ msgid "Island of Meroë (2)"
 msgstr "Eiland van Meroë (2)"
 
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:39
+#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[2].Name:39
 msgid "West Player"
 msgstr "Westelijke speler"
 
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[1].Name:39
 msgid "East Player"
 msgstr "Oostenlijke speler"
 
@@ -3146,6 +3157,22 @@ msgstr "Een dor, verloren land, met weinig hout en dieren. Er zijn wel enkele sc
 msgid "Coele-Syria (2)"
 msgstr "Coele-Syrië (2)"
 
+#: maps/skirmishes/tarim_basin_2p.xml:Description:39
+#: maps/skirmishes/tarim_basin_4p.xml:Description:39
+msgid ""
+"A barren desert basin surrounded by mountainous valleys, the Tarim Basin is also called \"The Western Regions\" by the Han Chinese, and represents the furthest extent of their power.\n"
+"\n"
+"The basin itself is bereft of life  and offers little in the way of defensibility. The rugged mountain valleys harbor the only life, in the form of hearty shrub and tree species and some goats."
+msgstr "Een dor woestijnbekken omgeven door steile valleien, wordt het Tarimbekken door de Han-Chinezen ook wel \"De Westelijke Gebieden\" genoemd, en is het voor hen de uiterste grens van hun invloedssfeer.\n\nHet bekken zelf is ontdaan van enig leven en heeft aan defensieve mogelijkheden weinig te bieden. In de woeste bergvalleien schuilt enig leven in de vorm van dichte bosschages, enkele boomsoorten en wat geiten."
+
+#: maps/skirmishes/tarim_basin_2p.xml:Name:39
+msgid "Tarim Basin (2 players)"
+msgstr "Tarimbekken (2 spelers)"
+
+#: maps/skirmishes/tarim_basin_4p.xml:Name:39
+msgid "Tarim Basin (4 players)"
+msgstr "Tarimbekken (4 spelers)"
+
 #: maps/skirmishes/team_oasis_2pv2p.xml:Description:38
 msgid ""
 "An oasis surrounded by mountains and desert. Farmlands near the water's edge"
@@ -3262,6 +3289,14 @@ msgstr "Indringer 3"
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[5].Name:39
 msgid "Invader 4"
 msgstr "Indringer 4"
+
+#: maps/skirmishes/yangtze_2p.xml:Description:39
+msgid "The Yangtze River in China. "
+msgstr "De Jangtsekiang rivier in China."
+
+#: maps/skirmishes/yangtze_2p.xml:Name:39
+msgid "Chang Jiang (2 players)"
+msgstr "Chang Jiang (2 spelers)"
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Description:38
 msgid ""

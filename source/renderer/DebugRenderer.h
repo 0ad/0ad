@@ -52,29 +52,18 @@ public:
 	 * @param intermediates determines how many intermediate distance planes should
 	 * be hinted at between the near and far planes
 	 */
-	void DrawCameraFrustum(const CCamera& camera, const CColor& color, int intermediates = 0);
+	void DrawCameraFrustum(const CCamera& camera, const CColor& color, int intermediates = 0, bool wireframe = false);
 
 	/**
 	 * Render the surfaces of the bound box as triangles.
 	 */
-	void DrawBoundingBox(const CBoundingBoxAligned& boundingBox, const CColor& color);
-	void DrawBoundingBox(const CBoundingBoxAligned& boundingBox, const CColor& color, const CMatrix3D& transform);
-
-	/**
-	 * Render the outline of the bound box as lines.
-	 */
-	void DrawBoundingBoxOutline(const CBoundingBoxAligned& boundingBox, const CColor& color);
-	void DrawBoundingBoxOutline(const CBoundingBoxAligned& boundingBox, const CColor& color, const CMatrix3D& transform);
+	void DrawBoundingBox(const CBoundingBoxAligned& boundingBox, const CColor& color, bool wireframe = false);
+	void DrawBoundingBox(const CBoundingBoxAligned& boundingBox, const CColor& color, const CMatrix3D& transform, bool wireframe = false);
 
 	/**
 	 * Render the surfaces of the brush as triangles.
 	 */
-	void DrawBrush(const CBrush& brush, const CColor& color);
-
-	/**
-	 * Render the outline of the brush as lines.
-	 */
-	void DrawBrushOutline(const CBrush& brush, const CColor& color);
+	void DrawBrush(const CBrush& brush, const CColor& color, bool wireframe = false);
 };
 
 #endif // INCLUDED_DEBUGRENDERER

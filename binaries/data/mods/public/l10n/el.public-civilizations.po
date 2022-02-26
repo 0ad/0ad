@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -34,9 +34,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-01-30 11:29+0000\n"
-"Last-Translator: LOUKAS SKOUROLIAKOS\n"
+"POT-Creation-Date: 2022-02-21 08:09+0000\n"
+"PO-Revision-Date: 2022-02-21 08:45+0000\n"
+"Last-Translator: elenapan\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -118,18 +118,6 @@ msgstr "Τα ορυχεία στο Λαύριο της Αττικής παρεί
 msgid "Silver Owls"
 msgstr "Αργυρές Κουκουβάγιες"
 
-#: simulation/data/civs/athen.jsonHistory
-msgid ""
-"As the cradle of Western civilization and the birthplace of democracy, "
-"Athens was famed as a center for the arts, learning and philosophy. The "
-"Athenians were also powerful warriors, particularly at sea. At its peak, "
-"Athens dominated a large part of the Hellenic world for several decades."
-msgstr "Ως το λίκνο του Δυτικού πολιτισμού και γενέτειρα της δημοκρατίας, η Αθήνα ήταν ξακουστή σαν κέντρο τεχνών, μάθησης και φιλοσοφίας. Επίσης οι Αθηναίοι ήταν ισχυροί πολεμιστές, ειδικά στη θάλασσα. Στη ακμή της, η Αθήνα κυριάρχησε σε ένα μεγάλο κομμάτι του Ελληνικού κόσμου για αρκετές δεκαετίες."
-
-#: simulation/data/civs/athen.jsonName
-msgid "Athenians"
-msgstr "Αθηναίοι"
-
 #: simulation/data/civs/brit.jsonAINames[0]
 msgid "Karatakos"
 msgstr "Καράτακος"
@@ -173,18 +161,6 @@ msgstr "Αντμίνιας"
 #: simulation/data/civs/brit.jsonAINames[9]
 msgid "Dubnovellaunus"
 msgstr "Ντουμπνοβέλαυνος"
-
-#: simulation/data/civs/brit.jsonHistory
-msgid ""
-"The Britons were the Celtic tribes of the British Isles. Using chariots, "
-"longswordsmen and powerful melee soldiers, they staged fearsome revolts "
-"against Rome to protect their customs and interests. Also, they built "
-"thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr "Οι Βρετανοί ήταν οι κελτικές φυλές των Βρετανικών Νήσων. Χρησιμοποιώντας άρματα, ξιφομάχους και δυνατούς σώμα με σώμα στρατιώτες, οργάνωσαν τρομακτικές εξεγέρσεις εναντίον της Ρώμης για την προστασία των δασμών και των συμφερόντων τους. Επίσης, έχτισαν χιλιάδες μοναδικά κτήρια όπως φρούρια λόφου, Κρενάγκ και Μπροξ."
-
-#: simulation/data/civs/brit.jsonName
-msgid "Britons"
-msgstr "Βρετανοί"
 
 #: simulation/data/civs/cart.jsonAINames[0]
 msgid "Hannibal Barca"
@@ -266,20 +242,6 @@ msgstr "Λιμάνια και Αγορές +10% διεθνή μπόνους εμ
 msgid "Desirable Products"
 msgstr "Επιθυμητά προϊόντα"
 
-#: simulation/data/civs/cart.jsonHistory
-msgid ""
-"Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
-"western Mediterranean, eventually taking over much of North Africa and "
-"modern-day Spain in the third century B.C. The sailors of Carthage were "
-"among the fiercest contenders on the high seas, and masters of naval trade. "
-"They deployed towered War Elephants on the battlefield to fearsome effect, "
-"and had defensive walls so strong, they were never breached."
-msgstr "Η Καρχηδόνα, ήταν μια πόλη-κράτος στη σύγχρονη Τυνησία, ήταν μια τρομερή δύναμη στη δυτική Μεσόγειο, τελικά κατέλαβε μεγάλο μέρος της Βόρειας Αφρικής και της σύγχρονης Ισπανίας στο τρίτο π.Χ. αιώνα. Οι ναυτικοί της Καρχηδόνας ήταν μεταξύ των πιο δύσκολων αντιπάλων στην ανοικτή θάλασσα και αυθεντία στο εμπορικό ναυτικό. Παράτασσαν Πολεμικούς Ελέφαντες με πυργίσκους στο πεδίο της μάχης κάνοντας τρομακτική εντύπωση και είχαν αμυντικά τείχη τόσο ισχυρά, που ποτέ δεν είχαν παραβιαστεί."
-
-#: simulation/data/civs/cart.jsonName
-msgid "Carthaginians"
-msgstr "Καρχηδόνιοι"
-
 #: simulation/data/civs/gaul.jsonAINames[0]
 msgid "Viridomarus"
 msgstr "Βιριδομάρος"
@@ -320,18 +282,118 @@ msgstr "Βαλετιακός"
 msgid "Viridovix"
 msgstr "Βιριδόβιγας"
 
-#: simulation/data/civs/gaul.jsonHistory
-msgid ""
-"The Gauls were the Celtic tribes of continental Europe. Dominated by a "
-"priestly class of Druids, they featured a sophisticated culture of advanced "
-"metalworking, agriculture, trade and even road engineering. With heavy "
-"infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
-"of conquest and Rome's authoritarian rule."
-msgstr "Οι Γαλάτες ήταν τα Κελτικά φύλα της ηπειρωτικής Ευρώπης. Διοικούνταν από μια ιερατική τάξη τους Δρυίδες, ήταν ένας πλήρης εξελιγμένος πολιτισμός με προηγμένη  μεταλλουργία, γεωργία, εμπόριο ακόμη και οδοποιία. Με βαρύ πεζικό και ιππικό, οι Γαλάτες πολεμιστές αντιστάθηκαν γενναία στην κατακτητική εκστρατεία του Καίσαρα και την αυταρχική διακυβέρνηση της Ρώμης."
+#: simulation/data/civs/han.jsonAINames[0]
+msgid "Liu Bang"
+msgstr ""
 
-#: simulation/data/civs/gaul.jsonName
-msgid "Gauls"
-msgstr "Γαλάτες"
+#: simulation/data/civs/han.jsonAINames[10]
+msgid "Liu Shi"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[11]
+msgid "Liu Ao"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[12]
+msgid "Liu Xin"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[13]
+msgid "Liu Kan"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[14]
+msgid "Liu Xuan"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[15]
+msgid "Liu Xiu"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[16]
+msgid "Liu Zhuang"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[17]
+msgid "Liu Da"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[18]
+msgid "Liu Zhao"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[19]
+msgid "Liu Long"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[1]
+msgid "Liu Ying"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[20]
+msgid "Liu Hu"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[21]
+msgid "Liu Yi"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[22]
+msgid "Liu Bao"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[23]
+msgid "Liu Bing"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[24]
+msgid "Liu Zuan"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[25]
+msgid "Liu Zhi"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[27]
+msgid "Liu Bian"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[28]
+msgid "Liu Xie"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[2]
+msgid "Liu Gong"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[26]
+#: simulation/data/civs/han.jsonAINames[3]
+msgid "Liu Hong"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[4]
+msgid "Liu Heng"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[5]
+msgid "Liu Qi"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[6]
+msgid "Liu Che"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[7]
+msgid "Liu Fuling"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[8]
+msgid "Liu He"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[9]
+msgid "Liu Bingyi"
+msgstr ""
 
 #: simulation/data/civs/iber.jsonAINames[0]
 #: simulation/data/civs/iber.jsonAINames[1]
@@ -386,20 +448,6 @@ msgstr "Πέτρινοι Πύργοι -50% κόστος ξυλείας, +150% κ
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Massive Towers"
 msgstr "Τεράστιοι Πύργοι"
-
-#: simulation/data/civs/iber.jsonHistory
-msgid ""
-"The Iberians were a people of mysterious origins and language, with a strong"
-" tradition of horsemanship and metalworking. A relatively peaceful culture, "
-"they usually fought in other's battles only as mercenaries. However, they "
-"proved tenacious when Rome sought to take their land and freedom from them, "
-"and employed pioneering guerrilla tactics and flaming javelins as they "
-"fought back."
-msgstr "Οι Ίβηρες ήταν ένας λαός με μυστήρια καταγωγή και γλώσσα, με ισχυρή παράδοση στην ιππασία και τη μεταλλουργία. Με σχετικά ειρηνική κουλτούρα, που συνήθως πολέμησαν στις μάχες των άλλων μόνο ως μισθοφόροι. Ωστόσο, αποδείχθηκαν σκληροτράχηλοι όταν η Ρώμη προσπάθησε να πάρει τη γη και την ελευθερία από αυτούς, και χρησιμοποίησαν πρωτοποριακές τακτικές ανταρτοπόλεμου και φλεγόμενα ακόντια, καθώς αμυνόντουσαν."
-
-#: simulation/data/civs/iber.jsonName
-msgid "Iberians"
-msgstr "Ίβηρες"
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -467,28 +515,6 @@ msgstr "Πολιορκητικοί Κριοί +20% ζημιά επίθεσης �
 msgid "Large Rams"
 msgstr "Μεγάλοι Κριοί"
 
-#: simulation/data/civs/kush.jsonHistory
-msgid ""
-"The Kingdom of Kush was an ancient African kingdom situated on the "
-"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
-" Republic of Sudan. The Kushite era of rule in the region was established "
-"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
-"centered at Napata in its early phase. They invaded Egypt in the 8th century"
-" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
-"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
-"culture was influenced heavily by the Egyptians, with Kushite pyramid "
-"building and monumental temple architecture still extent. The Kushites even "
-"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
-"the Kushite imperial capital was at Meroe. In early Greek geography, the "
-"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
-" the 4th century AD, when it weakened and disintegrated due to internal "
-"rebellion, eventually succumbing to the rising power of Axum."
-msgstr "Το Βασίλειο του Κους ήταν ένα αρχαίο αφρικανικό βασίλειο που βρισκόταν στις συμβαλλόμενες περιοχές του Μπλε Νείλου, του Λευκού Νείλου και του ποταμού Αμπαρά σε αυτό που είναι τώρα η Δημοκρατία του Σουδάν. Η Κουσίτηκη περίοδος της κυριαρχίας στην περιοχή δημιουργήθηκε μετά την κατάρρευση του Νέου Βασιλείου της Αιγύπτου την Εποχής του Χαλκού  και επικεντρώθηκε στην Νάπατα στην πρώιμη φάση της. Εισέβαλαν στην Αίγυπτο τον 8ο αιώνα π.Χ. και οι Κουσίτες αυτοκράτορες κυριάρχησαν ως Φαραώ της Εικοστής πέμπτης δυναστείας της Αιγύπτου για έναν αιώνα, μέχρι να αποβληθούν από τους Ασσύριους. Ο πολιτισμός των Κουσιτών επηρεάστηκε έντονα από τους Αιγυπτίους, με την κατασκευή της Κουσίτικης πυραμίδας και την μνημειακή αρχιτεκτονική των ναών. Οι Κουσίτες λάτρευαν ακόμη και πολλούς Αιγύπτιους θεούς, συμπεριλαμβανομένου του Άμων. Κατά τη διάρκεια της κλασικής αρχαιότητας, η βασιλική αυτοκρατορική πρωτεύουσα ήταν στη Μερόη. Στην πρώιμη ελληνική γεωγραφία, το Μεροΐτικό βασίλειο ήταν γνωστό ως Αιθιοπεία. Το βασίλειο των Κουσίτων διατηρήθηκε μέχρι τον 4ο αιώνα μ.Χ., όταν αποδυναμώθηκε και αποδιοργανώθηκε λόγω εσωτερικής εξέγερσης, υποχωρώντας τελικά στην αυξανόμενη δύναμη του Αξούμ."
-
-#: simulation/data/civs/kush.jsonName
-msgid "Kushites"
-msgstr "Κουσίτες"
-
 #: simulation/data/civs/mace.jsonAINames[0]
 msgid "Alexander the Great"
 msgstr "Αλέξανδρος ο Μέγας"
@@ -542,19 +568,6 @@ msgstr "Δημήτριος Β' ο Αιτωλικός"
 msgid "Philip V"
 msgstr "Φίλιππος Ε'"
 
-#: simulation/data/civs/mace.jsonHistory
-msgid ""
-"Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
-" the Greek peninsula. Under the leadership of Alexander the Great, "
-"Macedonian forces and allies took over most of the world they knew, "
-"including Egypt, Persia and parts of the Indian subcontinent, allowing a "
-"diffusion of Hellenic and eastern cultures for years to come."
-msgstr "H Μακεδονία ήταν ένα αρχαίο ελληνικό βασίλειο, με επίκεντρο το βορειοανατολικό τμήμα της Eλληνικής χερσονήσου. Υπό την ηγεσία του Μέγα Αλεξάνδρου, οι Μακεδονικές δυνάμεις και οι σύμμαχοι τους κατέλαβαν το μεγαλύτερο μέρος του κόσμου που γνώριζαν, συμπεριλαμβανομένης της Αιγύπτου, της Περσίας και τμήματα της Ινδικής υποηπείρου, επιτρέποντας την  διάδοση των Ελληνικών και Ανατολικών κουλτούρων για πολλά χρόνια."
-
-#: simulation/data/civs/mace.jsonName
-msgid "Macedonians"
-msgstr "Μακεδόνες"
-
 #: simulation/data/civs/maur.jsonAINames[0]
 msgid "Chandragupta Maurya"
 msgstr "Τσαντραγκούπτα Μαουρύα"
@@ -590,22 +603,6 @@ msgstr "Σαταντανβαν Μαουρύα"
 #: simulation/data/civs/maur.jsonAINames[8]
 msgid "Brihadratha Maurya"
 msgstr "Μπριχαντράθα Μαουρύα"
-
-#: simulation/data/civs/maur.jsonHistory
-msgid ""
-"Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first"
-" to rule most of the Indian subcontinent, and was one of the largest and "
-"most populous empires of antiquity. Its military featured bowmen who used "
-"the long-range bamboo longbow, fierce female warriors, chariots, and "
-"thousands of armored war elephants. Its philosophers, especially the famous "
-"Acharya Chanakya, contributed to such varied fields such as economics, "
-"religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
-"the Great, the empire saw 40 years of peace, harmony, and prosperity."
-msgstr "Ιδρύθηκε το 322 π.Χ. από τον Τσαντραγκούπτα Μαουρύα, η Αυτοκρατορία των Μαυριτανών ήταν η πρώτη που κυριάρχησε στο μεγαλύτερο μέρος της ινδικής υποηπείρου, και ήταν μία από τις μεγαλύτερες και πιο πυκνοκατοικημένες αυτοκρατορίες της αρχαιότητας. Στρατιωτικό της χαρακτηριστικό ήταν οι τοξότες που χρησιμοποιούσαν τα μεγάλης εμβέλειας από μπαμπού τόξα, οι άγριες θηλυκές πολεμίστριες, τα άρματα και οι χιλιάδες τεθωρακισμένοι πολεμικοί ελέφαντες. Οι φιλόσοφοί της, ιδιαίτερα ο περίφημος Ατσάρια Τσανάκυα, συνείσφεραν σε ποικίλα πεδία όπως η οικονομία, η θρησκεία, η διπλωματία, ο πόλεμος και η χρηστή διακυβέρνηση. Κάτω από την κυριαρχία του Μεγάλου Ασόκα, η αυτοκρατορία είδε 40 χρόνια ειρήνης, αρμονίας και ευημερίας."
-
-#: simulation/data/civs/maur.jsonName
-msgid "Mauryas"
-msgstr "Μαουρύα"
 
 #: simulation/data/civs/pers.jsonAINames[0]
 msgid "Kurush II the Great"
@@ -662,21 +659,6 @@ msgstr "Έμποροι Ξηράς +25% εμπορικό κέρδος."
 #: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Darics"
 msgstr "Δαρείοι"
-
-#: simulation/data/civs/pers.jsonHistory
-msgid ""
-"The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
-"greatest empires of antiquity, stretching at its zenith from the Indus "
-"Valley in the east to Greece in the west. The Persians were the pioneers of "
-"empire-building of the ancient world, successfully imposing a centralized "
-"rule over various peoples with different customs, laws, religions and "
-"languages, and building a cosmopolitan army made up of contingents from each"
-" of these nations."
-msgstr "Η Περσική Αυτοκρατορία, κατά τη διακυβέρνηση της δυναστεία των Αχαιμενιδών, ήταν μία από τις μεγαλύτερες αυτοκρατορίες της αρχαιότητας, που εκτεινόταν στο ζενίθ της από την Κοιλάδα του Ινδού στα ανατολικά προς την Ελλάδα στα δυτικά. Οι Πέρσες ήταν οι πρωτοπόροι στην δημιουργία-αυτοκρατορίας στον αρχαίο κόσμο, επιβάλλοντας με επιτυχία μια κεντρική διακυβέρνηση πάνω σε διάφορους λαούς με διαφορετικά ήθη και έθιμα, νόμους, θρησκείες και γλώσσες, επίσης δημιούργησαν ένα πολυεθνικό στρατό που απαρτιζόταν από αγήματα από κάθε ένα από αυτά τα έθνη."
-
-#: simulation/data/civs/pers.jsonName
-msgid "Persians"
-msgstr "Πέρσες"
 
 #: simulation/data/civs/ptol.jsonAINames[0]
 msgid "Ptolemy Soter"
@@ -762,18 +744,6 @@ msgstr "Εκσφενδονιστείς Στουπιών -33% ζημιά επίθ
 msgid "Polybolos"
 msgstr "Πολύβολος"
 
-#: simulation/data/civs/ptol.jsonHistory
-msgid ""
-"The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
-"Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
-"for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
-"Egypt."
-msgstr "Η δυναστεία των Πτολεμαίων ήταν μια Μακεδόνική Ελληνική βασιλική οικογένεια που κυβέρνησε την αυτοκρατορία των Πτολεμαίων στην Αίγυπτο κατά την Ελληνιστική περίοδο. Η εξουσία τους κράτησε για 275 χρόνια, από το 305 π.Χ. έως το 30 π.Χ.. Ήταν η τελευταία δυναστεία της αρχαίας Αιγύπτου."
-
-#: simulation/data/civs/ptol.jsonName
-msgid "Ptolemies"
-msgstr "Πτολεμαίοι"
-
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
 msgstr "Λεύκιος Ιούνιος Βρούτος"
@@ -852,21 +822,6 @@ msgstr "Πολιορκητικοί Κριοί +20% ζημιά επίθεσης. 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Legionary Engineers"
 msgstr "Λεγεωνάριοι Μηχανικοί"
-
-#: simulation/data/civs/rome.jsonHistory
-msgid ""
-"The Romans controlled one of the largest empires of the ancient world, "
-"stretching at its peak from southern Scotland to the Sahara Desert, and "
-"containing between 60 million and 80 million inhabitants, one quarter of the"
-" Earth's population at that time. Rome also remained one of the strongest "
-"nations on earth for almost 800 years. The Romans were the supreme builders "
-"of the ancient world, excelled at siege warfare and had an exquisite "
-"infantry and navy."
-msgstr "Οι Ρωμαίοι που έλεγχαν μία από τις μεγαλύτερες αυτοκρατορίες του αρχαίου κόσμου, που εκτεινόταν στο αποκορύφωμά της από τη νότια Σκωτία μέχρι την έρημο της Σαχάρας, και περιείχε ανάμεσα σε 60 με 80 εκατομμύρια κατοίκους, το ένα τέταρτο του πληθυσμού της Γης εκείνη την εποχή. Η Ρώμη παρέμεινε επίσης ένα από τα ισχυρότερα έθνη στη γη για σχεδόν 800 χρόνια. Οι Ρωμαίοι ήταν οι υπέρτατοι οικοδόμοι του αρχαίου κόσμου, διακρίθηκαν σε πολιορκητικούς πολέμους και είχαν ένα εξαιρετικό πεζικό και ναυτικό."
-
-#: simulation/data/civs/rome.jsonName
-msgid "Romans"
-msgstr "Ρωμαίοι"
 
 #: simulation/data/civs/sele.jsonAINames[0]
 msgid "Seleucus I Nicator"
@@ -985,15 +940,6 @@ msgstr "Αντίοχος Ε' ο Ευπάτωρ"
 msgid "Demetrius I Soter"
 msgstr "Δημήτριος Α' ο Σωτήρ"
 
-#: simulation/data/civs/sele.jsonHistory
-msgid ""
-"The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
-msgstr "Η Μακεδονική-Ελληνική δυναστεία που κυβέρνησε το μεγαλύτερο μέρος της πρώην αυτοκρατορίας του Αλεξάνδρου."
-
-#: simulation/data/civs/sele.jsonName
-msgid "Seleucids"
-msgstr "Σελευκίδες"
-
 #: simulation/data/civs/spart.jsonAINames[0]
 msgid "Leonidas"
 msgstr "Λεωνίδας"
@@ -1046,7 +992,197 @@ msgstr "Πολίτες Γυναίκες +40% υγεία και 50% ζημιά α
 msgid "Spartan Women"
 msgstr "Σπαρτιάτισσες Γυναίκες"
 
-#: simulation/data/civs/spart.jsonHistory
+#: simulation/templates/special/players/athen.xml:8
+msgid "Athenians"
+msgstr "Αθηναίοι"
+
+#: simulation/templates/special/players/athen.xml:9
+msgid ""
+"As the cradle of Western civilization and the birthplace of democracy, "
+"Athens was famed as a center for the arts, learning and philosophy. The "
+"Athenians were also powerful warriors, particularly at sea. At its peak, "
+"Athens dominated a large part of the Hellenic world for several decades."
+msgstr "Ως το λίκνο του Δυτικού πολιτισμού και γενέτειρα της δημοκρατίας, η Αθήνα ήταν ξακουστή σαν κέντρο τεχνών, μάθησης και φιλοσοφίας. Επίσης οι Αθηναίοι ήταν ισχυροί πολεμιστές, ειδικά στη θάλασσα. Στη ακμή της, η Αθήνα κυριάρχησε σε ένα μεγάλο κομμάτι του Ελληνικού κόσμου για αρκετές δεκαετίες."
+
+#: simulation/templates/special/players/brit.xml:8
+msgid "Britons"
+msgstr "Βρετανοί"
+
+#: simulation/templates/special/players/brit.xml:9
+msgid ""
+"The Britons were the Celtic tribes of the British Isles. Using chariots, "
+"longswordsmen and powerful melee soldiers, they staged fearsome revolts "
+"against Rome to protect their customs and interests. Also, they built "
+"thousands of unique structures such as hill forts, crannogs and brochs."
+msgstr "Οι Βρετανοί ήταν οι κελτικές φυλές των Βρετανικών Νήσων. Χρησιμοποιώντας άρματα, ξιφομάχους και δυνατούς σώμα με σώμα στρατιώτες, οργάνωσαν τρομακτικές εξεγέρσεις εναντίον της Ρώμης για την προστασία των δασμών και των συμφερόντων τους. Επίσης, έχτισαν χιλιάδες μοναδικά κτήρια όπως φρούρια λόφου, Κρενάγκ και Μπροξ."
+
+#: simulation/templates/special/players/cart.xml:8
+msgid "Carthaginians"
+msgstr "Καρχηδόνιοι"
+
+#: simulation/templates/special/players/cart.xml:9
+msgid ""
+"Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
+"western Mediterranean, eventually taking over much of North Africa and "
+"modern-day Spain in the third century B.C. The sailors of Carthage were "
+"among the fiercest contenders on the high seas, and masters of naval trade. "
+"They deployed towered War Elephants on the battlefield to fearsome effect, "
+"and had defensive walls so strong, they were never breached."
+msgstr "Η Καρχηδόνα, ήταν μια πόλη-κράτος στη σύγχρονη Τυνησία, ήταν μια τρομερή δύναμη στη δυτική Μεσόγειο, τελικά κατέλαβε μεγάλο μέρος της Βόρειας Αφρικής και της σύγχρονης Ισπανίας στο τρίτο π.Χ. αιώνα. Οι ναυτικοί της Καρχηδόνας ήταν μεταξύ των πιο δύσκολων αντιπάλων στην ανοικτή θάλασσα και αυθεντία στο εμπορικό ναυτικό. Παράτασσαν Πολεμικούς Ελέφαντες με πυργίσκους στο πεδίο της μάχης κάνοντας τρομακτική εντύπωση και είχαν αμυντικά τείχη τόσο ισχυρά, που ποτέ δεν είχαν παραβιαστεί."
+
+#: simulation/templates/special/players/gaia.xml:5
+msgid "Gaia"
+msgstr "Γαία"
+
+#: simulation/templates/special/players/gaul.xml:8
+msgid "Gauls"
+msgstr "Γαλάτες"
+
+#: simulation/templates/special/players/gaul.xml:9
+msgid ""
+"The Gauls were the Celtic tribes of continental Europe. Dominated by a "
+"priestly class of Druids, they featured a sophisticated culture of advanced "
+"metalworking, agriculture, trade and even road engineering. With heavy "
+"infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
+"of conquest and Rome's authoritarian rule."
+msgstr "Οι Γαλάτες ήταν τα Κελτικά φύλα της ηπειρωτικής Ευρώπης. Διοικούνταν από μια ιερατική τάξη τους Δρυίδες, ήταν ένας πλήρης εξελιγμένος πολιτισμός με προηγμένη  μεταλλουργία, γεωργία, εμπόριο ακόμη και οδοποιία. Με βαρύ πεζικό και ιππικό, οι Γαλάτες πολεμιστές αντιστάθηκαν γενναία στην κατακτητική εκστρατεία του Καίσαρα και την αυταρχική διακυβέρνηση της Ρώμης."
+
+#: simulation/templates/special/players/han.xml:16
+msgid "Han Chinese"
+msgstr ""
+
+#: simulation/templates/special/players/han.xml:17
+msgid ""
+"The Han dynasty (206 BC – AD 220) was the second imperial dynasty of China, "
+"preceded by the Qin dynasty (221–207 BC) and succeeded by the Three Kingdoms"
+" period (AD 220–280). It is considered a golden age in Chinese history, and "
+"China made significant progress in arts and sciences during the Han period. "
+"The core of the Han empire was around the Wei River, and the Han capital was"
+" Chang'an, very close to the Qin capital Xianyang (both are now part of "
+"Xi'an, Shaanxi)."
+msgstr ""
+
+#: simulation/templates/special/players/iber.xml:8
+msgid "Iberians"
+msgstr "Ίβηρες"
+
+#: simulation/templates/special/players/iber.xml:9
+msgid ""
+"The Iberians were a people of mysterious origins and language, with a strong"
+" tradition of horsemanship and metalworking. A relatively peaceful culture, "
+"they usually fought in other's battles only as mercenaries. However, they "
+"proved tenacious when Rome sought to take their land and freedom from them, "
+"and employed pioneering guerrilla tactics and flaming javelins as they "
+"fought back."
+msgstr "Οι Ίβηρες ήταν ένας λαός με μυστήρια καταγωγή και γλώσσα, με ισχυρή παράδοση στην ιππασία και τη μεταλλουργία. Με σχετικά ειρηνική κουλτούρα, που συνήθως πολέμησαν στις μάχες των άλλων μόνο ως μισθοφόροι. Ωστόσο, αποδείχθηκαν σκληροτράχηλοι όταν η Ρώμη προσπάθησε να πάρει τη γη και την ελευθερία από αυτούς, και χρησιμοποίησαν πρωτοποριακές τακτικές ανταρτοπόλεμου και φλεγόμενα ακόντια, καθώς αμυνόντουσαν."
+
+#: simulation/templates/special/players/kush.xml:8
+msgid "Kushites"
+msgstr "Κουσίτες"
+
+#: simulation/templates/special/players/kush.xml:9
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "Το Βασίλειο του Κους ήταν ένα αρχαίο αφρικανικό βασίλειο που βρισκόταν στις συμβαλλόμενες περιοχές του Μπλε Νείλου, του Λευκού Νείλου και του ποταμού Αμπαρά σε αυτό που είναι τώρα η Δημοκρατία του Σουδάν. Η Κουσίτηκη περίοδος της κυριαρχίας στην περιοχή δημιουργήθηκε μετά την κατάρρευση του Νέου Βασιλείου της Αιγύπτου την Εποχής του Χαλκού  και επικεντρώθηκε στην Νάπατα στην πρώιμη φάση της. Εισέβαλαν στην Αίγυπτο τον 8ο αιώνα π.Χ. και οι Κουσίτες αυτοκράτορες κυριάρχησαν ως Φαραώ της Εικοστής πέμπτης δυναστείας της Αιγύπτου για έναν αιώνα, μέχρι να αποβληθούν από τους Ασσύριους. Ο πολιτισμός των Κουσιτών επηρεάστηκε έντονα από τους Αιγυπτίους, με την κατασκευή της Κουσίτικης πυραμίδας και την μνημειακή αρχιτεκτονική των ναών. Οι Κουσίτες λάτρευαν ακόμη και πολλούς Αιγύπτιους θεούς, συμπεριλαμβανομένου του Άμων. Κατά τη διάρκεια της κλασικής αρχαιότητας, η βασιλική αυτοκρατορική πρωτεύουσα ήταν στη Μερόη. Στην πρώιμη ελληνική γεωγραφία, το Μεροΐτικό βασίλειο ήταν γνωστό ως Αιθιοπεία. Το βασίλειο των Κουσίτων διατηρήθηκε μέχρι τον 4ο αιώνα μ.Χ., όταν αποδυναμώθηκε και αποδιοργανώθηκε λόγω εσωτερικής εξέγερσης, υποχωρώντας τελικά στην αυξανόμενη δύναμη του Αξούμ."
+
+#: simulation/templates/special/players/mace.xml:8
+msgid "Macedonians"
+msgstr "Μακεδόνες"
+
+#: simulation/templates/special/players/mace.xml:9
+msgid ""
+"Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
+" the Greek peninsula. Under the leadership of Alexander the Great, "
+"Macedonian forces and allies took over most of the world they knew, "
+"including Egypt, Persia and parts of the Indian subcontinent, allowing a "
+"diffusion of Hellenic and eastern cultures for years to come."
+msgstr "H Μακεδονία ήταν ένα αρχαίο ελληνικό βασίλειο, με επίκεντρο το βορειοανατολικό τμήμα της Eλληνικής χερσονήσου. Υπό την ηγεσία του Μέγα Αλεξάνδρου, οι Μακεδονικές δυνάμεις και οι σύμμαχοι τους κατέλαβαν το μεγαλύτερο μέρος του κόσμου που γνώριζαν, συμπεριλαμβανομένης της Αιγύπτου, της Περσίας και τμήματα της Ινδικής υποηπείρου, επιτρέποντας την  διάδοση των Ελληνικών και Ανατολικών κουλτούρων για πολλά χρόνια."
+
+#: simulation/templates/special/players/maur.xml:8
+msgid "Mauryas"
+msgstr "Μαουρύα"
+
+#: simulation/templates/special/players/maur.xml:9
+msgid ""
+"Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first"
+" to rule most of the Indian subcontinent, and was one of the largest and "
+"most populous empires of antiquity. Its military featured bowmen who used "
+"the long-range bamboo longbow, fierce female warriors, chariots, and "
+"thousands of armored war elephants. Its philosophers, especially the famous "
+"Acharya Chanakya, contributed to such varied fields such as economics, "
+"religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
+"the Great, the empire saw 40 years of peace, harmony, and prosperity."
+msgstr "Ιδρύθηκε το 322 π.Χ. από τον Τσαντραγκούπτα Μαουρύα, η Αυτοκρατορία των Μαυριτανών ήταν η πρώτη που κυριάρχησε στο μεγαλύτερο μέρος της ινδικής υποηπείρου, και ήταν μία από τις μεγαλύτερες και πιο πυκνοκατοικημένες αυτοκρατορίες της αρχαιότητας. Στρατιωτικό της χαρακτηριστικό ήταν οι τοξότες που χρησιμοποιούσαν τα μεγάλης εμβέλειας από μπαμπού τόξα, οι άγριες θηλυκές πολεμίστριες, τα άρματα και οι χιλιάδες τεθωρακισμένοι πολεμικοί ελέφαντες. Οι φιλόσοφοί της, ιδιαίτερα ο περίφημος Ατσάρια Τσανάκυα, συνείσφεραν σε ποικίλα πεδία όπως η οικονομία, η θρησκεία, η διπλωματία, ο πόλεμος και η χρηστή διακυβέρνηση. Κάτω από την κυριαρχία του Μεγάλου Ασόκα, η αυτοκρατορία είδε 40 χρόνια ειρήνης, αρμονίας και ευημερίας."
+
+#: simulation/templates/special/players/pers.xml:8
+msgid "Persians"
+msgstr "Πέρσες"
+
+#: simulation/templates/special/players/pers.xml:9
+msgid ""
+"The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
+"greatest empires of antiquity, stretching at its zenith from the Indus "
+"Valley in the east to Greece in the west. The Persians were the pioneers of "
+"empire-building of the ancient world, successfully imposing a centralized "
+"rule over various peoples with different customs, laws, religions and "
+"languages, and building a cosmopolitan army made up of contingents from each"
+" of these nations."
+msgstr "Η Περσική Αυτοκρατορία, κατά τη διακυβέρνηση της δυναστεία των Αχαιμενιδών, ήταν μία από τις μεγαλύτερες αυτοκρατορίες της αρχαιότητας, που εκτεινόταν στο ζενίθ της από την Κοιλάδα του Ινδού στα ανατολικά προς την Ελλάδα στα δυτικά. Οι Πέρσες ήταν οι πρωτοπόροι στην δημιουργία-αυτοκρατορίας στον αρχαίο κόσμο, επιβάλλοντας με επιτυχία μια κεντρική διακυβέρνηση πάνω σε διάφορους λαούς με διαφορετικά ήθη και έθιμα, νόμους, θρησκείες και γλώσσες, επίσης δημιούργησαν ένα πολυεθνικό στρατό που απαρτιζόταν από αγήματα από κάθε ένα από αυτά τα έθνη."
+
+#: simulation/templates/special/players/ptol.xml:16
+msgid "Ptolemies"
+msgstr "Πτολεμαίοι"
+
+#: simulation/templates/special/players/ptol.xml:17
+msgid ""
+"The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
+"Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
+"for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
+"Egypt."
+msgstr "Η δυναστεία των Πτολεμαίων ήταν μια Μακεδόνική Ελληνική βασιλική οικογένεια που κυβέρνησε την αυτοκρατορία των Πτολεμαίων στην Αίγυπτο κατά την Ελληνιστική περίοδο. Η εξουσία τους κράτησε για 275 χρόνια, από το 305 π.Χ. έως το 30 π.Χ.. Ήταν η τελευταία δυναστεία της αρχαίας Αιγύπτου."
+
+#: simulation/templates/special/players/rome.xml:8
+msgid "Romans"
+msgstr "Ρωμαίοι"
+
+#: simulation/templates/special/players/rome.xml:9
+msgid ""
+"The Romans controlled one of the largest empires of the ancient world, "
+"stretching at its peak from southern Scotland to the Sahara Desert, and "
+"containing between 60 million and 80 million inhabitants, one quarter of the"
+" Earth's population at that time. Rome also remained one of the strongest "
+"nations on earth for almost 800 years. The Romans were the supreme builders "
+"of the ancient world, excelled at siege warfare and had an exquisite "
+"infantry and navy."
+msgstr "Οι Ρωμαίοι που έλεγχαν μία από τις μεγαλύτερες αυτοκρατορίες του αρχαίου κόσμου, που εκτεινόταν στο αποκορύφωμά της από τη νότια Σκωτία μέχρι την έρημο της Σαχάρας, και περιείχε ανάμεσα σε 60 με 80 εκατομμύρια κατοίκους, το ένα τέταρτο του πληθυσμού της Γης εκείνη την εποχή. Η Ρώμη παρέμεινε επίσης ένα από τα ισχυρότερα έθνη στη γη για σχεδόν 800 χρόνια. Οι Ρωμαίοι ήταν οι υπέρτατοι οικοδόμοι του αρχαίου κόσμου, διακρίθηκαν σε πολιορκητικούς πολέμους και είχαν ένα εξαιρετικό πεζικό και ναυτικό."
+
+#: simulation/templates/special/players/sele.xml:16
+msgid "Seleucids"
+msgstr "Σελευκίδες"
+
+#: simulation/templates/special/players/sele.xml:17
+msgid ""
+"The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
+msgstr "Η Μακεδονική-Ελληνική δυναστεία που κυβέρνησε το μεγαλύτερο μέρος της πρώην αυτοκρατορίας του Αλεξάνδρου."
+
+#: simulation/templates/special/players/spart.xml:6
+msgid "Spartans"
+msgstr "Σπαρτιάτες"
+
+#: simulation/templates/special/players/spart.xml:7
 msgid ""
 "Sparta was a prominent city-state in ancient Greece, and its dominant "
 "military power on land from circa 650 B.C. Spartan culture was obsessed with"
@@ -1055,7 +1191,3 @@ msgid ""
 " forces during the Greco-Persian Wars, and won over Athens in the "
 "Peloponnesian Wars, though at great cost."
 msgstr "Η Σπάρτη ήταν μια εξέχουσα πόλη-κράτος στην αρχαία Ελλάδα και κυρίαρχη στρατιωτική δύναμη στη περιοχή της από το 650 π.Χ περίπου. Ο Σπαρτιατικός πολιτισμός είχε εμμονή με τη στρατιωτική εκπαίδευση και την αριστεία, η αυστηρή εκπαίδευση για τα αγόρια άρχιζε στην ηλικία των επτά. Χάρη στη στρατιωτική της δύναμη, η Σπάρτη οδήγησε μια συμμαχία των ελληνικών δυνάμεων στη διάρκεια των Περσικών πολέμων και κέρδισε από την Αθήνα τον Πελοποννησιακό Πόλεμο, αν και με μεγάλο κόστος."
-
-#: simulation/data/civs/spart.jsonName
-msgid "Spartans"
-msgstr "Σπαρτιάτες"

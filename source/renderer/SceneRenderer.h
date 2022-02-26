@@ -28,6 +28,7 @@
 
 #include <memory>
 
+class CCanvas2D;
 class CLightEnv;
 class CMaterial;
 class CMaterialManager;
@@ -109,7 +110,7 @@ public:
 	 * Assumes the caller has set up the GL environment for orthographic rendering
 	 * with texturing and blending.
 	 */
-	void RenderTextOverlays();
+	void RenderTextOverlays(CCanvas2D& canvas);
 
 	// set the current lighting environment; (note: the passed pointer is just copied to a variable within the renderer,
 	// so the lightenv passed must be scoped such that it is not destructed until after the renderer is no longer rendering)

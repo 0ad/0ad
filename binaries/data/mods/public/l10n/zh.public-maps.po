@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-18 08:08+0000\n"
-"PO-Revision-Date: 2022-02-19 03:08+0000\n"
+"POT-Creation-Date: 2022-02-21 08:09+0000\n"
+"PO-Revision-Date: 2022-02-22 06:10+0000\n"
 "Last-Translator: liulitchi\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -1931,6 +1931,15 @@ msgstr "爬行"
 msgid "Sandbox - The Gauls"
 msgstr "沙盒——高卢"
 
+#: maps/scenarios/sandbox_han.xml:Description:39
+msgid ""
+"A simple map showcasing the Han Chinese civilization's assets in the game."
+msgstr "小型地图，展示了汉朝的特性。"
+
+#: maps/scenarios/sandbox_han.xml:Name:39
+msgid "Sandbox - The Han Chinese"
+msgstr "沙盒 - 汉朝"
+
 #: maps/scenarios/sandbox_iberians.xml:Description:38
 msgid "A demo map for the Iberians."
 msgstr "演示地图——伊比利亚"
@@ -2571,10 +2580,12 @@ msgid "Island of Meroë (2)"
 msgstr "麦罗埃岛（2）"
 
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:39
+#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[2].Name:39
 msgid "West Player"
 msgstr "西边玩家"
 
 #: maps/skirmishes/butana_steppe_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[1].Name:39
 msgid "East Player"
 msgstr "东边玩家"
 
@@ -3144,6 +3155,22 @@ msgstr "一片不毛之地，几乎看不到动植物。 宝藏星罗棋布，�
 msgid "Coele-Syria (2)"
 msgstr "贝卡谷地（2）"
 
+#: maps/skirmishes/tarim_basin_2p.xml:Description:39
+#: maps/skirmishes/tarim_basin_4p.xml:Description:39
+msgid ""
+"A barren desert basin surrounded by mountainous valleys, the Tarim Basin is also called \"The Western Regions\" by the Han Chinese, and represents the furthest extent of their power.\n"
+"\n"
+"The basin itself is bereft of life  and offers little in the way of defensibility. The rugged mountain valleys harbor the only life, in the form of hearty shrub and tree species and some goats."
+msgstr "塔里木盆地，为山谷包围的贫瘠地区。汉代人称这里为“西域”。\n\n盆地本身不适合定居，也难于防守。崎岖的山谷中蕴藏着少数生命，有丰盛的灌木和树种，以及一些野山羊。"
+
+#: maps/skirmishes/tarim_basin_2p.xml:Name:39
+msgid "Tarim Basin (2 players)"
+msgstr "塔里木盆地（2）"
+
+#: maps/skirmishes/tarim_basin_4p.xml:Name:39
+msgid "Tarim Basin (4 players)"
+msgstr "塔里木盆地（4）"
+
 #: maps/skirmishes/team_oasis_2pv2p.xml:Description:38
 msgid ""
 "An oasis surrounded by mountains and desert. Farmlands near the water's edge"
@@ -3260,6 +3287,14 @@ msgstr "入侵者 3"
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[5].Name:39
 msgid "Invader 4"
 msgstr "入侵者 4"
+
+#: maps/skirmishes/yangtze_2p.xml:Description:39
+msgid "The Yangtze River in China. "
+msgstr "长江，又名扬子江。"
+
+#: maps/skirmishes/yangtze_2p.xml:Name:39
+msgid "Chang Jiang (2 players)"
+msgstr "长江（2）"
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Description:38
 msgid ""

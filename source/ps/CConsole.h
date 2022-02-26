@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -60,7 +60,7 @@ public:
 	 */
 	void Update(const float deltaRealTime);
 
-	void Render();
+	void Render(CCanvas2D& canvas);
 
 	void InsertChar(const int szChar, const wchar_t cooked);
 

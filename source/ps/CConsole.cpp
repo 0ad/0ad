@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -190,14 +190,12 @@ void CConsole::Update(const float deltaRealTime)
 	}
 }
 
-void CConsole::Render()
+void CConsole::Render(CCanvas2D& canvas)
 {
 	if (!(m_Visible || m_Toggle))
 		return;
 
 	PROFILE3_GPU("console");
-
-	CCanvas2D canvas;
 
 	DrawWindow(canvas);
 

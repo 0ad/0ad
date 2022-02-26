@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -30,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-08-30 12:26+0000\n"
-"Last-Translator: Heraklit of Ephesos\n"
+"POT-Creation-Date: 2022-02-21 08:09+0000\n"
+"PO-Revision-Date: 2022-02-23 14:35+0000\n"
+"Last-Translator: Latein Lebt\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,10 +51,14 @@ msgid "The Agoge"
 msgstr "Die Agoge"
 
 #: simulation/data/technologies/agoge.jsonrequirementsTooltip
+#: simulation/data/technologies/art_of_war.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
 #: simulation/data/technologies/barracks_batch_training.jsonrequirementsTooltip
+#: simulation/data/technologies/civil_engineering_02.jsonrequirementsTooltip
+#: simulation/data/technologies/civil_service_02.jsonrequirementsTooltip
 #: simulation/data/technologies/equine_transports.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_carts.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_chain_pump.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_fertilizer.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_mining_silvermining.jsonrequirementsTooltip
@@ -68,6 +72,8 @@ msgstr "Die Agoge"
 #: simulation/data/technologies/long_walls.jsonrequirementsTooltip
 #: simulation/data/technologies/nisean_horses.jsonrequirementsTooltip
 #: simulation/data/technologies/parade_of_daphne.jsonrequirementsTooltip
+#: simulation/data/technologies/poison_arrows.jsonrequirementsTooltip
+#: simulation/data/technologies/poison_blades.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
@@ -78,6 +84,7 @@ msgstr "Die Agoge"
 #: simulation/data/technologies/siege_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_health.jsonrequirementsTooltip
 #: simulation/data/technologies/siege_pack_unpack.jsonrequirementsTooltip
+#: simulation/data/technologies/silk_road.jsonrequirementsTooltip
 #: simulation/data/technologies/silvershields.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_03.jsonrequirementsTooltip
@@ -116,11 +123,14 @@ msgstr "Bogentraining"
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
+#: simulation/data/technologies/civil_engineering_01.jsonrequirementsTooltip
+#: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_harvester.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_training.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_water_weeding.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_mining_serfs.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_mining_shaftmining.jsonrequirementsTooltip
@@ -133,6 +143,7 @@ msgstr "Bogentraining"
 #: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
+#: simulation/data/technologies/special_crossbow_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
@@ -160,6 +171,7 @@ msgstr "Bogenschießtradition"
 #: simulation/data/technologies/fishing_boat_gather_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_basket.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_farming_plows.jsonrequirementsTooltip
+#: simulation/data/technologies/gather_farming_seed_drill.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsonrequirementsTooltip
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
@@ -194,6 +206,25 @@ msgstr "Persische Architektur"
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
 msgstr "Gebäude +25% Gesundheit und Eroberungspunkte, aber auch +20% Bauzeit."
+
+#: simulation/data/technologies/art_of_war.jsondescription
+msgid ""
+"This famous and most important work of the Seven Military Classics teaches "
+"Chinese commanders everything about planning battles, maintaining armies, "
+"and defeating one's enemies."
+msgstr "Dieses berühmte und wichtigste Werk der Sieben Militär-Klassiker lehrt chinesische Befehlshaber alles über die Schlachtplanung, den Erhalt einer Armee und wie man seine Feinde besiegt."
+
+#: simulation/data/technologies/art_of_war.jsongenericName
+msgid "Sun Tzu's \"The Art of War\""
+msgstr "Sun Tzus \"Die Kunst des Krieges\""
+
+#: simulation/data/technologies/art_of_war.jsonspecificName.han
+msgid "Sūnzǐ BīngFǎ"
+msgstr "Sūnzǐ Bīng Fǎ"
+
+#: simulation/data/technologies/art_of_war.jsontooltip
+msgid "All Citizen-Soldiers -25% required promotion experience."
+msgstr "Alle Bürgersoldaten –25% Erfahrung für die Beförderung."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -323,6 +354,28 @@ msgstr "Hellenische Architektur"
 msgid "Structures +10% health and +10% capture points."
 msgstr "Gebäude +10% Gesundheit und +10% Eroberungspunkte."
 
+#: simulation/data/technologies/civbonuses/han_popcap.jsondescription
+msgid ""
+"By uniting China under one emperor, the Han Dynasty ruled over 40 million "
+"people, one of the largest empires of antiquity by population."
+msgstr "Durch die Vereinigung Chinas unter einem Kaiser herrschte die Han-Dynastie über 40 Millionen Menschen und war damit an der Bevölkerungszahl gemessen eines der größten Reiche des Altertums."
+
+#: simulation/data/technologies/civbonuses/han_popcap.jsongenericName
+msgid "Federated States"
+msgstr "Verbündete Staaten"
+
+#: simulation/data/technologies/civbonuses/han_walls.jsondescription
+msgid "Han built massive walls, the great wall."
+msgstr "Die Han bauten gewaltige Mauern, die Chinesische Mauer"
+
+#: simulation/data/technologies/civbonuses/han_walls.jsongenericName
+msgid "Great Wall"
+msgstr "Chinesische Mauer"
+
+#: simulation/data/technologies/civbonuses/han_walls.jsontooltip
+msgid "City Walls +50% health."
+msgstr "Stadtmauern +50% Gesundheit"
+
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
 "India is the land of the elephants. Elephant warfare originated in India and"
@@ -405,6 +458,47 @@ msgstr "Sonnengetrocknete Lehmziegel"
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
 msgid "Houses and Economic Structures −40% wood cost and health."
 msgstr "Häuser und Wirtschaftsgebäude −40% Holzkosten und Gesundheit."
+
+#: simulation/data/technologies/civil_engineering_01.jsongenericName
+msgid "Civil Engineering - Level 1"
+msgstr "Bauwesen – Stufe 1"
+
+#: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
+#: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
+msgid "Gōngchéng"
+msgstr "Gōngchéng"
+
+#: simulation/data/technologies/civil_engineering_01.jsontooltip
+msgid "All structures -15% build time, +10% health and -5% cost."
+msgstr "Alle Gebäude –15% Bauzeit, +10% Gesundheit und –5% Kosten."
+
+#: simulation/data/technologies/civil_engineering_02.jsongenericName
+msgid "Civil Engineering - Level 2"
+msgstr "Bauwesen – Stufe 2"
+
+#: simulation/data/technologies/civil_engineering_02.jsontooltip
+msgid "All structures -25% build time, +20% health and -5% cost."
+msgstr "Alle Gebäude –25% Bauzeit, +20% Gesundheit und –5% Kosten."
+
+#: simulation/data/technologies/civil_service_01.jsongenericName
+msgid "Civil Service - Level 1"
+msgstr "Öffentlicher Dienst – Stufe 1"
+
+#: simulation/data/technologies/civil_service_01.jsonspecificName.han
+#: simulation/data/technologies/civil_service_02.jsonspecificName.han
+msgid "Guānliáo"
+msgstr "Guānliáo"
+
+#: simulation/data/technologies/civil_service_01.jsontooltip
+#: simulation/data/technologies/civil_service_02.jsontooltip
+msgid ""
+"Technologies at all buildings, except the Blacksmith, -15% cost and -15% "
+"research time."
+msgstr "Technologien bei allen Gebäuden außer dem Schmied –15% Kosten und –15% Erforschungszeit."
+
+#: simulation/data/technologies/civil_service_02.jsongenericName
+msgid "Civil Service - Level 2"
+msgstr "Öffentlicher Dienst – Stufe 2"
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -520,6 +614,20 @@ msgstr "Arbeiter nutzen Schubkarren. Erhöht die Tragekapazität für alle Resso
 msgid "Wheelbarrow"
 msgstr "Schubkarre"
 
+#: simulation/data/technologies/gather_farming_chain_pump.jsondescription
+msgid "Install a chain pump for improved irrigation."
+msgstr ""
+
+#: simulation/data/technologies/gather_farming_chain_pump.jsongenericName
+msgid "Chain Pump"
+msgstr "Kettenpumpe"
+
+#: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
+#: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
+#: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
+msgid "Workers +25% rice gather rate."
+msgstr "Arbeiter +25% Sammelrate für Reis."
+
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
 msgstr "Zusätzliche Nährstoffe für Farmen."
@@ -558,6 +666,14 @@ msgstr "Rüste deine Arbeiter mit Eisenpflügen aus, ein von Tieren gezogenes We
 msgid "Iron Plow"
 msgstr "Eisenpflug"
 
+#: simulation/data/technologies/gather_farming_seed_drill.jsondescription
+msgid "Equip your workers with seed drills."
+msgstr "Statte deine Arbeiter mit Sähmaschinen aus"
+
+#: simulation/data/technologies/gather_farming_seed_drill.jsongenericName
+msgid "Seed Drill"
+msgstr "Sähmaschine"
+
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
 msgstr "Training der Arbeiter zur Steigerung des landwirtschaftlichen Ertrages."
@@ -565,6 +681,14 @@ msgstr "Training der Arbeiter zur Steigerung des landwirtschaftlichen Ertrages."
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
 msgstr "Sammlertraining"
+
+#: simulation/data/technologies/gather_farming_water_weeding.jsondescription
+msgid "Grow water weeds to to supply rice plants with nutricients."
+msgstr ""
+
+#: simulation/data/technologies/gather_farming_water_weeding.jsongenericName
+msgid "Water Weeding"
+msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
@@ -906,6 +1030,10 @@ msgstr "Brieftauben"
 msgid "Outposts +33% vision range."
 msgstr "Außenposten +33% Sichtweite."
 
+#: simulation/data/technologies/pair_unlock_arrows_type.jsongenericName
+msgid "Fire Arrows vs Poison Arrows"
+msgstr "Feuerpfeile vs. Giftpfeile"
+
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
 msgstr "Traditionelle Armee vs. reformierte Armee"
@@ -1030,6 +1158,22 @@ msgstr "Steige zur Stadtphase auf, die mehr Einheiten, Gebäude und Technologien
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
 msgstr "Dorfphase"
+
+#: simulation/data/technologies/poison_arrows.jsongenericName
+msgid "Poison Arrows"
+msgstr "Giftpfeile"
+
+#: simulation/data/technologies/poison_arrows.jsontooltip
+msgid "Ranged Soldiers +20% attack damage."
+msgstr "Fernkampfsoldaten +20% Angriffsschaden."
+
+#: simulation/data/technologies/poison_blades.jsongenericName
+msgid "Poison Blades"
+msgstr "Vergiftete Klingen"
+
+#: simulation/data/technologies/poison_blades.jsontooltip
+msgid "Melee Soldiers +20% attack damage."
+msgstr "Nahkampsoldaten +20% Angriffsschaden."
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
@@ -1187,6 +1331,14 @@ msgstr "Militärische Pioniere"
 #: simulation/data/technologies/siege_pack_unpack.jsontooltip
 msgid "Siege Engines –40% pack and unpack time."
 msgstr "Belagerungswaffen –40% Packzeit."
+
+#: simulation/data/technologies/silk_road.jsongenericName
+msgid "Silk Road"
+msgstr "Seidenstraße"
+
+#: simulation/data/technologies/silk_road.jsontooltip
+msgid "Traders +20% international trade bonus."
+msgstr "Händler +20% internationaler Handelsbonus."
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
@@ -1400,6 +1552,21 @@ msgstr "Verbesserte Schildlegierungen"
 msgid "Soldiers +2 pierce resistance."
 msgstr "Soldaten +2 Stichwiderstand."
 
+#: simulation/data/technologies/special_crossbow_tradition.jsondescription
+msgid ""
+"The Chinese had a tradition of fine archery and a penchant for using massed "
+"crossbowmen in battle."
+msgstr ""
+
+#: simulation/data/technologies/special_crossbow_tradition.jsongenericName
+msgid "Crossbow Tradition"
+msgstr ""
+
+#: simulation/data/technologies/special_crossbow_tradition.jsontooltip
+msgid ""
+"Range +10 meters, −10% ranged attack spread for crossbow-wielding units."
+msgstr ""
+
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
 msgstr "Ein Informantennetz rekrutieren, um über deine Leute zu wachen."
@@ -1487,6 +1654,10 @@ msgstr "Wachposten"
 #: simulation/data/technologies/tower_watch.jsonspecificName.spart
 msgid "Nyktophylakes"
 msgstr "Nyktophylakes"
+
+#: simulation/data/technologies/tower_watch.jsonspecificName.han
+msgid "Shàobīng"
+msgstr "Shàobīng"
 
 #: simulation/data/technologies/tower_watch.jsonspecificName.rome
 msgid "Vigiles"

@@ -197,11 +197,14 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 	{
 		// Add a delta to avoid z-fighting.
 		const float height = g_Renderer.GetSceneRenderer().GetWaterManager().m_WaterHeight + 0.05f;
-		const float waterPos[] = {
+		const float waterPos[] =
+		{
 			waterBounds[0].X, height, waterBounds[0].Z,
 			waterBounds[1].X, height, waterBounds[0].Z,
-			waterBounds[0].X, height, waterBounds[1].Z,
-			waterBounds[1].X, height, waterBounds[1].Z
+			waterBounds[1].X, height, waterBounds[1].Z,
+			waterBounds[0].X, height, waterBounds[0].Z,
+			waterBounds[1].X, height, waterBounds[1].Z,
+			waterBounds[0].X, height, waterBounds[1].Z
 		};
 
 		const GLsizei stride = sizeof(float) * 3;
@@ -209,7 +212,7 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 		debugOverlayShader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, waterPos);
 		debugOverlayShader->AssertPointersBound();
 
-		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 	}
 
 	debugOverlayTech->EndPass();
@@ -299,6 +302,8 @@ void TerrainRenderer::RenderPatches(
 	if (visiblePatches.empty())
 		return;
 
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render terrain patches");
+
 #if CONFIG2_GLES
 	UNUSED2(deviceCommandContext);
 	UNUSED2(defines);
@@ -323,13 +328,17 @@ void TerrainRenderer::RenderPatches(
 
 ///////////////////////////////////////////////////////////////////
 // Render outlines of submitted patches as lines
-void TerrainRenderer::RenderOutlines(int cullGroup)
+void TerrainRenderer::RenderOutlines(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	int cullGroup)
 {
 	ENSURE(m->phase == Phase_Render);
 
 	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
 	if (visiblePatches.empty())
 		return;
+
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render terrain outlines");
 
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
 		visiblePatches[i]->RenderOutline();
@@ -404,11 +413,6 @@ bool TerrainRenderer::RenderFancyWater(
 
 	const double time = waterManager.m_WaterTexTimer;
 	const float repeatPeriod = waterManager.m_RepeatPeriod;
-
-#if !CONFIG2_GLES
-	if (g_Renderer.GetSceneRenderer().GetWaterRenderMode() == WIREFRAME)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-#endif
 
 	m->fancyWaterTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(
@@ -505,11 +509,6 @@ bool TerrainRenderer::RenderFancyWater(
 	}
 	m->fancyWaterTech->EndPass();
 
-#if !CONFIG2_GLES
-	if (g_Renderer.GetSceneRenderer().GetWaterRenderMode() == WIREFRAME)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-#endif
-
 	return true;
 }
 
@@ -527,13 +526,14 @@ void TerrainRenderer::RenderSimpleWater(
 	const WaterManager& waterManager = g_Renderer.GetSceneRenderer().GetWaterManager();
 	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
 
-	if (g_Renderer.GetSceneRenderer().GetWaterRenderMode() == WIREFRAME)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
 	const double time = waterManager.m_WaterTexTimer;
 
+	CShaderDefines context;
+	if (g_Renderer.GetSceneRenderer().GetWaterRenderMode() == WIREFRAME)
+		context.Add(str_MODE_WIREFRAME, str_1);
+
 	CShaderTechniquePtr waterSimpleTech =
-		g_Renderer.GetShaderManager().LoadEffect(str_water_simple);
+		g_Renderer.GetShaderManager().LoadEffect(str_water_simple, context);
 	waterSimpleTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(
 		waterSimpleTech->GetGraphicsPipelineStateDesc());
@@ -558,9 +558,6 @@ void TerrainRenderer::RenderSimpleWater(
 	deviceCommandContext->BindTexture(1, GL_TEXTURE_2D, 0);
 
 	waterSimpleTech->EndPass();
-
-	if (g_Renderer.GetSceneRenderer().GetWaterRenderMode() == WIREFRAME)
-		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 #endif
 }
 
@@ -612,13 +609,12 @@ void TerrainRenderer::RenderWaterFoamOccluders(
 		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 }
 
-void TerrainRenderer::RenderPriorities(int cullGroup)
+void TerrainRenderer::RenderPriorities(CCanvas2D& canvas, int cullGroup)
 {
 	PROFILE("priorities");
 
 	ENSURE(m->phase == Phase_Render);
 
-	CCanvas2D canvas;
 	CTextRenderer textRenderer;
 	textRenderer.SetCurrentFont(CStrIntern("mono-stroke-10"));
 	textRenderer.SetCurrentColor(CColor(1.0f, 1.0f, 0.0f, 1.0f));

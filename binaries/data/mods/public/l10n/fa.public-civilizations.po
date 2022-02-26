@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2021-11-03 17:22+0000\n"
-"Last-Translator: ARA2020\n"
+"POT-Creation-Date: 2022-02-21 08:09+0000\n"
+"PO-Revision-Date: 2022-02-21 08:45+0000\n"
+"Last-Translator: Mostafa Lotfi\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -98,18 +98,6 @@ msgstr "معادن لاریون در آتیکا برای آتن مقادیر ع�
 msgid "Silver Owls"
 msgstr "جغد نقره ای"
 
-#: simulation/data/civs/athen.jsonHistory
-msgid ""
-"As the cradle of Western civilization and the birthplace of democracy, "
-"Athens was famed as a center for the arts, learning and philosophy. The "
-"Athenians were also powerful warriors, particularly at sea. At its peak, "
-"Athens dominated a large part of the Hellenic world for several decades."
-msgstr "به عنوان مهد تمدن غرب و زادگاه دموکراسی، آتن به عنوان مرکزی برای هنر، آموزش و فلسفه شهرت داشت. آتنی ها همچنین جنگجویانی قدرتمند بودند. خصوصا در دریا. در دوران اوج آتن خود، آتن چند دهه ای بر بخش بزرگی از دنیای یونان باستان سیطره داشت."
-
-#: simulation/data/civs/athen.jsonName
-msgid "Athenians"
-msgstr "آتنی ها"
-
 #: simulation/data/civs/brit.jsonAINames[0]
 msgid "Karatakos"
 msgstr "کاراتاکوس"
@@ -153,18 +141,6 @@ msgstr "آدمینیوس"
 #: simulation/data/civs/brit.jsonAINames[9]
 msgid "Dubnovellaunus"
 msgstr "دوبنونالوس"
-
-#: simulation/data/civs/brit.jsonHistory
-msgid ""
-"The Britons were the Celtic tribes of the British Isles. Using chariots, "
-"longswordsmen and powerful melee soldiers, they staged fearsome revolts "
-"against Rome to protect their customs and interests. Also, they built "
-"thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr "بریتون ها از قبایل سلتی جزیره انگلستان بودند. از ارابه های جنگی و کماندارها و همچنین سربازان نزدیکزن بسیار قدرتمند استفاده می کردند. آنها یکی از ترسناکترین انقلاب ها را در مقابل امپراتوری روم شکل دادند تا بتوانند از اعتقادات و علایق خود دفاع کنند. همچنین آنها هزاران سازه منحصر بفرد همانند قلعه تپه ها ، کرنگ و سنگدژ ساختند."
-
-#: simulation/data/civs/brit.jsonName
-msgid "Britons"
-msgstr "بریتون ها"
 
 #: simulation/data/civs/cart.jsonAINames[0]
 msgid "Hannibal Barca"
@@ -246,20 +222,6 @@ msgstr "Docks and Markets + 10% پاداش تجارت بین المللی."
 msgid "Desirable Products"
 msgstr "محصولات مطلوب"
 
-#: simulation/data/civs/cart.jsonHistory
-msgid ""
-"Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
-"western Mediterranean, eventually taking over much of North Africa and "
-"modern-day Spain in the third century B.C. The sailors of Carthage were "
-"among the fiercest contenders on the high seas, and masters of naval trade. "
-"They deployed towered War Elephants on the battlefield to fearsome effect, "
-"and had defensive walls so strong, they were never breached."
-msgstr "کارتاژ که در دنیای امروز در کشور تونس واقع می شود در زمان خود یک نیروی قدرتمند در غرب مدیترانه به حساب می آمد و در نهایت توانست کنترل بیشترین قسمت های شمال افریقا و سرزمین اسپانیای کنونی را سه قرن قبل از میلاد تحت کنترل خود بگیرد. ملوانان کارتاژ مبارزان قدرتمند و تاجران دریایی زبده ای بودند. کارتاژها از فیل های جنگی در نبرد های زمینی خود استفاده می کردند که ترس شدیدی را در دشمنان ایجاد می کرد همچنین آنها در دفاع با دیوارهای بسیار مستحکم و سه لایه خود آنچنان از شهرهای خود دفاع می کردند که کسی قادر به نفوذ به آنها نبود."
-
-#: simulation/data/civs/cart.jsonName
-msgid "Carthaginians"
-msgstr "کارتاژی ها"
-
 #: simulation/data/civs/gaul.jsonAINames[0]
 msgid "Viridomarus"
 msgstr "ویریدوماروس"
@@ -300,18 +262,118 @@ msgstr "ولتیاکوس"
 msgid "Viridovix"
 msgstr "ویریدوویکس"
 
-#: simulation/data/civs/gaul.jsonHistory
-msgid ""
-"The Gauls were the Celtic tribes of continental Europe. Dominated by a "
-"priestly class of Druids, they featured a sophisticated culture of advanced "
-"metalworking, agriculture, trade and even road engineering. With heavy "
-"infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
-"of conquest and Rome's authoritarian rule."
-msgstr "گال ها قبیله های سلتی منظقه اروپا بودند. آنها کاملا تحت تاثیر طبقه دروئید ها قرار داشنتد با یک فرهنگ پیچیده در فناوری بکارگیری فلزات، کشاورزی و تجارت و حتی مهندسی راه. آنها با پیاده نظام ها و سواره نظام های سنگین اسلحه خود و جنگجویان شجاع خود توانستند در مقابل کشورگشایی های سزار و اقتدارگری روم بایستند."
+#: simulation/data/civs/han.jsonAINames[0]
+msgid "Liu Bang"
+msgstr ""
 
-#: simulation/data/civs/gaul.jsonName
-msgid "Gauls"
-msgstr "گال ها"
+#: simulation/data/civs/han.jsonAINames[10]
+msgid "Liu Shi"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[11]
+msgid "Liu Ao"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[12]
+msgid "Liu Xin"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[13]
+msgid "Liu Kan"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[14]
+msgid "Liu Xuan"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[15]
+msgid "Liu Xiu"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[16]
+msgid "Liu Zhuang"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[17]
+msgid "Liu Da"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[18]
+msgid "Liu Zhao"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[19]
+msgid "Liu Long"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[1]
+msgid "Liu Ying"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[20]
+msgid "Liu Hu"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[21]
+msgid "Liu Yi"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[22]
+msgid "Liu Bao"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[23]
+msgid "Liu Bing"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[24]
+msgid "Liu Zuan"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[25]
+msgid "Liu Zhi"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[27]
+msgid "Liu Bian"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[28]
+msgid "Liu Xie"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[2]
+msgid "Liu Gong"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[26]
+#: simulation/data/civs/han.jsonAINames[3]
+msgid "Liu Hong"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[4]
+msgid "Liu Heng"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[5]
+msgid "Liu Qi"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[6]
+msgid "Liu Che"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[7]
+msgid "Liu Fuling"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[8]
+msgid "Liu He"
+msgstr ""
+
+#: simulation/data/civs/han.jsonAINames[9]
+msgid "Liu Bingyi"
+msgstr ""
 
 #: simulation/data/civs/iber.jsonAINames[0]
 #: simulation/data/civs/iber.jsonAINames[1]
@@ -366,20 +428,6 @@ msgstr "برج های سنگی -۵۰٪ هزینه چوب، +۱۵۰٪ هزینه 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Massive Towers"
 msgstr "برج های عظیم"
-
-#: simulation/data/civs/iber.jsonHistory
-msgid ""
-"The Iberians were a people of mysterious origins and language, with a strong"
-" tradition of horsemanship and metalworking. A relatively peaceful culture, "
-"they usually fought in other's battles only as mercenaries. However, they "
-"proved tenacious when Rome sought to take their land and freedom from them, "
-"and employed pioneering guerrilla tactics and flaming javelins as they "
-"fought back."
-msgstr "مردم ایبریایی مردمی بودند با پیشینه ای اسرارآمیز. نسبتا مردمی صلحجو بودند و عموما در جنگهای دیگران به عنوان مزدور شرکت داشتند. البته آنها تمایل به مبارزه و آزادی برای خاک خود را نیز در زمان اشغال روم نشان دادند و به عنوان پیشگامان جنگ های چریکی و پارتیزانی و استفاده از نیزه های آتشین از آنها یاد می شود."
-
-#: simulation/data/civs/iber.jsonName
-msgid "Iberians"
-msgstr "ایبریایی ها"
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -447,28 +495,6 @@ msgstr "Battering Rams +20% آسیب حمله و +2 ظرفیت پادگان."
 msgid "Large Rams"
 msgstr "قوچ های بزرگ"
 
-#: simulation/data/civs/kush.jsonHistory
-msgid ""
-"The Kingdom of Kush was an ancient African kingdom situated on the "
-"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
-" Republic of Sudan. The Kushite era of rule in the region was established "
-"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
-"centered at Napata in its early phase. They invaded Egypt in the 8th century"
-" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
-"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
-"culture was influenced heavily by the Egyptians, with Kushite pyramid "
-"building and monumental temple architecture still extent. The Kushites even "
-"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
-"the Kushite imperial capital was at Meroe. In early Greek geography, the "
-"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
-" the 4th century AD, when it weakened and disintegrated due to internal "
-"rebellion, eventually succumbing to the rising power of Axum."
-msgstr "پادشاهی کوش یک پادشهایی آفریقایی باستانی است که در نقطه تلاقی نیل آبی و نیل سفید و همچنین در نزدیکی رود آبتارا قرار داشد. آنها در قرن 8 قبل از میلاد به مصر حمله کردند و بعد از فتح مصر پادشاه کوش همچون فراعن مصر به مدت یک قرن حکومت کرد تا زمانی که توسط آشوریها عقب رانده شدند. فرهنگ کوشی ها به شدت تحت تاثیر فرهنگ مصر قرار داشت و ساخت اهرام نیز تاثیر گرفته از فرهنگ مصر بود. کوشی ها حتی بسیاری از خدایان مصری را همانند آمون می پرستیدند. در دوران عهد عتیق پایتخت پادشاهی کوش  در مروا قرار داشت. پادشاهی کوش تا قرن 4 بعد از میلاد نیز برجای بود ولی به مرور تضعیف شد و بدلیل جنگ های داخلی از هم پاشید."
-
-#: simulation/data/civs/kush.jsonName
-msgid "Kushites"
-msgstr "کوشی"
-
 #: simulation/data/civs/mace.jsonAINames[0]
 msgid "Alexander the Great"
 msgstr "اسکندر کبیر"
@@ -522,19 +548,6 @@ msgstr "دمتریوس دوم آتولیکوس"
 msgid "Philip V"
 msgstr "فلیپ پنجم"
 
-#: simulation/data/civs/mace.jsonHistory
-msgid ""
-"Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
-" the Greek peninsula. Under the leadership of Alexander the Great, "
-"Macedonian forces and allies took over most of the world they knew, "
-"including Egypt, Persia and parts of the Indian subcontinent, allowing a "
-"diffusion of Hellenic and eastern cultures for years to come."
-msgstr "مقدوینه یک پادشاهی باستانی یونان، با مرکزیت درشمال شبه جزیره یونان بود. تحت رهبری اسکندر، نیروهای مقدونی و همپیمان های آنها توانستند بیشتر دنیای شناخته شده در آن دوران  را فتح کنند، شمال مصر، ایران و بخش هایی از هند و باعث تلفیق فرهنگ یونان و شرق شدند"
-
-#: simulation/data/civs/mace.jsonName
-msgid "Macedonians"
-msgstr "مقدونی ها"
-
 #: simulation/data/civs/maur.jsonAINames[0]
 msgid "Chandragupta Maurya"
 msgstr "چاندراگوپتا مائوریا"
@@ -570,22 +583,6 @@ msgstr "شاتدنوان ماوریا"
 #: simulation/data/civs/maur.jsonAINames[8]
 msgid "Brihadratha Maurya"
 msgstr "بریهادراتا مائوریا"
-
-#: simulation/data/civs/maur.jsonHistory
-msgid ""
-"Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first"
-" to rule most of the Indian subcontinent, and was one of the largest and "
-"most populous empires of antiquity. Its military featured bowmen who used "
-"the long-range bamboo longbow, fierce female warriors, chariots, and "
-"thousands of armored war elephants. Its philosophers, especially the famous "
-"Acharya Chanakya, contributed to such varied fields such as economics, "
-"religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
-"the Great, the empire saw 40 years of peace, harmony, and prosperity."
-msgstr "در 322 ق.م توسط چاندرگوپتا مائوریا امپراتوری مائوریان شکل گرفت و اولین حکومتی بود که توانست در بیشتر مناطق هند حکمرانی کند. این حکومت یکی از پرجمعیت ترین امپراتوریهای عصر باستان بود. نیروهای نظامی آنها بیشتر متشکل از کمانداران بلند پرتاب بود که از کمان های بامبویی استفاده می کردند. جنگجویان زن خشن، ارابه های جنگی، هزاران فیل جنگی از ستون های سپاه جنگی آنها بود. فیلسوفان بزرگ آنها به خصوص آچاریا چاناکیا معروف، دستاوردهای بسیار مهمی در حوزه های گوناگون چون اقتصاد، مذهب، سیاست، هنر جنگ و حکومت داری صحیح برای تمدن مائوریان ها به ارمغان آوردند. تحت فرمان آشوکای بزرگ، امپراتوری مائوریان ها 40 سال صلح، آرامش و رفاه را تجربه کرد."
-
-#: simulation/data/civs/maur.jsonName
-msgid "Mauryas"
-msgstr "مائوریاس"
 
 #: simulation/data/civs/pers.jsonAINames[0]
 msgid "Kurush II the Great"
@@ -642,21 +639,6 @@ msgstr "معامله گران زمین + 25 درصد سود تجاری."
 #: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Darics"
 msgstr "داریک ها"
-
-#: simulation/data/civs/pers.jsonHistory
-msgid ""
-"The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
-"greatest empires of antiquity, stretching at its zenith from the Indus "
-"Valley in the east to Greece in the west. The Persians were the pioneers of "
-"empire-building of the ancient world, successfully imposing a centralized "
-"rule over various peoples with different customs, laws, religions and "
-"languages, and building a cosmopolitan army made up of contingents from each"
-" of these nations."
-msgstr "امپراتوری ایران در زمان حکومت خاندان هخامنشیان یکی از بزرگترین امپراتوریهای عصر باستان به حساب می آمد که از هند در شرق تا یونان در غرب امتداد داشت. ایرانی ها بنیانگذار و پیشرو در ایجاد امپراتوری در عصر باستان بودند، به موفقیت توانستند قوانین متمرکز و یکسان برای تمام مردم با قومیت ها ، مذهب و زبانهای متفاوت ایجاد کنند و یک ارتش واحد از تمام این تمدن های متفاوت در امپراتوری خود ایجاد کنند."
-
-#: simulation/data/civs/pers.jsonName
-msgid "Persians"
-msgstr "ایرانی ها"
 
 #: simulation/data/civs/ptol.jsonAINames[0]
 msgid "Ptolemy Soter"
@@ -742,18 +724,6 @@ msgstr "تیراندازهای بولت -33٪ آسیب حمله و -33٪ زما�
 msgid "Polybolos"
 msgstr "پولیبولوس"
 
-#: simulation/data/civs/ptol.jsonHistory
-msgid ""
-"The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
-"Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
-"for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
-"Egypt."
-msgstr "سلسله بطلمیوسی ها یک خانواده سلطنتی مقدونی بودند که بر امپراتوری بطلمیوسی و مصر در دوران یونانی گرایی حکمرانی می کردند. حکومت آنها بیش از 275 سال، از 305 ق.م تا 30 ق.م بطول انجامید. آنها اخرین سلسله مصر باستان محسوب می شوند."
-
-#: simulation/data/civs/ptol.jsonName
-msgid "Ptolemies"
-msgstr "بطلمیوسی ها"
-
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
 msgstr "لوسیوس جونیوس بروتوس"
@@ -832,21 +802,6 @@ msgstr "Battering Rams +20% آسیب حمله. سنگ پرتاب کننده ها
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Legionary Engineers"
 msgstr "مهندسین لژیونر"
-
-#: simulation/data/civs/rome.jsonHistory
-msgid ""
-"The Romans controlled one of the largest empires of the ancient world, "
-"stretching at its peak from southern Scotland to the Sahara Desert, and "
-"containing between 60 million and 80 million inhabitants, one quarter of the"
-" Earth's population at that time. Rome also remained one of the strongest "
-"nations on earth for almost 800 years. The Romans were the supreme builders "
-"of the ancient world, excelled at siege warfare and had an exquisite "
-"infantry and navy."
-msgstr "رومی یکی از بزرگترین امپراتوری های دنیای باستان را در اختیار داشتند که در دوران اوج از شمال اسکاتلند تا صحرای بزرگ آفریقا ادامه داشت و در حدود 60 تا 80 میلیون نفر در آن زندگی می کردند، که یک چهارم جمعیت کره زمین در آن زمان بود. روم همچینین به مدت 800 سال یکی از قدرتمند ترین تمدنهای تاریخ باقی ماند. رومی ها استادان معماری و دنیای باستان بودند و متخصص در شکست دژ های دشمن و از یک نیروی پیاده و دریایی بسیار قوی بهره می بردند."
-
-#: simulation/data/civs/rome.jsonName
-msgid "Romans"
-msgstr "رومی‌ها"
 
 #: simulation/data/civs/sele.jsonAINames[0]
 msgid "Seleucus I Nicator"
@@ -965,15 +920,6 @@ msgstr "آنتیوخوس پنجم"
 msgid "Demetrius I Soter"
 msgstr "دیمیتریوس اول"
 
-#: simulation/data/civs/sele.jsonHistory
-msgid ""
-"The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
-msgstr "دودمان یونانی مقدونی که بیشتر امپراتوری سابق اسکندر را حکمرانی می کرد"
-
-#: simulation/data/civs/sele.jsonName
-msgid "Seleucids"
-msgstr "سلوکیان"
-
 #: simulation/data/civs/spart.jsonAINames[0]
 msgid "Leonidas"
 msgstr "لئونیداس"
@@ -1026,7 +972,197 @@ msgstr "شهروندان زن +40٪ سلامت و +50٪ آسیب هک حمله �
 msgid "Spartan Women"
 msgstr "زنان اسپارتی"
 
-#: simulation/data/civs/spart.jsonHistory
+#: simulation/templates/special/players/athen.xml:8
+msgid "Athenians"
+msgstr "آتنی ها"
+
+#: simulation/templates/special/players/athen.xml:9
+msgid ""
+"As the cradle of Western civilization and the birthplace of democracy, "
+"Athens was famed as a center for the arts, learning and philosophy. The "
+"Athenians were also powerful warriors, particularly at sea. At its peak, "
+"Athens dominated a large part of the Hellenic world for several decades."
+msgstr "به عنوان مهد تمدن غرب و زادگاه دموکراسی، آتن به عنوان مرکزی برای هنر، آموزش و فلسفه شهرت داشت. آتنی ها همچنین جنگجویانی قدرتمند بودند. خصوصا در دریا. در دوران اوج آتن خود، آتن چند دهه ای بر بخش بزرگی از دنیای یونان باستان سیطره داشت."
+
+#: simulation/templates/special/players/brit.xml:8
+msgid "Britons"
+msgstr "بریتون ها"
+
+#: simulation/templates/special/players/brit.xml:9
+msgid ""
+"The Britons were the Celtic tribes of the British Isles. Using chariots, "
+"longswordsmen and powerful melee soldiers, they staged fearsome revolts "
+"against Rome to protect their customs and interests. Also, they built "
+"thousands of unique structures such as hill forts, crannogs and brochs."
+msgstr "بریتون ها از قبایل سلتی جزیره انگلستان بودند. از ارابه های جنگی و کماندارها و همچنین سربازان نزدیکزن بسیار قدرتمند استفاده می کردند. آنها یکی از ترسناکترین انقلاب ها را در مقابل امپراتوری روم شکل دادند تا بتوانند از اعتقادات و علایق خود دفاع کنند. همچنین آنها هزاران سازه منحصر بفرد همانند قلعه تپه ها ، کرنگ و سنگدژ ساختند."
+
+#: simulation/templates/special/players/cart.xml:8
+msgid "Carthaginians"
+msgstr "کارتاژی ها"
+
+#: simulation/templates/special/players/cart.xml:9
+msgid ""
+"Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
+"western Mediterranean, eventually taking over much of North Africa and "
+"modern-day Spain in the third century B.C. The sailors of Carthage were "
+"among the fiercest contenders on the high seas, and masters of naval trade. "
+"They deployed towered War Elephants on the battlefield to fearsome effect, "
+"and had defensive walls so strong, they were never breached."
+msgstr "کارتاژ که در دنیای امروز در کشور تونس واقع می شود در زمان خود یک نیروی قدرتمند در غرب مدیترانه به حساب می آمد و در نهایت توانست کنترل بیشترین قسمت های شمال افریقا و سرزمین اسپانیای کنونی را سه قرن قبل از میلاد تحت کنترل خود بگیرد. ملوانان کارتاژ مبارزان قدرتمند و تاجران دریایی زبده ای بودند. کارتاژها از فیل های جنگی در نبرد های زمینی خود استفاده می کردند که ترس شدیدی را در دشمنان ایجاد می کرد همچنین آنها در دفاع با دیوارهای بسیار مستحکم و سه لایه خود آنچنان از شهرهای خود دفاع می کردند که کسی قادر به نفوذ به آنها نبود."
+
+#: simulation/templates/special/players/gaia.xml:5
+msgid "Gaia"
+msgstr "مادر طبیعت"
+
+#: simulation/templates/special/players/gaul.xml:8
+msgid "Gauls"
+msgstr "گال ها"
+
+#: simulation/templates/special/players/gaul.xml:9
+msgid ""
+"The Gauls were the Celtic tribes of continental Europe. Dominated by a "
+"priestly class of Druids, they featured a sophisticated culture of advanced "
+"metalworking, agriculture, trade and even road engineering. With heavy "
+"infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
+"of conquest and Rome's authoritarian rule."
+msgstr "گال ها قبیله های سلتی منظقه اروپا بودند. آنها کاملا تحت تاثیر طبقه دروئید ها قرار داشنتد با یک فرهنگ پیچیده در فناوری بکارگیری فلزات، کشاورزی و تجارت و حتی مهندسی راه. آنها با پیاده نظام ها و سواره نظام های سنگین اسلحه خود و جنگجویان شجاع خود توانستند در مقابل کشورگشایی های سزار و اقتدارگری روم بایستند."
+
+#: simulation/templates/special/players/han.xml:16
+msgid "Han Chinese"
+msgstr ""
+
+#: simulation/templates/special/players/han.xml:17
+msgid ""
+"The Han dynasty (206 BC – AD 220) was the second imperial dynasty of China, "
+"preceded by the Qin dynasty (221–207 BC) and succeeded by the Three Kingdoms"
+" period (AD 220–280). It is considered a golden age in Chinese history, and "
+"China made significant progress in arts and sciences during the Han period. "
+"The core of the Han empire was around the Wei River, and the Han capital was"
+" Chang'an, very close to the Qin capital Xianyang (both are now part of "
+"Xi'an, Shaanxi)."
+msgstr ""
+
+#: simulation/templates/special/players/iber.xml:8
+msgid "Iberians"
+msgstr "ایبریایی ها"
+
+#: simulation/templates/special/players/iber.xml:9
+msgid ""
+"The Iberians were a people of mysterious origins and language, with a strong"
+" tradition of horsemanship and metalworking. A relatively peaceful culture, "
+"they usually fought in other's battles only as mercenaries. However, they "
+"proved tenacious when Rome sought to take their land and freedom from them, "
+"and employed pioneering guerrilla tactics and flaming javelins as they "
+"fought back."
+msgstr "مردم ایبریایی مردمی بودند با پیشینه ای اسرارآمیز. نسبتا مردمی صلحجو بودند و عموما در جنگهای دیگران به عنوان مزدور شرکت داشتند. البته آنها تمایل به مبارزه و آزادی برای خاک خود را نیز در زمان اشغال روم نشان دادند و به عنوان پیشگامان جنگ های چریکی و پارتیزانی و استفاده از نیزه های آتشین از آنها یاد می شود."
+
+#: simulation/templates/special/players/kush.xml:8
+msgid "Kushites"
+msgstr "کوشی"
+
+#: simulation/templates/special/players/kush.xml:9
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "پادشاهی کوش یک پادشهایی آفریقایی باستانی است که در نقطه تلاقی نیل آبی و نیل سفید و همچنین در نزدیکی رود آبتارا قرار داشد. آنها در قرن 8 قبل از میلاد به مصر حمله کردند و بعد از فتح مصر پادشاه کوش همچون فراعن مصر به مدت یک قرن حکومت کرد تا زمانی که توسط آشوریها عقب رانده شدند. فرهنگ کوشی ها به شدت تحت تاثیر فرهنگ مصر قرار داشت و ساخت اهرام نیز تاثیر گرفته از فرهنگ مصر بود. کوشی ها حتی بسیاری از خدایان مصری را همانند آمون می پرستیدند. در دوران عهد عتیق پایتخت پادشاهی کوش  در مروا قرار داشت. پادشاهی کوش تا قرن 4 بعد از میلاد نیز برجای بود ولی به مرور تضعیف شد و بدلیل جنگ های داخلی از هم پاشید."
+
+#: simulation/templates/special/players/mace.xml:8
+msgid "Macedonians"
+msgstr "مقدونی ها"
+
+#: simulation/templates/special/players/mace.xml:9
+msgid ""
+"Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
+" the Greek peninsula. Under the leadership of Alexander the Great, "
+"Macedonian forces and allies took over most of the world they knew, "
+"including Egypt, Persia and parts of the Indian subcontinent, allowing a "
+"diffusion of Hellenic and eastern cultures for years to come."
+msgstr "مقدوینه یک پادشاهی باستانی یونان، با مرکزیت درشمال شبه جزیره یونان بود. تحت رهبری اسکندر، نیروهای مقدونی و همپیمان های آنها توانستند بیشتر دنیای شناخته شده در آن دوران  را فتح کنند، شمال مصر، ایران و بخش هایی از هند و باعث تلفیق فرهنگ یونان و شرق شدند"
+
+#: simulation/templates/special/players/maur.xml:8
+msgid "Mauryas"
+msgstr "مائوریاس"
+
+#: simulation/templates/special/players/maur.xml:9
+msgid ""
+"Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first"
+" to rule most of the Indian subcontinent, and was one of the largest and "
+"most populous empires of antiquity. Its military featured bowmen who used "
+"the long-range bamboo longbow, fierce female warriors, chariots, and "
+"thousands of armored war elephants. Its philosophers, especially the famous "
+"Acharya Chanakya, contributed to such varied fields such as economics, "
+"religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
+"the Great, the empire saw 40 years of peace, harmony, and prosperity."
+msgstr "در 322 ق.م توسط چاندرگوپتا مائوریا امپراتوری مائوریان شکل گرفت و اولین حکومتی بود که توانست در بیشتر مناطق هند حکمرانی کند. این حکومت یکی از پرجمعیت ترین امپراتوریهای عصر باستان بود. نیروهای نظامی آنها بیشتر متشکل از کمانداران بلند پرتاب بود که از کمان های بامبویی استفاده می کردند. جنگجویان زن خشن، ارابه های جنگی، هزاران فیل جنگی از ستون های سپاه جنگی آنها بود. فیلسوفان بزرگ آنها به خصوص آچاریا چاناکیا معروف، دستاوردهای بسیار مهمی در حوزه های گوناگون چون اقتصاد، مذهب، سیاست، هنر جنگ و حکومت داری صحیح برای تمدن مائوریان ها به ارمغان آوردند. تحت فرمان آشوکای بزرگ، امپراتوری مائوریان ها 40 سال صلح، آرامش و رفاه را تجربه کرد."
+
+#: simulation/templates/special/players/pers.xml:8
+msgid "Persians"
+msgstr "ایرانی ها"
+
+#: simulation/templates/special/players/pers.xml:9
+msgid ""
+"The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
+"greatest empires of antiquity, stretching at its zenith from the Indus "
+"Valley in the east to Greece in the west. The Persians were the pioneers of "
+"empire-building of the ancient world, successfully imposing a centralized "
+"rule over various peoples with different customs, laws, religions and "
+"languages, and building a cosmopolitan army made up of contingents from each"
+" of these nations."
+msgstr "امپراتوری ایران در زمان حکومت خاندان هخامنشیان یکی از بزرگترین امپراتوریهای عصر باستان به حساب می آمد که از هند در شرق تا یونان در غرب امتداد داشت. ایرانی ها بنیانگذار و پیشرو در ایجاد امپراتوری در عصر باستان بودند، به موفقیت توانستند قوانین متمرکز و یکسان برای تمام مردم با قومیت ها ، مذهب و زبانهای متفاوت ایجاد کنند و یک ارتش واحد از تمام این تمدن های متفاوت در امپراتوری خود ایجاد کنند."
+
+#: simulation/templates/special/players/ptol.xml:16
+msgid "Ptolemies"
+msgstr "بطلمیوسی ها"
+
+#: simulation/templates/special/players/ptol.xml:17
+msgid ""
+"The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
+"Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
+"for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
+"Egypt."
+msgstr "سلسله بطلمیوسی ها یک خانواده سلطنتی مقدونی بودند که بر امپراتوری بطلمیوسی و مصر در دوران یونانی گرایی حکمرانی می کردند. حکومت آنها بیش از 275 سال، از 305 ق.م تا 30 ق.م بطول انجامید. آنها اخرین سلسله مصر باستان محسوب می شوند."
+
+#: simulation/templates/special/players/rome.xml:8
+msgid "Romans"
+msgstr "رومی‌ها"
+
+#: simulation/templates/special/players/rome.xml:9
+msgid ""
+"The Romans controlled one of the largest empires of the ancient world, "
+"stretching at its peak from southern Scotland to the Sahara Desert, and "
+"containing between 60 million and 80 million inhabitants, one quarter of the"
+" Earth's population at that time. Rome also remained one of the strongest "
+"nations on earth for almost 800 years. The Romans were the supreme builders "
+"of the ancient world, excelled at siege warfare and had an exquisite "
+"infantry and navy."
+msgstr "رومی یکی از بزرگترین امپراتوری های دنیای باستان را در اختیار داشتند که در دوران اوج از شمال اسکاتلند تا صحرای بزرگ آفریقا ادامه داشت و در حدود 60 تا 80 میلیون نفر در آن زندگی می کردند، که یک چهارم جمعیت کره زمین در آن زمان بود. روم همچینین به مدت 800 سال یکی از قدرتمند ترین تمدنهای تاریخ باقی ماند. رومی ها استادان معماری و دنیای باستان بودند و متخصص در شکست دژ های دشمن و از یک نیروی پیاده و دریایی بسیار قوی بهره می بردند."
+
+#: simulation/templates/special/players/sele.xml:16
+msgid "Seleucids"
+msgstr "سلوکیان"
+
+#: simulation/templates/special/players/sele.xml:17
+msgid ""
+"The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
+msgstr "دودمان یونانی مقدونی که بیشتر امپراتوری سابق اسکندر را حکمرانی می کرد"
+
+#: simulation/templates/special/players/spart.xml:6
+msgid "Spartans"
+msgstr "اسپارت ها"
+
+#: simulation/templates/special/players/spart.xml:7
 msgid ""
 "Sparta was a prominent city-state in ancient Greece, and its dominant "
 "military power on land from circa 650 B.C. Spartan culture was obsessed with"
@@ -1035,7 +1171,3 @@ msgid ""
 " forces during the Greco-Persian Wars, and won over Athens in the "
 "Peloponnesian Wars, though at great cost."
 msgstr "اسپارتا یک شهر قدرتمند در یونان باستان بود که از قدرت نظامی بالای برخوردار بود و از 650 ق.م فرهنگ آنها آمیخته با آموزش های نظامی بود. قدرت نظامی اسپارتها نقش بسیار مهمی در پیروزی یونانی ها در جنگ با ایرانیان ایفا کردند و در خلال جنگ های پلوپونزه نیز عامل اصلی پیروزی بر آتن بودند هرچند هزینه بالایی برای آن پرداخت کردند."
-
-#: simulation/data/civs/spart.jsonName
-msgid "Spartans"
-msgstr "اسپارت ها"

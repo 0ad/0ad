@@ -443,16 +443,23 @@ void SilhouetteRenderer::RenderSubmitCasters(SceneCollector& collector)
 		collector.SubmitNonRecursive(m_VisibleModelCasters[i]);
 }
 
-void SilhouetteRenderer::RenderDebugOverlays(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CCamera& UNUSED(camera))
+void SilhouetteRenderer::RenderDebugBounds(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
-	if (m_DebugBounds.empty() && m_DebugRects.empty())
+	if (m_DebugBounds.empty())
 		return;
 
 	for (size_t i = 0; i < m_DebugBounds.size(); ++i)
-		g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m_DebugBounds[i].bounds, m_DebugBounds[i].color);
+		g_Renderer.GetDebugRenderer().DrawBoundingBox(m_DebugBounds[i].bounds, m_DebugBounds[i].color, true);
+}
 
+void SilhouetteRenderer::RenderDebugOverlays(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+{
+	if (m_DebugRects.empty())
+		return;
+
+	// TODO: use CCanvas2D for drawing rects.
 	CMatrix3D m;
 	m.SetIdentity();
 	m.Scale(1.0f, -1.f, 1.0f);
@@ -462,11 +469,11 @@ void SilhouetteRenderer::RenderDebugOverlays(
 	proj.SetOrtho(0.f, g_MaxCoord, 0.f, g_MaxCoord, -1.f, 1000.f);
 	m = proj * m;
 
-
 	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	shaderTech->BeginPass();
 	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
 		shaderTech->GetGraphicsPipelineStateDesc();
+	pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
 	pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 
@@ -482,11 +489,12 @@ void SilhouetteRenderer::RenderDebugOverlays(
 			r.x0, r.y0,
 			r.x1, r.y0,
 			r.x1, r.y1,
-			r.x0, r.y1,
 			r.x0, r.y0,
+			r.x1, r.y1,
+			r.x0, r.y1,
 		};
 		shader->VertexPointer(2, GL_SHORT, 0, verts);
-		glDrawArrays(GL_LINE_STRIP, 0, 5);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 	}
 
 	shaderTech->EndPass();

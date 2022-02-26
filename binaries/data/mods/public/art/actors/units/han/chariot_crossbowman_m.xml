@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <animations>
+        <animation file="mechanical/chariot_idle.dae" id="idle1" name="Idle" speed="80"/>
+        <animation file="mechanical/chariot_idle.dae" id="idle2" name="Idle" speed="80"/>
+        <animation file="mechanical/chariot_idle.dae" id="idle3" name="Idle" speed="80"/>
+        <animation file="mechanical/chariot_move.dae" name="Walk" speed="7"/>
+        <animation file="mechanical/chariot_move.dae" name="Run" speed="7"/>
+        <animation file="mechanical/chariot_death.dae" id="death1" name="Death" speed="100"/>
+        <animation file="mechanical/chariot_death.dae" id="death2" name="Death" speed="100"/>
+        <animation file="mechanical/chariot_idle.dae" name="attack_ranged" speed="80"/>
+      </animations>
+      <mesh>structural/han_chariot.dae</mesh>
+      <textures>
+        <texture file="structural/chariot_01.png" name="baseTex"/>
+        <texture file="structural/chariot_01_norm.png" name="normTex"/>
+        <texture file="structural/chariot_01_spec.png" name="specTex"/>
+      </textures>
+      <props>
+        <prop actor="units/han/chariot_crossbowman_d.xml" attachpoint="driver1"/>
+        <prop actor="units/han/chariot_crossbowman_r.xml" attachpoint="rider1"/>
+        <prop actor="units/han/chariot_crossbowman_h_01.xml" attachpoint="horse1"/>
+        <prop actor="units/han/chariot_crossbowman_h_02.xml" attachpoint="horse2"/>
+        <prop actor="units/han/chariot_crossbowman_h_03.xml" attachpoint="horse3"/>
+        <prop actor="units/han/chariot_crossbowman_h_04.xml" attachpoint="horse4"/>
+        <prop actor="props/special/common/garrison_flag_han.xml" attachpoint="han_flag"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="Run">
+      <props>
+        <prop actor="particle/dust_cav.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_norm_spec.xml</material>
+</actor>

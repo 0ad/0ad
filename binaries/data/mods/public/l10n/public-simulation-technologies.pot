@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-21 08:09+0000\n"
+"POT-Creation-Date: 2022-02-25 08:08+0000\n"
+"PO-Revision-Date: 2022-02-25 08:08+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -48,6 +48,7 @@ msgstr ""
 #: simulation/data/technologies/poison_blades.json:requirementsTooltip
 #: simulation/data/technologies/pop_house_02.json:requirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.json:requirementsTooltip
+#: simulation/data/technologies/repeating_crossbows.json:requirementsTooltip
 #: simulation/data/technologies/ship_cost_time.json:requirementsTooltip
 #: simulation/data/technologies/ship_health.json:requirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.json:requirementsTooltip
@@ -97,6 +98,7 @@ msgstr ""
 #: simulation/data/technologies/cavalry_health.json:requirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.json:requirementsTooltip
 #: simulation/data/technologies/civil_service_01.json:requirementsTooltip
+#: simulation/data/technologies/crossbow_training.json:requirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.json:requirementsTooltip
 #: simulation/data/technologies/garrison_heal.json:requirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.json:requirementsTooltip
@@ -115,7 +117,6 @@ msgstr ""
 #: simulation/data/technologies/soldier_attack_ranged_01.json:requirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_01.json:requirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_01.json:requirementsTooltip
-#: simulation/data/technologies/special_crossbow_tradition.json:requirementsTooltip
 #: simulation/data/technologies/tower_crenellations.json:requirementsTooltip
 #: simulation/data/technologies/tower_range.json:requirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.json:requirementsTooltip
@@ -472,6 +473,20 @@ msgstr ""
 
 #: simulation/data/technologies/colonization.json:tooltip
 msgid "Civic Structures −25% build time and resources cost"
+msgstr ""
+
+#: simulation/data/technologies/crossbow_training.json:description
+msgid ""
+"The Chinese had a tradition of fine archery and a penchant for using massed crossbowmen"
+" in battle."
+msgstr ""
+
+#: simulation/data/technologies/crossbow_training.json:genericName
+msgid "Crossbow Training"
+msgstr ""
+
+#: simulation/data/technologies/crossbow_training.json:tooltip
+msgid "Crossbow Infantry and Cavalry −1 second firing time −20% train time."
 msgstr ""
 
 #: simulation/data/technologies/equine_transports.json:description
@@ -1173,6 +1188,18 @@ msgstr ""
 msgid "Unlock the Champion Infantry Swordsman."
 msgstr ""
 
+#: simulation/data/technologies/repeating_crossbows.json:description
+msgid "Crossbows equiped with a repeating mechanism and dart magazine increase firing rate."
+msgstr ""
+
+#: simulation/data/technologies/repeating_crossbows.json:genericName
+msgid "Repeating Crossbows"
+msgstr ""
+
+#: simulation/data/technologies/repeating_crossbows.json:tooltip
+msgid "Crossbow Infantry and Cavalry −1 second firing time, but +20 metal cost."
+msgstr ""
+
 #: simulation/data/technologies/ship_cost_time.json:description
 msgid "Employ skilled shipwrights with specialized tools to speed up ship construction."
 msgstr ""
@@ -1487,20 +1514,6 @@ msgstr ""
 msgid "Soldiers +2 pierce resistance."
 msgstr ""
 
-#: simulation/data/technologies/special_crossbow_tradition.json:description
-msgid ""
-"The Chinese had a tradition of fine archery and a penchant for using massed crossbowmen"
-" in battle."
-msgstr ""
-
-#: simulation/data/technologies/special_crossbow_tradition.json:genericName
-msgid "Crossbow Tradition"
-msgstr ""
-
-#: simulation/data/technologies/special_crossbow_tradition.json:tooltip
-msgid "Range +10 meters, −10% ranged attack spread for crossbow-wielding units."
-msgstr ""
-
 #: simulation/data/technologies/spy_counter.json:description
 msgid "Recruit a network of informants to watch over your people."
 msgstr ""
@@ -1608,7 +1621,7 @@ msgid "Commercial Treaty"
 msgstr ""
 
 #: simulation/data/technologies/trade_commercial_treaty.json:tooltip
-msgid "+10% international trade bonus."
+msgid "Traders +10% trade profit between allies."
 msgstr ""
 
 #: simulation/data/technologies/trade_gain_01.json:description

@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-11 08:08+0000\n"
-"PO-Revision-Date: 2022-02-11 10:23+0000\n"
-"Last-Translator: Vahe Avagyan\n"
+"POT-Creation-Date: 2022-02-21 08:09+0000\n"
+"PO-Revision-Date: 2022-02-21 10:18+0000\n"
+"Last-Translator: Transifex Bot\n"
 "Language-Team: Armenian (http://www.transifex.com/wildfire-games/0ad/language/hy/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -764,7 +764,7 @@ msgstr ""
 msgid "Wood Treasure"
 msgstr "Փայտե գանձ"
 
-#: simulation/templates/gaia/treasure/wood_lumber.xml:4
+#: simulation/templates/gaia/treasure/wood_lumber.xml:8
 msgid "Milled Lumber"
 msgstr ""
 
@@ -828,6 +828,10 @@ msgstr ""
 #: simulation/templates/gaia/tree/cedar_atlas_3_mature.xml:4
 #: simulation/templates/gaia/tree/cedar_atlas_4_dead.xml:4
 msgid "Atlas Cedar"
+msgstr ""
+
+#: simulation/templates/gaia/tree/cherry_blossom.xml:4
+msgid "Cherry Blossom"
 msgstr ""
 
 #: simulation/templates/gaia/tree/cretan_date_palm_patch.xml:8
@@ -979,7 +983,7 @@ msgstr ""
 msgid "Rainforest Tree"
 msgstr ""
 
-#: simulation/templates/mixins/builder.xml:35
+#: simulation/templates/mixins/builder.xml:40
 msgid "Builder"
 msgstr ""
 
@@ -1096,187 +1100,6 @@ msgstr ""
 msgid "Wedge"
 msgstr "Սեպ"
 
-#: simulation/templates/special/players/athen.xml:8
-msgid "Athenians"
-msgstr "Աթենացիներ"
-
-#: simulation/templates/special/players/athen.xml:9
-msgid ""
-"As the cradle of Western civilization and the birthplace of democracy, "
-"Athens was famed as a center for the arts, learning and philosophy. The "
-"Athenians were also powerful warriors, particularly at sea. At its peak, "
-"Athens dominated a large part of the Hellenic world for several decades."
-msgstr "Լինելով արևմտյան քաղաքակրթության օրրան և ժողովրդավարության ծննդավայր՝ Աթենքը մեծարվում էր որպես արվեստների, ուսուցման և փիլիսոփայության կենտրոն։ Աթենացիները նաև հզոր մարտիկներ էին, հատկապես՝ ծովում։ Իր գագաթնակետին Աթենքը գերակայում էր հելլենիստական աշխարհի մեծ մասում տասնյակ տարիներ։"
-
-#: simulation/templates/special/players/brit.xml:8
-msgid "Britons"
-msgstr "Բրիտոններ"
-
-#: simulation/templates/special/players/brit.xml:9
-msgid ""
-"The Britons were the Celtic tribes of the British Isles. Using chariots, "
-"longswordsmen and powerful melee soldiers, they staged fearsome revolts "
-"against Rome to protect their customs and interests. Also, they built "
-"thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr "Բրիտոնները Բրիտանական կղզիների կելտական ցեղերն էին։ Օգտագործելով մարտակառքեր, երկարասրակիրներ և ձեռնամարտի հզոր զինվորներ՝ նրանք Հռոմի դեմ էին բարձրացնում ահարկու ապստամբություններ՝ իրենց սովորույթներն ու շահերը պաշտպանելու նպատակով։ Բացի դրանից, նրանք կառուցել են հազարավոր եզակի շինություններ, ինչպիսիք են բլրային ամրոցները, ջրային կացարանները և քարե շրջանաձև աշտարակները։"
-
-#: simulation/templates/special/players/cart.xml:8
-msgid "Carthaginians"
-msgstr "Կարթագենցիներ"
-
-#: simulation/templates/special/players/cart.xml:9
-msgid ""
-"Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
-"western Mediterranean, eventually taking over much of North Africa and "
-"modern-day Spain in the third century B.C. The sailors of Carthage were "
-"among the fiercest contenders on the high seas, and masters of naval trade. "
-"They deployed towered War Elephants on the battlefield to fearsome effect, "
-"and had defensive walls so strong, they were never breached."
-msgstr "Կարթագենը, քաղաք-պետություն ներկայիս Թունիսիայի տարածքում, Արևմտյան Միջերկրականի նշանակալի ուժ էր, որն ի վերջո կարողացավ մ․թ․ա․ 3-րդ դարում գրավել Հյուսիսային Աֆրիկայի և ներկայիս Իսպանիայի մեծամասնությունը։ Կարթագենացի ծովայինները բաց ծովում ամենադաժան հակառակորդներից էին և ծովային գործի վարպետներ։ Նրանք օգտագործում էին աշտարակավորված ռազմական փղեր կռվի դաշտում վախ ներշնչելու նպատակով, և նրանց պարիսպներն այնքան ամուր էին, որ երբեք չճեղքվեցին։"
-
-#: simulation/templates/special/players/gaul.xml:8
-msgid "Gauls"
-msgstr "Գալեր"
-
-#: simulation/templates/special/players/gaul.xml:9
-msgid ""
-"The Gauls were the Celtic tribes of continental Europe. Dominated by a "
-"priestly class of Druids, they featured a sophisticated culture of advanced "
-"metalworking, agriculture, trade and even road engineering. With heavy "
-"infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
-"of conquest and Rome's authoritarian rule."
-msgstr "Գալերը մայրցամաքային Եվրոպայի կելտական ցեղերն էին։ Ենթարկվելով դրուիդների եկեղեցական դասին՝ նրանք ստեղծել են զարգացած մետաղագործության, գյուղատնտեսության, առևտրի և նույնիսկ ճանապարհաշինության բարդ մշակույթ։ Ծանր հետևակի և հեծելազորի օգնությամբ գալերը քաջությամբ դիմակայել են Կեսարի նվաճողական արշավանքին և Հռոմի ավտորիտար կարգերին։"
-
-#: simulation/templates/special/players/iber.xml:8
-msgid "Iberians"
-msgstr "Իբերներ"
-
-#: simulation/templates/special/players/iber.xml:9
-msgid ""
-"The Iberians were a people of mysterious origins and language, with a strong"
-" tradition of horsemanship and metalworking. A relatively peaceful culture, "
-"they usually fought in other's battles only as mercenaries. However, they "
-"proved tenacious when Rome sought to take their land and freedom from them, "
-"and employed pioneering guerrilla tactics and flaming javelins as they "
-"fought back."
-msgstr "Իբերները խորհրդավոր ծագում և լեզու ունեցող ազգ էին, ովքեր ունեին ձիաբուծության և մետաղագործության հզոր ավանդույթներ։ Լինելով համեմատաբար խաղաղասեր ժողովուրդ՝ նրանք սովորաբար կռվում էին այլ ազգերի պատերազմներում՝ միայն որպես վարձկաններ։ Այնուամենայնիվ, երբ Հռոմը փորձեց գրավել նրանց տարածքները և ազատությունը, իբերները խիստ դիմակայություն ցույց տվեցին՝ օգտագործելով նախահարձակ պարտիզանական պայքարի մարտավարություն և այրվող տեգեր հռոմեացիների դեմ պայքարում։"
-
-#: simulation/templates/special/players/kush.xml:8
-msgid "Kushites"
-msgstr "Քուշեր"
-
-#: simulation/templates/special/players/kush.xml:9
-msgid ""
-"The Kingdom of Kush was an ancient African kingdom situated on the "
-"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
-" Republic of Sudan. The Kushite era of rule in the region was established "
-"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
-"centered at Napata in its early phase. They invaded Egypt in the 8th century"
-" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
-"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
-"culture was influenced heavily by the Egyptians, with Kushite pyramid "
-"building and monumental temple architecture still extent. The Kushites even "
-"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
-"the Kushite imperial capital was at Meroe. In early Greek geography, the "
-"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
-" the 4th century AD, when it weakened and disintegrated due to internal "
-"rebellion, eventually succumbing to the rising power of Axum."
-msgstr "Քուշի թագավորությունը աֆրիկյան հին թագավորություն էր՝ տեղակայված Կապույտ ու Սպիտակ Նեղոսների և Ատբարա գետի միախառնման վայրում, որտեղ գտնվում է ներկայիս Սուդանի Հանրապետությունը։ Տարածաշրջանում քուշական իշխանության ժամանակաշրջանը հիմնվել է Բրոնզի դարում Եգիպտոսի Նոր Թագավորության անկումից հետո, և նախնական շրջանում դրա կենտրոնը Նապատան էր։ Քուշերը ներխուժեցին Եգիպտոս մ․թ․ա․ 8-րդ դարում, և քուշական կայսրերը մեկ դար շարունակ իշխեցին որպես քսանհինգերորդ դինաստիայի փարավոններ՝ մինչև ասորիների կողմից վտարումը։ Քուշական մշակույթի վրա մեծ ազդեցություն է թողել եգիպտական մշակույթը, և քուշական բուրգերի կառուցումն ու հուշարձանային տաճարների ճարտարապետությունը դեռևս շարունակվում են։ Ավելին, քուշերը պաշտում էին եգիպտական բազմաթիվ աստվածների, ներառյալ Ամոնին։ Անտիկ դարաշրջանում Քուշական կայսրության մայրաքաղաքը Մերոեն էր։ Վաղ հունական աշխարհագրության մեջ Մերոեյական թագավորությունը հիշատակվում է որպես Եթովպիա։ Քուշական թագավորությունը գոյատևեց մինչև մ․թ․ 4-րդ դար, որից հետո այն, արդեն թուլացած և ներքին ապստամբությունների պատճառով մասնատված, ի վերջո չկարողացավ դիմակայել Աքսումի հզորացող թագավորությանը։"
-
-#: simulation/templates/special/players/mace.xml:8
-msgid "Macedonians"
-msgstr "Մակեդոնացիներ"
-
-#: simulation/templates/special/players/mace.xml:9
-msgid ""
-"Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
-" the Greek peninsula. Under the leadership of Alexander the Great, "
-"Macedonian forces and allies took over most of the world they knew, "
-"including Egypt, Persia and parts of the Indian subcontinent, allowing a "
-"diffusion of Hellenic and eastern cultures for years to come."
-msgstr "Մակեդոնիան հունական հին թագավորություն էր՝ կենտրոնացած Հունական թերակղզու հյուսիս-արևելյան հատվածում։ Ալեքսանդր Մեծի իշխանության օրոք մակեդոնական և դաշնակից ուժերը գրավեցին իրենց հայտնի աշխարհի մեծ մասը, ներառյալ Եգիպտոսը, Պարսկաստանը և Հնդկական ենթաաշխարհամասի որոշ մասը՝ տարածվելու հնարավորությար տալով հելլենիստական և արևելյան մշակույթներին հետագա բազում տարիների ընթացքում։"
-
-#: simulation/templates/special/players/maur.xml:8
-msgid "Mauryas"
-msgstr "Մաուրյաներ"
-
-#: simulation/templates/special/players/maur.xml:9
-msgid ""
-"Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first"
-" to rule most of the Indian subcontinent, and was one of the largest and "
-"most populous empires of antiquity. Its military featured bowmen who used "
-"the long-range bamboo longbow, fierce female warriors, chariots, and "
-"thousands of armored war elephants. Its philosophers, especially the famous "
-"Acharya Chanakya, contributed to such varied fields such as economics, "
-"religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
-"the Great, the empire saw 40 years of peace, harmony, and prosperity."
-msgstr "Հիմնված մ․թ․ա․ 322թ․-ին Չանդրագուպտա Մաուրյայի կողմից՝ Մաուրյան կայսրությունը Հնդկական ենթաաշխարհամասի մեծ մասին տիրող առաջին ուժն էր և անտիկ դարաշրջանի՝ տարածքով և բնակչությամբ ամենամեծ կայսրություններից մեկը։ Դրա բանակը կազմված էր բամբուկից պատրաստված, մեծ հեռահարությամբ երկար նետերով նետաձիգներից, կատաղի կին-ռազմիկներից, մարտակառքերից և հազարավոր զրահապատ ռազմական փղերից։ Տերության փիլիսոփաները, հատկապես հանրահայտ Աչարյան և Չանակյան, ներդրում են ունեցել տարբեր ոլորտներում, որոնցից են տնտեսությունը, կրոնը, քաղաքականությունը, ռազմարվեստը և կառավարումը։ Աշոկա Մեծի օրոք կայսրությունն ապրեց խաղաղության, ներդաշնակության և բարգավաճման 40 տարիներ։"
-
-#: simulation/templates/special/players/pers.xml:8
-msgid "Persians"
-msgstr "Պարսիկներ"
-
-#: simulation/templates/special/players/pers.xml:9
-msgid ""
-"The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
-"greatest empires of antiquity, stretching at its zenith from the Indus "
-"Valley in the east to Greece in the west. The Persians were the pioneers of "
-"empire-building of the ancient world, successfully imposing a centralized "
-"rule over various peoples with different customs, laws, religions and "
-"languages, and building a cosmopolitan army made up of contingents from each"
-" of these nations."
-msgstr "Աքեմենյան արքայատոհմի ղեկավարության օրոք Պարսկական կայսրությունն անտիկ ժամանակաշրջանի ամենամեծ տերություններից էր, որը ձգվում էր արևելքում Ինդոսի հովտից մինչև արևմուտքում Հունաստան։ Պարսիկները հին աշխարհի կայսրության կազմավորման առաջամարտիկներն էին՝ հաջողությամբ հարկադրելով կենտրոնական իշխանություն տարբեր ավանդույթներ, օրենքներ, կրոններ և լեզուներ ունեցող տարբեր ժողովուրդների վրա և ստեղծելով բազմազգ բանակ, որի կազմի մեջ մտնում էին զորամիավորումներ այս ազգերից յուրաքանչյուրից։"
-
-#: simulation/templates/special/players/ptol.xml:16
-msgid "Ptolemies"
-msgstr "Պտղոմեոսներ"
-
-#: simulation/templates/special/players/ptol.xml:17
-msgid ""
-"The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
-"Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
-"for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
-"Egypt."
-msgstr "Պտղոմեոսյան դինաստիան հույն-մակեդոնական արքայական ընտանիք էր, որն իշխել է Եգիպտոսի Պտղոմեոսյան կայսրությունը հելլենիստական ժամանակաշրջանում։ Նրանց իշխանությունը տևեց 275 տարի՝ մ․թ․ա․ 305-30թթ․։ Նրանք Հին Եգիպտոսի վերջին դինաստիան էին։"
-
-#: simulation/templates/special/players/rome.xml:8
-msgid "Romans"
-msgstr "Հռոմեացիներ"
-
-#: simulation/templates/special/players/rome.xml:9
-msgid ""
-"The Romans controlled one of the largest empires of the ancient world, "
-"stretching at its peak from southern Scotland to the Sahara Desert, and "
-"containing between 60 million and 80 million inhabitants, one quarter of the"
-" Earth's population at that time. Rome also remained one of the strongest "
-"nations on earth for almost 800 years. The Romans were the supreme builders "
-"of the ancient world, excelled at siege warfare and had an exquisite "
-"infantry and navy."
-msgstr "Հռոմեացիները կառավարում էին հին աշխարհի ամենամեծ կայսրություններից մեկը, որն իր գագաթնակետին ձգվում էր Հարավային Շոտլանդիայից մինչև Սահարա անապատ և ուներ 60-ից 80 միլիոն մարդ բնակչություն, ինչն այդ ժամանակվա Երկիր մոլորակի բնակչության մեկ քառորդն էր։ Հռոմը նաև մնաց որպես աշխարհի ամենահզոր ազգերից մեկը գրեթե 800 տարի։ Հռոմեացիները հին աշխարհի լավագույն շինարարներն էին, փորձառու էին պաշարողական գործում և ունեին գերազանց հետևակ ու նավատորմ։"
-
-#: simulation/templates/special/players/sele.xml:16
-msgid "Seleucids"
-msgstr "Սելևկյաներ"
-
-#: simulation/templates/special/players/sele.xml:17
-msgid ""
-"The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
-msgstr "Հույն-մակեդոնական դինաստիան, որի տիրակալության տակ է եղել Ալեքսանդրի նախկին տերության մեծ մասը։"
-
-#: simulation/templates/special/players/spart.xml:6
-msgid "Spartans"
-msgstr "Սպարտացիներ"
-
-#: simulation/templates/special/players/spart.xml:7
-msgid ""
-"Sparta was a prominent city-state in ancient Greece, and its dominant "
-"military power on land from circa 650 B.C. Spartan culture was obsessed with"
-" military training and excellence, with rigorous training for boys beginning"
-" at age seven. Thanks to its military might, Sparta led a coalition of Greek"
-" forces during the Greco-Persian Wars, and won over Athens in the "
-"Peloponnesian Wars, though at great cost."
-msgstr "Սպարտան Հին Հունաստանի ականավոր քաղաք-պետություններից էր և գերակայող ցամաքային ռազմական ուժը մ․թ․ա․ մոտ 650թ․-ից։ Սպարտայի մշակույթը կարևորագույն մասը ռազմական մարզումներն ու վարպետությունն էին, և տղաները անխնա մարզումներն սկսում էին յոթ տարեկանից։ Շնորհիվ իր ռազմական հզորության՝ Սպարտան առաջնորդեց հունական ուժերի միությունը հույն-պարսկական պատերազմների ժամանակ և թանկ գնով հաղթեց Աթենքին Պելոպոնեսյան պատերազմներում։"
-
 #: simulation/templates/special/spy.xml:16
 msgid "Spy"
 msgstr "Լրտես"
@@ -1285,7 +1108,6 @@ msgstr "Լրտես"
 msgid "Requires at least 2 Soldiers or Siege Engines."
 msgstr ""
 
-#: simulation/templates/special/players/gaia.xml:5
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
 msgstr "Գեա"

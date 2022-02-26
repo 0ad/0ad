@@ -3,6 +3,23 @@
 
 	<technique>
 		<require shaders="arb"/>
+		<require context="MODE_WIREFRAME"/>
+		<pass shader="arb/particle_solid">
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require shaders="glsl"/>
+		<require context="MODE_WIREFRAME"/>
+		<pass shader="glsl/particle_solid">
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
+
+
+	<technique>
+		<require shaders="arb"/>
 		<pass shader="arb/particle_solid">
 			<depth mask="false"/>
 		</pass>

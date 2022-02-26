@@ -48,15 +48,43 @@
 
 
 	<technique>
-		<require context="MODE_WIREFRAME"/>
+		<require context="MODE_WIREFRAME_SOLID"/>
 		<require shaders="arb"/>
-		<pass shader="arb/model_solid_player"/>
+		<pass shader="arb/model_solid_player">
+			<polygon mode="LINE"/>
+		</pass>
 	</technique>
 
 	<technique>
+		<require context="MODE_WIREFRAME_SOLID"/>
+		<require shaders="glsl"/>
+		<pass shader="glsl/model_solid_player">
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
+
+
+	<technique>
+		<require context="MODE_WIREFRAME"/>
+		<require shaders="arb"/>
+		<pass shader="arb/model_common">
+			<define name="USE_TRANSPARENT" value="1"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+			<depth func="less" mask="false"/>
+			<cull mode="NONE"/>
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
+	<technique>
 		<require context="MODE_WIREFRAME"/>
 		<require shaders="glsl"/>
-		<pass shader="glsl/model_solid_player"/>
+		<pass shader="glsl/model_common">
+			<define name="USE_TRANSPARENT" value="1"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+			<depth func="less" mask="false"/>
+			<cull mode="NONE"/>
+			<polygon mode="LINE"/>
+		</pass>
 	</technique>
 
 

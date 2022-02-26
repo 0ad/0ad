@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 #define INCLUDED_RENDERER_BACKEND_SAMPLER
 
 #include "graphics/Color.h"
+#include "renderer/backend/CompareOp.h"
 
 #include <cstdint>
 
@@ -58,6 +59,8 @@ struct Desc
 	float maxAnisotropy;
 	// When some filter is CLAMP_TO_BORDER.
 	CColor borderColor;
+	bool compareEnabled;
+	CompareOp compareOp;
 };
 
 Desc MakeDefaultSampler(Filter filter, AddressMode addressMode);

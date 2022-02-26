@@ -40,6 +40,7 @@ Desc MakeDefaultSampler(Filter filter, AddressMode addressMode)
 	desc.anisotropyEnabled = false;
 	desc.mipLODBias = 0.0f;
 	desc.borderColor = CColor(0.0f, 0.0f, 0.0f, 0.0f);
+	desc.compareEnabled = false;
 	return desc;
 }
 

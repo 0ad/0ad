@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity>
+  <Identity>
+    <SpecificName>Bush</SpecificName>
+  </Identity>
+  <Obstruction>
+    <BlockMovement>false</BlockMovement>
+    <BlockPathfinding>false</BlockPathfinding>
+    <BlockFoundation>false</BlockFoundation>
+    <BlockConstruction>false</BlockConstruction>
+    <DeleteUponConstruction>true</DeleteUponConstruction>
+  </Obstruction>
+  <ResourceSupply>
+    <Max>100</Max>
+  </ResourceSupply>
+  <StatusBars>
+    <HeightOffset>8</HeightOffset>
+  </StatusBars>
+</Entity>

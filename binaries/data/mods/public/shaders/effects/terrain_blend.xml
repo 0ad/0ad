@@ -21,6 +21,25 @@
 
 	<technique>
 		<require shaders="arb"/>
+		<require context="MODE_WIREFRAME"/>
+		<pass shader="arb/terrain_blend">
+			<depth mask="false"/>
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require shaders="glsl"/>
+		<require context="MODE_WIREFRAME"/>
+		<pass shader="glsl/terrain_blend">
+			<depth mask="false"/>
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
+
+
+	<technique>
+		<require shaders="arb"/>
 		<pass shader="arb/terrain_blend">
 			<depth mask="false"/>
 		</pass>

@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_gaia_tree">
-  <Identity>
-    <SpecificName>Bush</SpecificName>
-  </Identity>
-  <ResourceSupply>
-    <Max>50</Max>
-  </ResourceSupply>
+<Entity parent="bush|template_gaia_tree">
   <VisualActor>
     <Actor>flora/trees/temperate_bush_biome.xml</Actor>
   </VisualActor>

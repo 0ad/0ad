@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Acacia Top">
+      <textures>
+        <texture file="gaia/acacia.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <!-- Need to keep the variant names in sync with the parent. -->
+    <variant frequency="1" name="Variant-05">
+      <mesh>gaia/trees/leaves/acacia_05.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Variant-08">
+      <mesh>gaia/trees/leaves/acacia_08.dae</mesh>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>

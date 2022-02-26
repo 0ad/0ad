@@ -36,9 +36,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-01-24 08:09+0000\n"
-"PO-Revision-Date: 2022-01-28 21:28+0000\n"
-"Last-Translator: yakup\n"
+"POT-Creation-Date: 2022-02-21 08:09+0000\n"
+"PO-Revision-Date: 2022-02-21 08:25+0000\n"
+"Last-Translator: Transifex Bot\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,6 +61,14 @@ msgstr "Konuşlanan Gemilere +10 yenilenme oranı."
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
 msgstr "Tersane Onarımı"
+
+#: simulation/data/auras/structures/han_laozi_gate.jsonauraDescription
+msgid "Humans +1 health regeneration rate, +25% health"
+msgstr ""
+
+#: simulation/data/auras/structures/han_laozi_gate.jsonauraName
+msgid "Taoism"
+msgstr ""
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -203,6 +211,14 @@ msgstr "-15% teknoloji maliyeti ve araştırma süresi meydana getirir."
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Products from Gaul"
 msgstr "Galya Ürünleri"
+
+#: simulation/data/auras/teambonuses/han_player_teambonus.jsonauraDescription
+msgid "Allies +20% international trade bonus."
+msgstr ""
+
+#: simulation/data/auras/teambonuses/han_player_teambonus.jsonauraName
+msgid "Silk Road"
+msgstr ""
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Citizen Javelineers −10% resource costs."
@@ -356,6 +372,26 @@ msgstr "Roma ordusu gıda kaynakları kıtlığı yaşadığında, Galya kabilel
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
 msgstr "Roma'ya Haraç"
+
+#: simulation/data/auras/units/catafalques/han_catafalque_1.jsonauraDescription
+msgid ""
+"At its height, the Empire's borders spanned from the Fergana Valley in the west, to Korea in the east, and to northern Vietnam in the south.\n"
+"Territory influence bonus +20%."
+msgstr ""
+
+#: simulation/data/auras/units/catafalques/han_catafalque_1.jsonauraName
+msgid "Territorial Expansion"
+msgstr ""
+
+#: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraDescription
+msgid ""
+"The Music Bureau was charged directly, by the emperor to perform various tasks related to music, poetry, entertainment, or religious worship.\n"
+" Techcost -50%."
+msgstr ""
+
+#: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraName
+msgid "Imperial Music Bureau"
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraDescription
 msgid ""
@@ -540,6 +576,50 @@ msgstr "İnşaatçılar +25% inşa oranı "
 msgid "Elephant Workers"
 msgstr "Fil İşçiler"
 
+#: simulation/data/auras/units/han_minister_building.jsonauraDescription
+msgid "Builders construct buildings +2% faster for every nearby Minister."
+msgstr ""
+
+#: simulation/data/auras/units/han_minister_building.jsonauraName
+msgid "Building Programs"
+msgstr ""
+
+#: simulation/data/auras/units/han_minister_cost.jsonauraDescription
+msgid "Cost +20% and build time +20% for each new Minister trained."
+msgstr ""
+
+#: simulation/data/auras/units/han_minister_cost.jsonauraName
+msgid "The Cost of Splendor"
+msgstr ""
+
+#: simulation/data/auras/units/han_minister_garrison.jsonauraDescription
+msgid ""
+"Decrease resource costs and research time of technologies in a building by "
+"2% for each Minister garrisoned within."
+msgstr ""
+
+#: simulation/data/auras/units/han_minister_garrison.jsonauraName
+msgid "Excellency of Works"
+msgstr ""
+
+#: simulation/data/auras/units/han_minister_garrison_ministry.jsonauraDescription
+msgid ""
+"The Imperial Ministry gains a +0.1 wood, stone, metal trickle for each "
+"garrisoned minister."
+msgstr ""
+
+#: simulation/data/auras/units/han_minister_garrison_ministry.jsonauraName
+msgid "Nationalized Industries"
+msgstr ""
+
+#: simulation/data/auras/units/han_minister_gathering.jsonauraDescription
+msgid "Gatherers +2% gathering rate for every nearby Minister."
+msgstr ""
+
+#: simulation/data/auras/units/han_minister_gathering.jsonauraName
+msgid "Minister over the Masses"
+msgstr ""
+
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid ""
 "Soldiers in his formation +3 crush, hack, pierce resistance, +15% movement "
@@ -677,6 +757,59 @@ msgstr "Kelt Kumandan"
 msgid "Preparation for War"
 msgstr "Savaş Hazırlığı"
 
+#: simulation/data/auras/units/heroes/han_hero_han_xin_1.jsonauraDescription
+msgid "Own and Allied Soldiers -50% promotion experience."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/han_hero_han_xin_1.jsonauraName
+msgid "Northern Army"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/han_hero_han_xin_2.jsonauraDescription
+msgid "Own and Allied Soldiers +15% walk speed and +25% vision range."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/han_hero_han_xin_2.jsonauraName
+msgid "Southern Army"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/han_hero_liu_bang_1.jsonauraDescription
+msgid "Walls +10 health regeneration rate."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/han_hero_liu_bang_1.jsonauraName
+#: simulation/data/auras/units/heroes/han_hero_liu_bang_2.jsonauraName
+msgid "Confucian Reforms"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/han_hero_liu_bang_2.jsonauraDescription
+msgid "Cavalry +20% attack damage."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/han_hero_wei_qing_1.jsonauraDescription
+#: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
+#: simulation/data/auras/units/heroes/mace_hero_philip_ii.jsonauraDescription
+msgid ""
+"Champions +2 capture attack strength, +20% melee and ranged attack damage."
+msgstr "Şampiyonlar +2 ele geçirme saldırı gücü, +%20 yakın ve menzilli saldırı hasarı."
+
+#: simulation/data/auras/units/heroes/han_hero_wei_qing_1.jsonauraName
+#: simulation/data/auras/units/heroes/han_hero_wei_qing_2.jsonauraName
+msgid "Mandate of Heaven"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/han_hero_wei_qing_2.jsonauraDescription
+msgid "Enemy Cavalry −10% melee and ranged attack damage."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/han_hero_wei_qing_3.jsonauraDescription
+msgid "Nearby enemy units -10 health/second."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/han_hero_wei_qing_3.jsonauraName
+msgid "Scythes"
+msgstr ""
+
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraDescription
 msgid ""
 "When garrisoned, the Structure has +2 capture points garrison regeneration "
@@ -722,12 +855,6 @@ msgstr "Askerler ve Kuşatma Makineleri +%100 kaynak yağması alır."
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraName
 msgid "Swag"
 msgstr "Yağma"
-
-#: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
-#: simulation/data/auras/units/heroes/mace_hero_philip_ii.jsonauraDescription
-msgid ""
-"Champions +2 capture attack strength, +20% melee and ranged attack damage."
-msgstr "Şampiyonlar +2 ele geçirme saldırı gücü, +%20 yakın ve menzilli saldırı hasarı."
 
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraName
 msgid "Warrior Queen"

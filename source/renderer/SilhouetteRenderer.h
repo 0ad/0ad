@@ -41,9 +41,10 @@ public:
 	void RenderSubmitOccluders(SceneCollector& collector);
 	void RenderSubmitCasters(SceneCollector& collector);
 
+	void RenderDebugBounds(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 	void RenderDebugOverlays(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CCamera& camera);
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	void EndFrame();
 

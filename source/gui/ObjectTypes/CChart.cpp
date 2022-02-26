@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -103,12 +103,12 @@ void CChart::Draw(CCanvas2D& canvas)
 			}
 			else
 			{
-				canvas.DrawLine(linePoints, 1.1f, data.m_Color);
+				canvas.DrawLine(linePoints, 2.0f, data.m_Color);
 				linePoints.clear();
 			}
 		}
 		if (!linePoints.empty())
-			canvas.DrawLine(linePoints, 1.1f, data.m_Color);
+			canvas.DrawLine(linePoints, 2.0f, data.m_Color);
 	}
 
 	if (m_AxisWidth > 0)

@@ -21,6 +21,7 @@
 
 #include "View.h"
 
+#include "graphics/Canvas2D.h"
 #include "graphics/ColladaManager.h"
 #include "graphics/LOSTexture.h"
 #include "graphics/MiniMapTexture.h"
@@ -524,8 +525,11 @@ void ActorViewer::Render()
 
 	g_Renderer.GetSceneRenderer().RenderScene(g_Renderer.GetDeviceCommandContext(), m);
 
-	g_Logger->Render();
-	g_ProfileViewer.RenderProfile();
+	{
+		CCanvas2D canvas(g_Renderer.GetDeviceCommandContext());
+		g_Logger->Render(canvas);
+		g_ProfileViewer.RenderProfile(canvas);
+	}
 
 	g_Renderer.EndFrame();
 

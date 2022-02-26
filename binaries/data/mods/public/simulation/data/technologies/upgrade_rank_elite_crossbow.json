@@ -1,0 +1,24 @@
+{
+	"supersedes": "upgrade_rank_advanced_crossbow",
+	"genericName": "Elite Crossbow Infantry and Cavalry",
+	"description": "Upgrade all of your citizen crossbowmen to Elite rank.",
+	"cost": {
+		"wood": 400, 
+		"metal": 400
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "civ": "han" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "upgrade_elite.png",
+	"researchTime": 40,
+	"tooltip": "Upgrade all of your Crossbow Infantry and Cavalry to Elite rank.",
+	"modifications": [
+			{"value": "Promotion/RequiredXp", "replace": 0}
+	],
+	"affects": ["Crossbow Advanced"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

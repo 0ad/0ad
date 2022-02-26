@@ -353,7 +353,11 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 		if (enableDebugMessages)
 		{
 			glEnable(GL_DEBUG_OUTPUT);
+#if !CONFIG2_GLES
 			glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+#else
+#warning GLES without GL_DEBUG_OUTPUT_SYNCHRONOUS might call the callback from different threads which might be unsafe.
+#endif
 			glDebugMessageCallback(OnDebugMessage, nullptr);
 
 			// Filter out our own debug group messages

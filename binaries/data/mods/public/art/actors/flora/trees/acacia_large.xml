@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Acacia">
+      <props>
+        <prop actor="flora/trees/acacia_large_top.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/acacia.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Variant-05">
+      <mesh>gaia/trees/trunks/acacia_05.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Variant-08">
+      <mesh>gaia/trees/trunks/acacia_08.dae</mesh>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>

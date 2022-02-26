@@ -161,10 +161,6 @@ void CPostprocManager::RecreateBuffers()
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
 
-	g_Renderer.GetDeviceCommandContext()->BindTexture(0, GL_TEXTURE_2D, m_DepthTex->GetHandle());
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
-	g_Renderer.GetDeviceCommandContext()->BindTexture(0, GL_TEXTURE_2D, 0);
-
 	// Set up the framebuffers with some initial textures.
 	m_CaptureFramebuffer = backendDevice->CreateFramebuffer("PostprocCaptureFramebuffer",
 		m_ColorTex1.get(), m_DepthTex.get(),

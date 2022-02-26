@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-01-07 08:19+0000\n"
-"PO-Revision-Date: 2022-02-19 18:05+0000\n"
+"PO-Revision-Date: 2022-02-24 16:24+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -53,7 +53,7 @@ msgstr "Cadenæs lhongæs"
 
 #: lobby/XmppClient.cpp:1024
 msgid "unknown subtype (see logs)"
-msgstr "disconhoz-se l subtypu (veia-se los regïstros)"
+msgstr "disconhoç-se l subtypu (veia-se los regïstros)"
 
 #: lobby/XmppClient.cpp:1355
 msgid "The certificate is not trusted."
@@ -61,7 +61,7 @@ msgstr "El certificaho nun ye d’infhoutu."
 
 #: lobby/XmppClient.cpp:1356
 msgid "The certificate hasn't got a known issuer."
-msgstr "Non se sabe quien diêu l certificaho."
+msgstr "Non se sabe quien dîou l certificaho."
 
 #: lobby/XmppClient.cpp:1357
 msgid "The certificate has been revoked."
@@ -73,11 +73,11 @@ msgstr "El certificaho caducou."
 
 #: lobby/XmppClient.cpp:1359
 msgid "The certificate is not yet active."
-msgstr "El certificaho sigi inactivo."
+msgstr "El certificaho sige inactivo."
 
 #: lobby/XmppClient.cpp:1360
 msgid "The certificate has not been issued for the peer connected to."
-msgstr "El certificaho non se diêu pal par al que stas connectau."
+msgstr "El certificaho non se dîou pa l par al que stas connectau."
 
 #: lobby/XmppClient.cpp:1361
 msgid "The certificate signer is not a certificate authority."
@@ -98,7 +98,7 @@ msgstr "El xhogador ya iniciou session"
 
 #: lobby/XmppClient.cpp:1390
 msgid "Forbidden"
-msgstr "Prohibi-se"
+msgstr "Prohibe-se"
 
 #: lobby/XmppClient.cpp:1392
 msgid "Internal server error"
@@ -106,7 +106,7 @@ msgstr "Error internu de l servidor"
 
 #: lobby/XmppClient.cpp:1396
 msgid "Not allowed"
-msgstr "Non se permitti"
+msgstr "Non se permitte"
 
 #: lobby/XmppClient.cpp:1397
 msgid "Not authorized"
@@ -134,11 +134,11 @@ msgstr "Error de fluxu"
 
 #: lobby/XmppClient.cpp:1432
 msgid "The incoming stream version is unsupported"
-msgstr "Non se sufhita la version de l fluxu intrante"
+msgstr "Non se sofhita la version de l fluxu intrante"
 
 #: lobby/XmppClient.cpp:1433
 msgid "The stream has been closed by the server"
-msgstr "El fluxu concluîu-llu l servidor"
+msgstr "El fluxu concluîu-lhu l servidor"
 
 #: lobby/XmppClient.cpp:1437
 msgid "An I/O error occurred"
@@ -146,11 +146,11 @@ msgstr "Houbo un error d’intrada/salida"
 
 #: lobby/XmppClient.cpp:1439
 msgid "The connection was refused by the server"
-msgstr "La connexion recusou-lla l servidor"
+msgstr "La connexion recusou-lha l servidor"
 
 #: lobby/XmppClient.cpp:1440
 msgid "Resolving the server's hostname failed"
-msgstr "Houbo un fallu al resolve’l hostname de l servidor"
+msgstr "Houbo un falhu al resolve’l hostname de l servidor"
 
 #: lobby/XmppClient.cpp:1441
 msgid "This system is out of memory"
@@ -168,7 +168,7 @@ msgstr "El servidor nun offrîu l cifraho TLS que se requier"
 
 #: lobby/XmppClient.cpp:1446
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Fallou l authenticaçon. Ou nun ye correcta la tyave d’accessu ou la cuœnta nun existi"
+msgstr "Falhou l authenticaçon. Ou nun ye correcta la tyave d’accessu ou la cuœnta nun existe"
 
 #: lobby/XmppClient.cpp:1447
 msgid "The user or system requested a disconnect"
@@ -180,7 +180,7 @@ msgstr "Nun ha hi connexiones activæs"
 
 #: lobby/XmppClient.cpp:1469
 msgid "Your account has been successfully registered"
-msgstr "Regïstrou-se cun éxitu la tuæ cuœnta"
+msgstr "Regïstrou-se cun éxitu la tuâ cuœnta"
 
 #: lobby/XmppClient.cpp:1470
 msgid "Not all necessary information provided"
@@ -188,49 +188,49 @@ msgstr "Non s’aporrîu toda la informaçon precisa"
 
 #: lobby/XmppClient.cpp:1471
 msgid "Username already exists"
-msgstr "Ya existi l nome d’usuariu"
+msgstr "Ya existe l nome d’usuariu"
 
 #: ps/Mod.cpp:82
 #, c-format
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr "Nun pudo scribise un mod.json externu pala modificaçon comprimida “%s”. Ha hi que reinstalla’ la modificaçon."
+msgstr "Nun pudo scribise un mod.json externu pa l commudu comprimidu “%s”. Ha hi que reinstalha’l commudu."
 
 #: ps/ModIo.cpp:264
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Houbo un fallu al iniciar a consultar subre la identificaçon de l xhuœw. Error: %s; %s."
+msgstr "Houbo un falhu al iniciar a consultar sobre la identificaçon de l xhuœw. Error: %s; %s."
 
 #: ps/ModIo.cpp:294
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "Houbo un fallu al iniciar a consultar subre modificaçones. Error: %s; %s."
+msgstr "Houbo un falhu al iniciar a consultar sobre commudos. Error: %s; %s."
 
 #: ps/ModIo.cpp:320
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr "Nun pudo crease l directorio de la modificaçon: %s."
+msgstr "Nun pudo crease l directorio de l commudu: %s."
 
 #: ps/ModIo.cpp:345
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "Nun pudo abrise l archivo temporal p’abaxa’ la modificaçon: %s."
+msgstr "Nun pudo abrise l archivo temporal p’abaxa’l commudu: %s."
 
 #: ps/ModIo.cpp:355
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "Houbo un fallu al inicia’ la baxada. Error: %s; %s."
+msgstr "Houbo un falhu al inicia’ la baxada. Error: %s; %s."
 
 #: ps/ModIo.cpp:400
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr "Fallu de baxada asýnchrona: %s, %s."
+msgstr "Falhu de baxada asýnchrona: %s, %s."
 
 #: ps/ModIo.cpp:428
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Fallou la baxada. Respuœsta de l servidor: %s; %s."
+msgstr "Falhou la baxada. Respuœsta de l servidor: %s; %s."
 
 #: ps/ModIo.cpp:534
 msgid "Mismatched filesize."
@@ -243,11 +243,11 @@ msgstr "Archivo inválido. Anticipaba-se l md5 “%s”, recibîu-se “%s”."
 
 #: ps/ModIo.cpp:567
 msgid "Failed to compute final hash."
-msgstr "Houbo un fallu al calcula’l hash final."
+msgstr "Houbo un falhu al calcula’l hash final."
 
 #: ps/ModIo.cpp:573
 msgid "Failed to verify signature."
-msgstr "Houbo un fallu al verifica’ la roblra."
+msgstr "Houbo un falhu al verifica’ la roblra."
 
 #: ps/SavedGame.cpp:142
 #, c-format

@@ -466,8 +466,6 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 	m->deviceCommandContext->SetFramebuffer(
 		m->deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 
-	m->sceneRenderer.RenderTextOverlays();
-
 	// If we're in Atlas game view, render special tools
 	if (g_AtlasGameLoop && g_AtlasGameLoop->view)
 	{
@@ -481,42 +479,7 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 		ogl_WarnIfError();
 	}
 
-	if (renderGUI)
-	{
-		GPU_SCOPED_LABEL(m->deviceCommandContext.get(), "Render GUI");
-		// All GUI elements are drawn in Z order to render semi-transparent
-		// objects correctly.
-		g_GUI->Draw();
-		ogl_WarnIfError();
-	}
-
-	// If we're in Atlas game view, render special overlays (e.g. editor bandbox).
-	if (g_AtlasGameLoop && g_AtlasGameLoop->view)
-	{
-		CCanvas2D canvas;
-		g_AtlasGameLoop->view->DrawOverlays(canvas);
-		ogl_WarnIfError();
-	}
-
-	{
-		GPU_SCOPED_LABEL(m->deviceCommandContext.get(), "Render console");
-		g_Console->Render();
-		ogl_WarnIfError();
-	}
-
-	if (renderLogger)
-	{
-		GPU_SCOPED_LABEL(m->deviceCommandContext.get(), "Render logger");
-		g_Logger->Render();
-		ogl_WarnIfError();
-	}
-
-	{
-		GPU_SCOPED_LABEL(m->deviceCommandContext.get(), "Render profiler");
-		// Profile information
-		g_ProfileViewer.RenderProfile();
-		ogl_WarnIfError();
-	}
+	RenderFrame2D(renderGUI, renderLogger);
 
 	EndFrame();
 
@@ -533,6 +496,49 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 
 	g_Profiler2.RecordGPUFrameEnd();
 	ogl_WarnIfError();
+}
+
+void CRenderer::RenderFrame2D(const bool renderGUI, const bool renderLogger)
+{
+	CCanvas2D canvas(m->deviceCommandContext.get());
+
+	m->sceneRenderer.RenderTextOverlays(canvas);
+
+	if (renderGUI)
+	{
+		GPU_SCOPED_LABEL(m->deviceCommandContext.get(), "Render GUI");
+		// All GUI elements are drawn in Z order to render semi-transparent
+		// objects correctly.
+		g_GUI->Draw(canvas);
+		ogl_WarnIfError();
+	}
+
+	// If we're in Atlas game view, render special overlays (e.g. editor bandbox).
+	if (g_AtlasGameLoop && g_AtlasGameLoop->view)
+	{
+		g_AtlasGameLoop->view->DrawOverlays(canvas);
+		ogl_WarnIfError();
+	}
+
+	{
+		GPU_SCOPED_LABEL(m->deviceCommandContext.get(), "Render console");
+		g_Console->Render(canvas);
+		ogl_WarnIfError();
+	}
+
+	if (renderLogger)
+	{
+		GPU_SCOPED_LABEL(m->deviceCommandContext.get(), "Render logger");
+		g_Logger->Render(canvas);
+		ogl_WarnIfError();
+	}
+
+	{
+		GPU_SCOPED_LABEL(m->deviceCommandContext.get(), "Render profiler");
+		// Profile information
+		g_ProfileViewer.RenderProfile(canvas);
+		ogl_WarnIfError();
+	}
 }
 
 void CRenderer::RenderScreenShot()

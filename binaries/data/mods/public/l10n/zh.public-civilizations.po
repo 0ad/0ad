@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -34,8 +34,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-01-22 08:09+0000\n"
-"PO-Revision-Date: 2022-02-19 03:24+0000\n"
+"POT-Creation-Date: 2022-02-21 08:09+0000\n"
+"PO-Revision-Date: 2022-02-22 17:28+0000\n"
 "Last-Translator: liulitchi\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -118,18 +118,6 @@ msgstr "从阿提卡的劳雷恩银矿上，雅典采集了大量的银矿，并
 msgid "Silver Owls"
 msgstr "鸮纹银币"
 
-#: simulation/data/civs/athen.jsonHistory
-msgid ""
-"As the cradle of Western civilization and the birthplace of democracy, "
-"Athens was famed as a center for the arts, learning and philosophy. The "
-"Athenians were also powerful warriors, particularly at sea. At its peak, "
-"Athens dominated a large part of the Hellenic world for several decades."
-msgstr "作为民主的诞生地，雅典是希腊艺术、教育和哲学中心。雅典军力不俗，且海军很强。巅峰时期，有数十年雅典人统治了希腊的大部分。"
-
-#: simulation/data/civs/athen.jsonName
-msgid "Athenians"
-msgstr "雅典"
-
 #: simulation/data/civs/brit.jsonAINames[0]
 msgid "Karatakos"
 msgstr "卡拉塔库士"
@@ -173,18 +161,6 @@ msgstr "阿维修斯"
 #: simulation/data/civs/brit.jsonAINames[9]
 msgid "Dubnovellaunus"
 msgstr "杜布诺韦劳努斯"
-
-#: simulation/data/civs/brit.jsonHistory
-msgid ""
-"The Britons were the Celtic tribes of the British Isles. Using chariots, "
-"longswordsmen and powerful melee soldiers, they staged fearsome revolts "
-"against Rome to protect their customs and interests. Also, they built "
-"thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr "布立吞，为古代凯尔特部落，居住在不列颠群岛。 使用战车与长剑，还有强大的近战士兵。为了保护本文明的习俗和利益，他们的反抗令罗马人闻风丧胆。 此外，他们还建造了成千上万座独特的建筑，如山丘堡垒、水上圆屋和石砌塔楼。"
-
-#: simulation/data/civs/brit.jsonName
-msgid "Britons"
-msgstr "布立吞"
 
 #: simulation/data/civs/cart.jsonAINames[0]
 msgid "Hannibal Barca"
@@ -266,20 +242,6 @@ msgstr "码头和市场 +10% 国际贸易资源。"
 msgid "Desirable Products"
 msgstr "紧俏货品"
 
-#: simulation/data/civs/cart.jsonHistory
-msgid ""
-"Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
-"western Mediterranean, eventually taking over much of North Africa and "
-"modern-day Spain in the third century B.C. The sailors of Carthage were "
-"among the fiercest contenders on the high seas, and masters of naval trade. "
-"They deployed towered War Elephants on the battlefield to fearsome effect, "
-"and had defensive walls so strong, they were never breached."
-msgstr "迦太基城邦，位于当今北非突尼斯，是地中海西部一霸，于公元前三世纪征服了北非大部地区和现代西班牙地区。 迦太基在海上称雄，长于水运贸易。 他们在陆上部署战象以威慑对手，且城防坚不可摧。"
-
-#: simulation/data/civs/cart.jsonName
-msgid "Carthaginians"
-msgstr "迦太基"
-
 #: simulation/data/civs/gaul.jsonAINames[0]
 msgid "Viridomarus"
 msgstr "鲁斯"
@@ -320,18 +282,118 @@ msgstr "瓦勒良"
 msgid "Viridovix"
 msgstr "维尔多维克斯"
 
-#: simulation/data/civs/gaul.jsonHistory
-msgid ""
-"The Gauls were the Celtic tribes of continental Europe. Dominated by a "
-"priestly class of Druids, they featured a sophisticated culture of advanced "
-"metalworking, agriculture, trade and even road engineering. With heavy "
-"infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
-"of conquest and Rome's authoritarian rule."
-msgstr "高卢人，为是欧洲大陆的凯尔特部落。 在德鲁伊阶层的统治下，拥有先进的金属加工、农业、贸易，甚至是道路工程的复杂文化。 凭借重装步兵和骑兵，勇敢地抵抗了凯撒的征服及罗马的统治。"
+#: simulation/data/civs/han.jsonAINames[0]
+msgid "Liu Bang"
+msgstr "高祖刘邦"
 
-#: simulation/data/civs/gaul.jsonName
-msgid "Gauls"
-msgstr "高卢"
+#: simulation/data/civs/han.jsonAINames[10]
+msgid "Liu Shi"
+msgstr "元帝刘奭"
+
+#: simulation/data/civs/han.jsonAINames[11]
+msgid "Liu Ao"
+msgstr "成帝刘骜"
+
+#: simulation/data/civs/han.jsonAINames[12]
+msgid "Liu Xin"
+msgstr "哀帝刘欣"
+
+#: simulation/data/civs/han.jsonAINames[13]
+msgid "Liu Kan"
+msgstr "平帝刘衎"
+
+#: simulation/data/civs/han.jsonAINames[14]
+msgid "Liu Xuan"
+msgstr "更始帝刘玄"
+
+#: simulation/data/civs/han.jsonAINames[15]
+msgid "Liu Xiu"
+msgstr "光武帝刘秀"
+
+#: simulation/data/civs/han.jsonAINames[16]
+msgid "Liu Zhuang"
+msgstr "明帝刘庄"
+
+#: simulation/data/civs/han.jsonAINames[17]
+msgid "Liu Da"
+msgstr "章帝刘炟"
+
+#: simulation/data/civs/han.jsonAINames[18]
+msgid "Liu Zhao"
+msgstr "和帝刘肇"
+
+#: simulation/data/civs/han.jsonAINames[19]
+msgid "Liu Long"
+msgstr "殇帝刘隆"
+
+#: simulation/data/civs/han.jsonAINames[1]
+msgid "Liu Ying"
+msgstr "惠帝刘盈"
+
+#: simulation/data/civs/han.jsonAINames[20]
+msgid "Liu Hu"
+msgstr "安帝刘祜"
+
+#: simulation/data/civs/han.jsonAINames[21]
+msgid "Liu Yi"
+msgstr "前少帝刘懿"
+
+#: simulation/data/civs/han.jsonAINames[22]
+msgid "Liu Bao"
+msgstr "顺帝刘保"
+
+#: simulation/data/civs/han.jsonAINames[23]
+msgid "Liu Bing"
+msgstr "冲帝刘炳"
+
+#: simulation/data/civs/han.jsonAINames[24]
+msgid "Liu Zuan"
+msgstr "质帝刘缵"
+
+#: simulation/data/civs/han.jsonAINames[25]
+msgid "Liu Zhi"
+msgstr "桓帝刘志"
+
+#: simulation/data/civs/han.jsonAINames[27]
+msgid "Liu Bian"
+msgstr "后少帝刘辩"
+
+#: simulation/data/civs/han.jsonAINames[28]
+msgid "Liu Xie"
+msgstr "献帝刘协"
+
+#: simulation/data/civs/han.jsonAINames[2]
+msgid "Liu Gong"
+msgstr "西汉前少帝"
+
+#: simulation/data/civs/han.jsonAINames[26]
+#: simulation/data/civs/han.jsonAINames[3]
+msgid "Liu Hong"
+msgstr "后少帝刘弘"
+
+#: simulation/data/civs/han.jsonAINames[4]
+msgid "Liu Heng"
+msgstr "文帝刘恒"
+
+#: simulation/data/civs/han.jsonAINames[5]
+msgid "Liu Qi"
+msgstr "景帝刘启"
+
+#: simulation/data/civs/han.jsonAINames[6]
+msgid "Liu Che"
+msgstr "武帝刘彻"
+
+#: simulation/data/civs/han.jsonAINames[7]
+msgid "Liu Fuling"
+msgstr "昭帝刘弗陵"
+
+#: simulation/data/civs/han.jsonAINames[8]
+msgid "Liu He"
+msgstr "废帝刘贺"
+
+#: simulation/data/civs/han.jsonAINames[9]
+msgid "Liu Bingyi"
+msgstr "宣帝刘询"
 
 #: simulation/data/civs/iber.jsonAINames[0]
 #: simulation/data/civs/iber.jsonAINames[1]
@@ -386,20 +448,6 @@ msgstr "石塔的木材花费 -50％，石头花费 +150％，建造时间 +33�
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Massive Towers"
 msgstr "要塞"
-
-#: simulation/data/civs/iber.jsonHistory
-msgid ""
-"The Iberians were a people of mysterious origins and language, with a strong"
-" tradition of horsemanship and metalworking. A relatively peaceful culture, "
-"they usually fought in other's battles only as mercenaries. However, they "
-"proved tenacious when Rome sought to take their land and freedom from them, "
-"and employed pioneering guerrilla tactics and flaming javelins as they "
-"fought back."
-msgstr "伊比利亚人有着神秘的起源和语言，也有很高的冶金和马术水平，作为一个相对热爱和平的民族，他们通常只以雇佣兵的身份参与外部的战争，但在罗马人侵略他们的土地时也会奋起保卫家园，并在反击时使用了伏击战术和火标枪。"
-
-#: simulation/data/civs/iber.jsonName
-msgid "Iberians"
-msgstr "伊比利亚"
 
 #: simulation/data/civs/kush.jsonAINames[0]
 msgid "Kashta"
@@ -467,28 +515,6 @@ msgstr "冲车攻击 +20%，驻军上限 +2 ."
 msgid "Large Rams"
 msgstr "强力冲车"
 
-#: simulation/data/civs/kush.jsonHistory
-msgid ""
-"The Kingdom of Kush was an ancient African kingdom situated on the "
-"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
-" Republic of Sudan. The Kushite era of rule in the region was established "
-"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
-"centered at Napata in its early phase. They invaded Egypt in the 8th century"
-" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
-"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
-"culture was influenced heavily by the Egyptians, with Kushite pyramid "
-"building and monumental temple architecture still extent. The Kushites even "
-"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
-"the Kushite imperial capital was at Meroe. In early Greek geography, the "
-"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
-" the 4th century AD, when it weakened and disintegrated due to internal "
-"rebellion, eventually succumbing to the rising power of Axum."
-msgstr "库什王国地处非洲，位于现今苏丹共和国的青尼罗河、白尼罗河和阿特巴拉河的交汇处。早期以那帕塔为中心，在埃及新王国的青铜时代崩溃之后建立。公元前 8 世纪入侵埃及，并统治了埃及第 25 王朝约一个世纪之久，后被亚述驱离。 库什文化深受古埃及文化影响，如今库什的金字塔建筑和巨大神庙建筑依然存在。 库什也崇拜众多括阿蒙在内的埃及神祇。希腊古典时期，库什首都位于麦罗埃。早期希腊的的地理学著作中，麦罗埃地区被称为埃塞俄比亚。 库什王国一直延续到 4 世纪，由于内乱而削弱并解体，最后臣服于崛起的阿克苏姆。"
-
-#: simulation/data/civs/kush.jsonName
-msgid "Kushites"
-msgstr "库什"
-
 #: simulation/data/civs/mace.jsonAINames[0]
 msgid "Alexander the Great"
 msgstr "亚历山大大帝"
@@ -542,19 +568,6 @@ msgstr "德米特里二世"
 msgid "Philip V"
 msgstr "腓力五世"
 
-#: simulation/data/civs/mace.jsonHistory
-msgid ""
-"Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
-" the Greek peninsula. Under the leadership of Alexander the Great, "
-"Macedonian forces and allies took over most of the world they knew, "
-"including Egypt, Persia and parts of the Indian subcontinent, allowing a "
-"diffusion of Hellenic and eastern cultures for years to come."
-msgstr "马其顿王国，位于希腊半岛的东北部。 在亚历山大大帝的领导下，马其顿军队和盟友占领了希腊人已知的大部分世界，包括埃及、波斯和部分印度次大陆地区，促进了希腊文化和东方文化的相互交流。"
-
-#: simulation/data/civs/mace.jsonName
-msgid "Macedonians"
-msgstr "马其顿"
-
 #: simulation/data/civs/maur.jsonAINames[0]
 msgid "Chandragupta Maurya"
 msgstr "旃陀罗笈多"
@@ -590,22 +603,6 @@ msgstr "萨塔陀拉"
 #: simulation/data/civs/maur.jsonAINames[8]
 msgid "Brihadratha Maurya"
 msgstr "巨车王"
-
-#: simulation/data/civs/maur.jsonHistory
-msgid ""
-"Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first"
-" to rule most of the Indian subcontinent, and was one of the largest and "
-"most populous empires of antiquity. Its military featured bowmen who used "
-"the long-range bamboo longbow, fierce female warriors, chariots, and "
-"thousands of armored war elephants. Its philosophers, especially the famous "
-"Acharya Chanakya, contributed to such varied fields such as economics, "
-"religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
-"the Great, the empire saw 40 years of peace, harmony, and prosperity."
-msgstr "孔雀王朝，公元前 322 年由旃陀罗笈多建立，为首个统治大部分印度地区的王朝。也是古代疆域最广、人数最多的帝国之一。其军队主要由持竹弓的弓箭手、勇猛的女战士、战车、以及数以千计的战象所组成。这一时期的哲学家，在经济、宗教、外交、军事及治国方面都有贡献，特别出名的是写出《政事论》的考底利耶。阿育王时期，这个国家有了 40 年的和平与繁荣。"
-
-#: simulation/data/civs/maur.jsonName
-msgid "Mauryas"
-msgstr "孔雀王朝"
 
 #: simulation/data/civs/pers.jsonAINames[0]
 msgid "Kurush II the Great"
@@ -662,21 +659,6 @@ msgstr "陆上贸易收益 +25% ."
 #: simulation/data/civs/pers.jsonCivBonuses[0].Name
 msgid "Darics"
 msgstr "大流克"
-
-#: simulation/data/civs/pers.jsonHistory
-msgid ""
-"The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
-"greatest empires of antiquity, stretching at its zenith from the Indus "
-"Valley in the east to Greece in the west. The Persians were the pioneers of "
-"empire-building of the ancient world, successfully imposing a centralized "
-"rule over various peoples with different customs, laws, religions and "
-"languages, and building a cosmopolitan army made up of contingents from each"
-" of these nations."
-msgstr "波斯阿契美尼德王朝，为当时最强帝国之一。疆界东起印度河流域，西至巴尔干。波斯最先尝试了对古代世界进行大国构筑，他们通过王权成功地统合了不同风俗、法律、宗教和语言的地区与民族，并建立起了一支汇合四面八方、成分多样的混合军队。"
-
-#: simulation/data/civs/pers.jsonName
-msgid "Persians"
-msgstr "波斯"
 
 #: simulation/data/civs/ptol.jsonAINames[0]
 msgid "Ptolemy Soter"
@@ -762,18 +744,6 @@ msgstr "弹力车弩远程伤害 -33％，攻击间隔 -33％ ."
 msgid "Polybolos"
 msgstr "埃及车弩"
 
-#: simulation/data/civs/ptol.jsonHistory
-msgid ""
-"The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
-"Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
-"for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
-"Egypt."
-msgstr "托勒密王朝，马其顿人统治的希腊化埃及。从公元前 305 年到公元前 35 年，持续了 275 年。是古埃及最后一个王朝。"
-
-#: simulation/data/civs/ptol.jsonName
-msgid "Ptolemies"
-msgstr "托勒密"
-
 #: simulation/data/civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
 msgstr "卢基乌斯·朱尼厄斯·布鲁特斯"
@@ -852,21 +822,6 @@ msgstr "攻城锤攻击 +20％， 投石兵攻击 +10％ ."
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Legionary Engineers"
 msgstr "公民权"
-
-#: simulation/data/civs/rome.jsonHistory
-msgid ""
-"The Romans controlled one of the largest empires of the ancient world, "
-"stretching at its peak from southern Scotland to the Sahara Desert, and "
-"containing between 60 million and 80 million inhabitants, one quarter of the"
-" Earth's population at that time. Rome also remained one of the strongest "
-"nations on earth for almost 800 years. The Romans were the supreme builders "
-"of the ancient world, excelled at siege warfare and had an exquisite "
-"infantry and navy."
-msgstr "古罗马，为古代世界最大的国家之一。北起苏格兰南部绵延高峰，南至撒哈拉大沙漠。人口约 6000 ~ 8000 万，占世界的四分之一。古罗马历史绵延将近八百年，建筑技术达世界顶级。同时擅长攻城战，拥有强大的步兵和海军。"
-
-#: simulation/data/civs/rome.jsonName
-msgid "Romans"
-msgstr "罗马"
 
 #: simulation/data/civs/sele.jsonAINames[0]
 msgid "Seleucus I Nicator"
@@ -985,15 +940,6 @@ msgstr "安条克五世（出身高贵者）"
 msgid "Demetrius I Soter"
 msgstr "德米特里一世（救星）"
 
-#: simulation/data/civs/sele.jsonHistory
-msgid ""
-"The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
-msgstr "继业者王朝，继承了亚历山大三世的领土。"
-
-#: simulation/data/civs/sele.jsonName
-msgid "Seleucids"
-msgstr "塞琉古"
-
 #: simulation/data/civs/spart.jsonAINames[0]
 msgid "Leonidas"
 msgstr "莱昂尼达斯"
@@ -1046,7 +992,197 @@ msgstr "妇女的生命值 +40％，近战攻击 +50％ ."
 msgid "Spartan Women"
 msgstr "性情刚烈"
 
-#: simulation/data/civs/spart.jsonHistory
+#: simulation/templates/special/players/athen.xml:8
+msgid "Athenians"
+msgstr "雅典"
+
+#: simulation/templates/special/players/athen.xml:9
+msgid ""
+"As the cradle of Western civilization and the birthplace of democracy, "
+"Athens was famed as a center for the arts, learning and philosophy. The "
+"Athenians were also powerful warriors, particularly at sea. At its peak, "
+"Athens dominated a large part of the Hellenic world for several decades."
+msgstr "作为民主的诞生地，雅典是希腊艺术、教育和哲学中心。雅典军力不俗，且海军很强。巅峰时期，有数十年雅典人统治了希腊的大部分。"
+
+#: simulation/templates/special/players/brit.xml:8
+msgid "Britons"
+msgstr "布立吞"
+
+#: simulation/templates/special/players/brit.xml:9
+msgid ""
+"The Britons were the Celtic tribes of the British Isles. Using chariots, "
+"longswordsmen and powerful melee soldiers, they staged fearsome revolts "
+"against Rome to protect their customs and interests. Also, they built "
+"thousands of unique structures such as hill forts, crannogs and brochs."
+msgstr "布立吞，为古代凯尔特部落，居住在不列颠群岛。 使用战车与长剑，还有强大的近战士兵。为了保护本文明的习俗和利益，他们的反抗令罗马人闻风丧胆。 此外，他们还建造了成千上万座独特的建筑，如山丘堡垒、水上圆屋和石砌塔楼。"
+
+#: simulation/templates/special/players/cart.xml:8
+msgid "Carthaginians"
+msgstr "迦太基"
+
+#: simulation/templates/special/players/cart.xml:9
+msgid ""
+"Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
+"western Mediterranean, eventually taking over much of North Africa and "
+"modern-day Spain in the third century B.C. The sailors of Carthage were "
+"among the fiercest contenders on the high seas, and masters of naval trade. "
+"They deployed towered War Elephants on the battlefield to fearsome effect, "
+"and had defensive walls so strong, they were never breached."
+msgstr "迦太基城邦，位于当今北非突尼斯，是地中海西部一霸，于公元前三世纪征服了北非大部地区和现代西班牙地区。 迦太基在海上称雄，长于水运贸易。 他们在陆上部署战象以威慑对手，且城防坚不可摧。"
+
+#: simulation/templates/special/players/gaia.xml:5
+msgid "Gaia"
+msgstr "大自然"
+
+#: simulation/templates/special/players/gaul.xml:8
+msgid "Gauls"
+msgstr "高卢"
+
+#: simulation/templates/special/players/gaul.xml:9
+msgid ""
+"The Gauls were the Celtic tribes of continental Europe. Dominated by a "
+"priestly class of Druids, they featured a sophisticated culture of advanced "
+"metalworking, agriculture, trade and even road engineering. With heavy "
+"infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
+"of conquest and Rome's authoritarian rule."
+msgstr "高卢人，为是欧洲大陆的凯尔特部落。 在德鲁伊阶层的统治下，拥有先进的金属加工、农业、贸易，甚至是道路工程的复杂文化。 凭借重装步兵和骑兵，勇敢地抵抗了凯撒的征服及罗马的统治。"
+
+#: simulation/templates/special/players/han.xml:16
+msgid "Han Chinese"
+msgstr "汉朝"
+
+#: simulation/templates/special/players/han.xml:17
+msgid ""
+"The Han dynasty (206 BC – AD 220) was the second imperial dynasty of China, "
+"preceded by the Qin dynasty (221–207 BC) and succeeded by the Three Kingdoms"
+" period (AD 220–280). It is considered a golden age in Chinese history, and "
+"China made significant progress in arts and sciences during the Han period. "
+"The core of the Han empire was around the Wei River, and the Han capital was"
+" Chang'an, very close to the Qin capital Xianyang (both are now part of "
+"Xi'an, Shaanxi)."
+msgstr "汉朝（公元前 202 年——公元 220 年），代秦而立。在中国历史上极具代表性，具有承先启后的重要地位。汉朝是中国历史上第一个在黄河流域和长江流域实现真正统一的帝国，北到草原、南到长沙、西到荒漠和青海湖、东到辽东半岛。汉朝进一步奠定了汉民族以及周边的民族文化，西汉所尊崇的儒家文化特别是西周文化和春秋经成为当时和日后的中原王朝以及东亚地区的社会主流文化。在后世，汉人成为中国人的自称，隶书亦被定名为汉字。"
+
+#: simulation/templates/special/players/iber.xml:8
+msgid "Iberians"
+msgstr "伊比利亚"
+
+#: simulation/templates/special/players/iber.xml:9
+msgid ""
+"The Iberians were a people of mysterious origins and language, with a strong"
+" tradition of horsemanship and metalworking. A relatively peaceful culture, "
+"they usually fought in other's battles only as mercenaries. However, they "
+"proved tenacious when Rome sought to take their land and freedom from them, "
+"and employed pioneering guerrilla tactics and flaming javelins as they "
+"fought back."
+msgstr "伊比利亚人有着神秘的起源和语言，也有很高的冶金和马术水平，作为一个相对热爱和平的民族，他们通常只以雇佣兵的身份参与外部的战争，但在罗马人侵略他们的土地时也会奋起保卫家园，并在反击时使用了伏击战术和火标枪。"
+
+#: simulation/templates/special/players/kush.xml:8
+msgid "Kushites"
+msgstr "库什"
+
+#: simulation/templates/special/players/kush.xml:9
+msgid ""
+"The Kingdom of Kush was an ancient African kingdom situated on the "
+"confluences of the Blue Nile, White Nile and River Atbara in what is now the"
+" Republic of Sudan. The Kushite era of rule in the region was established "
+"after the Bronze Age collapse of the New Kingdom of Egypt, and it was "
+"centered at Napata in its early phase. They invaded Egypt in the 8th century"
+" BC, and the Kushite emperors ruled as Pharaohs of the Twenty-fifth dynasty "
+"of Egypt for a century, until they were expelled by the Assyrians. Kushite "
+"culture was influenced heavily by the Egyptians, with Kushite pyramid "
+"building and monumental temple architecture still extent. The Kushites even "
+"worshipped many Egyptian gods, including Amun. During Classical antiquity, "
+"the Kushite imperial capital was at Meroe. In early Greek geography, the "
+"Meroitic kingdom was known as Aethiopia. The Kushite kingdom persisted until"
+" the 4th century AD, when it weakened and disintegrated due to internal "
+"rebellion, eventually succumbing to the rising power of Axum."
+msgstr "库什王国地处非洲，位于现今苏丹共和国的青尼罗河、白尼罗河和阿特巴拉河的交汇处。早期以那帕塔为中心，在埃及新王国的青铜时代崩溃之后建立。公元前 8 世纪入侵埃及，并统治了埃及第 25 王朝约一个世纪之久，后被亚述驱离。 库什文化深受古埃及文化影响，如今库什的金字塔建筑和巨大神庙建筑依然存在。 库什也崇拜众多括阿蒙在内的埃及神祇。希腊古典时期，库什首都位于麦罗埃。早期希腊的的地理学著作中，麦罗埃地区被称为埃塞俄比亚。 库什王国一直延续到 4 世纪，由于内乱而削弱并解体，最后臣服于崛起的阿克苏姆。"
+
+#: simulation/templates/special/players/mace.xml:8
+msgid "Macedonians"
+msgstr "马其顿"
+
+#: simulation/templates/special/players/mace.xml:9
+msgid ""
+"Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
+" the Greek peninsula. Under the leadership of Alexander the Great, "
+"Macedonian forces and allies took over most of the world they knew, "
+"including Egypt, Persia and parts of the Indian subcontinent, allowing a "
+"diffusion of Hellenic and eastern cultures for years to come."
+msgstr "马其顿王国，位于希腊半岛的东北部。 在亚历山大大帝的领导下，马其顿军队和盟友占领了希腊人已知的大部分世界，包括埃及、波斯和部分印度次大陆地区，促进了希腊文化和东方文化的相互交流。"
+
+#: simulation/templates/special/players/maur.xml:8
+msgid "Mauryas"
+msgstr "孔雀王朝"
+
+#: simulation/templates/special/players/maur.xml:9
+msgid ""
+"Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first"
+" to rule most of the Indian subcontinent, and was one of the largest and "
+"most populous empires of antiquity. Its military featured bowmen who used "
+"the long-range bamboo longbow, fierce female warriors, chariots, and "
+"thousands of armored war elephants. Its philosophers, especially the famous "
+"Acharya Chanakya, contributed to such varied fields such as economics, "
+"religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
+"the Great, the empire saw 40 years of peace, harmony, and prosperity."
+msgstr "孔雀王朝，公元前 322 年由旃陀罗笈多建立，为首个统治大部分印度地区的王朝。也是古代疆域最广、人数最多的帝国之一。其军队主要由持竹弓的弓箭手、勇猛的女战士、战车、以及数以千计的战象所组成。这一时期的哲学家，在经济、宗教、外交、军事及治国方面都有贡献，特别出名的是写出《政事论》的考底利耶。阿育王时期，这个国家有了 40 年的和平与繁荣。"
+
+#: simulation/templates/special/players/pers.xml:8
+msgid "Persians"
+msgstr "波斯"
+
+#: simulation/templates/special/players/pers.xml:9
+msgid ""
+"The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
+"greatest empires of antiquity, stretching at its zenith from the Indus "
+"Valley in the east to Greece in the west. The Persians were the pioneers of "
+"empire-building of the ancient world, successfully imposing a centralized "
+"rule over various peoples with different customs, laws, religions and "
+"languages, and building a cosmopolitan army made up of contingents from each"
+" of these nations."
+msgstr "波斯阿契美尼德王朝，为当时最强帝国之一。疆界东起印度河流域，西至巴尔干。波斯最先尝试了对古代世界进行大国构筑，他们通过王权成功地统合了不同风俗、法律、宗教和语言的地区与民族，并建立起了一支汇合四面八方、成分多样的混合军队。"
+
+#: simulation/templates/special/players/ptol.xml:16
+msgid "Ptolemies"
+msgstr "托勒密"
+
+#: simulation/templates/special/players/ptol.xml:17
+msgid ""
+"The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
+"Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
+"for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
+"Egypt."
+msgstr "托勒密王朝，马其顿人统治的希腊化埃及。从公元前 305 年到公元前 35 年，持续了 275 年。是古埃及最后一个王朝。"
+
+#: simulation/templates/special/players/rome.xml:8
+msgid "Romans"
+msgstr "罗马"
+
+#: simulation/templates/special/players/rome.xml:9
+msgid ""
+"The Romans controlled one of the largest empires of the ancient world, "
+"stretching at its peak from southern Scotland to the Sahara Desert, and "
+"containing between 60 million and 80 million inhabitants, one quarter of the"
+" Earth's population at that time. Rome also remained one of the strongest "
+"nations on earth for almost 800 years. The Romans were the supreme builders "
+"of the ancient world, excelled at siege warfare and had an exquisite "
+"infantry and navy."
+msgstr "古罗马，为古代世界最大的国家之一。北起苏格兰南部绵延高峰，南至撒哈拉大沙漠。人口约 6000 ~ 8000 万，占世界的四分之一。古罗马历史绵延将近八百年，建筑技术达世界顶级。同时擅长攻城战，拥有强大的步兵和海军。"
+
+#: simulation/templates/special/players/sele.xml:16
+msgid "Seleucids"
+msgstr "塞琉古"
+
+#: simulation/templates/special/players/sele.xml:17
+msgid ""
+"The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
+msgstr "继业者王朝，继承了亚历山大三世的领土。"
+
+#: simulation/templates/special/players/spart.xml:6
+msgid "Spartans"
+msgstr "斯巴达"
+
+#: simulation/templates/special/players/spart.xml:7
 msgid ""
 "Sparta was a prominent city-state in ancient Greece, and its dominant "
 "military power on land from circa 650 B.C. Spartan culture was obsessed with"
@@ -1055,7 +1191,3 @@ msgid ""
 " forces during the Greco-Persian Wars, and won over Athens in the "
 "Peloponnesian Wars, though at great cost."
 msgstr "斯巴达是希腊杰出的城邦，约在前 650 年称雄陆上。文化上迷恋军事训练，讲求精益求精，男孩在七岁时就开始严格的军事训练。由此，在希波战争中领导希腊联军走向了胜利。此后，又付出了巨大的代价，在伯罗奔尼撒战争中打败了劲敌雅典。"
-
-#: simulation/data/civs/spart.jsonName
-msgid "Spartans"
-msgstr "斯巴达"

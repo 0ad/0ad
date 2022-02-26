@@ -407,6 +407,11 @@ bool CVideoMode::InitSDL()
 	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
+	bool debugContext = false;
+	CFG_GET_VAL("renderer.backend.debugcontext", debugContext);
+	if (debugContext)
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_DEBUG_FLAG);
+
 	bool forceGLVersion = false;
 	CFG_GET_VAL("forceglversion", forceGLVersion);
 	if (forceGLVersion)
