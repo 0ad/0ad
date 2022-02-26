@@ -257,7 +257,6 @@ void TerrainOverlay::RenderTileOutline(
 #if CONFIG2_GLES
 	UNUSED2(deviceCommandContext);
 	UNUSED2(color);
-	UNUSED2(lineWidth);
 	UNUSED2(drawHidden);
 	UNUSED2(i);
 	UNUSED2(j);

@@ -444,7 +444,7 @@ void SilhouetteRenderer::RenderSubmitCasters(SceneCollector& collector)
 }
 
 void SilhouetteRenderer::RenderDebugBounds(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext))
 {
 	if (m_DebugBounds.empty())
 		return;
