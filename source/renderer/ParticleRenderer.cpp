@@ -175,6 +175,6 @@ void ParticleRenderer::RenderBounds(int cullGroup)
 	{
 		const CBoundingBoxAligned bounds =
 			emitter->m_Type->CalculateBounds(emitter->GetPosition(), emitter->GetParticleBounds());
-		g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(bounds, CColor(0.0f, 1.0f, 0.0f, 1.0f));
+		g_Renderer.GetDebugRenderer().DrawBoundingBox(bounds, CColor(0.0f, 1.0f, 0.0f, 1.0f), true);
 	}
 }

@@ -544,7 +544,7 @@ void ShadowMapInternals::CreateTexture()
 			// basic unfiltered depth texture
 			Renderer::Backend::Sampler::Filter::NEAREST,
 #else
-			// Use GL_LINEAR to trigger automatic PCF on some devices
+			// Use LINEAR to trigger automatic PCF on some devices.
 			Renderer::Backend::Sampler::Filter::LINEAR,
 #endif
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
@@ -685,12 +685,15 @@ void ShadowMap::RenderDebugBounds()
 
 	const CMatrix3D transform = g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection() * m->InvLightTransform;
 
-	g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m->ShadowReceiverBound, CColor(1.0f, 1.0f, 0.0f, 1.0f), transform);
+	g_Renderer.GetDebugRenderer().DrawBoundingBox(
+		m->ShadowReceiverBound, CColor(1.0f, 1.0f, 0.0f, 1.0f), transform, true);
 
 	for (int cascade = 0; cascade < GetCascadeCount(); ++cascade)
 	{
-		g_Renderer.GetDebugRenderer().DrawBoundingBox(m->Cascades[cascade].ShadowRenderBound, CColor(0.0f, 0.0f, 1.0f, 0.10f), transform);
-		g_Renderer.GetDebugRenderer().DrawBoundingBoxOutline(m->Cascades[cascade].ShadowRenderBound, CColor(0.0f, 0.0f, 1.0f, 0.5f), transform);
+		g_Renderer.GetDebugRenderer().DrawBoundingBox(
+			m->Cascades[cascade].ShadowRenderBound, CColor(0.0f, 0.0f, 1.0f, 0.10f), transform);
+		g_Renderer.GetDebugRenderer().DrawBoundingBox(
+			m->Cascades[cascade].ShadowRenderBound, CColor(0.0f, 0.0f, 1.0f, 0.5f), transform, true);
 
 		const CFrustum frustum = GetShadowCasterCullFrustum(cascade);
 		// We don't have a function to create a brush directly from a frustum, so use
@@ -701,7 +704,7 @@ void ShadowMap::RenderDebugBounds()
 		brush.Intersect(frustum, frustumBrush);
 
 		g_Renderer.GetDebugRenderer().DrawBrush(frustumBrush, CColor(1.0f, 0.0f, 0.0f, 0.1f));
-		g_Renderer.GetDebugRenderer().DrawBrushOutline(frustumBrush, CColor(1.0f, 0.0f, 0.0f, 0.5f));
+		g_Renderer.GetDebugRenderer().DrawBrush(frustumBrush, CColor(1.0f, 0.0f, 0.0f, 0.1f), true);
 	}
 
 	ogl_WarnIfError();

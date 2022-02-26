@@ -157,14 +157,16 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 	vertices.emplace_back((position).Y); \
 	vertices.emplace_back((position).Z);
 
-	ADD(origin)
-
 	constexpr size_t segments = 16;
 	for (size_t idx = 0; idx <= segments; ++idx)
 	{
 		const float angle = M_PI * 2.0f * idx / segments;
 		const CVector3D offset = cameraUp * sin(angle) - cameraLeft * cos(angle);
+		const float nextAngle = M_PI * 2.0f * (idx + 1) / segments;
+		const CVector3D nextOffset = cameraUp * sin(nextAngle) - cameraLeft * cos(nextAngle);
+		ADD(origin)
 		ADD(origin + offset * radius)
+		ADD(origin + nextOffset * radius)
 	}
 
 #undef ADD
@@ -269,18 +271,25 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 #endif
 }
 
-void CDebugRenderer::DrawBoundingBox(const CBoundingBoxAligned& boundingBox, const CColor& color)
+void CDebugRenderer::DrawBoundingBox(
+	const CBoundingBoxAligned& boundingBox, const CColor& color,
+	bool wireframe)
 {
-	DrawBoundingBox(boundingBox, color, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
+	DrawBoundingBox(
+		boundingBox, color,
+		g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection(), wireframe);
 }
 
-void CDebugRenderer::DrawBoundingBox(const CBoundingBoxAligned& boundingBox, const CColor& color, const CMatrix3D& transform)
+void CDebugRenderer::DrawBoundingBox(
+	const CBoundingBoxAligned& boundingBox, const CColor& color,
+	const CMatrix3D& transform, bool wireframe)
 {
 	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	shaderTech->BeginPass();
-	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), shaderTech, color);
+	SetGraphicsPipelineStateFromTechAndColor(
+		g_Renderer.GetDeviceCommandContext(), shaderTech, color, true, wireframe);
 
-	CShaderProgramPtr shader = shaderTech->GetShader();
+	const CShaderProgramPtr& shader = shaderTech->GetShader();
 	shader->Uniform(str_color, color);
 	shader->Uniform(str_transform, transform);
 
@@ -291,8 +300,6 @@ void CDebugRenderer::DrawBoundingBox(const CBoundingBoxAligned& boundingBox, con
 	ADD_PT(1, 1, x, y, z); ADD_PT(0, 1, x, y, z); ADD_PT(0, 0, x, y, z);
 #define ADD_PT(u_, v_, x, y, z) \
 	STMT(int u = u_; int v = v_; \
-		data.push_back(u); \
-		data.push_back(v); \
 		data.push_back(boundingBox[x].X); \
 		data.push_back(boundingBox[y].Y); \
 		data.push_back(boundingBox[z].Z); \
@@ -307,8 +314,7 @@ void CDebugRenderer::DrawBoundingBox(const CBoundingBoxAligned& boundingBox, con
 
 #undef ADD_FACE
 
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 5*sizeof(float), &data[0]);
-	shader->VertexPointer(3, GL_FLOAT, 5*sizeof(float), &data[2]);
+	shader->VertexPointer(3, GL_FLOAT, 3 * sizeof(float), data.data());
 
 	shader->AssertPointersBound();
 	glDrawArrays(GL_TRIANGLES, 0, 6*6);
@@ -316,62 +322,14 @@ void CDebugRenderer::DrawBoundingBox(const CBoundingBoxAligned& boundingBox, con
 	shaderTech->EndPass();
 }
 
-void CDebugRenderer::DrawBoundingBoxOutline(const CBoundingBoxAligned& boundingBox, const CColor& color)
-{
-	DrawBoundingBoxOutline(boundingBox, color, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
-}
-
-void CDebugRenderer::DrawBoundingBoxOutline(const CBoundingBoxAligned& boundingBox, const CColor& color, const CMatrix3D& transform)
+void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color, bool wireframe)
 {
 	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	shaderTech->BeginPass();
-	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), shaderTech, color, true, true);
+	SetGraphicsPipelineStateFromTechAndColor(
+		g_Renderer.GetDeviceCommandContext(), shaderTech, color, true, wireframe);
 
-	CShaderProgramPtr shader = shaderTech->GetShader();
-	shader->Uniform(str_color, color);
-	shader->Uniform(str_transform, transform);
-
-	std::vector<float> data;
-
-#define ADD_FACE(x, y, z) \
-	ADD_PT(0, 0, x, y, z); ADD_PT(1, 0, x, y, z); \
-	ADD_PT(1, 0, x, y, z); ADD_PT(1, 1, x, y, z); \
-	ADD_PT(1, 1, x, y, z); ADD_PT(0, 1, x, y, z); \
-	ADD_PT(0, 1, x, y, z); ADD_PT(0, 0, x, y, z);
-#define ADD_PT(u_, v_, x, y, z) \
-	STMT(int u = u_; int v = v_; \
-		data.push_back(u); \
-		data.push_back(v); \
-		data.push_back(boundingBox[x].X); \
-		data.push_back(boundingBox[y].Y); \
-		data.push_back(boundingBox[z].Z); \
-	)
-
-	ADD_FACE(u, v, 0);
-	ADD_FACE(0, u, v);
-	ADD_FACE(u, 0, 1-v);
-	ADD_FACE(u, 1-v, 1);
-	ADD_FACE(1, u, 1-v);
-	ADD_FACE(u, 1, v);
-
-#undef ADD_FACE
-
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 5*sizeof(float), &data[0]);
-	shader->VertexPointer(3, GL_FLOAT, 5*sizeof(float), &data[2]);
-
-	shader->AssertPointersBound();
-	glDrawArrays(GL_LINES, 0, 6*8);
-
-	shaderTech->EndPass();
-}
-
-void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color)
-{
-	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
-	shaderTech->BeginPass();
-	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), shaderTech, color);
-
-	CShaderProgramPtr shader = shaderTech->GetShader();
+	const CShaderProgramPtr& shader = shaderTech->GetShader();
 	shader->Uniform(str_color, color);
 	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 
@@ -382,8 +340,6 @@ void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color)
 
 #define ADD_VERT(a) \
 	STMT( \
-		data.push_back(u); \
-		data.push_back(v); \
 		data.push_back(brush.GetVertices()[faces[i][a]].X); \
 		data.push_back(brush.GetVertices()[faces[i][a]].Y); \
 		data.push_back(brush.GetVertices()[faces[i][a]].Z); \
@@ -394,8 +350,6 @@ void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color)
 		// Triangulate into (0,1,2), (0,2,3), ...
 		for (size_t j = 1; j < faces[i].size() - 2; ++j)
 		{
-			float u = 0;
-			float v = 0;
 			ADD_VERT(0);
 			ADD_VERT(j);
 			ADD_VERT(j+1);
@@ -404,8 +358,7 @@ void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color)
 
 #undef ADD_VERT
 
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 5*sizeof(float), &data[0]);
-	shader->VertexPointer(3, GL_FLOAT, 5*sizeof(float), &data[2]);
+	shader->VertexPointer(3, GL_FLOAT, 3 * sizeof(float), data.data());
 
 	shader->AssertPointersBound();
 	glDrawArrays(GL_TRIANGLES, 0, data.size() / 5);
@@ -413,48 +366,3 @@ void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color)
 	shaderTech->EndPass();
 }
 
-void CDebugRenderer::DrawBrushOutline(const CBrush& brush, const CColor& color)
-{
-	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
-	shaderTech->BeginPass();
-	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), shaderTech, color);
-
-	CShaderProgramPtr shader = shaderTech->GetShader();
-	shader->Uniform(str_color, color);
-	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
-
-	std::vector<float> data;
-
-	std::vector<std::vector<size_t>> faces;
-	brush.GetFaces(faces);
-
-#define ADD_VERT(a) \
-	STMT( \
-		data.push_back(u); \
-		data.push_back(v); \
-		data.push_back(brush.GetVertices()[faces[i][a]].X); \
-		data.push_back(brush.GetVertices()[faces[i][a]].Y); \
-		data.push_back(brush.GetVertices()[faces[i][a]].Z); \
-	)
-
-	for (size_t i = 0; i < faces.size(); ++i)
-	{
-		for (size_t j = 0; j < faces[i].size() - 1; ++j)
-		{
-			float u = 0;
-			float v = 0;
-			ADD_VERT(j);
-			ADD_VERT(j+1);
-		}
-	}
-
-#undef ADD_VERT
-
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 5*sizeof(float), &data[0]);
-	shader->VertexPointer(3, GL_FLOAT, 5*sizeof(float), &data[2]);
-
-	shader->AssertPointersBound();
-	glDrawArrays(GL_LINES, 0, data.size() / 5);
-
-	shaderTech->EndPass();
-}

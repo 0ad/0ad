@@ -66,7 +66,7 @@ public:
 		) / 4.f;
 		RenderTile(deviceCommandContext, CColor(0, 1, 0, avg*0.8f), false);
 		if (avg > 0.1f)
-			RenderTileOutline(deviceCommandContext, CColor(1, 1, 1, std::min(0.4f, avg-0.1f)), 1, true);
+			RenderTileOutline(deviceCommandContext, CColor(1, 1, 1, std::min(0.4f, avg-0.1f)), true);
 	}
 
 	const AtlasMessage::Brush* m_Brush;

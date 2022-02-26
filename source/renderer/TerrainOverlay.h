@@ -160,14 +160,14 @@ protected:
 	 */
 	void RenderTileOutline(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CColor& color, int lineWidth, bool drawHidden);
+		const CColor& color, bool drawHidden);
 
 	/**
 	 * Draw an outlined quad on top of the given tile.
 	 */
 	void RenderTileOutline(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CColor& color, int lineWidth, bool drawHidden, ssize_t i, ssize_t j);
+		const CColor& color, bool drawHidden, ssize_t i, ssize_t j);
 
 private:
 	// Process all tiles

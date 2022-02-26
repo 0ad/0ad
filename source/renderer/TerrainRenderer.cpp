@@ -197,11 +197,14 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 	{
 		// Add a delta to avoid z-fighting.
 		const float height = g_Renderer.GetSceneRenderer().GetWaterManager().m_WaterHeight + 0.05f;
-		const float waterPos[] = {
+		const float waterPos[] =
+		{
 			waterBounds[0].X, height, waterBounds[0].Z,
 			waterBounds[1].X, height, waterBounds[0].Z,
-			waterBounds[0].X, height, waterBounds[1].Z,
-			waterBounds[1].X, height, waterBounds[1].Z
+			waterBounds[1].X, height, waterBounds[1].Z,
+			waterBounds[0].X, height, waterBounds[0].Z,
+			waterBounds[1].X, height, waterBounds[1].Z,
+			waterBounds[0].X, height, waterBounds[1].Z
 		};
 
 		const GLsizei stride = sizeof(float) * 3;
@@ -209,7 +212,7 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 		debugOverlayShader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, waterPos);
 		debugOverlayShader->AssertPointersBound();
 
-		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 	}
 
 	debugOverlayTech->EndPass();
