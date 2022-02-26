@@ -31,6 +31,7 @@
 #include "graphics/TextureManager.h"
 #include "lib/bits.h"
 #include "lib/timer.h"
+#include "maths/Vector2D.h"
 #include "ps/ConfigDB.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
@@ -51,9 +52,11 @@
 namespace
 {
 
-// Set max drawn entities to UINT16_MAX for now, which is more than enough
-// TODO: we should be cleverer about drawing them to reduce clutter
-const u16 MAX_ENTITIES_DRAWN = 65535;
+// Set max drawn entities to 64K / 4 for now, which is more than enough.
+// 4 is the number of vertices per entity.
+// TODO: we should be cleverer about drawing them to reduce clutter,
+// f.e. use instancing.
+const size_t MAX_ENTITIES_DRAWN = 65536 / 4;
 
 const size_t FINAL_TEXTURE_SIZE = 512;
 
@@ -65,7 +68,7 @@ unsigned int ScaleColor(unsigned int color, float x)
 	return (0xff000000 | b | g << 8 | r << 16);
 }
 
-void DrawTexture(CShaderProgramPtr shader)
+void DrawTexture(const CShaderProgramPtr& shader)
 {
 	const float quadUVs[] =
 	{
@@ -99,24 +102,35 @@ struct MinimapUnitVertex
 {
 	// This struct is copyable for convenience and because to move is to copy for primitives.
 	u8 r, g, b, a;
-	float x, y;
+	CVector2D position;
 };
 
 // Adds a vertex to the passed VertexArray
-static void inline addVertex(const MinimapUnitVertex& v,
+inline void AddEntity(const MinimapUnitVertex& v,
 	VertexArrayIterator<u8[4]>& attrColor,
-	VertexArrayIterator<float[2]>& attrPos)
+	VertexArrayIterator<float[2]>& attrPos,
+	const float entityRadius)
 {
-	(*attrColor)[0] = v.r;
-	(*attrColor)[1] = v.g;
-	(*attrColor)[2] = v.b;
-	(*attrColor)[3] = v.a;
-	++attrColor;
+	const CVector2D offsets[4] =
+	{
+		{-entityRadius, 0.0f},
+		{0.0f, -entityRadius},
+		{entityRadius, 0.0f},
+		{0.0f, entityRadius}
+	};
 
-	(*attrPos)[0] = v.x;
-	(*attrPos)[1] = v.y;
+	for (const CVector2D& offset : offsets)
+	{
+		(*attrColor)[0] = v.r;
+		(*attrColor)[1] = v.g;
+		(*attrColor)[2] = v.b;
+		(*attrColor)[3] = v.a;
+		++attrColor;
 
-	++attrPos;
+		(*attrPos)[0] = v.position.X + offset.X;
+		(*attrPos)[1] = v.position.Y + offset.Y;
+		++attrPos;
+	}
 }
 
 } // anonymous namespace
@@ -147,20 +161,19 @@ CMiniMapTexture::CMiniMapTexture(CSimulation2& simulation)
 	m_AttributeColor.elems = 4;
 	m_VertexArray.AddAttribute(&m_AttributeColor);
 
-	m_VertexArray.SetNumberOfVertices(MAX_ENTITIES_DRAWN);
+	m_VertexArray.SetNumberOfVertices(MAX_ENTITIES_DRAWN * 4);
 	m_VertexArray.Layout();
 
-	m_IndexArray.SetNumberOfVertices(MAX_ENTITIES_DRAWN);
+	m_IndexArray.SetNumberOfVertices(MAX_ENTITIES_DRAWN * 6);
 	m_IndexArray.Layout();
 	VertexArrayIterator<u16> index = m_IndexArray.GetIterator();
-	for (u16 i = 0; i < MAX_ENTITIES_DRAWN; ++i)
-		*index++ = i;
+	for (size_t i = 0; i < m_IndexArray.GetNumberOfVertices(); ++i)
+		*index++ = 0;
 	m_IndexArray.Upload();
-	m_IndexArray.FreeBackingStore();
 
 	VertexArrayIterator<float[2]> attrPos = m_AttributePos.GetIterator<float[2]>();
 	VertexArrayIterator<u8[4]> attrColor = m_AttributeColor.GetIterator<u8[4]>();
-	for (u16 i = 0; i < MAX_ENTITIES_DRAWN; ++i)
+	for (size_t i = 0; i < m_VertexArray.GetNumberOfVertices(); ++i)
 	{
 		(*attrColor)[0] = 0;
 		(*attrColor)[1] = 0;
@@ -172,7 +185,6 @@ CMiniMapTexture::CMiniMapTexture(CSimulation2& simulation)
 		(*attrPos)[1] = -10000.0f;
 
 		++attrPos;
-
 	}
 	m_VertexArray.Upload();
 }
@@ -300,7 +312,7 @@ void CMiniMapTexture::RebuildTerrainTexture(
 					{
 						// If the texture can't be loaded yet, set the dirty flags
 						// so we'll try regenerating the terrain texture again soon
-						if(!tex->GetTexture()->TryLoad())
+						if (!tex->GetTexture()->TryLoad())
 							m_TerrainTextureDirty = true;
 
 						color = tex->GetBaseColor();
@@ -420,7 +432,6 @@ void CMiniMapTexture::RenderFinalTexture(
 		tech->GetGraphicsPipelineStateDesc());
 	shader = tech->GetShader();
 	shader->Uniform(str_transform, baseTransform);
-	shader->Uniform(str_pointSize, 9.0f);
 
 	CMatrix3D unitMatrix;
 	unitMatrix.SetIdentity();
@@ -443,6 +454,11 @@ void CMiniMapTexture::RenderFinalTexture(
 		std::vector<MinimapUnitVertex> pingingVertices;
 		pingingVertices.reserve(MAX_ENTITIES_DRAWN / 2);
 
+		// We might scale entities properly in the vertex shader but it requires
+		// additional space in the vertex buffer. So we assume that we don't need
+		// to change an entity size so often.
+		const float entityRadius = static_cast<float>(m_MapSize) / 128.0f * 6.0f;
+
 		if (currentTime > m_NextBlinkTime)
 		{
 			m_BlinkState = !m_BlinkState;
@@ -459,8 +475,8 @@ void CMiniMapTexture::RenderFinalTexture(
 				if (vis != LosVisibility::HIDDEN)
 				{
 					v.a = 255;
-					v.x = posX.ToFloat();
-					v.y = posZ.ToFloat();
+					v.position.X = posX.ToFloat();
+					v.position.Y = posZ.ToFloat();
 
 					// Check minimap pinging to indicate something
 					if (m_BlinkState && cmpMinimap->CheckPing(currentTime, m_PingDuration))
@@ -472,7 +488,7 @@ void CMiniMapTexture::RenderFinalTexture(
 					}
 					else
 					{
-						addVertex(v, attrColor, attrPos);
+						AddEntity(v, attrColor, attrPos, entityRadius);
 						++m_EntitiesDrawn;
 					}
 				}
@@ -482,12 +498,25 @@ void CMiniMapTexture::RenderFinalTexture(
 		// Add the pinged vertices at the end, so they are drawn on top
 		for (const MinimapUnitVertex& vertex : pingingVertices)
 		{
-			addVertex(vertex, attrColor, attrPos);
+			AddEntity(vertex, attrColor, attrPos, entityRadius);
 			++m_EntitiesDrawn;
 		}
 
 		ENSURE(m_EntitiesDrawn < MAX_ENTITIES_DRAWN);
+
+		VertexArrayIterator<u16> index = m_IndexArray.GetIterator();
+		for (size_t entityIndex = 0; entityIndex < m_EntitiesDrawn; ++entityIndex)
+		{
+			index[entityIndex * 6 + 0] = static_cast<u16>(entityIndex * 4 + 0);
+			index[entityIndex * 6 + 1] = static_cast<u16>(entityIndex * 4 + 1);
+			index[entityIndex * 6 + 2] = static_cast<u16>(entityIndex * 4 + 2);
+			index[entityIndex * 6 + 3] = static_cast<u16>(entityIndex * 4 + 0);
+			index[entityIndex * 6 + 4] = static_cast<u16>(entityIndex * 4 + 2);
+			index[entityIndex * 6 + 5] = static_cast<u16>(entityIndex * 4 + 3);
+		}
+
 		m_VertexArray.Upload();
+		m_IndexArray.Upload();
 	}
 
 	m_VertexArray.PrepareForRendering();
@@ -498,9 +527,6 @@ void CMiniMapTexture::RenderFinalTexture(
 		scissorRect.x = scissorRect.y = 1;
 		scissorRect.width = scissorRect.height = FINAL_TEXTURE_SIZE - 2;
 		deviceCommandContext->SetScissors(1, &scissorRect);
-#if !CONFIG2_GLES
-		glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
-#endif
 
 		u8* indexBase = m_IndexArray.Bind(deviceCommandContext);
 		u8* base = m_VertexArray.Bind(deviceCommandContext);
@@ -510,14 +536,11 @@ void CMiniMapTexture::RenderFinalTexture(
 		shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_AttributeColor.offset);
 		shader->AssertPointersBound();
 
-		glDrawElements(GL_POINTS, (GLsizei)(m_EntitiesDrawn), GL_UNSIGNED_SHORT, indexBase);
+		glDrawElements(GL_TRIANGLES, m_EntitiesDrawn * 6, GL_UNSIGNED_SHORT, indexBase);
 
 		g_Renderer.GetStats().m_DrawCalls++;
 		CVertexBuffer::Unbind(deviceCommandContext);
 
-#if !CONFIG2_GLES
-		glDisable(GL_VERTEX_PROGRAM_POINT_SIZE);
-#endif
 		deviceCommandContext->SetScissors(0, nullptr);
 	}
 
