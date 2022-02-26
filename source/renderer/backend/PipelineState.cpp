@@ -57,6 +57,9 @@ GraphicsPipelineStateDesc MakeDefaultGraphicsPipelineStateDesc()
 	desc.rasterizationState.polygonMode = PolygonMode::FILL;
 	desc.rasterizationState.cullMode = CullMode::BACK;
 	desc.rasterizationState.frontFace = FrontFace::COUNTER_CLOCKWISE;
+	desc.rasterizationState.depthBiasEnabled = false;
+	desc.rasterizationState.depthBiasConstantFactor = 0.0f;
+	desc.rasterizationState.depthBiasSlopeFactor = 0.0f;
 	return desc;
 }
 

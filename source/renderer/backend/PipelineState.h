@@ -154,6 +154,9 @@ struct RasterizationStateDesc
 	PolygonMode polygonMode;
 	CullMode cullMode;
 	FrontFace frontFace;
+	bool depthBiasEnabled;
+	float depthBiasConstantFactor;
+	float depthBiasSlopeFactor;
 };
 
 // TODO: Add a shader program to the graphics pipeline state.

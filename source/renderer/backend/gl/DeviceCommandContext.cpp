@@ -590,6 +590,25 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 			glFrontFace(GL_CCW);
 	}
 
+#if !CONFIG2_GLES
+	if (force ||
+		currentRasterizationStateDesc.depthBiasEnabled != nextRasterizationStateDesc.depthBiasEnabled)
+	{
+		if (nextRasterizationStateDesc.depthBiasEnabled)
+			glEnable(GL_POLYGON_OFFSET_FILL);
+		else
+			glDisable(GL_POLYGON_OFFSET_FILL);
+	}
+	if (force ||
+		currentRasterizationStateDesc.depthBiasConstantFactor != nextRasterizationStateDesc.depthBiasConstantFactor ||
+		currentRasterizationStateDesc.depthBiasSlopeFactor != nextRasterizationStateDesc.depthBiasSlopeFactor)
+	{
+		glPolygonOffset(
+			nextRasterizationStateDesc.depthBiasSlopeFactor,
+			nextRasterizationStateDesc.depthBiasConstantFactor);
+	}
+#endif
+
 	m_GraphicsPipelineStateDesc = pipelineStateDesc;
 }
 

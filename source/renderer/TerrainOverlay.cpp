@@ -124,14 +124,6 @@ void TerrainOverlay::RenderBeforeWater(
 	UNUSED2(deviceCommandContext);
 #warning TODO: implement TerrainOverlay::RenderOverlays for GLES
 #else
-	// To ensure that outlines are drawn on top of the terrain correctly (and
-	// don't Z-fight and flicker nastily), draw them as QUADS with the LINE
-	// PolygonMode, and use PolygonOffset to pull them towards the camera.
-	// (See e.g. http://www.opengl.org/resources/faq/technical/polygonoffset.htm)
-	glPolygonOffset(-1.f, -1.f);
-	//glEnable(GL_POLYGON_OFFSET_LINE);
-	glEnable(GL_POLYGON_OFFSET_FILL);
-
 	StartRender();
 
 	ssize_t min_i, min_j, max_i, max_j;
@@ -149,9 +141,6 @@ void TerrainOverlay::RenderBeforeWater(
 			ProcessTile(deviceCommandContext, m_i, m_j);
 
 	EndRender();
-
-	//glDisable(GL_POLYGON_OFFSET_LINE);
-	glDisable(GL_POLYGON_OFFSET_FILL);
 #endif
 }
 
@@ -226,6 +215,12 @@ void TerrainOverlay::RenderTile(
 		Renderer::Backend::BlendOp::ADD;
 	pipelineStateDesc.rasterizationState.cullMode =
 		drawHidden ? Renderer::Backend::CullMode::NONE : Renderer::Backend::CullMode::BACK;
+	// To ensure that outlines are drawn on top of the terrain correctly (and
+	// don't Z-fight and flicker nastily), use detph bias to pull them towards
+	// the camera.
+	pipelineStateDesc.rasterizationState.depthBiasEnabled = true;
+	pipelineStateDesc.rasterizationState.depthBiasConstantFactor = -1.0f;
+	pipelineStateDesc.rasterizationState.depthBiasSlopeFactor = -1.0f;
 	overlayTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 
