@@ -56,8 +56,8 @@ bool operator!=(const StencilOpState& lhs, const StencilOpState& rhs)
 }
 
 bool operator==(
-	const CDeviceCommandContext::ScissorRect& lhs,
-	const CDeviceCommandContext::ScissorRect& rhs)
+	const CDeviceCommandContext::Rect& lhs,
+	const CDeviceCommandContext::Rect& rhs)
 {
 	return
 		lhs.x == rhs.x && lhs.y == rhs.y &&
@@ -65,8 +65,8 @@ bool operator==(
 }
 
 bool operator!=(
-	const CDeviceCommandContext::ScissorRect& lhs,
-	const CDeviceCommandContext::ScissorRect& rhs)
+	const CDeviceCommandContext::Rect& lhs,
+	const CDeviceCommandContext::Rect& rhs)
 {
 	return !operator==(lhs, rhs);
 }
@@ -683,7 +683,7 @@ void CDeviceCommandContext::SetFramebuffer(CFramebuffer* framebuffer)
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, framebuffer->GetHandle());
 }
 
-void CDeviceCommandContext::SetScissors(const uint32_t scissorCount, const ScissorRect* scissors)
+void CDeviceCommandContext::SetScissors(const uint32_t scissorCount, const Rect* scissors)
 {
 	ENSURE(scissorCount <= 1);
 	if (scissorCount == 0)
@@ -703,6 +703,12 @@ void CDeviceCommandContext::SetScissors(const uint32_t scissorCount, const Sciss
 		}
 	}
 	m_ScissorCount = scissorCount;
+}
+
+void CDeviceCommandContext::SetViewports(const uint32_t viewportCount, const Rect* viewports)
+{
+	ENSURE(viewportCount == 1);
+	glViewport(viewports[0].x, viewports[0].y, viewports[0].width, viewports[0].height);
 }
 
 CDeviceCommandContext::ScopedBind::ScopedBind(

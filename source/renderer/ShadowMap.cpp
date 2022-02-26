@@ -603,7 +603,7 @@ void ShadowMap::PrepareCamera(const int cascade)
 	g_Renderer.GetSceneRenderer().SetViewCamera(camera);
 
 	const SViewPort& cascadeViewPort = m->Cascades[cascade].ViewPort;
-	Renderer::Backend::GL::CDeviceCommandContext::ScissorRect scissorRect;
+	Renderer::Backend::GL::CDeviceCommandContext::Rect scissorRect;
 	scissorRect.x = cascadeViewPort.m_X;
 	scissorRect.y = cascadeViewPort.m_Y;
 	scissorRect.width = cascadeViewPort.m_Width;

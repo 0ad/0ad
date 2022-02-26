@@ -523,7 +523,7 @@ void CMiniMapTexture::RenderFinalTexture(
 
 	if (m_EntitiesDrawn > 0)
 	{
-		Renderer::Backend::GL::CDeviceCommandContext::ScissorRect scissorRect;
+		Renderer::Backend::GL::CDeviceCommandContext::Rect scissorRect;
 		scissorRect.x = scissorRect.y = 1;
 		scissorRect.width = scissorRect.height = FINAL_TEXTURE_SIZE - 2;
 		deviceCommandContext->SetScissors(1, &scissorRect);

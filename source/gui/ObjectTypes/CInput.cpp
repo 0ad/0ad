@@ -1244,7 +1244,7 @@ void CInput::Draw(CCanvas2D& canvas)
 	if (cliparea != CRect())
 	{
 		const float scale = g_VideoMode.GetScale();
-		Renderer::Backend::GL::CDeviceCommandContext::ScissorRect scissorRect;
+		Renderer::Backend::GL::CDeviceCommandContext::Rect scissorRect;
 		scissorRect.x = cliparea.left * scale;
 		scissorRect.y = g_yres - cliparea.bottom * scale;
 		scissorRect.width = cliparea.GetWidth() * scale;
