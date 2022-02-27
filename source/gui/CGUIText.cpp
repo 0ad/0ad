@@ -444,7 +444,7 @@ void CGUIText::Draw(CGUI& pGUI, CCanvas2D& canvas, const CGUIColor& DefaultColor
 		clipping.right = std::floor(clipping.right);
 
 		const float scale = g_VideoMode.GetScale();
-		Renderer::Backend::GL::CDeviceCommandContext::ScissorRect scissorRect;
+		Renderer::Backend::GL::CDeviceCommandContext::Rect scissorRect;
 		scissorRect.x = std::ceil(clipping.left * scale);
 		scissorRect.y = std::ceil(g_yres - clipping.bottom * scale);
 		scissorRect.width = std::floor(clipping.GetWidth() * scale);

@@ -735,7 +735,12 @@ void CRenderer::EndFrame()
 void CRenderer::SetViewport(const SViewPort &vp)
 {
 	m_Viewport = vp;
-	glViewport((GLint)vp.m_X,(GLint)vp.m_Y,(GLsizei)vp.m_Width,(GLsizei)vp.m_Height);
+	Renderer::Backend::GL::CDeviceCommandContext::Rect viewportRect;
+	viewportRect.x = vp.m_X;
+	viewportRect.y = vp.m_Y;
+	viewportRect.width = vp.m_Width;
+	viewportRect.height = vp.m_Height;
+	m->deviceCommandContext->SetViewports(1, &viewportRect);
 }
 
 SViewPort CRenderer::GetViewport()

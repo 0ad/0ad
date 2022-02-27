@@ -7,8 +7,7 @@
         <stream name="color" if="MINIMAP_POINT"/>
         <uniform name="transform" loc="0" type="mat4"/>
         <uniform name="textureTransform" loc="4" type="mat4"/>
-        <uniform name="pointSize" loc="8" type="float"/>
-        <uniform name="maskTextureTransform" loc="12" type="mat4" if="MINIMAP_MASK"/>
+        <uniform name="maskTextureTransform" loc="8" type="mat4" if="MINIMAP_MASK"/>
     </vertex>
 
     <fragment file="arb/minimap.fp">

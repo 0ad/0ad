@@ -33,7 +33,6 @@ DP4 result.position.w, transform[3], position;
 
 #if MINIMAP_POINT
   MOV result.color, vertex.color;
-  MOV result.pointsize, program.local[8];
 #endif
 
 #if MINIMAP_MASK

@@ -570,7 +570,7 @@ void CSceneRenderer::RenderReflections(
 	screenScissor.x2 = (GLint)ceil((reflectionScissor[1].X*0.5f+0.5f)*vpWidth);
 	screenScissor.y2 = (GLint)ceil((reflectionScissor[1].Y*0.5f+0.5f)*vpHeight);
 
-	Renderer::Backend::GL::CDeviceCommandContext::ScissorRect scissorRect;
+	Renderer::Backend::GL::CDeviceCommandContext::Rect scissorRect;
 	scissorRect.x = screenScissor.x1;
 	scissorRect.y = screenScissor.y1;
 	scissorRect.width = screenScissor.x2 - screenScissor.x1;
@@ -652,7 +652,7 @@ void CSceneRenderer::RenderRefractions(
 	screenScissor.x2 = (GLint)ceil((refractionScissor[1].X*0.5f+0.5f)*vpWidth);
 	screenScissor.y2 = (GLint)ceil((refractionScissor[1].Y*0.5f+0.5f)*vpHeight);
 
-	Renderer::Backend::GL::CDeviceCommandContext::ScissorRect scissorRect;
+	Renderer::Backend::GL::CDeviceCommandContext::Rect scissorRect;
 	scissorRect.x = screenScissor.x1;
 	scissorRect.y = screenScissor.y1;
 	scissorRect.width = screenScissor.x2 - screenScissor.x1;

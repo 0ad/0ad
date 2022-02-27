@@ -77,12 +77,13 @@ public:
 		const UploadBufferFunction& uploadFunction);
 
 	// TODO: maybe we should add a more common type, like CRectI.
-	struct ScissorRect
+	struct Rect
 	{
 		int32_t x, y;
 		int32_t width, height;
 	};
-	void SetScissors(const uint32_t scissorCount, const ScissorRect* scissors);
+	void SetScissors(const uint32_t scissorCount, const Rect* scissors);
+	void SetViewports(const uint32_t viewportCount, const Rect* viewports);
 
 	void BeginScopedLabel(const char* name);
 	void EndScopedLabel();
@@ -111,7 +112,7 @@ private:
 	CFramebuffer* m_Framebuffer = nullptr;
 	uint32_t m_ScissorCount = 0;
 	// GL2.1 doesn't support more than 1 scissor.
-	std::array<ScissorRect, 1> m_Scissors;
+	std::array<Rect, 1> m_Scissors;
 
 	uint32_t m_ScopedLabelDepth = 0;
 
