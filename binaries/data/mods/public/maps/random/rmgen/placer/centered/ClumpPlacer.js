@@ -75,12 +75,14 @@ ClumpPlacer.prototype.place = function(constraint)
 	}
 
 	let failed = 0;
+	let count = 0;
 	for (let stepAngle = 0; stepAngle < intPerim; ++stepAngle)
 	{
 		let position = this.centerPosition.clone();
 		let radiusUnitVector = new Vector2D(0, 1).rotate(-2 * Math.PI * stepAngle / perim);
 		let maxRadiusSteps = Math.ceil(radius * (1 + (1 - this.coherence) * noise[stepAngle]));
 
+		count += maxRadiusSteps;
 		for (let stepRadius = 0; stepRadius < maxRadiusSteps; ++stepRadius)
 		{
 			let tilePos = position.clone().floor();
@@ -100,5 +102,5 @@ ClumpPlacer.prototype.place = function(constraint)
 		}
 	}
 
-	return failed > this.size * this.failFraction ? undefined : points;
+	return failed > count * this.failFraction ? undefined : points;
 };
