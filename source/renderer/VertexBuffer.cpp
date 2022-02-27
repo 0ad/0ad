@@ -216,6 +216,7 @@ void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk, void* data)
 	}
 	else
 	{
+		ENSURE(data);
 		g_Renderer.GetDeviceCommandContext()->UploadBufferRegion(
 			m_Buffer.get(), data, chunk->m_Index * m_VertexSize, chunk->m_Count * m_VertexSize);
 	}

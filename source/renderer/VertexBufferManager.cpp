@@ -79,6 +79,9 @@ CVertexBufferManager::Handle CVertexBufferManager::AllocateChunk(
 	const Renderer::Backend::GL::CBuffer::Type type,
 	const bool dynamic, void* backingStore, Group group)
 {
+	ENSURE(vertexSize > 0);
+	ENSURE(numberOfVertices > 0);
+
 	CVertexBuffer::VBChunk* result = nullptr;
 
 	if (CVertexBuffer::UseStreaming(dynamic))

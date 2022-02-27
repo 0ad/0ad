@@ -304,7 +304,11 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 		indices.insert(indices.end(), capIndices.begin(), capIndices.end());
 	}
 
-	ENSURE(indices.size() % 3 == 0); // GL_TRIANGLES indices, so must be multiple of 3
+	if (vertices.empty() || indices.empty())
+		return;
+
+	// Indices for triangles, so must be multiple of 3.
+	ENSURE(indices.size() % 3 == 0);
 
 	m_BoundingBox = CBoundingBoxAligned();
 	for (const SVertex& vertex : vertices)
