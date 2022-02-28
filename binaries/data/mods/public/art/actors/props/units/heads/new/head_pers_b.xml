@@ -8,13 +8,19 @@
   </group>
   <group>
     <variant frequency="1" name="Persian Face a">
-      <textures><texture file="props/head/pers_face_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/pers_face_a.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Persian Face b">
-      <textures><texture file="props/head/pers_face_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/pers_face_b.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Persian Face i">
-      <textures><texture file="props/head/pers_face_i.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/pers_face_i.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>objectcolor.xml</material>

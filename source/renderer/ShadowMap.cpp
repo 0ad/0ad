@@ -575,6 +575,7 @@ void ShadowMap::BeginRender()
 
 	{
 		PROFILE("bind framebuffer");
+		ENSURE(m->Framebuffer);
 		deviceCommandContext->SetFramebuffer(m->Framebuffer.get());
 	}
 
