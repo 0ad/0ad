@@ -6,8 +6,6 @@
       <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_china.xml" attachpoint="head"/>
-        <prop actor="props/units/weapons/spear/han_champion_spear.xml" attachpoint="weapon_R"/>
-        <prop actor="props/units/shields/han_shield_03.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/sheath/han_jian_sheath_left_d.xml" attachpoint="sheath_L"/>
       </props>
     </variant>
@@ -25,9 +23,9 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="han_standard_spear">
+    <variant frequency="1" name="han_ji">
       <props>
-        <prop actor="props/units/weapons/spear/han_standard_spear.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/spear/han_ji.xml" attachpoint="weapon_R"/>
       </props>
     </variant>
     <variant frequency="1" name="han_halb">
@@ -43,8 +41,8 @@
     <variant file="clothes/han/uniform_e_04.xml"/>
   </group>
   <group>
-    <variant file="biped/rider/cavalry/base_spearman_fast_shield_01.xml" frequency="1" name="Spearman-Fast-Shield-01"/>
-    <variant file="biped/rider/death_shield.xml"/>
+    <variant file="biped/rider/cavalry/base_spearman_2h_fast_relax.xml" name="Spearman-2h-Fast-Relax" frequency="1"/>
+    <variant file="biped/rider/death_2h.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>

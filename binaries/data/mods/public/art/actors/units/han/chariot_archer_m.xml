@@ -20,12 +20,12 @@
         <texture file="structural/chariot_01_spec.png" name="specTex"/>
       </textures>
       <props>
-        <prop actor="units/han/chariot_crossbowman_d.xml" attachpoint="driver1"/>
-        <prop actor="units/han/chariot_crossbowman_r.xml" attachpoint="rider1"/>
-        <prop actor="units/han/chariot_crossbowman_h_01.xml" attachpoint="horse1"/>
-        <prop actor="units/han/chariot_crossbowman_h_02.xml" attachpoint="horse2"/>
-        <prop actor="units/han/chariot_crossbowman_h_03.xml" attachpoint="horse3"/>
-        <prop actor="units/han/chariot_crossbowman_h_04.xml" attachpoint="horse4"/>
+        <prop actor="units/han/chariot_archer_d.xml" attachpoint="driver1"/>
+        <prop actor="units/han/chariot_archer_r.xml" attachpoint="rider1"/>
+        <prop actor="units/han/chariot_archer_h_01.xml" attachpoint="horse1"/>
+        <prop actor="units/han/chariot_archer_h_02.xml" attachpoint="horse2"/>
+        <prop actor="units/han/chariot_archer_h_03.xml" attachpoint="horse3"/>
+        <prop actor="units/han/chariot_archer_h_04.xml" attachpoint="horse4"/>
         <prop actor="props/special/common/garrison_flag_han.xml" attachpoint="han_flag"/>
       </props>
     </variant>

@@ -2,12 +2,12 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_chariot_crossbowman_relax.xml" name="Crossbowman">
+    <variant file="biped/base_archer_chariot_ready.xml">
       <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
       <props>
         <prop actor="props/units/heads/head_china.xml" attachpoint="head"/>
-        <prop actor="props/units/helmets/han_hairbun.xml" attachpoint="helmet"/>
-        <prop actor="props/units/weapons/crossbow/han_nu.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/helmets/han_heavy_helmet_b.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/bow/han_bow.xml" attachpoint="weapon_bow"/>
         <prop actor="props/units/quivers/han_bolt_quiver.xml" attachpoint="back"/>
         <prop actor="props/units/weapons/sheath/han_jian_sheath_right_d.xml" attachpoint="sheath_R"/>
       </props>
@@ -35,7 +35,7 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/attack_ranged_crossbowman_back.xml"/>
+    <variant file="biped/attack_ranged_archer.xml"/>
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml"/>
