@@ -30,9 +30,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-23 14:35+0000\n"
-"Last-Translator: Latein Lebt\n"
+"POT-Creation-Date: 2022-02-25 08:08+0000\n"
+"PO-Revision-Date: 2022-02-27 20:35+0000\n"
+"Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,6 +76,7 @@ msgstr "Die Agoge"
 #: simulation/data/technologies/poison_blades.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
+#: simulation/data/technologies/repeating_crossbows.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
@@ -125,6 +126,7 @@ msgstr "Bogentraining"
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
+#: simulation/data/technologies/crossbow_training.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
@@ -143,7 +145,6 @@ msgstr "Bogentraining"
 #: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
-#: simulation/data/technologies/special_crossbow_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
@@ -514,6 +515,20 @@ msgstr "Kolonisation"
 msgid "Civic Structures −25% build time and resources cost"
 msgstr "Verwaltungsgebäude −25% Bauzeit und Ressourcenkosten"
 
+#: simulation/data/technologies/crossbow_training.jsondescription
+msgid ""
+"The Chinese had a tradition of fine archery and a penchant for using massed "
+"crossbowmen in battle."
+msgstr "Die Chinesen hatten eine gepflegte Bogenschießtradition und einen Hang zu Massen an Armbrustschützen in der Schlacht."
+
+#: simulation/data/technologies/crossbow_training.jsongenericName
+msgid "Crossbow Training"
+msgstr "Armbrust-Ausbildung"
+
+#: simulation/data/technologies/crossbow_training.jsontooltip
+msgid "Crossbow Infantry and Cavalry −1 second firing time −20% train time."
+msgstr "Armbrust-Infanterie und -Kavallerie -1 Sekunde Feuerzeit -20% Ausbildungszeit."
+
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
 "Early Achaemenid rulers acted towards making Persia the first great Asian "
@@ -616,7 +631,7 @@ msgstr "Schubkarre"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsondescription
 msgid "Install a chain pump for improved irrigation."
-msgstr ""
+msgstr "Installiere eine Kettenpumpe für verbesserte Bewässerung."
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsongenericName
 msgid "Chain Pump"
@@ -684,11 +699,11 @@ msgstr "Sammlertraining"
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsondescription
 msgid "Grow water weeds to to supply rice plants with nutricients."
-msgstr ""
+msgstr "Setze Wasserpest um die Reispflanzen zu düngen."
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsongenericName
 msgid "Water Weeding"
-msgstr ""
+msgstr "Wasserpest"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
@@ -1231,6 +1246,21 @@ msgstr "Reformierte Armee"
 msgid "Unlock the Champion Infantry Swordsman."
 msgstr "Gardisten-Infanterie-Schwertkämpfer freischalten."
 
+#: simulation/data/technologies/repeating_crossbows.jsondescription
+msgid ""
+"Crossbows equiped with a repeating mechanism and dart magazine increase "
+"firing rate."
+msgstr "Armbrüste, die mit einem Repetiermechanismus und einem Bolzenmagazin ausgestattet sind, erhöhen die Feuerrate."
+
+#: simulation/data/technologies/repeating_crossbows.jsongenericName
+msgid "Repeating Crossbows"
+msgstr "Repetierarmbrüste"
+
+#: simulation/data/technologies/repeating_crossbows.jsontooltip
+msgid ""
+"Crossbow Infantry and Cavalry −1 second firing time, but +20 metal cost."
+msgstr "Armbrust-Infanterie und -Kavallerie -1 Sekunde Feuerzeit, aber +20 Metallkosten."
+
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""
 "Employ skilled shipwrights with specialized tools to speed up ship "
@@ -1552,21 +1582,6 @@ msgstr "Verbesserte Schildlegierungen"
 msgid "Soldiers +2 pierce resistance."
 msgstr "Soldaten +2 Stichwiderstand."
 
-#: simulation/data/technologies/special_crossbow_tradition.jsondescription
-msgid ""
-"The Chinese had a tradition of fine archery and a penchant for using massed "
-"crossbowmen in battle."
-msgstr ""
-
-#: simulation/data/technologies/special_crossbow_tradition.jsongenericName
-msgid "Crossbow Tradition"
-msgstr ""
-
-#: simulation/data/technologies/special_crossbow_tradition.jsontooltip
-msgid ""
-"Range +10 meters, −10% ranged attack spread for crossbow-wielding units."
-msgstr ""
-
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
 msgstr "Ein Informantennetz rekrutieren, um über deine Leute zu wachen."
@@ -1676,8 +1691,8 @@ msgid "Commercial Treaty"
 msgstr "Handelsvertrag"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "+10% international trade bonus."
-msgstr "+10% internationaler Handelsbonus."
+msgid "Traders +10% trade profit between allies."
+msgstr "Händler +10% Profit zwischen Verbündeten."
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription

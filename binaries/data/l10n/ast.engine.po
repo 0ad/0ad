@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-01-07 08:19+0000\n"
-"PO-Revision-Date: 2022-02-24 16:24+0000\n"
+"PO-Revision-Date: 2022-02-26 15:13+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -164,7 +164,7 @@ msgstr "Ou nun pudo verificase l certificaho de l servidor ou la negociaçon TLS
 
 #: lobby/XmppClient.cpp:1444
 msgid "The server did not offer required TLS encryption"
-msgstr "El servidor nun offrîu l cifraho TLS que se requier"
+msgstr "El servidor nun ofrîu l cifraho TLS que se requier"
 
 #: lobby/XmppClient.cpp:1446
 msgid "Authentication failed. Incorrect password or account does not exist"
@@ -195,27 +195,27 @@ msgstr "Ya existe l nome d’usuariu"
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr "Nun pudo scribise un mod.json externu pa l commudu comprimidu “%s”. Ha hi que reinstalha’l commudu."
+msgstr "Nun pudo scribise un mod.json externu pa la modificaçon comprimida “%s”. Ha hi que reinstalha’ la modificaçon."
 
 #: ps/ModIo.cpp:264
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Houbo un falhu al iniciar a consultar sobre la identificaçon de l xhuœw. Error: %s; %s."
+msgstr "Houbo un falhu al iniciar a consultar sobre la identificaçon de l trebeyyu. Error: %s; %s."
 
 #: ps/ModIo.cpp:294
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "Houbo un falhu al iniciar a consultar sobre commudos. Error: %s; %s."
+msgstr "Houbo un falhu al iniciar a consultar sobre modificaçones. Error: %s; %s."
 
 #: ps/ModIo.cpp:320
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr "Nun pudo crease l directorio de l commudu: %s."
+msgstr "Nun pudo crease l directorio de la modificaçon: %s."
 
 #: ps/ModIo.cpp:345
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "Nun pudo abrise l archivo temporal p’abaxa’l commudu: %s."
+msgstr "Nun pudo abrise l archivo temporal p’abaxa’ la modificaçon: %s."
 
 #: ps/ModIo.cpp:355
 #, c-format
@@ -262,4 +262,4 @@ msgstr "compilaçon personalizada"
 #: renderer/Renderer.cpp:754 renderer/Renderer.cpp:757
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "El simiyyu archivou-se n “%s”"
+msgstr "El semeyyu archivou-se n “%s”"

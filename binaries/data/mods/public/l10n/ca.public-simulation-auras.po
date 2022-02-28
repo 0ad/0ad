@@ -12,6 +12,7 @@
 # Borja Arias Navarro
 # Catalanoic
 # Cesc Miralles
+# David Campoy
 # 184b84a0b5ddcbfc811b1e381c47763c_47ec5c4
 # Esteve Blanch
 # Haommin
@@ -34,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-21 08:25+0000\n"
-"Last-Translator: Transifex Bot\n"
+"PO-Revision-Date: 2022-02-27 12:15+0000\n"
+"Last-Translator: David Campoy\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,11 +62,11 @@ msgstr "Reparacions a la drassana"
 
 #: simulation/data/auras/structures/han_laozi_gate.jsonauraDescription
 msgid "Humans +1 health regeneration rate, +25% health"
-msgstr ""
+msgstr "+1 a la velocitat de regeneració de la salut dels humans, +25% salut."
 
 #: simulation/data/auras/structures/han_laozi_gate.jsonauraName
 msgid "Taoism"
-msgstr ""
+msgstr "Taoisme"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -211,11 +212,11 @@ msgstr "Productes de la Gàl·lia"
 
 #: simulation/data/auras/teambonuses/han_player_teambonus.jsonauraDescription
 msgid "Allies +20% international trade bonus."
-msgstr ""
+msgstr "Bonificació del +20% en comerç internacional per a aliats."
 
 #: simulation/data/auras/teambonuses/han_player_teambonus.jsonauraName
 msgid "Silk Road"
-msgstr ""
+msgstr "Ruta de la seda"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Citizen Javelineers −10% resource costs."
@@ -374,21 +375,21 @@ msgstr "Tribut a Roma"
 msgid ""
 "At its height, the Empire's borders spanned from the Fergana Valley in the west, to Korea in the east, and to northern Vietnam in the south.\n"
 "Territory influence bonus +20%."
-msgstr ""
+msgstr "Al seu apogeu, les fronteres de l'Imperi s'estenien des de la Vall de Ferganà a l'oest, fins a Corea a l'est i el nord del Vietnam al sud.\nBonificació dinfluència territorial +20%."
 
 #: simulation/data/auras/units/catafalques/han_catafalque_1.jsonauraName
 msgid "Territorial Expansion"
-msgstr ""
+msgstr "Expansió territorial"
 
 #: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraDescription
 msgid ""
 "The Music Bureau was charged directly, by the emperor to perform various tasks related to music, poetry, entertainment, or religious worship.\n"
 " Techcost -50%."
-msgstr ""
+msgstr "El Palau de la Música estava administrat per l'emperador, destinat a: la música, la poesia, l'entreteniment o el culte religiós.\nCost tecnològic -50%."
 
 #: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraName
 msgid "Imperial Music Bureau"
-msgstr ""
+msgstr "Palau de la Música Imperial"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraDescription
 msgid ""
@@ -575,19 +576,19 @@ msgstr "Elefants de treball"
 
 #: simulation/data/auras/units/han_minister_building.jsonauraDescription
 msgid "Builders construct buildings +2% faster for every nearby Minister."
-msgstr ""
+msgstr "Els constructors construeixen un +2% més ràpid per cada Ministeri pròxim."
 
 #: simulation/data/auras/units/han_minister_building.jsonauraName
 msgid "Building Programs"
-msgstr ""
+msgstr "Programes de construcció"
 
 #: simulation/data/auras/units/han_minister_cost.jsonauraDescription
 msgid "Cost +20% and build time +20% for each new Minister trained."
-msgstr ""
+msgstr "Cada nou Ministeri costa +20% i un +20% de temps per construcció."
 
 #: simulation/data/auras/units/han_minister_cost.jsonauraName
 msgid "The Cost of Splendor"
-msgstr ""
+msgstr "El cost de l'esplendor"
 
 #: simulation/data/auras/units/han_minister_garrison.jsonauraDescription
 msgid ""
@@ -597,7 +598,7 @@ msgstr ""
 
 #: simulation/data/auras/units/han_minister_garrison.jsonauraName
 msgid "Excellency of Works"
-msgstr ""
+msgstr "Excel·lència de les obres"
 
 #: simulation/data/auras/units/han_minister_garrison_ministry.jsonauraDescription
 msgid ""
@@ -607,7 +608,7 @@ msgstr ""
 
 #: simulation/data/auras/units/han_minister_garrison_ministry.jsonauraName
 msgid "Nationalized Industries"
-msgstr ""
+msgstr "Indústries nacionalitzades"
 
 #: simulation/data/auras/units/han_minister_gathering.jsonauraDescription
 msgid "Gatherers +2% gathering rate for every nearby Minister."
@@ -760,7 +761,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_1.jsonauraName
 msgid "Northern Army"
-msgstr ""
+msgstr "Exèrcit del Nord"
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_2.jsonauraDescription
 msgid "Own and Allied Soldiers +15% walk speed and +25% vision range."
@@ -768,20 +769,20 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_2.jsonauraName
 msgid "Southern Army"
-msgstr ""
+msgstr "Exèrcit del sud"
 
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_1.jsonauraDescription
 msgid "Walls +10 health regeneration rate."
-msgstr ""
+msgstr "+10 a la regeneració dels murs."
 
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_1.jsonauraName
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_2.jsonauraName
 msgid "Confucian Reforms"
-msgstr ""
+msgstr "Reformes confucianes"
 
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_2.jsonauraDescription
 msgid "Cavalry +20% attack damage."
-msgstr ""
+msgstr "Augmenta un 20% l'atac de la cavalleria."
 
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_1.jsonauraDescription
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
@@ -793,19 +794,19 @@ msgstr "+2 d'atac de captura i +20% d'atac cos a cos i a distància per als camp
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_1.jsonauraName
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_2.jsonauraName
 msgid "Mandate of Heaven"
-msgstr ""
+msgstr "Mandat celestial"
 
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_2.jsonauraDescription
 msgid "Enemy Cavalry −10% melee and ranged attack damage."
-msgstr ""
+msgstr "Cavalleria enemiga −10% de mal d'atac cos a cos i a distància."
 
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_3.jsonauraDescription
 msgid "Nearby enemy units -10 health/second."
-msgstr ""
+msgstr "Unitats enemigues pròximes -10 de salut/segon."
 
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_3.jsonauraName
 msgid "Scythes"
-msgstr ""
+msgstr "Dalles"
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraDescription
 msgid ""

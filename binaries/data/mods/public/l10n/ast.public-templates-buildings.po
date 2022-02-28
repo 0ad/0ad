@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-24 17:45+0000\n"
+"POT-Creation-Date: 2022-02-25 08:08+0000\n"
+"PO-Revision-Date: 2022-02-27 00:11+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -294,7 +294,7 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Train Citizens, construct Ships, and "
 "research technologies. Garrison Soldiers for additional arrows."
-msgstr "Fhaz-se a la veira l awa n campu propriu, colligau ou neutral. Val p’afhitar ou inantar lhindes territoriales, crear Cives, construir Barcos & disinvolver téchnicæs. Tyenu de Mílites, tira mas sayettæs."
+msgstr "Fhaz-se a la veira l awa n campu propriu, colligau ou neutral. Val p’afhitar ou inantar lhindes territoriales, crear Cives, construir Barcos & disinvolver téchnicæs. Tyenu de Mílites, tira mas sayetæs."
 
 #: simulation/templates/structures/brit/defense_tower.xml:9
 #: simulation/templates/structures/brit/sentry_tower.xml:5
@@ -337,7 +337,7 @@ msgstr "Dunon"
 #: simulation/templates/structures/mace/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
 msgid "Train Heroes. Garrison Soldiers for additional arrows."
-msgstr "Sitiu unde se críæn Heroes. Tyenu de Mílites, tira mas sayettæs."
+msgstr "Sitiu unde se críæn Heroes. Tyenu de Mílites, tira mas sayetæs."
 
 #: simulation/templates/structures/brit/house.xml:9
 #: simulation/templates/structures/gaul/house.xml:5
@@ -635,19 +635,19 @@ msgstr "Celicnon"
 msgid "Wheat Field"
 msgstr "Eiru"
 
-#: simulation/templates/structures/han/academy.xml:26
+#: simulation/templates/structures/han/academy.xml:29
 msgid "Imperial Academy"
 msgstr "Academia imperial"
 
-#: simulation/templates/structures/han/academy.xml:27
+#: simulation/templates/structures/han/academy.xml:30
 msgid "Dìguó Xuéyuàn"
 msgstr "Dìguó Xuéyuàn"
 
-#: simulation/templates/structures/han/academy.xml:29
+#: simulation/templates/structures/han/academy.xml:32
 msgid "Train Champions and research their technologies."
 msgstr "Sitiu unde se críæn Invictos & se disinvuœlven læs téchnicæs de sou"
 
-#: simulation/templates/structures/han/academy.xml:30
+#: simulation/templates/structures/han/academy.xml:33
 msgid "Academy"
 msgstr "Academia"
 
@@ -716,11 +716,11 @@ msgstr "Mǎtóu"
 msgid "Nóng Shè"
 msgstr "Nóng Shè"
 
-#: simulation/templates/structures/han/field.xml:9
+#: simulation/templates/structures/han/field.xml:15
 msgid "Dàotián"
 msgstr "Dàotián"
 
-#: simulation/templates/structures/han/field.xml:10
+#: simulation/templates/structures/han/field.xml:16
 msgid "Rice Paddy"
 msgstr "Arrozal"
 
@@ -1294,7 +1294,7 @@ msgstr "Permitte a læs unidahes trespassar varganales. Puœde pesllase par torg
 
 #: simulation/templates/structures/palisades_long.xml:17
 msgid "Can be converted into a Palisade Gate."
-msgstr "Puœde commudase n Puœrta de madeira."
+msgstr "Puœde camudase n Puœrta de madeira."
 
 #: simulation/templates/structures/palisades_spike_angle.xml:17
 msgid "Angle Spike"
@@ -1391,6 +1391,18 @@ msgstr "Huvādā"
 #: simulation/templates/structures/pers/inn.xml:12
 msgid "Inn"
 msgstr "Pousada"
+
+#: simulation/templates/structures/pers/ice_house.xml:26
+msgid "Ice House"
+msgstr "Puçu de xhelo"
+
+#: simulation/templates/structures/pers/ice_house.xml:27
+msgid "Yakhchāl"
+msgstr "Yakhchāl"
+
+#: simulation/templates/structures/pers/ice_house.xml:28
+msgid "IceHouse"
+msgstr "PuçuXhelo"
 
 #: simulation/templates/structures/pers/market.xml:12
 msgid "Ardatašta"
@@ -1506,7 +1518,7 @@ msgstr "Castra"
 msgid ""
 "Build in neutral or enemy territory. Train Advanced Melee Infantry. "
 "Construct Rams. Garrison Soldiers for additional arrows."
-msgstr "Erge-se n campu neutral ou inimigu. Val par crear Pédites combattientes superiores & construir Arietes. Tyenu de Mílites, tira mas sayettæs."
+msgstr "Erge-se n campu neutral ou inimigu. Val par crear Pédites combatientes superiores & construir Arietes. Tyenu de Mílites, tira mas sayetæs."
 
 #: simulation/templates/structures/rome/army_camp.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:76
@@ -1790,7 +1802,7 @@ msgstr "Tienda"
 #: simulation/templates/structures/tent_mace.xml:39
 #: simulation/templates/structures/tent_rome.xml:39
 msgid "A temporary shelter for soldiers. +5 population bonus."
-msgstr "Un abelhugu temporal pa los mílites. Teitho poblracional: +5."
+msgstr "Un abelhugu temporal pa los mílites. Teitho populacional: +5."
 
 #: simulation/templates/structures/tent_mace.xml:35
 msgid "Macedonian Army Tent"
@@ -1837,7 +1849,7 @@ msgid ""
 "Build in own or neutral territory. Acquire large tracts of territory. "
 "Territory root. Train Citizens and research technologies. Garrison Soldiers "
 "for additional arrows."
-msgstr "Erge-se n campu propriu ou neutral. Val p’afhitar ou inantar lhindes territoriales, crear Cives & disinvolver téchnicæs. Tyenu de Mílites, tira mas sayettæs."
+msgstr "Erge-se n campu propriu ou neutral. Val p’afhitar ou inantar lhindes territoriales, crear Cives & disinvolver téchnicæs. Tyenu de Mílites, tira mas sayetæs."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:37
 #: simulation/templates/template_structure_civic_civil_centre.xml:79
@@ -1866,6 +1878,7 @@ msgstr "Colonia"
 msgid "House"
 msgstr "Casa"
 
+#: simulation/templates/structures/pers/ice_house.xml:28
 #: simulation/templates/template_structure_civic_house.xml:28
 #: simulation/templates/template_structure_economic_farmstead.xml:30
 #: simulation/templates/template_structure_economic_storehouse.xml:28
@@ -1890,7 +1903,6 @@ msgstr "Stoa"
 #: simulation/templates/structures/gaul/tavern.xml:22
 #: simulation/templates/structures/han/laozigate.xml:34
 #: simulation/templates/structures/han/ministry.xml:40
-#: simulation/templates/structures/han/practice_range.xml:13
 #: simulation/templates/structures/iber/monument.xml:34
 #: simulation/templates/structures/kush/pyramid_small.xml:29
 #: simulation/templates/structures/maur/elephant_stable.xml:8
@@ -1962,7 +1974,7 @@ msgstr "Catapultario"
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
-msgstr "Sayetta"
+msgstr "Sayeta"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:51
 msgid "Bolt Tower"
@@ -1981,7 +1993,7 @@ msgstr "Vigïlario"
 msgid ""
 "Garrison Infantry for additional arrows. Needs the “Murder Holes” technology"
 " to protect its foot."
-msgstr "Tyeno de Pédites, tira mas sayettæs. Precisa de la téchnica “Interfectorios” par protegë’ la suâ base."
+msgstr "Tyeno de Pédites, tira mas sayetæs. Precisa de la téchnica “Interfectorios” par protegë’ la suâ base."
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:35
 msgid "SentryTower"
@@ -1989,7 +2001,7 @@ msgstr "Vigïlario"
 
 #: simulation/templates/template_structure_defensive_tower_sentry.xml:59
 msgid "Reinforce with stone and upgrade to a defense tower."
-msgstr "Puœde fortificase & commudase n Torre de piedra."
+msgstr "Puœde fortificase & camudase n Torre de piedra."
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:30
 msgid "Stone Tower"
@@ -2021,7 +2033,7 @@ msgstr "Permitte a læs unidahes trespassar cercæs. Puœde pesllase par torga�
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:17
 msgid "Can be converted into a Gate."
-msgstr "Puœde commudase n Puœrta."
+msgstr "Puœde camudase n Puœrta."
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:22
 msgid "Wall Turret"
@@ -2091,7 +2103,7 @@ msgid ""
 msgstr "Sitiu unde se críæn Pédites manuballistarios invictos, se constrúin Máchinæs béllicæs & se disinvuœlven téchnicæs mechánicæs."
 
 #: simulation/templates/structures/gaul/assembly.xml:31
-#: simulation/templates/structures/han/academy.xml:30
+#: simulation/templates/structures/han/academy.xml:33
 #: simulation/templates/structures/han/civil_centre_court.xml:24
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
@@ -2165,7 +2177,7 @@ msgstr "Castielho"
 
 #: simulation/templates/template_structure_military_fortress.xml:67
 msgid "Garrison Soldiers for additional arrows."
-msgstr "Tyeno de Mílites, tira mas sayettæs."
+msgstr "Tyeno de Mílites, tira mas sayetæs."
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
@@ -2246,7 +2258,7 @@ msgstr "Theatro"
 #: simulation/templates/template_structure_wonder.xml:37
 #: simulation/templates/template_structure_wonder.xml:41
 msgid "Wonder"
-msgstr "Miráculo"
+msgstr "Millagro"
 
 #: simulation/templates/template_structure_wonder.xml:39
 msgid ""

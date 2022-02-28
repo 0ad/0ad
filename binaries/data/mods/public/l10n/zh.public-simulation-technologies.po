@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-22 12:15+0000\n"
+"POT-Creation-Date: 2022-02-25 08:08+0000\n"
+"PO-Revision-Date: 2022-02-27 02:26+0000\n"
 "Last-Translator: liulitchi\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -34,7 +34,7 @@ msgstr ""
 msgid ""
 "Spartans were housed and trained from a young age to be superlative warriors"
 " and to endure any hardship a military life can give them."
-msgstr "斯巴达人从小就被编入团队，并进行军事训练，以成为最强悍的战士，忍受艰难的军旅生活。"
+msgstr "斯巴达人从小就被编入团队，并进行军事训练，以成为最强悍的战士，忍受艰苦的军旅生活。"
 
 #: simulation/data/technologies/agoge.jsongenericName
 msgid "The Agoge"
@@ -66,6 +66,7 @@ msgstr "斯巴达教育"
 #: simulation/data/technologies/poison_blades.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
+#: simulation/data/technologies/repeating_crossbows.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
@@ -95,11 +96,11 @@ msgstr "斯巴达教育"
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "城市阶段解锁。"
+msgstr "于城市阶段解锁。"
 
 #: simulation/data/technologies/agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr "精锐铜盾枪兵生命 +25% ，训练时间 +5% ."
+msgstr "冠勇矛兵生命值 +25% ，训练时间 +5% ."
 
 #: simulation/data/technologies/archer_attack_spread.jsondescription
 msgid "Encouraging soldiers to practice archery improves their accuracy."
@@ -115,6 +116,7 @@ msgstr "射术训练"
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
+#: simulation/data/technologies/crossbow_training.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
@@ -133,14 +135,13 @@ msgstr "射术训练"
 #: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
-#: simulation/data/technologies/special_crossbow_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "城镇阶段解锁。"
+msgstr "于城镇阶段解锁。"
 
 #: simulation/data/technologies/archer_attack_spread.jsontooltip
 msgid "Archers −20% ranged attack spread."
@@ -150,7 +151,7 @@ msgstr "弓箭手的远程攻击散布 -20% ."
 msgid ""
 "The Indian, Iranian, and Kushite peoples had a tradition of fine archery and"
 " a penchant for using massed archers in battle."
-msgstr "印度、波斯和库什的人民中有射术传承，故而其军队中存在大量弓箭手。"
+msgstr "印度、波斯和库什素有射术传承，故其军中有大量弓箭手。"
 
 #: simulation/data/technologies/archery_tradition.jsongenericName
 msgid "Archery Tradition"
@@ -166,7 +167,7 @@ msgstr "射术传承"
 #: simulation/data/technologies/health_females_01.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_watch.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr "乡村阶段解锁。"
+msgstr "于乡村阶段解锁。"
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid "Archers +10 attack range."
@@ -179,7 +180,7 @@ msgstr "纪念建筑"
 #: simulation/data/technologies/architecture_kush.jsontooltip
 msgid ""
 "Civic Structures +20% build time, +20% health, and +20% capture points."
-msgstr "民政设施：建造时间 +20% ，生命 +20% ，忠诚 +20% ."
+msgstr "民政设施：建造时间 +20%、生命值 +20%、忠诚 +20% ."
 
 #: simulation/data/technologies/architecture_pers.jsondescription
 msgid ""
@@ -187,7 +188,7 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr "波斯人建造了从萨第斯到苏萨全长近2700公里的御道；大流士大王及薛西斯也建造了雄伟的波斯波利斯;居鲁士大王则是大大的改善了埃克巴坦那，并几乎“重建”了古埃兰首都苏萨。"
+msgstr "波斯人建造了从萨第斯到苏萨全长近2700公里的御道；大流士大王及薛西斯也建造了雄伟的波斯波利斯；居鲁士大王则是大大的改善了埃克巴坦那，并几乎“重建”了古埃兰首都苏萨。"
 
 #: simulation/data/technologies/architecture_pers.jsongenericName
 msgid "Persian Architecture"
@@ -195,7 +196,7 @@ msgstr "波斯建筑"
 
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
-msgstr "建筑的生命值及忠诚 +25%，而建造时间 +20% 。"
+msgstr "建筑的生命值及忠诚 +25%、而建造时间 +20% ."
 
 #: simulation/data/technologies/art_of_war.jsondescription
 msgid ""
@@ -220,7 +221,7 @@ msgstr "民兵升级经验花费 -25% ."
 msgid ""
 "The will to fight is crucial to victory. Inspire your troops with higher "
 "pay."
-msgstr "为了获得战争的胜利，给予士兵高额奖金以激发其斗志。"
+msgstr "为了胜利，给予士兵高额奖金，以激发其斗志。"
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to Fight"
@@ -236,7 +237,7 @@ msgstr "动力"
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid "Soldiers, Siege Engines, and Ships +25% attack damage."
-msgstr "士兵、攻城机械和战船的攻击伤害 +25％。"
+msgstr "士兵、攻城机械和战船的攻击伤害 +25％ ."
 
 #: simulation/data/technologies/barracks_batch_training.jsondescription
 msgid ""
@@ -403,7 +404,7 @@ msgstr "转轮王"
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "+10% maximum population limit."
-msgstr "人口上限 +10%."
+msgstr "人口上限 +10% ."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsondescription
 msgid ""
@@ -417,7 +418,7 @@ msgstr "木墙"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsontooltip
 msgid "City Walls −20% build time and −20% health."
-msgstr "印度的城墙生命值 -20％，建造时间 -20％."
+msgstr "印度的城墙生命值 -20％，建造时间 -20％ ."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsondescription
 msgid ""
@@ -503,6 +504,20 @@ msgstr "殖民主义"
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time and resources cost"
 msgstr "民政设施：建造时间 -25% ，资源花费 -25% ."
+
+#: simulation/data/technologies/crossbow_training.jsondescription
+msgid ""
+"The Chinese had a tradition of fine archery and a penchant for using massed "
+"crossbowmen in battle."
+msgstr "射，六艺之一。战场上也投入了大量的弓箭手。"
+
+#: simulation/data/technologies/crossbow_training.jsongenericName
+msgid "Crossbow Training"
+msgstr "射艺"
+
+#: simulation/data/technologies/crossbow_training.jsontooltip
+msgid "Crossbow Infantry and Cavalry −1 second firing time −20% train time."
+msgstr "步弩和骑兵发射时间 −1 秒、训练时间 −20% ."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -1221,6 +1236,21 @@ msgstr "革新军队"
 msgid "Unlock the Champion Infantry Swordsman."
 msgstr "解锁精锐精锐剑士。"
 
+#: simulation/data/technologies/repeating_crossbows.jsondescription
+msgid ""
+"Crossbows equiped with a repeating mechanism and dart magazine increase "
+"firing rate."
+msgstr "配备重复装置和飞镖匣的弩，可提高射速。"
+
+#: simulation/data/technologies/repeating_crossbows.jsongenericName
+msgid "Repeating Crossbows"
+msgstr "连弩"
+
+#: simulation/data/technologies/repeating_crossbows.jsontooltip
+msgid ""
+"Crossbow Infantry and Cavalry −1 second firing time, but +20 metal cost."
+msgstr "步弩和骑兵发射时间 −1 秒、而金属花费 +20 ."
+
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""
 "Employ skilled shipwrights with specialized tools to speed up ship "
@@ -1542,21 +1572,6 @@ msgstr "合金盾牌"
 msgid "Soldiers +2 pierce resistance."
 msgstr "士兵穿刺防护 +1 ."
 
-#: simulation/data/technologies/special_crossbow_tradition.jsondescription
-msgid ""
-"The Chinese had a tradition of fine archery and a penchant for using massed "
-"crossbowmen in battle."
-msgstr "射，六艺之一。战场上也投入了大量的弓箭手。"
-
-#: simulation/data/technologies/special_crossbow_tradition.jsongenericName
-msgid "Crossbow Tradition"
-msgstr "射艺"
-
-#: simulation/data/technologies/special_crossbow_tradition.jsontooltip
-msgid ""
-"Range +10 meters, −10% ranged attack spread for crossbow-wielding units."
-msgstr "弩兵射程 +10 、溅伤 -10% ."
-
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
 msgstr "组建监察体系来监视你的人员。"
@@ -1666,8 +1681,8 @@ msgid "Commercial Treaty"
 msgstr "贸易协定"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "+10% international trade bonus."
-msgstr "盟友间贸易收益 +10% ."
+msgid "Traders +10% trade profit between allies."
+msgstr "盟友间贸易利润 +10% ."
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
