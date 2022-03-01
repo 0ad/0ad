@@ -10,61 +10,6 @@
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
-  <library_images>
-    <image id="medit_cliff_greek_png" name="medit_cliff_greek_png">
-      <init_from>medit_cliff_greek.png</init_from>
-    </image>
-  </library_images>
-  <library_effects>
-    <effect id="Material_001-effect">
-      <profile_COMMON>
-        <newparam sid="medit_cliff_greek_png-surface">
-          <surface type="2D">
-            <init_from>medit_cliff_greek_png</init_from>
-          </surface>
-        </newparam>
-        <newparam sid="medit_cliff_greek_png-sampler">
-          <sampler2D>
-            <source>medit_cliff_greek_png-surface</source>
-          </sampler2D>
-        </newparam>
-        <technique sid="common">
-          <phong>
-            <emission>
-              <color sid="emission">0 0 0 1</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0 0 0 1</color>
-            </ambient>
-            <diffuse>
-              <texture texture="medit_cliff_greek_png-sampler"/>
-            </diffuse>
-            <specular>
-              <texture texture="medit_cliff_greek_png-sampler"/>
-            </specular>
-            <shininess>
-              <float sid="shininess">50</float>
-            </shininess>
-            <index_of_refraction>
-              <float sid="index_of_refraction">1</float>
-            </index_of_refraction>
-          </phong>
-          <extra>
-            <technique profile="FCOLLADA">
-              <bump>
-                <texture texture="medit_cliff_greek_png-sampler"/>
-              </bump>
-            </technique>
-          </extra>
-        </technique>
-      </profile_COMMON>
-    </effect>
-  </library_effects>
-  <library_materials>
-    <material id="Material_001-material" name="Material_001">
-      <instance_effect url="#Material_001-effect"/>
-    </material>
-  </library_materials>
   <library_geometries>
     <geometry id="Cube_010-mesh" name="Cube.010">
       <mesh>
