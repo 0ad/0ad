@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-21 08:18+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-02-25 08:08+0000\n"
+"PO-Revision-Date: 2022-02-27 09:44+0000\n"
+"Last-Translator: Yuan Chang\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,6 +63,7 @@ msgstr "斯巴達教育"
 #: simulation/data/technologies/poison_blades.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
+#: simulation/data/technologies/repeating_crossbows.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
@@ -112,6 +113,7 @@ msgstr "箭術訓練"
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
+#: simulation/data/technologies/crossbow_training.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
@@ -130,7 +132,6 @@ msgstr "箭術訓練"
 #: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
-#: simulation/data/technologies/special_crossbow_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
@@ -199,19 +200,19 @@ msgid ""
 "This famous and most important work of the Seven Military Classics teaches "
 "Chinese commanders everything about planning battles, maintaining armies, "
 "and defeating one's enemies."
-msgstr ""
+msgstr "知名且重要的著作《武經七書》教導了中國將領們關於計畫戰鬥、維護軍隊，與擊敗敵人的一切。"
 
 #: simulation/data/technologies/art_of_war.jsongenericName
 msgid "Sun Tzu's \"The Art of War\""
-msgstr ""
+msgstr "孫子的《孫子兵法》"
 
 #: simulation/data/technologies/art_of_war.jsonspecificName.han
 msgid "Sūnzǐ BīngFǎ"
-msgstr ""
+msgstr "孫子兵法"
 
 #: simulation/data/technologies/art_of_war.jsontooltip
 msgid "All Citizen-Soldiers -25% required promotion experience."
-msgstr ""
+msgstr "所有公民兵 -25% 升階經驗值。"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -345,23 +346,23 @@ msgstr "建築 +10% 生命值和 +10% 占領值。"
 msgid ""
 "By uniting China under one emperor, the Han Dynasty ruled over 40 million "
 "people, one of the largest empires of antiquity by population."
-msgstr ""
+msgstr "在中國被一個帝國整合後，漢朝統治超過 4000 萬人，是古代人口最多的帝國之一。"
 
 #: simulation/data/technologies/civbonuses/han_popcap.jsongenericName
 msgid "Federated States"
-msgstr ""
+msgstr "封建制度"
 
 #: simulation/data/technologies/civbonuses/han_walls.jsondescription
 msgid "Han built massive walls, the great wall."
-msgstr ""
+msgstr "漢代建造了大量的城牆，萬里長城。"
 
 #: simulation/data/technologies/civbonuses/han_walls.jsongenericName
 msgid "Great Wall"
-msgstr ""
+msgstr "萬里長城"
 
 #: simulation/data/technologies/civbonuses/han_walls.jsontooltip
 msgid "City Walls +50% health."
-msgstr ""
+msgstr "城牆 +50% 生命值。"
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -448,44 +449,44 @@ msgstr "房舍和經濟建築 -40% 木材成本和生命值。"
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
 msgid "Civil Engineering - Level 1"
-msgstr ""
+msgstr "土木工程 - 等級 1"
 
 #: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
 #: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
 msgid "Gōngchéng"
-msgstr ""
+msgstr "工程"
 
 #: simulation/data/technologies/civil_engineering_01.jsontooltip
 msgid "All structures -15% build time, +10% health and -5% cost."
-msgstr ""
+msgstr "所有建築 -15% 建造時間、+10% 生命值和 -5% 成本。"
 
 #: simulation/data/technologies/civil_engineering_02.jsongenericName
 msgid "Civil Engineering - Level 2"
-msgstr ""
+msgstr "土木工程 - 等級 2"
 
 #: simulation/data/technologies/civil_engineering_02.jsontooltip
 msgid "All structures -25% build time, +20% health and -5% cost."
-msgstr ""
+msgstr "所有建築 -25% 建造時間、+20% 生命值和 -5% 成本。"
 
 #: simulation/data/technologies/civil_service_01.jsongenericName
 msgid "Civil Service - Level 1"
-msgstr ""
+msgstr "市民服務 - 等級 1"
 
 #: simulation/data/technologies/civil_service_01.jsonspecificName.han
 #: simulation/data/technologies/civil_service_02.jsonspecificName.han
 msgid "Guānliáo"
-msgstr ""
+msgstr "官僚"
 
 #: simulation/data/technologies/civil_service_01.jsontooltip
 #: simulation/data/technologies/civil_service_02.jsontooltip
 msgid ""
 "Technologies at all buildings, except the Blacksmith, -15% cost and -15% "
 "research time."
-msgstr ""
+msgstr "除了兵工廠外所有建築的科技，-15% 成本和 -15% 研發時間。"
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
 msgid "Civil Service - Level 2"
-msgstr ""
+msgstr "市民服務 - 等級 2"
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -500,6 +501,20 @@ msgstr "殖民"
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time and resources cost"
 msgstr "市鎮建築 -25% 建造時間和資源花費。"
+
+#: simulation/data/technologies/crossbow_training.jsondescription
+msgid ""
+"The Chinese had a tradition of fine archery and a penchant for using massed "
+"crossbowmen in battle."
+msgstr "中國人有良好的射箭傳統，並且喜歡在戰鬥中使用大量的弩手。"
+
+#: simulation/data/technologies/crossbow_training.jsongenericName
+msgid "Crossbow Training"
+msgstr "弩弓訓練"
+
+#: simulation/data/technologies/crossbow_training.jsontooltip
+msgid "Crossbow Infantry and Cavalry −1 second firing time −20% train time."
+msgstr "弩步兵和騎兵 -1 秒發射時間和 -20% 訓練時間。"
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -603,17 +618,17 @@ msgstr "獨輪車"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsondescription
 msgid "Install a chain pump for improved irrigation."
-msgstr ""
+msgstr "安裝鏈泵以改善灌溉。"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsongenericName
 msgid "Chain Pump"
-msgstr ""
+msgstr "鏈泵"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
 msgid "Workers +25% rice gather rate."
-msgstr ""
+msgstr "工人 +25% 稻米採集速率。"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -655,11 +670,11 @@ msgstr "鐵製犁"
 
 #: simulation/data/technologies/gather_farming_seed_drill.jsondescription
 msgid "Equip your workers with seed drills."
-msgstr ""
+msgstr "為你的工人裝備播種機。"
 
 #: simulation/data/technologies/gather_farming_seed_drill.jsongenericName
 msgid "Seed Drill"
-msgstr ""
+msgstr "播種機"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
@@ -671,11 +686,11 @@ msgstr "採集訓練"
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsondescription
 msgid "Grow water weeds to to supply rice plants with nutricients."
-msgstr ""
+msgstr "種植水草，為水稻提供養分。"
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsongenericName
 msgid "Water Weeding"
-msgstr ""
+msgstr "水草養殖"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
@@ -1019,7 +1034,7 @@ msgstr "哨站 +33% 視野範圍。"
 
 #: simulation/data/technologies/pair_unlock_arrows_type.jsongenericName
 msgid "Fire Arrows vs Poison Arrows"
-msgstr ""
+msgstr "火箭矢 vs 毒箭矢"
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -1148,19 +1163,19 @@ msgstr "村莊階段"
 
 #: simulation/data/technologies/poison_arrows.jsongenericName
 msgid "Poison Arrows"
-msgstr ""
+msgstr "毒箭"
 
 #: simulation/data/technologies/poison_arrows.jsontooltip
 msgid "Ranged Soldiers +20% attack damage."
-msgstr ""
+msgstr "遠程士兵 +20% 攻擊傷害。"
 
 #: simulation/data/technologies/poison_blades.jsongenericName
 msgid "Poison Blades"
-msgstr ""
+msgstr "毒刃"
 
 #: simulation/data/technologies/poison_blades.jsontooltip
 msgid "Melee Soldiers +20% attack damage."
-msgstr ""
+msgstr "近戰士兵 +20% 攻擊傷害。"
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
@@ -1216,7 +1231,22 @@ msgstr "軍隊改革"
 
 #: simulation/data/technologies/reformed_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
-msgstr "精英劍兵解鎖"
+msgstr "解鎖鬥士劍兵 "
+
+#: simulation/data/technologies/repeating_crossbows.jsondescription
+msgid ""
+"Crossbows equiped with a repeating mechanism and dart magazine increase "
+"firing rate."
+msgstr "配備連發機構和飛鏢彈匣的弩可以提高射速。"
+
+#: simulation/data/technologies/repeating_crossbows.jsongenericName
+msgid "Repeating Crossbows"
+msgstr "連弩"
+
+#: simulation/data/technologies/repeating_crossbows.jsontooltip
+msgid ""
+"Crossbow Infantry and Cavalry −1 second firing time, but +20 metal cost."
+msgstr "弩步兵和騎兵 -1 秒發射時間，但 +20 金屬成本。"
 
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""
@@ -1321,11 +1351,11 @@ msgstr "攻城器 -40% 打包和解包時間。"
 
 #: simulation/data/technologies/silk_road.jsongenericName
 msgid "Silk Road"
-msgstr ""
+msgstr "絲路"
 
 #: simulation/data/technologies/silk_road.jsontooltip
 msgid "Traders +20% international trade bonus."
-msgstr ""
+msgstr "商人 +20% 國際貿易加成。"
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
@@ -1341,7 +1371,7 @@ msgstr "銀盾軍團"
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr "將精英盾兵升級成銀盾兵，有著更強的生命值及攻擊力。"
+msgstr "將鬥士盾兵升級成銀盾兵，有著更強的生命值及攻擊力。"
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsondescription
 msgid ""
@@ -1539,21 +1569,6 @@ msgstr "改良合金盾"
 msgid "Soldiers +2 pierce resistance."
 msgstr "士兵 +2 穿刺裝甲。"
 
-#: simulation/data/technologies/special_crossbow_tradition.jsondescription
-msgid ""
-"The Chinese had a tradition of fine archery and a penchant for using massed "
-"crossbowmen in battle."
-msgstr ""
-
-#: simulation/data/technologies/special_crossbow_tradition.jsongenericName
-msgid "Crossbow Tradition"
-msgstr ""
-
-#: simulation/data/technologies/special_crossbow_tradition.jsontooltip
-msgid ""
-"Range +10 meters, −10% ranged attack spread for crossbow-wielding units."
-msgstr ""
-
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
 msgstr "招募一個用來監視您的人民的線人。"
@@ -1644,7 +1659,7 @@ msgstr "Nyktophylakes"
 
 #: simulation/data/technologies/tower_watch.jsonspecificName.han
 msgid "Shàobīng"
-msgstr ""
+msgstr "哨兵"
 
 #: simulation/data/technologies/tower_watch.jsonspecificName.rome
 msgid "Vigiles"
@@ -1663,8 +1678,8 @@ msgid "Commercial Treaty"
 msgstr "商業條約"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "+10% international trade bonus."
-msgstr "+10% 國際貿易加成。"
+msgid "Traders +10% trade profit between allies."
+msgstr "商人 +10% 盟友間的貿易利潤。"
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
@@ -1706,7 +1721,7 @@ msgstr "傳統軍隊"
 
 #: simulation/data/technologies/traditional_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Pikeman."
-msgstr "解鎖精英長槍兵"
+msgstr "解鎖鬥士長槍兵"
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
@@ -1742,27 +1757,27 @@ msgstr "菁英單位 +20% 訓練時間，+25% 生命值，+0.8 占領力，+20% 
 msgid ""
 "Guard units (Champions) are professionals who wield the best weapons and "
 "have the best training."
-msgstr "警衛部隊(精英)是裝備最好的武器並有最佳訓練的專家。"
+msgstr "衛隊（鬥士）是裝備最好的武器並有最佳訓練的專家。"
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsongenericName
 msgid "Unlock Champion Cavalry"
-msgstr "解鎖精英騎兵"
+msgstr "解鎖鬥士騎兵"
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsontooltip
 msgid "Unlock Champion Cavalry at the Stable."
-msgstr "在馬廄解鎖精英騎兵"
+msgstr "在馬廄解鎖鬥士騎兵。"
 
 #: simulation/data/technologies/unlock_champion_chariots.jsongenericName
 msgid "Unlock Champion Chariots"
-msgstr "解鎖精英馬戰車"
+msgstr "解鎖鬥士馬戰車"
 
 #: simulation/data/technologies/unlock_champion_chariots.jsontooltip
 msgid "Unlock Champion Chariots at the Stable."
-msgstr "在馬廄解鎖精英馬戰車"
+msgstr "在馬廄解鎖鬥士馬戰車"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsongenericName
 msgid "Unlock Champion Infantry"
-msgstr "解鎖精英步兵"
+msgstr "解鎖鬥士步兵"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.ptol
@@ -1775,7 +1790,7 @@ msgstr "Regio Cohors"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsontooltip
 msgid "Unlock Champions Infantry at the Barracks."
-msgstr "在軍營解鎖精英步兵"
+msgstr "在軍營解鎖鬥士步兵"
 
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."

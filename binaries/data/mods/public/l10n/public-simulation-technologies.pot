@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2022-02-25 08:08+0000\n"
-"PO-Revision-Date: 2022-02-25 08:08+0000\n"
+"POT-Creation-Date: 2022-02-28 08:09+0000\n"
+"PO-Revision-Date: 2022-02-28 08:09+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -76,6 +76,8 @@ msgstr ""
 #: simulation/data/technologies/unlock_champion_cavalry.json:requirementsTooltip
 #: simulation/data/technologies/unlock_champion_chariots.json:requirementsTooltip
 #: simulation/data/technologies/unlock_champion_infantry.json:requirementsTooltip
+#: simulation/data/technologies/unlock_spies.json:requirementsTooltip
+#: simulation/data/technologies/upgrade_rank_elite_crossbow.json:requirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.json:requirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr ""
@@ -122,6 +124,7 @@ msgstr ""
 #: simulation/data/technologies/trade_commercial_treaty.json:requirementsTooltip
 #: simulation/data/technologies/trade_gain_01.json:requirementsTooltip
 #: simulation/data/technologies/trader_health.json:requirementsTooltip
+#: simulation/data/technologies/upgrade_rank_advanced_crossbow.json:requirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr ""
 
@@ -1801,6 +1804,18 @@ msgstr ""
 msgid "Allows bribing the units of other players in order to share their vision."
 msgstr ""
 
+#: simulation/data/technologies/upgrade_rank_advanced_crossbow.json:description
+msgid "Upgrade all of your citizen crossbowmen to Advanced rank."
+msgstr ""
+
+#: simulation/data/technologies/upgrade_rank_advanced_crossbow.json:genericName
+msgid "Advanced Crossbow Infantry and Cavalry"
+msgstr ""
+
+#: simulation/data/technologies/upgrade_rank_advanced_crossbow.json:tooltip
+msgid "Upgrade all of your Crossbow Infantry and Cavalry to Advanced rank."
+msgstr ""
+
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.json:description
 msgid "Hire professional mercenaries to fight in your army."
 msgstr ""
@@ -1811,6 +1826,18 @@ msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.json:tooltip
 msgid "Mercenaries start at Advanced rank."
+msgstr ""
+
+#: simulation/data/technologies/upgrade_rank_elite_crossbow.json:description
+msgid "Upgrade all of your citizen crossbowmen to Elite rank."
+msgstr ""
+
+#: simulation/data/technologies/upgrade_rank_elite_crossbow.json:genericName
+msgid "Elite Crossbow Infantry and Cavalry"
+msgstr ""
+
+#: simulation/data/technologies/upgrade_rank_elite_crossbow.json:tooltip
+msgid "Upgrade all of your Crossbow Infantry and Cavalry to Elite rank."
 msgstr ""
 
 #: simulation/data/technologies/wonder_population_cap.json:description

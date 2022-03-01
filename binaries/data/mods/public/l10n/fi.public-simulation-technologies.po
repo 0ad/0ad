@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-21 08:18+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-02-25 08:08+0000\n"
+"PO-Revision-Date: 2022-02-26 20:24+0000\n"
+"Last-Translator: Matti Tuhola\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -61,6 +61,7 @@ msgstr "Agoge"
 #: simulation/data/technologies/poison_blades.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
+#: simulation/data/technologies/repeating_crossbows.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
@@ -110,6 +111,7 @@ msgstr "Jousiammunnan harjoittelu"
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
+#: simulation/data/technologies/crossbow_training.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
@@ -128,7 +130,6 @@ msgstr "Jousiammunnan harjoittelu"
 #: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
-#: simulation/data/technologies/special_crossbow_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
@@ -197,19 +198,19 @@ msgid ""
 "This famous and most important work of the Seven Military Classics teaches "
 "Chinese commanders everything about planning battles, maintaining armies, "
 "and defeating one's enemies."
-msgstr ""
+msgstr "Tämä kuuluisa ja tärkein teos Seitsemästä sotaklassikosta opettaa kiinalaisille komentajille kaiken taistelujen suunnittelusta, armeijoiden ylläpidosta ja vihollisten kukistamisesta."
 
 #: simulation/data/technologies/art_of_war.jsongenericName
 msgid "Sun Tzu's \"The Art of War\""
-msgstr ""
+msgstr "Sun Tzun \"Sodankäynnin taito\""
 
 #: simulation/data/technologies/art_of_war.jsonspecificName.han
 msgid "Sūnzǐ BīngFǎ"
-msgstr ""
+msgstr "Sūnzǐ BīngFǎ"
 
 #: simulation/data/technologies/art_of_war.jsontooltip
 msgid "All Citizen-Soldiers -25% required promotion experience."
-msgstr ""
+msgstr "Kaikille kansalaissotilaille -25 % ylennykseen vaadittavasta kokemuksesta."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -343,23 +344,23 @@ msgstr "Rakenteille +10% terveyttä ja +10% kaappauspisteitä."
 msgid ""
 "By uniting China under one emperor, the Han Dynasty ruled over 40 million "
 "people, one of the largest empires of antiquity by population."
-msgstr ""
+msgstr "Han-dynastia yhdisti Kiinan yhden keisarin alaisuuteen ja hallitsi yli 40 miljoonaa ihmistä, mikä teki siitä väestömäärältään yhden antiikin suurimmista valtakunnista."
 
 #: simulation/data/technologies/civbonuses/han_popcap.jsongenericName
 msgid "Federated States"
-msgstr ""
+msgstr "Liittovaltio"
 
 #: simulation/data/technologies/civbonuses/han_walls.jsondescription
 msgid "Han built massive walls, the great wall."
-msgstr ""
+msgstr "Han-dynastia rakensi massiivisen Kiinan muurin."
 
 #: simulation/data/technologies/civbonuses/han_walls.jsongenericName
 msgid "Great Wall"
-msgstr ""
+msgstr "Kiinan muuri"
 
 #: simulation/data/technologies/civbonuses/han_walls.jsontooltip
 msgid "City Walls +50% health."
-msgstr ""
+msgstr "Kaupunginmuureille +50 % terveyttä."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -498,6 +499,20 @@ msgstr "Asuttaminen"
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time and resources cost"
 msgstr "Kaupunkirakenteille -25 % rakennusaikaa ja resurssikustannuksia."
+
+#: simulation/data/technologies/crossbow_training.jsondescription
+msgid ""
+"The Chinese had a tradition of fine archery and a penchant for using massed "
+"crossbowmen in battle."
+msgstr ""
+
+#: simulation/data/technologies/crossbow_training.jsongenericName
+msgid "Crossbow Training"
+msgstr ""
+
+#: simulation/data/technologies/crossbow_training.jsontooltip
+msgid "Crossbow Infantry and Cavalry −1 second firing time −20% train time."
+msgstr ""
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -1216,6 +1231,21 @@ msgstr "Reformoi armeijaa"
 msgid "Unlock the Champion Infantry Swordsman."
 msgstr "Avaa mestarijalkaväen miekkamies"
 
+#: simulation/data/technologies/repeating_crossbows.jsondescription
+msgid ""
+"Crossbows equiped with a repeating mechanism and dart magazine increase "
+"firing rate."
+msgstr ""
+
+#: simulation/data/technologies/repeating_crossbows.jsongenericName
+msgid "Repeating Crossbows"
+msgstr ""
+
+#: simulation/data/technologies/repeating_crossbows.jsontooltip
+msgid ""
+"Crossbow Infantry and Cavalry −1 second firing time, but +20 metal cost."
+msgstr ""
+
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""
 "Employ skilled shipwrights with specialized tools to speed up ship "
@@ -1319,7 +1349,7 @@ msgstr "Piirityskoneille -40% pakkaus- ja purkamisaika."
 
 #: simulation/data/technologies/silk_road.jsongenericName
 msgid "Silk Road"
-msgstr ""
+msgstr "Silkkitie"
 
 #: simulation/data/technologies/silk_road.jsontooltip
 msgid "Traders +20% international trade bonus."
@@ -1537,21 +1567,6 @@ msgstr "Parannetut metalliseokset kilpiin"
 msgid "Soldiers +2 pierce resistance."
 msgstr "Sotilaille +2 vastustus lävistyksille."
 
-#: simulation/data/technologies/special_crossbow_tradition.jsondescription
-msgid ""
-"The Chinese had a tradition of fine archery and a penchant for using massed "
-"crossbowmen in battle."
-msgstr ""
-
-#: simulation/data/technologies/special_crossbow_tradition.jsongenericName
-msgid "Crossbow Tradition"
-msgstr ""
-
-#: simulation/data/technologies/special_crossbow_tradition.jsontooltip
-msgid ""
-"Range +10 meters, −10% ranged attack spread for crossbow-wielding units."
-msgstr ""
-
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
 msgstr "Rekrytoi ilmiantajien verkosto, joka valvoo kansaasi."
@@ -1661,8 +1676,8 @@ msgid "Commercial Treaty"
 msgstr "Kaupallinen sopimus"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "+10% international trade bonus."
-msgstr "+10% kansainvälisen kaupan bonus."
+msgid "Traders +10% trade profit between allies."
+msgstr ""
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription

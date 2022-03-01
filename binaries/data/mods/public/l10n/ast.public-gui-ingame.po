@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-24 08:35+0000\n"
-"PO-Revision-Date: 2022-02-24 19:01+0000\n"
+"PO-Revision-Date: 2022-02-26 20:58+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
-msgstr "Afhita’ la velocidá de l xhuœw"
+msgstr "Afhita’ la velocidá de la partida"
 
 #: gui/session/Menu.js:41
 #, javascript-format
@@ -140,7 +140,7 @@ msgstr "Pousou-se la partida"
 
 #: gui/session/PauseOverlay.xml:(caption):11
 msgid "Click to Resume Game"
-msgstr "Picca par continua’ la partida"
+msgstr "Pica par continua’ la partida"
 
 #: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:272
 #: gui/session/selection_details.js:290 gui/session/selection_panels.js:582
@@ -247,7 +247,7 @@ msgstr "Recahos privahos"
 #: gui/session/chat/ChatHistory.js:125
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr "Avisos de l xhuœw"
+msgstr "Avisos de l trebeyyu"
 
 #: gui/session/chat/ChatHistory.js:130
 msgctxt "chat history filter"
@@ -355,7 +355,7 @@ msgstr "%(icon)s ¡%(attacker)s sta aggrediendo-te!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
-msgstr "Picca par infocar scontra la unidá aggredida."
+msgstr "Pica par infocar scontra la unidá aggredida."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
@@ -587,7 +587,7 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr "Nota: La opçon disindolrcadora “modu alteraçon temporal” nun sta pensada pa l usu prolhongau. Si non s’utiliza a xheitu puœde exhauri’ la memoria de l xhuœw ou resultar in falhos."
+msgstr "Nota: La opçon disindolrcadora “modu alteraçon temporal” nun sta pensada pa l usu prolhongau. Si non s’utiliza a xheitu puœde exhauri’ la memoria de l trebeyyu ou resultar in falhos."
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -691,7 +691,7 @@ msgstr "x"
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr "Tribuir %(resourceAmount)s de %(resourceType)s a %(playerName)s. Cun Mayúsculæs premida, picca pa tribuir %(greaterAmount)s."
+msgstr "Tribuir %(resourceAmount)s de %(resourceType)s a %(playerName)s. Cun Mayúsculæs premida, pica pa tribuir %(greaterAmount)s."
 
 #: gui/session/input.js:191
 #, javascript-format
@@ -763,12 +763,12 @@ msgstr "¡Indagora nun sta sofhitaho rexhuntase a partidæs entre múltiplos xho
 #: gui/session/message_box/OutOfSyncNetwork.js:34
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
-msgstr "Assegurai-vos de que todolos xhogadores usen los mesmos commudos."
+msgstr "Assegurai-vos de que todolos xhogadores gasten læs mesmæs modificaçones."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:35
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr "Picca n “informar d’un falhu” nel menú principal p’adiudar a egualhu."
+msgstr "Pica n “informar d’un falhu” nel menú principal p’adiudar a egualhu."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:36
 #, javascript-format
@@ -871,7 +871,7 @@ msgstr "¡Vincierun-te!"
 
 #: gui/session/messages.js:410
 msgid "Click to quit this tutorial."
-msgstr "Picca pa salir d’esti cursin."
+msgstr "Pica pa salir d’esti cursin."
 
 #: gui/session/message_box/QuitConfirmation.js:24
 #: gui/session/message_box/QuitConfirmationReplay.js:32
@@ -881,7 +881,7 @@ msgstr "Salir"
 
 #: gui/session/messages.js:415
 msgid "Click when ready."
-msgstr "Picca quando steas preparau."
+msgstr "Pica quando steas preparau."
 
 #: gui/session/messages.js:419
 msgid "Follow the instructions."
@@ -1049,7 +1049,7 @@ msgstr "La formaçon predefinida sta disactivada."
 
 #: gui/session/selection_panels.js:278
 msgid "Right-click to disable the default formation feature."
-msgstr "Picca cul botton dreithu par disactiva’ la funcçon “formaçon predefinida”."
+msgstr "Pica cul boton dreithu par disactiva’ la funcçon “formaçon predefinida”."
 
 #: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
@@ -1057,7 +1057,7 @@ msgstr "Esta ye la formaçon predefinida de la milicia al movese."
 
 #: gui/session/selection_panels.js:282
 msgid "Right-click to set this as the default formation."
-msgstr "Picca cul botton dreithu pa predefinir esta formaçon."
+msgstr "Pica cul boton dreithu pa predefinir esta formaçon."
 
 #: gui/session/selection_panels.js:338
 #, javascript-format
@@ -1066,7 +1066,7 @@ msgstr "Disoccupar %(name)s"
 
 #: gui/session/selection_panels.js:339
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "Picca una vez par disoccupar 1. Calca cun Mayúsculæs premida par disoccupar todolos d’esti typu."
+msgstr "Pica una vez par disoccupar 1. Calca cun Mayúsculæs premida par disoccupar todolos d’esti typu."
 
 #: gui/session/selection_panels.js:341 gui/session/selection_panels.js:906
 #, javascript-format
@@ -1103,7 +1103,7 @@ msgstr "De poder, elho inrestrará-se mas a lantre de modu automáticu."
 
 #: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
-msgstr "Capacidá poblracional insufficiente:"
+msgstr "Capacidá populacional insufficiente:"
 
 #: gui/session/selection_panels.js:562
 #, javascript-format
@@ -1197,19 +1197,19 @@ msgstr "Quedu"
 #: gui/session/selection_panels_helpers.js:73
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr "Acommitter a inimigos aveirahos, centrando-se n aggresores & persegiendo-lhos ta perdelhos de vista"
+msgstr "Acometer a inimigos aveirahos, centrando-se n aggresores & persegiendo-lhos ta perdelhos de vista"
 
 #: gui/session/selection_panels_helpers.js:75
 msgctxt "stance"
 msgid "Attack nearby opponents"
-msgstr "Acommitter a inimigos aveirahos"
+msgstr "Acometer a inimigos aveirahos"
 
 #: gui/session/selection_panels_helpers.js:77
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr "Acommitter a inimigos aveirahos, persegiendo-lhos un pouco & da reo tornando al sou puœstu"
+msgstr "Acometer a inimigos aveirahos, persegiendo-lhos un pouco & da reo tornando al sou puœstu"
 
 #: gui/session/selection_panels_helpers.js:79
 msgctxt "stance"
@@ -1219,7 +1219,7 @@ msgstr "Fhuxhir al vese aggredidu"
 #: gui/session/selection_panels_helpers.js:81
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr "Acommitter a inimigos aveirahos in sin persegilhos"
+msgstr "Acometer a inimigos aveirahos in sin persegilhos"
 
 #: gui/session/selection_panels_helpers.js:95
 #, javascript-format
@@ -1310,7 +1310,7 @@ msgstr "%(action)s par crear %(number)s."
 
 #: gui/session/selection_panels_helpers.js:226
 msgid "Shift-click"
-msgstr "Picca cun Mayúsculæs premida"
+msgstr "Pica cun Mayúsculæs premida"
 
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):16
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):40
@@ -1341,7 +1341,7 @@ msgstr "Riestra de producçon"
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr "Picca pa scoyyer una grea d’unidahes, picca duês vezes par infocar scontra elhi & picca cul botton dreithu pa sfhazelhu."
+msgstr "Pica pa scoyyer una grea d’unidahes, pica duês vezes par infocar scontra elhi & pica cul boton dreithu pa sfhazelhu."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVI: Z——"
@@ -1353,12 +1353,12 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Ve’ la Synopsis cultural / Árbolre de construcçones\nLa última abierta vaî reabrise n piccando."
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Ve’ la Synopsis cultural / Árbolre de construcçones\nLa última abierta vaî reabrise n picando."
 
 #: gui/session/top_panel/CounterManager.js:101
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
-msgstr "%(order)s: %(hotkey)s pa commuda’l orde."
+msgstr "%(order)s: %(hotkey)s pa camuda’l orde."
 
 #: gui/session/top_panel/CounterManager.js:105
 msgid "Unordered"
@@ -1388,7 +1388,7 @@ msgstr "%(popCount)s/%(popLimit)s (%(popMax)s)"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 msgid "Population: current/limit (max)"
-msgstr "Poblraçon: actual/máxima"
+msgstr "Populaçon: actual/lhinde (máxima)"
 
 #: gui/session/top_panel/CounterPopulation.js:70
 msgid "Gatherers: current"
@@ -1407,7 +1407,7 @@ msgstr "Diplomacia"
 
 #: gui/session/top_panel/IconButtons/GameSpeedButton.xml:(tooltip):9
 msgid "Game Speed"
-msgstr "Velocidá de l xhuœw"
+msgstr "Velocidá de la partida"
 
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):15
 #: gui/session/top_panel/IconButtons/ObjectivesDialogButton.js:23
@@ -1480,7 +1480,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "Scœyyi l typu de bienes que quieres commudar piccando n elhi, & lhœw usa læs sayettæs de los outros typos pa commuda’ læs suâs proporçones. Tamien puœdes premer %(hotkey)s al scoyyer un typu de bienes pa txubi’ la suâ proporçon al 100 %%."
+msgstr "Scœyyi l typu de bienes que quieres camudar picando n elhi, & lhœw usa læs flretsæs de los outros typos pa camuda’ læs suâs proporçones. Tamien puœdes premer %(hotkey)s al scoyyer un typu de bienes pa txubi’ la suâ proporçon al 100 %%."
 
 #: gui/session/trade/TradeDialogBarterPanel.js:45
 #, javascript-format
@@ -1489,7 +1489,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr "Intama scoyyendo l recursu que quieres vender de la fhila superior. Siempre que se preman los bottones inferiores, %(quantity)s de los recursos superiores vaî/van vendese pola quantidá amostrada de los inferiores. Premi & calten premidu/a %(hotkey)s par multiplicar temporalmente la quantidá introcada por %(multiplier)s."
+msgstr "Intama scoyyendo l recursu que quieres vender de la fhila superior. Siempre que se preman los botones inferiores, %(quantity)s de los recursos superiores vaî/van vendese pola quantidá amostrada de los inferiores. Premi & calten premidu/a %(hotkey)s par multiplicar temporalmente la quantidá introcada por %(multiplier)s."
 
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
@@ -1616,7 +1616,7 @@ msgstr "Preparau"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr "Esti ye l mercau d’origë.\nPicca cul botton dreithu par incaboxa’ la vía commercial"
+msgstr "Esti ye l mercau d’origë.\nPica cul boton dreithu par incaboxa’ la vía commercial"
 
 #: gui/session/unit_actions.js:678
 msgid "Origin trade market."
@@ -1628,7 +1628,7 @@ msgstr "Mercau de destinu."
 
 #: gui/session/unit_actions.js:695
 msgid "Right-click to set as origin trade market"
-msgstr "Picca cul botton dreithu p’afhitar cumo mercau d’origë"
+msgstr "Pica cul boton dreithu p’afhitar cumo mercau d’origë"
 
 #: gui/session/unit_actions.js:702 gui/session/unit_actions.js:1186
 msgid "This market is too close to the origin market."
@@ -1636,7 +1636,7 @@ msgstr "Esti mercau sta per-cerca de l mercau d’origë."
 
 #: gui/session/unit_actions.js:706
 msgid "Right-click to set as destination trade market."
-msgstr "Picca cul botton dreithu p’afhitar cumo mercau de destinu."
+msgstr "Pica cul boton dreithu p’afhitar cumo mercau de destinu."
 
 #: gui/session/unit_actions.js:771 gui/session/unit_actions.js:1118
 #, javascript-format
@@ -1650,7 +1650,7 @@ msgstr "Occupantes actuales: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:1177
 msgid "Right-click to establish a default route for new traders."
-msgstr "Picca cul botton dreithu p’afhitar una vía predefinida par commerciantes nuœvos."
+msgstr "Pica cul boton dreithu p’afhitar una vía predefinida par commerciantes nuœvos."
 
 #: gui/session/unit_actions.js:1181
 #, javascript-format
@@ -1704,7 +1704,7 @@ msgstr "Disoccupar"
 
 #: gui/session/unit_actions.js:1567
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr "Mandar que læs unidahes scoyyidæs iguen una construcçon, barcu ou máchina."
+msgstr "Mandar que læs unidahes scoyyidæs eguen una construcçon, barcu ou máchina."
 
 #: gui/session/unit_actions.js:1588
 msgid "Focus on Rally Point."
@@ -1734,7 +1734,7 @@ msgstr "Velar"
 
 #: gui/session/unit_actions.js:1706
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr "Acommitter a todelæs unidahes inimigæs incontradæs evitando construcçones."
+msgstr "Acometer a todelæs unidahes inimigæs incontradæs evitando construcçones."
 
 #: gui/session/unit_actions.js:1734
 msgid "Press to allow allies to use this dropsite"

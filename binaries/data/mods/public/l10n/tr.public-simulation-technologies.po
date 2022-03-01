@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-21 08:18+0000\n"
+"POT-Creation-Date: 2022-02-25 08:08+0000\n"
+"PO-Revision-Date: 2022-02-25 08:18+0000\n"
 "Last-Translator: Transifex Bot\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -74,6 +74,7 @@ msgstr "Zorlu Askeri Eğitim"
 #: simulation/data/technologies/poison_blades.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
+#: simulation/data/technologies/repeating_crossbows.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
@@ -123,6 +124,7 @@ msgstr "Okçu Eğitimi"
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
+#: simulation/data/technologies/crossbow_training.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
@@ -141,7 +143,6 @@ msgstr "Okçu Eğitimi"
 #: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
-#: simulation/data/technologies/special_crossbow_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
@@ -511,6 +512,20 @@ msgstr "Kolonicilik"
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time and resources cost"
 msgstr "Sivil yapılara -%25 inşa süresi ve kaynak masrafı."
+
+#: simulation/data/technologies/crossbow_training.jsondescription
+msgid ""
+"The Chinese had a tradition of fine archery and a penchant for using massed "
+"crossbowmen in battle."
+msgstr ""
+
+#: simulation/data/technologies/crossbow_training.jsongenericName
+msgid "Crossbow Training"
+msgstr ""
+
+#: simulation/data/technologies/crossbow_training.jsontooltip
+msgid "Crossbow Infantry and Cavalry −1 second firing time −20% train time."
+msgstr ""
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -1229,6 +1244,21 @@ msgstr "Reform Ordusu"
 msgid "Unlock the Champion Infantry Swordsman."
 msgstr "Şampiyon Piyade Kılıçlıyı aç."
 
+#: simulation/data/technologies/repeating_crossbows.jsondescription
+msgid ""
+"Crossbows equiped with a repeating mechanism and dart magazine increase "
+"firing rate."
+msgstr ""
+
+#: simulation/data/technologies/repeating_crossbows.jsongenericName
+msgid "Repeating Crossbows"
+msgstr ""
+
+#: simulation/data/technologies/repeating_crossbows.jsontooltip
+msgid ""
+"Crossbow Infantry and Cavalry −1 second firing time, but +20 metal cost."
+msgstr ""
+
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""
 "Employ skilled shipwrights with specialized tools to speed up ship "
@@ -1550,21 +1580,6 @@ msgstr "Gelişmis Kalkan Alaşımları"
 msgid "Soldiers +2 pierce resistance."
 msgstr "Askerler +2 delme direnci."
 
-#: simulation/data/technologies/special_crossbow_tradition.jsondescription
-msgid ""
-"The Chinese had a tradition of fine archery and a penchant for using massed "
-"crossbowmen in battle."
-msgstr ""
-
-#: simulation/data/technologies/special_crossbow_tradition.jsongenericName
-msgid "Crossbow Tradition"
-msgstr ""
-
-#: simulation/data/technologies/special_crossbow_tradition.jsontooltip
-msgid ""
-"Range +10 meters, −10% ranged attack spread for crossbow-wielding units."
-msgstr ""
-
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
 msgstr "Halkınızı izlemek için bilgilendirici bir ağ kurun."
@@ -1674,8 +1689,8 @@ msgid "Commercial Treaty"
 msgstr "Ticari Antlaşma"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "+10% international trade bonus."
-msgstr "+%10 uluslararası ticaret bonusu."
+msgid "Traders +10% trade profit between allies."
+msgstr ""
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription

@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-21 08:18+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-02-25 08:08+0000\n"
+"PO-Revision-Date: 2022-02-27 16:16+0000\n"
+"Last-Translator: Szabó Lambert\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,6 +67,7 @@ msgstr "Agogé"
 #: simulation/data/technologies/poison_blades.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
+#: simulation/data/technologies/repeating_crossbows.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
@@ -116,6 +117,7 @@ msgstr "Íjász képzése"
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
+#: simulation/data/technologies/crossbow_training.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
@@ -134,7 +136,6 @@ msgstr "Íjász képzése"
 #: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
-#: simulation/data/technologies/special_crossbow_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
@@ -207,11 +208,11 @@ msgstr ""
 
 #: simulation/data/technologies/art_of_war.jsongenericName
 msgid "Sun Tzu's \"The Art of War\""
-msgstr ""
+msgstr "Szun-ce: A háború művészete"
 
 #: simulation/data/technologies/art_of_war.jsonspecificName.han
 msgid "Sūnzǐ BīngFǎ"
-msgstr ""
+msgstr "Sūnzǐ BīngFǎ"
 
 #: simulation/data/technologies/art_of_war.jsontooltip
 msgid "All Citizen-Soldiers -25% required promotion experience."
@@ -365,7 +366,7 @@ msgstr ""
 
 #: simulation/data/technologies/civbonuses/han_walls.jsontooltip
 msgid "City Walls +50% health."
-msgstr ""
+msgstr "+50% életerő a városfalaknak"
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -457,11 +458,11 @@ msgstr ""
 #: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
 #: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
 msgid "Gōngchéng"
-msgstr ""
+msgstr "Gōngchéng"
 
 #: simulation/data/technologies/civil_engineering_01.jsontooltip
 msgid "All structures -15% build time, +10% health and -5% cost."
-msgstr ""
+msgstr "−15% építési idő, +10% életerő és −5% nyersanyagigény minden építménynek"
 
 #: simulation/data/technologies/civil_engineering_02.jsongenericName
 msgid "Civil Engineering - Level 2"
@@ -469,7 +470,7 @@ msgstr ""
 
 #: simulation/data/technologies/civil_engineering_02.jsontooltip
 msgid "All structures -25% build time, +20% health and -5% cost."
-msgstr ""
+msgstr "−25% építési idő, +20% életerő és −5% nyersanyagigény minden építménynek"
 
 #: simulation/data/technologies/civil_service_01.jsongenericName
 msgid "Civil Service - Level 1"
@@ -478,7 +479,7 @@ msgstr ""
 #: simulation/data/technologies/civil_service_01.jsonspecificName.han
 #: simulation/data/technologies/civil_service_02.jsonspecificName.han
 msgid "Guānliáo"
-msgstr ""
+msgstr "Guānliáo"
 
 #: simulation/data/technologies/civil_service_01.jsontooltip
 #: simulation/data/technologies/civil_service_02.jsontooltip
@@ -504,6 +505,20 @@ msgstr "Gyarmatosítás"
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time and resources cost"
 msgstr "−25% építési idő és nyersanyagigény a polgári építményeknek"
+
+#: simulation/data/technologies/crossbow_training.jsondescription
+msgid ""
+"The Chinese had a tradition of fine archery and a penchant for using massed "
+"crossbowmen in battle."
+msgstr ""
+
+#: simulation/data/technologies/crossbow_training.jsongenericName
+msgid "Crossbow Training"
+msgstr ""
+
+#: simulation/data/technologies/crossbow_training.jsontooltip
+msgid "Crossbow Infantry and Cavalry −1 second firing time −20% train time."
+msgstr "−1 másodperc lövési idő és −20% kiképzési idő a gyalogos és a lovas számszeríjászoknak"
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -611,13 +626,13 @@ msgstr ""
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsongenericName
 msgid "Chain Pump"
-msgstr ""
+msgstr "Láncos vízemelő"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
 msgid "Workers +25% rice gather rate."
-msgstr ""
+msgstr "+25% rizsbetakarítási sebesség a munkásoknak"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -631,13 +646,13 @@ msgstr "Trágya"
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +20% grain gather rate."
-msgstr "+20% gabonabegyűjtési sebesség a munkásoknak"
+msgstr "+20% gabonabetakarítási sebesség a munkásoknak"
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
 "The Gauls invented an harvesting machine, making it much easier to harvest "
 "grain."
-msgstr "A gallok feltalálták a betakarítógépet, sokkal könnyebbé téve a gabona betakarítását."
+msgstr "A gallok feltalálták egy aratógépet, amely jelentősen megkönnyítette a gabona betakarítását."
 
 #: simulation/data/technologies/gather_farming_harvester.jsongenericName
 msgid "Harvesting Machine"
@@ -645,7 +660,7 @@ msgstr "Betakarítógép"
 
 #: simulation/data/technologies/gather_farming_harvester.jsontooltip
 msgid "Workers +10% grain gather rate."
-msgstr "+10% gabonabegyűjtési sebesség a munkásoknak"
+msgstr "+10% gabonabetakarítási sebesség a munkásoknak"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid ""
@@ -663,7 +678,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_farming_seed_drill.jsongenericName
 msgid "Seed Drill"
-msgstr ""
+msgstr "Vetőgép"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
@@ -1152,19 +1167,19 @@ msgstr "Falusi szakasz"
 
 #: simulation/data/technologies/poison_arrows.jsongenericName
 msgid "Poison Arrows"
-msgstr ""
+msgstr "Mérgező nyilak"
 
 #: simulation/data/technologies/poison_arrows.jsontooltip
 msgid "Ranged Soldiers +20% attack damage."
-msgstr ""
+msgstr "+20% sebzés a távolságiaknak"
 
 #: simulation/data/technologies/poison_blades.jsongenericName
 msgid "Poison Blades"
-msgstr ""
+msgstr "Mérgező pengék"
 
 #: simulation/data/technologies/poison_blades.jsontooltip
 msgid "Melee Soldiers +20% attack damage."
-msgstr ""
+msgstr "+20% sebzés a közelharcosoknak"
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
@@ -1221,6 +1236,21 @@ msgstr "Reform hadsereg"
 #: simulation/data/technologies/reformed_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
 msgstr "Kardforgató bajnok gyalogság elérhetővé tétele."
+
+#: simulation/data/technologies/repeating_crossbows.jsondescription
+msgid ""
+"Crossbows equiped with a repeating mechanism and dart magazine increase "
+"firing rate."
+msgstr ""
+
+#: simulation/data/technologies/repeating_crossbows.jsongenericName
+msgid "Repeating Crossbows"
+msgstr "Ismétlő számszeríj"
+
+#: simulation/data/technologies/repeating_crossbows.jsontooltip
+msgid ""
+"Crossbow Infantry and Cavalry −1 second firing time, but +20 metal cost."
+msgstr "−1 másodperc lövési idő, ugyanakkor +20 fémigény a gyalogos és a lovas számszeríjászoknak"
 
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""
@@ -1325,11 +1355,11 @@ msgstr "–40% kicsomagolási és becsomagolási idő az ostromgépeknek"
 
 #: simulation/data/technologies/silk_road.jsongenericName
 msgid "Silk Road"
-msgstr ""
+msgstr "Selyemút"
 
 #: simulation/data/technologies/silk_road.jsontooltip
 msgid "Traders +20% international trade bonus."
-msgstr ""
+msgstr "+20% nemzetközi kereskedelmi bónusz a kereskedőknek"
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
@@ -1543,21 +1573,6 @@ msgstr "Fejlesztett pajzsötvözetek"
 msgid "Soldiers +2 pierce resistance."
 msgstr "+2 szúrással szembeni ellenállás a katonáknak"
 
-#: simulation/data/technologies/special_crossbow_tradition.jsondescription
-msgid ""
-"The Chinese had a tradition of fine archery and a penchant for using massed "
-"crossbowmen in battle."
-msgstr ""
-
-#: simulation/data/technologies/special_crossbow_tradition.jsongenericName
-msgid "Crossbow Tradition"
-msgstr ""
-
-#: simulation/data/technologies/special_crossbow_tradition.jsontooltip
-msgid ""
-"Range +10 meters, −10% ranged attack spread for crossbow-wielding units."
-msgstr ""
-
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
 msgstr "Egy informátorokból álló hálózat felbérelése, hogy figyeljék a néped."
@@ -1667,8 +1682,8 @@ msgid "Commercial Treaty"
 msgstr "Kereskedelmi egyezmény"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "+10% international trade bonus."
-msgstr "+10% nemzetközi kereskedelmi bónusz"
+msgid "Traders +10% trade profit between allies."
+msgstr ""
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription

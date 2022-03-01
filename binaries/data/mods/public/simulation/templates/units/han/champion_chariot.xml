@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_champion_cavalry_crossbowman">
+<Entity parent="template_unit_champion_cavalry_archer">
   <Footprint replace="">
     <Square depth="10.0" width="10.0"/>
     <Height>5.0</Height>
@@ -13,6 +13,6 @@
     <Icon>units/han/chariot.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>units/han/chariot_crossbowman_m.xml</Actor>
+    <Actor>units/han/chariot_archer_m.xml</Actor>
   </VisualActor>
 </Entity>

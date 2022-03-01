@@ -25,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-21 08:18+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-02-25 08:08+0000\n"
+"PO-Revision-Date: 2022-02-25 21:42+0000\n"
+"Last-Translator: rollieoo\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,6 +71,7 @@ msgstr "De Agoge"
 #: simulation/data/technologies/poison_blades.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
+#: simulation/data/technologies/repeating_crossbows.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
@@ -120,6 +121,7 @@ msgstr "Boogschutterstraining"
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
+#: simulation/data/technologies/crossbow_training.jsonrequirementsTooltip
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsonrequirementsTooltip
 #: simulation/data/technologies/garrison_heal.jsonrequirementsTooltip
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsonrequirementsTooltip
@@ -138,7 +140,6 @@ msgstr "Boogschutterstraining"
 #: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
-#: simulation/data/technologies/special_crossbow_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
@@ -207,19 +208,19 @@ msgid ""
 "This famous and most important work of the Seven Military Classics teaches "
 "Chinese commanders everything about planning battles, maintaining armies, "
 "and defeating one's enemies."
-msgstr ""
+msgstr "Dit beroemde en zeer belangrijke werk van de Zeven Militaire Klassieken onderwijst Chinese bevelhebbers alles wat ze moeten weten over het voorbereiden van een veldslag, de instandhouding van een leger en hoe de vijand te verslaan."
 
 #: simulation/data/technologies/art_of_war.jsongenericName
 msgid "Sun Tzu's \"The Art of War\""
-msgstr ""
+msgstr "\"De kunst van het oorlogvoeren\" door Sun Tzu"
 
 #: simulation/data/technologies/art_of_war.jsonspecificName.han
 msgid "Sūnzǐ BīngFǎ"
-msgstr ""
+msgstr "Sūnzǐ BīngFǎ"
 
 #: simulation/data/technologies/art_of_war.jsontooltip
 msgid "All Citizen-Soldiers -25% required promotion experience."
-msgstr ""
+msgstr "Alle burgersoldaten vereisen -25% ervaring voor promotie."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -353,23 +354,23 @@ msgstr "Gebouwen -10% sterkte en +10% veroveringspunten."
 msgid ""
 "By uniting China under one emperor, the Han Dynasty ruled over 40 million "
 "people, one of the largest empires of antiquity by population."
-msgstr ""
+msgstr "Door China onder één keizer te verenigen heerste de Han-dynastie over 40 miljoen mensen, in bevolking een van de grootste rijken in de oudheid."
 
 #: simulation/data/technologies/civbonuses/han_popcap.jsongenericName
 msgid "Federated States"
-msgstr ""
+msgstr "Verbond van Staten"
 
 #: simulation/data/technologies/civbonuses/han_walls.jsondescription
 msgid "Han built massive walls, the great wall."
-msgstr ""
+msgstr "De Han bouwden enorme muren, waaronder de Grote Muur."
 
 #: simulation/data/technologies/civbonuses/han_walls.jsongenericName
 msgid "Great Wall"
-msgstr ""
+msgstr "De Grote Muur"
 
 #: simulation/data/technologies/civbonuses/han_walls.jsontooltip
 msgid "City Walls +50% health."
-msgstr ""
+msgstr "Stadsmuren +50% kracht."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -456,44 +457,44 @@ msgstr "Huizen en economische gebouwen −40% houtkosten en sterkte."
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
 msgid "Civil Engineering - Level 1"
-msgstr ""
+msgstr "Stadsbouwkunde - eerste niveau"
 
 #: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
 #: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
 msgid "Gōngchéng"
-msgstr ""
+msgstr "Gōngchéng"
 
 #: simulation/data/technologies/civil_engineering_01.jsontooltip
 msgid "All structures -15% build time, +10% health and -5% cost."
-msgstr ""
+msgstr "Alle gebouwen -15% bouwtijd, +10% kracht en -5% kosten."
 
 #: simulation/data/technologies/civil_engineering_02.jsongenericName
 msgid "Civil Engineering - Level 2"
-msgstr ""
+msgstr "Stadsbouwkunde - tweede niveau"
 
 #: simulation/data/technologies/civil_engineering_02.jsontooltip
 msgid "All structures -25% build time, +20% health and -5% cost."
-msgstr ""
+msgstr "Alle gebouwen -25% bouwtijd, +20% kracht en -5% kosten."
 
 #: simulation/data/technologies/civil_service_01.jsongenericName
 msgid "Civil Service - Level 1"
-msgstr ""
+msgstr "Overheidsdienst - eerste niveau"
 
 #: simulation/data/technologies/civil_service_01.jsonspecificName.han
 #: simulation/data/technologies/civil_service_02.jsonspecificName.han
 msgid "Guānliáo"
-msgstr ""
+msgstr "Guānliáo"
 
 #: simulation/data/technologies/civil_service_01.jsontooltip
 #: simulation/data/technologies/civil_service_02.jsontooltip
 msgid ""
 "Technologies at all buildings, except the Blacksmith, -15% cost and -15% "
 "research time."
-msgstr ""
+msgstr "Technologieën van alle gebouwen, behalve de smederij, -15% kosten en -15% onderzoekstijd."
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
 msgid "Civil Service - Level 2"
-msgstr ""
+msgstr "Overheidsdienst - tweede niveau"
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -508,6 +509,20 @@ msgstr "Kolonisatie"
 #: simulation/data/technologies/colonization.jsontooltip
 msgid "Civic Structures −25% build time and resources cost"
 msgstr "Burgergebouwen kosten −25% bouwtijd en grondstoffen"
+
+#: simulation/data/technologies/crossbow_training.jsondescription
+msgid ""
+"The Chinese had a tradition of fine archery and a penchant for using massed "
+"crossbowmen in battle."
+msgstr "De Chinezen hadden een traditie van hoog ontwikkelde boogschutterij en zetten bij voorkeur grote groepen boogschutters in bij het gevecht."
+
+#: simulation/data/technologies/crossbow_training.jsongenericName
+msgid "Crossbow Training"
+msgstr "Kruisboogtraining"
+
+#: simulation/data/technologies/crossbow_training.jsontooltip
+msgid "Crossbow Infantry and Cavalry −1 second firing time −20% train time."
+msgstr "Kruisboog infanterie en cavalerie -1 seconde vuurtijd en -20% rekruteringstijd."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -611,17 +626,17 @@ msgstr "Kruiwagen"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsondescription
 msgid "Install a chain pump for improved irrigation."
-msgstr ""
+msgstr "Bouw een kettingpomp om de bevloeiing te verbeteren."
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsongenericName
 msgid "Chain Pump"
-msgstr ""
+msgstr "Kettingpomp"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
 msgid "Workers +25% rice gather rate."
-msgstr ""
+msgstr "Arbeiders verzamelen +25% sneller rijst."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -663,11 +678,11 @@ msgstr "IJzeren ploeg"
 
 #: simulation/data/technologies/gather_farming_seed_drill.jsondescription
 msgid "Equip your workers with seed drills."
-msgstr ""
+msgstr "Geef uw arbeiders een zaaimachine mee."
 
 #: simulation/data/technologies/gather_farming_seed_drill.jsongenericName
 msgid "Seed Drill"
-msgstr ""
+msgstr "Zaaimachine"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
@@ -679,11 +694,11 @@ msgstr "Verzameloefeningen"
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsondescription
 msgid "Grow water weeds to to supply rice plants with nutricients."
-msgstr ""
+msgstr "Kweek waterplanten om de rijstscheuten van voedingsmiddelen te voorzien."
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsongenericName
 msgid "Water Weeding"
-msgstr ""
+msgstr "Waterplanten"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
@@ -1027,7 +1042,7 @@ msgstr "Uitkijkposten +33% gezichtsveld."
 
 #: simulation/data/technologies/pair_unlock_arrows_type.jsongenericName
 msgid "Fire Arrows vs Poison Arrows"
-msgstr ""
+msgstr "Brandende pijlen versus gifpijlen"
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -1156,19 +1171,19 @@ msgstr "Dorpsfase"
 
 #: simulation/data/technologies/poison_arrows.jsongenericName
 msgid "Poison Arrows"
-msgstr ""
+msgstr "Gifpijlen"
 
 #: simulation/data/technologies/poison_arrows.jsontooltip
 msgid "Ranged Soldiers +20% attack damage."
-msgstr ""
+msgstr "Afstandssoldaten +20% aanvalsschade."
 
 #: simulation/data/technologies/poison_blades.jsongenericName
 msgid "Poison Blades"
-msgstr ""
+msgstr "Vergiftigde bladen"
 
 #: simulation/data/technologies/poison_blades.jsontooltip
 msgid "Melee Soldiers +20% attack damage."
-msgstr ""
+msgstr "Mêleesoldaten +20% aanvalsschade."
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
@@ -1225,6 +1240,21 @@ msgstr "Gereformeerd leger"
 #: simulation/data/technologies/reformed_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
 msgstr "Activeer de kampioen infanterie zwaardvechters."
+
+#: simulation/data/technologies/repeating_crossbows.jsondescription
+msgid ""
+"Crossbows equiped with a repeating mechanism and dart magazine increase "
+"firing rate."
+msgstr "Kruisbogen met een laadmechaniek en een magazijn pijlen verhogen de vuursnelheid."
+
+#: simulation/data/technologies/repeating_crossbows.jsongenericName
+msgid "Repeating Crossbows"
+msgstr "Mechanische kruisbogen"
+
+#: simulation/data/technologies/repeating_crossbows.jsontooltip
+msgid ""
+"Crossbow Infantry and Cavalry −1 second firing time, but +20 metal cost."
+msgstr "Kruisboog infanterie en cavalerie -1 seconde vuurtijd maar kosten +20 metaal."
 
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""
@@ -1329,11 +1359,11 @@ msgstr "Belegeringswerktuigen –40% in- en uitlaadtijd."
 
 #: simulation/data/technologies/silk_road.jsongenericName
 msgid "Silk Road"
-msgstr ""
+msgstr "Zijderoute"
 
 #: simulation/data/technologies/silk_road.jsontooltip
 msgid "Traders +20% international trade bonus."
-msgstr ""
+msgstr "Handelaren +20% internationale handelsbonus."
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
@@ -1547,21 +1577,6 @@ msgstr "Verbeterde schild legeringen"
 msgid "Soldiers +2 pierce resistance."
 msgstr "Soldaten +2 steekweerstand."
 
-#: simulation/data/technologies/special_crossbow_tradition.jsondescription
-msgid ""
-"The Chinese had a tradition of fine archery and a penchant for using massed "
-"crossbowmen in battle."
-msgstr ""
-
-#: simulation/data/technologies/special_crossbow_tradition.jsongenericName
-msgid "Crossbow Tradition"
-msgstr ""
-
-#: simulation/data/technologies/special_crossbow_tradition.jsontooltip
-msgid ""
-"Range +10 meters, −10% ranged attack spread for crossbow-wielding units."
-msgstr ""
-
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
 msgstr "Huur een netwerk van informanten om over uw volk te waken."
@@ -1652,7 +1667,7 @@ msgstr "Nyktophylakes"
 
 #: simulation/data/technologies/tower_watch.jsonspecificName.han
 msgid "Shàobīng"
-msgstr ""
+msgstr "Shàobīng"
 
 #: simulation/data/technologies/tower_watch.jsonspecificName.rome
 msgid "Vigiles"
@@ -1671,8 +1686,8 @@ msgid "Commercial Treaty"
 msgstr "Commercieel verdrag"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
-msgid "+10% international trade bonus."
-msgstr "+10% internationale handelsbonus."
+msgid "Traders +10% trade profit between allies."
+msgstr "Handel met geallieerden +10% winst."
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription

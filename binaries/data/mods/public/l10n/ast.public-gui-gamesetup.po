@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2022-02-24 17:52+0000\n"
+"PO-Revision-Date: 2022-02-26 23:57+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -300,17 +300,17 @@ msgstr "Disactiva’ læs atyalgæs"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:28
 msgid "Do not add treasures to the map."
-msgstr "Fhaz que nun hebia atyalgæs in terreiro."
+msgstr "Fhaz que nun habia atyalgæs in terreiro."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:25
 msgid "World population"
-msgstr "Poblraçon global"
+msgstr "Populaçon global"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:28
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr "Siñalada, la poblraçon máxima vaî partise por egual entre todolos xhogadores vivos."
+msgstr "Siñalada, la populaçon máxima vaî partise por egual entre todolos xhogadores vivos."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:54
 msgid "Biome"
@@ -349,11 +349,11 @@ msgstr "Scoyyer una hora de l díæ ou nuœithe aleatoriamente."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:61
 msgid "Game Speed"
-msgstr "Velocidá de l xhuœw"
+msgstr "Velocidá de la partida"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:64
 msgid "Select game speed."
-msgstr "Scoyye’ la velocidá de l xhuœw."
+msgstr "Scoyye’ la velocidá de la partida."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:25
 msgctxt "landscape selection"
@@ -428,11 +428,11 @@ msgstr "Scoyye’l númeru de xhogadores."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:52
 msgid "Population Cap"
-msgstr "Teitho poblracional"
+msgstr "Teitho populacional"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:55
 msgid "Select population limit."
-msgstr "Scoyye’ la capacidá máxima de la poblraçon."
+msgstr "Scoyye’ la capacidá máxima de la populaçon."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:58
 msgctxt "population limit"
@@ -444,7 +444,7 @@ msgstr "Per xhogador"
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "Avisu: Puœden dase problemas si todolos xhogadores %(players)s algamæn una poblraçon de %(popCap)s."
+msgstr "Avisu: Puœden dase problemas si todolos xhogadores %(players)s algamæn una populaçon de %(popCap)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:50
 msgid "Starting Resources"
@@ -492,18 +492,18 @@ msgstr "Scoyye’ la difficultá de l scenario."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:47
 msgid "World Population Cap"
-msgstr "Teitho poblracional global"
+msgstr "Teitho populacional global"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:50
 msgid "Select world population limit."
-msgstr "Scoyye’ la capacidá máxima de la poblraçon global."
+msgstr "Scoyye’ la capacidá máxima de la populaçon global."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:53
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr "Avisu: Puœden dase problemas si s’algama una poblraçon de %(popCap)s."
+msgstr "Avisu: Puœden dase problemas si s’algama una populaçon de %(popCap)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:35
 msgid "Ceasefire"
@@ -589,7 +589,7 @@ msgstr "Duraçon miracularia"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:41
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr "Minutos t’algama’ la victoria por miráculo."
+msgstr "Minutos t’algama’ la victoria por millagro."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -608,7 +608,7 @@ msgstr "Tornar pa l menú principal."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Ve’ la Synopsis cultural / Árbolre de construcçones\nLa última abierta vaî reabrise n piccando."
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Ve’ la Synopsis cultural / Árbolre de construcçones\nLa última abierta vaî reabrise n picando."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
@@ -748,7 +748,7 @@ msgstr "Partida classificada."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:74
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
-msgstr "Picca p’alterna’ la lhingueta %(name)s."
+msgstr "Pica p’alterna’ la lhingueta %(name)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:27
 msgid "No selected map"
@@ -756,7 +756,7 @@ msgstr "Non se scoyyîu terreiro dalo"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr "Picca par ve’ los terreiros disponibles."
+msgstr "Pica par ve’ los terreiros disponibles."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):10
 msgid "Show this message in the future."
@@ -772,7 +772,7 @@ msgstr "Cargando los datos de l terreiro. Spera por favor..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):17
 msgid "Match Setup"
-msgstr "Intamu de partida"
+msgstr "Configuraçon de partida"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:59
 #, javascript-format
@@ -862,7 +862,7 @@ msgstr "Partida de %(playername)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
-msgstr "Múltiplos xhogadores"
+msgstr "Delhos xhogadores"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
@@ -976,7 +976,7 @@ msgstr "“El senescente tiempu insiña-lho todo.” \\n— Éschylu (“Prometh
 msgid ""
 "“His resolve is not to seem, but to be, the best.” \\n— Aeschylus (“Seven "
 "Against Thebes”, 592)"
-msgstr "“Non quier simiyyar al meyyor, sinon selho.” \\n— Éschylu (“Siete contra Thebas”, 592)"
+msgstr "“Non quier semeyyar al meyyor, sinon selho.” \\n— Éschylu (“Siete contra Thebas”, 592)"
 
 #: gui/text/quotes.txt:6
 msgid "“A prosperous fool is a grievous burden.” \\n— Aeschylus (fragment 383)"
@@ -996,7 +996,7 @@ msgstr "“El lhabor de manyana wœy se mi fhaga.” \\n— Esopu (“La fhormig
 
 #: gui/text/quotes.txt:9
 msgid "“Union gives strength.” \\n— Aesop (“The Bundle of Sticks”)"
-msgstr "“Cun adiuda de vizinos, fhixzo mîou paî un camminu.” \\n— Esopu (“El fexe”)"
+msgstr "“Cun adiuda de vizinos, fhixzo mîou paî un caminu.” \\n— Esopu (“El fexe”)"
 
 #: gui/text/quotes.txt:10
 msgid ""
