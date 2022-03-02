@@ -17,6 +17,9 @@ Formation.prototype.Schema =
 	"<element name='FormationShape' a:help='Formation shape, currently supported are square, triangle and special, where special will be defined in the source code.'>" +
 		"<text/>" +
 	"</element>" +
+	"<element name='MaxTurningAngle' a:help='The turning angle in radian under which the formation attempts to turn and over which the formation positions are recomputed.'>" +
+		"<text/>" +
+	"</element>" +
 	"<element name='ShiftRows' a:help='Set the value to true to shift subsequent rows.'>" +
 		"<text/>" +
 	"</element>" +
@@ -67,6 +70,9 @@ Formation.prototype.Schema =
 // Distance at which we'll switch between column/box formations.
 var g_ColumnDistanceThreshold = 128;
 
+// Distance under which the formation will not try to turn towards the target position.
+var g_RotateDistanceThreshold = 1;
+
 Formation.prototype.variablesToSerialize = [
 	"lastOrderVariant",
 	"members",
@@ -87,6 +93,7 @@ Formation.prototype.variablesToSerialize = [
 
 Formation.prototype.Init = function(deserialized = false)
 {
+	this.maxTurningAngle = +this.template.MaxTurningAngle;
 	this.sortingClasses = this.template.SortingClasses.split(/\s+/g);
 	this.shiftRows = this.template.ShiftRows == "true";
 	this.separationMultiplier = {
@@ -490,7 +497,6 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force, varia
 
 	let active = [];
 	let positions = [];
-	let rotations = 0;
 
 	for (let ent of this.members)
 	{
@@ -502,29 +508,37 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force, varia
 		// Query the 2D position as the exact height calculation isn't needed,
 		// but bring the position to the correct coordinates.
 		positions.push(cmpPosition.GetPosition2D());
-		rotations += cmpPosition.GetRotation().y;
 	}
-
-	let avgpos = Vector2D.average(positions);
 
 	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	// Reposition the formation if we're told to or if we don't already have a position.
 	if (moveCenter || (cmpPosition && !cmpPosition.IsInWorld()))
-		this.SetupPositionAndHandleRotation(avgpos.x, avgpos.y, rotations / active.length);
-
-	this.lastOrderVariant = variant;
-	// Switch between column and box if necessary.
-	let cmpFormationUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
-	let walkingDistance = cmpFormationUnitAI.ComputeWalkingDistance();
-	let columnar = walkingDistance > g_ColumnDistanceThreshold;
-	if (columnar != this.columnar)
 	{
-		this.columnar = columnar;
-		this.offsets = undefined;
+		const oldRotation = cmpPosition.GetRotation().y;
+		const avgpos = Vector2D.average(positions);
+
+		// Switch between column and box if necessary.
+		const cmpFormationUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+		const columnar = cmpFormationUnitAI.ComputeWalkingDistance() > g_ColumnDistanceThreshold;
+		if (columnar != this.columnar)
+		{
+			this.columnar = columnar;
+			this.offsets = undefined;
+		}
+
+		let newRotation = oldRotation;
+		const targetPosition = cmpFormationUnitAI.GetTargetPositions()[0];
+		if (targetPosition !== undefined && avgpos.distanceToSquared(targetPosition) > g_RotateDistanceThreshold)
+			newRotation = avgpos.angleTo(targetPosition);
+
+		cmpPosition.TurnTo(newRotation);
+		if (!this.areAnglesSimilar(newRotation, oldRotation))
+			this.offsets = undefined;
 	}
 
+	this.lastOrderVariant = variant;
+
 	let offsetsChanged = false;
-	let newOrientation = this.GetEstimatedOrientation(avgpos);
 	if (!this.offsets)
 	{
 		this.offsets = this.ComputeFormationOffsets(active, positions);
@@ -801,16 +815,14 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 		});
 
 	// Query the 2D position of the formation.
-	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	let formationPos = cmpPosition.GetPosition2D();
+	const realPositions = this.GetRealOffsetPositions(offsets);
 
 	// Use realistic place assignment,
 	// every soldier searches the closest available place in the formation.
 	let newOffsets = [];
-	let realPositions = this.GetRealOffsetPositions(offsets, formationPos);
-	for (let i = sortingClasses.length; i; --i)
+	for (const i of sortingClasses.reverse())
 	{
-		let t = types[sortingClasses[i - 1]];
+		const t = types[i];
 		if (!t.length)
 			continue;
 		let usedOffsets = offsets.splice(-t.length);
@@ -855,10 +867,14 @@ Formation.prototype.TakeClosestOffset = function(entPos, realPositions, offsets)
 /**
  * Get the world positions for a list of offsets in this formation.
  */
-Formation.prototype.GetRealOffsetPositions = function(offsets, pos)
+Formation.prototype.GetRealOffsetPositions = function(offsets)
 {
+	const cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	const pos = cmpPosition.GetPosition2D();
+	const rot = cmpPosition.GetRotation().y;
+	const sin = Math.sin(rot);
+	const cos = Math.cos(rot);
 	let offsetPositions = [];
-	let { sin, cos } = this.GetEstimatedOrientation(pos);
 	// Calculate the world positions.
 	for (let o of offsets)
 		offsetPositions.push(new Vector2D(pos.x + o.y * sin + o.x * cos, pos.y + o.y * cos - o.x * sin));
@@ -867,19 +883,15 @@ Formation.prototype.GetRealOffsetPositions = function(offsets, pos)
 };
 
 /**
- * Calculate the estimated rotation of the formation based on the current rotation.
- * Return the sine and cosine of the angle.
+ * Returns true if the two given angles (in radians)
+ * are smaller than the maximum turning angle of the formation and therfore allow
+ * the formation turn without reassigning positions.
  */
-Formation.prototype.GetEstimatedOrientation = function(pos)
+
+Formation.prototype.areAnglesSimilar = function(a1, a2)
 {
-	let r = {};
-	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
-	if (!cmpPosition)
-		return r;
-	let rot = cmpPosition.GetRotation().y;
-	r.sin = Math.sin(rot);
-	r.cos = Math.cos(rot);
-	return r;
+	const d = Math.abs(a1 - a2) % 2 * Math.PI;
+	return d < this.maxTurningAngle || d > 2 * Math.PI - this.maxTurningAngle;
 };
 
 /**
@@ -887,7 +899,6 @@ Formation.prototype.GetEstimatedOrientation = function(pos)
  */
 Formation.prototype.ComputeMotionParameters = function()
 {
-	let maxRadius = 0;
 	let minSpeed = Infinity;
 	let minAcceleration = Infinity;
 

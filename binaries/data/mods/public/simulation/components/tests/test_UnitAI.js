@@ -233,6 +233,7 @@ function TestFormationExiting(mode)
 
 	AddMock(controller, IID_Position, {
 		"JumpTo": function(x, z) { this.x = x; this.z = z; },
+		"TurnTo": function() {},
 		"GetTurretParent": function() { return INVALID_ENTITY; },
 		"GetPosition": function() { return new Vector3D(this.x, 0, this.z); },
 		"GetPosition2D": function() { return new Vector2D(this.x, this.z); },
@@ -407,6 +408,7 @@ function TestMoveIntoFormationWhileAttacking()
 	AddMock(controller, IID_Position, {
 		"GetTurretParent": () => INVALID_ENTITY,
 		"JumpTo": function(x, z) { this.x = x; this.z = z; },
+		"TurnTo": function() {},
 		"GetPosition": function(){ return new Vector3D(this.x, 0, this.z); },
 		"GetPosition2D": function(){ return new Vector2D(this.x, this.z); },
 		"GetRotation": () => ({ "y": 0 }),
