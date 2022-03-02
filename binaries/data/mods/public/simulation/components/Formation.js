@@ -18,7 +18,7 @@ Formation.prototype.Schema =
 		"<text/>" +
 	"</element>" +
 	"<element name='MaxTurningAngle' a:help='The turning angle in radian under which the formation attempts to turn and over which the formation positions are recomputed.'>" +
-		"<text/>" +
+		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
 	"<element name='ShiftRows' a:help='Set the value to true to shift subsequent rows.'>" +
 		"<text/>" +
