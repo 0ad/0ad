@@ -14,9 +14,9 @@
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "armor_plates_ranged.png",
 	"researchTime": 40,
-	"tooltip": "Crossbow Infantry and Cavalry −1 second firing time −20% train time.",
+	"tooltip": "Crossbow Infantry and Cavalry −20% firing time −20% train time.",
 	"modifications": [
-		{ "value": "Attack/Ranged/RepeatTime", "add": -1000 },
+		{ "value": "Attack/Ranged/RepeatTime", "multiply": 0.8 },
 		{ "value": "Cost/BuildTime", "multiply": 0.8 }
 	],
 	"affects": ["Crossbowman"],
