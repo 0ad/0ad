@@ -2,37 +2,26 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="a">
+    <variant name="Desert Furrowed Stone" frequency="1">
       <textures>
         <texture file="gaia/stonequarry_desert.png" name="baseTex"/>
         <texture file="gaia/stonequarry_desert_spec.png" name="specTex"/>
+        <texture file="gaia/stonequarry_desert_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant name="1">
-      <mesh>gaia/stone_furrowed_1.dae</mesh>
-      <textures>
-        <texture file="gaia/stone_furrowed_norm.png" name="normTex"/>
-      </textures>
+    <variant name="01" frequency="1">
+      <mesh>gaia/stone_furrowed_01.dae</mesh>
     </variant>
-    <variant name="2">
-      <mesh>gaia/stone_furrowed_2.dae</mesh>
-      <textures>
-        <texture file="gaia/stone_furrowed_norm.png" name="normTex"/>
-      </textures>
+    <variant name="02" frequency="1">
+      <mesh>gaia/stone_furrowed_02.dae</mesh>
     </variant>
-    <variant name="3">
-      <mesh>gaia/stone_furrowed_3.dae</mesh>
-      <textures>
-        <texture file="gaia/stone_furrowed_norm.png" name="normTex"/>
-      </textures>
+    <variant name="03" frequency="1">
+      <mesh>gaia/stone_furrowed_03.dae</mesh>
     </variant>
-    <variant name="4">
-      <mesh>gaia/stone_furrowed_4.dae</mesh>
-      <textures>
-        <texture file="gaia/stone_furrowed_norm.png" name="normTex"/>
-      </textures>
+    <variant name="04" frequency="1">
+      <mesh>gaia/stone_furrowed_04.dae</mesh>
     </variant>
   </group>
   <material>no_trans_norm_spec.xml</material>

@@ -14,7 +14,12 @@
 		"stone": 1500,
 		"metal": 1500
 	},
-	"requirements": { "tech": "phase_city" },
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "notciv": "han" }
+		]
+	},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "clenched_fist.png",
 	"researchTime": 40,
