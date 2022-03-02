@@ -67,7 +67,7 @@ CGUIText::CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& font
 		return;
 
 	CStrIntern font(fontW.ToUTF8());
-	float x = bufferZone, y = bufferZone; // drawing pointer
+	float y = bufferZone; // drawing pointer
 	int from = 0;
 
 	bool firstLine = true;	// Necessary because text in the first line is shorter
@@ -97,12 +97,11 @@ CGUIText::CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& font
 
 		posLastImage = std::max(posLastImage, i);
 
-		x += feedback.m_Size.Width;
 		prelimLineHeight = std::max(prelimLineHeight, feedback.m_Size.Height);
 
 		// If width is 0, then there's no word-wrapping, disable NewLine.
-		if (((width != 0 && (x > width - bufferZone || feedback.m_NewLine)) || i == static_cast<int>(string.m_Words.size()) - 2) &&
-		    ProcessLine(pGUI, string, font, pObject, images, align, prelimLineHeight, width, bufferZone, firstLine, x, y, i, from))
+		if (((width != 0 && (feedback.m_Size.Width + 2 * bufferZone > width || feedback.m_NewLine)) || i == static_cast<int>(string.m_Words.size()) - 2) &&
+		    ProcessLine(pGUI, string, font, pObject, images, align, prelimLineHeight, width, bufferZone, firstLine, y, i, from))
 			return;
 	}
 }
@@ -162,12 +161,13 @@ void CGUIText::ComputeLineSize(
 	const CStrIntern& font,
 	const bool firstLine,
 	const float width,
+	const float widthRangeFrom,
 	const float widthRangeTo,
 	const int i,
 	const int tempFrom,
-	float& x,
 	CSize2D& lineSize) const
 {
+	float x = widthRangeFrom;
 	for (int j = tempFrom; j <= i; ++j)
 	{
 		// We don't want to use feedback now, so we'll have to use another one.
@@ -216,7 +216,6 @@ bool CGUIText::ProcessLine(
 	const float width,
 	const float bufferZone,
 	bool& firstLine,
-	float& x,
 	float& y,
 	int& i,
 	int& from)
@@ -229,25 +228,14 @@ bool CGUIText::ProcessLine(
 	float widthRangeTo = width - bufferZone;
 	ComputeLineRange(images, y, width, prelimLineHeight, widthRangeFrom, widthRangeTo);
 
-	// Reset X for the next loop
-	x = widthRangeFrom;
-
 	CSize2D lineSize;
-	ComputeLineSize(pGUI, string, font, firstLine, width, widthRangeTo, i, tempFrom, x, lineSize);
-
-	// Reset x once more
-	x = widthRangeFrom;
+	ComputeLineSize(pGUI, string, font, firstLine, width, widthRangeFrom, widthRangeTo, i, tempFrom, lineSize);
 
 	// Move down, because font drawing starts from the baseline
 	y += lineSize.Height;
 
-	const float dx = GetLineOffset(align, widthRangeFrom, widthRangeTo, lineSize);
-
 	// Do the real processing now
-	const bool done = AssembleCalls(pGUI, string, font, pObject, firstLine, width, widthRangeTo, dx, y, tempFrom, i, x, from);
-
-	// Reset X
-	x = bufferZone;
+	const bool done = AssembleCalls(pGUI, string, font, pObject, firstLine, width, widthRangeTo, GetLineOffset(align, widthRangeFrom, widthRangeTo, lineSize), y, tempFrom, i, from);
 
 	// Update dimensions
 	m_Size.Width = std::max(m_Size.Width, lineSize.Width + bufferZone * 2);
@@ -315,11 +303,10 @@ float CGUIText::GetLineOffset(
 	switch (align)
 	{
 	case EAlign::LEFT:
-		// don't add an offset
-		return 0.f;
+		return widthRangeFrom;
 
 	case EAlign::CENTER:
-		return ((widthRangeTo - widthRangeFrom) - lineSize.Width) / 2;
+		return (widthRangeTo + widthRangeFrom - lineSize.Width) / 2;
 
 	case EAlign::RIGHT:
 		return widthRangeTo - lineSize.Width;
@@ -342,10 +329,10 @@ bool CGUIText::AssembleCalls(
 	const float y,
 	const int tempFrom,
 	const int i,
-	float& x,
 	int& from)
 {
 	bool done = false;
+	float x = 0.f;
 
 	for (int j = tempFrom; j <= i; ++j)
 	{
