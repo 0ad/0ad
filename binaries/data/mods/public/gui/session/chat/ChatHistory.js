@@ -14,7 +14,7 @@ class ChatHistory
 		this.selectionChangeHandlers = [];
 
 		this.chatHistoryFilterCaption = Engine.GetGUIObjectByName("chatHistoryFilterCaption");
-		resizeGUIObjectToCaption(this.chatHistoryFilterCaption, "right", this.CaptionMargin);
+		resizeGUIObjectToCaption(this.chatHistoryFilterCaption, { "horizontal": "right" });
 
 		this.chatHistoryFilter = Engine.GetGUIObjectByName("chatHistoryFilter");
 		let filters = prepareForDropdown(this.Filters.filter(chatFilter => !chatFilter.hidden));
@@ -140,5 +140,4 @@ ChatHistory.prototype.Filters = [
 	}
 ];
 
-ChatHistory.prototype.CaptionMargin = 10;
 ChatHistory.prototype.FilterMargin = 5;

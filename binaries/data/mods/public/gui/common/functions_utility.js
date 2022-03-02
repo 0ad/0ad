@@ -222,25 +222,46 @@ function horizontallySpaceObjects(parentName, margin = 0)
 
 /**
  * Change the width of a GUIObject to make the caption fits nicely.
- * @param object - The GUIObject to consider.
- * @param direction - Direction to change the side either "left" or "right".
- * @param margin - Margin to be added to the width (can be negative).
+ * @param {Object} object - The GUIObject to consider.
+ * @param {Object} align - Directions to change the side either "left" or "right" for horizontal and "top" or "bottom" for vertical.
+ * @param {Object} margin - Margins to be added to the width and height (can be negative).
  */
-function resizeGUIObjectToCaption(object, align, margin = 0)
+function resizeGUIObjectToCaption(object, align, margin = {})
 {
 	const objectSize = object.size;
-	const width = Engine.GetTextWidth(object.font, object.caption) + margin;
-	switch (align)
+	const textSize = Engine.GetTextSize(object.font, object.caption);
+	if (align.horizontal)
 	{
-	case "right":
-		objectSize.right = object.size.left + width;
-		break;
-	case "left":
-		objectSize.left = object.size.right - width;
-		break;
-	default:
+		const width = textSize.width + 2 * object.buffer_zone + (margin.horizontal || 0);
+		switch (align.horizontal)
+		{
+		case "right":
+			objectSize.right = object.size.left + width;
+			break;
+		case "left":
+			objectSize.left = object.size.right - width;
+			break;
+		default:
+		}
 	}
+
+	if (align.vertical)
+	{
+		const height = textSize.height + (margin.vertical || 0);
+		switch (align.vertical)
+		{
+		case "bottom":
+			objectSize.bottom = object.size.top + height;
+			break;
+		case "top":
+			objectSize.top = object.size.bottom - height;
+			break;
+		default:
+		}
+	}
+
 	object.size = objectSize;
+	return objectSize;
 }
 
 /**

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -206,18 +206,19 @@ void CGUIString::GenerateTextCall(const CGUI& pGUI, SFeedback& Feedback, CStrInt
 				}
 			}
 
-			// Calculate the size of the font
+			// Calculate the size of the font.
 			CSize2D size;
 			int cx, cy;
 			CFontMetrics font (TextCall.m_Font);
 			font.CalculateStringSize(TextCall.m_String.c_str(), cx, cy);
-			// For anything other than the first line, the line spacing
-			// needs to be considered rather than just the height of the text
-			if (!FirstLine)
-				cy = font.GetLineSpacing();
 
-			size.Width = (float)cx;
-			size.Height = (float)cy;
+			size.Width = static_cast<float>(cx);
+			// For anything other than the first line, the line spacing
+			// needs to be considered rather than just the height of the text.
+			if (FirstLine)
+				size.Height = static_cast<float>(font.GetHeight());
+			else
+				size.Height = static_cast<float>(font.GetLineSpacing());
 
 			// Append width, and make maximum height the height.
 			Feedback.m_Size.Width += size.Width;

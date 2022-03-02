@@ -14,7 +14,6 @@ class OverlayCounterManager
 		this.lastTick = undefined;
 		this.resizeHandlers = [];
 		this.lastHeight = undefined;
-		this.initSize = this.dataCounter.size;
 
 		for (let name of this.availableCounterNames())
 		{
@@ -72,45 +71,32 @@ class OverlayCounterManager
 
 	onTick()
 	{
-		// Don't rebuild the caption every frame
-		let now = Date.now();
+		// Don't rebuild the caption every frame.
+		const now = Date.now();
 		if (now < this.lastTick + this.Delay)
 			return;
 
 		this.lastTick = now;
 
-		let lineCount = 0;
 		let txt = "";
 
 		for (let counter of this.enabledCounters)
 		{
-			let newTxt = counter.get();
-			if (!newTxt)
-				continue;
-
-			++lineCount;
-			txt += newTxt + "\n";
+			const newTxt = counter.get();
+			if (newTxt)
+				txt += newTxt + "\n";
 		}
 
 		let height;
-		if (lineCount)
+		if (txt)
 		{
 			this.dataCounter.caption = txt;
-			// Just using the previous size for getting the size of the new text
-			// could lead to unneeded linebreaks.
-			// Therefore we set the overlay to the maximum size before reading the text size.
-			this.dataCounter.size = this.initSize;
-			let textSize = this.dataCounter.getTextSize();
-			let size = this.dataCounter.size;
-			size.bottom = size.top + textSize.height;
-			size.left = size.right - textSize.width;
-			this.dataCounter.size = size;
-			height = textSize.height;
+			height = resizeGUIObjectToCaption(this.dataCounter, { "horizontal": "left", "vertical": "bottom" }, { "vertical": -2 }).height;
 		}
 		else
 			height = 0;
 
-		this.dataCounter.hidden = !lineCount;
+		this.dataCounter.hidden = !txt;
 
 		if (this.lastHeight != height)
 		{

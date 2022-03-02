@@ -8,7 +8,7 @@ class ChatAddressees
 		this.selectionChangeHandlers = [];
 
 		this.chatAddresseeCaption = Engine.GetGUIObjectByName("chatAddresseeCaption");
-		resizeGUIObjectToCaption(this.chatAddresseeCaption, "right", this.CaptionMargin);
+		resizeGUIObjectToCaption(this.chatAddresseeCaption, { "horizontal": "right" });
 
 		this.chatAddressee = Engine.GetGUIObjectByName("chatAddressee");
 		this.chatAddressee.onSelectionChange = this.onSelectionChange.bind(this);
@@ -131,5 +131,4 @@ ChatAddressees.prototype.AddresseeTypes = [
 	}
 ];
 
-ChatAddressees.prototype.CaptionMargin = 10;
 ChatAddressees.prototype.DropdownMargin = 5;
