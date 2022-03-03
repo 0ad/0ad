@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -61,7 +61,7 @@
  * interpolated position and terrain. So we store a bounding sphere, which
  * is rotation-independent, instead of a bounding box.
  */
-class CCmpUnitRenderer : public ICmpUnitRenderer
+class CCmpUnitRenderer final : public ICmpUnitRenderer
 {
 public:
 	struct SUnit

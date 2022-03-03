@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,7 +44,7 @@
  *
  * Must not be used on network-synchronised entities, unless \<Inactive\> is present.
  */
-class CCmpDecay : public ICmpDecay
+class CCmpDecay final : public ICmpDecay
 {
 public:
 	static void ClassInit(CComponentManager& UNUSED(componentManager))

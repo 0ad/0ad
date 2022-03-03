@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 
 #include "graphics/Color.h"
 
-class CCmpMinimap : public ICmpMinimap
+class CCmpMinimap final : public ICmpMinimap
 {
 public:
 	static void ClassInit(CComponentManager& componentManager)

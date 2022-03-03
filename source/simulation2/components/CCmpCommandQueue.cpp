@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 #include "scriptinterface/JSON.h"
 #include "simulation2/system/TurnManager.h"
 
-class CCmpCommandQueue : public ICmpCommandQueue
+class CCmpCommandQueue final : public ICmpCommandQueue
 {
 public:
 	static void ClassInit(CComponentManager& UNUSED(componentManager))

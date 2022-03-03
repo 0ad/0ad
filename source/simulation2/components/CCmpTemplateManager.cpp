@@ -28,7 +28,7 @@
 #include "ps/TemplateLoader.h"
 #include "ps/XML/RelaxNG.h"
 
-class CCmpTemplateManager : public ICmpTemplateManager
+class CCmpTemplateManager final : public ICmpTemplateManager
 {
 public:
 	static void ClassInit(CComponentManager& componentManager)

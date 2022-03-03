@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -43,7 +43,7 @@ struct SerializeHelper<ICmpObstructionManager::tag_t>
  * Obstruction implementation. This keeps the ICmpPathfinder's model of the world updated when the
  * entities move and die, with shapes derived from ICmpFootprint.
  */
-class CCmpObstruction : public ICmpObstruction
+class CCmpObstruction final : public ICmpObstruction
 {
 public:
 	static void ClassInit(CComponentManager& componentManager)
