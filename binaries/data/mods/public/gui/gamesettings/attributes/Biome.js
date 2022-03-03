@@ -82,11 +82,9 @@ GameSettings.prototype.Attributes.Biome = class Biome extends GameSetting
 	pickRandomItems()
 	{
 		// If the map is random, we need to wait until it selects to know if we need to pick a biome.
-		if (this.settings.map.map === "random")
-			return true;
-
-		if (this.biome !== "random")
+		if (this.settings.map.map === "random" || this.biome !== "random")
 			return false;
+
 		this.biome = pickRandom(Array.from(this.available));
 		return true;
 	}

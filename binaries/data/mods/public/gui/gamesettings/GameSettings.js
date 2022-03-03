@@ -88,21 +88,21 @@ class GameSettings
 	 */
 	pickRandomItems()
 	{
-		let components = Object.keys(this);
-		let i = 0;
-		while (components.length && i < 100)
+		const components = Object.keys(this);
+
+		// When we have looped components.length + 1 times, we are considered stuck.
+		for (let i = 0; i <= components.length; ++i)
 		{
-			// Re-pick if any random setting was unrandomised,
-			// to make sure dependencies are cleared.
-			// TODO: there's probably a better way to handle this.
-			components = components.filter(comp => this[comp].pickRandomItems ?
-				!!this[comp].pickRandomItems() : false);
-			++i;
+			// Re-pick if any random setting was unrandomised, to make sure dependencies are cleared.
+			let rePick = false;
+			for (const comp in this)
+				if (this[comp].pickRandomItems)
+					rePick = this[comp].pickRandomItems() || rePick;
+			if (!rePick)
+				return;
 		}
-		if (i === 100)
-		{
-			throw new Error("Infinite loop picking random items, remains : " + uneval(components));
-		}
+
+		throw new Error("Infinite loop picking random items detected, components: " + uneval(components));
 	}
 
 	/**
