@@ -189,7 +189,6 @@ public:
 		const float width,
 		const float bufferZone,
 		bool& firstLine,
-		float& x,
 		float& y,
 		int& i,
 		int& from);
@@ -224,10 +223,10 @@ public:
 		const CStrIntern& font,
 		const bool firstLine,
 		const float width,
+		const float widthRangeFrom,
 		const float widthRangeTo,
 		const int i,
 		const int tempFrom,
-		float& x,
 		CSize2D& lineSize) const;
 
 	bool AssembleCalls(
@@ -242,7 +241,6 @@ public:
 		const float y,
 		const int tempFrom,
 		const int i,
-		float& x,
 		int& from);
 
 	/**

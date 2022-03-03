@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #include "graphics/MapReader.h"
 #include "lib/sysdep/sysdep.h"
 #include "lib/utf8.h"
+#include "maths/Size2D.h"
 #include "maths/MD5.h"
 #include "ps/CStrIntern.h"
 #include "ps/GUID.h"
@@ -97,14 +98,19 @@ int GetFps()
 	return g_frequencyFilter->StableFrequency();
 }
 
-int GetTextWidth(const std::string& fontName, const std::wstring& text)
+CSize2D GetTextSize(const std::string& fontName, const std::wstring& text)
 {
 	int width = 0;
 	int height = 0;
 	CStrIntern _fontName(fontName);
 	CFontMetrics fontMetrics(_fontName);
 	fontMetrics.CalculateStringSize(text.c_str(), width, height);
-	return width;
+	return CSize2D(width, height);
+}
+
+int GetTextWidth(const std::string& fontName, const std::wstring& text)
+{
+	return GetTextSize(fontName, text).Width;
 }
 
 std::string CalculateMD5(const std::string& input)
@@ -129,6 +135,7 @@ void RegisterScriptFunctions(const ScriptRequest& rq)
 	ScriptFunction::Register<&GetMatchID>(rq, "GetMatchID");
 	ScriptFunction::Register<&LoadMapSettings>(rq, "LoadMapSettings");
 	ScriptFunction::Register<&GetFps>(rq, "GetFPS");
+	ScriptFunction::Register<&GetTextSize>(rq, "GetTextSize");
 	ScriptFunction::Register<&GetTextWidth>(rq, "GetTextWidth");
 	ScriptFunction::Register<&CalculateMD5>(rq, "CalculateMD5");
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -63,6 +63,8 @@ void CFont::CalculateStringSize(const wchar_t* string, int& width, int& height) 
 	width = 0;
 	height = m_Height;
 
+	// Compute the width as the width of the longest line.
+	int lineWidth = 0;
 	for (const wchar_t* c = string; *c != '\0'; c++)
 	{
 		const GlyphData* g = m_Glyphs.get(*c);
@@ -71,6 +73,14 @@ void CFont::CalculateStringSize(const wchar_t* string, int& width, int& height) 
 			g = m_Glyphs.get(0xFFFD); // Use the missing glyph symbol
 
 		if (g)
-			width += g->xadvance; // Add the character's advance distance
+			lineWidth += g->xadvance; // Add the character's advance distance
+
+		if (*c == L'\n')
+		{
+			height += m_LineSpacing;
+			width = std::max(width, lineWidth);
+			lineWidth = 0;
+		}
 	}
+	width = std::max(width, lineWidth);
 }

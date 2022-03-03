@@ -10,7 +10,7 @@ class ChatInput
 		this.chatSubmittedHandlers = [];
 
 		this.chatInputCaption = Engine.GetGUIObjectByName("chatInputCaption");
-		resizeGUIObjectToCaption(this.chatInputCaption, "right", this.CaptionMargin);
+		resizeGUIObjectToCaption(this.chatInputCaption, { "horizontal": "right" });
 
 		this.chatInput = Engine.GetGUIObjectByName("chatInput");
 		this.chatInput.onPress = this.submitChatInput.bind(this);
@@ -94,5 +94,4 @@ class ChatInput
 	}
 }
 
-ChatInput.prototype.CaptionMargin = 10;
 ChatInput.prototype.InputMargin = 5;
