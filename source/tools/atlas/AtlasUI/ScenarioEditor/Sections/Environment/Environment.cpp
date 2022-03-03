@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,8 +28,6 @@
 using AtlasMessage::Shareable;
 
 static Observable<AtlasMessage::sEnvironmentSettings> g_EnvironmentSettings;
-
-const float M_PIf = 3.14159265f;
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -85,12 +83,15 @@ public:
 		: wxPanel(parent),
 		m_Var(var)
 	{
-		m_Conn = g_EnvironmentSettings.RegisterObserver(0, &VariableListBox::OnSettingsChange, this);
+		m_Conn = g_EnvironmentSettings.RegisterObserver(
+			0, &VariableListBox::OnSettingsChange, this);
 
 		m_Sizer = new wxStaticBoxSizer(wxVERTICAL, this, label);
 		SetSizer(m_Sizer);
 
-		m_Combo = new wxComboBox(this, -1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxArrayString(), wxCB_READONLY),
+		m_Combo = new wxComboBox(
+			this, -1, wxEmptyString, wxDefaultPosition, wxDefaultSize,
+			wxArrayString(), wxCB_READONLY),
 		m_Sizer->Add(m_Combo, wxSizerFlags().Expand());
 	}
 
@@ -206,8 +207,9 @@ static void SendToGame(const AtlasMessage::sEnvironmentSettings& settings)
 	POST_COMMAND(SetEnvironmentSettings, (settings));
 }
 
-EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
-: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer)
+EnvironmentSidebar::EnvironmentSidebar(
+	ScenarioEditor& scenarioEditor, wxWindow* sidebarContainer, wxWindow* bottomBarContainer)
+	: Sidebar(scenarioEditor, sidebarContainer, bottomBarContainer)
 {
 	wxSizer* scrollSizer = new wxBoxSizer(wxVERTICAL);
 	wxScrolledWindow* scrolledWindow = new wxScrolledWindow(this);
@@ -217,15 +219,24 @@ EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow*
 
 	wxSizer* waterSizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _T("Water settings"));
 	scrollSizer->Add(waterSizer, wxSizerFlags().Expand());
-	waterSizer->Add(new wxButton(scrolledWindow, ID_RecomputeWaterData, _("Reset Water Data")), wxSizerFlags().Expand());
-	waterSizer->Add(m_WaterTypeList = new VariableListBox(scrolledWindow, _("Water Type"), g_EnvironmentSettings.watertype), wxSizerFlags().Expand());
-	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Water height"), g_EnvironmentSettings.waterheight, 0.f, 1.2f), wxSizerFlags().Expand());
-	waterSizer->Add(new wxButton(scrolledWindow, ID_PickWaterHeight, _("Pick Water Height")), wxSizerFlags().Expand());
-	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Water waviness"), g_EnvironmentSettings.waterwaviness, 0.f, 10.f), wxSizerFlags().Expand());
-	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Water murkiness"), g_EnvironmentSettings.watermurkiness, 0.f, 1.f), wxSizerFlags().Expand());
-	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Wind angle"), g_EnvironmentSettings.windangle, -M_PIf, M_PIf), wxSizerFlags().Expand());
-	waterSizer->Add(new VariableColorBox(scrolledWindow, _("Water color"), g_EnvironmentSettings.watercolor), wxSizerFlags().Expand());
-	waterSizer->Add(new VariableColorBox(scrolledWindow, _("Water tint"), g_EnvironmentSettings.watertint), wxSizerFlags().Expand());
+	waterSizer->Add(new wxButton(
+		scrolledWindow, ID_RecomputeWaterData, _("Reset Water Data")), wxSizerFlags().Expand());
+	waterSizer->Add(m_WaterTypeList = new VariableListBox(
+		scrolledWindow, _("Water Type"), g_EnvironmentSettings.watertype), wxSizerFlags().Expand());
+	waterSizer->Add(new VariableSliderBox(
+		scrolledWindow, _("Water height"), g_EnvironmentSettings.waterheight, 0.f, 1.2f), wxSizerFlags().Expand());
+	waterSizer->Add(new wxButton(
+		scrolledWindow, ID_PickWaterHeight, _("Pick Water Height")), wxSizerFlags().Expand());
+	waterSizer->Add(new VariableSliderBox(
+		scrolledWindow, _("Water waviness"), g_EnvironmentSettings.waterwaviness, 0.f, 10.f), wxSizerFlags().Expand());
+	waterSizer->Add(new VariableSliderBox(
+		scrolledWindow, _("Water murkiness"), g_EnvironmentSettings.watermurkiness, 0.f, 1.f), wxSizerFlags().Expand());
+	waterSizer->Add(new VariableSliderBox(
+		scrolledWindow, _("Wind angle"), g_EnvironmentSettings.windangle, -static_cast<float>(M_PI), static_cast<float>(M_PI)), wxSizerFlags().Expand());
+	waterSizer->Add(new VariableColorBox(
+		scrolledWindow, _("Water color"), g_EnvironmentSettings.watercolor), wxSizerFlags().Expand());
+	waterSizer->Add(new VariableColorBox(
+		scrolledWindow, _("Water tint"), g_EnvironmentSettings.watertint), wxSizerFlags().Expand());
 
 	std::vector<std::wstring> list;
 	list.push_back(L"ocean"); list.push_back(L"lake"); list.push_back(L"clap");
@@ -235,25 +246,40 @@ EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow*
 	wxSizer* sunSizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _T("Sun / lighting settings"));
 	scrollSizer->Add(sunSizer, wxSizerFlags().Expand().Border(wxTOP, 8));
 
-	sunSizer->Add(new VariableSliderBox(scrolledWindow, _("Sun rotation"), g_EnvironmentSettings.sunrotation, -M_PIf, M_PIf), wxSizerFlags().Expand());
-	sunSizer->Add(new VariableSliderBox(scrolledWindow, _("Sun elevation"), g_EnvironmentSettings.sunelevation, -M_PIf/2, M_PIf/2), wxSizerFlags().Expand());
-	sunSizer->Add(new VariableSliderBox(scrolledWindow, _("Sun overbrightness"), g_EnvironmentSettings.sunoverbrightness, 1.0f, 3.0f), wxSizerFlags().Expand());
-	sunSizer->Add(new LightControl(scrolledWindow, wxSize(150, 150), g_EnvironmentSettings));
-	sunSizer->Add(new VariableColorBox(scrolledWindow, _("Sun color"), g_EnvironmentSettings.suncolor), wxSizerFlags().Expand());
-	sunSizer->Add(m_SkyList = new VariableListBox(scrolledWindow, _("Sky set"), g_EnvironmentSettings.skyset), wxSizerFlags().Expand());
-	sunSizer->Add(new VariableSliderBox(scrolledWindow, _("Fog Factor"), g_EnvironmentSettings.fogfactor, 0.0f, 0.01f), wxSizerFlags().Expand());
-	sunSizer->Add(new VariableSliderBox(scrolledWindow, _("Fog Thickness"), g_EnvironmentSettings.fogmax, 0.5f, 0.0f), wxSizerFlags().Expand());
-	sunSizer->Add(new VariableColorBox(scrolledWindow, _("Fog color"), g_EnvironmentSettings.fogcolor), wxSizerFlags().Expand());
-	sunSizer->Add(new VariableColorBox(scrolledWindow, _("Ambient color"), g_EnvironmentSettings.ambientcolor), wxSizerFlags().Expand());
+	sunSizer->Add(new VariableSliderBox(
+		scrolledWindow, _("Sun rotation"), g_EnvironmentSettings.sunrotation, -static_cast<float>(M_PI), static_cast<float>(M_PI)), wxSizerFlags().Expand());
+	sunSizer->Add(new VariableSliderBox(
+		scrolledWindow, _("Sun elevation"), g_EnvironmentSettings.sunelevation, -static_cast<float>(M_PI) / 2.0f, static_cast<float>(M_PI) / 2.0f), wxSizerFlags().Expand());
+	sunSizer->Add(new VariableSliderBox(
+		scrolledWindow, _("Sun overbrightness"), g_EnvironmentSettings.sunoverbrightness, 1.0f, 3.0f), wxSizerFlags().Expand());
+	sunSizer->Add(new LightControl(
+		scrolledWindow, wxSize(150, 150), g_EnvironmentSettings));
+	sunSizer->Add(new VariableColorBox(
+		scrolledWindow, _("Sun color"), g_EnvironmentSettings.suncolor), wxSizerFlags().Expand());
+	sunSizer->Add(m_SkyList = new VariableListBox(
+		scrolledWindow, _("Sky set"), g_EnvironmentSettings.skyset), wxSizerFlags().Expand());
+	sunSizer->Add(new VariableSliderBox(
+		scrolledWindow, _("Fog Factor"), g_EnvironmentSettings.fogfactor, 0.0f, 0.01f), wxSizerFlags().Expand());
+	sunSizer->Add(new VariableSliderBox(
+		scrolledWindow, _("Fog Thickness"), g_EnvironmentSettings.fogmax, 0.5f, 0.0f), wxSizerFlags().Expand());
+	sunSizer->Add(new VariableColorBox(
+		scrolledWindow, _("Fog color"), g_EnvironmentSettings.fogcolor), wxSizerFlags().Expand());
+	sunSizer->Add(new VariableColorBox(
+		scrolledWindow, _("Ambient color"), g_EnvironmentSettings.ambientcolor), wxSizerFlags().Expand());
 
 	wxSizer* postProcSizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _T("Post-processing settings"));
 	scrollSizer->Add(postProcSizer, wxSizerFlags().Expand().Border(wxTOP, 8));
 
-	postProcSizer->Add(m_PostEffectList = new VariableListBox(scrolledWindow, _("Post Effect"), g_EnvironmentSettings.posteffect), wxSizerFlags().Expand());
-	postProcSizer->Add(new VariableSliderBox(scrolledWindow, _("Brightness"), g_EnvironmentSettings.brightness, -0.5f, 0.5f), wxSizerFlags().Expand());
-	postProcSizer->Add(new VariableSliderBox(scrolledWindow, _("Contrast (HDR)"), g_EnvironmentSettings.contrast, 0.5f, 1.5f), wxSizerFlags().Expand());
-	postProcSizer->Add(new VariableSliderBox(scrolledWindow, _("Saturation"), g_EnvironmentSettings.saturation, 0.0f, 2.0f), wxSizerFlags().Expand());
-	postProcSizer->Add(new VariableSliderBox(scrolledWindow, _("Bloom"), g_EnvironmentSettings.bloom, 0.2f, 0.0f), wxSizerFlags().Expand());
+	postProcSizer->Add(m_PostEffectList = new VariableListBox(
+		scrolledWindow, _("Post Effect"), g_EnvironmentSettings.posteffect), wxSizerFlags().Expand());
+	postProcSizer->Add(new VariableSliderBox(
+		scrolledWindow, _("Brightness"), g_EnvironmentSettings.brightness, -0.5f, 0.5f), wxSizerFlags().Expand());
+	postProcSizer->Add(new VariableSliderBox(
+		scrolledWindow, _("Contrast (HDR)"), g_EnvironmentSettings.contrast, 0.5f, 1.5f), wxSizerFlags().Expand());
+	postProcSizer->Add(new VariableSliderBox(
+		scrolledWindow, _("Saturation"), g_EnvironmentSettings.saturation, 0.0f, 2.0f), wxSizerFlags().Expand());
+	postProcSizer->Add(new VariableSliderBox(
+		scrolledWindow, _("Bloom"), g_EnvironmentSettings.bloom, 0.2f, 0.0f), wxSizerFlags().Expand());
 
 	m_Conn = g_EnvironmentSettings.RegisterObserver(0, &SendToGame);
 }
