@@ -379,7 +379,13 @@ void CDeviceCommandContext::BindTexture(const uint32_t unit, const GLenum target
 
 void CDeviceCommandContext::BindBuffer(const CBuffer::Type type, CBuffer* buffer)
 {
-	ENSURE(!buffer || type == buffer->GetType());
+	ENSURE(!buffer || buffer->GetType() == type);
+	if (type == CBuffer::Type::INDEX)
+	{
+		if (!buffer)
+			m_IndexBuffer = nullptr;
+		m_IndexBufferData = nullptr;
+	}
 	glBindBufferARB(BufferTypeToGLTarget(type), buffer ? buffer->GetHandle() : 0);
 }
 
@@ -387,7 +393,12 @@ void CDeviceCommandContext::Flush()
 {
 	ResetStates();
 
+	m_IndexBuffer = nullptr;
+	m_IndexBufferData = nullptr;
+
 	BindTexture(0, GL_TEXTURE_2D, 0);
+	BindBuffer(CBuffer::Type::INDEX, nullptr);
+	BindBuffer(CBuffer::Type::VERTEX, nullptr);
 
 	ENSURE(m_ScopedLabelDepth == 0);
 }
@@ -709,6 +720,70 @@ void CDeviceCommandContext::SetViewports(const uint32_t viewportCount, const Rec
 {
 	ENSURE(viewportCount == 1);
 	glViewport(viewports[0].x, viewports[0].y, viewports[0].width, viewports[0].height);
+}
+
+void CDeviceCommandContext::SetIndexBuffer(CBuffer* buffer)
+{
+	ENSURE(buffer->GetType() == CBuffer::Type::INDEX);
+	m_IndexBuffer = buffer;
+	m_IndexBufferData = nullptr;
+	BindBuffer(CBuffer::Type::INDEX, m_IndexBuffer);
+}
+
+void CDeviceCommandContext::SetIndexBufferData(const void* data)
+{
+	if (m_IndexBuffer)
+	{
+		BindBuffer(CBuffer::Type::INDEX, nullptr);
+		m_IndexBuffer = nullptr;
+	}
+	m_IndexBufferData = data;
+}
+
+void CDeviceCommandContext::Draw(
+	const uint32_t firstVertex, const uint32_t vertexCount)
+{
+	// Some drivers apparently don't like count = 0 in glDrawArrays here, so skip
+	// all drawing in that case.
+	if (vertexCount == 0)
+		return;
+	glDrawArrays(GL_TRIANGLES, firstVertex, vertexCount);
+}
+
+void CDeviceCommandContext::DrawIndexed(
+	const uint32_t firstIndex, const uint32_t indexCount, const int32_t vertexOffset)
+{
+	if (indexCount == 0)
+		return;
+	ENSURE(m_IndexBuffer || m_IndexBufferData);
+	ENSURE(vertexOffset == 0);
+	if (m_IndexBuffer)
+	{
+		ENSURE(sizeof(uint16_t) * (firstIndex + indexCount) <= m_IndexBuffer->GetSize());
+	}
+	// Don't use glMultiDrawElements here since it doesn't have a significant
+	// performance impact and it suffers from various driver bugs (e.g. it breaks
+	// in Mesa 7.10 swrast with index VBOs).
+	glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_SHORT,
+		static_cast<const void*>((static_cast<const uint8_t*>(m_IndexBufferData) + sizeof(uint16_t) * firstIndex)));
+}
+
+void CDeviceCommandContext::DrawIndexedInRange(
+	const uint32_t firstIndex, const uint32_t indexCount,
+	const uint32_t start, const uint32_t end)
+{
+	if (indexCount == 0)
+		return;
+	ENSURE(m_IndexBuffer || m_IndexBufferData);
+	const void* indices =
+		static_cast<const void*>((static_cast<const uint8_t*>(m_IndexBufferData) + sizeof(uint16_t) * firstIndex));
+	// Draw with DrawRangeElements where available, since it might be more
+	// efficient for slow hardware.
+#if CONFIG2_GLES
+	glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_SHORT, indices);
+#else
+	glDrawRangeElementsEXT(GL_TRIANGLES, start, end, indexCount, GL_UNSIGNED_SHORT, indices);
+#endif
 }
 
 CDeviceCommandContext::ScopedBind::ScopedBind(

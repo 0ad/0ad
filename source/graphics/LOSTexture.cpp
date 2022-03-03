@@ -184,7 +184,7 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* d
 	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
 	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
 	shader->AssertPointersBound();
-	glDrawArrays(GL_TRIANGLES, 0, 6);
+	deviceCommandContext->Draw(0, 6);
 
 	g_Renderer.SetViewport(oldVp);
 

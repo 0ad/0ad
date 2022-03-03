@@ -86,7 +86,10 @@ void CDebugRenderer::DrawLine(
 	CShaderTechniquePtr debugLineTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	debugLineTech->BeginPass();
-	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), debugLineTech, color, depthTestEnabled);
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
+		g_Renderer.GetDeviceCommandContext();
+	SetGraphicsPipelineStateFromTechAndColor(
+		deviceCommandContext, debugLineTech, color, depthTestEnabled);
 
 	const CCamera& viewCamera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
@@ -125,7 +128,7 @@ void CDebugRenderer::DrawLine(
 
 	debugLineShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
 	debugLineShader->AssertPointersBound();
-	glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 3);
+	deviceCommandContext->Draw(0, vertices.size() / 3);
 
 	debugLineTech->EndPass();
 #endif
@@ -140,7 +143,10 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 	CShaderTechniquePtr debugCircleTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	debugCircleTech->BeginPass();
-	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), debugCircleTech, color);
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
+		g_Renderer.GetDeviceCommandContext();
+	SetGraphicsPipelineStateFromTechAndColor(
+		deviceCommandContext, debugCircleTech, color);
 
 	const CCamera& camera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
@@ -173,7 +179,7 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 
 	debugCircleShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
 	debugCircleShader->AssertPointersBound();
-	glDrawArrays(GL_TRIANGLE_FAN, 0, vertices.size() / 3);
+	deviceCommandContext->Draw(0, vertices.size() / 3);
 
 	debugCircleTech->EndPass();
 #endif
@@ -199,7 +205,10 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 	CShaderTechniquePtr overlayTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	overlayTech->BeginPass();
-	SetGraphicsPipelineStateFromTechAndColor(g_Renderer.GetDeviceCommandContext(), overlayTech, color, true, wireframe);
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
+		g_Renderer.GetDeviceCommandContext();
+	SetGraphicsPipelineStateFromTechAndColor(
+		deviceCommandContext, overlayTech, color, true, wireframe);
 
 	CShaderProgramPtr overlayShader = overlayTech->GetShader();
 	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
@@ -246,7 +255,7 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 
 	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
 	overlayShader->AssertPointersBound();
-	glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 3);
+	deviceCommandContext->Draw(0, vertices.size() / 3);
 
 	vertices.clear();
 
@@ -264,7 +273,7 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 
 	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
 	overlayShader->AssertPointersBound();
-	glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 3);
+	deviceCommandContext->Draw(0, vertices.size() / 3);
 #undef ADD
 
 	overlayTech->EndPass();
@@ -286,8 +295,10 @@ void CDebugRenderer::DrawBoundingBox(
 {
 	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	shaderTech->BeginPass();
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
+		g_Renderer.GetDeviceCommandContext();
 	SetGraphicsPipelineStateFromTechAndColor(
-		g_Renderer.GetDeviceCommandContext(), shaderTech, color, true, wireframe);
+		deviceCommandContext, shaderTech, color, true, wireframe);
 
 	const CShaderProgramPtr& shader = shaderTech->GetShader();
 	shader->Uniform(str_color, color);
@@ -317,7 +328,7 @@ void CDebugRenderer::DrawBoundingBox(
 	shader->VertexPointer(3, GL_FLOAT, 3 * sizeof(float), data.data());
 
 	shader->AssertPointersBound();
-	glDrawArrays(GL_TRIANGLES, 0, 6*6);
+	deviceCommandContext->Draw(0, 6*6);
 
 	shaderTech->EndPass();
 }
@@ -326,8 +337,10 @@ void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color, bool wi
 {
 	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
 	shaderTech->BeginPass();
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
+		g_Renderer.GetDeviceCommandContext();
 	SetGraphicsPipelineStateFromTechAndColor(
-		g_Renderer.GetDeviceCommandContext(), shaderTech, color, true, wireframe);
+		deviceCommandContext, shaderTech, color, true, wireframe);
 
 	const CShaderProgramPtr& shader = shaderTech->GetShader();
 	shader->Uniform(str_color, color);
@@ -361,7 +374,7 @@ void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color, bool wi
 	shader->VertexPointer(3, GL_FLOAT, 3 * sizeof(float), data.data());
 
 	shader->AssertPointersBound();
-	glDrawArrays(GL_TRIANGLES, 0, data.size() / 5);
+	deviceCommandContext->Draw(0, data.size() / 5);
 
 	shaderTech->EndPass();
 }

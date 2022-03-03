@@ -102,6 +102,8 @@ public:
 	/// to glVertexPointer ( + etc) calls
 	u8* Bind(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
+	void UploadIfNeeded(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+
 	/// Unbind any currently-bound buffer, so glVertexPointer etc calls will not attempt to use it
 	static void Unbind(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
@@ -134,6 +136,8 @@ public:
 	 * update it incrementally. The backing store can be freed to save memory.
 	 */
 	static bool UseStreaming(const bool dynamic);
+
+	Renderer::Backend::GL::CBuffer* GetBuffer() { return m_Buffer.get(); }
 
 private:
 	friend class CVertexBufferManager;		// allow allocate only via CVertexBufferManager

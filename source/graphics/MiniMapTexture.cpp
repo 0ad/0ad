@@ -68,7 +68,9 @@ unsigned int ScaleColor(unsigned int color, float x)
 	return (0xff000000 | b | g << 8 | r << 16);
 }
 
-void DrawTexture(const CShaderProgramPtr& shader)
+void DrawTexture(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	const CShaderProgramPtr& shader)
 {
 	const float quadUVs[] =
 	{
@@ -95,7 +97,7 @@ void DrawTexture(const CShaderProgramPtr& shader)
 	shader->VertexPointer(3, GL_FLOAT, 0, quadVertices);
 	shader->AssertPointersBound();
 
-	glDrawArrays(GL_TRIANGLES, 0, 6);
+	deviceCommandContext->Draw(0, 6);
 }
 
 struct MinimapUnitVertex
@@ -387,7 +389,7 @@ void CMiniMapTexture::RenderFinalTexture(
 	shader->Uniform(str_textureTransform, terrainTransform);
 
 	if (m_TerrainTexture)
-		DrawTexture(shader);
+		DrawTexture(deviceCommandContext, shader);
 
 	pipelineStateDesc.blendState.enabled = true;
 	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
@@ -409,7 +411,7 @@ void CMiniMapTexture::RenderFinalTexture(
 	shader->Uniform(str_transform, baseTransform);
 	shader->Uniform(str_textureTransform, territoryTexture.GetMinimapTextureMatrix());
 
-	DrawTexture(shader);
+	DrawTexture(deviceCommandContext, shader);
 
 	pipelineStateDesc.blendState.enabled = false;
 	pipelineStateDesc.blendState.colorWriteMask =
@@ -420,7 +422,7 @@ void CMiniMapTexture::RenderFinalTexture(
 	shader->Uniform(str_transform, baseTransform);
 	shader->Uniform(str_textureTransform, losTexture.GetMinimapTextureMatrix());
 
-	DrawTexture(shader);
+	DrawTexture(deviceCommandContext, shader);
 
 	tech->EndPass();
 
@@ -528,7 +530,7 @@ void CMiniMapTexture::RenderFinalTexture(
 		scissorRect.width = scissorRect.height = FINAL_TEXTURE_SIZE - 2;
 		deviceCommandContext->SetScissors(1, &scissorRect);
 
-		u8* indexBase = m_IndexArray.Bind(deviceCommandContext);
+		m_IndexArray.UploadIfNeeded(deviceCommandContext);
 		u8* base = m_VertexArray.Bind(deviceCommandContext);
 		const GLsizei stride = (GLsizei)m_VertexArray.GetStride();
 
@@ -536,7 +538,8 @@ void CMiniMapTexture::RenderFinalTexture(
 		shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_AttributeColor.offset);
 		shader->AssertPointersBound();
 
-		glDrawElements(GL_TRIANGLES, m_EntitiesDrawn * 6, GL_UNSIGNED_SHORT, indexBase);
+		deviceCommandContext->SetIndexBuffer(m_IndexArray.GetBuffer());
+		deviceCommandContext->DrawIndexed(m_IndexArray.GetOffset(), m_EntitiesDrawn * 6, 0);
 
 		g_Renderer.GetStats().m_DrawCalls++;
 		CVertexBuffer::Unbind(deviceCommandContext);

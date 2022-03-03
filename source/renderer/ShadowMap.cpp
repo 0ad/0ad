@@ -750,7 +750,7 @@ void ShadowMap::RenderDebugTexture(
 	texShader->VertexPointer(2, GL_FLOAT, 0, boxVerts);
 	texShader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, boxUV);
 	texShader->AssertPointersBound();
-	glDrawArrays(GL_TRIANGLES, 0, 6);
+	deviceCommandContext->Draw(0, 6);
 
 	texTech->EndPass();
 

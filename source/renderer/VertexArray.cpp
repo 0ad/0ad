@@ -291,13 +291,20 @@ u8* VertexArray::Bind(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	if (!m_VB)
-		return NULL;
+		return nullptr;
 
-	u8* base = m_VB->m_Owner->Bind(deviceCommandContext);
-	base += m_VB->m_Index*m_Stride;
+	UploadIfNeeded(deviceCommandContext);
+	m_VB->m_Owner->Bind(deviceCommandContext);
+	u8* base = nullptr;
+	base += m_VB->m_Index * m_Stride;
 	return base;
 }
 
+void VertexArray::UploadIfNeeded(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+{
+	m_VB->m_Owner->UploadIfNeeded(deviceCommandContext);
+}
 
 // Free the backing store to save some memory
 void VertexArray::FreeBackingStore()

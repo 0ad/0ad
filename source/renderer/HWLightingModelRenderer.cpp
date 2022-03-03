@@ -221,7 +221,8 @@ void ShaderModelVertexRenderer::RenderModel(
 	u8* base = shadermodel->m_Array.Bind(deviceCommandContext);
 	GLsizei stride = (GLsizei)shadermodel->m_Array.GetStride();
 
-	u8* indexBase = m->shadermodeldef->m_IndexArray.Bind(deviceCommandContext);
+	m->shadermodeldef->m_IndexArray.UploadIfNeeded(deviceCommandContext);
+	deviceCommandContext->SetIndexBuffer(m->shadermodeldef->m_IndexArray.GetBuffer());
 
 	if (streamflags & STREAM_POS)
 		shader->VertexPointer(3, GL_FLOAT, stride, base + shadermodel->m_Position.offset);
@@ -231,19 +232,14 @@ void ShaderModelVertexRenderer::RenderModel(
 
 	shader->AssertPointersBound();
 
-	// render the lot
-	size_t numFaces = mdldef->GetNumFaces();
+	// Render the lot.
+	const size_t numberOfFaces = mdldef->GetNumFaces();
 
-	// Draw with DrawRangeElements where available, since it might be more efficient
-#if CONFIG2_GLES
-	glDrawElements(GL_TRIANGLES, (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, indexBase);
-#else
-	glDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)mdldef->GetNumVertices()-1,
-		(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, indexBase);
-#endif
+	deviceCommandContext->DrawIndexedInRange(
+		m->shadermodeldef->m_IndexArray.GetOffset(), numberOfFaces * 3, 0, mdldef->GetNumVertices() - 1);
 
-	// bump stats
+	// Bump stats.
 	g_Renderer.m_Stats.m_DrawCalls++;
-	g_Renderer.m_Stats.m_ModelTris += numFaces;
+	g_Renderer.m_Stats.m_ModelTris += numberOfFaces;
 }
 

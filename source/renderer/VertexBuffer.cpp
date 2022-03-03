@@ -59,6 +59,10 @@ CVertexBuffer::CVertexBuffer(
 		// address at most 64K of them with 16-bit indices
 		size = std::min(size, vertexSize * 65536);
 	}
+	else if (type == Renderer::Backend::GL::CBuffer::Type::INDEX)
+	{
+		ENSURE(vertexSize == sizeof(u16));
+	}
 
 	// store max/free vertex counts
 	m_MaxVertices = m_FreeVertices = size / vertexSize;
@@ -222,19 +226,13 @@ void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk, void* data)
 	}
 }
 
-///////////////////////////////////////////////////////////////////////////////
-// Bind: bind to this buffer; return pointer to address required as parameter
-// to glVertexPointer ( + etc) calls
-u8* CVertexBuffer::Bind(
+void CVertexBuffer::UploadIfNeeded(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	if (UseStreaming(m_Buffer->IsDynamic()))
 	{
 		if (!m_HasNeededChunks)
-		{
-			deviceCommandContext->BindBuffer(m_Buffer->GetType(), m_Buffer.get());
-			return nullptr;
-		}
+			return;
 
 		// If any chunks are out of sync with the current VBO, and are
 		// needed for rendering this frame, we'll need to re-upload the VBO
@@ -290,8 +288,15 @@ u8* CVertexBuffer::Bind(
 
 		m_HasNeededChunks = false;
 	}
-	deviceCommandContext->BindBuffer(m_Buffer->GetType(), m_Buffer.get());
+}
 
+// Bind: bind to this buffer; return pointer to address required as parameter
+// to glVertexPointer ( + etc) calls
+u8* CVertexBuffer::Bind(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+{
+	UploadIfNeeded(deviceCommandContext);
+	deviceCommandContext->BindBuffer(m_Buffer->GetType(), m_Buffer.get());
 	return nullptr;
 }
 

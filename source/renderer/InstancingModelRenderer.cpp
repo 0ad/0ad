@@ -327,7 +327,8 @@ void InstancingModelRenderer::PrepareModelDef(
 	u8* base = m->imodeldef->m_Array.Bind(deviceCommandContext);
 	GLsizei stride = (GLsizei)m->imodeldef->m_Array.GetStride();
 
-	m->imodeldefIndexBase = m->imodeldef->m_IndexArray.Bind(deviceCommandContext);
+	m->imodeldef->m_IndexArray.UploadIfNeeded(deviceCommandContext);
+	deviceCommandContext->SetIndexBuffer(m->imodeldef->m_IndexArray.GetBuffer());
 
 	if (streamflags & STREAM_POS)
 		shader->VertexPointer(3, GL_FLOAT, stride, base + m->imodeldef->m_Position.offset);
@@ -361,7 +362,7 @@ void InstancingModelRenderer::PrepareModelDef(
 
 // Render one model
 void InstancingModelRenderer::RenderModel(
-	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext),
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
 	const CShaderProgramPtr& shader, int UNUSED(streamflags), CModel* model, CModelRData* UNUSED(data))
 {
 	const CModelDefPtr& mdldef = model->GetModelDef();
@@ -377,19 +378,14 @@ void InstancingModelRenderer::RenderModel(
 		shader->Uniform(str_skinBlendMatrices, mdldef->GetNumBones() + 1, model->GetAnimatedBoneMatrices());
 	}
 
-	// render the lot
-	size_t numFaces = mdldef->GetNumFaces();
+	// Render the lot.
+	const size_t numberOfFaces = mdldef->GetNumFaces();
 
-	// Draw with DrawRangeElements where available, since it might be more efficient
-#if CONFIG2_GLES
-	glDrawElements(GL_TRIANGLES, (GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->imodeldefIndexBase);
-#else
-	glDrawRangeElementsEXT(GL_TRIANGLES, 0, (GLuint)m->imodeldef->m_Array.GetNumberOfVertices()-1,
-			(GLsizei)numFaces*3, GL_UNSIGNED_SHORT, m->imodeldefIndexBase);
-#endif
+	deviceCommandContext->DrawIndexedInRange(
+		m->imodeldef->m_IndexArray.GetOffset(), numberOfFaces * 3, 0, m->imodeldef->m_Array.GetNumberOfVertices() - 1);
 
-	// bump stats
+	// Bump stats.
 	g_Renderer.m_Stats.m_DrawCalls++;
-	g_Renderer.m_Stats.m_ModelTris += numFaces;
+	g_Renderer.m_Stats.m_ModelTris += numberOfFaces;
 
 }

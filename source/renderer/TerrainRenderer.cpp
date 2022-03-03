@@ -212,7 +212,7 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 		debugOverlayShader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, waterPos);
 		debugOverlayShader->AssertPointersBound();
 
-		glDrawArrays(GL_TRIANGLES, 0, 6);
+		deviceCommandContext->Draw(0, 6);
 	}
 
 	debugOverlayTech->EndPass();

@@ -812,9 +812,9 @@ void WaterManager::RenderWaves(
 		shader->Uniform(str_translation, m_ShoreWaves[a]->m_TimeDiff);
 		shader->Uniform(str_width, (int)m_ShoreWaves[a]->m_Width);
 
-		u8* indexBase = m_ShoreWavesVBIndices->m_Owner->Bind(deviceCommandContext);
-		glDrawElements(GL_TRIANGLES, (GLsizei) (m_ShoreWaves[a]->m_Width-1)*(7*6),
-					   GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_ShoreWavesVBIndices->m_Index));
+		m_ShoreWavesVBIndices->m_Owner->UploadIfNeeded(deviceCommandContext);
+		deviceCommandContext->SetIndexBuffer(m_ShoreWavesVBIndices->m_Owner->GetBuffer());
+		deviceCommandContext->DrawIndexed(m_ShoreWavesVBIndices->m_Index, (m_ShoreWaves[a]->m_Width - 1) * (7 * 6), 0);
 
 		shader->Uniform(str_translation, m_ShoreWaves[a]->m_TimeDiff + 6.0f);
 

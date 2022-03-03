@@ -248,7 +248,7 @@ void SkyManager::RenderSky(
 		GL_TEXTURE0, 3, GL_FLOAT, stride, base + m_AttributeUV.offset);
 	shader->AssertPointersBound();
 
-	glDrawArrays(GL_TRIANGLES, 0, m_VertexArray.GetNumberOfVertices());
+	deviceCommandContext->Draw(0, m_VertexArray.GetNumberOfVertices());
 
 	skytech->EndPass();
 #endif
