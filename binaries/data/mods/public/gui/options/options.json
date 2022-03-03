@@ -244,9 +244,9 @@
 				"tooltip": "Model quality setting.",
 				"config": "max_actor_quality",
 				"list": [
-					{ "value": 100, "label": "Low", "tooltip": "Simpler models for better performance." },
-					{ "value": 150, "label": "Medium", "tooltip": "Average quality and average performance." },
-					{ "value": 200, "label": "High", "tooltip": "High quality models." }
+					{ "value": 100, "label": { "_string": "Low", "context": "Option for the meshes' level of detail." }, "tooltip": "Simpler models for better performance." },
+					{ "value": 150, "label": { "_string": "Medium", "context": "Option for the meshes' level of detail." }, "tooltip": "Average quality and average performance." },
+					{ "value": 200, "label": { "_string": "High", "context": "Option for the meshes' level of detail." }, "tooltip": "High quality models." }
 				]
 			},
 			{
@@ -255,9 +255,9 @@
 				"tooltip": "Randomize the appearance of entities. Disabling gives a small performance improvement.",
 				"config": "variant_diversity",
 				"list": [
-					{ "value": "none", "label": "None", "tooltip": "Entities will all look the same." },
-					{ "value": "limited", "label": "Limited", "tooltip": "Entities will be less diverse." },
-					{ "value": "full", "label": "Normal", "tooltip": "Entities appearance is randomized normally." }
+					{ "value": "none", "label": { "_string": "None", "context": "Option for the meshes' amount of variety." }, "tooltip": "Entities will all look the same." },
+					{ "value": "limited", "label": { "_string": "Limited", "context": "Option for the meshes' amount of variety." }, "tooltip": "Entities will be less diverse." },
+					{ "value": "full", "label": { "_string": "Normal", "context": "Option for the meshes' amount of variety." }, "tooltip": "Entities appearance is randomized normally." }
 				]
 			},
 			{
@@ -281,10 +281,10 @@
 				"dependencies": ["shadows"],
 				"config": "shadowquality",
 				"list": [
-					{ "value": -1, "label": "Low" },
-					{ "value": 0, "label": "Medium" },
-					{ "value": 1, "label": "High" },
-					{ "value": 2, "label": "Very High" }
+					{ "value": -1, "label": { "_string": "Low", "context": "Option for the shadow quality." } },
+					{ "value": 0, "label": { "_string": "Medium", "context": "Option for the shadow quality." } },
+					{ "value": 1, "label": { "_string": "High", "context": "Option for the shadow quality." } },
+					{ "value": 2, "label": { "_string": "Very High", "context": "Option for the shadow quality." } }
 				]
 			},
 			{
@@ -350,9 +350,9 @@
 				"tooltip": "Decrease texture quality making them blurrier but increases game performance.",
 				"config": "textures.quality",
 				"list": [
-					{ "value": 0, "label": "Low", "tooltip": "Low" },
-					{ "value": 1, "label": "Medium", "tooltip": "Medium" },
-					{ "value": 2, "label": "High", "tooltip": "High" }
+					{ "value": 0, "label": { "_string": "Low", "context": "Option for the texture quality." }, "tooltip": "Low" },
+					{ "value": 1, "label": { "_string": "Medium", "context": "Option for the texture quality." }, "tooltip": "Medium" },
+					{ "value": 2, "label": { "_string": "High", "context": "Option for the texture quality." }, "tooltip": "High" }
 				]
 			},
 			{
@@ -461,12 +461,12 @@
 				"tooltip": "Default difficulty of the AI.",
 				"config": "gui.gamesetup.aidifficulty",
 				"list": [
-					{ "value": 0, "label": "Sandbox" },
-					{ "value": 1, "label": "Very Easy" },
-					{ "value": 2, "label": "Easy" },
-					{ "value": 3, "label": "Medium" },
-					{ "value": 4, "label": "Hard" },
-					{ "value": 5, "label": "Very Hard" }
+					{ "value": 0, "label": { "_string": "Sandbox", "context": "Option for the AI difficulty." }},
+					{ "value": 1, "label": { "_string": "Very Easy", "context": "Option for the AI difficulty." }},
+					{ "value": 2, "label": { "_string": "Easy", "context": "Option for the AI difficulty." }},
+					{ "value": 3, "label": { "_string": "Medium", "context": "Option for the AI difficulty." }},
+					{ "value": 4, "label": { "_string": "Hard", "context": "Option for the AI difficulty." }},
+					{ "value": 5, "label": { "_string": "Very Hard", "context": "Option for the AI difficulty." }}
 				]
 			},
 			{
