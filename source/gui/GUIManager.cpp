@@ -103,7 +103,12 @@ void CGUIManager::SwitchPage(const CStrW& pageName, const ScriptInterface* srcSc
 		initDataClone = Script::WriteStructuredClone(rq, initData);
 	}
 
-	m_PageStack.clear();
+	if (!m_PageStack.empty())
+	{
+		// Make sure we unfocus anything on the current page.
+		m_PageStack.back().gui->SendFocusMessage(GUIM_LOST_FOCUS);
+		m_PageStack.clear();
+	}
 
 	PushPage(pageName, initDataClone, JS::UndefinedHandleValue);
 }
@@ -112,7 +117,12 @@ void CGUIManager::PushPage(const CStrW& pageName, Script::StructuredClone initDa
 {
 	// Store the callback handler in the current GUI page before opening the new one
 	if (!m_PageStack.empty() && !callbackFunction.isUndefined())
+	{
 		m_PageStack.back().SetCallbackFunction(*m_ScriptInterface, callbackFunction);
+
+		// Make sure we unfocus anything on the current page.
+		m_PageStack.back().gui->SendFocusMessage(GUIM_LOST_FOCUS);
+	}
 
 	// Push the page prior to loading its contents, because that may push
 	// another GUI page on init which should be pushed on top of this new page.
@@ -128,8 +138,14 @@ void CGUIManager::PopPage(Script::StructuredClone args)
 		return;
 	}
 
+	// Make sure we unfocus anything on the current page.
+	m_PageStack.back().gui->SendFocusMessage(GUIM_LOST_FOCUS);
+
 	m_PageStack.pop_back();
 	m_PageStack.back().PerformCallbackFunction(args);
+
+	// We return to a page where some object might have been focused.
+	m_PageStack.back().gui->SendFocusMessage(GUIM_GOT_FOCUS);
 }
 
 CGUIManager::SGUIPage::SGUIPage(const CStrW& pageName, const Script::StructuredClone initData)

@@ -26,6 +26,7 @@
 #include "gui/GUITooltip.h"
 #include "gui/SettingTypes/CGUIColor.h"
 #include "gui/SGUIIcon.h"
+#include "gui/SGUIMessage.h"
 #include "gui/SGUIStyle.h"
 #include "lib/input.h"
 #include "maths/Rect.h"
@@ -286,6 +287,11 @@ public:
 	 * pObject can be nullptr to remove all focus.
 	 */
 	void SetFocusedObject(IGUIObject* pObject);
+
+	/**
+	 * Alert the focussed object of this GUIPage that the focus of the page has changed.
+	 */
+	void SendFocusMessage(EGUIMessageType msg);
 
 	/**
 	 * Reads a string value and modifies the given value of type T if successful.
