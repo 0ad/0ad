@@ -51,24 +51,45 @@ function Music()
 	this.time = Date.now();
 }
 
+Music.prototype.DEFAULT_MENU_TRACKS = ["Honor_Bound.ogg"].concat(shuffleArray([
+	"An_old_Warhorse_goes_to_Pasture.ogg",
+	"Calm_Before_the_Storm.ogg",
+	"Juno_Protect_You.ogg"
+]));
+
+Music.prototype.DEFAULT_PEACE_TRACKS = [
+	"Tale_of_Warriors.ogg",
+	"Tavern_in_the_Mist.ogg",
+	"The_Road_Ahead.ogg"
+];
+
+Music.prototype.DEFAULT_BATTLE_TRACKS = [
+	"Taiko_1.ogg",
+	"Taiko_2.ogg"
+];
+
+Music.prototype.DEFAULT_VICTORY_TRACKS = [
+	"You_are_Victorious!.ogg"
+];
+
+Music.prototype.DEFAULT_DEFEAT_TRACKS = [
+	"Dried_Tears.ogg"
+];
+
+Music.prototype.DEFAULT_CUSTOM_TRACKS = [];
+
+Music.prototype.completeTracks = function()
+{
+	for (const musicType of Object.keys(this.MUSIC))
+		if (!this.tracks[musicType] || this.tracks[musicType].length === 0)
+			this.tracks[musicType] = this["DEFAULT_" + musicType + "_TRACKS"];
+};
+
 Music.prototype.resetTracks = function()
 {
-	this.tracks = {
-		"MENU": ["Honor_Bound.ogg"].concat(shuffleArray([
-			"An_old_Warhorse_goes_to_Pasture.ogg",
-			"Calm_Before_the_Storm.ogg",
-			"Juno_Protect_You.ogg"
-		])),
-		"PEACE": [
-			"Tale_of_Warriors.ogg",
-			"Tavern_in_the_Mist.ogg",
-			"The_Road_Ahead.ogg"
-		],
-		"BATTLE": ["Taiko_1.ogg", "Taiko_2.ogg"],
-		"VICTORY": ["You_are_Victorious!.ogg"],
-		"DEFEAT": ["Dried_Tears.ogg"],
-		"CUSTOM": []
-	};
+	this.tracks = {};
+	for (const musicType of Object.keys(this.MUSIC))
+		this.tracks[musicType] = this["DEFAULT_" + musicType + "_TRACKS"];
 };
 
 // "reference" refers to this instance of Music (needed if called from the timer)
@@ -126,7 +147,9 @@ Music.prototype.updateState = function()
 
 Music.prototype.storeTracks = function(civMusic)
 {
-	this.resetTracks();
+	for (const musicType of Object.keys(this.MUSIC))
+		this.tracks[musicType] = [];
+
 	for (let music of civMusic)
 	{
 		let type;
@@ -145,6 +168,8 @@ Music.prototype.storeTracks = function(civMusic)
 
 		this.tracks[type].push(music.File);
 	}
+
+	this.completeTracks();
 };
 
 Music.prototype.startPlayList = function(tracks, fadeInPeriod, isLooping)
