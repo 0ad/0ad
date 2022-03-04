@@ -30,8 +30,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-25 08:08+0000\n"
-"PO-Revision-Date: 2022-02-27 20:35+0000\n"
+"POT-Creation-Date: 2022-02-28 08:09+0000\n"
+"PO-Revision-Date: 2022-02-28 13:20+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -104,6 +104,8 @@ msgstr "Die Agoge"
 #: simulation/data/technologies/unlock_champion_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_chariots.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
+#: simulation/data/technologies/unlock_spies.jsonrequirementsTooltip
+#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsonrequirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "Freigeschaltet in der Großstadtphase"
@@ -150,6 +152,7 @@ msgstr "Bogentraining"
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
+#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "Freigeschaltet in der Stadtphase."
 
@@ -217,7 +220,7 @@ msgstr "Dieses berühmte und wichtigste Werk der Sieben Militär-Klassiker lehrt
 
 #: simulation/data/technologies/art_of_war.jsongenericName
 msgid "Sun Tzu's \"The Art of War\""
-msgstr "Sun Tzus \"Die Kunst des Krieges\""
+msgstr "Sun Tzus „Die Kunst des Krieges“"
 
 #: simulation/data/technologies/art_of_war.jsonspecificName.han
 msgid "Sūnzǐ BīngFǎ"
@@ -699,7 +702,7 @@ msgstr "Sammlertraining"
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsondescription
 msgid "Grow water weeds to to supply rice plants with nutricients."
-msgstr "Setze Wasserpest um die Reispflanzen zu düngen."
+msgstr "Setze Wasserpest, um die Reispflanzen zu düngen."
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsongenericName
 msgid "Water Weeding"
@@ -954,7 +957,7 @@ msgstr "Hopliten-Tradition"
 
 #: simulation/data/technologies/hoplite_tradition.jsontooltip
 msgid "Hoplites −25% training time and −50% promotion experience."
-msgstr "Holpiten −25% Ausbildungszeit und −50% Erfahrung für eine Beförderung."
+msgstr "Hopliten −25% Ausbildungszeit und −50% Erfahrung für eine Beförderung."
 
 #: simulation/data/technologies/immortals.jsondescription
 msgid ""
@@ -1880,6 +1883,18 @@ msgid ""
 "Allows bribing the units of other players in order to share their vision."
 msgstr "Ermöglicht das Bestechen von Einheiten eines anderen Spielers, um deren Sicht zu teilen."
 
+#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsondescription
+msgid "Upgrade all of your citizen crossbowmen to Advanced rank."
+msgstr ""
+
+#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsongenericName
+msgid "Advanced Crossbow Infantry and Cavalry"
+msgstr ""
+
+#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsontooltip
+msgid "Upgrade all of your Crossbow Infantry and Cavalry to Advanced rank."
+msgstr ""
+
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
 msgstr "Heuere professionelle Söldner an, in deiner Armee zu kämpfen."
@@ -1891,6 +1906,18 @@ msgstr "Kriegskompetenz"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries start at Advanced rank."
 msgstr "Söldner starten mit dem fortgeschrittenen Rang."
+
+#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsondescription
+msgid "Upgrade all of your citizen crossbowmen to Elite rank."
+msgstr ""
+
+#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsongenericName
+msgid "Elite Crossbow Infantry and Cavalry"
+msgstr ""
+
+#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsontooltip
+msgid "Upgrade all of your Crossbow Infantry and Cavalry to Elite rank."
+msgstr ""
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."

@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-22 19:28+0000\n"
+"POT-Creation-Date: 2022-02-28 08:09+0000\n"
+"PO-Revision-Date: 2022-03-02 14:16+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -785,6 +785,10 @@ msgstr "Gefrästes Holz"
 msgid "Acacia"
 msgstr "Akazie"
 
+#: simulation/templates/gaia/tree/acacia_large.xml:4
+msgid "Ancient Acacia"
+msgstr "Uralte Akazie"
+
 #: simulation/templates/gaia/tree/aleppo_pine.xml:4
 msgid "Aleppo Pine"
 msgstr "Aleppo-Kiefer"
@@ -820,14 +824,9 @@ msgstr "Junger Baobab"
 msgid "Hardy Bush"
 msgstr "Winterharter Busch"
 
-#: simulation/templates/gaia/tree/bush_steppe_01.xml:8
-#: simulation/templates/gaia/tree/bush_steppe_02.xml:8
-#: simulation/templates/gaia/tree/bush_steppe_03.xml:8
-#: simulation/templates/gaia/tree/bush_temperate.xml:4
-#: simulation/templates/gaia/tree/bush_temperate_winter.xml:4
-#: simulation/templates/gaia/tree/bush_tropic.xml:4
-msgid "Bush"
-msgstr "Busch"
+#: simulation/templates/gaia/tree/bush_mediterranean.xml:4
+msgid "Scrub"
+msgstr "Gestrüpp"
 
 #: simulation/templates/gaia/tree/carob.xml:4
 msgid "Carob"
@@ -898,6 +897,7 @@ msgid "Mangrove"
 msgstr "Mangrovenbaum"
 
 #: simulation/templates/gaia/tree/maple.xml:4
+#: simulation/templates/gaia/tree/maple_autumn.xml:4
 msgid "Maple"
 msgstr "Ahorn"
 
@@ -914,6 +914,7 @@ msgid "Oak"
 msgstr "Eiche"
 
 #: simulation/templates/gaia/tree/oak_holly.xml:4
+#: simulation/templates/gaia/tree/oak_holly_autumn.xml:4
 msgid "Holly Oak"
 msgstr "Steineiche"
 
@@ -996,9 +997,13 @@ msgstr "Surenbaum"
 msgid "Rainforest Tree"
 msgstr "Regenwald Baum"
 
-#: simulation/templates/mixins/builder.xml:40
+#: simulation/templates/mixins/builder.xml:39
 msgid "Builder"
 msgstr "Bauarbeiter"
+
+#: simulation/templates/mixins/bush.xml:4
+msgid "Bush"
+msgstr "Busch"
 
 #: simulation/templates/mixins/mercenary.xml:13
 msgid "Mercenary"
@@ -1024,92 +1029,92 @@ msgid ""
 " other civs"
 msgstr "Aufwertung in ein 5-Personen Haus für alle Kulturen mit diesen Häusern. Wird für andere Kulturen gelöscht."
 
-#: simulation/templates/special/formations/anti_cavalry.xml:6
-#: simulation/templates/special/formations/testudo.xml:6
+#: simulation/templates/special/formations/anti_cavalry.xml:5
+#: simulation/templates/special/formations/testudo.xml:5
 msgid "Melee Infantry only, requires at least 16."
 msgstr "Nur für Nahkampfinfanterie, erfordert mindestens 16."
 
-#: simulation/templates/special/formations/anti_cavalry.xml:7
+#: simulation/templates/special/formations/anti_cavalry.xml:25
 msgid "Anti Cavalry"
 msgstr "Gegen Kavallerie"
 
-#: simulation/templates/special/formations/battle_line.xml:5
+#: simulation/templates/special/formations/battle_line.xml:13
 msgid "Battle Line"
 msgstr "Gefechtslinie"
 
-#: simulation/templates/special/formations/box.xml:6
+#: simulation/templates/special/formations/box.xml:5
 msgid "Requires at least 4 Soldiers or Siege engines."
 msgstr "Benötigt mindestens 4 Soldaten oder Belagerungsmaschinen."
 
-#: simulation/templates/special/formations/box.xml:7
+#: simulation/templates/special/formations/box.xml:11
 msgid "Box"
 msgstr "Kasten"
 
-#: simulation/templates/special/formations/column_closed.xml:5
+#: simulation/templates/special/formations/column_closed.xml:10
 msgid "Forced March"
 msgstr "Zwangsmarsch"
 
-#: simulation/templates/special/formations/column_open.xml:5
+#: simulation/templates/special/formations/column_open.xml:10
 msgid "Column Open"
 msgstr "Offene Kolonnenformation"
 
-#: simulation/templates/special/formations/flank.xml:6
+#: simulation/templates/special/formations/flank.xml:5
 msgid "Requires at least 8 Soldiers or Siege engines."
 msgstr "Benötigt mindestens 8 Soldaten oder Belagerungsmaschinen."
 
-#: simulation/templates/special/formations/flank.xml:7
+#: simulation/templates/special/formations/flank.xml:11
 msgid "Flank"
 msgstr "Flankenformation"
 
-#: simulation/templates/special/formations/line_closed.xml:5
+#: simulation/templates/special/formations/line_closed.xml:9
 msgid "Close Order"
 msgstr "Geschlossene Schlachtordnung"
 
-#: simulation/templates/special/formations/line_open.xml:5
+#: simulation/templates/special/formations/line_open.xml:11
 msgid "Open Order"
 msgstr "Geöffnete Schlachtordnung"
 
-#: simulation/templates/special/formations/null.xml:5
+#: simulation/templates/special/formations/null.xml:7
 msgid "None"
 msgstr "Kein"
 
-#: simulation/templates/special/formations/phalanx.xml:6
+#: simulation/templates/special/formations/phalanx.xml:5
 msgid "Infantry Hoplites only, requires at least 10."
 msgstr "Nur Hopliten, erfordert mindestens 10."
 
-#: simulation/templates/special/formations/phalanx.xml:7
+#: simulation/templates/special/formations/phalanx.xml:23
 msgid "Phalanx"
 msgstr "Phalanx"
 
-#: simulation/templates/special/formations/scatter.xml:5
+#: simulation/templates/special/formations/scatter.xml:7
 msgid "Scatter"
 msgstr "Lose Formation"
 
-#: simulation/templates/special/formations/skirmish.xml:5
+#: simulation/templates/special/formations/skirmish.xml:4
 msgid "Ranged Soldiers only, requires at least 2."
 msgstr "Nur Fernkampfsoldaten, erfordert mindestens 2."
 
-#: simulation/templates/special/formations/skirmish.xml:6
+#: simulation/templates/special/formations/skirmish.xml:14
 msgid "Skirmish"
 msgstr "Lockere Formation"
 
-#: simulation/templates/special/formations/syntagma.xml:6
+#: simulation/templates/special/formations/syntagma.xml:5
 msgid "Infantry Pikemen only, requires at least 16."
 msgstr "Nur Pikeniere, erfordert mindestens 16."
 
-#: simulation/templates/special/formations/syntagma.xml:8
+#: simulation/templates/special/formations/syntagma.xml:29
 msgid "Syntagma"
 msgstr "Syntagma"
 
-#: simulation/templates/special/formations/testudo.xml:8
+#: simulation/templates/special/formations/testudo.xml:69
 msgid "Testudo"
 msgstr "Testudo"
 
-#: simulation/templates/special/formations/wedge.xml:6
+#: simulation/templates/special/formations/wedge.xml:5
 msgid "Cavalry only, requires at least 6."
 msgstr "Nur Kavallerie, erfordert mindestens 6."
 
-#: simulation/templates/special/formations/wedge.xml:7
+#: simulation/templates/special/formations/wedge.xml:16
 msgid "Wedge"
 msgstr "Keil"
 
@@ -1117,7 +1122,7 @@ msgstr "Keil"
 msgid "Spy"
 msgstr "Spion"
 
-#: simulation/templates/template_formation.xml:20
+#: simulation/templates/template_formation.xml:15
 msgid "Requires at least 2 Soldiers or Siege Engines."
 msgstr "Erfordert mindestens 2 Soldaten oder Belagerungswaffen."
 

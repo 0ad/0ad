@@ -22,8 +22,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-27 06:10+0000\n"
+"POT-Creation-Date: 2022-02-28 08:09+0000\n"
+"PO-Revision-Date: 2022-03-02 02:19+0000\n"
 "Last-Translator: Yuan Chang\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -293,16 +293,16 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Crossbow"
 msgstr "弩"
 
-#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:29
+#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:28
 msgid "Cavalry Crossbowman"
 msgstr "弩騎兵"
 
-#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:30
+#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:24
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:27
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:24
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:24
-#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:30
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:32
 msgid "Crossbowman"
 msgstr "弩兵"
 
@@ -609,7 +609,7 @@ msgstr "近戰步兵"
 msgid "Infantry Maceman"
 msgstr "戰錘步兵"
 
-#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:29
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:31
 msgid "Infantry Crossbowman"
 msgstr "弩步兵"
 
@@ -1303,6 +1303,7 @@ msgstr "Essedon"
 
 #: simulation/templates/units/brit/champion_chariot.xml:12
 #: simulation/templates/units/brit/hero_boudicca.xml:15
+#: simulation/templates/units/han/champion_chariot.xml:11
 #: simulation/templates/units/han/hero_wei_qing_chariot.xml:22
 #: simulation/templates/units/kush/hero_amanirenas.xml:16
 #: simulation/templates/units/maur/champion_chariot.xml:12
@@ -1685,6 +1686,14 @@ msgstr "孫武解難軍"
 msgid "Wu Wei Yin Cao Cao Guard"
 msgstr "武衛營曹操軍"
 
+#: simulation/templates/units/han/champion_chariot.xml:9
+msgid "Chinese War Chariot"
+msgstr "中國馬戰車"
+
+#: simulation/templates/units/han/champion_chariot.xml:10
+msgid "Zhanche"
+msgstr "戰車"
+
 #: simulation/templates/units/han/champion_infantry_archer.xml:5
 msgid "Palace Guard Archer"
 msgstr "禁衛弓兵"
@@ -1693,11 +1702,11 @@ msgstr "禁衛弓兵"
 msgid "Yǔ Lín"
 msgstr "羽林"
 
-#: simulation/templates/units/han/champion_infantry_swordsman.xml:5
-msgid "Palace Guard Swordsman"
-msgstr "禁衛劍兵"
+#: simulation/templates/units/han/champion_infantry_spearman.xml:5
+msgid "Palace Guard Spearman"
+msgstr "禁衛矛兵"
 
-#: simulation/templates/units/han/champion_infantry_swordsman.xml:6
+#: simulation/templates/units/han/champion_infantry_spearman.xml:6
 msgid "Hǔ Bēn"
 msgstr "虎賁"
 
@@ -1721,7 +1730,7 @@ msgstr "衛青"
 msgid "Shè Shǒu"
 msgstr "射手"
 
-#: simulation/templates/units/han/infantry_crossbowman_b.xml:18
+#: simulation/templates/units/han/infantry_crossbowman_b.xml:11
 msgid "Nǔ Shǒu"
 msgstr "弩手"
 
@@ -1804,7 +1813,7 @@ msgid ""
 "Use to boost the efficiency of nearby units and buildings. Garrison within a"
 " building to boost the efficiency of its production queue. Only han "
 "buildings can garrison ministers."
-msgstr "用於提高附近單位和建築物的效率。 在建築物內駐軍以提高其生產佇列的效率。 只有漢朝的建築物才能駐守官吏。"
+msgstr "用於提高附近單位和建築物的效率。 在建築物內駐守以提高其生產佇列的效率。 只有漢朝的建築物才能駐守官吏。"
 
 #: simulation/templates/units/han/support_minister.xml:34
 msgid "Minister"
@@ -1816,7 +1825,7 @@ msgstr "商人"
 
 #: simulation/templates/units/iber/catafalque.xml:9
 msgid "Mandonius"
-msgstr "Mandonius"
+msgstr "曼多尼厄斯"
 
 #: simulation/templates/units/iber/cavalry_javelineer_b.xml:6
 msgid "Kantabriako Zaldun"
@@ -1909,7 +1918,7 @@ msgstr "Merkatari"
 
 #: simulation/templates/units/kush/catafalque.xml:10
 msgid "Shanakdakheto"
-msgstr "Shanakdakheto"
+msgstr "夏娜達伽多"
 
 #: simulation/templates/units/kush/cavalry_javelineer_b.xml:7
 msgid "iry hr ssmwtt"
@@ -2471,7 +2480,7 @@ msgstr "Arštibara"
 
 #: simulation/templates/units/pers/catafalque.xml:9
 msgid "Artaxšaçā"
-msgstr "Artaxšaçā"
+msgstr "阿爾塔薛西斯"
 
 #: simulation/templates/units/pers/cavalry_archer_b.xml:7
 msgid "Parthian Horse Archer"
@@ -2834,7 +2843,7 @@ msgstr "埃及女性"
 
 #: simulation/templates/units/rome/catafalque.xml:9
 msgid "Lūcius Iūnius Brūtus"
-msgstr "Lūcius Iūnius Brūtus"
+msgstr "盧基烏斯．尤尼烏斯．布魯圖斯"
 
 #: simulation/templates/units/rome/cavalry_javelineer_b.xml:6
 msgid "Allied Cavalry"
@@ -2988,7 +2997,7 @@ msgstr "羅馬三列槳戰船"
 
 #: simulation/templates/units/rome/siege_onager.xml:26
 msgid "Onager"
-msgstr "Onager"
+msgstr "野驢砲"
 
 #: simulation/templates/units/rome/siege_ram.xml:16
 msgid "Ariēs"
@@ -3188,7 +3197,7 @@ msgstr "敘利亞女性"
 
 #: simulation/templates/units/spart/catafalque.xml:10
 msgid "Lycurgus"
-msgstr "Lycurgus"
+msgstr "來古格士"
 
 #: simulation/templates/units/spart/cavalry_javelineer_b.xml:7
 msgid "Perioikoi Cavalryman"

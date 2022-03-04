@@ -8,16 +8,16 @@
 # helinb
 # Julian
 # Kelvin Cooper
-# liulitchi
+# 柳离枝
 # 武军 李
 # 玉堂白鹤
 # 越 杨
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-22 06:12+0000\n"
-"Last-Translator: liulitchi\n"
+"POT-Creation-Date: 2022-02-28 08:09+0000\n"
+"PO-Revision-Date: 2022-03-01 04:34+0000\n"
+"Last-Translator: 柳离枝\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -779,6 +779,10 @@ msgstr "碎木"
 msgid "Acacia"
 msgstr "金合欢树"
 
+#: simulation/templates/gaia/tree/acacia_large.xml:4
+msgid "Ancient Acacia"
+msgstr "金合欢树"
+
 #: simulation/templates/gaia/tree/aleppo_pine.xml:4
 msgid "Aleppo Pine"
 msgstr "阿勒颇松树"
@@ -814,14 +818,9 @@ msgstr "小型猴面包树"
 msgid "Hardy Bush"
 msgstr "斑马"
 
-#: simulation/templates/gaia/tree/bush_steppe_01.xml:8
-#: simulation/templates/gaia/tree/bush_steppe_02.xml:8
-#: simulation/templates/gaia/tree/bush_steppe_03.xml:8
-#: simulation/templates/gaia/tree/bush_temperate.xml:4
-#: simulation/templates/gaia/tree/bush_temperate_winter.xml:4
-#: simulation/templates/gaia/tree/bush_tropic.xml:4
-msgid "Bush"
-msgstr "灌木"
+#: simulation/templates/gaia/tree/bush_mediterranean.xml:4
+msgid "Scrub"
+msgstr "灌木丛"
 
 #: simulation/templates/gaia/tree/carob.xml:4
 msgid "Carob"
@@ -892,6 +891,7 @@ msgid "Mangrove"
 msgstr "红树"
 
 #: simulation/templates/gaia/tree/maple.xml:4
+#: simulation/templates/gaia/tree/maple_autumn.xml:4
 msgid "Maple"
 msgstr "枫树"
 
@@ -908,6 +908,7 @@ msgid "Oak"
 msgstr "橡树"
 
 #: simulation/templates/gaia/tree/oak_holly.xml:4
+#: simulation/templates/gaia/tree/oak_holly_autumn.xml:4
 msgid "Holly Oak"
 msgstr "冬青橡木"
 
@@ -990,9 +991,13 @@ msgstr "香椿"
 msgid "Rainforest Tree"
 msgstr "雨林树木"
 
-#: simulation/templates/mixins/builder.xml:40
+#: simulation/templates/mixins/builder.xml:39
 msgid "Builder"
 msgstr "建筑工"
+
+#: simulation/templates/mixins/bush.xml:4
+msgid "Bush"
+msgstr "灌木"
 
 #: simulation/templates/mixins/mercenary.xml:13
 msgid "Mercenary"
@@ -1018,92 +1023,92 @@ msgid ""
 " other civs"
 msgstr "有房屋的文明，房屋容量改为5单位，其他文明的则删除"
 
-#: simulation/templates/special/formations/anti_cavalry.xml:6
-#: simulation/templates/special/formations/testudo.xml:6
+#: simulation/templates/special/formations/anti_cavalry.xml:5
+#: simulation/templates/special/formations/testudo.xml:5
 msgid "Melee Infantry only, requires at least 16."
 msgstr "至少需要 16 名近战步兵。"
 
-#: simulation/templates/special/formations/anti_cavalry.xml:7
+#: simulation/templates/special/formations/anti_cavalry.xml:25
 msgid "Anti Cavalry"
 msgstr "反骑"
 
-#: simulation/templates/special/formations/battle_line.xml:5
+#: simulation/templates/special/formations/battle_line.xml:13
 msgid "Battle Line"
 msgstr "迎击横队"
 
-#: simulation/templates/special/formations/box.xml:6
+#: simulation/templates/special/formations/box.xml:5
 msgid "Requires at least 4 Soldiers or Siege engines."
 msgstr "需要至少 4 名战士或攻城器械。"
 
-#: simulation/templates/special/formations/box.xml:7
+#: simulation/templates/special/formations/box.xml:11
 msgid "Box"
 msgstr "回形阵"
 
-#: simulation/templates/special/formations/column_closed.xml:5
+#: simulation/templates/special/formations/column_closed.xml:10
 msgid "Forced March"
 msgstr "行军纵队"
 
-#: simulation/templates/special/formations/column_open.xml:5
+#: simulation/templates/special/formations/column_open.xml:10
 msgid "Column Open"
 msgstr "分散纵队"
 
-#: simulation/templates/special/formations/flank.xml:6
+#: simulation/templates/special/formations/flank.xml:5
 msgid "Requires at least 8 Soldiers or Siege engines."
 msgstr "需要至少 8 名战士或攻城器械。"
 
-#: simulation/templates/special/formations/flank.xml:7
+#: simulation/templates/special/formations/flank.xml:11
 msgid "Flank"
 msgstr "两翼阵"
 
-#: simulation/templates/special/formations/line_closed.xml:5
+#: simulation/templates/special/formations/line_closed.xml:9
 msgid "Close Order"
 msgstr "横队"
 
-#: simulation/templates/special/formations/line_open.xml:5
+#: simulation/templates/special/formations/line_open.xml:11
 msgid "Open Order"
 msgstr "分散横队"
 
-#: simulation/templates/special/formations/null.xml:5
+#: simulation/templates/special/formations/null.xml:7
 msgid "None"
 msgstr "无"
 
-#: simulation/templates/special/formations/phalanx.xml:6
+#: simulation/templates/special/formations/phalanx.xml:5
 msgid "Infantry Hoplites only, requires at least 10."
 msgstr "至少需要 10 名铜盾枪兵。"
 
-#: simulation/templates/special/formations/phalanx.xml:7
+#: simulation/templates/special/formations/phalanx.xml:23
 msgid "Phalanx"
 msgstr "密集横队"
 
-#: simulation/templates/special/formations/scatter.xml:5
+#: simulation/templates/special/formations/scatter.xml:7
 msgid "Scatter"
 msgstr "分散"
 
-#: simulation/templates/special/formations/skirmish.xml:5
+#: simulation/templates/special/formations/skirmish.xml:4
 msgid "Ranged Soldiers only, requires at least 2."
 msgstr "至少需要 2 名远程士兵。"
 
-#: simulation/templates/special/formations/skirmish.xml:6
+#: simulation/templates/special/formations/skirmish.xml:14
 msgid "Skirmish"
 msgstr "游击横队"
 
-#: simulation/templates/special/formations/syntagma.xml:6
+#: simulation/templates/special/formations/syntagma.xml:5
 msgid "Infantry Pikemen only, requires at least 16."
 msgstr "至少需要 16 名标枪兵。"
 
-#: simulation/templates/special/formations/syntagma.xml:8
+#: simulation/templates/special/formations/syntagma.xml:29
 msgid "Syntagma"
 msgstr "长枪横队"
 
-#: simulation/templates/special/formations/testudo.xml:8
+#: simulation/templates/special/formations/testudo.xml:69
 msgid "Testudo"
 msgstr "龟型阵"
 
-#: simulation/templates/special/formations/wedge.xml:6
+#: simulation/templates/special/formations/wedge.xml:5
 msgid "Cavalry only, requires at least 6."
 msgstr "至少需要 6 名骑兵。"
 
-#: simulation/templates/special/formations/wedge.xml:7
+#: simulation/templates/special/formations/wedge.xml:16
 msgid "Wedge"
 msgstr "楔形阵"
 
@@ -1111,7 +1116,7 @@ msgstr "楔形阵"
 msgid "Spy"
 msgstr "间谍"
 
-#: simulation/templates/template_formation.xml:20
+#: simulation/templates/template_formation.xml:15
 msgid "Requires at least 2 Soldiers or Siege Engines."
 msgstr "需要至少 2 名士兵或攻城器械。"
 

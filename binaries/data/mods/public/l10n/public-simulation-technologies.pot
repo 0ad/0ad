@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2022-02-28 08:09+0000\n"
-"PO-Revision-Date: 2022-02-28 08:09+0000\n"
+"POT-Creation-Date: 2022-03-04 08:09+0000\n"
+"PO-Revision-Date: 2022-03-04 08:09+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -48,7 +48,6 @@ msgstr ""
 #: simulation/data/technologies/poison_blades.json:requirementsTooltip
 #: simulation/data/technologies/pop_house_02.json:requirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.json:requirementsTooltip
-#: simulation/data/technologies/repeating_crossbows.json:requirementsTooltip
 #: simulation/data/technologies/ship_cost_time.json:requirementsTooltip
 #: simulation/data/technologies/ship_health.json:requirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.json:requirementsTooltip
@@ -489,7 +488,7 @@ msgid "Crossbow Training"
 msgstr ""
 
 #: simulation/data/technologies/crossbow_training.json:tooltip
-msgid "Crossbow Infantry and Cavalry −1 second firing time −20% train time."
+msgid "Crossbow Infantry and Cavalry −20% firing time −20% train time."
 msgstr ""
 
 #: simulation/data/technologies/equine_transports.json:description
@@ -1189,18 +1188,6 @@ msgstr ""
 
 #: simulation/data/technologies/reformed_army_sele.json:tooltip
 msgid "Unlock the Champion Infantry Swordsman."
-msgstr ""
-
-#: simulation/data/technologies/repeating_crossbows.json:description
-msgid "Crossbows equiped with a repeating mechanism and dart magazine increase firing rate."
-msgstr ""
-
-#: simulation/data/technologies/repeating_crossbows.json:genericName
-msgid "Repeating Crossbows"
-msgstr ""
-
-#: simulation/data/technologies/repeating_crossbows.json:tooltip
-msgid "Crossbow Infantry and Cavalry −1 second firing time, but +20 metal cost."
 msgstr ""
 
 #: simulation/data/technologies/ship_cost_time.json:description

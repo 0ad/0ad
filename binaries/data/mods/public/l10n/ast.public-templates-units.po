@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-26 01:32+0000\n"
+"POT-Creation-Date: 2022-02-28 08:09+0000\n"
+"PO-Revision-Date: 2022-03-02 22:21+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "Catafalco"
 
 #: simulation/templates/template_unit_catafalque.xml:20
 msgid "A catafalque that holds the remains of a great leader."
-msgstr "Un carru que lheva los restos d’un gran gubernador."
+msgstr "Un carru que lheva los restos d’una gran lheyenda."
 
 #: simulation/templates/template_unit_cavalry.xml:5
 #: simulation/templates/template_unit_champion.xml:5
@@ -59,7 +59,7 @@ msgstr "Éqüite"
 #: simulation/templates/template_unit_support_healer.xml:29
 msgctxt "Rank"
 msgid "Basic"
-msgstr "Básicu/a"
+msgstr "Básic@"
 
 #: simulation/templates/template_unit_cavalry.xml:35
 #: simulation/templates/template_unit_champion.xml:14
@@ -279,16 +279,16 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Crossbow"
 msgstr "Manuballista"
 
-#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:29
+#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:28
 msgid "Cavalry Crossbowman"
 msgstr "Éqüite manuballistariu"
 
-#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:30
+#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:24
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:27
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:24
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:24
-#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:30
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:32
 msgid "Crossbowman"
 msgstr "Manuballistariu"
 
@@ -585,7 +585,7 @@ msgstr "Spathariu heroicu"
 #: simulation/templates/template_unit_support_female_citizen.xml:37
 #: simulation/templates/template_unit_support_slave.xml:21
 msgid "Worker"
-msgstr "Obreiru/a"
+msgstr "Obreir@"
 
 #: simulation/templates/template_unit_infantry_melee.xml:7
 msgid "Melee Infantry"
@@ -595,7 +595,7 @@ msgstr "Pédite combatiente"
 msgid "Infantry Maceman"
 msgstr "Pédite clavador"
 
-#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:29
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:31
 msgid "Infantry Crossbowman"
 msgstr "Pédite manuballistariu"
 
@@ -809,11 +809,11 @@ msgstr "Siervu"
 
 #: simulation/templates/template_unit_support_slave.xml:20
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr "Obreiru de vida finita. Da-se-y bien extraher minerales & valtar árboles."
+msgstr "Obreiru de vida finita. Da-se-lhi bien extraher minerales & valtar árboles."
 
 #: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
-msgstr "Truœca recursos entre mercahos colligahos."
+msgstr "Truœca recursos entre mercahos associahos."
 
 #: simulation/templates/units/athen/catafalque.xml:8
 msgid "Solon"
@@ -1289,6 +1289,7 @@ msgstr "Essedon"
 
 #: simulation/templates/units/brit/champion_chariot.xml:12
 #: simulation/templates/units/brit/hero_boudicca.xml:15
+#: simulation/templates/units/han/champion_chariot.xml:11
 #: simulation/templates/units/han/hero_wei_qing_chariot.xml:22
 #: simulation/templates/units/kush/hero_amanirenas.xml:16
 #: simulation/templates/units/maur/champion_chariot.xml:12
@@ -1671,19 +1672,27 @@ msgstr "Provocador sun wu"
 msgid "Wu Wei Yin Cao Cao Guard"
 msgstr "Contígëru wu wei yin cao cao"
 
+#: simulation/templates/units/han/champion_chariot.xml:9
+msgid "Chinese War Chariot"
+msgstr "Carru béllicu tsinu"
+
+#: simulation/templates/units/han/champion_chariot.xml:10
+msgid "Zhanche"
+msgstr "Zhanche"
+
 #: simulation/templates/units/han/champion_infantry_archer.xml:5
 msgid "Palace Guard Archer"
-msgstr "Curador de l palaço cun arcu"
+msgstr "Arqueiru palatinu"
 
 #: simulation/templates/units/han/champion_infantry_archer.xml:6
 msgid "Yǔ Lín"
 msgstr "Yǔ Lín"
 
-#: simulation/templates/units/han/champion_infantry_swordsman.xml:5
-msgid "Palace Guard Swordsman"
-msgstr "Curador de l palaço cun spada"
+#: simulation/templates/units/han/champion_infantry_spearman.xml:5
+msgid "Palace Guard Spearman"
+msgstr "Hastariu palatinu"
 
-#: simulation/templates/units/han/champion_infantry_swordsman.xml:6
+#: simulation/templates/units/han/champion_infantry_spearman.xml:6
 msgid "Hǔ Bēn"
 msgstr "Hǔ Bēn"
 
@@ -1707,7 +1716,7 @@ msgstr "Wèi Qīng"
 msgid "Shè Shǒu"
 msgstr "Shè Shǒu"
 
-#: simulation/templates/units/han/infantry_crossbowman_b.xml:18
+#: simulation/templates/units/han/infantry_crossbowman_b.xml:11
 msgid "Nǔ Shǒu"
 msgstr "Nǔ Shǒu"
 
@@ -2658,7 +2667,7 @@ msgstr "Tamkarum Arami"
 msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
-msgstr "Cambia recursos entre mercahos proprios & mercahos colligahos. Los persas frúin d’una ventayya de l +25% nel commercio terrestre."
+msgstr "Cambia recursos entre mercahos proprios & mercahos associahos. Los persas frúin d’una ventayya de l +25% nel commercio terrestre."
 
 #: simulation/templates/units/plane.xml:5
 msgctxt "Name of an attack of a World War II fighter plane."

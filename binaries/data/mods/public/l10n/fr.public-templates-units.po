@@ -46,8 +46,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-21 09:24+0000\n"
+"POT-Creation-Date: 2022-02-28 08:09+0000\n"
+"PO-Revision-Date: 2022-02-28 09:25+0000\n"
 "Last-Translator: Transifex Bot\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -317,16 +317,16 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Crossbow"
 msgstr "Arbalète"
 
-#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:29
+#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:28
 msgid "Cavalry Crossbowman"
 msgstr "Arbalétrier monté"
 
-#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:30
+#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:24
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:27
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:24
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:24
-#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:30
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:32
 msgid "Crossbowman"
 msgstr "Arbalétrier"
 
@@ -633,7 +633,7 @@ msgstr "Infanterie de mêlée"
 msgid "Infantry Maceman"
 msgstr "Fantassin à la masse"
 
-#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:29
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:31
 msgid "Infantry Crossbowman"
 msgstr "Fantassin à arbalète"
 
@@ -1327,6 +1327,7 @@ msgstr "Essedon"
 
 #: simulation/templates/units/brit/champion_chariot.xml:12
 #: simulation/templates/units/brit/hero_boudicca.xml:15
+#: simulation/templates/units/han/champion_chariot.xml:11
 #: simulation/templates/units/han/hero_wei_qing_chariot.xml:22
 #: simulation/templates/units/kush/hero_amanirenas.xml:16
 #: simulation/templates/units/maur/champion_chariot.xml:12
@@ -1709,6 +1710,14 @@ msgstr ""
 msgid "Wu Wei Yin Cao Cao Guard"
 msgstr ""
 
+#: simulation/templates/units/han/champion_chariot.xml:9
+msgid "Chinese War Chariot"
+msgstr ""
+
+#: simulation/templates/units/han/champion_chariot.xml:10
+msgid "Zhanche"
+msgstr ""
+
 #: simulation/templates/units/han/champion_infantry_archer.xml:5
 msgid "Palace Guard Archer"
 msgstr ""
@@ -1717,11 +1726,11 @@ msgstr ""
 msgid "Yǔ Lín"
 msgstr ""
 
-#: simulation/templates/units/han/champion_infantry_swordsman.xml:5
-msgid "Palace Guard Swordsman"
+#: simulation/templates/units/han/champion_infantry_spearman.xml:5
+msgid "Palace Guard Spearman"
 msgstr ""
 
-#: simulation/templates/units/han/champion_infantry_swordsman.xml:6
+#: simulation/templates/units/han/champion_infantry_spearman.xml:6
 msgid "Hǔ Bēn"
 msgstr ""
 
@@ -1745,7 +1754,7 @@ msgstr ""
 msgid "Shè Shǒu"
 msgstr ""
 
-#: simulation/templates/units/han/infantry_crossbowman_b.xml:18
+#: simulation/templates/units/han/infantry_crossbowman_b.xml:11
 msgid "Nǔ Shǒu"
 msgstr ""
 

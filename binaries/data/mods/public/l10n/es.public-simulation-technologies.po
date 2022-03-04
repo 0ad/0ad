@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-25 08:08+0000\n"
-"PO-Revision-Date: 2022-02-25 23:20+0000\n"
+"POT-Creation-Date: 2022-02-28 08:09+0000\n"
+"PO-Revision-Date: 2022-03-01 12:24+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -112,6 +112,8 @@ msgstr "Agogé"
 #: simulation/data/technologies/unlock_champion_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_chariots.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
+#: simulation/data/technologies/unlock_spies.jsonrequirementsTooltip
+#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsonrequirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "Se desbloquea en la fase urbana."
@@ -158,6 +160,7 @@ msgstr "Entrenamiento con arco"
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
+#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "Se desbloquea en la fase intermedia."
 
@@ -1888,6 +1891,18 @@ msgid ""
 "Allows bribing the units of other players in order to share their vision."
 msgstr "Permite sobornar a las unidades de otros jugadores para compartir lo que ven."
 
+#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsondescription
+msgid "Upgrade all of your citizen crossbowmen to Advanced rank."
+msgstr "Promociona todos tus ballesteros a rango superior."
+
+#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsongenericName
+msgid "Advanced Crossbow Infantry and Cavalry"
+msgstr "Ballesteros de infantería y caballería avanzados"
+
+#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsontooltip
+msgid "Upgrade all of your Crossbow Infantry and Cavalry to Advanced rank."
+msgstr "Promociona todos tus ballesteros de infantería y caballería a rango superior."
+
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
 msgstr "Contrata mercenarios profesionales para luchar en tu ejército."
@@ -1899,6 +1914,18 @@ msgstr "Pericia guerrera"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries start at Advanced rank."
 msgstr "Los mercenarios comienzan con un rango superior."
+
+#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsondescription
+msgid "Upgrade all of your citizen crossbowmen to Elite rank."
+msgstr "Promociona todos tus ballesteros a rango de élite."
+
+#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsongenericName
+msgid "Elite Crossbow Infantry and Cavalry"
+msgstr "Ballesteros de infantería y caballería de élite"
+
+#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsontooltip
+msgid "Upgrade all of your Crossbow Infantry and Cavalry to Elite rank."
+msgstr "Promociona todos tus ballesteros de infantería y caballería a rango de élite."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."

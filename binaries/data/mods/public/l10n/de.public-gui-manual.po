@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-11 07:08+0000\n"
-"PO-Revision-Date: 2021-10-19 16:16+0000\n"
-"Last-Translator: Heraklit of Ephesos\n"
+"PO-Revision-Date: 2022-02-28 13:09+0000\n"
+"Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -203,48 +203,48 @@ msgstr "  hotkey.exit – Das Spiel unverzüglich beenden, ohne nach einer Best�
 
 #: gui/manual/intro.txt:44
 msgid "  hotkey.togglefullscreen – Toggle between fullscreen and windowed"
-msgstr " hotkey.togglefullscreen – Umschalten zwischen Vollbild und Fenstermodus"
+msgstr "  hotkey.togglefullscreen – Umschalten zwischen Vollbild und Fenstermodus"
 
 #: gui/manual/intro.txt:45
 msgid "  hotkey.console.toggle – Toggle console"
-msgstr " hotkey.console.toggle – Konsole umschalten"
+msgstr "  hotkey.console.toggle – Konsole umschalten"
 
 #: gui/manual/intro.txt:46
 msgid "  hotkey.fps.toggle – Toggle frame counter (FPS)"
-msgstr " hotkey.fps.toggle – Bildratenanzeige (FPS) umschalten"
+msgstr "  hotkey.fps.toggle – Bildratenanzeige (FPS) umschalten"
 
 #: gui/manual/intro.txt:47
 msgid ""
 "  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
 "displays of information)"
-msgstr " hotkey.profile.toggle – Echtzeit-Profiler umschalten (wechselt durch die Informationsanzeigen)"
+msgstr "  hotkey.profile.toggle – Echtzeit-Profiler umschalten (wechselt durch die Informationsanzeigen)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  hotkey.profile.save – Save current profiler data to “logs/profile.txt”"
-msgstr " hotkey.profile.save – Aktuelle Profiler-Daten unter „logs/profile.txt“ abspeichern"
+msgstr "  hotkey.profile.save – Aktuelle Profiler-Daten unter „logs/profile.txt“ abspeichern"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "  hotkey.screenshot – Take screenshot (in .png format, location is displayed"
 " in the top left of the GUI after the file has been saved, and can also be "
 "seen in the console/logs if you miss it there)"
-msgstr " hotkey.screenshot – Screenshot machen (im .png-Format, der Speicherort wird oben links angezeigt, nachdem die Datei gespeichert wurde, und kann auch unter console/logs nachgeschaut werden, wenn du es verpasst)"
+msgstr "  hotkey.screenshot – Screenshot machen (im .png-Format, der Speicherort wird oben links angezeigt, nachdem die Datei gespeichert wurde, und kann auch unter console/logs nachgeschaut werden, wenn du es verpasst)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "  hotkey.bigscreenshot – Take huge screenshot (6400×4800 pixels, in .bmp "
 "format, location is displayed in the top left of the GUI after the file has "
 "been saved, and can also be seen in the console/logs if you miss it there)"
-msgstr " hotkey.bigscreenshot – Großen Screenshot machen (6400 × 4800 Pixel im .bmp-Format, der Speicherort wird oben links angezeigt, nachdem die Datei gespeichert wurde, und kann auch unter console/logs nachgeschaut werden, wenn du es verpasst)"
+msgstr "  hotkey.bigscreenshot – Großen Screenshot machen (6400 × 4800 Pixel im .bmp-Format, der Speicherort wird oben links angezeigt, nachdem die Datei gespeichert wurde, und kann auch unter console/logs nachgeschaut werden, wenn du es verpasst)"
 
 #: gui/manual/intro.txt:51
 msgid "  hotkey.tab.next – Switch to the next tab"
-msgstr " hotkey.tab.next – Zum nächsten Tab wechseln"
+msgstr "  hotkey.tab.next – Zum nächsten Tab wechseln"
 
 #: gui/manual/intro.txt:52
 msgid "  hotkey.tab.prev – Switch to the previous tab"
-msgstr " hotkey.tab.prev – Zum vorherigen Tab wechseln"
+msgstr "  hotkey.tab.prev – Zum vorherigen Tab wechseln"
 
 #: gui/manual/intro.txt:54
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
@@ -288,35 +288,35 @@ msgstr "  hotkey.session.gui.menu.toggle – Spielmenü umschalten"
 
 #: gui/manual/intro.txt:62
 msgid "  hotkey.timeelapsedcounter.toggle – Toggle time elapsed counter"
-msgstr " hotkey.timeelapsedcounter.toggle – Vergangene Spielzeit umschalten"
+msgstr "hotkey.timeelapsedcounter.toggle – Vergangene Spielzeit umschalten"
 
 #: gui/manual/intro.txt:63
 msgid "  hotkey.cancel – Close all dialogs (chat, menu)"
-msgstr " hotkey.cancel – Alle Dialoge (Chat, Menü) schließen"
+msgstr "  hotkey.cancel – Alle Dialoge (Chat, Menü) schließen"
 
 #: gui/manual/intro.txt:64
 msgid "  hotkey.confirm – Open chat or send message"
-msgstr " hotkey.confirm – Chat öffnen oder Nachricht senden"
+msgstr "  hotkey.confirm – Chat öffnen oder Nachricht senden"
 
 #: gui/manual/intro.txt:65
 msgid "  hotkey.teamchat – Send team chat"
-msgstr " hotkey.teamchat – Team-Chat senden"
+msgstr "  hotkey.teamchat – Team-Chat senden"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "  hotkey.privatechat – Chat with the previously selected private chat "
 "partner"
-msgstr " hotkey.privatechat – Mit dem zuvor gewählten privaten Chatpartner chatten"
+msgstr "  hotkey.privatechat – Mit dem zuvor gewählten privaten Chatpartner chatten"
 
 #: gui/manual/intro.txt:67
 msgid "  hotkey.pause – Pause or resume the game"
-msgstr " hotkey.pause – Pausieren oder Spiel fortsetzen"
+msgstr "  hotkey.pause – Pausieren oder Spiel fortsetzen"
 
 #: gui/manual/intro.txt:68
 msgid ""
 "  hotkey.session.kill – Delete currently selected unit(s)/structure(s), ask "
 "for confirmation"
-msgstr " hotkey.session.kill – Ausgewählte Einheit(en)/Gebäude löschen, um Bestätigung fragen"
+msgstr "  hotkey.session.kill – Ausgewählte Einheit(en)/Gebäude löschen, um Bestätigung fragen"
 
 #: gui/manual/intro.txt:69
 msgid ""
@@ -349,11 +349,11 @@ msgstr "  hotkey.selection.cancel – Alle Einheiten abwählen, Gebäudeplatzier
 
 #: gui/manual/intro.txt:74
 msgid "  hotkey.selection.idlebuilder – Select idle builder"
-msgstr " hotkey.selection.idlebuilder – Untätigen Bauarbeiter auswählen"
+msgstr "  hotkey.selection.idlebuilder – Untätigen Bauarbeiter auswählen"
 
 #: gui/manual/intro.txt:75
 msgid "  hotkey.selection.idlewarrior – Select idle fighter"
-msgstr " hotkey.selection.idlewarrior – Untätigen Kämpfer auswählen"
+msgstr "  hotkey.selection.idlewarrior – Untätigen Kämpfer auswählen"
 
 #: gui/manual/intro.txt:76
 msgid ""
@@ -367,7 +367,7 @@ msgstr "  hotkey.selection.idleunit – Untätige Einheit auswählen"
 
 #: gui/manual/intro.txt:78
 msgid "  hotkey.session.stop – Stop (halt) the currently selected units"
-msgstr " hotkey.session.stop – Die derzeit ausgewählten Einheiten anhalten"
+msgstr "  hotkey.session.stop – Die derzeit ausgewählten Einheiten anhalten"
 
 #: gui/manual/intro.txt:79
 msgid "  hotkey.session.backtowork – The unit will go back to work"
@@ -377,13 +377,13 @@ msgstr "  hotkey.session.backtowork – Diese Einheit wird die Arbeit wieder auf
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
-msgstr " hotkey.session.unload – Alle Einheiten aus dem gewählten Gebäude ausquartieren"
+msgstr "  hotkey.session.unload – Alle Einheiten aus dem gewählten Gebäude ausquartieren"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
-msgstr "  hotkey.selection.group.save.1 – Erstelle Kontrollgruppe 1 (standardmäßig, bzw. 2, 3...) aus den ausgewählten Einheit(en)/Gebäud(en)"
+msgstr "  hotkey.selection.group.save.1 – Erstelle Kontrollgruppe 1 (standardmäßig, bzw. 2, 3...) aus den ausgewählten Einheit(en)/Gebäud(en)"
 
 #: gui/manual/intro.txt:82
 msgid ""
@@ -490,20 +490,20 @@ msgstr "  hotkey.session.patrol + Rechtsklick – Patrouillieren"
 msgid ""
 "  hotkey.session.queue + Right Click – Queue the move/build/gather/etc. "
 "order"
-msgstr "  hotkey.session.queue + Rechtsklick – Den Bewegungs-/Bau-/Sammel-/etc. Befehl in die Warteschlange setzen"
+msgstr "  hotkey.session.queue + Rechtsklick – Den Bewegungs-/Bau-/Sammel-/etc. Befehl in die Warteschlange setzen"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "  hotkey.session.pushorderfront + Right Click – Modifier to push any order "
 "in front of the order queue."
-msgstr "hotkey.session.pushorderfront + Rechts-Klick – Modifizierer zum Voranstellen eines jeglichen Auftrags in der Reihe der Aufträge"
+msgstr "hotkey.session.pushorderfront + Rechts-Klick – Modifikator zum Voranstellen eines jeglichen Auftrags in der Reihe der Aufträge"
 
 #: gui/manual/intro.txt:105
 msgid ""
 "  hotkey.session.orderone + Right Click – Order one unit from the current "
 "selection to move/build/gather/etc. and unselect it. Used to quickly "
 "dispatch units with specific tasks"
-msgstr " hotkey.session.orderone + Rechtsklick – Einer Einheit aus der momentanen Auswahl einen Befehl (Bewegen/Bauen/Sammeln/etc.) erteilen und sie abwählen. Wird benutzt, um Einheiten schnell spezifische Aufgaben zuzuweisen"
+msgstr "  hotkey.session.orderone + Rechtsklick – Einer Einheit aus der momentanen Auswahl einen Befehl (Bewegen/Bauen/Sammeln/etc.) erteilen und sie abwählen. Wird benutzt, um Einheiten schnell spezifische Aufgaben zuzuweisen"
 
 #: gui/manual/intro.txt:106
 msgid ""
@@ -533,7 +533,7 @@ msgstr "  hotkey.selection.militaryonly + Linksziehen über Einheiten auf der Ka
 msgid ""
 "  hotkey.selection.nonmilitaryonly + Left Drag over units on map – Only "
 "select non-military units"
-msgstr "  hotkey.selection.nonmilitaryonly + Linksziehen über Einheiten auf der Karte – Nur nichtmilitärische Einheiten auswählen"
+msgstr "  hotkey.selection.nonmilitaryonly + Linksziehen über Einheiten auf der Karte – Nur nichtmilitärische Einheiten auswählen"
 
 #: gui/manual/intro.txt:111
 msgid ""
@@ -545,13 +545,13 @@ msgstr "  hotkey.selection.idleonly + Linksziehen über Einheiten auf der Karte 
 msgid ""
 "  hotkey.selection.woundedonly + Left Drag over units on map – Only select "
 "wounded units"
-msgstr "  hotkey.selection.woundedonly + Linksziehen über Einheiten auf der Karte – Nur verwundete Einheiten auswählen"
+msgstr "  hotkey.selection.woundedonly + Linksziehen über Einheiten auf der Karte – Nur verwundete Einheiten auswählen"
 
 #: gui/manual/intro.txt:113
 msgid ""
 "  hotkey.selection.singleselection – Modifier to select units individually, "
 "opposed to per formation."
-msgstr "hotkey.selection.singleselection – Modifizierer zum individuellen Auswählen von Einheiten, im Gegensatz zur Formation."
+msgstr "hotkey.selection.singleselection – Modifikator zum individuellen Auswählen von Einheiten, im Gegensatz zur Formation."
 
 #: gui/manual/intro.txt:114
 msgid ""
@@ -591,7 +591,7 @@ msgstr "  hotkey.session.snaptoedges + Maus nahe an Gebäuden – Neues Gebäude
 
 #: gui/manual/intro.txt:120
 msgid "  hotkey.session.flare + Right Click – Send a flare to your allies"
-msgstr "hotkey.session.flare + Rechtsclick – Sende ein Signal an deine Verbündeten"
+msgstr "  hotkey.session.flare + Rechtsklick – Sende ein Signal an deine Verbündeten"
 
 #: gui/manual/intro.txt:122
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
@@ -612,13 +612,13 @@ msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr " hotkey.wireframe – Drahtgittermodelle (wireframe) umschalten (einmal drücken, um Drahtgitter über die Texturen zu legen, ein weiteres Mal, um nur mit Texturen eingefärbte Drahtgitter zu bekommen, und ein drittes Mal, um in den normalen texturierten Modus zu wechseln)"
+msgstr "  hotkey.wireframe – Drahtgittermodelle (wireframe) umschalten (einmal drücken, um Drahtgitter über die Texturen zu legen, ein weiteres Mal, um nur mit Texturen eingefärbte Drahtgitter zu bekommen, und ein drittes Mal, um in den normalen texturierten Modus zu wechseln)"
 
 #: gui/manual/intro.txt:126
 msgid ""
 "  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
 "performance boost)"
-msgstr " hotkey.silhouettes – Umrisse von Einheiten ein-/ausschalten (kann einen leichten Performancegewinn bringen)"
+msgstr "  hotkey.silhouettes – Umrisse von Einheiten ein-/ausschalten (kann einen leichten Performancegewinn bringen)"
 
 #: gui/manual/intro.txt:127
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
@@ -656,7 +656,7 @@ msgstr "  hotkey.camera.down – Kamera nach unten bewegen"
 
 #: gui/manual/intro.txt:135
 msgid "  hotkey.camera.left – Pan screen left"
-msgstr "  hotkey.camera.left – Kamera nach links bewegen"
+msgstr "  hotkey.camera.left – Kamera nach links bewegen"
 
 #: gui/manual/intro.txt:136
 msgid "  hotkey.camera.right – Pan screen right"
@@ -664,11 +664,11 @@ msgstr "  hotkey.camera.right – Kamera nach rechts bewegen"
 
 #: gui/manual/intro.txt:137
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
-msgstr "  hotkey.camera.rotate.up – Kamera nach oben schwenken"
+msgstr "  hotkey.camera.rotate.up – Kamera nach oben schwenken"
 
 #: gui/manual/intro.txt:138
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
-msgstr " hotkey.camera.rotate.down – Kamera nach unten schwenken"
+msgstr "  hotkey.camera.rotate.down – Kamera nach unten schwenken"
 
 #: gui/manual/intro.txt:139
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
@@ -698,7 +698,7 @@ msgstr "  hotkey.camera.follow – Gewählter Einheit folgen (Kamera bewegen, um
 
 #: gui/manual/intro.txt:144
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
-msgstr "  hotkey.camera.reset – Kamerazoom und -ausrichtung zurücksetzen"
+msgstr "  hotkey.camera.reset – Kamerazoom und -ausrichtung zurücksetzen"
 
 #: gui/manual/intro.txt:145
 msgid ""
@@ -741,7 +741,7 @@ msgstr "[font=\"sans-bold-14\"]Beim Laden eines Spielstand[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:155
 msgid "  hotkey.cancel – Cancel"
-msgstr "hotkey.cancel – Abbrechen"
+msgstr "  hotkey.cancel – Abbrechen"
 
 #: gui/manual/intro.txt:156
 msgid ""
