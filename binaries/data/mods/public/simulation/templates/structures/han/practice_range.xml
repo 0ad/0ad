@@ -1,35 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_military_range">
-  <Footprint>
-    <Square depth="24.0" width="28.0"/>
-    <Height>5.0</Height>
-  </Footprint>
-  <GarrisonHolder>
-    <List datatype="tokens">Minister</List>
-  </GarrisonHolder>
-  <Identity>
-    <Civ>han</Civ>
-    <SpecificName>Bǎ Chǎng</SpecificName>
-  </Identity>
-  <Obstruction>
-    <Static depth="22.0" width="26.0"/>
-  </Obstruction>
-  <Researcher>
-    <Technologies datatype="tokens">
-      archer_attack_spread
-      special_crossbow_tradition
-    </Technologies>
-  </Researcher>
+<Entity parent="structures/han/range">
   <Trainer>
     <Entities datatype="tokens">
-      units/{civ}/infantry_crossbowman_b
       -units/{civ}/champion_infantry_javelineer
       -units/{civ}/champion_infantry_slinger
       -units/{civ}/champion_infantry_archer
     </Entities>
   </Trainer>
-  <VisualActor>
-    <Actor>structures/han/range.xml</Actor>
-    <FoundationActor>structures/fndn_7x7.xml</FoundationActor>
-  </VisualActor>
 </Entity>
