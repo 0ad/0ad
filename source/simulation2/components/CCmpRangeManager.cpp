@@ -349,7 +349,7 @@ struct SerializeHelper<EntityData>
  * (TODO: would be nice to make it cleverer, so e.g. mountains and walls
  * can block vision)
  */
-class CCmpRangeManager : public ICmpRangeManager
+class CCmpRangeManager final : public ICmpRangeManager
 {
 public:
 	static void ClassInit(CComponentManager& componentManager)

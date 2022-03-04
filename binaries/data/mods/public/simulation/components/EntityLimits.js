@@ -67,10 +67,12 @@ const BUILD = "build";
 EntityLimits.prototype.Init = function()
 {
 	this.limit = {};
-	this.count = {};	// counts entities which change the limit of the given category
+	// Counts entities which change the limit of the given category.
+	this.count = {};
 	this.changers = {};
 	this.removers = {};
-	this.classCount = {};	// counts entities with the given class, used in the limit removal
+	// Counts entities with the given class, used in the limit removal.
+	this.classCount = {};
 	this.removedLimit = {};
 	this.matchTemplateCount = {};
 	for (var category in this.template.Limits)
@@ -85,7 +87,8 @@ EntityLimits.prototype.Init = function()
 		}
 		if (category in this.template.LimitRemovers)
 		{
-			this.removedLimit[category] = this.limit[category];	// keep a copy of removeable limits for possible restoration
+			// Keep a copy of removable limits for possible restoration.
+			this.removedLimit[category] = this.limit[category];
 			this.removers[category] = {};
 			for (var c in this.template.LimitRemovers[category])
 			{

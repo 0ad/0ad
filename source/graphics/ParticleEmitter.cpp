@@ -200,12 +200,10 @@ void CParticleEmitter::RenderArray(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
 	const CShaderProgramPtr& shader)
 {
-	// Some drivers apparently don't like count=0 in glDrawArrays here,
-	// so skip all drawing in that case
 	if (m_Particles.empty())
 		return;
 
-	u8* indexBase = m_IndexArray.Bind(deviceCommandContext);
+	m_IndexArray.UploadIfNeeded(deviceCommandContext);
 	u8* base = m_VertexArray.Bind(deviceCommandContext);
 
 	GLsizei stride = (GLsizei)m_VertexArray.GetStride();
@@ -220,7 +218,9 @@ void CParticleEmitter::RenderArray(
 	shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_AttributeColor.offset);
 
 	shader->AssertPointersBound();
-	glDrawElements(GL_TRIANGLES, (GLsizei)(m_Particles.size() * 6), GL_UNSIGNED_SHORT, indexBase);
+
+	deviceCommandContext->SetIndexBuffer(m_IndexArray.GetBuffer());
+	deviceCommandContext->DrawIndexed(m_IndexArray.GetOffset(), m_Particles.size() * 6, 0);
 
 	g_Renderer.GetStats().m_DrawCalls++;
 	g_Renderer.GetStats().m_Particles += m_Particles.size();

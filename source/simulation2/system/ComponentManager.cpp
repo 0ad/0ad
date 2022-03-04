@@ -35,7 +35,7 @@
 /**
  * Used for script-only message types.
  */
-class CMessageScripted : public CMessage
+class CMessageScripted final : public CMessage
 {
 public:
 	virtual int GetType() const { return mtid; }

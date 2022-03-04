@@ -85,6 +85,17 @@ public:
 	void SetScissors(const uint32_t scissorCount, const Rect* scissors);
 	void SetViewports(const uint32_t viewportCount, const Rect* viewports);
 
+	void SetIndexBuffer(CBuffer* buffer);
+	void SetIndexBufferData(const void* data);
+
+	void Draw(const uint32_t firstVertex, const uint32_t vertexCount);
+	void DrawIndexed(
+		const uint32_t firstIndex, const uint32_t indexCount, const int32_t vertexOffset);
+	// TODO: should be removed when performance impact is minimal on slow hardware.
+	void DrawIndexedInRange(
+		const uint32_t firstIndex, const uint32_t indexCount,
+		const uint32_t start, const uint32_t end);
+
 	void BeginScopedLabel(const char* name);
 	void EndScopedLabel();
 
@@ -115,6 +126,9 @@ private:
 	std::array<Rect, 1> m_Scissors;
 
 	uint32_t m_ScopedLabelDepth = 0;
+
+	CBuffer* m_IndexBuffer = nullptr;
+	const void* m_IndexBufferData = nullptr;
 
 	uint32_t m_ActiveTextureUnit = 0;
 	using BindUnit = std::pair<GLenum, GLuint>;

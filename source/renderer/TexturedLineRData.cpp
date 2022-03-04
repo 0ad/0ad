@@ -48,6 +48,9 @@ void CTexturedLineRData::Render(
 
 	line.m_TextureBase->UploadBackendTextureIfNeeded(deviceCommandContext);
 	line.m_TextureMask->UploadBackendTextureIfNeeded(deviceCommandContext);
+
+	m_VBIndices->m_Owner->UploadIfNeeded(deviceCommandContext);
+
 	shader->BindTexture(str_baseTex, line.m_TextureBase->GetBackendTexture());
 	shader->BindTexture(str_maskTex, line.m_TextureMask->GetBackendTexture());
 	shader->Uniform(str_objectColor, line.m_Color);
@@ -65,10 +68,10 @@ void CTexturedLineRData::Render(
 	if (streamFlags & STREAM_UV1)
 		shader->TexCoordPointer(GL_TEXTURE1, 2, GL_FLOAT, stride, &vertexBase->m_UVs[0]);
 
-	u8* indexBase = m_VBIndices->m_Owner->Bind(deviceCommandContext);
-
 	shader->AssertPointersBound();
-	glDrawElements(GL_TRIANGLES, m_VBIndices->m_Count, GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*m_VBIndices->m_Index);
+
+	deviceCommandContext->SetIndexBuffer(m_VBIndices->m_Owner->GetBuffer());
+	deviceCommandContext->DrawIndexed(m_VBIndices->m_Index, m_VBIndices->m_Count, 0);
 
 	g_Renderer.GetStats().m_DrawCalls++;
 	g_Renderer.GetStats().m_OverlayTris += m_VBIndices->m_Count/3;

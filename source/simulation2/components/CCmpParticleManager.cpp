@@ -25,7 +25,7 @@
 #include "renderer/SceneRenderer.h"
 #include "simulation2/MessageTypes.h"
 
-class CCmpParticleManager : public ICmpParticleManager
+class CCmpParticleManager final : public ICmpParticleManager
 {
 public:
 	static void ClassInit(CComponentManager& componentManager)

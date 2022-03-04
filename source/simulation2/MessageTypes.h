@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@
 class SceneCollector;
 class CFrustum;
 
-class CMessageTurnStart : public CMessage
+class CMessageTurnStart final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(TurnStart)
@@ -58,7 +58,7 @@ public:
 /**
  * Generic per-turn update message, for things that don't care much about ordering.
  */
-class CMessageUpdate : public CMessage
+class CMessageUpdate final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(Update)
@@ -75,7 +75,7 @@ public:
  * Update phase for formation controller movement (must happen before individual
  * units move to follow their formation).
  */
-class CMessageUpdate_MotionFormation : public CMessage
+class CMessageUpdate_MotionFormation final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(Update_MotionFormation)
@@ -91,7 +91,7 @@ public:
 /**
  * Update phase for non-formation-controller unit movement.
  */
-class CMessageUpdate_MotionUnit : public CMessage
+class CMessageUpdate_MotionUnit final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(Update_MotionUnit)
@@ -107,7 +107,7 @@ public:
 /**
  * Final update phase, after all other updates.
  */
-class CMessageUpdate_Final : public CMessage
+class CMessageUpdate_Final final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(Update_Final)
@@ -123,7 +123,7 @@ public:
 /**
  * Prepare for rendering a new frame (set up model positions etc).
  */
-class CMessageInterpolate : public CMessage
+class CMessageInterpolate final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(Interpolate)
@@ -146,7 +146,7 @@ public:
  * Add renderable objects to the scene collector.
  * Called after CMessageInterpolate.
  */
-class CMessageRenderSubmit : public CMessage
+class CMessageRenderSubmit final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(RenderSubmit)
@@ -172,7 +172,7 @@ public:
  * In some situations these messages will never be sent - components must ensure they
  * load all their data themselves before using it in that case.
  */
-class CMessageProgressiveLoad : public CMessage
+class CMessageProgressiveLoad final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(ProgressiveLoad)
@@ -195,7 +195,7 @@ public:
  * in the deserialization process, may be done in response to this message
  * instead.
  */
-class CMessageDeserialized : public CMessage
+class CMessageDeserialized final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(Deserialized)
@@ -210,7 +210,7 @@ public:
  * This is sent immediately after a new entity's components have all been created
  * and initialised.
  */
-class CMessageCreate : public CMessage
+class CMessageCreate final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(Create)
@@ -230,7 +230,7 @@ public:
  * It's possible for this message to be sent multiple times for one entity, but all its components
  * will have been deleted after the first time.
  */
-class CMessageDestroy : public CMessage
+class CMessageDestroy final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(Destroy)
@@ -243,7 +243,7 @@ public:
 	entity_id_t entity;
 };
 
-class CMessageOwnershipChanged : public CMessage
+class CMessageOwnershipChanged final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(OwnershipChanged)
@@ -265,7 +265,7 @@ public:
  * If @c inWorld is false, then the other fields are invalid and meaningless.
  * Otherwise they represent the current position.
  */
-class CMessagePositionChanged : public CMessage
+class CMessagePositionChanged final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(PositionChanged)
@@ -285,7 +285,7 @@ public:
  * Sent by CCmpPosition whenever anything has changed that will affect the
  * return value of GetInterpolatedTransform()
  */
-class CMessageInterpolatedPositionChanged : public CMessage
+class CMessageInterpolatedPositionChanged final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(InterpolatedPositionChanged)
@@ -302,7 +302,7 @@ public:
 };
 
 /*Sent whenever the territory type (neutral,own,enemy) differs from the former type*/
-class CMessageTerritoryPositionChanged : public CMessage
+class CMessageTerritoryPositionChanged final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(TerritoryPositionChanged)
@@ -319,7 +319,7 @@ public:
 /**
  * Sent by CCmpUnitMotion during Update if an event happened that might interest other components.
  */
-class CMessageMotionUpdate : public CMessage
+class CMessageMotionUpdate final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(MotionUpdate)
@@ -344,7 +344,7 @@ public:
 /**
  * Sent when water height has been changed.
  */
-class CMessageWaterChanged : public CMessage
+class CMessageWaterChanged final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(WaterChanged)
@@ -357,7 +357,7 @@ public:
 /**
  * Sent when terrain (texture or elevation) has been changed.
  */
-class CMessageTerrainChanged : public CMessage
+class CMessageTerrainChanged final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(TerrainChanged)
@@ -373,7 +373,7 @@ public:
 /**
  * Sent, at most once per turn, when the visibility of an entity changed
  */
-class CMessageVisibilityChanged : public CMessage
+class CMessageVisibilityChanged final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(VisibilityChanged)
@@ -393,7 +393,7 @@ public:
  * Sent when then obstruction of an entity has changed in a manner
  * that changes 'block movement' properties.
  */
-class CMessageMovementObstructionChanged : public CMessage
+class CMessageMovementObstructionChanged final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(MovementObstructionChanged)
@@ -407,7 +407,7 @@ public:
  * Sent when ObstructionManager's view of the shape of the world has changed
  * (changing the TILE_OUTOFBOUNDS tiles returned by Rasterise).
  */
-class CMessageObstructionMapShapeChanged : public CMessage
+class CMessageObstructionMapShapeChanged final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(ObstructionMapShapeChanged)
@@ -420,7 +420,7 @@ public:
 /**
  * Sent when territory assignments have changed.
  */
-class CMessageTerritoriesChanged : public CMessage
+class CMessageTerritoriesChanged final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(TerritoriesChanged)
@@ -434,7 +434,7 @@ public:
  * Sent by CCmpRangeManager at most once per turn, when an active range query
  * has had matching units enter/leave the range since the last RangeUpdate.
  */
-class CMessageRangeUpdate : public CMessage
+class CMessageRangeUpdate final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(RangeUpdate)
@@ -476,7 +476,7 @@ public:
 /**
  * Sent by CCmpPathfinder after async path requests.
  */
-class CMessagePathResult : public CMessage
+class CMessagePathResult final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(PathResult)
@@ -493,7 +493,7 @@ public:
 /**
  * Sent by aura manager when a value of a certain entity's component is changed
  */
-class CMessageValueModification : public CMessage
+class CMessageValueModification final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(ValueModification)
@@ -513,7 +513,7 @@ public:
 /**
  * Sent by atlas if the playercolor has been changed.
  */
-class CMessagePlayerColorChanged : public CMessage
+class CMessagePlayerColorChanged final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(PlayerColorChanged)
@@ -529,7 +529,7 @@ public:
 /**
  * Sent by aura and tech managers when a value of a certain template's component is changed
  */
-class CMessageTemplateModification : public CMessage
+class CMessageTemplateModification final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(TemplateModification)
@@ -549,7 +549,7 @@ public:
 /**
  * Sent by CCmpVision when an entity's vision range changes.
  */
-class CMessageVisionRangeChanged : public CMessage
+class CMessageVisionRangeChanged final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(VisionRangeChanged)
@@ -567,7 +567,7 @@ public:
 /**
  * Sent by CCmpVision when an entity's vision sharing changes.
  */
-class CMessageVisionSharingChanged : public CMessage
+class CMessageVisionSharingChanged final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(VisionSharingChanged)
@@ -585,7 +585,7 @@ public:
 /**
  * Sent when an entity pings the minimap
  */
-class CMessageMinimapPing : public CMessage
+class CMessageMinimapPing final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(MinimapPing)
@@ -599,7 +599,7 @@ public:
 * Cinematics events
 */
 
-class CMessageCinemaPathEnded : public CMessage
+class CMessageCinemaPathEnded final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(CinemaPathEnded)
@@ -612,7 +612,7 @@ public:
 	CStrW name;
 };
 
-class CMessageCinemaQueueEnded : public CMessage
+class CMessageCinemaQueueEnded final : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(CinemaQueueEnded)

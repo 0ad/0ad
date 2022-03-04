@@ -494,7 +494,7 @@ void SilhouetteRenderer::RenderDebugOverlays(
 			r.x0, r.y1,
 		};
 		shader->VertexPointer(2, GL_SHORT, 0, verts);
-		glDrawArrays(GL_TRIANGLES, 0, 6);
+		deviceCommandContext->Draw(0, 6);
 	}
 
 	shaderTech->EndPass();

@@ -182,7 +182,7 @@ public:
 
 	/**
 	 * Checks that all the required vertex attributes have been set.
-	 * Call this before calling glDrawArrays/glDrawElements etc to avoid potential crashes.
+	 * Call this before calling Draw/DrawIndexed etc to avoid potential crashes.
 	 */
 	void AssertPointersBound();
 

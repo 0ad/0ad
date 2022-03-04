@@ -28,7 +28,7 @@
 
 class CCmpUnitMotion;
 
-class CCmpUnitMotionManager : public ICmpUnitMotionManager
+class CCmpUnitMotionManager final : public ICmpUnitMotionManager
 {
 public:
 	static void ClassInit(CComponentManager& componentManager);

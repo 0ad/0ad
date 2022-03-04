@@ -29,7 +29,7 @@
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/MessageTypes.h"
 
-class CCmpTerrain : public ICmpTerrain
+class CCmpTerrain final : public ICmpTerrain
 {
 public:
 	static void ClassInit(CComponentManager& UNUSED(componentManager))

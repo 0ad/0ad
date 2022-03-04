@@ -45,7 +45,7 @@
 
 class CCmpTerritoryManager;
 
-class TerritoryOverlay : public TerrainTextureOverlay
+class TerritoryOverlay final : public TerrainTextureOverlay
 {
 	NONCOPYABLE(TerritoryOverlay);
 public:

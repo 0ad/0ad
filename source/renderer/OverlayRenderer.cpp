@@ -548,10 +548,11 @@ void OverlayRenderer::RenderQuadOverlays(
 	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 
 	// Base offsets (in bytes) of the two backing stores relative to their owner VBO
-	u8* indexBase = m->quadIndices.Bind(deviceCommandContext);
+	m->quadIndices.UploadIfNeeded(deviceCommandContext);
 	u8* vertexBase = m->quadVertices.Bind(deviceCommandContext);
-	GLsizei indexStride = m->quadIndices.GetStride();
 	GLsizei vertexStride = m->quadVertices.GetStride();
+
+	deviceCommandContext->SetIndexBuffer(m->quadIndices.GetBuffer());
 
 	for (OverlayRendererInternals::QuadBatchMap::iterator it = m->quadBatchMap.begin(); it != m->quadBatchMap.end(); ++it)
 	{
@@ -584,7 +585,7 @@ void OverlayRenderer::RenderQuadOverlays(
 			shader->ColorPointer(m->quadAttributeColor.elems, m->quadAttributeColor.type, vertexStride, vertexBase + m->quadAttributeColor.offset);
 
 		shader->AssertPointersBound();
-		glDrawElements(GL_TRIANGLES, (GLsizei)(batchNumQuads * 6), GL_UNSIGNED_SHORT, indexBase + indexStride * batchRenderData.m_IndicesBase);
+		deviceCommandContext->DrawIndexed(m->quadIndices.GetOffset() + batchRenderData.m_IndicesBase, batchNumQuads * 6, 0);
 
 		g_Renderer.GetStats().m_DrawCalls++;
 		g_Renderer.GetStats().m_OverlayTris += batchNumQuads*2;
@@ -668,7 +669,7 @@ void OverlayRenderer::RenderForegroundOverlays(
 
 		shader->VertexPointer(3, GL_FLOAT, sizeof(CVector3D), &position[0].X);
 
-		glDrawArrays(GL_TRIANGLES, 0, 6);
+		deviceCommandContext->Draw(0, 6);
 
 		g_Renderer.GetStats().m_DrawCalls++;
 		g_Renderer.GetStats().m_OverlayTris += 2;
@@ -788,7 +789,8 @@ void OverlayRenderer::RenderSphereOverlays(
 
 		shader->Uniform(str_color, sphere->m_Color);
 
-		glDrawElements(GL_TRIANGLES, m->sphereIndexes.size(), GL_UNSIGNED_SHORT, &m->sphereIndexes[0]);
+		deviceCommandContext->SetIndexBufferData(m->sphereIndexes.data());
+		deviceCommandContext->DrawIndexed(0, m->sphereIndexes.size(), 0);
 
 		g_Renderer.GetStats().m_DrawCalls++;
 		g_Renderer.GetStats().m_OverlayTris = m->sphereIndexes.size()/3;

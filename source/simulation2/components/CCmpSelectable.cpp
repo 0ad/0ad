@@ -50,7 +50,7 @@ static const float MIN_ALPHA_UNSELECTED = 0.0f;
 // Desaturation value for unselected, always visible overlays (0.33 = 33% desaturated or 66% of original saturation)
 static const float RGB_DESATURATION = 0.333333f;
 
-class CCmpSelectable : public ICmpSelectable
+class CCmpSelectable final : public ICmpSelectable
 {
 public:
 	enum EShape

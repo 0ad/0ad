@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@
 // Time (in seconds) before projectiles that stuck in the ground are destroyed
 const static float PROJECTILE_DECAY_TIME = 30.f;
 
-class CCmpProjectileManager : public ICmpProjectileManager
+class CCmpProjectileManager final : public ICmpProjectileManager
 {
 public:
 	static void ClassInit(CComponentManager& componentManager)

@@ -211,11 +211,11 @@ void CDecalRData::RenderDecals(
 				if (lastIB != batch.indices->m_Owner)
 				{
 					lastIB = batch.indices->m_Owner;
-					batch.indices->m_Owner->Bind(deviceCommandContext);
+					batch.indices->m_Owner->UploadIfNeeded(deviceCommandContext);
+					deviceCommandContext->SetIndexBuffer(batch.indices->m_Owner->GetBuffer());
 				}
 
-				u8* indexBase = nullptr;
-				glDrawElements(GL_TRIANGLES, batch.indices->m_Count, GL_UNSIGNED_SHORT, indexBase + sizeof(u16) * (batch.indices->m_Index));
+				deviceCommandContext->DrawIndexed(batch.indices->m_Index, batch.indices->m_Count, 0);
 
 				// bump stats
 				g_Renderer.m_Stats.m_DrawCalls++;

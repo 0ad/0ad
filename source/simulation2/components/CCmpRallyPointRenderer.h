@@ -66,7 +66,7 @@ struct SVisibilitySegment
 	}
 };
 
-class CCmpRallyPointRenderer : public ICmpRallyPointRenderer
+class CCmpRallyPointRenderer final : public ICmpRallyPointRenderer
 {
 public:
 	static std::string GetSchema();

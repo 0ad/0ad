@@ -232,7 +232,7 @@ void TerrainOverlay::RenderTile(
 	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
 	overlayShader->AssertPointersBound();
 
-	glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 3);
+	deviceCommandContext->Draw(0, vertices.size() / 3);
 
 	overlayTech->EndPass();
 #endif
@@ -300,7 +300,7 @@ void TerrainOverlay::RenderTileOutline(
 	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
 	overlayShader->AssertPointersBound();
 
-	glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 3);
+	deviceCommandContext->Draw(0, vertices.size() / 3);
 
 	overlayTech->EndPass();
 #endif

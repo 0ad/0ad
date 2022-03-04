@@ -272,7 +272,7 @@ struct Handle
 #define BaseboardFlags_ENUMERATORS\
 	ENUM(motherboard, 0x01)\
 	ENUM(requires_add_in, 0x02)\
-	ENUM(removeable, 0x04)\
+	ENUM(removable, 0x04)\
 	ENUM(replaceable, 0x08)\
 	ENUM(hot_swappable, 0x10)
 

@@ -44,11 +44,9 @@ GameSettings.prototype.Attributes.Daytime = class Daytime extends GameSetting
 	pickRandomItems()
 	{
 		// If the map is random, we need to wait until it is selected.
-		if (this.settings.map.map === "random")
-			return true;
-
-		if (this.value !== "random")
+		if (this.settings.map.map === "random" || this.value !== "random")
 			return false;
+
 		this.value = pickRandom(this.data).Id;
 		return true;
 	}

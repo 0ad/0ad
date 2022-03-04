@@ -123,7 +123,7 @@ struct SerializeHelper<StaticShape>
 	}
 };
 
-class CCmpObstructionManager : public ICmpObstructionManager
+class CCmpObstructionManager final : public ICmpObstructionManager
 {
 public:
 	static void ClassInit(CComponentManager& componentManager)

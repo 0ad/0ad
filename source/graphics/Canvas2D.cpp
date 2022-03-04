@@ -60,7 +60,7 @@ inline void DrawTextureImpl(
 	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, uvs.data());
 	shader->AssertPointersBound();
 
-	glDrawArrays(GL_TRIANGLES, 0, vertices.size() / 2);
+	deviceCommandContext->Draw(0, vertices.size() / 2);
 }
 
 } // anonymous namespace
@@ -253,7 +253,8 @@ void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width
 	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, uvs.data());
 	shader->AssertPointersBound();
 
-	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_SHORT, indices.data());
+	m->DeviceCommandContext->SetIndexBufferData(indices.data());
+	m->DeviceCommandContext->DrawIndexed(0, indices.size(), 0);
 }
 
 void CCanvas2D::DrawRect(const CRect& rect, const CColor& color)

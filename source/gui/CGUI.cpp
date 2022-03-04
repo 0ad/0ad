@@ -423,6 +423,15 @@ CSize2D CGUI::GetWindowSize() const
 	return CSize2D{static_cast<float>(g_xres) / g_VideoMode.GetScale(), static_cast<float>(g_yres) / g_VideoMode.GetScale() };
 }
 
+void CGUI::SendFocusMessage(EGUIMessageType msgType)
+{
+	if (m_FocusedObject)
+	{
+		SGUIMessage msg(msgType);
+		m_FocusedObject->HandleMessage(msg);
+	}
+}
+
 void CGUI::SetFocusedObject(IGUIObject* pObject)
 {
 	if (pObject == m_FocusedObject)

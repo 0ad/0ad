@@ -179,16 +179,21 @@ public:
 	// All vertex data is lost when a vertex array is re-layouted.
 	void Layout();
 	// (Re-)Upload the attributes of the vertex array from the backing store to
-	// the underlying VBO object.
+	// the underlying buffer.
 	void Upload();
 	// Make this vertex array's data available for the next series of calls to Bind
 	void PrepareForRendering();
 	// Bind this array, returns the base address for calls to glVertexPointer etc.
 	u8* Bind(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+	void UploadIfNeeded(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 	// If you know for certain that you'll never have to change the data again,
 	// call this to free some memory.
 	void FreeBackingStore();
+
+	Renderer::Backend::GL::CBuffer* GetBuffer() { return m_VB ? m_VB->m_Owner->GetBuffer() : nullptr; }
+
+	uint32_t GetOffset() const { return m_VB ? m_VB->m_Index : 0; }
 
 private:
 	void Free();
@@ -212,9 +217,7 @@ private:
 
 /**
  * A VertexArray that is specialised to handle 16-bit array indices.
- * Call Bind() and pass the return value to the indices parameter of
- * glDrawElements/glDrawRangeElements/glMultiDrawElements.
- * Use CVertexBuffer::Unbind() to unbind the array when done.
+ * Call UploadIfNeeded() before use in Draw/DrawIndexed.
  */
 class VertexIndexArray : public VertexArray
 {

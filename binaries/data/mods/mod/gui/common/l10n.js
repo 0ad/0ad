@@ -122,7 +122,7 @@ function translatePluralWithContext(context, singularMessage, pluralMessage, num
 /**
  * The input object should contain either of the following properties:
  *
- *     • A ‘message’ property that contains a message to translate.
+ *     • A ‘_string’ property that contains a message to translate.
  *
  *     • A ‘list’ property that contains a list of messages to translate as a
  *     comma-separated list of translated.
@@ -137,8 +137,8 @@ function translateMessageObject(object)
 	if (object.context)
 		trans = msg => translateWithContext(object.context, msg);
 
-	if (object.message)
-		object = trans(object.message);
+	if (object._string)
+		object = trans(object._string);
 	else if (object.list)
 		object = object.list.map(trans).join(translateWithContext("enumeration", ", "));
 
@@ -152,19 +152,19 @@ function translateMessageObject(object)
  * it accepts an object in the form of
  *
  * {
- *   translatedString1: "my first message",
- *   unTranslatedString1: "some English string",
- *   ignoredObject: {
- *     translatedString2: "my second message",
- *     unTranslatedString2: "some English string"
+ *   "translatedString1": "my first message",
+ *   "unTranslatedString1": "some English string",
+ *   "ignoredObject": {
+ *     "translatedString2": "my second message",
+ *     "unTranslatedString2": "some English string"
  *   },
- *   translatedObject1: {
- *     message: "my third singular message",
- *     context: "message context",
+ *   "translatedObject1": {
+ *     "_string": "my third singular message",
+ *     "context": "message context",
  *   },
  *   translatedObject2: {
- *     list: ["list", "of", "strings"],
- *     context: "message context",
+ *     "list": ["list", "of", "strings"],
+ *     "context": "message context",
  *   },
  * }
  *
@@ -174,14 +174,14 @@ function translateMessageObject(object)
  *
  * The result will be (f.e. in Dutch)
  * {
- *  translatedString1: "mijn eerste bericht",
- *   unTranslatedString1: "some English string",
- *   ignoredObject: {
- *     translatedString2: "mijn tweede bericht",
- *     unTranslatedString2: "some English string"
+ *  "translatedString1": "mijn eerste bericht",
+ *   "unTranslatedString1": "some English string",
+ *   "ignoredObject": {
+ *     "translatedString2": "mijn tweede bericht",
+ *     "unTranslatedString2": "some English string"
  *   },
- *   translatedObject1: "mijn derde bericht",
- *   translatedObject2: "lijst, van, teksten",
+ *   "translatedObject1": "mijn derde bericht",
+ *   "translatedObject2": "lijst, van, teksten",
  * }
  *
  * So you see that the keys array can also contain lower-level keys,

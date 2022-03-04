@@ -51,7 +51,7 @@
 #include "ps/GameSetup/Config.h"
 #include "renderer/Scene.h"
 
-class CCmpVisualActor : public ICmpVisual
+class CCmpVisualActor final : public ICmpVisual
 {
 public:
 	static void ClassInit(CComponentManager& componentManager)

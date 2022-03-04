@@ -28,7 +28,7 @@
 #include "simulation2/MessageTypes.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
 
-class CCmpWaterManager : public ICmpWaterManager
+class CCmpWaterManager final : public ICmpWaterManager
 {
 public:
 	static void ClassInit(CComponentManager& componentManager)

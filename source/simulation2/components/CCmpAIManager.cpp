@@ -867,7 +867,7 @@ private:
 /**
  * Implementation of ICmpAIManager.
  */
-class CCmpAIManager : public ICmpAIManager
+class CCmpAIManager final : public ICmpAIManager
 {
 public:
 	static void ClassInit(CComponentManager& UNUSED(componentManager))

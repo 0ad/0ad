@@ -669,8 +669,6 @@ void CPatchRData::Update(CSimulation2* simulation)
 	}
 }
 
-// Types used for glMultiDrawElements batching:
-
 // To minimise the cost of memory allocations, everything used for computing
 // batches uses a arena allocator. (All allocations are short-lived so we can
 // just throw away the whole arena at the end of each frame.)
@@ -702,7 +700,7 @@ typename M::mapped_type& PooledPairGet(M& m, const typename M::key_type& k, Aren
 }
 
 // Each multidraw batch has a list of index counts, and a list of pointers-to-first-indexes
-using BatchElements = std::pair<std::vector<GLint, ProxyAllocator<GLint, Arena>>, std::vector<void*, ProxyAllocator<void*, Arena>>>;
+using BatchElements = std::pair<std::vector<GLint, ProxyAllocator<GLint, Arena>>, std::vector<u32, ProxyAllocator<u32, Arena>>>;
 
 // Group batches by index buffer
 using IndexBufferBatches = PooledBatchMap<CVertexBuffer*, BatchElements>;
@@ -760,8 +758,7 @@ void CPatchRData::RenderBases(
 
 			batch.first.push_back(splat.m_IndexCount);
 
-			u8* indexBase = nullptr;
-			batch.second.push_back(indexBase + sizeof(u16)*(patch->m_VBBaseIndices->m_Index + splat.m_IndexStart));
+			batch.second.push_back(patch->m_VBBaseIndices->m_Index + splat.m_IndexStart);
 		}
 	}
 
@@ -814,15 +811,13 @@ void CPatchRData::RenderBases(
 
 					for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
 					{
-						it->first->Bind(deviceCommandContext);
+						it->first->UploadIfNeeded(deviceCommandContext);
+						deviceCommandContext->SetIndexBuffer(it->first->GetBuffer());
 
 						BatchElements& batch = it->second;
 
-						// Don't use glMultiDrawElements here since it doesn't have a significant
-						// performance impact and it suffers from various driver bugs (e.g. it breaks
-						// in Mesa 7.10 swrast with index VBOs)
 						for (size_t i = 0; i < batch.first.size(); ++i)
-							glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
+							deviceCommandContext->DrawIndexed(batch.second[i], batch.first[i], 0);
 
 						g_Renderer.m_Stats.m_DrawCalls++;
 						g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
@@ -928,8 +923,7 @@ void CPatchRData::RenderBlends(
 					BatchElements& batch = PooledPairGet(PooledMapGet(batches.back().m_Batches, vertices->m_Owner, arena), indices->m_Owner, arena);
 					batch.first.push_back(splats.back().m_IndexCount);
 
-		 			u8* indexBase = nullptr;
-		 			batch.second.push_back(indexBase + sizeof(u16)*(indices->m_Index + splats.back().m_IndexStart));
+		 			batch.second.push_back(indices->m_Index + splats.back().m_IndexStart);
 
 					splats.pop_back();
 				}
@@ -1045,12 +1039,13 @@ void CPatchRData::RenderBlends(
 
 					for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
 					{
-						it->first->Bind(deviceCommandContext);
+						it->first->UploadIfNeeded(deviceCommandContext);
+						deviceCommandContext->SetIndexBuffer(it->first->GetBuffer());
 
 						BatchElements& batch = it->second;
 
 						for (size_t i = 0; i < batch.first.size(); ++i)
-							glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
+							deviceCommandContext->DrawIndexed(batch.second[i], batch.first[i], 0);
 
 						g_Renderer.m_Stats.m_DrawCalls++;
 						g_Renderer.m_Stats.m_BlendSplats++;
@@ -1072,13 +1067,13 @@ void CPatchRData::RenderStreams(
 	PROFILE3("render terrain streams");
 
 	// Each batch has a list of index counts, and a list of pointers-to-first-indexes
-	using StreamBatchElements = std::pair<std::vector<GLint>, std::vector<void*> > ;
+	using StreamBatchElements = std::pair<std::vector<GLint>, std::vector<u32>>;
 
 	// Group batches by index buffer
-	using StreamIndexBufferBatches = std::map<CVertexBuffer*, StreamBatchElements> ;
+	using StreamIndexBufferBatches = std::map<CVertexBuffer*, StreamBatchElements>;
 
 	// Group batches by vertex buffer
-	using StreamVertexBufferBatches = std::map<CVertexBuffer*, StreamIndexBufferBatches> ;
+	using StreamVertexBufferBatches = std::map<CVertexBuffer*, StreamIndexBufferBatches>;
 
 	StreamVertexBufferBatches batches;
 
@@ -1091,8 +1086,7 @@ void CPatchRData::RenderStreams(
 
 		batch.first.push_back(patch->m_VBBaseIndices->m_Count);
 
-		u8* indexBase = nullptr;
- 		batch.second.push_back(indexBase + sizeof(u16)*(patch->m_VBBaseIndices->m_Index));
+ 		batch.second.push_back(patch->m_VBBaseIndices->m_Index);
  	}
 
  	PROFILE_END("compute batches");
@@ -1115,12 +1109,13 @@ void CPatchRData::RenderStreams(
 
 		for (const std::pair<CVertexBuffer* const, StreamBatchElements>& batchIndexBuffer : streamBatch.second)
 		{
-			batchIndexBuffer.first->Bind(deviceCommandContext);
+			batchIndexBuffer.first->UploadIfNeeded(deviceCommandContext);
+			deviceCommandContext->SetIndexBuffer(batchIndexBuffer.first->GetBuffer());
 
 			const StreamBatchElements& batch = batchIndexBuffer.second;
 
 			for (size_t i = 0; i < batch.first.size(); ++i)
-				glDrawElements(GL_TRIANGLES, batch.first[i], GL_UNSIGNED_SHORT, batch.second[i]);
+				deviceCommandContext->DrawIndexed(batch.second[i], batch.first[i], 0);
 
 			g_Renderer.m_Stats.m_DrawCalls++;
 			g_Renderer.m_Stats.m_TerrainTris += std::accumulate(batch.first.begin(), batch.first.end(), 0) / 3;
@@ -1187,7 +1182,7 @@ void CPatchRData::RenderSides(
 
 		shader->AssertPointersBound();
 
-		glDrawArrays(GL_TRIANGLES, patch->m_VBSides->m_Index, (GLsizei)patch->m_VBSides->m_Count);
+		deviceCommandContext->Draw(patch->m_VBSides->m_Index, (GLsizei)patch->m_VBSides->m_Count);
 
 		// bump stats
 		g_Renderer.m_Stats.m_DrawCalls++;
@@ -1433,6 +1428,8 @@ void CPatchRData::RenderWaterSurface(
 	if (!m_VBWater)
 		return;
 
+	m_VBWaterIndices->m_Owner->UploadIfNeeded(deviceCommandContext);
+
 	SWaterVertex* base = reinterpret_cast<SWaterVertex*>(m_VBWater->m_Owner->Bind(deviceCommandContext));
 
 	// Setup data pointers.
@@ -1443,10 +1440,8 @@ void CPatchRData::RenderWaterSurface(
 
 	shader->AssertPointersBound();
 
-	u8* indexBase = m_VBWaterIndices->m_Owner->Bind(deviceCommandContext);
-	glDrawElements(
-		GL_TRIANGLES, static_cast<GLsizei>(m_VBWaterIndices->m_Count),
-		GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_VBWaterIndices->m_Index));
+	deviceCommandContext->SetIndexBuffer(m_VBWaterIndices->m_Owner->GetBuffer());
+	deviceCommandContext->DrawIndexed(m_VBWaterIndices->m_Index, m_VBWaterIndices->m_Count, 0);
 
 	g_Renderer.m_Stats.m_DrawCalls++;
 	g_Renderer.m_Stats.m_WaterTris += m_VBWaterIndices->m_Count / 3;
@@ -1463,6 +1458,8 @@ void CPatchRData::RenderWaterShore(
 	if (!m_VBWaterShore)
 		return;
 
+	m_VBWaterIndicesShore->m_Owner->UploadIfNeeded(deviceCommandContext);
+
 	SWaterVertex* base = reinterpret_cast<SWaterVertex*>(m_VBWaterShore->m_Owner->Bind(deviceCommandContext));
 
 	const GLsizei stride = sizeof(SWaterVertex);
@@ -1471,9 +1468,8 @@ void CPatchRData::RenderWaterShore(
 
 	shader->AssertPointersBound();
 
-	u8* indexBase = m_VBWaterIndicesShore->m_Owner->Bind(deviceCommandContext);
-	glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(m_VBWaterIndicesShore->m_Count),
-					GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_VBWaterIndicesShore->m_Index));
+	deviceCommandContext->SetIndexBuffer(m_VBWaterIndicesShore->m_Owner->GetBuffer());
+	deviceCommandContext->DrawIndexed(m_VBWaterIndicesShore->m_Index, m_VBWaterIndicesShore->m_Count, 0);
 
 	g_Renderer.m_Stats.m_DrawCalls++;
 	g_Renderer.m_Stats.m_WaterTris += m_VBWaterIndicesShore->m_Count / 3;
