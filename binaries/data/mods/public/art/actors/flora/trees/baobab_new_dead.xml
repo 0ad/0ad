@@ -4,7 +4,7 @@
   <group>
     <variant name="base">
       <props>
-        <prop actor="flora/trees/baobab_new_branches.xml" attachpoint="root"/>
+        <prop actor="flora/trees/baobab_new_branches_dead.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="gaia/tree_baobab_trunk.png" name="baseTex"/>
@@ -21,5 +21,5 @@
       <mesh>gaia/baobab_3_trunk.dae</mesh>
     </variant>
   </group>
-  <material>basic_trans_wind_norm_spec.xml</material>
+  <material>basic_trans_norm_spec.xml</material>
 </actor>
