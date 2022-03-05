@@ -7,6 +7,16 @@
       <MaxRange>4</MaxRange>
       <RepeatTime>1000</RepeatTime>
     </Capture>
+    <Melee>
+      <AttackName context="Name of an attack using a double-edged sword.">Sword</AttackName>
+      <Damage>
+        <Hack>10</Hack>
+      </Damage>
+      <MaxRange>3</MaxRange>
+      <PrepareTime>500</PrepareTime>
+      <RepeatTime>1000</RepeatTime>
+      <PreferredClasses datatype="tokens">Unit+!Ship</PreferredClasses>
+    </Melee>
   </Attack>
   <Auras datatype="tokens">
     units/han_minister_garrison
@@ -23,7 +33,7 @@
     </Resources>
   </Cost>
   <Health>
-    <Max>150</Max>
+    <Max>200</Max>
   </Health>
   <Identity>
     <Civ>han</Civ>

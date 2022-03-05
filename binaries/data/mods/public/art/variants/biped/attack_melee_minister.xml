@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="attack_melee">
+  <animations>
+    <animation event="0.5" file="biped/infantry/swordsman/attack_melee_shield_02.dae" name="attack_melee" speed="100"/>
+  </animations>
+  <props>
+    <prop actor="props/units/weapons/sword/han_duan_ma_jian_01.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/sheath/han_jian_sheath_left_a_e.xml" attachpoint="sheath_L"/>
+  </props>
+</variant>
