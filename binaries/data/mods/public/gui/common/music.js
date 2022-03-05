@@ -21,6 +21,7 @@ function Music()
 
 	this.RELATIVE_MUSIC_PATH = "audio/music/";
 	this.MUSIC = {
+		"MENU": "menu",
 		"PEACE": "peace",
 		"BATTLE": "battle",
 		"VICTORY": "victory",
