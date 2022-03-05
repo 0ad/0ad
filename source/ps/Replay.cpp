@@ -82,7 +82,7 @@ void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 	Script::SetProperty(rq, attribs, "mods", mods);
 
 	m_Directory = createDateIndexSubdirectory(VisualReplay::GetDirectoryPath());
-	debug_printf("FILES| Replay written to %s\n", m_Directory.string8().c_str());
+	debug_printf("FILES| Replay written to '%s'\n", m_Directory.string8().c_str());
 
 	m_Stream = new std::ofstream(OsString(m_Directory / L"commands.txt").c_str(), std::ofstream::out | std::ofstream::trunc);
 	*m_Stream << "start " << Script::StringifyJSON(rq, attribs, false) << "\n";
@@ -133,10 +133,10 @@ void CReplayLogger::SaveMetadata(const CSimulation2& simulation)
 	{
 		stream << Script::StringifyJSON(rq, &metadata, false);
 		stream.close();
-		debug_printf("FILES| Replay metadata written to %s\n", fileName.string8().c_str());
+		debug_printf("FILES| Replay metadata written to '%s'\n", fileName.string8().c_str());
 	}
 	else
-		debug_printf("FILES| Failed to write replay metadata to %s\n", fileName.string8().c_str());
+		debug_printf("FILES| Failed to write replay metadata to '%s'\n", fileName.string8().c_str());
 
 }
 

@@ -639,9 +639,9 @@ void CConsole::SaveHistory()
 	}
 
 	if (g_VFS->CreateFile(m_HistoryFile, buffer.Data(), buffer.Size()) == INFO::OK)
-		ONCE(debug_printf("FILES| Console command history written to %s\n", m_HistoryFile.string8().c_str()));
+		ONCE(debug_printf("FILES| Console command history written to '%s'\n", m_HistoryFile.string8().c_str()));
 	else
-		debug_printf("FILES| Failed to write console command history to %s\n", m_HistoryFile.string8().c_str());
+		debug_printf("FILES| Failed to write console command history to '%s'\n", m_HistoryFile.string8().c_str());
 }
 
 static bool isUnprintableChar(SDL_Keysym key)

@@ -616,12 +616,12 @@ void CUserReporter::SubmitReport(const std::string& type, int version, const std
 		std::ofstream stream(OsString(path), std::ofstream::trunc);
 		if (stream)
 		{
-			debug_printf("FILES| UserReport written to %s\n", path.string8().c_str());
+			debug_printf("FILES| UserReport written to '%s'\n", path.string8().c_str());
 			stream << dataHumanReadable << std::endl;
 			stream.close();
 		}
 		else
-			debug_printf("FILES| Failed to write UserReport to %s\n", path.string8().c_str());
+			debug_printf("FILES| Failed to write UserReport to '%s'\n", path.string8().c_str());
 	}
 
 	// If not initialised, discard the report
