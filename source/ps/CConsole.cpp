@@ -24,6 +24,7 @@
 #include "graphics/TextRenderer.h"
 #include "gui/CGUI.h"
 #include "gui/GUIManager.h"
+#include "lib/code_generation.h"
 #include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
@@ -636,7 +637,11 @@ void CConsole::SaveHistory()
 		static const char newline = '\n';
 		buffer.Append(&newline, 1);
 	}
-	g_VFS->CreateFile(m_HistoryFile, buffer.Data(), buffer.Size());
+
+	if (g_VFS->CreateFile(m_HistoryFile, buffer.Data(), buffer.Size()) == INFO::OK)
+		ONCE(debug_printf("FILES| Console command history written to %s\n", m_HistoryFile.string8().c_str()));
+	else
+		debug_printf("FILES| Failed to write console command history to %s\n", m_HistoryFile.string8().c_str());
 }
 
 static bool isUnprintableChar(SDL_Keysym key)

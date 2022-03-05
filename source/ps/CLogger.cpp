@@ -72,10 +72,11 @@ CLogger::CLogger()
 {
 	OsPath mainlogPath(psLogDir() / (L"mainlog" + g_UniqueLogPostfix + L".html"));
 	m_MainLog = new std::ofstream(OsString(mainlogPath).c_str(), std::ofstream::out | std::ofstream::trunc);
-	debug_printf("Writing the mainlog at %s\n", mainlogPath.string8().c_str());
+	debug_printf("FILES| Main log written to %s\n", mainlogPath.string8().c_str());
 
 	OsPath interestinglogPath(psLogDir() / (L"interestinglog" + g_UniqueLogPostfix + L".html"));
 	m_InterestingLog = new std::ofstream(OsString(interestinglogPath).c_str(), std::ofstream::out | std::ofstream::trunc);
+	debug_printf("FILES| Interesting log written to %s\n", interestinglogPath.string8().c_str());
 
 	m_OwnsStreams = true;
 	m_UseDebugPrintf = true;

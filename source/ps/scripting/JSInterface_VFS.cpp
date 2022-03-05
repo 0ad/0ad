@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -224,7 +224,12 @@ void WriteJSONFile(const ScriptInterface& scriptInterface, const std::wstring& f
 	VfsPath path(filePath);
 	WriteBuffer buf;
 	buf.Append(str.c_str(), str.length());
-	g_VFS->CreateFile(path, buf.Data(), buf.Size());
+	OsPath realPath;
+	g_VFS->GetRealPath(path, realPath, false);
+	if (g_VFS->CreateFile(path, buf.Data(), buf.Size()) == INFO::OK)
+		debug_printf("FILES| JSON data written to %s\n", realPath.string8().c_str());
+	else
+		debug_printf("FILES| Failed to write JSON data to %s\n", realPath.string8().c_str());
 }
 
 bool DeleteCampaignSave(const CStrW& filePath)
