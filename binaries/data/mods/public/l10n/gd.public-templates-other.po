@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-21 10:18+0000\n"
+"POT-Creation-Date: 2022-02-28 08:09+0000\n"
+"PO-Revision-Date: 2022-02-28 10:18+0000\n"
 "Last-Translator: Transifex Bot\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -771,6 +771,10 @@ msgstr "Fiodh air a bhuain"
 msgid "Acacia"
 msgstr "Sitta"
 
+#: simulation/templates/gaia/tree/acacia_large.xml:4
+msgid "Ancient Acacia"
+msgstr ""
+
 #: simulation/templates/gaia/tree/aleppo_pine.xml:4
 msgid "Aleppo Pine"
 msgstr "Giuthas Aleppo"
@@ -806,14 +810,9 @@ msgstr "Bathobab òg"
 msgid "Hardy Bush"
 msgstr "Preas seasmhach"
 
-#: simulation/templates/gaia/tree/bush_steppe_01.xml:8
-#: simulation/templates/gaia/tree/bush_steppe_02.xml:8
-#: simulation/templates/gaia/tree/bush_steppe_03.xml:8
-#: simulation/templates/gaia/tree/bush_temperate.xml:4
-#: simulation/templates/gaia/tree/bush_temperate_winter.xml:4
-#: simulation/templates/gaia/tree/bush_tropic.xml:4
-msgid "Bush"
-msgstr "Preas"
+#: simulation/templates/gaia/tree/bush_mediterranean.xml:4
+msgid "Scrub"
+msgstr ""
 
 #: simulation/templates/gaia/tree/carob.xml:4
 msgid "Carob"
@@ -884,6 +883,7 @@ msgid "Mangrove"
 msgstr "Mangrobh"
 
 #: simulation/templates/gaia/tree/maple.xml:4
+#: simulation/templates/gaia/tree/maple_autumn.xml:4
 msgid "Maple"
 msgstr "Malpas"
 
@@ -900,6 +900,7 @@ msgid "Oak"
 msgstr "Darach"
 
 #: simulation/templates/gaia/tree/oak_holly.xml:4
+#: simulation/templates/gaia/tree/oak_holly_autumn.xml:4
 msgid "Holly Oak"
 msgstr "Craobh-thuilm"
 
@@ -982,9 +983,13 @@ msgstr "Craobh-sheudair dhearg"
 msgid "Rainforest Tree"
 msgstr "Craobh coille-uisge"
 
-#: simulation/templates/mixins/builder.xml:40
+#: simulation/templates/mixins/builder.xml:39
 msgid "Builder"
 msgstr "Neach-togail"
+
+#: simulation/templates/mixins/bush.xml:4
+msgid "Bush"
+msgstr "Preas"
 
 #: simulation/templates/mixins/mercenary.xml:13
 msgid "Mercenary"
@@ -1010,92 +1015,92 @@ msgid ""
 " other civs"
 msgstr "Atharraichean air taighean le sluagh de 5 airson sìobhaltasan aig a bheil na taighean ud, chaidh a sguabadh ás airson nan sìobhaltasan eile"
 
-#: simulation/templates/special/formations/anti_cavalry.xml:6
-#: simulation/templates/special/formations/testudo.xml:6
+#: simulation/templates/special/formations/anti_cavalry.xml:5
+#: simulation/templates/special/formations/testudo.xml:5
 msgid "Melee Infantry only, requires at least 16."
 msgstr "Aonadan coisridh dlùithe a-mhàin is feum air 16 dhiubh air a char as lugha."
 
-#: simulation/templates/special/formations/anti_cavalry.xml:7
+#: simulation/templates/special/formations/anti_cavalry.xml:25
 msgid "Anti Cavalry"
 msgstr "An aghaidh eachraidh"
 
-#: simulation/templates/special/formations/battle_line.xml:5
+#: simulation/templates/special/formations/battle_line.xml:13
 msgid "Battle Line"
 msgstr "Loidhne-chatha"
 
-#: simulation/templates/special/formations/box.xml:6
+#: simulation/templates/special/formations/box.xml:5
 msgid "Requires at least 4 Soldiers or Siege engines."
 msgstr "Tha feum air 4 saighdearan no innealan-sèiste air a char as lugha."
 
-#: simulation/templates/special/formations/box.xml:7
+#: simulation/templates/special/formations/box.xml:11
 msgid "Box"
 msgstr "Bosga"
 
-#: simulation/templates/special/formations/column_closed.xml:5
+#: simulation/templates/special/formations/column_closed.xml:10
 msgid "Forced March"
 msgstr "Dian-chaismeachd"
 
-#: simulation/templates/special/formations/column_open.xml:5
+#: simulation/templates/special/formations/column_open.xml:10
 msgid "Column Open"
 msgstr "Colbh fosgailte"
 
-#: simulation/templates/special/formations/flank.xml:6
+#: simulation/templates/special/formations/flank.xml:5
 msgid "Requires at least 8 Soldiers or Siege engines."
 msgstr "Tha feum air 8 saighdearan no innealan-sèiste air a char as lugha."
 
-#: simulation/templates/special/formations/flank.xml:7
+#: simulation/templates/special/formations/flank.xml:11
 msgid "Flank"
 msgstr "Cliathach"
 
-#: simulation/templates/special/formations/line_closed.xml:5
+#: simulation/templates/special/formations/line_closed.xml:9
 msgid "Close Order"
 msgstr "Òrdugh dlùth"
 
-#: simulation/templates/special/formations/line_open.xml:5
+#: simulation/templates/special/formations/line_open.xml:11
 msgid "Open Order"
 msgstr "Òrdugh fosgailte"
 
-#: simulation/templates/special/formations/null.xml:5
+#: simulation/templates/special/formations/null.xml:7
 msgid "None"
 msgstr "Gun chumadh"
 
-#: simulation/templates/special/formations/phalanx.xml:6
+#: simulation/templates/special/formations/phalanx.xml:5
 msgid "Infantry Hoplites only, requires at least 10."
 msgstr "Hoiplidean coisridh a-mhàin is feum air 10 dhiubh air a char as lugha."
 
-#: simulation/templates/special/formations/phalanx.xml:7
+#: simulation/templates/special/formations/phalanx.xml:23
 msgid "Phalanx"
 msgstr "Falangas"
 
-#: simulation/templates/special/formations/scatter.xml:5
+#: simulation/templates/special/formations/scatter.xml:7
 msgid "Scatter"
 msgstr "Sgapte"
 
-#: simulation/templates/special/formations/skirmish.xml:5
+#: simulation/templates/special/formations/skirmish.xml:4
 msgid "Ranged Soldiers only, requires at least 2."
 msgstr "Saighdearan astair a-mhàin is feum air 2 dhiubh air a char as lugha."
 
-#: simulation/templates/special/formations/skirmish.xml:6
+#: simulation/templates/special/formations/skirmish.xml:14
 msgid "Skirmish"
 msgstr "Streup"
 
-#: simulation/templates/special/formations/syntagma.xml:6
+#: simulation/templates/special/formations/syntagma.xml:5
 msgid "Infantry Pikemen only, requires at least 16."
 msgstr "Pìcearan coisridh a-mhàin is feum air 16 dhiubh air a char as lugha."
 
-#: simulation/templates/special/formations/syntagma.xml:8
+#: simulation/templates/special/formations/syntagma.xml:29
 msgid "Syntagma"
 msgstr "Siontagma"
 
-#: simulation/templates/special/formations/testudo.xml:8
+#: simulation/templates/special/formations/testudo.xml:69
 msgid "Testudo"
 msgstr "Sligeanach"
 
-#: simulation/templates/special/formations/wedge.xml:6
+#: simulation/templates/special/formations/wedge.xml:5
 msgid "Cavalry only, requires at least 6."
 msgstr "Eachraidh a-mhàin is feum air 6 dhiubh air a char as lugha."
 
-#: simulation/templates/special/formations/wedge.xml:7
+#: simulation/templates/special/formations/wedge.xml:16
 msgid "Wedge"
 msgstr "Gèinneach"
 
@@ -1103,7 +1108,7 @@ msgstr "Gèinneach"
 msgid "Spy"
 msgstr "Brathadair"
 
-#: simulation/templates/template_formation.xml:20
+#: simulation/templates/template_formation.xml:15
 msgid "Requires at least 2 Soldiers or Siege Engines."
 msgstr "Tha feum air 2 shaighdear no inneal-sèiste air a char as lugha."
 

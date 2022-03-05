@@ -17,8 +17,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-25 08:08+0000\n"
-"PO-Revision-Date: 2022-02-27 09:44+0000\n"
+"POT-Creation-Date: 2022-02-28 08:09+0000\n"
+"PO-Revision-Date: 2022-03-02 04:03+0000\n"
 "Last-Translator: Yuan Chang\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -91,6 +91,8 @@ msgstr "斯巴達教育"
 #: simulation/data/technologies/unlock_champion_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_chariots.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
+#: simulation/data/technologies/unlock_spies.jsonrequirementsTooltip
+#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsonrequirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "在城市階段解鎖"
@@ -137,6 +139,7 @@ msgstr "箭術訓練"
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
+#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "在鄉鎮階段解鎖。"
 
@@ -1038,7 +1041,7 @@ msgstr "火箭矢 vs 毒箭矢"
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
-msgstr "傳統軍隊 vs. 革新軍隊"
+msgstr "傳統軍隊 vs 革新軍隊"
 
 #: simulation/data/technologies/parade_of_daphne.jsondescription
 msgid ""
@@ -1076,7 +1079,7 @@ msgstr "從繁華的大城市進展為一個名副其實的大都市，充滿著
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires three Town Structures."
-msgstr "需要三座城鎮建築。"
+msgstr "需要三座鄉鎮建築。"
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.mace
@@ -1110,7 +1113,7 @@ msgstr "發展到城市階段，解鎖更多單位、建築和科技。城鎮中
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
 "phase_town_generic or phase_town_{civ}."
-msgstr "用於模板需要的假技術，由phase_town_generic or phase_town_{civ} 取而代之。"
+msgstr "用於模板需要的假科技，由 phase_town_generic 或 phase_town_{civ} 取而代之。"
 
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
@@ -1294,7 +1297,7 @@ msgstr "提高攻城效率的進階科技。"
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
-msgstr "進階攻城武器"
+msgstr "高等攻城武器"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "Siege Engines +25% attack crush damage."
@@ -1735,13 +1738,13 @@ msgstr "高等和菁英單位 +20% 訓練時間，+25% 生命值，+0.7 占領�
 msgid ""
 "African Elephants −10% resource costs, training time, health, attack damage,"
 " and loot."
-msgstr "非洲象 −10% 資源成本、訓練時間、生命值、攻擊力和掉落物。"
+msgstr "非洲象 −10% 資源成本、訓練時間、生命值、攻擊傷害和戰利品。"
 
 #: simulation/data/technologies/unit_elephant_indian.jsontooltip
 msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
-msgstr "印度象 +10% 資源成本、訓練時間、生命值、攻擊力和掉落物。"
+msgstr "印度象 +10% 資源成本、訓練時間、生命值、攻擊傷害和戰利品。"
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
@@ -1749,7 +1752,7 @@ msgid ""
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
 " range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
-msgstr "菁英單位 +20% 訓練時間，+25% 生命值，+0.8 占領力，+20% 戰利品與 -30% 採集速率；治療者 +5 治療力與 +3 治療範圍；近戰單位 +1 裝甲與 +20% 攻擊力；遠程單位 -20% 散射。"
+msgstr "菁英單位 +20% 訓練時間，+25% 生命值，+0.8 占領力，+20% 戰利品與 -30% 採集速率；治療者 +5 治療力與 +3 治療範圍；近戰單位 +1 裝甲與 +20% 攻擊傷害；遠程單位 -20% 散射。"
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsondescription
 #: simulation/data/technologies/unlock_champion_chariots.jsondescription
@@ -1867,6 +1870,18 @@ msgid ""
 "Allows bribing the units of other players in order to share their vision."
 msgstr "可以賄賂其他玩家的單位以分享他們的視野。"
 
+#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsondescription
+msgid "Upgrade all of your citizen crossbowmen to Advanced rank."
+msgstr "將你的公民弩兵全部升級到高等級別。"
+
+#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsongenericName
+msgid "Advanced Crossbow Infantry and Cavalry"
+msgstr "高等弩步兵與騎兵"
+
+#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsontooltip
+msgid "Upgrade all of your Crossbow Infantry and Cavalry to Advanced rank."
+msgstr "將你的弩步兵和騎兵全部升級到高等級別。"
+
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
 msgstr "聘請專業的傭兵在您的軍隊中為您戰鬥。"
@@ -1878,6 +1893,18 @@ msgstr "戰爭專家"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries start at Advanced rank."
 msgstr "傭兵將從進階等級開始。"
+
+#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsondescription
+msgid "Upgrade all of your citizen crossbowmen to Elite rank."
+msgstr "將你的公民弩兵全部升級到菁英級別。"
+
+#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsongenericName
+msgid "Elite Crossbow Infantry and Cavalry"
+msgstr "菁英弩步兵與騎兵"
+
+#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsontooltip
+msgid "Upgrade all of your Crossbow Infantry and Cavalry to Elite rank."
+msgstr "將你的弩步兵和騎兵全部升級到菁英級別。"
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."

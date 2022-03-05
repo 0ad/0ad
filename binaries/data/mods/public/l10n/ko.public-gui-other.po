@@ -5,7 +5,7 @@
 # Translators:
 # Adrián Chaves Fernández
 # Asakura
-# JungHee Lee
+# Junghee Lee
 # Cheung Hung
 # Gu Hong Min
 # jjj
@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-21 08:24+0000\n"
-"Last-Translator: Transifex Bot\n"
+"PO-Revision-Date: 2022-03-01 03:50+0000\n"
+"Last-Translator: Junghee Lee\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -62,7 +62,7 @@ msgstr "불러오기 중단됨"
 
 #: gui/common/functions_utility.js:42
 msgid "Gaia"
-msgstr "가이아"
+msgstr "대지의 여신"
 
 #: gui/common/functions_utility.js:259
 #, javascript-format
@@ -2723,7 +2723,7 @@ msgstr "문명 정보 전환"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle “frames per second” counter."
-msgstr "“초당 프레임” 카운터를 전환합니다."
+msgstr "\"초당 프레임 수\" 카운터를 전환합니다."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.name
 msgctxt "hotkey metadata"
@@ -3369,7 +3369,7 @@ msgstr "노는 유닛만 선택"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle unit."
-msgstr "다음 노는 유닛 선택"
+msgstr "다음 노는 유닛을 선택합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.name
 msgctxt "hotkey metadata"
@@ -3379,7 +3379,7 @@ msgstr "다음 노는 유닛 선택"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior."
-msgstr "다음 노는 전사를 선택합니다."
+msgstr "다음 노는 전사 선택"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.name
 msgctxt "hotkey metadata"
@@ -3844,7 +3844,7 @@ msgstr "최대: %(max)s"
 #, javascript-format
 msgid ""
 "Changes will be reverted in %(time)s seconds. Do you want to keep changes?"
-msgstr ""
+msgstr "변경 사항은 %(time)s초 후에 되돌려집니다. 변경 사항을 유지하시겠습니까?"
 
 #: gui/options/options.js:192
 #, javascript-format
@@ -4225,47 +4225,47 @@ msgstr "렌더링 계산에 실제 수심을 사용합니다."
 
 #: gui/options/options.json[2].options[19].label
 msgid "Texture quality"
-msgstr ""
+msgstr "텍스처 품질"
 
 #: gui/options/options.json[2].options[19].tooltip
 msgid ""
 "Decrease texture quality making them blurrier but increases game "
 "performance."
-msgstr ""
+msgstr "텍스처 품질을 낮추어 흐릿하게 만들지만 게임 성능은 향상시킵니다."
 
 #: gui/options/options.json[2].options[20].label
 msgid "Texture anisotropic filter"
-msgstr ""
+msgstr "텍스처 이방성 필터"
 
 #: gui/options/options.json[2].options[20].list[0].label
 msgid "1x"
-msgstr ""
+msgstr "1x"
 
 #: gui/options/options.json[2].options[20].list[1].label
 #: gui/options/options.json[2].options[20].list[1].tooltip
 msgid "2x"
-msgstr ""
+msgstr "2x"
 
 #: gui/options/options.json[2].options[20].list[2].label
 #: gui/options/options.json[2].options[20].list[2].tooltip
 msgid "4x"
-msgstr ""
+msgstr "4x"
 
 #: gui/options/options.json[2].options[20].list[3].label
 #: gui/options/options.json[2].options[20].list[3].tooltip
 msgid "8x"
-msgstr ""
+msgstr "8x"
 
 #: gui/options/options.json[2].options[20].list[4].label
 #: gui/options/options.json[2].options[20].list[4].tooltip
 msgid "16x"
-msgstr ""
+msgstr "16x"
 
 #: gui/options/options.json[2].options[20].tooltip
 msgid ""
 "Makes textures look better, especially terrain. If the anisotropic filter "
 "value is unsupported it will be set to the max supported value."
-msgstr ""
+msgstr "텍스처, 특히 지형을 더 잘 보이게 합니다. 이방성 필터 값이 지원되지 않으면 최대 지원 값으로 설정됩니다."
 
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
@@ -5896,7 +5896,7 @@ msgstr "기병"
 
 #: gui/summary/layout.js:76
 msgid "Champion"
-msgstr "대표전사"
+msgstr "정예병"
 
 #: gui/summary/layout.js:77
 msgid "Heroes"
@@ -6200,7 +6200,7 @@ msgstr "유형"
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
-msgstr "로마 육군 본부"
+msgstr "로마군 야영지"
 
 #: gui/text/tips/army_camp.txt:2
 msgid ""
@@ -6210,13 +6210,13 @@ msgstr "중립 또는 적 영토에 지을수 있습니다. 적의 배후에 비
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct rams and train citizen soldiers."
-msgstr "충차를 만들고 시민 병사를 훈련합니다."
+msgstr "충차를 건설하고 시민 병사를 훈련합니다."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr "주둔지 유닛은 그들을 천천히 치유하고 공격과 부패로부터 군대 막사를 보호합니다."
+msgstr "주둔지 유닛은 그들을 천천히 치유하고 공격과 부패로부터 부대 막사를 보호합니다."
 
 #: gui/text/tips/autoqueue.txt:1
 msgid "AUTOQUEUE"
@@ -6232,13 +6232,13 @@ msgstr "충분한 자원이 있는 동안 작업하고, 그 다음에 중지될 
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
-msgstr "막사"
+msgstr "병영"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
 "Train all citizen soldiers. Some civilizations can unlock the training of "
 "champions as well."
-msgstr "모든 시민 군인을 훈련시킵니다. 일부 문명들은 대표전사들의 훈련도 가능하게 할 수 있습니다."
+msgstr "모든 시민 군인을 훈련시킵니다. 일부 문명들은 정예병들의 훈련도 가능하게 할 수 있습니다."
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
@@ -6284,7 +6284,7 @@ msgstr "체력은 낮지만, 빠르며 두려움없이 적을 공격합니다."
 
 #: gui/text/tips/briton_war_dog.txt:4
 msgid "Use them as support in your army or for quick raids."
-msgstr "군대에서 지원하거나 빠른 습격을 위해 사용합니다."
+msgstr "부대에서 지원하거나 빠른 습격을 위해 사용합니다."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -6292,13 +6292,13 @@ msgstr "카르타고 신성대"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr "카르타고의 대표전사 창병과 대표전사 창기병 입니다."
+msgstr "카르타고의 정예 창병과 정예 창기병 입니다."
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr "둘 다 다른 대표전사들처럼 요새 대신 신전에서 훈련할 수 있습니다."
+msgstr "둘 다 대부분의 다른 정예들처럼 요새 대신 신전에서 훈련할 수 있습니다."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
@@ -6359,7 +6359,7 @@ msgstr "켈트 전투 바지선"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "A medium trireme-class warship."
-msgstr "중형 3단 노선급 군함입니다."
+msgstr "중형 삼단노선 전함입니다."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."
@@ -6467,7 +6467,7 @@ msgstr "대사관 및 용병 막사"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special structures allowing you to hire mercenaries for your army."
-msgstr "군대를 위해 용병을 고용할 수 있는 특별한 건축물."
+msgstr "부대를 위해 용병을 고용할 수 있는 특별한 건축물."
 
 #: gui/text/tips/embassies.txt:3
 msgid ""
@@ -6581,7 +6581,7 @@ msgstr "기병 시민 병사들은 고기를 더 빨리 수집합니다."
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr "시민-병사 (상급, 정예) 수준이 높을수록 더 잘 싸울 수 있지만 자원 수집에는 효율성이 떨어집니다."
+msgstr "시민-병사 (상급, 엘리트) 수준이 높을수록 더 잘 싸울 수 있지만 자원 수집에는 효율성이 떨어집니다."
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
@@ -6735,7 +6735,7 @@ msgstr "5단 노선"
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, and Seleucids."
-msgstr "가장 무거운 표준 군함입니다. 카르타고, 프톨레마이오스, 로마, 셀레우코스가 이용 가능합니다."
+msgstr "가장 무거운 표준 전함입니다. 카르타고, 프톨레마이오스, 로마, 셀레우코스가 이용 가능합니다."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
@@ -6811,7 +6811,7 @@ msgstr "게임에서 가장 강한 보병부대입니다."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr "스파르타인들이 이용할 수 있는 대표전사 보병입니다."
+msgstr "스파르타인들이 이용할 수 있는 정예 보병입니다."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
@@ -6931,7 +6931,7 @@ msgstr "3단 노선"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The Medium Warship."
-msgstr "중형 군함."
+msgstr "중형 전함입니다."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Good for transporting or fighting."
@@ -7063,7 +7063,7 @@ msgstr "고기"
 #: simulation/data/resources/food.jsonsubtypes.rice
 msgctxt "firstWord"
 msgid "Rice"
-msgstr ""
+msgstr "쌀"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7071,7 +7071,7 @@ msgstr ""
 #: simulation/data/resources/food.jsonsubtypes.rice
 msgctxt "withinSentence"
 msgid "Rice"
-msgstr ""
+msgstr "쌀"
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."

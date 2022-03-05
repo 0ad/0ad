@@ -4,7 +4,6 @@
 # project.
 # Translators:
 # Hank Liao
-# Chi-Feng Tsai
 # 青海
 # JerryShen
 # Karinsu Hsu
@@ -15,13 +14,12 @@
 # 黃柏諺
 # StarAtt
 # Yuan Chang
-# 周 桂标
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2021-10-29 07:08+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: 周 桂标 <1799973401@qq.com>, 2021\n"
+"Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/wildfire-games/teams/17418/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,21 +29,21 @@ msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:3
 msgid "Welcome to the 0 A.D. tutorial."
-msgstr "歡迎來到 0 A.D. 教程。"
+msgstr "歡迎來到 0 A.D. 教學。"
 
 #: maps/tutorials/introductory_tutorial.js:6
 msgid ""
 "Left-click on a Female Citizen and then right-click on a berry bush to make "
 "that Female Citizen gather food. Female Citizens gather vegetables faster "
 "than other units."
-msgstr "選擇一名女性公民，然後右鍵單擊漿果叢，使該女性公民採集漿果獲取食物。女性公民採集漿果的速度會比其他公民單位更快速。"
+msgstr "選擇一名女性公民，然後右鍵點擊果樹，使該女性公民採集食物。女性公民採集蔬菜的速度會比其他單位更快。"
 
 #: maps/tutorials/introductory_tutorial.js:15
 msgid ""
 "Select the Citizen Soldier, right-click on a tree near the Civic Center to "
 "begin gathering wood. Citizen Soldiers gather wood faster than Female "
 "Citizens."
-msgstr "選擇公民士兵，右鍵單擊附近的一棵樹，公民士兵會開始收集木材。公民士兵會比女性公民更快地收集木材。"
+msgstr "選擇公民兵，右鍵點擊城鎮中心附近的一棵樹來開始收集木材。公民兵採集木材會比女性公民更快。"
 
 #: maps/tutorials/introductory_tutorial.js:26
 #, javascript-format
@@ -61,18 +59,18 @@ msgstr "先選擇城鎮中心，再按住 %(hotkey)s ，然後按「重裝步兵
 msgid ""
 "Do not forget to press the batch training hotkey while clicking to produce "
 "multiple units."
-msgstr "想一次培訓好幾個單位的時候，別忘了按量產鍵。"
+msgstr "別忘了按下批次訓練快捷鍵並點擊來產生多個單位。"
 
 #: maps/tutorials/introductory_tutorial.js:38
 #: maps/tutorials/introductory_tutorial.js:162
 msgid "Click on the Hoplite icon."
-msgstr "按下重裝步兵的圖示。"
+msgstr "點擊重裝步兵的圖示。"
 
 #: maps/tutorials/introductory_tutorial.js:46
 msgid ""
 "Select the two idle Female Citizens and build a House nearby by selecting "
 "the House icon. Place the House by left-clicking on a piece of land."
-msgstr "選取兩名閒置的女性公民，點擊房舍按鈕在附近建造。左鍵點擊一片國土以放置房舍。"
+msgstr "選取兩名閒置的女性公民，點擊房舍按鈕在附近建造。左鍵點擊一片土地以放置房舍。"
 
 #: maps/tutorials/introductory_tutorial.js:54
 msgid ""
@@ -86,11 +84,11 @@ msgstr "訓練完後，選取新兵重裝步兵並指派他們在樹林附近建
 msgid ""
 "Train a batch of Skirmishers by holding %(hotkey)s and clicking on the "
 "Skirmisher icon in the Civic Center."
-msgstr "單擊選擇城鎮中心然後按住%(hotkey)s點擊標槍兵圖標來訓練一批標槍兵。"
+msgstr "單擊選擇城鎮中心然後按住%(hotkey)s點擊散兵圖示來訓練一批散兵。"
 
 #: maps/tutorials/introductory_tutorial.js:80
 msgid "Click on the Skirmisher icon."
-msgstr "點擊標槍兵圖標。"
+msgstr "點擊散兵圖示。"
 
 #: maps/tutorials/introductory_tutorial.js:88
 msgid ""
@@ -114,20 +112,20 @@ msgid ""
 "The Field's builders will now automatically begin gathering food from the "
 "Field. Using the newly created group of skirmishers, get them to build "
 "another House nearby."
-msgstr "農田的建築工人現在會自動開始耕田。派一群新訓練的標槍兵在附近蓋另一棟房舍。"
+msgstr "農田的建築工人現在會開始自動從農田採集食物。派一群新訓練的散兵在附近蓋另一棟房舍。"
 
 #: maps/tutorials/introductory_tutorial.js:144
 msgid ""
 "Train a batch of Hoplites at the Civic Center. Select the Civic Center and "
 "with it selected right-click on a tree nearby. Units from the Civic Center "
 "will now automatically gather wood."
-msgstr "從城鎮中心訓練一批重裝步兵。選取城鎮中心後右鍵點擊附近的樹，城鎮中心生產的單位就會自動前去伐木。"
+msgstr "從城鎮中心訓練一批重裝步兵。選取城鎮中心後右鍵點擊附近的樹，城鎮中心生產的單位就會自動前去採集木頭。"
 
 #: maps/tutorials/introductory_tutorial.js:176
 msgid ""
 "Select the Civic Center, then hover the cursor over the tree and right-click"
 " when you see your cursor change into a wood icon."
-msgstr "選取城鎮中心並將游標移到樹木上，在你看到游標變為木頭圖標時按下右鍵。"
+msgstr "選取城鎮中心並將游標移到樹木上，在你看到游標變為木頭圖示時點擊右鍵。"
 
 #: maps/tutorials/introductory_tutorial.js:185
 msgid ""
@@ -160,7 +158,7 @@ msgstr "請指派閒置的散兵，在領土東北方的邊境建造一個前哨
 msgid ""
 "Start training a batch of Female Citizens in the Civic Center and set its "
 "rally point to the Field (right click on it)."
-msgstr "開始在市民中心訓練一批女性公民，並將集結點設置到指定地點（右鍵單擊它）。"
+msgstr "開始在城鎮中心訓練一批女性公民，並將集結點設置到指定地點（右鍵點擊它）。"
 
 #: maps/tutorials/introductory_tutorial.js:246
 #: maps/tutorials/starting_economy_walkthrough.js:348
@@ -177,7 +175,7 @@ msgstr "準備應對敵方玩家的攻擊。使用軍營訓練更多士兵，並
 msgid ""
 "Build a Forge and research the Infantry Training technology (sword icon) to "
 "improve infantry hack attack."
-msgstr "建造一座兵工廠並研究步兵訓練科技(劍的圖示)以提高步兵劈砍的攻擊力。"
+msgstr "建造一座鍛造廠並研發步兵訓練科技(劍的圖示)以提高步兵劈砍的攻擊力。"
 
 #: maps/tutorials/introductory_tutorial.js:282
 msgid "The enemy is coming. Train more soldiers to fight off the enemies."
@@ -359,7 +357,7 @@ msgid ""
 "3) Double-click on a unit. This will select every unit of the same type as "
 "the specified unit in your visible window. %(hotkey)s+double-click will "
 "select all units of the same type on the entire map.\n"
-msgstr "3) 雙擊一個單位會自動選擇附近的全部同類單位。點三次將自動選擇整個地圖上的所有同類單位。"
+msgstr "3) 雙擊一個單位會自動選擇附近的全部同類單位。%(hotkey)s+雙擊將自動選擇整個地圖上的所有同類單位。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:48
 msgid ""
@@ -429,7 +427,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:111
 msgid "Do not forget to hold Shift while clicking to train several units."
-msgstr "想要一次訓練多個單位的時候，別忘了按住 Shift 鍵"
+msgstr "別忘了按住 Shift 鍵並點擊來訓練多個單位。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:112
 msgid "Hold Shift and click on the Hoplite icon."
@@ -504,7 +502,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:170
 msgid "Do not forget to hold Shift and click to train several units."
-msgstr "想要一次訓練多個單位的時候，別忘了按住 Shift 鍵"
+msgstr "別忘了按住 Shift 鍵並點擊來訓練多個單位。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:171
 msgid "Hold shift and click on the Female Citizen icon."
@@ -693,7 +691,7 @@ msgid ""
 "We should start preparing to phase up into Town Phase, which will unlock "
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the Town Phase icon to see what is still needed.\n"
-msgstr "我們應該開始準備進入鄉鎮階段，這將解鎖更多的單位和建築物。選擇城鎮中心，將游標停在鄉鎮階段圖標上，查看需要什麼資源。\n"
+msgstr "我們應該開始準備進入鄉鎮階段，這將解鎖更多的單位和建築物。選擇城鎮中心，將游標停在鄉鎮階段圖示上，查看需要什麼資源。\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:375
 msgid ""
@@ -708,7 +706,7 @@ msgid ""
 "start selecting the soldiers, click on the Barracks icon in the production "
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
-msgstr "選擇四名士兵並讓他們建造一座軍營：就像先前一樣，圈選士兵，點擊建造面板中的軍營圖標，然後在距離您城鎮中心不遠處打下地基。"
+msgstr "選擇四名士兵並讓他們建造一座軍營：就像先前一樣，圈選士兵，點擊建造面板中的軍營圖示，然後在距離您城鎮中心不遠處打下地基。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:387
 msgid ""
@@ -718,7 +716,7 @@ msgid ""
 " on it (you should see a hammer icon). Then produce two more builders by "
 "clicking on the Hoplite icon twice."
 msgstr ""
-"讓我們等待軍營建造完成。由於軍營建造時間較久，您可以增加兩名士兵以加快建造速度。要這麼做，選取您的城鎮中心，在軍營的地基上點擊右鍵以設定集結點（您應該會看到槌子的圖標），然後點擊重裝步兵的圖示兩次以生產兩個建築工人。"
+"讓我們等待軍營建造完成。由於軍營建造時間較久，您可以增加兩名士兵以加快建造速度。要這麼做，選取您的城鎮中心，在軍營的地基上點擊右鍵以設定集結點（您應該會看到槌子的圖示），然後點擊重裝步兵的圖示兩次以生產兩個建築工人。"
 
 #: maps/tutorials/starting_economy_walkthrough.js:397
 msgid ""

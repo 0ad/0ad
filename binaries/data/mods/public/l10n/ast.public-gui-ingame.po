@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-24 08:35+0000\n"
-"PO-Revision-Date: 2022-02-26 20:58+0000\n"
+"PO-Revision-Date: 2022-03-02 22:31+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -163,12 +163,12 @@ msgstr "Todos"
 #: gui/session/chat/ChatAddressees.js:94
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr "Colligahos"
+msgstr "Socios"
 
 #: gui/session/chat/ChatAddressees.js:95
 msgctxt "chat message context"
 msgid "Ally"
-msgstr "Colligau"
+msgstr "Soci@"
 
 #: gui/session/chat/ChatAddressees.js:105
 msgctxt "chat addressee"
@@ -227,7 +227,7 @@ msgstr "Recahos de xhogadores"
 #: gui/session/chat/ChatHistory.js:99
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr "Recahos de colligahos"
+msgstr "Recahos sociales"
 
 #: gui/session/chat/ChatHistory.js:106
 msgctxt "chat history filter"
@@ -272,7 +272,7 @@ msgstr "Premi %(hotkey)s p’abri’ la conversa spectadora."
 #: gui/session/chat/ChatInput.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr "Premi %(hotkey)s p’abri’ la conversa de colligahos."
+msgstr "Premi %(hotkey)s p’abri’ la conversa social."
 
 #: gui/session/chat/ChatInput.js:43
 #, javascript-format
@@ -365,7 +365,7 @@ msgstr "%(player)s introcou %(amountGiven)s in para de %(amountGained)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr "Colligæsti-te cun %(player)s."
+msgstr "Associæsti-te cun %(player)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:82
 #, javascript-format
@@ -380,7 +380,7 @@ msgstr "Volviesti-te neutral pa cun %(player)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr "%(player)s colligou-se cun tigo."
+msgstr "%(player)s associou-se cun tigo."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:87
 #, javascript-format
@@ -395,7 +395,7 @@ msgstr "%(player)s volvîu-se neutral pa cun tigo."
 #: gui/session/chat/ChatMessageFormatSimulation.js:91
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr "%(player)s colligou-se cun %(player2)s."
+msgstr "%(player)s associou-se cun %(player2)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:92
 #, javascript-format
@@ -587,7 +587,7 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr "Nota: La opçon disindolrcadora “modu alteraçon temporal” nun sta pensada pa l usu prolhongau. Si non s’utiliza a xheitu puœde exhauri’ la memoria de l trebeyyu ou resultar in falhos."
+msgstr "Nota: La opçon disindolrcadora “modu alteraçon temporal” nun sta pensada pa l usu prolhongau. Si non s’utiliza a xheitu puœde exhauri’ la memoîra de l trebeyyu ou resultar in falhos."
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -607,7 +607,7 @@ msgstr "Cultura"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):21
 msgid "Team"
-msgstr "Quadrielha"
+msgstr "Comunya"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):24
 msgid "Theirs"
@@ -649,7 +649,7 @@ msgstr "Alterna’ los colores diplomáticos"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
-msgstr "Pedir a los colligahos q’attaquen esti inimigu"
+msgstr "Pedir a los socios q’attaquen esti inimigu"
 
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
 msgctxt "team"
@@ -659,7 +659,7 @@ msgstr "Dalu"
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):28
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:78
 msgid "Ally"
-msgstr "Colligau"
+msgstr "Soci@"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):32
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:81
@@ -881,7 +881,7 @@ msgstr "Salir"
 
 #: gui/session/messages.js:415
 msgid "Click when ready."
-msgstr "Pica quando steas preparau."
+msgstr "Pica quando steas preparad@."
 
 #: gui/session/messages.js:419
 msgid "Follow the instructions."
@@ -893,22 +893,22 @@ msgstr "Xhogador disconhocidu"
 
 #: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
-msgstr "Siñar a los colligahos"
+msgstr "Siñar a los socios"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:43
 msgid ""
 "Find idle worker\n"
 "Number of idle workers."
-msgstr "Atopar un obreiru vagau\nNúmeru d’obreiros vagahos."
+msgstr "Atopar un@ obreir@ vagad@\nNúmeru d’obreir@s vagad@s."
 
 #: gui/session/selection_details.js:65
 #, javascript-format
 msgid "%(secondaryName)s — Packed"
-msgstr "%(secondaryName)s — armau"
+msgstr "%(secondaryName)s — armad@"
 
 #: gui/session/selection_details.js:67
 msgid "Packed"
-msgstr "Armau"
+msgstr "Armad@"
 
 #: gui/session/chat/ChatAddressees.js:74 gui/session/selection_details.js:78
 #, javascript-format
@@ -1099,7 +1099,7 @@ msgstr "Incaboxa’ l armadura"
 
 #: gui/session/selection_panels.js:558
 msgid "The auto-queue will try to train this item later."
-msgstr "De poder, elho inrestrará-se mas a lantre de modu automáticu."
+msgstr "De poder, elho inrestrara-se mas a lantre de modu automáticu."
 
 #: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
@@ -1610,7 +1610,7 @@ msgstr "Nun ha hi mercantes."
 
 #: gui/session/tutorial_panel.xml:(caption):11
 msgid "Ready"
-msgstr "Preparau"
+msgstr "Preparad@"
 
 #: gui/session/unit_actions.js:619
 msgid ""
@@ -1660,8 +1660,8 @@ msgstr "Ganhancia prevista: %(gain)s"
 #: gui/session/unit_actions.js:1307
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
-msgstr[0] "A essi ente non y puœdes mandar."
-msgstr[1] "A essos entes non ys puœdes mandar."
+msgstr[0] "A essi ente non lhi puœdes mandar."
+msgstr[1] "A essos entes non lhis puœdes mandar."
 
 #: gui/session/unit_actions.js:1353
 msgid "Unload All."
@@ -1738,11 +1738,11 @@ msgstr "Acometer a todelæs unidahes inimigæs incontradæs evitando construcço
 
 #: gui/session/unit_actions.js:1734
 msgid "Press to allow allies to use this dropsite"
-msgstr "Premi par deixar que los colligahos usen esti depósitu"
+msgstr "Premi par deixar que los socios usen esti depósitu"
 
 #: gui/session/unit_actions.js:1739
 msgid "Press to prevent allies from using this dropsite"
-msgstr "Premi par quitar que los colligahos usen esti depósitu"
+msgstr "Premi par quitar que los socios usen esti depósitu"
 
 #: gui/session/unit_actions.js:1774
 msgid "The use of this dropsite is prohibited"
@@ -1750,7 +1750,7 @@ msgstr "Nun puœdes usar esti depósitu"
 
 #: gui/session/unit_actions.js:1780
 msgid "Allies are allowed to use this dropsite."
-msgstr "Los colligahos puœden usar esti depósitu."
+msgstr "Los socios puœden usar esti depósitu."
 
 #: gui/session/unit_actions.js:1781
 msgid "You are allowed to use this dropsite"

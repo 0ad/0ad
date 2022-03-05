@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-11-19 08:08+0000\n"
-"PO-Revision-Date: 2022-02-28 05:44+0000\n"
+"PO-Revision-Date: 2022-03-02 04:00+0000\n"
 "Last-Translator: Yuan Chang\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "我已經對 %(_player_)s 送出大量的軍隊要來粉碎他了。加�
 #: simulation/ai/petra/chatHelper.js:7
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
-msgstr "我正在攻擊 %(_player_)s 。"
+msgstr "我正發起攻擊對付 %(_player_)s 。"
 
 #: simulation/ai/petra/chatHelper.js:8
 #, javascript-format
@@ -84,7 +84,7 @@ msgstr "這是給你的禮物，%(_player_)s。好好使用它吧。"
 #: simulation/ai/petra/chatHelper.js:28
 #, javascript-format
 msgid "I see you are in a bad situation, %(_player_)s. I hope this helps."
-msgstr "我看到你的狀況似乎不太好，%(_player_)s。我希望這可以對你有所幫助。"
+msgstr "我看到你的狀況似乎不太好，%(_player_)s。我希望這可以幫上忙。"
 
 #: simulation/ai/petra/chatHelper.js:29
 #, javascript-format
@@ -96,20 +96,20 @@ msgstr "這次我可以幫助你，%(_player_)s，但你未來必須更小心地
 #: simulation/ai/petra/chatHelper.js:33
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
-msgstr "我需要 %(resource)s，您可以幫忙嗎？ 我會歸功於您的。"
+msgstr "我需要%(resource)s，您可以幫忙嗎？ 我會歸功於您的。"
 
 #: simulation/ai/petra/chatHelper.js:34
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr "如果您能提供給我一些 %(resource)s，我將會更積極參與我們的共同戰爭行動。"
+msgstr "如果您能提供給我一些%(resource)s，我將會更積極參與我們的共同戰爭行動。"
 
 #: simulation/ai/petra/chatHelper.js:35
 #, javascript-format
 msgid ""
 "If you can spare me some %(resource)s, I will be able to strengthen my army."
-msgstr "若你可以給我一些 %(resource)s，我就可以強化我的軍隊了。"
+msgstr "若你可以給我一些%(resource)s，我就可以強化我的軍隊了。"
 
 #: simulation/ai/petra/chatHelper.js:39
 #, javascript-format
@@ -225,14 +225,14 @@ msgstr "%(_player_)s，我們從現在開始是盟友了。"
 msgid ""
 "I will ally with you, %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
-msgstr "我將會與您，%(_player_)s，成為同盟，不過您要先向我進貢 %(_amount_)s %(_resource_)s 的資源。"
+msgstr "我將會與您，%(_player_)s，成為同盟，不過您要先向我進貢 %(_amount_)s %(_resource_)s的資源。"
 
 #: simulation/ai/petra/chatHelper.js:81
 #, javascript-format
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s "
 "before I accept an alliance with you."
-msgstr "%(_player_)s，您必須進貢 %(_amount_)s %(_resource_)s 的資源給我，這樣我才會接受同盟提議。"
+msgstr "%(_player_)s，您必須進貢 %(_amount_)s %(_resource_)s的資源給我，這樣我才會接受同盟提議。"
 
 #: simulation/ai/petra/chatHelper.js:82
 #, javascript-format
@@ -246,7 +246,7 @@ msgstr "除非你進貢給我 %(_amount_)s %(_resource_)s，否則我們將不�
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you only if you send "
 "me a tribute of %(_amount_)s %(_resource_)s."
-msgstr "%(_player_)s，我的提議仍然有效。我將會在您進貢 %(_amount_)s %(_resource_)s 的資源後與您結為同盟。"
+msgstr "%(_player_)s，我的提議仍然有效。我將會在您進貢 %(_amount_)s %(_resource_)s的資源後與您結為同盟。"
 
 #: simulation/ai/petra/chatHelper.js:86
 #, javascript-format
@@ -260,7 +260,7 @@ msgstr "我仍在等待 %(_amount_)s %(_resource_)s，然後我才會接受你�
 msgid ""
 "%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
 "tribute soon, I will break off our negotiations."
-msgstr "%(_player_)s，如果你不快點進貢部份 %(_amount_)s %(_resource_)s 貢品給我，我將會破換談判。"
+msgstr "%(_player_)s，如果你不快點進貢部份 %(_amount_)s %(_resource_)s貢品給我，我將會中止談判。"
 
 #: simulation/ai/petra/chatHelper.js:92
 #, javascript-format
@@ -298,21 +298,21 @@ msgstr "%(_player_)s，我將會接受你的中立請求。應該會對我們兩
 msgid ""
 "If you send me a tribute of %(_amount_)s %(_resource_)s, I will accept your "
 "neutrality request, %(_player_)s."
-msgstr "如果你進貢給我 %(_amount_)s %(_resource_)s 的資源，我將會接受你的中立請求，%(_player_)s。"
+msgstr "如果你進貢給我 %(_amount_)s %(_resource_)s的資源，我將會接受你的中立請求，%(_player_)s。"
 
 #: simulation/ai/petra/chatHelper.js:104
 #, javascript-format
 msgid ""
 "%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
 "neutrality pact."
-msgstr "%(_player_)s，如果你進貢給我 %(_amount_)s %(_resource_)s 的資源，我將會接受中立條約。"
+msgstr "%(_player_)s，如果你進貢給我 %(_amount_)s %(_resource_)s的資源，我將會接受中立條約。"
 
 #: simulation/ai/petra/chatHelper.js:107
 #, javascript-format
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
 "me %(_amount_)s %(_resource_)s soon."
-msgstr "%(_player_)s，除非你快點進貢給我 %(_amount_)s %(_resource_)s 的資源，否則我將不會接受你的中立請求。"
+msgstr "%(_player_)s，除非你快點進貢給我 %(_amount_)s %(_resource_)s的資源，否則我將不會接受你的中立請求。"
 
 #: simulation/ai/petra/chatHelper.js:116
 #, javascript-format
@@ -367,27 +367,27 @@ msgstr "Petra 是預設的 0 A.D. AI 機器人。請回報問題給 Wildfire Gam
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
-msgstr "電腦玩家 Petra"
+msgstr "Petra 機器人"
 
 #: simulation/components/BuildRestrictions.js:91
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
-msgstr "因為未知的錯誤，無法建造 %(name)s"
+msgstr "因為未知的錯誤，無法建造%(name)s"
 
 #: simulation/components/BuildRestrictions.js:115
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
-msgstr "無法在尚未探索的區域建造 %(name)s"
+msgstr "無法在尚未探索的區域建造%(name)s"
 
 #: simulation/components/BuildRestrictions.js:163
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
-msgstr "不能在另一棟建築物或資源上建造 %(name)s"
+msgstr "不能在另一棟建築物或資源上建造%(name)s"
 
 #: simulation/components/BuildRestrictions.js:167
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
-msgstr "不能在無效的地形上建造 %(name)s"
+msgstr "不能在無效的地形上建造%(name)s"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -403,7 +403,7 @@ msgstr "自己"
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "unconnected own"
-msgstr "未連線自己的"
+msgstr "未連線自己"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -411,7 +411,7 @@ msgstr "未連線自己的"
 #: simulation/components/BuildRestrictions.js:199
 msgctxt "Territory type"
 msgid "allied"
-msgstr "同盟的"
+msgstr "同盟"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -419,7 +419,7 @@ msgstr "同盟的"
 #: simulation/components/BuildRestrictions.js:202
 msgctxt "Territory type"
 msgid "unconnected allied"
-msgstr "未連線同盟的"
+msgstr "未連線同盟"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -442,12 +442,12 @@ msgstr "敵方"
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
-msgstr "不能在 %(territoryType)s 的領土上建造 %(name)s 。有效的領土： %(validTerritories)s"
+msgstr "不能在%(territoryType)s的領土上建造%(name)s 。有效的領土：%(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:234
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
-msgstr "必須在有效的海岸線上建造 %(name)s"
+msgstr "必須在有效的海岸線上建造%(name)s"
 
 #: simulation/components/BuildRestrictions.js:261
 #, javascript-format
@@ -457,7 +457,7 @@ msgid ""
 msgid_plural ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr[0] "%(name)s 距離 %(category)s 太近，必須要有至少 %(distance)s 公尺的距離"
+msgstr[0] "%(name)s距離%(category)s太近，必須要有至少 %(distance)s 公尺的距離"
 
 #: simulation/components/BuildRestrictions.js:282
 #, javascript-format
@@ -543,14 +543,14 @@ msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s"
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
-msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
+msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s、%(resourceAmount2)s %(resourceType2)s"
 
 #: simulation/components/Player.js:351
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
-msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
+msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s、%(resourceAmount2)s %(resourceType2)s、%(resourceAmount3)s %(resourceType3)s"
 
 #: simulation/components/Player.js:353
 #, javascript-format
@@ -558,7 +558,7 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
-msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
+msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s、%(resourceAmount2)s %(resourceType2)s、%(resourceAmount3)s %(resourceType3)s、%(resourceAmount4)s %(resourceType4)s"
 
 #: simulation/components/ProductionQueue.js:289
 msgid "Entity is being upgraded. Cannot start production."
@@ -640,7 +640,7 @@ msgstr "小型"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr "小地圖適合一對一的競賽，因為玩家可以快速接觸到敵人，但又保有一些擴展空間。"
+msgstr "小地圖適合 1v1 的競賽，因為玩家可以快速接觸到敵人，但又保有一些擴展空間。"
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Normal"
@@ -656,7 +656,7 @@ msgstr "這張地圖提供了兩個玩家充足的空間，但八個玩家也能
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr "這對四到八個玩家來說是理想的地圖大小，因為有很多空間可以拓展，而又可以很快速地接觸到其他人。"
+msgstr "這對 4 到 8 個玩家來說是理想的地圖大小，因為有很多空間可以拓展，而又可以很快速地接觸到其他人。"
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"

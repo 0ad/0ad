@@ -16,15 +16,15 @@
 # TonyChyi
 # Wolfson Liu
 # xiaolong dai
-# liulitchi
+# 柳离枝
 # 夏小正
 # 玉堂白鹤
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-27 06:27+0000\n"
-"Last-Translator: liulitchi\n"
+"POT-Creation-Date: 2022-02-28 08:09+0000\n"
+"PO-Revision-Date: 2022-03-01 04:34+0000\n"
+"Last-Translator: 柳离枝\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -293,16 +293,16 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Crossbow"
 msgstr "弩箭"
 
-#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:29
+#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:28
 msgid "Cavalry Crossbowman"
 msgstr "弩骑兵"
 
-#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:30
+#: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:24
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:27
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:24
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:24
-#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:30
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:32
 msgid "Crossbowman"
 msgstr "弩手"
 
@@ -609,7 +609,7 @@ msgstr "近战步兵"
 msgid "Infantry Maceman"
 msgstr "骨朵兵"
 
-#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:29
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:31
 msgid "Infantry Crossbowman"
 msgstr "弩手"
 
@@ -1303,6 +1303,7 @@ msgstr "布立吞战车"
 
 #: simulation/templates/units/brit/champion_chariot.xml:12
 #: simulation/templates/units/brit/hero_boudicca.xml:15
+#: simulation/templates/units/han/champion_chariot.xml:11
 #: simulation/templates/units/han/hero_wei_qing_chariot.xml:22
 #: simulation/templates/units/kush/hero_amanirenas.xml:16
 #: simulation/templates/units/maur/champion_chariot.xml:12
@@ -1685,6 +1686,14 @@ msgstr "孙子的思想"
 msgid "Wu Wei Yin Cao Cao Guard"
 msgstr "武威尹曹"
 
+#: simulation/templates/units/han/champion_chariot.xml:9
+msgid "Chinese War Chariot"
+msgstr "战车"
+
+#: simulation/templates/units/han/champion_chariot.xml:10
+msgid "Zhanche"
+msgstr "战车"
+
 #: simulation/templates/units/han/champion_infantry_archer.xml:5
 msgid "Palace Guard Archer"
 msgstr "禁卫弓手"
@@ -1693,11 +1702,11 @@ msgstr "禁卫弓手"
 msgid "Yǔ Lín"
 msgstr "羽林郎"
 
-#: simulation/templates/units/han/champion_infantry_swordsman.xml:5
-msgid "Palace Guard Swordsman"
-msgstr "禁卫剑士"
+#: simulation/templates/units/han/champion_infantry_spearman.xml:5
+msgid "Palace Guard Spearman"
+msgstr "禁卫矛兵"
 
-#: simulation/templates/units/han/champion_infantry_swordsman.xml:6
+#: simulation/templates/units/han/champion_infantry_spearman.xml:6
 msgid "Hǔ Bēn"
 msgstr "虎贲"
 
@@ -1721,7 +1730,7 @@ msgstr "卫青"
 msgid "Shè Shǒu"
 msgstr "射手"
 
-#: simulation/templates/units/han/infantry_crossbowman_b.xml:18
+#: simulation/templates/units/han/infantry_crossbowman_b.xml:11
 msgid "Nǔ Shǒu"
 msgstr "弩手"
 

@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-21 08:24+0000\n"
-"Last-Translator: Transifex Bot\n"
+"PO-Revision-Date: 2022-02-28 12:44+0000\n"
+"Last-Translator: Photon man\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -261,7 +261,7 @@ msgstr "無効"
 
 #: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
-msgstr ""
+msgstr "最初の1分間、他のプレイヤーは中立を保ちます。"
 
 #: gui/common/gamedescription.js:279
 #, javascript-format
@@ -487,15 +487,15 @@ msgstr "セキュアロビー認証に失敗しました。ロビーから参加
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr ""
+msgstr "Error: サーバーが一意のクライアント識別子を割り当てられませんでした。"
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
-msgstr ""
+msgstr "Error: クライアントコマンドは、予想外のゲーム展開に備えました。"
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
-msgstr ""
+msgstr "Error: クライアントが想定外のゲーム展開をシミュレート"
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
@@ -663,7 +663,7 @@ msgstr "デフォルト"
 #: gui/common/settings.js:403
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(world)"
 
 #: gui/common/settings.js:404 gui/common/settings.js:408
 msgctxt "population capacity"
@@ -672,27 +672,27 @@ msgstr "Unknown"
 
 #: gui/common/settings.js:420
 msgid "Unknown Victory Condition"
-msgstr ""
+msgstr "不明な勝利条件"
 
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab right."
-msgstr ""
+msgstr "下にスクロールするか、または%(hotkey)sを使用してタブを右に移動します。"
 
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab left."
-msgstr ""
+msgstr "上にスクロールするか、または%(hotkey)sを使用してタブを左に移動します。"
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab down."
-msgstr ""
+msgstr "下にスクロールするか、または%(hotkey)sを使用してタブを下に移動します。"
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab up."
-msgstr ""
+msgstr "上にスクロールするか、または%(hotkey)sを使用してタブを上に移動します。"
 
 #: gui/common/tooltips.js:63
 #, javascript-format
@@ -892,7 +892,7 @@ msgstr "%(amount)s %(name)s"
 #: gui/common/tooltips.js:393
 #, javascript-format
 msgid "%(splashShape)s Splash"
-msgstr ""
+msgstr "%(splashShape)s スプラッシュ"
 
 #: gui/common/tooltips.js:396
 #, javascript-format
@@ -902,7 +902,7 @@ msgstr "%(label)s: %(effects)s"
 #: gui/common/tooltips.js:402
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
-msgstr ""
+msgstr "フレンドリーファイア: %(enabled)s"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
@@ -925,7 +925,7 @@ msgstr "いいえ"
 #: gui/common/tooltips.js:414
 #, javascript-format
 msgid "gives %(name)s"
-msgstr ""
+msgstr "%(name)sを送ります"
 
 #: gui/common/tooltips.js:447
 #, javascript-format
@@ -1025,7 +1025,7 @@ msgstr "%(label)s: %(turretsLimit)s"
 
 #: gui/common/tooltips.js:594
 msgid "Turret Positions"
-msgstr ""
+msgstr "射撃配置"
 
 #: gui/common/tooltips.js:615 gui/common/tooltips.js:620
 #: gui/common/tooltips.js:625
@@ -1035,7 +1035,7 @@ msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:616
 msgid "Projectile Limit"
-msgstr ""
+msgstr "射撃上限"
 
 #: gui/common/tooltips.js:621
 msgctxt "projectiles"
@@ -1049,11 +1049,11 @@ msgstr ""
 
 #: gui/common/tooltips.js:636
 msgid "Number of repairers:"
-msgstr ""
+msgstr "修理業数:"
 
 #: gui/common/tooltips.js:642
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "修理時間:"
 
 #: gui/common/tooltips.js:646
 #, javascript-format
@@ -1070,11 +1070,11 @@ msgstr[0] ""
 
 #: gui/common/tooltips.js:670
 msgid "Number of builders:"
-msgstr ""
+msgstr "建設者数:"
 
 #: gui/common/tooltips.js:676
 msgid "Remaining build time:"
-msgstr ""
+msgstr "建設時間:"
 
 #: gui/common/tooltips.js:680
 #, javascript-format
@@ -1134,7 +1134,7 @@ msgstr "%(resourceIcon)s %(reward)s"
 
 #: gui/common/tooltips.js:835
 msgid "Resource Trickle:"
-msgstr ""
+msgstr "資源の自動供給:"
 
 #: gui/common/tooltips.js:836 gui/common/tooltips.js:860
 #, javascript-format
@@ -1248,12 +1248,12 @@ msgstr "射程:"
 #: gui/common/tooltips.js:1104 gui/common/tooltips.js:1132
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
-msgstr ""
+msgstr "%(primaryName)s (%(secondaryName)s)"
 
 #: gui/common/tooltips.js:1108 gui/common/tooltips.js:1125
 #, javascript-format
 msgid "%(primaryName)s"
-msgstr ""
+msgstr "%(primaryName)s"
 
 #: gui/common/tooltips.js:1155
 msgid "Classes:"
@@ -1265,7 +1265,7 @@ msgstr "分類："
 #: gui/common/tooltips.js:1182
 #, javascript-format
 msgid "%(component)s %(loot)s"
-msgstr ""
+msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:1192
 msgid "Loot:"
@@ -1274,7 +1274,7 @@ msgstr "略奪される物"
 #: gui/common/tooltips.js:1202
 #, javascript-format
 msgid "%(label)s %(icons)s"
-msgstr ""
+msgstr "%(label)s %(icons)s"
 
 #: gui/common/tooltips.js:1203
 msgid "Dropsite for:"
