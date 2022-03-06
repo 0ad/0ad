@@ -10,21 +10,21 @@ else
 
 // Pick some biome defaults and overload a few settings.
 var tPrimary = g_Terrains.mainTerrain;
-var tForestFloor = g_Terrains.forestFloor1;
+var tForestFloor = g_Terrains.tier3Terrain;
 var tCliff = ["savanna_cliff_a", "savanna_cliff_a_red", "savanna_cliff_b", "savanna_cliff_b_red"];
-var tSecondary = g_Terrains.tier4Terrain;
-var tGrassShrubs = g_Terrains.tier1Terrain;
-var tDirt = g_Terrains.dirt;
-var tDirt2 = "savanna_dirt_a_red";
+var tSecondary = g_Terrains.tier1Terrain;
+var tGrassShrubs = g_Terrains.tier2Terrain;
+var tDirt = g_Terrains.tier3Terrain;
+var tDirt2 = g_Terrains.tier4Terrain;
 var tDirt3 = g_Terrains.dirt;
-var tDirt4 = g_Terrains.hill;
+var tDirt4 = g_Terrains.dirt;
 var tCitytiles = "savanna_tile_a";
 var tShore = g_Terrains.shore;
 var tWater = g_Terrains.water;
 
-var oBaobab = g_Gaia.tree1;
-var oPalm = g_Gaia.tree2;
-var oPalm2 = g_Gaia.tree3;
+var oBaobab = pickRandom(["gaia/tree/baobab", "gaia/tree/baobab_3_mature", "gaia/tree/acacia"]);
+var oPalm = "gaia/tree/bush_tropic";
+var oPalm2 = "gaia/tree/cretan_date_palm_short";
 var oBerryBush = "gaia/fruit/berry_01";
 var oWildebeest = "gaia/fauna_wildebeest";
 var oZebra = "gaia/fauna_zebra";
@@ -137,7 +137,7 @@ createDefaultForests(
 	[tPrimary, pForest, tForestFloor, pForest, pForest],
 	avoidClasses(clPlayer, 20, clForest, 15, clHill, 0, clWater, 2),
 	clForest,
-	scaleByMapSize(500, 3000));
+	scaleByMapSize(200, 1000));
 Engine.SetProgress(50);
 
 g_Map.log("Creating dirt patches");
@@ -288,7 +288,7 @@ Engine.SetProgress(85);
 
 
 g_Map.log("Creating straggler baobabs");
-const group = new SimpleGroup([new SimpleObject(oBaobab, 1, 3, 0, 3)], true, clForest);
+const group = new SimpleGroup([new SimpleObject(oBaobab, 1, 1, 0, 3)], true, clForest);
 createObjectGroups(
 	group,
 	0,
