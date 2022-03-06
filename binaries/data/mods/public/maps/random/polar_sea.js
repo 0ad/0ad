@@ -1,15 +1,10 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
-var tPrimary = ["polar_snow_a"];
-var tSecondary = "polar_snow_glacial";
-var tHalfSnow = ["ice_01", "ice_dirt"];
-var tSnowLimited = ["polar_snow_b", "polar_ice"];
-var tDirt = "ice_dirt";
-var tRoad = "polar_ice_b";
-var tRoadWild = "polar_ice_cracked";
-var tShore = "polar_ice_snow";
-var tWater = "polar_ice_c";
+var tPrimary = ["alpine_snow_01"];
+var tSecondary = "alpine_snow_02";
+var tShore = "alpine_ice_01";
+var tWater = "alpine_ice_01";
 
 var oArcticFox = "gaia/fauna_fox_arctic";
 var oArcticWolf = "gaia/fauna_wolf_arctic_violent";
@@ -18,9 +13,9 @@ var oWalrus = "gaia/fauna_walrus";
 var oWhaleFin = "gaia/fauna_whale_fin";
 var oWhaleHumpback = "gaia/fauna_whale_humpback";
 var oFish = "gaia/fish/generic";
-var oStoneLarge = "gaia/rock/mediterranean_large";
+var oStoneLarge = "gaia/rock/polar_01";
 var oStoneSmall = "gaia/rock/alpine_small";
-var oMetalLarge = "gaia/ore/badlands_large";
+var oMetalLarge = "gaia/ore/polar_01";
 var oWoodTreasure = "gaia/treasure/wood";
 var oMarket = "skirmish/structures/default_market";
 
@@ -28,7 +23,7 @@ var aRockLarge = "actor|geology/stone_granite_med.xml";
 var aRockMedium = "actor|geology/stone_granite_med.xml";
 var aIceberg = "actor|props/special/eyecandy/iceberg.xml";
 
-var heightSeaGround = -4;
+var heightSeaGround = -10;
 var heightLand = 2;
 var heightCliff = 3;
 
@@ -70,8 +65,8 @@ placePlayerBases({
 	"BaseResourceClass": clBaseResource,
 	"Walls": "towers",
 	"CityPatch": {
-		"outerTerrain": tRoadWild,
-		"innerTerrain": tRoad
+		"outerTerrain": tSecondary,
+		"innerTerrain": tSecondary
 	},
 	"StartingAnimal": {
 		"template": oMuskox
@@ -125,24 +120,15 @@ createBumps(avoidClasses(clWater, 2, clPlayer, 20));
 Engine.SetProgress(60);
 
 createHills(
-	[tPrimary, tPrimary, tSecondary],
+	[tSecondary, tSecondary, tSecondary],
 	avoidClasses(clPlayer, 20, clHill, 35),
 	clHill,
 	scaleByMapSize(20, 240));
 Engine.SetProgress(65);
 
-g_Map.log("Creating dirt patches");
-createLayeredPatches(
-	[scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
-	[[tDirt, tHalfSnow], [tHalfSnow, tSnowLimited]],
-	[2],
-	avoidClasses(clWater, 3, clDirt, 5, clPlayer, 12),
-	scaleByMapSize(15, 45),
-	clDirt);
-
 g_Map.log("Creating glacier patches");
 createPatches(
-	[scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
+	[scaleByMapSize(10, 20), scaleByMapSize(20, 30)],
 	tSecondary,
 	avoidClasses(clWater, 3, clDirt, 5, clPlayer, 12),
 	scaleByMapSize(15, 45),
