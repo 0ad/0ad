@@ -68,19 +68,33 @@ class GameSettings
 	 */
 	fromInitAttributes(attribs)
 	{
-		// Settings depend on the map, but some settings
-		// may also be illegal for a given map.
-		// It would be good to validate, but just bulk-accept at the moment.
-		// There is some light order-dependency between settings.
-		// First deserialize the map, then the player #, then victory conditions, then the rest.
-		// TODO: there's a DAG in there.
-		this.map.fromInitAttributes(attribs);
-		this.playerCount.fromInitAttributes(attribs);
-		this.victoryConditions.fromInitAttributes(attribs);
-		for (let comp in this)
-			if (this[comp].fromInitAttributes &&
-				comp !== "map" && comp !== "playerCount" && comp !== "victoryConditions")
-				this[comp].fromInitAttributes(attribs);
+		// Settings may depend on eachother. Some selections of settings
+		// might be illegal. So keep looping through all settings until
+		// we find something stable.
+		const components = Object.keys(this);
+
+		// To check in the loop below if something change we just compare
+		// the entire component. However, we must ignore the "settings"
+		// keyword to avoid cyclic objects.
+		const getComponentData = comp => Object.keys(this[comp]).map(key => key == "settings" ? undefined : this[comp][key]);
+
+		// When we have looped components.length + 1 times, we are considered stuck.
+		for (let i = 0; i <= components.length; ++i)
+		{
+			// Re-init if any setting was changed, to make sure dependencies are cleared.
+			let reInit = false;
+			for (const comp in this)
+			{
+				const oldSettings = clone(getComponentData(comp));
+				if (this[comp].fromInitAttributes)
+					this[comp].fromInitAttributes(attribs);
+				reInit = reInit || !deepCompare(oldSettings, getComponentData(comp));
+			}
+			if (!reInit)
+				return;
+		}
+
+		throw new Error("Infinite loop initializing attributes detected, components: " + uneval(components));
 	}
 
 	/**

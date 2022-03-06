@@ -32,10 +32,8 @@ GameSettings.prototype.Attributes.PlayerColor = class PlayerColor extends GameSe
 	{
 		if (!this.getLegacySetting(attribs, "PlayerData"))
 			return;
-		let pData = this.getLegacySetting(attribs, "PlayerData");
-		if (this.values.length < pData.length)
-			this._resize(pData.length);
-		for (let i in pData)
+		const pData = this.getLegacySetting(attribs, "PlayerData");
+		for (let i = 0; i < this.values.length; ++i)
 			if (pData[i] && pData[i].Color)
 				this.setColor(i, pData[i].Color);
 	}

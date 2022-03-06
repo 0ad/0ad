@@ -37,10 +37,8 @@ GameSettings.prototype.Attributes.PlayerAI = class PlayerAI extends GameSetting
 	{
 		if (!this.getLegacySetting(attribs, "PlayerData"))
 			return;
-		let pData = this.getLegacySetting(attribs, "PlayerData");
-		if (this.values.length < pData.length)
-			this._resize(pData.length);
-		for (let i in pData)
+		const pData = this.getLegacySetting(attribs, "PlayerData");
+		for (let i = 0; i < this.values.length; ++i)
 		{
 			// Also covers the "" case.
 			if (!pData[i] || !pData[i].AI)
