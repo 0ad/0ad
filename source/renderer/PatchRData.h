@@ -67,7 +67,8 @@ public:
 		const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow);
 	static void RenderStreams(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, int streamflags);
+		const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader,
+		const bool bindPositionAsTexCoord);
 	static void RenderSides(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
 		const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader);

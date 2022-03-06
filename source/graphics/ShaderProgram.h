@@ -41,11 +41,7 @@ enum
 	STREAM_UV0 = (1 << 3),
 	STREAM_UV1 = (1 << 4),
 	STREAM_UV2 = (1 << 5),
-	STREAM_UV3 = (1 << 6),
-	STREAM_POSTOUV0 = (1 << 7),
-	STREAM_POSTOUV1 = (1 << 8),
-	STREAM_POSTOUV2 = (1 << 9),
-	STREAM_POSTOUV3 = (1 << 10)
+	STREAM_UV3 = (1 << 6)
 };
 
 /**

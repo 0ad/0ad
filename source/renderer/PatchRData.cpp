@@ -1062,7 +1062,8 @@ void CPatchRData::RenderBlends(
 
 void CPatchRData::RenderStreams(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader, int streamflags)
+	const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader,
+	const bool bindPositionAsTexCoord)
 {
 	PROFILE3("render terrain streams");
 
@@ -1091,8 +1092,6 @@ void CPatchRData::RenderStreams(
 
  	PROFILE_END("compute batches");
 
-	ENSURE(!(streamflags & ~(STREAM_POS|STREAM_POSTOUV0|STREAM_POSTOUV1)));
-
  	// Render each batch
 	for (const std::pair<CVertexBuffer* const, StreamIndexBufferBatches>& streamBatch : batches)
 	{
@@ -1100,10 +1099,8 @@ void CPatchRData::RenderStreams(
 		SBaseVertex *base = (SBaseVertex *)streamBatch.first->Bind(deviceCommandContext);
 
 		shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position);
-		if (streamflags & STREAM_POSTOUV0)
+		if (bindPositionAsTexCoord)
 			shader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, &base->m_Position);
-		if (streamflags & STREAM_POSTOUV1)
-			shader->TexCoordPointer(GL_TEXTURE1, 3, GL_FLOAT, stride, &base->m_Position);
 
 		shader->AssertPointersBound();
 
