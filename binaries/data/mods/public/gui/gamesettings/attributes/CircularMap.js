@@ -16,7 +16,8 @@ GameSettings.prototype.Attributes.CircularMap = class CircularMap extends GameSe
 
 	fromInitAttributes(attribs)
 	{
-		this.value = !!this.getLegacySetting(attribs, "CircularMap");
+		if (this.getLegacySetting(attribs, "CircularMap") !== undefined)
+			this.value = !!this.getLegacySetting(attribs, "CircularMap");
 	}
 
 	onMapChange()

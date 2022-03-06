@@ -125,7 +125,7 @@ class GameSettings
 	 * since you'll need a GameSettings object anyways.
 	 * @param playerAssignments - A dict of 'local'/GUID per player and their name/slot.
 	 */
-	launchGame(playerAssignments)
+	launchGame(playerAssignments, storeReplay)
 	{
 		this.pickRandomItems();
 
@@ -142,9 +142,9 @@ class GameSettings
 
 		// NB: for multiplayer support, the clients must be listening to "start" net messages.
 		if (this.isNetworked)
-			Engine.StartNetworkGame(this.finalizedAttributes);
+			Engine.StartNetworkGame(this.finalizedAttributes, storeReplay);
 		else
-			Engine.StartGame(this.finalizedAttributes, playerAssignments.local.player);
+			Engine.StartGame(this.finalizedAttributes, playerAssignments.local.player, storeReplay);
 	}
 }
 

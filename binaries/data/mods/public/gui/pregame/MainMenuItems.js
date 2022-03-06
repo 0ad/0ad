@@ -15,11 +15,20 @@ var g_MainMenuItems = [
 				"tooltip": translate("Start the economic tutorial."),
 				"onPress": () => {
 					Engine.SwitchGuiPage("page_autostart.xml", {
-						"mapType": "scenario",
-						"map": "maps/tutorials/starting_economy_walkthrough",
-						"settings": {
-							"CheatsEnabled": true
-						}
+						"attribs": {
+							"mapType": "scenario",
+							"map": "maps/tutorials/starting_economy_walkthrough",
+							"settings": {
+								"CheatsEnabled": true
+							},
+						},
+						"playerAssignments": {
+							"local": {
+								"player": 1,
+								"name": Engine.ConfigDB_GetValue("user", "playername.singleplayer") || Engine.GetSystemUsername()
+							}
+						},
+						"storeReplay": true
 					});
 				}
 			},

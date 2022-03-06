@@ -270,7 +270,7 @@ class GameSettingsController
 
 		// This will resolve random settings & send game start messages.
 		// TODO: this will trigger observers, which is somewhat wasteful.
-		g_GameSettings.launchGame(g_PlayerAssignments);
+		g_GameSettings.launchGame(g_PlayerAssignments, true);
 
 		// Switch to the loading page right away,
 		// the GUI will otherwise show the unrandomised settings.

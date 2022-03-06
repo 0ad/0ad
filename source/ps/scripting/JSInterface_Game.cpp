@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,13 +41,13 @@ bool IsGameStarted()
 	return g_Game;
 }
 
-void StartGame(const ScriptInterface& guiInterface, JS::HandleValue attribs, int playerID)
+void StartGame(const ScriptInterface& guiInterface, JS::HandleValue attribs, int playerID, bool storeReplay)
 {
 	ENSURE(!g_NetServer);
 	ENSURE(!g_NetClient);
 	ENSURE(!g_Game);
 
-	g_Game = new CGame(true);
+	g_Game = new CGame(storeReplay);
 
 	// Convert from GUI script context to sim script context/
 	CSimulation2* sim = g_Game->GetSimulation2();

@@ -366,7 +366,7 @@ function startHost(playername, servername, port, password)
 
 	try
 	{
-		Engine.StartNetworkHost(playername + (g_UserRating ? " (" + g_UserRating + ")" : ""), port, useSTUN, password);
+		Engine.StartNetworkHost(playername + (g_UserRating ? " (" + g_UserRating + ")" : ""), port, useSTUN, password, true);
 	}
 	catch (e)
 	{
@@ -395,7 +395,7 @@ function startJoin(playername, ip, port)
 {
 	try
 	{
-		Engine.StartNetworkJoin(playername, ip, port);
+		Engine.StartNetworkJoin(playername, ip, port, true);
 	}
 	catch (e)
 	{

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -145,8 +145,7 @@ private:
  * See http://trac.wildfiregames.com/ticket/654
  */
 
-CNetServerWorker::CNetServerWorker(bool useLobbyAuth, int autostartPlayers) :
-	m_AutostartPlayers(autostartPlayers),
+CNetServerWorker::CNetServerWorker(bool useLobbyAuth) :
 	m_LobbyAuth(useLobbyAuth),
 	m_Shutdown(false),
 	m_ScriptInterface(NULL),
@@ -428,10 +427,6 @@ void CNetServerWorker::Run()
 	{
 		if (!RunStep())
 			break;
-
-		// Implement autostart mode
-		if (m_State == SERVER_STATE_PREGAME && (int)m_PlayerAssignments.size() == m_AutostartPlayers)
-			StartGame(Script::StringifyJSON(ScriptRequest(m_ScriptInterface), &m_InitAttributes));
 
 		// Update profiler stats
 		m_Stats->LatchHostState(m_Host);
@@ -1624,8 +1619,8 @@ void CNetServerWorker::SendHolePunchingMessage(const CStr& ipStr, u16 port)
 
 
 
-CNetServer::CNetServer(bool useLobbyAuth, int autostartPlayers) :
-	m_Worker(new CNetServerWorker(useLobbyAuth, autostartPlayers)),
+CNetServer::CNetServer(bool useLobbyAuth) :
+	m_Worker(new CNetServerWorker(useLobbyAuth)),
 	m_LobbyAuth(useLobbyAuth), m_UseSTUN(false), m_PublicIp(""), m_PublicPort(20595), m_Password()
 {
 }

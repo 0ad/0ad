@@ -13,7 +13,7 @@ Autostart:
 -autostart-aidiff=PLAYER:DIFF   sets the DIFFiculty of PLAYER's AI (0: sandbox, 5: very hard)
 -autostart-aiseed=AISEED        sets the seed used for the AI random generator (default 0, use -1 for random)
 -autostart-player=NUMBER        sets the playerID in non-networked games (default 1, use -1 for observer)
--autostart-civ=PLAYER:CIV       sets PLAYER's civilisation to CIV (skirmish and random maps only)
+-autostart-civ=PLAYER:CIV       sets PLAYER's civilisation to CIV (skirmish and random maps only). Use random for a random civ.
 -autostart-team=PLAYER:TEAM     sets the team for PLAYER (e.g. 2:2).
 -autostart-ceasefire=NUM        sets a ceasefire duration NUM (default 0 minutes)
 -autostart-nonvisual            disable any graphics and sounds
@@ -33,9 +33,9 @@ Multiplayer:
 
 Examples:
 1) "Bob" will host a 2 player game on the Arcadia map:
- -autostart="scenarios/Arcadia" -autostart-host -autostart-host-players=2 -autostart-playername="Bob"
+ -autostart="scenarios/arcadia" -autostart-host -autostart-host-players=2 -autostart-playername="Bob"
  "Alice" joins the match as player 2:
- -autostart="scenarios/Arcadia" -autostart-client=127.0.0.1 -autostart-playername="Alice"
+ -autostart-client=127.0.0.1 -autostart-playername="Alice"
  The players use the developer overlay to control players.
 2) Load Alpine Lakes random map with random seed, 2 players (Athens and Britons), and player 2 is PetraBot:
  -autostart="random/alpine_lakes" -autostart-seed=-1 -autostart-players=2 -autostart-civ=1:athen -autostart-civ=2:brit -autostart-ai=2:petra
