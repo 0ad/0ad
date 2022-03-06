@@ -17,7 +17,7 @@
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "chinese_bureaucracy_01.png",
 	"researchTime": 40,
-	"tooltip": "Technologies at all buildings, except the Blacksmith, -15% cost and -15% research time.",
+	"tooltip": "Technologies at all buildings, except the Forge, -15% cost and -15% research time.",
 	"modifications": [
 		{ "value": "Researcher/TechCostMultiplier/time", "multiply": 0.85 },
 		{ "value": "Researcher/TechCostMultiplier/wood", "multiply": 0.85 },
@@ -25,6 +25,6 @@
 		{ "value": "Researcher/TechCostMultiplier/metal", "multiply": 0.85 },
 		{ "value": "Researcher/TechCostMultiplier/stone", "multiply": 0.85 }
 	],
-	"affects": ["Structure", "!Blacksmith"],
+	"affects": ["Structure !Forge"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
