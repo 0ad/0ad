@@ -5,9 +5,8 @@
       <decal angle="0" depth="40" offsetx="0" offsetz="0" width="-21"/>
       <textures>
         <texture file="props/spart_temple_decal.png" name="baseTex"/>
-        <texture file="props/spart_temple_decal.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>terrain_norm.xml</material>
+  <material>terrain_base.xml</material>
 </actor>
