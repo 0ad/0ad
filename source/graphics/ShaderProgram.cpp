@@ -109,13 +109,10 @@ public:
 
 		if (!Compile(GL_FRAGMENT_PROGRAM_ARB, "fragment", m_FragmentProgram, m_FragmentFile, fragmentCode))
 			return;
-
-		m_IsValid = true;
 	}
 
 	void Unload()
 	{
-		m_IsValid = false;
 	}
 
 	void Bind() override
@@ -484,14 +481,10 @@ public:
 
 		if (!Link())
 			return;
-
-		m_IsValid = true;
 	}
 
 	void Unload()
 	{
-		m_IsValid = false;
-
 		if (m_Program)
 			glDeleteProgram(m_Program);
 		m_Program = 0;
@@ -638,20 +631,6 @@ public:
 		}
 	}
 
-	void VertexAttribIPointer(attrib_id_t id, GLint size, GLenum type, GLsizei stride, const void* pointer) override
-	{
-		std::map<CStrIntern, int>::iterator it = m_VertexAttribs.find(id);
-		if (it != m_VertexAttribs.end())
-		{
-#if CONFIG2_GLES
-			UNUSED2(size); UNUSED2(type); UNUSED2(stride); UNUSED2(pointer);
-			debug_warn(L"glVertexAttribIPointer not supported on GLES");
-#else
-			glVertexAttribIPointerEXT(it->second, size, type, stride, pointer);
-#endif
-		}
-	}
-
 	std::vector<VfsPath> GetFileDependencies() const override
 	{
 		return m_FileDependencies;
@@ -675,7 +654,7 @@ private:
 //////////////////////////////////////////////////////////////////////////
 
 CShaderProgram::CShaderProgram(int streamflags)
-	: m_IsValid(false), m_StreamFlags(streamflags), m_ValidStreams(0)
+	: m_StreamFlags(streamflags), m_ValidStreams(0)
 {
 }
 
@@ -705,11 +684,6 @@ CShaderProgram::CShaderProgram(int streamflags)
 	int streamflags)
 {
 	return new CShaderProgramGLSL(vertexFile, fragmentFile, defines, vertexAttribs, streamflags);
-}
-
-bool CShaderProgram::IsValid() const
-{
-	return m_IsValid;
 }
 
 int CShaderProgram::GetStreamFlags() const
@@ -805,12 +779,6 @@ void CShaderProgram::VertexAttribPointer(attrib_id_t UNUSED(id), GLint UNUSED(si
 	GLboolean UNUSED(normalized), GLsizei UNUSED(stride), const void* UNUSED(pointer))
 {
 	debug_warn("Shader type doesn't support VertexAttribPointer");
-}
-
-void CShaderProgram::VertexAttribIPointer(attrib_id_t UNUSED(id), GLint UNUSED(size), GLenum UNUSED(type),
-	GLsizei UNUSED(stride), const void* UNUSED(pointer))
-{
-	debug_warn("Shader type doesn't support VertexAttribIPointer");
 }
 
 #if CONFIG2_GLES

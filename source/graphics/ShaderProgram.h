@@ -117,11 +117,6 @@ public:
 	virtual void Reload() = 0;
 
 	/**
-	 * Returns whether this shader was successfully loaded.
-	 */
-	bool IsValid() const;
-
-	/**
 	 * Binds the shader into the GL context. Call this before calling Uniform()
 	 * or trying to render with it.
 	 */
@@ -178,7 +173,6 @@ public:
 	virtual void ColorPointer(GLint size, GLenum type, GLsizei stride, const void* pointer);
 	virtual void TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, const void* pointer);
 	virtual void VertexAttribPointer(attrib_id_t id, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer);
-	virtual void VertexAttribIPointer(attrib_id_t id, GLint size, GLenum type, GLsizei stride, const void* pointer);
 
 	/**
 	 * Checks that all the required vertex attributes have been set.
@@ -194,7 +188,6 @@ protected:
 	virtual void BindTexture(texture_id_t id, GLuint tex) = 0;
 	virtual void BindTexture(Binding id, GLuint tex) = 0;
 
-	bool m_IsValid;
 	int m_StreamFlags;
 
 	// Non-GLSL client state handling:
