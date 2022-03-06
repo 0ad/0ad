@@ -638,15 +638,14 @@ function unknownPasses()
 	}
 
 	g_Map.log("Creating passages between neighboring players");
-	const passes = distributePointsOnCircle(numPlayers * 3, startAngle, fractionToTiles(0.35), mapCenter)[0];
-	for (let i = 0; i < numPlayers; ++i)
+	const passes = numPlayers == 2 && distributePointsOnCircle(numPlayers * 3, startAngle, fractionToTiles(0.35), mapCenter)[0];
+	for (let i = 0; i < numPlayers && numPlayers > 1; ++i)
 	{
-		// Create one pass between each neighboring base, create two passes in the case of two players.
-		// Notice we can't use the passes formula for n > 2 because the path might end inside the mountains.
+		// For numPlayers > 2 use the playerPosition to not end up inside the mountains.
 		createArea(
 			new PathPlacer(
-				numPlayers > 2 ? playerPosition[i] : passes[3 * i + 1],
-				numPlayers > 2 ? playerPosition[(i + 1) % numPlayers] : passes[3 * i + 2],
+				numPlayers == 2 ? passes[3 * i + 1] : playerPosition[i],
+				numPlayers == 2 ? passes[3 * i + 2] : playerPosition[(i + 1) % numPlayers],
 				scaleByMapSize(14, 24),
 				0.4,
 				3 * scaleByMapSize(1, 3),
