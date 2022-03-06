@@ -105,7 +105,7 @@ PETRA.ResearchManager.prototype.researchWantedTechs = function(gameState, techs)
 				return { "name": tech[0], "increasePriority": this.CostSum(template.cost) < 400 };
 			else if (template.modifications[i].value === "ResourceGatherer/Rates/food.fruit")
 				return { "name": tech[0], "increasePriority": this.CostSum(template.cost) < 400 };
-			else if (template.modifications[i].value === "ResourceGatherer/Rates/food.grain")
+			else if (template.modifications[i].value === "ResourceGatherer/Rates/food.grain" || template.modifications[i].value === "ResourceGatherer/Rates/food.rice")
 				return { "name": tech[0], "increasePriority": false };
 			else if (template.modifications[i].value === "ResourceGatherer/Rates/wood.tree")
 				return { "name": tech[0], "increasePriority": this.CostSum(template.cost) < 400 };

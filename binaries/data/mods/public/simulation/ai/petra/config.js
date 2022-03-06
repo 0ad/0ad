@@ -77,6 +77,9 @@ PETRA.Config = function(difficulty = PETRA.DIFFICULTY_MEDIUM, behavior)
 		"gaul": [
 			"structures/{civ}/assembly"
 		],
+		"han": [
+			"structures/{civ}/academy"
+		],
 		"iber": [
 			"structures/{civ}/monument"
 		],
