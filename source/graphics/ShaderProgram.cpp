@@ -512,7 +512,7 @@ public:
 
 	Binding GetTextureBinding(texture_id_t id) override
 	{
-		std::map<CStrIntern, std::pair<GLenum, int> >::iterator it = m_Samplers.find(CStrIntern(id));
+		std::map<CStrIntern, std::pair<GLenum, int>>::iterator it = m_Samplers.find(CStrIntern(id));
 		if (it == m_Samplers.end())
 			return Binding();
 		else
@@ -521,7 +521,7 @@ public:
 
 	void BindTexture(texture_id_t id, GLuint tex) override
 	{
-		std::map<CStrIntern, std::pair<GLenum, int> >::iterator it = m_Samplers.find(CStrIntern(id));
+		std::map<CStrIntern, std::pair<GLenum, int>>::iterator it = m_Samplers.find(CStrIntern(id));
 		if (it == m_Samplers.end())
 			return;
 
@@ -538,7 +538,7 @@ public:
 
 	Binding GetUniformBinding(uniform_id_t id) override
 	{
-		std::map<CStrIntern, std::pair<int, GLenum> >::iterator it = m_Uniforms.find(id);
+		std::map<CStrIntern, std::pair<int, GLenum>>::iterator it = m_Uniforms.find(id);
 		if (it == m_Uniforms.end())
 			return Binding();
 		else
@@ -647,8 +647,8 @@ private:
 	GLhandleARB m_VertexShader;
 	GLhandleARB m_FragmentShader;
 
-	std::map<CStrIntern, std::pair<int, GLenum> > m_Uniforms;
-	std::map<CStrIntern, std::pair<GLenum, int> > m_Samplers; // texture target & unit chosen for each uniform sampler
+	std::map<CStrIntern, std::pair<int, GLenum>> m_Uniforms;
+	std::map<CStrIntern, std::pair<GLenum, int>> m_Samplers; // texture target & unit chosen for each uniform sampler
 };
 
 //////////////////////////////////////////////////////////////////////////
