@@ -140,7 +140,7 @@ bool CFontManager::ReadFont(CFont* font, CStrIntern fontName)
 	// Load glyph texture
 	const VfsPath imageName(fontName.string() + ".png");
 	CTextureProperties textureProps(path / imageName,
-		font->m_HasRGB ? Renderer::Backend::Format::R8G8B8A8 : Renderer::Backend::Format::A8);
+		font->m_HasRGB ? Renderer::Backend::Format::R8G8B8A8_UNORM : Renderer::Backend::Format::A8_UNORM);
 	textureProps.SetIgnoreQuality(true);
 	font->m_Texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 

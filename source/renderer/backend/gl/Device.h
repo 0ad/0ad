@@ -100,7 +100,7 @@ public:
 
 	void Present();
 
-	bool IsFormatSupported(const Format format) const;
+	bool IsTextureFormatSupported(const Format format) const;
 
 	const Capabilities& GetCapabilities() const { return m_Capabilities; }
 

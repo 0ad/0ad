@@ -834,7 +834,7 @@ void CDevice::Present()
 		ONCE(LOGERROR("GL error %s (0x%04x) occurred", ogl_GetErrorName(err), err));
 }
 
-bool CDevice::IsFormatSupported(const Format format) const
+bool CDevice::IsTextureFormatSupported(const Format format) const
 {
 	bool supported = false;
 	switch (format)
@@ -842,11 +842,17 @@ bool CDevice::IsFormatSupported(const Format format) const
 	case Format::UNDEFINED:
 		break;
 
-	case Format::R8G8B8: FALLTHROUGH;
-	case Format::R8G8B8A8: FALLTHROUGH;
-	case Format::A8: FALLTHROUGH;
-	case Format::L8:
+	case Format::R8G8B8_UNORM: FALLTHROUGH;
+	case Format::R8G8B8A8_UNORM: FALLTHROUGH;
+	case Format::A8_UNORM: FALLTHROUGH;
+	case Format::L8_UNORM:
 		supported = true;
+		break;
+
+	case Format::R32_SFLOAT: FALLTHROUGH;
+	case Format::R32G32_SFLOAT: FALLTHROUGH;
+	case Format::R32G32B32_SFLOAT: FALLTHROUGH;
+	case Format::R32G32B32A32_SFLOAT:
 		break;
 
 	case Format::D16: FALLTHROUGH;
@@ -860,10 +866,10 @@ bool CDevice::IsFormatSupported(const Format format) const
 #endif
 		break;
 
-	case Format::BC1_RGB: FALLTHROUGH;
-	case Format::BC1_RGBA: FALLTHROUGH;
-	case Format::BC2: FALLTHROUGH;
-	case Format::BC3:
+	case Format::BC1_RGB_UNORM: FALLTHROUGH;
+	case Format::BC1_RGBA_UNORM: FALLTHROUGH;
+	case Format::BC2_UNORM: FALLTHROUGH;
+	case Format::BC3_UNORM:
 		supported = m_Capabilities.S3TC;
 		break;
 	}

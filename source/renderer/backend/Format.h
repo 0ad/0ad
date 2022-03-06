@@ -27,21 +27,26 @@ namespace Backend
 enum class Format
 {
 	UNDEFINED,
-	R8G8B8,
-	R8G8B8A8,
+	R8G8B8_UNORM,
+	R8G8B8A8_UNORM,
 
-	A8,
-	L8,
+	A8_UNORM,
+	L8_UNORM,
+
+	R32_SFLOAT,
+	R32G32_SFLOAT,
+	R32G32B32_SFLOAT,
+	R32G32B32A32_SFLOAT,
 
 	D16,
 	D24,
 	D24_S8,
 	D32,
 
-	BC1_RGB,
-	BC1_RGBA,
-	BC2,
-	BC3
+	BC1_RGB_UNORM,
+	BC1_RGBA_UNORM,
+	BC2_UNORM,
+	BC3_UNORM
 };
 
 } // namespace Backend

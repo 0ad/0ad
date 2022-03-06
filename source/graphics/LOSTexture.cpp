@@ -233,7 +233,7 @@ void CLOSTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext*
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
 
 	m_Texture = backendDevice->CreateTexture2D("LOSTexture",
-		Renderer::Backend::Format::A8, textureSize, textureSize, defaultSamplerDesc);
+		Renderer::Backend::Format::A8_UNORM, textureSize, textureSize, defaultSamplerDesc);
 
 	// Initialise texture with SoD color, for the areas we don't
 	// overwrite with uploading later.
@@ -243,9 +243,9 @@ void CLOSTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext*
 	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS())
 	{
 		m_SmoothTextures[0] = backendDevice->CreateTexture2D("LOSSmoothTexture0",
-			Renderer::Backend::Format::A8, textureSize, textureSize, defaultSamplerDesc);
+			Renderer::Backend::Format::A8_UNORM, textureSize, textureSize, defaultSamplerDesc);
 		m_SmoothTextures[1] = backendDevice->CreateTexture2D("LOSSmoothTexture1",
-			Renderer::Backend::Format::A8, textureSize, textureSize, defaultSamplerDesc);
+			Renderer::Backend::Format::A8_UNORM, textureSize, textureSize, defaultSamplerDesc);
 
 		m_SmoothFramebuffers[0] = backendDevice->CreateFramebuffer("LOSSmoothFramebuffer0",
 			m_SmoothTextures[0].get(), nullptr);
@@ -258,15 +258,15 @@ void CLOSTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext*
 		}
 
 		deviceCommandContext->UploadTexture(
-			m_SmoothTextures[0].get(), Renderer::Backend::Format::A8,
+			m_SmoothTextures[0].get(), Renderer::Backend::Format::A8_UNORM,
 			texData.get(), textureSize * textureSize);
 		deviceCommandContext->UploadTexture(
-			m_SmoothTextures[1].get(), Renderer::Backend::Format::A8,
+			m_SmoothTextures[1].get(), Renderer::Backend::Format::A8_UNORM,
 			texData.get(), textureSize * textureSize);
 	}
 
 	deviceCommandContext->UploadTexture(
-		m_Texture.get(), Renderer::Backend::Format::A8,
+		m_Texture.get(), Renderer::Backend::Format::A8_UNORM,
 		texData.get(), textureSize * textureSize);
 
 	texData.reset();
@@ -334,15 +334,15 @@ void CLOSTexture::RecomputeTexture(Renderer::Backend::GL::CDeviceCommandContext*
 	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS() && recreated)
 	{
 		deviceCommandContext->UploadTextureRegion(
-			m_SmoothTextures[0].get(), Renderer::Backend::Format::A8, losData.get(),
+			m_SmoothTextures[0].get(), Renderer::Backend::Format::A8_UNORM, losData.get(),
 			pitch * m_MapSize, 0, 0, pitch, m_MapSize);
 		deviceCommandContext->UploadTextureRegion(
-			m_SmoothTextures[1].get(), Renderer::Backend::Format::A8, losData.get(),
+			m_SmoothTextures[1].get(), Renderer::Backend::Format::A8_UNORM, losData.get(),
 			pitch * m_MapSize, 0, 0, pitch, m_MapSize);
 	}
 
 	deviceCommandContext->UploadTextureRegion(
-		m_Texture.get(), Renderer::Backend::Format::A8, losData.get(),
+		m_Texture.get(), Renderer::Backend::Format::A8_UNORM, losData.get(),
 		pitch * m_MapSize, 0, 0, pitch, m_MapSize);
 }
 

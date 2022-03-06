@@ -68,13 +68,13 @@ Renderer::Backend::Format ChooseFormatAndTransformTextureDataIfNeeded(Tex& textu
 			switch (dxt)
 			{
 			case DXT1A:
-				return Renderer::Backend::Format::BC1_RGBA;
+				return Renderer::Backend::Format::BC1_RGBA_UNORM;
 			case 1:
-				return Renderer::Backend::Format::BC1_RGB;
+				return Renderer::Backend::Format::BC1_RGB_UNORM;
 			case 3:
-				return Renderer::Backend::Format::BC2;
+				return Renderer::Backend::Format::BC2_UNORM;
 			case 5:
-				return Renderer::Backend::Format::BC3;
+				return Renderer::Backend::Format::BC3_UNORM;
 			default:
 				LOGERROR("Unknown DXT compression.");
 				return Renderer::Backend::Format::UNDEFINED;
@@ -88,13 +88,13 @@ Renderer::Backend::Format ChooseFormatAndTransformTextureDataIfNeeded(Tex& textu
 	{
 	case 8:
 		ENSURE(grey);
-		return Renderer::Backend::Format::L8;
+		return Renderer::Backend::Format::L8_UNORM;
 	case 24:
 		ENSURE(!alpha);
-		return Renderer::Backend::Format::R8G8B8;
+		return Renderer::Backend::Format::R8G8B8_UNORM;
 	case 32:
 		ENSURE(alpha);
-		return Renderer::Backend::Format::R8G8B8A8;
+		return Renderer::Backend::Format::R8G8B8A8_UNORM;
 	default:
 		LOGERROR("Unsupported BPP: %zu", textureData.m_Bpp);
 	}
@@ -148,7 +148,7 @@ public:
 		std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture =
 			g_VideoMode.GetBackendDevice()->CreateTexture2D(
 				textureName.str().c_str(),
-				Renderer::Backend::Format::R8G8B8A8,
+				Renderer::Backend::Format::R8G8B8A8_UNORM,
 				1, 1, Renderer::Backend::Sampler::MakeDefaultSampler(
 					Renderer::Backend::Sampler::Filter::LINEAR,
 					Renderer::Backend::Sampler::AddressMode::REPEAT));
@@ -170,7 +170,7 @@ public:
 			color32.A
 		};
 		deviceCommandContext->UploadTexture(GetTexture()->GetBackendTexture(),
-			Renderer::Backend::Format::R8G8B8A8, data, std::size(data));
+			Renderer::Backend::Format::R8G8B8A8_UNORM, data, std::size(data));
 	}
 
 private:
@@ -206,7 +206,7 @@ public:
 		std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture =
 			g_VideoMode.GetBackendDevice()->CreateTexture2D(
 				textureName.str().c_str(),
-				Renderer::Backend::Format::R8G8B8A8,
+				Renderer::Backend::Format::R8G8B8A8_UNORM,
 				WIDTH, 1, Renderer::Backend::Sampler::MakeDefaultSampler(
 					Renderer::Backend::Sampler::Filter::LINEAR,
 					Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE),
@@ -237,7 +237,7 @@ public:
 		for (uint32_t level = 0; level < NUMBER_OF_LEVELS; ++level)
 		{
 			deviceCommandContext->UploadTexture(GetTexture()->GetBackendTexture(),
-				Renderer::Backend::Format::R8G8B8A8, data.data(), (WIDTH >> level) * data[0].size(), level);
+				Renderer::Backend::Format::R8G8B8A8_UNORM, data.data(), (WIDTH >> level) * data[0].size(), level);
 			// Prepare data for the next level.
 			const uint32_t nextLevelWidth = (WIDTH >> (level + 1));
 			if (nextLevelWidth > 0)
@@ -318,10 +318,10 @@ public:
 
 		Renderer::Backend::GL::CDevice* backendDevice = g_VideoMode.GetBackendDevice();
 		m_HasS3TC =
-			backendDevice->IsFormatSupported(Renderer::Backend::Format::BC1_RGB) &&
-			backendDevice->IsFormatSupported(Renderer::Backend::Format::BC1_RGBA) &&
-			backendDevice->IsFormatSupported(Renderer::Backend::Format::BC2) &&
-			backendDevice->IsFormatSupported(Renderer::Backend::Format::BC3);
+			backendDevice->IsTextureFormatSupported(Renderer::Backend::Format::BC1_RGB_UNORM) &&
+			backendDevice->IsTextureFormatSupported(Renderer::Backend::Format::BC1_RGBA_UNORM) &&
+			backendDevice->IsTextureFormatSupported(Renderer::Backend::Format::BC2_UNORM) &&
+			backendDevice->IsTextureFormatSupported(Renderer::Backend::Format::BC3_UNORM);
 	}
 
 	~CTextureManagerImpl()
@@ -421,11 +421,11 @@ public:
 			// TODO: it'd be good to remove the override hack and provide information
 			// via XML.
 			ENSURE((textureData.m_Flags & TEX_DXT) == 0);
-			if (format == Renderer::Backend::Format::A8)
+			if (format == Renderer::Backend::Format::A8_UNORM)
 			{
 				ENSURE(textureData.m_Bpp == 8 && (textureData.m_Flags & TEX_GREY));
 			}
-			else if (format == Renderer::Backend::Format::R8G8B8A8)
+			else if (format == Renderer::Backend::Format::R8G8B8A8_UNORM)
 			{
 				ENSURE(textureData.m_Bpp == 32 && (textureData.m_Flags & TEX_ALPHA));
 			}
@@ -935,11 +935,11 @@ bool CTexture::HasAlpha() const
 {
 	const Renderer::Backend::Format format = GetBackendTexture()->GetFormat();
 	return
-		format == Renderer::Backend::Format::A8 ||
-		format == Renderer::Backend::Format::R8G8B8A8 ||
-		format == Renderer::Backend::Format::BC1_RGBA ||
-		format == Renderer::Backend::Format::BC2 ||
-		format == Renderer::Backend::Format::BC3;
+		format == Renderer::Backend::Format::A8_UNORM ||
+		format == Renderer::Backend::Format::R8G8B8A8_UNORM ||
+		format == Renderer::Backend::Format::BC1_RGBA_UNORM ||
+		format == Renderer::Backend::Format::BC2_UNORM ||
+		format == Renderer::Backend::Format::BC3_UNORM;
 }
 
 u32 CTexture::GetBaseColor() const

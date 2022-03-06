@@ -116,7 +116,7 @@ void SkyManager::LoadAndUploadSkyTexturesIfNeeded(
 
 	m_SkyCubeMap = g_VideoMode.GetBackendDevice()->CreateTexture("SkyCubeMap",
 		Renderer::Backend::GL::CTexture::Type::TEXTURE_CUBE,
-		Renderer::Backend::Format::R8G8B8A8, textures[0].m_Width, textures[0].m_Height,
+		Renderer::Backend::Format::R8G8B8A8_UNORM, textures[0].m_Width, textures[0].m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1, 1);
@@ -147,13 +147,13 @@ void SkyManager::LoadAndUploadSkyTexturesIfNeeded(
 			}
 
 			deviceCommandContext->UploadTexture(
-				m_SkyCubeMap.get(), Renderer::Backend::Format::R8G8B8A8,
+				m_SkyCubeMap.get(), Renderer::Backend::Format::R8G8B8A8_UNORM,
 				&rotated[0], textures[i].m_DataSize, 0, i);
 		}
 		else
 		{
 			deviceCommandContext->UploadTexture(
-				m_SkyCubeMap.get(), Renderer::Backend::Format::R8G8B8A8,
+				m_SkyCubeMap.get(), Renderer::Backend::Format::R8G8B8A8_UNORM,
 				data, textures[i].m_DataSize, 0, i);
 		}
 	}

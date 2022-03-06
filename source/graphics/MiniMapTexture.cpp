@@ -237,7 +237,7 @@ void CMiniMapTexture::CreateTextures(
 
 	// Create terrain texture
 	m_TerrainTexture = backendDevice->CreateTexture2D("MiniMapTerrainTexture",
-		Renderer::Backend::Format::R8G8B8A8, textureSize, textureSize, defaultSamplerDesc);
+		Renderer::Backend::Format::R8G8B8A8_UNORM, textureSize, textureSize, defaultSamplerDesc);
 
 	// Initialise texture with solid black, for the areas we don't
 	// overwrite with uploading later.
@@ -245,14 +245,14 @@ void CMiniMapTexture::CreateTextures(
 	for (size_t i = 0; i < textureSize * textureSize; ++i)
 		texData[i] = 0xFF000000;
 	deviceCommandContext->UploadTexture(
-		m_TerrainTexture.get(), Renderer::Backend::Format::R8G8B8A8,
+		m_TerrainTexture.get(), Renderer::Backend::Format::R8G8B8A8_UNORM,
 		texData.get(), textureSize * textureSize * 4);
 	texData.reset();
 
 	m_TerrainData = std::make_unique<u32[]>((m_MapSize - 1) * (m_MapSize - 1));
 
 	m_FinalTexture = backendDevice->CreateTexture2D("MiniMapFinalTexture",
-		Renderer::Backend::Format::R8G8B8A8, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE, defaultSamplerDesc);
+		Renderer::Backend::Format::R8G8B8A8_UNORM, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE, defaultSamplerDesc);
 
 	m_FinalTextureFramebuffer = backendDevice->CreateFramebuffer("MiniMapFinalFramebuffer",
 		m_FinalTexture.get(), nullptr);
@@ -328,7 +328,7 @@ void CMiniMapTexture::RebuildTerrainTexture(
 
 	// Upload the texture
 	deviceCommandContext->UploadTextureRegion(
-		m_TerrainTexture.get(), Renderer::Backend::Format::R8G8B8A8,
+		m_TerrainTexture.get(), Renderer::Backend::Format::R8G8B8A8_UNORM,
 		m_TerrainData.get(), width * height * 4, 0, 0, width, height);
 }
 

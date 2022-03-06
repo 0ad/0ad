@@ -294,7 +294,7 @@ CTerrainTextureManager::LoadAlphaMap(const VfsPath& alphaMapType)
 #endif
 
 	result.m_CompositeAlphaMap = g_VideoMode.GetBackendDevice()->CreateTexture2D("CompositeAlphaMap",
-		Renderer::Backend::Format::A8, totalWidth, totalHeight,
+		Renderer::Backend::Format::A8_UNORM, totalWidth, totalHeight,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
@@ -317,7 +317,7 @@ void CTerrainTextureManager::UploadResourcesIfNeeded(
 		// Upload the composite texture.
 		Renderer::Backend::GL::CTexture* texture = alphaMap.m_CompositeAlphaMap.get();
 		deviceCommandContext->UploadTexture(
-			texture, Renderer::Backend::Format::A8, alphaMap.m_CompositeDataToUpload.get(),
+			texture, Renderer::Backend::Format::A8_UNORM, alphaMap.m_CompositeDataToUpload.get(),
 			texture->GetWidth() * texture->GetHeight());
 		alphaMap.m_CompositeDataToUpload.reset();
 	}

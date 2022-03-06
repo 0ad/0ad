@@ -87,7 +87,7 @@ void CTerritoryTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandCo
 	const uint32_t textureSize = round_up_to_pow2(static_cast<uint32_t>(m_MapSize));
 
 	m_Texture = deviceCommandContext->GetDevice()->CreateTexture2D("TerritoryTexture",
-		Renderer::Backend::Format::R8G8B8A8, textureSize, textureSize,
+		Renderer::Backend::Format::R8G8B8A8_UNORM, textureSize, textureSize,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
@@ -97,7 +97,7 @@ void CTerritoryTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandCo
 	std::unique_ptr<u8[]> texData = std::make_unique<u8[]>(textureSize * textureSize * 4);
 	memset(texData.get(), 0x00, textureSize * textureSize * 4);
 	deviceCommandContext->UploadTexture(
-		m_Texture.get(), Renderer::Backend::Format::R8G8B8A8,
+		m_Texture.get(), Renderer::Backend::Format::R8G8B8A8_UNORM,
 		texData.get(), textureSize * textureSize * 4);
 	texData.reset();
 
@@ -152,7 +152,7 @@ void CTerritoryTexture::RecomputeTexture(Renderer::Backend::GL::CDeviceCommandCo
 	GenerateBitmap(cmpTerritoryManager->GetTerritoryGrid(), bitmap.get(), m_MapSize, m_MapSize);
 
 	deviceCommandContext->UploadTextureRegion(
-		m_Texture.get(), Renderer::Backend::Format::R8G8B8A8, bitmap.get(), m_MapSize * m_MapSize * 4,
+		m_Texture.get(), Renderer::Backend::Format::R8G8B8A8_UNORM, bitmap.get(), m_MapSize * m_MapSize * 4,
 		0, 0, m_MapSize, m_MapSize);
 }
 

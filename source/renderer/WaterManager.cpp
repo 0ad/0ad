@@ -191,14 +191,14 @@ int WaterManager::LoadWaterTextures()
 
 	// Create reflection texture
 	m_ReflectionTexture = backendDevice->CreateTexture2D("WaterReflectionTexture",
-		Renderer::Backend::Format::R8G8B8A8, m_RefTextureSize, m_RefTextureSize,
+		Renderer::Backend::Format::R8G8B8A8_UNORM, m_RefTextureSize, m_RefTextureSize,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::MIRRORED_REPEAT));
 
 	// Create refraction texture
 	m_RefractionTexture = backendDevice->CreateTexture2D("WaterRefractionTexture",
-		Renderer::Backend::Format::R8G8B8A8, m_RefTextureSize, m_RefTextureSize,
+		Renderer::Backend::Format::R8G8B8A8_UNORM, m_RefTextureSize, m_RefTextureSize,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::MIRRORED_REPEAT));
@@ -256,7 +256,7 @@ void WaterManager::Resize()
 
 	// Create the Fancy Effects texture
 	m_FancyTexture = backendDevice->CreateTexture2D("WaterFancyTexture",
-		Renderer::Backend::Format::R8G8B8A8, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
+		Renderer::Backend::Format::R8G8B8A8_UNORM, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::REPEAT));

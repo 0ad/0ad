@@ -170,19 +170,19 @@ std::unique_ptr<CTexture> CTexture::Create(CDevice* device, const char* name,
 		case Format::UNDEFINED:
 			debug_warn("Texture should defined format");
 			break;
-		case Format::R8G8B8A8:
+		case Format::R8G8B8A8_UNORM:
 			break;
-		case Format::R8G8B8:
+		case Format::R8G8B8_UNORM:
 			internalFormat = GL_RGB;
 			pixelFormat = GL_RGB;
 			pixelType = GL_UNSIGNED_BYTE;
 			break;
-		case Format::A8:
+		case Format::A8_UNORM:
 			internalFormat = GL_ALPHA;
 			pixelFormat = GL_ALPHA;
 			pixelType = GL_UNSIGNED_BYTE;
 			break;
-		case Format::L8:
+		case Format::L8_UNORM:
 			internalFormat = GL_LUMINANCE;
 			pixelFormat = GL_LUMINANCE;
 			pixelType = GL_UNSIGNED_BYTE;
@@ -221,12 +221,14 @@ std::unique_ptr<CTexture> CTexture::Create(CDevice* device, const char* name,
 			pixelType = GL_UNSIGNED_INT_24_8_EXT;
 			break;
 #endif
-		case Format::BC1_RGB: FALLTHROUGH;
-		case Format::BC1_RGBA: FALLTHROUGH;
-		case Format::BC2: FALLTHROUGH;
-		case Format::BC3:
+		case Format::BC1_RGB_UNORM: FALLTHROUGH;
+		case Format::BC1_RGBA_UNORM: FALLTHROUGH;
+		case Format::BC2_UNORM: FALLTHROUGH;
+		case Format::BC3_UNORM:
 			compressedFormat = true;
 			break;
+		default:
+			debug_warn("Unsupported format.");
 		}
 		// glCompressedTexImage2D can't accept a null data, so we will initialize it during uploading.
 		if (!compressedFormat)
@@ -243,7 +245,7 @@ std::unique_ptr<CTexture> CTexture::Create(CDevice* device, const char* name,
 	{
 		ENSURE(MIPLevelCount == 1);
 #if !CONFIG2_GLES
-		if (format == Format::R8G8B8A8)
+		if (format == Format::R8G8B8A8_UNORM)
 		{
 			glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, sampleCount, GL_RGBA8, width, height, GL_TRUE);
 		}

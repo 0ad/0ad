@@ -531,7 +531,7 @@ void ShadowMapInternals::CreateTexture()
 	if (g_RenderingOptions.GetShadowAlphaFix())
 	{
 		DummyTexture = backendDevice->CreateTexture2D("ShadowMapDummy",
-			Renderer::Backend::Format::R8G8B8A8, Width, Height,
+			Renderer::Backend::Format::R8G8B8A8_UNORM, Width, Height,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::NEAREST,
 				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
