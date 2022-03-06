@@ -9,6 +9,7 @@ PlayerSettingControls.PlayerCiv = class PlayerCiv extends GameSettingControlDrop
 		this.items = this.getItems(false);
 		this.allItems = this.getItems(true);
 		this.wasLocked = undefined;
+		this.values = prepareForDropdown(this.items);
 
 		this.rebuild();
 	}
