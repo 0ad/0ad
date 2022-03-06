@@ -1,72 +1,82 @@
 {
 	"Description": {
 		"Title": "Frozen Lake",
-		"Description": "Solidifying its grip, the harsh cold has succeeded in freezing up the gulf. The thick ice formed is capable of withstanding any weight."
+		"Description": "Thick ice has formed on the gulf which is capable of withstanding any weight. All plants are covered in snow, but there are large herds of migrating deer who try to find some food under the snow."
 	},
 	"Environment": {
 		"SkySet": "stormy",
-		"SunColor": { "r": 0.85, "g": 0.87, "b": 0.90 },
-		"SunElevation": 0.502494,
-		"SunRotation": -0.626047,
-		"AmbientColor": { "r": 0.194118, "g": 0.292157, "b": 0.394118 },
+		"SunColor": { "r": 0.99866, "g": 0.9995, "b": 1.08284 },
+		"SunElevation": 0.462494,
+		"SunRotation": -1.70047,
+		"AmbientColor": { "r": 0.334118, "g": 0.332157, "b": 0.334118 },
 		"Water": {
+			"Frozen": true,
 			"WaterBody": {
 				"Type": "lake",
-				"Color": { "r": 0.035, "g": 0.098, "b": 0.314 },
-				"Tint": { "r": 0.28, "g": 0.3, "b": 0.59 },
-				"Murkiness": 0.88,
-				"Waviness": 5
+				"Color": { "r": 0.0784314, "g": 0.237059, "b": 0.299608 },
+				"Tint": { "r": 0.471, "g": 0.75, "b": 0.501961 },
+				"Murkiness": 0.97,
+				"Waviness": 3
 			}
 		},
 		"Fog": {
-			"FogThickness": 0.23,
-			"FogFactor": 0.0041
+			"FogThickness": 0.000005,
+			"FogFactor": 0.002,
+			"FogColor": { "r": 0.8, "g": 0.8, "b": 0.8 }
 		},
 		"Postproc": {
 			"PostprocEffect": "hdr",
-			"Saturation": 0.68,
-			"Contrast": 1.03,
-			"Bloom": 0.176
+			"Brightness": 0.015625,
+			"Saturation": 0.96,
+			"Contrast": 0.98,
+			"Bloom": 0.16
 		}
 	},
 	"Terrains": {
-		"mainTerrain": ["alpine_snow_a", "alpine_snow_b"],
-		"forestFloor1": "alpine_snow_a",
-		"cliff": "alpine_cliff_snow",
-		"tier1Terrain": "polar_ice_snow",
-		"tier2Terrain": "polar_ice_cracked",
-		"tier3Terrain": ["alpine_snow_a", "alpine_snow_b"],
-		"road": "new_alpine_citytile",
-		"roadWild": "new_alpine_citytile",
-		"shore": "polar_ice_snow",
-		"water": ["polar_ice_snow", "polar_ice"]
+		"mainTerrain": "alpine_snow_01",
+		"forestFloor1": "alpine_snow_02",
+		"cliff": "alpine_snow_02",
+		"tier1Terrain":	"alpine_snow_01",
+		"tier2Terrain": "alpine_snow_02",
+		"tier3Terrain": "alpine_snow_01",
+		"road": "alpine_snow_01",
+		"roadWild": "alpine_snow_02",
+		"shore": "alpine_snow_02",
+		"water": "alpine_ice_01"
 	},
 	"Gaia": {
-		"tree1": "gaia/tree/pine_w",
-		"fruitBush": "gaia/fruit/berry_01",
-		"startingAnimal": "gaia/fauna_chicken",
+		"tree1": "gaia/tree/fir_winter",
+		"tree2": "gaia/tree/fir_winter",
+		"tree3": "gaia/tree/temperate_winter",
+		"tree4": "gaia/tree/fir_winter",
+		"tree5": "gaia/tree/temperate_winter",
+		"fruitBush": "gaia/fauna_deer",
+		"chicken": "gaia/fauna_chicken",
 		"mainHuntableAnimal": "gaia/fauna_deer",
-		"secondaryHuntableAnimal": "gaia/fauna_rabbit",
+		"secondaryHuntableAnimal": "gaia/fauna_deer",
 		"fish": "gaia/fish/generic",
-		"stoneLarge": "gaia/rock/alpine_large",
+		"stoneLarge": "gaia/rock/polar_02",
 		"stoneSmall": "gaia/rock/alpine_small",
-		"metalLarge": "gaia/ore/alpine_large"
+		"metalLarge": "gaia/ore/polar_01",
+		"metalSmall": "gaia/ore/temperate_small"
 	},
 	"Decoratives": {
-		"grass": "actor|props/flora/grass_soft_dry_small_tall.xml",
-		"grassShort": "actor|props/flora/grass_soft_dry_large.xml",
-		"rockLarge": "actor|geology/stone_granite_med.xml",
+		"grass": "gaia/tree/bush_temperate_winter",
+		"grassShort": "gaia/tree/bush_temperate_winter",
+		"rockLarge": "gaia/tree/bush_temperate_winter",
 		"rockMedium": "actor|geology/stone_granite_med.xml",
-		"bushMedium": "actor|props/flora/bush_medit_me_dry.xml",
-		"bushSmall": "actor|props/flora/bush_medit_sm_dry.xml"
+		"bushMedium": "gaia/tree/bush_temperate_winter",
+		"bushSmall": "gaia/tree/bush_temperate_winter"
 	},
 	"ResourceCounts": {
-		"fish": { "min": 0, "max": 0 },
-		"bush": { "min": 0, "max": 0 }
+		"fish": { "min": 6, "max": 25 },
+		"bush": { "min": 13, "max": 50 },
+		"hunt": {"min": 10, "max": 80 },
+		"berries": {"min": 2, "max": 10 }
 	},
 	"Heights": {
-		"seaGround": 1,
-		"shore": 4,
-		"land": 7
+		"seaGround": 0.05,
+		"shore": 0.4,
+		"land": 0.6
 	}
 }

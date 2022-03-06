@@ -1,68 +1,73 @@
 {
 	"Description": {
 		"Title": "Winter",
-		"Description": "Winter has set in, carpeting the land with its first snow. The still unfrozen gulf offers great fishing opportunities."
+		"Description": "Winter has set in, carpeting the land with its first snow, but the landscape is still dotted with colorful berry bushes."
 	},
 	"Environment": {
 		"SkySet": "stormy",
-		"SunColor": { "r": 0.99, "g": 0.98, "b": 0.85 },
-		"SunElevation": 0.846,
-		"SunRotation": -0.488,
-		"AmbientColor": { "r": 0.264706, "g": 0.276471, "b": 0.319608 },
+		"SunColor": { "r": 0.74866, "g": 0.7495, "b": 0.67284 },
+		"SunElevation": 0.502494,
+		"SunRotation": -0.926047,
+		"AmbientColor": { "r": 0.464706, "g": 0.476471, "b": 0.519608 },
 		"Water": {
+			"Frozen": false,
 			"WaterBody": {
 				"Type": "lake",
-				"Color": { "r": 0.035, "g": 0.098, "b": 0.314 },
-				"Tint": { "r": 0.28, "g": 0.3, "b": 0.59 },
-				"Murkiness": 0.88,
-				"Waviness": 5
+				"Color": { "r": 0.024, "g": 0.162, "b": 0.182 },
+				"Tint": { "r": 0.133, "g": 0.725, "b": 0.855 },
+				"Murkiness": 0.94,
+				"Waviness": 7
 			}
-		},
-		"Fog": {
-			"FogThickness": 0.19,
-			"FogFactor": 0.0035
 		},
 		"Postproc": {
 			"PostprocEffect": "hdr",
-			"Saturation": 0.74,
-			"Contrast": 1.03,
-			"Bloom": 0.176
+			"Brightness": 0.015625,
+			"Saturation": 0.96,
+			"Contrast": 0.98,
+			"Bloom": 0.16
 		}
 	},
 	"Terrains": {
-		"mainTerrain": ["alpine_snow_a", "alpine_snow_b"],
-		"forestFloor1": "alpine_forrestfloor_snow",
-		"cliff": ["alpine_cliff_snow"],
-		"tier1Terrain": "alpine_grass_snow_50",
-		"tier2Terrain": ["alpine_grass_snow_50", "alpine_dirt_snow"],
-		"tier3Terrain": ["alpine_snow_a", "alpine_snow_b"],
-		"road": "new_alpine_citytile",
-		"roadWild": "new_alpine_citytile",
-		"shore": "alpine_shore_rocks_icy",
-		"water": "alpine_shore_rocks"
+		"mainTerrain": "alpine_snow_01",
+		"forestFloor1": "alpine_snow_02",
+		"cliff": "alpine_snow_02",
+		"tier1Terrain": "alpine_snow_01",
+		"tier2Terrain": "alpine_snow_02",
+		"tier3Terrain": "alpine_snow_01",
+		"road": "aegean_paving_02",
+		"roadWild": "aegean_paving_02",
+		"shore": "alpine_snow_02",
+		"water": "aegean_cliff_01"
 	},
 	"Gaia": {
-		"tree1": "gaia/tree/pine_w",
+		"tree1": "gaia/tree/fir",
+		"tree2": "gaia/tree/fir",
+		"tree3": "gaia/tree/temperate_winter",
+		"tree4": "gaia/tree/fir",
+		"tree5": "gaia/tree/temperate_winter",
 		"fruitBush": "gaia/fruit/berry_01",
-		"startingAnimal": "gaia/fauna_chicken",
+		"chicken": "gaia/fauna_chicken",
 		"mainHuntableAnimal": "gaia/fauna_deer",
-		"secondaryHuntableAnimal": "gaia/fauna_rabbit",
+		"secondaryHuntableAnimal": "gaia/fauna_bear_brown",
 		"fish": "gaia/fish/generic",
-		"stoneLarge": "gaia/rock/alpine_large",
+		"stoneLarge": "gaia/rock/polar_02",
 		"stoneSmall": "gaia/rock/alpine_small",
-		"metalLarge": "gaia/ore/alpine_large"
+		"metalLarge": "gaia/ore/polar_01",
+		"metalSmall": "gaia/ore/temperate_small"
 	},
 	"Decoratives": {
-		"grass": "actor|props/flora/grass_soft_dry_small_tall.xml",
-		"grassShort": "actor|props/flora/grass_soft_dry_large.xml",
+		"grass": "gaia/tree/bush_temperate_winter",
+		"grassShort": "gaia/tree/bush_temperate_winter",
 		"rockLarge": "actor|geology/stone_granite_med.xml",
 		"rockMedium": "actor|geology/stone_granite_med.xml",
-		"bushMedium": "actor|props/flora/bush_medit_me_dry.xml",
-		"bushSmall": "actor|props/flora/bush_medit_sm_dry.xml"
+		"bushMedium": "gaia/tree/bush_temperate_winter",
+		"bushSmall": "gaia/tree/bush_temperate_winter"
 	},
 	"ResourceCounts": {
-		"fish": { "min": 20, "max": 80 },
-		"bush": { "min": 13, "max": 200 }
+		"fish": { "min": 5, "max": 30 },
+		"bush": { "min": 5, "max": 50 },
+		"hunt": {"min": 2, "max": 30 },
+		"berries": {"min": 10, "max": 50 }
 	},
 	"Heights": {
 		"seaGround": -3,

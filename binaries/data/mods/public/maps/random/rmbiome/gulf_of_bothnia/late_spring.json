@@ -1,68 +1,78 @@
 {
 	"Description": {
-		"Title": "Late Spring",
-		"Description": "A late spring breeze ripples through the conifer forests of the Gulf of Bothnia. Herds of deer dot the landscape and playful rabbits frolick in the undergrowth."
+		"Title": "Spring",
+		"Description": "A late spring breeze ripples through the conifer forests of the Gulf of Bothnia. At this time of the year the gulf offers great fishing opportunities."
 	},
 	"Environment": {
 		"SkySet": "stormy",
-		"SunColor": { "r": 1.032, "g": 0.99, "b": 0.866 },
-		"SunElevation": 0.846,
-		"SunRotation": -0.488,
-		"AmbientColor": { "r": 0.264706, "g": 0.276471, "b": 0.319608 },
+		"SunColor": { "r": 1.00866, "g": 1.0295, "b": 1.00284 },
+		"SunElevation": 0.689049,
+		"SunRotation": -0.542871,
+		"AmbientColor": { "r": 0.219608, "g": 0.294118, "b": 0.403922 },
 		"Water": {
+			"Frozen": false,
 			"WaterBody": {
 				"Type": "lake",
-				"Color": { "r": 0.035, "g": 0.098, "b": 0.314 },
-				"Tint": { "r": 0.28, "g": 0.3, "b": 0.59 },
-				"Murkiness": 0.88,
+				"Color": { "r": 0.054, "g": 0.21, "b": 0.21 },
+				"Tint": { "r": 0.133, "g": 0.725, "b": 0.855 },
+				"Murkiness": 0.94,
 				"Waviness": 5
 			}
 		},
 		"Fog": {
-			"FogThickness": 0.26,
-			"FogFactor": 0.004
+			"FogThickness": 0.00005313,
+			"FogFactor": 0.00105664,
+			"FogColor": { "r": 0.8, "g": 0.8, "b": 0.9 }
 		},
 		"Postproc": {
 			"PostprocEffect": "hdr",
-			"Saturation": 0.96,
-			"Contrast": 1.03,
-			"Bloom": 0.176
+			"Brightness": 0.0041797,
+			"Saturation": 0.98,
+			"Contrast": 1,
+			"Bloom": 0.14
 		}
 	},
 	"Terrains": {
-		"mainTerrain": "alpine_dirt_grass_50",
-		"forestFloor1": "alpine_forrestfloor",
-		"cliff": ["alpine_cliff_a", "alpine_cliff_b", "alpine_cliff_c"],
-		"tier1Terrain": "alpine_grass_rocky",
-		"tier2Terrain": ["alpine_grass_snow_50", "alpine_dirt_snow"],
-		"tier3Terrain": "alpine_snow_rocky",
-		"road": "new_alpine_citytile",
-		"roadWild": "new_alpine_citytile",
-		"shore": "alpine_shore_rocks_grass_50",
-		"water": "alpine_shore_rocks"
+		"mainTerrain": "sahara_grass_dirt_02",
+		"forestFloor1": "alpine_snow_01",
+		"cliff": "aegean_cliff_01",
+		"tier1Terrain": "sahara_grass_dirt_01",
+		"tier2Terrain": "steppe_grass_dirt_03",
+		"tier3Terrain": "aegean_cliff_01",
+		"road": "aegean_paving_02",
+		"roadWild": "aegean_paving_02",
+		"shore": "aegean_grass_dirt_03",
+		"water": "aegean_cliff_01"
 	},
 	"Gaia": {
-		"tree1": "gaia/tree/pine",
+		"tree1": "gaia/tree/fir",
+		"tree2": "gaia/tree/fir",
+		"tree3": "gaia/tree/euro_birch",
+		"tree4": "gaia/tree/fir",
+		"tree5": "gaia/tree/euro_birch",
 		"fruitBush": "gaia/fruit/berry_01",
-		"startingAnimal": "gaia/fauna_chicken",
+		"chicken": "gaia/fauna_chicken",
 		"mainHuntableAnimal": "gaia/fauna_deer",
-		"secondaryHuntableAnimal": "gaia/fauna_rabbit",
+		"secondaryHuntableAnimal": "gaia/fauna_bear_brown",
 		"fish": "gaia/fish/generic",
 		"stoneLarge": "gaia/rock/alpine_large",
 		"stoneSmall": "gaia/rock/alpine_small",
-		"metalLarge": "gaia/ore/alpine_large"
+		"metalLarge": "gaia/ore/aegean_anatolian_01",
+		"metalSmall": "gaia/ore/temperate_small"
 	},
 	"Decoratives": {
 		"grass": "actor|props/flora/grass_soft_small_tall.xml",
 		"grassShort": "actor|props/flora/grass_soft_large.xml",
 		"rockLarge": "actor|geology/stone_granite_med.xml",
 		"rockMedium": "actor|geology/stone_granite_med.xml",
-		"bushMedium": "actor|props/flora/bush_medit_me.xml",
-		"bushSmall": "actor|props/flora/bush_medit_sm.xml"
+		"bushMedium": "gaia/tree/bush_temperate",
+		"bushSmall": "gaia/tree/bush_temperate"
 	},
 	"ResourceCounts": {
-		"fish": { "min": 20, "max": 80 },
-		"bush": { "min": 13, "max": 200 }
+		"fish": { "min": 20, "max": 100 },
+		"bush": { "min": 5, "max": 50 },
+		"hunt": {"min": 5, "max": 40 },
+		"berries": {"min": 2, "max": 10 }
 	},
 	"Heights": {
 		"seaGround": -3,
