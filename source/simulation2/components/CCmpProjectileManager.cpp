@@ -57,20 +57,20 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CParamNode& UNUSED(paramNode))
+	void Init(const CParamNode& UNUSED(paramNode)) override
 	{
 		m_ActorSeed = 0;
 		m_NextId = 1;
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 		for (size_t i = 0; i < m_Projectiles.size(); ++i)
 			GetSimContext().GetUnitManager().DeleteUnit(m_Projectiles[i].unit);
 		m_Projectiles.clear();
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	void Serialize(ISerializer& serialize) override
 	{
 		// Because this is just graphical effects, and because it's all non-deterministic floating point,
 		// we don't do much serialization here.
@@ -80,7 +80,7 @@ public:
 		serialize.NumberU32_Unbounded("next id", m_NextId);
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
+	void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) override
 	{
 		Init(paramNode);
 
@@ -88,7 +88,7 @@ public:
 		deserialize.NumberU32_Unbounded("next id", m_NextId);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -107,12 +107,12 @@ public:
 		}
 	}
 
-	virtual uint32_t LaunchProjectileAtPoint(const CFixedVector3D& launchPoint, const CFixedVector3D& target, fixed speed, fixed gravity, const std::wstring& actorName, const std::wstring& impactActorName, fixed impactAnimationLifetime)
+	uint32_t LaunchProjectileAtPoint(const CFixedVector3D& launchPoint, const CFixedVector3D& target, fixed speed, fixed gravity, const std::wstring& actorName, const std::wstring& impactActorName, fixed impactAnimationLifetime) override
 	{
 		return LaunchProjectile(launchPoint, target, speed, gravity, actorName, impactActorName, impactAnimationLifetime);
 	}
 
-	virtual void RemoveProjectile(uint32_t);
+	void RemoveProjectile(uint32_t) override;
 
 	void RenderModel(CModelAbstract& model, const CVector3D& position, SceneCollector& collector, const CFrustum& frustum, bool culling,
 		const CLosQuerier& los, bool losRevealAll) const;

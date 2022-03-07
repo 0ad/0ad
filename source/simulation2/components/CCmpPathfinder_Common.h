@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -149,29 +149,29 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CParamNode& paramNode);
+	void Init(const CParamNode& paramNode) override;
 
-	virtual void Deinit();
+	void Deinit() override;
 
 	template<typename S>
 	void SerializeCommon(S& serialize);
 
-	virtual void Serialize(ISerializer& serialize);
+	void Serialize(ISerializer& serialize) override;
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize);
+	void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) override;
 
-	virtual void HandleMessage(const CMessage& msg, bool global);
+	void HandleMessage(const CMessage& msg, bool global) override;
 
-	virtual pass_class_t GetPassabilityClass(const std::string& name) const;
+	pass_class_t GetPassabilityClass(const std::string& name) const override;
 
-	virtual void GetPassabilityClasses(std::map<std::string, pass_class_t>& passClasses) const;
-	virtual void GetPassabilityClasses(
+	void GetPassabilityClasses(std::map<std::string, pass_class_t>& passClasses) const override;
+	void GetPassabilityClasses(
 		std::map<std::string, pass_class_t>& nonPathfindingPassClasses,
-		std::map<std::string, pass_class_t>& pathfindingPassClasses) const;
+		std::map<std::string, pass_class_t>& pathfindingPassClasses) const override;
 
 	const PathfinderPassability* GetPassabilityFromMask(pass_class_t passClass) const;
 
-	virtual entity_pos_t GetClearance(pass_class_t passClass) const
+	entity_pos_t GetClearance(pass_class_t passClass) const override
 	{
 		const PathfinderPassability* passability = GetPassabilityFromMask(passClass);
 		if (!passability)
@@ -180,7 +180,7 @@ public:
 		return passability->m_Clearance;
 	}
 
-	virtual entity_pos_t GetMaximumClearance() const
+	entity_pos_t GetMaximumClearance() const override
 	{
 		entity_pos_t max = fixed::Zero();
 
@@ -191,51 +191,51 @@ public:
 		return max + Pathfinding::CLEARANCE_EXTENSION_RADIUS;
 	}
 
-	virtual const Grid<NavcellData>& GetPassabilityGrid();
+	const Grid<NavcellData>& GetPassabilityGrid() override;
 
-	virtual const GridUpdateInformation& GetAIPathfinderDirtinessInformation() const
+	const GridUpdateInformation& GetAIPathfinderDirtinessInformation() const override
 	{
 		return m_AIPathfinderDirtinessInformation;
 	}
 
-	virtual void FlushAIPathfinderDirtinessInformation()
+	void FlushAIPathfinderDirtinessInformation() override
 	{
 		m_AIPathfinderDirtinessInformation.Clean();
 	}
 
-	virtual Grid<u16> ComputeShoreGrid(bool expandOnWater = false);
+	Grid<u16> ComputeShoreGrid(bool expandOnWater = false) override;
 
-	virtual void ComputePathImmediate(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, WaypointPath& ret) const;
+	void ComputePathImmediate(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, WaypointPath& ret) const override;
 
-	virtual u32 ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, entity_id_t notify);
+	u32 ComputePathAsync(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass, entity_id_t notify) override;
 
-	virtual WaypointPath ComputeShortPathImmediate(const ShortPathRequest& request) const;
+	WaypointPath ComputeShortPathImmediate(const ShortPathRequest& request) const override;
 
-	virtual u32 ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t clearance, entity_pos_t range, const PathGoal& goal, pass_class_t passClass, bool avoidMovingUnits, entity_id_t controller, entity_id_t notify);
+	u32 ComputeShortPathAsync(entity_pos_t x0, entity_pos_t z0, entity_pos_t clearance, entity_pos_t range, const PathGoal& goal, pass_class_t passClass, bool avoidMovingUnits, entity_id_t controller, entity_id_t notify) override;
 
-	virtual bool IsGoalReachable(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass);
+	bool IsGoalReachable(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass) override;
 
-	virtual void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass);
+	void SetDebugPath(entity_pos_t x0, entity_pos_t z0, const PathGoal& goal, pass_class_t passClass) override;
 
-	virtual void SetDebugOverlay(bool enabled);
+	void SetDebugOverlay(bool enabled) override;
 
-	virtual void SetHierDebugOverlay(bool enabled);
+	void SetHierDebugOverlay(bool enabled) override;
 
-	virtual void GetDebugData(u32& steps, double& time, Grid<u8>& grid) const;
+	void GetDebugData(u32& steps, double& time, Grid<u8>& grid) const override;
 
-	virtual void SetAtlasOverlay(bool enable, pass_class_t passClass = 0);
+	void SetAtlasOverlay(bool enable, pass_class_t passClass = 0) override;
 
-	virtual bool CheckMovement(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, pass_class_t passClass) const;
+	bool CheckMovement(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, pass_class_t passClass) const override;
 
-	virtual ICmpObstruction::EFoundationCheck CheckUnitPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, pass_class_t passClass, bool onlyCenterPoint) const;
+	ICmpObstruction::EFoundationCheck CheckUnitPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, pass_class_t passClass, bool onlyCenterPoint) const override;
 
-	virtual ICmpObstruction::EFoundationCheck CheckBuildingPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, entity_id_t id, pass_class_t passClass) const;
+	ICmpObstruction::EFoundationCheck CheckBuildingPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, entity_id_t id, pass_class_t passClass) const override;
 
-	virtual ICmpObstruction::EFoundationCheck CheckBuildingPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, entity_id_t id, pass_class_t passClass, bool onlyCenterPoint) const;
+	ICmpObstruction::EFoundationCheck CheckBuildingPlacement(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, entity_id_t id, pass_class_t passClass, bool onlyCenterPoint) const override;
 
-	virtual void SendRequestedPaths();
+	void SendRequestedPaths() override;
 
-	virtual void StartProcessingMoves(bool useMax);
+	void StartProcessingMoves(bool useMax) override;
 
 	template <typename T>
 	std::vector<T> GetMovesToProcess(std::vector<T>& requests, bool useMax = false, size_t maxMoves = 0);
@@ -246,7 +246,7 @@ public:
 	/**
 	 * Regenerates the grid based on the current obstruction list, if necessary
 	 */
-	virtual void UpdateGrid();
+	void UpdateGrid() override;
 
 	/**
 	 * Updates the terrain-only grid without updating the dirtiness informations.
@@ -274,7 +274,7 @@ public:
 	{
 	}
 
-	virtual void BuildTextureRGBA(u8* data, size_t w, size_t h)
+	void BuildTextureRGBA(u8* data, size_t w, size_t h) override
 	{
 		// Render navcell passability, based on the terrain-only grid
 		u8* p = data;

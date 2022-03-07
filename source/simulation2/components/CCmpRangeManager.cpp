@@ -436,7 +436,7 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CParamNode& UNUSED(paramNode))
+	void Init(const CParamNode& UNUSED(paramNode)) override
 	{
 		m_QueryNext = 1;
 
@@ -462,7 +462,7 @@ public:
 		m_LosVerticesPerSide = 0;
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
@@ -496,19 +496,19 @@ public:
 		Serializer(serialize, "shared dirty visibility masks", m_SharedDirtyVisibilityMasks);
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	void Serialize(ISerializer& serialize) override
 	{
 		SerializeCommon(serialize);
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
+	void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) override
 	{
 		Init(paramNode);
 
 		SerializeCommon(deserialize);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -781,7 +781,7 @@ public:
 		}
 	}
 
-	virtual void SetBounds(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1)
+	void SetBounds(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1) override
 	{
 		// Don't support rectangular looking maps.
 		ENSURE(x1-x0 == z1-z0);
@@ -794,7 +794,7 @@ public:
 		ResetDerivedData();
 	}
 
-	virtual void Verify()
+	void Verify() override
 	{
 		// Ignore if map not initialised yet
 		if (m_WorldX1.IsZero())
@@ -844,7 +844,7 @@ public:
 			debug_warn(L"inconsistent los regions");
 	}
 
-	FastSpatialSubdivision* GetSubdivision()
+	FastSpatialSubdivision* GetSubdivision() override
 	{
 		return &m_Subdivision;
 	}
@@ -921,9 +921,9 @@ public:
 				m_Subdivision.Add(it->first, CFixedVector2D(it->second.x, it->second.z), it->second.size);
 	}
 
-	virtual tag_t CreateActiveQuery(entity_id_t source,
+	tag_t CreateActiveQuery(entity_id_t source,
 		entity_pos_t minRange, entity_pos_t maxRange,
-		const std::vector<int>& owners, int requiredInterface, u8 flags, bool accountForSize)
+		const std::vector<int>& owners, int requiredInterface, u8 flags, bool accountForSize) override
 	{
 		tag_t id = m_QueryNext++;
 		m_Queries[id] = ConstructQuery(source, minRange, maxRange, owners, requiredInterface, flags, accountForSize);
@@ -931,9 +931,9 @@ public:
 		return id;
 	}
 
-	virtual tag_t CreateActiveParabolicQuery(entity_id_t source,
+	tag_t CreateActiveParabolicQuery(entity_id_t source,
 		entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t yOrigin,
-		const std::vector<int>& owners, int requiredInterface, u8 flags)
+		const std::vector<int>& owners, int requiredInterface, u8 flags) override
 	{
 		tag_t id = m_QueryNext++;
 		m_Queries[id] = ConstructParabolicQuery(source, minRange, maxRange, yOrigin, owners, requiredInterface, flags, true);
@@ -941,7 +941,7 @@ public:
 		return id;
 	}
 
-	virtual void DestroyActiveQuery(tag_t tag)
+	void DestroyActiveQuery(tag_t tag) override
 	{
 		if (m_Queries.find(tag) == m_Queries.end())
 		{
@@ -952,7 +952,7 @@ public:
 		m_Queries.erase(tag);
 	}
 
-	virtual void EnableActiveQuery(tag_t tag)
+	void EnableActiveQuery(tag_t tag) override
 	{
 		std::map<tag_t, Query>::iterator it = m_Queries.find(tag);
 		if (it == m_Queries.end())
@@ -965,7 +965,7 @@ public:
 		q.enabled = true;
 	}
 
-	virtual void DisableActiveQuery(tag_t tag)
+	void DisableActiveQuery(tag_t tag) override
 	{
 		std::map<tag_t, Query>::iterator it = m_Queries.find(tag);
 		if (it == m_Queries.end())
@@ -978,7 +978,7 @@ public:
 		q.enabled = false;
 	}
 
-	virtual bool IsActiveQueryEnabled(tag_t tag) const
+	bool IsActiveQueryEnabled(tag_t tag) const override
 	{
 		std::map<tag_t, Query>::const_iterator it = m_Queries.find(tag);
 		if (it == m_Queries.end())
@@ -991,9 +991,9 @@ public:
 		return q.enabled;
 	}
 
-	virtual std::vector<entity_id_t> ExecuteQueryAroundPos(const CFixedVector2D& pos,
+	std::vector<entity_id_t> ExecuteQueryAroundPos(const CFixedVector2D& pos,
 		entity_pos_t minRange, entity_pos_t maxRange,
-		const std::vector<int>& owners, int requiredInterface, bool accountForSize)
+		const std::vector<int>& owners, int requiredInterface, bool accountForSize) override
 	{
 		Query q = ConstructQuery(INVALID_ENTITY, minRange, maxRange, owners, requiredInterface, GetEntityFlagMask("normal"), accountForSize);
 		std::vector<entity_id_t> r;
@@ -1005,9 +1005,9 @@ public:
 		return r;
 	}
 
-	virtual std::vector<entity_id_t> ExecuteQuery(entity_id_t source,
+	std::vector<entity_id_t> ExecuteQuery(entity_id_t source,
 		entity_pos_t minRange, entity_pos_t maxRange,
-		const std::vector<int>& owners, int requiredInterface, bool accountForSize)
+		const std::vector<int>& owners, int requiredInterface, bool accountForSize) override
 	{
 		PROFILE("ExecuteQuery");
 
@@ -1031,7 +1031,7 @@ public:
 		return r;
 	}
 
-	virtual std::vector<entity_id_t> ResetActiveQuery(tag_t tag)
+	std::vector<entity_id_t> ResetActiveQuery(tag_t tag) override
 	{
 		PROFILE("ResetActiveQuery");
 
@@ -1066,17 +1066,17 @@ public:
 		return r;
 	}
 
-	virtual std::vector<entity_id_t> GetEntitiesByPlayer(player_id_t player) const
+	std::vector<entity_id_t> GetEntitiesByPlayer(player_id_t player) const override
 	{
 		return GetEntitiesByMask(CalcOwnerMask(player));
 	}
 
-	virtual std::vector<entity_id_t> GetNonGaiaEntities() const
+	std::vector<entity_id_t> GetNonGaiaEntities() const override
 	{
 		return GetEntitiesByMask(~3u); // bit 0 for owner=-1 and bit 1 for gaia
 	}
 
-	virtual std::vector<entity_id_t> GetGaiaAndNonGaiaEntities() const
+	std::vector<entity_id_t> GetGaiaAndNonGaiaEntities() const override
 	{
 		return GetEntitiesByMask(~1u); // bit 0 for owner=-1
 	}
@@ -1095,7 +1095,7 @@ public:
 		return entities;
 	}
 
-	virtual void SetDebugOverlay(bool enabled)
+	void SetDebugOverlay(bool enabled) override
 	{
 		m_DebugOverlayEnabled = enabled;
 		m_DebugOverlayDirty = true;
@@ -1279,7 +1279,7 @@ public:
 		}
 	}
 
-	virtual entity_pos_t GetEffectiveParabolicRange(entity_id_t source, entity_id_t target, entity_pos_t range, entity_pos_t yOrigin) const
+	entity_pos_t GetEffectiveParabolicRange(entity_id_t source, entity_id_t target, entity_pos_t range, entity_pos_t yOrigin) const override
 	{
 		// For non-positive ranges, just return the range.
 		if (range < entity_pos_t::Zero())
@@ -1302,7 +1302,7 @@ public:
 		return effectiveRange;
 	}
 
-	virtual entity_pos_t GetElevationAdaptedRange(const CFixedVector3D& pos1, const CFixedVector3D& rot, entity_pos_t range, entity_pos_t yOrigin, entity_pos_t angle) const
+	entity_pos_t GetElevationAdaptedRange(const CFixedVector3D& pos1, const CFixedVector3D& rot, entity_pos_t range, entity_pos_t yOrigin, entity_pos_t angle) const override
 	{
 		entity_pos_t r = entity_pos_t::Zero();
 		CFixedVector3D pos(pos1);
@@ -1604,7 +1604,7 @@ public:
 			collector.Submit(&m_DebugOverlayLines[i]);
 	}
 
-	virtual u8 GetEntityFlagMask(const std::string& identifier) const
+	u8 GetEntityFlagMask(const std::string& identifier) const override
 	{
 		if (identifier == "normal")
 			return FlagMasks::Normal;
@@ -1615,7 +1615,7 @@ public:
 		return FlagMasks::None;
 	}
 
-	virtual void SetEntityFlag(entity_id_t ent, const std::string& identifier, bool value)
+	void SetEntityFlag(entity_id_t ent, const std::string& identifier, bool value) override
 	{
 		EntityMap<EntityData>::iterator it = m_EntityData.find(ent);
 
@@ -1635,7 +1635,7 @@ public:
 
 	// LOS implementation:
 
-	virtual CLosQuerier GetLosQuerier(player_id_t player) const
+	CLosQuerier GetLosQuerier(player_id_t player) const override
 	{
 		if (GetLosRevealAll(player))
 			return CLosQuerier(0xFFFFFFFFu, m_LosStateRevealed, m_LosVerticesPerSide);
@@ -1643,7 +1643,7 @@ public:
 			return CLosQuerier(GetSharedLosMask(player), m_LosState, m_LosVerticesPerSide);
 	}
 
-	virtual void ActivateScriptedVisibility(entity_id_t ent, bool status)
+	void ActivateScriptedVisibility(entity_id_t ent, bool status) override
 	{
 		EntityMap<EntityData>::iterator it = m_EntityData.find(ent);
 		if (it != m_EntityData.end())
@@ -1753,7 +1753,7 @@ public:
 		return ComputeLosVisibility(handle, player);
 	}
 
-	virtual LosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player) const
+	LosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player) const override
 	{
 		entity_id_t entId = ent.GetId();
 
@@ -1784,13 +1784,13 @@ public:
 		return static_cast<LosVisibility>(GetPlayerVisibility(it->second.visibilities, player));
 	}
 
-	virtual LosVisibility GetLosVisibility(entity_id_t ent, player_id_t player) const
+	LosVisibility GetLosVisibility(entity_id_t ent, player_id_t player) const override
 	{
 		CEntityHandle handle = GetSimContext().GetComponentManager().LookupEntityHandle(ent);
 		return GetLosVisibility(handle, player);
 	}
 
-	virtual LosVisibility GetLosVisibilityPosition(entity_pos_t x, entity_pos_t z, player_id_t player) const
+	LosVisibility GetLosVisibilityPosition(entity_pos_t x, entity_pos_t z, player_id_t player) const override
 	{
 		int i = (x / LOS_TILE_SIZE).ToInt_RoundToNearest();
 		int j = (z / LOS_TILE_SIZE).ToInt_RoundToNearest();
@@ -1814,7 +1814,7 @@ public:
 		return LosVisibility::HIDDEN;
 	}
 
-	size_t GetVerticesPerSide() const
+	size_t GetVerticesPerSide() const override
 	{
 		return m_LosVerticesPerSide;
 	}
@@ -1886,7 +1886,7 @@ public:
 		}
 	}
 
-	virtual void RequestVisibilityUpdate(entity_id_t ent)
+	void RequestVisibilityUpdate(entity_id_t ent) override
 	{
 		if (std::find(m_ModifiedEntities.begin(), m_ModifiedEntities.end(), ent) == m_ModifiedEntities.end())
 			m_ModifiedEntities.push_back(ent);
@@ -1916,7 +1916,7 @@ public:
 			UpdateVisibility(ent, player);
 	}
 
-	virtual void SetLosRevealAll(player_id_t player, bool enabled)
+	void SetLosRevealAll(player_id_t player, bool enabled) override
 	{
 		if (player == -1)
 			m_LosRevealAll[MAX_LOS_PLAYER_ID+1] = enabled;
@@ -1930,7 +1930,7 @@ public:
 		m_GlobalVisibilityUpdate = true;
 	}
 
-	virtual bool GetLosRevealAll(player_id_t player) const
+	bool GetLosRevealAll(player_id_t player) const override
 	{
 		// Special player value can force reveal-all for every player
 		if (m_LosRevealAll[MAX_LOS_PLAYER_ID+1] || player == -1)
@@ -1943,19 +1943,19 @@ public:
 		return false;
 	}
 
-	virtual void SetLosCircular(bool enabled)
+	void SetLosCircular(bool enabled) override
 	{
 		m_LosCircular = enabled;
 
 		ResetDerivedData();
 	}
 
-	virtual bool GetLosCircular() const
+	bool GetLosCircular() const override
 	{
 		return m_LosCircular;
 	}
 
-	virtual void SetSharedLos(player_id_t player, const std::vector<player_id_t>& players)
+	void SetSharedLos(player_id_t player, const std::vector<player_id_t>& players) override
 	{
 		m_SharedLosMasks[player] = CalcSharedLosMask(players);
 
@@ -1977,12 +1977,12 @@ public:
 			m_GlobalPlayerVisibilityUpdate[player-1] = 1;
 	}
 
-	virtual u32 GetSharedLosMask(player_id_t player) const
+	u32 GetSharedLosMask(player_id_t player) const override
 	{
 		return m_SharedLosMasks[player];
 	}
 
-	void ExploreMap(player_id_t p)
+	void ExploreMap(player_id_t p) override
 	{
 		for (i32 j = 0; j < m_LosVerticesPerSide; ++j)
 			for (i32 i = 0; i < m_LosVerticesPerSide; ++i)
@@ -1997,7 +1997,7 @@ public:
 		SeeExploredEntities(p);
 	}
 
-	virtual void ExploreTerritories()
+	void ExploreTerritories() override
 	{
 		PROFILE3("ExploreTerritories");
 
@@ -2080,7 +2080,7 @@ public:
 		}
 	}
 
-	virtual void RevealShore(player_id_t p, bool enable)
+	void RevealShore(player_id_t p, bool enable) override
 	{
 		if (p <= 0 || p > MAX_LOS_PLAYER_ID)
 			return;
@@ -2494,12 +2494,12 @@ public:
 				LosMove(i, visionRange, from, to);
 	}
 
-	virtual u8 GetPercentMapExplored(player_id_t player) const
+	u8 GetPercentMapExplored(player_id_t player) const override
 	{
 		return m_ExploredVertices.at((u8)player) * 100 / m_TotalInworldVertices;
 	}
 
-	virtual u8 GetUnionPercentMapExplored(const std::vector<player_id_t>& players) const
+	u8 GetUnionPercentMapExplored(const std::vector<player_id_t>& players) const override
 	{
 		u32 exploredVertices = 0;
 		std::vector<player_id_t>::const_iterator playerIt;

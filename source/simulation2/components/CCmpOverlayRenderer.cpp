@@ -54,27 +54,27 @@ public:
 		return "<empty/>";
 	}
 
-	virtual void Init(const CParamNode& UNUSED(paramNode))
+	void Init(const CParamNode& UNUSED(paramNode)) override
 	{
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& UNUSED(serialize))
+	void Serialize(ISerializer& UNUSED(serialize)) override
 	{
 		// TODO: should we do anything here?
 		// or should we expect other components to reinitialise us
 		// after deserialization?
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize)) override
 	{
 		Init(paramNode);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -107,7 +107,7 @@ public:
 		GetSimContext().GetComponentManager().DynamicSubscriptionNonsync(MT_RenderSubmit, this, needRender);
 	}
 
-	virtual void Reset()
+	void Reset() override
 	{
 		m_Sprites.clear();
 		m_SpriteOffsets.clear();
@@ -115,7 +115,7 @@ public:
 		UpdateMessageSubscriptions();
 	}
 
-	virtual void AddSprite(const VfsPath& textureName, const CFixedVector2D& corner0, const CFixedVector2D& corner1, const CFixedVector3D& position, const std::string& color)
+	void AddSprite(const VfsPath& textureName, const CFixedVector2D& corner0, const CFixedVector2D& corner1, const CFixedVector3D& position, const std::string& color) override
 	{
 		CColor colorObj(1.0f, 1.0f, 1.0f, 1.0f);
 		if (!colorObj.ParseString(color, 1))

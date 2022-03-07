@@ -125,26 +125,26 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CParamNode& UNUSED(paramNode));
+	void Init(const CParamNode& UNUSED(paramNode)) override;
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& serialize);
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize);
+	void Serialize(ISerializer& serialize) override;
+	void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) override;
 
-	virtual void HandleMessage(const CMessage& msg, bool global);
+	void HandleMessage(const CMessage& msg, bool global) override;
 
-	virtual void Register(CCmpUnitMotion* component, entity_id_t ent, bool formationController);
-	virtual void Unregister(entity_id_t ent);
+	void Register(CCmpUnitMotion* component, entity_id_t ent, bool formationController) override;
+	void Unregister(entity_id_t ent) override;
 
-	virtual bool ComputingMotion() const
+	bool ComputingMotion() const override
 	{
 		return m_ComputingMotion;
 	}
 
-	virtual bool IsPushingActivated() const
+	bool IsPushingActivated() const override
 	{
 		return m_PushingRadiusMultiplier != entity_pos_t::Zero();
 	}

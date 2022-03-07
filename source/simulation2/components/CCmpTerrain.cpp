@@ -45,54 +45,54 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CParamNode& UNUSED(paramNode))
+	void Init(const CParamNode& UNUSED(paramNode)) override
 	{
 		m_Terrain = &GetSimContext().GetTerrain();
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& UNUSED(serialize))
+	void Serialize(ISerializer& UNUSED(serialize)) override
 	{
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize)) override
 	{
 		Init(paramNode);
 	}
 
-	virtual bool IsLoaded() const
+	bool IsLoaded() const override
 	{
 		return m_Terrain->GetVerticesPerSide() != 0;
 	}
 
-	virtual CFixedVector3D CalcNormal(entity_pos_t x, entity_pos_t z) const
+	CFixedVector3D CalcNormal(entity_pos_t x, entity_pos_t z) const override
 	{
 		CFixedVector3D normal;
 		m_Terrain->CalcNormalFixed((x / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), (z / (int)TERRAIN_TILE_SIZE).ToInt_RoundToZero(), normal);
 		return normal;
 	}
 
-	virtual CVector3D CalcExactNormal(float x, float z) const
+	CVector3D CalcExactNormal(float x, float z) const override
 	{
 		return m_Terrain->CalcExactNormal(x, z);
 	}
 
-	virtual entity_pos_t GetGroundLevel(entity_pos_t x, entity_pos_t z) const
+	entity_pos_t GetGroundLevel(entity_pos_t x, entity_pos_t z) const override
 	{
 		// TODO: this can crash if the terrain heightmap isn't initialised yet
 
 		return m_Terrain->GetExactGroundLevelFixed(x, z);
 	}
 
-	virtual float GetExactGroundLevel(float x, float z) const
+	float GetExactGroundLevel(float x, float z) const override
 	{
 		return m_Terrain->GetExactGroundLevel(x, z);
 	}
 
-	virtual u16 GetTilesPerSide() const
+	u16 GetTilesPerSide() const override
 	{
 		ssize_t tiles = m_Terrain->GetTilesPerSide();
 
@@ -102,24 +102,24 @@ public:
 		return (u16)tiles;
 	}
 
-	virtual u32 GetMapSize() const
+	u32 GetMapSize() const override
 	{
 		return GetTilesPerSide() * TERRAIN_TILE_SIZE;
 	}
 
-	virtual u16 GetVerticesPerSide() const
+	u16 GetVerticesPerSide() const override
 	{
 		ssize_t vertices = m_Terrain->GetVerticesPerSide();
 		ENSURE(1 <= vertices && vertices <= 65535);
 		return (u16)vertices;
 	}
 
-	virtual CTerrain* GetCTerrain()
+	CTerrain* GetCTerrain() override
 	{
 		return m_Terrain;
 	}
 
-	virtual void ReloadTerrain(bool ReloadWater)
+	void ReloadTerrain(bool ReloadWater) override
 	{
 		// TODO: should refactor this code to be nicer
 
@@ -150,7 +150,7 @@ public:
 		MakeDirty(0, 0, tiles+1, tiles+1);
 	}
 
-	virtual void MakeDirty(i32 i0, i32 j0, i32 i1, i32 j1)
+	void MakeDirty(i32 i0, i32 j0, i32 i1, i32 j1) override
 	{
 		CMessageTerrainChanged msg(i0, j0, i1, j1);
 		GetSimContext().GetComponentManager().BroadcastMessage(msg);

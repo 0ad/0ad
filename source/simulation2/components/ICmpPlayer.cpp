@@ -32,27 +32,27 @@ class CCmpPlayerScripted : public ICmpPlayer
 public:
 	DEFAULT_SCRIPT_WRAPPER(PlayerScripted)
 
-	virtual CColor GetDisplayedColor()
+	CColor GetDisplayedColor() override
 	{
 		return m_Script.Call<CColor>("GetDisplayedColor");
 	}
 
-	virtual CFixedVector3D GetStartingCameraPos()
+	CFixedVector3D GetStartingCameraPos() override
 	{
 		return m_Script.Call<CFixedVector3D>("GetStartingCameraPos");
 	}
 
-	virtual CFixedVector3D GetStartingCameraRot()
+	CFixedVector3D GetStartingCameraRot() override
 	{
 		return m_Script.Call<CFixedVector3D>("GetStartingCameraRot");
 	}
 
-	virtual bool HasStartingCamera()
+	bool HasStartingCamera() override
 	{
 		return m_Script.Call<bool>("HasStartingCamera");
 	}
 
-	virtual std::string GetState()
+	std::string GetState() override
 	{
 		return m_Script.Call<std::string>("GetState");
 	}

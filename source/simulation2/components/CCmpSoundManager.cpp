@@ -41,26 +41,26 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CParamNode& UNUSED(paramNode))
+	void Init(const CParamNode& UNUSED(paramNode)) override
 	{
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& UNUSED(serialize))
+	void Serialize(ISerializer& UNUSED(serialize)) override
 	{
 		// Do nothing here - sounds are purely local, and don't need to be preserved across saved games etc
 		// (If we add music support in here then we might want to save the music state, though)
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize)) override
 	{
 		Init(paramNode);
 	}
 
-	virtual void PlaySoundGroup(const std::wstring& name, entity_id_t source)
+	void PlaySoundGroup(const std::wstring& name, entity_id_t source) override
 	{
 		if (!g_SoundManager || (source == INVALID_ENTITY))
 			return;
@@ -84,21 +84,21 @@ public:
 		g_SoundManager->PlayAsGroup(name, sourcePos, source, playerOwned);
 	}
 
-	virtual void PlaySoundGroupAtPosition(const std::wstring& name, const CFixedVector3D& sourcePos)
+	void PlaySoundGroupAtPosition(const std::wstring& name, const CFixedVector3D& sourcePos) override
 	{
 		if (!g_SoundManager)
 			return;
 		g_SoundManager->PlayAsGroup(name, CVector3D(sourcePos), INVALID_ENTITY, false);
 	}
 
-	virtual void PlaySoundGroupForPlayer(const VfsPath& groupPath, const player_id_t playerId) const
+	void PlaySoundGroupForPlayer(const VfsPath& groupPath, const player_id_t playerId) const override
 	{
 		if (!g_SoundManager)
 			return;
 		g_SoundManager->PlayAsGroup(groupPath, CVector3D(0.f, 0.f, 0.f), INVALID_ENTITY, GetSimContext().GetCurrentDisplayedPlayer() == playerId);
 	}
 
-	virtual void StopMusic()
+	void StopMusic() override
 	{
 		if (!g_SoundManager)
 			return;

@@ -43,15 +43,15 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CParamNode& UNUSED(paramNode))
+	void Init(const CParamNode& UNUSED(paramNode)) override
 	{
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	void Serialize(ISerializer& serialize) override
 	{
 		ScriptRequest rq(GetSimContext().GetScriptInterface());
 
@@ -63,7 +63,7 @@ public:
 		}
 	}
 
-	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
+	void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize) override
 	{
 		ScriptRequest rq(GetSimContext().GetScriptInterface());
 
@@ -79,13 +79,13 @@ public:
 		}
 	}
 
-	virtual void PushLocalCommand(player_id_t player, JS::HandleValue cmd)
+	void PushLocalCommand(player_id_t player, JS::HandleValue cmd) override
 	{
 		ScriptRequest rq(GetSimContext().GetScriptInterface());
 		m_LocalQueue.emplace_back(SimulationCommand(player, rq.cx, cmd));
 	}
 
-	virtual void PostNetworkCommand(JS::HandleValue cmd1)
+	void PostNetworkCommand(JS::HandleValue cmd1) override
 	{
 		ScriptRequest rq(GetSimContext().GetScriptInterface());
 
@@ -100,7 +100,7 @@ public:
 			g_Game->GetTurnManager()->PostCommand(cmd);
 	}
 
-	virtual void FlushTurn(const std::vector<SimulationCommand>& commands)
+	void FlushTurn(const std::vector<SimulationCommand>& commands) override
 	{
 		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		ScriptRequest rq(scriptInterface);

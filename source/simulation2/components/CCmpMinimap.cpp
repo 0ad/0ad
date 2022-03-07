@@ -99,7 +99,7 @@ public:
 			"</optional>";
 	}
 
-	virtual void Init(const CParamNode& paramNode)
+	void Init(const CParamNode& paramNode) override
 	{
 		m_Active = true;
 		m_IsPinging = false;
@@ -136,7 +136,7 @@ public:
 		}
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
@@ -152,19 +152,19 @@ public:
 		}
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	void Serialize(ISerializer& serialize) override
 	{
 		SerializeCommon(serialize);
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
+	void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) override
 	{
 		Init(paramNode);
 
 		SerializeCommon(deserialize);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -207,7 +207,7 @@ public:
 		}
 	}
 
-	virtual bool GetRenderData(u8& r, u8& g, u8& b, entity_pos_t& x, entity_pos_t& z) const
+	bool GetRenderData(u8& r, u8& g, u8& b, entity_pos_t& x, entity_pos_t& z) const override
 	{
 		if (!m_Active)
 			return false;
@@ -220,7 +220,7 @@ public:
 		return true;
 	}
 
-	virtual bool CheckPing(double currentTime, double pingDuration)
+	bool CheckPing(double currentTime, double pingDuration) override
 	{
 		if (!m_Active || !m_IsPinging)
 			return false;
@@ -237,7 +237,7 @@ public:
 		return m_IsPinging;
 	}
 
-	virtual void UpdateColor()
+	void UpdateColor() override
 	{
 		if (!m_UsePlayerColor)
 			return;

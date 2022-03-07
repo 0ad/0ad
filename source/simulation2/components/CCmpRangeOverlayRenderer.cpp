@@ -56,31 +56,31 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CParamNode& UNUSED(paramNode))
+	void Init(const CParamNode& UNUSED(paramNode)) override
 	{
 		m_Enabled = m_LastEnabledState = false;
 		UpdateMessageSubscriptions();
 	}
 
-	virtual void Deinit() { }
+	void Deinit() override { }
 
-	virtual void Serialize(ISerializer& UNUSED(serialize))
+	void Serialize(ISerializer& UNUSED(serialize)) override
 	{
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize)) override
 	{
 		Init(paramNode);
 	}
 
-	void ResetRangeOverlays()
+	void ResetRangeOverlays() override
 	{
 		m_RangeOverlayData.clear();
 		UpdateMessageSubscriptions();
 		m_Enabled = false;
 	}
 
-	virtual void AddRangeOverlay(float radius, const std::string& texture, const std::string& textureMask, float thickness)
+	void AddRangeOverlay(float radius, const std::string& texture, const std::string& textureMask, float thickness) override
 	{
 		if (!CRenderer::IsInitialised())
 			return;
@@ -98,7 +98,7 @@ public:
 		UpdateMessageSubscriptions();
 	}
 
-	void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -135,7 +135,7 @@ private:
 		std::unique_ptr<SOverlayTexturedLine> line;
 	};
 
-	virtual void UpdateColor()
+	void UpdateColor() override
 	{
 		CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
 		if (!cmpOwnership)

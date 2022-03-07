@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ class CCmpTerritoryDecayManagerScripted : public ICmpTerritoryDecayManager
 public:
 	DEFAULT_SCRIPT_WRAPPER(TerritoryDecayManagerScripted)
 
-	virtual void SetBlinkingEntities()
+	void SetBlinkingEntities() override
 	{
 		return m_Script.CallVoid("SetBlinkingEntities");
 	}

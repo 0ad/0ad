@@ -30,8 +30,8 @@ class MockVisionRgm : public ICmpVision
 public:
 	DEFAULT_MOCK_COMPONENT()
 
-	virtual entity_pos_t GetRange() const { return entity_pos_t::FromInt(66); }
-	virtual bool GetRevealShore() const { return false; }
+	entity_pos_t GetRange() const override { return entity_pos_t::FromInt(66); }
+	bool GetRevealShore() const override { return false; }
 };
 
 class MockPositionRgm : public ICmpPosition
@@ -39,38 +39,38 @@ class MockPositionRgm : public ICmpPosition
 public:
 	DEFAULT_MOCK_COMPONENT()
 
-	virtual void SetTurretParent(entity_id_t UNUSED(id), const CFixedVector3D& UNUSED(pos)) {}
-	virtual entity_id_t GetTurretParent() const {return INVALID_ENTITY;}
-	virtual void UpdateTurretPosition() {}
-	virtual std::set<entity_id_t>* GetTurrets() { return NULL; }
-	virtual bool IsInWorld() const { return true; }
-	virtual void MoveOutOfWorld() { }
-	virtual void MoveTo(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z)) { }
-	virtual void MoveAndTurnTo(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z), entity_angle_t UNUSED(a)) { }
-	virtual void JumpTo(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z)) { }
-	virtual void SetHeightOffset(entity_pos_t UNUSED(dy)) { }
-	virtual entity_pos_t GetHeightOffset() const { return entity_pos_t::Zero(); }
-	virtual void SetHeightFixed(entity_pos_t UNUSED(y)) { }
-	virtual entity_pos_t GetHeightFixed() const { return entity_pos_t::Zero(); }
-	virtual entity_pos_t GetHeightAtFixed(entity_pos_t, entity_pos_t) const { return entity_pos_t::Zero(); }
-	virtual bool IsHeightRelative() const { return true; }
-	virtual void SetHeightRelative(bool UNUSED(relative)) { }
-	virtual bool CanFloat() const { return false; }
-	virtual void SetFloating(bool UNUSED(flag)) { }
-	virtual void SetActorFloating(bool UNUSED(flag)) { }
-	virtual void SetConstructionProgress(fixed UNUSED(progress)) { }
-	virtual CFixedVector3D GetPosition() const { return m_Pos; }
-	virtual CFixedVector2D GetPosition2D() const { return CFixedVector2D(m_Pos.X, m_Pos.Z); }
-	virtual CFixedVector3D GetPreviousPosition() const { return CFixedVector3D(); }
-	virtual CFixedVector2D GetPreviousPosition2D() const { return CFixedVector2D(); }
-	virtual fixed GetTurnRate() const { return fixed::Zero(); }
-	virtual void TurnTo(entity_angle_t UNUSED(y)) { }
-	virtual void SetYRotation(entity_angle_t UNUSED(y)) { }
-	virtual void SetXZRotation(entity_angle_t UNUSED(x), entity_angle_t UNUSED(z)) { }
-	virtual CFixedVector3D GetRotation() const { return CFixedVector3D(); }
-	virtual fixed GetDistanceTravelled() const { return fixed::Zero(); }
-	virtual void GetInterpolatedPosition2D(float UNUSED(frameOffset), float& x, float& z, float& rotY) const { x = z = rotY = 0; }
-	virtual CMatrix3D GetInterpolatedTransform(float UNUSED(frameOffset)) const { return CMatrix3D(); }
+	void SetTurretParent(entity_id_t UNUSED(id), const CFixedVector3D& UNUSED(pos)) override {}
+	entity_id_t GetTurretParent() const override {return INVALID_ENTITY;}
+	void UpdateTurretPosition() override {}
+	std::set<entity_id_t>* GetTurrets() override { return nullptr; }
+	bool IsInWorld() const override { return true; }
+	void MoveOutOfWorld() override { }
+	void MoveTo(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z)) override { }
+	void MoveAndTurnTo(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z), entity_angle_t UNUSED(a)) override { }
+	void JumpTo(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z)) override { }
+	void SetHeightOffset(entity_pos_t UNUSED(dy)) override { }
+	entity_pos_t GetHeightOffset() const override { return entity_pos_t::Zero(); }
+	void SetHeightFixed(entity_pos_t UNUSED(y)) override { }
+	entity_pos_t GetHeightFixed() const override { return entity_pos_t::Zero(); }
+	entity_pos_t GetHeightAtFixed(entity_pos_t, entity_pos_t) const override { return entity_pos_t::Zero(); }
+	bool IsHeightRelative() const override { return true; }
+	void SetHeightRelative(bool UNUSED(relative)) override { }
+	bool CanFloat() const override { return false; }
+	void SetFloating(bool UNUSED(flag)) override { }
+	void SetActorFloating(bool UNUSED(flag)) override { }
+	void SetConstructionProgress(fixed UNUSED(progress)) override { }
+	CFixedVector3D GetPosition() const override { return m_Pos; }
+	CFixedVector2D GetPosition2D() const override { return CFixedVector2D(m_Pos.X, m_Pos.Z); }
+	CFixedVector3D GetPreviousPosition() const override { return CFixedVector3D(); }
+	CFixedVector2D GetPreviousPosition2D() const override { return CFixedVector2D(); }
+	fixed GetTurnRate() const override { return fixed::Zero(); }
+	void TurnTo(entity_angle_t UNUSED(y)) override { }
+	void SetYRotation(entity_angle_t UNUSED(y)) override { }
+	void SetXZRotation(entity_angle_t UNUSED(x), entity_angle_t UNUSED(z)) override { }
+	CFixedVector3D GetRotation() const override { return CFixedVector3D(); }
+	fixed GetDistanceTravelled() const override { return fixed::Zero(); }
+	void GetInterpolatedPosition2D(float UNUSED(frameOffset), float& x, float& z, float& rotY) const override { x = z = rotY = 0; }
+	CMatrix3D GetInterpolatedTransform(float UNUSED(frameOffset)) const override { return CMatrix3D(); }
 
 	CFixedVector3D m_Pos;
 };
@@ -82,32 +82,32 @@ public:
 
 	MockObstructionRgm(entity_pos_t s) : m_Size(s) {};
 
-	virtual ICmpObstructionManager::tag_t GetObstruction() const { return {}; };
-	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare&) const { return false; };
-	virtual bool GetPreviousObstructionSquare(ICmpObstructionManager::ObstructionSquare&) const { return false; };
-	virtual entity_pos_t GetSize() const { return m_Size; };
-	virtual CFixedVector2D GetStaticSize() const { return {}; };
-	virtual EObstructionType GetObstructionType() const { return {}; };
-	virtual void SetUnitClearance(const entity_pos_t&) {};
-	virtual bool IsControlPersistent() const { return {}; };
-	virtual bool CheckShorePlacement() const { return {}; };
-	virtual EFoundationCheck CheckFoundation(const std::string&) const { return {}; };
-	virtual EFoundationCheck CheckFoundation(const std::string& , bool) const { return {}; };
-	virtual std::string CheckFoundation_wrapper(const std::string&, bool) const { return {}; };
-	virtual bool CheckDuplicateFoundation() const { return {}; };
-	virtual std::vector<entity_id_t> GetEntitiesByFlags(ICmpObstructionManager::flags_t) const { return {}; };
-	virtual std::vector<entity_id_t> GetEntitiesBlockingMovement() const { return {}; };
-	virtual std::vector<entity_id_t> GetEntitiesBlockingConstruction() const { return {}; };
-	virtual std::vector<entity_id_t> GetEntitiesDeletedUponConstruction() const { return {}; };
-	virtual void ResolveFoundationCollisions() const {};
-	virtual void SetActive(bool) {};
-	virtual void SetMovingFlag(bool) {};
-	virtual void SetDisableBlockMovementPathfinding(bool, bool, int32_t) {};
-	virtual bool GetBlockMovementFlag(bool) const { return {}; };
-	virtual void SetControlGroup(entity_id_t) {};
-	virtual entity_id_t GetControlGroup() const { return {}; };
-	virtual void SetControlGroup2(entity_id_t) {};
-	virtual entity_id_t GetControlGroup2() const { return {}; };
+	ICmpObstructionManager::tag_t GetObstruction() const override { return {}; };
+	bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare&) const override { return false; };
+	bool GetPreviousObstructionSquare(ICmpObstructionManager::ObstructionSquare&) const override { return false; };
+	entity_pos_t GetSize() const override { return m_Size; };
+	CFixedVector2D GetStaticSize() const override { return {}; };
+	EObstructionType GetObstructionType() const override { return {}; };
+	void SetUnitClearance(const entity_pos_t&) override {};
+	bool IsControlPersistent() const override { return {}; };
+	bool CheckShorePlacement() const override { return {}; };
+	EFoundationCheck CheckFoundation(const std::string&) const override { return {}; };
+	EFoundationCheck CheckFoundation(const std::string& , bool) const override { return {}; };
+	std::string CheckFoundation_wrapper(const std::string&, bool) const override { return {}; };
+	bool CheckDuplicateFoundation() const override { return {}; };
+	std::vector<entity_id_t> GetEntitiesByFlags(ICmpObstructionManager::flags_t) const override { return {}; };
+	std::vector<entity_id_t> GetEntitiesBlockingMovement() const override { return {}; };
+	std::vector<entity_id_t> GetEntitiesBlockingConstruction() const override { return {}; };
+	std::vector<entity_id_t> GetEntitiesDeletedUponConstruction() const override { return {}; };
+	void ResolveFoundationCollisions() const override {};
+	void SetActive(bool) override {};
+	void SetMovingFlag(bool) override {};
+	void SetDisableBlockMovementPathfinding(bool, bool, int32_t) override {};
+	bool GetBlockMovementFlag(bool) const override { return {}; };
+	void SetControlGroup(entity_id_t) override {};
+	entity_id_t GetControlGroup() const override { return {}; };
+	void SetControlGroup2(entity_id_t) override {};
+	entity_id_t GetControlGroup2() const override { return {}; };
 private:
 	entity_pos_t m_Size;
 };

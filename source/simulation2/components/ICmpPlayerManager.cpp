@@ -30,12 +30,12 @@ class CCmpPlayerManagerScripted : public ICmpPlayerManager
 public:
 	DEFAULT_SCRIPT_WRAPPER(PlayerManagerScripted)
 
-	virtual int32_t GetNumPlayers()
+	int32_t GetNumPlayers() override
 	{
 		return m_Script.Call<int32_t>("GetNumPlayers");
 	}
 
-	virtual entity_id_t GetPlayerByID(int32_t id)
+	entity_id_t GetPlayerByID(int32_t id) override
 	{
 		return m_Script.Call<entity_id_t>("GetPlayerByID", (int)id);
 	}

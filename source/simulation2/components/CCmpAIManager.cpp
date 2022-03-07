@@ -881,7 +881,7 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CParamNode& UNUSED(paramNode))
+	void Init(const CParamNode& UNUSED(paramNode)) override
 	{
 		m_Worker.Init(GetSimContext().GetScriptInterface());
 
@@ -890,11 +890,11 @@ public:
 		m_JustDeserialized = false;
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	void Serialize(ISerializer& serialize) override
 	{
 		serialize.NumberU32_Unbounded("num ais", m_Worker.getPlayerSize());
 
@@ -906,7 +906,7 @@ public:
 		m_Worker.Serialize(serialize.GetStream(), serialize.IsDebug());
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
+	void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) override
 	{
 		Init(paramNode);
 
@@ -920,7 +920,7 @@ public:
 		m_JustDeserialized = true;
 	}
 
-	virtual void AddPlayer(const std::wstring& id, player_id_t player, u8 difficulty, const std::wstring& behavior)
+	void AddPlayer(const std::wstring& id, player_id_t player, u8 difficulty, const std::wstring& behavior) override
 	{
 		LoadUsedEntityTemplates();
 
@@ -934,17 +934,17 @@ public:
 			cmpRangeManager->SetLosRevealAll(player, true);
 	}
 
-	virtual void SetRNGSeed(u32 seed)
+	void SetRNGSeed(u32 seed) override
 	{
 		m_Worker.SetRNGSeed(seed);
 	}
 
-	virtual void TryLoadSharedComponent()
+	void TryLoadSharedComponent() override
 	{
 		m_Worker.TryLoadSharedComponent();
 	}
 
-	virtual void RunGamestateInit()
+	void RunGamestateInit() override
 	{
 		const ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
 		ScriptRequest rq(scriptInterface);
@@ -981,7 +981,7 @@ public:
 			*passabilityMap, *territoryMap, nonPathfindingPassClassMasks, pathfindingPassClassMasks);
 	}
 
-	virtual void StartComputation()
+	void StartComputation() override
 	{
 		PROFILE("AI setup");
 
@@ -1040,7 +1040,7 @@ public:
 		m_JustDeserialized = false;
 	}
 
-	virtual void PushCommands()
+	void PushCommands() override
 	{
 		std::vector<CAIWorker::SCommandSets> commands;
 		m_Worker.GetCommands(commands);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,12 +31,12 @@ class CCmpAttackScripted : public ICmpAttack
 public:
 	DEFAULT_SCRIPT_WRAPPER(AttackScripted)
 
-	virtual float GetRepeatTime(const std::string& type) const
+	float GetRepeatTime(const std::string& type) const override
 	{
 		return m_Script.Call<float, const std::string&>("GetRepeatTime", type);
 	}
 
-	virtual std::vector<CStr> GetAttackTypes() const
+	std::vector<CStr> GetAttackTypes() const override
 	{
 		return m_Script.Call<std::vector<CStr>>("GetAttackTypes");
 	}

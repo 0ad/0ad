@@ -196,7 +196,7 @@ public:
 			"</optional>";
 	}
 
-	virtual void Init(const CParamNode& paramNode)
+	void Init(const CParamNode& paramNode) override
 	{
 		// The minimum obstruction size is the navcell size * sqrt(2)
 		// This is enforced in the schema as a minimum of 1.5
@@ -273,7 +273,7 @@ public:
 		m_ControlGroup2 = INVALID_ENTITY;
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
@@ -292,19 +292,19 @@ public:
 			serialize.NumberFixed_Unbounded("clearance", m_Clearance);
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	void Serialize(ISerializer& serialize) override
 	{
 		SerializeCommon(serialize);
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
+	void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) override
 	{
 		Init(paramNode);
 
 		SerializeCommon(deserialize);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -380,7 +380,7 @@ public:
 		}
 	}
 
-	virtual void SetActive(bool active)
+	void SetActive(bool active) override
 	{
 		if (active && !m_Active && !m_IsDestroyed)
 		{
@@ -446,7 +446,7 @@ public:
 		// else we didn't change the active status
 	}
 
-	virtual void SetDisableBlockMovementPathfinding(bool movementDisabled, bool pathfindingDisabled, int32_t shape)
+	void SetDisableBlockMovementPathfinding(bool movementDisabled, bool pathfindingDisabled, int32_t shape) override
 	{
 		flags_t *flags = NULL;
 		if (shape == -1)
@@ -476,27 +476,27 @@ public:
 		}
 	}
 
-	virtual bool GetBlockMovementFlag(bool templateOnly) const
+	bool GetBlockMovementFlag(bool templateOnly) const override
 	{
 		return m_Active && ((templateOnly ? m_TemplateFlags : m_Flags) & ICmpObstructionManager::FLAG_BLOCK_MOVEMENT) != 0;
 	}
 
-	virtual EObstructionType GetObstructionType() const
+	EObstructionType GetObstructionType() const override
 	{
 		return m_Type;
 	}
 
-	virtual ICmpObstructionManager::tag_t GetObstruction() const
+	ICmpObstructionManager::tag_t GetObstruction() const override
 	{
 		return m_Tag;
 	}
 
-	virtual bool GetPreviousObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) const
+	bool GetPreviousObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) const override
 	{
 		return GetObstructionSquare(out, true);
 	}
 
-	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) const
+	bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) const override
 	{
 		return GetObstructionSquare(out, false);
 	}
@@ -526,7 +526,7 @@ public:
 		return true;
 	}
 
-	virtual entity_pos_t GetSize() const
+	entity_pos_t GetSize() const override
 	{
 		if (m_Type == UNIT)
 			return m_Clearance;
@@ -534,12 +534,12 @@ public:
 			return CFixedVector2D(m_Size0 / 2, m_Size1 / 2).Length();
 	}
 
-	virtual CFixedVector2D GetStaticSize() const
+	CFixedVector2D GetStaticSize() const override
 	{
 		return m_Type == STATIC ? CFixedVector2D(m_Size0, m_Size1) : CFixedVector2D();
 	}
 
-	virtual void SetUnitClearance(const entity_pos_t& clearance)
+	void SetUnitClearance(const entity_pos_t& clearance) override
 	{
 		// This doesn't send a MovementObstructionChanged message
 		// because it's a just a workaround init order, and used in UnitMotion directly.
@@ -547,12 +547,12 @@ public:
 			m_Clearance = clearance;
 	}
 
-	virtual bool IsControlPersistent() const
+	bool IsControlPersistent() const override
 	{
 		return m_ControlPersist;
 	}
 
-	virtual bool CheckShorePlacement() const
+	bool CheckShorePlacement() const override
 	{
 		ICmpObstructionManager::ObstructionSquare s;
 		if (!GetObstructionSquare(s))
@@ -571,12 +571,12 @@ public:
 		       cmpWaterManager->GetWaterLevel( back.X,  back.Y) - cmpTerrain->GetGroundLevel( back.X,  back.Y) < fixed::FromInt(2);
 	}
 
-	virtual EFoundationCheck CheckFoundation(const std::string& className) const
+	EFoundationCheck CheckFoundation(const std::string& className) const override
 	{
 		return  CheckFoundation(className, false);
 	}
 
-	virtual EFoundationCheck CheckFoundation(const std::string& className, bool onlyCenterPoint) const
+	EFoundationCheck CheckFoundation(const std::string& className, bool onlyCenterPoint) const override
 	{
 		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 		if (!cmpPosition)
@@ -613,7 +613,7 @@ public:
 			return cmpPathfinder->CheckBuildingPlacement(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, GetEntityId(), passClass, onlyCenterPoint);
 	}
 
-	virtual bool CheckDuplicateFoundation() const
+	bool CheckDuplicateFoundation() const override
 	{
 		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 		if (!cmpPosition)
@@ -645,7 +645,7 @@ public:
 			return !cmpObstructionManager->TestStaticShape(filter, pos.X, pos.Y, cmpPosition->GetRotation().Y, m_Size0, m_Size1, NULL );
 	}
 
-	virtual std::vector<entity_id_t> GetEntitiesByFlags(flags_t flags) const
+	std::vector<entity_id_t> GetEntitiesByFlags(flags_t flags) const override
 	{
 		std::vector<entity_id_t> ret;
 
@@ -668,22 +668,22 @@ public:
 		return ret;
 	}
 
-	virtual std::vector<entity_id_t> GetEntitiesBlockingMovement() const
+	std::vector<entity_id_t> GetEntitiesBlockingMovement() const override
 	{
 		return GetEntitiesByFlags(ICmpObstructionManager::FLAG_BLOCK_MOVEMENT);
 	}
 
-	virtual std::vector<entity_id_t> GetEntitiesBlockingConstruction() const
+	std::vector<entity_id_t> GetEntitiesBlockingConstruction() const override
 	{
 		return GetEntitiesByFlags(ICmpObstructionManager::FLAG_BLOCK_CONSTRUCTION);
 	}
 
-	virtual std::vector<entity_id_t> GetEntitiesDeletedUponConstruction() const
+	std::vector<entity_id_t> GetEntitiesDeletedUponConstruction() const override
 	{
 		return GetEntitiesByFlags(ICmpObstructionManager::FLAG_DELETE_UPON_CONSTRUCTION);
 	}
 
-	virtual void SetMovingFlag(bool enabled)
+	void SetMovingFlag(bool enabled) override
 	{
 		m_Moving = enabled;
 
@@ -695,24 +695,24 @@ public:
 		}
 	}
 
-	virtual void SetControlGroup(entity_id_t group)
+	void SetControlGroup(entity_id_t group) override
 	{
 		m_ControlGroup = group;
 		UpdateControlGroups();
 	}
 
-	virtual void SetControlGroup2(entity_id_t group2)
+	void SetControlGroup2(entity_id_t group2) override
 	{
 		m_ControlGroup2 = group2;
 		UpdateControlGroups();
 	}
 
-	virtual entity_id_t GetControlGroup() const
+	entity_id_t GetControlGroup() const override
 	{
 		return m_ControlGroup;
 	}
 
-	virtual entity_id_t GetControlGroup2() const
+	entity_id_t GetControlGroup2() const override
 	{
 		return m_ControlGroup2;
 	}
@@ -744,7 +744,7 @@ public:
 		}
 	}
 
-	void ResolveFoundationCollisions() const
+	void ResolveFoundationCollisions() const override
 	{
 		if (m_Type == UNIT)
 			return;

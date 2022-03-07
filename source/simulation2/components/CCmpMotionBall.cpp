@@ -43,30 +43,30 @@ public:
 		return "<a:component type='test'/><ref name='anything'/>";
 	}
 
-	virtual void Init(const CParamNode& UNUSED(paramNode))
+	void Init(const CParamNode& UNUSED(paramNode)) override
 	{
 		m_SpeedX = 0;
 		m_SpeedZ = 0;
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	void Serialize(ISerializer& serialize) override
 	{
 		serialize.NumberFloat_Unbounded("speed x", m_SpeedX);
 		serialize.NumberFloat_Unbounded("speed z", m_SpeedZ);
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
+	void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) override
 	{
 		Init(paramNode);
 		deserialize.NumberFloat_Unbounded("speed x", m_SpeedX);
 		deserialize.NumberFloat_Unbounded("speed z", m_SpeedZ);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{

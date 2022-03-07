@@ -58,7 +58,7 @@ public:
 			"</optional>";
 	}
 
-	virtual void Init(const CParamNode& paramNode)
+	void Init(const CParamNode& paramNode) override
 	{
 		m_BaseRange = m_Range = paramNode.GetChild("Range").ToFixed();
 
@@ -68,21 +68,21 @@ public:
 			m_RevealShore = false;
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& UNUSED(serialize))
+	void Serialize(ISerializer& UNUSED(serialize)) override
 	{
 		// No dynamic state to serialize
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize)) override
 	{
 		Init(paramNode);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -130,12 +130,12 @@ public:
 		GetSimContext().GetComponentManager().BroadcastMessage(msg);
 	}
 
-	virtual entity_pos_t GetRange() const
+	entity_pos_t GetRange() const override
 	{
 		return m_Range;
 	}
 
-	virtual bool GetRevealShore() const
+	bool GetRevealShore() const override
 	{
 		return m_RevealShore;
 	}

@@ -52,7 +52,7 @@ public:
 	CCmpTerritoryManager& m_TerritoryManager;
 
 	TerritoryOverlay(CCmpTerritoryManager& manager);
-	virtual void BuildTextureRGBA(u8* data, size_t w, size_t h);
+	void BuildTextureRGBA(u8* data, size_t w, size_t h) override;
 };
 
 class CCmpTerritoryManager : public ICmpTerritoryManager
@@ -117,7 +117,7 @@ public:
 	bool m_EnableLineDebugOverlays; ///< Enable node debugging overlays for boundary lines?
 	std::vector<SOverlayLine> m_DebugBoundaryLineNodes;
 
-	virtual void Init(const CParamNode& UNUSED(paramNode))
+	void Init(const CParamNode& UNUSED(paramNode)) override
 	{
 		m_Territories = NULL;
 		m_CostGrid = NULL;
@@ -148,26 +148,26 @@ public:
 		m_BorderSeparation = externalParamNode.GetChild("TerritoryManager").GetChild("BorderSeparation").ToFixed().ToFloat();
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 		SAFE_DELETE(m_Territories);
 		SAFE_DELETE(m_CostGrid);
 		SAFE_DELETE(m_DebugOverlay);
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	void Serialize(ISerializer& serialize) override
 	{
 		// Territory state can be recomputed as required, so we don't need to serialize any of it.
 		serialize.Bool("trigger event", m_TriggerEvent);
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
+	void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) override
 	{
 		Init(paramNode);
 		deserialize.Bool("trigger event", m_TriggerEvent);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -237,19 +237,19 @@ public:
 			MakeDirty();
 	}
 
-	virtual const Grid<u8>& GetTerritoryGrid()
+	const Grid<u8>& GetTerritoryGrid() override
 	{
 		CalculateTerritories();
 		ENSURE(m_Territories);
 		return *m_Territories;
 	}
 
-	virtual player_id_t GetOwner(entity_pos_t x, entity_pos_t z);
-	virtual std::vector<u32> GetNeighbours(entity_pos_t x, entity_pos_t z, bool filterConnected);
-	virtual bool IsConnected(entity_pos_t x, entity_pos_t z);
+	player_id_t GetOwner(entity_pos_t x, entity_pos_t z) override;
+	std::vector<u32> GetNeighbours(entity_pos_t x, entity_pos_t z, bool filterConnected) override;
+	bool IsConnected(entity_pos_t x, entity_pos_t z) override;
 
-	virtual void SetTerritoryBlinking(entity_pos_t x, entity_pos_t z, bool enable);
-	virtual bool IsTerritoryBlinking(entity_pos_t x, entity_pos_t z);
+	void SetTerritoryBlinking(entity_pos_t x, entity_pos_t z, bool enable) override;
+	bool IsTerritoryBlinking(entity_pos_t x, entity_pos_t z) override;
 
 	// To support lazy updates of territory render data,
 	// we maintain a DirtyID here and increment it whenever territories change;
@@ -269,7 +269,7 @@ public:
 		m_TriggerEvent = true;
 	}
 
-	virtual bool NeedUpdateTexture(size_t* dirtyID)
+	bool NeedUpdateTexture(size_t* dirtyID) override
 	{
 		if (*dirtyID == m_DirtyID && !m_ColorChanged)
 			return false;
@@ -279,7 +279,7 @@ public:
 		return true;
 	}
 
-	virtual bool NeedUpdateAI(size_t* dirtyID, size_t* dirtyBlinkingID) const
+	bool NeedUpdateAI(size_t* dirtyID, size_t* dirtyBlinkingID) const override
 	{
 		if (*dirtyID == m_DirtyID && *dirtyBlinkingID == m_DirtyBlinkingID)
 			return false;
@@ -293,7 +293,7 @@ public:
 
 	void CalculateTerritories();
 
-	u8 GetTerritoryPercentage(player_id_t player);
+	u8 GetTerritoryPercentage(player_id_t player) override;
 
 	std::vector<STerritoryBoundary> ComputeBoundaries();
 
@@ -303,12 +303,12 @@ public:
 
 	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
 
-	void SetVisibility(bool visible)
+	void SetVisibility(bool visible) override
 	{
 		m_Visible = visible;
 	}
 
-	void UpdateColors();
+	void UpdateColors() override;
 
 private:
 

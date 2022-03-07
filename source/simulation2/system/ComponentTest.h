@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -193,56 +193,56 @@ class MockTerrain : public ICmpTerrain
 public:
 	DEFAULT_MOCK_COMPONENT()
 
-	virtual bool IsLoaded() const
+	bool IsLoaded() const override
 	{
 		return true;
 	}
 
-	virtual CFixedVector3D CalcNormal(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z)) const
+	CFixedVector3D CalcNormal(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z)) const override
 	{
 		return CFixedVector3D(fixed::FromInt(0), fixed::FromInt(1), fixed::FromInt(0));
 	}
 
-	virtual CVector3D CalcExactNormal(float UNUSED(x), float UNUSED(z)) const
+	CVector3D CalcExactNormal(float UNUSED(x), float UNUSED(z)) const override
 	{
 		return CVector3D(0.f, 1.f, 0.f);
 	}
 
-	virtual entity_pos_t GetGroundLevel(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z)) const
+	entity_pos_t GetGroundLevel(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z)) const override
 	{
 		return entity_pos_t::FromInt(50);
 	}
 
-	virtual float GetExactGroundLevel(float UNUSED(x), float UNUSED(z)) const
+	float GetExactGroundLevel(float UNUSED(x), float UNUSED(z)) const override
 	{
 		return 50.f;
 	}
 
-	virtual u16 GetTilesPerSide() const
+	u16 GetTilesPerSide() const override
 	{
 		return 16;
 	}
 
-	virtual u32 GetMapSize() const
+	u32 GetMapSize() const override
 	{
 		return GetTilesPerSide() * TERRAIN_TILE_SIZE;
 	}
 
-	virtual u16 GetVerticesPerSide() const
+	u16 GetVerticesPerSide() const override
 	{
 		return 17;
 	}
 
-	virtual CTerrain* GetCTerrain()
+	CTerrain* GetCTerrain() override
 	{
-		return NULL;
+		return nullptr;
 	}
 
-	virtual void MakeDirty(i32 UNUSED(i0), i32 UNUSED(j0), i32 UNUSED(i1), i32 UNUSED(j1))
+	void MakeDirty(i32 UNUSED(i0), i32 UNUSED(j0), i32 UNUSED(i1), i32 UNUSED(j1)) override
 	{
 	}
 
-	virtual void ReloadTerrain(bool UNUSED(ReloadWater))
+	void ReloadTerrain(bool UNUSED(ReloadWater)) override
 	{
 	}
 };

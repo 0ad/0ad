@@ -136,7 +136,7 @@ public:
 			"</element>";
 	}
 
-	virtual void Init(const CParamNode& paramNode)
+	void Init(const CParamNode& paramNode) override
 	{
 		const std::string& anchor = paramNode.GetChild("Anchor").ToString();
 		if (anchor == "pitch")
@@ -171,11 +171,11 @@ public:
 		m_EnabledMessageInterpolate = false;
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	void Serialize(ISerializer& serialize) override
 	{
 		serialize.Bool("in world", m_InWorld);
 		if (m_InWorld)
@@ -232,7 +232,7 @@ public:
 		Serializer(serialize, "turrets", m_Turrets);
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
+	void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) override
 	{
 		Init(paramNode);
 
@@ -280,7 +280,7 @@ public:
 		AdvertiseInterpolatedPositionChanges();
 	}
 
-	virtual void UpdateTurretPosition()
+	void UpdateTurretPosition() override
 	{
 		if (m_TurretParent == INVALID_ENTITY)
 			return;
@@ -308,12 +308,12 @@ public:
 		}
 	}
 
-	virtual std::set<entity_id_t>* GetTurrets()
+	std::set<entity_id_t>* GetTurrets() override
 	{
 		return &m_Turrets;
 	}
 
-	virtual void SetTurretParent(entity_id_t id, const CFixedVector3D& offset)
+	void SetTurretParent(entity_id_t id, const CFixedVector3D& offset) override
 	{
 		entity_angle_t angle = GetRotation().Y;
 		if (m_TurretParent != INVALID_ENTITY)
@@ -336,17 +336,17 @@ public:
 		UpdateTurretPosition();
 	}
 
-	virtual entity_id_t GetTurretParent() const
+	entity_id_t GetTurretParent() const override
 	{
 		return m_TurretParent;
 	}
 
-	virtual bool IsInWorld() const
+	bool IsInWorld() const override
 	{
 		return m_InWorld;
 	}
 
-	virtual void MoveOutOfWorld()
+	void MoveOutOfWorld() override
 	{
 		m_InWorld = false;
 
@@ -354,7 +354,7 @@ public:
 		AdvertiseInterpolatedPositionChanges();
 	}
 
-	virtual void MoveTo(entity_pos_t x, entity_pos_t z)
+	void MoveTo(entity_pos_t x, entity_pos_t z) override
 	{
 		m_X = x;
 		m_Z = z;
@@ -371,7 +371,7 @@ public:
 		AdvertiseInterpolatedPositionChanges();
 	}
 
-	virtual void MoveAndTurnTo(entity_pos_t x, entity_pos_t z, entity_angle_t ry)
+	void MoveAndTurnTo(entity_pos_t x, entity_pos_t z, entity_angle_t ry) override
 	{
 		m_X = x;
 		m_Z = z;
@@ -390,7 +390,7 @@ public:
 		AdvertiseInterpolatedPositionChanges();
 	}
 
-	virtual void JumpTo(entity_pos_t x, entity_pos_t z)
+	void JumpTo(entity_pos_t x, entity_pos_t z) override
 	{
 		m_LastX = m_PrevX = m_X = x;
 		m_LastZ = m_PrevZ = m_Z = z;
@@ -405,7 +405,7 @@ public:
 		AdvertiseInterpolatedPositionChanges();
 	}
 
-	virtual void SetHeightOffset(entity_pos_t dy)
+	void SetHeightOffset(entity_pos_t dy) override
 	{
 		// subtract the offset and replace with a new offset
 		m_LastYDifference = dy - GetHeightOffset();
@@ -413,7 +413,7 @@ public:
 		AdvertiseInterpolatedPositionChanges();
 	}
 
-	virtual entity_pos_t GetHeightOffset() const
+	entity_pos_t GetHeightOffset() const override
 	{
 		if (m_RelativeToGround)
 			return m_Y;
@@ -433,7 +433,7 @@ public:
 		return m_Y - baseY;
 	}
 
-	virtual void SetHeightFixed(entity_pos_t y)
+	void SetHeightFixed(entity_pos_t y) override
 	{
 		// subtract the absolute height and replace it with a new absolute height
 		m_LastYDifference = y - GetHeightFixed();
@@ -441,12 +441,12 @@ public:
 		AdvertiseInterpolatedPositionChanges();
 	}
 
-	virtual entity_pos_t GetHeightFixed() const
+	entity_pos_t GetHeightFixed() const override
 	{
 		return GetHeightAtFixed(m_X, m_Z);
 	}
 
-	virtual entity_pos_t GetHeightAtFixed(entity_pos_t x, entity_pos_t z) const
+	entity_pos_t GetHeightAtFixed(entity_pos_t x, entity_pos_t z) const override
 	{
 		if (!m_RelativeToGround)
 			return m_Y;
@@ -466,12 +466,12 @@ public:
 		return m_Y + baseY;
 	}
 
-	virtual bool IsHeightRelative() const
+	bool IsHeightRelative() const override
 	{
 		return m_RelativeToGround;
 	}
 
-	virtual void SetHeightRelative(bool relative)
+	void SetHeightRelative(bool relative) override
 	{
 		// move y to use the right offset (from terrain or from map origin)
 		m_Y = relative ? GetHeightOffset() : GetHeightFixed();
@@ -480,30 +480,30 @@ public:
 		AdvertiseInterpolatedPositionChanges();
 	}
 
-	virtual bool CanFloat() const
+	bool CanFloat() const override
 	{
 		return m_Floating;
 	}
 
-	virtual void SetFloating(bool flag)
+	void SetFloating(bool flag) override
 	{
 		m_Floating = flag;
 		AdvertiseInterpolatedPositionChanges();
 	}
 
-	virtual void SetActorFloating(bool flag)
+	void SetActorFloating(bool flag) override
 	{
 		m_ActorFloating = flag;
 		AdvertiseInterpolatedPositionChanges();
 	}
 
-	virtual void SetConstructionProgress(fixed progress)
+	void SetConstructionProgress(fixed progress) override
 	{
 		m_ConstructionProgress = progress;
 		AdvertiseInterpolatedPositionChanges();
 	}
 
-	virtual CFixedVector3D GetPosition() const
+	CFixedVector3D GetPosition() const override
 	{
 		if (!m_InWorld)
 		{
@@ -514,7 +514,7 @@ public:
 		return CFixedVector3D(m_X, GetHeightFixed(), m_Z);
 	}
 
-	virtual CFixedVector2D GetPosition2D() const
+	CFixedVector2D GetPosition2D() const override
 	{
 		if (!m_InWorld)
 		{
@@ -525,7 +525,7 @@ public:
 		return CFixedVector2D(m_X, m_Z);
 	}
 
-	virtual CFixedVector3D GetPreviousPosition() const
+	CFixedVector3D GetPreviousPosition() const override
 	{
 		if (!m_InWorld)
 		{
@@ -536,7 +536,7 @@ public:
 		return CFixedVector3D(m_PrevX, GetHeightAtFixed(m_PrevX, m_PrevZ), m_PrevZ);
 	}
 
-	virtual CFixedVector2D GetPreviousPosition2D() const
+	CFixedVector2D GetPreviousPosition2D() const override
 	{
 		if (!m_InWorld)
 		{
@@ -547,12 +547,12 @@ public:
 		return CFixedVector2D(m_PrevX, m_PrevZ);
 	}
 
-	virtual fixed GetTurnRate() const
+	fixed GetTurnRate() const override
 	{
 		return m_RotYSpeed;
 	}
 
-	virtual void TurnTo(entity_angle_t y)
+	void TurnTo(entity_angle_t y) override
 	{
 		if (m_TurretParent != INVALID_ENTITY)
 		{
@@ -566,7 +566,7 @@ public:
 		UpdateMessageSubscriptions();
 	}
 
-	virtual void SetYRotation(entity_angle_t y)
+	void SetYRotation(entity_angle_t y) override
 	{
 		if (m_TurretParent != INVALID_ENTITY)
 		{
@@ -589,7 +589,7 @@ public:
 		UpdateMessageSubscriptions();
 	}
 
-	virtual void SetXZRotation(entity_angle_t x, entity_angle_t z)
+	void SetXZRotation(entity_angle_t x, entity_angle_t z) override
 	{
 		m_RotX = x;
 		m_RotZ = z;
@@ -603,7 +603,7 @@ public:
 		}
 	}
 
-	virtual CFixedVector3D GetRotation() const
+	CFixedVector3D GetRotation() const override
 	{
 		entity_angle_t y = m_RotY;
 		if (m_TurretParent != INVALID_ENTITY)
@@ -615,7 +615,7 @@ public:
 		return CFixedVector3D(m_RotX, y, m_RotZ);
 	}
 
-	virtual fixed GetDistanceTravelled() const
+	fixed GetDistanceTravelled() const override
 	{
 		if (!m_InWorld)
 		{
@@ -656,7 +656,7 @@ public:
 		return (m_ConstructionProgress.ToFloat() - 1.0f) * dy;
 	}
 
-	virtual void GetInterpolatedPosition2D(float frameOffset, float& x, float& z, float& rotY) const
+	void GetInterpolatedPosition2D(float frameOffset, float& x, float& z, float& rotY) const override
 	{
 		if (!m_InWorld)
 		{
@@ -670,7 +670,7 @@ public:
 		rotY = m_InterpolatedRotY;
 	}
 
-	virtual CMatrix3D GetInterpolatedTransform(float frameOffset) const
+	CMatrix3D GetInterpolatedTransform(float frameOffset) const override
 	{
 		if (m_TurretParent != INVALID_ENTITY)
 		{
@@ -782,7 +782,7 @@ public:
 		pos1.Y += GetConstructionProgressOffset(pos1);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{

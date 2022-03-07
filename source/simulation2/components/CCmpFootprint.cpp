@@ -92,7 +92,7 @@ public:
 			"</optional>";
 	}
 
-	virtual void Init(const CParamNode& paramNode)
+	void Init(const CParamNode& paramNode) override
 	{
 		if (paramNode.GetChild("Square").IsOk())
 		{
@@ -121,21 +121,21 @@ public:
 			m_MaxSpawnDistance = entity_pos_t::FromInt(7);
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& UNUSED(serialize))
+	void Serialize(ISerializer& UNUSED(serialize)) override
 	{
 		// No dynamic state to serialize
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize)) override
 	{
 		Init(paramNode);
 	}
 
-	virtual void GetShape(EShape& shape, entity_pos_t& size0, entity_pos_t& size1, entity_pos_t& height) const
+	void GetShape(EShape& shape, entity_pos_t& size0, entity_pos_t& size1, entity_pos_t& height) const override
 	{
 		shape = m_Shape;
 		size0 = m_Size0;
@@ -143,7 +143,7 @@ public:
 		height = m_Height;
 	}
 
-	virtual CFixedVector3D PickSpawnPoint(entity_id_t spawned) const
+	CFixedVector3D PickSpawnPoint(entity_id_t spawned) const override
 	{
 		PROFILE3("PickSpawnPoint");
 
@@ -269,7 +269,7 @@ public:
 		return error;
 	}
 
-	virtual CFixedVector3D PickSpawnPointBothPass(entity_id_t spawned) const
+	CFixedVector3D PickSpawnPointBothPass(entity_id_t spawned) const override
 	{
 		PROFILE3("PickSpawnPointBothPass");
 

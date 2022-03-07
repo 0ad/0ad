@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,11 +30,11 @@ class CCmpAIInterfaceScripted : public ICmpAIInterface
 public:
 	DEFAULT_SCRIPT_WRAPPER(AIInterfaceScripted)
 
-	virtual void GetRepresentation(JS::MutableHandleValue ret)
+	void GetRepresentation(JS::MutableHandleValue ret) override
 	{
 		m_Script.CallRef("GetRepresentation", ret);
 	}
-	virtual void GetFullRepresentation(JS::MutableHandleValue ret, bool flushEvents = false)
+	void GetFullRepresentation(JS::MutableHandleValue ret, bool flushEvents = false) override
 	{
 		m_Script.CallRef("GetFullRepresentation", ret, flushEvents);
 	}
