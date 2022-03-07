@@ -18,11 +18,15 @@
 #ifndef INCLUDED_MINIMAPTEXTURE
 #define INCLUDED_MINIMAPTEXTURE
 
+#include "graphics/Color.h"
+#include "graphics/Texture.h"
+#include "maths/Vector2D.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/backend/gl/Texture.h"
 #include "renderer/VertexArray.h"
 
 #include <memory>
+#include <vector>
 
 class CSimulation2;
 class CTerrain;
@@ -50,6 +54,16 @@ public:
 	 * @return The maximum height for unit passage in water.
 	 */
 	static float GetShallowPassageHeight();
+
+	struct Icon
+	{
+		CTexturePtr texture;
+		CColor color;
+		CVector2D worldPosition;
+		float halfSize;
+	};
+	// Returns icons for corresponding entities on the minimap texture.
+	const std::vector<Icon>& GetIcons() { return m_Icons; }
 
 private:
 	void CreateTextures(
@@ -96,6 +110,8 @@ private:
 	double m_HalfBlinkDuration = 0.0;
 	double m_NextBlinkTime = 0.0;
 	bool m_BlinkState = false;
+
+	std::vector<Icon> m_Icons;
 };
 
 #endif // INCLUDED_MINIMAPTEXTURE

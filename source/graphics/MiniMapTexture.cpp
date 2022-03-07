@@ -58,6 +58,8 @@ namespace
 // f.e. use instancing.
 const size_t MAX_ENTITIES_DRAWN = 65536 / 4;
 
+const size_t MAX_ICON_COUNT = 128;
+
 const size_t FINAL_TEXTURE_SIZE = 512;
 
 unsigned int ScaleColor(unsigned int color, float x)
@@ -444,10 +446,12 @@ void CMiniMapTexture::RenderFinalTexture(
 	unitMatrix.Translate(CVector3D(-1.0f, -1.0f, 0.0f));
 	shader->Uniform(str_transform, unitMatrix);
 
-	CSimulation2::InterfaceList ents = m_Simulation.GetEntitiesWithInterface(IID_Minimap);
-
 	if (doUpdate)
 	{
+		m_Icons.clear();
+
+		CSimulation2::InterfaceList ents = m_Simulation.GetEntitiesWithInterface(IID_Minimap);
+
 		VertexArrayIterator<float[2]> attrPos = m_AttributePos.GetIterator<float[2]>();
 		VertexArrayIterator<u8[4]> attrColor = m_AttributeColor.GetIterator<u8[4]>();
 
@@ -466,6 +470,15 @@ void CMiniMapTexture::RenderFinalTexture(
 			m_BlinkState = !m_BlinkState;
 			m_NextBlinkTime = currentTime + m_HalfBlinkDuration;
 		}
+
+		bool iconsEnabled = false;
+		CFG_GET_VAL("gui.session.minimap.icons.enabled", iconsEnabled);
+		float iconsOpacity = 1.0f;
+		CFG_GET_VAL("gui.session.minimap.icons.opacity", iconsOpacity);
+		float iconsSizeScale = 1.0f;
+		CFG_GET_VAL("gui.session.minimap.icons.sizescale", iconsSizeScale);
+
+		bool iconsCountOverflow = false;
 
 		entity_pos_t posX, posZ;
 		for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
@@ -493,9 +506,28 @@ void CMiniMapTexture::RenderFinalTexture(
 						AddEntity(v, attrColor, attrPos, entityRadius);
 						++m_EntitiesDrawn;
 					}
+
+					if (!iconsEnabled || !cmpMinimap->HasIcon())
+						continue;
+
+					if (m_Icons.size() < MAX_ICON_COUNT)
+					{
+						CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(
+							CTextureProperties(cmpMinimap->GetIconPath()));
+						const CColor color(v.r / 255.0f, v.g / 255.0f, v.b / 255.0f, iconsOpacity);
+						m_Icons.emplace_back(Icon{
+							std::move(texture), color, v.position, cmpMinimap->GetIconSize() * iconsSizeScale * 0.5f});
+					}
+					else
+					{
+						iconsCountOverflow = true;
+					}
 				}
 			}
 		}
+
+		if (iconsCountOverflow)
+				LOGWARNING("Too many minimap icons to draw: %zu/%zu", m_Icons.size(), MAX_ICON_COUNT);
 
 		// Add the pinged vertices at the end, so they are drawn on top
 		for (const MinimapUnitVertex& vertex : pingingVertices)

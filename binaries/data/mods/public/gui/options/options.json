@@ -610,6 +610,12 @@
 			},
 			{
 				"type": "boolean",
+				"label": "Minimap icons",
+				"tooltip": "Show special icons for some entities on the minimap.",
+				"config": "gui.session.minimap.icons.enabled"
+			},
+			{
+				"type": "boolean",
 				"label": "Chat notification attack",
 				"tooltip": "Show a chat notification if you are attacked by another player.",
 				"config": "gui.session.notifications.attack"

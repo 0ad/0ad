@@ -444,6 +444,19 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 		tech->EndPass();
 	}
 
+	for (const CMiniMapTexture::Icon& icon : miniMapTexture.GetIcons())
+	{
+		const CVector2D center = WorldSpaceToMiniMapSpace(
+			CVector3D(icon.worldPosition.X, 0.0f, icon.worldPosition.Y));
+		const CRect destination(
+			center.X - icon.halfSize, center.Y - icon.halfSize,
+			center.X + icon.halfSize, center.Y + icon.halfSize);
+		const CRect source(0, 0, icon.texture->GetWidth(), icon.texture->GetHeight());
+		canvas.DrawTexture(
+			icon.texture, destination, source,
+			icon.color, CColor(0.0f, 0.0f, 0.0f, 0.0f), 0.0f);
+	}
+
 	PROFILE_START("minimap flares");
 
 	DrawViewRect(canvas);
