@@ -74,7 +74,7 @@
   </Selectable>
   <Sound>
     <SoundGroups>
-      <attack>attack/weapon/sword.xml</attack>
+      <attack_melee>attack/weapon/sword_attack.xml</attack_melee>
       <build>resource/construction/con_wood.xml</build>
       <death>actor/human/death/{phenotype}_death.xml</death>
       <order_attack>voice/{lang}/civ/civ_{phenotype}_attack.xml</order_attack>
