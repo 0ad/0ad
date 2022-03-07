@@ -872,6 +872,9 @@ bool CDevice::IsTextureFormatSupported(const Format format) const
 	case Format::BC3_UNORM:
 		supported = m_Capabilities.S3TC;
 		break;
+
+	default:
+		break;
 	}
 	return supported;
 }

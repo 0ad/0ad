@@ -229,7 +229,8 @@ void TerrainOverlay::RenderTile(
 	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	overlayShader->Uniform(str_color, color);
 
-	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
+	overlayShader->VertexPointer(
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
 	overlayShader->AssertPointersBound();
 
 	deviceCommandContext->Draw(0, vertices.size() / 3);
@@ -297,7 +298,8 @@ void TerrainOverlay::RenderTileOutline(
 	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	overlayShader->Uniform(str_color, color);
 
-	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
+	overlayShader->VertexPointer(
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
 	overlayShader->AssertPointersBound();
 
 	deviceCommandContext->Draw(0, vertices.size() / 3);

@@ -266,8 +266,10 @@ void CTextRenderer::Render(
 		auto flush = [deviceCommandContext, &idx, &vertexes, &indexes, &shader]() -> void {
 			if (idx == 0)
 				return;
-			shader->VertexPointer(2, GL_SHORT, sizeof(t2f_v2i), &vertexes[0].x);
-			shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, sizeof(t2f_v2i), &vertexes[0].u);
+			shader->VertexPointer(
+				Renderer::Backend::Format::R16G16_SINT, sizeof(t2f_v2i), &vertexes[0].x);
+			shader->TexCoordPointer(
+				GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, sizeof(t2f_v2i), &vertexes[0].u);
 
 			deviceCommandContext->SetIndexBufferData(indexes.data());
 			deviceCommandContext->DrawIndexed(0, idx * 6, 0);

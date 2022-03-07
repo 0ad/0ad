@@ -208,8 +208,10 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 		};
 
 		const GLsizei stride = sizeof(float) * 3;
-		debugOverlayShader->VertexPointer(3, GL_FLOAT, stride, waterPos);
-		debugOverlayShader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, waterPos);
+		debugOverlayShader->VertexPointer(
+			Renderer::Backend::Format::R32G32B32_SFLOAT, stride, waterPos);
+		debugOverlayShader->TexCoordPointer(
+			GL_TEXTURE0, Renderer::Backend::Format::R32G32B32_SFLOAT, stride, waterPos);
 		debugOverlayShader->AssertPointersBound();
 
 		deviceCommandContext->Draw(0, 6);

@@ -243,9 +243,9 @@ void SkyManager::RenderSky(
 	const GLsizei stride = static_cast<GLsizei>(m_VertexArray.GetStride());
 
 	shader->VertexPointer(
-		3, GL_FLOAT, stride, base + m_AttributePosition.offset);
+		Renderer::Backend::Format::R32G32B32_SFLOAT, stride, base + m_AttributePosition.offset);
 	shader->TexCoordPointer(
-		GL_TEXTURE0, 3, GL_FLOAT, stride, base + m_AttributeUV.offset);
+		GL_TEXTURE0, Renderer::Backend::Format::R32G32B32_SFLOAT, stride, base + m_AttributeUV.offset);
 	shader->AssertPointersBound();
 
 	deviceCommandContext->Draw(0, m_VertexArray.GetNumberOfVertices());

@@ -126,7 +126,8 @@ void CDebugRenderer::DrawLine(
 
 #undef ADD
 
-	debugLineShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
+	debugLineShader->VertexPointer(
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
 	debugLineShader->AssertPointersBound();
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 
@@ -177,7 +178,8 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 
 #undef ADD
 
-	debugCircleShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
+	debugCircleShader->VertexPointer(
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
 	debugCircleShader->AssertPointersBound();
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 
@@ -253,7 +255,8 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 		ADD(intermediatePoints[3]);
 	}
 
-	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
+	overlayShader->VertexPointer(
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
 	overlayShader->AssertPointersBound();
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 
@@ -271,7 +274,8 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 		ADD(farPoints[nextI]);
 	}
 
-	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
+	overlayShader->VertexPointer(
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
 	overlayShader->AssertPointersBound();
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 #undef ADD
@@ -325,7 +329,8 @@ void CDebugRenderer::DrawBoundingBox(
 
 #undef ADD_FACE
 
-	shader->VertexPointer(3, GL_FLOAT, 3 * sizeof(float), data.data());
+	shader->VertexPointer(
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 3 * sizeof(float), data.data());
 
 	shader->AssertPointersBound();
 	deviceCommandContext->Draw(0, 6*6);
@@ -371,7 +376,8 @@ void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color, bool wi
 
 #undef ADD_VERT
 
-	shader->VertexPointer(3, GL_FLOAT, 3 * sizeof(float), data.data());
+	shader->VertexPointer(
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 3 * sizeof(float), data.data());
 
 	shader->AssertPointersBound();
 	deviceCommandContext->Draw(0, data.size() / 5);

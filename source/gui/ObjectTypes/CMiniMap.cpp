@@ -124,8 +124,10 @@ void DrawTexture(
 		x, y, 0.0f
 	};
 
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
-	shader->VertexPointer(3, GL_FLOAT, 0, quadVerts);
+	shader->TexCoordPointer(
+		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, quadTex);
+	shader->VertexPointer(
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, quadVerts);
 	shader->AssertPointersBound();
 
 	deviceCommandContext->Draw(0, 6);

@@ -803,9 +803,12 @@ void CPatchRData::RenderBases(
 				{
 					GLsizei stride = sizeof(SBaseVertex);
 					SBaseVertex *base = (SBaseVertex *)itv->first->Bind(deviceCommandContext);
-					shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
-					shader->NormalPointer(GL_FLOAT, stride, &base->m_Normal[0]);
-					shader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, &base->m_Position[0]);
+					shader->VertexPointer(
+						Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base->m_Position[0]);
+					shader->NormalPointer(
+						Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base->m_Normal[0]);
+					shader->TexCoordPointer(
+						GL_TEXTURE0, Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base->m_Position[0]);
 
 					shader->AssertPointersBound();
 
@@ -1029,10 +1032,14 @@ void CPatchRData::RenderBlends(
 						GLsizei stride = sizeof(SBlendVertex);
 						SBlendVertex *base = (SBlendVertex *)itv->first->Bind(deviceCommandContext);
 
-						shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
-						shader->NormalPointer(GL_FLOAT, stride, &base->m_Normal[0]);
-						shader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, &base->m_Position[0]);
-						shader->TexCoordPointer(GL_TEXTURE1, 2, GL_FLOAT, stride, &base->m_AlphaUVs[0]);
+						shader->VertexPointer(
+							Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base->m_Position[0]);
+						shader->NormalPointer(
+							Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base->m_Normal[0]);
+						shader->TexCoordPointer(
+							GL_TEXTURE0, Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base->m_Position[0]);
+						shader->TexCoordPointer(
+							GL_TEXTURE1, Renderer::Backend::Format::R32G32_SFLOAT, stride, &base->m_AlphaUVs[0]);
 					}
 
 					shader->AssertPointersBound();
@@ -1098,9 +1105,13 @@ void CPatchRData::RenderStreams(
 		GLsizei stride = sizeof(SBaseVertex);
 		SBaseVertex *base = (SBaseVertex *)streamBatch.first->Bind(deviceCommandContext);
 
-		shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position);
+		shader->VertexPointer(
+			Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base->m_Position);
 		if (bindPositionAsTexCoord)
-			shader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, &base->m_Position);
+		{
+			shader->TexCoordPointer(
+				GL_TEXTURE0, Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base->m_Position);
+		}
 
 		shader->AssertPointersBound();
 
@@ -1174,7 +1185,8 @@ void CPatchRData::RenderSides(
 
 			// setup data pointers
 			GLsizei stride = sizeof(SSideVertex);
-			shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position);
+			shader->VertexPointer(
+				Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base->m_Position);
 		}
 
 		shader->AssertPointersBound();
@@ -1431,9 +1443,14 @@ void CPatchRData::RenderWaterSurface(
 
 	// Setup data pointers.
 	const GLsizei stride = sizeof(SWaterVertex);
-	shader->VertexPointer(3, GL_FLOAT, stride, &base[m_VBWater->m_Index].m_Position);
+	shader->VertexPointer(
+		Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base[m_VBWater->m_Index].m_Position);
 	if (bindWaterData)
-		shader->VertexAttribPointer(str_a_waterInfo, 2, GL_FLOAT, false, stride, &base[m_VBWater->m_Index].m_WaterData);
+	{
+		shader->VertexAttribPointer(
+			str_a_waterInfo, Renderer::Backend::Format::R32G32_SFLOAT, false, stride,
+			&base[m_VBWater->m_Index].m_WaterData);
+	}
 
 	shader->AssertPointersBound();
 
@@ -1460,8 +1477,12 @@ void CPatchRData::RenderWaterShore(
 	SWaterVertex* base = reinterpret_cast<SWaterVertex*>(m_VBWaterShore->m_Owner->Bind(deviceCommandContext));
 
 	const GLsizei stride = sizeof(SWaterVertex);
-	shader->VertexPointer(3, GL_FLOAT, stride, &base[m_VBWaterShore->m_Index].m_Position);
-	shader->VertexAttribPointer(str_a_waterInfo, 2, GL_FLOAT, false, stride, &base[m_VBWaterShore->m_Index].m_WaterData);
+	shader->VertexPointer(
+		Renderer::Backend::Format::R32G32B32_SFLOAT, stride,
+		&base[m_VBWaterShore->m_Index].m_Position);
+	shader->VertexAttribPointer(
+		str_a_waterInfo, Renderer::Backend::Format::R32G32_SFLOAT, false, stride,
+		&base[m_VBWaterShore->m_Index].m_WaterData);
 
 	shader->AssertPointersBound();
 

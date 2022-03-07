@@ -208,14 +208,18 @@ void CParticleEmitter::RenderArray(
 
 	GLsizei stride = (GLsizei)m_VertexArray.GetStride();
 
-	shader->VertexPointer(3, GL_FLOAT, stride, base + m_AttributePos.offset);
+	shader->VertexPointer(
+		Renderer::Backend::Format::R32G32B32_SFLOAT, stride, base + m_AttributePos.offset);
 
 	// Pass the sin/cos axis components as texcoords for no particular reason
 	// other than that they fit. (Maybe this should be glVertexAttrib* instead?)
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + m_AttributeUV.offset);
-	shader->TexCoordPointer(GL_TEXTURE1, 2, GL_FLOAT, stride, base + m_AttributeAxis.offset);
+	shader->TexCoordPointer(
+		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, stride, base + m_AttributeUV.offset);
+	shader->TexCoordPointer(
+		GL_TEXTURE1, Renderer::Backend::Format::R32G32_SFLOAT, stride, base + m_AttributeAxis.offset);
 
-	shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_AttributeColor.offset);
+	shader->ColorPointer(
+		Renderer::Backend::Format::R8G8B8A8_UNORM, stride, base + m_AttributeColor.offset);
 
 	shader->AssertPointersBound();
 
