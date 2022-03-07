@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2022-03-04 08:09+0000\n"
-"PO-Revision-Date: 2022-03-04 08:09+0000\n"
+"POT-Creation-Date: 2022-03-07 08:09+0000\n"
+"PO-Revision-Date: 2022-03-07 08:09+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -456,7 +456,7 @@ msgstr ""
 
 #: simulation/data/technologies/civil_service_01.json:tooltip
 #: simulation/data/technologies/civil_service_02.json:tooltip
-msgid "Technologies at all buildings, except the Blacksmith, -15% cost and -15% research time."
+msgid "Technologies at all buildings, except the Forge, -15% cost and -15% research time."
 msgstr ""
 
 #: simulation/data/technologies/civil_service_02.json:genericName
@@ -1058,6 +1058,10 @@ msgid ""
 "technology."
 msgstr ""
 
+#: simulation/data/technologies/phase_city_generic.json:specificName.han
+msgid "Jùn"
+msgstr ""
+
 #: simulation/data/technologies/phase_city_generic.json:tooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic Centers +50%"
@@ -1106,6 +1110,10 @@ msgstr ""
 
 #: simulation/data/technologies/phase_town_generic.json:description
 msgid "Advances from a small village to a bustling town, ready to expand rapidly."
+msgstr ""
+
+#: simulation/data/technologies/phase_town_generic.json:specificName.han
+msgid "Xìan"
 msgstr ""
 
 #: simulation/data/technologies/phase_town_generic.json:tooltip

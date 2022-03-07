@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-28 08:09+0000\n"
-"PO-Revision-Date: 2022-03-01 19:36+0000\n"
+"POT-Creation-Date: 2022-03-04 08:09+0000\n"
+"PO-Revision-Date: 2022-03-05 22:01+0000\n"
 "Last-Translator: rollieoo\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -71,7 +71,6 @@ msgstr "De Agoge"
 #: simulation/data/technologies/poison_blades.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
-#: simulation/data/technologies/repeating_crossbows.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
@@ -524,8 +523,8 @@ msgid "Crossbow Training"
 msgstr "Kruisboogtraining"
 
 #: simulation/data/technologies/crossbow_training.jsontooltip
-msgid "Crossbow Infantry and Cavalry −1 second firing time −20% train time."
-msgstr "Kruisboog infanterie en cavalerie -1 seconde vuurtijd en -20% rekruteringstijd."
+msgid "Crossbow Infantry and Cavalry −20% firing time −20% train time."
+msgstr "Kruisboog infanterie en cavalerie -20% vuurtijd en -20% rekruteringstijd."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -1243,21 +1242,6 @@ msgstr "Gereformeerd leger"
 #: simulation/data/technologies/reformed_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
 msgstr "Activeer de kampioen infanterie zwaardvechters."
-
-#: simulation/data/technologies/repeating_crossbows.jsondescription
-msgid ""
-"Crossbows equiped with a repeating mechanism and dart magazine increase "
-"firing rate."
-msgstr "Kruisbogen met een laadmechaniek en een magazijn pijlen verhogen de vuursnelheid."
-
-#: simulation/data/technologies/repeating_crossbows.jsongenericName
-msgid "Repeating Crossbows"
-msgstr "Mechanische kruisbogen"
-
-#: simulation/data/technologies/repeating_crossbows.jsontooltip
-msgid ""
-"Crossbow Infantry and Cavalry −1 second firing time, but +20 metal cost."
-msgstr "Kruisboog infanterie en cavalerie -1 seconde vuurtijd maar kosten +20 metaal."
 
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""

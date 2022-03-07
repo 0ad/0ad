@@ -38,8 +38,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-28 08:09+0000\n"
-"PO-Revision-Date: 2022-03-01 12:24+0000\n"
+"POT-Creation-Date: 2022-03-04 08:09+0000\n"
+"PO-Revision-Date: 2022-03-04 14:21+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -84,7 +84,6 @@ msgstr "Agogé"
 #: simulation/data/technologies/poison_blades.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
-#: simulation/data/technologies/repeating_crossbows.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
@@ -537,8 +536,8 @@ msgid "Crossbow Training"
 msgstr "Adiestramiento con ballesta"
 
 #: simulation/data/technologies/crossbow_training.jsontooltip
-msgid "Crossbow Infantry and Cavalry −1 second firing time −20% train time."
-msgstr "Infantería y caballería con ballesta (Tiempo de carga: −1; Tiempo de adiestramiento: −20%)."
+msgid "Crossbow Infantry and Cavalry −20% firing time −20% train time."
+msgstr "Infantería y caballería con ballesta (Tiempo de fuego: −20%; Tiempo de adiestramiento: −20%)."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -1256,21 +1255,6 @@ msgstr "Ejército de la reforma"
 #: simulation/data/technologies/reformed_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
 msgstr "Desbloquea los primeros espadas de infantería de élite."
-
-#: simulation/data/technologies/repeating_crossbows.jsondescription
-msgid ""
-"Crossbows equiped with a repeating mechanism and dart magazine increase "
-"firing rate."
-msgstr "Ballestas equipadas con un mecanismo de repetición y cargador de saetas que aumentan la tasa de disparo."
-
-#: simulation/data/technologies/repeating_crossbows.jsongenericName
-msgid "Repeating Crossbows"
-msgstr "Ballestas de repetición"
-
-#: simulation/data/technologies/repeating_crossbows.jsontooltip
-msgid ""
-"Crossbow Infantry and Cavalry −1 second firing time, but +20 metal cost."
-msgstr "Infantería y caballería con ballesta (Tiempo de carga: −1; Coste de metal: +20)."
 
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""

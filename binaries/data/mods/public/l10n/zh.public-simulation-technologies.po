@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-28 08:09+0000\n"
-"PO-Revision-Date: 2022-03-01 04:40+0000\n"
+"POT-Creation-Date: 2022-03-04 08:09+0000\n"
+"PO-Revision-Date: 2022-03-04 11:24+0000\n"
 "Last-Translator: 柳离枝\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -66,7 +66,6 @@ msgstr "斯巴达教育"
 #: simulation/data/technologies/poison_blades.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
-#: simulation/data/technologies/repeating_crossbows.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
@@ -519,8 +518,8 @@ msgid "Crossbow Training"
 msgstr "射艺"
 
 #: simulation/data/technologies/crossbow_training.jsontooltip
-msgid "Crossbow Infantry and Cavalry −1 second firing time −20% train time."
-msgstr "步弩和骑兵发射时间 −1 秒、训练时间 −20% ."
+msgid "Crossbow Infantry and Cavalry −20% firing time −20% train time."
+msgstr "步弩和骑兵发射时间 −20%、训练时间 −20% ."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -1238,21 +1237,6 @@ msgstr "革新军队"
 #: simulation/data/technologies/reformed_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
 msgstr "解锁精锐精锐剑士。"
-
-#: simulation/data/technologies/repeating_crossbows.jsondescription
-msgid ""
-"Crossbows equiped with a repeating mechanism and dart magazine increase "
-"firing rate."
-msgstr "配备重复装置和飞镖匣的弩，可提高射速。"
-
-#: simulation/data/technologies/repeating_crossbows.jsongenericName
-msgid "Repeating Crossbows"
-msgstr "连弩"
-
-#: simulation/data/technologies/repeating_crossbows.jsontooltip
-msgid ""
-"Crossbow Infantry and Cavalry −1 second firing time, but +20 metal cost."
-msgstr "步弩和骑兵发射时间 −1 秒、而金属花费 +20 ."
 
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""

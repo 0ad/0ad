@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-28 08:09+0000\n"
-"PO-Revision-Date: 2022-02-28 09:25+0000\n"
+"POT-Creation-Date: 2022-03-04 08:09+0000\n"
+"PO-Revision-Date: 2022-03-04 09:24+0000\n"
 "Last-Translator: Transifex Bot\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
 "MIME-Version: 1.0\n"
@@ -645,13 +645,13 @@ msgid "Bireme"
 msgstr "Bíréim"
 
 #: simulation/templates/template_unit_ship_fire.xml:5
-#: simulation/templates/units/theb_siege_fireraiser.xml:5
+#: simulation/templates/template_unit_siege_flamethrower.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fire"
 msgstr ""
 
 #: simulation/templates/template_unit_ship_fire.xml:22
-#: simulation/templates/units/theb_siege_fireraiser.xml:35
+#: simulation/templates/template_unit_siege_flamethrower.xml:35
 msgid "Circular"
 msgstr ""
 
@@ -751,6 +751,10 @@ msgstr "Lámhachóir Boltaí"
 #: simulation/templates/template_unit_siege_boltshooter.xml:53
 msgid "Bolt Shooter"
 msgstr "Lámhachóir Boltaí"
+
+#: simulation/templates/template_unit_siege_flamethrower.xml:46
+msgid "Flamethrower"
+msgstr ""
 
 #: simulation/templates/template_unit_siege_ram.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -3279,11 +3283,11 @@ msgstr "Spartiâtis"
 msgid "Émporos Períoikos"
 msgstr "Émporos Períoikos"
 
-#: simulation/templates/units/theb_siege_fireraiser.xml:50
+#: simulation/templates/units/theb_siege_fireraiser.xml:8
 msgid "Fire Raiser"
 msgstr "Tógálaí Tine"
 
-#: simulation/templates/units/theb_siege_fireraiser.xml:51
+#: simulation/templates/units/theb_siege_fireraiser.xml:9
 msgid "Pyrobolos"
 msgstr "Pyrobolos"
 

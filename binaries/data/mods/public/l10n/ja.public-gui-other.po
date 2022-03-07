@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-28 12:44+0000\n"
-"Last-Translator: Photon man\n"
+"POT-Creation-Date: 2022-03-04 08:09+0000\n"
+"PO-Revision-Date: 2022-03-04 08:25+0000\n"
+"Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,7 +59,7 @@ msgstr "読込みを中止しました"
 msgid "Gaia"
 msgstr "野生"
 
-#: gui/common/functions_utility.js:259
+#: gui/common/functions_utility.js:280
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Build: %(buildDate)s (%(revision)s)"
@@ -1386,7 +1386,7 @@ msgid "Music"
 msgstr "Music"
 
 #: gui/credits/texts/audio.jsonContent[2].Title
-#: gui/options/options.json[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].label
 msgid "Sound"
 msgstr "Sound"
 
@@ -4012,12 +4012,12 @@ msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr "画面内の後処理フィルター（HDR、ブルーム、DOFなど）を使用する。"
 
 #: gui/options/options.json[1].options[3].label
-#: gui/options/options.json[2].options[9].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][9].label
 msgid "Shadows"
 msgstr "影"
 
 #: gui/options/options.json[1].options[3].tooltip
-#: gui/options/options.json[2].options[9].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][9].tooltip
 msgid "Enable shadows."
 msgstr "影を有効化します"
 
@@ -4134,143 +4134,15 @@ msgstr ""
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
 msgstr ""
 
-#: gui/options/options.json[2].options[10].label
-msgid "Quality"
-msgstr "品質"
-
-#: gui/options/options.json[2].options[10].list[3].label
-msgid "Very High"
-msgstr ""
-
-#: gui/options/options.json[2].options[10].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "シャドウマップの解像度。メモリの少ないグラフィックカードを使用している場合、高い値を設定するとゲームがクラッシュすることがあります！"
-
-#: gui/options/options.json[2].options[11].label
-msgid "Filtering"
-msgstr "フィルタリング"
-
-#: gui/options/options.json[2].options[11].tooltip
-msgid "Smooth shadows."
-msgstr "滑らかな影"
-
-#: gui/options/options.json[2].options[12].label
-msgid "Cutoff distance"
-msgstr "遮断距離"
-
-#: gui/options/options.json[2].options[12].tooltip
-msgid "Hides shadows beyond a certain distance from a camera."
-msgstr "カメラから一定距離以上離れたところにある影を隠すことができます。"
-
-#: gui/options/options.json[2].options[13].label
-msgid "Cover whole map"
-msgstr "マップ全体を覆う"
-
-#: gui/options/options.json[2].options[13].tooltip
-msgid ""
-"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
-"Useful for making screenshots of a whole map."
-msgstr "ONにすると、影がマップ全体を覆い、影の遮断距離が無視されます。マップ全体のスクリーンショットを撮るときに便利です。"
-
-#: gui/options/options.json[2].options[14].label
-msgid "Water effects"
-msgstr "水の品質"
-
-#: gui/options/options.json[2].options[14].tooltip
-msgid ""
-"When OFF, use the lowest settings possible to render water. This makes other"
-" settings irrelevant."
-msgstr "OFF の場合は、可能な限り低い設定を使用して水面を描画します。 他の設定とは無関係です。"
-
-#: gui/options/options.json[2].options[15].label
-msgid "High-quality water effects"
-msgstr "ハイクォリティエフェクト"
-
-#: gui/options/options.json[2].options[15].tooltip
-msgid ""
-"Use higher-quality effects for water, rendering coastal waves, shore foam, "
-"and ships trails."
-msgstr "水面に高品質な効果を与え、岸辺の波、泡、船の航跡を描画します。"
-
-#: gui/options/options.json[2].options[16].label
-msgid "Water reflections"
-msgstr "水面反射"
-
-#: gui/options/options.json[2].options[16].tooltip
-msgid "Allow water to reflect a mirror image."
-msgstr "水を鏡面反射させる。"
-
-#: gui/options/options.json[2].options[17].label
-msgid "Water refraction"
-msgstr "水面屈折"
-
-#: gui/options/options.json[2].options[17].tooltip
-msgid "Use a real water refraction map and not transparency."
-msgstr "透過率ではなく、リアルな水の屈折率マップを使用します。"
-
-#: gui/options/options.json[2].options[18].label
-msgid "Real water depth"
-msgstr "水深"
-
-#: gui/options/options.json[2].options[18].tooltip
-msgid "Use actual water depth in rendering calculations."
-msgstr ""
-
-#: gui/options/options.json[2].options[19].label
-msgid "Texture quality"
-msgstr ""
-
-#: gui/options/options.json[2].options[19].tooltip
-msgid ""
-"Decrease texture quality making them blurrier but increases game "
-"performance."
-msgstr ""
-
-#: gui/options/options.json[2].options[20].label
-msgid "Texture anisotropic filter"
-msgstr ""
-
-#: gui/options/options.json[2].options[20].list[0].label
-msgid "1x"
-msgstr ""
-
-#: gui/options/options.json[2].options[20].list[1].label
-#: gui/options/options.json[2].options[20].list[1].tooltip
-msgid "2x"
-msgstr ""
-
-#: gui/options/options.json[2].options[20].list[2].label
-#: gui/options/options.json[2].options[20].list[2].tooltip
-msgid "4x"
-msgstr ""
-
-#: gui/options/options.json[2].options[20].list[3].label
-#: gui/options/options.json[2].options[20].list[3].tooltip
-msgid "8x"
-msgstr ""
-
-#: gui/options/options.json[2].options[20].list[4].label
-#: gui/options/options.json[2].options[20].list[4].tooltip
-msgid "16x"
-msgstr ""
-
-#: gui/options/options.json[2].options[20].tooltip
-msgid ""
-"Makes textures look better, especially terrain. If the anisotropic filter "
-"value is unsupported it will be set to the max supported value."
-msgstr ""
-
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
 msgstr "アンチエイリアス"
 
-#: gui/options/options.json[2].options[20].list[0].tooltip
 #: gui/options/options.json[2].options[3].list[0].label
 #: gui/options/options.json[2].options[4].list[0].label
-#: gui/options/options.json[4].options[5].list[2].label
-#: gui/options/options.json[5].options[4].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[2].label
 msgid "Disabled"
 msgstr "無効"
 
@@ -4362,632 +4234,809 @@ msgstr "選んだパスの切れ味の良さ"
 msgid "Model quality"
 msgstr "モデルクオリティ"
 
-#: gui/options/options.json[2].options[10].list[0].label
-#: gui/options/options.json[2].options[19].list[0].label
-#: gui/options/options.json[2].options[19].list[0].tooltip
-#: gui/options/options.json[2].options[6].list[0].label
+#: gui/options/options.json[2].options[6].list[0].label._string
+msgctxt "Option for the meshes' level of detail."
 msgid "Low"
 msgstr "Low"
 
-#: gui/options/options.json[2].options[6].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0].label.tooltip
 msgid "Simpler models for better performance."
 msgstr "よりシンプルなモデルで、より良いパフォーマンスを。"
 
-#: gui/options/options.json[2].options[10].list[1].label
-#: gui/options/options.json[2].options[19].list[1].label
-#: gui/options/options.json[2].options[19].list[1].tooltip
-#: gui/options/options.json[2].options[6].list[1].label
-#: gui/options/options.json[4].options[3].list[3].label
+#: gui/options/options.json[2].options[6].list[0][1].label._string
+msgctxt "Option for the meshes' level of detail."
 msgid "Medium"
 msgstr "Medium"
 
-#: gui/options/options.json[2].options[6].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][1].label.tooltip
 msgid "Average quality and average performance."
 msgstr "平均的な品質と平均的なパフォーマンス。"
 
-#: gui/options/options.json[2].options[10].list[2].label
-#: gui/options/options.json[2].options[19].list[2].label
-#: gui/options/options.json[2].options[19].list[2].tooltip
-#: gui/options/options.json[2].options[6].list[2].label
+#: gui/options/options.json[2].options[6].list[0][1][2].label._string
+msgctxt "Option for the meshes' level of detail."
 msgid "High"
 msgstr "High"
 
-#: gui/options/options.json[2].options[6].list[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][1][2].label.tooltip
 msgid "High quality models."
 msgstr "高画質モデル"
 
-#: gui/options/options.json[2].options[6].tooltip
-msgid "Model quality setting."
-msgstr "モデルクォリティ設定"
-
-#: gui/options/options.json[2].options[7].label
+#: gui/options/options.json[2].options[6].list[0][7].label
 msgid "Model appearance randomization"
 msgstr "モデル外観ランダム化"
 
-#: gui/options/options.json[2].options[7].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0].label._string
+msgctxt "Option for the meshes' amount of variety."
 msgid "None"
 msgstr "なし"
 
-#: gui/options/options.json[2].options[7].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0].label.tooltip
 msgid "Entities will all look the same."
 msgstr "全て同じように見えます。"
 
-#: gui/options/options.json[2].options[7].list[1].label
-msgid "Limited"
-msgstr "制限"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].label
+msgid "Quality"
+msgstr "品質"
 
-#: gui/options/options.json[2].options[7].list[1].tooltip
-msgid "Entities will be less diverse."
-msgstr "モデルの多様性がなくなる。"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0].label._string
+msgctxt "Option for the shadow quality."
+msgid "Low"
+msgstr "Low"
 
-#: gui/options/options.json[2].options[7].list[2].label
-msgid "Normal"
-msgstr "標準"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1].label._string
+msgctxt "Option for the shadow quality."
+msgid "Medium"
+msgstr "Medium"
 
-#: gui/options/options.json[2].options[7].list[2].tooltip
-msgid "Entities appearance is randomized normally."
-msgstr "外観がランダム化されます。"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][11].label
+msgid "Filtering"
+msgstr "フィルタリング"
 
-#: gui/options/options.json[2].options[7].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][11].tooltip
+msgid "Smooth shadows."
+msgstr "滑らかな影"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][12].label
+msgid "Cutoff distance"
+msgstr "遮断距離"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][12].tooltip
+msgid "Hides shadows beyond a certain distance from a camera."
+msgstr "カメラから一定距離以上離れたところにある影を隠すことができます。"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][13].label
+msgid "Cover whole map"
+msgstr "マップ全体を覆う"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][13].tooltip
 msgid ""
-"Randomize the appearance of entities. Disabling gives a small performance "
-"improvement."
-msgstr "エンティティの外観設定。ユニットは衣類や装飾に変化が現れ、建築物(主に家)は作りに変化がでてきます。"
+"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
+"Useful for making screenshots of a whole map."
+msgstr "ONにすると、影がマップ全体を覆い、影の遮断距離が無視されます。マップ全体のスクリーンショットを撮るときに便利です。"
 
-#: gui/options/options.json[2].options[8].label
-msgid "Shader effects"
-msgstr "シェーダー効果"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].label
+msgid "Water effects"
+msgstr "水の品質"
 
-#: gui/options/options.json[2].options[8].tooltip
-msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "シェーダー効果の数。ゲームの再起動が必要"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].tooltip
+msgid ""
+"When OFF, use the lowest settings possible to render water. This makes other"
+" settings irrelevant."
+msgstr "OFF の場合は、可能な限り低い設定を使用して水面を描画します。 他の設定とは無関係です。"
 
-#: gui/options/options.json[2].tooltip
-msgid "More specific rendering settings."
-msgstr "より具体的なレンダリング設定"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][15].label
+msgid "High-quality water effects"
+msgstr "ハイクォリティエフェクト"
 
-#: gui/options/options.json[3].options[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][15].tooltip
+msgid ""
+"Use higher-quality effects for water, rendering coastal waves, shore foam, "
+"and ships trails."
+msgstr "水面に高品質な効果を与え、岸辺の波、泡、船の航跡を描画します。"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].label
+msgid "Water reflections"
+msgstr "水面反射"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].tooltip
+msgid "Allow water to reflect a mirror image."
+msgstr "水を鏡面反射させる。"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][17].label
+msgid "Water refraction"
+msgstr "水面屈折"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][17].tooltip
+msgid "Use a real water refraction map and not transparency."
+msgstr "透過率ではなく、リアルな水の屈折率マップを使用します。"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][18].label
+msgid "Real water depth"
+msgstr "水深"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][18].tooltip
+msgid "Use actual water depth in rendering calculations."
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].label
+msgid "Texture quality"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0].label._string
+msgctxt "Option for the texture quality."
+msgid "Low"
+msgstr "Low"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0].label.tooltip
+msgid "Low"
+msgstr "Low"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1].label._string
+msgctxt "Option for the texture quality."
+msgid "Medium"
+msgstr "Medium"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1].label.tooltip
+msgid "Medium"
+msgstr "Medium"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1][2].label._string
+msgctxt "Option for the texture quality."
+msgid "High"
+msgstr "High"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1][2].label.tooltip
+msgid "High"
+msgstr "High"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].label
+msgid "Texture anisotropic filter"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[0].label
+msgid "1x"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[1].tooltip
+msgid "2x"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[2].tooltip
+msgid "4x"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[3].tooltip
+msgid "8x"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[4].tooltip
+msgid "16x"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].tooltip
+msgid ""
+"Makes textures look better, especially terrain. If the anisotropic filter "
+"value is unsupported it will be set to the max supported value."
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].tooltip
+msgid ""
+"Decrease texture quality making them blurrier but increases game "
+"performance."
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].label
 msgid "Master volume"
 msgstr "全体 音量"
 
-#: gui/options/options.json[3].options[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].tooltip
 msgid "Master audio gain."
 msgstr "ゲーム全体の音量"
 
-#: gui/options/options.json[3].options[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[1].label
 msgid "Music volume"
 msgstr "音楽 音量"
 
-#: gui/options/options.json[3].options[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[1].tooltip
 msgid "In game music gain."
 msgstr "ゲーム中でのBGM音量。"
 
-#: gui/options/options.json[3].options[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[2].label
 msgid "Ambient volume"
 msgstr "環境音 音量"
 
-#: gui/options/options.json[3].options[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[2].tooltip
 msgid "In game ambient sound gain."
 msgstr "ゲーム中の環境音量"
 
-#: gui/options/options.json[3].options[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[3].label
 msgid "Action volume"
 msgstr "SE 音量"
 
-#: gui/options/options.json[3].options[3].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[3].tooltip
 msgid "In game unit action sound gain."
 msgstr "ゲーム中のユニットアクションの音量"
 
-#: gui/options/options.json[3].options[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[4].label
 msgid "UI volume"
 msgstr ""
 
-#: gui/options/options.json[3].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[4].tooltip
 msgid "UI sound gain."
 msgstr ""
 
-#: gui/options/options.json[3].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[5].label
 msgid "Nick notification"
 msgstr "ニックネーム通知"
 
-#: gui/options/options.json[3].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
 msgstr "誰かがあなたのニックネームを入力すると、効果音で通知されます。"
 
-#: gui/options/options.json[3].options[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[6].label
 msgid "New player notification in game setup"
 msgstr "ゲームセットアップでの新規プレイヤーの通知"
 
-#: gui/options/options.json[3].options[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
 msgstr "新しいクライアントがゲーム設定に参加したときに、効果音による通知を受けることができます。"
 
-#: gui/options/options.json[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].label
 msgid "Game Setup"
 msgstr "ゲームセットアップ"
 
-#: gui/options/options.json[4].options[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[0].label
 msgid "Enable game setting tips"
 msgstr "ゲーム設定のヒントを有効にする"
 
-#: gui/options/options.json[4].options[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[0].tooltip
 msgid "Show tips when setting up a game."
 msgstr "ゲームをセットアップする際のヒントを示す。"
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[1].label
 msgid "Enable settings panel slide"
 msgstr "設定画面のスライドを有効にする"
 
-#: gui/options/options.json[4].options[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
 msgstr "開閉やサイズ変更の際に、設定パネルをスライドさせます。"
 
-#: gui/options/options.json[4].options[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[2].label
 msgid "Persist match settings"
 msgstr "対戦設定の保持"
 
-#: gui/options/options.json[4].options[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
 msgstr "試合の設定を保存・復元することで、別のゲームを開催する際に素早く再利用できます。"
 
-#: gui/options/options.json[4].options[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].label
 msgid "Default AI difficulty"
 msgstr "AI基本難易度"
 
-#: gui/options/options.json[4].options[3].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0].label._string
+msgctxt "Option for the AI difficulty."
 msgid "Sandbox"
 msgstr "練習"
 
-#: gui/options/options.json[4].options[3].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1].label._string
+msgctxt "Option for the AI difficulty."
 msgid "Very Easy"
 msgstr "とても簡単"
 
-#: gui/options/options.json[4].options[3].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2].label._string
+msgctxt "Option for the AI difficulty."
 msgid "Easy"
 msgstr "簡単"
 
-#: gui/options/options.json[4].options[3].list[4].label
-msgid "Hard"
-msgstr "難しい"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3].label._string
+msgctxt "Option for the AI difficulty."
+msgid "Medium"
+msgstr "Medium"
 
-#: gui/options/options.json[4].options[3].list[5].label
-msgid "Very Hard"
-msgstr "とても難しい"
-
-#: gui/options/options.json[4].options[3].tooltip
-msgid "Default difficulty of the AI."
-msgstr "AIの基本難易度設定"
-
-#: gui/options/options.json[4].options[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].label
 msgid "Default AI behavior"
 msgstr "AI基本戦闘傾向"
 
-#: gui/options/options.json[4].options[4].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].label._string
+msgctxt "Option for the AI difficulty."
+msgid "Hard"
+msgstr "難しい"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[0].label
 msgid "Random"
 msgstr "ランダム"
 
-#: gui/options/options.json[4].options[4].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[1].label
 msgid "Balanced"
 msgstr "バランス型"
 
-#: gui/options/options.json[4].options[4].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[2].label
 msgid "Aggressive"
 msgstr "攻撃優先"
 
-#: gui/options/options.json[4].options[4].list[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[3].label
 msgid "Defensive"
 msgstr "防衛優先"
 
-#: gui/options/options.json[4].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].tooltip
 msgid "Default behavior of the AI."
 msgstr "AIのデフォルトの動作"
 
-#: gui/options/options.json[4].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4][5].label._string
+msgctxt "Option for the AI difficulty."
+msgid "Very Hard"
+msgstr "とても難しい"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].label
 msgid "Assign players"
 msgstr "プレーヤーの割り当て"
 
-#: gui/options/options.json[4].options[5].list[0].label
-#: gui/options/options.json[5].options[4].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[0].label
 msgid "Everyone"
 msgstr "全ての陣営"
 
-#: gui/options/options.json[4].options[5].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
 msgstr "試合に参加するプレーヤーは、空き枠がある場合に割り当てられます。"
 
-#: gui/options/options.json[4].options[5].list[1].label
-#: gui/options/options.json[5].options[4].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[1].label
 msgid "Buddies"
 msgstr "相方"
 
-#: gui/options/options.json[4].options[5].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[1].tooltip
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
 msgstr "試合に参加するプレーヤーは、ホストの相方であり、空き枠がある場合にのみ割り当てられます。"
 
-#: gui/options/options.json[4].options[5].list[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
 msgstr "プレイヤーは、ホストから明示的に割り当てられた場合のみ、枠を受け取ることができます。"
 
-#: gui/options/options.json[4].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
 msgstr "試合設定時に、参加するクライアントを自動的にフリープレイヤー枠に割り当てます。"
 
-#: gui/options/options.json[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].label
 msgid "Networking / Lobby"
 msgstr "ネットワーキング/ロビー"
 
-#: gui/options/options.json[5].options[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].label
 msgid "TLS encryption"
 msgstr "TLSの暗号化"
 
-#: gui/options/options.json[5].options[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
 msgstr "ロビーサーバーとの間でやり取りされるログイン情報やデータをTLSで暗号化して保護します。"
 
-#: gui/options/options.json[5].options[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[1].label
 msgid "Chat backlog"
 msgstr "チャットバックログ"
 
-#: gui/options/options.json[5].options[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
 msgstr "ロビーに参加する際にロードするバックログメッセージの数。"
 
-#: gui/options/options.json[5].options[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].label
 msgid "Game rating column"
 msgstr "ゲームレーティング一覧"
 
-#: gui/options/options.json[5].options[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr "参加プレイヤーの平均レートをゲームリストの列に表示する。"
 
-#: gui/options/options.json[5].options[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].label
 msgid "Network warnings"
 msgstr "ネットワークに関する警告"
 
-#: gui/options/options.json[5].options[3].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "マルチプレイヤーゲームで、どのプレイヤーが接続不良になっているかを表示します。"
 
-#: gui/options/options.json[5].options[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].label
 msgid "Late observer joins"
 msgstr "途中観戦の有効化"
 
-#: gui/options/options.json[5].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
 msgstr "ゲーム開始後、全員または仲間だけが観戦者として参加できるようにする。"
 
-#: gui/options/options.json[5].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[5].label
 msgid "Observer limit"
 msgstr "観戦者の上限"
 
-#: gui/options/options.json[5].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[5].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
 msgstr "制限に達した場合、さらに観戦者が加わることを防ぎます。"
 
-#: gui/options/options.json[5].options[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[6].label
 msgid "Max lag for observers"
 msgstr "観戦者の最大ラグ"
 
-#: gui/options/options.json[5].options[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[6].tooltip
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
 msgstr "ホスト時に、観戦者がこのターン数以上遅れている場合、ゲームを一時停止します。1に設定すると観戦者は無視されます。"
 
-#: gui/options/options.json[5].options[7].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].label
 msgid "(Observer) Speed up when lagging."
 msgstr "(観戦者)ラグがあるときにスピードアップする。"
 
-#: gui/options/options.json[5].options[7].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].tooltip
 msgid ""
 "When observing a game, automatically speed up if you start lagging, to catch"
 " up with the live match."
 msgstr "試合を観戦しているときに、ラグが出てきたら自動的にスピードアップして、ライブの試合に追いつきます。"
 
-#: gui/options/options.json[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].tooltip
 msgid "These settings only affect the multiplayer."
 msgstr "これらの設定は、マルチプレイヤーにのみ影響します。"
 
-#: gui/options/options.json[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].label
 msgid "Game Session"
 msgstr "ゲームセッション"
 
-#: gui/options/options.json[6].options[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[0].label
 msgid "Wounded unit health"
 msgstr "負傷したユニットのHP"
 
-#: gui/options/options.json[6].options[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[0].tooltip
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
 msgstr "負傷したユニットのホットキーでは、選択したユニットのHPパーセンテージがこの数値を下回ると負傷したとみなされます。"
 
-#: gui/options/options.json[6].options[10].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].label
 msgid "Heal range visualization"
 msgstr "回復範囲の可視化"
 
-#: gui/options/options.json[6].options[10].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].tooltip
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
 msgstr "選択した単位の治癒範囲を表示します。(ゲーム中にホットキーで切り替えることもできます）。"
 
-#: gui/options/options.json[6].options[11].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].label
 msgid "Rank icon above status bar"
 msgstr "ステータスへのランクアイコン表示"
 
-#: gui/options/options.json[6].options[11].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].tooltip
 msgid "Show rank icons above status bars."
 msgstr "ステータスバーの上にランクアイコンを表示する。"
 
-#: gui/options/options.json[6].options[12].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].label
 msgid "Experience status bar"
 msgstr "経験値ステータスバー"
 
-#: gui/options/options.json[6].options[12].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "選択された各ユニットの上に経験値のステータスバーを表示します。"
 
-#: gui/options/options.json[6].options[13].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].label
 msgid "Detailed tooltips"
 msgstr ""
 
-#: gui/options/options.json[6].options[13].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "ユニットを生産する構造物において、養成可能なユニットの詳細なツールチップを表示します。"
 
-#: gui/options/options.json[6].options[14].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].label
 msgid "Sort resources and population tooltip"
 msgstr ""
 
-#: gui/options/options.json[6].options[14].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[0].label
 msgid "Unordered"
 msgstr "順不同"
 
-#: gui/options/options.json[6].options[14].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[1].label
 msgid "Ascending"
 msgstr "昇順"
 
-#: gui/options/options.json[6].options[14].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[2].label
 msgid "Descending"
 msgstr "降順"
 
-#: gui/options/options.json[6].options[14].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "資源と人口のツールチップに表示されるプレーヤーを値によって動的に並べ替えます。"
 
-#: gui/options/options.json[6].options[15].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].label
 msgid "Diplomacy colors: self"
 msgstr "外交 色: 自分"
 
-#: gui/options/options.json[6].options[15].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "外交色が有効な場合の自軍の色。"
 
-#: gui/options/options.json[6].options[16].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].label
 msgid "Diplomacy colors: ally"
 msgstr "外交 色: 同盟"
 
-#: gui/options/options.json[6].options[16].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "外交色が有効な場合の味方の色。"
 
-#: gui/options/options.json[6].options[17].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].label
 msgid "Diplomacy colors: neutral"
 msgstr "外交 色: 中立"
 
-#: gui/options/options.json[6].options[17].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "外交色が有効な場合の中立プレイヤーの色。"
 
-#: gui/options/options.json[6].options[18].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].label
 msgid "Diplomacy colors: enemy"
 msgstr "外交 色: 敵"
 
-#: gui/options/options.json[6].options[18].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "外交色が有効な場合の敵の色。"
 
-#: gui/options/options.json[6].options[19].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].label
 msgid "Snap to edges"
 msgstr ""
 
-#: gui/options/options.json[6].options[19].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[0].label
 msgid "Hotkey to enable snapping"
 msgstr "ホットキー長押しでスナップ有効"
 
-#: gui/options/options.json[6].options[19].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
 msgstr "ホットキーを押している間、新しい構造物は近くの構造物と整列します。"
 
-#: gui/options/options.json[6].options[19].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
 msgstr "常時スナップ"
 
-#: gui/options/options.json[6].options[19].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
 msgstr "ホットキーが押されない限り、新しい構造物は近くの構造物に整列します。"
 
-#: gui/options/options.json[6].options[19].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].tooltip
 msgid "This option allows to align new structures with nearby structures."
 msgstr "このオプションでは、新しい構造物を近くの構造物に合わせることができます。"
 
-#: gui/options/options.json[6].options[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].label
 msgid "Batch training size"
 msgstr "一括養成数"
 
-#: gui/options/options.json[6].options[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].tooltip
 msgid "Number of units trained per batch by default."
 msgstr "基本にする1回あたりの一括生成ユニット数"
 
-#: gui/options/options.json[6].options[20].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].label
 msgid "Control group membership"
 msgstr "コントロールグループ メンバーシップ"
 
-#: gui/options/options.json[6].options[20].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].label
 msgid "Single"
 msgstr "単体"
 
-#: gui/options/options.json[6].options[20].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].tooltip
 msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
 msgstr "ユニットや構造体をコントロールグループに追加すると、他のコントロールグループから削除されます。コントロールグループが別の軍隊を指すようにしたい場合は、この選択肢を使用します。"
 
-#: gui/options/options.json[6].options[20].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].label
 msgid "Multiple"
 msgstr "複数"
 
-#: gui/options/options.json[6].options[20].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].tooltip
 msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
 msgstr "ユニットと構造体は、複数のコントロールグループに属することができます。これは、別々の軍のコントロールグループと、軍全体のコントロールグループを同時に維持するのに便利です。"
 
-#: gui/options/options.json[6].options[20].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].tooltip
 msgid "Decide whether units can be part of multiple control groups."
 msgstr "ユニットが複数のコントロールグループに属することができるかどうかを決定する。"
 
-#: gui/options/options.json[6].options[21].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].label
 msgid "Formation control"
 msgstr "フォーメーション コントロール"
 
-#: gui/options/options.json[6].options[21].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].label
 msgid "Walk/Patrol Only"
 msgstr "ウォーク／パトロール のみ"
 
-#: gui/options/options.json[6].options[21].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].tooltip
 msgid "Other orders will disband existing formations."
 msgstr "他の命令は既存のフォーメーションを解散させる。"
 
-#: gui/options/options.json[6].options[21].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].label
 msgid "No override"
 msgstr "オーバーライド無し"
 
-#: gui/options/options.json[6].options[21].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].tooltip
 msgid "Units in formations stay in formations."
 msgstr "フォーメーション内のユニットは、フォーメーション内に留まります。"
 
-#: gui/options/options.json[6].options[21].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
 msgstr "フォーメーションをすべてのオーダーで有効にするか、「ウォーク」と「パトロール」のみ有効にするかを決定します。"
 
-#: gui/options/options.json[6].options[22].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].label
 msgid "Battalion-style formations"
 msgstr ""
 
-#: gui/options/options.json[6].options[22].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].tooltip
 msgid "Whether formations are selected as a whole."
 msgstr ""
 
-#: gui/options/options.json[6].options[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[2].label
 msgid "Scroll batch increment ratio"
 msgstr "スクロールバッチの増分比率"
 
-#: gui/options/options.json[6].options[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
 msgstr "バッチサイズを1増加/減少させるためのスクロール回数。"
 
-#: gui/options/options.json[6].options[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].label
 msgid "Flare display duration"
 msgstr "フレアの表示時間\"\n"
 
-#: gui/options/options.json[6].options[3].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
 msgstr "ミニマップのフレアマーカーの表示時間を秒単位で表示します。"
 
-#: gui/options/options.json[6].options[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].label
 msgid "Chat notification attack"
 msgstr "攻撃の通知"
 
-#: gui/options/options.json[6].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "他のプレイヤーから攻撃を受けたときに、チャット通知を表示します。"
 
-#: gui/options/options.json[6].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].label
 msgid "Chat notification tribute"
 msgstr "資源献上の通知"
 
-#: gui/options/options.json[6].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "チームが固定されていて、オブザーバーモードですべての献上が行われている場合、味方が他のチームメンバーに資源を献上したときにチャット通知を表示します。"
 
-#: gui/options/options.json[6].options[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].label
 msgid "Chat notification barter"
 msgstr "資源交換の通知"
 
-#: gui/options/options.json[6].options[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "プレイヤーが資源を交換したときに、オブザーバーにチャット通知を表示します。"
 
-#: gui/options/options.json[6].options[7].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].label
 msgid "Chat notification phase"
 msgstr "段階移行の通知"
 
-#: gui/options/options.json[6].options[7].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[0].label
 msgid "Disable"
 msgstr "一部無効"
 
-#: gui/options/options.json[6].options[7].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[1].label
 msgid "Completed"
 msgstr "完全"
 
-#: gui/options/options.json[6].options[7].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[2].label
 msgid "All displayed"
 msgstr "すべて無効"
 
-#: gui/options/options.json[6].options[7].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "自分や味方が新しい段階を開始、中止、完了した場合にチャット通知を表示したり、オブザーバーモードの全プレイヤーのフェーズを表示したりします。"
 
-#: gui/options/options.json[6].options[8].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].label
 msgid "Attack range visualization"
 msgstr "攻撃範囲の可視化"
 
-#: gui/options/options.json[6].options[8].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr "選択した防御構造物の攻撃範囲を表示します。(ゲーム中にホットキーで切り替えることもできます）。"
 
-#: gui/options/options.json[6].options[9].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].label
 msgid "Aura range visualization"
 msgstr "オーラ範囲の可視化"
 
-#: gui/options/options.json[6].options[9].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
 msgstr "選択したユニットや構造物のオーラの範囲を表示します。(ゲーム中にホットキーで切り替えることもできます）。"
 
-#: gui/options/options.json[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].tooltip
 msgid "Change options regarding the in-game settings."
 msgstr "ゲーム内の設定に関するオプションを変更します。"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].tooltip
+msgid "Default difficulty of the AI."
+msgstr "AIの基本難易度設定"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][2].label._string
+msgctxt "Option for the shadow quality."
+msgid "High"
+msgstr "High"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][2][3].label._string
+msgctxt "Option for the shadow quality."
+msgid "Very High"
+msgstr "非常に多い"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "シャドウマップの解像度。メモリの少ないグラフィックカードを使用している場合、高い値を設定するとゲームがクラッシュすることがあります！"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][1].label._string
+msgctxt "Option for the meshes' amount of variety."
+msgid "Limited"
+msgstr "制限"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][1].label.tooltip
+msgid "Entities will be less diverse."
+msgstr "モデルの多様性がなくなる。"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label._string
+msgctxt "Option for the meshes' amount of variety."
+msgid "Normal"
+msgstr "標準"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label.tooltip
+msgid "Entities appearance is randomized normally."
+msgstr "外観がランダム化されます。"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][8].label
+msgid "Shader effects"
+msgstr "シェーダー効果"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][8].tooltip
+msgid "Number of shader effects. REQUIRES GAME RESTART"
+msgstr "シェーダー効果の数。ゲームの再起動が必要"
+
+#: gui/options/options.json[2].options[6].list[0][7].tooltip
+msgid ""
+"Randomize the appearance of entities. Disabling gives a small performance "
+"improvement."
+msgstr "エンティティの外観設定。ユニットは衣類や装飾に変化が現れ、建築物(主に家)は作りに変化がでてきます。"
+
+#: gui/options/options.json[2].options[6].tooltip
+msgid "Model quality setting."
+msgstr "モデルクォリティ設定"
+
+#: gui/options/options.json[2].tooltip
+msgid "More specific rendering settings."
+msgstr "より具体的なレンダリング設定"
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"

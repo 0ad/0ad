@@ -48,9 +48,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-21 08:24+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-03-04 08:09+0000\n"
+"PO-Revision-Date: 2022-03-04 08:25+0000\n"
+"Last-Translator: Pedro Augustus Diniz Falcão Silva\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,7 +92,7 @@ msgstr "Carregamento Abortado"
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/common/functions_utility.js:259
+#: gui/common/functions_utility.js:280
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Versão: %(buildDate)s (%(revision)s)"
@@ -1434,7 +1434,7 @@ msgid "Music"
 msgstr "Música"
 
 #: gui/credits/texts/audio.jsonContent[2].Title
-#: gui/options/options.json[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].label
 msgid "Sound"
 msgstr "Som"
 
@@ -4060,12 +4060,12 @@ msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr "Use filtros de pós-processamento  (HDR, Bloom, DOF, etc)."
 
 #: gui/options/options.json[1].options[3].label
-#: gui/options/options.json[2].options[9].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][9].label
 msgid "Shadows"
 msgstr "Sombras"
 
 #: gui/options/options.json[1].options[3].tooltip
-#: gui/options/options.json[2].options[9].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][9].tooltip
 msgid "Enable shadows."
 msgstr "Ativar sombras."
 
@@ -4182,143 +4182,15 @@ msgstr ""
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
 msgstr ""
 
-#: gui/options/options.json[2].options[10].label
-msgid "Quality"
-msgstr ""
-
-#: gui/options/options.json[2].options[10].list[3].label
-msgid "Very High"
-msgstr "Muito Alto"
-
-#: gui/options/options.json[2].options[10].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "Resolução do mapeamento de sombras. Valores altos podem travar o jogo se sua placa de vídeo tem pouca memória!"
-
-#: gui/options/options.json[2].options[11].label
-msgid "Filtering"
-msgstr ""
-
-#: gui/options/options.json[2].options[11].tooltip
-msgid "Smooth shadows."
-msgstr "Sombras suaves."
-
-#: gui/options/options.json[2].options[12].label
-msgid "Cutoff distance"
-msgstr ""
-
-#: gui/options/options.json[2].options[12].tooltip
-msgid "Hides shadows beyond a certain distance from a camera."
-msgstr ""
-
-#: gui/options/options.json[2].options[13].label
-msgid "Cover whole map"
-msgstr ""
-
-#: gui/options/options.json[2].options[13].tooltip
-msgid ""
-"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
-"Useful for making screenshots of a whole map."
-msgstr ""
-
-#: gui/options/options.json[2].options[14].label
-msgid "Water effects"
-msgstr "Efeitos de água"
-
-#: gui/options/options.json[2].options[14].tooltip
-msgid ""
-"When OFF, use the lowest settings possible to render water. This makes other"
-" settings irrelevant."
-msgstr "Quando DESLIGADO, usa as configurações mais baixas possíveis para renderizar água. Isso torna outras configurações irrelevantes."
-
-#: gui/options/options.json[2].options[15].label
-msgid "High-quality water effects"
-msgstr "Efeitos de água de alta qualidade"
-
-#: gui/options/options.json[2].options[15].tooltip
-msgid ""
-"Use higher-quality effects for water, rendering coastal waves, shore foam, "
-"and ships trails."
-msgstr "Use aprimoramento do efeito de água, renderizando ondas nas costas, espuma na orla e rastros de navios."
-
-#: gui/options/options.json[2].options[16].label
-msgid "Water reflections"
-msgstr "Reflexos da água"
-
-#: gui/options/options.json[2].options[16].tooltip
-msgid "Allow water to reflect a mirror image."
-msgstr "Permitir a água refletir uma imagem espelhada."
-
-#: gui/options/options.json[2].options[17].label
-msgid "Water refraction"
-msgstr "Refração da água"
-
-#: gui/options/options.json[2].options[17].tooltip
-msgid "Use a real water refraction map and not transparency."
-msgstr "Use um mapa real da refração da água e não transparência."
-
-#: gui/options/options.json[2].options[18].label
-msgid "Real water depth"
-msgstr "Profundidade real da água"
-
-#: gui/options/options.json[2].options[18].tooltip
-msgid "Use actual water depth in rendering calculations."
-msgstr "Use a profundidade real da água nos cálculos de renderização."
-
-#: gui/options/options.json[2].options[19].label
-msgid "Texture quality"
-msgstr ""
-
-#: gui/options/options.json[2].options[19].tooltip
-msgid ""
-"Decrease texture quality making them blurrier but increases game "
-"performance."
-msgstr ""
-
-#: gui/options/options.json[2].options[20].label
-msgid "Texture anisotropic filter"
-msgstr ""
-
-#: gui/options/options.json[2].options[20].list[0].label
-msgid "1x"
-msgstr ""
-
-#: gui/options/options.json[2].options[20].list[1].label
-#: gui/options/options.json[2].options[20].list[1].tooltip
-msgid "2x"
-msgstr ""
-
-#: gui/options/options.json[2].options[20].list[2].label
-#: gui/options/options.json[2].options[20].list[2].tooltip
-msgid "4x"
-msgstr ""
-
-#: gui/options/options.json[2].options[20].list[3].label
-#: gui/options/options.json[2].options[20].list[3].tooltip
-msgid "8x"
-msgstr ""
-
-#: gui/options/options.json[2].options[20].list[4].label
-#: gui/options/options.json[2].options[20].list[4].tooltip
-msgid "16x"
-msgstr ""
-
-#: gui/options/options.json[2].options[20].tooltip
-msgid ""
-"Makes textures look better, especially terrain. If the anisotropic filter "
-"value is unsupported it will be set to the max supported value."
-msgstr ""
-
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
 msgstr "Antialiasing."
 
-#: gui/options/options.json[2].options[20].list[0].tooltip
 #: gui/options/options.json[2].options[3].list[0].label
 #: gui/options/options.json[2].options[4].list[0].label
-#: gui/options/options.json[4].options[5].list[2].label
-#: gui/options/options.json[5].options[4].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[2].label
 msgid "Disabled"
 msgstr "Desativado"
 
@@ -4410,632 +4282,809 @@ msgstr "A nitidez do passe escolhido."
 msgid "Model quality"
 msgstr ""
 
-#: gui/options/options.json[2].options[10].list[0].label
-#: gui/options/options.json[2].options[19].list[0].label
-#: gui/options/options.json[2].options[19].list[0].tooltip
-#: gui/options/options.json[2].options[6].list[0].label
+#: gui/options/options.json[2].options[6].list[0].label._string
+msgctxt "Option for the meshes' level of detail."
 msgid "Low"
 msgstr "Baixo"
 
-#: gui/options/options.json[2].options[6].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0].label.tooltip
 msgid "Simpler models for better performance."
 msgstr ""
 
-#: gui/options/options.json[2].options[10].list[1].label
-#: gui/options/options.json[2].options[19].list[1].label
-#: gui/options/options.json[2].options[19].list[1].tooltip
-#: gui/options/options.json[2].options[6].list[1].label
-#: gui/options/options.json[4].options[3].list[3].label
+#: gui/options/options.json[2].options[6].list[0][1].label._string
+msgctxt "Option for the meshes' level of detail."
 msgid "Medium"
 msgstr "Médio"
 
-#: gui/options/options.json[2].options[6].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][1].label.tooltip
 msgid "Average quality and average performance."
 msgstr ""
 
-#: gui/options/options.json[2].options[10].list[2].label
-#: gui/options/options.json[2].options[19].list[2].label
-#: gui/options/options.json[2].options[19].list[2].tooltip
-#: gui/options/options.json[2].options[6].list[2].label
+#: gui/options/options.json[2].options[6].list[0][1][2].label._string
+msgctxt "Option for the meshes' level of detail."
 msgid "High"
 msgstr "Alto"
 
-#: gui/options/options.json[2].options[6].list[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][1][2].label.tooltip
 msgid "High quality models."
 msgstr ""
 
-#: gui/options/options.json[2].options[6].tooltip
-msgid "Model quality setting."
-msgstr ""
-
-#: gui/options/options.json[2].options[7].label
+#: gui/options/options.json[2].options[6].list[0][7].label
 msgid "Model appearance randomization"
 msgstr ""
 
-#: gui/options/options.json[2].options[7].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0].label._string
+msgctxt "Option for the meshes' amount of variety."
 msgid "None"
 msgstr "Nenhuma"
 
-#: gui/options/options.json[2].options[7].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0].label.tooltip
 msgid "Entities will all look the same."
 msgstr ""
 
-#: gui/options/options.json[2].options[7].list[1].label
-msgid "Limited"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].label
+msgid "Quality"
 msgstr ""
 
-#: gui/options/options.json[2].options[7].list[1].tooltip
-msgid "Entities will be less diverse."
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0].label._string
+msgctxt "Option for the shadow quality."
+msgid "Low"
+msgstr "Baixo"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1].label._string
+msgctxt "Option for the shadow quality."
+msgid "Medium"
+msgstr "Médio"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][11].label
+msgid "Filtering"
 msgstr ""
 
-#: gui/options/options.json[2].options[7].list[2].label
-msgid "Normal"
-msgstr "Normal"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][11].tooltip
+msgid "Smooth shadows."
+msgstr "Sombras suaves."
 
-#: gui/options/options.json[2].options[7].list[2].tooltip
-msgid "Entities appearance is randomized normally."
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][12].label
+msgid "Cutoff distance"
 msgstr ""
 
-#: gui/options/options.json[2].options[7].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][12].tooltip
+msgid "Hides shadows beyond a certain distance from a camera."
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][13].label
+msgid "Cover whole map"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][13].tooltip
 msgid ""
-"Randomize the appearance of entities. Disabling gives a small performance "
-"improvement."
+"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
+"Useful for making screenshots of a whole map."
 msgstr ""
 
-#: gui/options/options.json[2].options[8].label
-msgid "Shader effects"
-msgstr "Efeitos de Shader"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].label
+msgid "Water effects"
+msgstr "Efeitos de água"
 
-#: gui/options/options.json[2].options[8].tooltip
-msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "Número de efeitos de Shader. REQUER REINICIALIZAÇÃO DO JOGO."
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].tooltip
+msgid ""
+"When OFF, use the lowest settings possible to render water. This makes other"
+" settings irrelevant."
+msgstr "Quando DESLIGADO, usa as configurações mais baixas possíveis para renderizar água. Isso torna outras configurações irrelevantes."
 
-#: gui/options/options.json[2].tooltip
-msgid "More specific rendering settings."
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][15].label
+msgid "High-quality water effects"
+msgstr "Efeitos de água de alta qualidade"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][15].tooltip
+msgid ""
+"Use higher-quality effects for water, rendering coastal waves, shore foam, "
+"and ships trails."
+msgstr "Use aprimoramento do efeito de água, renderizando ondas nas costas, espuma na orla e rastros de navios."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].label
+msgid "Water reflections"
+msgstr "Reflexos da água"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].tooltip
+msgid "Allow water to reflect a mirror image."
+msgstr "Permitir a água refletir uma imagem espelhada."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][17].label
+msgid "Water refraction"
+msgstr "Refração da água"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][17].tooltip
+msgid "Use a real water refraction map and not transparency."
+msgstr "Use um mapa real da refração da água e não transparência."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][18].label
+msgid "Real water depth"
+msgstr "Profundidade real da água"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][18].tooltip
+msgid "Use actual water depth in rendering calculations."
+msgstr "Use a profundidade real da água nos cálculos de renderização."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].label
+msgid "Texture quality"
 msgstr ""
 
-#: gui/options/options.json[3].options[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0].label._string
+msgctxt "Option for the texture quality."
+msgid "Low"
+msgstr "Baixo"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0].label.tooltip
+msgid "Low"
+msgstr "Baixo"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1].label._string
+msgctxt "Option for the texture quality."
+msgid "Medium"
+msgstr "Médio"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1].label.tooltip
+msgid "Medium"
+msgstr "Médio"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1][2].label._string
+msgctxt "Option for the texture quality."
+msgid "High"
+msgstr "Alto"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1][2].label.tooltip
+msgid "High"
+msgstr "Alto"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].label
+msgid "Texture anisotropic filter"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[0].label
+msgid "1x"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[1].tooltip
+msgid "2x"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[2].tooltip
+msgid "4x"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[3].tooltip
+msgid "8x"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[4].tooltip
+msgid "16x"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].tooltip
+msgid ""
+"Makes textures look better, especially terrain. If the anisotropic filter "
+"value is unsupported it will be set to the max supported value."
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].tooltip
+msgid ""
+"Decrease texture quality making them blurrier but increases game "
+"performance."
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].label
 msgid "Master volume"
 msgstr "Volume principal"
 
-#: gui/options/options.json[3].options[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].tooltip
 msgid "Master audio gain."
 msgstr "Ganho de áudio mestre."
 
-#: gui/options/options.json[3].options[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[1].label
 msgid "Music volume"
 msgstr "Volume da música"
 
-#: gui/options/options.json[3].options[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[1].tooltip
 msgid "In game music gain."
 msgstr "Ganho de música no jogo."
 
-#: gui/options/options.json[3].options[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[2].label
 msgid "Ambient volume"
 msgstr "Volume do ambiente"
 
-#: gui/options/options.json[3].options[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[2].tooltip
 msgid "In game ambient sound gain."
 msgstr "Ganho de som ambiente no jogo."
 
-#: gui/options/options.json[3].options[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[3].label
 msgid "Action volume"
 msgstr "Volume de ação"
 
-#: gui/options/options.json[3].options[3].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[3].tooltip
 msgid "In game unit action sound gain."
 msgstr "Ganho de som das ações das unidades no jogo."
 
-#: gui/options/options.json[3].options[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[4].label
 msgid "UI volume"
 msgstr "Volume da interface"
 
-#: gui/options/options.json[3].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[4].tooltip
 msgid "UI sound gain."
 msgstr "Ganho de som da interface."
 
-#: gui/options/options.json[3].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[5].label
 msgid "Nick notification"
 msgstr "Notificação por Nome"
 
-#: gui/options/options.json[3].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
 msgstr "Receber notificação de áudio quando alguém digitar seu nome."
 
-#: gui/options/options.json[3].options[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[6].label
 msgid "New player notification in game setup"
 msgstr "Notificação de novo jogador na configuração do jogo"
 
-#: gui/options/options.json[3].options[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
 msgstr "Receber notificação de áudio quando um novo jogador entrar na configuração do jogo."
 
-#: gui/options/options.json[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].label
 msgid "Game Setup"
 msgstr "Configuração de Jogo"
 
-#: gui/options/options.json[4].options[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[0].label
 msgid "Enable game setting tips"
 msgstr "Habilitar dicas da configuração do jogo"
 
-#: gui/options/options.json[4].options[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[0].tooltip
 msgid "Show tips when setting up a game."
 msgstr "Mostrar dicas ao montar um jogo."
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[1].label
 msgid "Enable settings panel slide"
 msgstr "Habilitar rolagem do painel de configurações"
 
-#: gui/options/options.json[4].options[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
 msgstr "Deslize o painel de configurações ao abrir, fechar ou redimensionar."
 
-#: gui/options/options.json[4].options[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[2].label
 msgid "Persist match settings"
 msgstr "Manter as configurações do jogo"
 
-#: gui/options/options.json[4].options[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
 msgstr "Salve e restaure as configurações correspondentes para reutilização rápida ao hospedar outro jogo."
 
-#: gui/options/options.json[4].options[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].label
 msgid "Default AI difficulty"
 msgstr "Dificuldade padrão da IA."
 
-#: gui/options/options.json[4].options[3].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0].label._string
+msgctxt "Option for the AI difficulty."
 msgid "Sandbox"
 msgstr "Caixa de Areia"
 
-#: gui/options/options.json[4].options[3].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1].label._string
+msgctxt "Option for the AI difficulty."
 msgid "Very Easy"
 msgstr "Muito Fácil"
 
-#: gui/options/options.json[4].options[3].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2].label._string
+msgctxt "Option for the AI difficulty."
 msgid "Easy"
 msgstr "Fácil"
 
-#: gui/options/options.json[4].options[3].list[4].label
-msgid "Hard"
-msgstr "Difícil"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3].label._string
+msgctxt "Option for the AI difficulty."
+msgid "Medium"
+msgstr "Médio"
 
-#: gui/options/options.json[4].options[3].list[5].label
-msgid "Very Hard"
-msgstr "Muito Difícil"
-
-#: gui/options/options.json[4].options[3].tooltip
-msgid "Default difficulty of the AI."
-msgstr "Dificuldade padrão da IA."
-
-#: gui/options/options.json[4].options[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].label
 msgid "Default AI behavior"
 msgstr "Comportamento padrão do IA"
 
-#: gui/options/options.json[4].options[4].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].label._string
+msgctxt "Option for the AI difficulty."
+msgid "Hard"
+msgstr "Difícil"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[0].label
 msgid "Random"
 msgstr "Aleatório"
 
-#: gui/options/options.json[4].options[4].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[1].label
 msgid "Balanced"
 msgstr "Balanceado"
 
-#: gui/options/options.json[4].options[4].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[2].label
 msgid "Aggressive"
 msgstr "Agressivo"
 
-#: gui/options/options.json[4].options[4].list[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[3].label
 msgid "Defensive"
 msgstr "Defensivo"
 
-#: gui/options/options.json[4].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].tooltip
 msgid "Default behavior of the AI."
 msgstr "Comportamento padrão da IA."
 
-#: gui/options/options.json[4].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4][5].label._string
+msgctxt "Option for the AI difficulty."
+msgid "Very Hard"
+msgstr "Muito Difícil"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].label
 msgid "Assign players"
 msgstr "Atribuir jogadores"
 
-#: gui/options/options.json[4].options[5].list[0].label
-#: gui/options/options.json[5].options[4].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[0].label
 msgid "Everyone"
 msgstr "Todos"
 
-#: gui/options/options.json[4].options[5].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
 msgstr "Jogadores juntando-se a partida serão atríbuidos se houver um espaço vazio."
 
-#: gui/options/options.json[4].options[5].list[1].label
-#: gui/options/options.json[5].options[4].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[1].label
 msgid "Buddies"
 msgstr "Parceiros"
 
-#: gui/options/options.json[4].options[5].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[1].tooltip
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
 msgstr "Jogadores juntando-se a partida só serão atríbuidos se eles forem um amigo do host ou se houver um espaço vazio."
 
-#: gui/options/options.json[4].options[5].list[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
 msgstr "Jogadores só recebem um espaço se o host os atribuir um explicitamente."
 
-#: gui/options/options.json[4].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
 msgstr "Atribua automaticamente a junção de clientes a slots de jogadores gratuitos durante a configuração da partida."
 
-#: gui/options/options.json[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].label
 msgid "Networking / Lobby"
 msgstr ""
 
-#: gui/options/options.json[5].options[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].label
 msgid "TLS encryption"
 msgstr "Criptografia TLS"
 
-#: gui/options/options.json[5].options[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
 msgstr "Proteja o login e os dados trocados com o servidor de sala usando a criptografia TLS."
 
-#: gui/options/options.json[5].options[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[1].label
 msgid "Chat backlog"
 msgstr "Histórico de chat"
 
-#: gui/options/options.json[5].options[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
 msgstr "Número de mensagens acumuladas a serem carregadas ao ingressar no lobby."
 
-#: gui/options/options.json[5].options[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].label
 msgid "Game rating column"
 msgstr "Coluna de classificação do jogo"
 
-#: gui/options/options.json[5].options[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr "Mostrar a classificação média dos jogadores participantes em uma coluna na lista de jogos."
 
-#: gui/options/options.json[5].options[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].label
 msgid "Network warnings"
 msgstr "Avisos de rede"
 
-#: gui/options/options.json[5].options[3].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "Mostrar qual jogador possui uma má conexão em jogos multijogador."
 
-#: gui/options/options.json[5].options[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].label
 msgid "Late observer joins"
 msgstr "Um observador atrasado junta-se"
 
-#: gui/options/options.json[5].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
 msgstr "Permitir que todos ou apenas amigos participem do jogo como observador depois de iniciado."
 
-#: gui/options/options.json[5].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[5].label
 msgid "Observer limit"
 msgstr "Limite de Observador"
 
-#: gui/options/options.json[5].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[5].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
 msgstr "Impedir que mais observadores entrem se o limite for atingido."
 
-#: gui/options/options.json[5].options[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[6].label
 msgid "Max lag for observers"
 msgstr "Lag máximo para observadores"
 
-#: gui/options/options.json[5].options[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[6].tooltip
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
 msgstr ""
 
-#: gui/options/options.json[5].options[7].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].label
 msgid "(Observer) Speed up when lagging."
 msgstr ""
 
-#: gui/options/options.json[5].options[7].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].tooltip
 msgid ""
 "When observing a game, automatically speed up if you start lagging, to catch"
 " up with the live match."
 msgstr ""
 
-#: gui/options/options.json[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].tooltip
 msgid "These settings only affect the multiplayer."
 msgstr "Estas configurações afetam apenas o modo multijogador."
 
-#: gui/options/options.json[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].label
 msgid "Game Session"
 msgstr "Sessão de Jogo"
 
-#: gui/options/options.json[6].options[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[0].label
 msgid "Wounded unit health"
 msgstr "Saúde de unidade ferida"
 
-#: gui/options/options.json[6].options[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[0].tooltip
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
 msgstr "A tecla de atalho das unidades feridas considera as unidades selecionadas como feridas se sua porcentagem de saúde cair abaixo desse número."
 
-#: gui/options/options.json[6].options[10].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].label
 msgid "Heal range visualization"
 msgstr "Vizualização do alcance de cura"
 
-#: gui/options/options.json[6].options[10].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].tooltip
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
 msgstr "Exibe a faixa de cura das unidades selecionadas. (Também pode ser alternado com a tecla de atalho durante um jogo)."
 
-#: gui/options/options.json[6].options[11].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].label
 msgid "Rank icon above status bar"
 msgstr "Ícone de classificação acima da barra de status"
 
-#: gui/options/options.json[6].options[11].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].tooltip
 msgid "Show rank icons above status bars."
 msgstr "Mostrar ícones de classificação acima das barras de status."
 
-#: gui/options/options.json[6].options[12].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].label
 msgid "Experience status bar"
 msgstr "Barra de status da experiência"
 
-#: gui/options/options.json[6].options[12].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "Mostrar uma barra de status de experiência acima de cada unidade selecionada."
 
-#: gui/options/options.json[6].options[13].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].label
 msgid "Detailed tooltips"
 msgstr "Dicas detalhadas"
 
-#: gui/options/options.json[6].options[13].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "Mostrar dicas detalhadas para unidades treináveis em estruturas produtoras de unidades."
 
-#: gui/options/options.json[6].options[14].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].label
 msgid "Sort resources and population tooltip"
 msgstr "Ordenar recursos e dicas de população"
 
-#: gui/options/options.json[6].options[14].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[0].label
 msgid "Unordered"
 msgstr "Não ordenado"
 
-#: gui/options/options.json[6].options[14].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[1].label
 msgid "Ascending"
 msgstr "Crescente"
 
-#: gui/options/options.json[6].options[14].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[2].label
 msgid "Descending"
 msgstr "Decrescente"
 
-#: gui/options/options.json[6].options[14].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "Ordenar dinamicamente os jogadores nos recursos e na dica de ferramenta de população por valor."
 
-#: gui/options/options.json[6].options[15].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].label
 msgid "Diplomacy colors: self"
 msgstr "Cores de diplomacia: o próprio"
 
-#: gui/options/options.json[6].options[15].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "Cor de suas unidades quando as cores da diplomacia estão ativadas."
 
-#: gui/options/options.json[6].options[16].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].label
 msgid "Diplomacy colors: ally"
 msgstr "Cores de diplomacia: aliado"
 
-#: gui/options/options.json[6].options[16].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "Cor dos aliados quando as cores da diplomacia estão ativadas."
 
-#: gui/options/options.json[6].options[17].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].label
 msgid "Diplomacy colors: neutral"
 msgstr "Cores de diplomacia: neutro"
 
-#: gui/options/options.json[6].options[17].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "Cor de jogadores neutros quando as cores da diplomacia estão ativadas."
 
-#: gui/options/options.json[6].options[18].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].label
 msgid "Diplomacy colors: enemy"
 msgstr "Cores de diplomacia: inimigo"
 
-#: gui/options/options.json[6].options[18].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "Cor dos inimigos quando as cores da diplomacia estão ativadas."
 
-#: gui/options/options.json[6].options[19].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].label
 msgid "Snap to edges"
 msgstr "Ajustar às bordas"
 
-#: gui/options/options.json[6].options[19].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[0].label
 msgid "Hotkey to enable snapping"
 msgstr "Atalho para habilitar o ajuste"
 
-#: gui/options/options.json[6].options[19].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
 msgstr "Novas estruturas ficam alinhadas com estruturas próximas enquanto a tecla de atalho é pressionada."
 
-#: gui/options/options.json[6].options[19].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
 msgstr "Atalho para desabilitar o ajuste"
 
-#: gui/options/options.json[6].options[19].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
 msgstr "Novas estruturas ficam alinhadas com estruturas próximas a não ser que a tecla de atalho seja pressionada."
 
-#: gui/options/options.json[6].options[19].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].tooltip
 msgid "This option allows to align new structures with nearby structures."
 msgstr "Esta opção permite alinhar novas estruturas com estruturas próximas."
 
-#: gui/options/options.json[6].options[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].label
 msgid "Batch training size"
 msgstr "Tamanho de treinamento em lote"
 
-#: gui/options/options.json[6].options[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].tooltip
 msgid "Number of units trained per batch by default."
 msgstr "Número de unidades treinadas por lote por padrão."
 
-#: gui/options/options.json[6].options[20].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].label
 msgid "Control group membership"
 msgstr "Membros do grupo de controle"
 
-#: gui/options/options.json[6].options[20].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].label
 msgid "Single"
 msgstr "Único"
 
-#: gui/options/options.json[6].options[20].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].tooltip
 msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
 msgstr "Ao adicionar uma Unidade ou Estrutura a um grupo de controle, eles são removidos de outros grupos de controle. Use esta opção se quiser que grupos de controle se refiram a exércitos distintos."
 
-#: gui/options/options.json[6].options[20].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].label
 msgid "Multiple"
 msgstr "Múltiplos"
 
-#: gui/options/options.json[6].options[20].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].tooltip
 msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
 msgstr "As Unidades e Estruturas podem fazer parte de vários grupos de controle. Isso é útil para manter grupos de controle para exércitos distintos e um grupo de controle para todo o exército simultaneamente."
 
-#: gui/options/options.json[6].options[20].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].tooltip
 msgid "Decide whether units can be part of multiple control groups."
 msgstr "Decide se as unidades podem fazer parte de vários grupos de controle."
 
-#: gui/options/options.json[6].options[21].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].label
 msgid "Formation control"
 msgstr "Controle de formação"
 
-#: gui/options/options.json[6].options[21].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].label
 msgid "Walk/Patrol Only"
 msgstr "Apenas caminhada/patrulha"
 
-#: gui/options/options.json[6].options[21].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].tooltip
 msgid "Other orders will disband existing formations."
 msgstr "Outras ordens irão dispersar as formações existentes."
 
-#: gui/options/options.json[6].options[21].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].label
 msgid "No override"
 msgstr ""
 
-#: gui/options/options.json[6].options[21].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].tooltip
 msgid "Units in formations stay in formations."
 msgstr "Unidades em formações permanecem em formações."
 
-#: gui/options/options.json[6].options[21].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
 msgstr "Decida se as formações estão habilitadas para todas as ordens ou apenas 'Caminhada' e 'Patrulha'."
 
-#: gui/options/options.json[6].options[22].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].label
 msgid "Battalion-style formations"
 msgstr ""
 
-#: gui/options/options.json[6].options[22].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].tooltip
 msgid "Whether formations are selected as a whole."
 msgstr ""
 
-#: gui/options/options.json[6].options[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[2].label
 msgid "Scroll batch increment ratio"
 msgstr "Taxa de incremento do lote de rolagem"
 
-#: gui/options/options.json[6].options[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
 msgstr "Número de vezes que você precisa rolar para aumentar/diminuir o tamanho do lote em 1."
 
-#: gui/options/options.json[6].options[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].label
 msgid "Flare display duration"
 msgstr ""
 
-#: gui/options/options.json[6].options[3].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
 msgstr ""
 
-#: gui/options/options.json[6].options[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].label
 msgid "Chat notification attack"
 msgstr "Notificação de ataque no chat"
 
-#: gui/options/options.json[6].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "Mostrar uma notificação de chat se você for atacado por outro jogador."
 
-#: gui/options/options.json[6].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].label
 msgid "Chat notification tribute"
 msgstr "Notificar tributos no chat."
 
-#: gui/options/options.json[6].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "Mostrar uma notificação no chat se um aliado tributar recursos para outro membro da equipe se as equipes estiverem bloqueadas e todos os tributos no modo observador."
 
-#: gui/options/options.json[6].options[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].label
 msgid "Chat notification barter"
 msgstr "Notificar permutas no chat."
 
-#: gui/options/options.json[6].options[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "Mostrar uma notificação no chat para observadores quando um jogador trocou recursos."
 
-#: gui/options/options.json[6].options[7].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].label
 msgid "Chat notification phase"
 msgstr "Notificação de fase no chat."
 
-#: gui/options/options.json[6].options[7].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[0].label
 msgid "Disable"
 msgstr "Desativar"
 
-#: gui/options/options.json[6].options[7].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[1].label
 msgid "Completed"
 msgstr "Terminado"
 
-#: gui/options/options.json[6].options[7].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[2].label
 msgid "All displayed"
 msgstr "Tudo a mostra"
 
-#: gui/options/options.json[6].options[7].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "Mostrar uma notificação no chat se você ou um aliado iniciaram, cancelaram ou completaram uma nova fase, e fases de todos os jogadores no modo observador."
 
-#: gui/options/options.json[6].options[8].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].label
 msgid "Attack range visualization"
 msgstr "Visualização do alcance de ataque"
 
-#: gui/options/options.json[6].options[8].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr "Exibe o alcance de ataque das estruturas defensivas selecionadas. (Também pode ser alternado com a tecla de atalho durante um jogo)."
 
-#: gui/options/options.json[6].options[9].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].label
 msgid "Aura range visualization"
 msgstr "Vizualiação do alcance de aura"
 
-#: gui/options/options.json[6].options[9].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
 msgstr "Exibe a gama de auras de unidades e estruturas selecionadas. (Também pode ser alternado com a tecla de atalho durante um jogo)."
 
-#: gui/options/options.json[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].tooltip
 msgid "Change options regarding the in-game settings."
 msgstr "Altere as opções relacionadas às configurações do jogo."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].tooltip
+msgid "Default difficulty of the AI."
+msgstr "Dificuldade padrão da IA."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][2].label._string
+msgctxt "Option for the shadow quality."
+msgid "High"
+msgstr "Alto"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][2][3].label._string
+msgctxt "Option for the shadow quality."
+msgid "Very High"
+msgstr "Muito Alto"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "Resolução do mapeamento de sombras. Valores altos podem travar o jogo se sua placa de vídeo tem pouca memória!"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][1].label._string
+msgctxt "Option for the meshes' amount of variety."
+msgid "Limited"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][1].label.tooltip
+msgid "Entities will be less diverse."
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label._string
+msgctxt "Option for the meshes' amount of variety."
+msgid "Normal"
+msgstr "Normal"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label.tooltip
+msgid "Entities appearance is randomized normally."
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][8].label
+msgid "Shader effects"
+msgstr "Efeitos de Shader"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][8].tooltip
+msgid "Number of shader effects. REQUIRES GAME RESTART"
+msgstr "Número de efeitos de Shader. REQUER REINICIALIZAÇÃO DO JOGO."
+
+#: gui/options/options.json[2].options[6].list[0][7].tooltip
+msgid ""
+"Randomize the appearance of entities. Disabling gives a small performance "
+"improvement."
+msgstr ""
+
+#: gui/options/options.json[2].options[6].tooltip
+msgid "Model quality setting."
+msgstr ""
+
+#: gui/options/options.json[2].tooltip
+msgid "More specific rendering settings."
+msgstr ""
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"

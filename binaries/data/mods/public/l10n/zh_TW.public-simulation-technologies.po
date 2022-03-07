@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-28 08:09+0000\n"
-"PO-Revision-Date: 2022-03-02 04:03+0000\n"
-"Last-Translator: Yuan Chang\n"
+"POT-Creation-Date: 2022-03-04 08:09+0000\n"
+"PO-Revision-Date: 2022-03-04 08:18+0000\n"
+"Last-Translator: Transifex Bot\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,7 +63,6 @@ msgstr "斯巴達教育"
 #: simulation/data/technologies/poison_blades.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
-#: simulation/data/technologies/repeating_crossbows.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
@@ -516,8 +515,8 @@ msgid "Crossbow Training"
 msgstr "弩弓訓練"
 
 #: simulation/data/technologies/crossbow_training.jsontooltip
-msgid "Crossbow Infantry and Cavalry −1 second firing time −20% train time."
-msgstr "弩步兵和騎兵 -1 秒發射時間和 -20% 訓練時間。"
+msgid "Crossbow Infantry and Cavalry −20% firing time −20% train time."
+msgstr ""
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -1235,21 +1234,6 @@ msgstr "軍隊改革"
 #: simulation/data/technologies/reformed_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
 msgstr "解鎖鬥士劍兵 "
-
-#: simulation/data/technologies/repeating_crossbows.jsondescription
-msgid ""
-"Crossbows equiped with a repeating mechanism and dart magazine increase "
-"firing rate."
-msgstr "配備連發機構和飛鏢彈匣的弩可以提高射速。"
-
-#: simulation/data/technologies/repeating_crossbows.jsongenericName
-msgid "Repeating Crossbows"
-msgstr "連弩"
-
-#: simulation/data/technologies/repeating_crossbows.jsontooltip
-msgid ""
-"Crossbow Infantry and Cavalry −1 second firing time, but +20 metal cost."
-msgstr "弩步兵和騎兵 -1 秒發射時間，但 +20 金屬成本。"
 
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""
