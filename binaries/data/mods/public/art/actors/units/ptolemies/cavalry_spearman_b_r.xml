@@ -7,6 +7,7 @@
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/spear_lance_cavalry.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/ptol_cav_spear_a.xml" attachpoint="shield_arm"/>
       </props>
     </variant>
   </group>
@@ -40,15 +41,15 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/rider/cavalry/base_spearman_relax_reverse_02.xml" name="Spearman-Relax-Shield-Aspis-Reverse" frequency="1"/>
+    <variant file="biped/rider/cavalry/base_spearman_ready_shield_aspis_reverse.xml" name="Spearman-Relax-Shield-Aspis-Reverse" frequency="1"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/rider/attack_slaughter_hele.xml"/>
-    <variant file="biped/rider/promotion.xml" />
+    <variant file="biped/rider/attack_slaughter_shield_hele.xml"/>
+    <variant file="biped/rider/promotion_shield.xml" />
     <variant file="biped/gather_meat.xml"/>
-    <variant file="biped/rider/death.xml"/>
+    <variant file="biped/rider/death_aspis.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>
