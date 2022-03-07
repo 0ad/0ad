@@ -126,7 +126,7 @@ void CPostprocManager::RecreateBuffers()
 
 	#define GEN_BUFFER_RGBA(name, w, h) \
 		name = backendDevice->CreateTexture2D( \
-			"PostProc" #name, Renderer::Backend::Format::R8G8B8A8, w, h, \
+			"PostProc" #name, Renderer::Backend::Format::R8G8B8A8_UNORM, w, h, \
 			Renderer::Backend::Sampler::MakeDefaultSampler( \
 				Renderer::Backend::Sampler::Filter::LINEAR, \
 				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
@@ -228,8 +228,10 @@ void CPostprocManager::ApplyBlurDownscale2x(
 		1.0f, 0.0f,
 		1.0f, 1.0f
 	};
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
-	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
+	shader->TexCoordPointer(
+		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, quadTex);
+	shader->VertexPointer(
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, quadVerts);
 	shader->AssertPointersBound();
 	deviceCommandContext->Draw(0, 6);
 
@@ -284,8 +286,10 @@ void CPostprocManager::ApplyBlurGauss(
 		1.0f, 0.0f,
 		1.0f, 1.0f
 	};
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
-	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
+	shader->TexCoordPointer(
+		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, quadTex);
+	shader->VertexPointer(
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, quadVerts);
 	shader->AssertPointersBound();
 	deviceCommandContext->Draw(0, 6);
 
@@ -309,8 +313,10 @@ void CPostprocManager::ApplyBlurGauss(
 
 	g_Renderer.SetViewport(vp);
 
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
-	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
+	shader->TexCoordPointer(
+		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, quadTex);
+	shader->VertexPointer(
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, quadVerts);
 	shader->AssertPointersBound();
 	deviceCommandContext->Draw(0, 6);
 
@@ -429,8 +435,10 @@ void CPostprocManager::ApplyEffect(
 		1.0f, 0.0f,
 		1.0f, 1.0f
 	};
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadTex);
-	shader->VertexPointer(2, GL_FLOAT, 0, quadVerts);
+	shader->TexCoordPointer(
+		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, quadTex);
+	shader->VertexPointer(
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, quadVerts);
 	shader->AssertPointersBound();
 	deviceCommandContext->Draw(0, 6);
 
@@ -598,7 +606,7 @@ void CPostprocManager::CreateMultisampleBuffer()
 
 	m_MultisampleColorTex = backendDevice->CreateTexture("PostProcColorMS",
 		Renderer::Backend::GL::CTexture::Type::TEXTURE_2D_MULTISAMPLE,
-		Renderer::Backend::Format::R8G8B8A8, m_Width, m_Height,
+		Renderer::Backend::Format::R8G8B8A8_UNORM, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1, m_MultisampleCount);

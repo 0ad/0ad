@@ -57,6 +57,10 @@ public:
 	double m_PingEndTime;
 	bool m_IsPinging;
 
+	bool m_HasIcon = false;
+	std::string m_IconPath;
+	float m_IconSize = 16.0f;
+
 	static std::string GetSchema()
 	{
 		return
@@ -84,6 +88,14 @@ public:
 						"<data type='integer'><param name='minInclusive'>0</param><param name='maxInclusive'>255</param></data>"
 					"</attribute>"
 				"</element>"
+			"</optional>"
+			"<optional>"
+				"<element name='Icon' a:help='Icon texture that should be displayed on a minimap. Filepath relative to art/textures/ui/session/icons/minimap/.'>"
+					"<attribute name='size'>"
+						"<data type='float'><param name='minExclusive'>0</param></data>"
+					"</attribute>"
+					"<text/>"
+				"</element>"
 			"</optional>";
 	}
 
@@ -92,6 +104,7 @@ public:
 		m_Active = true;
 		m_IsPinging = false;
 		m_PingEndTime = 0.0;
+		m_HasIcon = false;
 
 		const CParamNode& color = paramNode.GetChild("Color");
 		if (color.IsOk())
@@ -108,6 +121,18 @@ public:
 			m_R = 255;
 			m_G = 0;
 			m_B = 255;
+		}
+
+		const CParamNode& iconNode = paramNode.GetChild("Icon");
+		if (iconNode.IsOk())
+		{
+			const CParamNode& iconSizeNode = iconNode.GetChild("@size");
+			if (iconSizeNode.IsOk())
+			{
+				m_HasIcon = true;
+				m_IconPath = "art/textures/ui/session/icons/minimap/" + iconNode.ToString();
+				m_IconSize = iconSizeNode.ToFloat();
+			}
 		}
 	}
 
@@ -237,6 +262,21 @@ public:
 		m_R = (u8) (color.r * 255);
 		m_G = (u8) (color.g * 255);
 		m_B = (u8) (color.b * 255);
+	}
+
+	bool HasIcon() override
+	{
+		return m_HasIcon;
+	}
+
+	std::string GetIconPath() override
+	{
+		return m_IconPath;
+	}
+
+	float GetIconSize() override
+	{
+		return m_IconSize;
 	}
 };
 

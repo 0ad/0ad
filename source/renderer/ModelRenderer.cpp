@@ -589,6 +589,8 @@ void ShaderModelRenderer::Render(
 		}
 	}
 
+	const double time = g_Renderer.GetTimeManager().GetGlobalTime();
+
 	{
 		PROFILE3("rendering bucketed submissions");
 
@@ -722,12 +724,7 @@ void ShaderModelRenderer::Render(
 							CShaderRenderQueries::RenderQuery rq = renderQueries.GetItem(q);
 							if (rq.first == RQUERY_TIME)
 							{
-								CShaderProgram::Binding binding = shader->GetUniformBinding(rq.second);
-								if (binding.Active())
-								{
-									double time = g_Renderer.GetTimeManager().GetGlobalTime();
-									shader->Uniform(binding, time, 0.0f, 0.0f, 0.0f);
-								}
+								shader->Uniform(rq.second, time, 0.0f, 0.0f, 0.0f);
 							}
 							else if (rq.first == RQUERY_WATER_TEX)
 							{

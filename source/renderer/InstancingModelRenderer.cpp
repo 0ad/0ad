@@ -331,20 +331,36 @@ void InstancingModelRenderer::PrepareModelDef(
 	deviceCommandContext->SetIndexBuffer(m->imodeldef->m_IndexArray.GetBuffer());
 
 	if (streamflags & STREAM_POS)
-		shader->VertexPointer(3, GL_FLOAT, stride, base + m->imodeldef->m_Position.offset);
+	{
+		shader->VertexPointer(
+			Renderer::Backend::Format::R32G32B32_SFLOAT, stride,
+			base + m->imodeldef->m_Position.offset);
+	}
 
 	if (streamflags & STREAM_NORMAL)
-		shader->NormalPointer(GL_FLOAT, stride, base + m->imodeldef->m_Normal.offset);
+	{
+		shader->NormalPointer(
+			Renderer::Backend::Format::R32G32B32_SFLOAT, stride,
+			base + m->imodeldef->m_Normal.offset);
+	}
 
 	if (m->calculateTangents)
-		shader->VertexAttribPointer(str_a_tangent, 4, GL_FLOAT, GL_FALSE, stride, base + m->imodeldef->m_Tangent.offset);
+	{
+		shader->VertexAttribPointer(
+			str_a_tangent, Renderer::Backend::Format::R32G32B32A32_SFLOAT,
+			GL_FALSE, stride, base + m->imodeldef->m_Tangent.offset);
+	}
 
 	// The last UV set is STREAM_UV3
 	for (size_t uv = 0; uv < 4; ++uv)
 		if (streamflags & (STREAM_UV0 << uv))
 		{
 			if (def.GetNumUVsPerVertex() >= uv + 1)
-				shader->TexCoordPointer(GL_TEXTURE0 + uv, 2, GL_FLOAT, stride, base + m->imodeldef->m_UVs[uv].offset);
+			{
+				shader->TexCoordPointer(
+					GL_TEXTURE0 + uv, Renderer::Backend::Format::R32G32_SFLOAT, stride,
+					base + m->imodeldef->m_UVs[uv].offset);
+			}
 			else
 				ONCE(LOGERROR("Model '%s' has no UV%d set.", def.GetName().string8().c_str(), uv));
 		}
@@ -352,8 +368,12 @@ void InstancingModelRenderer::PrepareModelDef(
 	// GPU skinning requires extra attributes to compute positions/normals
 	if (m->gpuSkinning)
 	{
-		shader->VertexAttribPointer(str_a_skinJoints, 4, GL_UNSIGNED_BYTE, GL_FALSE, stride, base + m->imodeldef->m_BlendJoints.offset);
-		shader->VertexAttribPointer(str_a_skinWeights, 4, GL_UNSIGNED_BYTE, GL_TRUE, stride, base + m->imodeldef->m_BlendWeights.offset);
+		shader->VertexAttribPointer(
+			str_a_skinJoints, Renderer::Backend::Format::R8G8B8A8_UINT, GL_FALSE,
+			stride, base + m->imodeldef->m_BlendJoints.offset);
+		shader->VertexAttribPointer(
+			str_a_skinWeights, Renderer::Backend::Format::R8G8B8A8_UNORM, GL_TRUE,
+			stride, base + m->imodeldef->m_BlendWeights.offset);
 	}
 
 	shader->AssertPointersBound();

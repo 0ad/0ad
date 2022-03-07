@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -62,7 +62,7 @@ bool HasNetClient()
 	return !!g_NetClient;
 }
 
-void StartNetworkHost(const ScriptRequest& rq, const CStrW& playerName, const u16 serverPort, bool useSTUN, const CStr& password)
+void StartNetworkHost(const ScriptRequest& rq, const CStrW& playerName, const u16 serverPort, bool useSTUN, const CStr& password, bool storeReplay)
 {
 	ENSURE(!g_NetClient);
 	ENSURE(!g_NetServer);
@@ -100,7 +100,7 @@ void StartNetworkHost(const ScriptRequest& rq, const CStrW& playerName, const u1
 	std::string secret = ps_generate_guid();
 	g_NetServer->SetControllerSecret(secret);
 
-	g_Game = new CGame(true);
+	g_Game = new CGame(storeReplay);
 	g_NetClient = new CNetClient(g_Game);
 	g_NetClient->SetUserName(playerName);
 
@@ -141,13 +141,13 @@ void StartNetworkHost(const ScriptRequest& rq, const CStrW& playerName, const u1
 	}
 }
 
-void StartNetworkJoin(const ScriptRequest& rq, const CStrW& playerName, const CStr& serverAddress, u16 serverPort)
+void StartNetworkJoin(const ScriptRequest& rq, const CStrW& playerName, const CStr& serverAddress, u16 serverPort, bool storeReplay)
 {
 	ENSURE(!g_NetClient);
 	ENSURE(!g_NetServer);
 	ENSURE(!g_Game);
 
-	g_Game = new CGame(true);
+	g_Game = new CGame(storeReplay);
 	g_NetClient = new CNetClient(g_Game);
 	g_NetClient->SetUserName(playerName);
 	g_NetClient->SetupServerData(serverAddress, serverPort, false);

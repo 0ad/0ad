@@ -573,16 +573,16 @@ void OverlayRenderer::RenderQuadOverlays(
 		int streamflags = shader->GetStreamFlags();
 
 		if (streamflags & STREAM_POS)
-			shader->VertexPointer(m->quadAttributePos.elems, m->quadAttributePos.type, vertexStride, vertexBase + m->quadAttributePos.offset);
+			shader->VertexPointer(Renderer::Backend::Format::R32G32B32_SFLOAT, vertexStride, vertexBase + m->quadAttributePos.offset);
 
 		if (streamflags & STREAM_UV0)
-			shader->TexCoordPointer(GL_TEXTURE0, m->quadAttributeUV.elems, m->quadAttributeUV.type, vertexStride, vertexBase + m->quadAttributeUV.offset);
+			shader->TexCoordPointer(GL_TEXTURE0, Renderer::Backend::Format::R16G16_SINT, vertexStride, vertexBase + m->quadAttributeUV.offset);
 
 		if (streamflags & STREAM_UV1)
-			shader->TexCoordPointer(GL_TEXTURE1, m->quadAttributeUV.elems, m->quadAttributeUV.type, vertexStride, vertexBase + m->quadAttributeUV.offset);
+			shader->TexCoordPointer(GL_TEXTURE1, Renderer::Backend::Format::R16G16_SINT, vertexStride, vertexBase + m->quadAttributeUV.offset);
 
 		if (streamflags & STREAM_COLOR)
-			shader->ColorPointer(m->quadAttributeColor.elems, m->quadAttributeColor.type, vertexStride, vertexBase + m->quadAttributeColor.offset);
+			shader->ColorPointer(Renderer::Backend::Format::R32G32B32A32_SFLOAT, vertexStride, vertexBase + m->quadAttributeColor.offset);
 
 		shader->AssertPointersBound();
 		deviceCommandContext->DrawIndexed(m->quadIndices.GetOffset() + batchRenderData.m_IndicesBase, batchNumQuads * 6, 0);
@@ -644,7 +644,8 @@ void OverlayRenderer::RenderForegroundOverlays(
 		{0.0f, 0.0f},
 	};
 
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, sizeof(CVector2D), &uvs[0]);
+	shader->TexCoordPointer(
+		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, sizeof(CVector2D), &uvs[0]);
 
 	for (size_t i = 0; i < m->sprites.size(); ++i)
 	{
@@ -667,7 +668,8 @@ void OverlayRenderer::RenderForegroundOverlays(
 			sprite->m_Position + right*sprite->m_X0 + up*sprite->m_Y1
 		};
 
-		shader->VertexPointer(3, GL_FLOAT, sizeof(CVector3D), &position[0].X);
+		shader->VertexPointer(
+			Renderer::Backend::Format::R32G32B32_SFLOAT, sizeof(CVector3D), &position[0].X);
 
 		deviceCommandContext->Draw(0, 6);
 
@@ -773,7 +775,8 @@ void OverlayRenderer::RenderSphereOverlays(
 
 	m->GenerateSphere();
 
-	shader->VertexPointer(3, GL_FLOAT, 0, &m->sphereVertexes[0]);
+	shader->VertexPointer(
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, &m->sphereVertexes[0]);
 
 	for (size_t i = 0; i < m->spheres.size(); ++i)
 	{

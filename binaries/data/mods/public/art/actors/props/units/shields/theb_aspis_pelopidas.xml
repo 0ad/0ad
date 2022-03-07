@@ -6,6 +6,7 @@
       <mesh>props/shield/aspis_01_front.dae</mesh>
       <props>
         <prop actor="props/units/shields/props/aspis_back_bronze_purple_01.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/props/aspis_handgrip_bronze_01.xml" attachpoint="handgrip"/>
         <prop actor="props/units/shields/props/aspis_apron_hele_01.xml" attachpoint="apron"/>
       </props>
     </variant>

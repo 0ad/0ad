@@ -7,9 +7,9 @@
         <prop actor="props/flora/bush_desert_dry_a.xml" attachpoint="plant_1" maxheight="20" minheight="-20"/>
         <prop actor="props/flora/bush_desert_a.xml" attachpoint="plant_2" maxheight="20" minheight="-20"/>
         <prop actor="props/flora/bush_medit_me_dry.xml" attachpoint="plant_3" maxheight="20" minheight="-20"/>
-        <prop actor="props/units/shields/iber_scutum_isp.xml" attachpoint="shield_1"/>
-        <prop actor="props/units/shields/iber_scutum_isp.xml" attachpoint="shield_3"/>
-        <prop actor="props/units/shields/iber_scutum_isp_e.xml" attachpoint="shield_4" maxheight="20" minheight="-20"/>
+        <prop actor="props/units/shields/iber_shield_spear_oval_c_01.xml" attachpoint="shield_1"/>
+        <prop actor="props/units/shields/iber_shield_spear_oval_c_02.xml" attachpoint="shield_3"/>
+        <prop actor="props/units/shields/iber_shield_spear_oval_c_01.xml" attachpoint="shield_4" maxheight="20" minheight="-20"/>
         <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
       </props>
       <textures>
@@ -33,7 +33,7 @@
     <variant frequency="1" name="round">
       <mesh>structural/iber_tower_1.dae</mesh>
       <props>
-        <prop actor="props/units/shields/iber_scutum_isp_e.xml" attachpoint="shield_2"/>
+        <prop actor="props/units/shields/iber_shield_spear_oval_c_01.xml" attachpoint="shield_2"/>
       </props>
       <textures>
         <texture file="structural/ao/iber_tower_1_AO.png" name="aoTex"/>
@@ -42,7 +42,7 @@
     <variant frequency="1" name="square">
       <mesh>structural/iber_tower_2.dae</mesh>
       <props>
-        <prop actor="props/units/shields/iber_scutum_su1.xml" attachpoint="shield_2"/>
+        <prop actor="props/units/shields/iber_shield_spear_oval_c_02.xml" attachpoint="shield_2"/>
       </props>
       <textures>
         <texture file="structural/ao/iber_tower_2_AO.png" name="aoTex"/>

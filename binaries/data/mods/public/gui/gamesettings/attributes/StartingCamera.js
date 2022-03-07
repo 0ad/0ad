@@ -28,9 +28,7 @@ GameSettings.prototype.Attributes.StartingCamera = class StartingCamera extends 
 		if (!this.getLegacySetting(attribs, "PlayerData"))
 			return;
 		const pData = this.getLegacySetting(attribs, "PlayerData");
-		if (this.values.length < pData.length)
-			this._resize(pData.length);
-		for (const i in pData)
+		for (let i = 0; i < this.values.length; ++i)
 			if (pData[i] && pData[i].StartingCamera !== undefined)
 			{
 				this.values[i] = pData[i].StartingCamera;

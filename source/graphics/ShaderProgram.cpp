@@ -33,6 +33,58 @@
 
 #include <algorithm>
 
+namespace
+{
+
+GLint GLSizeFromFormat(const Renderer::Backend::Format format)
+{
+	GLint size = 1;
+	if (format == Renderer::Backend::Format::R32_SFLOAT ||
+		format == Renderer::Backend::Format::R16_SINT)
+		size = 1;
+	else if (
+		format == Renderer::Backend::Format::R8G8_UNORM ||
+		format == Renderer::Backend::Format::R8G8_UINT ||
+		format == Renderer::Backend::Format::R16G16_SINT ||
+		format == Renderer::Backend::Format::R32G32_SFLOAT)
+		size = 2;
+	else if (format == Renderer::Backend::Format::R32G32B32_SFLOAT)
+		size = 3;
+	else if (
+		format == Renderer::Backend::Format::R32G32B32A32_SFLOAT ||
+		format == Renderer::Backend::Format::R8G8B8A8_UNORM ||
+		format == Renderer::Backend::Format::R8G8B8A8_UINT)
+		size = 4;
+	else
+		debug_warn("Unsupported format.");
+	return size;
+}
+
+GLenum GLTypeFromFormat(const Renderer::Backend::Format format)
+{
+	GLenum type = GL_FLOAT;
+	if (format == Renderer::Backend::Format::R32_SFLOAT ||
+		format == Renderer::Backend::Format::R32G32_SFLOAT ||
+		format == Renderer::Backend::Format::R32G32B32_SFLOAT ||
+		format == Renderer::Backend::Format::R32G32B32A32_SFLOAT)
+		type = GL_FLOAT;
+	else if (
+		format == Renderer::Backend::Format::R16_SINT ||
+		format == Renderer::Backend::Format::R16G16_SINT)
+		type = GL_SHORT;
+	else if (
+		format == Renderer::Backend::Format::R8G8_UNORM ||
+		format == Renderer::Backend::Format::R8G8_UINT ||
+		format == Renderer::Backend::Format::R8G8B8A8_UNORM ||
+		format == Renderer::Backend::Format::R8G8B8A8_UINT)
+		type = GL_UNSIGNED_BYTE;
+	else
+		debug_warn("Unsupported format.");
+	return type;
+}
+
+} // anonymous namespace
+
 #if !CONFIG2_GLES
 
 class CShaderProgramARB : public CShaderProgram
@@ -109,13 +161,10 @@ public:
 
 		if (!Compile(GL_FRAGMENT_PROGRAM_ARB, "fragment", m_FragmentProgram, m_FragmentFile, fragmentCode))
 			return;
-
-		m_IsValid = true;
 	}
 
 	void Unload()
 	{
-		m_IsValid = false;
 	}
 
 	void Bind() override
@@ -484,14 +533,10 @@ public:
 
 		if (!Link())
 			return;
-
-		m_IsValid = true;
 	}
 
 	void Unload()
 	{
-		m_IsValid = false;
-
 		if (m_Program)
 			glDeleteProgram(m_Program);
 		m_Program = 0;
@@ -519,7 +564,7 @@ public:
 
 	Binding GetTextureBinding(texture_id_t id) override
 	{
-		std::map<CStrIntern, std::pair<GLenum, int> >::iterator it = m_Samplers.find(CStrIntern(id));
+		std::map<CStrIntern, std::pair<GLenum, int>>::iterator it = m_Samplers.find(CStrIntern(id));
 		if (it == m_Samplers.end())
 			return Binding();
 		else
@@ -528,7 +573,7 @@ public:
 
 	void BindTexture(texture_id_t id, GLuint tex) override
 	{
-		std::map<CStrIntern, std::pair<GLenum, int> >::iterator it = m_Samplers.find(CStrIntern(id));
+		std::map<CStrIntern, std::pair<GLenum, int>>::iterator it = m_Samplers.find(CStrIntern(id));
 		if (it == m_Samplers.end())
 			return;
 
@@ -545,7 +590,7 @@ public:
 
 	Binding GetUniformBinding(uniform_id_t id) override
 	{
-		std::map<CStrIntern, std::pair<int, GLenum> >::iterator it = m_Uniforms.find(id);
+		std::map<CStrIntern, std::pair<int, GLenum>>::iterator it = m_Uniforms.find(id);
 		if (it == m_Uniforms.end())
 			return Binding();
 		else
@@ -605,50 +650,46 @@ public:
 	// Map the various fixed-function Pointer functions onto generic vertex attributes
 	// (matching the attribute indexes from ShaderManager's ParseAttribSemantics):
 
-	void VertexPointer(GLint size, GLenum type, GLsizei stride, const void* pointer) override
+	void VertexPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer) override
 	{
+		const GLint size = GLSizeFromFormat(format);
+		const GLenum type = GLTypeFromFormat(format);
 		glVertexAttribPointer(0, size, type, GL_FALSE, stride, pointer);
 		m_ValidStreams |= STREAM_POS;
 	}
 
-	void NormalPointer(GLenum type, GLsizei stride, const void* pointer) override
+	void NormalPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer) override
 	{
-		glVertexAttribPointer(2, 3, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
+		const GLint size = GLSizeFromFormat(format);
+		const GLenum type = GLTypeFromFormat(format);
+		glVertexAttribPointer(2, size, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
 		m_ValidStreams |= STREAM_NORMAL;
 	}
 
-	void ColorPointer(GLint size, GLenum type, GLsizei stride, const void* pointer) override
+	void ColorPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer) override
 	{
+		const GLint size = GLSizeFromFormat(format);
+		const GLenum type = GLTypeFromFormat(format);
 		glVertexAttribPointer(3, size, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
 		m_ValidStreams |= STREAM_COLOR;
 	}
 
-	void TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, const void* pointer) override
+	void TexCoordPointer(GLenum texture, const Renderer::Backend::Format format, GLsizei stride, const void* pointer) override
 	{
+		const GLint size = GLSizeFromFormat(format);
+		const GLenum type = GLTypeFromFormat(format);
 		glVertexAttribPointer(8 + texture - GL_TEXTURE0, size, type, GL_FALSE, stride, pointer);
 		m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
 	}
 
-	void VertexAttribPointer(attrib_id_t id, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer) override
+	void VertexAttribPointer(attrib_id_t id, const Renderer::Backend::Format format, GLboolean normalized, GLsizei stride, const void* pointer) override
 	{
 		std::map<CStrIntern, int>::iterator it = m_VertexAttribs.find(id);
 		if (it != m_VertexAttribs.end())
 		{
+			const GLint size = GLSizeFromFormat(format);
+			const GLenum type = GLTypeFromFormat(format);
 			glVertexAttribPointer(it->second, size, type, normalized, stride, pointer);
-		}
-	}
-
-	void VertexAttribIPointer(attrib_id_t id, GLint size, GLenum type, GLsizei stride, const void* pointer) override
-	{
-		std::map<CStrIntern, int>::iterator it = m_VertexAttribs.find(id);
-		if (it != m_VertexAttribs.end())
-		{
-#if CONFIG2_GLES
-			UNUSED2(size); UNUSED2(type); UNUSED2(stride); UNUSED2(pointer);
-			debug_warn(L"glVertexAttribIPointer not supported on GLES");
-#else
-			glVertexAttribIPointerEXT(it->second, size, type, stride, pointer);
-#endif
 		}
 	}
 
@@ -668,14 +709,14 @@ private:
 	GLhandleARB m_VertexShader;
 	GLhandleARB m_FragmentShader;
 
-	std::map<CStrIntern, std::pair<int, GLenum> > m_Uniforms;
-	std::map<CStrIntern, std::pair<GLenum, int> > m_Samplers; // texture target & unit chosen for each uniform sampler
+	std::map<CStrIntern, std::pair<int, GLenum>> m_Uniforms;
+	std::map<CStrIntern, std::pair<GLenum, int>> m_Samplers; // texture target & unit chosen for each uniform sampler
 };
 
 //////////////////////////////////////////////////////////////////////////
 
 CShaderProgram::CShaderProgram(int streamflags)
-	: m_IsValid(false), m_StreamFlags(streamflags), m_ValidStreams(0)
+	: m_StreamFlags(streamflags), m_ValidStreams(0)
 {
 }
 
@@ -705,11 +746,6 @@ CShaderProgram::CShaderProgram(int streamflags)
 	int streamflags)
 {
 	return new CShaderProgramGLSL(vertexFile, fragmentFile, defines, vertexAttribs, streamflags);
-}
-
-bool CShaderProgram::IsValid() const
-{
-	return m_IsValid;
 }
 
 int CShaderProgram::GetStreamFlags() const
@@ -801,16 +837,10 @@ void CShaderProgram::Uniform(uniform_id_t id, size_t count, const float* v)
 // These should all be overridden by CShaderProgramGLSL, and not used
 // if a non-GLSL shader was loaded instead:
 
-void CShaderProgram::VertexAttribPointer(attrib_id_t UNUSED(id), GLint UNUSED(size), GLenum UNUSED(type),
+void CShaderProgram::VertexAttribPointer(attrib_id_t UNUSED(id), const Renderer::Backend::Format UNUSED(format),
 	GLboolean UNUSED(normalized), GLsizei UNUSED(stride), const void* UNUSED(pointer))
 {
 	debug_warn("Shader type doesn't support VertexAttribPointer");
-}
-
-void CShaderProgram::VertexAttribIPointer(attrib_id_t UNUSED(id), GLint UNUSED(size), GLenum UNUSED(type),
-	GLsizei UNUSED(stride), const void* UNUSED(pointer))
-{
-	debug_warn("Shader type doesn't support VertexAttribIPointer");
 }
 
 #if CONFIG2_GLES
@@ -841,27 +871,37 @@ void CShaderProgram::TexCoordPointer(GLenum UNUSED(texture), GLint UNUSED(size),
 // both use the fixed-function vertex attribute pointers so we'll share their
 // definitions here:
 
-void CShaderProgram::VertexPointer(GLint size, GLenum type, GLsizei stride, const void* pointer)
+void CShaderProgram::VertexPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer)
 {
+	const GLint size = GLSizeFromFormat(format);
+	ENSURE(2 <= size && size <= 4);
+	const GLenum type = GLTypeFromFormat(format);
 	glVertexPointer(size, type, stride, pointer);
 	m_ValidStreams |= STREAM_POS;
 }
 
-void CShaderProgram::NormalPointer(GLenum type, GLsizei stride, const void* pointer)
+void CShaderProgram::NormalPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer)
 {
-	glNormalPointer(type, stride, pointer);
+	ENSURE(format == Renderer::Backend::Format::R32G32B32_SFLOAT);
+	glNormalPointer(GL_FLOAT, stride, pointer);
 	m_ValidStreams |= STREAM_NORMAL;
 }
 
-void CShaderProgram::ColorPointer(GLint size, GLenum type, GLsizei stride, const void* pointer)
+void CShaderProgram::ColorPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer)
 {
+	const GLint size = GLSizeFromFormat(format);
+	ENSURE(3 <= size && size <= 4);
+	const GLenum type = GLTypeFromFormat(format);
 	glColorPointer(size, type, stride, pointer);
 	m_ValidStreams |= STREAM_COLOR;
 }
 
-void CShaderProgram::TexCoordPointer(GLenum texture, GLint size, GLenum type, GLsizei stride, const void* pointer)
+void CShaderProgram::TexCoordPointer(GLenum texture, const Renderer::Backend::Format format, GLsizei stride, const void* pointer)
 {
 	glClientActiveTextureARB(texture);
+	const GLint size = GLSizeFromFormat(format);
+	ENSURE(1 <= size && size <= 4);
+	const GLenum type = GLTypeFromFormat(format);
 	glTexCoordPointer(size, type, stride, pointer);
 	glClientActiveTextureARB(GL_TEXTURE0);
 	m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);

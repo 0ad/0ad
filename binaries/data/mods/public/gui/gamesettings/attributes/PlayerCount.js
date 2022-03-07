@@ -17,11 +17,8 @@ GameSettings.prototype.Attributes.PlayerCount = class PlayerCount extends GameSe
 
 	fromInitAttributes(attribs)
 	{
-		if (!this.getLegacySetting(attribs, "PlayerData"))
-			return;
-		let pData = this.getLegacySetting(attribs, "PlayerData");
-		if (this.nbPlayers !== pData.length)
-			this.nbPlayers = pData.length;
+		if (this.settings.map.map !== undefined)
+			this.reloadFromLegacy(attribs);
 	}
 
 	onMapTypeChange(old)
@@ -44,7 +41,8 @@ GameSettings.prototype.Attributes.PlayerCount = class PlayerCount extends GameSe
 	{
 		if (this.settings.map.type != "random")
 		{
-			this.nbPlayers = this.settings.map.data.settings.PlayerData.length;
+			if (this.settings.map.data && this.settings.map.data.settings && this.settings.map.data.settings.PlayerData)
+				this.nbPlayers = this.settings.map.data.settings.PlayerData.length;
 			return;
 		}
 		if (!data || !data.settings || data.settings.PlayerData === undefined)

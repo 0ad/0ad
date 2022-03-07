@@ -186,7 +186,7 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 	debugOverlayShader->BindTexture(str_baseTex, texture);
 	debugOverlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	debugOverlayShader->Uniform(str_textureTransform, textureMatrix);
-	CPatchRData::RenderStreams(deviceCommandContext, visiblePatches, debugOverlayShader, STREAM_POS | STREAM_POSTOUV0);
+	CPatchRData::RenderStreams(deviceCommandContext, visiblePatches, debugOverlayShader, true);
 
 	// To make the overlay visible over water, render an additional map-sized
 	// water-height patch.
@@ -208,8 +208,10 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 		};
 
 		const GLsizei stride = sizeof(float) * 3;
-		debugOverlayShader->VertexPointer(3, GL_FLOAT, stride, waterPos);
-		debugOverlayShader->TexCoordPointer(GL_TEXTURE0, 3, GL_FLOAT, stride, waterPos);
+		debugOverlayShader->VertexPointer(
+			Renderer::Backend::Format::R32G32B32_SFLOAT, stride, waterPos);
+		debugOverlayShader->TexCoordPointer(
+			GL_TEXTURE0, Renderer::Backend::Format::R32G32B32_SFLOAT, stride, waterPos);
 		debugOverlayShader->AssertPointersBound();
 
 		deviceCommandContext->Draw(0, 6);
@@ -320,7 +322,7 @@ void TerrainRenderer::RenderPatches(
 	solidShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	solidShader->Uniform(str_color, color);
 
-	CPatchRData::RenderStreams(deviceCommandContext, visiblePatches, solidShader, STREAM_POS);
+	CPatchRData::RenderStreams(deviceCommandContext, visiblePatches, solidShader, false);
 	solidTech->EndPass();
 #endif
 }

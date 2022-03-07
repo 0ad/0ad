@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,8 @@
 
 #include "simulation2/helpers/Position.h"
 
+#include <string>
+
 /**
  * Per-unit minimap data.
  */
@@ -44,6 +46,18 @@ public:
 	 * Updates the entity's minimap color to match the player color.
 	 */
 	virtual void UpdateColor() = 0;
+
+	/**
+	 * Returns true if a minimap should have icon of this entity.
+	 */
+	virtual bool HasIcon() = 0;
+
+	/**
+	 * Returns a path to icon of this entity.
+	 */
+	virtual std::string GetIconPath() = 0;
+
+	virtual float GetIconSize() = 0;
 
 	DECLARE_INTERFACE_TYPE(Minimap)
 };

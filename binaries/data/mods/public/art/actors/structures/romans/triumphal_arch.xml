@@ -4,6 +4,9 @@
   <group>
     <variant frequency="100" name="Roman Triumphal Arch">
       <mesh>structural/rome_arch.dae</mesh>
+      <props>
+        <prop actor="props/structures/romans/rome_quadriga_statue.xml" attachpoint="quadriga"/>
+      </props>
       <textures>
         <texture file="structural/rome_struct_arch.dds" name="baseTex"/>
         <texture file="structural/rome_struct_arch_norm.png" name="normTex"/>

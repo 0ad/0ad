@@ -10,25 +10,31 @@ else
 	// TODO: Replace ugly default for atlas by a dropdown
 	setBiome("gulf_of_bothnia/winter");
 
+const isLakeFrozen = g_Environment.Water.Frozen;
+
 const tPrimary = g_Terrains.mainTerrain;
 const tForestFloor = g_Terrains.forestFloor1;
 const tCliff = g_Terrains.cliff;
 const tSecondary = g_Terrains.tier1Terrain;
-const tHalfSnow = g_Terrains.tier2Terrain;
-const tSnowLimited = g_Terrains.tier3Terrain;
+const tPatch1 = g_Terrains.tier2Terrain;
+const tPatch2 = g_Terrains.tier3Terrain;
 const tRoad = g_Terrains.road;
 const tRoadWild = g_Terrains.roadWild;
 const tShore = g_Terrains.shore;
 const tWater = g_Terrains.water;
 
-const oPine = g_Gaia.tree1;
+const oTree1 = g_Gaia.tree1;
+const oTree2 = g_Gaia.tree2;
+const oTree3 = g_Gaia.tree3;
+const oTree4 = g_Gaia.tree4;
+const oTree5 = g_Gaia.tree5;
 const oBerryBush = g_Gaia.fruitBush;
 const oStoneLarge = g_Gaia.stoneLarge;
 const oStoneSmall = g_Gaia.stoneSmall;
 const oMetalLarge = g_Gaia.metalLarge;
 const oMetalSmall = g_Gaia.metalSmall;
-const oDeer = g_Gaia.mainHuntableAnimal;
-const oRabbit = g_Gaia.secondaryHuntableAnimal;
+const oMainHunt = g_Gaia.mainHuntableAnimal;
+const oSecHunt = g_Gaia.secondaryHuntableAnimal;
 const oFish = g_Gaia.fish;
 
 const aGrass = g_Decoratives.grass;
@@ -43,9 +49,18 @@ const heightShore = g_Heights.shore;
 const heightLand = g_Heights.land;
 
 const fishCount = g_ResourceCounts.fish;
+const huntCount = g_ResourceCounts.hunt;
+const berriesCount = g_ResourceCounts.berries;
 const bushCount = g_ResourceCounts.bush;
 
-const pForest = [tForestFloor + TERRAIN_SEPARATOR + oPine, tForestFloor];
+
+const pForest1 = [
+	tForestFloor + TERRAIN_SEPARATOR + oTree1,
+	tForestFloor + TERRAIN_SEPARATOR + oTree2, tForestFloor];
+
+const pForest2 = [
+	tForestFloor + TERRAIN_SEPARATOR + oTree4,
+	tForestFloor + TERRAIN_SEPARATOR + oTree5, tForestFloor];
 
 var g_Map = new RandomMap(heightLand, tPrimary);
 
@@ -56,7 +71,8 @@ const mapCenter = g_Map.getCenter();
 var clPlayer = g_Map.createTileClass();
 var clHill = g_Map.createTileClass();
 var clForest = g_Map.createTileClass();
-var clWater = g_Map.createTileClass();
+var clLake = g_Map.createTileClass();
+var clWater = isLakeFrozen ? g_Map.createTileClass() : clLake;
 var clDirt = g_Map.createTileClass();
 var clRock = g_Map.createTileClass();
 var clMetal = g_Map.createTileClass();
@@ -88,11 +104,11 @@ placePlayerBases({
 		]
 	},
 	"Trees": {
-		"template": oPine,
+		"template": oTree1,
 		"count": 2
 	},
 	"Decoratives": {
-		"template": aGrassShort
+		"template": aRockMedium
 	}
 });
 Engine.SetProgress(20);
@@ -120,38 +136,59 @@ for (let gulfLake of gulfLakePositions)
 		[
 			new TerrainPainter(tPrimary),
 			new SmoothElevationPainter(ELEVATION_SET, heightSeaGround, 4),
-			new TileClassPainter(clWater)
+			new TileClassPainter(clLake)
 		],
 		avoidClasses(clPlayer,scaleByMapSize(20, 28)));
 }
 
-if (currentBiome() === "gulf_of_bothnia/frozen_lake")
+if (isLakeFrozen)
 {
-	createAreas(
+	const areas = createAreas(
 		new ChainPlacer(
 			1,
 			4,
 			scaleByMapSize(16, 40),
 			0.3),
-		new ElevationPainter(-2),
-		stayClasses(clWater, 2),
+		[
+			new ElevationPainter(-6),
+			new TileClassPainter(clWater)
+		],
+		stayClasses(clLake, 2),
 		scaleByMapSize(10, 40));
+
+	createObjectGroupsByAreas(
+		new SimpleGroup([new SimpleObject(oFish, 1, 2, 0, 2)], true, clFood),
+		0,
+		stayClasses(clWater, 2),
+		scaleByMapSize(fishCount.min, fishCount.max),
+		20,
+		areas);
 }
 
 paintTerrainBasedOnHeight(heightShore, heightLand, Elevation_ExcludeMin_ExcludeMax, tShore);
 paintTerrainBasedOnHeight(-Infinity, heightShore, Elevation_ExcludeMin_IncludeMax, tWater);
 
-createBumps(avoidClasses(clWater, 2, clPlayer, 10));
+createBumps(avoidClasses(clLake, 2, clPlayer, 10));
 
 if (randBool())
-	createHills([tPrimary, tCliff, tPrimary], avoidClasses(clPlayer, 20, clHill, 15, clWater, 0), clHill, scaleByMapSize(1, 4) * numPlayers);
+	createHills(
+		[tPrimary, tCliff, tCliff],
+		avoidClasses(clPlayer, 20, clHill, 15, clLake, 0),
+		clHill,
+		scaleByMapSize(1, 4) * numPlayers,
+		undefined,
+		undefined,
+		undefined,
+		0.5,
+		18,
+		4);
 else
-	createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 15, clWater, 0), clHill, scaleByMapSize(1, 4) * numPlayers);
+	createMountains(tCliff, avoidClasses(clPlayer, 20, clHill, 15, clLake, 0), clHill, scaleByMapSize(1, 4) * numPlayers, Math.floor(scaleByMapSize(20, 40)));
 
 var [forestTrees, stragglerTrees] = getTreeCounts(500, 3000, 0.7);
 createDefaultForests(
-	[tPrimary, tForestFloor, tForestFloor, pForest, pForest],
-	avoidClasses(clPlayer, 20, clForest, 16, clHill, 0, clWater, 2),
+	[tForestFloor, tForestFloor, tForestFloor, pForest1, pForest2],
+	avoidClasses(clPlayer, 20, clForest, 16, clHill, 0, clLake, 2),
 	clForest,
 	forestTrees);
 
@@ -159,20 +196,20 @@ Engine.SetProgress(60);
 
 g_Map.log("Creating dirt patches");
 createLayeredPatches(
- [scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
- [[tPrimary,tSecondary],[tSecondary,tHalfSnow], [tHalfSnow,tSnowLimited]],
- [1,1],
- avoidClasses(clWater, 6, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
- scaleByMapSize(15, 45),
- clDirt);
+	[scaleByMapSize(3, 6), scaleByMapSize(5, 10), scaleByMapSize(8, 21)],
+	[[tPrimary, tSecondary], [tSecondary, tPatch1], [tPatch1, tPatch2]],
+	[1, 1],
+	avoidClasses(clLake, 6, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
+	scaleByMapSize(15, 45),
+	clDirt);
 
 g_Map.log("Creating grass patches");
 createPatches(
- [scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
- tHalfSnow,
- avoidClasses(clWater, 6, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
- scaleByMapSize(15, 45),
- clDirt);
+	[scaleByMapSize(2, 4), scaleByMapSize(3, 7), scaleByMapSize(5, 15)],
+	tPatch1,
+	avoidClasses(clLake, 6, clForest, 0, clHill, 0, clDirt, 5, clPlayer, 12),
+	scaleByMapSize(15, 45),
+	clDirt);
 Engine.SetProgress(65);
 
 g_Map.log("Creating metal mines");
@@ -180,7 +217,7 @@ createBalancedMetalMines(
 	oMetalSmall,
 	oMetalLarge,
 	clMetal,
-	avoidClasses(clWater, 2, clForest, 0, clPlayer, scaleByMapSize(15, 25), clHill, 1),
+	avoidClasses(clLake, 2, clForest, 0, clPlayer, scaleByMapSize(15, 25), clHill, 1),
 	0.9
 );
 
@@ -189,7 +226,7 @@ createBalancedStoneMines(
 	oStoneSmall,
 	oStoneLarge,
 	clRock,
-	avoidClasses(clWater, 2, clForest, 0, clPlayer, scaleByMapSize(15, 25), clHill, 1, clMetal, 10),
+	avoidClasses(clLake, 2, clForest, 0, clPlayer, scaleByMapSize(15, 25), clHill, 1, clMetal, 10),
 	0.9
 );
 Engine.SetProgress(70);
@@ -209,44 +246,48 @@ createDecoration(
 		scaleByMapSize(bushCount.min, bushCount.max),
 		scaleByMapSize(bushCount.min, bushCount.max)
 	],
-	avoidClasses(clWater, 0, clForest, 0, clPlayer, 5, clHill, 0, clBaseResource, 5));
+	avoidClasses(clLake, 0, clForest, 0, clPlayer, 5, clHill, 0, clBaseResource, 5));
 Engine.SetProgress(75);
 
 createFood(
 	[
-		[new SimpleObject(oDeer, 5, 7, 0, 4)],
-		[new SimpleObject(oRabbit, 2, 3, 0, 2)]
+		[new SimpleObject(oMainHunt, 5, 7, 0, 4)],
+		[new SimpleObject(oSecHunt, 2, 3, 0, 2)]
 	],
 	[
-		3 * numPlayers,
-		3 * numPlayers
+		scaleByMapSize(huntCount.min / 2, huntCount.max / 2),
+		scaleByMapSize(huntCount.min / 2, huntCount.max / 2)
 	],
-	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 20),
+	avoidClasses(clLake, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 20),
 	clFood);
 
 createFood(
 	[[new SimpleObject(oBerryBush, 5, 7, 0, 4)]],
-	[randIntInclusive(1, 4) * numPlayers + 2],
-	avoidClasses(clWater, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
+	[scaleByMapSize(berriesCount.min, berriesCount.max)],
+	avoidClasses(clLake, 3, clForest, 0, clPlayer, 20, clHill, 1, clFood, 10),
 	clFood);
 
-createFood(
-	[[new SimpleObject(oFish, 2, 3, 0, 2)]],
-	[scaleByMapSize(fishCount.min, fishCount.max)],
-	[avoidClasses(clFood, 20), stayClasses(clWater, 6)],
-	clFood);
+if (!isLakeFrozen)
+{
+	// actually it would work without an error without this if statement
+	// but since this placer would fail most of the time on the frozen lake -> save some time by just skipping it
+	// fish are already placed when creating the holes in the ice
+	createFood(
+		[[new SimpleObject(oFish, 2, 3, 0, 2)]],
+		[scaleByMapSize(fishCount.min, fishCount.max)],
+		[avoidClasses(clFood, 20), stayClasses(clWater, 6)],
+		clFood);
+}
 
 Engine.SetProgress(85);
 
 createStragglerTrees(
-	[oPine],
-	avoidClasses(clWater, 3, clForest, 1, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6),
+	[oTree3],
+	avoidClasses(clLake, 3, clForest, 1, clHill, 1, clPlayer, 12, clMetal, 6, clRock, 6),
 	clForest,
 	stragglerTrees);
 
 // Avoid the lake, even if frozen
-placePlayersNomad(clPlayer, avoidClasses(clWater, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
-
-setSunElevation(Math.PI * randFloat(1/6, 1/4));
+placePlayersNomad(clPlayer, avoidClasses(clLake, 4, clForest, 1, clMetal, 4, clRock, 4, clHill, 4, clFood, 2));
 
 g_Map.ExportMap();

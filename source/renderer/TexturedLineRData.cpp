@@ -60,13 +60,13 @@ void CTexturedLineRData::Render(
 		reinterpret_cast<CTexturedLineRData::SVertex*>(m_VB->m_Owner->Bind(deviceCommandContext));
 
 	if (streamFlags & STREAM_POS)
-		shader->VertexPointer(3, GL_FLOAT, stride, &vertexBase->m_Position[0]);
+		shader->VertexPointer(Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &vertexBase->m_Position[0]);
 
 	if (streamFlags & STREAM_UV0)
-		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, &vertexBase->m_UVs[0]);
+		shader->TexCoordPointer(GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, stride, &vertexBase->m_UVs[0]);
 
 	if (streamFlags & STREAM_UV1)
-		shader->TexCoordPointer(GL_TEXTURE1, 2, GL_FLOAT, stride, &vertexBase->m_UVs[0]);
+		shader->TexCoordPointer(GL_TEXTURE1, Renderer::Backend::Format::R32G32_SFLOAT, stride, &vertexBase->m_UVs[0]);
 
 	shader->AssertPointersBound();
 

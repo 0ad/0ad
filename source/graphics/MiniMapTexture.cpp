@@ -58,6 +58,8 @@ namespace
 // f.e. use instancing.
 const size_t MAX_ENTITIES_DRAWN = 65536 / 4;
 
+const size_t MAX_ICON_COUNT = 128;
+
 const size_t FINAL_TEXTURE_SIZE = 512;
 
 unsigned int ScaleColor(unsigned int color, float x)
@@ -93,8 +95,10 @@ void DrawTexture(
 		-1.0f, -1.0f, 0.0f
 	};
 
-	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, quadUVs);
-	shader->VertexPointer(3, GL_FLOAT, 0, quadVertices);
+	shader->TexCoordPointer(
+		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, quadUVs);
+	shader->VertexPointer(
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, quadVertices);
 	shader->AssertPointersBound();
 
 	deviceCommandContext->Draw(0, 6);
@@ -237,7 +241,7 @@ void CMiniMapTexture::CreateTextures(
 
 	// Create terrain texture
 	m_TerrainTexture = backendDevice->CreateTexture2D("MiniMapTerrainTexture",
-		Renderer::Backend::Format::R8G8B8A8, textureSize, textureSize, defaultSamplerDesc);
+		Renderer::Backend::Format::R8G8B8A8_UNORM, textureSize, textureSize, defaultSamplerDesc);
 
 	// Initialise texture with solid black, for the areas we don't
 	// overwrite with uploading later.
@@ -245,14 +249,14 @@ void CMiniMapTexture::CreateTextures(
 	for (size_t i = 0; i < textureSize * textureSize; ++i)
 		texData[i] = 0xFF000000;
 	deviceCommandContext->UploadTexture(
-		m_TerrainTexture.get(), Renderer::Backend::Format::R8G8B8A8,
+		m_TerrainTexture.get(), Renderer::Backend::Format::R8G8B8A8_UNORM,
 		texData.get(), textureSize * textureSize * 4);
 	texData.reset();
 
 	m_TerrainData = std::make_unique<u32[]>((m_MapSize - 1) * (m_MapSize - 1));
 
 	m_FinalTexture = backendDevice->CreateTexture2D("MiniMapFinalTexture",
-		Renderer::Backend::Format::R8G8B8A8, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE, defaultSamplerDesc);
+		Renderer::Backend::Format::R8G8B8A8_UNORM, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE, defaultSamplerDesc);
 
 	m_FinalTextureFramebuffer = backendDevice->CreateFramebuffer("MiniMapFinalFramebuffer",
 		m_FinalTexture.get(), nullptr);
@@ -328,7 +332,7 @@ void CMiniMapTexture::RebuildTerrainTexture(
 
 	// Upload the texture
 	deviceCommandContext->UploadTextureRegion(
-		m_TerrainTexture.get(), Renderer::Backend::Format::R8G8B8A8,
+		m_TerrainTexture.get(), Renderer::Backend::Format::R8G8B8A8_UNORM,
 		m_TerrainData.get(), width * height * 4, 0, 0, width, height);
 }
 
@@ -444,10 +448,12 @@ void CMiniMapTexture::RenderFinalTexture(
 	unitMatrix.Translate(CVector3D(-1.0f, -1.0f, 0.0f));
 	shader->Uniform(str_transform, unitMatrix);
 
-	CSimulation2::InterfaceList ents = m_Simulation.GetEntitiesWithInterface(IID_Minimap);
-
 	if (doUpdate)
 	{
+		m_Icons.clear();
+
+		CSimulation2::InterfaceList ents = m_Simulation.GetEntitiesWithInterface(IID_Minimap);
+
 		VertexArrayIterator<float[2]> attrPos = m_AttributePos.GetIterator<float[2]>();
 		VertexArrayIterator<u8[4]> attrColor = m_AttributeColor.GetIterator<u8[4]>();
 
@@ -466,6 +472,15 @@ void CMiniMapTexture::RenderFinalTexture(
 			m_BlinkState = !m_BlinkState;
 			m_NextBlinkTime = currentTime + m_HalfBlinkDuration;
 		}
+
+		bool iconsEnabled = false;
+		CFG_GET_VAL("gui.session.minimap.icons.enabled", iconsEnabled);
+		float iconsOpacity = 1.0f;
+		CFG_GET_VAL("gui.session.minimap.icons.opacity", iconsOpacity);
+		float iconsSizeScale = 1.0f;
+		CFG_GET_VAL("gui.session.minimap.icons.sizescale", iconsSizeScale);
+
+		bool iconsCountOverflow = false;
 
 		entity_pos_t posX, posZ;
 		for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
@@ -493,9 +508,28 @@ void CMiniMapTexture::RenderFinalTexture(
 						AddEntity(v, attrColor, attrPos, entityRadius);
 						++m_EntitiesDrawn;
 					}
+
+					if (!iconsEnabled || !cmpMinimap->HasIcon())
+						continue;
+
+					if (m_Icons.size() < MAX_ICON_COUNT)
+					{
+						CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(
+							CTextureProperties(cmpMinimap->GetIconPath()));
+						const CColor color(v.r / 255.0f, v.g / 255.0f, v.b / 255.0f, iconsOpacity);
+						m_Icons.emplace_back(Icon{
+							std::move(texture), color, v.position, cmpMinimap->GetIconSize() * iconsSizeScale * 0.5f});
+					}
+					else
+					{
+						iconsCountOverflow = true;
+					}
 				}
 			}
 		}
+
+		if (iconsCountOverflow)
+				LOGWARNING("Too many minimap icons to draw: %zu/%zu", m_Icons.size(), MAX_ICON_COUNT);
 
 		// Add the pinged vertices at the end, so they are drawn on top
 		for (const MinimapUnitVertex& vertex : pingingVertices)
@@ -534,8 +568,10 @@ void CMiniMapTexture::RenderFinalTexture(
 		u8* base = m_VertexArray.Bind(deviceCommandContext);
 		const GLsizei stride = (GLsizei)m_VertexArray.GetStride();
 
-		shader->VertexPointer(2, GL_FLOAT, stride, base + m_AttributePos.offset);
-		shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, base + m_AttributeColor.offset);
+		shader->VertexPointer(
+			Renderer::Backend::Format::R32G32_SFLOAT, stride, base + m_AttributePos.offset);
+		shader->ColorPointer(
+			Renderer::Backend::Format::R8G8B8A8_UNORM, stride, base + m_AttributeColor.offset);
 		shader->AssertPointersBound();
 
 		deviceCommandContext->SetIndexBuffer(m_IndexArray.GetBuffer());

@@ -531,7 +531,7 @@ void ShadowMapInternals::CreateTexture()
 	if (g_RenderingOptions.GetShadowAlphaFix())
 	{
 		DummyTexture = backendDevice->CreateTexture2D("ShadowMapDummy",
-			Renderer::Backend::Format::R8G8B8A8, Width, Height,
+			Renderer::Backend::Format::R8G8B8A8_UNORM, Width, Height,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::NEAREST,
 				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
@@ -747,8 +747,10 @@ void ShadowMap::RenderDebugTexture(
 		1,0, 0,1, 1,1
 	};
 
-	texShader->VertexPointer(2, GL_FLOAT, 0, boxVerts);
-	texShader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 0, boxUV);
+	texShader->VertexPointer(
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, boxVerts);
+	texShader->TexCoordPointer(
+		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, boxUV);
 	texShader->AssertPointersBound();
 	deviceCommandContext->Draw(0, 6);
 

@@ -201,9 +201,12 @@ void CDecalRData::RenderDecals(
 					const GLsizei stride = sizeof(SDecalVertex);
 					SDecalVertex* base = (SDecalVertex*)batch.vertices->m_Owner->Bind(deviceCommandContext);
 
-					shader->VertexPointer(3, GL_FLOAT, stride, &base->m_Position[0]);
-					shader->NormalPointer(GL_FLOAT, stride, &base->m_Normal[0]);
-					shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, &base->m_UV[0]);
+					shader->VertexPointer(
+						Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base->m_Position[0]);
+					shader->NormalPointer(
+						Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base->m_Normal[0]);
+					shader->TexCoordPointer(
+						GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, stride, &base->m_UV[0]);
 				}
 
 				shader->AssertPointersBound();

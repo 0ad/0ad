@@ -229,7 +229,8 @@ void TerrainOverlay::RenderTile(
 	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	overlayShader->Uniform(str_color, color);
 
-	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
+	overlayShader->VertexPointer(
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
 	overlayShader->AssertPointersBound();
 
 	deviceCommandContext->Draw(0, vertices.size() / 3);
@@ -297,7 +298,8 @@ void TerrainOverlay::RenderTileOutline(
 	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	overlayShader->Uniform(str_color, color);
 
-	overlayShader->VertexPointer(3, GL_FLOAT, 0, vertices.data());
+	overlayShader->VertexPointer(
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
 	overlayShader->AssertPointersBound();
 
 	deviceCommandContext->Draw(0, vertices.size() / 3);
@@ -330,7 +332,7 @@ void TerrainTextureOverlay::RenderAfterWater(
 	if (!m_Texture || m_Texture->GetWidth() != requiredWidth || m_Texture->GetHeight() != requiredHeight)
 	{
 		m_Texture = deviceCommandContext->GetDevice()->CreateTexture2D("TerrainOverlayTexture",
-			Renderer::Backend::Format::R8G8B8A8, requiredWidth, requiredHeight,
+			Renderer::Backend::Format::R8G8B8A8_UNORM, requiredWidth, requiredHeight,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::NEAREST,
 				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
@@ -340,7 +342,7 @@ void TerrainTextureOverlay::RenderAfterWater(
 	BuildTextureRGBA(data, w, h);
 
 	deviceCommandContext->UploadTextureRegion(
-		m_Texture.get(), Renderer::Backend::Format::R8G8B8A8, data, w * h * 4, 0, 0, w, h);
+		m_Texture.get(), Renderer::Backend::Format::R8G8B8A8_UNORM, data, w * h * 4, 0, 0, w, h);
 
 	free(data);
 

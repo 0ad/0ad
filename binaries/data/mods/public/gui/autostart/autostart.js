@@ -1,17 +1,12 @@
 function init(initData)
 {
 	let settings = new GameSettings().init();
-	settings.fromInitAttributes(initData);
-	let assignments = {
-		"local": {
-			"player": 1,
-			"name": Engine.ConfigDB_GetValue("user", "playername.singleplayer") || Engine.GetSystemUsername()
-		}
-	};
-	settings.launchGame(assignments);
+	settings.fromInitAttributes(initData.attribs);
+
+	settings.launchGame(initData.playerAssignments, initData.storeReplay);
 
 	Engine.SwitchGuiPage("page_loading.xml", {
 		"attribs": settings.finalizedAttributes,
-		"playerAssignments": assignments
+		"playerAssignments": initData.playerAssignments
 	});
 }

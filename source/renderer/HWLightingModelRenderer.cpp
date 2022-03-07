@@ -203,10 +203,18 @@ void ShaderModelVertexRenderer::PrepareModelDef(
 	GLsizei stride = (GLsizei)m->shadermodeldef->m_Array.GetStride();
 
 	if (streamflags & STREAM_UV0)
-		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, stride, base + m->shadermodeldef->m_UVs[0].offset);
+	{
+		shader->TexCoordPointer(
+			GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, stride,
+			base + m->shadermodeldef->m_UVs[0].offset);
+	}
 
 	if ((streamflags & STREAM_UV1) && def.GetNumUVsPerVertex() >= 2)
-		shader->TexCoordPointer(GL_TEXTURE1, 2, GL_FLOAT, stride, base + m->shadermodeldef->m_UVs[1].offset);
+	{
+		shader->TexCoordPointer(
+			GL_TEXTURE1, Renderer::Backend::Format::R32G32_SFLOAT, stride,
+			base + m->shadermodeldef->m_UVs[1].offset);
+	}
 }
 
 
@@ -225,10 +233,18 @@ void ShaderModelVertexRenderer::RenderModel(
 	deviceCommandContext->SetIndexBuffer(m->shadermodeldef->m_IndexArray.GetBuffer());
 
 	if (streamflags & STREAM_POS)
-		shader->VertexPointer(3, GL_FLOAT, stride, base + shadermodel->m_Position.offset);
+	{
+		shader->VertexPointer(
+			Renderer::Backend::Format::R32G32B32_SFLOAT, stride,
+			base + shadermodel->m_Position.offset);
+	}
 
 	if (streamflags & STREAM_NORMAL)
-		shader->NormalPointer(GL_FLOAT, stride, base + shadermodel->m_Normal.offset);
+	{
+		shader->NormalPointer(
+			Renderer::Backend::Format::R32G32B32_SFLOAT, stride,
+			base + shadermodel->m_Normal.offset);
+	}
 
 	shader->AssertPointersBound();
 

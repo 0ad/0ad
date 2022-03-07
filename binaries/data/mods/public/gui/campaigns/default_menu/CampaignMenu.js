@@ -95,7 +95,7 @@ class CampaignMenu extends AutoWatcher
 			return;
 		}
 
-		gameSettings.launchGame(assignments);
+		gameSettings.launchGame(assignments, true);
 		Engine.SwitchGuiPage("page_loading.xml", {
 			"attribs": gameSettings.finalizedAttributes,
 			"playerAssignments": assignments

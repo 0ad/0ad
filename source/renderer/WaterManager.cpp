@@ -191,14 +191,14 @@ int WaterManager::LoadWaterTextures()
 
 	// Create reflection texture
 	m_ReflectionTexture = backendDevice->CreateTexture2D("WaterReflectionTexture",
-		Renderer::Backend::Format::R8G8B8A8, m_RefTextureSize, m_RefTextureSize,
+		Renderer::Backend::Format::R8G8B8A8_UNORM, m_RefTextureSize, m_RefTextureSize,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::MIRRORED_REPEAT));
 
 	// Create refraction texture
 	m_RefractionTexture = backendDevice->CreateTexture2D("WaterRefractionTexture",
-		Renderer::Backend::Format::R8G8B8A8, m_RefTextureSize, m_RefTextureSize,
+		Renderer::Backend::Format::R8G8B8A8_UNORM, m_RefTextureSize, m_RefTextureSize,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::MIRRORED_REPEAT));
@@ -256,7 +256,7 @@ void WaterManager::Resize()
 
 	// Create the Fancy Effects texture
 	m_FancyTexture = backendDevice->CreateTexture2D("WaterFancyTexture",
-		Renderer::Backend::Format::R8G8B8A8, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
+		Renderer::Backend::Format::R8G8B8A8_UNORM, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::REPEAT));
@@ -799,13 +799,18 @@ void WaterManager::RenderWaves(
 
 		// setup data pointers
 		GLsizei stride = sizeof(SWavesVertex);
-		shader->VertexPointer(3, GL_FLOAT, stride, &base[VBchunk->m_Index].m_BasePosition);
-		shader->TexCoordPointer(GL_TEXTURE0, 2, GL_UNSIGNED_BYTE, stride, &base[VBchunk->m_Index].m_UV);
-		//	NormalPointer(gl_FLOAT, stride, &base[m_VBWater->m_Index].m_UV)
-		glVertexAttribPointerARB(2, 2, GL_FLOAT, GL_FALSE, stride, &base[VBchunk->m_Index].m_PerpVect);	// replaces commented above because my normal is vec2
-		shader->VertexAttribPointer(str_a_apexPosition, 3, GL_FLOAT, false, stride, &base[VBchunk->m_Index].m_ApexPosition);
-		shader->VertexAttribPointer(str_a_splashPosition, 3, GL_FLOAT, false, stride, &base[VBchunk->m_Index].m_SplashPosition);
-		shader->VertexAttribPointer(str_a_retreatPosition, 3, GL_FLOAT, false, stride, &base[VBchunk->m_Index].m_RetreatPosition);
+		shader->VertexPointer(
+			Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base[VBchunk->m_Index].m_BasePosition);
+		shader->TexCoordPointer(
+			GL_TEXTURE0, Renderer::Backend::Format::R8G8_UINT, stride, &base[VBchunk->m_Index].m_UV);
+		shader->NormalPointer(
+			Renderer::Backend::Format::R32G32_SFLOAT, stride, &base[VBchunk->m_Index].m_PerpVect);
+		shader->VertexAttribPointer(
+			str_a_apexPosition, Renderer::Backend::Format::R32G32B32_SFLOAT, false, stride, &base[VBchunk->m_Index].m_ApexPosition);
+		shader->VertexAttribPointer(
+			str_a_splashPosition, Renderer::Backend::Format::R32G32B32_SFLOAT, false, stride, &base[VBchunk->m_Index].m_SplashPosition);
+		shader->VertexAttribPointer(
+			str_a_retreatPosition, Renderer::Backend::Format::R32G32B32_SFLOAT, false, stride, &base[VBchunk->m_Index].m_RetreatPosition);
 
 		shader->AssertPointersBound();
 

@@ -183,26 +183,26 @@ void CDeviceCommandContext::UploadTextureRegion(
 	if (texture->GetType() == CTexture::Type::TEXTURE_2D)
 	{
 		ENSURE(layer == 0);
-		if (texture->GetFormat() == Format::R8G8B8A8 ||
-			texture->GetFormat() == Format::R8G8B8 ||
-			texture->GetFormat() == Format::A8)
+		if (texture->GetFormat() == Format::R8G8B8A8_UNORM ||
+			texture->GetFormat() == Format::R8G8B8_UNORM ||
+			texture->GetFormat() == Format::A8_UNORM)
 		{
 			ENSURE(texture->GetFormat() == dataFormat);
 			size_t bytesPerPixel = 4;
 			GLenum pixelFormat = GL_RGBA;
 			switch (dataFormat)
 			{
-			case Format::R8G8B8A8:
+			case Format::R8G8B8A8_UNORM:
 				break;
-			case Format::R8G8B8:
+			case Format::R8G8B8_UNORM:
 				pixelFormat = GL_RGB;
 				bytesPerPixel = 3;
 				break;
-			case Format::A8:
+			case Format::A8_UNORM:
 				pixelFormat = GL_ALPHA;
 				bytesPerPixel = 1;
 				break;
-			case Format::L8:
+			case Format::L8_UNORM:
 				pixelFormat = GL_LUMINANCE;
 				bytesPerPixel = 1;
 				break;
@@ -219,10 +219,10 @@ void CDeviceCommandContext::UploadTextureRegion(
 			ogl_WarnIfError();
 		}
 		else if (
-			texture->GetFormat() == Format::BC1_RGB ||
-			texture->GetFormat() == Format::BC1_RGBA ||
-			texture->GetFormat() == Format::BC2 ||
-			texture->GetFormat() == Format::BC3)
+			texture->GetFormat() == Format::BC1_RGB_UNORM ||
+			texture->GetFormat() == Format::BC1_RGBA_UNORM ||
+			texture->GetFormat() == Format::BC2_UNORM ||
+			texture->GetFormat() == Format::BC3_UNORM)
 		{
 			ENSURE(xOffset == 0 && yOffset == 0);
 			ENSURE(texture->GetFormat() == dataFormat);
@@ -231,13 +231,13 @@ void CDeviceCommandContext::UploadTextureRegion(
 			GLenum internalFormat = GL_COMPRESSED_RGB_S3TC_DXT1_EXT;
 			switch (texture->GetFormat())
 			{
-			case Format::BC1_RGBA:
+			case Format::BC1_RGBA_UNORM:
 				internalFormat = GL_COMPRESSED_RGBA_S3TC_DXT1_EXT;
 				break;
-			case Format::BC2:
+			case Format::BC2_UNORM:
 				internalFormat = GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
 				break;
-			case Format::BC3:
+			case Format::BC3_UNORM:
 				internalFormat = GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
 				break;
 			default:
@@ -253,7 +253,7 @@ void CDeviceCommandContext::UploadTextureRegion(
 	}
 	else if (texture->GetType() == CTexture::Type::TEXTURE_CUBE)
 	{
-		if (texture->GetFormat() == Format::R8G8B8A8)
+		if (texture->GetFormat() == Format::R8G8B8A8_UNORM)
 		{
 			ENSURE(texture->GetFormat() == dataFormat);
 			ENSURE(level == 0 && layer < 6);

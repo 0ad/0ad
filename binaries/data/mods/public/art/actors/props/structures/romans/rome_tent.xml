@@ -6,32 +6,68 @@
       <mesh>props/rome_tent_a.dae</mesh>
       <props>
         <prop actor="props/structures/romans/rome_tent_a_props.xml" attachpoint="root"/>
-        <prop actor="props/units/shields/rome_scutum_a.xml" attachpoint="shieldtower"/>
+        <prop actor="props/units/shields/scutum_rome_isp_14.xml" attachpoint="shieldtower"/>
         <prop actor="props/units/shields/rome_parma_a.xml" attachpoint="shieldround"/>
         <prop actor="props/structures/romans/rome_tent_a_flaps.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="props/rome_sb_tent.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="Tent B">
       <mesh>props/rome_tent_b.dae</mesh>
       <props>
         <prop actor="props/structures/romans/rome_tent_b_props.xml" attachpoint="root"/>
-        <prop actor="props/units/shields/rome_scutum_e.xml" attachpoint="shieldtower"/>
+        <prop actor="props/units/shields/scutum_rome_isp_06.xml" attachpoint="shieldtower"/>
         <prop actor="props/units/shields/rome_parma_b.xml" attachpoint="shieldround"/>
         <prop actor="props/structures/romans/rome_tent_b_flaps.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="props/rome_sb_tent.png" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="Tent C (fire)">
       <mesh>props/rome_tent_c.dae</mesh>
       <props>
         <prop actor="props/structures/romans/rome_tent_c_props.xml" attachpoint="root"/>
         <prop actor="props/structures/romans/rome_tent_c_flaps.xml" attachpoint="root"/>
-        <prop actor="props/units/shields/rome_scutum_su.xml" attachpoint="shieldtower"/>
+        <prop actor="props/units/shields/scutum_rome_isw_05.xml" attachpoint="shieldtower"/>
         <prop actor="props/units/shields/rome_parma_e.xml" attachpoint="shieldround"/>
         <prop actor="props/special/eyecandy/campfire_prop.xml" attachpoint="fire"/>
       </props>
-      <textures><texture file="props/rome_sb_tent.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Texture">
+      <textures>
+        <texture file="props/rome_sb_tent.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="Shield 14">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isp_14.xml" attachpoint="shieldtower"/>
+      </props>
+    </variant>
+    <variant frequency="2" name="Shield 06">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isp_06.xml" attachpoint="shieldtower"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Shield 05">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isw_05.xml" attachpoint="shieldtower"/>
+      </props>
+    </variant>
+    <variant frequency="2" name="Shield 10">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isp_10.xml" attachpoint="shieldtower"/>
+      </props>
+    </variant>
+    <variant frequency="2" name="Shield 12">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isw_12.xml" attachpoint="shieldtower"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="Shield 02">
+      <props>
+        <prop actor="props/units/shields/scutum_rome_isw_02.xml" attachpoint="shieldtower"/>
+      </props>
     </variant>
   </group>
   <material>player_trans.xml</material>

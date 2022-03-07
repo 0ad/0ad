@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="hoplite|template_unit_champion_infantry_spearman">
+  <Identity>
+    <Lang>greek</Lang>
+    <GenericName>Theban Sacred Band Hoplite</GenericName>
+    <SpecificName>Hieroû Thebaíou Lókhou Hoplítai</SpecificName>
+    <Tooltip>Champion Spearman.</Tooltip>
+    <Icon>units/thebes_sacred_band_hoplitai.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/thebans/infantry_spearman_c.xml</Actor>
+  </VisualActor>
+</Entity>

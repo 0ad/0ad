@@ -116,7 +116,7 @@ void SkyManager::LoadAndUploadSkyTexturesIfNeeded(
 
 	m_SkyCubeMap = g_VideoMode.GetBackendDevice()->CreateTexture("SkyCubeMap",
 		Renderer::Backend::GL::CTexture::Type::TEXTURE_CUBE,
-		Renderer::Backend::Format::R8G8B8A8, textures[0].m_Width, textures[0].m_Height,
+		Renderer::Backend::Format::R8G8B8A8_UNORM, textures[0].m_Width, textures[0].m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1, 1);
@@ -147,13 +147,13 @@ void SkyManager::LoadAndUploadSkyTexturesIfNeeded(
 			}
 
 			deviceCommandContext->UploadTexture(
-				m_SkyCubeMap.get(), Renderer::Backend::Format::R8G8B8A8,
+				m_SkyCubeMap.get(), Renderer::Backend::Format::R8G8B8A8_UNORM,
 				&rotated[0], textures[i].m_DataSize, 0, i);
 		}
 		else
 		{
 			deviceCommandContext->UploadTexture(
-				m_SkyCubeMap.get(), Renderer::Backend::Format::R8G8B8A8,
+				m_SkyCubeMap.get(), Renderer::Backend::Format::R8G8B8A8_UNORM,
 				data, textures[i].m_DataSize, 0, i);
 		}
 	}
@@ -243,9 +243,9 @@ void SkyManager::RenderSky(
 	const GLsizei stride = static_cast<GLsizei>(m_VertexArray.GetStride());
 
 	shader->VertexPointer(
-		3, GL_FLOAT, stride, base + m_AttributePosition.offset);
+		Renderer::Backend::Format::R32G32B32_SFLOAT, stride, base + m_AttributePosition.offset);
 	shader->TexCoordPointer(
-		GL_TEXTURE0, 3, GL_FLOAT, stride, base + m_AttributeUV.offset);
+		GL_TEXTURE0, Renderer::Backend::Format::R32G32B32_SFLOAT, stride, base + m_AttributeUV.offset);
 	shader->AssertPointersBound();
 
 	deviceCommandContext->Draw(0, m_VertexArray.GetNumberOfVertices());
