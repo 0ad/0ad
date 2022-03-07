@@ -7,6 +7,11 @@
     <Civ>han</Civ>
     <SpecificName>Bīnggōng Chǎng</SpecificName>
   </Identity>
+  <Researcher>
+    <Technologies datatype="tokens">
+      -siege_bolt_accuracy
+    </Technologies>
+  </Researcher>
   <Trainer>
     <Entities datatype="tokens">
       units/{civ}/siege_mangonel_packed
