@@ -9,7 +9,6 @@
         <prop actor="props/structures/spartans/sissyton_props_a.xml" attachpoint="root"/>
         <prop actor="props/structures/spartans/sissyton_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/spartans/sissyton_tile_b.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="structural/hele_struct.dds" name="baseTex"/>
@@ -21,7 +20,11 @@
     <variant frequency="1" name="Spart Syssiton Special Building">
       <mesh>structural/spart_syssiton_2.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/dirt_3x6.xml" attachpoint="root"/>
+        <prop actor="props/units/shields/aspis_lambda_02.xml" attachpoint="shield_rf"/>
+        <prop actor="props/units/shields/aspis_lambda_02.xml" attachpoint="shield_rr"/>
+        <prop actor="props/units/shields/aspis_lambda_01.xml" attachpoint="shield_lf"/>
+        <prop actor="props/units/shields/aspis_lambda_01.xml" attachpoint="shield_lr"/>
+        <prop actor="props/units/shields/aspis_spart_d.xml" attachpoint="shield_back"/>
       </props>
       <textures>
         <texture file="structural/sparta_struct.png" name="baseTex"/>

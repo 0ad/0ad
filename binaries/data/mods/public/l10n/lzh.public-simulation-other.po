@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-11-19 08:08+0000\n"
-"PO-Revision-Date: 2022-02-27 14:37+0000\n"
+"PO-Revision-Date: 2022-03-06 11:32+0000\n"
 "Last-Translator: 柳离枝\n"
 "Language-Team: Chinese (Literary) (http://www.transifex.com/wildfire-games/0ad/language/lzh/)\n"
 "MIME-Version: 1.0\n"
@@ -22,19 +22,19 @@ msgstr ""
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr "吾将起三军，伐%(_player_)s，其与吾共诛之！"
+msgstr "吾将起三军，伐%(_player_)s，与吾共诛之！"
 
 #: simulation/ai/petra/chatHelper.js:4
 #, javascript-format
 msgid ""
 "I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
-msgstr ""
+msgstr "吾将挥纛伐%(_player_)s，神兵过处皆为齑粉也。可斩旗响应，取资于敌。"
 
 #: simulation/ai/petra/chatHelper.js:7
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
-msgstr ""
+msgstr "吾将有事于%(_player_)s。"
 
 #: simulation/ai/petra/chatHelper.js:8
 #, javascript-format
@@ -75,7 +75,7 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:27
 #, javascript-format
 msgid "Here is a gift for you, %(_player_)s. Make good use of it."
-msgstr ""
+msgstr "区区薄礼， %(_player_)s ，善加利用。"
 
 #: simulation/ai/petra/chatHelper.js:28
 #, javascript-format
@@ -554,7 +554,7 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
-msgstr ""
+msgstr "物不足也 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
 #: simulation/components/ProductionQueue.js:289
 msgid "Entity is being upgraded. Cannot start production."
@@ -681,7 +681,7 @@ msgstr ""
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr "造物"
+msgstr "盖亚"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"

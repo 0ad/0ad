@@ -28,9 +28,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-21 08:24+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-03-04 08:09+0000\n"
+"PO-Revision-Date: 2022-03-04 08:25+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,7 +72,7 @@ msgstr "Načítání přerušeno"
 msgid "Gaia"
 msgstr "Gaia"
 
-#: gui/common/functions_utility.js:259
+#: gui/common/functions_utility.js:280
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Sestaveno: %(buildDate)s (%(revision)s)"
@@ -1444,7 +1444,7 @@ msgid "Music"
 msgstr "Hudba"
 
 #: gui/credits/texts/audio.jsonContent[2].Title
-#: gui/options/options.json[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].label
 msgid "Sound"
 msgstr "Zvuk"
 
@@ -4070,12 +4070,12 @@ msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr "Použít filtry pro další zpracování plochy obrazovky (HDR, Bloom, DOF atd.)."
 
 #: gui/options/options.json[1].options[3].label
-#: gui/options/options.json[2].options[9].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][9].label
 msgid "Shadows"
 msgstr "Stíny"
 
 #: gui/options/options.json[1].options[3].tooltip
-#: gui/options/options.json[2].options[9].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][9].tooltip
 msgid "Enable shadows."
 msgstr "Povolit stíny."
 
@@ -4192,143 +4192,15 @@ msgstr ""
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
 msgstr ""
 
-#: gui/options/options.json[2].options[10].label
-msgid "Quality"
-msgstr "Kvalita"
-
-#: gui/options/options.json[2].options[10].list[3].label
-msgid "Very High"
-msgstr "Velmi vysoké"
-
-#: gui/options/options.json[2].options[10].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "Rozlišení mapy při stínování. Vysoké hodnoty mohou vést k pádu hry, jestliže se používá grafická karty s malou pamětí!"
-
-#: gui/options/options.json[2].options[11].label
-msgid "Filtering"
-msgstr "Filtrování"
-
-#: gui/options/options.json[2].options[11].tooltip
-msgid "Smooth shadows."
-msgstr "Jemné stíny."
-
-#: gui/options/options.json[2].options[12].label
-msgid "Cutoff distance"
-msgstr "Mezní vzdálenost"
-
-#: gui/options/options.json[2].options[12].tooltip
-msgid "Hides shadows beyond a certain distance from a camera."
-msgstr "Skryje stíny za určitou vzdáleností od kamery."
-
-#: gui/options/options.json[2].options[13].label
-msgid "Cover whole map"
-msgstr "Pokrýt celou mapu"
-
-#: gui/options/options.json[2].options[13].tooltip
-msgid ""
-"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
-"Useful for making screenshots of a whole map."
-msgstr "Když jsou stíny zapnuty, pokrývají celou mapu a vzdálenost mezi stíny se přehlíží. Užitečné pro vytváření snímků obrazovky celé mapy."
-
-#: gui/options/options.json[2].options[14].label
-msgid "Water effects"
-msgstr "Efekty vody"
-
-#: gui/options/options.json[2].options[14].tooltip
-msgid ""
-"When OFF, use the lowest settings possible to render water. This makes other"
-" settings irrelevant."
-msgstr "Když je VYPNUTO, použít nejnižší možnou kvalitu nastavení pro kreslení vody. Toto udělá ostatní nastavení bezvýznamnými."
-
-#: gui/options/options.json[2].options[15].label
-msgid "High-quality water effects"
-msgstr "Vysoce působivé vodní efekty"
-
-#: gui/options/options.json[2].options[15].tooltip
-msgid ""
-"Use higher-quality effects for water, rendering coastal waves, shore foam, "
-"and ships trails."
-msgstr "Použít vysoce kvalitní efekty pro vodu, kreslení pobřežních vln, pěnu u pobřeží a stopu tvořící se ve vodě za plavidly."
-
-#: gui/options/options.json[2].options[16].label
-msgid "Water reflections"
-msgstr "Zrcadlení vody"
-
-#: gui/options/options.json[2].options[16].tooltip
-msgid "Allow water to reflect a mirror image."
-msgstr "Povolit, aby vody odrážela zrcadlový obraz."
-
-#: gui/options/options.json[2].options[17].label
-msgid "Water refraction"
-msgstr "Lom světla ve vodě"
-
-#: gui/options/options.json[2].options[17].tooltip
-msgid "Use a real water refraction map and not transparency."
-msgstr "Použít mapu s opravdovým lámáním světla ve vodě a ne průhlednost."
-
-#: gui/options/options.json[2].options[18].label
-msgid "Real water depth"
-msgstr "Skutečná hloubka vody"
-
-#: gui/options/options.json[2].options[18].tooltip
-msgid "Use actual water depth in rendering calculations."
-msgstr "Použít opravdovou hloubku vody při výpočtech vykreslování."
-
-#: gui/options/options.json[2].options[19].label
-msgid "Texture quality"
-msgstr ""
-
-#: gui/options/options.json[2].options[19].tooltip
-msgid ""
-"Decrease texture quality making them blurrier but increases game "
-"performance."
-msgstr ""
-
-#: gui/options/options.json[2].options[20].label
-msgid "Texture anisotropic filter"
-msgstr ""
-
-#: gui/options/options.json[2].options[20].list[0].label
-msgid "1x"
-msgstr ""
-
-#: gui/options/options.json[2].options[20].list[1].label
-#: gui/options/options.json[2].options[20].list[1].tooltip
-msgid "2x"
-msgstr ""
-
-#: gui/options/options.json[2].options[20].list[2].label
-#: gui/options/options.json[2].options[20].list[2].tooltip
-msgid "4x"
-msgstr ""
-
-#: gui/options/options.json[2].options[20].list[3].label
-#: gui/options/options.json[2].options[20].list[3].tooltip
-msgid "8x"
-msgstr ""
-
-#: gui/options/options.json[2].options[20].list[4].label
-#: gui/options/options.json[2].options[20].list[4].tooltip
-msgid "16x"
-msgstr ""
-
-#: gui/options/options.json[2].options[20].tooltip
-msgid ""
-"Makes textures look better, especially terrain. If the anisotropic filter "
-"value is unsupported it will be set to the max supported value."
-msgstr ""
-
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
 msgstr "Vyhlazování"
 
-#: gui/options/options.json[2].options[20].list[0].tooltip
 #: gui/options/options.json[2].options[3].list[0].label
 #: gui/options/options.json[2].options[4].list[0].label
-#: gui/options/options.json[4].options[5].list[2].label
-#: gui/options/options.json[5].options[4].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[2].label
 msgid "Disabled"
 msgstr "Zakázáno"
 
@@ -4420,632 +4292,809 @@ msgstr "Ostrost zvoleného průchodu."
 msgid "Model quality"
 msgstr "Zpracování modelu"
 
-#: gui/options/options.json[2].options[10].list[0].label
-#: gui/options/options.json[2].options[19].list[0].label
-#: gui/options/options.json[2].options[19].list[0].tooltip
-#: gui/options/options.json[2].options[6].list[0].label
+#: gui/options/options.json[2].options[6].list[0].label._string
+msgctxt "Option for the meshes' level of detail."
 msgid "Low"
 msgstr "Nízké "
 
-#: gui/options/options.json[2].options[6].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0].label.tooltip
 msgid "Simpler models for better performance."
 msgstr "Jednodušší modely pro lepší výkon."
 
-#: gui/options/options.json[2].options[10].list[1].label
-#: gui/options/options.json[2].options[19].list[1].label
-#: gui/options/options.json[2].options[19].list[1].tooltip
-#: gui/options/options.json[2].options[6].list[1].label
-#: gui/options/options.json[4].options[3].list[3].label
+#: gui/options/options.json[2].options[6].list[0][1].label._string
+msgctxt "Option for the meshes' level of detail."
 msgid "Medium"
 msgstr "Střední "
 
-#: gui/options/options.json[2].options[6].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][1].label.tooltip
 msgid "Average quality and average performance."
 msgstr "Průměrné zpracování a průměrný výkon."
 
-#: gui/options/options.json[2].options[10].list[2].label
-#: gui/options/options.json[2].options[19].list[2].label
-#: gui/options/options.json[2].options[19].list[2].tooltip
-#: gui/options/options.json[2].options[6].list[2].label
+#: gui/options/options.json[2].options[6].list[0][1][2].label._string
+msgctxt "Option for the meshes' level of detail."
 msgid "High"
 msgstr "Vysoké"
 
-#: gui/options/options.json[2].options[6].list[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][1][2].label.tooltip
 msgid "High quality models."
 msgstr "Velmi dobře zpracované modely."
 
-#: gui/options/options.json[2].options[6].tooltip
-msgid "Model quality setting."
-msgstr "Nastavení úrovně zpracování modelu."
-
-#: gui/options/options.json[2].options[7].label
+#: gui/options/options.json[2].options[6].list[0][7].label
 msgid "Model appearance randomization"
 msgstr "Náhodnost vzhledu modelu"
 
-#: gui/options/options.json[2].options[7].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0].label._string
+msgctxt "Option for the meshes' amount of variety."
 msgid "None"
 msgstr "Žádný"
 
-#: gui/options/options.json[2].options[7].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0].label.tooltip
 msgid "Entities will all look the same."
 msgstr "Jednotky budou všechny vypadat stejně."
 
-#: gui/options/options.json[2].options[7].list[1].label
-msgid "Limited"
-msgstr "Omezený"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].label
+msgid "Quality"
+msgstr "Kvalita"
 
-#: gui/options/options.json[2].options[7].list[1].tooltip
-msgid "Entities will be less diverse."
-msgstr "Jednotky budou méně různorodé."
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0].label._string
+msgctxt "Option for the shadow quality."
+msgid "Low"
+msgstr "Nízké "
 
-#: gui/options/options.json[2].options[7].list[2].label
-msgid "Normal"
-msgstr "Normální"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1].label._string
+msgctxt "Option for the shadow quality."
+msgid "Medium"
+msgstr "Střední "
 
-#: gui/options/options.json[2].options[7].list[2].tooltip
-msgid "Entities appearance is randomized normally."
-msgstr "Vzhled jednotek je znáhodněn pravidelně."
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][11].label
+msgid "Filtering"
+msgstr "Filtrování"
 
-#: gui/options/options.json[2].options[7].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][11].tooltip
+msgid "Smooth shadows."
+msgstr "Jemné stíny."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][12].label
+msgid "Cutoff distance"
+msgstr "Mezní vzdálenost"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][12].tooltip
+msgid "Hides shadows beyond a certain distance from a camera."
+msgstr "Skryje stíny za určitou vzdáleností od kamery."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][13].label
+msgid "Cover whole map"
+msgstr "Pokrýt celou mapu"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][13].tooltip
 msgid ""
-"Randomize the appearance of entities. Disabling gives a small performance "
-"improvement."
-msgstr "Znáhodněte vzhled jednotek. Vypnutí znáhodnění přináší malé zlepšení výkonu."
+"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
+"Useful for making screenshots of a whole map."
+msgstr "Když jsou stíny zapnuty, pokrývají celou mapu a vzdálenost mezi stíny se přehlíží. Užitečné pro vytváření snímků obrazovky celé mapy."
 
-#: gui/options/options.json[2].options[8].label
-msgid "Shader effects"
-msgstr "Stínovací efekty"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].label
+msgid "Water effects"
+msgstr "Efekty vody"
 
-#: gui/options/options.json[2].options[8].tooltip
-msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "Počet stínovacích efektů. VYŽADUJE ZNOVUSPUŠTĚNÍ HRY"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].tooltip
+msgid ""
+"When OFF, use the lowest settings possible to render water. This makes other"
+" settings irrelevant."
+msgstr "Když je VYPNUTO, použít nejnižší možnou kvalitu nastavení pro kreslení vody. Toto udělá ostatní nastavení bezvýznamnými."
 
-#: gui/options/options.json[2].tooltip
-msgid "More specific rendering settings."
-msgstr "Určitější nastavení vykreslování."
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][15].label
+msgid "High-quality water effects"
+msgstr "Vysoce působivé vodní efekty"
 
-#: gui/options/options.json[3].options[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][15].tooltip
+msgid ""
+"Use higher-quality effects for water, rendering coastal waves, shore foam, "
+"and ships trails."
+msgstr "Použít vysoce kvalitní efekty pro vodu, kreslení pobřežních vln, pěnu u pobřeží a stopu tvořící se ve vodě za plavidly."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].label
+msgid "Water reflections"
+msgstr "Zrcadlení vody"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].tooltip
+msgid "Allow water to reflect a mirror image."
+msgstr "Povolit, aby vody odrážela zrcadlový obraz."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][17].label
+msgid "Water refraction"
+msgstr "Lom světla ve vodě"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][17].tooltip
+msgid "Use a real water refraction map and not transparency."
+msgstr "Použít mapu s opravdovým lámáním světla ve vodě a ne průhlednost."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][18].label
+msgid "Real water depth"
+msgstr "Skutečná hloubka vody"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][18].tooltip
+msgid "Use actual water depth in rendering calculations."
+msgstr "Použít opravdovou hloubku vody při výpočtech vykreslování."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].label
+msgid "Texture quality"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0].label._string
+msgctxt "Option for the texture quality."
+msgid "Low"
+msgstr "Nízké "
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0].label.tooltip
+msgid "Low"
+msgstr "Nízké "
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1].label._string
+msgctxt "Option for the texture quality."
+msgid "Medium"
+msgstr "Střední "
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1].label.tooltip
+msgid "Medium"
+msgstr "Střední "
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1][2].label._string
+msgctxt "Option for the texture quality."
+msgid "High"
+msgstr "Vysoké"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1][2].label.tooltip
+msgid "High"
+msgstr "Vysoké"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].label
+msgid "Texture anisotropic filter"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[0].label
+msgid "1x"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[1].tooltip
+msgid "2x"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[2].tooltip
+msgid "4x"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[3].tooltip
+msgid "8x"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[4].tooltip
+msgid "16x"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].tooltip
+msgid ""
+"Makes textures look better, especially terrain. If the anisotropic filter "
+"value is unsupported it will be set to the max supported value."
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].tooltip
+msgid ""
+"Decrease texture quality making them blurrier but increases game "
+"performance."
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].label
 msgid "Master volume"
 msgstr "Celková hlasitost"
 
-#: gui/options/options.json[3].options[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].tooltip
 msgid "Master audio gain."
 msgstr "Hlavní hlasitost."
 
-#: gui/options/options.json[3].options[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[1].label
 msgid "Music volume"
 msgstr "Hlasitost hudby"
 
-#: gui/options/options.json[3].options[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[1].tooltip
 msgid "In game music gain."
 msgstr "Hudba na pozadí."
 
-#: gui/options/options.json[3].options[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[2].label
 msgid "Ambient volume"
 msgstr "Hlasitost zvuků prostředí"
 
-#: gui/options/options.json[3].options[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[2].tooltip
 msgid "In game ambient sound gain."
 msgstr "Hlasitost šumění okolí."
 
-#: gui/options/options.json[3].options[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[3].label
 msgid "Action volume"
 msgstr "Hlasitost činností"
 
-#: gui/options/options.json[3].options[3].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[3].tooltip
 msgid "In game unit action sound gain."
 msgstr "Hlasitost činností jednotek."
 
-#: gui/options/options.json[3].options[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[4].label
 msgid "UI volume"
 msgstr "Hlasitost rozhraní"
 
-#: gui/options/options.json[3].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[4].tooltip
 msgid "UI sound gain."
 msgstr "Hlasitost rozhraní."
 
-#: gui/options/options.json[3].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[5].label
 msgid "Nick notification"
 msgstr "Upozornění na přezdívku"
 
-#: gui/options/options.json[3].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
 msgstr "Zvukové upozornění pokud někdo napíše tvou přezdívku."
 
-#: gui/options/options.json[3].options[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[6].label
 msgid "New player notification in game setup"
 msgstr "Oznámení nového hráče v nastavení hry"
 
-#: gui/options/options.json[3].options[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
 msgstr "Přijmout zvukové upozornění, pokud se ke hře připojí nový klient."
 
-#: gui/options/options.json[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].label
 msgid "Game Setup"
 msgstr "Nastavení hry"
 
-#: gui/options/options.json[4].options[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[0].label
 msgid "Enable game setting tips"
 msgstr "Povolit rady v nastavení hry"
 
-#: gui/options/options.json[4].options[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[0].tooltip
 msgid "Show tips when setting up a game."
 msgstr "Při nastavování hry ukázat rady."
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[1].label
 msgid "Enable settings panel slide"
 msgstr "Povolit zasunutí panelu s nastavením"
 
-#: gui/options/options.json[4].options[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
 msgstr "Zasunout panel s nastavením při otevírání, zavírání nebo změně velikosti."
 
-#: gui/options/options.json[4].options[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[2].label
 msgid "Persist match settings"
 msgstr "Zapamatovat si nastavení hry"
 
-#: gui/options/options.json[4].options[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
 msgstr "Uložit a obnovit nastavení hry pro rychlé opětovné užití při hostování jiné hry."
 
-#: gui/options/options.json[4].options[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].label
 msgid "Default AI difficulty"
 msgstr "Výchozí obtížnost umělé inteligence"
 
-#: gui/options/options.json[4].options[3].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0].label._string
+msgctxt "Option for the AI difficulty."
 msgid "Sandbox"
 msgstr "Pískoviště"
 
-#: gui/options/options.json[4].options[3].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1].label._string
+msgctxt "Option for the AI difficulty."
 msgid "Very Easy"
 msgstr "Velmi lehká"
 
-#: gui/options/options.json[4].options[3].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2].label._string
+msgctxt "Option for the AI difficulty."
 msgid "Easy"
 msgstr "Lehká"
 
-#: gui/options/options.json[4].options[3].list[4].label
-msgid "Hard"
-msgstr "Těžká"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3].label._string
+msgctxt "Option for the AI difficulty."
+msgid "Medium"
+msgstr "Střední "
 
-#: gui/options/options.json[4].options[3].list[5].label
-msgid "Very Hard"
-msgstr "Velmi těžká"
-
-#: gui/options/options.json[4].options[3].tooltip
-msgid "Default difficulty of the AI."
-msgstr "Výchozí obtížnost umělé inteligence."
-
-#: gui/options/options.json[4].options[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].label
 msgid "Default AI behavior"
 msgstr "Výchozí chování umělé inteligence (AI)"
 
-#: gui/options/options.json[4].options[4].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].label._string
+msgctxt "Option for the AI difficulty."
+msgid "Hard"
+msgstr "Těžká"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[0].label
 msgid "Random"
 msgstr "Náhodná"
 
-#: gui/options/options.json[4].options[4].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[1].label
 msgid "Balanced"
 msgstr "Vyváženo"
 
-#: gui/options/options.json[4].options[4].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[2].label
 msgid "Aggressive"
 msgstr "Útočný"
 
-#: gui/options/options.json[4].options[4].list[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[3].label
 msgid "Defensive"
 msgstr "Obranný"
 
-#: gui/options/options.json[4].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].tooltip
 msgid "Default behavior of the AI."
 msgstr "Výchozí chování umělé inteligence."
 
-#: gui/options/options.json[4].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4][5].label._string
+msgctxt "Option for the AI difficulty."
+msgid "Very Hard"
+msgstr "Velmi těžká"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].label
 msgid "Assign players"
 msgstr "Přiřadit hráče"
 
-#: gui/options/options.json[4].options[5].list[0].label
-#: gui/options/options.json[5].options[4].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[0].label
 msgid "Everyone"
 msgstr "Každý"
 
-#: gui/options/options.json[4].options[5].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
 msgstr "Hráči, kteří se připojí k zápasu, budou přiřazeni, pokud bude volné místo."
 
-#: gui/options/options.json[4].options[5].list[1].label
-#: gui/options/options.json[5].options[4].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[1].label
 msgid "Buddies"
 msgstr "Kamarádi"
 
-#: gui/options/options.json[4].options[5].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[1].tooltip
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
 msgstr "Hráči, kteří se připojí k zápasu, budou přiřazeni pouze v případě, že jsou kamarádem hostitele a pokud je volné místo."
 
-#: gui/options/options.json[4].options[5].list[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
 msgstr "Hráči obdrží místo pouze v případě, že je hostitel výslovně přiřadí."
 
-#: gui/options/options.json[4].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
 msgstr "Automaticky přiřadit připojující se klienty pro uvolnění hráčských míst během nastavení střetnutí."
 
-#: gui/options/options.json[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].label
 msgid "Networking / Lobby"
 msgstr "Sítě/herní skupina"
 
-#: gui/options/options.json[5].options[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].label
 msgid "TLS encryption"
 msgstr "TLS šifrování"
 
-#: gui/options/options.json[5].options[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
 msgstr "Chraňte přihlašování a data, která jsou vyměňována s herním serverem pomocí šifrování TLS."
 
-#: gui/options/options.json[5].options[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[1].label
 msgid "Chat backlog"
 msgstr "Nevyřízený rozhovor"
 
-#: gui/options/options.json[5].options[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
 msgstr "Počet posledních hlášení načtených při vstupu do zájmové skupiny."
 
-#: gui/options/options.json[5].options[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].label
 msgid "Game rating column"
 msgstr "Sloupec s hodnocením hry"
 
-#: gui/options/options.json[5].options[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr "Ukázat průměrné ohodnocení zúčastněných hráčů ve sloupci seznamu her."
 
-#: gui/options/options.json[5].options[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].label
 msgid "Network warnings"
 msgstr "Síťová varování"
 
-#: gui/options/options.json[5].options[3].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "Ukázat, který hráč má ve hrách pro více hráčů špatné spojení."
 
-#: gui/options/options.json[5].options[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].label
 msgid "Late observer joins"
 msgstr "Přistoupení pozdního pozorovatele"
 
-#: gui/options/options.json[5].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
 msgstr "Dovolit každému nebo jen kamarádům připojení se ke hře po jejím začátku jako pozorovatelé."
 
-#: gui/options/options.json[5].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[5].label
 msgid "Observer limit"
 msgstr "Omezení počtu pozorovatelů"
 
-#: gui/options/options.json[5].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[5].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
 msgstr "Zabránit dalším pozorovatelům v připojení se, pokud je dosaženo hranice počtu pozorovatelů."
 
-#: gui/options/options.json[5].options[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[6].label
 msgid "Max lag for observers"
 msgstr "Největší zpoždění pro pozorovatele"
 
-#: gui/options/options.json[5].options[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[6].tooltip
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
 msgstr "Pokud hostitelé zaostávají více než tento počet kol, při hostování hru pozastavit. Pokud je nastaveno na -1, pozorovatelé jsou přehlíženi."
 
-#: gui/options/options.json[5].options[7].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].label
 msgid "(Observer) Speed up when lagging."
 msgstr "(Pozorovatel) Při zaostávání zrychlit."
 
-#: gui/options/options.json[5].options[7].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].tooltip
 msgid ""
 "When observing a game, automatically speed up if you start lagging, to catch"
 " up with the live match."
 msgstr "Při sledování hry automaticky zrychlit, pokud začnete zaostávat, abyste dohnali živý zápas."
 
-#: gui/options/options.json[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].tooltip
 msgid "These settings only affect the multiplayer."
 msgstr "Tato nastavení ovlivní pouze hru pro více hráčů."
 
-#: gui/options/options.json[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].label
 msgid "Game Session"
 msgstr "Herní sezení"
 
-#: gui/options/options.json[6].options[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[0].label
 msgid "Wounded unit health"
 msgstr "Zdraví zraněné jednotky"
 
-#: gui/options/options.json[6].options[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[0].tooltip
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
 msgstr "Klávesová zkratka zraněné jednotky považuje vybrané jednotky za poraněné, pokud jejich procento zdraví spadne pod toto číslo."
 
-#: gui/options/options.json[6].options[10].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].label
 msgid "Heal range visualization"
 msgstr "Znázornění dosahu léčení"
 
-#: gui/options/options.json[6].options[10].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].tooltip
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
 msgstr "Zobrazit dosah léčení vybraných jednotek (lze rovněž pomocí klávesové zkratky přepnout ve hře)."
 
-#: gui/options/options.json[6].options[11].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].label
 msgid "Rank icon above status bar"
 msgstr "Seřadit ikony nad stavovým řádkem"
 
-#: gui/options/options.json[6].options[11].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].tooltip
 msgid "Show rank icons above status bars."
 msgstr "Ukázat ikony nad stavovými řádkky."
 
-#: gui/options/options.json[6].options[12].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].label
 msgid "Experience status bar"
 msgstr "Stavový řádek zkušeností"
 
-#: gui/options/options.json[6].options[12].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "Zobrazit stavový řádek zkušeností nad každou vybranou jednotkou."
 
-#: gui/options/options.json[6].options[13].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].label
 msgid "Detailed tooltips"
 msgstr "Podrobné nástrojové rady"
 
-#: gui/options/options.json[6].options[13].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "Ukázat podrobné nástrojové rady pro jednotky vycvičitelné ve savbách určených pro výcvik."
 
-#: gui/options/options.json[6].options[14].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].label
 msgid "Sort resources and population tooltip"
 msgstr "Řadit v nástrojové radě ke zdrojům a  k obyvatelstvu"
 
-#: gui/options/options.json[6].options[14].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[0].label
 msgid "Unordered"
 msgstr "Nezařazené"
 
-#: gui/options/options.json[6].options[14].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[1].label
 msgid "Ascending"
 msgstr "Vzestupný"
 
-#: gui/options/options.json[6].options[14].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[2].label
 msgid "Descending"
 msgstr "Sestupný"
 
-#: gui/options/options.json[6].options[14].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "Dynamicky řadit hráče v nástrojové radě ke zdrojům a k obyvatelstvu podle hodnot."
 
-#: gui/options/options.json[6].options[15].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].label
 msgid "Diplomacy colors: self"
 msgstr "Diplomatické barvy: Moje"
 
-#: gui/options/options.json[6].options[15].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "Barvy vašich jednotek, když jsou povoleny diplomatické barvy."
 
-#: gui/options/options.json[6].options[16].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].label
 msgid "Diplomacy colors: ally"
 msgstr "Diplomatické barvy: spojenec"
 
-#: gui/options/options.json[6].options[16].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "Barvy přátel, když jsou povoleny diplomatické barvy."
 
-#: gui/options/options.json[6].options[17].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].label
 msgid "Diplomacy colors: neutral"
 msgstr "Diplomatické barvy: Neutrál"
 
-#: gui/options/options.json[6].options[17].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "Barvy neutrálních hráčů, když jsou povoleny diplomatické barvy."
 
-#: gui/options/options.json[6].options[18].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].label
 msgid "Diplomacy colors: enemy"
 msgstr "Diplomatické barvy: Nepřítel"
 
-#: gui/options/options.json[6].options[18].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "Barvy nepřátel, když jsou povoleny diplomatické barvy."
 
-#: gui/options/options.json[6].options[19].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].label
 msgid "Snap to edges"
 msgstr "Přichytávat k okrajům"
 
-#: gui/options/options.json[6].options[19].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[0].label
 msgid "Hotkey to enable snapping"
 msgstr "Klávesová zkratka pro povolení přichytávání"
 
-#: gui/options/options.json[6].options[19].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
 msgstr "Nové stavby jsou zarovnány s blízkými stavbami při stisknutí klávesové zkratky."
 
-#: gui/options/options.json[6].options[19].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
 msgstr "Klávesová zkratka pro zakázání přichytávání"
 
-#: gui/options/options.json[6].options[19].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
 msgstr "Nové stavby jsou zarovnány s blízkými stavbami, dokud není stisknuta klávesová zkratka."
 
-#: gui/options/options.json[6].options[19].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].tooltip
 msgid "This option allows to align new structures with nearby structures."
 msgstr "Tato volba umožňuje zarovnat nové stavby s blízkými stavbami."
 
-#: gui/options/options.json[6].options[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].label
 msgid "Batch training size"
 msgstr "Velikost cvičené skupiny"
 
-#: gui/options/options.json[6].options[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].tooltip
 msgid "Number of units trained per batch by default."
 msgstr "Počet jednotek cvičených standardně v jedné skupině."
 
-#: gui/options/options.json[6].options[20].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].label
 msgid "Control group membership"
 msgstr "Členství v ovládací skupině"
 
-#: gui/options/options.json[6].options[20].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].label
 msgid "Single"
 msgstr "Jedna"
 
-#: gui/options/options.json[6].options[20].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].tooltip
 msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
 msgstr "Když přidáváte jednotku nebo stavbu do ovládací skupiny, budou odebrány z jiných ovládacích skupin. Tuto volbu použijte, pokud chcete, aby se ovládací skupiny odkazovaly na odlišné armády."
 
-#: gui/options/options.json[6].options[20].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].label
 msgid "Multiple"
 msgstr "Více"
 
-#: gui/options/options.json[6].options[20].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].tooltip
 msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
 msgstr "Jednotky a stavby mohou být součástí více ovládacích skupin. To je užitečné pro udržení ovládacích skupin pro odlišné armády a ovládací skupiny pro celou armádu současně."
 
-#: gui/options/options.json[6].options[20].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].tooltip
 msgid "Decide whether units can be part of multiple control groups."
 msgstr "Rozhodněte, zda jednotky mohou být součástí více ovládacích skupin."
 
-#: gui/options/options.json[6].options[21].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].label
 msgid "Formation control"
 msgstr "Ovládání uskupení"
 
-#: gui/options/options.json[6].options[21].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].label
 msgid "Walk/Patrol Only"
 msgstr "Pouze Obchůzka/Hlídka"
 
-#: gui/options/options.json[6].options[21].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].tooltip
 msgid "Other orders will disband existing formations."
 msgstr "Ostatní příkazy rozpustí stávající uskupení."
 
-#: gui/options/options.json[6].options[21].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].label
 msgid "No override"
 msgstr "Žádné přepsání"
 
-#: gui/options/options.json[6].options[21].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].tooltip
 msgid "Units in formations stay in formations."
 msgstr "Jednotky v uskupeních zůstávají v uskupeních."
 
-#: gui/options/options.json[6].options[21].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
 msgstr "Rozhodněte, zda jsou uskupení povolena pro všechny příkazy, nebo pouze „Obchůzka“ a „Hlídka“."
 
-#: gui/options/options.json[6].options[22].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].label
 msgid "Battalion-style formations"
 msgstr ""
 
-#: gui/options/options.json[6].options[22].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].tooltip
 msgid "Whether formations are selected as a whole."
 msgstr ""
 
-#: gui/options/options.json[6].options[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[2].label
 msgid "Scroll batch increment ratio"
 msgstr "Přírůstkové číslo (koeficient) pro měnění stavu skupiny"
 
-#: gui/options/options.json[6].options[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
 msgstr "Kolikrát musíte otočit kolečkem pro zvýšení/snížení počtu jednotek ve skupině o 1."
 
-#: gui/options/options.json[6].options[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].label
 msgid "Flare display duration"
 msgstr "Doba zobrazení záře"
 
-#: gui/options/options.json[6].options[3].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
 msgstr "Jak dlouho jsou značky záře v maličké mapě zobrazeny v sekundách."
 
-#: gui/options/options.json[6].options[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].label
 msgid "Chat notification attack"
 msgstr "Upozornění zprávou při napadení"
 
-#: gui/options/options.json[6].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "Ukázat upozornění zprávou, pokud na vás zaútočil jiný hráč."
 
-#: gui/options/options.json[6].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].label
 msgid "Chat notification tribute"
 msgstr "Upozornění zprávou o daru"
 
-#: gui/options/options.json[6].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "Ukázat upozornění zprávou, když spojenec věnuje zdroje jinému členu týmu, pokud jsou týmy zamknuty a všechny poplatky v režimu pozorovatele."
 
-#: gui/options/options.json[6].options[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].label
 msgid "Chat notification barter"
 msgstr "Upozornění zprávou o směnném obchodu"
 
-#: gui/options/options.json[6].options[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "Ukázat upozornění zprávou pro pozorovatele, když hráč směnil zdroje."
 
-#: gui/options/options.json[6].options[7].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].label
 msgid "Chat notification phase"
 msgstr "Upozornění zprávou o fázi"
 
-#: gui/options/options.json[6].options[7].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[0].label
 msgid "Disable"
 msgstr "Vypnout"
 
-#: gui/options/options.json[6].options[7].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[1].label
 msgid "Completed"
 msgstr "Dokončeno"
 
-#: gui/options/options.json[6].options[7].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[2].label
 msgid "All displayed"
 msgstr "Vypnout vše"
 
-#: gui/options/options.json[6].options[7].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "Ukázat upozornění zprávou, když jste vy nebo spojenec začal, přerušil nebo dokončil novou fázi, a všechny fáze všech hráčů jsou v režimu pozorovatele."
 
-#: gui/options/options.json[6].options[8].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].label
 msgid "Attack range visualization"
 msgstr "Znázornění dosahu útoku"
 
-#: gui/options/options.json[6].options[8].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr "Zobrazit útočný dosah vybraných obranných staveb. (Lze jej  během hry také přepínat pomocí klávesové zkratky)."
 
-#: gui/options/options.json[6].options[9].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].label
 msgid "Aura range visualization"
 msgstr "Znázornění dosahu aury"
 
-#: gui/options/options.json[6].options[9].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
 msgstr "Zobrazit dosah aur vybraných jednotek a staveb. (Lze jej  během hry také přepínat pomocí klávesové zkratky)."
 
-#: gui/options/options.json[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].tooltip
 msgid "Change options regarding the in-game settings."
 msgstr "Změnit volby týkající se nastavení hry."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].tooltip
+msgid "Default difficulty of the AI."
+msgstr "Výchozí obtížnost umělé inteligence."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][2].label._string
+msgctxt "Option for the shadow quality."
+msgid "High"
+msgstr "Vysoké"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][2][3].label._string
+msgctxt "Option for the shadow quality."
+msgid "Very High"
+msgstr "Velmi vysoké"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "Rozlišení mapy při stínování. Vysoké hodnoty mohou vést k pádu hry, jestliže se používá grafická karty s malou pamětí!"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][1].label._string
+msgctxt "Option for the meshes' amount of variety."
+msgid "Limited"
+msgstr "Omezený"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][1].label.tooltip
+msgid "Entities will be less diverse."
+msgstr "Jednotky budou méně různorodé."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label._string
+msgctxt "Option for the meshes' amount of variety."
+msgid "Normal"
+msgstr "Normální"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label.tooltip
+msgid "Entities appearance is randomized normally."
+msgstr "Vzhled jednotek je znáhodněn pravidelně."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][8].label
+msgid "Shader effects"
+msgstr "Stínovací efekty"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][8].tooltip
+msgid "Number of shader effects. REQUIRES GAME RESTART"
+msgstr "Počet stínovacích efektů. VYŽADUJE ZNOVUSPUŠTĚNÍ HRY"
+
+#: gui/options/options.json[2].options[6].list[0][7].tooltip
+msgid ""
+"Randomize the appearance of entities. Disabling gives a small performance "
+"improvement."
+msgstr "Znáhodněte vzhled jednotek. Vypnutí znáhodnění přináší malé zlepšení výkonu."
+
+#: gui/options/options.json[2].options[6].tooltip
+msgid "Model quality setting."
+msgstr "Nastavení úrovně zpracování modelu."
+
+#: gui/options/options.json[2].tooltip
+msgid "More specific rendering settings."
+msgstr "Určitější nastavení vykreslování."
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"

@@ -44,7 +44,7 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CParamNode& UNUSED(paramNode))
+	void Init(const CParamNode& UNUSED(paramNode)) override
 	{
 		m_Enabled = false;
 		m_MapRevealed = false;
@@ -53,11 +53,11 @@ public:
 		m_CurrentPathElapsedTime = fixed::Zero();
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& serializer)
+	void Serialize(ISerializer& serializer) override
 	{
 		serializer.Bool("Enabled", m_Enabled);
 		serializer.NumberFixed_Unbounded("ElapsedTime", m_ElapsedTime);
@@ -73,7 +73,7 @@ public:
 			serializer.String("PathName", path.GetName(), 1, 128);
 	}
 
-	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserializer)
+	void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserializer) override
 	{
 		deserializer.Bool("Enabled", m_Enabled);
 		deserializer.NumberFixed_Unbounded("ElapsedTime", m_ElapsedTime);
@@ -107,7 +107,7 @@ public:
 		SetEnabled(m_Enabled);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -146,7 +146,7 @@ public:
 		}
 	}
 
-	virtual void AddPath(const CCinemaPath& path)
+	void AddPath(const CCinemaPath& path) override
 	{
 		if (m_Paths.find(path.GetName()) != m_Paths.end())
 		{
@@ -156,7 +156,7 @@ public:
 		m_Paths[path.GetName()] = path;
 	}
 
-	virtual void AddCinemaPathToQueue(const CStrW& name)
+	void AddCinemaPathToQueue(const CStrW& name) override
 	{
 		if (!HasPath(name))
 		{
@@ -170,27 +170,27 @@ public:
 		m_TotalTime += m_Paths[name].GetDuration();
 	}
 
-	virtual void Play()
+	void Play() override
 	{
 		SetEnabled(true);
 	}
 
-	virtual void Stop()
+	void Stop() override
 	{
 		SetEnabled(false);
 	}
 
-	virtual bool HasPath(const CStrW& name) const
+	bool HasPath(const CStrW& name) const override
 	{
 		return m_Paths.find(name) != m_Paths.end();
 	}
 
-	virtual void ClearQueue()
+	void ClearQueue() override
 	{
 		m_PathQueue.clear();
 	}
 
-	virtual void DeletePath(const CStrW& name)
+	void DeletePath(const CStrW& name) override
 	{
 		if (!HasPath(name))
 		{
@@ -201,27 +201,27 @@ public:
 		m_Paths.erase(name);
 	}
 
-	virtual const std::map<CStrW, CCinemaPath>& GetPaths() const
+	const std::map<CStrW, CCinemaPath>& GetPaths() const override
 	{
 		return m_Paths;
 	}
 
-	virtual void SetPaths(const std::map<CStrW, CCinemaPath>& newPaths)
+	void SetPaths(const std::map<CStrW, CCinemaPath>& newPaths) override
 	{
 		m_Paths = newPaths;
 	}
 
-	virtual const std::list<CCinemaPath>& GetQueue() const
+	const std::list<CCinemaPath>& GetQueue() const override
 	{
 		return m_PathQueue;
 	}
 
-	virtual bool IsEnabled() const
+	bool IsEnabled() const override
 	{
 		return m_Enabled;
 	}
 
-	virtual void SetEnabled(bool enabled)
+	void SetEnabled(bool enabled) override
 	{
 		if (m_PathQueue.empty() && enabled)
 			enabled = false;
@@ -246,7 +246,7 @@ public:
 		m_Enabled = enabled;
 	}
 
-	virtual void PlayQueue(const float deltaRealTime, CCamera* camera)
+	void PlayQueue(const float deltaRealTime, CCamera* camera) override
 	{
 		if (m_PathQueue.empty())
 			return;

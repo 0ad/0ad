@@ -53,27 +53,27 @@ public:
 			"</element>";
 	}
 
-	virtual void Init(const CParamNode& paramNode)
+	void Init(const CParamNode& paramNode) override
 	{
 		m_Root = paramNode.GetChild("Root").ToBool();
 		m_Weight = (u16)paramNode.GetChild("Weight").ToInt();
 		m_Radius = paramNode.GetChild("Radius").ToInt();
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& UNUSED(serialize))
+	void Serialize(ISerializer& UNUSED(serialize)) override
 	{
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize)) override
 	{
 		Init(paramNode);
 	}
 
-	virtual bool IsRoot() const
+	bool IsRoot() const override
 	{
 		CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
 		if (!cmpValueModificationManager)
@@ -82,7 +82,7 @@ public:
 		return cmpValueModificationManager->ApplyModifications(L"TerritoryInfluence/Root", m_Root, GetEntityId());
 	}
 
-	virtual u16 GetWeight() const
+	u16 GetWeight() const override
 	{
 		CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
 		if (!cmpValueModificationManager)
@@ -91,7 +91,7 @@ public:
 		return cmpValueModificationManager->ApplyModifications(L"TerritoryInfluence/Weight", m_Weight, GetEntityId());
 	}
 
-	virtual u32 GetRadius() const
+	u32 GetRadius() const override
 	{
 		CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
 		if (!cmpValueModificationManager)

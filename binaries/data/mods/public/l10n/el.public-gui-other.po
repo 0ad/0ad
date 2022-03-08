@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-21 08:24+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-03-04 08:09+0000\n"
+"PO-Revision-Date: 2022-03-04 08:25+0000\n"
+"Last-Translator: Sotiris K\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,7 +65,7 @@ msgstr "Φόρτωση Εγκαταλείφθηκε"
 msgid "Gaia"
 msgstr "Γαία"
 
-#: gui/common/functions_utility.js:259
+#: gui/common/functions_utility.js:280
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Έκδοση: %(buildDate)s (%(revision)s)"
@@ -1407,7 +1407,7 @@ msgid "Music"
 msgstr "Μουσική"
 
 #: gui/credits/texts/audio.jsonContent[2].Title
-#: gui/options/options.json[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].label
 msgid "Sound"
 msgstr "Ήχος"
 
@@ -4033,12 +4033,12 @@ msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr "Χρήση προεπεξεργασμένων screen-space φίλτρων (HDR, Bloom, DOF, κλπ)."
 
 #: gui/options/options.json[1].options[3].label
-#: gui/options/options.json[2].options[9].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][9].label
 msgid "Shadows"
 msgstr "Σκιές"
 
 #: gui/options/options.json[1].options[3].tooltip
-#: gui/options/options.json[2].options[9].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][9].tooltip
 msgid "Enable shadows."
 msgstr "Ενεργοποίηση Σκιών."
 
@@ -4155,143 +4155,15 @@ msgstr "Legacy OpenGL backend with ARB shaders.  ΑΠΑΙΤΕΙ ΕΠΑΝΕΚΙΝ
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
 msgstr "Ελιλογή απεικόνισης backend.  ΑΠΑΙΤΕΙ ΕΠΑΝΕΚΙΝΝΗΣΗ ΠΑΙΧΝΙΔΙΟΥ"
 
-#: gui/options/options.json[2].options[10].label
-msgid "Quality"
-msgstr "Ποιότητα"
-
-#: gui/options/options.json[2].options[10].list[3].label
-msgid "Very High"
-msgstr "Πολύ Υψηλό"
-
-#: gui/options/options.json[2].options[10].tooltip
-msgid ""
-"Shadow map resolution. High values can crash the game when using a graphics "
-"card with low memory!"
-msgstr "Ανάλυση στις σκιές του χάρτη. Υψηλές τιμές μπορεί να καταρρεύσουν το παιχνίδι αν η κάρτα γραφικών έχει μικρή μνήμη!"
-
-#: gui/options/options.json[2].options[11].label
-msgid "Filtering"
-msgstr "Φιλτράρισμα"
-
-#: gui/options/options.json[2].options[11].tooltip
-msgid "Smooth shadows."
-msgstr "Εξομάλυνση σκιών."
-
-#: gui/options/options.json[2].options[12].label
-msgid "Cutoff distance"
-msgstr "Οριο απόστασης"
-
-#: gui/options/options.json[2].options[12].tooltip
-msgid "Hides shadows beyond a certain distance from a camera."
-msgstr "Κρύβει τις σκιές πέρα απο μια ορισμένη απόσταση απο την κάμερα."
-
-#: gui/options/options.json[2].options[13].label
-msgid "Cover whole map"
-msgstr "Επικάλυψη ολόκληρου χάρτη"
-
-#: gui/options/options.json[2].options[13].tooltip
-msgid ""
-"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
-"Useful for making screenshots of a whole map."
-msgstr "Οταν είναι ΕΝΕΡΓΟ σκίές που καλύπτουν ολόκληρο το χάρτη και τα όρια απόστασης σκιών αγνούνται. Χρήσιμο για να τραβάτε στιγμιότυπα οθόνης ολόκληρου του χάρτη"
-
-#: gui/options/options.json[2].options[14].label
-msgid "Water effects"
-msgstr "Εφέ νερού"
-
-#: gui/options/options.json[2].options[14].tooltip
-msgid ""
-"When OFF, use the lowest settings possible to render water. This makes other"
-" settings irrelevant."
-msgstr "Όταν είναι ΑΠΕΝΕΡΓΟΠΟΙΗΜΕΝΟ, χρησιμοποιεί τις χαμηλότερες δυνατές ρυθμίσεις για την απεικόνιση του νερού. Αυτό απενεργοποιεί τις άλλες ρυθμίσεις."
-
-#: gui/options/options.json[2].options[15].label
-msgid "High-quality water effects"
-msgstr "Υψηλής ποιότητας εφέ νερού"
-
-#: gui/options/options.json[2].options[15].tooltip
-msgid ""
-"Use higher-quality effects for water, rendering coastal waves, shore foam, "
-"and ships trails."
-msgstr "Χρησιμοποίηση της μέγιστη ποιότητα των εφέ του νερού, εμφανίζει τα κύματα, το άφρισμα των ακτών και τα ίχνη των πλοίων."
-
-#: gui/options/options.json[2].options[16].label
-msgid "Water reflections"
-msgstr "Αντανακλάσεις νερού"
-
-#: gui/options/options.json[2].options[16].tooltip
-msgid "Allow water to reflect a mirror image."
-msgstr "Επιτρέψτε το νερό να αντανακλά ένα είδωλο."
-
-#: gui/options/options.json[2].options[17].label
-msgid "Water refraction"
-msgstr "Διάθλαση νερού"
-
-#: gui/options/options.json[2].options[17].tooltip
-msgid "Use a real water refraction map and not transparency."
-msgstr "Χρησιμοποιήστε έναν πραγματικής διάθλασης νερού χάρτη και όχι διαφάνεια."
-
-#: gui/options/options.json[2].options[18].label
-msgid "Real water depth"
-msgstr "Βάθος Αληθινού νερού"
-
-#: gui/options/options.json[2].options[18].tooltip
-msgid "Use actual water depth in rendering calculations."
-msgstr "Χρησιμοποιήστε το πραγματικό βάθος νερού στους υπολογισμούς απεικόνισης."
-
-#: gui/options/options.json[2].options[19].label
-msgid "Texture quality"
-msgstr "Ποιότητα υφής"
-
-#: gui/options/options.json[2].options[19].tooltip
-msgid ""
-"Decrease texture quality making them blurrier but increases game "
-"performance."
-msgstr "Μείωση ποιότητας υφής (γραφικα) ,κάνοντάς τη πιο θολή αλλα θα κερδίσετε στην απόδοση του παιχνιδιού."
-
-#: gui/options/options.json[2].options[20].label
-msgid "Texture anisotropic filter"
-msgstr "Φίλτρο ανισότροπης υφής (anisotropic filter texture)"
-
-#: gui/options/options.json[2].options[20].list[0].label
-msgid "1x"
-msgstr "1x"
-
-#: gui/options/options.json[2].options[20].list[1].label
-#: gui/options/options.json[2].options[20].list[1].tooltip
-msgid "2x"
-msgstr "2x"
-
-#: gui/options/options.json[2].options[20].list[2].label
-#: gui/options/options.json[2].options[20].list[2].tooltip
-msgid "4x"
-msgstr "4x"
-
-#: gui/options/options.json[2].options[20].list[3].label
-#: gui/options/options.json[2].options[20].list[3].tooltip
-msgid "8x"
-msgstr "8x"
-
-#: gui/options/options.json[2].options[20].list[4].label
-#: gui/options/options.json[2].options[20].list[4].tooltip
-msgid "16x"
-msgstr "16x"
-
-#: gui/options/options.json[2].options[20].tooltip
-msgid ""
-"Makes textures look better, especially terrain. If the anisotropic filter "
-"value is unsupported it will be set to the max supported value."
-msgstr "Κανει τις υφές να φαίνονται καλύτερες, ιδιαίτερα του εδάφοτς. αν η τιμη του ανισοτροπικού φίλτρου είναι ρυθμισμένη στη μέγιστη υποστηριζόμενη τιμή."
-
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
 msgstr "Εξομάλυνση γραφικών."
 
-#: gui/options/options.json[2].options[20].list[0].tooltip
 #: gui/options/options.json[2].options[3].list[0].label
 #: gui/options/options.json[2].options[4].list[0].label
-#: gui/options/options.json[4].options[5].list[2].label
-#: gui/options/options.json[5].options[4].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[2].label
 msgid "Disabled"
 msgstr "Απενεργοποιήθηκε"
 
@@ -4383,632 +4255,809 @@ msgstr "Το ακόνισμα γραφικών της επιλεγμένης μ�
 msgid "Model quality"
 msgstr "Ποιότητα μοντέλου"
 
-#: gui/options/options.json[2].options[10].list[0].label
-#: gui/options/options.json[2].options[19].list[0].label
-#: gui/options/options.json[2].options[19].list[0].tooltip
-#: gui/options/options.json[2].options[6].list[0].label
+#: gui/options/options.json[2].options[6].list[0].label._string
+msgctxt "Option for the meshes' level of detail."
 msgid "Low"
-msgstr "Χαμηλό"
+msgstr "Λίγοι"
 
-#: gui/options/options.json[2].options[6].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0].label.tooltip
 msgid "Simpler models for better performance."
 msgstr "Απλοϊκά μοντέλα για καλύτερη αποδοση."
 
-#: gui/options/options.json[2].options[10].list[1].label
-#: gui/options/options.json[2].options[19].list[1].label
-#: gui/options/options.json[2].options[19].list[1].tooltip
-#: gui/options/options.json[2].options[6].list[1].label
-#: gui/options/options.json[4].options[3].list[3].label
+#: gui/options/options.json[2].options[6].list[0][1].label._string
+msgctxt "Option for the meshes' level of detail."
 msgid "Medium"
 msgstr "Μεσαίο"
 
-#: gui/options/options.json[2].options[6].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][1].label.tooltip
 msgid "Average quality and average performance."
 msgstr "Μέτρια ποιότητα και μέτρια επίδοση."
 
-#: gui/options/options.json[2].options[10].list[2].label
-#: gui/options/options.json[2].options[19].list[2].label
-#: gui/options/options.json[2].options[19].list[2].tooltip
-#: gui/options/options.json[2].options[6].list[2].label
+#: gui/options/options.json[2].options[6].list[0][1][2].label._string
+msgctxt "Option for the meshes' level of detail."
 msgid "High"
-msgstr "Υψηλό"
+msgstr "Αρκετοί"
 
-#: gui/options/options.json[2].options[6].list[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][1][2].label.tooltip
 msgid "High quality models."
 msgstr "Μοντέλα υψηλής ποιότητας."
 
-#: gui/options/options.json[2].options[6].tooltip
-msgid "Model quality setting."
-msgstr "Ρυθμίσεις ποιότητας μοντέλου."
-
-#: gui/options/options.json[2].options[7].label
+#: gui/options/options.json[2].options[6].list[0][7].label
 msgid "Model appearance randomization"
 msgstr "Τυχαιοποίηση εμφάνισης μοντέλου"
 
-#: gui/options/options.json[2].options[7].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0].label._string
+msgctxt "Option for the meshes' amount of variety."
 msgid "None"
 msgstr "Καμία"
 
-#: gui/options/options.json[2].options[7].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0].label.tooltip
 msgid "Entities will all look the same."
 msgstr "Οι Οντότητες θα φαίνονται όλες ίδιες."
 
-#: gui/options/options.json[2].options[7].list[1].label
-msgid "Limited"
-msgstr "Περιορισμένο"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].label
+msgid "Quality"
+msgstr "Ποιότητα"
 
-#: gui/options/options.json[2].options[7].list[1].tooltip
-msgid "Entities will be less diverse."
-msgstr "Οι οντότητες θα είναι λιγότερο διαφοροποιημένες."
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0].label._string
+msgctxt "Option for the shadow quality."
+msgid "Low"
+msgstr "Λίγοι"
 
-#: gui/options/options.json[2].options[7].list[2].label
-msgid "Normal"
-msgstr "Κανονικός"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1].label._string
+msgctxt "Option for the shadow quality."
+msgid "Medium"
+msgstr "Μεσαίο"
 
-#: gui/options/options.json[2].options[7].list[2].tooltip
-msgid "Entities appearance is randomized normally."
-msgstr "Η εμφάνιση των οντοτήτων τυχιοποιείται κανονικά."
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][11].label
+msgid "Filtering"
+msgstr "Φιλτράρισμα"
 
-#: gui/options/options.json[2].options[7].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][11].tooltip
+msgid "Smooth shadows."
+msgstr "Εξομάλυνση σκιών."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][12].label
+msgid "Cutoff distance"
+msgstr "Οριο απόστασης"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][12].tooltip
+msgid "Hides shadows beyond a certain distance from a camera."
+msgstr "Κρύβει τις σκιές πέρα απο μια ορισμένη απόσταση απο την κάμερα."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][13].label
+msgid "Cover whole map"
+msgstr "Επικάλυψη ολόκληρου χάρτη"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][13].tooltip
 msgid ""
-"Randomize the appearance of entities. Disabling gives a small performance "
-"improvement."
-msgstr "Τυχαιοποίηση της εμφάνισης οντοτήτων Η απενεργοποίηση δίνει μία μικρή αύξηση στην απόδοση."
+"When ON shadows cover the whole map and shadows cutoff distance is ignored. "
+"Useful for making screenshots of a whole map."
+msgstr "Οταν είναι ΕΝΕΡΓΟ σκίές που καλύπτουν ολόκληρο το χάρτη και τα όρια απόστασης σκιών αγνούνται. Χρήσιμο για να τραβάτε στιγμιότυπα οθόνης ολόκληρου του χάρτη"
 
-#: gui/options/options.json[2].options[8].label
-msgid "Shader effects"
-msgstr "Εφέ σκίασης"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].label
+msgid "Water effects"
+msgstr "Εφέ νερού"
 
-#: gui/options/options.json[2].options[8].tooltip
-msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "Αριθμός επίδρασης ανταυγαστήρων. ΑΠΑΙΤΕΙΤΑΙ ΕΠΑΝΕΚΚΙΝΗΣΗ ΤΟΥ ΠΑΙΧΝΙΔΙΟΥ"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].tooltip
+msgid ""
+"When OFF, use the lowest settings possible to render water. This makes other"
+" settings irrelevant."
+msgstr "Όταν είναι ΑΠΕΝΕΡΓΟΠΟΙΗΜΕΝΟ, χρησιμοποιεί τις χαμηλότερες δυνατές ρυθμίσεις για την απεικόνιση του νερού. Αυτό απενεργοποιεί τις άλλες ρυθμίσεις."
 
-#: gui/options/options.json[2].tooltip
-msgid "More specific rendering settings."
-msgstr "Πιο συκεκριμένες ρυθμίσεις απόδοσης."
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][15].label
+msgid "High-quality water effects"
+msgstr "Υψηλής ποιότητας εφέ νερού"
 
-#: gui/options/options.json[3].options[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][15].tooltip
+msgid ""
+"Use higher-quality effects for water, rendering coastal waves, shore foam, "
+"and ships trails."
+msgstr "Χρησιμοποίηση της μέγιστη ποιότητα των εφέ του νερού, εμφανίζει τα κύματα, το άφρισμα των ακτών και τα ίχνη των πλοίων."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].label
+msgid "Water reflections"
+msgstr "Αντανακλάσεις νερού"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].tooltip
+msgid "Allow water to reflect a mirror image."
+msgstr "Επιτρέψτε το νερό να αντανακλά ένα είδωλο."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][17].label
+msgid "Water refraction"
+msgstr "Διάθλαση νερού"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][17].tooltip
+msgid "Use a real water refraction map and not transparency."
+msgstr "Χρησιμοποιήστε έναν πραγματικής διάθλασης νερού χάρτη και όχι διαφάνεια."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][18].label
+msgid "Real water depth"
+msgstr "Βάθος Αληθινού νερού"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][18].tooltip
+msgid "Use actual water depth in rendering calculations."
+msgstr "Χρησιμοποιήστε το πραγματικό βάθος νερού στους υπολογισμούς απεικόνισης."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].label
+msgid "Texture quality"
+msgstr "Ποιότητα υφής"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0].label._string
+msgctxt "Option for the texture quality."
+msgid "Low"
+msgstr "Λίγοι"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0].label.tooltip
+msgid "Low"
+msgstr "Χαμηλό"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1].label._string
+msgctxt "Option for the texture quality."
+msgid "Medium"
+msgstr "Μεσαίο"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1].label.tooltip
+msgid "Medium"
+msgstr "Μεσαίο"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1][2].label._string
+msgctxt "Option for the texture quality."
+msgid "High"
+msgstr "Αρκετοί"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1][2].label.tooltip
+msgid "High"
+msgstr "Υψηλό"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].label
+msgid "Texture anisotropic filter"
+msgstr "Φίλτρο ανισότροπης υφής (anisotropic filter texture)"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[0].label
+msgid "1x"
+msgstr "1x"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[1].tooltip
+msgid "2x"
+msgstr "2x"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[2].tooltip
+msgid "4x"
+msgstr "4x"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[3].tooltip
+msgid "8x"
+msgstr "8x"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[4].tooltip
+msgid "16x"
+msgstr "16x"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].tooltip
+msgid ""
+"Makes textures look better, especially terrain. If the anisotropic filter "
+"value is unsupported it will be set to the max supported value."
+msgstr "Κανει τις υφές να φαίνονται καλύτερες, ιδιαίτερα του εδάφοτς. αν η τιμη του ανισοτροπικού φίλτρου είναι ρυθμισμένη στη μέγιστη υποστηριζόμενη τιμή."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].tooltip
+msgid ""
+"Decrease texture quality making them blurrier but increases game "
+"performance."
+msgstr "Μείωση ποιότητας υφής (γραφικα) ,κάνοντάς τη πιο θολή αλλα θα κερδίσετε στην απόδοση του παιχνιδιού."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].label
 msgid "Master volume"
 msgstr "Γενική ένταση"
 
-#: gui/options/options.json[3].options[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].tooltip
 msgid "Master audio gain."
 msgstr "Ένταση κεντρικού ήχου."
 
-#: gui/options/options.json[3].options[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[1].label
 msgid "Music volume"
 msgstr "Ένταση μουσικής"
 
-#: gui/options/options.json[3].options[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[1].tooltip
 msgid "In game music gain."
 msgstr "Ένταση ήχου μέσα στο παιχνίδι."
 
-#: gui/options/options.json[3].options[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[2].label
 msgid "Ambient volume"
 msgstr "Ένταση ήχων περιβάλλοντος"
 
-#: gui/options/options.json[3].options[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[2].tooltip
 msgid "In game ambient sound gain."
 msgstr "Ένταση ήχων περιβάλλοντος μέσα στο παιχνίδι."
 
-#: gui/options/options.json[3].options[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[3].label
 msgid "Action volume"
 msgstr "Ένταση ήχων δράσης"
 
-#: gui/options/options.json[3].options[3].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[3].tooltip
 msgid "In game unit action sound gain."
 msgstr "Ένταση τους ήχου της δράσης των μονάδων μέσα στο παιχνίδι."
 
-#: gui/options/options.json[3].options[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[4].label
 msgid "UI volume"
 msgstr "Ένταση διεπαφής χρήστη"
 
-#: gui/options/options.json[3].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[4].tooltip
 msgid "UI sound gain."
 msgstr "Ένταση ήχου διεπαφής χρήστη."
 
-#: gui/options/options.json[3].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[5].label
 msgid "Nick notification"
 msgstr "Προειδοποίηση για ψευδώνυμο"
 
-#: gui/options/options.json[3].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
 msgstr "Λαμβάνεις ηχητική προειδοποίηση όταν κάποιος πληκτρολογεί τον ψευδώνυμό σου."
 
-#: gui/options/options.json[3].options[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[6].label
 msgid "New player notification in game setup"
 msgstr "Ειδοποίηση νέου παίκτη σε ρύθμιση παιχνιδιού"
 
-#: gui/options/options.json[3].options[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[6].tooltip
 msgid "Receive audio notification when a new client joins the game setup."
 msgstr "Λήψη ηχητικής ειδοποίησης όταν ένας νέος πελάτης συμμετέχει στη ρύθμιση του παιχνιδιού."
 
-#: gui/options/options.json[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].label
 msgid "Game Setup"
 msgstr "Διαμόρφωση Παιχνιδιού"
 
-#: gui/options/options.json[4].options[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[0].label
 msgid "Enable game setting tips"
 msgstr "Ενεργοποίηση συμβουλών για τις ρυθμίσεις"
 
-#: gui/options/options.json[4].options[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[0].tooltip
 msgid "Show tips when setting up a game."
 msgstr "Εμφάνιση συμβουλών όταν ρυθμίζετε ένα παιχνίδι."
 
-#: gui/options/options.json[4].options[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[1].label
 msgid "Enable settings panel slide"
 msgstr "Ενεργοποίηση ολίσθησης του πίνακα επιλογών"
 
-#: gui/options/options.json[4].options[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
 msgstr "Σύρετε τον πίνακα ρυθμίσεων κατά το άνοιγμα, το κλείσιμο ή την αλλαγή μεγέθους."
 
-#: gui/options/options.json[4].options[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[2].label
 msgid "Persist match settings"
 msgstr "Διαρκείς ρυθμίσεις αγώνα"
 
-#: gui/options/options.json[4].options[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
 msgstr "Αποθηκεύει και επαναφέρει τις ρυθμίσεις του αγώνα για γρήγορη επαναχρησιμοποίηση, όταν φιλοξενηθεί ένα άλλο παιχνίδι."
 
-#: gui/options/options.json[4].options[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].label
 msgid "Default AI difficulty"
 msgstr "Προκαθορισμένη δυσκολία"
 
-#: gui/options/options.json[4].options[3].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0].label._string
+msgctxt "Option for the AI difficulty."
 msgid "Sandbox"
 msgstr "Δοκιμαστικό"
 
-#: gui/options/options.json[4].options[3].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1].label._string
+msgctxt "Option for the AI difficulty."
 msgid "Very Easy"
 msgstr "Πολύ εύκολο"
 
-#: gui/options/options.json[4].options[3].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2].label._string
+msgctxt "Option for the AI difficulty."
 msgid "Easy"
 msgstr "Εύκολο"
 
-#: gui/options/options.json[4].options[3].list[4].label
-msgid "Hard"
-msgstr "Δύσκολο"
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3].label._string
+msgctxt "Option for the AI difficulty."
+msgid "Medium"
+msgstr "Μεσαίο"
 
-#: gui/options/options.json[4].options[3].list[5].label
-msgid "Very Hard"
-msgstr "Πολύ δύσκολο"
-
-#: gui/options/options.json[4].options[3].tooltip
-msgid "Default difficulty of the AI."
-msgstr "Ο προκαθορισμένος βαθμός δυσκολίας της Τεχνητής Νοημοσύνης."
-
-#: gui/options/options.json[4].options[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].label
 msgid "Default AI behavior"
 msgstr "Προκαθορισμένη συμπεριφορά Τεχνητής Νοημοσύνης"
 
-#: gui/options/options.json[4].options[4].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].label._string
+msgctxt "Option for the AI difficulty."
+msgid "Hard"
+msgstr "Δύσκολο"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[0].label
 msgid "Random"
 msgstr "Τυχαίο"
 
-#: gui/options/options.json[4].options[4].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[1].label
 msgid "Balanced"
 msgstr "Ισορροπημένη"
 
-#: gui/options/options.json[4].options[4].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[2].label
 msgid "Aggressive"
 msgstr "Επιθετική στάση"
 
-#: gui/options/options.json[4].options[4].list[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[3].label
 msgid "Defensive"
 msgstr "Αμυντικός"
 
-#: gui/options/options.json[4].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].tooltip
 msgid "Default behavior of the AI."
 msgstr "Η προκαθορισμένη συμπεριφορά της Τεχνητής Νοημοσύνης."
 
-#: gui/options/options.json[4].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4][5].label._string
+msgctxt "Option for the AI difficulty."
+msgid "Very Hard"
+msgstr "Πολύ δύσκολο"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].label
 msgid "Assign players"
 msgstr "Εκχώρηση παιχτών"
 
-#: gui/options/options.json[4].options[5].list[0].label
-#: gui/options/options.json[5].options[4].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[0].label
 msgid "Everyone"
 msgstr "Όλοι"
 
-#: gui/options/options.json[4].options[5].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
 msgstr "Οι παίκτες που συμμετέχουν στην μάχη θα συνδεθούν μόνο εάν υπάρχει ελεύθερη θέση."
 
-#: gui/options/options.json[4].options[5].list[1].label
-#: gui/options/options.json[5].options[4].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[1].label
 msgid "Buddies"
 msgstr "Φίλοι"
 
-#: gui/options/options.json[4].options[5].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[1].tooltip
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
 msgstr "Οι παίκτες που συμμετέχουν στην μάχη θα συνδεθούν μόνο εάν είναι φίλοι του οικοδεσπότη και εάν υπάρχει ελεύθερη θέση."
 
-#: gui/options/options.json[4].options[5].list[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
 msgstr "Οι παίκτες λαμβάνουν μια θέση μόνο όταν ο οικοδεσπότης τους την εκχωρεί ρητά."
 
-#: gui/options/options.json[4].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].tooltip
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
 msgstr "Αυτόματη εκχώρηση συμμετεχόντων σε ελεύθερες θέσεις παικτών κατά τη διάρκεια της ρύθμισης του αγώνα."
 
-#: gui/options/options.json[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].label
 msgid "Networking / Lobby"
 msgstr "Δικτύωση/\"αίθουσα αναμονής\""
 
-#: gui/options/options.json[5].options[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].label
 msgid "TLS encryption"
 msgstr "Κρυπτογράφηση TLS"
 
-#: gui/options/options.json[5].options[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
 msgstr "Προστάτευσε τα στοιχεία σύνδεσης και τα δεδομένα που ανταλλάσσονται με το διακομιστή λόμπι χρησιμοποιώντας κρυπτογράφηση TLS (Ασφάλεια Επιπέδου Μεταφοράς)."
 
-#: gui/options/options.json[5].options[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[1].label
 msgid "Chat backlog"
 msgstr "Συνομιλία εκκρεμοτήτων"
 
-#: gui/options/options.json[5].options[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
 msgstr "Ο αριθμός των προηγούμενων μηνυμάτων που θα φορτωθεί όταν γίνει σύνδεση με το λόμπι."
 
-#: gui/options/options.json[5].options[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].label
 msgid "Game rating column"
 msgstr "Στήλη βαθμολογίας παιχνιδιού"
 
-#: gui/options/options.json[5].options[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
 msgstr "Εμφάνιση τη μέση βαθμολογία των συμμετεχόντων παικτών σε μια στήλη στη λίστα των παιχνιδιών."
 
-#: gui/options/options.json[5].options[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].label
 msgid "Network warnings"
 msgstr "Προειδοποιήσεις δικτύου"
 
-#: gui/options/options.json[5].options[3].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
 msgstr "Εμφανίζει ποιοι παίχτες έχουν κακή σύνδεση με τα παιχνίδια για πολλούς παίχτες."
 
-#: gui/options/options.json[5].options[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].label
 msgid "Late observer joins"
 msgstr "Σύνδεση παρατηρητή αργότερα"
 
-#: gui/options/options.json[5].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
 msgstr "Επιτρέπει σε όλους ή μόνο στους φίλους να συνδεθούν στο παιχνίδι ως παρατηρητές μετά την έναρξη του παιχνιδιού."
 
-#: gui/options/options.json[5].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[5].label
 msgid "Observer limit"
 msgstr "Όριο παρατηρητών"
 
-#: gui/options/options.json[5].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[5].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
 msgstr "Αποτρέπει την περαιτέρω σύνδεση παρατηρητών εφόσον επιτευχθεί το όριο."
 
-#: gui/options/options.json[5].options[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[6].label
 msgid "Max lag for observers"
 msgstr "Μέγιστη καθυστέρηση (στο δύκτιο) για παρατηρητές/τριες"
 
-#: gui/options/options.json[5].options[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[6].tooltip
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
 msgstr "'Οταν φιλοξενείτε, παγώστε το παιχνίδι άν οι παρατηρητές κολλάνε( πρόβλημα στη σύνδεση) για παραπάνω απο τόσες φορές.\nΑν είναι ορισμένες στο -1 ,οι παρατηρητές αγνοούνται."
 
-#: gui/options/options.json[5].options[7].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].label
 msgid "(Observer) Speed up when lagging."
 msgstr "(Παρατηρητής) Επιτάχυνση όταν η σύνδεση είναι αργή."
 
-#: gui/options/options.json[5].options[7].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].tooltip
 msgid ""
 "When observing a game, automatically speed up if you start lagging, to catch"
 " up with the live match."
 msgstr "Οταν παρακολουθείτε ένα παιχνίδι, αυτόματα επιταχύνετεοταν ξεκινάτε να κολλάτε (αργό δίκτυο), για να προλάβετε  τη προβολή του παιχνιδιού σε ζωντανή απόδοση."
 
-#: gui/options/options.json[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].tooltip
 msgid "These settings only affect the multiplayer."
 msgstr "Αυτές οι ρυθμίσεις επηρεάσουν μόνο το παιχνίδι πολλών παιχτών."
 
-#: gui/options/options.json[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].label
 msgid "Game Session"
 msgstr "Συνεδρίαση Παιχνιδιού"
 
-#: gui/options/options.json[6].options[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[0].label
 msgid "Wounded unit health"
 msgstr "Θεραπεία πληγωμένων μονάδων"
 
-#: gui/options/options.json[6].options[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[0].tooltip
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
 msgstr "Η συντόμευση πλήκτρου για τις τραυματισμένες μονάδες επιλέγει μόνο τις τραυματισμένες μονάδες εάν το ποσοστό υγείας τους πέσει κάτω από αυτόν τον αριθμό."
 
-#: gui/options/options.json[6].options[10].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].label
 msgid "Heal range visualization"
 msgstr "Οπτικοποίηση βεληνεκές θεραπείας"
 
-#: gui/options/options.json[6].options[10].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].tooltip
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
 msgstr "Εμφανίζει το εύρος της θεραπείας  αύρας των επιλεγμένων μονάδων και κατασκευών. (Μπορεί επίσης να γίνει εναλλαγή με πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)."
 
-#: gui/options/options.json[6].options[11].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].label
 msgid "Rank icon above status bar"
 msgstr "Εικονίδιο κατάταξης πάνω από την μπάρα κατάστασης."
 
-#: gui/options/options.json[6].options[11].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].tooltip
 msgid "Show rank icons above status bars."
 msgstr "Εμφάνιση εικονιδίων κατάταξης πάνω από τις μπάρες κατάστασης."
 
-#: gui/options/options.json[6].options[12].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].label
 msgid "Experience status bar"
 msgstr "Μπάρα προόδου εμπειρίας"
 
-#: gui/options/options.json[6].options[12].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "Εμφάνιση μιας μπάρας προόδου της εμπειρίας πάνω από κάθε επιλεγμένη μονάδα."
 
-#: gui/options/options.json[6].options[13].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].label
 msgid "Detailed tooltips"
 msgstr "Λεπτομερείς επεξηγήσεις"
 
-#: gui/options/options.json[6].options[13].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "Εμφάνιση λεπτομερών επεξηγήσεων για εκπαιδεύσιμες μονάδες σε κτίρια παραγωγής μονάδων."
 
-#: gui/options/options.json[6].options[14].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].label
 msgid "Sort resources and population tooltip"
 msgstr "Επεξήγηση ταξινόμησης πόρων και πληθυσμού"
 
-#: gui/options/options.json[6].options[14].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[0].label
 msgid "Unordered"
 msgstr "Χωρίς ταξινόμηση"
 
-#: gui/options/options.json[6].options[14].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[1].label
 msgid "Ascending"
 msgstr "Αύξουσα σειρά"
 
-#: gui/options/options.json[6].options[14].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[2].label
 msgid "Descending"
 msgstr "Φθίνουσα σειρά"
 
-#: gui/options/options.json[6].options[14].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "Δυναμική ταξινόμηση τον παιχτών στην επεξήγηση των πόρων και του πληθυσμού κατά τιμή."
 
-#: gui/options/options.json[6].options[15].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].label
 msgid "Diplomacy colors: self"
 msgstr "Χρώματα διπλωματίας: Εγώ"
 
-#: gui/options/options.json[6].options[15].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "Χρωματισμός των μονάδων σου όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
 
-#: gui/options/options.json[6].options[16].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].label
 msgid "Diplomacy colors: ally"
 msgstr "Χρώματα διπλωματίας: Σύμμαχοι"
 
-#: gui/options/options.json[6].options[16].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "Χρωματισμός των συμμάχων σου όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
 
-#: gui/options/options.json[6].options[17].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].label
 msgid "Diplomacy colors: neutral"
 msgstr "Χρώματα διπλωματίας: Ουδέτεροι"
 
-#: gui/options/options.json[6].options[17].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "Χρωματισμός των ουδέτερων παιχτών όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
 
-#: gui/options/options.json[6].options[18].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].label
 msgid "Diplomacy colors: enemy"
 msgstr "Χρώματα διπλωματίας: Εχθροί"
 
-#: gui/options/options.json[6].options[18].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "Χρωματισμός των εχθρών σου όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
 
-#: gui/options/options.json[6].options[19].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].label
 msgid "Snap to edges"
 msgstr "Προσκόλληση στα άκρα"
 
-#: gui/options/options.json[6].options[19].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[0].label
 msgid "Hotkey to enable snapping"
 msgstr "Πλήκτρο συντόμευσης για ενεργοποίηση προσκόλλησης"
 
-#: gui/options/options.json[6].options[19].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
 msgstr "Οι νέες κατασκευές ευθυγραμμίζονται με τις κοντινές δομές πιέζοντας το πλήκτρο συντόμευσης."
 
-#: gui/options/options.json[6].options[19].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[1].label
 msgid "Hotkey to disable snapping"
 msgstr "Πλήκτρο συντόμευσης για απενεργοποίηση προσκόλλησης"
 
-#: gui/options/options.json[6].options[19].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[1].tooltip
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
 msgstr "Οι νέες κατασκευές ευθυγραμμίζονται με τις κοντινές δομές έκτος αν πατιέται το πλήκτρο συντόμευσης."
 
-#: gui/options/options.json[6].options[19].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].tooltip
 msgid "This option allows to align new structures with nearby structures."
 msgstr "Αυτή η επιλογή επιτρέπει την ευθυγράμμιση νέων κατασκευών με κοντινές δομές."
 
-#: gui/options/options.json[6].options[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].label
 msgid "Batch training size"
 msgstr "Μέγεθος ομάδας εκπαίδευσης"
 
-#: gui/options/options.json[6].options[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].tooltip
 msgid "Number of units trained per batch by default."
 msgstr "Αριθμός των μονάδων που θα εκπαιδεύονται ανά παρτίδα από προεπιλογή."
 
-#: gui/options/options.json[6].options[20].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].label
 msgid "Control group membership"
 msgstr "'Έλεγχος ομαδικής συμμετοχής."
 
-#: gui/options/options.json[6].options[20].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].label
 msgid "Single"
 msgstr "Μονό"
 
-#: gui/options/options.json[6].options[20].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].tooltip
 msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
 msgstr "Όταν προσθέτετε μια Μονάδα ή Κτίριο σε μια ομάδα ελέγχου, αφαιρούνται από άλλες ομάδες ελέγχου. Χρησιμοποιήστε αυτήν την επιλογή εάν θέλετε οι ομάδες ελέγχου να αναφέρονται σε συγκεκριμένα στρατεύματα."
 
-#: gui/options/options.json[6].options[20].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].label
 msgid "Multiple"
 msgstr "Πολλαπλό"
 
-#: gui/options/options.json[6].options[20].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].tooltip
 msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
 msgstr "Οι μονάδες και τα Κτίρια μπορούν να είναι μέρος πολλών ομάδων ελέγχου. Αυτό είναι χρήσιμο για να διατηρήσετε ομάδες ελέγχου για διαφορετικά στρατεύματα και μια ομάδα ελέγχου για ολόκληρο τον στρατό ταυτόχρονα."
 
-#: gui/options/options.json[6].options[20].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].tooltip
 msgid "Decide whether units can be part of multiple control groups."
 msgstr "Αποφασίστε αν οι μονάδες θα μπορούν να είναι μέλη πολλαπλών ομάδων ελέγχου."
 
-#: gui/options/options.json[6].options[21].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].label
 msgid "Formation control"
 msgstr "Έλεγχος Σχηματισμού"
 
-#: gui/options/options.json[6].options[21].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].label
 msgid "Walk/Patrol Only"
 msgstr "Βηματισμός/Περιπολία Μόνο"
 
-#: gui/options/options.json[6].options[21].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].tooltip
 msgid "Other orders will disband existing formations."
 msgstr "'Άλλες εντολές θα διαλύσουν υπάρχοντες σχηματισμούς."
 
-#: gui/options/options.json[6].options[21].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].label
 msgid "No override"
 msgstr "Καμία Παράκαμψη"
 
-#: gui/options/options.json[6].options[21].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].tooltip
 msgid "Units in formations stay in formations."
 msgstr "Οι Μονάδες σε σχηματισμούς διατηρούν του σχηματισμούς."
 
-#: gui/options/options.json[6].options[21].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
 msgstr "Αποφασίστε άν οι σχηματισμοί ενεργοποιούνται όλοι από εντολές ή  με 'Βηματισμός' και'Περιπολία'."
 
-#: gui/options/options.json[6].options[22].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].label
 msgid "Battalion-style formations"
 msgstr "Μορφή σχηματισμών τάγματος."
 
-#: gui/options/options.json[6].options[22].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].tooltip
 msgid "Whether formations are selected as a whole."
 msgstr "Εάν οι σχηματισμοί επιλεχθούν ώς σύνολο."
 
-#: gui/options/options.json[6].options[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[2].label
 msgid "Scroll batch increment ratio"
 msgstr "Ολισθήριο βαθμού αύξησης ομάδας"
 
-#: gui/options/options.json[6].options[2].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
 msgstr "Αριθμός φορών που πρέπει να κυλήσεις τη ροδέλα για να αυξήσεις/μειώσεις το μέγεθος παρτίδας κατά 1."
 
-#: gui/options/options.json[6].options[3].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].label
 msgid "Flare display duration"
 msgstr "Διάρκεις εμφάνισης Λάμψης"
 
-#: gui/options/options.json[6].options[3].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
 msgstr "Η διάρκεια στιγμάτων λάμψης στο μικρό χάρτη εμφανίζεται σε δευτερόλεπτα."
 
-#: gui/options/options.json[6].options[4].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].label
 msgid "Chat notification attack"
 msgstr "Ειδοποίηση επίθεσης στη συνομιλία"
 
-#: gui/options/options.json[6].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "Δείχνει μία ειδοποίηση στη συζήτηση αν δεχθείς επίθεση από άλλον παίχτη."
 
-#: gui/options/options.json[6].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].label
 msgid "Chat notification tribute"
 msgstr "Ειδοποίηση για εισφορές"
 
-#: gui/options/options.json[6].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "Δείχνει μια ειδοποίηση στη συζήτηση αν ένας σύμμαχος προσφέρει πόρους σε ένα μέλος μίας άλλης ομάδας αν οι ομάδες είναι κλειδωμένες και όλοι οι φόροι σε λειτουργία παρατήρησης."
 
-#: gui/options/options.json[6].options[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].label
 msgid "Chat notification barter"
 msgstr "Ειδοποίηση ανταλλαγής στη συνομιλία"
 
-#: gui/options/options.json[6].options[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "Δείχνει μία ειδοποίηση στη συζήτηση των παρατηρητών όταν ένας παίχτης κάνει ανταλλαγή πόρων."
 
-#: gui/options/options.json[6].options[7].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].label
 msgid "Chat notification phase"
 msgstr "Ειδοποίηση στη συνομιλία για φάση πόλης"
 
-#: gui/options/options.json[6].options[7].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[0].label
 msgid "Disable"
 msgstr "Απενεργοποίηση"
 
-#: gui/options/options.json[6].options[7].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[1].label
 msgid "Completed"
 msgstr "Ολοκληρώθηκε"
 
-#: gui/options/options.json[6].options[7].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[2].label
 msgid "All displayed"
 msgstr "Εμφάνιση όλων"
 
-#: gui/options/options.json[6].options[7].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "Δείχνει μια ειδοποίηση στη συζήτηση αν ένας σύμμαχος ξεκίνησε, ακύρωσε ή ολοκλήρωσε μία νέα φάση και θέτει τις φάσεις για όλους τους παίχτες σε λειτουργία παρατήρησης."
 
-#: gui/options/options.json[6].options[8].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].label
 msgid "Attack range visualization"
 msgstr "Οπτικοποίηση βεληνεκές επίθεσης"
 
-#: gui/options/options.json[6].options[8].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr "Εμφάνιση εμβέλειας επίθεσης των επιλεγμένων αμυντικών κατασκευών. (Μπορεί επίσης να εναλλαχτεί με το πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)."
 
-#: gui/options/options.json[6].options[9].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].label
 msgid "Aura range visualization"
 msgstr "Οπτικοποίηση βεληνεκές αύρας"
 
-#: gui/options/options.json[6].options[9].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
 msgstr "Εμφανίζει το εύρος της αύρας των επιλεγμένων μονάδων και κατασκευών. (Μπορεί επίσης να γίνει εναλλαγή με πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)"
 
-#: gui/options/options.json[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].tooltip
 msgid "Change options regarding the in-game settings."
 msgstr "Αλλαγή επιλογών σχετικά με τις ρυθμίσεις εντός του παιχνιδιού."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].tooltip
+msgid "Default difficulty of the AI."
+msgstr "Ο προκαθορισμένος βαθμός δυσκολίας της Τεχνητής Νοημοσύνης."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][2].label._string
+msgctxt "Option for the shadow quality."
+msgid "High"
+msgstr "Αρκετοί"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][2][3].label._string
+msgctxt "Option for the shadow quality."
+msgid "Very High"
+msgstr "Παρά Πολλοι"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].tooltip
+msgid ""
+"Shadow map resolution. High values can crash the game when using a graphics "
+"card with low memory!"
+msgstr "Ανάλυση στις σκιές του χάρτη. Υψηλές τιμές μπορεί να καταρρεύσουν το παιχνίδι αν η κάρτα γραφικών έχει μικρή μνήμη!"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][1].label._string
+msgctxt "Option for the meshes' amount of variety."
+msgid "Limited"
+msgstr "Περιορισμένο"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][1].label.tooltip
+msgid "Entities will be less diverse."
+msgstr "Οι οντότητες θα είναι λιγότερο διαφοροποιημένες."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label._string
+msgctxt "Option for the meshes' amount of variety."
+msgid "Normal"
+msgstr "Κανονικός"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label.tooltip
+msgid "Entities appearance is randomized normally."
+msgstr "Η εμφάνιση των οντοτήτων τυχιοποιείται κανονικά."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][8].label
+msgid "Shader effects"
+msgstr "Εφέ σκίασης"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][8].tooltip
+msgid "Number of shader effects. REQUIRES GAME RESTART"
+msgstr "Αριθμός επίδρασης ανταυγαστήρων. ΑΠΑΙΤΕΙΤΑΙ ΕΠΑΝΕΚΚΙΝΗΣΗ ΤΟΥ ΠΑΙΧΝΙΔΙΟΥ"
+
+#: gui/options/options.json[2].options[6].list[0][7].tooltip
+msgid ""
+"Randomize the appearance of entities. Disabling gives a small performance "
+"improvement."
+msgstr "Τυχαιοποίηση της εμφάνισης οντοτήτων Η απενεργοποίηση δίνει μία μικρή αύξηση στην απόδοση."
+
+#: gui/options/options.json[2].options[6].tooltip
+msgid "Model quality setting."
+msgstr "Ρυθμίσεις ποιότητας μοντέλου."
+
+#: gui/options/options.json[2].tooltip
+msgid "More specific rendering settings."
+msgstr "Πιο συκεκριμένες ρυθμίσεις απόδοσης."
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"

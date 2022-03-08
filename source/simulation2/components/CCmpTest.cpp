@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@ public:
 		return "<a:component type='test'/><ref name='anything'/>";
 	}
 
-	virtual void Init(const CParamNode& paramNode)
+	void Init(const CParamNode& paramNode) override
 	{
 		if (paramNode.GetChild("x").IsOk())
 			m_x = paramNode.GetChild("x").ToInt();
@@ -50,26 +50,26 @@ public:
 			m_x = 11000;
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	void Serialize(ISerializer& serialize) override
 	{
 		serialize.NumberI32_Unbounded("x", m_x);
 	}
 
-	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
+	void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize) override
 	{
 		deserialize.NumberI32_Unbounded("x", m_x);
 	}
 
-	virtual int GetX()
+	int GetX() override
 	{
 		return m_x;
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -109,31 +109,31 @@ public:
 		return "<a:component type='test'/><empty/>";
 	}
 
-	virtual void Init(const CParamNode&)
+	void Init(const CParamNode&) override
 	{
 		m_x = 12000;
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	void Serialize(ISerializer& serialize) override
 	{
 		serialize.NumberI32_Unbounded("x", m_x);
 	}
 
-	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
+	void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize) override
 	{
 		deserialize.NumberI32_Unbounded("x", m_x);
 	}
 
-	virtual int GetX()
+	int GetX() override
 	{
 		return m_x;
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -170,31 +170,31 @@ public:
 		return "<a:component type='test'/><empty/>";
 	}
 
-	virtual void Init(const CParamNode&)
+	void Init(const CParamNode&) override
 	{
 		m_x = 21000;
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	void Serialize(ISerializer& serialize) override
 	{
 		serialize.NumberI32_Unbounded("x", m_x);
 	}
 
-	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
+	void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize) override
 	{
 		deserialize.NumberI32_Unbounded("x", m_x);
 	}
 
-	virtual int GetX()
+	int GetX() override
 	{
 		return m_x;
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -220,7 +220,7 @@ class CCmpTest1Scripted : public ICmpTest1
 public:
 	DEFAULT_SCRIPT_WRAPPER(Test1Scripted)
 
-	virtual int GetX()
+	int GetX() override
 	{
 		return m_Script.Call<int> ("GetX");
 	}
@@ -235,7 +235,7 @@ class CCmpTest2Scripted : public ICmpTest2
 public:
 	DEFAULT_SCRIPT_WRAPPER(Test2Scripted)
 
-	virtual int GetX()
+	int GetX() override
 	{
 		return m_Script.Call<int> ("GetX");
 	}

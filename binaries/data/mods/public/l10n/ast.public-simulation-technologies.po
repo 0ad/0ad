@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-28 08:09+0000\n"
-"PO-Revision-Date: 2022-03-02 22:20+0000\n"
+"POT-Creation-Date: 2022-03-04 08:09+0000\n"
+"PO-Revision-Date: 2022-03-04 22:04+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,6 @@ msgstr "Agogá"
 #: simulation/data/technologies/poison_blades.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_02.jsonrequirementsTooltip
 #: simulation/data/technologies/reformed_army_sele.jsonrequirementsTooltip
-#: simulation/data/technologies/repeating_crossbows.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_health.jsonrequirementsTooltip
 #: simulation/data/technologies/ship_movement_speed.jsonrequirementsTooltip
@@ -507,8 +506,8 @@ msgid "Crossbow Training"
 msgstr "Exercicios arcuballistarios"
 
 #: simulation/data/technologies/crossbow_training.jsontooltip
-msgid "Crossbow Infantry and Cavalry −1 second firing time −20% train time."
-msgstr "Pédites & éqüites arcuballistarios: segundos entre disparos −1 tiempu de creaçon −20%."
+msgid "Crossbow Infantry and Cavalry −20% firing time −20% train time."
+msgstr "Pédites & éqüites arcuballistarios: tiempu entre tiros −20% tiempu de creaçon −20%."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -555,7 +554,7 @@ msgstr "Pisqueiros: velocidá d’obtençon de piscau +30%."
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
-msgstr "Læs unidahes convalescen al star abelhogadæs."
+msgstr "Læs unidades convalescen al star abelhogadæs."
 
 #: simulation/data/technologies/garrison_heal.jsongenericName
 msgid "Living Conditions"
@@ -900,7 +899,7 @@ msgstr "Cives féminæs: vitalidá +100%."
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Organic units will slowly regenerate health over time when idle."
-msgstr "Læs unidahes orgánicæs convalescen al star vagadæs."
+msgstr "Læs unidades orgánicæs convalescen al star vagadæs."
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
@@ -908,7 +907,7 @@ msgstr "Medicina improvisada"
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Idle Organic units +0.5 health regeneration rate."
-msgstr "Unidahes orgánicæs vagadæs: rhythmu de convalescencia +0.5."
+msgstr "Unidades orgánicæs vagadæs: rhythmu de convalescencia +0.5."
 
 #: simulation/data/technologies/hellenistic_metropolis.jsondescription
 msgid ""
@@ -1226,21 +1225,6 @@ msgstr "Exércitu reformau"
 #: simulation/data/technologies/reformed_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
 msgstr "Dispieslla l Pédite spathariu invictu."
-
-#: simulation/data/technologies/repeating_crossbows.jsondescription
-msgid ""
-"Crossbows equiped with a repeating mechanism and dart magazine increase "
-"firing rate."
-msgstr "Læs arcuballistæs provistæs de repetidor & cargador augmentæn la cadencia de tiru."
-
-#: simulation/data/technologies/repeating_crossbows.jsongenericName
-msgid "Repeating Crossbows"
-msgstr "Arcuballistæs de repetiçon"
-
-#: simulation/data/technologies/repeating_crossbows.jsontooltip
-msgid ""
-"Crossbow Infantry and Cavalry −1 second firing time, but +20 metal cost."
-msgstr "Pédites & éqüites arcuballistarios: segundos entre disparos −1, costu n metal +20%."
 
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""
@@ -1573,7 +1557,7 @@ msgstr "Informantes"
 
 #: simulation/data/technologies/spy_counter.jsontooltip
 msgid "Make your units 50% more expensive to bribe."
-msgstr "Fhaz que l costu de suborna’ læs tuês unidahes augmente un 50%."
+msgstr "Fhaz que l costu de suborna’ læs tuês unidades augmente un 50%."
 
 #: simulation/data/technologies/stable_batch_training.jsondescription
 msgid ""
@@ -1723,7 +1707,7 @@ msgid ""
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
-msgstr "Unidahes superiores, singulares: tiempu de creaçon +20% vitalidá +25% captura +0.7 preda +20% velocidá d’obtençon −30%; Sanantes: sanaçon +5 algame +3; Combatientes: resistencia +1 danho offensivo +20%; Emittientes: imprecision −20%."
+msgstr "Unidades superiores, singulares: tiempu de creaçon +20% vitalidá +25% captura +0.7 preda +20% velocidá d’obtençon −30%; Sanantes: sanaçon +5 algame +3; Combatientes: resistencia +1 danho offensivo +20%; Emittientes: imprecision −20%."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
@@ -1743,7 +1727,7 @@ msgid ""
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
 " range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
-msgstr "Unidahes singulares: tiempu de creaçon +20% vitalidá +25% captura +0.8 preda +20% velocidá d’obtençon −30%; Sanantes: sanaçon +5 algame +3; Combatientes: resistencia +1 danho offensivo +20%; Emittientes: imprecision −20%."
+msgstr "Unidades singulares: tiempu de creaçon +20% vitalidá +25% captura +0.8 preda +20% velocidá d’obtençon −30%; Sanantes: sanaçon +5 algame +3; Combatientes: resistencia +1 danho offensivo +20%; Emittientes: imprecision −20%."
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsondescription
 #: simulation/data/technologies/unlock_champion_chariots.jsondescription
@@ -1859,7 +1843,7 @@ msgstr "Speculaçon"
 #: simulation/data/technologies/unlock_spies.jsontooltip
 msgid ""
 "Allows bribing the units of other players in order to share their vision."
-msgstr "Permitte suborna’ læs unidahes d’outros xhogadores p’aproveitha’ la suâ vision."
+msgstr "Permitte suborna’ læs unidades d’outros xhogadores p’aproveitha’ la suâ vision."
 
 #: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsondescription
 msgid "Upgrade all of your citizen crossbowmen to Advanced rank."

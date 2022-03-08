@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,12 +30,12 @@ class CCmpVisibilityScripted : public ICmpVisibility
 public:
 	DEFAULT_SCRIPT_WRAPPER(VisibilityScripted)
 
-	virtual bool IsActivated()
+	bool IsActivated() override
 	{
 		return m_Script.Call<bool>("IsActivated");
 	}
 
-	virtual LosVisibility GetVisibility(player_id_t player, bool isVisible, bool isExplored)
+	LosVisibility GetVisibility(player_id_t player, bool isVisible, bool isExplored) override
 	{
 		int visibility = m_Script.Call<int, player_id_t, bool, bool>("GetVisibility", player, isVisible, isExplored);
 
@@ -53,12 +53,12 @@ public:
 		}
 	}
 
-	virtual bool GetRetainInFog()
+	bool GetRetainInFog() override
 	{
 		return m_Script.Call<bool>("GetRetainInFog");
 	}
 
-	virtual bool GetAlwaysVisible()
+	bool GetAlwaysVisible() override
 	{
 		return m_Script.Call<bool>("GetAlwaysVisible");
 	}

@@ -160,7 +160,7 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CParamNode& UNUSED(paramNode))
+	void Init(const CParamNode& UNUSED(paramNode)) override
 	{
 		m_DebugOverlayEnabled = false;
 		m_DebugOverlayDirty = true;
@@ -180,7 +180,7 @@ public:
 		ResetSubdivisions(entity_pos_t::FromInt(1024), entity_pos_t::FromInt(1024));
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
@@ -205,7 +205,7 @@ public:
 		serialize.NumberFixed_Unbounded("world z1", m_WorldZ1);
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	void Serialize(ISerializer& serialize) override
 	{
 		// TODO: this could perhaps be optimised by not storing all the obstructions,
 		// and instead regenerating them from the other entities on Deserialize
@@ -213,7 +213,7 @@ public:
 		SerializeCommon(serialize);
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
+	void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) override
 	{
 		Init(paramNode);
 
@@ -223,7 +223,7 @@ public:
 		m_UpdateInformations.dirtinessGrid = Grid<u8>(size, size);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -238,7 +238,7 @@ public:
 
 	// NB: on deserialization, this function is not called after the component is reset.
 	// So anything that happens here should be safely serialized.
-	virtual void SetBounds(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1)
+	void SetBounds(entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1) override
 	{
 		m_WorldX0 = x0;
 		m_WorldZ0 = z0;
@@ -278,7 +278,7 @@ public:
 		}
 	}
 
-	virtual tag_t AddUnitShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_pos_t clearance, flags_t flags, entity_id_t group)
+	tag_t AddUnitShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_pos_t clearance, flags_t flags, entity_id_t group) override
 	{
 		UnitShape shape = { ent, x, z, clearance, flags, group };
 		u32 id = m_UnitShapeNext++;
@@ -291,7 +291,7 @@ public:
 		return UNIT_INDEX_TO_TAG(id);
 	}
 
-	virtual tag_t AddStaticShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h, flags_t flags, entity_id_t group, entity_id_t group2 /* = INVALID_ENTITY */)
+	tag_t AddStaticShape(entity_id_t ent, entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h, flags_t flags, entity_id_t group, entity_id_t group2 /* = INVALID_ENTITY */) override
 	{
 		fixed s, c;
 		sincos_approx(a, s, c);
@@ -311,7 +311,7 @@ public:
 		return STATIC_INDEX_TO_TAG(id);
 	}
 
-	virtual ObstructionSquare GetUnitShapeObstruction(entity_pos_t x, entity_pos_t z, entity_pos_t clearance) const
+	ObstructionSquare GetUnitShapeObstruction(entity_pos_t x, entity_pos_t z, entity_pos_t clearance) const override
 	{
 		CFixedVector2D u(entity_pos_t::FromInt(1), entity_pos_t::Zero());
 		CFixedVector2D v(entity_pos_t::Zero(), entity_pos_t::FromInt(1));
@@ -319,7 +319,7 @@ public:
 		return o;
 	}
 
-	virtual ObstructionSquare GetStaticShapeObstruction(entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h) const
+	ObstructionSquare GetStaticShapeObstruction(entity_pos_t x, entity_pos_t z, entity_angle_t a, entity_pos_t w, entity_pos_t h) const override
 	{
 		fixed s, c;
 		sincos_approx(a, s, c);
@@ -330,7 +330,7 @@ public:
 		return o;
 	}
 
-	virtual void MoveShape(tag_t tag, entity_pos_t x, entity_pos_t z, entity_angle_t a)
+	void MoveShape(tag_t tag, entity_pos_t x, entity_pos_t z, entity_angle_t a) override
 	{
 		ENSURE(TAG_IS_VALID(tag));
 
@@ -379,7 +379,7 @@ public:
 		}
 	}
 
-	virtual void SetUnitMovingFlag(tag_t tag, bool moving)
+	void SetUnitMovingFlag(tag_t tag, bool moving) override
 	{
 		ENSURE(TAG_IS_VALID(tag) && TAG_IS_UNIT(tag));
 
@@ -395,7 +395,7 @@ public:
 		}
 	}
 
-	virtual void SetUnitControlGroup(tag_t tag, entity_id_t group)
+	void SetUnitControlGroup(tag_t tag, entity_id_t group) override
 	{
 		ENSURE(TAG_IS_VALID(tag) && TAG_IS_UNIT(tag));
 
@@ -406,7 +406,7 @@ public:
 		}
 	}
 
-	virtual void SetStaticControlGroup(tag_t tag, entity_id_t group, entity_id_t group2)
+	void SetStaticControlGroup(tag_t tag, entity_id_t group, entity_id_t group2) override
 	{
 		ENSURE(TAG_IS_VALID(tag) && TAG_IS_STATIC(tag));
 
@@ -418,7 +418,7 @@ public:
 		}
 	}
 
-	virtual void RemoveShape(tag_t tag)
+	void RemoveShape(tag_t tag) override
 	{
 		ENSURE(TAG_IS_VALID(tag));
 
@@ -447,7 +447,7 @@ public:
 		}
 	}
 
-	virtual ObstructionSquare GetObstruction(tag_t tag) const
+	ObstructionSquare GetObstruction(tag_t tag) const override
 	{
 		ENSURE(TAG_IS_VALID(tag));
 
@@ -467,31 +467,31 @@ public:
 		}
 	}
 
-	virtual fixed DistanceToPoint(entity_id_t ent, entity_pos_t px, entity_pos_t pz) const;
-	virtual fixed MaxDistanceToPoint(entity_id_t ent, entity_pos_t px, entity_pos_t pz) const;
-	virtual fixed DistanceToTarget(entity_id_t ent, entity_id_t target) const;
-	virtual fixed MaxDistanceToTarget(entity_id_t ent, entity_id_t target) const;
-	virtual fixed DistanceBetweenShapes(const ObstructionSquare& source, const ObstructionSquare& target) const;
-	virtual fixed MaxDistanceBetweenShapes(const ObstructionSquare& source, const ObstructionSquare& target) const;
+	fixed DistanceToPoint(entity_id_t ent, entity_pos_t px, entity_pos_t pz) const override;
+	fixed MaxDistanceToPoint(entity_id_t ent, entity_pos_t px, entity_pos_t pz) const override;
+	fixed DistanceToTarget(entity_id_t ent, entity_id_t target) const override;
+	fixed MaxDistanceToTarget(entity_id_t ent, entity_id_t target) const override;
+	fixed DistanceBetweenShapes(const ObstructionSquare& source, const ObstructionSquare& target) const override;
+	fixed MaxDistanceBetweenShapes(const ObstructionSquare& source, const ObstructionSquare& target) const override;
 
-	virtual bool IsInPointRange(entity_id_t ent, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const;
-	virtual bool IsInTargetRange(entity_id_t ent, entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const;
-	virtual bool IsInTargetParabolicRange(entity_id_t ent, entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t yOrigin, bool opposite) const;
-	virtual bool IsPointInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange) const;
-	virtual bool AreShapesInRange(const ObstructionSquare& source, const ObstructionSquare& target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const;
+	bool IsInPointRange(entity_id_t ent, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const override;
+	bool IsInTargetRange(entity_id_t ent, entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const override;
+	bool IsInTargetParabolicRange(entity_id_t ent, entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange, entity_pos_t yOrigin, bool opposite) const override;
+	bool IsPointInPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t px, entity_pos_t pz, entity_pos_t minRange, entity_pos_t maxRange) const override;
+	bool AreShapesInRange(const ObstructionSquare& source, const ObstructionSquare& target, entity_pos_t minRange, entity_pos_t maxRange, bool opposite) const override;
 
-	virtual bool TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, bool relaxClearanceForUnits = false) const;
-	virtual bool TestStaticShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, std::vector<entity_id_t>* out) const;
-	virtual bool TestUnitShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, std::vector<entity_id_t>* out) const;
+	bool TestLine(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, entity_pos_t r, bool relaxClearanceForUnits = false) const override;
+	bool TestStaticShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t a, entity_pos_t w, entity_pos_t h, std::vector<entity_id_t>* out) const override;
+	bool TestUnitShape(const IObstructionTestFilter& filter, entity_pos_t x, entity_pos_t z, entity_pos_t r, std::vector<entity_id_t>* out) const override;
 
-	virtual void Rasterize(Grid<NavcellData>& grid, const std::vector<PathfinderPassability>& passClasses, bool fullUpdate);
-	virtual void GetObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares) const;
-	virtual void GetUnitObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares) const;
-	virtual void GetStaticObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares) const;
-	virtual void GetUnitsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter, bool strict = false) const;
-	virtual void GetStaticObstructionsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter) const;
+	void Rasterize(Grid<NavcellData>& grid, const std::vector<PathfinderPassability>& passClasses, bool fullUpdate) override;
+	void GetObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares) const override;
+	void GetUnitObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares) const override;
+	void GetStaticObstructionsInRange(const IObstructionTestFilter& filter, entity_pos_t x0, entity_pos_t z0, entity_pos_t x1, entity_pos_t z1, std::vector<ObstructionSquare>& squares) const override;
+	void GetUnitsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter, bool strict = false) const override;
+	void GetStaticObstructionsOnObstruction(const ObstructionSquare& square, std::vector<entity_id_t>& out, const IObstructionTestFilter& filter) const override;
 
-	virtual void SetPassabilityCircular(bool enabled)
+	void SetPassabilityCircular(bool enabled) override
 	{
 		m_PassabilityCircular = enabled;
 		MakeDirtyAll();
@@ -500,12 +500,12 @@ public:
 		GetSimContext().GetComponentManager().BroadcastMessage(msg);
 	}
 
-	virtual bool GetPassabilityCircular() const
+	bool GetPassabilityCircular() const override
 	{
 		return m_PassabilityCircular;
 	}
 
-	virtual void SetDebugOverlay(bool enabled)
+	void SetDebugOverlay(bool enabled) override
 	{
 		m_DebugOverlayEnabled = enabled;
 		m_DebugOverlayDirty = true;
@@ -515,7 +515,7 @@ public:
 
 	void RenderSubmit(SceneCollector& collector);
 
-	virtual void UpdateInformations(GridUpdateInformation& informations)
+	void UpdateInformations(GridUpdateInformation& informations) override
 	{
 		if (!m_UpdateInformations.dirtinessGrid.blank())
 			informations.MergeAndClear(m_UpdateInformations);

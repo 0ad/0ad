@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -102,31 +102,31 @@ private:
 	{ \
 		return "<a:component type='script-wrapper'/><empty/>"; \
 	} \
-	virtual void Init(const CParamNode& paramNode) \
+	void Init(const CParamNode& paramNode) override \
 	{ \
 		m_Script.Init(paramNode, GetEntityId()); \
 	} \
-	virtual void Deinit() \
+	void Deinit() override \
 	{ \
 		m_Script.Deinit(); \
 	} \
-	virtual void HandleMessage(const CMessage& msg, bool global) \
+	void HandleMessage(const CMessage& msg, bool global) override \
 	{ \
 		m_Script.HandleMessage(msg, global); \
 	} \
-	virtual void Serialize(ISerializer& serialize) \
+	void Serialize(ISerializer& serialize) override \
 	{ \
 		m_Script.Serialize(serialize); \
 	} \
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) \
+	void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) override \
 	{ \
 		m_Script.Deserialize(paramNode, deserialize, GetEntityId()); \
 	} \
-	virtual JS::Value GetJSInstance() const \
+	JS::Value GetJSInstance() const override \
 	{ \
 		return m_Script.GetInstance(); \
 	} \
-	virtual int GetComponentTypeId() const \
+	int GetComponentTypeId() const override \
 	{ \
 		return CID_##cname; \
 	} \

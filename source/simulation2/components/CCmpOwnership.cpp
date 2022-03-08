@@ -45,26 +45,26 @@ public:
 			"<empty/>";
 	}
 
-	virtual void Init(const CParamNode& UNUSED(paramNode))
+	void Init(const CParamNode& UNUSED(paramNode)) override
 	{
 		m_Owner = INVALID_PLAYER;
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	void Serialize(ISerializer& serialize) override
 	{
 		serialize.NumberI32_Unbounded("owner", m_Owner);
 	}
 
-	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize)
+	void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& deserialize) override
 	{
 		deserialize.NumberI32_Unbounded("owner", m_Owner);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -77,12 +77,12 @@ public:
 		}
 	}
 
-	virtual player_id_t GetOwner() const
+	player_id_t GetOwner() const override
 	{
 		return m_Owner;
 	}
 
-	virtual void SetOwner(player_id_t playerID)
+	void SetOwner(player_id_t playerID) override
 	{
 		if (playerID == m_Owner)
 			return;
@@ -94,7 +94,7 @@ public:
 		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 	}
 
-	virtual void SetOwnerQuiet(player_id_t playerID)
+	void SetOwnerQuiet(player_id_t playerID) override
 	{
 		if (playerID != m_Owner)
 			m_Owner = playerID;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,27 +30,27 @@ class CCmpValueModificationManagerScripted : public ICmpValueModificationManager
 public:
 	DEFAULT_SCRIPT_WRAPPER(ValueModificationManagerScripted)
 
-	virtual fixed ApplyModifications(std::wstring valueName, fixed currentValue, entity_id_t entity) const
+	fixed ApplyModifications(std::wstring valueName, fixed currentValue, entity_id_t entity) const override
 	{
 		return m_Script.Call<fixed>("ApplyModifications", valueName, currentValue, entity);
 	}
 
-	virtual u32 ApplyModifications(std::wstring valueName, u32 currentValue, entity_id_t entity) const
+	u32 ApplyModifications(std::wstring valueName, u32 currentValue, entity_id_t entity) const override
 	{
 		return m_Script.Call<u32>("ApplyModifications", valueName, currentValue, entity);
 	}
 
-	virtual u16 ApplyModifications(std::wstring valueName, u16 currentValue, entity_id_t entity) const
+	u16 ApplyModifications(std::wstring valueName, u16 currentValue, entity_id_t entity) const override
 	{
 		return m_Script.Call<u16>("ApplyModifications", valueName, currentValue, entity);
 	}
 
-	virtual std::wstring ApplyModifications(std::wstring valueName, std::wstring currentValue, entity_id_t entity) const
+	std::wstring ApplyModifications(std::wstring valueName, std::wstring currentValue, entity_id_t entity) const override
 	{
 		return m_Script.Call<std::wstring>("ApplyModifications", valueName, currentValue, entity);
 	}
 
-	virtual bool ApplyModifications(std::wstring valueName, bool currentValue, entity_id_t entity) const
+	bool ApplyModifications(std::wstring valueName, bool currentValue, entity_id_t entity) const override
 	{
 		return m_Script.Call<bool>("ApplyModifications", valueName, currentValue, entity);
 	}

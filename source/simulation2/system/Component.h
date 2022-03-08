@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,26 +39,26 @@
 #define DEFAULT_COMPONENT_ALLOCATOR(cname) \
 	static IComponent* Allocate(const ScriptInterface&, JS::HandleValue) { return new CCmp##cname(); } \
 	static void Deallocate(IComponent* cmp) { delete static_cast<CCmp##cname*> (cmp); } \
-	virtual int GetComponentTypeId() const \
+	int GetComponentTypeId() const override \
 	{ \
 		return CID_##cname; \
 	}
 
 #define DEFAULT_MOCK_COMPONENT() \
-	virtual int GetComponentTypeId() const \
+	int GetComponentTypeId() const override \
 	{ \
 		return -1; \
 	} \
-	virtual void Init(const CParamNode& UNUSED(paramNode)) \
+	void Init(const CParamNode& UNUSED(paramNode)) override \
 	{ \
 	} \
-	virtual void Deinit() \
+	void Deinit() override \
 	{ \
 	} \
-	virtual void Serialize(ISerializer& UNUSED(serialize)) \
+	void Serialize(ISerializer& UNUSED(serialize)) override \
 	{ \
 	} \
-	virtual void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& UNUSED(deserialize)) \
+	void Deserialize(const CParamNode& UNUSED(paramNode), IDeserializer& UNUSED(deserialize)) override \
 	{ \
 	} \
 

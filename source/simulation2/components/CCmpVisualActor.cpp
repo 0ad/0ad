@@ -191,7 +191,7 @@ public:
 			"</element>";
 	}
 
-	virtual void Init(const CParamNode& paramNode)
+	void Init(const CParamNode& paramNode) override
 	{
 		m_Unit = NULL;
 		m_R = m_G = m_B = fixed::FromInt(1);
@@ -220,7 +220,7 @@ public:
 		InitSelectionShapeDescriptor(paramNode);
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 		if (m_Unit)
 		{
@@ -252,7 +252,7 @@ public:
 		// TODO: store actor variables?
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	void Serialize(ISerializer& serialize) override
 	{
 		// TODO: store the actor name, if !debug and it differs from the template
 
@@ -264,7 +264,7 @@ public:
 		SerializeCommon(serialize);
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
+	void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) override
 	{
 		Init(paramNode);
 
@@ -288,7 +288,7 @@ public:
 		}
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -349,40 +349,40 @@ public:
 		}
 	}
 
-	virtual CBoundingBoxAligned GetBounds() const
+	CBoundingBoxAligned GetBounds() const override
 	{
 		if (!m_Unit)
 			return CBoundingBoxAligned::EMPTY;
 		return m_Unit->GetModel().GetWorldBounds();
 	}
 
-	virtual CUnit* GetUnit()
+	CUnit* GetUnit() override
 	{
 		return m_Unit;
 	}
 
-	virtual CBoundingBoxOriented GetSelectionBox() const
+	CBoundingBoxOriented GetSelectionBox() const override
 	{
 		if (!m_Unit)
 			return CBoundingBoxOriented::EMPTY;
 		return m_Unit->GetModel().GetSelectionBox();
 	}
 
-	virtual CVector3D GetPosition() const
+	CVector3D GetPosition() const override
 	{
 		if (!m_Unit)
 			return CVector3D(0, 0, 0);
 		return m_Unit->GetModel().GetTransform().GetTranslation();
 	}
 
-	virtual std::wstring GetProjectileActor() const
+	std::wstring GetProjectileActor() const override
 	{
 		if (!m_Unit)
 			return L"";
 		return m_Unit->GetObject().m_ProjectileModelName;
 	}
 
-	virtual CFixedVector3D GetProjectileLaunchPoint() const
+	CFixedVector3D GetProjectileLaunchPoint() const override
 	{
 		if (!m_Unit)
 			return CFixedVector3D();
@@ -411,7 +411,7 @@ public:
 		return CFixedVector3D();
 	}
 
-	virtual void SetVariant(const CStr& key, const CStr& selection)
+	void SetVariant(const CStr& key, const CStr& selection) override
 	{
 		if (m_VariantSelections[key] == selection)
 			return;
@@ -426,12 +426,12 @@ public:
 		}
 	}
 
-	virtual std::string GetAnimationName() const
+	std::string GetAnimationName() const override
 	{
 		return m_AnimName;
 	}
 
-	virtual void SelectAnimation(const std::string& name, bool once = false, fixed speed = fixed::FromInt(1))
+	void SelectAnimation(const std::string& name, bool once = false, fixed speed = fixed::FromInt(1)) override
 	{
 		m_AnimName = name;
 		m_AnimOnce = once;
@@ -453,7 +453,7 @@ public:
 		m_Unit->GetAnimation()->SetAnimationState(m_AnimName, m_AnimOnce, m_AnimSpeed.ToFloat(), m_AnimDesync.ToFloat(), m_SoundGroup.c_str());	
 	}
 
-	virtual void SelectMovementAnimation(const std::string& name, fixed speed)
+	void SelectMovementAnimation(const std::string& name, fixed speed) override
 	{
 		ENSURE(name == "idle" || name == "walk" || name == "run");
 		if (m_AnimName != "idle" && m_AnimName != "walk" && m_AnimName != "run")
@@ -463,7 +463,7 @@ public:
 		SelectAnimation(name, false, speed);
 	}
 
-	virtual void SetAnimationSyncRepeat(fixed repeattime)
+	void SetAnimationSyncRepeat(fixed repeattime) override
 	{
 		m_AnimSyncRepeatTime = repeattime;
 
@@ -471,7 +471,7 @@ public:
 			m_Unit->GetAnimation()->SetAnimationSyncRepeat(m_AnimSyncRepeatTime.ToFloat());
 	}
 
-	virtual void SetAnimationSyncOffset(fixed actiontime)
+	void SetAnimationSyncOffset(fixed actiontime) override
 	{
 		m_AnimSyncOffsetTime = actiontime;
 
@@ -479,7 +479,7 @@ public:
 			m_Unit->GetAnimation()->SetAnimationSyncOffset(m_AnimSyncOffsetTime.ToFloat());
 	}
 
-	virtual void SetShadingColor(fixed r, fixed g, fixed b, fixed a)
+	void SetShadingColor(fixed r, fixed g, fixed b, fixed a) override
 	{
 		m_R = r;
 		m_G = g;
@@ -493,18 +493,18 @@ public:
 		}
 	}
 
-	virtual void SetVariable(const std::string& name, float value)
+	void SetVariable(const std::string& name, float value) override
 	{
 		if (m_Unit)
 			m_Unit->GetModel().SetEntityVariable(name, value);
 	}
 
-	virtual u32 GetActorSeed() const
+	u32 GetActorSeed() const override
 	{
 		return m_Seed;
 	}
 
-	virtual void SetActorSeed(u32 seed)
+	void SetActorSeed(u32 seed) override
 	{
 		if (seed == m_Seed)
 			return;
@@ -513,7 +513,7 @@ public:
 		ReloadActor();
 	}
 
-	virtual void RecomputeActorName()
+	void RecomputeActorName() override
 	{
 		CmpPtr<ICmpValueModificationManager> cmpValueModificationManager(GetSystemEntity());
 		std::wstring newActorName;
@@ -529,12 +529,12 @@ public:
 		}
 	}
 
-	virtual bool HasConstructionPreview() const
+	bool HasConstructionPreview() const override
 	{
 		return m_ConstructionPreview;
 	}
 
-	virtual void Hotload(const VfsPath& name)
+	void Hotload(const VfsPath& name) override
 	{
 		if (!m_Unit)
 			return;

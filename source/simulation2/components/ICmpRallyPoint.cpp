@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,12 +31,12 @@ class CCmpRallyPointScripted : public ICmpRallyPoint
 public:
 	DEFAULT_SCRIPT_WRAPPER(RallyPointScripted)
 
-	virtual bool HasPositions()
+	bool HasPositions() override
 	{
 		return m_Script.Call<bool>("HasPositions");
 	}
 
-	virtual CFixedVector2D GetFirstPosition()
+	CFixedVector2D GetFirstPosition() override
 	{
 		return m_Script.Call<CFixedVector2D>("GetFirstPosition");
 	}

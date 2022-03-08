@@ -1,4 +1,4 @@
-/* Copyright (C) 2015 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,22 +30,22 @@ class CCmpFoggingScripted : public ICmpFogging
 public:
 	DEFAULT_SCRIPT_WRAPPER(FoggingScripted)
 
-	virtual bool IsActivated()
+	bool IsActivated() override
 	{
 		return m_Script.Call<bool>("IsActivated");
 	}
 
-	virtual bool WasSeen(player_id_t player)
+	bool WasSeen(player_id_t player) override
 	{
 		return m_Script.Call<bool>("WasSeen", player);
 	}
 
-	virtual bool IsMiraged(player_id_t player)
+	bool IsMiraged(player_id_t player) override
 	{
 		return m_Script.Call<bool>("IsMiraged", player);
 	}
 
-	virtual void ForceMiraging(player_id_t player)
+	void ForceMiraging(player_id_t player) override
 	{
 		return m_Script.CallVoid("ForceMiraging", player);
 	}

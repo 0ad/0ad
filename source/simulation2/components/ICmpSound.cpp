@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
 * This file is part of 0 A.D.
 *
 * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ class CCmpSoundScripted : public ICmpSound
 public:
 	DEFAULT_SCRIPT_WRAPPER(SoundScripted)
 
-	virtual std::wstring GetSoundGroup(const std::wstring& soundName) const
+	std::wstring GetSoundGroup(const std::wstring& soundName) const override
 	{
 		return m_Script.Call<std::wstring>("GetSoundGroup", soundName);
 	}

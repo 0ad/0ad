@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ class CCmpGuiInterfaceScripted : public ICmpGuiInterface
 public:
 	DEFAULT_SCRIPT_WRAPPER(GuiInterfaceScripted)
 
-	virtual void ScriptCall(int player, const std::wstring& cmd, JS::HandleValue data, JS::MutableHandleValue ret)
+	void ScriptCall(int player, const std::wstring& cmd, JS::HandleValue data, JS::MutableHandleValue ret) override
 	{
 		m_Script.CallRef("ScriptCall", ret, player, cmd, data);
 	}

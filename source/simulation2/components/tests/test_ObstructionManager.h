@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,32 +26,32 @@ public:
 	DEFAULT_MOCK_COMPONENT()
 	ICmpObstructionManager::ObstructionSquare obstruction;
 
-	virtual ICmpObstructionManager::tag_t GetObstruction() const { return ICmpObstructionManager::tag_t(); }
-	virtual bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) const { out = obstruction; return true; }
-	virtual bool GetPreviousObstructionSquare(ICmpObstructionManager::ObstructionSquare& UNUSED(out)) const { return true; }
-	virtual entity_pos_t GetSize() const { return entity_pos_t::Zero(); }
-	virtual CFixedVector2D GetStaticSize() const { return CFixedVector2D(); }
-	virtual EObstructionType GetObstructionType() const { return ICmpObstruction::STATIC; }
-	virtual void SetUnitClearance(const entity_pos_t& UNUSED(clearance)) { }
-	virtual bool IsControlPersistent() const { return true; }
-	virtual bool CheckShorePlacement() const { return true; }
-	virtual EFoundationCheck CheckFoundation(const std::string& UNUSED(className)) const { return EFoundationCheck(); }
-	virtual EFoundationCheck CheckFoundation(const std::string& UNUSED(className), bool UNUSED(onlyCenterPoint)) const { return EFoundationCheck(); }
-	virtual std::string CheckFoundation_wrapper(const std::string& UNUSED(className), bool UNUSED(onlyCenterPoint)) const { return std::string(); }
-	virtual bool CheckDuplicateFoundation() const { return true; }
-	virtual std::vector<entity_id_t> GetEntitiesByFlags(ICmpObstructionManager::flags_t UNUSED(flags)) const { return std::vector<entity_id_t>(); }
-	virtual std::vector<entity_id_t> GetEntitiesBlockingMovement() const { return std::vector<entity_id_t>(); }
-	virtual std::vector<entity_id_t> GetEntitiesBlockingConstruction() const { return std::vector<entity_id_t>(); }
-	virtual std::vector<entity_id_t> GetEntitiesDeletedUponConstruction() const { return std::vector<entity_id_t>(); }
-	virtual void ResolveFoundationCollisions() const { }
-	virtual void SetActive(bool UNUSED(active)) { }
-	virtual void SetMovingFlag(bool UNUSED(enabled)) { }
-	virtual void SetDisableBlockMovementPathfinding(bool UNUSED(movementDisabled), bool UNUSED(pathfindingDisabled), int32_t UNUSED(shape)) { }
-	virtual bool GetBlockMovementFlag(bool) const { return true; }
-	virtual void SetControlGroup(entity_id_t UNUSED(group)) { }
-	virtual entity_id_t GetControlGroup() const { return INVALID_ENTITY; }
-	virtual void SetControlGroup2(entity_id_t UNUSED(group2)) { }
-	virtual entity_id_t GetControlGroup2() const { return INVALID_ENTITY; }
+	ICmpObstructionManager::tag_t GetObstruction() const override { return ICmpObstructionManager::tag_t(); }
+	bool GetObstructionSquare(ICmpObstructionManager::ObstructionSquare& out) const override { out = obstruction; return true; }
+	bool GetPreviousObstructionSquare(ICmpObstructionManager::ObstructionSquare& UNUSED(out)) const override { return true; }
+	entity_pos_t GetSize() const override { return entity_pos_t::Zero(); }
+	CFixedVector2D GetStaticSize() const override { return CFixedVector2D(); }
+	EObstructionType GetObstructionType() const override { return ICmpObstruction::STATIC; }
+	void SetUnitClearance(const entity_pos_t& UNUSED(clearance)) override { }
+	bool IsControlPersistent() const override { return true; }
+	bool CheckShorePlacement() const override { return true; }
+	EFoundationCheck CheckFoundation(const std::string& UNUSED(className)) const override { return EFoundationCheck(); }
+	EFoundationCheck CheckFoundation(const std::string& UNUSED(className), bool UNUSED(onlyCenterPoint)) const override { return EFoundationCheck(); }
+	std::string CheckFoundation_wrapper(const std::string& UNUSED(className), bool UNUSED(onlyCenterPoint)) const override { return std::string(); }
+	bool CheckDuplicateFoundation() const override { return true; }
+	std::vector<entity_id_t> GetEntitiesByFlags(ICmpObstructionManager::flags_t UNUSED(flags)) const override { return std::vector<entity_id_t>(); }
+	std::vector<entity_id_t> GetEntitiesBlockingMovement() const override { return std::vector<entity_id_t>(); }
+	std::vector<entity_id_t> GetEntitiesBlockingConstruction() const override { return std::vector<entity_id_t>(); }
+	std::vector<entity_id_t> GetEntitiesDeletedUponConstruction() const override { return std::vector<entity_id_t>(); }
+	void ResolveFoundationCollisions() const override { }
+	void SetActive(bool UNUSED(active)) override { }
+	void SetMovingFlag(bool UNUSED(enabled)) override { }
+	void SetDisableBlockMovementPathfinding(bool UNUSED(movementDisabled), bool UNUSED(pathfindingDisabled), int32_t UNUSED(shape)) override { }
+	bool GetBlockMovementFlag(bool) const override { return true; }
+	void SetControlGroup(entity_id_t UNUSED(group)) override { }
+	entity_id_t GetControlGroup() const override { return INVALID_ENTITY; }
+	void SetControlGroup2(entity_id_t UNUSED(group2)) override { }
+	entity_id_t GetControlGroup2() const override { return INVALID_ENTITY; }
 };
 
 class TestCmpObstructionManager : public CxxTest::TestSuite

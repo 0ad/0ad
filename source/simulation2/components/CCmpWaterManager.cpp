@@ -49,23 +49,23 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CParamNode& UNUSED(paramNode))
+	void Init(const CParamNode& UNUSED(paramNode)) override
 	{
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 		// Clear the map size & data.
 		if (CRenderer::IsInitialised())
 			g_Renderer.GetSceneRenderer().GetWaterManager().SetMapSize(0);
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	void Serialize(ISerializer& serialize) override
 	{
 		serialize.NumberFixed_Unbounded("height", m_WaterHeight);
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
+	void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) override
 	{
 		Init(paramNode);
 
@@ -77,7 +77,7 @@ public:
 		RecomputeWaterData();
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -101,7 +101,7 @@ public:
 		}
 	}
 
-	virtual void RecomputeWaterData()
+	void RecomputeWaterData() override
 	{
 		if (CRenderer::IsInitialised())
 		{
@@ -113,7 +113,7 @@ public:
 		GetSimContext().GetTerrain().MakeDirty(RENDERDATA_UPDATE_VERTICES);
 	}
 
-	virtual void SetWaterLevel(entity_pos_t h)
+	void SetWaterLevel(entity_pos_t h) override
 	{
 		if (m_WaterHeight == h)
 			return;
@@ -126,12 +126,12 @@ public:
 		GetSimContext().GetComponentManager().BroadcastMessage(msg);
 	}
 
-	virtual entity_pos_t GetWaterLevel(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z)) const
+	entity_pos_t GetWaterLevel(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z)) const override
 	{
 		return m_WaterHeight;
 	}
 
-	virtual float GetExactWaterLevel(float UNUSED(x), float UNUSED(z)) const
+	float GetExactWaterLevel(float UNUSED(x), float UNUSED(z)) const override
 	{
 		return m_WaterHeight.ToFloat();
 	}

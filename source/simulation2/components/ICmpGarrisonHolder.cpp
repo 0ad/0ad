@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
 * This file is part of 0 A.D.
 *
 * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,12 +30,12 @@ class CCmpGarrisonHolderScripted : public ICmpGarrisonHolder
 public:
 	DEFAULT_SCRIPT_WRAPPER(GarrisonHolderScripted)
 
-	virtual std::vector<entity_id_t> GetEntities() const
+	std::vector<entity_id_t> GetEntities() const override
 	{
 		return m_Script.Call<std::vector<entity_id_t>>("GetEntities");
 	}
 
-	virtual void SetInitEntities(std::vector<entity_id_t>&& entities)
+	void SetInitEntities(std::vector<entity_id_t>&& entities) override
 	{
 		m_Script.CallVoid("SetInitGarrison", entities);
 	}

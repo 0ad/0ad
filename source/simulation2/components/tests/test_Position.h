@@ -1,4 +1,4 @@
-/* Copyright (C) 2017 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,21 +26,21 @@ class MockWater : public ICmpWaterManager
 public:
 	DEFAULT_MOCK_COMPONENT()
 
-	virtual entity_pos_t GetWaterLevel(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z)) const
+	entity_pos_t GetWaterLevel(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z)) const override
 	{
 		return entity_pos_t::FromInt(100);
 	}
 
-	virtual float GetExactWaterLevel(float UNUSED(x), float UNUSED(z)) const
+	float GetExactWaterLevel(float UNUSED(x), float UNUSED(z)) const override
 	{
 		return 100.f;
 	}
 
-	virtual void RecomputeWaterData()
+	void RecomputeWaterData() override
 	{
 	}
 
-	virtual void SetWaterLevel(entity_pos_t UNUSED(h))
+	void SetWaterLevel(entity_pos_t UNUSED(h)) override
 	{
 	}
 };

@@ -89,7 +89,7 @@ public:
 			"</element>";
 	}
 
-	virtual void Init(const CParamNode& paramNode)
+	void Init(const CParamNode& paramNode) override
 	{
 		m_Active = paramNode.GetChild("Active").ToBool();
 		m_ShipSink = paramNode.GetChild("SinkingAnim").ToBool();
@@ -111,21 +111,21 @@ public:
 			GetSimContext().GetComponentManager().DynamicSubscriptionNonsync(MT_Interpolate, this, true);
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& UNUSED(serialize))
+	void Serialize(ISerializer& UNUSED(serialize)) override
 	{
 		// This component isn't network-synchronised, so don't serialize anything
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize)) override
 	{
 		Init(paramNode);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{

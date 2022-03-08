@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ class CCmpMirageScripted : public ICmpMirage
 public:
 	DEFAULT_SCRIPT_WRAPPER(MirageScripted)
 
-	virtual player_id_t GetPlayer()
+	player_id_t GetPlayer() override
 	{
 		return m_Script.Call<player_id_t>("GetPlayer");
 	}

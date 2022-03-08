@@ -149,7 +149,7 @@ public:
 	entity_pos_t m_Width; // width/radius
 	entity_pos_t m_Height; // height/radius
 
-	virtual void Init(const CParamNode& paramNode)
+	void Init(const CParamNode& paramNode) override
 	{
 		m_EditorOnly = paramNode.GetChild("EditorOnly").IsOk();
 
@@ -215,23 +215,23 @@ public:
 		UpdateMessageSubscriptions();
 	}
 
-	virtual void Deinit() { }
+	void Deinit() override { }
 
-	virtual void Serialize(ISerializer& UNUSED(serialize))
+	void Serialize(ISerializer& UNUSED(serialize)) override
 	{
 		// Nothing to do here (the overlay object is not worth saving, it'll get
 		// reconstructed by the GUI soon enough, I think)
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize)) override
 	{
 		// Need to call Init to reload the template properties
 		Init(paramNode);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global));
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override;
 
-	virtual void SetSelectionHighlight(const CColor& color, bool selected)
+	void SetSelectionHighlight(const CColor& color, bool selected) override
 	{
 		m_Selected = selected;
 		m_Color.r = color.r;
@@ -257,7 +257,7 @@ public:
 		SetSelectionHighlightAlpha(color.a);
 	}
 
-	virtual void SetSelectionHighlightAlpha(float alpha)
+	void SetSelectionHighlightAlpha(float alpha) override
 	{
 		alpha = std::max(m_AlphaMin, alpha);
 
@@ -269,13 +269,13 @@ public:
 		UpdateMessageSubscriptions();
 	}
 
-	virtual void SetVisibility(bool visible)
+	void SetVisibility(bool visible) override
 	{
 		m_Visible = visible;
 		UpdateMessageSubscriptions();
 	}
 
-	virtual bool IsEditorOnly() const
+	bool IsEditorOnly() const override
 	{
 		return m_EditorOnly;
 	}
@@ -309,7 +309,7 @@ public:
 	/**
 	 * Set the color of the current owner.
 	 */
-	virtual void UpdateColor();
+	void UpdateColor() override;
 
 private:
 	SOverlayDescriptor m_OverlayDescriptor;

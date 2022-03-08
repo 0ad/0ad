@@ -224,12 +224,14 @@ void WriteJSONFile(const ScriptInterface& scriptInterface, const std::wstring& f
 	VfsPath path(filePath);
 	WriteBuffer buf;
 	buf.Append(str.c_str(), str.length());
-	OsPath realPath;
-	g_VFS->GetRealPath(path, realPath, false);
 	if (g_VFS->CreateFile(path, buf.Data(), buf.Size()) == INFO::OK)
+	{
+		OsPath realPath;
+		g_VFS->GetRealPath(path, realPath, false);
 		debug_printf("FILES| JSON data written to '%s'\n", realPath.string8().c_str());
+	}
 	else
-		debug_printf("FILES| Failed to write JSON data to '%s'\n", realPath.string8().c_str());
+		debug_printf("FILES| Failed to write JSON data to '%s'\n", path.string8().c_str());
 }
 
 bool DeleteCampaignSave(const CStrW& filePath)

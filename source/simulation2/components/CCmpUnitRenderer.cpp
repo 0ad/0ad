@@ -138,27 +138,27 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CParamNode& UNUSED(paramNode))
+	void Init(const CParamNode& UNUSED(paramNode)) override
 	{
 		m_FrameNumber = 0;
 		m_FrameOffset = 0.0f;
 		m_EnableDebugOverlays = false;
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& UNUSED(serialize))
+	void Serialize(ISerializer& UNUSED(serialize)) override
 	{
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize))
+	void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize)) override
 	{
 		Init(paramNode);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -189,7 +189,7 @@ public:
 		return &m_Units[tag.n - 1];
 	}
 
-	virtual tag_t AddUnit(CEntityHandle entity, CUnit* actor, const CBoundingSphere& boundsApprox, int flags)
+	tag_t AddUnit(CEntityHandle entity, CUnit* actor, const CBoundingSphere& boundsApprox, int flags) override
 	{
 		ENSURE(actor != NULL);
 
@@ -218,7 +218,7 @@ public:
 		return tag;
 	}
 
-	virtual void RemoveUnit(tag_t tag)
+	void RemoveUnit(tag_t tag) override
 	{
 		SUnit* unit = LookupUnit(tag);
 		unit->actor = NULL;
@@ -235,7 +235,7 @@ public:
 		unit->sweptBounds = CBoundingSphere(mid, radius);
 	}
 
-	virtual void UpdateUnit(tag_t tag, CUnit* actor, const CBoundingSphere& boundsApprox)
+	void UpdateUnit(tag_t tag, CUnit* actor, const CBoundingSphere& boundsApprox) override
 	{
 		SUnit* unit = LookupUnit(tag);
 		unit->actor = actor;
@@ -243,7 +243,7 @@ public:
 		RecomputeSweptBounds(unit);
 	}
 
-	virtual void UpdateUnitPos(tag_t tag, bool inWorld, const CVector3D& pos0, const CVector3D& pos1)
+	void UpdateUnitPos(tag_t tag, bool inWorld, const CVector3D& pos0, const CVector3D& pos1) override
 	{
 		SUnit* unit = LookupUnit(tag);
 		unit->inWorld = inWorld;
@@ -259,17 +259,17 @@ public:
 
 	void UpdateVisibility(SUnit& unit) const;
 
-	virtual float GetFrameOffset() const
+	float GetFrameOffset() const override
 	{
 		return m_FrameOffset;
 	}
 
-	virtual void SetDebugOverlay(bool enabled)
+	void SetDebugOverlay(bool enabled) override
 	{
 		m_EnableDebugOverlays = enabled;
 	}
 
-	virtual void PickAllEntitiesAtPoint(std::vector<std::pair<CEntityHandle, CVector3D> >& outEntities, const CVector3D& origin, const CVector3D& dir, bool allowEditorSelectables) const
+	void PickAllEntitiesAtPoint(std::vector<std::pair<CEntityHandle, CVector3D> >& outEntities, const CVector3D& origin, const CVector3D& dir, bool allowEditorSelectables) const override
 	{
 		// First, make a rough test with the worst-case bounding boxes to pick all
 		// entities/models that could possibly be hit by the ray.

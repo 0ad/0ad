@@ -43,7 +43,7 @@ public:
 		return "<a:component type='system'/><empty/>";
 	}
 
-	virtual void Init(const CParamNode& UNUSED(paramNode))
+	void Init(const CParamNode& UNUSED(paramNode)) override
 	{
 		m_DisableValidation = false;
 
@@ -52,11 +52,11 @@ public:
 		// TODO: support hotloading changes to the grammar
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	void Serialize(ISerializer& serialize) override
 	{
 		std::map<std::string, std::vector<entity_id_t>> templateMap;
 
@@ -67,7 +67,7 @@ public:
 		Serializer(serialize, "templates", templateMap);
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
+	void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) override
 	{
 		Init(paramNode);
 
@@ -78,7 +78,7 @@ public:
 				m_LatestTemplates[id] = mapEl.first;
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -94,30 +94,30 @@ public:
 		}
 	}
 
-	virtual void DisableValidation()
+	void DisableValidation() override
 	{
 		m_DisableValidation = true;
 	}
 
-	virtual const CParamNode* LoadTemplate(entity_id_t ent, const std::string& templateName);
+	const CParamNode* LoadTemplate(entity_id_t ent, const std::string& templateName) override;
 
-	virtual const CParamNode* GetTemplate(const std::string& templateName);
+	const CParamNode* GetTemplate(const std::string& templateName) override;
 
-	virtual const CParamNode* GetTemplateWithoutValidation(const std::string& templateName);
+	const CParamNode* GetTemplateWithoutValidation(const std::string& templateName) override;
 
-	virtual bool TemplateExists(const std::string& templateName) const;
+	bool TemplateExists(const std::string& templateName) const override;
 
-	virtual const CParamNode* LoadLatestTemplate(entity_id_t ent);
+	const CParamNode* LoadLatestTemplate(entity_id_t ent) override;
 
-	virtual std::string GetCurrentTemplateName(entity_id_t ent) const;
+	std::string GetCurrentTemplateName(entity_id_t ent) const override;
 
-	virtual std::vector<std::string> FindAllTemplates(bool includeActors) const;
+	std::vector<std::string> FindAllTemplates(bool includeActors) const override;
 
-	virtual std::vector<std::vector<std::wstring>> GetCivData();
+	std::vector<std::vector<std::wstring>> GetCivData() override;
 
-	virtual std::vector<std::string> FindUsedTemplates() const;
+	std::vector<std::string> FindUsedTemplates() const override;
 
-	virtual std::vector<entity_id_t> GetEntitiesUsingTemplate(const std::string& templateName) const;
+	std::vector<entity_id_t> GetEntitiesUsingTemplate(const std::string& templateName) const override;
 
 private:
 	// Template loader

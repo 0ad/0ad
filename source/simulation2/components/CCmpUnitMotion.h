@@ -280,7 +280,7 @@ public:
 			"</optional>";
 	}
 
-	virtual void Init(const CParamNode& paramNode)
+	void Init(const CParamNode& paramNode) override
 	{
 		m_IsFormationController = paramNode.GetChild("FormationController").ToBool();
 
@@ -320,7 +320,7 @@ public:
 		m_DebugOverlayEnabled = false;
 	}
 
-	virtual void Deinit()
+	void Deinit() override
 	{
 	}
 
@@ -360,12 +360,12 @@ public:
 		Serializer(serialize, "short path", m_ShortPath.m_Waypoints);
 	}
 
-	virtual void Serialize(ISerializer& serialize)
+	void Serialize(ISerializer& serialize) override
 	{
 		SerializeCommon(serialize);
 	}
 
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
+	void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) override
 	{
 		Init(paramNode);
 
@@ -380,7 +380,7 @@ public:
 			m_BlockMovement = cmpObstruction->GetBlockMovementFlag(false);
 	}
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override
 	{
 		switch (msg.GetType())
 		{
@@ -442,38 +442,38 @@ public:
 		GetSimContext().GetComponentManager().DynamicSubscriptionNonsync(MT_RenderSubmit, this, needRender);
 	}
 
-	virtual bool IsMoveRequested() const
+	bool IsMoveRequested() const override
 	{
 		return m_MoveRequest.m_Type != MoveRequest::NONE;
 	}
 
-	virtual fixed GetSpeedMultiplier() const
+	fixed GetSpeedMultiplier() const override
 	{
 		return m_SpeedMultiplier;
 	}
 
-	virtual void SetSpeedMultiplier(fixed multiplier)
+	void SetSpeedMultiplier(fixed multiplier) override
 	{
 		m_SpeedMultiplier = std::min(multiplier, m_RunMultiplier);
 		m_Speed = m_SpeedMultiplier.Multiply(GetWalkSpeed());
 	}
 
-	virtual fixed GetSpeed() const
+	fixed GetSpeed() const override
 	{
 		return m_Speed;
 	}
 
-	virtual fixed GetWalkSpeed() const
+	fixed GetWalkSpeed() const override
 	{
 		return m_WalkSpeed;
 	}
 
-	virtual fixed GetRunMultiplier() const
+	fixed GetRunMultiplier() const override
 	{
 		return m_RunMultiplier;
 	}
 
-	virtual CFixedVector2D EstimateFuturePosition(const fixed dt) const
+	CFixedVector2D EstimateFuturePosition(const fixed dt) const override
 	{
 		CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
 		if (!cmpPosition || !cmpPosition->IsInWorld())
@@ -492,12 +492,12 @@ public:
 		return pos;
 	}
 
-	virtual fixed GetAcceleration() const
+	fixed GetAcceleration() const override
 	{
 		return m_Acceleration;
 	}
 
-	virtual void SetAcceleration(fixed acceleration)
+	void SetAcceleration(fixed acceleration) override
 	{
 		m_Acceleration = acceleration;
 	}
@@ -507,12 +507,12 @@ public:
 		return m_TemplateWeight;
 	}
 
-	virtual pass_class_t GetPassabilityClass() const
+	pass_class_t GetPassabilityClass() const override
 	{
 		return m_PassClass;
 	}
 
-	virtual std::string GetPassabilityClassName() const
+	std::string GetPassabilityClassName() const override
 	{
 		return m_PassClassName;
 	}
@@ -525,58 +525,58 @@ public:
 			m_PassClass = cmpPathfinder->GetPassabilityClass(passClassName);
 	}
 
-	virtual fixed GetCurrentSpeed() const
+	fixed GetCurrentSpeed() const override
 	{
 		return m_CurrentSpeed;
 	}
 
-	virtual void SetFacePointAfterMove(bool facePointAfterMove)
+	void SetFacePointAfterMove(bool facePointAfterMove) override
 	{
 		m_FacePointAfterMove = facePointAfterMove;
 	}
 
-	virtual bool GetFacePointAfterMove() const
+	bool GetFacePointAfterMove() const override
 	{
 		return m_FacePointAfterMove;
 	}
 
-	virtual void SetDebugOverlay(bool enabled)
+	void SetDebugOverlay(bool enabled) override
 	{
 		m_DebugOverlayEnabled = enabled;
 		UpdateMessageSubscriptions();
 	}
 
-	virtual bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange)
+	bool MoveToPointRange(entity_pos_t x, entity_pos_t z, entity_pos_t minRange, entity_pos_t maxRange) override
 	{
 		return MoveTo(MoveRequest(CFixedVector2D(x, z), minRange, maxRange));
 	}
 
-	virtual bool MoveToTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange)
+	bool MoveToTargetRange(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) override
 	{
 		return MoveTo(MoveRequest(target, minRange, maxRange));
 	}
 
-	virtual void MoveToFormationOffset(entity_id_t controller, entity_pos_t x, entity_pos_t z)
+	void MoveToFormationOffset(entity_id_t controller, entity_pos_t x, entity_pos_t z) override
 	{
 		// Pass the controller to the move request anyways.
 		MoveTo(MoveRequest(controller, CFixedVector2D(x, z)));
 	}
 
-	virtual void SetMemberOfFormation(entity_id_t controller)
+	void SetMemberOfFormation(entity_id_t controller) override
 	{
 		m_FormationController = controller;
 	}
 
-	virtual bool IsTargetRangeReachable(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange);
+	bool IsTargetRangeReachable(entity_id_t target, entity_pos_t minRange, entity_pos_t maxRange) override;
 
-	virtual void FaceTowardsPoint(entity_pos_t x, entity_pos_t z);
+	void FaceTowardsPoint(entity_pos_t x, entity_pos_t z) override;
 
 	/**
 	 * Clears the current MoveRequest - the unit will stop and no longer try and move.
 	 * This should never be called from UnitMotion, since MoveToX orders are given
 	 * by other components - these components should also decide when to stop.
 	 */
-	virtual void StopMoving()
+	void StopMoving() override
 	{
 		if (m_FacePointAfterMove)
 		{
@@ -595,7 +595,7 @@ public:
 		m_ShortPath.m_Waypoints.clear();
 	}
 
-	virtual entity_pos_t GetUnitClearance() const
+	entity_pos_t GetUnitClearance() const override
 	{
 		return m_Clearance;
 	}

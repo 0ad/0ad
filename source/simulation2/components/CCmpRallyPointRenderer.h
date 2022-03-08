@@ -72,13 +72,13 @@ public:
 	static std::string GetSchema();
 	static void ClassInit(CComponentManager& componentManager);
 
-	virtual void Init(const CParamNode& paramNode);
-	virtual void Deinit();
+	void Init(const CParamNode& paramNode) override;
+	void Deinit() override;
 
-	virtual void Serialize(ISerializer& UNUSED(serialize));
-	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize));
+	void Serialize(ISerializer& UNUSED(serialize)) override;
+	void Deserialize(const CParamNode& paramNode, IDeserializer& UNUSED(deserialize)) override;
 
-	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global));
+	void HandleMessage(const CMessage& msg, bool UNUSED(global)) override;
 
 	/*
 	 * Must be called whenever m_Displayed or the size of m_RallyPoints change,
@@ -86,22 +86,22 @@ public:
 	 */
 	virtual void UpdateMessageSubscriptions();
 
-	virtual void AddPosition_wrapper(const CFixedVector2D& pos);
+	void AddPosition_wrapper(const CFixedVector2D& pos) override;
 
-	virtual void SetPosition(const CFixedVector2D& pos);
+	void SetPosition(const CFixedVector2D& pos) override;
 
-	virtual void UpdatePosition(u32 rallyPointId, const CFixedVector2D& pos);
+	void UpdatePosition(u32 rallyPointId, const CFixedVector2D& pos) override;
 
-	virtual void SetDisplayed(bool displayed);
+	void SetDisplayed(bool displayed) override;
 
-	virtual void Reset();
+	void Reset() override;
 
-	virtual void UpdateColor();
+	void UpdateColor() override;
 
 	/**
 	 * Returns true if at least one display rally point is set; i.e., if we have a point to render our marker/line at.
 	 */
-	virtual bool IsSet() const;
+	bool IsSet() const override;
 
 	DEFAULT_COMPONENT_ALLOCATOR(RallyPointRenderer)
 

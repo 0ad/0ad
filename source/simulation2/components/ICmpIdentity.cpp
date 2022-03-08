@@ -31,17 +31,17 @@ class CCmpIdentityScripted : public ICmpIdentity
 public:
 	DEFAULT_SCRIPT_WRAPPER(IdentityScripted)
 
-	virtual std::string GetSelectionGroupName()
+	std::string GetSelectionGroupName() override
 	{
 		return m_Script.Call<std::string>("GetSelectionGroupName");
 	}
 
-	virtual std::wstring GetPhenotype()
+	std::wstring GetPhenotype() override
 	{
 		return m_Script.Call<std::wstring>("GetPhenotype");
 	}
 
-	virtual std::wstring GetCiv()
+	std::wstring GetCiv() override
 	{
 		return m_Script.Call<std::wstring>("GetCiv");
 	}
