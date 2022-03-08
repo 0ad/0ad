@@ -60,19 +60,16 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 {
 	size_t numVertices = mdef->GetNumVertices();
 
-	m_Position.type = GL_FLOAT;
-	m_Position.elems = 3;
+	m_Position.format = Renderer::Backend::Format::R32G32B32_SFLOAT;
 	m_Array.AddAttribute(&m_Position);
 
-	m_Normal.type = GL_FLOAT;
-	m_Normal.elems = 3;
+	m_Normal.format = Renderer::Backend::Format::R32G32B32_SFLOAT;
 	m_Array.AddAttribute(&m_Normal);
 
 	m_UVs.resize(mdef->GetNumUVsPerVertex());
 	for (size_t i = 0; i < mdef->GetNumUVsPerVertex(); i++)
 	{
-		m_UVs[i].type = GL_FLOAT;
-		m_UVs[i].elems = 2;
+		m_UVs[i].format = Renderer::Backend::Format::R32G32_SFLOAT;
 		m_Array.AddAttribute(&m_UVs[i]);
 	}
 
@@ -85,12 +82,10 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 			LOGERROR("Model '%s' has too many bones %zu/64", mdef->GetName().string8().c_str(), mdef->GetNumBones() + 1);
 		ENSURE(mdef->GetNumBones() + 1 <= 64);
 
-		m_BlendJoints.type = GL_UNSIGNED_BYTE;
-		m_BlendJoints.elems = 4;
+		m_BlendJoints.format = Renderer::Backend::Format::R8G8B8A8_UINT;
 		m_Array.AddAttribute(&m_BlendJoints);
 
-		m_BlendWeights.type = GL_UNSIGNED_BYTE;
-		m_BlendWeights.elems = 4;
+		m_BlendWeights.format = Renderer::Backend::Format::R8G8B8A8_UNORM;
 		m_Array.AddAttribute(&m_BlendWeights);
 	}
 
@@ -98,8 +93,7 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 	{
 		// Generate tangents for the geometry:-
 
-		m_Tangent.type = GL_FLOAT;
-		m_Tangent.elems = 4;
+		m_Tangent.format = Renderer::Backend::Format::R32G32B32A32_SFLOAT;
 		m_Array.AddAttribute(&m_Tangent);
 
 		// floats per vertex; position + normal + tangent + UV*sets [+ GPUskinning]
@@ -333,21 +327,21 @@ void InstancingModelRenderer::PrepareModelDef(
 	if (streamflags & STREAM_POS)
 	{
 		shader->VertexPointer(
-			Renderer::Backend::Format::R32G32B32_SFLOAT, stride,
+			m->imodeldef->m_Position.format, stride,
 			base + m->imodeldef->m_Position.offset);
 	}
 
 	if (streamflags & STREAM_NORMAL)
 	{
 		shader->NormalPointer(
-			Renderer::Backend::Format::R32G32B32_SFLOAT, stride,
+			m->imodeldef->m_Normal.format, stride,
 			base + m->imodeldef->m_Normal.offset);
 	}
 
 	if (m->calculateTangents)
 	{
 		shader->VertexAttribPointer(
-			str_a_tangent, Renderer::Backend::Format::R32G32B32A32_SFLOAT,
+			str_a_tangent, m->imodeldef->m_Tangent.format,
 			GL_FALSE, stride, base + m->imodeldef->m_Tangent.offset);
 	}
 
@@ -358,7 +352,7 @@ void InstancingModelRenderer::PrepareModelDef(
 			if (def.GetNumUVsPerVertex() >= uv + 1)
 			{
 				shader->TexCoordPointer(
-					GL_TEXTURE0 + uv, Renderer::Backend::Format::R32G32_SFLOAT, stride,
+					GL_TEXTURE0 + uv, m->imodeldef->m_UVs[uv].format, stride,
 					base + m->imodeldef->m_UVs[uv].offset);
 			}
 			else
@@ -369,10 +363,10 @@ void InstancingModelRenderer::PrepareModelDef(
 	if (m->gpuSkinning)
 	{
 		shader->VertexAttribPointer(
-			str_a_skinJoints, Renderer::Backend::Format::R8G8B8A8_UINT, GL_FALSE,
+			str_a_skinJoints, m->imodeldef->m_BlendJoints.format, GL_FALSE,
 			stride, base + m->imodeldef->m_BlendJoints.offset);
 		shader->VertexAttribPointer(
-			str_a_skinWeights, Renderer::Backend::Format::R8G8B8A8_UNORM, GL_TRUE,
+			str_a_skinWeights, m->imodeldef->m_BlendWeights.format, GL_TRUE,
 			stride, base + m->imodeldef->m_BlendWeights.offset);
 	}
 

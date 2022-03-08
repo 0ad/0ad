@@ -243,9 +243,9 @@ void SkyManager::RenderSky(
 	const GLsizei stride = static_cast<GLsizei>(m_VertexArray.GetStride());
 
 	shader->VertexPointer(
-		Renderer::Backend::Format::R32G32B32_SFLOAT, stride, base + m_AttributePosition.offset);
+		m_AttributePosition.format, stride, base + m_AttributePosition.offset);
 	shader->TexCoordPointer(
-		GL_TEXTURE0, Renderer::Backend::Format::R32G32B32_SFLOAT, stride, base + m_AttributeUV.offset);
+		GL_TEXTURE0, m_AttributeUV.format, stride, base + m_AttributeUV.offset);
 	shader->AssertPointersBound();
 
 	deviceCommandContext->Draw(0, m_VertexArray.GetNumberOfVertices());
@@ -256,12 +256,10 @@ void SkyManager::RenderSky(
 
 void SkyManager::CreateSkyCube()
 {
-	m_AttributePosition.type = GL_FLOAT;
-	m_AttributePosition.elems = 3;
+	m_AttributePosition.format = Renderer::Backend::Format::R32G32B32_SFLOAT;
 	m_VertexArray.AddAttribute(&m_AttributePosition);
 
-	m_AttributeUV.type = GL_FLOAT;
-	m_AttributeUV.elems = 3;
+	m_AttributeUV.format = Renderer::Backend::Format::R32G32B32_SFLOAT;
 	m_VertexArray.AddAttribute(&m_AttributeUV);
 
 	// 6 sides of cube with 6 vertices.

@@ -57,8 +57,7 @@ ShaderModelDef::ShaderModelDef(const CModelDefPtr& mdef)
 	m_UVs.resize(mdef->GetNumUVsPerVertex());
 	for (size_t i = 0; i < mdef->GetNumUVsPerVertex(); ++i)
 	{
-		m_UVs[i].type = GL_FLOAT;
-		m_UVs[i].elems = 2;
+		m_UVs[i].format = Renderer::Backend::Format::R32G32_SFLOAT;
 		m_Array.AddAttribute(&m_UVs[i]);
 	}
 
@@ -135,12 +134,10 @@ CModelRData* ShaderModelVertexRenderer::CreateModelData(const void* key, CModel*
 
 	// Positions and normals must be 16-byte aligned for SSE writes.
 
-	shadermodel->m_Position.type = GL_FLOAT;
-	shadermodel->m_Position.elems = 4;
+	shadermodel->m_Position.format = Renderer::Backend::Format::R32G32B32A32_SFLOAT;
 	shadermodel->m_Array.AddAttribute(&shadermodel->m_Position);
 
-	shadermodel->m_Normal.type = GL_FLOAT;
-	shadermodel->m_Normal.elems = 4;
+	shadermodel->m_Normal.format = Renderer::Backend::Format::R32G32B32A32_SFLOAT;
 	shadermodel->m_Array.AddAttribute(&shadermodel->m_Normal);
 
 	shadermodel->m_Array.SetNumberOfVertices(mdef->GetNumVertices());
@@ -205,14 +202,14 @@ void ShaderModelVertexRenderer::PrepareModelDef(
 	if (streamflags & STREAM_UV0)
 	{
 		shader->TexCoordPointer(
-			GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, stride,
+			GL_TEXTURE0, m->shadermodeldef->m_UVs[0].format, stride,
 			base + m->shadermodeldef->m_UVs[0].offset);
 	}
 
 	if ((streamflags & STREAM_UV1) && def.GetNumUVsPerVertex() >= 2)
 	{
 		shader->TexCoordPointer(
-			GL_TEXTURE1, Renderer::Backend::Format::R32G32_SFLOAT, stride,
+			GL_TEXTURE1, m->shadermodeldef->m_UVs[1].format, stride,
 			base + m->shadermodeldef->m_UVs[1].offset);
 	}
 }

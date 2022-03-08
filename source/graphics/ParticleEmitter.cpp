@@ -48,20 +48,16 @@ CParticleEmitter::CParticleEmitter(const CParticleEmitterTypePtr& type) :
 
 	m_Particles.reserve(m_Type->m_MaxParticles);
 
-	m_AttributePos.type = GL_FLOAT;
-	m_AttributePos.elems = 3;
+	m_AttributePos.format = Renderer::Backend::Format::R32G32B32_SFLOAT;
 	m_VertexArray.AddAttribute(&m_AttributePos);
 
-	m_AttributeAxis.type = GL_FLOAT;
-	m_AttributeAxis.elems = 2;
+	m_AttributeAxis.format = Renderer::Backend::Format::R32G32_SFLOAT;
 	m_VertexArray.AddAttribute(&m_AttributeAxis);
 
-	m_AttributeUV.type = GL_FLOAT;
-	m_AttributeUV.elems = 2;
+	m_AttributeUV.format = Renderer::Backend::Format::R32G32_SFLOAT;
 	m_VertexArray.AddAttribute(&m_AttributeUV);
 
-	m_AttributeColor.type = GL_UNSIGNED_BYTE;
-	m_AttributeColor.elems = 4;
+	m_AttributeColor.format = Renderer::Backend::Format::R8G8B8A8_UNORM;
 	m_VertexArray.AddAttribute(&m_AttributeColor);
 
 	m_VertexArray.SetNumberOfVertices(m_Type->m_MaxParticles * 4);
@@ -209,17 +205,17 @@ void CParticleEmitter::RenderArray(
 	GLsizei stride = (GLsizei)m_VertexArray.GetStride();
 
 	shader->VertexPointer(
-		Renderer::Backend::Format::R32G32B32_SFLOAT, stride, base + m_AttributePos.offset);
+		m_AttributePos.format, stride, base + m_AttributePos.offset);
 
 	// Pass the sin/cos axis components as texcoords for no particular reason
 	// other than that they fit. (Maybe this should be glVertexAttrib* instead?)
 	shader->TexCoordPointer(
-		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, stride, base + m_AttributeUV.offset);
+		GL_TEXTURE0, m_AttributeUV.format, stride, base + m_AttributeUV.offset);
 	shader->TexCoordPointer(
-		GL_TEXTURE1, Renderer::Backend::Format::R32G32_SFLOAT, stride, base + m_AttributeAxis.offset);
+		GL_TEXTURE1, m_AttributeAxis.format, stride, base + m_AttributeAxis.offset);
 
 	shader->ColorPointer(
-		Renderer::Backend::Format::R8G8B8A8_UNORM, stride, base + m_AttributeColor.offset);
+		m_AttributeColor.format, stride, base + m_AttributeColor.offset);
 
 	shader->AssertPointersBound();
 

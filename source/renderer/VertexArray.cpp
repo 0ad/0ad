@@ -18,7 +18,6 @@
 #include "precompiled.h"
 
 #include "lib/alignment.h"
-#include "lib/ogl.h"
 #include "lib/sysdep/rtl.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
@@ -29,6 +28,41 @@
 #include "renderer/VertexBuffer.h"
 #include "renderer/VertexBufferManager.h"
 
+namespace
+{
+
+size_t GetAttributeSize(const Renderer::Backend::Format format)
+{
+	switch (format)
+	{
+	case Renderer::Backend::Format::R8G8B8A8_UNORM: FALLTHROUGH;
+	case Renderer::Backend::Format::R8G8B8A8_UINT:
+		return sizeof(u8) * 4;
+	case Renderer::Backend::Format::A8_UNORM: FALLTHROUGH;
+		return sizeof(u8);
+	case Renderer::Backend::Format::R16_UNORM: FALLTHROUGH;
+	case Renderer::Backend::Format::R16_UINT: FALLTHROUGH;
+	case Renderer::Backend::Format::R16_SINT:
+		return sizeof(u16);
+	case Renderer::Backend::Format::R16G16_UNORM: FALLTHROUGH;
+	case Renderer::Backend::Format::R16G16_UINT: FALLTHROUGH;
+	case Renderer::Backend::Format::R16G16_SINT:
+		return sizeof(u16) * 2;
+	case Renderer::Backend::Format::R32_SFLOAT:
+		return sizeof(float);
+	case Renderer::Backend::Format::R32G32_SFLOAT:
+		return sizeof(float) * 2;
+	case Renderer::Backend::Format::R32G32B32_SFLOAT:
+		return sizeof(float) * 3;
+	case Renderer::Backend::Format::R32G32B32A32_SFLOAT:
+		return sizeof(float) * 4;
+	default:
+		break;
+	};
+	return 0;
+}
+
+} // anonymous namespace
 
 VertexArray::VertexArray(
 	const Renderer::Backend::GL::CBuffer::Type type, const bool dynamic)
@@ -67,11 +101,8 @@ void VertexArray::SetNumberOfVertices(const size_t numberOfVertices)
 // Add vertex attributes like Position, Normal, UV
 void VertexArray::AddAttribute(Attribute* attr)
 {
-	ENSURE(
-		(attr->type == GL_FLOAT || attr->type == GL_SHORT || attr->type == GL_UNSIGNED_SHORT || attr->type == GL_UNSIGNED_BYTE)
-		&& "Unsupported attribute type"
-	);
-	ENSURE(attr->elems >= 1 && attr->elems <= 4);
+	// Attribute is supported is its size is greater than zero.
+	ENSURE(GetAttributeSize(attr->format) > 0 && "Unsupported attribute.");
 
 	attr->vertexArray = this;
 	m_Attributes.push_back(attr);
@@ -86,8 +117,9 @@ template<>
 VertexArrayIterator<CVector3D> VertexArray::Attribute::GetIterator<CVector3D>() const
 {
 	ENSURE(vertexArray);
-	ENSURE(type == GL_FLOAT);
-	ENSURE(elems >= 3);
+	ENSURE(
+		format == Renderer::Backend::Format::R32G32B32_SFLOAT ||
+		format == Renderer::Backend::Format::R32G32B32A32_SFLOAT);
 
 	return vertexArray->MakeIterator<CVector3D>(this);
 }
@@ -96,8 +128,7 @@ template<>
 VertexArrayIterator<CVector4D> VertexArray::Attribute::GetIterator<CVector4D>() const
 {
 	ENSURE(vertexArray);
-	ENSURE(type == GL_FLOAT);
-	ENSURE(elems >= 4);
+	ENSURE(format == Renderer::Backend::Format::R32G32B32A32_SFLOAT);
 
 	return vertexArray->MakeIterator<CVector4D>(this);
 }
@@ -106,28 +137,18 @@ template<>
 VertexArrayIterator<float[2]> VertexArray::Attribute::GetIterator<float[2]>() const
 {
 	ENSURE(vertexArray);
-	ENSURE(type == GL_FLOAT);
-	ENSURE(elems >= 2);
+	ENSURE(format == Renderer::Backend::Format::R32G32_SFLOAT);
 
 	return vertexArray->MakeIterator<float[2]>(this);
-}
-
-template<>
-VertexArrayIterator<SColor3ub> VertexArray::Attribute::GetIterator<SColor3ub>() const
-{
-	ENSURE(vertexArray);
-	ENSURE(type == GL_UNSIGNED_BYTE);
-	ENSURE(elems >= 3);
-
-	return vertexArray->MakeIterator<SColor3ub>(this);
 }
 
 template<>
 VertexArrayIterator<SColor4ub> VertexArray::Attribute::GetIterator<SColor4ub>() const
 {
 	ENSURE(vertexArray);
-	ENSURE(type == GL_UNSIGNED_BYTE);
-	ENSURE(elems >= 4);
+	ENSURE(
+		format == Renderer::Backend::Format::R8G8B8A8_UNORM ||
+		format == Renderer::Backend::Format::R8G8B8A8_UINT);
 
 	return vertexArray->MakeIterator<SColor4ub>(this);
 }
@@ -136,8 +157,7 @@ template<>
 VertexArrayIterator<u16> VertexArray::Attribute::GetIterator<u16>() const
 {
 	ENSURE(vertexArray);
-	ENSURE(type == GL_UNSIGNED_SHORT);
-	ENSURE(elems >= 1);
+	ENSURE(format == Renderer::Backend::Format::R16_UINT);
 
 	return vertexArray->MakeIterator<u16>(this);
 }
@@ -146,8 +166,7 @@ template<>
 VertexArrayIterator<u16[2]> VertexArray::Attribute::GetIterator<u16[2]>() const
 {
 	ENSURE(vertexArray);
-	ENSURE(type == GL_UNSIGNED_SHORT);
-	ENSURE(elems >= 2);
+	ENSURE(format == Renderer::Backend::Format::R16G16_UINT);
 
 	return vertexArray->MakeIterator<u16[2]>(this);
 }
@@ -156,8 +175,7 @@ template<>
 VertexArrayIterator<u8> VertexArray::Attribute::GetIterator<u8>() const
 {
 	ENSURE(vertexArray);
-	ENSURE(type == GL_UNSIGNED_BYTE);
-	ENSURE(elems >= 1);
+	ENSURE(format == Renderer::Backend::Format::A8_UNORM);
 
 	return vertexArray->MakeIterator<u8>(this);
 }
@@ -166,8 +184,9 @@ template<>
 VertexArrayIterator<u8[4]> VertexArray::Attribute::GetIterator<u8[4]>() const
 {
 	ENSURE(vertexArray);
-	ENSURE(type == GL_UNSIGNED_BYTE);
-	ENSURE(elems >= 4);
+	ENSURE(
+		format == Renderer::Backend::Format::R8G8B8A8_UNORM ||
+		format == Renderer::Backend::Format::R8G8B8A8_UINT);
 
 	return vertexArray->MakeIterator<u8[4]>(this);
 }
@@ -176,8 +195,7 @@ template<>
 VertexArrayIterator<short> VertexArray::Attribute::GetIterator<short>() const
 {
 	ENSURE(vertexArray);
-	ENSURE(type == GL_SHORT);
-	ENSURE(elems >= 1);
+	ENSURE(format == Renderer::Backend::Format::R16_SINT);
 
 	return vertexArray->MakeIterator<short>(this);
 }
@@ -186,8 +204,7 @@ template<>
 VertexArrayIterator<short[2]> VertexArray::Attribute::GetIterator<short[2]>() const
 {
 	ENSURE(vertexArray);
-	ENSURE(type == GL_SHORT);
-	ENSURE(elems >= 2);
+	ENSURE(format == Renderer::Backend::Format::R16G16_SINT);
 
 	return vertexArray->MakeIterator<short[2]>(this);
 }
@@ -218,31 +235,11 @@ void VertexArray::Layout()
 	for (ssize_t idx = m_Attributes.size()-1; idx >= 0; --idx)
 	{
 		Attribute* attr = m_Attributes[idx];
-
-		if (!attr->type || !attr->elems)
+		if (attr->format == Renderer::Backend::Format::UNDEFINED)
 			continue;
 
-		size_t attrSize = 0;
-		switch(attr->type)
-		{
-		case GL_UNSIGNED_BYTE:
-			attrSize = sizeof(GLubyte);
-			break;
-		case GL_SHORT:
-			attrSize = sizeof(GLshort);
-			break;
-		case GL_UNSIGNED_SHORT:
-			attrSize = sizeof(GLushort);
-			break;
-		case GL_FLOAT:
-			attrSize = sizeof(GLfloat);
-			break;
-		default:
-			attrSize = 0;
-			debug_warn(L"Bad Attribute::type"); break;
-		}
-
-		attrSize *= attr->elems;
+		const size_t attrSize = GetAttributeSize(attr->format);
+		ENSURE(attrSize > 0);
 
 		attr->offset = m_Stride;
 
@@ -319,8 +316,7 @@ void VertexArray::FreeBackingStore()
 VertexIndexArray::VertexIndexArray(const bool dynamic) :
 	VertexArray(Renderer::Backend::GL::CBuffer::Type::INDEX, dynamic)
 {
-	m_Attr.type = GL_UNSIGNED_SHORT;
-	m_Attr.elems = 1;
+	m_Attr.format = Renderer::Backend::Format::R16_UINT;
 	AddAttribute(&m_Attr);
 }
 

@@ -157,16 +157,13 @@ OverlayRendererInternals::OverlayRendererInternals()
 	: quadVertices(Renderer::Backend::GL::CBuffer::Type::VERTEX, true),
 	quadIndices(false)
 {
-	quadAttributePos.elems = 3;
-	quadAttributePos.type = GL_FLOAT;
+	quadAttributePos.format = Renderer::Backend::Format::R32G32B32_SFLOAT;
 	quadVertices.AddAttribute(&quadAttributePos);
 
-	quadAttributeColor.elems = 4;
-	quadAttributeColor.type = GL_FLOAT;
+	quadAttributeColor.format = Renderer::Backend::Format::R8G8B8A8_UNORM;
 	quadVertices.AddAttribute(&quadAttributeColor);
 
-	quadAttributeUV.elems = 2;
-	quadAttributeUV.type = GL_SHORT; // don't use GL_UNSIGNED_SHORT here, TexCoordPointer won't accept it
+	quadAttributeUV.format = Renderer::Backend::Format::R16G16_SINT;
 	quadVertices.AddAttribute(&quadAttributeUV);
 
 	// Note that we're reusing the textured overlay line shader for the quad overlay rendering. This
@@ -310,7 +307,7 @@ void OverlayRenderer::PrepareForRendering()
 
 	// Write quad overlay vertices/indices to VA backing store
 	VertexArrayIterator<CVector3D> vertexPos = m->quadAttributePos.GetIterator<CVector3D>();
-	VertexArrayIterator<CVector4D> vertexColor = m->quadAttributeColor.GetIterator<CVector4D>();
+	VertexArrayIterator<SColor4ub> vertexColor = m->quadAttributeColor.GetIterator<SColor4ub>();
 	VertexArrayIterator<short[2]> vertexUV = m->quadAttributeUV.GetIterator<short[2]>();
 
 	size_t indicesIdx = 0;
@@ -332,9 +329,7 @@ void OverlayRenderer::PrepareForRendering()
 		{
 			const SOverlayQuad* quad = batchRenderData.m_Quads[i];
 
-			// TODO: this is kind of ugly, the iterator should use a type that can have quad->m_Color assigned
-			// to it directly
-			const CVector4D quadColor(quad->m_Color.r, quad->m_Color.g, quad->m_Color.b, quad->m_Color.a);
+			const SColor4ub quadColor = quad->m_Color.AsSColor4ub();
 
 			*vertexPos++ = quad->m_Corners[0] + vOffset;
 			*vertexPos++ = quad->m_Corners[1] + vOffset;
@@ -573,16 +568,16 @@ void OverlayRenderer::RenderQuadOverlays(
 		int streamflags = shader->GetStreamFlags();
 
 		if (streamflags & STREAM_POS)
-			shader->VertexPointer(Renderer::Backend::Format::R32G32B32_SFLOAT, vertexStride, vertexBase + m->quadAttributePos.offset);
+			shader->VertexPointer(m->quadAttributePos.format, vertexStride, vertexBase + m->quadAttributePos.offset);
 
 		if (streamflags & STREAM_UV0)
-			shader->TexCoordPointer(GL_TEXTURE0, Renderer::Backend::Format::R16G16_SINT, vertexStride, vertexBase + m->quadAttributeUV.offset);
+			shader->TexCoordPointer(GL_TEXTURE0, m->quadAttributeUV.format, vertexStride, vertexBase + m->quadAttributeUV.offset);
 
 		if (streamflags & STREAM_UV1)
-			shader->TexCoordPointer(GL_TEXTURE1, Renderer::Backend::Format::R16G16_SINT, vertexStride, vertexBase + m->quadAttributeUV.offset);
+			shader->TexCoordPointer(GL_TEXTURE1, m->quadAttributeUV.format, vertexStride, vertexBase + m->quadAttributeUV.offset);
 
 		if (streamflags & STREAM_COLOR)
-			shader->ColorPointer(Renderer::Backend::Format::R32G32B32A32_SFLOAT, vertexStride, vertexBase + m->quadAttributeColor.offset);
+			shader->ColorPointer(m->quadAttributeColor.format, vertexStride, vertexBase + m->quadAttributeColor.offset);
 
 		shader->AssertPointersBound();
 		deviceCommandContext->DrawIndexed(m->quadIndices.GetOffset() + batchRenderData.m_IndicesBase, batchNumQuads * 6, 0);
