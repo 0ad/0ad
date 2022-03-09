@@ -18,6 +18,7 @@
 #ifndef INCLUDED_VERTEXARRAY
 #define INCLUDED_VERTEXARRAY
 
+#include "renderer/backend/Format.h"
 #include "renderer/backend/gl/Buffer.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/VertexBufferManager.h"
@@ -131,29 +132,26 @@ private:
 // This class chooses the vertex layout at runtime, based on the attributes
 // that are actually needed.
 //
-// Note that this class will not allocate any OpenGL resources until one
+// Note that this class will not allocate any backend resources until one
 // of the Upload functions is called.
 class VertexArray
 {
 public:
 	struct Attribute
 	{
-		// Data type. Currently supported: GL_FLOAT, GL_SHORT, GL_UNSIGNED_SHORT, GL_UNSIGNED_BYTE.
-		GLenum type;
-		// How many elements per vertex (e.g. 3 for RGB, 2 for UV)
-		GLuint elems;
+		Renderer::Backend::Format format = Renderer::Backend::Format::UNDEFINED;
 
 		// Offset (in bytes) into a vertex structure (filled in by Layout())
-		size_t offset;
+		size_t offset = 0;
 
-		VertexArray* vertexArray;
+		VertexArray* vertexArray = nullptr;
 
-		Attribute() : type(0), elems(0), offset(0), vertexArray(0) { }
+		Attribute() {}
 
 		// Get an iterator over the backing store for the given attribute that
 		// initially points at the first vertex.
-		// Supported types T: CVector3D, CVector4D, float[2], SColor3ub, SColor4ub,
-		// u16, u16[2], u8, u8[4], short, short[2].
+		// Supported types T: CVector3D, CVector4D, float[2], SColor4ub,
+		// u16, u16[2], u8[4], short, short[2].
 		// This function verifies at runtime that the requested type T matches
 		// the attribute definition passed to AddAttribute().
 		template<typename T>
@@ -201,7 +199,7 @@ private:
 	template<typename T>
 	VertexArrayIterator<T> MakeIterator(const Attribute* attr)
 	{
-		ENSURE(attr->type && attr->elems);
+		ENSURE(attr->format != Renderer::Backend::Format::UNDEFINED);
 		return VertexArrayIterator<T>(m_BackingStore + attr->offset, m_Stride);
 	}
 

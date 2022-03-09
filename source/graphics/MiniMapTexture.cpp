@@ -159,12 +159,10 @@ CMiniMapTexture::CMiniMapTexture(CSimulation2& simulation)
 	}
 	m_HalfBlinkDuration = blinkDuration / 2.0;
 
-	m_AttributePos.type = GL_FLOAT;
-	m_AttributePos.elems = 2;
+	m_AttributePos.format = Renderer::Backend::Format::R32G32_SFLOAT;
 	m_VertexArray.AddAttribute(&m_AttributePos);
 
-	m_AttributeColor.type = GL_UNSIGNED_BYTE;
-	m_AttributeColor.elems = 4;
+	m_AttributeColor.format = Renderer::Backend::Format::R8G8B8A8_UNORM;
 	m_VertexArray.AddAttribute(&m_AttributeColor);
 
 	m_VertexArray.SetNumberOfVertices(MAX_ENTITIES_DRAWN * 4);
@@ -569,9 +567,9 @@ void CMiniMapTexture::RenderFinalTexture(
 		const GLsizei stride = (GLsizei)m_VertexArray.GetStride();
 
 		shader->VertexPointer(
-			Renderer::Backend::Format::R32G32_SFLOAT, stride, base + m_AttributePos.offset);
+			m_AttributePos.format, stride, base + m_AttributePos.offset);
 		shader->ColorPointer(
-			Renderer::Backend::Format::R8G8B8A8_UNORM, stride, base + m_AttributeColor.offset);
+			m_AttributeColor.format, stride, base + m_AttributeColor.offset);
 		shader->AssertPointersBound();
 
 		deviceCommandContext->SetIndexBuffer(m_IndexArray.GetBuffer());
