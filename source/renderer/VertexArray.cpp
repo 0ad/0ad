@@ -38,7 +38,7 @@ size_t GetAttributeSize(const Renderer::Backend::Format format)
 	case Renderer::Backend::Format::R8G8B8A8_UNORM: FALLTHROUGH;
 	case Renderer::Backend::Format::R8G8B8A8_UINT:
 		return sizeof(u8) * 4;
-	case Renderer::Backend::Format::A8_UNORM: FALLTHROUGH;
+	case Renderer::Backend::Format::A8_UNORM:
 		return sizeof(u8);
 	case Renderer::Backend::Format::R16_UNORM: FALLTHROUGH;
 	case Renderer::Backend::Format::R16_UINT: FALLTHROUGH;

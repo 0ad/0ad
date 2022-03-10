@@ -155,12 +155,6 @@ int WaterManager::LoadWaterTextures()
 
 	m_RenderWater = true;
 
-	if (!WillRenderFancyWater())
-		return 0;
-
-#if CONFIG2_GLES
-#warning Fix WaterManager::LoadWaterTextures on GLES
-#else
 	// Load normalmaps (for fancy water)
 	ReloadWaterNormalTextures();
 
@@ -184,88 +178,120 @@ int WaterManager::LoadWaterTextures()
 		m_FoamTex = texture;
 	}
 
-	// Use screen-sized textures for minimum artifacts.
-	m_RefTextureSize = round_up_to_pow2(g_Renderer.GetHeight());
+	RecreateOrLoadTexturesIfNeeded();
 
-	Renderer::Backend::GL::CDevice* backendDevice = g_VideoMode.GetBackendDevice();
-
-	// Create reflection texture
-	m_ReflectionTexture = backendDevice->CreateTexture2D("WaterReflectionTexture",
-		Renderer::Backend::Format::R8G8B8A8_UNORM, m_RefTextureSize, m_RefTextureSize,
-		Renderer::Backend::Sampler::MakeDefaultSampler(
-			Renderer::Backend::Sampler::Filter::LINEAR,
-			Renderer::Backend::Sampler::AddressMode::MIRRORED_REPEAT));
-
-	// Create refraction texture
-	m_RefractionTexture = backendDevice->CreateTexture2D("WaterRefractionTexture",
-		Renderer::Backend::Format::R8G8B8A8_UNORM, m_RefTextureSize, m_RefTextureSize,
-		Renderer::Backend::Sampler::MakeDefaultSampler(
-			Renderer::Backend::Sampler::Filter::LINEAR,
-			Renderer::Backend::Sampler::AddressMode::MIRRORED_REPEAT));
-
-	// Create depth textures
-	m_ReflFboDepthTexture = backendDevice->CreateTexture2D("WaterReflectionDepthTexture",
-		Renderer::Backend::Format::D32, m_RefTextureSize, m_RefTextureSize,
-		Renderer::Backend::Sampler::MakeDefaultSampler(
-			Renderer::Backend::Sampler::Filter::NEAREST,
-			Renderer::Backend::Sampler::AddressMode::REPEAT));
-
-	m_RefrFboDepthTexture = backendDevice->CreateTexture2D("WaterRefractionDepthTexture",
-		Renderer::Backend::Format::D32, m_RefTextureSize, m_RefTextureSize,
-		Renderer::Backend::Sampler::MakeDefaultSampler(
-			Renderer::Backend::Sampler::Filter::NEAREST,
-			Renderer::Backend::Sampler::AddressMode::REPEAT));
-
-	Resize();
-
-	// Create the water framebuffers
-
-	m_ReflectionFramebuffer = backendDevice->CreateFramebuffer("ReflectionFramebuffer",
-		m_ReflectionTexture.get(), m_ReflFboDepthTexture.get(), CColor(0.5f, 0.5f, 1.0f, 0.0f));
-	if (!m_ReflectionFramebuffer)
-	{
-		g_RenderingOptions.SetWaterReflection(false);
-		UpdateQuality();
-	}
-
-	m_RefractionFramebuffer = backendDevice->CreateFramebuffer("RefractionFramebuffer",
-		m_RefractionTexture.get(), m_RefrFboDepthTexture.get(), CColor(1.0f, 0.0f, 0.0f, 0.0f));
-	if (!m_RefractionFramebuffer)
-	{
-		g_RenderingOptions.SetWaterRefraction(false);
-		UpdateQuality();
-	}
-
-	m_FancyEffectsFramebuffer = backendDevice->CreateFramebuffer("FancyEffectsFramebuffer",
-		m_FancyTexture.get(), m_FancyTextureDepth.get());
-	if (!m_FancyEffectsFramebuffer)
-	{
-		g_RenderingOptions.SetWaterRefraction(false);
-		UpdateQuality();
-	}
-#endif
 	return 0;
 }
 
-
-///////////////////////////////////////////////////////////////////
-// Resize: Updates the fancy water textures.
-void WaterManager::Resize()
+void WaterManager::RecreateOrLoadTexturesIfNeeded()
 {
 	Renderer::Backend::GL::CDevice* backendDevice = g_VideoMode.GetBackendDevice();
 
-	// Create the Fancy Effects texture
-	m_FancyTexture = backendDevice->CreateTexture2D("WaterFancyTexture",
-		Renderer::Backend::Format::R8G8B8A8_UNORM, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
-		Renderer::Backend::Sampler::MakeDefaultSampler(
-			Renderer::Backend::Sampler::Filter::LINEAR,
-			Renderer::Backend::Sampler::AddressMode::REPEAT));
+	// Use screen-sized textures for minimum artifacts.
+	const size_t newRefTextureSize = round_up_to_pow2(g_Renderer.GetHeight());
 
-	m_FancyTextureDepth = backendDevice->CreateTexture2D("WaterFancyDepthTexture",
-		Renderer::Backend::Format::D32, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
-		Renderer::Backend::Sampler::MakeDefaultSampler(
-			Renderer::Backend::Sampler::Filter::LINEAR,
-			Renderer::Backend::Sampler::AddressMode::REPEAT));
+	if (m_RefTextureSize != newRefTextureSize)
+	{
+		m_ReflectionFramebuffer.reset();
+		m_ReflectionTexture.reset();
+		m_ReflFboDepthTexture.reset();
+
+		m_RefractionFramebuffer.reset();
+		m_RefractionTexture.reset();
+		m_RefrFboDepthTexture.reset();
+
+		m_RefTextureSize = newRefTextureSize;
+	}
+
+	// Create reflection textures.
+	const bool needsReflectionTextures =
+		g_RenderingOptions.GetWaterEffects() &&
+		g_RenderingOptions.GetWaterReflection();
+	if (needsReflectionTextures && !m_ReflectionTexture)
+	{
+		m_ReflectionTexture = backendDevice->CreateTexture2D("WaterReflectionTexture",
+			Renderer::Backend::Format::R8G8B8A8_UNORM, m_RefTextureSize, m_RefTextureSize,
+			Renderer::Backend::Sampler::MakeDefaultSampler(
+				Renderer::Backend::Sampler::Filter::LINEAR,
+				Renderer::Backend::Sampler::AddressMode::MIRRORED_REPEAT));
+
+		m_ReflFboDepthTexture = backendDevice->CreateTexture2D("WaterReflectionDepthTexture",
+			Renderer::Backend::Format::D32, m_RefTextureSize, m_RefTextureSize,
+			Renderer::Backend::Sampler::MakeDefaultSampler(
+				Renderer::Backend::Sampler::Filter::NEAREST,
+				Renderer::Backend::Sampler::AddressMode::REPEAT));
+
+		m_ReflectionFramebuffer = backendDevice->CreateFramebuffer("ReflectionFramebuffer",
+			m_ReflectionTexture.get(), m_ReflFboDepthTexture.get(), CColor(0.5f, 0.5f, 1.0f, 0.0f));
+		if (!m_ReflectionFramebuffer)
+		{
+			g_RenderingOptions.SetWaterReflection(false);
+			UpdateQuality();
+		}
+	}
+
+	// Create refraction textures.
+	const bool needsRefractionTextures =
+		g_RenderingOptions.GetWaterEffects() &&
+		g_RenderingOptions.GetWaterRefraction();
+	if (needsRefractionTextures && !m_RefractionTexture)
+	{
+		m_RefractionTexture = backendDevice->CreateTexture2D("WaterRefractionTexture",
+			Renderer::Backend::Format::R8G8B8A8_UNORM, m_RefTextureSize, m_RefTextureSize,
+			Renderer::Backend::Sampler::MakeDefaultSampler(
+				Renderer::Backend::Sampler::Filter::LINEAR,
+				Renderer::Backend::Sampler::AddressMode::MIRRORED_REPEAT));
+
+		m_RefrFboDepthTexture = backendDevice->CreateTexture2D("WaterRefractionDepthTexture",
+			Renderer::Backend::Format::D32, m_RefTextureSize, m_RefTextureSize,
+			Renderer::Backend::Sampler::MakeDefaultSampler(
+				Renderer::Backend::Sampler::Filter::NEAREST,
+				Renderer::Backend::Sampler::AddressMode::REPEAT));
+
+		m_RefractionFramebuffer = backendDevice->CreateFramebuffer("RefractionFramebuffer",
+			m_RefractionTexture.get(), m_RefrFboDepthTexture.get(), CColor(1.0f, 0.0f, 0.0f, 0.0f));
+		if (!m_RefractionFramebuffer)
+		{
+			g_RenderingOptions.SetWaterRefraction(false);
+			UpdateQuality();
+		}
+	}
+
+	const uint32_t newWidth = static_cast<uint32_t>(g_Renderer.GetWidth());
+	const uint32_t newHeight = static_cast<uint32_t>(g_Renderer.GetHeight());
+	if (m_FancyTexture && (m_FancyTexture->GetWidth() != newWidth || m_FancyTexture->GetHeight() != newHeight))
+	{
+		m_FancyEffectsFramebuffer.reset();
+		m_FancyTexture.reset();
+		m_FancyTextureDepth.reset();
+	}
+
+	// Create the Fancy Effects textures.
+	const bool needsFancyTextures =
+		g_RenderingOptions.GetWaterEffects() &&
+		g_RenderingOptions.GetWaterFancyEffects();
+	if (needsFancyTextures && !m_FancyTexture)
+	{
+		m_FancyTexture = backendDevice->CreateTexture2D("WaterFancyTexture",
+			Renderer::Backend::Format::R8G8B8A8_UNORM, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
+			Renderer::Backend::Sampler::MakeDefaultSampler(
+				Renderer::Backend::Sampler::Filter::LINEAR,
+				Renderer::Backend::Sampler::AddressMode::REPEAT));
+
+		m_FancyTextureDepth = backendDevice->CreateTexture2D("WaterFancyDepthTexture",
+			Renderer::Backend::Format::D32, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
+			Renderer::Backend::Sampler::MakeDefaultSampler(
+				Renderer::Backend::Sampler::Filter::LINEAR,
+				Renderer::Backend::Sampler::AddressMode::REPEAT));
+
+		m_FancyEffectsFramebuffer = backendDevice->CreateFramebuffer("FancyEffectsFramebuffer",
+			m_FancyTexture.get(), m_FancyTextureDepth.get());
+		if (!m_FancyEffectsFramebuffer)
+		{
+			g_RenderingOptions.SetWaterRefraction(false);
+			UpdateQuality();
+		}
+	}
 }
 
 void WaterManager::ReloadWaterNormalTextures()

@@ -273,7 +273,7 @@ void CSceneRenderer::Resize(int UNUSED(width), int UNUSED(height))
 	// need to recreate the shadow map object to resize the shadow texture
 	m->shadow.RecreateTexture();
 
-	m->waterManager.Resize();
+	m->waterManager.RecreateOrLoadTexturesIfNeeded();
 }
 
 void CSceneRenderer::BeginFrame()

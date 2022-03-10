@@ -29,6 +29,7 @@
 #include "renderer/PostprocManager.h"
 #include "renderer/SceneRenderer.h"
 #include "renderer/ShadowMap.h"
+#include "renderer/WaterManager.h"
 
 CRenderingOptions g_RenderingOptions;
 
@@ -197,11 +198,35 @@ void CRenderingOptions::ReadConfigAndSetupHooks()
 
 	m_ConfigHooks->Setup("smoothlos", m_SmoothLOS);
 
-	m_ConfigHooks->Setup("watereffects", m_WaterEffects);
-	m_ConfigHooks->Setup("waterfancyeffects", m_WaterFancyEffects);
+	m_ConfigHooks->Setup("watereffects", [this]() {
+		bool enabled;
+		CFG_GET_VAL("watereffects", enabled);
+		SetWaterEffects(enabled);
+		if (CRenderer::IsInitialised())
+			g_Renderer.GetSceneRenderer().GetWaterManager().RecreateOrLoadTexturesIfNeeded();
+	});
+	m_ConfigHooks->Setup("waterfancyeffects", [this]() {
+		bool enabled;
+		CFG_GET_VAL("waterfancyeffects", enabled);
+		SetWaterFancyEffects(enabled);
+		if (CRenderer::IsInitialised())
+			g_Renderer.GetSceneRenderer().GetWaterManager().RecreateOrLoadTexturesIfNeeded();
+	});
 	m_ConfigHooks->Setup("waterrealdepth", m_WaterRealDepth);
-	m_ConfigHooks->Setup("waterrefraction", m_WaterRefraction);
-	m_ConfigHooks->Setup("waterreflection", m_WaterReflection);
+	m_ConfigHooks->Setup("waterrefraction", [this]() {
+		bool enabled;
+		CFG_GET_VAL("waterrefraction", enabled);
+		SetWaterRefraction(enabled);
+		if (CRenderer::IsInitialised())
+			g_Renderer.GetSceneRenderer().GetWaterManager().RecreateOrLoadTexturesIfNeeded();
+	});
+	m_ConfigHooks->Setup("waterreflection", [this]() {
+		bool enabled;
+		CFG_GET_VAL("waterreflection", enabled);
+		SetWaterReflection(enabled);
+		if (CRenderer::IsInitialised())
+			g_Renderer.GetSceneRenderer().GetWaterManager().RecreateOrLoadTexturesIfNeeded();
+	});
 
 	m_ConfigHooks->Setup("particles", m_Particles);
 	m_ConfigHooks->Setup("fog", [this]() {

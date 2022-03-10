@@ -139,10 +139,9 @@ public:
 	int LoadWaterTextures();
 
 	/**
-	 * Resize: Updates the fancy water textures so that water will render correctly
-	 * with fancy water.
+	 * Recreates/loads needed water textures.
 	 */
-	void Resize();
+	void RecreateOrLoadTexturesIfNeeded();
 
 	/**
 	 * ReloadWaterNormalTextures: Reload the normal textures so that changing
