@@ -25,7 +25,6 @@
 #include "graphics/TextureManager.h"
 #include "lib/bits.h"
 #include "lib/tex/tex.h"
-#include "lib/timer.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
@@ -33,9 +32,7 @@
 #include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
-#include "ps/Loader.h"
 #include "ps/VideoMode.h"
-#include "ps/World.h"
 #include "renderer/backend/gl/Device.h"
 #include "renderer/Renderer.h"
 #include "renderer/SceneRenderer.h"
@@ -46,7 +43,7 @@
 SkyManager::SkyManager()
 	: m_VertexArray(Renderer::Backend::GL::CBuffer::Type::VERTEX, false)
 {
-	CFG_GET_VAL("showsky", m_RenderSky);
+	CFG_GET_VAL("showsky", m_SkyVisible);
 }
 
 void SkyManager::LoadAndUploadSkyTexturesIfNeeded(
@@ -195,11 +192,8 @@ void SkyManager::RenderSky(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render sky");
-#if CONFIG2_GLES
-	UNUSED2(deviceCommandContext);
-#warning TODO: implement SkyManager::RenderSky for GLES
-#else
-	if (!m_RenderSky)
+
+	if (!m_SkyVisible)
 		return;
 
 	// Do nothing unless SetSkySet was called
@@ -251,7 +245,6 @@ void SkyManager::RenderSky(
 	deviceCommandContext->Draw(0, m_VertexArray.GetNumberOfVertices());
 
 	skytech->EndPass();
-#endif
 }
 
 void SkyManager::CreateSkyCube()

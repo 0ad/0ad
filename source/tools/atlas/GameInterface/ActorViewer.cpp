@@ -447,8 +447,8 @@ void ActorViewer::SetEnabled(bool enabled)
 		m.OldShadows = g_RenderingOptions.GetShadows();
 		SetShadowsEnabled(m.ShadowsEnabled);
 
-		m.OldSky = g_Renderer.GetSceneRenderer().GetSkyManager().GetRenderSky();
-		g_Renderer.GetSceneRenderer().GetSkyManager().SetRenderSky(false);
+		m.OldSky = g_Renderer.GetSceneRenderer().GetSkyManager().IsSkyVisible();
+		g_Renderer.GetSceneRenderer().GetSkyManager().SetSkyVisible(false);
 
 		m.OldWater = g_Renderer.GetSceneRenderer().GetWaterManager().m_RenderWater;
 		g_Renderer.GetSceneRenderer().GetWaterManager().m_RenderWater = m.WaterEnabled;
@@ -457,7 +457,7 @@ void ActorViewer::SetEnabled(bool enabled)
 	{
 		// Restore the old renderer state
 		SetShadowsEnabled(m.OldShadows);
-		g_Renderer.GetSceneRenderer().GetSkyManager().SetRenderSky(m.OldSky);
+		g_Renderer.GetSceneRenderer().GetSkyManager().SetSkyVisible(m.OldSky);
 		g_Renderer.GetSceneRenderer().GetWaterManager().m_RenderWater = m.OldWater;
 	}
 }
