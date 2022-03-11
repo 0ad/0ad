@@ -35,9 +35,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-25 08:08+0000\n"
-"PO-Revision-Date: 2022-02-25 23:26+0000\n"
-"Last-Translator: Rodrigo Vegas Sánchez-Ferrero\n"
+"POT-Creation-Date: 2022-03-07 08:09+0000\n"
+"PO-Revision-Date: 2022-03-07 10:25+0000\n"
+"Last-Translator: Transifex Bot\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -662,19 +662,19 @@ msgstr "Celicnon"
 msgid "Wheat Field"
 msgstr "campo de trigo"
 
-#: simulation/templates/structures/han/academy.xml:29
+#: simulation/templates/structures/han/academy.xml:30
 msgid "Imperial Academy"
 msgstr "Academia imperial"
 
-#: simulation/templates/structures/han/academy.xml:30
+#: simulation/templates/structures/han/academy.xml:31
 msgid "Dìguó Xuéyuàn"
 msgstr "Dìguó Xuéyuàn"
 
-#: simulation/templates/structures/han/academy.xml:32
+#: simulation/templates/structures/han/academy.xml:33
 msgid "Train Champions and research their technologies."
 msgstr "Adiestra tropa de élite y desarrolla tecnología relacionada."
 
-#: simulation/templates/structures/han/academy.xml:33
+#: simulation/templates/structures/han/academy.xml:34
 msgid "Academy"
 msgstr "Academia"
 
@@ -697,15 +697,15 @@ msgid ""
 "Center."
 msgstr "Incrementa de forma considerable la resistencia, la dificultad de captura y la capacidad de este centro cívico. Desbloquea el adiestramiento de héroes y tropa de élite desde estre centro cívico."
 
-#: simulation/templates/structures/han/civil_centre_court.xml:22
+#: simulation/templates/structures/han/civil_centre_court.xml:14
 msgid "Imperial Court"
 msgstr "Corte imperial"
 
-#: simulation/templates/structures/han/civil_centre_court.xml:23
+#: simulation/templates/structures/han/civil_centre_court.xml:15
 msgid "Cháotíng"
 msgstr "Cháotíng"
 
-#: simulation/templates/structures/han/civil_centre_court.xml:24
+#: simulation/templates/structures/han/civil_centre_court.xml:16
 msgid "ImperialCourt"
 msgstr "corte imperial"
 
@@ -735,7 +735,7 @@ msgstr "Dà Fángyù Tǎ"
 msgid "GreatTower"
 msgstr "gran torre"
 
-#: simulation/templates/structures/han/dock.xml:17
+#: simulation/templates/structures/han/dock.xml:9
 msgid "Mǎtóu"
 msgstr "Mǎtóu"
 
@@ -820,7 +820,6 @@ msgstr "Puerta de bambú"
 msgid "Bamboo Stockade Tower"
 msgstr "Torre de bambú"
 
-#: simulation/templates/structures/han/practice_range.xml:12
 #: simulation/templates/structures/han/range.xml:12
 msgid "Bǎ Chǎng"
 msgstr "Bǎ Chǎng"
@@ -1811,11 +1810,15 @@ msgstr "Mesa rectangular"
 msgid "Square Table"
 msgstr "Mesa cuadrada"
 
-#: simulation/templates/structures/tent_desert.xml:35
-msgid "Desert Army Tent"
-msgstr "Tienda de campaña del desierto"
+#: simulation/templates/structures/tent_arab.xml:35
+msgid "Arab Army Tent"
+msgstr ""
 
 #: simulation/templates/structures/rome/tent.xml:24
+#: simulation/templates/structures/tent_arab.xml:36
+#: simulation/templates/structures/tent_arab.xml:38
+#: simulation/templates/structures/tent_bedouin.xml:36
+#: simulation/templates/structures/tent_bedouin.xml:38
 #: simulation/templates/structures/tent_desert.xml:36
 #: simulation/templates/structures/tent_desert.xml:38
 #: simulation/templates/structures/tent_mace.xml:36
@@ -1825,11 +1828,21 @@ msgstr "Tienda de campaña del desierto"
 msgid "Tent"
 msgstr "Tienda"
 
+#: simulation/templates/structures/tent_arab.xml:39
+#: simulation/templates/structures/tent_bedouin.xml:39
 #: simulation/templates/structures/tent_desert.xml:39
 #: simulation/templates/structures/tent_mace.xml:39
 #: simulation/templates/structures/tent_rome.xml:39
 msgid "A temporary shelter for soldiers. +5 population bonus."
 msgstr "Refugio temporal para soldados. Límite de población: +5."
+
+#: simulation/templates/structures/tent_bedouin.xml:35
+msgid "Bedouin Tent"
+msgstr ""
+
+#: simulation/templates/structures/tent_desert.xml:35
+msgid "Desert Army Tent"
+msgstr "Tienda de campaña del desierto"
 
 #: simulation/templates/structures/tent_mace.xml:35
 msgid "Macedonian Army Tent"
@@ -1884,7 +1897,7 @@ msgstr "Se puede construir en territorio propio o neutral anexionando grandes ex
 msgid "CivilCentre"
 msgstr "edificio civil"
 
-#: simulation/templates/structures/han/civil_centre_court.xml:24
+#: simulation/templates/structures/han/civil_centre_court.xml:16
 #: simulation/templates/template_structure_civic_civil_centre.xml:79
 #: simulation/templates/template_structure_defensive.xml:5
 #: simulation/templates/template_structure_military_fortress.xml:69
@@ -2130,8 +2143,8 @@ msgid ""
 msgstr "Recluta ballesteros de infantería de élite, construye máquinas de asedio y desarrolla tecnología de asedio."
 
 #: simulation/templates/structures/gaul/assembly.xml:31
-#: simulation/templates/structures/han/academy.xml:33
-#: simulation/templates/structures/han/civil_centre_court.xml:24
+#: simulation/templates/structures/han/academy.xml:34
+#: simulation/templates/structures/han/civil_centre_court.xml:16
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:76

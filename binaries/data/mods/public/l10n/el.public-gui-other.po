@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-04 08:09+0000\n"
-"PO-Revision-Date: 2022-03-04 08:25+0000\n"
-"Last-Translator: Sotiris K\n"
+"POT-Creation-Date: 2022-03-07 08:09+0000\n"
+"PO-Revision-Date: 2022-03-07 08:24+0000\n"
+"Last-Translator: Transifex Bot\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -923,8 +923,8 @@ msgstr "Φίλια Πυρά: %(enabled)s"
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:174
 #: gui/options/options.js:349 gui/options/options.js:414
-#: gui/options/options.js:440 gui/pregame/MainMenuItems.js:251
-#: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
+#: gui/options/options.js:440 gui/pregame/MainMenuItems.js:260
+#: gui/pregame/MainMenuItems.js:284 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "Ναι"
 
@@ -932,8 +932,8 @@ msgstr "Ναι"
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:174
 #: gui/options/options.js:349 gui/options/options.js:414
-#: gui/options/options.js:440 gui/pregame/MainMenuItems.js:251
-#: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
+#: gui/options/options.js:440 gui/pregame/MainMenuItems.js:260
+#: gui/pregame/MainMenuItems.js:284 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "Όχι"
 
@@ -1363,6 +1363,34 @@ msgid "Audio managers"
 msgstr "Διαχειριστές Ήχου"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr "Τύμπανο, τουμπελέκι, ντέφι, ταμ - ταμ"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[11].Subtitle
+msgid "Guitar"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[1].Content[12].Subtitle
+msgid "Handpan"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[1].Content[13].Subtitle
+msgid "Harp"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[1].Content[14].Subtitle
+msgid "Shruti Box"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[1].Content[15].Subtitle
+msgid "Tin whistles"
+msgstr " Ιρλανδικές φλογέρες"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[16].Subtitle
+msgid "Trumpet"
+msgstr "Τρομπέτα"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[17].Subtitle
 msgid "Viola, violin"
 msgstr "Βιόλα, βιολί"
 
@@ -1375,32 +1403,32 @@ msgid "Additional music"
 msgstr "Πρόσθετη μουσική"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
-msgid "Flute"
-msgstr "Φλάουτο"
+msgid "Cajon"
+msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
-msgid "Djembe"
-msgstr "Αφρικάνικα Κρουστά"
+msgid "Cello"
+msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
-msgid "Frame drum, darbuka, riq, toms"
-msgstr "Τύμπανο, τουμπελέκι, ντέφι, ταμ - ταμ"
+msgid "Celtic harp"
+msgstr "Κέλτικη άρπα"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
 msgid "Didgeridoo"
 msgstr "Ντιτζεριντού"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
-msgid "Trumpet"
-msgstr "Τρομπέτα"
+msgid "Djembe"
+msgstr "Αφρικάνικα Κρουστά"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
-msgid "Celtic harp"
-msgstr "Κέλτικη άρπα"
+msgid "Dulcimer"
+msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
-msgid "Tin whistles"
-msgstr " Ιρλανδικές φλογέρες"
+msgid "Flute"
+msgstr "Φλάουτο"
 
 #: gui/credits/texts/audio.jsonContent[1].Title
 msgid "Music"
@@ -1579,8 +1607,8 @@ msgid ""
 "WARNING: this cannot be reversed."
 msgstr "Επαναφορά όλων των πλήκτρων συντόμευσης στις προκαθορισμένες τιμές?\nΠΡΟΣΟΧΗ: Αυτό δε θα μπορεί να αντιστραφεί."
 
-#: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:250
-#: gui/pregame/MainMenuItems.js:274
+#: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:259
+#: gui/pregame/MainMenuItems.js:283
 msgid "Confirmation"
 msgstr "Επιβεβαίωση"
 
@@ -3547,7 +3575,7 @@ msgstr "Προειδοποίηση"
 msgid "Save Game"
 msgstr "Αποθήκευση Παιχνιδιού"
 
-#: gui/loadgame/SavegamePage.js:34 gui/pregame/MainMenuItems.js:94
+#: gui/loadgame/SavegamePage.js:34 gui/pregame/MainMenuItems.js:103
 msgid "Load Game"
 msgstr "Φόρτωση παιχνιδιού"
 
@@ -4723,119 +4751,102 @@ msgid ""
 msgstr "Η συντόμευση πλήκτρου για τις τραυματισμένες μονάδες επιλέγει μόνο τις τραυματισμένες μονάδες εάν το ποσοστό υγείας τους πέσει κάτω από αυτόν τον αριθμό."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].label
+msgid "Aura range visualization"
+msgstr "Οπτικοποίηση βεληνεκές αύρας"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].tooltip
+msgid ""
+"Display the range of auras of selected units and structures. (It can also be"
+" toggled with the hotkey during a game)."
+msgstr "Εμφανίζει το εύρος της αύρας των επιλεγμένων μονάδων και κατασκευών. (Μπορεί επίσης να γίνει εναλλαγή με πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].label
 msgid "Heal range visualization"
 msgstr "Οπτικοποίηση βεληνεκές θεραπείας"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].tooltip
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
 msgstr "Εμφανίζει το εύρος της θεραπείας  αύρας των επιλεγμένων μονάδων και κατασκευών. (Μπορεί επίσης να γίνει εναλλαγή με πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].label
 msgid "Rank icon above status bar"
 msgstr "Εικονίδιο κατάταξης πάνω από την μπάρα κατάστασης."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].tooltip
 msgid "Show rank icons above status bars."
 msgstr "Εμφάνιση εικονιδίων κατάταξης πάνω από τις μπάρες κατάστασης."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].label
 msgid "Experience status bar"
 msgstr "Μπάρα προόδου εμπειρίας"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "Εμφάνιση μιας μπάρας προόδου της εμπειρίας πάνω από κάθε επιλεγμένη μονάδα."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].label
 msgid "Detailed tooltips"
 msgstr "Λεπτομερείς επεξηγήσεις"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "Εμφάνιση λεπτομερών επεξηγήσεων για εκπαιδεύσιμες μονάδες σε κτίρια παραγωγής μονάδων."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].label
 msgid "Sort resources and population tooltip"
 msgstr "Επεξήγηση ταξινόμησης πόρων και πληθυσμού"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[0].label
 msgid "Unordered"
 msgstr "Χωρίς ταξινόμηση"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[1].label
 msgid "Ascending"
 msgstr "Αύξουσα σειρά"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[2].label
 msgid "Descending"
 msgstr "Φθίνουσα σειρά"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "Δυναμική ταξινόμηση τον παιχτών στην επεξήγηση των πόρων και του πληθυσμού κατά τιμή."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].label
 msgid "Diplomacy colors: self"
 msgstr "Χρώματα διπλωματίας: Εγώ"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "Χρωματισμός των μονάδων σου όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].label
 msgid "Diplomacy colors: ally"
 msgstr "Χρώματα διπλωματίας: Σύμμαχοι"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "Χρωματισμός των συμμάχων σου όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].label
 msgid "Diplomacy colors: neutral"
 msgstr "Χρώματα διπλωματίας: Ουδέτεροι"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "Χρωματισμός των ουδέτερων παιχτών όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].label
 msgid "Diplomacy colors: enemy"
 msgstr "Χρώματα διπλωματίας: Εχθροί"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "Χρωματισμός των εχθρών σου όταν είναι ενεργοποιημένα τα χρώματα διπλωματίας."
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].label
-msgid "Snap to edges"
-msgstr "Προσκόλληση στα άκρα"
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[0].label
-msgid "Hotkey to enable snapping"
-msgstr "Πλήκτρο συντόμευσης για ενεργοποίηση προσκόλλησης"
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[0].tooltip
-msgid ""
-"New structures are aligned with nearby structures while pressing the hotkey."
-msgstr "Οι νέες κατασκευές ευθυγραμμίζονται με τις κοντινές δομές πιέζοντας το πλήκτρο συντόμευσης."
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[1].label
-msgid "Hotkey to disable snapping"
-msgstr "Πλήκτρο συντόμευσης για απενεργοποίηση προσκόλλησης"
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[1].tooltip
-msgid ""
-"New structures are aligned with nearby structures unless the hotkey is "
-"pressed."
-msgstr "Οι νέες κατασκευές ευθυγραμμίζονται με τις κοντινές δομές έκτος αν πατιέται το πλήκτρο συντόμευσης."
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].tooltip
-msgid "This option allows to align new structures with nearby structures."
-msgstr "Αυτή η επιλογή επιτρέπει την ευθυγράμμιση νέων κατασκευών με κοντινές δομές."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].label
 msgid "Batch training size"
@@ -4846,66 +4857,93 @@ msgid "Number of units trained per batch by default."
 msgstr "Αριθμός των μονάδων που θα εκπαιδεύονται ανά παρτίδα από προεπιλογή."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].label
+msgid "Snap to edges"
+msgstr "Προσκόλληση στα άκρα"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].label
+msgid "Hotkey to enable snapping"
+msgstr "Πλήκτρο συντόμευσης για ενεργοποίηση προσκόλλησης"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].tooltip
+msgid ""
+"New structures are aligned with nearby structures while pressing the hotkey."
+msgstr "Οι νέες κατασκευές ευθυγραμμίζονται με τις κοντινές δομές πιέζοντας το πλήκτρο συντόμευσης."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].label
+msgid "Hotkey to disable snapping"
+msgstr "Πλήκτρο συντόμευσης για απενεργοποίηση προσκόλλησης"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].tooltip
+msgid ""
+"New structures are aligned with nearby structures unless the hotkey is "
+"pressed."
+msgstr "Οι νέες κατασκευές ευθυγραμμίζονται με τις κοντινές δομές έκτος αν πατιέται το πλήκτρο συντόμευσης."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].tooltip
+msgid "This option allows to align new structures with nearby structures."
+msgstr "Αυτή η επιλογή επιτρέπει την ευθυγράμμιση νέων κατασκευών με κοντινές δομές."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].label
 msgid "Control group membership"
 msgstr "'Έλεγχος ομαδικής συμμετοχής."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].label
 msgid "Single"
 msgstr "Μονό"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].tooltip
 msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
 msgstr "Όταν προσθέτετε μια Μονάδα ή Κτίριο σε μια ομάδα ελέγχου, αφαιρούνται από άλλες ομάδες ελέγχου. Χρησιμοποιήστε αυτήν την επιλογή εάν θέλετε οι ομάδες ελέγχου να αναφέρονται σε συγκεκριμένα στρατεύματα."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].label
 msgid "Multiple"
 msgstr "Πολλαπλό"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].tooltip
 msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
 msgstr "Οι μονάδες και τα Κτίρια μπορούν να είναι μέρος πολλών ομάδων ελέγχου. Αυτό είναι χρήσιμο για να διατηρήσετε ομάδες ελέγχου για διαφορετικά στρατεύματα και μια ομάδα ελέγχου για ολόκληρο τον στρατό ταυτόχρονα."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].tooltip
 msgid "Decide whether units can be part of multiple control groups."
 msgstr "Αποφασίστε αν οι μονάδες θα μπορούν να είναι μέλη πολλαπλών ομάδων ελέγχου."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].label
 msgid "Formation control"
 msgstr "Έλεγχος Σχηματισμού"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[0].label
 msgid "Walk/Patrol Only"
 msgstr "Βηματισμός/Περιπολία Μόνο"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[0].tooltip
 msgid "Other orders will disband existing formations."
 msgstr "'Άλλες εντολές θα διαλύσουν υπάρχοντες σχηματισμούς."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[1].label
 msgid "No override"
 msgstr "Καμία Παράκαμψη"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[1].tooltip
 msgid "Units in formations stay in formations."
 msgstr "Οι Μονάδες σε σχηματισμούς διατηρούν του σχηματισμούς."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
 msgstr "Αποφασίστε άν οι σχηματισμοί ενεργοποιούνται όλοι από εντολές ή  με 'Βηματισμός' και'Περιπολία'."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[23].label
 msgid "Battalion-style formations"
 msgstr "Μορφή σχηματισμών τάγματος."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[23].tooltip
 msgid "Whether formations are selected as a whole."
 msgstr "Εάν οι σχηματισμοί επιλεχθούν ώς σύνολο."
 
@@ -4927,73 +4965,71 @@ msgid "How long the flare markers on the minimap are displayed in seconds."
 msgstr "Η διάρκεια στιγμάτων λάμψης στο μικρό χάρτη εμφανίζεται σε δευτερόλεπτα."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].label
+msgid "Minimap icons"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].tooltip
+msgid "Show special icons for some entities on the minimap."
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].label
 msgid "Chat notification attack"
 msgstr "Ειδοποίηση επίθεσης στη συνομιλία"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "Δείχνει μία ειδοποίηση στη συζήτηση αν δεχθείς επίθεση από άλλον παίχτη."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].label
 msgid "Chat notification tribute"
 msgstr "Ειδοποίηση για εισφορές"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "Δείχνει μια ειδοποίηση στη συζήτηση αν ένας σύμμαχος προσφέρει πόρους σε ένα μέλος μίας άλλης ομάδας αν οι ομάδες είναι κλειδωμένες και όλοι οι φόροι σε λειτουργία παρατήρησης."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].label
 msgid "Chat notification barter"
 msgstr "Ειδοποίηση ανταλλαγής στη συνομιλία"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "Δείχνει μία ειδοποίηση στη συζήτηση των παρατηρητών όταν ένας παίχτης κάνει ανταλλαγή πόρων."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].label
 msgid "Chat notification phase"
 msgstr "Ειδοποίηση στη συνομιλία για φάση πόλης"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[0].label
 msgid "Disable"
 msgstr "Απενεργοποίηση"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[1].label
 msgid "Completed"
 msgstr "Ολοκληρώθηκε"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[2].label
 msgid "All displayed"
 msgstr "Εμφάνιση όλων"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "Δείχνει μια ειδοποίηση στη συζήτηση αν ένας σύμμαχος ξεκίνησε, ακύρωσε ή ολοκλήρωσε μία νέα φάση και θέτει τις φάσεις για όλους τους παίχτες σε λειτουργία παρατήρησης."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].label
 msgid "Attack range visualization"
 msgstr "Οπτικοποίηση βεληνεκές επίθεσης"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr "Εμφάνιση εμβέλειας επίθεσης των επιλεγμένων αμυντικών κατασκευών. (Μπορεί επίσης να εναλλαχτεί με το πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)."
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].label
-msgid "Aura range visualization"
-msgstr "Οπτικοποίηση βεληνεκές αύρας"
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].tooltip
-msgid ""
-"Display the range of auras of selected units and structures. (It can also be"
-" toggled with the hotkey during a game)."
-msgstr "Εμφανίζει το εύρος της αύρας των επιλεγμένων μονάδων και κατασκευών. (Μπορεί επίσης να γίνει εναλλαγή με πλήκτρο συντόμευσης κατά τη διάρκεια παιχνιδιού)"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].tooltip
 msgid "Change options regarding the in-game settings."
@@ -5101,225 +5137,225 @@ msgstr " Οδηγός Εκμάθησης"
 msgid "Start the economic tutorial."
 msgstr "Ξεκίνα τον οδηγό εκμάθησης της οικονομίας"
 
-#: gui/pregame/MainMenuItems.js:27
+#: gui/pregame/MainMenuItems.js:36
 #: gui/reference/common/Buttons/StructreeButton.js:21
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
 msgstr "Δέντρο κατασκευής"
 
-#: gui/pregame/MainMenuItems.js:28
+#: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Εμφανίζει την δενδροδομή τον πολιτισμών που εμπεριέχονται στο 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:39
+#: gui/pregame/MainMenuItems.js:48
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
 msgstr "Επισκόπηση Πολιτισμού"
 
-#: gui/pregame/MainMenuItems.js:40
+#: gui/pregame/MainMenuItems.js:49
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Μάθε για τους πολιτισμούς που εμφανίζονται στο 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:51
+#: gui/pregame/MainMenuItems.js:60
 msgid "Catafalque Overview"
 msgstr "Επισκόπηση φέρετρου "
 
-#: gui/pregame/MainMenuItems.js:52
+#: gui/pregame/MainMenuItems.js:61
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
 msgstr "Σύγκριση των μπόνους των νεκροκρέβατων που εμφανίζονται στο 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:58
+#: gui/pregame/MainMenuItems.js:67
 msgid "Map Overview"
 msgstr "Επισκόπηση Χάρτη"
 
-#: gui/pregame/MainMenuItems.js:59
+#: gui/pregame/MainMenuItems.js:68
 msgid "View the different maps featured in 0 A.D."
 msgstr "Δείτε τους διαφορετικούς χάρτες που συμπεριλαμβάνονται στο  0 A.D."
 
-#: gui/pregame/MainMenuItems.js:67 gui/pregame/MainMenuItems.js:101
+#: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Continue Campaign"
 msgstr "Συνέχεια Εκστρατείας"
 
-#: gui/pregame/MainMenuItems.js:68 gui/pregame/MainMenuItems.js:102
-#: gui/pregame/MainMenuItems.js:118 gui/pregame/MainMenuItems.js:125
+#: gui/pregame/MainMenuItems.js:77 gui/pregame/MainMenuItems.js:111
+#: gui/pregame/MainMenuItems.js:127 gui/pregame/MainMenuItems.js:134
 msgid "Relive history through historical military campaigns."
 msgstr "Αναβιώστε την Ιστορία μέσα από ιστορικά πολεμικές εκστρατείες."
 
-#: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
+#: gui/pregame/MainMenuItems.js:85 gui/pregame/MainMenuItems.js:119
 msgid "Error opening campaign run:"
 msgstr "Σφάλμα ανοίγματος εκστρατείας\nΕκκίνηση: "
 
-#: gui/pregame/MainMenuItems.js:83
+#: gui/pregame/MainMenuItems.js:92
 msgid "Single-player"
 msgstr "Ένας παίκτης"
 
-#: gui/pregame/MainMenuItems.js:84
+#: gui/pregame/MainMenuItems.js:93
 msgid "Start, load, or replay a single-player game."
 msgstr "Εκκίνηση, φόρτωση ή επανάληψη παιχνιδιού για έναν παίκτη."
 
-#: gui/pregame/MainMenuItems.js:87
+#: gui/pregame/MainMenuItems.js:96
 msgid "Matches"
 msgstr "Αναμετρήσεις"
 
-#: gui/pregame/MainMenuItems.js:88
+#: gui/pregame/MainMenuItems.js:97
 msgid "Start a new single-player game."
 msgstr "Εκκίνηση ενός νέου παιχνιδιού για έναν παίκτη."
 
-#: gui/pregame/MainMenuItems.js:95
+#: gui/pregame/MainMenuItems.js:104
 msgid "Load a saved game."
 msgstr "Φόρτωση αποθηκευμένου παιχνιδιού."
 
-#: gui/pregame/MainMenuItems.js:117
+#: gui/pregame/MainMenuItems.js:126
 msgid "New Campaign"
 msgstr "Νέα Εκστρατεία"
 
-#: gui/pregame/MainMenuItems.js:124
+#: gui/pregame/MainMenuItems.js:133
 msgid "Load Campaign"
 msgstr "Φόρτωση Εκστρατείας"
 
-#: gui/pregame/MainMenuItems.js:134 gui/pregame/MainMenuItems.js:184
+#: gui/pregame/MainMenuItems.js:143 gui/pregame/MainMenuItems.js:193
 msgid "Replays"
 msgstr "Επαναλήψεις"
 
-#: gui/pregame/MainMenuItems.js:135 gui/pregame/MainMenuItems.js:185
+#: gui/pregame/MainMenuItems.js:144 gui/pregame/MainMenuItems.js:194
 msgid "Playback previous games."
 msgstr "Αναπαραγωγή προηγούμενων παιχνιδιών."
 
-#: gui/pregame/MainMenuItems.js:149
+#: gui/pregame/MainMenuItems.js:158
 msgid "Multiplayer"
 msgstr "Παιχνίδι για πολλούς παίκτες"
 
-#: gui/pregame/MainMenuItems.js:150
+#: gui/pregame/MainMenuItems.js:159
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Πολεμήστε εναντίον ενός ή περισσότερων παικτών, σε ένα παιχνίδι για πολλούς παίκτες (multiplayer)."
 
 #. Translation: Join a game by specifying the host's IP address.
-#: gui/pregame/MainMenuItems.js:154
+#: gui/pregame/MainMenuItems.js:163
 msgid "Join Game"
 msgstr "Συμμετοχή στο παιχνίδι"
 
-#: gui/pregame/MainMenuItems.js:155
+#: gui/pregame/MainMenuItems.js:164
 msgid "Joining an existing multiplayer game."
 msgstr "Συμμετοχή σε υπάρχον παιχνίδι για πολλούς παίκτες."
 
-#: gui/pregame/MainMenuItems.js:163
+#: gui/pregame/MainMenuItems.js:172
 msgid "Host Game"
 msgstr "Φιλοξενία παιχνιδιού"
 
-#: gui/pregame/MainMenuItems.js:164
+#: gui/pregame/MainMenuItems.js:173
 msgid "Host a multiplayer game."
 msgstr "Φιλοξενία παιχνιδιού πολλών παιχτών."
 
-#: gui/pregame/MainMenuItems.js:172
+#: gui/pregame/MainMenuItems.js:181
 msgid "Game Lobby"
 msgstr "Λόμπι Παιχνιδιού"
 
-#: gui/pregame/MainMenuItems.js:174
+#: gui/pregame/MainMenuItems.js:183
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
 msgstr "%(hotkey)s: Ξεκίνησε το λόμπι για πολλούς παίκτες για να συμμετάσχεις και να φιλοξενήσεις δημόσια ορατά παιχνίδια και να συνομιλήσεις με άλλους παίκτες."
 
-#: gui/pregame/MainMenuItems.js:175
+#: gui/pregame/MainMenuItems.js:184
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Εκκίνηση του λόμπι πολλαπλών παικτών. \\[DISABLED BY BUILD]"
 
-#: gui/pregame/MainMenuItems.js:199
+#: gui/pregame/MainMenuItems.js:208
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
-#: gui/pregame/MainMenuItems.js:200
+#: gui/pregame/MainMenuItems.js:209
 msgid "Change game options."
 msgstr "Αλλαγή των επιλογών παιχνιδιού."
 
-#: gui/pregame/MainMenuItems.js:203
+#: gui/pregame/MainMenuItems.js:212
 msgid "Options"
 msgstr "Επιλογές"
 
-#: gui/pregame/MainMenuItems.js:204
+#: gui/pregame/MainMenuItems.js:213
 msgid "Adjust game settings."
 msgstr "Προσαρμόστε τις ρυθμίσεις του παιχνιδιού."
 
-#: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:213
+#: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:222
 msgid "Hotkeys"
 msgstr "Αυτόματη Επιλογή"
 
-#: gui/pregame/MainMenuItems.js:214
+#: gui/pregame/MainMenuItems.js:223
 msgid "Adjust hotkeys."
 msgstr "Ταξινόμηση hotkeys."
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale_advanced/locale_advanced.xml:(caption):14
-#: gui/pregame/MainMenuItems.js:220
+#: gui/pregame/MainMenuItems.js:229
 msgid "Language"
 msgstr "Γλώσσα"
 
-#: gui/pregame/MainMenuItems.js:221
+#: gui/pregame/MainMenuItems.js:230
 msgid "Choose the language of the game."
 msgstr "Επιλογή της γλώσσας του παιχνιδιού."
 
-#: gui/pregame/MainMenuItems.js:227
+#: gui/pregame/MainMenuItems.js:236
 msgid "Mod Selection"
 msgstr "Επιλογή Mod"
 
-#: gui/pregame/MainMenuItems.js:228
+#: gui/pregame/MainMenuItems.js:237
 msgid "Select and download mods for the game."
 msgstr "Επέλεξε και κατέβασε mods για το παιχνίδι."
 
-#: gui/pregame/MainMenuItems.js:234
+#: gui/pregame/MainMenuItems.js:243
 msgid "Welcome Screen"
 msgstr "Οθόνη Καλωσορίσματος"
 
-#: gui/pregame/MainMenuItems.js:235
+#: gui/pregame/MainMenuItems.js:244
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
 msgstr "Εμφάνιση της Οθόνης Υποδοχής ξανά. Χρήσιμο αν αποκρύφθηκε κατά λάθος."
 
-#: gui/pregame/MainMenuItems.js:243
+#: gui/pregame/MainMenuItems.js:252
 msgid "Scenario Editor"
 msgstr "Επεξεργαστής Σεναρίων"
 
-#: gui/pregame/MainMenuItems.js:244
+#: gui/pregame/MainMenuItems.js:253
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Ανοίξτε τον επεξεργαστή σεναρίων \"Atlas Scenario Editor\" σε νέο παράθυρο. Για πιο αξιόπιστη λειτουργία του, εκκινήστε το παιχνίδι από γραμμή εντολών, με το όρισμα \"-editor\"."
 
-#: gui/pregame/MainMenuItems.js:249
+#: gui/pregame/MainMenuItems.js:258
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "Θέλετε σίγουρα να αποχωρήσετε από το 0 A.D. και να ανοίξετε τον Επεξεργαστή Σεναρίων;"
 
-#: gui/pregame/MainMenuItems.js:256
+#: gui/pregame/MainMenuItems.js:265
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Ο Επεξεργαστής Σεναρίων δεν είναι διαθέσιμος ή η φόρτωσή του απέτυχε.Κοιτάξτε τις εγγραφές παιχνιδιού για περισσότερες πληροφορίες."
 
-#: gui/pregame/MainMenuItems.js:257 gui/replaymenu/replay_actions.js:126
+#: gui/pregame/MainMenuItems.js:266 gui/replaymenu/replay_actions.js:126
 msgid "Error"
 msgstr "Σφάλμα"
 
-#: gui/pregame/MainMenuItems.js:261
+#: gui/pregame/MainMenuItems.js:270
 msgid "Credits"
 msgstr "Συντελεστές"
 
-#: gui/pregame/MainMenuItems.js:262
+#: gui/pregame/MainMenuItems.js:271
 msgid "Show the 0 A.D. credits."
 msgstr "Εμφάνιση των συντελεστών του 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:268
+#: gui/pregame/MainMenuItems.js:277
 msgid "Exit"
 msgstr "Έξοδος"
 
-#: gui/pregame/MainMenuItems.js:269
+#: gui/pregame/MainMenuItems.js:278
 msgid "Exit the game."
 msgstr "Έξοδος από το παιχνίδι."
 
-#: gui/pregame/MainMenuItems.js:273
+#: gui/pregame/MainMenuItems.js:282
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Θέλετε σίγουρα να αποχωρήσετε από το 0 A.D.;"
 

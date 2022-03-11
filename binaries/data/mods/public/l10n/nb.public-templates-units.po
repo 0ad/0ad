@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-04 08:09+0000\n"
+"POT-Creation-Date: 2022-03-07 08:09+0000\n"
 "PO-Revision-Date: 2022-03-04 09:24+0000\n"
 "Last-Translator: Transifex Bot\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/wildfire-games/0ad/language/nb/)\n"
@@ -201,6 +201,7 @@ msgstr "Spydmann"
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:5
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:5
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:5
+#: simulation/templates/units/han/support_minister.xml:11
 msgctxt "Name of an attack using a double-edged sword."
 msgid "Sword"
 msgstr "Sverd"
@@ -503,7 +504,7 @@ msgstr "Heltekavaleri"
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
 #: simulation/templates/units/brit/hero_boudicca.xml:20
-#: simulation/templates/units/han/support_minister.xml:56
+#: simulation/templates/units/han/support_minister.xml:66
 #: simulation/templates/units/kush/hero_amanirenas.xml:21
 #: simulation/templates/units/maur/hero_ashoka.xml:20
 #: simulation/templates/units/pers/hero_darius_i.xml:20
@@ -1798,22 +1799,22 @@ msgstr ""
 msgid "Yīshī"
 msgstr ""
 
-#: simulation/templates/units/han/support_minister.xml:30
+#: simulation/templates/units/han/support_minister.xml:40
 msgid "Imperial Minister"
 msgstr ""
 
-#: simulation/templates/units/han/support_minister.xml:31
+#: simulation/templates/units/han/support_minister.xml:41
 msgid "Guānlì"
 msgstr ""
 
-#: simulation/templates/units/han/support_minister.xml:32
+#: simulation/templates/units/han/support_minister.xml:42
 msgid ""
 "Use to boost the efficiency of nearby units and buildings. Garrison within a"
 " building to boost the efficiency of its production queue. Only han "
 "buildings can garrison ministers."
 msgstr ""
 
-#: simulation/templates/units/han/support_minister.xml:34
+#: simulation/templates/units/han/support_minister.xml:44
 msgid "Minister"
 msgstr ""
 
@@ -3290,6 +3291,18 @@ msgstr "Spartiâtis"
 msgid "Émporos Períoikos"
 msgstr "Émporos Períoikos"
 
+#: simulation/templates/units/theb_sacred_band.xml:5
+msgid "Theban Sacred Band Hoplite"
+msgstr "Thebens hellige bånd-hoplitt"
+
+#: simulation/templates/units/theb_sacred_band.xml:6
+msgid "Hieroû Thebaíou Lókhou Hoplítai"
+msgstr "Hieroû Thebaíou Lókhou Hoplítai"
+
+#: simulation/templates/units/theb_sacred_band.xml:7
+msgid "Champion Spearman."
+msgstr "Mesterspydmann"
+
 #: simulation/templates/units/theb_siege_fireraiser.xml:8
 msgid "Fire Raiser"
 msgstr "Ildspåsetter"
@@ -3298,23 +3311,11 @@ msgstr "Ildspåsetter"
 msgid "Pyrobolos"
 msgstr "Pyrobolos"
 
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:5
-msgid "Theban Sacred Band Hoplite"
-msgstr "Thebens hellige bånd-hoplitt"
-
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6
-msgid "Hieroû Thebaíou Lókhou Hoplítai"
-msgstr "Hieroû Thebaíou Lókhou Hoplítai"
-
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
-msgid "Champion Spearman."
-msgstr "Mesterspydmann"
-
-#: simulation/templates/units/thespian_melanochitones.xml:5
+#: simulation/templates/units/thesp_melanochitones.xml:5
 msgid "Thespian Black Cloak"
 msgstr "Thespisk svart frakk"
 
-#: simulation/templates/units/thespian_melanochitones.xml:6
+#: simulation/templates/units/thesp_melanochitones.xml:6
 msgid "Melanochitones"
 msgstr "Melanochitones"
 

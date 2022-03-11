@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-25 08:08+0000\n"
-"PO-Revision-Date: 2022-02-28 11:57+0000\n"
-"Last-Translator: Photon man\n"
+"POT-Creation-Date: 2022-03-07 08:09+0000\n"
+"PO-Revision-Date: 2022-03-07 10:25+0000\n"
+"Last-Translator: Transifex Bot\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -642,19 +642,19 @@ msgstr "Celicnon"
 msgid "Wheat Field"
 msgstr "小麦畑"
 
-#: simulation/templates/structures/han/academy.xml:29
+#: simulation/templates/structures/han/academy.xml:30
 msgid "Imperial Academy"
 msgstr ""
 
-#: simulation/templates/structures/han/academy.xml:30
+#: simulation/templates/structures/han/academy.xml:31
 msgid "Dìguó Xuéyuàn"
 msgstr ""
 
-#: simulation/templates/structures/han/academy.xml:32
+#: simulation/templates/structures/han/academy.xml:33
 msgid "Train Champions and research their technologies."
 msgstr "チャンピオンユニットを養成でき、テクノロジーの研究を行えます。"
 
-#: simulation/templates/structures/han/academy.xml:33
+#: simulation/templates/structures/han/academy.xml:34
 msgid "Academy"
 msgstr ""
 
@@ -677,15 +677,15 @@ msgid ""
 "Center."
 msgstr "町の中心の体力、占領耐性、駐留上限を大幅に向上させ、英雄やチャンピオンユニットの養成を行えるようになります。"
 
-#: simulation/templates/structures/han/civil_centre_court.xml:22
+#: simulation/templates/structures/han/civil_centre_court.xml:14
 msgid "Imperial Court"
 msgstr ""
 
-#: simulation/templates/structures/han/civil_centre_court.xml:23
+#: simulation/templates/structures/han/civil_centre_court.xml:15
 msgid "Cháotíng"
 msgstr ""
 
-#: simulation/templates/structures/han/civil_centre_court.xml:24
+#: simulation/templates/structures/han/civil_centre_court.xml:16
 msgid "ImperialCourt"
 msgstr ""
 
@@ -715,7 +715,7 @@ msgstr ""
 msgid "GreatTower"
 msgstr ""
 
-#: simulation/templates/structures/han/dock.xml:17
+#: simulation/templates/structures/han/dock.xml:9
 msgid "Mǎtóu"
 msgstr ""
 
@@ -800,7 +800,6 @@ msgstr "砦柵の門"
 msgid "Bamboo Stockade Tower"
 msgstr "砦柵の塔"
 
-#: simulation/templates/structures/han/practice_range.xml:12
 #: simulation/templates/structures/han/range.xml:12
 msgid "Bǎ Chǎng"
 msgstr ""
@@ -1791,11 +1790,15 @@ msgstr "長方形の卓"
 msgid "Square Table"
 msgstr "正方形の卓"
 
-#: simulation/templates/structures/tent_desert.xml:35
-msgid "Desert Army Tent"
-msgstr "砂漠の軍用テント"
+#: simulation/templates/structures/tent_arab.xml:35
+msgid "Arab Army Tent"
+msgstr ""
 
 #: simulation/templates/structures/rome/tent.xml:24
+#: simulation/templates/structures/tent_arab.xml:36
+#: simulation/templates/structures/tent_arab.xml:38
+#: simulation/templates/structures/tent_bedouin.xml:36
+#: simulation/templates/structures/tent_bedouin.xml:38
 #: simulation/templates/structures/tent_desert.xml:36
 #: simulation/templates/structures/tent_desert.xml:38
 #: simulation/templates/structures/tent_mace.xml:36
@@ -1805,11 +1808,21 @@ msgstr "砂漠の軍用テント"
 msgid "Tent"
 msgstr "幕舎"
 
+#: simulation/templates/structures/tent_arab.xml:39
+#: simulation/templates/structures/tent_bedouin.xml:39
 #: simulation/templates/structures/tent_desert.xml:39
 #: simulation/templates/structures/tent_mace.xml:39
 #: simulation/templates/structures/tent_rome.xml:39
 msgid "A temporary shelter for soldiers. +5 population bonus."
 msgstr "兵士の一時的な野営所です。人口ボーナス+5"
+
+#: simulation/templates/structures/tent_bedouin.xml:35
+msgid "Bedouin Tent"
+msgstr ""
+
+#: simulation/templates/structures/tent_desert.xml:35
+msgid "Desert Army Tent"
+msgstr "砂漠の軍用テント"
 
 #: simulation/templates/structures/tent_mace.xml:35
 msgid "Macedonian Army Tent"
@@ -1864,7 +1877,7 @@ msgstr "自国または中立国の領土に建設でき、広大な領土を獲
 msgid "CivilCentre"
 msgstr "町の中心"
 
-#: simulation/templates/structures/han/civil_centre_court.xml:24
+#: simulation/templates/structures/han/civil_centre_court.xml:16
 #: simulation/templates/template_structure_civic_civil_centre.xml:79
 #: simulation/templates/template_structure_defensive.xml:5
 #: simulation/templates/template_structure_military_fortress.xml:69
@@ -2110,8 +2123,8 @@ msgid ""
 msgstr "攻城兵器の作成、テクノロジーの研究ができます。一部文明にはチャンピオン兵の養成もできます。"
 
 #: simulation/templates/structures/gaul/assembly.xml:31
-#: simulation/templates/structures/han/academy.xml:33
-#: simulation/templates/structures/han/civil_centre_court.xml:24
+#: simulation/templates/structures/han/academy.xml:34
+#: simulation/templates/structures/han/civil_centre_court.xml:16
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:76

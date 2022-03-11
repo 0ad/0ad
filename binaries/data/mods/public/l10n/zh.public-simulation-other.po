@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-11-19 08:08+0000\n"
-"PO-Revision-Date: 2021-11-22 23:50+0000\n"
+"PO-Revision-Date: 2022-03-08 15:30+0000\n"
 "Last-Translator: 柳离枝\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -33,14 +33,14 @@ msgstr ""
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr "我将对 %(_player_)s 发起大规模攻击，来加入我吧。"
+msgstr "我将对 %(_player_)s 发起大规模攻击，加入我吧。"
 
 #: simulation/ai/petra/chatHelper.js:4
 #, javascript-format
 msgid ""
 "I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
-msgstr "我已组织大军，准备打垮 %(_player_)s ，来和我一起分享战利品吧。"
+msgstr "我已组织大军，准备打垮 %(_player_)s ，和我一起分享战利品吧。"
 
 #: simulation/ai/petra/chatHelper.js:7
 #, javascript-format
@@ -60,7 +60,7 @@ msgstr "让我重整军队，和你一起对抗 %(_player_)s 。"
 #: simulation/ai/petra/chatHelper.js:15
 #, javascript-format
 msgid "I am finishing preparations to attack %(_player_)s."
-msgstr "我准备去攻打 %(_player_)s 。"
+msgstr "我准备攻打 %(_player_)s 。"
 
 #: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
@@ -123,19 +123,19 @@ msgstr "如果你能给我一些 %(resource)s 就好了，我能更好地组织�
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
-msgstr "我已经与 %(_player_)s 设定了一条新的路线。双方交易对我们来说是共赢。"
+msgstr "我与 %(_player_)s 开通了一条商贸路线。对双方来说是共赢。"
 
 #: simulation/ai/petra/chatHelper.js:40
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits."
-msgstr "与玩家 %(_player_)s 新建一条贸易路线，分享你们的收益吧。"
+msgstr "与 %(_player_)s 新建一条贸易路线，分享你们的收益吧。"
 
 #: simulation/ai/petra/chatHelper.js:45
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
-msgstr "现在 %(_player_)s 是我盟友了。"
+msgstr "现在 %(_player_)s 是我的盟友了。"
 
 #: simulation/ai/petra/chatHelper.js:48
 #, javascript-format
@@ -150,7 +150,7 @@ msgstr "%(_player_)s 已与我为敌。"
 #: simulation/ai/petra/chatHelper.js:58
 #, javascript-format
 msgid "I cannot accept your offer to become allies, %(_player_)s."
-msgstr "对不起，%(_player_)s ，不能接受你的结盟提议。"
+msgstr "对不起，%(_player_)s ，我们不接受你的结盟提议。"
 
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
@@ -191,7 +191,7 @@ msgstr "我们不再是盟友了，再见%(_player_)s。"
 #: simulation/ai/petra/chatHelper.js:69
 #, javascript-format
 msgid "Your request for peace means nothing to me anymore, %(_player_)s!"
-msgstr "你的和平提议不值一提，%(_player_)s 。"
+msgstr "你的和平倡议不值一提，%(_player_)s 。"
 
 #: simulation/ai/petra/chatHelper.js:70
 #, javascript-format
@@ -370,16 +370,16 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra 是默认的 AI . 可向 Wildfire Games 提交问题（请参阅主菜单中的链接）.\nAI 的资源收集效率和交易收益依游戏难度而定：沙盒 -58％，最易 -44％，简单 -25％，中级 ±0％，困难 +25％，极难 +56％ . 最易的 AI 科研、训练和建筑较慢. 沙盒级别的 AI 既不会扩张，也不会主动攻击."
+msgstr "Petra 是公元元年默认的 AI . 可向 Wildfire Games 提交问题（请参阅主菜单中的链接）.\nAI 的资源收集效率和交易收益依游戏难度而定：沙盒 -58％，最易 -44％，简单 -25％，中级 ±0％，困难 +25％，极难 +56％ . 最易的 AI 科研、训练和建筑较慢. 沙盒级别的 AI 既不会扩张，也不会主动攻击."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
-msgstr "Petra Bot"
+msgstr "机器人 Petra"
 
 #: simulation/components/BuildRestrictions.js:91
 #, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
-msgstr "未知错误，不能建造%(name)s"
+msgstr "未知错误，无法建造%(name)s"
 
 #: simulation/components/BuildRestrictions.js:115
 #, javascript-format
@@ -569,7 +569,7 @@ msgstr "资源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)
 
 #: simulation/components/ProductionQueue.js:289
 msgid "Entity is being upgraded. Cannot start production."
-msgstr "实体正在升级，无法开始生产。"
+msgstr "实体正在升级，无法进行生产。"
 
 #: simulation/components/ProductionQueue.js:304
 msgid "The production queue is full."
@@ -692,7 +692,7 @@ msgstr "巨型"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
-msgstr "自然界"
+msgstr "大自然"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"

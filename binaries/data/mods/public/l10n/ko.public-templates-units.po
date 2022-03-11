@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-04 08:09+0000\n"
+"POT-Creation-Date: 2022-03-07 08:09+0000\n"
 "PO-Revision-Date: 2022-03-04 09:24+0000\n"
 "Last-Translator: Transifex Bot\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -204,6 +204,7 @@ msgstr "창병"
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:5
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:5
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:5
+#: simulation/templates/units/han/support_minister.xml:11
 msgctxt "Name of an attack using a double-edged sword."
 msgid "Sword"
 msgstr "검"
@@ -506,7 +507,7 @@ msgstr "영웅 기병"
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
 #: simulation/templates/units/brit/hero_boudicca.xml:20
-#: simulation/templates/units/han/support_minister.xml:56
+#: simulation/templates/units/han/support_minister.xml:66
 #: simulation/templates/units/kush/hero_amanirenas.xml:21
 #: simulation/templates/units/maur/hero_ashoka.xml:20
 #: simulation/templates/units/pers/hero_darius_i.xml:20
@@ -1801,22 +1802,22 @@ msgstr "Fù Nǚ"
 msgid "Yīshī"
 msgstr "Yīshī"
 
-#: simulation/templates/units/han/support_minister.xml:30
+#: simulation/templates/units/han/support_minister.xml:40
 msgid "Imperial Minister"
 msgstr "제국 관리"
 
-#: simulation/templates/units/han/support_minister.xml:31
+#: simulation/templates/units/han/support_minister.xml:41
 msgid "Guānlì"
 msgstr "Guānlì"
 
-#: simulation/templates/units/han/support_minister.xml:32
+#: simulation/templates/units/han/support_minister.xml:42
 msgid ""
 "Use to boost the efficiency of nearby units and buildings. Garrison within a"
 " building to boost the efficiency of its production queue. Only han "
 "buildings can garrison ministers."
 msgstr "주변 유닛 및 건물의 효율성을 높이는 데 사용합니다. 생산 대기열의 효율성을 높이기 위해 건물 내에 주둔합니다. 오직 한 건물에만 관리를 주둔시킬 수 있습니다."
 
-#: simulation/templates/units/han/support_minister.xml:34
+#: simulation/templates/units/han/support_minister.xml:44
 msgid "Minister"
 msgstr "관리"
 
@@ -3293,6 +3294,18 @@ msgstr "스파르티아티스"
 msgid "Émporos Períoikos"
 msgstr "엠포로스 페리오이코스"
 
+#: simulation/templates/units/theb_sacred_band.xml:5
+msgid "Theban Sacred Band Hoplite"
+msgstr "테베 신성대 장갑보병"
+
+#: simulation/templates/units/theb_sacred_band.xml:6
+msgid "Hieroû Thebaíou Lókhou Hoplítai"
+msgstr "히에로우 테바이오우 로코우 호프리타이"
+
+#: simulation/templates/units/theb_sacred_band.xml:7
+msgid "Champion Spearman."
+msgstr "정예 창병입니다."
+
 #: simulation/templates/units/theb_siege_fireraiser.xml:8
 msgid "Fire Raiser"
 msgstr "방화범"
@@ -3301,23 +3314,11 @@ msgstr "방화범"
 msgid "Pyrobolos"
 msgstr "피로볼로스"
 
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:5
-msgid "Theban Sacred Band Hoplite"
-msgstr "테베 신성대 장갑보병"
-
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6
-msgid "Hieroû Thebaíou Lókhou Hoplítai"
-msgstr "히에로우 테바이오우 로코우 호프리타이"
-
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
-msgid "Champion Spearman."
-msgstr "정예 창병입니다."
-
-#: simulation/templates/units/thespian_melanochitones.xml:5
+#: simulation/templates/units/thesp_melanochitones.xml:5
 msgid "Thespian Black Cloak"
 msgstr "테스피아이 승복대"
 
-#: simulation/templates/units/thespian_melanochitones.xml:6
+#: simulation/templates/units/thesp_melanochitones.xml:6
 msgid "Melanochitones"
 msgstr "메라노치토네스"
 

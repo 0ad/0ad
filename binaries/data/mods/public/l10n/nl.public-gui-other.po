@@ -37,9 +37,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-04 08:09+0000\n"
-"PO-Revision-Date: 2022-03-04 08:24+0000\n"
-"Last-Translator: Christof Verhoeven\n"
+"POT-Creation-Date: 2022-03-07 08:09+0000\n"
+"PO-Revision-Date: 2022-03-07 20:40+0000\n"
+"Last-Translator: rollieoo\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -939,8 +939,8 @@ msgstr "Eigen Vuur: %(enabled)s"
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:174
 #: gui/options/options.js:349 gui/options/options.js:414
-#: gui/options/options.js:440 gui/pregame/MainMenuItems.js:251
-#: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
+#: gui/options/options.js:440 gui/pregame/MainMenuItems.js:260
+#: gui/pregame/MainMenuItems.js:284 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "Ja"
 
@@ -948,8 +948,8 @@ msgstr "Ja"
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:174
 #: gui/options/options.js:349 gui/options/options.js:414
-#: gui/options/options.js:440 gui/pregame/MainMenuItems.js:251
-#: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
+#: gui/options/options.js:440 gui/pregame/MainMenuItems.js:260
+#: gui/pregame/MainMenuItems.js:284 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "Nee"
 
@@ -1379,6 +1379,34 @@ msgid "Audio managers"
 msgstr "Audio managers"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr "Lijsttrommel, darboeka, riq, toms"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[11].Subtitle
+msgid "Guitar"
+msgstr "Gitaar"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[12].Subtitle
+msgid "Handpan"
+msgstr "Handpan"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[13].Subtitle
+msgid "Harp"
+msgstr "Harp"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[14].Subtitle
+msgid "Shruti Box"
+msgstr "Shrutibox"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[15].Subtitle
+msgid "Tin whistles"
+msgstr "Tinwhistle"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[16].Subtitle
+msgid "Trumpet"
+msgstr "Trompet"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[17].Subtitle
 msgid "Viola, violin"
 msgstr "Viool"
 
@@ -1391,32 +1419,32 @@ msgid "Additional music"
 msgstr "Aanvullende muziek"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
-msgid "Flute"
-msgstr "Fluit"
+msgid "Cajon"
+msgstr "Cajon"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
-msgid "Djembe"
-msgstr "Djembé"
+msgid "Cello"
+msgstr "Cello"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
-msgid "Frame drum, darbuka, riq, toms"
-msgstr "Lijsttrommel, darboeka, riq, toms"
+msgid "Celtic harp"
+msgstr "Keltische harp"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
 msgid "Didgeridoo"
 msgstr "Didgeridoo"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
-msgid "Trumpet"
-msgstr "Trompet"
+msgid "Djembe"
+msgstr "Djembé"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
-msgid "Celtic harp"
-msgstr "Keltische harp"
+msgid "Dulcimer"
+msgstr "Hakkebord"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
-msgid "Tin whistles"
-msgstr "Tinwhistle"
+msgid "Flute"
+msgstr "Fluit"
 
 #: gui/credits/texts/audio.jsonContent[1].Title
 msgid "Music"
@@ -1595,8 +1623,8 @@ msgid ""
 "WARNING: this cannot be reversed."
 msgstr "Alle sneltoetsen herstellen naar standaardwaarden?\nLET OP: dit kan niet ongedaan gemaakt worden."
 
-#: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:250
-#: gui/pregame/MainMenuItems.js:274
+#: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:259
+#: gui/pregame/MainMenuItems.js:283
 msgid "Confirmation"
 msgstr "Bevestiging"
 
@@ -3563,7 +3591,7 @@ msgstr "Waarschuwing"
 msgid "Save Game"
 msgstr "Spel opslaan"
 
-#: gui/loadgame/SavegamePage.js:34 gui/pregame/MainMenuItems.js:94
+#: gui/loadgame/SavegamePage.js:34 gui/pregame/MainMenuItems.js:103
 msgid "Load Game"
 msgstr "Laad spel"
 
@@ -4739,119 +4767,102 @@ msgid ""
 msgstr "De sneltoets voor gewonde eenheden markeert de geselecteerde eenheden als gewond wanneer hun gezondheidspercentage onder dit getal zakt."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].label
+msgid "Aura range visualization"
+msgstr "Zichtbaar aurabereik"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].tooltip
+msgid ""
+"Display the range of auras of selected units and structures. (It can also be"
+" toggled with the hotkey during a game)."
+msgstr "Laat het aurabereik van de geselecteerde eenheden en gebouwen zien (dit kan ook tijdens het spelen door de sneltoets aan en uit worden gezet)."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].label
 msgid "Heal range visualization"
 msgstr "Zichtbaar helersbereik"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].tooltip
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
 msgstr "Laat het genezingsbereik van de geselecteerde eenheden zien (dit kan ook tijdens het spelen door de sneltoets aan en uit worden gezet)."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].label
 msgid "Rank icon above status bar"
 msgstr "Rangicoon boven statusbalk"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].tooltip
 msgid "Show rank icons above status bars."
 msgstr "Rangicoon tonen boven statusbalken."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].label
 msgid "Experience status bar"
 msgstr "Ervaringsbalk"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "Toon een ervaringsbalk boven iedere geselecteerde eenheid."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].label
 msgid "Detailed tooltips"
 msgstr "Gedetailleerde tips"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "Toon gedetailleerde tips voor rekruteerbare eenheden zien in gebouwen die eenheden produceren."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].label
 msgid "Sort resources and population tooltip"
 msgstr "Sorteervolgorde grondstoffen- en populatie-informatie"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[0].label
 msgid "Unordered"
 msgstr "Ongeordend"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[1].label
 msgid "Ascending"
 msgstr "Oplopend"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[2].label
 msgid "Descending"
 msgstr "Aflopend"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "Spelers in de grondstoffen- en populatie-informatie op waarde sorteren."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].label
 msgid "Diplomacy colors: self"
 msgstr "Diplomatiekleuren: eigen"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "Kleur van uw eigen eenheden wanneer diplomatiekleuren ingeschakeld zijn."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].label
 msgid "Diplomacy colors: ally"
 msgstr "Diplomatiekleuren: geallieerd"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "Kleur van de geallieerden wanneer diplomatiekleuren ingeschakeld zijn."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].label
 msgid "Diplomacy colors: neutral"
 msgstr "Diplomatiekleuren: neutraal"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "Kleur van neutrale spelers wanneer diplomatiekleuren ingeschakeld zijn."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].label
 msgid "Diplomacy colors: enemy"
 msgstr "Diplomatiekleuren: vijandelijk"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "Kleur van de vijanden wanneer diplomatiekleuren ingeschakeld zijn."
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].label
-msgid "Snap to edges"
-msgstr "Op rand uitlijnen"
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[0].label
-msgid "Hotkey to enable snapping"
-msgstr "Sneltoets voor inschakelen"
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[0].tooltip
-msgid ""
-"New structures are aligned with nearby structures while pressing the hotkey."
-msgstr "Nieuwe gebouwen worden uitgelijnd met nabije gebouwen wanneer de sneltoets wordt ingedrukt."
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[1].label
-msgid "Hotkey to disable snapping"
-msgstr "Sneltoets voor uitschakelen"
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[1].tooltip
-msgid ""
-"New structures are aligned with nearby structures unless the hotkey is "
-"pressed."
-msgstr "Nieuwe gebouwen worden uitgelijnd met nabije gebouwen behalve wanneer de sneltoets wordt ingedrukt."
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].tooltip
-msgid "This option allows to align new structures with nearby structures."
-msgstr "Deze optie maakt het mogelijk om nieuwe gebouwen uit te lijnen met nabij gelegen gebouwen."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].label
 msgid "Batch training size"
@@ -4862,66 +4873,93 @@ msgid "Number of units trained per batch by default."
 msgstr "Standaard aantal opgeleide eenheden per groep."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].label
+msgid "Snap to edges"
+msgstr "Op rand uitlijnen"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].label
+msgid "Hotkey to enable snapping"
+msgstr "Sneltoets voor inschakelen"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].tooltip
+msgid ""
+"New structures are aligned with nearby structures while pressing the hotkey."
+msgstr "Nieuwe gebouwen worden uitgelijnd met nabije gebouwen wanneer de sneltoets wordt ingedrukt."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].label
+msgid "Hotkey to disable snapping"
+msgstr "Sneltoets voor uitschakelen"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].tooltip
+msgid ""
+"New structures are aligned with nearby structures unless the hotkey is "
+"pressed."
+msgstr "Nieuwe gebouwen worden uitgelijnd met nabije gebouwen behalve wanneer de sneltoets wordt ingedrukt."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].tooltip
+msgid "This option allows to align new structures with nearby structures."
+msgstr "Deze optie maakt het mogelijk om nieuwe gebouwen uit te lijnen met nabij gelegen gebouwen."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].label
 msgid "Control group membership"
 msgstr "Groepssamenstelling instellen"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].label
 msgid "Single"
 msgstr "Enkele"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].tooltip
 msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
 msgstr "Wanneer een eenheid of gebouw aan een controlgroep wordt toegevoegd, wordt deze verwijderd uit andere controlgroepen. Gebruik deze optie als je wil dat controlgroepen betrekking hebben op specifieke legers."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].label
 msgid "Multiple"
 msgstr "Meerdere"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].tooltip
 msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
 msgstr "Eenheden en gebouwen kunnen deel uitmaken van meerdere controlgroepen. Dit is handig om controlgroepen voor bepaalde legeronderdelen én een controlgroep voor het hele leger te gebruiken."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].tooltip
 msgid "Decide whether units can be part of multiple control groups."
 msgstr "Beslis of eenheden deel kunnen uitmaken van meerdere controlgroepen."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].label
 msgid "Formation control"
 msgstr "Formatie-instellingen"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[0].label
 msgid "Walk/Patrol Only"
 msgstr "Alleen lopen / patrouilleren"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[0].tooltip
 msgid "Other orders will disband existing formations."
 msgstr "Andere bevelen heffen de bestaande formatie op."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[1].label
 msgid "No override"
 msgstr "Blijf in formatie"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[1].tooltip
 msgid "Units in formations stay in formations."
 msgstr "Eenheden in formatie blijven in formatie."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
 msgstr "Beslis of formaties ingeschakeld zijn voor alle commando's of alleen voor 'Lopen' and 'Patrouilleren'."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[23].label
 msgid "Battalion-style formations"
 msgstr "Formaties als bataljons"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[23].tooltip
 msgid "Whether formations are selected as a whole."
 msgstr "Hiermee kunt u formaties in hun geheel selecteren."
 
@@ -4940,76 +4978,74 @@ msgstr "Vlagtijd"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
-msgstr "De tijdsduur in seconden dat vlaggen op de minimap getoond worden."
+msgstr "De tijdsduur in seconden dat vlaggen op de minikaart getoond worden."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].label
+msgid "Minimap icons"
+msgstr "Minikaart iconen"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].tooltip
+msgid "Show special icons for some entities on the minimap."
+msgstr "Toon speciale iconen van bepaalde entiteiten op de minikaart."
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].label
 msgid "Chat notification attack"
 msgstr "Chatnotificatie aanval"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "Laat een chatnotificatie zien wanneer u wordt aangevallen door een andere speler."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].label
 msgid "Chat notification tribute"
 msgstr "Chatnotificatie schenking"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "Laat een chatnotificatie zien wanneer een geallieerde speler grondstoffen schenkt aan een teamgenoot als Vaste Teams aan staat, en bij alle schenkingen in de Waarnemer modus."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].label
 msgid "Chat notification barter"
 msgstr "Chatnotificatie ruilhandel"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "Laat een chatnotificatie zien aan waarnemers als een speler grondstoffen heeft geruild."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].label
 msgid "Chat notification phase"
 msgstr "Chatnotificatie Fasen"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[0].label
 msgid "Disable"
 msgstr "Schakel uit"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[1].label
 msgid "Completed"
 msgstr "Voltooid"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[2].label
 msgid "All displayed"
 msgstr "Alles weergegeven"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "Een chatnotificatie tonen wanneer u of een bondgenoot een nieuwe fase bent gestart, heeft afgebroken of heeft voltooid. De fasen van alle spelers tonen in waarnemermodus."
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].label
 msgid "Attack range visualization"
 msgstr "Zichtbaar aanvalsbereik"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr "Laat het aanvalsbereik van de geselecteerde verdedigingswerken zien (dit kan ook tijdens het spelen door de sneltoets aan en uit worden gezet)."
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].label
-msgid "Aura range visualization"
-msgstr "Zichtbaar aurabereik"
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].tooltip
-msgid ""
-"Display the range of auras of selected units and structures. (It can also be"
-" toggled with the hotkey during a game)."
-msgstr "Laat het aurabereik van de geselecteerde eenheden en gebouwen zien (dit kan ook tijdens het spelen door de sneltoets aan en uit worden gezet)."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].tooltip
 msgid "Change options regarding the in-game settings."
@@ -5117,225 +5153,225 @@ msgstr "Tutorial"
 msgid "Start the economic tutorial."
 msgstr "Start de economische tutorial."
 
-#: gui/pregame/MainMenuItems.js:27
+#: gui/pregame/MainMenuItems.js:36
 #: gui/reference/common/Buttons/StructreeButton.js:21
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
 msgstr "Structuurboom"
 
-#: gui/pregame/MainMenuItems.js:28
+#: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Toon de structuurboom van beschavingen in 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:39
+#: gui/pregame/MainMenuItems.js:48
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
 msgstr "Beschavingsoverzicht"
 
-#: gui/pregame/MainMenuItems.js:40
+#: gui/pregame/MainMenuItems.js:49
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: Leer over de beschavingen van 0 A.D."
 
-#: gui/pregame/MainMenuItems.js:51
+#: gui/pregame/MainMenuItems.js:60
 msgid "Catafalque Overview"
 msgstr "Katafalk-overzicht"
 
-#: gui/pregame/MainMenuItems.js:52
+#: gui/pregame/MainMenuItems.js:61
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
 msgstr "Vergelijk de bonussen in de katafalken die in 0 A.D. voorkomen."
 
-#: gui/pregame/MainMenuItems.js:58
+#: gui/pregame/MainMenuItems.js:67
 msgid "Map Overview"
 msgstr "Kaartenoverzicht"
 
-#: gui/pregame/MainMenuItems.js:59
+#: gui/pregame/MainMenuItems.js:68
 msgid "View the different maps featured in 0 A.D."
 msgstr "Bekijk de verschillende kaarten van 0.A.D."
 
-#: gui/pregame/MainMenuItems.js:67 gui/pregame/MainMenuItems.js:101
+#: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Continue Campaign"
 msgstr "Veldtocht voortzetten"
 
-#: gui/pregame/MainMenuItems.js:68 gui/pregame/MainMenuItems.js:102
-#: gui/pregame/MainMenuItems.js:118 gui/pregame/MainMenuItems.js:125
+#: gui/pregame/MainMenuItems.js:77 gui/pregame/MainMenuItems.js:111
+#: gui/pregame/MainMenuItems.js:127 gui/pregame/MainMenuItems.js:134
 msgid "Relive history through historical military campaigns."
 msgstr "De geschiedenis herbeleven middels historische veldtochten."
 
-#: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
+#: gui/pregame/MainMenuItems.js:85 gui/pregame/MainMenuItems.js:119
 msgid "Error opening campaign run:"
 msgstr "Fout bij openen veldtocht:"
 
-#: gui/pregame/MainMenuItems.js:83
+#: gui/pregame/MainMenuItems.js:92
 msgid "Single-player"
 msgstr "Singleplayer"
 
-#: gui/pregame/MainMenuItems.js:84
+#: gui/pregame/MainMenuItems.js:93
 msgid "Start, load, or replay a single-player game."
 msgstr "Een singleplayerspel starten, laden of herhalen."
 
-#: gui/pregame/MainMenuItems.js:87
+#: gui/pregame/MainMenuItems.js:96
 msgid "Matches"
 msgstr "Wedstrijden"
 
-#: gui/pregame/MainMenuItems.js:88
+#: gui/pregame/MainMenuItems.js:97
 msgid "Start a new single-player game."
 msgstr "Start een nieuw singleplayerspel."
 
-#: gui/pregame/MainMenuItems.js:95
+#: gui/pregame/MainMenuItems.js:104
 msgid "Load a saved game."
 msgstr "Laad een opgeslagen spel."
 
-#: gui/pregame/MainMenuItems.js:117
+#: gui/pregame/MainMenuItems.js:126
 msgid "New Campaign"
 msgstr "Nieuwe veldtocht"
 
-#: gui/pregame/MainMenuItems.js:124
+#: gui/pregame/MainMenuItems.js:133
 msgid "Load Campaign"
 msgstr "Veldtocht laden"
 
-#: gui/pregame/MainMenuItems.js:134 gui/pregame/MainMenuItems.js:184
+#: gui/pregame/MainMenuItems.js:143 gui/pregame/MainMenuItems.js:193
 msgid "Replays"
 msgstr "Herhalingen"
 
-#: gui/pregame/MainMenuItems.js:135 gui/pregame/MainMenuItems.js:185
+#: gui/pregame/MainMenuItems.js:144 gui/pregame/MainMenuItems.js:194
 msgid "Playback previous games."
 msgstr "Verleden spellen afspelen."
 
-#: gui/pregame/MainMenuItems.js:149
+#: gui/pregame/MainMenuItems.js:158
 msgid "Multiplayer"
 msgstr "Multiplayer"
 
-#: gui/pregame/MainMenuItems.js:150
+#: gui/pregame/MainMenuItems.js:159
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Eén of meer mensen uitdagen voor een multiplayerspel."
 
 #. Translation: Join a game by specifying the host's IP address.
-#: gui/pregame/MainMenuItems.js:154
+#: gui/pregame/MainMenuItems.js:163
 msgid "Join Game"
 msgstr "Doe mee aan een spel"
 
-#: gui/pregame/MainMenuItems.js:155
+#: gui/pregame/MainMenuItems.js:164
 msgid "Joining an existing multiplayer game."
 msgstr "Sluit u aan bij een bestaand multiplayer spel."
 
-#: gui/pregame/MainMenuItems.js:163
+#: gui/pregame/MainMenuItems.js:172
 msgid "Host Game"
 msgstr "Host een spel"
 
-#: gui/pregame/MainMenuItems.js:164
+#: gui/pregame/MainMenuItems.js:173
 msgid "Host a multiplayer game."
 msgstr "Host een multiplayer spel."
 
-#: gui/pregame/MainMenuItems.js:172
+#: gui/pregame/MainMenuItems.js:181
 msgid "Game Lobby"
 msgstr "Spellobby"
 
-#: gui/pregame/MainMenuItems.js:174
+#: gui/pregame/MainMenuItems.js:183
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
 msgstr "%(hotkey)s: Start de multiplayer lobby om publieke spellen te starten en te betreden en om te chatten met andere spelers."
 
-#: gui/pregame/MainMenuItems.js:175
+#: gui/pregame/MainMenuItems.js:184
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "Start de spellobby. \\[NIET GEACTIVEERD IN DEZE VERSIE]"
 
-#: gui/pregame/MainMenuItems.js:199
+#: gui/pregame/MainMenuItems.js:208
 msgid "Settings"
 msgstr "Instellingen"
 
-#: gui/pregame/MainMenuItems.js:200
+#: gui/pregame/MainMenuItems.js:209
 msgid "Change game options."
 msgstr "Spelinstellingen wijzigen."
 
-#: gui/pregame/MainMenuItems.js:203
+#: gui/pregame/MainMenuItems.js:212
 msgid "Options"
 msgstr "Instellingen"
 
-#: gui/pregame/MainMenuItems.js:204
+#: gui/pregame/MainMenuItems.js:213
 msgid "Adjust game settings."
 msgstr "Spelinstellingen aanpassen."
 
-#: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:213
+#: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:222
 msgid "Hotkeys"
 msgstr "Sneltoetsen"
 
-#: gui/pregame/MainMenuItems.js:214
+#: gui/pregame/MainMenuItems.js:223
 msgid "Adjust hotkeys."
 msgstr "Sneltoetsen aanpassen"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale_advanced/locale_advanced.xml:(caption):14
-#: gui/pregame/MainMenuItems.js:220
+#: gui/pregame/MainMenuItems.js:229
 msgid "Language"
 msgstr "Taal"
 
-#: gui/pregame/MainMenuItems.js:221
+#: gui/pregame/MainMenuItems.js:230
 msgid "Choose the language of the game."
 msgstr "Kies de taal van het spel."
 
-#: gui/pregame/MainMenuItems.js:227
+#: gui/pregame/MainMenuItems.js:236
 msgid "Mod Selection"
 msgstr "Mod selectie"
 
-#: gui/pregame/MainMenuItems.js:228
+#: gui/pregame/MainMenuItems.js:237
 msgid "Select and download mods for the game."
 msgstr "Selecteer en download mods voor het spel."
 
-#: gui/pregame/MainMenuItems.js:234
+#: gui/pregame/MainMenuItems.js:243
 msgid "Welcome Screen"
 msgstr "Welkomstscherm"
 
-#: gui/pregame/MainMenuItems.js:235
+#: gui/pregame/MainMenuItems.js:244
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
 msgstr "Het welkomstscherm tonen. Nuttig als je dit per ongeluk hebt uitgezet."
 
-#: gui/pregame/MainMenuItems.js:243
+#: gui/pregame/MainMenuItems.js:252
 msgid "Scenario Editor"
 msgstr "Scenario bewerken"
 
-#: gui/pregame/MainMenuItems.js:244
+#: gui/pregame/MainMenuItems.js:253
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "De Atlas-scenariobewerker openen in een nieuw venster. U kan dit ook starten met de opdrachtpromt-optie \"-editor\" voor een meer betrouwbare manier."
 
-#: gui/pregame/MainMenuItems.js:249
+#: gui/pregame/MainMenuItems.js:258
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "Weet u zeker dat u 0 A.D. wil stoppen en de scenariobewerker wil openen?"
 
-#: gui/pregame/MainMenuItems.js:256
+#: gui/pregame/MainMenuItems.js:265
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "De scenariobewerker is niet beschikbaar of heeft  een probleem ondervonden. Bekijk de log voor meer informatie."
 
-#: gui/pregame/MainMenuItems.js:257 gui/replaymenu/replay_actions.js:126
+#: gui/pregame/MainMenuItems.js:266 gui/replaymenu/replay_actions.js:126
 msgid "Error"
 msgstr "Fout"
 
-#: gui/pregame/MainMenuItems.js:261
+#: gui/pregame/MainMenuItems.js:270
 msgid "Credits"
 msgstr "Credits"
 
-#: gui/pregame/MainMenuItems.js:262
+#: gui/pregame/MainMenuItems.js:271
 msgid "Show the 0 A.D. credits."
 msgstr "De credits voor 0 A.D tonen."
 
-#: gui/pregame/MainMenuItems.js:268
+#: gui/pregame/MainMenuItems.js:277
 msgid "Exit"
 msgstr "Afsluiten"
 
-#: gui/pregame/MainMenuItems.js:269
+#: gui/pregame/MainMenuItems.js:278
 msgid "Exit the game."
 msgstr "Verlaat het spel."
 
-#: gui/pregame/MainMenuItems.js:273
+#: gui/pregame/MainMenuItems.js:282
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Weet u zeker dat u 0 A.D. af wilt sluiten?"
 

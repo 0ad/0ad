@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-04 08:09+0000\n"
-"PO-Revision-Date: 2022-03-04 11:24+0000\n"
+"POT-Creation-Date: 2022-03-07 08:09+0000\n"
+"PO-Revision-Date: 2022-03-08 15:06+0000\n"
 "Last-Translator: 柳离枝\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -276,7 +276,7 @@ msgstr "选育良种以获得骏马"
 
 #: simulation/data/technologies/cavalry_health.jsongenericName
 msgid "Horse Breeding"
-msgstr "骏马"
+msgstr "养马"
 
 #: simulation/data/technologies/cavalry_health.jsontooltip
 msgid "Cavalry +10% health."
@@ -315,7 +315,7 @@ msgstr "凯尔特建筑物大多为建造在砾石地基上的木屋。"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
-msgstr "木屋"
+msgstr "木制建筑"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
@@ -446,7 +446,7 @@ msgstr "晒干的泥砖是炎热干燥地区的常见建筑材料，尤其是在
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsongenericName
 msgid "Sun-dried Mud Bricks"
-msgstr "土坯房"
+msgstr "泥砖"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
 msgid "Houses and Economic Structures −40% wood cost and health."
@@ -459,7 +459,7 @@ msgstr "一级土木"
 #: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
 #: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
 msgid "Gōngchéng"
-msgstr "攻城"
+msgstr "工程"
 
 #: simulation/data/technologies/civil_engineering_01.jsontooltip
 msgid "All structures -15% build time, +10% health and -5% cost."
@@ -485,8 +485,8 @@ msgstr "官僚"
 #: simulation/data/technologies/civil_service_01.jsontooltip
 #: simulation/data/technologies/civil_service_02.jsontooltip
 msgid ""
-"Technologies at all buildings, except the Blacksmith, -15% cost and -15% "
-"research time."
+"Technologies at all buildings, except the Forge, -15% cost and -15% research"
+" time."
 msgstr "除了铁匠铺，所有建筑的花费 -15% 、科研时间 -15% ."
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
@@ -769,7 +769,7 @@ msgstr "竖井挖掘"
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +25% metal gather rate."
-msgstr "工人挖金效率 +25%."
+msgstr "工人掘金效率 +25%."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
@@ -892,7 +892,7 @@ msgstr "二级治疗效率"
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.sele
 #: simulation/data/technologies/heal_rate_2.jsonspecificName.spart
 msgid "Hippocratic Oath"
-msgstr "希波克拉底誓言（医师从业宣言）"
+msgstr "希波克拉底誓言"
 
 #: simulation/data/technologies/health_females_01.jsondescription
 msgid ""
@@ -1015,7 +1015,7 @@ msgstr "现已灭绝的尼西亚马曾是古代身型最大且强壮一种马。
 
 #: simulation/data/technologies/nisean_horses.jsongenericName
 msgid "Nisean War Horses"
-msgstr "尼西亚马"
+msgstr "尼西亚战马"
 
 #: simulation/data/technologies/nisean_horses.jsonspecificName.sele
 msgid "Nisioi"
@@ -1023,7 +1023,7 @@ msgstr "尼西亚马"
 
 #: simulation/data/technologies/nisean_horses.jsontooltip
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
-msgstr "精锐矛骑兵生命值 +20%，训练时间 +10% ."
+msgstr "冠勇矛骑兵生命值 +20%，训练时间 +10% ."
 
 #: simulation/data/technologies/outpost_vision.jsondescription
 msgid "Increases outpost vision."
@@ -1057,7 +1057,7 @@ msgstr "桂冠游行"
 
 #: simulation/data/technologies/parade_of_daphne.jsontooltip
 msgid "Champions −20% training time."
-msgstr "精锐单位训练时间 -20% ."
+msgstr "冠勇单位训练时间 -20% ."
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
@@ -1103,6 +1103,10 @@ msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology."
 msgstr "从繁华的城镇进展为一个名副其实的城市，充满着奇观与现代技术。"
+
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.han
+msgid "Jùn"
+msgstr "郡"
 
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
@@ -1154,6 +1158,10 @@ msgstr "进展到城镇阶段，解锁了更多建筑物及单位。市政中心
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
 msgstr "从小乡村进展到繁华的城镇，准备好迅速扩张。"
+
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.han
+msgid "Xìan"
+msgstr "县"
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
@@ -1236,7 +1244,7 @@ msgstr "革新军队"
 
 #: simulation/data/technologies/reformed_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
-msgstr "解锁精锐精锐剑士。"
+msgstr "解锁冠勇剑士。"
 
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""
@@ -1361,7 +1369,7 @@ msgstr "银盾军"
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr "将近卫铜盾枪兵升级为银盾，拥有更高的生命和防御。"
+msgstr "将冠勇铜盾枪兵升级为银盾，拥有更高的生命和防御。"
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsondescription
 msgid ""
@@ -1711,7 +1719,7 @@ msgstr "传统军队"
 
 #: simulation/data/technologies/traditional_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Pikeman."
-msgstr "解锁精锐长枪兵。"
+msgstr "解锁冠勇长枪兵。"
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
@@ -1747,27 +1755,27 @@ msgstr "进阶及精锐单位训练时间 +20％、生命值+ 25％、占领能�
 msgid ""
 "Guard units (Champions) are professionals who wield the best weapons and "
 "have the best training."
-msgstr "精锐部队是装备最好且训练最佳的。"
+msgstr "冠勇部队是装备最好且训练最佳的。"
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsongenericName
 msgid "Unlock Champion Cavalry"
-msgstr "解锁精锐骑兵"
+msgstr "解锁冠勇骑兵"
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsontooltip
 msgid "Unlock Champion Cavalry at the Stable."
-msgstr "允许马厩训练精锐骑兵"
+msgstr "马厩可训练冠勇骑兵"
 
 #: simulation/data/technologies/unlock_champion_chariots.jsongenericName
 msgid "Unlock Champion Chariots"
-msgstr "解锁精锐战车"
+msgstr "解锁冠勇战车"
 
 #: simulation/data/technologies/unlock_champion_chariots.jsontooltip
 msgid "Unlock Champion Chariots at the Stable."
-msgstr "允许马厩训练精锐战车"
+msgstr "马厩可训练冠勇战车"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsongenericName
 msgid "Unlock Champion Infantry"
-msgstr "解锁精锐步兵"
+msgstr "解锁冠勇步兵"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.ptol
@@ -1780,7 +1788,7 @@ msgstr "解锁精锐步兵"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsontooltip
 msgid "Unlock Champions Infantry at the Barracks."
-msgstr "允许军营训练精锐步兵"
+msgstr "军营可训练冠勇步兵"
 
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."
