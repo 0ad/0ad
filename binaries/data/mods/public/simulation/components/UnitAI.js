@@ -2698,11 +2698,6 @@ UnitAI.prototype.UnitFsmSpec = {
 		},
 
 		"HEAL": {
-			"Attacked": function(msg) {
-				if (!this.GetStance().respondStandGround && !this.order.data.force)
-					this.Flee(msg.data.attacker, false);
-			},
-
 			"APPROACHING": {
 				"enter": function() {
 					if (this.CheckRange(this.order.data, IID_Heal))
