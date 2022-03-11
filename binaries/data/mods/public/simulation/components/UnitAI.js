@@ -2679,7 +2679,8 @@ UnitAI.prototype.UnitFsmSpec = {
 				"DROPPINGRESOURCES": {
 					"enter": function() {
 						let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-						if (this.CanReturnResource(this.order.data.target, true, cmpResourceGatherer))
+						if (this.CanReturnResource(this.order.data.target, true, cmpResourceGatherer) &&
+							cmpResourceGatherer.IsTargetInRange(this.order.data.target))
 						{
 							cmpResourceGatherer.CommitResources(this.order.data.target);
 							this.SetNextState("GATHER.APPROACHING");
@@ -2823,7 +2824,8 @@ UnitAI.prototype.UnitFsmSpec = {
 			"DROPPINGRESOURCES": {
 				"enter": function() {
 					let cmpResourceGatherer = Engine.QueryInterface(this.entity, IID_ResourceGatherer);
-					if (this.CanReturnResource(this.order.data.target, true, cmpResourceGatherer))
+					if (this.CanReturnResource(this.order.data.target, true, cmpResourceGatherer) &&
+						cmpResourceGatherer.IsTargetInRange(this.order.data.target))
 					{
 						cmpResourceGatherer.CommitResources(this.order.data.target);
 
