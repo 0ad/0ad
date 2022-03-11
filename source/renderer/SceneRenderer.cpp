@@ -807,12 +807,14 @@ void CSceneRenderer::RenderSubmissions(
 			m->waterManager.UpdateQuality();
 
 			PROFILE3_GPU("water scissor");
-			RenderReflections(deviceCommandContext, context, waterScissor);
+			if (g_RenderingOptions.GetWaterReflection())
+				RenderReflections(deviceCommandContext, context, waterScissor);
 
 			if (g_RenderingOptions.GetWaterRefraction())
 				RenderRefractions(deviceCommandContext, context, waterScissor);
 
-			m->terrainRenderer.RenderWaterFoamOccluders(deviceCommandContext, cullGroup);
+			if (g_RenderingOptions.GetWaterFancyEffects())
+				m->terrainRenderer.RenderWaterFoamOccluders(deviceCommandContext, cullGroup);
 		}
 	}
 

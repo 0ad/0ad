@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -942,10 +942,10 @@ bool CActorDef::Load(const VfsPath& pathname)
 				// Open up an external file to load.
 				// Don't crash hard when failures happen, but log them and continue
 				CXeromyces XeroActor;
-				if (XeroActor.Load(g_VFS, "art/actors/" + file, "actor") == PSRETURN_OK)
+				if (XeroActor.Load(g_VFS, VfsPath("art/actors/") / file, "actor") == PSRETURN_OK)
 				{
 					const XMBElement& root = XeroActor.GetRoot();
-					if (root.GetNodeName() != el_actor)
+					if (root.GetNodeName() == XeroActor.GetElementID("qualitylevels"))
 					{
 						LOGERROR("Included actors cannot define quality levels (opening %s from file %s)", file, pathname.string8());
 						return false;
