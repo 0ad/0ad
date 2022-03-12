@@ -36,9 +36,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-25 08:08+0000\n"
-"PO-Revision-Date: 2022-02-26 17:05+0000\n"
-"Last-Translator: LOUKAS SKOUROLIAKOS\n"
+"POT-Creation-Date: 2022-03-07 08:09+0000\n"
+"PO-Revision-Date: 2022-03-07 10:25+0000\n"
+"Last-Translator: Transifex Bot\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -663,19 +663,19 @@ msgstr "Celicnon"
 msgid "Wheat Field"
 msgstr "Χωράφι Σταχιού"
 
-#: simulation/templates/structures/han/academy.xml:29
+#: simulation/templates/structures/han/academy.xml:30
 msgid "Imperial Academy"
 msgstr ""
 
-#: simulation/templates/structures/han/academy.xml:30
+#: simulation/templates/structures/han/academy.xml:31
 msgid "Dìguó Xuéyuàn"
 msgstr ""
 
-#: simulation/templates/structures/han/academy.xml:32
+#: simulation/templates/structures/han/academy.xml:33
 msgid "Train Champions and research their technologies."
 msgstr ""
 
-#: simulation/templates/structures/han/academy.xml:33
+#: simulation/templates/structures/han/academy.xml:34
 msgid "Academy"
 msgstr "Ακαδημία"
 
@@ -698,15 +698,15 @@ msgid ""
 "Center."
 msgstr ""
 
-#: simulation/templates/structures/han/civil_centre_court.xml:22
+#: simulation/templates/structures/han/civil_centre_court.xml:14
 msgid "Imperial Court"
 msgstr ""
 
-#: simulation/templates/structures/han/civil_centre_court.xml:23
+#: simulation/templates/structures/han/civil_centre_court.xml:15
 msgid "Cháotíng"
 msgstr ""
 
-#: simulation/templates/structures/han/civil_centre_court.xml:24
+#: simulation/templates/structures/han/civil_centre_court.xml:16
 msgid "ImperialCourt"
 msgstr ""
 
@@ -736,7 +736,7 @@ msgstr ""
 msgid "GreatTower"
 msgstr ""
 
-#: simulation/templates/structures/han/dock.xml:17
+#: simulation/templates/structures/han/dock.xml:9
 msgid "Mǎtóu"
 msgstr ""
 
@@ -821,7 +821,6 @@ msgstr ""
 msgid "Bamboo Stockade Tower"
 msgstr ""
 
-#: simulation/templates/structures/han/practice_range.xml:12
 #: simulation/templates/structures/han/range.xml:12
 msgid "Bǎ Chǎng"
 msgstr ""
@@ -1812,11 +1811,15 @@ msgstr "Ορθογώνιο Τραπέζι"
 msgid "Square Table"
 msgstr "Τετράγωνος Πίνακας"
 
-#: simulation/templates/structures/tent_desert.xml:35
-msgid "Desert Army Tent"
-msgstr "Αντίσκηνο Στρατού της Ερήμου"
+#: simulation/templates/structures/tent_arab.xml:35
+msgid "Arab Army Tent"
+msgstr ""
 
 #: simulation/templates/structures/rome/tent.xml:24
+#: simulation/templates/structures/tent_arab.xml:36
+#: simulation/templates/structures/tent_arab.xml:38
+#: simulation/templates/structures/tent_bedouin.xml:36
+#: simulation/templates/structures/tent_bedouin.xml:38
 #: simulation/templates/structures/tent_desert.xml:36
 #: simulation/templates/structures/tent_desert.xml:38
 #: simulation/templates/structures/tent_mace.xml:36
@@ -1826,11 +1829,21 @@ msgstr "Αντίσκηνο Στρατού της Ερήμου"
 msgid "Tent"
 msgstr "Σκηνή"
 
+#: simulation/templates/structures/tent_arab.xml:39
+#: simulation/templates/structures/tent_bedouin.xml:39
 #: simulation/templates/structures/tent_desert.xml:39
 #: simulation/templates/structures/tent_mace.xml:39
 #: simulation/templates/structures/tent_rome.xml:39
 msgid "A temporary shelter for soldiers. +5 population bonus."
 msgstr "Ένα προσωρινό καταφύγιο για στρατιώτες. +5 μπόνους πληθυσμού."
+
+#: simulation/templates/structures/tent_bedouin.xml:35
+msgid "Bedouin Tent"
+msgstr ""
+
+#: simulation/templates/structures/tent_desert.xml:35
+msgid "Desert Army Tent"
+msgstr "Αντίσκηνο Στρατού της Ερήμου"
 
 #: simulation/templates/structures/tent_mace.xml:35
 msgid "Macedonian Army Tent"
@@ -1885,7 +1898,7 @@ msgstr "Χτίστε σε δική σας ή ουδέτερη περιοχή. Α
 msgid "CivilCentre"
 msgstr "Κέντρο Πόλης"
 
-#: simulation/templates/structures/han/civil_centre_court.xml:24
+#: simulation/templates/structures/han/civil_centre_court.xml:16
 #: simulation/templates/template_structure_civic_civil_centre.xml:79
 #: simulation/templates/template_structure_defensive.xml:5
 #: simulation/templates/template_structure_military_fortress.xml:69
@@ -2131,8 +2144,8 @@ msgid ""
 msgstr "Εκπαιδεύστε Πρωταθλητες για Πεζικάριες Γυναίκες με Βαλλίστρες, κατασκευάστε Πολιορκητικές Μηχανές, και ερευνήστε Τεχνολογίες Πολιορκητικών  Μηχανών."
 
 #: simulation/templates/structures/gaul/assembly.xml:31
-#: simulation/templates/structures/han/academy.xml:33
-#: simulation/templates/structures/han/civil_centre_court.xml:24
+#: simulation/templates/structures/han/academy.xml:34
+#: simulation/templates/structures/han/civil_centre_court.xml:16
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:76

@@ -50,8 +50,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-25 08:08+0000\n"
-"PO-Revision-Date: 2022-03-02 16:15+0000\n"
+"POT-Creation-Date: 2022-03-07 08:09+0000\n"
+"PO-Revision-Date: 2022-03-08 11:20+0000\n"
 "Last-Translator: 柳离枝\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -677,19 +677,19 @@ msgstr "科伦圣所"
 msgid "Wheat Field"
 msgstr "麦田"
 
-#: simulation/templates/structures/han/academy.xml:29
+#: simulation/templates/structures/han/academy.xml:30
 msgid "Imperial Academy"
 msgstr "太学"
 
-#: simulation/templates/structures/han/academy.xml:30
+#: simulation/templates/structures/han/academy.xml:31
 msgid "Dìguó Xuéyuàn"
 msgstr "太学"
 
-#: simulation/templates/structures/han/academy.xml:32
+#: simulation/templates/structures/han/academy.xml:33
 msgid "Train Champions and research their technologies."
 msgstr "训练冠勇单位，并研发相关科技。"
 
-#: simulation/templates/structures/han/academy.xml:33
+#: simulation/templates/structures/han/academy.xml:34
 msgid "Academy"
 msgstr "学院"
 
@@ -712,15 +712,15 @@ msgid ""
 "Center."
 msgstr "大力提升市政中心的生命值，反占领能力及驻军能力。解锁市政中心的英雄和冠勇单位。"
 
-#: simulation/templates/structures/han/civil_centre_court.xml:22
+#: simulation/templates/structures/han/civil_centre_court.xml:14
 msgid "Imperial Court"
 msgstr "宫廷"
 
-#: simulation/templates/structures/han/civil_centre_court.xml:23
+#: simulation/templates/structures/han/civil_centre_court.xml:15
 msgid "Cháotíng"
 msgstr "朝堂"
 
-#: simulation/templates/structures/han/civil_centre_court.xml:24
+#: simulation/templates/structures/han/civil_centre_court.xml:16
 msgid "ImperialCourt"
 msgstr "宫廷"
 
@@ -750,7 +750,7 @@ msgstr "大防御塔"
 msgid "GreatTower"
 msgstr "高塔"
 
-#: simulation/templates/structures/han/dock.xml:17
+#: simulation/templates/structures/han/dock.xml:9
 msgid "Mǎtóu"
 msgstr "码头"
 
@@ -835,7 +835,6 @@ msgstr "竹寨门"
 msgid "Bamboo Stockade Tower"
 msgstr "竹寨塔"
 
-#: simulation/templates/structures/han/practice_range.xml:12
 #: simulation/templates/structures/han/range.xml:12
 msgid "Bǎ Chǎng"
 msgstr "靶场"
@@ -1826,11 +1825,15 @@ msgstr "长桌"
 msgid "Square Table"
 msgstr "方桌"
 
-#: simulation/templates/structures/tent_desert.xml:35
-msgid "Desert Army Tent"
-msgstr "沙漠军帐"
+#: simulation/templates/structures/tent_arab.xml:35
+msgid "Arab Army Tent"
+msgstr "阿拉伯营帐"
 
 #: simulation/templates/structures/rome/tent.xml:24
+#: simulation/templates/structures/tent_arab.xml:36
+#: simulation/templates/structures/tent_arab.xml:38
+#: simulation/templates/structures/tent_bedouin.xml:36
+#: simulation/templates/structures/tent_bedouin.xml:38
 #: simulation/templates/structures/tent_desert.xml:36
 #: simulation/templates/structures/tent_desert.xml:38
 #: simulation/templates/structures/tent_mace.xml:36
@@ -1840,11 +1843,21 @@ msgstr "沙漠军帐"
 msgid "Tent"
 msgstr "营帐"
 
+#: simulation/templates/structures/tent_arab.xml:39
+#: simulation/templates/structures/tent_bedouin.xml:39
 #: simulation/templates/structures/tent_desert.xml:39
 #: simulation/templates/structures/tent_mace.xml:39
 #: simulation/templates/structures/tent_rome.xml:39
 msgid "A temporary shelter for soldiers. +5 population bonus."
 msgstr "士兵的临时帐篷。人口 +5。"
+
+#: simulation/templates/structures/tent_bedouin.xml:35
+msgid "Bedouin Tent"
+msgstr "贝都因营帐"
+
+#: simulation/templates/structures/tent_desert.xml:35
+msgid "Desert Army Tent"
+msgstr "沙漠军帐"
 
 #: simulation/templates/structures/tent_mace.xml:35
 msgid "Macedonian Army Tent"
@@ -1899,7 +1912,7 @@ msgstr "可建在中立土地或己方疆域内，扩张大片疆域。训练民
 msgid "CivilCentre"
 msgstr "市政中心"
 
-#: simulation/templates/structures/han/civil_centre_court.xml:24
+#: simulation/templates/structures/han/civil_centre_court.xml:16
 #: simulation/templates/template_structure_civic_civil_centre.xml:79
 #: simulation/templates/template_structure_defensive.xml:5
 #: simulation/templates/template_structure_military_fortress.xml:69
@@ -2145,8 +2158,8 @@ msgid ""
 msgstr "建造攻城机械以摧毁对手的设施，研究攻城技术，以提高这些机械的威力。"
 
 #: simulation/templates/structures/gaul/assembly.xml:31
-#: simulation/templates/structures/han/academy.xml:33
-#: simulation/templates/structures/han/civil_centre_court.xml:24
+#: simulation/templates/structures/han/academy.xml:34
+#: simulation/templates/structures/han/civil_centre_court.xml:16
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:76

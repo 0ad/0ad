@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-02-26 19:02+0000\n"
+"PO-Revision-Date: 2022-03-08 15:28+0000\n"
 "Last-Translator: Photon man\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "攻城兵器の修復"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr "駐屯船のHP回復率+10"
+msgstr "駐留した船のHP回復率+10"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
@@ -46,11 +46,11 @@ msgstr "修復ドック"
 
 #: simulation/data/auras/structures/han_laozi_gate.jsonauraDescription
 msgid "Humans +1 health regeneration rate, +25% health"
-msgstr ""
+msgstr "人ユニットのHP回復率+1、HP+25%"
 
 #: simulation/data/auras/structures/han_laozi_gate.jsonauraName
 msgid "Taoism"
-msgstr ""
+msgstr "道教"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -196,11 +196,11 @@ msgstr "ガリアからの産品"
 
 #: simulation/data/auras/teambonuses/han_player_teambonus.jsonauraDescription
 msgid "Allies +20% international trade bonus."
-msgstr ""
+msgstr "同盟国の国際貿易ボーナス+20%"
 
 #: simulation/data/auras/teambonuses/han_player_teambonus.jsonauraName
 msgid "Silk Road"
-msgstr ""
+msgstr "シルクロード"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Citizen Javelineers −10% resource costs."
@@ -359,21 +359,21 @@ msgstr "ローマの貢物"
 msgid ""
 "At its height, the Empire's borders spanned from the Fergana Valley in the west, to Korea in the east, and to northern Vietnam in the south.\n"
 "Territory influence bonus +20%."
-msgstr ""
+msgstr "最盛期には、西はフェルガナ盆地、東は朝鮮半島、南はベトナム北部まで国境が広がっていました。\n領域影響ボーナス+20%"
 
 #: simulation/data/auras/units/catafalques/han_catafalque_1.jsonauraName
 msgid "Territorial Expansion"
-msgstr ""
+msgstr "領土拡大"
 
 #: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraDescription
 msgid ""
 "The Music Bureau was charged directly, by the emperor to perform various tasks related to music, poetry, entertainment, or religious worship.\n"
 " Techcost -50%."
-msgstr ""
+msgstr "楽府は、音楽、詩歌、娯楽、宗教的礼拝に関するさまざまな仕事を行うために、皇帝から直接課せられたものでした。\n技術コスト-50%"
 
 #: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraName
 msgid "Imperial Music Bureau"
-msgstr ""
+msgstr "音楽官署 楽府"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraDescription
 msgid ""
@@ -560,29 +560,29 @@ msgstr "労働象"
 
 #: simulation/data/auras/units/han_minister_building.jsonauraDescription
 msgid "Builders construct buildings +2% faster for every nearby Minister."
-msgstr ""
+msgstr "大臣ユニットが近くにいる場合、建設者の建設速度+2%"
 
 #: simulation/data/auras/units/han_minister_building.jsonauraName
 msgid "Building Programs"
-msgstr ""
+msgstr "建設計画"
 
 #: simulation/data/auras/units/han_minister_cost.jsonauraDescription
 msgid "Cost +20% and build time +20% for each new Minister trained."
-msgstr ""
+msgstr "新しい大臣ユニットを1人養成するごとに、コストと建設時間＋20％"
 
 #: simulation/data/auras/units/han_minister_cost.jsonauraName
 msgid "The Cost of Splendor"
-msgstr ""
+msgstr "輝きの代償"
 
 #: simulation/data/auras/units/han_minister_garrison.jsonauraDescription
 msgid ""
 "Decrease resource costs and research time of technologies in a building by "
 "2% for each Minister garrisoned within."
-msgstr ""
+msgstr "大臣が駐留している建物の技術の資源コストと研究時間を2%減少"
 
 #: simulation/data/auras/units/han_minister_garrison.jsonauraName
 msgid "Excellency of Works"
-msgstr ""
+msgstr "能工巧匠"
 
 #: simulation/data/auras/units/han_minister_garrison_ministry.jsonauraDescription
 msgid ""

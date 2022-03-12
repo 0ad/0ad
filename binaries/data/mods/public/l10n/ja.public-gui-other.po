@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-04 08:09+0000\n"
-"PO-Revision-Date: 2022-03-04 08:25+0000\n"
-"Last-Translator: Kanetaka Suto\n"
+"POT-Creation-Date: 2022-03-07 08:09+0000\n"
+"PO-Revision-Date: 2022-03-07 08:24+0000\n"
+"Last-Translator: Transifex Bot\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -908,8 +908,8 @@ msgstr "フレンドリーファイア: %(enabled)s"
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:174
 #: gui/options/options.js:349 gui/options/options.js:414
-#: gui/options/options.js:440 gui/pregame/MainMenuItems.js:251
-#: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
+#: gui/options/options.js:440 gui/pregame/MainMenuItems.js:260
+#: gui/pregame/MainMenuItems.js:284 gui/replaymenu/replay_actions.js:178
 msgid "Yes"
 msgstr "はい"
 
@@ -917,8 +917,8 @@ msgstr "はい"
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
 #: gui/loadgame/SavegameWriter.js:54 gui/options/options.js:174
 #: gui/options/options.js:349 gui/options/options.js:414
-#: gui/options/options.js:440 gui/pregame/MainMenuItems.js:251
-#: gui/pregame/MainMenuItems.js:275 gui/replaymenu/replay_actions.js:178
+#: gui/options/options.js:440 gui/pregame/MainMenuItems.js:260
+#: gui/pregame/MainMenuItems.js:284 gui/replaymenu/replay_actions.js:178
 msgid "No"
 msgstr "いいえ"
 
@@ -1342,6 +1342,34 @@ msgid "Audio managers"
 msgstr "Audio managers"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
+msgid "Frame drum, darbuka, riq, toms"
+msgstr "Frame drum, darbuka, riq, toms"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[11].Subtitle
+msgid "Guitar"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[1].Content[12].Subtitle
+msgid "Handpan"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[1].Content[13].Subtitle
+msgid "Harp"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[1].Content[14].Subtitle
+msgid "Shruti Box"
+msgstr ""
+
+#: gui/credits/texts/audio.jsonContent[1].Content[15].Subtitle
+msgid "Tin whistles"
+msgstr "Tin whistles"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[16].Subtitle
+msgid "Trumpet"
+msgstr "Trumpet"
+
+#: gui/credits/texts/audio.jsonContent[1].Content[17].Subtitle
 msgid "Viola, violin"
 msgstr "Viola, violin"
 
@@ -1354,32 +1382,32 @@ msgid "Additional music"
 msgstr "Additional music"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
-msgid "Flute"
-msgstr "Flute"
+msgid "Cajon"
+msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
-msgid "Djembe"
-msgstr "Djembe"
+msgid "Cello"
+msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
-msgid "Frame drum, darbuka, riq, toms"
-msgstr "Frame drum, darbuka, riq, toms"
+msgid "Celtic harp"
+msgstr "Celtic harp"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
 msgid "Didgeridoo"
 msgstr "Didgeridoo"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
-msgid "Trumpet"
-msgstr "Trumpet"
+msgid "Djembe"
+msgstr "Djembe"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
-msgid "Celtic harp"
-msgstr "Celtic harp"
+msgid "Dulcimer"
+msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
-msgid "Tin whistles"
-msgstr "Tin whistles"
+msgid "Flute"
+msgstr "Flute"
 
 #: gui/credits/texts/audio.jsonContent[1].Title
 msgid "Music"
@@ -1558,8 +1586,8 @@ msgid ""
 "WARNING: this cannot be reversed."
 msgstr "すべてのホットキーをデフォルト値にリセットしますか？\n警告：これを元に戻すことはできません"
 
-#: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:250
-#: gui/pregame/MainMenuItems.js:274
+#: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:259
+#: gui/pregame/MainMenuItems.js:283
 msgid "Confirmation"
 msgstr "確認"
 
@@ -3526,7 +3554,7 @@ msgstr "警告"
 msgid "Save Game"
 msgstr "ゲームを保存"
 
-#: gui/loadgame/SavegamePage.js:34 gui/pregame/MainMenuItems.js:94
+#: gui/loadgame/SavegamePage.js:34 gui/pregame/MainMenuItems.js:103
 msgid "Load Game"
 msgstr "ゲームの読込み"
 
@@ -4702,119 +4730,102 @@ msgid ""
 msgstr "負傷したユニットのホットキーでは、選択したユニットのHPパーセンテージがこの数値を下回ると負傷したとみなされます。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].label
+msgid "Aura range visualization"
+msgstr "オーラ範囲の可視化"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].tooltip
+msgid ""
+"Display the range of auras of selected units and structures. (It can also be"
+" toggled with the hotkey during a game)."
+msgstr "選択したユニットや構造物のオーラの範囲を表示します。(ゲーム中にホットキーで切り替えることもできます）。"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].label
 msgid "Heal range visualization"
 msgstr "回復範囲の可視化"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].tooltip
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
 msgstr "選択した単位の治癒範囲を表示します。(ゲーム中にホットキーで切り替えることもできます）。"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].label
 msgid "Rank icon above status bar"
 msgstr "ステータスへのランクアイコン表示"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].tooltip
 msgid "Show rank icons above status bars."
 msgstr "ステータスバーの上にランクアイコンを表示する。"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].label
 msgid "Experience status bar"
 msgstr "経験値ステータスバー"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].tooltip
 msgid "Show an experience status bar above each selected unit."
 msgstr "選択された各ユニットの上に経験値のステータスバーを表示します。"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].label
 msgid "Detailed tooltips"
 msgstr ""
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
 msgstr "ユニットを生産する構造物において、養成可能なユニットの詳細なツールチップを表示します。"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].label
 msgid "Sort resources and population tooltip"
 msgstr ""
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[0].label
 msgid "Unordered"
 msgstr "順不同"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[1].label
 msgid "Ascending"
 msgstr "昇順"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[2].label
 msgid "Descending"
 msgstr "降順"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].tooltip
 msgid ""
 "Dynamically sort players in the resources and population tooltip by value."
 msgstr "資源と人口のツールチップに表示されるプレーヤーを値によって動的に並べ替えます。"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].label
 msgid "Diplomacy colors: self"
 msgstr "外交 色: 自分"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
 msgstr "外交色が有効な場合の自軍の色。"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].label
 msgid "Diplomacy colors: ally"
 msgstr "外交 色: 同盟"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
 msgstr "外交色が有効な場合の味方の色。"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].label
 msgid "Diplomacy colors: neutral"
 msgstr "外交 色: 中立"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
 msgstr "外交色が有効な場合の中立プレイヤーの色。"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].label
 msgid "Diplomacy colors: enemy"
 msgstr "外交 色: 敵"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
 msgstr "外交色が有効な場合の敵の色。"
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].label
-msgid "Snap to edges"
-msgstr ""
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[0].label
-msgid "Hotkey to enable snapping"
-msgstr "ホットキー長押しでスナップ有効"
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[0].tooltip
-msgid ""
-"New structures are aligned with nearby structures while pressing the hotkey."
-msgstr "ホットキーを押している間、新しい構造物は近くの構造物と整列します。"
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[1].label
-msgid "Hotkey to disable snapping"
-msgstr "常時スナップ"
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].list[1].tooltip
-msgid ""
-"New structures are aligned with nearby structures unless the hotkey is "
-"pressed."
-msgstr "ホットキーが押されない限り、新しい構造物は近くの構造物に整列します。"
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].tooltip
-msgid "This option allows to align new structures with nearby structures."
-msgstr "このオプションでは、新しい構造物を近くの構造物に合わせることができます。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].label
 msgid "Batch training size"
@@ -4825,66 +4836,93 @@ msgid "Number of units trained per batch by default."
 msgstr "基本にする1回あたりの一括生成ユニット数"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].label
+msgid "Snap to edges"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].label
+msgid "Hotkey to enable snapping"
+msgstr "ホットキー長押しでスナップ有効"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].tooltip
+msgid ""
+"New structures are aligned with nearby structures while pressing the hotkey."
+msgstr "ホットキーを押している間、新しい構造物は近くの構造物と整列します。"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].label
+msgid "Hotkey to disable snapping"
+msgstr "常時スナップ"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].tooltip
+msgid ""
+"New structures are aligned with nearby structures unless the hotkey is "
+"pressed."
+msgstr "ホットキーが押されない限り、新しい構造物は近くの構造物に整列します。"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].tooltip
+msgid "This option allows to align new structures with nearby structures."
+msgstr "このオプションでは、新しい構造物を近くの構造物に合わせることができます。"
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].label
 msgid "Control group membership"
 msgstr "コントロールグループ メンバーシップ"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].label
 msgid "Single"
 msgstr "単体"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].tooltip
 msgid ""
 "When adding a Unit or Structure to a control group, they are removed from "
 "other control groups. Use this choice if you want control groups to refer to"
 " distinct armies."
 msgstr "ユニットや構造体をコントロールグループに追加すると、他のコントロールグループから削除されます。コントロールグループが別の軍隊を指すようにしたい場合は、この選択肢を使用します。"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].label
 msgid "Multiple"
 msgstr "複数"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].tooltip
 msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
 msgstr "ユニットと構造体は、複数のコントロールグループに属することができます。これは、別々の軍のコントロールグループと、軍全体のコントロールグループを同時に維持するのに便利です。"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].tooltip
 msgid "Decide whether units can be part of multiple control groups."
 msgstr "ユニットが複数のコントロールグループに属することができるかどうかを決定する。"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].label
 msgid "Formation control"
 msgstr "フォーメーション コントロール"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[0].label
 msgid "Walk/Patrol Only"
 msgstr "ウォーク／パトロール のみ"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[0].tooltip
 msgid "Other orders will disband existing formations."
 msgstr "他の命令は既存のフォーメーションを解散させる。"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[1].label
 msgid "No override"
 msgstr "オーバーライド無し"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[1].tooltip
 msgid "Units in formations stay in formations."
 msgstr "フォーメーション内のユニットは、フォーメーション内に留まります。"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].tooltip
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
 msgstr "フォーメーションをすべてのオーダーで有効にするか、「ウォーク」と「パトロール」のみ有効にするかを決定します。"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[23].label
 msgid "Battalion-style formations"
 msgstr ""
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[23].tooltip
 msgid "Whether formations are selected as a whole."
 msgstr ""
 
@@ -4906,73 +4944,71 @@ msgid "How long the flare markers on the minimap are displayed in seconds."
 msgstr "ミニマップのフレアマーカーの表示時間を秒単位で表示します。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].label
+msgid "Minimap icons"
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].tooltip
+msgid "Show special icons for some entities on the minimap."
+msgstr ""
+
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].label
 msgid "Chat notification attack"
 msgstr "攻撃の通知"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].tooltip
 msgid "Show a chat notification if you are attacked by another player."
 msgstr "他のプレイヤーから攻撃を受けたときに、チャット通知を表示します。"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].label
 msgid "Chat notification tribute"
 msgstr "資源献上の通知"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].tooltip
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
 msgstr "チームが固定されていて、オブザーバーモードですべての献上が行われている場合、味方が他のチームメンバーに資源を献上したときにチャット通知を表示します。"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].label
 msgid "Chat notification barter"
 msgstr "資源交換の通知"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[6].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
 msgstr "プレイヤーが資源を交換したときに、オブザーバーにチャット通知を表示します。"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].label
 msgid "Chat notification phase"
 msgstr "段階移行の通知"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[0].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[0].label
 msgid "Disable"
 msgstr "一部無効"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[1].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[1].label
 msgid "Completed"
 msgstr "完全"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].list[2].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[2].label
 msgid "All displayed"
 msgstr "すべて無効"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].tooltip
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
 msgstr "自分や味方が新しい段階を開始、中止、完了した場合にチャット通知を表示したり、オブザーバーモードの全プレイヤーのフェーズを表示したりします。"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].label
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].label
 msgid "Attack range visualization"
 msgstr "攻撃範囲の可視化"
 
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].tooltip
+#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].tooltip
 msgid ""
 "Display the attack range of selected defensive structures. (It can also be "
 "toggled with the hotkey during a game)."
 msgstr "選択した防御構造物の攻撃範囲を表示します。(ゲーム中にホットキーで切り替えることもできます）。"
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].label
-msgid "Aura range visualization"
-msgstr "オーラ範囲の可視化"
-
-#: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].tooltip
-msgid ""
-"Display the range of auras of selected units and structures. (It can also be"
-" toggled with the hotkey during a game)."
-msgstr "選択したユニットや構造物のオーラの範囲を表示します。(ゲーム中にホットキーで切り替えることもできます）。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].tooltip
 msgid "Change options regarding the in-game settings."
@@ -5080,225 +5116,225 @@ msgstr "チュートリアル"
 msgid "Start the economic tutorial."
 msgstr "経済のチュートリアルを始める"
 
-#: gui/pregame/MainMenuItems.js:27
+#: gui/pregame/MainMenuItems.js:36
 #: gui/reference/common/Buttons/StructreeButton.js:21
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
 msgstr "建設早見表"
 
-#: gui/pregame/MainMenuItems.js:28
+#: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
 msgstr "%(hotkey)s: 0 A.D.に登場する文明の建設早見表を表示します。"
 
-#: gui/pregame/MainMenuItems.js:39
+#: gui/pregame/MainMenuItems.js:48
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
 msgstr "文明一覧"
 
-#: gui/pregame/MainMenuItems.js:40
+#: gui/pregame/MainMenuItems.js:49
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
 msgstr "%(hotkey)s:0 A.D.に登場する文明の詳細を表示します。"
 
-#: gui/pregame/MainMenuItems.js:51
+#: gui/pregame/MainMenuItems.js:60
 msgid "Catafalque Overview"
 msgstr "棺台の比較一覧"
 
-#: gui/pregame/MainMenuItems.js:52
+#: gui/pregame/MainMenuItems.js:61
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
 msgstr "ゲームモード「聖遺物争奪」において登場する各棺台のボーナスを比較できます。"
 
-#: gui/pregame/MainMenuItems.js:58
+#: gui/pregame/MainMenuItems.js:67
 msgid "Map Overview"
 msgstr "マップ一覧"
 
-#: gui/pregame/MainMenuItems.js:59
+#: gui/pregame/MainMenuItems.js:68
 msgid "View the different maps featured in 0 A.D."
 msgstr "0 A.D.に登場するさまざまなマップを見ることができます。"
 
-#: gui/pregame/MainMenuItems.js:67 gui/pregame/MainMenuItems.js:101
+#: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Continue Campaign"
 msgstr "キャンペーンの再開"
 
-#: gui/pregame/MainMenuItems.js:68 gui/pregame/MainMenuItems.js:102
-#: gui/pregame/MainMenuItems.js:118 gui/pregame/MainMenuItems.js:125
+#: gui/pregame/MainMenuItems.js:77 gui/pregame/MainMenuItems.js:111
+#: gui/pregame/MainMenuItems.js:127 gui/pregame/MainMenuItems.js:134
 msgid "Relive history through historical military campaigns."
 msgstr "歴史的な軍事作戦で歴史を再現します。"
 
-#: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
+#: gui/pregame/MainMenuItems.js:85 gui/pregame/MainMenuItems.js:119
 msgid "Error opening campaign run:"
 msgstr "キャンペーンの実行を開始する際にエラーが発生しました:"
 
-#: gui/pregame/MainMenuItems.js:83
+#: gui/pregame/MainMenuItems.js:92
 msgid "Single-player"
 msgstr "シングルプレイヤー"
 
-#: gui/pregame/MainMenuItems.js:84
+#: gui/pregame/MainMenuItems.js:93
 msgid "Start, load, or replay a single-player game."
 msgstr "シングルプレイのゲームを開始、ロード、リプレイする。"
 
-#: gui/pregame/MainMenuItems.js:87
+#: gui/pregame/MainMenuItems.js:96
 msgid "Matches"
 msgstr "対戦"
 
-#: gui/pregame/MainMenuItems.js:88
+#: gui/pregame/MainMenuItems.js:97
 msgid "Start a new single-player game."
 msgstr "新規にシングルプレイを開始する。"
 
-#: gui/pregame/MainMenuItems.js:95
+#: gui/pregame/MainMenuItems.js:104
 msgid "Load a saved game."
 msgstr "セーブしたゲームを読み込む"
 
-#: gui/pregame/MainMenuItems.js:117
+#: gui/pregame/MainMenuItems.js:126
 msgid "New Campaign"
 msgstr "キャンペーンを始める"
 
-#: gui/pregame/MainMenuItems.js:124
+#: gui/pregame/MainMenuItems.js:133
 msgid "Load Campaign"
 msgstr "キャンペーンを続ける"
 
-#: gui/pregame/MainMenuItems.js:134 gui/pregame/MainMenuItems.js:184
+#: gui/pregame/MainMenuItems.js:143 gui/pregame/MainMenuItems.js:193
 msgid "Replays"
 msgstr "リプレイ"
 
-#: gui/pregame/MainMenuItems.js:135 gui/pregame/MainMenuItems.js:185
+#: gui/pregame/MainMenuItems.js:144 gui/pregame/MainMenuItems.js:194
 msgid "Playback previous games."
 msgstr "以前のゲームを再生します。"
 
-#: gui/pregame/MainMenuItems.js:149
+#: gui/pregame/MainMenuItems.js:158
 msgid "Multiplayer"
 msgstr "マルチプレイヤー"
 
-#: gui/pregame/MainMenuItems.js:150
+#: gui/pregame/MainMenuItems.js:159
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "1人または複数の人間とマルチプレイヤーで対戦します。"
 
 #. Translation: Join a game by specifying the host's IP address.
-#: gui/pregame/MainMenuItems.js:154
+#: gui/pregame/MainMenuItems.js:163
 msgid "Join Game"
 msgstr "ゲームに参加する"
 
-#: gui/pregame/MainMenuItems.js:155
+#: gui/pregame/MainMenuItems.js:164
 msgid "Joining an existing multiplayer game."
 msgstr "既存のマルチプレイヤーゲームに参加します。"
 
-#: gui/pregame/MainMenuItems.js:163
+#: gui/pregame/MainMenuItems.js:172
 msgid "Host Game"
 msgstr "ゲームをホストする"
 
-#: gui/pregame/MainMenuItems.js:164
+#: gui/pregame/MainMenuItems.js:173
 msgid "Host a multiplayer game."
 msgstr "マルチプレイヤーゲームを開催する。"
 
-#: gui/pregame/MainMenuItems.js:172
+#: gui/pregame/MainMenuItems.js:181
 msgid "Game Lobby"
 msgstr "ゲームロビー"
 
-#: gui/pregame/MainMenuItems.js:174
+#: gui/pregame/MainMenuItems.js:183
 #, javascript-format
 msgid ""
 "%(hotkey)s: Launch the multiplayer lobby to join and host publicly visible "
 "games and chat with other players."
 msgstr "%(hotkey)s:マルチプレイヤーロビーを起動して、公開されているゲームに参加や公開、他のプレイヤーとチャットしたりすることができます。"
 
-#: gui/pregame/MainMenuItems.js:175
+#: gui/pregame/MainMenuItems.js:184
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr "マルチプレイヤーロビーに入ります。\\[本ビルドでは利用不可]"
 
-#: gui/pregame/MainMenuItems.js:199
+#: gui/pregame/MainMenuItems.js:208
 msgid "Settings"
 msgstr "設定"
 
-#: gui/pregame/MainMenuItems.js:200
+#: gui/pregame/MainMenuItems.js:209
 msgid "Change game options."
 msgstr "ゲームオプションの変更"
 
-#: gui/pregame/MainMenuItems.js:203
+#: gui/pregame/MainMenuItems.js:212
 msgid "Options"
 msgstr "設定"
 
-#: gui/pregame/MainMenuItems.js:204
+#: gui/pregame/MainMenuItems.js:213
 msgid "Adjust game settings."
 msgstr "ゲームの設定を調整します。"
 
-#: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:213
+#: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:222
 msgid "Hotkeys"
 msgstr "ホットキー"
 
-#: gui/pregame/MainMenuItems.js:214
+#: gui/pregame/MainMenuItems.js:223
 msgid "Adjust hotkeys."
 msgstr "ホットキーを調整します。"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale_advanced/locale_advanced.xml:(caption):14
-#: gui/pregame/MainMenuItems.js:220
+#: gui/pregame/MainMenuItems.js:229
 msgid "Language"
 msgstr "言語"
 
-#: gui/pregame/MainMenuItems.js:221
+#: gui/pregame/MainMenuItems.js:230
 msgid "Choose the language of the game."
 msgstr "ゲームの言語を選択します。"
 
-#: gui/pregame/MainMenuItems.js:227
+#: gui/pregame/MainMenuItems.js:236
 msgid "Mod Selection"
 msgstr "MODの選択"
 
-#: gui/pregame/MainMenuItems.js:228
+#: gui/pregame/MainMenuItems.js:237
 msgid "Select and download mods for the game."
 msgstr "ゲームのMODを選択してダウンロードすることができます。"
 
-#: gui/pregame/MainMenuItems.js:234
+#: gui/pregame/MainMenuItems.js:243
 msgid "Welcome Screen"
 msgstr "ウェルカムスクリーン"
 
-#: gui/pregame/MainMenuItems.js:235
+#: gui/pregame/MainMenuItems.js:244
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
 msgstr "ウェルカムスクリーンを再度表示します。誤って消してしまった時に便利です。"
 
-#: gui/pregame/MainMenuItems.js:243
+#: gui/pregame/MainMenuItems.js:252
 msgid "Scenario Editor"
 msgstr "シナリオエディター"
 
-#: gui/pregame/MainMenuItems.js:244
+#: gui/pregame/MainMenuItems.js:253
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Atlasシナリオエディターを新しいウィンドウで開きます。より確実に起動するには、コマンドライン引数「-editor」を指定してゲームを開始します。"
 
-#: gui/pregame/MainMenuItems.js:249
+#: gui/pregame/MainMenuItems.js:258
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
 msgstr "ゲームを終了してシナリオエディターを開きますか？"
 
-#: gui/pregame/MainMenuItems.js:256
+#: gui/pregame/MainMenuItems.js:265
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "シナリオエディターが利用可能でないか読み込みできません。追加情報ははゲームログを参照してください。"
 
-#: gui/pregame/MainMenuItems.js:257 gui/replaymenu/replay_actions.js:126
+#: gui/pregame/MainMenuItems.js:266 gui/replaymenu/replay_actions.js:126
 msgid "Error"
 msgstr "エラー"
 
-#: gui/pregame/MainMenuItems.js:261
+#: gui/pregame/MainMenuItems.js:270
 msgid "Credits"
 msgstr "クレジット"
 
-#: gui/pregame/MainMenuItems.js:262
+#: gui/pregame/MainMenuItems.js:271
 msgid "Show the 0 A.D. credits."
 msgstr "0 A.D.のクレジットを表示します。"
 
-#: gui/pregame/MainMenuItems.js:268
+#: gui/pregame/MainMenuItems.js:277
 msgid "Exit"
 msgstr "終了"
 
-#: gui/pregame/MainMenuItems.js:269
+#: gui/pregame/MainMenuItems.js:278
 msgid "Exit the game."
 msgstr "ゲームを終了します"
 
-#: gui/pregame/MainMenuItems.js:273
+#: gui/pregame/MainMenuItems.js:282
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "本当に0 A.D.を終了しますか?"
 

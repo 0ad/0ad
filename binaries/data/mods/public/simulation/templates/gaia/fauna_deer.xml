@@ -18,6 +18,9 @@
   <StatusBars>
     <HeightOffset>4.0</HeightOffset>
   </StatusBars>
+  <UnitMotion>
+    <WalkSpeed op="mul">0.6</WalkSpeed>
+  </UnitMotion>
   <VisualActor>
     <Actor>fauna/deer.xml</Actor>
   </VisualActor>

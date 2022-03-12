@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-09-11 08:09+0000\n"
+"PO-Revision-Date: 2022-03-08 15:39+0000\n"
 "Last-Translator: 柳离枝\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -74,7 +74,7 @@ msgstr "当前模组不匹配其它模组。"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
 msgid "Do you want to switch to the mod selection page?"
-msgstr "是否要切换到mod选项？"
+msgstr "是否要切换到模组项？"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
 msgid "Incompatible mods"
@@ -136,11 +136,11 @@ msgstr "设置状态为“在线”。"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:102
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "从大厅踢出一个指定的用户。使用方法: /kick 别名 原因"
+msgstr "从大厅踢出一个指定的用户。使用方法: /kick 昵称 原因"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:114
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr "从大厅禁言一个指定的用户。使用方法: /ban 别名 原因"
+msgstr "从大厅禁言一个指定的用户。使用方法: /ban 昵称 原因"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:126
 msgid "Show this help."
@@ -158,23 +158,23 @@ msgstr "%(command)s - %(description)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:147
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr "发送一个关于你自己的聊天信息。例如：/我去游泳。"
+msgstr "发送一个关于你自己的聊天信息。例如：/me goes swimming 。"
 
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:150
 msgid "/me"
-msgstr "/我"
+msgstr "/me"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:154
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
-msgstr "发送文字作为一个聊天信息(即使是以斜线开头)。例如: /说 /帮助是一个不错的指令。"
+msgstr "发送文字作为一个聊天信息(即使是以斜线开头)。例如: /say /help 是一项很好的指令。"
 
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:157
 msgid "/say"
-msgstr "/说"
+msgstr "/say"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:161
 msgid "Clear all chat scrollback."
@@ -198,7 +198,7 @@ msgstr "%(sender)s %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:23
 msgid "Private"
-msgstr "私有"
+msgstr "私密"
 
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:25
 #, javascript-format
@@ -240,7 +240,7 @@ msgstr "现在你是主机。"
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:113
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr "%(nick)s现在是主持人。"
+msgstr "%(nick)s现在是主机。"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:118
 msgid "You have been unmuted."
@@ -253,12 +253,12 @@ msgstr "%(nick)s已被取消静音。"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:124
 msgid "You are not a moderator anymore."
-msgstr "你不再是主持人。"
+msgstr "你不再是主机。"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:125
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
-msgstr "%(nick)s不再是主持人。"
+msgstr "%(nick)s不再是主机了。"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:152
 #, javascript-format
@@ -355,7 +355,7 @@ msgstr "%(current)s/%(max)s"
 #: gui/lobby/LobbyPage/GameDetails.js:65
 msgctxt "victory condition"
 msgid "Endless Game"
-msgstr "无尽的游戏"
+msgstr "无尽模式"
 
 #: gui/lobby/LobbyPage/GameDetails.js:109
 #, javascript-format

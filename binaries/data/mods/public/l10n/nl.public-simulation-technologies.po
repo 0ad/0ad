@@ -25,8 +25,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-04 08:09+0000\n"
-"PO-Revision-Date: 2022-03-05 22:01+0000\n"
+"POT-Creation-Date: 2022-03-07 08:09+0000\n"
+"PO-Revision-Date: 2022-03-07 20:19+0000\n"
 "Last-Translator: rollieoo\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -490,9 +490,9 @@ msgstr "Guānliáo"
 #: simulation/data/technologies/civil_service_01.jsontooltip
 #: simulation/data/technologies/civil_service_02.jsontooltip
 msgid ""
-"Technologies at all buildings, except the Blacksmith, -15% cost and -15% "
-"research time."
-msgstr "Technologieën van alle gebouwen, behalve de smederij, -15% kosten en -15% onderzoekstijd."
+"Technologies at all buildings, except the Forge, -15% cost and -15% research"
+" time."
+msgstr "Technologieën van alle gebouwen, behalve de smidse, -15% kosten en -15% onderzoekstijd."
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
 msgid "Civil Service - Level 2"
@@ -1109,6 +1109,10 @@ msgid ""
 " of modern technology."
 msgstr "Ga van een bruisend stadje naar een echte metropool, vol wonderen van moderne technologie."
 
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.han
+msgid "Jùn"
+msgstr "Jùn"
+
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
@@ -1159,6 +1163,10 @@ msgstr "Ga door naar de stadsfase, die meer entiteiten en technologieën ontslui
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
 msgstr "Ga van klein dorpje naar bloeiende stad, klaar om snel uit te breiden."
+
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.han
+msgid "Xìan"
+msgstr "Xìan"
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""

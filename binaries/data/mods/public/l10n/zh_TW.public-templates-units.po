@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-04 08:09+0000\n"
-"PO-Revision-Date: 2022-03-04 09:24+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-03-07 08:09+0000\n"
+"PO-Revision-Date: 2022-03-10 12:50+0000\n"
+"Last-Translator: Yuan Chang\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -207,6 +207,7 @@ msgstr "矛兵"
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:5
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:5
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:5
+#: simulation/templates/units/han/support_minister.xml:11
 msgctxt "Name of an attack using a double-edged sword."
 msgid "Sword"
 msgstr "劍"
@@ -509,7 +510,7 @@ msgstr "英雄騎兵"
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
 #: simulation/templates/units/brit/hero_boudicca.xml:20
-#: simulation/templates/units/han/support_minister.xml:56
+#: simulation/templates/units/han/support_minister.xml:66
 #: simulation/templates/units/kush/hero_amanirenas.xml:21
 #: simulation/templates/units/maur/hero_ashoka.xml:20
 #: simulation/templates/units/pers/hero_darius_i.xml:20
@@ -767,7 +768,7 @@ msgstr "弩炮"
 
 #: simulation/templates/template_unit_siege_flamethrower.xml:46
 msgid "Flamethrower"
-msgstr ""
+msgstr "火焰投擲器"
 
 #: simulation/templates/template_unit_siege_ram.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -1804,22 +1805,22 @@ msgstr "婦女"
 msgid "Yīshī"
 msgstr "醫師"
 
-#: simulation/templates/units/han/support_minister.xml:30
+#: simulation/templates/units/han/support_minister.xml:40
 msgid "Imperial Minister"
 msgstr "帝國官吏"
 
-#: simulation/templates/units/han/support_minister.xml:31
+#: simulation/templates/units/han/support_minister.xml:41
 msgid "Guānlì"
 msgstr "官吏"
 
-#: simulation/templates/units/han/support_minister.xml:32
+#: simulation/templates/units/han/support_minister.xml:42
 msgid ""
 "Use to boost the efficiency of nearby units and buildings. Garrison within a"
 " building to boost the efficiency of its production queue. Only han "
 "buildings can garrison ministers."
 msgstr "用於提高附近單位和建築物的效率。 在建築物內駐守以提高其生產佇列的效率。 只有漢朝的建築物才能駐守官吏。"
 
-#: simulation/templates/units/han/support_minister.xml:34
+#: simulation/templates/units/han/support_minister.xml:44
 msgid "Minister"
 msgstr "官吏"
 
@@ -3296,6 +3297,18 @@ msgstr "Spartiâtis"
 msgid "Émporos Períoikos"
 msgstr "Émporos Períoikos"
 
+#: simulation/templates/units/theb_sacred_band.xml:5
+msgid "Theban Sacred Band Hoplite"
+msgstr "底比斯聖軍團重裝步兵"
+
+#: simulation/templates/units/theb_sacred_band.xml:6
+msgid "Hieroû Thebaíou Lókhou Hoplítai"
+msgstr "Hieroû Thebaíou Lókhou Hoplítai"
+
+#: simulation/templates/units/theb_sacred_band.xml:7
+msgid "Champion Spearman."
+msgstr "鬥士矛兵。"
+
 #: simulation/templates/units/theb_siege_fireraiser.xml:8
 msgid "Fire Raiser"
 msgstr "縱火車"
@@ -3304,23 +3317,11 @@ msgstr "縱火車"
 msgid "Pyrobolos"
 msgstr "Pyrobolos"
 
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:5
-msgid "Theban Sacred Band Hoplite"
-msgstr "底比斯聖軍團重裝步兵"
-
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6
-msgid "Hieroû Thebaíou Lókhou Hoplítai"
-msgstr "Hieroû Thebaíou Lókhou Hoplítai"
-
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
-msgid "Champion Spearman."
-msgstr "鬥士矛兵。"
-
-#: simulation/templates/units/thespian_melanochitones.xml:5
+#: simulation/templates/units/thesp_melanochitones.xml:5
 msgid "Thespian Black Cloak"
 msgstr "狄斯比斯黑氅軍"
 
-#: simulation/templates/units/thespian_melanochitones.xml:6
+#: simulation/templates/units/thesp_melanochitones.xml:6
 msgid "Melanochitones"
 msgstr "Melanochitones"
 

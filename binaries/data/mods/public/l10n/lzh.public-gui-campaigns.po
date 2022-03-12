@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Aiyorik Su
 # 柳离枝
 msgid ""
 msgstr ""
@@ -22,7 +23,7 @@ msgctxt "Campaign Template"
 msgid ""
 "Discover the new maps in Alpha XXVI with a demo campaign, taking you through"
 " all of them."
-msgstr ""
+msgstr "试为一战，略陈阵图，久之熟稔。"
 
 #: campaigns/new_maps.jsonName
 msgctxt "Campaign Template"
@@ -47,12 +48,12 @@ msgstr ""
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
 msgid "Economy Walkthrough"
-msgstr ""
+msgstr "食货"
 
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
+msgstr "此为“元始元年”之常法，可和而乐之。"
 
 #: campaigns/tutorial.jsonLevels.introduction.Name
 msgctxt "Campaign Template"
@@ -67,7 +68,7 @@ msgstr ""
 #: gui/campaigns/default_menu/CampaignMenu.js:156
 msgctxt "campaign status"
 msgid "Completed"
-msgstr ""
+msgstr "毕"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:158
 msgctxt "campaign status"
@@ -77,7 +78,7 @@ msgstr ""
 #: gui/campaigns/default_menu/CampaignMenu.js:217
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr ""
+msgstr "战役有失%s：%s。"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
@@ -111,7 +112,7 @@ msgstr ""
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):31
 msgctxt "campaignLevelList"
 msgid "Status"
-msgstr ""
+msgstr "阶序"
 
 #: gui/campaigns/load_modal/LoadModal.js:18
 msgid "file cannot be loaded"
@@ -124,7 +125,7 @@ msgstr ""
 
 #: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
-msgstr ""
+msgstr "认明"
 
 #: gui/campaigns/load_modal/LoadModal.js:106
 msgid "No"
@@ -150,7 +151,7 @@ msgstr ""
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):31
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
 msgid "Cancel"
-msgstr ""
+msgstr "否之"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):35
 msgid "Delete"
@@ -188,7 +189,7 @@ msgstr ""
 #: gui/campaigns/setup/CampaignSetupPage.xml:(heading):26
 msgctxt "campaignsetup"
 msgid "Name"
-msgstr ""
+msgstr "名氏"
 
 #: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format

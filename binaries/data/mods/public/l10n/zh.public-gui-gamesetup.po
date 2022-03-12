@@ -43,7 +43,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-09-11 08:03+0000\n"
+"PO-Revision-Date: 2022-03-08 15:22+0000\n"
 "Last-Translator: 柳离枝\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -401,11 +401,11 @@ msgstr "随机选取一张地图"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:78
 msgid "Landscape"
-msgstr "景观"
+msgstr "图景"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:81
 msgid "Select one of the landscapes of this map."
-msgstr "选择地图的景观"
+msgstr "为本图选择一份景观"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:82
 msgid "Map Filter"
@@ -723,12 +723,12 @@ msgstr "%(username)s 已离开"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientKicked.js:22
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr "%(username)s 被踢"
+msgstr "%(username)s 被踢了"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientKicked.js:25
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s  被禁"
+msgstr "%(username)s  被禁了"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientReady.js:28
 #, javascript-format
@@ -738,7 +738,7 @@ msgstr "* %(username)s 未准备完成."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientReady.js:29
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr "* %(username)s 就绪!"
+msgstr "* %(username)s 已就绪!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/GameSettingsChanged.js:22
 msgid "Game settings have been changed"

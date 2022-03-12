@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-04 08:09+0000\n"
-"PO-Revision-Date: 2022-03-04 08:18+0000\n"
+"POT-Creation-Date: 2022-03-07 08:09+0000\n"
+"PO-Revision-Date: 2022-03-07 08:18+0000\n"
 "Last-Translator: Transifex Bot\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -480,9 +480,9 @@ msgstr "Guānliáo"
 #: simulation/data/technologies/civil_service_01.jsontooltip
 #: simulation/data/technologies/civil_service_02.jsontooltip
 msgid ""
-"Technologies at all buildings, except the Blacksmith, -15% cost and -15% "
-"research time."
-msgstr "대장장이를 제외한 모든 건축물의 기술 비용이 -15%, 연구 시간이 -15% 감소합니다."
+"Technologies at all buildings, except the Forge, -15% cost and -15% research"
+" time."
+msgstr ""
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
 msgid "Civil Service - Level 2"
@@ -1099,6 +1099,10 @@ msgid ""
 " of modern technology."
 msgstr "번화한 도시에서 현재 기술의 경이로움으로 가득찬 진정한 대도시로 발전합니다."
 
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.han
+msgid "Jùn"
+msgstr ""
+
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
@@ -1149,6 +1153,10 @@ msgstr "더 많은 개체들과 기술을 잠금 해제하는 소도시 단계�
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
 msgstr "작은 부락에서 번화한 소도시로 빠르게 확장할 준비가 되었습니다."
+
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.han
+msgid "Xìan"
+msgstr ""
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""

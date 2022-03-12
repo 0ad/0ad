@@ -68,14 +68,14 @@ public:
 	 */
 	std::vector<CStrW> GetSkySets() const;
 
-	bool GetRenderSky() const
+	bool IsSkyVisible() const
 	{
-		return m_RenderSky;
+		return m_SkyVisible;
 	}
 
-	void SetRenderSky(bool value)
+	void SetSkyVisible(bool value)
 	{
-		m_RenderSky = value;
+		m_SkyVisible = value;
 	}
 
 	/**
@@ -87,7 +87,7 @@ public:
 private:
 	void CreateSkyCube();
 
-	bool m_RenderSky = true;
+	bool m_SkyVisible = true;
 
 	/// Name of current skyset (a directory within art/textures/skies)
 	CStrW m_SkySet;

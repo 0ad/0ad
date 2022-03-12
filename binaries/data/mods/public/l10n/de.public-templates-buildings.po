@@ -43,8 +43,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-25 08:08+0000\n"
-"PO-Revision-Date: 2022-02-26 19:47+0000\n"
+"POT-Creation-Date: 2022-03-07 08:09+0000\n"
+"PO-Revision-Date: 2022-03-07 21:12+0000\n"
 "Last-Translator: xtother90\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -670,19 +670,19 @@ msgstr "Celicnon"
 msgid "Wheat Field"
 msgstr "Weizenfeld"
 
-#: simulation/templates/structures/han/academy.xml:29
+#: simulation/templates/structures/han/academy.xml:30
 msgid "Imperial Academy"
 msgstr "Kaiserliche Akademie"
 
-#: simulation/templates/structures/han/academy.xml:30
+#: simulation/templates/structures/han/academy.xml:31
 msgid "Dìguó Xuéyuàn"
 msgstr "Dìguó Xuéyuàn"
 
-#: simulation/templates/structures/han/academy.xml:32
+#: simulation/templates/structures/han/academy.xml:33
 msgid "Train Champions and research their technologies."
 msgstr "Bilde Gardisten aus und erforsche ihre Technologien."
 
-#: simulation/templates/structures/han/academy.xml:33
+#: simulation/templates/structures/han/academy.xml:34
 msgid "Academy"
 msgstr "Akademie"
 
@@ -705,15 +705,15 @@ msgid ""
 "Center."
 msgstr "Erhöhe deutlich die Gesundheit, den Einahmewiderstand und die Einquartierungskapazität dieses Verwaltungssitzes. Schalte die Ausbildung von Helden und Gardisten in diesem Verwaltungssitz frei."
 
-#: simulation/templates/structures/han/civil_centre_court.xml:22
+#: simulation/templates/structures/han/civil_centre_court.xml:14
 msgid "Imperial Court"
 msgstr "Kaiserlicher Hof"
 
-#: simulation/templates/structures/han/civil_centre_court.xml:23
+#: simulation/templates/structures/han/civil_centre_court.xml:15
 msgid "Cháotíng"
 msgstr "Cháotíng"
 
-#: simulation/templates/structures/han/civil_centre_court.xml:24
+#: simulation/templates/structures/han/civil_centre_court.xml:16
 msgid "ImperialCourt"
 msgstr "KaiserlicherHof"
 
@@ -743,7 +743,7 @@ msgstr "Dà Fángyù Tǎ"
 msgid "GreatTower"
 msgstr "GroßerTurm"
 
-#: simulation/templates/structures/han/dock.xml:17
+#: simulation/templates/structures/han/dock.xml:9
 msgid "Mǎtóu"
 msgstr "Mǎtóu"
 
@@ -828,7 +828,6 @@ msgstr "Bambuspalisadentor"
 msgid "Bamboo Stockade Tower"
 msgstr "Bambuspalisadenturm"
 
-#: simulation/templates/structures/han/practice_range.xml:12
 #: simulation/templates/structures/han/range.xml:12
 msgid "Bǎ Chǎng"
 msgstr "Bǎ Chǎng"
@@ -1819,11 +1818,15 @@ msgstr "Rechteckiger Tisch"
 msgid "Square Table"
 msgstr "Quadratischer Tisch"
 
-#: simulation/templates/structures/tent_desert.xml:35
-msgid "Desert Army Tent"
-msgstr "Wüstenarmeezelt"
+#: simulation/templates/structures/tent_arab.xml:35
+msgid "Arab Army Tent"
+msgstr "Arabisches Armeezelt"
 
 #: simulation/templates/structures/rome/tent.xml:24
+#: simulation/templates/structures/tent_arab.xml:36
+#: simulation/templates/structures/tent_arab.xml:38
+#: simulation/templates/structures/tent_bedouin.xml:36
+#: simulation/templates/structures/tent_bedouin.xml:38
 #: simulation/templates/structures/tent_desert.xml:36
 #: simulation/templates/structures/tent_desert.xml:38
 #: simulation/templates/structures/tent_mace.xml:36
@@ -1833,11 +1836,21 @@ msgstr "Wüstenarmeezelt"
 msgid "Tent"
 msgstr "Zelt"
 
+#: simulation/templates/structures/tent_arab.xml:39
+#: simulation/templates/structures/tent_bedouin.xml:39
 #: simulation/templates/structures/tent_desert.xml:39
 #: simulation/templates/structures/tent_mace.xml:39
 #: simulation/templates/structures/tent_rome.xml:39
 msgid "A temporary shelter for soldiers. +5 population bonus."
 msgstr "Ein zeitweiliger Unterschlupf für Soldaten. +5 Bevölkerungsbonus."
+
+#: simulation/templates/structures/tent_bedouin.xml:35
+msgid "Bedouin Tent"
+msgstr "Beduinenzelt"
+
+#: simulation/templates/structures/tent_desert.xml:35
+msgid "Desert Army Tent"
+msgstr "Wüstenarmeezelt"
 
 #: simulation/templates/structures/tent_mace.xml:35
 msgid "Macedonian Army Tent"
@@ -1892,7 +1905,7 @@ msgstr "Im eigenen oder neutralen Territorium bauen. Erobert weite Landstriche. 
 msgid "CivilCentre"
 msgstr "Verwaltungssitz"
 
-#: simulation/templates/structures/han/civil_centre_court.xml:24
+#: simulation/templates/structures/han/civil_centre_court.xml:16
 #: simulation/templates/template_structure_civic_civil_centre.xml:79
 #: simulation/templates/template_structure_defensive.xml:5
 #: simulation/templates/template_structure_military_fortress.xml:69
@@ -2138,8 +2151,8 @@ msgid ""
 msgstr "Bilde Gardearmbrustschützen aus, baue Belagerungswaffen und erforsche Belagerungstechnologien."
 
 #: simulation/templates/structures/gaul/assembly.xml:31
-#: simulation/templates/structures/han/academy.xml:33
-#: simulation/templates/structures/han/civil_centre_court.xml:24
+#: simulation/templates/structures/han/academy.xml:34
+#: simulation/templates/structures/han/civil_centre_court.xml:16
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:76

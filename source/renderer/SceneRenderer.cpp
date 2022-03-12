@@ -580,23 +580,15 @@ void CSceneRenderer::RenderReflections(
 	deviceCommandContext->SetFramebuffer(wm.m_ReflectionFramebuffer.get());
 	deviceCommandContext->ClearFramebuffer();
 
-	if (!g_RenderingOptions.GetWaterReflection())
-	{
-		m->skyManager.RenderSky(deviceCommandContext);
-		ogl_WarnIfError();
-	}
-	else
-	{
-		CShaderDefines reflectionsContext = context;
-		reflectionsContext.Add(str_PASS_REFLECTIONS, str_1);
-		// Render terrain and models
-		RenderPatches(deviceCommandContext, reflectionsContext, CULL_REFLECTIONS);
-		ogl_WarnIfError();
-		RenderModels(deviceCommandContext, reflectionsContext, CULL_REFLECTIONS);
-		ogl_WarnIfError();
-		RenderTransparentModels(deviceCommandContext, reflectionsContext, CULL_REFLECTIONS, TRANSPARENT);
-		ogl_WarnIfError();
-	}
+	CShaderDefines reflectionsContext = context;
+	reflectionsContext.Add(str_PASS_REFLECTIONS, str_1);
+	// Render terrain and models
+	RenderPatches(deviceCommandContext, reflectionsContext, CULL_REFLECTIONS);
+	ogl_WarnIfError();
+	RenderModels(deviceCommandContext, reflectionsContext, CULL_REFLECTIONS);
+	ogl_WarnIfError();
+	RenderTransparentModels(deviceCommandContext, reflectionsContext, CULL_REFLECTIONS, TRANSPARENT);
+	ogl_WarnIfError();
 
 	// Particles are always oriented to face the camera in the vertex shader,
 	// so they don't need the inverted cull face.
@@ -837,7 +829,9 @@ void CSceneRenderer::RenderSubmissions(
 
 	{
 		PROFILE3_GPU("clear buffers");
-		deviceCommandContext->ClearFramebuffer();
+		// We don't need to clear the color attachment of the framebuffer if the sky
+		// is going to be rendered. Because it covers the whole view.
+		deviceCommandContext->ClearFramebuffer(!m->skyManager.IsSkyVisible(), true, true);
 	}
 
 	m->skyManager.RenderSky(deviceCommandContext);

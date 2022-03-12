@@ -17,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-04 08:09+0000\n"
-"PO-Revision-Date: 2022-03-04 08:18+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-03-07 08:09+0000\n"
+"PO-Revision-Date: 2022-03-10 12:50+0000\n"
+"Last-Translator: Yuan Chang\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -482,9 +482,9 @@ msgstr "官僚"
 #: simulation/data/technologies/civil_service_01.jsontooltip
 #: simulation/data/technologies/civil_service_02.jsontooltip
 msgid ""
-"Technologies at all buildings, except the Blacksmith, -15% cost and -15% "
-"research time."
-msgstr "除了兵工廠外所有建築的科技，-15% 成本和 -15% 研發時間。"
+"Technologies at all buildings, except the Forge, -15% cost and -15% research"
+" time."
+msgstr "除了鍛造廠外所有建築的科技，-15% 成本和 -15% 研發時間。"
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
 msgid "Civil Service - Level 2"
@@ -516,7 +516,7 @@ msgstr "弩弓訓練"
 
 #: simulation/data/technologies/crossbow_training.jsontooltip
 msgid "Crossbow Infantry and Cavalry −20% firing time −20% train time."
-msgstr ""
+msgstr "弩步兵和騎兵 -20% 發射時間和 -20% 訓練時間。"
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -1101,6 +1101,10 @@ msgid ""
 " of modern technology."
 msgstr "從繁華的大城市進展為一個名副其實的大都市，充滿著奇蹟與現代科技。"
 
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.han
+msgid "Jùn"
+msgstr "郡"
+
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
@@ -1151,6 +1155,10 @@ msgstr "發展到鄉鎮階段，解鎖更多單位、建築和科技。城鎮中
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
 msgstr "從小村莊進展到繁華的城鎮，準備好迅速擴張。"
+
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.han
+msgid "Xìan"
+msgstr "縣"
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""

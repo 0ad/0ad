@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-04 08:09+0000\n"
-"PO-Revision-Date: 2022-03-04 22:04+0000\n"
+"POT-Creation-Date: 2022-03-07 08:09+0000\n"
+"PO-Revision-Date: 2022-03-09 15:17+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -473,9 +473,9 @@ msgstr "Guānliáo"
 #: simulation/data/technologies/civil_service_01.jsontooltip
 #: simulation/data/technologies/civil_service_02.jsontooltip
 msgid ""
-"Technologies at all buildings, except the Blacksmith, -15% cost and -15% "
-"research time."
-msgstr "Téchnicæs in todolos edificios, menus la Frawa: costu −15% & tiempu de disinvolvemiento −15%."
+"Technologies at all buildings, except the Forge, -15% cost and -15% research"
+" time."
+msgstr "Téchnicæs de todolos edificios menus la Frawa: costu −15% & tiempu de disinvolvemiento −15%."
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
 msgid "Civil Service - Level 2"
@@ -554,7 +554,7 @@ msgstr "Pisqueiros: velocidá d’obtençon de piscau +30%."
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
-msgstr "Læs unidades convalescen al star abelhogadæs."
+msgstr "Læs unidades convalescen al star abellugadæs."
 
 #: simulation/data/technologies/garrison_heal.jsongenericName
 msgid "Living Conditions"
@@ -1084,7 +1084,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Abançar a la “Phase urbana”, que dispieslla mas entes & téchnicæs. Foros: influencia næs lhindes territoriales +50%. Construcçones: rhythmu de reappropriaçon per unidá abelhogada +9. Obreiros: rhythmu d’extracçon de metal +10%."
+msgstr "Abançar a la “Phase urbana”, que dispieslla mas entes & téchnicæs. Foros: influencia næs lhindes territoriales +50%. Construcçones: rhythmu de reappropriaçon per unidá abellugada +9. Obreiros: rhythmu d’extracçon de metal +10%."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1092,12 +1092,16 @@ msgid ""
 " of modern technology."
 msgstr "Passa d’un óppido bulhindiego a una urbe de verdá, tyena de læs marabiyyæs de la technologíæ moderna."
 
+#: simulation/data/technologies/phase_city_generic.jsonspecificName.han
+msgid "Jùn"
+msgstr "Jùn"
+
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "Abançar a la “Phase urbana”, que dispieslla mas entes & téchnicæs. Foros: influencia næs lhindes territoriales +50%. Construcçones: rhythmu de reappropriaçon per unidá abelhogada +9."
+msgstr "Abançar a la “Phase urbana”, que dispieslla mas entes & téchnicæs. Foros: influencia næs lhindes territoriales +50%. Construcçones: rhythmu de reappropriaçon per unidá abellugada +9."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1136,19 +1140,23 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Abançar a la “Phase oppidana”, que dispieslla mas entes & téchnicæs. Foros: influencia næs lhindes territoriales +30%. Construcçones: rhythmu de reappropriaçon per unidá abelhogada +7. Obreiros: rhythmu d’extracçon de metal +10%."
+msgstr "Abançar a la “Phase oppidana”, que dispieslla mas entes & téchnicæs. Foros: influencia næs lhindes territoriales +30%. Construcçones: rhythmu de reappropriaçon per unidá abellugada +7. Obreiros: rhythmu d’extracçon de metal +10%."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
 msgstr "Passa d’un humilde vicu a un óppido bulhindiego & creciente."
 
+#: simulation/data/technologies/phase_town_generic.jsonspecificName.han
+msgid "Xìan"
+msgstr "Xìan"
+
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
-msgstr "Abançar a la “Phase oppidana”, que dispieslla mas entes & téchnicæs. Foros: influencia næs lhindes territoriales +30%. Construcçones: rhythmu de reappropriaçon per unidá abelhogada +7."
+msgstr "Abançar a la “Phase oppidana”, que dispieslla mas entes & téchnicæs. Foros: influencia næs lhindes territoriales +30%. Construcçones: rhythmu de reappropriaçon per unidá abellugada +7."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1581,7 +1589,7 @@ msgstr "Coronamiento"
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
-msgstr "Vigïlarios & Torres de piedra: sayetæs por Mílite abelhogau +40%."
+msgstr "Vigïlarios & Torres de piedra: sayetæs por Mílite abellugau +40%."
 
 #: simulation/data/technologies/tower_health.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
