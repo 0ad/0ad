@@ -28,6 +28,8 @@
 #include "maths/Vector3D.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
+#include "ps/Profile.h"
+#include "ps/XML/Xeromyces.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/Renderer.h"
 
@@ -81,6 +83,33 @@ GLenum GLTypeFromFormat(const Renderer::Backend::Format format)
 	else
 		debug_warn("Unsupported format.");
 	return type;
+}
+
+GLenum ParseAttribSemantics(const CStr& str)
+{
+	// Map known semantics onto the attribute locations documented by NVIDIA
+	if (str == "gl_Vertex") return 0;
+	if (str == "gl_Normal") return 2;
+	if (str == "gl_Color") return 3;
+	if (str == "gl_SecondaryColor") return 4;
+	if (str == "gl_FogCoord") return 5;
+	if (str == "gl_MultiTexCoord0") return 8;
+	if (str == "gl_MultiTexCoord1") return 9;
+	if (str == "gl_MultiTexCoord2") return 10;
+	if (str == "gl_MultiTexCoord3") return 11;
+	if (str == "gl_MultiTexCoord4") return 12;
+	if (str == "gl_MultiTexCoord5") return 13;
+	if (str == "gl_MultiTexCoord6") return 14;
+	if (str == "gl_MultiTexCoord7") return 15;
+
+	// Define some arbitrary names for user-defined attribute locations
+	// that won't conflict with any standard semantics
+	if (str == "CustomAttribute0") return 1;
+	if (str == "CustomAttribute1") return 6;
+	if (str == "CustomAttribute2") return 7;
+
+	debug_warn("Invalid attribute semantics");
+	return 0;
 }
 
 } // anonymous namespace
@@ -720,32 +749,190 @@ CShaderProgram::CShaderProgram(int streamflags)
 {
 }
 
+// static
+CShaderProgramPtr CShaderProgram::Create(const char* name, const CShaderDefines& baseDefines)
+{
+	PROFILE2("loading shader");
+	PROFILE2_ATTR("name: %s", name);
+
+	VfsPath xmlFilename = L"shaders/" + wstring_from_utf8(name) + L".xml";
+
+	CXeromyces XeroFile;
+	PSRETURN ret = XeroFile.Load(g_VFS, xmlFilename);
+	if (ret != PSRETURN_OK)
+		return nullptr;
+
+#if USE_SHADER_XML_VALIDATION
+	{
+		TIMER_ACCRUE(tc_ShaderValidation);
+
+		// Serialize the XMB data and pass it to the validator
+		XMLWriter_File shaderFile;
+		shaderFile.SetPrettyPrint(false);
+		shaderFile.XMB(XeroFile);
+		bool ok = CXeromyces::ValidateEncoded("shader", name, shaderFile.GetOutput());
+		if (!ok)
+			return nullptr;
+	}
+#endif
+
+	// Define all the elements and attributes used in the XML file
+#define EL(x) int el_##x = XeroFile.GetElementID(#x)
+#define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
+	EL(attrib);
+	EL(define);
+	EL(fragment);
+	EL(stream);
+	EL(uniform);
+	EL(vertex);
+	AT(file);
+	AT(if);
+	AT(loc);
+	AT(name);
+	AT(semantics);
+	AT(type);
+	AT(value);
+#undef AT
+#undef EL
+
+	CPreprocessorWrapper preprocessor;
+	preprocessor.AddDefines(baseDefines);
+
+	XMBElement root = XeroFile.GetRoot();
+
+	VfsPath vertexFile;
+	VfsPath fragmentFile;
+	CShaderDefines defines = baseDefines;
+	std::map<CStrIntern, int> vertexUniforms;
+	std::map<CStrIntern, CShaderProgram::frag_index_pair_t> fragmentUniforms;
+	std::map<CStrIntern, int> vertexAttribs;
+	int streamFlags = 0;
+
+	XERO_ITER_EL(root, Child)
+	{
+		if (Child.GetNodeName() == el_define)
+		{
+			defines.Add(CStrIntern(Child.GetAttributes().GetNamedItem(at_name)), CStrIntern(Child.GetAttributes().GetNamedItem(at_value)));
+		}
+		else if (Child.GetNodeName() == el_vertex)
+		{
+			vertexFile = L"shaders/" + Child.GetAttributes().GetNamedItem(at_file).FromUTF8();
+
+			XERO_ITER_EL(Child, Param)
+			{
+				XMBAttributeList Attrs = Param.GetAttributes();
+
+				CStr cond = Attrs.GetNamedItem(at_if);
+				if (!cond.empty() && !preprocessor.TestConditional(cond))
+					continue;
+
+				if (Param.GetNodeName() == el_uniform)
+				{
+					vertexUniforms[CStrIntern(Attrs.GetNamedItem(at_name))] = Attrs.GetNamedItem(at_loc).ToInt();
+				}
+				else if (Param.GetNodeName() == el_stream)
+				{
+					CStr StreamName = Attrs.GetNamedItem(at_name);
+					if (StreamName == "pos")
+						streamFlags |= STREAM_POS;
+					else if (StreamName == "normal")
+						streamFlags |= STREAM_NORMAL;
+					else if (StreamName == "color")
+						streamFlags |= STREAM_COLOR;
+					else if (StreamName == "uv0")
+						streamFlags |= STREAM_UV0;
+					else if (StreamName == "uv1")
+						streamFlags |= STREAM_UV1;
+					else if (StreamName == "uv2")
+						streamFlags |= STREAM_UV2;
+					else if (StreamName == "uv3")
+						streamFlags |= STREAM_UV3;
+				}
+				else if (Param.GetNodeName() == el_attrib)
+				{
+					int attribLoc = ParseAttribSemantics(Attrs.GetNamedItem(at_semantics));
+					vertexAttribs[CStrIntern(Attrs.GetNamedItem(at_name))] = attribLoc;
+				}
+			}
+		}
+		else if (Child.GetNodeName() == el_fragment)
+		{
+			fragmentFile = L"shaders/" + Child.GetAttributes().GetNamedItem(at_file).FromUTF8();
+
+			XERO_ITER_EL(Child, Param)
+			{
+				XMBAttributeList Attrs = Param.GetAttributes();
+
+				CStr cond = Attrs.GetNamedItem(at_if);
+				if (!cond.empty() && !preprocessor.TestConditional(cond))
+					continue;
+
+				if (Param.GetNodeName() == el_uniform)
+				{
+					// A somewhat incomplete listing, missing "shadow" and "rect" versions
+					// which are interpreted as 2D (NB: our shadowmaps may change
+					// type based on user config).
+					GLenum type = GL_TEXTURE_2D;
+					CStr t = Attrs.GetNamedItem(at_type);
+					if (t == "sampler1D")
 #if CONFIG2_GLES
-/*static*/ CShaderProgram* CShaderProgram::ConstructARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
+						debug_warn(L"sampler1D not implemented on GLES");
+#else
+						type = GL_TEXTURE_1D;
+#endif
+					else if (t == "sampler2D")
+						type = GL_TEXTURE_2D;
+					else if (t == "sampler3D")
+#if CONFIG2_GLES
+						debug_warn(L"sampler3D not implemented on GLES");
+#else
+						type = GL_TEXTURE_3D;
+#endif
+					else if (t == "samplerCube")
+						type = GL_TEXTURE_CUBE_MAP;
+
+					fragmentUniforms[CStrIntern(Attrs.GetNamedItem(at_name))] =
+						std::make_pair(Attrs.GetNamedItem(at_loc).ToInt(), type);
+				}
+			}
+		}
+	}
+
+	if (root.GetAttributes().GetNamedItem(at_type) == "glsl")
+		return CShaderProgram::ConstructGLSL(vertexFile, fragmentFile, defines, vertexAttribs, streamFlags);
+	else
+		return CShaderProgram::ConstructARB(vertexFile, fragmentFile, defines, vertexUniforms, fragmentUniforms, streamFlags);
+}
+
+#if CONFIG2_GLES
+// static
+CShaderProgramPtr CShaderProgram::ConstructARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 	const CShaderDefines& UNUSED(defines),
 	const std::map<CStrIntern, int>& UNUSED(vertexIndexes), const std::map<CStrIntern, frag_index_pair_t>& UNUSED(fragmentIndexes),
 	int UNUSED(streamflags))
 {
 	LOGERROR("CShaderProgram::ConstructARB: '%s'+'%s': ARB shaders not supported on this device",
 		vertexFile.string8(), fragmentFile.string8());
-	return NULL;
+	return nullptr;
 }
 #else
-/*static*/ CShaderProgram* CShaderProgram::ConstructARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
+// static
+CShaderProgramPtr CShaderProgram::ConstructARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 	const CShaderDefines& defines,
 	const std::map<CStrIntern, int>& vertexIndexes, const std::map<CStrIntern, frag_index_pair_t>& fragmentIndexes,
 	int streamflags)
 {
-	return new CShaderProgramARB(vertexFile, fragmentFile, defines, vertexIndexes, fragmentIndexes, streamflags);
+	return std::make_shared<CShaderProgramARB>(vertexFile, fragmentFile, defines, vertexIndexes, fragmentIndexes, streamflags);
 }
 #endif
 
-/*static*/ CShaderProgram* CShaderProgram::ConstructGLSL(const VfsPath& vertexFile, const VfsPath& fragmentFile,
+// static
+CShaderProgramPtr CShaderProgram::ConstructGLSL(const VfsPath& vertexFile, const VfsPath& fragmentFile,
 	const CShaderDefines& defines,
 	const std::map<CStrIntern, int>& vertexAttribs,
 	int streamflags)
 {
-	return new CShaderProgramGLSL(vertexFile, fragmentFile, defines, vertexAttribs, streamflags);
+	return std::make_shared<CShaderProgramGLSL>(vertexFile, fragmentFile, defines, vertexAttribs, streamflags);
 }
 
 int CShaderProgram::GetStreamFlags() const
