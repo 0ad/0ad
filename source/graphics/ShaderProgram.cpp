@@ -102,12 +102,6 @@ GLenum ParseAttribSemantics(const CStr& str)
 	if (str == "gl_MultiTexCoord6") return 14;
 	if (str == "gl_MultiTexCoord7") return 15;
 
-	// Define some arbitrary names for user-defined attribute locations
-	// that won't conflict with any standard semantics
-	if (str == "CustomAttribute0") return 1;
-	if (str == "CustomAttribute1") return 6;
-	if (str == "CustomAttribute2") return 7;
-
 	debug_warn("Invalid attribute semantics");
 	return 0;
 }

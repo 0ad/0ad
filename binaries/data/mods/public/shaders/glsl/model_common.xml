@@ -10,9 +10,9 @@
         <attrib name="a_normal" semantics="gl_Normal"/>
         <attrib name="a_uv0" semantics="gl_MultiTexCoord0"/>
 	<attrib name="a_uv1" semantics="gl_MultiTexCoord1" if="USE_AO"/>
-        <attrib name="a_skinJoints" semantics="CustomAttribute0" if="USE_GPU_SKINNING"/>
-        <attrib name="a_skinWeights" semantics="CustomAttribute1" if="USE_GPU_SKINNING"/>
-	<attrib name="a_tangent" semantics="CustomAttribute2" if="USE_INSTANCING || USE_GPU_SKINNING"/>
+        <attrib name="a_skinJoints" semantics="gl_MultiTexCoord4" if="USE_GPU_SKINNING"/>
+        <attrib name="a_skinWeights" semantics="gl_MultiTexCoord5" if="USE_GPU_SKINNING"/>
+	<attrib name="a_tangent" semantics="gl_MultiTexCoord6" if="USE_INSTANCING || USE_GPU_SKINNING"/>
     </vertex>
 
     <fragment file="glsl/model_common.fs"/>

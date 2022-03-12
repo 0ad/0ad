@@ -37,7 +37,7 @@
                         </zeroOrMore>
                     </element>
                 </group>
-                
+
                 <group>
                     <attribute name="type">
                         <value>glsl</value>
@@ -65,9 +65,6 @@
                                             <value>gl_MultiTexCoord5</value>
                                             <value>gl_MultiTexCoord6</value>
                                             <value>gl_MultiTexCoord7</value>
-                                            <value>CustomAttribute0</value>
-                                            <value>CustomAttribute1</value>
-                                            <value>CustomAttribute2</value>
                                         </choice>
                                     </attribute>
                                 </element>
