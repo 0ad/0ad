@@ -289,6 +289,14 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 
 	glEnable(GL_TEXTURE_2D);
 
+	if (arb)
+	{
+#if !CONFIG2_GLES
+		glEnable(GL_VERTEX_PROGRAM_ARB);
+		glEnable(GL_FRAGMENT_PROGRAM_ARB);
+#endif
+	}
+
 	device->m_Backbuffer = CFramebuffer::CreateBackbuffer(device.get());
 
 	Capabilities& capabilities = device->m_Capabilities;

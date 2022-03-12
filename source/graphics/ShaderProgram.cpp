@@ -198,8 +198,6 @@ public:
 
 	void Bind() override
 	{
-		glEnable(GL_VERTEX_PROGRAM_ARB);
-		glEnable(GL_FRAGMENT_PROGRAM_ARB);
 		glBindProgramARB(GL_VERTEX_PROGRAM_ARB, m_VertexProgram);
 		glBindProgramARB(GL_FRAGMENT_PROGRAM_ARB, m_FragmentProgram);
 
@@ -208,8 +206,6 @@ public:
 
 	void Unbind() override
 	{
-		glDisable(GL_VERTEX_PROGRAM_ARB);
-		glDisable(GL_FRAGMENT_PROGRAM_ARB);
 		glBindProgramARB(GL_VERTEX_PROGRAM_ARB, 0);
 		glBindProgramARB(GL_FRAGMENT_PROGRAM_ARB, 0);
 
