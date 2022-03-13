@@ -3,9 +3,7 @@
   <BuildRestrictions>
     <Category>Academy</Category>
   </BuildRestrictions>
-  <Capturable>
-    <CapturePoints op="mul">3.0</CapturePoints>
-  </Capturable>
+  <Capturable disable=""/>
   <Cost>
     <BuildTime>200</BuildTime>
     <Resources>
@@ -22,7 +20,7 @@
     <List datatype="tokens">Minister</List>
   </GarrisonHolder>
   <Health>
-    <Max>2500</Max>
+    <Max>2000</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_5x5</SpawnEntityOnDeath>
   </Health>
   <Identity>
@@ -62,21 +60,13 @@
       -units/{civ}/infantry_javelineer_b
       -units/{civ}/infantry_slinger_b
       -units/{civ}/infantry_archer_b
-      units/{civ}/champion_infantry_spearman
-      units/{civ}/champion_infantry_pikeman
-      units/{civ}/champion_infantry_maceman
-      units/{civ}/champion_infantry_axeman
-      units/{civ}/champion_infantry_swordsman
-      units/{civ}/champion_infantry_javelineer
-      units/{civ}/champion_infantry_slinger
-      units/{civ}/champion_infantry_archer
-      units/{civ}/champion_cavalry
-      units/{civ}/champion_cavalry_spearman
-      units/{civ}/champion_cavalry_swordsman
-      units/{civ}/champion_cavalry_javelineer
-      units/{civ}/champion_cavalry_archer
-      units/{civ}/champion_chariot
-      units/{civ}/war_dog
+      units/{civ}/champion_infantry_spearman_academy
+      units/{civ}/champion_infantry_archer_academy
+      units/{civ}/champion_cavalry_spearman_academy
+      units/{civ}/champion_cavalry_crossbowman_academy
+      units/{civ}/champion_chariot_academy
+      -units/{civ}/champion_infantry_spearman
+      -units/{civ}/champion_infantry_archer
     </Entities>
   </Trainer>
   <VisualActor>
