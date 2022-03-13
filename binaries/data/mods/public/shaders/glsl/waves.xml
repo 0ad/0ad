@@ -5,9 +5,9 @@
         <stream name="pos"/>
         <stream name="uv0"/>
         <attrib name="a_basePosition" semantics="gl_Vertex"/>
-        <attrib name="a_apexPosition" semantics="CustomAttribute0"/>
-		<attrib name="a_splashPosition" semantics="CustomAttribute1"/>
-		<attrib name="a_retreatPosition" semantics="CustomAttribute2"/>
+        <attrib name="a_apexPosition" semantics="gl_MultiTexCoord4"/>
+		<attrib name="a_splashPosition" semantics="gl_MultiTexCoord5"/>
+		<attrib name="a_retreatPosition" semantics="gl_MultiTexCoord6"/>
         <attrib name="a_normal" semantics="gl_Normal"/>
 		<attrib name="a_uv0" semantics="gl_MultiTexCoord0"/>
    </vertex>

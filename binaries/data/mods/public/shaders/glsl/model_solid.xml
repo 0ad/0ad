@@ -4,8 +4,8 @@
     <vertex file="glsl/model_common.vs">
         <stream name="pos"/>
         <attrib name="a_vertex" semantics="gl_Vertex"/>
-        <attrib name="a_skinJoints" semantics="CustomAttribute0" if="USE_GPU_SKINNING"/>
-        <attrib name="a_skinWeights" semantics="CustomAttribute1" if="USE_GPU_SKINNING"/>
+        <attrib name="a_skinJoints" semantics="gl_MultiTexCoord4" if="USE_GPU_SKINNING"/>
+        <attrib name="a_skinWeights" semantics="gl_MultiTexCoord5" if="USE_GPU_SKINNING"/>
     </vertex>
 
     <fragment file="glsl/solid.fs"/>

@@ -4,7 +4,7 @@
     <vertex file="glsl/water_high.vs">
         <stream name="pos"/>
         <attrib name="a_vertex" semantics="gl_Vertex"/>
-        <attrib name="a_waterInfo" semantics="CustomAttribute0"/>
+        <attrib name="a_waterInfo" semantics="gl_MultiTexCoord4"/>
     </vertex>
 
     <fragment file="glsl/water_high.fs"/>

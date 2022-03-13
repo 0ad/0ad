@@ -69,21 +69,7 @@ public:
 	typedef CStrIntern uniform_id_t;
 	typedef std::pair<int, GLenum> frag_index_pair_t;
 
-	/**
-	 * Construct based on ARB vertex/fragment program files.
-	 */
-	static CShaderProgram* ConstructARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
-		const CShaderDefines& defines,
-		const std::map<CStrIntern, int>& vertexIndexes, const std::map<CStrIntern, frag_index_pair_t>& fragmentIndexes,
-		int streamflags);
-
-	/**
-	 * Construct based on GLSL vertex/fragment shader files.
-	 */
-	static CShaderProgram* ConstructGLSL(const VfsPath& vertexFile, const VfsPath& fragmentFile,
-		const CShaderDefines& defines,
-		const std::map<CStrIntern, int>& vertexAttribs,
-		int streamflags);
+	static CShaderProgramPtr Create(const char* name, const CShaderDefines& baseDefines);
 
 	/**
 	 * Represents a uniform attribute or texture binding.
@@ -181,6 +167,22 @@ public:
 
 protected:
 	CShaderProgram(int streamflags);
+
+	/**
+	 * Construct based on ARB vertex/fragment program files.
+	 */
+	static CShaderProgramPtr ConstructARB(const VfsPath& vertexFile, const VfsPath& fragmentFile,
+		const CShaderDefines& defines,
+		const std::map<CStrIntern, int>& vertexIndexes, const std::map<CStrIntern, frag_index_pair_t>& fragmentIndexes,
+		int streamflags);
+
+	/**
+	 * Construct based on GLSL vertex/fragment shader files.
+	 */
+	static CShaderProgramPtr ConstructGLSL(const VfsPath& vertexFile, const VfsPath& fragmentFile,
+		const CShaderDefines& defines,
+		const std::map<CStrIntern, int>& vertexAttribs,
+		int streamflags);
 
 	virtual void BindTexture(texture_id_t id, GLuint tex) = 0;
 	virtual void BindTexture(Binding id, GLuint tex) = 0;

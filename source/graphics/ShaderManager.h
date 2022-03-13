@@ -112,7 +112,6 @@ private:
 	 */
 	CShaderProgramPtr LoadProgram(const char* name, const CShaderDefines& defines);
 
-	bool NewProgram(const char* name, const CShaderDefines& defines, CShaderProgramPtr& program);
 	bool NewEffect(const char* name, const CShaderDefines& defines, CShaderTechniquePtr& tech);
 
 	static Status ReloadChangedFileCB(void* param, const VfsPath& path);
