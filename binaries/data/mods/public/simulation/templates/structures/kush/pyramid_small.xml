@@ -3,14 +3,11 @@
   <Auras datatype="tokens">
     structures/kush_pyramids_economic
   </Auras>
-  <BuildRestrictions>
-    <Category>PyramidSmall</Category>
-  </BuildRestrictions>
   <Cost>
-    <BuildTime>200</BuildTime>
+    <BuildTime>120</BuildTime>
     <Resources>
-      <stone>300</stone>
-      <metal>100</metal>
+      <stone>150</stone>
+      <metal>75</metal>
     </Resources>
   </Cost>
   <Footprint>
@@ -26,13 +23,13 @@
     <GenericName>Small Pyramid</GenericName>
     <SpecificName>mr</SpecificName>
     <Classes datatype="tokens">-ConquestCritical CivSpecific</Classes>
-    <VisibleClasses datatype="tokens">Town Pyramid</VisibleClasses>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <VisibleClasses datatype="tokens">Village Pyramid</VisibleClasses>
+    <RequiredTechnology>phase_village</RequiredTechnology>
     <Icon>structures/kush_pyramid_small.png</Icon>
   </Identity>
   <Loot>
-    <stone>60</stone>
-    <metal>20</metal>
+    <stone>30</stone>
+    <metal>15</metal>
   </Loot>
   <Obstruction>
     <Static width="16.0" depth="16.0"/>
