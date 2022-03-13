@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="structures/han/civil_centre">
+  <BuildRestrictions>
+    <Category>ImperialCourt</Category>
+  </BuildRestrictions>
   <Capturable>
     <CapturePoints op="mul">1.5</CapturePoints>
   </Capturable>
   <GarrisonHolder>
-    <Max op="mul">2</Max>
+    <Max op="mul">1.5</Max>
   </GarrisonHolder>
   <Health>
     <Max op="mul">1.5</Max>
@@ -14,7 +17,7 @@
     <GenericName>Imperial Court</GenericName>
     <SpecificName>Cháotíng</SpecificName>
     <VisibleClasses datatype="tokens">Defensive ImperialCourt City</VisibleClasses>
-    <Classes datatype="tokens">CivCentre ImperialCourt CivSpecific</Classes>
+    <Classes datatype="tokens">CivCentre CivSpecific</Classes>
     <RequiredTechnology>phase_city</RequiredTechnology>
     <Icon>structures/military_settlement.png</Icon>
   </Identity>
@@ -27,15 +30,11 @@
     </Technologies>
   </Researcher>
   <Trainer>
+    <BatchTimeModifier op="mul">0.5</BatchTimeModifier>
     <Entities datatype="tokens">
-      units/{civ}/champion_infantry_archer
-      units/{civ}/champion_infantry_swordsman
       units/{civ}/hero_han_xin_horse
       units/{civ}/hero_liu_bang_horse
       units/{civ}/hero_wei_qing_chariot
-      -units/{civ}/infantry_spearman_b
-      -units/{civ}/infantry_archer_b
-      -units/{civ}/cavalry_swordsman_b
     </Entities>
   </Trainer>
   <Upgrade disable=""/>
