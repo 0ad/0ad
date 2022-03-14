@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -201,7 +201,8 @@ bool CNetClient::SetupConnection(ENetHost* enetClient)
 	CNetClientSession* session = new CNetClientSession(*this);
 	bool ok = session->Connect(m_ServerAddress, m_ServerPort, enetClient);
 	SetAndOwnSession(session);
-	m_PollingThread = std::thread(Threading::HandleExceptions<CNetClientSession::RunNetLoop>::Wrapper, m_Session);
+	if (ok)
+		m_PollingThread = std::thread(Threading::HandleExceptions<CNetClientSession::RunNetLoop>::Wrapper, m_Session);
 	return ok;
 }
 
