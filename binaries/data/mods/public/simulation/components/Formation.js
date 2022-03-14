@@ -510,30 +510,31 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force, varia
 		positions.push(cmpPosition.GetPosition2D());
 	}
 
-	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	const cmpFormationUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	const cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	// Reposition the formation if we're told to or if we don't already have a position.
-	if (moveCenter || (cmpPosition && !cmpPosition.IsInWorld()))
+	if (cmpPosition && (moveCenter || !cmpPosition.IsInWorld()))
 	{
-		const oldRotation = cmpPosition.GetRotation().y;
 		const avgpos = Vector2D.average(positions);
-
-		// Switch between column and box if necessary.
-		const cmpFormationUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
-		const columnar = cmpFormationUnitAI.ComputeWalkingDistance() > g_ColumnDistanceThreshold;
-		if (columnar != this.columnar)
-		{
-			this.columnar = columnar;
-			this.offsets = undefined;
-		}
-
-		let newRotation = oldRotation;
 		const targetPosition = cmpFormationUnitAI.GetTargetPositions()[0];
-		if (targetPosition !== undefined && avgpos.distanceToSquared(targetPosition) > g_RotateDistanceThreshold)
-			newRotation = avgpos.angleTo(targetPosition);
 
-		cmpPosition.TurnTo(newRotation);
-		if (!this.areAnglesSimilar(newRotation, oldRotation))
+		const oldRotation = cmpPosition.GetRotation().y;
+		const newRotation = targetPosition !== undefined && avgpos.distanceToSquared(targetPosition) > g_RotateDistanceThreshold ? avgpos.angleTo(targetPosition) : oldRotation;
+
+		// When we are out of world or the angle difference is big, trigger repositioning.
+		// Do this before setting up the position, because then we will always be in world.
+		if (!cmpPosition.IsInWorld() || !this.AreAnglesSimilar(newRotation, oldRotation))
 			this.offsets = undefined;
+
+		this.SetupPositionAndHandleRotation(avgpos.x, avgpos.y, newRotation, true);
+	}
+
+	// Switch between column and box if necessary.
+	const columnar = cmpFormationUnitAI.ComputeWalkingDistance() > g_ColumnDistanceThreshold;
+	if (columnar != this.columnar)
+	{
+		this.columnar = columnar;
+		this.offsets = undefined;
 	}
 
 	this.lastOrderVariant = variant;
@@ -599,27 +600,28 @@ Formation.prototype.MoveToMembersCenter = function()
 	}
 
 	let avgpos = Vector2D.average(positions);
-	this.SetupPositionAndHandleRotation(avgpos.x, avgpos.y, rotations / positions.length);
+	this.SetupPositionAndHandleRotation(avgpos.x, avgpos.y, rotations / positions.length, false);
 };
 
 /**
-* Set formation position.
-* If formation is not in world at time this is called, set new rotation and flag for range manager.
-*/
-Formation.prototype.SetupPositionAndHandleRotation = function(x, y, rot)
+ * Set formation position.
+ * If formation is not in world at time this is called, set new rotation and flag
+ * for rangeManager. Also set the rotation if it is forced.
+ */
+Formation.prototype.SetupPositionAndHandleRotation = function(x, y, rot, forceRotation)
 {
-	let cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	const cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	if (!cmpPosition)
 		return;
-	let wasInWorld = cmpPosition.IsInWorld();
+	const wasInWorld = cmpPosition.IsInWorld();
 	cmpPosition.JumpTo(x, y);
 
-	if (wasInWorld)
+	if (!forceRotation && wasInWorld)
 		return;
 
-	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	cmpRangeManager.SetEntityFlag(this.entity, "normal", false);
 	cmpPosition.TurnTo(rot);
+	if (!wasInWorld)
+		Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).SetEntityFlag(this.entity, "normal", false);
 };
 
 Formation.prototype.GetAvgFootprint = function(active)
@@ -888,7 +890,7 @@ Formation.prototype.GetRealOffsetPositions = function(offsets)
  * the formation turn without reassigning positions.
  */
 
-Formation.prototype.areAnglesSimilar = function(a1, a2)
+Formation.prototype.AreAnglesSimilar = function(a1, a2)
 {
 	const d = Math.abs(a1 - a2) % 2 * Math.PI;
 	return d < this.maxTurningAngle || d > 2 * Math.PI - this.maxTurningAngle;
