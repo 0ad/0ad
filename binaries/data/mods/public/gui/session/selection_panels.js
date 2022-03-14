@@ -725,7 +725,7 @@ g_SelectionPanels.Research = {
 			}
 
 			for (let res in template.cost)
-				template.cost[res] *= (data.item.techCostMultiplier[res] || 1);
+				template.cost[res] *= data.item.techCostMultiplier[res] !== undefined ? data.item.techCostMultiplier[res] : 1;
 
 			let neededResources = Engine.GuiInterfaceCall("GetNeededResources", {
 				"cost": template.cost,

@@ -33,7 +33,16 @@
 #include "renderer/backend/gl/DeviceCommandContext.h"
 #include "renderer/Renderer.h"
 
+#define USE_SHADER_XML_VALIDATION 1
+
+#if USE_SHADER_XML_VALIDATION
+#include "ps/XML/RelaxNG.h"
+#include "ps/XML/XMLWriter.h"
+#endif
+
 #include <algorithm>
+
+TIMER_ADD_CLIENT(tc_ShaderProgramValidation);
 
 namespace
 {
@@ -754,7 +763,7 @@ CShaderProgramPtr CShaderProgram::Create(const char* name, const CShaderDefines&
 
 #if USE_SHADER_XML_VALIDATION
 	{
-		TIMER_ACCRUE(tc_ShaderValidation);
+		TIMER_ACCRUE(tc_ShaderProgramValidation);
 
 		// Serialize the XMB data and pass it to the validator
 		XMLWriter_File shaderFile;

@@ -38,7 +38,8 @@
 #define USE_SHADER_XML_VALIDATION 1
 
 #if USE_SHADER_XML_VALIDATION
-# include "ps/XML/RelaxNG.h"
+#include "ps/XML/RelaxNG.h"
+#include "ps/XML/XMLWriter.h"
 #endif
 
 #include <vector>
