@@ -130,7 +130,7 @@ public:
 	 */
 	void CachePlayerColors();
 
-	CColor GetPlayerColor(player_id_t player) const;
+	const CColor& GetPlayerColor(player_id_t player) const;
 
 	/**
 	 * Get m_GameStarted.

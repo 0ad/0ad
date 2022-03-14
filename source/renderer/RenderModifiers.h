@@ -29,6 +29,7 @@
 #define INCLUDED_RENDERMODIFIERS
 
 #include "ModelRenderer.h"
+#include "graphics/Color.h"
 #include "graphics/ShaderProgram.h"
 #include "graphics/ShaderTechnique.h"
 #include "graphics/Texture.h"
@@ -128,6 +129,8 @@ private:
 	Renderer::Backend::GL::CShaderProgram::Binding m_BindingInstancingTransform;
 	Renderer::Backend::GL::CShaderProgram::Binding m_BindingShadingColor;
 	Renderer::Backend::GL::CShaderProgram::Binding m_BindingPlayerColor;
+
+	CColor m_ShadingColor, m_PlayerColor;
 };
 
 #endif // INCLUDED_RENDERMODIFIERS

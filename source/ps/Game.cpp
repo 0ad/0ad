@@ -447,8 +447,7 @@ void CGame::CachePlayerColors()
 	}
 }
 
-
-CColor CGame::GetPlayerColor(player_id_t player) const
+const CColor& CGame::GetPlayerColor(player_id_t player) const
 {
 	if (player < 0 || player >= (int)m_PlayerColors.size())
 		return BrokenColor;

@@ -156,7 +156,7 @@ public:
 	virtual player_id_t GetPlayerID() const { return m_PlayerID; }
 
 	virtual void SetShadingColor(const CColor& color) { m_ShadingColor = color; }
-	virtual CColor GetShadingColor() const { return m_ShadingColor; }
+	virtual const CColor& GetShadingColor() const { return m_ShadingColor; }
 
 protected:
 	void CalcSelectionBox();
