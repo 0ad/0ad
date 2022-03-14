@@ -798,14 +798,16 @@ void WaterManager::RenderWaves(
 	if (!m_WaterFancyEffects)
 		return;
 
+	deviceCommandContext->SetGraphicsPipelineState(
+		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
 	deviceCommandContext->SetFramebuffer(m_FancyEffectsFramebuffer.get());
 	deviceCommandContext->ClearFramebuffer();
 
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_water_waves);
-	tech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(
 		tech->GetGraphicsPipelineStateDesc());
-	const CShaderProgramPtr& shader = tech->GetShader();
+	deviceCommandContext->BeginPass();
+	Renderer::Backend::GL::CShaderProgram* shader = tech->GetShader();
 
 	m_WaveTex->UploadBackendTextureIfNeeded(deviceCommandContext);
 	m_FoamTex->UploadBackendTextureIfNeeded(deviceCommandContext);
@@ -855,7 +857,7 @@ void WaterManager::RenderWaves(
 
 		CVertexBuffer::Unbind(deviceCommandContext);
 	}
-	tech->EndPass();
+	deviceCommandContext->EndPass();
 	deviceCommandContext->SetFramebuffer(
 		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 #endif

@@ -48,9 +48,9 @@ public:
 		int streamflags);
 	void PrepareModelDef(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CShaderProgramPtr& shader, int streamflags, const CModelDef& def);
+		Renderer::Backend::GL::CShaderProgram* shader, int streamflags, const CModelDef& def);
 	void RenderModel(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data);
+		Renderer::Backend::GL::CShaderProgram* shader, int streamflags, CModel* model, CModelRData* data);
 
 protected:
 	InstancingModelRendererInternals* m;

@@ -72,7 +72,7 @@ unsigned int ScaleColor(unsigned int color, float x)
 
 void DrawTexture(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CShaderProgramPtr& shader)
+	Renderer::Backend::GL::CShaderProgram* shader)
 {
 	const float quadUVs[] =
 	{
@@ -363,7 +363,7 @@ void CMiniMapTexture::RenderFinalTexture(
 	const float invTileMapSize = 1.0f / static_cast<float>(TERRAIN_TILE_SIZE * m_MapSize);
 	const float texCoordMax = m_TerrainTexture ? static_cast<float>(m_MapSize - 1) / m_TerrainTexture->GetWidth() : 1.0f;
 
-	CShaderProgramPtr shader;
+	Renderer::Backend::GL::CShaderProgram* shader;
 	CShaderTechniquePtr tech;
 
 	CShaderDefines baseDefines;
@@ -372,8 +372,8 @@ void CMiniMapTexture::RenderFinalTexture(
 	tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, baseDefines);
 	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
 		tech->GetGraphicsPipelineStateDesc();
-	tech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+	deviceCommandContext->BeginPass();
 	shader = tech->GetShader();
 
 	if (m_TerrainTexture)
@@ -392,6 +392,7 @@ void CMiniMapTexture::RenderFinalTexture(
 
 	if (m_TerrainTexture)
 		DrawTexture(deviceCommandContext, shader);
+	deviceCommandContext->EndPass();
 
 	pipelineStateDesc.blendState.enabled = true;
 	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
@@ -405,6 +406,7 @@ void CMiniMapTexture::RenderFinalTexture(
 		Renderer::Backend::ColorWriteMask::GREEN |
 		Renderer::Backend::ColorWriteMask::BLUE;
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+	deviceCommandContext->BeginPass();
 
 	// Draw territory boundaries
 	CTerritoryTexture& territoryTexture = g_Game->GetView()->GetTerritoryTexture();
@@ -414,11 +416,13 @@ void CMiniMapTexture::RenderFinalTexture(
 	shader->Uniform(str_textureTransform, territoryTexture.GetMinimapTextureMatrix());
 
 	DrawTexture(deviceCommandContext, shader);
+	deviceCommandContext->EndPass();
 
 	pipelineStateDesc.blendState.enabled = false;
 	pipelineStateDesc.blendState.colorWriteMask =
 		Renderer::Backend::ColorWriteMask::ALPHA;
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+	deviceCommandContext->BeginPass();
 
 	shader->BindTexture(str_baseTex, losTexture.GetTexture());
 	shader->Uniform(str_transform, baseTransform);
@@ -426,14 +430,14 @@ void CMiniMapTexture::RenderFinalTexture(
 
 	DrawTexture(deviceCommandContext, shader);
 
-	tech->EndPass();
+	deviceCommandContext->EndPass();
 
 	CShaderDefines pointDefines;
 	pointDefines.Add(str_MINIMAP_POINT, str_1);
 	tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, pointDefines);
-	tech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(
 		tech->GetGraphicsPipelineStateDesc());
+	deviceCommandContext->BeginPass();
 	shader = tech->GetShader();
 	shader->Uniform(str_transform, baseTransform);
 
@@ -581,7 +585,7 @@ void CMiniMapTexture::RenderFinalTexture(
 		deviceCommandContext->SetScissors(0, nullptr);
 	}
 
-	tech->EndPass();
+	deviceCommandContext->EndPass();
 	deviceCommandContext->SetFramebuffer(
 		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 	g_Renderer.SetViewport(oldViewPort);

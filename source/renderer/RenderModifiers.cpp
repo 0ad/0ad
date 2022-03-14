@@ -67,7 +67,7 @@ ShaderRenderModifier::ShaderRenderModifier()
 {
 }
 
-void ShaderRenderModifier::BeginPass(const CShaderProgramPtr& shader)
+void ShaderRenderModifier::BeginPass(Renderer::Backend::GL::CShaderProgram* shader)
 {
 	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	shader->Uniform(str_cameraPos, g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetTranslation());
@@ -98,7 +98,7 @@ void ShaderRenderModifier::BeginPass(const CShaderProgramPtr& shader)
 	m_BindingPlayerColor = shader->GetUniformBinding(str_playerColor);
 }
 
-void ShaderRenderModifier::PrepareModel(const CShaderProgramPtr& shader, CModel* model)
+void ShaderRenderModifier::PrepareModel(Renderer::Backend::GL::CShaderProgram* shader, CModel* model)
 {
 	if (m_BindingInstancingTransform.Active())
 		shader->Uniform(m_BindingInstancingTransform, model->GetTransform());

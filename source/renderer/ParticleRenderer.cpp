@@ -151,11 +151,13 @@ void ParticleRenderer::RenderParticles(
 		ENSURE(currentTech);
 		if (lastTech != currentTech)
 		{
+			if (lastTech)
+				deviceCommandContext->EndPass();
 			lastTech = currentTech;
-			lastTech->BeginPass();
 			deviceCommandContext->SetGraphicsPipelineState(lastTech->GetGraphicsPipelineStateDesc());
+			deviceCommandContext->BeginPass();
 
-			const CShaderProgramPtr& shader = lastTech->GetShader();
+			Renderer::Backend::GL::CShaderProgram* shader = lastTech->GetShader();
 			shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 			shader->Uniform(str_modelViewMatrix, g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetInverse());
 		}
@@ -164,7 +166,7 @@ void ParticleRenderer::RenderParticles(
 	}
 
 	if (lastTech)
-		lastTech->EndPass();
+		deviceCommandContext->EndPass();
 
 	CVertexBuffer::Unbind(deviceCommandContext);
 }

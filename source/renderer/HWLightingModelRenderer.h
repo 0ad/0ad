@@ -44,10 +44,10 @@ public:
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, int streamflags) override;
 	void PrepareModelDef(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CShaderProgramPtr& shader, int streamflags, const CModelDef& def) override;
+		Renderer::Backend::GL::CShaderProgram* shader, int streamflags, const CModelDef& def) override;
 	void RenderModel(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data) override;
+		Renderer::Backend::GL::CShaderProgram* shader, int streamflags, CModel* model, CModelRData* data) override;
 
 protected:
 	struct ShaderModelRendererInternals;

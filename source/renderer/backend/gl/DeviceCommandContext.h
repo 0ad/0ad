@@ -88,6 +88,9 @@ public:
 	void SetIndexBuffer(CBuffer* buffer);
 	void SetIndexBufferData(const void* data);
 
+	void BeginPass();
+	void EndPass();
+
 	void Draw(const uint32_t firstVertex, const uint32_t vertexCount);
 	void DrawIndexed(
 		const uint32_t firstIndex, const uint32_t indexCount, const int32_t vertexOffset);
@@ -129,6 +132,8 @@ private:
 
 	CBuffer* m_IndexBuffer = nullptr;
 	const void* m_IndexBufferData = nullptr;
+
+	bool m_InsidePass = false;
 
 	uint32_t m_ActiveTextureUnit = 0;
 	using BindUnit = std::pair<GLenum, GLuint>;

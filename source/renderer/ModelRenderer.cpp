@@ -606,8 +606,8 @@ void ShaderModelRenderer::Render(
 		// texBindings holds the identifier bindings in the shader, which can no longer be defined
 		// statically in the ShaderRenderModifier class. texBindingNames uses interned strings to
 		// keep track of when bindings need to be reevaluated.
-		using BindingListAllocator = ProxyAllocator<CShaderProgram::Binding, Arena>;
-		std::vector<CShaderProgram::Binding, BindingListAllocator> texBindings((BindingListAllocator(arena)));
+		using BindingListAllocator = ProxyAllocator<Renderer::Backend::GL::CShaderProgram::Binding, Arena>;
+		std::vector<Renderer::Backend::GL::CShaderProgram::Binding, BindingListAllocator> texBindings((BindingListAllocator(arena)));
 		texBindings.reserve(64);
 
 		using BindingNamesListAllocator = ProxyAllocator<CStrIntern, Arena>;
@@ -629,11 +629,11 @@ void ShaderModelRenderer::Render(
 			// For each of the technique's passes, render all the models in this run
 			for (int pass = 0; pass < currentTech->GetNumPasses(); ++pass)
 			{
-				currentTech->BeginPass(pass);
 				deviceCommandContext->SetGraphicsPipelineState(
 					currentTech->GetGraphicsPipelineStateDesc(pass));
+				deviceCommandContext->BeginPass();
 
-				const CShaderProgramPtr& shader = currentTech->GetShader(pass);
+				Renderer::Backend::GL::CShaderProgram* shader = currentTech->GetShader(pass);
 				int streamflags = shader->GetStreamFlags();
 
 				modifier->BeginPass(shader);
@@ -669,11 +669,11 @@ void ShaderModelRenderer::Render(
 						if (currentTexs.size() != samplersNum)
 						{
 							currentTexs.resize(samplersNum, NULL);
-							texBindings.resize(samplersNum, CShaderProgram::Binding());
+							texBindings.resize(samplersNum, Renderer::Backend::GL::CShaderProgram::Binding());
 							texBindingNames.resize(samplersNum, CStrIntern());
 
 							// ensure they are definitely empty
-							std::fill(texBindings.begin(), texBindings.end(), CShaderProgram::Binding());
+							std::fill(texBindings.begin(), texBindings.end(), Renderer::Backend::GL::CShaderProgram::Binding());
 							std::fill(currentTexs.begin(), currentTexs.end(), (CTexture*)NULL);
 							std::fill(texBindingNames.begin(), texBindingNames.end(), CStrIntern());
 						}
@@ -756,7 +756,7 @@ void ShaderModelRenderer::Render(
 
 				m->vertexRenderer->EndPass(deviceCommandContext, streamflags);
 
-				currentTech->EndPass(pass);
+				deviceCommandContext->EndPass();
 			}
 
 			idxTechStart = idxTechEnd;

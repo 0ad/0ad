@@ -21,6 +21,7 @@
 #include "renderer/backend/Format.h"
 #include "renderer/backend/gl/Buffer.h"
 #include "renderer/backend/gl/Framebuffer.h"
+#include "renderer/backend/gl/ShaderProgram.h"
 #include "renderer/backend/gl/Texture.h"
 #include "scriptinterface/ScriptForward.h"
 
@@ -97,6 +98,9 @@ public:
 
 	std::unique_ptr<CBuffer> CreateBuffer(
 		const char* name, const CBuffer::Type type, const uint32_t size, const bool dynamic);
+
+	std::unique_ptr<CShaderProgram> CreateShaderProgram(
+		const CStr& name, const CShaderDefines& defines);
 
 	void Present();
 

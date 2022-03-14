@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -60,7 +60,7 @@ public:
 	 * @return The streamflags that indicate which vertex components
 	 * are required by the fragment stages (see STREAM_XYZ constants).
 	 */
-	virtual void BeginPass(const CShaderProgramPtr& shader) = 0;
+	virtual void BeginPass(Renderer::Backend::GL::CShaderProgram* shader) = 0;
 
 	/**
 	 * PrepareModel: Called before rendering the given model.
@@ -70,7 +70,7 @@ public:
 	 * @param pass The current pass number (pass == 0 is the first pass)
 	 * @param model The model that is about to be rendered.
 	 */
-	virtual void PrepareModel(const CShaderProgramPtr& shader, CModel* model) = 0;
+	virtual void PrepareModel(Renderer::Backend::GL::CShaderProgram* shader, CModel* model) = 0;
 };
 
 
@@ -121,13 +121,13 @@ public:
 	ShaderRenderModifier();
 
 	// Implementation
-	void BeginPass(const CShaderProgramPtr& shader);
-	void PrepareModel(const CShaderProgramPtr& shader, CModel* model);
+	void BeginPass(Renderer::Backend::GL::CShaderProgram* shader);
+	void PrepareModel(Renderer::Backend::GL::CShaderProgram* shader, CModel* model);
 
 private:
-	CShaderProgram::Binding m_BindingInstancingTransform;
-	CShaderProgram::Binding m_BindingShadingColor;
-	CShaderProgram::Binding m_BindingPlayerColor;
+	Renderer::Backend::GL::CShaderProgram::Binding m_BindingInstancingTransform;
+	Renderer::Backend::GL::CShaderProgram::Binding m_BindingShadingColor;
+	Renderer::Backend::GL::CShaderProgram::Binding m_BindingPlayerColor;
 };
 
 #endif // INCLUDED_RENDERMODIFIERS

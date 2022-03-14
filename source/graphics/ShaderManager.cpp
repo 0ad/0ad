@@ -66,7 +66,7 @@ CShaderManager::~CShaderManager()
 	UnregisterFileReloadFunc(ReloadChangedFileCB, this);
 }
 
-CShaderProgramPtr CShaderManager::LoadProgram(const char* name, const CShaderDefines& defines)
+CShaderProgramPtr CShaderManager::LoadProgram(const CStr& name, const CShaderDefines& defines)
 {
 	CacheKey key = { name, defines };
 	std::map<CacheKey, CShaderProgramPtr>::iterator it = m_ProgramCache.find(key);
@@ -129,10 +129,10 @@ CShaderTechniquePtr CShaderManager::LoadEffect(CStrIntern name, const CShaderDef
 	return tech;
 }
 
-bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefines, CShaderTechniquePtr& tech)
+bool CShaderManager::NewEffect(const CStr& name, const CShaderDefines& baseDefines, CShaderTechniquePtr& tech)
 {
 	PROFILE2("loading effect");
-	PROFILE2_ATTR("name: %s", name);
+	PROFILE2_ATTR("name: %s", name.c_str());
 
 	VfsPath xmlFilename = L"shaders/effects/" + wstring_from_utf8(name) + L".xml";
 
@@ -256,7 +256,6 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 		{
 			CShaderDefines passDefines = techDefines;
 
-			CShaderPass pass;
 			Renderer::Backend::GraphicsPipelineStateDesc passPipelineStateDesc =
 				Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc();
 
@@ -393,12 +392,10 @@ bool CShaderManager::NewEffect(const char* name, const CShaderDefines& baseDefin
 				}
 			}
 
-			pass.SetPipelineStateDesc(passPipelineStateDesc);
-
-			// Load the shader program after we've read all the possibly-relevant <define>s
-			pass.SetShader(LoadProgram(Child.GetAttributes().GetNamedItem(at_shader).c_str(), passDefines));
-
-			techPasses.emplace_back(std::move(pass));
+			techPasses.emplace_back(
+				passPipelineStateDesc,
+				// Load the shader program after we've read all the possibly-relevant <define>s.
+				LoadProgram(Child.GetAttributes().GetNamedItem(at_shader).c_str(), passDefines));
 		}
 	}
 

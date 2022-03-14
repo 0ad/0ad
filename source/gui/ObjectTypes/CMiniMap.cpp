@@ -97,7 +97,7 @@ void CropPointsByCircle(const std::array<CVector3D, 4>& points, const CVector3D&
 
 void DrawTexture(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CShaderProgramPtr& shader, float angle, float x, float y, float x2, float y2, float mapScale)
+	Renderer::Backend::GL::CShaderProgram* shader, float angle, float x, float y, float x2, float y2, float mapScale)
 {
 	// Rotate the texture coordinates (0,0)-(coordMax,coordMax) around their center point (m,m)
 	// Scale square maps to fit in circular minimap area
@@ -409,7 +409,7 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 	CMiniMapTexture& miniMapTexture = g_Game->GetView()->GetMiniMapTexture();
 	if (miniMapTexture.GetTexture())
 	{
-		CShaderProgramPtr shader;
+		Renderer::Backend::GL::CShaderProgram* shader;
 		CShaderTechniquePtr tech;
 
 		CShaderDefines baseDefines;
@@ -425,10 +425,10 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 			Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
 		pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
 			Renderer::Backend::BlendOp::ADD;
-		tech->BeginPass();
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
 			g_Renderer.GetDeviceCommandContext();
 		deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+		deviceCommandContext->BeginPass();
 		shader = tech->GetShader();
 
 		shader->BindTexture(str_baseTex, miniMapTexture.GetTexture());
@@ -443,7 +443,7 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 		const float angle = GetAngle();
 		DrawTexture(deviceCommandContext, shader, angle, x, y, x2, y2, m_MapScale);
 
-		tech->EndPass();
+		deviceCommandContext->EndPass();
 	}
 
 	for (const CMiniMapTexture::Icon& icon : miniMapTexture.GetIcons())

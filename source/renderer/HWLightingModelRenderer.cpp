@@ -190,7 +190,7 @@ void ShaderModelVertexRenderer::EndPass(
 // Prepare UV coordinates for this modeldef
 void ShaderModelVertexRenderer::PrepareModelDef(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CShaderProgramPtr& shader, int streamflags, const CModelDef& def)
+	Renderer::Backend::GL::CShaderProgram* shader, int streamflags, const CModelDef& def)
 {
 	m->shadermodeldef = (ShaderModelDef*)def.GetRenderData(m);
 
@@ -218,7 +218,7 @@ void ShaderModelVertexRenderer::PrepareModelDef(
 // Render one model
 void ShaderModelVertexRenderer::RenderModel(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data)
+	Renderer::Backend::GL::CShaderProgram* shader, int streamflags, CModel* model, CModelRData* data)
 {
 	const CModelDefPtr& mdldef = model->GetModelDef();
 	ShaderModel* shadermodel = static_cast<ShaderModel*>(data);

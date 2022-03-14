@@ -39,7 +39,7 @@ using PlaneArray2D = std::array<float, 12>;
 
 inline void DrawTextureImpl(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CShaderProgramPtr& shader, const CTexturePtr& texture,
+	Renderer::Backend::GL::CShaderProgram* shader, const CTexturePtr& texture,
 	const PlaneArray2D& vertices, PlaneArray2D uvs,
 	const CColor& multiply, const CColor& add, const float grayscaleFactor)
 {
@@ -83,10 +83,10 @@ public:
 		CShaderDefines defines;
 		Tech = g_Renderer.GetShaderManager().LoadEffect(str_canvas2d, defines);
 		ENSURE(Tech);
-		Tech->BeginPass();
 		DeviceCommandContext->SetGraphicsPipelineState(
 			Tech->GetGraphicsPipelineStateDesc());
-		const CShaderProgramPtr& shader = Tech->GetShader();
+		DeviceCommandContext->BeginPass();
+		Renderer::Backend::GL::CShaderProgram* shader = Tech->GetShader();
 		shader->Uniform(str_transform, GetDefaultGuiMatrix());
 	}
 
@@ -95,7 +95,7 @@ public:
 		if (!Tech)
 			return;
 
-		Tech->EndPass();
+		DeviceCommandContext->EndPass();
 		Tech.reset();
 	}
 
@@ -246,7 +246,7 @@ void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width
 
 	m->BindTechIfNeeded();
 
-	const CShaderProgramPtr& shader = m->Tech->GetShader();
+	Renderer::Backend::GL::CShaderProgram* shader = m->Tech->GetShader();
 	shader->BindTexture(str_tex, g_Renderer.GetTextureManager().GetAlphaGradientTexture()->GetBackendTexture());
 	shader->Uniform(str_colorAdd, CColor(0.0f, 0.0f, 0.0f, 0.0f));
 	shader->Uniform(str_colorMul, color);
@@ -324,7 +324,7 @@ void CCanvas2D::DrawText(CTextRenderer& textRenderer)
 {
 	m->BindTechIfNeeded();
 
-	const CShaderProgramPtr& shader = m->Tech->GetShader();
+	Renderer::Backend::GL::CShaderProgram* shader = m->Tech->GetShader();
 	shader->Uniform(str_grayscaleFactor, 0.0f);
 
 	textRenderer.Render(m->DeviceCommandContext, shader, GetDefaultGuiMatrix());

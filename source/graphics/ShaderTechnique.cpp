@@ -21,22 +21,12 @@
 
 #include "graphics/ShaderProgram.h"
 
-CShaderPass::CShaderPass() = default;
-
-void CShaderPass::Bind()
+CShaderPass::CShaderPass(
+	const Renderer::Backend::GraphicsPipelineStateDesc& pipelineStateDesc,
+	const CShaderProgramPtr& shader)
+	: m_PipelineStateDesc(pipelineStateDesc), m_Shader(shader)
 {
-	m_Shader->Bind();
-}
-
-void CShaderPass::Unbind()
-{
-	m_Shader->Unbind();
-}
-
-void CShaderPass::SetPipelineStateDesc(
-	const Renderer::Backend::GraphicsPipelineStateDesc& pipelineStateDesc)
-{
-	m_PipelineStateDesc = pipelineStateDesc;
+	m_PipelineStateDesc.shaderProgram = m_Shader->GetBackendShaderProgram();
 }
 
 CShaderTechnique::CShaderTechnique() = default;
@@ -51,19 +41,7 @@ int CShaderTechnique::GetNumPasses() const
 	return m_Passes.size();
 }
 
-void CShaderTechnique::BeginPass(int pass)
-{
-	ENSURE(0 <= pass && pass < (int)m_Passes.size());
-	m_Passes[pass].Bind();
-}
-
-void CShaderTechnique::EndPass(int pass)
-{
-	ENSURE(0 <= pass && pass < (int)m_Passes.size());
-	m_Passes[pass].Unbind();
-}
-
-const CShaderProgramPtr& CShaderTechnique::GetShader(int pass) const
+Renderer::Backend::GL::CShaderProgram* CShaderTechnique::GetShader(int pass) const
 {
 	ENSURE(0 <= pass && pass < (int)m_Passes.size());
 	return m_Passes[pass].GetShader();

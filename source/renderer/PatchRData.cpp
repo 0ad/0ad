@@ -771,10 +771,10 @@ void CPatchRData::RenderBases(
 		const int numPasses = techBase->GetNumPasses();
 		for (int pass = 0; pass < numPasses; ++pass)
 		{
-			techBase->BeginPass(pass);
 			deviceCommandContext->SetGraphicsPipelineState(
 				techBase->GetGraphicsPipelineStateDesc(pass));
-			const CShaderProgramPtr& shader = techBase->GetShader(pass);
+			deviceCommandContext->BeginPass();
+			Renderer::Backend::GL::CShaderProgram* shader = techBase->GetShader(pass);
 			TerrainRenderer::PrepareShader(shader, shadow);
 
 			TextureBatches& textureBatches = itTech->second;
@@ -827,7 +827,7 @@ void CPatchRData::RenderBases(
 					}
 				}
 			}
-			techBase->EndPass();
+			deviceCommandContext->EndPass();
 		}
 	}
 
@@ -964,7 +964,7 @@ void CPatchRData::RenderBlends(
 	PROFILE_END("compute batches");
 
 	CVertexBuffer* lastVB = nullptr;
-	CShaderProgramPtr previousShader;
+	Renderer::Backend::GL::CShaderProgram* previousShader = nullptr;
 	for (BatchesStack::iterator itTechBegin = batches.begin(), itTechEnd = batches.begin(); itTechBegin != batches.end(); itTechBegin = itTechEnd)
 	{
 		while (itTechEnd != batches.end() && itTechEnd->m_ShaderTech == itTechBegin->m_ShaderTech)
@@ -983,10 +983,10 @@ void CPatchRData::RenderBlends(
 				Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
 			pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
 				Renderer::Backend::BlendOp::ADD;
-			techBase->BeginPass(pass);
 			deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+			deviceCommandContext->BeginPass();
 
-			const CShaderProgramPtr& shader = techBase->GetShader(pass);
+			Renderer::Backend::GL::CShaderProgram* shader = techBase->GetShader(pass);
 			TerrainRenderer::PrepareShader(shader, shadow);
 
 			Renderer::Backend::GL::CTexture* lastBlendTex = nullptr;
@@ -1060,7 +1060,7 @@ void CPatchRData::RenderBlends(
 					}
 				}
 			}
-			techBase->EndPass();
+			deviceCommandContext->EndPass();
 		}
 	}
 
@@ -1069,7 +1069,7 @@ void CPatchRData::RenderBlends(
 
 void CPatchRData::RenderStreams(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader,
+	const std::vector<CPatchRData*>& patches, Renderer::Backend::GL::CShaderProgram* shader,
 	const bool bindPositionAsTexCoord)
 {
 	PROFILE3("render terrain streams");
@@ -1167,7 +1167,7 @@ void CPatchRData::RenderOutline()
 
 void CPatchRData::RenderSides(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader)
+	const std::vector<CPatchRData*>& patches, Renderer::Backend::GL::CShaderProgram* shader)
 {
 	PROFILE3("render terrain sides");
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render terrain sides");
@@ -1430,7 +1430,7 @@ void CPatchRData::BuildWater()
 
 void CPatchRData::RenderWaterSurface(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CShaderProgramPtr& shader, const bool bindWaterData)
+	Renderer::Backend::GL::CShaderProgram* shader, const bool bindWaterData)
 {
 	ASSERT(m_UpdateFlags == 0);
 
@@ -1465,7 +1465,7 @@ void CPatchRData::RenderWaterSurface(
 
 void CPatchRData::RenderWaterShore(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CShaderProgramPtr& shader)
+	Renderer::Backend::GL::CShaderProgram* shader)
 {
 	ASSERT(m_UpdateFlags == 0);
 

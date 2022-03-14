@@ -470,14 +470,14 @@ void SilhouetteRenderer::RenderDebugOverlays(
 	m = proj * m;
 
 	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
-	shaderTech->BeginPass();
 	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
 		shaderTech->GetGraphicsPipelineStateDesc();
+	deviceCommandContext->BeginPass();
 	pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
 	pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 
-	const CShaderProgramPtr& shader = shaderTech->GetShader();
+	Renderer::Backend::GL::CShaderProgram* shader = shaderTech->GetShader();
 	shader->Uniform(str_transform, proj);
 
 	for (size_t i = 0; i < m_DebugRects.size(); ++i)
@@ -498,7 +498,7 @@ void SilhouetteRenderer::RenderDebugOverlays(
 		deviceCommandContext->Draw(0, 6);
 	}
 
-	shaderTech->EndPass();
+	deviceCommandContext->EndPass();
 }
 
 void SilhouetteRenderer::EndFrame()

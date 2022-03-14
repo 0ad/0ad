@@ -18,9 +18,8 @@
 #ifndef INCLUDED_SHADERTECHNIQUE
 #define INCLUDED_SHADERTECHNIQUE
 
-#include "graphics/ShaderProgramPtr.h"
+#include "graphics/ShaderProgram.h"
 #include "graphics/ShaderTechniquePtr.h"
-#include "lib/ogl.h"
 #include "renderer/backend/PipelineState.h"
 
 #include <vector>
@@ -32,27 +31,9 @@
 class CShaderPass
 {
 public:
-	CShaderPass();
+	CShaderPass(const Renderer::Backend::GraphicsPipelineStateDesc& pipelineStateDesc, const CShaderProgramPtr& shader);
 
-	/**
-	 * Set the shader program used for rendering with this pass.
-	 */
-	void SetShader(const CShaderProgramPtr& shader) { m_Shader = shader; }
-
-	void SetPipelineStateDesc(
-		const Renderer::Backend::GraphicsPipelineStateDesc& pipelineStateDesc);
-
-	/**
-	 * Set up all the GL state that was previously specified on this pass.
-	 */
-	void Bind();
-
-	/**
-	 * Reset the GL state to the default.
-	 */
-	void Unbind();
-
-	const CShaderProgramPtr& GetShader() const { return m_Shader; }
+	Renderer::Backend::GL::CShaderProgram* GetShader() const { return m_Shader->GetBackendShaderProgram(); }
 
 	const Renderer::Backend::GraphicsPipelineStateDesc&
 	GetPipelineStateDesc() const { return m_PipelineStateDesc; }
@@ -75,9 +56,7 @@ public:
 
 	int GetNumPasses() const;
 
-	void BeginPass(int pass = 0);
-	void EndPass(int pass = 0);
-	const CShaderProgramPtr& GetShader(int pass = 0) const;
+	Renderer::Backend::GL::CShaderProgram* GetShader(int pass = 0) const;
 
 	const Renderer::Backend::GraphicsPipelineStateDesc&
 	GetGraphicsPipelineStateDesc(int pass = 0) const;

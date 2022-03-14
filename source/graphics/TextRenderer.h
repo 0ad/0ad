@@ -19,7 +19,7 @@
 #define INCLUDED_TEXTRENDERER
 
 #include "graphics/Color.h"
-#include "graphics/ShaderProgramPtr.h"
+#include "graphics/ShaderProgram.h"
 #include "maths/Rect.h"
 #include "maths/Vector2D.h"
 #include "ps/CStrIntern.h"
@@ -105,7 +105,7 @@ public:
 	 */
 	void Render(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CShaderProgramPtr& shader, const CMatrix3D& transform);
+		Renderer::Backend::GL::CShaderProgram* shader, const CMatrix3D& transform);
 
 private:
 	friend struct SBatchCompare;

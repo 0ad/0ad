@@ -26,6 +26,7 @@
 #include "graphics/Color.h"
 #include "maths/BoundingBoxAligned.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/gl/ShaderProgram.h"
 #include "renderer/backend/gl/Texture.h"
 
 class CCamera;
@@ -186,7 +187,7 @@ private:
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
 		int cullGroup);
 
-	static void PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow);
+	static void PrepareShader(Renderer::Backend::GL::CShaderProgram* shader, ShadowMap* shadow);
 };
 
 #endif // INCLUDED_TERRAINRENDERER

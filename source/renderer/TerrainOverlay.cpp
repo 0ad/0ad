@@ -221,10 +221,10 @@ void TerrainOverlay::RenderTile(
 	pipelineStateDesc.rasterizationState.depthBiasEnabled = true;
 	pipelineStateDesc.rasterizationState.depthBiasConstantFactor = -1.0f;
 	pipelineStateDesc.rasterizationState.depthBiasSlopeFactor = -1.0f;
-	overlayTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+	deviceCommandContext->BeginPass();
 
-	CShaderProgramPtr overlayShader = overlayTech->GetShader();
+	Renderer::Backend::GL::CShaderProgram* overlayShader = overlayTech->GetShader();
 
 	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	overlayShader->Uniform(str_color, color);
@@ -235,7 +235,7 @@ void TerrainOverlay::RenderTile(
 
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 
-	overlayTech->EndPass();
+	deviceCommandContext->EndPass();
 #endif
 }
 
@@ -290,10 +290,10 @@ void TerrainOverlay::RenderTileOutline(
 	pipelineStateDesc.rasterizationState.cullMode =
 		drawHidden ? Renderer::Backend::CullMode::NONE : Renderer::Backend::CullMode::BACK;
 	pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
-	overlayTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+	deviceCommandContext->BeginPass();
 
-	const CShaderProgramPtr& overlayShader = overlayTech->GetShader();
+	Renderer::Backend::GL::CShaderProgram* overlayShader = overlayTech->GetShader();
 
 	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	overlayShader->Uniform(str_color, color);
@@ -304,7 +304,7 @@ void TerrainOverlay::RenderTileOutline(
 
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 
-	overlayTech->EndPass();
+	deviceCommandContext->EndPass();
 #endif
 }
 

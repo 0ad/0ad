@@ -577,6 +577,8 @@ void CSceneRenderer::RenderReflections(
 	scissorRect.height = screenScissor.y2 - screenScissor.y1;
 	deviceCommandContext->SetScissors(1, &scissorRect);
 
+	deviceCommandContext->SetGraphicsPipelineState(
+		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
 	deviceCommandContext->SetFramebuffer(wm.m_ReflectionFramebuffer.get());
 	deviceCommandContext->ClearFramebuffer();
 
@@ -603,9 +605,6 @@ void CSceneRenderer::RenderReflections(
 	// Reset old camera
 	m_ViewCamera = normalCamera;
 	g_Renderer.SetViewport(m_ViewCamera.GetViewPort());
-
-	deviceCommandContext->SetFramebuffer(
-		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 }
 
 // RenderRefractions: render the water refractions to the refraction texture
@@ -651,6 +650,8 @@ void CSceneRenderer::RenderRefractions(
 	scissorRect.height = screenScissor.y2 - screenScissor.y1;
 	deviceCommandContext->SetScissors(1, &scissorRect);
 
+	deviceCommandContext->SetGraphicsPipelineState(
+		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
 	deviceCommandContext->SetFramebuffer(wm.m_RefractionFramebuffer.get());
 	deviceCommandContext->ClearFramebuffer();
 
@@ -670,9 +671,6 @@ void CSceneRenderer::RenderRefractions(
 	// Reset old camera
 	m_ViewCamera = normalCamera;
 	g_Renderer.SetViewport(m_ViewCamera.GetViewPort());
-
-	deviceCommandContext->SetFramebuffer(
-		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 }
 
 void CSceneRenderer::RenderSilhouettes(
@@ -809,6 +807,9 @@ void CSceneRenderer::RenderSubmissions(
 				m->terrainRenderer.RenderWaterFoamOccluders(deviceCommandContext, cullGroup);
 		}
 	}
+
+	deviceCommandContext->SetGraphicsPipelineState(
+		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
 
 	CPostprocManager& postprocManager = g_Renderer.GetPostprocManager();
 	if (postprocManager.IsEnabled())

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,9 +18,9 @@
 #ifndef INCLUDED_SHADERDEFINES
 #define INCLUDED_SHADERDEFINES
 
-#include "graphics/ShaderProgramPtr.h"
 #include "ps/CStr.h"
 #include "ps/CStrIntern.h"
+#include "renderer/backend/gl/ShaderProgram.h"
 
 #include <map>
 #include <unordered_map>
@@ -178,7 +178,7 @@ public:
 	/**
 	 * Bind the collection of uniforms onto the given shader.
 	 */
-	void BindUniforms(const CShaderProgramPtr& shader) const;
+	void BindUniforms(Renderer::Backend::GL::CShaderProgram* shader) const;
 };
 
 // Add here the types of queries we can make in the renderer

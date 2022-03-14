@@ -204,7 +204,7 @@ struct SBatchCompare
 
 void CTextRenderer::Render(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CShaderProgramPtr& shader, const CMatrix3D& transform)
+	Renderer::Backend::GL::CShaderProgram* shader, const CMatrix3D& transform)
 {
 	std::vector<u16> indexes;
 	std::vector<t2f_v2i> vertexes;
