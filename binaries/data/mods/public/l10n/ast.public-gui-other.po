@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-03-07 08:09+0000\n"
-"PO-Revision-Date: 2022-03-09 18:42+0000\n"
+"PO-Revision-Date: 2022-03-13 02:10+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -145,12 +145,12 @@ msgstr "triumphante"
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
-msgstr "Sin comunya"
+msgstr "Sin comuña"
 
 #: gui/common/gamedescription.js:160
 #, javascript-format
 msgid "Team %(team)s"
-msgstr "Comunya %(team)s"
+msgstr "Comuña %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or
@@ -175,7 +175,7 @@ msgstr "Partida infinita"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr "Nun se vaî determina’l vincedor, on que todos stean vincidos."
+msgstr "Non se vaî determina’l vincedor, an que todos stean vincidos."
 
 #: gui/common/gamedescription.js:202
 #, javascript-format
@@ -215,11 +215,11 @@ msgstr "Los heroes nun puœden abellugase & son mas vulnerables."
 
 #: gui/common/gamedescription.js:251
 msgid "Locked Teams"
-msgstr "Comunyæs fixæs"
+msgstr "Comuñæs fixæs"
 
 #: gui/common/gamedescription.js:252
 msgid "Players can't change the initial teams."
-msgstr "Los xhogadores nun puœden demudar de comunya."
+msgstr "Los xhogadores nun puœden demudar de comuña."
 
 #: gui/common/gamedescription.js:256
 msgid "Diplomacy"
@@ -247,7 +247,7 @@ msgstr "Victoria associada"
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr "El xhogador comparte la victoria culos socios. La última associaçon viva ye la vincedora."
+msgstr "El xhogador comparte la victoria cun los socios. La última associaçon viva ye la vincedora."
 
 #: gui/common/gamedescription.js:273
 msgid "Ceasefire"
@@ -336,7 +336,7 @@ msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:365
 msgid "Population Limit"
-msgstr "Teitho populacional"
+msgstr "Teitho poblracional"
 
 #: gui/common/gamedescription.js:369
 msgctxt "population limit"
@@ -345,7 +345,7 @@ msgstr "Per xhogador"
 
 #: gui/common/gamedescription.js:377
 msgid "World Population Cap"
-msgstr "Teitho populacional global"
+msgstr "Teitho poblracional global"
 
 #: gui/common/gamedescription.js:385
 msgid "Treasures"
@@ -425,7 +425,7 @@ msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr "Sta a perdese la connexion cul servidor (%(seconds)ss)"
+msgstr "Sta a perdese la connexion cuno servidor (%(seconds)ss)"
 
 #: gui/common/network.js:22
 #, javascript-format
@@ -435,7 +435,7 @@ msgstr "%(player)s sta a perde’ la connexion (%(seconds)ss)"
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr "Ruina connexion cul servidor (%(milliseconds)sms)"
+msgstr "Ruina connexion cuno servidor (%(milliseconds)sms)"
 
 #: gui/common/network.js:33
 #, javascript-format
@@ -458,7 +458,7 @@ msgstr "La version de l protocollo de rede ye incorrecta."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr "La partida sta cargando-se, vœlvi temptalho mas sero."
+msgstr "La partida sta cargando-se, vœlvi temptallo mas sero."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
@@ -474,7 +474,7 @@ msgstr "Banîu-se-ti."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
-msgstr "El nome de l xhogador sta n usu. Si te disconnectæsti, reintenta-lho n unos segundos."
+msgstr "El nome de l xhogador sta n usu. Si te disconnectæsti, reintenta-llo n unos segundos."
 
 #: gui/common/network.js:74
 msgid "Server full."
@@ -486,7 +486,7 @@ msgstr "Falhou l authenticaçon segura de l antepar. Axhunta-te vía l antepar."
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr "Error: El servidor falhou al atrocar un indentificador de cliente únicu."
+msgstr "Error: El servidor falhou al atroucar un indentificador de cliente únicu."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
@@ -506,7 +506,7 @@ msgstr "Nun pudo atopase un puœrtu disponible pa l cliente STUN."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr "Nun pudo atopase l punto final de STUN."
+msgstr "Nun pudo atopase l extremu de STUN."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -515,15 +515,15 @@ msgstr "\\[valor inválidu %(id)s]"
 
 #: gui/common/network.js:98
 msgid "Lost connection to the server."
-msgstr "Perdîu-se la connexion cul servidor."
+msgstr "Perdîu-se la connexion cuno servidor."
 
 #: gui/common/network.js:99
 msgid "Failed to connect to the server."
-msgstr "Falhou al connectar cul servidor."
+msgstr "Falhou al connectar cuno servidor."
 
 #: gui/common/network.js:101
 msgid "Disconnected"
-msgstr "Disconnectou-se."
+msgstr "Disconnectou-se"
 
 #: gui/common/network.js:109
 msgid "Only the host can kick clients!"
@@ -608,7 +608,7 @@ msgstr "Reincuœntru"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr "Terreiro de rodiu & númeru de xhogadores predefinidos. Los outros axhustes puœdes scoyyelhos."
+msgstr "Terreiro de rodiu & númeru de xhogadores predefinidos. Los outros axhustes puœdes scoyyellos."
 
 #: gui/common/settings.js:183
 msgctxt "map"
@@ -619,7 +619,7 @@ msgstr "Aleatorio"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr "Cría un terreiro único u la distribuçon de recursos ye aleatoria. Scuœyye-se l númeru de xhogadores & comunyæs."
+msgstr "Cría un terreiro único u la distribuçon de recursos ye aleatoria. Scuœyye-se l númeru de xhogadores & comuñæs."
 
 #: gui/common/settings.js:192
 msgctxt "map"
@@ -776,7 +776,7 @@ msgstr "Captura"
 
 #: gui/common/tooltips.js:262
 msgid "Status Effects:"
-msgstr "Effectos nel stadu:"
+msgstr "Effectos no stau:"
 
 #: gui/common/tooltips.js:267
 #, javascript-format
@@ -1295,7 +1295,7 @@ msgstr "Depósitu pa:"
 #. element will open the Template Details GUI page.
 #: gui/common/tooltips.js:1211
 msgid "Right-click to view more information."
-msgstr "Pica cul boton dreithu pa ver mas informaçon."
+msgstr "Pica cuno boton dreithu pa ver mas informaçon."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
@@ -1477,7 +1477,7 @@ msgstr "Campaña de donacionines 2"
 msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr "Campanya Indiegogo 2013\nMas de 1000 donantes (!), inclusos:"
+msgstr "Campaña Indiegogo 2013\nMas de 1000 donantes (!), inclusos:"
 
 #: gui/credits/texts/donators.jsonTitle
 msgid "Donors"
@@ -1554,7 +1554,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr "Magar relativamente fácile pa l xhogador veteranu, al novatu la difficultá predefinida de l AI puœde supponelhi un reptu. A isti aconseyya-se-lhi practicar cun la difficultá de l AI aminorgada (Xole ou Per-fácile). Par cambia’ la difficultá de l AI, pica na ícone de la ruœda dentada cabo l xhogador de l quadro superior que quieras demudar."
+msgstr "Magar relativamente fácile pa l xhogador veteranu, al novatu la difficultá predefinida de l AI puœde supponelli un retu. A isti aconseyya-se-lli practicar cun la difficultá de l AI aminorgada (Xole ou Per-fácile). Par cambia’ la difficultá de l AI, pica na ícone de la ruœda dentada cabo l xhogador de l quadro superior que quieras demudar."
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
@@ -1630,7 +1630,7 @@ msgstr "Descripción"
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr "Pica n una designaçon pa demudalha.\\n Puœdes tener ta 4 atayyos distintos."
+msgstr "Pica n una designaçon pa demudalla.\\n Puœdes tener ta 4 atayyos distintos."
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 #: gui/locale_advanced/locale_advanced.xml:(caption):75
@@ -2161,7 +2161,7 @@ msgstr "Semeyyu"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.desc
 msgctxt "hotkey metadata"
 msgid "Toggle product/company watermark for official screenshots."
-msgstr "Amostrar ou anubrir la marca translúcida de la companya/productu nos semeyyos oficiales."
+msgstr "Amostrar ou anubrir la marca translúcida de la compaña/productu nos semeyyos oficiales."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
 msgctxt "hotkey metadata"
@@ -2364,7 +2364,7 @@ msgstr "Omitir el conxuntu"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare while this hotkey is pressed."
-msgstr "Fhazer siñæs cul cursor premiendo l atayyu al calcar."
+msgstr "Fhazer siñæs cuno cursor premiendo l atayyu al calcar."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
 msgctxt "hotkey metadata"
@@ -2374,7 +2374,7 @@ msgstr "Siñar (premiendo)"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare. The hotkey can be released."
-msgstr "Fhazer siñæs cul cursor. L atayyu puœde soltase."
+msgstr "Fhazer siñæs cuno cursor. L atayyu puœde soltase."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
 msgctxt "hotkey metadata"
@@ -4636,7 +4636,7 @@ msgstr "Solo s’assigna a xhogadores nuövos si son collacios del amphitryon & 
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr "Los xhogadores solo reciben un spacio si l amphitryon lhis lho assigna explicitamente."
+msgstr "Los xhogadores solo reciben un spacio si l amphitryon llis llo assigna explicitamente."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].tooltip
 msgid ""
@@ -4709,7 +4709,7 @@ msgstr "Retrasu máximu pa los espectadores"
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
-msgstr "Al ahospedar, pousa’ la partida si los spectadores atrassæn mas d’esti númeru de turnos. Si s’afhita a -1, non se lhis fhaz casu."
+msgstr "Al ahospedar, pousa’ la partida si los spectadores atrassæn mas d’esti númeru de turnos. Si s’afhita a -1, non se llis fhaz casu."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].label
 msgid "(Observer) Speed up when lagging."
@@ -4847,11 +4847,11 @@ msgstr "Númeru d’unidades produzidu per concreacion por defectu."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].label
 msgid "Snap to edges"
-msgstr "Alhinyar"
+msgstr "Alhiñar"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].label
 msgid "Hotkey to enable snapping"
-msgstr "Atayyu p’activa’ l alhinyadura"
+msgstr "Atayyu p’activa’ l alhiñadura"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].tooltip
 msgid ""
@@ -5167,7 +5167,7 @@ msgstr "Ve’ los differentes terreiros q’apahecen in 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Continue Campaign"
-msgstr "Continua’ la campanya"
+msgstr "Continua’ la campaña"
 
 #: gui/pregame/MainMenuItems.js:77 gui/pregame/MainMenuItems.js:111
 #: gui/pregame/MainMenuItems.js:127 gui/pregame/MainMenuItems.js:134
@@ -5541,8 +5541,8 @@ msgstr[1] "Ventayas culturales"
 #: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] "Ventaya comunyeira"
-msgstr[1] "Ventayæs comunyeiræs"
+msgstr[0] "Ventayya comuñeira"
+msgstr[1] "Ventayyæs comuñeiræs"
 
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
@@ -5882,7 +5882,7 @@ msgstr "[imgleft=\"iconLag\"]Puœden dase problemas de rendimiento, sobre maneir
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr "[imgleft=\"iconMap\"]0 A.D. ye un programma lhibre: puœdes participar nel sou disindolrcu."
+msgstr "[imgleft=\"iconMap\"]0 A.D. ye un programma lhibre: puœdes participar no sou disindolrcu."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
@@ -6413,7 +6413,7 @@ msgstr "Puörtu militar que ye exclusivu de los carthaxhineses."
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."
-msgstr "Meti barcos n elli pa ir eguando-lhos pouco a pouco."
+msgstr "Meti barcos n elli pa ir eguando-llos pouco a pouco."
 
 #: gui/text/tips/carth_shipyard.txt:4
 msgid "Much stronger than other docks, but also more expensive."
@@ -6518,7 +6518,7 @@ msgstr "FORMACIÓN POR DEFECTU"
 msgid ""
 "Right-click an icon to set the default formation: units that are ordered to "
 "walk or patrol will automatically use it."
-msgstr "Cul boton dreithu, pica nuna ícone p’afhita’ la formaçon por defectu: læs unidades assumen-lha automaticamente al andar ou rondar."
+msgstr "Cuno boton dreithu, pica nuna ícone p’afhita’ la formaçon por defectu: læs unidades assumen-lla automaticamente al andar ou rondar."
 
 #: gui/text/tips/default_formation.txt:3
 msgid "Can be de-activated by choosing “no formation” as the default."
@@ -6547,7 +6547,7 @@ msgstr "Tienen muncha visión y tiren fleches al enemigu."
 msgid ""
 "You can garrison more infantry inside them to increase the number of arrows "
 "they shoot."
-msgstr "Puœdes intselhæs de mas pédites pa que tiren mas sayetæs."
+msgstr "Puœdes intsellæs de mas pédites pa que tiren mas sayetæs."
 
 #: gui/text/tips/elephant_stable.txt:1
 msgid "ELEPHANT STABLE"
@@ -6648,7 +6648,7 @@ msgstr "¡Da ventaya a les tues forcies asitiándoles estratéxicamente!"
 msgid ""
 "Therefore select some units, press and hold the right mouse button, draw any"
 " line, then release the button."
-msgstr "Pa ello, scœyyi dellæs unidades, premi l boton dreithu de l mure, designa una lhinya & da reo suœlta l boton."
+msgstr "Pa ello, scœyyi dellæs unidades, premi l boton dreithu de l mure, designa una lhiña & da reo suœlta l boton."
 
 #: gui/text/tips/freehand_position.txt:4
 msgid "Your units will now spread out on this line."
@@ -6730,7 +6730,7 @@ msgstr "SIÑÆS"
 msgid ""
 "Use this feature to let your team know where on the map something important "
 "happens."
-msgstr "Fhai siñæs in mapa p’avisar a la comunya d’acontecemientos importantes."
+msgstr "Fhai siñæs in mapa p’avisar a la comuña d’acontecemientos importantes."
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
@@ -6880,7 +6880,7 @@ msgstr "La madera ye ralo, pero lo qu'hai vien de los baobabs, qu'aducen muncho.
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
-msgstr "ALHINYADURA"
+msgstr "ALHIÑADURA"
 
 #: gui/text/tips/snapping.txt:2
 msgid ""
@@ -6989,7 +6989,7 @@ msgstr "Les construcciones disóciense al nun estar venceyades a un foru amigu."
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr "La dissociaçon puœdes disacceleralha ou revertilha abellugando unidades na construcçon."
+msgstr "La dissociaçon puœdes disacceleralla ou revertilla abellugando unidades na construcçon."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-12-24 08:35+0000\n"
-"PO-Revision-Date: 2022-03-09 18:24+0000\n"
+"PO-Revision-Date: 2022-03-13 01:32+0000\n"
 "Last-Translator: David Sowa\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
@@ -93,15 +93,15 @@ msgstr "Atrasu na transmission in directo: %(delay)ss"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
-msgstr "Authenticou-se la connexion cul servidor."
+msgstr "Authenticou-se la connexion cuno servidor."
 
 #: gui/session/NetworkStatusOverlay.js:39
 msgid "Connected to the server."
-msgstr "Connectou-se cul servidor."
+msgstr "Connectou-se cuno servidor."
 
 #: gui/session/NetworkStatusOverlay.js:40
 msgid "Connection to the server has been lost."
-msgstr "Perdîu-se la connexion cul servidor."
+msgstr "Perdîu-se la connexion cuno servidor."
 
 #: gui/session/NetworkStatusOverlay.js:42
 msgid "Waiting for players to connect:"
@@ -132,7 +132,7 @@ msgstr ","
 #: gui/session/PauseOverlay.js:45
 #, javascript-format
 msgid "Paused by %(players)s"
-msgstr "Pousou-lhu %(players)s"
+msgstr "Pousou-llu %(players)s"
 
 #: gui/session/PauseOverlay.xml:(caption):7
 msgid "Game Paused"
@@ -607,7 +607,7 @@ msgstr "Cultura"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):21
 msgid "Team"
-msgstr "Comunya"
+msgstr "Comuña"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):24
 msgid "Theirs"
@@ -737,7 +737,7 @@ msgstr "Sí"
 #: gui/session/message_box/OutOfSyncReplay.js:26
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr "Error assýnchronu nel turnu %(turn)s."
+msgstr "Error assýnchronu no turnu %(turn)s."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:19
 #, javascript-format
@@ -748,12 +748,12 @@ msgstr "Xhogadores: %(players)s"
 #: gui/session/message_box/OutOfSyncNetwork.js:24
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr "El stau de partida concasa cul de l amphitryon."
+msgstr "El stau de partida concasa cuno de l amphitryon."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:25
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr "El stau de partida nun concasa cul de l amphitryon."
+msgstr "El stau de partida nun concasa cuno de l amphitryon."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:31
 msgctxt "Out-Of-Sync"
@@ -768,7 +768,7 @@ msgstr "Assegurai-vos de que todolos xhogadores gasten læs mesmæs modificaçon
 #: gui/session/message_box/OutOfSyncNetwork.js:35
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr "Pica n “informar d’un falhu” nel menú principal p’adiudar a egualhu."
+msgstr "Pica n “informar d’un falhu” no menú principal p’adiudar a eguallu."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:36
 #, javascript-format
@@ -1049,7 +1049,7 @@ msgstr "La formaçon predefinida sta disactivada."
 
 #: gui/session/selection_panels.js:278
 msgid "Right-click to disable the default formation feature."
-msgstr "Pica cul boton dreithu par disactiva’ la funcçon “formaçon predefinida”."
+msgstr "Pica cuno boton dreithu par disactiva’ la funcçon “formaçon predefinida”."
 
 #: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
@@ -1057,7 +1057,7 @@ msgstr "Esta ye la formaçon predefinida de la milicia al movese."
 
 #: gui/session/selection_panels.js:282
 msgid "Right-click to set this as the default formation."
-msgstr "Pica cul boton dreithu pa predefinir esta formaçon."
+msgstr "Pica cuno boton dreithu pa predefinir esta formaçon."
 
 #: gui/session/selection_panels.js:338
 #, javascript-format
@@ -1103,7 +1103,7 @@ msgstr "De poder, elho inrestrara-se mas a lantre de modu automáticu."
 
 #: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
-msgstr "Capacidá populacional insufficiente:"
+msgstr "Capacidá poblracional insufficiente:"
 
 #: gui/session/selection_panels.js:562
 #, javascript-format
@@ -1197,7 +1197,7 @@ msgstr "Quedu"
 #: gui/session/selection_panels_helpers.js:73
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr "Acometer a inimigos aveirahos, centrando-se n aggresores & persegiendo-lhos ta perdelhos de vista"
+msgstr "Acometer a inimigos aveirahos, centrando-se n aggresores & persegiendo-llos ta perdellos de vista"
 
 #: gui/session/selection_panels_helpers.js:75
 msgctxt "stance"
@@ -1209,7 +1209,7 @@ msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr "Acometer a inimigos aveirahos, persegiendo-lhos un pouco & da reo tornando al sou puœstu"
+msgstr "Acometer a inimigos aveirahos, persegiendo-llos un pouco & da reo tornando al sou puœstu"
 
 #: gui/session/selection_panels_helpers.js:79
 msgctxt "stance"
@@ -1219,7 +1219,7 @@ msgstr "Fhuxhir al vese aggredidu"
 #: gui/session/selection_panels_helpers.js:81
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr "Acometer a inimigos aveirahos in sin persegilhos"
+msgstr "Acometer a inimigos aveirahos in sin persegillos"
 
 #: gui/session/selection_panels_helpers.js:95
 #, javascript-format
@@ -1341,7 +1341,7 @@ msgstr "Riestra de producçon"
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr "Pica pa scoyyer una grea d’unidades, pica duês vezes par infocar scontra elhi & pica cul boton dreithu pa sfhazelhu."
+msgstr "Pica pa scoyyer una grea d’unidades, pica duês vezes par infocar scontra elhi & pica cuno boton dreithu pa sfhazellu."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVI: Z——"
@@ -1616,7 +1616,7 @@ msgstr "Preparad@"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr "Esti ye l mercau d’origë.\nPica cul boton dreithu par incaboxa’ la vía commercial"
+msgstr "Esti ye l mercau d’origë.\nPica cuno boton dreithu par incaboxa’ la vía commercial"
 
 #: gui/session/unit_actions.js:678
 msgid "Origin trade market."
@@ -1628,7 +1628,7 @@ msgstr "Mercau de destinu."
 
 #: gui/session/unit_actions.js:695
 msgid "Right-click to set as origin trade market"
-msgstr "Pica cul boton dreithu p’afhitar cumo mercau d’origë"
+msgstr "Pica cuno boton dreithu p’afhitar cumo mercau d’origë"
 
 #: gui/session/unit_actions.js:702 gui/session/unit_actions.js:1186
 msgid "This market is too close to the origin market."
@@ -1636,7 +1636,7 @@ msgstr "Esti mercau sta per-cerca de l mercau d’origë."
 
 #: gui/session/unit_actions.js:706
 msgid "Right-click to set as destination trade market."
-msgstr "Pica cul boton dreithu p’afhitar cumo mercau de destinu."
+msgstr "Pica cuno boton dreithu p’afhitar cumo mercau de destinu."
 
 #: gui/session/unit_actions.js:771 gui/session/unit_actions.js:1118
 #, javascript-format
@@ -1650,7 +1650,7 @@ msgstr "Occupantes actuales: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:1177
 msgid "Right-click to establish a default route for new traders."
-msgstr "Pica cul boton dreithu p’afhitar una vía predefinida par commerciantes nuœvos."
+msgstr "Pica cuno boton dreithu p’afhitar una vía predefinida par commerciantes nuœvos."
 
 #: gui/session/unit_actions.js:1181
 #, javascript-format
@@ -1660,12 +1660,12 @@ msgstr "Ganhancia prevista: %(gain)s"
 #: gui/session/unit_actions.js:1307
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
-msgstr[0] "A essi ente non lhi puœdes mandar."
-msgstr[1] "A essos entes non lhis puœdes mandar."
+msgstr[0] "A essi ente non lli puœdes mandar."
+msgstr[1] "A essos entes non llis puœdes mandar."
 
 #: gui/session/unit_actions.js:1353
 msgid "Unload All."
-msgstr "Disoccupalhæs todæs."
+msgstr "Disoccupallæs todæs."
 
 #: gui/session/unit_actions.js:1388
 msgid "Unload Turrets."
@@ -1766,7 +1766,7 @@ msgstr "Disactiva’l inriestru automáticu næs construcçones scoyyidæs."
 
 #: gui/session/unit_actions.js:1885
 msgid "The entity has to be killed before it can be gathered from"
-msgstr "Esso ha hi que lho matar pa explotalho"
+msgstr "Esso ha hi que llo matar pa explotallo"
 
 #: gui/session/unit_actions.js:1888
 msgid ""
