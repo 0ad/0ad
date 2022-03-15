@@ -741,7 +741,7 @@ void CPatchRData::RenderBases(
 				continue;
 			}
 			CShaderDefines defines = context;
-			defines.SetMany(material.GetShaderDefines(0));
+			defines.SetMany(material.GetShaderDefines());
 			CShaderTechniquePtr techBase = g_Renderer.GetShaderManager().LoadEffect(
 				material.GetShaderEffect(), defines);
 
@@ -954,7 +954,7 @@ void CPatchRData::RenderBlends(
 		if (!bestTex->GetMaterial().GetSamplers().empty())
 		{
 			CShaderDefines defines = contextBlend;
-			defines.SetMany(bestTex->GetMaterial().GetShaderDefines(0));
+			defines.SetMany(bestTex->GetMaterial().GetShaderDefines());
 			layer.m_ShaderTech = g_Renderer.GetShaderManager().LoadEffect(
 				bestTex->GetMaterial().GetShaderEffect(), defines);
 		}

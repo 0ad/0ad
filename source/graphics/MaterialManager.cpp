@@ -63,7 +63,6 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 	EL(uniform);
 	EL(renderquery);
 	EL(required_texture);
-	EL(conditional_define);
 	AT(effect);
 	AT(if);
 	AT(define);
@@ -71,10 +70,6 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 	AT(material);
 	AT(name);
 	AT(value);
-	AT(type);
-	AT(min);
-	AT(max);
-	AT(conf);
 	#undef AT
 	#undef EL
 
@@ -117,59 +112,6 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 		{
 			material.AddShaderDefine(CStrIntern(attrs.GetNamedItem(at_name)), CStrIntern(attrs.GetNamedItem(at_value)));
 		}
-		else if (token == el_conditional_define)
-		{
-			std::vector<float> args;
-
-			CStr type = attrs.GetNamedItem(at_type).c_str();
-			int typeID = -1;
-
-			if (type == CStr("draw_range"))
-			{
-				typeID = DCOND_DISTANCE;
-
-				float valmin = -1.0f;
-				float valmax = -1.0f;
-
-				CStr conf = attrs.GetNamedItem(at_conf);
-				if (!conf.empty())
-				{
-					CFG_GET_VAL("materialmgr." + conf + ".min", valmin);
-					CFG_GET_VAL("materialmgr." + conf + ".max", valmax);
-				}
-				else
-				{
-					CStr dmin = attrs.GetNamedItem(at_min);
-					if (!dmin.empty())
-						valmin = attrs.GetNamedItem(at_min).ToFloat();
-
-					CStr dmax = attrs.GetNamedItem(at_max);
-					if (!dmax.empty())
-						valmax = attrs.GetNamedItem(at_max).ToFloat();
-				}
-
-				args.push_back(valmin);
-				args.push_back(valmax);
-
-				if (valmin >= 0.0f)
-				{
-					std::stringstream sstr;
-					sstr << valmin;
-					material.AddShaderDefine(CStrIntern(conf + "_MIN"), CStrIntern(sstr.str()));
-				}
-
-				if (valmax >= 0.0f)
-				{
-					std::stringstream sstr;
-					sstr << valmax;
-					material.AddShaderDefine(CStrIntern(conf + "_MAX"), CStrIntern(sstr.str()));
-				}
-			}
-
-			material.AddConditionalDefine(attrs.GetNamedItem(at_name).c_str(),
-						      attrs.GetNamedItem(at_value).c_str(),
-						      typeID, args);
-		}
 		else if (token == el_uniform)
 		{
 			std::stringstream str(attrs.GetNamedItem(at_value));
@@ -188,8 +130,6 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 				material.AddShaderDefine(CStrIntern(attrs.GetNamedItem(at_define)), str_1);
 		}
 	}
-
-	material.RecomputeCombinedShaderDefines();
 
 	m_Materials[pathname] = material;
 	return material;

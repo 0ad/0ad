@@ -206,29 +206,4 @@ private:
 	std::vector<RenderQuery> m_Items;
 };
 
-
-enum DEFINE_CONDITION_TYPES
-{
-	DCOND_DISTANCE
-};
-
-class CShaderConditionalDefines
-{
-public:
-	struct CondDefine
-	{
-		CStrIntern m_DefName;
-		CStrIntern m_DefValue;
-		int m_CondType;
-		std::vector<float> m_CondArgs;
-	};
-
-	void Add(const char* defname, const char* defvalue, int type, std::vector<float> &args);
-	size_t GetSize() const { return m_Defines.size(); }
-	const CondDefine& GetItem(size_t i) const { return m_Defines[i]; }
-
-private:
-	std::vector<CondDefine> m_Defines;
-};
-
 #endif // INCLUDED_SHADERDEFINES

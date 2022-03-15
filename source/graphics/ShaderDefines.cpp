@@ -251,18 +251,6 @@ void CShaderRenderQueries::Add(const char* name)
 	}
 }
 
-void CShaderConditionalDefines::Add(const char* defname, const char* defvalue, int type, std::vector<float> &args)
-{
-	CondDefine cd;
-	cd.m_DefName = CStrIntern(defname);
-	cd.m_DefValue = CStrIntern(defvalue);
-	cd.m_CondArgs = args;
-	cd.m_CondType = type;
-
-	m_Defines.push_back(cd);
-}
-
-
 // Explicit instantiations:
 
 template<> CShaderParams<CStrIntern>::InternedItems_t CShaderParams<CStrIntern>::s_InternedItems = CShaderParams<CStrIntern>::InternedItems_t();
