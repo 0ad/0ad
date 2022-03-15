@@ -197,10 +197,10 @@ void CPostprocManager::ApplyBlurDownscale2x(
 	defines.Add(str_BLOOM_NOP, str_1);
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom, defines);
 
-	tech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(
 		tech->GetGraphicsPipelineStateDesc());
-	const CShaderProgramPtr& shader = tech->GetShader();
+	deviceCommandContext->BeginPass();
+	Renderer::Backend::GL::CShaderProgram* shader = tech->GetShader();
 
 	shader->BindTexture(str_renderedTex, inTex);
 
@@ -237,7 +237,7 @@ void CPostprocManager::ApplyBlurDownscale2x(
 
 	g_Renderer.SetViewport(oldVp);
 
-	tech->EndPass();
+	deviceCommandContext->EndPass();
 }
 
 void CPostprocManager::ApplyBlurGauss(
@@ -255,10 +255,10 @@ void CPostprocManager::ApplyBlurGauss(
 	defines2.Add(str_BLOOM_PASS_H, str_1);
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom, defines2);
 
-	tech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(
 		tech->GetGraphicsPipelineStateDesc());
-	CShaderProgramPtr shader = tech->GetShader();
+	deviceCommandContext->BeginPass();
+	Renderer::Backend::GL::CShaderProgram* shader = tech->GetShader();
 	shader->BindTexture(str_renderedTex, inTex);
 	shader->Uniform(str_texSize, inWidth, inHeight, 0.0f, 0.0f);
 
@@ -295,7 +295,7 @@ void CPostprocManager::ApplyBlurGauss(
 
 	g_Renderer.SetViewport(oldVp);
 
-	tech->EndPass();
+	deviceCommandContext->EndPass();
 
 	deviceCommandContext->SetFramebuffer(outFramebuffer);
 
@@ -303,8 +303,10 @@ void CPostprocManager::ApplyBlurGauss(
 	CShaderDefines defines3;
 	defines3.Add(str_BLOOM_PASS_V, str_1);
 	tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom, defines3);
+	deviceCommandContext->SetGraphicsPipelineState(
+		tech->GetGraphicsPipelineStateDesc());
 
-	tech->BeginPass();
+	deviceCommandContext->BeginPass();
 	shader = tech->GetShader();
 
 	// Our input texture to the shader is the output of the horizontal pass.
@@ -322,7 +324,7 @@ void CPostprocManager::ApplyBlurGauss(
 
 	g_Renderer.SetViewport(oldVp);
 
-	tech->EndPass();
+	deviceCommandContext->EndPass();
 }
 
 void CPostprocManager::ApplyBlur(
@@ -384,10 +386,10 @@ void CPostprocManager::ApplyEffect(
 	deviceCommandContext->SetFramebuffer(
 		(m_WhichBuffer ? m_PongFramebuffer : m_PingFramebuffer).get());
 
-	shaderTech->BeginPass(pass);
 	deviceCommandContext->SetGraphicsPipelineState(
 		shaderTech->GetGraphicsPipelineStateDesc(pass));
-	const CShaderProgramPtr& shader = shaderTech->GetShader(pass);
+	deviceCommandContext->BeginPass();
+	Renderer::Backend::GL::CShaderProgram* shader = shaderTech->GetShader(pass);
 
 	// Use the textures from the current FBO as input to the shader.
 	// We also bind a bunch of other textures and parameters, but since
@@ -442,7 +444,7 @@ void CPostprocManager::ApplyEffect(
 	shader->AssertPointersBound();
 	deviceCommandContext->Draw(0, 6);
 
-	shaderTech->EndPass(pass);
+	deviceCommandContext->EndPass();
 
 	m_WhichBuffer = !m_WhichBuffer;
 }

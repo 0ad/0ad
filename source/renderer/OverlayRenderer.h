@@ -18,7 +18,7 @@
 #ifndef INCLUDED_OVERLAYRENDERER
 #define INCLUDED_OVERLAYRENDERER
 
-#include "graphics/ShaderProgramPtr.h"
+#include "graphics/ShaderProgram.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
 
 struct SOverlayLine;
@@ -140,7 +140,7 @@ private:
 	 */
 	void RenderTexturedOverlayLines(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CShaderProgramPtr& shader, bool alwaysVisible);
+		Renderer::Backend::GL::CShaderProgram* shader, bool alwaysVisible);
 
 	/**
 	 * Helper method; batch-renders all registered quad overlays, batched by their texture for effiency.

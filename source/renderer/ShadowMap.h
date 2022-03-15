@@ -18,9 +18,8 @@
 #ifndef INCLUDED_SHADOWMAP
 #define INCLUDED_SHADOWMAP
 
-#include "graphics/ShaderProgramPtr.h"
-#include "lib/ogl.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/gl/ShaderProgram.h"
 
 class CBoundingBoxAligned;
 class CCamera;
@@ -127,7 +126,7 @@ public:
 	/**
 	 * Binds all needed resources and uniforms to draw shadows using the shader.
 	 */
-	void BindTo(const CShaderProgramPtr& shader) const;
+	void BindTo(Renderer::Backend::GL::CShaderProgram* shader) const;
 
 	/**
 	 * Visualize shadow mapping calculations to help in

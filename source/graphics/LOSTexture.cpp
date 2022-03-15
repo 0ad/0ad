@@ -80,7 +80,7 @@ CLOSTexture::~CLOSTexture()
 bool CLOSTexture::CreateShader()
 {
 	m_SmoothTech = g_Renderer.GetShaderManager().LoadEffect(str_los_interp);
-	CShaderProgramPtr shader = m_SmoothTech->GetShader();
+	Renderer::Backend::GL::CShaderProgram* shader = m_SmoothTech->GetShader();
 
 	m_ShaderInitialized = m_SmoothTech && shader;
 
@@ -141,11 +141,11 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* d
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render LOS texture");
 	deviceCommandContext->SetFramebuffer(m_SmoothFramebuffers[m_WhichTexture].get());
 
-	m_SmoothTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(
 		m_SmoothTech->GetGraphicsPipelineStateDesc());
+	deviceCommandContext->BeginPass();
 
-	const CShaderProgramPtr& shader = m_SmoothTech->GetShader();
+	Renderer::Backend::GL::CShaderProgram* shader = m_SmoothTech->GetShader();
 
 	shader->BindTexture(str_losTex1, m_Texture.get());
 	shader->BindTexture(str_losTex2, m_SmoothTextures[m_WhichTexture].get());
@@ -188,7 +188,7 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* d
 
 	g_Renderer.SetViewport(oldVp);
 
-	m_SmoothTech->EndPass();
+	deviceCommandContext->EndPass();
 
 	deviceCommandContext->SetFramebuffer(
 		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());

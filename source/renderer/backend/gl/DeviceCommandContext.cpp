@@ -24,6 +24,7 @@
 #include "renderer/backend/gl/Device.h"
 #include "renderer/backend/gl/Framebuffer.h"
 #include "renderer/backend/gl/Mapping.h"
+#include "renderer/backend/gl/ShaderProgram.h"
 #include "renderer/backend/gl/Texture.h"
 
 #include <algorithm>
@@ -413,6 +414,28 @@ void CDeviceCommandContext::ResetStates()
 void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 	const GraphicsPipelineStateDesc& pipelineStateDesc, const bool force)
 {
+	ENSURE(!m_InsidePass);
+
+	if (m_GraphicsPipelineStateDesc.shaderProgram != pipelineStateDesc.shaderProgram)
+	{
+		CShaderProgram* currentShaderProgram = nullptr;
+		if (m_GraphicsPipelineStateDesc.shaderProgram)
+		{
+			currentShaderProgram =
+				static_cast<CShaderProgram*>(m_GraphicsPipelineStateDesc.shaderProgram);
+		}
+		CShaderProgram* nextShaderProgram = nullptr;
+		if (pipelineStateDesc.shaderProgram)
+		{
+			nextShaderProgram =
+				static_cast<CShaderProgram*>(pipelineStateDesc.shaderProgram);
+		}
+		if (nextShaderProgram)
+			nextShaderProgram->Bind(currentShaderProgram);
+		else if (currentShaderProgram)
+			currentShaderProgram->Unbind();
+	}
+
 	const DepthStencilStateDesc& currentDepthStencilStateDesc = m_GraphicsPipelineStateDesc.depthStencilState;
 	const DepthStencilStateDesc& nextDepthStencilStateDesc = pipelineStateDesc.depthStencilState;
 	if (force || currentDepthStencilStateDesc.depthTestEnabled != nextDepthStencilStateDesc.depthTestEnabled)
@@ -740,9 +763,23 @@ void CDeviceCommandContext::SetIndexBufferData(const void* data)
 	m_IndexBufferData = data;
 }
 
+void CDeviceCommandContext::BeginPass()
+{
+	ENSURE(!m_InsidePass);
+	m_InsidePass = true;
+}
+
+void CDeviceCommandContext::EndPass()
+{
+	ENSURE(m_InsidePass);
+	m_InsidePass = false;
+}
+
 void CDeviceCommandContext::Draw(
 	const uint32_t firstVertex, const uint32_t vertexCount)
 {
+	ENSURE(m_GraphicsPipelineStateDesc.shaderProgram);
+	ENSURE(m_InsidePass);
 	// Some drivers apparently don't like count = 0 in glDrawArrays here, so skip
 	// all drawing in that case.
 	if (vertexCount == 0)
@@ -753,6 +790,8 @@ void CDeviceCommandContext::Draw(
 void CDeviceCommandContext::DrawIndexed(
 	const uint32_t firstIndex, const uint32_t indexCount, const int32_t vertexOffset)
 {
+	ENSURE(m_GraphicsPipelineStateDesc.shaderProgram);
+	ENSURE(m_InsidePass);
 	if (indexCount == 0)
 		return;
 	ENSURE(m_IndexBuffer || m_IndexBufferData);
@@ -772,6 +811,8 @@ void CDeviceCommandContext::DrawIndexedInRange(
 	const uint32_t firstIndex, const uint32_t indexCount,
 	const uint32_t start, const uint32_t end)
 {
+	ENSURE(m_GraphicsPipelineStateDesc.shaderProgram);
+	ENSURE(m_InsidePass);
 	if (indexCount == 0)
 		return;
 	ENSURE(m_IndexBuffer || m_IndexBufferData);

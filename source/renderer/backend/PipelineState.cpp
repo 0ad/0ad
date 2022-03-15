@@ -31,6 +31,8 @@ GraphicsPipelineStateDesc MakeDefaultGraphicsPipelineStateDesc()
 {
 	GraphicsPipelineStateDesc desc{};
 
+	desc.shaderProgram = nullptr;
+
 	desc.depthStencilState.depthTestEnabled = true;
 	desc.depthStencilState.depthCompareOp = CompareOp::LESS_OR_EQUAL;
 	desc.depthStencilState.depthWriteEnabled = true;

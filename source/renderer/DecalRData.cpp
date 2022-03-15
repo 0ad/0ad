@@ -163,10 +163,10 @@ void CDecalRData::RenderDecals(
 				Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
 			pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
 				Renderer::Backend::BlendOp::ADD;
-			techBase->BeginPass(pass);
 			deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+			deviceCommandContext->BeginPass();
 
-			const CShaderProgramPtr& shader = techBase->GetShader(pass);
+			Renderer::Backend::GL::CShaderProgram* shader = techBase->GetShader(pass);
 			TerrainRenderer::PrepareShader(shader, shadow);
 
 			CVertexBuffer* lastVB = nullptr;
@@ -225,7 +225,7 @@ void CDecalRData::RenderDecals(
 				g_Renderer.m_Stats.m_TerrainTris += batch.indices->m_Count / 3;
 			}
 
-			techBase->EndPass();
+			deviceCommandContext->EndPass();
 		}
 	}
 

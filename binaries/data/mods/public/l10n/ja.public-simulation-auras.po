@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-02-21 08:09+0000\n"
-"PO-Revision-Date: 2022-03-08 15:28+0000\n"
+"PO-Revision-Date: 2022-03-14 02:28+0000\n"
 "Last-Translator: Photon man\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -156,7 +156,7 @@ msgstr "栄光の拡大"
 
 #: simulation/data/auras/structures/xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned inside the building."
-msgstr "建物に駐屯されている間、ユニットは経験値を得ます。"
+msgstr "建物に駐留している間、ユニットは経験値を得ます。"
 
 #: simulation/data/auras/structures/xp_trickle.jsonauraName
 msgid "Rigorous Training"
@@ -588,19 +588,19 @@ msgstr "能工巧匠"
 msgid ""
 "The Imperial Ministry gains a +0.1 wood, stone, metal trickle for each "
 "garrisoned minister."
-msgstr ""
+msgstr "駐留している大臣ユニット1人につき木・石・金属を0.1ずつ自動取得"
 
 #: simulation/data/auras/units/han_minister_garrison_ministry.jsonauraName
 msgid "Nationalized Industries"
-msgstr ""
+msgstr "国有化産業"
 
 #: simulation/data/auras/units/han_minister_gathering.jsonauraDescription
 msgid "Gatherers +2% gathering rate for every nearby Minister."
-msgstr ""
+msgstr "近くの大臣ユニット1人につき採集者の収集率+2%"
 
 #: simulation/data/auras/units/han_minister_gathering.jsonauraName
 msgid "Minister over the Masses"
-msgstr ""
+msgstr " 大衆の大臣"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid ""
@@ -741,28 +741,28 @@ msgstr "戦争への備え"
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_1.jsonauraDescription
 msgid "Own and Allied Soldiers -50% promotion experience."
-msgstr ""
+msgstr "自国と同盟国の兵士の昇進に必要な経験値量-50％"
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_1.jsonauraName
 msgid "Northern Army"
-msgstr ""
+msgstr "北軍"
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_2.jsonauraDescription
 msgid "Own and Allied Soldiers +15% walk speed and +25% vision range."
-msgstr ""
+msgstr "自国と同盟国の兵士歩く速度+15%、視界+25%"
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_2.jsonauraName
 msgid "Southern Army"
-msgstr ""
+msgstr "南軍"
 
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_1.jsonauraDescription
 msgid "Walls +10 health regeneration rate."
-msgstr ""
+msgstr "壁のHP回復率+10"
 
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_1.jsonauraName
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_2.jsonauraName
 msgid "Confucian Reforms"
-msgstr ""
+msgstr "儒教の国教化"
 
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_2.jsonauraDescription
 msgid "Cavalry +20% attack damage."
@@ -778,19 +778,19 @@ msgstr "チャンピオンユニットの占拠力+2 近接と遠距離攻撃力
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_1.jsonauraName
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_2.jsonauraName
 msgid "Mandate of Heaven"
-msgstr ""
+msgstr "天命"
 
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_2.jsonauraDescription
 msgid "Enemy Cavalry −10% melee and ranged attack damage."
-msgstr ""
+msgstr "敵騎兵ユニットの近接と遠距離攻撃力-10%"
 
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_3.jsonauraDescription
 msgid "Nearby enemy units -10 health/second."
-msgstr ""
+msgstr "近くの敵ユニットのHP毎秒10ずつ減少"
 
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_3.jsonauraName
 msgid "Scythes"
-msgstr ""
+msgstr "鎌戦車"
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraDescription
 msgid ""

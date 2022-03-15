@@ -20,6 +20,7 @@
 
 #include "graphics/Color.h"
 #include "renderer/backend/CompareOp.h"
+#include "renderer/backend/IShaderProgram.h"
 
 class CStr;
 
@@ -159,9 +160,11 @@ struct RasterizationStateDesc
 	float depthBiasSlopeFactor;
 };
 
-// TODO: Add a shader program to the graphics pipeline state.
 struct GraphicsPipelineStateDesc
 {
+	// It's a backend client reponsibility to keep the shader program alive
+	// while it's bound.
+	IShaderProgram* shaderProgram;
 	DepthStencilStateDesc depthStencilState;
 	BlendStateDesc blendState;
 	RasterizationStateDesc rasterizationState;

@@ -20,10 +20,10 @@
 
 #include "graphics/Patch.h"
 #include "graphics/RenderableObject.h"
-#include "graphics/ShaderProgramPtr.h"
 #include "maths/Vector2D.h"
 #include "maths/Vector3D.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/gl/ShaderProgram.h"
 #include "renderer/VertexBufferManager.h"
 
 #include <vector>
@@ -50,10 +50,10 @@ public:
 
 	void RenderWaterSurface(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CShaderProgramPtr& shader, const bool bindWaterData);
+		Renderer::Backend::GL::CShaderProgram* shader, const bool bindWaterData);
 	void RenderWaterShore(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CShaderProgramPtr& shader);
+		Renderer::Backend::GL::CShaderProgram* shader);
 
 	CPatch* GetPatch() { return m_Patch; }
 
@@ -67,13 +67,13 @@ public:
 		const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow);
 	static void RenderStreams(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader,
+		const std::vector<CPatchRData*>& patches, Renderer::Backend::GL::CShaderProgram* shader,
 		const bool bindPositionAsTexCoord);
 	static void RenderSides(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const std::vector<CPatchRData*>& patches, const CShaderProgramPtr& shader);
+		const std::vector<CPatchRData*>& patches, Renderer::Backend::GL::CShaderProgram* shader);
 
-	static void PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow);
+	static void PrepareShader(Renderer::Backend::GL::CShaderProgram* shader, ShadowMap* shadow);
 
 private:
 	friend struct SBlendStackItem;

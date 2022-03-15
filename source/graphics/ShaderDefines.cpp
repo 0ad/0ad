@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -225,7 +225,7 @@ CVector4D CShaderUniforms::GetVector(const char* name) const
 	return CVector4D();
 }
 
-void CShaderUniforms::BindUniforms(const CShaderProgramPtr& shader) const
+void CShaderUniforms::BindUniforms(Renderer::Backend::GL::CShaderProgram* shader) const
 {
 	const std::vector<SItems::Item>& items = m_Items->items;
 	for (size_t i = 0; i < items.size(); ++i)

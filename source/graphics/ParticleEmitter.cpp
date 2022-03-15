@@ -176,7 +176,7 @@ void CParticleEmitter::PrepareForRendering()
 
 void CParticleEmitter::Bind(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CShaderProgramPtr& shader)
+	Renderer::Backend::GL::CShaderProgram* shader)
 {
 	m_Type->m_Texture->UploadBackendTextureIfNeeded(deviceCommandContext);
 
@@ -194,7 +194,7 @@ void CParticleEmitter::Bind(
 
 void CParticleEmitter::RenderArray(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CShaderProgramPtr& shader)
+	Renderer::Backend::GL::CShaderProgram* shader)
 {
 	if (m_Particles.empty())
 		return;

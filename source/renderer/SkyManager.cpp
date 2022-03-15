@@ -207,10 +207,10 @@ void SkyManager::RenderSky(
 
 	CShaderTechniquePtr skytech =
 		g_Renderer.GetShaderManager().LoadEffect(str_sky_simple);
-	skytech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(
 		skytech->GetGraphicsPipelineStateDesc());
-	const CShaderProgramPtr& shader = skytech->GetShader();
+	deviceCommandContext->BeginPass();
+	Renderer::Backend::GL::CShaderProgram* shader = skytech->GetShader();
 	shader->BindTexture(str_baseTex, m_SkyCubeMap.get());
 
 	// Translate so the sky center is at the camera space origin.
@@ -244,7 +244,7 @@ void SkyManager::RenderSky(
 
 	deviceCommandContext->Draw(0, m_VertexArray.GetNumberOfVertices());
 
-	skytech->EndPass();
+	deviceCommandContext->EndPass();
 }
 
 void SkyManager::CreateSkyCube()

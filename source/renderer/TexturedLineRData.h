@@ -20,7 +20,7 @@
 
 #include "graphics/Overlay.h"
 #include "graphics/RenderableObject.h"
-#include "graphics/ShaderProgramPtr.h"
+#include "graphics/ShaderProgram.h"
 #include "graphics/TextureManager.h"
 #include "maths/BoundingBoxAligned.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
@@ -53,7 +53,7 @@ public:
 
 	void Update(const SOverlayTexturedLine& line);
 	void Render(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const SOverlayTexturedLine& line, const CShaderProgramPtr& shader);
+		const SOverlayTexturedLine& line, Renderer::Backend::GL::CShaderProgram* shader);
 
 	bool IsVisibleInFrustum(const CFrustum& frustum) const;
 

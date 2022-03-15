@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2022-03-07 08:09+0000\n"
-"PO-Revision-Date: 2022-03-07 08:09+0000\n"
+"POT-Creation-Date: 2022-03-14 08:09+0000\n"
+"PO-Revision-Date: 2022-03-14 08:09+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -323,13 +323,13 @@ msgstr ""
 msgid "Structures +10% health and +10% capture points."
 msgstr ""
 
-#: simulation/data/technologies/civbonuses/han_popcap.json:description
+#: simulation/data/technologies/civbonuses/han_population.json:description
 msgid ""
 "By uniting China under one emperor, the Han Dynasty ruled over 40 million people, one "
 "of the largest empires of antiquity by population."
 msgstr ""
 
-#: simulation/data/technologies/civbonuses/han_popcap.json:genericName
+#: simulation/data/technologies/civbonuses/han_population.json:genericName
 msgid "Federated States"
 msgstr ""
 
@@ -343,6 +343,18 @@ msgstr ""
 
 #: simulation/data/technologies/civbonuses/han_walls.json:tooltip
 msgid "City Walls +50% health."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/mace_storehouse.json:description
+msgid "The Macedonian economy relied greatly on their vast natural resources."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/mace_storehouse.json:genericName
+msgid "Resource-Rich Economy"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/mace_storehouse.json:tooltip
+msgid "Storehouse technologies -100% research time."
 msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_elephants.json:description

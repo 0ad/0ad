@@ -427,10 +427,10 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 			Renderer::Backend::BlendOp::ADD;
 		if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
 			pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
-		shaderTechTexLineNormal->BeginPass();
 		deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+		deviceCommandContext->BeginPass();
 
-		CShaderProgramPtr shaderTexLineNormal = shaderTechTexLineNormal->GetShader();
+		Renderer::Backend::GL::CShaderProgram* shaderTexLineNormal = shaderTechTexLineNormal->GetShader();
 
 		shaderTexLineNormal->BindTexture(str_losTex, los.GetTexture());
 		shaderTexLineNormal->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
@@ -440,7 +440,7 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 		// batch render only the non-always-visible overlay lines using the normal shader
 		RenderTexturedOverlayLines(deviceCommandContext, shaderTexLineNormal, false);
 
-		shaderTechTexLineNormal->EndPass();
+		deviceCommandContext->EndPass();
 	}
 
 	// ----------------------------------------------------------------------------------------
@@ -460,10 +460,10 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 			Renderer::Backend::BlendOp::ADD;
 		if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
 			pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
-		shaderTechTexLineAlwaysVisible->BeginPass();
 		deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+		deviceCommandContext->BeginPass();
 
-		CShaderProgramPtr shaderTexLineAlwaysVisible = shaderTechTexLineAlwaysVisible->GetShader();
+		Renderer::Backend::GL::CShaderProgram* shaderTexLineAlwaysVisible = shaderTechTexLineAlwaysVisible->GetShader();
 
 		// TODO: losTex and losTransform are unused in the always visible shader; see if these can be safely omitted
 		shaderTexLineAlwaysVisible->BindTexture(str_losTex, los.GetTexture());
@@ -474,7 +474,7 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 		// batch render only the always-visible overlay lines using the LoS-ignored shader
 		RenderTexturedOverlayLines(deviceCommandContext, shaderTexLineAlwaysVisible, true);
 
-		shaderTechTexLineAlwaysVisible->EndPass();
+		deviceCommandContext->EndPass();
 	}
 
 	// ----------------------------------------------------------------------------------------
@@ -488,7 +488,7 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 
 void OverlayRenderer::RenderTexturedOverlayLines(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CShaderProgramPtr& shader, bool alwaysVisible)
+	Renderer::Backend::GL::CShaderProgram* shader, bool alwaysVisible)
 {
 	for (size_t i = 0; i < m->texlines.size(); ++i)
 	{
@@ -530,10 +530,10 @@ void OverlayRenderer::RenderQuadOverlays(
 		Renderer::Backend::BlendOp::ADD;
 	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
 		pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
-	shaderTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+	deviceCommandContext->BeginPass();
 
-	const CShaderProgramPtr& shader = shaderTech->GetShader();
+	Renderer::Backend::GL::CShaderProgram* shader = shaderTech->GetShader();
 
 	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 
@@ -586,7 +586,7 @@ void OverlayRenderer::RenderQuadOverlays(
 		g_Renderer.GetStats().m_OverlayTris += batchNumQuads*2;
 	}
 
-	shaderTech->EndPass();
+	deviceCommandContext->EndPass();
 
 	// TODO: the shader should probably be responsible for unbinding its textures
 	deviceCommandContext->BindTexture(1, GL_TEXTURE_2D, 0);
@@ -622,10 +622,10 @@ void OverlayRenderer::RenderForegroundOverlays(
 		Renderer::Backend::BlendOp::ADD;
 	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
 		pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
-	tech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+	deviceCommandContext->BeginPass();
 
-	const CShaderProgramPtr& shader = tech->GetShader();
+	Renderer::Backend::GL::CShaderProgram* shader = tech->GetShader();
 
 	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 
@@ -672,7 +672,7 @@ void OverlayRenderer::RenderForegroundOverlays(
 		g_Renderer.GetStats().m_OverlayTris += 2;
 	}
 
-	tech->EndPass();
+	deviceCommandContext->EndPass();
 #endif
 }
 
@@ -749,7 +749,7 @@ void OverlayRenderer::RenderSphereOverlays(
 	if (m->spheres.empty())
 		return;
 
-	CShaderProgramPtr shader;
+	Renderer::Backend::GL::CShaderProgram* shader;
 	CShaderTechniquePtr tech;
 
 	tech = g_Renderer.GetShaderManager().LoadEffect(str_overlay_solid);
@@ -763,8 +763,8 @@ void OverlayRenderer::RenderSphereOverlays(
 		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
 	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
 		Renderer::Backend::BlendOp::ADD;
-	tech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+	deviceCommandContext->BeginPass();
 
 	shader = tech->GetShader();
 
@@ -794,6 +794,6 @@ void OverlayRenderer::RenderSphereOverlays(
 		g_Renderer.GetStats().m_OverlayTris = m->sphereIndexes.size()/3;
 	}
 
-	tech->EndPass();
+	deviceCommandContext->EndPass();
 #endif
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -110,9 +110,9 @@ private:
 	 * @param defines key/value set of preprocessor definitions
 	 * @return loaded program, or null pointer on error
 	 */
-	CShaderProgramPtr LoadProgram(const char* name, const CShaderDefines& defines);
+	CShaderProgramPtr LoadProgram(const CStr& name, const CShaderDefines& defines);
 
-	bool NewEffect(const char* name, const CShaderDefines& defines, CShaderTechniquePtr& tech);
+	bool NewEffect(const CStr& name, const CShaderDefines& defines, CShaderTechniquePtr& tech);
 
 	static Status ReloadChangedFileCB(void* param, const VfsPath& path);
 	Status ReloadChangedFile(const VfsPath& path);

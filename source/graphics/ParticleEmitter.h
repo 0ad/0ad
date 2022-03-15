@@ -22,6 +22,7 @@
 #include "graphics/ParticleEmitterType.h"
 #include "maths/Quaternion.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/gl/ShaderProgram.h"
 #include "renderer/VertexArray.h"
 
 #include <map>
@@ -123,14 +124,14 @@ public:
 	 */
 	void Bind(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CShaderProgramPtr& shader);
+		Renderer::Backend::GL::CShaderProgram* shader);
 
 	/**
 	 * Draw the vertex array.
 	 */
 	void RenderArray(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CShaderProgramPtr& shader);
+		Renderer::Backend::GL::CShaderProgram* shader);
 
 	/**
 	 * Stop this emitter emitting new particles, and pass responsibility for rendering

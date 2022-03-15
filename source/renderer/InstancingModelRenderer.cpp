@@ -312,7 +312,7 @@ void InstancingModelRenderer::EndPass(
 // Prepare UV coordinates for this modeldef
 void InstancingModelRenderer::PrepareModelDef(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CShaderProgramPtr& shader, int streamflags, const CModelDef& def)
+	Renderer::Backend::GL::CShaderProgram* shader, int streamflags, const CModelDef& def)
 {
 	m->imodeldef = (IModelDef*)def.GetRenderData(m);
 
@@ -377,7 +377,7 @@ void InstancingModelRenderer::PrepareModelDef(
 // Render one model
 void InstancingModelRenderer::RenderModel(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const CShaderProgramPtr& shader, int UNUSED(streamflags), CModel* model, CModelRData* UNUSED(data))
+	Renderer::Backend::GL::CShaderProgram* shader, int UNUSED(streamflags), CModel* model, CModelRData* UNUSED(data))
 {
 	const CModelDefPtr& mdldef = model->GetModelDef();
 

@@ -37,7 +37,7 @@
 
 void CTexturedLineRData::Render(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const SOverlayTexturedLine& line, const CShaderProgramPtr& shader)
+	const SOverlayTexturedLine& line, Renderer::Backend::GL::CShaderProgram* shader)
 {
 	if (!m_VB || !m_VBIndices)
 		return; // might have failed to allocate

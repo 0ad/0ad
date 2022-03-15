@@ -14,7 +14,8 @@ then
         # SM actually uses features from the full-fledged virtualenv package
         # and not just venv, so install it to be safe.
         # Install it locally to not pollute anything.
-        pip3 install --upgrade -t virtualenv virtualenv
+        # Install specifically a version that's know to work.
+        pip3 install --upgrade -t virtualenv 'virtualenv==20.13.1'
         export PYTHONPATH="$(pwd)/virtualenv:$PYTHONPATH"
         patch -p1 < ../FixVirtualEnv.diff
     fi

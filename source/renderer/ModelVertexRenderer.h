@@ -26,6 +26,7 @@
 #include "graphics/MeshManager.h"
 #include "graphics/ShaderProgramPtr.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/gl/ShaderProgram.h"
 
 class CModel;
 class CModelRData;
@@ -134,7 +135,7 @@ public:
 	 */
 	virtual void PrepareModelDef(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CShaderProgramPtr& shader, int streamflags, const CModelDef& def) = 0;
+		Renderer::Backend::GL::CShaderProgram* shader, int streamflags, const CModelDef& def) = 0;
 
 
 	/**
@@ -158,7 +159,7 @@ public:
 	 */
 	virtual void RenderModel(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data) = 0;
+		Renderer::Backend::GL::CShaderProgram* shader, int streamflags, CModel* model, CModelRData* data) = 0;
 };
 
 

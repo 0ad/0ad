@@ -64,10 +64,11 @@ void LitRenderModifier::SetLightEnv(const CLightEnv* lightenv)
 // ShaderRenderModifier implementation
 
 ShaderRenderModifier::ShaderRenderModifier()
+	: m_ShadingColor(1.0f, 1.0f, 1.0f, 1.0f), m_PlayerColor(1.0f, 1.0f, 1.0f, 1.0f)
 {
 }
 
-void ShaderRenderModifier::BeginPass(const CShaderProgramPtr& shader)
+void ShaderRenderModifier::BeginPass(Renderer::Backend::GL::CShaderProgram* shader)
 {
 	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	shader->Uniform(str_cameraPos, g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetTranslation());
@@ -96,16 +97,38 @@ void ShaderRenderModifier::BeginPass(const CShaderProgramPtr& shader)
 	m_BindingInstancingTransform = shader->GetUniformBinding(str_instancingTransform);
 	m_BindingShadingColor = shader->GetUniformBinding(str_shadingColor);
 	m_BindingPlayerColor = shader->GetUniformBinding(str_playerColor);
+
+	if (m_BindingShadingColor.Active())
+	{
+		m_ShadingColor = CColor(1.0f, 1.0f, 1.0f, 1.0f);
+		shader->Uniform(m_BindingShadingColor, m_ShadingColor);
+	}
+
+	if (m_BindingPlayerColor.Active())
+	{
+		m_PlayerColor = g_Game->GetPlayerColor(0);
+		shader->Uniform(m_BindingPlayerColor, m_PlayerColor);
+	}
 }
 
-void ShaderRenderModifier::PrepareModel(const CShaderProgramPtr& shader, CModel* model)
+void ShaderRenderModifier::PrepareModel(Renderer::Backend::GL::CShaderProgram* shader, CModel* model)
 {
 	if (m_BindingInstancingTransform.Active())
 		shader->Uniform(m_BindingInstancingTransform, model->GetTransform());
 
-	if (m_BindingShadingColor.Active())
-		shader->Uniform(m_BindingShadingColor, model->GetShadingColor());
+	if (m_BindingShadingColor.Active() && m_ShadingColor != model->GetShadingColor())
+	{
+		m_ShadingColor = model->GetShadingColor();
+		shader->Uniform(m_BindingShadingColor, m_ShadingColor);
+	}
 
 	if (m_BindingPlayerColor.Active())
-		shader->Uniform(m_BindingPlayerColor, g_Game->GetPlayerColor(model->GetPlayerID()));
+	{
+		const CColor& playerColor = g_Game->GetPlayerColor(model->GetPlayerID());
+		if (m_PlayerColor != playerColor)
+		{
+			m_PlayerColor = playerColor;
+			shader->Uniform(m_BindingPlayerColor, m_PlayerColor);
+		}
+	}
 }

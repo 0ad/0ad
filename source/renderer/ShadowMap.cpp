@@ -572,6 +572,8 @@ void ShadowMap::BeginRender()
 {
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
 		g_Renderer.GetDeviceCommandContext();
+	deviceCommandContext->SetGraphicsPipelineState(
+		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
 
 	{
 		PROFILE("bind framebuffer");
@@ -629,7 +631,7 @@ void ShadowMap::EndRender()
 	g_Renderer.SetViewport(vp);
 }
 
-void ShadowMap::BindTo(const CShaderProgramPtr& shader) const
+void ShadowMap::BindTo(Renderer::Backend::GL::CShaderProgram* shader) const
 {
 	if (!shader->GetTextureBinding(str_shadowTex).Active() || !m->Texture)
 		return;
@@ -723,11 +725,11 @@ void ShadowMap::RenderDebugTexture(
 #endif
 
 	CShaderTechniquePtr texTech = g_Renderer.GetShaderManager().LoadEffect(str_canvas2d);
-	texTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(
 		texTech->GetGraphicsPipelineStateDesc());
+	deviceCommandContext->BeginPass();
 
-	const CShaderProgramPtr& texShader = texTech->GetShader();
+	Renderer::Backend::GL::CShaderProgram* texShader = texTech->GetShader();
 
 	texShader->Uniform(str_transform, GetDefaultGuiMatrix());
 	texShader->BindTexture(str_tex, m->Texture.get());
@@ -754,7 +756,7 @@ void ShadowMap::RenderDebugTexture(
 	texShader->AssertPointersBound();
 	deviceCommandContext->Draw(0, 6);
 
-	texTech->EndPass();
+	deviceCommandContext->EndPass();
 
 #if !CONFIG2_GLES
 	deviceCommandContext->BindTexture(0, GL_TEXTURE_2D, m->Texture->GetHandle());

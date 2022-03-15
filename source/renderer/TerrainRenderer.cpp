@@ -178,10 +178,10 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 
 	CShaderTechniquePtr debugOverlayTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_overlay);
-	debugOverlayTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(
 		debugOverlayTech->GetGraphicsPipelineStateDesc());
-	const CShaderProgramPtr& debugOverlayShader = debugOverlayTech->GetShader();
+	deviceCommandContext->BeginPass();
+	Renderer::Backend::GL::CShaderProgram* debugOverlayShader = debugOverlayTech->GetShader();
 
 	debugOverlayShader->BindTexture(str_baseTex, texture);
 	debugOverlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
@@ -217,7 +217,7 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 		deviceCommandContext->Draw(0, 6);
 	}
 
-	debugOverlayTech->EndPass();
+	deviceCommandContext->EndPass();
 #endif
 }
 
@@ -227,7 +227,7 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 /**
  * Set up all the uniforms for a shader pass.
  */
-void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow)
+void TerrainRenderer::PrepareShader(Renderer::Backend::GL::CShaderProgram* shader, ShadowMap* shadow)
 {
 	CSceneRenderer& sceneRenderer = g_Renderer.GetSceneRenderer();
 
@@ -264,19 +264,19 @@ void TerrainRenderer::RenderTerrainShader(
 
 	// render the solid black sides of the map first
 	CShaderTechniquePtr techSolid = g_Renderer.GetShaderManager().LoadEffect(str_solid);
-	techSolid->BeginPass();
 	Renderer::Backend::GraphicsPipelineStateDesc solidPipelineStateDesc =
 		techSolid->GetGraphicsPipelineStateDesc();
 	solidPipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
 	deviceCommandContext->SetGraphicsPipelineState(solidPipelineStateDesc);
+	deviceCommandContext->BeginPass();
 
-	const CShaderProgramPtr& shaderSolid = techSolid->GetShader();
+	Renderer::Backend::GL::CShaderProgram* shaderSolid = techSolid->GetShader();
 	shaderSolid->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	shaderSolid->Uniform(str_color, 0.0f, 0.0f, 0.0f, 1.0f);
 
 	CPatchRData::RenderSides(deviceCommandContext, visiblePatches, shaderSolid);
 
-	techSolid->EndPass();
+	deviceCommandContext->EndPass();
 
 	CPatchRData::RenderBases(deviceCommandContext, visiblePatches, context, shadow);
 
@@ -314,16 +314,16 @@ void TerrainRenderer::RenderPatches(
 #else
 
 	CShaderTechniquePtr solidTech = g_Renderer.GetShaderManager().LoadEffect(str_terrain_solid, defines);
-	solidTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(
 		solidTech->GetGraphicsPipelineStateDesc());
+	deviceCommandContext->BeginPass();
 
-	const CShaderProgramPtr& solidShader = solidTech->GetShader();
+	Renderer::Backend::GL::CShaderProgram* solidShader = solidTech->GetShader();
 	solidShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	solidShader->Uniform(str_color, color);
 
 	CPatchRData::RenderStreams(deviceCommandContext, visiblePatches, solidShader, false);
-	solidTech->EndPass();
+	deviceCommandContext->EndPass();
 #endif
 }
 
@@ -416,10 +416,10 @@ bool TerrainRenderer::RenderFancyWater(
 	const double time = waterManager.m_WaterTexTimer;
 	const float repeatPeriod = waterManager.m_RepeatPeriod;
 
-	m->fancyWaterTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(
 		m->fancyWaterTech->GetGraphicsPipelineStateDesc());
-	const CShaderProgramPtr& fancyWaterShader = m->fancyWaterTech->GetShader();
+	deviceCommandContext->BeginPass();
+	Renderer::Backend::GL::CShaderProgram* fancyWaterShader = m->fancyWaterTech->GetShader();
 
 	const CCamera& camera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
@@ -509,7 +509,7 @@ bool TerrainRenderer::RenderFancyWater(
 		if (waterManager.m_WaterFancyEffects)
 			data->RenderWaterShore(deviceCommandContext, fancyWaterShader);
 	}
-	m->fancyWaterTech->EndPass();
+	deviceCommandContext->EndPass();
 
 	return true;
 }
@@ -536,10 +536,10 @@ void TerrainRenderer::RenderSimpleWater(
 
 	CShaderTechniquePtr waterSimpleTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_water_simple, context);
-	waterSimpleTech->BeginPass();
 	deviceCommandContext->SetGraphicsPipelineState(
 		waterSimpleTech->GetGraphicsPipelineStateDesc());
-	const CShaderProgramPtr& waterSimpleShader = waterSimpleTech->GetShader();
+	deviceCommandContext->BeginPass();
+	Renderer::Backend::GL::CShaderProgram* waterSimpleShader = waterSimpleTech->GetShader();
 
 	const CTexturePtr& waterTexture = waterManager.m_WaterTexture[waterManager.GetCurrentTextureIndex(1.6)];
 	waterTexture->UploadBackendTextureIfNeeded(deviceCommandContext);
@@ -559,7 +559,7 @@ void TerrainRenderer::RenderSimpleWater(
 
 	deviceCommandContext->BindTexture(1, GL_TEXTURE_2D, 0);
 
-	waterSimpleTech->EndPass();
+	deviceCommandContext->EndPass();
 #endif
 }
 
@@ -593,19 +593,19 @@ void TerrainRenderer::RenderWaterFoamOccluders(
 
 	// Overwrite waves that would be behind the ground.
 	CShaderTechniquePtr dummyTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
-	dummyTech->BeginPass();
 	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
 		dummyTech->GetGraphicsPipelineStateDesc();
 	pipelineStateDesc.depthStencilState.depthTestEnabled = true;
 	pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
-	const CShaderProgramPtr& dummyShader = dummyTech->GetShader();
+	deviceCommandContext->BeginPass();
+	Renderer::Backend::GL::CShaderProgram* dummyShader = dummyTech->GetShader();
 
 	dummyShader->Uniform(str_transform, sceneRenderer.GetViewCamera().GetViewProjection());
 	dummyShader->Uniform(str_color, 0.0f, 0.0f, 0.0f, 0.0f);
 	for (CPatchRData* data : m->visiblePatches[cullGroup])
 		data->RenderWaterShore(deviceCommandContext, dummyShader);
-	dummyTech->EndPass();
+	deviceCommandContext->EndPass();
 
 	deviceCommandContext->SetFramebuffer(
 		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
