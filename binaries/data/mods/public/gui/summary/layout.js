@@ -81,11 +81,10 @@ var getScorePanelsData = () => [
 		],
 		"titleHeadings": [
 			{
-				"caption": sprintf(translate("Unit Statistics (%(trained)s / %(killed)s / %(captured)s / %(lost)s)"),
+				"caption": sprintf(translate("Unit Statistics (%(trained)s / %(killed)s / %(lost)s)"),
 					{
 						"trained": getColoredTypeTranslation("trained"),
 						"killed": getColoredTypeTranslation("killed"),
-						"captured": getColoredTypeTranslation("captured"),
 						"lost": getColoredTypeTranslation("lost")
 					}),
 				"yStart": 16,
@@ -93,13 +92,13 @@ var getScorePanelsData = () => [
 			},	// width = 785
 		],
 		"counters": [
-			{ "width": 105, "fn": calculateUnitsWithCaptured, "verticalOffset": 3 },
+			{ "width": 105, "fn": calculateUnits, "verticalOffset": 3 },
 			{ "width": 85, "fn": calculateUnits, "verticalOffset": 3 },
 			{ "width": 85, "fn": calculateUnits, "verticalOffset": 3 },
 			{ "width": 85, "fn": calculateUnits, "verticalOffset": 3 },
 			{ "width": 85, "fn": calculateUnits, "verticalOffset": 3 },
 			{ "width": 85, "fn": calculateUnits, "verticalOffset": 3 },
-			{ "width": 85, "fn": calculateUnitsWithCaptured, "verticalOffset": 3 },
+			{ "width": 85, "fn": calculateUnits, "verticalOffset": 3 },
 			{ "width": 85, "fn": calculateUnits, "verticalOffset": 3 },
 			{ "width": 85, "fn": calculateUnits, "verticalOffset": 3 }
 		],

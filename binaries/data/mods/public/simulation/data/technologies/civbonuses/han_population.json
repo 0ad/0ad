@@ -3,6 +3,8 @@
 	"autoResearch": true,
 	"description": "By uniting China under one emperor, the Han Dynasty ruled over 40 million people, one of the largest empires of antiquity by population.",
 	"requirements": { "civ": "han" },
+	"icon": "population.png",
+	"tooltip": "+10% maximum population limit.",
 	"modifications": [
 		{ "value": "Player/MaxPopulation", "multiply": 1.1 }
 	]

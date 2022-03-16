@@ -116,7 +116,7 @@ void CDecalRData::RenderDecals(
 		}
 
 		CShaderDefines defines = contextDecal;
-		defines.SetMany(material.GetShaderDefines(0));
+		defines.SetMany(material.GetShaderDefines());
 		CShaderTechniquePtr techBase = g_Renderer.GetShaderManager().LoadEffect(
 			material.GetShaderEffect(), defines);
 		if (!techBase)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -56,15 +56,7 @@ public:
 	// Must call RecomputeCombinedShaderDefines after this, before rendering with this material
 	void AddShaderDefine(CStrIntern key, CStrIntern value);
 
-	// conditionFlags is a bitmask representing which indexes of the
-	// GetConditionalDefines() list are currently matching.
-	// Use 0 if you don't care about conditional defines.
-	const CShaderDefines& GetShaderDefines(uint32_t conditionFlags) const { return m_CombinedShaderDefines.at(conditionFlags); }
-
-	// Must call RecomputeCombinedShaderDefines after this, before rendering with this material
-	void AddConditionalDefine(const char* defname, const char* defvalue, int type, std::vector<float> &args);
-
-	const CShaderConditionalDefines& GetConditionalDefines() const { return m_ConditionalDefines; }
+	const CShaderDefines& GetShaderDefines() const { return m_ShaderDefines; }
 
 	void AddStaticUniform(const char* key, const CVector4D& value);
 	const CShaderUniforms& GetStaticUniforms() const { return m_StaticUniforms; }
@@ -78,9 +70,6 @@ public:
 	void AddRequiredSampler(const CStr& samplerName);
 	const std::vector<CStrIntern>& GetRequiredSampler() const { return m_RequiredSamplers; }
 
-	// Must be called after all AddShaderDefine and AddConditionalDefine
-	void RecomputeCombinedShaderDefines();
-
 private:
 
 	// This pointer is kept to make it easier for the fixed pipeline to
@@ -92,12 +81,10 @@ private:
 
 	CStrIntern m_ShaderEffect;
 	CShaderDefines m_ShaderDefines;
-	CShaderConditionalDefines m_ConditionalDefines;
-	std::vector<CShaderDefines> m_CombinedShaderDefines;
 	CShaderUniforms m_StaticUniforms;
 	CShaderRenderQueries m_RenderQueries;
 
 	bool m_AlphaBlending;
 };
 
-#endif
+#endif // INCLUDED_MATERIAL

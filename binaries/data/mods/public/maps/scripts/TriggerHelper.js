@@ -386,7 +386,6 @@ TriggerHelper.HasDealtWithTech = function(playerID, techName)
 	let playerEnt = cmpPlayerManager.GetPlayerByID(playerID);
 	let cmpTechnologyManager = Engine.QueryInterface(playerEnt, IID_TechnologyManager);
 	return cmpTechnologyManager && (cmpTechnologyManager.IsTechnologyQueued(techName) ||
-	                                cmpTechnologyManager.IsTechnologyStarted(techName) ||
 	                                cmpTechnologyManager.IsTechnologyResearched(techName));
 };
 

@@ -23,8 +23,9 @@ class Cheats
 	 */
 	executeCheat(text)
 	{
-		if (!controlsPlayer(Engine.GetPlayerID()) ||
-		    !g_Players[Engine.GetPlayerID()].cheatsEnabled)
+		const player = Engine.GetPlayerID();
+		if (!controlsPlayer(player) ||
+		    !g_Players[player].cheatsEnabled)
 			return false;
 
 		// Find the cheat code that is a prefix of the user input
@@ -35,11 +36,27 @@ class Cheats
 		let cheat = this.cheats[cheatCode];
 
 		let parameter = text.substr(cheatCode.length + 1);
-		if (cheat.isNumeric)
-			parameter = +parameter;
 
-		if (cheat.DefaultParameter && !parameter)
+		if (cheat.DefaultParameter && parameter === "")
 			parameter = cheat.DefaultParameter;
+
+		if (parameter !== "" && cheat.isNumeric)
+		{
+			parameter = +parameter;
+			if (isNaN(parameter))
+			{
+				addChatMessage({
+					"type": "message",
+					"guid": -1,
+					"player": player,
+					"text": this.NoNumericMessage,
+					"translate": true,
+					"translateParameters": [],
+					"parameters": {}
+				});
+				return false;
+			}
+		}
 
 		Engine.PostNetworkCommand({
 			"type": "cheat",
@@ -56,3 +73,6 @@ class Cheats
 }
 
 Cheats.prototype.Directory = "simulation/data/cheats/";
+
+Cheats.prototype.NoNumericMessage =
+	markForTranslation("This cheat requires a numeric parameter.");
