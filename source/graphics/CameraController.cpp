@@ -58,6 +58,7 @@ CCameraController::CCameraController(CCamera& camera)
 	  // Dummy values (these will be filled in by the config file)
 	  m_ViewScrollSpeed(0),
 	  m_ViewScrollSpeedModifier(1),
+	  m_ViewScrollMouseDetectDistance(3),
 	  m_ViewRotateXSpeed(0),
 	  m_ViewRotateXMin(0),
 	  m_ViewRotateXMax(0),
@@ -104,6 +105,7 @@ void CCameraController::LoadConfig()
 {
 	CFG_GET_VAL("view.scroll.speed", m_ViewScrollSpeed);
 	CFG_GET_VAL("view.scroll.speed.modifier", m_ViewScrollSpeedModifier);
+	CFG_GET_VAL("view.scroll.mouse.detectdistance", m_ViewScrollMouseDetectDistance);
 	CFG_GET_VAL("view.rotate.x.speed", m_ViewRotateXSpeed);
 	CFG_GET_VAL("view.rotate.x.min", m_ViewRotateXMin);
 	CFG_GET_VAL("view.rotate.x.max", m_ViewRotateXMax);
@@ -182,16 +184,16 @@ void CCameraController::Update(const float deltaRealTime)
 		moveForward += m_ViewDragSpeed * -mouse_dy;
 	}
 
-	if (g_mouse_active)
+	if (g_mouse_active && m_ViewScrollMouseDetectDistance > 0)
 	{
-		if (g_mouse_x >= g_xres - 2 && g_mouse_x < g_xres)
+		if (g_mouse_x >= g_xres - m_ViewScrollMouseDetectDistance && g_mouse_x < g_xres)
 			moveRightward += m_ViewScrollSpeed * deltaRealTime;
-		else if (g_mouse_x <= 3 && g_mouse_x >= 0)
+		else if (g_mouse_x < m_ViewScrollMouseDetectDistance && g_mouse_x >= 0)
 			moveRightward -= m_ViewScrollSpeed * deltaRealTime;
 
-		if (g_mouse_y >= g_yres - 2 && g_mouse_y < g_yres)
+		if (g_mouse_y >= g_yres - m_ViewScrollMouseDetectDistance && g_mouse_y < g_yres)
 			moveForward -= m_ViewScrollSpeed * deltaRealTime;
-		else if (g_mouse_y <= 3 && g_mouse_y >= 0)
+		else if (g_mouse_y < m_ViewScrollMouseDetectDistance && g_mouse_y >= 0)
 			moveForward += m_ViewScrollSpeed * deltaRealTime;
 	}
 
