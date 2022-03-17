@@ -626,10 +626,10 @@ void CCmpPathfinder::TerrainUpdateHelper(bool expandPassability, int itile0, int
 		// We need to extend the boundaries by 1 tile, because slope and ground
 		// level are calculated by multiple neighboring tiles.
 		// TODO: add CTerrain constant instead of 1.
-		istart = Clamp<int>(itile0 - 1, 0, m_GridSize);
-		iend = Clamp<int>(itile1 + 1, 0, m_GridSize);
-		jstart = Clamp<int>(jtile0 - 1, 0, m_GridSize);
-		jend = Clamp<int>(jtile1 + 1, 0, m_GridSize);
+		istart = Clamp<int>((itile0 - 1) * Pathfinding::NAVCELLS_PER_TERRAIN_TILE, 0, m_GridSize);
+		iend = Clamp<int>((itile1 + 1) * Pathfinding::NAVCELLS_PER_TERRAIN_TILE, 0, m_GridSize);
+		jstart = Clamp<int>((jtile0 - 1) * Pathfinding::NAVCELLS_PER_TERRAIN_TILE, 0, m_GridSize);
+		jend = Clamp<int>((jtile1 + 1) * Pathfinding::NAVCELLS_PER_TERRAIN_TILE, 0, m_GridSize);
 	}
 
 	// Compute initial terrain-dependent passability
