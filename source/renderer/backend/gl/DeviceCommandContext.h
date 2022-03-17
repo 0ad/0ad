@@ -105,6 +105,8 @@ public:
 	// TODO: remove direct binding after moving shaders.
 	void BindTexture(const uint32_t unit, const GLenum target, const GLuint handle);
 	void BindBuffer(const CBuffer::Type type, CBuffer* buffer);
+	// We need to know when to invalidate our texture bind cache.
+	void OnTextureDestroy(CTexture* texture);
 
 	void Flush();
 

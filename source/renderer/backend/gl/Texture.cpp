@@ -293,6 +293,7 @@ CTexture::CTexture() = default;
 
 CTexture::~CTexture()
 {
+	m_Device->GetActiveCommandContext()->OnTextureDestroy(this);
 	if (m_Handle)
 		glDeleteTextures(1, &m_Handle);
 }
