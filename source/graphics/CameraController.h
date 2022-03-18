@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
 * This file is part of 0 A.D.
 *
 * 0 A.D. is free software: you can redistribute it and/or modify
@@ -88,6 +88,8 @@ private:
 	// Settings
 	float m_ViewScrollSpeed;
 	float m_ViewScrollSpeedModifier;
+	// How close the mouse pointer should be to a view edge to move the camera.
+	int m_ViewScrollMouseDetectDistance;
 	float m_ViewRotateXSpeed;
 	float m_ViewRotateXMin;
 	float m_ViewRotateXMax;

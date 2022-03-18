@@ -693,6 +693,8 @@ void CSceneRenderer::RenderSilhouettes(
 	// inverted depth test so any behind an occluder will get drawn in a constant
 	// color.
 
+	deviceCommandContext->SetGraphicsPipelineState(
+		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
 	deviceCommandContext->ClearFramebuffer(false, true, true);
 
 	// Render occluders:

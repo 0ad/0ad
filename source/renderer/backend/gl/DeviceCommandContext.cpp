@@ -390,6 +390,14 @@ void CDeviceCommandContext::BindBuffer(const CBuffer::Type type, CBuffer* buffer
 	glBindBufferARB(BufferTypeToGLTarget(type), buffer ? buffer->GetHandle() : 0);
 }
 
+void CDeviceCommandContext::OnTextureDestroy(CTexture* texture)
+{
+	ENSURE(texture);
+	for (size_t index = 0; index < m_BoundTextures.size(); ++index)
+		if (m_BoundTextures[index].second == texture->GetHandle())
+			BindTexture(index, GL_TEXTURE_2D, 0);
+}
+
 void CDeviceCommandContext::Flush()
 {
 	ResetStates();
