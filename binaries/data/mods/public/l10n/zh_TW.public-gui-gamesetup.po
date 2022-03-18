@@ -28,8 +28,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2022-03-02 02:32+0000\n"
-"Last-Translator: Yuan Chang\n"
+"PO-Revision-Date: 2014-06-19 17:48+0000\n"
+"Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2021-2022\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -113,7 +113,7 @@ msgstr "AI 玩家"
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr "%(setting)s:"
+msgstr "%(setting)s："
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlCheckbox.js:57
 msgid "Yes"
@@ -147,7 +147,7 @@ msgstr "遊戲類型"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/AIConfigButton.js:32
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr "調整AI： %(description)s。"
+msgstr "調整AI：%(description)s。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:135
 msgid "Select player."
@@ -215,7 +215,7 @@ msgstr "瀏覽地圖"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:39
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr "按%(hotkey)s 以查看可用的地圖列表。"
+msgstr "按 %(hotkey)s 以查看可用的地圖列表。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:26
 msgid "Allied View"
@@ -245,7 +245,7 @@ msgstr "已探索的地圖"
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:30
 msgid "Toggle explored map (see initial map)."
-msgstr "切換是否使用已探索的地圖（可以看到初始地圖，但後續不會自動更新）。"
+msgstr "切換已探索的地圖（看到初始地圖）。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:26
 msgid "Last Man Standing"
@@ -263,7 +263,7 @@ msgstr "隊伍鎖定"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:33
 msgid "Toggle locked teams."
-msgstr "切換是否鎖定隊伍。"
+msgstr "切換鎖定隊伍。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:25
 msgid "Nomad"
@@ -277,7 +277,7 @@ msgstr "在遊牧模式，玩家一開始只有少數的單位，必須尋找到
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:27
 msgid "Rated Game"
-msgstr "排名遊戲"
+msgstr "排位賽"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:30
 msgid "Toggle if this game will be rated for the leaderboard."
@@ -296,14 +296,14 @@ msgstr "切換英雄是否可以駐守建築物。"
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:26
 msgid "Revealed Map"
-msgstr "全地圖視野"
+msgstr "已揭露的地圖"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:30
 msgid "Toggle revealed map (see everything)."
-msgstr "切換是否使用顯示全地圖（可以看到所有東西）。"
+msgstr "切換已揭露的地圖（可以看到所有東西）。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:26
 msgid "Disable Spies"
@@ -507,7 +507,7 @@ msgstr "難度"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:44
 msgid "Select the difficulty of this scenario."
-msgstr "選擇這個情境的難度"
+msgstr "選擇這個劇情的難度"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:47
 msgid "World Population Cap"
@@ -522,7 +522,7 @@ msgstr "選擇世界人口上限。"
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr "警告：如果到達%(popCap)s人口可能會有效能問題。"
+msgstr "警告：如果到達 %(popCap)s 人口可能會有效能問題。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:35
 msgid "Ceasefire"
@@ -530,7 +530,7 @@ msgstr "停火"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:38
 msgid "Set time where no attacks are possible."
-msgstr "設定「不允許任何攻擊」的時間。"
+msgstr "設定不允許任何攻擊的時間。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:41
 msgctxt "ceasefire"
@@ -623,7 +623,7 @@ msgstr "返回主選單。"
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s ：檢視文明總覽 / 科技樹\n點擊將開啟上次開啟的地方"
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s：檢視文明總覽 / 科技樹\n點擊將開啟上次開啟的地方。"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
@@ -674,7 +674,7 @@ msgstr "以目前的設定值展開新遊戲。"
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr "以目前的設定值展開新遊戲（到所有玩家都準備好前不可用）"
+msgstr "以目前的設定值展開新遊戲（停用到所有玩家都準備好前）。"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatInputPanel.js:55
 #, javascript-format
@@ -731,7 +731,7 @@ msgstr "遊戲設定已變更"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatPanel.xml:(caption):9
 msgid "Send"
-msgstr "傳送"
+msgstr "送出"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/StatusMessageFormat.js:24
 #, javascript-format
@@ -750,7 +750,7 @@ msgstr "\\[%(time)s]"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:31
 msgid "HH:mm"
-msgstr "高：毫米"
+msgstr "HH:mm"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:40
 msgid "Cheats enabled."
@@ -763,7 +763,7 @@ msgstr "排位賽。"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:74
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
-msgstr "點擊來切換%(name)s設定標籤。"
+msgstr "點擊來切換%(name)s設定分頁。"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:27
 msgid "No selected map"
@@ -771,11 +771,11 @@ msgstr "未選擇地圖"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr "點擊單擊以查看可用地圖的列表。"
+msgstr "點擊以查看可用地圖的列表。"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):10
 msgid "Show this message in the future."
-msgstr "未來請顯示此訊息。"
+msgstr "在未來顯示此訊息。"
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
 msgid "Loading"
@@ -853,7 +853,7 @@ msgstr "遊戲已經開始，正重新加入…"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:361
 msgid "Game name already in use."
-msgstr "遊戲名稱現正被使用中。"
+msgstr "遊戲名稱已經被使用。"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:376
 #, javascript-format
@@ -899,7 +899,7 @@ msgstr "伺服器埠："
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
 msgid "Set up your server to host."
-msgstr "設置您的伺服器以主持。"
+msgstr "設置您的伺服器來主持。"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
@@ -932,7 +932,7 @@ msgstr "確認"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
-msgstr "留空以使用預設埠。"
+msgstr "留白來使用預設埠。"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
@@ -960,7 +960,7 @@ msgstr "正在產生「%(map)s」"
 #: gui/loading/TitleDisplay.js:17
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr "正在載入 「%(map)s」"
+msgstr "正在載入「%(map)s」"
 
 #: gui/text/quotes.txt:1
 msgid ""

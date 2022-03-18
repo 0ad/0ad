@@ -38,9 +38,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-07 08:09+0000\n"
-"PO-Revision-Date: 2022-03-12 10:07+0000\n"
-"Last-Translator: Rodrigo Vegas Sánchez-Ferrero\n"
+"POT-Creation-Date: 2022-03-14 08:09+0000\n"
+"PO-Revision-Date: 2014-06-19 17:53+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2020-2022\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -365,13 +365,13 @@ msgstr "Arquitectura helena"
 msgid "Structures +10% health and +10% capture points."
 msgstr "Estructuras (Resistencia: +10%; Puntos de captura: +10%)."
 
-#: simulation/data/technologies/civbonuses/han_popcap.jsondescription
+#: simulation/data/technologies/civbonuses/han_population.jsondescription
 msgid ""
 "By uniting China under one emperor, the Han Dynasty ruled over 40 million "
 "people, one of the largest empires of antiquity by population."
 msgstr "Unificando China bajo un único emperador, la dinastía Han gobernó 40 millones de personas, por población uno de los más grandes imperios de la antiguedad. "
 
-#: simulation/data/technologies/civbonuses/han_popcap.jsongenericName
+#: simulation/data/technologies/civbonuses/han_population.jsongenericName
 msgid "Federated States"
 msgstr "Estados federados"
 
@@ -386,6 +386,18 @@ msgstr "Gran Muralla"
 #: simulation/data/technologies/civbonuses/han_walls.jsontooltip
 msgid "City Walls +50% health."
 msgstr "Murallas (Resistencia: +50%)."
+
+#: simulation/data/technologies/civbonuses/mace_storehouse.jsondescription
+msgid "The Macedonian economy relied greatly on their vast natural resources."
+msgstr "La economía macedónica se sustentaba en el aprovechamiento de sus numerosos recursos naturales. "
+
+#: simulation/data/technologies/civbonuses/mace_storehouse.jsongenericName
+msgid "Resource-Rich Economy"
+msgstr "Economía rica en recursos naturales"
+
+#: simulation/data/technologies/civbonuses/mace_storehouse.jsontooltip
+msgid "Storehouse technologies -100% research time."
+msgstr "Tecnologías de almacén (Tiempo de investigación: −100%)."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""

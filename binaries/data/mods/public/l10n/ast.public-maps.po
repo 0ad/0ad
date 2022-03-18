@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-07 08:09+0000\n"
-"PO-Revision-Date: 2022-03-13 01:14+0000\n"
-"Last-Translator: David Sowa\n"
+"POT-Creation-Date: 2022-03-14 08:09+0000\n"
+"PO-Revision-Date: 2014-06-19 17:52+0000\n"
+"Last-Translator: David Sowa <isithere2@yahoo.com>, 2016-2022\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: maps/random/aegean_sea.jsonsettings.Description
 msgid "Players start on two sides of a sea with scattered islands."
-msgstr "Los xhogadores intamæn a intrambos lhahos d’un mar d’isllæs dispersæs."
+msgstr "Los xhogadores intamæn a intrambos lhahos d’un mar d’isllæs sparsæs."
 
 #: maps/random/aegean_sea.jsonsettings.Name
 msgid "Aegean Sea"
@@ -31,7 +31,7 @@ msgstr "Mar Exheo"
 msgid ""
 "The central region of the vast continent of Africa, birthplace of humanity. "
 "Players start in a lush area teeming with vegetation and wildlife."
-msgstr "La zona central d’África, el vierçu de l home. Los xhogadores intamæn n una sabana acoplinada de flora & fauna."
+msgstr "La zona central de l vastu continente d’África, el vierçu l home. Los xhogadores intamæn n una fhaça nieta intsén de flora & fauna."
 
 #: maps/random/african_plains.jsonsettings.Name
 msgid "African Plains"
@@ -41,25 +41,25 @@ msgstr "Tyanada africana"
 msgid ""
 "High Alpine mountains surrounding deep valleys strung with mountain streams "
 "and finger-like lakes."
-msgstr "Valhadæs cerradæs de paredes alpinæs & travessadæs por lhagos & regueirinæs."
+msgstr "Valhes fhondos bañahos por lhagos & regatos & cerrahos d’altæs paredes alpinæs."
 
 #: maps/random/alpine_lakes.jsonsettings.Name
 msgid "Alpine Lakes"
-msgstr "Lhagos de los Alpes"
+msgstr "Lhagos alpinos"
 
 #: maps/random/alpine_valley.jsonsettings.Description
 msgid "High Alpine mountains bordering deep valleys."
-msgstr "Valhadæs cerradæs de paredes alpinæs."
+msgstr "Valhes fhondos cerrahos d’altæs paredes alpinæs."
 
 #: maps/random/alpine_valley.jsonsettings.Name
 msgid "Alpine Valley"
-msgstr "Valhes de los Alpes"
+msgstr "Valhada alpina"
 
 #: maps/random/ambush.jsonsettings.Description
 msgid ""
 "High bluffs overlook the terrain below. Bountiful resources await on the "
 "cliffs, but beware of enemies planning an ambush."
-msgstr "Les maedes dan pa los anfiteatros. Nos visos hai bayura de recursos, pero estáte sollerte, nun seya que cayas nuna trampa."
+msgstr "Maedæs altæs dan vista al terreno fhondeiro. Alhá riba ha hi bayura de recursos, pero sta-te solherte, nun seia que caias n una trampa."
 
 #: maps/random/ambush.jsonsettings.Name
 msgid "Ambush"
@@ -69,7 +69,7 @@ msgstr "Celada"
 msgid ""
 "An indefensible open land with little wood and stone, representing the "
 "central basin of Asia Minor."
-msgstr "La conca central d’Asia Minor, un terreno expuosto & escasso de madeira & piedra."
+msgstr "Una tierra expuœsta & scassa de madeira & piedra que representa la cœnca central de l Asia Minor."
 
 #: maps/random/anatolian_plateau.jsonsettings.Name
 msgid "Anatolian Plateau"
@@ -79,11 +79,11 @@ msgstr "Rasa d’Anatolia"
 msgid ""
 "A maze of islands of different sizes and shapes. Players start with more "
 "wood than normal."
-msgstr "Un llaberintu d'islles d'estremaos tipos y tamaños. Los xugadores entamen con más madera de lo normal."
+msgstr "Un labyrinthu d’isllæs de differentes typos & tamaños. Los xhogadores intamæn cun mas madeira de lo normal."
 
 #: maps/random/archipelago.jsonsettings.Name
 msgid "Archipelago"
-msgstr "Archipiélagu"
+msgstr "Archipélago"
 
 #: maps/random/arctic_summer.jsonsettings.Description
 msgid ""
@@ -95,7 +95,7 @@ msgstr "Llega'l veranu a los xelebreos boreales y con elli munchos bichos qu'apr
 
 #: maps/random/arctic_summer.jsonsettings.Name
 msgid "Arctic Summer"
-msgstr "Veranu árticu"
+msgstr "Verano árctico"
 
 #: maps/random/ardennes_forest.jsonsettings.Description
 msgid ""
@@ -294,9 +294,9 @@ msgstr "Elefantina"
 
 #: maps/random/empire.jsonsettings.Description
 msgid ""
-"A neighboring province has pledged alegiance to your rule. It's up to you to"
-" command them to victory."
-msgstr "Un vecín de to xuróte llealtá. Agora te toca llograr la victoria."
+"A neighboring province has pledged alegiance to your rule. It's up to you to command them to victory.\n"
+"[color=\"yellow\"]Caution! If nomad mode is disabled, each player will start with two civic centers.[/color]"
+msgstr "Una provicina vizina tien-ti xhuraho lhealtá. Hagora te toca a ti trahellis la victoria.\n[color=\"yellow\"]Avisu: si l modu nómada sta disactivau, cada xhogador vaî intamar cun dous foros.[/color]"
 
 #: maps/random/empire.jsonsettings.Name
 msgid "Empire"
@@ -1148,7 +1148,7 @@ msgstr "Lo descoñocido."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Description
 msgid "Choose a random land landscape"
-msgstr "Escoyer un rodiu terrestre a debalu."
+msgstr "Scoyer un ambiente terrestre de modu aleatoriu."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
 #: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
@@ -1222,7 +1222,7 @@ msgstr "Terrestre al debalu"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Description
 msgid "Choose a random naval landscape"
-msgstr "Escoyer un rodiu naval a debalu."
+msgstr "Scoyer un ambiente naval de modu aleatoriu."
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Description
 msgid "A huge sea is dividing the map into two halves."
@@ -3105,11 +3105,11 @@ msgstr "Sicilia nómada (2)"
 
 #: maps/skirmishes/skirmish_demo_2p.xml:Description:38
 msgid "A demo Skirmish map."
-msgstr "Un terreiro de muöstra del typu reincuöntru."
+msgstr "Un terreiro de muœstra de l typu reincuœntru."
 
 #: maps/skirmishes/skirmish_demo_2p.xml:Name:38
 msgid "Skirmish Demo (2)"
-msgstr "Reincuöntru de muöstra (2)"
+msgstr "Reincuœntru de muœstra (2)"
 
 #: maps/skirmishes/sporades_islands_2p.xml:Name:39
 msgid "Sporades Islands (2)"
