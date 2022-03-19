@@ -6,6 +6,7 @@
       <Capture>8</Capture>
       <MaxRange>4</MaxRange>
       <RepeatTime>1000</RepeatTime>
+      <RestrictedClasses datatype="tokens">Field Palisade Wall</RestrictedClasses>
     </Capture>
     <Melee>
       <AttackName context="Name of an attack using a double-edged sword.">Sword</AttackName>
