@@ -22,7 +22,7 @@ GameSettingControls.WorldPopulation = class WorldPopulation extends GameSettingC
 };
 
 GameSettingControls.WorldPopulation.prototype.TitleCaption =
-	translate("World population");
+	translate("World Population");
 
 GameSettingControls.WorldPopulation.prototype.Tooltip =
 	translate("When checked the Population Cap will be evenly distributed over all living players.");
