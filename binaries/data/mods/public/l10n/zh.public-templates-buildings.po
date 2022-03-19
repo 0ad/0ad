@@ -50,9 +50,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-07 08:09+0000\n"
-"PO-Revision-Date: 2022-03-08 11:20+0000\n"
-"Last-Translator: 柳离枝\n"
+"POT-Creation-Date: 2022-03-14 08:09+0000\n"
+"PO-Revision-Date: 2014-06-19 17:54+0000\n"
+"Last-Translator: 柳离枝 <xingzuo88@qq.com>, 2022\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -677,19 +677,19 @@ msgstr "科伦圣所"
 msgid "Wheat Field"
 msgstr "麦田"
 
-#: simulation/templates/structures/han/academy.xml:30
+#: simulation/templates/structures/han/academy.xml:28
 msgid "Imperial Academy"
 msgstr "太学"
 
-#: simulation/templates/structures/han/academy.xml:31
+#: simulation/templates/structures/han/academy.xml:29
 msgid "Dìguó Xuéyuàn"
 msgstr "太学"
 
-#: simulation/templates/structures/han/academy.xml:33
+#: simulation/templates/structures/han/academy.xml:31
 msgid "Train Champions and research their technologies."
 msgstr "训练冠勇单位，并研发相关科技。"
 
-#: simulation/templates/structures/han/academy.xml:34
+#: simulation/templates/structures/han/academy.xml:32
 msgid "Academy"
 msgstr "学院"
 
@@ -707,20 +707,20 @@ msgstr "宫殿"
 
 #: simulation/templates/structures/han/civil_centre.xml:33
 msgid ""
-"Greatly increase the health, capture resistance, and garrison capacity of "
-"this Civic Center. Unlock training of Heroes and Champions from this Civic "
-"Center."
-msgstr "大力提升市政中心的生命值，反占领能力及驻军能力。解锁市政中心的英雄和冠勇单位。"
+"This greatly increases the health, capture resistance, and garrison capacity"
+" of this specific Civic Center. Unlock training of Heroes here and reduce "
+"its research and batch training times by half."
+msgstr ""
 
-#: simulation/templates/structures/han/civil_centre_court.xml:14
+#: simulation/templates/structures/han/civil_centre_court.xml:17
 msgid "Imperial Court"
 msgstr "宫廷"
 
-#: simulation/templates/structures/han/civil_centre_court.xml:15
+#: simulation/templates/structures/han/civil_centre_court.xml:18
 msgid "Cháotíng"
 msgstr "朝堂"
 
-#: simulation/templates/structures/han/civil_centre_court.xml:16
+#: simulation/templates/structures/han/civil_centre_court.xml:19
 msgid "ImperialCourt"
 msgstr "宫廷"
 
@@ -1071,15 +1071,15 @@ msgid "mr ʿȝ"
 msgstr "大金字塔"
 
 #: simulation/templates/structures/kush/pyramid_large.xml:29
-#: simulation/templates/structures/kush/pyramid_small.xml:29
+#: simulation/templates/structures/kush/pyramid_small.xml:26
 msgid "Pyramid"
 msgstr "金字塔"
 
-#: simulation/templates/structures/kush/pyramid_small.xml:26
+#: simulation/templates/structures/kush/pyramid_small.xml:23
 msgid "Small Pyramid"
 msgstr "金字塔"
 
-#: simulation/templates/structures/kush/pyramid_small.xml:27
+#: simulation/templates/structures/kush/pyramid_small.xml:24
 msgid "mr"
 msgstr "小金字塔"
 
@@ -1912,7 +1912,7 @@ msgstr "可建在中立土地或己方疆域内，扩张大片疆域。训练民
 msgid "CivilCentre"
 msgstr "市政中心"
 
-#: simulation/templates/structures/han/civil_centre_court.xml:16
+#: simulation/templates/structures/han/civil_centre_court.xml:19
 #: simulation/templates/template_structure_civic_civil_centre.xml:79
 #: simulation/templates/template_structure_defensive.xml:5
 #: simulation/templates/template_structure_military_fortress.xml:69
@@ -1933,6 +1933,7 @@ msgstr "殖民地"
 msgid "House"
 msgstr "民居"
 
+#: simulation/templates/structures/kush/pyramid_small.xml:26
 #: simulation/templates/structures/pers/ice_house.xml:28
 #: simulation/templates/template_structure_civic_house.xml:28
 #: simulation/templates/template_structure_economic_farmstead.xml:30
@@ -1959,7 +1960,6 @@ msgstr "柱廊"
 #: simulation/templates/structures/han/laozigate.xml:34
 #: simulation/templates/structures/han/ministry.xml:40
 #: simulation/templates/structures/iber/monument.xml:34
-#: simulation/templates/structures/kush/pyramid_small.xml:29
 #: simulation/templates/structures/maur/elephant_stable.xml:8
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
@@ -2158,8 +2158,8 @@ msgid ""
 msgstr "建造攻城机械以摧毁对手的设施，研究攻城技术，以提高这些机械的威力。"
 
 #: simulation/templates/structures/gaul/assembly.xml:31
-#: simulation/templates/structures/han/academy.xml:34
-#: simulation/templates/structures/han/civil_centre_court.xml:16
+#: simulation/templates/structures/han/academy.xml:32
+#: simulation/templates/structures/han/civil_centre_court.xml:19
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:76

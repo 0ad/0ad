@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-07 08:09+0000\n"
-"PO-Revision-Date: 2022-03-12 15:26+0000\n"
-"Last-Translator: Junghee Lee\n"
+"POT-Creation-Date: 2022-03-14 08:09+0000\n"
+"PO-Revision-Date: 2014-06-19 17:53+0000\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -342,13 +342,13 @@ msgstr "그리스 건축"
 msgid "Structures +10% health and +10% capture points."
 msgstr "건축물의 내구력이 +10%, 점유 점수가 +10% 증가합니다."
 
-#: simulation/data/technologies/civbonuses/han_popcap.jsondescription
+#: simulation/data/technologies/civbonuses/han_population.jsondescription
 msgid ""
 "By uniting China under one emperor, the Han Dynasty ruled over 40 million "
 "people, one of the largest empires of antiquity by population."
 msgstr "한 왕조는 중국을 한 황제 아래 통일함으로써 4천만 명이 넘는 인구를 다스렸으며, 이는 고대 인구 중 가장 큰 제국 중 하나였습니다."
 
-#: simulation/data/technologies/civbonuses/han_popcap.jsongenericName
+#: simulation/data/technologies/civbonuses/han_population.jsongenericName
 msgid "Federated States"
 msgstr "연방 국가"
 
@@ -363,6 +363,18 @@ msgstr "만리장성"
 #: simulation/data/technologies/civbonuses/han_walls.jsontooltip
 msgid "City Walls +50% health."
 msgstr "도시 성벽의 내구력이 +50% 증가합니다."
+
+#: simulation/data/technologies/civbonuses/mace_storehouse.jsondescription
+msgid "The Macedonian economy relied greatly on their vast natural resources."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/mace_storehouse.jsongenericName
+msgid "Resource-Rich Economy"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/mace_storehouse.jsontooltip
+msgid "Storehouse technologies -100% research time."
+msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""

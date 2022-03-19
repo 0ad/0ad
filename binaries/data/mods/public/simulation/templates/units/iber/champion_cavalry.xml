@@ -8,10 +8,17 @@
           <Damage>
             <Fire>2</Fire>
           </Damage>
-          <Stackability>Ignore</Stackability>
+          <Stackability>Stack</Stackability>
           <Duration>9000</Duration>
         </Burning>
       </ApplyStatus>
+     <Damage>
+        <Pierce>25</Pierce>
+      </Damage>
+      <Projectile>
+        <Spread>4</Spread>
+      </Projectile>
+      <RepeatTime>1500</RepeatTime>
     </Ranged>
   </Attack>
   <Identity>

@@ -40,9 +40,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-07 08:09+0000\n"
-"PO-Revision-Date: 2022-03-07 08:18+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-03-14 08:09+0000\n"
+"PO-Revision-Date: 2014-06-19 17:53+0000\n"
+"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018-2019,2021-2022\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -229,7 +229,7 @@ msgstr ""
 
 #: simulation/data/technologies/art_of_war.jsongenericName
 msgid "Sun Tzu's \"The Art of War\""
-msgstr ""
+msgstr "Сунь Цзы \"Искусство войны\""
 
 #: simulation/data/technologies/art_of_war.jsonspecificName.han
 msgid "Sūnzǐ BīngFǎ"
@@ -367,13 +367,13 @@ msgstr "Эллинская архитектура"
 msgid "Structures +10% health and +10% capture points."
 msgstr "Здания получают на 10% больше прочности и очков захвата."
 
-#: simulation/data/technologies/civbonuses/han_popcap.jsondescription
+#: simulation/data/technologies/civbonuses/han_population.jsondescription
 msgid ""
 "By uniting China under one emperor, the Han Dynasty ruled over 40 million "
 "people, one of the largest empires of antiquity by population."
-msgstr ""
+msgstr "Объединив Китай под властью одного императора, династия Хань правила более чем 40 миллионами подданных, являясь одной из наиболее крупных империй античности по численности населения."
 
-#: simulation/data/technologies/civbonuses/han_popcap.jsongenericName
+#: simulation/data/technologies/civbonuses/han_population.jsongenericName
 msgid "Federated States"
 msgstr ""
 
@@ -383,10 +383,22 @@ msgstr ""
 
 #: simulation/data/technologies/civbonuses/han_walls.jsongenericName
 msgid "Great Wall"
-msgstr ""
+msgstr "Великая стена"
 
 #: simulation/data/technologies/civbonuses/han_walls.jsontooltip
 msgid "City Walls +50% health."
+msgstr "+50% к прочности городских стен."
+
+#: simulation/data/technologies/civbonuses/mace_storehouse.jsondescription
+msgid "The Macedonian economy relied greatly on their vast natural resources."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/mace_storehouse.jsongenericName
+msgid "Resource-Rich Economy"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/mace_storehouse.jsontooltip
+msgid "Storehouse technologies -100% research time."
 msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
@@ -699,7 +711,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_farming_seed_drill.jsongenericName
 msgid "Seed Drill"
-msgstr ""
+msgstr "Сеялка"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
@@ -1059,7 +1071,7 @@ msgstr "Заставы +33% к дальности обзора."
 
 #: simulation/data/technologies/pair_unlock_arrows_type.jsongenericName
 msgid "Fire Arrows vs Poison Arrows"
-msgstr ""
+msgstr "Горящие стрелы или Отравленные стрелы"
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -1196,7 +1208,7 @@ msgstr "Этап деревни"
 
 #: simulation/data/technologies/poison_arrows.jsongenericName
 msgid "Poison Arrows"
-msgstr ""
+msgstr "Отравленные стрелы"
 
 #: simulation/data/technologies/poison_arrows.jsontooltip
 msgid "Ranged Soldiers +20% attack damage."
@@ -1204,11 +1216,11 @@ msgstr ""
 
 #: simulation/data/technologies/poison_blades.jsongenericName
 msgid "Poison Blades"
-msgstr ""
+msgstr "Отравленные клинки"
 
 #: simulation/data/technologies/poison_blades.jsontooltip
 msgid "Melee Soldiers +20% attack damage."
-msgstr ""
+msgstr "+20% к урону солдат в ближнем бою."
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
@@ -1369,7 +1381,7 @@ msgstr "Осадные орудия сворачиваются и развора
 
 #: simulation/data/technologies/silk_road.jsongenericName
 msgid "Silk Road"
-msgstr ""
+msgstr "Шелковый Путь"
 
 #: simulation/data/technologies/silk_road.jsontooltip
 msgid "Traders +20% international trade bonus."

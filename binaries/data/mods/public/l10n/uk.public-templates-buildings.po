@@ -23,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-07 08:09+0000\n"
-"PO-Revision-Date: 2022-03-07 10:25+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-03-14 08:09+0000\n"
+"PO-Revision-Date: 2014-06-19 17:54+0000\n"
+"Last-Translator: Apheidas of Arcadia, 2022\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -650,19 +650,19 @@ msgstr "Келікнон"
 msgid "Wheat Field"
 msgstr "Пшеничне поле"
 
-#: simulation/templates/structures/han/academy.xml:30
+#: simulation/templates/structures/han/academy.xml:28
 msgid "Imperial Academy"
 msgstr ""
 
-#: simulation/templates/structures/han/academy.xml:31
+#: simulation/templates/structures/han/academy.xml:29
 msgid "Dìguó Xuéyuàn"
 msgstr ""
 
-#: simulation/templates/structures/han/academy.xml:33
+#: simulation/templates/structures/han/academy.xml:31
 msgid "Train Champions and research their technologies."
 msgstr ""
 
-#: simulation/templates/structures/han/academy.xml:34
+#: simulation/templates/structures/han/academy.xml:32
 msgid "Academy"
 msgstr ""
 
@@ -680,20 +680,20 @@ msgstr ""
 
 #: simulation/templates/structures/han/civil_centre.xml:33
 msgid ""
-"Greatly increase the health, capture resistance, and garrison capacity of "
-"this Civic Center. Unlock training of Heroes and Champions from this Civic "
-"Center."
+"This greatly increases the health, capture resistance, and garrison capacity"
+" of this specific Civic Center. Unlock training of Heroes here and reduce "
+"its research and batch training times by half."
 msgstr ""
 
-#: simulation/templates/structures/han/civil_centre_court.xml:14
+#: simulation/templates/structures/han/civil_centre_court.xml:17
 msgid "Imperial Court"
 msgstr ""
 
-#: simulation/templates/structures/han/civil_centre_court.xml:15
+#: simulation/templates/structures/han/civil_centre_court.xml:18
 msgid "Cháotíng"
 msgstr ""
 
-#: simulation/templates/structures/han/civil_centre_court.xml:16
+#: simulation/templates/structures/han/civil_centre_court.xml:19
 msgid "ImperialCourt"
 msgstr ""
 
@@ -1044,15 +1044,15 @@ msgid "mr ʿȝ"
 msgstr "Мер аа"
 
 #: simulation/templates/structures/kush/pyramid_large.xml:29
-#: simulation/templates/structures/kush/pyramid_small.xml:29
+#: simulation/templates/structures/kush/pyramid_small.xml:26
 msgid "Pyramid"
 msgstr "Піраміда"
 
-#: simulation/templates/structures/kush/pyramid_small.xml:26
+#: simulation/templates/structures/kush/pyramid_small.xml:23
 msgid "Small Pyramid"
 msgstr "Мала піраміда"
 
-#: simulation/templates/structures/kush/pyramid_small.xml:27
+#: simulation/templates/structures/kush/pyramid_small.xml:24
 msgid "mr"
 msgstr "Мер"
 
@@ -1885,7 +1885,7 @@ msgstr "Можна побудувати на власній або нейтра�
 msgid "CivilCentre"
 msgstr "Громадський центр"
 
-#: simulation/templates/structures/han/civil_centre_court.xml:16
+#: simulation/templates/structures/han/civil_centre_court.xml:19
 #: simulation/templates/template_structure_civic_civil_centre.xml:79
 #: simulation/templates/template_structure_defensive.xml:5
 #: simulation/templates/template_structure_military_fortress.xml:69
@@ -1906,6 +1906,7 @@ msgstr "Колонія"
 msgid "House"
 msgstr "Будинок"
 
+#: simulation/templates/structures/kush/pyramid_small.xml:26
 #: simulation/templates/structures/pers/ice_house.xml:28
 #: simulation/templates/template_structure_civic_house.xml:28
 #: simulation/templates/template_structure_economic_farmstead.xml:30
@@ -1932,7 +1933,6 @@ msgstr "Стоа"
 #: simulation/templates/structures/han/laozigate.xml:34
 #: simulation/templates/structures/han/ministry.xml:40
 #: simulation/templates/structures/iber/monument.xml:34
-#: simulation/templates/structures/kush/pyramid_small.xml:29
 #: simulation/templates/structures/maur/elephant_stable.xml:8
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
@@ -2131,8 +2131,8 @@ msgid ""
 msgstr "Тренувати чемпіонських піхотних арбалетників, конструювати облогові знаряддя та досліджувати технології облогового знаряддя."
 
 #: simulation/templates/structures/gaul/assembly.xml:31
-#: simulation/templates/structures/han/academy.xml:34
-#: simulation/templates/structures/han/civil_centre_court.xml:16
+#: simulation/templates/structures/han/academy.xml:32
+#: simulation/templates/structures/han/civil_centre_court.xml:19
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:76
