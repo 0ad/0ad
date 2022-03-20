@@ -15,7 +15,7 @@ const tShore = "savanna_riparian_bank";
 const tWater = "savanna_riparian_wet";
 
 const oBaobab = "gaia/tree/baobab";
-const oFig = "gaia/fruit/fig";
+const oFig = "gaia/fruit/date";
 const oBerryBush = "gaia/fruit/berry_01";
 const oWildebeest = "gaia/fauna_wildebeest";
 const oFish = "gaia/fish/generic";
