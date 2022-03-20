@@ -24,6 +24,14 @@
   <Loot>
     <metal>20</metal>
   </Loot>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>128x256/ellipse.png</MainTexture>
+        <MainTextureMask>128x256/ellipse_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <Trader>
     <GainMultiplier>0.75</GainMultiplier>
     <GarrisonGainMultiplier>0.2</GarrisonGainMultiplier>

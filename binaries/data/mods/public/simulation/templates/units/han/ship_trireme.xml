@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_ship_trireme">
   <Footprint>
-    <Square depth="36.0" width="14.0"/>
+    <Square depth="34.0" width="17.0"/>
     <Height>8.0</Height>
   </Footprint>
   <Identity>
@@ -9,6 +9,14 @@
     <SpecificName>Lóu Chuán</SpecificName>
     <Icon>units/han/ship_trireme.png</Icon>
   </Identity>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>128x256/cartouche.png</MainTexture>
+        <MainTextureMask>128x256/cartouche_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <VisualActor>
     <Actor>structures/han/trireme.xml</Actor>
   </VisualActor>

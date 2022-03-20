@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/rome/siege_ballista_packed">
+  <Footprint>
+    <Square width="6.0" depth="12.0"/>
+  </Footprint>
   <Identity>
     <Icon>units/rome_siege_ballista.png</Icon>
   </Identity>

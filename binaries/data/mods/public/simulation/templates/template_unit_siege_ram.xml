@@ -20,6 +20,10 @@
       <metal>150</metal>
     </Resources>
   </Cost>
+  <Footprint replace="">
+    <Square width="8.0" depth="12.0"/>
+    <Height>5.0</Height>
+  </Footprint>
   <GarrisonHolder>
     <Max>10</Max>
     <EjectHealth>0.1</EjectHealth>

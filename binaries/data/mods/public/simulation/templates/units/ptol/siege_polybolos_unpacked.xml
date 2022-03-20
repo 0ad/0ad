@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/ptol/siege_polybolos_packed">
+  <Footprint>
+    <Square width="6.0" depth="6.0"/>
+  </Footprint>
   <Identity>
     <Icon>units/hele_siege_oxybeles.png</Icon>
   </Identity>
@@ -7,6 +10,14 @@
     <Entity>units/ptol/siege_polybolos_packed</Entity>
     <State>unpacked</State>
   </Pack>
+  <Selectable replace="">
+    <Overlay>
+      <Texture>
+        <MainTexture>128x128/rounded_rectangle.png</MainTexture>
+        <MainTextureMask>128x128/rounded_rectangle_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <UnitMotion>
     <WalkSpeed>0.001</WalkSpeed>
   </UnitMotion>

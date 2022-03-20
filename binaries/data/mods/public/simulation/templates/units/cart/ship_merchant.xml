@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_ship_merchant">
   <Footprint>
-    <Square width="8.0" depth="24.0"/>
+    <Square width="8.0" depth="31.0"/>
     <Height>8.0</Height>
   </Footprint>
   <Identity>
@@ -11,6 +11,14 @@
     <Icon>units/cart_ship_merchant.png</Icon>
     <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>128x512/ellipse.png</MainTexture>
+        <MainTextureMask>128x512/ellipse_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <Trader>
     <GainMultiplier op="mul">1.25</GainMultiplier>
   </Trader>
