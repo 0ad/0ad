@@ -176,6 +176,8 @@ void CDecalRData::RenderDecals(
 			CColor shadingColor(1.0f, 1.0f, 1.0f, 1.0f);
 			shader->Uniform(str_shadingColor, shadingColor);
 
+			CShaderUniforms currentStaticUniforms;
+
 			CVertexBuffer* lastVB = nullptr;
 			for (auto itDecal = itTechBegin; itDecal != itTechEnd; ++itDecal)
 			{
@@ -189,7 +191,11 @@ void CDecalRData::RenderDecals(
 				for (const CMaterial::TextureSampler& sampler : samplers)
 					shader->BindTexture(sampler.Name, sampler.Sampler->GetBackendTexture());
 
-				material.GetStaticUniforms().BindUniforms(shader);
+				if (currentStaticUniforms != material.GetStaticUniforms())
+				{
+					currentStaticUniforms = material.GetStaticUniforms();
+					material.GetStaticUniforms().BindUniforms(shader);
+				}
 
 				// TODO: Need to handle floating decals correctly. In particular, we need
 				// to render non-floating before water and floating after water (to get

@@ -612,6 +612,11 @@ void ShaderModelRenderer::Render(
 
 				modifier->BeginPass(shader);
 
+				// TODO: Use a more generic approach to handle bound queries.
+				bool boundTime = false;
+				bool boundWaterTexture = false;
+				bool boundSkyCube = false;
+
 				m->vertexRenderer->BeginPass(streamflags);
 
 				// When the shader technique changes, textures need to be
@@ -698,24 +703,36 @@ void ShaderModelRenderer::Render(
 							CShaderRenderQueries::RenderQuery rq = renderQueries.GetItem(q);
 							if (rq.first == RQUERY_TIME)
 							{
-								shader->Uniform(rq.second, time, 0.0f, 0.0f, 0.0f);
+								if (!boundTime)
+								{
+									shader->Uniform(rq.second, time, 0.0f, 0.0f, 0.0f);
+									boundTime = true;
+								}
 							}
 							else if (rq.first == RQUERY_WATER_TEX)
 							{
-								const double period = 1.6;
-								const WaterManager& waterManager = g_Renderer.GetSceneRenderer().GetWaterManager();
-								if (waterManager.m_RenderWater && waterManager.WillRenderFancyWater())
+								if (!boundWaterTexture)
 								{
-									const CTexturePtr& waterTexture = waterManager.m_NormalMap[waterManager.GetCurrentTextureIndex(period)];
-									waterTexture->UploadBackendTextureIfNeeded(deviceCommandContext);
-									shader->BindTexture(str_waterTex, waterTexture->GetBackendTexture());
+									const double period = 1.6;
+									const WaterManager& waterManager = g_Renderer.GetSceneRenderer().GetWaterManager();
+									if (waterManager.m_RenderWater && waterManager.WillRenderFancyWater())
+									{
+										const CTexturePtr& waterTexture = waterManager.m_NormalMap[waterManager.GetCurrentTextureIndex(period)];
+										waterTexture->UploadBackendTextureIfNeeded(deviceCommandContext);
+										shader->BindTexture(str_waterTex, waterTexture->GetBackendTexture());
+									}
+									else
+										shader->BindTexture(str_waterTex, g_Renderer.GetTextureManager().GetErrorTexture()->GetBackendTexture());
+									boundWaterTexture = true;
 								}
-								else
-									shader->BindTexture(str_waterTex, g_Renderer.GetTextureManager().GetErrorTexture()->GetBackendTexture());
 							}
 							else if (rq.first == RQUERY_SKY_CUBE)
 							{
-								shader->BindTexture(str_skyCube, g_Renderer.GetSceneRenderer().GetSkyManager().GetSkyCube());
+								if (!boundSkyCube)
+								{
+									shader->BindTexture(str_skyCube, g_Renderer.GetSceneRenderer().GetSkyManager().GetSkyCube());
+									boundSkyCube = true;
+								}
 							}
 						}
 
