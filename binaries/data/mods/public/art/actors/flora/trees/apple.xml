@@ -2,28 +2,28 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Blooming Apple Tree 01">
+    <variant frequency="1" name="apple_tree_a">
       <mesh>gaia/tree_apple_trunk_a.dae</mesh>
       <props>
-        <prop actor="flora/trees/apple_top_bloom_01.xml" attachpoint="root"/>
+        <prop actor="flora/trees/apple_top_a.xml" attachpoint="root"/>
       </props>
     </variant>
-    <variant frequency="1" name="Blooming Apple Tree 02">
+    <variant frequency="1" name="apple_tree_b">
       <mesh>gaia/tree_apple_trunk_b.dae</mesh>
       <props>
-        <prop actor="flora/trees/apple_top_bloom_02.xml" attachpoint="root"/>
+        <prop actor="flora/trees/apple_top_b.xml" attachpoint="root"/>
       </props>
     </variant>
-    <variant frequency="1" name="Blooming Apple Tree 03">
+    <variant frequency="1" name="apple_tree_c">
       <mesh>gaia/tree_apple_trunk_a.dae</mesh>
       <props>
-        <prop actor="flora/trees/apple_top_bloom_03.xml" attachpoint="root"/>
+        <prop actor="flora/trees/apple_top_c.xml" attachpoint="root"/>
       </props>
     </variant>
-    <variant frequency="1" name="Blooming Apple Tree 04">
+    <variant frequency="1" name="apple_tree_d">
       <mesh>gaia/tree_apple_trunk_b.dae</mesh>
       <props>
-        <prop actor="flora/trees/apple_top_bloom_04.xml" attachpoint="root"/>
+        <prop actor="flora/trees/apple_top_d.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
