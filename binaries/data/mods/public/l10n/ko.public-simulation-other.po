@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-11-19 08:08+0000\n"
-"PO-Revision-Date: 2022-02-28 09:35+0000\n"
-"Last-Translator: Junghee Lee\n"
+"PO-Revision-Date: 2014-06-19 17:53+0000\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,7 +54,7 @@ msgstr "방금 %(_player_)s님에게 대항하여 군대를 보냈습니다."
 #: simulation/ai/petra/chatHelper.js:14
 #, javascript-format
 msgid "Let me regroup my army and I will then join you against %(_player_)s."
-msgstr "군대를 다시 편성하고 %(_player_)s님에게 대항하여 여러분과 함께 하겠습니다."
+msgstr "내 군대를 재편성하고 %(_player_)s님에 맞서 당신과 합류하겠습니다."
 
 #: simulation/ai/petra/chatHelper.js:15
 #, javascript-format
@@ -80,7 +80,7 @@ msgstr "죄송합니다. 아직 군대를 강화해야 합니다. 그러나 다�
 msgid ""
 "I cannot help you against %(_player_)s for the time being, I am planning to "
 "attack %(_player_2)s first."
-msgstr "당분간 %(_player_)s님을 도울 수 없습니다. %(_player_2)s님을 먼저 공격할 계획입니다."
+msgstr "당분간 %(_player_)s님에 맞서 당신을 도와드릴 수 없습니다만, %(_player_2)s님을 먼저 공격할 계획입니다."
 
 #: simulation/ai/petra/chatHelper.js:27
 #, javascript-format
@@ -129,7 +129,7 @@ msgstr "%(_player_)s님과 새로운 경로를 설정했습니다. 거래는 우
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits."
-msgstr "새로운 교역 경로가 %(_player_)s님으로 설정됩니다. 이익을 나누십시오."
+msgstr "새로운 교역로가 %(_player_)s님으로 설정됩니다. 이익의 몫을 가져가십시오."
 
 #: simulation/ai/petra/chatHelper.js:45
 #, javascript-format
@@ -196,7 +196,7 @@ msgstr "%(_player_)s님, 당신의 평화 요구는 더 이상 내게 아무런 
 #, javascript-format
 msgid ""
 "My answer to your repeated peace proposal will remain war, %(_player_)s!"
-msgstr "%(_player_)s님, 당신의 거듭된 평화 제안에 대한 나의 답변은 전쟁을 유지합니다!"
+msgstr "%(_player_)s님, 당신의 거듭된 평화 제안에 대한 나의 대답은 여전히 전쟁입니다!"
 
 #: simulation/ai/petra/chatHelper.js:73
 #, javascript-format
@@ -864,7 +864,7 @@ msgstr "불가사의"
 #: simulation/helpers/Cheat.js:58
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
-msgstr "%(player)s님이 패배하였습니다 (치트 때문에)."
+msgstr "%(player)s님이 패배하였습니다 (치트)."
 
 #: simulation/helpers/Cheat.js:68
 msgid "You need to select a building that trains units."
@@ -876,7 +876,7 @@ msgstr "(치트 - 모든 유닛 통제)"
 
 #: simulation/helpers/Commands.js:149
 msgid "(Cheat - reveal map)"
-msgstr "(치트 - 지도 안개 걷기)"
+msgstr "(치트 - 지도 공개)"
 
 #: simulation/helpers/Commands.js:473
 #, javascript-format
@@ -885,7 +885,7 @@ msgstr "%(player)s님이 받아들였습니다."
 
 #: simulation/helpers/Commands.js:651
 msgid "(Cheat - promoted units)"
-msgstr "(치트 - 유닛 진급)"
+msgstr "(치트 - 승격된 유닛)"
 
 #: simulation/helpers/Commands.js:772
 msgid ""

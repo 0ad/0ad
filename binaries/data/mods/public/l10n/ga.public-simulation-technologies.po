@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-14 08:09+0000\n"
+"POT-Creation-Date: 2022-03-18 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>, 2018-2019\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
@@ -346,6 +346,12 @@ msgstr ""
 msgid "Federated States"
 msgstr ""
 
+#: simulation/data/technologies/civbonuses/han_population.jsontooltip
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "+10% maximum population limit."
+msgstr ""
+
 #: simulation/data/technologies/civbonuses/han_walls.jsondescription
 msgid "Han built massive walls, the great wall."
 msgstr ""
@@ -403,11 +409,6 @@ msgstr "Ard Impire"
 #: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
 msgstr "Chakravarti Samrāt"
-
-#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "+10% maximum population limit."
-msgstr ""
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsondescription
 msgid ""

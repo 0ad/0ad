@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-14 08:09+0000\n"
+"POT-Creation-Date: 2022-03-18 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS, 2020-2021\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
@@ -357,6 +357,12 @@ msgstr ""
 msgid "Federated States"
 msgstr ""
 
+#: simulation/data/technologies/civbonuses/han_population.jsontooltip
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "+10% maximum population limit."
+msgstr "+10% στο μέγιστο όριο πληθυσμού."
+
 #: simulation/data/technologies/civbonuses/han_walls.jsondescription
 msgid "Han built massive walls, the great wall."
 msgstr ""
@@ -414,11 +420,6 @@ msgstr "Αυτοκράτορας των Αυτοκρατόρων"
 #: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
 msgstr "Μεγάλος Αυτοκράτορας"
-
-#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "+10% maximum population limit."
-msgstr "+10% στο μέγιστο όριο πληθυσμού."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsondescription
 msgid ""
