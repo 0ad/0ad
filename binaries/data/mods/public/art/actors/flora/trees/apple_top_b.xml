@@ -7,14 +7,15 @@
     </variant>
   </group>
   <group>
-    <variant name="b-bloom">
-      <textures><texture file="gaia/tree_apple_bloom.dds" name="baseTex"/></textures>
-    </variant>
     <variant name="b-ripe">
-      <textures><texture file="gaia/tree_apple_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/tree_apple_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="b-ripe2">
-      <textures><texture file="gaia/orchard_apple_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/orchard_apple_a.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>basic_trans_wind.xml</material>

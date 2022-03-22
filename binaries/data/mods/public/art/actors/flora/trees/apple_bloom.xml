@@ -1,44 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant frequency="1" name="apple_tree_a">
+    <variant frequency="1" name="Blooming Apple Tree 01">
       <mesh>gaia/tree_apple_trunk_a.dae</mesh>
       <props>
-        <prop actor="flora/trees/apple_top_a.xml" attachpoint="root"/>
+        <prop actor="flora/trees/apple_top_bloom_01.xml" attachpoint="root"/>
       </props>
     </variant>
-    <variant frequency="1" name="apple_tree_b">
+    <variant frequency="1" name="Blooming Apple Tree 02">
       <mesh>gaia/tree_apple_trunk_b.dae</mesh>
       <props>
-        <prop actor="flora/trees/apple_top_b.xml" attachpoint="root"/>
+        <prop actor="flora/trees/apple_top_bloom_02.xml" attachpoint="root"/>
       </props>
     </variant>
-    <variant frequency="1" name="apple_tree_c">
+    <variant frequency="1" name="Blooming Apple Tree 03">
       <mesh>gaia/tree_apple_trunk_a.dae</mesh>
       <props>
-        <prop actor="flora/trees/apple_top_c.xml" attachpoint="root"/>
+        <prop actor="flora/trees/apple_top_bloom_03.xml" attachpoint="root"/>
       </props>
     </variant>
-    <variant frequency="1" name="apple_tree_d">
+    <variant frequency="1" name="Blooming Apple Tree 04">
       <mesh>gaia/tree_apple_trunk_b.dae</mesh>
       <props>
-        <prop actor="flora/trees/apple_top_d.xml" attachpoint="root"/>
+        <prop actor="flora/trees/apple_top_bloom_04.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="trunk_texture_a">
-      <textures><texture file="gaia/trunk_deciduous_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/trunk_deciduous_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="trunk_texture_b">
-      <textures><texture file="gaia/trunk_deciduous_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/trunk_deciduous_b.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
   <material>basic_trans_wind.xml</material>
-
 </actor>

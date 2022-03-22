@@ -12,7 +12,21 @@
     </variant>
   </group>
   <group>
-    <variant file="clothes/han/uniform_b_02.xml"/>
+    <variant name="Tunic-01">
+      <textures>
+        <texture file="skeletal/han/tunic_01_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="Tunic-02">
+      <textures>
+        <texture file="skeletal/han/tunic_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="Tunic-03">
+      <textures>
+        <texture file="skeletal/han/tunic_01_03.png" name="baseTex"/>
+      </textures>
+    </variant>
   </group>
   <group>
     <variant file="biped/fisher/base_han.xml"/>
@@ -31,5 +45,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans_norm_spec.xml</material>
+  <material>player_trans.xml</material>
 </actor>

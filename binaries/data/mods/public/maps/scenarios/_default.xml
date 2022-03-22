@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Scenario version="7">
-	<Terrain patches="16" texture="grass1_spring" priority="0" height="16384"/>
+	<Terrain patches="16" texture="aegean_grass_dirt_01" priority="0" height="4096"/>
 	<Environment>
-		<SkySet>default</SkySet>
+		<SkySet>desert</SkySet>
 		<SunColor r="0.749020" g="0.749020" b="0.749020"/>
 		<SunElevation angle="0.785398"/>
 		<SunRotation angle="5.49779"/>
@@ -31,7 +31,7 @@
 		"PlayerData":
 		[
 			{
-				"Civ": "athen"
+				"Civ": "han"
 			},
 			{
 				"Civ": "cart"
@@ -43,10 +43,10 @@
 				"Civ": "iber"
 			},
 			{
-				"Civ": "mace"
+				"Civ": "pers"
 			},
 			{
-				"Civ": "pers"
+				"Civ": "ptol"
 			},
 			{
 				"Civ": "rome"

@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-14 08:09+0000\n"
+"POT-Creation-Date: 2022-03-18 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -212,7 +212,7 @@ msgstr "손자병법"
 
 #: simulation/data/technologies/art_of_war.jsontooltip
 msgid "All Citizen-Soldiers -25% required promotion experience."
-msgstr "모든 시민 병사의 진급 경험치가 -25% 감소합니다."
+msgstr "모든 시민 병사들의 진급 경험치가 -25% 감소합니다."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -234,7 +234,7 @@ msgstr "다이너마이스"
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid "Soldiers, Siege Engines, and Ships +25% attack damage."
-msgstr "병사, 공성 무기, 선박 공격 피해량이  +25% 증가합니다."
+msgstr "병사, 공성 무기, 선박들의 공격 피해량이  +25% 증가합니다."
 
 #: simulation/data/technologies/barracks_batch_training.jsondescription
 msgid ""
@@ -352,6 +352,12 @@ msgstr "한 왕조는 중국을 한 황제 아래 통일함으로써 4천만 명
 msgid "Federated States"
 msgstr "연방 국가"
 
+#: simulation/data/technologies/civbonuses/han_population.jsontooltip
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "+10% maximum population limit."
+msgstr "최대 인구수가 +10 증가합니다."
+
 #: simulation/data/technologies/civbonuses/han_walls.jsondescription
 msgid "Han built massive walls, the great wall."
 msgstr "한나라는 거대한 성벽, 만리장성을 쌓았습니다."
@@ -366,15 +372,15 @@ msgstr "도시 성벽의 내구력이 +50% 증가합니다."
 
 #: simulation/data/technologies/civbonuses/mace_storehouse.jsondescription
 msgid "The Macedonian economy relied greatly on their vast natural resources."
-msgstr ""
+msgstr "마케도니아 경제는 방대한 천연 자원에 크게 의존했습니다."
 
 #: simulation/data/technologies/civbonuses/mace_storehouse.jsongenericName
 msgid "Resource-Rich Economy"
-msgstr ""
+msgstr "자원이 풍부한 경제"
 
 #: simulation/data/technologies/civbonuses/mace_storehouse.jsontooltip
 msgid "Storehouse technologies -100% research time."
-msgstr ""
+msgstr "창고 기술의 연구 시간이 -100% 감소합니다."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -409,11 +415,6 @@ msgstr "황제 중의 황제"
 #: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
 msgstr "차크라바르티 삼라트"
-
-#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "+10% maximum population limit."
-msgstr "최대 인구수가 +10 증가합니다."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsondescription
 msgid ""
@@ -1187,7 +1188,7 @@ msgstr "독 화살"
 
 #: simulation/data/technologies/poison_arrows.jsontooltip
 msgid "Ranged Soldiers +20% attack damage."
-msgstr "원거리 공격 병사의 공격 피해량이 +20% 증가합니다."
+msgstr "원거리 공격 병사들의 공격 피해량이 +20% 증가합니다."
 
 #: simulation/data/technologies/poison_blades.jsongenericName
 msgid "Poison Blades"
@@ -1195,7 +1196,7 @@ msgstr "독 날"
 
 #: simulation/data/technologies/poison_blades.jsontooltip
 msgid "Melee Soldiers +20% attack damage."
-msgstr "근거리 공격 병사의 공격 피해량이 +20% 증가합니다."
+msgstr "근거리 공격 병사들의 공격 피해량이 +20% 증가합니다."
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
@@ -1488,7 +1489,7 @@ msgstr "병사들의 원거리 공격 피해량이 +20% 증가합니다."
 
 #: simulation/data/technologies/soldier_ranged_experience.jsontooltip
 msgid "Ranged Soldiers +25% promotion experience."
-msgstr "원거리 공격 병사의 진급 경험치가 +25% 증가합니다."
+msgstr "원거리 공격 병사들의 진급 경험치가 +25% 증가합니다."
 
 #: simulation/data/technologies/soldier_resistance_hack_01.jsondescription
 msgid "Body armor made from quilted wool, linen, cotton, or leather."

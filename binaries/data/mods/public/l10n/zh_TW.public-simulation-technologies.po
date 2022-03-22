@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-14 08:09+0000\n"
+"POT-Creation-Date: 2022-03-18 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2021-2022\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -354,6 +354,12 @@ msgstr "在中國被一個帝國整合後，漢朝統治超過 4000 萬人，是
 msgid "Federated States"
 msgstr "封建制度"
 
+#: simulation/data/technologies/civbonuses/han_population.jsontooltip
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "+10% maximum population limit."
+msgstr "+10% 最大人口上限。"
+
 #: simulation/data/technologies/civbonuses/han_walls.jsondescription
 msgid "Han built massive walls, the great wall."
 msgstr "漢代建造了大量的城牆，萬里長城。"
@@ -411,11 +417,6 @@ msgstr "萬王之王"
 #: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
 msgstr "轉輪聖王"
-
-#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "+10% maximum population limit."
-msgstr "+10% 最大人口上限。"
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsondescription
 msgid ""

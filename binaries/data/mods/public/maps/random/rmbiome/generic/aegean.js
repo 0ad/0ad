@@ -7,7 +7,7 @@ function setupBiome_aegean()
 		]]);
 
 	g_Gaia.tree3 = pickRandom([
-		"gaia/fruit/olive",
+		"gaia/tree/olive",
 		"gaia/tree/juniper_prickly",
 		"gaia/tree/date_palm",
 		"gaia/tree/cretan_date_palm_short",

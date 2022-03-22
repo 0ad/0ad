@@ -59,6 +59,10 @@ struct SDecalBatchComparator
 	{
 		if (lhs.shaderTech != rhs.shaderTech)
 			return lhs.shaderTech < rhs.shaderTech;
+		const CMaterial& lhsMaterial = lhs.decal->GetDecal()->m_Decal.m_Material;
+		const CMaterial& rhsMaterial = rhs.decal->GetDecal()->m_Decal.m_Material;
+		if (lhsMaterial.GetDiffuseTexture() != rhsMaterial.GetDiffuseTexture())
+			return lhsMaterial.GetDiffuseTexture() < rhsMaterial.GetDiffuseTexture();
 		if (lhs.vertices->m_Owner != rhs.vertices->m_Owner)
 			return lhs.vertices->m_Owner < rhs.vertices->m_Owner;
 		if (lhs.indices->m_Owner != rhs.indices->m_Owner)
@@ -169,6 +173,11 @@ void CDecalRData::RenderDecals(
 			Renderer::Backend::GL::CShaderProgram* shader = techBase->GetShader(pass);
 			TerrainRenderer::PrepareShader(shader, shadow);
 
+			CColor shadingColor(1.0f, 1.0f, 1.0f, 1.0f);
+			shader->Uniform(str_shadingColor, shadingColor);
+
+			CShaderUniforms currentStaticUniforms;
+
 			CVertexBuffer* lastVB = nullptr;
 			for (auto itDecal = itTechBegin; itDecal != itTechEnd; ++itDecal)
 			{
@@ -182,7 +191,11 @@ void CDecalRData::RenderDecals(
 				for (const CMaterial::TextureSampler& sampler : samplers)
 					shader->BindTexture(sampler.Name, sampler.Sampler->GetBackendTexture());
 
-				material.GetStaticUniforms().BindUniforms(shader);
+				if (currentStaticUniforms != material.GetStaticUniforms())
+				{
+					currentStaticUniforms = material.GetStaticUniforms();
+					material.GetStaticUniforms().BindUniforms(shader);
+				}
 
 				// TODO: Need to handle floating decals correctly. In particular, we need
 				// to render non-floating before water and floating after water (to get
@@ -193,7 +206,11 @@ void CDecalRData::RenderDecals(
 
 				//	m_Decal->GetBounds().Render();
 
-				shader->Uniform(str_shadingColor, decal->m_Decal->GetShadingColor());
+				if (shadingColor != decal->m_Decal->GetShadingColor())
+				{
+					shadingColor = decal->m_Decal->GetShadingColor();
+					shader->Uniform(str_shadingColor, shadingColor);
+				}
 
 				if (lastVB != batch.vertices->m_Owner)
 				{

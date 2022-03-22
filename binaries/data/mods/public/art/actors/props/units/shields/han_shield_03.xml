@@ -2,24 +2,24 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="texture2">
-      <mesh>props/shields/han_boardshield.dae</mesh>
+    <variant frequency="1" name="Texture 02">
+      <mesh>props/shield/han_02.dae</mesh>
       <textures>
-        <texture file="props/shield/sh_c02.dds" name="baseTex"/>
+        <texture file="props/shield/han_02.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="texture3">
-      <mesh>props/shields/han_boardshield.dae</mesh>
+    <variant frequency="1" name="Texture 03">
+      <mesh>props/shield/han_02.dae</mesh>
       <textures>
-        <texture file="props/shield/sh_c03.dds" name="baseTex"/>
+        <texture file="props/shield/han_03.dds" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="texture4">
-      <mesh>props/shields/han_boardshield.dae</mesh>
+    <variant frequency="1" name="Texture 04">
+      <mesh>props/shield/han_02.dae</mesh>
       <textures>
-        <texture file="props/shield/sh_c04.dds" name="baseTex"/>
+        <texture file="props/shield/han_04.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>default.xml</material>
 </actor>

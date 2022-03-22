@@ -76,10 +76,8 @@ placePlayerBases({
 	"Trees": {
 		"template": oTree1,
 		"count": 5
-	},
-	"Decoratives": {
-		"template": aGrassShort
 	}
+	// No decoratives
 });
 Engine.SetProgress(20);
 
@@ -155,7 +153,7 @@ createDecoration(
 		planetm * scaleByMapAreaAbsolute(13),
 		planetm * scaleByMapAreaAbsolute(13)
 	],
-	avoidClasses(clForest, 0, clPlayer, 0, clHill, 0));
+	avoidClasses(clForest, 0, clPlayer, 10, clHill, 0));
 
 Engine.SetProgress(70);
 

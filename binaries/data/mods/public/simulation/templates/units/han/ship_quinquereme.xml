@@ -9,6 +9,14 @@
     <SpecificName>Dà Lóu Chuán</SpecificName>
     <Icon>units/han/ship_quinquereme.png</Icon>
   </Identity>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>128x256/rounded_rectangle.png</MainTexture>
+        <MainTextureMask>128x256/rounded_rectangle_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <VisualActor>
     <Actor>structures/han/towership.xml</Actor>
   </VisualActor>

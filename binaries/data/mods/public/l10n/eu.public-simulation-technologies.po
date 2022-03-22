@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-14 08:09+0000\n"
+"POT-Creation-Date: 2022-03-18 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Mielanjel Iraeta <pospolos@gmail.com>, 2017-2021\n"
+"Last-Translator: Osoitz <oelkoro@gmail.com>, 2015,2019-2020,2022\n"
 "Language-Team: Basque (http://www.transifex.com/wildfire-games/0ad/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -346,15 +346,21 @@ msgstr ""
 
 #: simulation/data/technologies/civbonuses/han_population.jsongenericName
 msgid "Federated States"
-msgstr ""
+msgstr "Estatu federatuak"
+
+#: simulation/data/technologies/civbonuses/han_population.jsontooltip
+#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
+#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
+msgid "+10% maximum population limit."
+msgstr "%10+ gehieneko biztanleria muga."
 
 #: simulation/data/technologies/civbonuses/han_walls.jsondescription
 msgid "Han built massive walls, the great wall."
-msgstr ""
+msgstr "Han-ek horma itzelak eraikitzen zituen, harresi handia."
 
 #: simulation/data/technologies/civbonuses/han_walls.jsongenericName
 msgid "Great Wall"
-msgstr ""
+msgstr "Harresi handia"
 
 #: simulation/data/technologies/civbonuses/han_walls.jsontooltip
 msgid "City Walls +50% health."
@@ -405,11 +411,6 @@ msgstr "Enperadoreen Enperadore"
 #: simulation/data/technologies/civbonuses/maur_population.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
 msgstr "Chakravarti Samrāt"
-
-#: simulation/data/technologies/civbonuses/maur_population.jsontooltip
-#: simulation/data/technologies/civbonuses/pers_population.jsontooltip
-msgid "+10% maximum population limit."
-msgstr "%10+ gehieneko biztanleria muga."
 
 #: simulation/data/technologies/civbonuses/maur_walls.jsondescription
 msgid ""
@@ -1109,7 +1110,7 @@ msgstr "Herri zaratatsu batetik benetako metropoli batera aurreratzen du, teknol
 
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.han
 msgid "Jùn"
-msgstr ""
+msgstr "Jùn"
 
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
@@ -1164,7 +1165,7 @@ msgstr "Aurreratu herrixka txiki batetik herri zaratatsu batera, azkar zabaltzek
 
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.han
 msgid "Xìan"
-msgstr ""
+msgstr "Xìan"
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
@@ -1179,7 +1180,7 @@ msgstr "Herrixka aroa"
 
 #: simulation/data/technologies/poison_arrows.jsongenericName
 msgid "Poison Arrows"
-msgstr ""
+msgstr "Gezi pozoituak"
 
 #: simulation/data/technologies/poison_arrows.jsontooltip
 msgid "Ranged Soldiers +20% attack damage."
@@ -1352,7 +1353,7 @@ msgstr "Setio makinak %40- muntatze eta desmuntatze denboran."
 
 #: simulation/data/technologies/silk_road.jsongenericName
 msgid "Silk Road"
-msgstr ""
+msgstr "Zetaren bidea"
 
 #: simulation/data/technologies/silk_road.jsontooltip
 msgid "Traders +20% international trade bonus."

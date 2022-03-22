@@ -4,6 +4,9 @@
     <GenericName>Arctic Wolf</GenericName>
     <Icon>gaia/fauna_arctic_wolf.png</Icon>
   </Identity>
+  <UnitAI>
+    <DefaultStance>aggressive</DefaultStance>
+  </UnitAI>
   <VisualActor>
     <Actor>fauna/arctic_wolf.xml</Actor>
   </VisualActor>

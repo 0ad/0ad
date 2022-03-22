@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_ship_bireme">
   <Footprint>
-    <Square width="8.0" depth="33.0"/>
+    <Square width="14.0" depth="56.0"/>
     <Height>10.0</Height>
   </Footprint>
   <Identity>
     <SpecificName>Longship</SpecificName>
     <Icon>units/viking_longship.png</Icon>
   </Identity>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>128x512/cartouche.png</MainTexture>
+        <MainTextureMask>128x512/cartouche_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
   <VisualActor>
     <Actor>structures/viking/longship.xml</Actor>
   </VisualActor>

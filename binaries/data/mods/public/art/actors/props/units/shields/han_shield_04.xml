@@ -2,10 +2,10 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Base">
-      <mesh>props/heads/beard_liu_bang.dae</mesh>
+    <variant frequency="1" name="Texture 01">
+      <mesh>props/shield/han_04.dae</mesh>
       <textures>
-        <texture file="props/heads/han_old_b.png" name="baseTex"/>
+        <texture file="props/shield/han_01.dds" name="baseTex"/>
       </textures>
     </variant>
   </group>
