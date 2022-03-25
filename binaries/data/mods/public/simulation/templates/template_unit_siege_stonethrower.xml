@@ -4,7 +4,7 @@
     <Ranged>
       <AttackName>Stone</AttackName>
       <Damage>
-        <Crush>210</Crush>
+        <Crush>350</Crush>
       </Damage>
       <MaxRange>100</MaxRange>
       <MinRange>40</MinRange>
@@ -12,7 +12,7 @@
       <RepeatTime>7000</RepeatTime>
       <Projectile>
         <Speed>40</Speed>
-        <Spread>6</Spread>
+        <Spread>3</Spread>
         <Gravity>20</Gravity>
         <FriendlyFire>false</FriendlyFire>
         <LaunchPoint y="3"/>
@@ -67,6 +67,6 @@
     <Acceleration op="mul">0.8</Acceleration>
   </UnitMotion>
   <Vision>
-    <Range>100</Range>
+    <Range>115</Range>
   </Vision>
 </Entity>
