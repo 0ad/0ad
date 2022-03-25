@@ -12,12 +12,12 @@ var g_MainMenuItems = [
 			},
 			{
 				"caption": translate("Tutorial"),
-				"tooltip": translate("Start the economic tutorial."),
+				"tooltip": translate("Start the introductory tutorial."),
 				"onPress": () => {
 					Engine.SwitchGuiPage("page_autostart.xml", {
 						"attribs": {
 							"mapType": "scenario",
-							"map": "maps/tutorials/starting_economy_walkthrough",
+							"map": "maps/tutorials/introductory_tutorial",
 							"settings": {
 								"CheatsEnabled": true
 							},
