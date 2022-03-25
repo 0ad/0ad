@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-14 08:09+0000\n"
+"POT-Creation-Date: 2022-03-21 08:21+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -648,19 +648,19 @@ msgstr "賽里克農"
 msgid "Wheat Field"
 msgstr "麥田"
 
-#: simulation/templates/structures/han/academy.xml:28
+#: simulation/templates/structures/han/academy.xml:27
 msgid "Imperial Academy"
 msgstr "帝國學院"
 
-#: simulation/templates/structures/han/academy.xml:29
+#: simulation/templates/structures/han/academy.xml:28
 msgid "Dìguó Xuéyuàn"
 msgstr "帝國學院"
 
-#: simulation/templates/structures/han/academy.xml:31
+#: simulation/templates/structures/han/academy.xml:30
 msgid "Train Champions and research their technologies."
 msgstr "訓練鬥士及研發他們的科技。"
 
-#: simulation/templates/structures/han/academy.xml:32
+#: simulation/templates/structures/han/academy.xml:31
 msgid "Academy"
 msgstr "學院"
 
@@ -681,7 +681,7 @@ msgid ""
 "This greatly increases the health, capture resistance, and garrison capacity"
 " of this specific Civic Center. Unlock training of Heroes here and reduce "
 "its research and batch training times by half."
-msgstr "這大大增加了這個指定城鎮中心的生命值、占領裝甲和駐軍能力。在這裡解鎖英雄訓練，將其研發和批次訓練時間減少一半。"
+msgstr "這大大增加了這個指定城鎮中心的生命值、占領抗性和駐軍能力。在這裡解鎖英雄訓練，將其研發和批次訓練時間減少一半。"
 
 #: simulation/templates/structures/han/civil_centre_court.xml:17
 msgid "Imperial Court"
@@ -768,23 +768,23 @@ msgstr "老子門"
 msgid "Jíshì"
 msgstr "集市"
 
-#: simulation/templates/structures/han/ministry.xml:37
+#: simulation/templates/structures/han/ministry.xml:36
 msgid "Imperial Ministry"
 msgstr "帝國官署"
 
-#: simulation/templates/structures/han/ministry.xml:38
+#: simulation/templates/structures/han/ministry.xml:37
 msgid "Guān Shǔ"
 msgstr "官署"
 
-#: simulation/templates/structures/han/ministry.xml:40
+#: simulation/templates/structures/han/ministry.xml:39
 msgid "ImperialMinistry"
 msgstr "帝國官署"
 
-#: simulation/templates/structures/han/ministry.xml:41
+#: simulation/templates/structures/han/ministry.xml:40
 msgid ""
-"Train the Nine Ministers. Research a powerful suite of Administrative "
-"technologies."
-msgstr "訓練九卿。 研發一套強大的管理科技。"
+"Train the Nine Ministers. Territory root. Research a powerful suite of "
+"Administrative technologies."
+msgstr "訓練九卿。領土地基。研發一套強大的管理科技。"
 
 #: simulation/templates/structures/han/outpost.xml:5
 msgid "Wànglóu"
@@ -794,7 +794,7 @@ msgstr "望樓"
 #: simulation/templates/structures/han/palisades_long.xml:4
 #: simulation/templates/structures/han/palisades_medium.xml:4
 #: simulation/templates/structures/han/palisades_short.xml:4
-#: simulation/templates/structures/han/wallset_palisade.xml:4
+#: simulation/templates/structures/han/wallset_palisade.xml:5
 msgid "Bamboo Stockade"
 msgstr "竹寨"
 
@@ -1530,7 +1530,7 @@ msgstr "Castra"
 msgid ""
 "Build in neutral or enemy territory. Train Advanced Melee Infantry. "
 "Construct Rams. Garrison Soldiers for additional arrows."
-msgstr "在中立或敵方領土上建造。 訓練高等近戰步兵，建造衝撞車。 進駐士兵將會增加射出的箭支。 "
+msgstr "在中立或敵方領土上建造。訓練高等近戰步兵，建造衝撞車。進駐士兵將會增加射出的箭支。"
 
 #: simulation/templates/structures/rome/army_camp.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:76
@@ -1929,7 +1929,7 @@ msgstr "Stoa"
 #: simulation/templates/structures/cart/apartment.xml:26
 #: simulation/templates/structures/gaul/tavern.xml:22
 #: simulation/templates/structures/han/laozigate.xml:34
-#: simulation/templates/structures/han/ministry.xml:40
+#: simulation/templates/structures/han/ministry.xml:39
 #: simulation/templates/structures/iber/monument.xml:34
 #: simulation/templates/structures/maur/elephant_stable.xml:8
 #: simulation/templates/template_structure_civic_stoa.xml:30
@@ -1964,7 +1964,7 @@ msgstr "哨站"
 msgid "Build in own or neutral territory."
 msgstr "在我方領土或中立地帶建造。"
 
-#: simulation/templates/structures/han/wallset_palisade.xml:6
+#: simulation/templates/structures/han/wallset_palisade.xml:7
 #: simulation/templates/structures/wallset_palisade.xml:4
 #: simulation/templates/structures/wallset_palisade.xml:6
 #: simulation/templates/template_structure_defensive_palisade.xml:13
@@ -1972,7 +1972,7 @@ msgstr "在我方領土或中立地帶建造。"
 msgid "Palisade"
 msgstr "柵欄"
 
-#: simulation/templates/structures/han/wallset_palisade.xml:5
+#: simulation/templates/structures/han/wallset_palisade.xml:6
 #: simulation/templates/structures/wallset_palisade.xml:5
 #: simulation/templates/template_structure_defensive_palisade.xml:15
 msgid "Wall off an area. Build in own or neutral territory."
@@ -2129,7 +2129,7 @@ msgid ""
 msgstr "訓練鬥士弩步兵、建造攻城武器及研發攻城武器科技。"
 
 #: simulation/templates/structures/gaul/assembly.xml:31
-#: simulation/templates/structures/han/academy.xml:32
+#: simulation/templates/structures/han/academy.xml:31
 #: simulation/templates/structures/han/civil_centre_court.xml:19
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
@@ -2193,7 +2193,7 @@ msgstr "鍛造廠"
 
 #: simulation/templates/template_structure_military_forge.xml:24
 msgid "Research attack damage and damage resistance technologies."
-msgstr "研發攻擊與裝甲科技。"
+msgstr "研發攻擊傷害與傷害抗性科技。"
 
 #: simulation/templates/template_structure_military_fortress.xml:30
 #: simulation/templates/template_structure_military_fortress.xml:65

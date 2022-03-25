@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-07 08:09+0000\n"
-"PO-Revision-Date: 2022-03-04 09:24+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"PO-Revision-Date: 2014-06-19 17:55+0000\n"
+"Last-Translator: Любомир Василев, 2016-2019\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,7 +111,7 @@ msgstr "Близкобоен конник"
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:22
 #: simulation/templates/template_unit_infantry_melee.xml:8
 #: simulation/templates/template_unit_ship_fire.xml:42
-#: simulation/templates/template_unit_siege_ram.xml:37
+#: simulation/templates/template_unit_siege_ram.xml:41
 msgid "Melee"
 msgstr "Близкобоен"
 
@@ -199,7 +199,7 @@ msgstr "Копиеносец"
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:5
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:5
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:5
-#: simulation/templates/units/han/support_minister.xml:11
+#: simulation/templates/units/han/support_minister.xml:12
 msgctxt "Name of an attack using a double-edged sword."
 msgid "Sword"
 msgstr "Меч"
@@ -235,7 +235,7 @@ msgstr "Мечоносец"
 #: simulation/templates/template_unit_infantry_ranged.xml:7
 #: simulation/templates/template_unit_infantry_ranged.xml:8
 #: simulation/templates/template_unit_ship_bireme.xml:46
-#: simulation/templates/template_unit_ship_quinquereme.xml:52
+#: simulation/templates/template_unit_ship_quinquereme.xml:56
 #: simulation/templates/template_unit_ship_trireme.xml:46
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
@@ -369,7 +369,7 @@ msgstr "Боен слон"
 
 #: simulation/templates/template_unit_champion_elephant.xml:20
 #: simulation/templates/template_unit_elephant.xml:11
-#: simulation/templates/template_unit_fauna_hunt_defensive_elephant.xml:4
+#: simulation/templates/template_unit_fauna_hunt_passive-defensive_elephant.xml:4
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:4
 #: simulation/templates/template_unit_hero_elephant_melee.xml:32
 #: simulation/templates/template_unit_support_elephant.xml:21
@@ -502,7 +502,7 @@ msgstr "Геройски конник"
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
 #: simulation/templates/units/brit/hero_boudicca.xml:20
-#: simulation/templates/units/han/support_minister.xml:66
+#: simulation/templates/units/han/support_minister.xml:67
 #: simulation/templates/units/kush/hero_amanirenas.xml:21
 #: simulation/templates/units/maur/hero_ashoka.xml:20
 #: simulation/templates/units/pers/hero_darius_i.xml:20
@@ -630,7 +630,7 @@ msgid "Light Warship"
 msgstr "Лек военен кораб"
 
 #: simulation/templates/template_unit_ship_bireme.xml:45
-#: simulation/templates/template_unit_ship_quinquereme.xml:51
+#: simulation/templates/template_unit_ship_quinquereme.xml:55
 #: simulation/templates/template_unit_ship_trireme.xml:45
 #: simulation/templates/template_unit_siege_tower.xml:65
 msgid "Garrison units for transport and to increase firepower."
@@ -638,7 +638,7 @@ msgstr "Качете единици на борда за превоз и уве�
 
 #: simulation/templates/template_unit_ship_bireme.xml:46
 #: simulation/templates/template_unit_ship_fire.xml:42
-#: simulation/templates/template_unit_ship_quinquereme.xml:52
+#: simulation/templates/template_unit_ship_quinquereme.xml:56
 #: simulation/templates/template_unit_ship_trireme.xml:46
 msgid "Warship"
 msgstr "Военен кораб"
@@ -718,12 +718,12 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "Камък"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:50
+#: simulation/templates/template_unit_ship_quinquereme.xml:54
 msgid "Heavy Warship"
 msgstr "Тежък военен кораб"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:52
-#: simulation/templates/units/cart/ship_quinquereme.xml:9
+#: simulation/templates/template_unit_ship_quinquereme.xml:56
+#: simulation/templates/units/cart/ship_quinquereme.xml:5
 msgid "Quinquereme"
 msgstr "Квинквиера"
 
@@ -767,15 +767,15 @@ msgctxt "Name of an attack, usually the weapon."
 msgid "Ram"
 msgstr "Таран"
 
-#: simulation/templates/template_unit_siege_ram.xml:35
+#: simulation/templates/template_unit_siege_ram.xml:39
 msgid "Battering Ram"
 msgstr "Таран"
 
-#: simulation/templates/template_unit_siege_ram.xml:36
+#: simulation/templates/template_unit_siege_ram.xml:40
 msgid "Cannot attack Fields or Organic Units."
 msgstr ""
 
-#: simulation/templates/template_unit_siege_ram.xml:37
+#: simulation/templates/template_unit_siege_ram.xml:41
 msgid "Ram"
 msgstr "Таран"
 
@@ -1225,11 +1225,11 @@ msgstr "Литобо̀лос"
 msgid "Oxybelḗs"
 msgstr "Оксивелѝс"
 
-#: simulation/templates/units/athen/siege_ram.xml:8
-#: simulation/templates/units/mace/siege_ram.xml:9
-#: simulation/templates/units/ptol/siege_ram.xml:9
-#: simulation/templates/units/sele/siege_ram.xml:9
-#: simulation/templates/units/spart/siege_ram.xml:9
+#: simulation/templates/units/athen/siege_ram.xml:4
+#: simulation/templates/units/mace/siege_ram.xml:8
+#: simulation/templates/units/ptol/siege_ram.xml:8
+#: simulation/templates/units/sele/siege_ram.xml:8
+#: simulation/templates/units/spart/siege_ram.xml:5
 msgid "Krios"
 msgstr ""
 
@@ -1388,8 +1388,8 @@ msgstr ""
 msgid "Pontos"
 msgstr ""
 
-#: simulation/templates/units/brit/siege_ram.xml:9
-#: simulation/templates/units/gaul/siege_ram.xml:9
+#: simulation/templates/units/brit/siege_ram.xml:5
+#: simulation/templates/units/gaul/siege_ram.xml:5
 msgid "Molton"
 msgstr ""
 
@@ -1572,7 +1572,7 @@ msgid ""
 "have +25% sea trading bonus."
 msgstr "Търгувайте с други пристанища. Качете на борда Търговец за допълнителна печалба (+20% за всеки Търговец). Събирайте доходоносни морски съкровища. Картагенците имат +25% по-добра морска търговия."
 
-#: simulation/templates/units/cart/ship_quinquereme.xml:10
+#: simulation/templates/units/cart/ship_quinquereme.xml:6
 msgid "Ḥameš-Mašōt"
 msgstr "Хамеш-машот"
 
@@ -1748,11 +1748,11 @@ msgstr ""
 msgid "Dāo Bīng"
 msgstr ""
 
-#: simulation/templates/units/han/ship_bireme.xml:5
+#: simulation/templates/units/han/ship_bireme.xml:9
 msgid "Zhàn Chuán"
 msgstr ""
 
-#: simulation/templates/units/han/ship_fire.xml:5
+#: simulation/templates/units/han/ship_fire.xml:9
 msgid "Huǒ Chuán"
 msgstr ""
 
@@ -1777,7 +1777,7 @@ msgstr ""
 msgid "Tóushí Chē"
 msgstr ""
 
-#: simulation/templates/units/han/siege_ram.xml:8
+#: simulation/templates/units/han/siege_ram.xml:4
 msgid "Gōngchéng Chuí"
 msgstr ""
 
@@ -1797,22 +1797,22 @@ msgstr ""
 msgid "Yīshī"
 msgstr ""
 
-#: simulation/templates/units/han/support_minister.xml:40
+#: simulation/templates/units/han/support_minister.xml:41
 msgid "Imperial Minister"
 msgstr ""
 
-#: simulation/templates/units/han/support_minister.xml:41
+#: simulation/templates/units/han/support_minister.xml:42
 msgid "Guānlì"
 msgstr ""
 
-#: simulation/templates/units/han/support_minister.xml:42
+#: simulation/templates/units/han/support_minister.xml:43
 msgid ""
 "Use to boost the efficiency of nearby units and buildings. Garrison within a"
-" building to boost the efficiency of its production queue. Only han "
+" building to boost the efficiency of its production queue. Only Han "
 "buildings can garrison ministers."
 msgstr ""
 
-#: simulation/templates/units/han/support_minister.xml:44
+#: simulation/templates/units/han/support_minister.xml:45
 msgid "Minister"
 msgstr ""
 
@@ -1832,7 +1832,7 @@ msgstr "Кантабриако залдун"
 msgid "Lantzari"
 msgstr "Лантзари"
 
-#: simulation/templates/units/iber/champion_cavalry.xml:19
+#: simulation/templates/units/iber/champion_cavalry.xml:26
 msgid "Leial Zalduneria"
 msgstr "Леял залдунерия"
 
@@ -1885,11 +1885,7 @@ msgstr "Меркатарица итсасонци"
 msgid "Ponti"
 msgstr " Понти"
 
-#: simulation/templates/units/iber/ship_trireme.xml:19
-msgid "Transport many soldiers across the sea."
-msgstr "Транспортиране на голямо количество во̀ини през морето."
-
-#: simulation/templates/units/iber/siege_ram.xml:9
+#: simulation/templates/units/iber/siege_ram.xml:5
 msgid "Ahariburu"
 msgstr "Ахарибуру"
 
@@ -2016,51 +2012,51 @@ msgstr "Настасен"
 msgid "N-ı͗-s-tȝ-s-nn Kȝ-ʿnḫ-Rʿ"
 msgstr ""
 
-#: simulation/templates/units/kush/infantry_archer_b.xml:16
+#: simulation/templates/units/kush/infantry_archer_b.xml:15
 msgid "Nubian Archer"
 msgstr "Нубийски стрелец"
 
-#: simulation/templates/units/kush/infantry_archer_b.xml:17
+#: simulation/templates/units/kush/infantry_archer_b.xml:16
 msgid "Pdty Nhsyw"
 msgstr "Пдтй Нхсйл"
 
-#: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:16
+#: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:15
 msgid "Noba Skirmisher"
 msgstr ""
 
-#: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:17
+#: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:16
 msgid "nhw ʿhȝw Noba"
 msgstr ""
 
-#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:16
+#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:15
 msgid "Noba Maceman"
 msgstr ""
 
-#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:17
+#: simulation/templates/units/kush/infantry_maceman_merc_b.xml:16
 msgid "nhw Noba"
 msgstr "нхл Ноба"
 
-#: simulation/templates/units/kush/infantry_pikeman_b.xml:16
+#: simulation/templates/units/kush/infantry_pikeman_b.xml:15
 msgid "Meroitic Pikeman"
 msgstr "Мероитски пиконосец"
 
-#: simulation/templates/units/kush/infantry_pikeman_b.xml:17
+#: simulation/templates/units/kush/infantry_pikeman_b.xml:16
 msgid "siȝwrd"
 msgstr ""
 
-#: simulation/templates/units/kush/infantry_spearman_b.xml:16
+#: simulation/templates/units/kush/infantry_spearman_b.xml:15
 msgid "Nubian Spearman"
 msgstr "Нубийски копиеносец"
 
-#: simulation/templates/units/kush/infantry_spearman_b.xml:17
+#: simulation/templates/units/kush/infantry_spearman_b.xml:16
 msgid "iry-rdwy Nhsyw"
 msgstr "ирй-рдлй Нхсйл"
 
-#: simulation/templates/units/kush/infantry_swordsman_b.xml:16
+#: simulation/templates/units/kush/infantry_swordsman_b.xml:15
 msgid "Meroitic Swordsman"
 msgstr "Мероитски мечоносец"
 
-#: simulation/templates/units/kush/infantry_swordsman_b.xml:17
+#: simulation/templates/units/kush/infantry_swordsman_b.xml:16
 msgid "knw hps"
 msgstr "кнл хпс"
 
@@ -2092,11 +2088,11 @@ msgstr "Кушитска обсадна кула"
 msgid "iwn n ms"
 msgstr "илн х мс"
 
-#: simulation/templates/units/kush/support_female_citizen.xml:15
+#: simulation/templates/units/kush/support_female_citizen.xml:14
 msgid "Shmt"
 msgstr "Шмт"
 
-#: simulation/templates/units/kush/support_female_citizen.xml:16
+#: simulation/templates/units/kush/support_female_citizen.xml:15
 msgid "Kushite Woman"
 msgstr "Кужитска жена"
 
@@ -2818,7 +2814,7 @@ msgstr "Галико̀с мистофоро̀с"
 msgid "Dierēs"
 msgstr "Диерис"
 
-#: simulation/templates/units/ptol/ship_quinquereme.xml:9
+#: simulation/templates/units/ptol/ship_quinquereme.xml:5
 msgid "Octḗrēs"
 msgstr "Октѝрис"
 
@@ -2826,7 +2822,7 @@ msgstr "Октѝрис"
 msgid "Pentḗrēs"
 msgstr "Пентѝрис"
 
-#: simulation/templates/units/ptol/siege_polybolos_packed.xml:23
+#: simulation/templates/units/ptol/siege_polybolos_packed.xml:19
 msgid "Polybolos"
 msgstr "Полибол"
 
@@ -2976,11 +2972,11 @@ msgstr ""
 msgid "Corbīta"
 msgstr ""
 
-#: simulation/templates/units/rome/ship_quinquereme.xml:9
+#: simulation/templates/units/rome/ship_quinquereme.xml:5
 msgid "Quīnquerēmis Rōmāna"
 msgstr ""
 
-#: simulation/templates/units/rome/ship_quinquereme.xml:10
+#: simulation/templates/units/rome/ship_quinquereme.xml:6
 msgid "Roman Quinquereme"
 msgstr "Римска квинквиера"
 
@@ -2996,11 +2992,11 @@ msgstr "Римска триера"
 msgid "Onager"
 msgstr "Онагер"
 
-#: simulation/templates/units/rome/siege_ram.xml:16
+#: simulation/templates/units/rome/siege_ram.xml:15
 msgid "Ariēs"
 msgstr ""
 
-#: simulation/templates/units/rome/siege_scorpio_packed.xml:9
+#: simulation/templates/units/rome/siege_scorpio_packed.xml:8
 msgid "Scorpiō"
 msgstr ""
 
@@ -3172,7 +3168,7 @@ msgstr "Тракийски наемен мечоносец"
 msgid "Rhomphaiaphoros Thrakikós"
 msgstr "Ромфаияфорос тракико̀с"
 
-#: simulation/templates/units/sele/ship_quinquereme.xml:9
+#: simulation/templates/units/sele/ship_quinquereme.xml:5
 msgid "Pentères"
 msgstr "Пентѐрес"
 

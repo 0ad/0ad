@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-08-30 07:08+0000\n"
+"POT-Creation-Date: 2022-03-21 08:21+0000\n"
 "PO-Revision-Date: 2014-06-19 17:48+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>, 2017-2022\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
@@ -18,46 +18,46 @@ msgstr ""
 "Language: ast\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/gamesettings/attributes/PlayerName.js:113
+#: gui/gamesettings/attributes/PlayerName.js:133
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:57
+#: gui/gamesettings/attributes/TeamPlacement.js:55
 msgctxt "team placement"
 msgid "Circle"
 msgstr "Círculu"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:58
+#: gui/gamesettings/attributes/TeamPlacement.js:56
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
 msgstr "Los xhogadores associahos axhuntæn-se al par d’inimigos n un círculu q’invuœlve l terreiro."
 
-#: gui/gamesettings/attributes/TeamPlacement.js:62
+#: gui/gamesettings/attributes/TeamPlacement.js:60
 msgctxt "team placement"
 msgid "Line"
 msgstr "Lhiña"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:63
+#: gui/gamesettings/attributes/TeamPlacement.js:61
 msgid "Allied players are placed in a linear pattern."
 msgstr "Los xhogadores associahos sitúæn-se n rectafhila."
 
-#: gui/gamesettings/attributes/TeamPlacement.js:67
+#: gui/gamesettings/attributes/TeamPlacement.js:65
 msgctxt "team placement"
 msgid "Random Group"
 msgstr "Grea aleatoria"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:68
+#: gui/gamesettings/attributes/TeamPlacement.js:66
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
 msgstr "Los xhogadores associahos axhuntæn-se n terreiro, pero sitúæn-se aleatoriamente."
 
-#: gui/gamesettings/attributes/TeamPlacement.js:72
+#: gui/gamesettings/attributes/TeamPlacement.js:70
 msgctxt "team placement"
 msgid "Stronghold"
 msgstr "Arce"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:73
+#: gui/gamesettings/attributes/TeamPlacement.js:71
 msgid "Allied players are grouped in one random place of the map."
 msgstr "Los xhogadores associahos axhuntæn-se ayuri n terreiro."
 
@@ -143,16 +143,16 @@ msgstr "Agënte intelligënte: %(ai)s"
 msgid "Unassigned"
 msgstr "Sin afhitar"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:71
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:90
 msgid "Choose the civilization for this player."
 msgstr "Scoye’ la cultura d’esti xhogador."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:74
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:93
 msgctxt "civilization"
 msgid "Random"
 msgstr "Aleatoria"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:80
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:99
 msgid "Picks one civilization at random when the game starts."
 msgstr "Scuœye una cultura de modu aleatoriu al inicia’ la partida."
 
@@ -303,14 +303,14 @@ msgid "Do not add treasures to the map."
 msgstr "Fhaz que nun habia atyalgæs in terreiro."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:25
-msgid "World population"
-msgstr "Populaçon global"
+msgid "World Population"
+msgstr "Poblraçon global"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:28
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr "Siñalada, la populaçon máxima vaî partise por egual entre todolos xhogadores vivos."
+msgstr "Siñalada, la poblraçon máxima vaî partise por egual entre todolos xhogadores vivos."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:54
 msgid "Biome"
@@ -432,7 +432,7 @@ msgstr "Teitho poblracional"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:55
 msgid "Select population limit."
-msgstr "Scoye’ la capacidá máxima de la populaçon."
+msgstr "Scoye’ la capacidá máxima de la poblraçon."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:58
 msgctxt "population limit"
@@ -444,7 +444,7 @@ msgstr "Per xhogador"
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "Avisu: Puœden dase problemas si todolos xhogadores %(players)s algamæn una populaçon de %(popCap)s."
+msgstr "Avisu: Puœden dase problemas si todolos xhogadores %(players)s algamæn una poblraçon de %(popCap)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:50
 msgid "Starting Resources"
@@ -496,14 +496,14 @@ msgstr "Teitho poblracional global"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:50
 msgid "Select world population limit."
-msgstr "Scoye’ la capacidá máxima de la populaçon global."
+msgstr "Scoye’ la capacidá máxima de la poblraçon global."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:53
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr "Avisu: Puœden dase problemas si s’algama una populaçon de %(popCap)s."
+msgstr "Avisu: Puœden dase problemas si s’algama una poblraçon de %(popCap)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:35
 msgid "Ceasefire"

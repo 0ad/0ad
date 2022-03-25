@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-28 08:09+0000\n"
-"PO-Revision-Date: 2022-02-28 10:18+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"PO-Revision-Date: 2014-06-19 17:54+0000\n"
+"Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>, 2021\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -636,10 +636,6 @@ msgstr "Ara"
 msgid "Grapes"
 msgstr "Anggur"
 
-#: simulation/templates/gaia/fruit/olive.xml:7
-msgid "Olive"
-msgstr "Zaitun"
-
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
 msgstr "Runtuhan Kuno"
@@ -920,6 +916,10 @@ msgstr "Ek Hungaria"
 msgid "Large Oak"
 msgstr "Ek Besar"
 
+#: simulation/templates/gaia/tree/olive.xml:7
+msgid "Olive"
+msgstr "Zaitun"
+
 #: simulation/templates/gaia/tree/palm_areca.xml:4
 msgid "Areca Palm"
 msgstr "Pohon Pinang"
@@ -990,7 +990,7 @@ msgstr "Surian"
 msgid "Rainforest Tree"
 msgstr "Pohon Hutan Hujan"
 
-#: simulation/templates/mixins/builder.xml:39
+#: simulation/templates/mixins/builder.xml:40
 msgid "Builder"
 msgstr "Pembangun"
 
@@ -1039,7 +1039,7 @@ msgstr "Barisan Tempur"
 msgid "Requires at least 4 Soldiers or Siege engines."
 msgstr "Membutuhkan setidaknya 4 Tentara atau Mesin Kepung."
 
-#: simulation/templates/special/formations/box.xml:11
+#: simulation/templates/special/formations/box.xml:12
 msgid "Box"
 msgstr "Kotak"
 
@@ -1079,7 +1079,7 @@ msgstr "Infanteri Hoplites saja, membutuhkan setidaknya 10."
 msgid "Phalanx"
 msgstr "Falangs"
 
-#: simulation/templates/special/formations/scatter.xml:7
+#: simulation/templates/special/formations/scatter.xml:8
 msgid "Scatter"
 msgstr "Sebar"
 
@@ -1099,7 +1099,7 @@ msgstr "Infanteri Penggalah saja, membutuhkan setidaknya 16."
 msgid "Syntagma"
 msgstr "Syntagma"
 
-#: simulation/templates/special/formations/testudo.xml:69
+#: simulation/templates/special/formations/testudo.xml:70
 msgid "Testudo"
 msgstr "Testudo"
 

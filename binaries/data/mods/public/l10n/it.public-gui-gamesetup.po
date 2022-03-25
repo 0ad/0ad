@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -53,9 +53,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-09-19 16:38+0000\n"
-"Last-Translator: Matteo Cagliari\n"
+"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"PO-Revision-Date: 2014-06-19 17:48+0000\n"
+"Last-Translator: Matteo Cagliari <matteocagliari5@gmail.com>, 2021\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,46 +63,46 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/gamesettings/attributes/PlayerName.js:113
+#: gui/gamesettings/attributes/PlayerName.js:133
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:57
+#: gui/gamesettings/attributes/TeamPlacement.js:55
 msgctxt "team placement"
 msgid "Circle"
 msgstr "Cerchio"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:58
+#: gui/gamesettings/attributes/TeamPlacement.js:56
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
 msgstr "I giocatori alleati sono raggruppati e posizionati con i giocatori nemici su di un cerchio che attraversa la mappa."
 
-#: gui/gamesettings/attributes/TeamPlacement.js:62
+#: gui/gamesettings/attributes/TeamPlacement.js:60
 msgctxt "team placement"
 msgid "Line"
 msgstr "Linea"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:63
+#: gui/gamesettings/attributes/TeamPlacement.js:61
 msgid "Allied players are placed in a linear pattern."
 msgstr "I giocatori alleati sono posizionati su di un modello lineare."
 
-#: gui/gamesettings/attributes/TeamPlacement.js:67
+#: gui/gamesettings/attributes/TeamPlacement.js:65
 msgctxt "team placement"
 msgid "Random Group"
 msgstr "Gruppo casuale"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:68
+#: gui/gamesettings/attributes/TeamPlacement.js:66
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
 msgstr "I giocatori alleati sono raggruppati, ma posizionati a caso sulla mappa."
 
-#: gui/gamesettings/attributes/TeamPlacement.js:72
+#: gui/gamesettings/attributes/TeamPlacement.js:70
 msgctxt "team placement"
 msgid "Stronghold"
 msgstr "Roccaforte"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:73
+#: gui/gamesettings/attributes/TeamPlacement.js:71
 msgid "Allied players are grouped in one random place of the map."
 msgstr "Giocatori alleati saranno piazzati randomicamente nella mappa"
 
@@ -188,16 +188,16 @@ msgstr "IA: %(ai)s"
 msgid "Unassigned"
 msgstr "Non assegnato"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:71
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:90
 msgid "Choose the civilization for this player."
 msgstr "Scegli la civiltà per questo giocatore."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:74
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:93
 msgctxt "civilization"
 msgid "Random"
 msgstr "Casuale"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:80
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:99
 msgid "Picks one civilization at random when the game starts."
 msgstr "Sceglie una civiltà a caso quando inizia il gioco."
 
@@ -348,8 +348,8 @@ msgid "Do not add treasures to the map."
 msgstr "Non aggiungere tesori alla mappa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:25
-msgid "World population"
-msgstr "Popolazione del mondo"
+msgid "World Population"
+msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:28
 msgid ""

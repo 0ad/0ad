@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-28 08:09+0000\n"
-"PO-Revision-Date: 2022-02-28 10:18+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"PO-Revision-Date: 2014-06-19 17:54+0000\n"
+"Last-Translator: mandruis <manuiglesias96@yahoo.es>, 2016\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -631,10 +631,6 @@ msgstr "Figueira"
 msgid "Grapes"
 msgstr "Uvas"
 
-#: simulation/templates/gaia/fruit/olive.xml:7
-msgid "Olive"
-msgstr ""
-
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
 msgstr "Ruínas antigas"
@@ -915,6 +911,10 @@ msgstr ""
 msgid "Large Oak"
 msgstr ""
 
+#: simulation/templates/gaia/tree/olive.xml:7
+msgid "Olive"
+msgstr ""
+
 #: simulation/templates/gaia/tree/palm_areca.xml:4
 msgid "Areca Palm"
 msgstr ""
@@ -985,7 +985,7 @@ msgstr ""
 msgid "Rainforest Tree"
 msgstr ""
 
-#: simulation/templates/mixins/builder.xml:39
+#: simulation/templates/mixins/builder.xml:40
 msgid "Builder"
 msgstr ""
 
@@ -1034,7 +1034,7 @@ msgstr "Liña de batalla"
 msgid "Requires at least 4 Soldiers or Siege engines."
 msgstr ""
 
-#: simulation/templates/special/formations/box.xml:11
+#: simulation/templates/special/formations/box.xml:12
 msgid "Box"
 msgstr "Cadrado"
 
@@ -1074,7 +1074,7 @@ msgstr ""
 msgid "Phalanx"
 msgstr "Falanxe"
 
-#: simulation/templates/special/formations/scatter.xml:7
+#: simulation/templates/special/formations/scatter.xml:8
 msgid "Scatter"
 msgstr "Esparexidos"
 
@@ -1094,7 +1094,7 @@ msgstr ""
 msgid "Syntagma"
 msgstr "Falanxe macedonia"
 
-#: simulation/templates/special/formations/testudo.xml:69
+#: simulation/templates/special/formations/testudo.xml:70
 msgid "Testudo"
 msgstr "Tartaruga"
 
