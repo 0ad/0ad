@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-18 08:09+0000\n"
+"POT-Creation-Date: 2022-03-21 08:21+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>, 2017-2022\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
@@ -1642,7 +1642,7 @@ msgstr "Aceptar"
 #: gui/locale_advanced/locale_advanced.xml:(caption):65
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):51
 msgid "Cancel"
-msgstr "Incaboẍar"
+msgstr "Incaboxar"
 
 #: gui/hotkeys/hotkeys.xml:(heading):39
 msgctxt "hotkey list"
@@ -1686,7 +1686,7 @@ msgstr "Los atayos nun van camudase"
 #: gui/hotkeys/spec/camera.jsoncategories.camera.desc
 msgctxt "hotkey metadata"
 msgid "Camera-related hotkeys."
-msgstr "Atayos relacionahos cun la cámara."
+msgstr "Atayos relativos a la cámara."
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.name
 msgctxt "hotkey metadata"
@@ -2044,7 +2044,7 @@ msgstr "Cerrar ou incaboxar la feniestra de diálogu."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.name
 msgctxt "hotkey metadata"
 msgid "Close/Cancel"
-msgstr "Cerrar/incaboẍar"
+msgstr "Cerrar/incaboxar"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
 msgctxt "hotkey metadata"
@@ -2654,7 +2654,7 @@ msgstr "Xirar en sen horariu"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to align new structures with nearby existing structure."
-msgstr "Camudador p'alliniar construcciones nueves con construcciones existentes."
+msgstr "Camudador p’alhiñar construcçones nuœvæs cun construcçones existentes."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.name
 msgctxt "hotkey metadata"
@@ -3052,7 +3052,7 @@ msgstr "Alternar la sobrecapa cronométrica"
 #: gui/hotkeys/spec/selection.jsoncategories.selection.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys relating to modifying unit selection."
-msgstr "Atayos relacionahos cun la scolheitha d’unidades."
+msgstr "Atayos relativos a la scolheitha d’unidades."
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.name
 msgctxt "hotkey metadata"
@@ -4773,7 +4773,7 @@ msgstr "Barra d'experiencia"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].tooltip
 msgid "Show an experience status bar above each selected unit."
-msgstr "Amostrar una barra d'experiencia enriba de cada unidá esbillada."
+msgstr "Amostrar una barra d’experiencia sobre cada una de læs unidades scoyidæs."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].label
 msgid "Detailed tooltips"
@@ -4856,7 +4856,7 @@ msgstr "Atayu p’activa’ l alhiñadura"
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr "Les construcciones nueves allíniense con construcciones cercanes al premer l'atayu de tecláu."
+msgstr "Mentanto premas l atayu, læs construcçones nuœvæs van alhiñase cun construcçones vizinæs."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].label
 msgid "Hotkey to disable snapping"
@@ -4866,11 +4866,11 @@ msgstr "Atayu pa desactivar l'alliniadura"
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr "Les construcciones nueves allíniense con construcciones cercanes sacante que premas l'atayu de tecláu."
+msgstr "A nun ser que premas l atayu, læs construcçones nuœvæs van alhiñase cun construcçones vizinæs."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr "Esta opción permítete alliniar construcciones nueves con construcciones cercanes."
+msgstr "Esta opçon permitte alhiñar construcçones nuœvæs cun construcçones vizinæs."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].label
 msgid "Control group membership"
@@ -5353,8 +5353,8 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXVI: Z——"
-msgstr "Alfa XXVI: Z——"
+msgid "Alpha XXVI: Zhuangzi"
+msgstr "Alpha XXVI: Zhuangzi"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -6700,7 +6700,7 @@ msgstr "Inflúin nas statísticas d’outras unidades ou construcciones."
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
-msgstr "Repara: ¡Cada héroe puöde creá-se una sola vez per partida!"
+msgstr "Repara: ¡Cada unu de los heroes puœde crease una sola vez per partida!"
 
 #: gui/text/tips/iber_fireship.txt:1
 msgid "IBERIAN FIRESHIP"
@@ -6850,7 +6850,7 @@ msgstr "ECONÓMETRU"
 msgid ""
 "The resource counter panel shows you how much of each resources you have at "
 "the moment."
-msgstr "El panel económetru amuestra les reserves actuales de cada recursu."
+msgstr "El quadro econométrico amuœstra læs reservæs actuales de cada unu de los recursos."
 
 #: gui/text/tips/resource_counter.txt:3
 msgid ""
@@ -6922,7 +6922,7 @@ msgstr "ASTEROS"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "The basic melee infantry for every faction in the game."
-msgstr "El pédite común a tódeles facciones del xuegu."
+msgstr "El pédite commun a todelæs facçones de l trebeyu."
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
@@ -6970,7 +6970,7 @@ msgstr "Desendolca técniques médiques."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
-msgstr "La suâ influencia sana a unidades aveiradæs."
+msgstr "La suâ influencia sana a unidades vizinæs."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."

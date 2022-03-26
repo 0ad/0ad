@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -42,9 +42,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2022-03-08 15:22+0000\n"
-"Last-Translator: 柳离枝\n"
+"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"PO-Revision-Date: 2014-06-19 17:48+0000\n"
+"Last-Translator: 柳离枝 <xingzuo88@qq.com>, 2022\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,46 +52,46 @@ msgstr ""
 "Language: zh\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gui/gamesettings/attributes/PlayerName.js:113
+#: gui/gamesettings/attributes/PlayerName.js:133
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:57
+#: gui/gamesettings/attributes/TeamPlacement.js:55
 msgctxt "team placement"
 msgid "Circle"
 msgstr "圆形"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:58
+#: gui/gamesettings/attributes/TeamPlacement.js:56
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
 msgstr "联盟的玩家被分组，并与对手横跨一个圆圈上。"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:62
+#: gui/gamesettings/attributes/TeamPlacement.js:60
 msgctxt "team placement"
 msgid "Line"
 msgstr "线形"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:63
+#: gui/gamesettings/attributes/TeamPlacement.js:61
 msgid "Allied players are placed in a linear pattern."
 msgstr "同盟玩家在ㄧ条线上"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:67
+#: gui/gamesettings/attributes/TeamPlacement.js:65
 msgctxt "team placement"
 msgid "Random Group"
 msgstr "随机聚集"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:68
+#: gui/gamesettings/attributes/TeamPlacement.js:66
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
 msgstr "聚集同盟玩家，但位置随机。"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:72
+#: gui/gamesettings/attributes/TeamPlacement.js:70
 msgctxt "team placement"
 msgid "Stronghold"
 msgstr "堡垒"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:73
+#: gui/gamesettings/attributes/TeamPlacement.js:71
 msgid "Allied players are grouped in one random place of the map."
 msgstr "同盟玩家随机聚集出现。"
 
@@ -177,16 +177,16 @@ msgstr "AI ：%(ai)s"
 msgid "Unassigned"
 msgstr "未指定"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:71
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:90
 msgid "Choose the civilization for this player."
 msgstr "为此玩家选择文明"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:74
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:93
 msgctxt "civilization"
 msgid "Random"
 msgstr "随机"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:80
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:99
 msgid "Picks one civilization at random when the game starts."
 msgstr "当游戏开始时，随机挑选一个文明。"
 
@@ -337,8 +337,8 @@ msgid "Do not add treasures to the map."
 msgstr "不要在地图上添加宝藏。"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:25
-msgid "World population"
-msgstr "世界人口"
+msgid "World Population"
+msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:28
 msgid ""

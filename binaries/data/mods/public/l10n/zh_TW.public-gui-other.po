@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-18 08:09+0000\n"
+"POT-Creation-Date: 2022-03-21 08:21+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2021-2022\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -221,7 +221,7 @@ msgstr "易受攻擊的英雄"
 
 #: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr "英雄不能進駐，他們容易被襲擊。 "
+msgstr "英雄不能進駐，他們容易被襲擊。"
 
 #: gui/common/gamedescription.js:251
 msgid "Locked Teams"
@@ -756,7 +756,7 @@ msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:211
 msgid "Resistance:"
-msgstr "抵抗："
+msgstr "抗性："
 
 #: gui/common/tooltips.js:222
 msgid "Damage:"
@@ -944,7 +944,7 @@ msgstr "%(attackType)s"
 #, javascript-format
 msgid ""
 "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
-msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
+msgstr "%(attackLabel)s：%(effects)s，%(range)s，%(rate)s%(statusEffects)s%(splash)s"
 
 #: gui/common/tooltips.js:477
 msgid "Attack:"
@@ -1794,7 +1794,7 @@ msgstr "設定鏡頭跳躍 4"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.desc
 msgctxt "hotkey metadata"
 msgid "Focus the camera on the position of the last attack notification."
-msgstr "將鏡頭聚焦在最近一次攻擊通知的位置。 "
+msgstr "將鏡頭聚焦在最近一次攻擊通知的位置。"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.name
 msgctxt "hotkey metadata"
@@ -2089,7 +2089,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Custom hotkey to trigger exit-to-desktop. The native hotkeys (Alt+F4 / Cmd+Q"
 " / etc.) are always active."
-msgstr "自訂快捷鍵來觸發「退回桌面」，本機熱鍵（Alt+F4 / Cmd+Q / 等等）始終處於有效狀態。 "
+msgstr "自訂快捷鍵來觸發「退回桌面」，本機熱鍵（Alt+F4 / Cmd+Q / 等等）始終處於有效狀態。"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
@@ -5250,7 +5250,7 @@ msgstr "%(hotkey)s：啟動多人遊戲大廳來參加或主辦公開可見的�
 
 #: gui/pregame/MainMenuItems.js:184
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
-msgstr "啟動多人遊戲大廳。 \\[構建時被禁用]"
+msgstr "啟動多人遊戲大廳。\\[構建時被禁用]"
 
 #: gui/pregame/MainMenuItems.js:208
 msgid "Settings"
@@ -5351,8 +5351,8 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXVI: Z——"
-msgstr "Alpha XXVI: Z——"
+msgid "Alpha XXVI: Zhuangzi"
+msgstr "Alpha XXVI: Zhuangzi (莊子)"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -6336,7 +6336,7 @@ msgstr "單位駐紮在此建築時會獲得經驗值。"
 msgid ""
 "Build one early to train citizen soldiers while you phase up your "
 "settlement."
-msgstr "當你逐步升級你的殖民地時，儘早建造一個以訓練公民兵。 "
+msgstr "當你逐步升級你的殖民地時，儘早建造一個以訓練公民兵。"
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
@@ -6350,7 +6350,7 @@ msgstr "生物群系"
 msgid ""
 "Biomes can be used on some random maps and determine which region of the "
 "world the map represents."
-msgstr "生物群系可用在一些隨機地圖，來決定地圖上的區域該怎麼呈現。 "
+msgstr "生物群系可用在一些隨機地圖，來決定地圖上的區域該怎麼呈現。"
 
 #: gui/text/tips/biomes.txt:3
 msgid ""
@@ -6364,15 +6364,15 @@ msgstr "戰犬"
 
 #: gui/text/tips/briton_war_dog.txt:2
 msgid "A dog that the Britons can train at the cavalry stable."
-msgstr "不列顛人可在騎兵馬廄訓練的狗。 "
+msgstr "不列顛人可在騎兵馬廄訓練的狗。"
 
 #: gui/text/tips/briton_war_dog.txt:3
 msgid "Has low health, but is fast and will fearlessly attack enemies."
-msgstr "生命值低，但速度快，會無所畏懼地攻擊敵人。 "
+msgstr "生命值低，但速度快，會無所畏懼地攻擊敵人。"
 
 #: gui/text/tips/briton_war_dog.txt:4
 msgid "Use them as support in your army or for quick raids."
-msgstr "將它們用作軍隊的支援單位或快速突襲。 "
+msgstr "將它們用作軍隊的支援單位或快速突襲。"
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -6435,7 +6435,7 @@ msgstr "騎兵馬廄"
 #: gui/text/tips/cavalry_stable.txt:2
 msgid ""
 "Trains cavalry units and lets you research cavalry specific technologies."
-msgstr "訓練騎兵單位且讓您研發騎兵的特殊科技。 "
+msgstr "訓練騎兵單位且讓您研發騎兵的特殊科技。"
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
@@ -6477,7 +6477,7 @@ msgstr "當你的遠程步兵單位佔領了塔樓，他們有額外裝甲加成
 
 #: gui/text/tips/city_walls.txt:4
 msgid "Vulnerable to siege weapons like catapults, rams and war elephants."
-msgstr "容易被圍城武器破壞，像是投石機、衝撞車和戰象等。"
+msgstr "容易被攻城武器破壞，像是投石機、衝撞車和戰象等。"
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -6532,13 +6532,13 @@ msgstr "堅固的瞭望塔，幫助你防禦據點。"
 #: gui/text/tips/defense_towers.txt:3
 msgid ""
 "They have a large vision range and will shoot arrows at the enemy in sight. "
-msgstr "他們有很大的視野範圍，會向視線內的敵人射箭。 "
+msgstr "他們有很大的視野範圍，會向視線內的敵人射箭。"
 
 #: gui/text/tips/defense_towers.txt:4
 msgid ""
 "You can garrison more infantry inside them to increase the number of arrows "
 "they shoot."
-msgstr "你可以在它們裡面駐紮更多的步兵，來增加射出的箭量。 "
+msgstr "你可以在它們裡面駐紮更多的步兵，來增加射出的箭量。"
 
 #: gui/text/tips/elephant_stable.txt:1
 msgid "ELEPHANT STABLE"
@@ -6555,13 +6555,13 @@ msgstr "大使館和僱傭兵營地 "
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special structures allowing you to hire mercenaries for your army."
-msgstr "讓您為軍隊聘僱傭兵的特殊建築。 "
+msgstr "讓您為軍隊聘僱傭兵的特殊建築。"
 
 #: gui/text/tips/embassies.txt:3
 msgid ""
 "Mercenaries will not gather resources and cost only metal, but they are "
 "experienced and strong."
-msgstr "聘僱傭兵只要花費金屬，專職打戰不負責採集資源，但他們經驗豐富且強壯。 "
+msgstr "聘僱傭兵只要花費金屬，專職打戰不負責採集資源，但他們經驗豐富且強壯。"
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -6604,7 +6604,7 @@ msgstr "陣型"
 #: gui/text/tips/formations.txt:2
 msgid ""
 "Arrange your soldiers in formations to keep them organized during battles."
-msgstr "將你的士兵們編成陣型，讓他們在戰鬥中能維持組織。 "
+msgstr "將你的士兵們編成陣型，讓他們在戰鬥中能維持組織。"
 
 #: gui/text/tips/formations.txt:3
 msgid ""
@@ -6620,7 +6620,7 @@ msgstr "堡壘"
 msgid ""
 "Usually the strongest structure of a civilization and the place where you "
 "can train Heroes."
-msgstr "通常是一個文明最堅固的建築，也是您可以訓練英雄的地方。 "
+msgstr "通常是一個文明最堅固的建築，也是您可以訓練英雄的地方。"
 
 #: gui/text/tips/fortress.txt:3
 msgid "Garrison soldiers inside to add more firepower to its defense."
@@ -6711,7 +6711,7 @@ msgstr "燈塔"
 msgid ""
 "Special Ptolemaic structures to increase your vision range when built on the"
 " shore."
-msgstr "托勒密的特殊建築，蓋在岸邊可增加您的視野範圍。 "
+msgstr "托勒密的特殊建築，蓋在岸邊可增加您的視野範圍。"
 
 #: gui/text/tips/map_flare.txt:1
 msgid "MAP FLARE"
@@ -6721,7 +6721,7 @@ msgstr "地圖信號彈"
 msgid ""
 "Use this feature to let your team know where on the map something important "
 "happens."
-msgstr "使用此功能讓您的團隊知道在地圖上哪裡有重要的事件發生。 "
+msgstr "使用此功能讓您的團隊知道在地圖上哪裡有重要的事件發生。"
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
@@ -6738,13 +6738,13 @@ msgstr "庫施人獨有的特殊建築"
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
 "The small pyramids improve the gathering rate of the workers around them."
-msgstr "小金字塔提高周圍工人的採集速率。 "
+msgstr "小金字塔提高周圍工人的採集速率。"
 
 #: gui/text/tips/meroe_pyramids.txt:4
 msgid ""
 "The large pyramids increase the military capabilities of soldiers around "
 "them."
-msgstr "大金字塔提高周圍士兵的軍事能力。 "
+msgstr "大金字塔提高周圍士兵的軍事能力。"
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -6847,7 +6847,7 @@ msgstr "資源計數器面板顯示您目前擁有的每種資源的數量。"
 msgid ""
 "The number below it shows you how many citizens are currently gathering "
 "them."
-msgstr "它下面的數字顯示了目前有多少公民正在收集它們。 "
+msgstr "它下面的數字顯示了目前有多少公民正在收集它們。"
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -6996,7 +6996,7 @@ msgstr "戲院"
 msgid ""
 "Special structures of the Hellenic civilizations to increase the size of "
 "your territory while you control it."
-msgstr "希臘系文明的特殊建築，可擴大你佔領的領土面積。 "
+msgstr "希臘系文明的特殊建築，可擴大你佔領的領土面積。"
 
 #: gui/text/tips/treasure.txt:1
 msgid "TREASURES"
@@ -7005,13 +7005,13 @@ msgstr "寶藏"
 #: gui/text/tips/treasure.txt:2
 msgid ""
 "Collectible chests and bare resources on land and shipwrecks on the shore."
-msgstr "陸上的藏寶箱、露出於地表的資源以及岸邊的沉船。 "
+msgstr "陸上的藏寶箱、露出於地表的資源以及岸邊的沉船。"
 
 #: gui/text/tips/treasure.txt:3
 msgid ""
 "Provide you with a resource boost, so keep an eye out for them as you "
 "explore."
-msgstr "讓您大為提升資源，所以當您探索世界時要留意它們。 "
+msgstr "讓您大為提升資源，所以當您探索世界時要留意它們。"
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"

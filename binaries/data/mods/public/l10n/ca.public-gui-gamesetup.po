@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-08-30 07:08+0000\n"
-"PO-Revision-Date: 2021-09-17 07:13+0000\n"
-"Last-Translator: Albert F.\n"
+"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"PO-Revision-Date: 2014-06-19 17:48+0000\n"
+"Last-Translator: Albert F. <alb.fontquerni@gmail.com>, 2017,2019,2021\n"
 "Language-Team: Catalan (http://www.transifex.com/wildfire-games/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,46 +36,46 @@ msgstr ""
 "Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/gamesettings/attributes/PlayerName.js:113
+#: gui/gamesettings/attributes/PlayerName.js:133
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:57
+#: gui/gamesettings/attributes/TeamPlacement.js:55
 msgctxt "team placement"
 msgid "Circle"
 msgstr "Cercle"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:58
+#: gui/gamesettings/attributes/TeamPlacement.js:56
 msgid ""
 "Allied players are grouped and placed with opposing players on one circle "
 "spanning the map."
 msgstr "Els jugadors aliats estan agrupats i situats en un cercle al voltant del mapa amb els jugadors contraris."
 
-#: gui/gamesettings/attributes/TeamPlacement.js:62
+#: gui/gamesettings/attributes/TeamPlacement.js:60
 msgctxt "team placement"
 msgid "Line"
 msgstr "Línia"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:63
+#: gui/gamesettings/attributes/TeamPlacement.js:61
 msgid "Allied players are placed in a linear pattern."
 msgstr "Els jugadors aliats estan situats en una línia."
 
-#: gui/gamesettings/attributes/TeamPlacement.js:67
+#: gui/gamesettings/attributes/TeamPlacement.js:65
 msgctxt "team placement"
 msgid "Random Group"
 msgstr "Grup aleatori"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:68
+#: gui/gamesettings/attributes/TeamPlacement.js:66
 msgid "Allied players are grouped, but otherwise placed randomly on the map."
 msgstr "Els jugadors aliats estan agrupats, però situats en un punt aleatori del mapa."
 
-#: gui/gamesettings/attributes/TeamPlacement.js:72
+#: gui/gamesettings/attributes/TeamPlacement.js:70
 msgctxt "team placement"
 msgid "Stronghold"
 msgstr "Fortalesa"
 
-#: gui/gamesettings/attributes/TeamPlacement.js:73
+#: gui/gamesettings/attributes/TeamPlacement.js:71
 msgid "Allied players are grouped in one random place of the map."
 msgstr "Els jugadors aliats estan agrupats en un punt aleatori del mapa."
 
@@ -161,16 +161,16 @@ msgstr "IA: %(ai)s"
 msgid "Unassigned"
 msgstr "No assignat"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:71
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:90
 msgid "Choose the civilization for this player."
 msgstr "Trieu la civilització per a aquest jugador."
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:74
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:93
 msgctxt "civilization"
 msgid "Random"
 msgstr "Aleatori"
 
-#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:80
+#: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:99
 msgid "Picks one civilization at random when the game starts."
 msgstr "Tria una civilització a l'atzar quan comença la partida."
 
@@ -321,8 +321,8 @@ msgid "Do not add treasures to the map."
 msgstr "No afegeixis tresors al mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:25
-msgid "World population"
-msgstr "Població mundial"
+msgid "World Population"
+msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:28
 msgid ""

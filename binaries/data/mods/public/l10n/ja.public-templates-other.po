@@ -12,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-28 08:09+0000\n"
-"PO-Revision-Date: 2022-02-28 10:18+0000\n"
-"Last-Translator: Transifex Bot\n"
+"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"PO-Revision-Date: 2014-06-19 17:54+0000\n"
+"Last-Translator: Photon man, 2021-2022\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -634,10 +634,6 @@ msgstr "イチジクの木"
 msgid "Grapes"
 msgstr "葡萄"
 
-#: simulation/templates/gaia/fruit/olive.xml:7
-msgid "Olive"
-msgstr "オリーブ"
-
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
 msgstr "古代遺跡"
@@ -918,6 +914,10 @@ msgstr "ハンガリアンオーク"
 msgid "Large Oak"
 msgstr "オークの巨木"
 
+#: simulation/templates/gaia/tree/olive.xml:7
+msgid "Olive"
+msgstr "オリーブ"
+
 #: simulation/templates/gaia/tree/palm_areca.xml:4
 msgid "Areca Palm"
 msgstr "ヤマドリヤシ"
@@ -988,7 +988,7 @@ msgstr "チャンチン"
 msgid "Rainforest Tree"
 msgstr "雨林"
 
-#: simulation/templates/mixins/builder.xml:39
+#: simulation/templates/mixins/builder.xml:40
 msgid "Builder"
 msgstr "建築者"
 
@@ -1037,7 +1037,7 @@ msgstr "戦線"
 msgid "Requires at least 4 Soldiers or Siege engines."
 msgstr "兵士 または 攻城兵器が 4体 以上必要です"
 
-#: simulation/templates/special/formations/box.xml:11
+#: simulation/templates/special/formations/box.xml:12
 msgid "Box"
 msgstr "方陣"
 
@@ -1077,7 +1077,7 @@ msgstr "重装歩兵が 10体 以上必要です"
 msgid "Phalanx"
 msgstr "ファランクス"
 
-#: simulation/templates/special/formations/scatter.xml:7
+#: simulation/templates/special/formations/scatter.xml:8
 msgid "Scatter"
 msgstr "不規則"
 
@@ -1097,7 +1097,7 @@ msgstr "長槍歩兵が 16体 以上必要です"
 msgid "Syntagma"
 msgstr "シンタグマ"
 
-#: simulation/templates/special/formations/testudo.xml:69
+#: simulation/templates/special/formations/testudo.xml:70
 msgid "Testudo"
 msgstr "テストゥド"
 

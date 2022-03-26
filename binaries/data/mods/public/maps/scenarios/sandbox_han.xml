@@ -4,11 +4,11 @@
 	<Environment>
 		<SkySet>default</SkySet>
 		<SunColor r="0.956863" g="0.921569" b="0.803922"/>
-		<SunElevation angle="1.01981"/>
-		<SunRotation angle="-0.608689"/>
-		<AmbientColor r="0.372549" g="0.376471" b="0.419608"/>
+		<SunElevation angle="1.0158"/>
+		<SunRotation angle="-0.27491"/>
+		<AmbientColor r="0.368627" g="0.376471" b="0.419608"/>
 		<Fog>
-			<FogFactor>0.00374023</FogFactor>
+			<FogFactor>0.00416992</FogFactor>
 			<FogThickness>0</FogThickness>
 			<FogColor r="0.831373" g="0.929412" b="0.929412"/>
 		</Fog>
@@ -32,9 +32,9 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="531.062" y="219.434" z="226.62"/>
-		<Rotation angle="0"/>
-		<Declination angle="0.610865"/>
+		<Position x="529.358" y="232.208" z="319.767"/>
+		<Rotation angle="0.0356931"/>
+		<Declination angle="0.610866"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
@@ -52,9 +52,9 @@
     {
       "Civ": "han",
       "Color": {
-        "b": 255,
-        "g": 128,
-        "r": 128
+        "b": 18,
+        "g": 18,
+        "r": 197
       }
     }
   ],
@@ -74,14 +74,14 @@
 		<Entity uid="12">
 			<Template>structures/han/ministry</Template>
 			<Player>1</Player>
-			<Position x="564.35261" z="380.93116"/>
-			<Orientation y="-2.16408"/>
+			<Position x="564.32178" z="383.15894"/>
+			<Orientation y="-2.29969"/>
 			<Actor seed="36382"/>
 		</Entity>
 		<Entity uid="15">
 			<Template>structures/han/laozigate</Template>
 			<Player>1</Player>
-			<Position x="524.40961" z="364.02753"/>
+			<Position x="524.74817" z="358.16568"/>
 			<Orientation y="-3.15192"/>
 			<Actor seed="21294"/>
 		</Entity>
@@ -95,22 +95,9 @@
 		<Entity uid="17">
 			<Template>structures/han/barracks</Template>
 			<Player>1</Player>
-			<Position x="594.73548" z="412.48719"/>
-			<Orientation y="-2.57441"/>
+			<Position x="563.399" z="423.90326"/>
+			<Orientation y="-2.94704"/>
 			<Actor seed="45140"/>
-		</Entity>
-
-		<Entity uid="24">
-			<Template>actor|flora/trees/bamboo_dragon.xml</Template>
-			<Position x="451.52259" z="476.21607"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="45398"/>
-		</Entity>
-		<Entity uid="25">
-			<Template>actor|flora/trees/bamboo_dragon.xml</Template>
-			<Position x="604.80756" z="444.82795"/>
-			<Orientation y="-0.69861"/>
-			<Actor seed="35050"/>
 		</Entity>
 		<Entity uid="27">
 			<Template>actor|flora/trees/bamboo_single.xml</Template>
@@ -126,117 +113,33 @@
 		</Entity>
 		<Entity uid="29">
 			<Template>actor|flora/trees/bamboo_single.xml</Template>
-			<Position x="559.70441" z="364.42078"/>
+			<Position x="553.4806" z="335.73987"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="38910"/>
 		</Entity>
 		<Entity uid="30">
 			<Template>actor|flora/trees/bamboo_single.xml</Template>
-			<Position x="560.0694" z="362.53107"/>
+			<Position x="559.58747" z="333.554"/>
 			<Orientation y="-2.68897"/>
 			<Actor seed="59782"/>
 		</Entity>
-		<Entity uid="31">
-			<Template>actor|flora/trees/bamboo_single.xml</Template>
-			<Position x="556.28693" z="358.41373"/>
-			<Orientation y="-2.8015"/>
-			<Actor seed="48756"/>
-		</Entity>
-		<Entity uid="32">
-			<Template>actor|flora/trees/bamboo_single.xml</Template>
-			<Position x="556.71161" z="354.53446"/>
-			<Orientation y="0.6733"/>
-			<Actor seed="53996"/>
-		</Entity>
-		<Entity uid="33">
-			<Template>actor|flora/trees/bamboo_single.xml</Template>
-			<Position x="560.54572" z="359.77646"/>
-			<Orientation y="0.6361"/>
-			<Actor seed="9798"/>
-		</Entity>
 		<Entity uid="34">
 			<Template>actor|flora/trees/bamboo_single.xml</Template>
-			<Position x="564.26337" z="365.27674"/>
+			<Position x="550.62238" z="333.27155"/>
 			<Orientation y="-2.79014"/>
 			<Actor seed="11898"/>
 		</Entity>
-		<Entity uid="35">
-			<Template>actor|flora/trees/bamboo_single.xml</Template>
-			<Position x="558.61323" z="352.28455"/>
-			<Orientation y="-1.4132"/>
-			<Actor seed="7332"/>
-		</Entity>
-		<Entity uid="36">
-			<Template>actor|flora/trees/bamboo_single.xml</Template>
-			<Position x="553.17695" z="353.38715"/>
-			<Orientation y="-1.40366"/>
-			<Actor seed="8072"/>
-		</Entity>
-		<Entity uid="37">
-			<Template>actor|flora/trees/bamboo_single.xml</Template>
-			<Position x="548.82233" z="354.35022"/>
-			<Orientation y="2.44776"/>
-			<Actor seed="57620"/>
-		</Entity>
-		<Entity uid="38">
-			<Template>actor|flora/trees/bamboo_single.xml</Template>
-			<Position x="553.44709" z="350.41517"/>
-			<Orientation y="1.6089"/>
-			<Actor seed="45108"/>
-		</Entity>
-		<Entity uid="39">
-			<Template>actor|flora/trees/bamboo_single.xml</Template>
-			<Position x="555.8349" z="350.3621"/>
-			<Orientation y="1.41178"/>
-			<Actor seed="20536"/>
-		</Entity>
-		<Entity uid="40">
-			<Template>actor|flora/trees/bamboo_single.xml</Template>
-			<Position x="557.62421" z="351.77714"/>
-			<Orientation y="0.8041"/>
-			<Actor seed="23374"/>
-		</Entity>
-		<Entity uid="41">
-			<Template>actor|flora/trees/bamboo_single.xml</Template>
-			<Position x="563.40668" z="356.11692"/>
-			<Orientation y="-2.6572"/>
-			<Actor seed="27852"/>
-		</Entity>
-		<Entity uid="42">
-			<Template>actor|flora/trees/bamboo_single.xml</Template>
-			<Position x="561.49408" z="352.11438"/>
-			<Orientation y="0.47057"/>
-			<Actor seed="58766"/>
-		</Entity>
-		<Entity uid="52">
-			<Template>actor|flora/trees/palm_nipa.xml</Template>
-			<Position x="551.80475" z="355.3636"/>
-			<Orientation y="-1.86954"/>
-			<Actor seed="55598"/>
-		</Entity>
 		<Entity uid="53">
 			<Template>actor|flora/trees/palm_nipa.xml</Template>
-			<Position x="546.7165" z="353.30131"/>
+			<Position x="548.64362" z="355.96778"/>
 			<Orientation y="-2.44094"/>
 			<Actor seed="57506"/>
 		</Entity>
 		<Entity uid="54">
 			<Template>actor|flora/trees/palm_nipa.xml</Template>
-			<Position x="544.96344" z="351.57224"/>
+			<Position x="549.87134" z="347.01188"/>
 			<Orientation y="1.79075"/>
 			<Actor seed="53590"/>
-		</Entity>
-		<Entity uid="55">
-			<Template>actor|flora/trees/palm_nipa.xml</Template>
-			<Position x="549.66987" z="350.93512"/>
-			<Orientation y="1.57081"/>
-			<Actor seed="61778"/>
-		</Entity>
-		<Entity uid="56">
-			<Template>actor|flora/trees/palm_nipa.xml</Template>
-			<Position x="553.2845" z="350.68442"/>
-			<Orientation y="1.46479"/>
-			<Actor seed="51386"/>
 		</Entity>
 		<Entity uid="57">
 			<Template>actor|flora/trees/palm_nipa.xml</Template>
@@ -256,137 +159,65 @@
 			<Orientation y="-0.16572"/>
 			<Actor seed="8352"/>
 		</Entity>
-		<Entity uid="61">
-			<Template>actor|flora/trees/palm_tropical.xml</Template>
-			<Position x="450.31727" z="426.02988"/>
-			<Orientation y="2.60891"/>
-			<Actor seed="17278"/>
-		</Entity>
-		<Entity uid="62">
-			<Template>actor|flora/trees/palm_tropical.xml</Template>
-			<Position x="459.93815" z="410.24527"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="42450"/>
-		</Entity>
-		<Entity uid="63">
-			<Template>actor|flora/trees/palm_tropical.xml</Template>
-			<Position x="470.75123" z="404.17182"/>
-			<Orientation y="3.04683"/>
-			<Actor seed="57688"/>
-		</Entity>
-		<Entity uid="64">
-			<Template>actor|flora/trees/palm_tropical.xml</Template>
-			<Position x="462.55265" z="398.11994"/>
-			<Orientation y="-2.92144"/>
-			<Actor seed="56774"/>
-		</Entity>
-		<Entity uid="65">
-			<Template>actor|flora/trees/palm_tropical.xml</Template>
-			<Position x="613.78901" z="425.67124"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="64170"/>
-		</Entity>
-		<Entity uid="66">
-			<Template>actor|flora/trees/palm_tropical.xml</Template>
-			<Position x="623.0146" z="433.24531"/>
-			<Orientation y="0.80172"/>
-			<Actor seed="44368"/>
-		</Entity>
-		<Entity uid="67">
-			<Template>actor|flora/trees/palm_tropical.xml</Template>
-			<Position x="634.06635" z="444.53391"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="40184"/>
-		</Entity>
-		<Entity uid="68">
-			<Template>actor|flora/trees/palm_tropical.xml</Template>
-			<Position x="623.69098" z="446.4387"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="62574"/>
-		</Entity>
-		<Entity uid="69">
-			<Template>actor|flora/trees/palm_tropical.xml</Template>
-			<Position x="610.52118" z="435.2801"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="25616"/>
-		</Entity>
-		<Entity uid="70">
-			<Template>actor|flora/trees/palm_tropical.xml</Template>
-			<Position x="614.67511" z="428.97275"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="39898"/>
-		</Entity>
-		<Entity uid="71">
-			<Template>actor|flora/trees/palm_tropical.xml</Template>
-			<Position x="616.12836" z="430.49506"/>
-			<Orientation y="1.48493"/>
-			<Actor seed="4154"/>
-		</Entity>
-		<Entity uid="72">
-			<Template>actor|flora/trees/palm_tropical.xml</Template>
-			<Position x="642.77558" z="449.38984"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="38476"/>
-		</Entity>
 		<Entity uid="73">
 			<Template>gaia/tree/palm_areca</Template>
-			<Player>1</Player>
+			<Player>0</Player>
 			<Position x="504.39582" z="423.179"/>
 			<Orientation y="-1.67554"/>
 			<Actor seed="47096"/>
 		</Entity>
 		<Entity uid="74">
 			<Template>gaia/tree/palm_areca</Template>
-			<Player>1</Player>
+			<Player>0</Player>
 			<Position x="544.58454" z="432.44773"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="61384"/>
 		</Entity>
 		<Entity uid="75">
 			<Template>gaia/tree/palm_areca</Template>
-			<Player>1</Player>
+			<Player>0</Player>
 			<Position x="531.62531" z="423.40857"/>
 			<Orientation y="0.86043"/>
 			<Actor seed="29322"/>
 		</Entity>
 		<Entity uid="76">
 			<Template>gaia/tree/palm_areca</Template>
-			<Player>1</Player>
+			<Player>0</Player>
 			<Position x="529.04767" z="475.53605"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="53922"/>
 		</Entity>
 		<Entity uid="77">
 			<Template>gaia/tree/palm_areca</Template>
-			<Player>1</Player>
+			<Player>0</Player>
 			<Position x="538.4527" z="431.75611"/>
 			<Orientation y="1.1682"/>
 			<Actor seed="48102"/>
 		</Entity>
 		<Entity uid="78">
 			<Template>gaia/tree/palm_areca</Template>
-			<Player>1</Player>
+			<Player>0</Player>
 			<Position x="581.6479" z="444.4062"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="43928"/>
 		</Entity>
 		<Entity uid="79">
 			<Template>gaia/tree/palm_areca</Template>
-			<Player>1</Player>
+			<Player>0</Player>
 			<Position x="584.01337" z="423.77851"/>
 			<Orientation y="2.63117"/>
 			<Actor seed="29260"/>
 		</Entity>
 		<Entity uid="80">
 			<Template>gaia/tree/palm_areca</Template>
-			<Player>1</Player>
-			<Position x="577.87275" z="369.55481"/>
+			<Player>0</Player>
+			<Position x="583.93097" z="374.96323"/>
 			<Orientation y="-0.8862"/>
 			<Actor seed="34070"/>
 		</Entity>
 		<Entity uid="81">
 			<Template>gaia/tree/palm_areca</Template>
-			<Player>1</Player>
+			<Player>0</Player>
 			<Position x="557.74396" z="406.87406"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="1126"/>
@@ -557,6 +388,7 @@
 			<Player>1</Player>
 			<Position x="518.58869" z="443.89032"/>
 			<Orientation y="3.1313"/>
+			<Obstruction group="110" group2="107"/>
 			<Actor seed="29198"/>
 		</Entity>
 		<Entity uid="108">
@@ -630,8 +462,8 @@
 		<Entity uid="117">
 			<Template>units/han/infantry_crossbowman_e</Template>
 			<Player>1</Player>
-			<Position x="496.49311" z="366.48337"/>
-			<Orientation y="2.00568"/>
+			<Position x="509.85264" z="356.99448"/>
+			<Orientation y="-2.97527"/>
 			<Actor seed="23352"/>
 		</Entity>
 		<Entity uid="118">
@@ -658,8 +490,8 @@
 		<Entity uid="121">
 			<Template>units/han/infantry_pikeman_e</Template>
 			<Player>1</Player>
-			<Position x="542.00727" z="374.4123"/>
-			<Orientation y="-2.15253"/>
+			<Position x="539.61152" z="370.95307"/>
+			<Orientation y="2.8493"/>
 			<Actor seed="35998"/>
 		</Entity>
 		<Entity uid="122">
@@ -714,8 +546,8 @@
 		<Entity uid="129">
 			<Template>units/han/infantry_swordsman_e</Template>
 			<Player>1</Player>
-			<Position x="551.7215" z="365.81656"/>
-			<Orientation y="-1.8613"/>
+			<Position x="545.35871" z="362.75104"/>
+			<Orientation y="3.06005"/>
 			<Actor seed="62078"/>
 		</Entity>
 		<Entity uid="130">
@@ -735,14 +567,14 @@
 		<Entity uid="132">
 			<Template>units/han/champion_cavalry_spearman</Template>
 			<Player>1</Player>
-			<Position x="498.2724" z="372.4394"/>
-			<Orientation y="-3.97915"/>
+			<Position x="523.98469" z="344.02332"/>
+			<Orientation y="-5.7114"/>
 			<Actor seed="38634"/>
 		</Entity>
 		<Entity uid="133">
 			<Template>units/han/champion_cavalry_spearman</Template>
 			<Player>1</Player>
-			<Position x="501.75559" z="365.76526"/>
+			<Position x="501.6749" z="369.31537"/>
 			<Orientation y="1.89814"/>
 			<Actor seed="8586"/>
 		</Entity>
@@ -760,17 +592,10 @@
 			<Orientation y="2.35621"/>
 			<Actor seed="18660"/>
 		</Entity>
-		<Entity uid="139">
-			<Template>structures/han/field</Template>
-			<Player>1</Player>
-			<Position x="429.57288" z="370.0976"/>
-			<Orientation y="-2.32111"/>
-			<Actor seed="5829"/>
-		</Entity>
 		<Entity uid="140">
 			<Template>structures/han/field</Template>
 			<Player>1</Player>
-			<Position x="444.10514" z="354.16617"/>
+			<Position x="454.24744" z="359.77424"/>
 			<Orientation y="-0.66736"/>
 			<Actor seed="41695"/>
 		</Entity>
@@ -784,7 +609,7 @@
 		<Entity uid="142">
 			<Template>structures/han/farmstead</Template>
 			<Player>1</Player>
-			<Position x="428.98942" z="339.64832"/>
+			<Position x="439.56757" z="347.78602"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="61961"/>
 		</Entity>
@@ -812,28 +637,28 @@
 		<Entity uid="146">
 			<Template>units/han/champion_infantry_spearman</Template>
 			<Player>1</Player>
-			<Position x="511.7219" z="358.01658"/>
+			<Position x="515.76282" z="354.06733"/>
 			<Orientation y="1.74135"/>
 			<Actor seed="36264"/>
 		</Entity>
 		<Entity uid="147">
 			<Template>units/han/champion_infantry_spearman</Template>
 			<Player>1</Player>
-			<Position x="521.43195" z="357.24885"/>
-			<Orientation y="-3.03116"/>
+			<Position x="533.5865" z="378.53177"/>
+			<Orientation y="3.02358"/>
 			<Actor seed="61806"/>
 		</Entity>
 		<Entity uid="148">
 			<Template>units/han/champion_infantry_spearman</Template>
 			<Player>1</Player>
-			<Position x="510.59266" z="354.70713"/>
+			<Position x="512.92353" z="352.32892"/>
 			<Orientation y="1.12636"/>
 			<Actor seed="63469"/>
 		</Entity>
 		<Entity uid="149">
 			<Template>units/han/champion_infantry_spearman</Template>
 			<Player>1</Player>
-			<Position x="514.24018" z="358.06635"/>
+			<Position x="515.7367" z="377.6287"/>
 			<Orientation y="2.93212"/>
 			<Actor seed="3047"/>
 		</Entity>
@@ -847,72 +672,30 @@
 		<Entity uid="151">
 			<Template>units/han/champion_infantry_spearman</Template>
 			<Player>1</Player>
-			<Position x="535.63141" z="357.10724"/>
+			<Position x="534.15143" z="354.06733"/>
 			<Orientation y="-2.71428"/>
 			<Actor seed="25649"/>
 		</Entity>
 		<Entity uid="152">
 			<Template>units/han/champion_infantry_spearman</Template>
 			<Player>1</Player>
-			<Position x="531.89393" z="355.55335"/>
+			<Position x="531.53669" z="354.58854"/>
 			<Orientation y="-2.61142"/>
 			<Actor seed="51727"/>
 		</Entity>
 		<Entity uid="153">
 			<Template>units/han/champion_infantry_spearman</Template>
 			<Player>1</Player>
-			<Position x="508.2776" z="351.59647"/>
+			<Position x="506.25" z="361.74848"/>
 			<Orientation y="1.43174"/>
 			<Actor seed="28271"/>
 		</Entity>
 		<Entity uid="154">
 			<Template>gaia/tree/cherry_blossom</Template>
 			<Player>1</Player>
-			<Position x="495.96134" z="426.36268"/>
-			<Orientation y="2.35621"/>
+			<Position x="578.01087" z="359.34696"/>
+			<Orientation y="0.49886"/>
 			<Actor seed="30548"/>
-		</Entity>
-		<Entity uid="155">
-			<Template>gaia/tree/cherry_blossom</Template>
-			<Player>0</Player>
-			<Position x="472.27024" z="377.55866"/>
-			<Orientation y="2.85227"/>
-			<Actor seed="32041"/>
-		</Entity>
-		<Entity uid="156">
-			<Template>gaia/tree/cherry_blossom</Template>
-			<Player>0</Player>
-			<Position x="468.95423" z="381.2963"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="60228"/>
-		</Entity>
-		<Entity uid="157">
-			<Template>gaia/tree/cherry_blossom</Template>
-			<Player>0</Player>
-			<Position x="481.31595" z="366.92325"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="35598"/>
-		</Entity>
-		<Entity uid="158">
-			<Template>gaia/tree/cherry_blossom</Template>
-			<Player>0</Player>
-			<Position x="471.45182" z="368.18018"/>
-			<Orientation y="-0.51897"/>
-			<Actor seed="29739"/>
-		</Entity>
-		<Entity uid="159">
-			<Template>gaia/tree/cherry_blossom</Template>
-			<Player>0</Player>
-			<Position x="473.68244" z="359.76957"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="24569"/>
-		</Entity>
-		<Entity uid="160">
-			<Template>gaia/tree/cherry_blossom</Template>
-			<Player>0</Player>
-			<Position x="467.2104" z="371.84253"/>
-			<Orientation y="-0.92965"/>
-			<Actor seed="30212"/>
 		</Entity>
 		<Entity uid="161">
 			<Template>structures/han/arsenal</Template>
@@ -924,7 +707,7 @@
 		<Entity uid="162">
 			<Template>structures/han/stable</Template>
 			<Player>1</Player>
-			<Position x="617.0669" z="394.28202"/>
+			<Position x="605.57703" z="401.14081"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="3306"/>
 		</Entity>
@@ -945,7 +728,7 @@
 		<Entity uid="165">
 			<Template>structures/han/house</Template>
 			<Player>1</Player>
-			<Position x="418.69397" z="395.38965"/>
+			<Position x="429.37876" z="375.95862"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="48898"/>
 		</Entity>
@@ -996,6 +779,7 @@
 			<Player>1</Player>
 			<Position x="493.8939" z="251.13202"/>
 			<Orientation y="3.02236"/>
+			<Obstruction group="179" group2="176"/>
 			<Actor seed="37740"/>
 		</Entity>
 		<Entity uid="177">
@@ -1089,7 +873,7 @@
 		<Entity uid="191">
 			<Template>structures/han/wonder</Template>
 			<Player>1</Player>
-			<Position x="592.42475" z="318.06098"/>
+			<Position x="591.47992" z="319.78846"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="61498"/>
 		</Entity>
@@ -1190,6 +974,125 @@
 			<Position x="545.09815" z="277.93863"/>
 			<Orientation y="-2.32102"/>
 			<Actor seed="2309"/>
+		</Entity>
+		<Entity uid="208">
+			<Template>gaia/tree/palm_tropical</Template>
+			<Player>0</Player>
+			<Position x="458.78827" z="423.45447"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="64815"/>
+		</Entity>
+		<Entity uid="209">
+			<Template>gaia/tree/palm_tropical</Template>
+			<Player>0</Player>
+			<Position x="460.65473" z="400.78406"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="50133"/>
+		</Entity>
+		<Entity uid="210">
+			<Template>gaia/tree/palm_tropical</Template>
+			<Player>0</Player>
+			<Position x="472.0394" z="405.41816"/>
+			<Orientation y="-0.94855"/>
+			<Actor seed="23081"/>
+		</Entity>
+		<Entity uid="211">
+			<Template>gaia/tree/palm_tropical</Template>
+			<Player>0</Player>
+			<Position x="450.73041" z="411.96061"/>
+			<Orientation y="-1.31963"/>
+			<Actor seed="18708"/>
+		</Entity>
+		<Entity uid="212">
+			<Template>gaia/tree/palm_tropical</Template>
+			<Player>0</Player>
+			<Position x="434.9546" z="421.40635"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24893"/>
+		</Entity>
+		<Entity uid="213">
+			<Template>gaia/tree/palm_tropical</Template>
+			<Player>0</Player>
+			<Position x="462.78873" z="406.13395"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="26996"/>
+		</Entity>
+		<Entity uid="214">
+			<Template>gaia/tree/bamboo_dragon</Template>
+			<Player>0</Player>
+			<Position x="446.85621" z="483.30228"/>
+			<Orientation y="-1.14022"/>
+			<Actor seed="3232"/>
+		</Entity>
+		<Entity uid="215">
+			<Template>gaia/tree/bamboo_dragon</Template>
+			<Player>0</Player>
+			<Position x="603.1316" z="454.55304"/>
+			<Orientation y="0.84758"/>
+			<Actor seed="32007"/>
+		</Entity>
+		<Entity uid="216">
+			<Template>gaia/tree/cherry_blossom</Template>
+			<Player>0</Player>
+			<Position x="555.73151" z="357.3527"/>
+			<Orientation y="3.68685"/>
+			<Actor seed="32041"/>
+		</Entity>
+		<Entity uid="217">
+			<Template>gaia/tree/cherry_blossom</Template>
+			<Player>0</Player>
+			<Position x="563.08362" z="346.736"/>
+			<Orientation y="1.01407"/>
+			<Actor seed="60228"/>
+		</Entity>
+		<Entity uid="218">
+			<Template>gaia/tree/cherry_blossom</Template>
+			<Player>0</Player>
+			<Position x="571.14673" z="364.61417"/>
+			<Orientation y="1.01407"/>
+			<Actor seed="35598"/>
+		</Entity>
+		<Entity uid="219">
+			<Template>gaia/tree/cherry_blossom</Template>
+			<Player>0</Player>
+			<Position x="567.83698" z="340.168"/>
+			<Orientation y="-1.86112"/>
+			<Actor seed="29739"/>
+		</Entity>
+		<Entity uid="220">
+			<Template>gaia/tree/cherry_blossom</Template>
+			<Player>0</Player>
+			<Position x="580.1009" z="350.43976"/>
+			<Orientation y="1.01407"/>
+			<Actor seed="24569"/>
+		</Entity>
+		<Entity uid="221">
+			<Template>gaia/tree/cherry_blossom</Template>
+			<Player>0</Player>
+			<Position x="564.12592" z="343.73493"/>
+			<Orientation y="-2.27181"/>
+			<Actor seed="30212"/>
+		</Entity>
+		<Entity uid="224">
+			<Template>structures/han/field</Template>
+			<Player>1</Player>
+			<Position x="474.5878" z="350.91358"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5881"/>
+		</Entity>
+		<Entity uid="225">
+			<Template>structures/han/field</Template>
+			<Player>1</Player>
+			<Position x="471.91144" z="321.63691"/>
+			<Orientation y="-2.35001"/>
+			<Actor seed="12276"/>
+		</Entity>
+		<Entity uid="226">
+			<Template>structures/han/field</Template>
+			<Player>1</Player>
+			<Position x="489.03357" z="335.78806"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="30813"/>
 		</Entity>
 	</Entities>
 	<Paths/>

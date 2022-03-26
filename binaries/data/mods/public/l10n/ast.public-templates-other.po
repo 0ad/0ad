@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-02-28 08:09+0000\n"
+"POT-Creation-Date: 2022-03-21 08:21+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>, 2017-2022\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
@@ -630,10 +630,6 @@ msgstr "Fhigalr"
 msgid "Grapes"
 msgstr "Uvæs"
 
-#: simulation/templates/gaia/fruit/olive.xml:7
-msgid "Olive"
-msgstr "Olivar"
-
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Ancient Ruins"
 msgstr "Ruinæs antiguæs"
@@ -914,6 +910,10 @@ msgstr "Carbayu d’Hungríæ"
 msgid "Large Oak"
 msgstr "Carbayon"
 
+#: simulation/templates/gaia/tree/olive.xml:7
+msgid "Olive"
+msgstr "Olivar"
+
 #: simulation/templates/gaia/tree/palm_areca.xml:4
 msgid "Areca Palm"
 msgstr "Areca"
@@ -984,7 +984,7 @@ msgstr "Tuna"
 msgid "Rainforest Tree"
 msgstr "Árbolre tropical"
 
-#: simulation/templates/mixins/builder.xml:39
+#: simulation/templates/mixins/builder.xml:40
 msgid "Builder"
 msgstr "Constructor/a"
 
@@ -1033,7 +1033,7 @@ msgstr "Az"
 msgid "Requires at least 4 Soldiers or Siege engines."
 msgstr "Requier pelo menus 4 Mílites ou Máchinæs."
 
-#: simulation/templates/special/formations/box.xml:11
+#: simulation/templates/special/formations/box.xml:12
 msgid "Box"
 msgstr "Quadraho"
 
@@ -1073,7 +1073,7 @@ msgstr "Solo Hoplitas combatientes, requier pelo menus 10."
 msgid "Phalanx"
 msgstr "Phalangë"
 
-#: simulation/templates/special/formations/scatter.xml:7
+#: simulation/templates/special/formations/scatter.xml:8
 msgid "Scatter"
 msgstr "Orde dispersu"
 
@@ -1093,7 +1093,7 @@ msgstr "Solo Sarissóphoros, requier pelo menus 16."
 msgid "Syntagma"
 msgstr "Syntagma"
 
-#: simulation/templates/special/formations/testudo.xml:69
+#: simulation/templates/special/formations/testudo.xml:70
 msgid "Testudo"
 msgstr "Testudo"
 
