@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="biped/base_hoplite.xml">
+    <variant>
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
@@ -124,7 +124,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_hoplite_fast.xml" name="Hoplite-Fast" frequency="1"/>
+    <variant file="biped/base_hoplite.xml" name="Hoplite-Relax" frequency="1"/>
     <variant file="biped/attack_capture.xml">
       <props>
         <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>

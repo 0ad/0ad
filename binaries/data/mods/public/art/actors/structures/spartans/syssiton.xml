@@ -2,21 +2,6 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="0" name="Greek Syssiton Special Building">
-      <mesh>structural/spart_sissyton_struct.dae</mesh>
-      <props>
-        <prop actor="props/structures/spartans/sissyton_decor.xml" attachpoint="root"/>
-        <prop actor="props/structures/spartans/sissyton_props_a.xml" attachpoint="root"/>
-        <prop actor="props/structures/spartans/sissyton_shields.xml" attachpoint="root"/>
-        <prop actor="props/structures/spartans/sissyton_tile_b.xml" attachpoint="root"/>
-      </props>
-      <textures>
-        <texture file="structural/hele_struct.dds" name="baseTex"/>
-        <texture file="structural/hele_struct_norm.png" name="normTex"/>
-        <texture file="structural/hele_struct_spec.png" name="specTex"/>
-        <texture file="structural/ao/spart_syssiton.png" name="aoTex"/>
-      </textures>
-    </variant>
     <variant frequency="1" name="Spart Syssiton Special Building">
       <mesh>structural/spart_syssiton_2.dae</mesh>
       <props>
@@ -25,6 +10,7 @@
         <prop actor="props/units/shields/aspis_lambda_01.xml" attachpoint="shield_lf"/>
         <prop actor="props/units/shields/aspis_lambda_01.xml" attachpoint="shield_lr"/>
         <prop actor="props/units/shields/aspis_spart_d.xml" attachpoint="shield_back"/>
+        <prop actor="props/structures/decals/dirt_5x8.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="structural/sparta_struct.png" name="baseTex"/>
@@ -44,14 +30,7 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant file="structures/destruction_medium.xml">
-      <props>
-        <prop actor="props/structures/spartans/sissyton_decor.xml" attachpoint="root"/>
-        <prop actor="props/structures/spartans/sissyton_props_a.xml" attachpoint="root"/>
-        <prop actor="props/structures/spartans/sissyton_shields.xml" attachpoint="root"/>
-        <prop actor="props/structures/spartans/sissyton_tile_b.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="structures/destruction_medium.xml"/>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

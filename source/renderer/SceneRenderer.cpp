@@ -218,8 +218,11 @@ void CSceneRenderer::ReloadShaders()
 	if (g_RenderingOptions.GetShadows())
 	{
 		m->globalContext.Add(str_USE_SHADOW, str_1);
-		if (g_VideoMode.GetBackendDevice()->GetCapabilities().ARBShadersShadow)
+		if (g_VideoMode.GetBackend() == CVideoMode::Backend::GL_ARB &&
+			g_VideoMode.GetBackendDevice()->GetCapabilities().ARBShadersShadow)
+		{
 			m->globalContext.Add(str_USE_FP_SHADOW, str_1);
+		}
 		if (g_RenderingOptions.GetShadowPCF())
 			m->globalContext.Add(str_USE_SHADOW_PCF, str_1);
 		const int cascadeCount = m->shadow.GetCascadeCount();

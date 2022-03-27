@@ -28,9 +28,9 @@
     </variant>
   </group>
   <group>
+    <!-- In this group, defined overloads for "Idle", "Walk" and "Run" -->
     <variant file="biped/female_base_walk.xml"/>
     <variant file="biped/female_carry_food.xml"/>
-    <variant file="biped/female_carry_crops.xml"/>
     <variant file="biped/female_carry_meat.xml"/>
     <variant file="biped/female_carry_wood.xml"/>
     <variant file="biped/female_carry_stone.xml"/>
@@ -45,7 +45,8 @@
     <variant file="biped/approach_praise.xml"/>
   </group>
   <group>
-    <variant name="Idle" frequency="1"/>
+    <!-- In this group, define overloads for other animation types, since they presumably do not collide with each other -->
+    <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_melee_female.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/female_death.xml"/>

@@ -5,9 +5,9 @@
     <variant frequency="1" name="Seleucid_Civic_Centre" file="structures/defensive_building.xml">
       <mesh>structural/sele_colony.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
-        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="bush" maxheight="20" minheight="-20"/>
-        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="bush_1" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/decals/paving_tile_sahara_7x7_round.xml" attachpoint="root"/>
+        <prop actor="flora/trees/palm_date_new.xml" attachpoint="bush" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/palm_date_new_3.xml" attachpoint="bush_1" maxheight="20" minheight="-20"/>
         <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_2" maxheight="20" minheight="-20"/>
         <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_3" maxheight="20" minheight="-20"/>
       </props>
