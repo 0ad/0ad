@@ -5,7 +5,7 @@
     <variant>
       <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <props>
-        <prop actor="props/units/shields/aspis_theb_01.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/shields/aspis_theb_sacred_band.xml" attachpoint="shield_arm"/>
         <prop actor="props/units/weapons/spear_hoplite.xml" attachpoint="weapon_R"/>
         <prop actor="props/units/heads/new/head_hele_e.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/sheath_xiphos.xml" attachpoint="sheath_01_L"/>
@@ -127,6 +127,18 @@
     <variant frequency="1" name="mace-linothorax-1c">
       <textures>
         <texture file="skeletal/mace/linothorax_01_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="hele-scale_06_01">
+      <textures>
+        <texture file="skeletal/hele/scale_06_01.png" name="baseTex"/>
+        <texture file="skeletal/hele/scale_06_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="hele-cuirass_02_02">
+      <textures>
+        <texture file="skeletal/hele/cuirass_02_02.png" name="baseTex"/>
+        <texture file="skeletal/hele/cuirass_02_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
