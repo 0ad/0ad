@@ -9,7 +9,7 @@
         <prop actor="props/structures/carthaginians/ship_standard.xml" attachpoint="standard"/>
         <prop actor="props/structures/carthaginians/trireme_fore_sail.xml" attachpoint="fore_sail"/>
         <prop actor="props/structures/carthaginians/trireme_main_sail.xml" attachpoint="main_sail"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/siege_artillery/bolt_projectile_med.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/kart_trireme.png" name="baseTex"/>

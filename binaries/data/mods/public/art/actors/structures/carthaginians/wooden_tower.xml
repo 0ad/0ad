@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Scout_Tower" file="structures/defensive_building.xml">
+    <variant frequency="1" name="Sentry_Tower" file="structures/defensive_building.xml">
       <mesh>structural/kart_wooden_tower.dae</mesh>
       <props>
         <prop actor="props/structures/decals/dirt_1x1.xml" attachpoint="root"/>
