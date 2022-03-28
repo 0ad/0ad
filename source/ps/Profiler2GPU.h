@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -20,10 +20,10 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#include <memory>
+
 class CProfiler2;
-class CProfiler2GPU_ARB_timer_query;
-class CProfiler2GPU_EXT_timer_query;
-class CProfiler2GPU_INTEL_performance_queries;
+class CProfiler2GPUARB;
 
 /**
  * Used by CProfiler2 for GPU profiling support.
@@ -44,7 +44,5 @@ public:
 private:
 	CProfiler2& m_Profiler;
 
-	CProfiler2GPU_ARB_timer_query* m_ProfilerARB;
-	CProfiler2GPU_EXT_timer_query* m_ProfilerEXT;
-	CProfiler2GPU_INTEL_performance_queries* m_ProfilerINTEL;
+	std::unique_ptr<CProfiler2GPUARB> m_ProfilerARB;
 };

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -95,7 +95,7 @@ class CProfiler2GPU;
 
 class CProfiler2
 {
-	friend class CProfiler2GPU_base;
+	friend class CProfiler2GPUARB;
 	friend class CProfile2SpikeRegion;
 	friend class CProfile2AggregatedRegion;
 public:
