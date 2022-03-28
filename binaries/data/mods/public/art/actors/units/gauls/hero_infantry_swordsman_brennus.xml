@@ -8,15 +8,9 @@
         <prop actor="props/units/helmets/celt_monte_bibele.xml" attachpoint="helmet"/>
         <prop actor="props/units/heads/new/head_celt.xml" attachpoint="head"/>
         <prop actor="props/units/weapons/csword.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/shields/gaul_shield_jav_sq_b_02.xml" attachpoint="shield"/>
         <prop actor="props/units/weapons/sheath_celt_iron_e.xml" attachpoint="sheath_01_R"/>
         <prop actor="props/units/capes/cape_med_pelt.xml" attachpoint="root"/>
-      </props>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="Celt-Shield-01">
-      <props>
-        <prop actor="props/units/shields/gaul_shield_jav_sq_b_02.xml" attachpoint="shield"/>
       </props>
     </variant>
   </group>
