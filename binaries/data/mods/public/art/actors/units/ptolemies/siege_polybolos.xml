@@ -17,8 +17,8 @@
       <props>
         <prop actor="units/ptolemies/polybolos_infantry_a.xml" attachpoint="operator_L"/>
         <prop actor="units/ptolemies/polybolos_infantry_b.xml" attachpoint="operator_R"/>
-        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="projectile"/>
       </props>
     </variant>
   </group>

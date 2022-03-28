@@ -9,10 +9,10 @@
         <prop actor="props/structures/ptolemies/library_roof.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/library_pediment.xml" attachpoint="root"/>
         <prop actor="props/structures/ptolemies/library_sphynx.xml" attachpoint="root"/>
-        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="bush" maxheight="20" minheight="-20"/>
-        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="bush_1" maxheight="20" minheight="-20"/>
-        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="bush_2" maxheight="20" minheight="-20"/>
-        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="bush_3" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/palm_date_new.xml" attachpoint="bush" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/palm_date_new_2.xml" attachpoint="bush_1" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/palm_date_new_3.xml" attachpoint="bush_2" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/palm_date_new_4.xml" attachpoint="bush_3" maxheight="20" minheight="-20"/>
       </props>
       <textures>
         <texture file="structural/ptol_struct.png" name="baseTex"/>
