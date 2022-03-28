@@ -477,6 +477,10 @@ void ActorViewer::SetShadowsEnabled(bool enabled) {
 	g_RenderingOptions.SetShadows(enabled);
 	m.ShadowsEnabled = enabled;
 }
+void ActorViewer::ToggleShadows()
+{
+	SetShadowsEnabled(!m.ShadowsEnabled);
+}
 void ActorViewer::SetBoundingBoxesEnabled(bool enabled) { m.SelectionBoxEnabled = enabled; }
 void ActorViewer::SetAxesMarkerEnabled(bool enabled)    { m.AxesMarkerEnabled = enabled; }
 void ActorViewer::SetPropPointsMode(int mode)           { m.PropPointsMode = mode; }
