@@ -61,7 +61,8 @@
 		"water": "nubia_sand_02_wet"
 	},
 	"Gaia": {
-		"tree3": "gaia/tree/baobab_4_dead",
+		"tree1": "gaia/tree/acacia",
+		"tree2": "gaia/tree/bush_tropic",
 		"fruitBush": "gaia/fruit/date",
 		"startingAnimal": "gaia/fauna_chicken",
 		"fish": "gaia/fish/generic",
@@ -86,7 +87,7 @@
 		"trees": {
 			"min": 500,
 			"max": 1000,
-			"forestProbability": 0.25
+			"forestProbability": 0
 		}
 	}
 }

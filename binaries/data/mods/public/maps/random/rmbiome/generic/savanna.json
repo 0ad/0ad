@@ -56,15 +56,15 @@
 		"water": "india_sand_01"
 	},
 	"Gaia": {
-		"tree1": "gaia/tree/acacia",
-		"tree2": "gaia/tree/baobab",
-		"tree3": "gaia/tree/bush_temperate",
-		"tree4": "gaia/tree/baobab_3_mature",
-		"tree5": "gaia/tree/baobab",
+		"tree1": "gaia/tree/baobab",
+		"tree2": "gaia/tree/acacia",
+		"tree3": "gaia/tree/acacia",
+		"tree4": "gaia/tree/bush_tropic",
+		"tree5": "gaia/tree/bush_temperate",
 		"fruitBush": "gaia/fruit/berry_01",
 		"startingAnimal": "gaia/fauna_chicken",
 		"fish": "gaia/fish/generic",
-		"secondaryHuntableAnimal": "gaia/fauna_gazelle",
+		"secondaryHuntableAnimal": "gaia/fauna_elephant_african_bush",
 		"stoneLarge": "gaia/rock/desert_large",
 		"stoneSmall": "gaia/rock/temperate_small",
 		"metalLarge": "gaia/ore/sahara_01",
@@ -83,9 +83,9 @@
 	},
 	"ResourceCounts": {
 		"trees": {
-			"min": 1000,
-			"max": 4500,
-			"forestProbability": 0.25
+			"min": 500,
+			"max": 1500,
+			"forestProbability": 0
 		}
 	}
 }
