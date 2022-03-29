@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2021 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -84,7 +84,6 @@ private:
 	bool m_ViewerMove;
 	bool m_ViewerGround;
 	bool m_ViewerWater;
-	bool m_ViewerShadows;
 	bool m_ViewerPolyCount;
 	bool m_ViewerBoundingBox;
 	bool m_ViewerAxesMarker;
@@ -523,7 +522,6 @@ ObjectBottomBar::ObjectBottomBar(
 	m_ViewerMove = false;
 	m_ViewerGround = true;
 	m_ViewerWater = false;
-	m_ViewerShadows = true;
 	m_ViewerPolyCount = false;
 	m_ViewerBoundingBox = false;
 	m_ViewerAxesMarker = false;
@@ -701,7 +699,6 @@ void ObjectBottomBar::OnFirstDisplay()
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"walk", m_ViewerMove));
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"ground", m_ViewerGround));
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"water", m_ViewerWater));
-	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"shadows", m_ViewerShadows));
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"stats", m_ViewerPolyCount));
 	POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"bounding_box", m_ViewerBoundingBox));
 	POST_MESSAGE(SetViewParamI, (AtlasMessage::eRenderView::ACTOR, L"prop_points", m_ViewerPropPointsMode));
@@ -734,8 +731,7 @@ void ObjectBottomBar::OnViewerSetting(wxCommandEvent& evt)
 		POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"water", m_ViewerWater));
 		break;
 	case ID_ViewerShadows:
-		m_ViewerShadows = !m_ViewerShadows;
-		POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"shadows", m_ViewerShadows));
+		POST_MESSAGE(SetViewParamB, (AtlasMessage::eRenderView::ACTOR, L"shadows", true));
 		break;
 	case ID_ViewerPolyCount:
 		m_ViewerPolyCount = !m_ViewerPolyCount;

@@ -663,7 +663,6 @@ bool ScriptInterface::LoadGlobalScript(const VfsPath& filename, const std::strin
 
 bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path) const
 {
-	ScriptRequest rq(this);
 	if (!VfsFileExists(path))
 	{
 		LOGERROR("File '%s' does not exist", path.string8());
@@ -682,21 +681,7 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path) const
 
 	CStr code = file.DecodeUTF8(); // assume it's UTF-8
 
-	uint lineNo = 1;
-	// CompileOptions does not copy the contents of the filename string pointer.
-	// Passing a temporary string there will cause undefined behaviour, so we create a separate string to avoid the temporary.
-	std::string filenameStr = path.string8();
-
-	JS::RootedValue rval(rq.cx);
-	JS::CompileOptions opts(rq.cx);
-	opts.setFileAndLine(filenameStr.c_str(), lineNo);
-	JS::SourceText<mozilla::Utf8Unit> src;
-	ENSURE(src.init(rq.cx, code.c_str(), code.length(), JS::SourceOwnership::Borrowed));
-	if (JS::Evaluate(rq.cx, opts, src, &rval))
-		return true;
-
-	ScriptException::CatchPending(rq);
-	return false;
+	return LoadGlobalScript(path, code);
 }
 
 bool ScriptInterface::Eval(const char* code) const

@@ -61,7 +61,8 @@
 		"water": "nubia_sand_02_wet"
 	},
 	"Gaia": {
-		"tree3": "gaia/tree/baobab_4_dead",
+		"tree1": "gaia/tree/acacia",
+		"tree2": "gaia/tree/bush_tropic",
 		"fruitBush": "gaia/fruit/date",
 		"startingAnimal": "gaia/fauna_chicken",
 		"fish": "gaia/fish/generic",
@@ -78,15 +79,15 @@
 		"lillies": "actor|props/flora/water_lillies.xml",
 		"rockLarge": "actor|geology/stone_savanna_med.xml",
 		"rockMedium": "actor|geology/stone_savanna_med.xml",
-		"bushMedium": "gaia/tree/bush_tropic",
+		"bushMedium": "actor|props/flora/plant_tropic_large.xml",
 		"bushSmall": "actor|props/flora/bush_dry_a.xml",
-		"tree": "gaia/tree/date_palm_dead"
+		"tree": "actor|flora/trees/palm_date_dead.xml"
 	},
 	"ResourceCounts": {
 		"trees": {
 			"min": 500,
 			"max": 1000,
-			"forestProbability": 0.25
+			"forestProbability": 0
 		}
 	}
 }

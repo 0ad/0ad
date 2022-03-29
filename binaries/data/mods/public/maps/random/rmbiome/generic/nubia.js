@@ -8,33 +8,19 @@ function setupBiome_nubia()
 		"gaia/fauna_gazelle"
 	]);
 
-	[g_Gaia.tree1, g_Gaia.tree2] = pickRandom([
-		[
-			"gaia/tree/acacia",
-			"gaia/tree/acacia"
-		],
-		[
-			"gaia/tree/date_palm",
-			"gaia/tree/baobab"
-		],
-		[
-			"gaia/tree/date_palm",
-			"gaia/tree/palm_doum"
-		]
+	g_Gaia.tree3 = pickRandom([
+			"gaia/tree/baobab_4_dead",
+			"gaia/tree/baobab_3_mature"
 	]);
 
 	[g_Gaia.tree4, g_Gaia.tree5] = pickRandom([
 		[
-			"gaia/tree/date_palm_dead",
-			"gaia/tree/date_palm"
+			"gaia/tree/date_palm",
+			"gaia/tree/bush_tropic"
 		],
 		[
-			"gaia/tree/baobab",
-			"gaia/tree/acacia"
-		],
-		[
-			"gaia/tree/acacia",
-			"gaia/tree/acacia"
+			"gaia/tree/bush_tropic",
+			"gaia/tree/palm_doum"
 		]
 	]);
 }

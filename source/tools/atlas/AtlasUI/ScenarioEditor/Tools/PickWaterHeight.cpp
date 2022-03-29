@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,13 +29,8 @@ class PickWaterHeight : public StateDrivenTool<PickWaterHeight>
 {
 	DECLARE_DYNAMIC_CLASS(PickWaterHeight);
 
-	// Uses a workaround to notify the environment settings directly, because
-	// we don't have any way to update them on the engine state change.
-	EnvironmentSidebar* m_Sidebar;
-
 public:
 	PickWaterHeight()
-		: m_Sidebar(nullptr)
 	{
 		SetState(&Waiting);
 	}
@@ -45,22 +40,20 @@ public:
 		StateDrivenTool<PickWaterHeight>::Init(initData, scenarioEditor);
 
 		wxASSERT(initData);
-		m_Sidebar = static_cast<EnvironmentSidebar*>(initData);
-	}
-
-	void OnDisable()
-	{
-		if (m_Sidebar)
-			m_Sidebar->UpdateEnvironmentSettings();
+		Waiting.m_Sidebar = static_cast<EnvironmentSidebar*>(initData);
 	}
 
 	struct sWaiting : public State
 	{
+		// Uses a workaround to notify the environment settings directly, because
+		// we don't have any way to update them on the engine state change.
+		EnvironmentSidebar* m_Sidebar = nullptr;
 		bool OnMouse(PickWaterHeight* WXUNUSED(obj), wxMouseEvent& evt)
 		{
-			if (evt.LeftDown())
+			if (evt.LeftDown() && m_Sidebar)
 			{
 				POST_COMMAND(PickWaterHeight, (evt.GetPosition()));
+				m_Sidebar->UpdateEnvironmentSettings();
 				return true;
 			}
 			return false;

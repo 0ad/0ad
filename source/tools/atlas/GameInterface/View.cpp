@@ -149,7 +149,7 @@ void AtlasViewActor::SetParam(const std::wstring& name, bool value)
 	//else if (name == L"water")
 		//m_ActorViewer->SetWaterEnabled(value);
 	else if (name == L"shadows")
-		m_ActorViewer->SetShadowsEnabled(value);
+		m_ActorViewer->ToggleShadows();
 	else if (name == L"stats")
 		m_ActorViewer->SetStatsEnabled(value);
 	else if (name == L"bounding_box")

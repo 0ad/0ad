@@ -42,6 +42,7 @@ public:
 	void SetGroundEnabled(bool enabled);
 	void SetWaterEnabled(bool enabled);
 	void SetShadowsEnabled(bool enabled);
+	void ToggleShadows();
 	void SetStatsEnabled(bool enabled);
 	void SetBoundingBoxesEnabled(bool enabled);
 	void SetAxesMarkerEnabled(bool enabled);
