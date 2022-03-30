@@ -5,8 +5,8 @@ var g_TermsUserReport = {
 		"file": "gui/userreport/Terms_and_Conditions.txt",
 		"termsURL": Engine.ConfigDB_GetValue("user", "userreport.url_terms"),
 		"sprintf": {
-			"logPath": setStringTags(Engine.GetUserReportLogPath(), { "font": "sans-bold-12" }),
-			"configPath": setStringTags(Engine.GetUserReportConfigPath(), { "font": "sans-bold-12" })
+			"logPath": setStringTags(escapeText(Engine.GetUserReportLogPath()), { "font": "sans-bold-12" }),
+			"configPath": setStringTags(escapeText(Engine.GetUserReportConfigPath()), { "font": "sans-bold-12" })
 		},
 		"config": "userreport.terms",
 		"callback": data => {
