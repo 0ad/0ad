@@ -350,7 +350,13 @@ Trainer.prototype.Item.prototype.Progress = function(allocatedTime)
 
 Trainer.prototype.Item.prototype.Pause = function()
 {
-	this.paused = true;
+	if (this.started)
+		this.paused = true;
+	else if (this.missingPopSpace)
+	{
+		delete this.missingPopSpace;
+		QueryOwnerInterface(this.trainer)?.UnBlockTraining();
+	}
 };
 
 Trainer.prototype.Item.prototype.Unpause = function()

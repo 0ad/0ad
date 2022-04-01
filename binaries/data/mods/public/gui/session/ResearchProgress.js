@@ -117,4 +117,4 @@ ResearchProgressButton.prototype.PortraitDirectory = "session/portraits/";
 ResearchProgressButton.prototype.CountdownFormat = markForTranslationWithContext("countdown format", "m:ss");
 
 // Translation: String displayed when the research is paused. E.g. by being garrisoned or when not the first item in the queue.
-ResearchProgressButton.prototype.PausedResearchString = markForTranslation("(This item is paused.)");
+ResearchProgressButton.prototype.PausedResearchString = markForTranslation("This item is paused.");
