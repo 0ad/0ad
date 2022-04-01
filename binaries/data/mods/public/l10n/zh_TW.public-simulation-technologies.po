@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"POT-Creation-Date: 2022-03-28 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2021-2022\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -144,7 +144,7 @@ msgstr "在鄉鎮階段解鎖。"
 
 #: simulation/data/technologies/archer_attack_spread.jsontooltip
 msgid "Archers −20% ranged attack spread."
-msgstr "弓兵 -20% 遠程攻擊散射。"
+msgstr "弓兵 -20% 遠程攻擊發散。"
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -361,8 +361,10 @@ msgid "+10% maximum population limit."
 msgstr "+10% 最大人口上限。"
 
 #: simulation/data/technologies/civbonuses/han_walls.jsondescription
-msgid "Han built massive walls, the great wall."
-msgstr "漢代建造了大量的城牆，萬里長城。"
+msgid ""
+"The Han built massive walls made from rammed earth. These were gigantic "
+"fortifications several meters thick and stretching for kilometers."
+msgstr "漢人用夯土建造了巨大的城牆。這些是數米厚、綿延數公里的巨大防禦工事。"
 
 #: simulation/data/technologies/civbonuses/han_walls.jsongenericName
 msgid "Great Wall"
@@ -729,7 +731,7 @@ msgstr "銳利斧頭"
 
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsongenericName
 msgid "Stronger Axe"
-msgstr "較強的斧頭"
+msgstr "堅固斧頭"
 
 #: simulation/data/technologies/gather_mining_serfs.jsondescription
 msgid ""
@@ -787,7 +789,7 @@ msgstr "深入挖掘珍貴的銀礦礦脈。金屬採集速率增加。"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
-msgstr "銀之挖掘"
+msgstr "銀礦挖掘"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsonspecificName.athen
 msgid "Mines of Laureion"
@@ -1318,7 +1320,7 @@ msgstr "弩箭準確度"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt Shooters −20% ranged attack spread."
-msgstr "弩炮 −20% 遠程攻擊擴散。"
+msgstr "弩炮 −20% 遠程攻擊發散。"
 
 #: simulation/data/technologies/siege_cost_time.jsondescription
 msgid "The science or craft of laying or carrying out sieges."
@@ -1737,7 +1739,7 @@ msgid ""
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
-msgstr "高等和菁英單位 +20% 訓練時間，+25% 生命值，+0.7 占領力，+20% 戰利品與 -30% 採集速率；治療者 +5 治療力與 +3 治療範圍；近戰單位 +1 抗性與 +20% 攻擊傷害；遠程單位 -20% 散射。"
+msgstr "高等和菁英單位 +20% 訓練時間，+25% 生命值，+0.7 占領力，+20% 戰利品與 -30% 採集速率；治療者 +5 治療力與 +3 治療範圍；近戰單位 +1 抗性與 +20% 攻擊傷害；遠程單位 -20% 發散。"
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
@@ -1757,7 +1759,7 @@ msgid ""
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
 " range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
-msgstr "菁英單位 +20% 訓練時間，+25% 生命值，+0.8 占領力，+20% 戰利品與 -30% 採集速率；治療者 +5 治療力與 +3 治療範圍；近戰單位 +1 抗性與 +20% 攻擊傷害；遠程單位 -20% 散射。"
+msgstr "菁英單位 +20% 訓練時間，+25% 生命值，+0.8 占領力，+20% 戰利品與 -30% 採集速率；治療者 +5 治療力與 +3 治療範圍；近戰單位 +1 抗性與 +20% 攻擊傷害；遠程單位 -20% 發散。"
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsondescription
 #: simulation/data/technologies/unlock_champion_chariots.jsondescription
@@ -1913,7 +1915,7 @@ msgstr "將你的弩步兵和騎兵全部升級到菁英級別。"
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."
-msgstr "奇觀會吸引更多的人加入您的文明。"
+msgstr "世界奇觀會吸引更多的人加入您的文明。"
 
 #: simulation/data/technologies/wonder_population_cap.jsongenericName
 msgid "Glorious Expansion"
