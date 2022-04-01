@@ -555,7 +555,7 @@ void CPostprocManager::UpdateAntiAliasingTechnique()
 		// We don't want to enable MSAA in Atlas, because it uses wxWidgets and its canvas.
 		if (g_AtlasGameLoop && g_AtlasGameLoop->running)
 			return;
-		if (!g_VideoMode.GetBackendDevice()->GetCapabilities().multisampling && !m_AllowedSampleCounts.empty())
+		if (!g_VideoMode.GetBackendDevice()->GetCapabilities().multisampling || m_AllowedSampleCounts.empty())
 		{
 			LOGWARNING("MSAA is unsupported.");
 			return;
@@ -565,7 +565,7 @@ void CPostprocManager::UpdateAntiAliasingTechnique()
 		if (std::find(std::begin(m_AllowedSampleCounts), std::end(m_AllowedSampleCounts), m_MultisampleCount) ==
 		        std::end(m_AllowedSampleCounts))
 		{
-			m_MultisampleCount = 4;
+			m_MultisampleCount = std::min(4u, g_VideoMode.GetBackendDevice()->GetCapabilities().maxSampleCount);
 			LOGWARNING("Wrong MSAA sample count: %s.", m_AAName.EscapeToPrintableASCII().c_str());
 		}
 		m_UsingMultisampleBuffer = true;
