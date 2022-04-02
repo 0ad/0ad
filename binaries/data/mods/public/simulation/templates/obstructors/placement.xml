@@ -5,6 +5,13 @@
     <Square width="38.5" depth="7.0"/>
     <Height>9.0</Height>
   </Footprint>
+  <Identity>
+    <Civ>gaia</Civ>
+    <GenericName>Obstructor</GenericName>
+    <Icon>structures/wall.png</Icon>
+    <Tooltip>Placement obstructor to prevent construction but not movement</Tooltip>
+    <Undeletable>false</Undeletable>
+  </Identity>
   <Obstruction>
     <Active>true</Active>
     <BlockMovement>false</BlockMovement>

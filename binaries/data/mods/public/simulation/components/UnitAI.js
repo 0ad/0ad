@@ -1072,6 +1072,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					return true;
 				}
 				this.StartTimer(0, 1000);
+				this.order.data.returningState = "WALKINGANDFIGHTING";
 				return false;
 			},
 
@@ -1082,7 +1083,9 @@ UnitAI.prototype.UnitFsmSpec = {
 
 			"Timer": function(msg) {
 				Engine.ProfileStart("FindWalkAndFightTargets");
-				this.FindWalkAndFightTargets();
+				if (this.FindWalkAndFightTargets())
+					this.SetNextState("MEMBER");
+
 				Engine.ProfileStop();
 			},
 
@@ -1133,6 +1136,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					}
 
 					this.StartTimer(0, 1000);
+					this.order.data.returningState = "PATROL.PATROLLING";
 					return false;
 				},
 
@@ -1142,7 +1146,8 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"Timer": function(msg) {
-					this.FindWalkAndFightTargets();
+					if (this.FindWalkAndFightTargets())
+						this.SetNextState("MEMBER");
 				},
 
 				"MovementUpdate": function(msg) {
@@ -1176,7 +1181,9 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.FinishOrder();
 						return;
 					}
-					if (!this.FindWalkAndFightTargets())
+					if (this.FindWalkAndFightTargets())
+						this.SetNextState("MEMBER");
+					else
 						++this.stopSurveying;
 				}
 			}
@@ -1373,13 +1380,10 @@ UnitAI.prototype.UnitFsmSpec = {
 				if (cmpFormation && !cmpFormation.AreAllMembersFinished())
 					return;
 
-				if (this.FinishOrder())
-				{
-					if (this.IsWalkingAndFighting())
-						this.FindWalkAndFightTargets();
-					return;
-				}
-				return;
+				if (this.order?.data?.returningState)
+					this.SetNextState(this.order.data.returningState);
+				else
+					this.FinishOrder();
 			},
 
 			"leave": function(msg) {
@@ -3604,7 +3608,7 @@ UnitAI.prototype.IsWalking = function()
 UnitAI.prototype.IsWalkingAndFighting = function()
 {
 	if (this.IsFormationMember())
-		return false;
+		return Engine.QueryInterface(this.formationController, IID_UnitAI).IsWalkingAndFighting();
 
 	return this.orderQueue.length > 0 && (this.orderQueue[0].type == "WalkAndFight" || this.orderQueue[0].type == "Patrol");
 };
@@ -5997,14 +6001,7 @@ UnitAI.prototype.FindNewTargets = function()
 UnitAI.prototype.FindWalkAndFightTargets = function()
 {
 	if (this.IsFormationController())
-	{
-		let foundSomething = false;
-		let cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
-		for (const ent of cmpFormation.members)
-			if (Engine.QueryInterface(ent, IID_UnitAI)?.FindWalkAndFightTargets())
-				foundSomething = true;
-		return foundSomething;
-	}
+		return this.CallMemberFunction("FindWalkAndFightTargets", null);
 
 	let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 
@@ -6039,6 +6036,18 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 		return cmpUnitAI && (!cmpUnitAI.IsAnimal() || cmpUnitAI.IsDangerousAnimal());
 	};
 
+	const attack = target => {
+		const order = {
+			"target": target,
+			"force": false,
+			"allowCapture": this.order?.data?.allowCapture
+		};
+		if (this.IsFormationMember())
+			this.ReplaceOrder("Attack", order);
+		else
+			this.PushOrderFront("Attack", order);
+	};
+
 	let prefs = {};
 	let bestPref;
 	let targets = [];
@@ -6050,7 +6059,7 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 			pref = cmpAttack.GetPreference(v);
 			if (pref === 0)
 			{
-				this.PushOrderFront("Attack", { "target": v, "force": false, "allowCapture": this?.order?.data?.allowCapture });
+				attack(v);
 				return true;
 			}
 			targets.push(v);
@@ -6064,7 +6073,7 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 	{
 		if (prefs[targ] !== bestPref)
 			continue;
-		this.PushOrderFront("Attack", { "target": targ, "force": false, "allowCapture": this?.order?.data?.allowCapture });
+		attack(targ);
 		return true;
 	}
 
@@ -6464,17 +6473,20 @@ UnitAI.prototype.AttackEntitiesByPreference = function(ents)
  */
 UnitAI.prototype.CallMemberFunction = function(funcname, args, resetFinishedEntities = true)
 {
-	var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
+	const cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 	if (!cmpFormation)
-		return;
+		return false;
 
 	if (resetFinishedEntities)
 		cmpFormation.ResetFinishedEntities();
 
+	let result = false;
 	cmpFormation.GetMembers().forEach(ent => {
-		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		cmpUnitAI[funcname].apply(cmpUnitAI, args);
+		const cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		if (cmpUnitAI[funcname].apply(cmpUnitAI, args))
+			result = true;
 	});
+	return result;
 };
 
 /**

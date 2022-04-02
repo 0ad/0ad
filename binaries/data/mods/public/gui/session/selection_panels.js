@@ -594,7 +594,7 @@ g_SelectionPanels.Queue = {
 			Engine.GetGUIObjectByName("unitQueuePausedIcon[" + data.i + "]").hidden = !queuedItem.paused;
 			if (queuedItem.paused)
 				// Translation: String displayed when the research is paused. E.g. by being garrisoned or when not the first item in the queue.
-				data.button.tooltip += "\n" + translate("(This item is paused.)");
+				data.button.tooltip += "\n" + translate("This item is paused.");
 		}
 
 		if (template.icon)
