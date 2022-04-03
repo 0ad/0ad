@@ -10,7 +10,7 @@
         <prop actor="props/units/shields/iber_shield_spear_oval_c_01.xml" attachpoint="shield_1"/>
         <prop actor="props/units/shields/iber_shield_spear_oval_c_02.xml" attachpoint="shield_3"/>
         <prop actor="props/units/shields/iber_shield_spear_oval_c_01.xml" attachpoint="shield_4" maxheight="20" minheight="-20"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="structural/iber_struct.png" name="baseTex"/>
@@ -24,7 +24,7 @@
     <variant name="upgrading">
       <props>
         <prop actor="props/structures/construction/scaf_3x3_tower.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_2x2.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_3x3.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
       </props>
     </variant>
