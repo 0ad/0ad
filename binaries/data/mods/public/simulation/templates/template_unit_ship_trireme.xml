@@ -4,11 +4,17 @@
     <Ranged>
       <AttackName>Bow</AttackName>
       <Damage>
-        <Pierce>35</Pierce>
+        <Pierce>12</Pierce>
       </Damage>
       <MaxRange>55</MaxRange>
       <PrepareTime>1000</PrepareTime>
       <RepeatTime>2000</RepeatTime>
+      <Bonuses>
+        <BonusShip>
+          <Classes>Ship</Classes>
+          <Multiplier>3.0</Multiplier>
+        </BonusShip>
+      </Bonuses>
       <Projectile>
         <Speed>100</Speed>
         <Spread>2</Spread>
@@ -42,7 +48,7 @@
   </Health>
   <Identity>
     <GenericName>Medium Warship</GenericName>
-    <Tooltip>Garrison units for transport and to increase firepower.</Tooltip>
+    <Tooltip>Garrison units for transport and to increase firepower. Deals triple damage against Ships.</Tooltip>
     <VisibleClasses datatype="tokens">Ranged Warship Trireme</VisibleClasses>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
