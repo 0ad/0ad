@@ -313,7 +313,7 @@ void CDeviceCommandContext::UploadBufferRegion(
 		// current Intel Windows GPU drivers (as of 2015-01) it's much faster if you do
 		// the explicit glBufferData.)
 
-		UploadBufferRegion(buffer, dataOffset, dataSize, [data, dataOffset, dataSize](u8* mappedData)
+		UploadBufferRegion(buffer, dataOffset, dataSize, [data, dataSize](u8* mappedData)
 		{
 			std::memcpy(mappedData, data, dataSize);
 		});
