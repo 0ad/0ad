@@ -8,6 +8,7 @@
 # Andres Petrescu
 # Marius Nan
 # Bogdan Mințoi
+# Radulian Stef
 # Raz Taz
 # Robert
 # Stefan Bayreuther
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-09-03 08:24+0000\n"
-"Last-Translator: Transifex Bot\n"
+"PO-Revision-Date: 2014-06-19 17:50+0000\n"
+"Last-Translator: Radulian Stef, 2022\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -369,7 +370,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format
 msgid "Host: %(playername)s"
-msgstr ""
+msgstr "Gazdă: %(playername)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:144
 #, javascript-format
@@ -414,7 +415,7 @@ msgstr "Mărimea hărții:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:164
 msgid "Map Description:"
-msgstr ""
+msgstr "Descrierea hărții:"
 
 #: gui/lobby/LobbyPage/GameList.xml:(heading):16
 msgid "Map Name"
@@ -626,7 +627,7 @@ msgstr "Introduceți parola"
 
 #: gui/prelobby/common/credentials/credentials.js:23
 msgid "Please choose a longer password"
-msgstr ""
+msgstr "Te rog să alegi o parolă mai lungă"
 
 #: gui/prelobby/common/credentials/credentials.js:32
 msgid "Please enter your password again"
@@ -708,7 +709,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]2. Parolă[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:12
 msgid ""
@@ -725,7 +726,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:15
 msgid "[font=\"sans-bold-14\"]3. IP address[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]3. Adresă IP[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:16
 msgid ""
@@ -752,7 +753,7 @@ msgstr ""
 msgid ""
 "    IP addresses will not be saved for longer than three years for this "
 "purpose."
-msgstr ""
+msgstr "Adresele IP nu o sa fie salvate mai mult de 3 ani pentru acest scop."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:20
 msgid ""
@@ -1076,7 +1077,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-16"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Data documentului:[/font] 2018-10-16"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:5
 msgid ""

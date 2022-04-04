@@ -3487,7 +3487,7 @@ msgstr "부상당한 유닛만 선택"
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr "%(hotkey)s을(를) 사용하여 선택한 저장 게임을 삭제합니다."
+msgstr "%(hotkey)s 키를 사용하여 선택한 저장된 게임을 삭제합니다."
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:205
 #, javascript-format
@@ -3535,15 +3535,15 @@ msgstr "불러오기"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr "이 저장게임은 당신이 %(currentVersion)s 버전을 실행하는 동안 0 A.D. 버전 %(requiredVersion)s이 필요합니다."
+msgstr "이 저장된 게임은 당신이 %(currentVersion)s 버전을 실행하는 동안, 0 A.D. %(requiredVersion)s 버전이 필요합니다."
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
-msgstr "이 저장게임은 0 A.D.의 이전 버전이 필요합니다."
+msgstr "이 저장된 게임은 0 A.D.의 이전 버전이 필요합니다."
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
-msgstr "이 저장게임은 다른 모드 순서를 필요로 합니다:"
+msgstr "이 저장된 게임은 다른 모드 순서를 필요로 합니다:"
 
 #: gui/loadgame/SavegameLoader.js:55
 msgid "Do you still want to proceed?"
@@ -5119,7 +5119,7 @@ msgstr "사용 지침서"
 
 #: gui/pregame/MainMenuItems.js:15
 msgid "Start the introductory tutorial."
-msgstr ""
+msgstr "입문자들을 위한 사용 지침서를 시작합니다."
 
 #: gui/pregame/MainMenuItems.js:36
 #: gui/reference/common/Buttons/StructreeButton.js:21
@@ -5349,7 +5349,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXVI: Zhuangzi"
-msgstr ""
+msgstr "알파 XXVI: 장자"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -6285,7 +6285,7 @@ msgstr "유형"
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
-msgstr "로마군 야영지"
+msgstr "로마군 진영"
 
 #: gui/text/tips/army_camp.txt:2
 msgid ""
@@ -6301,7 +6301,7 @@ msgstr "충차를 건설하고 시민 병사들을 훈련합니다."
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr "주둔지 유닛은 그들을 천천히 치유하고 공격과 부패로부터 부대 막사를 보호합니다."
+msgstr "주둔지 유닛은 천천히 그들을 치유하고 공격과 부패로부터 군대 진영을 보호합니다."
 
 #: gui/text/tips/autoqueue.txt:1
 msgid "AUTOQUEUE"

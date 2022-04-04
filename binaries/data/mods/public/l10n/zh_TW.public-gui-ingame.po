@@ -24,7 +24,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"POT-Creation-Date: 2022-04-01 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2021-2022\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -73,7 +73,7 @@ msgstr "大廳"
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr "按 %(hotkey)s 打開多人遊戲大廳而不離開遊戲"
+msgstr "按 %(hotkey)s 在不離開遊戲的情況下打開多人遊戲大廳。"
 
 #: gui/session/MenuButtons.js:161
 msgid "Options"
@@ -98,7 +98,7 @@ msgstr "按%(hotkey)s暫停或回到遊戲"
 
 #: gui/session/MenuButtons.js:237
 msgid "Resign"
-msgstr "放棄"
+msgstr "投降"
 
 #: gui/session/MenuButtons.js:261
 #: gui/session/NetworkStatusOverlay.xml:(caption):9
@@ -128,7 +128,7 @@ msgstr "等待玩家連線："
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
-msgstr "正在同步化與其他玩家的遊戲..."
+msgstr "正在與其他玩家的遊戲同步…"
 
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"
@@ -171,8 +171,8 @@ msgstr "m:ss"
 #. garrisoned or
 #. when not the first item in the queue.
 #: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:597
-msgid "(This item is paused.)"
-msgstr "（這個項目被暫停。）"
+msgid "This item is paused."
+msgstr "此項目已暫停。"
 
 #: gui/session/chat/ChatAddressees.js:93
 msgctxt "chat addressee"
@@ -246,7 +246,7 @@ msgstr "玩家聊天"
 #: gui/session/chat/ChatHistory.js:106
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr "隊伍聊天"
+msgstr "同盟聊天"
 
 #: gui/session/chat/ChatHistory.js:113
 msgctxt "chat history filter"
@@ -276,7 +276,7 @@ msgstr "網路狀態通知"
 #: gui/session/chat/ChatInput.js:36
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr "輸入您想傳送的訊息。"
+msgstr "輸入想傳送的訊息。"
 
 #: gui/session/chat/ChatInput.js:42
 #, javascript-format
@@ -291,12 +291,12 @@ msgstr "按 %(hotkey)s 以開啟觀察者聊天。"
 #: gui/session/chat/ChatInput.js:46
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr "按 %(hotkey)s 以開啟隊伍聊天。"
+msgstr "按 %(hotkey)s 以開啟同盟聊天。"
 
 #: gui/session/chat/ChatInput.js:48
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr "按 %(hotkey)s 以開啟先前選定的私密聊天。"
+msgstr "按 %(hotkey)s 以開啟先前選定的私人聊天。"
 
 #. Translation: A player that left the game joins again
 #: gui/session/chat/ChatMessageFormatNetwork.js:24
@@ -374,7 +374,7 @@ msgstr "%(icon)s 您正被 %(attacker)s 攻擊！"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
-msgstr "點擊以將焦點置於被攻擊的單位。"
+msgstr "點擊以聚焦在被攻擊的單位。"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
@@ -384,17 +384,17 @@ msgstr "%(player)s 以 %(amountGiven)s 交換 %(amountGained)s。"
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr "您正與 %(player)s 同盟。"
+msgstr "您現在與 %(player)s 同盟。"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:82
 #, javascript-format
 msgid "You are now at war with %(player)s."
-msgstr "您正與 %(player)s 交戰。"
+msgstr "您現在與 %(player)s 交戰。"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:83
 #, javascript-format
 msgid "You are now neutral with %(player)s."
-msgstr "您與 %(player)s 關係為中立。"
+msgstr "您現在與 %(player)s 處於中立。"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
@@ -404,7 +404,7 @@ msgstr "%(player)s 現在與你同盟。"
 #: gui/session/chat/ChatMessageFormatSimulation.js:87
 #, javascript-format
 msgid "%(player)s is now at war with you."
-msgstr "%(player)s 現在與你作戰。"
+msgstr "%(player)s 現在與你交戰。"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:88
 #, javascript-format
@@ -419,7 +419,7 @@ msgstr "%(player)s 現在與 %(player2)s 同盟。"
 #: gui/session/chat/ChatMessageFormatSimulation.js:92
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr "%(player)s 現在與 %(player2)s 作戰。"
+msgstr "%(player)s 現在與 %(player2)s 交戰。"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:93
 #, javascript-format
@@ -456,7 +456,7 @@ msgstr "%(player)s 已傳送給您 %(amounts)s。"
 #: gui/session/chat/ChatMessageFormatSimulation.js:161
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr "您已傳送 %(player2)s %(amounts)s。"
+msgstr "您已傳送給 %(player2)s %(amounts)s。"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:166
 #, javascript-format
@@ -515,7 +515,7 @@ msgstr "控制所有單位"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:42
 msgid "Change perspective"
-msgstr "變更觀點"
+msgstr "變更視角"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:60
 msgid "Display selection state"
@@ -854,7 +854,7 @@ msgstr "您確定要退出？"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:67
 msgid "Do you want to resign or will you return soon?"
-msgstr "您是想要退出？還是會很快回來？"
+msgstr "您是想要投降？還是會很快回來？"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:70
 msgid "I will return"
@@ -862,7 +862,7 @@ msgstr "我會回來"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:74
 msgid "I resign"
-msgstr "我要退出"
+msgstr "我要投降"
 
 #: gui/session/message_box/QuitConfirmationReplay.js:14
 msgctxt "replayFinished"
@@ -876,7 +876,7 @@ msgstr "重播已結束。您想要退出嗎？"
 
 #: gui/session/message_box/ResignConfirmation.js:6
 msgid "Are you sure you want to resign?"
-msgstr "您確定要放棄？"
+msgstr "您確定要投降？"
 
 #: gui/session/messages.js:104
 msgid "You have won!"
