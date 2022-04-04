@@ -3,8 +3,8 @@
   <Cost>
     <BuildTime>200</BuildTime>
     <Resources>
-      <stone>200</stone>
-      <metal>200</metal>
+      <stone>150</stone>
+      <metal>100</metal>
     </Resources>
   </Cost>
   <Footprint>
@@ -25,6 +25,7 @@
     <Classes datatype="tokens">ConquestCritical CivSpecific</Classes>
     <VisibleClasses datatype="tokens">Gymnasium</VisibleClasses>
     <Icon>structures/gymnasium.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>
     <stone>40</stone>
@@ -34,6 +35,11 @@
     <Static width="28.0" depth="28.0"/>
   </Obstruction>
   <ProductionQueue/>
+  <Researcher>
+    <Technologies datatype="tokens">
+      iphicratean_reforms
+    </Technologies>
+  </Researcher>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_gymnasium.xml</select>
@@ -43,6 +49,8 @@
   <Trainer>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
+      units/{civ}/infantry_marine_archer_b
+      units/{civ}/champion_marine
       units/{civ}/champion_infantry
       units/{civ}/champion_ranged
     </Entities>

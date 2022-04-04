@@ -12,7 +12,7 @@ class ResearchProgress
 		 * Top coordinate of the research list.
 		 * Changes depending on the number of displayed counters.
 		 */
-		this.topOffset = 0;
+		this.topOffset = g_OverlayCounterManager.lastHeight;
 
 		let updater = this.updateResearchProgress.bind(this);
 		registerSimulationUpdateHandler(updater);

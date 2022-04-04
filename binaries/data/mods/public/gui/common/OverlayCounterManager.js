@@ -91,7 +91,8 @@ class OverlayCounterManager
 		if (txt)
 		{
 			this.dataCounter.caption = txt;
-			height = resizeGUIObjectToCaption(this.dataCounter, { "horizontal": "left", "vertical": "bottom" }, { "vertical": -2 }).height;
+			const size = resizeGUIObjectToCaption(this.dataCounter, this.Alignment, this.Margins);
+			height = size.bottom - size.top;
 		}
 		else
 			height = 0;
@@ -112,3 +113,15 @@ class OverlayCounterManager
  * in milliseconds determines how often the caption is rebuilt.
  */
 OverlayCounterManager.prototype.Delay = 250;
+
+/**
+ * The parameters to resize the data counter to.
+ */
+OverlayCounterManager.prototype.Alignment = {
+	"horizontal": "left",
+	"vertical": "bottom"
+};
+
+OverlayCounterManager.prototype.Margins = {
+	"vertical": -2
+};

@@ -63,7 +63,7 @@
 	</object>
 
 	<object hotkey="selection.idleunit">
-		<action on="KeyDown">findIdleUnit(["!Domestic"]);</action>
+		<action on="KeyDown">findIdleUnit(["!Domestic+!Formation"]);</action>
 	</object>
 
 	<object hotkey="selection.cancel">

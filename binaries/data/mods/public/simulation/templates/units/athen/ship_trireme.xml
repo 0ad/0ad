@@ -13,10 +13,15 @@
   <Trainer>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
-      units/athen/infantry_marine_archer_b
-      units/athen/champion_marine
+      units/{civ}/infantry_marine_archer_b
+      units/{civ}/champion_marine
     </Entities>
   </Trainer>
+  <Researcher>
+    <Technologies datatype="tokens">
+      iphicratean_reforms
+    </Technologies>
+  </Researcher>
   <VisualActor>
     <Actor>structures/athenians/trireme.xml</Actor>
   </VisualActor>
