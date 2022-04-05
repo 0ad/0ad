@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"POT-Creation-Date: 2022-04-01 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Stefan Bayreuther <stefan-bayreuther@web.de>, 2021\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
@@ -1008,6 +1008,14 @@ msgstr ""
 msgid "Trading Post"
 msgstr ""
 
+#: simulation/templates/obstructors/placement.xml:10
+msgid "Obstructor"
+msgstr ""
+
+#: simulation/templates/obstructors/placement.xml:12
+msgid "Placement obstructor to prevent construction but not movement"
+msgstr ""
+
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
@@ -1194,7 +1202,7 @@ msgstr "Unitate"
 #: simulation/templates/template_wallset.xml:9
 #: simulation/templates/template_wallset.xml:11
 msgid "Wall"
-msgstr ""
+msgstr "Zid"
 
 #: simulation/templates/template_wallset.xml:10
 msgid "Wall off an area."

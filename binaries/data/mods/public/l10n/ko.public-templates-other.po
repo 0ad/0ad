@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"POT-Creation-Date: 2022-04-01 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -1018,6 +1018,14 @@ msgstr "사당"
 #: simulation/templates/mixins/trading_post.xml:8
 msgid "Trading Post"
 msgstr "교역소"
+
+#: simulation/templates/obstructors/placement.xml:10
+msgid "Obstructor"
+msgstr "방해물"
+
+#: simulation/templates/obstructors/placement.xml:12
+msgid "Placement obstructor to prevent construction but not movement"
+msgstr "시공은 방해하지만 움직이지 않는 배치 방해물"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
