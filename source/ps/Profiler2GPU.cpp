@@ -287,11 +287,11 @@ void CProfiler2GPU::RegionLeave(const char* id)
 #else // CONFIG2_GLES
 
 CProfiler2GPU::CProfiler2GPU(CProfiler2& profiler) :
-	m_Profiler(profiler), m_ProfilerARB(NULL), m_ProfilerEXT(NULL), m_ProfilerINTEL(NULL)
+	m_Profiler(profiler)
 {
 }
 
-CProfiler2GPU::~CProfiler2GPU() { }
+CProfiler2GPU::~CProfiler2GPU() = default;
 
 void CProfiler2GPU::FrameStart() { }
 void CProfiler2GPU::FrameEnd() { }
