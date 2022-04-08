@@ -829,6 +829,8 @@ void CDeviceCommandContext::DrawIndexedInRange(
 	// Draw with DrawRangeElements where available, since it might be more
 	// efficient for slow hardware.
 #if CONFIG2_GLES
+	UNUSED2(start);
+	UNUSED2(end);
 	glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_SHORT, indices);
 #else
 	glDrawRangeElementsEXT(GL_TRIANGLES, start, end, indexCount, GL_UNSIGNED_SHORT, indices);
