@@ -2,7 +2,7 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Base">
+    <variant frequency="100" name="palisade rocks outpost" file="structures/defensive_building.xml">
       <mesh>props/palisade_rocks_outpost.dae</mesh>
       <props>
         <prop actor="props/special/palisade_rocks_outpost_banners.xml" attachpoint="root"/>
@@ -10,6 +10,15 @@
       <textures>
         <texture file="props/palisade_main.png" name="baseTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant name="upgrading">
+      <props>
+        <prop actor="props/structures/construction/scaf_cart_wooden_tower.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
+      </props>
     </variant>
   </group>
   <group>

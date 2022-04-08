@@ -2,10 +2,11 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Gaul Range">
+    <variant frequency="100" name="Gallic Arsenal">
       <mesh>structural/gaul_workshop.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/celt_barracks.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/spart_5x5.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/iber_corral_mud.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="structural/celt_struct.dds" name="baseTex"/>

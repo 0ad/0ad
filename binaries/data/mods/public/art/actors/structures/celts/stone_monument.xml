@@ -5,6 +5,7 @@
     <variant name="Celt Henge Monument">
       <mesh>structural/celt_stonehenge_new.dae</mesh>
       <props>
+        <prop actor="props/structures/decals/dirt_stonehenge.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
       </props>
       <textures>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>skeletal/new/m_armor_pants.dae</mesh>
+      <props>
+        <prop actor="props/units/helmets/celt_helmet_ciumesti_raven.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/new/head_viridomarus.xml" attachpoint="head"/>
+        <prop actor="props/units/shields/gaul_shield_spear_oval_b_03.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/weapons/spear_gold.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/sheath_celt_iron.xml" attachpoint="sheath_01_R"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Gallic-Padded-Hero-02">
+      <textures>
+        <texture file="skeletal/gaul/padded_hero_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Gallic-Padded-Hero-03">
+      <textures>
+        <texture file="skeletal/gaul/padded_hero_01_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/rider/cavalry/base_spearman_fast_shield_01.xml" frequency="1" name="Spearman-Fast-Shield-01"/>
+    <variant file="biped/rider/death_shield.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

@@ -7,8 +7,7 @@
       <props>
         <prop actor="props/structures/hellenes/range_2.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/range_struct.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_8x8.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="structural/hele_struct_b.png" name="baseTex"/>
@@ -35,5 +34,5 @@
       </props>
     </variant>
   </group>
-  <material>no_trans_ao_parallax_spec.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

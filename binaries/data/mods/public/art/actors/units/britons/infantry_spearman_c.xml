@@ -15,7 +15,7 @@
   <group>
     <variant frequency="1" name="Celt-Shield-02">
       <props>
-        <prop actor="props/units/shields/gaul_shield_spear_oval_b_03.xml" attachpoint="shield"/>
+        <prop actor="props/units/shields/brit_shield_spear_hex_b_03.xml" attachpoint="shield"/>
       </props>
     </variant>
   </group>
@@ -61,12 +61,12 @@
   <group>
     <variant frequency="3" name="nekkid 01">
       <textures>
-        <texture file="skeletal/gaul/naked_01.png" name="baseTex"/>
+        <texture file="skeletal/brit/naked_tattoo_01.png" name="baseTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="nekkid 02">
       <textures>
-        <texture file="skeletal/gaul/naked_02.png" name="baseTex"/>
+        <texture file="skeletal/brit/naked_tattoo_01.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

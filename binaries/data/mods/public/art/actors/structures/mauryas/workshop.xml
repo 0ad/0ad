@@ -5,11 +5,11 @@
     <variant frequency="1" name="Barracks A">
       <mesh>structural/maur_workshop_struct.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
         <prop actor="props/structures/mauryas/workshop_roof.xml" attachpoint="root"/>
         <prop actor="props/units/shields/maur_straight_a.xml" attachpoint="shield"/>
         <prop actor="props/units/shields/maur_straight_b.xml" attachpoint="shield_1"/>
+        <prop actor="props/structures/decals/spart_5x5.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/iber_corral_mud.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="structural/maur_struct.png" name="baseTex"/>
