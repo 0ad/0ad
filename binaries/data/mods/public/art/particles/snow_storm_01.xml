@@ -3,14 +3,14 @@
     <texture>art/textures/particles/snowflakes_02.png</texture>
     <blend mode="over"/>
     <start_full/>
-    <constant name="emissionrate" value="200.0"/>
-    <constant name="lifetime" value="30.0"/>
+    <constant name="emissionrate" value="150.0"/>
+    <constant name="lifetime" value="40.0"/>
     <uniform name="position.x" min="-50.0" max="50.0"/>
     <uniform name="position.z" min="-50.0" max="50.0"/>
     <constant name="position.y" value="120.0"/>
     <uniform name="size" min="4.0" max="4.50"/>
     <uniform name="velocity.angle" min="-0.5" max="0.5"/>
-    <force y="-0.5"/>
-    <force x="-0.5"/>
-    <force z="-0.5"/>
+    <force y="-0.25"/>
+    <force x="-0.25"/>
+    <force z="-0.25"/>
 </particles>

@@ -10,7 +10,7 @@
     <constant name="position.y" value="120.0"/>
     <constant name="size" value="0.2"/>
     <uniform name="velocity.angle" min="-0.5" max="0.5"/>
-    <force y="-0.75"/>
+    <force y="-0.5"/>
     <force x="-1.5"/>
     <force z="1.5"/>
 </particles>
