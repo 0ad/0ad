@@ -5,7 +5,7 @@
     <variant>
       <mesh>structural/maur_misc_palace.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/siege_artillery/bolt_projectile_med.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/maur_struct.png" name="baseTex"/>

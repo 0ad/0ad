@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_civic_stoa">
+  <Footprint>
+    <Square width="28" depth="14.0"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>spart</Civ>
+    <GenericName>\"Persian\" Stoa</GenericName>
+    <SpecificName>Stoa Persikē</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="26" depth="12"/>
+  </Obstruction>
+  <RallyPoint disable=""/>
+  <VisualActor>
+    <Actor>structures/spartans/stoa_b.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -190,7 +190,7 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& color, int intermediates, bool wireframe)
 {
 #if CONFIG2_GLES
-	UNUSED2(camera); UNUSED2(color); UNUSED2(intermediates);
+	UNUSED2(camera); UNUSED2(color); UNUSED2(intermediates); UNUSED2(wireframe);
 	#warning TODO: implement camera frustum for GLES
 #else
 	CCamera::Quad nearPoints;

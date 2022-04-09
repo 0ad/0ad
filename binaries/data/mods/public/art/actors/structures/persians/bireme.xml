@@ -7,7 +7,7 @@
       <mesh>structural/pers_ship_bireme.dae</mesh>
       <props>
         <prop actor="props/structures/persians/bireme_main_sail.xml" attachpoint="sail"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/siege_artillery/bolt_projectile_med.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/pers_bireme.png" name="baseTex"/>

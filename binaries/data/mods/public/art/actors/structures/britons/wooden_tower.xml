@@ -3,9 +3,6 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Briton Small Tower" file="structures/defensive_building.xml">
-      <animations>
-        <animation event="0.5" load="0" name="attack_ranged" speed="100"/>
-      </animations>
       <mesh>structural/brit_wooden_tower.dae</mesh>
       <props>
         <prop actor="props/structures/celts/kennel_mud.xml" attachpoint="root"/>

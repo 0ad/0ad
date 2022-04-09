@@ -20,12 +20,12 @@
         <texture file="structural/ao/gaul_fortress.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="100" name="New" file="structures/defensive_building.xml">
+    <variant frequency="1" name="New" file="structures/defensive_building.xml">
       <mesh>structural/gaul_fortress_b.dae</mesh>
       <props>
+        <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/fortress_b_roof.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="structural/celt_struct.dds" name="baseTex"/>
@@ -48,7 +48,6 @@
     <variant file="structures/destruction_large.xml">
       <props>
         <prop actor="props/structures/gauls/fortress_props_new.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/celt_fortress.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/fortress_b_roof.xml" attachpoint="root"/>
       </props>
     </variant>

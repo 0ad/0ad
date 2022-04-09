@@ -2,14 +2,14 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="Hellenes Fortress" file="structures/defensive_building.xml">
+    <variant frequency="100" name="Athenian Fortress" file="structures/defensive_building.xml">
       <mesh>structural/hele_fortress_up.dae</mesh>
       <props>
         <prop actor="props/structures/athenians/fortress_shields.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/fortress_gate_up.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/fortress_tile_b.xml" attachpoint="root"/>
         <prop actor="props/structures/hellenes/fortress_props_up.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_5x5.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_7x7.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="structural/hele_struct_b.png" name="baseTex"/>
@@ -38,5 +38,5 @@
       </props>
     </variant>
   </group>
-  <material>no_trans_ao_parallax_spec.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

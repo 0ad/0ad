@@ -4,9 +4,6 @@
   <group>
     <variant file="structures/defensive_building.xml">
       <mesh>structural/rome_wall_tower.dae</mesh>
-      <props>
-        <prop actor="geology/decal_stone_medit_a.xml" attachpoint="root"/>
-      </props>
       <textures>
         <texture file="structural/rome_struct_2.png" name="baseTex"/>
         <texture file="structural/rome_struct_2_norm.png" name="normTex"/>
@@ -18,7 +15,7 @@
     <variant name="ungarrisoned" frequency="1"/>
     <variant name="garrisoned">
       <props>
-        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
+        <prop actor="props/special/common/garrison_flag_rome.xml" attachpoint="garrisoned"/>
       </props>
     </variant>
   </group>

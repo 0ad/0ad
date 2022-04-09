@@ -5,15 +5,15 @@
     <variant frequency="1" name="Seleucid_Civic_Centre" file="structures/defensive_building.xml">
       <mesh>structural/sele_civ_center_metropolitan.dae</mesh>
       <props>
-        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
-        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="bush" maxheight="20" minheight="-20"/>
-        <prop actor="flora/trees/palm_cretan_date_short_building.xml" attachpoint="bush_1" maxheight="20" minheight="-20"/>
-        <prop actor="flora/trees/palm_cretan_date.xml" attachpoint="bush_2" maxheight="20" minheight="-20"/>
-        <prop actor="flora/trees/palm_cretan_date.xml" attachpoint="bush_3" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/palm_date_new_2.xml" attachpoint="bush" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/palm_doum.xml" attachpoint="bush_1" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/palm_date_new.xml" attachpoint="bush_2" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/palm_date_new_3.xml" attachpoint="bush_3" maxheight="20" minheight="-20"/>
         <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_4" maxheight="20" minheight="-20"/>
         <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_5" maxheight="20" minheight="-20"/>
         <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_6" maxheight="20" minheight="-20"/>
         <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_7" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/decals/paving_tile_sahara_9x9_round.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="structural/Sele_struct_2.png" name="baseTex"/>

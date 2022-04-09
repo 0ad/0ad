@@ -9,7 +9,7 @@
         <prop actor="props/structures/romans/bireme_fore_sail.xml" attachpoint="fore_sail"/>
         <prop actor="props/structures/romans/trireme_main_sail.xml" attachpoint="main_sail"/>
         <prop actor="props/structures/romans/rome_bridge_base.xml" attachpoint="bridge"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/siege_artillery/bolt_projectile_med.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/rome_trireme.png" name="baseTex"/>

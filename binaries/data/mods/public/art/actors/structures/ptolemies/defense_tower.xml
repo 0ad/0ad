@@ -14,7 +14,7 @@
         <texture file="structural/ao/ptol_defense_tower.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="100" name="Palestrina" file="structures/defensive_building.xml">
+    <variant frequency="1" name="Palestrina" file="structures/defensive_building.xml">
       <mesh>structural/ptol_defense_tower_2.dae</mesh>
       <props>
         <prop actor="props/structures/decals/spart_1x1.xml" attachpoint="root"/>
@@ -47,14 +47,7 @@
   </group>
   <group>
     <variant frequency="1" name="alive"/>
-    <variant file="structures/destruction_small.xml">
-      <props>
-        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small.xml" attachpoint="root"/>
-        <prop actor="particle/destruction_dust_small_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_1x1.xml" attachpoint="root"/>
-      </props>
-    </variant>
+    <variant file="structures/destruction_small.xml"/>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

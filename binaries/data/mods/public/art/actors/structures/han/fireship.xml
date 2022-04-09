@@ -11,9 +11,6 @@
         <texture file="structural/han_ship_spec.png" name="specTex"/>
         <texture file="structural/ao/han_ship_fire.png" name="aoTex"/>
       </textures>
-      <props>
-        <prop actor="particle/bigflame.xml" attachpoint="root"/>
-      </props>
     </variant>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>

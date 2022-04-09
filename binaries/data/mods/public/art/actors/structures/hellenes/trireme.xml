@@ -11,7 +11,7 @@
       </animations>
       <mesh>structural/hele_ship_trireme.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/siege_artillery/bolt_projectile_med.xml" attachpoint="projectile"/>
         <prop actor="props/structures/hellenes/trireme_mainsail.xml" attachpoint="sail"/>
         <prop actor="props/structures/hellenes/trireme_foresail.xml" attachpoint="sail"/>
         <prop actor="props/structures/hellenes/trireme_shroud.xml" attachpoint="sail"/>

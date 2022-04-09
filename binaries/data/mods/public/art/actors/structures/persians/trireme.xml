@@ -7,7 +7,7 @@
       <mesh>structural/pers_ship_trireme.dae</mesh>
       <props>
         <prop actor="props/structures/persians/trireme_main_sail.xml" attachpoint="main_sail"/>
-        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/siege_artillery/bolt_projectile_med.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/pers_trireme.png" name="baseTex"/>

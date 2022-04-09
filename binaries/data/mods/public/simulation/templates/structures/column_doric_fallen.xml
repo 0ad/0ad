@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
+  <Capturable disable=""/>
   <Footprint>
     <Square width="2.5" depth="12.5"/>
     <Height>4.0</Height>
@@ -10,7 +11,7 @@
   <Identity>
     <GenericName>Column</GenericName>
     <SpecificName>Fallen Doric Column</SpecificName>
-    <Icon>gaia/special_fence.png</Icon>
+    <Icon>structures/stoa.png</Icon>
   </Identity>
   <Loot>
     <stone>20</stone>
