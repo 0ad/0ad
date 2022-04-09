@@ -32,7 +32,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="767.543" y="93.4146" z="420.979"/>
+		<Position x="427.539" y="87.4031" z="434.396"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -43,6 +43,7 @@
   "Keywords": [],
   "Name": "Cisalpine Winter (2)",
   "PlayerData": [
+    null,
     {},
     {}
   ],
@@ -9994,7 +9995,7 @@
 		</Entity>
 		<Entity uid="1659">
 			<Template>actor|geology/stone_temperate_quarried.xml</Template>
-			<Position x="963.72956" z="543.72242"/>
+			<Position x="963.69837" z="542.69678"/>
 			<Orientation y="0.90642"/>
 			<Actor seed="58346"/>
 		</Entity>
@@ -10012,7 +10013,7 @@
 		</Entity>
 		<Entity uid="1662">
 			<Template>actor|props/structures/construction/scaffold_small.xml</Template>
-			<Position x="943.32331" z="530.03266"/>
+			<Position x="945.60981" z="531.73121"/>
 			<Orientation y="-1.69776"/>
 			<Actor seed="65432"/>
 		</Entity>
@@ -10024,7 +10025,7 @@
 		</Entity>
 		<Entity uid="1664">
 			<Template>actor|props/structures/construction/scaffold.xml</Template>
-			<Position x="950.995" z="535.31287"/>
+			<Position x="951.44196" z="532.41578"/>
 			<Orientation y="2.46698"/>
 			<Actor seed="21212"/>
 		</Entity>
@@ -16382,7 +16383,7 @@
 			<Template>gaia/ore/temperate_01</Template>
 			<Player>0</Player>
 			<Position x="397.82416" z="677.96442"/>
-			<Orientation y="0.67408"/>
+			<Orientation y="-4.12308"/>
 			<Actor seed="20338"/>
 		</Entity>
 		<Entity uid="2735">
@@ -16426,6 +16427,146 @@
 			<Position x="556.93494" z="101.83562"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="19066"/>
+		</Entity>
+		<Entity uid="2745">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="502.00492" z="739.55329"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48454"/>
+		</Entity>
+		<Entity uid="2746">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="509.04471" z="740.21113"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="20455"/>
+		</Entity>
+		<Entity uid="2747">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="515.35322" z="735.85993"/>
+			<Orientation y="2.94468"/>
+			<Actor seed="37419"/>
+		</Entity>
+		<Entity uid="2748">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="521.09583" z="733.1048"/>
+			<Orientation y="0.72176"/>
+			<Actor seed="5121"/>
+		</Entity>
+		<Entity uid="2749">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="522.6548" z="727.88868"/>
+			<Orientation y="-2.18747"/>
+			<Actor seed="46112"/>
+		</Entity>
+		<Entity uid="2750">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="567.87781" z="116.95092"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41920"/>
+		</Entity>
+		<Entity uid="2751">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="571.9513" z="120.61506"/>
+			<Orientation y="-2.63839"/>
+			<Actor seed="36279"/>
+		</Entity>
+		<Entity uid="2752">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="577.5431" z="123.79386"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="32389"/>
+		</Entity>
+		<Entity uid="2753">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="583.995" z="122.56348"/>
+			<Orientation y="1.68766"/>
+			<Actor seed="4327"/>
+		</Entity>
+		<Entity uid="2754">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="591.94867" z="123.77216"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="11237"/>
+		</Entity>
+		<Entity uid="2755">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="177.09504" z="186.12143"/>
+			<Orientation y="-2.89177"/>
+			<Actor seed="32879"/>
+		</Entity>
+		<Entity uid="2756">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="180.36884" z="194.16495"/>
+			<Orientation y="-2.39008"/>
+			<Actor seed="9299"/>
+		</Entity>
+		<Entity uid="2757">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="187.55643" z="194.10364"/>
+			<Orientation y="0.7505"/>
+			<Actor seed="30089"/>
+		</Entity>
+		<Entity uid="2758">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="191.58561" z="197.22944"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3229"/>
+		</Entity>
+		<Entity uid="2759">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="199.30683" z="195.248"/>
+			<Orientation y="1.19658"/>
+			<Actor seed="35077"/>
+		</Entity>
+		<Entity uid="2760">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="952.10285" z="532.21167"/>
+			<Orientation y="0.3579"/>
+			<Actor seed="9299"/>
+		</Entity>
+		<Entity uid="2761">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="956.30951" z="537.00922"/>
+			<Orientation y="-0.07232"/>
+			<Actor seed="30089"/>
+		</Entity>
+		<Entity uid="2762">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="947.75318" z="526.87128"/>
+			<Orientation y="-4.4619"/>
+			<Actor seed="32879"/>
+		</Entity>
+		<Entity uid="2763">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="963.65888" z="536.65192"/>
+			<Orientation y="-0.37896"/>
+			<Actor seed="3229"/>
+		</Entity>
+		<Entity uid="2764">
+			<Template>gaia/rock/temperate_cut</Template>
+			<Player>0</Player>
+			<Position x="969.96497" z="535.99787"/>
+			<Orientation y="-0.66231"/>
+			<Actor seed="35077"/>
 		</Entity>
 	</Entities>
 	<Paths/>
