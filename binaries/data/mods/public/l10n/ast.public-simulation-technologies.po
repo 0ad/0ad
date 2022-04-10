@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-28 07:09+0000\n"
+"POT-Creation-Date: 2022-04-04 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>, 2017-2022\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
@@ -46,7 +46,6 @@ msgstr "Agogá"
 #: simulation/data/technologies/health_regen_units.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenistic_metropolis.jsonrequirementsTooltip
 #: simulation/data/technologies/immortals.jsonrequirementsTooltip
-#: simulation/data/technologies/iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/long_walls.jsonrequirementsTooltip
 #: simulation/data/technologies/nisean_horses.jsonrequirementsTooltip
 #: simulation/data/technologies/parade_of_daphne.jsonrequirementsTooltip
@@ -119,6 +118,7 @@ msgstr "Exercicios de punteiríæ"
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/hoplite_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/infantry_cost_time.jsonrequirementsTooltip
+#: simulation/data/technologies/iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
@@ -349,7 +349,7 @@ msgstr "Stahos federahos"
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
 #: simulation/data/technologies/civbonuses/pers_population.jsontooltip
 msgid "+10% maximum population limit."
-msgstr "Teitho poblracional +10%."
+msgstr "Teitho demográphico +10%."
 
 #: simulation/data/technologies/civbonuses/han_walls.jsondescription
 msgid ""
@@ -981,17 +981,19 @@ msgstr "Pédites: tiempu de creaçon −10%."
 
 #: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
-"Athenian triremes can train Marines (Epibates Athenaikos) and Cretan "
-"Mercenary Archers (Toxotes Kretikos)."
-msgstr "Læs trirremes atheneæs puœden crear Classiarios atheneos (Epibátes Athenaioi) & Sagïttarios créticos (Toxotes Kretikós)."
+"Athenian gymnasium, docks and triremes can train Marines (Epibates "
+"Athenaikos) and Cretan Mercenary Archers (Toxotes Kretikos)."
+msgstr "Los gymnasios, puœrtos & trirremes atheneos puœden crear Classiarios (Epibátes Athenaioi) & Sagïttarios créticos (Toxotes Kretikós)."
 
 #: simulation/data/technologies/iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
 msgstr "Reformæs d’Iphikrates"
 
 #: simulation/data/technologies/iphicratean_reforms.jsontooltip
-msgid "Athenian Triremes can train Marines and Cretan Mercenary Archers."
-msgstr "Læs Trirremes atheneæs puœden crear Classiarios atheneos & Sagïttarios créticos."
+msgid ""
+"Athenian Gymnasia, Docks and Triremes can train Marines and Cretan Mercenary"
+" Archers."
+msgstr "Los Gymnasios, Puœrtos & Trirremes atheneos puœden crear Classiarios & Sagïttarios créticos."
 
 #: simulation/data/technologies/long_walls.jsondescription
 msgid ""
@@ -1222,7 +1224,7 @@ msgstr "Peristȳlum"
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +20% population bonus."
-msgstr "Casæs: teitho poblracional +20%."
+msgstr "Casæs: teitho demográphico +20%."
 
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
@@ -1730,7 +1732,7 @@ msgid ""
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
-msgstr "Unidades superiores, singulares: tiempu de creaçon +20% vitalidá +25% captura +0.7 preda +20% velocidá d’obtençon −30%; Sanantes: sanaçon +5 algame +3; Combatientes: resistencia +1 danho offensivo +20%; Emittientes: imprecision −20%."
+msgstr "Unidades superiores, singulares: tiempu de creaçon +20% vitalidá +25% appropriaçon +0.7 preda +20% velocidá d’obtençon −30%; Sanantes: sanaçon +5 algame +3; Combatientes: resistencia +1 danho offensivo +20%; Emittientes: imprecision −20%."
 
 #: simulation/data/technologies/unit_elephant_african.jsontooltip
 msgid ""
@@ -1750,7 +1752,7 @@ msgid ""
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
 " range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
-msgstr "Unidades singulares: tiempu de creaçon +20% vitalidá +25% captura +0.8 preda +20% velocidá d’obtençon −30%; Sanantes: sanaçon +5 algame +3; Combatientes: resistencia +1 danho offensivo +20%; Emittientes: imprecision −20%."
+msgstr "Unidades singulares: tiempu de creaçon +20% vitalidá +25% appropriaçon +0.8 preda +20% velocidá d’obtençon −30%; Sanantes: sanaçon +5 algame +3; Combatientes: resistencia +1 danho offensivo +20%; Emittientes: imprecision −20%."
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsondescription
 #: simulation/data/technologies/unlock_champion_chariots.jsondescription
@@ -1924,4 +1926,4 @@ msgstr "Perístasis"
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
-msgstr "Activa la influencia “expansion glroriosa”: teitho poblracional +20% per millagro."
+msgstr "Activa la influencia “expansion glroriosa”: teitho demográphico +20% per millagro."

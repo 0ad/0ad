@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"POT-Creation-Date: 2022-04-04 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: Cem Aktas <cemwstone@gmail.com>, 2015,2018,2021\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
@@ -246,9 +246,9 @@ msgstr "Kılıçlı"
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:24
 #: simulation/templates/template_unit_infantry_ranged.xml:7
 #: simulation/templates/template_unit_infantry_ranged.xml:8
-#: simulation/templates/template_unit_ship_bireme.xml:46
+#: simulation/templates/template_unit_ship_bireme.xml:52
 #: simulation/templates/template_unit_ship_quinquereme.xml:56
-#: simulation/templates/template_unit_ship_trireme.xml:46
+#: simulation/templates/template_unit_ship_trireme.xml:52
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
 #: simulation/templates/template_unit_siege_tower.xml:63
@@ -637,25 +637,25 @@ msgstr "Sapancı"
 msgid "Ship"
 msgstr "Gemi"
 
-#: simulation/templates/template_unit_ship_bireme.xml:44
+#: simulation/templates/template_unit_ship_bireme.xml:50
 msgid "Light Warship"
 msgstr "Hafif Savaş Gemisi"
 
-#: simulation/templates/template_unit_ship_bireme.xml:45
-#: simulation/templates/template_unit_ship_quinquereme.xml:55
-#: simulation/templates/template_unit_ship_trireme.xml:45
-#: simulation/templates/template_unit_siege_tower.xml:65
-msgid "Garrison units for transport and to increase firepower."
-msgstr "Garnizon birlikleri için nakliye ve güç arttırımı."
+#: simulation/templates/template_unit_ship_bireme.xml:51
+#: simulation/templates/template_unit_ship_trireme.xml:51
+msgid ""
+"Garrison units for transport and to increase firepower. Deals triple damage "
+"against Ships."
+msgstr ""
 
-#: simulation/templates/template_unit_ship_bireme.xml:46
+#: simulation/templates/template_unit_ship_bireme.xml:52
 #: simulation/templates/template_unit_ship_fire.xml:42
 #: simulation/templates/template_unit_ship_quinquereme.xml:56
-#: simulation/templates/template_unit_ship_trireme.xml:46
+#: simulation/templates/template_unit_ship_trireme.xml:52
 msgid "Warship"
 msgstr "Savaş Gemisi"
 
-#: simulation/templates/template_unit_ship_bireme.xml:46
+#: simulation/templates/template_unit_ship_bireme.xml:52
 #: simulation/templates/units/cart/ship_bireme.xml:9
 #: simulation/templates/units/ptol/ship_bireme.xml:9
 #: simulation/templates/units/sele/ship_bireme.xml:9
@@ -734,16 +734,21 @@ msgstr "Taş"
 msgid "Heavy Warship"
 msgstr "Ağır Savaş Gemisi"
 
+#: simulation/templates/template_unit_ship_quinquereme.xml:55
+#: simulation/templates/template_unit_siege_tower.xml:65
+msgid "Garrison units for transport and to increase firepower."
+msgstr "Garnizon birlikleri için nakliye ve güç arttırımı."
+
 #: simulation/templates/template_unit_ship_quinquereme.xml:56
 #: simulation/templates/units/cart/ship_quinquereme.xml:5
 msgid "Quinquereme"
 msgstr "Quinquereme"
 
-#: simulation/templates/template_unit_ship_trireme.xml:44
+#: simulation/templates/template_unit_ship_trireme.xml:50
 msgid "Medium Warship"
 msgstr "Orta Savaş gemisi"
 
-#: simulation/templates/template_unit_ship_trireme.xml:46
+#: simulation/templates/template_unit_ship_trireme.xml:52
 #: simulation/templates/units/cart/ship_trireme.xml:9
 msgid "Trireme"
 msgstr "Trireme"

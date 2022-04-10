@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"POT-Creation-Date: 2022-04-04 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>, 2016-2022\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
@@ -228,9 +228,9 @@ msgstr "Spathariu"
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:24
 #: simulation/templates/template_unit_infantry_ranged.xml:7
 #: simulation/templates/template_unit_infantry_ranged.xml:8
-#: simulation/templates/template_unit_ship_bireme.xml:46
+#: simulation/templates/template_unit_ship_bireme.xml:52
 #: simulation/templates/template_unit_ship_quinquereme.xml:56
-#: simulation/templates/template_unit_ship_trireme.xml:46
+#: simulation/templates/template_unit_ship_trireme.xml:52
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
 #: simulation/templates/template_unit_siege_tower.xml:63
@@ -475,11 +475,11 @@ msgstr "Sagïttariu n elephante"
 #: simulation/templates/template_unit_fauna_herd.xml:4
 #: simulation/templates/template_unit_fauna_hunt.xml:4
 msgid "Kill to gather meat for food."
-msgstr "Fhœnte de comida."
+msgstr "Fhœnte de carne."
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:8
 msgid "Kill to butcher for food."
-msgstr "Fhœnte de comida."
+msgstr "Fhœnte de carne."
 
 #: simulation/templates/template_unit_hero.xml:25
 #: simulation/templates/template_unit_hero.xml:26
@@ -619,25 +619,25 @@ msgstr "Fundidor"
 msgid "Ship"
 msgstr "Barcu"
 
-#: simulation/templates/template_unit_ship_bireme.xml:44
+#: simulation/templates/template_unit_ship_bireme.xml:50
 msgid "Light Warship"
 msgstr "Naviya"
 
-#: simulation/templates/template_unit_ship_bireme.xml:45
-#: simulation/templates/template_unit_ship_quinquereme.xml:55
-#: simulation/templates/template_unit_ship_trireme.xml:45
-#: simulation/templates/template_unit_siege_tower.xml:65
-msgid "Garrison units for transport and to increase firepower."
-msgstr "Imbarca unidades pa transportallæs & augmenta’ la potencia offensiva de l barcu."
+#: simulation/templates/template_unit_ship_bireme.xml:51
+#: simulation/templates/template_unit_ship_trireme.xml:51
+msgid ""
+"Garrison units for transport and to increase firepower. Deals triple damage "
+"against Ships."
+msgstr "Imbarca unidades pa transportallæs & augmenta’ la potencia offensiva l barcu. Causa l triplu de danho a Barcos."
 
-#: simulation/templates/template_unit_ship_bireme.xml:46
+#: simulation/templates/template_unit_ship_bireme.xml:52
 #: simulation/templates/template_unit_ship_fire.xml:42
 #: simulation/templates/template_unit_ship_quinquereme.xml:56
-#: simulation/templates/template_unit_ship_trireme.xml:46
+#: simulation/templates/template_unit_ship_trireme.xml:52
 msgid "Warship"
 msgstr "Nave béllica"
 
-#: simulation/templates/template_unit_ship_bireme.xml:46
+#: simulation/templates/template_unit_ship_bireme.xml:52
 #: simulation/templates/units/cart/ship_bireme.xml:9
 #: simulation/templates/units/ptol/ship_bireme.xml:9
 #: simulation/templates/units/sele/ship_bireme.xml:9
@@ -679,7 +679,7 @@ msgstr "Pisqueiru"
 
 #: simulation/templates/template_unit_ship_fishing.xml:30
 msgid "Fish the waters for food."
-msgstr "Barcu q’obtien comida piscando."
+msgstr "Barcu q’obtien cibeira piscando."
 
 #: simulation/templates/template_unit_ship_fishing.xml:32
 msgid "FishingBoat"
@@ -716,16 +716,21 @@ msgstr "Piedra"
 msgid "Heavy Warship"
 msgstr "Navío"
 
+#: simulation/templates/template_unit_ship_quinquereme.xml:55
+#: simulation/templates/template_unit_siege_tower.xml:65
+msgid "Garrison units for transport and to increase firepower."
+msgstr "Imbarca unidades pa transportallæs & augmenta’ la potencia offensiva de l barcu."
+
 #: simulation/templates/template_unit_ship_quinquereme.xml:56
 #: simulation/templates/units/cart/ship_quinquereme.xml:5
 msgid "Quinquereme"
 msgstr "Qüinqüerreme"
 
-#: simulation/templates/template_unit_ship_trireme.xml:44
+#: simulation/templates/template_unit_ship_trireme.xml:50
 msgid "Medium Warship"
 msgstr "Nave"
 
-#: simulation/templates/template_unit_ship_trireme.xml:46
+#: simulation/templates/template_unit_ship_trireme.xml:52
 #: simulation/templates/units/cart/ship_trireme.xml:9
 msgid "Trireme"
 msgstr "Trirreme"

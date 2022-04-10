@@ -3661,7 +3661,7 @@ msgstr "없음"
 
 #: gui/locale_advanced/locale_advanced.js:91
 msgid "invalid locale"
-msgstr "잘못된 로케일"
+msgstr "잘못된 장소"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):25
 msgid "Country:"
@@ -3681,7 +3681,7 @@ msgstr "키워드 (미사용):"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):55
 msgid "Resulting locale:"
-msgstr "결과로 초래된 로케일:"
+msgstr "장소 유래:"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):60
 msgid "Dictionary files used:"
@@ -6361,7 +6361,7 @@ msgstr "전투견"
 
 #: gui/text/tips/briton_war_dog.txt:2
 msgid "A dog that the Britons can train at the cavalry stable."
-msgstr "브리턴족이 기병 마굿간에서 훈련할 수 있는 개입니다."
+msgstr "브리튼인이 기병 마굿간에서 훈련할 수 있는 개입니다."
 
 #: gui/text/tips/briton_war_dog.txt:3
 msgid "Has low health, but is fast and will fearlessly attack enemies."
@@ -6373,7 +6373,7 @@ msgstr "부대에서 지원하거나 빠른 습격을 위해 사용합니다."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
-msgstr "카르타고 신성대"
+msgstr "카르타고인의 신성한 악대"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
@@ -6393,11 +6393,11 @@ msgstr "창병을 기병에 대항하여 중보병으로서 활용합니다. 기
 
 #: gui/text/tips/carth_shipyard.txt:1
 msgid "CARTHAGINIAN NAVAL SHIPYARD"
-msgstr "카르타고의 해군 조선소"
+msgstr "카르타고인의 해군 조선소"
 
 #: gui/text/tips/carth_shipyard.txt:2
 msgid "Special dock of the Carthaginians to construct warships."
-msgstr "전함을 건조하기 위한 카르타고인들의 특별한 부두입니다."
+msgstr "군선을 건조하기 위한 카르타고인들의 특별한 부두입니다."
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."
@@ -6444,11 +6444,11 @@ msgstr "켈트 전투 바지선"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "A medium trireme-class warship."
-msgstr "중형 삼단노선 전함입니다."
+msgstr "3단노선급 중형 군선입니다."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."
-msgstr "브리턴족, 갈리아족, 이베리아족이 사용할 수 있습니다."
+msgstr "브리튼인, 갈리아인, 이베리아인이 사용할 수 있습니다."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
@@ -6730,7 +6730,7 @@ msgstr "메로에의 피라미드"
 
 #: gui/text/tips/meroe_pyramids.txt:2
 msgid "Special structures available for the Kushites."
-msgstr "쿠시테인들을 위한 사용할 수 있는 특별한 건축물."
+msgstr "쿠시인이 사용할 수 있는 특별한 건축물입니다."
 
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
@@ -6779,7 +6779,7 @@ msgstr "페르시아 건축"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
-msgstr "페르시아를 위한 특별한 기술입니다."
+msgstr "페르시아인을 위한 특별한 기술입니다."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
@@ -6810,7 +6810,7 @@ msgstr "기병이나 다른 근접 보병에 대항하여 그들을 제자리에
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr "쿠시, 마케도니아, 프톨레마이오, 셀레우코스가 이용 가능합니다."
+msgstr "사용 가능한 대상: 쿠시인, 마케도니아인, 프톨레마이오스인, 셀레우코스인."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
@@ -6820,7 +6820,7 @@ msgstr "5단 노선"
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, and Seleucids."
-msgstr "가장 무거운 표준 전함입니다. 카르타고, 프톨레마이오스, 로마, 셀레우코스가 이용 가능합니다."
+msgstr "가장 무거운 규격의 군선입니다. 사용 가능한 대상: 카르타고인, 프톨레마이오스인, 로마인, 셀레우코스인."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
@@ -7012,11 +7012,11 @@ msgstr "자원 부양책을 제공하므로, 탐색할 때 눈을 떼지 마십�
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
-msgstr "3단 노선"
+msgstr "3단노선"
 
 #: gui/text/tips/triremes.txt:2
 msgid "The Medium Warship."
-msgstr "중형 전함입니다."
+msgstr "중형 군선입니다."
 
 #: gui/text/tips/triremes.txt:3
 msgid "Good for transporting or fighting."
@@ -7042,7 +7042,7 @@ msgstr "식량과 금속 가격은 비싸지만 매우 강력합니다."
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr "카르타고인, 쿠시테인, 모리아스인, 페르시아인, 프톨레마이오스인, 셀레우코스인이 이용 가능합니다."
+msgstr "사용 가능한 대상: 카르타고인, 쿠시인, 마우리아인, 페르시아인, 프톨레마이오스인 및 셀레우코스인."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
