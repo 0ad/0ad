@@ -569,10 +569,16 @@ g_SelectionPanels.Queue = {
 
 		data.countDisplay.caption = queuedItem.count > 1 ? queuedItem.count : "";
 
+		const progressSlider = Engine.GetGUIObjectByName("unitQueueProgressSlider[" + data.i + "]");
 		if (data.item.ghost)
 		{
 			data.button.enabled = false;
-			Engine.GetGUIObjectByName("unitQueueProgressSlider[" + data.i + "]").sprite="color:0 150 250 50";
+			progressSlider.sprite="color:0 150 250 50";
+			const size = progressSlider.size;
+
+			// Buttons are assumed to be square, so left/right offsets can be used for top/bottom.
+			size.top = size.left;
+			progressSlider.size = size;
 		}
 		else
 		{
@@ -581,13 +587,12 @@ g_SelectionPanels.Queue = {
 				Engine.GetGUIObjectByName("queueTimeRemaining").caption =
 					Engine.FormatMillisecondsIntoDateStringGMT(queuedItem.timeRemaining, translateWithContext("countdown format", "m:ss"));
 
-			const guiObject = Engine.GetGUIObjectByName("unitQueueProgressSlider[" + data.i + "]");
-			guiObject.sprite = "queueProgressSlider";
-			const size = guiObject.size;
+			progressSlider.sprite = "queueProgressSlider";
+			const size = progressSlider.size;
 
 			// Buttons are assumed to be square, so left/right offsets can be used for top/bottom.
 			size.top = size.left + Math.round(queuedItem.progress * (size.right - size.left));
-			guiObject.size = size;
+			progressSlider.size = size;
 
 			data.button.enabled = controlsPlayer(data.player);
 
