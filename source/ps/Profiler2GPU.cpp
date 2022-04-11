@@ -286,6 +286,11 @@ void CProfiler2GPU::RegionLeave(const char* id)
 
 #else // CONFIG2_GLES
 
+class CProfiler2GPUARB
+{
+public:
+};
+
 CProfiler2GPU::CProfiler2GPU(CProfiler2& profiler) :
 	m_Profiler(profiler)
 {

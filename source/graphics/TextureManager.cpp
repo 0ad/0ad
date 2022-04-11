@@ -22,6 +22,7 @@
 #include "graphics/Color.h"
 #include "graphics/TextureConverter.h"
 #include "lib/allocators/shared_ptr.h"
+#include "lib/bits.h"
 #include "lib/file/vfs/vfs_tree.h"
 #include "lib/hash.h"
 #include "lib/timer.h"
@@ -408,6 +409,17 @@ public:
 			LOGERROR("Texture failed to load; \"%s\"", texture->m_Properties.m_Path.string8());
 			texture->ResetBackendTexture(
 				nullptr, m_ErrorTexture.GetTexture()->GetBackendTexture());
+			texture->m_TextureData.reset();
+			return;
+		}
+
+		if (!is_pow2(textureData.m_Width) || !is_pow2(textureData.m_Height))
+		{
+			LOGERROR("Texture should have width and height be power of two; \"%s\" %zux%zu",
+				texture->m_Properties.m_Path.string8(), textureData.m_Width, textureData.m_Height);
+			texture->ResetBackendTexture(
+				nullptr, m_ErrorTexture.GetTexture()->GetBackendTexture());
+			texture->m_TextureData.reset();
 			return;
 		}
 
@@ -442,6 +454,7 @@ public:
 			LOGERROR("Texture failed to choose format; \"%s\"", texture->m_Properties.m_Path.string8());
 			texture->ResetBackendTexture(
 				nullptr, m_ErrorTexture.GetTexture()->GetBackendTexture());
+			texture->m_TextureData.reset();
 			return;
 		}
 
@@ -557,7 +570,7 @@ public:
 	 */
 	void ConvertTexture(const CTexturePtr& texture)
 	{
-		VfsPath sourcePath = texture->m_Properties.m_Path;
+		const VfsPath sourcePath = texture->m_Properties.m_Path;
 
 		PROFILE2("convert texture");
 		PROFILE2_ATTR("name: %ls", sourcePath.string().c_str());
@@ -565,9 +578,7 @@ public:
 		MD5 hash;
 		u32 version;
 		PrepareCacheKey(texture, hash, version);
-		VfsPath looseCachePath = m_CacheLoader.LooseCachePath(sourcePath, hash, version);
-
-//		LOGWARNING("Converting texture \"%s\"", srcPath.c_str());
+		const VfsPath looseCachePath = m_CacheLoader.LooseCachePath(sourcePath, hash, version);
 
 		CTextureConverter::Settings settings = GetConverterSettings(texture);
 
@@ -854,7 +865,7 @@ void CTexture::UploadBackendTextureIfNeeded(
 
 	if (!IsLoaded())
 		return;
-	else if (!m_TextureData)
+	else if (!m_TextureData || !m_BackendTexture)
 	{
 		ResetBackendTexture(nullptr, m_TextureManager->GetErrorTexture()->GetBackendTexture());
 		m_State = UPLOADED;

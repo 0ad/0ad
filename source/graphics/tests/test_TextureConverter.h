@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -85,11 +85,19 @@ public:
 		TS_ASSERT_DIFFERS(texdata[0*4], texdata[8*4]);
 		TS_ASSERT_EQUALS(texdata[8*4], texdata[16*4]);
 		TS_ASSERT_DIFFERS(texdata[16*4], texdata[24*4]);
+	}
 
-//		for (size_t i = 0; i < tex.dataSize; ++i)
-//		{
-//			if (i % 4 == 0) printf("\n");
-//			printf("%02x ", texdata[i]);
-//		}
+	void test_not_pot()
+	{
+		// CTextureConverter prints to logs in case of an error.
+		TestLogger logger;
+
+		const VfsPath path = L"art/textures/b/npot.png";
+
+		CTextureConverter converter(m_VFS, false);
+		CTextureConverter::Settings settings =
+			converter.ComputeSettings(L"", std::vector<CTextureConverter::SettingsFile*>());
+		TS_ASSERT(!converter.ConvertTexture(CTexturePtr(), path, L"cache/npot.png", settings));
+		TS_ASSERT(logger.GetOutput().find("be power of two") != std::string::npos);
 	}
 };
