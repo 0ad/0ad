@@ -191,7 +191,8 @@ protected:
 	 * Construct based on GLSL vertex/fragment shader files.
 	 */
 	static std::unique_ptr<CShaderProgram> ConstructGLSL(
-		CDevice* device, const VfsPath& vertexFile, const VfsPath& fragmentFile,
+		CDevice* device, const CStr& name,
+		const VfsPath& vertexFile, const VfsPath& fragmentFile,
 		const CShaderDefines& defines,
 		const std::map<CStrIntern, int>& vertexAttribs,
 		int streamflags);
