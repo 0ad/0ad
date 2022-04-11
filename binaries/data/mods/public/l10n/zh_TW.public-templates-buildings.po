@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"POT-Creation-Date: 2022-04-10 20:43+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -448,32 +448,32 @@ msgid "Namel"
 msgstr "Namel"
 
 #: simulation/templates/structures/cart/embassy.xml:19
-msgid "Train Mercenaries and research Mercenary technologies."
-msgstr "訓練傭兵並研發傭兵科技。"
+msgid "Train Mercenaries."
+msgstr ""
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:17
 msgid "Celtic Embassy"
 msgstr "凱爾特大使館"
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:18
-msgid "Train Celtic Mercenaries and research Mercenary technologies."
-msgstr "訓練凱爾特傭兵及研發傭兵科技。"
+msgid "Train Celtic Mercenaries."
+msgstr "訓練塞爾特傭兵。"
 
 #: simulation/templates/structures/cart/embassy_iberian.xml:10
 msgid "Iberian Embassy"
 msgstr "伊比利大使館"
 
 #: simulation/templates/structures/cart/embassy_iberian.xml:11
-msgid "Train Iberian Mercenaries and research Mercenary technologies."
-msgstr "訓練伊比利傭兵及研發傭兵科技。"
+msgid "Train Iberian Mercenaries."
+msgstr "訓練伊比利傭兵。"
 
 #: simulation/templates/structures/cart/embassy_italic.xml:17
 msgid "Italic Embassy"
 msgstr "義大利大使館"
 
 #: simulation/templates/structures/cart/embassy_italic.xml:18
-msgid "Train Italic Mercenaries and research Mercenary technologies."
-msgstr "訓練義大利傭兵及研發傭兵科技。"
+msgid "Train Italic Mercenaries."
+msgstr "訓練義大利傭兵。"
 
 #: simulation/templates/structures/cart/farmstead.xml:8
 msgid "Aḥuzāh"
@@ -571,18 +571,18 @@ msgstr "棚屋"
 msgid "Longhouse"
 msgstr "長屋"
 
-#: simulation/templates/structures/column_doric.xml:11
-#: simulation/templates/structures/column_doric_fallen.xml:11
-#: simulation/templates/structures/column_doric_fallen_b.xml:11
+#: simulation/templates/structures/column_doric.xml:12
+#: simulation/templates/structures/column_doric_fallen.xml:12
+#: simulation/templates/structures/column_doric_fallen_b.xml:12
 msgid "Column"
 msgstr "柱"
 
-#: simulation/templates/structures/column_doric.xml:12
+#: simulation/templates/structures/column_doric.xml:13
 msgid "Doric Column"
 msgstr "多立克柱"
 
-#: simulation/templates/structures/column_doric_fallen.xml:12
-#: simulation/templates/structures/column_doric_fallen_b.xml:12
+#: simulation/templates/structures/column_doric_fallen.xml:13
+#: simulation/templates/structures/column_doric_fallen_b.xml:13
 msgid "Fallen Doric Column"
 msgstr "倒下的多立克柱"
 
@@ -1705,11 +1705,11 @@ msgstr "朱庇特神廟"
 msgid "Hieron tou Apollōnos Pythiou"
 msgstr "阿波羅神殿"
 
-#: simulation/templates/structures/sele_colonnade.xml:11
+#: simulation/templates/structures/sele_colonnade.xml:12
 msgid "Colonnade"
 msgstr "柱廊"
 
-#: simulation/templates/structures/sele_colonnade.xml:12
+#: simulation/templates/structures/sele_colonnade.xml:13
 msgid "Corinthian Colonnade"
 msgstr "科林斯柱廊 "
 
@@ -1749,6 +1749,14 @@ msgstr "Gerousia"
 #: simulation/templates/structures/spart/gerousia.xml:24
 msgid "Train Heroes."
 msgstr "訓練英雄。"
+
+#: simulation/templates/structures/spart/persian_stoa.xml:9
+msgid "\\\"Persian\\\" Stoa"
+msgstr ""
+
+#: simulation/templates/structures/spart/persian_stoa.xml:10
+msgid "Stoa Persikē"
+msgstr ""
 
 #: simulation/templates/structures/spart/syssiton.xml:23
 msgid "Military Mess Hall"
