@@ -355,8 +355,11 @@ public:
 		m_FileDependencies = {vertexFilePath, fragmentFilePath};
 
 #if !CONFIG2_GLES
-		glObjectLabel(GL_SHADER, m_VertexShader, -1, vertexFilePath.string8().c_str());
-		glObjectLabel(GL_SHADER, m_FragmentShader, -1, fragmentFilePath.string8().c_str());
+		if (m_Device->GetCapabilities().debugLabels)
+		{
+			glObjectLabel(GL_SHADER, m_VertexShader, -1, vertexFilePath.string8().c_str());
+			glObjectLabel(GL_SHADER, m_FragmentShader, -1, fragmentFilePath.string8().c_str());
+		}
 #endif
 
 		CVFSFile vertexFile;
@@ -480,7 +483,10 @@ public:
 		m_Program = glCreateProgram();
 
 #if !CONFIG2_GLES
-		glObjectLabel(GL_PROGRAM, m_Program, -1, m_Name.c_str());
+		if (m_Device->GetCapabilities().debugLabels)
+		{
+			glObjectLabel(GL_PROGRAM, m_Program, -1, m_Name.c_str());
+		}
 #endif
 
 		glAttachShader(m_Program, m_VertexShader);
