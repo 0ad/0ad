@@ -100,22 +100,42 @@ GLenum GLTypeFromFormat(const Renderer::Backend::Format format)
 	return type;
 }
 
-GLenum ParseAttribSemantics(const CStr& str)
+int ParseAttribSemantics(Renderer::Backend::GL::CDevice* device, const CStr& str)
 {
-	// Map known semantics onto the attribute locations documented by NVIDIA
-	if (str == "gl_Vertex") return 0;
-	if (str == "gl_Normal") return 2;
-	if (str == "gl_Color") return 3;
-	if (str == "gl_SecondaryColor") return 4;
-	if (str == "gl_FogCoord") return 5;
-	if (str == "gl_MultiTexCoord0") return 8;
-	if (str == "gl_MultiTexCoord1") return 9;
-	if (str == "gl_MultiTexCoord2") return 10;
-	if (str == "gl_MultiTexCoord3") return 11;
-	if (str == "gl_MultiTexCoord4") return 12;
-	if (str == "gl_MultiTexCoord5") return 13;
-	if (str == "gl_MultiTexCoord6") return 14;
-	if (str == "gl_MultiTexCoord7") return 15;
+	// Old mapping makes sense only if we have an old/low-end hardware. Else we
+	// need to use sequential numbering to fix #3054. We use presence of
+	// compute shaders as a check that the hardware has universal CUs.
+	if (device->GetCapabilities().computeShaders)
+	{
+		if (str == "gl_Vertex") return 0;
+		if (str == "gl_Normal") return 1;
+		if (str == "gl_Color") return 2;
+		if (str == "gl_MultiTexCoord0") return 3;
+		if (str == "gl_MultiTexCoord1") return 4;
+		if (str == "gl_MultiTexCoord2") return 5;
+		if (str == "gl_MultiTexCoord3") return 6;
+		if (str == "gl_MultiTexCoord4") return 7;
+		if (str == "gl_MultiTexCoord5") return 8;
+		if (str == "gl_MultiTexCoord6") return 9;
+		if (str == "gl_MultiTexCoord7") return 10;
+	}
+	else
+	{
+		// Map known semantics onto the attribute locations documented by NVIDIA:
+		//  https://download.nvidia.com/developer/Papers/2005/OpenGL_2.0/NVIDIA_OpenGL_2.0_Support.pdf
+		//  https://developer.download.nvidia.com/opengl/glsl/glsl_release_notes.pdf
+		if (str == "gl_Vertex") return 0;
+		if (str == "gl_Normal") return 2;
+		if (str == "gl_Color") return 3;
+		if (str == "gl_MultiTexCoord0") return 8;
+		if (str == "gl_MultiTexCoord1") return 9;
+		if (str == "gl_MultiTexCoord2") return 10;
+		if (str == "gl_MultiTexCoord3") return 11;
+		if (str == "gl_MultiTexCoord4") return 12;
+		if (str == "gl_MultiTexCoord5") return 13;
+		if (str == "gl_MultiTexCoord6") return 14;
+		if (str == "gl_MultiTexCoord7") return 15;
+	}
 
 	debug_warn("Invalid attribute semantics");
 	return 0;
@@ -902,7 +922,7 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 				}
 				else if (Param.GetNodeName() == el_attrib)
 				{
-					int attribLoc = ParseAttribSemantics(Attrs.GetNamedItem(at_semantics));
+					const int attribLoc = ParseAttribSemantics(device, Attrs.GetNamedItem(at_semantics));
 					vertexAttribs[CStrIntern(Attrs.GetNamedItem(at_name))] = attribLoc;
 				}
 			}
