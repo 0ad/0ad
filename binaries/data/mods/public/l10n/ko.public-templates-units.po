@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"POT-Creation-Date: 2022-04-04 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -239,9 +239,9 @@ msgstr "검병"
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:24
 #: simulation/templates/template_unit_infantry_ranged.xml:7
 #: simulation/templates/template_unit_infantry_ranged.xml:8
-#: simulation/templates/template_unit_ship_bireme.xml:46
+#: simulation/templates/template_unit_ship_bireme.xml:52
 #: simulation/templates/template_unit_ship_quinquereme.xml:56
-#: simulation/templates/template_unit_ship_trireme.xml:46
+#: simulation/templates/template_unit_ship_trireme.xml:52
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
 #: simulation/templates/template_unit_siege_tower.xml:63
@@ -630,25 +630,25 @@ msgstr "투석병"
 msgid "Ship"
 msgstr "선박"
 
-#: simulation/templates/template_unit_ship_bireme.xml:44
+#: simulation/templates/template_unit_ship_bireme.xml:50
 msgid "Light Warship"
-msgstr "경전함"
+msgstr "경군선"
 
-#: simulation/templates/template_unit_ship_bireme.xml:45
-#: simulation/templates/template_unit_ship_quinquereme.xml:55
-#: simulation/templates/template_unit_ship_trireme.xml:45
-#: simulation/templates/template_unit_siege_tower.xml:65
-msgid "Garrison units for transport and to increase firepower."
-msgstr "수송 및 화력 향상을 위한 주둔지 유닛."
+#: simulation/templates/template_unit_ship_bireme.xml:51
+#: simulation/templates/template_unit_ship_trireme.xml:51
+msgid ""
+"Garrison units for transport and to increase firepower. Deals triple damage "
+"against Ships."
+msgstr "수송 및 화력 증강을 위한 주둔지 유닛입니다. 선박에 맞서 3배의 피해를 입힙니다."
 
-#: simulation/templates/template_unit_ship_bireme.xml:46
+#: simulation/templates/template_unit_ship_bireme.xml:52
 #: simulation/templates/template_unit_ship_fire.xml:42
 #: simulation/templates/template_unit_ship_quinquereme.xml:56
-#: simulation/templates/template_unit_ship_trireme.xml:46
+#: simulation/templates/template_unit_ship_trireme.xml:52
 msgid "Warship"
-msgstr "전함"
+msgstr "군선"
 
-#: simulation/templates/template_unit_ship_bireme.xml:46
+#: simulation/templates/template_unit_ship_bireme.xml:52
 #: simulation/templates/units/cart/ship_bireme.xml:9
 #: simulation/templates/units/ptol/ship_bireme.xml:9
 #: simulation/templates/units/sele/ship_bireme.xml:9
@@ -725,21 +725,26 @@ msgstr "돌"
 
 #: simulation/templates/template_unit_ship_quinquereme.xml:54
 msgid "Heavy Warship"
-msgstr "중전함"
+msgstr "중군선"
+
+#: simulation/templates/template_unit_ship_quinquereme.xml:55
+#: simulation/templates/template_unit_siege_tower.xml:65
+msgid "Garrison units for transport and to increase firepower."
+msgstr "수송 및 화력 향상을 위한 주둔지 유닛."
 
 #: simulation/templates/template_unit_ship_quinquereme.xml:56
 #: simulation/templates/units/cart/ship_quinquereme.xml:5
 msgid "Quinquereme"
 msgstr "퀸퀘임"
 
-#: simulation/templates/template_unit_ship_trireme.xml:44
+#: simulation/templates/template_unit_ship_trireme.xml:50
 msgid "Medium Warship"
-msgstr "중형 전함"
+msgstr "중형 군선"
 
-#: simulation/templates/template_unit_ship_trireme.xml:46
+#: simulation/templates/template_unit_ship_trireme.xml:52
 #: simulation/templates/units/cart/ship_trireme.xml:9
 msgid "Trireme"
-msgstr "트리에레스"
+msgstr "3단노선"
 
 #: simulation/templates/template_unit_siege.xml:16
 #: simulation/templates/template_unit_siege.xml:17
@@ -794,11 +799,11 @@ msgstr "공성 투석기"
 
 #: simulation/templates/template_unit_siege_tower.xml:63
 msgid "SiegeTower"
-msgstr "정란"
+msgstr "공성탑"
 
 #: simulation/templates/template_unit_siege_tower.xml:64
 msgid "Siege Tower"
-msgstr "정란"
+msgstr "공성탑"
 
 #: simulation/templates/template_unit_support_elephant.xml:20
 msgid "Worker Elephant"
@@ -1214,7 +1219,7 @@ msgstr "트리에레스 아테나이아"
 
 #: simulation/templates/units/athen/ship_trireme.xml:9
 msgid "Athenian Trireme"
-msgstr "아테네 트리에레스"
+msgstr "아테네 3단노선"
 
 #: simulation/templates/units/athen/siege_lithobolos_packed.xml:4
 #: simulation/templates/units/mace/siege_lithobolos_packed.xml:5
@@ -1575,7 +1580,7 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Carthaginians "
 "have +25% sea trading bonus."
-msgstr "선착장 사이를 교역을 합니다. 주둔지 상인은 추가 이익을 위해 승선합니다 (사람마다 +20%). 귀한 수중 보물을 수집합니다. 카르타고는 +25%의 해양 교역 보너스가 붙습니다."
+msgstr "선착장 사이를 교역을 합니다. 주둔지 상인은 추가 이익을 위해 승선합니다 (사람마다 +20%). 귀한 수중 보물을 수집합니다. 카르타고인은 +25%의 해양 교역 보너스가 붙습니다."
 
 #: simulation/templates/units/cart/ship_quinquereme.xml:6
 msgid "Ḥameš-Mašōt"
@@ -1596,7 +1601,7 @@ msgstr "아스타흐"
 
 #: simulation/templates/units/cart/support_female_citizen.xml:14
 msgid "Carthaginian Woman"
-msgstr "카타르고 여성"
+msgstr "카르타고인 여성"
 
 #: simulation/templates/units/cart/support_healer_b.xml:6
 msgid "Kehinit"
@@ -1941,7 +1946,7 @@ msgstr "낙타"
 
 #: simulation/templates/units/kush/cavalry_spearman_b.xml:7
 msgid "Meroitic Heavy Cavalry"
-msgstr "메로에 중갑 기병"
+msgstr "메로에족 중갑 기병"
 
 #: simulation/templates/units/kush/cavalry_spearman_b.xml:8
 msgid "Htr"
@@ -1957,7 +1962,7 @@ msgstr "Htr Msʿ n mh-ib"
 
 #: simulation/templates/units/kush/champion_elephant.xml:6
 msgid "Meroitic War Elephant"
-msgstr "메로에 전투 코끼리"
+msgstr "메로에족 전투 코끼리"
 
 #: simulation/templates/units/kush/champion_elephant.xml:7
 msgid "Abore ʿhȝ"
@@ -1973,7 +1978,7 @@ msgstr "rs ʿImn"
 
 #: simulation/templates/units/kush/champion_infantry_apedemak.xml:6
 msgid "Meroitic Temple Guard"
-msgstr "메로에 사원 경호대"
+msgstr "메로에족 사원 경호대"
 
 #: simulation/templates/units/kush/champion_infantry_apedemak.xml:7
 msgid "rs ʿIprmk"
@@ -2043,7 +2048,7 @@ msgstr "nhw Noba"
 
 #: simulation/templates/units/kush/infantry_pikeman_b.xml:15
 msgid "Meroitic Pikeman"
-msgstr "메로에 단창병"
+msgstr "메로에족 단창병"
 
 #: simulation/templates/units/kush/infantry_pikeman_b.xml:16
 msgid "siȝwrd"
@@ -2055,15 +2060,15 @@ msgstr "누비아 창병"
 
 #: simulation/templates/units/kush/infantry_spearman_b.xml:16
 msgid "iry-rdwy Nhsyw"
-msgstr "누비아 창기병"
+msgstr "iry-rdwy Nhsyw"
 
 #: simulation/templates/units/kush/infantry_swordsman_b.xml:15
 msgid "Meroitic Swordsman"
-msgstr "메로에 검병"
+msgstr "메로에족 검병"
 
 #: simulation/templates/units/kush/infantry_swordsman_b.xml:16
 msgid "knw hps"
-msgstr "메로아틱 검사"
+msgstr "knw hps"
 
 #: simulation/templates/units/kush/ship_fishing.xml:10
 msgid "Whʿ-rmw"
@@ -2079,7 +2084,7 @@ msgstr "Dȝy sbt"
 
 #: simulation/templates/units/kush/ship_trireme.xml:10
 msgid "Ptolemaic Mercenary Trireme"
-msgstr "프톨레마이오스 용병 트리에레스"
+msgstr "프톨레마이오스 용병 3단노선"
 
 #: simulation/templates/units/kush/ship_trireme.xml:11
 msgid "shry ʿȝ"
@@ -2087,19 +2092,19 @@ msgstr "shry ʿȝ"
 
 #: simulation/templates/units/kush/siege_tower.xml:5
 msgid "Kushite Siege Tower"
-msgstr "쿠시 정란"
+msgstr "쿠시인 공성탑"
 
 #: simulation/templates/units/kush/siege_tower.xml:6
 msgid "iwn n ms"
-msgstr "쿠시테 공성 탑"
+msgstr "iwn n ms"
 
 #: simulation/templates/units/kush/support_female_citizen.xml:14
 msgid "Shmt"
-msgstr "쿠시테 여인"
+msgstr "Shmt"
 
 #: simulation/templates/units/kush/support_female_citizen.xml:15
 msgid "Kushite Woman"
-msgstr "쿠시 여성"
+msgstr "쿠시인 여성"
 
 #: simulation/templates/units/kush/support_healer_b.xml:6
 msgid "Priest"
@@ -2111,7 +2116,7 @@ msgstr "wʿb nsw"
 
 #: simulation/templates/units/kush/support_trader.xml:10
 msgid "Nilotic Merchant"
-msgstr "나일제 용병"
+msgstr "나일족 상인"
 
 #: simulation/templates/units/kush/support_trader.xml:11
 msgid "rmt sbt"
@@ -2246,7 +2251,7 @@ msgstr "트리에리스 마케도니케"
 
 #: simulation/templates/units/mace/ship_trireme.xml:10
 msgid "Macedonian Trireme"
-msgstr "마케도니아 트리에레스"
+msgstr "마케도니아 3단노선"
 
 #: simulation/templates/units/mace/siege_tower.xml:5
 #: simulation/templates/units/ptol/siege_tower.xml:5
@@ -2637,7 +2642,7 @@ msgstr "나우스 야우나"
 
 #: simulation/templates/units/pers/ship_trireme.xml:10
 msgid "Phoenician Trireme"
-msgstr "페니키아 트리에레스"
+msgstr "페니키아 3단노선"
 
 #: simulation/templates/units/pers/ship_trireme.xml:11
 msgid "Hamaraniyanava Vazarka"
@@ -2679,7 +2684,7 @@ msgstr "탐카룸 아라미"
 msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
-msgstr "자국과 동맹국의 시장간에 자원을 교역합니다. 페르시아는 +25% 육로 교역 보너스가 있습니다."
+msgstr "자국과 동맹국의 시장간에 자원을 교역합니다. 페르시아인은 +25% 육로 교역 보너스가 있습니다."
 
 #: simulation/templates/units/plane.xml:5
 msgctxt "Name of an attack of a World War II fighter plane."
@@ -2991,7 +2996,7 @@ msgstr "트리에미스 로마나"
 
 #: simulation/templates/units/rome/ship_trireme.xml:9
 msgid "Roman Trireme"
-msgstr "로마 트리에레스"
+msgstr "로마 3단노선"
 
 #: simulation/templates/units/rome/siege_onager.xml:26
 msgid "Onager"
@@ -3183,7 +3188,7 @@ msgstr "세레우키돈 트리에레스"
 
 #: simulation/templates/units/sele/ship_trireme.xml:10
 msgid "Seleucid Trireme"
-msgstr "셀레우코스 왕조 트리에레스"
+msgstr "셀레우코스 3단노선"
 
 #: simulation/templates/units/sele/support_female_citizen.xml:6
 msgid "Syrías Gýnē"
@@ -3276,7 +3281,7 @@ msgstr "호프리테스 페리오이코스"
 
 #: simulation/templates/units/spart/ship_trireme.xml:10
 msgid "Spartan Trireme"
-msgstr "스파르타 트리에레스"
+msgstr "스파르타 3단노선"
 
 #: simulation/templates/units/spart/support_female_citizen.xml:25
 msgid "Spartan Woman"

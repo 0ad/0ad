@@ -39,7 +39,7 @@ msgstr "Atayu sin assignar: %(hotkeyName)s"
 #: gui/common/color.js:196
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr "Premi %(hotkey)s p’auto-completar nomes de xhogadores."
+msgstr "Premi %(hotkey)s pa perfhazer nomes de xhogadores automaticamente."
 
 #: gui/common/color.js:198
 msgctxt "hotkey"
@@ -141,7 +141,7 @@ msgstr "apoderad@"
 #: gui/common/gamedescription.js:138
 msgctxt "playerstate"
 msgid "won"
-msgstr "triumphante"
+msgstr "vincedor/ora"
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
@@ -237,17 +237,17 @@ msgstr "A vida ou muœrte"
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr "Nun puœde haber ma un vincedor. Si todolos xhogadores vivos stan associahos, la partida continúa ta quedar unu n pie."
+msgstr "Nun puœde haber ma un vincedor. Si los xhogadores restantes stuvieren associahos, la partida continúa ta que quede un solu vincedor."
 
 #: gui/common/gamedescription.js:267
 msgid "Allied Victory"
-msgstr "Victoria associada"
+msgstr "Victoria collectiva"
 
 #: gui/common/gamedescription.js:268
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr "El xhogador comparte la victoria cun los socios. La última associaçon viva ye la vincedora."
+msgstr "El xhogador comparte la victoria cun los socios. L associaçon que remanecier ye la vincedora."
 
 #: gui/common/gamedescription.js:273
 msgid "Ceasefire"
@@ -336,7 +336,7 @@ msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:365
 msgid "Population Limit"
-msgstr "Teitho poblracional"
+msgstr "Teitho demográphico"
 
 #: gui/common/gamedescription.js:369
 msgctxt "population limit"
@@ -345,7 +345,7 @@ msgstr "Per xhogador"
 
 #: gui/common/gamedescription.js:377
 msgid "World Population Cap"
-msgstr "Teitho poblracional global"
+msgstr "Teitho demográphico global"
 
 #: gui/common/gamedescription.js:385
 msgid "Treasures"
@@ -371,7 +371,7 @@ msgstr "Terreiro revelaho"
 
 #: gui/common/gamedescription.js:402
 msgid "Allied View"
-msgstr "Vista associada"
+msgstr "Vision collectiva"
 
 #: gui/common/gamedescription.js:407
 msgid "Cheats"
@@ -411,7 +411,7 @@ msgstr "Activarun-se"
 
 #: gui/common/gamedescription.js:440
 msgid "Victorious"
-msgstr "Victorios@"
+msgstr "Vincedor/ora"
 
 #: gui/common/gamedescription.js:445
 msgid "Defeated"
@@ -506,7 +506,7 @@ msgstr "Nun pudo atopase un puœrtu disponible pa l cliente STUN."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr "Nun pudo atopase l extremu de STUN."
+msgstr "Nun pudo atopase la extremidá de STUN."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -619,7 +619,7 @@ msgstr "Aleatorio"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr "Cría un terreiro único u la distribuçon de recursos ye aleatoria. Scuœye-se l númeru de xhogadores & comuñæs."
+msgstr "Cría un terreiro único u la distribuçon de recursos ye aleatoria. Scuœye-se l númeru de xhogadores & de comuñæs."
 
 #: gui/common/settings.js:192
 msgctxt "map"
@@ -676,22 +676,22 @@ msgstr "Disconhoç-se la condiçon de victoria"
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab right."
-msgstr "Desplaza abaxo o usa %(hotkey)s pa mover les llingüetes a mandrecha."
+msgstr "Disloca a baxo ou usa %(hotkey)s par mover una lhingueta a mandreitha."
 
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab left."
-msgstr "Desplaza arriba o usa %(hotkey)s pa mover les llingüetes a manzorga."
+msgstr "Disloca a riba ou usa %(hotkey)s par mover una lhingueta a manzorga."
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab down."
-msgstr "Desplaza abaxo o usa %(hotkey)s pa mover les llingüetes abaxo."
+msgstr "Disloca a baxo ou usa %(hotkey)s par mover una lhingueta a baxo."
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab up."
-msgstr "Desplaza arriba o usa %(hotkey)s pa mover les llingüetes arriba."
+msgstr "Disloca a riba ou usa %(hotkey)s par mover una lhingueta a riba."
 
 #: gui/common/tooltips.js:63
 #, javascript-format
@@ -753,7 +753,7 @@ msgstr "Resistencia:"
 
 #: gui/common/tooltips.js:222
 msgid "Damage:"
-msgstr "Dañu:"
+msgstr "Danho:"
 
 #: gui/common/tooltips.js:225 gui/common/tooltips.js:245
 #, javascript-format
@@ -767,12 +767,12 @@ msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:243
 msgid "Capture:"
-msgstr "Apropriación:"
+msgstr "Appropriaçon:"
 
 #: gui/common/tooltips.js:247 gui/common/tooltips.js:387
 msgctxt "damage type"
 msgid "Capture"
-msgstr "Captura"
+msgstr "Appropriaçon"
 
 #: gui/common/tooltips.js:262
 msgid "Status Effects:"
@@ -792,26 +792,26 @@ msgstr "%(name)s %(details)s"
 #: gui/common/tooltips.js:274
 #, javascript-format
 msgid "Duration reduction: %(durationReduction)s%%"
-msgstr "Amenorgu na duranza: %(durationReduction)s%%"
+msgstr "Reducçon na durança: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:282
 #, javascript-format
 msgid "Blocks: %(blockPercentage)s%%"
-msgstr "Parades: %(blockPercentage)s%%"
+msgstr "Paradæs: %(blockPercentage)s%%"
 
 #: gui/common/tooltips.js:289
 #, javascript-format
 msgid ""
 "Blocks: %(blockPercentage)s%%, Duration reduction: %(durationReduction)s%%"
-msgstr "Parades: %(blockPercentage)s%%, Amenorgu na duranza: %(durationReduction)s%%"
+msgstr "Paradæs: %(blockPercentage)s%%, Reducçon na durança: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:305
 msgid "Garrison to fire arrows"
-msgstr "Occupa pa tirar saietæs"
+msgstr "Occupa-llo pa tirar saietæs"
 
 #: gui/common/tooltips.js:308 gui/common/tooltips.js:1056
 msgid "Interval:"
-msgstr "Intervalu:"
+msgstr "Intervallo:"
 
 #: gui/common/tooltips.js:312
 msgid "Rate:"
@@ -827,8 +827,8 @@ msgstr[1] "%(projectileCount)s %(projectileName)s"
 #: gui/common/tooltips.js:315
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] "flecha"
-msgstr[1] "fleches"
+msgstr[0] "saieta"
+msgstr[1] "saietæs"
 
 #: gui/common/tooltips.js:318
 #, javascript-format
@@ -963,7 +963,7 @@ msgstr "%(durName)s: %(duration)s"
 
 #: gui/common/tooltips.js:521
 msgid "Duration"
-msgstr "Duración"
+msgstr "Durança"
 
 #: gui/common/tooltips.js:535
 msgctxt "status effect stackability"
@@ -1193,7 +1193,7 @@ msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:978
 msgid "Population Bonus:"
-msgstr "Ventaya poblracional:"
+msgstr "Ventaya demográphica:"
 
 #: gui/common/tooltips.js:998
 msgid "Insufficient resources:"
@@ -4947,7 +4947,7 @@ msgstr "Númberu de veces qu'hai que xirar la rueda'l mure p'aumentar o amenorga
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].label
 msgid "Flare display duration"
-msgstr "Duraçon de læs siñæs"
+msgstr "Durança de læs siñæs"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
@@ -5838,12 +5838,12 @@ msgstr "Grandura"
 #: gui/replaymenu/replay_menu.xml:(heading):87
 msgctxt "replay"
 msgid "Population"
-msgstr "Población"
+msgstr "Poblraçon"
 
 #: gui/replaymenu/replay_menu.xml:(heading):91
 msgctxt "replay"
 msgid "Duration"
-msgstr "Duración"
+msgstr "Durança"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
@@ -6076,7 +6076,7 @@ msgstr "Razón de matancies / muertes"
 
 #: gui/summary/layout.js:195 gui/summary/summary.js:99
 msgid "Population"
-msgstr "Población"
+msgstr "Poblraçon"
 
 #: gui/summary/layout.js:196
 msgid "Map control (peak)"
@@ -6582,11 +6582,11 @@ msgstr "Pesca la mar pa una collecha bayurosa."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
-msgstr "Los pisqueiros lhevæn mũîtha comida per viaxhe."
+msgstr "Los pisqueiros trahen mũîthu pexe per marea."
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
-msgstr "La pesca ye más rápida que la collecha."
+msgstr "La pesca ye mas rápida que la colleitha."
 
 #: gui/text/tips/fishing.txt:5
 msgid ""
@@ -6944,7 +6944,7 @@ msgstr "BODEGUES"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "A cheap dropsite for non-food resources (Wood, Stone, Metal)."
-msgstr "Un depósitu baratu pa recursos non comibles (la madera, la piedra, el metal)."
+msgstr "Un depósitu baratu pa recursos non comestibles (Madeira, Piedra, Metal)."
 
 #: gui/text/tips/storehouses.txt:3
 msgid ""
@@ -7048,7 +7048,7 @@ msgstr "Bestiæs gïgantes de l África & La India, exercitadæs pa l combate."
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
-msgstr "Costosos en comida y metal, pero perfuertes."
+msgstr "Costosos in cibeira & metal, mas per-fhuœrtes."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
@@ -7066,7 +7066,7 @@ msgstr "Un recursu oceánicu."
 
 #: gui/text/tips/whales.txt:3
 msgid "2000 Food."
-msgstr "2000 de comida."
+msgstr "2000 de cibeira."
 
 #: gui/text/tips/whales.txt:4
 msgid "Gatherable by Fishing Boats after the whale is killed."
@@ -7085,7 +7085,7 @@ msgstr "Llógrase d'animales, arbustos, pexes o panales."
 #: simulation/data/resources/food.jsonname
 msgctxt "firstWord"
 msgid "Food"
-msgstr "Comida"
+msgstr "Cibeira"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7093,7 +7093,7 @@ msgstr "Comida"
 #: simulation/data/resources/food.jsonname
 msgctxt "withinSentence"
 msgid "Food"
-msgstr "comida"
+msgstr "cibeira"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.

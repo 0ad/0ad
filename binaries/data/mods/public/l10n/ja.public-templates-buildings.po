@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"POT-Creation-Date: 2022-04-10 20:43+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Photon man, 2021-2022\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
@@ -442,32 +442,32 @@ msgid "Namel"
 msgstr "Namel"
 
 #: simulation/templates/structures/cart/embassy.xml:19
-msgid "Train Mercenaries and research Mercenary technologies."
-msgstr "傭兵を養成し、傭兵関連のテクノロジー研究を行えます。"
+msgid "Train Mercenaries."
+msgstr ""
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:17
 msgid "Celtic Embassy"
 msgstr "Celtic Embassy"
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:18
-msgid "Train Celtic Mercenaries and research Mercenary technologies."
-msgstr "傭兵を養成し、傭兵関連のテクノロジー研究を行えます。"
+msgid "Train Celtic Mercenaries."
+msgstr ""
 
 #: simulation/templates/structures/cart/embassy_iberian.xml:10
 msgid "Iberian Embassy"
 msgstr "Iberian Embassy"
 
 #: simulation/templates/structures/cart/embassy_iberian.xml:11
-msgid "Train Iberian Mercenaries and research Mercenary technologies."
-msgstr "傭兵を養成し、傭兵関連のテクノロジー研究を行えます。"
+msgid "Train Iberian Mercenaries."
+msgstr ""
 
 #: simulation/templates/structures/cart/embassy_italic.xml:17
 msgid "Italic Embassy"
 msgstr "Italic Embassy"
 
 #: simulation/templates/structures/cart/embassy_italic.xml:18
-msgid "Train Italic Mercenaries and research Mercenary technologies."
-msgstr "傭兵を養成し、傭兵関連のテクノロジー研究を行えます。"
+msgid "Train Italic Mercenaries."
+msgstr ""
 
 #: simulation/templates/structures/cart/farmstead.xml:8
 msgid "Aḥuzāh"
@@ -565,18 +565,18 @@ msgstr "小屋"
 msgid "Longhouse"
 msgstr "長屋"
 
-#: simulation/templates/structures/column_doric.xml:11
-#: simulation/templates/structures/column_doric_fallen.xml:11
-#: simulation/templates/structures/column_doric_fallen_b.xml:11
+#: simulation/templates/structures/column_doric.xml:12
+#: simulation/templates/structures/column_doric_fallen.xml:12
+#: simulation/templates/structures/column_doric_fallen_b.xml:12
 msgid "Column"
 msgstr "石柱"
 
-#: simulation/templates/structures/column_doric.xml:12
+#: simulation/templates/structures/column_doric.xml:13
 msgid "Doric Column"
 msgstr "ドーリア式石柱"
 
-#: simulation/templates/structures/column_doric_fallen.xml:12
-#: simulation/templates/structures/column_doric_fallen_b.xml:12
+#: simulation/templates/structures/column_doric_fallen.xml:13
+#: simulation/templates/structures/column_doric_fallen_b.xml:13
 msgid "Fallen Doric Column"
 msgstr "倒れたドーリア式石柱"
 
@@ -1699,11 +1699,11 @@ msgstr "Aedēs Iovis Optimi Maximi"
 msgid "Hieron tou Apollōnos Pythiou"
 msgstr "Hieron tou Apollōnos Pythiou"
 
-#: simulation/templates/structures/sele_colonnade.xml:11
+#: simulation/templates/structures/sele_colonnade.xml:12
 msgid "Colonnade"
 msgstr "列柱"
 
-#: simulation/templates/structures/sele_colonnade.xml:12
+#: simulation/templates/structures/sele_colonnade.xml:13
 msgid "Corinthian Colonnade"
 msgstr "コリント式列柱"
 
@@ -1743,6 +1743,14 @@ msgstr "Gerousia"
 #: simulation/templates/structures/spart/gerousia.xml:24
 msgid "Train Heroes."
 msgstr "英雄を養成できます"
+
+#: simulation/templates/structures/spart/persian_stoa.xml:9
+msgid "\\\"Persian\\\" Stoa"
+msgstr ""
+
+#: simulation/templates/structures/spart/persian_stoa.xml:10
+msgid "Stoa Persikē"
+msgstr ""
 
 #: simulation/templates/structures/spart/syssiton.xml:23
 msgid "Military Mess Hall"

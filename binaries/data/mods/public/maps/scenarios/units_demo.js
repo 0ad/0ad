@@ -12,7 +12,7 @@ let startZ = 20;
 /**
  * Horizontal coordinate of the last entity in the current row.
  */
-let stopX = 1580;
+let stopX = 1870;
 
 /**
  * Coordinates of the current entity.
@@ -64,6 +64,12 @@ for (let template of cmpTemplateManager.FindAllTemplates(actors))
 		maxh = 0;
 	}
 
+	if (z >= stopX)
+	{
+		error(template + " would be placed out of map [" +(x + w / 2) + ", " + z + "]");
+		continue;
+	}
+
 	let cmpPosition = Engine.QueryInterface(ent, IID_Position);
 	if (!cmpPosition)
 	{
@@ -72,7 +78,7 @@ for (let template of cmpTemplateManager.FindAllTemplates(actors))
 		continue;
 	}
 
-	cmpPosition.MoveTo(x + w / 2, z);
+	cmpPosition.JumpTo(x + w / 2, z);
 	cmpPosition.SetYRotation(Math.PI * 3 / 4);
 
 	let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
