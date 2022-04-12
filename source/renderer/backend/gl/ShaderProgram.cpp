@@ -763,7 +763,7 @@ public:
 	{
 		const GLint size = GLSizeFromFormat(format);
 		const GLenum type = GLTypeFromFormat(format);
-		glVertexAttribPointer(2, size, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
+		glVertexAttribPointer(m_Device->GetCapabilities().computeShaders ? 1 : 2, size, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
 		m_ValidStreams |= STREAM_NORMAL;
 	}
 
@@ -771,7 +771,7 @@ public:
 	{
 		const GLint size = GLSizeFromFormat(format);
 		const GLenum type = GLTypeFromFormat(format);
-		glVertexAttribPointer(3, size, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
+		glVertexAttribPointer(m_Device->GetCapabilities().computeShaders ? 2 : 3, size, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
 		m_ValidStreams |= STREAM_COLOR;
 	}
 
@@ -779,7 +779,8 @@ public:
 	{
 		const GLint size = GLSizeFromFormat(format);
 		const GLenum type = GLTypeFromFormat(format);
-		glVertexAttribPointer(8 + texture - GL_TEXTURE0, size, type, GL_FALSE, stride, pointer);
+		glVertexAttribPointer(
+			(m_Device->GetCapabilities().computeShaders ? 3 : 8) + texture - GL_TEXTURE0, size, type, GL_FALSE, stride, pointer);
 		m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
 	}
 
