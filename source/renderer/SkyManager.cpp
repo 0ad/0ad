@@ -95,8 +95,12 @@ void SkyManager::LoadAndUploadSkyTexturesIfNeeded(
 			}
 		}
 
-		textures[i].decode(file, fileSize);
-		textures[i].transform_to((textures[i].m_Flags | TEX_BOTTOM_UP | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS));
+		if (textures[i].decode(file, fileSize) != INFO::OK ||
+			textures[i].transform_to((textures[i].m_Flags | TEX_BOTTOM_UP | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS)) != INFO::OK)
+		{
+			LOGERROR("Error creating sky cubemap '%s', can't decode file: '%s'.", m_SkySet.ToUTF8().c_str(), path.string8().c_str());
+			return;
+		}
 
 		if (!is_pow2(textures[i].m_Width) || !is_pow2(textures[i].m_Height))
 		{

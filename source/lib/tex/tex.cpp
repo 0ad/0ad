@@ -34,7 +34,9 @@
 #include <cmath>
 #include <cstdlib>
 
-static const StatusDefinition texStatusDefinitions[] = {
+static const StatusDefinition texStatusDefinitions[] =
+{
+	{ ERR::TEX_UNKNOWN_FORMAT, L"Unknown texture format" },
 	{ ERR::TEX_FMT_INVALID, L"Invalid/unsupported texture format" },
 	{ ERR::TEX_INVALID_COLOR_TYPE, L"Invalid color type" },
 	{ ERR::TEX_NOT_8BIT_PRECISION, L"Not 8-bit channel precision" },
@@ -55,7 +57,7 @@ STATUS_ADD_DEFINITIONS(texStatusDefinitions);
 Status Tex::validate() const
 {
 	if(m_Flags & TEX_UNDEFINED_FLAGS)
-		WARN_RETURN(ERR::_1);
+		return ERR::_1;
 
 	// pixel data (only check validity if the image is still in memory).
 	if(m_Data)
@@ -64,23 +66,23 @@ Status Tex::validate() const
 		// possible causes: texture file header is invalid,
 		// or file wasn't loaded completely.
 		if(m_DataSize < m_Ofs + m_Width*m_Height*m_Bpp/8)
-			WARN_RETURN(ERR::_2);
+			return ERR::_2;
 	}
 
 	// bits per pixel
 	// (we don't bother checking all values; a sanity check is enough)
 	if(m_Bpp % 4 || m_Bpp > 32)
-		WARN_RETURN(ERR::_3);
+		return ERR::_3;
 
 	// flags
 	// .. DXT value
 	const size_t dxt = m_Flags & TEX_DXT;
 	if(dxt != 0 && dxt != 1 && dxt != DXT1A && dxt != 3 && dxt != 5)
-		WARN_RETURN(ERR::_4);
+		return ERR::_4;
 	// .. orientation
 	const size_t orientation = m_Flags & TEX_ORIENTATION;
 	if(orientation == (TEX_BOTTOM_UP|TEX_TOP_DOWN))
-		WARN_RETURN(ERR::_5);
+		return ERR::_5;
 
 	return INFO::OK;
 }
@@ -718,10 +720,10 @@ Status Tex::decode(const std::shared_ptr<u8>& Data, size_t DataSize)
 	// make sure the entire header is available
 	const size_t min_hdr_size = c->hdr_size(0);
 	if(DataSize < min_hdr_size)
-		WARN_RETURN(ERR::TEX_INCOMPLETE_HEADER);
+		return ERR::TEX_INCOMPLETE_HEADER;
 	const size_t hdr_size = c->hdr_size(Data.get());
 	if(DataSize < hdr_size)
-		WARN_RETURN(ERR::TEX_INCOMPLETE_HEADER);
+		return ERR::TEX_INCOMPLETE_HEADER;
 
 	m_Data = Data;
 	m_DataSize = DataSize;
@@ -731,9 +733,9 @@ Status Tex::decode(const std::shared_ptr<u8>& Data, size_t DataSize)
 
 	// sanity checks
 	if(!m_Width || !m_Height || m_Bpp > 32)
-		WARN_RETURN(ERR::TEX_FMT_INVALID);
+		return ERR::TEX_FMT_INVALID;
 	if(m_DataSize < m_Ofs + img_size())
-		WARN_RETURN(ERR::TEX_INVALID_SIZE);
+		return ERR::TEX_INVALID_SIZE;
 
 	flip_to_global_orientation(this);
 

@@ -144,7 +144,10 @@ const wchar_t* ErrorString(int err)
 	// TODO: load from language file
 }
 
-
+CStr GetStatusAsString(Status status)
+{
+	return utf8_from_wstring(ErrorString(status));
+}
 
 // write the specified texture to disk.
 // note: <t> cannot be made const because the image may have to be

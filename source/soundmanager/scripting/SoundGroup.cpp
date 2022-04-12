@@ -253,7 +253,7 @@ static void HandleError(const std::wstring& message, const VfsPath& pathname, St
 	if (err == ERR::AGAIN)
 		return;
 
-	LOGERROR("%s: pathname=%s, error=%s", utf8_from_wstring(message), pathname.string8(), utf8_from_wstring(ErrorString(err)));
+	LOGERROR("%s: pathname=%s, error=%s", utf8_from_wstring(message), pathname.string8(), GetStatusAsString(err).c_str());
 }
 
 void CSoundGroup::PlayNext(const CVector3D& position, entity_id_t source)

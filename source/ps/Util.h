@@ -18,14 +18,18 @@
 #ifndef PS_UTIL_H
 #define PS_UTIL_H
 
-#include "lib/os_path.h"
 #include "lib/file/vfs/vfs_path.h"
+#include "lib/os_path.h"
+#include "lib/status.h"
+#include "ps/CStr.h"
 
 class Tex;
 
 void WriteSystemInfo();
 
 const wchar_t* ErrorString(int err);
+
+CStr GetStatusAsString(Status status);
 
 OsPath createDateIndexSubdirectory(const OsPath& parentDir);
 

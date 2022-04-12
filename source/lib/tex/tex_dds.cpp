@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -397,7 +397,7 @@ static Status decode_pf(const DDS_PIXELFORMAT* pf, size_t& bpp, size_t& flags)
 
 	// check struct size
 	if(read_le32(&pf->dwSize) != sizeof(DDS_PIXELFORMAT))
-		WARN_RETURN(ERR::TEX_INVALID_SIZE);
+		return ERR::TEX_INVALID_SIZE;
 
 	// determine type
 	const size_t pf_flags = (size_t)read_le32(&pf->dwFlags);
@@ -432,7 +432,7 @@ static Status decode_pf(const DDS_PIXELFORMAT* pf, size_t& bpp, size_t& flags)
 			// DDS is storing images in a format that requires no processing,
 			// we do not allow any weird orderings that require runtime work.
 			// instead, the artists must export with the correct settings.
-			WARN_RETURN(ERR::TEX_FMT_INVALID);
+			return ERR::TEX_FMT_INVALID;
 		}
 
 		RETURN_STATUS_IF_ERR(tex_validate_plain_format(bpp, (int)flags));
@@ -446,10 +446,10 @@ static Status decode_pf(const DDS_PIXELFORMAT* pf, size_t& bpp, size_t& flags)
 		bpp = pf_bpp;
 
 		if(pf_bpp != 8)
-			WARN_RETURN(ERR::TEX_FMT_INVALID);
+			return ERR::TEX_FMT_INVALID;
 
 		if(pf_a_mask != 0xFF)
-			WARN_RETURN(ERR::TEX_FMT_INVALID);
+			return ERR::TEX_FMT_INVALID;
 		flags |= TEX_GREY;
 
 		RETURN_STATUS_IF_ERR(tex_validate_plain_format(bpp, (int)flags));
@@ -480,12 +480,12 @@ static Status decode_pf(const DDS_PIXELFORMAT* pf, size_t& bpp, size_t& flags)
 			break;
 
 		default:
-			WARN_RETURN(ERR::TEX_FMT_INVALID);
+			return ERR::TEX_FMT_INVALID;
 		}
 	}
 	// .. neither uncompressed nor compressed - invalid
 	else
-		WARN_RETURN(ERR::TEX_FMT_INVALID);
+		return ERR::TEX_FMT_INVALID;
 
 	return INFO::OK;
 }
@@ -499,7 +499,7 @@ static Status decode_sd(const DDS_HEADER* sd, size_t& w, size_t& h, size_t& bpp,
 {
 	// check header size
 	if(read_le32(&sd->dwSize) != sizeof(*sd))
-		WARN_RETURN(ERR::CORRUPTED);
+		return ERR::CORRUPTED;
 
 	// flags (indicate which fields are valid)
 	const size_t sd_flags = (size_t)read_le32(&sd->dwFlags);
@@ -507,7 +507,7 @@ static Status decode_sd(const DDS_HEADER* sd, size_t& w, size_t& h, size_t& bpp,
 	// note: we can't guess dimensions - the image may not be square.
 	const size_t sd_req_flags = DDSD_CAPS|DDSD_HEIGHT|DDSD_WIDTH|DDSD_PIXELFORMAT;
 	if((sd_flags & sd_req_flags) != sd_req_flags)
-		WARN_RETURN(ERR::TEX_INCOMPLETE_HEADER);
+		return ERR::TEX_INCOMPLETE_HEADER;
 
 	// image dimensions
 	h = (size_t)read_le32(&sd->dwHeight);
@@ -537,7 +537,7 @@ static Status decode_sd(const DDS_HEADER* sd, size_t& w, size_t& h, size_t& bpp,
 	if(sd_flags & DDSD_PITCH)
 	{
 		if(sd_pitch_or_size != Align<4>(pitch))
-			DEBUG_WARN_ERR(ERR::CORRUPTED);
+			return ERR::CORRUPTED;
 	}
 	if(sd_flags & DDSD_LINEARSIZE)
 	{
@@ -545,7 +545,7 @@ static Status decode_sd(const DDS_HEADER* sd, size_t& w, size_t& h, size_t& bpp,
 		// so allow values close to that as well
 		const ssize_t totalSize = ssize_t(pitch*stored_h*1.333333f);
 		if(sd_pitch_or_size != pitch*stored_h && std::abs(ssize_t(sd_pitch_or_size)-totalSize) > 64)
-			DEBUG_WARN_ERR(ERR::CORRUPTED);
+			return ERR::CORRUPTED;
 	}
 	// note: both flags set would be invalid; no need to check for that,
 	// though, since one of the above tests would fail.
@@ -559,7 +559,7 @@ static Status decode_sd(const DDS_HEADER* sd, size_t& w, size_t& h, size_t& bpp,
 			// mipmap chain is incomplete
 			// note: DDS includes the base level in its count, hence +1.
 			if(mipmap_count != ceil_log2(std::max(w,h))+1)
-				WARN_RETURN(ERR::TEX_FMT_INVALID);
+				return ERR::TEX_FMT_INVALID;
 			flags |= TEX_MIPMAPS;
 		}
 	}
@@ -569,17 +569,19 @@ static Status decode_sd(const DDS_HEADER* sd, size_t& w, size_t& h, size_t& bpp,
 	{
 		const size_t depth = (size_t)read_le32(&sd->dwDepth);
 		if(depth)
-			WARN_RETURN(ERR::NOT_SUPPORTED);
+			return ERR::NOT_SUPPORTED;
 	}
 
 	// check caps
 	// .. this is supposed to be set, but don't bail if not (pointless)
-	ENSURE(sd->dwCaps & DDSCAPS_TEXTURE);
+	if (!(sd->dwCaps & DDSCAPS_TEXTURE))
+		return ERR::CORRUPTED;
 	// .. sanity check: warn if mipmap flag not set (don't bail if not
 	// because we've already made the decision).
 	const bool mipmap_cap = (sd->dwCaps & DDSCAPS_MIPMAP) != 0;
 	const bool mipmap_flag = (flags & TEX_MIPMAPS) != 0;
-	ENSURE(mipmap_cap == mipmap_flag);
+	if (mipmap_cap != mipmap_flag)
+		return ERR::CORRUPTED;
 	// note: we do not check for cubemaps and volume textures (not supported)
 	// because the file may still have useful data we can read.
 

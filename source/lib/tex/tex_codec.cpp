@@ -67,7 +67,7 @@ Status tex_codec_for_header(const u8* file, size_t file_size, const ITexCodec** 
 {
 	// we guarantee at least 4 bytes for is_hdr to look at
 	if(file_size < 4)
-		WARN_RETURN(ERR::TEX_INCOMPLETE_HEADER);
+		return ERR::TEX_INCOMPLETE_HEADER;
 
 	for(int i = 0; i < codecs_len; ++i)
 	{
@@ -78,7 +78,7 @@ Status tex_codec_for_header(const u8* file, size_t file_size, const ITexCodec** 
 		}
 	}
 
-	WARN_RETURN(ERR::TEX_UNKNOWN_FORMAT);
+	return ERR::TEX_UNKNOWN_FORMAT;
 }
 
 Status tex_codec_transform(Tex* t, size_t transforms)
