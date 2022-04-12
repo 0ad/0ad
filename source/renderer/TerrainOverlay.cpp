@@ -231,7 +231,6 @@ void TerrainOverlay::RenderTile(
 
 	overlayShader->VertexPointer(
 		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
-	overlayShader->AssertPointersBound();
 
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 
@@ -300,7 +299,6 @@ void TerrainOverlay::RenderTileOutline(
 
 	overlayShader->VertexPointer(
 		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
-	overlayShader->AssertPointersBound();
 
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 

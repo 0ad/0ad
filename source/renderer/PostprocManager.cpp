@@ -232,7 +232,6 @@ void CPostprocManager::ApplyBlurDownscale2x(
 		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, quadTex);
 	shader->VertexPointer(
 		Renderer::Backend::Format::R32G32_SFLOAT, 0, quadVerts);
-	shader->AssertPointersBound();
 	deviceCommandContext->Draw(0, 6);
 
 	g_Renderer.SetViewport(oldVp);
@@ -290,7 +289,6 @@ void CPostprocManager::ApplyBlurGauss(
 		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, quadTex);
 	shader->VertexPointer(
 		Renderer::Backend::Format::R32G32_SFLOAT, 0, quadVerts);
-	shader->AssertPointersBound();
 	deviceCommandContext->Draw(0, 6);
 
 	g_Renderer.SetViewport(oldVp);
@@ -319,7 +317,6 @@ void CPostprocManager::ApplyBlurGauss(
 		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, quadTex);
 	shader->VertexPointer(
 		Renderer::Backend::Format::R32G32_SFLOAT, 0, quadVerts);
-	shader->AssertPointersBound();
 	deviceCommandContext->Draw(0, 6);
 
 	g_Renderer.SetViewport(oldVp);
@@ -441,7 +438,6 @@ void CPostprocManager::ApplyEffect(
 		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, quadTex);
 	shader->VertexPointer(
 		Renderer::Backend::Format::R32G32_SFLOAT, 0, quadVerts);
-	shader->AssertPointersBound();
 	deviceCommandContext->Draw(0, 6);
 
 	deviceCommandContext->EndPass();

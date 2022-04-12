@@ -212,7 +212,6 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 			Renderer::Backend::Format::R32G32B32_SFLOAT, stride, waterPos);
 		debugOverlayShader->TexCoordPointer(
 			GL_TEXTURE0, Renderer::Backend::Format::R32G32B32_SFLOAT, stride, waterPos);
-		debugOverlayShader->AssertPointersBound();
 
 		deviceCommandContext->Draw(0, 6);
 	}

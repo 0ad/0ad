@@ -810,8 +810,6 @@ void CPatchRData::RenderBases(
 					shader->TexCoordPointer(
 						GL_TEXTURE0, Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base->m_Position[0]);
 
-					shader->AssertPointersBound();
-
 					for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
 					{
 						it->first->UploadIfNeeded(deviceCommandContext);
@@ -1042,8 +1040,6 @@ void CPatchRData::RenderBlends(
 							GL_TEXTURE1, Renderer::Backend::Format::R32G32_SFLOAT, stride, &base->m_AlphaUVs[0]);
 					}
 
-					shader->AssertPointersBound();
-
 					for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
 					{
 						it->first->UploadIfNeeded(deviceCommandContext);
@@ -1112,8 +1108,6 @@ void CPatchRData::RenderStreams(
 			shader->TexCoordPointer(
 				GL_TEXTURE0, Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base->m_Position);
 		}
-
-		shader->AssertPointersBound();
 
 		for (const std::pair<CVertexBuffer* const, StreamBatchElements>& batchIndexBuffer : streamBatch.second)
 		{
@@ -1188,8 +1182,6 @@ void CPatchRData::RenderSides(
 			shader->VertexPointer(
 				Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base->m_Position);
 		}
-
-		shader->AssertPointersBound();
 
 		deviceCommandContext->Draw(patch->m_VBSides->m_Index, (GLsizei)patch->m_VBSides->m_Count);
 
@@ -1452,8 +1444,6 @@ void CPatchRData::RenderWaterSurface(
 			&base[m_VBWater->m_Index].m_WaterData);
 	}
 
-	shader->AssertPointersBound();
-
 	deviceCommandContext->SetIndexBuffer(m_VBWaterIndices->m_Owner->GetBuffer());
 	deviceCommandContext->DrawIndexed(m_VBWaterIndices->m_Index, m_VBWaterIndices->m_Count, 0);
 
@@ -1483,8 +1473,6 @@ void CPatchRData::RenderWaterShore(
 	shader->VertexAttribPointer(
 		str_a_waterInfo, Renderer::Backend::Format::R32G32_SFLOAT, false, stride,
 		&base[m_VBWaterShore->m_Index].m_WaterData);
-
-	shader->AssertPointersBound();
 
 	deviceCommandContext->SetIndexBuffer(m_VBWaterIndicesShore->m_Owner->GetBuffer());
 	deviceCommandContext->DrawIndexed(m_VBWaterIndicesShore->m_Index, m_VBWaterIndicesShore->m_Count, 0);

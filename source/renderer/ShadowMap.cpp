@@ -753,7 +753,6 @@ void ShadowMap::RenderDebugTexture(
 		Renderer::Backend::Format::R32G32_SFLOAT, 0, boxVerts);
 	texShader->TexCoordPointer(
 		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, boxUV);
-	texShader->AssertPointersBound();
 	deviceCommandContext->Draw(0, 6);
 
 	deviceCommandContext->EndPass();

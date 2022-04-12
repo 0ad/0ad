@@ -243,8 +243,6 @@ void ShaderModelVertexRenderer::RenderModel(
 			base + shadermodel->m_Normal.offset);
 	}
 
-	shader->AssertPointersBound();
-
 	// Render the lot.
 	const size_t numberOfFaces = mdldef->GetNumFaces();
 

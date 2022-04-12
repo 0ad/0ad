@@ -244,7 +244,6 @@ void SkyManager::RenderSky(
 		m_AttributePosition.format, stride, base + m_AttributePosition.offset);
 	shader->TexCoordPointer(
 		GL_TEXTURE0, m_AttributeUV.format, stride, base + m_AttributeUV.offset);
-	shader->AssertPointersBound();
 
 	deviceCommandContext->Draw(0, m_VertexArray.GetNumberOfVertices());
 

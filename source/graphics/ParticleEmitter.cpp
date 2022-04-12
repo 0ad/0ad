@@ -217,8 +217,6 @@ void CParticleEmitter::RenderArray(
 	shader->ColorPointer(
 		m_AttributeColor.format, stride, base + m_AttributeColor.offset);
 
-	shader->AssertPointersBound();
-
 	deviceCommandContext->SetIndexBuffer(m_IndexArray.GetBuffer());
 	deviceCommandContext->DrawIndexed(m_IndexArray.GetOffset(), m_Particles.size() * 6, 0);
 
