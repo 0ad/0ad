@@ -128,7 +128,6 @@ void CDebugRenderer::DrawLine(
 
 	debugLineShader->VertexPointer(
 		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
-	debugLineShader->AssertPointersBound();
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 
 	deviceCommandContext->EndPass();
@@ -180,7 +179,6 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 
 	debugCircleShader->VertexPointer(
 		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
-	debugCircleShader->AssertPointersBound();
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 
 	deviceCommandContext->EndPass();
@@ -257,7 +255,6 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 
 	overlayShader->VertexPointer(
 		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
-	overlayShader->AssertPointersBound();
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 
 	vertices.clear();
@@ -276,7 +273,6 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 
 	overlayShader->VertexPointer(
 		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
-	overlayShader->AssertPointersBound();
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 #undef ADD
 
@@ -332,7 +328,6 @@ void CDebugRenderer::DrawBoundingBox(
 	shader->VertexPointer(
 		Renderer::Backend::Format::R32G32B32_SFLOAT, 3 * sizeof(float), data.data());
 
-	shader->AssertPointersBound();
 	deviceCommandContext->Draw(0, 6*6);
 
 	deviceCommandContext->EndPass();
@@ -379,7 +374,6 @@ void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color, bool wi
 	shader->VertexPointer(
 		Renderer::Backend::Format::R32G32B32_SFLOAT, 3 * sizeof(float), data.data());
 
-	shader->AssertPointersBound();
 	deviceCommandContext->Draw(0, data.size() / 5);
 
 	deviceCommandContext->EndPass();

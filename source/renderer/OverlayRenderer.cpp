@@ -579,7 +579,6 @@ void OverlayRenderer::RenderQuadOverlays(
 		if (streamflags & STREAM_COLOR)
 			shader->ColorPointer(m->quadAttributeColor.format, vertexStride, vertexBase + m->quadAttributeColor.offset);
 
-		shader->AssertPointersBound();
 		deviceCommandContext->DrawIndexed(m->quadIndices.GetOffset() + batchRenderData.m_IndicesBase, batchNumQuads * 6, 0);
 
 		g_Renderer.GetStats().m_DrawCalls++;

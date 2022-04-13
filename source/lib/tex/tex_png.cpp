@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -271,7 +271,7 @@ TIMER_ADD_CLIENT(tc_png_decode);
 // limitation: palette images aren't supported
 Status TexCodecPng::decode(u8* RESTRICT data, size_t size, Tex* RESTRICT t) const
 {
-TIMER_ACCRUE(tc_png_decode);
+	TIMER_ACCRUE(tc_png_decode);
 
 	png_infop info_ptr = 0;
 
@@ -279,19 +279,19 @@ TIMER_ACCRUE(tc_png_decode);
 	// warning handler to filter out useless messages
 	png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, 0, 0, user_warning_fn);
 	if(!png_ptr)
-		WARN_RETURN(ERR::FAIL);
+		return ERR::FAIL;
 	info_ptr = png_create_info_struct(png_ptr);
 	if(!info_ptr)
 	{
 		png_destroy_read_struct(&png_ptr, &info_ptr, 0);
-		WARN_RETURN(ERR::NO_MEM);
+		return ERR::NO_MEM;
 	}
 	// setup error handling
 	if(setjmp(png_jmpbuf(png_ptr)))
 	{
 		// libpng longjmps here after an error
 		png_destroy_read_struct(&png_ptr, &info_ptr, 0);
-		WARN_RETURN(ERR::FAIL);
+		return ERR::FAIL;
 	}
 
 	MemoryStream stream(data, size);

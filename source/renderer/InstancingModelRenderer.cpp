@@ -369,8 +369,6 @@ void InstancingModelRenderer::PrepareModelDef(
 			str_a_skinWeights, m->imodeldef->m_BlendWeights.format, GL_TRUE,
 			stride, base + m->imodeldef->m_BlendWeights.offset);
 	}
-
-	shader->AssertPointersBound();
 }
 
 

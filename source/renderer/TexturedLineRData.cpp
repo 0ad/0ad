@@ -68,8 +68,6 @@ void CTexturedLineRData::Render(
 	if (streamFlags & STREAM_UV1)
 		shader->TexCoordPointer(GL_TEXTURE1, Renderer::Backend::Format::R32G32_SFLOAT, stride, &vertexBase->m_UVs[0]);
 
-	shader->AssertPointersBound();
-
 	deviceCommandContext->SetIndexBuffer(m_VBIndices->m_Owner->GetBuffer());
 	deviceCommandContext->DrawIndexed(m_VBIndices->m_Index, m_VBIndices->m_Count, 0);
 

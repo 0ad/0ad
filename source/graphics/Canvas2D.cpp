@@ -60,7 +60,6 @@ inline void DrawTextureImpl(
 		Renderer::Backend::Format::R32G32_SFLOAT, 0, vertices.data());
 	shader->TexCoordPointer(
 		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, uvs.data());
-	shader->AssertPointersBound();
 
 	deviceCommandContext->Draw(0, vertices.size() / 2);
 }
@@ -255,7 +254,6 @@ void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width
 		Renderer::Backend::Format::R32G32_SFLOAT, 0, vertices.data());
 	shader->TexCoordPointer(
 		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, uvs.data());
-	shader->AssertPointersBound();
 
 	m->DeviceCommandContext->SetIndexBufferData(indices.data());
 	m->DeviceCommandContext->DrawIndexed(0, indices.size(), 0);

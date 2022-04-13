@@ -840,8 +840,6 @@ void WaterManager::RenderWaves(
 		shader->VertexAttribPointer(
 			str_a_retreatPosition, Renderer::Backend::Format::R32G32B32_SFLOAT, false, stride, &base[VBchunk->m_Index].m_RetreatPosition);
 
-		shader->AssertPointersBound();
-
 		shader->Uniform(str_translation, m_ShoreWaves[a]->m_TimeDiff);
 		shader->Uniform(str_width, (int)m_ShoreWaves[a]->m_Width);
 

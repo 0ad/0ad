@@ -15,27 +15,46 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PS_UTIL_H
-#define PS_UTIL_H
+#ifndef INCLUDED_RENDERER_BACKEND_VULKAN_DEVICE
+#define INCLUDED_RENDERER_BACKEND_VULKAN_DEVICE
 
-#include "lib/file/vfs/vfs_path.h"
-#include "lib/os_path.h"
-#include "lib/status.h"
-#include "ps/CStr.h"
+#include "scriptinterface/ScriptForward.h"
 
-class Tex;
+#include <memory>
 
-void WriteSystemInfo();
+typedef struct SDL_Window SDL_Window;
 
-const wchar_t* ErrorString(int err);
+namespace Renderer
+{
 
-CStr GetStatusAsString(Status status);
+namespace Backend
+{
 
-OsPath createDateIndexSubdirectory(const OsPath& parentDir);
+namespace Vulkan
+{
 
-Status tex_write(Tex* t, const VfsPath& filename);
+class CDevice
+{
+public:
+	~CDevice();
 
-std::string Hexify(const std::string& s);
-std::string Hexify(const u8* s, size_t length);
+	/**
+	 * Creates the Vulkan device.
+	 */
+	static std::unique_ptr<CDevice> Create(SDL_Window* window);
 
-#endif // PS_UTIL_H
+	void Report(const ScriptRequest& rq, JS::HandleValue settings);
+
+private:
+	CDevice();
+
+	SDL_Window* m_Window = nullptr;
+};
+
+} // namespace Vulkan
+
+} // namespace Backend
+
+} // namespace Renderer
+
+#endif // INCLUDED_RENDERER_BACKEND_VULKAN_DEVICE

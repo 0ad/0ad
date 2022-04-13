@@ -226,8 +226,6 @@ void CDecalRData::RenderDecals(
 						GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, stride, &base->m_UV[0]);
 				}
 
-				shader->AssertPointersBound();
-
 				if (lastIB != batch.indices->m_Owner)
 				{
 					lastIB = batch.indices->m_Owner;

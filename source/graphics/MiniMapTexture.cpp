@@ -99,7 +99,6 @@ void DrawTexture(
 		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, quadUVs);
 	shader->VertexPointer(
 		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, quadVertices);
-	shader->AssertPointersBound();
 
 	deviceCommandContext->Draw(0, 6);
 }
@@ -574,7 +573,6 @@ void CMiniMapTexture::RenderFinalTexture(
 			m_AttributePos.format, stride, base + m_AttributePos.offset);
 		shader->ColorPointer(
 			m_AttributeColor.format, stride, base + m_AttributeColor.offset);
-		shader->AssertPointersBound();
 
 		deviceCommandContext->SetIndexBuffer(m_IndexArray.GetBuffer());
 		deviceCommandContext->DrawIndexed(m_IndexArray.GetOffset(), m_EntitiesDrawn * 6, 0);

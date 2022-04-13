@@ -792,6 +792,8 @@ void CDeviceCommandContext::Draw(
 	// all drawing in that case.
 	if (vertexCount == 0)
 		return;
+	static_cast<CShaderProgram*>(m_GraphicsPipelineStateDesc.shaderProgram)
+		->AssertPointersBound();
 	glDrawArrays(GL_TRIANGLES, firstVertex, vertexCount);
 }
 
@@ -808,6 +810,8 @@ void CDeviceCommandContext::DrawIndexed(
 	{
 		ENSURE(sizeof(uint16_t) * (firstIndex + indexCount) <= m_IndexBuffer->GetSize());
 	}
+	static_cast<CShaderProgram*>(m_GraphicsPipelineStateDesc.shaderProgram)
+		->AssertPointersBound();
 	// Don't use glMultiDrawElements here since it doesn't have a significant
 	// performance impact and it suffers from various driver bugs (e.g. it breaks
 	// in Mesa 7.10 swrast with index VBOs).
@@ -826,6 +830,8 @@ void CDeviceCommandContext::DrawIndexedInRange(
 	ENSURE(m_IndexBuffer || m_IndexBufferData);
 	const void* indices =
 		static_cast<const void*>((static_cast<const uint8_t*>(m_IndexBufferData) + sizeof(uint16_t) * firstIndex));
+	static_cast<CShaderProgram*>(m_GraphicsPipelineStateDesc.shaderProgram)
+		->AssertPointersBound();
 	// Draw with DrawRangeElements where available, since it might be more
 	// efficient for slow hardware.
 #if CONFIG2_GLES

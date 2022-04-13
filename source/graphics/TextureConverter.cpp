@@ -29,6 +29,7 @@
 #include "ps/CStr.h"
 #include "ps/Profiler2.h"
 #include "ps/Threading.h"
+#include "ps/Util.h"
 #include "ps/XML/Xeromyces.h"
 
 #if CONFIG2_NVTT
@@ -342,9 +343,10 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 	}
 
 	Tex tex;
-	if (tex.decode(file, fileSize) < 0)
+	const Status decodeStatus = tex.decode(file, fileSize);
+	if (decodeStatus != INFO::OK)
 	{
-		LOGERROR("Failed to decode texture \"%s\"", src.string8());
+		LOGERROR("Failed to decode texture \"%s\" %s", src.string8(), GetStatusAsString(decodeStatus).c_str());
 		return false;
 	}
 

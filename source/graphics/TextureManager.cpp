@@ -33,6 +33,7 @@
 #include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
+#include "ps/Util.h"
 #include "ps/VideoMode.h"
 #include "renderer/backend/gl/Device.h"
 #include "renderer/Renderer.h"
@@ -401,12 +402,24 @@ public:
 
 		std::shared_ptr<u8> fileData;
 		size_t fileSize;
+		const Status loadStatus = g_VFS->LoadFile(path, fileData, fileSize);
+		if (loadStatus != INFO::OK)
+		{
+			LOGERROR("Texture failed to load; \"%s\" %s",
+				texture->m_Properties.m_Path.string8(), GetStatusAsString(loadStatus).c_str());
+			texture->ResetBackendTexture(
+				nullptr, m_ErrorTexture.GetTexture()->GetBackendTexture());
+			texture->m_TextureData.reset();
+			return;
+		}
+
 		texture->m_TextureData = std::make_unique<Tex>();
 		Tex& textureData = *texture->m_TextureData;
-		if (g_VFS->LoadFile(path, fileData, fileSize) != INFO::OK ||
-			textureData.decode(fileData, fileSize) != INFO::OK)
+		const Status decodeStatus = textureData.decode(fileData, fileSize);
+		if (decodeStatus != INFO::OK)
 		{
-			LOGERROR("Texture failed to load; \"%s\"", texture->m_Properties.m_Path.string8());
+			LOGERROR("Texture failed to decode; \"%s\" %s",
+				texture->m_Properties.m_Path.string8(), GetStatusAsString(decodeStatus).c_str());
 			texture->ResetBackendTexture(
 				nullptr, m_ErrorTexture.GetTexture()->GetBackendTexture());
 			texture->m_TextureData.reset();

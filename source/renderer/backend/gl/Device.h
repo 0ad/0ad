@@ -51,6 +51,7 @@ public:
 		bool S3TC;
 		bool ARBShaders;
 		bool ARBShadersShadow;
+		bool computeShaders;
 		bool debugLabels;
 		bool debugScopedLabels;
 		bool multisampling;
