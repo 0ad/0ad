@@ -163,7 +163,7 @@ echo -e "Building zlib..."
 LIB_VERSION="${ZLIB_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION.tar.gz"
 LIB_DIRECTORY=$LIB_VERSION
-LIB_URL="http://zlib.net/"
+LIB_URL="https://zlib.net/fossils/"
 
 mkdir -p zlib
 pushd zlib > /dev/null
