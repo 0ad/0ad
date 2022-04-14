@@ -9,8 +9,8 @@
       </animations>
       <mesh>structural/hele_lithobolos.dae</mesh>
       <props>
-        <prop actor="props/units/weapons/rock_flaming.xml" attachpoint="projectile"/>
-        <prop actor="props/units/weapons/rock.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/siege_artillery/stone_projectile_med.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/siege_artillery/stone_projectile_med_flaming.xml" attachpoint="projectile"/>
       </props>
       <textures>
         <texture file="structural/hele_siege.dds" name="baseTex"/>
