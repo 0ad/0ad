@@ -10,8 +10,8 @@
       <mesh>structural/rome_ballista.dae</mesh>
       <textures><texture file="structural/rome_ballista.png" name="baseTex"/></textures>
       <props>
-        <prop actor="props/units/weapons/rock.xml" attachpoint="loaded-projectile"/>
-        <prop actor="props/units/weapons/rock_flaming.xml" attachpoint="projectile"/>
+        <prop actor="props/units/siege_artillery/stone_projectile_med.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/siege_artillery/stone_projectile_med_flaming.xml" attachpoint="projectile"/>
       </props>
     </variant>
   </group>
