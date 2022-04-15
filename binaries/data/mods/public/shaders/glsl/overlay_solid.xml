@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <program type="glsl">
-    <vertex file="glsl/overlay_solid.vs">
-        <attrib name="a_vertex" semantics="gl_Vertex"/>
-    </vertex>
-    <fragment file="glsl/overlay_solid.fs"/>
+	<vertex file="glsl/overlay_solid.vs">
+		<stream name="pos" attribute="a_vertex"/>
+	</vertex>
+	<fragment file="glsl/overlay_solid.fs"/>
 </program>

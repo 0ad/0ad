@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <program type="glsl">
 
-    <vertex file="glsl/waves.vs">
-        <stream name="pos"/>
-        <stream name="uv0"/>
-        <attrib name="a_basePosition" semantics="gl_Vertex"/>
-        <attrib name="a_apexPosition" semantics="gl_MultiTexCoord4"/>
-		<attrib name="a_splashPosition" semantics="gl_MultiTexCoord5"/>
-		<attrib name="a_retreatPosition" semantics="gl_MultiTexCoord6"/>
-        <attrib name="a_normal" semantics="gl_Normal"/>
-		<attrib name="a_uv0" semantics="gl_MultiTexCoord0"/>
-   </vertex>
+	<vertex file="glsl/waves.vs">
+		<stream name="pos" attribute="a_basePosition"/>
+		<stream name="normal" attribute="a_normal"/>
+		<stream name="uv0" attribute="a_uv0"/>
+		<stream name="uv1" attribute="a_apexPosition"/>
+		<stream name="uv2" attribute="a_splashPosition"/>
+		<stream name="uv3" attribute="a_retreatPosition"/>
+	</vertex>
 
-    <fragment file="glsl/waves.fs"/>
+	<fragment file="glsl/waves.fs"/>
 
 </program>

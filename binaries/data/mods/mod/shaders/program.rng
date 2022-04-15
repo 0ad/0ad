@@ -46,28 +46,7 @@
                     <element name="vertex">
                         <attribute name="file"><text/></attribute>
                         <zeroOrMore>
-                            <choice>
-                                <element name="attrib">
-                                    <ref name="conditional"/>
-                                    <attribute name="name"><text/></attribute>
-                                    <attribute name="semantics">
-                                        <choice>
-                                            <value>gl_Vertex</value>
-                                            <value>gl_Normal</value>
-                                            <value>gl_Color</value>
-                                            <value>gl_MultiTexCoord0</value>
-                                            <value>gl_MultiTexCoord1</value>
-                                            <value>gl_MultiTexCoord2</value>
-                                            <value>gl_MultiTexCoord3</value>
-                                            <value>gl_MultiTexCoord4</value>
-                                            <value>gl_MultiTexCoord5</value>
-                                            <value>gl_MultiTexCoord6</value>
-                                            <value>gl_MultiTexCoord7</value>
-                                        </choice>
-                                    </attribute>
-                                </element>
-                                <ref name="streamContent"/>
-                            </choice>
+                            <ref name="streamContent"/>
                         </zeroOrMore>
                     </element>
 
@@ -115,8 +94,15 @@
                     <value>uv1</value>
                     <value>uv2</value>
                     <value>uv3</value>
+                    <value>uv4</value>
+                    <value>uv5</value>
+                    <value>uv6</value>
+                    <value>uv7</value>
                 </choice>
             </attribute>
+            <optional>
+                <attribute name="attribute"><text/></attribute>
+            </optional>
         </element>
     </define>
 

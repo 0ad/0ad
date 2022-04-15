@@ -297,7 +297,7 @@ void InstancingModelRenderer::UpdateModelData(CModel* UNUSED(model), CModelRData
 // Setup one rendering pass.
 void InstancingModelRenderer::BeginPass(int streamflags)
 {
-	ENSURE(streamflags == (streamflags & (STREAM_POS|STREAM_NORMAL|STREAM_UV0|STREAM_UV1)));
+	ENSURE(streamflags == (streamflags & (STREAM_POS|STREAM_NORMAL|STREAM_UV0|STREAM_UV1|STREAM_UV2|STREAM_UV3|STREAM_UV4)));
 }
 
 // Cleanup rendering pass.
@@ -345,8 +345,7 @@ void InstancingModelRenderer::PrepareModelDef(
 			GL_FALSE, stride, base + m->imodeldef->m_Tangent.offset);
 	}
 
-	// The last UV set is STREAM_UV3
-	for (size_t uv = 0; uv < 4; ++uv)
+	for (size_t uv = 0; uv < 2; ++uv)
 		if (streamflags & (STREAM_UV0 << uv))
 		{
 			if (def.GetNumUVsPerVertex() >= uv + 1)

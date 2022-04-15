@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <program type="glsl">
 
-    <vertex file="glsl/model_common.vs">
-        <stream name="pos"/>
-        <attrib name="a_vertex" semantics="gl_Vertex"/>
-        <attrib name="a_skinJoints" semantics="gl_MultiTexCoord4" if="USE_GPU_SKINNING"/>
-        <attrib name="a_skinWeights" semantics="gl_MultiTexCoord5" if="USE_GPU_SKINNING"/>
-    </vertex>
+	<vertex file="glsl/model_common.vs">
+		<stream name="pos" attribute="a_vertex"/>
+		<stream name="uv2" attribute="a_skinJoints" if="USE_GPU_SKINNING"/>
+		<stream name="uv3" attribute="a_skinWeights" if="USE_GPU_SKINNING"/>
+	</vertex>
 
-    <fragment file="glsl/solid.fs"/>
+	<fragment file="glsl/solid.fs"/>
 
 </program>

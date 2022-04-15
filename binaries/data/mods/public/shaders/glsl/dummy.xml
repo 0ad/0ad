@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <program type="glsl">
 
-    <vertex file="glsl/dummy.vs">
-        <stream name="pos"/>
-        <attrib name="a_vertex" semantics="gl_Vertex"/>
-    </vertex>
+	<vertex file="glsl/dummy.vs">
+		<stream name="pos" attribute="a_vertex"/>
+	</vertex>
 
-    <fragment file="glsl/dummy.fs"/>
+	<fragment file="glsl/dummy.fs"/>
 
 </program>
