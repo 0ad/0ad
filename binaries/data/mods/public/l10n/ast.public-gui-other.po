@@ -145,12 +145,12 @@ msgstr "vincedor/ora"
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
-msgstr "Sin comuña"
+msgstr "Sin facçon"
 
 #: gui/common/gamedescription.js:160
 #, javascript-format
 msgid "Team %(team)s"
-msgstr "Comuña %(team)s"
+msgstr "Facçon %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or
@@ -215,11 +215,11 @@ msgstr "Los heroes nun puœden abellugase & son mas vulnerables."
 
 #: gui/common/gamedescription.js:251
 msgid "Locked Teams"
-msgstr "Comuñæs fixæs"
+msgstr "Facçones fixæs"
 
 #: gui/common/gamedescription.js:252
 msgid "Players can't change the initial teams."
-msgstr "Los xhogadores nun puœden demudar de comuña."
+msgstr "Los xhogadores nun puœden demudar de facçon."
 
 #: gui/common/gamedescription.js:256
 msgid "Diplomacy"
@@ -247,7 +247,7 @@ msgstr "Victoria collectiva"
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr "El xhogador comparte la victoria cun los socios. L associaçon que remanecier ye la vincedora."
+msgstr "El xhogador comparte la victoria cun los socios. La grea de socios que remanecier ye la vincedora."
 
 #: gui/common/gamedescription.js:273
 msgid "Ceasefire"
@@ -318,7 +318,7 @@ msgstr "Los xhogadores intamæn cun un puñau d’unidades & tienen de buscar un
 
 #: gui/common/gamedescription.js:344
 msgid "Players start with a Civic Center."
-msgstr "Los xhogadores intamæn cun Foro."
+msgstr "Los xhogadores intamæn cun un Foro."
 
 #: gui/common/gamedescription.js:349
 msgid "Starting Resources"
@@ -619,7 +619,7 @@ msgstr "Aleatorio"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr "Cría un terreiro único u la distribuçon de recursos ye aleatoria. Scuœye-se l númeru de xhogadores & de comuñæs."
+msgstr "Cría un terreiro único u la distribuçon de recursos ye aleatoria. Scuœye-se l númeru de xhogadores & de facçones."
 
 #: gui/common/settings.js:192
 msgctxt "map"
@@ -792,7 +792,7 @@ msgstr "%(name)s %(details)s"
 #: gui/common/tooltips.js:274
 #, javascript-format
 msgid "Duration reduction: %(durationReduction)s%%"
-msgstr "Reducçon na durança: %(durationReduction)s%%"
+msgstr "Reducçon de durança: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:282
 #, javascript-format
@@ -803,7 +803,7 @@ msgstr "Paradæs: %(blockPercentage)s%%"
 #, javascript-format
 msgid ""
 "Blocks: %(blockPercentage)s%%, Duration reduction: %(durationReduction)s%%"
-msgstr "Paradæs: %(blockPercentage)s%%, Reducçon na durança: %(durationReduction)s%%"
+msgstr "Paradæs: %(blockPercentage)s%%, Reducçon de durança: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:305
 msgid "Garrison to fire arrows"
@@ -815,7 +815,7 @@ msgstr "Intervallo:"
 
 #: gui/common/tooltips.js:312
 msgid "Rate:"
-msgstr "Tasa:"
+msgstr "Cadencia:"
 
 #: gui/common/tooltips.js:313
 #, javascript-format
@@ -896,7 +896,7 @@ msgstr "%(amount)s %(name)s"
 #: gui/common/tooltips.js:393
 #, javascript-format
 msgid "%(splashShape)s Splash"
-msgstr "Dañu chiscante %(splashShape)s"
+msgstr "Danho radial %(splashShape)s"
 
 #: gui/common/tooltips.js:396
 #, javascript-format
@@ -906,7 +906,7 @@ msgstr "%(label)s: %(effects)s"
 #: gui/common/tooltips.js:402
 #, javascript-format
 msgid "Friendly Fire: %(enabled)s"
-msgstr "Fuegu amigo: %(enabled)s"
+msgstr "Fhœw amigo: %(enabled)s"
 
 #: gui/common/tooltips.js:403 gui/hotkeys/HotkeysPage.js:158
 #: gui/loadgame/SavegameDeleter.js:55 gui/loadgame/SavegameLoader.js:61
@@ -944,7 +944,7 @@ msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(spla
 
 #: gui/common/tooltips.js:477
 msgid "Attack:"
-msgstr "Ataque:"
+msgstr "Attaque:"
 
 #: gui/common/tooltips.js:504
 #, javascript-format
@@ -968,17 +968,17 @@ msgstr "Durança"
 #: gui/common/tooltips.js:535
 msgctxt "status effect stackability"
 msgid "(extends)"
-msgstr "(enllarga)"
+msgstr "(extiende)"
 
 #: gui/common/tooltips.js:537
 msgctxt "status effect stackability"
 msgid "(replaces)"
-msgstr "(reemplaza)"
+msgstr "(substitúi)"
 
 #: gui/common/tooltips.js:539
 msgctxt "status effect stackability"
 msgid "(stacks)"
-msgstr "(embalágase)"
+msgstr "(accumula)"
 
 #: gui/common/tooltips.js:541
 #, javascript-format
@@ -992,7 +992,7 @@ msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:553
 msgid "Garrison Limit"
-msgstr "Ocupantes máximos"
+msgstr "Occupantes máximos"
 
 #: gui/common/tooltips.js:560
 #, javascript-format
@@ -1015,7 +1015,7 @@ msgstr "%(label)s: %(garrisonSize)s %(extraSize)s"
 
 #: gui/common/tooltips.js:578
 msgid "Garrison Size"
-msgstr "Númberu d'ocupantes"
+msgstr "Númeru d’occupantes"
 
 #: gui/common/tooltips.js:581
 msgctxt "nested garrison"
@@ -1029,7 +1029,7 @@ msgstr "%(label)s: %(turretsLimit)s"
 
 #: gui/common/tooltips.js:594
 msgid "Turret Positions"
-msgstr "Los allugamientos de les torretes"
+msgstr "Posiçones turret."
 
 #: gui/common/tooltips.js:615 gui/common/tooltips.js:620
 #: gui/common/tooltips.js:625
@@ -1039,7 +1039,7 @@ msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:616
 msgid "Projectile Limit"
-msgstr "Llende de proxectiles"
+msgstr "Lhinde de proiéctiles"
 
 #: gui/common/tooltips.js:621
 msgctxt "projectiles"
@@ -1057,45 +1057,45 @@ msgstr "Númeru d’eguadores:"
 
 #: gui/common/tooltips.js:642
 msgid "Remaining repair time:"
-msgstr "Tiempu restante d’egua:"
+msgstr "Tiempu restante d’eguadura:"
 
 #: gui/common/tooltips.js:646
 #, javascript-format
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] "Amiesta otru obreru pa entainar les igües %(second)s segundu."
-msgstr[1] "Amiesta otru obreru pa entainar les igües %(second)s segundos."
+msgstr[0] "Aggrega outru obreiru p’adelantra’ læs eguæs %(second)s segundu."
+msgstr[1] "Aggrega outru obreiru p’adelantra’ læs eguæs unos %(second)s segundos."
 
 #: gui/common/tooltips.js:658
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] "Amiesta un obreru pa finar les igües en %(second)s segundu."
-msgstr[1] "Amiesta un obreru pa finar les igües en %(second)s segundos."
+msgstr[0] "Aggrega un obreiru p’acaba’ læs eguæs in %(second)s segundu."
+msgstr[1] "Aggrega un obreiru p’acaba’ læs eguæs in %(second)s segundos."
 
 #: gui/common/tooltips.js:670
 msgid "Number of builders:"
-msgstr "Númberu de constructores:"
+msgstr "Númeru de constructores:"
 
 #: gui/common/tooltips.js:676
 msgid "Remaining build time:"
-msgstr "Tiempu que queda pa peracabar la obra:"
+msgstr "Tiempu restante d’obra:"
 
 #: gui/common/tooltips.js:680
 #, javascript-format
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] "Amiesta otru obreru pa entainar la construcción %(second)s segundu."
-msgstr[1] "Amiesta otru obreru pa entainar la construcción %(second)s segundos."
+msgstr[0] "Aggrega outru obreiru p’adelantra’ la construcçon %(second)s segundu."
+msgstr[1] "Aggrega outru obreiru p’adelantra’ la construcçon unos %(second)s segundos."
 
 #: gui/common/tooltips.js:692
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
-msgstr[0] "Amiesta un obreru pa finar la construcción en %(second)s segundu."
-msgstr[1] "Amiesta un obreru pa finar la construcción en %(second)s segundos."
+msgstr[0] "Aggrega un obreiru p’acaba’ la construcçon in %(second)s segundu."
+msgstr[1] "Aggrega un obreiru p’acaba’ la construcçon in %(second)s segundos."
 
 #: gui/common/tooltips.js:730 gui/common/tooltips.js:993
 #, javascript-format
@@ -1104,7 +1104,7 @@ msgstr "%(component)s %(cost)s"
 
 #: gui/common/tooltips.js:763
 msgid "Gather Rates:"
-msgstr "Tases de percanciamientu:"
+msgstr "Velocidades d’obtençon:"
 
 #: gui/common/tooltips.js:766 gui/common/tooltips.js:839
 #: gui/common/tooltips.js:863
@@ -1122,7 +1122,7 @@ msgstr "%(label)s %(component)s %(amount)s"
 
 #: gui/common/tooltips.js:785
 msgid "Resource Supply:"
-msgstr "Reserves de recursos:"
+msgstr "Reservæs de recursos:"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its
@@ -1142,7 +1142,7 @@ msgstr "%(resourceIcon)s %(reward)s"
 
 #: gui/common/tooltips.js:835
 msgid "Resource Trickle:"
-msgstr "Bisbera de recursos:"
+msgstr "Ametida de recursos:"
 
 #: gui/common/tooltips.js:836 gui/common/tooltips.js:860
 #, javascript-format
@@ -1151,7 +1151,7 @@ msgstr "%(resources)s / %(time)s"
 
 #: gui/common/tooltips.js:859
 msgid "Upkeep:"
-msgstr "Caltenimientu:"
+msgstr "Caltenemiento:"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
@@ -1163,7 +1163,7 @@ msgstr "%(resourceIcon)s%(minimum)s a %(resourceIcon)s %(maximum)s"
 #: gui/common/tooltips.js:941
 #, javascript-format
 msgid "Walls:  %(costs)s"
-msgstr "Cerques:  %(costs)s"
+msgstr "Cercæs:  %(costs)s"
 
 #: gui/common/tooltips.js:942
 #, javascript-format
@@ -1184,7 +1184,7 @@ msgstr "Costu:"
 #: gui/common/tooltips.js:964
 #, javascript-format
 msgid "Requires %(technology)s"
-msgstr "Rique %(technology)s"
+msgstr "Requier %(technology)s"
 
 #: gui/common/tooltips.js:977
 #, javascript-format
@@ -1224,7 +1224,7 @@ msgstr "Al correr"
 
 #: gui/common/tooltips.js:1030
 msgid "Acceleration"
-msgstr "Aceleración"
+msgstr "Acceleraçon"
 
 #: gui/common/tooltips.js:1045 gui/common/tooltips.js:1050
 #: gui/common/tooltips.js:1055 gui/common/tooltips.js:1080
@@ -1267,7 +1267,7 @@ msgstr "%(primaryName)s"
 
 #: gui/common/tooltips.js:1155
 msgid "Classes:"
-msgstr "Clases:"
+msgstr "Classes:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the
@@ -1279,7 +1279,7 @@ msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:1192
 msgid "Loot:"
-msgstr "Cacida:"
+msgstr "Preda:"
 
 #: gui/common/tooltips.js:1202
 #, javascript-format
@@ -1302,7 +1302,7 @@ msgstr "Pica cuno boton dreithu pa ver mas informaçon."
 #. will open the Template Details GUI page.
 #: gui/common/tooltips.js:1217
 msgid "Click to view more information."
-msgstr "Calca pa ver más información."
+msgstr "Pica pa ver mas informaçon."
 
 #: gui/common/tooltips.js:1226
 msgctxt "One letter abbreviation for million"
@@ -1341,7 +1341,7 @@ msgstr "Gráphicos"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[0].Subtitle
 msgid "Sound Manager"
-msgstr "Xestor de son"
+msgstr "Gëstor de son"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
@@ -1349,7 +1349,7 @@ msgstr "Compositor principal"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
-msgstr "Xestores d'audiu"
+msgstr "Gëstores d’audio"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
 msgid "Frame drum, darbuka, riq, toms"
@@ -1373,7 +1373,7 @@ msgstr "Surpeti"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[15].Subtitle
 msgid "Tin whistles"
-msgstr "Xiblatos d'estañu"
+msgstr "Xiblatos de staño"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[16].Subtitle
 msgid "Trumpet"
@@ -1381,15 +1381,15 @@ msgstr "Trompeta"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[17].Subtitle
 msgid "Viola, violin"
-msgstr "Viola, violín"
+msgstr "Viola, violin"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
-msgstr "Más música, percusión, xembé, sampling"
+msgstr "Música, percussion, djembé, sampling addicionales"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
 msgid "Additional music"
-msgstr "Más música"
+msgstr "Música addicional"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
 msgid "Cajon"
@@ -1405,11 +1405,11 @@ msgstr "Harpa celta"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
 msgid "Didgeridoo"
-msgstr "Dixeridú"
+msgstr "Didjeridú"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[7].Subtitle
 msgid "Djembe"
-msgstr "Xembé"
+msgstr "Djembé"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
 msgid "Dulcimer"
@@ -1417,7 +1417,7 @@ msgstr "Salterio"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
 msgid "Flute"
-msgstr "Xiblata"
+msgstr "Flrauta"
 
 #: gui/credits/texts/audio.jsonContent[1].Title
 msgid "Music"
@@ -1430,7 +1430,7 @@ msgstr "Son"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[0].Subtitle
 msgid "Greek"
-msgstr "Griegu"
+msgstr "Griego"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
 msgid "Latin"
@@ -1438,7 +1438,7 @@ msgstr "Lhatino"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
 msgid "Napatan"
-msgstr "Napatán"
+msgstr "Napatano"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
 msgid "Persian"
@@ -1446,11 +1446,11 @@ msgstr "Persa"
 
 #: gui/credits/texts/audio.jsonContent[3].Title
 msgid "Voices"
-msgstr "Voces"
+msgstr "Vozes"
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
-msgstr "Audiu"
+msgstr "Audio"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -1459,25 +1459,25 @@ msgstr "Cabeça"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr "Balancéu"
+msgstr "Equilibraçon"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
-msgstr "Communidá & xhestion"
+msgstr "Communidá & gëstion"
 
 #: gui/credits/texts/donators.jsonContent[0].Title
 msgid "Pledgie Drive 1"
-msgstr "Campaña de donacionines 1"
+msgstr "Campaña de compromisso 1"
 
 #: gui/credits/texts/donators.jsonContent[1].Title
 msgid "Pledgie Drive 2"
-msgstr "Campaña de donacionines 2"
+msgstr "Campaña de compromisso 2"
 
 #: gui/credits/texts/donators.jsonContent[2].Title
 msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr "Campaña Indiegogo 2013\nMas de 1000 donantes (!), inclusos:"
+msgstr "Campaña Indiegogo 2013\nMas de 1000 donantes (!), inxertos:"
 
 #: gui/credits/texts/donators.jsonTitle
 msgid "Donors"
@@ -1485,15 +1485,15 @@ msgstr "Donantes"
 
 #: gui/credits/texts/history.jsonTitle
 msgid "History References"
-msgstr "Referencies históriques"
+msgstr "Referenciæs históricæs"
 
 #: gui/credits/texts/maps.jsonContent[0].Title
 msgid "Map Making"
-msgstr "Disegno de terreiros"
+msgstr "Deseño de terreiros"
 
 #: gui/credits/texts/maps.jsonContent[1].Title
 msgid "Random Map Scripts"
-msgstr "Scripts terreiros"
+msgstr "Scripts de terreiros aleatorios"
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
@@ -1501,15 +1501,15 @@ msgstr "Terreiros"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
-msgstr "Xestores de programación"
+msgstr "Gëstores de programmaçon"
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
-msgstr "Gracies especiales a"
+msgstr "Un agradecemiento special a"
 
 #: gui/credits/texts/programming.jsonTitle
 msgid "Programming"
-msgstr "Programación"
+msgstr "Programmaçon"
 
 #: gui/credits/texts/special.jsonContent[0].Title
 msgid "In Memoriam"
@@ -1521,27 +1521,27 @@ msgstr "Fundador de 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
-msgstr "Cabeçaleiros de l proiectu"
+msgstr "Directores de l proiectu"
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
-msgstr "Disegnadores codirectores"
+msgstr "Deseñadores codirectores"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
-msgstr "Gracies especiales a:"
+msgstr "Un agradecemiento special a:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr "& gracias a la communidá toda por fhazer possible 0 A.D."
+msgstr "& agradecemus a toda la communidá por fhazer possible 0 A.D."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
-msgstr "Non se mancou a historiador dalu al disindolcar esti proiectu."
+msgstr "Non se mancou a historiador dalu nel disindolrcu d’esti proiectu."
 
 #: gui/credits/texts/special.jsonTitle
 msgid "Special Credits"
-msgstr "Créditos especiales"
+msgstr "Créditos speciales"
 
 #: gui/credits/texts/translators.jsonTitle
 msgid "Translators"
@@ -1599,7 +1599,7 @@ msgstr "¿Reafhitar todolos atayos?\nAVISU: Esto nun puœde revertise."
 #: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:259
 #: gui/pregame/MainMenuItems.js:283
 msgid "Confirmation"
-msgstr "Confirmanza"
+msgstr "Confirmaçon"
 
 #: gui/hotkeys/HotkeysPage.js:198
 msgid "No tooltip available."
@@ -3032,12 +3032,12 @@ msgstr "Alternar el resume"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window in team chat mode."
-msgstr "Abrir o zarrar una charra en modu cuadriella."
+msgstr "Abrir ou cerra’ la conversa faccionaria."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.name
 msgctxt "hotkey metadata"
 msgid "Toggle team chat"
-msgstr "Alternar la charra de cuadriella"
+msgstr "Alterna’ la conversa faccionaria"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.desc
 msgctxt "hotkey metadata"
@@ -4977,7 +4977,7 @@ msgstr "Avisu de tributu"
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr "Amostrar un avisu si cualquier sociu tribúi recursos a otru al estar les cuadrielles fixes y tódolos tributos en modu espectador."
+msgstr "Amostrar un avisu na conversa sobre tributos entre socios si læs facçones stuvieren fixæs & todolos tributos in modu spectador."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].label
 msgid "Chat notification barter"
@@ -5541,8 +5541,8 @@ msgstr[1] "Ventayæs culturales"
 #: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] "Ventaya comuñeira"
-msgstr[1] "Ventayæs comuñeiræs"
+msgstr[0] "Ventaya de facçon"
+msgstr[1] "Ventayæs de facçon"
 
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
@@ -5888,7 +5888,7 @@ msgstr "[imgleft=\"iconMap\"]0 A.D. ye un programma lhibre: puœdes participar n
 msgid ""
 "If you want to help with art, sound, gameplay or programming, make sure to "
 "join our official forum."
-msgstr "Si ti lheva xheira l arte, son, disegno ou programmaçon, nun duldes in fhazete miembru de l foro official."
+msgstr "Si ti lheva xheira l arte, el son, el deseño ou la programmaçon, nun duldes in fhazete miembru de l foro official."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -6115,7 +6115,7 @@ msgstr "Gráfiques"
 
 #: gui/summary/layout.js:377
 msgid "Team total"
-msgstr "Total de la cuadriella"
+msgstr "Total de la facçon"
 
 #: gui/summary/summary.js:30
 msgid "Trained"
@@ -6270,7 +6270,7 @@ msgstr "Tipu:"
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
-msgstr "Axuntar por cuadriella"
+msgstr "Ordenar por facçon"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
@@ -6600,7 +6600,7 @@ msgstr "FRAGUA"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."
-msgstr "Construcción tecnolóxica de tódeles facciones."
+msgstr "Construcçon téchnica de todelæs culturæs."
 
 #: gui/text/tips/forge.txt:3
 msgid "Research weapon and armor upgrades for your units."
@@ -6730,7 +6730,7 @@ msgstr "SIÑÆS"
 msgid ""
 "Use this feature to let your team know where on the map something important "
 "happens."
-msgstr "Fhai siñæs in mapa p’avisar a la comuña d’acontecemientos importantes."
+msgstr "Fhai siñæs in mapa p’avisar a la facçon d’acontecemientos importantes."
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
@@ -6779,11 +6779,11 @@ msgstr "BARGANALES"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr "Una cerca de madera rápida, barata y disponible a tódeles facciones. "
+msgstr "Una cerca de madeira barata & rápida de fhazer que ye disponible a todelæs culturæs."
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
-msgstr "Les más de les facciones disponen d'elles na Fas rural. "
+msgstr "Læs mas de læs culturæs disponen d’elhæs na Phase rural. "
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -6922,7 +6922,7 @@ msgstr "ASTEROS"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "The basic melee infantry for every faction in the game."
-msgstr "El pédite commun a todelæs facçones de l trebeyu."
+msgstr "El pédite commun a todelæs culturæs de l trebeyu."
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
