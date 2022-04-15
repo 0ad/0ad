@@ -141,6 +141,51 @@ int ParseAttribSemantics(Renderer::Backend::GL::CDevice* device, const CStr& str
 	return 0;
 }
 
+bool PreprocessShaderFile(
+	bool arb, const CShaderDefines& defines, const VfsPath& path,
+	CStr& source, std::vector<VfsPath>& fileDependencies)
+{
+	CVFSFile file;
+	if (file.Load(g_VFS, path) != PSRETURN_OK)
+	{
+		LOGERROR("Failed to load shader file: '%s'", path.string8());
+		return false;
+	}
+
+	CPreprocessorWrapper preprocessor(
+		[arb, &fileDependencies](const CStr& includePath, CStr& out) -> bool
+		{
+			const VfsPath includeFilePath(
+				(arb ? L"shaders/arb/" : L"shaders/glsl/") + wstring_from_utf8(includePath));
+			// Add dependencies anyway to reload the shader when the file is
+			// appeared.
+			fileDependencies.push_back(includeFilePath);
+			CVFSFile includeFile;
+			if (includeFile.Load(g_VFS, includeFilePath) != PSRETURN_OK)
+			{
+				LOGERROR("Failed to load shader include file: '%s'", includeFilePath.string8());
+				return false;
+			}
+			out = includeFile.GetAsString();
+			return true;
+		});
+	preprocessor.AddDefines(defines);
+
+#if CONFIG2_GLES
+	if (!arb)
+	{
+		// GLES defines the macro "GL_ES" in its GLSL preprocessor,
+		// but since we run our own preprocessor first, we need to explicitly
+		// define it here
+		preprocessor.AddDefine("GL_ES", "1");
+	}
+#endif
+
+	source = preprocessor.Preprocess(file.GetAsString());
+
+	return true;
+}
+
 } // anonymous namespace
 
 #if !CONFIG2_GLES
@@ -156,25 +201,21 @@ public:
 		int streamflags) :
 		CShaderProgram(streamflags),
 		m_Device(device),
-		m_VertexFilePath(vertexFilePath), m_FragmentFilePath(fragmentFilePath),
 		m_VertexIndexes(vertexIndexes), m_FragmentIndexes(fragmentIndexes)
 	{
 		glGenProgramsARB(1, &m_VertexProgram);
 		glGenProgramsARB(1, &m_FragmentProgram);
 
-		CVFSFile vertexFile;
-		if (vertexFile.Load(g_VFS, m_VertexFilePath) != PSRETURN_OK)
+		std::vector<VfsPath> newFileDependencies = {vertexFilePath, fragmentFilePath};
+
+		CStr vertexCode;
+		if (!PreprocessShaderFile(true, defines, vertexFilePath, vertexCode, newFileDependencies))
+			return;
+		CStr fragmentCode;
+		if (!PreprocessShaderFile(true, defines, fragmentFilePath, fragmentCode, newFileDependencies))
 			return;
 
-		CVFSFile fragmentFile;
-		if (fragmentFile.Load(g_VFS, m_FragmentFilePath) != PSRETURN_OK)
-			return;
-
-		CPreprocessorWrapper preprocessor;
-		preprocessor.AddDefines(defines);
-
-		const CStr vertexCode = preprocessor.Preprocess(vertexFile.GetAsString());
-		const CStr fragmentCode = preprocessor.Preprocess(fragmentFile.GetAsString());
+		m_FileDependencies = std::move(newFileDependencies);
 
 		// TODO: replace by scoped bind.
 		m_Device->GetActiveCommandContext()->SetGraphicsPipelineState(
@@ -333,14 +374,13 @@ public:
 
 	std::vector<VfsPath> GetFileDependencies() const override
 	{
-		return {m_VertexFilePath, m_FragmentFilePath};
+		return m_FileDependencies;
 	}
 
 private:
 	CDevice* m_Device = nullptr;
 
-	VfsPath m_VertexFilePath;
-	VfsPath m_FragmentFilePath;
+	std::vector<VfsPath> m_FileDependencies;
 
 	GLuint m_VertexProgram;
 	GLuint m_FragmentProgram;
@@ -369,6 +409,7 @@ public:
 		for (std::map<CStrIntern, int>::iterator it = m_VertexAttribs.begin(); it != m_VertexAttribs.end(); ++it)
 			m_ActiveVertexAttributes.emplace_back(it->second);
 		std::sort(m_ActiveVertexAttributes.begin(), m_ActiveVertexAttributes.end());
+
 		m_Program = 0;
 		m_VertexShader = glCreateShader(GL_VERTEX_SHADER);
 		m_FragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -382,45 +423,27 @@ public:
 		}
 #endif
 
-		CVFSFile vertexFile;
-		if (vertexFile.Load(g_VFS, vertexFilePath) != PSRETURN_OK)
-			return;
-
-		CVFSFile fragmentFile;
-		if (fragmentFile.Load(g_VFS, fragmentFilePath) != PSRETURN_OK)
-			return;
-
 		std::vector<VfsPath> newFileDependencies = {vertexFilePath, fragmentFilePath};
 
-		CPreprocessorWrapper preprocessor([&newFileDependencies](const CStr& includePath, CStr& out) -> bool {
-			const VfsPath includeFilePath(L"shaders/glsl/" + wstring_from_utf8(includePath));
-			// Add dependencies anyway to reload the shader when the file is
-			// appeared.
-			newFileDependencies.push_back(includeFilePath);
-			CVFSFile includeFile;
-			if (includeFile.Load(g_VFS, includeFilePath) != PSRETURN_OK)
-				return false;
-			out = includeFile.GetAsString();
-			return true;
-			});
-		preprocessor.AddDefines(defines);
-
-#if CONFIG2_GLES
-		// GLES defines the macro "GL_ES" in its GLSL preprocessor,
-		// but since we run our own preprocessor first, we need to explicitly
-		// define it here
-		preprocessor.AddDefine("GL_ES", "1");
-#endif
-
-		const CStr vertexCode = preprocessor.Preprocess(vertexFile.GetAsString());
-		const CStr fragmentCode = preprocessor.Preprocess(fragmentFile.GetAsString());
+		CStr vertexCode;
+		if (!PreprocessShaderFile(false, defines, vertexFilePath, vertexCode, newFileDependencies))
+			return;
+		CStr fragmentCode;
+		if (!PreprocessShaderFile(false, defines, fragmentFilePath, fragmentCode, newFileDependencies))
+			return;
 
 		m_FileDependencies = std::move(newFileDependencies);
 
 		if (vertexCode.empty())
+		{
 			LOGERROR("Failed to preprocess vertex shader: '%s'", vertexFilePath.string8());
+			return;
+		}
 		if (fragmentCode.empty())
+		{
 			LOGERROR("Failed to preprocess fragment shader: '%s'", fragmentFilePath.string8());
+			return;
+		}
 
 #if CONFIG2_GLES
 		// Ugly hack to replace desktop GLSL 1.10/1.20 with GLSL ES 1.00,
