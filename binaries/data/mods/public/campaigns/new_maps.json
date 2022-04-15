@@ -1,7 +1,17 @@
 {
 	"Name": "Demo campaign - new maps",
-	"Description": "Discover the new maps in Alpha XXVI with a demo campaign, taking you through all of them.",
+	"Description": "Discover the new and improved maps in Alpha XXVI with a demo campaign, taking you through all of them.",
 	"Levels": {
+		"median_oasis_2p": {
+			"Map": "skirmishes/median_oasis_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"acropolis_bay_2p": {
+			"Map": "skirmishes/acropolis_bay_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
 		"tarim_basin_2p": {
 			"Map": "skirmishes/tarim_basin_2p.xml",
 			"MapType": "skirmish",
@@ -14,6 +24,8 @@
 		}
 	},
 	"Order": [
+		"acropolis_bay_2p",
+		"median_oasis_2p",
 		"tarim_basin_2p",
 		"yangtze_2p"
 	],
