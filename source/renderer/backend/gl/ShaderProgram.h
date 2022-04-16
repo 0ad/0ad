@@ -43,7 +43,11 @@ enum
 	STREAM_UV0 = (1 << 3),
 	STREAM_UV1 = (1 << 4),
 	STREAM_UV2 = (1 << 5),
-	STREAM_UV3 = (1 << 6)
+	STREAM_UV3 = (1 << 6),
+	STREAM_UV4 = (1 << 7),
+	STREAM_UV5 = (1 << 8),
+	STREAM_UV6 = (1 << 9),
+	STREAM_UV7 = (1 << 10),
 };
 
 namespace Renderer

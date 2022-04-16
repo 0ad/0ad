@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <program type="glsl">
 
-    <vertex file="glsl/model_common.vs">
-        <stream name="pos"/>
-        <stream name="normal"/>
-        <stream name="uv0"/>
-	<stream name="uv1" if="USE_AO"/>
-        <attrib name="a_vertex" semantics="gl_Vertex"/>
-        <attrib name="a_normal" semantics="gl_Normal"/>
-        <attrib name="a_uv0" semantics="gl_MultiTexCoord0"/>
-	<attrib name="a_uv1" semantics="gl_MultiTexCoord1" if="USE_AO"/>
-        <attrib name="a_skinJoints" semantics="gl_MultiTexCoord4" if="USE_GPU_SKINNING"/>
-        <attrib name="a_skinWeights" semantics="gl_MultiTexCoord5" if="USE_GPU_SKINNING"/>
-	<attrib name="a_tangent" semantics="gl_MultiTexCoord6" if="USE_INSTANCING || USE_GPU_SKINNING"/>
-    </vertex>
+	<vertex file="glsl/model_common.vs">
+		<stream name="pos" attribute="a_vertex"/>
+		<stream name="normal" attribute="a_normal"/>
+		<stream name="uv0" attribute="a_uv0"/>
+		<stream name="uv1" attribute="a_uv1" if="USE_AO"/>
+		<stream name="uv2" attribute="a_skinJoints" if="USE_GPU_SKINNING"/>
+		<stream name="uv3" attribute="a_skinWeights" if="USE_GPU_SKINNING"/>
+		<stream name="uv4" attribute="a_tangent" if="USE_INSTANCING || USE_GPU_SKINNING"/>
+	</vertex>
 
-    <fragment file="glsl/model_common.fs"/>
+	<fragment file="glsl/model_common.fs"/>
 
 </program>

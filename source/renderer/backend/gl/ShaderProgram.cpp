@@ -100,45 +100,96 @@ GLenum GLTypeFromFormat(const Renderer::Backend::Format format)
 	return type;
 }
 
-int ParseAttribSemantics(Renderer::Backend::GL::CDevice* device, const CStr& str)
+int GetAttributeLocationFromStream(Renderer::Backend::GL::CDevice* device, const int stream)
 {
 	// Old mapping makes sense only if we have an old/low-end hardware. Else we
 	// need to use sequential numbering to fix #3054. We use presence of
 	// compute shaders as a check that the hardware has universal CUs.
 	if (device->GetCapabilities().computeShaders)
 	{
-		if (str == "gl_Vertex") return 0;
-		if (str == "gl_Normal") return 1;
-		if (str == "gl_Color") return 2;
-		if (str == "gl_MultiTexCoord0") return 3;
-		if (str == "gl_MultiTexCoord1") return 4;
-		if (str == "gl_MultiTexCoord2") return 5;
-		if (str == "gl_MultiTexCoord3") return 6;
-		if (str == "gl_MultiTexCoord4") return 7;
-		if (str == "gl_MultiTexCoord5") return 8;
-		if (str == "gl_MultiTexCoord6") return 9;
-		if (str == "gl_MultiTexCoord7") return 10;
+		switch (stream)
+		{
+		case STREAM_POS: return 0;
+		case STREAM_NORMAL: return 1;
+		case STREAM_COLOR: return 2;
+		case STREAM_UV0: return 3;
+		case STREAM_UV1: return 4;
+		case STREAM_UV2: return 5;
+		case STREAM_UV3: return 6;
+		case STREAM_UV4: return 7;
+		case STREAM_UV5: return 8;
+		case STREAM_UV6: return 9;
+		case STREAM_UV7: return 10;
+		}
 	}
 	else
 	{
 		// Map known semantics onto the attribute locations documented by NVIDIA:
 		//  https://download.nvidia.com/developer/Papers/2005/OpenGL_2.0/NVIDIA_OpenGL_2.0_Support.pdf
 		//  https://developer.download.nvidia.com/opengl/glsl/glsl_release_notes.pdf
-		if (str == "gl_Vertex") return 0;
-		if (str == "gl_Normal") return 2;
-		if (str == "gl_Color") return 3;
-		if (str == "gl_MultiTexCoord0") return 8;
-		if (str == "gl_MultiTexCoord1") return 9;
-		if (str == "gl_MultiTexCoord2") return 10;
-		if (str == "gl_MultiTexCoord3") return 11;
-		if (str == "gl_MultiTexCoord4") return 12;
-		if (str == "gl_MultiTexCoord5") return 13;
-		if (str == "gl_MultiTexCoord6") return 14;
-		if (str == "gl_MultiTexCoord7") return 15;
+		switch (stream)
+		{
+		case STREAM_POS: return 0;
+		case STREAM_NORMAL: return 2;
+		case STREAM_COLOR: return 3;
+		case STREAM_UV0: return 8;
+		case STREAM_UV1: return 9;
+		case STREAM_UV2: return 10;
+		case STREAM_UV3: return 11;
+		case STREAM_UV4: return 12;
+		case STREAM_UV5: return 13;
+		case STREAM_UV6: return 14;
+		case STREAM_UV7: return 15;
+		}
 	}
 
 	debug_warn("Invalid attribute semantics");
 	return 0;
+}
+
+bool PreprocessShaderFile(
+	bool arb, const CShaderDefines& defines, const VfsPath& path,
+	CStr& source, std::vector<VfsPath>& fileDependencies)
+{
+	CVFSFile file;
+	if (file.Load(g_VFS, path) != PSRETURN_OK)
+	{
+		LOGERROR("Failed to load shader file: '%s'", path.string8());
+		return false;
+	}
+
+	CPreprocessorWrapper preprocessor(
+		[arb, &fileDependencies](const CStr& includePath, CStr& out) -> bool
+		{
+			const VfsPath includeFilePath(
+				(arb ? L"shaders/arb/" : L"shaders/glsl/") + wstring_from_utf8(includePath));
+			// Add dependencies anyway to reload the shader when the file is
+			// appeared.
+			fileDependencies.push_back(includeFilePath);
+			CVFSFile includeFile;
+			if (includeFile.Load(g_VFS, includeFilePath) != PSRETURN_OK)
+			{
+				LOGERROR("Failed to load shader include file: '%s'", includeFilePath.string8());
+				return false;
+			}
+			out = includeFile.GetAsString();
+			return true;
+		});
+	preprocessor.AddDefines(defines);
+
+#if CONFIG2_GLES
+	if (!arb)
+	{
+		// GLES defines the macro "GL_ES" in its GLSL preprocessor,
+		// but since we run our own preprocessor first, we need to explicitly
+		// define it here
+		preprocessor.AddDefine("GL_ES", "1");
+	}
+#endif
+
+	source = preprocessor.Preprocess(file.GetAsString());
+
+	return true;
 }
 
 } // anonymous namespace
@@ -156,25 +207,21 @@ public:
 		int streamflags) :
 		CShaderProgram(streamflags),
 		m_Device(device),
-		m_VertexFilePath(vertexFilePath), m_FragmentFilePath(fragmentFilePath),
 		m_VertexIndexes(vertexIndexes), m_FragmentIndexes(fragmentIndexes)
 	{
 		glGenProgramsARB(1, &m_VertexProgram);
 		glGenProgramsARB(1, &m_FragmentProgram);
 
-		CVFSFile vertexFile;
-		if (vertexFile.Load(g_VFS, m_VertexFilePath) != PSRETURN_OK)
+		std::vector<VfsPath> newFileDependencies = {vertexFilePath, fragmentFilePath};
+
+		CStr vertexCode;
+		if (!PreprocessShaderFile(true, defines, vertexFilePath, vertexCode, newFileDependencies))
+			return;
+		CStr fragmentCode;
+		if (!PreprocessShaderFile(true, defines, fragmentFilePath, fragmentCode, newFileDependencies))
 			return;
 
-		CVFSFile fragmentFile;
-		if (fragmentFile.Load(g_VFS, m_FragmentFilePath) != PSRETURN_OK)
-			return;
-
-		CPreprocessorWrapper preprocessor;
-		preprocessor.AddDefines(defines);
-
-		const CStr vertexCode = preprocessor.Preprocess(vertexFile.GetAsString());
-		const CStr fragmentCode = preprocessor.Preprocess(fragmentFile.GetAsString());
+		m_FileDependencies = std::move(newFileDependencies);
 
 		// TODO: replace by scoped bind.
 		m_Device->GetActiveCommandContext()->SetGraphicsPipelineState(
@@ -333,14 +380,13 @@ public:
 
 	std::vector<VfsPath> GetFileDependencies() const override
 	{
-		return {m_VertexFilePath, m_FragmentFilePath};
+		return m_FileDependencies;
 	}
 
 private:
 	CDevice* m_Device = nullptr;
 
-	VfsPath m_VertexFilePath;
-	VfsPath m_FragmentFilePath;
+	std::vector<VfsPath> m_FileDependencies;
 
 	GLuint m_VertexProgram;
 	GLuint m_FragmentProgram;
@@ -369,6 +415,7 @@ public:
 		for (std::map<CStrIntern, int>::iterator it = m_VertexAttribs.begin(); it != m_VertexAttribs.end(); ++it)
 			m_ActiveVertexAttributes.emplace_back(it->second);
 		std::sort(m_ActiveVertexAttributes.begin(), m_ActiveVertexAttributes.end());
+
 		m_Program = 0;
 		m_VertexShader = glCreateShader(GL_VERTEX_SHADER);
 		m_FragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -382,45 +429,27 @@ public:
 		}
 #endif
 
-		CVFSFile vertexFile;
-		if (vertexFile.Load(g_VFS, vertexFilePath) != PSRETURN_OK)
-			return;
-
-		CVFSFile fragmentFile;
-		if (fragmentFile.Load(g_VFS, fragmentFilePath) != PSRETURN_OK)
-			return;
-
 		std::vector<VfsPath> newFileDependencies = {vertexFilePath, fragmentFilePath};
 
-		CPreprocessorWrapper preprocessor([&newFileDependencies](const CStr& includePath, CStr& out) -> bool {
-			const VfsPath includeFilePath(L"shaders/glsl/" + wstring_from_utf8(includePath));
-			// Add dependencies anyway to reload the shader when the file is
-			// appeared.
-			newFileDependencies.push_back(includeFilePath);
-			CVFSFile includeFile;
-			if (includeFile.Load(g_VFS, includeFilePath) != PSRETURN_OK)
-				return false;
-			out = includeFile.GetAsString();
-			return true;
-			});
-		preprocessor.AddDefines(defines);
-
-#if CONFIG2_GLES
-		// GLES defines the macro "GL_ES" in its GLSL preprocessor,
-		// but since we run our own preprocessor first, we need to explicitly
-		// define it here
-		preprocessor.AddDefine("GL_ES", "1");
-#endif
-
-		const CStr vertexCode = preprocessor.Preprocess(vertexFile.GetAsString());
-		const CStr fragmentCode = preprocessor.Preprocess(fragmentFile.GetAsString());
+		CStr vertexCode;
+		if (!PreprocessShaderFile(false, defines, vertexFilePath, vertexCode, newFileDependencies))
+			return;
+		CStr fragmentCode;
+		if (!PreprocessShaderFile(false, defines, fragmentFilePath, fragmentCode, newFileDependencies))
+			return;
 
 		m_FileDependencies = std::move(newFileDependencies);
 
 		if (vertexCode.empty())
+		{
 			LOGERROR("Failed to preprocess vertex shader: '%s'", vertexFilePath.string8());
+			return;
+		}
 		if (fragmentCode.empty())
+		{
 			LOGERROR("Failed to preprocess fragment shader: '%s'", fragmentFilePath.string8());
+			return;
+		}
 
 #if CONFIG2_GLES
 		// Ugly hack to replace desktop GLSL 1.10/1.20 with GLSL ES 1.00,
@@ -792,6 +821,7 @@ public:
 			const GLint size = GLSizeFromFormat(format);
 			const GLenum type = GLTypeFromFormat(format);
 			glVertexAttribPointer(it->second, size, type, normalized, stride, pointer);
+			m_ValidStreams |= STREAM_UV0 << (it->second - (m_Device->GetCapabilities().computeShaders ? 3 : 8));
 		}
 	}
 
@@ -852,17 +882,16 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 	// Define all the elements and attributes used in the XML file
 #define EL(x) int el_##x = XeroFile.GetElementID(#x)
 #define AT(x) int at_##x = XeroFile.GetAttributeID(#x)
-	EL(attrib);
 	EL(define);
 	EL(fragment);
 	EL(stream);
 	EL(uniform);
 	EL(vertex);
+	AT(attribute);
 	AT(file);
 	AT(if);
 	AT(loc);
 	AT(name);
-	AT(semantics);
 	AT(type);
 	AT(value);
 #undef AT
@@ -881,72 +910,86 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 	std::map<CStrIntern, int> vertexAttribs;
 	int streamFlags = 0;
 
-	XERO_ITER_EL(root, Child)
+	XERO_ITER_EL(root, child)
 	{
-		if (Child.GetNodeName() == el_define)
+		if (child.GetNodeName() == el_define)
 		{
-			defines.Add(CStrIntern(Child.GetAttributes().GetNamedItem(at_name)), CStrIntern(Child.GetAttributes().GetNamedItem(at_value)));
+			defines.Add(CStrIntern(child.GetAttributes().GetNamedItem(at_name)), CStrIntern(child.GetAttributes().GetNamedItem(at_value)));
 		}
-		else if (Child.GetNodeName() == el_vertex)
+		else if (child.GetNodeName() == el_vertex)
 		{
-			vertexFile = L"shaders/" + Child.GetAttributes().GetNamedItem(at_file).FromUTF8();
+			vertexFile = L"shaders/" + child.GetAttributes().GetNamedItem(at_file).FromUTF8();
 
-			XERO_ITER_EL(Child, Param)
+			XERO_ITER_EL(child, param)
 			{
-				XMBAttributeList Attrs = Param.GetAttributes();
+				XMBAttributeList attributes = param.GetAttributes();
 
-				CStr cond = Attrs.GetNamedItem(at_if);
+				CStr cond = attributes.GetNamedItem(at_if);
 				if (!cond.empty() && !preprocessor.TestConditional(cond))
 					continue;
 
-				if (Param.GetNodeName() == el_uniform)
+				if (param.GetNodeName() == el_uniform)
 				{
-					vertexUniforms[CStrIntern(Attrs.GetNamedItem(at_name))] = Attrs.GetNamedItem(at_loc).ToInt();
+					vertexUniforms[CStrIntern(attributes.GetNamedItem(at_name))] = attributes.GetNamedItem(at_loc).ToInt();
 				}
-				else if (Param.GetNodeName() == el_stream)
+				else if (param.GetNodeName() == el_stream)
 				{
-					CStr StreamName = Attrs.GetNamedItem(at_name);
-					if (StreamName == "pos")
-						streamFlags |= STREAM_POS;
-					else if (StreamName == "normal")
-						streamFlags |= STREAM_NORMAL;
-					else if (StreamName == "color")
-						streamFlags |= STREAM_COLOR;
-					else if (StreamName == "uv0")
-						streamFlags |= STREAM_UV0;
-					else if (StreamName == "uv1")
-						streamFlags |= STREAM_UV1;
-					else if (StreamName == "uv2")
-						streamFlags |= STREAM_UV2;
-					else if (StreamName == "uv3")
-						streamFlags |= STREAM_UV3;
-				}
-				else if (Param.GetNodeName() == el_attrib)
-				{
-					const int attribLoc = ParseAttribSemantics(device, Attrs.GetNamedItem(at_semantics));
-					vertexAttribs[CStrIntern(Attrs.GetNamedItem(at_name))] = attribLoc;
+					const CStr streamName = attributes.GetNamedItem(at_name);
+					const CStr attributeName = attributes.GetNamedItem(at_attribute);
+					if (attributeName.empty())
+						LOGERROR("Empty attribute name in vertex shader description '%s'", vertexFile.string8().c_str());
+
+					int stream = 0;
+					if (streamName == "pos")
+						stream = STREAM_POS;
+					else if (streamName == "normal")
+						stream = STREAM_NORMAL;
+					else if (streamName == "color")
+						stream = STREAM_COLOR;
+					else if (streamName == "uv0")
+						stream = STREAM_UV0;
+					else if (streamName == "uv1")
+						stream = STREAM_UV1;
+					else if (streamName == "uv2")
+						stream = STREAM_UV2;
+					else if (streamName == "uv3")
+						stream = STREAM_UV3;
+					else if (streamName == "uv4")
+						stream = STREAM_UV4;
+					else if (streamName == "uv5")
+						stream = STREAM_UV5;
+					else if (streamName == "uv6")
+						stream = STREAM_UV6;
+					else if (streamName == "uv7")
+						stream = STREAM_UV7;
+					else
+						LOGERROR("Unknown stream '%s' in vertex shader description '%s'", streamName.c_str(), vertexFile.string8().c_str());
+
+					const int attributeLocation = GetAttributeLocationFromStream(device, stream);
+					vertexAttribs[CStrIntern(attributeName)] = attributeLocation;
+					streamFlags |= stream;
 				}
 			}
 		}
-		else if (Child.GetNodeName() == el_fragment)
+		else if (child.GetNodeName() == el_fragment)
 		{
-			fragmentFile = L"shaders/" + Child.GetAttributes().GetNamedItem(at_file).FromUTF8();
+			fragmentFile = L"shaders/" + child.GetAttributes().GetNamedItem(at_file).FromUTF8();
 
-			XERO_ITER_EL(Child, Param)
+			XERO_ITER_EL(child, param)
 			{
-				XMBAttributeList Attrs = Param.GetAttributes();
+				XMBAttributeList attributes = param.GetAttributes();
 
-				CStr cond = Attrs.GetNamedItem(at_if);
+				CStr cond = attributes.GetNamedItem(at_if);
 				if (!cond.empty() && !preprocessor.TestConditional(cond))
 					continue;
 
-				if (Param.GetNodeName() == el_uniform)
+				if (param.GetNodeName() == el_uniform)
 				{
 					// A somewhat incomplete listing, missing "shadow" and "rect" versions
 					// which are interpreted as 2D (NB: our shadowmaps may change
 					// type based on user config).
 					GLenum type = GL_TEXTURE_2D;
-					CStr t = Attrs.GetNamedItem(at_type);
+					const CStr t = attributes.GetNamedItem(at_type);
 					if (t == "sampler1D")
 #if CONFIG2_GLES
 						debug_warn(L"sampler1D not implemented on GLES");
@@ -964,8 +1007,8 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 					else if (t == "samplerCube")
 						type = GL_TEXTURE_CUBE_MAP;
 
-					fragmentUniforms[CStrIntern(Attrs.GetNamedItem(at_name))] =
-						std::make_pair(Attrs.GetNamedItem(at_loc).ToInt(), type);
+					fragmentUniforms[CStrIntern(attributes.GetNamedItem(at_name))] =
+						std::make_pair(attributes.GetNamedItem(at_loc).ToInt(), type);
 				}
 			}
 		}
