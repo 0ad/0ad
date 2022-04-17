@@ -150,7 +150,7 @@ protected:
 
 	void RenderFrameImpl(const bool renderGUI, const bool renderLogger);
 	void RenderFrame2D(const bool renderGUI, const bool renderLogger);
-	void RenderScreenShot();
+	void RenderScreenShot(const bool needsPresent);
 	void RenderBigScreenShot(const bool needsPresent);
 
 	// SetRenderPath: Select the preferred render path.
