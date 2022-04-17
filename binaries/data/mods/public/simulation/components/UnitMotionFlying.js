@@ -357,7 +357,15 @@ UnitMotionFlying.prototype.SetAcceleration = function()
 
 UnitMotionFlying.prototype.GetPassabilityClassName = function()
 {
-	return this.template.PassabilityClass;
+	return this.passabilityClassName ? this.passabilityClassName : this.template.PassabilityClass;
+};
+
+UnitMotionFlying.prototype.SetPassabilityClassName = function(passClassName)
+{
+	this.passabilityClassName = passClassName;
+	const cmpPathfinder = Engine.QueryInterface(SYSTEM_ENTITY, IID_Pathfinder);
+	if (cmpPathfinder)
+		this.passabilityClass = cmpPathfinder.GetPassabilityClass(passClassName);
 };
 
 UnitMotionFlying.prototype.GetPassabilityClass = function()

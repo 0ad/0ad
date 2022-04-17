@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -156,6 +156,11 @@ public:
 	 * Get the passability class name (as defined in pathfinder.xml)
 	 */
 	virtual std::string GetPassabilityClassName() const = 0;
+
+	/**
+	 * Sets the passability class name (as defined in pathfinder.xml)
+	 */
+	virtual void SetPassabilityClassName(const std::string& passClassName) = 0;
 
 	/**
 	 * Get the unit clearance (used by the Obstruction component)
