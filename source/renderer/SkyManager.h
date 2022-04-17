@@ -52,10 +52,7 @@ public:
 		return m_SkySet;
 	}
 
-	Renderer::Backend::GL::CTexture* GetSkyCube()
-	{
-		return m_SkyCubeMap.get();
-	}
+	Renderer::Backend::GL::CTexture* GetSkyCube();
 
 	/**
 	 * Set the sky set name.
@@ -105,8 +102,7 @@ private:
 
 	// Sky textures
 	CTexturePtr m_SkyTexture[NUMBER_OF_TEXTURES];
-
-	std::unique_ptr<Renderer::Backend::GL::CTexture> m_SkyCubeMap;
+	CTexturePtr m_SkyTextureCube;
 
 	VertexArray m_VertexArray;
 	VertexArray::Attribute m_AttributePosition;
