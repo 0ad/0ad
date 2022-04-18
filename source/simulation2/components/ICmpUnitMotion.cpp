@@ -40,6 +40,7 @@ DEFINE_INTERFACE_METHOD("SetSpeedMultiplier", ICmpUnitMotion, SetSpeedMultiplier
 DEFINE_INTERFACE_METHOD("GetAcceleration", ICmpUnitMotion, GetAcceleration)
 DEFINE_INTERFACE_METHOD("SetAcceleration", ICmpUnitMotion, SetAcceleration)
 DEFINE_INTERFACE_METHOD("GetPassabilityClassName", ICmpUnitMotion, GetPassabilityClassName)
+DEFINE_INTERFACE_METHOD("SetPassabilityClassName", ICmpUnitMotion, SetPassabilityClassName)
 DEFINE_INTERFACE_METHOD("GetUnitClearance", ICmpUnitMotion, GetUnitClearance)
 DEFINE_INTERFACE_METHOD("SetFacePointAfterMove", ICmpUnitMotion, SetFacePointAfterMove)
 DEFINE_INTERFACE_METHOD("GetFacePointAfterMove", ICmpUnitMotion, GetFacePointAfterMove)
@@ -154,6 +155,11 @@ public:
 	std::string GetPassabilityClassName() const override
 	{
 		return m_Script.Call<std::string>("GetPassabilityClassName");
+	}
+
+	void SetPassabilityClassName(const std::string& passClassName) override
+	{
+		return m_Script.CallVoid("SetPassabilityClassName", passClassName);
 	}
 
 	entity_pos_t GetUnitClearance() const override

@@ -49,8 +49,10 @@ SkyManager::SkyManager()
 void SkyManager::LoadAndUploadSkyTexturesIfNeeded(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
-	if (m_SkyCubeMap)
+	if (m_SkyTextureCube)
 		return;
+
+	m_SkyTextureCube = g_Renderer.GetTextureManager().GetBlackTextureCube();
 
 	GPU_SCOPED_LABEL(deviceCommandContext, "Load Sky Textures");
 	static const CStrW images[NUMBER_OF_TEXTURES + 1] = {
@@ -115,12 +117,13 @@ void SkyManager::LoadAndUploadSkyTexturesIfNeeded(
 		}
 	}
 
-	m_SkyCubeMap = g_VideoMode.GetBackendDevice()->CreateTexture("SkyCubeMap",
-		Renderer::Backend::GL::CTexture::Type::TEXTURE_CUBE,
-		Renderer::Backend::Format::R8G8B8A8_UNORM, textures[0].m_Width, textures[0].m_Height,
-		Renderer::Backend::Sampler::MakeDefaultSampler(
-			Renderer::Backend::Sampler::Filter::LINEAR,
-			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1, 1);
+	std::unique_ptr<Renderer::Backend::GL::CTexture> skyCubeMap =
+		g_VideoMode.GetBackendDevice()->CreateTexture("SkyCubeMap",
+			Renderer::Backend::GL::CTexture::Type::TEXTURE_CUBE,
+			Renderer::Backend::Format::R8G8B8A8_UNORM, textures[0].m_Width, textures[0].m_Height,
+			Renderer::Backend::Sampler::MakeDefaultSampler(
+				Renderer::Backend::Sampler::Filter::LINEAR,
+				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1, 1);
 
 	std::vector<u8> rotated;
 	for (size_t i = 0; i < NUMBER_OF_TEXTURES + 1; ++i)
@@ -148,17 +151,24 @@ void SkyManager::LoadAndUploadSkyTexturesIfNeeded(
 			}
 
 			deviceCommandContext->UploadTexture(
-				m_SkyCubeMap.get(), Renderer::Backend::Format::R8G8B8A8_UNORM,
+				skyCubeMap.get(), Renderer::Backend::Format::R8G8B8A8_UNORM,
 				&rotated[0], textures[i].m_DataSize, 0, i);
 		}
 		else
 		{
 			deviceCommandContext->UploadTexture(
-				m_SkyCubeMap.get(), Renderer::Backend::Format::R8G8B8A8_UNORM,
+				skyCubeMap.get(), Renderer::Backend::Format::R8G8B8A8_UNORM,
 				data, textures[i].m_DataSize, 0, i);
 		}
 	}
+
+	m_SkyTextureCube = g_Renderer.GetTextureManager().WrapBackendTexture(std::move(skyCubeMap));
 	///////////////////////////////////////////////////////////////////////////
+}
+
+Renderer::Backend::GL::CTexture* SkyManager::GetSkyCube()
+{
+	return m_SkyTextureCube->GetBackendTexture();
 }
 
 void SkyManager::SetSkySet(const CStrW& newSet)
@@ -166,7 +176,7 @@ void SkyManager::SetSkySet(const CStrW& newSet)
 	if (newSet == m_SkySet)
 		return;
 
-	m_SkyCubeMap.reset();
+	m_SkyTextureCube.reset();
 
 	m_SkySet = newSet;
 }
@@ -201,7 +211,7 @@ void SkyManager::RenderSky(
 		return;
 
 	// Do nothing unless SetSkySet was called
-	if (m_SkySet.empty() || !m_SkyCubeMap)
+	if (m_SkySet.empty() || !m_SkyTextureCube)
 		return;
 
 	if (m_VertexArray.GetNumberOfVertices() == 0)
@@ -215,7 +225,7 @@ void SkyManager::RenderSky(
 		skytech->GetGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginPass();
 	Renderer::Backend::GL::CShaderProgram* shader = skytech->GetShader();
-	shader->BindTexture(str_baseTex, m_SkyCubeMap.get());
+	shader->BindTexture(str_baseTex, m_SkyTextureCube->GetBackendTexture());
 
 	// Translate so the sky center is at the camera space origin.
 	CMatrix3D translate;

@@ -179,6 +179,60 @@ private:
 	CColor m_Color;
 };
 
+class CSingleColorTextureCube final : public CPredefinedTexture
+{
+public:
+	CSingleColorTextureCube(const CColor& color, const bool disableGL,
+		CTextureManagerImpl* textureManager)
+		: m_Color(color)
+	{
+		if (disableGL)
+			return;
+
+		std::stringstream textureName;
+		textureName << "SingleColorTextureCube (";
+		textureName << "R:" << m_Color.r << ", ";
+		textureName << "G:" << m_Color.g << ", ";
+		textureName << "B:" << m_Color.b << ", ";
+		textureName << "A:" << m_Color.a << ")";
+
+		std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture =
+			g_VideoMode.GetBackendDevice()->CreateTexture(
+				textureName.str().c_str(), Renderer::Backend::GL::CTexture::Type::TEXTURE_CUBE,
+				Renderer::Backend::Format::R8G8B8A8_UNORM,
+				1, 1, Renderer::Backend::Sampler::MakeDefaultSampler(
+					Renderer::Backend::Sampler::Filter::LINEAR,
+					Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1, 1);
+		CreateTexture(std::move(backendTexture), textureManager);
+	}
+
+	void Upload(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	{
+		if (!GetTexture() || !GetTexture()->GetBackendTexture())
+			return;
+
+		const SColor4ub color32 = m_Color.AsSColor4ub();
+		// Construct 1x1 32-bit texture
+		const u8 data[4] =
+		{
+			color32.R,
+			color32.G,
+			color32.B,
+			color32.A
+		};
+
+		for (size_t face = 0; face < 6; ++face)
+		{
+			deviceCommandContext->UploadTexture(
+				GetTexture()->GetBackendTexture(), Renderer::Backend::Format::R8G8B8A8_UNORM,
+				data, std::size(data), 0, face);
+		}
+	}
+
+private:
+	CColor m_Color;
+};
+
 class CGradientTexture final : public CPredefinedTexture
 {
 public:
@@ -310,7 +364,8 @@ public:
 		m_WhiteTexture(CColor(1.0f, 1.0f, 1.0f, 1.0f), disableGL, this),
 		m_TransparentTexture(CColor(0.0f, 0.0f, 0.0f, 0.0f), disableGL, this),
 		m_AlphaGradientTexture(
-			CColor(1.0f, 1.0f, 1.0f, 0.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f), disableGL, this)
+			CColor(1.0f, 1.0f, 1.0f, 0.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f), disableGL, this),
+		m_BlackTextureCube(CColor(0.0f, 0.0f, 0.0f, 1.0f), disableGL, this)
 	{
 		// Allow hotloading of textures
 		RegisterFileReloadFunc(ReloadChangedFileCB, this);
@@ -349,6 +404,11 @@ public:
 	const CTexturePtr& GetAlphaGradientTexture()
 	{
 		return m_AlphaGradientTexture.GetTexture();
+	}
+
+	const CTexturePtr& GetBlackTextureCube()
+	{
+		return m_BlackTextureCube.GetTexture();
 	}
 
 	/**
@@ -716,6 +776,7 @@ public:
 			m_WhiteTexture.Upload(deviceCommandContext);
 			m_TransparentTexture.Upload(deviceCommandContext);
 			m_AlphaGradientTexture.Upload(deviceCommandContext);
+			m_BlackTextureCube.Upload(deviceCommandContext);
 			m_PredefinedTexturesUploaded = true;
 			return true;
 		}
@@ -833,6 +894,7 @@ private:
 	CSingleColorTexture m_WhiteTexture;
 	CSingleColorTexture m_TransparentTexture;
 	CGradientTexture m_AlphaGradientTexture;
+	CSingleColorTextureCube m_BlackTextureCube;
 	bool m_PredefinedTexturesUploaded = false;
 
 	// Cache of all loaded textures
@@ -1022,6 +1084,11 @@ const CTexturePtr& CTextureManager::GetTransparentTexture()
 const CTexturePtr& CTextureManager::GetAlphaGradientTexture()
 {
 	return m->GetAlphaGradientTexture();
+}
+
+const CTexturePtr& CTextureManager::GetBlackTextureCube()
+{
+	return m->GetBlackTextureCube();
 }
 
 bool CTextureManager::MakeProgress()

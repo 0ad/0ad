@@ -902,6 +902,8 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 
 	XMBElement root = XeroFile.GetRoot();
 
+	const bool isGLSL = root.GetAttributes().GetNamedItem(at_type) == "glsl";
+
 	VfsPath vertexFile;
 	VfsPath fragmentFile;
 	CShaderDefines defines = baseDefines;
@@ -936,7 +938,7 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 				{
 					const CStr streamName = attributes.GetNamedItem(at_name);
 					const CStr attributeName = attributes.GetNamedItem(at_attribute);
-					if (attributeName.empty())
+					if (attributeName.empty() && isGLSL)
 						LOGERROR("Empty attribute name in vertex shader description '%s'", vertexFile.string8().c_str());
 
 					int stream = 0;
@@ -965,8 +967,11 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 					else
 						LOGERROR("Unknown stream '%s' in vertex shader description '%s'", streamName.c_str(), vertexFile.string8().c_str());
 
-					const int attributeLocation = GetAttributeLocationFromStream(device, stream);
-					vertexAttribs[CStrIntern(attributeName)] = attributeLocation;
+					if (isGLSL)
+					{
+						const int attributeLocation = GetAttributeLocationFromStream(device, stream);
+						vertexAttribs[CStrIntern(attributeName)] = attributeLocation;
+					}
 					streamFlags |= stream;
 				}
 			}
@@ -1014,7 +1019,7 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 		}
 	}
 
-	if (root.GetAttributes().GetNamedItem(at_type) == "glsl")
+	if (isGLSL)
 		return CShaderProgram::ConstructGLSL(device, name, vertexFile, fragmentFile, defines, vertexAttribs, streamFlags);
 	else
 		return CShaderProgram::ConstructARB(device, vertexFile, fragmentFile, defines, vertexUniforms, fragmentUniforms, streamFlags);

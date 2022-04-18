@@ -141,3 +141,7 @@ cmpUnitMotionFlying.OnUpdate({ "turnLength": 900 });
 TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetCurrentSpeed(), 0);
 TS_ASSERT_EQUALS(height, 5);
 
+TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetPassabilityClassName(), "unrestricted");
+const newPassabilityClass = "newClass";
+cmpUnitMotionFlying.SetPassabilityClassName(newPassabilityClass);
+TS_ASSERT_EQUALS(cmpUnitMotionFlying.GetPassabilityClassName(), newPassabilityClass);

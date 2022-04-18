@@ -725,6 +725,15 @@ void CDeviceCommandContext::SetFramebuffer(CFramebuffer* framebuffer)
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, framebuffer->GetHandle());
 }
 
+void CDeviceCommandContext::ReadbackFramebufferSync(
+	const uint32_t x, const uint32_t y, const uint32_t width, const uint32_t height,
+	void* data)
+{
+	ENSURE(m_Framebuffer);
+	glReadPixels(x, y, width, height, GL_RGB, GL_UNSIGNED_BYTE, data);
+	ogl_WarnIfError();
+}
+
 void CDeviceCommandContext::SetScissors(const uint32_t scissorCount, const Rect* scissors)
 {
 	ENSURE(scissorCount <= 1);

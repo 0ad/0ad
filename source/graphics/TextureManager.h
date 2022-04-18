@@ -117,6 +117,11 @@ public:
 	const CTexturePtr& GetAlphaGradientTexture();
 
 	/**
+	 * Returns a single color RGBA texture cube with CColor(0.0f, 0.0f, 0.0f, 1.0f).
+	 */
+	const CTexturePtr& GetBlackTextureCube();
+
+	/**
 	 * Work on asynchronous texture loading operations, if any.
 	 * Returns true if it did any work.
 	 * The caller should typically loop this per frame until it returns

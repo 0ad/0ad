@@ -517,7 +517,7 @@ public:
 		return m_PassClassName;
 	}
 
-	virtual void SetPassabilityClassName(const std::string& passClassName)
+	void SetPassabilityClassName(const std::string& passClassName) override
 	{
 		m_PassClassName = passClassName;
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
