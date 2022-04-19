@@ -52,7 +52,7 @@ msgstr "%(hotkeyName)s的快捷鍵未指定"
 #: gui/common/color.js:196
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr "按 %(hotkey)s 以自動完成玩家名稱。"
+msgstr "按 %(hotkey)s 自動完成玩家名稱。"
 
 #: gui/common/color.js:198
 msgctxt "hotkey"
@@ -61,7 +61,7 @@ msgstr "Tab"
 
 #: gui/common/functions_global_object.js:53
 msgid "Loading Aborted"
-msgstr "已中止載入"
+msgstr "載入已中止"
 
 #: gui/common/functions_utility.js:42
 msgid "Gaia"
@@ -70,35 +70,35 @@ msgstr "大地之母"
 #: gui/common/functions_utility.js:280
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr "組建： %(buildDate)s (%(revision)s)"
+msgstr "組建：%(buildDate)s (%(revision)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:68
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
-msgstr "%(playerName)s (%(civ)s，%(AIdescription)s)"
+msgstr "%(playerName)s（%(civ)s，%(AIdescription)s）"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:71
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
-msgstr "%(playerName)s (%(civ)s，%(AIdescription)s，%(state)s)"
+msgstr "%(playerName)s（%(civ)s，%(AIdescription)s，%(state)s）"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:77
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
-msgstr "%(playerName)s (%(AIdescription)s)"
+msgstr "%(playerName)s（%(AIdescription)s）"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:80
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
-msgstr "%(playerName)s (%(AIdescription)s，%(state)s)"
+msgstr "%(playerName)s（%(AIdescription)s，%(state)s）"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -119,14 +119,14 @@ msgstr "%(playerName)s（離線，%(state)s）"
 #: gui/common/gamedescription.js:100
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
-msgstr "%(playerName)s (%(civ)s)"
+msgstr "%(playerName)s（%(civ)s）"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:103
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr "%(playerName)s (%(civ)s, %(state)s)"
+msgstr "%(playerName)s（%(civ)s，%(state)s）"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -140,7 +140,7 @@ msgstr "%(playerName)s"
 #: gui/common/gamedescription.js:110
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
-msgstr "%(playerName)s (%(state)s)"
+msgstr "%(playerName)s（%(state)s）"
 
 #: gui/common/gamedescription.js:130
 msgid "Unknown Civilization"
@@ -221,7 +221,7 @@ msgstr "易受攻擊的英雄"
 
 #: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr "英雄不能進駐，他們容易被襲擊。"
+msgstr "英雄不能駐守，他們更容易被襲擊。"
 
 #: gui/common/gamedescription.js:251
 msgid "Locked Teams"
@@ -269,7 +269,7 @@ msgstr "已停用"
 
 #: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
-msgstr "在第一分鐘內，其他玩家將會保持中立。"
+msgstr "開始的一分鐘內，其他玩家將會保持中立。"
 
 #: gui/common/gamedescription.js:279
 #, javascript-format
@@ -284,7 +284,7 @@ msgstr "隨機地圖"
 
 #: gui/common/gamedescription.js:289
 msgid "Randomly select a map from the list."
-msgstr "從清單裡隨機選地圖"
+msgstr "從清單裡隨機選地圖。"
 
 #: gui/common/gamedescription.js:294
 msgid "Map Name"
@@ -305,11 +305,11 @@ msgstr "地圖大小"
 #: gui/common/gamedescription.js:324
 msgctxt "biome"
 msgid "Random Biome"
-msgstr "隨機的生物聚落"
+msgstr "隨機生物聚落"
 
 #: gui/common/gamedescription.js:325
 msgid "Randomly select a biome from the list."
-msgstr "從清單裡隨機選生物聚落"
+msgstr "從清單裡隨機選擇生物聚落。"
 
 #: gui/common/gamedescription.js:340
 msgid "Nomad Mode"
@@ -520,7 +520,7 @@ msgstr "找不到 STUN 目標。"
 #: gui/common/network.js:84
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr "\\[無效的值 %(id)s]"
+msgstr "\\[無效數值 %(id)s]"
 
 #: gui/common/network.js:98
 msgid "Lost connection to the server."
@@ -532,7 +532,7 @@ msgstr "連線至伺服器失敗。"
 
 #: gui/common/network.js:101
 msgid "Disconnected"
-msgstr "已中斷連線"
+msgstr "已離線"
 
 #: gui/common/network.js:109
 msgid "Only the host can kick clients!"
@@ -601,7 +601,7 @@ msgstr "平衡的"
 #: gui/common/settings.js:156
 msgctxt "aiBehavior"
 msgid "Defensive"
-msgstr "防禦"
+msgstr "保守的"
 
 #: gui/common/settings.js:160
 msgctxt "aiBehavior"
@@ -611,7 +611,7 @@ msgstr "積極的"
 #: gui/common/settings.js:173
 msgctxt "map"
 msgid "Skirmish"
-msgstr "小規模戰鬥"
+msgstr "遭遇戰"
 
 #: gui/common/settings.js:174
 msgid ""
@@ -740,7 +740,7 @@ msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:179
 msgid "Capture points:"
-msgstr "占領值： "
+msgstr "占領值："
 
 #: gui/common/tooltips.js:190
 #, javascript-format
@@ -1163,12 +1163,12 @@ msgstr "%(resourceIcon)s %(minimum)s 到 %(resourceIcon)s %(maximum)s"
 #: gui/common/tooltips.js:941
 #, javascript-format
 msgid "Walls:  %(costs)s"
-msgstr "城牆： %(costs)s"
+msgstr "城牆：%(costs)s"
 
 #: gui/common/tooltips.js:942
 #, javascript-format
 msgid "Towers:  %(costs)s"
-msgstr "塔樓： %(costs)s"
+msgstr "塔樓：%(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
@@ -1351,7 +1351,7 @@ msgstr "音樂總監"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
 msgid "Frame drum, darbuka, riq, toms"
-msgstr "框架鼓、darbuka、riq、toms"
+msgstr "框鼓、達不卡鼓、中東鈴鼓、筒鼓"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[11].Subtitle
 msgid "Guitar"
@@ -1383,7 +1383,7 @@ msgstr "中提琴、小提琴"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[1].Subtitle
 msgid "Additional music, percussion, djembe, sampling"
-msgstr "額外的音樂、打擊樂、非洲鼓、樣本"
+msgstr "額外的音樂、打擊樂、非洲鼓、收錄"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[2].Subtitle
 msgid "Additional music"
@@ -1444,7 +1444,7 @@ msgstr "波斯人"
 
 #: gui/credits/texts/audio.jsonContent[3].Title
 msgid "Voices"
-msgstr "聲音"
+msgstr "語音"
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
@@ -1453,7 +1453,7 @@ msgstr "音訊"
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
 msgid "Head"
-msgstr "前端"
+msgstr "領導"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
@@ -1475,7 +1475,7 @@ msgstr "Pledgie 宣傳 2"
 msgid ""
 "Indiegogo 2013 campaign\n"
 "More than 1000 donators (!), including:"
-msgstr "Indiegogo 2013 活動\n多於 1000 筆捐款 (!)，包含了："
+msgstr "Indiegogo 2013 活動\n超過 1000 名捐贈者 (!)，包含了："
 
 #: gui/credits/texts/donators.jsonTitle
 msgid "Donors"
@@ -1483,7 +1483,7 @@ msgstr "捐贈者"
 
 #: gui/credits/texts/history.jsonTitle
 msgid "History References"
-msgstr "歷史參考資料"
+msgstr "歷史參考"
 
 #: gui/credits/texts/maps.jsonContent[0].Title
 msgid "Map Making"
@@ -3504,7 +3504,7 @@ msgstr "「%(label)s」"
 
 #: gui/loadgame/SavegameDeleter.js:53
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr "儲存的遊戲將永遠刪除，您是否確定？"
+msgstr "儲存的遊戲將永遠刪除，您確定嗎？"
 
 #: gui/loadgame/SavegameDeleter.js:54
 msgid "DELETE"
@@ -3538,7 +3538,7 @@ msgstr "載入"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr "這個存檔需要0 A.D. 版本 %(requiredVersion)s ，然而您執行的是 %(currentVersion)s 。"
+msgstr "這個存檔需要0 A.D. 版本 %(requiredVersion)s，然而您執行的是 %(currentVersion)s。"
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
@@ -3620,7 +3620,7 @@ msgstr "勝利："
 #: gui/replaymenu/replay_menu.xml:(heading):71
 msgctxt "replay"
 msgid "Date / Time"
-msgstr "日期／時間"
+msgstr "日期 / 時間"
 
 #: gui/loadgame/load.xml:(heading):31
 msgctxt "replay"
@@ -3650,7 +3650,7 @@ msgstr "語言："
 #. refers to the code that identifies those settings, such as ‘en_US’.
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr "所在區域："
+msgstr "地區："
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
@@ -3981,35 +3981,35 @@ msgstr "實體的命名"
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific names first"
-msgstr "特殊名稱在前"
+msgstr "特定名稱在前"
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
 msgid "Display specific names before generic names."
-msgstr "顯示特殊名稱在一般名稱之前。"
+msgstr "顯示特定名稱在通用名稱之前。"
 
 #: gui/options/options.json[0].options[9].list[1].label
 msgid "Generic names first"
-msgstr "一般名稱在前"
+msgstr "通用名稱在前"
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Display generic names before specific names."
-msgstr "顯示一般名稱在特殊名稱之前。"
+msgstr "顯示通用名稱在特定名稱之前。"
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only specific names"
-msgstr "僅特殊名稱"
+msgstr "僅特定名稱"
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
 msgid "Display only specific names for entities."
-msgstr "只顯示實體的特殊名稱。"
+msgstr "只顯示實體的特定名稱。"
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only generic names"
-msgstr "僅一般名稱"
+msgstr "僅通用名稱"
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
 msgid "Display only generic names for entities."
-msgstr "只顯示實體的一般名稱。"
+msgstr "只顯示實體的通用名稱。"
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
@@ -4941,7 +4941,7 @@ msgstr "批次滾動增加速率"
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr "您必須捲動以將批次生產大小增加／減少 1 的次數。"
+msgstr "您必須捲動以將批次生產大小增加 / 減少 1 的次數。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].label
 msgid "Flare display duration"
@@ -5662,7 +5662,7 @@ msgstr "您的版本：%(version)s"
 #: gui/replaymenu/replay_actions.js:97
 #, javascript-format
 msgid "Required version: %(version)s"
-msgstr "需要的版本：%(version)s"
+msgstr "需求版本：%(version)s"
 
 #: gui/replaymenu/replay_actions.js:100
 msgid "Incompatible replay"
@@ -5851,7 +5851,7 @@ msgstr "從頭建立重播快取。可能會比較慢！"
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr "[font=\"sans-bold-20\"]  感謝您安裝 0 A.D. 崛起的帝國！"
+msgstr "[font=\"sans-bold-20\"]  感謝您安裝 0 A.D. 帝國崛起！"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -5867,7 +5867,7 @@ msgstr "[imgleft=\"constructionIcon\"]這款遊戲還在開發中。您可能會
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr "[imgleft=\"iconLag\"]  遊戲過程可能會有效能上的問題，尤其是遇上大型地圖以及大量單位的時候。"
+msgstr "[imgleft=\"iconLag\"]遊戲過程可能會有效能上的問題，尤其是遇上大型地圖以及大量單位的時候。"
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
@@ -5968,7 +5968,7 @@ msgstr "建築物統計 (%(constructed)s / %(destroyed)s / %(captured)s / %(lost
 
 #: gui/summary/layout.js:69
 msgid "Units"
-msgstr "單位數"
+msgstr "單位"
 
 #: gui/summary/layout.js:73
 msgid "Infantry"
@@ -6098,7 +6098,7 @@ msgstr "賄賂"
 msgid ""
 "Bribes\n"
 "(%(succeeded)s / %(failed)s)"
-msgstr "賄賂（%(succeeded)s/%(failed)s）"
+msgstr "賄賂\n(%(succeeded)s/%(failed)s)"
 
 #: gui/summary/layout.js:230
 msgid "Charts"
@@ -6110,15 +6110,15 @@ msgstr "隊伍總計"
 
 #: gui/summary/summary.js:30
 msgid "Trained"
-msgstr "訓練數"
+msgstr "已訓練"
 
 #: gui/summary/summary.js:35
 msgid "Constructed"
-msgstr "建造數"
+msgstr "已建造"
 
 #: gui/summary/summary.js:40
 msgid "Gathered"
-msgstr "採集數"
+msgstr "已採集"
 
 #: gui/summary/summary.js:44
 msgid "Count"
@@ -6126,11 +6126,11 @@ msgstr "計數"
 
 #: gui/summary/summary.js:49
 msgid "Sent"
-msgstr "送出"
+msgstr "已送出"
 
 #: gui/summary/summary.js:54
 msgid "Bought"
-msgstr "購買"
+msgstr "已購買"
 
 #: gui/summary/summary.js:59
 msgid "Income"
@@ -6142,7 +6142,7 @@ msgstr "占領數"
 
 #: gui/summary/summary.js:69
 msgid "Succeeded"
-msgstr "成功了"
+msgstr "已成功"
 
 #: gui/summary/summary.js:74
 msgid "Destroyed"
@@ -6162,7 +6162,7 @@ msgstr "使用數"
 
 #: gui/summary/summary.js:94
 msgid "Received"
-msgstr "收到"
+msgstr "已收到"
 
 #: gui/summary/summary.js:104
 msgid "Sold"
@@ -6174,7 +6174,7 @@ msgstr "支出"
 
 #: gui/summary/summary.js:114
 msgid "Failed"
-msgstr "失敗了"
+msgstr "已失敗"
 
 #: gui/summary/summary.js:201
 #, javascript-format
@@ -6194,7 +6194,7 @@ msgstr "、"
 
 #: gui/summary/summary.js:340
 msgid "Time elapsed"
-msgstr "時間消逝"
+msgstr "時間已過"
 
 #: gui/summary/summary.js:510
 msgid "Current Scores"
@@ -7076,7 +7076,7 @@ msgstr "從動物、漿果叢、魚或是田地中採收。"
 #: simulation/data/resources/food.jsonname
 msgctxt "firstWord"
 msgid "Food"
-msgstr "糧食"
+msgstr "食物"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7084,14 +7084,14 @@ msgstr "糧食"
 #: simulation/data/resources/food.jsonname
 msgctxt "withinSentence"
 msgid "Food"
-msgstr "糧食"
+msgstr "食物"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: simulation/data/resources/food.jsonsubtypes.fish
 msgctxt "firstWord"
 msgid "Fish"
-msgstr "魚場"
+msgstr "魚類"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7099,7 +7099,7 @@ msgstr "魚場"
 #: simulation/data/resources/food.jsonsubtypes.fish
 msgctxt "withinSentence"
 msgid "Fish"
-msgstr "魚場"
+msgstr "魚類"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -7136,7 +7136,7 @@ msgstr "穀物"
 #: simulation/data/resources/food.jsonsubtypes.meat
 msgctxt "firstWord"
 msgid "Meat"
-msgstr "肉食"
+msgstr "肉類"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7144,7 +7144,7 @@ msgstr "肉食"
 #: simulation/data/resources/food.jsonsubtypes.meat
 msgctxt "withinSentence"
 msgid "Meat"
-msgstr "肉食"
+msgstr "肉類"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -7257,7 +7257,7 @@ msgstr "從樹木或樹林砍下木材。"
 #: simulation/data/resources/wood.jsonname
 msgctxt "firstWord"
 msgid "Wood"
-msgstr "木材"
+msgstr "木頭"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7265,7 +7265,7 @@ msgstr "木材"
 #: simulation/data/resources/wood.jsonname
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr "木材"
+msgstr "木頭"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.

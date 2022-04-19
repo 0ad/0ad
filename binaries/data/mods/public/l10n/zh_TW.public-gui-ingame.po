@@ -555,7 +555,7 @@ msgstr "顯示地圖"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:195
 msgid "Enable time warp"
-msgstr "啟用時間隧道"
+msgstr "啟用時間跳躍"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:214
 msgid "Activate Rejoin Test"
@@ -563,7 +563,7 @@ msgstr "啟用重新加入測試"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:248
 msgid "Promote selected units"
-msgstr "升職選定的單位"
+msgstr "晉升選定的單位"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:269
 msgid "Enable culling"
@@ -599,14 +599,14 @@ msgstr "渲染偵錯模式自訂"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
-msgstr "時空隧道模式"
+msgstr "時間跳躍模式"
 
 #: gui/session/developer_overlay/TimeWarp.js:66
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr "注意：時空隧道模式是開發者選項，不建議長時間使用。不恰當的使用可能會導致記憶體耗盡或是遊戲當機。"
+msgstr "注意：時間跳躍模式是開發者選項，不建議長時間使用。不恰當的使用可能會導致記憶體耗盡或是遊戲當機。"
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -710,7 +710,7 @@ msgstr "x"
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr "進貢 %(resourceAmount)s %(resourceType)s 給 %(playerName)s 。Shift 加上點擊以進貢 %(greaterAmount)s 。"
+msgstr "進貢 %(resourceAmount)s %(resourceType)s 給 %(playerName)s。Shift 加上點擊以進貢 %(greaterAmount)s。"
 
 #: gui/session/input.js:191
 #, javascript-format
@@ -722,7 +722,7 @@ msgstr[0] "基本範圍：%(range)s 公尺"
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] "額外範圍：%(range)s 公尺"
+msgstr[0] "平均加成範圍：%(range)s 公尺"
 
 #: gui/session/input.js:702
 msgid "Cannot build wall here!"
@@ -992,7 +992,7 @@ msgstr "(%(number)s)\n%(time)s"
 
 #: gui/session/selection_details.js:283
 msgid "Current/max gatherers"
-msgstr "目前/最大採集人數"
+msgstr "目前 / 最大採集人數"
 
 #: gui/session/selection_details.js:315
 #, javascript-format
@@ -1001,7 +1001,7 @@ msgstr "（%(secondaryName)s）"
 
 #: gui/session/selection_details.js:462
 msgid "Capture Points:"
-msgstr "占領值： "
+msgstr "占領值："
 
 #: gui/session/selection_details.js:470
 #, javascript-format
@@ -1207,12 +1207,12 @@ msgstr "被動"
 #: gui/session/selection_panels_helpers.js:61
 msgctxt "stance"
 msgid "Standground"
-msgstr "固守原地"
+msgstr "堅守"
 
 #: gui/session/selection_panels_helpers.js:73
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr "攻擊鄰近的對手，集中於攻擊者並在可見時追蹤"
+msgstr "攻擊鄰近的對手，聚焦攻擊者並在可見時追蹤"
 
 #: gui/session/selection_panels_helpers.js:75
 msgctxt "stance"
@@ -1239,17 +1239,17 @@ msgstr "攻擊範圍內的對手，但不會移動"
 #: gui/session/selection_panels_helpers.js:95
 #, javascript-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
-msgstr "現有數量： %(count)s ，限制： %(limit)s 。"
+msgstr "現有數量：%(count)s，限制：%(limit)s。"
 
 #: gui/session/selection_panels_helpers.js:109
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
-msgstr "%(changer)s 將限制增大 %(change)s 。"
+msgstr "%(changer)s 將限制增大 %(change)s。"
 
 #: gui/session/selection_panels_helpers.js:110
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
-msgstr "%(changer)s 將限制減少 %(change)s 。"
+msgstr "%(changer)s 將限制減少 %(change)s。"
 
 #: gui/session/selection_panels_helpers.js:140
 msgid "Can be constructed only once."
@@ -1305,17 +1305,17 @@ msgstr "%(buildings)s*%(batchSize)s"
 #: gui/session/selection_panels_helpers.js:217
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
-msgstr "%(action)s 訓練 %(number)s (%(fullBatch)s + %(remainderBatch)s)."
+msgstr "%(action)s 訓練 %(number)s (%(fullBatch)s + %(remainderBatch)s)。"
 
 #: gui/session/selection_panels_helpers.js:219
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
-msgstr "%(action)s 訓練 %(number)s (%(fullBatch)s)."
+msgstr "%(action)s 訓練 %(number)s (%(fullBatch)s)。"
 
 #: gui/session/selection_panels_helpers.js:221
 #, javascript-format
 msgid "%(action)s to train %(number)s."
-msgstr "%(action)s 訓練 %(number)s."
+msgstr "%(action)s 訓練 %(number)s。"
 
 #: gui/session/selection_panels_helpers.js:226
 msgid "Shift-click"
@@ -1350,7 +1350,7 @@ msgstr "生產佇列"
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr "左鍵點擊 選擇單位隊組， 左鍵點擊兩次 著眼於單位隊組，右鍵點擊 解散隊組"
+msgstr "左鍵點擊選擇群組單位，左鍵點擊兩次聚焦單位隊組，右鍵點擊解散群組。"
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVI: Zhuangzi"
@@ -1397,7 +1397,7 @@ msgstr "%(popCount)s/%(popLimit)s (%(popMax)s)"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 msgid "Population: current/limit (max)"
-msgstr "人口：當前／上限"
+msgstr "人口：當前 / 限制 (最大)"
 
 #: gui/session/top_panel/CounterPopulation.js:70
 msgid "Gatherers: current"
@@ -1545,42 +1545,42 @@ msgstr[0] "有 %(numberGarrisoned)s 個陸地商人駐守於商船"
 #: gui/session/trade/TraderStatusTextLand.js:65
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr "%(openingTradingString)s ，及 %(garrisonedString)s 。"
+msgstr "%(openingTradingString)s，及 %(garrisonedString)s。"
 
 #: gui/session/trade/TraderStatusTextLand.js:66
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s ， %(garrisonedString)s ，及 %(inactiveString)s 。"
+msgstr "%(openingTradingString)s，%(garrisonedString)s，及 %(inactiveString)s。"
 
 #: gui/session/trade/TraderStatusTextLand.js:69
 #: gui/session/trade/TraderStatusTextShip.js:47
 #, javascript-format
 msgid "%(openingTradingString)s."
-msgstr "%(openingTradingString)s 。"
+msgstr "%(openingTradingString)s。"
 
 #: gui/session/trade/TraderStatusTextLand.js:70
 #: gui/session/trade/TraderStatusTextShip.js:46
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s ，及 %(inactiveString)s 。"
+msgstr "%(openingTradingString)s，及 %(inactiveString)s。"
 
 #: gui/session/trade/TraderStatusTextLand.js:75
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
-msgstr "%(openingGarrisonedString)s 。"
+msgstr "%(openingGarrisonedString)s。"
 
 #: gui/session/trade/TraderStatusTextLand.js:76
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr "%(openingGarrisonedString)s ，及 %(inactiveString)s 。"
+msgstr "%(openingGarrisonedString)s，及 %(inactiveString)s。"
 
 #: gui/session/trade/TraderStatusTextLand.js:79
 #: gui/session/trade/TraderStatusTextShip.js:50
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] "有 %(inactiveString)s 。"
+msgstr[0] "有 %(inactiveString)s。"
 
 #: gui/session/trade/TraderStatusTextLand.js:80
 msgid "There are no land traders."
@@ -1707,7 +1707,7 @@ msgstr "命令選定的單位修復建築、船隻或攻城器。"
 
 #: gui/session/unit_actions.js:1588
 msgid "Focus on Rally Point."
-msgstr "在集合點集中。"
+msgstr "聚焦在集合點。"
 
 #: gui/session/unit_actions.js:1625
 msgid "Back to Work"

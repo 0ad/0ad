@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -62,8 +62,6 @@ public:
 	double GetFrameTime() const;
 	double GetTurnCalls() const;
 	double GetTurnTime() const;
-	double GetFrameMallocs() const;
-	double GetTurnMallocs() const;
 
 	const CProfileNode* GetChild( const char* name ) const;
 	const CProfileNode* GetScriptChild( const char* name ) const;
@@ -103,13 +101,7 @@ private:
 	RingBuf<double, PROFILE_AMORTIZE_FRAMES> time_per_frame;
 	RingBuf<double, PROFILE_AMORTIZE_TURNS> time_per_turn;
 
-	long mallocs_frame_current;
-	long mallocs_turn_current;
-	RingBuf<long, PROFILE_AMORTIZE_FRAMES> mallocs_per_frame;
-	RingBuf<long, PROFILE_AMORTIZE_TURNS> mallocs_per_turn;
-
 	double start;
-	long start_mallocs;
 	int recursion;
 
 	CProfileNode* parent;
