@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-11-19 08:08+0000\n"
-"PO-Revision-Date: 2021-11-19 09:25+0000\n"
-"Last-Translator: Transifex Bot\n"
+"PO-Revision-Date: 2014-06-19 17:53+0000\n"
+"Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>, 2021-2022\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -514,7 +514,7 @@ msgstr "Anda bisa menyerang sekarang!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] "%(players)s dan %(lastPlayer)s  telah menang (pemain terakhir hidup)."
+msgstr[0] "%(players)s dan %(lastPlayer)s telah menang (pemain terakhir tersisa)."
 
 #: simulation/components/EndGameManager.js:182
 msgid "Last remaining player wins."
@@ -576,7 +576,7 @@ msgstr "Tidak bisa antre-otomatis unit, mematikan."
 
 #: simulation/components/Trainer.js:321
 msgid "Can't find free space to spawn trained units."
-msgstr ""
+msgstr "Tidak dapat menemukan daerah kosong untuk mengeluarkan unit yang dilatih"
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
