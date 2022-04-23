@@ -655,9 +655,7 @@ void ShadowMap::BindTo(Renderer::Backend::GL::CShaderProgram* shader) const
 			shadowDistances.emplace_back(cascade.Distance);
 			shadowTransforms.emplace_back(cascade.TextureMatrix);
 		}
-		shader->Uniform(str_shadowTransforms_0, GetCascadeCount(), shadowTransforms.data());
 		shader->Uniform(str_shadowTransforms, GetCascadeCount(), shadowTransforms.data());
-		shader->Uniform(str_shadowDistances_0, GetCascadeCount(), shadowDistances.data());
 		shader->Uniform(str_shadowDistances, GetCascadeCount(), shadowDistances.data());
 	}
 }

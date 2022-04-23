@@ -608,6 +608,7 @@ public:
 		ogl_WarnIfError();
 		for (GLint i = 0; i < numUniforms; ++i)
 		{
+			// TODO: use GL_ACTIVE_UNIFORM_MAX_LENGTH for the size.
 			char name[256] = {0};
 			GLsizei nameLength = 0;
 			GLint size = 0;
@@ -615,10 +616,21 @@ public:
 			glGetActiveUniform(m_Program, i, ARRAY_SIZE(name), &nameLength, &size, &type, name);
 			ogl_WarnIfError();
 
-			GLint loc = glGetUniformLocation(m_Program, name);
+			const GLint location = glGetUniformLocation(m_Program, name);
+
+			// OpenGL specification is a bit vague about a name returned by glGetActiveUniform.
+			// NVIDIA drivers return uniform name with "[0]", Intel Windows drivers without;
+			while (nameLength > 3 &&
+				name[nameLength - 3] == '[' &&
+				name[nameLength - 2] == '0' &&
+				name[nameLength - 1] == ']')
+			{
+				nameLength -= 3;
+			}
+			name[nameLength] = 0;
 
 			CStrIntern nameIntern(name);
-			m_Uniforms[nameIntern] = std::make_pair(loc, type);
+			m_Uniforms[nameIntern] = std::make_pair(location, type);
 
 			// Assign sampler uniforms to sequential texture units
 			if (type == GL_SAMPLER_2D
@@ -628,10 +640,10 @@ public:
 #endif
 			)
 			{
-				int unit = (int)m_Samplers.size();
+				const int unit = static_cast<int>(m_Samplers.size());
 				m_Samplers[nameIntern].first = (type == GL_SAMPLER_CUBE ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D);
 				m_Samplers[nameIntern].second = unit;
-				glUniform1i(loc, unit); // link uniform to unit
+				glUniform1i(location, unit); // link uniform to unit
 				ogl_WarnIfError();
 			}
 		}

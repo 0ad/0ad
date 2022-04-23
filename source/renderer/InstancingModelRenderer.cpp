@@ -377,10 +377,6 @@ void InstancingModelRenderer::RenderModel(
 	{
 		// Bind matrices for current animation state.
 		// Add 1 to NumBones because of the special 'root' bone.
-		// HACK: NVIDIA drivers return uniform name with "[0]", Intel Windows drivers without;
-		// try uploading both names since one of them should work, and this is easier than
-		// canonicalising the uniform names in CShaderProgramGLSL
-		shader->Uniform(str_skinBlendMatrices_0, mdldef->GetNumBones() + 1, model->GetAnimatedBoneMatrices());
 		shader->Uniform(str_skinBlendMatrices, mdldef->GetNumBones() + 1, model->GetAnimatedBoneMatrices());
 	}
 
