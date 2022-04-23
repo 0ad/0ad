@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-04-01 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
-"Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>, 2021\n"
+"Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>, 2021-2022\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +35,7 @@ msgstr ""
 
 #: gui/session/Cheats.js:78
 msgid "This cheat requires a numeric parameter."
-msgstr ""
+msgstr "Cheat ini membutuhkan parameter numerik."
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
@@ -171,7 +171,7 @@ msgstr "m:ss"
 #. when not the first item in the queue.
 #: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:597
 msgid "This item is paused."
-msgstr ""
+msgstr "Penelitian ini dijeda."
 
 #: gui/session/chat/ChatAddressees.js:93
 msgctxt "chat addressee"
@@ -582,19 +582,19 @@ msgstr "Tampilkan frustum bayangan "
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:22
 msgid "Render Debug Mode Disabled"
-msgstr ""
+msgstr "Mode Debug Render Dimatikan"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:23
 msgid "Render Debug Mode AO"
-msgstr ""
+msgstr "Mode Debug Render AO"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:24
 msgid "Render Debug Mode Alpha"
-msgstr ""
+msgstr "Mode Debug Render Alpha"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:25
 msgid "Render Debug Mode Custom"
-msgstr ""
+msgstr "Mode Debug Render Kustom"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -816,19 +816,19 @@ msgstr "Konfirmasi"
 
 #: gui/session/message_box/QuitConfirmation.js:9
 msgid "The game has finished, what do you want to do?"
-msgstr ""
+msgstr "Permainan telah selesai, apa yang ingin Anda lakukan?"
 
 #. Translation: Shown in the Dialog that shows up when the game finishes
 #: gui/session/message_box/QuitConfirmation.js:15
 #: gui/session/message_box/QuitConfirmationReplay.js:23
 msgid "Stay"
-msgstr ""
+msgstr "Tetap di sini"
 
 #. Translation: Shown in the Dialog that shows up when the game finishes
 #: gui/session/message_box/QuitConfirmation.js:19
 #: gui/session/message_box/QuitConfirmationReplay.js:27
 msgid "Quit and View Summary"
-msgstr ""
+msgstr "Keluar dan Lihat Ringkasan"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:54
 msgid "VICTORIOUS!"
@@ -871,7 +871,7 @@ msgstr "Konfirmasi"
 #: gui/session/message_box/QuitConfirmationReplay.js:17
 msgctxt "replayFinished"
 msgid "The replay has finished. What do you want to do?"
-msgstr ""
+msgstr "Tayangan ulang telah selesai, apa yang ingin Anda lakukan?"
 
 #: gui/session/message_box/ResignConfirmation.js:6
 msgid "Are you sure you want to resign?"
@@ -915,7 +915,7 @@ msgstr "Kirim suar ke sekutu Anda."
 msgid ""
 "Find idle worker\n"
 "Number of idle workers."
-msgstr ""
+msgstr "Temukan pekerja menganggur\nJumlah pekerja menganggur."
 
 #: gui/session/selection_details.js:65
 #, javascript-format
@@ -1353,7 +1353,7 @@ msgstr "Klik untuk memilih unit yang dikelompokkan, klik-ganda untuk fokus pada 
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVI: Zhuangzi"
-msgstr ""
+msgstr "Alfa XXVI: Zhuangzi"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1686,7 +1686,7 @@ msgstr "Batalkan perintah saat ini."
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
-msgstr ""
+msgstr "Kirimkan unit terpilih untuk serang jalan ke lokasi tertentu setelah meninggalkan sumberdaya."
 
 #: gui/session/unit_actions.js:1503
 msgid "Order the selected units to garrison in a structure or unit."

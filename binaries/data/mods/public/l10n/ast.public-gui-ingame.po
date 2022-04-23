@@ -167,12 +167,12 @@ msgstr "Todos"
 #: gui/session/chat/ChatAddressees.js:99
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr "Socios"
+msgstr "Alliahos"
 
 #: gui/session/chat/ChatAddressees.js:100
 msgctxt "chat message context"
 msgid "Ally"
-msgstr "Soci@"
+msgstr "Alliad@"
 
 #: gui/session/chat/ChatAddressees.js:110
 msgctxt "chat addressee"
@@ -231,7 +231,7 @@ msgstr "Recahos de xhogadores"
 #: gui/session/chat/ChatHistory.js:106
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr "Recahos sociales"
+msgstr "Recahos d’alliahos"
 
 #: gui/session/chat/ChatHistory.js:113
 msgctxt "chat history filter"
@@ -276,7 +276,7 @@ msgstr "Premi %(hotkey)s p’abri’ la conversa spectadora."
 #: gui/session/chat/ChatInput.js:46
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr "Premi %(hotkey)s p’abri’ la conversa social."
+msgstr "Premi %(hotkey)s p’abri’ la conversa cun los alliahos."
 
 #: gui/session/chat/ChatInput.js:48
 #, javascript-format
@@ -369,7 +369,7 @@ msgstr "%(player)s introcou %(amountGiven)s in para de %(amountGained)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr "Associæsti-te cun %(player)s."
+msgstr "Alliæsti-te cun %(player)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:82
 #, javascript-format
@@ -384,7 +384,7 @@ msgstr "Volviesti-te neutral pa cun %(player)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr "%(player)s associou-se cun tigo."
+msgstr "%(player)s alliou-se cun tigo."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:87
 #, javascript-format
@@ -399,7 +399,7 @@ msgstr "%(player)s volvîu-se neutral pa cun tigo."
 #: gui/session/chat/ChatMessageFormatSimulation.js:91
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr "%(player)s associou-se cun %(player2)s."
+msgstr "%(player)s alliou-se cun %(player2)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:92
 #, javascript-format
@@ -653,7 +653,7 @@ msgstr "Alterna’ los colores diplomáticos"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
-msgstr "Pedir a los socios q’attaquen esti inimigu"
+msgstr "Pedir a los alliahos q’attaquen esti inimigu"
 
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
 msgctxt "team"
@@ -663,7 +663,7 @@ msgstr "Dalu"
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):28
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:78
 msgid "Ally"
-msgstr "Soci@"
+msgstr "Alliad@"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):32
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:81
@@ -897,7 +897,7 @@ msgstr "Xhogador disconhocidu"
 
 #: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
-msgstr "Siñar a los socios"
+msgstr "Siñar a los alliahos"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:43
 msgid ""
@@ -1020,7 +1020,7 @@ msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:486
 msgid "Loot:"
-msgstr "Preda:"
+msgstr "Prehesæs:"
 
 #. Translation: Used in the trading gain tooltip
 #: gui/session/selection_details.js:547
@@ -1712,7 +1712,7 @@ msgstr "Mandar que læs unidades scoyidæs eguen una construcçon, barcu ou mác
 
 #: gui/session/unit_actions.js:1588
 msgid "Focus on Rally Point."
-msgstr "Infocar scontra l punto d’incuœntru."
+msgstr "Infocar scontra l punto d’alcuœntru."
 
 #: gui/session/unit_actions.js:1625
 msgid "Back to Work"
@@ -1738,15 +1738,15 @@ msgstr "Velar"
 
 #: gui/session/unit_actions.js:1706
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr "Acometer a todelæs unidades inimigæs incontradæs evitando construcçones."
+msgstr "Acometer a todelæs unidades inimigæs alcontradæs evitando construcçones."
 
 #: gui/session/unit_actions.js:1734
 msgid "Press to allow allies to use this dropsite"
-msgstr "Premi par deixar que los socios usen esti depósitu"
+msgstr "Premi par deixar que los alliahos usen esti depósitu"
 
 #: gui/session/unit_actions.js:1739
 msgid "Press to prevent allies from using this dropsite"
-msgstr "Premi par quitar que los socios usen esti depósitu"
+msgstr "Premi par quitar que los alliahos usen esti depósitu"
 
 #: gui/session/unit_actions.js:1774
 msgid "The use of this dropsite is prohibited"
@@ -1754,7 +1754,7 @@ msgstr "Nun puœdes usar esti depósitu"
 
 #: gui/session/unit_actions.js:1780
 msgid "Allies are allowed to use this dropsite."
-msgstr "Los socios puœden usar esti depósitu."
+msgstr "Los alliahos puœden usar esti depósitu."
 
 #: gui/session/unit_actions.js:1781
 msgid "You are allowed to use this dropsite"

@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-03-25 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>, 2014,2021\n"
+"Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>, 2014,2021-2022\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -260,13 +260,13 @@ msgstr "dimatikan"
 
 #: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
-msgstr ""
+msgstr "Pada menit pertama, pemain lain akan tetap netral."
 
 #: gui/common/gamedescription.js:279
 #, javascript-format
 msgid "For the first %(min)s minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] "Untuk %(min)s menit pertama, pemain lain akan tetap netral."
+msgstr[0] "Pada %(min)s menit pertama, pemain lain akan tetap netral."
 
 #: gui/common/gamedescription.js:288
 msgctxt "Map Selection"
@@ -371,7 +371,7 @@ msgstr "Peta Terungkap"
 
 #: gui/common/gamedescription.js:402
 msgid "Allied View"
-msgstr ""
+msgstr "Tampilan Sekutu"
 
 #: gui/common/gamedescription.js:407
 msgid "Cheats"
@@ -676,22 +676,22 @@ msgstr "Syarat Kemenangan Tak Diketahui"
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab right."
-msgstr ""
+msgstr "Gulir ke bawah atau gunakan %(hotkey)s untuk pindah tab ke kanan."
 
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab left."
-msgstr ""
+msgstr "Gulir ke atas atau gunakan %(hotkey)s untuk pindah tab ke kiri."
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab down."
-msgstr ""
+msgstr "Gulir ke bawah atau gunakan %(hotkey)s untuk pindah tab ke bawah."
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab up."
-msgstr ""
+msgstr "Gulir ke atas atau gunakan %(hotkey)s untuk pindah tab ke atas."
 
 #: gui/common/tooltips.js:63
 #, javascript-format
@@ -1215,7 +1215,7 @@ msgstr "Lari"
 
 #: gui/common/tooltips.js:1030
 msgid "Acceleration"
-msgstr ""
+msgstr "Percepatan"
 
 #: gui/common/tooltips.js:1045 gui/common/tooltips.js:1050
 #: gui/common/tooltips.js:1055 gui/common/tooltips.js:1080
@@ -1346,19 +1346,19 @@ msgstr "Rebana, darbuka, riq, tom"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[11].Subtitle
 msgid "Guitar"
-msgstr ""
+msgstr "Gitar"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[12].Subtitle
 msgid "Handpan"
-msgstr ""
+msgstr "Handpan"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[13].Subtitle
 msgid "Harp"
-msgstr ""
+msgstr "Harpa"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[14].Subtitle
 msgid "Shruti Box"
-msgstr ""
+msgstr "Surpeti"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[15].Subtitle
 msgid "Tin whistles"
@@ -1382,11 +1382,11 @@ msgstr "Musik tambahan"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
 msgid "Cajon"
-msgstr ""
+msgstr "Kajon"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
 msgid "Cello"
-msgstr ""
+msgstr "Selo"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
 msgid "Celtic harp"
@@ -1402,7 +1402,7 @@ msgstr "Djembe"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
 msgid "Dulcimer"
-msgstr ""
+msgstr "Dulcimer"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
 msgid "Flute"
@@ -2048,7 +2048,7 @@ msgstr "Konfirmasi"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the console."
-msgstr ""
+msgstr "Menyetel konsol."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
 msgctxt "hotkey metadata"
@@ -2100,7 +2100,7 @@ msgstr "Tempel dari papan klip"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause the game."
-msgstr ""
+msgstr "Menjeda/melanjutkan permainan."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.name
 msgctxt "hotkey metadata"
@@ -2120,7 +2120,7 @@ msgstr "Simpan profil"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the real-time profiler."
-msgstr ""
+msgstr "Menyetel profiler waktu-nyata."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.name
 msgctxt "hotkey metadata"
@@ -2130,7 +2130,7 @@ msgstr "Setel profiler"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle HTTP/GPU modes for new profiler."
-msgstr ""
+msgstr "Menyetel mode HTTP/GPU untuk profiler baru."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
 msgctxt "hotkey metadata"
@@ -2332,12 +2332,12 @@ msgctxt "hotkey metadata"
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
-msgstr ""
+msgstr "Kirimkan unit yang dipilih untuk serang jalan ke lokasi tertentu setelah meninggalkan sumberdaya."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.name
 msgctxt "hotkey metadata"
 msgid "Call to arms"
-msgstr ""
+msgstr "Seruan perang"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
 msgctxt "hotkey metadata"
@@ -2735,7 +2735,7 @@ msgstr "Setel obrolan"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the civilization info."
-msgstr ""
+msgstr "Menyetel info bangsa."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
 msgctxt "hotkey metadata"
@@ -2929,7 +2929,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of status bars e.g. health indicator for all your "
 "buildings/units on the map (including unselected)."
-msgstr ""
+msgstr "Menyetel tampilan bilah status seperti indikasi nyawa untuk semua bangunan/unit di peta (termasuk yang tidak terpilih)."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"
@@ -2965,7 +2965,7 @@ msgstr "Menyetel tampilan jarak serang bangunan pertahanan terpilih."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle attack ranges"
-msgstr ""
+msgstr "Setel jarak serang"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.desc
 msgctxt "hotkey metadata"
@@ -3001,7 +3001,7 @@ msgstr "Setel siluet unit"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the structure tree."
-msgstr ""
+msgstr "Menyetel pohon bangunan."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.name
 msgctxt "hotkey metadata"
@@ -3271,7 +3271,7 @@ msgstr "Atur Regu Kendali 9"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 0."
-msgstr ""
+msgstr "Mengubah pilihan saat ini ke Regu Kendali 0."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.name
 msgctxt "hotkey metadata"
@@ -3281,7 +3281,7 @@ msgstr "Pilih Regu Kendali 0"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 1."
-msgstr ""
+msgstr "Mengubah pilihan saat ini ke Regu Kendali 1."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.name
 msgctxt "hotkey metadata"
@@ -3291,7 +3291,7 @@ msgstr "Pilih Regu Kendali 1"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 2."
-msgstr ""
+msgstr "Mengubah pilihan saat ini ke Regu Kendali 2."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.name
 msgctxt "hotkey metadata"
@@ -3301,7 +3301,7 @@ msgstr "Pilih Regu Kendali 2"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 3."
-msgstr ""
+msgstr "Mengubah pilihan saat ini ke Regu Kendali 3."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.name
 msgctxt "hotkey metadata"
@@ -3311,7 +3311,7 @@ msgstr "Pilih Regu Kendali 3"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 4."
-msgstr ""
+msgstr "Mengubah pilihan saat ini ke Regu Kendali 4."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.name
 msgctxt "hotkey metadata"
@@ -3321,7 +3321,7 @@ msgstr "Pilih Regu Kendali 4"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 5."
-msgstr ""
+msgstr "Mengubah pilihan saat ini ke Regu Kendali 5."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.name
 msgctxt "hotkey metadata"
@@ -3331,7 +3331,7 @@ msgstr "Pilih Regu Kendali 5"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 6."
-msgstr ""
+msgstr "Mengubah pilihan saat ini ke Regu Kendali 6."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.name
 msgctxt "hotkey metadata"
@@ -3341,7 +3341,7 @@ msgstr "Pilih Regu Kendali 6"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 7."
-msgstr ""
+msgstr "Mengubah pilihan saat ini ke Regu Kendali 7."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.name
 msgctxt "hotkey metadata"
@@ -3351,7 +3351,7 @@ msgstr "Pilih Regu Kendali 7"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 8."
-msgstr ""
+msgstr "Mengubah pilihan saat ini ke Regu Kendali 8."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.name
 msgctxt "hotkey metadata"
@@ -3361,7 +3361,7 @@ msgstr "Pilih Regu Kendali 8"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 9."
-msgstr ""
+msgstr "Mengubah pilihan saat ini ke Regu Kendali 9."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.name
 msgctxt "hotkey metadata"
@@ -3461,12 +3461,12 @@ msgstr "Hapus unit dari pilihan"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to select units individually, opposed to per formation."
-msgstr ""
+msgstr "Pengubah untuk memilih unit satu persatu, tidak dalam formasi."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.name
 msgctxt "hotkey metadata"
 msgid "Single selection"
-msgstr ""
+msgstr "Pilihan tunggal"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
@@ -3866,7 +3866,7 @@ msgstr "Maks: %(max)s"
 #, javascript-format
 msgid ""
 "Changes will be reverted in %(time)s seconds. Do you want to keep changes?"
-msgstr ""
+msgstr "Perubahan akan dibatalkan dalam %(time)s detik. Apakah anda ingin menyimpan perubahan?"
 
 #: gui/options/options.js:192
 #, javascript-format
@@ -4095,39 +4095,39 @@ msgstr "Untuk menghemat beban kerja CPU, percepat frekuensi render dalam menjala
 #: gui/options/options.json[1].options[9].label
 #: gui/options/options.json[1].options[9].tooltip
 msgid "GUI scale"
-msgstr ""
+msgstr "Skala antarmuka"
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "75%"
-msgstr ""
+msgstr "75%"
 
 #: gui/options/options.json[1].options[9].list[1].label
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: gui/options/options.json[1].options[9].list[2].label
 msgid "125%"
-msgstr ""
+msgstr "125%"
 
 #: gui/options/options.json[1].options[9].list[3].label
 msgid "150%"
-msgstr ""
+msgstr "150%"
 
 #: gui/options/options.json[1].options[9].list[4].label
 msgid "175%"
-msgstr ""
+msgstr "175%"
 
 #: gui/options/options.json[1].options[9].list[5].label
 msgid "200%"
-msgstr ""
+msgstr "200%"
 
 #: gui/options/options.json[1].options[9].list[6].label
 msgid "225%"
-msgstr ""
+msgstr "225%"
 
 #: gui/options/options.json[1].options[9].list[7].label
 msgid "250%"
-msgstr ""
+msgstr "250%"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -4139,27 +4139,27 @@ msgstr "Grafis (lanjutan)"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Renderer backend"
-msgstr ""
+msgstr "Backend perender"
 
 #: gui/options/options.json[2].options[0].list[0].label
 msgid "OpenGL"
-msgstr ""
+msgstr "OpenGL"
 
 #: gui/options/options.json[2].options[0].list[0].tooltip
 msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "OpenGL backend bawaan dengan GLSL. PERMAINAN HARUS DIMULAI ULANG"
 
 #: gui/options/options.json[2].options[0].list[1].label
 msgid "OpenGL ARB"
-msgstr ""
+msgstr "OpenGL ARB"
 
 #: gui/options/options.json[2].options[0].list[1].tooltip
 msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "OpenGL backend warisan dengan shader ARB. PERMAINAN HARUS DIMULAI ULANG"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Pilih backend perender. PERMAINAN HARUS DIMULAI ULANG"
 
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
@@ -4387,7 +4387,7 @@ msgstr "Gunakan kedalaman air nyata dalam kalkulasi rendering."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].label
 msgid "Texture quality"
-msgstr ""
+msgstr "Kualitas tekstur"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0].label._string
 msgctxt "Option for the texture quality."
@@ -4418,43 +4418,43 @@ msgstr "Tinggi"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].label
 msgid "Texture anisotropic filter"
-msgstr ""
+msgstr "Filter anisotropik tekstur"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[0].label
 msgid "1x"
-msgstr ""
+msgstr "1x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[1].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[1].tooltip
 msgid "2x"
-msgstr ""
+msgstr "2x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[2].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[2].tooltip
 msgid "4x"
-msgstr ""
+msgstr "4x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[3].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[3].tooltip
 msgid "8x"
-msgstr ""
+msgstr "8x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[4].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[4].tooltip
 msgid "16x"
-msgstr ""
+msgstr "16x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].tooltip
 msgid ""
 "Makes textures look better, especially terrain. If the anisotropic filter "
 "value is unsupported it will be set to the max supported value."
-msgstr ""
+msgstr "Membuat tekstur terlihat lebih baik, terutama pada medan. Jika nilai filter anisotropik tidak didukung maka akan diatur ke nilai tertinggi yang didukung."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].tooltip
 msgid ""
 "Decrease texture quality making them blurrier but increases game "
 "performance."
-msgstr ""
+msgstr "Mengurangi kualitas tekstur membuatnya lebih kabur tetapi meningkatkan kinerja permainan."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].label
 msgid "Master volume"
@@ -4919,11 +4919,11 @@ msgstr "Tentukan apakah formasi diaktifkan untuk semua perintah atau hanya 'Jala
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[23].label
 msgid "Battalion-style formations"
-msgstr ""
+msgstr "Formasi ala batalyon"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[23].tooltip
 msgid "Whether formations are selected as a whole."
-msgstr ""
+msgstr "Apakah formasi dipilih secara keseluruhan."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[2].label
 msgid "Scroll batch increment ratio"
@@ -4944,11 +4944,11 @@ msgstr "Berapa lama penanda suar di peta mini ditampilkan dalam detik."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].label
 msgid "Minimap icons"
-msgstr ""
+msgstr "Ikon Peta Mini"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].tooltip
 msgid "Show special icons for some entities on the minimap."
-msgstr ""
+msgstr "Tampilkan ikon khusus untuk beberapa entitas tertentu pada peta mini."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].label
 msgid "Chat notification attack"
@@ -5113,7 +5113,7 @@ msgstr "Tutorial"
 
 #: gui/pregame/MainMenuItems.js:15
 msgid "Start the introductory tutorial."
-msgstr ""
+msgstr "Mulai tutorial perkenalan."
 
 #: gui/pregame/MainMenuItems.js:36
 #: gui/reference/common/Buttons/StructreeButton.js:21
@@ -5343,7 +5343,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXVI: Zhuangzi"
-msgstr ""
+msgstr "Alfa XXVI: Zhuangzi"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5833,7 +5833,7 @@ msgstr "Cari Pemain"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):98
 msgid "File path for the currently selected replay."
-msgstr ""
+msgstr "Alamat berkas untuk tayangan ulang yang sedang dipilih."
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):241
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
@@ -5996,7 +5996,7 @@ msgstr "Pedagang"
 #: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(lost)s)"
-msgstr ""
+msgstr "Statistik Unit (%(trained)s / %(killed)s / %(lost)s)"
 
 #: gui/summary/layout.js:108
 msgid "Resources"
@@ -6233,7 +6233,7 @@ msgstr "%(hotkey)s: Setel lobi multipemain di jendela dialog."
 #: gui/summary/summary.js:556
 #, javascript-format
 msgid "Focus the %(name)s summary tab."
-msgstr ""
+msgstr "Fokus ke %(name)s tab ringkasan."
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
@@ -6574,7 +6574,7 @@ msgstr "Menangkap ikan lebih cepat daripada mengumpulkan pangan di ladang."
 msgid ""
 "Careful! Fish are not an infinite resource! Although they do slowly "
 "repopulate when left alone."
-msgstr ""
+msgstr "Hati-hati! Ikan bukanlah sumberdaya tak terhingga! Meskipun begitu mereka perlahan berkembang biak jika dibiarkan."
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
@@ -6601,7 +6601,7 @@ msgstr "Susun prajurit anda dalam formasi agar mereka tetap teratur saat pertemp
 msgid ""
 "Formations are selected as a whole by default, but that can be changed in "
 "the game settings."
-msgstr ""
+msgstr "Formasi dipilih keseluruhan secara bawaan, namun dapat diganti di pengaturan permainan."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -7142,7 +7142,7 @@ msgstr "Daging"
 #: simulation/data/resources/food.jsonsubtypes.rice
 msgctxt "firstWord"
 msgid "Rice"
-msgstr ""
+msgstr "Padi"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7150,7 +7150,7 @@ msgstr ""
 #: simulation/data/resources/food.jsonsubtypes.rice
 msgctxt "withinSentence"
 msgid "Rice"
-msgstr ""
+msgstr "Padi"
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."

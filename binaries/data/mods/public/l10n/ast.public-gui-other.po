@@ -227,7 +227,7 @@ msgstr "Diplomacia"
 
 #: gui/common/gamedescription.js:257
 msgid "Players can make alliances and declare war on allies."
-msgstr "Los xhogadores puœden associase & imbelhase contra socios."
+msgstr "Los xhogadores puœden alliase & imbelhase contra alliahos."
 
 #: gui/common/gamedescription.js:262
 msgid "Last Man Standing"
@@ -237,7 +237,7 @@ msgstr "A vida ou muœrte"
 msgid ""
 "Only one player can win the game. If the remaining players are allies, the "
 "game continues until only one remains."
-msgstr "Nun puœde haber ma un vincedor. Si los xhogadores restantes stuvieren associahos, la partida continúa ta que quede un solu vincedor."
+msgstr "Nun puœde haber ma un vincedor. Si los xhogadores restantes stuvieren alliahos, la partida continúa ta que quede un solu vincedor."
 
 #: gui/common/gamedescription.js:267
 msgid "Allied Victory"
@@ -247,7 +247,7 @@ msgstr "Victoria collectiva"
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr "El xhogador comparte la victoria cun los socios. La grea de socios que remanecier ye la vincedora."
+msgstr "El xhogador comparte la victoria cun los alliahos. La grea d’alliahos que remanecier ye la vincedora."
 
 #: gui/common/gamedescription.js:273
 msgid "Ceasefire"
@@ -314,7 +314,7 @@ msgstr "Foros"
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr "Los xhogadores intamæn cun un puñau d’unidades & tienen de buscar un sitiu u s’assentar."
+msgstr "Los xhogadores intamæn cun un puñau d’unidades & tienen de buscar un sitiu afhayadiçu p’assentase."
 
 #: gui/common/gamedescription.js:344
 msgid "Players start with a Civic Center."
@@ -1279,7 +1279,7 @@ msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:1192
 msgid "Loot:"
-msgstr "Preda:"
+msgstr "Prehesæs:"
 
 #: gui/common/tooltips.js:1202
 #, javascript-format
@@ -1826,12 +1826,12 @@ msgstr "Disloca’ la cámara"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.desc
 msgctxt "hotkey metadata"
 msgid "Focus the camera on the rally point of the selected building."
-msgstr "Infoca’ la cámara pa l punto d’incuœntru de l edificio scoyido."
+msgstr "Infoca’ la cámara pa l punto d’alcuœntru de l edificio scoyido."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.name
 msgctxt "hotkey metadata"
 msgid "Focus on rallypoint"
-msgstr "Infocar scontra l punto d’incuœntru"
+msgstr "Infocar scontra l punto d’alcuœntru"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.desc
 msgctxt "hotkey metadata"
@@ -2029,7 +2029,7 @@ msgstr "Gëneral"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take large BMP screenshot."
-msgstr "Fhazer una semeya grande n formatu BMP."
+msgstr "Fhazer una semeya n formatu BMP."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.name
 msgctxt "hotkey metadata"
@@ -2091,27 +2091,27 @@ msgctxt "hotkey metadata"
 msgid ""
 "Custom hotkey to trigger exit-to-desktop. The native hotkeys (Alt+F4 / Cmd+Q"
 " / etc.) are always active."
-msgstr "Atayu personalizáu pa colar al escritoriu. Los atayos por defectu (Alternativa+F4 / Comandu+Q / etc.) siempre están activos."
+msgstr "Atayu personalizau pa salir al scritorio. Los atayos por defectu (Alternativa+F4 / Commandu+Q / etc.) stan siempres activos."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
 msgid "Custom exit to desktop"
-msgstr "Colar pal escritoriu personalizao"
+msgstr "Salida pa l scritorio personalizada"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard."
-msgstr "Apegar del cartafueyu."
+msgstr "Apegar de l cartafhuœyu."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.name
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard"
-msgstr "Apegar del cartafueyu"
+msgstr "Apegar de l cartafhuœyu"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause the game."
-msgstr "Pousar ou continua’l incuœntru."
+msgstr "Pousar ou continua’ la partida."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.name
 msgctxt "hotkey metadata"
@@ -2121,32 +2121,32 @@ msgstr "Pousar/Continuar"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.desc
 msgctxt "hotkey metadata"
 msgid "Save current profiler data to logs/profile.txt."
-msgstr "Arquivar los datos actuales del analizador en «logs/profile.txt»."
+msgstr "Archiva’ los datos actuales de l analyzador in “logs/profile.txt”."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.name
 msgctxt "hotkey metadata"
 msgid "Save profile"
-msgstr "Arquivar l'analís"
+msgstr "Archiva’l análysis"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the real-time profiler."
-msgstr "Alternar l'analizador simultaneu."
+msgstr "Alterna’l analyzador simultaneu."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler"
-msgstr "Alternar l'analizador"
+msgstr "Alterna’l analyzador"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle HTTP/GPU modes for new profiler."
-msgstr "Alternar los modos HTTP ya GPU n'analizador nuevu."
+msgstr "Alterna’ los modos HTTP/GPU n analyzador nuœvu."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler2"
-msgstr "Alternar l'analizador2"
+msgstr "Alterna’l analyzador2"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
@@ -2166,7 +2166,7 @@ msgstr "Amostrar ou anublri’ la marca translúcida de la compaña/productu nos
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
 msgctxt "hotkey metadata"
 msgid "Toggle watermark"
-msgstr "Alternar la marca"
+msgstr "Alterna’ la marca"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.desc
 msgctxt "hotkey metadata"
@@ -2181,32 +2181,32 @@ msgstr "Lhingueta segiente"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.desc
 msgctxt "hotkey metadata"
 msgid "Show the previous tab."
-msgstr "Amostrar la llingüeta anterior."
+msgstr "Amostra’ la lhingueta anterior."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.name
 msgctxt "hotkey metadata"
 msgid "Previous tab"
-msgstr "Llingüeta anterior"
+msgstr "Lhingueta anterior"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the left of cursor."
-msgstr "Desaniciar la pallabra a la esquierda del punteru."
+msgstr "Borra’ la pallabra a la ezquierda de l cursor."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.name
 msgctxt "hotkey metadata"
 msgid "Delete before cursor"
-msgstr "Desaniciar delantre del punteru"
+msgstr "Borra’l textu de lantre l cursor"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the right of cursor."
-msgstr "Desaniciar la pallabra a la derecha del punteru."
+msgstr "Borra’ la pallabra a la dreitha de l cursor."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.name
 msgctxt "hotkey metadata"
 msgid "Delete after cursor"
-msgstr "Desaniciar detrás del punteru"
+msgstr "Borra’l textu de tras de l cursor"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.desc
 msgctxt "hotkey metadata"
@@ -2216,7 +2216,7 @@ msgstr "Move’l cursor al principio de la pallabra a la ezquierda de l cursor."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to left word"
-msgstr "Mover el punteru a la pallabra a manzorga"
+msgstr "Move’l cursor a la pallabra ezquierda"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.desc
 msgctxt "hotkey metadata"
@@ -2226,7 +2226,7 @@ msgstr "Move’l cursor al principio de la pallabra a la direitha de l cursor."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to right word"
-msgstr "Mover el punteru a la pallabra a mandrecha"
+msgstr "Move’l cursor a la pallabra dreitha"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.desc
 msgctxt "hotkey metadata"
@@ -2236,17 +2236,17 @@ msgstr "Cambiar entre los modos “pantalla completa” & “feniestra”."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.name
 msgctxt "hotkey metadata"
 msgid "Toggle Fullscreen"
-msgstr "Alternar la vista completa"
+msgstr "Alterna’ la vista completa"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.desc
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode."
-msgstr "Activar o desactivar el modu cadarma."
+msgstr "Activar ou disactiva’l modu contornu."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.name
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode"
-msgstr "Alternar el modu cadarma"
+msgstr "Alterna’l modu contornu"
 
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.desc
 msgctxt "hotkey metadata"
@@ -2261,12 +2261,12 @@ msgstr "Configuraçon de partida"
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.desc
 msgctxt "hotkey metadata"
 msgid "Open the map browser."
-msgstr "Abri’l navigador terreiru."
+msgstr "Abri’l catálogu de terreiros."
 
 #: gui/hotkeys/spec/gamesetup.jsonmapped_hotkeys.gamesetup.gamesetup.mapbrowser.open.name
 msgctxt "hotkey metadata"
 msgid "Open map browser"
-msgstr "Abri’l navigador terreiru"
+msgstr "Abri’l catálogu de terreiros"
 
 #: gui/hotkeys/spec/ingame.jsoncategories.ingame.desc
 msgctxt "hotkey metadata"
@@ -2311,7 +2311,7 @@ msgstr "Acometer (namái unidades)"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to set the rally point on the building itself."
-msgstr "Camudador p’afhita’l punto d’incuœntru nun mesmo edificio."
+msgstr "Camudador p’afhita’l punto d’alcuœntru nun mesmo edificio."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.name
 msgctxt "hotkey metadata"
@@ -3774,12 +3774,12 @@ msgstr "Todolos terreiros de l typu scoyidu."
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
-msgstr "Navigador terreiru"
+msgstr "Catálogu de terreiros"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr "%(hotkey)s: Cerra’l navigador de terreiros & discarta’ la scolheitha."
+msgstr "%(hotkey)s: Cerra’l catálogu de terreiros & discarta’ la scolheitha."
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
@@ -3791,7 +3791,7 @@ msgstr "Zarrar"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr "%(hotkey)s: Cerra’l navigador de terreiros."
+msgstr "%(hotkey)s: Cerra’l catálogu de terreiros."
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -4815,11 +4815,11 @@ msgstr "Color de les unidades túes cuando colores diplomátiques están actives
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].label
 msgid "Diplomacy colors: ally"
-msgstr "Colores diplomátiques: sociu"
+msgstr "Colores diplomátiques: alliaho"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
-msgstr "Color de los socios cuando les colores diplomátiques están actives."
+msgstr "Color de los alliahos quando los colores diplomáticos stan activos."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].label
 msgid "Diplomacy colors: neutral"
@@ -4977,7 +4977,7 @@ msgstr "Avisu de tributu"
 msgid ""
 "Show a chat notification if an ally tributes resources to another team "
 "member if teams are locked, and all tributes in observer mode."
-msgstr "Amostrar un avisu na conversa sobre tributos entre socios si læs facçones stuvieren fixæs & todolos tributos in modu spectador."
+msgstr "Amostrar un avisu na conversa sobre tributos entre alliahos si læs facçones stuvieren fixæs & todolos tributos in modu spectador."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].label
 msgid "Chat notification barter"
@@ -5008,7 +5008,7 @@ msgstr "Amostrallos todos"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr "Amostrar un avisu si cualquier sociu entama, abuerta o apuerta a nueva fas al estar les fases de tódolos xugadores en modu espectador."
+msgstr "Amostrar un avisu si qualquier alliau comiença, abuœrta ou perfhaz nuœva phase al sta’ læs phases de todolos xhogadores in modu spectador."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].label
 msgid "Attack range visualization"
@@ -5860,7 +5860,7 @@ msgstr "Reconstruir el caxé de la repetición dende cero. ¡Puede entardar!"
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr "[font=\"sans-bold-20\"] ¡Gracies por instalar 0 A.D. Empires Ascendant!"
+msgstr "[font=\"sans-bold-20\"] ¡Graciæs por installar 0 A.D. Empires Ascendant!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
