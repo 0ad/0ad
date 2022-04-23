@@ -823,28 +823,44 @@ void WaterManager::RenderWaves(
 			continue;
 
 		CVertexBuffer::VBChunk* VBchunk = m_ShoreWaves[a]->m_VBVertices.Get();
-		SWavesVertex* base = (SWavesVertex*)VBchunk->m_Owner->Bind(deviceCommandContext);
+		VBchunk->m_Owner->UploadIfNeeded(deviceCommandContext);
+		m_ShoreWavesVBIndices->m_Owner->UploadIfNeeded(deviceCommandContext);
 
-		// setup data pointers
-		GLsizei stride = sizeof(SWavesVertex);
-		shader->VertexPointer(
-			Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base[VBchunk->m_Index].m_BasePosition);
-		shader->TexCoordPointer(
-			GL_TEXTURE0, Renderer::Backend::Format::R8G8_UINT, stride, &base[VBchunk->m_Index].m_UV);
-		shader->NormalPointer(
-			Renderer::Backend::Format::R32G32_SFLOAT, stride, &base[VBchunk->m_Index].m_PerpVect);
-		shader->VertexAttribPointer(
-			str_a_apexPosition, Renderer::Backend::Format::R32G32B32_SFLOAT, false, stride, &base[VBchunk->m_Index].m_ApexPosition);
-		shader->VertexAttribPointer(
-			str_a_splashPosition, Renderer::Backend::Format::R32G32B32_SFLOAT, false, stride, &base[VBchunk->m_Index].m_SplashPosition);
-		shader->VertexAttribPointer(
-			str_a_retreatPosition, Renderer::Backend::Format::R32G32B32_SFLOAT, false, stride, &base[VBchunk->m_Index].m_RetreatPosition);
+		const uint32_t stride = sizeof(SWavesVertex);
+		const uint32_t firstVertexOffset = VBchunk->m_Index * stride;
+
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32B32_SFLOAT,
+			firstVertexOffset + offsetof(SWavesVertex, m_BasePosition), stride, 0);
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::NORMAL,
+			Renderer::Backend::Format::R32G32_SFLOAT,
+			firstVertexOffset + offsetof(SWavesVertex, m_PerpVect), stride, 0);
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::UV0,
+			Renderer::Backend::Format::R8G8_UINT,
+			firstVertexOffset + offsetof(SWavesVertex, m_UV), stride, 0);
+
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::UV1,
+			Renderer::Backend::Format::R32G32B32_SFLOAT,
+			firstVertexOffset + offsetof(SWavesVertex, m_ApexPosition), stride, 0);
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::UV2,
+			Renderer::Backend::Format::R32G32B32_SFLOAT,
+			firstVertexOffset + offsetof(SWavesVertex, m_SplashPosition), stride, 0);
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::UV3,
+			Renderer::Backend::Format::R32G32B32_SFLOAT,
+			firstVertexOffset + offsetof(SWavesVertex, m_RetreatPosition), stride, 0);
 
 		shader->Uniform(str_translation, m_ShoreWaves[a]->m_TimeDiff);
 		shader->Uniform(str_width, (int)m_ShoreWaves[a]->m_Width);
 
-		m_ShoreWavesVBIndices->m_Owner->UploadIfNeeded(deviceCommandContext);
+		deviceCommandContext->SetVertexBuffer(0, VBchunk->m_Owner->GetBuffer());
 		deviceCommandContext->SetIndexBuffer(m_ShoreWavesVBIndices->m_Owner->GetBuffer());
+
 		deviceCommandContext->DrawIndexed(m_ShoreWavesVBIndices->m_Index, (m_ShoreWaves[a]->m_Width - 1) * (7 * 6), 0);
 
 		shader->Uniform(str_translation, m_ShoreWaves[a]->m_TimeDiff + 6.0f);
@@ -852,8 +868,6 @@ void WaterManager::RenderWaves(
 		// TODO: figure out why this doesn't work.
 		//g_Renderer.m_Stats.m_DrawCalls++;
 		//g_Renderer.m_Stats.m_WaterTris += m_ShoreWaves_VBIndices->m_Count / 3;
-
-		CVertexBuffer::Unbind(deviceCommandContext);
 	}
 	deviceCommandContext->EndPass();
 	deviceCommandContext->SetFramebuffer(

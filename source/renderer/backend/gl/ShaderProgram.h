@@ -34,22 +34,6 @@ class CVector3D;
 class CShaderDefines;
 class CStrIntern;
 
-// Vertex data stream flags
-enum
-{
-	STREAM_POS = (1 << 0),
-	STREAM_NORMAL = (1 << 1),
-	STREAM_COLOR = (1 << 2),
-	STREAM_UV0 = (1 << 3),
-	STREAM_UV1 = (1 << 4),
-	STREAM_UV2 = (1 << 5),
-	STREAM_UV3 = (1 << 6),
-	STREAM_UV4 = (1 << 7),
-	STREAM_UV5 = (1 << 8),
-	STREAM_UV6 = (1 << 9),
-	STREAM_UV7 = (1 << 10),
-};
-
 namespace Renderer
 {
 
@@ -124,12 +108,6 @@ public:
 	 */
 	virtual void Unbind() = 0;
 
-	/**
-	 * Returns bitset of STREAM_* value, indicating what vertex data streams the
-	 * vertex shader needs (e.g. position, color, UV, ...).
-	 */
-	int GetStreamFlags() const;
-
 
 	virtual Binding GetTextureBinding(texture_id_t id) = 0;
 
@@ -165,11 +143,11 @@ public:
 
 	// Vertex attribute pointers (equivalent to glVertexPointer etc):
 
-	virtual void VertexPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer);
-	virtual void NormalPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer);
-	virtual void ColorPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer);
-	virtual void TexCoordPointer(GLenum texture, const Renderer::Backend::Format format, GLsizei stride, const void* pointer);
-	virtual void VertexAttribPointer(attrib_id_t id, const Renderer::Backend::Format format, GLboolean normalized, GLsizei stride, const void* pointer);
+	virtual void VertexAttribPointer(
+		const VertexAttributeStream stream, const Format format,
+		const uint32_t offset, const uint32_t stride, const void* data);
+
+	bool IsStreamActive(const VertexAttributeStream stream) const;
 
 	/**
 	 * Checks that all the required vertex attributes have been set.
@@ -200,6 +178,12 @@ protected:
 		const CShaderDefines& defines,
 		const std::map<CStrIntern, int>& vertexAttribs,
 		int streamflags);
+
+	void VertexPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer);
+	void NormalPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer);
+	void ColorPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer);
+	void TexCoordPointer(GLenum texture, const Renderer::Backend::Format format, GLsizei stride, const void* pointer);
+	void VertexAttribPointer(attrib_id_t id, const Renderer::Backend::Format format, GLboolean normalized, GLsizei stride, const void* pointer);
 
 	virtual void BindTexture(texture_id_t id, GLuint tex) = 0;
 	virtual void BindTexture(Binding id, GLuint tex) = 0;

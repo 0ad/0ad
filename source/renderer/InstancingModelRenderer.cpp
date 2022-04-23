@@ -295,86 +295,81 @@ void InstancingModelRenderer::UpdateModelData(CModel* UNUSED(model), CModelRData
 
 
 // Setup one rendering pass.
-void InstancingModelRenderer::BeginPass(int streamflags)
+void InstancingModelRenderer::BeginPass()
 {
-	ENSURE(streamflags == (streamflags & (STREAM_POS|STREAM_NORMAL|STREAM_UV0|STREAM_UV1|STREAM_UV2|STREAM_UV3|STREAM_UV4)));
 }
 
 // Cleanup rendering pass.
 void InstancingModelRenderer::EndPass(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	int UNUSED(streamflags))
+	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext))
 {
-	CVertexBuffer::Unbind(deviceCommandContext);
 }
-
 
 // Prepare UV coordinates for this modeldef
 void InstancingModelRenderer::PrepareModelDef(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CShaderProgram* shader, int streamflags, const CModelDef& def)
+	Renderer::Backend::GL::CShaderProgram* UNUSED(shader), const CModelDef& def)
 {
 	m->imodeldef = (IModelDef*)def.GetRenderData(m);
 
 	ENSURE(m->imodeldef);
-
-	u8* base = m->imodeldef->m_Array.Bind(deviceCommandContext);
-	GLsizei stride = (GLsizei)m->imodeldef->m_Array.GetStride();
-
+	m->imodeldef->m_Array.UploadIfNeeded(deviceCommandContext);
 	m->imodeldef->m_IndexArray.UploadIfNeeded(deviceCommandContext);
+
 	deviceCommandContext->SetIndexBuffer(m->imodeldef->m_IndexArray.GetBuffer());
 
-	if (streamflags & STREAM_POS)
+	const uint32_t stride = m->imodeldef->m_Array.GetStride();
+	const uint32_t firstVertexOffset = m->imodeldef->m_Array.GetOffset() * stride;
+
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		m->imodeldef->m_Position.format,
+		firstVertexOffset + m->imodeldef->m_Position.offset, stride, 0);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::NORMAL,
+		m->imodeldef->m_Normal.format,
+		firstVertexOffset + m->imodeldef->m_Normal.offset, stride, 0);
+
+	constexpr size_t MAX_UV = 2;
+	for (size_t uv = 0; uv < std::min(MAX_UV, def.GetNumUVsPerVertex()); ++uv)
 	{
-		shader->VertexPointer(
-			m->imodeldef->m_Position.format, stride,
-			base + m->imodeldef->m_Position.offset);
+		const Renderer::Backend::VertexAttributeStream stream =
+			static_cast<Renderer::Backend::VertexAttributeStream>(
+				static_cast<int>(Renderer::Backend::VertexAttributeStream::UV0) + uv);
+		deviceCommandContext->SetVertexAttributeFormat(
+			stream, m->imodeldef->m_UVs[uv].format,
+			firstVertexOffset + m->imodeldef->m_UVs[uv].offset, stride, 0);
 	}
 
-	if (streamflags & STREAM_NORMAL)
+	// GPU skinning requires extra attributes to compute positions/normals.
+	if (m->gpuSkinning)
 	{
-		shader->NormalPointer(
-			m->imodeldef->m_Normal.format, stride,
-			base + m->imodeldef->m_Normal.offset);
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::UV2,
+			m->imodeldef->m_BlendJoints.format,
+			firstVertexOffset + m->imodeldef->m_BlendJoints.offset, stride, 0);
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::UV3,
+			m->imodeldef->m_BlendWeights.format,
+			firstVertexOffset + m->imodeldef->m_BlendWeights.offset, stride, 0);
 	}
 
 	if (m->calculateTangents)
 	{
-		shader->VertexAttribPointer(
-			str_a_tangent, m->imodeldef->m_Tangent.format,
-			GL_FALSE, stride, base + m->imodeldef->m_Tangent.offset);
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::UV4,
+			m->imodeldef->m_Tangent.format,
+			firstVertexOffset + m->imodeldef->m_Tangent.offset, stride, 0);
 	}
 
-	for (size_t uv = 0; uv < 2; ++uv)
-		if (streamflags & (STREAM_UV0 << uv))
-		{
-			if (def.GetNumUVsPerVertex() >= uv + 1)
-			{
-				shader->TexCoordPointer(
-					GL_TEXTURE0 + uv, m->imodeldef->m_UVs[uv].format, stride,
-					base + m->imodeldef->m_UVs[uv].offset);
-			}
-			else
-				ONCE(LOGERROR("Model '%s' has no UV%d set.", def.GetName().string8().c_str(), uv));
-		}
-
-	// GPU skinning requires extra attributes to compute positions/normals
-	if (m->gpuSkinning)
-	{
-		shader->VertexAttribPointer(
-			str_a_skinJoints, m->imodeldef->m_BlendJoints.format, GL_FALSE,
-			stride, base + m->imodeldef->m_BlendJoints.offset);
-		shader->VertexAttribPointer(
-			str_a_skinWeights, m->imodeldef->m_BlendWeights.format, GL_TRUE,
-			stride, base + m->imodeldef->m_BlendWeights.offset);
-	}
+	deviceCommandContext->SetVertexBuffer(0, m->imodeldef->m_Array.GetBuffer());
 }
 
 
 // Render one model
 void InstancingModelRenderer::RenderModel(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CShaderProgram* shader, int UNUSED(streamflags), CModel* model, CModelRData* UNUSED(data))
+	Renderer::Backend::GL::CShaderProgram* shader, CModel* model, CModelRData* UNUSED(data))
 {
 	const CModelDefPtr& mdldef = model->GetModelDef();
 
@@ -398,5 +393,4 @@ void InstancingModelRenderer::RenderModel(
 	// Bump stats.
 	g_Renderer.m_Stats.m_DrawCalls++;
 	g_Renderer.m_Stats.m_ModelTris += numberOfFaces;
-
 }

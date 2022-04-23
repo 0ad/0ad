@@ -88,22 +88,20 @@ public:
 
 
 	/**
-	 * BeginPass: Setup global OpenGL state for this ModelVertexRenderer.
+	 * BeginPass: Setup backend state for this ModelVertexRenderer.
 	 *
-	 * ModelVertexRenderer implementations should prepare "heavy" OpenGL
+	 * ModelVertexRenderer implementations should prepare "heavy"
 	 * state such as vertex shader state to prepare for rendering models
 	 * and delivering vertex data to the fragment stage as described by
-	 * streamflags.
+	 * shader.
 	 *
 	 * ModelRenderer implementations must call this function before any
 	 * calls to other rendering related functions.
 	 *
 	 * Recursive calls to BeginPass are not allowed, and every BeginPass
 	 * is matched by a corresponding call to EndPass.
-	 *
-	 * @param streamflags Vertex streams required by the fragment stage.
 	 */
-	virtual void BeginPass(int streamflags) = 0;
+	virtual void BeginPass() = 0;
 
 
 	/**
@@ -111,12 +109,8 @@ public:
 	 *
 	 * ModelRenderer implementations must call this function after
 	 * rendering related functions for one pass have been called.
-	 *
-	 * @param streamflags Vertex streams required by the fragment stage.
-	 * This equals the streamflags parameter passed on the last call to
-	 * BeginPass.
 	 */
-	virtual void EndPass(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, int streamflags) = 0;
+	virtual void EndPass(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext) = 0;
 
 
 	/**
@@ -128,14 +122,11 @@ public:
 	 * When a ModelRenderer switches back and forth between CModelDefs,
 	 * it must call PrepareModelDef for every switch.
 	 *
-	 * @param streamflags Vertex streams required by the fragment stage.
-	 * This equals the streamflags parameter passed on the last call to
-	 * BeginPass.
 	 * @param def The model definition.
 	 */
 	virtual void PrepareModelDef(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		Renderer::Backend::GL::CShaderProgram* shader, int streamflags, const CModelDef& def) = 0;
+		Renderer::Backend::GL::CShaderProgram* shader, const CModelDef& def) = 0;
 
 
 	/**
@@ -147,9 +138,6 @@ public:
 	 * preconditions  : The most recent call to PrepareModelDef since
 	 * BeginPass has been for model->GetModelDef().
 	 *
-	 * @param streamflags Vertex streams required by the fragment stage.
-	 * This equals the streamflags parameter passed on the last call to
-	 * BeginPass.
 	 * @param model The model that should be rendered.
 	 * @param data Private data for the model as returned by CreateModelData.
 	 *
@@ -159,7 +147,7 @@ public:
 	 */
 	virtual void RenderModel(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		Renderer::Backend::GL::CShaderProgram* shader, int streamflags, CModel* model, CModelRData* data) = 0;
+		Renderer::Backend::GL::CShaderProgram* shader, CModel* model, CModelRData* data) = 0;
 };
 
 

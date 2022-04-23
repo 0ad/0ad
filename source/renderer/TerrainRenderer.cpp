@@ -207,11 +207,14 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 			waterBounds[0].X, height, waterBounds[1].Z
 		};
 
-		const GLsizei stride = sizeof(float) * 3;
-		debugOverlayShader->VertexPointer(
-			Renderer::Backend::Format::R32G32B32_SFLOAT, stride, waterPos);
-		debugOverlayShader->TexCoordPointer(
-			GL_TEXTURE0, Renderer::Backend::Format::R32G32B32_SFLOAT, stride, waterPos);
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::UV0,
+			Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+
+		deviceCommandContext->SetVertexBufferData(0, waterPos);
 
 		deviceCommandContext->Draw(0, 6);
 	}

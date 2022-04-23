@@ -71,8 +71,7 @@ unsigned int ScaleColor(unsigned int color, float x)
 }
 
 void DrawTexture(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CShaderProgram* shader)
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	const float quadUVs[] =
 	{
@@ -95,10 +94,15 @@ void DrawTexture(
 		-1.0f, -1.0f, 0.0f
 	};
 
-	shader->TexCoordPointer(
-		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, quadUVs);
-	shader->VertexPointer(
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, quadVertices);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::UV0,
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 1);
+
+	deviceCommandContext->SetVertexBufferData(0, quadVertices);
+	deviceCommandContext->SetVertexBufferData(1, quadUVs);
 
 	deviceCommandContext->Draw(0, 6);
 }
@@ -390,7 +394,7 @@ void CMiniMapTexture::RenderFinalTexture(
 	shader->Uniform(str_textureTransform, terrainTransform);
 
 	if (m_TerrainTexture)
-		DrawTexture(deviceCommandContext, shader);
+		DrawTexture(deviceCommandContext);
 	deviceCommandContext->EndPass();
 
 	pipelineStateDesc.blendState.enabled = true;
@@ -414,7 +418,7 @@ void CMiniMapTexture::RenderFinalTexture(
 	shader->Uniform(str_transform, baseTransform);
 	shader->Uniform(str_textureTransform, territoryTexture.GetMinimapTextureMatrix());
 
-	DrawTexture(deviceCommandContext, shader);
+	DrawTexture(deviceCommandContext);
 	deviceCommandContext->EndPass();
 
 	pipelineStateDesc.blendState.enabled = false;
@@ -427,7 +431,7 @@ void CMiniMapTexture::RenderFinalTexture(
 	shader->Uniform(str_transform, baseTransform);
 	shader->Uniform(str_textureTransform, losTexture.GetMinimapTextureMatrix());
 
-	DrawTexture(deviceCommandContext, shader);
+	DrawTexture(deviceCommandContext);
 
 	deviceCommandContext->EndPass();
 
@@ -565,20 +569,25 @@ void CMiniMapTexture::RenderFinalTexture(
 		scissorRect.width = scissorRect.height = FINAL_TEXTURE_SIZE - 2;
 		deviceCommandContext->SetScissors(1, &scissorRect);
 
+		m_VertexArray.UploadIfNeeded(deviceCommandContext);
 		m_IndexArray.UploadIfNeeded(deviceCommandContext);
-		u8* base = m_VertexArray.Bind(deviceCommandContext);
-		const GLsizei stride = (GLsizei)m_VertexArray.GetStride();
 
-		shader->VertexPointer(
-			m_AttributePos.format, stride, base + m_AttributePos.offset);
-		shader->ColorPointer(
-			m_AttributeColor.format, stride, base + m_AttributeColor.offset);
+		const uint32_t stride = m_VertexArray.GetStride();
+		const uint32_t firstVertexOffset = m_VertexArray.GetOffset() * stride;
 
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::POSITION,
+			m_AttributePos.format, firstVertexOffset + m_AttributePos.offset, stride, 0);
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::COLOR,
+			m_AttributeColor.format, firstVertexOffset + m_AttributeColor.offset, stride, 0);
+
+		deviceCommandContext->SetVertexBuffer(0, m_VertexArray.GetBuffer());
 		deviceCommandContext->SetIndexBuffer(m_IndexArray.GetBuffer());
+
 		deviceCommandContext->DrawIndexed(m_IndexArray.GetOffset(), m_EntitiesDrawn * 6, 0);
 
 		g_Renderer.GetStats().m_DrawCalls++;
-		CVertexBuffer::Unbind(deviceCommandContext);
 
 		deviceCommandContext->SetScissors(0, nullptr);
 	}

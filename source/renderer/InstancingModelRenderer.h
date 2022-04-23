@@ -42,15 +42,14 @@ public:
 	CModelRData* CreateModelData(const void* key, CModel* model);
 	void UpdateModelData(CModel* model, CModelRData* data, int updateflags);
 
-	void BeginPass(int streamflags);
+	void BeginPass();
 	void EndPass(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		int streamflags);
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 	void PrepareModelDef(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		Renderer::Backend::GL::CShaderProgram* shader, int streamflags, const CModelDef& def);
+		Renderer::Backend::GL::CShaderProgram* shader, const CModelDef& def);
 	void RenderModel(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		Renderer::Backend::GL::CShaderProgram* shader, int streamflags, CModel* model, CModelRData* data);
+		Renderer::Backend::GL::CShaderProgram* shader, CModel* model, CModelRData* data);
 
 protected:
 	InstancingModelRendererInternals* m;

@@ -56,10 +56,16 @@ inline void DrawTextureImpl(
 	shader->Uniform(str_colorAdd, add);
 	shader->Uniform(str_colorMul, multiply);
 	shader->Uniform(str_grayscaleFactor, grayscaleFactor);
-	shader->VertexPointer(
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, vertices.data());
-	shader->TexCoordPointer(
-		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, uvs.data());
+
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 0);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::UV0,
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 1);
+
+	deviceCommandContext->SetVertexBufferData(0, vertices.data());
+	deviceCommandContext->SetVertexBufferData(1, uvs.data());
 
 	deviceCommandContext->Draw(0, vertices.size() / 2);
 }
@@ -250,10 +256,16 @@ void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width
 	shader->Uniform(str_colorAdd, CColor(0.0f, 0.0f, 0.0f, 0.0f));
 	shader->Uniform(str_colorMul, color);
 	shader->Uniform(str_grayscaleFactor, 0.0f);
-	shader->VertexPointer(
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, vertices.data());
-	shader->TexCoordPointer(
-		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, uvs.data());
+
+	m->DeviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 0);
+	m->DeviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::UV0,
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 1);
+
+	m->DeviceCommandContext->SetVertexBufferData(0, vertices.data());
+	m->DeviceCommandContext->SetVertexBufferData(1, uvs.data());
 
 	m->DeviceCommandContext->SetIndexBufferData(indices.data());
 	m->DeviceCommandContext->DrawIndexed(0, indices.size(), 0);

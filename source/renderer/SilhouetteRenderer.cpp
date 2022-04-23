@@ -493,8 +493,13 @@ void SilhouetteRenderer::RenderDebugOverlays(
 			r.x1, r.y1,
 			r.x0, r.y1,
 		};
-		shader->VertexPointer(
-			Renderer::Backend::Format::R16G16_SINT, 0, verts);
+
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R16G16_SINT, 0, 0, 0);
+
+		deviceCommandContext->SetVertexBufferData(0, verts);
+
 		deviceCommandContext->Draw(0, 6);
 	}
 

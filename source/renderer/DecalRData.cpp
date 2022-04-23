@@ -215,15 +215,25 @@ void CDecalRData::RenderDecals(
 				if (lastVB != batch.vertices->m_Owner)
 				{
 					lastVB = batch.vertices->m_Owner;
-					const GLsizei stride = sizeof(SDecalVertex);
-					SDecalVertex* base = (SDecalVertex*)batch.vertices->m_Owner->Bind(deviceCommandContext);
 
-					shader->VertexPointer(
-						Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base->m_Position[0]);
-					shader->NormalPointer(
-						Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &base->m_Normal[0]);
-					shader->TexCoordPointer(
-						GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, stride, &base->m_UV[0]);
+					batch.vertices->m_Owner->UploadIfNeeded(deviceCommandContext);
+
+					const uint32_t stride = sizeof(SDecalVertex);
+
+					deviceCommandContext->SetVertexAttributeFormat(
+						Renderer::Backend::VertexAttributeStream::POSITION,
+						Renderer::Backend::Format::R32G32B32_SFLOAT,
+						offsetof(SDecalVertex, m_Position), stride, 0);
+					deviceCommandContext->SetVertexAttributeFormat(
+						Renderer::Backend::VertexAttributeStream::NORMAL,
+						Renderer::Backend::Format::R32G32B32_SFLOAT,
+						offsetof(SDecalVertex, m_Normal), stride, 0);
+					deviceCommandContext->SetVertexAttributeFormat(
+						Renderer::Backend::VertexAttributeStream::UV0,
+						Renderer::Backend::Format::R32G32_SFLOAT,
+						offsetof(SDecalVertex, m_UV), stride, 0);
+
+					deviceCommandContext->SetVertexBuffer(0, batch.vertices->m_Owner->GetBuffer());
 				}
 
 				if (lastIB != batch.indices->m_Owner)
@@ -243,8 +253,6 @@ void CDecalRData::RenderDecals(
 			deviceCommandContext->EndPass();
 		}
 	}
-
-	CVertexBuffer::Unbind(deviceCommandContext);
 }
 
 void CDecalRData::BuildVertexData()

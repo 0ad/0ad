@@ -53,7 +53,12 @@ namespace GL
 namespace
 {
 
-GLint GLSizeFromFormat(const Renderer::Backend::Format format)
+int GetStreamMask(const VertexAttributeStream stream)
+{
+	return 1 << static_cast<int>(stream);
+}
+
+GLint GLSizeFromFormat(const Format format)
 {
 	GLint size = 1;
 	if (format == Renderer::Backend::Format::R32_SFLOAT ||
@@ -77,7 +82,7 @@ GLint GLSizeFromFormat(const Renderer::Backend::Format format)
 	return size;
 }
 
-GLenum GLTypeFromFormat(const Renderer::Backend::Format format)
+GLenum GLTypeFromFormat(const Format format)
 {
 	GLenum type = GL_FLOAT;
 	if (format == Renderer::Backend::Format::R32_SFLOAT ||
@@ -100,27 +105,31 @@ GLenum GLTypeFromFormat(const Renderer::Backend::Format format)
 	return type;
 }
 
-int GetAttributeLocationFromStream(Renderer::Backend::GL::CDevice* device, const int stream)
+GLboolean NormalizedFromFormat(const Format format)
+{
+	switch (format)
+	{
+	case Format::R8G8_UNORM: FALLTHROUGH;
+	case Format::R8G8B8_UNORM: FALLTHROUGH;
+	case Format::R8G8B8A8_UNORM: FALLTHROUGH;
+	case Format::R16_UNORM: FALLTHROUGH;
+	case Format::R16G16_UNORM:
+		return GL_TRUE;
+	default:
+		break;
+	}
+	return GL_FALSE;
+}
+
+int GetAttributeLocationFromStream(
+	CDevice* device, const VertexAttributeStream stream)
 {
 	// Old mapping makes sense only if we have an old/low-end hardware. Else we
 	// need to use sequential numbering to fix #3054. We use presence of
 	// compute shaders as a check that the hardware has universal CUs.
 	if (device->GetCapabilities().computeShaders)
 	{
-		switch (stream)
-		{
-		case STREAM_POS: return 0;
-		case STREAM_NORMAL: return 1;
-		case STREAM_COLOR: return 2;
-		case STREAM_UV0: return 3;
-		case STREAM_UV1: return 4;
-		case STREAM_UV2: return 5;
-		case STREAM_UV3: return 6;
-		case STREAM_UV4: return 7;
-		case STREAM_UV5: return 8;
-		case STREAM_UV6: return 9;
-		case STREAM_UV7: return 10;
-		}
+		return static_cast<int>(stream);
 	}
 	else
 	{
@@ -129,17 +138,17 @@ int GetAttributeLocationFromStream(Renderer::Backend::GL::CDevice* device, const
 		//  https://developer.download.nvidia.com/opengl/glsl/glsl_release_notes.pdf
 		switch (stream)
 		{
-		case STREAM_POS: return 0;
-		case STREAM_NORMAL: return 2;
-		case STREAM_COLOR: return 3;
-		case STREAM_UV0: return 8;
-		case STREAM_UV1: return 9;
-		case STREAM_UV2: return 10;
-		case STREAM_UV3: return 11;
-		case STREAM_UV4: return 12;
-		case STREAM_UV5: return 13;
-		case STREAM_UV6: return 14;
-		case STREAM_UV7: return 15;
+		case VertexAttributeStream::POSITION: return 0;
+		case VertexAttributeStream::NORMAL: return 2;
+		case VertexAttributeStream::COLOR: return 3;
+		case VertexAttributeStream::UV0: return 8;
+		case VertexAttributeStream::UV1: return 9;
+		case VertexAttributeStream::UV2: return 10;
+		case VertexAttributeStream::UV3: return 11;
+		case VertexAttributeStream::UV4: return 12;
+		case VertexAttributeStream::UV5: return 13;
+		case VertexAttributeStream::UV6: return 14;
+		case VertexAttributeStream::UV7: return 15;
 		}
 	}
 
@@ -269,11 +278,20 @@ public:
 
 	void Bind(CShaderProgram* previousShaderProgram) override
 	{
+		CShaderProgramARB* previousShaderProgramARB = nullptr;
 		if (previousShaderProgram)
-			previousShaderProgram->Unbind();
+			previousShaderProgramARB = static_cast<CShaderProgramARB*>(previousShaderProgramARB);
 
-		glBindProgramARB(GL_VERTEX_PROGRAM_ARB, m_VertexProgram);
-		glBindProgramARB(GL_FRAGMENT_PROGRAM_ARB, m_FragmentProgram);
+		if (previousShaderProgramARB)
+			previousShaderProgramARB->UnbindClientStates();
+
+		if (!previousShaderProgramARB ||
+			previousShaderProgramARB->m_VertexProgram != m_VertexProgram ||
+			previousShaderProgramARB->m_FragmentProgram != m_FragmentProgram)
+		{
+			glBindProgramARB(GL_VERTEX_PROGRAM_ARB, m_VertexProgram);
+			glBindProgramARB(GL_FRAGMENT_PROGRAM_ARB, m_FragmentProgram);
+		}
 
 		BindClientStates();
 	}
@@ -680,6 +698,8 @@ public:
 			for (const int index : m_ActiveVertexAttributes)
 				glEnableVertexAttribArray(index);
 		}
+
+		m_ValidStreams = 0;
 	}
 
 	void Unbind() override
@@ -777,52 +797,21 @@ public:
 		}
 	}
 
-	// Map the various fixed-function Pointer functions onto generic vertex attributes
-	// (matching the attribute indexes from ShaderManager's ParseAttribSemantics):
-
-	void VertexPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer) override
+	void VertexAttribPointer(
+		const VertexAttributeStream stream, const Format format,
+		const uint32_t offset, const uint32_t stride, const void* data) override
 	{
+		const int attributeLocation = GetAttributeLocationFromStream(m_Device, stream);
+		std::vector<int>::const_iterator it =
+			std::lower_bound(m_ActiveVertexAttributes.begin(), m_ActiveVertexAttributes.end(), attributeLocation);
+		if (it == m_ActiveVertexAttributes.end() || *it != attributeLocation)
+			return;
 		const GLint size = GLSizeFromFormat(format);
 		const GLenum type = GLTypeFromFormat(format);
-		glVertexAttribPointer(0, size, type, GL_FALSE, stride, pointer);
-		m_ValidStreams |= STREAM_POS;
-	}
-
-	void NormalPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer) override
-	{
-		const GLint size = GLSizeFromFormat(format);
-		const GLenum type = GLTypeFromFormat(format);
-		glVertexAttribPointer(m_Device->GetCapabilities().computeShaders ? 1 : 2, size, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
-		m_ValidStreams |= STREAM_NORMAL;
-	}
-
-	void ColorPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer) override
-	{
-		const GLint size = GLSizeFromFormat(format);
-		const GLenum type = GLTypeFromFormat(format);
-		glVertexAttribPointer(m_Device->GetCapabilities().computeShaders ? 2 : 3, size, type, (type == GL_FLOAT ? GL_FALSE : GL_TRUE), stride, pointer);
-		m_ValidStreams |= STREAM_COLOR;
-	}
-
-	void TexCoordPointer(GLenum texture, const Renderer::Backend::Format format, GLsizei stride, const void* pointer) override
-	{
-		const GLint size = GLSizeFromFormat(format);
-		const GLenum type = GLTypeFromFormat(format);
+		const GLboolean normalized = NormalizedFromFormat(format);
 		glVertexAttribPointer(
-			(m_Device->GetCapabilities().computeShaders ? 3 : 8) + texture - GL_TEXTURE0, size, type, GL_FALSE, stride, pointer);
-		m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
-	}
-
-	void VertexAttribPointer(attrib_id_t id, const Renderer::Backend::Format format, GLboolean normalized, GLsizei stride, const void* pointer) override
-	{
-		std::map<CStrIntern, int>::iterator it = m_VertexAttribs.find(id);
-		if (it != m_VertexAttribs.end())
-		{
-			const GLint size = GLSizeFromFormat(format);
-			const GLenum type = GLTypeFromFormat(format);
-			glVertexAttribPointer(it->second, size, type, normalized, stride, pointer);
-			m_ValidStreams |= STREAM_UV0 << (it->second - (m_Device->GetCapabilities().computeShaders ? 3 : 8));
-		}
+			attributeLocation, size, type, normalized, stride, static_cast<const u8*>(data) + offset);
+		m_ValidStreams |= GetStreamMask(stream);
 	}
 
 	std::vector<VfsPath> GetFileDependencies() const override
@@ -941,29 +930,30 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 					if (attributeName.empty() && isGLSL)
 						LOGERROR("Empty attribute name in vertex shader description '%s'", vertexFile.string8().c_str());
 
-					int stream = 0;
+					VertexAttributeStream stream =
+						VertexAttributeStream::UV7;
 					if (streamName == "pos")
-						stream = STREAM_POS;
+						stream = VertexAttributeStream::POSITION;
 					else if (streamName == "normal")
-						stream = STREAM_NORMAL;
+						stream = VertexAttributeStream::NORMAL;
 					else if (streamName == "color")
-						stream = STREAM_COLOR;
+						stream = VertexAttributeStream::COLOR;
 					else if (streamName == "uv0")
-						stream = STREAM_UV0;
+						stream = VertexAttributeStream::UV0;
 					else if (streamName == "uv1")
-						stream = STREAM_UV1;
+						stream = VertexAttributeStream::UV1;
 					else if (streamName == "uv2")
-						stream = STREAM_UV2;
+						stream = VertexAttributeStream::UV2;
 					else if (streamName == "uv3")
-						stream = STREAM_UV3;
+						stream = VertexAttributeStream::UV3;
 					else if (streamName == "uv4")
-						stream = STREAM_UV4;
+						stream = VertexAttributeStream::UV4;
 					else if (streamName == "uv5")
-						stream = STREAM_UV5;
+						stream = VertexAttributeStream::UV5;
 					else if (streamName == "uv6")
-						stream = STREAM_UV6;
+						stream = VertexAttributeStream::UV6;
 					else if (streamName == "uv7")
-						stream = STREAM_UV7;
+						stream = VertexAttributeStream::UV7;
 					else
 						LOGERROR("Unknown stream '%s' in vertex shader description '%s'", streamName.c_str(), vertexFile.string8().c_str());
 
@@ -972,7 +962,7 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 						const int attributeLocation = GetAttributeLocationFromStream(device, stream);
 						vertexAttribs[CStrIntern(attributeName)] = attributeLocation;
 					}
-					streamFlags |= stream;
+					streamFlags |= GetStreamMask(stream);
 				}
 			}
 		}
@@ -1059,11 +1049,6 @@ std::unique_ptr<CShaderProgram> CShaderProgram::ConstructGLSL(
 {
 	return std::make_unique<CShaderProgramGLSL>(
 		device, name, vertexFile, fragmentFile, defines, vertexAttribs, streamflags);
-}
-
-int CShaderProgram::GetStreamFlags() const
-{
-	return m_StreamFlags;
 }
 
 void CShaderProgram::BindTexture(texture_id_t id, const Renderer::Backend::GL::CTexture* tex)
@@ -1190,14 +1175,14 @@ void CShaderProgram::VertexPointer(const Renderer::Backend::Format format, GLsiz
 	ENSURE(2 <= size && size <= 4);
 	const GLenum type = GLTypeFromFormat(format);
 	glVertexPointer(size, type, stride, pointer);
-	m_ValidStreams |= STREAM_POS;
+	m_ValidStreams |= GetStreamMask(VertexAttributeStream::POSITION);
 }
 
 void CShaderProgram::NormalPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer)
 {
 	ENSURE(format == Renderer::Backend::Format::R32G32B32_SFLOAT);
 	glNormalPointer(GL_FLOAT, stride, pointer);
-	m_ValidStreams |= STREAM_NORMAL;
+	m_ValidStreams |= GetStreamMask(VertexAttributeStream::NORMAL);
 }
 
 void CShaderProgram::ColorPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer)
@@ -1206,7 +1191,7 @@ void CShaderProgram::ColorPointer(const Renderer::Backend::Format format, GLsize
 	ENSURE(3 <= size && size <= 4);
 	const GLenum type = GLTypeFromFormat(format);
 	glColorPointer(size, type, stride, pointer);
-	m_ValidStreams |= STREAM_COLOR;
+	m_ValidStreams |= GetStreamMask(VertexAttributeStream::COLOR);
 }
 
 void CShaderProgram::TexCoordPointer(GLenum texture, const Renderer::Backend::Format format, GLsizei stride, const void* pointer)
@@ -1217,26 +1202,34 @@ void CShaderProgram::TexCoordPointer(GLenum texture, const Renderer::Backend::Fo
 	const GLenum type = GLTypeFromFormat(format);
 	glTexCoordPointer(size, type, stride, pointer);
 	glClientActiveTextureARB(GL_TEXTURE0);
-	m_ValidStreams |= STREAM_UV0 << (texture - GL_TEXTURE0);
+	m_ValidStreams |= GetStreamMask(VertexAttributeStream::UV0) << (texture - GL_TEXTURE0);
 }
 
 void CShaderProgram::BindClientStates()
 {
-	ENSURE(m_StreamFlags == (m_StreamFlags & (STREAM_POS|STREAM_NORMAL|STREAM_COLOR|STREAM_UV0|STREAM_UV1)));
+	ENSURE(m_StreamFlags == (m_StreamFlags & (
+		GetStreamMask(VertexAttributeStream::POSITION) |
+		GetStreamMask(VertexAttributeStream::NORMAL) |
+		GetStreamMask(VertexAttributeStream::COLOR) |
+		GetStreamMask(VertexAttributeStream::UV0) |
+		GetStreamMask(VertexAttributeStream::UV1))));
 
 	// Enable all the desired client states for non-GLSL rendering
 
-	if (m_StreamFlags & STREAM_POS)    glEnableClientState(GL_VERTEX_ARRAY);
-	if (m_StreamFlags & STREAM_NORMAL) glEnableClientState(GL_NORMAL_ARRAY);
-	if (m_StreamFlags & STREAM_COLOR)  glEnableClientState(GL_COLOR_ARRAY);
+	if (m_StreamFlags & GetStreamMask(VertexAttributeStream::POSITION))
+		glEnableClientState(GL_VERTEX_ARRAY);
+	if (m_StreamFlags & GetStreamMask(VertexAttributeStream::NORMAL))
+		glEnableClientState(GL_NORMAL_ARRAY);
+	if (m_StreamFlags & GetStreamMask(VertexAttributeStream::COLOR))
+		glEnableClientState(GL_COLOR_ARRAY);
 
-	if (m_StreamFlags & STREAM_UV0)
+	if (m_StreamFlags & GetStreamMask(VertexAttributeStream::UV0))
 	{
 		glClientActiveTextureARB(GL_TEXTURE0);
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	}
 
-	if (m_StreamFlags & STREAM_UV1)
+	if (m_StreamFlags & GetStreamMask(VertexAttributeStream::UV1))
 	{
 		glClientActiveTextureARB(GL_TEXTURE1);
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -1251,17 +1244,20 @@ void CShaderProgram::BindClientStates()
 
 void CShaderProgram::UnbindClientStates()
 {
-	if (m_StreamFlags & STREAM_POS)    glDisableClientState(GL_VERTEX_ARRAY);
-	if (m_StreamFlags & STREAM_NORMAL) glDisableClientState(GL_NORMAL_ARRAY);
-	if (m_StreamFlags & STREAM_COLOR)  glDisableClientState(GL_COLOR_ARRAY);
+	if (m_StreamFlags & GetStreamMask(VertexAttributeStream::POSITION))
+		glDisableClientState(GL_VERTEX_ARRAY);
+	if (m_StreamFlags & GetStreamMask(VertexAttributeStream::NORMAL))
+		glDisableClientState(GL_NORMAL_ARRAY);
+	if (m_StreamFlags & GetStreamMask(VertexAttributeStream::COLOR))
+		glDisableClientState(GL_COLOR_ARRAY);
 
-	if (m_StreamFlags & STREAM_UV0)
+	if (m_StreamFlags & GetStreamMask(VertexAttributeStream::UV0))
 	{
 		glClientActiveTextureARB(GL_TEXTURE0);
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	}
 
-	if (m_StreamFlags & STREAM_UV1)
+	if (m_StreamFlags & GetStreamMask(VertexAttributeStream::UV1))
 	{
 		glClientActiveTextureARB(GL_TEXTURE1);
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -1270,6 +1266,44 @@ void CShaderProgram::UnbindClientStates()
 }
 
 #endif // !CONFIG2_GLES
+
+bool CShaderProgram::IsStreamActive(const VertexAttributeStream stream) const
+{
+	return (m_StreamFlags & GetStreamMask(stream)) != 0;
+}
+
+void CShaderProgram::VertexAttribPointer(
+	const VertexAttributeStream stream, const Format format,
+	const uint32_t offset, const uint32_t stride, const void* data)
+{
+	switch (stream)
+	{
+	case VertexAttributeStream::POSITION:
+		VertexPointer(format, stride, static_cast<const u8*>(data) + offset);
+		break;
+	case VertexAttributeStream::NORMAL:
+		NormalPointer(format, stride, static_cast<const u8*>(data) + offset);
+		break;
+	case VertexAttributeStream::COLOR:
+		ColorPointer(format, stride, static_cast<const u8*>(data) + offset);
+		break;
+	case VertexAttributeStream::UV0: FALLTHROUGH;
+	case VertexAttributeStream::UV1: FALLTHROUGH;
+	case VertexAttributeStream::UV2: FALLTHROUGH;
+	case VertexAttributeStream::UV3: FALLTHROUGH;
+	case VertexAttributeStream::UV4: FALLTHROUGH;
+	case VertexAttributeStream::UV5: FALLTHROUGH;
+	case VertexAttributeStream::UV6: FALLTHROUGH;
+	case VertexAttributeStream::UV7:
+	{
+		const int indexOffset = static_cast<int>(stream) - static_cast<int>(VertexAttributeStream::UV0);
+		TexCoordPointer(GL_TEXTURE0 + indexOffset, format, stride, static_cast<const u8*>(data) + offset);
+		break;
+	}
+	default:
+		debug_warn("Unsupported stream");
+	};
+}
 
 void CShaderProgram::AssertPointersBound()
 {

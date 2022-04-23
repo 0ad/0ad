@@ -44,6 +44,8 @@ public:
 
 	Renderer::Backend::GL::CShaderProgram* GetBackendShaderProgram() { return m_BackendShaderProgram.get(); }
 
+	// TODO: add reloadable handles.
+
 protected:
 	CShaderProgram(const CStr& name, const CShaderDefines& defines);
 

@@ -150,6 +150,21 @@ CDeviceCommandContext::CDeviceCommandContext(CDevice* device)
 	glBindTexture(GL_TEXTURE_2D, 0);
 	for (std::pair<GLenum, GLuint>& unit : m_BoundTextures)
 		unit.first = unit.second = 0;
+	for (size_t index = 0; index < m_VertexAttributeFormat.size(); ++index)
+	{
+		m_VertexAttributeFormat[index].active = false;
+		m_VertexAttributeFormat[index].initialized = false;
+		m_VertexAttributeFormat[index].bindingSlot = 0;
+	}
+
+	for (size_t index = 0; index < m_BoundBuffers.size(); ++index)
+	{
+		const CBuffer::Type type = static_cast<CBuffer::Type>(index);
+		const GLenum target = BufferTypeToGLTarget(type);
+		const GLuint handle = 0;
+		m_BoundBuffers[index].first = target;
+		m_BoundBuffers[index].second = handle;
+	}
 }
 
 CDeviceCommandContext::~CDeviceCommandContext() = default;
@@ -302,7 +317,7 @@ void CDeviceCommandContext::UploadBufferRegion(
 	ENSURE(data);
 	ENSURE(dataOffset + dataSize <= buffer->GetSize());
 	const GLenum target = BufferTypeToGLTarget(buffer->GetType());
-	glBindBufferARB(target, buffer->GetHandle());
+	ScopedBufferBind scopedBufferBind(this, buffer);
 	if (buffer->IsDynamic())
 	{
 		// Tell the driver that it can reallocate the whole VBO
@@ -322,7 +337,6 @@ void CDeviceCommandContext::UploadBufferRegion(
 	{
 		glBufferSubDataARB(target, dataOffset, dataSize, data);
 	}
-	glBindBufferARB(target, 0);
 }
 
 void CDeviceCommandContext::UploadBufferRegion(
@@ -331,10 +345,9 @@ void CDeviceCommandContext::UploadBufferRegion(
 {
 	ENSURE(dataOffset + dataSize <= buffer->GetSize());
 	const GLenum target = BufferTypeToGLTarget(buffer->GetType());
-	glBindBufferARB(target, buffer->GetHandle());
+	ScopedBufferBind scopedBufferBind(this, buffer);
 	ENSURE(buffer->IsDynamic());
 	UploadBufferRegionImpl(target, dataOffset, dataSize, uploadFunction);
-	glBindBufferARB(target, 0);
 }
 
 void CDeviceCommandContext::BeginScopedLabel(const char* name)
@@ -381,13 +394,24 @@ void CDeviceCommandContext::BindTexture(const uint32_t unit, const GLenum target
 void CDeviceCommandContext::BindBuffer(const CBuffer::Type type, CBuffer* buffer)
 {
 	ENSURE(!buffer || buffer->GetType() == type);
-	if (type == CBuffer::Type::INDEX)
+	if (type == CBuffer::Type::VERTEX)
+	{
+		if (m_VertexBuffer == buffer)
+			return;
+		m_VertexBuffer = buffer;
+	}
+	else if (type == CBuffer::Type::INDEX)
 	{
 		if (!buffer)
 			m_IndexBuffer = nullptr;
 		m_IndexBufferData = nullptr;
 	}
-	glBindBufferARB(BufferTypeToGLTarget(type), buffer ? buffer->GetHandle() : 0);
+	const GLenum target = BufferTypeToGLTarget(type);
+	const GLuint handle = buffer ? buffer->GetHandle() : 0;
+	glBindBufferARB(target, handle);
+	const size_t cacheIndex = static_cast<size_t>(type);
+	ENSURE(cacheIndex < m_BoundBuffers.size());
+	m_BoundBuffers[cacheIndex].second = handle;
 }
 
 void CDeviceCommandContext::OnTextureDestroy(CTexture* texture)
@@ -437,6 +461,13 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 		{
 			nextShaderProgram =
 				static_cast<CShaderProgram*>(pipelineStateDesc.shaderProgram);
+			for (size_t index = 0; index < m_VertexAttributeFormat.size(); ++index)
+			{
+				const VertexAttributeStream stream = static_cast<VertexAttributeStream>(index);
+				m_VertexAttributeFormat[index].active = nextShaderProgram->IsStreamActive(stream);
+				m_VertexAttributeFormat[index].initialized = false;
+				m_VertexAttributeFormat[index].bindingSlot = std::numeric_limits<uint32_t>::max();
+			}
 		}
 		if (nextShaderProgram)
 			nextShaderProgram->Bind(currentShaderProgram);
@@ -709,6 +740,7 @@ void CDeviceCommandContext::ClearFramebuffer(const bool color, const bool depth,
 		mask |= GL_STENCIL_BUFFER_BIT;
 	}
 	glClear(mask);
+	ogl_WarnIfError();
 	if (needsColor)
 		ApplyColorMask(m_GraphicsPipelineStateDesc.blendState.colorWriteMask);
 	if (needsDepth)
@@ -762,6 +794,71 @@ void CDeviceCommandContext::SetViewports(const uint32_t viewportCount, const Rec
 	glViewport(viewports[0].x, viewports[0].y, viewports[0].width, viewports[0].height);
 }
 
+void CDeviceCommandContext::SetVertexAttributeFormat(
+		const VertexAttributeStream stream,
+		const Format format,
+		const uint32_t offset,
+		const uint32_t stride,
+		const uint32_t bindingSlot)
+{
+	const uint32_t index = static_cast<uint32_t>(stream);
+	ENSURE(index < m_VertexAttributeFormat.size());
+	ENSURE(bindingSlot < m_VertexAttributeFormat.size());
+	if (!m_VertexAttributeFormat[index].active)
+		return;
+	m_VertexAttributeFormat[index].format = format;
+	m_VertexAttributeFormat[index].offset = offset;
+	m_VertexAttributeFormat[index].stride = stride;
+	m_VertexAttributeFormat[index].bindingSlot = bindingSlot;
+
+	m_VertexAttributeFormat[index].initialized = true;
+}
+
+void CDeviceCommandContext::SetVertexBuffer(
+	const uint32_t bindingSlot, CBuffer* buffer)
+{
+	ENSURE(buffer);
+	ENSURE(buffer->GetType() == CBuffer::Type::VERTEX);
+	ENSURE(m_GraphicsPipelineStateDesc.shaderProgram);
+	BindBuffer(buffer->GetType(), buffer);
+	CShaderProgram* shaderProgram =
+		static_cast<CShaderProgram*>(m_GraphicsPipelineStateDesc.shaderProgram);
+	for (size_t index = 0; index < m_VertexAttributeFormat.size(); ++index)
+	{
+		if (!m_VertexAttributeFormat[index].active || m_VertexAttributeFormat[index].bindingSlot != bindingSlot)
+			continue;
+		ENSURE(m_VertexAttributeFormat[index].initialized);
+		const VertexAttributeStream stream = static_cast<VertexAttributeStream>(index);
+		shaderProgram->VertexAttribPointer(stream,
+			m_VertexAttributeFormat[index].format,
+			m_VertexAttributeFormat[index].offset,
+			m_VertexAttributeFormat[index].stride,
+			nullptr);
+	}
+}
+
+void CDeviceCommandContext::SetVertexBufferData(
+	const uint32_t bindingSlot, const void* data)
+{
+	ENSURE(data);
+	ENSURE(m_GraphicsPipelineStateDesc.shaderProgram);
+	BindBuffer(CBuffer::Type::VERTEX, nullptr);
+	CShaderProgram* shaderProgram =
+		static_cast<CShaderProgram*>(m_GraphicsPipelineStateDesc.shaderProgram);
+	for (size_t index = 0; index < m_VertexAttributeFormat.size(); ++index)
+	{
+		if (!m_VertexAttributeFormat[index].active || m_VertexAttributeFormat[index].bindingSlot != bindingSlot)
+			continue;
+		ENSURE(m_VertexAttributeFormat[index].initialized);
+		const VertexAttributeStream stream = static_cast<VertexAttributeStream>(index);
+		shaderProgram->VertexAttribPointer(stream,
+			m_VertexAttributeFormat[index].format,
+			m_VertexAttributeFormat[index].offset,
+			m_VertexAttributeFormat[index].stride,
+			data);
+	}
+}
+
 void CDeviceCommandContext::SetIndexBuffer(CBuffer* buffer)
 {
 	ENSURE(buffer->GetType() == CBuffer::Type::INDEX);
@@ -804,6 +901,7 @@ void CDeviceCommandContext::Draw(
 	static_cast<CShaderProgram*>(m_GraphicsPipelineStateDesc.shaderProgram)
 		->AssertPointersBound();
 	glDrawArrays(GL_TRIANGLES, firstVertex, vertexCount);
+	ogl_WarnIfError();
 }
 
 void CDeviceCommandContext::DrawIndexed(
@@ -826,6 +924,7 @@ void CDeviceCommandContext::DrawIndexed(
 	// in Mesa 7.10 swrast with index VBOs).
 	glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_SHORT,
 		static_cast<const void*>((static_cast<const uint8_t*>(m_IndexBufferData) + sizeof(uint16_t) * firstIndex)));
+	ogl_WarnIfError();
 }
 
 void CDeviceCommandContext::DrawIndexedInRange(
@@ -850,6 +949,7 @@ void CDeviceCommandContext::DrawIndexedInRange(
 #else
 	glDrawRangeElementsEXT(GL_TRIANGLES, start, end, indexCount, GL_UNSIGNED_SHORT, indices);
 #endif
+	ogl_WarnIfError();
 }
 
 CDeviceCommandContext::ScopedBind::ScopedBind(
@@ -866,6 +966,24 @@ CDeviceCommandContext::ScopedBind::~ScopedBind()
 {
 	m_DeviceCommandContext->BindTexture(
 		m_DeviceCommandContext->m_ActiveTextureUnit, m_OldBindUnit.first, m_OldBindUnit.second);
+}
+
+CDeviceCommandContext::ScopedBufferBind::ScopedBufferBind(
+	CDeviceCommandContext* deviceCommandContext, CBuffer* buffer)
+	: m_DeviceCommandContext(deviceCommandContext)
+{
+	ENSURE(buffer);
+	m_CacheIndex = static_cast<size_t>(buffer->GetType());
+	const GLenum target = BufferTypeToGLTarget(buffer->GetType());
+	const GLuint handle = buffer->GetHandle();
+	glBindBufferARB(target, handle);
+}
+
+CDeviceCommandContext::ScopedBufferBind::~ScopedBufferBind()
+{
+	glBindBufferARB(
+		m_DeviceCommandContext->m_BoundBuffers[m_CacheIndex].first,
+		m_DeviceCommandContext->m_BoundBuffers[m_CacheIndex].second);
 }
 
 } // namespace GL

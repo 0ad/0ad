@@ -88,6 +88,15 @@ public:
 	void SetScissors(const uint32_t scissorCount, const Rect* scissors);
 	void SetViewports(const uint32_t viewportCount, const Rect* viewports);
 
+	void SetVertexAttributeFormat(
+		const VertexAttributeStream stream,
+		const Format format,
+		const uint32_t offset,
+		const uint32_t stride,
+		const uint32_t bindingSlot);
+	void SetVertexBuffer(const uint32_t bindingSlot, CBuffer* buffer);
+	void SetVertexBufferData(const uint32_t bindingSlot, const void* data);
+
 	void SetIndexBuffer(CBuffer* buffer);
 	void SetIndexBufferData(const void* data);
 
@@ -107,7 +116,7 @@ public:
 
 	// TODO: remove direct binding after moving shaders.
 	void BindTexture(const uint32_t unit, const GLenum target, const GLuint handle);
-	void BindBuffer(const CBuffer::Type type, CBuffer* buffer);
+
 	// We need to know when to invalidate our texture bind cache.
 	void OnTextureDestroy(CTexture* texture);
 
@@ -125,6 +134,8 @@ private:
 	void SetGraphicsPipelineStateImpl(
 		const GraphicsPipelineStateDesc& pipelineStateDesc, const bool force);
 
+	void BindBuffer(const CBuffer::Type type, CBuffer* buffer);
+
 	CDevice* m_Device = nullptr;
 
 	GraphicsPipelineStateDesc m_GraphicsPipelineStateDesc{};
@@ -135,6 +146,7 @@ private:
 
 	uint32_t m_ScopedLabelDepth = 0;
 
+	CBuffer* m_VertexBuffer = nullptr;
 	CBuffer* m_IndexBuffer = nullptr;
 	const void* m_IndexBufferData = nullptr;
 
@@ -154,6 +166,34 @@ private:
 		CDeviceCommandContext* m_DeviceCommandContext = nullptr;
 		BindUnit m_OldBindUnit;
 	};
+
+	using BoundBuffer = std::pair<GLenum, GLuint>;
+	std::array<BoundBuffer, 2> m_BoundBuffers;
+	class ScopedBufferBind
+	{
+	public:
+		ScopedBufferBind(
+			CDeviceCommandContext* deviceCommandContext, CBuffer* buffer);
+
+		~ScopedBufferBind();
+	private:
+		CDeviceCommandContext* m_DeviceCommandContext = nullptr;
+		size_t m_CacheIndex = 0;
+	};
+
+	struct VertexAttributeFormat
+	{
+		Format format;
+		uint32_t offset;
+		uint32_t stride;
+		uint32_t bindingSlot;
+
+		bool active;
+		bool initialized;
+	};
+	std::array<
+		VertexAttributeFormat,
+		static_cast<size_t>(VertexAttributeStream::UV7) + 1> m_VertexAttributeFormat;
 };
 
 } // namespace GL

@@ -482,8 +482,6 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 	// TODO: the shaders should probably be responsible for unbinding their textures
 	deviceCommandContext->BindTexture(1, GL_TEXTURE_2D, 0);
 	deviceCommandContext->BindTexture(0, GL_TEXTURE_2D, 0);
-
-	CVertexBuffer::Unbind(deviceCommandContext);
 }
 
 void OverlayRenderer::RenderTexturedOverlayLines(
@@ -542,19 +540,16 @@ void OverlayRenderer::RenderQuadOverlays(
 
 	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 
-	// Base offsets (in bytes) of the two backing stores relative to their owner VBO
 	m->quadIndices.UploadIfNeeded(deviceCommandContext);
-	u8* vertexBase = m->quadVertices.Bind(deviceCommandContext);
-	GLsizei vertexStride = m->quadVertices.GetStride();
 
-	deviceCommandContext->SetIndexBuffer(m->quadIndices.GetBuffer());
+	const uint32_t vertexStride = m->quadVertices.GetStride();
+	const uint32_t firstVertexOffset = m->quadVertices.GetOffset() * vertexStride;
 
 	for (OverlayRendererInternals::QuadBatchMap::iterator it = m->quadBatchMap.begin(); it != m->quadBatchMap.end(); ++it)
 	{
 		QuadBatchData& batchRenderData = it->second;
 		const size_t batchNumQuads = batchRenderData.m_NumRenderQuads;
 
-		// Careful; some drivers don't like drawing calls with 0 stuff to draw.
 		if (batchNumQuads == 0)
 			continue;
 
@@ -565,19 +560,23 @@ void OverlayRenderer::RenderQuadOverlays(
 		shader->BindTexture(str_baseTex, maskPair.m_Texture->GetBackendTexture());
 		shader->BindTexture(str_maskTex, maskPair.m_TextureMask->GetBackendTexture());
 
-		int streamflags = shader->GetStreamFlags();
+		// TODO: move setting format out of the loop, we might want move the offset
+		// to the index offset when it's supported.
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::POSITION,
+			m->quadAttributePos.format, firstVertexOffset + m->quadAttributePos.offset, vertexStride, 0);
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::COLOR,
+			m->quadAttributeColor.format, firstVertexOffset + m->quadAttributeColor.offset, vertexStride, 0);
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::UV0,
+			m->quadAttributeUV.format, firstVertexOffset + m->quadAttributeUV.offset, vertexStride, 0);
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::UV1,
+			m->quadAttributeUV.format, firstVertexOffset + m->quadAttributeUV.offset, vertexStride, 0);
 
-		if (streamflags & STREAM_POS)
-			shader->VertexPointer(m->quadAttributePos.format, vertexStride, vertexBase + m->quadAttributePos.offset);
-
-		if (streamflags & STREAM_UV0)
-			shader->TexCoordPointer(GL_TEXTURE0, m->quadAttributeUV.format, vertexStride, vertexBase + m->quadAttributeUV.offset);
-
-		if (streamflags & STREAM_UV1)
-			shader->TexCoordPointer(GL_TEXTURE1, m->quadAttributeUV.format, vertexStride, vertexBase + m->quadAttributeUV.offset);
-
-		if (streamflags & STREAM_COLOR)
-			shader->ColorPointer(m->quadAttributeColor.format, vertexStride, vertexBase + m->quadAttributeColor.offset);
+		deviceCommandContext->SetVertexBuffer(0, m->quadVertices.GetBuffer());
+		deviceCommandContext->SetIndexBuffer(m->quadIndices.GetBuffer());
 
 		deviceCommandContext->DrawIndexed(m->quadIndices.GetOffset() + batchRenderData.m_IndicesBase, batchNumQuads * 6, 0);
 
@@ -590,8 +589,6 @@ void OverlayRenderer::RenderQuadOverlays(
 	// TODO: the shader should probably be responsible for unbinding its textures
 	deviceCommandContext->BindTexture(1, GL_TEXTURE_2D, 0);
 	deviceCommandContext->BindTexture(0, GL_TEXTURE_2D, 0);
-
-	CVertexBuffer::Unbind(deviceCommandContext);
 }
 
 void OverlayRenderer::RenderForegroundOverlays(
@@ -638,8 +635,14 @@ void OverlayRenderer::RenderForegroundOverlays(
 		{0.0f, 0.0f},
 	};
 
-	shader->TexCoordPointer(
-		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, sizeof(CVector2D), &uvs[0]);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::UV0,
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 1);
+
+	deviceCommandContext->SetVertexBufferData(1, &uvs[0]);
 
 	for (size_t i = 0; i < m->sprites.size(); ++i)
 	{
@@ -662,8 +665,7 @@ void OverlayRenderer::RenderForegroundOverlays(
 			sprite->m_Position + right*sprite->m_X0 + up*sprite->m_Y1
 		};
 
-		shader->VertexPointer(
-			Renderer::Backend::Format::R32G32B32_SFLOAT, sizeof(CVector3D), &position[0].X);
+		deviceCommandContext->SetVertexBufferData(0, &position[0].X);
 
 		deviceCommandContext->Draw(0, 6);
 
@@ -767,10 +769,16 @@ void OverlayRenderer::RenderSphereOverlays(
 
 	shader = tech->GetShader();
 
+	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
+
 	m->GenerateSphere();
 
-	shader->VertexPointer(
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, &m->sphereVertexes[0]);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+
+	deviceCommandContext->SetVertexBufferData(0, m->sphereVertexes.data());
+	deviceCommandContext->SetIndexBufferData(m->sphereIndexes.data());
 
 	for (size_t i = 0; i < m->spheres.size(); ++i)
 	{
@@ -781,12 +789,10 @@ void OverlayRenderer::RenderSphereOverlays(
 		transform.Scale(sphere->m_Radius, sphere->m_Radius, sphere->m_Radius);
 		transform.Translate(sphere->m_Center);
 
-		shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 		shader->Uniform(str_instancingTransform, transform);
 
 		shader->Uniform(str_color, sphere->m_Color);
 
-		deviceCommandContext->SetIndexBufferData(m->sphereIndexes.data());
 		deviceCommandContext->DrawIndexed(0, m->sphereIndexes.size(), 0);
 
 		g_Renderer.GetStats().m_DrawCalls++;

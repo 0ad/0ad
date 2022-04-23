@@ -291,8 +291,7 @@ class CProfiler2GPUARB
 public:
 };
 
-CProfiler2GPU::CProfiler2GPU(CProfiler2& profiler) :
-	m_Profiler(profiler)
+CProfiler2GPU::CProfiler2GPU(CProfiler2& UNUSED(profiler))
 {
 }
 

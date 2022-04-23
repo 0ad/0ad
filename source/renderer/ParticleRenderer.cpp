@@ -167,8 +167,6 @@ void ParticleRenderer::RenderParticles(
 
 	if (lastTech)
 		deviceCommandContext->EndPass();
-
-	CVertexBuffer::Unbind(deviceCommandContext);
 }
 
 void ParticleRenderer::RenderBounds(int cullGroup)

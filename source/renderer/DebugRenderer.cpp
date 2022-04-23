@@ -126,8 +126,11 @@ void CDebugRenderer::DrawLine(
 
 #undef ADD
 
-	debugLineShader->VertexPointer(
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+	deviceCommandContext->SetVertexBufferData(0, vertices.data());
+
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 
 	deviceCommandContext->EndPass();
@@ -177,8 +180,11 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 
 #undef ADD
 
-	debugCircleShader->VertexPointer(
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+	deviceCommandContext->SetVertexBufferData(0, vertices.data());
+
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 
 	deviceCommandContext->EndPass();
@@ -253,8 +259,11 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 		ADD(intermediatePoints[3]);
 	}
 
-	overlayShader->VertexPointer(
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+	deviceCommandContext->SetVertexBufferData(0, vertices.data());
+
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 
 	vertices.clear();
@@ -271,8 +280,11 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 		ADD(farPoints[nextI]);
 	}
 
-	overlayShader->VertexPointer(
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+	deviceCommandContext->SetVertexBufferData(0, vertices.data());
+
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 #undef ADD
 
@@ -325,10 +337,12 @@ void CDebugRenderer::DrawBoundingBox(
 
 #undef ADD_FACE
 
-	shader->VertexPointer(
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 3 * sizeof(float), data.data());
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+	deviceCommandContext->SetVertexBufferData(0, data.data());
 
-	deviceCommandContext->Draw(0, 6*6);
+	deviceCommandContext->Draw(0, 6 * 6);
 
 	deviceCommandContext->EndPass();
 }
@@ -371,8 +385,10 @@ void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color, bool wi
 
 #undef ADD_VERT
 
-	shader->VertexPointer(
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 3 * sizeof(float), data.data());
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+	deviceCommandContext->SetVertexBufferData(0, data.data());
 
 	deviceCommandContext->Draw(0, data.size() / 5);
 
