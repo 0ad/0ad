@@ -24,7 +24,6 @@
 #include "lib/bits.h"
 #include "lib/timer.h"
 #include "lib/ogl.h"
-#include "lib/tex/tex.h"
 #include "maths/MathUtil.h"
 #include "maths/Vector2D.h"
 #include "ps/CLogger.h"
@@ -791,10 +790,6 @@ void WaterManager::RenderWaves(
 	const CFrustum& frustrum)
 {
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render Waves");
-#if CONFIG2_GLES
-	UNUSED2(frustrum);
-	#warning Fix WaterManager::RenderWaves on GLES
-#else
 	if (!m_WaterFancyEffects)
 		return;
 
@@ -872,7 +867,6 @@ void WaterManager::RenderWaves(
 	deviceCommandContext->EndPass();
 	deviceCommandContext->SetFramebuffer(
 		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
-#endif
 }
 
 void WaterManager::RecomputeWaterData()

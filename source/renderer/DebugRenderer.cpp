@@ -79,10 +79,6 @@ void CDebugRenderer::DrawLine(
 	const std::vector<CVector3D>& line, const CColor& color,
 	const float width, const bool depthTestEnabled)
 {
-#if CONFIG2_GLES
-	UNUSED2(line); UNUSED2(color); UNUSED2(width); UNUSED2(depthTestEnabled);
-	#warning TODO: implement drawing line for GLES
-#else
 	CShaderTechniquePtr debugLineTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
@@ -134,15 +130,10 @@ void CDebugRenderer::DrawLine(
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 
 	deviceCommandContext->EndPass();
-#endif
 }
 
 void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, const CColor& color)
 {
-#if CONFIG2_GLES
-	UNUSED2(origin); UNUSED2(radius); UNUSED2(color);
-	#warning TODO: implement drawing circle for GLES
-#else
 	CShaderTechniquePtr debugCircleTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
@@ -188,15 +179,10 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 
 	deviceCommandContext->EndPass();
-#endif
 }
 
 void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& color, int intermediates, bool wireframe)
 {
-#if CONFIG2_GLES
-	UNUSED2(camera); UNUSED2(color); UNUSED2(intermediates); UNUSED2(wireframe);
-	#warning TODO: implement camera frustum for GLES
-#else
 	CCamera::Quad nearPoints;
 	CCamera::Quad farPoints;
 
@@ -289,7 +275,6 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 #undef ADD
 
 	deviceCommandContext->EndPass();
-#endif
 }
 
 void CDebugRenderer::DrawBoundingBox(

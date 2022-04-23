@@ -373,9 +373,6 @@ void OverlayRenderer::RenderOverlaysBeforeWater(
 	PROFILE3_GPU("overlays (before)");
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render overlays before water");
 
-#if CONFIG2_GLES
-#warning TODO: implement OverlayRenderer::RenderOverlaysBeforeWater for GLES
-#else
 	for (SOverlayLine* line : m->lines)
 	{
 		if (line->m_Coords.empty())
@@ -383,7 +380,6 @@ void OverlayRenderer::RenderOverlaysBeforeWater(
 
 		g_Renderer.GetDebugRenderer().DrawLine(line->m_Coords, line->m_Color, static_cast<float>(line->m_Thickness));
 	}
-#endif
 }
 
 void OverlayRenderer::RenderOverlaysAfterWater(
@@ -399,14 +395,8 @@ void OverlayRenderer::RenderOverlaysAfterWater(
 
 void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
-#if CONFIG2_GLES
-#warning TODO: implement OverlayRenderer::RenderTexturedOverlayLines for GLES
-	return;
-#endif
 	if (m->texlines.empty())
 		return;
-
-	ogl_WarnIfError();
 
 	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 
@@ -504,10 +494,6 @@ void OverlayRenderer::RenderTexturedOverlayLines(
 void OverlayRenderer::RenderQuadOverlays(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
-#if CONFIG2_GLES
-#warning TODO: implement OverlayRenderer::RenderQuadOverlays for GLES
-	return;
-#endif
 	if (m->quadBatchMap.empty())
 		return;
 
@@ -597,13 +583,8 @@ void OverlayRenderer::RenderForegroundOverlays(
 {
 	PROFILE3_GPU("overlays (fg)");
 
-#if CONFIG2_GLES
-	UNUSED2(deviceCommandContext);
-	UNUSED2(viewCamera);
-	#warning TODO: implement OverlayRenderer::RenderForegroundOverlays for GLES
-#else
-	CVector3D right = -viewCamera.GetOrientation().GetLeft();
-	CVector3D up = viewCamera.GetOrientation().GetUp();
+	const CVector3D right = -viewCamera.GetOrientation().GetLeft();
+	const CVector3D up = viewCamera.GetOrientation().GetUp();
 
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_foreground_overlay);
 	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
@@ -674,7 +655,6 @@ void OverlayRenderer::RenderForegroundOverlays(
 	}
 
 	deviceCommandContext->EndPass();
-#endif
 }
 
 static void TessellateSphereFace(const CVector3D& a, u16 ai,
@@ -743,10 +723,6 @@ void OverlayRenderer::RenderSphereOverlays(
 {
 	PROFILE3_GPU("overlays (spheres)");
 
-#if CONFIG2_GLES
-	UNUSED2(deviceCommandContext);
-#warning TODO: implement OverlayRenderer::RenderSphereOverlays for GLES
-#else
 	if (m->spheres.empty())
 		return;
 
@@ -800,5 +776,4 @@ void OverlayRenderer::RenderSphereOverlays(
 	}
 
 	deviceCommandContext->EndPass();
-#endif
 }

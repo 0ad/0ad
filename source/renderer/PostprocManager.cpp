@@ -37,8 +37,6 @@
 #include "renderer/RenderingOptions.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
 
-#if !CONFIG2_GLES
-
 CPostprocManager::CPostprocManager()
 	: m_IsInitialized(false), m_PostProcEffect(L"default"), m_WhichBuffer(true),
 	m_Sharpness(0.3f), m_UsingMultisampleBuffer(false), m_MultisampleCount(0)
@@ -52,8 +50,11 @@ CPostprocManager::~CPostprocManager()
 
 bool CPostprocManager::IsEnabled() const
 {
-	return g_RenderingOptions.GetPostProc() &&
-		g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB;
+	return
+		g_RenderingOptions.GetPostProc() &&
+		g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB &&
+		g_VideoMode.GetBackendDevice()->IsTextureFormatSupported(
+			Renderer::Backend::Format::D24_S8);
 }
 
 void CPostprocManager::Cleanup()
@@ -683,120 +684,3 @@ void CPostprocManager::ResolveMultisampleFramebuffer(
 		m_PingFramebuffer.get(), m_MultisampleFramebuffer.get());
 	deviceCommandContext->SetFramebuffer(m_PingFramebuffer.get());
 }
-
-#else
-
-#warning TODO: implement PostprocManager for GLES
-
-void ApplyBlurDownscale2x(
-	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext),
-	Renderer::Backend::GL::CFramebuffer* UNUSED(framebuffer),
-	Renderer::Backend::GL::CTexture* UNUSED(inTex),
-	int UNUSED(inWidth), int UNUSED(inHeight))
-{
-}
-
-void CPostprocManager::ApplyBlurGauss(
-	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext),
-	Renderer::Backend::GL::CTexture* UNUSED(inTex),
-	Renderer::Backend::GL::CTexture* UNUSED(tempTex),
-	Renderer::Backend::GL::CFramebuffer* UNUSED(tempFramebuffer),
-	Renderer::Backend::GL::CFramebuffer* UNUSED(outFramebuffer),
-	int UNUSED(inWidth), int UNUSED(inHeight))
-{
-}
-
-void CPostprocManager::ApplyEffect(
-	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext),
-	const CShaderTechniquePtr& UNUSED(shaderTech), int UNUSED(pass))
-{
-}
-
-CPostprocManager::CPostprocManager()
-{
-}
-
-CPostprocManager::~CPostprocManager()
-{
-}
-
-bool CPostprocManager::IsEnabled() const
-{
-	return false;
-}
-
-void CPostprocManager::Initialize()
-{
-}
-
-void CPostprocManager::Resize()
-{
-}
-
-void CPostprocManager::Cleanup()
-{
-}
-
-void CPostprocManager::RecreateBuffers()
-{
-}
-
-std::vector<CStrW> CPostprocManager::GetPostEffects()
-{
-	return std::vector<CStrW>();
-}
-
-void CPostprocManager::SetPostEffect(const CStrW& UNUSED(name))
-{
-}
-
-void CPostprocManager::SetDepthBufferClipPlanes(float UNUSED(nearPlane), float UNUSED(farPlane))
-{
-}
-
-void CPostprocManager::UpdateAntiAliasingTechnique()
-{
-}
-
-void CPostprocManager::UpdateSharpeningTechnique()
-{
-}
-
-void CPostprocManager::UpdateSharpnessFactor()
-{
-}
-
-void CPostprocManager::CaptureRenderOutput(
-	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext))
-{
-}
-
-void CPostprocManager::ApplyPostproc(
-	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext))
-{
-}
-
-void CPostprocManager::ReleaseRenderOutput(
-	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext))
-{
-}
-
-void CPostprocManager::CreateMultisampleBuffer()
-{
-}
-
-void CPostprocManager::DestroyMultisampleBuffer()
-{
-}
-
-bool CPostprocManager::IsMultisampleEnabled() const
-{
-	return false;
-}
-
-void CPostprocManager::ResolveMultisampleFramebuffer(
-	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext))
-{
-}
-
-#endif
