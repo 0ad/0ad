@@ -655,9 +655,7 @@ void ShadowMap::BindTo(Renderer::Backend::GL::CShaderProgram* shader) const
 			shadowDistances.emplace_back(cascade.Distance);
 			shadowTransforms.emplace_back(cascade.TextureMatrix);
 		}
-		shader->Uniform(str_shadowTransforms_0, GetCascadeCount(), shadowTransforms.data());
 		shader->Uniform(str_shadowTransforms, GetCascadeCount(), shadowTransforms.data());
-		shader->Uniform(str_shadowDistances_0, GetCascadeCount(), shadowDistances.data());
 		shader->Uniform(str_shadowDistances, GetCascadeCount(), shadowDistances.data());
 	}
 }
@@ -749,10 +747,16 @@ void ShadowMap::RenderDebugTexture(
 		1,0, 0,1, 1,1
 	};
 
-	texShader->VertexPointer(
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, boxVerts);
-	texShader->TexCoordPointer(
-		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, boxUV);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 0);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::UV0,
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 1);
+
+	deviceCommandContext->SetVertexBufferData(0, boxVerts);
+	deviceCommandContext->SetVertexBufferData(1, boxUV);
+
 	deviceCommandContext->Draw(0, 6);
 
 	deviceCommandContext->EndPass();

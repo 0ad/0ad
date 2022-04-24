@@ -246,14 +246,19 @@ void SkyManager::RenderSky(
 		camera.GetViewProjection() * translate * rotate * scale);
 
 	m_VertexArray.PrepareForRendering();
+	m_VertexArray.UploadIfNeeded(deviceCommandContext);
 
-	u8* base = m_VertexArray.Bind(deviceCommandContext);
-	const GLsizei stride = static_cast<GLsizei>(m_VertexArray.GetStride());
+	const uint32_t stride = m_VertexArray.GetStride();
+	const uint32_t firstVertexOffset = m_VertexArray.GetOffset() * stride;
 
-	shader->VertexPointer(
-		m_AttributePosition.format, stride, base + m_AttributePosition.offset);
-	shader->TexCoordPointer(
-		GL_TEXTURE0, m_AttributeUV.format, stride, base + m_AttributeUV.offset);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION, m_AttributePosition.format,
+		firstVertexOffset + m_AttributePosition.offset, stride, 0);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::UV0, m_AttributeUV.format,
+		firstVertexOffset + m_AttributeUV.offset, stride, 0);
+
+	deviceCommandContext->SetVertexBuffer(0, m_VertexArray.GetBuffer());
 
 	deviceCommandContext->Draw(0, m_VertexArray.GetNumberOfVertices());
 

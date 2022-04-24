@@ -42,7 +42,9 @@ public:
 	void RegionLeave(const char* id);
 
 private:
+#if !CONFIG2_GLES
 	CProfiler2& m_Profiler;
+#endif
 
 	std::unique_ptr<CProfiler2GPUARB> m_ProfilerARB;
 };

@@ -174,74 +174,70 @@ void ShaderModelVertexRenderer::UpdateModelData(CModel* model, CModelRData* data
 
 
 // Setup one rendering pass
-void ShaderModelVertexRenderer::BeginPass(int streamflags)
+void ShaderModelVertexRenderer::BeginPass()
 {
-	ENSURE(streamflags == (streamflags & (STREAM_POS | STREAM_UV0 | STREAM_UV1 | STREAM_NORMAL)));
 }
 
 // Cleanup one rendering pass
 void ShaderModelVertexRenderer::EndPass(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, int UNUSED(streamflags))
+	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext))
 {
-	CVertexBuffer::Unbind(deviceCommandContext);
 }
-
 
 // Prepare UV coordinates for this modeldef
 void ShaderModelVertexRenderer::PrepareModelDef(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CShaderProgram* shader, int streamflags, const CModelDef& def)
+	Renderer::Backend::GL::CShaderProgram* UNUSED(shader), const CModelDef& def)
 {
 	m->shadermodeldef = (ShaderModelDef*)def.GetRenderData(m);
 
 	ENSURE(m->shadermodeldef);
 
-	u8* base = m->shadermodeldef->m_Array.Bind(deviceCommandContext);
-	GLsizei stride = (GLsizei)m->shadermodeldef->m_Array.GetStride();
+	m->shadermodeldef->m_Array.UploadIfNeeded(deviceCommandContext);
 
-	if (streamflags & STREAM_UV0)
+	const uint32_t stride = m->shadermodeldef->m_Array.GetStride();
+	const uint32_t firstVertexOffset = m->shadermodeldef->m_Array.GetOffset() * stride;
+
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::UV0,
+		m->shadermodeldef->m_UVs[0].format,
+		firstVertexOffset + m->shadermodeldef->m_UVs[0].offset, stride, 0);
+	if (def.GetNumUVsPerVertex() >= 2)
 	{
-		shader->TexCoordPointer(
-			GL_TEXTURE0, m->shadermodeldef->m_UVs[0].format, stride,
-			base + m->shadermodeldef->m_UVs[0].offset);
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::UV1,
+			m->shadermodeldef->m_UVs[1].format,
+			firstVertexOffset + m->shadermodeldef->m_UVs[1].offset, stride, 0);
 	}
 
-	if ((streamflags & STREAM_UV1) && def.GetNumUVsPerVertex() >= 2)
-	{
-		shader->TexCoordPointer(
-			GL_TEXTURE1, m->shadermodeldef->m_UVs[1].format, stride,
-			base + m->shadermodeldef->m_UVs[1].offset);
-	}
+	deviceCommandContext->SetVertexBuffer(0, m->shadermodeldef->m_Array.GetBuffer());
 }
-
 
 // Render one model
 void ShaderModelVertexRenderer::RenderModel(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CShaderProgram* shader, int streamflags, CModel* model, CModelRData* data)
+	Renderer::Backend::GL::CShaderProgram* UNUSED(shader), CModel* model, CModelRData* data)
 {
 	const CModelDefPtr& mdldef = model->GetModelDef();
 	ShaderModel* shadermodel = static_cast<ShaderModel*>(data);
 
-	u8* base = shadermodel->m_Array.Bind(deviceCommandContext);
-	GLsizei stride = (GLsizei)shadermodel->m_Array.GetStride();
-
+	shadermodel->m_Array.UploadIfNeeded(deviceCommandContext);
 	m->shadermodeldef->m_IndexArray.UploadIfNeeded(deviceCommandContext);
+
+	const uint32_t stride = shadermodel->m_Array.GetStride();
+	const uint32_t firstVertexOffset = shadermodel->m_Array.GetOffset() * stride;
+
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		Renderer::Backend::Format::R32G32B32_SFLOAT,
+		firstVertexOffset + shadermodel->m_Position.offset, stride, 1);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::NORMAL,
+		Renderer::Backend::Format::R32G32B32_SFLOAT,
+		firstVertexOffset + shadermodel->m_Normal.offset, stride, 1);
+
+	deviceCommandContext->SetVertexBuffer(1, shadermodel->m_Array.GetBuffer());
 	deviceCommandContext->SetIndexBuffer(m->shadermodeldef->m_IndexArray.GetBuffer());
-
-	if (streamflags & STREAM_POS)
-	{
-		shader->VertexPointer(
-			Renderer::Backend::Format::R32G32B32_SFLOAT, stride,
-			base + shadermodel->m_Position.offset);
-	}
-
-	if (streamflags & STREAM_NORMAL)
-	{
-		shader->NormalPointer(
-			Renderer::Backend::Format::R32G32B32_SFLOAT, stride,
-			base + shadermodel->m_Normal.offset);
-	}
 
 	// Render the lot.
 	const size_t numberOfFaces = mdldef->GetNumFaces();

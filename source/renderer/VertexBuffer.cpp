@@ -290,25 +290,6 @@ void CVertexBuffer::UploadIfNeeded(
 	}
 }
 
-// Bind: bind to this buffer; return pointer to address required as parameter
-// to glVertexPointer ( + etc) calls
-u8* CVertexBuffer::Bind(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
-{
-	UploadIfNeeded(deviceCommandContext);
-	deviceCommandContext->BindBuffer(m_Buffer->GetType(), m_Buffer.get());
-	return nullptr;
-}
-
-void CVertexBuffer::Unbind(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
-{
-	deviceCommandContext->BindBuffer(
-		Renderer::Backend::GL::CBuffer::Type::VERTEX, nullptr);
-	deviceCommandContext->BindBuffer(
-		Renderer::Backend::GL::CBuffer::Type::INDEX, nullptr);
-}
-
 size_t CVertexBuffer::GetBytesReserved() const
 {
 	return MAX_VB_SIZE_BYTES;

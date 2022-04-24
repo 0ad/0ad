@@ -2,32 +2,50 @@
 	"Name": "Demo campaign - new maps",
 	"Description": "Discover the new and improved maps in Alpha XXVI with a demo campaign, taking you through all of them.",
 	"Levels": {
-		"median_oasis_2p": {
+		"Chang Jiang": {
+			"Map": "skirmishes/yangtze_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"Median Oasis": {
 			"Map": "skirmishes/median_oasis_2p.xml",
 			"MapType": "skirmish",
 			"useGameSetup": true
 		},
-		"acropolis_bay_2p": {
+		"Acropolis Bay": {
 			"Map": "skirmishes/acropolis_bay_2p.xml",
 			"MapType": "skirmish",
 			"useGameSetup": true
 		},
-		"tarim_basin_2p": {
+		"Corinthian Isthmus": {
+			"Map": "skirmishes/corinthian_isthmus_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"Cycladic Archipelago": {
+			"Map": "skirmishes/cycladic_archipelago_2p.xml",
+			"MapType": "skirmish",
+			"useGameSetup": true
+		},
+		"Tarim Basin 2p": {
 			"Map": "skirmishes/tarim_basin_2p.xml",
 			"MapType": "skirmish",
 			"useGameSetup": true
 		},
-		"yangtze_2p.pmp": {
-			"Map": "skirmishes/yangtze_2p.xml",
+		"Tarim Basin 4p": {
+			"Map": "skirmishes/tarim_basin_4p.xml",
 			"MapType": "skirmish",
 			"useGameSetup": true
 		}
 	},
 	"Order": [
-		"acropolis_bay_2p",
-		"median_oasis_2p",
-		"tarim_basin_2p",
-		"yangtze_2p"
+		"Chang Jiang",
+		"Median Oasis",
+		"Acropolis Bay",
+		"Corinthian Isthmus",
+		"Cycladic Archipelago",
+		"Tarim Basin 2p",
+		"Tarim Basin 4p"
 	],
 	"ShowUnavailable": true
 }

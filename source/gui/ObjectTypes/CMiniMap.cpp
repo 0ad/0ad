@@ -97,7 +97,7 @@ void CropPointsByCircle(const std::array<CVector3D, 4>& points, const CVector3D&
 
 void DrawTexture(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CShaderProgram* shader, float angle, float x, float y, float x2, float y2, float mapScale)
+	float angle, float x, float y, float x2, float y2, float mapScale)
 {
 	// Rotate the texture coordinates (0,0)-(coordMax,coordMax) around their center point (m,m)
 	// Scale square maps to fit in circular minimap area
@@ -105,7 +105,8 @@ void DrawTexture(
 	const float c = cos(angle) * mapScale;
 	const float m = 0.5f;
 
-	float quadTex[] = {
+	float quadTex[] =
+	{
 		m*(-c + s + 1.f), m*(-c + -s + 1.f),
 		m*(c + s + 1.f), m*(-c + s + 1.f),
 		m*(c + -s + 1.f), m*(c + s + 1.f),
@@ -114,7 +115,8 @@ void DrawTexture(
 		m*(-c + -s + 1.f), m*(c + -s + 1.f),
 		m*(-c + s + 1.f), m*(-c + -s + 1.f)
 	};
-	float quadVerts[] = {
+	float quadVerts[] =
+	{
 		x, y, 0.0f,
 		x2, y, 0.0f,
 		x2, y2, 0.0f,
@@ -124,10 +126,15 @@ void DrawTexture(
 		x, y, 0.0f
 	};
 
-	shader->TexCoordPointer(
-		GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, quadTex);
-	shader->VertexPointer(
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, quadVerts);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::UV0,
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 1);
+
+	deviceCommandContext->SetVertexBufferData(0, quadVerts);
+	deviceCommandContext->SetVertexBufferData(1, quadTex);
 
 	deviceCommandContext->Draw(0, 6);
 }
@@ -440,7 +447,7 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 		const float x = m_CachedActualSize.left, y = m_CachedActualSize.bottom;
 		const float x2 = m_CachedActualSize.right, y2 = m_CachedActualSize.top;
 		const float angle = GetAngle();
-		DrawTexture(deviceCommandContext, shader, angle, x, y, x2, y2, m_MapScale);
+		DrawTexture(deviceCommandContext, angle, x, y, x2, y2, m_MapScale);
 
 		deviceCommandContext->EndPass();
 	}

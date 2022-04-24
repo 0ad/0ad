@@ -165,13 +165,6 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 	int cullGroup, CMatrix3D& textureMatrix,
 	Renderer::Backend::GL::CTexture* texture)
 {
-#if CONFIG2_GLES
-#warning TODO: implement TerrainRenderer::RenderTerrainOverlayTexture for GLES
-	UNUSED2(deviceCommandContext);
-	UNUSED2(cullGroup);
-	UNUSED2(textureMatrix);
-	UNUSED2(texture);
-#else
 	ENSURE(m->phase == Phase_Render);
 
 	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
@@ -207,17 +200,19 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 			waterBounds[0].X, height, waterBounds[1].Z
 		};
 
-		const GLsizei stride = sizeof(float) * 3;
-		debugOverlayShader->VertexPointer(
-			Renderer::Backend::Format::R32G32B32_SFLOAT, stride, waterPos);
-		debugOverlayShader->TexCoordPointer(
-			GL_TEXTURE0, Renderer::Backend::Format::R32G32B32_SFLOAT, stride, waterPos);
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::UV0,
+			Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+
+		deviceCommandContext->SetVertexBufferData(0, waterPos);
 
 		deviceCommandContext->Draw(0, 6);
 	}
 
 	deviceCommandContext->EndPass();
-#endif
 }
 
 
@@ -305,13 +300,6 @@ void TerrainRenderer::RenderPatches(
 
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render terrain patches");
 
-#if CONFIG2_GLES
-	UNUSED2(deviceCommandContext);
-	UNUSED2(defines);
-	UNUSED2(color);
-	#warning TODO: implement TerrainRenderer::RenderPatches for GLES
-#else
-
 	CShaderTechniquePtr solidTech = g_Renderer.GetShaderManager().LoadEffect(str_terrain_solid, defines);
 	deviceCommandContext->SetGraphicsPipelineState(
 		solidTech->GetGraphicsPipelineStateDesc());
@@ -323,7 +311,6 @@ void TerrainRenderer::RenderPatches(
 
 	CPatchRData::RenderStreams(deviceCommandContext, visiblePatches, solidShader, false);
 	deviceCommandContext->EndPass();
-#endif
 }
 
 
@@ -517,10 +504,6 @@ void TerrainRenderer::RenderSimpleWater(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
 	int cullGroup)
 {
-#if CONFIG2_GLES
-	UNUSED2(deviceCommandContext);
-	UNUSED2(cullGroup);
-#else
 	PROFILE3_GPU("simple water");
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render Simple Water");
 
@@ -559,7 +542,6 @@ void TerrainRenderer::RenderSimpleWater(
 	deviceCommandContext->BindTexture(1, GL_TEXTURE_2D, 0);
 
 	deviceCommandContext->EndPass();
-#endif
 }
 
 ///////////////////////////////////////////////////////////////////

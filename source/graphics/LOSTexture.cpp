@@ -181,8 +181,17 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* d
 		1.0f, 0.0f,
 		1.0f, 1.0f
 	};
-	shader->TexCoordPointer(GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, 0, quadTex);
-	shader->VertexPointer(Renderer::Backend::Format::R32G32_SFLOAT, 0, quadVerts);
+
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 0);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::UV0,
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 1);
+
+	deviceCommandContext->SetVertexBufferData(0, quadVerts);
+	deviceCommandContext->SetVertexBufferData(1, quadTex);
+
 	deviceCommandContext->Draw(0, 6);
 
 	g_Renderer.SetViewport(oldVp);

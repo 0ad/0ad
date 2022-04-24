@@ -44,29 +44,32 @@ void CTexturedLineRData::Render(
 
 	// -- render main line quad strip ----------------------
 
-	const int streamFlags = shader->GetStreamFlags();
-
 	line.m_TextureBase->UploadBackendTextureIfNeeded(deviceCommandContext);
 	line.m_TextureMask->UploadBackendTextureIfNeeded(deviceCommandContext);
 
+	m_VB->m_Owner->UploadIfNeeded(deviceCommandContext);
 	m_VBIndices->m_Owner->UploadIfNeeded(deviceCommandContext);
 
 	shader->BindTexture(str_baseTex, line.m_TextureBase->GetBackendTexture());
 	shader->BindTexture(str_maskTex, line.m_TextureMask->GetBackendTexture());
 	shader->Uniform(str_objectColor, line.m_Color);
 
-	GLsizei stride = sizeof(CTexturedLineRData::SVertex);
-	CTexturedLineRData::SVertex* vertexBase =
-		reinterpret_cast<CTexturedLineRData::SVertex*>(m_VB->m_Owner->Bind(deviceCommandContext));
+	const uint32_t stride = sizeof(CTexturedLineRData::SVertex);
 
-	if (streamFlags & STREAM_POS)
-		shader->VertexPointer(Renderer::Backend::Format::R32G32B32_SFLOAT, stride, &vertexBase->m_Position[0]);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		Renderer::Backend::Format::R32G32B32_SFLOAT,
+		offsetof(CTexturedLineRData::SVertex, m_Position), stride, 0);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::UV0,
+		Renderer::Backend::Format::R32G32_SFLOAT,
+		offsetof(CTexturedLineRData::SVertex, m_UVs), stride, 0);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::UV1,
+		Renderer::Backend::Format::R32G32_SFLOAT,
+		offsetof(CTexturedLineRData::SVertex, m_UVs), stride, 0);
 
-	if (streamFlags & STREAM_UV0)
-		shader->TexCoordPointer(GL_TEXTURE0, Renderer::Backend::Format::R32G32_SFLOAT, stride, &vertexBase->m_UVs[0]);
-
-	if (streamFlags & STREAM_UV1)
-		shader->TexCoordPointer(GL_TEXTURE1, Renderer::Backend::Format::R32G32_SFLOAT, stride, &vertexBase->m_UVs[0]);
+	deviceCommandContext->SetVertexBuffer(0, m_VB->m_Owner->GetBuffer());
 
 	deviceCommandContext->SetIndexBuffer(m_VBIndices->m_Owner->GetBuffer());
 	deviceCommandContext->DrawIndexed(m_VBIndices->m_Index, m_VBIndices->m_Count, 0);

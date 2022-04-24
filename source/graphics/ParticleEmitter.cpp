@@ -194,30 +194,33 @@ void CParticleEmitter::Bind(
 
 void CParticleEmitter::RenderArray(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CShaderProgram* shader)
+	Renderer::Backend::GL::CShaderProgram* UNUSED(shader))
 {
 	if (m_Particles.empty())
 		return;
 
+	m_VertexArray.UploadIfNeeded(deviceCommandContext);
 	m_IndexArray.UploadIfNeeded(deviceCommandContext);
-	u8* base = m_VertexArray.Bind(deviceCommandContext);
 
-	GLsizei stride = (GLsizei)m_VertexArray.GetStride();
+	const uint32_t stride = m_VertexArray.GetStride();
+	const uint32_t firstVertexOffset = m_VertexArray.GetStride() * stride;
 
-	shader->VertexPointer(
-		m_AttributePos.format, stride, base + m_AttributePos.offset);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		m_AttributePos.format, firstVertexOffset + m_AttributePos.offset, stride, 0);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::COLOR,
+		m_AttributeColor.format, firstVertexOffset + m_AttributeColor.offset, stride, 0);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::UV0,
+		m_AttributeUV.format, firstVertexOffset + m_AttributeUV.offset, stride, 0);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::UV1,
+		m_AttributeAxis.format, firstVertexOffset + m_AttributeAxis.offset, stride, 0);
 
-	// Pass the sin/cos axis components as texcoords for no particular reason
-	// other than that they fit. (Maybe this should be glVertexAttrib* instead?)
-	shader->TexCoordPointer(
-		GL_TEXTURE0, m_AttributeUV.format, stride, base + m_AttributeUV.offset);
-	shader->TexCoordPointer(
-		GL_TEXTURE1, m_AttributeAxis.format, stride, base + m_AttributeAxis.offset);
-
-	shader->ColorPointer(
-		m_AttributeColor.format, stride, base + m_AttributeColor.offset);
-
+	deviceCommandContext->SetVertexBuffer(0, m_VertexArray.GetBuffer());
 	deviceCommandContext->SetIndexBuffer(m_IndexArray.GetBuffer());
+
 	deviceCommandContext->DrawIndexed(m_IndexArray.GetOffset(), m_Particles.size() * 6, 0);
 
 	g_Renderer.GetStats().m_DrawCalls++;

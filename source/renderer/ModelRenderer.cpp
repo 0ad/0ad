@@ -608,7 +608,6 @@ void ShaderModelRenderer::Render(
 				deviceCommandContext->BeginPass();
 
 				Renderer::Backend::GL::CShaderProgram* shader = currentTech->GetShader(pass);
-				int streamflags = shader->GetStreamFlags();
 
 				modifier->BeginPass(shader);
 
@@ -617,7 +616,7 @@ void ShaderModelRenderer::Render(
 				bool boundWaterTexture = false;
 				bool boundSkyCube = false;
 
-				m->vertexRenderer->BeginPass(streamflags);
+				m->vertexRenderer->BeginPass();
 
 				// When the shader technique changes, textures need to be
 				// rebound, so ensure there are no remnants from the last pass.
@@ -685,7 +684,7 @@ void ShaderModelRenderer::Render(
 						if (newModeldef != currentModeldef)
 						{
 							currentModeldef = newModeldef;
-							m->vertexRenderer->PrepareModelDef(deviceCommandContext, shader, streamflags, *currentModeldef);
+							m->vertexRenderer->PrepareModelDef(deviceCommandContext, shader, *currentModeldef);
 						}
 
 						// Bind all uniforms when any change
@@ -741,11 +740,11 @@ void ShaderModelRenderer::Render(
 						CModelRData* rdata = static_cast<CModelRData*>(model->GetRenderData());
 						ENSURE(rdata->GetKey() == m->vertexRenderer.get());
 
-						m->vertexRenderer->RenderModel(deviceCommandContext, shader, streamflags, model, rdata);
+						m->vertexRenderer->RenderModel(deviceCommandContext, shader, model, rdata);
 					}
 				}
 
-				m->vertexRenderer->EndPass(deviceCommandContext, streamflags);
+				m->vertexRenderer->EndPass(deviceCommandContext);
 
 				deviceCommandContext->EndPass();
 			}

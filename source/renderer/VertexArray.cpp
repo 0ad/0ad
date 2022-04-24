@@ -282,21 +282,6 @@ void VertexArray::Upload()
 	m_VB->m_Owner->UpdateChunkVertices(m_VB.Get(), m_BackingStore);
 }
 
-
-// Bind this array, returns the base address for calls to glVertexPointer etc.
-u8* VertexArray::Bind(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
-{
-	if (!m_VB)
-		return nullptr;
-
-	UploadIfNeeded(deviceCommandContext);
-	m_VB->m_Owner->Bind(deviceCommandContext);
-	u8* base = nullptr;
-	base += m_VB->m_Index * m_Stride;
-	return base;
-}
-
 void VertexArray::UploadIfNeeded(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {

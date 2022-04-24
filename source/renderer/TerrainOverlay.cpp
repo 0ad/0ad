@@ -120,10 +120,6 @@ void TerrainOverlay::RenderBeforeWater(
 	if (!m_Terrain)
 		return; // should never happen, but let's play it safe
 
-#if CONFIG2_GLES
-	UNUSED2(deviceCommandContext);
-#warning TODO: implement TerrainOverlay::RenderOverlays for GLES
-#else
 	StartRender();
 
 	ssize_t min_i, min_j, max_i, max_j;
@@ -141,7 +137,6 @@ void TerrainOverlay::RenderBeforeWater(
 			ProcessTile(deviceCommandContext, m_i, m_j);
 
 	EndRender();
-#endif
 }
 
 void TerrainOverlay::RenderTile(
@@ -158,15 +153,6 @@ void TerrainOverlay::RenderTile(
 	// TODO: unnecessary computation calls has been removed but we should use
 	// a vertex buffer or a vertex shader with a texture.
 	// Not sure if it's possible on old OpenGL.
-
-#if CONFIG2_GLES
-	UNUSED2(deviceCommandContext);
-	UNUSED2(color);
-	UNUSED2(drawHidden);
-	UNUSED2(i);
-	UNUSED2(j);
-	#warning TODO: implement TerrainOverlay::RenderTile for GLES
-#else
 
 	CVector3D pos[2][2];
 	for (int di = 0; di < 2; ++di)
@@ -229,13 +215,15 @@ void TerrainOverlay::RenderTile(
 	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	overlayShader->Uniform(str_color, color);
 
-	overlayShader->VertexPointer(
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+
+	deviceCommandContext->SetVertexBufferData(0, vertices.data());
 
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 
 	deviceCommandContext->EndPass();
-#endif
 }
 
 void TerrainOverlay::RenderTileOutline(
@@ -249,15 +237,6 @@ void TerrainOverlay::RenderTileOutline(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
 	const CColor& color, bool drawHidden, ssize_t i, ssize_t j)
 {
-#if CONFIG2_GLES
-	UNUSED2(deviceCommandContext);
-	UNUSED2(color);
-	UNUSED2(drawHidden);
-	UNUSED2(i);
-	UNUSED2(j);
-	#warning TODO: implement TerrainOverlay::RenderTileOutline for GLES
-#else
-
 	std::vector<float> vertices;
 #define ADD(i, j) \
 	m_Terrain->CalcPosition(i, j, position); \
@@ -297,13 +276,15 @@ void TerrainOverlay::RenderTileOutline(
 	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 	overlayShader->Uniform(str_color, color);
 
-	overlayShader->VertexPointer(
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, vertices.data());
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+
+	deviceCommandContext->SetVertexBufferData(0, vertices.data());
 
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 
 	deviceCommandContext->EndPass();
-#endif
 }
 
 //////////////////////////////////////////////////////////////////////////

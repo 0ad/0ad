@@ -2,36 +2,37 @@
 
 <Scenario version="7">
 	<Environment>
-		<SkySet>cumulus</SkySet>
-		<SunColor r="0.858824" g="0.803922" b="0.639216"/>
-		<SunElevation angle="1.12287"/>
-		<SunRotation angle="-2.55254"/>
-		<AmbientColor r="0.329412" g="0.419608" b="0.501961"/>
+		<SkySet>sunny 1</SkySet>
+		<SunColor r="0.956863" g="0.921569" b="0.803922"/>
+		<SunElevation angle="0.733243"/>
+		<SunRotation angle="-0.661043"/>
+		<AmbientColor r="0.368627" g="0.376471" b="0.419608"/>
 		<Fog>
 			<FogFactor>0.0015625</FogFactor>
-			<FogThickness>0.400391</FogThickness>
+			<FogThickness>0.102051</FogThickness>
 			<FogColor r="0.8" g="0.8" b="0.894118"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>ocean</Type>
-				<Color r="0" g="0.356863" b="0.713726"/>
+				<Color r="0.137255" g="0.443137" b="0.686275"/>
+				<Tint r="0.0196078" g="0.980392" b="0.882353"/>
 				<Height>33.0492</Height>
-				<Waviness>3.0</Waviness>
-				<Murkiness>0.643555</Murkiness>
-				<Tint r="0" g="1" b="1"/>
+				<Waviness>3</Waviness>
+				<Murkiness>0.849609</Murkiness>
+				<WindAngle>1.25173</WindAngle>
 			</WaterBody>
 		</Water>
 		<Postproc>
 			<Brightness>0</Brightness>
 			<Contrast>1.00781</Contrast>
-			<Saturation>0.99</Saturation>
+			<Saturation>0.914063</Saturation>
 			<Bloom>0.1999</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="817.802" y="106.895" z="508.658"/>
+		<Position x="334.521" y="120.284" z="517.441"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -49,14 +50,16 @@
         "b": 200,
         "g": 46,
         "r": 46
-      }
+      },
+      "Name": "Player 1"
     },
     {
       "Color": {
         "b": 20,
         "g": 20,
         "r": 150
-      }
+      },
+      "Name": "Player 2"
     }
   ],
   "Preview": "cycladic_archipelago_2.png",
@@ -67,19 +70,19 @@
 ]]></ScriptSettings>
 	<Entities>
 		<Entity uid="12">
-			<Template>gaia/rock/mediterranean_large</Template>
+			<Template>gaia/rock/aegean_large</Template>
 			<Player>0</Player>
 			<Position x="395.86847" z="474.64011"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="13">
-			<Template>gaia/ore/mediterranean_large</Template>
+			<Template>gaia/ore/aegean_anatolian_01</Template>
 			<Player>0</Player>
 			<Position x="426.977" z="340.93793"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="14">
-			<Template>gaia/ore/mediterranean_large</Template>
+			<Template>gaia/ore/aegean_anatolian_01</Template>
 			<Player>0</Player>
 			<Position x="317.24003" z="483.74537"/>
 			<Orientation y="-0.6059"/>
@@ -3030,19 +3033,19 @@
 			<Orientation y="0.84804"/>
 		</Entity>
 		<Entity uid="575">
-			<Template>gaia/rock/mediterranean_large</Template>
+			<Template>gaia/rock/aegean_large</Template>
 			<Player>0</Player>
 			<Position x="1092.1698" z="759.9867"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="576">
-			<Template>gaia/ore/mediterranean_large</Template>
+			<Template>gaia/ore/aegean_anatolian_01</Template>
 			<Player>0</Player>
 			<Position x="1135.40101" z="656.14075"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="577">
-			<Template>gaia/ore/mediterranean_large</Template>
+			<Template>gaia/ore/aegean_anatolian_01</Template>
 			<Player>0</Player>
 			<Position x="1041.74268" z="855.36487"/>
 			<Orientation y="0.31591"/>
@@ -6724,31 +6727,31 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1263">
-			<Template>gaia/rock/mediterranean_large</Template>
+			<Template>gaia/rock/aegean_large</Template>
 			<Player>0</Player>
 			<Position x="850.07483" z="354.7436"/>
-			<Orientation y="-1.61344"/>
+			<Orientation y="-3.97855"/>
 		</Entity>
 		<Entity uid="1264">
-			<Template>gaia/rock/mediterranean_small</Template>
+			<Template>gaia/rock/aegean_small</Template>
 			<Player>0</Player>
 			<Position x="919.70887" z="318.15384"/>
 			<Orientation y="-0.35576"/>
 		</Entity>
 		<Entity uid="1265">
-			<Template>gaia/rock/mediterranean_small</Template>
+			<Template>gaia/rock/aegean_small</Template>
 			<Player>0</Player>
 			<Position x="913.448" z="327.79044"/>
 			<Orientation y="2.59505"/>
 		</Entity>
 		<Entity uid="1266">
-			<Template>gaia/rock/mediterranean_small</Template>
+			<Template>gaia/rock/aegean_small</Template>
 			<Player>0</Player>
 			<Position x="919.8907" z="325.8899"/>
 			<Orientation y="0.46744"/>
 		</Entity>
 		<Entity uid="1267">
-			<Template>gaia/ore/mediterranean_large</Template>
+			<Template>gaia/ore/aegean_anatolian_01</Template>
 			<Player>0</Player>
 			<Position x="806.37452" z="328.62458"/>
 			<Orientation y="2.35621"/>
@@ -7330,7 +7333,7 @@
 			<Template>gaia/treasure/shipwreck</Template>
 			<Player>0</Player>
 			<Position x="384.10557" z="865.80097"/>
-			<Orientation y="0.07082"/>
+			<Orientation y="-2.77424"/>
 		</Entity>
 		<Entity uid="1383">
 			<Template>gaia/fish/tuna</Template>
@@ -7797,7 +7800,7 @@
 		<Entity uid="1460">
 			<Template>gaia/fish/tuna</Template>
 			<Player>0</Player>
-			<Position x="1183.89148" z="682.34339"/>
+			<Position x="1200.94251" z="664.18537"/>
 			<Orientation y="1.87253"/>
 		</Entity>
 		<Entity uid="1461">
@@ -8893,37 +8896,37 @@
 			<Orientation y="-0.86254"/>
 		</Entity>
 		<Entity uid="1644">
-			<Template>gaia/ore/mediterranean_large</Template>
+			<Template>gaia/ore/aegean_anatolian_01</Template>
 			<Player>0</Player>
 			<Position x="334.27836" z="1204.11353"/>
 			<Orientation y="-2.59833"/>
 		</Entity>
 		<Entity uid="1645">
-			<Template>gaia/ore/mediterranean_large</Template>
+			<Template>gaia/ore/aegean_anatolian_01</Template>
 			<Player>0</Player>
 			<Position x="315.66971" z="870.43915"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1646">
-			<Template>gaia/ore/mediterranean_large</Template>
+			<Template>gaia/ore/aegean_anatolian_01</Template>
 			<Player>0</Player>
 			<Position x="566.72529" z="922.1974"/>
 			<Orientation y="0.37531"/>
 		</Entity>
 		<Entity uid="1647">
-			<Template>gaia/ore/mediterranean_large</Template>
+			<Template>gaia/ore/aegean_anatolian_01</Template>
 			<Player>0</Player>
 			<Position x="1068.65638" z="1210.98182"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1648">
-			<Template>gaia/rock/mediterranean_large</Template>
+			<Template>gaia/rock/aegean_large</Template>
 			<Player>0</Player>
 			<Position x="996.06293" z="1191.2522"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1649">
-			<Template>gaia/rock/mediterranean_large</Template>
+			<Template>gaia/rock/aegean_large</Template>
 			<Player>0</Player>
 			<Position x="1374.5691" z="559.72602"/>
 			<Orientation y="-0.07253"/>
@@ -9031,19 +9034,19 @@
 			<Orientation y="1.18142"/>
 		</Entity>
 		<Entity uid="1667">
-			<Template>gaia/rock/mediterranean_small</Template>
+			<Template>gaia/rock/aegean_small</Template>
 			<Player>0</Player>
 			<Position x="1094.24097" z="339.03522"/>
 			<Orientation y="-2.5297"/>
 		</Entity>
 		<Entity uid="1668">
-			<Template>gaia/rock/mediterranean_small</Template>
+			<Template>gaia/rock/aegean_small</Template>
 			<Player>0</Player>
 			<Position x="1086.10181" z="328.41126"/>
 			<Orientation y="0.9376"/>
 		</Entity>
 		<Entity uid="1669">
-			<Template>gaia/rock/mediterranean_small</Template>
+			<Template>gaia/rock/aegean_small</Template>
 			<Player>0</Player>
 			<Position x="1094.37317" z="329.602"/>
 			<Orientation y="2.35621"/>
@@ -10711,7 +10714,7 @@
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1967">
-			<Template>gaia/rock/mediterranean_large</Template>
+			<Template>gaia/rock/aegean_large</Template>
 			<Player>0</Player>
 			<Position x="356.192" z="925.47651"/>
 			<Orientation y="2.35621"/>
