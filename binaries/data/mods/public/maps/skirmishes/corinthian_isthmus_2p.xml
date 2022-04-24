@@ -2,37 +2,37 @@
 
 <Scenario version="7">
 	<Environment>
-		<SkySet>sunny 1</SkySet>
-		<SunColor r="0.882353" g="0.839216" b="0.701961"/>
-		<SunElevation angle="0.809942"/>
-		<SunRotation angle="-1.07992"/>
-		<AmbientColor r="0.329412" g="0.419608" b="0.501961"/>
+		<SkySet>desert</SkySet>
+		<SunColor r="0.988166" g="0.929297" b="0.693819"/>
+		<SunElevation angle="0.929592"/>
+		<SunRotation angle="-0.566729"/>
+		<AmbientColor r="0.372549" g="0.376471" b="0.419608"/>
 		<Fog>
-			<FogFactor>0.00157227</FogFactor>
+			<FogFactor>0.00226562</FogFactor>
 			<FogThickness>0</FogThickness>
-			<FogColor r="0.803922" g="0.819608" b="0.847059"/>
+			<FogColor r="0.894118" g="0.913725" b="0.929412"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>ocean</Type>
-				<Color r="0.184314" g="0.356863" b="0.658824"/>
-				<Tint r="0" g="1" b="1"/>
-				<Height>19.6197</Height>
+				<Color r="0.0156863" g="0.513726" b="0.74902"/>
+				<Tint r="0.501961" g="1" b="1"/>
+				<Height>19.6279</Height>
 				<Waviness>3</Waviness>
-				<Murkiness>0.727539</Murkiness>
-				<WindAngle>0</WindAngle>
+				<Murkiness>0.660156</Murkiness>
+				<WindAngle>0.625864</WindAngle>
 			</WaterBody>
 		</Water>
 		<Postproc>
 			<Brightness>0</Brightness>
 			<Contrast>1</Contrast>
-			<Saturation>1.03125</Saturation>
+			<Saturation>0.876953</Saturation>
 			<Bloom>0.1625</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="306.354" y="166.604" z="238.787"/>
+		<Position x="247.801" y="100.334" z="349.508"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -46,9 +46,23 @@
   "LockTeams": false,
   "Name": "Corinthian Isthmus (2)",
   "PlayerData": [
-    "",
-    "",
-    ""
+    null,
+    {
+      "Color": {
+        "b": 255,
+        "g": 0,
+        "r": 0
+      },
+      "Name": "Player 1"
+    },
+    {
+      "Color": {
+        "b": 0,
+        "g": 0,
+        "r": 255
+      },
+      "Name": "Player 2"
+    }
   ],
   "Preview": "isthmus_scenario.png",
   "RevealMap": false,
@@ -14149,6 +14163,1469 @@
 			<Position x="827.76001" z="498.81226"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="41982"/>
+		</Entity>
+		<Entity uid="2601">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="317.85035" z="755.82703"/>
+			<Orientation y="3.10494"/>
+			<Actor seed="59248"/>
+		</Entity>
+		<Entity uid="2602">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="321.89567" z="736.41724"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="10589"/>
+		</Entity>
+		<Entity uid="2603">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="325.29532" z="735.87555"/>
+			<Orientation y="2.45737"/>
+			<Actor seed="10589"/>
+		</Entity>
+		<Entity uid="2604">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="329.36228" z="725.92261"/>
+			<Orientation y="1.4255"/>
+			<Actor seed="10589"/>
+		</Entity>
+		<Entity uid="2605">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="332.18418" z="725.81391"/>
+			<Orientation y="1.24264"/>
+			<Actor seed="10589"/>
+		</Entity>
+		<Entity uid="2606">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="338.0843" z="734.33313"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="10589"/>
+		</Entity>
+		<Entity uid="2607">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="345.39158" z="744.39777"/>
+			<Orientation y="0.26745"/>
+			<Actor seed="10589"/>
+		</Entity>
+		<Entity uid="2608">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="344.4086" z="734.65986"/>
+			<Orientation y="-2.6582"/>
+			<Actor seed="42469"/>
+		</Entity>
+		<Entity uid="2609">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="341.71644" z="728.82923"/>
+			<Orientation y="3.04226"/>
+			<Actor seed="42469"/>
+		</Entity>
+		<Entity uid="2610">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="338.6461" z="725.53064"/>
+			<Orientation y="2.75174"/>
+			<Actor seed="42469"/>
+		</Entity>
+		<Entity uid="2611">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="339.99421" z="724.45142"/>
+			<Orientation y="1.16231"/>
+			<Actor seed="42469"/>
+		</Entity>
+		<Entity uid="2612">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="337.68287" z="731.38209"/>
+			<Orientation y="-1.03183"/>
+			<Actor seed="42469"/>
+		</Entity>
+		<Entity uid="2613">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="334.92862" z="732.05958"/>
+			<Orientation y="-2.6731"/>
+			<Actor seed="49031"/>
+		</Entity>
+		<Entity uid="2614">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="330.80735" z="730.47272"/>
+			<Orientation y="-0.64591"/>
+			<Actor seed="49031"/>
+		</Entity>
+		<Entity uid="2615">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="327.27857" z="735.003"/>
+			<Orientation y="0.46302"/>
+			<Actor seed="49031"/>
+		</Entity>
+		<Entity uid="2616">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="327.51035" z="750.78272"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49031"/>
+		</Entity>
+		<Entity uid="2617">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="330.70688" z="749.74463"/>
+			<Orientation y="2.81011"/>
+			<Actor seed="49031"/>
+		</Entity>
+		<Entity uid="2618">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="337.58301" z="736.28406"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49031"/>
+		</Entity>
+		<Entity uid="2619">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="341.42908" z="738.63886"/>
+			<Orientation y="0.23667"/>
+			<Actor seed="49031"/>
+		</Entity>
+		<Entity uid="2620">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="341.9722" z="742.03418"/>
+			<Orientation y="-0.7636"/>
+			<Actor seed="29305"/>
+		</Entity>
+		<Entity uid="2621">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="337.40214" z="744.56934"/>
+			<Orientation y="-2.35805"/>
+			<Actor seed="29305"/>
+		</Entity>
+		<Entity uid="2622">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="335.89106" z="743.22852"/>
+			<Orientation y="-1.82137"/>
+			<Actor seed="29305"/>
+		</Entity>
+		<Entity uid="2623">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="331.64661" z="744.82886"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="29305"/>
+		</Entity>
+		<Entity uid="2624">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="327.92277" z="745.09101"/>
+			<Orientation y="-2.56559"/>
+			<Actor seed="29305"/>
+		</Entity>
+		<Entity uid="2625">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="325.05097" z="741.19428"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="29305"/>
+		</Entity>
+		<Entity uid="2626">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="320.95966" z="743.21888"/>
+			<Orientation y="-0.9134"/>
+			<Actor seed="50420"/>
+		</Entity>
+		<Entity uid="2627">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="317.07139" z="747.67774"/>
+			<Orientation y="-1.21431"/>
+			<Actor seed="50420"/>
+		</Entity>
+		<Entity uid="2628">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="314.00083" z="746.73365"/>
+			<Orientation y="-2.90671"/>
+			<Actor seed="50420"/>
+		</Entity>
+		<Entity uid="2629">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="314.07975" z="743.7552"/>
+			<Orientation y="2.92174"/>
+			<Actor seed="50420"/>
+		</Entity>
+		<Entity uid="2630">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="316.3372" z="736.35682"/>
+			<Orientation y="2.39986"/>
+			<Actor seed="50420"/>
+		</Entity>
+		<Entity uid="2631">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="321.86814" z="730.85151"/>
+			<Orientation y="2.1136"/>
+			<Actor seed="50420"/>
+		</Entity>
+		<Entity uid="2632">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="325.91239" z="728.17273"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="50420"/>
+		</Entity>
+		<Entity uid="2633">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="323.98075" z="725.77216"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5904"/>
+		</Entity>
+		<Entity uid="2634">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="332.50538" z="716.80372"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5904"/>
+		</Entity>
+		<Entity uid="2635">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="329.83924" z="714.65528"/>
+			<Orientation y="-2.63266"/>
+			<Actor seed="48797"/>
+		</Entity>
+		<Entity uid="2636">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="324.72632" z="710.35279"/>
+			<Orientation y="-2.31069"/>
+			<Actor seed="48797"/>
+		</Entity>
+		<Entity uid="2637">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="322.01438" z="707.30585"/>
+			<Orientation y="2.22756"/>
+			<Actor seed="48797"/>
+		</Entity>
+		<Entity uid="2638">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="326.47568" z="706.41041"/>
+			<Orientation y="0.92717"/>
+			<Actor seed="48797"/>
+		</Entity>
+		<Entity uid="2639">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="332.4319" z="708.79792"/>
+			<Orientation y="1.9074"/>
+			<Actor seed="55554"/>
+		</Entity>
+		<Entity uid="2640">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="341.08216" z="708.27356"/>
+			<Orientation y="1.57081"/>
+			<Actor seed="55554"/>
+		</Entity>
+		<Entity uid="2641">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="344.05472" z="709.2881"/>
+			<Orientation y="0.7515"/>
+			<Actor seed="55554"/>
+		</Entity>
+		<Entity uid="2642">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="349.7681" z="714.89258"/>
+			<Orientation y="0.68482"/>
+			<Actor seed="55554"/>
+		</Entity>
+		<Entity uid="2643">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="354.54291" z="721.89515"/>
+			<Orientation y="0.6771"/>
+			<Actor seed="55554"/>
+		</Entity>
+		<Entity uid="2644">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="358.69831" z="728.99897"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55554"/>
+		</Entity>
+		<Entity uid="2645">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="360.4014" z="735.59736"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55554"/>
+		</Entity>
+		<Entity uid="2646">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="356.55134" z="735.7707"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="12552"/>
+		</Entity>
+		<Entity uid="2647">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="353.3035" z="725.23261"/>
+			<Orientation y="2.93128"/>
+			<Actor seed="12552"/>
+		</Entity>
+		<Entity uid="2648">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="358.58783" z="724.48121"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="12552"/>
+		</Entity>
+		<Entity uid="2649">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="356.57319" z="717.72925"/>
+			<Orientation y="-2.82978"/>
+			<Actor seed="12552"/>
+		</Entity>
+		<Entity uid="2650">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="345.22065" z="714.55555"/>
+			<Orientation y="-1.52627"/>
+			<Actor seed="12552"/>
+		</Entity>
+		<Entity uid="2651">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="339.23188" z="715.38868"/>
+			<Orientation y="-1.57081"/>
+			<Actor seed="65196"/>
+		</Entity>
+		<Entity uid="2652">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="337.54477" z="714.02167"/>
+			<Orientation y="-2.6699"/>
+			<Actor seed="65196"/>
+		</Entity>
+		<Entity uid="2653">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="716.36933" z="221.02887"/>
+			<Orientation y="-2.70325"/>
+			<Actor seed="65196"/>
+		</Entity>
+		<Entity uid="2654">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="710.10993" z="209.99097"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="46006"/>
+		</Entity>
+		<Entity uid="2655">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="712.10724" z="204.19953"/>
+			<Orientation y="2.68615"/>
+			<Actor seed="46006"/>
+		</Entity>
+		<Entity uid="2656">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="683.43506" z="212.86728"/>
+			<Orientation y="-2.96497"/>
+			<Actor seed="46006"/>
+		</Entity>
+		<Entity uid="2657">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="683.08967" z="206.43091"/>
+			<Orientation y="2.88938"/>
+			<Actor seed="26074"/>
+		</Entity>
+		<Entity uid="2658">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="685.7439" z="198.13227"/>
+			<Orientation y="2.35738"/>
+			<Actor seed="26074"/>
+		</Entity>
+		<Entity uid="2659">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="698.21192" z="189.64765"/>
+			<Orientation y="1.35605"/>
+			<Actor seed="26074"/>
+		</Entity>
+		<Entity uid="2660">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="701.23505" z="194.07874"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="26074"/>
+		</Entity>
+		<Entity uid="2661">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="698.40595" z="196.16568"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="50575"/>
+		</Entity>
+		<Entity uid="2662">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="695.79395" z="198.79722"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="50575"/>
+		</Entity>
+		<Entity uid="2663">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="692.73121" z="198.27643"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="50575"/>
+		</Entity>
+		<Entity uid="2664">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="693.40351" z="194.92527"/>
+			<Orientation y="1.29612"/>
+			<Actor seed="50575"/>
+		</Entity>
+		<Entity uid="2665">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="707.66675" z="196.06815"/>
+			<Orientation y="1.96505"/>
+			<Actor seed="50575"/>
+		</Entity>
+		<Entity uid="2666">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="716.831" z="193.89496"/>
+			<Orientation y="-2.95502"/>
+			<Actor seed="50575"/>
+		</Entity>
+		<Entity uid="2667">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="702.42762" z="184.0911"/>
+			<Orientation y="1.36542"/>
+			<Actor seed="50575"/>
+		</Entity>
+		<Entity uid="2668">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="715.04255" z="185.84919"/>
+			<Orientation y="2.68186"/>
+			<Actor seed="51996"/>
+		</Entity>
+		<Entity uid="2669">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="717.33362" z="185.46543"/>
+			<Orientation y="0.05874"/>
+			<Actor seed="51996"/>
+		</Entity>
+		<Entity uid="2670">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="714.33985" z="182.76584"/>
+			<Orientation y="-2.45295"/>
+			<Actor seed="51996"/>
+		</Entity>
+		<Entity uid="2671">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="711.46479" z="187.40674"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="51996"/>
+		</Entity>
+		<Entity uid="2672">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="709.11945" z="193.16932"/>
+			<Orientation y="0.85878"/>
+			<Actor seed="32758"/>
+		</Entity>
+		<Entity uid="2673">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="714.37281" z="199.32532"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="32758"/>
+		</Entity>
+		<Entity uid="2674">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="713.04645" z="201.17774"/>
+			<Orientation y="-1.32789"/>
+			<Actor seed="32758"/>
+		</Entity>
+		<Entity uid="2675">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="707.7411" z="202.54087"/>
+			<Orientation y="-2.72933"/>
+			<Actor seed="32758"/>
+		</Entity>
+		<Entity uid="2676">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="707.87586" z="198.17313"/>
+			<Orientation y="-2.81669"/>
+			<Actor seed="32758"/>
+		</Entity>
+		<Entity uid="2677">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="702.00391" z="197.66092"/>
+			<Orientation y="-0.16591"/>
+			<Actor seed="32815"/>
+		</Entity>
+		<Entity uid="2678">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="701.9784" z="205.41611"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="32815"/>
+		</Entity>
+		<Entity uid="2679">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="695.14893" z="209.86747"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="32815"/>
+		</Entity>
+		<Entity uid="2680">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="694.40229" z="213.16388"/>
+			<Orientation y="0.73394"/>
+			<Actor seed="32815"/>
+		</Entity>
+		<Entity uid="2681">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="698.73237" z="218.35923"/>
+			<Orientation y="2.57847"/>
+			<Actor seed="32815"/>
+		</Entity>
+		<Entity uid="2682">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="705.7823" z="207.19214"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55342"/>
+		</Entity>
+		<Entity uid="2683">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="707.17243" z="210.56327"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55342"/>
+		</Entity>
+		<Entity uid="2684">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="703.63758" z="215.45298"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55342"/>
+		</Entity>
+		<Entity uid="2685">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="700.38086" z="223.51862"/>
+			<Orientation y="-2.95194"/>
+			<Actor seed="55342"/>
+		</Entity>
+		<Entity uid="2686">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="702.28193" z="219.88895"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="14204"/>
+		</Entity>
+		<Entity uid="2687">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="695.77948" z="224.421"/>
+			<Orientation y="-2.38782"/>
+			<Actor seed="14204"/>
+		</Entity>
+		<Entity uid="2688">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="694.39527" z="222.63913"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49392"/>
+		</Entity>
+		<Entity uid="2689">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="685.00794" z="221.8665"/>
+			<Orientation y="-2.11057"/>
+			<Actor seed="49392"/>
+		</Entity>
+		<Entity uid="2690">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="680.362" z="220.86304"/>
+			<Orientation y="-2.27294"/>
+			<Actor seed="49392"/>
+		</Entity>
+		<Entity uid="2691">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="678.47236" z="218.63358"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49392"/>
+		</Entity>
+		<Entity uid="2692">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="708.38062" z="215.97733"/>
+			<Orientation y="1.7805"/>
+			<Actor seed="61355"/>
+		</Entity>
+		<Entity uid="2693">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="716.41395" z="215.07117"/>
+			<Orientation y="-1.69143"/>
+			<Actor seed="34716"/>
+		</Entity>
+		<Entity uid="2694">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="718.90851" z="208.3509"/>
+			<Orientation y="0.83254"/>
+			<Actor seed="19414"/>
+		</Entity>
+		<Entity uid="2695">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="725.36261" z="213.19431"/>
+			<Orientation y="2.69928"/>
+			<Actor seed="19414"/>
+		</Entity>
+		<Entity uid="2696">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="729.33863" z="208.75388"/>
+			<Orientation y="0.76978"/>
+			<Actor seed="7968"/>
+		</Entity>
+		<Entity uid="2697">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="734.04548" z="216.05585"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="7968"/>
+		</Entity>
+		<Entity uid="2698">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="739.35987" z="220.23603"/>
+			<Orientation y="2.7922"/>
+			<Actor seed="7968"/>
+		</Entity>
+		<Entity uid="2699">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="743.87208" z="215.2144"/>
+			<Orientation y="1.00376"/>
+			<Actor seed="57361"/>
+		</Entity>
+		<Entity uid="2700">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="746.9856" z="219.50614"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41799"/>
+		</Entity>
+		<Entity uid="2701">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="749.50709" z="221.91132"/>
+			<Orientation y="2.25618"/>
+			<Actor seed="41799"/>
+		</Entity>
+		<Entity uid="2702">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="754.576" z="216.40357"/>
+			<Orientation y="0.5724"/>
+			<Actor seed="41799"/>
+		</Entity>
+		<Entity uid="2703">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="759.22083" z="229.76212"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41799"/>
+		</Entity>
+		<Entity uid="2704">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="760.67878" z="232.60672"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="41799"/>
+		</Entity>
+		<Entity uid="2705">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="765.78772" z="231.7179"/>
+			<Orientation y="2.05594"/>
+			<Actor seed="41799"/>
+		</Entity>
+		<Entity uid="2706">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="769.22504" z="233.39893"/>
+			<Orientation y="0.5724"/>
+			<Actor seed="56212"/>
+		</Entity>
+		<Entity uid="2707">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="778.00959" z="244.06247"/>
+			<Orientation y="1.87725"/>
+			<Actor seed="56212"/>
+		</Entity>
+		<Entity uid="2708">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="780.81366" z="242.8238"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="56212"/>
+		</Entity>
+		<Entity uid="2709">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="776.6855" z="264.3889"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="56212"/>
+		</Entity>
+		<Entity uid="2710">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="779.3844" z="255.59476"/>
+			<Orientation y="2.9867"/>
+			<Actor seed="24659"/>
+		</Entity>
+		<Entity uid="2711">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="786.06733" z="247.18485"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24659"/>
+		</Entity>
+		<Entity uid="2712">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="795.01282" z="256.12256"/>
+			<Orientation y="3.03783"/>
+			<Actor seed="24659"/>
+		</Entity>
+		<Entity uid="2713">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="793.3907" z="242.87253"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="24659"/>
+		</Entity>
+		<Entity uid="2714">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="802.15357" z="251.9351"/>
+			<Orientation y="0.8063"/>
+			<Actor seed="24659"/>
+		</Entity>
+		<Entity uid="2715">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="760.18519" z="187.98746"/>
+			<Orientation y="3.06072"/>
+			<Actor seed="48305"/>
+		</Entity>
+		<Entity uid="2716">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="761.26996" z="180.46265"/>
+			<Orientation y="2.8705"/>
+			<Actor seed="20437"/>
+		</Entity>
+		<Entity uid="2717">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="765.22083" z="171.47025"/>
+			<Orientation y="2.03875"/>
+			<Actor seed="20437"/>
+		</Entity>
+		<Entity uid="2718">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="770.1175" z="170.47754"/>
+			<Orientation y="2.40593"/>
+			<Actor seed="20437"/>
+		</Entity>
+		<Entity uid="2719">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="771.66675" z="166.94666"/>
+			<Orientation y="2.9808"/>
+			<Actor seed="20437"/>
+		</Entity>
+		<Entity uid="2720">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="768.06312" z="163.56858"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="26743"/>
+		</Entity>
+		<Entity uid="2721">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="766.9709" z="168.46143"/>
+			<Orientation y="0.5615"/>
+			<Actor seed="26743"/>
+		</Entity>
+		<Entity uid="2722">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="762.2295" z="162.2046"/>
+			<Orientation y="-2.41848"/>
+			<Actor seed="44108"/>
+		</Entity>
+		<Entity uid="2723">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="758.1313" z="159.91889"/>
+			<Orientation y="2.66042"/>
+			<Actor seed="44108"/>
+		</Entity>
+		<Entity uid="2724">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="762.62568" z="155.85438"/>
+			<Orientation y="1.57081"/>
+			<Actor seed="5411"/>
+		</Entity>
+		<Entity uid="2725">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="765.64924" z="160.0257"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5411"/>
+		</Entity>
+		<Entity uid="2726">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="699.20325" z="213.05896"/>
+			<Orientation y="-2.43659"/>
+			<Actor seed="5411"/>
+		</Entity>
+		<Entity uid="2727">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="698.11933" z="204.89811"/>
+			<Orientation y="0.75065"/>
+			<Actor seed="60671"/>
+		</Entity>
+		<Entity uid="2728">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="687.5777" z="210.03983"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="9328"/>
+		</Entity>
+		<Entity uid="2729">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="720.48755" z="215.74564"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="47979"/>
+		</Entity>
+		<Entity uid="2730">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="726.0719" z="417.28089"/>
+			<Orientation y="-2.57023"/>
+			<Actor seed="47979"/>
+		</Entity>
+		<Entity uid="2731">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="710.85053" z="394.46436"/>
+			<Orientation y="-2.70356"/>
+			<Actor seed="24520"/>
+		</Entity>
+		<Entity uid="2732">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="703.82453" z="376.2602"/>
+			<Orientation y="2.7389"/>
+			<Actor seed="24520"/>
+		</Entity>
+		<Entity uid="2733">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="717.73517" z="362.3046"/>
+			<Orientation y="1.14231"/>
+			<Actor seed="29788"/>
+		</Entity>
+		<Entity uid="2734">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="723.34668" z="373.91645"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="29788"/>
+		</Entity>
+		<Entity uid="2735">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="721.06458" z="375.54422"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="29788"/>
+		</Entity>
+		<Entity uid="2736">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="717.28254" z="372.37201"/>
+			<Orientation y="-2.67931"/>
+			<Actor seed="29788"/>
+		</Entity>
+		<Entity uid="2737">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="715.2298" z="367.69391"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="29788"/>
+		</Entity>
+		<Entity uid="2738">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="713.24122" z="364.46161"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="29788"/>
+		</Entity>
+		<Entity uid="2739">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="711.00593" z="362.81583"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="29788"/>
+		</Entity>
+		<Entity uid="2740">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="702.52424" z="361.44068"/>
+			<Orientation y="-0.97152"/>
+			<Actor seed="47697"/>
+		</Entity>
+		<Entity uid="2741">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="695.24476" z="369.66193"/>
+			<Orientation y="0.67746"/>
+			<Actor seed="47697"/>
+		</Entity>
+		<Entity uid="2742">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="701.04285" z="374.63334"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="47697"/>
+		</Entity>
+		<Entity uid="2743">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="708.10578" z="376.22593"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="47697"/>
+		</Entity>
+		<Entity uid="2744">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="707.88318" z="373.31897"/>
+			<Orientation y="-3.05642"/>
+			<Actor seed="47697"/>
+		</Entity>
+		<Entity uid="2745">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="705.20496" z="366.92579"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="47697"/>
+		</Entity>
+		<Entity uid="2746">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="702.06214" z="365.04288"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61027"/>
+		</Entity>
+		<Entity uid="2747">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="714.55585" z="372.0589"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61027"/>
+		</Entity>
+		<Entity uid="2748">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="714.33503" z="378.38648"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61027"/>
+		</Entity>
+		<Entity uid="2749">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="719.2389" z="367.97184"/>
+			<Orientation y="0.67251"/>
+			<Actor seed="61027"/>
+		</Entity>
+		<Entity uid="2750">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="705.50721" z="359.54206"/>
+			<Orientation y="-2.11733"/>
+			<Actor seed="61572"/>
+		</Entity>
+		<Entity uid="2751">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="689.63733" z="352.2251"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1438"/>
+		</Entity>
+		<Entity uid="2752">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="683.58924" z="352.63917"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1438"/>
+		</Entity>
+		<Entity uid="2753">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="680.22046" z="347.76453"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1438"/>
+		</Entity>
+		<Entity uid="2754">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="722.27997" z="348.6371"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="44772"/>
+		</Entity>
+		<Entity uid="2755">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="729.76532" z="349.5547"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="44772"/>
+		</Entity>
+		<Entity uid="2756">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="749.76496" z="351.73191"/>
+			<Orientation y="0.41836"/>
+			<Actor seed="44772"/>
+		</Entity>
+		<Entity uid="2757">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="673.5644" z="699.56031"/>
+			<Orientation y="-2.58388"/>
+			<Actor seed="44772"/>
+		</Entity>
+		<Entity uid="2758">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="666.03913" z="687.6067"/>
+			<Orientation y="2.98742"/>
+			<Actor seed="59625"/>
+		</Entity>
+		<Entity uid="2759">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="670.85364" z="672.70905"/>
+			<Orientation y="-2.78498"/>
+			<Actor seed="5176"/>
+		</Entity>
+		<Entity uid="2760">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="651.29371" z="681.68543"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5176"/>
+		</Entity>
+		<Entity uid="2761">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="644.83228" z="685.0384"/>
+			<Orientation y="-1.83225"/>
+			<Actor seed="5176"/>
+		</Entity>
+		<Entity uid="2762">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="631.66675" z="682.43012"/>
+			<Orientation y="-2.50872"/>
+			<Actor seed="5176"/>
+		</Entity>
+		<Entity uid="2763">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="628.25904" z="675.01026"/>
+			<Orientation y="3.08593"/>
+			<Actor seed="5176"/>
+		</Entity>
+		<Entity uid="2764">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="636.74506" z="670.62684"/>
+			<Orientation y="1.15706"/>
+			<Actor seed="5176"/>
+		</Entity>
+		<Entity uid="2765">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="643.60242" z="678.9438"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61074"/>
+		</Entity>
+		<Entity uid="2766">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="642.09766" z="688.26685"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61074"/>
+		</Entity>
+		<Entity uid="2767">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="639.55567" z="701.56592"/>
+			<Orientation y="1.86474"/>
+			<Actor seed="61074"/>
+		</Entity>
+		<Entity uid="2768">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="652.97028" z="696.43067"/>
+			<Orientation y="2.70607"/>
+			<Actor seed="61074"/>
+		</Entity>
+		<Entity uid="2769">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="657.34748" z="685.19562"/>
+			<Orientation y="2.805"/>
+			<Actor seed="61074"/>
+		</Entity>
+		<Entity uid="2770">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="661.6178" z="676.20014"/>
+			<Orientation y="2.27121"/>
+			<Actor seed="61074"/>
+		</Entity>
+		<Entity uid="2771">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="668.2826" z="672.21137"/>
+			<Orientation y="-0.08857"/>
+			<Actor seed="61074"/>
+		</Entity>
+		<Entity uid="2772">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="669.27356" z="682.58027"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="42067"/>
+		</Entity>
+		<Entity uid="2773">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="673.83722" z="686.469"/>
+			<Orientation y="2.0229"/>
+			<Actor seed="42067"/>
+		</Entity>
+		<Entity uid="2774">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="679.88721" z="679.51081"/>
+			<Orientation y="2.57308"/>
+			<Actor seed="42067"/>
+		</Entity>
+		<Entity uid="2775">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="621.30457" z="685.35328"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="42067"/>
+		</Entity>
+		<Entity uid="2776">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="620.97803" z="673.17322"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="13102"/>
+		</Entity>
+		<Entity uid="2777">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="623.63752" z="668.29584"/>
+			<Orientation y="1.74982"/>
+			<Actor seed="13102"/>
+		</Entity>
+		<Entity uid="2778">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="636.7486" z="667.04041"/>
+			<Orientation y="0.86191"/>
+			<Actor seed="13102"/>
+		</Entity>
+		<Entity uid="2779">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="644.6941" z="672.33533"/>
+			<Orientation y="2.29001"/>
+			<Actor seed="13102"/>
+		</Entity>
+		<Entity uid="2780">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="650.70698" z="665.82874"/>
+			<Orientation y="1.21406"/>
+			<Actor seed="13595"/>
+		</Entity>
+		<Entity uid="2781">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="653.56873" z="674.23176"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="13595"/>
+		</Entity>
+		<Entity uid="2782">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="648.75928" z="676.73768"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="13595"/>
+		</Entity>
+		<Entity uid="2783">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="656.75287" z="694.74555"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="13595"/>
+		</Entity>
+		<Entity uid="2784">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="665.87763" z="705.37348"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="47491"/>
+		</Entity>
+		<Entity uid="2785">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="669.83252" z="880.71491"/>
+			<Orientation y="-1.56653"/>
+			<Actor seed="47491"/>
+		</Entity>
+		<Entity uid="2786">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="634.41803" z="896.12519"/>
+			<Orientation y="-2.34687"/>
+			<Actor seed="62332"/>
+		</Entity>
+		<Entity uid="2787">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="629.16053" z="884.53089"/>
+			<Orientation y="2.6211"/>
+			<Actor seed="62332"/>
+		</Entity>
+		<Entity uid="2788">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="662.52131" z="847.15931"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="9646"/>
+		</Entity>
+		<Entity uid="2789">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="670.18537" z="869.96851"/>
+			<Orientation y="0.5549"/>
+			<Actor seed="9646"/>
+		</Entity>
+		<Entity uid="2790">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="697.97461" z="894.38532"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="9646"/>
+		</Entity>
+		<Entity uid="2791">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="691.82905" z="920.29834"/>
+			<Orientation y="-1.57081"/>
+			<Actor seed="9646"/>
+		</Entity>
+		<Entity uid="2792">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="668.58307" z="918.25196"/>
+			<Orientation y="2.8809"/>
+			<Actor seed="9646"/>
+		</Entity>
+		<Entity uid="2793">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="680.38978" z="893.64692"/>
+			<Orientation y="2.6923"/>
+			<Actor seed="9646"/>
+		</Entity>
+		<Entity uid="2794">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="681.4488" z="888.61115"/>
+			<Orientation y="-2.4337"/>
+			<Actor seed="53902"/>
+		</Entity>
+		<Entity uid="2795">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="643.5149" z="915.25287"/>
+			<Orientation y="-2.2358"/>
+			<Actor seed="53902"/>
+		</Entity>
+		<Entity uid="2796">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="625.69416" z="907.21442"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="53902"/>
+		</Entity>
+		<Entity uid="2797">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="616.58747" z="906.2248"/>
+			<Orientation y="-2.67785"/>
+			<Actor seed="53546"/>
+		</Entity>
+		<Entity uid="2798">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="611.97657" z="897.4225"/>
+			<Orientation y="2.87243"/>
+			<Actor seed="53546"/>
+		</Entity>
+		<Entity uid="2799">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="614.9673" z="895.14356"/>
+			<Orientation y="2.4056"/>
+			<Actor seed="53546"/>
+		</Entity>
+		<Entity uid="2800">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="622.39832" z="884.34241"/>
+			<Orientation y="2.87269"/>
+			<Actor seed="53546"/>
+		</Entity>
+		<Entity uid="2801">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="621.22107" z="867.68299"/>
+			<Orientation y="-2.17025"/>
+			<Actor seed="53546"/>
+		</Entity>
+		<Entity uid="2802">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="612.73633" z="858.98884"/>
+			<Orientation y="2.48343"/>
+			<Actor seed="15"/>
+		</Entity>
+		<Entity uid="2803">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="622.86921" z="851.96436"/>
+			<Orientation y="0.9771"/>
+			<Actor seed="15"/>
+		</Entity>
+		<Entity uid="2804">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="632.92878" z="861.22364"/>
+			<Orientation y="1.33628"/>
+			<Actor seed="15"/>
+		</Entity>
+		<Entity uid="2805">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="651.40558" z="856.26691"/>
+			<Orientation y="-1.66375"/>
+			<Actor seed="15"/>
+		</Entity>
+		<Entity uid="2806">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="810.65296" z="883.22498"/>
+			<Orientation y="-0.87555"/>
+			<Actor seed="54705"/>
+		</Entity>
+		<Entity uid="2807">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="780.75678" z="910.88855"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="20558"/>
+		</Entity>
+		<Entity uid="2808">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="761.48328" z="911.33637"/>
+			<Orientation y="3.08979"/>
+			<Actor seed="20558"/>
+		</Entity>
+		<Entity uid="2809">
+			<Template>gaia/tree/bush_mediterranean</Template>
+			<Player>0</Player>
+			<Position x="768.17829" z="878.912"/>
+			<Orientation y="2.60024"/>
+			<Actor seed="20558"/>
 		</Entity>
 	</Entities>
 	<Paths/>
