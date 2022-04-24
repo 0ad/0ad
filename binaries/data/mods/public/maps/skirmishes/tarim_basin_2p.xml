@@ -3,7 +3,7 @@
 <Scenario version="7">
 	<Environment>
 		<SkySet>default</SkySet>
-		<SunColor r="1.09766" g="0.88243" b="0.723162"/>
+		<SunColor r="1.09766" g="0.878128" b="0.71886"/>
 		<SunElevation angle="0.809942"/>
 		<SunRotation angle="-0.785398"/>
 		<AmbientColor r="0.301961" g="0.4" b="0.54902"/>
@@ -32,7 +32,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="914.911" y="99.687" z="427.23"/>
+		<Position x="782.455" y="137.454" z="51.4386"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -45,6 +45,7 @@
   ],
   "Name": "Tarim Basin (2)",
   "PlayerData": [
+    null,
     {},
     {}
   ],
@@ -2557,7 +2558,7 @@
 		<Entity uid="380">
 			<Template>gaia/tree/bush_badlands</Template>
 			<Player>0</Player>
-			<Position x="866.15674" z="160.38691"/>
+			<Position x="866.2165" z="162.41318"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="23178"/>
 		</Entity>
@@ -9784,7 +9785,7 @@
 		<Entity uid="1503">
 			<Template>gaia/tree/pine_maritime</Template>
 			<Player>0</Player>
-			<Position x="856.0987" z="173.37052"/>
+			<Position x="848.59205" z="178.66633"/>
 			<Orientation y="1.90699"/>
 			<Actor seed="11524"/>
 		</Entity>
