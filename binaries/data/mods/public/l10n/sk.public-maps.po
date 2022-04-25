@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-04-04 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: Rudolf Tisoň, 2022\n"
+"Last-Translator: Zuzana Miadoková, 2019,2021-2022\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2355,7 +2355,7 @@ msgstr "Test múrov"
 
 #: maps/scenarios/we_are_legion.xml:Description:26
 msgid "A quick battle demo map using Roman legionaries."
-msgstr ""
+msgstr "Rýchla mapa na ukážku boja pomocou rímskych legionárov."
 
 #: maps/scenarios/we_are_legion.xml:Name:26
 msgid "We Are Legion"
@@ -2371,12 +2371,12 @@ msgstr "%(_player_)s a ich spojenci získali kontrolu nad všetkými relikviami 
 #: maps/scripts/CaptureTheRelic.js:145
 #, javascript-format
 msgid "%(_player_)s has captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s získal kontrolu nad všetkými relikviami a vyhrá za %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:156
 #, javascript-format
 msgid "You and your allies have captured all relics and will win in %(time)s."
-msgstr ""
+msgstr "Ty spolu s tvojimi spojencami ste získali kontrolu nad všetkými relikviami a vyhráte sa %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:157
 #, javascript-format
@@ -2387,20 +2387,20 @@ msgstr "Získal si kontrolu nad všetkými relikviami a vyhráš za %(time)s."
 #, javascript-format
 msgid "%(lastPlayer)s has won (Capture the Relic)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (Capture the Relic)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(lastPlayer)s vyhral (Zmocni sa relikvie)."
+msgstr[1] "%(players)s a %(lastPlayer)s vyhrali (Zmocni sa relikvie)."
+msgstr[2] "%(players)s a %(lastPlayer)s vyhrali (Zmocni sa relikvie)."
+msgstr[3] "%(players)s a %(lastPlayer)s vyhrali (Zmocni sa relikvie)."
 
 #: maps/scripts/CaptureTheRelic.js:175
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (Capture the Relic)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (Capture the Relic)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%(lastPlayer)s bol porazený (Zmocni sa relikvie)."
+msgstr[1] "%(players)s a %(lastPlayer)s boli porazení (Zmocni sa relikvie)."
+msgstr[2] "%(players)s a %(lastPlayer)s boli porazení (Zmocni sa relikvie)."
+msgstr[3] "%(players)s a %(lastPlayer)s boli porazení (Zmocni sa relikvie)."
 
 #: maps/scripts/Conquest.js:5
 #, javascript-format
@@ -2427,7 +2427,7 @@ msgstr "%(player)s bol porazený (stratil všetky budovy)."
 #: maps/scripts/ConquestStructures.js:9
 #, javascript-format
 msgid "%(player)s has been defeated (lost all structures and critical units)."
-msgstr ""
+msgstr "%(player)s bol porazená (stratil všetky budovy a dôležité jednotky)."
 
 #: maps/scripts/ConquestUnits.js:5
 #, javascript-format
@@ -2437,7 +2437,7 @@ msgstr "%(player)s bol porazený (stratil všetky jednotky)."
 #: maps/scripts/ConquestUnits.js:9
 #, javascript-format
 msgid "%(player)s has been defeated (lost all units and critical structures)."
-msgstr ""
+msgstr "%(player)s bol porazený (stratil všetky jednotky a dôležité budovy)."
 
 #: maps/scripts/Regicide.js:130
 #, javascript-format
@@ -2449,27 +2449,27 @@ msgstr "%(player)s bol porazený (prišiel o hrdinu)."
 msgid ""
 "%(_player_)s owns a Wonder and %(_player_)s and their allies will win in "
 "%(time)s."
-msgstr ""
+msgstr "%(_player_)s vlastní Div sveta a %(_player_)s spolu s jeho spojencami vyhrajú za %(time)s."
 
 #: maps/scripts/WonderVictory.js:81
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s vlastní Div sveta a vyhrá za %(time)s."
 
 #: maps/scripts/WonderVictory.js:92
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and you will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s vlastní Div sveta a ty vyhráš za %(time)s."
 
 #: maps/scripts/WonderVictory.js:104
 #, javascript-format
 msgid "You own a Wonder and you and your allies will win in %(time)s."
-msgstr ""
+msgstr "Vlastníš Div sveta a vyhráš spolu so svojimi spojencami za %(time)s."
 
 #: maps/scripts/WonderVictory.js:105
 #, javascript-format
 msgid "You own a Wonder and will win in %(time)s."
-msgstr ""
+msgstr "Vlastníš Div sveta a vyhráš za %(time)s."
 
 #: maps/scripts/WonderVictory.js:150
 #, javascript-format
@@ -3227,7 +3227,7 @@ msgid ""
 "Skirmish as ash lightly falls around this recently erupted volcano. The "
 "scorched landscape offers little food, though the blasted forests are still "
 "laden with useful wood."
-msgstr ""
+msgstr "Zatiaľ čo jemný popol padá okolo tejto nedávno vybuchnutej sopky, okolo nej dochádza k šarvátkam. Spálená krajina poskytuje minimum jedla, ale jej lesy stále ukrývajú použiteľné drevo."
 
 #: maps/skirmishes/vesuvius_6p.xml:Name:39
 msgid "Vesuvius (6)"

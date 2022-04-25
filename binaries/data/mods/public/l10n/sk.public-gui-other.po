@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-03-25 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Rudolf Tisoň, 2022\n"
+"Last-Translator: Zuzana Miadoková, 2021-2022\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2965,17 +2965,17 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.name
 msgctxt "hotkey metadata"
 msgid "Delete saved game"
-msgstr ""
+msgstr "Vymazať uloženú hru"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Don't ask for confirmation when deleting a saved game."
-msgstr ""
+msgstr "Nežiadať potvrdenie na vymazanie uloženej hry."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Delete without confirmation"
-msgstr ""
+msgstr "Vymazať bez potvrdenia"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.desc
 msgctxt "hotkey metadata"
@@ -3064,37 +3064,37 @@ msgstr "Prepnúť strom stavieb"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game summary."
-msgstr ""
+msgstr "Prepnúť zhrnutie počas hry."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.name
 msgctxt "hotkey metadata"
 msgid "Toggle summary"
-msgstr ""
+msgstr "Prepnúť zhrnutie"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window in team chat mode."
-msgstr ""
+msgstr "Prepnúť okno správ do režimu tímu."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.name
 msgctxt "hotkey metadata"
 msgid "Toggle team chat"
-msgstr ""
+msgstr "Prepnúť tímové správy"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Shows the game time elapsed since the game started."
-msgstr ""
+msgstr "Ukáže herný čas uplynutý od začiatku hry."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle game-time overlay"
-msgstr ""
+msgstr "Prepnúť vrstvu herného času"
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys relating to modifying unit selection."
-msgstr ""
+msgstr "Klávesové skratky vzťahujúce sa na upravovanie výberu jednotiek."
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.name
 msgctxt "hotkey metadata"
@@ -3104,7 +3104,7 @@ msgstr "Vyberanie jednotiek"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.desc
 msgctxt "hotkey metadata"
 msgid "Add units to selection."
-msgstr ""
+msgstr "Pridať jednotky do výberu."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.name
 msgctxt "hotkey metadata"
@@ -3114,12 +3114,12 @@ msgstr "Pridať do výberu"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Un-select all units and cancel building placement."
-msgstr ""
+msgstr "Zrušiť výber jednotiek a zrušiť umiestnenie budovy."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
 msgctxt "hotkey metadata"
 msgid "Cancel selection"
-msgstr ""
+msgstr "Zrušiť výber"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.0.desc
 msgctxt "hotkey metadata"
@@ -3872,11 +3872,11 @@ msgstr "Prejsť na nasledujúcu stranu."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
-msgstr ""
+msgstr "Zvýši veľkosť náhľadu mapy."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:33
 msgid "Decrease map preview size."
-msgstr ""
+msgstr "Zníži veľkosť náhľadu mapy."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
@@ -3919,7 +3919,7 @@ msgstr "Maximum: %(max)s"
 #, javascript-format
 msgid ""
 "Changes will be reverted in %(time)s seconds. Do you want to keep changes?"
-msgstr ""
+msgstr "Zmeny budú vrátené za %(time)s sekúnd. Chceš ich ponechať?"
 
 #: gui/options/options.js:192
 #, javascript-format
@@ -4196,7 +4196,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[0].list[0].label
 msgid "OpenGL"
-msgstr ""
+msgstr "OpenGL"
 
 #: gui/options/options.json[2].options[0].list[0].tooltip
 msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
@@ -4204,7 +4204,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[0].list[1].label
 msgid "OpenGL ARB"
-msgstr ""
+msgstr "OpenGL ARB"
 
 #: gui/options/options.json[2].options[0].list[1].tooltip
 msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
@@ -4378,15 +4378,15 @@ msgstr "Vyhladiť tiene."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][12].label
 msgid "Cutoff distance"
-msgstr ""
+msgstr "Vzdialenosť odrezania"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][12].tooltip
 msgid "Hides shadows beyond a certain distance from a camera."
-msgstr ""
+msgstr "Skrýva tiene, ktoré sú od kamery ďalej ako určená vzdialenosť."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][13].label
 msgid "Cover whole map"
-msgstr ""
+msgstr "Zakryť celú mapu"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][13].tooltip
 msgid ""
@@ -4471,7 +4471,7 @@ msgstr "Vysoké"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].label
 msgid "Texture anisotropic filter"
-msgstr ""
+msgstr "Anisotropné filtrovanie textúr"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[0].label
 msgid "1x"
@@ -4501,13 +4501,13 @@ msgstr "16x"
 msgid ""
 "Makes textures look better, especially terrain. If the anisotropic filter "
 "value is unsupported it will be set to the max supported value."
-msgstr ""
+msgstr "Zlepší vzhľad textúr, hlavne terénu. Pokiaľ je zadaná hodnota nepodporovaná, bude nastavená na najvyššiu podporovanú hodnotu."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].tooltip
 msgid ""
 "Decrease texture quality making them blurrier but increases game "
 "performance."
-msgstr ""
+msgstr "Zníženie kvality textúr ich rozmaže, ale zlepší výkon hry."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].label
 msgid "Master volume"
@@ -4958,7 +4958,7 @@ msgstr "Iné príkazy rozpustia jestvujúce formácie."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[1].label
 msgid "No override"
-msgstr ""
+msgstr "Žiadny prepis"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[1].tooltip
 msgid "Units in formations stay in formations."
@@ -4972,15 +4972,15 @@ msgstr "Rozhodnite či sú formácie zapnuté pre všetky rozkazy, alebo iba pre
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[23].label
 msgid "Battalion-style formations"
-msgstr ""
+msgstr "Formácie v štýle bataliónu"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[23].tooltip
 msgid "Whether formations are selected as a whole."
-msgstr ""
+msgstr "Určuje, či sú formácie vybrané ako celok."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[2].label
 msgid "Scroll batch increment ratio"
-msgstr ""
+msgstr "Pomer rozšírenia dávky kolieskom myši"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[2].tooltip
 msgid ""
@@ -4989,19 +4989,19 @@ msgstr "Počet rolovaní na zvýšenie/zníženie počtu dávky o 1. "
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].label
 msgid "Flare display duration"
-msgstr ""
+msgstr "Doba zobrazenia svetlice"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
-msgstr ""
+msgstr "Ako dlho (v sekundách) je na minimape zobrazená značka svetlice."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].label
 msgid "Minimap icons"
-msgstr ""
+msgstr "Ikony na minimape"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].tooltip
 msgid "Show special icons for some entities on the minimap."
-msgstr ""
+msgstr "Ukáže na minimape špeciálne ikony pre niektoré jednotky."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].label
 msgid "Chat notification attack"
@@ -5124,7 +5124,7 @@ msgstr "Nastavenie kvality modelov."
 
 #: gui/options/options.json[2].tooltip
 msgid "More specific rendering settings."
-msgstr ""
+msgstr "Špecifickejšie nastavenia vykresľovania."
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"
@@ -5166,7 +5166,7 @@ msgstr "Tutoriál"
 
 #: gui/pregame/MainMenuItems.js:15
 msgid "Start the introductory tutorial."
-msgstr ""
+msgstr "Spusť tutoriál na zoznámenie sa s hrou."
 
 #: gui/pregame/MainMenuItems.js:36
 #: gui/reference/common/Buttons/StructreeButton.js:21
@@ -5944,7 +5944,7 @@ msgstr "[imgleft=\"iconMap\"]0 A.D. je voľným softvérom: môžeš sa podieľa
 msgid ""
 "If you want to help with art, sound, gameplay or programming, make sure to "
 "join our official forum."
-msgstr ""
+msgstr "Pokiaľ chceš pomôcť s umením, zvukom, hrateľnosťou alebo programovaním, určite sa pripoj k nášmu oficiálnemu fóru."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -6070,7 +6070,7 @@ msgstr "Obchodníci"
 #: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(lost)s)"
-msgstr ""
+msgstr "Štatistiky jednotiek (%(trained)s / %(killed)s / %(lost)s)"
 
 #: gui/summary/layout.js:108
 msgid "Resources"
@@ -6648,7 +6648,7 @@ msgstr "Rybolovom sa potrava získava rýchlejšie než poľnohospodárstvom."
 msgid ""
 "Careful! Fish are not an infinite resource! Although they do slowly "
 "repopulate when left alone."
-msgstr ""
+msgstr "Pozor, ryby nie sú nekonečný zdroj! Pokiaľ ich však necháte na pokoji, pomaly sa obnovia."
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
