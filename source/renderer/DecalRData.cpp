@@ -48,7 +48,8 @@ namespace
 struct SDecalBatch
 {
 	CDecalRData* decal;
-	CShaderTechniquePtr shaderTech;
+	CStrIntern shaderEffect;
+	CShaderDefines shaderDefines;
 	CVertexBuffer::VBChunk* vertices;
 	CVertexBuffer::VBChunk* indices;
 };
@@ -57,8 +58,10 @@ struct SDecalBatchComparator
 {
 	bool operator()(const SDecalBatch& lhs, const SDecalBatch& rhs) const
 	{
-		if (lhs.shaderTech != rhs.shaderTech)
-			return lhs.shaderTech < rhs.shaderTech;
+		if (lhs.shaderEffect != rhs.shaderEffect)
+			return lhs.shaderEffect < rhs.shaderEffect;
+		if (lhs.shaderDefines != rhs.shaderDefines)
+			return lhs.shaderDefines < rhs.shaderDefines;
 		const CMaterial& lhsMaterial = lhs.decal->GetDecal()->m_Decal.m_Material;
 		const CMaterial& rhsMaterial = rhs.decal->GetDecal()->m_Decal.m_Material;
 		if (lhsMaterial.GetDiffuseTexture() != rhsMaterial.GetDiffuseTexture())
@@ -111,22 +114,11 @@ void CDecalRData::RenderDecals(
 
 	for (CDecalRData* decal : decals)
 	{
-		CMaterial &material = decal->m_Decal->m_Decal.m_Material;
+		CMaterial& material = decal->m_Decal->m_Decal.m_Material;
 
 		if (material.GetShaderEffect().empty())
 		{
 			LOGERROR("Terrain renderer failed to load shader effect.\n");
-			continue;
-		}
-
-		CShaderDefines defines = contextDecal;
-		defines.SetMany(material.GetShaderDefines());
-		CShaderTechniquePtr techBase = g_Renderer.GetShaderManager().LoadEffect(
-			material.GetShaderEffect(), defines);
-		if (!techBase)
-		{
-			LOGERROR("Terrain renderer failed to load shader effect (%s)\n",
-					material.GetShaderEffect().string().c_str());
 			continue;
 		}
 
@@ -135,7 +127,8 @@ void CDecalRData::RenderDecals(
 
 		SDecalBatch batch;
 		batch.decal = decal;
-		batch.shaderTech = techBase;
+		batch.shaderEffect = material.GetShaderEffect();
+		batch.shaderDefines = material.GetShaderDefines();
 		batch.vertices = decal->m_VBDecals.Get();
 		batch.indices = decal->m_VBDecalsIndices.Get();
 
@@ -150,12 +143,25 @@ void CDecalRData::RenderDecals(
 	CVertexBuffer* lastIB = nullptr;
 	for (auto itTechBegin = batches.begin(), itTechEnd = batches.begin(); itTechBegin != batches.end(); itTechBegin = itTechEnd)
 	{
-		while (itTechEnd != batches.end() && itTechBegin->shaderTech == itTechEnd->shaderTech)
+		while (itTechEnd != batches.end() &&
+			itTechBegin->shaderEffect == itTechEnd->shaderEffect &&
+			itTechBegin->shaderDefines == itTechEnd->shaderDefines)
+		{
 			++itTechEnd;
+		}
 
-		const CShaderTechniquePtr& techBase = itTechBegin->shaderTech;
+		CShaderDefines defines = contextDecal;
+		defines.SetMany(itTechBegin->shaderDefines);
+		CShaderTechniquePtr techBase = g_Renderer.GetShaderManager().LoadEffect(
+			itTechBegin->shaderEffect, defines);
+		if (!techBase)
+		{
+			LOGERROR("Terrain renderer failed to load shader effect (%s)\n",
+				itTechBegin->shaderEffect.c_str());
+			continue;
+		}
+
 		const int numPasses = techBase->GetNumPasses();
-
 		for (int pass = 0; pass < numPasses; ++pass)
 		{
 			Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =

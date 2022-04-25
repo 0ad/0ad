@@ -712,7 +712,7 @@ using VertexBufferBatches = PooledBatchMap<CVertexBuffer*, IndexBufferBatches>;
 using TextureBatches = PooledBatchMap<CTerrainTextureEntry*, VertexBufferBatches>;
 
 // Group batches by shaders.
-using ShaderTechniqueBatches = PooledBatchMap<CShaderTechniquePtr, TextureBatches>;
+using ShaderTechniqueBatches = PooledBatchMap<std::pair<CStrIntern, CShaderDefines>, TextureBatches>;
 
 void CPatchRData::RenderBases(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
@@ -740,15 +740,11 @@ void CPatchRData::RenderBases(
 				LOGERROR("Terrain renderer failed to load shader effect.\n");
 				continue;
 			}
-			CShaderDefines defines = context;
-			defines.SetMany(material.GetShaderDefines());
-			CShaderTechniquePtr techBase = g_Renderer.GetShaderManager().LoadEffect(
-				material.GetShaderEffect(), defines);
 
 			BatchElements& batch = PooledPairGet(
 				PooledMapGet(
 					PooledMapGet(
-						PooledMapGet(batches, techBase, arena),
+						PooledMapGet(batches, std::make_pair(material.GetShaderEffect(), material.GetShaderDefines()), arena),
 						splat.m_Texture, arena
 					),
 					patch->m_VBBase->m_Owner, arena
@@ -767,7 +763,11 @@ void CPatchRData::RenderBases(
 	// Render each batch
 	for (ShaderTechniqueBatches::iterator itTech = batches.begin(); itTech != batches.end(); ++itTech)
 	{
-		const CShaderTechniquePtr& techBase = itTech->first;
+		CShaderDefines defines = context;
+		defines.SetMany(itTech->first.second);
+		CShaderTechniquePtr techBase = g_Renderer.GetShaderManager().LoadEffect(
+			itTech->first.first, defines);
+
 		const int numPasses = techBase->GetNumPasses();
 		for (int pass = 0; pass < numPasses; ++pass)
 		{
