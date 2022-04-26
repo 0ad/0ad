@@ -149,7 +149,10 @@ CDeviceCommandContext::CDeviceCommandContext(CDevice* device)
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	for (std::pair<GLenum, GLuint>& unit : m_BoundTextures)
-		unit.first = unit.second = 0;
+	{
+		unit.first = GL_TEXTURE_2D;
+		unit.second = 0;
+	}
 	for (size_t index = 0; index < m_VertexAttributeFormat.size(); ++index)
 	{
 		m_VertexAttributeFormat[index].active = false;
@@ -976,11 +979,23 @@ CDeviceCommandContext::ScopedBufferBind::ScopedBufferBind(
 	m_CacheIndex = static_cast<size_t>(buffer->GetType());
 	const GLenum target = BufferTypeToGLTarget(buffer->GetType());
 	const GLuint handle = buffer->GetHandle();
-	glBindBufferARB(target, handle);
+	if (m_DeviceCommandContext->m_BoundBuffers[m_CacheIndex].first == target &&
+		m_DeviceCommandContext->m_BoundBuffers[m_CacheIndex].second == handle)
+	{
+		// Use an invalid index as a sign that we don't need to restore the
+		// bound buffer.
+		m_CacheIndex = m_DeviceCommandContext->m_BoundBuffers.size();
+	}
+	else
+	{
+		glBindBufferARB(target, handle);
+	}
 }
 
 CDeviceCommandContext::ScopedBufferBind::~ScopedBufferBind()
 {
+	if (m_CacheIndex >= m_DeviceCommandContext->m_BoundBuffers.size())
+		return;
 	glBindBufferARB(
 		m_DeviceCommandContext->m_BoundBuffers[m_CacheIndex].first,
 		m_DeviceCommandContext->m_BoundBuffers[m_CacheIndex].second);
