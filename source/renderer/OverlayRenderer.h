@@ -44,7 +44,7 @@ public:
 
 	/**
 	 * Performs one-time initialization. Called by CRenderer::Open after graphics
-	 * capabilities and the shader path have been determined (notably VBO support).
+	 * capabilities and the shader path have been determined.
 	 */
 	void Initialize();
 

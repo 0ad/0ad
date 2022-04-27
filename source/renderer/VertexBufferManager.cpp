@@ -21,7 +21,6 @@
 
 #include "lib/ogl.h"
 #include "ps/CLogger.h"
-#include "ps/CStr.h"
 
 #define DUMP_VB_STATS 0 // for debugging
 
@@ -174,7 +173,7 @@ CVertexBufferManager::Handle CVertexBufferManager::AllocateChunk(
 
 	if (!result)
 	{
-		LOGERROR("Failed to create VBOs (%zu*%zu)", vertexSize, numberOfVertices);
+		LOGERROR("Failed to create backend buffer (%zu*%zu)", vertexSize, numberOfVertices);
 		return Handle();
 	}
 

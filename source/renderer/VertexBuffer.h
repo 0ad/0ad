@@ -16,7 +16,7 @@
  */
 
 /*
- * encapsulation of VBOs with batching and sharing
+ * Encapsulation of backend buffers with batching and sharing.
  */
 
 #ifndef INCLUDED_VERTEXBUFFER
@@ -29,14 +29,14 @@
 #include <vector>
 
 /**
- * CVertexBuffer: encapsulation of ARB_vertex_buffer_object, also supplying
+ * CVertexBuffer: encapsulation of backend buffers, also supplying
  * some additional functionality for sharing buffers between multiple objects.
  *
  * The class can be used in two modes, depending on the usage parameter:
  *
  * Static buffer: Call Allocate() with backingStore = nullptr. Then call
  * UpdateChunkVertices() with any pointer - the data will be immediately copied
- * to the VBO. This should be used for vertex data that rarely changes.
+ * to the buffer. This should be used for vertex data that rarely changes.
  *
  * Dynamic buffer: Call Allocate() with backingStore pointing
  * at some memory that will remain valid for the lifetime of the CVertexBuffer.
@@ -59,29 +59,30 @@ class CVertexBuffer
 
 public:
 
-	/// VBChunk: describes a portion of this vertex buffer
+	// VBChunk: describes a portion of this vertex buffer
 	struct VBChunk
 	{
-		/// Owning (parent) vertex buffer
+		// Owning (parent) vertex buffer
 		CVertexBuffer* m_Owner;
-		/// Start index of this chunk in owner
+		// Start index of this chunk in owner
 		size_t m_Index;
-		/// Number of vertices used by chunk
+		// Number of vertices used by chunk
 		size_t m_Count;
-		/// If UseStreaming() is true, points at the data for this chunk
+		// If UseStreaming() is true, points at the data for this chunk
 		void* m_BackingStore;
 
-		/// If true, the VBO is not consistent with the chunk's backing store
-		/// (and will need to be re-uploaded before rendering with this chunk)
+		// If true, the backend buffer is not consistent with the chunk's
+		// backing store (and will need to be re-uploaded before rendering with
+		// this chunk).
 		bool m_Dirty;
 
-		/// If true, we have been told this chunk is going to be used for
-		/// rendering in the next uploading phase and will need to be uploaded
+		// If true, we have been told this chunk is going to be used for
+		// rendering in the next uploading phase and will need to be uploaded
 		bool m_Needed;
 
 	private:
 		// Only CVertexBuffer can construct/delete these
-		// (Other people should use g_VBMan.Allocate, g_VBMan.Release)
+		// (Other people should use g_VBMan.AllocateChunk)
 		friend class CVertexBuffer;
 		VBChunk() {}
 		~VBChunk() {}

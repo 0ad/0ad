@@ -320,9 +320,11 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 
 	m_VB = g_VBMan.AllocateChunk(
 		sizeof(SVertex), vertices.size(), Renderer::Backend::GL::CBuffer::Type::VERTEX, false);
-	if (m_VB) // allocation might fail (e.g. due to too many vertices)
+	// Allocation might fail (e.g. due to too many vertices).
+	if (m_VB)
 	{
-		m_VB->m_Owner->UpdateChunkVertices(m_VB.Get(), &vertices[0]); // copy data into VBO
+		// Copy data into backend buffer.
+		m_VB->m_Owner->UpdateChunkVertices(m_VB.Get(), &vertices[0]);
 
 		for (size_t k = 0; k < indices.size(); ++k)
 			indices[k] += static_cast<u16>(m_VB->m_Index);

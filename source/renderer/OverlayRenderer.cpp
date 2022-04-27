@@ -128,11 +128,11 @@ struct OverlayRendererInternals
 	VertexArray::Attribute quadAttributeUV;
 	VertexIndexArray quadIndices;
 
-	/// Maximum amount of quad overlays we support for rendering. This limit is set to be able to
-	/// render all quads from a single dedicated VB without having to reallocate it, which is much
-	/// faster in the typical case of rendering only a handful of quads. When modifying this value,
-	/// you must take care for the new amount of quads to fit in a single VBO (which is not likely
-	/// to be a problem).
+	// Maximum amount of quad overlays we support for rendering. This limit is set to be able to
+	// render all quads from a single dedicated VB without having to reallocate it, which is much
+	// faster in the typical case of rendering only a handful of quads. When modifying this value,
+	// you must take care for the new amount of quads to fit in a single backend buffer (which is
+	// not likely to be a problem).
 	static const size_t MAX_QUAD_OVERLAYS = 1024;
 
 	// Sets of commonly-(re)used shader defines.
@@ -145,9 +145,10 @@ struct OverlayRendererInternals
 	std::vector<u16> sphereIndexes;
 	void GenerateSphere();
 
-	/// Performs one-time setup. Called from CRenderer::Open, after graphics capabilities have
-	/// been detected. Note that no VBOs must be created before this is called, since the shader
-	/// path and graphics capabilities are not guaranteed to be stable before this point.
+	// Performs one-time setup. Called from CRenderer::Open, after graphics capabilities have
+	// been detected. Note that no backend buffer must be created before this is called, since
+	// the shader path and graphics capabilities are not guaranteed to be stable before this
+	// point.
 	void Initialize();
 };
 
@@ -178,7 +179,7 @@ OverlayRendererInternals::OverlayRendererInternals()
 void OverlayRendererInternals::Initialize()
 {
 	// Perform any initialization after graphics capabilities have been detected. Notably,
-	// only at this point can we safely allocate VBOs (in contrast to e.g. in the constructor),
+	// only at this point can we safely allocate backend buffer (in contrast to e.g. in the constructor),
 	// because their creation depends on the shader path, which is not reliably set before this point.
 
 	quadVertices.SetNumberOfVertices(MAX_QUAD_OVERLAYS * 4);

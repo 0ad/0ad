@@ -211,11 +211,11 @@ void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk, void* data)
 	ENSURE(m_Buffer);
 	if (UseStreaming(m_Buffer->IsDynamic()))
 	{
-		// The VBO is now out of sync with the backing store
+		// The backend buffer is now out of sync with the backing store.
 		chunk->m_Dirty = true;
 
 		// Sanity check: Make sure the caller hasn't tried to reallocate
-		// their backing store
+		// their backing store.
 		ENSURE(data == chunk->m_BackingStore);
 	}
 	else
@@ -234,8 +234,8 @@ void CVertexBuffer::UploadIfNeeded(
 		if (!m_HasNeededChunks)
 			return;
 
-		// If any chunks are out of sync with the current VBO, and are
-		// needed for rendering this frame, we'll need to re-upload the VBO
+		// If any chunks are out of sync with the current backend buffer, and are
+		// needed for rendering this frame, we'll need to re-upload the backend buffer.
 		bool needUpload = false;
 		for (VBChunk* const& chunk : m_AllocList)
 		{
@@ -258,16 +258,16 @@ void CVertexBuffer::UploadIfNeeded(
 #endif
 
 				// Copy only the chunks we need. (This condition is helpful when
-				// the VBO contains data for every unit in the world, but only a
-				// handful are visible on screen and we don't need to bother copying
-				// the rest.)
+				// the backend buffer contains data for every unit in the world,
+				// but only a handful are visible on screen and we don't need to
+				// bother copying the rest.)
 				for (VBChunk* const& chunk : m_AllocList)
 					if (chunk->m_Needed)
 						std::memcpy(mappedData + chunk->m_Index * m_VertexSize, chunk->m_BackingStore, chunk->m_Count * m_VertexSize);
 			});
 
 			// Anything we just uploaded is clean; anything else is dirty
-			// since the rest of the VBO content is now undefined
+			// since the rest of the backend buffer content is now undefined
 			for (VBChunk* const& chunk : m_AllocList)
 			{
 				if (chunk->m_Needed)
