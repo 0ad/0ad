@@ -50,7 +50,7 @@ public:
 
 	// Returns a matrix of the form [c 0 -s 0; -s 0 -c 0; 0 0 0 0; 0 0 0 1]
 	// mapping world-space (x,y,z,1) coordinates onto (u,v,0,1) texcoords
-	const float* GetTextureMatrix() const;
+	const CMatrix3D& GetTextureMatrix() const { return m_TextureMatrix; }
 
 	// Used in Atlas to retrieve a texture for previews. Can't use textures
 	// directly because they're required on CPU side. Another solution is to

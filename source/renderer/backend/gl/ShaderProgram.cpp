@@ -781,7 +781,7 @@ public:
 		if (id.first != -1)
 		{
 			if (id.second == GL_FLOAT_MAT4)
-				glUniformMatrix4fv(id.first, 1, GL_FALSE, &v._11);
+				glUniformMatrix4fv(id.first, 1, GL_FALSE, v.AsFloatArray());
 			else
 				LOGERROR("CShaderProgramGLSL::Uniform(): Invalid uniform type (expected mat4)");
 		}

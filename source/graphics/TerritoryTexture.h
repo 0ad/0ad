@@ -47,7 +47,7 @@ public:
 	 * coordinates, in the form expected by a matrix uniform.
 	 * This must only be called after UpdateIfNeeded.
 	 */
-	const float* GetTextureMatrix();
+	const CMatrix3D& GetTextureMatrix();
 
 	/**
 	 * Returns a matrix to map (0,0)-(1,1) texture coordinates onto texture

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,17 +15,14 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Defines a raw 3d model.
- */
-
 #include "precompiled.h"
 
 #include "ModelDef.h"
+
 #include "graphics/SkeletonAnimDef.h"
 #include "lib/sysdep/arch/x86_x64/simd.h"
-#include "ps/FileIo.h"
 #include "maths/Vector4D.h"
+#include "ps/FileIo.h"
 
 #if COMPILER_HAS_SSE
 # include <xmmintrin.h>
@@ -203,10 +200,11 @@ static void SkinPointsAndNormalsSSE(
 		const CMatrix3D& mtx = newPoseMatrices[blendIndices[j]];
 
 		// Loads matrix to xmm registers.
-		col0 = _mm_load_ps(mtx._data);
-		col1 = _mm_load_ps(mtx._data + 4);
-		col2 = _mm_load_ps(mtx._data + 8);
-		col3 = _mm_load_ps(mtx._data + 12);
+		const float* data = mtx.AsFloatArray();
+		col0 = _mm_load_ps(data);
+		col1 = _mm_load_ps(data + 4);
+		col2 = _mm_load_ps(data + 8);
+		col3 = _mm_load_ps(data + 12);
 
 		// Loads and computes vertex coordinates.
 		vec0 = _mm_load1_ps(&vtx.m_Coords.X);	// v0 = [x, x, x, x]
