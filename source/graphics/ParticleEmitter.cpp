@@ -203,7 +203,7 @@ void CParticleEmitter::RenderArray(
 	m_IndexArray.UploadIfNeeded(deviceCommandContext);
 
 	const uint32_t stride = m_VertexArray.GetStride();
-	const uint32_t firstVertexOffset = m_VertexArray.GetStride() * stride;
+	const uint32_t firstVertexOffset = m_VertexArray.GetOffset() * stride;
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,

@@ -21,8 +21,55 @@
 
 #include "lib/ogl.h"
 #include "ps/CLogger.h"
+#include "ps/CStr.h"
 
 #define DUMP_VB_STATS 0 // for debugging
+
+namespace
+{
+
+const char* GetBufferTypeName(
+	const Renderer::Backend::GL::CBuffer::Type type)
+{
+	const char* name = "UnknownBuffer";
+	switch (type)
+	{
+	case Renderer::Backend::GL::CBuffer::Type::VERTEX:
+		name = "VertexBuffer";
+		break;
+	case Renderer::Backend::GL::CBuffer::Type::INDEX:
+		name = "IndexBuffer";
+		break;
+	default:
+		debug_warn("Unknown buffer type");
+		break;
+	}
+	return name;
+}
+
+const char* GetGroupName(
+	const CVertexBufferManager::Group group)
+{
+	const char* name = "Unknown";
+	switch (group)
+	{
+	case CVertexBufferManager::Group::DEFAULT:
+		name = "Default";
+		break;
+	case CVertexBufferManager::Group::TERRAIN:
+		name = "Terrain";
+		break;
+	case CVertexBufferManager::Group::WATER:
+		name = "Water";
+		break;
+	default:
+		debug_warn("Unknown buffer group");
+		break;
+	}
+	return name;
+}
+
+} // anonymous namespace
 
 CVertexBufferManager g_VBMan;
 
@@ -112,12 +159,17 @@ CVertexBufferManager::Handle CVertexBufferManager::AllocateChunk(
 			return Handle(result);
 	}
 
+	char bufferName[64] = {0};
+	snprintf(
+		bufferName, std::size(bufferName), "%s (%s, %zu%s)",
+		GetBufferTypeName(type), GetGroupName(group), vertexSize, (dynamic ? ", dynamic" : ""));
+
 	// got this far; need to allocate a new buffer
 	buffers.emplace_back(
 		group == Group::DEFAULT
-			? std::make_unique<CVertexBuffer>("VertexBuffer (Default)", vertexSize, type, dynamic)
+			? std::make_unique<CVertexBuffer>(bufferName, vertexSize, type, dynamic)
 			// Reduces the buffer size for not so frequent buffers.
-			: std::make_unique<CVertexBuffer>("VertexBuffer", vertexSize, type, dynamic, 1024 * 1024));
+			: std::make_unique<CVertexBuffer>(bufferName, vertexSize, type, dynamic, 1024 * 1024));
 	result = buffers.back()->Allocate(vertexSize, numberOfVertices, type, dynamic, backingStore);
 
 	if (!result)
