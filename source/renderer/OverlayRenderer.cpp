@@ -526,6 +526,7 @@ void OverlayRenderer::RenderQuadOverlays(
 
 	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
 
+	m->quadVertices.UploadIfNeeded(deviceCommandContext);
 	m->quadIndices.UploadIfNeeded(deviceCommandContext);
 
 	const uint32_t vertexStride = m->quadVertices.GetStride();
