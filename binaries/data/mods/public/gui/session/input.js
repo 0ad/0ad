@@ -860,13 +860,13 @@ function handleInputAfterGui(ev)
 					if (ev.hotkey.indexOf("selection.group.select.") == 0)
 					{
 						let sptr = ev.hotkey.split(".");
-						performGroup("snap", sptr[3]);
+						performGroup("snap", sptr[3] - 1);
 					}
 				}
 				else
 				{
 					let sptr = ev.hotkey.split(".");
-					performGroup(sptr[2], sptr[3]);
+					performGroup(sptr[2], sptr[3] - 1);
 
 					doublePressTimer = now;
 					prevHotkey = ev.hotkey;
@@ -1607,6 +1607,11 @@ function flushTrainingBatch()
 
 function performGroup(action, groupId)
 {
+	if (g_Groups.groups[groupId] === undefined)
+	{
+		warn("Invalid groupId " + groupId);
+		return;
+	}
 	switch (action)
 	{
 	case "snap":

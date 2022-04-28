@@ -751,7 +751,7 @@ function updateGroups()
 
 	for (let i in Engine.GetGUIObjectByName("unitGroupPanel").children)
 	{
-		Engine.GetGUIObjectByName("unitGroupLabel[" + i + "]").caption = i;
+		Engine.GetGUIObjectByName("unitGroupLabel[" + i + "]").caption = +i + 1;
 
 		let button = Engine.GetGUIObjectByName("unitGroupButton[" + i + "]");
 		button.hidden = g_Groups.groups[i].getTotalCount() == 0;
