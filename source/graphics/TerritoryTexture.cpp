@@ -63,10 +63,10 @@ Renderer::Backend::GL::CTexture* CTerritoryTexture::GetTexture()
 	return m_Texture.get();
 }
 
-const float* CTerritoryTexture::GetTextureMatrix()
+const CMatrix3D& CTerritoryTexture::GetTextureMatrix()
 {
 	ENSURE(!UpdateDirty());
-	return &m_TextureMatrix._11;
+	return m_TextureMatrix;
 }
 
 const CMatrix3D& CTerritoryTexture::GetMinimapTextureMatrix()

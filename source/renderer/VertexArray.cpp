@@ -225,7 +225,7 @@ static size_t RoundStride(size_t stride)
 
 // Re-layout by assigning offsets on a first-come first-serve basis,
 // then round up to a reasonable stride.
-// Backing store is also created here, VBOs are created on upload.
+// Backing store is also created here, backend buffers are created on upload.
 void VertexArray::Layout()
 {
 	Free();
@@ -262,7 +262,7 @@ void VertexArray::PrepareForRendering()
 }
 
 // (Re-)Upload the attributes.
-// Create the VBO if necessary.
+// Create the backend buffer if necessary.
 void VertexArray::Upload()
 {
 	ENSURE(m_BackingStore);
@@ -275,7 +275,7 @@ void VertexArray::Upload()
 
 	if (!m_VB)
 	{
-		LOGERROR("Failed to allocate VBO for vertex array");
+		LOGERROR("Failed to allocate backend buffer for vertex array");
 		return;
 	}
 

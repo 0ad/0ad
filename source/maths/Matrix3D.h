@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,6 @@
 
 class CQuaternion;
 
-/////////////////////////////////////////////////////////////////////////
 // CMatrix3D: a 4x4 matrix class for common operations in 3D
 class CMatrix3D
 {
@@ -37,8 +36,10 @@ public:
 	// or via a flat or 2d array
 	// NOTE: _xy means row x, column y in the mathematical notation of this matrix, so don't be
 	// fooled by the way they're listed below
-	union {
-		struct {
+	union
+	{
+		struct
+		{
 			float _11, _21, _31, _41;
 			float _12, _22, _32, _42;
 			float _13, _23, _33, _43;
@@ -320,6 +321,20 @@ public:
 	// rotate a vector by the transpose of this matrix
 	void RotateTransposed(const CVector3D& vector,CVector3D& result) const;
 	CVector3D RotateTransposed(const CVector3D& vector) const;
+
+	// Returns 16 element array of floats, e.g. for mat4 uniforms.
+	const float* AsFloatArray() const
+	{
+		// Additional check to prevent a weird compiler has a different
+		// alignement for an array and a class members.
+		static_assert(
+			sizeof(CMatrix3D) == sizeof(float) * 16u &&
+			offsetof(CMatrix3D, _data) == 0 &&
+			offsetof(CMatrix3D, _11) == 0 &&
+			offsetof(CMatrix3D, _44) == sizeof(float) * 15u,
+			"CMatrix3D should be properly layouted to use AsFloatArray");
+		return _data;
+	}
 };
 
 #endif // INCLUDED_MATRIX3D

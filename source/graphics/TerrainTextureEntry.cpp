@@ -185,8 +185,3 @@ void CTerrainTextureEntry::BuildBaseColor()
 		m_BaseColorValid = true;
 	}
 }
-
-const float* CTerrainTextureEntry::GetTextureMatrix() const
-{
-	return &m_TextureMatrix._11;
-}
