@@ -33,7 +33,7 @@ class ChatInput
 
 	getInputHotkeyTooltip()
 	{
-		 return translateWithContext("chat input", "Type the message to send.") + "\n" +
+		return translateWithContext("chat input", "Type the message to send.") + "\n" +
 			colorizeAutocompleteHotkey();
 	}
 
@@ -84,10 +84,8 @@ class ChatInput
 	submitChatInput()
 	{
 		let text = this.chatInput.caption;
-		if (!text.length)
-			return;
-
-		this.chatSubmitHandlers.some(handler => handler(text, this.selectedCommand));
+		if (text)
+			this.chatSubmitHandlers.some(handler => handler(text, this.selectedCommand));
 
 		for (let handler of this.chatSubmittedHandlers)
 			handler();
