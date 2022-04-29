@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-03-25 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2022\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2021-2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -351,7 +351,7 @@ msgstr "/ 플레이어"
 
 #: gui/common/gamedescription.js:377
 msgid "World Population Cap"
-msgstr "세계 인구 상한"
+msgstr "세계 인구 한도"
 
 #: gui/common/gamedescription.js:385
 msgid "Treasures"
@@ -2883,12 +2883,12 @@ msgstr "GUI 가시성 전환"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game tutorial panel."
-msgstr "게임 내 사용 지침서 패널을 전환합니다."
+msgstr "게임 내 튜토리얼 패널을 전환합니다."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle tutorial"
-msgstr "사용 지침서 전환"
+msgstr "튜토리얼 전환"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.desc
 msgctxt "hotkey metadata"
@@ -5103,7 +5103,7 @@ msgstr "게임 배우기"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr "게임 방법, 사용 지침서 시작, 기술 도감 발견, 및 문명 뒤에 숨겨진 역사를 배웁니다."
+msgstr "게임 방법, 튜토리얼 시작, 기술 도감 발견, 및 문명 뒤에 숨겨진 역사를 배웁니다."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -5115,11 +5115,11 @@ msgstr "0 A.D. 게임 설명서를 엽니다."
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
-msgstr "사용 지침서"
+msgstr "튜토리얼"
 
 #: gui/pregame/MainMenuItems.js:15
 msgid "Start the introductory tutorial."
-msgstr "입문자들을 위한 사용 지침서를 시작합니다."
+msgstr "입문자들을 위한 튜토리얼을 시작합니다."
 
 #: gui/pregame/MainMenuItems.js:36
 #: gui/reference/common/Buttons/StructreeButton.js:21
