@@ -145,12 +145,12 @@ msgstr "vincedor/ora"
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
-msgstr "Sin facçon"
+msgstr "Sin equipu"
 
 #: gui/common/gamedescription.js:160
 #, javascript-format
 msgid "Team %(team)s"
-msgstr "Facçon %(team)s"
+msgstr "Equipu %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or
@@ -215,11 +215,11 @@ msgstr "Los heroes nun puœden abellugase & son mas vulnerables."
 
 #: gui/common/gamedescription.js:251
 msgid "Locked Teams"
-msgstr "Facçones fixæs"
+msgstr "Equipos fixos"
 
 #: gui/common/gamedescription.js:252
 msgid "Players can't change the initial teams."
-msgstr "Los xhogadores nun puœden demudar de facçon."
+msgstr "Los xhogadores nun puœden demudar d’equipu."
 
 #: gui/common/gamedescription.js:256
 msgid "Diplomacy"
@@ -247,7 +247,7 @@ msgstr "Victoria collectiva"
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr "El xhogador comparte la victoria cun los alliahos. La grea d’alliahos que remanecier ye la vincedora."
+msgstr "El xhogador comparte la victoria cun los alliahos. El coniunctu d’alliahos que remanecier ye l vincedor."
 
 #: gui/common/gamedescription.js:273
 msgid "Ceasefire"
@@ -619,7 +619,7 @@ msgstr "Aleatorio"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr "Cría un terreiro único u la distribuçon de recursos ye aleatoria. Scuœye-se l númeru de xhogadores & de facçones."
+msgstr "Cría un terreiro único u la distribuçon de recursos ye aleatoria. Scuœye-se l númeru de xhogadores & d’equipos."
 
 #: gui/common/settings.js:192
 msgctxt "map"
@@ -2231,7 +2231,7 @@ msgstr "Move’l cursor a la pallabra dreitha"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.desc
 msgctxt "hotkey metadata"
 msgid "Toggle fullscreen/windowed mode."
-msgstr "Cambiar entre los modos “pantalla completa” & “feniestra”."
+msgstr "Alternar entre los modos “pantalla completa” & “feniestra”."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.name
 msgctxt "hotkey metadata"
@@ -2281,7 +2281,7 @@ msgstr "In trebeyu"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attack instead of another action (e.g. capture)."
-msgstr "Camudador p’attacar in cuœnta d’outra acçon (p. ex. appropriase)."
+msgstr "Camudador par fhazer attacar in cuœnta d’outra acçon (p. ex. appropriase)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.name
 msgctxt "hotkey metadata"
@@ -2291,22 +2291,22 @@ msgstr "Fhorçar a attacar"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove when clicking on a point."
-msgstr "Camudador p’aggredir al picar ayuri."
+msgstr "Camudador par fhazer movese & attacar al picar ayuri."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.name
 msgctxt "hotkey metadata"
 msgid "Attack Move"
-msgstr "Aggredir"
+msgstr "Movese & attacar"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove targeting only units when clicking on a point."
-msgstr "Camudador p’aggredir solo unidades al picar ayuri."
+msgstr "Camudador par fhazer movese & attacar unidades al picar ayuri."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.name
 msgctxt "hotkey metadata"
 msgid "Attack Move (unit only)"
-msgstr "Aggredir (solo unidades)"
+msgstr "Movese & attacar (solo unidades)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.desc
 msgctxt "hotkey metadata"
@@ -2343,7 +2343,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
-msgstr "Invia’ læs unidades scoyidæs a aggredi’l lhogar siñalau n deponiendo recursos."
+msgstr "Invia’ læs unidades scoyidæs a attaca’l lhogar siñalau n deponiendo recursos."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.name
 msgctxt "hotkey metadata"
@@ -2354,7 +2354,7 @@ msgstr "Tyamar a læs armæs"
 msgctxt "hotkey metadata"
 msgid ""
 "Modifier to deselect units when clicking group icon, instead of selecting."
-msgstr "Camudador par omitti’ lo scoyido al picar na ícone d’un coniunctu, in cuœnta de scoyello."
+msgstr "Camudador par omitti’ lo scoyido al picar na ícone d’un coniunctu, in cuœntæs de scoyello."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.name
 msgctxt "hotkey metadata"
@@ -2394,7 +2394,7 @@ msgstr "Afhita’l artículu commercial al 100%"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to garrison when clicking on building."
-msgstr "Camudador p’abellugase al picar n un edificio."
+msgstr "Camudador par fhazer abellugase al picar n un edificio."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.name
 msgctxt "hotkey metadata"
@@ -2404,7 +2404,7 @@ msgstr "Abellugase"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to escort/guard when clicking on unit/building."
-msgstr "Camudador pa curiar unidades/edificios al picar n elhos."
+msgstr "Camudador pa fhazer curiar unidades/edificios al picar n elhos."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.name
 msgctxt "hotkey metadata"
@@ -2439,27 +2439,27 @@ msgstr "Camudador pa introcar un cuœlmu de recursos."
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.name
 msgctxt "hotkey metadata"
 msgid "Mass barter"
-msgstr "Entrocar en masa"
+msgstr "Introcar in massa"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to tribute bunch of resources."
-msgstr "Camudador pa tribuir una montonera de recursos."
+msgstr "Camudador pa tribuir un cuœlmu de recursos."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.name
 msgctxt "hotkey metadata"
 msgid "Mass tribute"
-msgstr "Tribuir en masa"
+msgstr "Tribuir in massa"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to move to a point instead of another action (e.g. gather)."
-msgstr "Camudador pa mandar a un sitiu en clas d'otra acción (p. ex. llograr)."
+msgstr "Camudador pa fhazer movese ayuri n vez d’outra acçon (p. ex. obtener)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.name
 msgctxt "hotkey metadata"
 msgid "Force move"
-msgstr "Fhorciar a mové-se"
+msgstr "Fhorçar a movese"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.desc
 msgctxt "hotkey metadata"
@@ -2469,22 +2469,22 @@ msgstr "Nun pedir confirmaçon al eliminar edificios ou unidades."
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Destroy without confirmation"
-msgstr "Desaniciar ensin confirmanza"
+msgstr "Eliminar in sin confirmaçon"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to occupy a turret when clicking on a turret holder."
-msgstr "Camudador pa ocupar una torreta al calcar na sua base."
+msgstr "Camudador par fhazer occupar una turreta al picar na suâ base."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.name
 msgctxt "hotkey metadata"
 msgid "Occupy Turret Point"
-msgstr "Ocupar la torreta"
+msgstr "Occupa’ la turreta"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to order only one entity in selection."
-msgstr "Camudador par mandar a un solu ente de la scolleitha."
+msgstr "Camudador pa mandar a un solu ente de la scolheitha."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.name
 msgctxt "hotkey metadata"
@@ -2494,12 +2494,12 @@ msgstr "Mandar a una unidá"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to patrol a unit."
-msgstr "Camudador pa velar a una unidá."
+msgstr "Camudador pa fhazer roldar a una unidá."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.name
 msgctxt "hotkey metadata"
 msgid "Patrol"
-msgstr "Rondar"
+msgstr "Roldar"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.desc
 msgctxt "hotkey metadata"
@@ -3032,12 +3032,12 @@ msgstr "Alternar el resume"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window in team chat mode."
-msgstr "Abrir ou cerra’ la conversa faccionaria."
+msgstr "Abrir ou cerra’ la conversa d’equipu."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.name
 msgctxt "hotkey metadata"
 msgid "Toggle team chat"
-msgstr "Alterna’ la conversa faccionaria"
+msgstr "Alterna’ la conversa d’equipu"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.desc
 msgctxt "hotkey metadata"
@@ -5541,8 +5541,8 @@ msgstr[1] "Ventayæs culturales"
 #: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] "Ventaya de facçon"
-msgstr[1] "Ventayæs de facçon"
+msgstr[0] "Ventaya d’equipu"
+msgstr[1] "Ventayæs d’equipu"
 
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
@@ -6115,7 +6115,7 @@ msgstr "Gráfiques"
 
 #: gui/summary/layout.js:377
 msgid "Team total"
-msgstr "Total de la facçon"
+msgstr "Total de l equipu"
 
 #: gui/summary/summary.js:30
 msgid "Trained"
@@ -6270,7 +6270,7 @@ msgstr "Tipu:"
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
-msgstr "Ordenar por facçon"
+msgstr "Ordenar por equipu"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
@@ -6730,7 +6730,7 @@ msgstr "SIÑÆS"
 msgid ""
 "Use this feature to let your team know where on the map something important "
 "happens."
-msgstr "Fhai siñæs in mapa p’avisar a la facçon d’acontecemientos importantes."
+msgstr "Fhai siñæs in mapa p’avisar al equipu d’acontecemientos importantes."
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
@@ -7074,7 +7074,7 @@ msgstr "Puede percanciase per pesqueru depués de matada la ballena."
 
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."
-msgstr "Debalæn pelos océanos de l xhuœw & fhuxhen al vese aggredidæs."
+msgstr "Debalæn pelos océanos & fhuxhen al vese attacadæs."
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."

@@ -31,9 +31,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-04 07:08+0000\n"
+"POT-Creation-Date: 2022-04-25 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: Giuseppe D'Addio <giuseppinoino@virgilio.it>, 2019-2021\n"
+"Last-Translator: Angelica Buonaurio <angydna2@yahoo.it>, 2021-2022\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,7 +124,7 @@ msgid ""
 "Each player starts deep in the forest.\n"
 "\n"
 "The Ardennes is a region of extensive forests, rolling hills and ridges formed within the Givetian Ardennes mountain range, primarily in modern day Belgium and Luxembourg. The region took its name from the ancient Silva, a vast forest in Roman times called Arduenna Silva."
-msgstr "Ogni giocatori comincia nel profondo della foresta.\n\nLe Ardenne sono una regione di estese foreste, morbide colline e crinali formati all'interno della catena montuosa delle Ardenne givetiane, oggi situate principalmente in Belgio e Lussemburgo. La regione prende il nome dall'antica Silva, una vasta foresta chiamata Arduenna Silva dagli antichi Romani."
+msgstr "Ogni giocatore comincia nel profondo della foresta.\n\nLe Ardenne sono una regione di estese foreste, morbide colline e crinali formati all'interno della catena montuosa delle Ardenne givetiane, oggi situate principalmente in Belgio e Lussemburgo. La regione prende il nome dall'antica Silva, una vasta foresta chiamata Arduenna Silva dagli antichi Romani."
 
 #: maps/random/ardennes_forest.jsonsettings.Name
 msgid "Ardennes Forest"
@@ -294,7 +294,7 @@ msgid ""
 " subject to numerous yet short-lived invasions. Ultimately consolidating "
 "power with Rhodes at their lead, these islands developed into great "
 "maritime, commercial and cultural centers. Will you achieve the same?"
-msgstr "Controllando l'accesso al mar Egeo da est, il Dodecaneso è stato soggetto a numerose seppur brevi invasioni. Consolidando infine il proprio potere soprattutto grazie a Rodi, queste isole si trasformarono in centri marittimi, commerciali e culturali. Riuscirai a fare lo stesso?"
+msgstr "Controllando l'accesso al Mar Egeo da est, il Dodecaneso è stato soggetto a numerose seppur brevi invasioni. Consolidando infine il proprio potere soprattutto grazie a Rodi, queste isole si trasformarono in centri marittimi, commerciali e culturali. Riuscirai a fare lo stesso?"
 
 #: maps/random/dodecanese.jsonsettings.Name
 msgid "Dodecanese"
@@ -517,7 +517,7 @@ msgid ""
 "Lands”, the ancient religious capital of Napata lay in its shadow. This is "
 "where kings were made – and unmade! Abutting a rich floodplain downstream "
 "from the Fourth Cataract, this area became the breadbasket of ancient Kush."
-msgstr "Cominciando vicino alle fertili rive del Nilo, i giocatori assediano la città di Napata, strenuamente difesa, la quale giace ai piedi della collina di Jebel Barkal, la \"Montagna pura\". Questa è la dimora meridionale di Amon e, secondo i Kushiti e persino gli Egiziani, la culla dell'umanità. Nota come il \"Trono delle due terre\", l'antica capitale religiosa di Napata riposa alla sua ombra. Qui è dove nacquero i re... e dove caddero! A ridosso di una ricca golena che si forma dalla quarta cateratta, quest'area divenne il granaio dell'antico regno di Kush."
+msgstr "Cominciando vicino alle fertili rive del Nilo, i giocatori assediano la città di Napata, strenuamente difesa, la quale giace ai piedi della collina di Jebel Barkal, la \"Montagna pura\". Questa è la dimora meridionale di Amon e, secondo i Kushiti e persino gli Egiziani, la culla dell'umanità. Nota come il \"Trono delle due terre\", l'antica capitale religiosa di Napata riposa alla sua ombra. Qui è dove i re nacquero... e caddero! A ridosso di una ricca golena che si forma dalla quarta cateratta, quest'area divenne il granaio dell'antico regno di Kush."
 
 #: maps/random/jebel_barkal.jsonsettings.Name
 msgid "Jebel Barkal"
@@ -1173,7 +1173,7 @@ msgid "Choose a random land landscape"
 msgstr "Choose a random land landscape"
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:39
 #: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
 msgid ""
 "Two Mediterranean land masses connected by a narrow spit of land, called an "
@@ -1222,7 +1222,7 @@ msgstr "Laghi"
 msgid ""
 "A large hill encompasses the map and leaves players only a small passage to "
 "the two neighboring players."
-msgstr "Una grande collina ricopre la mappa, lasciando ai giocatori solo un piccolo passaggio verso i territori dei giocatori vicini."
+msgstr "Una grande collina ricopre la mappa, lasciando ai giocatori solo un piccolo passaggio verso i territori dei due giocatori vicini."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[6].Name
 msgid "Passes"
@@ -2369,29 +2369,29 @@ msgstr "Siamo Una Legione"
 msgid ""
 "%(_player_)s and their allies have captured all relics and will win in "
 "%(time)s."
-msgstr "%(_player_)s e i suoi alleati hanno preso tutti i cimeli e vinceranno in %(time)s."
+msgstr "%(_player_)s e i suoi alleati hanno preso tutte le reliquie e vinceranno in %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:145
 #, javascript-format
 msgid "%(_player_)s has captured all relics and will win in %(time)s."
-msgstr "%(_player_)s ha preso tutti i cimeli e vincerà in %(time)s."
+msgstr "%(_player_)s ha preso tutte le reliquie e vincerà in %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:156
 #, javascript-format
 msgid "You and your allies have captured all relics and will win in %(time)s."
-msgstr "Tu  e i tuoi alleati avete preso tutti i cimeli e vincerete in %(time)s."
+msgstr "Tu  e i tuoi alleati avete preso tutte le reliquie e vincerete in %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:157
 #, javascript-format
 msgid "You have captured all relics and will win in %(time)s."
-msgstr "Hai preso tutti i cimeli e vincerai in %(time)s."
+msgstr "Hai preso tutte le reliquie e vincerai in %(time)s."
 
 #: maps/scripts/CaptureTheRelic.js:171
 #, javascript-format
 msgid "%(lastPlayer)s has won (Capture the Relic)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (Capture the Relic)."
 msgstr[0] "%(lastPlayer)s ha vinto (Raccogli il Tesoro)."
-msgstr[1] "%(players)s e %(lastPlayer)s hanno vinto (Raccogli il Tesoro)."
+msgstr[1] "%(players)s e %(lastPlayer)s hanno vinto (Raccogli la Reliquia)."
 
 #: maps/scripts/CaptureTheRelic.js:175
 #, javascript-format
@@ -2399,7 +2399,7 @@ msgid "%(lastPlayer)s has been defeated (Capture the Relic)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (Capture the Relic)."
 msgstr[0] "%(lastPlayer)s ha perso (Raccogli il Tesoro)."
-msgstr[1] "%(players)s e %(lastPlayer)s hanno perso (Raccogli il Tesoro)."
+msgstr[1] "%(players)s e %(lastPlayer)s hanno perso (Raccogli la Reliquia)."
 
 #: maps/scripts/Conquest.js:5
 #, javascript-format
@@ -2493,8 +2493,8 @@ msgid ""
 msgstr "Ogni giocatore inizia la partita in cima ad un grande altopiano pianeggiante, altrimenti noto come un'acropoli.\n\nA est si trova una grande baia con possibilità di pesca. Ad Occidente c'è un entroterra aspro con un'acropoli non occupata che controlla la valle sottostante."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Name:39
-msgid "Acropolis Bay (2 players)"
-msgstr ""
+msgid "Acropolis Bay (2)"
+msgstr "Baia di Acropoli (2)"
 
 #: maps/skirmishes/alpine_mountains_3p.xml:Description:39
 msgid ""
@@ -2574,16 +2574,6 @@ msgstr "A Sud del Sahara, Est del Nilo, giace una regione semi-arida oggi nota c
 msgid "Island of Meroë (2)"
 msgstr "Isola di Meroë (2)"
 
-#: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:39
-#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[2].Name:39
-msgid "West Player"
-msgstr "Giocatore Occidentale"
-
-#: maps/skirmishes/butana_steppe_2p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[1].Name:39
-msgid "East Player"
-msgstr "Giocatore Orientale"
-
 #: maps/skirmishes/caspian_sea_2pv2p.xml:Description:38
 msgid ""
 "Two teams face off across a long, very large saltwater lake.\n"
@@ -2606,7 +2596,7 @@ msgstr "L'Italia settentrionale vicino alle Alpi è chiamata Gallia Cisalpina da
 msgid "Cisalpine Winter (2)"
 msgstr "Inverno cisalpino (2)"
 
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Name:38
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Name:39
 msgid "Corinthian Isthmus (2)"
 msgstr "Istmo di Corinto (2)"
 
@@ -2636,11 +2626,11 @@ msgstr "L'antico lago di Moeris vicino al fiume Nilo nel deserto libico è stato
 msgid "Crocodilopolis (4)"
 msgstr "Crocodilopolis (4)"
 
-#: maps/skirmishes/cycladic_archipelago_2p.xml:Description:38
+#: maps/skirmishes/cycladic_archipelago_2p.xml:Description:39
 msgid "A \"small island\"-style map set in the Aegean Sea."
 msgstr "Una mappa del tipo \"piccola isola\" situata nel Mar Egeo."
 
-#: maps/skirmishes/cycladic_archipelago_2p.xml:Name:38
+#: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
 msgid "Cycladic Archipelago (2)"
 msgstr "Arcipelago delle Cicladi (2)"
 
@@ -2654,18 +2644,6 @@ msgstr "Una mappa del tipo \"piccola isola\" situata nel Mar Egeo.\n\nDimensione
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Name:38
 msgid "Cycladic Archipelago (3)"
 msgstr "Arcipelago delle Cicladi (3)"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[0].Name:38
-msgid "Samos"
-msgstr "Samo"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[1].Name:38
-msgid "Lesbos"
-msgstr "Lesbo"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:38
-msgid "Delos"
-msgstr "Delo"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
 msgid ""
@@ -2863,16 +2841,6 @@ msgstr "L'Idaspe, o Jhelum, è un fiume nel Punjab dell'India. Fu il luogo della
 msgid "Hydaspes River (4)"
 msgstr "Fiume Idaspe (4)"
 
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[3].Name:39
-msgid "Macedonian Position"
-msgstr "Posizione macedone"
-
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[4].Name:39
-msgid "Pauravan Position"
-msgstr "Posizione di Paurava"
-
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
 "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
@@ -2921,14 +2889,14 @@ msgstr "Due dei più grandi imperi dell'India, Maurya e Gupta, ebbero origine ne
 msgid "Magadha (2)"
 msgstr "Magadha (2)"
 
-#: maps/skirmishes/median_oasis_2p.xml:Description:38
+#: maps/skirmishes/median_oasis_2p.xml:Description:39
 #: maps/skirmishes/median_oasis_4p.xml:Description:38
 msgid ""
 "A large oasis acts as the hub of mountainous spokes that divide the home "
 "territories of each player."
 msgstr "Una grande oasi funge da fulcro alle colline che dividono i territori di ogni giocatore."
 
-#: maps/skirmishes/median_oasis_2p.xml:Name:38
+#: maps/skirmishes/median_oasis_2p.xml:Name:39
 msgid "Median Oasis (2)"
 msgstr "Oasi Media (2)"
 
@@ -3159,11 +3127,11 @@ msgid ""
 msgstr ""
 
 #: maps/skirmishes/tarim_basin_2p.xml:Name:39
-msgid "Tarim Basin (2 players)"
+msgid "Tarim Basin (2)"
 msgstr ""
 
 #: maps/skirmishes/tarim_basin_4p.xml:Name:39
-msgid "Tarim Basin (4 players)"
+msgid "Tarim Basin (4)"
 msgstr ""
 
 #: maps/skirmishes/team_oasis_2pv2p.xml:Description:38
@@ -3263,10 +3231,6 @@ msgstr "La Britannia è invasa dagli stranieri, e i suoi nativi devono combatter
 msgid "White Cliffs of Dover (5)"
 msgstr "Scogliere Bianche di Dover (5)"
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[1].Name:39
-msgid "Britons"
-msgstr "Britanni"
-
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[2].Name:39
 msgid "Invader 1"
 msgstr "Invasore 1"
@@ -3288,7 +3252,7 @@ msgid "The Yangtze River in China. "
 msgstr ""
 
 #: maps/skirmishes/yangtze_2p.xml:Name:39
-msgid "Chang Jiang (2 players)"
+msgid "Chang Jiang (2)"
 msgstr ""
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Description:38

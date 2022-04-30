@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-04 07:08+0000\n"
+"POT-Creation-Date: 2022-04-25 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Morten Lautrup, 2022\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
@@ -1155,7 +1155,7 @@ msgid "Choose a random land landscape"
 msgstr ""
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:39
 #: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
 msgid ""
 "Two Mediterranean land masses connected by a narrow spit of land, called an "
@@ -2475,8 +2475,8 @@ msgid ""
 msgstr ""
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Name:39
-msgid "Acropolis Bay (2 players)"
-msgstr ""
+msgid "Acropolis Bay (2)"
+msgstr "Akropolisbugten (2)"
 
 #: maps/skirmishes/alpine_mountains_3p.xml:Description:39
 msgid ""
@@ -2556,16 +2556,6 @@ msgstr ""
 msgid "Island of Meroë (2)"
 msgstr ""
 
-#: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:39
-#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[2].Name:39
-msgid "West Player"
-msgstr ""
-
-#: maps/skirmishes/butana_steppe_2p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[1].Name:39
-msgid "East Player"
-msgstr ""
-
 #: maps/skirmishes/caspian_sea_2pv2p.xml:Description:38
 msgid ""
 "Two teams face off across a long, very large saltwater lake.\n"
@@ -2588,7 +2578,7 @@ msgstr ""
 msgid "Cisalpine Winter (2)"
 msgstr ""
 
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Name:38
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Name:39
 msgid "Corinthian Isthmus (2)"
 msgstr "Korinthisk Landtange (2)"
 
@@ -2618,11 +2608,11 @@ msgstr ""
 msgid "Crocodilopolis (4)"
 msgstr ""
 
-#: maps/skirmishes/cycladic_archipelago_2p.xml:Description:38
+#: maps/skirmishes/cycladic_archipelago_2p.xml:Description:39
 msgid "A \"small island\"-style map set in the Aegean Sea."
 msgstr "En bane med små øer i det Ægæiske Hav."
 
-#: maps/skirmishes/cycladic_archipelago_2p.xml:Name:38
+#: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
 msgid "Cycladic Archipelago (2)"
 msgstr "Kykladisk Øhav (2)"
 
@@ -2636,18 +2626,6 @@ msgstr "En bane med små øer i det Ægæiske Hav. \n\nBanestørrelse: Meget Sto
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Name:38
 msgid "Cycladic Archipelago (3)"
 msgstr "Kykladisk Øhav (3)"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[0].Name:38
-msgid "Samos"
-msgstr "Samos"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[1].Name:38
-msgid "Lesbos"
-msgstr "Lesbos"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:38
-msgid "Delos"
-msgstr "Delos"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
 msgid ""
@@ -2845,16 +2823,6 @@ msgstr ""
 msgid "Hydaspes River (4)"
 msgstr ""
 
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[3].Name:39
-msgid "Macedonian Position"
-msgstr ""
-
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[4].Name:39
-msgid "Pauravan Position"
-msgstr ""
-
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
 "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
@@ -2903,14 +2871,14 @@ msgstr ""
 msgid "Magadha (2)"
 msgstr ""
 
-#: maps/skirmishes/median_oasis_2p.xml:Description:38
+#: maps/skirmishes/median_oasis_2p.xml:Description:39
 #: maps/skirmishes/median_oasis_4p.xml:Description:38
 msgid ""
 "A large oasis acts as the hub of mountainous spokes that divide the home "
 "territories of each player."
 msgstr "En stor oase er forbindelsen imellem hver spillers hjemterritorier, som er adskilt af bjergkæder."
 
-#: maps/skirmishes/median_oasis_2p.xml:Name:38
+#: maps/skirmishes/median_oasis_2p.xml:Name:39
 msgid "Median Oasis (2)"
 msgstr "Midtoase (2)"
 
@@ -3141,11 +3109,11 @@ msgid ""
 msgstr ""
 
 #: maps/skirmishes/tarim_basin_2p.xml:Name:39
-msgid "Tarim Basin (2 players)"
+msgid "Tarim Basin (2)"
 msgstr ""
 
 #: maps/skirmishes/tarim_basin_4p.xml:Name:39
-msgid "Tarim Basin (4 players)"
+msgid "Tarim Basin (4)"
 msgstr ""
 
 #: maps/skirmishes/team_oasis_2pv2p.xml:Description:38
@@ -3245,10 +3213,6 @@ msgstr ""
 msgid "White Cliffs of Dover (5)"
 msgstr ""
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[1].Name:39
-msgid "Britons"
-msgstr "Britonerne"
-
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[2].Name:39
 msgid "Invader 1"
 msgstr ""
@@ -3270,7 +3234,7 @@ msgid "The Yangtze River in China. "
 msgstr ""
 
 #: maps/skirmishes/yangtze_2p.xml:Name:39
-msgid "Chang Jiang (2 players)"
+msgid "Chang Jiang (2)"
 msgstr ""
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Description:38

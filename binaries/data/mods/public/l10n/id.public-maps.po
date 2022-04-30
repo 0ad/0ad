@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-04 07:08+0000\n"
+"POT-Creation-Date: 2022-04-25 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>, 2021-2022\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
@@ -1156,7 +1156,7 @@ msgid "Choose a random land landscape"
 msgstr "Pilih bentang alam darat acak."
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:39
 #: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
 msgid ""
 "Two Mediterranean land masses connected by a narrow spit of land, called an "
@@ -2470,8 +2470,8 @@ msgid ""
 msgstr "Tiap pemain memulai pertandingan di atas dataran tinggi luas yang disebut akropolis.\n\nDi timur terbentang teluk luas dengan peluang penangkapan ikan. Di barat ada daerah pedalaman yang kasar dengan akropolis tak berpenghuni di hadapan lembah di bawahnya."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Name:39
-msgid "Acropolis Bay (2 players)"
-msgstr "Teluk Akropolis (2 pemain)"
+msgid "Acropolis Bay (2)"
+msgstr "Teluk Akropolis (2)"
 
 #: maps/skirmishes/alpine_mountains_3p.xml:Description:39
 msgid ""
@@ -2551,16 +2551,6 @@ msgstr "Di selatan Sahara, di Timur Sungai Nil, terdapat kawasan semi-kering yan
 msgid "Island of Meroë (2)"
 msgstr "Pulau Meroë (2)"
 
-#: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:39
-#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[2].Name:39
-msgid "West Player"
-msgstr "Pemain Barat"
-
-#: maps/skirmishes/butana_steppe_2p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[1].Name:39
-msgid "East Player"
-msgstr "Pemain Timur"
-
 #: maps/skirmishes/caspian_sea_2pv2p.xml:Description:38
 msgid ""
 "Two teams face off across a long, very large saltwater lake.\n"
@@ -2583,7 +2573,7 @@ msgstr "Italia utara di dekat Alpen disebut Galia Cisalpin oleh bangsa Romawi. D
 msgid "Cisalpine Winter (2)"
 msgstr "Musim Salju Cisalpina (2)"
 
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Name:38
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Name:39
 msgid "Corinthian Isthmus (2)"
 msgstr "Isthmus Korintus (2)"
 
@@ -2613,11 +2603,11 @@ msgstr "Danau kuno Moeris di dekat Sungai Nil di Gurun Libya telah didiami dan d
 msgid "Crocodilopolis (4)"
 msgstr "Crocodilopolis (4)"
 
-#: maps/skirmishes/cycladic_archipelago_2p.xml:Description:38
+#: maps/skirmishes/cycladic_archipelago_2p.xml:Description:39
 msgid "A \"small island\"-style map set in the Aegean Sea."
 msgstr "Sebuah peta bergaya \"pulau kecil\" di laut Aegea."
 
-#: maps/skirmishes/cycladic_archipelago_2p.xml:Name:38
+#: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
 msgid "Cycladic Archipelago (2)"
 msgstr "Kepulauan Kiklades (2)"
 
@@ -2631,18 +2621,6 @@ msgstr "Sebuah peta bergaya \"pulau kecil\" di laut Aegea.\n\nUkuran peta: Sanga
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Name:38
 msgid "Cycladic Archipelago (3)"
 msgstr "Kepulauan Kiklades (3)"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[0].Name:38
-msgid "Samos"
-msgstr "Samos"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[1].Name:38
-msgid "Lesbos"
-msgstr "Lesbos"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:38
-msgid "Delos"
-msgstr "Delos"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
 msgid ""
@@ -2840,16 +2818,6 @@ msgstr "Sungai Hydaspes atau Jhelum di Punjab, India. Di sinilah tempat pertempu
 msgid "Hydaspes River (4)"
 msgstr "Sungai Hydaspes (4)"
 
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[3].Name:39
-msgid "Macedonian Position"
-msgstr "Posisi Makedonia"
-
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[4].Name:39
-msgid "Pauravan Position"
-msgstr "Posisi Paurava"
-
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
 "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
@@ -2898,14 +2866,14 @@ msgstr "Dua kemaharajaan terbesar India, Kemaharajaan Maurya dan Kemaharajaan Gu
 msgid "Magadha (2)"
 msgstr "Magadha (2)"
 
-#: maps/skirmishes/median_oasis_2p.xml:Description:38
+#: maps/skirmishes/median_oasis_2p.xml:Description:39
 #: maps/skirmishes/median_oasis_4p.xml:Description:38
 msgid ""
 "A large oasis acts as the hub of mountainous spokes that divide the home "
 "territories of each player."
 msgstr "Sebuah oasis besar bertindak sebagai pusat jeruji pegunungan yang membagi wilayah rumah masing-masing pemain."
 
-#: maps/skirmishes/median_oasis_2p.xml:Name:38
+#: maps/skirmishes/median_oasis_2p.xml:Name:39
 msgid "Median Oasis (2)"
 msgstr "Oase Median (2)"
 
@@ -3136,12 +3104,12 @@ msgid ""
 msgstr "Cekungan gurun yang tandus dikitari dengan lembah bergunung, Cekungan Tarim juga disebut \"Wilayah Barat\" oleh bangsa Tiongkok Han, dan mewakili ujung terjauh kekuasaan mereka.\n\nCekungan ini sendiri tidak memiliki kehidupan, dan sedikit pertahanan. Lembah-lembah gununglah yang memiliki kehidupan, dalam bentuk semak dan pepohonan yang hangat serta beberapa kambing."
 
 #: maps/skirmishes/tarim_basin_2p.xml:Name:39
-msgid "Tarim Basin (2 players)"
-msgstr "Cekungan Tarim (2 pemain)"
+msgid "Tarim Basin (2)"
+msgstr ""
 
 #: maps/skirmishes/tarim_basin_4p.xml:Name:39
-msgid "Tarim Basin (4 players)"
-msgstr "Cekungan Tarim (4 pemain)"
+msgid "Tarim Basin (4)"
+msgstr ""
 
 #: maps/skirmishes/team_oasis_2pv2p.xml:Description:38
 msgid ""
@@ -3240,10 +3208,6 @@ msgstr "Orang-orang asing menyerbu Britannia. Suku asli Briton harus melawan pas
 msgid "White Cliffs of Dover (5)"
 msgstr "Tebing Putih Dover (5)"
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[1].Name:39
-msgid "Britons"
-msgstr "Briton"
-
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[2].Name:39
 msgid "Invader 1"
 msgstr "Penyerbu 1"
@@ -3265,8 +3229,8 @@ msgid "The Yangtze River in China. "
 msgstr "Sungai Panjang di Tiongkok."
 
 #: maps/skirmishes/yangtze_2p.xml:Name:39
-msgid "Chang Jiang (2 players)"
-msgstr "Chang Jiang (2 pemain)"
+msgid "Chang Jiang (2)"
+msgstr ""
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Description:38
 msgid ""

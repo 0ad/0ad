@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-04 07:08+0000\n"
+"POT-Creation-Date: 2022-04-25 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Oi Suomi On! <oisuomion@protonmail.com>, 2022\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
@@ -1158,7 +1158,7 @@ msgid "Choose a random land landscape"
 msgstr "Valitse sattumanvarainen maasto"
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:39
 #: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
 msgid ""
 "Two Mediterranean land masses connected by a narrow spit of land, called an "
@@ -2478,8 +2478,8 @@ msgid ""
 msgstr ""
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Name:39
-msgid "Acropolis Bay (2 players)"
-msgstr ""
+msgid "Acropolis Bay (2)"
+msgstr "Akropolislahti (2)"
 
 #: maps/skirmishes/alpine_mountains_3p.xml:Description:39
 msgid ""
@@ -2559,16 +2559,6 @@ msgstr "Saharan eteläpuolella, Niilin itäpuolella, sijaitsee puolikuiva alue, 
 msgid "Island of Meroë (2)"
 msgstr "Meroën saari (2)"
 
-#: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:39
-#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[2].Name:39
-msgid "West Player"
-msgstr "Läntinen pelaaja"
-
-#: maps/skirmishes/butana_steppe_2p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[1].Name:39
-msgid "East Player"
-msgstr "Itäinen pelaaja"
-
 #: maps/skirmishes/caspian_sea_2pv2p.xml:Description:38
 msgid ""
 "Two teams face off across a long, very large saltwater lake.\n"
@@ -2591,7 +2581,7 @@ msgstr "Roomalaiset kutsuivat Pohjois-Italiaa Alppien lähellä Alppien eteläpu
 msgid "Cisalpine Winter (2)"
 msgstr "Alppien eteläpuolinen talvi (2)"
 
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Name:38
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Name:39
 msgid "Corinthian Isthmus (2)"
 msgstr "Korintin kannas (2)"
 
@@ -2621,11 +2611,11 @@ msgstr "Muinainen Moeris-järvi lähellä Niiliä Libyan autiomaassa on ollut eg
 msgid "Crocodilopolis (4)"
 msgstr "Krokodilopolis (4)"
 
-#: maps/skirmishes/cycladic_archipelago_2p.xml:Description:38
+#: maps/skirmishes/cycladic_archipelago_2p.xml:Description:39
 msgid "A \"small island\"-style map set in the Aegean Sea."
 msgstr "Egeanmerelle sijoittuva \"pienet saaret\" -tyylinen kartta."
 
-#: maps/skirmishes/cycladic_archipelago_2p.xml:Name:38
+#: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
 msgid "Cycladic Archipelago (2)"
 msgstr "Kykladien saaristo (2)"
 
@@ -2639,18 +2629,6 @@ msgstr "Egeanmerelle sijoittuva \"pienet saaret\" -tyylinen kartta.\n\nKartan ko
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Name:38
 msgid "Cycladic Archipelago (3)"
 msgstr "Kykladien saaristo (3)"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[0].Name:38
-msgid "Samos"
-msgstr "Samos"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[1].Name:38
-msgid "Lesbos"
-msgstr "Lesbos"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:38
-msgid "Delos"
-msgstr "Delos"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
 msgid ""
@@ -2848,16 +2826,6 @@ msgstr "Hydaspes- eli Jhelum-joki Punjabissa Intiassa. Täällä käytiin suuri 
 msgid "Hydaspes River (4)"
 msgstr "Hydaspes-joki (4)"
 
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[3].Name:39
-msgid "Macedonian Position"
-msgstr "Makedonialainen sijainti"
-
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[4].Name:39
-msgid "Pauravan Position"
-msgstr "Pauravalainen sijainti"
-
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
 "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
@@ -2906,14 +2874,14 @@ msgstr "Kaksi Intian suurimmista valtakunnista, Mauryan valtakunta ja Guptan val
 msgid "Magadha (2)"
 msgstr "Magadha (2)"
 
-#: maps/skirmishes/median_oasis_2p.xml:Description:38
+#: maps/skirmishes/median_oasis_2p.xml:Description:39
 #: maps/skirmishes/median_oasis_4p.xml:Description:38
 msgid ""
 "A large oasis acts as the hub of mountainous spokes that divide the home "
 "territories of each player."
 msgstr "Suuri keidas toimii keskipisteenä vuoriston muodostamille säteille, jotka jakavat kunkin pelaajan kotialueet."
 
-#: maps/skirmishes/median_oasis_2p.xml:Name:38
+#: maps/skirmishes/median_oasis_2p.xml:Name:39
 msgid "Median Oasis (2)"
 msgstr "Meedian keidas (2)"
 
@@ -3144,12 +3112,12 @@ msgid ""
 msgstr "Karu basinin aavikko on vuoristoisten laaksojen ympäröimä, Tarim Basin tunnetaan myös \"läntiset alueet\" nimellä Han-kiinalaisten mukaan, ja edustaa heidän valtansa kauaskantoisinta ulottumaa.\n\nBasin on itsessään vailla elämää ja tarjoaa hyvin niukalti puolustusmielessä. Karskit vuoristolaaksot ylläpitävät sen ainoata elämää, pensaiden ja puulajien sekä muutaman vuohen muodossa.   "
 
 #: maps/skirmishes/tarim_basin_2p.xml:Name:39
-msgid "Tarim Basin (2 players)"
-msgstr "Tarim Basin (2 pelaajaa)"
+msgid "Tarim Basin (2)"
+msgstr ""
 
 #: maps/skirmishes/tarim_basin_4p.xml:Name:39
-msgid "Tarim Basin (4 players)"
-msgstr "Tarim Basin (4 pelaajaa)"
+msgid "Tarim Basin (4)"
+msgstr ""
 
 #: maps/skirmishes/team_oasis_2pv2p.xml:Description:38
 msgid ""
@@ -3248,10 +3216,6 @@ msgstr "Ulkomaalaiset valtaavat Britannian. Syntyperäisten brittien on taistelt
 msgid "White Cliffs of Dover (5)"
 msgstr "Doverin valkoiset kalliot (5)"
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[1].Name:39
-msgid "Britons"
-msgstr "Kelttiläiset"
-
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[2].Name:39
 msgid "Invader 1"
 msgstr "Hyökkääjä 1"
@@ -3273,8 +3237,8 @@ msgid "The Yangtze River in China. "
 msgstr "Jangtse-joki Kiinassa."
 
 #: maps/skirmishes/yangtze_2p.xml:Name:39
-msgid "Chang Jiang (2 players)"
-msgstr "Chang Jiang (2 pelaajaa)"
+msgid "Chang Jiang (2)"
+msgstr ""
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Description:38
 msgid ""

@@ -54,7 +54,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-04-01 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
-"Last-Translator: Alessandro Carinelli <carinellialessandro31@gmail.com>, 2021\n"
+"Last-Translator: Angelica Buonaurio <angydna2@yahoo.it>, 2021-2022\n"
 "Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,7 +64,7 @@ msgstr ""
 
 #: gui/session/Cheats.js:78
 msgid "This cheat requires a numeric parameter."
-msgstr ""
+msgstr "Questo trucco richiede un parametro numerico."
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
@@ -200,7 +200,7 @@ msgstr "m:ss"
 #. when not the first item in the queue.
 #: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:597
 msgid "This item is paused."
-msgstr ""
+msgstr "Questo oggetto è in pausa."
 
 #: gui/session/chat/ChatAddressees.js:93
 msgctxt "chat addressee"
@@ -398,7 +398,7 @@ msgstr "%(icon)sIl bestiame è stato attaccato da %(attacker)s!"
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr "%(icon)sSei stato attaccato da %(attacker)s!"
+msgstr "%(icon)s%(attacker)s ti ha attaccato!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
@@ -1392,7 +1392,7 @@ msgstr "Clic per selezionare le unità raggruppate. Doppio Clic per concentrare 
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVI: Zhuangzi"
-msgstr ""
+msgstr "Alpha XXVI: Zhuangzi"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1797,7 +1797,7 @@ msgstr "L'uso di questo punto di scarico è vietato"
 
 #: gui/session/unit_actions.js:1780
 msgid "Allies are allowed to use this dropsite."
-msgstr "Gli alleati possono utilizzare questo punto di raccolta."
+msgstr "Gli alleati possono utilizzare questo deposito."
 
 #: gui/session/unit_actions.js:1781
 msgid "You are allowed to use this dropsite"

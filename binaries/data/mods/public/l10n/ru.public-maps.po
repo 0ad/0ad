@@ -31,7 +31,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-04 07:08+0000\n"
+"POT-Creation-Date: 2022-04-25 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Николай Авдеев <nickkolok@mail.ru>, 2016,2021\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
@@ -1173,7 +1173,7 @@ msgid "Choose a random land landscape"
 msgstr "Выбрать случайный сухопутный рельеф"
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:39
 #: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
 msgid ""
 "Two Mediterranean land masses connected by a narrow spit of land, called an "
@@ -2505,8 +2505,8 @@ msgid ""
 msgstr "Каждый игрок начинает игру на большом плоском плато, известном также как акрополь. \n\n \nК востоку лежит большая бухта с промысловыми возможностями. На западе изрезанные внутренние районы с незанятым акрополем, господствующим над долиной внизу."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Name:39
-msgid "Acropolis Bay (2 players)"
-msgstr ""
+msgid "Acropolis Bay (2)"
+msgstr "Залив акрополь (2)"
 
 #: maps/skirmishes/alpine_mountains_3p.xml:Description:39
 msgid ""
@@ -2586,16 +2586,6 @@ msgstr "К югу от Сахары и востоку от Нила лежит �
 msgid "Island of Meroë (2)"
 msgstr "Остров Мероэ (2)"
 
-#: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:39
-#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[2].Name:39
-msgid "West Player"
-msgstr "Западный игрок"
-
-#: maps/skirmishes/butana_steppe_2p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[1].Name:39
-msgid "East Player"
-msgstr "Восточный игрок"
-
 #: maps/skirmishes/caspian_sea_2pv2p.xml:Description:38
 msgid ""
 "Two teams face off across a long, very large saltwater lake.\n"
@@ -2618,7 +2608,7 @@ msgstr "Северную Италию около Альп римляне наз�
 msgid "Cisalpine Winter (2)"
 msgstr "Цизальпийская зима (2)"
 
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Name:38
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Name:39
 msgid "Corinthian Isthmus (2)"
 msgstr "Коринфский перешеек (2)"
 
@@ -2648,11 +2638,11 @@ msgstr "Древнее озеро Моерис близ реки Нил в Ли�
 msgid "Crocodilopolis (4)"
 msgstr "Крокодилополь (4)"
 
-#: maps/skirmishes/cycladic_archipelago_2p.xml:Description:38
+#: maps/skirmishes/cycladic_archipelago_2p.xml:Description:39
 msgid "A \"small island\"-style map set in the Aegean Sea."
 msgstr "«Маленький остров» — набор карт в Эгейском море."
 
-#: maps/skirmishes/cycladic_archipelago_2p.xml:Name:38
+#: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
 msgid "Cycladic Archipelago (2)"
 msgstr "Кикладские острова (2)"
 
@@ -2666,18 +2656,6 @@ msgstr "«Маленький остров» — типовая карта Эге
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Name:38
 msgid "Cycladic Archipelago (3)"
 msgstr "Кикладские острова (3)"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[0].Name:38
-msgid "Samos"
-msgstr "Самос"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[1].Name:38
-msgid "Lesbos"
-msgstr "Лесбос"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:38
-msgid "Delos"
-msgstr "Делос"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
 msgid ""
@@ -2875,16 +2853,6 @@ msgstr "Гидаспес, он же Джелум, река в индийском
 msgid "Hydaspes River (4)"
 msgstr "Река Гидасп (4)"
 
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[3].Name:39
-msgid "Macedonian Position"
-msgstr "Позиция македонян"
-
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[4].Name:39
-msgid "Pauravan Position"
-msgstr "Позиция Пуруравы"
-
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
 "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
@@ -2933,14 +2901,14 @@ msgstr "Две величайших индийских империи, Импе�
 msgid "Magadha (2)"
 msgstr "Магадха (2)"
 
-#: maps/skirmishes/median_oasis_2p.xml:Description:38
+#: maps/skirmishes/median_oasis_2p.xml:Description:39
 #: maps/skirmishes/median_oasis_4p.xml:Description:38
 msgid ""
 "A large oasis acts as the hub of mountainous spokes that divide the home "
 "territories of each player."
 msgstr "Большой оазис с горными хребтами которые разделяют территории игроков."
 
-#: maps/skirmishes/median_oasis_2p.xml:Name:38
+#: maps/skirmishes/median_oasis_2p.xml:Name:39
 msgid "Median Oasis (2)"
 msgstr "Средний оазис (2)"
 
@@ -3171,11 +3139,11 @@ msgid ""
 msgstr ""
 
 #: maps/skirmishes/tarim_basin_2p.xml:Name:39
-msgid "Tarim Basin (2 players)"
+msgid "Tarim Basin (2)"
 msgstr ""
 
 #: maps/skirmishes/tarim_basin_4p.xml:Name:39
-msgid "Tarim Basin (4 players)"
+msgid "Tarim Basin (4)"
 msgstr ""
 
 #: maps/skirmishes/team_oasis_2pv2p.xml:Description:38
@@ -3275,10 +3243,6 @@ msgstr "Иностранцы вторгаются в Британию. Мест�
 msgid "White Cliffs of Dover (5)"
 msgstr "Белые скалы Дувра (5)"
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[1].Name:39
-msgid "Britons"
-msgstr "Бритты"
-
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[2].Name:39
 msgid "Invader 1"
 msgstr "Захватчик 1"
@@ -3300,7 +3264,7 @@ msgid "The Yangtze River in China. "
 msgstr ""
 
 #: maps/skirmishes/yangtze_2p.xml:Name:39
-msgid "Chang Jiang (2 players)"
+msgid "Chang Jiang (2)"
 msgstr ""
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Description:38

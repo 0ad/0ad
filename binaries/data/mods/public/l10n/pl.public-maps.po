@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-04 07:08+0000\n"
+"POT-Creation-Date: 2022-04-25 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Marcin S <dzidek1003@o2.pl>, 2016,2021-2022\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
@@ -1180,7 +1180,7 @@ msgid "Choose a random land landscape"
 msgstr "Wybierz losowy krajobraz lądowy"
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:39
 #: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
 msgid ""
 "Two Mediterranean land masses connected by a narrow spit of land, called an "
@@ -2512,8 +2512,8 @@ msgid ""
 msgstr "Każdy gracz zaczyna na szczycie dużego płaskowyżu znanego jako akropol.\n\nNa wschodzie znajduje się duża zatoka, której wody są pełne ryb. W głębi lądu, na zachodzie wznosi się niezamieszkały akropol strzegący wejścia do doliny."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Name:39
-msgid "Acropolis Bay (2 players)"
-msgstr "Zatoka Akropolu (2 graczy)"
+msgid "Acropolis Bay (2)"
+msgstr "Zatoka Akropolu (2)"
 
 #: maps/skirmishes/alpine_mountains_3p.xml:Description:39
 msgid ""
@@ -2593,16 +2593,6 @@ msgstr "Na południe od Sahary, na wschód od Nilu, leży półpustynny region z
 msgid "Island of Meroë (2)"
 msgstr "Wyspa Meroë (2)"
 
-#: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:39
-#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[2].Name:39
-msgid "West Player"
-msgstr "Gracz zachodni"
-
-#: maps/skirmishes/butana_steppe_2p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[1].Name:39
-msgid "East Player"
-msgstr "Gracz wschodni"
-
 #: maps/skirmishes/caspian_sea_2pv2p.xml:Description:38
 msgid ""
 "Two teams face off across a long, very large saltwater lake.\n"
@@ -2625,7 +2615,7 @@ msgstr "Północne Włochy w pobliżu Alp nazywane są przez Rzymian Galią Cisa
 msgid "Cisalpine Winter (2)"
 msgstr "Przedalpejska zima (2)"
 
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Name:38
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Name:39
 msgid "Corinthian Isthmus (2)"
 msgstr "Przesmyk Koryncki (2)"
 
@@ -2655,11 +2645,11 @@ msgstr "Starożytne jezioro Moeris w pobliżu rzeki Nil na Pustyni Libijskiej by
 msgid "Crocodilopolis (4)"
 msgstr "Fajum (4)"
 
-#: maps/skirmishes/cycladic_archipelago_2p.xml:Description:38
+#: maps/skirmishes/cycladic_archipelago_2p.xml:Description:39
 msgid "A \"small island\"-style map set in the Aegean Sea."
 msgstr "Małe wyspy położone na morzu Egejskim."
 
-#: maps/skirmishes/cycladic_archipelago_2p.xml:Name:38
+#: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
 msgid "Cycladic Archipelago (2)"
 msgstr "Archipelag Cyklady (2)"
 
@@ -2673,18 +2663,6 @@ msgstr "Mapa stylu \"małej wyspy\" umiejscowiona na Morzu Egejskim.\n\nRozmiar 
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Name:38
 msgid "Cycladic Archipelago (3)"
 msgstr "Archipelag Cyklady (3)"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[0].Name:38
-msgid "Samos"
-msgstr "Samos"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[1].Name:38
-msgid "Lesbos"
-msgstr "Lesbos"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:38
-msgid "Delos"
-msgstr "Delos"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
 msgid ""
@@ -2882,16 +2860,6 @@ msgstr "Hydaspes, inaczej Jhelum, rzeka w Pendżabie w Indiach. Tutaj rozegrała
 msgid "Hydaspes River (4)"
 msgstr "Rzeka Hydaspes (4)"
 
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[3].Name:39
-msgid "Macedonian Position"
-msgstr "Pozycja Macedońska"
-
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[4].Name:39
-msgid "Pauravan Position"
-msgstr "Pozycja Paurawaska"
-
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
 "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
@@ -2940,14 +2908,14 @@ msgstr "Dwa z największych imperiów Indii, Imperium Maurjów i Imperium Gupta,
 msgid "Magadha (2)"
 msgstr "Magadha (2)"
 
-#: maps/skirmishes/median_oasis_2p.xml:Description:38
+#: maps/skirmishes/median_oasis_2p.xml:Description:39
 #: maps/skirmishes/median_oasis_4p.xml:Description:38
 msgid ""
 "A large oasis acts as the hub of mountainous spokes that divide the home "
 "territories of each player."
 msgstr "Ogromna oaza służy za piastę z ogromnymi szprychami, które dzielą terytoria każdego gracza."
 
-#: maps/skirmishes/median_oasis_2p.xml:Name:38
+#: maps/skirmishes/median_oasis_2p.xml:Name:39
 msgid "Median Oasis (2)"
 msgstr "Medyjska Oaza (2)"
 
@@ -3178,12 +3146,12 @@ msgid ""
 msgstr "Jałowa, pustynna kotlina otoczona górzystymi dolinami, Kotlina Tarim jest również nazywana przez chińską dynstię Han \"Regionami Zachodnimi\" i stanowi najdalszy zasięg ich wpływów.\n\nSamo zagłębie jest pozbawione życia i oferuje niewielkie możliwości obrony. W surowych górskich dolinach żyją jedynie wytrzymałe gatunki krzewów i drzew oraz kilka kóz."
 
 #: maps/skirmishes/tarim_basin_2p.xml:Name:39
-msgid "Tarim Basin (2 players)"
-msgstr "Kotlina Kaszgarska (2 graczy)"
+msgid "Tarim Basin (2)"
+msgstr ""
 
 #: maps/skirmishes/tarim_basin_4p.xml:Name:39
-msgid "Tarim Basin (4 players)"
-msgstr "Kotlina Kaszgarska (4 graczy)"
+msgid "Tarim Basin (4)"
+msgstr ""
 
 #: maps/skirmishes/team_oasis_2pv2p.xml:Description:38
 msgid ""
@@ -3282,10 +3250,6 @@ msgstr "Obcokrajowcy najeżdżają Brytanię. Rdzenni Brytyjczycy muszą walczy�
 msgid "White Cliffs of Dover (5)"
 msgstr "Białe klify w Dover (5)"
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[1].Name:39
-msgid "Britons"
-msgstr "Brytowie"
-
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[2].Name:39
 msgid "Invader 1"
 msgstr "Inwazja 1"
@@ -3307,8 +3271,8 @@ msgid "The Yangtze River in China. "
 msgstr "Rzeka Yangtze w Chinach"
 
 #: maps/skirmishes/yangtze_2p.xml:Name:39
-msgid "Chang Jiang (2 players)"
-msgstr "Chang Jiang (2 graczy)"
+msgid "Chang Jiang (2)"
+msgstr ""
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Description:38
 msgid ""

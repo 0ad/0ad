@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-04 07:08+0000\n"
+"POT-Creation-Date: 2022-04-25 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -1161,7 +1161,7 @@ msgid "Choose a random land landscape"
 msgstr "選擇一個隨機的陸戰景觀"
 
 #: maps/random/unknown.jsonsettings.Landscapes[0].Items[1].Description
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:38
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Description:39
 #: maps/skirmishes/corinthian_isthmus_4p.xml:Description:39
 msgid ""
 "Two Mediterranean land masses connected by a narrow spit of land, called an "
@@ -2475,7 +2475,7 @@ msgid ""
 msgstr "每個玩家都在一個大型平臺，又稱衛城，之上開始遊戲。\n\n東部是一個大型的海灣，可能會有一些漁獲。西邊則是一片崎嶇的腹地及一個控制底下的山谷的無主衛城。"
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Name:39
-msgid "Acropolis Bay (2 players)"
+msgid "Acropolis Bay (2)"
 msgstr "衛城海灣 (2)"
 
 #: maps/skirmishes/alpine_mountains_3p.xml:Description:39
@@ -2556,16 +2556,6 @@ msgstr "撒哈拉以南，尼羅河以東，是一個半乾旱地區，今天被
 msgid "Island of Meroë (2)"
 msgstr "美羅埃島 (2)"
 
-#: maps/skirmishes/butana_steppe_2p.xml:PlayerData[0].Name:39
-#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[2].Name:39
-msgid "West Player"
-msgstr "西部玩家"
-
-#: maps/skirmishes/butana_steppe_2p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/tarim_basin_2p.xml:PlayerData[1].Name:39
-msgid "East Player"
-msgstr "東部玩家"
-
 #: maps/skirmishes/caspian_sea_2pv2p.xml:Description:38
 msgid ""
 "Two teams face off across a long, very large saltwater lake.\n"
@@ -2588,7 +2578,7 @@ msgstr "靠近阿爾卑斯山的義大利北部被羅馬人稱為山南高盧。
 msgid "Cisalpine Winter (2)"
 msgstr "南山冬季 (2)"
 
-#: maps/skirmishes/corinthian_isthmus_2p.xml:Name:38
+#: maps/skirmishes/corinthian_isthmus_2p.xml:Name:39
 msgid "Corinthian Isthmus (2)"
 msgstr "科林斯地峽 (2)"
 
@@ -2618,11 +2608,11 @@ msgstr "利比亞沙漠尼羅河附近的莫埃里斯古湖自史前時代就被
 msgid "Crocodilopolis (4)"
 msgstr "鱷魚城 (4)"
 
-#: maps/skirmishes/cycladic_archipelago_2p.xml:Description:38
+#: maps/skirmishes/cycladic_archipelago_2p.xml:Description:39
 msgid "A \"small island\"-style map set in the Aegean Sea."
 msgstr "一個在愛琴海的「島嶼風格」地圖集。"
 
-#: maps/skirmishes/cycladic_archipelago_2p.xml:Name:38
+#: maps/skirmishes/cycladic_archipelago_2p.xml:Name:39
 msgid "Cycladic Archipelago (2)"
 msgstr "基克拉迪群島 (2)"
 
@@ -2636,18 +2626,6 @@ msgstr "一個在愛琴海的「島嶼風格」地圖集。\n\n地圖大小：�
 #: maps/skirmishes/cycladic_archipelago_3p.xml:Name:38
 msgid "Cycladic Archipelago (3)"
 msgstr "基克拉迪群島 (3)"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[0].Name:38
-msgid "Samos"
-msgstr "薩摩斯島"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[1].Name:38
-msgid "Lesbos"
-msgstr "萊斯博斯島"
-
-#: maps/skirmishes/cycladic_archipelago_3p.xml:PlayerData[2].Name:38
-msgid "Delos"
-msgstr "提洛島"
 
 #: maps/skirmishes/death_canyon_2p.xml:Description:38
 msgid ""
@@ -2845,16 +2823,6 @@ msgstr "希達斯皮斯，又名傑赫勒姆，印度旁遮普邦的河流。這
 msgid "Hydaspes River (4)"
 msgstr "希達斯皮斯河 (4)"
 
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[1].Name:39
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[3].Name:39
-msgid "Macedonian Position"
-msgstr "馬其頓位置"
-
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[2].Name:39
-#: maps/skirmishes/hydaspes_river_4p.xml:PlayerData[4].Name:39
-msgid "Pauravan Position"
-msgstr "寶拉萬位置"
-
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
 "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
@@ -2903,14 +2871,14 @@ msgstr "印度最偉大的兩個帝國，孔雀王朝和笈多帝國，起源於
 msgid "Magadha (2)"
 msgstr "摩揭陀 (2)"
 
-#: maps/skirmishes/median_oasis_2p.xml:Description:38
+#: maps/skirmishes/median_oasis_2p.xml:Description:39
 #: maps/skirmishes/median_oasis_4p.xml:Description:38
 msgid ""
 "A large oasis acts as the hub of mountainous spokes that divide the home "
 "territories of each player."
 msgstr "有一個大型的綠洲在中心，且有許多山地障礙將每個玩家的領土隔開。"
 
-#: maps/skirmishes/median_oasis_2p.xml:Name:38
+#: maps/skirmishes/median_oasis_2p.xml:Name:39
 msgid "Median Oasis (2)"
 msgstr "米底亞綠洲 (2)"
 
@@ -3141,12 +3109,12 @@ msgid ""
 msgstr "塔里木盆地是一個被群山環繞的荒漠盆地，被漢朝人稱為「西域」，代表著他們最遠大的勢力範圍。\n\n盆地本身沒有生命，幾乎沒有防禦能力。崎嶇的山谷裡孕育著唯一的生命，以豐盛的灌木、樹木和一些山羊的形式存在。"
 
 #: maps/skirmishes/tarim_basin_2p.xml:Name:39
-msgid "Tarim Basin (2 players)"
-msgstr "塔里木盆地 (2)"
+msgid "Tarim Basin (2)"
+msgstr ""
 
 #: maps/skirmishes/tarim_basin_4p.xml:Name:39
-msgid "Tarim Basin (4 players)"
-msgstr "塔里木盆地 (4)"
+msgid "Tarim Basin (4)"
+msgstr ""
 
 #: maps/skirmishes/team_oasis_2pv2p.xml:Description:38
 msgid ""
@@ -3245,10 +3213,6 @@ msgstr "外族正在入侵不列顛尼亞。不列顛人原住民必須與龐大
 msgid "White Cliffs of Dover (5)"
 msgstr "多佛白崖 (5)"
 
-#: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[1].Name:39
-msgid "Britons"
-msgstr "不列顛人"
-
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:PlayerData[2].Name:39
 msgid "Invader 1"
 msgstr "侵略者 1"
@@ -3270,8 +3234,8 @@ msgid "The Yangtze River in China. "
 msgstr "中國的揚子江。"
 
 #: maps/skirmishes/yangtze_2p.xml:Name:39
-msgid "Chang Jiang (2 players)"
-msgstr "長江 (2)"
+msgid "Chang Jiang (2)"
+msgstr ""
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Description:38
 msgid ""

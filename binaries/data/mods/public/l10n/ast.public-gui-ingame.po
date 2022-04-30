@@ -350,16 +350,16 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr "%(icon)s ¡%(attacker)s sta aggrediendo los reses!"
+msgstr "%(icon)s ¡%(attacker)s sta attacando los reses!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr "%(icon)s ¡%(attacker)s sta aggrediendo-te!"
+msgstr "%(icon)s ¡%(attacker)s sta attacando-te!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
-msgstr "Pica par infocar scontra la unidá aggredida."
+msgstr "Pica par infocar scontra la unidá attacada."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
@@ -611,7 +611,7 @@ msgstr "Cultura"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):21
 msgid "Team"
-msgstr "Facçon"
+msgstr "Equipu"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):24
 msgid "Theirs"
@@ -1218,7 +1218,7 @@ msgstr "Acometer a inimigos próximos, persegiendo-llos un pouco & da reo tornan
 #: gui/session/selection_panels_helpers.js:79
 msgctxt "stance"
 msgid "Flee if attacked"
-msgstr "Fhuxhir al vese aggredidu"
+msgstr "Fhuxhir al vese attacau"
 
 #: gui/session/selection_panels_helpers.js:81
 msgctxt "stance"
@@ -1233,7 +1233,7 @@ msgstr "Númeru actual: %(count)s, Lhinde: %(limit)s."
 #: gui/session/selection_panels_helpers.js:109
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
-msgstr "%(changer)s txubi la lhinde cun %(change)s."
+msgstr "%(changer)s txube la lhinde cun %(change)s."
 
 #: gui/session/selection_panels_helpers.js:110
 #, javascript-format
@@ -1692,7 +1692,7 @@ msgstr "Aborta’l mandaho actual."
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
-msgstr "Invia’ læs unidades scoyidæs a mover & aggredi’l sitiu siñalau n deponiendo recursos."
+msgstr "Invia’ læs unidades scoyidæs a mover & attaca’l sitiu siñalau n deponiendo recursos."
 
 #: gui/session/unit_actions.js:1503
 msgid "Order the selected units to garrison in a structure or unit."
@@ -1734,7 +1734,7 @@ msgstr "Commercio"
 
 #: gui/session/unit_actions.js:1705
 msgid "Patrol"
-msgstr "Velar"
+msgstr "Roldar"
 
 #: gui/session/unit_actions.js:1706
 msgid "Attack all encountered enemy units while avoiding structures."
