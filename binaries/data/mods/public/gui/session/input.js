@@ -93,7 +93,7 @@ var prevHotkey = 0;
 
 function getMaxDragDelta()
 {
-	return Engine.ConfigDB_GetValue("user", "gui.session.dragdelta"));
+	return Engine.ConfigDB_GetValue("user", "gui.session.dragdelta");
 }
 
 function updateCursorAndTooltip()
