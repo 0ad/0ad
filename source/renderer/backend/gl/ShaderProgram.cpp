@@ -362,20 +362,11 @@ public:
 
 	void Bind(CShaderProgram* previousShaderProgram) override
 	{
-		CShaderProgramARB* previousShaderProgramARB = nullptr;
 		if (previousShaderProgram)
-			previousShaderProgramARB = static_cast<CShaderProgramARB*>(previousShaderProgramARB);
+			previousShaderProgram->Unbind();
 
-		if (previousShaderProgramARB)
-			previousShaderProgramARB->UnbindClientStates();
-
-		if (!previousShaderProgramARB ||
-			previousShaderProgramARB->m_VertexProgram != m_VertexProgram ||
-			previousShaderProgramARB->m_FragmentProgram != m_FragmentProgram)
-		{
-			glBindProgramARB(GL_VERTEX_PROGRAM_ARB, m_VertexProgram);
-			glBindProgramARB(GL_FRAGMENT_PROGRAM_ARB, m_FragmentProgram);
-		}
+		glBindProgramARB(GL_VERTEX_PROGRAM_ARB, m_VertexProgram);
+		glBindProgramARB(GL_FRAGMENT_PROGRAM_ARB, m_FragmentProgram);
 
 		BindClientStates();
 	}
