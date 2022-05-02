@@ -26,7 +26,6 @@
 #include "graphics/Terrain.h"
 #include "graphics/TextureManager.h"
 #include "lib/hash.h"
-#include "lib/ogl.h"
 #include "maths/MathUtil.h"
 #include "maths/Quaternion.h"
 #include "ps/CStrInternStatic.h"

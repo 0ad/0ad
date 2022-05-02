@@ -536,8 +536,6 @@ void ActorViewer::Render()
 	}
 
 	g_Renderer.EndFrame();
-
-	ogl_WarnIfError();
 }
 
 void ActorViewer::Update(float simFrameLength, float realFrameLength)

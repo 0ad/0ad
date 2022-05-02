@@ -334,6 +334,7 @@ void CDeviceCommandContext::UploadBufferRegion(
 	{
 		// Tell the driver that it can reallocate the whole VBO
 		glBufferDataARB(target, buffer->GetSize(), nullptr, buffer->IsDynamic() ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
+		ogl_WarnIfError();
 
 		// (In theory, glMapBufferRange with GL_MAP_INVALIDATE_BUFFER_BIT could be used
 		// here instead of glBufferData(..., NULL, ...) plus glMapBuffer(), but with
@@ -348,6 +349,7 @@ void CDeviceCommandContext::UploadBufferRegion(
 	else
 	{
 		glBufferSubDataARB(target, dataOffset, dataSize, data);
+		ogl_WarnIfError();
 	}
 }
 
@@ -401,6 +403,7 @@ void CDeviceCommandContext::BindTexture(
 		glBindTexture(m_BoundTextures[unit].target, 0);
 	if (m_BoundTextures[unit].handle != handle)
 		glBindTexture(target, handle);
+	ogl_WarnIfError();
 	m_BoundTextures[unit] = {target, handle};
 }
 
@@ -422,6 +425,7 @@ void CDeviceCommandContext::BindBuffer(const CBuffer::Type type, CBuffer* buffer
 	const GLenum target = BufferTypeToGLTarget(type);
 	const GLuint handle = buffer ? buffer->GetHandle() : 0;
 	glBindBufferARB(target, handle);
+	ogl_WarnIfError();
 	const size_t cacheIndex = static_cast<size_t>(type);
 	ENSURE(cacheIndex < m_BoundBuffers.size());
 	m_BoundBuffers[cacheIndex].second = handle;
@@ -703,6 +707,8 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 	}
 #endif
 
+	ogl_WarnIfError();
+
 	m_GraphicsPipelineStateDesc = pipelineStateDesc;
 }
 
@@ -726,6 +732,7 @@ void CDeviceCommandContext::BlitFramebuffer(
 		0, 0, sourceFramebuffer->GetWidth(), sourceFramebuffer->GetHeight(),
 		(sourceFramebuffer->GetAttachmentMask() & destinationFramebuffer->GetAttachmentMask()),
 		GL_NEAREST);
+	ogl_WarnIfError();
 #endif
 }
 
@@ -776,6 +783,7 @@ void CDeviceCommandContext::SetFramebuffer(CFramebuffer* framebuffer)
 	ENSURE(framebuffer->GetHandle() == 0 || (framebuffer->GetWidth() > 0 && framebuffer->GetHeight() > 0));
 	m_Framebuffer = framebuffer;
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, framebuffer->GetHandle());
+	ogl_WarnIfError();
 }
 
 void CDeviceCommandContext::ReadbackFramebufferSync(
@@ -806,6 +814,7 @@ void CDeviceCommandContext::SetScissors(const uint32_t scissorCount, const Rect*
 			glScissor(m_Scissors[0].x, m_Scissors[0].y, m_Scissors[0].width, m_Scissors[0].height);
 		}
 	}
+	ogl_WarnIfError();
 	m_ScissorCount = scissorCount;
 }
 
@@ -813,6 +822,7 @@ void CDeviceCommandContext::SetViewports(const uint32_t viewportCount, const Rec
 {
 	ENSURE(viewportCount == 1);
 	glViewport(viewports[0].x, viewports[0].y, viewports[0].width, viewports[0].height);
+	ogl_WarnIfError();
 }
 
 void CDeviceCommandContext::SetVertexAttributeFormat(

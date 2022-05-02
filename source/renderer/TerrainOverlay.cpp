@@ -24,7 +24,6 @@
 #include "graphics/ShaderProgram.h"
 #include "graphics/Terrain.h"
 #include "lib/bits.h"
-#include "lib/ogl.h"
 #include "maths/MathUtil.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/Game.h"

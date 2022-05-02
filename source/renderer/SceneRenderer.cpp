@@ -587,20 +587,17 @@ void CSceneRenderer::RenderReflections(
 
 	CShaderDefines reflectionsContext = context;
 	reflectionsContext.Add(str_PASS_REFLECTIONS, str_1);
+
 	// Render terrain and models
 	RenderPatches(deviceCommandContext, reflectionsContext, CULL_REFLECTIONS);
-	ogl_WarnIfError();
 	RenderModels(deviceCommandContext, reflectionsContext, CULL_REFLECTIONS);
-	ogl_WarnIfError();
 	RenderTransparentModels(deviceCommandContext, reflectionsContext, CULL_REFLECTIONS, TRANSPARENT);
-	ogl_WarnIfError();
 
 	// Particles are always oriented to face the camera in the vertex shader,
 	// so they don't need the inverted cull face.
 	if (g_RenderingOptions.GetParticles())
 	{
 		RenderParticles(deviceCommandContext, CULL_REFLECTIONS);
-		ogl_WarnIfError();
 	}
 
 	deviceCommandContext->SetScissors(0, nullptr);
@@ -660,14 +657,12 @@ void CSceneRenderer::RenderRefractions(
 
 	// Render terrain and models
 	RenderPatches(deviceCommandContext, context, CULL_REFRACTIONS);
-	ogl_WarnIfError();
+
 	// Render debug-related terrain overlays to make it visible under water.
 	ITerrainOverlay::RenderOverlaysBeforeWater(deviceCommandContext);
-	ogl_WarnIfError();
+
 	RenderModels(deviceCommandContext, context, CULL_REFRACTIONS);
-	ogl_WarnIfError();
 	RenderTransparentModels(deviceCommandContext, context, CULL_REFRACTIONS, TRANSPARENT_OPAQUE);
-	ogl_WarnIfError();
 
 	deviceCommandContext->SetScissors(0, nullptr);
 
@@ -766,8 +761,6 @@ void CSceneRenderer::RenderSubmissions(
 
 	int cullGroup = CULL_DEFAULT;
 
-	ogl_WarnIfError();
-
 	// Set the camera
 	g_Renderer.SetViewport(m_ViewCamera.GetViewPort());
 
@@ -792,8 +785,6 @@ void CSceneRenderer::RenderSubmissions(
 	{
 		RenderShadowMap(deviceCommandContext, context);
 	}
-
-	ogl_WarnIfError();
 
 	if (m->waterManager.m_RenderWater)
 	{
@@ -844,18 +835,14 @@ void CSceneRenderer::RenderSubmissions(
 
 	// render submitted patches and models
 	RenderPatches(deviceCommandContext, context, cullGroup);
-	ogl_WarnIfError();
 
 	// render debug-related terrain overlays
 	ITerrainOverlay::RenderOverlaysBeforeWater(deviceCommandContext);
-	ogl_WarnIfError();
 
 	// render other debug-related overlays before water (so they can be seen when underwater)
 	m->overlayRenderer.RenderOverlaysBeforeWater(deviceCommandContext);
-	ogl_WarnIfError();
 
 	RenderModels(deviceCommandContext, context, cullGroup);
-	ogl_WarnIfError();
 
 	// render water
 	if (m->waterManager.m_RenderWater && g_Game && waterScissor.GetVolume() > 0)
@@ -864,45 +851,36 @@ void CSceneRenderer::RenderSubmissions(
 		{
 			// Render transparent stuff, but only the solid parts that can occlude block water.
 			RenderTransparentModels(deviceCommandContext, context, cullGroup, TRANSPARENT_OPAQUE);
-			ogl_WarnIfError();
 
 			m->terrainRenderer.RenderWater(deviceCommandContext, context, cullGroup, &m->shadow);
-			ogl_WarnIfError();
 
 			// Render transparent stuff again, but only the blended parts that overlap water.
 			RenderTransparentModels(deviceCommandContext, context, cullGroup, TRANSPARENT_BLEND);
-			ogl_WarnIfError();
 		}
 		else
 		{
 			m->terrainRenderer.RenderWater(deviceCommandContext, context, cullGroup, &m->shadow);
-			ogl_WarnIfError();
 
 			// Render transparent stuff, so it can overlap models/terrain.
 			RenderTransparentModels(deviceCommandContext, context, cullGroup, TRANSPARENT);
-			ogl_WarnIfError();
 		}
 	}
 	else
 	{
 		// render transparent stuff, so it can overlap models/terrain
 		RenderTransparentModels(deviceCommandContext, context, cullGroup, TRANSPARENT);
-		ogl_WarnIfError();
 	}
 
 	// render debug-related terrain overlays
 	ITerrainOverlay::RenderOverlaysAfterWater(deviceCommandContext, cullGroup);
-	ogl_WarnIfError();
 
 	// render some other overlays after water (so they can be displayed on top of water)
 	m->overlayRenderer.RenderOverlaysAfterWater(deviceCommandContext);
-	ogl_WarnIfError();
 
 	// particles are transparent so render after water
 	if (g_RenderingOptions.GetParticles())
 	{
 		RenderParticles(deviceCommandContext, cullGroup);
-		ogl_WarnIfError();
 	}
 
 	if (postprocManager.IsEnabled())
@@ -931,7 +909,6 @@ void CSceneRenderer::RenderSubmissions(
 
 	// render overlays that should appear on top of all other objects
 	m->overlayRenderer.RenderForegroundOverlays(deviceCommandContext, m_ViewCamera);
-	ogl_WarnIfError();
 }
 
 void CSceneRenderer::EndFrame()
@@ -964,8 +941,6 @@ void CSceneRenderer::RenderTextOverlays(CCanvas2D& canvas)
 
 	if (m_DisplayTerrainPriorities)
 		m->terrainRenderer.RenderPriorities(canvas, CULL_DEFAULT);
-
-	ogl_WarnIfError();
 }
 
 // SetSceneCamera: setup projection and transform of camera and adjust viewport to current view
@@ -1154,8 +1129,6 @@ void CSceneRenderer::RenderScene(
 	}
 
 	m_CurrentCullGroup = -1;
-
-	ogl_WarnIfError();
 
 	RenderSubmissions(deviceCommandContext, waterScissor);
 

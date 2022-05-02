@@ -19,7 +19,6 @@
 #define INCLUDED_PARTICLEEMITTERTYPE
 
 #include "graphics/Texture.h"
-#include "lib/ogl.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "maths/BoundingBoxAligned.h"
 

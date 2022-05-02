@@ -36,7 +36,6 @@ that of Atlas depending on commandline parameters.
 #include "lib/secure_crt.h"
 #include "lib/frequency_filter.h"
 #include "lib/input.h"
-#include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/external_libraries/libsdl.h"
 
@@ -361,8 +360,6 @@ static void Frame()
 	g_Profiler2.IncrementFrameNumber();
 	PROFILE2_ATTR("%d", g_Profiler2.GetFrameNumber());
 
-	ogl_WarnIfError();
-
 	// get elapsed time
 	const double time = timer_Time();
 	g_frequencyFilter->Update(time);
@@ -420,11 +417,7 @@ static void Frame()
 	if (g_NetClient)
 		g_NetClient->Poll();
 
-	ogl_WarnIfError();
-
 	g_GUI->TickObjects();
-
-	ogl_WarnIfError();
 
 	if (g_RLInterface)
 		g_RLInterface->TryApplyMessage();
@@ -444,7 +437,6 @@ static void Frame()
 	g_UserReporter.Update();
 
 	g_Console->Update(realTimeSinceLastFrame);
-	ogl_WarnIfError();
 
 	if (g_SoundManager)
 		g_SoundManager->IdleTask();

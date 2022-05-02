@@ -23,7 +23,6 @@
 #include "graphics/LightEnv.h"
 #include "graphics/ShaderManager.h"
 #include "lib/bits.h"
-#include "lib/ogl.h"
 #include "maths/MathUtil.h"
 #include "ps/ConfigDB.h"
 #include "ps/CLogger.h"

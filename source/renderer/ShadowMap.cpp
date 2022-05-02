@@ -24,7 +24,6 @@
 #include "graphics/ShaderManager.h"
 #include "gui/GUIMatrix.h"
 #include "lib/bits.h"
-#include "lib/ogl.h"
 #include "maths/BoundingBoxAligned.h"
 #include "maths/Brush.h"
 #include "maths/Frustum.h"
@@ -722,8 +721,6 @@ void ShadowMap::RenderDebugBounds()
 		g_Renderer.GetDebugRenderer().DrawBrush(frustumBrush, CColor(1.0f, 0.0f, 0.0f, 0.1f));
 		g_Renderer.GetDebugRenderer().DrawBrush(frustumBrush, CColor(1.0f, 0.0f, 0.0f, 0.1f), true);
 	}
-
-	ogl_WarnIfError();
 }
 
 int ShadowMap::GetCascadeCount() const

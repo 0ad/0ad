@@ -28,7 +28,6 @@
 #include "graphics/ObjectManager.h"
 #include "gui/GUIManager.h"
 #include "lib/external_libraries/libsdl.h"
-#include "lib/ogl.h"
 #include "lib/timer.h"
 #include "maths/MathUtil.h"
 #include "ps/CConsole.h"

@@ -25,7 +25,6 @@
 #include "graphics/ModelDef.h"
 #include "graphics/ShaderProgram.h"
 #include "lib/bits.h"
-#include "lib/ogl.h"
 #include "lib/sysdep/rtl.h"
 #include "maths/Vector3D.h"
 #include "renderer/Renderer.h"

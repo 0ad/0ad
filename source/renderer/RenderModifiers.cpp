@@ -24,7 +24,6 @@
 #include "graphics/LOSTexture.h"
 #include "graphics/Model.h"
 #include "graphics/TextureManager.h"
-#include "lib/ogl.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
 #include "maths/Matrix3D.h"

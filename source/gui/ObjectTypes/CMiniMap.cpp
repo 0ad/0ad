@@ -35,7 +35,6 @@
 #include "gui/GUIMatrix.h"
 #include "lib/bits.h"
 #include "lib/external_libraries/libsdl.h"
-#include "lib/ogl.h"
 #include "lib/timer.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"

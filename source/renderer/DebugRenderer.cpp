@@ -23,7 +23,6 @@
 #include "graphics/Color.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/ShaderProgram.h"
-#include "lib/ogl.h"
 #include "maths/BoundingBoxAligned.h"
 #include "maths/Brush.h"
 #include "maths/Matrix3D.h"

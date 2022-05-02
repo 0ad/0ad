@@ -23,7 +23,6 @@
 #include "graphics/ShaderProgram.h"
 #include "lib/bits.h"
 #include "lib/timer.h"
-#include "lib/ogl.h"
 #include "maths/MathUtil.h"
 #include "maths/Vector2D.h"
 #include "ps/CLogger.h"

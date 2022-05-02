@@ -19,7 +19,6 @@
 
 #include "VertexBuffer.h"
 
-#include "lib/ogl.h"
 #include "lib/sysdep/cpu.h"
 #include "ps/CLogger.h"
 #include "ps/Errors.h"

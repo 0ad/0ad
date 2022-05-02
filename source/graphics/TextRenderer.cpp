@@ -23,7 +23,6 @@
 #include "graphics/FontManager.h"
 #include "graphics/ShaderProgram.h"
 #include "graphics/TextureManager.h"
-#include "lib/ogl.h"
 #include "maths/Matrix3D.h"
 #include "ps/CStrIntern.h"
 #include "ps/CStrInternStatic.h"

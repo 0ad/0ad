@@ -22,7 +22,6 @@
 #include "graphics/Canvas2D.h"
 #include "graphics/FontMetrics.h"
 #include "graphics/TextRenderer.h"
-#include "lib/ogl.h"
 #include "lib/os_path.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
