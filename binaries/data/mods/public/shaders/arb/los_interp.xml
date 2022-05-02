@@ -5,7 +5,7 @@
         <stream name="uv0"/>
     </vertex>
     <fragment file="arb/los_interp.fp">
-        <uniform name="delta" loc="0" type="vec3"/>
+        <uniform name="delta" loc="0" type="float"/>
         <uniform name="losTex1" loc="0" type="sampler2D"/>
         <uniform name="losTex2" loc="1" type="sampler2D"/>
     </fragment>

@@ -580,8 +580,8 @@ void ShaderModelRenderer::Render(
 		// texBindings holds the identifier bindings in the shader, which can no longer be defined
 		// statically in the ShaderRenderModifier class. texBindingNames uses interned strings to
 		// keep track of when bindings need to be reevaluated.
-		using BindingListAllocator = ProxyAllocator<Renderer::Backend::GL::CShaderProgram::Binding, Arena>;
-		std::vector<Renderer::Backend::GL::CShaderProgram::Binding, BindingListAllocator> texBindings((BindingListAllocator(arena)));
+		using BindingListAllocator = ProxyAllocator<int32_t, Arena>;
+		std::vector<int32_t, BindingListAllocator> texBindings((BindingListAllocator(arena)));
 		texBindings.reserve(64);
 
 		using BindingNamesListAllocator = ProxyAllocator<CStrIntern, Arena>;
@@ -607,9 +607,9 @@ void ShaderModelRenderer::Render(
 					currentTech->GetGraphicsPipelineStateDesc(pass));
 				deviceCommandContext->BeginPass();
 
-				Renderer::Backend::GL::CShaderProgram* shader = currentTech->GetShader(pass);
+				Renderer::Backend::IShaderProgram* shader = currentTech->GetShader(pass);
 
-				modifier->BeginPass(shader);
+				modifier->BeginPass(deviceCommandContext, shader);
 
 				// TODO: Use a more generic approach to handle bound queries.
 				bool boundTime = false;
@@ -647,12 +647,12 @@ void ShaderModelRenderer::Render(
 						if (currentTexs.size() != samplersNum)
 						{
 							currentTexs.resize(samplersNum, NULL);
-							texBindings.resize(samplersNum, Renderer::Backend::GL::CShaderProgram::Binding());
+							texBindings.resize(samplersNum, -1);
 							texBindingNames.resize(samplersNum, CStrIntern());
 
 							// ensure they are definitely empty
-							std::fill(texBindings.begin(), texBindings.end(), Renderer::Backend::GL::CShaderProgram::Binding());
-							std::fill(currentTexs.begin(), currentTexs.end(), (CTexture*)NULL);
+							std::fill(texBindings.begin(), texBindings.end(), -1);
+							std::fill(currentTexs.begin(), currentTexs.end(), nullptr);
 							std::fill(texBindingNames.begin(), texBindingNames.end(), CStrIntern());
 						}
 
@@ -663,18 +663,19 @@ void ShaderModelRenderer::Render(
 
 							// check that the handles are current
 							// and reevaluate them if necessary
-							if (texBindingNames[s] != samp.Name || !texBindings[s].Active())
+							if (texBindingNames[s] != samp.Name || texBindings[s] < 0)
 							{
-								texBindings[s] = shader->GetTextureBinding(samp.Name);
+								texBindings[s] = shader->GetBindingSlot(samp.Name);
 								texBindingNames[s] = samp.Name;
 							}
 
 							// same with the actual sampler bindings
 							CTexture* newTex = samp.Sampler.get();
-							if (texBindings[s].Active() && newTex != currentTexs[s])
+							if (texBindings[s] >= 0 && newTex != currentTexs[s])
 							{
 								newTex->UploadBackendTextureIfNeeded(deviceCommandContext);
-								shader->BindTexture(texBindings[s], newTex->GetBackendTexture());
+								deviceCommandContext->SetTexture(
+									texBindings[s], newTex->GetBackendTexture());
 								currentTexs[s] = newTex;
 							}
 						}
@@ -684,7 +685,7 @@ void ShaderModelRenderer::Render(
 						if (newModeldef != currentModeldef)
 						{
 							currentModeldef = newModeldef;
-							m->vertexRenderer->PrepareModelDef(deviceCommandContext, shader, *currentModeldef);
+							m->vertexRenderer->PrepareModelDef(deviceCommandContext, *currentModeldef);
 						}
 
 						// Bind all uniforms when any change
@@ -692,7 +693,7 @@ void ShaderModelRenderer::Render(
 						if (newStaticUniforms != currentStaticUniforms)
 						{
 							currentStaticUniforms = newStaticUniforms;
-							currentStaticUniforms.BindUniforms(shader);
+							currentStaticUniforms.BindUniforms(deviceCommandContext, shader);
 						}
 
 						const CShaderRenderQueries& renderQueries = model->GetMaterial().GetRenderQueries();
@@ -704,7 +705,8 @@ void ShaderModelRenderer::Render(
 							{
 								if (!boundTime)
 								{
-									shader->Uniform(rq.second, time, 0.0f, 0.0f, 0.0f);
+									deviceCommandContext->SetUniform(
+										shader->GetBindingSlot(rq.second), time);
 									boundTime = true;
 								}
 							}
@@ -718,10 +720,16 @@ void ShaderModelRenderer::Render(
 									{
 										const CTexturePtr& waterTexture = waterManager.m_NormalMap[waterManager.GetCurrentTextureIndex(period)];
 										waterTexture->UploadBackendTextureIfNeeded(deviceCommandContext);
-										shader->BindTexture(str_waterTex, waterTexture->GetBackendTexture());
+										deviceCommandContext->SetTexture(
+											shader->GetBindingSlot(str_waterTex),
+											waterTexture->GetBackendTexture());
 									}
 									else
-										shader->BindTexture(str_waterTex, g_Renderer.GetTextureManager().GetErrorTexture()->GetBackendTexture());
+									{
+										deviceCommandContext->SetTexture(
+											shader->GetBindingSlot(str_waterTex),
+											g_Renderer.GetTextureManager().GetErrorTexture()->GetBackendTexture());
+									}
 									boundWaterTexture = true;
 								}
 							}
@@ -729,13 +737,15 @@ void ShaderModelRenderer::Render(
 							{
 								if (!boundSkyCube)
 								{
-									shader->BindTexture(str_skyCube, g_Renderer.GetSceneRenderer().GetSkyManager().GetSkyCube());
+									deviceCommandContext->SetTexture(
+										shader->GetBindingSlot(str_skyCube),
+										g_Renderer.GetSceneRenderer().GetSkyManager().GetSkyCube());
 									boundSkyCube = true;
 								}
 							}
 						}
 
-						modifier->PrepareModel(shader, model);
+						modifier->PrepareModel(deviceCommandContext, model);
 
 						CModelRData* rdata = static_cast<CModelRData*>(model->GetRenderData());
 						ENSURE(rdata->GetKey() == m->vertexRenderer.get());

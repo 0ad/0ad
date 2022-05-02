@@ -26,7 +26,7 @@
 #include "graphics/MeshManager.h"
 #include "graphics/ShaderProgramPtr.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
-#include "renderer/backend/gl/ShaderProgram.h"
+#include "renderer/backend/IShaderProgram.h"
 
 class CModel;
 class CModelRData;
@@ -114,7 +114,7 @@ public:
 
 
 	/**
-	 * PrepareModelDef: Setup OpenGL state for rendering of models that
+	 * PrepareModelDef: Setup backend state for rendering of models that
 	 * use the given CModelDef object as base.
 	 *
 	 * ModelRenderer implementations must call this function before
@@ -126,7 +126,7 @@ public:
 	 */
 	virtual void PrepareModelDef(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		Renderer::Backend::GL::CShaderProgram* shader, const CModelDef& def) = 0;
+		const CModelDef& def) = 0;
 
 
 	/**
@@ -147,7 +147,7 @@ public:
 	 */
 	virtual void RenderModel(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		Renderer::Backend::GL::CShaderProgram* shader, CModel* model, CModelRData* data) = 0;
+		Renderer::Backend::IShaderProgram* shader, CModel* model, CModelRData* data) = 0;
 };
 
 

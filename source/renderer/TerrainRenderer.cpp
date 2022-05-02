@@ -174,12 +174,17 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 	deviceCommandContext->SetGraphicsPipelineState(
 		debugOverlayTech->GetGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginPass();
-	Renderer::Backend::GL::CShaderProgram* debugOverlayShader = debugOverlayTech->GetShader();
+	Renderer::Backend::IShaderProgram* debugOverlayShader = debugOverlayTech->GetShader();
 
-	debugOverlayShader->BindTexture(str_baseTex, texture);
-	debugOverlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
-	debugOverlayShader->Uniform(str_textureTransform, textureMatrix);
-	CPatchRData::RenderStreams(deviceCommandContext, visiblePatches, debugOverlayShader, true);
+	deviceCommandContext->SetTexture(
+		debugOverlayShader->GetBindingSlot(str_baseTex), texture);
+	const CMatrix3D transform =
+		g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
+	deviceCommandContext->SetUniform(
+		debugOverlayShader->GetBindingSlot(str_transform), transform.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		debugOverlayShader->GetBindingSlot(str_textureTransform), textureMatrix.AsFloatArray());
+	CPatchRData::RenderStreams(deviceCommandContext, visiblePatches, true);
 
 	// To make the overlay visible over water, render an additional map-sized
 	// water-height patch.
@@ -221,28 +226,47 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 /**
  * Set up all the uniforms for a shader pass.
  */
-void TerrainRenderer::PrepareShader(Renderer::Backend::GL::CShaderProgram* shader, ShadowMap* shadow)
+void TerrainRenderer::PrepareShader(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IShaderProgram* shader, ShadowMap* shadow)
 {
 	CSceneRenderer& sceneRenderer = g_Renderer.GetSceneRenderer();
 
-	shader->Uniform(str_transform, sceneRenderer.GetViewCamera().GetViewProjection());
-	shader->Uniform(str_cameraPos, sceneRenderer.GetViewCamera().GetOrientation().GetTranslation());
+	const CMatrix3D transform = sceneRenderer.GetViewCamera().GetViewProjection();
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_transform), transform.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_cameraPos),
+		sceneRenderer.GetViewCamera().GetOrientation().GetTranslation().AsFloatArray());
 
 	const CLightEnv& lightEnv = sceneRenderer.GetLightEnv();
 
 	if (shadow)
-		shadow->BindTo(shader);
+		shadow->BindTo(deviceCommandContext, shader);
 
 	CLOSTexture& los = sceneRenderer.GetScene().GetLOSTexture();
-	shader->BindTexture(str_losTex, los.GetTextureSmooth());
-	shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_losTex), los.GetTextureSmooth());
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_losTransform),
+		los.GetTextureMatrix()[0], los.GetTextureMatrix()[12]);
 
-	shader->Uniform(str_ambient, lightEnv.m_AmbientColor);
-	shader->Uniform(str_sunColor, lightEnv.m_SunColor);
-	shader->Uniform(str_sunDir, lightEnv.GetSunDir());
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_ambient),
+		lightEnv.m_AmbientColor.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_sunColor),
+		lightEnv.m_SunColor.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_sunDir),
+		lightEnv.GetSunDir().AsFloatArray());
 
-	shader->Uniform(str_fogColor, lightEnv.m_FogColor);
-	shader->Uniform(str_fogParams, lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_fogColor),
+		lightEnv.m_FogColor.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_fogParams),
+		lightEnv.m_FogFactor, lightEnv.m_FogMax);
 }
 
 void TerrainRenderer::RenderTerrainShader(
@@ -264,11 +288,15 @@ void TerrainRenderer::RenderTerrainShader(
 	deviceCommandContext->SetGraphicsPipelineState(solidPipelineStateDesc);
 	deviceCommandContext->BeginPass();
 
-	Renderer::Backend::GL::CShaderProgram* shaderSolid = techSolid->GetShader();
-	shaderSolid->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
-	shaderSolid->Uniform(str_color, 0.0f, 0.0f, 0.0f, 1.0f);
+	Renderer::Backend::IShaderProgram* shaderSolid = techSolid->GetShader();
+	const CMatrix3D transform =
+		g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
+	deviceCommandContext->SetUniform(
+		shaderSolid->GetBindingSlot(str_transform), transform.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		shaderSolid->GetBindingSlot(str_color), 0.0f, 0.0f, 0.0f, 1.0f);
 
-	CPatchRData::RenderSides(deviceCommandContext, visiblePatches, shaderSolid);
+	CPatchRData::RenderSides(deviceCommandContext, visiblePatches);
 
 	deviceCommandContext->EndPass();
 
@@ -278,13 +306,7 @@ void TerrainRenderer::RenderTerrainShader(
 	CPatchRData::RenderBlends(deviceCommandContext, visiblePatches, context, shadow);
 
 	CDecalRData::RenderDecals(deviceCommandContext, visibleDecals, context, shadow);
-
-	// restore OpenGL state
-	deviceCommandContext->BindTexture(3, GL_TEXTURE_2D, 0);
-	deviceCommandContext->BindTexture(2, GL_TEXTURE_2D, 0);
-	deviceCommandContext->BindTexture(1, GL_TEXTURE_2D, 0);
 }
-
 
 ///////////////////////////////////////////////////////////////////
 // Render un-textured patches as polygons
@@ -305,11 +327,16 @@ void TerrainRenderer::RenderPatches(
 		solidTech->GetGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginPass();
 
-	Renderer::Backend::GL::CShaderProgram* solidShader = solidTech->GetShader();
-	solidShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
-	solidShader->Uniform(str_color, color);
+	Renderer::Backend::IShaderProgram* solidShader = solidTech->GetShader();
 
-	CPatchRData::RenderStreams(deviceCommandContext, visiblePatches, solidShader, false);
+	const CMatrix3D transform =
+		g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
+	deviceCommandContext->SetUniform(
+		solidShader->GetBindingSlot(str_transform), transform.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		solidShader->GetBindingSlot(str_color), color.AsFloatArray());
+
+	CPatchRData::RenderStreams(deviceCommandContext, visiblePatches, false);
 	deviceCommandContext->EndPass();
 }
 
@@ -405,7 +432,7 @@ bool TerrainRenderer::RenderFancyWater(
 	deviceCommandContext->SetGraphicsPipelineState(
 		m->fancyWaterTech->GetGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginPass();
-	Renderer::Backend::GL::CShaderProgram* fancyWaterShader = m->fancyWaterTech->GetShader();
+	Renderer::Backend::IShaderProgram* fancyWaterShader = m->fancyWaterTech->GetShader();
 
 	const CCamera& camera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
@@ -413,87 +440,157 @@ bool TerrainRenderer::RenderFancyWater(
 	// TODO: move uploading to a prepare function during loading.
 	const CTexturePtr& currentNormalTexture = waterManager.m_NormalMap[waterManager.GetCurrentTextureIndex(period)];
 	const CTexturePtr& nextNormalTexture = waterManager.m_NormalMap[waterManager.GetNextTextureIndex(period)];
+
 	currentNormalTexture->UploadBackendTextureIfNeeded(deviceCommandContext);
 	nextNormalTexture->UploadBackendTextureIfNeeded(deviceCommandContext);
-	fancyWaterShader->BindTexture(str_normalMap, currentNormalTexture->GetBackendTexture());
-	fancyWaterShader->BindTexture(str_normalMap2, nextNormalTexture->GetBackendTexture());
+
+	deviceCommandContext->SetTexture(
+		fancyWaterShader->GetBindingSlot(str_normalMap),
+		currentNormalTexture->GetBackendTexture());
+	deviceCommandContext->SetTexture(
+		fancyWaterShader->GetBindingSlot(str_normalMap2),
+		nextNormalTexture->GetBackendTexture());
 
 	if (waterManager.m_WaterFancyEffects)
 	{
-		fancyWaterShader->BindTexture(str_waterEffectsTex, waterManager.m_FancyTexture.get());
+		deviceCommandContext->SetTexture(
+			fancyWaterShader->GetBindingSlot(str_waterEffectsTex),
+			waterManager.m_FancyTexture.get());
 	}
 
 	if (waterManager.m_WaterRefraction && waterManager.m_WaterRealDepth)
 	{
-		fancyWaterShader->BindTexture(str_depthTex, waterManager.m_RefrFboDepthTexture.get());
-		fancyWaterShader->Uniform(str_projInvTransform, waterManager.m_RefractionProjInvMatrix);
-		fancyWaterShader->Uniform(str_viewInvTransform, waterManager.m_RefractionViewInvMatrix);
+		deviceCommandContext->SetTexture(
+			fancyWaterShader->GetBindingSlot(str_depthTex),
+			waterManager.m_RefrFboDepthTexture.get());
+		deviceCommandContext->SetUniform(
+			fancyWaterShader->GetBindingSlot(str_projInvTransform),
+			waterManager.m_RefractionProjInvMatrix.AsFloatArray());
+		deviceCommandContext->SetUniform(
+			fancyWaterShader->GetBindingSlot(str_viewInvTransform),
+			waterManager.m_RefractionViewInvMatrix.AsFloatArray());
 	}
 
 	if (waterManager.m_WaterRefraction)
-		fancyWaterShader->BindTexture(str_refractionMap, waterManager.m_RefractionTexture.get());
+	{
+		deviceCommandContext->SetTexture(
+			fancyWaterShader->GetBindingSlot(str_refractionMap),
+			waterManager.m_RefractionTexture.get());
+	}
 	if (waterManager.m_WaterReflection)
-		fancyWaterShader->BindTexture(str_reflectionMap, waterManager.m_ReflectionTexture.get());
-	fancyWaterShader->BindTexture(str_losTex, losTexture.GetTextureSmooth());
+	{
+		deviceCommandContext->SetTexture(
+			fancyWaterShader->GetBindingSlot(str_reflectionMap),
+			waterManager.m_ReflectionTexture.get());
+	}
+	deviceCommandContext->SetTexture(
+		fancyWaterShader->GetBindingSlot(str_losTex), losTexture.GetTextureSmooth());
 
 	const CLightEnv& lightEnv = sceneRenderer.GetLightEnv();
 
-	fancyWaterShader->Uniform(str_transform, sceneRenderer.GetViewCamera().GetViewProjection());
+	const CMatrix3D transform = sceneRenderer.GetViewCamera().GetViewProjection();
+	deviceCommandContext->SetUniform(
+		fancyWaterShader->GetBindingSlot(str_transform), transform.AsFloatArray());
 
-	fancyWaterShader->BindTexture(str_skyCube, sceneRenderer.GetSkyManager().GetSkyCube());
+	deviceCommandContext->SetTexture(
+		fancyWaterShader->GetBindingSlot(str_skyCube),
+		sceneRenderer.GetSkyManager().GetSkyCube());
 	// TODO: check that this rotates in the right direction.
 	CMatrix3D skyBoxRotation;
 	skyBoxRotation.SetIdentity();
 	skyBoxRotation.RotateY(M_PI + lightEnv.GetRotation());
-	fancyWaterShader->Uniform(str_skyBoxRot, skyBoxRotation);
+	deviceCommandContext->SetUniform(
+		fancyWaterShader->GetBindingSlot(str_skyBoxRot),
+		skyBoxRotation.AsFloatArray());
 
 	if (waterManager.m_WaterRefraction)
-		fancyWaterShader->Uniform(str_refractionMatrix, waterManager.m_RefractionMatrix);
+	{
+		deviceCommandContext->SetUniform(
+			fancyWaterShader->GetBindingSlot(str_refractionMatrix),
+			waterManager.m_RefractionMatrix.AsFloatArray());
+	}
 	if (waterManager.m_WaterReflection)
-		fancyWaterShader->Uniform(str_reflectionMatrix, waterManager.m_ReflectionMatrix);
+	{
+		deviceCommandContext->SetUniform(
+			fancyWaterShader->GetBindingSlot(str_reflectionMatrix),
+			waterManager.m_ReflectionMatrix.AsFloatArray());
+	}
 
-	fancyWaterShader->Uniform(str_ambient, lightEnv.m_AmbientColor);
-	fancyWaterShader->Uniform(str_sunDir, lightEnv.GetSunDir());
-	fancyWaterShader->Uniform(str_sunColor, lightEnv.m_SunColor);
-	fancyWaterShader->Uniform(str_color, waterManager.m_WaterColor);
-	fancyWaterShader->Uniform(str_tint, waterManager.m_WaterTint);
-	fancyWaterShader->Uniform(str_waviness, waterManager.m_Waviness);
-	fancyWaterShader->Uniform(str_murkiness, waterManager.m_Murkiness);
-	fancyWaterShader->Uniform(str_windAngle, waterManager.m_WindAngle);
-	fancyWaterShader->Uniform(str_repeatScale, 1.0f / repeatPeriod);
-	fancyWaterShader->Uniform(str_losTransform, losTexture.GetTextureMatrix()[0], losTexture.GetTextureMatrix()[12], 0.f, 0.f);
+	deviceCommandContext->SetUniform(
+		fancyWaterShader->GetBindingSlot(str_ambient), lightEnv.m_AmbientColor.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		fancyWaterShader->GetBindingSlot(str_sunDir), lightEnv.GetSunDir().AsFloatArray());
+	deviceCommandContext->SetUniform(
+		fancyWaterShader->GetBindingSlot(str_sunColor), lightEnv.m_SunColor.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		fancyWaterShader->GetBindingSlot(str_color), waterManager.m_WaterColor.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		fancyWaterShader->GetBindingSlot(str_tint), waterManager.m_WaterTint.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		fancyWaterShader->GetBindingSlot(str_waviness), waterManager.m_Waviness);
+	deviceCommandContext->SetUniform(
+		fancyWaterShader->GetBindingSlot(str_murkiness), waterManager.m_Murkiness);
+	deviceCommandContext->SetUniform(
+		fancyWaterShader->GetBindingSlot(str_windAngle), waterManager.m_WindAngle);
+	deviceCommandContext->SetUniform(
+		fancyWaterShader->GetBindingSlot(str_repeatScale), 1.0f / repeatPeriod);
 
-	fancyWaterShader->Uniform(str_cameraPos, camera.GetOrientation().GetTranslation());
+	deviceCommandContext->SetUniform(
+		fancyWaterShader->GetBindingSlot(str_losTransform),
+		losTexture.GetTextureMatrix()[0], losTexture.GetTextureMatrix()[12]);
+	deviceCommandContext->SetUniform(
+		fancyWaterShader->GetBindingSlot(str_cameraPos),
+		camera.GetOrientation().GetTranslation().AsFloatArray());
 
-	fancyWaterShader->Uniform(str_fogColor, lightEnv.m_FogColor);
-	fancyWaterShader->Uniform(str_fogParams, lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
-	fancyWaterShader->Uniform(str_time, (float)time);
-	fancyWaterShader->Uniform(str_screenSize, (float)g_Renderer.GetWidth(), (float)g_Renderer.GetHeight(), 0.0f, 0.0f);
+	deviceCommandContext->SetUniform(
+		fancyWaterShader->GetBindingSlot(str_fogColor),
+		lightEnv.m_FogColor.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		fancyWaterShader->GetBindingSlot(str_fogParams),
+		lightEnv.m_FogFactor, lightEnv.m_FogMax);
+	deviceCommandContext->SetUniform(
+		fancyWaterShader->GetBindingSlot(str_time), static_cast<float>(time));
+	deviceCommandContext->SetUniform(
+		fancyWaterShader->GetBindingSlot(str_screenSize),
+		static_cast<float>(g_Renderer.GetWidth()),
+		static_cast<float>(g_Renderer.GetHeight()));
 
 	if (waterManager.m_WaterType == L"clap")
 	{
-		fancyWaterShader->Uniform(str_waveParams1, 30.0f,1.5f,20.0f,0.03f);
-		fancyWaterShader->Uniform(str_waveParams2, 0.5f,0.0f,0.0f,0.0f);
+		deviceCommandContext->SetUniform(
+			fancyWaterShader->GetBindingSlot(str_waveParams1),
+			30.0f, 1.5f, 20.0f, 0.03f);
+		deviceCommandContext->SetUniform(
+			fancyWaterShader->GetBindingSlot(str_waveParams2),
+			0.5f, 0.0f, 0.0f, 0.0f);
 	}
 	else if (waterManager.m_WaterType == L"lake")
 	{
-		fancyWaterShader->Uniform(str_waveParams1, 8.5f,1.5f,15.0f,0.03f);
-		fancyWaterShader->Uniform(str_waveParams2, 0.2f,0.0f,0.0f,0.07f);
+		deviceCommandContext->SetUniform(
+			fancyWaterShader->GetBindingSlot(str_waveParams1),
+			8.5f, 1.5f, 15.0f, 0.03f);
+		deviceCommandContext->SetUniform(
+			fancyWaterShader->GetBindingSlot(str_waveParams2),
+			0.2f, 0.0f, 0.0f, 0.07f);
 	}
 	else
 	{
-		fancyWaterShader->Uniform(str_waveParams1, 15.0f,0.8f,10.0f,0.1f);
-		fancyWaterShader->Uniform(str_waveParams2, 0.3f,0.0f,0.1f,0.3f);
+		deviceCommandContext->SetUniform(
+			fancyWaterShader->GetBindingSlot(str_waveParams1),
+			15.0f, 0.8f, 10.0f, 0.1f);
+		deviceCommandContext->SetUniform(
+			fancyWaterShader->GetBindingSlot(str_waveParams2),
+			0.3f, 0.0f, 0.1f, 0.3f);
 	}
 
 	if (shadow)
-		shadow->BindTo(fancyWaterShader);
+		shadow->BindTo(deviceCommandContext, fancyWaterShader);
 
 	for (CPatchRData* data : m->visiblePatches[cullGroup])
 	{
-		data->RenderWaterSurface(deviceCommandContext, fancyWaterShader, true);
+		data->RenderWaterSurface(deviceCommandContext, true);
 		if (waterManager.m_WaterFancyEffects)
-			data->RenderWaterShore(deviceCommandContext, fancyWaterShader);
+			data->RenderWaterShore(deviceCommandContext);
 	}
 	deviceCommandContext->EndPass();
 
@@ -521,25 +618,35 @@ void TerrainRenderer::RenderSimpleWater(
 	deviceCommandContext->SetGraphicsPipelineState(
 		waterSimpleTech->GetGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginPass();
-	Renderer::Backend::GL::CShaderProgram* waterSimpleShader = waterSimpleTech->GetShader();
+	Renderer::Backend::IShaderProgram* waterSimpleShader = waterSimpleTech->GetShader();
 
 	const CTexturePtr& waterTexture = waterManager.m_WaterTexture[waterManager.GetCurrentTextureIndex(1.6)];
 	waterTexture->UploadBackendTextureIfNeeded(deviceCommandContext);
-	waterSimpleShader->BindTexture(str_baseTex, waterTexture->GetBackendTexture());
-	waterSimpleShader->BindTexture(str_losTex, losTexture.GetTextureSmooth());
-	waterSimpleShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
-	waterSimpleShader->Uniform(str_losTransform, losTexture.GetTextureMatrix()[0], losTexture.GetTextureMatrix()[12], 0.f, 0.f);
-	waterSimpleShader->Uniform(str_time, static_cast<float>(time));
-	waterSimpleShader->Uniform(str_color, waterManager.m_WaterColor);
+
+	deviceCommandContext->SetTexture(
+		waterSimpleShader->GetBindingSlot(str_baseTex), waterTexture->GetBackendTexture());
+	deviceCommandContext->SetTexture(
+		waterSimpleShader->GetBindingSlot(str_losTex), losTexture.GetTextureSmooth());
+
+	const CMatrix3D transform =
+		g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
+	deviceCommandContext->SetUniform(
+		waterSimpleShader->GetBindingSlot(str_transform), transform.AsFloatArray());
+
+	deviceCommandContext->SetUniform(
+		waterSimpleShader->GetBindingSlot(str_losTransform),
+		losTexture.GetTextureMatrix()[0], losTexture.GetTextureMatrix()[12]);
+	deviceCommandContext->SetUniform(
+		waterSimpleShader->GetBindingSlot(str_time), static_cast<float>(time));
+	deviceCommandContext->SetUniform(
+		waterSimpleShader->GetBindingSlot(str_color), waterManager.m_WaterColor.AsFloatArray());
 
 	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
 	for (size_t i = 0; i < visiblePatches.size(); ++i)
 	{
 		CPatchRData* data = visiblePatches[i];
-		data->RenderWaterSurface(deviceCommandContext, waterSimpleShader, false);
+		data->RenderWaterSurface(deviceCommandContext, false);
 	}
-
-	deviceCommandContext->BindTexture(1, GL_TEXTURE_2D, 0);
 
 	deviceCommandContext->EndPass();
 }
@@ -580,12 +687,18 @@ void TerrainRenderer::RenderWaterFoamOccluders(
 	pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 	deviceCommandContext->BeginPass();
-	Renderer::Backend::GL::CShaderProgram* dummyShader = dummyTech->GetShader();
 
-	dummyShader->Uniform(str_transform, sceneRenderer.GetViewCamera().GetViewProjection());
-	dummyShader->Uniform(str_color, 0.0f, 0.0f, 0.0f, 0.0f);
+	Renderer::Backend::IShaderProgram* dummyShader = dummyTech->GetShader();
+
+	const CMatrix3D transform = sceneRenderer.GetViewCamera().GetViewProjection();
+	deviceCommandContext->SetUniform(
+		dummyShader->GetBindingSlot(str_transform), transform.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		dummyShader->GetBindingSlot(str_color), 0.0f, 0.0f, 0.0f, 0.0f);
+
 	for (CPatchRData* data : m->visiblePatches[cullGroup])
-		data->RenderWaterShore(deviceCommandContext, dummyShader);
+		data->RenderWaterShore(deviceCommandContext);
+
 	deviceCommandContext->EndPass();
 
 	deviceCommandContext->SetFramebuffer(

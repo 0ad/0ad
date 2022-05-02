@@ -4,7 +4,7 @@
 	<vertex file="arb/water_simple.vp">
 		<stream name="pos"/>
 		<uniform name="transform" loc="0" type="mat4"/>
-		<uniform name="losTransform" loc="4" type="vec4"/>
+		<uniform name="losTransform" loc="4" type="vec2"/>
 		<uniform name="time" loc="5" type="float"/>
 	</vertex>
 

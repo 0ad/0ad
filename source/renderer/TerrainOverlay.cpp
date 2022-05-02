@@ -210,10 +210,14 @@ void TerrainOverlay::RenderTile(
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 	deviceCommandContext->BeginPass();
 
-	Renderer::Backend::GL::CShaderProgram* overlayShader = overlayTech->GetShader();
+	Renderer::Backend::IShaderProgram* overlayShader = overlayTech->GetShader();
 
-	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
-	overlayShader->Uniform(str_color, color);
+	const CMatrix3D transform =
+		g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
+	deviceCommandContext->SetUniform(
+		overlayShader->GetBindingSlot(str_transform), transform.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		overlayShader->GetBindingSlot(str_color), color.AsFloatArray());
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
@@ -271,10 +275,14 @@ void TerrainOverlay::RenderTileOutline(
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 	deviceCommandContext->BeginPass();
 
-	Renderer::Backend::GL::CShaderProgram* overlayShader = overlayTech->GetShader();
+	Renderer::Backend::IShaderProgram* overlayShader = overlayTech->GetShader();
 
-	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
-	overlayShader->Uniform(str_color, color);
+	const CMatrix3D transform =
+		g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
+	deviceCommandContext->SetUniform(
+		overlayShader->GetBindingSlot(str_transform), transform.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		overlayShader->GetBindingSlot(str_color), color.AsFloatArray());
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,

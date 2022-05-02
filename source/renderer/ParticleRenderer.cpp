@@ -157,12 +157,18 @@ void ParticleRenderer::RenderParticles(
 			deviceCommandContext->SetGraphicsPipelineState(lastTech->GetGraphicsPipelineStateDesc());
 			deviceCommandContext->BeginPass();
 
-			Renderer::Backend::GL::CShaderProgram* shader = lastTech->GetShader();
-			shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
-			shader->Uniform(str_modelViewMatrix, g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetInverse());
+			Renderer::Backend::IShaderProgram* shader = lastTech->GetShader();
+			const CMatrix3D transform =
+				g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
+			const CMatrix3D modelViewMatrix =
+				g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetInverse();
+			deviceCommandContext->SetUniform(
+				shader->GetBindingSlot(str_transform), transform.AsFloatArray());
+			deviceCommandContext->SetUniform(
+				shader->GetBindingSlot(str_modelViewMatrix), modelViewMatrix.AsFloatArray());
 		}
 		emitter->Bind(deviceCommandContext, lastTech->GetShader());
-		emitter->RenderArray(deviceCommandContext, lastTech->GetShader());
+		emitter->RenderArray(deviceCommandContext);
 	}
 
 	if (lastTech)

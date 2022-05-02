@@ -821,7 +821,7 @@ std::unique_ptr<CBuffer> CDevice::CreateBuffer(
 	return CBuffer::Create(this, name, type, size, dynamic);
 }
 
-std::unique_ptr<CShaderProgram> CDevice::CreateShaderProgram(
+std::unique_ptr<IShaderProgram> CDevice::CreateShaderProgram(
 	const CStr& name, const CShaderDefines& defines)
 {
 	return CShaderProgram::Create(this, name, defines);

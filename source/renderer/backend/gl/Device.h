@@ -100,7 +100,7 @@ public:
 	std::unique_ptr<CBuffer> CreateBuffer(
 		const char* name, const CBuffer::Type type, const uint32_t size, const bool dynamic);
 
-	std::unique_ptr<CShaderProgram> CreateShaderProgram(
+	std::unique_ptr<IShaderProgram> CreateShaderProgram(
 		const CStr& name, const CShaderDefines& defines);
 
 	void Present();

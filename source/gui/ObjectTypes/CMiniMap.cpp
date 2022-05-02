@@ -415,13 +415,10 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 	CMiniMapTexture& miniMapTexture = g_Game->GetView()->GetMiniMapTexture();
 	if (miniMapTexture.GetTexture())
 	{
-		Renderer::Backend::GL::CShaderProgram* shader;
-		CShaderTechniquePtr tech;
-
 		CShaderDefines baseDefines;
 		baseDefines.Add(str_MINIMAP_BASE, str_1);
 
-		tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, baseDefines);
+		CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, baseDefines);
 		Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
 			tech->GetGraphicsPipelineStateDesc();
 		pipelineStateDesc.blendState.enabled = true;
@@ -435,14 +432,20 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 			g_Renderer.GetDeviceCommandContext();
 		deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 		deviceCommandContext->BeginPass();
-		shader = tech->GetShader();
 
-		shader->BindTexture(str_baseTex, miniMapTexture.GetTexture());
+		Renderer::Backend::IShaderProgram* shader = tech->GetShader();
+
+		deviceCommandContext->SetTexture(
+			shader->GetBindingSlot(str_baseTex), miniMapTexture.GetTexture());
+
 		const CMatrix3D baseTransform = GetDefaultGuiMatrix();
 		CMatrix3D baseTextureTransform;
 		baseTextureTransform.SetIdentity();
-		shader->Uniform(str_transform, baseTransform);
-		shader->Uniform(str_textureTransform, baseTextureTransform);
+
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_transform), baseTransform.AsFloatArray());
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_textureTransform), baseTextureTransform.AsFloatArray());
 
 		const float x = m_CachedActualSize.left, y = m_CachedActualSize.bottom;
 		const float x2 = m_CachedActualSize.right, y2 = m_CachedActualSize.top;

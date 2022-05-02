@@ -53,7 +53,7 @@ public:
 
 	void Update(const SOverlayTexturedLine& line);
 	void Render(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const SOverlayTexturedLine& line, Renderer::Backend::GL::CShaderProgram* shader);
+		const SOverlayTexturedLine& line, Renderer::Backend::IShaderProgram* shader);
 
 	bool IsVisibleInFrustum(const CFrustum& frustum) const;
 

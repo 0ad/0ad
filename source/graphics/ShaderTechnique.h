@@ -33,7 +33,7 @@ class CShaderPass
 public:
 	CShaderPass(const Renderer::Backend::GraphicsPipelineStateDesc& pipelineStateDesc, const CShaderProgramPtr& shader);
 
-	Renderer::Backend::GL::CShaderProgram* GetShader() const { return m_Shader->GetBackendShaderProgram(); }
+	Renderer::Backend::IShaderProgram* GetShader() const { return m_Shader->GetBackendShaderProgram(); }
 
 	const Renderer::Backend::GraphicsPipelineStateDesc&
 	GetPipelineStateDesc() const { return m_PipelineStateDesc; }
@@ -56,7 +56,7 @@ public:
 
 	int GetNumPasses() const;
 
-	Renderer::Backend::GL::CShaderProgram* GetShader(int pass = 0) const;
+	Renderer::Backend::IShaderProgram* GetShader(int pass = 0) const;
 
 	const Renderer::Backend::GraphicsPipelineStateDesc&
 	GetGraphicsPipelineStateDesc(int pass = 0) const;

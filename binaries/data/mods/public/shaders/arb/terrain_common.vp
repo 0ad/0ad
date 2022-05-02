@@ -12,6 +12,11 @@ PARAM transform[4] = { program.local[9..12] };
 
 TEMP lighting;
 
+TEMP terrainTextureTransform;
+MOV terrainTextureTransform, textureTransform;
+MOV terrainTextureTransform.z, -textureTransform.y;
+MOV terrainTextureTransform.w, 0;
+
 //// Compute position and normal:
 
 ATTRIB position = vertex.position;
@@ -40,8 +45,8 @@ MUL result.color, lighting, sunColor;
   // Compute texcoords from position and terrain-texture-dependent transform.
   // textureTransform is stored as [c, -s, s, 0],
   // and we want texcoord = (x*c + z*-s, x*-s + z*-c, 0, 1)
-  DP3 result.texcoord[0].x, textureTransform.xyww, position.xzww;
-  DP3 result.texcoord[0].y, -textureTransform.zxww, position.xzww;
+  DP3 result.texcoord[0].x, terrainTextureTransform.xyww, position.xzww;
+  DP3 result.texcoord[0].y, -terrainTextureTransform.zxww, position.xzww;
   MOV result.texcoord[0].z, 0;
   MOV result.texcoord[0].w, 1;
 #endif

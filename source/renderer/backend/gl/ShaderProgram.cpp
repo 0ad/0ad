@@ -23,8 +23,6 @@
 #include "graphics/PreprocessorWrapper.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
-#include "maths/Matrix3D.h"
-#include "maths/Vector3D.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
@@ -40,6 +38,8 @@
 #endif
 
 #include <algorithm>
+#include <map>
+#include <unordered_map>
 
 namespace Renderer
 {
@@ -52,6 +52,22 @@ namespace GL
 
 namespace
 {
+
+struct Binding
+{
+	Binding(int a, int b) : first(a), second(b) { }
+
+	Binding() : first(-1), second(-1) { }
+
+	/**
+		* Returns whether this uniform attribute is active in the shader.
+		* If not then there's no point calling Uniform() to set its value.
+		*/
+	bool Active() const { return first != -1 || second != -1; }
+
+	int first;
+	int second;
+};
 
 int GetStreamMask(const VertexAttributeStream stream)
 {
@@ -201,6 +217,51 @@ bool PreprocessShaderFile(
 	return true;
 }
 
+#if !CONFIG2_GLES
+std::tuple<GLenum, GLenum, GLint> GetElementTypeAndCountFromString(const CStr& str)
+{
+#define CASE(MATCH_STRING, TYPE, ELEMENT_TYPE, ELEMENT_COUNT) \
+	if (str == MATCH_STRING) return {GL_ ## TYPE, GL_ ## ELEMENT_TYPE, ELEMENT_COUNT}
+
+	CASE("float", FLOAT, FLOAT, 1);
+	CASE("vec2", FLOAT_VEC2, FLOAT, 2);
+	CASE("vec3", FLOAT_VEC3, FLOAT, 3);
+	CASE("vec4", FLOAT_VEC4, FLOAT, 4);
+	CASE("mat2", FLOAT_MAT2, FLOAT, 4);
+	CASE("mat3", FLOAT_MAT3, FLOAT, 9);
+	CASE("mat4", FLOAT_MAT4, FLOAT, 16);
+#if !CONFIG2_GLES // GL ES 2.0 doesn't support non-square matrices.
+	CASE("mat2x3", FLOAT_MAT2x3, FLOAT, 6);
+	CASE("mat2x4", FLOAT_MAT2x4, FLOAT, 8);
+	CASE("mat3x2", FLOAT_MAT3x2, FLOAT, 6);
+	CASE("mat3x4", FLOAT_MAT3x4, FLOAT, 12);
+	CASE("mat4x2", FLOAT_MAT4x2, FLOAT, 8);
+	CASE("mat4x3", FLOAT_MAT4x3, FLOAT, 12);
+#endif
+
+	// A somewhat incomplete listing, missing "shadow" and "rect" versions
+	// which are interpreted as 2D (NB: our shadowmaps may change
+	// type based on user config).
+#if CONFIG2_GLES
+	if (str == "sampler1D") debug_warn(L"sampler1D not implemented on GLES");
+#else
+	CASE("sampler1D", SAMPLER_1D, TEXTURE_1D, 1);
+#endif
+	CASE("sampler2D", SAMPLER_2D, TEXTURE_2D, 1);
+#if CONFIG2_GLES
+	if (str == "sampler2DShadow") debug_warn(L"sampler2DShadow not implemented on GLES");
+	if (str == "sampler3D") debug_warn(L"sampler3D not implemented on GLES");
+#else
+	CASE("sampler2DShadow", SAMPLER_2D_SHADOW, TEXTURE_2D, 1);
+	CASE("sampler3D", SAMPLER_3D, TEXTURE_3D, 1);
+#endif
+	CASE("samplerCube", SAMPLER_CUBE, TEXTURE_CUBE_MAP, 1);
+
+#undef CASE
+	return {0, 0, 0};
+}
+#endif // !CONFIG2_GLES
+
 } // anonymous namespace
 
 #if !CONFIG2_GLES
@@ -212,11 +273,10 @@ public:
 		CDevice* device,
 		const VfsPath& vertexFilePath, const VfsPath& fragmentFilePath,
 		const CShaderDefines& defines,
-		const std::map<CStrIntern, int>& vertexIndexes, const std::map<CStrIntern, frag_index_pair_t>& fragmentIndexes,
-		int streamflags) :
-		CShaderProgram(streamflags),
-		m_Device(device),
-		m_VertexIndexes(vertexIndexes), m_FragmentIndexes(fragmentIndexes)
+		const std::map<CStrIntern, std::pair<CStr, int>>& vertexIndices,
+		const std::map<CStrIntern, std::pair<CStr, int>>& fragmentIndices,
+		int streamflags)
+		: CShaderProgram(streamflags), m_Device(device)
 	{
 		glGenProgramsARB(1, &m_VertexProgram);
 		glGenProgramsARB(1, &m_FragmentProgram);
@@ -241,6 +301,30 @@ public:
 
 		if (!Compile(GL_FRAGMENT_PROGRAM_ARB, "fragment", m_FragmentProgram, fragmentFilePath, fragmentCode))
 			return;
+
+		for (const auto& index : vertexIndices)
+		{
+			BindingSlot& bindingSlot = GetOrCreateBindingSlot(index.first);
+			bindingSlot.vertexProgramLocation = index.second.second;
+			const auto [type, elementType, elementCount] = GetElementTypeAndCountFromString(index.second.first);
+			bindingSlot.type = type;
+			bindingSlot.elementType = elementType;
+			bindingSlot.elementCount = elementCount;
+		}
+
+		for (const auto& index : fragmentIndices)
+		{
+			BindingSlot& bindingSlot = GetOrCreateBindingSlot(index.first);
+			bindingSlot.fragmentProgramLocation = index.second.second;
+			const auto [type, elementType, elementCount] = GetElementTypeAndCountFromString(index.second.first);
+			if (bindingSlot.type && type != bindingSlot.type)
+			{
+				LOGERROR("CShaderProgramARB: vertex and fragment program uniforms with the same name should have the same type.");
+			}
+			bindingSlot.type = type;
+			bindingSlot.elementType = elementType;
+			bindingSlot.elementCount = elementCount;
+		}
 	}
 
 	~CShaderProgramARB() override
@@ -302,98 +386,114 @@ public:
 		glBindProgramARB(GL_FRAGMENT_PROGRAM_ARB, 0);
 
 		UnbindClientStates();
-
-		// TODO: should unbind textures, probably
 	}
 
-	int GetUniformVertexIndex(CStrIntern id)
+	int32_t GetBindingSlot(const CStrIntern name) const override
 	{
-		std::map<CStrIntern, int>::iterator it = m_VertexIndexes.find(id);
-		if (it == m_VertexIndexes.end())
-			return -1;
-		return it->second;
+		auto it = m_BindingSlotsMapping.find(name);
+		return it == m_BindingSlotsMapping.end() ? -1 : it->second;
 	}
 
-	frag_index_pair_t GetUniformFragmentIndex(CStrIntern id)
+	TextureUnit GetTextureUnit(const int32_t bindingSlot) override
 	{
-		std::map<CStrIntern, frag_index_pair_t>::iterator it = m_FragmentIndexes.find(id);
-		if (it == m_FragmentIndexes.end())
-			return std::make_pair(-1, 0);
-		return it->second;
+		if (bindingSlot < 0 || bindingSlot >= static_cast<int32_t>(m_BindingSlots.size()))
+			return { 0, 0, 0 };
+		TextureUnit textureUnit;
+		textureUnit.type = m_BindingSlots[bindingSlot].type;
+		textureUnit.target = m_BindingSlots[bindingSlot].elementType;
+		textureUnit.unit = m_BindingSlots[bindingSlot].fragmentProgramLocation;
+		return textureUnit;
 	}
 
-	Binding GetTextureBinding(texture_id_t id) override
+	void SetUniform(
+		const int32_t bindingSlot,
+		const float value) override
 	{
-		frag_index_pair_t fPair = GetUniformFragmentIndex(id);
-		int index = fPair.first;
-		if (index == -1)
-			return Binding();
+		if (bindingSlot < 0 || bindingSlot >= static_cast<int32_t>(m_BindingSlots.size()))
+			return;
+		if (m_BindingSlots[bindingSlot].type != GL_FLOAT)
+		{
+			LOGERROR("CShaderProgramARB::SetUniform(): Invalid uniform type (expected float)");
+			return;
+		}
+		SetUniform(m_BindingSlots[bindingSlot], value, 0.0f, 0.0f, 0.0f);
+	}
+
+	void SetUniform(
+		const int32_t bindingSlot,
+		const float valueX, const float valueY) override
+	{
+		if (bindingSlot < 0 || bindingSlot >= static_cast<int32_t>(m_BindingSlots.size()))
+			return;
+		if (m_BindingSlots[bindingSlot].type != GL_FLOAT_VEC2)
+		{
+			LOGERROR("CShaderProgramARB::SetUniform(): Invalid uniform type (expected vec2)");
+			return;
+		}
+		SetUniform(m_BindingSlots[bindingSlot], valueX, valueY, 0.0f, 0.0f);
+	}
+
+	void SetUniform(
+		const int32_t bindingSlot,
+		const float valueX, const float valueY, const float valueZ) override
+	{
+		if (bindingSlot < 0 || bindingSlot >= static_cast<int32_t>(m_BindingSlots.size()))
+			return;
+		if (m_BindingSlots[bindingSlot].type != GL_FLOAT_VEC3)
+		{
+			LOGERROR("CShaderProgramARB::SetUniform(): Invalid uniform type (expected vec3)");
+			return;
+		}
+		SetUniform(m_BindingSlots[bindingSlot], valueX, valueY, valueZ, 0.0f);
+	}
+
+	void SetUniform(
+		const int32_t bindingSlot,
+		const float valueX, const float valueY,
+		const float valueZ, const float valueW) override
+	{
+		if (bindingSlot < 0 || bindingSlot >= static_cast<int32_t>(m_BindingSlots.size()))
+			return;
+		if (m_BindingSlots[bindingSlot].type != GL_FLOAT_VEC4)
+		{
+			LOGERROR("CShaderProgramARB::SetUniform(): Invalid uniform type (expected vec4)");
+			return;
+		}
+		SetUniform(m_BindingSlots[bindingSlot], valueX, valueY, valueZ, valueW);
+	}
+
+	void SetUniform(
+		const int32_t bindingSlot, PS::span<const float> values) override
+	{
+		if (bindingSlot < 0 || bindingSlot >= static_cast<int32_t>(m_BindingSlots.size()))
+			return;
+		if (m_BindingSlots[bindingSlot].elementType != GL_FLOAT)
+		{
+			LOGERROR("CShaderProgramARB::SetUniform(): Invalid uniform element type (expected float)");
+			return;
+		}
+		if (m_BindingSlots[bindingSlot].elementCount > static_cast<GLint>(values.size()))
+		{
+			LOGERROR(
+				"CShaderProgramARB::SetUniform(): Invalid uniform element count (expected: %zu passed: %zu)",
+				m_BindingSlots[bindingSlot].elementCount, values.size());
+			return;
+		}
+		const GLenum type = m_BindingSlots[bindingSlot].type;
+
+		if (type == GL_FLOAT)
+			SetUniform(m_BindingSlots[bindingSlot], values[0], 0.0f, 0.0f, 0.0f);
+		else if (type == GL_FLOAT_VEC2)
+			SetUniform(m_BindingSlots[bindingSlot], values[0], values[1], 0.0f, 0.0f);
+		else if (type == GL_FLOAT_VEC3)
+			SetUniform(m_BindingSlots[bindingSlot], values[0], values[1], values[2], 0.0f);
+		else if (type == GL_FLOAT_VEC4)
+			SetUniform(m_BindingSlots[bindingSlot], values[0], values[1], values[2], values[3]);
+		else if (type == GL_FLOAT_MAT4)
+			SetUniformMatrix(m_BindingSlots[bindingSlot], values);
 		else
-			return Binding((int)fPair.second, index);
-	}
-
-	void BindTexture(texture_id_t id, GLuint tex) override
-	{
-		frag_index_pair_t fPair = GetUniformFragmentIndex(id);
-		int index = fPair.first;
-		if (index != -1)
-		{
-			m_Device->GetActiveCommandContext()->BindTexture(index, fPair.second, tex);
-		}
-	}
-
-	void BindTexture(Binding id, GLuint tex) override
-	{
-		int index = id.second;
-		if (index != -1)
-		{
-			m_Device->GetActiveCommandContext()->BindTexture(index, id.first, tex);
-		}
-	}
-
-	Binding GetUniformBinding(uniform_id_t id) override
-	{
-		return Binding(GetUniformVertexIndex(id), GetUniformFragmentIndex(id).first);
-	}
-
-	void Uniform(Binding id, float v0, float v1, float v2, float v3) override
-	{
-		if (id.first != -1)
-			glProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, (GLuint)id.first, v0, v1, v2, v3);
-
-		if (id.second != -1)
-			glProgramLocalParameter4fARB(GL_FRAGMENT_PROGRAM_ARB, (GLuint)id.second, v0, v1, v2, v3);
-	}
-
-	void Uniform(Binding id, const CMatrix3D& v) override
-	{
-		if (id.first != -1)
-		{
-			glProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, (GLuint)id.first+0, v._11, v._12, v._13, v._14);
-			glProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, (GLuint)id.first+1, v._21, v._22, v._23, v._24);
-			glProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, (GLuint)id.first+2, v._31, v._32, v._33, v._34);
-			glProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, (GLuint)id.first+3, v._41, v._42, v._43, v._44);
-		}
-
-		if (id.second != -1)
-		{
-			glProgramLocalParameter4fARB(GL_FRAGMENT_PROGRAM_ARB, (GLuint)id.second+0, v._11, v._12, v._13, v._14);
-			glProgramLocalParameter4fARB(GL_FRAGMENT_PROGRAM_ARB, (GLuint)id.second+1, v._21, v._22, v._23, v._24);
-			glProgramLocalParameter4fARB(GL_FRAGMENT_PROGRAM_ARB, (GLuint)id.second+2, v._31, v._32, v._33, v._34);
-			glProgramLocalParameter4fARB(GL_FRAGMENT_PROGRAM_ARB, (GLuint)id.second+3, v._41, v._42, v._43, v._44);
-		}
-	}
-
-	void Uniform(Binding id, size_t count, const CMatrix3D* v) override
-	{
-		ENSURE(count == 1);
-		Uniform(id, v[0]);
-	}
-
-	void Uniform(Binding id, size_t count, const float* v) override
-	{
-		ENSURE(count == 4);
-		Uniform(id, v[0], v[1], v[2], v[3]);
+			LOGERROR("CShaderProgramARB::SetUniform(): Invalid uniform type (expected float, vec2, vec3, vec4, mat4)");
+		ogl_WarnIfError();
 	}
 
 	std::vector<VfsPath> GetFileDependencies() const override
@@ -402,6 +502,79 @@ public:
 	}
 
 private:
+	struct BindingSlot
+	{
+		CStrIntern name;
+		int vertexProgramLocation;
+		int fragmentProgramLocation;
+		GLenum type;
+		GLenum elementType;
+		GLint elementCount;
+	};
+
+	BindingSlot& GetOrCreateBindingSlot(const CStrIntern name)
+	{
+		auto it = m_BindingSlotsMapping.find(name);
+		if (it == m_BindingSlotsMapping.end())
+		{
+			m_BindingSlotsMapping[name] = m_BindingSlots.size();
+			BindingSlot bindingSlot{};
+			bindingSlot.name = name;
+			bindingSlot.vertexProgramLocation = -1;
+			bindingSlot.fragmentProgramLocation = -1;
+			bindingSlot.elementType = 0;
+			bindingSlot.elementCount = 0;
+			m_BindingSlots.emplace_back(std::move(bindingSlot));
+			return m_BindingSlots.back();
+		}
+		else
+			return m_BindingSlots[it->second];
+	}
+
+	void SetUniform(
+		const BindingSlot& bindingSlot,
+		const float v0, const float v1, const float v2, const float v3)
+	{
+		SetUniform(GL_VERTEX_PROGRAM_ARB, bindingSlot.vertexProgramLocation, v0, v1, v2, v3);
+		SetUniform(GL_FRAGMENT_PROGRAM_ARB, bindingSlot.fragmentProgramLocation, v0, v1, v2, v3);
+	}
+
+	void SetUniform(
+		const GLenum target, const int location,
+		const float v0, const float v1, const float v2, const float v3)
+	{
+		if (location >= 0)
+		{
+			glProgramLocalParameter4fARB(
+				target, static_cast<GLuint>(location), v0, v1, v2, v3);
+		}
+	}
+
+	void SetUniformMatrix(
+		const BindingSlot& bindingSlot, PS::span<const float> values)
+	{
+		const size_t mat4ElementCount = 16;
+		ENSURE(values.size() == mat4ElementCount);
+		SetUniformMatrix(GL_VERTEX_PROGRAM_ARB, bindingSlot.vertexProgramLocation, values);
+		SetUniformMatrix(GL_FRAGMENT_PROGRAM_ARB, bindingSlot.fragmentProgramLocation, values);
+	}
+
+	void SetUniformMatrix(
+		const GLenum target, const int location, PS::span<const float> values)
+	{
+		if (location >= 0)
+		{
+			glProgramLocalParameter4fARB(
+				target, static_cast<GLuint>(location + 0), values[0], values[4], values[8], values[12]);
+			glProgramLocalParameter4fARB(
+				target, static_cast<GLuint>(location + 1), values[1], values[5], values[9], values[13]);
+			glProgramLocalParameter4fARB(
+				target, static_cast<GLuint>(location + 2), values[2], values[6], values[10], values[14]);
+			glProgramLocalParameter4fARB(
+				target, static_cast<GLuint>(location + 3), values[3], values[7], values[11], values[15]);
+		}
+	}
+
 	CDevice* m_Device = nullptr;
 
 	std::vector<VfsPath> m_FileDependencies;
@@ -409,10 +582,8 @@ private:
 	GLuint m_VertexProgram;
 	GLuint m_FragmentProgram;
 
-	std::map<CStrIntern, int> m_VertexIndexes;
-
-	// pair contains <index, gltype>
-	std::map<CStrIntern, frag_index_pair_t> m_FragmentIndexes;
+	std::vector<BindingSlot> m_BindingSlots;
+	std::unordered_map<CStrIntern, int32_t> m_BindingSlotsMapping;
 };
 
 #endif // !CONFIG2_GLES
@@ -596,12 +767,23 @@ public:
 		if (!ok)
 			return false;
 
-		m_Uniforms.clear();
-		m_Samplers.clear();
-
 		Bind(nullptr);
 
 		ogl_WarnIfError();
+
+		// Reorder sampler units to decrease redundant texture unit changes when
+		// samplers bound in a different order.
+		const std::unordered_map<CStrIntern, int> requiredUnits =
+		{
+			{CStrIntern("baseTex"), 0},
+			{CStrIntern("normTex"), 1},
+			{CStrIntern("specTex"), 2},
+			{CStrIntern("aoTex"), 3},
+			{CStrIntern("shadowTex"), 4},
+			{CStrIntern("losTex"), 5},
+		};
+
+		std::vector<uint8_t> occupiedUnits;
 
 		GLint numUniforms = 0;
 		glGetProgramiv(m_Program, GL_ACTIVE_UNIFORMS, &numUniforms);
@@ -629,10 +811,44 @@ public:
 			}
 			name[nameLength] = 0;
 
-			CStrIntern nameIntern(name);
-			m_Uniforms[nameIntern] = std::make_pair(location, type);
+			const CStrIntern nameIntern(name);
 
-			// Assign sampler uniforms to sequential texture units
+			m_BindingSlotsMapping[nameIntern] = m_BindingSlots.size();
+			BindingSlot bindingSlot{};
+			bindingSlot.name = nameIntern;
+			bindingSlot.location = location;
+			bindingSlot.size = size;
+			bindingSlot.type = type;
+			bindingSlot.isTexture = false;
+
+#define CASE(TYPE, ELEMENT_TYPE, ELEMENT_COUNT) \
+			case GL_ ## TYPE: \
+				bindingSlot.elementType = GL_ ## ELEMENT_TYPE; \
+				bindingSlot.elementCount = ELEMENT_COUNT; \
+				break;
+
+			switch (type)
+			{
+			CASE(FLOAT, FLOAT, 1);
+			CASE(FLOAT_VEC2, FLOAT, 2);
+			CASE(FLOAT_VEC3, FLOAT, 3);
+			CASE(FLOAT_VEC4, FLOAT, 4);
+			CASE(INT, INT, 1);
+			CASE(FLOAT_MAT2, FLOAT, 4);
+			CASE(FLOAT_MAT3, FLOAT, 9);
+			CASE(FLOAT_MAT4, FLOAT, 16);
+#if !CONFIG2_GLES // GL ES 2.0 doesn't support non-square matrices.
+			CASE(FLOAT_MAT2x3, FLOAT, 6);
+			CASE(FLOAT_MAT2x4, FLOAT, 8);
+			CASE(FLOAT_MAT3x2, FLOAT, 6);
+			CASE(FLOAT_MAT3x4, FLOAT, 12);
+			CASE(FLOAT_MAT4x2, FLOAT, 8);
+			CASE(FLOAT_MAT4x3, FLOAT, 12);
+#endif
+			}
+#undef CASE
+
+			// Assign sampler uniforms to sequential texture units.
 			if (type == GL_SAMPLER_2D
 			 || type == GL_SAMPLER_CUBE
 #if !CONFIG2_GLES
@@ -640,19 +856,50 @@ public:
 #endif
 			)
 			{
-				const int unit = static_cast<int>(m_Samplers.size());
-				m_Samplers[nameIntern].first = (type == GL_SAMPLER_CUBE ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D);
-				m_Samplers[nameIntern].second = unit;
-				glUniform1i(location, unit); // link uniform to unit
-				ogl_WarnIfError();
+				const auto it = requiredUnits.find(nameIntern);
+				const int unit = it == requiredUnits.end() ? -1 : it->second;
+				bindingSlot.elementType = (type == GL_SAMPLER_CUBE ? GL_TEXTURE_CUBE_MAP : GL_TEXTURE_2D);
+				bindingSlot.elementCount = unit;
+				bindingSlot.isTexture = true;
+				if (unit != -1)
+				{
+					if (unit >= static_cast<int>(occupiedUnits.size()))
+						occupiedUnits.resize(unit + 1);
+					occupiedUnits[unit] = true;
+				}
 			}
+
+			if (bindingSlot.elementType == 0)
+			{
+				LOGERROR("CShaderProgramGLSL::Link: unsupported uniform type: 0x%04x", static_cast<int>(type));
+			}
+
+			m_BindingSlots.emplace_back(std::move(bindingSlot));
+		}
+
+		for (BindingSlot& bindingSlot : m_BindingSlots)
+		{
+			if (!bindingSlot.isTexture)
+				continue;
+			if (bindingSlot.elementCount == -1)
+			{
+				// We need to find a minimal available unit.
+				int unit = 0;
+				while (unit < static_cast<int>(occupiedUnits.size()) && occupiedUnits[unit])
+					++unit;
+				if (unit >= static_cast<int>(occupiedUnits.size()))
+					occupiedUnits.resize(unit + 1);
+				occupiedUnits[unit] = true;
+				bindingSlot.elementCount = unit;
+			}
+			// Link uniform to unit.
+			glUniform1i(bindingSlot.location, bindingSlot.elementCount);
+			ogl_WarnIfError();
 		}
 
 		// TODO: verify that we're not using more samplers than is supported
 
 		Unbind();
-
-		ogl_WarnIfError();
 
 		return true;
 	}
@@ -720,93 +967,128 @@ public:
 
 		for (const int index : m_ActiveVertexAttributes)
 			glDisableVertexAttribArray(index);
-
-		// TODO: should unbind textures, probably
 	}
 
-	Binding GetTextureBinding(texture_id_t id) override
+	int32_t GetBindingSlot(const CStrIntern name) const override
 	{
-		std::map<CStrIntern, std::pair<GLenum, int>>::iterator it = m_Samplers.find(CStrIntern(id));
-		if (it == m_Samplers.end())
-			return Binding();
-		else
-			return Binding((int)it->second.first, it->second.second);
+		auto it = m_BindingSlotsMapping.find(name);
+		return it == m_BindingSlotsMapping.end() ? -1 : it->second;
 	}
 
-	void BindTexture(texture_id_t id, GLuint tex) override
+	TextureUnit GetTextureUnit(const int32_t bindingSlot) override
 	{
-		std::map<CStrIntern, std::pair<GLenum, int>>::iterator it = m_Samplers.find(CStrIntern(id));
-		if (it == m_Samplers.end())
+		if (bindingSlot < 0 || bindingSlot >= static_cast<int32_t>(m_BindingSlots.size()))
+			return { 0, 0, 0 };
+		TextureUnit textureUnit;
+		textureUnit.type = m_BindingSlots[bindingSlot].type;
+		textureUnit.target = m_BindingSlots[bindingSlot].elementType;
+		textureUnit.unit = m_BindingSlots[bindingSlot].elementCount;
+		return textureUnit;
+	}
+
+	void SetUniform(
+		const int32_t bindingSlot,
+		const float value) override
+	{
+		if (bindingSlot < 0 || bindingSlot >= static_cast<int32_t>(m_BindingSlots.size()))
 			return;
-
-		m_Device->GetActiveCommandContext()->BindTexture(it->second.second, it->second.first, tex);
-	}
-
-	void BindTexture(Binding id, GLuint tex) override
-	{
-		if (id.second == -1)
+		if (m_BindingSlots[bindingSlot].type != GL_FLOAT ||
+			m_BindingSlots[bindingSlot].size != 1)
+		{
+			LOGERROR("CShaderProgramGLSL::SetUniform(): Invalid uniform type (expected float) '%s'", m_BindingSlots[bindingSlot].name.c_str());
 			return;
-
-		m_Device->GetActiveCommandContext()->BindTexture(id.second, id.first, tex);
+		}
+		glUniform1f(m_BindingSlots[bindingSlot].location, value);
+		ogl_WarnIfError();
 	}
 
-	Binding GetUniformBinding(uniform_id_t id) override
+	void SetUniform(
+		const int32_t bindingSlot,
+		const float valueX, const float valueY) override
 	{
-		std::map<CStrIntern, std::pair<int, GLenum>>::iterator it = m_Uniforms.find(id);
-		if (it == m_Uniforms.end())
-			return Binding();
+		if (bindingSlot < 0 || bindingSlot >= static_cast<int32_t>(m_BindingSlots.size()))
+			return;
+		if (m_BindingSlots[bindingSlot].type != GL_FLOAT_VEC2 ||
+			m_BindingSlots[bindingSlot].size != 1)
+		{
+			LOGERROR("CShaderProgramGLSL::SetUniform(): Invalid uniform type (expected vec2) '%s'", m_BindingSlots[bindingSlot].name.c_str());
+			return;
+		}
+		glUniform2f(m_BindingSlots[bindingSlot].location, valueX, valueY);
+		ogl_WarnIfError();
+	}
+
+	void SetUniform(
+		const int32_t bindingSlot,
+		const float valueX, const float valueY, const float valueZ) override
+	{
+		if (bindingSlot < 0 || bindingSlot >= static_cast<int32_t>(m_BindingSlots.size()))
+			return;
+		if (m_BindingSlots[bindingSlot].type != GL_FLOAT_VEC3 ||
+			m_BindingSlots[bindingSlot].size != 1)
+		{
+			LOGERROR("CShaderProgramGLSL::SetUniform(): Invalid uniform type (expected vec3) '%s'", m_BindingSlots[bindingSlot].name.c_str());
+			return;
+		}
+		glUniform3f(m_BindingSlots[bindingSlot].location, valueX, valueY, valueZ);
+		ogl_WarnIfError();
+	}
+
+	void SetUniform(
+		const int32_t bindingSlot,
+		const float valueX, const float valueY,
+		const float valueZ, const float valueW) override
+	{
+		if (bindingSlot < 0 || bindingSlot >= static_cast<int32_t>(m_BindingSlots.size()))
+			return;
+		if (m_BindingSlots[bindingSlot].type != GL_FLOAT_VEC4 ||
+			m_BindingSlots[bindingSlot].size != 1)
+		{
+			LOGERROR("CShaderProgramGLSL::SetUniform(): Invalid uniform type (expected vec4) '%s'", m_BindingSlots[bindingSlot].name.c_str());
+			return;
+		}
+		glUniform4f(m_BindingSlots[bindingSlot].location, valueX, valueY, valueZ, valueW);
+		ogl_WarnIfError();
+	}
+
+	void SetUniform(
+		const int32_t bindingSlot, PS::span<const float> values) override
+	{
+		if (bindingSlot < 0 || bindingSlot >= static_cast<int32_t>(m_BindingSlots.size()))
+			return;
+		if (m_BindingSlots[bindingSlot].elementType != GL_FLOAT)
+		{
+			LOGERROR("CShaderProgramGLSL::SetUniform(): Invalid uniform element type (expected float) '%s'", m_BindingSlots[bindingSlot].name.c_str());
+			return;
+		}
+		if (m_BindingSlots[bindingSlot].size == 1 && m_BindingSlots[bindingSlot].elementCount > static_cast<GLint>(values.size()))
+		{
+			LOGERROR(
+				"CShaderProgramGLSL::SetUniform(): Invalid uniform element count (expected: %zu passed: %zu) '%s'",
+				m_BindingSlots[bindingSlot].elementCount, values.size(), m_BindingSlots[bindingSlot].name.c_str());
+			return;
+		}
+		const GLint location = m_BindingSlots[bindingSlot].location;
+		const GLenum type = m_BindingSlots[bindingSlot].type;
+
+		if (type == GL_FLOAT)
+			glUniform1fv(location, 1, values.data());
+		else if (type == GL_FLOAT_VEC2)
+			glUniform2fv(location, 1, values.data());
+		else if (type == GL_FLOAT_VEC3)
+			glUniform3fv(location, 1, values.data());
+		else if (type == GL_FLOAT_VEC4)
+			glUniform4fv(location, 1, values.data());
+		else if (type == GL_FLOAT_MAT4)
+		{
+			// For case of array of matrices we might pass less number of matrices.
+			const GLint size = std::min(
+				m_BindingSlots[bindingSlot].size, static_cast<GLint>(values.size() / 16));
+			glUniformMatrix4fv(location, size, GL_FALSE, values.data());
+		}
 		else
-			return Binding(it->second.first, (int)it->second.second);
-	}
-
-	void Uniform(Binding id, float v0, float v1, float v2, float v3) override
-	{
-		if (id.first != -1)
-		{
-			if (id.second == GL_FLOAT)
-				glUniform1f(id.first, v0);
-			else if (id.second == GL_FLOAT_VEC2)
-				glUniform2f(id.first, v0, v1);
-			else if (id.second == GL_FLOAT_VEC3)
-				glUniform3f(id.first, v0, v1, v2);
-			else if (id.second == GL_FLOAT_VEC4)
-				glUniform4f(id.first, v0, v1, v2, v3);
-			else
-				LOGERROR("CShaderProgramGLSL::Uniform(): Invalid uniform type (expected float, vec2, vec3, vec4)");
-		}
-	}
-
-	void Uniform(Binding id, const CMatrix3D& v) override
-	{
-		if (id.first != -1)
-		{
-			if (id.second == GL_FLOAT_MAT4)
-				glUniformMatrix4fv(id.first, 1, GL_FALSE, v.AsFloatArray());
-			else
-				LOGERROR("CShaderProgramGLSL::Uniform(): Invalid uniform type (expected mat4)");
-		}
-	}
-
-	void Uniform(Binding id, size_t count, const CMatrix3D* v) override
-	{
-		if (id.first != -1)
-		{
-			if (id.second == GL_FLOAT_MAT4)
-				glUniformMatrix4fv(id.first, count, GL_FALSE, &v->_11);
-			else
-				LOGERROR("CShaderProgramGLSL::Uniform(): Invalid uniform type (expected mat4)");
-		}
-	}
-
-	void Uniform(Binding id, size_t count, const float* v) override
-	{
-		if (id.first != -1)
-		{
-			if (id.second == GL_FLOAT)
-				glUniform1fv(id.first, count, v);
-			else
-				LOGERROR("CShaderProgramGLSL::Uniform(): Invalid uniform type (expected float)");
-		}
+			LOGERROR("CShaderProgramGLSL::SetUniform(): Invalid uniform type (expected float, vec2, vec3, vec4, mat4) '%s'", m_BindingSlots[bindingSlot].name.c_str());
+		ogl_WarnIfError();
 	}
 
 	void VertexAttribPointer(
@@ -844,8 +1126,18 @@ private:
 	GLuint m_Program;
 	GLuint m_VertexShader, m_FragmentShader;
 
-	std::map<CStrIntern, std::pair<int, GLenum>> m_Uniforms;
-	std::map<CStrIntern, std::pair<GLenum, int>> m_Samplers; // texture target & unit chosen for each uniform sampler
+	struct BindingSlot
+	{
+		CStrIntern name;
+		GLint location;
+		GLint size;
+		GLenum type;
+		GLenum elementType;
+		GLint elementCount;
+		bool isTexture;
+	};
+	std::vector<BindingSlot> m_BindingSlots;
+	std::unordered_map<CStrIntern, int32_t> m_BindingSlotsMapping;
 };
 
 CShaderProgram::CShaderProgram(int streamflags)
@@ -908,8 +1200,8 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 	VfsPath vertexFile;
 	VfsPath fragmentFile;
 	CShaderDefines defines = baseDefines;
-	std::map<CStrIntern, int> vertexUniforms;
-	std::map<CStrIntern, CShaderProgram::frag_index_pair_t> fragmentUniforms;
+	std::map<CStrIntern, std::pair<CStr, int>> vertexUniforms;
+	std::map<CStrIntern, std::pair<CStr, int>> fragmentUniforms;
 	std::map<CStrIntern, int> vertexAttribs;
 	int streamFlags = 0;
 
@@ -933,7 +1225,8 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 
 				if (param.GetNodeName() == el_uniform)
 				{
-					vertexUniforms[CStrIntern(attributes.GetNamedItem(at_name))] = attributes.GetNamedItem(at_loc).ToInt();
+					vertexUniforms[CStrIntern(attributes.GetNamedItem(at_name))] =
+						std::make_pair(attributes.GetNamedItem(at_type), attributes.GetNamedItem(at_loc).ToInt());
 				}
 				else if (param.GetNodeName() == el_stream)
 				{
@@ -992,157 +1285,31 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 
 				if (param.GetNodeName() == el_uniform)
 				{
-					// A somewhat incomplete listing, missing "shadow" and "rect" versions
-					// which are interpreted as 2D (NB: our shadowmaps may change
-					// type based on user config).
-					GLenum type = GL_TEXTURE_2D;
-					const CStr t = attributes.GetNamedItem(at_type);
-					if (t == "sampler1D")
-#if CONFIG2_GLES
-						debug_warn(L"sampler1D not implemented on GLES");
-#else
-						type = GL_TEXTURE_1D;
-#endif
-					else if (t == "sampler2D")
-						type = GL_TEXTURE_2D;
-					else if (t == "sampler3D")
-#if CONFIG2_GLES
-						debug_warn(L"sampler3D not implemented on GLES");
-#else
-						type = GL_TEXTURE_3D;
-#endif
-					else if (t == "samplerCube")
-						type = GL_TEXTURE_CUBE_MAP;
-
 					fragmentUniforms[CStrIntern(attributes.GetNamedItem(at_name))] =
-						std::make_pair(attributes.GetNamedItem(at_loc).ToInt(), type);
+						std::make_pair(attributes.GetNamedItem(at_type), attributes.GetNamedItem(at_loc).ToInt());
 				}
 			}
 		}
 	}
 
 	if (isGLSL)
-		return CShaderProgram::ConstructGLSL(device, name, vertexFile, fragmentFile, defines, vertexAttribs, streamFlags);
+	{
+		return std::make_unique<CShaderProgramGLSL>(
+			device, name, vertexFile, fragmentFile, defines, vertexAttribs, streamFlags);
+	}
 	else
-		return CShaderProgram::ConstructARB(device, vertexFile, fragmentFile, defines, vertexUniforms, fragmentUniforms, streamFlags);
-}
-
+	{
 #if CONFIG2_GLES
-// static
-std::unique_ptr<CShaderProgram> CShaderProgram::ConstructARB(CDevice* UNUSED(device), const VfsPath& vertexFile, const VfsPath& fragmentFile,
-	const CShaderDefines& UNUSED(defines),
-	const std::map<CStrIntern, int>& UNUSED(vertexIndexes), const std::map<CStrIntern, frag_index_pair_t>& UNUSED(fragmentIndexes),
-	int UNUSED(streamflags))
-{
-	LOGERROR("CShaderProgram::ConstructARB: '%s'+'%s': ARB shaders not supported on this device",
-		vertexFile.string8(), fragmentFile.string8());
-	return nullptr;
-}
+		LOGERROR("CShaderProgram::Create: '%s'+'%s': ARB shaders not supported on this device",
+			vertexFile.string8(), fragmentFile.string8());
+		return nullptr;
 #else
-// static
-std::unique_ptr<CShaderProgram> CShaderProgram::ConstructARB(
-	CDevice* device, const VfsPath& vertexFile, const VfsPath& fragmentFile,
-	const CShaderDefines& defines,
-	const std::map<CStrIntern, int>& vertexIndexes,
-	const std::map<CStrIntern, frag_index_pair_t>& fragmentIndexes,
-	int streamflags)
-{
-	return std::make_unique<CShaderProgramARB>(
-		device, vertexFile, fragmentFile, defines, vertexIndexes, fragmentIndexes, streamflags);
-}
+		return std::make_unique<CShaderProgramARB>(
+			device, vertexFile, fragmentFile, defines,
+			vertexUniforms, fragmentUniforms, streamFlags);
 #endif
-
-// static
-std::unique_ptr<CShaderProgram> CShaderProgram::ConstructGLSL(
-	CDevice* device, const CStr& name,
-	const VfsPath& vertexFile, const VfsPath& fragmentFile,
-	const CShaderDefines& defines,
-	const std::map<CStrIntern, int>& vertexAttribs, int streamflags)
-{
-	return std::make_unique<CShaderProgramGLSL>(
-		device, name, vertexFile, fragmentFile, defines, vertexAttribs, streamflags);
+	}
 }
-
-void CShaderProgram::BindTexture(texture_id_t id, const Renderer::Backend::GL::CTexture* tex)
-{
-	BindTexture(id, tex->GetHandle());
-}
-
-void CShaderProgram::BindTexture(Binding id, const Renderer::Backend::GL::CTexture* tex)
-{
-	BindTexture(id, tex->GetHandle());
-}
-
-void CShaderProgram::Uniform(Binding id, int v)
-{
-	Uniform(id, (float)v, (float)v, (float)v, (float)v);
-}
-
-void CShaderProgram::Uniform(Binding id, float v)
-{
-	Uniform(id, v, v, v, v);
-}
-
-void CShaderProgram::Uniform(Binding id, float v0, float v1)
-{
-	Uniform(id, v0, v1, 0.0f, 0.0f);
-}
-
-void CShaderProgram::Uniform(Binding id, const CVector3D& v)
-{
-	Uniform(id, v.X, v.Y, v.Z, 0.0f);
-}
-
-void CShaderProgram::Uniform(Binding id, const CColor& v)
-{
-	Uniform(id, v.r, v.g, v.b, v.a);
-}
-
-void CShaderProgram::Uniform(uniform_id_t id, int v)
-{
-	Uniform(GetUniformBinding(id), (float)v, (float)v, (float)v, (float)v);
-}
-
-void CShaderProgram::Uniform(uniform_id_t id, float v)
-{
-	Uniform(GetUniformBinding(id), v, v, v, v);
-}
-
-void CShaderProgram::Uniform(uniform_id_t id, float v0, float v1)
-{
-	Uniform(GetUniformBinding(id), v0, v1, 0.0f, 0.0f);
-}
-
-void CShaderProgram::Uniform(uniform_id_t id, const CVector3D& v)
-{
-	Uniform(GetUniformBinding(id), v.X, v.Y, v.Z, 0.0f);
-}
-
-void CShaderProgram::Uniform(uniform_id_t id, const CColor& v)
-{
-	Uniform(GetUniformBinding(id), v.r, v.g, v.b, v.a);
-}
-
-void CShaderProgram::Uniform(uniform_id_t id, float v0, float v1, float v2, float v3)
-{
-	Uniform(GetUniformBinding(id), v0, v1, v2, v3);
-}
-
-void CShaderProgram::Uniform(uniform_id_t id, const CMatrix3D& v)
-{
-	Uniform(GetUniformBinding(id), v);
-}
-
-void CShaderProgram::Uniform(uniform_id_t id, size_t count, const CMatrix3D* v)
-{
-	Uniform(GetUniformBinding(id), count, v);
-}
-
-void CShaderProgram::Uniform(uniform_id_t id, size_t count, const float* v)
-{
-	Uniform(GetUniformBinding(id), count, v);
-}
-
 
 // These should all be overridden by CShaderProgramGLSL, and not used
 // if a non-GLSL shader was loaded instead:

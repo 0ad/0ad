@@ -68,67 +68,96 @@ ShaderRenderModifier::ShaderRenderModifier()
 {
 }
 
-void ShaderRenderModifier::BeginPass(Renderer::Backend::GL::CShaderProgram* shader)
+void ShaderRenderModifier::BeginPass(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IShaderProgram* shader)
 {
-	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
-	shader->Uniform(str_cameraPos, g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetTranslation());
+	const CMatrix3D transform =
+		g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_transform), transform.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_cameraPos),
+		g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetTranslation().AsFloatArray());
 
 	if (GetShadowMap())
-		GetShadowMap()->BindTo(shader);
+		GetShadowMap()->BindTo(deviceCommandContext, shader);
 
 	if (GetLightEnv())
 	{
-		shader->Uniform(str_ambient, GetLightEnv()->m_AmbientColor);
-		shader->Uniform(str_sunDir, GetLightEnv()->GetSunDir());
-		shader->Uniform(str_sunColor, GetLightEnv()->m_SunColor);
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_ambient),
+			GetLightEnv()->m_AmbientColor.AsFloatArray());
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_sunDir),
+			GetLightEnv()->GetSunDir().AsFloatArray());
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_sunColor),
+			GetLightEnv()->m_SunColor.AsFloatArray());
 
-		shader->Uniform(str_fogColor, GetLightEnv()->m_FogColor);
-		shader->Uniform(str_fogParams, GetLightEnv()->m_FogFactor, GetLightEnv()->m_FogMax, 0.f, 0.f);
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_fogColor),
+			GetLightEnv()->m_FogColor.AsFloatArray());
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_fogParams),
+			GetLightEnv()->m_FogFactor, GetLightEnv()->m_FogMax);
 	}
 
-	if (shader->GetTextureBinding(str_losTex).Active())
+	if (shader->GetBindingSlot(str_losTex) >= 0)
 	{
 		CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
-		shader->BindTexture(str_losTex, los.GetTextureSmooth());
+		deviceCommandContext->SetTexture(
+			shader->GetBindingSlot(str_losTex), los.GetTextureSmooth());
 		// Don't bother sending the whole matrix, we just need two floats (scale and translation)
-		shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_losTransform),
+			los.GetTextureMatrix()[0], los.GetTextureMatrix()[12]);
 	}
 
-	m_BindingInstancingTransform = shader->GetUniformBinding(str_instancingTransform);
-	m_BindingShadingColor = shader->GetUniformBinding(str_shadingColor);
-	m_BindingPlayerColor = shader->GetUniformBinding(str_playerColor);
+	m_BindingInstancingTransform = shader->GetBindingSlot(str_instancingTransform);
+	m_BindingShadingColor = shader->GetBindingSlot(str_shadingColor);
+	m_BindingPlayerColor = shader->GetBindingSlot(str_playerColor);
 
-	if (m_BindingShadingColor.Active())
+	if (m_BindingShadingColor >= 0)
 	{
 		m_ShadingColor = CColor(1.0f, 1.0f, 1.0f, 1.0f);
-		shader->Uniform(m_BindingShadingColor, m_ShadingColor);
+		deviceCommandContext->SetUniform(
+			m_BindingShadingColor, m_ShadingColor.AsFloatArray());
 	}
 
-	if (m_BindingPlayerColor.Active())
+	if (m_BindingPlayerColor >= 0)
 	{
 		m_PlayerColor = g_Game->GetPlayerColor(0);
-		shader->Uniform(m_BindingPlayerColor, m_PlayerColor);
+		deviceCommandContext->SetUniform(
+			m_BindingPlayerColor, m_PlayerColor.AsFloatArray());
 	}
 }
 
-void ShaderRenderModifier::PrepareModel(Renderer::Backend::GL::CShaderProgram* shader, CModel* model)
+void ShaderRenderModifier::PrepareModel(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	CModel* model)
 {
-	if (m_BindingInstancingTransform.Active())
-		shader->Uniform(m_BindingInstancingTransform, model->GetTransform());
-
-	if (m_BindingShadingColor.Active() && m_ShadingColor != model->GetShadingColor())
+	if (m_BindingInstancingTransform >= 0)
 	{
-		m_ShadingColor = model->GetShadingColor();
-		shader->Uniform(m_BindingShadingColor, m_ShadingColor);
+		deviceCommandContext->SetUniform(
+			m_BindingInstancingTransform, model->GetTransform().AsFloatArray());
 	}
 
-	if (m_BindingPlayerColor.Active())
+	if (m_BindingShadingColor >= 0 && m_ShadingColor != model->GetShadingColor())
+	{
+		m_ShadingColor = model->GetShadingColor();
+		deviceCommandContext->SetUniform(
+			m_BindingShadingColor, m_ShadingColor.AsFloatArray());
+	}
+
+	if (m_BindingPlayerColor >= 0)
 	{
 		const CColor& playerColor = g_Game->GetPlayerColor(model->GetPlayerID());
 		if (m_PlayerColor != playerColor)
 		{
 			m_PlayerColor = playerColor;
-			shader->Uniform(m_BindingPlayerColor, m_PlayerColor);
+			deviceCommandContext->SetUniform(
+			m_BindingPlayerColor, m_PlayerColor.AsFloatArray());
 		}
 	}
 }

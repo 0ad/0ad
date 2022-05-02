@@ -308,7 +308,7 @@ void InstancingModelRenderer::EndPass(
 // Prepare UV coordinates for this modeldef
 void InstancingModelRenderer::PrepareModelDef(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CShaderProgram* UNUSED(shader), const CModelDef& def)
+	const CModelDef& def)
 {
 	m->imodeldef = (IModelDef*)def.GetRenderData(m);
 
@@ -369,7 +369,7 @@ void InstancingModelRenderer::PrepareModelDef(
 // Render one model
 void InstancingModelRenderer::RenderModel(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CShaderProgram* shader, CModel* model, CModelRData* UNUSED(data))
+	Renderer::Backend::IShaderProgram* shader, CModel* model, CModelRData* UNUSED(data))
 {
 	const CModelDefPtr& mdldef = model->GetModelDef();
 
@@ -377,7 +377,11 @@ void InstancingModelRenderer::RenderModel(
 	{
 		// Bind matrices for current animation state.
 		// Add 1 to NumBones because of the special 'root' bone.
-		shader->Uniform(str_skinBlendMatrices, mdldef->GetNumBones() + 1, model->GetAnimatedBoneMatrices());
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_skinBlendMatrices),
+			PS::span<const float>(
+				model->GetAnimatedBoneMatrices()[0]._data,
+				model->GetAnimatedBoneMatrices()[0].AsFloatArray().size() * (mdldef->GetNumBones() + 1)));
 	}
 
 	// Render the lot.

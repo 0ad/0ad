@@ -39,17 +39,17 @@ public:
 	~InstancingModelRenderer();
 
 	// Implementations
-	CModelRData* CreateModelData(const void* key, CModel* model);
-	void UpdateModelData(CModel* model, CModelRData* data, int updateflags);
+	CModelRData* CreateModelData(const void* key, CModel* model) override;
+	void UpdateModelData(CModel* model, CModelRData* data, int updateflags) override;
 
-	void BeginPass();
+	void BeginPass() override;
 	void EndPass(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext) override;
 	void PrepareModelDef(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		Renderer::Backend::GL::CShaderProgram* shader, const CModelDef& def);
+		const CModelDef& def) override;
 	void RenderModel(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		Renderer::Backend::GL::CShaderProgram* shader, CModel* model, CModelRData* data);
+		Renderer::Backend::IShaderProgram* shader, CModel* model, CModelRData* data) override;
 
 protected:
 	InstancingModelRendererInternals* m;

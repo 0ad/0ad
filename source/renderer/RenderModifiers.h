@@ -55,23 +55,21 @@ public:
 	 * BeginPass: Setup OpenGL for the given rendering pass.
 	 *
 	 * Must be implemented by derived classes.
-	 *
-	 * @param pass The current pass number (pass == 0 is the first pass)
-	 *
-	 * @return The streamflags that indicate which vertex components
-	 * are required by the fragment stages (see STREAM_XYZ constants).
 	 */
-	virtual void BeginPass(Renderer::Backend::GL::CShaderProgram* shader) = 0;
+	virtual void BeginPass(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IShaderProgram* shader) = 0;
 
 	/**
 	 * PrepareModel: Called before rendering the given model.
 	 *
 	 * Default behaviour does nothing.
 	 *
-	 * @param pass The current pass number (pass == 0 is the first pass)
 	 * @param model The model that is about to be rendered.
 	 */
-	virtual void PrepareModel(Renderer::Backend::GL::CShaderProgram* shader, CModel* model) = 0;
+	virtual void PrepareModel(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		CModel* model) = 0;
 };
 
 
@@ -122,13 +120,17 @@ public:
 	ShaderRenderModifier();
 
 	// Implementation
-	void BeginPass(Renderer::Backend::GL::CShaderProgram* shader);
-	void PrepareModel(Renderer::Backend::GL::CShaderProgram* shader, CModel* model);
+	void BeginPass(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IShaderProgram* shader) override;
+	void PrepareModel(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		CModel* model) override;
 
 private:
-	Renderer::Backend::GL::CShaderProgram::Binding m_BindingInstancingTransform;
-	Renderer::Backend::GL::CShaderProgram::Binding m_BindingShadingColor;
-	Renderer::Backend::GL::CShaderProgram::Binding m_BindingPlayerColor;
+	int32_t m_BindingInstancingTransform = -1;
+	int32_t m_BindingShadingColor = -1;
+	int32_t m_BindingPlayerColor = -1;
 
 	CColor m_ShadingColor, m_PlayerColor;
 };

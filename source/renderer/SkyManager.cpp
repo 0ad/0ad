@@ -224,8 +224,9 @@ void SkyManager::RenderSky(
 	deviceCommandContext->SetGraphicsPipelineState(
 		skytech->GetGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginPass();
-	Renderer::Backend::GL::CShaderProgram* shader = skytech->GetShader();
-	shader->BindTexture(str_baseTex, m_SkyTextureCube->GetBackendTexture());
+	Renderer::Backend::IShaderProgram* shader = skytech->GetShader();
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_baseTex), m_SkyTextureCube->GetBackendTexture());
 
 	// Translate so the sky center is at the camera space origin.
 	CMatrix3D translate;
@@ -241,9 +242,9 @@ void SkyManager::RenderSky(
 	CMatrix3D rotate;
 	rotate.SetYRotation(M_PI + g_Renderer.GetSceneRenderer().GetLightEnv().GetRotation());
 
-	shader->Uniform(
-		str_transform,
-		camera.GetViewProjection() * translate * rotate * scale);
+	const CMatrix3D transform = camera.GetViewProjection() * translate * rotate * scale;
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_transform), transform.AsFloatArray());
 
 	m_VertexArray.PrepareForRendering();
 	m_VertexArray.UploadIfNeeded(deviceCommandContext);

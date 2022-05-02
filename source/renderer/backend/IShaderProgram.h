@@ -18,6 +18,9 @@
 #ifndef INCLUDED_RENDERER_BACKEND_ISHADERPROGRAM
 #define INCLUDED_RENDERER_BACKEND_ISHADERPROGRAM
 
+#include "lib/file/vfs/vfs_path.h"
+#include "ps/CStrIntern.h"
+
 namespace Renderer
 {
 
@@ -46,6 +49,10 @@ class IShaderProgram
 {
 public:
 	virtual ~IShaderProgram() {}
+
+	virtual int32_t GetBindingSlot(const CStrIntern name) const = 0;
+
+	virtual std::vector<VfsPath> GetFileDependencies() const = 0;
 };
 
 } // namespace Backend

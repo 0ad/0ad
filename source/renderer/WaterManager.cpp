@@ -802,15 +802,22 @@ void WaterManager::RenderWaves(
 	deviceCommandContext->SetGraphicsPipelineState(
 		tech->GetGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginPass();
-	Renderer::Backend::GL::CShaderProgram* shader = tech->GetShader();
+	Renderer::Backend::IShaderProgram* shader = tech->GetShader();
 
 	m_WaveTex->UploadBackendTextureIfNeeded(deviceCommandContext);
 	m_FoamTex->UploadBackendTextureIfNeeded(deviceCommandContext);
-	shader->BindTexture(str_waveTex, m_WaveTex->GetBackendTexture());
-	shader->BindTexture(str_foamTex, m_FoamTex->GetBackendTexture());
 
-	shader->Uniform(str_time, (float)m_WaterTexTimer);
-	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_waveTex), m_WaveTex->GetBackendTexture());
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_foamTex), m_FoamTex->GetBackendTexture());
+
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_time), static_cast<float>(m_WaterTexTimer));
+	const CMatrix3D transform =
+		g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_transform), transform.AsFloatArray());
 
 	for (size_t a = 0; a < m_ShoreWaves.size(); ++a)
 	{
@@ -850,19 +857,19 @@ void WaterManager::RenderWaves(
 			Renderer::Backend::Format::R32G32B32_SFLOAT,
 			firstVertexOffset + offsetof(SWavesVertex, m_RetreatPosition), stride, 0);
 
-		shader->Uniform(str_translation, m_ShoreWaves[a]->m_TimeDiff);
-		shader->Uniform(str_width, (int)m_ShoreWaves[a]->m_Width);
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_translation), m_ShoreWaves[a]->m_TimeDiff);
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_width), static_cast<float>(m_ShoreWaves[a]->m_Width));
 
 		deviceCommandContext->SetVertexBuffer(0, VBchunk->m_Owner->GetBuffer());
 		deviceCommandContext->SetIndexBuffer(m_ShoreWavesVBIndices->m_Owner->GetBuffer());
 
-		deviceCommandContext->DrawIndexed(m_ShoreWavesVBIndices->m_Index, (m_ShoreWaves[a]->m_Width - 1) * (7 * 6), 0);
+		const uint32_t indexCount = (m_ShoreWaves[a]->m_Width - 1) * (7 * 6);
+		deviceCommandContext->DrawIndexed(m_ShoreWavesVBIndices->m_Index, indexCount, 0);
 
-		shader->Uniform(str_translation, m_ShoreWaves[a]->m_TimeDiff + 6.0f);
-
-		// TODO: figure out why this doesn't work.
-		//g_Renderer.m_Stats.m_DrawCalls++;
-		//g_Renderer.m_Stats.m_WaterTris += m_ShoreWaves_VBIndices->m_Count / 3;
+		g_Renderer.GetStats().m_DrawCalls++;
+		g_Renderer.GetStats().m_WaterTris += indexCount / 3;
 	}
 	deviceCommandContext->EndPass();
 	deviceCommandContext->SetFramebuffer(

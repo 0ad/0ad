@@ -401,8 +401,6 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 
 	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 
-	// ----------------------------------------------------------------------------------------
-
 	CShaderTechniquePtr shaderTechTexLineNormal = GetOverlayLineShaderTechnique(m->defsOverlayLineNormal);
 	if (shaderTechTexLineNormal)
 	{
@@ -421,20 +419,24 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 		deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 		deviceCommandContext->BeginPass();
 
-		Renderer::Backend::GL::CShaderProgram* shaderTexLineNormal = shaderTechTexLineNormal->GetShader();
+		Renderer::Backend::IShaderProgram* shaderTexLineNormal = shaderTechTexLineNormal->GetShader();
 
-		shaderTexLineNormal->BindTexture(str_losTex, los.GetTexture());
-		shaderTexLineNormal->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+		deviceCommandContext->SetTexture(
+			shaderTexLineNormal->GetBindingSlot(str_losTex), los.GetTexture());
 
-		shaderTexLineNormal->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
+		const CMatrix3D transform =
+			g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
+		deviceCommandContext->SetUniform(
+			shaderTexLineNormal->GetBindingSlot(str_transform), transform.AsFloatArray());
+		deviceCommandContext->SetUniform(
+			shaderTexLineNormal->GetBindingSlot(str_losTransform),
+			los.GetTextureMatrix()[0], los.GetTextureMatrix()[12]);
 
 		// batch render only the non-always-visible overlay lines using the normal shader
 		RenderTexturedOverlayLines(deviceCommandContext, shaderTexLineNormal, false);
 
 		deviceCommandContext->EndPass();
 	}
-
-	// ----------------------------------------------------------------------------------------
 
 	CShaderTechniquePtr shaderTechTexLineAlwaysVisible = GetOverlayLineShaderTechnique(m->defsOverlayLineAlwaysVisible);
 	if (shaderTechTexLineAlwaysVisible)
@@ -454,30 +456,30 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 		deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 		deviceCommandContext->BeginPass();
 
-		Renderer::Backend::GL::CShaderProgram* shaderTexLineAlwaysVisible = shaderTechTexLineAlwaysVisible->GetShader();
+		Renderer::Backend::IShaderProgram* shaderTexLineAlwaysVisible = shaderTechTexLineAlwaysVisible->GetShader();
 
 		// TODO: losTex and losTransform are unused in the always visible shader; see if these can be safely omitted
-		shaderTexLineAlwaysVisible->BindTexture(str_losTex, los.GetTexture());
-		shaderTexLineAlwaysVisible->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+		deviceCommandContext->SetTexture(
+			shaderTexLineAlwaysVisible->GetBindingSlot(str_losTex), los.GetTexture());
 
-		shaderTexLineAlwaysVisible->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
+		const CMatrix3D transform =
+			g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
+		deviceCommandContext->SetUniform(
+			shaderTexLineAlwaysVisible->GetBindingSlot(str_transform), transform.AsFloatArray());
+		deviceCommandContext->SetUniform(
+			shaderTexLineAlwaysVisible->GetBindingSlot(str_losTransform),
+			los.GetTextureMatrix()[0], los.GetTextureMatrix()[12]);
 
 		// batch render only the always-visible overlay lines using the LoS-ignored shader
 		RenderTexturedOverlayLines(deviceCommandContext, shaderTexLineAlwaysVisible, true);
 
 		deviceCommandContext->EndPass();
 	}
-
-	// ----------------------------------------------------------------------------------------
-
-	// TODO: the shaders should probably be responsible for unbinding their textures
-	deviceCommandContext->BindTexture(1, GL_TEXTURE_2D, 0);
-	deviceCommandContext->BindTexture(0, GL_TEXTURE_2D, 0);
 }
 
 void OverlayRenderer::RenderTexturedOverlayLines(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CShaderProgram* shader, bool alwaysVisible)
+	Renderer::Backend::IShaderProgram* shader, bool alwaysVisible)
 {
 	for (size_t i = 0; i < m->texlines.size(); ++i)
 	{
@@ -518,20 +520,29 @@ void OverlayRenderer::RenderQuadOverlays(
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 	deviceCommandContext->BeginPass();
 
-	Renderer::Backend::GL::CShaderProgram* shader = shaderTech->GetShader();
+	Renderer::Backend::IShaderProgram* shader = shaderTech->GetShader();
 
 	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 
-	shader->BindTexture(str_losTex, los.GetTexture());
-	shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_losTex), los.GetTexture());
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_losTransform),
+		los.GetTextureMatrix()[0], los.GetTextureMatrix()[12]);
 
-	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
+	const CMatrix3D transform =
+		g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_transform), transform.AsFloatArray());
 
 	m->quadVertices.UploadIfNeeded(deviceCommandContext);
 	m->quadIndices.UploadIfNeeded(deviceCommandContext);
 
 	const uint32_t vertexStride = m->quadVertices.GetStride();
 	const uint32_t firstVertexOffset = m->quadVertices.GetOffset() * vertexStride;
+
+	const int32_t baseTexBindingSlot = shader->GetBindingSlot(str_baseTex);
+	const int32_t maskTexBindingSlot = shader->GetBindingSlot(str_maskTex);
 
 	for (OverlayRendererInternals::QuadBatchMap::iterator it = m->quadBatchMap.begin(); it != m->quadBatchMap.end(); ++it)
 	{
@@ -545,8 +556,11 @@ void OverlayRenderer::RenderQuadOverlays(
 
 		maskPair.m_Texture->UploadBackendTextureIfNeeded(deviceCommandContext);
 		maskPair.m_TextureMask->UploadBackendTextureIfNeeded(deviceCommandContext);
-		shader->BindTexture(str_baseTex, maskPair.m_Texture->GetBackendTexture());
-		shader->BindTexture(str_maskTex, maskPair.m_TextureMask->GetBackendTexture());
+
+		deviceCommandContext->SetTexture(
+			baseTexBindingSlot, maskPair.m_Texture->GetBackendTexture());
+		deviceCommandContext->SetTexture(
+			maskTexBindingSlot, maskPair.m_TextureMask->GetBackendTexture());
 
 		// TODO: move setting format out of the loop, we might want move the offset
 		// to the index offset when it's supported.
@@ -573,10 +587,6 @@ void OverlayRenderer::RenderQuadOverlays(
 	}
 
 	deviceCommandContext->EndPass();
-
-	// TODO: the shader should probably be responsible for unbinding its textures
-	deviceCommandContext->BindTexture(1, GL_TEXTURE_2D, 0);
-	deviceCommandContext->BindTexture(0, GL_TEXTURE_2D, 0);
 }
 
 void OverlayRenderer::RenderForegroundOverlays(
@@ -584,6 +594,7 @@ void OverlayRenderer::RenderForegroundOverlays(
 	const CCamera& viewCamera)
 {
 	PROFILE3_GPU("overlays (fg)");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render foreground overlays");
 
 	const CVector3D right = -viewCamera.GetOrientation().GetLeft();
 	const CVector3D up = viewCamera.GetOrientation().GetUp();
@@ -604,9 +615,12 @@ void OverlayRenderer::RenderForegroundOverlays(
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 	deviceCommandContext->BeginPass();
 
-	Renderer::Backend::GL::CShaderProgram* shader = tech->GetShader();
+	Renderer::Backend::IShaderProgram* shader = tech->GetShader();
 
-	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
+	const CMatrix3D transform =
+		g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_transform), transform.AsFloatArray());
 
 	const CVector2D uvs[6] =
 	{
@@ -627,16 +641,21 @@ void OverlayRenderer::RenderForegroundOverlays(
 
 	deviceCommandContext->SetVertexBufferData(1, &uvs[0]);
 
+	const int32_t baseTexBindingSlot = shader->GetBindingSlot(str_baseTex);
+	const int32_t colorMulBindingSlot = shader->GetBindingSlot(str_colorMul);
+
 	for (size_t i = 0; i < m->sprites.size(); ++i)
 	{
 		SOverlaySprite* sprite = m->sprites[i];
 		if (!i || sprite->m_Texture != m->sprites[i - 1]->m_Texture)
 		{
 			sprite->m_Texture->UploadBackendTextureIfNeeded(deviceCommandContext);
-			shader->BindTexture(str_baseTex, sprite->m_Texture->GetBackendTexture());
+			deviceCommandContext->SetTexture(
+				baseTexBindingSlot, sprite->m_Texture->GetBackendTexture());
 		}
 
-		shader->Uniform(str_colorMul, sprite->m_Color);
+		deviceCommandContext->SetUniform(
+			colorMulBindingSlot, sprite->m_Color.AsFloatArray());
 
 		const CVector3D position[6] =
 		{
@@ -728,7 +747,7 @@ void OverlayRenderer::RenderSphereOverlays(
 	if (m->spheres.empty())
 		return;
 
-	Renderer::Backend::GL::CShaderProgram* shader;
+	Renderer::Backend::IShaderProgram* shader = nullptr;
 	CShaderTechniquePtr tech;
 
 	tech = g_Renderer.GetShaderManager().LoadEffect(str_overlay_solid);
@@ -747,7 +766,10 @@ void OverlayRenderer::RenderSphereOverlays(
 
 	shader = tech->GetShader();
 
-	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
+	const CMatrix3D transform =
+		g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_transform), transform.AsFloatArray());
 
 	m->GenerateSphere();
 
@@ -762,14 +784,18 @@ void OverlayRenderer::RenderSphereOverlays(
 	{
 		SOverlaySphere* sphere = m->spheres[i];
 
-		CMatrix3D transform;
-		transform.SetIdentity();
-		transform.Scale(sphere->m_Radius, sphere->m_Radius, sphere->m_Radius);
-		transform.Translate(sphere->m_Center);
+		CMatrix3D instancingTransform;
+		instancingTransform.SetIdentity();
+		instancingTransform.Scale(
+			sphere->m_Radius, sphere->m_Radius, sphere->m_Radius);
+		instancingTransform.Translate(sphere->m_Center);
 
-		shader->Uniform(str_instancingTransform, transform);
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_instancingTransform),
+			instancingTransform.AsFloatArray());
 
-		shader->Uniform(str_color, sphere->m_Color);
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_color), sphere->m_Color.AsFloatArray());
 
 		deviceCommandContext->DrawIndexed(0, m->sphereIndexes.size(), 0);
 

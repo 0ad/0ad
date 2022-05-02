@@ -176,25 +176,32 @@ void CParticleEmitter::PrepareForRendering()
 
 void CParticleEmitter::Bind(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CShaderProgram* shader)
+	Renderer::Backend::IShaderProgram* shader)
 {
 	m_Type->m_Texture->UploadBackendTextureIfNeeded(deviceCommandContext);
 
 	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
-	shader->BindTexture(str_losTex, los.GetTextureSmooth());
-	shader->Uniform(str_losTransform, los.GetTextureMatrix()[0], los.GetTextureMatrix()[12], 0.f, 0.f);
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_losTex), los.GetTextureSmooth());
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_losTransform),
+		los.GetTextureMatrix()[0], los.GetTextureMatrix()[12]);
 
 	const CLightEnv& lightEnv = g_Renderer.GetSceneRenderer().GetLightEnv();
-	shader->Uniform(str_sunColor, lightEnv.m_SunColor);
-	shader->Uniform(str_fogColor, lightEnv.m_FogColor);
-	shader->Uniform(str_fogParams, lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
 
-	shader->BindTexture(str_baseTex, m_Type->m_Texture->GetBackendTexture());
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_sunColor), lightEnv.m_SunColor.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_fogColor), lightEnv.m_FogColor.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_fogParams), lightEnv.m_FogFactor, lightEnv.m_FogMax);
+
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_baseTex), m_Type->m_Texture->GetBackendTexture());
 }
 
 void CParticleEmitter::RenderArray(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CShaderProgram* UNUSED(shader))
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	if (m_Particles.empty())
 		return;

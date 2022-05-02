@@ -22,7 +22,6 @@
 #include "graphics/ShaderProgramPtr.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
-#include "renderer/backend/gl/ShaderProgram.h"
 #include "renderer/backend/IShaderProgram.h"
 
 #include <vector>
@@ -42,7 +41,7 @@ public:
 
 	std::vector<VfsPath> GetFileDependencies() const;
 
-	Renderer::Backend::GL::CShaderProgram* GetBackendShaderProgram() { return m_BackendShaderProgram.get(); }
+	Renderer::Backend::IShaderProgram* GetBackendShaderProgram() { return m_BackendShaderProgram.get(); }
 
 	// TODO: add reloadable handles.
 
@@ -51,7 +50,7 @@ protected:
 
 	CStr m_Name;
 	CShaderDefines m_Defines;
-	std::unique_ptr<Renderer::Backend::GL::CShaderProgram> m_BackendShaderProgram;
+	std::unique_ptr<Renderer::Backend::IShaderProgram> m_BackendShaderProgram;
 };
 
 #endif // INCLUDED_SHADERPROGRAM

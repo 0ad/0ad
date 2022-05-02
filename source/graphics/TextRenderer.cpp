@@ -204,7 +204,7 @@ struct SBatchCompare
 
 void CTextRenderer::Render(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CShaderProgram* shader, const CMatrix3D& transform)
+	Renderer::Backend::IShaderProgram* shader, const CMatrix3D& transform)
 {
 	std::vector<u16> indexes;
 	std::vector<t2f_v2i> vertexes;
@@ -225,6 +225,11 @@ void CTextRenderer::Render(
 			++it;
 	}
 
+	const int32_t texBindingSlot = shader->GetBindingSlot(str_tex);
+	const int32_t transformBindingSlot = shader->GetBindingSlot(str_transform);
+	const int32_t colorAddBindingSlot = shader->GetBindingSlot(str_colorAdd);
+	const int32_t colorMulBindingSlot = shader->GetBindingSlot(str_colorMul);
+
 	bool transformChanged = false;
 
 	CTexture* lastTexture = nullptr;
@@ -238,25 +243,26 @@ void CTextRenderer::Render(
 		{
 			lastTexture = batch.font->GetTexture().get();
 			lastTexture->UploadBackendTextureIfNeeded(deviceCommandContext);
-			shader->BindTexture(str_tex, lastTexture->GetBackendTexture());
+			deviceCommandContext->SetTexture(texBindingSlot, lastTexture->GetBackendTexture());
 		}
 
 		if (batch.translate.X != 0.0f || batch.translate.Y != 0.0f)
 		{
-			CMatrix3D translation;
-			translation.SetTranslation(batch.translate.X, batch.translate.Y, 0.0f);
-			shader->Uniform(str_transform, transform * translation);
+			CMatrix3D localTransform;
+			localTransform.SetTranslation(batch.translate.X, batch.translate.Y, 0.0f);
+			localTransform = transform * localTransform;
+			deviceCommandContext->SetUniform(transformBindingSlot, localTransform.AsFloatArray());
 			transformChanged = true;
 		}
 
 		// ALPHA-only textures will have .rgb sampled as 0, so we need to
 		// replace it with white (but not affect RGBA textures)
 		if (batch.font->HasRGB())
-			shader->Uniform(str_colorAdd, CColor(0.0f, 0.0f, 0.0f, 0.0f));
+			deviceCommandContext->SetUniform(colorAddBindingSlot, 0.0f, 0.0f, 0.0f, 0.0f);
 		else
-			shader->Uniform(str_colorAdd, CColor(batch.color.r, batch.color.g, batch.color.b, 0.0f));
+			deviceCommandContext->SetUniform(colorAddBindingSlot, batch.color.r, batch.color.g, batch.color.b, 0.0f);
 
-		shader->Uniform(str_colorMul, batch.color);
+		deviceCommandContext->SetUniform(colorMulBindingSlot, batch.color.AsFloatArray());
 
 		vertexes.resize(std::min(MAX_CHAR_COUNT_PER_BATCH, batch.chars) * 4);
 		indexes.resize(std::min(MAX_CHAR_COUNT_PER_BATCH, batch.chars) * 6);
@@ -339,5 +345,5 @@ void CTextRenderer::Render(
 	m_Batches.clear();
 
 	if (transformChanged)
-		shader->Uniform(str_transform, transform);
+		deviceCommandContext->SetUniform(transformBindingSlot, transform.AsFloatArray());
 }

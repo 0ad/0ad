@@ -89,9 +89,12 @@ void CDebugRenderer::DrawLine(
 
 	const CCamera& viewCamera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
-	Renderer::Backend::GL::CShaderProgram* debugLineShader = debugLineTech->GetShader();
-	debugLineShader->Uniform(str_transform, viewCamera.GetViewProjection());
-	debugLineShader->Uniform(str_color, color);
+	Renderer::Backend::IShaderProgram* debugLineShader = debugLineTech->GetShader();
+	const CMatrix3D transform = viewCamera.GetViewProjection();
+	deviceCommandContext->SetUniform(
+		debugLineShader->GetBindingSlot(str_transform), transform.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		debugLineShader->GetBindingSlot(str_color), color.AsFloatArray());
 
 	const CVector3D cameraIn = viewCamera.GetOrientation().GetIn();
 
@@ -144,9 +147,13 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 
 	const CCamera& camera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
-	Renderer::Backend::GL::CShaderProgram* debugCircleShader = debugCircleTech->GetShader();
-	debugCircleShader->Uniform(str_transform, camera.GetViewProjection());
-	debugCircleShader->Uniform(str_color, color);
+	Renderer::Backend::IShaderProgram* debugCircleShader = debugCircleTech->GetShader();
+
+	const CMatrix3D transform = camera.GetViewProjection();
+	deviceCommandContext->SetUniform(
+		debugCircleShader->GetBindingSlot(str_transform), transform.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		debugCircleShader->GetBindingSlot(str_color), color.AsFloatArray());
 
 	const CVector3D cameraUp = camera.GetOrientation().GetUp();
 	const CVector3D cameraLeft = camera.GetOrientation().GetLeft();
@@ -202,9 +209,13 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 		deviceCommandContext, overlayTech, color, true, wireframe);
 	deviceCommandContext->BeginPass();
 
-	Renderer::Backend::GL::CShaderProgram* overlayShader = overlayTech->GetShader();
-	overlayShader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
-	overlayShader->Uniform(str_color, color);
+	Renderer::Backend::IShaderProgram* overlayShader = overlayTech->GetShader();
+
+	const CMatrix3D transform = g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
+	deviceCommandContext->SetUniform(
+		overlayShader->GetBindingSlot(str_transform), transform.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		overlayShader->GetBindingSlot(str_color), color.AsFloatArray());
 
 	std::vector<float> vertices;
 #define ADD(position) \
@@ -297,9 +308,12 @@ void CDebugRenderer::DrawBoundingBox(
 		deviceCommandContext, shaderTech, color, true, wireframe);
 	deviceCommandContext->BeginPass();
 
-	Renderer::Backend::GL::CShaderProgram* shader = shaderTech->GetShader();
-	shader->Uniform(str_color, color);
-	shader->Uniform(str_transform, transform);
+	Renderer::Backend::IShaderProgram* shader = shaderTech->GetShader();
+
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_transform), transform.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_color), color.AsFloatArray());
 
 	std::vector<float> data;
 
@@ -341,9 +355,13 @@ void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color, bool wi
 		deviceCommandContext, shaderTech, color, true, wireframe);
 	deviceCommandContext->BeginPass();
 
-	Renderer::Backend::GL::CShaderProgram* shader = shaderTech->GetShader();
-	shader->Uniform(str_color, color);
-	shader->Uniform(str_transform, g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection());
+	Renderer::Backend::IShaderProgram* shader = shaderTech->GetShader();
+
+	const CMatrix3D transform = g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_transform), transform.AsFloatArray());
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_color), color.AsFloatArray());
 
 	std::vector<float> data;
 

@@ -200,7 +200,7 @@ static void SkinPointsAndNormalsSSE(
 		const CMatrix3D& mtx = newPoseMatrices[blendIndices[j]];
 
 		// Loads matrix to xmm registers.
-		const float* data = mtx.AsFloatArray();
+		const float* data = mtx.AsFloatArray().data();
 		col0 = _mm_load_ps(data);
 		col1 = _mm_load_ps(data + 4);
 		col2 = _mm_load_ps(data + 8);

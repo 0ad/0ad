@@ -19,7 +19,7 @@
 #define INCLUDED_SHADOWMAP
 
 #include "renderer/backend/gl/DeviceCommandContext.h"
-#include "renderer/backend/gl/ShaderProgram.h"
+#include "renderer/backend/IShaderProgram.h"
 
 class CBoundingBoxAligned;
 class CCamera;
@@ -126,19 +126,15 @@ public:
 	/**
 	 * Binds all needed resources and uniforms to draw shadows using the shader.
 	 */
-	void BindTo(Renderer::Backend::GL::CShaderProgram* shader) const;
+	void BindTo(
+		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IShaderProgram* shader) const;
 
 	/**
 	 * Visualize shadow mapping calculations to help in
 	 * debugging and optimal shadow map usage.
 	 */
 	void RenderDebugBounds();
-
-	/**
-	 * Visualize shadow map texture to help in debugging.
-	 */
-	void RenderDebugTexture(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
 
 private:
 	ShadowMapInternals* m;

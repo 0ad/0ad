@@ -225,13 +225,15 @@ CVector4D CShaderUniforms::GetVector(const char* name) const
 	return CVector4D();
 }
 
-void CShaderUniforms::BindUniforms(Renderer::Backend::GL::CShaderProgram* shader) const
+void CShaderUniforms::BindUniforms(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IShaderProgram* shader) const
 {
-	const std::vector<SItems::Item>& items = m_Items->items;
-	for (size_t i = 0; i < items.size(); ++i)
+	for (const SItems::Item& item : m_Items->items)
 	{
-		const CVector4D& v = items[i].second;
-		shader->Uniform(items[i].first, v.X, v.Y, v.Z, v.W);
+		const CVector4D& v = item.second;
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(item.first), v.AsFloatArray());
 	}
 }
 

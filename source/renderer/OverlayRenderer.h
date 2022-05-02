@@ -140,7 +140,7 @@ private:
 	 */
 	void RenderTexturedOverlayLines(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		Renderer::Backend::GL::CShaderProgram* shader, bool alwaysVisible);
+		Renderer::Backend::IShaderProgram* shader, bool alwaysVisible);
 
 	/**
 	 * Helper method; batch-renders all registered quad overlays, batched by their texture for effiency.

@@ -201,9 +201,10 @@ void CPostprocManager::ApplyBlurDownscale2x(
 	deviceCommandContext->SetGraphicsPipelineState(
 		tech->GetGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginPass();
-	Renderer::Backend::GL::CShaderProgram* shader = tech->GetShader();
+	Renderer::Backend::IShaderProgram* shader = tech->GetShader();
 
-	shader->BindTexture(str_renderedTex, inTex);
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_renderedTex), inTex);
 
 	const SViewPort oldVp = g_Renderer.GetViewport();
 	const SViewPort vp = { 0, 0, inWidth / 2, inHeight / 2 };
@@ -266,9 +267,11 @@ void CPostprocManager::ApplyBlurGauss(
 	deviceCommandContext->SetGraphicsPipelineState(
 		tech->GetGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginPass();
-	Renderer::Backend::GL::CShaderProgram* shader = tech->GetShader();
-	shader->BindTexture(str_renderedTex, inTex);
-	shader->Uniform(str_texSize, inWidth, inHeight, 0.0f, 0.0f);
+	Renderer::Backend::IShaderProgram* shader = tech->GetShader();
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_renderedTex), inTex);
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_texSize), inWidth, inHeight);
 
 	const SViewPort oldVp = g_Renderer.GetViewport();
 	const SViewPort vp = { 0, 0, inWidth, inHeight };
@@ -324,8 +327,10 @@ void CPostprocManager::ApplyBlurGauss(
 	shader = tech->GetShader();
 
 	// Our input texture to the shader is the output of the horizontal pass.
-	shader->BindTexture(str_renderedTex, tempTex);
-	shader->Uniform(str_texSize, inWidth, inHeight, 0.0f, 0.0f);
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_renderedTex), tempTex);
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_texSize), inWidth, inHeight);
 
 	g_Renderer.SetViewport(vp);
 
@@ -408,33 +413,35 @@ void CPostprocManager::ApplyEffect(
 	deviceCommandContext->SetGraphicsPipelineState(
 		shaderTech->GetGraphicsPipelineStateDesc(pass));
 	deviceCommandContext->BeginPass();
-	Renderer::Backend::GL::CShaderProgram* shader = shaderTech->GetShader(pass);
+	Renderer::Backend::IShaderProgram* shader = shaderTech->GetShader(pass);
 
 	// Use the textures from the current FBO as input to the shader.
 	// We also bind a bunch of other textures and parameters, but since
 	// this only happens once per frame the overhead is negligible.
-	if (m_WhichBuffer)
-		shader->BindTexture(str_renderedTex, m_ColorTex1.get());
-	else
-		shader->BindTexture(str_renderedTex, m_ColorTex2.get());
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_renderedTex),
+		m_WhichBuffer ? m_ColorTex1.get() : m_ColorTex2.get());
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_depthTex), m_DepthTex.get());
 
-	shader->BindTexture(str_depthTex, m_DepthTex.get());
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_blurTex2), m_BlurScales[0].steps[0].texture.get());
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_blurTex4), m_BlurScales[1].steps[0].texture.get());
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_blurTex8), m_BlurScales[2].steps[0].texture.get());
 
-	shader->BindTexture(str_blurTex2, m_BlurScales[0].steps[0].texture.get());
-	shader->BindTexture(str_blurTex4, m_BlurScales[1].steps[0].texture.get());
-	shader->BindTexture(str_blurTex8, m_BlurScales[2].steps[0].texture.get());
+	deviceCommandContext->SetUniform(shader->GetBindingSlot(str_width), m_Width);
+	deviceCommandContext->SetUniform(shader->GetBindingSlot(str_height), m_Height);
+	deviceCommandContext->SetUniform(shader->GetBindingSlot(str_zNear), m_NearPlane);
+	deviceCommandContext->SetUniform(shader->GetBindingSlot(str_zFar), m_FarPlane);
 
-	shader->Uniform(str_width, m_Width);
-	shader->Uniform(str_height, m_Height);
-	shader->Uniform(str_zNear, m_NearPlane);
-	shader->Uniform(str_zFar, m_FarPlane);
+	deviceCommandContext->SetUniform(shader->GetBindingSlot(str_sharpness), m_Sharpness);
 
-	shader->Uniform(str_sharpness, m_Sharpness);
-
-	shader->Uniform(str_brightness, g_LightEnv.m_Brightness);
-	shader->Uniform(str_hdr, g_LightEnv.m_Contrast);
-	shader->Uniform(str_saturation, g_LightEnv.m_Saturation);
-	shader->Uniform(str_bloom, g_LightEnv.m_Bloom);
+	deviceCommandContext->SetUniform(shader->GetBindingSlot(str_brightness), g_LightEnv.m_Brightness);
+	deviceCommandContext->SetUniform(shader->GetBindingSlot(str_hdr), g_LightEnv.m_Contrast);
+	deviceCommandContext->SetUniform(shader->GetBindingSlot(str_saturation), g_LightEnv.m_Saturation);
+	deviceCommandContext->SetUniform(shader->GetBindingSlot(str_bloom), g_LightEnv.m_Bloom);
 
 	float quadVerts[] =
 	{

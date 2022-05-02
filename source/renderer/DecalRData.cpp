@@ -176,11 +176,14 @@ void CDecalRData::RenderDecals(
 			deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 			deviceCommandContext->BeginPass();
 
-			Renderer::Backend::GL::CShaderProgram* shader = techBase->GetShader(pass);
-			TerrainRenderer::PrepareShader(shader, shadow);
+			Renderer::Backend::IShaderProgram* shader = techBase->GetShader(pass);
+			TerrainRenderer::PrepareShader(deviceCommandContext, shader, shadow);
 
 			CColor shadingColor(1.0f, 1.0f, 1.0f, 1.0f);
-			shader->Uniform(str_shadingColor, shadingColor);
+			const int32_t shadingColorBindingSlot =
+				shader->GetBindingSlot(str_shadingColor);
+			deviceCommandContext->SetUniform(
+				shadingColorBindingSlot, shadingColor.AsFloatArray());
 
 			CShaderUniforms currentStaticUniforms;
 
@@ -195,12 +198,16 @@ void CDecalRData::RenderDecals(
 				for (const CMaterial::TextureSampler& sampler : samplers)
 					sampler.Sampler->UploadBackendTextureIfNeeded(deviceCommandContext);
 				for (const CMaterial::TextureSampler& sampler : samplers)
-					shader->BindTexture(sampler.Name, sampler.Sampler->GetBackendTexture());
+				{
+					deviceCommandContext->SetTexture(
+						shader->GetBindingSlot(sampler.Name),
+						sampler.Sampler->GetBackendTexture());
+				}
 
 				if (currentStaticUniforms != material.GetStaticUniforms())
 				{
 					currentStaticUniforms = material.GetStaticUniforms();
-					material.GetStaticUniforms().BindUniforms(shader);
+					material.GetStaticUniforms().BindUniforms(deviceCommandContext, shader);
 				}
 
 				// TODO: Need to handle floating decals correctly. In particular, we need
@@ -215,7 +222,8 @@ void CDecalRData::RenderDecals(
 				if (shadingColor != decal->m_Decal->GetShadingColor())
 				{
 					shadingColor = decal->m_Decal->GetShadingColor();
-					shader->Uniform(str_shadingColor, shadingColor);
+					deviceCommandContext->SetUniform(
+						shadingColorBindingSlot, shadingColor.AsFloatArray());
 				}
 
 				if (lastVB != batch.vertices->m_Owner)

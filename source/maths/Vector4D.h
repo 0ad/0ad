@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,8 @@
 
 #ifndef INCLUDED_VECTOR4D
 #define INCLUDED_VECTOR4D
+
+#include "ps/containers/Span.h"
 
 #include <math.h>
 
@@ -124,8 +126,20 @@ public:
 		return X*a.X + Y*a.Y + Z*a.Z + W*a.W;
 	}
 
+	// Returns 4 element array of floats, e.g. for vec4 uniforms.
+	PS::span<const float> AsFloatArray() const
+	{
+		// Additional check to prevent a weird compiler has a different
+		// alignement for an array and a class members.
+		static_assert(
+			sizeof(CVector4D) == sizeof(float) * 4u &&
+			offsetof(CVector4D, X) == 0 &&
+			offsetof(CVector4D, W) == sizeof(float) * 3u,
+			"CVector4D should be properly layouted to use AsFloatArray");
+		return PS::span<const float>(&X, 4);
+	}
 
 	float X, Y, Z, W;
 };
 
-#endif
+#endif // INCLUDED_VECTOR4D

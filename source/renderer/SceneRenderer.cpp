@@ -925,16 +925,13 @@ void CSceneRenderer::RenderSubmissions(
 
 	if (g_RenderingOptions.GetDisplayShadowsFrustum())
 		m->shadow.RenderDebugBounds();
-	m->silhouetteRenderer.RenderDebugBounds(deviceCommandContext);
 
-	if (g_RenderingOptions.GetDisplayShadowsFrustum())
-		m->shadow.RenderDebugTexture(deviceCommandContext);
+	m->silhouetteRenderer.RenderDebugBounds(deviceCommandContext);
 	m->silhouetteRenderer.RenderDebugOverlays(deviceCommandContext);
 
 	// render overlays that should appear on top of all other objects
 	m->overlayRenderer.RenderForegroundOverlays(deviceCommandContext, m_ViewCamera);
 	ogl_WarnIfError();
-
 }
 
 void CSceneRenderer::EndFrame()

@@ -519,7 +519,7 @@ void ShadowMapInternals::CreateTexture()
 	{
 	case 16: formatName = "Format::D16"; backendFormat = Renderer::Backend::Format::D16; break;
 	case 24: formatName = "Format::D24"; backendFormat = Renderer::Backend::Format::D24; break;
-	case 32: formatName = "Format::D32"; backendFormat = Renderer::Backend::Format::D32;  break;
+	case 32: formatName = "Format::D32"; backendFormat = Renderer::Backend::Format::D32; break;
 	default: formatName = "Format::D24"; backendFormat = Renderer::Backend::Format::D24; break;
 	}
 #endif
@@ -631,20 +631,29 @@ void ShadowMap::EndRender()
 	g_Renderer.SetViewport(vp);
 }
 
-void ShadowMap::BindTo(Renderer::Backend::GL::CShaderProgram* shader) const
+void ShadowMap::BindTo(
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IShaderProgram* shader) const
 {
-	if (!shader->GetTextureBinding(str_shadowTex).Active() || !m->Texture)
+	const int32_t shadowTexBindingSlot = shader->GetBindingSlot(str_shadowTex);
+	if (shadowTexBindingSlot < 0 || !m->Texture)
 		return;
 
-	shader->BindTexture(str_shadowTex, m->Texture.get());
-	shader->Uniform(str_shadowScale, m->Width, m->Height, 1.0f / m->Width, 1.0f / m->Height);
+	deviceCommandContext->SetTexture(shadowTexBindingSlot, m->Texture.get());
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_shadowScale), m->Width, m->Height, 1.0f / m->Width, 1.0f / m->Height);
 	const CVector3D cameraForward = g_Renderer.GetSceneRenderer().GetCullCamera().GetOrientation().GetIn();
-	shader->Uniform(str_cameraForward, cameraForward.X, cameraForward.Y, cameraForward.Z,
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_cameraForward), cameraForward.X, cameraForward.Y, cameraForward.Z,
 		cameraForward.Dot(g_Renderer.GetSceneRenderer().GetCullCamera().GetOrientation().GetTranslation()));
+
 	if (GetCascadeCount() == 1)
 	{
-		shader->Uniform(str_shadowTransform, m->Cascades[0].TextureMatrix);
-		shader->Uniform(str_shadowDistance, m->Cascades[0].Distance);
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_shadowTransform),
+			m->Cascades[0].TextureMatrix.AsFloatArray());
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_shadowDistance), m->Cascades[0].Distance);
 	}
 	else
 	{
@@ -655,8 +664,14 @@ void ShadowMap::BindTo(Renderer::Backend::GL::CShaderProgram* shader) const
 			shadowDistances.emplace_back(cascade.Distance);
 			shadowTransforms.emplace_back(cascade.TextureMatrix);
 		}
-		shader->Uniform(str_shadowTransforms, GetCascadeCount(), shadowTransforms.data());
-		shader->Uniform(str_shadowDistances, GetCascadeCount(), shadowDistances.data());
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_shadowTransform),
+			PS::span<const float>(
+				shadowTransforms[0]._data,
+				shadowTransforms[0].AsFloatArray().size() * GetCascadeCount()));
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_shadowDistance),
+			PS::span<const float>(shadowDistances.data(), shadowDistances.size()));
 	}
 }
 
@@ -707,64 +722,6 @@ void ShadowMap::RenderDebugBounds()
 		g_Renderer.GetDebugRenderer().DrawBrush(frustumBrush, CColor(1.0f, 0.0f, 0.0f, 0.1f));
 		g_Renderer.GetDebugRenderer().DrawBrush(frustumBrush, CColor(1.0f, 0.0f, 0.0f, 0.1f), true);
 	}
-
-	ogl_WarnIfError();
-}
-
-void ShadowMap::RenderDebugTexture(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
-{
-	if (!m->Texture)
-		return;
-
-#if !CONFIG2_GLES
-	deviceCommandContext->BindTexture(0, GL_TEXTURE_2D, m->Texture->GetHandle());
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
-#endif
-
-	CShaderTechniquePtr texTech = g_Renderer.GetShaderManager().LoadEffect(str_canvas2d);
-	deviceCommandContext->SetGraphicsPipelineState(
-		texTech->GetGraphicsPipelineStateDesc());
-	deviceCommandContext->BeginPass();
-
-	Renderer::Backend::GL::CShaderProgram* texShader = texTech->GetShader();
-
-	texShader->Uniform(str_transform, GetDefaultGuiMatrix());
-	texShader->BindTexture(str_tex, m->Texture.get());
-	texShader->Uniform(str_colorAdd, CColor(0.0f, 0.0f, 0.0f, 1.0f));
-	texShader->Uniform(str_colorMul, CColor(1.0f, 1.0f, 1.0f, 0.0f));
-	texShader->Uniform(str_grayscaleFactor, 0.0f);
-
-	float s = 256.f;
-	float boxVerts[] =
-	{
- 		0,0, 0,s, s,0,
-		s,0, 0,s, s,s
-	};
-	float boxUV[] =
-	{
-		0,0, 0,1, 1,0,
-		1,0, 0,1, 1,1
-	};
-
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 0);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 1);
-
-	deviceCommandContext->SetVertexBufferData(0, boxVerts);
-	deviceCommandContext->SetVertexBufferData(1, boxUV);
-
-	deviceCommandContext->Draw(0, 6);
-
-	deviceCommandContext->EndPass();
-
-#if !CONFIG2_GLES
-	deviceCommandContext->BindTexture(0, GL_TEXTURE_2D, m->Texture->GetHandle());
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_COMPARE_R_TO_TEXTURE);
-#endif
 
 	ogl_WarnIfError();
 }
