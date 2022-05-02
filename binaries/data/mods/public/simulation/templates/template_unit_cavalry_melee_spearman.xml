@@ -10,7 +10,7 @@
       <Bonuses>
         <BonusCavMelee>
           <Classes>Cavalry</Classes>
-          <Multiplier>1.75</Multiplier>
+          <Multiplier>2</Multiplier>
         </BonusCavMelee>
       </Bonuses>
       <MaxRange>4</MaxRange>
@@ -26,13 +26,13 @@
   </Cost>
   <Identity>
     <GenericName>Cavalry Spearman</GenericName>
-    <Tooltip>Counters: 1.75× vs Cavalry.</Tooltip>
+    <Tooltip>Counters: 2× vs Cavalry.</Tooltip>
     <VisibleClasses datatype="tokens">Spearman</VisibleClasses>
   </Identity>
   <Resistance>
     <Entity>
       <Damage>
-        <Hack>4</Hack>
+        <Hack>5</Hack>
         <Pierce>3</Pierce>
       </Damage>
     </Entity>

@@ -168,6 +168,14 @@
 					{ "value": 2.25, "label": "225%" },
 					{ "value": 2.50, "label": "250%" }
 				]
+			},
+			{
+				"type": "number",
+				"label": "Mouse drag",
+				"tooltip": "Number of pixels the mouse can move before the action is considered a drag.",
+				"config": "gui.session.dragdelta",
+				"min": "1",
+				"max": "200"
 			}
 		]
 	},
