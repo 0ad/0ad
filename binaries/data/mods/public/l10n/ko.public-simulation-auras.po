@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"POT-Creation-Date: 2022-04-29 07:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2022\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2019,2021-2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -556,7 +556,7 @@ msgstr "코끼리 일꾼"
 
 #: simulation/data/auras/units/han_minister_building.jsonauraDescription
 msgid "Builders construct buildings +2% faster for every nearby Minister."
-msgstr "건축가는 근처의 모든 관리만큼 건물을 +2% 더 빠르게 건설합니다."
+msgstr "건축가는 주변의 모든 관리만큼 건물을 +2% 더 빠르게 건설합니다."
 
 #: simulation/data/auras/units/han_minister_building.jsonauraName
 msgid "Building Programs"
@@ -592,7 +592,7 @@ msgstr "국유화된 산업들"
 
 #: simulation/data/auras/units/han_minister_gathering.jsonauraDescription
 msgid "Gatherers +2% gathering rate for every nearby Minister."
-msgstr "채집유닛은 근처의 모든 관리에 대해 +2%의 채집률을 제공합니다."
+msgstr "채집유닛은 주변의 모든 관리에 대해 +2%의 채집률을 제공합니다."
 
 #: simulation/data/auras/units/han_minister_gathering.jsonauraName
 msgid "Minister over the Masses"
@@ -781,8 +781,8 @@ msgid "Enemy Cavalry −10% melee and ranged attack damage."
 msgstr "적 기병의 근접 및 원거리 공격 피해량이 -10% 감소합니다."
 
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_3.jsonauraDescription
-msgid "Nearby enemy units −10 health/second."
-msgstr "주변 적 유닛의 체력이 초당 -10 감소합니다."
+msgid "Nearby human enemies −10 health/second."
+msgstr "주변에 있는 적의 체력이 초당 -10 감소합니다."
 
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_3.jsonauraName
 msgid "Scythes"

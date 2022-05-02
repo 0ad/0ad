@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-25 08:08+0000\n"
+"POT-Creation-Date: 2022-04-29 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: JungHee Lee <daemul72@gmail.com>, 2021-2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -387,7 +387,7 @@ msgstr "치트"
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr "이번 게임의 승자가 결정되면, 대기실 점수가 조정됩니다."
+msgstr "이 시합의 승자가 결정되면, 대기실 점수가 조정됩니다."
 
 #: gui/common/gamedescription.js:415 gui/common/gamedescription.js:420
 msgid "Rated game"
@@ -533,7 +533,7 @@ msgstr "연결 끊김"
 
 #: gui/common/network.js:109
 msgid "Only the host can kick clients!"
-msgstr "호스트 만이 클라이언트를 추방(kick)할 수 있습니다!"
+msgstr "호스트만 클라이언트를 추방할 수 있습니다!"
 
 #. Translation: Number of currently connected players/observers and their
 #. names
@@ -2649,7 +2649,7 @@ msgstr "건물을 시계 방향으로 회전"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to align new structures with nearby existing structure."
-msgstr "새 건축물을 근처의 기존 건축물과 정렬하기 위해 변경합니다."
+msgstr "새 건축물을 주변의 기존 건축물과 정렬하기 위해 변경합니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.name
 msgctxt "hotkey metadata"
@@ -3074,16 +3074,6 @@ msgctxt "hotkey metadata"
 msgid "Cancel selection"
 msgstr "선택 취소"
 
-#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.0.desc
-msgctxt "hotkey metadata"
-msgid "Add Control Group 0 to the current selection."
-msgstr "현재 선택한 항목에 제어 그룹 0을 추가합니다."
-
-#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.0.name
-msgctxt "hotkey metadata"
-msgid "Add Control Group 0"
-msgstr "제어 그룹 0 추가"
-
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 1 to the current selection."
@@ -3093,6 +3083,16 @@ msgstr "현재 선택한 항목에 제어 그룹 1을 추가합니다."
 msgctxt "hotkey metadata"
 msgid "Add Control Group 1"
 msgstr "제어 그룹 1 추가"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.10.desc
+msgctxt "hotkey metadata"
+msgid "Add Control Group 10 to the current selection."
+msgstr "현재 선택한 항목에 제어 그룹 10을 추가합니다."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.10.name
+msgctxt "hotkey metadata"
+msgid "Add Control Group 10"
+msgstr "제어 그룹 10 추가"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.desc
 msgctxt "hotkey metadata"
@@ -3174,16 +3174,6 @@ msgctxt "hotkey metadata"
 msgid "Add Control Group 9"
 msgstr "제어 그룹 9 추가"
 
-#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.0.desc
-msgctxt "hotkey metadata"
-msgid "Save current selection as Control Group 0."
-msgstr "현재 선택한 항목을 제어 그룹 0으로 저장합니다."
-
-#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.0.name
-msgctxt "hotkey metadata"
-msgid "Set Control Group 0"
-msgstr "제어 그룹 0 지정"
-
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 1."
@@ -3193,6 +3183,16 @@ msgstr "현재 선택한 항목을 제어 그룹 1로 저장합니다."
 msgctxt "hotkey metadata"
 msgid "Set Control Group 1"
 msgstr "제어 그룹 1 지정"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.10.desc
+msgctxt "hotkey metadata"
+msgid "Save current selection as Control Group 10."
+msgstr "현재 선택한 항목을 제어 그룹 10으로 저장합니다."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.10.name
+msgctxt "hotkey metadata"
+msgid "Set Control Group 10"
+msgstr "제어 그룹 10 지정"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.desc
 msgctxt "hotkey metadata"
@@ -3274,16 +3274,6 @@ msgctxt "hotkey metadata"
 msgid "Set Control Group 9"
 msgstr "제어 그룹 9 지정"
 
-#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.desc
-msgctxt "hotkey metadata"
-msgid "Change the current selection to Control Group 0."
-msgstr "현재 선택을 제어 그룹 0으로 변경합니다."
-
-#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.0.name
-msgctxt "hotkey metadata"
-msgid "Select Control Group 0"
-msgstr "제어 그룹 0 선택"
-
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 1."
@@ -3293,6 +3283,16 @@ msgstr "현재 선택을 제어 그룹 1로 변경합니다."
 msgctxt "hotkey metadata"
 msgid "Select Control Group 1"
 msgstr "제어 그룹 1 선택"
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.10.desc
+msgctxt "hotkey metadata"
+msgid "Change the current selection to Control Group 10."
+msgstr "현재 선택을 제어 그룹 10으로 변경합니다."
+
+#: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.10.name
+msgctxt "hotkey metadata"
+msgid "Select Control Group 10"
+msgstr "제어 그룹 10 선택"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.desc
 msgctxt "hotkey metadata"
@@ -3884,7 +3884,7 @@ msgstr "값: %(val)s (최소: %(min)s, 최대: %(max)s)"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr "선택사항을 다시 설정하면 저장된 설정이 지워집니다. 계속하시겠습니까?"
+msgstr "옵션을 다시 설정하면 저장된 설정이 지워집니다. 계속하시겠습니까?"
 
 #: gui/options/options.js:412
 msgid "Some setting values are invalid! Are you sure you want to save them?"
@@ -4627,11 +4627,11 @@ msgstr "친구들"
 msgid ""
 "Players joining the match will only be assigned if they are a buddy of the "
 "host and if there is a free slot."
-msgstr "시합에 참가하는 플레이어들은 주인의 친구이고, 빈 슬롯이있는 경우에만 배정됩니다."
+msgstr "시합에 참가하는 플레이어들은 호스트의 친구이고, 빈 슬롯이있는 경우에만 할당됩니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[2].tooltip
 msgid "Players only receive a slot when the host assigns them explicitly."
-msgstr "플레이어는 주인이 명시적으로 할당할때만 슬롯을 받습니다."
+msgstr "플레이어는 호스트가 명시적으로 할당한 경우에만 슬롯을 받습니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].tooltip
 msgid ""
@@ -4704,7 +4704,7 @@ msgstr "관찰자를 위한 최대 지연"
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
-msgstr "호스팅 할 때, 관찰자가 이 횟수 이상 지연되는 경우 게임을 일시 중지합니다. -1로 설정하면 관찰자가 무시됩니다."
+msgstr "게임을 주최할 때, 관찰자가 이 횟수 이상 지연되는 경우 게임을 일시 중지합니다. -1로 설정하면 관찰자가 무시됩니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].label
 msgid "(Observer) Speed up when lagging."
@@ -4714,7 +4714,7 @@ msgstr "(관찰자) 지연시 속도를 높일 수 있습니다."
 msgid ""
 "When observing a game, automatically speed up if you start lagging, to catch"
 " up with the live match."
-msgstr "경기를 관전할 때, 실시간 경기를 따라잡기 위해 지연을 시작하면 자동으로 속도가 빨라집니다."
+msgstr "게임을 관전할 때, 실시간 시합을 따라잡기 위해 지연을 시작하면 자동으로 속도가 빨라집니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].tooltip
 msgid "These settings only affect the multiplayer."
@@ -4851,7 +4851,7 @@ msgstr "스냅을 활성화하는 단축키"
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].tooltip
 msgid ""
 "New structures are aligned with nearby structures while pressing the hotkey."
-msgstr "새로운 건축물은 단축키를 누르는 동안 근처의 건축물과 정렬됩니다."
+msgstr "새로운 건축물은 단축키를 누르는 동안 주변의 건축물과 정렬됩니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[1].label
 msgid "Hotkey to disable snapping"
@@ -4861,11 +4861,11 @@ msgstr "스냅을 비활성화 하는 단축키"
 msgid ""
 "New structures are aligned with nearby structures unless the hotkey is "
 "pressed."
-msgstr "단축키를 누르지 않으면 새 건축물이 근처 건축물과 정렬됩니다."
+msgstr "단축키를 누르지 않으면 새 건축물이 주변 건축물과 정렬됩니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].tooltip
 msgid "This option allows to align new structures with nearby structures."
-msgstr "이 선택사항을 사용하면 새로운 건축물을 근처 건축물과 맞출 수 있습니다."
+msgstr "이 옵션을 사용하면 새로운 건축물을 주변 건축물과 정렬할 수 있습니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].label
 msgid "Control group membership"
@@ -5081,7 +5081,7 @@ msgstr "보다 구체적인 렌더링 설정입니다."
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"
-msgstr "게임 선택사항"
+msgstr "게임 옵션"
 
 #: gui/options/options.xml:(caption):49
 msgid "Revert"
@@ -5228,11 +5228,11 @@ msgstr "기존 멀티플레이어에 참여하는중."
 
 #: gui/pregame/MainMenuItems.js:172
 msgid "Host Game"
-msgstr "게임 만들기"
+msgstr "호스트 게임"
 
 #: gui/pregame/MainMenuItems.js:173
 msgid "Host a multiplayer game."
-msgstr "멀티플레이어 판을 깝니다."
+msgstr "멀티플레이어 게임을 주최합니다."
 
 #: gui/pregame/MainMenuItems.js:181
 msgid "Game Lobby"
@@ -5255,11 +5255,11 @@ msgstr "설정"
 
 #: gui/pregame/MainMenuItems.js:209
 msgid "Change game options."
-msgstr "게임 선택사항을 바꿉니다."
+msgstr "게임 옵션을 바꿉니다."
 
 #: gui/pregame/MainMenuItems.js:212
 msgid "Options"
-msgstr "선택사항"
+msgstr "옵션"
 
 #: gui/pregame/MainMenuItems.js:213
 msgid "Adjust game settings."
@@ -6688,7 +6688,7 @@ msgstr "다른 유닛 또는 건축물의 능력치를 변경하는 아우라를
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
-msgstr "주의: 각 영웅은 경기당 한 번만 모집할 수 있습니다!"
+msgstr "주의: 각 영웅은 시합당 한 번만 모집할 수 있습니다!"
 
 #: gui/text/tips/iber_fireship.txt:1
 msgid "IBERIAN FIRESHIP"
@@ -6958,7 +6958,7 @@ msgstr "치유 기술을 연구합니다."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
-msgstr "그것의 아우라는 근처의 유닛들을 치료합니다."
+msgstr "그것의 아우라는 주변의 유닛들을 치료합니다."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
