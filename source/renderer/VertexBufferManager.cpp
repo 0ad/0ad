@@ -19,7 +19,6 @@
 
 #include "VertexBufferManager.h"
 
-#include "lib/ogl.h"
 #include "ps/CLogger.h"
 
 #define DUMP_VB_STATS 0 // for debugging

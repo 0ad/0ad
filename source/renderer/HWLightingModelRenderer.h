@@ -44,10 +44,10 @@ public:
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext) override;
 	void PrepareModelDef(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		Renderer::Backend::GL::CShaderProgram* shader, const CModelDef& def) override;
+		const CModelDef& def) override;
 	void RenderModel(
 		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		Renderer::Backend::GL::CShaderProgram* shader, CModel* model, CModelRData* data) override;
+		Renderer::Backend::IShaderProgram* shader, CModel* model, CModelRData* data) override;
 
 protected:
 	struct ShaderModelRendererInternals;

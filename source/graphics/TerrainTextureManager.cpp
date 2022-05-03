@@ -24,7 +24,6 @@
 #include "graphics/TextureManager.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/bits.h"
-#include "lib/ogl.h"
 #include "lib/tex/tex.h"
 #include "lib/timer.h"
 #include "ps/CLogger.h"

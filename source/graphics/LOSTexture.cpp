@@ -80,7 +80,7 @@ CLOSTexture::~CLOSTexture()
 bool CLOSTexture::CreateShader()
 {
 	m_SmoothTech = g_Renderer.GetShaderManager().LoadEffect(str_los_interp);
-	Renderer::Backend::GL::CShaderProgram* shader = m_SmoothTech->GetShader();
+	Renderer::Backend::IShaderProgram* shader = m_SmoothTech->GetShader();
 
 	m_ShaderInitialized = m_SmoothTech && shader;
 
@@ -145,12 +145,16 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* d
 		m_SmoothTech->GetGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginPass();
 
-	Renderer::Backend::GL::CShaderProgram* shader = m_SmoothTech->GetShader();
+	Renderer::Backend::IShaderProgram* shader = m_SmoothTech->GetShader();
 
-	shader->BindTexture(str_losTex1, m_Texture.get());
-	shader->BindTexture(str_losTex2, m_SmoothTextures[m_WhichTexture].get());
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_losTex1), m_Texture.get());
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_losTex2), m_SmoothTextures[m_WhichTexture].get());
 
-	shader->Uniform(str_delta, (float)g_Renderer.GetTimeManager().GetFrameDelta() * 4.0f, 0.0f, 0.0f, 0.0f);
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_delta),
+		static_cast<float>(g_Renderer.GetTimeManager().GetFrameDelta() * 4.0f));
 
 	const SViewPort oldVp = g_Renderer.GetViewport();
 	const SViewPort vp =

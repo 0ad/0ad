@@ -23,7 +23,6 @@
 #include "gui/GUIManager.h"
 #include "lib/config2.h"
 #include "lib/external_libraries/libsdl.h"
-#include "lib/ogl.h"
 #include "lib/tex/tex.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"

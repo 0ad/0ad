@@ -37,14 +37,24 @@ namespace
 // Array of 2D elements unrolled into 1D array.
 using PlaneArray2D = std::array<float, 12>;
 
+struct SBindingSlots
+{
+	int32_t transform;
+	int32_t colorAdd;
+	int32_t colorMul;
+	int32_t grayscaleFactor;
+	int32_t tex;
+};
+
 inline void DrawTextureImpl(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CShaderProgram* shader, const CTexturePtr& texture,
-	const PlaneArray2D& vertices, PlaneArray2D uvs,
-	const CColor& multiply, const CColor& add, const float grayscaleFactor)
+	const CTexturePtr& texture, const PlaneArray2D& vertices, PlaneArray2D uvs,
+	const CColor& multiply, const CColor& add, const float grayscaleFactor,
+	const SBindingSlots& bindingSlots)
 {
 	texture->UploadBackendTextureIfNeeded(deviceCommandContext);
-	shader->BindTexture(str_tex, texture->GetBackendTexture());
+	deviceCommandContext->SetTexture(
+		bindingSlots.tex, texture->GetBackendTexture());
 	for (size_t idx = 0; idx < uvs.size(); idx += 2)
 	{
 		if (texture->GetWidth() > 0.0f)
@@ -53,9 +63,9 @@ inline void DrawTextureImpl(
 			uvs[idx + 1] /= texture->GetHeight();
 	}
 
-	shader->Uniform(str_colorAdd, add);
-	shader->Uniform(str_colorMul, multiply);
-	shader->Uniform(str_grayscaleFactor, grayscaleFactor);
+	deviceCommandContext->SetUniform(bindingSlots.colorAdd, add.AsFloatArray());
+	deviceCommandContext->SetUniform(bindingSlots.colorMul, multiply.AsFloatArray());
+	deviceCommandContext->SetUniform(bindingSlots.grayscaleFactor, grayscaleFactor);
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
@@ -87,12 +97,22 @@ public:
 
 		CShaderDefines defines;
 		Tech = g_Renderer.GetShaderManager().LoadEffect(str_canvas2d, defines);
+		// The canvas technique must be loaded because we can't render UI without it.
 		ENSURE(Tech);
 		DeviceCommandContext->SetGraphicsPipelineState(
 			Tech->GetGraphicsPipelineStateDesc());
 		DeviceCommandContext->BeginPass();
-		Renderer::Backend::GL::CShaderProgram* shader = Tech->GetShader();
-		shader->Uniform(str_transform, GetDefaultGuiMatrix());
+		Renderer::Backend::IShaderProgram* shader = Tech->GetShader();
+
+		BindingSlots.transform = shader->GetBindingSlot(str_transform);
+		BindingSlots.colorAdd = shader->GetBindingSlot(str_colorAdd);
+		BindingSlots.colorMul = shader->GetBindingSlot(str_colorMul);
+		BindingSlots.grayscaleFactor = shader->GetBindingSlot(str_grayscaleFactor);
+		BindingSlots.tex = shader->GetBindingSlot(str_tex);
+
+		const CMatrix3D transform = GetDefaultGuiMatrix();
+		DeviceCommandContext->SetUniform(
+			BindingSlots.transform, transform.AsFloatArray());
 	}
 
 	void UnbindTech()
@@ -106,6 +126,10 @@ public:
 
 	Renderer::Backend::GL::CDeviceCommandContext* DeviceCommandContext;
 	CShaderTechniquePtr Tech;
+
+	// We assume that the shader can't be destroyed while it's bound. So these
+	// bindings remain valid while the shader is alive.
+	SBindingSlots BindingSlots;
 };
 
 CCanvas2D::CCanvas2D(
@@ -251,11 +275,16 @@ void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width
 
 	m->BindTechIfNeeded();
 
-	Renderer::Backend::GL::CShaderProgram* shader = m->Tech->GetShader();
-	shader->BindTexture(str_tex, g_Renderer.GetTextureManager().GetAlphaGradientTexture()->GetBackendTexture());
-	shader->Uniform(str_colorAdd, CColor(0.0f, 0.0f, 0.0f, 0.0f));
-	shader->Uniform(str_colorMul, color);
-	shader->Uniform(str_grayscaleFactor, 0.0f);
+	m->DeviceCommandContext->SetTexture(
+		m->BindingSlots.tex,
+		g_Renderer.GetTextureManager().GetAlphaGradientTexture()->GetBackendTexture());
+	const CColor colorAdd(0.0f, 0.0f, 0.0f, 0.0f);
+	m->DeviceCommandContext->SetUniform(
+		m->BindingSlots.colorAdd, colorAdd.AsFloatArray());
+	m->DeviceCommandContext->SetUniform(
+		m->BindingSlots.colorMul, color.AsFloatArray());
+	m->DeviceCommandContext->SetUniform(
+		m->BindingSlots.grayscaleFactor, 0.0f);
 
 	m->DeviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
@@ -290,9 +319,10 @@ void CCanvas2D::DrawRect(const CRect& rect, const CColor& color)
 
 	m->BindTechIfNeeded();
 	DrawTextureImpl(
-		m->DeviceCommandContext, m->Tech->GetShader(),
+		m->DeviceCommandContext,
 		g_Renderer.GetTextureManager().GetTransparentTexture(),
-		vertices, uvs, CColor(0.0f, 0.0f, 0.0f, 0.0f), color, 0.0f);
+		vertices, uvs, CColor(0.0f, 0.0f, 0.0f, 0.0f), color, 0.0f,
+		m->BindingSlots);
 }
 
 void CCanvas2D::DrawTexture(CTexturePtr texture, const CRect& destination)
@@ -326,18 +356,19 @@ void CCanvas2D::DrawTexture(
 	};
 
 	m->BindTechIfNeeded();
-	DrawTextureImpl(m->DeviceCommandContext, m->Tech->GetShader(),
-		texture, vertices, uvs, multiply, add, grayscaleFactor);
+	DrawTextureImpl(
+		m->DeviceCommandContext, texture, vertices, uvs,
+		multiply, add, grayscaleFactor, m->BindingSlots);
 }
 
 void CCanvas2D::DrawText(CTextRenderer& textRenderer)
 {
 	m->BindTechIfNeeded();
 
-	Renderer::Backend::GL::CShaderProgram* shader = m->Tech->GetShader();
-	shader->Uniform(str_grayscaleFactor, 0.0f);
+	m->DeviceCommandContext->SetUniform(
+		m->BindingSlots.grayscaleFactor, 0.0f);
 
-	textRenderer.Render(m->DeviceCommandContext, shader, GetDefaultGuiMatrix());
+	textRenderer.Render(m->DeviceCommandContext, m->Tech->GetShader(), GetDefaultGuiMatrix());
 }
 
 void CCanvas2D::Flush()

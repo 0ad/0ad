@@ -35,7 +35,7 @@ CShaderProgramPtr CShaderProgram::Create(const CStr& name, const CShaderDefines&
 
 void CShaderProgram::Reload()
 {
-	std::unique_ptr<Renderer::Backend::GL::CShaderProgram> backendShaderProgram =
+	std::unique_ptr<Renderer::Backend::IShaderProgram> backendShaderProgram =
 		g_VideoMode.GetBackendDevice()->CreateShaderProgram(m_Name, m_Defines);
 	if (backendShaderProgram)
 		m_BackendShaderProgram = std::move(backendShaderProgram);

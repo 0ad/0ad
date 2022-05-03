@@ -19,6 +19,7 @@
 #define INCLUDED_RENDERER_GL_DEVICECOMMANDCONTEXT
 
 #include "lib/ogl.h"
+#include "ps/containers/Span.h"
 #include "renderer/backend/Format.h"
 #include "renderer/backend/gl/Buffer.h"
 #include "renderer/backend/PipelineState.h"
@@ -41,6 +42,7 @@ namespace GL
 
 class CDevice;
 class CFramebuffer;
+class CShaderProgram;
 class CTexture;
 
 class CDeviceCommandContext
@@ -111,11 +113,27 @@ public:
 		const uint32_t firstIndex, const uint32_t indexCount,
 		const uint32_t start, const uint32_t end);
 
+	void SetTexture(const int32_t bindingSlot, CTexture* texture);
+
+	void SetUniform(
+		const int32_t bindingSlot,
+		const float value);
+	void SetUniform(
+		const int32_t bindingSlot,
+		const float valueX, const float valueY);
+	void SetUniform(
+		const int32_t bindingSlot,
+		const float valueX, const float valueY,
+		const float valueZ);
+	void SetUniform(
+		const int32_t bindingSlot,
+		const float valueX, const float valueY,
+		const float valueZ, const float valueW);
+	void SetUniform(
+		const int32_t bindingSlot, PS::span<const float> values);
+
 	void BeginScopedLabel(const char* name);
 	void EndScopedLabel();
-
-	// TODO: remove direct binding after moving shaders.
-	void BindTexture(const uint32_t unit, const GLenum target, const GLuint handle);
 
 	// We need to know when to invalidate our texture bind cache.
 	void OnTextureDestroy(CTexture* texture);
@@ -124,6 +142,7 @@ public:
 
 private:
 	friend class CDevice;
+	friend class CTexture;
 
 	static std::unique_ptr<CDeviceCommandContext> Create(CDevice* device);
 
@@ -134,12 +153,14 @@ private:
 	void SetGraphicsPipelineStateImpl(
 		const GraphicsPipelineStateDesc& pipelineStateDesc, const bool force);
 
+	void BindTexture(const uint32_t unit, const GLenum target, const GLuint handle);
 	void BindBuffer(const CBuffer::Type type, CBuffer* buffer);
 
 	CDevice* m_Device = nullptr;
 
 	GraphicsPipelineStateDesc m_GraphicsPipelineStateDesc{};
 	CFramebuffer* m_Framebuffer = nullptr;
+	CShaderProgram* m_ShaderProgram = nullptr;
 	uint32_t m_ScissorCount = 0;
 	// GL2.1 doesn't support more than 1 scissor.
 	std::array<Rect, 1> m_Scissors;
@@ -153,7 +174,11 @@ private:
 	bool m_InsidePass = false;
 
 	uint32_t m_ActiveTextureUnit = 0;
-	using BindUnit = std::pair<GLenum, GLuint>;
+	struct BindUnit
+	{
+		GLenum target;
+		GLuint handle;
+	};
 	std::array<BindUnit, 16> m_BoundTextures;
 	class ScopedBind
 	{
@@ -165,6 +190,7 @@ private:
 	private:
 		CDeviceCommandContext* m_DeviceCommandContext = nullptr;
 		BindUnit m_OldBindUnit;
+		uint32_t m_ActiveTextureUnit = 0;
 	};
 
 	using BoundBuffer = std::pair<GLenum, GLuint>;

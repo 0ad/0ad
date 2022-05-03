@@ -21,7 +21,6 @@
 #include "lib/external_libraries/libsdl.h"
 #include "lib/file/vfs/vfs.h"
 #include "lib/tex/tex.h"
-#include "lib/ogl.h"
 #include "ps/XML/Xeromyces.h"
 
 class TestTextureManager : public CxxTest::TestSuite

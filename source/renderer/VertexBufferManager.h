@@ -80,10 +80,10 @@ public:
 	 * Try to allocate a vertex buffer of the given size and type.
 	 *
 	 * @param vertexSize size of each vertex in the buffer
-	 * @param numVertices number of vertices in the buffer
-	 * @param usage GL_STATIC_DRAW, GL_DYNAMIC_DRAW, GL_STREAM_DRAW
-	 * @param target typically GL_ARRAY_BUFFER or GL_ELEMENT_ARRAY_BUFFER
-	 * @param backingStore if usage is STATIC, this is NULL; else for DYNAMIC/STREAM,
+	 * @param numberOfVertices number of vertices in the buffer
+	 * @param type buffer type
+	 * @param dynamic will be buffer updated frequently or not
+	 * @param backingStore if not dynamic, this is nullptr; else for dynamic,
 	 *            this must be a copy of the vertex data that remains valid for the
 	 *            lifetime of the VBChunk
 	 * @return chunk, or empty handle if no free chunks available

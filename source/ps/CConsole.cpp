@@ -25,7 +25,6 @@
 #include "gui/CGUI.h"
 #include "gui/GUIManager.h"
 #include "lib/code_generation.h"
-#include "lib/ogl.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "maths/MathUtil.h"

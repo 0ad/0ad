@@ -27,7 +27,6 @@
 #include "graphics/TerrainTextureManager.h"
 #include "i18n/L10n.h"
 #include "lib/allocators/shared_ptr.h"
-#include "lib/ogl.h"
 #include "lib/tex/tex.h"
 #include "gui/GUIManager.h"
 #include "ps/CConsole.h"
@@ -440,7 +439,6 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 	PROFILE3("render");
 
 	g_Profiler2.RecordGPUFrameStart();
-	ogl_WarnIfError();
 
 	g_TexMan.UploadResourcesIfNeeded(m->deviceCommandContext.get());
 
@@ -456,12 +454,9 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 	// start new frame
 	BeginFrame();
 
-	ogl_WarnIfError();
-
 	if (g_Game && g_Game->IsGameStarted())
 	{
 		g_Game->GetView()->Render();
-		ogl_WarnIfError();
 	}
 
 	m->deviceCommandContext->SetFramebuffer(
@@ -471,13 +466,11 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 	if (g_AtlasGameLoop && g_AtlasGameLoop->view)
 	{
 		g_AtlasGameLoop->view->DrawCinemaPathTool();
-		ogl_WarnIfError();
 	}
 
 	if (g_Game && g_Game->IsGameStarted())
 	{
 		g_Game->GetView()->GetCinema()->Render();
-		ogl_WarnIfError();
 	}
 
 	RenderFrame2D(renderGUI, renderLogger);
@@ -493,10 +486,7 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 	PROFILE2_ATTR("blend splats: %zu", stats.m_BlendSplats);
 	PROFILE2_ATTR("particles: %zu", stats.m_Particles);
 
-	ogl_WarnIfError();
-
 	g_Profiler2.RecordGPUFrameEnd();
-	ogl_WarnIfError();
 }
 
 void CRenderer::RenderFrame2D(const bool renderGUI, const bool renderLogger)
@@ -511,34 +501,29 @@ void CRenderer::RenderFrame2D(const bool renderGUI, const bool renderLogger)
 		// All GUI elements are drawn in Z order to render semi-transparent
 		// objects correctly.
 		g_GUI->Draw(canvas);
-		ogl_WarnIfError();
 	}
 
 	// If we're in Atlas game view, render special overlays (e.g. editor bandbox).
 	if (g_AtlasGameLoop && g_AtlasGameLoop->view)
 	{
 		g_AtlasGameLoop->view->DrawOverlays(canvas);
-		ogl_WarnIfError();
 	}
 
 	{
 		GPU_SCOPED_LABEL(m->deviceCommandContext.get(), "Render console");
 		g_Console->Render(canvas);
-		ogl_WarnIfError();
 	}
 
 	if (renderLogger)
 	{
 		GPU_SCOPED_LABEL(m->deviceCommandContext.get(), "Render logger");
 		g_Logger->Render(canvas);
-		ogl_WarnIfError();
 	}
 
 	{
 		GPU_SCOPED_LABEL(m->deviceCommandContext.get(), "Render profiler");
 		// Profile information
 		g_ProfileViewer.RenderProfile(canvas);
-		ogl_WarnIfError();
 	}
 }
 
@@ -637,8 +622,6 @@ void CRenderer::RenderBigScreenShot(const bool needsPresent)
 		free(tileData);
 		return;
 	}
-
-	ogl_WarnIfError();
 
 	CCamera oldCamera = *g_Game->GetView()->GetCamera();
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 #include "graphics/SColor.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
+#include "ps/containers/Span.h"
 #include "ps/CStrForward.h"
 
 // Simple defines for 3 and 4 component floating point colors - just map to
@@ -66,7 +67,7 @@ struct CColor
 	}
 
 	// For passing to uniform as vec3/vec4.
-	const float* AsFloatArray() const
+	PS::span<const float> AsFloatArray() const
 	{
 		// Additional check to prevent a weird compiler has a different
 		// alignement for an array and a class members.
@@ -77,7 +78,7 @@ struct CColor
 			offsetof(CColor, b) == sizeof(float) * 2u &&
 			offsetof(CColor, a) == sizeof(float) * 3u,
 			"CColor should be properly layouted to use AsFloatArray");
-		return &r;
+		return PS::span(&r, 4);
 	}
 
 	// For passing to CRenderer:

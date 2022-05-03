@@ -635,8 +635,6 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 
 	RunHardwareDetection();
 
-	ogl_WarnIfError();
-
 	// Optionally start profiler GPU timings automatically
 	// (By default it's only enabled by a hotkey, for performance/compatibility)
 	bool profilerGPUEnable = false;
@@ -670,16 +668,12 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 		);
 	}
 
-	ogl_WarnIfError();
-
 	g_RenderingOptions.ReadConfigAndSetupHooks();
 
 	// create renderer
 	new CRenderer;
 
 	InitInput();
-
-	ogl_WarnIfError();
 
 	// TODO: Is this the best place for this?
 	if (VfsDirectoryExists(L"maps/"))

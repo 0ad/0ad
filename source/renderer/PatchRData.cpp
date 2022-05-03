@@ -774,29 +774,43 @@ void CPatchRData::RenderBases(
 			deviceCommandContext->SetGraphicsPipelineState(
 				techBase->GetGraphicsPipelineStateDesc(pass));
 			deviceCommandContext->BeginPass();
-			Renderer::Backend::GL::CShaderProgram* shader = techBase->GetShader(pass);
-			TerrainRenderer::PrepareShader(shader, shadow);
+			Renderer::Backend::IShaderProgram* shader = techBase->GetShader(pass);
+			TerrainRenderer::PrepareShader(deviceCommandContext, shader, shadow);
+
+			const int32_t baseTexBindingSlot =
+				shader->GetBindingSlot(str_baseTex);
+			const int32_t textureTransformBindingSlot =
+				shader->GetBindingSlot(str_textureTransform);
 
 			TextureBatches& textureBatches = itTech->second;
 			for (TextureBatches::iterator itt = textureBatches.begin(); itt != textureBatches.end(); ++itt)
 			{
 				if (!itt->first->GetMaterial().GetSamplers().empty())
 				{
-					const CMaterial::SamplersVector& samplers = itt->first->GetMaterial().GetSamplers();
+					const CMaterial::SamplersVector& samplers =
+						itt->first->GetMaterial().GetSamplers();
 					for(const CMaterial::TextureSampler& samp : samplers)
 						samp.Sampler->UploadBackendTextureIfNeeded(deviceCommandContext);
 					for(const CMaterial::TextureSampler& samp : samplers)
-						shader->BindTexture(samp.Name, samp.Sampler->GetBackendTexture());
+					{
+						deviceCommandContext->SetTexture(
+							shader->GetBindingSlot(samp.Name),
+							samp.Sampler->GetBackendTexture());
+					}
 
-					itt->first->GetMaterial().GetStaticUniforms().BindUniforms(shader);
+					itt->first->GetMaterial().GetStaticUniforms().BindUniforms(
+						deviceCommandContext, shader);
 
 					float c = itt->first->GetTextureMatrix()[0];
 					float ms = itt->first->GetTextureMatrix()[8];
-					shader->Uniform(str_textureTransform, c, ms, -ms, 0.f);
+					deviceCommandContext->SetUniform(
+						textureTransformBindingSlot, c, ms);
 				}
 				else
 				{
-					shader->BindTexture(str_baseTex, g_Renderer.GetTextureManager().GetErrorTexture()->GetBackendTexture());
+					deviceCommandContext->SetTexture(
+						baseTexBindingSlot,
+						g_Renderer.GetTextureManager().GetErrorTexture()->GetBackendTexture());
 				}
 
 				for (VertexBufferBatches::iterator itv = itt->second.begin(); itv != itt->second.end(); ++itv)
@@ -970,7 +984,7 @@ void CPatchRData::RenderBlends(
 	PROFILE_END("compute batches");
 
 	CVertexBuffer* lastVB = nullptr;
-	Renderer::Backend::GL::CShaderProgram* previousShader = nullptr;
+	Renderer::Backend::IShaderProgram* previousShader = nullptr;
 	for (BatchesStack::iterator itTechBegin = batches.begin(), itTechEnd = batches.begin(); itTechBegin != batches.end(); itTechBegin = itTechEnd)
 	{
 		while (itTechEnd != batches.end() && itTechEnd->m_ShaderTech == itTechBegin->m_ShaderTech)
@@ -992,10 +1006,17 @@ void CPatchRData::RenderBlends(
 			deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 			deviceCommandContext->BeginPass();
 
-			Renderer::Backend::GL::CShaderProgram* shader = techBase->GetShader(pass);
-			TerrainRenderer::PrepareShader(shader, shadow);
+			Renderer::Backend::IShaderProgram* shader = techBase->GetShader(pass);
+			TerrainRenderer::PrepareShader(deviceCommandContext, shader, shadow);
 
 			Renderer::Backend::GL::CTexture* lastBlendTex = nullptr;
+
+			const int32_t baseTexBindingSlot =
+				shader->GetBindingSlot(str_baseTex);
+			const int32_t blendTexBindingSlot =
+				shader->GetBindingSlot(str_blendTex);
+			const int32_t textureTransformBindingSlot =
+				shader->GetBindingSlot(str_textureTransform);
 
 			for (BatchesStack::iterator itt = itTechBegin; itt != itTechEnd; ++itt)
 			{
@@ -1008,24 +1029,31 @@ void CPatchRData::RenderBlends(
 					for (const CMaterial::TextureSampler& samp : samplers)
 						samp.Sampler->UploadBackendTextureIfNeeded(deviceCommandContext);
 					for (const CMaterial::TextureSampler& samp : samplers)
-						shader->BindTexture(samp.Name, samp.Sampler->GetBackendTexture());
+					{
+						deviceCommandContext->SetTexture(
+							shader->GetBindingSlot(samp.Name),
+							samp.Sampler->GetBackendTexture());
+					}
 
 					Renderer::Backend::GL::CTexture* currentBlendTex = itt->m_Texture->m_TerrainAlpha->second.m_CompositeAlphaMap.get();
 					if (currentBlendTex != lastBlendTex)
 					{
-						shader->BindTexture(str_blendTex, currentBlendTex);
+						deviceCommandContext->SetTexture(
+							blendTexBindingSlot, currentBlendTex);
 						lastBlendTex = currentBlendTex;
 					}
 
-					itt->m_Texture->GetMaterial().GetStaticUniforms().BindUniforms(shader);
+					itt->m_Texture->GetMaterial().GetStaticUniforms().BindUniforms(deviceCommandContext, shader);
 
 					float c = itt->m_Texture->GetTextureMatrix()[0];
 					float ms = itt->m_Texture->GetTextureMatrix()[8];
-					shader->Uniform(str_textureTransform, c, ms, -ms, 0.f);
+					deviceCommandContext->SetUniform(
+						textureTransformBindingSlot, c, ms);
 				}
 				else
 				{
-					shader->BindTexture(str_baseTex, g_Renderer.GetTextureManager().GetErrorTexture()->GetBackendTexture());
+					deviceCommandContext->SetTexture(
+						baseTexBindingSlot, g_Renderer.GetTextureManager().GetErrorTexture()->GetBackendTexture());
 				}
 
 				for (VertexBufferBatches::iterator itv = itt->m_Batches.begin(); itv != itt->m_Batches.end(); ++itv)
@@ -1083,8 +1111,7 @@ void CPatchRData::RenderBlends(
 
 void CPatchRData::RenderStreams(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const std::vector<CPatchRData*>& patches, Renderer::Backend::GL::CShaderProgram* UNUSED(shader),
-	const bool bindPositionAsTexCoord)
+	const std::vector<CPatchRData*>& patches, const bool bindPositionAsTexCoord)
 {
 	PROFILE3("render terrain streams");
 
@@ -1184,7 +1211,7 @@ void CPatchRData::RenderOutline()
 
 void CPatchRData::RenderSides(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const std::vector<CPatchRData*>& patches, Renderer::Backend::GL::CShaderProgram* UNUSED(shader))
+	const std::vector<CPatchRData*>& patches)
 {
 	PROFILE3("render terrain sides");
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render terrain sides");
@@ -1449,7 +1476,7 @@ void CPatchRData::BuildWater()
 
 void CPatchRData::RenderWaterSurface(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CShaderProgram* UNUSED(shader), const bool bindWaterData)
+	const bool bindWaterData)
 {
 	ASSERT(m_UpdateFlags == 0);
 
@@ -1484,8 +1511,7 @@ void CPatchRData::RenderWaterSurface(
 }
 
 void CPatchRData::RenderWaterShore(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CShaderProgram* UNUSED(shader))
+	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
 {
 	ASSERT(m_UpdateFlags == 0);
 

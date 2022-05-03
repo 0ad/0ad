@@ -603,7 +603,7 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr "참고: 시간 왜곡 모드는 개발자용으로, 긴 시대에 걸쳐 사용하도록 만들어지지 않았습니다. 잘못 사용하는 경우 메모리가 부족하거나 게임이 다운될 수 있습니다."
+msgstr "참고: 시간 왜곡 모드는 개발자 옵션이며, 긴 시대에 걸쳐 사용하기 위한 것이 아닙니다. 잘못 사용하면 게임의 메모리가 부족하거나 충돌이 발생할 수 있습니다."
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -762,12 +762,12 @@ msgstr "플레이어: %(players)s"
 #: gui/session/message_box/OutOfSyncNetwork.js:24
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr "게임의 상태가 호스트의 게임 상태와 동일합니다."
+msgstr "사용자의 게임의 상태가 호스트의 게임 상태와 동일합니다."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:25
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr "게임의 상태가 호스트 게임 상태와 다릅니다."
+msgstr "사용자의 게임의 상태가 호스트 게임 상태와 다릅니다."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:31
 msgctxt "Out-Of-Sync"
@@ -1214,14 +1214,14 @@ msgstr "주변 상대를 공격하고, 공격자에게 집중하며, 눈에 보�
 #: gui/session/selection_panels_helpers.js:75
 msgctxt "stance"
 msgid "Attack nearby opponents"
-msgstr "근처의 적을 공격합니다"
+msgstr "주변의 적을 공격합니다"
 
 #: gui/session/selection_panels_helpers.js:77
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr "근처의 적을 공격하고, 짧은 거리를 추적하다가 원래의 위치로 돌아옵니다"
+msgstr "주변의 적을 공격하고, 짧은 거리를 추적하다가 원래의 위치로 돌아옵니다"
 
 #: gui/session/selection_panels_helpers.js:79
 msgctxt "stance"

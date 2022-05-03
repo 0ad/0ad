@@ -110,7 +110,8 @@ std::unique_ptr<CTexture> CTexture::Create(CDevice* device, const char* name,
 
 	const GLenum target = TypeToGLEnum(type);
 
-	texture->m_Device->GetActiveCommandContext()->BindTexture(0, target, texture->m_Handle);
+	CDeviceCommandContext::ScopedBind scopedBind(
+		texture->m_Device->GetActiveCommandContext(), target, texture->m_Handle);
 
 	// It's forbidden to set sampler state for multisample textures.
 	if (type != Type::TEXTURE_2D_MULTISAMPLE)
@@ -151,7 +152,7 @@ std::unique_ptr<CTexture> CTexture::Create(CDevice* device, const char* name,
 		defaultSamplerDesc.addressModeV == Sampler::AddressMode::CLAMP_TO_BORDER ||
 		defaultSamplerDesc.addressModeW == Sampler::AddressMode::CLAMP_TO_BORDER)
 	{
-		glTexParameterfv(target, GL_TEXTURE_BORDER_COLOR, defaultSamplerDesc.borderColor.AsFloatArray());
+		glTexParameterfv(target, GL_TEXTURE_BORDER_COLOR, defaultSamplerDesc.borderColor.AsFloatArray().data());
 	}
 
 	ogl_WarnIfError();
@@ -283,8 +284,6 @@ std::unique_ptr<CTexture> CTexture::Create(CDevice* device, const char* name,
 	{
 		glObjectLabel(GL_TEXTURE, texture->m_Handle, -1, name);
 	}
-
-	texture->m_Device->GetActiveCommandContext()->BindTexture(0, target, 0);
 
 	return texture;
 }

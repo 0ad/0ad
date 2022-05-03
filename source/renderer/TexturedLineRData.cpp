@@ -37,7 +37,7 @@
 
 void CTexturedLineRData::Render(
 	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	const SOverlayTexturedLine& line, Renderer::Backend::GL::CShaderProgram* shader)
+	const SOverlayTexturedLine& line, Renderer::Backend::IShaderProgram* shader)
 {
 	if (!m_VB || !m_VBIndices)
 		return; // might have failed to allocate
@@ -50,9 +50,12 @@ void CTexturedLineRData::Render(
 	m_VB->m_Owner->UploadIfNeeded(deviceCommandContext);
 	m_VBIndices->m_Owner->UploadIfNeeded(deviceCommandContext);
 
-	shader->BindTexture(str_baseTex, line.m_TextureBase->GetBackendTexture());
-	shader->BindTexture(str_maskTex, line.m_TextureMask->GetBackendTexture());
-	shader->Uniform(str_objectColor, line.m_Color);
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_baseTex), line.m_TextureBase->GetBackendTexture());
+	deviceCommandContext->SetTexture(
+		shader->GetBindingSlot(str_maskTex), line.m_TextureMask->GetBackendTexture());
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_objectColor), line.m_Color.AsFloatArray());
 
 	const uint32_t stride = sizeof(CTexturedLineRData::SVertex);
 

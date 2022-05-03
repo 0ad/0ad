@@ -24,7 +24,6 @@
 #include "graphics/TerrainProperties.h"
 #include "graphics/TerrainTextureManager.h"
 #include "graphics/TextureManager.h"
-#include "lib/ogl.h"
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/CStrInternStatic.h"

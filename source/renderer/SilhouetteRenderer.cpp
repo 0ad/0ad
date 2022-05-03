@@ -477,13 +477,15 @@ void SilhouetteRenderer::RenderDebugOverlays(
 	pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
 	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 
-	Renderer::Backend::GL::CShaderProgram* shader = shaderTech->GetShader();
-	shader->Uniform(str_transform, proj);
+	Renderer::Backend::IShaderProgram* shader = shaderTech->GetShader();
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_transform), proj.AsFloatArray());
 
-	for (size_t i = 0; i < m_DebugRects.size(); ++i)
+	const int32_t colorBindingSlot = shader->GetBindingSlot(str_color);
+	for (const DebugRect& r : m_DebugRects)
 	{
-		const DebugRect& r = m_DebugRects[i];
-		shader->Uniform(str_color, r.color);
+		deviceCommandContext->SetUniform(
+			colorBindingSlot, r.color.AsFloatArray());
 		u16 verts[] =
 		{
 			r.x0, r.y0,

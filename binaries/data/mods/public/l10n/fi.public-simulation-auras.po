@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"POT-Creation-Date: 2022-04-29 07:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: Matti Tuhola, 2021-2022\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
@@ -366,7 +366,7 @@ msgstr "Aluelaajeneminen"
 msgid ""
 "The Music Bureau was charged directly, by the emperor to perform various tasks related to music, poetry, entertainment, or religious worship.\n"
 " Techcost −50%."
-msgstr ""
+msgstr "Musiikkitoimisto sai suoraan keisarilta tehtäväkseen suorittaa erilaisia musiikkiin, runouteen, viihteeseen tai uskonnolliseen jumalanpalvelukseen liittyviä tehtäviä.\nTekniset kustannukset -50 %."
 
 #: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraName
 msgid "Imperial Music Bureau"
@@ -565,39 +565,39 @@ msgstr "Rakennusohjelmat"
 
 #: simulation/data/auras/units/han_minister_cost.jsonauraDescription
 msgid "Cost +20% and build time +20% for each new Minister trained."
-msgstr ""
+msgstr "Kustannuksiin +20 % ja rakennusaikaan +20 % jokaiselle uudelle virkamiehelle."
 
 #: simulation/data/auras/units/han_minister_cost.jsonauraName
 msgid "The Cost of Splendor"
-msgstr ""
+msgstr "Loiston hinta"
 
 #: simulation/data/auras/units/han_minister_garrison.jsonauraDescription
 msgid ""
 "Decrease resource costs and research time of technologies in a building by "
 "2% for each Minister garrisoned within."
-msgstr ""
+msgstr "Vähentää rakennuksessa olevien teknologioiden resurssikustannuksia ja tutkimusaikaa 2 % kutakin rakennukseen sijoitettua virkamiestä kohden."
 
 #: simulation/data/auras/units/han_minister_garrison.jsonauraName
 msgid "Excellency of Works"
-msgstr ""
+msgstr "Teosten erinomaisuus"
 
 #: simulation/data/auras/units/han_minister_garrison_ministry.jsonauraDescription
 msgid ""
 "The Imperial Ministry gains a +0.1 wood, stone, metal trickle for each "
 "garrisoned minister."
-msgstr ""
+msgstr "Keisarillinen virasto saa +0,1 puun, kiven ja metallin virtaa jokaista varuskunnassa olevaa virkamiestä kohden."
 
 #: simulation/data/auras/units/han_minister_garrison_ministry.jsonauraName
 msgid "Nationalized Industries"
-msgstr ""
+msgstr "Kansallistettu teollisuus"
 
 #: simulation/data/auras/units/han_minister_gathering.jsonauraDescription
 msgid "Gatherers +2% gathering rate for every nearby Minister."
-msgstr ""
+msgstr "Keräilijöille +2% keräysprosentti jokaista lähellä olevaa virkamiestä kohden."
 
 #: simulation/data/auras/units/han_minister_gathering.jsonauraName
 msgid "Minister over the Masses"
-msgstr ""
+msgstr "Massojen virkamies"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid ""
@@ -738,32 +738,32 @@ msgstr "Sotavalmistelut"
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_1.jsonauraDescription
 msgid "Soldiers −50% promotion experience."
-msgstr ""
+msgstr "Sotilaille -50 % ylennykseen vaadittavaa kokemusta."
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_1.jsonauraName
 msgid "Northern Army"
-msgstr ""
+msgstr "Pohjoinen armeija"
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_2.jsonauraDescription
 msgid "Own and Allied Soldiers +25% vision range."
-msgstr ""
+msgstr "Omille ja liittolaisten sotilaille +25 % näkökantamaa."
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_2.jsonauraName
 msgid "Southern Army"
-msgstr ""
+msgstr "Eteläinen armeija"
 
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_1.jsonauraDescription
 msgid "Walls +10 health regeneration rate."
-msgstr ""
+msgstr "Muureille +1 terveyden palautumisnopeuteen."
 
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_1.jsonauraName
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_2.jsonauraName
 msgid "Confucian Reforms"
-msgstr ""
+msgstr "Konfutselaiset uudistukset"
 
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_2.jsonauraDescription
 msgid "Cavalry +20% attack damage."
-msgstr ""
+msgstr "Ratsuväelle +10% hyökkäysvahinkoa."
 
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_1.jsonauraDescription
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
@@ -775,19 +775,19 @@ msgstr "Mestareille +2 kaappaushyökkäyksen voimakkuus, +20 % lähitaistelu- j
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_1.jsonauraName
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_2.jsonauraName
 msgid "Mandate of Heaven"
-msgstr ""
+msgstr "Taivaan mandaatti"
 
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_2.jsonauraDescription
 msgid "Enemy Cavalry −10% melee and ranged attack damage."
-msgstr ""
+msgstr "Vihollisen ratsuväelle -10 % lähitaistelu- ja kantamahyökkäysvahinkoa."
 
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_3.jsonauraDescription
-msgid "Nearby enemy units −10 health/second."
-msgstr ""
+msgid "Nearby human enemies −10 health/second."
+msgstr "Lähellä oleville ihmisvihollisille -10 terveyttä/sekunti."
 
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_3.jsonauraName
 msgid "Scythes"
-msgstr ""
+msgstr "Viikatteet"
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraDescription
 msgid ""
@@ -1066,7 +1066,7 @@ msgstr "Ilarchès"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iv.jsonauraDescription
 msgid "Enemy Structures, Ships, and Siege Engines −20% health."
-msgstr ""
+msgstr "Vihollisen rakenteille, aluksille ja piirityskoneille -20 % terveyttä."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iv.jsonauraName
 msgid "Renowned Conqueror"

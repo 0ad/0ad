@@ -106,6 +106,15 @@ GLenum BufferTypeToGLTarget(const CBuffer::Type type)
 	return target;
 }
 
+#if !CONFIG2_GLES
+bool IsDepthTexture(const Format format)
+{
+	return
+		format == Format::D16 || format == Format::D24 ||
+		format == Format::D32 || format == Format::D24_S8;
+}
+#endif // !CONFIG2_GLES
+
 void UploadBufferRegionImpl(
 	const GLenum target, const uint32_t dataOffset, const uint32_t dataSize,
 	const CDeviceCommandContext::UploadBufferFunction& uploadFunction)
@@ -148,10 +157,10 @@ CDeviceCommandContext::CDeviceCommandContext(CDevice* device)
 {
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, 0);
-	for (std::pair<GLenum, GLuint>& unit : m_BoundTextures)
+	for (BindUnit& unit : m_BoundTextures)
 	{
-		unit.first = GL_TEXTURE_2D;
-		unit.second = 0;
+		unit.target = GL_TEXTURE_2D;
+		unit.handle = 0;
 	}
 	for (size_t index = 0; index < m_VertexAttributeFormat.size(); ++index)
 	{
@@ -325,6 +334,7 @@ void CDeviceCommandContext::UploadBufferRegion(
 	{
 		// Tell the driver that it can reallocate the whole VBO
 		glBufferDataARB(target, buffer->GetSize(), nullptr, buffer->IsDynamic() ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
+		ogl_WarnIfError();
 
 		// (In theory, glMapBufferRange with GL_MAP_INVALIDATE_BUFFER_BIT could be used
 		// here instead of glBufferData(..., NULL, ...) plus glMapBuffer(), but with
@@ -339,6 +349,7 @@ void CDeviceCommandContext::UploadBufferRegion(
 	else
 	{
 		glBufferSubDataARB(target, dataOffset, dataSize, data);
+		ogl_WarnIfError();
 	}
 }
 
@@ -372,7 +383,8 @@ void CDeviceCommandContext::EndScopedLabel()
 	glPopDebugGroup();
 }
 
-void CDeviceCommandContext::BindTexture(const uint32_t unit, const GLenum target, const GLuint handle)
+void CDeviceCommandContext::BindTexture(
+	const uint32_t unit, const GLenum target, const GLuint handle)
 {
 	ENSURE(unit < m_BoundTextures.size());
 #if CONFIG2_GLES
@@ -380,17 +392,18 @@ void CDeviceCommandContext::BindTexture(const uint32_t unit, const GLenum target
 #else
 	ENSURE(target == GL_TEXTURE_2D || target == GL_TEXTURE_CUBE_MAP || target == GL_TEXTURE_2D_MULTISAMPLE);
 #endif
-	if (m_BoundTextures[unit].first == target && m_BoundTextures[unit].second == handle)
-		return;
 	if (m_ActiveTextureUnit != unit)
 	{
 		glActiveTexture(GL_TEXTURE0 + unit);
 		m_ActiveTextureUnit = unit;
 	}
-	if (m_BoundTextures[unit].first != target && m_BoundTextures[unit].first && m_BoundTextures[unit].second)
-		glBindTexture(m_BoundTextures[unit].first, 0);
-	if (m_BoundTextures[unit].second != handle)
+	if (m_BoundTextures[unit].target == target && m_BoundTextures[unit].handle == handle)
+		return;
+	if (m_BoundTextures[unit].target != target && m_BoundTextures[unit].target && m_BoundTextures[unit].handle)
+		glBindTexture(m_BoundTextures[unit].target, 0);
+	if (m_BoundTextures[unit].handle != handle)
 		glBindTexture(target, handle);
+	ogl_WarnIfError();
 	m_BoundTextures[unit] = {target, handle};
 }
 
@@ -412,6 +425,7 @@ void CDeviceCommandContext::BindBuffer(const CBuffer::Type type, CBuffer* buffer
 	const GLenum target = BufferTypeToGLTarget(type);
 	const GLuint handle = buffer ? buffer->GetHandle() : 0;
 	glBindBufferARB(target, handle);
+	ogl_WarnIfError();
 	const size_t cacheIndex = static_cast<size_t>(type);
 	ENSURE(cacheIndex < m_BoundBuffers.size());
 	m_BoundBuffers[cacheIndex].second = handle;
@@ -421,22 +435,28 @@ void CDeviceCommandContext::OnTextureDestroy(CTexture* texture)
 {
 	ENSURE(texture);
 	for (size_t index = 0; index < m_BoundTextures.size(); ++index)
-		if (m_BoundTextures[index].second == texture->GetHandle())
+		if (m_BoundTextures[index].handle == texture->GetHandle())
 			BindTexture(index, GL_TEXTURE_2D, 0);
 }
 
 void CDeviceCommandContext::Flush()
 {
+	ENSURE(m_ScopedLabelDepth == 0);
+
+	GPU_SCOPED_LABEL(this, "CDeviceCommandContext::Flush");
+
 	ResetStates();
 
 	m_IndexBuffer = nullptr;
 	m_IndexBufferData = nullptr;
 
-	BindTexture(0, GL_TEXTURE_2D, 0);
+	for (size_t unit = 0; unit < m_BoundTextures.size(); ++unit)
+	{
+		if (m_BoundTextures[unit].handle)
+			BindTexture(unit, GL_TEXTURE_2D, 0);
+	}
 	BindBuffer(CBuffer::Type::INDEX, nullptr);
 	BindBuffer(CBuffer::Type::VERTEX, nullptr);
-
-	ENSURE(m_ScopedLabelDepth == 0);
 }
 
 void CDeviceCommandContext::ResetStates()
@@ -476,6 +496,8 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 			nextShaderProgram->Bind(currentShaderProgram);
 		else if (currentShaderProgram)
 			currentShaderProgram->Unbind();
+
+		m_ShaderProgram = nextShaderProgram;
 	}
 
 	const DepthStencilStateDesc& currentDepthStencilStateDesc = m_GraphicsPipelineStateDesc.depthStencilState;
@@ -685,6 +707,8 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 	}
 #endif
 
+	ogl_WarnIfError();
+
 	m_GraphicsPipelineStateDesc = pipelineStateDesc;
 }
 
@@ -708,6 +732,7 @@ void CDeviceCommandContext::BlitFramebuffer(
 		0, 0, sourceFramebuffer->GetWidth(), sourceFramebuffer->GetHeight(),
 		(sourceFramebuffer->GetAttachmentMask() & destinationFramebuffer->GetAttachmentMask()),
 		GL_NEAREST);
+	ogl_WarnIfError();
 #endif
 }
 
@@ -758,6 +783,7 @@ void CDeviceCommandContext::SetFramebuffer(CFramebuffer* framebuffer)
 	ENSURE(framebuffer->GetHandle() == 0 || (framebuffer->GetWidth() > 0 && framebuffer->GetHeight() > 0));
 	m_Framebuffer = framebuffer;
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, framebuffer->GetHandle());
+	ogl_WarnIfError();
 }
 
 void CDeviceCommandContext::ReadbackFramebufferSync(
@@ -788,6 +814,7 @@ void CDeviceCommandContext::SetScissors(const uint32_t scissorCount, const Rect*
 			glScissor(m_Scissors[0].x, m_Scissors[0].y, m_Scissors[0].width, m_Scissors[0].height);
 		}
 	}
+	ogl_WarnIfError();
 	m_ScissorCount = scissorCount;
 }
 
@@ -795,6 +822,7 @@ void CDeviceCommandContext::SetViewports(const uint32_t viewportCount, const Rec
 {
 	ENSURE(viewportCount == 1);
 	glViewport(viewports[0].x, viewports[0].y, viewports[0].width, viewports[0].height);
+	ogl_WarnIfError();
 }
 
 void CDeviceCommandContext::SetVertexAttributeFormat(
@@ -822,17 +850,15 @@ void CDeviceCommandContext::SetVertexBuffer(
 {
 	ENSURE(buffer);
 	ENSURE(buffer->GetType() == CBuffer::Type::VERTEX);
-	ENSURE(m_GraphicsPipelineStateDesc.shaderProgram);
+	ENSURE(m_ShaderProgram);
 	BindBuffer(buffer->GetType(), buffer);
-	CShaderProgram* shaderProgram =
-		static_cast<CShaderProgram*>(m_GraphicsPipelineStateDesc.shaderProgram);
 	for (size_t index = 0; index < m_VertexAttributeFormat.size(); ++index)
 	{
 		if (!m_VertexAttributeFormat[index].active || m_VertexAttributeFormat[index].bindingSlot != bindingSlot)
 			continue;
 		ENSURE(m_VertexAttributeFormat[index].initialized);
 		const VertexAttributeStream stream = static_cast<VertexAttributeStream>(index);
-		shaderProgram->VertexAttribPointer(stream,
+		m_ShaderProgram->VertexAttribPointer(stream,
 			m_VertexAttributeFormat[index].format,
 			m_VertexAttributeFormat[index].offset,
 			m_VertexAttributeFormat[index].stride,
@@ -844,17 +870,15 @@ void CDeviceCommandContext::SetVertexBufferData(
 	const uint32_t bindingSlot, const void* data)
 {
 	ENSURE(data);
-	ENSURE(m_GraphicsPipelineStateDesc.shaderProgram);
+	ENSURE(m_ShaderProgram);
 	BindBuffer(CBuffer::Type::VERTEX, nullptr);
-	CShaderProgram* shaderProgram =
-		static_cast<CShaderProgram*>(m_GraphicsPipelineStateDesc.shaderProgram);
 	for (size_t index = 0; index < m_VertexAttributeFormat.size(); ++index)
 	{
 		if (!m_VertexAttributeFormat[index].active || m_VertexAttributeFormat[index].bindingSlot != bindingSlot)
 			continue;
 		ENSURE(m_VertexAttributeFormat[index].initialized);
 		const VertexAttributeStream stream = static_cast<VertexAttributeStream>(index);
-		shaderProgram->VertexAttribPointer(stream,
+		m_ShaderProgram->VertexAttribPointer(stream,
 			m_VertexAttributeFormat[index].format,
 			m_VertexAttributeFormat[index].offset,
 			m_VertexAttributeFormat[index].stride,
@@ -895,14 +919,13 @@ void CDeviceCommandContext::EndPass()
 void CDeviceCommandContext::Draw(
 	const uint32_t firstVertex, const uint32_t vertexCount)
 {
-	ENSURE(m_GraphicsPipelineStateDesc.shaderProgram);
+	ENSURE(m_ShaderProgram);
 	ENSURE(m_InsidePass);
 	// Some drivers apparently don't like count = 0 in glDrawArrays here, so skip
 	// all drawing in that case.
 	if (vertexCount == 0)
 		return;
-	static_cast<CShaderProgram*>(m_GraphicsPipelineStateDesc.shaderProgram)
-		->AssertPointersBound();
+	m_ShaderProgram->AssertPointersBound();
 	glDrawArrays(GL_TRIANGLES, firstVertex, vertexCount);
 	ogl_WarnIfError();
 }
@@ -910,7 +933,7 @@ void CDeviceCommandContext::Draw(
 void CDeviceCommandContext::DrawIndexed(
 	const uint32_t firstIndex, const uint32_t indexCount, const int32_t vertexOffset)
 {
-	ENSURE(m_GraphicsPipelineStateDesc.shaderProgram);
+	ENSURE(m_ShaderProgram);
 	ENSURE(m_InsidePass);
 	if (indexCount == 0)
 		return;
@@ -920,8 +943,7 @@ void CDeviceCommandContext::DrawIndexed(
 	{
 		ENSURE(sizeof(uint16_t) * (firstIndex + indexCount) <= m_IndexBuffer->GetSize());
 	}
-	static_cast<CShaderProgram*>(m_GraphicsPipelineStateDesc.shaderProgram)
-		->AssertPointersBound();
+	m_ShaderProgram->AssertPointersBound();
 	// Don't use glMultiDrawElements here since it doesn't have a significant
 	// performance impact and it suffers from various driver bugs (e.g. it breaks
 	// in Mesa 7.10 swrast with index VBOs).
@@ -934,15 +956,14 @@ void CDeviceCommandContext::DrawIndexedInRange(
 	const uint32_t firstIndex, const uint32_t indexCount,
 	const uint32_t start, const uint32_t end)
 {
-	ENSURE(m_GraphicsPipelineStateDesc.shaderProgram);
+	ENSURE(m_ShaderProgram);
 	ENSURE(m_InsidePass);
 	if (indexCount == 0)
 		return;
 	ENSURE(m_IndexBuffer || m_IndexBufferData);
 	const void* indices =
 		static_cast<const void*>((static_cast<const uint8_t*>(m_IndexBufferData) + sizeof(uint16_t) * firstIndex));
-	static_cast<CShaderProgram*>(m_GraphicsPipelineStateDesc.shaderProgram)
-		->AssertPointersBound();
+	m_ShaderProgram->AssertPointersBound();
 	// Draw with DrawRangeElements where available, since it might be more
 	// efficient for slow hardware.
 #if CONFIG2_GLES
@@ -955,20 +976,102 @@ void CDeviceCommandContext::DrawIndexedInRange(
 	ogl_WarnIfError();
 }
 
+void CDeviceCommandContext::SetTexture(const int32_t bindingSlot, CTexture* texture)
+{
+	ENSURE(m_ShaderProgram);
+	ENSURE(texture);
+	const CShaderProgram::TextureUnit textureUnit =
+		m_ShaderProgram->GetTextureUnit(bindingSlot);
+	if (!textureUnit.type)
+		return;
+
+	if (textureUnit.type != GL_SAMPLER_2D &&
+#if !CONFIG2_GLES
+		textureUnit.type != GL_SAMPLER_2D_SHADOW &&
+#endif
+		textureUnit.type != GL_SAMPLER_CUBE)
+	{
+		LOGERROR("CDeviceCommandContext::SetTexture: expected sampler at binding slot");
+		return;
+	}
+
+#if !CONFIG2_GLES
+	if (textureUnit.type == GL_SAMPLER_2D_SHADOW)
+	{
+		if (!IsDepthTexture(texture->GetFormat()))
+		{
+			LOGERROR("CDeviceCommandContext::SetTexture: Invalid texture type (expected depth texture)");
+			return;
+		}
+	}
+#endif
+
+	ENSURE(textureUnit.unit >= 0);
+	const uint32_t unit = textureUnit.unit;
+	if (unit >= m_BoundTextures.size())
+	{
+		LOGERROR("CDeviceCommandContext::SetTexture: Invalid texture unit (too big)");
+		return;
+	}
+	BindTexture(unit, textureUnit.target, texture->GetHandle());
+}
+
+void CDeviceCommandContext::SetUniform(
+	const int32_t bindingSlot,
+	const float value)
+{
+	ENSURE(m_ShaderProgram);
+	m_ShaderProgram->SetUniform(bindingSlot, value);
+}
+
+void CDeviceCommandContext::SetUniform(
+	const int32_t bindingSlot,
+	const float valueX, const float valueY)
+{
+	ENSURE(m_ShaderProgram);
+	m_ShaderProgram->SetUniform(bindingSlot, valueX, valueY);
+}
+
+void CDeviceCommandContext::SetUniform(
+	const int32_t bindingSlot,
+	const float valueX, const float valueY,
+	const float valueZ)
+{
+	ENSURE(m_ShaderProgram);
+	m_ShaderProgram->SetUniform(bindingSlot, valueX, valueY, valueZ);
+}
+
+void CDeviceCommandContext::SetUniform(
+	const int32_t bindingSlot,
+	const float valueX, const float valueY,
+	const float valueZ, const float valueW)
+{
+	ENSURE(m_ShaderProgram);
+	m_ShaderProgram->SetUniform(bindingSlot, valueX, valueY, valueZ, valueW);
+}
+
+void CDeviceCommandContext::SetUniform(
+	const int32_t bindingSlot, PS::span<const float> values)
+{
+	ENSURE(m_ShaderProgram);
+	m_ShaderProgram->SetUniform(bindingSlot, values);
+}
+
 CDeviceCommandContext::ScopedBind::ScopedBind(
 	CDeviceCommandContext* deviceCommandContext,
 	const GLenum target, const GLuint handle)
 	: m_DeviceCommandContext(deviceCommandContext),
-	m_OldBindUnit(deviceCommandContext->m_BoundTextures[deviceCommandContext->m_ActiveTextureUnit])
+	m_OldBindUnit(deviceCommandContext->m_BoundTextures[deviceCommandContext->m_ActiveTextureUnit]),
+	m_ActiveTextureUnit(deviceCommandContext->m_ActiveTextureUnit)
 {
-	m_DeviceCommandContext->BindTexture(
-		m_DeviceCommandContext->m_ActiveTextureUnit, target, handle);
+	const uint32_t unit = m_DeviceCommandContext->m_BoundTextures.size() - 1;
+	m_DeviceCommandContext->BindTexture(unit, target, handle);
 }
 
 CDeviceCommandContext::ScopedBind::~ScopedBind()
 {
 	m_DeviceCommandContext->BindTexture(
-		m_DeviceCommandContext->m_ActiveTextureUnit, m_OldBindUnit.first, m_OldBindUnit.second);
+		m_ActiveTextureUnit, m_OldBindUnit.target, m_OldBindUnit.handle);
 }
 
 CDeviceCommandContext::ScopedBufferBind::ScopedBufferBind(
