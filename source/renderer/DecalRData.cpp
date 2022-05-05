@@ -173,6 +173,7 @@ void CDecalRData::RenderDecals(
 				Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
 			pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
 				Renderer::Backend::BlendOp::ADD;
+			pipelineStateDesc.depthStencilState.depthWriteEnabled = false;
 			deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 			deviceCommandContext->BeginPass();
 
