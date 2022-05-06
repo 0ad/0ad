@@ -6,6 +6,7 @@
 # rentt777
 # scinart
 # Andersson Yang
+# brow red
 # Charles Yang
 # Julian
 # Kelvin Cooper
@@ -22,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-04 07:08+0000\n"
+"POT-Creation-Date: 2022-05-02 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: Wolfson Liu <wolfsonliu@foxmail.com>, 2022\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
@@ -42,7 +43,7 @@ msgstr "灵柩台"
 
 #: simulation/templates/template_unit_catafalque.xml:20
 msgid "A catafalque that holds the remains of a great leader."
-msgstr "存放先圣遗体处。"
+msgstr "存放伟人遗体的灵柩台。"
 
 #: simulation/templates/template_unit_cavalry.xml:5
 #: simulation/templates/template_unit_champion.xml:5
@@ -88,7 +89,7 @@ msgstr "士兵"
 #: simulation/templates/template_unit_infantry.xml:36
 #: simulation/templates/template_unit_support_female_citizen.xml:37
 msgid "Citizen"
-msgstr "市民"
+msgstr "居民"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:7
 msgid "Melee Cavalry"
@@ -182,13 +183,12 @@ msgstr "矛"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:28
 msgid "Cavalry Spearman"
-msgstr "矛骑兵"
+msgstr "长矛骑兵"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
-msgid "Counters: 1.75× vs Cavalry."
-msgstr "针对骑兵造成1.75倍伤害"
+msgid "Counters: 2× vs Cavalry."
+msgstr "克制：2x 对骑兵伤害。"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
@@ -198,7 +198,7 @@ msgstr "针对骑兵造成1.75倍伤害"
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:28
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:30
 msgid "Spearman"
-msgstr "矛兵"
+msgstr "长矛兵"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:5
@@ -544,6 +544,10 @@ msgstr "骨朵骑兵英雄"
 msgid "Hero Cavalry Spearman"
 msgstr "矛骑英雄"
 
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
+msgid "Counters: 1.75× vs Cavalry."
+msgstr "针对骑兵造成1.75倍伤害"
+
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:23
 msgid "Hero Cavalry Swordsman"
 msgstr "刀骑英雄"
@@ -642,7 +646,7 @@ msgstr "轻型战船"
 msgid ""
 "Garrison units for transport and to increase firepower. Deals triple damage "
 "against Ships."
-msgstr ""
+msgstr "驻扎单位以运输并增强火力。对船只造成三倍伤害。"
 
 #: simulation/templates/template_unit_ship_bireme.xml:52
 #: simulation/templates/template_unit_ship_fire.xml:42

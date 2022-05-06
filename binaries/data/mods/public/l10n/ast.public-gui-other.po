@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-29 07:08+0000\n"
+"POT-Creation-Date: 2022-05-02 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>, 2017-2022\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
@@ -1001,7 +1001,7 @@ msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
 #: gui/common/tooltips.js:561 gui/common/tooltips.js:1046
 msgid "Heal:"
-msgstr "Sanar:"
+msgstr "Curar:"
 
 #: gui/common/tooltips.js:563
 msgctxt "garrison tooltip"
@@ -1681,7 +1681,7 @@ msgstr "Demuda’ los atayos & cerrar"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
-msgstr "Los atayos nun se van modificar"
+msgstr "Los atayos non se van modificar"
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.desc
 msgctxt "hotkey metadata"
@@ -2726,22 +2726,22 @@ msgstr "Quadro de mandu n trebeyu"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter."
-msgstr "Activar o desactivar el cuntador d'enducia."
+msgstr "Alterna’l temporizador de la inducia."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter"
-msgstr "Alternar el cuntador d'enducia"
+msgstr "Alterna’l temporizador de la inducia"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window."
-msgstr "Amostrar o anubrir la ventana «Charra»."
+msgstr "Alterna’ la feniestra “Conversa”."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.name
 msgctxt "hotkey metadata"
 msgid "Toggle chat"
-msgstr "Alternar la charra"
+msgstr "Alterna’ la conversa"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
@@ -2756,174 +2756,174 @@ msgstr "Alterna’ la informaçon cultural"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle “frames per second” counter."
-msgstr "Activar o desactivar el frecuencímetru."
+msgstr "Alterna’l freqüencímetro."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle FPS counter"
-msgstr "Alternar el frecuencímetru"
+msgstr "Alterna’l freqüencímetro"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.desc
 msgctxt "hotkey metadata"
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "Amostrar l'antepar nun ventanu de diálogu."
+msgstr "Amostra’l antepar n una feniestra de diálogu."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.name
 msgctxt "hotkey metadata"
 msgid "Toggle MP lobby"
-msgstr "Alternar l'antepar"
+msgstr "Alterna’l antepar"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window and select the previous private chat partner."
-msgstr "Abrir, o zarrar, la ventana «Charra» y esbillar l'últimu contactu de charra privada."
+msgstr "Alterna’ la feniestra “Conversa” & scoye’l últimu contactu de la conversa privada."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.name
 msgctxt "hotkey metadata"
 msgid "Toggle private chat"
-msgstr "Alternar la charra privada"
+msgstr "Alterna’ la conversa privada"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.desc
 msgctxt "hotkey metadata"
 msgid "Load the latest quicksaved game. Does nothing if no quicksaves exist."
-msgstr "Cargar el guardáu rápidu más recién. Si nun hai dalu entós nun faz un res."
+msgstr "Carga’ la partida guardada nel intre mas reciente. Si nun ha hi dala intos nun passa res."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.name
 msgctxt "hotkey metadata"
 msgid "Quickload"
-msgstr "Cargar rápido"
+msgstr "Cargar nel intre"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Make a temporary save of the game that can be loaded with quickload. "
 "Quicksaving always overwrites the previous save."
-msgstr "Guardar l'alcuentru nun ficheru temporal que puede cargase con «cargar rápido». Siempre sobreescribe'l guardáu anterior con ún nuevu."
+msgstr "Guarda’ la partida n un archivo temporal que puœde “cargase nel intre”. Al guardar nel intre siempre se subrescribe la última partida guardada nel intre."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.name
 msgctxt "hotkey metadata"
 msgid "Quicksave"
-msgstr "Guardar rápido"
+msgstr "Guardar nel intre"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle current display of computer time."
-msgstr "Amostrar o anubrir la hora actual."
+msgstr "Alterna’ la hora actual de l systema."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle real-time overlay"
-msgstr "Alternar la sobrecapa horaria"
+msgstr "Alterna’ la subrecapa horaria"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle developer commands panel."
-msgstr "Amostrar o anubrir el panel desendolcador."
+msgstr "Alterna’l quadro de mandu disindolrcador."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle dev overlay"
-msgstr "Alternar la sobrecapa de desendolcu"
+msgstr "Alterna’ la subrecapa disindolrcadora"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.desc
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy colors."
-msgstr "Activar o desactivar les colores diplomátiques."
+msgstr "Alterna’ los colores diplomáticos."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy colors"
-msgstr "Alternar les colores diplomátiques"
+msgstr "Alterna’ los colores diplomáticos"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game barter/trade page."
-msgstr "Abrir o zarrar el ventanu comercial."
+msgstr "Alterna’ la feniestra commercial."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle barter"
-msgstr "Alternar el ventanu comercial"
+msgstr "Alterna’ la feniestra commercial"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game diplomacy page."
-msgstr "Abrir o zarrar el ventanu diplomáticu."
+msgstr "Alterna’ la feniestra diplomática."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy"
-msgstr "Alternar el ventanu diplomáticu"
+msgstr "Alterna’ la feniestra diplomática"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game menu."
-msgstr "Abrir o zarrar el menú al xugar."
+msgstr "Alterna’l menú n trebeyu."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle in-game menu"
-msgstr "Alternar el menú"
+msgstr "Alterna’l menú"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game objectives page."
-msgstr "Abrir o zarrar el ventanu d'obxectivos."
+msgstr "Alterna’ la feniestra d’obiectivos."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle objectives"
-msgstr "Alternar los obxectivos"
+msgstr "Alterna’ los obiectivos"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle visibility of the in-game user interface."
-msgstr "Amostrar ou anubrir el quadro de mandu in xhuögu."
+msgstr "Alterna’ la visiblidá de l quadro de mandu n trebeyu."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle GUI visibility"
-msgstr "Alternar la visibilidá del quadro de mandu"
+msgstr "Alterna’ la visibilidá de l quadro de mandu"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game tutorial panel."
-msgstr "Amostrar o anubrir el panel del cursín."
+msgstr "Alterna’l quadro de l cursin."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle tutorial"
-msgstr "Alternar el cursín"
+msgstr "Alterna’l cursin"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarded units."
-msgstr "Siñalar ou non læs unidades protegïdæs."
+msgstr "Alterna’l ressalte de læs unidades curiadæs."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarded highlight"
-msgstr "Alternar el señalamientu de lo curiao"
+msgstr "Alterna’l ressalte de lo curiaho"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarding units."
-msgstr "Siñalar ou non læs unidades protectoræs."
+msgstr "Alterna’l ressalte de læs unidades curiadoræs."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarding highlight"
-msgstr "Alternar el señalamientu de los curiadores"
+msgstr "Alterna’l ressalte de los curiadores"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.desc
 msgctxt "hotkey metadata"
 msgid "Delete the saved game (in the save/load windows)."
-msgstr "Desaniciar l'alcuentru guardáu (nos ventanos «guardar» o «cargar»)."
+msgstr "Borra’ la partida guardada (næs feniestræs Guardar/Cargar)."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.name
 msgctxt "hotkey metadata"
 msgid "Delete saved game"
-msgstr "Desaniciar la guardada"
+msgstr "Borrar una partida guardada"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.desc
 msgctxt "hotkey metadata"
@@ -2933,451 +2933,451 @@ msgstr "Nun pedir confirmaçon al borrar partidæs guardadæs."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Delete without confirmation"
-msgstr "Desaniciar ensin confirmanza"
+msgstr "Borrar in sin confirmaçon"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of status bars e.g. health indicator for all your "
 "buildings/units on the map (including unselected)."
-msgstr "Alterna’ la presencia de læs barræs de stau, p. ex. l indicador vital de todolos edificios/unidades in terreiro (incluendo læs non scoyidæs)."
+msgstr "Alterna’ la visibilidá de læs barræs de stau, p. ex. l indicador vital de todolos edificios/unidades in terreiro (incluendo læs non scoyidæs)."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"
 msgid "Toggle status bars"
-msgstr "Alternar los estaos"
+msgstr "Alterna’ læs barræs de stau"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.desc
 msgctxt "hotkey metadata"
 msgid "Activate fast-forward mode. Must have activated timewarp."
-msgstr "Dir p'alantre nel tiempu. Tien qu'estar activu l'alteriamientu temporal."
+msgstr "Adelantrar no tiempu. Ha hi que tener activa l alteraçon temporal."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.name
 msgctxt "hotkey metadata"
 msgid "Fast-forward (timewarp)"
-msgstr "Dir alantre (alteriamientu temporal)"
+msgstr "Adelantrar (alteraçon temporal)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.desc
 msgctxt "hotkey metadata"
 msgid "Rewind time. Must have activated timewarp."
-msgstr "Volver p'atrás nel tiempu. Tien qu'estar activu l'alteriamientu temporal."
+msgstr "Retroceder no tiempu. Ha hi que tener activa l alteraçon temporal."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
 msgctxt "hotkey metadata"
 msgid "Rewind (timewarp)"
-msgstr "Volver atrás (alteriamientu temporal)"
+msgstr "Retroceder (alteraçon temporal)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of attack range overlays of selected defensive structures."
-msgstr "Amostrar o anubrir l'algame ofensivu de les construcciones esbillades."
+msgstr "Alterna’ la visibilidá de l algame offensivu de læs construcçones scoyidæs."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle attack ranges"
-msgstr "Alternar l'algame ofensible"
+msgstr "Alterna’l algame offensivu"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of aura range overlays of selected units and structures."
-msgstr "Amostrar ou anublri’l algame d’influencia de læs unidades ou construcçones scoyidæs."
+msgstr "Alterna’ la visibilidá de l algame d’influencia de læs unidades ou construcçones scoyidæs."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle aura ranges"
-msgstr "Alternar l’algame d’influencia"
+msgstr "Alterna’l algame d’influencia"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.desc
 msgctxt "hotkey metadata"
 msgid "Toggle display of heal range overlays of selected units."
-msgstr "Amostrar o anubrir l'algame curatible de les unidades esbillades."
+msgstr "Alterna’ la visibilidá de l algame de cura de læs unidades scoyidæs."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle heal ranges"
-msgstr "Alternar l'algame curatible"
+msgstr "Alterna’l algame de cura"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.silhouettes.desc
 msgctxt "hotkey metadata"
 msgid "Toggle unit silhouettes."
-msgstr "Amostrar o anubrir el contornu de les unidades."
+msgstr "Alterna’ los contornos de læs unidades."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.silhouettes.name
 msgctxt "hotkey metadata"
 msgid "Toggle unit silhouettes"
-msgstr "Alternar los contornos"
+msgstr "Alterna’ los contornos"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the structure tree."
-msgstr "Alternar l'árbole de construcciones."
+msgstr "Alterna’ l árbolre de construcçones."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.name
 msgctxt "hotkey metadata"
 msgid "Toggle structure tree"
-msgstr "Alternar l'árbole de construcciones"
+msgstr "Alterna’ l árbolre de construcçones"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game summary."
-msgstr "Abrir o zarrar el resume l'alcuentru."
+msgstr "Alterna’l resume de la partida."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.name
 msgctxt "hotkey metadata"
 msgid "Toggle summary"
-msgstr "Alternar el resume"
+msgstr "Alterna’l resume"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window in team chat mode."
-msgstr "Abrir ou cerra’ la conversa d’equipu."
+msgstr "Alterna’ la conversa cul equipu."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.name
 msgctxt "hotkey metadata"
 msgid "Toggle team chat"
-msgstr "Alterna’ la conversa d’equipu"
+msgstr "Alterna’ la conversa cul equipu"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Shows the game time elapsed since the game started."
-msgstr "Amostrar o anubrir el tiempu pasao desque entamó'l xuegu."
+msgstr "Alterna’l tiempu decorrido des que cominçou la partida."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle game-time overlay"
-msgstr "Alternar la sobrecapa cronométrica"
+msgstr "Alterna’ la subrecapa chronométrica"
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys relating to modifying unit selection."
-msgstr "Atayos relativos a la scolheitha d’unidades."
+msgstr "Atayos relativos a la scuœya d’unidades."
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.name
 msgctxt "hotkey metadata"
 msgid "Selecting Units"
-msgstr "Esbilladura d'unidades"
+msgstr "Scuœya d’unidades"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.desc
 msgctxt "hotkey metadata"
 msgid "Add units to selection."
-msgstr "Añader unidades a la esbilla."
+msgstr "Aggregar unidades a la scolheitha."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.name
 msgctxt "hotkey metadata"
 msgid "Add to selection"
-msgstr "Amestar a la esbilla"
+msgstr "Aggregar a la scolheitha"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Un-select all units and cancel building placement."
-msgstr "Dis-scoyer todelæs unidades ou incaboxa’l edificio."
+msgstr "Apartar de la scolheitha a todelæs unidades ou incaboxa’l assentamiento d’un edificio."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
 msgctxt "hotkey metadata"
 msgid "Cancel selection"
-msgstr "Incaboẍar la excolleitha"
+msgstr "Incaboxa’ la scolheitha"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 1 to the current selection."
-msgstr "Añader a la esbilla'l conxuntu 1."
+msgstr "Aggrega’l Coniunctu 1 a la scolheitha actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 1"
-msgstr "Amestar el conxuntu 1"
+msgstr "Aggrega’l Coniunctu 1"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.10.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 10 to the current selection."
-msgstr "Aggrega’l coniunctu 10 a la scolheitha actual."
+msgstr "Aggrega’l Coniunctu 10 a la scolheitha actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.10.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 10"
-msgstr "Aggrega’l coniunctu 10"
+msgstr "Aggrega’l Coniunctu 10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 2 to the current selection."
-msgstr "Añader a la esbilla'l conxuntu 2."
+msgstr "Aggrega’l Coniunctu 2 a la scolheitha actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 2"
-msgstr "Amestar el conxuntu 2"
+msgstr "Aggrega’l Coniunctu 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.3.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 3 to the current selection."
-msgstr "Añader a la esbilla'l conxuntu 3."
+msgstr "Aggrega’l Coniunctu 3 a la scolheitha actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.3.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 3"
-msgstr "Amestar el conxuntu 3"
+msgstr "Aggrega’l Coniunctu 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.4.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 4 to the current selection."
-msgstr "Añader a la esbilla'l conxuntu 4."
+msgstr "Aggrega’l Coniunctu 4 a la scolheitha actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.4.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 4"
-msgstr "Amestar el conxuntu 4"
+msgstr "Aggrega’l Coniunctu 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.5.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 5 to the current selection."
-msgstr "Añader a la esbilla'l conxuntu 5."
+msgstr "Aggrega’l Coniunctu 5 a la scolheitha actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.5.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 5"
-msgstr "Amestar el conxuntu 5"
+msgstr "Aggrega’l Coniunctu 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.6.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 6 to the current selection."
-msgstr "Añader a la esbilla'l conxuntu 6."
+msgstr "Aggrega’l Coniunctu 6 a la scolheitha actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.6.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 6"
-msgstr "Amestar el conxuntu 6"
+msgstr "Aggrega’l Coniunctu 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.7.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 7 to the current selection."
-msgstr "Añader a la esbilla'l conxuntu 7."
+msgstr "Aggrega’l Coniunctu 7 a la scolheitha actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.7.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 7"
-msgstr "Amestar el conxuntu 7"
+msgstr "Aggrega’l Coniunctu 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.8.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 8 to the current selection."
-msgstr "Añader a la esbilla'l conxuntu 8."
+msgstr "Aggrega’l Coniunctu 8 a la scolheitha actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.8.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 8"
-msgstr "Amestar el conxuntu 8"
+msgstr "Aggrega’l Coniunctu 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.9.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 9 to the current selection."
-msgstr "Añader a la esbilla'l conxuntu 9."
+msgstr "Aggrega’l Coniunctu 9 a la scolheitha actual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.9.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 9"
-msgstr "Amestar el conxuntu 9"
+msgstr "Aggrega’l Coniunctu 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 1."
-msgstr "Guardar la excolleitha actual cumo Grea 1."
+msgstr "Guarda’ la scolheitha actual cumo l Coniunctu 1."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 1"
-msgstr "Afhita’ la Grea 1"
+msgstr "Afhita’l Coniunctu 1"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.10.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 10."
-msgstr "Guarda’ la scolheitha actual cumo l coniunctu 10."
+msgstr "Guarda’ la scolheitha actual cumo l Coniunctu 10."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.10.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 10"
-msgstr "Afhita’l coniunctu 10"
+msgstr "Afhita’l Coniunctu 10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 2."
-msgstr "Guardar la excolleitha actual cumo Grea 2."
+msgstr "Guarda’ la scolheitha actual cumo l Coniunctu 2."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 2"
-msgstr "Afhita’ la Grea 2"
+msgstr "Afhita’l Coniunctu 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 3."
-msgstr "Guardar la excolleitha actual cumo Grea 3."
+msgstr "Guarda’ la scolheitha actual cumo l Coniunctu 3."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 3"
-msgstr "Afhita’ la Grea 3"
+msgstr "Afhita’l Coniunctu 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 4."
-msgstr "Guardar la excolleitha actual cumo Grea 4."
+msgstr "Guarda’ la scolheitha actual cumo l Coniunctu 4."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 4"
-msgstr "Afhita’ la Grea 4"
+msgstr "Afhita’l Coniunctu 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 5."
-msgstr "Guardar la excolleitha actual cumo Grea 5."
+msgstr "Guarda’ la scolheitha actual cumo l Coniunctu 5."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 5"
-msgstr "Afhita’ la Grea 5"
+msgstr "Afhita’l Coniunctu 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 6."
-msgstr "Guardar la excolleitha actual cumo Grea 6."
+msgstr "Guarda’ la scolheitha actual cumo l Coniunctu 6."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 6"
-msgstr "Afhita’ la Grea 6"
+msgstr "Afhita’l Coniunctu 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 7."
-msgstr "Guardar la excolleitha actual cumo Grea 7."
+msgstr "Guarda’ la scolheitha actual cumo l Coniunctu 7."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 7"
-msgstr "Afhita’ la Grea 7"
+msgstr "Afhita’l Coniunctu 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 8."
-msgstr "Guardar la excolleitha actual cumo Grea 8."
+msgstr "Guarda’ la scolheitha actual cumo l Coniunctu 8."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 8"
-msgstr "Afhita’ la Grea 8"
+msgstr "Afhita’l Coniunctu 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 9."
-msgstr "Guardar la excolleitha actual cumo Grea 9."
+msgstr "Guarda’ la scolheitha actual cumo l Coniunctu 9."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 9"
-msgstr "Afhita’ la Grea 9"
+msgstr "Afhita’l Coniunctu 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 1."
-msgstr "Facer que s'esbille'l conxuntu 1."
+msgstr "Fhazer que la scolheitha actual seia l Coniunctu 1."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 1"
-msgstr "Esbillar el conxuntu 1"
+msgstr "Scoye’l Coniunctu 1"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.10.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 10."
-msgstr "Fhazer que la scolheitha actual seia l coniunctu 10."
+msgstr "Fhazer que la scolheitha actual seia l Coniunctu 10."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.10.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 10"
-msgstr "Scoye’l coniunctu 10"
+msgstr "Scoye’l Coniunctu 10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 2."
-msgstr "Facer que s'esbille'l conxuntu 2."
+msgstr "Fhazer que la scolheitha actual seia l Coniunctu 2."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 2"
-msgstr "Esbillar el conxuntu 2"
+msgstr "Scoye’l Coniunctu 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 3."
-msgstr "Facer que s'esbille'l conxuntu 3."
+msgstr "Fhazer que la scolheitha actual seia l Coniunctu 3."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 3"
-msgstr "Esbillar el conxuntu 3"
+msgstr "Scoye’l Coniunctu 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 4."
-msgstr "Facer que s'esbille'l conxuntu 4."
+msgstr "Fhazer que la scolheitha actual seia l Coniunctu 4."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 4"
-msgstr "Esbillar el conxuntu 4"
+msgstr "Scoye’l Coniunctu 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 5."
-msgstr "Facer que s'esbille'l conxuntu 5."
+msgstr "Fhazer que la scolheitha actual seia l Coniunctu 5."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 5"
-msgstr "Esbillar el conxuntu 5"
+msgstr "Scoye’l Coniunctu 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 6."
-msgstr "Facer que s'esbille'l conxuntu 6."
+msgstr "Fhazer que la scolheitha actual seia l Coniunctu 6."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 6"
-msgstr "Esbillar el conxuntu 6"
+msgstr "Scoye’l Coniunctu 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 7."
-msgstr "Facer que s'esbille'l conxuntu 7."
+msgstr "Fhazer que la scolheitha actual seia l Coniunctu 7."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 7"
-msgstr "Esbillar el conxuntu 7"
+msgstr "Scoye’l Coniunctu 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 8."
-msgstr "Facer que s'esbille'l conxuntu 8."
+msgstr "Fhazer que la scolheitha actual seia l Coniunctu 8."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 8"
-msgstr "Esbillar el conxuntu 8"
+msgstr "Scoye’l Coniunctu 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 9."
-msgstr "Facer que s'esbille'l conxuntu 9."
+msgstr "Fhazer que la scolheitha actual seia l Coniunctu 9."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 9"
-msgstr "Esbillar el conxuntu 9"
+msgstr "Scoye’l Coniunctu 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
 msgctxt "hotkey metadata"
@@ -3392,12 +3392,12 @@ msgstr "Scoye’l segiente constructor vagau"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only idle units."
-msgstr "Esbillar namái les unidades vagades."
+msgstr "Scoyer solo læs unidades vagadæs."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.name
 msgctxt "hotkey metadata"
 msgid "Select only idle units"
-msgstr "Esbillar unidades vagades"
+msgstr "Scoyer solo læs unidades vagadæs"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.desc
 msgctxt "hotkey metadata"
@@ -3432,85 +3432,85 @@ msgstr "Scoye’l segiente obreiru vagau"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only military units to the selection."
-msgstr "Añader a la esbilla namái les unidades militares."
+msgstr "Aggregar a la scolheitha solo læs unidades militares."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select military only"
-msgstr "Esbillar militares"
+msgstr "Scoyer solo los militares"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only non-military units to the selection."
-msgstr "Añader a la esbilla namái les unidades civiles."
+msgstr "Aggregar a la scolheitha solo læs unidades non militares."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select non-military only"
-msgstr "Esbillar civiles"
+msgstr "Scoyer solo los non militares"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.desc
 msgctxt "hotkey metadata"
 msgid "Include offscreen units in selection."
-msgstr "Inxerir na scolheitha unidades non vistæs."
+msgstr "Inxerir na scolheitha læs unidades non vistæs."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.name
 msgctxt "hotkey metadata"
 msgid "Include offscreen"
-msgstr "Inxeri’ lo non visto"
+msgstr "Inxeri’ los non vistos"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.desc
 msgctxt "hotkey metadata"
 msgid "Remove units from selection."
-msgstr "Quitar de la esbilla a unidades."
+msgstr "Apartar unidades de la scolheitha."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.name
 msgctxt "hotkey metadata"
 msgid "Remove units from selection"
-msgstr "Quitar de la esbilla a unidades"
+msgstr "Apartar unidades de la scolheitha"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to select units individually, opposed to per formation."
-msgstr "Camudador pa esbillar les unidades xebradamente, en cuenta de por formación."
+msgstr "Camudador pa scoye’ læs unidades xebradamente, & non por formaçon."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.name
 msgctxt "hotkey metadata"
 msgid "Single selection"
-msgstr "Esbilla simple"
+msgstr "Scuœya simple"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only wounded units."
-msgstr "Esbillar namái les unidades mancades."
+msgstr "Scoyer solo læs unidades mancadæs."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.name
 msgctxt "hotkey metadata"
 msgid "Select only wounded units"
-msgstr "Esbillar unidades mancades"
+msgstr "Scoyer solo læs unidades mancadæs"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr "Desanicia l'alcuentru guardáu esbilláu usando %(hotkey)s."
+msgstr "Borra’ la partida guardada scoyida cun %(hotkey)s."
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:205
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr "Caltén %(hotkey)s premidu/a pa saltar el diálogu de confirmanza al desaniciar."
+msgstr "Calten %(hotkey)s premid@ par salta’l diálogu de confirmaçon al borrar."
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:51
 #, javascript-format
 msgid "\"%(label)s\""
-msgstr "«%(label)s»"
+msgstr "“%(label)s”"
 
 #: gui/loadgame/SavegameDeleter.js:53
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr "L'alcuentru guardáu va desaniciase dafechu, ¿de xuru?"
+msgstr "La partida guardada vaî borrase da fheitho, ¿stas ciert@?"
 
 #: gui/loadgame/SavegameDeleter.js:54
 msgid "DELETE"
-msgstr "DESANICIAR"
+msgstr "BORRAR"
 
 #: gui/loadgame/SavegameDetails.js:43
 #, javascript-format
@@ -3540,11 +3540,11 @@ msgstr "Cargar"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr "Esti alcuentru guardáu precisa de la versión %(requiredVersion)s de 0 A.D., ya tu tas executando la versión %(currentVersion)s."
+msgstr "Esta partida guardada precisa de la version %(requiredVersion)s de 0 A.D., pero la version que tienes operativa ye la %(currentVersion)s."
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
-msgstr "Esti alcuentru guardáu precisa d'una versión anterior de 0 A.D."
+msgstr "Esta partida guardada precisa d’una version anterior de 0 A.D."
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
@@ -3562,11 +3562,11 @@ msgstr "Avisu"
 
 #: gui/loadgame/SavegamePage.js:34
 msgid "Save Game"
-msgstr "Guardar alcuentru"
+msgstr "Guarda’ la partida"
 
 #: gui/loadgame/SavegamePage.js:34 gui/pregame/MainMenuItems.js:103
 msgid "Load Game"
-msgstr "Cargar alcuentru"
+msgstr "Carga’ la partida"
 
 #: gui/hotkeys/hotkeys.xml:(caption):53 gui/loadgame/SavegameWriter.js:16
 #: gui/options/options.xml:(caption):55
@@ -3575,32 +3575,32 @@ msgstr "Guardar"
 
 #: gui/loadgame/SavegameWriter.js:52
 msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr "L'alcuentru guardáu va sobreescribise dafechu, ¿de xuru?"
+msgstr "La partida guardada vaî subrescribise da fheitho, ¿stas ciert@?"
 
 #: gui/loadgame/SavegameWriter.js:53
 msgid "OVERWRITE SAVE"
-msgstr "SOBREESCRIBIR ALCUENTRU"
+msgstr "SUBRESCRIBI’ LA PARTIDA"
 
 #: gui/loadgame/load.xml:(caption):44
 msgid "No saved games found."
-msgstr "Nun s'atoparon alcuentros guardaos."
+msgstr "Non s’atoparun partidæs guardadæs."
 
 #: gui/loadgame/load.xml:(caption):54
 #: gui/replaymenu/replay_menu.xml:(caption):234
 msgid "Delete"
-msgstr "Desanciciar"
+msgstr "Borrar"
 
 #: gui/loadgame/load.xml:(caption):64
 msgid "Filter compatible saved games"
-msgstr "Peñerar alcuentros guardaos compatibles"
+msgstr "Penheira’ læs partidæs guardadæs compatibles"
 
 #: gui/loadgame/load.xml:(caption):74
 msgid "Players:"
-msgstr "Xugadores:"
+msgstr "Xhogadores:"
 
 #: gui/loadgame/load.xml:(caption):78
 msgid "Played time:"
-msgstr "Tiempu xugao:"
+msgstr "Tiempu xhogaho:"
 
 #: gui/loadgame/load.xml:(caption):82
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):32
@@ -3633,17 +3633,17 @@ msgstr "Typu de terreiro"
 #: gui/replaymenu/replay_menu.xml:(heading):79
 msgctxt "replay"
 msgid "Map Name"
-msgstr "Nome del terreiro"
+msgstr "Nome de l terreiro"
 
 #: gui/loadgame/load.xml:(heading):39
 msgctxt "replay"
 msgid "Description"
-msgstr "Descripción"
+msgstr "Descripçon"
 
 #: gui/locale/locale.xml:(caption):17
 #: gui/locale_advanced/locale_advanced.xml:(caption):17
 msgid "Language:"
-msgstr "Llingua:"
+msgstr "Lhingua:"
 
 #. A locale is a set of parameters that defines the user’s language, country
 #. and any special
@@ -3652,21 +3652,21 @@ msgstr "Llingua:"
 #. refers to the code that identifies those settings, such as ‘en_US’.
 #: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr "Rodiada:"
+msgstr "Localizaçon:"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr "Avanzáu"
+msgstr "Abançada"
 
 #: gui/locale_advanced/locale_advanced.js:22
 #: gui/locale_advanced/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
-msgstr "Nengún"
+msgstr "Nenguna"
 
 #: gui/locale_advanced/locale_advanced.js:91
 msgid "invalid locale"
-msgstr "locale inválida"
+msgstr "localizaçon inválida"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):25
 msgid "Country:"
@@ -3674,43 +3674,43 @@ msgstr "País:"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):34
 msgid "Script:"
-msgstr "Escritura:"
+msgstr "Scriptura:"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):41
 msgid "Variant (unused):"
-msgstr "Variante (nun s'usa):"
+msgstr "Variante (in sin usu):"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):48
 msgid "Keywords (unused):"
-msgstr "Pallabres clave (nun s'usa):"
+msgstr "Pallabræs clave (in sin usu):"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):55
 msgid "Resulting locale:"
-msgstr "Locale resultante:"
+msgstr "Localizaçon resultante:"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):60
 msgid "Dictionary files used:"
-msgstr "Ficheros léxicos emplegaos:"
+msgstr "Archivos léxicos usahos:"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):70
 msgid "Auto detect"
-msgstr "Detección automática"
+msgstr "Detecçon automática"
 
 #: gui/locale_advanced/locale_advanced.xml:(tooltip):37
 msgid ""
 "Optional four-letter script code part following the language code (as listed"
 " in ISO 15924)"
-msgstr "Script optativu de quatro lhetræs segun el códigu linguísticu (talu cumo s’arrecuœye n ISO 15924)"
+msgstr "Códigu de scriptura optativu compuœstu de læs quatro lhetræs que sigen al códigu linguísticu (talu cumo s’arrecuœye n ISO 15924)"
 
 #: gui/locale_advanced/locale_advanced.xml:(tooltip):44
 #: gui/locale_advanced/locale_advanced.xml:(tooltip):51
 msgid "Not implemented yet."
-msgstr "Entá nun s'implementó"
+msgstr "Inda nun s’implementou"
 
 #: gui/maps/MapCache.js:59 gui/maps/mapbrowser/grid/MapGridBrowser.js:59
 msgctxt "map selection"
 msgid "Random"
-msgstr "Al debalu"
+msgstr "Aleatorio"
 
 #: gui/maps/MapCache.js:66
 msgid "A randomly selected map."
@@ -3722,7 +3722,7 @@ msgstr "Por defectu"
 
 #: gui/maps/MapFilters.js:92
 msgid "All maps except naval and demo maps."
-msgstr "Tódolos terreiros menus los navales & de muöstra."
+msgstr "Todolos terreiros, excepto los navales & los de muœstra."
 
 #: gui/maps/MapFilters.js:97
 msgid "Naval Maps"
@@ -3730,11 +3730,11 @@ msgstr "Terreiros navales"
 
 #: gui/maps/MapFilters.js:98
 msgid "Maps where ships are needed to reach the enemy."
-msgstr "Terreiros u se precisa de barcos p’algamar l’inimigu."
+msgstr "Terreiros que requieren l usu de naves p’algama’l inimigu."
 
 #: gui/maps/MapFilters.js:103
 msgid "Demo Maps"
-msgstr "Terreiros de muöstra"
+msgstr "Terreiros de muœstra"
 
 #: gui/maps/MapFilters.js:104
 msgid "These maps are not playable but for demonstration purposes only."
@@ -3742,7 +3742,7 @@ msgstr "Estos terreiros nun son xhogables ma sierven de muœstra."
 
 #: gui/maps/MapFilters.js:109
 msgid "New Maps"
-msgstr "Terreiros nuövos"
+msgstr "Terreiros nuœvos"
 
 #: gui/maps/MapFilters.js:110
 msgid "Maps that are brand new in this release of the game."
@@ -3758,7 +3758,7 @@ msgstr "Terreiros que se recommiendæn pa l modu delhos xhogadores."
 
 #: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
-msgstr "Terreiros programmados"
+msgstr "Terreiros programmahos"
 
 #: gui/maps/MapFilters.js:122
 msgid "Maps that come with scripted events and potentially spawn enemy units."
@@ -3766,7 +3766,7 @@ msgstr "Terreiros que tienen eventos programmahos & podríæn gënerar unidades 
 
 #: gui/maps/MapFilters.js:127
 msgid "All Maps"
-msgstr "Tódolos terreiros"
+msgstr "Todolos terreiros"
 
 #: gui/maps/MapFilters.js:128
 msgid "Every map of the chosen maptype."
@@ -3786,7 +3786,7 @@ msgstr "%(hotkey)s: Cerra’l catálogu de terreiros & discarta’ la scolheitha
 #: gui/options/options.xml:(caption):61
 #: gui/reference/common/Buttons/CloseButton.js:13
 msgid "Close"
-msgstr "Zarrar"
+msgstr "Cerrar"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
 #, javascript-format
@@ -3809,7 +3809,7 @@ msgstr "Buscar un terreiro:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
 msgid "Map Filter:"
-msgstr "Penneira terreira:"
+msgstr "Penheira de terreiros:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
 msgid "Pick Random Map"
@@ -3818,11 +3818,11 @@ msgstr "Scoyer aleatoriamente l terreiro"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):54
 msgctxt "map selection dialog"
 msgid "Select"
-msgstr "Esbillar"
+msgstr "Scoyer"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:27
 msgid "Go to the previous page."
-msgstr "Volver a la páxina anterior."
+msgstr "Tornar a la págïna anterior."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:28
 msgid "Go to the next page."
@@ -3830,7 +3830,7 @@ msgstr "Passar a la págïna segiente."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
-msgstr "Magnifica’ læs previsualizaçones de los terreiros."
+msgstr "Amplia’ læs previsualizaçones de los terreiros."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:33
 msgid "Decrease map preview size."
@@ -3844,7 +3844,7 @@ msgstr "Terreiros: %(mapCount)s"
 #: gui/maps/mapbrowser/controls/Pagination.js:43
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
-msgstr "Páxina: %(currentPage)s/%(maxPage)s"
+msgstr "Págïna: %(currentPage)s/%(maxPage)s"
 
 #: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
@@ -3877,7 +3877,7 @@ msgstr "Máx: %(max)s"
 #, javascript-format
 msgid ""
 "Changes will be reverted in %(time)s seconds. Do you want to keep changes?"
-msgstr "Los cambios van revertí-se in %(time)s segundos. ¿Quieres guardar los cambios?"
+msgstr "Læs demudançæs van revertise n %(time)s segundos. ¿Quieres guarda’ læs demudançæs?"
 
 #: gui/options/options.js:192
 #, javascript-format
@@ -3893,27 +3893,27 @@ msgstr "Al arreafhita’ læs opçones vas borra’ los axhustes guardahos. ¿Qu
 
 #: gui/options/options.js:412
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr "¡Los valores de varios axhustes son inválidos! ¿Stas ciertu que quieres guardá-llos?"
+msgstr "¡Los valores de varios axhustes son inválidos! ¿Stas ciert@ que quieres guardallos?"
 
 #: gui/options/options.js:438
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr "Tienes cambeos ensin guardar, ¿quieres zarrar esta ventana?"
+msgstr "Tienes demudançæs in sin guardar, ¿quieres cerrar esta feniestra?"
 
 #: gui/options/options.json[0].label
 msgid "General"
-msgstr "Xeneral"
+msgstr "Gëneral"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr "Nome del xugador (un xugador)"
+msgstr "Nome de l xhogador (un xhogador)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr "El llamatu de to al xugar solu."
+msgstr "El tyamatu de tou al xhogar sol@."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr "Nome del xugador (multixugador)"
+msgstr "Nome de l xhogador (varios xhogadores)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
@@ -3921,11 +3921,11 @@ msgstr "El tyamatu de tou n partidæs de varios xhogadores (excepto n antepar)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
-msgstr "Posa de fondu"
+msgstr "Pousa de fondu"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr "Posar l'alcuentru priváu al desenfocase la ventana."
+msgstr "Pousa’ læs partidæs privadæs al disinfocase la feniestra."
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
@@ -3939,27 +3939,27 @@ msgstr "Disactivada, l acoyida vaî apahecer una sola vez al star disponible una
 
 #: gui/options/options.json[0].options[4].label
 msgid "FPS overlay"
-msgstr "Sobrecapa frecuencimétrica"
+msgstr "Subrecapa freqüencimétrica"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show frames per second in top right corner."
-msgstr "Amostrar los cuadros por segundu na esquina cimera drecha."
+msgstr "Amostra’ los quadros per segundu na squina cimeira direitha."
 
 #: gui/options/options.json[0].options[5].label
 msgid "Real time overlay"
-msgstr "Sobrecapa horaria"
+msgstr "Subrecapa horaria"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show current system time in top right corner."
-msgstr "Amostrar el tiempu del sistema na esquina cimera drecha."
+msgstr "Amostra’ la hora de l systema na squina cimeira direitha."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Game time overlay"
-msgstr "Sobrecapa cronométrica"
+msgstr "Subrecapa chronométrica"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current simulation time in top right corner."
-msgstr "Amostrar el tiempu de la simulación na esquina cimera drecha."
+msgstr "Amostra’l tiempu de simulaçon corriente na squina cimeira direitha."
 
 #: gui/options/options.json[0].options[7].label
 msgid "Ceasefire time overlay"
@@ -3971,7 +3971,7 @@ msgstr "Amostrar siempre'l tiempu que quede d'enducia."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Chat timestamp"
-msgstr "Hora d'espublizamientu"
+msgstr "Hora de publicaçon"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Display the time at which a chat message was posted."
@@ -4028,6 +4028,15 @@ msgstr "Modu ventana"
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
 msgstr "Entamar 0 A.D. nuna ventana."
+
+#: gui/options/options.json[1].options[10].label
+msgid "Mouse drag"
+msgstr "Arrastru de l mure"
+
+#: gui/options/options.json[1].options[10].tooltip
+msgid ""
+"Number of pixels the mouse can move before the action is considered a drag."
+msgstr "Númeru máximu de píxeles que l mure puœde movese n sin iniciar un arrastru."
 
 #: gui/options/options.json[1].options[1].label
 #: gui/options/options.json[2].options[1].label

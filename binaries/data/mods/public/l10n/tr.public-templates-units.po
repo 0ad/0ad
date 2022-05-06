@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-04 07:08+0000\n"
+"POT-Creation-Date: 2022-05-02 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: Cem Aktas <cemwstone@gmail.com>, 2015,2018,2021-2022\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
@@ -190,9 +190,8 @@ msgstr "Mızrakçı Süvari"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
-msgid "Counters: 1.75× vs Cavalry."
-msgstr "Süvarilere karşı 1,75 etkili"
+msgid "Counters: 2× vs Cavalry."
+msgstr ""
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
@@ -547,6 +546,10 @@ msgstr "Kahraman Topuzlu Süvari"
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:23
 msgid "Hero Cavalry Spearman"
 msgstr "Kahraman Mızrakçı Süvari"
+
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
+msgid "Counters: 1.75× vs Cavalry."
+msgstr "Süvarilere karşı 1,75 etkili"
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:23
 msgid "Hero Cavalry Swordsman"

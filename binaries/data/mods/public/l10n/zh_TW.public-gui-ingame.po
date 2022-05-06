@@ -694,7 +694,7 @@ msgstr "敵方"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr "隨機賄賂此玩家手下的一個人員，在一定時間內分享其視野。"
+msgstr "隨機賄賂此玩家手下的一個單位，在一定時間內分享其視野。"
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
 msgid "A failed bribe will cost you:"
@@ -1463,15 +1463,15 @@ msgstr "-%(amount)s"
 
 #: gui/session/trade/BarterPanel.xml:(caption):5
 msgid "Barter"
-msgstr "貿易"
+msgstr "交換"
 
 #: gui/session/trade/BarterPanel.xml:(caption):13
 msgid "Sell:"
-msgstr "賣出"
+msgstr "賣出："
 
 #: gui/session/trade/BarterPanel.xml:(caption):17
 msgid "Buy:"
-msgstr "買入"
+msgstr "買入："
 
 #: gui/session/trade/BarterPanel.xml:(caption):21
 msgid "No Markets Available"
@@ -1725,7 +1725,7 @@ msgstr "移除護衛"
 #: gui/session/trade/TradeDialog.xml:(caption):9
 #: gui/session/unit_actions.js:1685
 msgid "Barter & Trade"
-msgstr "貿易"
+msgstr "交換與貿易"
 
 #: gui/session/unit_actions.js:1705
 msgid "Patrol"

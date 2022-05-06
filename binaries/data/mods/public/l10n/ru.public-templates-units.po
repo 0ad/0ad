@@ -46,7 +46,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-04 07:08+0000\n"
+"POT-Creation-Date: 2022-05-02 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018-2022\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
@@ -210,9 +210,8 @@ msgstr "Конный копейщик"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
-msgid "Counters: 1.75× vs Cavalry."
-msgstr "Противодействие: в 1.75 раза лучше против конницы."
+msgid "Counters: 2× vs Cavalry."
+msgstr ""
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
@@ -567,6 +566,10 @@ msgstr "Конный герой с булавой"
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:23
 msgid "Hero Cavalry Spearman"
 msgstr "Конный герой копейщик"
+
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
+msgid "Counters: 1.75× vs Cavalry."
+msgstr "Противодействие: в 1.75 раза лучше против конницы."
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:23
 msgid "Hero Cavalry Swordsman"

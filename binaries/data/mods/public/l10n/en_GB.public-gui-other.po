@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-29 07:08+0000\n"
+"POT-Creation-Date: 2022-05-02 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>, 2021\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
@@ -4034,6 +4034,15 @@ msgstr "Windowed mode"
 msgid "Start 0 A.D. in a window."
 msgstr "Start 0 A.D. in a window."
 
+#: gui/options/options.json[1].options[10].label
+msgid "Mouse drag"
+msgstr ""
+
+#: gui/options/options.json[1].options[10].tooltip
+msgid ""
+"Number of pixels the mouse can move before the action is considered a drag."
+msgstr ""
+
 #: gui/options/options.json[1].options[1].label
 #: gui/options/options.json[2].options[1].label
 msgid "Fog"
@@ -5359,7 +5368,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXVI: Zhuangzi"
-msgstr ""
+msgstr "Alpha XXVI: Zhuangzi"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
