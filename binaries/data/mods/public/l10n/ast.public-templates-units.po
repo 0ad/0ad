@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-04 07:08+0000\n"
+"POT-Creation-Date: 2022-05-02 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>, 2016-2022\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
@@ -172,9 +172,8 @@ msgstr "Éqüite hastariu"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
-msgid "Counters: 1.75× vs Cavalry."
-msgstr "Ventaya: 1.75× contra éqüites."
+msgid "Counters: 2× vs Cavalry."
+msgstr "Ventaya: 2× contra éqüites."
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
@@ -530,6 +529,10 @@ msgstr "Éqüite clavador heroicu"
 msgid "Hero Cavalry Spearman"
 msgstr "Éqüite hastariu heroicu"
 
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
+msgid "Counters: 1.75× vs Cavalry."
+msgstr "Ventaya: 1.75× contra éqüites."
+
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:23
 msgid "Hero Cavalry Swordsman"
 msgstr "Éqüite spathariu heroicu"
@@ -548,7 +551,7 @@ msgstr "Auxiliar"
 #: simulation/templates/template_unit_support_healer.xml:26
 #: simulation/templates/template_unit_support_healer.xml:27
 msgid "Healer"
-msgstr "Sanante"
+msgstr "Curandeir@"
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:24
 msgid "Hero Archer"
@@ -809,7 +812,7 @@ msgstr "Cive fémina"
 
 #: simulation/templates/template_unit_support_healer.xml:31
 msgid "Heal units."
-msgstr "Sana outræs unidades."
+msgstr "Cura unidades."
 
 #: simulation/templates/template_unit_support_slave.xml:18
 #: simulation/templates/template_unit_support_slave.xml:21

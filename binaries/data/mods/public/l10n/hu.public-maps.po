@@ -309,7 +309,7 @@ msgstr "Elephantiné"
 msgid ""
 "A neighboring province has pledged alegiance to your rule. It's up to you to command them to victory.\n"
 "[color=\"yellow\"]Caution! If nomad mode is disabled, each player will start with two civic centers.[/color]"
-msgstr ""
+msgstr "Az egyik szomszédos tartomány hűségesküt tett neked; csak rajtad áll, hogy sikerül-e győzelemre vezetni!\n[color=\"yellow\"]Vigyázat! Amennyiben a nomád mód ki van kapcsolva, úgy minden játékos két városházával kezd.[/color]"
 
 #: maps/random/empire.jsonsettings.Name
 msgid "Empire"
@@ -1135,7 +1135,7 @@ msgstr "Egy ellenséges hullám támad!"
 #: maps/random/survivalofthefittest_triggers.js:292
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
-msgstr "%(player)s vesztett (elvesztette a városházát)."
+msgstr "%(player)s legyőzetett (elvesztette a városházáját)."
 
 #: maps/random/syria.jsonsettings.Description
 msgid "Players start in a plains with slightly rolling highlands."
@@ -2209,7 +2209,7 @@ msgstr "A kincstár színültig telt, győztél!"
 
 #: maps/scenarios/treasure_islands.js:60
 msgid "Hurry up! Your enemy is close to victory!"
-msgstr "Siess! Az ellenséged közel áll a győzelemhez!"
+msgstr "Siess! Ellenséged közel áll a győzelemhez!"
 
 #: maps/scenarios/treasure_islands.js:71
 #, javascript-format
@@ -2439,17 +2439,17 @@ msgstr "%(player)s legyőzetett (elvesztette hősét). "
 msgid ""
 "%(_player_)s owns a Wonder and %(_player_)s and their allies will win in "
 "%(time)s."
-msgstr "%(_player_)s birtokába jutott egy csodának, így %(_player_)s és az ő szövetségesei %(time)sen belül nyerni fognak."
+msgstr "%(_player_)s birtokol egy csodát, így %(_player_)s és az ő szövetségesei bizonyos időn belül (%(time)s) nyerni fognak."
 
 #: maps/scripts/WonderVictory.js:81
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s birtokol egy csodát, így bizonyos időn belül (%(time)s) nyerni fog."
 
 #: maps/scripts/WonderVictory.js:92
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and you will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s birtokol egy csodát, így bizonyos időn belül (%(time)s) nyerni fogsz."
 
 #: maps/scripts/WonderVictory.js:104
 #, javascript-format
@@ -2459,7 +2459,7 @@ msgstr ""
 #: maps/scripts/WonderVictory.js:105
 #, javascript-format
 msgid "You own a Wonder and will win in %(time)s."
-msgstr "Birtokolsz egy csodát és %(time)s időn belül nyerni fogsz."
+msgstr "Birtokolsz egy csodát, így bizonyos időn belül (%(time)s) nyerni fogsz."
 
 #: maps/scripts/WonderVictory.js:150
 #, javascript-format

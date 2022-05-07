@@ -47,9 +47,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-29 07:08+0000\n"
+"POT-Creation-Date: 2022-05-02 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: xtother90, 2017-2022\n"
+"Last-Translator: Latein Lebt, 2021-2022\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4065,6 +4065,15 @@ msgstr "Fenstermodus"
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
 msgstr "Starte 0 A.D. in einem Fenster."
+
+#: gui/options/options.json[1].options[10].label
+msgid "Mouse drag"
+msgstr "Mausziehen"
+
+#: gui/options/options.json[1].options[10].tooltip
+msgid ""
+"Number of pixels the mouse can move before the action is considered a drag."
+msgstr "Anzahl von Pixeln, die die Maus bewegt werden kann, bevor die Aktion als Ziehen registriert wird."
 
 #: gui/options/options.json[1].options[1].label
 #: gui/options/options.json[2].options[1].label

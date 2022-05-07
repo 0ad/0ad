@@ -9,14 +9,15 @@
 # Dhemas E. Rilian N.
 # Muhammad Furqon Abrori
 # Joshua Randiny
+# Karunia Sentosa
 # Samuel
 # Ulzeta Ulzeta
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-29 07:08+0000\n"
+"POT-Creation-Date: 2022-05-02 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>, 2014,2021-2022\n"
+"Last-Translator: Karunia Sentosa, 2022\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3081,12 +3082,12 @@ msgstr "Tambah Regu Kendali 1"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.10.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 10 to the current selection."
-msgstr ""
+msgstr "Tambahkan Regu Kendali 10 ke pilihan saat ini."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.10.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 10"
-msgstr ""
+msgstr "Tambah Regu Kendali 10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.desc
 msgctxt "hotkey metadata"
@@ -3181,12 +3182,12 @@ msgstr "Atur Regu Kendali 1"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.10.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 10."
-msgstr ""
+msgstr "Simpan pilihan saat ini sebagai Regu Kendali 10."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.10.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 10"
-msgstr ""
+msgstr "Atur Regu Kendali 10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.desc
 msgctxt "hotkey metadata"
@@ -3281,12 +3282,12 @@ msgstr "Pilih Regu Kendali 1"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.10.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 10."
-msgstr ""
+msgstr "Ubah pilihan saat ini menjadi Regu Kendali 10."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.10.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 10"
-msgstr ""
+msgstr "Pilih Regu Kendali 10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.desc
 msgctxt "hotkey metadata"
@@ -4017,6 +4018,15 @@ msgstr "Mode jendela"
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
 msgstr "Mulai 0 A.D. dalam mode jendela."
+
+#: gui/options/options.json[1].options[10].label
+msgid "Mouse drag"
+msgstr "Seret mouse"
+
+#: gui/options/options.json[1].options[10].tooltip
+msgid ""
+"Number of pixels the mouse can move before the action is considered a drag."
+msgstr "Jumlah piksel dari mouse yang bisa digeser sebelum aksi tersebut dianggap sebagai seret."
 
 #: gui/options/options.json[1].options[1].label
 #: gui/options/options.json[2].options[1].label

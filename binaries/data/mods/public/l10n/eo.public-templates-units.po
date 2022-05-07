@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-04 07:08+0000\n"
+"POT-Creation-Date: 2022-05-02 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
-"Last-Translator: tuxayo/Victor Grousset <victor@tuxayo.net>, 2021\n"
+"Last-Translator: Vladim Štér <vladim.ster94@gmail.com>, 2021-2022\n"
 "Language-Team: Esperanto (http://www.transifex.com/wildfire-games/0ad/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -171,12 +171,11 @@ msgstr "Lanco"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:28
 msgid "Cavalry Spearman"
-msgstr ""
+msgstr "Kavaleria lancisto"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
-msgid "Counters: 1.75× vs Cavalry."
+msgid "Counters: 2× vs Cavalry."
 msgstr ""
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
@@ -285,7 +284,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:28
 msgid "Cavalry Crossbowman"
-msgstr ""
+msgstr "Kavaleria arbalesto"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:24
@@ -294,7 +293,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:24
 #: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:32
 msgid "Crossbowman"
-msgstr ""
+msgstr "Arbalesto"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:5
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:5
@@ -325,11 +324,11 @@ msgstr "Probatalanto"
 
 #: simulation/templates/template_unit_champion.xml:15
 msgid "Champion Unit"
-msgstr ""
+msgstr "Probatalanta unuo"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:21
 msgid "Champion Cavalry"
-msgstr ""
+msgstr "Probatalanta kavalerio"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:24
 msgid "Champion Cavalry Archer"
@@ -341,7 +340,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:23
 msgid "Champion Cavalry Crossbowman"
-msgstr ""
+msgstr "Probatalanta kavaleria arbalesto"
 
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:23
 msgid "Champion Cavalry Javelineer"
@@ -353,11 +352,11 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
 msgid "Champion Cavalry Spearman"
-msgstr ""
+msgstr "Probatalanta kavaleria lancisto"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:20
 msgid "Champion Cavalry Swordsman"
-msgstr ""
+msgstr "Probatalanta kavaleria glavisto"
 
 #: simulation/templates/template_unit_champion_elephant.xml:19
 #: simulation/templates/template_unit_elephant.xml:8
@@ -388,7 +387,7 @@ msgstr "Infanterio"
 
 #: simulation/templates/template_unit_champion_infantry.xml:16
 msgid "Champion Infantry"
-msgstr ""
+msgstr "Probatalanta infanterio"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:27
 msgid "Champion Archer"
@@ -492,7 +491,7 @@ msgstr "Heroo"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:20
 msgid "Hero Cavalry"
-msgstr ""
+msgstr "Heroa kavalerio"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:36
 #: simulation/templates/template_unit_hero_elephant_melee.xml:52
@@ -531,15 +530,19 @@ msgstr ""
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:23
 msgid "Hero Cavalry Spearman"
+msgstr "Heroa kavaleria lancisto"
+
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
+msgid "Counters: 1.75× vs Cavalry."
 msgstr ""
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:23
 msgid "Hero Cavalry Swordsman"
-msgstr ""
+msgstr "Heroa kavaleria glavisto"
 
 #: simulation/templates/template_unit_hero_elephant_melee.xml:31
 msgid "Hero Elephant"
-msgstr ""
+msgstr "Heroelefanto"
 
 #: simulation/templates/template_unit_hero_healer.xml:27
 #: simulation/templates/template_unit_support.xml:5
@@ -799,7 +802,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_support_elephant.xml:20
 msgid "Worker Elephant"
-msgstr ""
+msgstr "Laborelefanto"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -812,7 +815,7 @@ msgstr "Vilaĝantino"
 
 #: simulation/templates/template_unit_support_healer.xml:31
 msgid "Heal units."
-msgstr ""
+msgstr "Resanigu unuoj"
 
 #: simulation/templates/template_unit_support_slave.xml:18
 #: simulation/templates/template_unit_support_slave.xml:21

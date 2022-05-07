@@ -19,7 +19,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-04-01 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
-"Last-Translator: Andi Chandler <andi@gowling.com>, 2021\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>, 2021-2022\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +29,7 @@ msgstr ""
 
 #: gui/session/Cheats.js:78
 msgid "This cheat requires a numeric parameter."
-msgstr ""
+msgstr "This cheat requires a numeric parameter."
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
@@ -165,7 +165,7 @@ msgstr "m:ss"
 #. when not the first item in the queue.
 #: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:597
 msgid "This item is paused."
-msgstr ""
+msgstr "This item is paused."
 
 #: gui/session/chat/ChatAddressees.js:93
 msgctxt "chat addressee"
@@ -576,19 +576,19 @@ msgstr "Display shadows frustum"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:22
 msgid "Render Debug Mode Disabled"
-msgstr ""
+msgstr "Render Debug Mode Disabled"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:23
 msgid "Render Debug Mode AO"
-msgstr ""
+msgstr "Render Debug Mode AO"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:24
 msgid "Render Debug Mode Alpha"
-msgstr ""
+msgstr "Render Debug Mode Alpha"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:25
 msgid "Render Debug Mode Custom"
-msgstr ""
+msgstr "Render Debug Mode Custom"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -812,19 +812,19 @@ msgstr "Confirmation"
 
 #: gui/session/message_box/QuitConfirmation.js:9
 msgid "The game has finished, what do you want to do?"
-msgstr ""
+msgstr "The game has finished, what do you want to do?"
 
 #. Translation: Shown in the Dialog that shows up when the game finishes
 #: gui/session/message_box/QuitConfirmation.js:15
 #: gui/session/message_box/QuitConfirmationReplay.js:23
 msgid "Stay"
-msgstr ""
+msgstr "Stay"
 
 #. Translation: Shown in the Dialog that shows up when the game finishes
 #: gui/session/message_box/QuitConfirmation.js:19
 #: gui/session/message_box/QuitConfirmationReplay.js:27
 msgid "Quit and View Summary"
-msgstr ""
+msgstr "Quit and View Summary"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:54
 msgid "VICTORIOUS!"
@@ -867,7 +867,7 @@ msgstr "Confirmation"
 #: gui/session/message_box/QuitConfirmationReplay.js:17
 msgctxt "replayFinished"
 msgid "The replay has finished. What do you want to do?"
-msgstr ""
+msgstr "The replay has finished. What do you want to do?"
 
 #: gui/session/message_box/ResignConfirmation.js:6
 msgid "Are you sure you want to resign?"
@@ -1357,7 +1357,7 @@ msgstr "Click to select grouped units, double-click to focus the grouped units a
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVI: Zhuangzi"
-msgstr ""
+msgstr "Alpha XXVI: Zhuangzi"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format

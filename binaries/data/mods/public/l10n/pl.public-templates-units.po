@@ -20,6 +20,7 @@
 # Krzysztof Grabania
 # Krzysztof Nowakowski
 # Leszek Szary
+# Łukasz Ankudo
 # Lukasz B
 # Marcin Malinowski
 # Marcin S
@@ -43,9 +44,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-04 07:08+0000\n"
+"POT-Creation-Date: 2022-05-02 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
-"Last-Translator: Marcin S <dzidek1003@o2.pl>, 2016-2017,2021-2022\n"
+"Last-Translator: Łukasz Ankudo, 2022\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -207,9 +208,8 @@ msgstr "Włócznik konny"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
-msgid "Counters: 1.75× vs Cavalry."
-msgstr "Licznik: 1.75× vs. kawaleria."
+msgid "Counters: 2× vs Cavalry."
+msgstr "Skuteczność: 2x przeciwko Kawalerii"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
@@ -460,7 +460,7 @@ msgstr "Elitarny falangita"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:29
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:29
 msgid "Counters: 3× vs Cavalry."
-msgstr "Licznik: 3× vs. Kawaleria."
+msgstr "Skuteczność: 3x przeciwko Kawalerii"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:28
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
@@ -564,6 +564,10 @@ msgstr "Bohater - pałkarz konny"
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:23
 msgid "Hero Cavalry Spearman"
 msgstr "Bohater - włócznik konny"
+
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
+msgid "Counters: 1.75× vs Cavalry."
+msgstr "Skuteczność: 1.75x przeciwko Kawalerii"
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:23
 msgid "Hero Cavalry Swordsman"
@@ -2205,7 +2209,7 @@ msgstr "Alexandros ho Megas"
 
 #: simulation/templates/units/mace/hero_alexander_iii.xml:23
 msgid "Counters: 1.2× vs Heroes."
-msgstr "Licznik: 1.2× vs. Herosi."
+msgstr "Skuteczność: 1.2x przeciwko Bohaterom"
 
 #: simulation/templates/units/mace/hero_craterus.xml:14
 msgid "Craterus"

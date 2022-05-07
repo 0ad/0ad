@@ -9,6 +9,7 @@
 # Bill Stark
 # Boya Yang
 # Brett Dong
+# brow red
 # Bun Eang VINH
 # chaoyang huang
 # Charles Yang
@@ -87,7 +88,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-29 07:08+0000\n"
+"POT-Creation-Date: 2022-05-02 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: Wolfson Liu <wolfsonliu@foxmail.com>, 2020,2022\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
@@ -251,7 +252,7 @@ msgstr "无尽模式"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr "没有胜利者"
+msgstr "不判定胜利者，即时每个人都被击败。"
 
 #: gui/common/gamedescription.js:202
 #, javascript-format
@@ -273,7 +274,7 @@ msgstr "遗迹数量"
 
 #: gui/common/gamedescription.js:239
 msgid "Hero Garrison"
-msgstr "英雄驻军"
+msgstr "英雄驻守"
 
 #: gui/common/gamedescription.js:240
 msgid "Heroes can be garrisoned."
@@ -519,7 +520,7 @@ msgstr "与 %(player)s 的连接不稳定(%(milliseconds)s 毫秒)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr "通常是由 UDP 端口 20595 未在主机端、防火墙或防病毒软件上转发引起的。"
+msgstr "这通常是因为防火墙或杀毒软件，主持端未转发UDP端口20595造成的。"
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
@@ -3154,12 +3155,12 @@ msgstr "增加编队1"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.10.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 10 to the current selection."
-msgstr ""
+msgstr "增加编队10到当前选择中。"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.10.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 10"
-msgstr ""
+msgstr "增加编队10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.desc
 msgctxt "hotkey metadata"
@@ -3254,12 +3255,12 @@ msgstr "设置第 1 小队"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.10.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 10."
-msgstr ""
+msgstr "保存当前选择为编队10。"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.10.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 10"
-msgstr ""
+msgstr "设置编队10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.desc
 msgctxt "hotkey metadata"
@@ -3354,12 +3355,12 @@ msgstr "选取第 1 小队"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.10.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 10."
-msgstr ""
+msgstr "修改当前选择为编队10。"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.10.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 10"
-msgstr ""
+msgstr "选择编队10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.desc
 msgctxt "hotkey metadata"
@@ -4090,6 +4091,15 @@ msgstr "窗口模式"
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
 msgstr "开启窗口游戏"
+
+#: gui/options/options.json[1].options[10].label
+msgid "Mouse drag"
+msgstr "鼠标拖动"
+
+#: gui/options/options.json[1].options[10].tooltip
+msgid ""
+"Number of pixels the mouse can move before the action is considered a drag."
+msgstr "在被认为是拖动行为之前，鼠标能移动的像素数量。"
 
 #: gui/options/options.json[1].options[1].label
 #: gui/options/options.json[2].options[1].label
@@ -5662,7 +5672,7 @@ msgstr "训练："
 #. technology selected.
 #: gui/reference/common/tooltips.js:39
 msgid "Researched at:"
-msgstr "研究:"
+msgstr "研究于:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can
@@ -5676,7 +5686,7 @@ msgstr "可建造："
 #. structure can research.
 #: gui/reference/common/tooltips.js:57
 msgid "Researches:"
-msgstr "物资："
+msgstr "研究："
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can
