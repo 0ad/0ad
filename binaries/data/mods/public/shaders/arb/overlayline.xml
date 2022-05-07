@@ -19,7 +19,7 @@
         <uniform name="baseTex" loc="0" type="sampler2D"/>
         <uniform name="maskTex" loc="1" type="sampler2D"/>
         <uniform name="losTex" loc="2" type="sampler2D" if="!IGNORE_LOS"/>
-        <uniform name="objectColor" loc="0" type="vec3" if="USE_OBJECTCOLOR"/>
+        <uniform name="objectColor" loc="0" type="vec4" if="USE_OBJECTCOLOR"/>
     </fragment>
 
 </program>
