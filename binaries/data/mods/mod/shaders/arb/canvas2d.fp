@@ -18,7 +18,7 @@ DP3 colorGray.rgb, colorTex, grayscale;
 MOV colorGray.a, colorTex.a;
 
 TEMP color;
-LRP color, grayscaleFactor, colorGray, colorTex;
+LRP color, grayscaleFactor.r, colorGray, colorTex;
 MUL color, color, colorMul;
 ADD color, color, colorAdd;
 
