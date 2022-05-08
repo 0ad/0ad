@@ -115,13 +115,22 @@ bool IsDepthTexture(const Format format)
 }
 #endif // !CONFIG2_GLES
 
-void UploadBufferRegionImpl(
-	const GLenum target, const uint32_t dataOffset, const uint32_t dataSize,
+void UploadDynamicBufferRegionImpl(
+	const GLenum target, const uint32_t bufferSize,
+	const uint32_t dataOffset, const uint32_t dataSize,
 	const CDeviceCommandContext::UploadBufferFunction& uploadFunction)
 {
 	ENSURE(dataOffset < dataSize);
+	// Tell the driver that it can reallocate the whole VBO
+	glBufferDataARB(target, bufferSize, nullptr, GL_DYNAMIC_DRAW);
+	ogl_WarnIfError();
+
 	while (true)
 	{
+		// (In theory, glMapBufferRange with GL_MAP_INVALIDATE_BUFFER_BIT could be used
+		// here instead of glBufferData(..., NULL, ...) plus glMapBuffer(), but with
+		// current Intel Windows GPU drivers (as of 2015-01) it's much faster if you do
+		// the explicit glBufferData.)
 		void* mappedData = glMapBufferARB(target, GL_WRITE_ONLY);
 		if (mappedData == nullptr)
 		{
@@ -338,16 +347,7 @@ void CDeviceCommandContext::UploadBufferRegion(
 	ScopedBufferBind scopedBufferBind(this, buffer->As<CBuffer>());
 	if (buffer->IsDynamic())
 	{
-		// Tell the driver that it can reallocate the whole VBO
-		glBufferDataARB(target, buffer->GetSize(), nullptr, buffer->IsDynamic() ? GL_DYNAMIC_DRAW : GL_STATIC_DRAW);
-		ogl_WarnIfError();
-
-		// (In theory, glMapBufferRange with GL_MAP_INVALIDATE_BUFFER_BIT could be used
-		// here instead of glBufferData(..., NULL, ...) plus glMapBuffer(), but with
-		// current Intel Windows GPU drivers (as of 2015-01) it's much faster if you do
-		// the explicit glBufferData.)
-
-		UploadBufferRegion(buffer, dataOffset, dataSize, [data, dataSize](u8* mappedData)
+		UploadDynamicBufferRegionImpl(target, buffer->GetSize(), dataOffset, dataSize, [data, dataSize](u8* mappedData)
 		{
 			std::memcpy(mappedData, data, dataSize);
 		});
@@ -367,7 +367,7 @@ void CDeviceCommandContext::UploadBufferRegion(
 	const GLenum target = BufferTypeToGLTarget(buffer->GetType());
 	ScopedBufferBind scopedBufferBind(this, buffer->As<CBuffer>());
 	ENSURE(buffer->IsDynamic());
-	UploadBufferRegionImpl(target, dataOffset, dataSize, uploadFunction);
+	UploadDynamicBufferRegionImpl(target, buffer->GetSize(), dataOffset, dataSize, uploadFunction);
 }
 
 void CDeviceCommandContext::BeginScopedLabel(const char* name)
