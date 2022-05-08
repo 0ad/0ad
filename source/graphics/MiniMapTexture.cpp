@@ -38,7 +38,7 @@
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "ps/XML/Xeromyces.h"
-#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/IDevice.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/SceneRenderer.h"
@@ -71,7 +71,7 @@ unsigned int ScaleColor(unsigned int color, float x)
 }
 
 void DrawTexture(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	const float quadUVs[] =
 	{
@@ -146,7 +146,7 @@ inline void AddEntity(const MinimapUnitVertex& v,
 
 CMiniMapTexture::CMiniMapTexture(CSimulation2& simulation)
 	: m_Simulation(simulation), m_IndexArray(false),
-	m_VertexArray(Renderer::Backend::GL::CBuffer::Type::VERTEX, true)
+	m_VertexArray(Renderer::Backend::IBuffer::Type::VERTEX, true)
 {
 	// Register Relax NG validator.
 	CXeromyces::AddValidator(g_VFS, "pathfinder", "simulation/data/pathfinder.rng");
@@ -210,7 +210,7 @@ void CMiniMapTexture::Update(const float UNUSED(deltaRealTime))
 	}
 }
 
-void CMiniMapTexture::Render(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+void CMiniMapTexture::Render(Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	const CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	if (!terrain)
@@ -226,7 +226,7 @@ void CMiniMapTexture::Render(Renderer::Backend::GL::CDeviceCommandContext* devic
 }
 
 void CMiniMapTexture::CreateTextures(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, const CTerrain* terrain)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext, const CTerrain* terrain)
 {
 	DestroyTextures();
 
@@ -238,7 +238,7 @@ void CMiniMapTexture::CreateTextures(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
 
-	Renderer::Backend::GL::CDevice* backendDevice = deviceCommandContext->GetDevice();
+	Renderer::Backend::IDevice* backendDevice = deviceCommandContext->GetDevice();
 
 	// Create terrain texture
 	m_TerrainTexture = backendDevice->CreateTexture2D("MiniMapTerrainTexture",
@@ -272,7 +272,7 @@ void CMiniMapTexture::DestroyTextures()
 }
 
 void CMiniMapTexture::RebuildTerrainTexture(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CTerrain* terrain)
 {
 	const u32 x = 0;
@@ -338,7 +338,7 @@ void CMiniMapTexture::RebuildTerrainTexture(
 }
 
 void CMiniMapTexture::RenderFinalTexture(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	// only update 2x / second
 	// (note: since units only move a few pixels per second on the minimap,
@@ -579,7 +579,7 @@ void CMiniMapTexture::RenderFinalTexture(
 
 	if (m_EntitiesDrawn > 0)
 	{
-		Renderer::Backend::GL::CDeviceCommandContext::Rect scissorRect;
+		Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
 		scissorRect.x = scissorRect.y = 1;
 		scissorRect.width = scissorRect.height = FINAL_TEXTURE_SIZE - 2;
 		deviceCommandContext->SetScissors(1, &scissorRect);

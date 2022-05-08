@@ -16,8 +16,8 @@
  */
 
 #include "maths/Matrix3D.h"
-#include "renderer/backend/gl/Texture.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/ITexture.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 
 class CSimulation2;
 template<typename T>
@@ -40,7 +40,7 @@ public:
 	 * Also potentially switches the current active texture unit, and enables texturing on it.
 	 * The texture is in 32-bit BGRA format.
 	 */
-	Renderer::Backend::GL::CTexture* GetTexture();
+	Renderer::Backend::ITexture* GetTexture();
 
 	/**
 	 * Returns a matrix to map (x,y,z) world coordinates onto (u,v) texture
@@ -60,7 +60,7 @@ public:
 	 * Updates the texture if needed (territory was changed or the texture
 	 * wasn't created).
 	 */
-	void UpdateIfNeeded(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+	void UpdateIfNeeded(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 private:
 	/**
@@ -69,8 +69,8 @@ private:
 	bool UpdateDirty();
 
 	void DeleteTexture();
-	void ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
-	void RecomputeTexture(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+	void ConstructTexture(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
+	void RecomputeTexture(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	void GenerateBitmap(const Grid<u8>& territories, u8* bitmap, ssize_t w, ssize_t h);
 
@@ -78,7 +78,7 @@ private:
 
 	size_t m_DirtyID;
 
-	std::unique_ptr<Renderer::Backend::GL::CTexture> m_Texture;
+	std::unique_ptr<Renderer::Backend::ITexture> m_Texture;
 
 	ssize_t m_MapSize; // tiles per side
 

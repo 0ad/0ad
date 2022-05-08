@@ -21,7 +21,7 @@
 #include "graphics/RenderableObject.h"
 #include "maths/Vector2D.h"
 #include "maths/Vector3D.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/VertexBufferManager.h"
 
 #include <vector>
@@ -40,7 +40,7 @@ public:
 	void Update(CSimulation2* simulation);
 
 	static void RenderDecals(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const std::vector<CDecalRData*>& decals, const CShaderDefines& context, ShadowMap* shadow);
 
 	CModelDecal* GetDecal() { return m_Decal; }

@@ -19,6 +19,7 @@
 
 #include "Device.h"
 
+#include "lib/external_libraries/libsdl.h"
 #include "scriptinterface/JSON.h"
 #include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptInterface.h"
@@ -38,7 +39,7 @@ namespace Vulkan
 {
 
 // static
-std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window)
+std::unique_ptr<CDevice> CDevice::Create(SDL_Window* UNUSED(window))
 {
 	std::unique_ptr<CDevice> device(new CDevice());
 	return device;
@@ -50,6 +51,8 @@ CDevice::~CDevice() = default;
 
 void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 {
+	Script::SetProperty(rq, settings, "name", "vulkan");
+
 	std::string vulkanSupport = "unsupported";
 	// According to http://wiki.libsdl.org/SDL_Vulkan_LoadLibrary the following
 	// functionality is supported since SDL 2.0.8.
@@ -68,7 +71,95 @@ void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 		vulkanSupport = "cantload";
 	}
 #endif
-	Script::SetProperty(rq, settings, "vulkan", vulkanSupport);
+	Script::SetProperty(rq, settings, "status", vulkanSupport);
+}
+
+IFramebuffer* CDevice::GetCurrentBackbuffer()
+{
+	return nullptr;
+}
+
+std::unique_ptr<IDeviceCommandContext> CDevice::CreateCommandContext()
+{
+	return nullptr;
+}
+
+std::unique_ptr<ITexture> CDevice::CreateTexture(const char* name, const ITexture::Type type,
+	const Format format, const uint32_t width, const uint32_t height,
+	const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount)
+{
+	UNUSED2(name);
+	UNUSED2(type);
+	UNUSED2(format);
+	UNUSED2(width);
+	UNUSED2(height);
+	UNUSED2(defaultSamplerDesc);
+	UNUSED2(MIPLevelCount);
+	UNUSED2(sampleCount);
+	return nullptr;
+}
+
+std::unique_ptr<ITexture> CDevice::CreateTexture2D(const char* name,
+	const Format format, const uint32_t width, const uint32_t height,
+	const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount)
+{
+	UNUSED2(name);
+	UNUSED2(format);
+	UNUSED2(width);
+	UNUSED2(height);
+	UNUSED2(defaultSamplerDesc);
+	UNUSED2(MIPLevelCount);
+	UNUSED2(sampleCount);
+	return nullptr;
+}
+
+std::unique_ptr<IFramebuffer> CDevice::CreateFramebuffer(
+	const char* name, ITexture* colorAttachment,
+	ITexture* depthStencilAttachment)
+{
+	UNUSED2(name);
+	UNUSED2(colorAttachment);
+	UNUSED2(depthStencilAttachment);
+	return nullptr;
+}
+
+std::unique_ptr<IFramebuffer> CDevice::CreateFramebuffer(
+	const char* name, ITexture* colorAttachment,
+	ITexture* depthStencilAttachment, const CColor& clearColor)
+{
+	UNUSED2(name);
+	UNUSED2(colorAttachment);
+	UNUSED2(depthStencilAttachment);
+	UNUSED2(clearColor);
+	return nullptr;
+}
+
+std::unique_ptr<IBuffer> CDevice::CreateBuffer(
+	const char* name, const IBuffer::Type type, const uint32_t size, const bool dynamic)
+{
+	UNUSED2(name);
+	UNUSED2(type);
+	UNUSED2(size);
+	UNUSED2(dynamic);
+	return nullptr;
+}
+
+std::unique_ptr<IShaderProgram> CDevice::CreateShaderProgram(
+	const CStr& name, const CShaderDefines& defines)
+{
+	UNUSED2(name);
+	UNUSED2(defines);
+	return nullptr;
+}
+
+void CDevice::Present()
+{
+}
+
+bool CDevice::IsTextureFormatSupported(const Format format) const
+{
+	UNUSED2(format);
+	return false;
 }
 
 } // namespace Vulkan

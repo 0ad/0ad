@@ -29,7 +29,7 @@
 #include "graphics/MeshManager.h"
 #include "graphics/RenderableObject.h"
 #include "graphics/SColor.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/VertexArray.h"
 
 class RenderModifier;
@@ -159,7 +159,7 @@ public:
 	 * CModel::GetFlags() are rendered.
 	 */
 	virtual void Render(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const RenderModifierPtr& modifier, const CShaderDefines& context, int cullGroup, int flags) = 0;
 
 	/**
@@ -268,7 +268,7 @@ public:
 	virtual void PrepareModels();
 	virtual void EndFrame();
 	virtual void Render(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const RenderModifierPtr& modifier, const CShaderDefines& context, int cullGroup, int flags);
 
 private:

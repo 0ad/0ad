@@ -44,7 +44,7 @@
 #include "ps/Profile.h"
 #include "ps/VideoMode.h"
 #include "ps/World.h"
-#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/IDevice.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/HWLightingModelRenderer.h"
 #include "renderer/InstancingModelRenderer.h"
@@ -144,7 +144,7 @@ public:
 	 * Renders all non-alpha-blended models with the given context.
 	 */
 	void CallModelRenderers(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CShaderDefines& context, int cullGroup, int flags)
 	{
 		CShaderDefines contextSkinned = context;
@@ -167,7 +167,7 @@ public:
 	 * Renders all alpha-blended models with the given context.
 	 */
 	void CallTranspModelRenderers(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CShaderDefines& context, int cullGroup, int flags)
 	{
 		CShaderDefines contextSkinned = context;
@@ -293,7 +293,7 @@ void CSceneRenderer::SetSimulation(CSimulation2* simulation)
 }
 
 void CSceneRenderer::RenderShadowMap(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CShaderDefines& context)
 {
 	PROFILE3_GPU("shadow map");
@@ -336,7 +336,7 @@ void CSceneRenderer::RenderShadowMap(
 }
 
 void CSceneRenderer::RenderPatches(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CShaderDefines& context, int cullGroup)
 {
 	PROFILE3_GPU("patches");
@@ -366,7 +366,7 @@ void CSceneRenderer::RenderPatches(
 }
 
 void CSceneRenderer::RenderModels(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CShaderDefines& context, int cullGroup)
 {
 	PROFILE3_GPU("models");
@@ -389,7 +389,7 @@ void CSceneRenderer::RenderModels(
 }
 
 void CSceneRenderer::RenderTransparentModels(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CShaderDefines& context, int cullGroup, ETransparentMode transparentMode)
 {
 	PROFILE3_GPU("transparent models");
@@ -544,7 +544,7 @@ void CSceneRenderer::ComputeRefractionCamera(CCamera& camera, const CBoundingBox
 
 // RenderReflections: render the water reflections to the reflection texture
 void CSceneRenderer::RenderReflections(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CShaderDefines& context, const CBoundingBoxAligned& scissor)
 {
 	PROFILE3_GPU("water reflections");
@@ -573,7 +573,7 @@ void CSceneRenderer::RenderReflections(
 	screenScissor.x2 = (GLint)ceil((reflectionScissor[1].X*0.5f+0.5f)*vpWidth);
 	screenScissor.y2 = (GLint)ceil((reflectionScissor[1].Y*0.5f+0.5f)*vpHeight);
 
-	Renderer::Backend::GL::CDeviceCommandContext::Rect scissorRect;
+	Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
 	scissorRect.x = screenScissor.x1;
 	scissorRect.y = screenScissor.y1;
 	scissorRect.width = screenScissor.x2 - screenScissor.x1;
@@ -609,7 +609,7 @@ void CSceneRenderer::RenderReflections(
 
 // RenderRefractions: render the water refractions to the refraction texture
 void CSceneRenderer::RenderRefractions(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CShaderDefines& context, const CBoundingBoxAligned &scissor)
 {
 	PROFILE3_GPU("water refractions");
@@ -643,7 +643,7 @@ void CSceneRenderer::RenderRefractions(
 	screenScissor.x2 = (GLint)ceil((refractionScissor[1].X*0.5f+0.5f)*vpWidth);
 	screenScissor.y2 = (GLint)ceil((refractionScissor[1].Y*0.5f+0.5f)*vpHeight);
 
-	Renderer::Backend::GL::CDeviceCommandContext::Rect scissorRect;
+	Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
 	scissorRect.x = screenScissor.x1;
 	scissorRect.y = screenScissor.y1;
 	scissorRect.width = screenScissor.x2 - screenScissor.x1;
@@ -672,7 +672,7 @@ void CSceneRenderer::RenderRefractions(
 }
 
 void CSceneRenderer::RenderSilhouettes(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CShaderDefines& context)
 {
 	PROFILE3_GPU("silhouettes");
@@ -726,7 +726,7 @@ void CSceneRenderer::RenderSilhouettes(
 }
 
 void CSceneRenderer::RenderParticles(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	int cullGroup)
 {
 	PROFILE3_GPU("particles");
@@ -745,7 +745,7 @@ void CSceneRenderer::RenderParticles(
 
 // RenderSubmissions: force rendering of any batched objects
 void CSceneRenderer::RenderSubmissions(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CBoundingBoxAligned& waterScissor)
 {
 	PROFILE3("render submissions");
@@ -1060,7 +1060,7 @@ void CSceneRenderer::SubmitNonRecursive(CModel* model)
 
 // Render the given scene
 void CSceneRenderer::RenderScene(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, Scene& scene)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext, Scene& scene)
 {
 	m_CurrentScene = &scene;
 

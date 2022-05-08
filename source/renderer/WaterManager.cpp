@@ -30,7 +30,7 @@
 #include "ps/Game.h"
 #include "ps/VideoMode.h"
 #include "ps/World.h"
-#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/IDevice.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/SceneRenderer.h"
@@ -183,7 +183,7 @@ int WaterManager::LoadWaterTextures()
 
 void WaterManager::RecreateOrLoadTexturesIfNeeded()
 {
-	Renderer::Backend::GL::CDevice* backendDevice = g_VideoMode.GetBackendDevice();
+	Renderer::Backend::IDevice* backendDevice = g_VideoMode.GetBackendDevice();
 
 	// Use screen-sized textures for minimum artifacts.
 	const size_t newRefTextureSize = round_up_to_pow2(g_Renderer.GetHeight());
@@ -554,7 +554,7 @@ void WaterManager::CreateWaveMeshes()
 	// Generic indexes, max-length
 	m_ShoreWavesVBIndices = g_VBMan.AllocateChunk(
 		sizeof(GLushort), water_indices.size(),
-		Renderer::Backend::GL::CBuffer::Type::INDEX, false,
+		Renderer::Backend::IBuffer::Type::INDEX, false,
 		nullptr, CVertexBufferManager::Group::WATER);
 	m_ShoreWavesVBIndices->m_Owner->UpdateChunkVertices(m_ShoreWavesVBIndices.Get(), &water_indices[0]);
 
@@ -775,7 +775,7 @@ void WaterManager::CreateWaveMeshes()
 
 			shoreWave->m_VBVertices = g_VBMan.AllocateChunk(
 				sizeof(SWavesVertex), vertices.size(),
-				Renderer::Backend::GL::CBuffer::Type::VERTEX, false,
+				Renderer::Backend::IBuffer::Type::VERTEX, false,
 				nullptr, CVertexBufferManager::Group::WATER);
 			shoreWave->m_VBVertices->m_Owner->UpdateChunkVertices(shoreWave->m_VBVertices.Get(), &vertices[0]);
 
@@ -785,7 +785,7 @@ void WaterManager::CreateWaveMeshes()
 }
 
 void WaterManager::RenderWaves(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CFrustum& frustrum)
 {
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render Waves");

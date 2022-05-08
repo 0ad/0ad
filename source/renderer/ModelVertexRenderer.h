@@ -25,7 +25,7 @@
 
 #include "graphics/MeshManager.h"
 #include "graphics/ShaderProgramPtr.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/backend/IShaderProgram.h"
 
 class CModel;
@@ -110,7 +110,7 @@ public:
 	 * ModelRenderer implementations must call this function after
 	 * rendering related functions for one pass have been called.
 	 */
-	virtual void EndPass(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext) = 0;
+	virtual void EndPass(Renderer::Backend::IDeviceCommandContext* deviceCommandContext) = 0;
 
 
 	/**
@@ -125,7 +125,7 @@ public:
 	 * @param def The model definition.
 	 */
 	virtual void PrepareModelDef(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CModelDef& def) = 0;
 
 
@@ -146,7 +146,7 @@ public:
 	 * succeed.
 	 */
 	virtual void RenderModel(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		Renderer::Backend::IShaderProgram* shader, CModel* model, CModelRData* data) = 0;
 };
 

@@ -19,8 +19,8 @@
 #define INCLUDED_VERTEXARRAY
 
 #include "renderer/backend/Format.h"
-#include "renderer/backend/gl/Buffer.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IBuffer.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/VertexBufferManager.h"
 
 #include <vector>
@@ -160,7 +160,7 @@ public:
 
 public:
 	VertexArray(
-		const Renderer::Backend::GL::CBuffer::Type type, const bool dynamic);
+		const Renderer::Backend::IBuffer::Type type, const bool dynamic);
 	~VertexArray();
 
 	// Set the number of vertices stored in the array
@@ -182,13 +182,13 @@ public:
 	// Make this vertex array's data available for the next series of calls to Bind
 	void PrepareForRendering();
 
-	void UploadIfNeeded(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+	void UploadIfNeeded(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	// If you know for certain that you'll never have to change the data again,
 	// call this to free some memory.
 	void FreeBackingStore();
 
-	Renderer::Backend::GL::CBuffer* GetBuffer() { return m_VB ? m_VB->m_Owner->GetBuffer() : nullptr; }
+	Renderer::Backend::IBuffer* GetBuffer() { return m_VB ? m_VB->m_Owner->GetBuffer() : nullptr; }
 
 	uint32_t GetOffset() const { return m_VB ? m_VB->m_Index : 0; }
 
@@ -202,7 +202,7 @@ private:
 		return VertexArrayIterator<T>(m_BackingStore + attr->offset, m_Stride);
 	}
 
-	Renderer::Backend::GL::CBuffer::Type m_Type;
+	Renderer::Backend::IBuffer::Type m_Type;
 	bool m_Dynamic;
 	size_t m_NumberOfVertices;
 	std::vector<Attribute*> m_Attributes;

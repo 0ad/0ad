@@ -20,7 +20,7 @@
 
 #include "graphics/Texture.h"
 #include "maths/Vector2D.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 
 #include <memory>
 #include <vector>
@@ -35,7 +35,7 @@ struct CColor;
 class CCanvas2D
 {
 public:
-	CCanvas2D(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+	CCanvas2D(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 	~CCanvas2D();
 
 	CCanvas2D(const CCanvas2D&) = delete;

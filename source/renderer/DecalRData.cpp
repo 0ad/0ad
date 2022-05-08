@@ -95,7 +95,7 @@ void CDecalRData::Update(CSimulation2* simulation)
 }
 
 void CDecalRData::RenderDecals(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const std::vector<CDecalRData*>& decals, const CShaderDefines& context, ShadowMap* shadow)
 {
 	PROFILE3("render terrain decals");
@@ -324,7 +324,7 @@ void CDecalRData::BuildVertexData()
 	{
 		m_VBDecals = g_VBMan.AllocateChunk(
 			sizeof(SDecalVertex), vertices.size(),
-			Renderer::Backend::GL::CBuffer::Type::VERTEX, false);
+			Renderer::Backend::IBuffer::Type::VERTEX, false);
 	}
 	m_VBDecals->m_Owner->UpdateChunkVertices(m_VBDecals.Get(), vertices.data());
 
@@ -366,7 +366,7 @@ void CDecalRData::BuildVertexData()
 	{
 		m_VBDecalsIndices = g_VBMan.AllocateChunk(
 			sizeof(u16), indices.size(),
-			Renderer::Backend::GL::CBuffer::Type::INDEX, false);
+			Renderer::Backend::IBuffer::Type::INDEX, false);
 	}
 	m_VBDecalsIndices->m_Owner->UpdateChunkVertices(m_VBDecalsIndices.Get(), indices.data());
 }

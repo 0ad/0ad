@@ -20,7 +20,7 @@
 
 #include "graphics/Overlay.h"
 #include "maths/BoundingBoxAligned.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 
 class CCamera;
 class CModel;
@@ -42,9 +42,9 @@ public:
 	void RenderSubmitCasters(SceneCollector& collector);
 
 	void RenderDebugBounds(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 	void RenderDebugOverlays(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	void EndFrame();
 

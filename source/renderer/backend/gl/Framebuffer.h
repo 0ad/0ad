@@ -20,7 +20,7 @@
 
 #include "graphics/Color.h"
 #include "lib/ogl.h"
-#include "renderer/backend/gl/Texture.h"
+#include "renderer/backend/IFramebuffer.h"
 
 #include <cstdint>
 #include <memory>
@@ -35,15 +35,19 @@ namespace GL
 {
 
 class CDevice;
+class CTexture;
 
-class CFramebuffer
+class CFramebuffer final : public IFramebuffer
 {
 public:
-	~CFramebuffer();
+	~CFramebuffer() override;
+
+	IDevice* GetDevice() override;
+
+	const CColor& GetClearColor() const override { return m_ClearColor; }
 
 	GLuint GetHandle() const { return m_Handle; }
 	GLbitfield GetAttachmentMask() const { return m_AttachmentMask; }
-	const CColor& GetClearColor() const { return m_ClearColor; }
 
 	uint32_t GetWidth() const { return m_Width; }
 	uint32_t GetHeight() const { return m_Height; }

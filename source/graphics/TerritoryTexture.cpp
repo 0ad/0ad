@@ -23,8 +23,8 @@
 #include "graphics/Terrain.h"
 #include "lib/bits.h"
 #include "ps/Profile.h"
-#include "renderer/backend/gl/Device.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IDevice.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/Renderer.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/helpers/Grid.h"
@@ -57,7 +57,7 @@ bool CTerritoryTexture::UpdateDirty()
 	return cmpTerritoryManager && cmpTerritoryManager->NeedUpdateTexture(&m_DirtyID);
 }
 
-Renderer::Backend::GL::CTexture* CTerritoryTexture::GetTexture()
+Renderer::Backend::ITexture* CTerritoryTexture::GetTexture()
 {
 	ENSURE(!UpdateDirty());
 	return m_Texture.get();
@@ -75,7 +75,7 @@ const CMatrix3D& CTerritoryTexture::GetMinimapTextureMatrix()
 	return m_MinimapTextureMatrix;
 }
 
-void CTerritoryTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+void CTerritoryTexture::ConstructTexture(Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	CmpPtr<ICmpTerrain> cmpTerrain(m_Simulation, SYSTEM_ENTITY);
 	if (!cmpTerrain)
@@ -129,7 +129,7 @@ void CTerritoryTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandCo
 	}
 }
 
-void CTerritoryTexture::RecomputeTexture(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+void CTerritoryTexture::RecomputeTexture(Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	// If the map was resized, delete and regenerate the texture
 	if (m_Texture)
@@ -246,7 +246,7 @@ void CTerritoryTexture::GenerateBitmap(const Grid<u8>& territories, u8* bitmap, 
 				bitmap[(j*w+i)*4 + 3] = 0;
 }
 
-void CTerritoryTexture::UpdateIfNeeded(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+void CTerritoryTexture::UpdateIfNeeded(Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	if (UpdateDirty())
 		RecomputeTexture(deviceCommandContext);

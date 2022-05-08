@@ -95,7 +95,7 @@ void CropPointsByCircle(const std::array<CVector3D, 4>& points, const CVector3D&
 }
 
 void DrawTexture(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	float angle, float x, float y, float x2, float y2, float mapScale)
 {
 	// Rotate the texture coordinates (0,0)-(coordMax,coordMax) around their center point (m,m)
@@ -427,7 +427,7 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 			Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
 		pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
 			Renderer::Backend::BlendOp::ADD;
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
 			g_Renderer.GetDeviceCommandContext();
 		deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
 		deviceCommandContext->BeginPass();

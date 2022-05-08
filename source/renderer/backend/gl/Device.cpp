@@ -218,7 +218,7 @@ void GLAD_API_PTR OnDebugMessage(
 } // anonymous namespace
 
 // static
-std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
+std::unique_ptr<IDevice> CDevice::Create(SDL_Window* window, const bool arb)
 {
 	std::unique_ptr<CDevice> device(new CDevice());
 
@@ -277,6 +277,8 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window, const bool arb)
 			L" For more information, please see http://www.wildfiregames.com/forum/index.php?showtopic=16734"
 		);
 	}
+
+	device->m_ARB = arb;
 
 	device->m_Name = GetNameImpl();
 	device->m_Version = GetVersionImpl();
@@ -394,6 +396,8 @@ CDevice::~CDevice()
 void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 {
 	const char* errstr = "(error)";
+
+	Script::SetProperty(rq, settings, "name", m_ARB ? "glarb" : "gl");
 
 #define INTEGER(id) do { \
 	GLint i = -1; \
@@ -778,14 +782,14 @@ void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 #endif // SDL_VIDEO_DRIVER_X11
 }
 
-std::unique_ptr<CDeviceCommandContext> CDevice::CreateCommandContext()
+std::unique_ptr<IDeviceCommandContext> CDevice::CreateCommandContext()
 {
 	std::unique_ptr<CDeviceCommandContext> commandContet = CDeviceCommandContext::Create(this);
 	m_ActiveCommandContext = commandContet.get();
 	return commandContet;
 }
 
-std::unique_ptr<CTexture> CDevice::CreateTexture(const char* name, const CTexture::Type type,
+std::unique_ptr<ITexture> CDevice::CreateTexture(const char* name, const ITexture::Type type,
 	const Format format, const uint32_t width, const uint32_t height,
 	const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount)
 {
@@ -793,7 +797,7 @@ std::unique_ptr<CTexture> CDevice::CreateTexture(const char* name, const CTextur
 		format, width, height, defaultSamplerDesc, MIPLevelCount, sampleCount);
 }
 
-std::unique_ptr<CTexture> CDevice::CreateTexture2D(const char* name,
+std::unique_ptr<ITexture> CDevice::CreateTexture2D(const char* name,
 	const Format format, const uint32_t width, const uint32_t height,
 	const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount)
 {
@@ -801,22 +805,23 @@ std::unique_ptr<CTexture> CDevice::CreateTexture2D(const char* name,
 		format, width, height, defaultSamplerDesc, MIPLevelCount, sampleCount);
 }
 
-std::unique_ptr<CFramebuffer> CDevice::CreateFramebuffer(
-	const char* name, CTexture* colorAttachment,
-	CTexture* depthStencilAttachment)
+std::unique_ptr<IFramebuffer> CDevice::CreateFramebuffer(
+	const char* name, ITexture* colorAttachment,
+	ITexture* depthStencilAttachment)
 {
 	return CreateFramebuffer(name, colorAttachment, depthStencilAttachment, CColor(0.0f, 0.0f, 0.0f, 0.0f));
 }
 
-std::unique_ptr<CFramebuffer> CDevice::CreateFramebuffer(
-	const char* name, CTexture* colorAttachment,
-	CTexture* depthStencilAttachment, const CColor& clearColor)
+std::unique_ptr<IFramebuffer> CDevice::CreateFramebuffer(
+	const char* name, ITexture* colorAttachment,
+	ITexture* depthStencilAttachment, const CColor& clearColor)
 {
-	return CFramebuffer::Create(this, name, colorAttachment, depthStencilAttachment, clearColor);
+	return CFramebuffer::Create(
+		this, name, colorAttachment->As<CTexture>(), depthStencilAttachment->As<CTexture>(), clearColor);
 }
 
-std::unique_ptr<CBuffer> CDevice::CreateBuffer(
-	const char* name, const CBuffer::Type type, const uint32_t size, const bool dynamic)
+std::unique_ptr<IBuffer> CDevice::CreateBuffer(
+	const char* name, const IBuffer::Type type, const uint32_t size, const bool dynamic)
 {
 	return CBuffer::Create(this, name, type, size, dynamic);
 }

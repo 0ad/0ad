@@ -21,7 +21,7 @@
 #include "graphics/ModelAbstract.h"
 #include "graphics/ParticleEmitterType.h"
 #include "maths/Quaternion.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/backend/IShaderProgram.h"
 #include "renderer/VertexArray.h"
 
@@ -123,14 +123,14 @@ public:
 	 * Bind rendering state (textures and blend modes).
 	 */
 	void Bind(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		Renderer::Backend::IShaderProgram* shader);
 
 	/**
 	 * Draw the vertex array.
 	 */
 	void RenderArray(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Stop this emitter emitting new particles, and pass responsibility for rendering

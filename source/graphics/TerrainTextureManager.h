@@ -21,8 +21,8 @@
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStr.h"
 #include "ps/Singleton.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
-#include "renderer/backend/gl/Texture.h"
+#include "renderer/backend/IDeviceCommandContext.h"
+#include "renderer/backend/ITexture.h"
 
 #include <map>
 #include <memory>
@@ -72,7 +72,7 @@ public:
 struct TerrainAlpha
 {
 	// Composite alpha map (all the alpha maps packed into one texture).
-	std::unique_ptr<Renderer::Backend::GL::CTexture> m_CompositeAlphaMap;
+	std::unique_ptr<Renderer::Backend::ITexture> m_CompositeAlphaMap;
 	// Data is used to separate file loading and uploading to GPU.
 	std::shared_ptr<u8> m_CompositeDataToUpload;
 	// Coordinates of each (untransformed) alpha map within the packed texture.
@@ -121,7 +121,7 @@ public:
 
 	CTerrainTextureManager::TerrainAlphaMap::iterator LoadAlphaMap(const VfsPath& alphaMapType);
 
-	void UploadResourcesIfNeeded(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+	void UploadResourcesIfNeeded(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 private:
 	// All texture entries created by this class, for easy freeing now that

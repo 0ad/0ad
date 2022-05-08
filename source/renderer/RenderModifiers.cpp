@@ -68,7 +68,7 @@ ShaderRenderModifier::ShaderRenderModifier()
 }
 
 void ShaderRenderModifier::BeginPass(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	Renderer::Backend::IShaderProgram* shader)
 {
 	const CMatrix3D transform =
@@ -133,7 +133,7 @@ void ShaderRenderModifier::BeginPass(
 }
 
 void ShaderRenderModifier::PrepareModel(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	CModel* model)
 {
 	if (m_BindingInstancingTransform >= 0)

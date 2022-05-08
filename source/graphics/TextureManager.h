@@ -21,8 +21,9 @@
 #include "graphics/Texture.h"
 #include "lib/file/vfs/vfs.h"
 #include "lib/tex/tex.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
-#include "renderer/backend/gl/Texture.h"
+#include "renderer/backend/IDevice.h"
+#include "renderer/backend/IDeviceCommandContext.h"
+#include "renderer/backend/ITexture.h"
 
 #include <memory>
 
@@ -58,7 +59,7 @@ class CTextureManagerImpl;
  * These will be loaded in the background, when there are no higher-priority textures
  * to load.
  *
- * The same texture file can be safely loaded multiple times with different GL parameters
+ * The same texture file can be safely loaded multiple times with different backend parameters
  * (but this should be avoided whenever possible, as it wastes VRAM).
  *
  * For release packages, DDS files can be precached by appending ".dds" to their name,
@@ -77,9 +78,8 @@ public:
 	 * Construct texture manager. vfs must be the VFS instance used for all textures
 	 * loaded from this object.
 	 * highQuality is slower and intended for batch-conversion modes.
-	 * disableGL is intended for tests, and will disable all GL uploads.
 	 */
-	CTextureManager(PIVFS vfs, bool highQuality, bool disableGL);
+	CTextureManager(PIVFS vfs, bool highQuality, Renderer::Backend::IDevice* device);
 
 	~CTextureManager();
 
@@ -93,7 +93,7 @@ public:
 	 * Wraps a backend texture.
 	 */
 	CTexturePtr WrapBackendTexture(
-		std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture);
+		std::unique_ptr<Renderer::Backend::ITexture> backendTexture);
 
 	/**
 	 * Returns a magenta texture. Use this for highlighting errors
@@ -133,7 +133,7 @@ public:
 	 * Work on asynchronous texture uploading operations, if any.
 	 * Returns true if it did any work. Mostly the same as MakeProgress.
 	 */
-	bool MakeUploadProgress(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+	bool MakeUploadProgress(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Synchronously converts and compresses and saves the texture,
@@ -294,13 +294,13 @@ public:
 	 * will be uploaded.
 	 */
 	void UploadBackendTextureIfNeeded(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Returns a backend texture if successfully uploaded, else fallback.
 	 */
-	Renderer::Backend::GL::CTexture* GetBackendTexture();
-	const Renderer::Backend::GL::CTexture* GetBackendTexture() const;
+	Renderer::Backend::ITexture* GetBackendTexture();
+	const Renderer::Backend::ITexture* GetBackendTexture() const;
 
 	/**
 	 * Attempt to load the texture data quickly, as with
@@ -336,19 +336,19 @@ private:
 
 	// Only the texture manager can create these
 	explicit CTexture(
-		std::unique_ptr<Renderer::Backend::GL::CTexture> texture,
-		Renderer::Backend::GL::CTexture* fallback,
+		std::unique_ptr<Renderer::Backend::ITexture> texture,
+		Renderer::Backend::ITexture* fallback,
 		const CTextureProperties& props, CTextureManagerImpl* textureManager);
 
 	void ResetBackendTexture(
-		std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture,
-		Renderer::Backend::GL::CTexture* fallbackBackendTexture);
+		std::unique_ptr<Renderer::Backend::ITexture> backendTexture,
+		Renderer::Backend::ITexture* fallbackBackendTexture);
 
 	const CTextureProperties m_Properties;
 
-	std::unique_ptr<Renderer::Backend::GL::CTexture> m_BackendTexture;
+	std::unique_ptr<Renderer::Backend::ITexture> m_BackendTexture;
 	// It's possible to m_FallbackBackendTexture references m_BackendTexture.
-	Renderer::Backend::GL::CTexture* m_FallbackBackendTexture = nullptr;
+	Renderer::Backend::ITexture* m_FallbackBackendTexture = nullptr;
 	u32 m_BaseColor;
 	std::unique_ptr<Tex> m_TextureData;
 	size_t m_UploadedSize = 0;

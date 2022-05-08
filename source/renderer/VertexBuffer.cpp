@@ -23,7 +23,7 @@
 #include "ps/CLogger.h"
 #include "ps/Errors.h"
 #include "ps/VideoMode.h"
-#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/IDevice.h"
 #include "renderer/Renderer.h"
 
 #include <algorithm>
@@ -38,27 +38,27 @@ constexpr std::size_t MAX_VB_SIZE_BYTES = 4 * 1024 * 1024;
 
 CVertexBuffer::CVertexBuffer(
 	const char* name, const size_t vertexSize,
-	const Renderer::Backend::GL::CBuffer::Type type, const bool dynamic)
+	const Renderer::Backend::IBuffer::Type type, const bool dynamic)
 	: CVertexBuffer(name, vertexSize, type, dynamic, MAX_VB_SIZE_BYTES)
 {
 }
 
 CVertexBuffer::CVertexBuffer(
 	const char* name, const size_t vertexSize,
-	const Renderer::Backend::GL::CBuffer::Type type, const bool dynamic,
+	const Renderer::Backend::IBuffer::Type type, const bool dynamic,
 	const size_t maximumBufferSize)
 	: m_VertexSize(vertexSize), m_HasNeededChunks(false)
 {
 	size_t size = maximumBufferSize;
 
-	if (type == Renderer::Backend::GL::CBuffer::Type::VERTEX)
+	if (type == Renderer::Backend::IBuffer::Type::VERTEX)
 	{
 		// We want to store 16-bit indices to any vertex in a buffer, so the
 		// buffer must never be bigger than vertexSize*64K bytes since we can
 		// address at most 64K of them with 16-bit indices
 		size = std::min(size, vertexSize * 65536);
 	}
-	else if (type == Renderer::Backend::GL::CBuffer::Type::INDEX)
+	else if (type == Renderer::Backend::IBuffer::Type::INDEX)
 	{
 		ENSURE(vertexSize == sizeof(u16));
 	}
@@ -89,7 +89,7 @@ CVertexBuffer::~CVertexBuffer()
 }
 
 bool CVertexBuffer::CompatibleVertexType(
-	const size_t vertexSize, const Renderer::Backend::GL::CBuffer::Type type,
+	const size_t vertexSize, const Renderer::Backend::IBuffer::Type type,
 	const bool dynamic) const
 {
 	ENSURE(m_Buffer);
@@ -102,7 +102,7 @@ bool CVertexBuffer::CompatibleVertexType(
 // if no free chunks available
 CVertexBuffer::VBChunk* CVertexBuffer::Allocate(
 	const size_t vertexSize, const size_t numberOfVertices,
-	const Renderer::Backend::GL::CBuffer::Type type, const bool dynamic,
+	const Renderer::Backend::IBuffer::Type type, const bool dynamic,
 	void* backingStore)
 {
 	// check this is the right kind of buffer
@@ -226,7 +226,7 @@ void CVertexBuffer::UpdateChunkVertices(VBChunk* chunk, void* data)
 }
 
 void CVertexBuffer::UploadIfNeeded(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	if (UseStreaming(m_Buffer->IsDynamic()))
 	{

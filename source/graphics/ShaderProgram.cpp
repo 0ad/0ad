@@ -20,7 +20,7 @@
 #include "ShaderProgram.h"
 
 #include "ps/VideoMode.h"
-#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/IDevice.h"
 
 CShaderProgram::CShaderProgram(const CStr& name, const CShaderDefines& defines)
 	: m_Name(name), m_Defines(defines)

@@ -44,11 +44,11 @@ public:
 
 	void BeginPass() override;
 	void EndPass(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext) override;
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext) override;
 	void PrepareModelDef(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CModelDef& def) override;
-	void RenderModel(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	void RenderModel(Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		Renderer::Backend::IShaderProgram* shader, CModel* model, CModelRData* data) override;
 
 protected:

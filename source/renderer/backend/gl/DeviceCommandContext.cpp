@@ -147,7 +147,7 @@ void UploadBufferRegionImpl(
 std::unique_ptr<CDeviceCommandContext> CDeviceCommandContext::Create(CDevice* device)
 {
 	std::unique_ptr<CDeviceCommandContext> deviceCommandContext(new CDeviceCommandContext(device));
-	deviceCommandContext->m_Framebuffer = device->GetCurrentBackbuffer();
+	deviceCommandContext->m_Framebuffer = static_cast<CFramebuffer*>(device->GetCurrentBackbuffer());
 	deviceCommandContext->ResetStates();
 	return deviceCommandContext;
 }
@@ -181,6 +181,11 @@ CDeviceCommandContext::CDeviceCommandContext(CDevice* device)
 
 CDeviceCommandContext::~CDeviceCommandContext() = default;
 
+IDevice* CDeviceCommandContext::GetDevice()
+{
+	return m_Device;
+}
+
 void CDeviceCommandContext::SetGraphicsPipelineState(
 	const GraphicsPipelineStateDesc& pipelineStateDesc)
 {
@@ -188,7 +193,7 @@ void CDeviceCommandContext::SetGraphicsPipelineState(
 }
 
 void CDeviceCommandContext::UploadTexture(
-	CTexture* texture, const Format format,
+	ITexture* texture, const Format format,
 	const void* data, const size_t dataSize,
 	const uint32_t level, const uint32_t layer)
 {
@@ -200,13 +205,14 @@ void CDeviceCommandContext::UploadTexture(
 }
 
 void CDeviceCommandContext::UploadTextureRegion(
-	CTexture* texture, const Format dataFormat,
+	ITexture* destinationTexture, const Format dataFormat,
 	const void* data, const size_t dataSize,
 	const uint32_t xOffset, const uint32_t yOffset,
 	const uint32_t width, const uint32_t height,
 	const uint32_t level, const uint32_t layer)
 {
-	ENSURE(texture);
+	ENSURE(destinationTexture);
+	CTexture* texture = destinationTexture->As<CTexture>();
 	ENSURE(width > 0 && height > 0);
 	if (texture->GetType() == CTexture::Type::TEXTURE_2D)
 	{
@@ -312,24 +318,24 @@ void CDeviceCommandContext::UploadTextureRegion(
 		debug_warn("Unsupported type");
 }
 
-void CDeviceCommandContext::UploadBuffer(CBuffer* buffer, const void* data, const uint32_t dataSize)
+void CDeviceCommandContext::UploadBuffer(IBuffer* buffer, const void* data, const uint32_t dataSize)
 {
 	UploadBufferRegion(buffer, data, dataSize, 0);
 }
 
 void CDeviceCommandContext::UploadBuffer(
-	CBuffer* buffer, const UploadBufferFunction& uploadFunction)
+	IBuffer* buffer, const UploadBufferFunction& uploadFunction)
 {
 	UploadBufferRegion(buffer, 0, buffer->GetSize(), uploadFunction);
 }
 
 void CDeviceCommandContext::UploadBufferRegion(
-	CBuffer* buffer, const void* data, const uint32_t dataOffset, const uint32_t dataSize)
+	IBuffer* buffer, const void* data, const uint32_t dataOffset, const uint32_t dataSize)
 {
 	ENSURE(data);
 	ENSURE(dataOffset + dataSize <= buffer->GetSize());
 	const GLenum target = BufferTypeToGLTarget(buffer->GetType());
-	ScopedBufferBind scopedBufferBind(this, buffer);
+	ScopedBufferBind scopedBufferBind(this, buffer->As<CBuffer>());
 	if (buffer->IsDynamic())
 	{
 		// Tell the driver that it can reallocate the whole VBO
@@ -354,12 +360,12 @@ void CDeviceCommandContext::UploadBufferRegion(
 }
 
 void CDeviceCommandContext::UploadBufferRegion(
-	CBuffer* buffer, const uint32_t dataOffset, const uint32_t dataSize,
+	IBuffer* buffer, const uint32_t dataOffset, const uint32_t dataSize,
 	const UploadBufferFunction& uploadFunction)
 {
 	ENSURE(dataOffset + dataSize <= buffer->GetSize());
 	const GLenum target = BufferTypeToGLTarget(buffer->GetType());
-	ScopedBufferBind scopedBufferBind(this, buffer);
+	ScopedBufferBind scopedBufferBind(this, buffer->As<CBuffer>());
 	ENSURE(buffer->IsDynamic());
 	UploadBufferRegionImpl(target, dataOffset, dataSize, uploadFunction);
 }
@@ -407,16 +413,16 @@ void CDeviceCommandContext::BindTexture(
 	m_BoundTextures[unit] = {target, handle};
 }
 
-void CDeviceCommandContext::BindBuffer(const CBuffer::Type type, CBuffer* buffer)
+void CDeviceCommandContext::BindBuffer(const IBuffer::Type type, CBuffer* buffer)
 {
 	ENSURE(!buffer || buffer->GetType() == type);
-	if (type == CBuffer::Type::VERTEX)
+	if (type == IBuffer::Type::VERTEX)
 	{
 		if (m_VertexBuffer == buffer)
 			return;
 		m_VertexBuffer = buffer;
 	}
-	else if (type == CBuffer::Type::INDEX)
+	else if (type == IBuffer::Type::INDEX)
 	{
 		if (!buffer)
 			m_IndexBuffer = nullptr;
@@ -713,16 +719,18 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 }
 
 void CDeviceCommandContext::BlitFramebuffer(
-	CFramebuffer* destinationFramebuffer, CFramebuffer* sourceFramebuffer)
+	IFramebuffer* dstFramebuffer, IFramebuffer* srcFramebuffer)
 {
+	CFramebuffer* destinationFramebuffer = dstFramebuffer->As<CFramebuffer>();
+	CFramebuffer* sourceFramebuffer = srcFramebuffer->As<CFramebuffer>();
 #if CONFIG2_GLES
 	UNUSED2(destinationFramebuffer);
 	UNUSED2(sourceFramebuffer);
 	debug_warn("CDeviceCommandContext::BlitFramebuffer is not implemented for GLES");
 #else
 	// Source framebuffer should not be backbuffer.
-	ENSURE( sourceFramebuffer->GetHandle() != 0);
-	ENSURE( destinationFramebuffer != sourceFramebuffer );
+	ENSURE(sourceFramebuffer->GetHandle() != 0);
+	ENSURE(destinationFramebuffer != sourceFramebuffer);
 	glBindFramebufferEXT(GL_READ_FRAMEBUFFER_EXT, sourceFramebuffer->GetHandle());
 	glBindFramebufferEXT(GL_DRAW_FRAMEBUFFER_EXT, destinationFramebuffer->GetHandle());
 	// TODO: add more check for internal formats. And currently we don't support
@@ -777,12 +785,12 @@ void CDeviceCommandContext::ClearFramebuffer(const bool color, const bool depth,
 		ApplyStencilMask(m_GraphicsPipelineStateDesc.depthStencilState.stencilWriteMask);
 }
 
-void CDeviceCommandContext::SetFramebuffer(CFramebuffer* framebuffer)
+void CDeviceCommandContext::SetFramebuffer(IFramebuffer* framebuffer)
 {
 	ENSURE(framebuffer);
-	ENSURE(framebuffer->GetHandle() == 0 || (framebuffer->GetWidth() > 0 && framebuffer->GetHeight() > 0));
-	m_Framebuffer = framebuffer;
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, framebuffer->GetHandle());
+	m_Framebuffer = framebuffer->As<CFramebuffer>();
+	ENSURE(m_Framebuffer->GetHandle() == 0 || (m_Framebuffer->GetWidth() > 0 && m_Framebuffer->GetHeight() > 0));
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_Framebuffer->GetHandle());
 	ogl_WarnIfError();
 }
 
@@ -846,12 +854,12 @@ void CDeviceCommandContext::SetVertexAttributeFormat(
 }
 
 void CDeviceCommandContext::SetVertexBuffer(
-	const uint32_t bindingSlot, CBuffer* buffer)
+	const uint32_t bindingSlot, IBuffer* buffer)
 {
 	ENSURE(buffer);
-	ENSURE(buffer->GetType() == CBuffer::Type::VERTEX);
+	ENSURE(buffer->GetType() == IBuffer::Type::VERTEX);
 	ENSURE(m_ShaderProgram);
-	BindBuffer(buffer->GetType(), buffer);
+	BindBuffer(buffer->GetType(), buffer->As<CBuffer>());
 	for (size_t index = 0; index < m_VertexAttributeFormat.size(); ++index)
 	{
 		if (!m_VertexAttributeFormat[index].active || m_VertexAttributeFormat[index].bindingSlot != bindingSlot)
@@ -886,10 +894,10 @@ void CDeviceCommandContext::SetVertexBufferData(
 	}
 }
 
-void CDeviceCommandContext::SetIndexBuffer(CBuffer* buffer)
+void CDeviceCommandContext::SetIndexBuffer(IBuffer* buffer)
 {
 	ENSURE(buffer->GetType() == CBuffer::Type::INDEX);
-	m_IndexBuffer = buffer;
+	m_IndexBuffer = buffer->As<CBuffer>();
 	m_IndexBufferData = nullptr;
 	BindBuffer(CBuffer::Type::INDEX, m_IndexBuffer);
 }
@@ -976,7 +984,7 @@ void CDeviceCommandContext::DrawIndexedInRange(
 	ogl_WarnIfError();
 }
 
-void CDeviceCommandContext::SetTexture(const int32_t bindingSlot, CTexture* texture)
+void CDeviceCommandContext::SetTexture(const int32_t bindingSlot, ITexture* texture)
 {
 	ENSURE(m_ShaderProgram);
 	ENSURE(texture);
@@ -1013,7 +1021,7 @@ void CDeviceCommandContext::SetTexture(const int32_t bindingSlot, CTexture* text
 		LOGERROR("CDeviceCommandContext::SetTexture: Invalid texture unit (too big)");
 		return;
 	}
-	BindTexture(unit, textureUnit.target, texture->GetHandle());
+	BindTexture(unit, textureUnit.target, texture->As<CTexture>()->GetHandle());
 }
 
 void CDeviceCommandContext::SetUniform(

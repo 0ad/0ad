@@ -444,7 +444,7 @@ void SilhouetteRenderer::RenderSubmitCasters(SceneCollector& collector)
 }
 
 void SilhouetteRenderer::RenderDebugBounds(
-	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext))
+	Renderer::Backend::IDeviceCommandContext* UNUSED(deviceCommandContext))
 {
 	if (m_DebugBounds.empty())
 		return;
@@ -454,7 +454,7 @@ void SilhouetteRenderer::RenderDebugBounds(
 }
 
 void SilhouetteRenderer::RenderDebugOverlays(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	if (m_DebugRects.empty())
 		return;

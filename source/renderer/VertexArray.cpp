@@ -65,7 +65,7 @@ size_t GetAttributeSize(const Renderer::Backend::Format format)
 } // anonymous namespace
 
 VertexArray::VertexArray(
-	const Renderer::Backend::GL::CBuffer::Type type, const bool dynamic)
+	const Renderer::Backend::IBuffer::Type type, const bool dynamic)
 	: m_Type(type), m_Dynamic(dynamic)
 {
 	m_NumberOfVertices = 0;
@@ -245,11 +245,11 @@ void VertexArray::Layout()
 
 		m_Stride += attrSize;
 
-		if (m_Type == Renderer::Backend::GL::CBuffer::Type::VERTEX)
+		if (m_Type == Renderer::Backend::IBuffer::Type::VERTEX)
 			m_Stride = Align<4>(m_Stride);
 	}
 
-	if (m_Type == Renderer::Backend::GL::CBuffer::Type::VERTEX)
+	if (m_Type == Renderer::Backend::IBuffer::Type::VERTEX)
 		m_Stride = RoundStride(m_Stride);
 
 	if (m_Stride)
@@ -283,7 +283,7 @@ void VertexArray::Upload()
 }
 
 void VertexArray::UploadIfNeeded(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	m_VB->m_Owner->UploadIfNeeded(deviceCommandContext);
 }
@@ -299,7 +299,7 @@ void VertexArray::FreeBackingStore()
 }
 
 VertexIndexArray::VertexIndexArray(const bool dynamic) :
-	VertexArray(Renderer::Backend::GL::CBuffer::Type::INDEX, dynamic)
+	VertexArray(Renderer::Backend::IBuffer::Type::INDEX, dynamic)
 {
 	m_Attr.format = Renderer::Backend::Format::R16_UINT;
 	AddAttribute(&m_Attr);

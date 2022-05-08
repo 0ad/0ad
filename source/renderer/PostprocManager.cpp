@@ -31,7 +31,7 @@
 #include "ps/Game.h"
 #include "ps/VideoMode.h"
 #include "ps/World.h"
-#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/IDevice.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
@@ -122,7 +122,7 @@ void CPostprocManager::RecreateBuffers()
 {
 	Cleanup();
 
-	Renderer::Backend::GL::CDevice* backendDevice = g_VideoMode.GetBackendDevice();
+	Renderer::Backend::IDevice* backendDevice = g_VideoMode.GetBackendDevice();
 
 	#define GEN_BUFFER_RGBA(name, w, h) \
 		name = backendDevice->CreateTexture2D( \
@@ -186,9 +186,9 @@ void CPostprocManager::RecreateBuffers()
 
 
 void CPostprocManager::ApplyBlurDownscale2x(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CFramebuffer* framebuffer,
-	Renderer::Backend::GL::CTexture* inTex, int inWidth, int inHeight)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IFramebuffer* framebuffer,
+	Renderer::Backend::ITexture* inTex, int inWidth, int inHeight)
 {
 	deviceCommandContext->SetFramebuffer(framebuffer);
 
@@ -249,11 +249,11 @@ void CPostprocManager::ApplyBlurDownscale2x(
 }
 
 void CPostprocManager::ApplyBlurGauss(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::GL::CTexture* inTex,
-	Renderer::Backend::GL::CTexture* tempTex,
-	Renderer::Backend::GL::CFramebuffer* tempFramebuffer,
-	Renderer::Backend::GL::CFramebuffer* outFramebuffer,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::ITexture* inTex,
+	Renderer::Backend::ITexture* tempTex,
+	Renderer::Backend::IFramebuffer* tempFramebuffer,
+	Renderer::Backend::IFramebuffer* outFramebuffer,
 	int inWidth, int inHeight)
 {
 	deviceCommandContext->SetFramebuffer(tempFramebuffer);
@@ -351,10 +351,10 @@ void CPostprocManager::ApplyBlurGauss(
 }
 
 void CPostprocManager::ApplyBlur(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	uint32_t width = m_Width, height = m_Height;
-	Renderer::Backend::GL::CTexture* previousTexture =
+	Renderer::Backend::ITexture* previousTexture =
 		(m_WhichBuffer ? m_ColorTex1 : m_ColorTex2).get();
 
 	for (BlurScale& scale : m_BlurScales)
@@ -370,7 +370,7 @@ void CPostprocManager::ApplyBlur(
 
 
 void CPostprocManager::CaptureRenderOutput(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	ENSURE(m_IsInitialized);
 
@@ -386,7 +386,7 @@ void CPostprocManager::CaptureRenderOutput(
 
 
 void CPostprocManager::ReleaseRenderOutput(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	ENSURE(m_IsInitialized);
 
@@ -402,7 +402,7 @@ void CPostprocManager::ReleaseRenderOutput(
 }
 
 void CPostprocManager::ApplyEffect(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CShaderTechniquePtr& shaderTech, int pass)
 {
 	// select the other FBO for rendering
@@ -481,7 +481,7 @@ void CPostprocManager::ApplyEffect(
 }
 
 void CPostprocManager::ApplyPostproc(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	ENSURE(m_IsInitialized);
 
@@ -635,10 +635,10 @@ void CPostprocManager::SetDepthBufferClipPlanes(float nearPlane, float farPlane)
 
 void CPostprocManager::CreateMultisampleBuffer()
 {
-	Renderer::Backend::GL::CDevice* backendDevice = g_VideoMode.GetBackendDevice();
+	Renderer::Backend::IDevice* backendDevice = g_VideoMode.GetBackendDevice();
 
 	m_MultisampleColorTex = backendDevice->CreateTexture("PostProcColorMS",
-		Renderer::Backend::GL::CTexture::Type::TEXTURE_2D_MULTISAMPLE,
+		Renderer::Backend::ITexture::Type::TEXTURE_2D_MULTISAMPLE,
 		Renderer::Backend::Format::R8G8B8A8_UNORM, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
@@ -646,7 +646,7 @@ void CPostprocManager::CreateMultisampleBuffer()
 
 	// Allocate the Depth/Stencil texture.
 	m_MultisampleDepthTex = backendDevice->CreateTexture("PostProcDepthMS",
-		Renderer::Backend::GL::CTexture::Type::TEXTURE_2D_MULTISAMPLE,
+		Renderer::Backend::ITexture::Type::TEXTURE_2D_MULTISAMPLE,
 		Renderer::Backend::Format::D24_S8, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
@@ -680,7 +680,7 @@ bool CPostprocManager::IsMultisampleEnabled() const
 }
 
 void CPostprocManager::ResolveMultisampleFramebuffer(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	if (!m_UsingMultisampleBuffer)
 		return;

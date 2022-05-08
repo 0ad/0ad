@@ -23,6 +23,7 @@
 #include "renderer/backend/gl/Framebuffer.h"
 #include "renderer/backend/gl/ShaderProgram.h"
 #include "renderer/backend/gl/Texture.h"
+#include "renderer/backend/IDevice.h"
 #include "scriptinterface/ScriptForward.h"
 
 #include <memory>
@@ -43,77 +44,64 @@ namespace GL
 
 class CDeviceCommandContext;
 
-class CDevice
+class CDevice final : public IDevice
 {
 public:
-	struct Capabilities
-	{
-		bool S3TC;
-		bool ARBShaders;
-		bool ARBShadersShadow;
-		bool computeShaders;
-		bool debugLabels;
-		bool debugScopedLabels;
-		bool multisampling;
-		bool anisotropicFiltering;
-		uint32_t maxSampleCount;
-		float maxAnisotropy;
-		uint32_t maxTextureSize;
-	};
-
-	~CDevice();
+	~CDevice() override;
 
 	/**
 	 * Creates the GL device and the GL context for the window if it presents.
 	 */
-	static std::unique_ptr<CDevice> Create(SDL_Window* window, const bool arb);
+	static std::unique_ptr<IDevice> Create(SDL_Window* window, const bool arb);
 
-	const std::string& GetName() const { return m_Name; }
-	const std::string& GetVersion() const { return m_Version; }
-	const std::string& GetDriverInformation() const { return m_DriverInformation; }
-	const std::vector<std::string>& GetExtensions() const { return m_Extensions; }
+	const std::string& GetName() const override { return m_Name; }
+	const std::string& GetVersion() const override { return m_Version; }
+	const std::string& GetDriverInformation() const override { return m_DriverInformation; }
+	const std::vector<std::string>& GetExtensions() const override { return m_Extensions; }
 
-	void Report(const ScriptRequest& rq, JS::HandleValue settings);
+	void Report(const ScriptRequest& rq, JS::HandleValue settings) override;
 
-	CFramebuffer* GetCurrentBackbuffer() { return m_Backbuffer.get(); }
+	IFramebuffer* GetCurrentBackbuffer() override { return m_Backbuffer.get(); }
 
-	std::unique_ptr<CDeviceCommandContext> CreateCommandContext();
+	std::unique_ptr<IDeviceCommandContext> CreateCommandContext() override;
 
 	CDeviceCommandContext* GetActiveCommandContext() { return m_ActiveCommandContext; }
 
-	std::unique_ptr<CTexture> CreateTexture(const char* name, const CTexture::Type type,
+	std::unique_ptr<ITexture> CreateTexture(const char* name, const ITexture::Type type,
 		const Format format, const uint32_t width, const uint32_t height,
-		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount);
+		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount) override;
 
-	std::unique_ptr<CTexture> CreateTexture2D(const char* name,
+	std::unique_ptr<ITexture> CreateTexture2D(const char* name,
 		const Format format, const uint32_t width, const uint32_t height,
-		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount = 1, const uint32_t sampleCount = 1);
+		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount = 1, const uint32_t sampleCount = 1) override;
 
-	std::unique_ptr<CFramebuffer> CreateFramebuffer(
-		const char* name, CTexture* colorAttachment,
-		CTexture* depthStencilAttachment);
+	std::unique_ptr<IFramebuffer> CreateFramebuffer(
+		const char* name, ITexture* colorAttachment,
+		ITexture* depthStencilAttachment) override;
 
-	std::unique_ptr<CFramebuffer> CreateFramebuffer(
-		const char* name, CTexture* colorAttachment,
-		CTexture* depthStencilAttachment, const CColor& clearColor);
+	std::unique_ptr<IFramebuffer> CreateFramebuffer(
+		const char* name, ITexture* colorAttachment,
+		ITexture* depthStencilAttachment, const CColor& clearColor) override;
 
-	std::unique_ptr<CBuffer> CreateBuffer(
-		const char* name, const CBuffer::Type type, const uint32_t size, const bool dynamic);
+	std::unique_ptr<IBuffer> CreateBuffer(
+		const char* name, const IBuffer::Type type, const uint32_t size, const bool dynamic) override;
 
 	std::unique_ptr<IShaderProgram> CreateShaderProgram(
-		const CStr& name, const CShaderDefines& defines);
+		const CStr& name, const CShaderDefines& defines) override;
 
-	void Present();
+	void Present() override;
 
-	bool IsTextureFormatSupported(const Format format) const;
+	bool IsTextureFormatSupported(const Format format) const override;
 
-	const Capabilities& GetCapabilities() const { return m_Capabilities; }
+	const Capabilities& GetCapabilities() const override { return m_Capabilities; }
 
 private:
 	CDevice();
 
 	SDL_Window* m_Window = nullptr;
 	SDL_GLContext m_Context = nullptr;
+
+	bool m_ARB = false;
 
 	std::string m_Name;
 	std::string m_Version;

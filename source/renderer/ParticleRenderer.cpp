@@ -127,7 +127,7 @@ void ParticleRenderer::PrepareForRendering(const CShaderDefines& context)
 }
 
 void ParticleRenderer::RenderParticles(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	int cullGroup, bool wireframe)
 {
 	CShaderTechnique* lastTech = nullptr;

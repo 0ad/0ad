@@ -27,6 +27,7 @@
 #include "lib/ogl.h"
 #include "ps/ConfigDB.h"
 #include "ps/Profiler2.h"
+#include "ps/VideoMode.h"
 
 #include <deque>
 #include <stack>
@@ -69,6 +70,8 @@ class CProfiler2GPUARB
 public:
 	static bool IsSupported()
 	{
+		if (g_VideoMode.GetBackend() != CVideoMode::Backend::GL)
+			return false;
 		return ogl_HaveExtension("GL_ARB_timer_query");
 	}
 

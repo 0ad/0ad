@@ -47,7 +47,7 @@ struct SBindingSlots
 };
 
 inline void DrawTextureImpl(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CTexturePtr& texture, const PlaneArray2D& vertices, PlaneArray2D uvs,
 	const CColor& multiply, const CColor& add, const float grayscaleFactor,
 	const SBindingSlots& bindingSlots)
@@ -85,7 +85,7 @@ inline void DrawTextureImpl(
 class CCanvas2D::Impl
 {
 public:
-	Impl(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Impl(Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 		: DeviceCommandContext(deviceCommandContext)
 	{
 	}
@@ -124,7 +124,7 @@ public:
 		Tech.reset();
 	}
 
-	Renderer::Backend::GL::CDeviceCommandContext* DeviceCommandContext;
+	Renderer::Backend::IDeviceCommandContext* DeviceCommandContext = nullptr;
 	CShaderTechniquePtr Tech;
 
 	// We assume that the shader can't be destroyed while it's bound. So these
@@ -133,7 +133,7 @@ public:
 };
 
 CCanvas2D::CCanvas2D(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 	: m(std::make_unique<Impl>(deviceCommandContext))
 {
 

@@ -74,7 +74,7 @@ that of Atlas depending on commandline parameters.
 #include "graphics/GameView.h"
 #include "graphics/TextureManager.h"
 #include "gui/GUIManager.h"
-#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/IDevice.h"
 #include "renderer/Renderer.h"
 #include "rlinterface/RLInterface.h"
 #include "scriptinterface/ScriptContext.h"

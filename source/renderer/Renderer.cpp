@@ -50,7 +50,7 @@
 #include "graphics/TextureManager.h"
 #include "ps/Util.h"
 #include "ps/VideoMode.h"
-#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/IDevice.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/PostprocManager.h"
 #include "renderer/RenderingOptions.h"
@@ -242,7 +242,7 @@ class CRenderer::Internals
 {
 	NONCOPYABLE(Internals);
 public:
-	std::unique_ptr<Renderer::Backend::GL::CDeviceCommandContext> deviceCommandContext;
+	std::unique_ptr<Renderer::Backend::IDeviceCommandContext> deviceCommandContext;
 
 	/// true if CRenderer::Open has been called
 	bool IsOpen;
@@ -274,7 +274,7 @@ public:
 	Internals() :
 		IsOpen(false), ShadersDirty(true), profileTable(g_Renderer.m_Stats),
 		deviceCommandContext(g_VideoMode.GetBackendDevice()->CreateCommandContext()),
-		textureManager(g_VFS, false, false)
+		textureManager(g_VFS, false, g_VideoMode.GetBackendDevice())
 	{
 	}
 };
@@ -712,7 +712,7 @@ void CRenderer::EndFrame()
 void CRenderer::SetViewport(const SViewPort &vp)
 {
 	m_Viewport = vp;
-	Renderer::Backend::GL::CDeviceCommandContext::Rect viewportRect;
+	Renderer::Backend::IDeviceCommandContext::Rect viewportRect;
 	viewportRect.x = vp.m_X;
 	viewportRect.y = vp.m_Y;
 	viewportRect.width = vp.m_Width;
@@ -776,7 +776,7 @@ void CRenderer::MakeScreenShotOnNextFrame(ScreenShotType screenShotType)
 	m_ScreenShotType = screenShotType;
 }
 
-Renderer::Backend::GL::CDeviceCommandContext* CRenderer::GetDeviceCommandContext()
+Renderer::Backend::IDeviceCommandContext* CRenderer::GetDeviceCommandContext()
 {
 	return m->deviceCommandContext.get();
 }

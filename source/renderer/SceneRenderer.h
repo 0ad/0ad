@@ -22,7 +22,7 @@
 #include "graphics/ShaderDefines.h"
 #include "graphics/ShaderProgramPtr.h"
 #include "ps/Singleton.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/Scene.h"
 
@@ -97,7 +97,7 @@ public:
 	 * Render the given scene immediately.
 	 * @param scene a Scene object describing what should be rendered.
 	 */
-	void RenderScene(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, Scene& scene);
+	void RenderScene(Renderer::Backend::IDeviceCommandContext* deviceCommandContext, Scene& scene);
 
 	/**
 	 * Return the scene that is currently being rendered.
@@ -195,41 +195,41 @@ protected:
 
 	// render any batched objects
 	void RenderSubmissions(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CBoundingBoxAligned& waterScissor);
 
 	// patch rendering stuff
 	void RenderPatches(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CShaderDefines& context, int cullGroup);
 
 	// model rendering stuff
 	void RenderModels(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CShaderDefines& context, int cullGroup);
 	void RenderTransparentModels(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CShaderDefines& context, int cullGroup, ETransparentMode transparentMode);
 
 	void RenderSilhouettes(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CShaderDefines& context);
 
 	void RenderParticles(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		int cullGroup);
 
 	// shadow rendering stuff
 	void RenderShadowMap(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CShaderDefines& context);
 
 	// render water reflection and refraction textures
 	void RenderReflections(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CShaderDefines& context, const CBoundingBoxAligned& scissor);
 	void RenderRefractions(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CShaderDefines& context, const CBoundingBoxAligned& scissor);
 
 	void ComputeReflectionCamera(CCamera& camera, const CBoundingBoxAligned& scissor) const;

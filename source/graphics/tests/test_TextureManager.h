@@ -21,16 +21,21 @@
 #include "lib/external_libraries/libsdl.h"
 #include "lib/file/vfs/vfs.h"
 #include "lib/tex/tex.h"
+#include "ps/ConfigDB.h"
 #include "ps/XML/Xeromyces.h"
+#include "renderer/backend/dummy/Device.h"
 
 class TestTextureManager : public CxxTest::TestSuite
 {
 	PIVFS m_VFS;
+	std::unique_ptr<Renderer::Backend::IDevice> m_Device;
 
 public:
 
 	void setUp()
 	{
+		CConfigDB::Initialise();
+
 		DeleteDirectory(DataDir()/"_testcache"); // clean up in case the last test run failed
 
 		m_VFS = CreateVfs();
@@ -38,6 +43,8 @@ public:
 		TS_ASSERT_OK(m_VFS->Mount(L"cache/", DataDir() / "_testcache" / "", 0, VFS_MAX_PRIORITY));
 
 		CXeromyces::Startup();
+
+		m_Device = std::make_unique<Renderer::Backend::Dummy::CDevice>();
 	}
 
 	void tearDown()
@@ -46,12 +53,14 @@ public:
 
 		m_VFS.reset();
 		DeleteDirectory(DataDir()/"_testcache");
+
+		CConfigDB::Shutdown();
 	}
 
 	void test_load_basic()
 	{
 		{
-			CTextureManager texman(m_VFS, false, true);
+			CTextureManager texman(m_VFS, false, m_Device.get());
 
 			CTexturePtr t1 = texman.CreateTexture(CTextureProperties(L"art/textures/a/demo.png"));
 
@@ -82,7 +91,7 @@ public:
 
 		// New texture manager - should use the cached file
 		{
-			CTextureManager texman(m_VFS, false, true);
+			CTextureManager texman(m_VFS, false, m_Device.get());
 
 			CTexturePtr t1 = texman.CreateTexture(CTextureProperties(L"art/textures/a/demo.png"));
 
@@ -94,7 +103,7 @@ public:
 
 	void test_load_formats()
 	{
-		CTextureManager texman(m_VFS, false, true);
+		CTextureManager texman(m_VFS, false, m_Device.get());
 		CTexturePtr t1 = texman.CreateTexture(CTextureProperties(L"art/textures/a/demo.tga"));
 		CTexturePtr t2 = texman.CreateTexture(CTextureProperties(L"art/textures/a/demo-abgr.dds"));
 		CTexturePtr t3 = texman.CreateTexture(CTextureProperties(L"art/textures/a/demo-dxt1.dds"));

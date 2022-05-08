@@ -90,7 +90,7 @@ public:
 	 */
 	Handle AllocateChunk(
 		const size_t vertexSize, const size_t numberOfVertices,
-		const Renderer::Backend::GL::CBuffer::Type type,
+		const Renderer::Backend::IBuffer::Type type,
 		const bool dynamic, void* backingStore = nullptr, Group group = Group::DEFAULT);
 
 	/// Returns the given @p chunk to its owning buffer

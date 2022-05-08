@@ -32,6 +32,7 @@
 #include "ps/Game.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Pyrogenesis.h"
+#include "renderer/backend/dummy/Device.h"
 #include "renderer/backend/gl/Device.h"
 #include "renderer/Renderer.h"
 
@@ -235,6 +236,8 @@ void CVideoMode::ReadConfig()
 	CFG_GET_VAL("rendererbackend", rendererBackend);
 	if (rendererBackend == "glarb")
 		m_Backend = Backend::GL_ARB;
+	else if (rendererBackend == "dummy")
+		m_Backend = Backend::DUMMY;
 	else
 		m_Backend = Backend::GL;
 }
@@ -526,6 +529,11 @@ void CVideoMode::Shutdown()
 
 bool CVideoMode::CreateBackendDevice(const bool createSDLContext)
 {
+	if (m_Backend == Backend::DUMMY)
+	{
+		m_BackendDevice = std::make_unique<Renderer::Backend::Dummy::CDevice>();
+		return true;
+	}
 	m_BackendDevice = Renderer::Backend::GL::CDevice::Create(createSDLContext ? m_Window : nullptr, m_Backend == Backend::GL_ARB);
 	if (!m_BackendDevice && m_Backend == Backend::GL)
 	{

@@ -23,7 +23,7 @@
 #include "maths/Rect.h"
 #include "maths/Vector2D.h"
 #include "ps/CStrIntern.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 
 #include <list>
 
@@ -104,7 +104,7 @@ public:
 	 * Render all of the previously printed text calls.
 	 */
 	void Render(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		Renderer::Backend::IShaderProgram* shader, const CMatrix3D& transform);
 
 private:

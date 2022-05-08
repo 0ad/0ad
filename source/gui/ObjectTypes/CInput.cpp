@@ -32,7 +32,7 @@
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
 #include "ps/VideoMode.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/Renderer.h"
 
 #include <sstream>
@@ -1191,7 +1191,7 @@ void CInput::UpdateCachedSize()
 
 void CInput::Draw(CCanvas2D& canvas)
 {
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
 		g_Renderer.GetDeviceCommandContext();
 
 	if (m_CursorBlinkRate > 0.0)
@@ -1244,7 +1244,7 @@ void CInput::Draw(CCanvas2D& canvas)
 	if (cliparea != CRect())
 	{
 		const float scale = g_VideoMode.GetScale();
-		Renderer::Backend::GL::CDeviceCommandContext::Rect scissorRect;
+		Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
 		scissorRect.x = cliparea.left * scale;
 		scissorRect.y = g_yres - cliparea.bottom * scale;
 		scissorRect.width = cliparea.GetWidth() * scale;

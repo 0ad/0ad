@@ -20,7 +20,7 @@
 
 #include "ps/CStr.h"
 #include "ps/CStrIntern.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/backend/IShaderProgram.h"
 
 #include <map>
@@ -180,7 +180,7 @@ public:
 	 * Bind the collection of uniforms onto the given shader.
 	 */
 	void BindUniforms(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		Renderer::Backend::IShaderProgram* shader) const;
 };
 

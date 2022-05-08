@@ -31,7 +31,7 @@
 #include "ps/Profile.h"
 #include "ps/XML/Xeromyces.h"
 #include "ps/VideoMode.h"
-#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/IDevice.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 
@@ -140,6 +140,15 @@ bool CShaderManager::NewEffect(const CStr& name, const CShaderDefines& baseDefin
 	PSRETURN ret = XeroFile.Load(g_VFS, xmlFilename);
 	if (ret != PSRETURN_OK)
 		return false;
+
+	// By default we assume that we have techinques for every dummy shader.
+	if (g_VideoMode.GetBackend() == CVideoMode::Backend::DUMMY)
+	{
+		const Renderer::Backend::GraphicsPipelineStateDesc passPipelineStateDesc =
+			Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc();
+		tech->SetPasses({{passPipelineStateDesc, LoadProgram("dummy", baseDefines)}});
+		return true;
+	}
 
 	// Define all the elements and attributes used in the XML file
 #define EL(x) int el_##x = XeroFile.GetElementID(#x)

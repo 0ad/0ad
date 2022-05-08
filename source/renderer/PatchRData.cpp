@@ -283,7 +283,7 @@ void CPatchRData::BuildBlends()
 
 		m_VBBlends = g_VBMan.AllocateChunk(
 			sizeof(SBlendVertex), blendVertices.size(),
-			Renderer::Backend::GL::CBuffer::Type::VERTEX, false,
+			Renderer::Backend::IBuffer::Type::VERTEX, false,
 			nullptr, CVertexBufferManager::Group::TERRAIN);
 		m_VBBlends->m_Owner->UpdateChunkVertices(m_VBBlends.Get(), &blendVertices[0]);
 
@@ -293,7 +293,7 @@ void CPatchRData::BuildBlends()
 
 		m_VBBlendIndices = g_VBMan.AllocateChunk(
 			sizeof(u16), blendIndices.size(),
-			Renderer::Backend::GL::CBuffer::Type::INDEX, false,
+			Renderer::Backend::IBuffer::Type::INDEX, false,
 			nullptr, CVertexBufferManager::Group::TERRAIN);
 		m_VBBlendIndices->m_Owner->UpdateChunkVertices(m_VBBlendIndices.Get(), &blendIndices[0]);
 	}
@@ -497,7 +497,7 @@ void CPatchRData::BuildIndices()
 	// Construct vertex buffer
 	m_VBBaseIndices = g_VBMan.AllocateChunk(
 		sizeof(u16), indices.size(),
-		Renderer::Backend::GL::CBuffer::Type::INDEX, false, nullptr, CVertexBufferManager::Group::TERRAIN);
+		Renderer::Backend::IBuffer::Type::INDEX, false, nullptr, CVertexBufferManager::Group::TERRAIN);
 	m_VBBaseIndices->m_Owner->UpdateChunkVertices(m_VBBaseIndices.Get(), &indices[0]);
 }
 
@@ -543,7 +543,7 @@ void CPatchRData::BuildVertices()
 	{
 		m_VBBase = g_VBMan.AllocateChunk(
 			sizeof(SBaseVertex), vsize * vsize,
-			Renderer::Backend::GL::CBuffer::Type::VERTEX, false,
+			Renderer::Backend::IBuffer::Type::VERTEX, false,
 			nullptr, CVertexBufferManager::Group::TERRAIN);
 	}
 
@@ -637,7 +637,7 @@ void CPatchRData::BuildSides()
 	{
 		m_VBSides = g_VBMan.AllocateChunk(
 			sizeof(SSideVertex), sideVertices.size(),
-			Renderer::Backend::GL::CBuffer::Type::VERTEX, false,
+			Renderer::Backend::IBuffer::Type::VERTEX, false,
 			nullptr, CVertexBufferManager::Group::DEFAULT);
 	}
 	m_VBSides->m_Owner->UpdateChunkVertices(m_VBSides.Get(), &sideVertices[0]);
@@ -715,7 +715,7 @@ using TextureBatches = PooledBatchMap<CTerrainTextureEntry*, VertexBufferBatches
 using ShaderTechniqueBatches = PooledBatchMap<std::pair<CStrIntern, CShaderDefines>, TextureBatches>;
 
 void CPatchRData::RenderBases(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow)
 {
 	PROFILE3("render terrain bases");
@@ -887,7 +887,7 @@ struct SBlendStackItem
 };
 
 void CPatchRData::RenderBlends(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow)
 {
 	PROFILE3("render terrain blends");
@@ -1009,7 +1009,7 @@ void CPatchRData::RenderBlends(
 			Renderer::Backend::IShaderProgram* shader = techBase->GetShader(pass);
 			TerrainRenderer::PrepareShader(deviceCommandContext, shader, shadow);
 
-			Renderer::Backend::GL::CTexture* lastBlendTex = nullptr;
+			Renderer::Backend::ITexture* lastBlendTex = nullptr;
 
 			const int32_t baseTexBindingSlot =
 				shader->GetBindingSlot(str_baseTex);
@@ -1035,7 +1035,7 @@ void CPatchRData::RenderBlends(
 							samp.Sampler->GetBackendTexture());
 					}
 
-					Renderer::Backend::GL::CTexture* currentBlendTex = itt->m_Texture->m_TerrainAlpha->second.m_CompositeAlphaMap.get();
+					Renderer::Backend::ITexture* currentBlendTex = itt->m_Texture->m_TerrainAlpha->second.m_CompositeAlphaMap.get();
 					if (currentBlendTex != lastBlendTex)
 					{
 						deviceCommandContext->SetTexture(
@@ -1110,7 +1110,7 @@ void CPatchRData::RenderBlends(
 }
 
 void CPatchRData::RenderStreams(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const std::vector<CPatchRData*>& patches, const bool bindPositionAsTexCoord)
 {
 	PROFILE3("render terrain streams");
@@ -1210,7 +1210,7 @@ void CPatchRData::RenderOutline()
 }
 
 void CPatchRData::RenderSides(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const std::vector<CPatchRData*>& patches)
 {
 	PROFILE3("render terrain sides");
@@ -1446,13 +1446,13 @@ void CPatchRData::BuildWater()
 	{
 		m_VBWater = g_VBMan.AllocateChunk(
 			sizeof(SWaterVertex), water_vertex_data.size(),
-			Renderer::Backend::GL::CBuffer::Type::VERTEX, false,
+			Renderer::Backend::IBuffer::Type::VERTEX, false,
 			nullptr, CVertexBufferManager::Group::WATER);
 		m_VBWater->m_Owner->UpdateChunkVertices(m_VBWater.Get(), &water_vertex_data[0]);
 
 		m_VBWaterIndices = g_VBMan.AllocateChunk(
 			sizeof(GLushort), water_indices.size(),
-			Renderer::Backend::GL::CBuffer::Type::INDEX, false,
+			Renderer::Backend::IBuffer::Type::INDEX, false,
 			nullptr, CVertexBufferManager::Group::WATER);
 		m_VBWaterIndices->m_Owner->UpdateChunkVertices(m_VBWaterIndices.Get(), &water_indices[0]);
 	}
@@ -1461,21 +1461,21 @@ void CPatchRData::BuildWater()
 	{
 		m_VBWaterShore = g_VBMan.AllocateChunk(
 			sizeof(SWaterVertex), water_vertex_data_shore.size(),
-			Renderer::Backend::GL::CBuffer::Type::VERTEX, false,
+			Renderer::Backend::IBuffer::Type::VERTEX, false,
 			nullptr, CVertexBufferManager::Group::WATER);
 		m_VBWaterShore->m_Owner->UpdateChunkVertices(m_VBWaterShore.Get(), &water_vertex_data_shore[0]);
 
 		// Construct indices buffer
 		m_VBWaterIndicesShore = g_VBMan.AllocateChunk(
 			sizeof(GLushort), water_indices_shore.size(),
-			Renderer::Backend::GL::CBuffer::Type::INDEX, false,
+			Renderer::Backend::IBuffer::Type::INDEX, false,
 			nullptr, CVertexBufferManager::Group::WATER);
 		m_VBWaterIndicesShore->m_Owner->UpdateChunkVertices(m_VBWaterIndicesShore.Get(), &water_indices_shore[0]);
 	}
 }
 
 void CPatchRData::RenderWaterSurface(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const bool bindWaterData)
 {
 	ASSERT(m_UpdateFlags == 0);
@@ -1511,7 +1511,7 @@ void CPatchRData::RenderWaterSurface(
 }
 
 void CPatchRData::RenderWaterShore(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	ASSERT(m_UpdateFlags == 0);
 

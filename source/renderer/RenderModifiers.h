@@ -57,7 +57,7 @@ public:
 	 * Must be implemented by derived classes.
 	 */
 	virtual void BeginPass(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		Renderer::Backend::IShaderProgram* shader) = 0;
 
 	/**
@@ -68,7 +68,7 @@ public:
 	 * @param model The model that is about to be rendered.
 	 */
 	virtual void PrepareModel(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		CModel* model) = 0;
 };
 
@@ -121,10 +121,10 @@ public:
 
 	// Implementation
 	void BeginPass(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		Renderer::Backend::IShaderProgram* shader) override;
 	void PrepareModel(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		CModel* model) override;
 
 private:
