@@ -247,7 +247,7 @@ int CMapReader::UnpackTerrain()
 		CStr texturename;
 		unpacker.UnpackString(texturename);
 
-		if(CTerrainTextureManager::IsInitialised())
+		if (CTerrainTextureManager::IsInitialised())
 		{
 			CTerrainTextureEntry* texentry = g_TexMan.FindTexture(texturename);
 			m_TerrainTextures.push_back(texentry);
@@ -281,18 +281,21 @@ int CMapReader::ApplyTerrainData()
 		// initialise the terrain
 		pTerrain->Initialize(m_PatchesPerSide, &m_Heightmap[0]);
 
-		// setup the textures on the minipatches
-		STileDesc* tileptr = &m_Tiles[0];
-		for (ssize_t j=0; j<m_PatchesPerSide; j++) {
-			for (ssize_t i=0; i<m_PatchesPerSide; i++) {
-				for (ssize_t m=0; m<PATCH_SIZE; m++) {
-					for (ssize_t k=0; k<PATCH_SIZE; k++) {
-						CMiniPatch& mp = pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];	// can't fail
+		if (CTerrainTextureManager::IsInitialised())
+		{
+			// setup the textures on the minipatches
+			STileDesc* tileptr = &m_Tiles[0];
+			for (ssize_t j=0; j<m_PatchesPerSide; j++) {
+				for (ssize_t i=0; i<m_PatchesPerSide; i++) {
+					for (ssize_t m=0; m<PATCH_SIZE; m++) {
+						for (ssize_t k=0; k<PATCH_SIZE; k++) {
+							CMiniPatch& mp = pTerrain->GetPatch(i,j)->m_MiniPatches[m][k];	// can't fail
 
-						mp.Tex = m_TerrainTextures[tileptr->m_Tex1Index];
-						mp.Priority = tileptr->m_Priority;
+							mp.Tex = m_TerrainTextures[tileptr->m_Tex1Index];
+							mp.Priority = tileptr->m_Priority;
 
-						tileptr++;
+							tileptr++;
+						}
 					}
 				}
 			}
@@ -560,8 +563,9 @@ void CXMLReader::ReadTerrain(XMBElement parent)
 	m_MapReader.m_PatchesPerSide = patches;
 
 	// Load the texture
-	ENSURE(CTerrainTextureManager::IsInitialised()); // we need this for the terrain properties (even when graphics are disabled)
-	CTerrainTextureEntry* texentry = g_TexMan.FindTexture(texture);
+	CTerrainTextureEntry* texentry = nullptr;
+	if (CTerrainTextureManager::IsInitialised())
+		texentry = g_TexMan.FindTexture(texture);
 
 	m_MapReader.pTerrain->Initialize(patches, NULL);
 
