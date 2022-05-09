@@ -271,7 +271,7 @@ class CShaderProgramARB final : public CShaderProgram
 public:
 	CShaderProgramARB(
 		CDevice* device,
-		const VfsPath& vertexFilePath, const VfsPath& fragmentFilePath,
+		const VfsPath& path, const VfsPath& vertexFilePath, const VfsPath& fragmentFilePath,
 		const CShaderDefines& defines,
 		const std::map<CStrIntern, std::pair<CStr, int>>& vertexIndices,
 		const std::map<CStrIntern, std::pair<CStr, int>>& fragmentIndices,
@@ -281,7 +281,7 @@ public:
 		glGenProgramsARB(1, &m_VertexProgram);
 		glGenProgramsARB(1, &m_FragmentProgram);
 
-		std::vector<VfsPath> newFileDependencies = {vertexFilePath, fragmentFilePath};
+		std::vector<VfsPath> newFileDependencies = {path, vertexFilePath, fragmentFilePath};
 
 		CStr vertexCode;
 		if (!PreprocessShaderFile(true, defines, vertexFilePath, vertexCode, newFileDependencies))
@@ -586,7 +586,7 @@ class CShaderProgramGLSL final : public CShaderProgram
 public:
 	CShaderProgramGLSL(
 		CDevice* device, const CStr& name,
-		const VfsPath& vertexFilePath, const VfsPath& fragmentFilePath,
+		const VfsPath& path, const VfsPath& vertexFilePath, const VfsPath& fragmentFilePath,
 		const CShaderDefines& defines,
 		const std::map<CStrIntern, int>& vertexAttribs,
 		int streamflags) :
@@ -601,7 +601,7 @@ public:
 		m_Program = 0;
 		m_VertexShader = glCreateShader(GL_VERTEX_SHADER);
 		m_FragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-		m_FileDependencies = {vertexFilePath, fragmentFilePath};
+		m_FileDependencies = {path, vertexFilePath, fragmentFilePath};
 
 #if !CONFIG2_GLES
 		if (m_Device->GetCapabilities().debugLabels)
@@ -611,7 +611,7 @@ public:
 		}
 #endif
 
-		std::vector<VfsPath> newFileDependencies = {vertexFilePath, fragmentFilePath};
+		std::vector<VfsPath> newFileDependencies = {path, vertexFilePath, fragmentFilePath};
 
 		CStr vertexCode;
 		if (!PreprocessShaderFile(false, defines, vertexFilePath, vertexCode, newFileDependencies))
@@ -1290,7 +1290,8 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 	if (isGLSL)
 	{
 		return std::make_unique<CShaderProgramGLSL>(
-			device, name, vertexFile, fragmentFile, defines, vertexAttribs, streamFlags);
+			device, name, xmlFilename, vertexFile, fragmentFile, defines,
+			vertexAttribs, streamFlags);
 	}
 	else
 	{
@@ -1300,7 +1301,7 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 		return nullptr;
 #else
 		return std::make_unique<CShaderProgramARB>(
-			device, vertexFile, fragmentFile, defines,
+			device, xmlFilename, vertexFile, fragmentFile, defines,
 			vertexUniforms, fragmentUniforms, streamFlags);
 #endif
 	}
