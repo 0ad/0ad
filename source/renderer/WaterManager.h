@@ -26,9 +26,9 @@
 #include "graphics/Texture.h"
 #include "maths/Matrix3D.h"
 #include "maths/Vector2D.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
-#include "renderer/backend/gl/Framebuffer.h"
-#include "renderer/backend/gl/Texture.h"
+#include "renderer/backend/IDeviceCommandContext.h"
+#include "renderer/backend/IFramebuffer.h"
+#include "renderer/backend/ITexture.h"
 #include "renderer/VertexBufferManager.h"
 
 #include <memory>
@@ -66,10 +66,10 @@ public:
 	CTexturePtr m_WaveTex;
 	CTexturePtr m_FoamTex;
 
-	std::unique_ptr<Renderer::Backend::GL::CTexture> m_FancyTexture;
-	std::unique_ptr<Renderer::Backend::GL::CTexture> m_FancyTextureDepth;
-	std::unique_ptr<Renderer::Backend::GL::CTexture> m_ReflFboDepthTexture;
-	std::unique_ptr<Renderer::Backend::GL::CTexture> m_RefrFboDepthTexture;
+	std::unique_ptr<Renderer::Backend::ITexture> m_FancyTexture;
+	std::unique_ptr<Renderer::Backend::ITexture> m_FancyTextureDepth;
+	std::unique_ptr<Renderer::Backend::ITexture> m_ReflFboDepthTexture;
+	std::unique_ptr<Renderer::Backend::ITexture> m_RefrFboDepthTexture;
 
 	// used to know what to update when updating parts of the terrain only.
 	u32 m_updatei0;
@@ -101,14 +101,14 @@ public:
 	float m_RepeatPeriod;
 
 	// Reflection and refraction textures for fancy water
-	std::unique_ptr<Renderer::Backend::GL::CTexture> m_ReflectionTexture;
-	std::unique_ptr<Renderer::Backend::GL::CTexture> m_RefractionTexture;
+	std::unique_ptr<Renderer::Backend::ITexture> m_ReflectionTexture;
+	std::unique_ptr<Renderer::Backend::ITexture> m_RefractionTexture;
 	size_t m_RefTextureSize;
 
 	// framebuffer objects
-	std::unique_ptr<Renderer::Backend::GL::CFramebuffer> m_RefractionFramebuffer;
-	std::unique_ptr<Renderer::Backend::GL::CFramebuffer> m_ReflectionFramebuffer;
-	std::unique_ptr<Renderer::Backend::GL::CFramebuffer> m_FancyEffectsFramebuffer;
+	std::unique_ptr<Renderer::Backend::IFramebuffer> m_RefractionFramebuffer;
+	std::unique_ptr<Renderer::Backend::IFramebuffer> m_ReflectionFramebuffer;
+	std::unique_ptr<Renderer::Backend::IFramebuffer> m_FancyEffectsFramebuffer;
 
 	// Model-view-projection matrices for reflected & refracted cameras
 	// (used to let the vertex shader do projective texturing)
@@ -192,7 +192,7 @@ public:
 	bool WillRenderFancyWater() const;
 
 	void RenderWaves(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CFrustum& frustrum);
 
 	/**

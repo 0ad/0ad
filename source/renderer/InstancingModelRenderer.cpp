@@ -55,7 +55,7 @@ struct IModelDef : public CModelDefRPrivate
 
 
 IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateTangents)
-	: m_IndexArray(false), m_Array(Renderer::Backend::GL::CBuffer::Type::VERTEX, false)
+	: m_IndexArray(false), m_Array(Renderer::Backend::IBuffer::Type::VERTEX, false)
 {
 	size_t numVertices = mdef->GetNumVertices();
 
@@ -300,13 +300,13 @@ void InstancingModelRenderer::BeginPass()
 
 // Cleanup rendering pass.
 void InstancingModelRenderer::EndPass(
-	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext))
+	Renderer::Backend::IDeviceCommandContext* UNUSED(deviceCommandContext))
 {
 }
 
 // Prepare UV coordinates for this modeldef
 void InstancingModelRenderer::PrepareModelDef(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CModelDef& def)
 {
 	m->imodeldef = (IModelDef*)def.GetRenderData(m);
@@ -367,7 +367,7 @@ void InstancingModelRenderer::PrepareModelDef(
 
 // Render one model
 void InstancingModelRenderer::RenderModel(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	Renderer::Backend::IShaderProgram* shader, CModel* model, CModelRData* UNUSED(data))
 {
 	const CModelDefPtr& mdldef = model->GetModelDef();

@@ -19,7 +19,7 @@
 #define INCLUDED_RENDERER_BACKEND_GL_TEXTURE
 
 #include "lib/ogl.h"
-#include "renderer/backend/Format.h"
+#include "renderer/backend/ITexture.h"
 #include "renderer/backend/Sampler.h"
 
 #include <cstdint>
@@ -39,25 +39,21 @@ class CDevice;
 /**
  * Represents a low-level GL texture, encapsulates all properties initialization.
  */
-class CTexture
+class CTexture final : public ITexture
 {
 public:
-	enum class Type
-	{
-		TEXTURE_2D,
-		TEXTURE_2D_MULTISAMPLE,
-		TEXTURE_CUBE
-	};
+	~CTexture() override;
 
-	~CTexture();
+	IDevice* GetDevice() override;
+
+	Type GetType() const override { return m_Type; }
+	Format GetFormat() const override { return m_Format; }
+
+	uint32_t GetWidth() const override { return m_Width; }
+	uint32_t GetHeight() const override { return m_Height; }
+	uint32_t GetMIPLevelCount() const override { return m_MIPLevelCount; }
 
 	GLuint GetHandle() const { return m_Handle; }
-
-	Type GetType() const { return m_Type; }
-	Format GetFormat() const { return m_Format; }
-	uint32_t GetWidth() const { return m_Width; }
-	uint32_t GetHeight() const { return m_Height; }
-	uint32_t GetMIPLevelCount() const { return m_MIPLevelCount; }
 
 private:
 	friend class CDevice;

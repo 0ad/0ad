@@ -34,8 +34,8 @@
 #include "ps/CStrInternStatic.h"
 #include "ps/Profile.h"
 #include "ps/VideoMode.h"
-#include "renderer/backend/gl/Device.h"
-#include "renderer/backend/gl/Texture.h"
+#include "renderer/backend/IDevice.h"
+#include "renderer/backend/ITexture.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
@@ -58,8 +58,8 @@ constexpr float DEFAULT_CASCADE_DISTANCE_RATIO = 1.7f;
  */
 struct ShadowMapInternals
 {
-	std::unique_ptr<Renderer::Backend::GL::CFramebuffer> Framebuffer;
-	std::unique_ptr<Renderer::Backend::GL::CTexture> Texture;
+	std::unique_ptr<Renderer::Backend::IFramebuffer> Framebuffer;
+	std::unique_ptr<Renderer::Backend::ITexture> Texture;
 
 	// bit depth for the depth texture
 	int DepthTextureBits;
@@ -109,7 +109,7 @@ struct ShadowMapInternals
 	// incorrectly when the FBO has only a depth attachment.
 	// When m_ShadowAlphaFix is true, we use DummyTexture to store a useless
 	// alpha texture which is attached to the FBO as a workaround.
-	std::unique_ptr<Renderer::Backend::GL::CTexture> DummyTexture;
+	std::unique_ptr<Renderer::Backend::ITexture> DummyTexture;
 
 	// Copy of renderer's standard view camera, saved between
 	// BeginRender and EndRender while we replace it with the shadow camera
@@ -472,7 +472,7 @@ void ShadowMapInternals::CreateTexture()
 	Texture.reset();
 	DummyTexture.reset();
 
-	Renderer::Backend::GL::CDevice* backendDevice = g_VideoMode.GetBackendDevice();
+	Renderer::Backend::IDevice* backendDevice = g_VideoMode.GetBackendDevice();
 
 	CFG_GET_VAL("shadowquality", QualityLevel);
 
@@ -569,7 +569,7 @@ void ShadowMapInternals::CreateTexture()
 // Set up to render into shadow map texture
 void ShadowMap::BeginRender()
 {
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
 		g_Renderer.GetDeviceCommandContext();
 	deviceCommandContext->SetGraphicsPipelineState(
 		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
@@ -605,7 +605,7 @@ void ShadowMap::PrepareCamera(const int cascade)
 	g_Renderer.GetSceneRenderer().SetViewCamera(camera);
 
 	const SViewPort& cascadeViewPort = m->Cascades[cascade].ViewPort;
-	Renderer::Backend::GL::CDeviceCommandContext::Rect scissorRect;
+	Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
 	scissorRect.x = cascadeViewPort.m_X;
 	scissorRect.y = cascadeViewPort.m_Y;
 	scissorRect.width = cascadeViewPort.m_Width;
@@ -631,7 +631,7 @@ void ShadowMap::EndRender()
 }
 
 void ShadowMap::BindTo(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	Renderer::Backend::IShaderProgram* shader) const
 {
 	const int32_t shadowTexBindingSlot = shader->GetBindingSlot(str_shadowTex);

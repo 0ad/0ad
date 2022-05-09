@@ -297,6 +297,11 @@ CTexture::~CTexture()
 		glDeleteTextures(1, &m_Handle);
 }
 
+IDevice* CTexture::GetDevice()
+{
+	return m_Device;
+}
+
 } // namespace GL
 
 } // namespace Backend

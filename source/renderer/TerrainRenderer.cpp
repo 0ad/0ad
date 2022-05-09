@@ -38,7 +38,7 @@
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/World.h"
-#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/IDevice.h"
 #include "renderer/DecalRData.h"
 #include "renderer/PatchRData.h"
 #include "renderer/Renderer.h"
@@ -161,9 +161,9 @@ void TerrainRenderer::EndFrame()
 }
 
 void TerrainRenderer::RenderTerrainOverlayTexture(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	int cullGroup, CMatrix3D& textureMatrix,
-	Renderer::Backend::GL::CTexture* texture)
+	Renderer::Backend::ITexture* texture)
 {
 	ENSURE(m->phase == Phase_Render);
 
@@ -227,7 +227,7 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
  * Set up all the uniforms for a shader pass.
  */
 void TerrainRenderer::PrepareShader(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	Renderer::Backend::IShaderProgram* shader, ShadowMap* shadow)
 {
 	CSceneRenderer& sceneRenderer = g_Renderer.GetSceneRenderer();
@@ -270,7 +270,7 @@ void TerrainRenderer::PrepareShader(
 }
 
 void TerrainRenderer::RenderTerrainShader(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CShaderDefines& context, int cullGroup, ShadowMap* shadow)
 {
 	ENSURE(m->phase == Phase_Render);
@@ -311,7 +311,7 @@ void TerrainRenderer::RenderTerrainShader(
 ///////////////////////////////////////////////////////////////////
 // Render un-textured patches as polygons
 void TerrainRenderer::RenderPatches(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	int cullGroup, const CShaderDefines& defines, const CColor& color)
 {
 	ENSURE(m->phase == Phase_Render);
@@ -344,7 +344,7 @@ void TerrainRenderer::RenderPatches(
 ///////////////////////////////////////////////////////////////////
 // Render outlines of submitted patches as lines
 void TerrainRenderer::RenderOutlines(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	int cullGroup)
 {
 	ENSURE(m->phase == Phase_Render);
@@ -383,7 +383,7 @@ CBoundingBoxAligned TerrainRenderer::ScissorWater(int cullGroup, const CCamera& 
 
 // Render fancy water
 bool TerrainRenderer::RenderFancyWater(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CShaderDefines& context, int cullGroup, ShadowMap* shadow)
 {
 	PROFILE3_GPU("fancy water");
@@ -598,7 +598,7 @@ bool TerrainRenderer::RenderFancyWater(
 }
 
 void TerrainRenderer::RenderSimpleWater(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	int cullGroup)
 {
 	PROFILE3_GPU("simple water");
@@ -654,7 +654,7 @@ void TerrainRenderer::RenderSimpleWater(
 ///////////////////////////////////////////////////////////////////
 // Render water that is part of the terrain
 void TerrainRenderer::RenderWater(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CShaderDefines& context, int cullGroup, ShadowMap* shadow)
 {
 	const WaterManager& waterManager = g_Renderer.GetSceneRenderer().GetWaterManager();
@@ -666,7 +666,7 @@ void TerrainRenderer::RenderWater(
 }
 
 void TerrainRenderer::RenderWaterFoamOccluders(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	int cullGroup)
 {
 	CSceneRenderer& sceneRenderer = g_Renderer.GetSceneRenderer();

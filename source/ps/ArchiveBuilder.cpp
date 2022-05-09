@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,7 @@
 #include "lib/file/archive/archive_zip.h"
 #include "lib/file/vfs/vfs_util.h"
 #include "ps/XML/Xeromyces.h"
+#include "renderer/backend/dummy/Device.h"
 
 #include <boost/algorithm/string.hpp>
 
@@ -76,7 +77,8 @@ void CArchiveBuilder::Build(const OsPath& archive, bool compress)
 
 	// Use CTextureManager instead of CTextureConverter directly,
 	// so it can deal with all the loading of settings.xml files
-	CTextureManager textureManager(m_VFS, true, true);
+	Renderer::Backend::Dummy::CDevice device;
+	CTextureManager textureManager(m_VFS, true, &device);
 
 	CColladaManager colladaManager(m_VFS);
 

@@ -49,7 +49,7 @@ struct ShaderModelDef : public CModelDefRPrivate
 
 ShaderModelDef::ShaderModelDef(const CModelDefPtr& mdef)
 	: m_IndexArray(false),
-	m_Array(Renderer::Backend::GL::CBuffer::Type::VERTEX, false)
+	m_Array(Renderer::Backend::IBuffer::Type::VERTEX, false)
 {
 	size_t numVertices = mdef->GetNumVertices();
 
@@ -91,7 +91,7 @@ struct ShaderModel : public CModelRData
 
 	ShaderModel(const void* key)
 		: CModelRData(key),
-		m_Array(Renderer::Backend::GL::CBuffer::Type::VERTEX, true)
+		m_Array(Renderer::Backend::IBuffer::Type::VERTEX, true)
 	{}
 };
 
@@ -179,13 +179,13 @@ void ShaderModelVertexRenderer::BeginPass()
 
 // Cleanup one rendering pass
 void ShaderModelVertexRenderer::EndPass(
-	Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext))
+	Renderer::Backend::IDeviceCommandContext* UNUSED(deviceCommandContext))
 {
 }
 
 // Prepare UV coordinates for this modeldef
 void ShaderModelVertexRenderer::PrepareModelDef(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CModelDef& def)
 {
 	m->shadermodeldef = (ShaderModelDef*)def.GetRenderData(m);
@@ -214,7 +214,7 @@ void ShaderModelVertexRenderer::PrepareModelDef(
 
 // Render one model
 void ShaderModelVertexRenderer::RenderModel(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	Renderer::Backend::IShaderProgram* UNUSED(shader), CModel* model, CModelRData* data)
 {
 	const CModelDefPtr& mdldef = model->GetModelDef();

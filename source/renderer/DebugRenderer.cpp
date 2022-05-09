@@ -28,7 +28,7 @@
 #include "maths/Matrix3D.h"
 #include "maths/Vector3D.h"
 #include "ps/CStrInternStatic.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/Renderer.h"
 #include "renderer/SceneRenderer.h"
 
@@ -38,7 +38,7 @@ namespace
 {
 
 void SetGraphicsPipelineStateFromTechAndColor(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CShaderTechniquePtr& tech, const CColor& color, const bool depthTestEnabled = true,
 	const bool wireframe = false)
 {
@@ -80,7 +80,7 @@ void CDebugRenderer::DrawLine(
 {
 	CShaderTechniquePtr debugLineTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
 		g_Renderer.GetDeviceCommandContext();
 	SetGraphicsPipelineStateFromTechAndColor(
 		deviceCommandContext, debugLineTech, color, depthTestEnabled);
@@ -138,7 +138,7 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 {
 	CShaderTechniquePtr debugCircleTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
 		g_Renderer.GetDeviceCommandContext();
 	SetGraphicsPipelineStateFromTechAndColor(
 		deviceCommandContext, debugCircleTech, color);
@@ -202,7 +202,7 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 
 	CShaderTechniquePtr overlayTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
 		g_Renderer.GetDeviceCommandContext();
 	SetGraphicsPipelineStateFromTechAndColor(
 		deviceCommandContext, overlayTech, color, true, wireframe);
@@ -301,7 +301,7 @@ void CDebugRenderer::DrawBoundingBox(
 	const CMatrix3D& transform, bool wireframe)
 {
 	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
 		g_Renderer.GetDeviceCommandContext();
 	SetGraphicsPipelineStateFromTechAndColor(
 		deviceCommandContext, shaderTech, color, true, wireframe);
@@ -348,7 +348,7 @@ void CDebugRenderer::DrawBoundingBox(
 void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color, bool wireframe)
 {
 	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
 		g_Renderer.GetDeviceCommandContext();
 	SetGraphicsPipelineStateFromTechAndColor(
 		deviceCommandContext, shaderTech, color, true, wireframe);

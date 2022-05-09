@@ -27,15 +27,15 @@ namespace
 {
 
 const char* GetBufferTypeName(
-	const Renderer::Backend::GL::CBuffer::Type type)
+	const Renderer::Backend::IBuffer::Type type)
 {
 	const char* name = "UnknownBuffer";
 	switch (type)
 	{
-	case Renderer::Backend::GL::CBuffer::Type::VERTEX:
+	case Renderer::Backend::IBuffer::Type::VERTEX:
 		name = "VertexBuffer";
 		break;
-	case Renderer::Backend::GL::CBuffer::Type::INDEX:
+	case Renderer::Backend::IBuffer::Type::INDEX:
 		name = "IndexBuffer";
 		break;
 	default:
@@ -121,7 +121,7 @@ void CVertexBufferManager::Shutdown()
  */
 CVertexBufferManager::Handle CVertexBufferManager::AllocateChunk(
 	const size_t vertexSize, const size_t numberOfVertices,
-	const Renderer::Backend::GL::CBuffer::Type type,
+	const Renderer::Backend::IBuffer::Type type,
 	const bool dynamic, void* backingStore, Group group)
 {
 	ENSURE(vertexSize > 0);

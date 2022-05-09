@@ -27,7 +27,7 @@
 #include "gui/SettingTypes/CGUIString.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/VideoMode.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/Renderer.h"
 
 #include <math.h>
@@ -418,7 +418,7 @@ bool CGUIText::AssembleCalls(
 
 void CGUIText::Draw(CGUI& pGUI, CCanvas2D& canvas, const CGUIColor& DefaultColor, const CVector2D& pos, CRect clipping) const
 {
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext =
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
 		g_Renderer.GetDeviceCommandContext();
 
 	bool isClipped = clipping != CRect();
@@ -431,7 +431,7 @@ void CGUIText::Draw(CGUI& pGUI, CCanvas2D& canvas, const CGUIColor& DefaultColor
 		clipping.right = std::floor(clipping.right);
 
 		const float scale = g_VideoMode.GetScale();
-		Renderer::Backend::GL::CDeviceCommandContext::Rect scissorRect;
+		Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
 		scissorRect.x = std::ceil(clipping.left * scale);
 		scissorRect.y = std::ceil(g_yres - clipping.bottom * scale);
 		scissorRect.width = std::floor(clipping.GetWidth() * scale);

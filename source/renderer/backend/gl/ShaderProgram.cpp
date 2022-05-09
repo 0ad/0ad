@@ -379,6 +379,8 @@ public:
 		UnbindClientStates();
 	}
 
+	IDevice* GetDevice() override { return m_Device; }
+
 	int32_t GetBindingSlot(const CStrIntern name) const override
 	{
 		auto it = m_BindingSlotsMapping.find(name);
@@ -959,6 +961,8 @@ public:
 		for (const int index : m_ActiveVertexAttributes)
 			glDisableVertexAttribArray(index);
 	}
+
+	IDevice* GetDevice() override { return m_Device; }
 
 	int32_t GetBindingSlot(const CStrIntern name) const override
 	{

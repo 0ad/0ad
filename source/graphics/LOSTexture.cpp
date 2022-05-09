@@ -26,7 +26,7 @@
 #include "ps/CStrInternStatic.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
-#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/IDevice.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/TimeManager.h"
@@ -106,7 +106,7 @@ void CLOSTexture::MakeDirty()
 	m_Dirty = true;
 }
 
-Renderer::Backend::GL::CTexture* CLOSTexture::GetTextureSmooth()
+Renderer::Backend::ITexture* CLOSTexture::GetTextureSmooth()
 {
 	if (CRenderer::IsInitialised() && !g_RenderingOptions.GetSmoothLOS())
 		return GetTexture();
@@ -114,7 +114,7 @@ Renderer::Backend::GL::CTexture* CLOSTexture::GetTextureSmooth()
 		return m_SmoothTextures[m_WhichTexture].get();
 }
 
-void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+void CLOSTexture::InterpolateLOS(Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	const bool skipSmoothLOS = CRenderer::IsInitialised() && !g_RenderingOptions.GetSmoothLOS();
 	if (!skipSmoothLOS && !m_ShaderInitialized)
@@ -209,7 +209,7 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* d
 }
 
 
-Renderer::Backend::GL::CTexture* CLOSTexture::GetTexture()
+Renderer::Backend::ITexture* CLOSTexture::GetTexture()
 {
 	ENSURE(!m_Dirty);
 	return m_Texture.get();
@@ -227,7 +227,7 @@ const CMatrix3D& CLOSTexture::GetMinimapTextureMatrix()
 	return m_MinimapTextureMatrix;
 }
 
-void CLOSTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+void CLOSTexture::ConstructTexture(Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	CmpPtr<ICmpRangeManager> cmpRangeManager(m_Simulation, SYSTEM_ENTITY);
 	if (!cmpRangeManager)
@@ -237,7 +237,7 @@ void CLOSTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext*
 
 	const size_t textureSize = round_up_to_pow2(round_up((size_t)m_MapSize + g_BlurSize - 1, g_SubTextureAlignment));
 
-	Renderer::Backend::GL::CDevice* backendDevice = deviceCommandContext->GetDevice();
+	Renderer::Backend::IDevice* backendDevice = deviceCommandContext->GetDevice();
 
 	const Renderer::Backend::Sampler::Desc defaultSamplerDesc =
 		Renderer::Backend::Sampler::MakeDefaultSampler(
@@ -311,7 +311,7 @@ void CLOSTexture::ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext*
 	}
 }
 
-void CLOSTexture::RecomputeTexture(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+void CLOSTexture::RecomputeTexture(Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	// If the map was resized, delete and regenerate the texture
 	if (m_Texture)

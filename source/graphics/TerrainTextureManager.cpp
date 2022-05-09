@@ -30,7 +30,7 @@
 #include "ps/Filesystem.h"
 #include "ps/VideoMode.h"
 #include "ps/XML/Xeromyces.h"
-#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/IDevice.h"
 #include "renderer/Renderer.h"
 
 #include <algorithm>
@@ -306,7 +306,7 @@ CTerrainTextureManager::LoadAlphaMap(const VfsPath& alphaMapType)
 }
 
 void CTerrainTextureManager::UploadResourcesIfNeeded(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	for (const CTerrainTextureManager::TerrainAlphaMap::iterator& it : m_AlphaMapsToUpload)
 	{
@@ -314,7 +314,7 @@ void CTerrainTextureManager::UploadResourcesIfNeeded(
 		if (!alphaMap.m_CompositeDataToUpload)
 			continue;
 		// Upload the composite texture.
-		Renderer::Backend::GL::CTexture* texture = alphaMap.m_CompositeAlphaMap.get();
+		Renderer::Backend::ITexture* texture = alphaMap.m_CompositeAlphaMap.get();
 		deviceCommandContext->UploadTexture(
 			texture, Renderer::Backend::Format::A8_UNORM, alphaMap.m_CompositeDataToUpload.get(),
 			texture->GetWidth() * texture->GetHeight());

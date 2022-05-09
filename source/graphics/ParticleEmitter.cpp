@@ -33,7 +33,7 @@ CParticleEmitter::CParticleEmitter(const CParticleEmitterTypePtr& type) :
 	m_Type(type), m_Active(true), m_NextParticleIdx(0), m_EmissionRoundingError(0.f),
 	m_LastUpdateTime(type->m_Manager.GetCurrentTime()),
 	m_IndexArray(false),
-	m_VertexArray(Renderer::Backend::GL::CBuffer::Type::VERTEX, true),
+	m_VertexArray(Renderer::Backend::IBuffer::Type::VERTEX, true),
 	m_LastFrameNumber(-1)
 {
 	// If we should start with particles fully emitted, pretend that we
@@ -175,7 +175,7 @@ void CParticleEmitter::PrepareForRendering()
 }
 
 void CParticleEmitter::Bind(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	Renderer::Backend::IShaderProgram* shader)
 {
 	m_Type->m_Texture->UploadBackendTextureIfNeeded(deviceCommandContext);
@@ -201,7 +201,7 @@ void CParticleEmitter::Bind(
 }
 
 void CParticleEmitter::RenderArray(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	if (m_Particles.empty())
 		return;

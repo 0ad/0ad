@@ -345,7 +345,7 @@ struct SMRCompareTechBucket
 };
 
 void ShaderModelRenderer::Render(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const RenderModifierPtr& modifier, const CShaderDefines& context, int cullGroup, int flags)
 {
 	if (m->submissions[cullGroup].empty())

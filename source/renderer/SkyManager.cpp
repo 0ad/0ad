@@ -33,7 +33,7 @@
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
 #include "ps/VideoMode.h"
-#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/IDevice.h"
 #include "renderer/Renderer.h"
 #include "renderer/SceneRenderer.h"
 #include "renderer/RenderingOptions.h"
@@ -41,13 +41,13 @@
 #include <algorithm>
 
 SkyManager::SkyManager()
-	: m_VertexArray(Renderer::Backend::GL::CBuffer::Type::VERTEX, false)
+	: m_VertexArray(Renderer::Backend::IBuffer::Type::VERTEX, false)
 {
 	CFG_GET_VAL("showsky", m_SkyVisible);
 }
 
 void SkyManager::LoadAndUploadSkyTexturesIfNeeded(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	if (m_SkyTextureCube)
 		return;
@@ -117,9 +117,9 @@ void SkyManager::LoadAndUploadSkyTexturesIfNeeded(
 		}
 	}
 
-	std::unique_ptr<Renderer::Backend::GL::CTexture> skyCubeMap =
+	std::unique_ptr<Renderer::Backend::ITexture> skyCubeMap =
 		g_VideoMode.GetBackendDevice()->CreateTexture("SkyCubeMap",
-			Renderer::Backend::GL::CTexture::Type::TEXTURE_CUBE,
+			Renderer::Backend::ITexture::Type::TEXTURE_CUBE,
 			Renderer::Backend::Format::R8G8B8A8_UNORM, textures[0].m_Width, textures[0].m_Height,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::LINEAR,
@@ -166,7 +166,7 @@ void SkyManager::LoadAndUploadSkyTexturesIfNeeded(
 	///////////////////////////////////////////////////////////////////////////
 }
 
-Renderer::Backend::GL::CTexture* SkyManager::GetSkyCube()
+Renderer::Backend::ITexture* SkyManager::GetSkyCube()
 {
 	return m_SkyTextureCube->GetBackendTexture();
 }
@@ -203,7 +203,7 @@ std::vector<CStrW> SkyManager::GetSkySets() const
 }
 
 void SkyManager::RenderSky(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render sky");
 

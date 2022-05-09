@@ -15,9 +15,9 @@ print("<th>Output");
 print("<th>Warnings");
 
 hwdetectTestData.sort(function(a, b) {
-	if (a.GL_RENDERER < b.GL_RENDERER)
+	if (a.renderer_backend.GL_RENDERER < b.renderer_backend.GL_RENDERER)
 		return -1;
-	if (b.GL_RENDERER < a.GL_RENDERER)
+	if (b.renderer_backend.GL_RENDERER < a.renderer_backend.GL_RENDERER)
 		return +1;
 	return 0;
 });
@@ -35,7 +35,7 @@ for (var settings of hwdetectTestData)
 
 	print("<tr>");
 	print("<td>" + os);
-	print("<td>" + settings.GL_RENDERER);
+	print("<td>" + settings.renderer_backend.GL_RENDERER);
 	print("<td>" + disabled.join(" "));
 	print("<td>" + output.warnings.concat(output.dialog_warnings).join("\n"));
 }

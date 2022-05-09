@@ -19,7 +19,7 @@
 #define INCLUDED_OVERLAYRENDERER
 
 #include "graphics/ShaderProgram.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 
 struct SOverlayLine;
 struct SOverlayTexturedLine;
@@ -101,7 +101,7 @@ public:
 	 * and should be drawn before water (i.e. may be visible under the water)
 	 */
 	void RenderOverlaysBeforeWater(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Render all the submitted overlays that are embedded in the world
@@ -109,7 +109,7 @@ public:
 	 * and should be drawn after water (i.e. may be visible on top of the water)
 	 */
 	void RenderOverlaysAfterWater(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Render all the submitted overlays that should appear on top of everything
@@ -117,7 +117,7 @@ public:
 	 * @param viewCamera camera to be used for billboard computations
 	 */
 	void RenderForegroundOverlays(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CCamera& viewCamera);
 
 	/// Small vertical offset of overlays from terrain to prevent visual glitches
@@ -130,7 +130,7 @@ private:
 	 * renders textured overlay lines batched according to their visibility status by delegating
 	 * to RenderTexturedOverlayLines(CShaderProgramPtr, bool).
 	 */
-	void RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+	void RenderTexturedOverlayLines(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Helper method; renders those overlay lines currently registered in the internals (i.e.
@@ -139,18 +139,18 @@ private:
 	 * requires a separate shader to be used.
 	 */
 	void RenderTexturedOverlayLines(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		Renderer::Backend::IShaderProgram* shader, bool alwaysVisible);
 
 	/**
 	 * Helper method; batch-renders all registered quad overlays, batched by their texture for effiency.
 	 */
-	void RenderQuadOverlays(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+	void RenderQuadOverlays(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Helper method; batch-renders all sphere quad overlays.
 	 */
-	 void RenderSphereOverlays(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+	 void RenderSphereOverlays(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 private:
 	OverlayRendererInternals* m;

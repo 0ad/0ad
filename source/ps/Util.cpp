@@ -34,7 +34,7 @@
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/VideoMode.h"
-#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/IDevice.h"
 
 #if CONFIG2_AUDIO
 #include "soundmanager/SoundManager.h"

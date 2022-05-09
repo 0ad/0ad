@@ -167,6 +167,11 @@ CFramebuffer::~CFramebuffer()
 		glDeleteFramebuffersEXT(1, &m_Handle);
 }
 
+IDevice* CFramebuffer::GetDevice()
+{
+	return m_Device;
+}
+
 } // namespace GL
 
 } // namespace Backend

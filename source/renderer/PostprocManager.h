@@ -20,9 +20,9 @@
 
 #include "graphics/ShaderTechniquePtr.h"
 #include "ps/CStr.h"
-#include "renderer/backend/gl/Framebuffer.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
-#include "renderer/backend/gl/Texture.h"
+#include "renderer/backend/IFramebuffer.h"
+#include "renderer/backend/IDeviceCommandContext.h"
+#include "renderer/backend/ITexture.h"
 
 #include <array>
 #include <vector>
@@ -66,39 +66,39 @@ public:
 	// to our textures instead of directly to the system framebuffer.
 	// @note CPostprocManager must be initialized first
 	void CaptureRenderOutput(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	// First renders blur textures, then calls ApplyEffect for each effect pass,
 	// ping-ponging the buffers at each step.
 	// @note CPostprocManager must be initialized first
 	void ApplyPostproc(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	// Blits the final postprocessed texture to the system framebuffer. The system framebuffer
 	// is selected as the output buffer. Should be called before silhouette rendering.
 	// @note CPostprocManager must be initialized first
-	void ReleaseRenderOutput(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+	void ReleaseRenderOutput(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	// Returns true if we render main scene in the MSAA framebuffer.
 	bool IsMultisampleEnabled() const;
 
 	// Resolves the MSAA framebuffer into the regular one.
 	void ResolveMultisampleFramebuffer(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 private:
 	void CreateMultisampleBuffer();
 	void DestroyMultisampleBuffer();
 
 	// Two framebuffers, that we flip between at each shader pass.
-	std::unique_ptr<Renderer::Backend::GL::CFramebuffer>
+	std::unique_ptr<Renderer::Backend::IFramebuffer>
 		m_CaptureFramebuffer, m_PingFramebuffer, m_PongFramebuffer;
 
 	// Unique color textures for the framebuffers.
-	std::unique_ptr<Renderer::Backend::GL::CTexture> m_ColorTex1, m_ColorTex2;
+	std::unique_ptr<Renderer::Backend::ITexture> m_ColorTex1, m_ColorTex2;
 
 	// The framebuffers share a depth/stencil texture.
-	std::unique_ptr<Renderer::Backend::GL::CTexture> m_DepthTex;
+	std::unique_ptr<Renderer::Backend::ITexture> m_DepthTex;
 	float m_NearPlane, m_FarPlane;
 
 	// A framebuffer and textures x2 for each blur level we render.
@@ -106,8 +106,8 @@ private:
 	{
 		struct Step
 		{
-			std::unique_ptr<Renderer::Backend::GL::CFramebuffer> framebuffer;
-			std::unique_ptr<Renderer::Backend::GL::CTexture> texture;
+			std::unique_ptr<Renderer::Backend::IFramebuffer> framebuffer;
+			std::unique_ptr<Renderer::Backend::ITexture> texture;
 		};
 		std::array<Step, 2> steps;
 	};
@@ -128,8 +128,8 @@ private:
 	CStr m_AAName;
 	CShaderTechniquePtr m_AATech;
 	bool m_UsingMultisampleBuffer;
-	std::unique_ptr<Renderer::Backend::GL::CFramebuffer> m_MultisampleFramebuffer;
-	std::unique_ptr<Renderer::Backend::GL::CTexture>
+	std::unique_ptr<Renderer::Backend::IFramebuffer> m_MultisampleFramebuffer;
+	std::unique_ptr<Renderer::Backend::ITexture>
 		m_MultisampleColorTex, m_MultisampleDepthTex;
 	uint32_t m_MultisampleCount;
 	std::vector<uint32_t> m_AllowedSampleCounts;
@@ -142,25 +142,25 @@ private:
 
 	// Creates blur textures at various scales, for bloom, DOF, etc.
 	void ApplyBlur(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	// High quality GPU image scaling to half size. outTex must have exactly half the size
 	// of inTex. inWidth and inHeight are the dimensions of inTex in texels.
 	void ApplyBlurDownscale2x(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		Renderer::Backend::GL::CFramebuffer* framebuffer,
-		Renderer::Backend::GL::CTexture* inTex,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IFramebuffer* framebuffer,
+		Renderer::Backend::ITexture* inTex,
 		int inWidth, int inHeight);
 
 	// GPU-based Gaussian blur in two passes. inOutTex contains the input image and will be filled
 	// with the blurred image. tempTex must have the same size as inOutTex.
 	// inWidth and inHeight are the dimensions of the images in texels.
 	void ApplyBlurGauss(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		Renderer::Backend::GL::CTexture* inTex,
-		Renderer::Backend::GL::CTexture* tempTex,
-		Renderer::Backend::GL::CFramebuffer* tempFramebuffer,
-		Renderer::Backend::GL::CFramebuffer* outFramebuffer,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::ITexture* inTex,
+		Renderer::Backend::ITexture* tempTex,
+		Renderer::Backend::IFramebuffer* tempFramebuffer,
+		Renderer::Backend::IFramebuffer* outFramebuffer,
 		int inWidth, int inHeight);
 
 	// Applies a pass of a given effect to the entire current framebuffer. The shader is
@@ -168,7 +168,7 @@ private:
 	// the depth buffer, a number of blur textures, the screen size, the zNear/zFar planes and
 	// some other parameters used by the optional bloom/HDR pass.
 	void ApplyEffect(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CShaderTechniquePtr& shaderTech, int pass);
 
 	// Delete all allocated buffers/textures from GPU memory.

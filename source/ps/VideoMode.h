@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,10 +28,7 @@ namespace Renderer
 {
 namespace Backend
 {
-namespace GL
-{
-class CDevice;
-}
+class IDevice;
 }
 }
 
@@ -41,7 +38,8 @@ public:
 	enum class Backend
 	{
 		GL,
-		GL_ARB
+		GL_ARB,
+		DUMMY
 	};
 
 	CVideoMode();
@@ -128,7 +126,7 @@ public:
 
 	Backend GetBackend() const { return m_Backend; }
 
-	Renderer::Backend::GL::CDevice* GetBackendDevice() { return m_BackendDevice.get(); }
+	Renderer::Backend::IDevice* GetBackendDevice() { return m_BackendDevice.get(); }
 
 private:
 	void ReadConfig();
@@ -184,7 +182,7 @@ private:
 	std::unique_ptr<CCursor> m_Cursor;
 
 	Backend m_Backend = Backend::GL;
-	std::unique_ptr<Renderer::Backend::GL::CDevice> m_BackendDevice;
+	std::unique_ptr<Renderer::Backend::IDevice> m_BackendDevice;
 };
 
 extern CVideoMode g_VideoMode;

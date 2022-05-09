@@ -18,7 +18,7 @@
 #ifndef INCLUDED_SHADOWMAP
 #define INCLUDED_SHADOWMAP
 
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/backend/IShaderProgram.h"
 
 class CBoundingBoxAligned;
@@ -127,7 +127,7 @@ public:
 	 * Binds all needed resources and uniforms to draw shadows using the shader.
 	 */
 	void BindTo(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		Renderer::Backend::IShaderProgram* shader) const;
 
 	/**

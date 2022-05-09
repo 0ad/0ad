@@ -36,7 +36,7 @@
  * to use VertexArray where possible, though. */
 
 void CTexturedLineRData::Render(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const SOverlayTexturedLine& line, Renderer::Backend::IShaderProgram* shader)
 {
 	if (!m_VB || !m_VBIndices)
@@ -322,7 +322,7 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 		m_BoundingBox += vertex.m_Position;
 
 	m_VB = g_VBMan.AllocateChunk(
-		sizeof(SVertex), vertices.size(), Renderer::Backend::GL::CBuffer::Type::VERTEX, false);
+		sizeof(SVertex), vertices.size(), Renderer::Backend::IBuffer::Type::VERTEX, false);
 	// Allocation might fail (e.g. due to too many vertices).
 	if (m_VB)
 	{
@@ -333,7 +333,7 @@ void CTexturedLineRData::Update(const SOverlayTexturedLine& line)
 			indices[k] += static_cast<u16>(m_VB->m_Index);
 
 		m_VBIndices = g_VBMan.AllocateChunk(
-			sizeof(u16), indices.size(), Renderer::Backend::GL::CBuffer::Type::INDEX, false);
+			sizeof(u16), indices.size(), Renderer::Backend::IBuffer::Type::INDEX, false);
 		if (m_VBIndices)
 			m_VBIndices->m_Owner->UpdateChunkVertices(m_VBIndices.Get(), &indices[0]);
 	}

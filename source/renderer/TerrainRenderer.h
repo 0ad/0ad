@@ -25,8 +25,8 @@
 
 #include "graphics/Color.h"
 #include "maths/BoundingBoxAligned.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
-#include "renderer/backend/gl/Texture.h"
+#include "renderer/backend/IDeviceCommandContext.h"
+#include "renderer/backend/ITexture.h"
 #include "renderer/backend/IShaderProgram.h"
 
 class CCamera;
@@ -103,7 +103,7 @@ public:
 	 * @param shadow A prepared shadow map, in case rendering with shadows is enabled.
 	 */
 	void RenderTerrainShader(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CShaderDefines& context, int cullGroup, ShadowMap* shadow);
 
 	/**
@@ -116,7 +116,7 @@ public:
 	 * @param color Fill color of the patches.
 	 */
 	void RenderPatches(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		int cullGroup, const CShaderDefines& defines,
 		const CColor& color = CColor(0.0f, 0.0f, 0.0f, 1.0f));
 
@@ -129,7 +129,7 @@ public:
 	 * @param filtered If true then only render objects that passed CullPatches.
 	 */
 	void RenderOutlines(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		int cullGroup);
 
 	/**
@@ -140,14 +140,14 @@ public:
 	 * frame before calling RenderWater.
 	 */
 	void RenderWater(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CShaderDefines& context, int cullGroup, ShadowMap* shadow);
 
 	/**
 	 * Renders terrain to a framebuffer to occlude shore foams.
 	 */
 	void RenderWaterFoamOccluders(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		int cullGroup);
 
 	/**
@@ -166,8 +166,8 @@ public:
 	 * Intended for use by TerrainTextureOverlay.
 	 */
 	void RenderTerrainOverlayTexture(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		int cullGroup, CMatrix3D& textureMatrix, Renderer::Backend::GL::CTexture* texture);
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		int cullGroup, CMatrix3D& textureMatrix, Renderer::Backend::ITexture* texture);
 
 private:
 	TerrainRendererInternals* m;
@@ -177,18 +177,18 @@ private:
 	 * Returns false if unable to render with fancy water.
 	 */
 	bool RenderFancyWater(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CShaderDefines& context, int cullGroup, ShadowMap* shadow);
 
 	/**
 	 * RenderSimpleWater: internal rendering method for water
 	 */
 	void RenderSimpleWater(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		int cullGroup);
 
 	static void PrepareShader(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		Renderer::Backend::IShaderProgram* shader, ShadowMap* shadow);
 };
 

@@ -22,7 +22,7 @@
 #include "graphics/ShaderDefines.h"
 #include "graphics/ShaderProgramPtr.h"
 #include "ps/Singleton.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/Scene.h"
 
@@ -136,7 +136,7 @@ public:
 	 */
 	void MakeScreenShotOnNextFrame(ScreenShotType screenShotType);
 
-	Renderer::Backend::GL::CDeviceCommandContext* GetDeviceCommandContext();
+	Renderer::Backend::IDeviceCommandContext* GetDeviceCommandContext();
 
 protected:
 	friend class CPatchRData;

@@ -22,8 +22,8 @@
 #ifndef INCLUDED_VERTEXBUFFER
 #define INCLUDED_VERTEXBUFFER
 
-#include "renderer/backend/gl/Buffer.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IBuffer.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 
 #include <memory>
 #include <vector>
@@ -92,14 +92,14 @@ public:
 	// constructor, destructor
 	CVertexBuffer(
 		const char* name, const size_t vertexSize,
-		const Renderer::Backend::GL::CBuffer::Type type, const bool dynamic);
+		const Renderer::Backend::IBuffer::Type type, const bool dynamic);
 	CVertexBuffer(
 		const char* name, const size_t vertexSize,
-		const Renderer::Backend::GL::CBuffer::Type type, const bool dynamic,
+		const Renderer::Backend::IBuffer::Type type, const bool dynamic,
 		const size_t maximumBufferSize);
 	~CVertexBuffer();
 
-	void UploadIfNeeded(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+	void UploadIfNeeded(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	/// Make the vertex data available for the next usage.
 	void PrepareForRendering(VBChunk* chunk);
@@ -113,7 +113,7 @@ public:
 
 	/// Returns true if this vertex buffer is compatible with the specified vertex type and intended usage.
 	bool CompatibleVertexType(
-		const size_t vertexSize, const Renderer::Backend::GL::CBuffer::Type type,
+		const size_t vertexSize, const Renderer::Backend::IBuffer::Type type,
 		const bool dynamic) const;
 
 	void DumpStatus() const;
@@ -130,7 +130,7 @@ public:
 	 */
 	static bool UseStreaming(const bool dynamic);
 
-	Renderer::Backend::GL::CBuffer* GetBuffer() { return m_Buffer.get(); }
+	Renderer::Backend::IBuffer* GetBuffer() { return m_Buffer.get(); }
 
 private:
 	friend class CVertexBufferManager;		// allow allocate only via CVertexBufferManager
@@ -139,7 +139,7 @@ private:
 	/// and with the given type - return null if no free chunks available
 	VBChunk* Allocate(
 		const size_t vertexSize, const size_t numberOfVertices,
-		const Renderer::Backend::GL::CBuffer::Type type, const bool dynamic,
+		const Renderer::Backend::IBuffer::Type type, const bool dynamic,
 		void* backingStore);
 	/// Return given chunk to this buffer
 	void Release(VBChunk* chunk);
@@ -155,7 +155,7 @@ private:
 	/// Available free vertices - total of all free vertices in the free list
 	size_t m_FreeVertices;
 
-	std::unique_ptr<Renderer::Backend::GL::CBuffer> m_Buffer;
+	std::unique_ptr<Renderer::Backend::IBuffer> m_Buffer;
 
 	bool m_HasNeededChunks;
 };

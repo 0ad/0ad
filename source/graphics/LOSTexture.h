@@ -20,9 +20,9 @@
 
 #include "graphics/ShaderTechniquePtr.h"
 #include "maths/Matrix3D.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
-#include "renderer/backend/gl/Framebuffer.h"
-#include "renderer/backend/gl/Texture.h"
+#include "renderer/backend/IDeviceCommandContext.h"
+#include "renderer/backend/IFramebuffer.h"
+#include "renderer/backend/ITexture.h"
 
 #include <memory>
 
@@ -53,10 +53,10 @@ public:
 	 * Also potentially switches the current active texture unit, and enables texturing on it.
 	 * The texture is in 8-bit ALPHA format.
 	 */
-	Renderer::Backend::GL::CTexture* GetTexture();
-	Renderer::Backend::GL::CTexture* GetTextureSmooth();
+	Renderer::Backend::ITexture* GetTexture();
+	Renderer::Backend::ITexture* GetTextureSmooth();
 
-	void InterpolateLOS(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+	void InterpolateLOS(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Returns a matrix to map (x,y,z) world coordinates onto (u,v) LOS texture
@@ -75,8 +75,8 @@ public:
 private:
 	void DeleteTexture();
 	bool CreateShader();
-	void ConstructTexture(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
-	void RecomputeTexture(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+	void ConstructTexture(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
+	void RecomputeTexture(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	size_t GetBitmapSize(size_t w, size_t h, size_t* pitch);
 	void GenerateBitmap(const CLosQuerier& los, u8* losData, size_t w, size_t h, size_t pitch);
@@ -87,7 +87,7 @@ private:
 
 	bool m_ShaderInitialized = false;
 
-	std::unique_ptr<Renderer::Backend::GL::CTexture>
+	std::unique_ptr<Renderer::Backend::ITexture>
 		m_Texture, m_SmoothTextures[2];
 
 	uint32_t m_WhichTexture = 0;
@@ -95,7 +95,7 @@ private:
 	// We update textures once a frame, so we change a Framebuffer once a frame.
 	// That allows us to use two ping-pong FBOs instead of checking completeness
 	// of Framebuffer each frame.
-	std::unique_ptr<Renderer::Backend::GL::CFramebuffer>
+	std::unique_ptr<Renderer::Backend::IFramebuffer>
 		m_SmoothFramebuffers[2];
 	CShaderTechniquePtr m_SmoothTech;
 

@@ -18,7 +18,7 @@
 #ifndef INCLUDED_PARTICLERENDERER
 #define INCLUDED_PARTICLERENDERER
 
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 
 class CParticleEmitter;
 class CShaderDefines;
@@ -56,7 +56,7 @@ public:
 	 * Render all the submitted particles.
 	 */
 	void RenderParticles(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		int cullGroup, bool wireframe = false);
 
 	/**

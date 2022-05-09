@@ -18,6 +18,7 @@
 #ifndef INCLUDED_RENDERER_BACKEND_VULKAN_DEVICE
 #define INCLUDED_RENDERER_BACKEND_VULKAN_DEVICE
 
+#include "renderer/backend/IDevice.h"
 #include "scriptinterface/ScriptForward.h"
 
 #include <memory>
@@ -33,22 +34,64 @@ namespace Backend
 namespace Vulkan
 {
 
-class CDevice
+class CDevice : public IDevice
 {
 public:
-	~CDevice();
-
 	/**
 	 * Creates the Vulkan device.
 	 */
 	static std::unique_ptr<CDevice> Create(SDL_Window* window);
 
-	void Report(const ScriptRequest& rq, JS::HandleValue settings);
+	~CDevice() override;
+
+	const std::string& GetName() const override { return m_Name; }
+	const std::string& GetVersion() const override { return m_Version; }
+	const std::string& GetDriverInformation() const override { return m_DriverInformation; }
+	const std::vector<std::string>& GetExtensions() const override { return m_Extensions; }
+
+	void Report(const ScriptRequest& rq, JS::HandleValue settings) override;
+
+	IFramebuffer* GetCurrentBackbuffer() override;
+
+	std::unique_ptr<IDeviceCommandContext> CreateCommandContext() override;
+
+	std::unique_ptr<ITexture> CreateTexture(const char* name, const ITexture::Type type,
+		const Format format, const uint32_t width, const uint32_t height,
+		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount) override;
+
+	std::unique_ptr<ITexture> CreateTexture2D(const char* name,
+		const Format format, const uint32_t width, const uint32_t height,
+		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount = 1, const uint32_t sampleCount = 1) override;
+
+	std::unique_ptr<IFramebuffer> CreateFramebuffer(
+		const char* name, ITexture* colorAttachment,
+		ITexture* depthStencilAttachment) override;
+
+	std::unique_ptr<IFramebuffer> CreateFramebuffer(
+		const char* name, ITexture* colorAttachment,
+		ITexture* depthStencilAttachment, const CColor& clearColor) override;
+
+	std::unique_ptr<IBuffer> CreateBuffer(
+		const char* name, const IBuffer::Type type, const uint32_t size, const bool dynamic) override;
+
+	std::unique_ptr<IShaderProgram> CreateShaderProgram(
+		const CStr& name, const CShaderDefines& defines) override;
+
+	void Present() override;
+
+	bool IsTextureFormatSupported(const Format format) const override;
+
+	const Capabilities& GetCapabilities() const override { return m_Capabilities; }
 
 private:
 	CDevice();
 
-	SDL_Window* m_Window = nullptr;
+	std::string m_Name;
+	std::string m_Version;
+	std::string m_DriverInformation;
+	std::vector<std::string> m_Extensions;
+
+	Capabilities m_Capabilities{};
 };
 
 } // namespace Vulkan

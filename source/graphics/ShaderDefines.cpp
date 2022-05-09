@@ -226,7 +226,7 @@ CVector4D CShaderUniforms::GetVector(const char* name) const
 }
 
 void CShaderUniforms::BindUniforms(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	Renderer::Backend::IShaderProgram* shader) const
 {
 	for (const SItems::Item& item : m_Items->items)

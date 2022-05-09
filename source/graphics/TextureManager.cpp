@@ -34,8 +34,7 @@
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
 #include "ps/Util.h"
-#include "ps/VideoMode.h"
-#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/IDevice.h"
 #include "renderer/Renderer.h"
 
 #include <algorithm>
@@ -115,10 +114,10 @@ public:
 	}
 
 	void CreateTexture(
-		std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture,
+		std::unique_ptr<Renderer::Backend::ITexture> backendTexture,
 		CTextureManagerImpl* textureManager)
 	{
-		Renderer::Backend::GL::CTexture* fallback = backendTexture.get();
+		Renderer::Backend::ITexture* fallback = backendTexture.get();
 		CTextureProperties props(VfsPath{});
 		m_Texture = CTexturePtr(new CTexture(
 			std::move(backendTexture), fallback, props, textureManager));
@@ -133,13 +132,10 @@ private:
 class CSingleColorTexture final : public CPredefinedTexture
 {
 public:
-	CSingleColorTexture(const CColor& color, const bool disableGL,
+	CSingleColorTexture(const CColor& color, Renderer::Backend::IDevice* device,
 		CTextureManagerImpl* textureManager)
 		: m_Color(color)
 	{
-		if (disableGL)
-			return;
-
 		std::stringstream textureName;
 		textureName << "SingleColorTexture (";
 		textureName << "R:" << m_Color.r << ", ";
@@ -147,8 +143,8 @@ public:
 		textureName << "B:" << m_Color.b << ", ";
 		textureName << "A:" << m_Color.a << ")";
 
-		std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture =
-			g_VideoMode.GetBackendDevice()->CreateTexture2D(
+		std::unique_ptr<Renderer::Backend::ITexture> backendTexture =
+			device->CreateTexture2D(
 				textureName.str().c_str(),
 				Renderer::Backend::Format::R8G8B8A8_UNORM,
 				1, 1, Renderer::Backend::Sampler::MakeDefaultSampler(
@@ -157,7 +153,7 @@ public:
 		CreateTexture(std::move(backendTexture), textureManager);
 	}
 
-	void Upload(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	void Upload(Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 	{
 		if (!GetTexture() || !GetTexture()->GetBackendTexture())
 			return;
@@ -182,13 +178,10 @@ private:
 class CSingleColorTextureCube final : public CPredefinedTexture
 {
 public:
-	CSingleColorTextureCube(const CColor& color, const bool disableGL,
+	CSingleColorTextureCube(const CColor& color, Renderer::Backend::IDevice* device,
 		CTextureManagerImpl* textureManager)
 		: m_Color(color)
 	{
-		if (disableGL)
-			return;
-
 		std::stringstream textureName;
 		textureName << "SingleColorTextureCube (";
 		textureName << "R:" << m_Color.r << ", ";
@@ -196,9 +189,9 @@ public:
 		textureName << "B:" << m_Color.b << ", ";
 		textureName << "A:" << m_Color.a << ")";
 
-		std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture =
-			g_VideoMode.GetBackendDevice()->CreateTexture(
-				textureName.str().c_str(), Renderer::Backend::GL::CTexture::Type::TEXTURE_CUBE,
+		std::unique_ptr<Renderer::Backend::ITexture> backendTexture =
+			device->CreateTexture(
+				textureName.str().c_str(), Renderer::Backend::ITexture::Type::TEXTURE_CUBE,
 				Renderer::Backend::Format::R8G8B8A8_UNORM,
 				1, 1, Renderer::Backend::Sampler::MakeDefaultSampler(
 					Renderer::Backend::Sampler::Filter::LINEAR,
@@ -206,7 +199,7 @@ public:
 		CreateTexture(std::move(backendTexture), textureManager);
 	}
 
-	void Upload(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	void Upload(Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 	{
 		if (!GetTexture() || !GetTexture()->GetBackendTexture())
 			return;
@@ -240,12 +233,9 @@ public:
 	static const uint32_t NUMBER_OF_LEVELS = 9;
 
 	CGradientTexture(const CColor& colorFrom, const CColor& colorTo,
-		const bool disableGL, CTextureManagerImpl* textureManager)
+		Renderer::Backend::IDevice* device, CTextureManagerImpl* textureManager)
 		: m_ColorFrom(colorFrom), m_ColorTo(colorTo)
 	{
-		if (disableGL)
-			return;
-
 		std::stringstream textureName;
 		textureName << "GradientTexture";
 		textureName << " From (";
@@ -259,8 +249,8 @@ public:
 		textureName << "B:" << m_ColorTo.b << ",";
 		textureName << "A:" << m_ColorTo.a << ")";
 
-		std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture =
-			g_VideoMode.GetBackendDevice()->CreateTexture2D(
+		std::unique_ptr<Renderer::Backend::ITexture> backendTexture =
+			device->CreateTexture2D(
 				textureName.str().c_str(),
 				Renderer::Backend::Format::R8G8B8A8_UNORM,
 				WIDTH, 1, Renderer::Backend::Sampler::MakeDefaultSampler(
@@ -270,7 +260,7 @@ public:
 		CreateTexture(std::move(backendTexture), textureManager);
 	}
 
-	void Upload(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	void Upload(Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 	{
 		if (!GetTexture() || !GetTexture()->GetBackendTexture())
 			return;
@@ -356,29 +346,25 @@ class CTextureManagerImpl
 {
 	friend class CTexture;
 public:
-	CTextureManagerImpl(PIVFS vfs, bool highQuality, bool disableGL) :
-		m_VFS(vfs), m_CacheLoader(vfs, L".dds"), m_DisableGL(disableGL),
+	CTextureManagerImpl(PIVFS vfs, bool highQuality, Renderer::Backend::IDevice* device) :
+		m_VFS(vfs), m_CacheLoader(vfs, L".dds"), m_Device(device),
 		m_TextureConverter(vfs, highQuality),
-		m_DefaultTexture(CColor(0.25f, 0.25f, 0.25f, 1.0f), disableGL, this),
-		m_ErrorTexture(CColor(1.0f, 0.0f, 1.0f, 1.0f), disableGL, this),
-		m_WhiteTexture(CColor(1.0f, 1.0f, 1.0f, 1.0f), disableGL, this),
-		m_TransparentTexture(CColor(0.0f, 0.0f, 0.0f, 0.0f), disableGL, this),
+		m_DefaultTexture(CColor(0.25f, 0.25f, 0.25f, 1.0f), device, this),
+		m_ErrorTexture(CColor(1.0f, 0.0f, 1.0f, 1.0f), device, this),
+		m_WhiteTexture(CColor(1.0f, 1.0f, 1.0f, 1.0f), device, this),
+		m_TransparentTexture(CColor(0.0f, 0.0f, 0.0f, 0.0f), device, this),
 		m_AlphaGradientTexture(
-			CColor(1.0f, 1.0f, 1.0f, 0.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f), disableGL, this),
-		m_BlackTextureCube(CColor(0.0f, 0.0f, 0.0f, 1.0f), disableGL, this)
+			CColor(1.0f, 1.0f, 1.0f, 0.0f), CColor(1.0f, 1.0f, 1.0f, 1.0f), device, this),
+		m_BlackTextureCube(CColor(0.0f, 0.0f, 0.0f, 1.0f), device, this)
 	{
 		// Allow hotloading of textures
 		RegisterFileReloadFunc(ReloadChangedFileCB, this);
 
-		if (disableGL)
-			return;
-
-		Renderer::Backend::GL::CDevice* backendDevice = g_VideoMode.GetBackendDevice();
 		m_HasS3TC =
-			backendDevice->IsTextureFormatSupported(Renderer::Backend::Format::BC1_RGB_UNORM) &&
-			backendDevice->IsTextureFormatSupported(Renderer::Backend::Format::BC1_RGBA_UNORM) &&
-			backendDevice->IsTextureFormatSupported(Renderer::Backend::Format::BC2_UNORM) &&
-			backendDevice->IsTextureFormatSupported(Renderer::Backend::Format::BC3_UNORM);
+			m_Device->IsTextureFormatSupported(Renderer::Backend::Format::BC1_RGB_UNORM) &&
+			m_Device->IsTextureFormatSupported(Renderer::Backend::Format::BC1_RGBA_UNORM) &&
+			m_Device->IsTextureFormatSupported(Renderer::Backend::Format::BC2_UNORM) &&
+			m_Device->IsTextureFormatSupported(Renderer::Backend::Format::BC3_UNORM);
 	}
 
 	~CTextureManagerImpl()
@@ -418,8 +404,7 @@ public:
 	{
 		// Construct a new default texture with the given properties to use as the search key
 		CTexturePtr texture(new CTexture(
-			nullptr, m_DisableGL ? nullptr : m_DefaultTexture.GetTexture()->GetBackendTexture(),
-			props, this));
+			nullptr, m_DefaultTexture.GetTexture()->GetBackendTexture(), props, this));
 
 		// Try to find an existing texture with the given properties
 		TextureCache::iterator it = m_TextureCache.find(texture);
@@ -435,10 +420,10 @@ public:
 	}
 
 	CTexturePtr WrapBackendTexture(
-		std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture)
+		std::unique_ptr<Renderer::Backend::ITexture> backendTexture)
 	{
 		ENSURE(backendTexture);
-		Renderer::Backend::GL::CTexture* fallback = backendTexture.get();
+		Renderer::Backend::ITexture* fallback = backendTexture.get();
 
 		CTextureProperties props(VfsPath{});
 		CTexturePtr texture(new CTexture(
@@ -454,15 +439,12 @@ public:
 	 */
 	void LoadTexture(const CTexturePtr& texture, const VfsPath& path)
 	{
-		if (m_DisableGL)
-			return;
-
 		PROFILE2("load texture");
 		PROFILE2_ATTR("name: %ls", path.string().c_str());
 
 		std::shared_ptr<u8> fileData;
 		size_t fileSize;
-		const Status loadStatus = g_VFS->LoadFile(path, fileData, fileSize);
+		const Status loadStatus = m_VFS->LoadFile(path, fileData, fileSize);
 		if (loadStatus != INFO::OK)
 		{
 			LOGERROR("Texture failed to load; \"%s\" %s",
@@ -578,7 +560,7 @@ public:
 			}
 		}
 
-		texture->m_BackendTexture = g_VideoMode.GetBackendDevice()->CreateTexture2D(
+		texture->m_BackendTexture = m_Device->CreateTexture2D(
 			texture->m_Properties.m_Path.string8().c_str(),
 			format, (width >> texture->m_BaseLevelOffset), (height >> texture->m_BaseLevelOffset),
 			defaultSamplerDesc, MIPLevelCount - texture->m_BaseLevelOffset);
@@ -767,7 +749,7 @@ public:
 	}
 
 	bool MakeUploadProgress(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 	{
 		if (!m_PredefinedTexturesUploaded)
 		{
@@ -886,7 +868,7 @@ public:
 private:
 	PIVFS m_VFS;
 	CCacheLoader m_CacheLoader;
-	bool m_DisableGL;
+	Renderer::Backend::IDevice* m_Device = nullptr;
 	CTextureConverter m_TextureConverter;
 
 	CSingleColorTexture m_DefaultTexture;
@@ -918,8 +900,8 @@ private:
 };
 
 CTexture::CTexture(
-	std::unique_ptr<Renderer::Backend::GL::CTexture> texture,
-	Renderer::Backend::GL::CTexture* fallback,
+	std::unique_ptr<Renderer::Backend::ITexture> texture,
+	Renderer::Backend::ITexture* fallback,
 	const CTextureProperties& props, CTextureManagerImpl* textureManager) :
 	m_BackendTexture(std::move(texture)), m_FallbackBackendTexture(fallback),
 	m_BaseColor(0), m_State(UNLOADED), m_Properties(props),
@@ -930,7 +912,7 @@ CTexture::CTexture(
 CTexture::~CTexture() = default;
 
 void CTexture::UploadBackendTextureIfNeeded(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	if (IsUploaded())
 		return;
@@ -960,12 +942,12 @@ void CTexture::UploadBackendTextureIfNeeded(
 	m_State = UPLOADED;
 }
 
-Renderer::Backend::GL::CTexture* CTexture::GetBackendTexture()
+Renderer::Backend::ITexture* CTexture::GetBackendTexture()
 {
 	return m_BackendTexture && IsUploaded() ? m_BackendTexture.get() : m_FallbackBackendTexture;
 }
 
-const Renderer::Backend::GL::CTexture* CTexture::GetBackendTexture() const
+const Renderer::Backend::ITexture* CTexture::GetBackendTexture() const
 {
 	return m_BackendTexture && IsUploaded() ? m_BackendTexture.get() : m_FallbackBackendTexture;
 }
@@ -1000,8 +982,8 @@ void CTexture::Prefetch()
 }
 
 void CTexture::ResetBackendTexture(
-	std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture,
-	Renderer::Backend::GL::CTexture* fallbackBackendTexture)
+	std::unique_ptr<Renderer::Backend::ITexture> backendTexture,
+	Renderer::Backend::ITexture* fallbackBackendTexture)
 {
 	m_BackendTexture = std::move(backendTexture);
 	m_FallbackBackendTexture = fallbackBackendTexture;
@@ -1040,8 +1022,8 @@ size_t CTexture::GetUploadedSize() const
 
 // CTextureManager: forward all calls to impl:
 
-CTextureManager::CTextureManager(PIVFS vfs, bool highQuality, bool disableGL) :
-	m(new CTextureManagerImpl(vfs, highQuality, disableGL))
+CTextureManager::CTextureManager(PIVFS vfs, bool highQuality, Renderer::Backend::IDevice* device) :
+	m(new CTextureManagerImpl(vfs, highQuality, device))
 {
 }
 
@@ -1056,7 +1038,7 @@ CTexturePtr CTextureManager::CreateTexture(const CTextureProperties& props)
 }
 
 CTexturePtr CTextureManager::WrapBackendTexture(
-	std::unique_ptr<Renderer::Backend::GL::CTexture> backendTexture)
+	std::unique_ptr<Renderer::Backend::ITexture> backendTexture)
 {
 	return m->WrapBackendTexture(std::move(backendTexture));
 }
@@ -1097,7 +1079,7 @@ bool CTextureManager::MakeProgress()
 }
 
 bool CTextureManager::MakeUploadProgress(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	return m->MakeUploadProgress(deviceCommandContext);
 }

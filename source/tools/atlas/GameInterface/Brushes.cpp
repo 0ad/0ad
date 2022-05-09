@@ -54,7 +54,7 @@ public:
 	}
 
 	void ProcessTile(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		ssize_t i, ssize_t j)
 	{
 		ssize_t i0, j0;

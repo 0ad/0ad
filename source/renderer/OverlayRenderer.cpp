@@ -154,7 +154,7 @@ struct OverlayRendererInternals
 const float OverlayRenderer::OVERLAY_VOFFSET = 0.2f;
 
 OverlayRendererInternals::OverlayRendererInternals()
-	: quadVertices(Renderer::Backend::GL::CBuffer::Type::VERTEX, true),
+	: quadVertices(Renderer::Backend::IBuffer::Type::VERTEX, true),
 	quadIndices(false)
 {
 	quadAttributePos.format = Renderer::Backend::Format::R32G32B32_SFLOAT;
@@ -368,7 +368,7 @@ void OverlayRenderer::PrepareForRendering()
 }
 
 void OverlayRenderer::RenderOverlaysBeforeWater(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	PROFILE3_GPU("overlays (before)");
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render overlays before water");
@@ -383,7 +383,7 @@ void OverlayRenderer::RenderOverlaysBeforeWater(
 }
 
 void OverlayRenderer::RenderOverlaysAfterWater(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	PROFILE3_GPU("overlays (after)");
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render overlays after water");
@@ -393,7 +393,7 @@ void OverlayRenderer::RenderOverlaysAfterWater(
 	RenderSphereOverlays(deviceCommandContext);
 }
 
-void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	if (m->texlines.empty())
 		return;
@@ -477,7 +477,7 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::GL::CDeviceC
 }
 
 void OverlayRenderer::RenderTexturedOverlayLines(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	Renderer::Backend::IShaderProgram* shader, bool alwaysVisible)
 {
 	for (size_t i = 0; i < m->texlines.size(); ++i)
@@ -494,7 +494,7 @@ void OverlayRenderer::RenderTexturedOverlayLines(
 }
 
 void OverlayRenderer::RenderQuadOverlays(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	if (m->quadBatchMap.empty())
 		return;
@@ -589,7 +589,7 @@ void OverlayRenderer::RenderQuadOverlays(
 }
 
 void OverlayRenderer::RenderForegroundOverlays(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CCamera& viewCamera)
 {
 	PROFILE3_GPU("overlays (fg)");
@@ -739,7 +739,7 @@ void OverlayRendererInternals::GenerateSphere()
 }
 
 void OverlayRenderer::RenderSphereOverlays(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	PROFILE3_GPU("overlays (spheres)");
 

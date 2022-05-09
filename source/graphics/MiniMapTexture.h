@@ -21,8 +21,8 @@
 #include "graphics/Color.h"
 #include "graphics/Texture.h"
 #include "maths/Vector2D.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
-#include "renderer/backend/gl/Texture.h"
+#include "renderer/backend/IDeviceCommandContext.h"
+#include "renderer/backend/ITexture.h"
 #include "renderer/VertexArray.h"
 
 #include <memory>
@@ -46,9 +46,9 @@ public:
 	/**
 	 * Redraws the texture if it's dirty.
 	 */
-	void Render(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+	void Render(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
-	Renderer::Backend::GL::CTexture* GetTexture() const { return m_FinalTexture.get(); }
+	Renderer::Backend::ITexture* GetTexture() const { return m_FinalTexture.get(); }
 
 	/**
 	 * @return The maximum height for unit passage in water.
@@ -67,14 +67,14 @@ public:
 
 private:
 	void CreateTextures(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CTerrain* terrain);
 	void DestroyTextures();
 	void RebuildTerrainTexture(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CTerrain* terrain);
 	void RenderFinalTexture(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	CSimulation2& m_Simulation;
 
@@ -83,10 +83,10 @@ private:
 	double m_LastFinalTextureUpdate = 0.0;
 
 	// minimap texture handles
-	std::unique_ptr<Renderer::Backend::GL::CTexture>
+	std::unique_ptr<Renderer::Backend::ITexture>
 		m_TerrainTexture, m_FinalTexture;
 
-	std::unique_ptr<Renderer::Backend::GL::CFramebuffer>
+	std::unique_ptr<Renderer::Backend::IFramebuffer>
 		m_FinalTextureFramebuffer;
 
 	// texture data

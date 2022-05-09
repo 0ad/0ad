@@ -23,7 +23,7 @@
 #include "graphics/ShaderProgram.h"
 #include "graphics/TextureManager.h"
 #include "maths/BoundingBoxAligned.h"
-#include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/VertexBufferManager.h"
 
 class CFrustum;
@@ -52,7 +52,7 @@ public:
 	~CTexturedLineRData() = default;
 
 	void Update(const SOverlayTexturedLine& line);
-	void Render(Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	void Render(Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const SOverlayTexturedLine& line, Renderer::Backend::IShaderProgram* shader);
 
 	bool IsVisibleInFrustum(const CFrustum& frustum) const;

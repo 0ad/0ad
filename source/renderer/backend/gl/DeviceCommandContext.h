@@ -22,6 +22,7 @@
 #include "ps/containers/Span.h"
 #include "renderer/backend/Format.h"
 #include "renderer/backend/gl/Buffer.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/backend/PipelineState.h"
 
 #include <array>
@@ -45,100 +46,93 @@ class CFramebuffer;
 class CShaderProgram;
 class CTexture;
 
-class CDeviceCommandContext
+class CDeviceCommandContext final : public IDeviceCommandContext
 {
 public:
 	~CDeviceCommandContext();
 
-	CDevice* GetDevice() { return m_Device; }
+	IDevice* GetDevice() override;
 
-	void SetGraphicsPipelineState(const GraphicsPipelineStateDesc& pipelineStateDesc);
+	void SetGraphicsPipelineState(const GraphicsPipelineStateDesc& pipelineStateDesc) override;
 
-	void BlitFramebuffer(CFramebuffer* destinationFramebuffer, CFramebuffer* sourceFramebuffer);
+	void BlitFramebuffer(IFramebuffer* destinationFramebuffer, IFramebuffer* sourceFramebuffer) override;
 
-	void ClearFramebuffer();
-	void ClearFramebuffer(const bool color, const bool depth, const bool stencil);
-	void SetFramebuffer(CFramebuffer* framebuffer);
+	void ClearFramebuffer() override;
+	void ClearFramebuffer(const bool color, const bool depth, const bool stencil) override;
+	void SetFramebuffer(IFramebuffer* framebuffer) override;
 	void ReadbackFramebufferSync(
 		const uint32_t x, const uint32_t y, const uint32_t width, const uint32_t height,
-		void* data);
+		void* data) override;
 
-	void UploadTexture(CTexture* texture, const Format dataFormat,
+	void UploadTexture(ITexture* texture, const Format dataFormat,
 		const void* data, const size_t dataSize,
-		const uint32_t level = 0, const uint32_t layer = 0);
-	void UploadTextureRegion(CTexture* texture, const Format dataFormat,
+		const uint32_t level = 0, const uint32_t layer = 0) override;
+	void UploadTextureRegion(ITexture* texture, const Format dataFormat,
 		const void* data, const size_t dataSize,
 		const uint32_t xOffset, const uint32_t yOffset,
 		const uint32_t width, const uint32_t height,
-		const uint32_t level = 0, const uint32_t layer = 0);
+		const uint32_t level = 0, const uint32_t layer = 0) override;
 
 	using UploadBufferFunction = std::function<void(u8*)>;
-	void UploadBuffer(CBuffer* buffer, const void* data, const uint32_t dataSize);
-	void UploadBuffer(CBuffer* buffer, const UploadBufferFunction& uploadFunction);
+	void UploadBuffer(IBuffer* buffer, const void* data, const uint32_t dataSize) override;
+	void UploadBuffer(IBuffer* buffer, const UploadBufferFunction& uploadFunction) override;
 	void UploadBufferRegion(
-		CBuffer* buffer, const void* data, const uint32_t dataOffset, const uint32_t dataSize);
+		IBuffer* buffer, const void* data, const uint32_t dataOffset, const uint32_t dataSize) override;
 	void UploadBufferRegion(
-		CBuffer* buffer, const uint32_t dataOffset, const uint32_t dataSize,
-		const UploadBufferFunction& uploadFunction);
+		IBuffer* buffer, const uint32_t dataOffset, const uint32_t dataSize,
+		const UploadBufferFunction& uploadFunction) override;
 
-	// TODO: maybe we should add a more common type, like CRectI.
-	struct Rect
-	{
-		int32_t x, y;
-		int32_t width, height;
-	};
-	void SetScissors(const uint32_t scissorCount, const Rect* scissors);
-	void SetViewports(const uint32_t viewportCount, const Rect* viewports);
+	void SetScissors(const uint32_t scissorCount, const Rect* scissors) override;
+	void SetViewports(const uint32_t viewportCount, const Rect* viewports) override;
 
 	void SetVertexAttributeFormat(
 		const VertexAttributeStream stream,
 		const Format format,
 		const uint32_t offset,
 		const uint32_t stride,
-		const uint32_t bindingSlot);
-	void SetVertexBuffer(const uint32_t bindingSlot, CBuffer* buffer);
-	void SetVertexBufferData(const uint32_t bindingSlot, const void* data);
+		const uint32_t bindingSlot) override;
+	void SetVertexBuffer(const uint32_t bindingSlot, IBuffer* buffer) override;
+	void SetVertexBufferData(const uint32_t bindingSlot, const void* data) override;
 
-	void SetIndexBuffer(CBuffer* buffer);
-	void SetIndexBufferData(const void* data);
+	void SetIndexBuffer(IBuffer* buffer) override;
+	void SetIndexBufferData(const void* data) override;
 
-	void BeginPass();
-	void EndPass();
+	void BeginPass() override;
+	void EndPass() override;
 
-	void Draw(const uint32_t firstVertex, const uint32_t vertexCount);
+	void Draw(const uint32_t firstVertex, const uint32_t vertexCount) override;
 	void DrawIndexed(
-		const uint32_t firstIndex, const uint32_t indexCount, const int32_t vertexOffset);
-	// TODO: should be removed when performance impact is minimal on slow hardware.
+		const uint32_t firstIndex, const uint32_t indexCount, const int32_t vertexOffset) override;
 	void DrawIndexedInRange(
 		const uint32_t firstIndex, const uint32_t indexCount,
-		const uint32_t start, const uint32_t end);
+		const uint32_t start, const uint32_t end) override;
 
-	void SetTexture(const int32_t bindingSlot, CTexture* texture);
+	void SetTexture(const int32_t bindingSlot, ITexture* texture) override;
 
 	void SetUniform(
 		const int32_t bindingSlot,
-		const float value);
+		const float value) override;
 	void SetUniform(
 		const int32_t bindingSlot,
-		const float valueX, const float valueY);
+		const float valueX, const float valueY) override;
 	void SetUniform(
 		const int32_t bindingSlot,
 		const float valueX, const float valueY,
-		const float valueZ);
+		const float valueZ) override;
 	void SetUniform(
 		const int32_t bindingSlot,
 		const float valueX, const float valueY,
-		const float valueZ, const float valueW);
+		const float valueZ, const float valueW) override;
 	void SetUniform(
-		const int32_t bindingSlot, PS::span<const float> values);
+		const int32_t bindingSlot, PS::span<const float> values) override;
 
-	void BeginScopedLabel(const char* name);
-	void EndScopedLabel();
+	void BeginScopedLabel(const char* name) override;
+	void EndScopedLabel() override;
+
+	void Flush() override;
 
 	// We need to know when to invalidate our texture bind cache.
 	void OnTextureDestroy(CTexture* texture);
-
-	void Flush();
 
 private:
 	friend class CDevice;
@@ -154,7 +148,7 @@ private:
 		const GraphicsPipelineStateDesc& pipelineStateDesc, const bool force);
 
 	void BindTexture(const uint32_t unit, const GLenum target, const GLuint handle);
-	void BindBuffer(const CBuffer::Type type, CBuffer* buffer);
+	void BindBuffer(const IBuffer::Type type, CBuffer* buffer);
 
 	CDevice* m_Device = nullptr;
 
@@ -227,28 +221,5 @@ private:
 } // namespace Backend
 
 } // namespace Renderer
-
-#define GPU_SCOPED_LABEL(deviceCommandContext, name) \
-	GPUScopedLabel scopedLabel((deviceCommandContext), (name));
-
-class GPUScopedLabel
-{
-public:
-	GPUScopedLabel(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
-		const char* name)
-		: m_DeviceCommandContext(deviceCommandContext)
-	{
-		m_DeviceCommandContext->BeginScopedLabel(name);
-	}
-
-	~GPUScopedLabel()
-	{
-		m_DeviceCommandContext->EndScopedLabel();
-	}
-
-private:
-	Renderer::Backend::GL::CDeviceCommandContext* m_DeviceCommandContext = nullptr;
-};
 
 #endif // INCLUDED_RENDERER_GL_DEVICECOMMANDCONTEXT

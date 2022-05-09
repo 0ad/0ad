@@ -69,6 +69,11 @@ CBuffer::~CBuffer()
 		glDeleteBuffersARB(1, &m_Handle);
 }
 
+IDevice* CBuffer::GetDevice()
+{
+	return m_Device;
+}
+
 } // namespace GL
 
 } // namespace Backend

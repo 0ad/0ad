@@ -23,8 +23,8 @@
 #ifndef INCLUDED_TERRAINOVERLAY
 #define INCLUDED_TERRAINOVERLAY
 
-#include "renderer/backend/gl/DeviceCommandContext.h"
-#include "renderer/backend/gl/Texture.h"
+#include "renderer/backend/ITexture.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 
 struct CColor;
 struct SColor4ub;
@@ -44,24 +44,24 @@ class ITerrainOverlay
 public:
 	virtual ~ITerrainOverlay();
 
-	virtual void RenderBeforeWater(Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext)) { }
+	virtual void RenderBeforeWater(Renderer::Backend::IDeviceCommandContext* UNUSED(deviceCommandContext)) { }
 
 	virtual void RenderAfterWater(
-		Renderer::Backend::GL::CDeviceCommandContext* UNUSED(deviceCommandContext), int UNUSED(cullGroup)) { }
+		Renderer::Backend::IDeviceCommandContext* UNUSED(deviceCommandContext), int UNUSED(cullGroup)) { }
 
 	/**
 	 * Draw all ITerrainOverlay objects that exist
 	 * and that should be drawn before water.
 	 */
 	static void RenderOverlaysBeforeWater(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext);
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Draw all ITerrainOverlay objects that exist
 	 * and that should be drawn after water.
 	 */
 	static void RenderOverlaysAfterWater(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, int cullGroup);
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext, int cullGroup);
 
 protected:
 	ITerrainOverlay(int priority);
@@ -129,7 +129,7 @@ protected:
 	 * @param j  <i>j</i> coordinate of tile being processed
 	 */
 	virtual void ProcessTile(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		ssize_t i, ssize_t j) = 0;
 
 	/**
@@ -140,14 +140,14 @@ protected:
 	 * should be drawn
 	 */
 	void RenderTile(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CColor& color, bool drawHidden);
 
 	/**
 	 * Draw a filled quad on top of the given tile.
 	 */
 	void RenderTile(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CColor& color, bool drawHidden, ssize_t i, ssize_t j);
 
 	/**
@@ -159,20 +159,20 @@ protected:
 	 * should be drawn
 	 */
 	void RenderTileOutline(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CColor& color, bool drawHidden);
 
 	/**
 	 * Draw an outlined quad on top of the given tile.
 	 */
 	void RenderTileOutline(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CColor& color, bool drawHidden, ssize_t i, ssize_t j);
 
 private:
 	// Process all tiles
 	void RenderBeforeWater(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext) override;
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext) override;
 
 	// Temporary storage of tile coordinates, so ProcessTile doesn't need to
 	// pass it to RenderTile/etc (and doesn't have a chance to get it wrong)
@@ -210,10 +210,10 @@ protected:
 
 private:
 	void RenderAfterWater(
-		Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, int cullGroup) override;
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext, int cullGroup) override;
 
 	float m_TexelsPerTile;
-	std::unique_ptr<Renderer::Backend::GL::CTexture> m_Texture;
+	std::unique_ptr<Renderer::Backend::ITexture> m_Texture;
 };
 
 #endif // INCLUDED_TERRAINOVERLAY

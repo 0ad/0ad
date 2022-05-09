@@ -20,6 +20,7 @@
 
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStrIntern.h"
+#include "renderer/backend/IDeviceObject.h"
 
 namespace Renderer
 {
@@ -45,11 +46,9 @@ enum class VertexAttributeStream : uint32_t
 /**
  * IShaderProgram is a container for multiple shaders of different types.
  */
-class IShaderProgram
+class IShaderProgram : public IDeviceObject<IShaderProgram>
 {
 public:
-	virtual ~IShaderProgram() {}
-
 	virtual int32_t GetBindingSlot(const CStrIntern name) const = 0;
 
 	virtual std::vector<VfsPath> GetFileDependencies() const = 0;

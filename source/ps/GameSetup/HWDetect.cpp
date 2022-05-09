@@ -37,7 +37,7 @@
 #include "ps/scripting/JSInterface_Debug.h"
 #include "ps/UserReport.h"
 #include "ps/VideoMode.h"
-#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/IDevice.h"
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/JSON.h"
 #include "scriptinterface/Object.h"
@@ -137,7 +137,11 @@ void RunHardwareDetection()
 
 	ReportFreeType(rq, settings);
 
-	g_VideoMode.GetBackendDevice()->Report(rq, settings);
+	JS::RootedValue backendDeviceSettings(rq.cx);
+	Script::CreateObject(rq, &backendDeviceSettings);
+
+	g_VideoMode.GetBackendDevice()->Report(rq, backendDeviceSettings);
+	Script::SetProperty(rq, settings, "renderer_backend", backendDeviceSettings);
 
 	Script::SetProperty(rq, settings, "video_desktop_xres", g_VideoMode.GetDesktopXRes());
 	Script::SetProperty(rq, settings, "video_desktop_yres", g_VideoMode.GetDesktopYRes());
@@ -191,7 +195,7 @@ void RunHardwareDetection()
 	Script::SetProperty(rq, settings, "timer_resolution", timer_Resolution());
 
 	// The version should be increased for every meaningful change.
-	const int reportVersion = 18;
+	const int reportVersion = 19;
 
 	// Send the same data to the reporting system
 	g_UserReporter.SubmitReport(

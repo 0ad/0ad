@@ -19,6 +19,7 @@
 #define INCLUDED_RENDERER_BACKEND_GL_BUFFER
 
 #include "lib/ogl.h"
+#include "renderer/backend/IBuffer.h"
 
 #include <cstdint>
 #include <memory>
@@ -34,20 +35,16 @@ namespace GL
 
 class CDevice;
 
-class CBuffer
+class CBuffer final : public IBuffer
 {
 public:
-	enum class Type
-	{
-		VERTEX,
-		INDEX
-	};
+	~CBuffer() override;
 
-	~CBuffer();
+	IDevice* GetDevice() override;
 
-	Type GetType() const { return m_Type; }
-	uint32_t GetSize() const { return m_Size; }
-	bool IsDynamic() const { return m_Dynamic; }
+	Type GetType() const override { return m_Type; }
+	uint32_t GetSize() const override { return m_Size; }
+	bool IsDynamic() const override { return m_Dynamic; }
 
 	GLuint GetHandle() { return m_Handle; }
 
@@ -64,6 +61,7 @@ private:
 	Type m_Type = Type::VERTEX;
 	uint32_t m_Size = 0;
 	bool m_Dynamic = false;
+
 	GLuint m_Handle = 0;
 };
 

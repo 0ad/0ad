@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -209,10 +209,10 @@ function RunDetection(settings)
 	var gfx_mem = settings.gfx_mem;
 
 	// Values from glGetString
-	var GL_VENDOR = settings.GL_VENDOR;
-	var GL_RENDERER = settings.GL_RENDERER;
-	var GL_VERSION = settings.GL_VERSION;
-	var GL_EXTENSIONS = settings.GL_EXTENSIONS.split(" ");
+	var GL_VENDOR = settings.renderer_backend.GL_VENDOR;
+	var GL_RENDERER = settings.renderer_backend.GL_RENDERER;
+	var GL_VERSION = settings.renderer_backend.GL_VERSION;
+	var GL_EXTENSIONS = settings.renderer_backend.GL_EXTENSIONS.split(" ");
 
 	// Enable GLSL on OpenGL 3+, which should be able to properly
 	// manage GLSL shaders, needed for effects like windy trees
@@ -340,6 +340,10 @@ function RunDetection(settings)
 
 global.RunHardwareDetection = function(settings)
 {
+	// Currently we don't have limitations for other backends than GL and GL ARB.
+	if (settings.renderer_backend.name != 'gl' && settings.renderer_backend.name != 'glarb')
+		return;
+
 	//print(JSON.stringify(settings, null, 1)+"\n");
 
 	var output = RunDetection(settings);

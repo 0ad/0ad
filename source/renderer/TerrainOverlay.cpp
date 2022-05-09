@@ -29,7 +29,8 @@
 #include "ps/Game.h"
 #include "ps/Profile.h"
 #include "ps/World.h"
-#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/IDevice.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/Renderer.h"
 #include "renderer/SceneRenderer.h"
 #include "renderer/TerrainRenderer.h"
@@ -64,7 +65,7 @@ ITerrainOverlay::~ITerrainOverlay()
 
 
 void ITerrainOverlay::RenderOverlaysBeforeWater(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	if (g_TerrainOverlayList.empty())
 		return;
@@ -77,7 +78,7 @@ void ITerrainOverlay::RenderOverlaysBeforeWater(
 }
 
 void ITerrainOverlay::RenderOverlaysAfterWater(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, int cullGroup)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext, int cullGroup)
 {
 	if (g_TerrainOverlayList.empty())
 		return;
@@ -114,7 +115,7 @@ void TerrainOverlay::GetTileExtents(
 }
 
 void TerrainOverlay::RenderBeforeWater(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
 	if (!m_Terrain)
 		return; // should never happen, but let's play it safe
@@ -139,14 +140,14 @@ void TerrainOverlay::RenderBeforeWater(
 }
 
 void TerrainOverlay::RenderTile(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CColor& color, bool drawHidden)
 {
 	RenderTile(deviceCommandContext, color, drawHidden, m_i, m_j);
 }
 
 void TerrainOverlay::RenderTile(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CColor& color, bool drawHidden, ssize_t i, ssize_t j)
 {
 	// TODO: unnecessary computation calls has been removed but we should use
@@ -230,14 +231,14 @@ void TerrainOverlay::RenderTile(
 }
 
 void TerrainOverlay::RenderTileOutline(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CColor& color, bool drawHidden)
 {
 	RenderTileOutline(deviceCommandContext, color, drawHidden, m_i, m_j);
 }
 
 void TerrainOverlay::RenderTileOutline(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CColor& color, bool drawHidden, ssize_t i, ssize_t j)
 {
 	std::vector<float> vertices;
@@ -304,7 +305,7 @@ TerrainTextureOverlay::TerrainTextureOverlay(float texelsPerTile, int priority) 
 TerrainTextureOverlay::~TerrainTextureOverlay() = default;
 
 void TerrainTextureOverlay::RenderAfterWater(
-	Renderer::Backend::GL::CDeviceCommandContext* deviceCommandContext, int cullGroup)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext, int cullGroup)
 {
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 
