@@ -18,8 +18,10 @@
 #ifndef INCLUDED_SHADERTECHNIQUE
 #define INCLUDED_SHADERTECHNIQUE
 
+#include "graphics/ShaderDefines.h"
 #include "graphics/ShaderProgram.h"
 #include "graphics/ShaderTechniquePtr.h"
+#include "lib/file/vfs/vfs_path.h"
 #include "renderer/backend/PipelineState.h"
 
 #include <vector>
@@ -51,7 +53,8 @@ private:
 class CShaderTechnique
 {
 public:
-	CShaderTechnique();
+	CShaderTechnique(const VfsPath& path, const CShaderDefines& defines);
+
 	void SetPasses(std::vector<CShaderPass>&& passes);
 
 	int GetNumPasses() const;
@@ -69,10 +72,18 @@ public:
 
 	void SetSortByDistance(bool enable);
 
+	const VfsPath& GetPath() { return m_Path; }
+
+	const CShaderDefines& GetShaderDefines() { return m_Defines; }
+
 private:
 	std::vector<CShaderPass> m_Passes;
 
 	bool m_SortByDistance = false;
+
+	// We need additional data to reload the technique.
+	VfsPath m_Path;
+	CShaderDefines m_Defines;
 };
 
 #endif // INCLUDED_SHADERTECHNIQUE

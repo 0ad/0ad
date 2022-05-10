@@ -30,7 +30,9 @@ CShaderProgram::CShaderProgram(const CStr& name, const CShaderDefines& defines)
 // static
 CShaderProgramPtr CShaderProgram::Create(const CStr& name, const CShaderDefines& defines)
 {
-	return CShaderProgramPtr(new CShaderProgram(name, defines));
+	CShaderProgramPtr shaderProgram(new CShaderProgram(name, defines));
+	shaderProgram->Reload();
+	return shaderProgram->m_BackendShaderProgram ? shaderProgram : nullptr;
 }
 
 void CShaderProgram::Reload()
