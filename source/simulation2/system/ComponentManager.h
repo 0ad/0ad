@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -286,6 +286,7 @@ private:
 	void Script_BroadcastMessage(int mtid, JS::HandleValue data);
 	int Script_AddEntity(const std::wstring& templateName);
 	int Script_AddLocalEntity(const std::wstring& templateName);
+	const CParamNode& Script_GetTemplate(const std::string& templateName);
 
 	CMessage* ConstructMessage(int mtid, JS::HandleValue data);
 	void SendGlobalMessage(entity_id_t ent, const CMessage& msg);

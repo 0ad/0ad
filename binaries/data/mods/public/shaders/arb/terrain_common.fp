@@ -11,7 +11,7 @@ PARAM ambient = program.local[0];
 
 #if USE_FP_SHADOW && USE_SHADOW_PCF
   PARAM shadowScale = program.local[2];
-  TEMP offset, size, weight;
+  TEMP offset, size, weight, depthSample;
 #endif
 
 TEMP tex;
@@ -55,13 +55,17 @@ TEX color, fragment.texcoord[0], texture[0], 2D;
       MUL weight, weight, shadowScale.zwzw;
 
       MOV offset.xy, weight.zwww;
-      TEX temp.x, offset, texture[2], SHADOW2D;
+      TEX depthSample.r, offset, texture[2], SHADOW2D;
+      MOV temp.x, depthSample.r;
       MOV offset.x, weight.x;
-      TEX temp.y, offset, texture[2], SHADOW2D;
+      TEX depthSample.r, offset, texture[2], SHADOW2D;
+      MOV temp.y, depthSample.r;
       MOV offset.xy, weight.zyyy;
-      TEX temp.z, offset, texture[2], SHADOW2D;
+      TEX depthSample.r, offset, texture[2], SHADOW2D;
+      MOV temp.z, depthSample.r;
       MOV offset.x, weight.x;
-      TEX temp.w, offset, texture[2], SHADOW2D;
+      TEX depthSample.r, offset, texture[2], SHADOW2D;
+      MOV temp.w, depthSample.r;
 
       MUL size, size.zxzx, size.wwyy;
       DP4 temp.x, temp, size;

@@ -86,6 +86,8 @@ CComponentManager::CComponentManager(CSimContext& context, std::shared_ptr<Scrip
 		ScriptFunction::Register<&CComponentManager::QueryInterface, Getter>(rq, "QueryInterface");
 		ScriptFunction::Register<&CComponentManager::DestroyComponentsSoon, Getter>(rq, "DestroyEntity");
 		ScriptFunction::Register<&CComponentManager::FlushDestroyedComponents, Getter>(rq, "FlushDestroyedEntities");
+		ScriptFunction::Register<&CComponentManager::Script_GetTemplate, Getter>(rq, "GetTemplate");
+
 	}
 
 	// Globalscripts may use VFS script functions
@@ -380,6 +382,23 @@ void CComponentManager::Script_RegisterMessageType(const std::string& name)
 void CComponentManager::Script_RegisterGlobal(const std::string& name, JS::HandleValue value)
 {
 	m_ScriptInterface.SetGlobal(name.c_str(), value, m_CurrentlyHotloading);
+}
+
+const CParamNode& CComponentManager::Script_GetTemplate(const std::string& templateName)
+{
+	static CParamNode nullNode(false);
+
+	ICmpTemplateManager* cmpTemplateManager = static_cast<ICmpTemplateManager*> (QueryInterface(SYSTEM_ENTITY, IID_TemplateManager));
+	if (!cmpTemplateManager)
+	{
+		LOGERROR("Template manager is not loaded");
+		return nullNode;
+	}
+
+	const CParamNode* tmpl = cmpTemplateManager->GetTemplate(templateName);
+	if (!tmpl)
+		return nullNode;
+	return *tmpl;
 }
 
 std::vector<int> CComponentManager::Script_GetEntitiesWithInterface(int iid)

@@ -300,20 +300,12 @@ public:
 
 		m_TemplateWeight = paramNode.GetChild("Weight").ToFixed();
 
-		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
-		if (cmpPathfinder)
-		{
-			m_PassClassName = paramNode.GetChild("PassabilityClass").ToString();
-			m_PassClass = cmpPathfinder->GetPassabilityClass(m_PassClassName);
-			m_Clearance = cmpPathfinder->GetClearance(m_PassClass);
+		m_PassClassName = paramNode.GetChild("PassabilityClass").ToString();
+		SetPassabilityData(m_PassClassName);
 
-			CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
-			if (cmpObstruction)
-			{
-				cmpObstruction->SetUnitClearance(m_Clearance);
-				m_BlockMovement = cmpObstruction->GetBlockMovementFlag(true);
-			}
-		}
+		CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+		if (cmpObstruction)
+			m_BlockMovement = cmpObstruction->GetBlockMovementFlag(true);
 
 		SetParticipateInPushing(!paramNode.GetChild("DisablePushing").IsOk() || !paramNode.GetChild("DisablePushing").ToBool());
 
@@ -327,6 +319,7 @@ public:
 	template<typename S>
 	void SerializeCommon(S& serialize)
 	{
+		// m_Clearance and m_PassClass are constructed from this.
 		serialize.StringASCII("pass class", m_PassClassName, 0, 64);
 
 		serialize.NumberU32_Unbounded("ticket", m_ExpectedPathTicket.m_Ticket);
@@ -371,9 +364,7 @@ public:
 
 		SerializeCommon(deserialize);
 
-		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
-		if (cmpPathfinder)
-			m_PassClass = cmpPathfinder->GetPassabilityClass(m_PassClassName);
+		SetPassabilityData(m_PassClassName);
 
 		CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
 		if (cmpObstruction)
@@ -519,10 +510,12 @@ public:
 
 	void SetPassabilityClassName(const std::string& passClassName) override
 	{
-		m_PassClassName = passClassName;
-		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
-		if (cmpPathfinder)
-			m_PassClass = cmpPathfinder->GetPassabilityClass(passClassName);
+		if (!m_IsFormationController)
+		{
+			LOGWARNING("Only formation controllers can change their passability class");
+			return;
+		}
+		SetPassabilityData(passClassName);
 	}
 
 	fixed GetCurrentSpeed() const override
@@ -626,6 +619,21 @@ private:
 	{
 		CmpPtr<ICmpUnitMotionManager> cmpUnitMotionManager(GetSystemEntity());
 		m_Pushing = pushing && cmpUnitMotionManager->IsPushingActivated();
+	}
+
+	void SetPassabilityData(const std::string& passClassName)
+	{
+		m_PassClassName = passClassName;
+		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
+		if (cmpPathfinder)
+		{
+			m_PassClass = cmpPathfinder->GetPassabilityClass(passClassName);
+			m_Clearance = cmpPathfinder->GetClearance(m_PassClass);
+
+			CmpPtr<ICmpObstruction> cmpObstruction(GetEntityHandle());
+			if (cmpObstruction)
+				cmpObstruction->SetUnitClearance(m_Clearance);
+		}
 	}
 
 	/**

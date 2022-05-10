@@ -6,6 +6,7 @@
 # Alex Hex
 # Andrei Cosma
 # Danila Catalin
+# Florentina Petcu
 # Marius Nan
 # Raz Taz
 # Stefan Bayreuther
@@ -14,7 +15,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-05-02 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Stefan Bayreuther <stefan-bayreuther@web.de>, 2021\n"
+"Last-Translator: Florentina Petcu, 2022\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -277,7 +278,7 @@ msgstr[2] ""
 #: gui/common/gamedescription.js:288
 msgctxt "Map Selection"
 msgid "Random Map"
-msgstr ""
+msgstr "Hartă aleatorie"
 
 #: gui/common/gamedescription.js:289
 msgid "Randomly select a map from the list."
@@ -355,17 +356,17 @@ msgstr ""
 
 #: gui/common/gamedescription.js:385
 msgid "Treasures"
-msgstr ""
+msgstr "Comori"
 
 #: gui/common/gamedescription.js:387
 msgctxt "treasures"
 msgid "Disabled"
-msgstr ""
+msgstr "Dezactivat"
 
 #: gui/common/gamedescription.js:388
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr ""
+msgstr "Așa cum e definit de hartă."
 
 #: gui/common/gamedescription.js:392
 msgid "Explored Map"
@@ -417,11 +418,11 @@ msgstr "Activat"
 
 #: gui/common/gamedescription.js:440
 msgid "Victorious"
-msgstr ""
+msgstr "Victorios"
 
 #: gui/common/gamedescription.js:445
 msgid "Defeated"
-msgstr ""
+msgstr "Învins"
 
 #: gui/common/gamedescription.js:454
 #, javascript-format
@@ -460,11 +461,11 @@ msgstr ""
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "Versiunea protocolului de internet este incorectă."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "Jocul se încarcă, te rog încearcă mai târziu."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
@@ -472,11 +473,11 @@ msgstr ""
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "AI fost eliminat."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "Ai fost interzis."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
@@ -484,7 +485,7 @@ msgstr ""
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "Server plin."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
@@ -492,7 +493,7 @@ msgstr ""
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr ""
+msgstr "Eroare: serverul nu a reușit să aloce un identificator de client unic."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
@@ -504,7 +505,7 @@ msgstr ""
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
-msgstr ""
+msgstr "Parola este invalidă."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
@@ -525,7 +526,7 @@ msgstr "S-a pierdut conexiunea cu serverul"
 
 #: gui/common/network.js:99
 msgid "Failed to connect to the server."
-msgstr ""
+msgstr "Nu a reușit să se conecteze la server."
 
 #: gui/common/network.js:101
 msgid "Disconnected"
@@ -663,12 +664,12 @@ msgstr "Necunoscut"
 #: gui/common/settings.js:388
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Mod implicit"
 
 #: gui/common/settings.js:403
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(lume)"
 
 #: gui/common/settings.js:404 gui/common/settings.js:408
 msgctxt "population capacity"
@@ -757,11 +758,11 @@ msgstr ""
 
 #: gui/common/tooltips.js:211
 msgid "Resistance:"
-msgstr ""
+msgstr "Rezistență:"
 
 #: gui/common/tooltips.js:222
 msgid "Damage:"
-msgstr ""
+msgstr "Daună:"
 
 #: gui/common/tooltips.js:225 gui/common/tooltips.js:245
 #, javascript-format
@@ -979,12 +980,12 @@ msgstr "Durată"
 #: gui/common/tooltips.js:535
 msgctxt "status effect stackability"
 msgid "(extends)"
-msgstr ""
+msgstr "(extinde)"
 
 #: gui/common/tooltips.js:537
 msgctxt "status effect stackability"
 msgid "(replaces)"
-msgstr ""
+msgstr "(înlocuiește)"
 
 #: gui/common/tooltips.js:539
 msgctxt "status effect stackability"
@@ -1017,7 +1018,7 @@ msgstr ""
 #: gui/common/tooltips.js:563
 msgctxt "garrison tooltip"
 msgid "Health"
-msgstr ""
+msgstr "Sănătate"
 
 #: gui/common/tooltips.js:577
 #, javascript-format
@@ -1031,7 +1032,7 @@ msgstr ""
 #: gui/common/tooltips.js:581
 msgctxt "nested garrison"
 msgid "+ "
-msgstr ""
+msgstr "+"
 
 #: gui/common/tooltips.js:593
 #, javascript-format
@@ -1055,7 +1056,7 @@ msgstr ""
 #: gui/common/tooltips.js:621
 msgctxt "projectiles"
 msgid "Default"
-msgstr ""
+msgstr "Mod implicit"
 
 #: gui/common/tooltips.js:626
 msgctxt "projectiles"
@@ -1068,7 +1069,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:642
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "Timp de reparare rămas:"
 
 #: gui/common/tooltips.js:646
 #, javascript-format
@@ -1093,7 +1094,7 @@ msgstr "Numărul constructorilor"
 
 #: gui/common/tooltips.js:676
 msgid "Remaining build time:"
-msgstr ""
+msgstr "Timp de construire rămas:"
 
 #: gui/common/tooltips.js:680
 #, javascript-format
@@ -1148,7 +1149,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:814
 msgid "Reward:"
-msgstr ""
+msgstr "Recompensă:"
 
 #: gui/common/tooltips.js:817
 #, javascript-format
@@ -1312,14 +1313,14 @@ msgstr ""
 #. element will open the Template Details GUI page.
 #: gui/common/tooltips.js:1211
 msgid "Right-click to view more information."
-msgstr ""
+msgstr "Click dreapta pentru a vedea mai multe informații."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
 #: gui/common/tooltips.js:1217
 msgid "Click to view more information."
-msgstr ""
+msgstr "Click pentru a vedea mai multe informații."
 
 #: gui/common/tooltips.js:1226
 msgctxt "One letter abbreviation for million"
@@ -1374,7 +1375,7 @@ msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[1].Content[11].Subtitle
 msgid "Guitar"
-msgstr ""
+msgstr "Chitară"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[12].Subtitle
 msgid "Handpan"
@@ -1447,7 +1448,7 @@ msgstr "Sunet"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[0].Subtitle
 msgid "Greek"
-msgstr ""
+msgstr "Grec"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[1].Subtitle
 msgid "Latin"
@@ -1467,7 +1468,7 @@ msgstr "Voci"
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -1514,7 +1515,7 @@ msgstr ""
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr ""
+msgstr "Hărți"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -1522,7 +1523,7 @@ msgstr ""
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
-msgstr ""
+msgstr "Mulțumiri speciale"
 
 #: gui/credits/texts/programming.jsonTitle
 msgid "Programming"
@@ -1593,7 +1594,7 @@ msgstr ""
 #: gui/hotkeys/HotkeyPicker.js:107
 msgctxt "Unassigned hotkey"
 msgid "(unused)"
-msgstr ""
+msgstr "(nefolosit)"
 
 #: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
@@ -1624,7 +1625,7 @@ msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
-msgstr ""
+msgstr "Categorie:"
 
 #: gui/hotkeys/hotkeys.xml:(caption):24
 msgid "Filter:"
@@ -1678,11 +1679,11 @@ msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):54 gui/options/options.xml:(tooltip):56
 msgid "Saves changes"
-msgstr ""
+msgstr "Salvează schimbările"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):59
 msgid "Unsaved changes will be lost"
-msgstr ""
+msgstr "Schimbările nesalvate vor fi pierdute"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
@@ -1708,7 +1709,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsoncategories.camera.name
 msgctxt "hotkey metadata"
 msgid "Camera"
-msgstr ""
+msgstr "Cameră"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.desc
 msgctxt "hotkey metadata"
@@ -2066,12 +2067,12 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
 msgctxt "hotkey metadata"
 msgid "Confirm the current command."
-msgstr ""
+msgstr "Confirmă comanda curentă."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.name
 msgctxt "hotkey metadata"
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmă"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.desc
 msgctxt "hotkey metadata"
@@ -2086,12 +2087,12 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.desc
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard."
-msgstr ""
+msgstr "Copiază în clipboard."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.name
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Copiază în clipboard"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.desc
 msgctxt "hotkey metadata"
@@ -2118,12 +2119,12 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard."
-msgstr ""
+msgstr "Lipește din clipboard."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.name
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard"
-msgstr ""
+msgstr "Lipește din clipboard"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
 msgctxt "hotkey metadata"
@@ -2143,7 +2144,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.name
 msgctxt "hotkey metadata"
 msgid "Save profile"
-msgstr ""
+msgstr "Salveză profilul"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
@@ -2681,12 +2682,12 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.desc
 msgctxt "hotkey metadata"
 msgid "Stop the current action."
-msgstr ""
+msgstr "Oprește acțiunea curentă."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.name
 msgctxt "hotkey metadata"
 msgid "Stop units"
-msgstr ""
+msgstr "Oprește unitățile"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.desc
 msgctxt "hotkey metadata"
@@ -2940,17 +2941,17 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.name
 msgctxt "hotkey metadata"
 msgid "Delete saved game"
-msgstr ""
+msgstr "Șterge jocul salvat"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Don't ask for confirmation when deleting a saved game."
-msgstr ""
+msgstr "Nu cere confirmare când se șterge un joc salvat."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Delete without confirmation"
-msgstr ""
+msgstr "Șterge fără confirmare"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.desc
 msgctxt "hotkey metadata"
@@ -3079,12 +3080,12 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.desc
 msgctxt "hotkey metadata"
 msgid "Add units to selection."
-msgstr ""
+msgstr "Adaugă unități la selecție."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.name
 msgctxt "hotkey metadata"
 msgid "Add to selection"
-msgstr ""
+msgstr "Adagă la selecție"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.desc
 msgctxt "hotkey metadata"
@@ -3094,7 +3095,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
 msgctxt "hotkey metadata"
 msgid "Cancel selection"
-msgstr ""
+msgstr "Anulează selecția"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.desc
 msgctxt "hotkey metadata"
@@ -3527,7 +3528,7 @@ msgstr ""
 
 #: gui/loadgame/SavegameDeleter.js:54
 msgid "DELETE"
-msgstr ""
+msgstr "ȘTERGE"
 
 #: gui/loadgame/SavegameDetails.js:43
 #, javascript-format
@@ -3550,7 +3551,7 @@ msgstr "%(dateString)s %(map)s"
 
 #: gui/loadgame/SavegameLoader.js:9
 msgid "Load"
-msgstr ""
+msgstr "Încarcă"
 
 #: gui/loadgame/SavegameLoader.js:39
 #, javascript-format
@@ -3579,7 +3580,7 @@ msgstr "Avertizare"
 
 #: gui/loadgame/SavegamePage.js:34
 msgid "Save Game"
-msgstr ""
+msgstr "Salvează jocul"
 
 #: gui/loadgame/SavegamePage.js:34 gui/pregame/MainMenuItems.js:103
 msgid "Load Game"
@@ -3600,7 +3601,7 @@ msgstr ""
 
 #: gui/loadgame/load.xml:(caption):44
 msgid "No saved games found."
-msgstr ""
+msgstr "Nu a fost găsit niciun joc salvat."
 
 #: gui/loadgame/load.xml:(caption):54
 #: gui/replaymenu/replay_menu.xml:(caption):234
@@ -3617,18 +3618,18 @@ msgstr "Jucători"
 
 #: gui/loadgame/load.xml:(caption):78
 msgid "Played time:"
-msgstr ""
+msgstr "Timpul jucat:"
 
 #: gui/loadgame/load.xml:(caption):82
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):32
 #: gui/replaymenu/replay_menu.xml:(caption):153
 msgid "Map Type:"
-msgstr ""
+msgstr "Tipul hărții:"
 
 #: gui/loadgame/load.xml:(caption):86
 #: gui/replaymenu/replay_menu.xml:(caption):168
 msgid "Map Size:"
-msgstr ""
+msgstr "Dimensiunea hărții:"
 
 #: gui/loadgame/load.xml:(caption):90
 #: gui/replaymenu/replay_menu.xml:(caption):183
@@ -3639,7 +3640,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(heading):71
 msgctxt "replay"
 msgid "Date / Time"
-msgstr ""
+msgstr "Dată / Timp"
 
 #: gui/loadgame/load.xml:(heading):31
 msgctxt "replay"
@@ -3687,7 +3688,7 @@ msgstr ""
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):25
 msgid "Country:"
-msgstr ""
+msgstr "Țară:"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):34
 msgid "Script:"
@@ -3822,7 +3823,7 @@ msgstr ""
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
-msgstr ""
+msgstr "Caută hartă:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
 msgid "Map Filter:"
@@ -3835,15 +3836,15 @@ msgstr ""
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):54
 msgctxt "map selection dialog"
 msgid "Select"
-msgstr ""
+msgstr "Selectează"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:27
 msgid "Go to the previous page."
-msgstr ""
+msgstr "Mergi la pagina anterioară."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:28
 msgid "Go to the next page."
-msgstr ""
+msgstr "Mergi la pagina următoare."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
@@ -4058,7 +4059,7 @@ msgstr ""
 #: gui/options/options.json[1].options[1].label
 #: gui/options/options.json[2].options[1].label
 msgid "Fog"
-msgstr ""
+msgstr "Ceață"
 
 #: gui/options/options.json[1].options[1].tooltip
 #: gui/options/options.json[2].options[1].tooltip
@@ -4136,35 +4137,35 @@ msgstr ""
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "75%"
-msgstr ""
+msgstr "75%"
 
 #: gui/options/options.json[1].options[9].list[1].label
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: gui/options/options.json[1].options[9].list[2].label
 msgid "125%"
-msgstr ""
+msgstr "125%"
 
 #: gui/options/options.json[1].options[9].list[3].label
 msgid "150%"
-msgstr ""
+msgstr "150%"
 
 #: gui/options/options.json[1].options[9].list[4].label
 msgid "175%"
-msgstr ""
+msgstr "175%"
 
 #: gui/options/options.json[1].options[9].list[5].label
 msgid "200%"
-msgstr ""
+msgstr "200%"
 
 #: gui/options/options.json[1].options[9].list[6].label
 msgid "225%"
-msgstr ""
+msgstr "225%"
 
 #: gui/options/options.json[1].options[9].list[7].label
 msgid "250%"
-msgstr ""
+msgstr "250%"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -4180,7 +4181,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[0].list[0].label
 msgid "OpenGL"
-msgstr ""
+msgstr "OpenGL"
 
 #: gui/options/options.json[2].options[0].list[0].tooltip
 msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
@@ -4208,7 +4209,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[2].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[2].label
 msgid "Disabled"
-msgstr ""
+msgstr "Dezactivat"
 
 #: gui/options/options.json[2].options[3].list[0].tooltip
 msgid "Do not use antialiasing."
@@ -4296,7 +4297,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].label
 msgid "Model quality"
-msgstr ""
+msgstr "Calitatea modelului"
 
 #: gui/options/options.json[2].options[6].list[0].label._string
 msgctxt "Option for the meshes' level of detail."
@@ -4314,7 +4315,7 @@ msgstr "Mediu"
 
 #: gui/options/options.json[2].options[6].list[0][1].label.tooltip
 msgid "Average quality and average performance."
-msgstr ""
+msgstr "Calitate medie și performanță medie."
 
 #: gui/options/options.json[2].options[6].list[0][1][2].label._string
 msgctxt "Option for the meshes' level of detail."
@@ -4340,7 +4341,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].label
 msgid "Quality"
-msgstr ""
+msgstr "Calitate"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0].label._string
 msgctxt "Option for the shadow quality."
@@ -4370,7 +4371,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][13].label
 msgid "Cover whole map"
-msgstr ""
+msgstr "Acoperă întreaga hartă"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][13].tooltip
 msgid ""
@@ -4380,7 +4381,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].label
 msgid "Water effects"
-msgstr ""
+msgstr "Efect de apă"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].tooltip
 msgid ""
@@ -4400,7 +4401,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].label
 msgid "Water reflections"
-msgstr ""
+msgstr "Reflexiile apei"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].tooltip
 msgid "Allow water to reflect a mirror image."
@@ -4408,7 +4409,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][17].label
 msgid "Water refraction"
-msgstr ""
+msgstr "Refracția apei"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][17].tooltip
 msgid "Use a real water refraction map and not transparency."
@@ -4416,7 +4417,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][18].label
 msgid "Real water depth"
-msgstr ""
+msgstr "Adâncime reală a apei"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][18].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -4424,7 +4425,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].label
 msgid "Texture quality"
-msgstr ""
+msgstr "Calitatea texturii"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0].label._string
 msgctxt "Option for the texture quality."
@@ -4433,7 +4434,7 @@ msgstr "Puține"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0].label.tooltip
 msgid "Low"
-msgstr ""
+msgstr "Scăzut"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1].label._string
 msgctxt "Option for the texture quality."
@@ -4451,7 +4452,7 @@ msgstr "Multe"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1][2].label.tooltip
 msgid "High"
-msgstr ""
+msgstr "Ridicat"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].label
 msgid "Texture anisotropic filter"
@@ -4816,15 +4817,15 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[0].label
 msgid "Unordered"
-msgstr ""
+msgstr "Neordonat"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[1].label
 msgid "Ascending"
-msgstr ""
+msgstr "Crescător"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[2].label
 msgid "Descending"
-msgstr ""
+msgstr "Descrescător"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].tooltip
 msgid ""
@@ -4904,7 +4905,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].label
 msgid "Single"
-msgstr ""
+msgstr "Singur"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[0].tooltip
 msgid ""
@@ -4915,7 +4916,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].label
 msgid "Multiple"
-msgstr ""
+msgstr "Multiplu"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].list[1].tooltip
 msgid ""
@@ -5020,11 +5021,11 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[0].label
 msgid "Disable"
-msgstr ""
+msgstr "Dezactivează"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[1].label
 msgid "Completed"
-msgstr ""
+msgstr "Terminat"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[2].label
 msgid "All displayed"
@@ -5073,7 +5074,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1].label._string
 msgctxt "Option for the meshes' amount of variety."
 msgid "Limited"
-msgstr ""
+msgstr "Limitat"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1].label.tooltip
 msgid "Entities will be less diverse."
@@ -5146,7 +5147,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
-msgstr ""
+msgstr "Tutorial"
 
 #: gui/pregame/MainMenuItems.js:15
 msgid "Start the introductory tutorial."
@@ -5222,15 +5223,15 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:104
 msgid "Load a saved game."
-msgstr ""
+msgstr "Încarcă un joc salvat."
 
 #: gui/pregame/MainMenuItems.js:126
 msgid "New Campaign"
-msgstr ""
+msgstr "Campanie nouă"
 
 #: gui/pregame/MainMenuItems.js:133
 msgid "Load Campaign"
-msgstr ""
+msgstr "Încarcă campania"
 
 #: gui/pregame/MainMenuItems.js:143 gui/pregame/MainMenuItems.js:193
 msgid "Replays"
@@ -5368,7 +5369,7 @@ msgstr "Ieşi"
 
 #: gui/pregame/MainMenuItems.js:278
 msgid "Exit the game."
-msgstr ""
+msgstr "Închide jocul."
 
 #: gui/pregame/MainMenuItems.js:282
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -5435,7 +5436,7 @@ msgstr ""
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
-msgstr ""
+msgstr "Donează"
 
 #: gui/pregame/ProjectInformation.js:66
 msgid "Help with the project expenses by donating."
@@ -5444,7 +5445,7 @@ msgstr ""
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr ""
+msgstr "Termeni"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
@@ -5605,7 +5606,7 @@ msgstr ""
 
 #: gui/reference/common/Dropdowns/CivSelectDropdown.js:63
 msgid "Civilization:"
-msgstr ""
+msgstr "Civilizație:"
 
 #: gui/reference/common/TemplateParser.js:152
 #, javascript-format
@@ -5622,14 +5623,14 @@ msgstr ""
 #. structure selected.
 #: gui/reference/common/tooltips.js:27
 msgid "Built by:"
-msgstr ""
+msgstr "Construit de:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit
 #. selected.
 #: gui/reference/common/tooltips.js:33
 msgid "Trained by:"
-msgstr ""
+msgstr "Antrenat de:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the
@@ -5843,7 +5844,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(caption):228
 msgid "Main Menu"
-msgstr ""
+msgstr "Meniul principal"
 
 #: gui/replaymenu/replay_menu.xml:(caption):240
 msgid "Rebuild Cache"
@@ -5861,7 +5862,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(heading):75
 msgctxt "replay"
 msgid "Players"
-msgstr ""
+msgstr "Jucători"
 
 #: gui/replaymenu/replay_menu.xml:(heading):83
 msgctxt "replay"
@@ -5880,7 +5881,7 @@ msgstr "Durată"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "Caută jucător"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):98
 msgid "File path for the currently selected replay."
@@ -5925,7 +5926,7 @@ msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
-msgstr ""
+msgstr "Bine ai venit!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):19
 msgid "Show this message in the future"
@@ -5947,7 +5948,7 @@ msgstr "Scor"
 #: gui/summary/layout.js:110 gui/summary/layout.js:161
 #: gui/summary/layout.js:193 gui/summary/summary.xml:(caption):70
 msgid "Player name"
-msgstr ""
+msgstr "Numele jucătorului"
 
 #: gui/summary/layout.js:16
 msgid "Total score"
@@ -6010,7 +6011,7 @@ msgstr ""
 
 #: gui/summary/layout.js:69
 msgid "Units"
-msgstr ""
+msgstr "Unități"
 
 #: gui/summary/layout.js:73
 msgid "Infantry"
@@ -6204,7 +6205,7 @@ msgstr "Folosit"
 
 #: gui/summary/summary.js:94
 msgid "Received"
-msgstr ""
+msgstr "Primit"
 
 #: gui/summary/summary.js:104
 msgid "Sold"
@@ -6216,7 +6217,7 @@ msgstr ""
 
 #: gui/summary/summary.js:114
 msgid "Failed"
-msgstr ""
+msgstr "Eșuat"
 
 #: gui/summary/summary.js:201
 #, javascript-format
@@ -6236,7 +6237,7 @@ msgstr ", "
 
 #: gui/summary/summary.js:340
 msgid "Time elapsed"
-msgstr ""
+msgstr "Timp scurs"
 
 #: gui/summary/summary.js:510
 msgid "Current Scores"
@@ -6244,11 +6245,11 @@ msgstr "Scoruri curente"
 
 #: gui/summary/summary.js:512
 msgid "Scores at the end of the game."
-msgstr ""
+msgstr "Punctaj la finalul jocului."
 
 #: gui/summary/summary.js:514
 msgid "You have been disconnected."
-msgstr ""
+msgstr "Ai fost deconectat."
 
 #: gui/summary/summary.js:516
 msgid "You have left the game."
@@ -6260,7 +6261,7 @@ msgstr "Ați câștigat bătălia!"
 
 #: gui/summary/summary.js:520
 msgid "You have been defeated…"
-msgstr ""
+msgstr "AI fost învins ..."
 
 #: gui/summary/summary.js:521
 msgid "You have abandoned the game."
@@ -6289,17 +6290,17 @@ msgstr ""
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
 msgid "Category:"
-msgstr ""
+msgstr "Categorie:"
 
 #: gui/summary/summary.xml:(caption):130
 msgctxt "summary chart"
 msgid "Value:"
-msgstr ""
+msgstr "Valoare:"
 
 #: gui/summary/summary.xml:(caption):140
 msgctxt "summary chart"
 msgid "Type:"
-msgstr ""
+msgstr "Tip:"
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
@@ -6316,17 +6317,17 @@ msgstr "Continuați"
 #: gui/summary/summary.xml:(tooltip):126
 msgctxt "summary chart"
 msgid "Category"
-msgstr ""
+msgstr "Categorie"
 
 #: gui/summary/summary.xml:(tooltip):136
 msgctxt "summary chart"
 msgid "Value"
-msgstr ""
+msgstr "Valoare"
 
 #: gui/summary/summary.xml:(tooltip):147
 msgctxt "summary chart"
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
