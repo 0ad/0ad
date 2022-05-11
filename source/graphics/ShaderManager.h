@@ -101,8 +101,12 @@ private:
 	EffectCacheMap m_EffectCache;
 
 	// Store the set of shaders that need to be reloaded when the given file is modified
-	using HotloadFilesMap = std::unordered_map<VfsPath, std::set<std::weak_ptr<CShaderProgram>, std::owner_less<std::weak_ptr<CShaderProgram> > > >;
-	HotloadFilesMap m_HotloadFiles;
+	template<typename T>
+	using HotloadFilesMap = std::unordered_map<
+		VfsPath,
+		std::set<std::weak_ptr<T>, std::owner_less<std::weak_ptr<T>>>>;
+	HotloadFilesMap<CShaderTechnique> m_HotloadTechniques;
+	HotloadFilesMap<CShaderProgram> m_HotloadPrograms;
 
 	/**
 	 * Load a shader program.
@@ -112,10 +116,15 @@ private:
 	 */
 	CShaderProgramPtr LoadProgram(const CStr& name, const CShaderDefines& defines);
 
-	bool NewEffect(const CStr& name, const CShaderDefines& defines, CShaderTechniquePtr& tech);
+	bool LoadTechnique(CShaderTechniquePtr& tech);
 
 	static Status ReloadChangedFileCB(void* param, const VfsPath& path);
 	Status ReloadChangedFile(const VfsPath& path);
+
+	/**
+	 * Associates the file with the technique to be reloaded if the file has changed.
+	 */
+	void AddTechniqueFileDependency(const CShaderTechniquePtr& technique, const VfsPath& path);
 
 	/**
 	 * Associates the file with the program to be reloaded if the file has changed.

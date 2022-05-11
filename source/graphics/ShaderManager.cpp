@@ -118,8 +118,9 @@ CShaderTechniquePtr CShaderManager::LoadEffect(CStrIntern name, const CShaderDef
 		return it->second;
 
 	// First time we've seen this key, so construct a new effect:
-	CShaderTechniquePtr tech(new CShaderTechnique());
-	if (!NewEffect(name.c_str(), defines, tech))
+	const VfsPath xmlFilename = L"shaders/effects/" + wstring_from_utf8(name.string()) + L".xml";
+	CShaderTechniquePtr tech(new CShaderTechnique(xmlFilename, defines));
+	if (!LoadTechnique(tech))
 	{
 		LOGERROR("Failed to load effect '%s'", name.c_str());
 		tech = CShaderTechniquePtr();
@@ -129,15 +130,15 @@ CShaderTechniquePtr CShaderManager::LoadEffect(CStrIntern name, const CShaderDef
 	return tech;
 }
 
-bool CShaderManager::NewEffect(const CStr& name, const CShaderDefines& baseDefines, CShaderTechniquePtr& tech)
+bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 {
-	PROFILE2("loading effect");
-	PROFILE2_ATTR("name: %s", name.c_str());
+	PROFILE2("loading technique");
+	PROFILE2_ATTR("name: %s", tech->GetPath().string8().c_str());
 
-	VfsPath xmlFilename = L"shaders/effects/" + wstring_from_utf8(name) + L".xml";
+	AddTechniqueFileDependency(tech, tech->GetPath());
 
 	CXeromyces XeroFile;
-	PSRETURN ret = XeroFile.Load(g_VFS, xmlFilename);
+	PSRETURN ret = XeroFile.Load(g_VFS, tech->GetPath());
 	if (ret != PSRETURN_OK)
 		return false;
 
@@ -146,7 +147,7 @@ bool CShaderManager::NewEffect(const CStr& name, const CShaderDefines& baseDefin
 	{
 		const Renderer::Backend::GraphicsPipelineStateDesc passPipelineStateDesc =
 			Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc();
-		tech->SetPasses({{passPipelineStateDesc, LoadProgram("dummy", baseDefines)}});
+		tech->SetPasses({{passPipelineStateDesc, LoadProgram("dummy", tech->GetShaderDefines())}});
 		return true;
 	}
 
@@ -192,7 +193,7 @@ bool CShaderManager::NewEffect(const CStr& name, const CShaderDefines& baseDefin
 
 	// Prepare the preprocessor for conditional tests
 	CPreprocessorWrapper preprocessor;
-	preprocessor.AddDefines(baseDefines);
+	preprocessor.AddDefines(tech->GetShaderDefines());
 
 	XMBElement Root = XeroFile.GetRoot();
 
@@ -242,7 +243,9 @@ bool CShaderManager::NewEffect(const CStr& name, const CShaderDefines& baseDefin
 		return false;
 	}
 
-	CShaderDefines techDefines = baseDefines;
+	tech->SetSortByDistance(false);
+
+	CShaderDefines techDefines = tech->GetShaderDefines();
 	XERO_ITER_EL(usableTechs[0], Child)
 	{
 		if (Child.GetNodeName() == el_define)
@@ -401,10 +404,15 @@ bool CShaderManager::NewEffect(const CStr& name, const CShaderDefines& baseDefin
 				}
 			}
 
-			techPasses.emplace_back(
-				passPipelineStateDesc,
-				// Load the shader program after we've read all the possibly-relevant <define>s.
-				LoadProgram(Child.GetAttributes().GetNamedItem(at_shader).c_str(), passDefines));
+			// Load the shader program after we've read all the possibly-relevant <define>s.
+			CShaderProgramPtr shaderProgram =
+				LoadProgram(Child.GetAttributes().GetNamedItem(at_shader).c_str(), passDefines);
+			if (shaderProgram)
+			{
+				for (const VfsPath& shaderProgramPath : shaderProgram->GetFileDependencies())
+					AddTechniqueFileDependency(tech, shaderProgramPath);
+				techPasses.emplace_back(passPipelineStateDesc, shaderProgram);
+			}
 		}
 	}
 
@@ -425,22 +433,39 @@ size_t CShaderManager::GetNumEffectsLoaded() const
 
 Status CShaderManager::ReloadChangedFile(const VfsPath& path)
 {
-	// Find all shaders using this file
-	HotloadFilesMap::iterator files = m_HotloadFiles.find(path);
-	if (files == m_HotloadFiles.end())
-		return INFO::OK;
+	// Find all shader programs using this file.
+	const auto programs = m_HotloadPrograms.find(path);
+	if (programs != m_HotloadPrograms.end())
+	{
+		// Reload all shader programs using this file.
+		for (const std::weak_ptr<CShaderProgram>& ptr : programs->second)
+			if (std::shared_ptr<CShaderProgram> program = ptr.lock())
+				program->Reload();
+	}
 
-	// Reload all shaders using this file
-	for (const std::weak_ptr<CShaderProgram>& ptr : files->second)
-		if (std::shared_ptr<CShaderProgram> program = ptr.lock())
-			program->Reload();
-
-	// TODO: hotloading changes to shader XML files and effect XML files would be nice
+	// Find all shader techinques using this file. We need to reload them after
+	// shader programs.
+	const auto techniques = m_HotloadTechniques.find(path);
+	if (techniques != m_HotloadTechniques.end())
+	{
+		// Reload all shader techinques using this file.
+		for (const std::weak_ptr<CShaderTechnique>& ptr : techniques->second)
+			if (std::shared_ptr<CShaderTechnique> technique = ptr.lock())
+			{
+				if (!LoadTechnique(technique))
+					LOGERROR("Failed to reload technique '%s'", technique->GetPath().string8().c_str());
+			}
+	}
 
 	return INFO::OK;
 }
 
+void CShaderManager::AddTechniqueFileDependency(const CShaderTechniquePtr& technique, const VfsPath& path)
+{
+	m_HotloadTechniques[path].insert(technique);
+}
+
 void CShaderManager::AddProgramFileDependency(const CShaderProgramPtr& program, const VfsPath& path)
 {
-	m_HotloadFiles[path].insert(program);
+	m_HotloadPrograms[path].insert(program);
 }

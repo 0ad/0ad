@@ -1189,11 +1189,8 @@ void CInput::UpdateCachedSize()
 	m_GeneratedPlaceholderTextValid = false;
 }
 
-void CInput::Draw(CCanvas2D& canvas)
+void CInput::DrawContent(CCanvas2D& canvas)
 {
-	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
-		g_Renderer.GetDeviceCommandContext();
-
 	if (m_CursorBlinkRate > 0.0)
 	{
 		// check if the cursor visibility state needs to be changed
@@ -1222,37 +1219,6 @@ void CInput::Draw(CCanvas2D& canvas)
 
 	CFontMetrics font(font_name);
 
-	// We'll have to setup clipping manually, since we're doing the rendering manually.
-	CRect cliparea(m_CachedActualSize);
-
-	// First we'll figure out the clipping area, which is the cached actual size
-	//  substracted by an optional scrollbar
-	if (m_ScrollBar)
-	{
-		scroll = GetScrollBar(0).GetPos();
-
-		// substract scrollbar from cliparea
-		if (cliparea.right > GetScrollBar(0).GetOuterRect().left &&
-		    cliparea.right <= GetScrollBar(0).GetOuterRect().right)
-			cliparea.right = GetScrollBar(0).GetOuterRect().left;
-
-		if (cliparea.left >= GetScrollBar(0).GetOuterRect().left &&
-		    cliparea.left < GetScrollBar(0).GetOuterRect().right)
-			cliparea.left = GetScrollBar(0).GetOuterRect().right;
-	}
-
-	if (cliparea != CRect())
-	{
-		const float scale = g_VideoMode.GetScale();
-		Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
-		scissorRect.x = cliparea.left * scale;
-		scissorRect.y = g_yres - cliparea.bottom * scale;
-		scissorRect.width = cliparea.GetWidth() * scale;
-		scissorRect.height = cliparea.GetHeight() * scale;
-		// TODO: move scissors to CCanvas2D.
-		deviceCommandContext->SetScissors(1, &scissorRect);
-	}
-
 	// These are useful later.
 	int VirtualFrom, VirtualTo;
 
@@ -1276,7 +1242,7 @@ void CInput::Draw(CCanvas2D& canvas)
 
 	textRenderer.Translate(
 		(float)(int)(m_CachedActualSize.left) + m_BufferZone,
-		(float)(int)(m_CachedActualSize.top+h) + m_BufferZone);
+		(float)(int)(m_CachedActualSize.top + h) + m_BufferZone);
 
 	// U+FE33: PRESENTATION FORM FOR VERTICAL LOW LINE
 	// (sort of like a | which is aligned to the left of most characters)
@@ -1326,15 +1292,15 @@ void CInput::Draw(CCanvas2D& canvas)
 
 		bool done = false;
 		for (std::list<SRow>::const_iterator it = m_CharacterPositions.begin();
-		     it != m_CharacterPositions.end();
-		     ++it, buffered_y += ls, x_pointer = 0.f)
+			it != m_CharacterPositions.end();
+			++it, buffered_y += ls, x_pointer = 0.f)
 		{
 			if (m_MultiLine && buffered_y > m_CachedActualSize.GetHeight())
 				break;
 
 			// We might as well use 'i' here to iterate, because we need it
 			// (often compared against ints, so don't make it size_t)
-			for (int i = 0; i < (int)it->m_ListOfX.size()+2; ++i)
+			for (int i = 0; i < (int)it->m_ListOfX.size() + 2; ++i)
 			{
 				if (it->m_ListStart + i == virtualFrom)
 				{
@@ -1348,7 +1314,7 @@ void CInput::Draw(CCanvas2D& canvas)
 					box_x = x_pointer;
 				}
 
-				const bool at_end = (i == (int)it->m_ListOfX.size()+1);
+				const bool at_end = (i == (int)it->m_ListOfX.size() + 1);
 
 				if (drawing_box && (it->m_ListStart + i == virtualTo || at_end))
 				{
@@ -1432,8 +1398,8 @@ void CInput::Draw(CCanvas2D& canvas)
 	bool using_selected_color = false;
 
 	for (std::list<SRow>::const_iterator it = m_CharacterPositions.begin();
-	     it != m_CharacterPositions.end();
-	     ++it, buffered_y += ls)
+		it != m_CharacterPositions.end();
+		++it, buffered_y += ls)
 	{
 		if (buffered_y + m_BufferZone >= -ls || !m_MultiLine)
 		{
@@ -1450,7 +1416,7 @@ void CInput::Draw(CCanvas2D& canvas)
 
 			// We might as well use 'i' here, because we need it
 			// (often compared against ints, so don't make it size_t)
-			for (int i = 0; i < (int)it->m_ListOfX.size()+1; ++i)
+			for (int i = 0; i < (int)it->m_ListOfX.size() + 1; ++i)
 			{
 				if (!m_MultiLine && i < (int)it->m_ListOfX.size())
 				{
@@ -1460,7 +1426,7 @@ void CInput::Draw(CCanvas2D& canvas)
 						if (i == 0)
 							textRenderer.Translate(it->m_ListOfX[i], 0.f);
 						else
-							textRenderer.Translate(it->m_ListOfX[i] - it->m_ListOfX[i-1], 0.f);
+							textRenderer.Translate(it->m_ListOfX[i] - it->m_ListOfX[i - 1], 0.f);
 
 						continue;
 					}
@@ -1479,9 +1445,9 @@ void CInput::Draw(CCanvas2D& canvas)
 
 				// Drawing selected area
 				if (SelectingText() &&
-				    it->m_ListStart + i >= VirtualFrom &&
-				    it->m_ListStart + i < VirtualTo &&
-				    !using_selected_color)
+					it->m_ListStart + i >= VirtualFrom &&
+					it->m_ListStart + i < VirtualTo &&
+					!using_selected_color)
 				{
 					using_selected_color = true;
 					textRenderer.SetCurrentColor(m_TextColorSelected);
@@ -1497,7 +1463,7 @@ void CInput::Draw(CCanvas2D& canvas)
 
 				// check it's now outside a one-liner, then we'll break
 				if (!m_MultiLine && i < (int)it->m_ListOfX.size() &&
-				    it->m_ListOfX[i] - m_HorizontalScroll > m_CachedActualSize.GetWidth() - m_BufferZone)
+					it->m_ListOfX[i] - m_HorizontalScroll > m_CachedActualSize.GetWidth() - m_BufferZone)
 					break;
 			}
 
@@ -1518,8 +1484,48 @@ void CInput::Draw(CCanvas2D& canvas)
 	}
 
 	canvas.DrawText(textRenderer);
+}
 
-	if (cliparea != CRect())
+void CInput::Draw(CCanvas2D& canvas)
+{
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
+		g_Renderer.GetDeviceCommandContext();
+
+	// We'll have to setup clipping manually, since we're doing the rendering manually.
+	CRect cliparea(m_CachedActualSize);
+
+	// First we'll figure out the clipping area, which is the cached actual size
+	//  substracted by an optional scrollbar
+	if (m_ScrollBar)
+	{
+		// substract scrollbar from cliparea
+		if (cliparea.right > GetScrollBar(0).GetOuterRect().left &&
+			cliparea.right <= GetScrollBar(0).GetOuterRect().right)
+			cliparea.right = GetScrollBar(0).GetOuterRect().left;
+
+		if (cliparea.left >= GetScrollBar(0).GetOuterRect().left &&
+			cliparea.left < GetScrollBar(0).GetOuterRect().right)
+			cliparea.left = GetScrollBar(0).GetOuterRect().right;
+	}
+
+	const bool isClipped = cliparea != CRect();
+	if (isClipped)
+	{
+		if (cliparea.GetWidth() <= 0.0f || cliparea.GetHeight() <= 0.0f)
+			return;
+		const float scale = g_VideoMode.GetScale();
+		Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
+		scissorRect.x = cliparea.left * scale;
+		scissorRect.y = g_yres - cliparea.bottom * scale;
+		scissorRect.width = cliparea.GetWidth() * scale;
+		scissorRect.height = cliparea.GetHeight() * scale;
+		// TODO: move scissors to CCanvas2D.
+		deviceCommandContext->SetScissors(1, &scissorRect);
+	}
+
+	DrawContent(canvas);
+
+	if (isClipped)
 		deviceCommandContext->SetScissors(0, nullptr);
 
 	if (m_Caption->empty() && !m_PlaceholderText->GetRawString().empty())
