@@ -892,7 +892,7 @@ Formation.prototype.GetRealOffsetPositions = function(offsets)
 
 Formation.prototype.AreAnglesSimilar = function(a1, a2)
 {
-	const d = Math.abs(a1 - a2) % 2 * Math.PI;
+	const d = Math.abs(a1 - a2) % (2 * Math.PI);
 	return d < this.maxTurningAngle || d > 2 * Math.PI - this.maxTurningAngle;
 };
 
