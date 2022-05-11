@@ -137,10 +137,7 @@ Trigger.prototype.LoadAttackerTemplates = function()
 Trigger.prototype.SetDisableTemplates = function()
 {
 	for (let i = 1; i < TriggerHelper.GetNumberOfPlayers(); ++i)
-	{
-		let cmpPlayer = QueryPlayerIDInterface(i);
-		cmpPlayer.SetDisabledTemplates(disabledTemplates(cmpPlayer.GetCiv()));
-	}
+		QueryPlayerIDInterface(i).SetDisabledTemplates(disabledTemplates(QueryPlayerIDInterface(i, IID_Identity).GetCiv()));
 };
 
 /**
