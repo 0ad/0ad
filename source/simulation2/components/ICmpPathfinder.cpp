@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
 BEGIN_INTERFACE_WRAPPER(Pathfinder)
 DEFINE_INTERFACE_METHOD("SetDebugOverlay", ICmpPathfinder, SetDebugOverlay)
 DEFINE_INTERFACE_METHOD("SetHierDebugOverlay", ICmpPathfinder, SetHierDebugOverlay)
+DEFINE_INTERFACE_METHOD("GetClearance", ICmpPathfinder, GetClearance)
 DEFINE_INTERFACE_METHOD("GetPassabilityClass", ICmpPathfinder, GetPassabilityClass)
 DEFINE_INTERFACE_METHOD("UpdateGrid", ICmpPathfinder, UpdateGrid)
 END_INTERFACE_WRAPPER(Pathfinder)

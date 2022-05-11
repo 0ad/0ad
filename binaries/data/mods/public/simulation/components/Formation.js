@@ -903,21 +903,32 @@ Formation.prototype.ComputeMotionParameters = function()
 {
 	let minSpeed = Infinity;
 	let minAcceleration = Infinity;
+	let maxClearance = 0;
+	let maxPassClass;
 
+	const cmpPathfinder = Engine.QueryInterface(SYSTEM_ENTITY, IID_Pathfinder);
 	for (let ent of this.members)
 	{
-		let cmpUnitMotion = Engine.QueryInterface(ent, IID_UnitMotion);
-		if (cmpUnitMotion)
+		const cmpUnitMotion = Engine.QueryInterface(ent, IID_UnitMotion);
+		if (!cmpUnitMotion)
+			continue;
+		minSpeed = Math.min(minSpeed, cmpUnitMotion.GetWalkSpeed());
+		minAcceleration = Math.min(minAcceleration, cmpUnitMotion.GetAcceleration());
+
+		const passClass = cmpUnitMotion.GetPassabilityClassName();
+		const clearance = cmpPathfinder.GetClearance(cmpPathfinder.GetPassabilityClass(passClass));
+		if (clearance > maxClearance)
 		{
-			minSpeed = Math.min(minSpeed, cmpUnitMotion.GetWalkSpeed());
-			minAcceleration = Math.min(minAcceleration, cmpUnitMotion.GetAcceleration());
+			maxClearance = clearance;
+			maxPassClass = passClass;
 		}
 	}
 	minSpeed *= this.GetSpeedMultiplier();
 
-	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	const cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	cmpUnitMotion.SetSpeedMultiplier(minSpeed / cmpUnitMotion.GetWalkSpeed());
 	cmpUnitMotion.SetAcceleration(minAcceleration);
+	cmpUnitMotion.SetPassabilityClassName(maxPassClass);
 };
 
 Formation.prototype.ShapeUpdate = function()

@@ -247,10 +247,16 @@ function TestFormationExiting(mode)
 		"StopMoving": () => {},
 		"SetSpeedMultiplier": () => {},
 		"SetAcceleration": (accel) => {},
+		"SetPassabilityClassName": (name) => {},
 		"MoveToPointRange": () => true,
 		"SetFacePointAfterMove": () => {},
 		"GetFacePointAfterMove": () => true,
 		"GetPassabilityClassName": () => "default"
+	});
+
+	AddMock(SYSTEM_ENTITY, IID_Pathfinder, {
+		"GetClearance": () => 1,
+		"GetPassabilityClass": () => 16
 	});
 
 	controllerAI.OnCreate();
@@ -420,11 +426,17 @@ function TestMoveIntoFormationWhileAttacking()
 		"GetWalkSpeed": () => 1,
 		"SetSpeedMultiplier": (speed) => {},
 		"SetAcceleration": (accel) => {},
+		"SetPassabilityClassName": (name) => {},
 		"MoveToPointRange": (x, z, minRange, maxRange) => {},
 		"StopMoving": () => {},
 		"SetFacePointAfterMove": () => {},
 		"GetFacePointAfterMove": () => true,
 		"GetPassabilityClassName": () => "default"
+	});
+
+	AddMock(SYSTEM_ENTITY, IID_Pathfinder, {
+		"GetClearance": () => 1,
+		"GetPassabilityClass": () => 16
 	});
 
 	AddMock(controller, IID_Attack, {
