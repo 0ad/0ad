@@ -691,11 +691,6 @@ Trainer.prototype.Progress = function(id, allocatedTime)
 	return usedTime;
 };
 
-Trainer.prototype.OnCivChanged = function()
-{
-	this.CalculateEntitiesMap();
-};
-
 Trainer.prototype.OnOwnershipChanged = function(msg)
 {
 	if (msg.to != INVALID_PLAYER)

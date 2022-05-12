@@ -5,7 +5,7 @@ Trigger.prototype.InitRegicideGame = function(msg)
 
 	let playersCivs = [];
 	for (let playerID = 1; playerID < TriggerHelper.GetNumberOfPlayers(); ++playerID)
-		playersCivs[playerID] = QueryPlayerIDInterface(playerID).GetCiv();
+		playersCivs[playerID] = QueryPlayerIDInterface(playerID, IID_Identity).GetCiv();
 
 	// Get all hero templates of these civs
 	let heroTemplates = {};
