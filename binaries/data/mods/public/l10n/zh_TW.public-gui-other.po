@@ -515,7 +515,7 @@ msgstr "找不到未使用的埠給 enet STUN 用戶端。"
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr "找不到 STUN 目標。"
+msgstr "找不到 STUN 端點。"
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -1033,7 +1033,7 @@ msgstr "%(label)s：%(turretsLimit)s"
 
 #: gui/common/tooltips.js:594
 msgid "Turret Positions"
-msgstr "砲塔位置"
+msgstr "塔樓位置"
 
 #: gui/common/tooltips.js:615 gui/common/tooltips.js:620
 #: gui/common/tooltips.js:625
@@ -1491,7 +1491,7 @@ msgstr "地圖製作"
 
 #: gui/credits/texts/maps.jsonContent[1].Title
 msgid "Random Map Scripts"
-msgstr "隨機地圖指令稿"
+msgstr "隨機地圖腳本"
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
@@ -1622,7 +1622,7 @@ msgstr "快捷鍵"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
 msgid "Hotkey Description"
-msgstr "快捷鍵說明"
+msgstr "快捷鍵描述"
 
 #: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
@@ -1714,7 +1714,7 @@ msgstr "跟隨單位"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 1 (see “Set camera jump 1”)."
-msgstr "跳到鏡頭位置 1（請見「設定鏡頭跳躍 1」）"
+msgstr "跳到鏡頭位置 1（請見「設定鏡頭跳躍 1」）。"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.name
 msgctxt "hotkey metadata"
@@ -1724,7 +1724,7 @@ msgstr "跳至鏡頭 1"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 2 (see “Set camera jump 2”)."
-msgstr "跳到鏡頭位置 2（請見「設定鏡頭跳躍 2」）"
+msgstr "跳到鏡頭位置 2（請見「設定鏡頭跳躍 2」）。"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.name
 msgctxt "hotkey metadata"
@@ -1734,7 +1734,7 @@ msgstr "跳至鏡頭 2"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 3 (see “Set camera jump 3”)."
-msgstr "跳到鏡頭位置 3（請見「設定鏡頭跳躍 3」）"
+msgstr "跳到鏡頭位置 3（請見「設定鏡頭跳躍 3」）。"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.name
 msgctxt "hotkey metadata"
@@ -1744,7 +1744,7 @@ msgstr "跳至鏡頭 3"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 4 (see “Set camera jump 4”)."
-msgstr "跳到鏡頭位置 4（請見「設定鏡頭跳躍 4」）"
+msgstr "跳到鏡頭位置 4（請見「設定鏡頭跳躍 4」）。"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.name
 msgctxt "hotkey metadata"
@@ -1809,7 +1809,7 @@ msgstr "向左捲動或旋轉。"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate left"
-msgstr "向左捲動/旋轉"
+msgstr "向左捲動 / 旋轉"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.desc
 msgctxt "hotkey metadata"
@@ -1849,7 +1849,7 @@ msgstr "向右捲動或旋轉。"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate right"
-msgstr "向右捲動/旋轉"
+msgstr "向右捲動 / 旋轉"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.desc
 msgctxt "hotkey metadata"
@@ -1917,12 +1917,12 @@ msgstr "向上旋轉"
 msgctxt "hotkey metadata"
 msgid ""
 "Rotate camera counterclockwise around terrain - the effect depends on FPS."
-msgstr "逆時針旋轉鏡頭環繞地形 - 效果取決於每秒幀數。"
+msgstr "逆時針旋轉鏡頭環繞地形 - 效果取決於 FPS。"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain - the effect depends on FPS."
-msgstr "順時針旋轉鏡頭環繞地形 - 效果取決於每秒幀數。"
+msgstr "順時針旋轉鏡頭環繞地形 - 效果取決於 FPS。"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.desc
 msgctxt "hotkey metadata"
@@ -1997,7 +1997,7 @@ msgstr "增加拉放速度"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in - the effect depends on FPS."
-msgstr "拉近鏡頭 - 效果取決於每秒幀數。"
+msgstr "拉近鏡頭 - 效果取決於 FPS。"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.name
 msgctxt "hotkey metadata"
@@ -2007,7 +2007,7 @@ msgstr "拉近（逐步）"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out - the effect depends on FPS."
-msgstr "拉遠鏡頭 - 效果取決於每秒幀數。"
+msgstr "拉遠鏡頭 - 效果取決於 FPS。"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.name
 msgctxt "hotkey metadata"
@@ -2042,7 +2042,7 @@ msgstr "關閉或取消當前對話視窗。"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.name
 msgctxt "hotkey metadata"
 msgid "Close/Cancel"
-msgstr "關閉/取消"
+msgstr "關閉 / 取消"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
 msgctxt "hotkey metadata"
@@ -2072,7 +2072,7 @@ msgstr "複製到剪貼簿。"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.name
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard"
-msgstr "主控台"
+msgstr "複製到剪貼簿"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.desc
 msgctxt "hotkey metadata"
@@ -2109,12 +2109,12 @@ msgstr "從剪貼簿貼上"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause the game."
-msgstr "暫停/恢復遊戲。"
+msgstr "暫停 / 恢復遊戲。"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.name
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause"
-msgstr "暫停/回復"
+msgstr "暫停 / 恢復"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.desc
 msgctxt "hotkey metadata"
@@ -2139,12 +2139,12 @@ msgstr "切換分析器"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle HTTP/GPU modes for new profiler."
-msgstr "切換 HTTP/GPU 模組給新的分析器。"
+msgstr "切換 HTTP / GPU 模組給新的分析器。"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler2"
-msgstr "切換分析器2"
+msgstr "切換分析器 2"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
@@ -2159,7 +2159,7 @@ msgstr "快照"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.desc
 msgctxt "hotkey metadata"
 msgid "Toggle product/company watermark for official screenshots."
-msgstr "切換產品/公司浮水印為官方快照。"
+msgstr "切換產品 / 公司浮水印為官方快照。"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
 msgctxt "hotkey metadata"
@@ -2352,7 +2352,7 @@ msgstr "武裝動員"
 msgctxt "hotkey metadata"
 msgid ""
 "Modifier to deselect units when clicking group icon, instead of selecting."
-msgstr "當點擊群組圖示時取消選取的指示鍵，非選擇時。"
+msgstr "當點擊群組圖示時取消選取而非選擇的指示鍵。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.name
 msgctxt "hotkey metadata"
@@ -2402,7 +2402,7 @@ msgstr "駐防"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to escort/guard when clicking on unit/building."
-msgstr "點擊單位/建築時護送/護衛的指示鍵。"
+msgstr "點擊單位 / 建築時護送 / 護衛的指示鍵。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.name
 msgctxt "hotkey metadata"
@@ -2462,7 +2462,7 @@ msgstr "強制移動"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Do not ask confirmation when deleting a building/unit."
-msgstr "在刪除建築/單位時不要求確認。"
+msgstr "在刪除建築 / 單位時不要求確認。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.noconfirmation.name
 msgctxt "hotkey metadata"
@@ -2477,7 +2477,7 @@ msgstr "點擊塔樓時佔領塔樓的指示鍵。"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.name
 msgctxt "hotkey metadata"
 msgid "Occupy Turret Point"
-msgstr "佔據砲塔"
+msgstr "佔據塔樓"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.desc
 msgctxt "hotkey metadata"
@@ -2938,7 +2938,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of status bars e.g. health indicator for all your "
 "buildings/units on the map (including unselected)."
-msgstr "切換狀態欄的顯示，例如地圖上所有建築物/單位的生命值指標（包括未選擇的）。"
+msgstr "切換狀態欄的顯示，例如地圖上所有建築物 / 單位的生命值指標（包括未選擇的）。"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"
@@ -3672,7 +3672,7 @@ msgstr "國家："
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):34
 msgid "Script:"
-msgstr "指令稿："
+msgstr "腳本："
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):41
 msgid "Variant (unused):"
@@ -3698,7 +3698,7 @@ msgstr "自動偵測"
 msgid ""
 "Optional four-letter script code part following the language code (as listed"
 " in ISO 15924)"
-msgstr "與語言代碼(在 ISO 15924中列出)一致的可選四字母指令稿代碼"
+msgstr "與語言代碼(在 ISO 15924中列出)一致的可選四字母腳本代碼"
 
 #: gui/locale_advanced/locale_advanced.xml:(tooltip):44
 #: gui/locale_advanced/locale_advanced.xml:(tooltip):51
@@ -3760,7 +3760,7 @@ msgstr "觸發器地圖"
 
 #: gui/maps/MapFilters.js:122
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "帶有指令稿事件的地圖，可能自動產生敵方單位。"
+msgstr "帶有腳本事件的地圖，可能自動產生敵方單位。"
 
 #: gui/maps/MapFilters.js:127
 msgid "All Maps"
@@ -3937,7 +3937,7 @@ msgstr "若您停用它，歡迎畫面只在每次有新版可用時才會出現
 
 #: gui/options/options.json[0].options[4].label
 msgid "FPS overlay"
-msgstr "每秒禎數覆蓋層"
+msgstr "FPS 覆蓋層"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show frames per second in top right corner."
@@ -4113,7 +4113,7 @@ msgstr "為了降低 CPU 負載，在遊戲中限制算繪頻率。設定為最�
 #: gui/options/options.json[1].options[9].label
 #: gui/options/options.json[1].options[9].tooltip
 msgid "GUI scale"
-msgstr "圖形用戶界面"
+msgstr "GUI 縮放"
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "75%"
@@ -4720,7 +4720,7 @@ msgstr "主持時，如果觀察者的延遲時間超過這邊多少回合，則
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].label
 msgid "(Observer) Speed up when lagging."
-msgstr "（觀察者）延遲時加速"
+msgstr "（觀察者）延遲時加速。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].tooltip
 msgid ""
@@ -4854,7 +4854,7 @@ msgstr "預設一批訓練多少單位。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].label
 msgid "Snap to edges"
-msgstr "邊緣吸附"
+msgstr "吸附邊緣"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].list[0].label
 msgid "Hotkey to enable snapping"
@@ -5387,7 +5387,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr "點擊在瀏覽器中打開 0 A.D. IRC 聊天 (#0ad on webchat.quakenet.org)。它由執行各種任務的志願者負責，可能需要一段時間才能回答您的問題。或者，您可以使用論壇（請參閱網站）。"
+msgstr "點擊在瀏覽器中打開 0 A.D. IRC 聊天 (#0ad 於 webchat.quakenet.org)。它由執行各種任務的志願者負責，可能需要一段時間才能回答您的問題。或者，您可以使用論壇（請參閱網站）。"
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -6551,7 +6551,7 @@ msgstr "你可以在它們裡面駐紮更多的步兵，來增加射出的箭量
 
 #: gui/text/tips/elephant_stable.txt:1
 msgid "ELEPHANT STABLE"
-msgstr "象廄"
+msgstr "象棚"
 
 #: gui/text/tips/elephant_stable.txt:2
 msgid ""
@@ -6592,7 +6592,7 @@ msgstr "捕魚比在農田採集食物更快。"
 msgid ""
 "Careful! Fish are not an infinite resource! Although they do slowly "
 "repopulate when left alone."
-msgstr "小心！魚不是無限的資源！儘管它們在放置時確實會緩慢回復。"
+msgstr "小心！魚不是無限的資源！儘管它們在被保留時確實會緩慢回復。"
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
