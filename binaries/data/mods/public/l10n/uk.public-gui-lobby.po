@@ -7,6 +7,7 @@
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370
 # Dmytro Ryl'kov
 # 504fc1cf9150c6eb2ead15f639dc2c0a
+# Lemak Maksym
 # Nicolas Auvray
 # Olexandr Yaremenko
 # Victor Butko
@@ -19,7 +20,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-03 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:50+0000\n"
-"Last-Translator: Apheidas of Arcadia, 2022\n"
+"Last-Translator: Lemak Maksym, 2022\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,7 +115,7 @@ msgstr "Головне меню"
 msgid ""
 "The command '%(cmd)s' is not supported. Try %(help)s to get more information"
 " about the supported commands."
-msgstr ""
+msgstr "Команда  '%(cmd)s' не підтримується. Спробуйте %(help)s, щоб о тримати більше інформації про підтримувані команди."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:45
 #, javascript-format
@@ -366,7 +367,7 @@ msgstr "У вас є деякі несумісні моди:\n%(details)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:123
 msgid "This mod does not affect MP compatibility"
-msgstr ""
+msgstr "Ця модифікація не вплине на сумісність з багато користувацькою грою"
 
 #: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format
@@ -393,7 +394,7 @@ msgstr "Модифікації:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:153
 msgid "Mods (incompatible):"
-msgstr ""
+msgstr "Модтфікації(несумісні):"
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/LobbyPage/GameDetails.js:156

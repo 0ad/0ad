@@ -10,6 +10,7 @@
 # Dmytro Ryl'kov
 # 36bc093879f7ad106de586c9dd88b51d_1728f11
 # Halyna Bondar
+# Lemak Maksym
 # Олег Вормов
 # Olexandr Yaremenko
 # Антон Курило
@@ -22,7 +23,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-04-29 07:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: Apheidas of Arcadia, 2022\n"
+"Last-Translator: Lemak Maksym, 2022\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,11 +49,11 @@ msgstr "Ремонти у доці"
 
 #: simulation/data/auras/structures/han_laozi_gate.jsonauraDescription
 msgid "Humans +1 health regeneration rate, +25% health"
-msgstr ""
+msgstr "Люди мають +10 темпу відновлення здоров'я, +25% здоров'я"
 
 #: simulation/data/auras/structures/han_laozi_gate.jsonauraName
 msgid "Taoism"
-msgstr ""
+msgstr "Даосизм"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -75,7 +76,7 @@ msgstr "Патріотизм"
 msgid ""
 "Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack "
 "damage."
-msgstr ""
+msgstr "Солдати +1 стійкості від розчавлюючих, зламуючих, проколюючих атак і +10% нанесення ближнього та дистанційного пошкодження"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -140,7 +141,7 @@ msgstr "Еллінізація"
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid ""
 "Turreted Soldiers +3 crush, hack, pierce resistance and +20 vision range."
-msgstr ""
+msgstr "Cолдати на вежах +3 стійкості від розчавлюючих, зламуючих, проколюючих атак і +20 дальності зору."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -158,7 +159,7 @@ msgstr "Славетна експансія"
 
 #: simulation/data/auras/structures/xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned inside the building."
-msgstr ""
+msgstr "Підрозділи отримують досвід поки гарнізовані в будівлях."
 
 #: simulation/data/auras/structures/xp_trickle.jsonauraName
 msgid "Rigorous Training"
@@ -198,11 +199,11 @@ msgstr "Товари з Галлії"
 
 #: simulation/data/auras/teambonuses/han_player_teambonus.jsonauraDescription
 msgid "Allies +20% international trade bonus."
-msgstr ""
+msgstr "Союзники +20% бонус міжнародної торгівлі."
 
 #: simulation/data/auras/teambonuses/han_player_teambonus.jsonauraName
 msgid "Silk Road"
-msgstr ""
+msgstr "Великий шовковий шлях"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Citizen Javelineers −10% resource costs."
@@ -272,7 +273,7 @@ msgstr "Сірійський тетраполіс"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Citizen Infantry Spearmen +10% health."
-msgstr ""
+msgstr "Громадська піхота  списоносців +10% здоров'я"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
@@ -321,7 +322,7 @@ msgstr "Партизанські тактики"
 msgid ""
 "Cassivellaunus deployed fast-moving skirmishers to harass Roman troops and foragers.\n"
 "Javelineers +20% attack range."
-msgstr "Кассівелаун використовував стрімких застрільників, щоб переслідувати римські війська і фуражирів.\nМетальники копій мають +20% дистанції атаки. "
+msgstr "Кассівелаун використовував стрімких застрільників, щоб переслідувати римські війська і фуражирів.\nСписоносці мають +20% дистанції атаки. "
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_2.jsonauraName
 msgid "Skirmisher Harassment"
@@ -331,7 +332,7 @@ msgstr "Переслідування застрільником"
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
 "Melee Cavalry +1 crush, hack, pierce resistance and +10% health."
-msgstr ""
+msgstr "Лідер Карфагенської важкої кавалерії в Требії та Каннах, де його потрійна атака мала руйнівну дію на ворога.\nКавалерія ближнього бою +1 ​​стійкості від розчавлюючих, зламуючих, проколюючих атак та +10% здоров’я."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -365,7 +366,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/han_catafalque_1.jsonauraName
 msgid "Territorial Expansion"
-msgstr ""
+msgstr "Територіальна Експанція"
 
 #: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraDescription
 msgid ""

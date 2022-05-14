@@ -5,6 +5,7 @@
 # Translators:
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370
 # Dmytro Ryl'kov
+# Lemak Maksym
 # Олег Вормов
 # Антон Курило
 # Victor Butko
@@ -17,7 +18,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-11-19 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Микола Франчук <thekolian1996@gmail.com>, 2018-2021\n"
+"Last-Translator: Lemak Maksym, 2022\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -583,11 +584,11 @@ msgstr "Черга виробництва заповнена."
 
 #: simulation/components/ProductionQueue.js:443
 msgid "Could not auto-queue unit, de-activating."
-msgstr ""
+msgstr "Не вдалося продовжити авто-чергу, деактивація."
 
 #: simulation/components/Trainer.js:321
 msgid "Can't find free space to spawn trained units."
-msgstr ""
+msgstr "Не можливо знайти вільне місце, шоб помістити треновані підрозділи."
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
