@@ -3,8 +3,8 @@
 <objects>
 	<script file="gui/maps/MapCache.js"/>
 	<script directory="gui/common/"/>
-	<script directory="gui/gamesettings/"/>
-	<script directory="gui/gamesettings/attributes/"/>
+	<script directory="gamesettings/"/>
+	<script directory="gamesettings/attributes/"/>
 	<script directory="gui/campaigns/default_menu/"/>
 
 	<object type="image" style="ModernWindow" size="0 0 100% 100%" name="campaignMenuWindow">

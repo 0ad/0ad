@@ -79,7 +79,7 @@ extern void MountMods(const Paths& paths, const std::vector<CStr>& mods);
 extern bool Init(const CmdLineArgs& args, int flags);
 extern void InitInput();
 extern void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& installedMods = std::vector<CStr>());
-extern void InitNonVisual(const CmdLineArgs& args);
+extern bool InitNonVisual(const CmdLineArgs& args);
 extern void Shutdown(int flags);
 extern void CancelLoad(const CStrW& message);
 

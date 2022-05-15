@@ -68,7 +68,7 @@ CComponentManager::CComponentManager(CSimContext& context, std::shared_ptr<Scrip
 	// these functions, so we skip registering them here in those cases
 	if (!skipScriptFunctions)
 	{
-		JSI_VFS::RegisterScriptFunctions_Simulation(m_ScriptInterface);
+		JSI_VFS::RegisterScriptFunctions_ReadOnlySimulation(m_ScriptInterface);
 		ScriptRequest rq(m_ScriptInterface);
 		constexpr ScriptFunction::ObjectGetter<CComponentManager> Getter = &ScriptInterface::ObjectFromCBData<CComponentManager>;
 		ScriptFunction::Register<&CComponentManager::Script_RegisterComponentType, Getter>(rq, "RegisterComponentType");

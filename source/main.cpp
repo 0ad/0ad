@@ -455,10 +455,13 @@ static void NonVisualFrame()
 	g_Profiler2.IncrementFrameNumber();
 	PROFILE2_ATTR("%d", g_Profiler2.GetFrameNumber());
 
-	static u32 turn = 0;
-	debug_printf("Turn %u (%u)...\n", turn++, DEFAULT_TURN_LENGTH);
+	if (g_NetClient)
+		g_NetClient->Poll();
 
-	g_Game->GetSimulation2()->Update(DEFAULT_TURN_LENGTH);
+	static u32 turn = 0;
+	if (g_Game && g_Game->IsGameStarted() && g_Game->GetTurnManager())
+		if (g_Game->GetTurnManager()->Update(DEFAULT_TURN_LENGTH, 1))
+			debug_printf("Turn %u (%u)...\n", turn++, DEFAULT_TURN_LENGTH);
 
 	g_Profiler.Frame();
 
@@ -505,7 +508,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		return;
 	}
 
-	if (args.Has("autostart-nonvisual") && args.Get("autostart").empty() && !args.Has("rl-interface"))
+	if (args.Has("autostart-nonvisual") && args.Get("autostart").empty() && !args.Has("rl-interface") && !args.Has("autostart-client"))
 	{
 		LOGERROR("-autostart-nonvisual cant be used alone. A map with -autostart=\"TYPEDIR/MAPNAME\" is needed.");
 		return;
@@ -661,8 +664,9 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 
 		if (isNonVisual)
 		{
-			InitNonVisual(args);
-			if (isUsingRLInterface)
+			if (!InitNonVisual(args))
+				g_Shutdown = ShutdownType::Quit;
+			else if (isUsingRLInterface)
 				StartRLInterface(args);
 
 			while (g_Shutdown == ShutdownType::None)
