@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -83,8 +83,9 @@ void ColorActivateFastImpl()
 		ConvertRGBColorTo4ub = ConvertRGBColorTo4ubSSE;
 		return;
 	}
-#endif
+#elif defined(ARCH_X86_64)
 	debug_printf("No SSE available. Slow fallback routines will be used.\n");
+#endif
 }
 
 /**

@@ -61,7 +61,7 @@ elseif not os.istarget("windows") then
 	end
 end
 
--- detect CPU architecture (simplistic, currently only supports x86, amd64 and ARM)
+-- detect CPU architecture (simplistic)
 arch = "x86"
 macos_arch = "x86_64"
 if _OPTIONS["android"] then
@@ -71,33 +71,33 @@ elseif os.istarget("windows") then
 		arch = "amd64"
 	end
 else
-	arch = os.getenv("HOSTTYPE")
-	-- Force x86_64 on Mac OS for now, as Spidermonkey 78 isn't Apple Silicon compatible.
+	os.execute(cc .. " -dumpmachine > .gccmachine.tmp")
+	local f = io.open(".gccmachine.tmp", "r")
+	local machine = f:read("*line")
+	f:close()
+	-- Special handling on mac os where xcode needs special flags.
 	if os.istarget("macosx") then
-		arch = "amd64"
-		macos_arch = "x86_64"
-	elseif arch == "x86_64" or arch == "amd64" then
-		arch = "amd64"
-	else
-		os.execute(cc .. " -dumpmachine > .gccmachine.tmp")
-		local f = io.open(".gccmachine.tmp", "r")
-		local machine = f:read("*line")
-		f:close()
-		if string.find(machine, "x86_64") == 1 or string.find(machine, "amd64") == 1 then
-			arch = "amd64"
-		elseif string.find(machine, "i.86") == 1 then
-			arch = "x86"
-		elseif string.find(machine, "arm") == 1 then
-			arch = "arm"
-		elseif string.find(machine, "aarch64") == 1 then
+		if string.find(machine, "arm64") then
 			arch = "aarch64"
-		elseif string.find(machine, "e2k") == 1 then
-			arch = "e2k"
-		elseif string.find(machine, "ppc64") == 1 or string.find(machine, "powerpc64") == 1 then
-			arch = "ppc64"
+			macos_arch = "arm64"
 		else
-			print("WARNING: Cannot determine architecture from GCC, assuming x86")
+			arch = "amd64"
+			macos_arch = "x86_64"
 		end
+	elseif string.find(machine, "x86_64") == 1 or string.find(machine, "amd64") == 1 then
+		arch = "amd64"
+	elseif string.find(machine, "i.86") == 1 then
+		arch = "x86"
+	elseif string.find(machine, "arm") == 1 then
+		arch = "arm"
+	elseif string.find(machine, "aarch64") == 1 then
+		arch = "aarch64"
+	elseif string.find(machine, "e2k") == 1 then
+		arch = "e2k"
+	elseif string.find(machine, "ppc64") == 1 or string.find(machine, "powerpc64") == 1 then
+		arch = "ppc64"
+	else
+		print("WARNING: Cannot determine architecture from GCC, assuming x86")
 	end
 end
 
@@ -327,8 +327,8 @@ function project_set_build_flags()
 				links { "gcov" }
 			end
 
-			-- MacOS 10.12 only supports processors with SSE 4.1, so enable that.
-			if os.istarget("macosx") then
+			-- MacOS 10.12 only supports intel processors with SSE 4.1, so enable that.
+			if os.istarget("macosx") and arch == "amd64" then
 				buildoptions { "-msse4.1" }
 			end
 

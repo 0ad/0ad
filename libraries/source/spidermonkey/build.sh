@@ -49,8 +49,15 @@ fi
 
 if [ "`uname -s`" = "Darwin" ]
 then
-  # Explicitly target x86_64.
-  CONF_OPTS="${CONF_OPTS} --target=x86_64-apple-darwin"
+  ARCH=${ARCH:=""}
+  if [ -z "${ARCH}" ]; then
+    if [ "`uname -m`" == "arm64" ]; then
+      ARCH="aarch64"
+    else
+      ARCH="x86_64"
+    fi
+  fi
+  CONF_OPTS="${CONF_OPTS} --target=$ARCH-apple-darwin"
 
   # Link to custom-built zlib
   export PKG_CONFIG_PATH="=${ZLIB_DIR}:${PKG_CONFIG_PATH}"

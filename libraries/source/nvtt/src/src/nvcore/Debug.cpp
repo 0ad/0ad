@@ -607,6 +607,9 @@ namespace
 #    elif NV_CPU_ARM
         ucontext_t * ucp = (ucontext_t *)secret;
         return (void *) ucp->uc_mcontext->__ss.__pc;
+#    elif NV_CPU_AARCH64
+        ucontext_t * ucp = (ucontext_t *)secret;
+        return (void *) ucp->uc_mcontext->__ss.__pc;
 #    else
 #      error "Unknown CPU"
 #    endif
