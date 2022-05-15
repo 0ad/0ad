@@ -62,19 +62,28 @@ elseif not os.istarget("windows") then
 end
 
 -- detect CPU architecture (simplistic)
+-- The user can target an architecture with HOSTTYPE, but the game still selects some know value.
 arch = "x86"
 macos_arch = "x86_64"
+
 if _OPTIONS["android"] then
 	arch = "arm"
 elseif os.istarget("windows") then
-	if os.getenv("PROCESSOR_ARCHITECTURE") == "amd64" or os.getenv("PROCESSOR_ARCHITEW6432") == "amd64" then
+	if os.getenv("HOSTTYPE") then
+		arch = os.getenv("HOSTTYPE")
+	elseif os.getenv("PROCESSOR_ARCHITECTURE") == "amd64" or os.getenv("PROCESSOR_ARCHITEW6432") == "amd64" then
 		arch = "amd64"
 	end
 else
-	os.execute(cc .. " -dumpmachine > .gccmachine.tmp")
-	local f = io.open(".gccmachine.tmp", "r")
-	local machine = f:read("*line")
-	f:close()
+	local machine = "x86_64"
+	if os.getenv("HOSTTYPE") and os.getenv("HOSTTYPE") ~= '' then
+		machine = os.getenv("HOSTTYPE")
+	else
+		os.execute(cc .. " -dumpmachine > .gccmachine.tmp")
+		local f = io.open(".gccmachine.tmp", "r")
+		machine = f:read("*line")
+		f:close()
+	end
 	-- Special handling on mac os where xcode needs special flags.
 	if os.istarget("macosx") then
 		if string.find(machine, "arm64") then

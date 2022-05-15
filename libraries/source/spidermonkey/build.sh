@@ -56,6 +56,9 @@ then
     else
       ARCH="x86_64"
     fi
+  elif [ $ARCH == "arm64"  ]; then
+    # SM78 doesn't know about arm64 yet, and that's passed by build-osx-libs.sh, so fix it explicitly.
+    ARCH="aarch64"
   fi
   CONF_OPTS="${CONF_OPTS} --target=$ARCH-apple-darwin"
 

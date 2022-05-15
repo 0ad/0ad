@@ -97,21 +97,16 @@ ARCHLESS_LDFLAGS="$LDFLAGS -stdlib=libc++"
 
 # If ARCH isn't set, select either x86_64 or arm64
 if [ -z "${ARCH}" ]; then
-  if [ "`uname -m`" == "arm64" ]; then
-    ARCH="arm64"
-    # Some libs want this passed to configure for cross compilation.
-    HOST_PLATFORM="--host=aarch64-apple-darwin"
-  else
-    CXXFLAGS="$CXXFLAGS -msse4.1"
-    ARCH="x86_64"
-    # Some libs want this passed to configure for cross compilation.
-    HOST_PLATFORM="--host=x86_64-apple-darwin"
-  fi
+  ARCH=`uname -m`
 fi
-
-echo "ARCHITECTURE BREAKDOWN"
-echo $ARCH
-echo $HOST_PLATFORM
+if [ $ARCH == "arm64" ]; then
+  # Some libs want this passed to configure for cross compilation.
+  HOST_PLATFORM="--host=aarch64-apple-darwin"
+else
+  CXXFLAGS="$CXXFLAGS -msse4.1"
+  # Some libs want this passed to configure for cross compilation.
+  HOST_PLATFORM="--host=x86_64-apple-darwin"
+fi
 
 CFLAGS="$CFLAGS -arch $ARCH"
 CXXFLAGS="$CXXFLAGS -arch $ARCH"
@@ -463,10 +458,10 @@ then
   CONF_OPTS="--prefix=$INSTALL_DIR
     --disable-shared
     --enable-unicode
-    --enable-universal_binary=x86_64
     --with-cocoa
     --with-opengl
     --with-libiconv-prefix=${ICONV_DIR}
+    --enable-universal-binary=${ARCH}
     --with-expat=builtin
     --with-libpng=builtin
     --without-libtiff
@@ -557,7 +552,9 @@ then
 
   (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" \
       --prefix=$INSTALL_DIR \
+      "$HOST_PLATFORM" \
       --enable-shared=no \
+       --with-harfbuzz=no \
        --with-bzip2=no \
        --with-brotli=no \
     && make ${JOBS} && make install) || die "freetype build failed"
