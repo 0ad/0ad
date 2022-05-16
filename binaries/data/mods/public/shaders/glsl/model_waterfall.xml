@@ -6,7 +6,6 @@
 		<stream name="normal" attribute="a_normal"/>
 		<stream name="uv0" attribute="a_uv0"/>
 		<stream name="uv1" attribute="a_uv1"/>
-		<stream name="uv4" attribute="a_tangent" if="USE_INSTANCING"/>
 	</vertex>
 
 	<fragment file="glsl/model_waterfall.fs"/>

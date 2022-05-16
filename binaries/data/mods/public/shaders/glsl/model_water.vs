@@ -14,9 +14,6 @@ uniform vec2 translation;
 
 attribute vec3 a_vertex;
 attribute vec3 a_normal;
-#if USE_INSTANCING
-  attribute vec4 a_tangent;
-#endif
 attribute vec2 a_uv0;
 attribute vec2 a_uv1;
 
