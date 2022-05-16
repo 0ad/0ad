@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -71,6 +71,6 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	JSI_Simulation::RegisterScriptFunctions(rq);
 	JSI_Sound::RegisterScriptFunctions(rq);
 	JSI_UserReport::RegisterScriptFunctions(rq);
-	JSI_VFS::RegisterScriptFunctions_GUI(rq);
+	JSI_VFS::RegisterScriptFunctions_ReadWriteAnywhere(rq);
 	JSI_VisualReplay::RegisterScriptFunctions(rq);
 }

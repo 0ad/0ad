@@ -270,7 +270,7 @@ public:
 
 #undef REGISTER_FUNC_NAME
 
-		JSI_VFS::RegisterScriptFunctions_Simulation(rq);
+		JSI_VFS::RegisterScriptFunctions_ReadOnlySimulation(rq);
 
 		// Globalscripts may use VFS script functions
 		m_ScriptInterface->LoadGlobalScripts();

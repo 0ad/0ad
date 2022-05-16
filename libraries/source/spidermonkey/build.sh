@@ -49,8 +49,18 @@ fi
 
 if [ "`uname -s`" = "Darwin" ]
 then
-  # Explicitly target x86_64.
-  CONF_OPTS="${CONF_OPTS} --target=x86_64-apple-darwin"
+  ARCH=${ARCH:=""}
+  if [ -z "${ARCH}" ]; then
+    if [ "`uname -m`" == "arm64" ]; then
+      ARCH="aarch64"
+    else
+      ARCH="x86_64"
+    fi
+  elif [ $ARCH == "arm64"  ]; then
+    # SM78 doesn't know about arm64 yet, and that's passed by build-osx-libs.sh, so fix it explicitly.
+    ARCH="aarch64"
+  fi
+  CONF_OPTS="${CONF_OPTS} --target=$ARCH-apple-darwin"
 
   # Link to custom-built zlib
   export PKG_CONFIG_PATH="=${ZLIB_DIR}:${PKG_CONFIG_PATH}"

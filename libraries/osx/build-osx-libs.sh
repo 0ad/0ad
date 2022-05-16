@@ -36,14 +36,14 @@ FREETYPE_VERSION="freetype-2.10.4"
 OGG_VERSION="libogg-1.3.3"
 VORBIS_VERSION="libvorbis-1.3.7"
 # gloox requires GnuTLS, GnuTLS requires Nettle and GMP
-GMP_VERSION="gmp-6.2.0"
+GMP_VERSION="gmp-6.2.1"
 NETTLE_VERSION="nettle-3.6"
 # NOTE: remember to also update LIB_URL below when changing version
 GLOOX_VERSION="gloox-1.0.24"
 GNUTLS_VERSION="gnutls-3.6.15"
 # OS X only includes part of ICU, and only the dylib
 # NOTE: remember to also update LIB_URL below when changing version
-ICU_VERSION="icu4c-67_1"
+ICU_VERSION="icu4c-69_1"
 ENET_VERSION="enet-1.3.17"
 MINIUPNPC_VERSION="miniupnpc-2.2.2"
 SODIUM_VERSION="libsodium-1.0.18"
@@ -61,6 +61,7 @@ FMT_VERSION="7.1.3"
 
 export CC=${CC:="clang"} CXX=${CXX:="clang++"}
 export MIN_OSX_VERSION=${MIN_OSX_VERSION:="10.12"}
+export ARCH=${ARCH:=""}
 
 # The various libs offer inconsistent configure options, some allow
 # setting sysroot and OS X-specific options, others don't. Adding to
@@ -83,7 +84,7 @@ if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
 fi
 
 CFLAGS="$CFLAGS $C_FLAGS -fvisibility=hidden"
-CXXFLAGS="$CXXFLAGS $C_FLAGS -stdlib=libc++ -std=c++17 -msse4.1"
+CXXFLAGS="$CXXFLAGS $C_FLAGS -stdlib=libc++ -std=c++17"
 OBJCFLAGS="$OBJCFLAGS $C_FLAGS"
 OBJCXXFLAGS="$OBJCXXFLAGS $C_FLAGS"
 
@@ -94,16 +95,26 @@ ARCHLESS_CFLAGS=$CFLAGS
 ARCHLESS_CXXFLAGS=$CXXFLAGS
 ARCHLESS_LDFLAGS="$LDFLAGS -stdlib=libc++"
 
-CFLAGS="$CFLAGS -arch x86_64"
-CXXFLAGS="$CXXFLAGS -arch x86_64"
+# If ARCH isn't set, select either x86_64 or arm64
+if [ -z "${ARCH}" ]; then
+  ARCH=`uname -m`
+fi
+if [ $ARCH == "arm64" ]; then
+  # Some libs want this passed to configure for cross compilation.
+  HOST_PLATFORM="--host=aarch64-apple-darwin"
+else
+  CXXFLAGS="$CXXFLAGS -msse4.1"
+  # Some libs want this passed to configure for cross compilation.
+  HOST_PLATFORM="--host=x86_64-apple-darwin"
+fi
 
-LDFLAGS="$LDFLAGS -arch x86_64"
+CFLAGS="$CFLAGS -arch $ARCH"
+CXXFLAGS="$CXXFLAGS -arch $ARCH"
 
-# Some libs want this passed to configure for cross compilation.
-HOST_PLATFORM="--host=x86_64-apple-darwin"
+LDFLAGS="$LDFLAGS -arch $ARCH"
 
 # CMake doesn't seem to pick up on architecture with CFLAGS only
-CMAKE_FLAGS="-DCMAKE_OSX_ARCHITECTURES=x86_64"
+CMAKE_FLAGS="-DCMAKE_OSX_ARCHITECTURES=$ARCH"
 
 JOBS=${JOBS:="-j2"}
 
@@ -447,10 +458,10 @@ then
   CONF_OPTS="--prefix=$INSTALL_DIR
     --disable-shared
     --enable-unicode
-    --enable-universal_binary=x86_64
     --with-cocoa
     --with-opengl
     --with-libiconv-prefix=${ICONV_DIR}
+    --enable-universal-binary=${ARCH}
     --with-expat=builtin
     --with-libpng=builtin
     --without-libtiff
@@ -541,7 +552,9 @@ then
 
   (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" \
       --prefix=$INSTALL_DIR \
+      "$HOST_PLATFORM" \
       --enable-shared=no \
+       --with-harfbuzz=no \
        --with-bzip2=no \
        --with-brotli=no \
     && make ${JOBS} && make install) || die "freetype build failed"
@@ -830,7 +843,7 @@ echo -e "Building ICU..."
 LIB_VERSION="${ICU_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION-src.tgz"
 LIB_DIRECTORY="icu"
-LIB_URL="https://github.com/unicode-org/icu/releases/download/release-67-1/"
+LIB_URL="https://github.com/unicode-org/icu/releases/download/release-69-1/"
 
 mkdir -p icu
 pushd icu > /dev/null
@@ -1039,7 +1052,7 @@ then
 fi
 
 # Use the regular build script for SM.
-JOBS="$JOBS" ZLIB_DIR="$ZLIB_DIR" ./build.sh || die "Error building spidermonkey"
+JOBS="$JOBS" ZLIB_DIR="$ZLIB_DIR" ARCH="$ARCH" ./build.sh || die "Error building spidermonkey"
 
 popd > /dev/null
 

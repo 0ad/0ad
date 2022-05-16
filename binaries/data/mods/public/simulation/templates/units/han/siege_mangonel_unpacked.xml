@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_siege_stonethrower">
+<Entity parent="units/han/siege_mangonel_packed">
   <Attack>
     <Ranged>
       <Projectile>
@@ -8,18 +8,19 @@
     </Ranged>
   </Attack>
   <Footprint replace="">
-    <Square width="8.0" depth="16.0"/>
+    <Square width="8.0" depth="19.0"/>
     <Height>8.0</Height>
   </Footprint>
   <Identity>
-    <Civ>han</Civ>
-    <SpecificName>Tóushí Chē</SpecificName>
     <Icon>units/han/siege_mangonel.png</Icon>
   </Identity>
   <Pack>
     <Entity>units/han/siege_mangonel_packed</Entity>
     <State>unpacked</State>
   </Pack>
+  <UnitMotion>
+    <WalkSpeed>0.001</WalkSpeed>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/han/siege_mangonel.xml</Actor>
   </VisualActor>

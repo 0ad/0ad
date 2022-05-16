@@ -24,6 +24,7 @@
 #include "graphics/TerrainTextureManager.h"
 #include "gui/CGUI.h"
 #include "gui/GUIManager.h"
+#include "gui/Scripting/JSInterface_GUIManager.h"
 #include "i18n/L10n.h"
 #include "lib/app_hooks.h"
 #include "lib/config2.h"
@@ -36,6 +37,7 @@
 #include "network/NetClient.h"
 #include "network/NetMessage.h"
 #include "network/NetMessages.h"
+#include "network/scripting/JSInterface_Network.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
@@ -58,6 +60,9 @@
 #include "ps/Profiler2.h"
 #include "ps/Pyrogenesis.h"	// psSetLogDir
 #include "ps/scripting/JSInterface_Console.h"
+#include "ps/scripting/JSInterface_Game.h"
+#include "ps/scripting/JSInterface_Main.h"
+#include "ps/scripting/JSInterface_VFS.h"
 #include "ps/TouchInput.h"
 #include "ps/UserReport.h"
 #include "ps/Util.h"
@@ -74,6 +79,7 @@
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptConversions.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/scripting/JSInterface_Simulation.h"
 #include "soundmanager/scripting/JSInterface_Sound.h"
 #include "soundmanager/ISoundManager.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
@@ -710,9 +716,9 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 	}
 }
 
-void InitNonVisual(const CmdLineArgs& args)
+bool InitNonVisual(const CmdLineArgs& args)
 {
-	Autostart(args);
+	return Autostart(args);
 }
 
 /**
@@ -758,6 +764,34 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
 	// ... they contain a JSON document to initialize the game setup
 	// screen
 	return mapElement.GetText();
+}
+
+// TODO: this essentially duplicates the CGUI logic to load directory or scripts.
+// NB: this won't make sure to not double-load scripts, unlike the GUI.
+void AutostartLoadScript(const ScriptInterface& scriptInterface, const VfsPath& path)
+{
+	if (path.IsDirectory())
+	{
+		VfsPaths pathnames;
+		vfs::GetPathnames(g_VFS, path, L"*.js", pathnames);
+		for (const VfsPath& file : pathnames)
+			scriptInterface.LoadGlobalScriptFile(file);
+	}
+	else
+		scriptInterface.LoadGlobalScriptFile(path);
+}
+
+// TODO: this essentially duplicates the CGUI function
+CParamNode GetTemplate(const std::string& templateName)
+{
+	// This is very cheap to create so let's just do it every time.
+	CTemplateLoader templateLoader;
+
+	const CParamNode& templateRoot = templateLoader.GetTemplateFileData(templateName).GetChild("Entity");
+	if (!templateRoot.IsOk())
+		LOGERROR("Invalid template found for '%s'", templateName.c_str());
+
+	return templateRoot;
 }
 
 /*
@@ -818,6 +852,9 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
  */
 bool Autostart(const CmdLineArgs& args)
 {
+	if (!args.Has("autostart-client") && !args.Has("autostart"))
+		return false;
+
 	// Get optional playername.
 	CStrW userName = L"anonymous";
 	if (args.Has("autostart-playername"))
@@ -827,6 +864,30 @@ bool Autostart(const CmdLineArgs& args)
 	ScriptInterface scriptInterface("Engine", "Game Setup", g_ScriptContext);
 
 	ScriptRequest rq(scriptInterface);
+
+	// We use the javascript gameSettings to handle options, but that requires running JS.
+	// Since we don't want to use the full Gui manager, we load an entrypoint script
+	// that can run the priviledged "LoadScript" function, and then call the appropriate function.
+	ScriptFunction::Register<&AutostartLoadScript>(rq, "LoadScript");
+	// Load the entire folder to allow mods to extend the entrypoint without copying the whole file.
+	AutostartLoadScript(scriptInterface, VfsPath(L"autostart/"));
+
+	// Provide some required functions to the script.
+	if (args.Has("autostart-nonvisual"))
+		ScriptFunction::Register<&GetTemplate>(rq, "GetTemplate");
+	else
+	{
+		JSI_GUIManager::RegisterScriptFunctions(rq);
+		// TODO: this loads pregame, which is hardcoded to exist by various code paths. That ought be changed.
+		InitPs(false, L"page_pregame.xml", g_GUI->GetScriptInterface().get(), JS::UndefinedHandleValue);
+	}
+
+	JSI_Game::RegisterScriptFunctions(rq);
+	JSI_Main::RegisterScriptFunctions(rq);
+	JSI_Simulation::RegisterScriptFunctions(rq);
+	JSI_VFS::RegisterScriptFunctions_ReadWriteAnywhere(rq);
+	JSI_Network::RegisterScriptFunctions(rq);
+
 	JS::RootedValue sessionInitData(rq.cx);
 
 	if (args.Has("autostart-client"))
@@ -843,8 +904,23 @@ bool Autostart(const CmdLineArgs& args)
 			"port", PS_DEFAULT_PORT,
 			"storeReplay", !args.Has("autostart-disable-replay"));
 
-		InitPs(true, L"page_autostart_client.xml", &scriptInterface, sessionInitData);
+		JS::RootedValue global(rq.cx, rq.globalValue());
+		if (!ScriptFunction::CallVoid(rq, global, "autostartClient", sessionInitData, true))
+			return false;
 
+		bool shouldQuit = false;
+		while (!shouldQuit)
+		{
+			g_NetClient->Poll();
+			ScriptFunction::Call(rq, global, "onTick", shouldQuit);
+			std::this_thread::sleep_for(std::chrono::microseconds(200));
+		}
+
+		if (args.Has("autostart-nonvisual"))
+		{
+			LDR_NonprogressiveLoad();
+			g_Game->ReallyStartGame();
+		}
 		return true;
 	}
 
@@ -1096,7 +1172,18 @@ bool Autostart(const CmdLineArgs& args)
 			"maxPlayers", maxPlayers,
 			"storeReplay", !args.Has("autostart-disable-replay"));
 
-		InitPs(true, L"page_autostart_host.xml", &scriptInterface, sessionInitData);
+		JS::RootedValue global(rq.cx, rq.globalValue());
+		if (!ScriptFunction::CallVoid(rq, global, "autostartHost", sessionInitData, true))
+			return false;
+
+		// In MP host mode, we need to wait until clients have loaded.
+		bool shouldQuit = false;
+		while (!shouldQuit)
+		{
+			g_NetClient->Poll();
+			ScriptFunction::Call(rq, global, "onTick", shouldQuit);
+			std::this_thread::sleep_for(std::chrono::microseconds(200));
+		}
 	}
 	else
 	{
@@ -1118,7 +1205,15 @@ bool Autostart(const CmdLineArgs& args)
 			"playerAssignments", playerAssignments,
 			"storeReplay", !args.Has("autostart-disable-replay"));
 
-		InitPs(true, L"page_autostart.xml", &scriptInterface, sessionInitData);
+		JS::RootedValue global(rq.cx, rq.globalValue());
+		if (!ScriptFunction::CallVoid(rq, global, "autostartHost", sessionInitData, false))
+			return false;
+	}
+
+	if (args.Has("autostart-nonvisual"))
+	{
+		LDR_NonprogressiveLoad();
+		g_Game->ReallyStartGame();
 	}
 
 	return true;

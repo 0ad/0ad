@@ -265,7 +265,7 @@ VFS_ScriptFunctions(Simulation);
 VFS_ScriptFunctions(Maps);
 #undef VFS_ScriptFunctions
 
-void RegisterScriptFunctions_GUI(const ScriptRequest& rq)
+void RegisterScriptFunctions_ReadWriteAnywhere(const ScriptRequest& rq)
 {
 	ScriptFunction::Register<&Script_ListDirectoryFiles_GUI>(rq, "ListDirectoryFiles");
 	ScriptFunction::Register<&Script_FileExists_GUI>(rq, "FileExists");
@@ -278,14 +278,14 @@ void RegisterScriptFunctions_GUI(const ScriptRequest& rq)
 	ScriptFunction::Register<&DeleteCampaignSave>(rq, "DeleteCampaignSave");
 }
 
-void RegisterScriptFunctions_Simulation(const ScriptRequest& rq)
+void RegisterScriptFunctions_ReadOnlySimulation(const ScriptRequest& rq)
 {
 	ScriptFunction::Register<&Script_ListDirectoryFiles_Simulation>(rq, "ListDirectoryFiles");
 	ScriptFunction::Register<&Script_FileExists_Simulation>(rq, "FileExists");
 	ScriptFunction::Register<&Script_ReadJSONFile_Simulation>(rq, "ReadJSONFile");
 }
 
-void RegisterScriptFunctions_Maps(const ScriptRequest& rq)
+void RegisterScriptFunctions_ReadOnlySimulationMaps(const ScriptRequest& rq)
 {
 	ScriptFunction::Register<&Script_ListDirectoryFiles_Maps>(rq, "ListDirectoryFiles");
 	ScriptFunction::Register<&Script_FileExists_Maps>(rq, "FileExists");

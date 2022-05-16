@@ -2,8 +2,7 @@
 
 # Build the Pyrogenesis executable, used to create the bundle and run the archiver.
 
-# TODO: is there anything to do for ARM support?
-export ARCH=${ARCH:="x86_64"}
+export ARCH=${ARCH:=$(uname -m)}
 
 # Set mimimum required OS X version, SDK location and tools
 # Old SDKs can be found at https://github.com/phracker/MacOSX-SDKs
