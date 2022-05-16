@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-03 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:50+0000\n"
-"Last-Translator: c1d3d4413723242329060e6153cf18b8_282267d <5125985ffaaba9410e9fdc372411aa8b_614391>, 2021\n"
+"Last-Translator: Zuzana Miadoková, 2019,2021-2022\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -264,12 +264,12 @@ msgstr "%(nick)s už nie je moderátor."
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:152
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to:"
-msgstr "%(nick)s zmenil lobby subjekt na:"
+msgstr "%(nick)s zmenil predmet predsiene na:"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:153
 #, javascript-format
 msgid "%(nick)s deleted the lobby subject."
-msgstr "%(nick)s zmazal lobby subjekt."
+msgstr "%(nick)s zmazal predmet predsiene."
 
 #. Translation: Chat status message
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
@@ -319,7 +319,7 @@ msgstr "VYHODENÝ "
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:61
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
-msgstr "Boli ste odpojený z lobby. Chceš sa znova pripojiť? "
+msgstr "Bol si odpojený z predsiene. Chceš sa znova pripojiť? "
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
 #: gui/lobby/LobbyPage/ConnectionHandler.js:62
@@ -471,21 +471,21 @@ msgstr "< %(rating)s"
 
 #: gui/lobby/LobbyPage/KickStrings.js:39
 msgid "You have been kicked from the lobby!"
-msgstr "Bol si vyhodený z lobby! "
+msgstr "Bol si vyhodený z predsiene! "
 
 #: gui/lobby/LobbyPage/KickStrings.js:40
 msgid "You have been banned from the lobby!"
-msgstr "Bol si zabanovaný z lobby! "
+msgstr "Bol si zabanovaný z predsiene! "
 
 #: gui/lobby/LobbyPage/KickStrings.js:43
 #, javascript-format
 msgid "%(nick)s has been kicked from the lobby."
-msgstr "%(nick)s bol vyhodený z lobby. "
+msgstr "%(nick)s bol vyhodený z predsiene. "
 
 #: gui/lobby/LobbyPage/KickStrings.js:44
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr "%(nick)s bol zabanovaný z lobby. "
+msgstr "%(nick)s bol zabanovaný z predsiene. "
 
 #: gui/lobby/LobbyPage/KickStrings.js:49
 #, javascript-format
@@ -707,7 +707,7 @@ msgid ""
 " information (such as the real name) was disclosed on the Lobby Chat, other "
 "services of Wildfire Games or elsewhere in the public, or when the IP "
 "address is used to bring criminal proceedings."
-msgstr "Meno hráča slúži ako pseudonym. Identita (pravá osoba) hráča nie je Wildfire Games známa, pokiaľ osobné identifikačné informácie (ako skutočné meno) neboli odhalené v Lobby Chate, na iných službách od Wildfire Games alebo kdekoľvek na verejnosti, alebo keď IP adresa je použitá na usvedčenie z kriminálnej činnosti."
+msgstr "Meno hráča slúži ako pseudonym. Identita (pravá osoba) hráča nie je Wildfire Games známa, pokiaľ osobné identifikačné informácie (ako skutočné meno) neboli odhalené v chate predsiene, na iných službách od Wildfire Games alebo kdekoľvek inde na verejnosti, alebo keď je IP adresa použitá na usvedčenie z kriminálnej činnosti."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
@@ -735,7 +735,7 @@ msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr "Keď hráč vytvoril zápas v lobby viacerých hráčov, jeho IP adresa je poslaná každému hráčovy, ktorý je online, aby sa ostatní hráči mohli k nemu pripojiť do hry."
+msgstr "Keď hráč vytvorí zápas v predsieni hry viacerých hráčov, jeho IP adresa je poslaná každému hráčovi, ktorý je online, aby sa ostatní hráči mohli pripojiť do jeho hry."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
@@ -779,7 +779,7 @@ msgstr "[font=\"sans-bold-14\"]4. Online prítomnosť[/font]"
 msgid ""
 "Which players are currently connected to the Multiplayer Lobby and which "
 "match they joined is shown to all online players."
-msgstr "To, ktorí hráči sú aktuálne pripojení do lobby viacerých hráčov a do ktorého zápasu sa prihlásili je zobrazené všetkým prihláseným hráčom."
+msgstr "To, ktorí hráči sú aktuálne pripojení do predsiene hry viacerých hráčov a do ktorého zápasu sa prihlásili, je zobrazené všetkým prihláseným hráčom."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
@@ -822,7 +822,7 @@ msgstr "[font=\"sans-bold-14\"]6. Štatistiky zápasov[/font]"
 msgid ""
 "Players can gain a rating on the Multiplayer Lobby that reflects their skill"
 " at the game."
-msgstr "Hráči môžu získať hodnoteie v miestnosti pre hru viacerých hráčov, ktoré odráža ich zručnosť v hre."
+msgstr "Hráči môžu v predsieni hry viacerých hráčov získať hodnotenie, ktoré odráža ich zručnosť v hre."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:35
 msgid ""
@@ -899,14 +899,14 @@ msgid ""
 "Lobby, in the development and improvement of 0 A.D. and the Multiplayer "
 "Lobby, in enforcing the Terms of Use and in the protection against "
 "cyberattacks (GDPR 6.1.f)."
-msgstr "2. Wildfire Games má oprávnený záujem poskytovať Miestnosť hry viacerých hráčov, vyvýjať a vylepšovať 0 A.D. a Miestnosť hry viacerých hráčov, vynucovať Podmienky používania a ochranu proti kyberútokom  (GDPR 6.1.f)."
+msgstr "2. Wildfire Games má oprávnený záujem v poskytovaní predsiene hry viacerých hráčov, vývoji a zlepšovaní 0 A.D. a predsiene hry viacerých hráčov, vynucovaní dodržiavania Podmienok používania a ochranu proti kyberútokom (GDPR 6.1.f)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:51
 msgid ""
 "3. Wildfire Games does not process any further data for the Multiplayer "
 "Lobby and does not ask for consent to process data (GDPR 6.1.a, GDPR 7, GDPR"
 " 8, GDPR 13.2.c)."
-msgstr "3. Wildfire Games nespracováva žiadne iné dáta pre lobby (predsieň) hry viacerých hráčov a nežiada súhlas pre ich spracovanie (GDPR 6.1.a, GDPR 7, GDPR 8, GDPR 13.2.c)."
+msgstr "3. Wildfire Games nespracováva žiadne ďalšie dáta pre predsieň hry viacerých hráčov a nežiada súhlas pre ich spracovanie (GDPR 6.1.a, GDPR 7, GDPR 8, GDPR 13.2.c)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:53
 msgid "[font=\"sans-bold-16\"]User rights:[/font]"
@@ -1075,7 +1075,7 @@ msgstr "Pre ďalšie informácie o  Wildfire Games Ochrany osobných údajov nav
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Service[/font]"
-msgstr "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Podmienky služby lobby (miestnosti) viacerých hráčov[/font]"
+msgstr "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Podmienky služby predsiene hry viacerých hráčov[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-16"
@@ -1087,25 +1087,25 @@ msgid ""
 " by Wildfire Games that allows players to set up online multiplayer matches,"
 " discuss the game in a public chat room and gain a rating that reflects "
 "their skill."
-msgstr "0 A.D. Empires Ascendant Multiplayer Lobby (miestnosť hry viacerých hráčov) je online služba poskytovaná Wildfire Games, ktorá umožňuje hráčom vytvoriť online zápasy viacerých hráčov, diskutovať o hre vo verejnej chatovacej miestnosti a získať hodnotenie, ktoré odráža ich zručnosti."
+msgstr "0 A.D. Empires Ascendant Multiplayer Lobby (predsieň hry viacerých hráčov) je online služba poskytovaná Wildfire Games, ktorá umožňuje hráčom vytvoriť online zápasy viacerých hráčov, diskutovať o hre vo verejnej chatovacej miestnosti a získať hodnotenie, ktoré odráža ich zručnosti."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""
 "Due to the subject matter of historic warfare, description and depiction of "
 "violence and the language on the Multiplayer Lobby, 0 A.D. and the "
 "Multiplayer Lobby are not directed to young children (COPPA §312.2)."
-msgstr "Kvôli téme vojny v historii, opisy a ukážky násilia a spôsobu vyjadrovania sa na Multiplayer Lobby, 0 A.D. a Multiplayer Lobby nie je vhodné pre mladistvé osoby (COPPA §312.2)."
+msgstr "Kvôli téme historického vojenstva, opisov a ukážok násilia a spôsobu vyjadrovania sa v predsieni hry viacerých hráčov, 0 A.D. a predsieň nie sú vhodné pre maloleté osoby (COPPA §312.2)."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid "The minimum age to use the Multiplayer Lobby is 13."
-msgstr "Minimálny vek pre používanie lobby (miestnosti) viacerých hráčov je 13 rokov."
+msgstr "Minimálny vek pre používanie predsiene hry viacerých hráčov je 13 rokov."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:10
 #: gui/prelobby/common/terms/Terms_of_Use.txt:5
 msgid ""
 "[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree "
 "to:[/font]"
-msgstr "[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby (miestnosti viacerých hráčov), súhlasíš s nasledujúcimi podmienkami:[/font]"
+msgstr "[font=\"sans-bold-14\"]Používaním 0 A.D. Multiplayer Lobby súhlasíš s nasledujúcimi podmienkami:[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:11
 msgid " 1. Follow all usage policies."
@@ -1155,7 +1155,7 @@ msgid ""
 " 5. Process personal data in accordance with the Lobby Privacy Policy, the "
 "General Data Protection Regulation (GDPR) and the Children's Online Privacy "
 "Protection Act (COPPA) where applicable."
-msgstr "5. Spracovávať osobné údaje v súlade s Lobby Privacy Policy, Všeobecné nariadenie o ochrane údajov (GDPR) a Children's Online Privacy Protection Act (COPPA), kde sa dá aplikovať."
+msgstr "5. Spracovávať osobné údaje v súlade s Lobby Privacy Policy, Všeobecné nariadenie o ochrane údajov (GDPR) a Children's Online Privacy Protection Act (COPPA), kde aplikovateľné."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:22
 msgid ""
@@ -1167,7 +1167,7 @@ msgstr "Ak časti podmienok sa považujú za nelegálne alebo inakšie sa nedaj�
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Use[/font]"
-msgstr "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Podmienky používania miestnosti viacerých hráčov[/font]"
+msgstr "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Podmienky používania predsiene hry viacerých hráčov[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-13"
