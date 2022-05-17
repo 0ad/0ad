@@ -401,7 +401,7 @@ msgstr "Podvody"
 msgid ""
 "When the winner of this match is determined, the lobby score will be "
 "adapted."
-msgstr "Keď sa určí výherca zápasu, lobby skóre bude zmenené."
+msgstr "Keď sa určí výherca zápasu, skóre v predsieni bude upravené."
 
 #: gui/common/gamedescription.js:415 gui/common/gamedescription.js:420
 msgid "Rated game"
@@ -502,7 +502,7 @@ msgstr "Server je plný."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr "Zabezpečenie overenia pravosti lobby zlyhalo. Pripojte sa cez lobby."
+msgstr "Bezpečné prihlásenie zlyhalo. Pripojte sa cez predsieň."
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
@@ -1403,7 +1403,7 @@ msgstr "Gitara"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[12].Subtitle
 msgid "Handpan"
-msgstr ""
+msgstr "Handpan"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[13].Subtitle
 msgid "Harp"
@@ -1415,7 +1415,7 @@ msgstr "Šrutiho krabička"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[15].Subtitle
 msgid "Tin whistles"
-msgstr "Cínové píťalky"
+msgstr "Cínové píšťalky"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[16].Subtitle
 msgid "Trumpet"
@@ -1501,7 +1501,7 @@ msgstr "Vedenie"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr "Vyváženie"
+msgstr "Balancovanie"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
@@ -1567,7 +1567,7 @@ msgstr "Projektoví vedúci"
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
-msgstr "Spolu vedúci dizajnéry"
+msgstr "Spoluvedúci dizajnéri"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
@@ -2808,7 +2808,7 @@ msgstr "Prepnúť počítadlo FPS"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.desc
 msgctxt "hotkey metadata"
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "Ukázať predsieň viacerých hráčov v dialógovom okne. "
+msgstr "Ukázať predsieň hry viacerých hráčov v dialógovom okne. "
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.name
 msgctxt "hotkey metadata"
@@ -3931,7 +3931,7 @@ msgstr "Hodnota: %(val)s (minimum: %(min)s, maximum: %(max)s)"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr "Obnova predvolených nastavení odstráni vaše uložené nastavenia. Naozaj chcete pokračovať?"
+msgstr "Obnova predvolených nastavení odstráni tvoje uložené nastavenia. Naozaj chcete pokračovať?"
 
 #: gui/options/options.js:412
 msgid "Some setting values are invalid! Are you sure you want to save them?"
@@ -3939,7 +3939,7 @@ msgstr "Niektoré z hodnôt sú neplatné! Ste si istí, že ich chcete uložiť
 
 #: gui/options/options.js:438
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr "Máte tu neuložené zmeny. Naozaj chcete zatvoriť toto okno?"
+msgstr "Máš tu neuložené zmeny. Naozaj chceš zatvoriť toto okno?"
 
 #: gui/options/options.json[0].label
 msgid "General"
@@ -3959,7 +3959,7 @@ msgstr "Meno hráča (multiplayer)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr "Ako chcete byť oslovovaný v multiplayeri (okrem lobby)."
+msgstr "Ako chceš byť oslovovaný v zápasoch hry viacerých hráčov (okrem predsiene)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
@@ -3977,7 +3977,7 @@ msgstr "Povoliť uvítaciu obrazovku"
 msgid ""
 "If you disable it, the welcome screen will still appear once, each time a "
 "new version is available. You can always launch it from the main menu."
-msgstr "Ak to zakážeš, uvítacia obrazovka sa stále raz objaví, keď bude dostupná nová verzia. Stále ju môžeš spustiť z hlavného menu."
+msgstr "Ak to zakážeš, uvítacia obrazovka sa objaví len raz, vždy keď bude dostupná nová verzia. Stále ju môžeš spustiť z hlavného menu."
 
 #: gui/options/options.json[0].options[4].label
 msgid "FPS overlay"
@@ -4073,12 +4073,12 @@ msgstr "Spustiť 0 A.D. v okne."
 
 #: gui/options/options.json[1].options[10].label
 msgid "Mouse drag"
-msgstr ""
+msgstr "Ťah myši"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid ""
 "Number of pixels the mouse can move before the action is considered a drag."
-msgstr ""
+msgstr "O koľko pixelov sa môže myš posunúť než sa akcia považuje za ťahanie."
 
 #: gui/options/options.json[1].options[1].label
 #: gui/options/options.json[2].options[1].label
@@ -4193,7 +4193,7 @@ msgstr "250%"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
-msgstr "Nastav vyváženie medzi výkonom a vizuálnym vzhľadom."
+msgstr "Uprav pomer výkonu a vzhľadu hry."
 
 #: gui/options/options.json[2].label
 msgid "Graphics (advanced)"
@@ -4697,7 +4697,7 @@ msgstr "Automaticky prideľ pripojených klientov na prázdne hráčske sloty po
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].label
 msgid "Networking / Lobby"
-msgstr "Nastavenia siete / predsiene"
+msgstr "Sieť / predsieň"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].label
 msgid "TLS encryption"
@@ -4714,7 +4714,7 @@ msgstr "Denník konverzácie"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
-msgstr "Počet spätných správ ktorý sa majú načítať pri pripájaní sa do predsiene."
+msgstr "Počet spätných správ ktoré sa majú načítať pri pripájaní sa do predsiene."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].label
 msgid "Game rating column"
@@ -5303,7 +5303,7 @@ msgstr "%(hotkey)s: Spusti hernú predsieň pre pripojenie a hosťovanie verejne
 
 #: gui/pregame/MainMenuItems.js:184
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
-msgstr "Spusti multiplayerovú predsieň. \\[ZNEFUNKČNENÉ BUILDOM]"
+msgstr "Spusti predsieň hry viacerých hráčov. \\[ZNEFUNKČNENÉ ZOSTAVOU]"
 
 #: gui/pregame/MainMenuItems.js:208
 msgid "Settings"
@@ -5742,7 +5742,7 @@ msgstr "Žiadne súhrnné dáta nie sú k dispozícii."
 
 #: gui/replaymenu/replay_actions.js:175
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr "Naozaj chcete navždy zmazať tento záznam?"
+msgstr "Naozaj chceš navždy zmazať tento záznam?"
 
 #: gui/replaymenu/replay_actions.js:177
 msgid "Delete replay"
@@ -6311,7 +6311,7 @@ msgstr "%(mapName)s – %(mapType)s"
 #: gui/summary/summary.js:544
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr "%(hotkey)s: Otvor predsieň hry viac hráčov v dialóvom okne."
+msgstr "%(hotkey)s: Otvor predsieň hry viac hráčov v dialógovom okne."
 
 #: gui/summary/summary.js:556
 #, javascript-format

@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-10-11 07:08+0000\n"
-"PO-Revision-Date: 2021-10-11 09:16+0000\n"
-"Last-Translator: Transifex Bot\n"
+"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"Last-Translator: Szabó Lambert, 2021-2022\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -199,11 +199,11 @@ msgstr " hotkey.togglefullscreen – Váltás a teljes képernyős és ablakos n
 
 #: gui/manual/intro.txt:45
 msgid "  hotkey.console.toggle – Toggle console"
-msgstr "hotkey.console.toggle – Konzol be/ki"
+msgstr "  hotkey.console.toggle – Konzol megjelenítése / elrejtése"
 
 #: gui/manual/intro.txt:46
 msgid "  hotkey.fps.toggle – Toggle frame counter (FPS)"
-msgstr "hotkey.fps.toggle – Képkockasebesség-számláló (FPS) be/ki"
+msgstr "  hotkey.fps.toggle – FPS-számláló megjelenítése / elrejtése"
 
 #: gui/manual/intro.txt:47
 msgid ""
@@ -268,19 +268,19 @@ msgstr " Alt + tripla bal kattintás \\[az egységen] – Az összes azonos fajt
 
 #: gui/manual/intro.txt:59
 msgid "  hotkey.quicksave – Quicksave"
-msgstr "  hotkey.quicksave – Gyors mentés"
+msgstr "  hotkey.quicksave – Gyorsmentés"
 
 #: gui/manual/intro.txt:60
 msgid "  hotkey.quickload – Quickload"
-msgstr "  hotkey.quickload – Gyors betöltés"
+msgstr "  hotkey.quickload – Gyorstöltés"
 
 #: gui/manual/intro.txt:61
 msgid "  hotkey.session.gui.menu.toggle – Toggle menu"
-msgstr " hotkey.session.gui.menu.toggle – Menü be/ki"
+msgstr "  hotkey.session.gui.menu.toggle – Menü megjelenítése / elrejtése"
 
 #: gui/manual/intro.txt:62
 msgid "  hotkey.timeelapsedcounter.toggle – Toggle time elapsed counter"
-msgstr " hotkey.timeelapsedcounter.toggle – Eltelt idő be/ki"
+msgstr "  hotkey.timeelapsedcounter.toggle – Eltelt idő megjelenítése / elrejtése"
 
 #: gui/manual/intro.txt:63
 msgid "  hotkey.cancel – Close all dialogs (chat, menu)"
@@ -302,7 +302,7 @@ msgstr "   hotkey.privatechat – Csevegés az előzőleg kiválasztott privát 
 
 #: gui/manual/intro.txt:67
 msgid "  hotkey.pause – Pause or resume the game"
-msgstr " hotkey.pause – A játék szüneteltetése/folytatása"
+msgstr "  hotkey.pause – Játék szüneteltetése / folytatása"
 
 #: gui/manual/intro.txt:68
 msgid ""
@@ -430,20 +430,20 @@ msgstr ""
 
 #: gui/manual/intro.txt:90
 msgid "  hotkey.summary – Toggle summary window"
-msgstr ""
+msgstr "  hotkey.summary – Összesítő ablak megnyitása / bezárása"
 
 #: gui/manual/intro.txt:91
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
-msgstr ""
+msgstr "  hotkey.lobby – Többjátékos váró megjelenítése egy párbeszédablakban"
 
 #: gui/manual/intro.txt:92
 msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
-msgstr ""
+msgstr "  hotkey.session.gui.diplomacy.toggle – Diplomáciai ablak megnyitása / bezárása"
 
 #: gui/manual/intro.txt:93
 msgid ""
 "  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel"
-msgstr ""
+msgstr "  hotkey.session.gui.barter.toggle – Kereskedelmi ablak megnyitása / bezárása"
 
 #: gui/manual/intro.txt:94
 msgid ""
@@ -452,11 +452,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:95
 msgid "  hotkey.session.gui.tutorial.toggle – Toggle in-game tutorial panel"
-msgstr ""
+msgstr "  hotkey.session.gui.tutorial.toggle – Oktatóablak megnyitása / bezárása"
 
 #: gui/manual/intro.txt:96
 msgid "  hotkey.structree – Toggle structure tree panel"
-msgstr ""
+msgstr "  hotkey.structree – Építményfa megnyitása / bezárása"
 
 #: gui/manual/intro.txt:97
 msgid "  hotkey.civinfo – Toggle civilization info panel"
@@ -591,7 +591,7 @@ msgstr "[font=\"sans-bold-14\"]Rátétek[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:123
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
-msgstr ""
+msgstr "  hotkey.session.gui.toggle – Felhasználói felület megjelenítése / elrejtése"
 
 #: gui/manual/intro.txt:124
 msgid ""
@@ -604,7 +604,7 @@ msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "  hotkey.wireframe – Drótvázak megjelenítése / elrejtése (ha azt szeretnéd, hogy a drótvázak a textúrákra illesztve jelenjenek meg, úgy egyszer nyomd meg, ha azt, hogy magukban jelenjenek meg, a textúrák által színezve, úgy kétszer, amennyiben pedig vissza akarsz térni a normál nézethez, úgy háromszor)"
 
 #: gui/manual/intro.txt:126
 msgid ""
@@ -614,7 +614,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:127
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
-msgstr ""
+msgstr "  hotkey.session.diplomacycolors – Diplomáciai színek ki/bekapcsolása"
 
 #: gui/manual/intro.txt:128
 msgid ""
@@ -664,29 +664,29 @@ msgstr ""
 
 #: gui/manual/intro.txt:139
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "  hotkey.camera.rotate.cw – Kamera elforgatása a terep körül az óramutató járásával megegyező irányban"
 
 #: gui/manual/intro.txt:140
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
-msgstr ""
+msgstr "  hotkey.camera.rotate.ccw – Kamera elforgatása a terep körül az óramutató járásával ellentétes irányban"
 
 #: gui/manual/intro.txt:141
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "  hotkey.camera.rotate.wheel.cw – Kamera elforgatása a terep körül az óramutató járásával megegyező irányban"
 
 #: gui/manual/intro.txt:142
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
-msgstr ""
+msgstr "  hotkey.camera.rotate.wheel.ccw – Kamera elforgatása a terep körül az óramutató járásával ellentétes irányban"
 
 #: gui/manual/intro.txt:143
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
-msgstr ""
+msgstr "  hotkey.camera.follow – Kijelölt egység követése (a követés felfüggesztéséhez mozdítsd el a kamerát)"
 
 #: gui/manual/intro.txt:144
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
@@ -710,16 +710,16 @@ msgstr ""
 
 #: gui/manual/intro.txt:149
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-14\"]Épület elhelyezésekor[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-14\"]Építmény elhelyezésekor[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:150
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
-msgstr ""
+msgstr "  hotkey.session.rotate.ccw – Építmény elforgatása 15°-kal az óramutató járásával ellentétes irányban"
 
 #: gui/manual/intro.txt:151
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
-msgstr ""
+msgstr "  hotkey.session.rotate.cw – Építmény elforgatása 15°-kal az óramutató járásával megegyező irányban"
 
 #: gui/manual/intro.txt:152
 msgid ""
@@ -733,7 +733,7 @@ msgstr "[font=\"sans-bold-14\"]Elmentett játék betöltésekor[font=\"sans-14\"
 
 #: gui/manual/intro.txt:155
 msgid "  hotkey.cancel – Cancel"
-msgstr ""
+msgstr "  hotkey.cancel – Mégse"
 
 #: gui/manual/intro.txt:156
 msgid ""
@@ -745,7 +745,7 @@ msgstr "  hotkey.session.savedgames.delete – Kiválasztott mentés törlése (
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"
-msgstr ""
+msgstr "    • hotkey.session.savedgames.noconfirmation gombbal együtt – Törlés megerősítés nélkül"
 
 #: gui/manual/manual.xml:(caption):13
 msgid "Manual"

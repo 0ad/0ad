@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-01-07 08:19+0000\n"
-"PO-Revision-Date: 2021-05-18 08:51+0000\n"
-"Last-Translator: rollieoo\n"
+"PO-Revision-Date: 2013-06-22 12:54+0000\n"
+"Last-Translator: rollieoo, 2022\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -69,7 +69,7 @@ msgstr "Onbekend subtype (zie logboek)"
 
 #: lobby/XmppClient.cpp:1355
 msgid "The certificate is not trusted."
-msgstr "Het certificaat is niet vertrouwd."
+msgstr "Het is geen vertrouwd certificaat."
 
 #: lobby/XmppClient.cpp:1356
 msgid "The certificate hasn't got a known issuer."
@@ -89,11 +89,11 @@ msgstr "Het certificaat is nog niet actief."
 
 #: lobby/XmppClient.cpp:1360
 msgid "The certificate has not been issued for the peer connected to."
-msgstr "Het certificaat is niet verstrekt voor de partij waarmee je verbindt."
+msgstr "Het certificaat is niet verstrekt voor de partij waarmee U verbindt."
 
 #: lobby/XmppClient.cpp:1361
 msgid "The certificate signer is not a certificate authority."
-msgstr "De ondertekenaar van het certificaat is geen gecertificeerde autoriteit."
+msgstr "De ondertekenaar van het certificaat is geen certificatie-autoriteit."
 
 #: lobby/XmppClient.cpp:1383 lobby/XmppClient.cpp:1427
 #: lobby/XmppClient.cpp:1466
@@ -142,7 +142,7 @@ msgstr "Onbekende foutmelding"
 
 #: lobby/XmppClient.cpp:1431
 msgid "Stream error"
-msgstr "Foutmelding systeem"
+msgstr "Foutmelding stream"
 
 #: lobby/XmppClient.cpp:1432
 msgid "The incoming stream version is unsupported"
@@ -176,7 +176,7 @@ msgstr "Het certificaat van de server kan niet worden geverifieerd of de TLS han
 
 #: lobby/XmppClient.cpp:1444
 msgid "The server did not offer required TLS encryption"
-msgstr "De server biedt niet de juiste TLS beveiliging"
+msgstr "De server biedt niet de vereiste TLS encryptie"
 
 #: lobby/XmppClient.cpp:1446
 msgid "Authentication failed. Incorrect password or account does not exist"
@@ -184,7 +184,7 @@ msgstr "Verificatie mislukt. Verkeerd wachtwoord of de gebruiker bestaat niet"
 
 #: lobby/XmppClient.cpp:1447
 msgid "The user or system requested a disconnect"
-msgstr "De gebruiker of het systeem vroeg om de verbinding te verbreken"
+msgstr "De gebruiker of het systeem vroeg de verbinding te verbreken"
 
 #: lobby/XmppClient.cpp:1448
 msgid "There is no active connection"
@@ -207,7 +207,7 @@ msgstr "Gebruikersnaam bestaat al"
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr "De externe mod '%s' kon niet uitgepakt worden. Installeer de mod opnieuw."
+msgstr "De ingepakte mod '%s' kon niet opgeslagen worden. Installeer de mod opnieuw."
 
 #: ps/ModIo.cpp:264
 #, c-format
@@ -237,12 +237,12 @@ msgstr "Fout tijdens het starten van de download. Fout: %s; %s."
 #: ps/ModIo.cpp:400
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr "Asynchroon downloaden gefaald: %s, %s."
+msgstr "Asynchroon downloaden mislukt: %s, %s."
 
 #: ps/ModIo.cpp:428
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Downloaden gefaald. Server respons: %s, %s."
+msgstr "Downloaden mislukt. Server respons: %s, %s."
 
 #: ps/ModIo.cpp:534
 msgid "Mismatched filesize."
@@ -255,11 +255,11 @@ msgstr "Ongeldig bestand. Verwacht MD5 hash %s, maar kreeg %s."
 
 #: ps/ModIo.cpp:567
 msgid "Failed to compute final hash."
-msgstr "Niet geslaagd om de hash code te berekenen."
+msgstr "Kon de hash code niet berekenen."
 
 #: ps/ModIo.cpp:573
 msgid "Failed to verify signature."
-msgstr "Niet geslaagd om de handtekening te controleren."
+msgstr "Kon de handtekening niet controleren."
 
 #: ps/SavedGame.cpp:142
 #, c-format

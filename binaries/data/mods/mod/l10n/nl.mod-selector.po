@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-20 07:08+0000\n"
-"PO-Revision-Date: 2021-09-21 15:34+0000\n"
-"Last-Translator: rollieoo\n"
+"PO-Revision-Date: 2014-09-12 20:06+0000\n"
+"Last-Translator: rollieoo, 2021-2022\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +31,7 @@ msgstr ""
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr "Opent %(url)s\nin web browser. Een moment..."
+msgstr "Opent %(url)s\nin webbrowser. Een moment..."
 
 #: gui/common/functions_msgbox.js:28
 msgid "Opening page"
@@ -45,17 +45,17 @@ msgstr "B"
 #: gui/common/l10n.js:10
 msgctxt "filesize unit"
 msgid "KiB"
-msgstr "KiB"
+msgstr "KB"
 
 #: gui/common/l10n.js:11
 msgctxt "filesize unit"
 msgid "MiB"
-msgstr "MiB"
+msgstr "MB"
 
 #: gui/common/l10n.js:12
 msgctxt "filesize unit"
 msgid "GiB"
-msgstr "GiB"
+msgstr "GB"
 
 #. Translation: For example: 123.4 KiB
 #: gui/common/l10n.js:33
@@ -93,7 +93,7 @@ msgstr ","
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
-msgstr "Vereist %(mods)s"
+msgstr "Vereist: %(mods)s"
 
 #: gui/common/mod.js:41
 #, javascript-format
@@ -137,7 +137,7 @@ msgstr "Oké"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr "0 A.D. Empires Ascendant mod.io vrijwaring"
+msgstr "0 A.D. Empires Ascendant mod.io Vrijwaring"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
@@ -170,7 +170,7 @@ msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr "Door gebruik te maken van de service begrijp je dat de Algemene Voorwaarden en het Privacy Beleid van mod.io van toepassing zijn en dat Wildfire Games niet aansprakelijk is voor enige schade veroorzaakt door deze service."
+msgstr "Door gebruik te maken van de service begrijpt U dat de Algemene Voorwaarden en het Privacy Beleid van mod.io van toepassing zijn en dat Wildfire Games niet aansprakelijk is voor enige schade veroorzaakt door deze service."
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -202,12 +202,12 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Mod Lijst kon niet worden opgehaald.\n\n%(technicalDetails)s"
+msgstr "Mod lijst kon niet worden opgehaald.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr "Ophaal Fout"
+msgstr "Ophaal fout"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -216,12 +216,12 @@ msgid ""
 "File download failed.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Bestand downloaden gefaald.\n\n%(technicalDetails)s"
+msgstr "Bestand downloaden mislukt.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr "Download Fout"
+msgstr "Download fout"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -235,7 +235,7 @@ msgstr "Bestandsverificatie fout.\n\n%(technicalDetails)s"
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
 msgid "Verification Error"
-msgstr "Verificatie Fout"
+msgstr "Verificatie fout"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
@@ -264,20 +264,20 @@ msgstr "Updating"
 
 #: gui/modio/modio.js:249
 msgid "Cancel Update"
-msgstr "Stop Update"
+msgstr "Stop update"
 
 #: gui/modio/modio.js:265
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr "Downloading \"%(modname)s\""
+msgstr "Downloaden “%(modname)s”"
 
 #: gui/modio/modio.js:268
 msgid "Downloading"
-msgstr "Downloading"
+msgstr "Downloaden"
 
 #: gui/modio/modio.js:270
 msgid "Cancel Download"
-msgstr "Stop Download"
+msgstr "Stop download"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with
@@ -294,7 +294,7 @@ msgid ""
 "Time Elapsed: %(elapsed)s\n"
 "Estimated Time Remaining: %(remaining)s\n"
 "Average Speed: %(avgSpeed)s"
-msgstr "Verstreken tijd: %(elapsed)s\nGeschatte resterende tijd: %(remaining)s\nGemiddelde Snelheid: %(avgSpeed)s"
+msgstr "Verstreken tijd: %(elapsed)s\nGeschatte resterende tijd: %(remaining)s\nGemiddelde snelheid: %(avgSpeed)s"
 
 #: gui/modio/modio.js:349
 msgid "∞"
@@ -310,7 +310,7 @@ msgstr "%(number)s %(unit)s/s"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr "mod.io Mods"
+msgstr "mod.io mods"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):70
 msgid "Available Mods"
@@ -365,7 +365,7 @@ msgstr "Filter"
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "0 A.D. is ontworpen om eenvoudig uitgebreid te worden. Mods worden verdeeld in de vorm van .pyromod bestanden, deze kunnen worden geopend als .zip bestanden."
+msgstr "0 A.D. is ontworpen om eenvoudig uitgebreid te worden. Mods worden verspreid in de vorm van .pyromod bestanden, deze kunnen net zo worden geopend als .zip bestanden."
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -381,7 +381,7 @@ msgstr "Om een mod te installeren, open het bestand met 0 A.D. (door middel van 
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr "Voor meer informatie over modding, zie de Modding Handleiding online (Klik op de Modding Handleiding knop beneden)."
+msgstr "Voor meer informatie over modding, zie de Modding Handleiding online (Klik op de Modding handleiding knop beneden)."
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -390,11 +390,11 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr "De mod.io service is gemaakt door DBolical, het bedrijf achter IndieDB en ModDB. Deze websites ondersteunen 0 A.D. en andere indie projecten al voor een lange tijd! Nu staat mod.io ons toe alle door het team geverifieerde mods op te sommen en te downloaden. Klik \"Download Mods\" om het te proberen en installeer er een paar!"
+msgstr "De mod.io service is gemaakt door DBolical, het bedrijf achter IndieDB en ModDB. Deze websites ondersteunen 0 A.D. en andere indie projecten al voor een lange tijd! Nu kunnen wij door mod.io alle door het team geverifieerde mods te tonen en te downloaden. Klik \"Download mods\" om het te proberen en installeer er een paar!"
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr "Pyrogenesis Mod Selectie"
+msgstr "Pyrogenesis mod selectie"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
@@ -402,7 +402,7 @@ msgstr "Sluiten"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr "Modding Handleiding"
+msgstr "Modding handleiding"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
@@ -444,7 +444,7 @@ msgstr "Selectie omkeren"
 
 #: gui/modmod/modmod.xml:(caption):51
 msgid "Filter compatible"
-msgstr "Filter compatibelen"
+msgstr "Filter compatibele mods"
 
 #: gui/modmod/modmod.xml:(caption):63
 msgid "Description"
@@ -468,7 +468,7 @@ msgstr "Help"
 
 #: gui/modmod/modmod.xml:(caption):207
 msgid "Download Mods"
-msgstr "Download Mods"
+msgstr "Download mods"
 
 #: gui/modmod/modmod.xml:(caption):212
 msgid "Save Configuration"
