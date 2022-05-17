@@ -68,6 +68,7 @@ CGUIText::CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& font
 
 	CStrIntern font(fontW.ToUTF8());
 	float y = bufferZone; // drawing pointer
+	float lineWidth = 0.f;
 	int from = 0;
 
 	bool firstLine = true;	// Necessary because text in the first line is shorter
@@ -97,12 +98,17 @@ CGUIText::CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& font
 
 		posLastImage = std::max(posLastImage, i);
 
+		lineWidth += feedback.m_Size.Width;
+
 		prelimLineHeight = std::max(prelimLineHeight, feedback.m_Size.Height);
 
 		// If width is 0, then there's no word-wrapping, disable NewLine.
-		if (((width != 0 && (feedback.m_Size.Width + 2 * bufferZone > width || feedback.m_NewLine)) || i == static_cast<int>(string.m_Words.size()) - 2) &&
-		    ProcessLine(pGUI, string, font, pObject, images, align, prelimLineHeight, width, bufferZone, firstLine, y, i, from))
-			return;
+		if ((width != 0 && from != i && (lineWidth + 2 * bufferZone > width || feedback.m_NewLine)) || i == static_cast<int>(string.m_Words.size()) - 2)
+		{
+			if (ProcessLine(pGUI, string, font, pObject, images, align, prelimLineHeight, width, bufferZone, firstLine, y, i, from))
+				return;
+			lineWidth = 0.f;
+		}
 	}
 }
 
@@ -332,7 +338,7 @@ bool CGUIText::AssembleCalls(
 	int& from)
 {
 	bool done = false;
-	float x = 0.f;
+	float x = dx;
 
 	for (int j = tempFrom; j <= i; ++j)
 	{
@@ -350,7 +356,7 @@ bool CGUIText::AssembleCalls(
 
 		for (STextCall& tc : feedback2.m_TextCalls)
 		{
-			tc.m_Pos = CVector2D(dx + x + xPointer, y);
+			tc.m_Pos = CVector2D(x + xPointer, y);
 
 			xPointer += tc.m_Size.Width;
 
