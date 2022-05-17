@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -81,8 +81,8 @@ size_t os_cpu_QueryMemorySize()
 	size_t memorySize = 0;
 	size_t len = sizeof(memorySize);
 	// Argh, the API doesn't seem to be const-correct
-	/*const*/ int mib[2] = { CTL_HW, HW_PHYSMEM };
-	sysctl(mib, 2, &memorySize, &len, 0, 0);
+	/*const*/ int mib[2] = { CTL_HW, HW_MEMSIZE };
+	sysctl(mib, 2, &memorySize, &len, nullptr, 0);
 	memorySize /= MiB;
 	return memorySize;
 }
@@ -94,7 +94,7 @@ size_t os_cpu_MemoryAvailable()
 	size_t len = sizeof(memoryAvailable);
 	// Argh, the API doesn't seem to be const-correct
 	/*const*/ int mib[2] = { CTL_HW, HW_USERMEM };
-	sysctl(mib, 2, &memoryAvailable, &len, 0, 0);
+	sysctl(mib, 2, &memoryAvailable, &len, nullptr, 0);
 	memoryAvailable /= MiB;
 	return memoryAvailable;
 }
