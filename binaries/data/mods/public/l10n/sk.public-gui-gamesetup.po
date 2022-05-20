@@ -24,7 +24,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"POT-Creation-Date: 2022-05-16 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:48+0000\n"
 "Last-Translator: Zuzana Miadoková, 2021-2022\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
@@ -33,49 +33,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
-
-#: gui/gamesettings/attributes/PlayerName.js:133
-#, javascript-format
-msgid "%(playerName)s %(romanNumber)s"
-msgstr "%(playerName)s %(romanNumber)s"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:55
-msgctxt "team placement"
-msgid "Circle"
-msgstr "Kruh"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:56
-msgid ""
-"Allied players are grouped and placed with opposing players on one circle "
-"spanning the map."
-msgstr "Spojeneckí hráči sú zoskupení a umiestnení so súperiacimi hráčmi v jednom okruhu rozprestretom na mape."
-
-#: gui/gamesettings/attributes/TeamPlacement.js:60
-msgctxt "team placement"
-msgid "Line"
-msgstr "Čiara"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:61
-msgid "Allied players are placed in a linear pattern."
-msgstr "Spojenci sú umiestnení podľa lineárneho vzoru."
-
-#: gui/gamesettings/attributes/TeamPlacement.js:65
-msgctxt "team placement"
-msgid "Random Group"
-msgstr "Náhodná skupina"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:66
-msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr "Spojeneckí hráči sú zoskupení, ale inak náhodne roztrúsení na mape."
-
-#: gui/gamesettings/attributes/TeamPlacement.js:70
-msgctxt "team placement"
-msgid "Stronghold"
-msgstr "Pevnosť"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:71
-msgid "Allied players are grouped in one random place of the map."
-msgstr "Spojeneckí hráči sú zoskupení na jednom náhodnom mieste na mape."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"

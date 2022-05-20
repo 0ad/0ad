@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-04 07:08+0000\n"
+"POT-Creation-Date: 2022-05-16 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Szabó Lambert, 2021-2022\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
@@ -346,7 +346,7 @@ msgstr "Görög építészet"
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsontooltip
 msgid "Structures +10% health and +10% capture points."
-msgstr "+10% életerő és +10% foglalási pont az épületeknél."
+msgstr "+10% életerő és +10% foglalási pont az építményeknek"
 
 #: simulation/data/technologies/civbonuses/han_population.jsondescription
 msgid ""
@@ -372,7 +372,7 @@ msgstr ""
 
 #: simulation/data/technologies/civbonuses/han_walls.jsongenericName
 msgid "Great Wall"
-msgstr ""
+msgstr "Nagy fal"
 
 #: simulation/data/technologies/civbonuses/han_walls.jsontooltip
 msgid "City Walls +50% health."
@@ -470,7 +470,7 @@ msgstr "−40% faigény és életerő a házaknak és a gazdasági épületeknek
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
 msgid "Civil Engineering − Level 1"
-msgstr ""
+msgstr "Építőmérnöki tudományok – 1-es szint"
 
 #: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
 #: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
@@ -479,15 +479,15 @@ msgstr "Gōngchéng"
 
 #: simulation/data/technologies/civil_engineering_01.jsontooltip
 msgid "All structures −15% build time, +10% health and −5% cost."
-msgstr ""
+msgstr "−15% építési idő, +10% életerő és −5% nyersanyagigény minden építménynek"
 
 #: simulation/data/technologies/civil_engineering_02.jsongenericName
 msgid "Civil Engineering − Level 2"
-msgstr ""
+msgstr "Építőmérnöki tudományok – 2-es szint"
 
 #: simulation/data/technologies/civil_engineering_02.jsontooltip
 msgid "All structures −25% build time, +20% health and −5% cost."
-msgstr ""
+msgstr "−25% építési idő, +20% életerő és −5% nyersanyagigény minden építménynek"
 
 #: simulation/data/technologies/civil_service_01.jsongenericName
 msgid "Civil Service − Level 1"
@@ -503,7 +503,7 @@ msgstr "Guānliáo"
 msgid ""
 "Technologies at all buildings, except the Forge, −15% cost and −15% research"
 " time."
-msgstr ""
+msgstr "A kovácsműhelyeket leszámítva minden épületnél −15% nyersanyagigény és −15% kutatási idő a fejlesztéseknek"
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
 msgid "Civil Service − Level 2"
@@ -706,7 +706,7 @@ msgid "Gather Training"
 msgstr "Begyűjtési kiképzés"
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsondescription
-msgid "Grow water weeds to to supply rice plants with nutricients."
+msgid "Grow water weeds to supply rice plants with nutricients."
 msgstr ""
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsongenericName
@@ -1179,7 +1179,7 @@ msgstr "Egy kis faluból nyüzsgő várossá fejlődés, készen állva a gyors 
 
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.han
 msgid "Xìan"
-msgstr ""
+msgstr "Xìan"
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
@@ -1675,7 +1675,7 @@ msgstr "Nyktophylakes"
 
 #: simulation/data/technologies/tower_watch.jsonspecificName.han
 msgid "Shàobīng"
-msgstr ""
+msgstr "Shàobīng"
 
 #: simulation/data/technologies/tower_watch.jsonspecificName.rome
 msgid "Vigiles"

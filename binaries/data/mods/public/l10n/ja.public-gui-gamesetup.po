@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"POT-Creation-Date: 2022-05-16 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:48+0000\n"
 "Last-Translator: Photon man, 2021-2022\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
@@ -28,49 +28,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#: gui/gamesettings/attributes/PlayerName.js:133
-#, javascript-format
-msgid "%(playerName)s %(romanNumber)s"
-msgstr "%(playerName)s %(romanNumber)s"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:55
-msgctxt "team placement"
-msgid "Circle"
-msgstr "円形"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:56
-msgid ""
-"Allied players are grouped and placed with opposing players on one circle "
-"spanning the map."
-msgstr "味方プレイヤーはマップを横切る1つの円の中に、相手プレイヤーと一緒にグループ化して配置されます"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:60
-msgctxt "team placement"
-msgid "Line"
-msgstr "直線"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:61
-msgid "Allied players are placed in a linear pattern."
-msgstr "味方プレイヤーは直線状に配置されます"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:65
-msgctxt "team placement"
-msgid "Random Group"
-msgstr "ランダムグループ"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:66
-msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr "味方プレイヤーはグループ分けされていますが、それ以外はマップ上にランダムに配置されます。"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:70
-msgctxt "team placement"
-msgid "Stronghold"
-msgstr "要塞"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:71
-msgid "Allied players are grouped in one random place of the map."
-msgstr "味方プレイヤーは、マップのランダムな1箇所にまとめられます。"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"

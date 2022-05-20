@@ -22,7 +22,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"POT-Creation-Date: 2022-05-16 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:48+0000\n"
 "Last-Translator: JungHee Lee <daemul72@gmail.com>, 2019,2021-2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -31,49 +31,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#: gui/gamesettings/attributes/PlayerName.js:133
-#, javascript-format
-msgid "%(playerName)s %(romanNumber)s"
-msgstr "%(playerName)s님 %(romanNumber)s"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:55
-msgctxt "team placement"
-msgid "Circle"
-msgstr "동그라미"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:56
-msgid ""
-"Allied players are grouped and placed with opposing players on one circle "
-"spanning the map."
-msgstr "동맹 플레이어는 지도에 걸쳐 있는 하나의 동그라미에 묶이게되고 상대 플레이어와 함께 배치됩니다."
-
-#: gui/gamesettings/attributes/TeamPlacement.js:60
-msgctxt "team placement"
-msgid "Line"
-msgstr "선"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:61
-msgid "Allied players are placed in a linear pattern."
-msgstr "동맹 플레이어는 줄 무늬로 배치됩니다."
-
-#: gui/gamesettings/attributes/TeamPlacement.js:65
-msgctxt "team placement"
-msgid "Random Group"
-msgstr "무작위 그룹"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:66
-msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr "동맹 플레이어는 한 무리가 되지만, 그렇지 않으면 아무곳에 배치됩니다."
-
-#: gui/gamesettings/attributes/TeamPlacement.js:70
-msgctxt "team placement"
-msgid "Stronghold"
-msgstr "거점"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:71
-msgid "Allied players are grouped in one random place of the map."
-msgstr "동맹이 된 플레이어는 지도에서 무작위로 한 곳에 그룹화됩니다."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"

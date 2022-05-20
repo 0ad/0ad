@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-20 07:08+0000\n"
-"PO-Revision-Date: 2021-09-20 20:27+0000\n"
-"Last-Translator: Rodrigo Vegas Sánchez-Ferrero\n"
+"PO-Revision-Date: 2014-09-12 20:06+0000\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2020-2022\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -119,7 +119,7 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "Solve the compatibility issue by disabling invalid mods or enabling required"
 " dependencies. You can then save & start the game."
-msgstr "Resuelve el problema de compatibilidad desactivando los mods no válidos o activando las dependencias necesarias. A continuación, puedes guardar e iniciar el juego."
+msgstr "Resuelve la incompatibilidad desactivando los mods inválidos o activando las dependencias necesarias. A continuación, puedes guardar e iniciar el juego."
 
 #: gui/incompatible_mods/incompatible_mods.txt:5
 msgid ""
@@ -174,7 +174,7 @@ msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr "Utilizando este servicio, asumes los términos de uso y política de privacidad aplicadas, así como que Wildfire Games no es responsable de ningún daño que pudiera ocurrir como resultado de usar este servicio."
+msgstr "Utilizando este servicio, asumes los términos de uso y política de privacidad aplicadas, así como que Wildfire Games no es responsable de ningún daño ocasionado como resultado de usar este servicio."
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -369,7 +369,7 @@ msgstr "Filtro"
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "0 A.D. está diseñado para instalar mods fácilmente. Estos se distribuyen en forma de archivos .pyromod, los cuales pueden ser abiertos como archivos .zip.   "
+msgstr "0 A.D. permite instalar mods fácilmente. Estos se distribuyen en forma de archivos .pyromod, los cuales pueden ser abiertos como archivos .zip.   "
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -379,7 +379,7 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr "Para instalar un mod, abre simplemente el archivo con 0 A.D. (doble clic sobre el archivo y elije abrirlo con el juego, o ejecuta \"pyrogenesis file.pyromod\" en el terminal). El mod estará a partir de este momento disponible en el selector de mods.  Se puede habilitar y deshabilitar a voluntad. Puedes eliminar el mod manualmente usando el explorador de archivos si es necesario (ver https://trac.wildfiregames.com/wiki/GameDataPaths)."
+msgstr "Para instalar un mod, abre simplemente el archivo con 0 A.D. (doble clic sobre el archivo y elije abrirlo con el juego, o ejecuta «pyrogenesis file.pyromod» en el terminal). El mod estará disponible a partir de este momento en el selector de mods.  Se puede habilitar y deshabilitar a voluntad. Puedes eliminar el mod manualmente usando el explorador de archivos si es necesario (ver https://trac.wildfiregames.com/wiki/GameDataPaths)."
 
 #: gui/modmod/help/help.txt:5
 msgid ""
@@ -423,7 +423,7 @@ msgstr "Activar"
 
 #: gui/modmod/modmod.js:168
 msgid "Dependencies not met"
-msgstr "Dependencias no satisfechas"
+msgstr "Dependencias no resueltas"
 
 #: gui/modmod/modmod.js:450
 msgctxt "mod activation"
@@ -500,7 +500,7 @@ msgid ""
 "overwrite settings of mods loaded earlier. It is advisable to have more "
 "complex mods loaded last. Use the arrows on the right to change the loading "
 "order."
-msgstr "Los mods activos se cargan de arriba abajo. Al cargar un mod se sobrescriben las propiedades de los mods cardados previamente. Se recomienda cargar los mods más complejos al final. Utiliza las flechas de la derecha para cambiar el orden de carga."
+msgstr "Los mods activos se cargan por orden. Al cargar un mod se sobrescriben las propiedades de los mods cardados previamente. Se recomienda cargar los mods más complejos al final. Utiliza las flechas de la derecha para cambiar el orden de carga."
 
 #: gui/modmod/modmod.xml:(tooltip):161 gui/modmod/modmod.xml:(tooltip):175
 msgid ""

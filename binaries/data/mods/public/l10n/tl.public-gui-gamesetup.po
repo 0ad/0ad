@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"POT-Creation-Date: 2022-05-16 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:48+0000\n"
 "Last-Translator: Raymond Jay Golo <rjgolo@gmail.com>, 2021\n"
 "Language-Team: Tagalog (http://www.transifex.com/wildfire-games/0ad/language/tl/)\n"
@@ -17,49 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tl\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
-#: gui/gamesettings/attributes/PlayerName.js:133
-#, javascript-format
-msgid "%(playerName)s %(romanNumber)s"
-msgstr "%(playerName)s%(romanNumber)s"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:55
-msgctxt "team placement"
-msgid "Circle"
-msgstr "Bilog"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:56
-msgid ""
-"Allied players are grouped and placed with opposing players on one circle "
-"spanning the map."
-msgstr "Ang mga magkakamping manlalaro ay nakagrupo at nakalagay kasama ng mga kalabang manlalaro sa isang bilog na sakop ang mapa."
-
-#: gui/gamesettings/attributes/TeamPlacement.js:60
-msgctxt "team placement"
-msgid "Line"
-msgstr "Linya"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:61
-msgid "Allied players are placed in a linear pattern."
-msgstr "Ang mga magkakamping manlalaro ay nakalagay sa disenyong pa-linya."
-
-#: gui/gamesettings/attributes/TeamPlacement.js:65
-msgctxt "team placement"
-msgid "Random Group"
-msgstr "Random na Grupo"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:66
-msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr "Nakagrupo ang mga manlalarong magkakampi ngunit nakalagay ng random sa mapa."
-
-#: gui/gamesettings/attributes/TeamPlacement.js:70
-msgctxt "team placement"
-msgid "Stronghold"
-msgstr "Kuta"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:71
-msgid "Allied players are grouped in one random place of the map."
-msgstr "Nakagrupo ang mga manlalarong magkakampi sa isang random na lugar sa mapa."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"

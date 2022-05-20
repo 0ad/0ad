@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-01-07 08:19+0000\n"
-"PO-Revision-Date: 2021-06-25 13:59+0000\n"
-"Last-Translator: Heraklit of Ephesos\n"
+"PO-Revision-Date: 2013-06-22 12:54+0000\n"
+"Last-Translator: xtother90, 2018-2022\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -207,7 +207,7 @@ msgstr "Benutzername bereits in Verwendung"
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr "Die externe Datei mod.json für die gezippte Modifikation '%s' konnte nicht geschrieben werden. Die Modifikation sollte neu installiert werden."
+msgstr "Die externe Datei mod.json für die gezippte Modifikation ‚%s‘ konnte nicht geschrieben werden. Die Modifikation sollte neu installiert werden."
 
 #: ps/ModIo.cpp:264
 #, c-format
@@ -264,7 +264,7 @@ msgstr "Signatur konnte nicht verifiziert werden."
 #: ps/SavedGame.cpp:142
 #, c-format
 msgid "Saved game to '%s'"
-msgstr "Spiel gespeichert unter '%s'"
+msgstr "Spiel gespeichert unter ‚%s‘"
 
 #: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
@@ -274,4 +274,4 @@ msgstr "custom build"
 #: renderer/Renderer.cpp:754 renderer/Renderer.cpp:757
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "Bildschirmfoto gespeichert unter '%s'"
+msgstr "Bildschirmfoto gespeichert unter ‚%s‘"
