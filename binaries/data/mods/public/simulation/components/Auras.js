@@ -33,7 +33,9 @@ Auras.prototype.GetDescriptions = function()
 	{
 		let aura = AuraTemplates.Get(auraID);
 		ret[auraID] = {
-			"name": aura.auraName,
+			"name": {
+				"generic": aura.auraName
+			},
 			"description": aura.auraDescription || null,
 			"radius": this.GetRange(auraID) || null
 		};
