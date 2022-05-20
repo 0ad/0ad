@@ -31,10 +31,10 @@ const testingAngles = [];
 for (let i = 0; i < 179; i++)
 	testingAngles.push(i * Math.PI / 180);
 
-TS_ASSERT(testingAngles.every(x => !cmpFormation.AreAnglesSimilar(0, x)));
-TS_ASSERT(testingAngles.every(x => !cmpFormation.AreAnglesSimilar(0, -x)));
+TS_ASSERT(testingAngles.every(x => !cmpFormation.DoesAngleDifferenceAllowTurning(0, x)));
+TS_ASSERT(testingAngles.every(x => !cmpFormation.DoesAngleDifferenceAllowTurning(0, -x)));
 
 cmpFormation.maxTurningAngle = Math.PI;
 
-TS_ASSERT(testingAngles.every(x => cmpFormation.AreAnglesSimilar(0, x)));
-TS_ASSERT(testingAngles.every(x => cmpFormation.AreAnglesSimilar(0, -x)));
+TS_ASSERT(testingAngles.every(x => cmpFormation.DoesAngleDifferenceAllowTurning(0, x)));
+TS_ASSERT(testingAngles.every(x => cmpFormation.DoesAngleDifferenceAllowTurning(0, -x)));
