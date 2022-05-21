@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_siege_tower">
+  <Footprint replace="">
+    <Square width="9.0" depth="9.0"/>
+    <Height>30.0</Height>
+  </Footprint>
   <Identity>
     <Civ>han</Civ>
     <SpecificName>Gōngchéng Tǎ</SpecificName>
