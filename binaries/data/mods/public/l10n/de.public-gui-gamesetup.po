@@ -68,7 +68,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-03-21 08:21+0000\n"
+"POT-Creation-Date: 2022-05-16 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:48+0000\n"
 "Last-Translator: Latein Lebt, 2022\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
@@ -77,49 +77,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: gui/gamesettings/attributes/PlayerName.js:133
-#, javascript-format
-msgid "%(playerName)s %(romanNumber)s"
-msgstr "%(playerName)s %(romanNumber)s."
-
-#: gui/gamesettings/attributes/TeamPlacement.js:55
-msgctxt "team placement"
-msgid "Circle"
-msgstr "Kreis"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:56
-msgid ""
-"Allied players are grouped and placed with opposing players on one circle "
-"spanning the map."
-msgstr "Verbündete Spieler werden gruppiert und mit den gegnerischen Spielern kreisförmig auf der Karte platziert."
-
-#: gui/gamesettings/attributes/TeamPlacement.js:60
-msgctxt "team placement"
-msgid "Line"
-msgstr "Linie"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:61
-msgid "Allied players are placed in a linear pattern."
-msgstr "Verbündete Spiele werden in einem linearen Muster angeordnet."
-
-#: gui/gamesettings/attributes/TeamPlacement.js:65
-msgctxt "team placement"
-msgid "Random Group"
-msgstr "Zufällige Gruppe"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:66
-msgid "Allied players are grouped, but otherwise placed randomly on the map."
-msgstr "Verbündete Spieler werden gruppiert, aber ansonsten zufällig über die Karte verteilt."
-
-#: gui/gamesettings/attributes/TeamPlacement.js:70
-msgctxt "team placement"
-msgid "Stronghold"
-msgstr "Festung"
-
-#: gui/gamesettings/attributes/TeamPlacement.js:71
-msgid "Allied players are grouped in one random place of the map."
-msgstr "Verbündete Spieler werden an einem zufälligen Ort auf der Karte gruppiert."
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"

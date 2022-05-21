@@ -39,6 +39,12 @@
   </Repairable>
   <Resistance>
     <Entity>
+      <ApplyStatus>
+        <Poisoned>
+          <Duration>0.0</Duration>
+          <BlockChance>1</BlockChance>
+        </Poisoned>
+      </ApplyStatus>
       <Damage>
         <Hack>5</Hack>
         <Pierce>10</Pierce>

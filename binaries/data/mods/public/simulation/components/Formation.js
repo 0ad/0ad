@@ -523,7 +523,7 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force, varia
 
 		// When we are out of world or the angle difference is big, trigger repositioning.
 		// Do this before setting up the position, because then we will always be in world.
-		if (!cmpPosition.IsInWorld() || !this.AreAnglesSimilar(newRotation, oldRotation))
+		if (!cmpPosition.IsInWorld() || !this.DoesAngleDifferenceAllowTurning(newRotation, oldRotation))
 			this.offsets = undefined;
 
 		this.SetupPositionAndHandleRotation(avgpos.x, avgpos.y, newRotation, true);
@@ -885,12 +885,12 @@ Formation.prototype.GetRealOffsetPositions = function(offsets)
 };
 
 /**
- * Returns true if the two given angles (in radians)
+ * Returns true if the difference between two given angles (in radians)
  * are smaller than the maximum turning angle of the formation and therfore allow
  * the formation turn without reassigning positions.
  */
 
-Formation.prototype.AreAnglesSimilar = function(a1, a2)
+Formation.prototype.DoesAngleDifferenceAllowTurning = function(a1, a2)
 {
 	const d = Math.abs(a1 - a2) % (2 * Math.PI);
 	return d < this.maxTurningAngle || d > 2 * Math.PI - this.maxTurningAngle;

@@ -29,7 +29,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual[font=\"sans-14\"]"
-msgstr "[font=\"sans-bold-18\"]0 A.D. játékbeli kézikönyv[font=\"sans-14\"]"
+msgstr "[font=\"sans-bold-18\"]A 0 A.D. játékon belüli kézikönyve[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:2
 msgid ""
@@ -369,13 +369,13 @@ msgstr "hotkey.session.backtowork – Az egység visszamegy dolgozni"
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
-msgstr " hotkey.session.unload – Ürítsd ki a beszállásolt egységeket a kijelölt épület(ek)ből"
+msgstr " hotkey.session.unload – Egységek kiküldése a kijelölt építmény(ek)ből"
 
 #: gui/manual/intro.txt:81
 msgid ""
 "  hotkey.selection.group.save.1 – Create control group 1 (by default, "
 "respectively 2,3, ...) from the selected unit(s)/structure(s)"
-msgstr ""
+msgstr "  hotkey.selection.group.save.1 – (1., 2., 3., stb.) irányítható csoport létrehozása a kijelölt egység(ek)ből / építmény(ek)ből"
 
 #: gui/manual/intro.txt:82
 msgid ""
@@ -472,11 +472,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:101
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
-msgstr ""
+msgstr "  hotkey.session.repair + jobb kattintás egy építményre – Javítás"
 
 #: gui/manual/intro.txt:102
 msgid "  hotkey.session.patrol + Right Click – Patrol"
-msgstr ""
+msgstr "  hotkey.session.patrol + jobb kattintás – Járőrözés"
 
 #: gui/manual/intro.txt:103
 msgid ""
@@ -501,13 +501,13 @@ msgstr "  hotkey.session.orderone + Jobb kattintás – Mozgási/építési/begy
 msgid ""
 "  hotkey.session.batchtrain + Left Click when training units – Add units in "
 "batches (the batch size is 5 by default and can be changed in the options)"
-msgstr ""
+msgstr "  hotkey.session.batchtrain + bal kattintás egységek kiképzésekor – Csoportos kiképzés (a csoportok alapértelmezetten 5 egységből állnak, ez az érték ugyanakkor módosítható a beállításoknál)"
 
 #: gui/manual/intro.txt:107
 msgid ""
 "  hotkey.selection.add + Left Click or Left Drag over unit on map – Add unit"
 " to selection"
-msgstr ""
+msgstr "  hotkey.selection.add + bal kattintás az egységre / bal egérgombos húzás az egység fölött – Egység hozzáadása a kijelöléshez"
 
 #: gui/manual/intro.txt:108
 msgid ""
@@ -519,25 +519,25 @@ msgstr ""
 msgid ""
 "  hotkey.selection.militaryonly + Left Drag over units on map – Only select "
 "military units"
-msgstr ""
+msgstr "  hotkey.selection.militaryonly + bal egérgombos húzás több egység fölött – Csak a katonai egységek kerülnek kijelölésre"
 
 #: gui/manual/intro.txt:110
 msgid ""
 "  hotkey.selection.nonmilitaryonly + Left Drag over units on map – Only "
 "select non-military units"
-msgstr ""
+msgstr "  hotkey.selection.nonmilitaryonly + bal egérgombos húzás több egység fölött – Csak a fegyvertelen egységek kerülnek kijelölésre"
 
 #: gui/manual/intro.txt:111
 msgid ""
 "  hotkey.selection.idleonly + Left Drag over units on map – Only select idle"
 " units"
-msgstr ""
+msgstr "  hotkey.selection.idleonly + bal egérgombos húzás több egység fölött – Csak a tétlen egységek kerülnek kijelölésre"
 
 #: gui/manual/intro.txt:112
 msgid ""
 "  hotkey.selection.woundedonly + Left Drag over units on map – Only select "
 "wounded units"
-msgstr ""
+msgstr "  hotkey.selection.woundedonly + bal egérgombos húzás több egység fölött – Csak a sebesült egységek kerülnek kijelölésre"
 
 #: gui/manual/intro.txt:113
 msgid ""
@@ -583,7 +583,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:120
 msgid "  hotkey.session.flare + Right Click – Send a flare to your allies"
-msgstr ""
+msgstr "  hotkey.session.flare + jobb kattintás – Jelzőfény küldése a szövetségeseknek"
 
 #: gui/manual/intro.txt:122
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
@@ -597,7 +597,7 @@ msgstr "  hotkey.session.gui.toggle – Felhasználói felület megjelenítése 
 msgid ""
 "  hotkey.session.devcommands.toggle – Toggle developer overlay (with "
 "developer options)"
-msgstr ""
+msgstr "  hotkey.session.devcommands.toggle – Fejlesztői réteg aktiválása / kikapcsolása (a fejlesztői beállításokkal együtt)"
 
 #: gui/manual/intro.txt:125
 msgid ""
@@ -640,19 +640,19 @@ msgstr "[font=\"sans-bold-14\"]Kamera irányítása[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:133
 msgid "  hotkey.camera.up – Pan screen up"
-msgstr ""
+msgstr "  hotkey.camera.up – Pásztázás fölfelé"
 
 #: gui/manual/intro.txt:134
 msgid "  hotkey.camera.down – Pan screen down"
-msgstr ""
+msgstr "  hotkey.camera.down – Pásztázás lefelé"
 
 #: gui/manual/intro.txt:135
 msgid "  hotkey.camera.left – Pan screen left"
-msgstr ""
+msgstr "  hotkey.camera.left – Pásztázás balra"
 
 #: gui/manual/intro.txt:136
 msgid "  hotkey.camera.right – Pan screen right"
-msgstr ""
+msgstr "  hotkey.camera.right – Pásztázás jobbra"
 
 #: gui/manual/intro.txt:137
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"

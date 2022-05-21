@@ -250,21 +250,23 @@ GuiInterface.prototype.AddMiragedEntity = function(player, entity, mirage)
  */
 GuiInterface.prototype.GetEntityState = function(player, ent)
 {
-	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-
 	if (!ent)
 		return null;
 
 	// All units must have a template; if not then it's a nonexistent entity id.
-	let template = cmpTemplateManager.GetCurrentTemplateName(ent);
+	const template = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager).GetCurrentTemplateName(ent);
 	if (!template)
 		return null;
 
-	let ret = {
+	const ret = {
 		"id": ent,
 		"player": INVALID_PLAYER,
 		"template": template
 	};
+
+	const cmpAuras = Engine.QueryInterface(ent, IID_Auras);
+	if (cmpAuras)
+		ret.auras = cmpAuras.GetDescriptions();
 
 	let cmpMirage = Engine.QueryInterface(ent, IID_Mirage);
 	if (cmpMirage)
