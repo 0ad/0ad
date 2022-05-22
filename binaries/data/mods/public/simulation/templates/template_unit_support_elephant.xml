@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_support">
-  <Auras datatype="tokens">
-    units/elephant_worker
-  </Auras>
+<Entity parent="builder|template_unit_support">
   <Cost>
     <BuildTime>15</BuildTime>
     <Resources>

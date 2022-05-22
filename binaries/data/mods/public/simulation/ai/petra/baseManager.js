@@ -548,6 +548,8 @@ PETRA.BaseManager.prototype.assignRolelessUnits = function(gameState, roleless)
 	{
 		if (ent.hasClasses(["Worker", "CitizenSoldier", "FishingBoat"]))
 			ent.setMetadata(PlayerID, "role", PETRA.Worker.ROLE_WORKER);
+		else if (ent.hasClass("Support") && ent.hasClass("Elephant"))
+			ent.setMetadata(PlayerID, "role", "worker");
 	}
 };
 
@@ -652,6 +654,12 @@ PETRA.BaseManager.prototype.reassignIdleWorkers = function(gameState, idleWorker
 		// Check that the worker isn't garrisoned
 		if (!ent.position())
 			continue;
+		// Support elephant can only be builders
+		if (ent.hasClass("Support") && ent.hasClass("Elephant"))
+		{
+			ent.setMetadata(PlayerID, "subrole", "idle");
+			continue;
+		}
 
 		if (ent.hasClass("Worker"))
 		{
@@ -874,10 +882,15 @@ PETRA.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		let time = target.buildTime();
 		nonBuilderWorkers.sort((workerA, workerB) => {
 			let coeffA = API3.SquareVectorDistance(target.position(), workerA.position());
-			if (workerA.getMetadata(PlayerID, "gather-type") == "food")
+			// elephant moves slowly, so when far away they are only useful if build time is long
+			if (workerA.hasClass("Elephant"))
+				coeffA *= 0.5 * (1 + Math.sqrt(coeffA)/5/time);
+			else if (workerA.getMetadata(PlayerID, "gather-type") == "food")
 				coeffA *= 3;
 			let coeffB = API3.SquareVectorDistance(target.position(), workerB.position());
-			if (workerB.getMetadata(PlayerID, "gather-type") == "food")
+			if (workerB.hasClass("Elephant"))
+				coeffB *= 0.5 * (1 + Math.sqrt(coeffB)/5/time);
+			else if (workerB.getMetadata(PlayerID, "gather-type") == "food")
 				coeffB *= 3;
 			return coeffA - coeffB;
 		});
