@@ -16,15 +16,13 @@
       </textures>
       <animations>
         <animation file="mechanical/han_siege_tower_idle.dae" name="idle" speed="100"/>
-        <animation file="mechanical/han_siege_tower_attack.dae" load="0.5" name="attack_ranged" speed="100"/>
-        <animation file="mechanical/han_siege_tower_attack.dae" name="attack_melee" speed="100"/>
         <animation file="mechanical/han_siege_tower_walk.dae" name="walk" speed="15"/>
         <animation file="mechanical/han_siege_tower_walk.dae" name="run" speed="24"/>
       </animations>
     </variant>
   </group>
   <group>
-    <variant frequency="100" name="Idle"/>
+    <variant frequency="100" name="ungarrisoned"/>
     <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/garrison_flag_han.xml" attachpoint="garrisoned"/>
