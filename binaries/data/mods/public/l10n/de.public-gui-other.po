@@ -49,7 +49,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-05-02 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Latein Lebt, 2021-2022\n"
+"Last-Translator: xtother90, 2017-2022\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -228,11 +228,11 @@ msgctxt "victory condition"
 msgid "Capture the Relic (%(min)s minute)"
 msgid_plural "Capture the Relic (%(min)s minutes)"
 msgstr[0] "Relikt einnehmen (%(min)s Minute)"
-msgstr[1] "Relikt einnehmen (%(min)s Minuten)"
+msgstr[1] "Reliquien erobern (%(min)s Minuten)"
 
 #: gui/common/gamedescription.js:232
 msgid "Relic Count"
-msgstr "Reliktanzahl"
+msgstr "Reliquienzahl"
 
 #: gui/common/gamedescription.js:239
 msgid "Hero Garrison"
@@ -278,7 +278,7 @@ msgstr "Nur ein Spieler kann das Spiel gewinnen. Falls die verbleibenden Spieler
 
 #: gui/common/gamedescription.js:267
 msgid "Allied Victory"
-msgstr "Verbündetensieg"
+msgstr "Sieg durch Verbündete"
 
 #: gui/common/gamedescription.js:268
 msgid ""
@@ -408,7 +408,7 @@ msgstr "Aufgedeckte Karte"
 
 #: gui/common/gamedescription.js:402
 msgid "Allied View"
-msgstr "Sicht des/der Verbündeten"
+msgstr "Sicht von Verbündeten"
 
 #: gui/common/gamedescription.js:407
 msgid "Cheats"
@@ -483,7 +483,7 @@ msgstr "Schlechte Verbindung zu %(player)s (%(milliseconds)sms)"
 msgid ""
 "This is often caused by UDP port 20595 not being forwarded on the host side,"
 " by a firewall, or anti-virus software."
-msgstr "Dies wird oft durch das nicht weiterleiten des UDP Ports 20595 auf der Host Seite, durch eine Firewall oder ein Anti-Virus Programm verursacht."
+msgstr "Dies wird oft durch das nicht weiterleiten des UDP Ports 20595 auf der Host Seite, durch eine Firewall oder ein Antivirus Programm verursacht."
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
@@ -1961,7 +1961,7 @@ msgstr "Kamera gegen den Uhrzeigersinn um das Gelände drehen – der Effekt hä
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain - the effect depends on FPS."
-msgstr "Die Kamera im Uhrzeigersinn um das Gelände drehen – der Effekt hängt von den FPS ab."
+msgstr "Die Kamera im Uhrzeigersinn um das Gelände drehen – der Effekt hängt von der Bildrate ab."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.desc
 msgctxt "hotkey metadata"
@@ -2333,7 +2333,7 @@ msgstr "Zusatztaste, um eine Angriffsbewegung zu machen, wenn ein Ort angeklickt
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.name
 msgctxt "hotkey metadata"
 msgid "Attack Move"
-msgstr "Angiffsbewegung"
+msgstr "Angriffsbewegung"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.desc
 msgctxt "hotkey metadata"
@@ -2803,7 +2803,7 @@ msgstr "FPS-Zähler umschalten"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.desc
 msgctxt "hotkey metadata"
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "Zeige die Multiplayer-Lobby in einem Dialogfenster."
+msgstr "Zeige die Mehrspielerlobby in einem Dialogfenster."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.name
 msgctxt "hotkey metadata"
@@ -2850,7 +2850,7 @@ msgstr "Anzeige der aktuellen Computerzeit umschalten."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle real-time overlay"
-msgstr "Echtzeitoverlay umschalten"
+msgstr "Echtzeit-Overlay umschalten"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.desc
 msgctxt "hotkey metadata"
@@ -2860,7 +2860,7 @@ msgstr "Kommandozeile für Entwickler umschalten"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle dev overlay"
-msgstr "Entwickleroverlay umschalten"
+msgstr "Entwickler-Overlay umschalten"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.desc
 msgctxt "hotkey metadata"
@@ -3008,7 +3008,7 @@ msgstr "Zurückspulen (Zeitreisemodus)"
 msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of attack range overlays of selected defensive structures."
-msgstr "Anzeige des Angriffsreichweitenoverlays von ausgewählten Verteidigungsgebäuden umschalten."
+msgstr "Anzeige des Angriffsreichweiten-Overlays von ausgewählten Verteidigungsgebäuden umschalten."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.name
 msgctxt "hotkey metadata"
@@ -3019,7 +3019,7 @@ msgstr "Angriffsreichweiten umschalten"
 msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of aura range overlays of selected units and structures."
-msgstr "Anzeige der Aurareichweitenoverlays von ausgewählten Einheiten und Gebäuden umschalten."
+msgstr "Anzeige der Aurareichweiten-Overlays von ausgewählten Einheiten und Gebäuden umschalten."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.name
 msgctxt "hotkey metadata"
@@ -3029,7 +3029,7 @@ msgstr "Aurareichweiten umschalten"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.desc
 msgctxt "hotkey metadata"
 msgid "Toggle display of heal range overlays of selected units."
-msgstr "Anzeige der Heilreichweitenoverlays von ausgewählten Einheiten umschalten."
+msgstr "Anzeige der Heilreichweiten-Overlays von ausgewählten Einheiten umschalten."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.name
 msgctxt "hotkey metadata"
@@ -3084,7 +3084,7 @@ msgstr "Spielzeit seit Beginn der Partie anzeigen."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle game-time overlay"
-msgstr "Spielzeitoverlay umschalten"
+msgstr "Spielzeit-Overlay umschalten"
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.desc
 msgctxt "hotkey metadata"
@@ -4127,7 +4127,7 @@ msgstr "Vertikale Synchronisation"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Vertikale Synchronisation verwenden, um Screen-Tearing zu verhindern. ERFORDERT SPIELNEUSTART"
+msgstr "Vertikale Synchronisation verwenden, um Screen-Tearing zu verhindern. ERFORDERT NEUSTART DES SPIELS"
 
 #: gui/options/options.json[1].options[7].label
 msgid "FPS throttling in menus"
@@ -4543,7 +4543,7 @@ msgstr "Aktionslautstärke"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[3].tooltip
 msgid "In game unit action sound gain."
-msgstr "Einheitenlautstärke."
+msgstr "Einheitenlautstärke im Spiel."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[4].label
 msgid "UI volume"
@@ -4667,7 +4667,7 @@ msgstr "Jeder"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
-msgstr "Spieler, die einem Spiel beitreten werden zugewiesen, wenn es einen freien Platz gibt."
+msgstr "Spieler, die einem Spiel beitreten, werden zugewiesen, wenn es einen freien Platz gibt."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[1].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[1].label
@@ -4769,7 +4769,7 @@ msgstr "Das Spiel als Beobachter automatisch beschleunigen, wenn man anfängt zu
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].tooltip
 msgid "These settings only affect the multiplayer."
-msgstr "Diese Einstellungen wirken sich nur auf den Multiplayer aus."
+msgstr "Diese Einstellungen wirken sich nur auf den Mehrspielermodus aus."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].label
 msgid "Game Session"
@@ -5114,7 +5114,7 @@ msgstr "Shader-Effekte"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][8].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "Anzahl der Shader-Effekte. BENÖTIGT SPIELNEUSTART"
+msgstr "Anzahl der Shader-Effekte. ERFORDERT NEUSTART DES SPIELS"
 
 #: gui/options/options.json[2].options[6].list[0][7].tooltip
 msgid ""
@@ -5414,7 +5414,7 @@ msgstr "Webseite"
 
 #: gui/pregame/ProjectInformation.js:26
 msgid "Click to open play0ad.com in your web browser."
-msgstr "Anklicken, um play0ad.com im Web-Browser zu öffnen."
+msgstr "Anklicken, um play0ad.com im Browser zu öffnen."
 
 #: gui/pregame/ProjectInformation.js:33
 msgid "Chat"
@@ -6292,7 +6292,7 @@ msgstr "%(mapName)s - %(mapType)s"
 #: gui/summary/summary.js:544
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr "%(hotkey)s: Die Multiplayer-Lobby in einem Dialogfenster umschalten."
+msgstr "%(hotkey)s: Die Mehrspielerlobby in einem Dialogfenster umschalten."
 
 #: gui/summary/summary.js:556
 #, javascript-format
@@ -6742,7 +6742,7 @@ msgstr "Viel Gesundheit und sehr starke Angriffe."
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
-msgstr "Haben Auras, die die Statuswerte anderer Einheiten oder Gebäude ändern."
+msgstr "Haben Auren, die die Statuswerte anderer Einheiten oder Gebäude ändern."
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
@@ -7060,7 +7060,7 @@ msgstr "SCHÄTZE"
 #: gui/text/tips/treasure.txt:2
 msgid ""
 "Collectible chests and bare resources on land and shipwrecks on the shore."
-msgstr "Sammelbare Kisten oder rohe Ressourcen an Land und Schiffswracks an der Küste."
+msgstr "Kisten zum Aufsammeln oder rohe Ressourcen an Land und Schiffswracks an der Küste."
 
 #: gui/text/tips/treasure.txt:3
 msgid ""
@@ -7100,7 +7100,7 @@ msgstr "Hohe Nahrung- und Metallkosten, aber sehr mächtig."
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr "Verfügbar für: Karthager, Kuschiten, Maurya-Inder, Perser, Ptolemäer und Seleukiden."
+msgstr "Verfügbar für: Karthager, Kuschiten, Mauryas, Perser, Ptolemäer und Seleukiden."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"

@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-25 07:09+0000\n"
+"POT-Creation-Date: 2022-05-20 07:33+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: JungHee Lee <daemul72@gmail.com>, 2021-2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -1115,16 +1115,16 @@ msgstr "[color=\"red\"]중요한 참고 사항: 인공지능은 이 지도에서
 msgid "Survival of the Fittest"
 msgstr "적자 생존"
 
-#: maps/random/survivalofthefittest_triggers.js:163
+#: maps/random/survivalofthefittest_triggers.js:160
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
 msgstr "첫번째 적들은 %(time)s 초 후에 올것입니다!"
 
-#: maps/random/survivalofthefittest_triggers.js:268
+#: maps/random/survivalofthefittest_triggers.js:265
 msgid "An enemy wave is attacking!"
 msgstr "적들이 공격해옵니다!"
 
-#: maps/random/survivalofthefittest_triggers.js:292
+#: maps/random/survivalofthefittest_triggers.js:289
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
 msgstr "%(player)s 님이 패했습니다 (시민회관 잃음)."
@@ -1913,13 +1913,12 @@ msgid "Sandbox - The Gauls"
 msgstr "샌드박스 - 갈리아인"
 
 #: maps/scenarios/sandbox_han.xml:Description:39
-msgid ""
-"A simple map showcasing the Han Chinese civilization's assets in the game."
-msgstr "게임에서 한족 문명의 자산을 보여주는 간단한 지도입니다."
+msgid "A simple map showcasing the Han civilization's assets in the game."
+msgstr ""
 
 #: maps/scenarios/sandbox_han.xml:Name:39
-msgid "Sandbox - The Han Chinese"
-msgstr "샌드박스 - 한족"
+msgid "Sandbox - The Han"
+msgstr ""
 
 #: maps/scenarios/sandbox_iberians.xml:Description:38
 msgid "A demo map for the Iberians."
@@ -3098,10 +3097,10 @@ msgstr "코일-시리아 (2)"
 #: maps/skirmishes/tarim_basin_2p.xml:Description:39
 #: maps/skirmishes/tarim_basin_4p.xml:Description:39
 msgid ""
-"A barren desert basin surrounded by mountainous valleys, the Tarim Basin is also called \"The Western Regions\" by the Han Chinese, and represents the furthest extent of their power.\n"
+"A barren desert basin surrounded by mountainous valleys, the Tarim Basin is also called \"The Western Regions\" by the Han, and represents the furthest extent of their power.\n"
 "\n"
 "The basin itself is bereft of life  and offers little in the way of defensibility. The rugged mountain valleys harbor the only life, in the form of hearty shrub and tree species and some goats."
-msgstr "산악 계곡으로 둘러싸인 황량한 사막 분지인 타림 분지는 한족에 의해 \"서부 지역\"이라고도 불리우며 가장 멀리 있는 세력을 나타냅니다.\n\n분지 자체는 생명이 없으며 방어에 있어 거의 도움이 되지 않습니다. 울퉁불퉁한 산골짜기에는 울창한 관목과 수종, 일부 염소가 서식하는 유일한 생명체가 서식하고 있습니다."
+msgstr ""
 
 #: maps/skirmishes/tarim_basin_2p.xml:Name:39
 msgid "Tarim Basin (2)"

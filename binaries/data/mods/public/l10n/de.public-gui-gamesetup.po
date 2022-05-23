@@ -70,7 +70,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-05-16 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:48+0000\n"
-"Last-Translator: Latein Lebt, 2022\n"
+"Last-Translator: xtother90, 2017-2022\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,7 +92,7 @@ msgstr "KI ist für diesen Spieler deaktiviert."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:29
 msgid "AI Behavior"
-msgstr "KI Verhalten"
+msgstr "KI-Verhalten"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:32
 msgid "AI Difficulty"
@@ -217,11 +217,11 @@ msgstr "Drücke %(hotkey)s um die Liste der verfügbaren Karten zu sehen."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:26
 msgid "Allied View"
-msgstr "Sicht des/der Verbündeten"
+msgstr "Sicht von Verbündeten"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:30
 msgid "Toggle allied view (see what your allies see)."
-msgstr "Ansicht des/der Verbündeten umschalten (sehen, was der/die Verbündete/n sehen)"
+msgstr "Sicht von Verbündeten umschalten (sehen, was Verbündete sehen)"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
@@ -247,7 +247,7 @@ msgstr "Entdeckte Karte umschalten (zeigt ursprüngliche Karte)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:26
 msgid "Last Man Standing"
-msgstr "Last Man Standing"
+msgstr "Letzter Überlebender"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:29
 msgid ""
@@ -437,11 +437,11 @@ msgstr "Kartentyp wählen."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:33
 msgid "Number of Players"
-msgstr "Spieleranzahl"
+msgstr "Spielerzahl"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:36
 msgid "Select number of players."
-msgstr "Spieleranzahl wählen."
+msgstr "Spielerzahl wählen."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:52
 msgid "Population Cap"
@@ -545,25 +545,25 @@ msgstr[1] "%(minutes)s Minuten"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:38
 msgid "Relic Count"
-msgstr "Reliquienanzahl"
+msgstr "Reliquienzahl"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:41
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] "%(number)s Relikt"
-msgstr[1] "%(number)s Relikte"
+msgstr[0] "%(number)s Reliquie"
+msgstr[1] "%(number)s Reliquien"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:44
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr "Gesamtzahl an Reliquien auf der Karte. Der Reliquien-Sieg ist am wahrscheinlichsten mit nur einer oder zwei Reliquien. Bei größeren Anzahlen ist es wichtig, die Reliquien zu erobern, um Aura-Boni zu erhalten."
+msgstr "Anzahl der Reliquien auf der Karte. Der Reliquien-Sieg ist am wahrscheinlichsten mit nur einer oder zwei Reliquien. Bei größeren Anzahlen ist es wichtig, die Reliquien zu erobern, um Aura-Boni zu erhalten."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:38
 msgid "Relic Duration"
-msgstr "Reliquiendauer"
+msgstr "Reliquien-Zeit"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:41
 msgid "Minutes until the player has achieved Relic Victory."
@@ -629,7 +629,7 @@ msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Zivilisationsübersicht / Geb
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "Zeige die Multiplayer-Lobby in einem Dialogfenster."
+msgstr "Zeige die Mehrspielerlobby in einem Dialogfenster."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:79
 msgid "I'm ready"
@@ -975,7 +975,7 @@ msgstr "„Zeus \\[…] begründete sein Gesetz: Weisheit kommt durch Leiden. \\
 msgid ""
 "“She \\[Helen] brought to Ilium her dowry, destruction.” \\n— Aeschylus "
 "(“Agamemnon”, 406)"
-msgstr "„Sie \\[Helen] brachte ihre Mitgift nach Illium, Zerstörung.“\n— Aischylos („Agamemnon“, 406) "
+msgstr "„Sie \\[Helena] brachte ihre Mitgift nach Illium, Zerstörung.“\n— Aischylos („Agamemnon“, 406) "
 
 #: gui/text/quotes.txt:3
 msgid ""
@@ -1136,7 +1136,7 @@ msgid ""
 "covetously.” \\n— Anacharsis, a Scythian philosopher who traveled to Greece "
 "(Diogenes Laertius, “The Lives and Opinions of Eminent Philosophers”, "
 "“Anacharsis”, sec. 5)"
-msgstr "„Die Agora ist ein bewährter Ort für Männer, sich gegenseitig zu betrügen, und, um sich begehrlich zu verhalten.“ \\n— Anacharsis, ein skythischer Philosoph, der nach Griechenland reiste (Diogenes Laertios, „Von den Leben und den Meinungen berühmter Philosophen“, „Anarchisis“, 5. Abschnitt)"
+msgstr "„Die Agora ist ein bewährter Ort für Männer, einander zu betrügen, und sich begehrlich zu verhalten.“ \\n— Anacharsis, ein skythischer Philosoph, der nach Griechenland reiste (Diogenes Laertios, „Von den Leben und den Meinungen berühmter Philosophen“, „Anarchisis“, 5. Abschnitt)"
 
 #: gui/text/quotes.txt:29
 msgid ""
@@ -1293,7 +1293,7 @@ msgid ""
 " gold, but not without using false weights and adding the weight of his "
 "sword on the scale when the Romans complained (Polybius, “Histories”, II. "
 "18)"
-msgstr "„Wehe den Besiegten!“ \\n— Brennus, Gallischer Häuptling, der Rom erobert hatte (mit Ausnahme der Garnison am Kapitol). Als Camillus aus Veji ankam und ihn belagerte, verhandelte er seinen Rückzug für 1000 Pfund Gold, aber nicht ohne falsche Gewichte und zusätzlich das Gewicht seines Schwertes hinzuzufügen, als die Römer sich beschwerten (Polybius, „Historien“, II. 18)"
+msgstr "„Wehe den Besiegten!“ \\n— Brennus, gallischer Häuptling, der Rom erobert hatte (mit Ausnahme der Garnison am Kapitol). Als Camillus aus Veji ankam und ihn belagerte, verhandelte er seinen Rückzug für 1000 Pfund Gold, aber nicht ohne falsche Gewichte und zusätzlich das Gewicht seines Schwertes hinzuzufügen, als die Römer sich beschwerten (Polybius, „Historien“, II. 18)"
 
 #: gui/text/quotes.txt:50
 msgid ""
@@ -1360,7 +1360,7 @@ msgid ""
 "“I am Darius, the great king, king of kings, the king of Persia, the king of"
 " countries, \\[…] 23 lands in total.” \\n— Darius I (Behistun inscription, "
 "column I, 1–6)"
-msgstr "„Ich bin Dareios, der große König, König der Könige, der König von Persien, der König der Länder, \\[…] 23 Länder insgesamt.“ \\n— Dareios I. (Behistun-Inschrift, Spalte I, 1-6)"
+msgstr "„Ich bin Dareios, der große König, König der Könige, der König von Persien, der König der Länder, \\[…] 23 Länder insgesamt.“ \\n— Dareios I. (Behistun-Inschrift, Spalte I, 1–6)"
 
 #: gui/text/quotes.txt:60
 msgid ""
@@ -1435,7 +1435,7 @@ msgstr "„Platon hatte den Menschen definiert als ein Tier, zweibeinig und fede
 msgid ""
 "“I am a citizen of the world.” \\n— Diogenes of Sinope (Diogenes Laertius, "
 "“The Lives and Opinions of Eminent Philosophers”, “Diogenes”, sec. 63)"
-msgstr "„Ich bin Bürger der Welt!“ \\n— Diogenes von Sinope (Diogenes Laertius, „Von den Leben und Meinungen berühmter Philosophen“, „Diogenes“,  63. Abschnitt)"
+msgstr "„Ich bin Bürger der Welt!“ \\n— Diogenes von Sinope (Diogenes Laertius, „Von den Leben und Meinungen berühmter Philosophen“, „Diogenes“, 63. Abschnitt)"
 
 #: gui/text/quotes.txt:70
 msgid ""
@@ -1529,7 +1529,7 @@ msgid ""
 "legion, Publius Sextius Baculus, a very valiant man, who was so exhausted by"
 " many and severe wounds, that he was already unable to support himself.” "
 "\\n— Caesar about the Battle of the Sabis (“De Bello Gallico”, II. 25)"
-msgstr "„Alle Zenturios der vierten Kohorte waren erschlagen, und der Standartenträger tot, die Standarte selbst dahin, fast alle Zenturios der anderen Kohorten entweder verwundet oder erschlagen, unter ihnen der primus pilus der Legion, Publius Sextius Baculus, ein sehr tapferer Mann, der so geschwächt von vielen und schweren Wunden war, dass er sich nicht mehr auf den Beinen halten konnte.“ \\n— Gaius Julius Cäsar über die Schlacht an der Sambre („De Bello Gallico“, II. 25) war"
+msgstr "„Alle Centurios der vierten Kohorte waren erschlagen, und der Standartenträger tot, die Standarte selbst dahin, fast alle Centurios der anderen Kohorten entweder verwundet oder erschlagen, unter ihnen der primus pilus der Legion, Publius Sextius Baculus, ein sehr tapferer Mann, der so geschwächt von vielen und schweren Wunden war, dass er sich nicht mehr auf den Beinen halten konnte.“ \\n— Gaius Julius Cäsar über die Schlacht an der Sambre („De Bello Gallico“, II. 25) war"
 
 #: gui/text/quotes.txt:84
 msgid ""
@@ -1680,7 +1680,7 @@ msgstr "„Er \\[König Dareios] bat einen seiner Diener jeden Tag, wenn das Abe
 msgid ""
 "“Conquered Greece took captive her savage conqueror and brought her arts "
 "into rustic Latium.” \\n— Horace (“Epistles”, epistle I., 156–157)"
-msgstr "„Eroberte Griechenland, nahm ihren wilden Eroberer gefangen und brachte ihre Künste ins ländliche Latium.“ \\n— Horaz („Episteln“, Epistel I., 156-157)"
+msgstr "„Eroberte Griechenland, nahm ihren wilden Eroberer gefangen und brachte ihre Künste ins ländliche Latium.“ \\n— Horaz („Episteln“, Epistel I., 156–157)"
 
 #: gui/text/quotes.txt:105
 msgid ""
@@ -1945,7 +1945,7 @@ msgstr "„Kein Gast ist so willkommen im Hause eines Freundes, dass er nach dre
 msgid ""
 "“You cannot eat your cake and have it too, unless you think your money is "
 "immortal.”\\n— Plautus (“Trinummus”, Act II, scene 4, 13–14)"
-msgstr "„Man kann nicht mit etwas bezahlen und es danach immer noch besitzen, es sei denn, man glaubt, dass das eigene Geld unsterblich ist.“\\n— Plautus („Trinummus“, 2. Akt, 4. Szene, 13-14)"
+msgstr "„Man kann nicht mit etwas bezahlen und es danach immer noch besitzen, es sei denn, man glaubt, dass das eigene Geld unsterblich ist.“\\n— Plautus („Trinummus“, 2. Akt, 4. Szene, 13–14)"
 
 #: gui/text/quotes.txt:144
 msgid ""
@@ -1980,7 +1980,7 @@ msgid ""
 "do not so much want men who will initiate attacks and open the battle, but "
 "men who will hold their ground when beaten and hard-pressed, and will be "
 "ready to die at their posts.” \\n— Polybius (“Histories”, VI. 24)"
-msgstr "„Sie \\[die Römer] wollen nicht so sehr, dass die Zenturios abenteuerlustige Draufgänger sind, sondern natürliche Anführer, mit einem stabilen und verlässlichen Temperament. Sie wollen nicht so sehr Männer, die Attacken führen und eine Schlacht eröffnen, sondern Männer, die standhalten, wenn sie geschlagen und bedrängt werden, und bereit sind, auf ihrem Posten zu sterben.“ \\n— Polybios („Historien“, VI. 24)"
+msgstr "„Sie \\[die Römer] wollen nicht so sehr, dass die Centurios abenteuerlustige Draufgänger sind, sondern natürliche Anführer, mit einem stabilen und verlässlichen Temperament. Sie wollen nicht so sehr Männer, die Attacken führen und eine Schlacht eröffnen, sondern Männer, die standhalten, wenn sie geschlagen und bedrängt werden, und bereit sind, auf ihrem Posten zu sterben.“ \\n— Polybios („Historien“, VI. 24)"
 
 #: gui/text/quotes.txt:148
 msgid ""
@@ -2054,7 +2054,7 @@ msgid ""
 "the Battle of Asculum, in which the Romans lost twice as many men but he "
 "lost a greater share of his armed forces (Plutarch, “Parallel Lives”, "
 "“Pyrrhus”, sec. 21)"
-msgstr "„Noch so ein Sieg, und wir sind verloren!“ \\n— Pyrrhos von Epirus nach der Schlacht bei Asculum, in der die Römer doppelt so viele Männer verloren, aber er einen größeren Anteil seiner Streitmacht (Plutarch, „Parallelbiografien“, „Pyrrhus“, 21. Abschnitt)"
+msgstr "„Noch so ein Sieg, und wir sind verloren!“ \\n— Pyrrhos von Epirus nach der Schlacht bei Asculum, in der die Römer doppelt so viele Männer verloren, aber er einen größeren Anteil seiner Streitmacht (Plutarch, „Parallelbiografien“, „Pyrrhos“, 21. Abschnitt)"
 
 #: gui/text/quotes.txt:156
 msgid ""
@@ -2086,7 +2086,7 @@ msgid ""
 "Africanus in his epitaph, after he who defeated Hannibal was repeatedly "
 "accused of crimes by the Roman Senate (Valerius Maximus, “Nine books on "
 "memorable deeds and sayings”, 5.3.2)"
-msgstr "„Undankbares Vaterland, du wirst nicht einmal meine Knochen haben!“ \\n— Scipio Africanus in seiner Grabinschrifft, nachdem er, der Hannbal besiegte, vom römischen Senat oft des Verbrechens beschuldigt wurde (Valerius Maximus, „Neun Bücher denkwürdiger Taten und Aussprüche“, 5.3.2)"
+msgstr "„Undankbares Vaterland, du wirst nicht einmal meine Knochen haben!“ \\n— Scipio Africanus in seiner Grabinschrift, nachdem er, der Hannbal besiegte, vom römischen Senat oft des Verbrechens beschuldigt wurde (Valerius Maximus, „Neun Bücher denkwürdiger Taten und Aussprüche“, 5.3.2)"
 
 #: gui/text/quotes.txt:161
 msgid ""
@@ -2181,7 +2181,7 @@ msgid ""
 "mother commands me, and you command your mother.” \\n— Themistocles, "
 "jokingly to his infant son (Plutarch, “Parallel Lives”, “Themistocles”, sec."
 " 18)"
-msgstr "„Die Athener regieren den Rest Griechenlands, ich regiere die Athener; Deine Mutter regiert mich, und du regierst deine Mutter.“ \\n— Themistokles witzelt mit seinem kleinen Sohn (Plutarch, „Parallelbiografien“, „Themistokles“, 18. Abschnitt)"
+msgstr "„Die Athener regieren den Rest Griechenlands, ich regiere die Athener; deine Mutter regiert mich, und du regierst deine Mutter.“ \\n— Themistokles witzelt mit seinem kleinen Sohn (Plutarch, „Parallelbiografien“, „Themistokles“, 18. Abschnitt)"
 
 #: gui/text/quotes.txt:174
 msgid ""
@@ -2195,7 +2195,7 @@ msgid ""
 "“The growth of the power of Athens, and the alarm which this caused in "
 "Sparta, made war inevitable.” \\n— Thucydides (“History of the Peloponnesian"
 " War”, I. 23.6)"
-msgstr "„Das Wachstum der Macht Athens und die Furcht, die das in Sparta verursachte, machte den Krieg unvermeidbar.“ \\n— Thukydides („Der Peloponnesische Krieg“, I. 23.6) "
+msgstr "„Das Wachstum der Macht Athens und die Furcht, die das in Sparta verursachte, machte den Krieg unvermeidbar.“ \\n— Thukydides („Der Peloponnesische Krieg“, I. 23.6)"
 
 #: gui/text/quotes.txt:176
 msgid ""
@@ -2262,7 +2262,7 @@ msgstr "„Die Soldaten kämpfen und sterben, um anderen ihren Reichtum und Luxu
 msgid ""
 "“Do not trust the horse, Trojans! I fear the Greeks even when they bring "
 "gifts.” \\n— Virgil (“Aeneid”, II. 48–49)"
-msgstr "„Traut nicht dem Pferd, Trojaner! Ich fürchte die Griechen, sogar, wenn sie Geschenke bringen.“ \\n— Vergil („Aeneis“, II. 48-49)"
+msgstr "„Traut nicht dem Pferd, Trojaner! Ich fürchte die Griechen, sogar, wenn sie Geschenke bringen.“ \\n— Vergil („Aeneis“, II. 48–49)"
 
 #: gui/text/quotes.txt:184
 msgid "“Prepared for either alternative.” \\n— Virgil (“Aeneid”, II. 61)"

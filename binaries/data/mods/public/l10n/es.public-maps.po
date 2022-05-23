@@ -31,7 +31,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-25 07:09+0000\n"
+"POT-Creation-Date: 2022-05-20 07:33+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020-2022\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
@@ -1132,16 +1132,16 @@ msgstr "[color=\"red\"]IMPORTANTE: LOS JUGADORES DE LA IA NO FUNCIONAN EN ESTE M
 msgid "Survival of the Fittest"
 msgstr "Supervivencia del más fuerte"
 
-#: maps/random/survivalofthefittest_triggers.js:163
+#: maps/random/survivalofthefittest_triggers.js:160
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
 msgstr "¡La primera oleada comenzará en %(time)s!"
 
-#: maps/random/survivalofthefittest_triggers.js:268
+#: maps/random/survivalofthefittest_triggers.js:265
 msgid "An enemy wave is attacking!"
 msgstr "¡Oleada enemiga! ¡Se acercan! ¡Nos atacan!"
 
-#: maps/random/survivalofthefittest_triggers.js:292
+#: maps/random/survivalofthefittest_triggers.js:289
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
 msgstr "%(player)s ha sido derrotado (perdió su centro cívico)."
@@ -1930,13 +1930,12 @@ msgid "Sandbox - The Gauls"
 msgstr "Escenario de prueba - Los galos"
 
 #: maps/scenarios/sandbox_han.xml:Description:39
-msgid ""
-"A simple map showcasing the Han Chinese civilization's assets in the game."
-msgstr "Mapa sencillo que muestra los activos de la civilización china Han en el juego."
+msgid "A simple map showcasing the Han civilization's assets in the game."
+msgstr ""
 
 #: maps/scenarios/sandbox_han.xml:Name:39
-msgid "Sandbox - The Han Chinese"
-msgstr "Escenario de prueba - Los Han de China"
+msgid "Sandbox - The Han"
+msgstr ""
 
 #: maps/scenarios/sandbox_iberians.xml:Description:38
 msgid "A demo map for the Iberians."
@@ -3121,10 +3120,10 @@ msgstr "Coele-Siria (2)"
 #: maps/skirmishes/tarim_basin_2p.xml:Description:39
 #: maps/skirmishes/tarim_basin_4p.xml:Description:39
 msgid ""
-"A barren desert basin surrounded by mountainous valleys, the Tarim Basin is also called \"The Western Regions\" by the Han Chinese, and represents the furthest extent of their power.\n"
+"A barren desert basin surrounded by mountainous valleys, the Tarim Basin is also called \"The Western Regions\" by the Han, and represents the furthest extent of their power.\n"
 "\n"
 "The basin itself is bereft of life  and offers little in the way of defensibility. The rugged mountain valleys harbor the only life, in the form of hearty shrub and tree species and some goats."
-msgstr "La cuenca del Tarim, una cuenca desértica y estéril rodeada de valles montañosos, también conocida como «Las Regiones Occidentales» por Han de China, representa la extensión más lejana de su poder.\n\nLa cuenca en sí carece de vida y ofrece pocos puntos de defensa. Los escarpados valles montañosos albergan la única vida, en forma de robustos arbustos, árboles y algunas cabras."
+msgstr ""
 
 #: maps/skirmishes/tarim_basin_2p.xml:Name:39
 msgid "Tarim Basin (2)"
