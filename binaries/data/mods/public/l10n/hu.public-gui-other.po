@@ -3305,12 +3305,12 @@ msgstr "1. irányítható csoport kijelölése"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.10.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 10."
-msgstr ""
+msgstr "Csak a 10. irányítható csoport kerül kijelölésre."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.10.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 10"
-msgstr ""
+msgstr "10. irányítható csoport kijelölése"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.desc
 msgctxt "hotkey metadata"
@@ -4358,7 +4358,7 @@ msgstr "Finom árnyékok."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][12].label
 msgid "Cutoff distance"
-msgstr ""
+msgstr "Árnyékolási távolság"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][12].tooltip
 msgid "Hides shadows beyond a certain distance from a camera."
@@ -4420,7 +4420,7 @@ msgstr "Tényleges vízmélység használata renderelési számításoknál."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].label
 msgid "Texture quality"
-msgstr ""
+msgstr "Textúraminőség"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0].label._string
 msgctxt "Option for the texture quality."
@@ -4487,7 +4487,7 @@ msgstr ""
 msgid ""
 "Decrease texture quality making them blurrier but increases game "
 "performance."
-msgstr ""
+msgstr "A minőség csökkentésével a textúrák elmosodottabbá válnak, a játék teljesítménye viszont megnövekszik."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].label
 msgid "Master volume"
@@ -5677,7 +5677,7 @@ msgstr "Információ"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
-msgstr "Ez a visszajátszás más módosítás-sorrendet igényel:"
+msgstr "Ehhez a visszajátszáshoz a következő modokra van szükség:"
 
 #: gui/replaymenu/replay_actions.js:95
 msgid "This replay is not compatible with your version of the game!"
@@ -6622,7 +6622,7 @@ msgstr "KOVÁCSMŰHELY"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."
-msgstr "Kutatóépítmény minden nép számára."
+msgstr "Az összes nép számára elérhető kutatóépítmény."
 
 #: gui/text/tips/forge.txt:3
 msgid "Research weapon and armor upgrades for your units."

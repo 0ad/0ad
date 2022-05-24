@@ -31,7 +31,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-25 07:09+0000\n"
+"POT-Creation-Date: 2022-05-20 07:33+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: nwtour <nwtour@mail.ru>, 2021-2022\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
@@ -1132,16 +1132,16 @@ msgstr "[color=\"red\"]ВАЖНОЕ ЗАМЕЧАНИЕ: ИИ НЕ МОЖЕТ И�
 msgid "Survival of the Fittest"
 msgstr "Естественный отбор"
 
-#: maps/random/survivalofthefittest_triggers.js:163
+#: maps/random/survivalofthefittest_triggers.js:160
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
 msgstr "Первая волна начнётся через %(time)s!"
 
-#: maps/random/survivalofthefittest_triggers.js:268
+#: maps/random/survivalofthefittest_triggers.js:265
 msgid "An enemy wave is attacking!"
 msgstr "Волна вражеской атаки!"
 
-#: maps/random/survivalofthefittest_triggers.js:292
+#: maps/random/survivalofthefittest_triggers.js:289
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
 msgstr "%(player)s потерпел поражение (городской Центр разрушен)."
@@ -1930,12 +1930,11 @@ msgid "Sandbox - The Gauls"
 msgstr "Песочница — Галлы"
 
 #: maps/scenarios/sandbox_han.xml:Description:39
-msgid ""
-"A simple map showcasing the Han Chinese civilization's assets in the game."
+msgid "A simple map showcasing the Han civilization's assets in the game."
 msgstr ""
 
 #: maps/scenarios/sandbox_han.xml:Name:39
-msgid "Sandbox - The Han Chinese"
+msgid "Sandbox - The Han"
 msgstr ""
 
 #: maps/scenarios/sandbox_iberians.xml:Description:38
@@ -3133,10 +3132,10 @@ msgstr "Келесирия (2)"
 #: maps/skirmishes/tarim_basin_2p.xml:Description:39
 #: maps/skirmishes/tarim_basin_4p.xml:Description:39
 msgid ""
-"A barren desert basin surrounded by mountainous valleys, the Tarim Basin is also called \"The Western Regions\" by the Han Chinese, and represents the furthest extent of their power.\n"
+"A barren desert basin surrounded by mountainous valleys, the Tarim Basin is also called \"The Western Regions\" by the Han, and represents the furthest extent of their power.\n"
 "\n"
 "The basin itself is bereft of life  and offers little in the way of defensibility. The rugged mountain valleys harbor the only life, in the form of hearty shrub and tree species and some goats."
-msgstr "Бесплодная пустынная равнина, окруженная горными долинами, Таримская впадина также называется китайцами Хань \"Западными регионами\" и представляет собой крайнюю степень их власти.\n\nВпадина лишена жизни и мало что может защитить. Изрезанные горные долины являются пристанищем форм жизни в виде густых кустарников и деревьев, а также некоторых коз."
+msgstr ""
 
 #: maps/skirmishes/tarim_basin_2p.xml:Name:39
 msgid "Tarim Basin (2)"

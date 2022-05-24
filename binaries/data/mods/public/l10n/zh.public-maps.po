@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-25 07:09+0000\n"
+"POT-Creation-Date: 2022-05-20 07:33+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Wolfson Liu <wolfsonliu@foxmail.com>, 2020,2022\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
@@ -1129,16 +1129,16 @@ msgstr "[color=\"red\"]重要提示：本图 AI 不发展/color]\n\n 保护您�
 msgid "Survival of the Fittest"
 msgstr "适者生存"
 
-#: maps/random/survivalofthefittest_triggers.js:163
+#: maps/random/survivalofthefittest_triggers.js:160
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
 msgstr "%(time)s后开始第一波攻击！"
 
-#: maps/random/survivalofthefittest_triggers.js:268
+#: maps/random/survivalofthefittest_triggers.js:265
 msgid "An enemy wave is attacking!"
 msgstr "有一波敌人来袭！"
 
-#: maps/random/survivalofthefittest_triggers.js:292
+#: maps/random/survivalofthefittest_triggers.js:289
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
 msgstr "%(player)s失败了(失去市政中心)。"
@@ -1927,13 +1927,12 @@ msgid "Sandbox - The Gauls"
 msgstr "沙盒——高卢"
 
 #: maps/scenarios/sandbox_han.xml:Description:39
-msgid ""
-"A simple map showcasing the Han Chinese civilization's assets in the game."
-msgstr "小型地图，展示了汉朝的特性。"
+msgid "A simple map showcasing the Han civilization's assets in the game."
+msgstr ""
 
 #: maps/scenarios/sandbox_han.xml:Name:39
-msgid "Sandbox - The Han Chinese"
-msgstr "沙盒 - 汉朝"
+msgid "Sandbox - The Han"
+msgstr ""
 
 #: maps/scenarios/sandbox_iberians.xml:Description:38
 msgid "A demo map for the Iberians."
@@ -3112,10 +3111,10 @@ msgstr "贝卡谷地（2）"
 #: maps/skirmishes/tarim_basin_2p.xml:Description:39
 #: maps/skirmishes/tarim_basin_4p.xml:Description:39
 msgid ""
-"A barren desert basin surrounded by mountainous valleys, the Tarim Basin is also called \"The Western Regions\" by the Han Chinese, and represents the furthest extent of their power.\n"
+"A barren desert basin surrounded by mountainous valleys, the Tarim Basin is also called \"The Western Regions\" by the Han, and represents the furthest extent of their power.\n"
 "\n"
 "The basin itself is bereft of life  and offers little in the way of defensibility. The rugged mountain valleys harbor the only life, in the form of hearty shrub and tree species and some goats."
-msgstr "塔里木盆地，为山谷包围的贫瘠地区。汉代人称这里为“西域”。\n\n盆地本身不适合定居，也难于防守。崎岖的山谷中蕴藏着少数生命，有丰盛的灌木和树种，以及一些野山羊。"
+msgstr ""
 
 #: maps/skirmishes/tarim_basin_2p.xml:Name:39
 msgid "Tarim Basin (2)"

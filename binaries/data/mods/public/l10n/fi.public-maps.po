@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-25 07:09+0000\n"
+"POT-Creation-Date: 2022-05-20 07:33+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Matti Tuhola, 2021-2022\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
@@ -1117,16 +1117,16 @@ msgstr "[color=\"red\"]TÄRKEÄ HUOMAUTUS: TEKOÄLYPELAAJAT EIVÄT TOIMI TÄLLÄ
 msgid "Survival of the Fittest"
 msgstr "Sopivien eloonjäänti"
 
-#: maps/random/survivalofthefittest_triggers.js:163
+#: maps/random/survivalofthefittest_triggers.js:160
 #, javascript-format
 msgid "The first wave will start in %(time)s!"
 msgstr "Ensimmäinen aalto alkaa %(time)s kuluttua!"
 
-#: maps/random/survivalofthefittest_triggers.js:268
+#: maps/random/survivalofthefittest_triggers.js:265
 msgid "An enemy wave is attacking!"
 msgstr "VIhollisen aalto hyökkää!"
 
-#: maps/random/survivalofthefittest_triggers.js:292
+#: maps/random/survivalofthefittest_triggers.js:289
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
 msgstr "%(player)s on lyöty (menetti kansalaiskeskuksen)."
@@ -1915,13 +1915,12 @@ msgid "Sandbox - The Gauls"
 msgstr "Hiekkalaatikko - Gallialaiset"
 
 #: maps/scenarios/sandbox_han.xml:Description:39
-msgid ""
-"A simple map showcasing the Han Chinese civilization's assets in the game."
-msgstr "Yksinkertainen kartta joka näyttää kiinalaisen Han-sivilisaation avut tässä pelissä."
+msgid "A simple map showcasing the Han civilization's assets in the game."
+msgstr ""
 
 #: maps/scenarios/sandbox_han.xml:Name:39
-msgid "Sandbox - The Han Chinese"
-msgstr "Hiekkalaatikko - Han-kiinalaiset"
+msgid "Sandbox - The Han"
+msgstr ""
 
 #: maps/scenarios/sandbox_iberians.xml:Description:38
 msgid "A demo map for the Iberians."
@@ -3106,10 +3105,10 @@ msgstr "Koilesyyria (2)"
 #: maps/skirmishes/tarim_basin_2p.xml:Description:39
 #: maps/skirmishes/tarim_basin_4p.xml:Description:39
 msgid ""
-"A barren desert basin surrounded by mountainous valleys, the Tarim Basin is also called \"The Western Regions\" by the Han Chinese, and represents the furthest extent of their power.\n"
+"A barren desert basin surrounded by mountainous valleys, the Tarim Basin is also called \"The Western Regions\" by the Han, and represents the furthest extent of their power.\n"
 "\n"
 "The basin itself is bereft of life  and offers little in the way of defensibility. The rugged mountain valleys harbor the only life, in the form of hearty shrub and tree species and some goats."
-msgstr "Karu basinin aavikko on vuoristoisten laaksojen ympäröimä, Tarim Basin tunnetaan myös \"läntiset alueet\" nimellä Han-kiinalaisten mukaan, ja edustaa heidän valtansa kauaskantoisinta ulottumaa.\n\nBasin on itsessään vailla elämää ja tarjoaa hyvin niukalti puolustusmielessä. Karskit vuoristolaaksot ylläpitävät sen ainoata elämää, pensaiden ja puulajien sekä muutaman vuohen muodossa.   "
+msgstr ""
 
 #: maps/skirmishes/tarim_basin_2p.xml:Name:39
 msgid "Tarim Basin (2)"

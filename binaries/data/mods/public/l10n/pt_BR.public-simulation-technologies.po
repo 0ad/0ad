@@ -15,6 +15,7 @@
 # Ernan
 # Estevan Borges Martins
 # Guilherme Dias
+# Hariston trabalhos
 # Igor Aleixo
 # jose
 # Junior Lage
@@ -39,9 +40,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-16 07:09+0000\n"
+"POT-Creation-Date: 2022-05-20 07:33+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Enzo enzinholo, 2022\n"
+"Last-Translator: Hariston trabalhos, 2022\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -222,13 +223,13 @@ msgstr "Estruturas têm +25% de saúde e pontos de captura, mas também +20% tem
 #: simulation/data/technologies/art_of_war.jsondescription
 msgid ""
 "This famous and most important work of the Seven Military Classics teaches "
-"Chinese commanders everything about planning battles, maintaining armies, "
-"and defeating one's enemies."
-msgstr ""
+"Han commanders everything about planning battles, maintaining armies, and "
+"defeating one's enemies."
+msgstr "Este famoso e mais importante trabalho dos Sete Clássicos Militares ensina aos comandantes Han tudo sobre planejamento de batalhas, manutenção de exércitos e derrota de inimigos."
 
 #: simulation/data/technologies/art_of_war.jsongenericName
 msgid "Sun Tzu's \"The Art of War\""
-msgstr ""
+msgstr "\"A Arte da Guerra\" de Sun Tzu"
 
 #: simulation/data/technologies/art_of_war.jsonspecificName.han
 msgid "Sūnzǐ BīngFǎ"
@@ -236,7 +237,7 @@ msgstr ""
 
 #: simulation/data/technologies/art_of_war.jsontooltip
 msgid "All Citizen-Soldiers −25% required promotion experience."
-msgstr ""
+msgstr "Todos os Cidadãos-Soldados −25% exigiam experiência em promoção."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -370,11 +371,11 @@ msgstr "Estruturas têm +10% de saúde e +10% de pontos de captura."
 msgid ""
 "By uniting China under one emperor, the Han Dynasty ruled over 40 million "
 "people, one of the largest empires of antiquity by population."
-msgstr ""
+msgstr "Ao unir a China sob um imperador, a Dinastia Han governou mais de 40 milhões de pessoas, um dos maiores impérios da antiguidade em população."
 
 #: simulation/data/technologies/civbonuses/han_population.jsongenericName
 msgid "Federated States"
-msgstr ""
+msgstr "Estados Federados"
 
 #: simulation/data/technologies/civbonuses/han_population.jsontooltip
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
@@ -386,27 +387,27 @@ msgstr "+10% de limite máximo populacional."
 msgid ""
 "The Han built massive walls made from rammed earth. These were gigantic "
 "fortifications several meters thick and stretching for kilometers."
-msgstr ""
+msgstr "Os Han construíram paredes maciças feitas de terra batida. Eram fortificações gigantescas com vários metros de espessura e que se estendiam por quilômetros."
 
 #: simulation/data/technologies/civbonuses/han_walls.jsongenericName
 msgid "Great Wall"
-msgstr ""
+msgstr "Grande Muralha"
 
 #: simulation/data/technologies/civbonuses/han_walls.jsontooltip
 msgid "City Walls +50% health."
-msgstr ""
+msgstr "Muralhas da Cidade +50% de saúde."
 
 #: simulation/data/technologies/civbonuses/mace_storehouse.jsondescription
 msgid "The Macedonian economy relied greatly on their vast natural resources."
-msgstr ""
+msgstr "A economia macedônia dependia muito de seus vastos recursos naturais."
 
 #: simulation/data/technologies/civbonuses/mace_storehouse.jsongenericName
 msgid "Resource-Rich Economy"
-msgstr ""
+msgstr "Economia rica em recursos"
 
 #: simulation/data/technologies/civbonuses/mace_storehouse.jsontooltip
 msgid "Storehouse technologies −100% research time."
-msgstr ""
+msgstr "Tecnologias de armazém −100% tempo de pesquisa."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -488,7 +489,7 @@ msgstr "Casas e estruturas econômicas −40% de custo de madeira e saúde."
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
 msgid "Civil Engineering − Level 1"
-msgstr ""
+msgstr "Engenharia Civil - Nível 1"
 
 #: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
 #: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
@@ -497,19 +498,19 @@ msgstr ""
 
 #: simulation/data/technologies/civil_engineering_01.jsontooltip
 msgid "All structures −15% build time, +10% health and −5% cost."
-msgstr ""
+msgstr "Todas as estruturas -15% de tempo de construção, +10% de saúde e -5% de custo."
 
 #: simulation/data/technologies/civil_engineering_02.jsongenericName
 msgid "Civil Engineering − Level 2"
-msgstr ""
+msgstr "Engenharia Civil - Nível 2"
 
 #: simulation/data/technologies/civil_engineering_02.jsontooltip
 msgid "All structures −25% build time, +20% health and −5% cost."
-msgstr ""
+msgstr "Todas as estruturas -25% de tempo de construção, +20% de saúde e -5% de custo."
 
 #: simulation/data/technologies/civil_service_01.jsongenericName
 msgid "Civil Service − Level 1"
-msgstr ""
+msgstr "Função Pública - Nível 1"
 
 #: simulation/data/technologies/civil_service_01.jsonspecificName.han
 #: simulation/data/technologies/civil_service_02.jsonspecificName.han
@@ -521,11 +522,11 @@ msgstr ""
 msgid ""
 "Technologies at all buildings, except the Forge, −15% cost and −15% research"
 " time."
-msgstr ""
+msgstr "Tecnologias em todos os edifícios, exceto na Forja, -15% de custo e -15% de tempo de pesquisa."
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
 msgid "Civil Service − Level 2"
-msgstr ""
+msgstr "Função Pública - Nível 2"
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -543,17 +544,17 @@ msgstr "Estruturas Cívicas -25% tempo de construção e custo de recursos."
 
 #: simulation/data/technologies/crossbow_training.jsondescription
 msgid ""
-"The Chinese had a tradition of fine archery and a penchant for using massed "
+"The Han had a tradition of fine archery and a penchant for using massed "
 "crossbowmen in battle."
-msgstr ""
+msgstr "O Han tinha uma tradição de tiro com arco e uma propensão para usar besteiros em massa em batalha."
 
 #: simulation/data/technologies/crossbow_training.jsongenericName
 msgid "Crossbow Training"
-msgstr ""
+msgstr "Treinamento de Besta"
 
 #: simulation/data/technologies/crossbow_training.jsontooltip
 msgid "Crossbow Infantry and Cavalry −20% firing time −20% train time."
-msgstr ""
+msgstr "Besta Infantaria e Cavalaria −20% tempo de tiro −20% tempo de trem."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -657,17 +658,17 @@ msgstr "Carrinho de Mão"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsondescription
 msgid "Install a chain pump for improved irrigation."
-msgstr ""
+msgstr "Instale uma bomba de corrente para melhorar a irrigação."
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsongenericName
 msgid "Chain Pump"
-msgstr ""
+msgstr "Bomba de corrente"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
 msgid "Workers +25% rice gather rate."
-msgstr ""
+msgstr "Trabalhadores +25% de taxa de colheita de arroz."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -709,11 +710,11 @@ msgstr "Arado de ferro"
 
 #: simulation/data/technologies/gather_farming_seed_drill.jsondescription
 msgid "Equip your workers with seed drills."
-msgstr ""
+msgstr "Equipe seus trabalhadores com semeadores."
 
 #: simulation/data/technologies/gather_farming_seed_drill.jsongenericName
 msgid "Seed Drill"
-msgstr ""
+msgstr "Semeador"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
@@ -724,12 +725,12 @@ msgid "Gather Training"
 msgstr "Treinamento de coletas"
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsondescription
-msgid "Grow water weeds to supply rice plants with nutricients."
-msgstr ""
+msgid "Remove water weeds to preserve nutrients for the rice plants."
+msgstr "Remova as ervas daninhas aquáticas para preservar os nutrientes das plantas de arroz."
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsongenericName
 msgid "Water Weeding"
-msgstr ""
+msgstr "Capina d'água"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
@@ -1014,7 +1015,7 @@ msgstr "Infantaria −10% do tempo de treinamento."
 msgid ""
 "Athenian gymnasium, docks and triremes can train Marines (Epibates "
 "Athenaikos) and Cretan Mercenary Archers (Toxotes Kretikos)."
-msgstr ""
+msgstr "Ginásio ateniense, docas e trirremes podem treinar fuzileiros navais (Epibates Athenaikos) e arqueiros mercenários cretenses (Toxotes Kretikos)."
 
 #: simulation/data/technologies/iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
@@ -1024,7 +1025,7 @@ msgstr "Reformas Ifícrates"
 msgid ""
 "Athenian Gymnasia, Docks and Triremes can train Marines and Cretan Mercenary"
 " Archers."
-msgstr ""
+msgstr "Ginásio Ateniense, Docas e Trirremes podem treinar fuzileiros navais e arqueiros mercenários cretenses."
 
 #: simulation/data/technologies/long_walls.jsondescription
 msgid ""
@@ -1075,7 +1076,7 @@ msgstr "Postos avançados +33% de alcance de visão."
 
 #: simulation/data/technologies/pair_unlock_arrows_type.jsongenericName
 msgid "Fire Arrows vs Poison Arrows"
-msgstr ""
+msgstr "Flechas de Fogo vs Flechas Venenosas"
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -1212,19 +1213,19 @@ msgstr "Fase de Aldeia"
 
 #: simulation/data/technologies/poison_arrows.jsongenericName
 msgid "Poison Arrows"
-msgstr ""
+msgstr "Flechas Venenosas"
 
 #: simulation/data/technologies/poison_arrows.jsontooltip
 msgid "Ranged Soldiers +20% attack damage."
-msgstr ""
+msgstr "Soldados à distância +20% de dano de ataque."
 
 #: simulation/data/technologies/poison_blades.jsongenericName
 msgid "Poison Blades"
-msgstr ""
+msgstr "Lâminas Venenosas"
 
 #: simulation/data/technologies/poison_blades.jsontooltip
 msgid "Melee Soldiers +20% attack damage."
-msgstr ""
+msgstr "Soldados corpo a corpo +20% de dano de ataque."
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
@@ -1389,7 +1390,7 @@ msgstr "Rota da Seda"
 
 #: simulation/data/technologies/silk_road.jsontooltip
 msgid "Traders +20% international trade bonus."
-msgstr ""
+msgstr "Traders +20% de bônus de comércio internacional."
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
@@ -1713,7 +1714,7 @@ msgstr "Tratado Comercial"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
 msgid "Traders +10% trade profit between allies."
-msgstr ""
+msgstr "Traders +10% de lucro comercial entre aliados."
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
@@ -1903,15 +1904,15 @@ msgstr "Permite subornar as unidades de outros jogadores para compartilhar sua v
 
 #: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsondescription
 msgid "Upgrade all of your citizen crossbowmen to Advanced rank."
-msgstr ""
+msgstr "Atualize todos os seus besteiros cidadãos para o nível Avançado."
 
 #: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsongenericName
 msgid "Advanced Crossbow Infantry and Cavalry"
-msgstr ""
+msgstr "Infantaria e Cavalaria com Besta Avançada"
 
 #: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsontooltip
 msgid "Upgrade all of your Crossbow Infantry and Cavalry to Advanced rank."
-msgstr ""
+msgstr "Atualize toda a sua infantaria e cavalaria com besta para o nível Avançado."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
@@ -1927,15 +1928,15 @@ msgstr "Mercenários começam no ranking Avançado."
 
 #: simulation/data/technologies/upgrade_rank_elite_crossbow.jsondescription
 msgid "Upgrade all of your citizen crossbowmen to Elite rank."
-msgstr ""
+msgstr "Atualize todos os seus besteiros cidadãos para o nível Elite."
 
 #: simulation/data/technologies/upgrade_rank_elite_crossbow.jsongenericName
 msgid "Elite Crossbow Infantry and Cavalry"
-msgstr ""
+msgstr "Infantaria e Cavalaria de Besta de Elite"
 
 #: simulation/data/technologies/upgrade_rank_elite_crossbow.jsontooltip
 msgid "Upgrade all of your Crossbow Infantry and Cavalry to Elite rank."
-msgstr ""
+msgstr "Atualize toda a sua infantaria e cavalaria com besta para o nível Elite."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."

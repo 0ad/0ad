@@ -11,6 +11,7 @@
 # dexmendonca
 # Ernan
 # Estevan Borges Martins
+# Hariston trabalhos
 # João Francisco Gauze Carrer
 # jose
 # J. P. Lacerda
@@ -41,9 +42,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-16 07:09+0000\n"
+"POT-Creation-Date: 2022-05-20 07:33+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
-"Last-Translator: Yuri Laskowski <yurinikolai00@gmail.com>, 2022\n"
+"Last-Translator: Hariston trabalhos, 2022\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -206,7 +207,7 @@ msgstr "Cavalaria Lanceira"
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 msgid "Counters: 2× vs Cavalry."
-msgstr ""
+msgstr "Contadores: 2× vs Cavalaria."
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
@@ -265,7 +266,7 @@ msgstr "Espadachim"
 #: simulation/templates/template_unit_ship_trireme.xml:52
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
-#: simulation/templates/template_unit_siege_tower.xml:63
+#: simulation/templates/template_unit_siege_tower.xml:62
 msgid "Ranged"
 msgstr "De longo alcance"
 
@@ -664,7 +665,7 @@ msgstr "Navio de Guerra Leve"
 msgid ""
 "Garrison units for transport and to increase firepower. Deals triple damage "
 "against Ships."
-msgstr ""
+msgstr "Unidades de guarnição para transporte e para aumentar o poder de fogo. Causa dano triplo contra Navios."
 
 #: simulation/templates/template_unit_ship_bireme.xml:52
 #: simulation/templates/template_unit_ship_fire.xml:42
@@ -753,7 +754,7 @@ msgid "Heavy Warship"
 msgstr "Navio de Guerra Pesado"
 
 #: simulation/templates/template_unit_ship_quinquereme.xml:55
-#: simulation/templates/template_unit_siege_tower.xml:65
+#: simulation/templates/template_unit_siege_tower.xml:64
 msgid "Garrison units for transport and to increase firepower."
 msgstr "Abrigue unidades para transporte e para aumentar o poder de fogo."
 
@@ -822,11 +823,11 @@ msgstr "Atirador de Pedras"
 msgid "Siege Catapult"
 msgstr "Catapulta de Cerco"
 
-#: simulation/templates/template_unit_siege_tower.xml:63
+#: simulation/templates/template_unit_siege_tower.xml:62
 msgid "SiegeTower"
 msgstr "Torre de Cerco"
 
-#: simulation/templates/template_unit_siege_tower.xml:64
+#: simulation/templates/template_unit_siege_tower.xml:63
 msgid "Siege Tower"
 msgstr "Torre de Cerco"
 
@@ -1719,8 +1720,8 @@ msgid "Wu Wei Yin Cao Cao Guard"
 msgstr "Guarda Wu Wei Yin Cao Cao"
 
 #: simulation/templates/units/han/champion_chariot.xml:9
-msgid "Chinese War Chariot"
-msgstr "Carro de Guerra Chinês"
+msgid "Han War Chariot"
+msgstr "Carruagem de Guerra Han"
 
 #: simulation/templates/units/han/champion_chariot.xml:10
 msgid "Zhanche"
@@ -1809,7 +1810,7 @@ msgstr "Lóu Chuán"
 
 #: simulation/templates/units/han/siege_mangonel_packed.xml:5
 msgid "Mangonel"
-msgstr ""
+msgstr "Catapulta."
 
 #: simulation/templates/units/han/siege_mangonel_packed.xml:6
 msgid "Tóushí Chē"
@@ -1848,7 +1849,7 @@ msgid ""
 "Use to boost the efficiency of nearby units and buildings. Garrison within a"
 " building to boost the efficiency of its production queue. Only Han "
 "buildings can garrison ministers."
-msgstr ""
+msgstr "Use para aumentar a eficiência de unidades e edifícios próximos. Guarnição dentro de um edifício para aumentar a eficiência de sua fila de produção. Apenas edifícios Han podem guarnecer ministros."
 
 #: simulation/templates/units/han/support_minister.xml:45
 msgid "Minister"

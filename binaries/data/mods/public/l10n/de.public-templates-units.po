@@ -29,7 +29,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-16 07:09+0000\n"
+"POT-Creation-Date: 2022-05-20 07:33+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: xtother90, 2017-2022\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
@@ -41,7 +41,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_catafalque.xml:16
 msgid "Relic"
-msgstr "Relikt"
+msgstr "Reliquie"
 
 #: simulation/templates/template_unit_catafalque.xml:17
 msgid "Catafalque"
@@ -253,7 +253,7 @@ msgstr "Schwertkämpfer"
 #: simulation/templates/template_unit_ship_trireme.xml:52
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
-#: simulation/templates/template_unit_siege_tower.xml:63
+#: simulation/templates/template_unit_siege_tower.xml:62
 msgid "Ranged"
 msgstr "Fernkämpfer"
 
@@ -362,7 +362,7 @@ msgstr "Berittener Garde-Armbrustschütze"
 
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:23
 msgid "Champion Cavalry Javelineer"
-msgstr "Berittener Gardistspeerwerfer"
+msgstr "Berittener Gardespeerwerfer"
 
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:19
 msgid "Champion Cavalry Maceman"
@@ -421,7 +421,7 @@ msgstr "Garde-Infanterie-Armbrustschütze"
 
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:26
 msgid "Champion Infantry Javelineer"
-msgstr "Infanterie Gardistspeerwerfer"
+msgstr "Infanterie Gardespeerwerfer"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:19
 msgid "Champion Infantry Maceman"
@@ -468,7 +468,7 @@ msgstr "Trompeter"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:28
 msgid "Champion Infantry Trumpeter"
-msgstr "Gardistentrompeter der Infanterie"
+msgstr "Gardetrompeter der Infanterie"
 
 #: simulation/templates/template_unit_dog.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -741,7 +741,7 @@ msgid "Heavy Warship"
 msgstr "Schweres Kriegsschiff"
 
 #: simulation/templates/template_unit_ship_quinquereme.xml:55
-#: simulation/templates/template_unit_siege_tower.xml:65
+#: simulation/templates/template_unit_siege_tower.xml:64
 msgid "Garrison units for transport and to increase firepower."
 msgstr "Quartiere Einheiten für den Transport ein, und, um die Feuerkraft zu erhöhen."
 
@@ -810,11 +810,11 @@ msgstr "Steinewerfer"
 msgid "Siege Catapult"
 msgstr "Belagerungskatapult"
 
-#: simulation/templates/template_unit_siege_tower.xml:63
+#: simulation/templates/template_unit_siege_tower.xml:62
 msgid "SiegeTower"
 msgstr "Belagerungsturm"
 
-#: simulation/templates/template_unit_siege_tower.xml:64
+#: simulation/templates/template_unit_siege_tower.xml:63
 msgid "Siege Tower"
 msgstr "Belagerungsturm"
 
@@ -1444,7 +1444,7 @@ msgstr "Agrocuna"
 
 #: simulation/templates/units/cart/catafalque.xml:8
 msgid "Hasdrubal (Quartermaster)"
-msgstr "Hasdrubal (Quartiermeister) "
+msgstr "Hasdrubal (Quartiermeister)"
 
 #: simulation/templates/units/cart/cavalry_javelineer_b.xml:6
 msgid "Numidian Cavalry"
@@ -1606,7 +1606,7 @@ msgstr "Tlat-Mašōt"
 #: simulation/templates/units/cart/siege_ballista_packed.xml:5
 #: simulation/templates/units/rome/siege_ballista_packed.xml:16
 msgid "Ballista"
-msgstr "Ballista"
+msgstr "Balliste"
 
 #: simulation/templates/units/cart/support_female_citizen.xml:13
 msgid "Aštāh"
@@ -1707,8 +1707,8 @@ msgid "Wu Wei Yin Cao Cao Guard"
 msgstr "Wu Wei Yin Cao Cao Wache"
 
 #: simulation/templates/units/han/champion_chariot.xml:9
-msgid "Chinese War Chariot"
-msgstr "Chinesischer Streitwagen"
+msgid "Han War Chariot"
+msgstr "Han-Streitwagen"
 
 #: simulation/templates/units/han/champion_chariot.xml:10
 msgid "Zhanche"
@@ -2929,7 +2929,7 @@ msgstr "Legiōnārius"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_04.xml:14
 msgid "Roman Centurion"
-msgstr "Römischer Zenturio"
+msgstr "Römischer Centurio"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_04.xml:15
 msgid "Centuriō"
@@ -2968,7 +2968,7 @@ msgstr "Vēles"
 
 #: simulation/templates/units/rome/infantry_spearman_b.xml:19
 msgid "Veteran Spearman"
-msgstr "Speerkampfveteran"
+msgstr "Veteranen-Speerkämpfer"
 
 #: simulation/templates/units/rome/infantry_spearman_b.xml:20
 msgid "Triārius"
