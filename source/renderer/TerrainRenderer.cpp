@@ -379,6 +379,8 @@ CBoundingBoxAligned TerrainRenderer::ScissorWater(int cullGroup, const CCamera& 
 		if (!waterBoundsInViewPort.IsEmpty())
 			scissor += waterBoundsInViewPort;
 	}
+	if (scissor.IsEmpty())
+		return scissor;
 	return CBoundingBoxAligned(
 		CVector3D(Clamp(scissor[0].X, -1.0f, 1.0f), Clamp(scissor[0].Y, -1.0f, 1.0f), -1.0f),
 		CVector3D(Clamp(scissor[1].X, -1.0f, 1.0f), Clamp(scissor[1].Y, -1.0f, 1.0f), 1.0f));

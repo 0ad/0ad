@@ -558,6 +558,11 @@ void CSceneRenderer::RenderReflections(
 	ComputeReflectionCamera(m_ViewCamera, scissor);
 	const CBoundingBoxAligned reflectionScissor =
 		m->terrainRenderer.ScissorWater(CULL_DEFAULT, m_ViewCamera);
+	if (reflectionScissor.IsEmpty())
+	{
+		m_ViewCamera = normalCamera;
+		return;
+	}
 
 	g_Renderer.SetViewport(m_ViewCamera.GetViewPort());
 
@@ -623,6 +628,11 @@ void CSceneRenderer::RenderRefractions(
 	ComputeRefractionCamera(m_ViewCamera, scissor);
 	const CBoundingBoxAligned refractionScissor =
 		m->terrainRenderer.ScissorWater(CULL_DEFAULT, m_ViewCamera);
+	if (refractionScissor.IsEmpty())
+	{
+		m_ViewCamera = normalCamera;
+		return;
+	}
 
 	CVector4D camPlane(0, -1, 0, wm.m_WaterHeight + 2.0f);
 	SetObliqueFrustumClipping(m_ViewCamera, camPlane);
