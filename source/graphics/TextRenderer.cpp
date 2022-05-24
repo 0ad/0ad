@@ -277,13 +277,16 @@ void CTextRenderer::Render(
 
 			deviceCommandContext->SetVertexAttributeFormat(
 				Renderer::Backend::VertexAttributeStream::POSITION,
-				Renderer::Backend::Format::R16G16_SINT, offsetof(t2f_v2i, x), stride, 0);
+				Renderer::Backend::Format::R16G16_SINT, offsetof(t2f_v2i, x), stride,
+				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 			deviceCommandContext->SetVertexAttributeFormat(
 				Renderer::Backend::VertexAttributeStream::UV0,
-				Renderer::Backend::Format::R32G32_SFLOAT, offsetof(t2f_v2i, u), stride, 0);
+				Renderer::Backend::Format::R32G32_SFLOAT, offsetof(t2f_v2i, u), stride,
+				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
-			deviceCommandContext->SetVertexBufferData(0, vertexes.data());
-			deviceCommandContext->SetIndexBufferData(indexes.data());
+			deviceCommandContext->SetVertexBufferData(
+				0, vertexes.data(), vertexes.size() * sizeof(vertexes[0]));
+			deviceCommandContext->SetIndexBufferData(indexes.data(), indexes.size() * sizeof(indexes[0]));
 
 			deviceCommandContext->DrawIndexed(0, idx * 6, 0);
 			idx = 0;

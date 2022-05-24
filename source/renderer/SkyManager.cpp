@@ -254,10 +254,12 @@ void SkyManager::RenderSky(
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION, m_AttributePosition.format,
-		firstVertexOffset + m_AttributePosition.offset, stride, 0);
+		firstVertexOffset + m_AttributePosition.offset, stride,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV0, m_AttributeUV.format,
-		firstVertexOffset + m_AttributeUV.offset, stride, 0);
+		firstVertexOffset + m_AttributeUV.offset, stride,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
 	deviceCommandContext->SetVertexBuffer(0, m_VertexArray.GetBuffer());
 

@@ -62,15 +62,18 @@ void CTexturedLineRData::Render(
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
 		Renderer::Backend::Format::R32G32B32_SFLOAT,
-		offsetof(CTexturedLineRData::SVertex, m_Position), stride, 0);
+		offsetof(CTexturedLineRData::SVertex, m_Position), stride,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV0,
 		Renderer::Backend::Format::R32G32_SFLOAT,
-		offsetof(CTexturedLineRData::SVertex, m_UVs), stride, 0);
+		offsetof(CTexturedLineRData::SVertex, m_UVs), stride,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV1,
 		Renderer::Backend::Format::R32G32_SFLOAT,
-		offsetof(CTexturedLineRData::SVertex, m_UVs), stride, 0);
+		offsetof(CTexturedLineRData::SVertex, m_UVs), stride,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
 	deviceCommandContext->SetVertexBuffer(0, m_VB->m_Owner->GetBuffer());
 

@@ -238,15 +238,18 @@ void CDecalRData::RenderDecals(
 					deviceCommandContext->SetVertexAttributeFormat(
 						Renderer::Backend::VertexAttributeStream::POSITION,
 						Renderer::Backend::Format::R32G32B32_SFLOAT,
-						offsetof(SDecalVertex, m_Position), stride, 0);
+						offsetof(SDecalVertex, m_Position), stride,
+						Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 					deviceCommandContext->SetVertexAttributeFormat(
 						Renderer::Backend::VertexAttributeStream::NORMAL,
 						Renderer::Backend::Format::R32G32B32_SFLOAT,
-						offsetof(SDecalVertex, m_Normal), stride, 0);
+						offsetof(SDecalVertex, m_Normal), stride,
+						Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 					deviceCommandContext->SetVertexAttributeFormat(
 						Renderer::Backend::VertexAttributeStream::UV0,
 						Renderer::Backend::Format::R32G32_SFLOAT,
-						offsetof(SDecalVertex, m_UV), stride, 0);
+						offsetof(SDecalVertex, m_UV), stride,
+						Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
 					deviceCommandContext->SetVertexBuffer(0, batch.vertices->m_Owner->GetBuffer());
 				}

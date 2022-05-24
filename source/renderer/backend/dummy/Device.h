@@ -78,7 +78,7 @@ public:
 
 	const Capabilities& GetCapabilities() const override { return m_Capabilities; }
 
-private:
+protected:
 
 	std::string m_Name;
 	std::string m_Version;

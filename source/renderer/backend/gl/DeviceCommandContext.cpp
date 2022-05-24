@@ -834,11 +834,12 @@ void CDeviceCommandContext::SetViewports(const uint32_t viewportCount, const Rec
 }
 
 void CDeviceCommandContext::SetVertexAttributeFormat(
-		const VertexAttributeStream stream,
-		const Format format,
-		const uint32_t offset,
-		const uint32_t stride,
-		const uint32_t bindingSlot)
+	const VertexAttributeStream stream,
+	const Format format,
+	const uint32_t offset,
+	const uint32_t stride,
+	const VertexAttributeRate rate,
+	const uint32_t bindingSlot)
 {
 	const uint32_t index = static_cast<uint32_t>(stream);
 	ENSURE(index < m_VertexAttributeFormat.size());
@@ -848,6 +849,7 @@ void CDeviceCommandContext::SetVertexAttributeFormat(
 	m_VertexAttributeFormat[index].format = format;
 	m_VertexAttributeFormat[index].offset = offset;
 	m_VertexAttributeFormat[index].stride = stride;
+	m_VertexAttributeFormat[index].rate = rate;
 	m_VertexAttributeFormat[index].bindingSlot = bindingSlot;
 
 	m_VertexAttributeFormat[index].initialized = true;
@@ -870,15 +872,17 @@ void CDeviceCommandContext::SetVertexBuffer(
 			m_VertexAttributeFormat[index].format,
 			m_VertexAttributeFormat[index].offset,
 			m_VertexAttributeFormat[index].stride,
+			m_VertexAttributeFormat[index].rate,
 			nullptr);
 	}
 }
 
 void CDeviceCommandContext::SetVertexBufferData(
-	const uint32_t bindingSlot, const void* data)
+	const uint32_t bindingSlot, const void* data, const uint32_t dataSize)
 {
 	ENSURE(data);
 	ENSURE(m_ShaderProgram);
+	ENSURE(dataSize > 0);
 	BindBuffer(CBuffer::Type::VERTEX, nullptr);
 	for (size_t index = 0; index < m_VertexAttributeFormat.size(); ++index)
 	{
@@ -886,10 +890,14 @@ void CDeviceCommandContext::SetVertexBufferData(
 			continue;
 		ENSURE(m_VertexAttributeFormat[index].initialized);
 		const VertexAttributeStream stream = static_cast<VertexAttributeStream>(index);
+		// We don't know how many vertices will be used in a draw command, so we
+		// assume at least one vertex.
+		ENSURE(dataSize >= m_VertexAttributeFormat[index].offset + m_VertexAttributeFormat[index].stride);
 		m_ShaderProgram->VertexAttribPointer(stream,
 			m_VertexAttributeFormat[index].format,
 			m_VertexAttributeFormat[index].offset,
 			m_VertexAttributeFormat[index].stride,
+			m_VertexAttributeFormat[index].rate,
 			data);
 	}
 }
@@ -902,8 +910,9 @@ void CDeviceCommandContext::SetIndexBuffer(IBuffer* buffer)
 	BindBuffer(CBuffer::Type::INDEX, m_IndexBuffer);
 }
 
-void CDeviceCommandContext::SetIndexBufferData(const void* data)
+void CDeviceCommandContext::SetIndexBufferData(const void* data, const uint32_t dataSize)
 {
+	ENSURE(dataSize > 0);
 	if (m_IndexBuffer)
 	{
 		BindBuffer(CBuffer::Type::INDEX, nullptr);
@@ -957,6 +966,47 @@ void CDeviceCommandContext::DrawIndexed(
 	// in Mesa 7.10 swrast with index VBOs).
 	glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_SHORT,
 		static_cast<const void*>((static_cast<const uint8_t*>(m_IndexBufferData) + sizeof(uint16_t) * firstIndex)));
+	ogl_WarnIfError();
+}
+
+void CDeviceCommandContext::DrawInstanced(
+	const uint32_t firstVertex, const uint32_t vertexCount,
+	const uint32_t firstInstance, const uint32_t instanceCount)
+{
+	ENSURE(m_Device->GetCapabilities().instancing);
+	ENSURE(m_ShaderProgram);
+	ENSURE(m_InsidePass);
+	if (vertexCount == 0 || instanceCount == 0)
+		return;
+	ENSURE(firstInstance == 0);
+	m_ShaderProgram->AssertPointersBound();
+	glDrawArraysInstancedARB(GL_TRIANGLES, firstVertex, vertexCount, instanceCount);
+	ogl_WarnIfError();
+}
+
+void CDeviceCommandContext::DrawIndexedInstanced(
+	const uint32_t firstIndex, const uint32_t indexCount,
+	const uint32_t firstInstance, const uint32_t instanceCount,
+	const int32_t vertexOffset)
+{
+	ENSURE(m_Device->GetCapabilities().instancing);
+	ENSURE(m_ShaderProgram);
+	ENSURE(m_InsidePass);
+	ENSURE(m_IndexBuffer || m_IndexBufferData);
+	if (indexCount == 0)
+		return;
+	ENSURE(firstInstance == 0 && vertexOffset == 0);
+	if (m_IndexBuffer)
+	{
+		ENSURE(sizeof(uint16_t) * (firstIndex + indexCount) <= m_IndexBuffer->GetSize());
+	}
+	m_ShaderProgram->AssertPointersBound();
+	// Don't use glMultiDrawElements here since it doesn't have a significant
+	// performance impact and it suffers from various driver bugs (e.g. it breaks
+	// in Mesa 7.10 swrast with index VBOs).
+	glDrawElementsInstancedARB(GL_TRIANGLES, indexCount, GL_UNSIGNED_SHORT,
+		static_cast<const void*>((static_cast<const uint8_t*>(m_IndexBufferData) + sizeof(uint16_t) * firstIndex)),
+		instanceCount);
 	ogl_WarnIfError();
 }
 

@@ -822,15 +822,18 @@ void CPatchRData::RenderBases(
 					deviceCommandContext->SetVertexAttributeFormat(
 						Renderer::Backend::VertexAttributeStream::POSITION,
 						Renderer::Backend::Format::R32G32B32_SFLOAT,
-						offsetof(SBaseVertex, m_Position), stride, 0);
+						offsetof(SBaseVertex, m_Position), stride,
+						Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 					deviceCommandContext->SetVertexAttributeFormat(
 						Renderer::Backend::VertexAttributeStream::NORMAL,
 						Renderer::Backend::Format::R32G32B32_SFLOAT,
-						offsetof(SBaseVertex, m_Normal), stride, 0);
+						offsetof(SBaseVertex, m_Normal), stride,
+						Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 					deviceCommandContext->SetVertexAttributeFormat(
 						Renderer::Backend::VertexAttributeStream::UV0,
 						Renderer::Backend::Format::R32G32B32_SFLOAT,
-						offsetof(SBaseVertex, m_Position), stride, 0);
+						offsetof(SBaseVertex, m_Position), stride,
+						Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
 					deviceCommandContext->SetVertexBuffer(0, itv->first->GetBuffer());
 
@@ -1071,19 +1074,23 @@ void CPatchRData::RenderBlends(
 						deviceCommandContext->SetVertexAttributeFormat(
 							Renderer::Backend::VertexAttributeStream::POSITION,
 							Renderer::Backend::Format::R32G32B32_SFLOAT,
-							offsetof(SBlendVertex, m_Position), stride, 0);
+							offsetof(SBlendVertex, m_Position), stride,
+							Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 						deviceCommandContext->SetVertexAttributeFormat(
 							Renderer::Backend::VertexAttributeStream::NORMAL,
 							Renderer::Backend::Format::R32G32B32_SFLOAT,
-							offsetof(SBlendVertex, m_Normal), stride, 0);
+							offsetof(SBlendVertex, m_Normal), stride,
+							Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 						deviceCommandContext->SetVertexAttributeFormat(
 							Renderer::Backend::VertexAttributeStream::UV0,
 							Renderer::Backend::Format::R32G32B32_SFLOAT,
-							offsetof(SBlendVertex, m_Position), stride, 0);
+							offsetof(SBlendVertex, m_Position), stride,
+							Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 						deviceCommandContext->SetVertexAttributeFormat(
 							Renderer::Backend::VertexAttributeStream::UV1,
 							Renderer::Backend::Format::R32G32_SFLOAT,
-							offsetof(SBlendVertex, m_AlphaUVs), stride, 0);
+							offsetof(SBlendVertex, m_AlphaUVs), stride,
+							Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
 						deviceCommandContext->SetVertexBuffer(0, itv->first->GetBuffer());
 					}
@@ -1145,13 +1152,15 @@ void CPatchRData::RenderStreams(
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
 		Renderer::Backend::Format::R32G32B32_SFLOAT,
-		offsetof(SBaseVertex, m_Position), stride, 0);
+		offsetof(SBaseVertex, m_Position), stride,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	if (bindPositionAsTexCoord)
 	{
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV0,
 			Renderer::Backend::Format::R32G32B32_SFLOAT,
-			offsetof(SBaseVertex, m_Position), stride, 0);
+			offsetof(SBaseVertex, m_Position), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	}
 
  	// Render each batch
@@ -1223,7 +1232,8 @@ void CPatchRData::RenderSides(
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
 		Renderer::Backend::Format::R32G32B32_SFLOAT,
-		offsetof(SSideVertex, m_Position), stride, 0);
+		offsetof(SSideVertex, m_Position), stride,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
 	CVertexBuffer* lastVB = nullptr;
 	for (CPatchRData* patch : patches)
@@ -1492,13 +1502,15 @@ void CPatchRData::RenderWaterSurface(
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
 		Renderer::Backend::Format::R32G32B32_SFLOAT,
-		firstVertexOffset + offsetof(SWaterVertex, m_Position), stride, 0);
+		firstVertexOffset + offsetof(SWaterVertex, m_Position), stride,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	if (bindWaterData)
 	{
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV1,
 			Renderer::Backend::Format::R32G32_SFLOAT,
-			firstVertexOffset + offsetof(SWaterVertex, m_WaterData), stride, 0);
+			firstVertexOffset + offsetof(SWaterVertex, m_WaterData), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	}
 
 	deviceCommandContext->SetVertexBuffer(0, m_VBWater->m_Owner->GetBuffer());
@@ -1527,11 +1539,13 @@ void CPatchRData::RenderWaterShore(
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
 		Renderer::Backend::Format::R32G32B32_SFLOAT,
-		firstVertexOffset + offsetof(SWaterVertex, m_Position), stride, 0);
+		firstVertexOffset + offsetof(SWaterVertex, m_Position), stride,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV1,
 		Renderer::Backend::Format::R32G32_SFLOAT,
-		firstVertexOffset + offsetof(SWaterVertex, m_WaterData), stride, 0);
+		firstVertexOffset + offsetof(SWaterVertex, m_WaterData), stride,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
 	deviceCommandContext->SetVertexBuffer(0, m_VBWaterShore->m_Owner->GetBuffer());
 	deviceCommandContext->SetIndexBuffer(m_VBWaterIndicesShore->m_Owner->GetBuffer());

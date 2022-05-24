@@ -58,6 +58,7 @@ CDevice::CDevice()
 	m_Capabilities.maxSampleCount = 4u;
 	m_Capabilities.maxAnisotropy = 16.0f;
 	m_Capabilities.maxTextureSize = 8192u;
+	m_Capabilities.instancing = true;
 }
 
 CDevice::~CDevice() = default;

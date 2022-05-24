@@ -36,6 +36,7 @@
 #include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
+#include "ps/VideoMode.h"
 #include "ps/World.h"
 #include "ps/XML/Xeromyces.h"
 #include "renderer/backend/IDevice.h"
@@ -48,6 +49,8 @@
 #include "simulation2/components/ICmpMinimap.h"
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/system/ParamNode.h"
+
+#include <cmath>
 
 namespace
 {
@@ -96,13 +99,17 @@ void DrawTexture(
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 1);
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 
-	deviceCommandContext->SetVertexBufferData(0, quadVertices);
-	deviceCommandContext->SetVertexBufferData(1, quadUVs);
+	deviceCommandContext->SetVertexBufferData(
+		0, quadVertices, std::size(quadVertices) * sizeof(quadVertices[0]));
+	deviceCommandContext->SetVertexBufferData(
+		1, quadUVs, std::size(quadUVs) * sizeof(quadUVs[0]));
 
 	deviceCommandContext->Draw(0, 6);
 }
@@ -118,8 +125,24 @@ struct MinimapUnitVertex
 inline void AddEntity(const MinimapUnitVertex& v,
 	VertexArrayIterator<u8[4]>& attrColor,
 	VertexArrayIterator<float[2]>& attrPos,
-	const float entityRadius)
+	const float entityRadius,
+	const bool useInstancing)
 {
+	if (useInstancing)
+	{
+		(*attrColor)[0] = v.r;
+		(*attrColor)[1] = v.g;
+		(*attrColor)[2] = v.b;
+		(*attrColor)[3] = v.a;
+		++attrColor;
+
+		(*attrPos)[0] = v.position.X;
+		(*attrPos)[1] = v.position.Y;
+		++attrPos;
+
+		return;
+	}
+
 	const CVector2D offsets[4] =
 	{
 		{-entityRadius, 0.0f},
@@ -146,7 +169,8 @@ inline void AddEntity(const MinimapUnitVertex& v,
 
 CMiniMapTexture::CMiniMapTexture(CSimulation2& simulation)
 	: m_Simulation(simulation), m_IndexArray(false),
-	m_VertexArray(Renderer::Backend::IBuffer::Type::VERTEX, true)
+	m_VertexArray(Renderer::Backend::IBuffer::Type::VERTEX, true),
+	m_InstanceVertexArray(Renderer::Backend::IBuffer::Type::VERTEX, false)
 {
 	// Register Relax NG validator.
 	CXeromyces::AddValidator(g_VFS, "pathfinder", "simulation/data/pathfinder.rng");
@@ -194,6 +218,42 @@ CMiniMapTexture::CMiniMapTexture(CSimulation2& simulation)
 		++attrPos;
 	}
 	m_VertexArray.Upload();
+
+	if (g_VideoMode.GetBackendDevice()->GetCapabilities().instancing)
+	{
+		m_UseInstancing = true;
+
+		const size_t numberOfCircleSegments = 8;
+
+		m_InstanceAttributePosition.format = Renderer::Backend::Format::R32G32_SFLOAT;
+		m_InstanceVertexArray.AddAttribute(&m_InstanceAttributePosition);
+
+		m_InstanceVertexArray.SetNumberOfVertices(numberOfCircleSegments * 3);
+		m_InstanceVertexArray.Layout();
+
+		VertexArrayIterator<float[2]> attributePosition =
+			m_InstanceAttributePosition.GetIterator<float[2]>();
+		for (size_t segment = 0; segment < numberOfCircleSegments; ++segment)
+		{
+			const float currentAngle = static_cast<float>(segment) / numberOfCircleSegments * 2.0f * M_PI;
+			const float nextAngle = static_cast<float>(segment + 1) / numberOfCircleSegments * 2.0f * M_PI;
+
+			(*attributePosition)[0] = 0.0f;
+			(*attributePosition)[1] = 0.0f;
+			++attributePosition;
+
+			(*attributePosition)[0] = std::cos(currentAngle);
+			(*attributePosition)[1] = std::sin(currentAngle);
+			++attributePosition;
+
+			(*attributePosition)[0] = std::cos(nextAngle);
+			(*attributePosition)[1] = std::sin(nextAngle);
+			++attributePosition;
+		}
+
+		m_InstanceVertexArray.Upload();
+		m_InstanceVertexArray.FreeBackingStore();
+	}
 }
 
 CMiniMapTexture::~CMiniMapTexture()
@@ -448,25 +508,11 @@ void CMiniMapTexture::RenderFinalTexture(
 
 	deviceCommandContext->EndPass();
 
-	CShaderDefines pointDefines;
-	pointDefines.Add(str_MINIMAP_POINT, str_1);
-	tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, pointDefines);
-	deviceCommandContext->SetGraphicsPipelineState(
-		tech->GetGraphicsPipelineStateDesc());
-	deviceCommandContext->BeginPass();
-	shader = tech->GetShader();
-	deviceCommandContext->SetUniform(
-		shader->GetBindingSlot(str_transform), baseTransform.AsFloatArray());
-
-	CMatrix3D unitMatrix;
-	unitMatrix.SetIdentity();
-	// Convert world space coordinates into [0, 2].
-	const float unitScale = invTileMapSize;
-	unitMatrix.Scale(unitScale * 2.0f, unitScale * 2.0f, 1.0f);
-	// Offset the coordinates to [-1, 1].
-	unitMatrix.Translate(CVector3D(-1.0f, -1.0f, 0.0f));
-	deviceCommandContext->SetUniform(
-		shader->GetBindingSlot(str_transform), unitMatrix.AsFloatArray());
+	// We might scale entities properly in the vertex shader but it requires
+	// additional space in the vertex buffer. So we assume that we don't need
+	// to change an entity size so often.
+	// Radius with instancing is lower because an entity has a more round shape.
+	const float entityRadius = static_cast<float>(m_MapSize) / 128.0f * (m_UseInstancing ? 5.0 : 6.0f);
 
 	if (doUpdate)
 	{
@@ -481,11 +527,6 @@ void CMiniMapTexture::RenderFinalTexture(
 		MinimapUnitVertex v;
 		std::vector<MinimapUnitVertex> pingingVertices;
 		pingingVertices.reserve(MAX_ENTITIES_DRAWN / 2);
-
-		// We might scale entities properly in the vertex shader but it requires
-		// additional space in the vertex buffer. So we assume that we don't need
-		// to change an entity size so often.
-		const float entityRadius = static_cast<float>(m_MapSize) / 128.0f * 6.0f;
 
 		if (currentTime > m_NextBlinkTime)
 		{
@@ -525,7 +566,7 @@ void CMiniMapTexture::RenderFinalTexture(
 					}
 					else
 					{
-						AddEntity(v, attrColor, attrPos, entityRadius);
+						AddEntity(v, attrColor, attrPos, entityRadius, m_UseInstancing);
 						++m_EntitiesDrawn;
 					}
 
@@ -554,60 +595,118 @@ void CMiniMapTexture::RenderFinalTexture(
 		// Add the pinged vertices at the end, so they are drawn on top
 		for (const MinimapUnitVertex& vertex : pingingVertices)
 		{
-			AddEntity(vertex, attrColor, attrPos, entityRadius);
+			AddEntity(vertex, attrColor, attrPos, entityRadius, m_UseInstancing);
 			++m_EntitiesDrawn;
 		}
 
 		ENSURE(m_EntitiesDrawn < MAX_ENTITIES_DRAWN);
 
-		VertexArrayIterator<u16> index = m_IndexArray.GetIterator();
-		for (size_t entityIndex = 0; entityIndex < m_EntitiesDrawn; ++entityIndex)
+		if (!m_UseInstancing)
 		{
-			index[entityIndex * 6 + 0] = static_cast<u16>(entityIndex * 4 + 0);
-			index[entityIndex * 6 + 1] = static_cast<u16>(entityIndex * 4 + 1);
-			index[entityIndex * 6 + 2] = static_cast<u16>(entityIndex * 4 + 2);
-			index[entityIndex * 6 + 3] = static_cast<u16>(entityIndex * 4 + 0);
-			index[entityIndex * 6 + 4] = static_cast<u16>(entityIndex * 4 + 2);
-			index[entityIndex * 6 + 5] = static_cast<u16>(entityIndex * 4 + 3);
+			VertexArrayIterator<u16> index = m_IndexArray.GetIterator();
+			for (size_t entityIndex = 0; entityIndex < m_EntitiesDrawn; ++entityIndex)
+			{
+				index[entityIndex * 6 + 0] = static_cast<u16>(entityIndex * 4 + 0);
+				index[entityIndex * 6 + 1] = static_cast<u16>(entityIndex * 4 + 1);
+				index[entityIndex * 6 + 2] = static_cast<u16>(entityIndex * 4 + 2);
+				index[entityIndex * 6 + 3] = static_cast<u16>(entityIndex * 4 + 0);
+				index[entityIndex * 6 + 4] = static_cast<u16>(entityIndex * 4 + 2);
+				index[entityIndex * 6 + 5] = static_cast<u16>(entityIndex * 4 + 3);
+			}
+
+			m_IndexArray.Upload();
 		}
 
 		m_VertexArray.Upload();
-		m_IndexArray.Upload();
 	}
 
 	m_VertexArray.PrepareForRendering();
 
 	if (m_EntitiesDrawn > 0)
 	{
+		CShaderDefines pointDefines;
+		pointDefines.Add(str_MINIMAP_POINT, str_1);
+		if (m_UseInstancing)
+			pointDefines.Add(str_USE_GPU_INSTANCING, str_1);
+		tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, pointDefines);
+		deviceCommandContext->SetGraphicsPipelineState(
+			tech->GetGraphicsPipelineStateDesc());
+		deviceCommandContext->BeginPass();
+		shader = tech->GetShader();
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_transform), baseTransform.AsFloatArray());
+
+		CMatrix3D unitMatrix;
+		unitMatrix.SetIdentity();
+		// Convert world space coordinates into [0, 2].
+		const float unitScale = invTileMapSize;
+		unitMatrix.Scale(unitScale * 2.0f, unitScale * 2.0f, 1.0f);
+		// Offset the coordinates to [-1, 1].
+		unitMatrix.Translate(CVector3D(-1.0f, -1.0f, 0.0f));
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_transform), unitMatrix.AsFloatArray());
+
 		Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
 		scissorRect.x = scissorRect.y = 1;
 		scissorRect.width = scissorRect.height = FINAL_TEXTURE_SIZE - 2;
 		deviceCommandContext->SetScissors(1, &scissorRect);
 
 		m_VertexArray.UploadIfNeeded(deviceCommandContext);
-		m_IndexArray.UploadIfNeeded(deviceCommandContext);
 
 		const uint32_t stride = m_VertexArray.GetStride();
 		const uint32_t firstVertexOffset = m_VertexArray.GetOffset() * stride;
 
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::POSITION,
-			m_AttributePos.format, firstVertexOffset + m_AttributePos.offset, stride, 0);
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::COLOR,
-			m_AttributeColor.format, firstVertexOffset + m_AttributeColor.offset, stride, 0);
+		if (m_UseInstancing)
+		{
+			deviceCommandContext->SetVertexAttributeFormat(
+				Renderer::Backend::VertexAttributeStream::POSITION,
+				m_AttributePos.format,
+				m_InstanceVertexArray.GetOffset() + m_InstanceAttributePosition.offset,
+				m_InstanceVertexArray.GetStride(),
+				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
-		deviceCommandContext->SetVertexBuffer(0, m_VertexArray.GetBuffer());
-		deviceCommandContext->SetIndexBuffer(m_IndexArray.GetBuffer());
+			deviceCommandContext->SetVertexAttributeFormat(
+				Renderer::Backend::VertexAttributeStream::UV1,
+				m_AttributePos.format, firstVertexOffset + m_AttributePos.offset, stride,
+				Renderer::Backend::VertexAttributeRate::PER_INSTANCE, 1);
+			deviceCommandContext->SetVertexAttributeFormat(
+				Renderer::Backend::VertexAttributeStream::COLOR,
+				m_AttributeColor.format, firstVertexOffset + m_AttributeColor.offset, stride,
+				Renderer::Backend::VertexAttributeRate::PER_INSTANCE, 1);
 
-		deviceCommandContext->DrawIndexed(m_IndexArray.GetOffset(), m_EntitiesDrawn * 6, 0);
+			deviceCommandContext->SetVertexBuffer(0, m_InstanceVertexArray.GetBuffer());
+			deviceCommandContext->SetVertexBuffer(1, m_VertexArray.GetBuffer());
+
+			deviceCommandContext->SetUniform(shader->GetBindingSlot(str_width), entityRadius);
+
+			deviceCommandContext->DrawInstanced(0, m_InstanceVertexArray.GetNumberOfVertices(), 0, m_EntitiesDrawn);
+		}
+		else
+		{
+			m_IndexArray.UploadIfNeeded(deviceCommandContext);
+
+			deviceCommandContext->SetVertexAttributeFormat(
+				Renderer::Backend::VertexAttributeStream::POSITION,
+				m_AttributePos.format, firstVertexOffset + m_AttributePos.offset, stride,
+				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+			deviceCommandContext->SetVertexAttributeFormat(
+				Renderer::Backend::VertexAttributeStream::COLOR,
+				m_AttributeColor.format, firstVertexOffset + m_AttributeColor.offset, stride,
+				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+
+			deviceCommandContext->SetVertexBuffer(0, m_VertexArray.GetBuffer());
+			deviceCommandContext->SetIndexBuffer(m_IndexArray.GetBuffer());
+
+			deviceCommandContext->DrawIndexed(m_IndexArray.GetOffset(), m_EntitiesDrawn * 6, 0);
+		}
 
 		g_Renderer.GetStats().m_DrawCalls++;
 
 		deviceCommandContext->SetScissors(0, nullptr);
+
+		deviceCommandContext->EndPass();
 	}
 
-	deviceCommandContext->EndPass();
 	deviceCommandContext->SetFramebuffer(
 		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 	g_Renderer.SetViewport(oldViewPort);

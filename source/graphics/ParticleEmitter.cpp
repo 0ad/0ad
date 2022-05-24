@@ -214,16 +214,20 @@ void CParticleEmitter::RenderArray(
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		m_AttributePos.format, firstVertexOffset + m_AttributePos.offset, stride, 0);
+		m_AttributePos.format, firstVertexOffset + m_AttributePos.offset, stride,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::COLOR,
-		m_AttributeColor.format, firstVertexOffset + m_AttributeColor.offset, stride, 0);
+		m_AttributeColor.format, firstVertexOffset + m_AttributeColor.offset, stride,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV0,
-		m_AttributeUV.format, firstVertexOffset + m_AttributeUV.offset, stride, 0);
+		m_AttributeUV.format, firstVertexOffset + m_AttributeUV.offset, stride,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV1,
-		m_AttributeAxis.format, firstVertexOffset + m_AttributeAxis.offset, stride, 0);
+		m_AttributeAxis.format, firstVertexOffset + m_AttributeAxis.offset, stride,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
 	deviceCommandContext->SetVertexBuffer(0, m_VertexArray.GetBuffer());
 	deviceCommandContext->SetIndexBuffer(m_IndexArray.GetBuffer());
