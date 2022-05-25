@@ -565,16 +565,20 @@ void OverlayRenderer::RenderQuadOverlays(
 		// to the index offset when it's supported.
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::POSITION,
-			m->quadAttributePos.format, firstVertexOffset + m->quadAttributePos.offset, vertexStride, 0);
+			m->quadAttributePos.format, firstVertexOffset + m->quadAttributePos.offset, vertexStride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::COLOR,
-			m->quadAttributeColor.format, firstVertexOffset + m->quadAttributeColor.offset, vertexStride, 0);
+			m->quadAttributeColor.format, firstVertexOffset + m->quadAttributeColor.offset, vertexStride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV0,
-			m->quadAttributeUV.format, firstVertexOffset + m->quadAttributeUV.offset, vertexStride, 0);
+			m->quadAttributeUV.format, firstVertexOffset + m->quadAttributeUV.offset, vertexStride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV1,
-			m->quadAttributeUV.format, firstVertexOffset + m->quadAttributeUV.offset, vertexStride, 0);
+			m->quadAttributeUV.format, firstVertexOffset + m->quadAttributeUV.offset, vertexStride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
 		deviceCommandContext->SetVertexBuffer(0, m->quadVertices.GetBuffer());
 		deviceCommandContext->SetIndexBuffer(m->quadIndices.GetBuffer());
@@ -633,12 +637,15 @@ void OverlayRenderer::RenderForegroundOverlays(
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 1);
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 
-	deviceCommandContext->SetVertexBufferData(1, &uvs[0]);
+	deviceCommandContext->SetVertexBufferData(
+		1, &uvs[0], std::size(uvs) * sizeof(uvs[0]));
 
 	const int32_t baseTexBindingSlot = shader->GetBindingSlot(str_baseTex);
 	const int32_t colorMulBindingSlot = shader->GetBindingSlot(str_colorMul);
@@ -666,7 +673,8 @@ void OverlayRenderer::RenderForegroundOverlays(
 			sprite->m_Position + right*sprite->m_X0 + up*sprite->m_Y1
 		};
 
-		deviceCommandContext->SetVertexBufferData(0, &position[0].X);
+		deviceCommandContext->SetVertexBufferData(
+			0, &position[0].X, std::size(position) * sizeof(position[0]));
 
 		deviceCommandContext->Draw(0, 6);
 
@@ -774,10 +782,13 @@ void OverlayRenderer::RenderSphereOverlays(
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
-	deviceCommandContext->SetVertexBufferData(0, m->sphereVertexes.data());
-	deviceCommandContext->SetIndexBufferData(m->sphereIndexes.data());
+	deviceCommandContext->SetVertexBufferData(
+		0, m->sphereVertexes.data(), m->sphereVertexes.size() * sizeof(m->sphereVertexes[0]));
+	deviceCommandContext->SetIndexBufferData(
+		m->sphereIndexes.data(), m->sphereIndexes.size() * sizeof(m->sphereIndexes[0]));
 
 	for (size_t i = 0; i < m->spheres.size(); ++i)
 	{

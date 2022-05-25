@@ -130,7 +130,7 @@ void CDeviceCommandContext::SetViewports(const uint32_t, const Rect*)
 
 void CDeviceCommandContext::SetVertexAttributeFormat(
 		const VertexAttributeStream, const Format,
-		const uint32_t, const uint32_t, const uint32_t)
+		const uint32_t, const uint32_t, const VertexAttributeRate, const uint32_t)
 {
 }
 
@@ -138,7 +138,8 @@ void CDeviceCommandContext::SetVertexBuffer(const uint32_t, IBuffer*)
 {
 }
 
-void CDeviceCommandContext::SetVertexBufferData(const uint32_t, const void*)
+void CDeviceCommandContext::SetVertexBufferData(
+	const uint32_t, const void*, const uint32_t)
 {
 }
 
@@ -146,7 +147,7 @@ void CDeviceCommandContext::SetIndexBuffer(IBuffer*)
 {
 }
 
-void CDeviceCommandContext::SetIndexBufferData(const void*)
+void CDeviceCommandContext::SetIndexBufferData(const void*, const uint32_t)
 {
 }
 
@@ -163,6 +164,16 @@ void CDeviceCommandContext::Draw(const uint32_t, const uint32_t)
 }
 
 void CDeviceCommandContext::DrawIndexed(const uint32_t, const uint32_t, const int32_t)
+{
+}
+
+void CDeviceCommandContext::DrawInstanced(
+	const uint32_t, const uint32_t, const uint32_t, const uint32_t)
+{
+}
+
+void CDeviceCommandContext::DrawIndexedInstanced(
+	const uint32_t, const uint32_t, const uint32_t, const uint32_t, const int32_t)
 {
 }
 

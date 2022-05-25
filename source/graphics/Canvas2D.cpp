@@ -69,13 +69,17 @@ inline void DrawTextureImpl(
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 0);
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 1);
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 
-	deviceCommandContext->SetVertexBufferData(0, vertices.data());
-	deviceCommandContext->SetVertexBufferData(1, uvs.data());
+	deviceCommandContext->SetVertexBufferData(
+		0, vertices.data(), vertices.size() * sizeof(vertices[0]));
+	deviceCommandContext->SetVertexBufferData(
+		1, uvs.data(), uvs.size() * sizeof(uvs[0]));
 
 	deviceCommandContext->Draw(0, vertices.size() / 2);
 }
@@ -288,15 +292,17 @@ void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width
 
 	m->DeviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 0);
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	m->DeviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 1);
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 
-	m->DeviceCommandContext->SetVertexBufferData(0, vertices.data());
-	m->DeviceCommandContext->SetVertexBufferData(1, uvs.data());
+	m->DeviceCommandContext->SetVertexBufferData(0, vertices.data(), vertices.size() * sizeof(vertices[0]));
+	m->DeviceCommandContext->SetVertexBufferData(1, uvs.data(), uvs.size() * sizeof(uvs[0]));
 
-	m->DeviceCommandContext->SetIndexBufferData(indices.data());
+	m->DeviceCommandContext->SetIndexBufferData(indices.data(), indices.size() * sizeof(indices[0]));
 	m->DeviceCommandContext->DrawIndexed(0, indices.size(), 0);
 }
 

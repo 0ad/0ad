@@ -233,13 +233,17 @@ void CPostprocManager::ApplyBlurDownscale2x(
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 0);
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 1);
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 
-	deviceCommandContext->SetVertexBufferData(0, quadVerts);
-	deviceCommandContext->SetVertexBufferData(1, quadTex);
+	deviceCommandContext->SetVertexBufferData(
+		0, quadVerts, std::size(quadVerts) * sizeof(quadVerts[0]));
+	deviceCommandContext->SetVertexBufferData(
+		1, quadTex, std::size(quadTex) * sizeof(quadTex[0]));
 
 	deviceCommandContext->Draw(0, 6);
 
@@ -299,13 +303,17 @@ void CPostprocManager::ApplyBlurGauss(
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 0);
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 1);
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 
-	deviceCommandContext->SetVertexBufferData(0, quadVerts);
-	deviceCommandContext->SetVertexBufferData(1, quadTex);
+	deviceCommandContext->SetVertexBufferData(
+		0, quadVerts, std::size(quadVerts) * sizeof(quadVerts[0]));
+	deviceCommandContext->SetVertexBufferData(
+		1, quadTex, std::size(quadTex) * sizeof(quadTex[0]));
 
 	deviceCommandContext->Draw(0, 6);
 
@@ -335,13 +343,17 @@ void CPostprocManager::ApplyBlurGauss(
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 0);
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 1);
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 
-	deviceCommandContext->SetVertexBufferData(0, quadVerts);
-	deviceCommandContext->SetVertexBufferData(1, quadTex);
+	deviceCommandContext->SetVertexBufferData(
+		0, quadVerts, std::size(quadVerts) * sizeof(quadVerts[0]));
+	deviceCommandContext->SetVertexBufferData(
+		1, quadTex, std::size(quadTex) * sizeof(quadTex[0]));
 
 	deviceCommandContext->Draw(0, 6);
 
@@ -465,13 +477,17 @@ void CPostprocManager::ApplyEffect(
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 0);
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0, 1);
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 
-	deviceCommandContext->SetVertexBufferData(0, quadVerts);
-	deviceCommandContext->SetVertexBufferData(1, quadTex);
+	deviceCommandContext->SetVertexBufferData(
+		0, quadVerts, std::size(quadVerts) * sizeof(quadVerts[0]));
+	deviceCommandContext->SetVertexBufferData(
+		1, quadTex, std::size(quadTex) * sizeof(quadTex[0]));
 
 	deviceCommandContext->Draw(0, 6);
 

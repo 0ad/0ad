@@ -57,6 +57,7 @@ public:
 		uint32_t maxSampleCount;
 		float maxAnisotropy;
 		uint32_t maxTextureSize;
+		bool instancing;
 	};
 
 	virtual ~IDevice() {}

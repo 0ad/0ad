@@ -110,7 +110,8 @@ public:
 	// Vertex attribute pointers (equivalent to glVertexPointer etc).
 	virtual void VertexAttribPointer(
 		const VertexAttributeStream stream, const Format format,
-		const uint32_t offset, const uint32_t stride, const void* data);
+		const uint32_t offset, const uint32_t stride,
+		const VertexAttributeRate rate, const void* data);
 
 	bool IsStreamActive(const VertexAttributeStream stream) const;
 
@@ -127,7 +128,6 @@ protected:
 	void NormalPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer);
 	void ColorPointer(const Renderer::Backend::Format format, GLsizei stride, const void* pointer);
 	void TexCoordPointer(GLenum texture, const Renderer::Backend::Format format, GLsizei stride, const void* pointer);
-	void VertexAttribPointer(attrib_id_t id, const Renderer::Backend::Format format, GLboolean normalized, GLsizei stride, const void* pointer);
 
 	int m_StreamFlags;
 

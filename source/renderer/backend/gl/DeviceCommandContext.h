@@ -90,12 +90,14 @@ public:
 		const Format format,
 		const uint32_t offset,
 		const uint32_t stride,
+		const VertexAttributeRate rate,
 		const uint32_t bindingSlot) override;
 	void SetVertexBuffer(const uint32_t bindingSlot, IBuffer* buffer) override;
-	void SetVertexBufferData(const uint32_t bindingSlot, const void* data) override;
+	void SetVertexBufferData(
+		const uint32_t bindingSlot, const void* data, const uint32_t dataSize) override;
 
 	void SetIndexBuffer(IBuffer* buffer) override;
-	void SetIndexBufferData(const void* data) override;
+	void SetIndexBufferData(const void* data, const uint32_t dataSize) override;
 
 	void BeginPass() override;
 	void EndPass() override;
@@ -103,6 +105,13 @@ public:
 	void Draw(const uint32_t firstVertex, const uint32_t vertexCount) override;
 	void DrawIndexed(
 		const uint32_t firstIndex, const uint32_t indexCount, const int32_t vertexOffset) override;
+	void DrawInstanced(
+		const uint32_t firstVertex, const uint32_t vertexCount,
+		const uint32_t firstInstance, const uint32_t instanceCount) override;
+	void DrawIndexedInstanced(
+		const uint32_t firstIndex, const uint32_t indexCount,
+		const uint32_t firstInstance, const uint32_t instanceCount,
+		const int32_t vertexOffset) override;
 	void DrawIndexedInRange(
 		const uint32_t firstIndex, const uint32_t indexCount,
 		const uint32_t start, const uint32_t end) override;
@@ -206,6 +215,7 @@ private:
 		Format format;
 		uint32_t offset;
 		uint32_t stride;
+		VertexAttributeRate rate;
 		uint32_t bindingSlot;
 
 		bool active;

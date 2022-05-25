@@ -221,9 +221,11 @@ void TerrainOverlay::RenderTile(
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
-	deviceCommandContext->SetVertexBufferData(0, vertices.data());
+	deviceCommandContext->SetVertexBufferData(
+		0, vertices.data(), vertices.size() * sizeof(vertices[0]));
 
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 
@@ -286,9 +288,11 @@ void TerrainOverlay::RenderTileOutline(
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
-	deviceCommandContext->SetVertexBufferData(0, vertices.data());
+	deviceCommandContext->SetVertexBufferData(
+		0, vertices.data(), vertices.size() * sizeof(vertices[0]));
 
 	deviceCommandContext->Draw(0, vertices.size() / 3);
 

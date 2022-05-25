@@ -43,6 +43,12 @@ enum class VertexAttributeStream : uint32_t
 	UV7,
 };
 
+enum class VertexAttributeRate : uint32_t
+{
+	PER_VERTEX,
+	PER_INSTANCE
+};
+
 /**
  * IShaderProgram is a container for multiple shaders of different types.
  */

@@ -84,12 +84,14 @@ public:
 		const Format format,
 		const uint32_t offset,
 		const uint32_t stride,
+		const VertexAttributeRate rate,
 		const uint32_t bindingSlot) = 0;
 	virtual void SetVertexBuffer(const uint32_t bindingSlot, IBuffer* buffer) = 0;
-	virtual void SetVertexBufferData(const uint32_t bindingSlot, const void* data) = 0;
+	virtual void SetVertexBufferData(
+		const uint32_t bindingSlot, const void* data, const uint32_t dataSize) = 0;
 
 	virtual void SetIndexBuffer(IBuffer* buffer) = 0;
-	virtual void SetIndexBufferData(const void* data) = 0;
+	virtual void SetIndexBufferData(const void* data, const uint32_t dataSize) = 0;
 
 	virtual void BeginPass() = 0;
 	virtual void EndPass() = 0;
@@ -97,6 +99,13 @@ public:
 	virtual void Draw(const uint32_t firstVertex, const uint32_t vertexCount) = 0;
 	virtual void DrawIndexed(
 		const uint32_t firstIndex, const uint32_t indexCount, const int32_t vertexOffset) = 0;
+	virtual void DrawInstanced(
+		const uint32_t firstVertex, const uint32_t vertexCount,
+		const uint32_t firstInstance, const uint32_t instanceCount) = 0;
+	virtual void DrawIndexedInstanced(
+		const uint32_t firstIndex, const uint32_t indexCount,
+		const uint32_t firstInstance, const uint32_t instanceCount,
+		const int32_t vertexOffset) = 0;
 	// TODO: should be removed when performance impact is minimal on slow hardware.
 	virtual void DrawIndexedInRange(
 		const uint32_t firstIndex, const uint32_t indexCount,

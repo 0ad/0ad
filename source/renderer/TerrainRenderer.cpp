@@ -207,12 +207,15 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::POSITION,
-			Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+			Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV0,
-			Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0, 0);
+			Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
-		deviceCommandContext->SetVertexBufferData(0, waterPos);
+		deviceCommandContext->SetVertexBufferData(
+			0, waterPos, std::size(waterPos) * sizeof(waterPos[0]));
 
 		deviceCommandContext->Draw(0, 6);
 	}
@@ -376,6 +379,8 @@ CBoundingBoxAligned TerrainRenderer::ScissorWater(int cullGroup, const CCamera& 
 		if (!waterBoundsInViewPort.IsEmpty())
 			scissor += waterBoundsInViewPort;
 	}
+	if (scissor.IsEmpty())
+		return scissor;
 	return CBoundingBoxAligned(
 		CVector3D(Clamp(scissor[0].X, -1.0f, 1.0f), Clamp(scissor[0].Y, -1.0f, 1.0f), -1.0f),
 		CVector3D(Clamp(scissor[1].X, -1.0f, 1.0f), Clamp(scissor[1].Y, -1.0f, 1.0f), 1.0f));

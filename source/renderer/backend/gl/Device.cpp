@@ -382,6 +382,16 @@ std::unique_ptr<IDevice> CDevice::Create(SDL_Window* window, const bool arb)
 		}
 	}
 
+#if CONFIG2_GLES
+	capabilities.instancing = false;
+#else
+	capabilities.instancing =
+		!device->m_ARB &&
+		(ogl_HaveVersion(3, 3) ||
+		(ogl_HaveExtension("GL_ARB_draw_instanced") &&
+		ogl_HaveExtension("GL_ARB_instanced_arrays")));
+#endif
+
 	return device;
 }
 

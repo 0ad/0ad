@@ -27,23 +27,34 @@ uniform mat4 textureTransform;
   attribute vec2 a_vertex;
 #endif
 
+#if MINIMAP_POINT && USE_GPU_INSTANCING
+attribute vec2 a_uv1;
+attribute vec4 a_uv2;
+
+uniform float width;
+#endif
+
 void main()
 {
-  #if MINIMAP_BASE || MINIMAP_LOS
-    gl_Position = transform * vec4(a_vertex, 1.0);
-    v_tex = (textureTransform * vec4(a_uv0, 0.0, 1.0)).xy;
-  #endif
+#if MINIMAP_BASE || MINIMAP_LOS
+	gl_Position = transform * vec4(a_vertex, 1.0);
+	v_tex = (textureTransform * vec4(a_uv0, 0.0, 1.0)).xy;
+#endif
 
-  #if MINIMAP_MASK
-    v_maskUV = (maskTextureTransform * vec4(a_uv0, 0.0, 1.0)).xy;
-  #endif
+#if MINIMAP_MASK
+	v_maskUV = (maskTextureTransform * vec4(a_uv0, 0.0, 1.0)).xy;
+#endif
 
-  #if MINIMAP_POINT
-    gl_Position = transform * vec4(a_vertex, 0.0, 1.0);
-    color = a_color;
-  #endif
+#if MINIMAP_POINT
+#if USE_GPU_INSTANCING
+	gl_Position = transform * vec4(a_vertex * width + a_uv1, 0.0, 1.0);
+#else
+	gl_Position = transform * vec4(a_vertex, 0.0, 1.0);
+#endif
+	color = a_color;
+#endif // MINIMAP_POINT
 
-  #if MINIMAP_LINE
-    gl_Position = transform * vec4(a_vertex, 0.0, 1.0);
-  #endif
+#if MINIMAP_LINE
+	gl_Position = transform * vec4(a_vertex, 0.0, 1.0);
+#endif
 }

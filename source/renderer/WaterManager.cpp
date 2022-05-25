@@ -833,28 +833,34 @@ void WaterManager::RenderWaves(
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::POSITION,
 			Renderer::Backend::Format::R32G32B32_SFLOAT,
-			firstVertexOffset + offsetof(SWavesVertex, m_BasePosition), stride, 0);
+			firstVertexOffset + offsetof(SWavesVertex, m_BasePosition), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::NORMAL,
 			Renderer::Backend::Format::R32G32_SFLOAT,
-			firstVertexOffset + offsetof(SWavesVertex, m_PerpVect), stride, 0);
+			firstVertexOffset + offsetof(SWavesVertex, m_PerpVect), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV0,
 			Renderer::Backend::Format::R8G8_UINT,
-			firstVertexOffset + offsetof(SWavesVertex, m_UV), stride, 0);
+			firstVertexOffset + offsetof(SWavesVertex, m_UV), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV1,
 			Renderer::Backend::Format::R32G32B32_SFLOAT,
-			firstVertexOffset + offsetof(SWavesVertex, m_ApexPosition), stride, 0);
+			firstVertexOffset + offsetof(SWavesVertex, m_ApexPosition), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV2,
 			Renderer::Backend::Format::R32G32B32_SFLOAT,
-			firstVertexOffset + offsetof(SWavesVertex, m_SplashPosition), stride, 0);
+			firstVertexOffset + offsetof(SWavesVertex, m_SplashPosition), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV3,
 			Renderer::Backend::Format::R32G32B32_SFLOAT,
-			firstVertexOffset + offsetof(SWavesVertex, m_RetreatPosition), stride, 0);
+			firstVertexOffset + offsetof(SWavesVertex, m_RetreatPosition), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
 		deviceCommandContext->SetUniform(
 			shader->GetBindingSlot(str_translation), m_ShoreWaves[a]->m_TimeDiff);

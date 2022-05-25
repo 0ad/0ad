@@ -1088,7 +1088,8 @@ public:
 
 	void VertexAttribPointer(
 		const VertexAttributeStream stream, const Format format,
-		const uint32_t offset, const uint32_t stride, const void* data) override
+		const uint32_t offset, const uint32_t stride,
+		const VertexAttributeRate rate, const void* data) override
 	{
 		const int attributeLocation = GetAttributeLocationFromStream(m_Device, stream);
 		std::vector<int>::const_iterator it =
@@ -1100,6 +1101,12 @@ public:
 		const GLboolean normalized = NormalizedFromFormat(format);
 		glVertexAttribPointer(
 			attributeLocation, size, type, normalized, stride, static_cast<const u8*>(data) + offset);
+		if (rate == VertexAttributeRate::PER_INSTANCE)
+			ENSURE(m_Device->GetCapabilities().instancing);
+		if (m_Device->GetCapabilities().instancing)
+		{
+			glVertexAttribDivisorARB(attributeLocation, rate == VertexAttributeRate::PER_INSTANCE ? 1 : 0);
+		}
 		m_ValidStreams |= GetStreamMask(stream);
 	}
 
@@ -1310,12 +1317,6 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 // These should all be overridden by CShaderProgramGLSL, and not used
 // if a non-GLSL shader was loaded instead:
 
-void CShaderProgram::VertexAttribPointer(attrib_id_t UNUSED(id), const Renderer::Backend::Format UNUSED(format),
-	GLboolean UNUSED(normalized), GLsizei UNUSED(stride), const void* UNUSED(pointer))
-{
-	debug_warn("Shader type doesn't support VertexAttribPointer");
-}
-
 #if CONFIG2_GLES
 
 // These should all be overridden by CShaderProgramGLSL
@@ -1449,8 +1450,10 @@ bool CShaderProgram::IsStreamActive(const VertexAttributeStream stream) const
 
 void CShaderProgram::VertexAttribPointer(
 	const VertexAttributeStream stream, const Format format,
-	const uint32_t offset, const uint32_t stride, const void* data)
+	const uint32_t offset, const uint32_t stride,
+	const VertexAttributeRate rate, const void* data)
 {
+	ENSURE(rate == VertexAttributeRate::PER_VERTEX);
 	switch (stream)
 	{
 	case VertexAttributeStream::POSITION:

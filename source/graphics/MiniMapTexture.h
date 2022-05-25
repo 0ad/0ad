@@ -104,6 +104,11 @@ private:
 	VertexArray::Attribute m_AttributePos;
 	VertexArray::Attribute m_AttributeColor;
 
+	bool m_UseInstancing = false;
+	// Vertex data if instancing is supported.
+	VertexArray m_InstanceVertexArray;
+	VertexArray::Attribute m_InstanceAttributePosition;
+
 	size_t m_EntitiesDrawn = 0;
 
 	double m_PingDuration = 25.0;
