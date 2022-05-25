@@ -76,9 +76,6 @@ CShaderProgramPtr CShaderManager::LoadProgram(const CStr& name, const CShaderDef
 	CShaderProgramPtr program = CShaderProgram::Create(name, defines);
 	if (program)
 	{
-		program->Reload();
-
-		//	m_HotloadFiles[xmlFilename].insert(program); // TODO: should reload somehow when the XML changes
 		for (const VfsPath& path : program->GetFileDependencies())
 			AddProgramFileDependency(program, path);
 	}
