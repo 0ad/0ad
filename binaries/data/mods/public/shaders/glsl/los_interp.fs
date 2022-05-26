@@ -9,9 +9,9 @@ uniform float delta;
 
 void main(void)
 {	
-	float los2 = texture2D(losTex1, v_tex).a;
-	float los1 = texture2D(losTex2, v_tex).a;
+	vec4 los2 = texture2D(losTex1, v_tex).rrrr;
+	vec4 los1 = texture2D(losTex2, v_tex).rrrr;
 
-	gl_FragColor.a = mix(los1, los2, clamp(delta, 0.0, 1.0));
+	gl_FragColor = mix(los1, los2, clamp(delta, 0.0, 1.0));
 }
 

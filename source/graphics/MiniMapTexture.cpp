@@ -490,11 +490,11 @@ void CMiniMapTexture::RenderFinalTexture(
 	DrawTexture(deviceCommandContext);
 	deviceCommandContext->EndPass();
 
-	pipelineStateDesc.blendState.enabled = false;
-	pipelineStateDesc.blendState.colorWriteMask =
-		Renderer::Backend::ColorWriteMask::ALPHA;
-	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+	tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap_los, CShaderDefines());
+	deviceCommandContext->SetGraphicsPipelineState(
+		tech->GetGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginPass();
+	shader = tech->GetShader();
 
 	deviceCommandContext->SetTexture(
 		shader->GetBindingSlot(str_baseTex), losTexture.GetTexture());

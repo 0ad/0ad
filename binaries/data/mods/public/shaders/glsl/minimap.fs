@@ -35,7 +35,7 @@ void main()
   #endif
 
   #if MINIMAP_LOS
-    gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0 - texture2D(baseTex, v_tex).a);
+    gl_FragColor = texture2D(baseTex, v_tex).rrrr;
   #endif
 
   #if MINIMAP_POINT

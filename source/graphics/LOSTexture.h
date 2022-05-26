@@ -20,6 +20,7 @@
 
 #include "graphics/ShaderTechniquePtr.h"
 #include "maths/Matrix3D.h"
+#include "renderer/backend/Format.h"
 #include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/backend/IFramebuffer.h"
 #include "renderer/backend/ITexture.h"
@@ -87,6 +88,12 @@ private:
 
 	bool m_ShaderInitialized = false;
 
+	// We need to choose the smallest format. We always use the red channel but
+	// R8_UNORM might be unavailable on some platforms. So we fallback to
+	// R8G8B8A8_UNORM.
+	Renderer::Backend::Format m_TextureFormat =
+		Renderer::Backend::Format::UNDEFINED;
+	size_t m_TextureFormatStride = 0;
 	std::unique_ptr<Renderer::Backend::ITexture>
 		m_Texture, m_SmoothTextures[2];
 

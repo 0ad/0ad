@@ -57,6 +57,8 @@ std::unique_ptr<CFramebuffer> CFramebuffer::Create(
 
 	if (colorAttachment)
 	{
+		ENSURE(device->IsFramebufferFormatSupported(colorAttachment->GetFormat()));
+
 		framebuffer->m_AttachmentMask |= GL_COLOR_BUFFER_BIT;
 
 #if CONFIG2_GLES

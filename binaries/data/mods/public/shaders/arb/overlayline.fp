@@ -16,10 +16,10 @@ TEX mask, fragment.texcoord[0], texture[1], 2D;
 #if IGNORE_LOS
   MOV result.color.rgb, color;
 #else
-  // Multiply RGB by LOS texture (alpha channel)
+  // Multiply RGB by LOS texture (red channel)
   TEMP los;
   TEX los, fragment.texcoord[1], texture[2], 2D;
-  MUL result.color.rgb, color, los.a;
+  MUL result.color.rgb, color, los.r;
 #endif
 
 // Use alpha from base texture, combined with the object color/fragment alpha.

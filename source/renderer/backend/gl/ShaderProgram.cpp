@@ -1101,12 +1101,17 @@ public:
 		const GLboolean normalized = NormalizedFromFormat(format);
 		glVertexAttribPointer(
 			attributeLocation, size, type, normalized, stride, static_cast<const u8*>(data) + offset);
+#if CONFIG2_GLES
+		ENSURE(!m_Device->GetCapabilities().instancing);
+		UNUSED2(rate);
+#else
 		if (rate == VertexAttributeRate::PER_INSTANCE)
 			ENSURE(m_Device->GetCapabilities().instancing);
 		if (m_Device->GetCapabilities().instancing)
 		{
 			glVertexAttribDivisorARB(attributeLocation, rate == VertexAttributeRate::PER_INSTANCE ? 1 : 0);
 		}
+#endif
 		m_ValidStreams |= GetStreamMask(stream);
 	}
 

@@ -228,6 +228,9 @@ void CDeviceCommandContext::UploadTextureRegion(
 		ENSURE(layer == 0);
 		if (texture->GetFormat() == Format::R8G8B8A8_UNORM ||
 			texture->GetFormat() == Format::R8G8B8_UNORM ||
+#if !CONFIG2_GLES
+			texture->GetFormat() == Format::R8_UNORM ||
+#endif
 			texture->GetFormat() == Format::A8_UNORM)
 		{
 			ENSURE(texture->GetFormat() == dataFormat);
@@ -241,6 +244,12 @@ void CDeviceCommandContext::UploadTextureRegion(
 				pixelFormat = GL_RGB;
 				bytesPerPixel = 3;
 				break;
+#if !CONFIG2_GLES
+			case Format::R8_UNORM:
+				pixelFormat = GL_RED;
+				bytesPerPixel = 1;
+				break;
+#endif
 			case Format::A8_UNORM:
 				pixelFormat = GL_ALPHA;
 				bytesPerPixel = 1;
@@ -980,7 +989,14 @@ void CDeviceCommandContext::DrawInstanced(
 		return;
 	ENSURE(firstInstance == 0);
 	m_ShaderProgram->AssertPointersBound();
+#if CONFIG2_GLES
+	ENSURE(!m_Device->GetCapabilities().instancing);
+	UNUSED2(firstVertex);
+	UNUSED2(vertexCount);
+	UNUSED2(instanceCount);
+#else
 	glDrawArraysInstancedARB(GL_TRIANGLES, firstVertex, vertexCount, instanceCount);
+#endif
 	ogl_WarnIfError();
 }
 
@@ -1004,9 +1020,16 @@ void CDeviceCommandContext::DrawIndexedInstanced(
 	// Don't use glMultiDrawElements here since it doesn't have a significant
 	// performance impact and it suffers from various driver bugs (e.g. it breaks
 	// in Mesa 7.10 swrast with index VBOs).
+#if CONFIG2_GLES
+	ENSURE(!m_Device->GetCapabilities().instancing);
+	UNUSED2(indexCount);
+	UNUSED2(firstIndex);
+	UNUSED2(instanceCount);
+#else
 	glDrawElementsInstancedARB(GL_TRIANGLES, indexCount, GL_UNSIGNED_SHORT,
 		static_cast<const void*>((static_cast<const uint8_t*>(m_IndexBufferData) + sizeof(uint16_t) * firstIndex)),
 		instanceCount);
+#endif
 	ogl_WarnIfError();
 }
 

@@ -21,7 +21,6 @@
 
 #include "graphics/Canvas2D.h"
 #include "graphics/GameView.h"
-#include "graphics/LOSTexture.h"
 #include "graphics/MiniMapTexture.h"
 #include "graphics/MiniPatch.h"
 #include "graphics/ShaderManager.h"

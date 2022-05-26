@@ -21,12 +21,11 @@
   TEMP tex;
 
   TEX tex, fragment.texcoord[0], texture[0], 2D;
-  SUB tex.a, 1.0, tex.a;
 
-  MOV result.color.r, 0.0;
-  MOV result.color.g, 0.0;
-  MOV result.color.b, 0.0;
-  MOV result.color.a, tex.a;
+  MOV result.color.r, tex.r;
+  MOV result.color.g, tex.r;
+  MOV result.color.b, tex.r;
+  MOV result.color.a, tex.r;
 #endif
 
 #if MINIMAP_POINT

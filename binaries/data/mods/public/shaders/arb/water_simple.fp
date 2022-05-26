@@ -11,7 +11,7 @@ MUL diffuse, diffuse, color;
 
 TEMP los;
 TEX los, v_losCoords, texture[1], 2D;
-MUL diffuse, diffuse, los.a;
+MUL diffuse, diffuse, los.r;
 
 MOV result.color, diffuse;
 END
