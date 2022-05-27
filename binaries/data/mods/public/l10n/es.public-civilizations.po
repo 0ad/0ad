@@ -72,7 +72,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: simulation/data/civs/athen.jsonAINames[0]
 msgid "Themistocles"
@@ -1075,7 +1075,7 @@ msgstr "Los galos eran tribus celtas de la Europa continental. Estaban dominados
 
 #: simulation/templates/special/players/han.xml:17
 msgid "Han"
-msgstr ""
+msgstr "Han"
 
 #: simulation/templates/special/players/han.xml:18
 msgid ""

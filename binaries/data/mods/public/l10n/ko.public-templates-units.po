@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-05-20 07:33+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2022\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2021-2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -184,7 +184,7 @@ msgstr "창기병"
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 msgid "Counters: 2× vs Cavalry."
-msgstr ""
+msgstr "기병에 대한 공격력 보너스×2"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
@@ -435,7 +435,7 @@ msgstr "정예 단창병"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:29
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:29
 msgid "Counters: 3× vs Cavalry."
-msgstr "교전: 기병보다 3배 강함."
+msgstr "기병에 대한 공격력 보너스×3"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:28
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
@@ -542,7 +542,7 @@ msgstr "영웅 창기병"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
 msgid "Counters: 1.75× vs Cavalry."
-msgstr "교전: 기병보다 1.75배 강함."
+msgstr "기병에 대한 공격력 보너스×1.75"
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:23
 msgid "Hero Cavalry Swordsman"
@@ -1698,7 +1698,7 @@ msgstr "무위영 조조군"
 
 #: simulation/templates/units/han/champion_chariot.xml:9
 msgid "Han War Chariot"
-msgstr ""
+msgstr "한족 전차"
 
 #: simulation/templates/units/han/champion_chariot.xml:10
 msgid "Zhanche"
@@ -1787,7 +1787,7 @@ msgstr "누선"
 
 #: simulation/templates/units/han/siege_mangonel_packed.xml:5
 msgid "Mangonel"
-msgstr ""
+msgstr "망고넬"
 
 #: simulation/templates/units/han/siege_mangonel_packed.xml:6
 msgid "Tóushí Chē"
@@ -2187,7 +2187,7 @@ msgstr "알렉산드로스 호 메가스"
 
 #: simulation/templates/units/mace/hero_alexander_iii.xml:23
 msgid "Counters: 1.2× vs Heroes."
-msgstr "교전: 영웅보다 1.2배 강함."
+msgstr "영웅에 대한 공격력 보너스×1.2"
 
 #: simulation/templates/units/mace/hero_craterus.xml:14
 msgid "Craterus"

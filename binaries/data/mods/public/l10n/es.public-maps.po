@@ -39,7 +39,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: maps/random/aegean_sea.jsonsettings.Description
 msgid "Players start on two sides of a sea with scattered islands."
@@ -294,7 +294,7 @@ msgid ""
 " subject to numerous yet short-lived invasions. Ultimately consolidating "
 "power with Rhodes at their lead, these islands developed into great "
 "maritime, commercial and cultural centers. Will you achieve the same?"
-msgstr "Controlando el acceso al mar Egeo desde el este, el dodecaneso ha sido objeto de numerosas pero breves invasiones. Finalmente consolidaron cierto poder. Con Rodas a su cabeza, estas islas se convirtieron en un gran centro marítimo, comercial y cultural. ¿Conseguirás lo mismo?"
+msgstr "El dodecaneso ha sido objeto de numerosas aunque breves invasiones con el objeto de controlar el acceso al mar Egeo desde el Este. Estas islas, con Rodas como capital, acabaron consolidando cierto poder, llegandose a convertir en un gran centro marítimo, comercial y cultural. ¿Podrás conseguir lo mismo?"
 
 #: maps/random/dodecanese.jsonsettings.Name
 msgid "Dodecanese"
@@ -1931,11 +1931,11 @@ msgstr "Escenario de prueba - Los galos"
 
 #: maps/scenarios/sandbox_han.xml:Description:39
 msgid "A simple map showcasing the Han civilization's assets in the game."
-msgstr ""
+msgstr "Mapa sencillo que muestra los activos de la civilización Han en el juego."
 
 #: maps/scenarios/sandbox_han.xml:Name:39
 msgid "Sandbox - The Han"
-msgstr ""
+msgstr "Escenario de prueba - Los Han"
 
 #: maps/scenarios/sandbox_iberians.xml:Description:38
 msgid "A demo map for the Iberians."
@@ -2238,6 +2238,7 @@ msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
 msgstr[0] "%(lastPlayer)s"
 msgstr[1] "%(players)s y %(lastPlayer)s han ganado (tesoro descubierto)."
+msgstr[2] "%(players)s y %(lastPlayer)s han ganado (tesoro descubierto)."
 
 #: maps/scenarios/treasure_islands.js:104
 #, javascript-format
@@ -2246,6 +2247,7 @@ msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
 msgstr[0] "%(lastPlayer)s ha sido derrotado (tesoro recogido)."
 msgstr[1] "%(players)s y %(lastPlayer)s han sido derrotados (tesoro descubierto)."
+msgstr[2] "%(players)s y %(lastPlayer)s han sido derrotados (tesoro descubierto)."
 
 #: maps/scenarios/treasure_islands.xml:Description:38
 msgid ""
@@ -2391,6 +2393,7 @@ msgid "%(lastPlayer)s has won (Capture the Relic)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (Capture the Relic)."
 msgstr[0] "%(lastPlayer)s ha vencido (captura la reliquia)."
 msgstr[1] "%(players)s y %(lastPlayer)s han vencido (captura la reliquia)."
+msgstr[2] "%(players)s y %(lastPlayer)s han vencido (captura la reliquia)."
 
 #: maps/scripts/CaptureTheRelic.js:175
 #, javascript-format
@@ -2399,6 +2402,7 @@ msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (Capture the Relic)."
 msgstr[0] "%(lastPlayer)s ha sido derrotado (captura la reliquia)."
 msgstr[1] "%(players)s y %(lastPlayer)s han sido derrotados (captura la reliquia)."
+msgstr[2] "%(players)s y %(lastPlayer)s han sido derrotados (captura la reliquia)."
 
 #: maps/scripts/Conquest.js:5
 #, javascript-format
@@ -2475,6 +2479,7 @@ msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
 msgstr[0] "%(lastPlayer)s ha vencido (victoria por maravilla)."
 msgstr[1] "%(players)s y %(lastPlayer)s han vencido (victoria por maravilla)."
+msgstr[2] "%(players)s y %(lastPlayer)s han vencido (victoria por maravilla)."
 
 #: maps/scripts/WonderVictory.js:154
 #, javascript-format
@@ -2483,6 +2488,7 @@ msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (wonder victory)."
 msgstr[0] "%(lastPlayer)s ha sido derrotado (victoria por maravilla)."
 msgstr[1] "%(players)s y %(lastPlayer)s han sido derrotados (victoria por maravilla)."
+msgstr[2] "%(players)s y %(lastPlayer)s han sido derrotados (victoria por maravilla)."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:39
 msgid ""
@@ -3123,7 +3129,7 @@ msgid ""
 "A barren desert basin surrounded by mountainous valleys, the Tarim Basin is also called \"The Western Regions\" by the Han, and represents the furthest extent of their power.\n"
 "\n"
 "The basin itself is bereft of life  and offers little in the way of defensibility. The rugged mountain valleys harbor the only life, in the form of hearty shrub and tree species and some goats."
-msgstr ""
+msgstr "La cuenca del Tarim, una cuenca desértica y estéril rodeada de valles montañosos, también conocida como «Las Regiones Occidentales» por los Han, representa la extensión más lejana de su poder.\n\nLa cuenca en sí carece de vida y ofrece pocos puntos de defensa. Los escarpados valles montañosos albergan la única vida, en forma de robustos arbustos, árboles y algunas cabras."
 
 #: maps/skirmishes/tarim_basin_2p.xml:Name:39
 msgid "Tarim Basin (2)"

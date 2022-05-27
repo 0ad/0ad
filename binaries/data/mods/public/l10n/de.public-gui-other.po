@@ -770,7 +770,7 @@ msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:179
 msgid "Capture points:"
-msgstr "Eroberungspunkte:"
+msgstr "Einnehmpunkte:"
 
 #: gui/common/tooltips.js:190
 #, javascript-format
@@ -2318,7 +2318,7 @@ msgstr "Im Spiel"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attack instead of another action (e.g. capture)."
-msgstr "Zusatztaste, um anstatt anderer Aktionen (z.B. erobern) anzugreifen."
+msgstr "Zusatztaste, um anstatt anderer Aktionen (z.B. einnehmen) anzugreifen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.name
 msgctxt "hotkey metadata"
@@ -2421,12 +2421,12 @@ msgstr "Signal (umschalten)"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to put the desired trade resource to 100%."
-msgstr "Zusatztaste, um die erwünschte Handelsressource auf 100% zu setzen."
+msgstr "Zusatztaste, um die erwünschte Handelsressource auf 100 % zu setzen."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.name
 msgctxt "hotkey metadata"
 msgid "Set trade to 100%"
-msgstr "Handel auf 10% setzen"
+msgstr "Handel auf 10 % setzen"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
@@ -4156,35 +4156,35 @@ msgstr "Skalierung der grafischen Benutzeroberfläche"
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "75%"
-msgstr "75%"
+msgstr "75 %"
 
 #: gui/options/options.json[1].options[9].list[1].label
 msgid "100%"
-msgstr "100%"
+msgstr "100 %"
 
 #: gui/options/options.json[1].options[9].list[2].label
 msgid "125%"
-msgstr "125%"
+msgstr "125 %"
 
 #: gui/options/options.json[1].options[9].list[3].label
 msgid "150%"
-msgstr "150%"
+msgstr "150 %"
 
 #: gui/options/options.json[1].options[9].list[4].label
 msgid "175%"
-msgstr "175%"
+msgstr "175 %"
 
 #: gui/options/options.json[1].options[9].list[5].label
 msgid "200%"
-msgstr "200%"
+msgstr "200 %"
 
 #: gui/options/options.json[1].options[9].list[6].label
 msgid "225%"
-msgstr "225%"
+msgstr "225 %"
 
 #: gui/options/options.json[1].options[9].list[7].label
 msgid "250%"
-msgstr "250%"
+msgstr "250 %"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -4885,7 +4885,7 @@ msgstr "Farben von Gegnern, wenn Diplomatiefarben aktiviert sind."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].label
 msgid "Batch training size"
-msgstr "Gruppen-Trainingsgröße"
+msgstr "Gruppen-Ausbildungsgröße"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].tooltip
 msgid "Number of units trained per batch by default."
@@ -5483,7 +5483,7 @@ msgstr "Verbinde zu Server"
 #: gui/pregame/userreport/userreport.js:30
 #, javascript-format
 msgid "uploading (%f%%)"
-msgstr "Hochladen (%f%%)"
+msgstr "Hochladen (%f %%)"
 
 #: gui/pregame/userreport/userreport.js:33
 msgid "upload succeeded"
@@ -6602,7 +6602,7 @@ msgstr "ELEFANTEN STALL"
 #: gui/text/tips/elephant_stable.txt:2
 msgid ""
 "The structure is available to some civilizations to train elephant units."
-msgstr "Dieses Gebäude steht einigen Zivilisationen zur Verfügung, um Elefanten zu trainieren."
+msgstr "Dieses Gebäude steht einigen Zivilisationen zur Verfügung, um Elefanten auszubilden."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES AND MERCENARY CAMPS"
@@ -6724,7 +6724,7 @@ msgstr "Berittene Bürgersoldaten sind schneller beim Sammeln von Fleisch."
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr "Je höher das Level eines Bürgersoldaten ist (Fortgeschritten, Elite), desto besser kämpft er, aber desto ineffizienter ist er beim Sammeln."
+msgstr "Je höher der Rang eines Bürgersoldaten ist (Fortgeschritten, Elite), desto besser kämpft er, aber desto ineffizienter ist er beim Sammeln."
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
@@ -6841,11 +6841,11 @@ msgstr "Spezialtechnologie der Perser."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr "Gebäude +25% Gesundheit."
+msgstr "Gebäude +25 % Gesundheit."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."
-msgstr "-Eine um +20% längere Bauzeit ist die Folge."
+msgstr "Bauzeit in der Folge +20 % länger."
 
 #: gui/text/tips/persian_architecture.txt:5
 msgid ""
@@ -7090,7 +7090,7 @@ msgstr "KRIEGSELEFANTEN"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
-msgstr "Riesige Bestien aus Afrika und Indien – trainiert für den Krieg."
+msgstr "Riesige Bestien aus Afrika und Indien – dressiert für den Krieg."
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."

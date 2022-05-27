@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es_CL\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):13
 msgid "AI Configuration"
@@ -484,6 +484,7 @@ msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:38
 msgid "Relic Count"
@@ -495,6 +496,7 @@ msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:44
 msgid ""
@@ -519,6 +521,7 @@ msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:50
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:47
@@ -541,6 +544,7 @@ msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:38
 msgid "Wonder Duration"

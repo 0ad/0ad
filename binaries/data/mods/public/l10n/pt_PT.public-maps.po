@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt_PT\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: maps/random/aegean_sea.jsonsettings.Description
 msgid "Players start on two sides of a sea with scattered islands."
@@ -2226,6 +2226,7 @@ msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
 msgstr[0] "%(lastPlayer)s ganhou (tesouro recolhido)."
 msgstr[1] "%(players)s e %(lastPlayer)s ganharam (tesouro recolhido)."
+msgstr[2] "%(players)s e %(lastPlayer)s ganharam (tesouro recolhido)."
 
 #: maps/scenarios/treasure_islands.js:104
 #, javascript-format
@@ -2234,6 +2235,7 @@ msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
 msgstr[0] "%(lastPlayer)s foi derrotado (tesouro recolhido)."
 msgstr[1] "%(players)s e %(lastPlayer)s foram derrotados (tesouro recolhido)."
+msgstr[2] "%(players)s e %(lastPlayer)s foram derrotados (tesouro recolhido)."
 
 #: maps/scenarios/treasure_islands.xml:Description:38
 msgid ""
@@ -2379,6 +2381,7 @@ msgid "%(lastPlayer)s has won (Capture the Relic)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (Capture the Relic)."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: maps/scripts/CaptureTheRelic.js:175
 #, javascript-format
@@ -2387,6 +2390,7 @@ msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (Capture the Relic)."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: maps/scripts/Conquest.js:5
 #, javascript-format
@@ -2463,6 +2467,7 @@ msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: maps/scripts/WonderVictory.js:154
 #, javascript-format
@@ -2471,6 +2476,7 @@ msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (wonder victory)."
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:39
 msgid ""
