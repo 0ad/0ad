@@ -248,25 +248,37 @@ void CLOSTexture::ConstructTexture(Renderer::Backend::IDeviceCommandContext* dev
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
 
+	if (backendDevice->IsFramebufferFormatSupported(Renderer::Backend::Format::R8_UNORM))
+	{
+		m_TextureFormat = Renderer::Backend::Format::R8_UNORM;
+		m_TextureFormatStride = 1;
+	}
+	else
+	{
+		m_TextureFormat = Renderer::Backend::Format::R8G8B8A8_UNORM;
+		m_TextureFormatStride = 4;
+	}
+
 	m_Texture = backendDevice->CreateTexture2D("LOSTexture",
-		Renderer::Backend::Format::A8_UNORM, textureSize, textureSize, defaultSamplerDesc);
+		m_TextureFormat, textureSize, textureSize, defaultSamplerDesc);
 
 	// Initialise texture with SoD color, for the areas we don't
 	// overwrite with uploading later.
-	std::unique_ptr<u8[]> texData = std::make_unique<u8[]>(textureSize * textureSize);
-	memset(texData.get(), 0x00, textureSize * textureSize);
+	const size_t textureDataSize = textureSize * textureSize * m_TextureFormatStride;
+	std::unique_ptr<u8[]> texData = std::make_unique<u8[]>(textureDataSize);
+	memset(texData.get(), 0x00, textureDataSize);
 
 	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS())
 	{
 		m_SmoothTextures[0] = backendDevice->CreateTexture2D("LOSSmoothTexture0",
-			Renderer::Backend::Format::A8_UNORM, textureSize, textureSize, defaultSamplerDesc);
+			m_TextureFormat, textureSize, textureSize, defaultSamplerDesc);
 		m_SmoothTextures[1] = backendDevice->CreateTexture2D("LOSSmoothTexture1",
-			Renderer::Backend::Format::A8_UNORM, textureSize, textureSize, defaultSamplerDesc);
+			m_TextureFormat, textureSize, textureSize, defaultSamplerDesc);
 
-		m_SmoothFramebuffers[0] = backendDevice->CreateFramebuffer("LOSSmoothFramebuffer0",
-			m_SmoothTextures[0].get(), nullptr);
-		m_SmoothFramebuffers[1] = backendDevice->CreateFramebuffer("LOSSmoothFramebuffer1",
-			m_SmoothTextures[1].get(), nullptr);
+		m_SmoothFramebuffers[0] = backendDevice->CreateFramebuffer(
+			"LOSSmoothFramebuffer0", m_SmoothTextures[0].get(), nullptr);
+		m_SmoothFramebuffers[1] = backendDevice->CreateFramebuffer(
+			"LOSSmoothFramebuffer1", m_SmoothTextures[1].get(), nullptr);
 		if (!m_SmoothFramebuffers[0] || !m_SmoothFramebuffers[1])
 		{
 			LOGERROR("Failed to create LOS framebuffers");
@@ -274,16 +286,13 @@ void CLOSTexture::ConstructTexture(Renderer::Backend::IDeviceCommandContext* dev
 		}
 
 		deviceCommandContext->UploadTexture(
-			m_SmoothTextures[0].get(), Renderer::Backend::Format::A8_UNORM,
-			texData.get(), textureSize * textureSize);
+			m_SmoothTextures[0].get(), m_TextureFormat, texData.get(), textureDataSize);
 		deviceCommandContext->UploadTexture(
-			m_SmoothTextures[1].get(), Renderer::Backend::Format::A8_UNORM,
-			texData.get(), textureSize * textureSize);
+			m_SmoothTextures[1].get(), m_TextureFormat, texData.get(), textureDataSize);
 	}
 
 	deviceCommandContext->UploadTexture(
-		m_Texture.get(), Renderer::Backend::Format::A8_UNORM,
-		texData.get(), textureSize * textureSize);
+		m_Texture.get(), m_TextureFormat, texData.get(), textureDataSize);
 
 	texData.reset();
 
@@ -334,32 +343,49 @@ void CLOSTexture::RecomputeTexture(Renderer::Backend::IDeviceCommandContext* dev
 
 	PROFILE("recompute LOS texture");
 
-	size_t pitch;
-	const size_t dataSize = GetBitmapSize(m_MapSize, m_MapSize, &pitch);
-	ENSURE(pitch * m_MapSize <= dataSize);
-	std::unique_ptr<u8[]> losData = std::make_unique<u8[]>(dataSize);
-
 	CmpPtr<ICmpRangeManager> cmpRangeManager(m_Simulation, SYSTEM_ENTITY);
 	if (!cmpRangeManager)
 		return;
+
+	size_t pitch;
+	const size_t dataSize = GetBitmapSize(m_MapSize, m_MapSize, &pitch);
+	ENSURE(pitch * m_MapSize <= dataSize);
+	std::unique_ptr<u8[]> losData = std::make_unique<u8[]>(
+		dataSize * m_TextureFormatStride);
 
 	CLosQuerier los(cmpRangeManager->GetLosQuerier(g_Game->GetSimulation2()->GetSimContext().GetCurrentDisplayedPlayer()));
 
 	GenerateBitmap(los, &losData[0], m_MapSize, m_MapSize, pitch);
 
+	// GenerateBitmap writes data tightly packed and we need to offset it to fit
+	// into the texture format properly.
+	const size_t textureDataPitch = pitch * m_TextureFormatStride;
+	if (m_TextureFormatStride > 1)
+	{
+		// We skip the last byte because it will be first in our order and we
+		// don't need to move it.
+		for (size_t index = 0; index + 1 < dataSize; ++index)
+		{
+			const size_t oldAddress = dataSize - 1 - index;
+			const size_t newAddress = oldAddress * m_TextureFormatStride;
+			losData[newAddress] = losData[oldAddress];
+			losData[oldAddress] = 0;
+		}
+	}
+
 	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS() && recreated)
 	{
 		deviceCommandContext->UploadTextureRegion(
-			m_SmoothTextures[0].get(), Renderer::Backend::Format::A8_UNORM, losData.get(),
-			pitch * m_MapSize, 0, 0, pitch, m_MapSize);
+			m_SmoothTextures[0].get(), m_TextureFormat, losData.get(),
+			textureDataPitch * m_MapSize, 0, 0, pitch, m_MapSize);
 		deviceCommandContext->UploadTextureRegion(
-			m_SmoothTextures[1].get(), Renderer::Backend::Format::A8_UNORM, losData.get(),
-			pitch * m_MapSize, 0, 0, pitch, m_MapSize);
+			m_SmoothTextures[1].get(), m_TextureFormat, losData.get(),
+			textureDataPitch * m_MapSize, 0, 0, pitch, m_MapSize);
 	}
 
 	deviceCommandContext->UploadTextureRegion(
-		m_Texture.get(), Renderer::Backend::Format::A8_UNORM, losData.get(),
-		pitch * m_MapSize, 0, 0, pitch, m_MapSize);
+		m_Texture.get(), m_TextureFormat, losData.get(),
+		textureDataPitch * m_MapSize, 0, 0, pitch, m_MapSize);
 }
 
 size_t CLOSTexture::GetBitmapSize(size_t w, size_t h, size_t* pitch)

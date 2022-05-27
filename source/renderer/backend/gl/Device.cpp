@@ -912,6 +912,27 @@ bool CDevice::IsTextureFormatSupported(const Format format) const
 	return supported;
 }
 
+bool CDevice::IsFramebufferFormatSupported(const Format format) const
+{
+	bool supported = false;
+	switch (format)
+	{
+	case Format::UNDEFINED:
+		break;
+#if !CONFIG2_GLES
+	case Format::R8_UNORM:
+		supported = ogl_HaveVersion(3, 0);
+		break;
+#endif
+	case Format::R8G8B8A8_UNORM:
+		supported = true;
+		break;
+	default:
+		break;
+	}
+	return supported;
+}
+
 } // namespace GL
 
 } // namespace Backend

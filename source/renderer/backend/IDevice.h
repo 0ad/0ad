@@ -99,6 +99,8 @@ public:
 
 	virtual bool IsTextureFormatSupported(const Format format) const = 0;
 
+	virtual bool IsFramebufferFormatSupported(const Format format) const = 0;
+
 	virtual const Capabilities& GetCapabilities() const = 0;
 };
 

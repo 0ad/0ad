@@ -162,6 +162,12 @@ bool CDevice::IsTextureFormatSupported(const Format format) const
 	return false;
 }
 
+bool CDevice::IsFramebufferFormatSupported(const Format format) const
+{
+	UNUSED2(format);
+	return false;
+}
+
 } // namespace Vulkan
 
 } // namespace Backend

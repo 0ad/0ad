@@ -122,6 +122,11 @@ bool CDevice::IsTextureFormatSupported(const Format UNUSED(format)) const
 	return true;
 }
 
+bool CDevice::IsFramebufferFormatSupported(const Format UNUSED(format)) const
+{
+	return true;
+}
+
 } // namespace Dummy
 
 } // namespace Backend

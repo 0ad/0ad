@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<effect>
+
+	<technique>
+		<require shaders="arb"/>
+		<define name="MINIMAP_LOS" value="1"/>
+		<pass shader="arb/minimap">
+			<depth test="FALSE" mask="false"/>
+			<color mask_red="FALSE" mask_green="FALSE" mask_blue="FALSE" mask_alpha="TRUE"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require shaders="glsl"/>
+		<define name="MINIMAP_LOS" value="1"/>
+		<pass shader="glsl/minimap">
+			<depth test="FALSE" mask="false"/>
+			<color mask_red="FALSE" mask_green="FALSE" mask_blue="FALSE" mask_alpha="TRUE"/>
+		</pass>
+	</technique>
+
+</effect>

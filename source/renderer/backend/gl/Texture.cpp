@@ -178,6 +178,13 @@ std::unique_ptr<CTexture> CTexture::Create(CDevice* device, const char* name,
 			pixelFormat = GL_RGB;
 			pixelType = GL_UNSIGNED_BYTE;
 			break;
+#if !CONFIG2_GLES
+		case Format::R8_UNORM:
+			internalFormat = GL_RED;
+			pixelFormat = GL_RED;
+			pixelType = GL_UNSIGNED_BYTE;
+			break;
+#endif
 		case Format::A8_UNORM:
 			internalFormat = GL_ALPHA;
 			pixelFormat = GL_ALPHA;

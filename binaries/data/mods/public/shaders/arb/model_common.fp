@@ -148,8 +148,8 @@ TEX tex, v_tex, texture[0], 2D;
 
 #if !IGNORE_LOS
   // Multiply everything by the LOS texture
-  TEX tex.a, v_los, texture[2], 2D;
-  MUL color.rgb, color, tex.a;
+  TEX tex.r, v_los, texture[2], 2D;
+  MUL color.rgb, color, tex.r;
 #endif
 
 MUL result.color.rgb, color, shadingColor;

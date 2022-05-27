@@ -76,6 +76,8 @@ public:
 
 	bool IsTextureFormatSupported(const Format format) const override;
 
+	bool IsFramebufferFormatSupported(const Format format) const override;
+
 	const Capabilities& GetCapabilities() const override { return m_Capabilities; }
 
 protected:
