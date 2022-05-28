@@ -43,7 +43,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: simulation/templates/structures/athen/arsenal.xml:5
 #: simulation/templates/structures/mace/arsenal.xml:5
@@ -695,7 +695,7 @@ msgid ""
 "This greatly increases the health, capture resistance, and garrison capacity"
 " of this specific Civic Center. Unlock training of Heroes here and reduce "
 "its research and batch training times by half."
-msgstr "Incrementa de forma considerable la resistencia, la dificultad de captura y la capacidad de este centro cívico. Desbloquea el adiestramiento de héroes y reduce el tiempo de investigación y reclutamiento a la mitad."
+msgstr "Incrementa de forma considerable la resistencia, dificultad de captura y capacidad de este centro cívico. Desbloquea el adiestramiento de héroes y reduce el tiempo de investigación y reclutamiento a la mitad."
 
 #: simulation/templates/structures/han/civil_centre_court.xml:17
 msgid "Imperial Court"
@@ -1741,7 +1741,7 @@ msgstr "Templete"
 
 #: simulation/templates/structures/shrine_italian.xml:9
 msgid "Temple of Healing"
-msgstr "Templo de curación"
+msgstr "Templo de sanación"
 
 #: simulation/templates/structures/shrine_italian.xml:10
 msgid "Aedēs Sanitatem"
@@ -1854,7 +1854,7 @@ msgstr "Tienda de campaña del desierto"
 
 #: simulation/templates/structures/tent_mace.xml:35
 msgid "Macedonian Army Tent"
-msgstr "Tienda de campaña macedonia"
+msgstr "Tienda de campaña macedonica"
 
 #: simulation/templates/structures/tent_rome.xml:35
 msgid "Roman Army Tent"
@@ -1862,7 +1862,7 @@ msgstr "Tienda de campaña romana"
 
 #: simulation/templates/structures/trading_post_celtic.xml:9
 msgid "Celtic Tavern"
-msgstr "Taverna celta"
+msgstr "Taberna celta"
 
 #: simulation/templates/structures/trading_post_desert.xml:9
 msgid "Desert Bazaar"

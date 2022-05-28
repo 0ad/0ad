@@ -40,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: simulation/ai/petra/chatHelper.js:3
 #, javascript-format
@@ -480,6 +480,7 @@ msgid_plural ""
 "away"
 msgstr[0] "%(name)s è troppo vicino a %(category)s, deve distare almeno %(distance)s metro"
 msgstr[1] "%(name)s è troppo vicino a %(category)s, deve distare almeno %(distance)s metri"
+msgstr[2] "%(name)s è troppo vicino a %(category)s, deve distare almeno %(distance)s metri"
 
 #: simulation/components/BuildRestrictions.js:282
 #, javascript-format
@@ -489,6 +490,7 @@ msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
 msgstr[0] "%(name)s è troppo distante da %(category)s, deve distare al più %(distance)s metro"
 msgstr[1] "%(name)s è troppo distante da %(category)s, deve distare al più %(distance)s metri"
+msgstr[2] "%(name)s è troppo distante da %(category)s, deve distare al più %(distance)s metri"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
@@ -537,6 +539,7 @@ msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
 msgstr[0] "%(lastPlayer)s ha vinto (ultimo giocatore in vita)"
 msgstr[1] "%(players)s e %(lastPlayer)s hanno vinto (ultimi giocatori in vita)"
+msgstr[2] "%(players)s e %(lastPlayer)s hanno vinto (ultimi giocatori in vita)"
 
 #: simulation/components/EndGameManager.js:182
 msgid "Last remaining player wins."

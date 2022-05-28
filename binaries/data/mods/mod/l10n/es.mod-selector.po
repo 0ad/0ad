@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: gui/common/functions_msgbox.js:25
 #, javascript-format
@@ -97,13 +97,13 @@ msgstr ","
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
-msgstr "Necesita: %(mods)s"
+msgstr "Requerido: %(mods)s"
 
 #: gui/common/mod.js:41
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
-msgstr "Activado: %(mods)s"
+msgstr "Activo: %(mods)s"
 
 #: gui/incompatible_mods/incompatible_mods.txt:1
 msgid ""
@@ -156,7 +156,7 @@ msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr "Este servicio provee una manera fácil de descargar e instalar mods hechos por la comunidad. Esta herramienta ha sido proporcionada por DBolical Pty Ltd, la compañía detrás de IndieDB y ModDB."
+msgstr "Este servicio proporciona una forma sencilla de descargar e instalar mods realizados por la comunidad. Esta herramienta ha sido producida por DBolical Pty Ltd, la compañía detrás de IndieDB y ModDB."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
@@ -167,7 +167,7 @@ msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr "Wildfire Games se hace cargo de que esta conexión sea segura y ha revisado los mods en busca de brechas de seguridad, pero no puede garantizar que no plantee ningún riesgo."
+msgstr "Wildfire Games procura que esta conexión sea segura y ha revisado los mods en busca de brechas de seguridad. Esto no garantiza la inexistencia de riesgos."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
@@ -183,7 +183,7 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "El ID de la partida no se ha recuperado\n\n%(technicalDetails)s"
+msgstr "No se ha podido obtener el ID de la partida.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
@@ -206,12 +206,12 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "La lista de Mods no ha podido ser recuperada.\n\n%(technicalDetails)s"
+msgstr "No se ha podido obtener la lista de mods.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr "Error de Obtención"
+msgstr "Error de obtención"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -436,7 +436,7 @@ msgstr "No se ha elegido ningún mod."
 
 #: gui/modmod/modmod.js:461
 msgid "Enable at least 0ad mod"
-msgstr "Habilitar al menos mod 0ad"
+msgstr "Habilitar al menos el mod 0ad"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"

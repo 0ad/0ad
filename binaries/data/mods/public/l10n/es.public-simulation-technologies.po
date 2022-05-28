@@ -46,7 +46,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: simulation/data/technologies/agoge.jsondescription
 msgid ""
@@ -223,7 +223,7 @@ msgid ""
 "This famous and most important work of the Seven Military Classics teaches "
 "Han commanders everything about planning battles, maintaining armies, and "
 "defeating one's enemies."
-msgstr ""
+msgstr "Esta famosa e importante obra, parte de los siete clásicos militares, instruía a los altos mandos Han sobre la planificación de la batalla, el mantenimiento del ejercito y cómo derrotar al enemigo."
 
 #: simulation/data/technologies/art_of_war.jsongenericName
 msgid "Sun Tzu's \"The Art of War\""
@@ -321,7 +321,7 @@ msgstr "Los cartagineses construían sus murallas formando tres círculos concé
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsongenericName
 msgid "Triple Walls"
-msgstr "Triple muro"
+msgstr "Muralla triple"
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsontooltip
 msgid "City Walls +100% build time, +100% stone cost, and +200% health."
@@ -544,7 +544,7 @@ msgstr "Estructuras civiles (Tiempo de construcción y coste de recursos: −25%
 msgid ""
 "The Han had a tradition of fine archery and a penchant for using massed "
 "crossbowmen in battle."
-msgstr ""
+msgstr "Los Han dominaban la ballesta y solían utilizar numerosos ballesteros en la batalla."
 
 #: simulation/data/technologies/crossbow_training.jsongenericName
 msgid "Crossbow Training"
@@ -724,7 +724,7 @@ msgstr "Técnicas de recolección"
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsondescription
 msgid "Remove water weeds to preserve nutrients for the rice plants."
-msgstr ""
+msgstr "Eliminación de algas para preservar nutrientes para las plantas de arroz."
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsongenericName
 msgid "Water Weeding"

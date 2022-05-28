@@ -60,7 +60,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: gui/session/Cheats.js:78
 msgid "This cheat requires a numeric parameter."
@@ -746,6 +746,7 @@ msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
 msgstr[0] "Raggio di base: %(range)s metro"
 msgstr[1] "Raggio di base: %(range)s metri"
+msgstr[2] "Raggio di base: %(range)s metri"
 
 #: gui/session/input.js:192
 #, javascript-format
@@ -753,6 +754,7 @@ msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Bonus raggio medio: %(range)s metro"
 msgstr[1] "Bonus raggio medio: %(range)s metri"
+msgstr[2] "Bonus raggio medio: %(range)s metri"
 
 #: gui/session/input.js:702
 msgid "Cannot build wall here!"
@@ -1163,6 +1165,7 @@ msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s entità della classe %(class)s"
 msgstr[1] "%(number)s entità delle classi %(class)s"
+msgstr[2] "%(number)s entità delle classi %(class)s"
 
 #: gui/session/selection_panels.js:785
 #, javascript-format
@@ -1215,6 +1218,7 @@ msgid_plural ""
 "upgrading."
 msgstr[0] "Non si può migliorare quando l'entità è in addestramento, ricerca o già in miglioramento."
 msgstr[1] "Non si può migliorare quando tutte le entità sono in addestramento, ricerca o già in miglioramento."
+msgstr[2] "Non si può migliorare quando tutte le entità sono in addestramento, ricerca o già in miglioramento."
 
 #: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
@@ -1293,6 +1297,7 @@ msgid "Could only be constructed %(limit)s time."
 msgid_plural "Could only be constructed %(limit)s times."
 msgstr[0] ""
 msgstr[1] "Può essere costruito solo %(limit)s volte."
+msgstr[2] "Può essere costruito solo %(limit)s volte."
 
 #: gui/session/selection_panels_helpers.js:148
 #, javascript-format
@@ -1300,12 +1305,14 @@ msgid "Can be constructed %(count)s more time."
 msgid_plural "Can be constructed %(count)s more times."
 msgstr[0] "Può essere costruito %(count)s altra volta."
 msgstr[1] "Può essere costruito %(count)s altre volte."
+msgstr[2] "Può essere costruito %(count)s altre volte."
 
 #: gui/session/selection_panels_helpers.js:155
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
 msgstr[0] "Può essere addestrato solo una volta."
 msgstr[1] "Può essere addestrato solo %(limit)s volte."
+msgstr[2] "Può essere addestrato solo %(limit)s volte."
 
 #: gui/session/selection_panels_helpers.js:159
 msgid "Can be trained only once."
@@ -1317,12 +1324,14 @@ msgid "Can be trained %(count)s more time."
 msgid_plural "Can be trained %(count)s more times."
 msgstr[0] "Può essere addestrato %(count)s altra volta."
 msgstr[1] "Può essere addestrato altre %(count)s volte."
+msgstr[2] "Può essere addestrato altre %(count)s volte."
 
 #: gui/session/selection_panels_helpers.js:168
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
 msgstr[0] "Può essere creato solo una volta."
 msgstr[1] "Può essere creato solo %(limit)s volte."
+msgstr[2] "Può essere creato solo %(limit)s volte."
 
 #: gui/session/selection_panels_helpers.js:172
 msgid "Can be created only once."
@@ -1334,6 +1343,7 @@ msgid "Can be created %(count)s more time."
 msgid_plural "Can be created %(count)s more times."
 msgstr[0] "Può essere creato %(count)s altra volta."
 msgstr[1] "Può essere creato altre %(count)s volte."
+msgstr[2] "Può essere creato altre %(count)s volte."
 
 #: gui/session/selection_panels_helpers.js:203
 #, javascript-format
@@ -1552,6 +1562,7 @@ msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "C'è %(numberTrading)s commerciante impegnato"
 msgstr[1] "Ci sono %(numberTrading)s commercianti impegnati"
+msgstr[2] "Ci sono %(numberTrading)s commercianti impegnati"
 
 #: gui/session/trade/TraderStatusTextLand.js:25
 #, javascript-format
@@ -1559,6 +1570,7 @@ msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s inattivo"
 msgstr[1] "%(numberOfLandTraders)s inattivi"
+msgstr[2] "%(numberOfLandTraders)s inattivi"
 
 #: gui/session/trade/TraderStatusTextLand.js:30
 #, javascript-format
@@ -1566,6 +1578,7 @@ msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s commerciante inattivo"
 msgstr[1] "%(numberOfLandTraders)s commercianti inattivi"
+msgstr[2] "%(numberOfLandTraders)s commercianti inattivi"
 
 #: gui/session/trade/TraderStatusTextLand.js:40
 #, javascript-format
@@ -1573,6 +1586,7 @@ msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s imbarcato su una nave coomerciale"
 msgstr[1] "%(numberGarrisoned)s imbarcati su una nave mercantile"
+msgstr[2] "%(numberGarrisoned)s imbarcati su una nave mercantile"
 
 #: gui/session/trade/TraderStatusTextLand.js:45
 #, javascript-format
@@ -1584,6 +1598,7 @@ msgid_plural ""
 " ship"
 msgstr[0] "C'è %(numberGarrisoned)s commerciante imbarcato su una nave mercantile"
 msgstr[1] "Ci sono %(numberGarrisoned)s commercianti imbarcati su una nave mercantile"
+msgstr[2] "Ci sono %(numberGarrisoned)s commercianti imbarcati su una nave mercantile"
 
 #: gui/session/trade/TraderStatusTextLand.js:65
 #, javascript-format
@@ -1625,6 +1640,7 @@ msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] "C'è %(inactiveString)s."
 msgstr[1] "Ci sono %(inactiveString)s."
+msgstr[2] "Ci sono %(inactiveString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:80
 msgid "There are no land traders."
@@ -1636,6 +1652,7 @@ msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "C'è %(numberTrading)s nave mercantile impegnata"
 msgstr[1] "Ci sono %(numberTrading)s navi mercantili impegnate"
+msgstr[2] "Ci sono %(numberTrading)s navi mercantili impegnate"
 
 #: gui/session/trade/TraderStatusTextShip.js:24
 #, javascript-format
@@ -1643,6 +1660,7 @@ msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s inattivo"
 msgstr[1] "%(numberOfShipTraders)s inattivi"
+msgstr[2] "%(numberOfShipTraders)s inattivi"
 
 #: gui/session/trade/TraderStatusTextShip.js:29
 #, javascript-format
@@ -1650,6 +1668,7 @@ msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s nave mercantile inattiva"
 msgstr[1] "%(numberOfShipTraders)s navi mercantili inattive"
+msgstr[2] "%(numberOfShipTraders)s navi mercantili inattive"
 
 #: gui/session/trade/TraderStatusTextShip.js:51
 msgid "There are no merchant ships."
@@ -1709,6 +1728,7 @@ msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "Questa entità non può essere controllata."
 msgstr[1] "Queste entità non possono essere controllate."
+msgstr[2] "Queste entità non possono essere controllate."
 
 #: gui/session/unit_actions.js:1353
 msgid "Unload All."

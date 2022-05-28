@@ -51,7 +51,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: maps/random/aegean_sea.jsonsettings.Description
 msgid "Players start on two sides of a sea with scattered islands."
@@ -2250,6 +2250,7 @@ msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
 msgstr[0] "%(lastPlayer)s a gagné (trésor collecté)."
 msgstr[1] "%(players)s et %(lastPlayer)s ont gagné (trésor collecté)."
+msgstr[2] "%(players)s et %(lastPlayer)s ont gagné (trésor collecté)."
 
 #: maps/scenarios/treasure_islands.js:104
 #, javascript-format
@@ -2258,6 +2259,7 @@ msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
 msgstr[0] "%(lastPlayer)s a été vaincu (Trésor capturé)."
 msgstr[1] "%(players)s et %(lastPlayer)s ont été vaincus (Trésor capturé)."
+msgstr[2] "%(players)s et %(lastPlayer)s ont été vaincus (Trésor capturé)."
 
 #: maps/scenarios/treasure_islands.xml:Description:38
 msgid ""
@@ -2403,6 +2405,7 @@ msgid "%(lastPlayer)s has won (Capture the Relic)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (Capture the Relic)."
 msgstr[0] "%(lastPlayer)s a gagné (relique capturée)."
 msgstr[1] "%(players)s et %(lastPlayer)s ont gagné (relique capturée)."
+msgstr[2] "%(players)s et %(lastPlayer)s ont gagné (relique capturée)."
 
 #: maps/scripts/CaptureTheRelic.js:175
 #, javascript-format
@@ -2411,6 +2414,7 @@ msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (Capture the Relic)."
 msgstr[0] "%(lastPlayer)s a perdu (relique capturée)."
 msgstr[1] "%(players)s et %(lastPlayer)s ont perdu (relique capturée)."
+msgstr[2] "%(players)s et %(lastPlayer)s ont perdu (relique capturée)."
 
 #: maps/scripts/Conquest.js:5
 #, javascript-format
@@ -2487,6 +2491,7 @@ msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
 msgstr[0] "%(lastPlayer)s a gagné (victoire par merveille)."
 msgstr[1] "%(players)s et %(lastPlayer)s ont gagné (victoire par merveille)."
+msgstr[2] "%(players)s et %(lastPlayer)s ont gagné (victoire par merveille)."
 
 #: maps/scripts/WonderVictory.js:154
 #, javascript-format
@@ -2495,6 +2500,7 @@ msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (wonder victory)."
 msgstr[0] "%(lastPlayer)s a perdu (victoire par merveille)."
 msgstr[1] "%(players)s et %(lastPlayer)s ont perdu (victoire par merveille)."
+msgstr[2] "%(players)s et %(lastPlayer)s ont perdu (victoire par merveille)."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:39
 msgid ""

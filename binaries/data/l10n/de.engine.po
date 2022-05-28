@@ -37,7 +37,7 @@ msgstr "Scroll-Geschwindigkeit erhöht auf %.1f"
 #: graphics/CameraController.cpp:663
 #, c-format
 msgid "Scroll speed decreased to %.1f"
-msgstr "Scroll-Geschwindigkeit vermindert auf %.1f"
+msgstr "Scroll-Geschwindigkeit verringert auf %.1f"
 
 #: graphics/CameraController.cpp:670
 #, c-format
@@ -47,7 +47,7 @@ msgstr "Dreh-Geschwindigkeit erhöht auf X=%.3f, Y=%.3f"
 #: graphics/CameraController.cpp:677
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr "Dreh-Geschwindigkeit vermindert auf X=%.3f, Y=%.3f"
+msgstr "Dreh-Geschwindigkeit verringert auf X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:683
 #, c-format
@@ -57,7 +57,7 @@ msgstr "Zoom-Geschwindigkeit erhöht auf %.1f"
 #: graphics/CameraController.cpp:689
 #, c-format
 msgid "Zoom speed decreased to %.1f"
-msgstr "Zoom-Geschwindigkeit vermindert auf %.1f"
+msgstr "Zoom-Geschwindigkeit verringert auf %.1f"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
@@ -207,7 +207,7 @@ msgstr "Benutzername bereits in Verwendung"
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr "Die externe Datei mod.json für die gezippte Modifikation ‚%s‘ konnte nicht geschrieben werden. Die Modifikation sollte neu installiert werden."
+msgstr "Die externe Datei mod.json für die gezippte Mod ‚%s‘ konnte nicht geschrieben werden. Die Mod sollte neu installiert werden."
 
 #: ps/ModIo.cpp:264
 #, c-format
@@ -217,17 +217,17 @@ msgstr "Abfrage der Spiel-ID gescheitert. Fehler: %s; %s"
 #: ps/ModIo.cpp:294
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "Abfrage der Modifikationen gescheitert. Fehler: %s; %s"
+msgstr "Abfrage der Mods gescheitert. Fehler: %s; %s"
 
 #: ps/ModIo.cpp:320
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr "Modifikationen-Verzeichnis konnte nicht erstellt werden. Fehler: %s"
+msgstr "Mod-Verzeichnis konnte nicht erstellt werden. Fehler: %s"
 
 #: ps/ModIo.cpp:345
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "Temporäre Datei konnte nicht für Modifikationen-Download geöffnet werden. Fehler: %s"
+msgstr "Temporäre Datei konnte nicht für Mod-Download geöffnet werden: %s"
 
 #: ps/ModIo.cpp:355
 #, c-format
