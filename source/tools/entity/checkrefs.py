@@ -456,6 +456,8 @@ class CheckRefs:
     def add_gui_data(self):
         self.logger.info("Loading GUI data...")
         self.files.extend([str(fp) for (fp, ffp) in self.find_files('gui', 'js')])
+        self.files.extend([str(fp) for (fp, ffp) in self.find_files('gamesettings', 'js')])
+        self.files.extend([str(fp) for (fp, ffp) in self.find_files('autostart', 'js')])
         self.files.extend([str(fp) for (fp, ffp) in self.find_files('art/textures/ui', *self.supportedTextureFormats)])
         self.files.extend([str(fp) for (fp, ffp) in self.find_files('art/textures/selection', *self.supportedTextureFormats)])
 
