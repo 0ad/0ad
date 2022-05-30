@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-20 07:33+0000\n"
+"POT-Creation-Date: 2022-05-27 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Cem Aktas <cemwstone@gmail.com>, 2018,2021-2022\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
@@ -101,7 +101,6 @@ msgstr "Zorlu Askeri Eğitim"
 #: simulation/data/technologies/unlock_champion_chariots.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_spies.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsonrequirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "Şehir Aşaması açıldı."
@@ -149,7 +148,6 @@ msgstr "Okçu Eğitimi"
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "Kasaba Aşaması açıldı."
 
@@ -1062,10 +1060,6 @@ msgstr "Posta Güvercinleri"
 msgid "Outposts +33% vision range."
 msgstr "İleri karakollar için +%33 görüş alanı."
 
-#: simulation/data/technologies/pair_unlock_arrows_type.jsongenericName
-msgid "Fire Arrows vs Poison Arrows"
-msgstr "Ateş oklarına karşı zehirli oklar."
-
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
 msgstr "Geleneksel Ordu vs Reform Ordusu"
@@ -1890,18 +1884,6 @@ msgid ""
 "Allows bribing the units of other players in order to share their vision."
 msgstr "Diğer oyuncuların birliklerine görüş alanlarını paylaşmaları için rüşvet vermeye olanak sağlar."
 
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsondescription
-msgid "Upgrade all of your citizen crossbowmen to Advanced rank."
-msgstr "Tüm Arbaletli Vatandaşları Gelişmiş rütbesine yükselt."
-
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsongenericName
-msgid "Advanced Crossbow Infantry and Cavalry"
-msgstr "Gelişmiş Arbaletli Piyade ve Süvari"
-
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsontooltip
-msgid "Upgrade all of your Crossbow Infantry and Cavalry to Advanced rank."
-msgstr "Tüm Arbaletli Piyade ve Süvarileri Gelişmiş rütbesine yükselt."
-
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
 msgstr "Profesyonel paralı askerleri, yanınızda savaşmaları için kiralayın."
@@ -1913,18 +1895,6 @@ msgstr "Savaş Uzmanlığı"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries start at Advanced rank."
 msgstr "Paralı askerler Gelişmiş rütbesi ile başlar."
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsondescription
-msgid "Upgrade all of your citizen crossbowmen to Elite rank."
-msgstr "Tüm Arbaletli Vatandaşları Seçkin rütbesine yükselt."
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsongenericName
-msgid "Elite Crossbow Infantry and Cavalry"
-msgstr "Seçkin Arbaletli Piyade ve Süvariler"
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsontooltip
-msgid "Upgrade all of your Crossbow Infantry and Cavalry to Elite rank."
-msgstr "Tüm Arbaletli Piyade ve Süvarileri Seçkin rütbesine yükselt."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."
