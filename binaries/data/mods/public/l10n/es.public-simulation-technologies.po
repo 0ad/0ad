@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-20 07:33+0000\n"
+"POT-Creation-Date: 2022-05-27 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2020-2022\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
@@ -111,7 +111,6 @@ msgstr "Agogé"
 #: simulation/data/technologies/unlock_champion_chariots.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_spies.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsonrequirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "Se desbloquea en la fase urbana."
@@ -159,7 +158,6 @@ msgstr "Entrenamiento con arco"
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "Se desbloquea en la fase intermedia."
 
@@ -607,11 +605,11 @@ msgstr "Condiciones de vida"
 
 #: simulation/data/technologies/garrison_heal.jsontooltip
 msgid "Structures +1 garrison heal rate."
-msgstr "Estructuras +1 tasa de curación de guarnición."
+msgstr "Estructuras (Tasa de curación de la guarnición: +1)."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breed livestock to slaughter for meat."
-msgstr "Cría ganado para luego sacrificarlo por la carne."
+msgstr "Cría ganado para la producción de carne."
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsongenericName
 msgid "Stockbreeding"
@@ -623,7 +621,7 @@ msgstr "Animales domésticos (Tiempo de reproducción: −25%)."
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
 msgid "Workers use baskets. Increases shuttling capacity for all resources."
-msgstr "Los trabajadores que usan canastas aumenta la capacidad de traslado para todos los recursos."
+msgstr "Los trabajadores que usan cestos aumenta la capacidad de traslado de todos los recursos."
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -639,7 +637,7 @@ msgstr "Trabajadores (Capacidad de recursos: +5)."
 msgid ""
 "Workers use horse-drawn carts. Increases shuttling capacity for all "
 "resources."
-msgstr "Los trabajadores que usan carros tirados por caballos aumentan su capadidad de traslado para todos los recursos."
+msgstr "Los trabajadores que usan carros tirados por caballos aumentan su capadidad de traslado de todos los recursos."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -758,7 +756,7 @@ msgstr "Hacha más fuerte"
 msgid ""
 "Compel serfs to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr "Siervos para ayudar a tus trabajadores a extraer piedra. Incrementa el ritmo de recolección de piedra."
+msgstr "Siervos para ayudar a tus trabajadores a extraer piedra. Incrementa el ritmo de extracción de piedra."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -776,7 +774,7 @@ msgstr "Trabajadores (Velocidad de extracción de piedra: +25%)."
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
-msgstr "Contrata sirvientes para ayudar a extraer piedras. Incrementa el ritmo de recolección de piedra."
+msgstr "Contrata sirvientes para ayudar a extraer piedras. Incrementa el ritmo de extracción de piedra."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -792,7 +790,7 @@ msgstr "Douloi"
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsondescription
 msgid "Develop shaft mining. Increases metal gathering rates."
-msgstr "Inventa los pozos mineros. Incrementa el ritmo de extracción de metal."
+msgstr "Desarrolla pozos mineros. Incrementa el ritmo de extracción de metal."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -845,7 +843,7 @@ msgstr "Servi"
 #: simulation/data/technologies/gather_mining_wedgemallet.jsondescription
 msgid ""
 "Equip your workers with helpful tools. Increases metal gathering rates."
-msgstr "Equipa tus trabajadores con útiles de trabajo. Incrementa el ritmo de extracción de metal."
+msgstr "Equipa a tus trabajadores con útiles de trabajo. Incrementa el ritmo de extracción de metal."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -952,7 +950,7 @@ msgstr "Medicina de campaña"
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Idle Organic units +0.5 health regeneration rate."
-msgstr "Unidades orgánicas inactivas +0.5 tasa de regeneración de salud."
+msgstr "Unidades orgánicas inactivas (Tasa de regeneración de salud: +0.5)."
 
 #: simulation/data/technologies/hellenistic_metropolis.jsondescription
 msgid ""
@@ -1013,7 +1011,7 @@ msgstr "Infantería (Tiempo de adiestramiento: −10%)."
 msgid ""
 "Athenian gymnasium, docks and triremes can train Marines (Epibates "
 "Athenaikos) and Cretan Mercenary Archers (Toxotes Kretikos)."
-msgstr "Se puede reclutar infantería de marina (Epibates Athenaikos) y arqueros mercenarios cretensenes en el Gymnasion ateniense, en el muelle y en los trirremes.  "
+msgstr "Se puede reclutar infantería de marina (Epibates Athenaikos) y arqueros mercenarios cretensenes (Toxotes Kretikos) en el Gymnasion ateniense, en el muelle y en los trirremes.  "
 
 #: simulation/data/technologies/iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
@@ -1071,10 +1069,6 @@ msgstr "Palomas mensajeras"
 #: simulation/data/technologies/outpost_vision.jsontooltip
 msgid "Outposts +33% vision range."
 msgstr "Puestos de avanzada (Campo de visión: +33%)."
-
-#: simulation/data/technologies/pair_unlock_arrows_type.jsongenericName
-msgid "Fire Arrows vs Poison Arrows"
-msgstr "Flechas incendiarias contra flechas envenenadas"
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -1285,7 +1279,7 @@ msgstr "Desbloquea los primeros espadas de infantería de élite."
 msgid ""
 "Employ skilled shipwrights with specialized tools to speed up ship "
 "construction."
-msgstr "Emplear carpinteros de barcos calificados con herramientas especializadas para acelerar la construcción de barcos."
+msgstr "Emplear carpinteros de barcos cualificados con herramientas especializadas para acelerar la construcción de barcos."
 
 #: simulation/data/technologies/ship_cost_time.jsongenericName
 msgid "Naval Architects"
@@ -1446,7 +1440,7 @@ msgstr "Armas de hierro"
 msgid ""
 "By adding a small amount of carbon during the iron smelting process, a "
 "stronger material, steel, can be forged."
-msgstr "Añadiendo pequeñas cantidades de carbono durante el proceso de fundición del hierro se puede obtener un metal más fuerte: el acero."
+msgstr "Añadiendo pequeñas cantidades de carbono al proceso de fundición del hierro se puede obtener un metal más fuerte: el acero."
 
 #: simulation/data/technologies/soldier_attack_melee_03.jsongenericName
 msgid "Carburization"
@@ -1496,7 +1490,7 @@ msgstr "Soldados (Daño a distancia: +15%)."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsondescription
 msgid "Projectile points made of iron enable missiles to penetrate deeper."
-msgstr "Las puntas de proyectil hechas de hierro permiten que los misiles penetren más profundamente."
+msgstr "Las puntas de proyectil de hierro permiten que los misiles penetren más profundamente."
 
 #: simulation/data/technologies/soldier_attack_ranged_02.jsongenericName
 msgid "Iron Arrowheads"
@@ -1561,7 +1555,7 @@ msgstr "Armadura realizada a partir de pequeñas anillas de metal unidas unas co
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsongenericName
 msgid "Mail Body Armor"
-msgstr "Armadura de malla"
+msgstr "Armadura corporal de malla"
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsontooltip
 msgid "Soldiers +2 hack resistance."
@@ -1900,18 +1894,6 @@ msgid ""
 "Allows bribing the units of other players in order to share their vision."
 msgstr "Permite sobornar a las unidades de otros jugadores para compartir lo que ven."
 
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsondescription
-msgid "Upgrade all of your citizen crossbowmen to Advanced rank."
-msgstr "Promociona todos tus ballesteros a rango superior."
-
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsongenericName
-msgid "Advanced Crossbow Infantry and Cavalry"
-msgstr "Ballesteros de infantería y caballería avanzados"
-
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsontooltip
-msgid "Upgrade all of your Crossbow Infantry and Cavalry to Advanced rank."
-msgstr "Promociona todos tus ballesteros de infantería y caballería a rango superior."
-
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
 msgstr "Contrata mercenarios profesionales para luchar en tu ejército."
@@ -1923,18 +1905,6 @@ msgstr "Pericia guerrera"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries start at Advanced rank."
 msgstr "Los mercenarios comienzan con un rango superior."
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsondescription
-msgid "Upgrade all of your citizen crossbowmen to Elite rank."
-msgstr "Promociona todos tus ballesteros a rango de élite."
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsongenericName
-msgid "Elite Crossbow Infantry and Cavalry"
-msgstr "Ballesteros de infantería y caballería de élite"
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsontooltip
-msgid "Upgrade all of your Crossbow Infantry and Cavalry to Elite rank."
-msgstr "Promociona todos tus ballesteros de infantería y caballería a rango de élite."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."

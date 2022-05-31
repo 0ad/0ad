@@ -64,7 +64,7 @@ msgstr "Ye q’hagora mi fhaltæn los mílites; mas lhœw vou attacar a %(_playe
 msgid ""
 "Sorry, I still need to strengthen my army. However, I will attack "
 "%(_player_)s next."
-msgstr "Ye que preciso refhaze’ la milicia; pero da reo vou attacar a %(_player_)s."
+msgstr "Ye que preciso arrefhaze’ la milicia; pero da reo vou attacar a %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
@@ -76,7 +76,7 @@ msgstr "Nun puœdo adiudate cun %(_player_)s indagora, que vou attacar a %(_play
 #: simulation/ai/petra/chatHelper.js:27
 #, javascript-format
 msgid "Here is a gift for you, %(_player_)s. Make good use of it."
-msgstr "Esto ye par ti, %(_player_)s. Gasta-llo bien."
+msgstr "Esto ye par ti, %(_player_)s. Gasta-lo bien."
 
 #: simulation/ai/petra/chatHelper.js:28
 #, javascript-format
@@ -93,7 +93,7 @@ msgstr "Esta vez puœdo incontate, %(_player_)s, mas tienes q’administra’ lo
 #: simulation/ai/petra/chatHelper.js:33
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
-msgstr "Preciso de %(resource)s, ¿podríæs incontame? Compenso-ti-llo."
+msgstr "Preciso de %(resource)s, ¿podríæs incontame? Compenso-ti-lo."
 
 #: simulation/ai/petra/chatHelper.js:34
 #, javascript-format
@@ -106,7 +106,7 @@ msgstr "You seríæ quien a fhazer mas n esta gerra si m’aporrieres %(resource
 #, javascript-format
 msgid ""
 "If you can spare me some %(resource)s, I will be able to strengthen my army."
-msgstr "Si m’apurres daqué %(resource)s, puœdo refhaze’ la miâ milicia."
+msgstr "Si m’apurres daqué %(resource)s, puœdo arrefhaze’ la miâ milicia."
 
 #: simulation/ai/petra/chatHelper.js:39
 #, javascript-format
@@ -353,7 +353,7 @@ msgstr "%(_player_)s, determinei arretira’ la oufierta de neutralidá."
 msgid ""
 "%(_player_)s, as you have failed to respond to my request for peace between "
 "us, I have abrogated my offer."
-msgstr "%(_player_)s, cumo nun respondiesti a la propuœsta de paz, retirei la oufierta."
+msgstr "%(_player_)s, cumo nun respondiesti a la propuœsta de paz, arretirei la oufierta."
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
@@ -630,7 +630,7 @@ msgstr "Nanu"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
-msgstr "Nos terreiros d’esta grandura mal caben a penæs los recursos mas básicos."
+msgstr "Næs gëographíæs d’esta grandura mal caben a penæs los recursos mas básicos."
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
@@ -640,7 +640,7 @@ msgstr "Pequenhu"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr "Los terreiros pequenhos prestæn-se pa duellos, des que los xhogadores puœden tyegar aina al adversariu &, al in par, tener daqué spacio pa spardese."
+msgstr "Læs gëographíæs pequenhæs prestæn-se pa duellos, des que los xhogadores puœden tyegar aina al adversariu &, al in par, tener daqué spacio pa spardese."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Normal"
@@ -650,7 +650,7 @@ msgstr "Normal"
 msgid ""
 "This map size provides plenty of space for two players, but even eight "
 "players fit."
-msgstr "Los terreiros d’esta grandura tienen abondu campu par dous xhogadores, pero caben wœitho."
+msgstr "Læs gëographíæs d’esta grandura tienen abondu campu par dous xhogadores, pero caben wœitho."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""
@@ -666,7 +666,7 @@ msgstr "Grande"
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
-msgstr "Aconseya-se esta grandura quando gran parte de l terreiro sta cobierto cun awa ou monte inaccessible."
+msgstr "Aconseya-se esta grandura quando gran parte de la gëographíæ sta cobierto cun awa ou monte inaccessible."
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
@@ -677,7 +677,7 @@ msgstr "Per-grande"
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr "Non s’aconseyæn los terreiros per-grandes des que te sitúæn muî lhœñe de l inimigu & puœden reduzi’ la efficiencia de l xhuœw."
+msgstr "Non s’aconseyæn læs gëographíæs per-grandes des que te sitúæn muî lhœñe de l inimigu & puœden reduzi’ la efficiencia de l xhuœw."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
@@ -795,7 +795,7 @@ msgstr "Scœyi esta difficultá si non t’importa que te varran."
 msgid ""
 "Capture all relics spread across the map and keep them for a certain time to"
 " win the game."
-msgstr "Arrecœyi todelæs reliquiæs de l terreiro & conserva-llæs per un ciertu tiempu par vincer."
+msgstr "Cata todelæs reliquiæs spardidæs pela gëographíæ & conserva-læs per un ciertu tiempu par vincer."
 
 #: simulation/data/settings/victory_conditions/capture_the_relic.jsonData.Title
 msgid "Capture the Relic"
@@ -849,7 +849,7 @@ msgid ""
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
-msgstr "Sé l primeiru n fhazer—ou tomar—un Millagro & conserva-llo per un ciertu tiempu par vincer. El temporizador reafhita-se al destruise ou appropriase l Millagro. Si l modu victoria collectiva sta activu, tamien se reafhita al demudar d’alliançæs el dœnhu."
+msgstr "Sé l primeiru n fhazer—ou tomar—un Millagro & conserva-lo per un ciertu tiempu par vincer. El temporizador re-afhita-se al destruise ou appropriase l Millagro. Si l modu victoria collectiva sta activu, tamien se re-afhita al demudar d’alliançæs el dœnhu."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -870,7 +870,7 @@ msgstr "(Trampa - mandar todelæs unidades)"
 
 #: simulation/helpers/Commands.js:149
 msgid "(Cheat - reveal map)"
-msgstr "(Trampa - revela’l terreiro)"
+msgstr "(Trampa - arrevela’ la gëographíæ)"
 
 #: simulation/helpers/Commands.js:473
 #, javascript-format

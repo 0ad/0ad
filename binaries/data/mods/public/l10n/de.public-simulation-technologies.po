@@ -30,7 +30,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-20 07:33+0000\n"
+"POT-Creation-Date: 2022-05-27 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: xtother90, 2018-2022\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
@@ -103,7 +103,6 @@ msgstr "Die Agoge"
 #: simulation/data/technologies/unlock_champion_chariots.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_spies.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsonrequirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "Freigeschaltet in der Großstadtphase"
@@ -151,7 +150,6 @@ msgstr "Bogenausbildung"
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "Freigeschaltet in der Stadtphase."
 
@@ -1064,10 +1062,6 @@ msgstr "Brieftauben"
 msgid "Outposts +33% vision range."
 msgstr "Außenposten +33 % Sichtweite."
 
-#: simulation/data/technologies/pair_unlock_arrows_type.jsongenericName
-msgid "Fire Arrows vs Poison Arrows"
-msgstr "Feuerpfeile vs. Giftpfeile"
-
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
 msgstr "Traditionelle Armee vs. reformierte Armee"
@@ -1892,18 +1886,6 @@ msgid ""
 "Allows bribing the units of other players in order to share their vision."
 msgstr "Ermöglicht das Bestechen von Einheiten eines anderen Spielers, um deren Sicht zu teilen."
 
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsondescription
-msgid "Upgrade all of your citizen crossbowmen to Advanced rank."
-msgstr "Befördert alle Bürger-Armbrustschützen zum fortgeschritten Rang."
-
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsongenericName
-msgid "Advanced Crossbow Infantry and Cavalry"
-msgstr "Fortgeschrittene Armbrust-Infanterie und -Kavallerie"
-
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsontooltip
-msgid "Upgrade all of your Crossbow Infantry and Cavalry to Advanced rank."
-msgstr "Befördert alle deine Armrustschützen-Infanterie und -Kavallerie zum fortgeschrittenen Rang."
-
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
 msgstr "Heuere professionelle Söldner an, in deiner Armee zu kämpfen."
@@ -1915,18 +1897,6 @@ msgstr "Kriegskompetenz"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries start at Advanced rank."
 msgstr "Söldner starten mit dem fortgeschrittenen Rang."
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsondescription
-msgid "Upgrade all of your citizen crossbowmen to Elite rank."
-msgstr "Befördert alle deine Bürger-Armrustschützen zum Elite-Rang."
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsongenericName
-msgid "Elite Crossbow Infantry and Cavalry"
-msgstr "Elite Arbmbrust-Infanterie und -Kavallerie"
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsontooltip
-msgid "Upgrade all of your Crossbow Infantry and Cavalry to Elite rank."
-msgstr "Befördert alle deine Armrustschützen-Infanterie und -Kavallerie zum Elite-Rang."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."

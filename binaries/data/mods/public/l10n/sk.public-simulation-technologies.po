@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-20 07:33+0000\n"
+"POT-Creation-Date: 2022-05-27 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Zuzana Miadoková, 2019,2021-2022\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
@@ -93,7 +93,6 @@ msgstr "Agóge"
 #: simulation/data/technologies/unlock_champion_chariots.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_spies.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsonrequirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "Odomknuté vo fáze metropoly."
@@ -141,7 +140,6 @@ msgstr "Lukostrelecký tréning"
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "Odomknuté vo fáze mesta."
 
@@ -205,7 +203,7 @@ msgid ""
 "This famous and most important work of the Seven Military Classics teaches "
 "Han commanders everything about planning battles, maintaining armies, and "
 "defeating one's enemies."
-msgstr ""
+msgstr "Toto známe a najdôležitejšie dielo Siedmich vojenských klasík učí chanských veliteľov všetko o plánovaní bitiek, udržiavaní armád a porážaní nepriateľov."
 
 #: simulation/data/technologies/art_of_war.jsongenericName
 msgid "Sun Tzu's \"The Art of War\""
@@ -526,7 +524,7 @@ msgstr "Občianske budovy −25% čas výstavby a cena surovín"
 msgid ""
 "The Han had a tradition of fine archery and a penchant for using massed "
 "crossbowmen in battle."
-msgstr ""
+msgstr "Chanovia mali tradíciu jemného lukostrelectva a s obľubou v bitkách používali veľké množstvá kušostrelcov."
 
 #: simulation/data/technologies/crossbow_training.jsongenericName
 msgid "Crossbow Training"
@@ -706,7 +704,7 @@ msgstr "Tréning v zberaní"
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsondescription
 msgid "Remove water weeds to preserve nutrients for the rice plants."
-msgstr ""
+msgstr "Vytrhaj vodnú burinu, aby ryži ostalo viacej živín."
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsongenericName
 msgid "Water Weeding"
@@ -1040,7 +1038,7 @@ msgstr "Nisioi"
 
 #: simulation/data/technologies/nisean_horses.jsontooltip
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
-msgstr "Šampiónski jazdci s oštepmi +20% bodov zdravia, ale +10% doba tréningu."
+msgstr "Šampiónski kopijníci na koňoch +20% zdravia, ale +10% doba tréningu."
 
 #: simulation/data/technologies/outpost_vision.jsondescription
 msgid "Increases outpost vision."
@@ -1053,10 +1051,6 @@ msgstr "Poštové holuby"
 #: simulation/data/technologies/outpost_vision.jsontooltip
 msgid "Outposts +33% vision range."
 msgstr "Rozhľadne +33% dohľad."
-
-#: simulation/data/technologies/pair_unlock_arrows_type.jsongenericName
-msgid "Fire Arrows vs Poison Arrows"
-msgstr "Ohnivé šípy verzus otrávené šípy"
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -1313,7 +1307,7 @@ msgstr "Pokročilé obliehanie"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "Siege Engines +25% attack crush damage."
-msgstr "Obliehací inžinieri +25% drvivého útočného poškodenia."
+msgstr "Obliehacie stroje +25% drvivého útočného poškodenia."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy."
@@ -1882,18 +1876,6 @@ msgid ""
 "Allows bribing the units of other players in order to share their vision."
 msgstr "Povoľ podplácanie jednotiek druhých hráčov pre zdieľanie toho, čo vidia."
 
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsondescription
-msgid "Upgrade all of your citizen crossbowmen to Advanced rank."
-msgstr "Povýši všetkých tvojich občanov-kušostrelcov na stupeň Pokročilý."
-
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsongenericName
-msgid "Advanced Crossbow Infantry and Cavalry"
-msgstr "Pokročilá pechota s kušou a kavaléria"
-
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsontooltip
-msgid "Upgrade all of your Crossbow Infantry and Cavalry to Advanced rank."
-msgstr "Povýši všetkých tvojich pešiakov s kušou a kavalériu na stupeň Pokročilý."
-
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
 msgstr "Najmi profesionálnych žolnierov aby bojovali v tvojej armáde."
@@ -1905,18 +1887,6 @@ msgstr "Odbornosť vo vojne"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries start at Advanced rank."
 msgstr "Žoldnieri začínajú ako Pokročilí."
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsondescription
-msgid "Upgrade all of your citizen crossbowmen to Elite rank."
-msgstr "Povýši všetkých tvojich občanov-kušostrelcov na stupeň Elitný."
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsongenericName
-msgid "Elite Crossbow Infantry and Cavalry"
-msgstr "Elitná pechota s kušou a kavaléria"
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsontooltip
-msgid "Upgrade all of your Crossbow Infantry and Cavalry to Elite rank."
-msgstr "Povýši všetkých tvojich pešiakov s kušou a kavalériu na stupeň Elitný."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."

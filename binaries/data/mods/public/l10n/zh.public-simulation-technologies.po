@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-20 07:33+0000\n"
+"POT-Creation-Date: 2022-05-27 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Wolfson Liu <wolfsonliu@foxmail.com>, 2022\n"
+"Last-Translator: liu lizhi <xingzuo88@qq.com>, 2022\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -93,7 +93,6 @@ msgstr "斯巴达教育"
 #: simulation/data/technologies/unlock_champion_chariots.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_spies.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsonrequirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "于城市阶段解锁。"
@@ -141,7 +140,6 @@ msgstr "射术训练"
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "于城镇阶段解锁。"
 
@@ -205,7 +203,7 @@ msgid ""
 "This famous and most important work of the Seven Military Classics teaches "
 "Han commanders everything about planning battles, maintaining armies, and "
 "defeating one's enemies."
-msgstr ""
+msgstr "宋代编辑发行的《武经七书》，涉及谋攻、军争、歼敌等一整套知识。"
 
 #: simulation/data/technologies/art_of_war.jsongenericName
 msgid "Sun Tzu's \"The Art of War\""
@@ -526,7 +524,7 @@ msgstr "民政设施：建造时间 -25% ，资源花费 -25% ."
 msgid ""
 "The Han had a tradition of fine archery and a penchant for using massed "
 "crossbowmen in battle."
-msgstr ""
+msgstr "射，六艺之一。战场上也投入了大量的弓箭手。"
 
 #: simulation/data/technologies/crossbow_training.jsongenericName
 msgid "Crossbow Training"
@@ -706,7 +704,7 @@ msgstr "耕作训练"
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsondescription
 msgid "Remove water weeds to preserve nutrients for the rice plants."
-msgstr ""
+msgstr "除去水草，维护水稻发育。"
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsongenericName
 msgid "Water Weeding"
@@ -1053,10 +1051,6 @@ msgstr "信鸽"
 #: simulation/data/technologies/outpost_vision.jsontooltip
 msgid "Outposts +33% vision range."
 msgstr "哨所视野 + 33% ."
-
-#: simulation/data/technologies/pair_unlock_arrows_type.jsongenericName
-msgid "Fire Arrows vs Poison Arrows"
-msgstr "火箭或毒箭"
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
@@ -1882,18 +1876,6 @@ msgid ""
 "Allows bribing the units of other players in order to share their vision."
 msgstr "允许使用间谍获取其他玩家的单位的视野。"
 
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsondescription
-msgid "Upgrade all of your citizen crossbowmen to Advanced rank."
-msgstr "所有弩民兵升级为进阶等级。"
-
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsongenericName
-msgid "Advanced Crossbow Infantry and Cavalry"
-msgstr "进阶步弩和进阶骑弩"
-
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsontooltip
-msgid "Upgrade all of your Crossbow Infantry and Cavalry to Advanced rank."
-msgstr "所有步弩和骑弩升级为进阶等级。"
-
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
 msgstr "雇佣老兵"
@@ -1905,18 +1887,6 @@ msgstr "雇佣老兵"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries start at Advanced rank."
 msgstr "雇佣兵起始为高阶。"
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsondescription
-msgid "Upgrade all of your citizen crossbowmen to Elite rank."
-msgstr "所有弩民兵升级为精锐等级。"
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsongenericName
-msgid "Elite Crossbow Infantry and Cavalry"
-msgstr "精锐步弩和精锐骑弩"
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsontooltip
-msgid "Upgrade all of your Crossbow Infantry and Cavalry to Elite rank."
-msgstr "所有步弩和骑弩升级为精锐等级。"
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."

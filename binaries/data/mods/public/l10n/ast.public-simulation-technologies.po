@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-20 07:33+0000\n"
+"POT-Creation-Date: 2022-05-27 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>, 2017-2022\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
@@ -81,7 +81,6 @@ msgstr "Agogá"
 #: simulation/data/technologies/unlock_champion_chariots.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_spies.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsonrequirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "Dispieslla-se na Phase urbana."
@@ -129,7 +128,6 @@ msgstr "Exercicios de punteiríæ"
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "Dispieslla-se na Phase oppidana."
 
@@ -211,7 +209,7 @@ msgstr "Todolos mílites civiles: experiencia requerida p’ascender −25%."
 msgid ""
 "The will to fight is crucial to victory. Inspire your troops with higher "
 "pay."
-msgstr "Pa vincer, ha hi que tener voluntá de lhuithar. Anima a los tous txubiendo-ys el suœldu."
+msgstr "Pa vincer, ha hi que tener voluntá de lhuithar. Anima a los tous txubiendo-yis el suœldu."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to Fight"
@@ -233,7 +231,7 @@ msgstr "Mílites, máchinæs & barcos: danho offensivo +25%."
 msgid ""
 "Significantly increase training speed of infantry by training them in large "
 "batches or companies."
-msgstr "Intaina notablemente la producçon de l peditau creando-llo n greæs ou cohortes."
+msgstr "Intaina notablemente la producçon de l peditau creando-lo n greæs ou cohortes."
 
 #: simulation/data/technologies/barracks_batch_training.jsongenericName
 #: simulation/data/technologies/stable_batch_training.jsongenericName
@@ -433,7 +431,7 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr "Graciæs al tamañu & composiçon de l Imperio acheménida, los persas contabæn cun numerosos paisanos a los que tyamar a læs armæs in tiempos de gerra. Polo commun, la infanteiríæ persa staba bien exercitada & combatíæ cun gran tenacidá. Sí q’assí, non se lly daba lhuithar cuœrpu a cuœrpu. De fheitho, a excepçon de læs cohortes selectæs, la infanteiríæ persa nun yera una fhœrça permanente."
+msgstr "Graciæs al tamañu & composiçon de l Imperio acheménida, los persas contabæn cun numerosos paisanos a los que tyamar a læs armæs in tiempos de gerra. Polo commun, la infanteiríæ persa staba bien exercitada & combatíæ cun gran tenacidá. Sí q’assí, non se lli daba lhuithar cuœrpu a cuœrpu. De fheitho, a excepçon de læs cohortes selectæs, la infanteiríæ persa nun yera una fhœrça permanente."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -593,7 +591,7 @@ msgstr "Animales domésticos: tiempu de creaçon −25%."
 
 #: simulation/data/technologies/gather_capacity_basket.jsondescription
 msgid "Workers use baskets. Increases shuttling capacity for all resources."
-msgstr "Los obreiros usæn cestos, que llys permitten lhevar mas recursos."
+msgstr "Los obreiros usæn cestos, que llis permitten lhevar mas recursos."
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -609,7 +607,7 @@ msgstr "Obreiros: capacidá de carga +5."
 msgid ""
 "Workers use horse-drawn carts. Increases shuttling capacity for all "
 "resources."
-msgstr "Los obreiros usæn carros de l burru, que llys permitten lhevar mas recursos."
+msgstr "Los obreiros usæn carros de l burru, que llis permitten lhevar mas recursos."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
@@ -618,7 +616,7 @@ msgstr "Carros de l burru"
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid ""
 "Workers use wheelbarrows. Increases shuttling capacity for all resources."
-msgstr "Los obreiros usæn carrielhæs, que llys permitten lhevar mas recursos."
+msgstr "Los obreiros usæn carrielhæs, que llis permitten lhevar mas recursos."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsongenericName
 msgid "Wheelbarrow"
@@ -1042,10 +1040,6 @@ msgstr "Palombos-correu"
 msgid "Outposts +33% vision range."
 msgstr "Miradoîros: vision +33%."
 
-#: simulation/data/technologies/pair_unlock_arrows_type.jsongenericName
-msgid "Fire Arrows vs Poison Arrows"
-msgstr "Saietæs incessæs-Saietæs invenenadæs"
-
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
 msgstr "Exércitu tradicional-Exércitu reformau"
@@ -1281,7 +1275,7 @@ msgstr "Barcos: vitalidá +25%."
 msgid ""
 "Train your oarsmen and sailors to move more efficiently and speed up your "
 "ships."
-msgstr "Instrui’ los marineiros & remeiros a rebulhise & intaina’ los barcos."
+msgstr "Instrui’ los marineiros & remeiros a arrebulhise & intaina’ los barcos."
 
 #: simulation/data/technologies/ship_movement_speed.jsongenericName
 msgid "Experienced Crews"
@@ -1453,7 +1447,7 @@ msgstr "Mílites: danho combatiente +20%. Los spatharios reciben una ventaya d�
 msgid ""
 "Improving the fletching of arrows increases their stability and speed, and "
 "thus their penetration."
-msgstr "La meyora de læs saietæs fhaz-llæs volar mas stables & velozes, augmentando la suâ penetraçon."
+msgstr "La meyora de læs saietæs fhaz-læs volar mas stables & velozes, augmentando la suâ penetraçon."
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
 msgid "Improved Fletching"
@@ -1554,7 +1548,7 @@ msgstr "Mílites: resistencia a fhoradæs +1."
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsondescription
 msgid "Strengthen shields with a metal rim or spine."
-msgstr "Refhœrça los scudos cun canthos metállicos."
+msgstr "Arrefhœrça los scudos cun canthos metállicos."
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsongenericName
 msgid "Metal Rim"
@@ -1562,7 +1556,7 @@ msgstr "Canthos metállicos"
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsondescription
 msgid "Strengthen shields further with stronger metal alloys."
-msgstr "Refhœrça los scudos inda mas cun mixturæs metállicæs mas resistentes."
+msgstr "Arrefhœrça los scudos inda mas cun mixturæs metállicæs mas resistentes."
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsongenericName
 msgid "Improved Shield Alloys"
@@ -1588,7 +1582,7 @@ msgstr "Fhaz que l costu de suborna’ læs tuês unidades augmente un 50%."
 msgid ""
 "Significantly increase training speed of cavalry by training them in large "
 "batches or squadrons."
-msgstr "Intaina notablemente la producçon de l eqüitau creando-llo n greæs ou turmæs."
+msgstr "Intaina notablemente la producçon de l eqüitau creando-lo n greæs ou turmæs."
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Stables −10% batch training time."
@@ -1824,7 +1818,7 @@ msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers "
 "and their families in foreign countries, allowing them to exploit the wealth"
 " of these countries."
-msgstr "La extension de l commercio lheva al stablicimiento permanente de familiæs commerciantes in tierra extraña, permittiendo-ys aproveitha’ la opulencia local."
+msgstr "La extension de l commercio lheva al stablicimiento permanente de familiæs commerciantes in tierra extraña, permittiendo-yis aproveitha’ la opulencia local."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsongenericName
 msgid "Diaspora"
@@ -1859,7 +1853,7 @@ msgstr "Permitte ve’ lo que ven los alliahos de tou, revisa’l sou resume & c
 msgid ""
 "Merchants' first goal was trading, but they also gathered information about "
 "the countries they crossed."
-msgstr "Arriendæs de commerciar, los mercadores recoyíæn informaçon subre los países pelos que passabæn."
+msgstr "Arriendæs de commerciar, los mercadores arrexhuntabæn informaçon subre los países pelos que passabæn."
 
 #: simulation/data/technologies/unlock_spies.jsongenericName
 msgid "Espionage"
@@ -1869,18 +1863,6 @@ msgstr "Speculaçon"
 msgid ""
 "Allows bribing the units of other players in order to share their vision."
 msgstr "Permitte suborna’ læs unidades d’outros xhogadores p’aproveitha’ la suâ vision."
-
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsondescription
-msgid "Upgrade all of your citizen crossbowmen to Advanced rank."
-msgstr "Ascender al grau superior a todolos tous arcuballistarios civiles."
-
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsongenericName
-msgid "Advanced Crossbow Infantry and Cavalry"
-msgstr "Arcuballistarios superiores"
-
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsontooltip
-msgid "Upgrade all of your Crossbow Infantry and Cavalry to Advanced rank."
-msgstr "Ascender al grau superior a todolos tous pédites & éqüites arcuballistarios."
 
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
@@ -1893,18 +1875,6 @@ msgstr "Pericia béllica"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries start at Advanced rank."
 msgstr "Los mercenarios intamæn al grau Superior."
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsondescription
-msgid "Upgrade all of your citizen crossbowmen to Elite rank."
-msgstr "Ascender al grau singular a todolos tous arcuballistarios civiles."
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsongenericName
-msgid "Elite Crossbow Infantry and Cavalry"
-msgstr "Arcuballistarios singulares"
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsontooltip
-msgid "Upgrade all of your Crossbow Infantry and Cavalry to Elite rank."
-msgstr "Ascender al grau singular a todolos tous pédites & éqüites arcuballistarios."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."

@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Álvaro Tavares de Oliveira
 # Andrei Golemsky
 # 8a9afb43fd95d08d43e4b3f29e8e204d_f74a2a3
 # borg 2k
@@ -40,9 +41,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-20 07:33+0000\n"
+"POT-Creation-Date: 2022-05-27 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Hariston trabalhos, 2022\n"
+"Last-Translator: Álvaro Tavares de Oliveira, 2022\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -113,7 +114,6 @@ msgstr "Agogê"
 #: simulation/data/technologies/unlock_champion_chariots.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_spies.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsonrequirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "Desbloqueado na Fase de Cidade"
@@ -161,7 +161,6 @@ msgstr "Treinamento de Tiro com Arco"
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "Desbloqueado na Fase de Vila"
 
@@ -233,7 +232,7 @@ msgstr "\"A Arte da Guerra\" de Sun Tzu"
 
 #: simulation/data/technologies/art_of_war.jsonspecificName.han
 msgid "Sūnzǐ BīngFǎ"
-msgstr ""
+msgstr "Sūnzǐ BīngFǎ"
 
 #: simulation/data/technologies/art_of_war.jsontooltip
 msgid "All Citizen-Soldiers −25% required promotion experience."
@@ -494,7 +493,7 @@ msgstr "Engenharia Civil - Nível 1"
 #: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
 #: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
 msgid "Gōngchéng"
-msgstr ""
+msgstr "Gōngchéng"
 
 #: simulation/data/technologies/civil_engineering_01.jsontooltip
 msgid "All structures −15% build time, +10% health and −5% cost."
@@ -515,7 +514,7 @@ msgstr "Função Pública - Nível 1"
 #: simulation/data/technologies/civil_service_01.jsonspecificName.han
 #: simulation/data/technologies/civil_service_02.jsonspecificName.han
 msgid "Guānliáo"
-msgstr ""
+msgstr "Guānliáo"
 
 #: simulation/data/technologies/civil_service_01.jsontooltip
 #: simulation/data/technologies/civil_service_02.jsontooltip
@@ -1074,10 +1073,6 @@ msgstr "Pombos-correios"
 msgid "Outposts +33% vision range."
 msgstr "Postos avançados +33% de alcance de visão."
 
-#: simulation/data/technologies/pair_unlock_arrows_type.jsongenericName
-msgid "Fire Arrows vs Poison Arrows"
-msgstr "Flechas de Fogo vs Flechas Venenosas"
-
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
 msgstr "Exército tradicional vs. Reforma do Exército"
@@ -1143,7 +1138,7 @@ msgstr "Avança de uma cidade promissora para uma autêntica metrópole, repleta
 
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.han
 msgid "Jùn"
-msgstr ""
+msgstr "Jùn"
 
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
@@ -1198,7 +1193,7 @@ msgstr "Avança de uma pequena aldeia a uma cidade promissora, pronta para expan
 
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.han
 msgid "Xìan"
-msgstr ""
+msgstr "Xìan"
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
@@ -1694,7 +1689,7 @@ msgstr "Nyktophylakes"
 
 #: simulation/data/technologies/tower_watch.jsonspecificName.han
 msgid "Shàobīng"
-msgstr ""
+msgstr "Shàobīng"
 
 #: simulation/data/technologies/tower_watch.jsonspecificName.rome
 msgid "Vigiles"
@@ -1902,18 +1897,6 @@ msgid ""
 "Allows bribing the units of other players in order to share their vision."
 msgstr "Permite subornar as unidades de outros jogadores para compartilhar sua visão."
 
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsondescription
-msgid "Upgrade all of your citizen crossbowmen to Advanced rank."
-msgstr "Atualize todos os seus besteiros cidadãos para o nível Avançado."
-
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsongenericName
-msgid "Advanced Crossbow Infantry and Cavalry"
-msgstr "Infantaria e Cavalaria com Besta Avançada"
-
-#: simulation/data/technologies/upgrade_rank_advanced_crossbow.jsontooltip
-msgid "Upgrade all of your Crossbow Infantry and Cavalry to Advanced rank."
-msgstr "Atualize toda a sua infantaria e cavalaria com besta para o nível Avançado."
-
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsondescription
 msgid "Hire professional mercenaries to fight in your army."
 msgstr "Contrate mercenários profissionais para lutar no seu exército."
@@ -1925,18 +1908,6 @@ msgstr "Experiência em Guerra"
 #: simulation/data/technologies/upgrade_rank_advanced_mercenary.jsontooltip
 msgid "Mercenaries start at Advanced rank."
 msgstr "Mercenários começam no ranking Avançado."
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsondescription
-msgid "Upgrade all of your citizen crossbowmen to Elite rank."
-msgstr "Atualize todos os seus besteiros cidadãos para o nível Elite."
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsongenericName
-msgid "Elite Crossbow Infantry and Cavalry"
-msgstr "Infantaria e Cavalaria de Besta de Elite"
-
-#: simulation/data/technologies/upgrade_rank_elite_crossbow.jsontooltip
-msgid "Upgrade all of your Crossbow Infantry and Cavalry to Elite rank."
-msgstr "Atualize toda a sua infantaria e cavalaria com besta para o nível Elite."
 
 #: simulation/data/technologies/wonder_population_cap.jsondescription
 msgid "The wonder attracts many more people to your civilization."

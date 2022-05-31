@@ -5,7 +5,7 @@
 # Translators:
 # 9d55e3ee15627ad1d8f4f40620dcb50d
 # Asakura
-# JungHee Lee
+# Junghee Lee
 # karubabu
 # ks k
 # Muk Myung-Hee MyungHee
@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-29 07:08+0000\n"
+"POT-Creation-Date: 2022-05-27 07:09+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2019,2021-2022\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2019,2021-2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -106,14 +106,6 @@ msgstr "상인의 이동 속도가 20% 증가합니다."
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
 msgstr "아소카의 칙령"
-
-#: simulation/data/auras/structures/rotary_mill.jsonauraDescription
-msgid "Workers +25% grain gather rate."
-msgstr "일꾼의 곡물 수확률이 +25% 증가합니다."
-
-#: simulation/data/auras/structures/rotary_mill.jsonauraName
-msgid "Farming bonus"
-msgstr "농업 보너스"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
@@ -546,14 +538,6 @@ msgstr "평등을 더욱 뒷받침하기 위해 리쿠르고스는 펠라노르�
 msgid "Iron Pelanors"
 msgstr "철제 펠라노르스"
 
-#: simulation/data/auras/units/elephant_worker.jsonauraDescription
-msgid "Builders +25% build rate."
-msgstr "건축 유닛의 건설 속도가 +25% 증가합니다."
-
-#: simulation/data/auras/units/elephant_worker.jsonauraName
-msgid "Elephant Workers"
-msgstr "코끼리 일꾼"
-
 #: simulation/data/auras/units/han_minister_building.jsonauraDescription
 msgid "Builders construct buildings +2% faster for every nearby Minister."
 msgstr "건축가는 주변의 모든 관리만큼 건물을 +2% 더 빠르게 건설합니다."
@@ -561,14 +545,6 @@ msgstr "건축가는 주변의 모든 관리만큼 건물을 +2% 더 빠르게 �
 #: simulation/data/auras/units/han_minister_building.jsonauraName
 msgid "Building Programs"
 msgstr "건축 계획"
-
-#: simulation/data/auras/units/han_minister_cost.jsonauraDescription
-msgid "Cost +20% and build time +20% for each new Minister trained."
-msgstr "새 관리가 훈련될 때마다 비용이 +20% 증가하고, 건설 시간이 +20% 증가합니다."
-
-#: simulation/data/auras/units/han_minister_cost.jsonauraName
-msgid "The Cost of Splendor"
-msgstr "화려함의 대가"
 
 #: simulation/data/auras/units/han_minister_garrison.jsonauraDescription
 msgid ""
