@@ -229,6 +229,17 @@ void CGUIString::GenerateTextCall(const CGUI& pGUI, SFeedback& Feedback, CStrInt
 
 			if (!TextCall.m_String.empty() && TextCall.m_String[0] == '\n')
 				Feedback.m_NewLine = true;
+			// Multiple empty spaces are treated as individual words (one per space),
+			// and for coherence we'll do the 'ignore space after the word' thing
+			// only if the word actually has some other text in it, so process this only if size >= 2
+			else if (TextCall.m_String.size() >= 2)
+			{
+				const wchar_t lastChar = TextCall.m_String.back();
+				// If the last word ends with a 'space', we'll ignore it when aligning, so mark it.
+				Feedback.m_EndsWithSpace = lastChar == ' ' || lastChar == 0x3000;
+			}
+			else
+				Feedback.m_EndsWithSpace = false;
 
 			// Add text-chunk
 			Feedback.m_TextCalls.emplace_back(std::move(TextCall));
