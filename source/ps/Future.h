@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -77,7 +77,7 @@ class SharedState : public SharedStateResult<ResultType>
 {
 	static constexpr bool VoidResult = std::is_same_v<ResultType, void>;
 public:
-	SharedState(std::function<ResultType()>&& func) : m_Func(func) {}
+	SharedState(std::function<ResultType()>&& func) : m_Func(std::move(func)) {}
 	~SharedState()
 	{
 		// For safety, wait on started task completion, but not on pending ones (auto-cancelled).
@@ -175,11 +175,11 @@ class Future
 	using Status = FutureSharedStateDetail::Status;
 	using SharedState = FutureSharedStateDetail::SharedState<ResultType>;
 public:
-	Future() {};
+	Future() = default;
 	Future(const Future& o) = delete;
 	Future(Future&&) = default;
 	Future& operator=(Future&&) = default;
-	~Future() {}
+	~Future() = default;
 
 	/**
 	 * Make the future wait for the result of @a func.
@@ -272,7 +272,7 @@ class PackagedTask
 	static constexpr bool VoidResult = std::is_same_v<ResultType, void>;
 public:
 	PackagedTask() = delete;
-	PackagedTask(const std::shared_ptr<typename Future<ResultType>::SharedState>& ss) : m_SharedState(ss) {}
+	PackagedTask(std::shared_ptr<typename Future<ResultType>::SharedState> ss) : m_SharedState(std::move(ss)) {}
 
 	void operator()()
 	{
