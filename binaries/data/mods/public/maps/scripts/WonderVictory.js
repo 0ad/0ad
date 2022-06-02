@@ -131,17 +131,6 @@ Trigger.prototype.WonderVictoryPlayerWon = function(data)
 		this.WonderVictoryDeleteTimer(ent);
 };
 
-Trigger.prototype.WonderVictoryPlayerDefeated = function(data)
-{
-	for (let ent in this.wonderVictoryMessages)
-		if (this.wonderVictoryMessages[ent].allies.has(data.playerId))
-		{
-			let owner = this.wonderVictoryMessages[ent].playerID;
-			this.WonderVictoryDeleteTimer(ent);
-			this.WonderVictoryStartTimer(ent, owner);
-		}
-};
-
 Trigger.prototype.WonderVictorySetWinner = function(playerID)
 {
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
@@ -163,6 +152,5 @@ Trigger.prototype.WonderVictorySetWinner = function(playerID)
 	cmpTrigger.RegisterTrigger("OnOwnershipChanged", "WonderVictoryOwnershipChanged", { "enabled": true });
 	cmpTrigger.RegisterTrigger("OnDiplomacyChanged", "WonderVictoryDiplomacyChanged", { "enabled": true });
 	cmpTrigger.RegisterTrigger("OnPlayerWon", "WonderVictoryPlayerWon", { "enabled": true });
-	cmpTrigger.RegisterTrigger("OnPlayerDefeated", "WonderVictoryPlayerDefeated", { "enabled": true });
 	cmpTrigger.wonderVictoryMessages = {};
 }
