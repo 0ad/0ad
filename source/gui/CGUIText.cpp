@@ -79,7 +79,14 @@ CGUIText::CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& font
 	int posLastImage = -1;	// Position in the string where last img (either left or right) were encountered.
 							//  in order to avoid duplicate processing.
 
-	// Go through string word by word
+	// The calculated width of each word includes the space between the current
+	// word and the next. When we're wrapping, we need subtract the width of the
+	// space after the last word on the line before the wrap.
+	CFontMetrics currentFont(font);
+	float spaceWidth = currentFont.GetCharacterWidth(L' ');
+
+	// Go through string word by word.
+	// a word is defined as [start, end[ in string.m_Words so we skip the last item.
 	for (int i = 0; i < static_cast<int>(string.m_Words.size()) - 1; ++i)
 	{
 		// Pre-process each line one time, so we know which floating images
@@ -102,8 +109,10 @@ CGUIText::CGUIText(const CGUI& pGUI, const CGUIString& string, const CStrW& font
 
 		prelimLineHeight = std::max(prelimLineHeight, feedback.m_Size.Height);
 
+		float spaceCorrection = feedback.m_EndsWithSpace ? spaceWidth : 0.f;
+
 		// If width is 0, then there's no word-wrapping, disable NewLine.
-		if ((width != 0 && from != i && (lineWidth + 2 * bufferZone > width || feedback.m_NewLine)) || i == static_cast<int>(string.m_Words.size()) - 2)
+		if ((width != 0 && from != i && (lineWidth - spaceCorrection + 2 * bufferZone > width || feedback.m_NewLine)) || i == static_cast<int>(string.m_Words.size()) - 2)
 		{
 			if (ProcessLine(pGUI, string, font, pObject, images, align, prelimLineHeight, width, bufferZone, firstLine, y, i, from))
 				return;
@@ -173,6 +182,14 @@ void CGUIText::ComputeLineSize(
 	const int tempFrom,
 	CSize2D& lineSize) const
 {
+	// The calculated width of each word includes the space between the current
+	// word and the next. When we're wrapping, we need subtract the width of the
+	// space after the last word on the line before the wrap.
+	CFontMetrics currentFont(font);
+	float spaceWidth = currentFont.GetCharacterWidth(L' ');
+
+	float spaceCorrection = 0.f;
+
 	float x = widthRangeFrom;
 	for (int j = tempFrom; j <= i; ++j)
 	{
@@ -187,15 +204,12 @@ void CGUIText::ComputeLineSize(
 		// Append X value.
 		x += feedback2.m_Size.Width;
 
-		if (width != 0 && x > widthRangeTo && j != tempFrom && !feedback2.m_NewLine)
-		{
-			// The calculated width of each word includes the space between the current
-			// word and the next. When we're wrapping, we need subtract the width of the
-			// space after the last word on the line before the wrap.
-			CFontMetrics currentFont(font);
-			lineSize.Width -= currentFont.GetCharacterWidth(*L" ");
+		if (width != 0 && x - spaceCorrection > widthRangeTo && j != tempFrom && !feedback2.m_NewLine)
 			break;
-		}
+
+		// Update after the line-break detection, because otherwise spaceCorrection above
+		// will refer to the wrapped word and not the last-word-before-the-line-break.
+		spaceCorrection = feedback2.m_EndsWithSpace ? spaceWidth : 0.f;
 
 		// Let lineSize.cy be the maximum m_Height we encounter.
 		lineSize.Height = std::max(lineSize.Height, feedback2.m_Size.Height);
@@ -209,6 +223,8 @@ void CGUIText::ComputeLineSize(
 
 		lineSize.Width += feedback2.m_Size.Width;
 	}
+	// Remove the space if necessary.
+	lineSize.Width -= spaceCorrection;
 }
 
 bool CGUIText::ProcessLine(
@@ -364,14 +380,16 @@ bool CGUIText::AssembleCalls(
 				tc.m_pSpriteCall->m_Area += tc.m_Pos - CSize2D(0, tc.m_pSpriteCall->m_Area.GetHeight());
 		}
 
-		// Append X value.
 		x += feedback2.m_Size.Width;
 
-		// The first word overrides the width limit, what we
-		//  do, in those cases, are just drawing that word even
-		//  though it'll extend the object.
 		if (width != 0) // only if word-wrapping is applicable
 		{
+			// Check if we need to wrap, using the same algorithm as ComputeLineSize
+			// This means we must ignore the 'space before the next word' for the purposes of wrapping.
+			CFontMetrics currentFont(font);
+			float spaceWidth = currentFont.GetCharacterWidth(L' ');
+			float spaceCorrection = feedback2.m_EndsWithSpace ? spaceWidth : 0.f;
+
 			if (feedback2.m_NewLine)
 			{
 				from = j + 1;
@@ -392,12 +410,17 @@ bool CGUIText::AssembleCalls(
 				}
 				break;
 			}
-			else if (x > widthRangeTo && j == tempFrom)
+			else if (x - spaceCorrection > widthRangeTo && j == tempFrom)
 			{
+				// The first word overrides the width limit, what we do,
+				// in those cases, is just drawing that word even
+				// though it'll extend the object.
+				// Ergo: do not break, since we want it to be added to m_TextCalls.
 				from = j+1;
-				// do not break, since we want it to be added to m_TextCalls
+				// To avoid doing redundant computations, set up j to exit the loop right away.
+				j = i + 1;
 			}
-			else if (x > widthRangeTo)
+			else if (x - spaceCorrection > widthRangeTo)
 			{
 				from = j;
 				break;

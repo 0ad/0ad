@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -166,7 +166,7 @@ TaskManager::TaskManager(size_t numberOfWorkers)
 	m->SetupWorkers(numberOfWorkers);
 }
 
-TaskManager::~TaskManager() {}
+TaskManager::~TaskManager() = default;
 
 TaskManager::Impl::Impl(TaskManager& backref)
 	: m_TaskManager(backref)
