@@ -39,7 +39,7 @@ msgstr "Atayu sin assignar: %(hotkeyName)s"
 #: gui/common/color.js:196
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names."
-msgstr "Premi %(hotkey)s pa perfhazer nomes de xhogadores automaticamente."
+msgstr "Premi %(hotkey)s pa per-fhazer nomes de xhogadores automaticamente."
 
 #: gui/common/color.js:198
 msgctxt "hotkey"
@@ -4668,85 +4668,85 @@ msgstr "Usa’l cifraho TLS par protegë’ læs credenciales & outros datos int
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[1].label
 msgid "Chat backlog"
-msgstr "Aneyadura inicial"
+msgstr "Recahos iniciales"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[1].tooltip
 msgid "Number of backlogged messages to load when joining the lobby."
-msgstr "El númberu de mensaxes atrasaos a cargar al xunise al antepar."
+msgstr "Númeru de recahos recientes a mostrar al intrar n antepar."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].label
 msgid "Game rating column"
-msgstr "Columna de clasificación"
+msgstr "Columna de classificaçones"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
-msgstr "Amostrar la clasificación media de los xugadores participantes nuna columna del índiz d'alcuentros."
+msgstr "Amostra’ la classificaçon media de los xhogadores participantes n una columna de la tablra de partidæs."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].label
 msgid "Network warnings"
-msgstr "Alvertencies de rede"
+msgstr "Avisos de rede"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr "Amostrar qual xhogador tien mala connexion in partidæs de varios xhogadores."
+msgstr "Avisar de malæs connexiones in partidæs de varios xhogadores."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].label
 msgid "Late observer joins"
-msgstr "Xunimientos serondos d'espectadores."
+msgstr "Intradæs serœndæs de spectadores"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
-msgstr "Dexar que todos o solo los collacios se xunan como espectadores n'emprimando l'alcuentru."
+msgstr "Cominçada la partida, deixar que todu l mundu, ou solo los colhaços, intre cumo spectador."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[5].label
 msgid "Observer limit"
-msgstr "Llende d'espectadores"
+msgstr "Límite de spectadores"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[5].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
-msgstr "Quitar que más espectadores se xunan si s'algama la llende."
+msgstr "Quitar q’intren mas spectadores n algamando l límite."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[6].label
 msgid "Max lag for observers"
-msgstr "Retrasu máximu pa los espectadores"
+msgstr "Atrassu máximu pa spectadores"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[6].tooltip
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
-msgstr "Al ahospedar, pousa’ la partida si los spectadores atrassaren mas d’esti númeru de turnos. Si s’afhita a -1, non se llis fhaz casu."
+msgstr "Al ahospedar, pousa’ la partida si los spectadores quedæn mas d’esti númeru de turnos a tras. Si s’afhita a -1, non se tien in cuœnta."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].label
 msgid "(Observer) Speed up when lagging."
-msgstr "(Espectador) Entainar al quedar atrás."
+msgstr "(Spectador) Intainar al quedar a tras."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].tooltip
 msgid ""
 "When observing a game, automatically speed up if you start lagging, to catch"
 " up with the live match."
-msgstr "Si t'allancies al observar un alcuentru en directo, entainar automáticamente pa sincronizate col alcuentru."
+msgstr "Si quedæs a tras al ver una partida n directo, intainar automaticamente pa synchronizate cun la partida."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].tooltip
 msgid "These settings only affect the multiplayer."
-msgstr "Estos axhustes solo affectæn al modu delhos xhogadores."
+msgstr "Estos axhustes solo affectæn al modu varios xhogadores."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].label
 msgid "Game Session"
-msgstr "Sesión de xuegu"
+msgstr "Session de xhuœw"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[0].label
 msgid "Wounded unit health"
-msgstr "Vitalidá d'unidades mancades"
+msgstr "Vitalidá “mancada”"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[0].tooltip
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
-msgstr "L'atayu de tecláu «unidades mancades» tien les unidades esbillades por mancades si'l so porcentaxe de salú caye embaxo d'esti númberu.  "
+msgstr "L atayu “unidades mancadæs” siñala cumo mancadæs læs unidades scoyidæs que pierdan mas d’esti percentual de vitalidá."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].label
 msgid "Aura range visualization"
@@ -5017,7 +5017,7 @@ msgstr "Amostrallos todos"
 msgid ""
 "Show a chat notification if you or an ally have started, aborted or "
 "completed a new phase, and phases of all players in observer mode."
-msgstr "Amostrar un avisu si qualquier alliau comiença, abuœrta ou perfhaz nuœva phase al sta’ læs phases de todolos xhogadores in modu spectador."
+msgstr "Amostrar un avisu si qualquier alliau comiença, abuœrta ou per-fhaz nuœva phase al sta’ læs phases de todolos xhogadores in modu spectador."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[9].label
 msgid "Attack range visualization"
