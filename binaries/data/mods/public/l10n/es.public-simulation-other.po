@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-11-19 08:08+0000\n"
+"POT-Creation-Date: 2022-06-03 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020-2021\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020-2022\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -539,41 +539,41 @@ msgstr[2] "%(players)s y %(lastPlayer)s han ganado. Son los únicos jugadores co
 msgid "Last remaining player wins."
 msgstr "El último jugador en pie gana la partida."
 
-#: simulation/components/EntityLimits.js:192
+#: simulation/components/EntityLimits.js:195
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "%(category)s ha alcanzado el límite de construcción de %(limit)s"
 
-#: simulation/components/EntityLimits.js:194
+#: simulation/components/EntityLimits.js:197
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "%(category)s ha alcanzado el límite de reclutamiento de %(limit)s"
 
-#: simulation/components/EntityLimits.js:198
+#: simulation/components/EntityLimits.js:201
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s ha llegado al límite de %(limit)s"
 
-#: simulation/components/Player.js:347
+#: simulation/components/Player.js:323
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "No hay recursos suficientes - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:349
+#: simulation/components/Player.js:325
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "No hay recursos suficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:351
+#: simulation/components/Player.js:327
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "No hay recursos suficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:353
+#: simulation/components/Player.js:329
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -581,19 +581,19 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "No hay recursos suficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:289
+#: simulation/components/ProductionQueue.js:312
 msgid "Entity is being upgraded. Cannot start production."
 msgstr "Entidad promocionando. La producción no puede comenzar."
 
-#: simulation/components/ProductionQueue.js:304
+#: simulation/components/ProductionQueue.js:327
 msgid "The production queue is full."
 msgstr "La cola de producción está llena."
 
-#: simulation/components/ProductionQueue.js:443
+#: simulation/components/ProductionQueue.js:450
 msgid "Could not auto-queue unit, de-activating."
 msgstr "No se ha podido poner en cola la unidad, desactivando."
 
-#: simulation/components/Trainer.js:321
+#: simulation/components/Trainer.js:317
 msgid "Can't find free space to spawn trained units."
 msgstr "No hay espacio suficiente para desplegar las unidades reclutadas."
 
@@ -832,12 +832,12 @@ msgstr "Derrota a tus oponentes acabando con todas sus unidades y destruyendo to
 msgid "Conquest"
 msgstr "Conquista"
 
-#: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Description
-msgid "Defeat opponents by destroying all their fully build civic centres."
+#: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Description
+msgid "Defeat opponents by destroying all their fully build civic centers."
 msgstr "Derrota a tus oponentes destruyendo todos sus centros cívicos construidos."
 
-#: simulation/data/settings/victory_conditions/conquest_civiccentres.jsonData.Title
-msgid "Conquest Civic Centres"
+#: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Title
+msgid "Conquest Civic Centers"
 msgstr "Conquista de centros cívicos"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
@@ -876,12 +876,12 @@ msgstr "Sé el primero en construir o capturar una maravilla y consérvala duran
 msgid "Wonder"
 msgstr "Maravilla"
 
-#: simulation/helpers/Cheat.js:58
+#: simulation/helpers/Cheat.js:57
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
 msgstr "%(player)s se considera derrotado por hacer trampas (trucos)."
 
-#: simulation/helpers/Cheat.js:68
+#: simulation/helpers/Cheat.js:71
 msgid "You need to select a building that trains units."
 msgstr "Es necesario seleccionar un edificio que reclutar unidades."
 

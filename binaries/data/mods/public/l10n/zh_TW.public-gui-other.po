@@ -1057,7 +1057,7 @@ msgstr "每個單位"
 
 #: gui/common/tooltips.js:636
 msgid "Number of repairers:"
-msgstr "維修工數目"
+msgstr "維修工數量："
 
 #: gui/common/tooltips.js:642
 msgid "Remaining repair time:"
@@ -1068,17 +1068,17 @@ msgstr "剩下的修復時間："
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] "增加另一位工人以加速%(second)s秒來維修。"
+msgstr[0] "增加另一位工人以加速 %(second)s 秒來維修。"
 
 #: gui/common/tooltips.js:658
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] "追加一位工人以在%(second)s秒內完成維修。"
+msgstr[0] "增加一位工人以在 %(second)s 秒內完成維修。"
 
 #: gui/common/tooltips.js:670
 msgid "Number of builders:"
-msgstr "建築工數目"
+msgstr "建築工數量："
 
 #: gui/common/tooltips.js:676
 msgid "Remaining build time:"
@@ -1089,13 +1089,13 @@ msgstr "剩下的建造時間："
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] "增加另一位工人以加速%(second)s秒來蓋建築。"
+msgstr[0] "增加另一位工人以加速 %(second)s 秒來建造。"
 
 #: gui/common/tooltips.js:692
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
-msgstr[0] "增加一位工人在%(second)s秒內蓋好建築。"
+msgstr[0] "增加一位工人以在 %(second)s 秒內完成建造。"
 
 #: gui/common/tooltips.js:730 gui/common/tooltips.js:993
 #, javascript-format
@@ -1122,7 +1122,7 @@ msgstr "%(label)s %(component)s %(amount)s"
 
 #: gui/common/tooltips.js:785
 msgid "Resource Supply:"
-msgstr "資源供給"
+msgstr "提供資源："
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its
@@ -1293,14 +1293,14 @@ msgstr "存放點給："
 #. element will open the Template Details GUI page.
 #: gui/common/tooltips.js:1211
 msgid "Right-click to view more information."
-msgstr "按右鍵看更多資訊"
+msgstr "按右鍵看更多資訊。"
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
 #: gui/common/tooltips.js:1217
 msgid "Click to view more information."
-msgstr "點擊看更多資訊"
+msgstr "點擊看更多資訊。"
 
 #: gui/common/tooltips.js:1226
 msgctxt "One letter abbreviation for million"
@@ -1586,7 +1586,7 @@ msgstr "全部快捷鍵"
 
 #: gui/hotkeys/HotkeysPage.js:109
 msgid "All available hotkeys."
-msgstr "全部可用的快捷鍵"
+msgstr "全部可用的快捷鍵。"
 
 #: gui/hotkeys/HotkeysPage.js:156
 msgid ""
@@ -1663,7 +1663,7 @@ msgstr "儲存變更"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):59
 msgid "Unsaved changes will be lost"
-msgstr "未儲存的變更將會遺失。"
+msgstr "未儲存的變更將會遺失"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
@@ -1699,7 +1699,7 @@ msgstr "反向捲動或向下旋轉。"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate down"
-msgstr "向下捲動/旋轉"
+msgstr "向下捲動 / 旋轉"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.desc
 msgctxt "hotkey metadata"
@@ -1952,7 +1952,7 @@ msgstr "向前捲動或向上旋轉。"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate up"
-msgstr "向上捲動/旋轉"
+msgstr "向上捲動 / 旋轉"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.desc
 msgctxt "hotkey metadata"
@@ -1977,22 +1977,22 @@ msgstr "拉遠"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera zoom speed."
-msgstr "減少鏡頭拉放速度。"
+msgstr "減少鏡頭縮放速度。"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease zoom speed"
-msgstr "減少拉放速度"
+msgstr "減少縮放速度"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera zoom speed."
-msgstr "增加鏡頭拉放速度。"
+msgstr "增加鏡頭縮放速度。"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase zoom speed"
-msgstr "增加拉放速度"
+msgstr "增加縮放速度"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.desc
 msgctxt "hotkey metadata"
@@ -2622,7 +2622,7 @@ msgstr "啟用自動佇列"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to repair when clicking on building/mechanical unit."
-msgstr "點擊建築/機械單位時修理的指示鍵。"
+msgstr "點擊建築 / 機械單位時修理的指示鍵。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.name
 msgctxt "hotkey metadata"
@@ -2684,7 +2684,7 @@ msgstr "切換預設陣型"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.desc
 msgctxt "hotkey metadata"
 msgid "Unload garrisoned units when a building/mechanical unit is selected."
-msgstr "當選擇一個建築/機械單位時卸載駐守單位。"
+msgstr "當選擇一個建築 / 機械單位時卸載駐守單位。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.name
 msgctxt "hotkey metadata"
@@ -2749,7 +2749,7 @@ msgstr "切換文明資訊。"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
 msgctxt "hotkey metadata"
 msgid "Toggle civ info"
-msgstr "顯示文明資訊"
+msgstr "切換文明資訊"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.desc
 msgctxt "hotkey metadata"
@@ -2764,7 +2764,7 @@ msgstr "切換 FPS 計數器"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.desc
 msgctxt "hotkey metadata"
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "在對話視窗裡顯示多人玩家大廳"
+msgstr "在對話視窗裡顯示多人玩家大廳。"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.name
 msgctxt "hotkey metadata"
@@ -2836,7 +2836,7 @@ msgstr "切換外交顏色"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game barter/trade page."
-msgstr "切換遊戲內交換/貿易頁面。"
+msgstr "切換遊戲內交換 / 貿易頁面。"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.name
 msgctxt "hotkey metadata"
@@ -2916,7 +2916,7 @@ msgstr "切換守衛亮顯"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.desc
 msgctxt "hotkey metadata"
 msgid "Delete the saved game (in the save/load windows)."
-msgstr "刪除儲存的遊戲（在儲存/載入視窗）。"
+msgstr "刪除儲存的遊戲（在儲存 / 載入視窗）。"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.name
 msgctxt "hotkey metadata"
@@ -3538,15 +3538,15 @@ msgstr "載入"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr "這個存檔需要0 A.D. 版本 %(requiredVersion)s，然而您執行的是 %(currentVersion)s。"
+msgstr "這個存檔需要 0 A.D. 版本 %(requiredVersion)s，然而您執行的是 %(currentVersion)s。"
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
-msgstr "這個存檔需要較舊版本的 0 A.D。"
+msgstr "這個存檔需要較舊版本的 0 A.D.。"
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
-msgstr "這個存檔需要使用不同的模組："
+msgstr "這個存檔需要使用一系列不同的模組："
 
 #: gui/loadgame/SavegameLoader.js:55
 msgid "Do you still want to proceed?"
@@ -3594,11 +3594,11 @@ msgstr "相容於過濾器的已儲存遊戲"
 
 #: gui/loadgame/load.xml:(caption):74
 msgid "Players:"
-msgstr "玩家數："
+msgstr "玩家："
 
 #: gui/loadgame/load.xml:(caption):78
 msgid "Played time:"
-msgstr "遊玩時間"
+msgstr "遊玩時間："
 
 #: gui/loadgame/load.xml:(caption):82
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):32
@@ -3720,11 +3720,11 @@ msgstr "預設"
 
 #: gui/maps/MapFilters.js:92
 msgid "All maps except naval and demo maps."
-msgstr "除了海洋與展示地圖外的所有地圖。"
+msgstr "除了海戰與展示地圖外的所有地圖。"
 
 #: gui/maps/MapFilters.js:97
 msgid "Naval Maps"
-msgstr "海洋地圖"
+msgstr "海戰地圖"
 
 #: gui/maps/MapFilters.js:98
 msgid "Maps where ships are needed to reach the enemy."
@@ -4025,7 +4025,7 @@ msgstr "視窗模式"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
-msgstr "以視窗模式啟動 0 A.D. "
+msgstr "以視窗模式啟動 0 A.D.。"
 
 #: gui/options/options.json[1].options[10].label
 msgid "Mouse drag"
@@ -4044,7 +4044,7 @@ msgstr "霧"
 #: gui/options/options.json[1].options[1].tooltip
 #: gui/options/options.json[2].options[1].tooltip
 msgid "Enable fog."
-msgstr "啟用迷霧。"
+msgstr "啟用霧。"
 
 #: gui/options/options.json[1].options[2].label
 #: gui/options/options.json[2].options[2].label
@@ -4064,7 +4064,7 @@ msgstr "陰影"
 #: gui/options/options.json[1].options[3].tooltip
 #: gui/options/options.json[2].options[6].list[0][7].list[0][9].tooltip
 msgid "Enable shadows."
-msgstr "開啟陰影"
+msgstr "啟用陰影。"
 
 #: gui/options/options.json[1].options[4].label
 msgid "Unit silhouettes"
@@ -4080,7 +4080,7 @@ msgstr "粒子效果"
 
 #: gui/options/options.json[1].options[5].tooltip
 msgid "Enable particles."
-msgstr "開啟粒子效果"
+msgstr "啟用粒子效果。"
 
 #: gui/options/options.json[1].options[6].label
 msgid "VSync"
@@ -4339,7 +4339,7 @@ msgstr "過濾"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][11].tooltip
 msgid "Smooth shadows."
-msgstr "柔和陰影"
+msgstr "柔和陰影。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][12].label
 msgid "Cutoff distance"
@@ -4385,7 +4385,7 @@ msgstr "水面反射"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].tooltip
 msgid "Allow water to reflect a mirror image."
-msgstr "使水面反射鏡像"
+msgstr "使水面反射倒影圖片。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][17].label
 msgid "Water refraction"
@@ -4393,7 +4393,7 @@ msgstr "水面反射"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][17].tooltip
 msgid "Use a real water refraction map and not transparency."
-msgstr "使用不透明的真實水面折射。"
+msgstr "使用真實水面折射而非透明的。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][18].label
 msgid "Real water depth"
@@ -4401,7 +4401,7 @@ msgstr "真實水深"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][18].tooltip
 msgid "Use actual water depth in rendering calculations."
-msgstr "使用實際水深進行算圖"
+msgstr "使用實際水深進行渲染計算。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].label
 msgid "Texture quality"
@@ -4480,7 +4480,7 @@ msgstr "主音量"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].tooltip
 msgid "Master audio gain."
-msgstr "調整主音量"
+msgstr "主音量的增益。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[1].label
 msgid "Music volume"
@@ -4488,7 +4488,7 @@ msgstr "音樂音量"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[1].tooltip
 msgid "In game music gain."
-msgstr "調整遊戲中配樂音量"
+msgstr "遊戲中配樂的增益。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[2].label
 msgid "Ambient volume"
@@ -4496,7 +4496,7 @@ msgstr "環境音量"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[2].tooltip
 msgid "In game ambient sound gain."
-msgstr "調整遊戲中環境音效音量"
+msgstr "遊戲中環境音的增益。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[3].label
 msgid "Action volume"
@@ -4504,7 +4504,7 @@ msgstr "動作音量"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[3].tooltip
 msgid "In game unit action sound gain."
-msgstr "調整遊戲中單位動作音效的音量"
+msgstr "遊戲中單位動作音效的增益。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[4].label
 msgid "UI volume"
@@ -4512,7 +4512,7 @@ msgstr "介面音量"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[4].tooltip
 msgid "UI sound gain."
-msgstr "調整界面的音量"
+msgstr "界面音效的增益。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[5].label
 msgid "Nick notification"
@@ -4557,7 +4557,7 @@ msgstr "保持遭遇戰設定"
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[2].tooltip
 msgid ""
 "Save and restore match settings for quick reuse when hosting another game."
-msgstr "儲存及復原對戰設定以供主持另一場遊戲時快速再利用"
+msgstr "儲存及復原對戰設定以供主持另一場遊戲時快速再利用。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].label
 msgid "Default AI difficulty"
@@ -4606,11 +4606,11 @@ msgstr "積極的"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[3].label
 msgid "Defensive"
-msgstr "防禦"
+msgstr "防守的"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].tooltip
 msgid "Default behavior of the AI."
-msgstr "這個 AI 的預設行為"
+msgstr "這個 AI 的預設行為。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4][5].label._string
 msgctxt "Option for the AI difficulty."
@@ -4649,7 +4649,7 @@ msgstr "玩家只有在主持人手動分配才會接收槽位。"
 msgid ""
 "Automatically assign joining clients to free player slots during the match "
 "setup."
-msgstr "在配對設定中自動分配加入的客戶端以釋放遊戲中的玩家空缺。"
+msgstr "在配對設定時自動分配加入的客戶端以釋放遊戲中的玩家空缺。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].label
 msgid "Networking / Lobby"
@@ -4768,11 +4768,11 @@ msgstr "顯示所選單位的治療範圍（也可以在遊戲時用快捷鍵切
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].label
 msgid "Rank icon above status bar"
-msgstr "在狀態列上的階級圖示"
+msgstr "在狀態列上的等級圖示"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].tooltip
 msgid "Show rank icons above status bars."
-msgstr "在狀態列上顯示階級圖示。"
+msgstr "在狀態列上顯示等級圖示。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].label
 msgid "Experience status bar"
@@ -4780,7 +4780,7 @@ msgstr "經驗狀態條"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[13].tooltip
 msgid "Show an experience status bar above each selected unit."
-msgstr "在每個所選單位上方顯示一個經驗狀態欄。"
+msgstr "在每個選擇的單位上方顯示一個經驗狀態欄。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].label
 msgid "Detailed tooltips"
@@ -4793,7 +4793,7 @@ msgstr "在可生產單位的建築物中顯示詳細的工具提示。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].label
 msgid "Sort resources and population tooltip"
-msgstr "排序資源與人口工具提示"
+msgstr "排序資源與人口的工具提示"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[0].label
 msgid "Unordered"
@@ -4818,7 +4818,7 @@ msgstr "自己的外交顏色"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
-msgstr "當外交顏色啟用時，你自己的單位之顏色"
+msgstr "當外交顏色啟用時，你的單位之顏色。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].label
 msgid "Diplomacy colors: ally"
@@ -4826,7 +4826,7 @@ msgstr "同盟的外交顏色"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
-msgstr "當外交顏色啟用時，同盟者之顏色"
+msgstr "當外交顏色啟用時，盟友的顏色。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].label
 msgid "Diplomacy colors: neutral"
@@ -4834,7 +4834,7 @@ msgstr "中立的外交顏色"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
-msgstr "當外交顏色啟用時，中立玩家之顏色"
+msgstr "當外交顏色啟用時，中立玩家的顏色。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].label
 msgid "Diplomacy colors: enemy"
@@ -4842,7 +4842,7 @@ msgstr "敵人的外交顏色"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
-msgstr "當外交顏色啟用時，敵對玩家之顏色"
+msgstr "當外交顏色啟用時，敵人的顏色。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].label
 msgid "Batch training size"
@@ -4850,7 +4850,7 @@ msgstr "批次訓練數量"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[1].tooltip
 msgid "Number of units trained per batch by default."
-msgstr "預設一批訓練多少單位。"
+msgstr "預設每批訓練多少單位。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[20].label
 msgid "Snap to edges"
@@ -5009,7 +5009,7 @@ msgstr "已完成"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[2].label
 msgid "All displayed"
-msgstr "所有已顯示"
+msgstr "所有顯示的"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].tooltip
 msgid ""
@@ -5075,7 +5075,7 @@ msgstr "銳利化特效"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][8].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "陰影效果的數量。需要重新啟動遊戲"
+msgstr "陰影效果的數量。需要重新啟動遊戲！"
 
 #: gui/options/options.json[2].options[6].list[0][7].tooltip
 msgid ""
@@ -5143,7 +5143,7 @@ msgstr "科技樹"
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr "%(hotkey)s：觀看0 A.D的文明科技樹特色"
+msgstr "%(hotkey)s：觀看 0 A.D. 的文明科技樹特色。"
 
 #: gui/pregame/MainMenuItems.js:48
 #: gui/reference/civinfo/civinfo.xml:(caption):21
@@ -5420,7 +5420,7 @@ msgstr "贊助"
 
 #: gui/pregame/ProjectInformation.js:66
 msgid "Help with the project expenses by donating."
-msgstr "以贊助來維持這個專案的運作經費"
+msgstr "以贊助來維持這個專案的運作經費。"
 
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
@@ -5593,14 +5593,14 @@ msgstr "%(listHeader)s %(listOfValues)s"
 #. structure selected.
 #: gui/reference/common/tooltips.js:27
 msgid "Built by:"
-msgstr "可建造單位："
+msgstr "建造自："
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit
 #. selected.
 #: gui/reference/common/tooltips.js:33
 msgid "Trained by:"
-msgstr "訓練："
+msgstr "訓練於："
 
 #. Translation: Label before a list of names of structures or units that
 #. research the
@@ -5614,28 +5614,28 @@ msgstr "研究於："
 #. construct or build.
 #: gui/reference/common/tooltips.js:48
 msgid "Builds:"
-msgstr "建立："
+msgstr "可建造："
 
 #. Translation: Label before a list of the names of technologies the selected
 #. unit or
 #. structure can research.
 #: gui/reference/common/tooltips.js:57
 msgid "Researches:"
-msgstr "研究："
+msgstr "可研究："
 
 #. Translation: Label before a list of the names of units the selected unit or
 #. structure can
 #. train.
 #: gui/reference/common/tooltips.js:66
 msgid "Trains:"
-msgstr "訓練："
+msgstr "可訓練："
 
 #. Translation: Label before a list of the names of units or structures the
 #. selected unit or
 #. structure can be upgradable to.
 #: gui/reference/common/tooltips.js:75
 msgid "Upgradable to:"
-msgstr "可升級到："
+msgstr "可升級："
 
 #: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
 msgid "Trainer Units"
@@ -5644,7 +5644,7 @@ msgstr "訓練者單位"
 #: gui/reference/structree/StructreePage.js:85
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr "%(hotkey)s：關閉科技樹"
+msgstr "%(hotkey)s：關閉科技樹。"
 
 #: gui/reference/viewer/ViewerPage.js:172
 #, javascript-format
@@ -5657,7 +5657,7 @@ msgstr "資訊"
 
 #: gui/replaymenu/replay_actions.js:90
 msgid "This replay needs a different sequence of mods:"
-msgstr "這個重播需要使用不同的外掛模組"
+msgstr "這個重播需要使用一系列不同的模組："
 
 #: gui/replaymenu/replay_actions.js:95
 msgid "This replay is not compatible with your version of the game!"
@@ -5855,7 +5855,7 @@ msgstr "當前所選重播的文件路徑。"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):241
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
-msgstr "從頭建立重播快取。可能會比較慢！"
+msgstr "重建重播快取。可能會比較慢！"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
@@ -6227,7 +6227,7 @@ msgstr "您已獲勝！"
 
 #: gui/summary/summary.js:520
 msgid "You have been defeated…"
-msgstr "你已經被擊敗"
+msgstr "你已經被擊敗…"
 
 #: gui/summary/summary.js:521
 msgid "You have abandoned the game."
@@ -6604,7 +6604,7 @@ msgstr "研發每一個文明的建築物。"
 
 #: gui/text/tips/forge.txt:3
 msgid "Research weapon and armor upgrades for your units."
-msgstr "研究單位武器與盔甲的升級。"
+msgstr "研發單位武器與裝甲的升級。"
 
 #: gui/text/tips/formations.txt:1
 msgid "FORMATIONS"
@@ -6826,7 +6826,7 @@ msgstr "可用：庫施人、馬其頓人、托勒密人及塞琉古人。"
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
-msgstr "QUINQUEREME"
+msgstr "五列槳戰船"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
@@ -6926,7 +6926,7 @@ msgstr "在本遊戲中每個陣營的基礎近戰步兵。"
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
-msgstr "對抗騎兵時有 2 倍的攻擊加成。"
+msgstr "對抗騎兵時有攻擊加成。"
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
@@ -7044,7 +7044,7 @@ msgstr "戰象"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
-msgstr "來自非洲及印度的巨大野獸，訓練用在戰爭。"
+msgstr "來自非洲及印度的巨大野獸，訓練用在戰爭上。"
 
 #: gui/text/tips/war_elephants.txt:3
 msgid "High Food and Metal cost, but very powerful."
@@ -7074,7 +7074,7 @@ msgstr "在鯨魚被殺死後可被漁船採集。"
 
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."
-msgstr "在海洋裡漫遊，被攻擊時會逃走。"
+msgstr "在遊戲裡的海洋裡漫遊，被攻擊時會逃走。"
 
 #: simulation/data/resources/food.jsondescription
 msgid "Harvest from animals, berry bushes, fish, or fields."
@@ -7172,7 +7172,7 @@ msgstr "稻米"
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
-msgstr "從礦山或採石場採礦。"
+msgstr "從金屬礦或採石場挖掘。"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -7225,7 +7225,7 @@ msgstr "廢墟"
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
-msgstr "從岩石、採石場或廢墟中採礦。"
+msgstr "從岩石、採石場或廢墟中挖掘。"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -7259,7 +7259,7 @@ msgstr "岩石"
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."
-msgstr "從樹木或樹林砍下木材。"
+msgstr "從樹木或樹叢砍下。"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
