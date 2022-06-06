@@ -23,9 +23,11 @@
 #include "gui/SettingTypes/CGUIString.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
+#include "ps/Filesystem.h"
 #include "ps/ProfileViewer.h"
 #include "ps/VideoMode.h"
 #include "renderer/Renderer.h"
+#include "scriptinterface/ScriptInterface.h"
 
 class TestCGUIText : public CxxTest::TestSuite
 {
