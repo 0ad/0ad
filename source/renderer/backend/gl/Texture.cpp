@@ -140,9 +140,9 @@ std::unique_ptr<CTexture> CTexture::Create(CDevice* device, const char* name,
 		glTexParameteri(target, GL_TEXTURE_LOD_BIAS, defaultSamplerDesc.mipLODBias);
 #endif // !CONFIG2_GLES
 
-	if (type == Type::TEXTURE_2D && defaultSamplerDesc.anisotropyEnabled &&
-		texture->m_Device->GetCapabilities().anisotropicFiltering)
+	if (type == Type::TEXTURE_2D && defaultSamplerDesc.anisotropyEnabled)
 	{
+		ENSURE(texture->m_Device->GetCapabilities().anisotropicFiltering);
 		const float maxAnisotropy = std::min(
 			defaultSamplerDesc.maxAnisotropy, texture->m_Device->GetCapabilities().maxAnisotropy);
 		glTexParameterf(target, GL_TEXTURE_MAX_ANISOTROPY_EXT, maxAnisotropy);
