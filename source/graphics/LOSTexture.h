@@ -98,6 +98,7 @@ private:
 		m_Texture, m_SmoothTextures[2];
 
 	uint32_t m_WhichTexture = 0;
+	double m_LastTextureRecomputeTime = 0.0;
 
 	// We update textures once a frame, so we change a Framebuffer once a frame.
 	// That allows us to use two ping-pong FBOs instead of checking completeness

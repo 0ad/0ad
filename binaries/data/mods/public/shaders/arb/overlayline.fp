@@ -19,6 +19,8 @@ TEX mask, fragment.texcoord[0], texture[1], 2D;
   // Multiply RGB by LOS texture (red channel)
   TEMP los;
   TEX los, fragment.texcoord[1], texture[2], 2D;
+  SUB los.r, los.r, 0.03;
+  MUL los.r, los.r, 0.97;
   MUL result.color.rgb, color, los.r;
 #endif
 
