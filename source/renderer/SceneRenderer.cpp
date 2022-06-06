@@ -66,7 +66,7 @@
 
 struct SScreenRect
 {
-	GLint x1, y1, x2, y2;
+	int x1, y1, x2, y2;
 };
 
 /**
@@ -573,10 +573,10 @@ void CSceneRenderer::RenderReflections(
 	float vpWidth = wm.m_RefTextureSize;
 
 	SScreenRect screenScissor;
-	screenScissor.x1 = (GLint)floor((reflectionScissor[0].X*0.5f+0.5f)*vpWidth);
-	screenScissor.y1 = (GLint)floor((reflectionScissor[0].Y*0.5f+0.5f)*vpHeight);
-	screenScissor.x2 = (GLint)ceil((reflectionScissor[1].X*0.5f+0.5f)*vpWidth);
-	screenScissor.y2 = (GLint)ceil((reflectionScissor[1].Y*0.5f+0.5f)*vpHeight);
+	screenScissor.x1 = static_cast<int>(floor((reflectionScissor[0].X * 0.5f + 0.5f) * vpWidth));
+	screenScissor.y1 = static_cast<int>(floor((reflectionScissor[0].Y * 0.5f + 0.5f) * vpHeight));
+	screenScissor.x2 = static_cast<int>(ceil((reflectionScissor[1].X * 0.5f + 0.5f) * vpWidth));
+	screenScissor.y2 = static_cast<int>(ceil((reflectionScissor[1].Y * 0.5f + 0.5f) * vpHeight));
 
 	Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
 	scissorRect.x = screenScissor.x1;
@@ -648,10 +648,10 @@ void CSceneRenderer::RenderRefractions(
 	float vpWidth = wm.m_RefTextureSize;
 
 	SScreenRect screenScissor;
-	screenScissor.x1 = (GLint)floor((refractionScissor[0].X*0.5f+0.5f)*vpWidth);
-	screenScissor.y1 = (GLint)floor((refractionScissor[0].Y*0.5f+0.5f)*vpHeight);
-	screenScissor.x2 = (GLint)ceil((refractionScissor[1].X*0.5f+0.5f)*vpWidth);
-	screenScissor.y2 = (GLint)ceil((refractionScissor[1].Y*0.5f+0.5f)*vpHeight);
+	screenScissor.x1 = static_cast<int>(floor((refractionScissor[0].X * 0.5f + 0.5f) * vpWidth));
+	screenScissor.y1 = static_cast<int>(floor((refractionScissor[0].Y * 0.5f + 0.5f) * vpHeight));
+	screenScissor.x2 = static_cast<int>(ceil((refractionScissor[1].X * 0.5f + 0.5f) * vpWidth));
+	screenScissor.y2 = static_cast<int>(ceil((refractionScissor[1].Y * 0.5f + 0.5f) * vpHeight));
 
 	Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
 	scissorRect.x = screenScissor.x1;

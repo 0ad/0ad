@@ -616,7 +616,7 @@ void CRenderer::RenderBigScreenShot(const bool needsPresent)
 	AllocateAligned(imageBuffer, headerSize + imageSize, maxSectorSize);
 
 	Tex t;
-	GLvoid* img = imageBuffer.get() + headerSize;
+	void* img = imageBuffer.get() + headerSize;
 	if (t.wrap(imageWidth, imageHeight, bpp, TEX_BOTTOM_UP, imageBuffer, headerSize) < 0)
 	{
 		free(tileData);

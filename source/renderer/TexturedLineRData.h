@@ -63,7 +63,7 @@ protected:
 	{
 		SVertex(CVector3D pos, float u, float v) : m_Position(pos) { m_UVs[0] = u; m_UVs[1] = v; }
 		CVector3D m_Position;
-		GLfloat m_UVs[2];
+		float m_UVs[2];
 		float padding[3]; // get a pow2 struct size
 	};
 	cassert(sizeof(SVertex) == 32);
