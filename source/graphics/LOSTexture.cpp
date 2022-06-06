@@ -82,9 +82,7 @@ CLOSTexture::~CLOSTexture()
 bool CLOSTexture::CreateShader()
 {
 	m_SmoothTech = g_Renderer.GetShaderManager().LoadEffect(str_los_interp);
-	Renderer::Backend::IShaderProgram* shader = m_SmoothTech->GetShader();
-
-	m_ShaderInitialized = m_SmoothTech && shader;
+	m_ShaderInitialized = m_SmoothTech && m_SmoothTech->GetShader();
 
 	if (!m_ShaderInitialized)
 	{
