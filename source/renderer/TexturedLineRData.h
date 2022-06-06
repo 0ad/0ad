@@ -61,9 +61,9 @@ protected:
 
 	struct SVertex
 	{
-		SVertex(CVector3D pos, float u, float v) : m_Position(pos) { m_UVs[0] = u; m_UVs[1] = v; }
+		SVertex(const CVector3D& pos, const CVector2D& uv) : m_Position(pos), m_UV(uv) { }
 		CVector3D m_Position;
-		float m_UVs[2];
+		CVector2D m_UV;
 		float padding[3]; // get a pow2 struct size
 	};
 	cassert(sizeof(SVertex) == 32);
