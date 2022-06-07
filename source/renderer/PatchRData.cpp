@@ -700,7 +700,7 @@ typename M::mapped_type& PooledPairGet(M& m, const typename M::key_type& k, Aren
 }
 
 // Each multidraw batch has a list of index counts, and a list of pointers-to-first-indexes
-using BatchElements = std::pair<std::vector<GLint, ProxyAllocator<GLint, Arena>>, std::vector<u32, ProxyAllocator<u32, Arena>>>;
+using BatchElements = std::pair<std::vector<u32, ProxyAllocator<u32, Arena>>, std::vector<u32, ProxyAllocator<u32, Arena>>>;
 
 // Group batches by index buffer
 using IndexBufferBatches = PooledBatchMap<CVertexBuffer*, BatchElements>;
@@ -1123,7 +1123,7 @@ void CPatchRData::RenderStreams(
 	PROFILE3("render terrain streams");
 
 	// Each batch has a list of index counts, and a list of pointers-to-first-indexes
-	using StreamBatchElements = std::pair<std::vector<GLint>, std::vector<u32>>;
+	using StreamBatchElements = std::pair<std::vector<u32>, std::vector<u32>>;
 
 	// Group batches by index buffer
 	using StreamIndexBufferBatches = std::map<CVertexBuffer*, StreamBatchElements>;
@@ -1249,7 +1249,7 @@ void CPatchRData::RenderSides(
 			deviceCommandContext->SetVertexBuffer(0, patch->m_VBSides->m_Owner->GetBuffer());
 		}
 
-		deviceCommandContext->Draw(patch->m_VBSides->m_Index, (GLsizei)patch->m_VBSides->m_Count);
+		deviceCommandContext->Draw(patch->m_VBSides->m_Index, patch->m_VBSides->m_Count);
 
 		// bump stats
 		g_Renderer.m_Stats.m_DrawCalls++;
@@ -1311,13 +1311,13 @@ void CPatchRData::BuildWater()
 
 	// Build data for water
 	std::vector<SWaterVertex> water_vertex_data;
-	std::vector<GLushort> water_indices;
+	std::vector<u16> water_indices;
 	u16 water_index_map[PATCH_SIZE+1][PATCH_SIZE+1];
 	memset(water_index_map, 0xFF, sizeof(water_index_map));
 
 	// Build data for shore
 	std::vector<SWaterVertex> water_vertex_data_shore;
-	std::vector<GLushort> water_indices_shore;
+	std::vector<u16> water_indices_shore;
 	u16 water_shore_index_map[PATCH_SIZE+1][PATCH_SIZE+1];
 	memset(water_shore_index_map, 0xFF, sizeof(water_shore_index_map));
 
@@ -1461,7 +1461,7 @@ void CPatchRData::BuildWater()
 		m_VBWater->m_Owner->UpdateChunkVertices(m_VBWater.Get(), &water_vertex_data[0]);
 
 		m_VBWaterIndices = g_VBMan.AllocateChunk(
-			sizeof(GLushort), water_indices.size(),
+			sizeof(u16), water_indices.size(),
 			Renderer::Backend::IBuffer::Type::INDEX, false,
 			nullptr, CVertexBufferManager::Group::WATER);
 		m_VBWaterIndices->m_Owner->UpdateChunkVertices(m_VBWaterIndices.Get(), &water_indices[0]);
@@ -1477,7 +1477,7 @@ void CPatchRData::BuildWater()
 
 		// Construct indices buffer
 		m_VBWaterIndicesShore = g_VBMan.AllocateChunk(
-			sizeof(GLushort), water_indices_shore.size(),
+			sizeof(u16), water_indices_shore.size(),
 			Renderer::Backend::IBuffer::Type::INDEX, false,
 			nullptr, CVertexBufferManager::Group::WATER);
 		m_VBWaterIndicesShore->m_Owner->UpdateChunkVertices(m_VBWaterIndicesShore.Get(), &water_indices_shore[0]);

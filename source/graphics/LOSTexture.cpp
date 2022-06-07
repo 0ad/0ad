@@ -22,6 +22,8 @@
 #include "graphics/ShaderManager.h"
 #include "lib/bits.h"
 #include "lib/config2.h"
+#include "lib/timer.h"
+#include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/Game.h"
@@ -80,9 +82,7 @@ CLOSTexture::~CLOSTexture()
 bool CLOSTexture::CreateShader()
 {
 	m_SmoothTech = g_Renderer.GetShaderManager().LoadEffect(str_los_interp);
-	Renderer::Backend::IShaderProgram* shader = m_SmoothTech->GetShader();
-
-	m_ShaderInitialized = m_SmoothTech && shader;
+	m_ShaderInitialized = m_SmoothTech && m_SmoothTech->GetShader();
 
 	if (!m_ShaderInitialized)
 	{
@@ -132,6 +132,8 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::IDeviceCommandContext* devic
 	if (m_Dirty)
 	{
 		RecomputeTexture(deviceCommandContext);
+		m_LastTextureRecomputeTime = timer_Time();
+		m_WhichTexture = 1u - m_WhichTexture;
 		m_Dirty = false;
 	}
 
@@ -150,11 +152,11 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::IDeviceCommandContext* devic
 	deviceCommandContext->SetTexture(
 		shader->GetBindingSlot(str_losTex1), m_Texture.get());
 	deviceCommandContext->SetTexture(
-		shader->GetBindingSlot(str_losTex2), m_SmoothTextures[m_WhichTexture].get());
+		shader->GetBindingSlot(str_losTex2), m_SmoothTextures[1u - m_WhichTexture].get());
 
-	deviceCommandContext->SetUniform(
-		shader->GetBindingSlot(str_delta),
-		static_cast<float>(g_Renderer.GetTimeManager().GetFrameDelta() * 4.0f));
+	const float delta = Clamp<float>(
+		(timer_Time() - m_LastTextureRecomputeTime) * 2.0f, 0.0f, 1.0f);
+	deviceCommandContext->SetUniform(shader->GetBindingSlot(str_delta), delta);
 
 	const SViewPort oldVp = g_Renderer.GetViewport();
 	const SViewPort vp =
@@ -208,8 +210,6 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::IDeviceCommandContext* devic
 
 	deviceCommandContext->SetFramebuffer(
 		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
-
-	m_WhichTexture = 1u - m_WhichTexture;
 }
 
 

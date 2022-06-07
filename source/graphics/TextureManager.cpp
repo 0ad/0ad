@@ -525,7 +525,7 @@ public:
 
 		defaultSamplerDesc.addressModeU = texture->m_Properties.m_AddressModeU;
 		defaultSamplerDesc.addressModeV = texture->m_Properties.m_AddressModeV;
-		if (texture->m_Properties.m_AnisotropicFilterEnabled)
+		if (texture->m_Properties.m_AnisotropicFilterEnabled && m_Device->GetCapabilities().anisotropicFiltering)
 		{
 			int maxAnisotropy = 1;
 			CFG_GET_VAL("textures.maxanisotropy", maxAnisotropy);

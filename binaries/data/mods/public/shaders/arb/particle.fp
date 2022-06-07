@@ -17,6 +17,8 @@ MUL color.rgb, color, tex;
 
 // Multiply everything by the LOS texture
 TEX losTex, v_los, texture[1], 2D;
+SUB losTex.r, losTex.r, 0.03;
+MUL losTex.r, losTex.r, 0.97;
 MUL result.color.rgb, color, losTex.r;
 MUL result.color.a, tex, fragment.color;
 

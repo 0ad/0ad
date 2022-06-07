@@ -88,6 +88,8 @@ TEX color, fragment.texcoord[0], texture[0], 2D;
 
 // Multiply everything by the LOS texture
 TEX tex.r, fragment.texcoord[3], texture[3], 2D;
+SUB tex.r, tex.r, 0.03;
+MUL tex.r, tex.r, 0.97;
 MUL color.rgb, color, tex.r;
 
 #if DECAL

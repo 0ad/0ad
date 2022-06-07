@@ -149,6 +149,8 @@ TEX tex, v_tex, texture[0], 2D;
 #if !IGNORE_LOS
   // Multiply everything by the LOS texture
   TEX tex.r, v_los, texture[2], 2D;
+  SUB tex.r, tex.r, 0.03;
+  MUL tex.r, tex.r, 0.97;
   MUL color.rgb, color, tex.r;
 #endif
 
