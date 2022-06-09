@@ -546,13 +546,18 @@ createObjectGroups(
 placePlayersNomad(clPlayer, avoidClasses(clForest, 1, clMetal, 4, clRock, 4, clFood, 2, clCliffs, 2, clWater, 15));
 Engine.SetProgress(99);
 
+setSkySet("sunny");
+setSunColor(0.988166, 0.929297, 0.693819);
+setSunElevation(0.579592);
+setSunRotation(-0.566729);
+setAmbientColor(0.372549,0.376471,0.459608);
 setWaterColor(0.024, 0.212, 0.024);
 setWaterTint(0.133, 0.725, 0.855);
 setWaterMurkiness(0.8);
 setWaterWaviness(3);
 setFogFactor(0);
 setPPEffect("hdr");
-setPPSaturation(0.51);
+setPPSaturation(0.45);
 setPPContrast(0.62);
 setPPBloom(0.12);
 
