@@ -32,5 +32,9 @@ Build the source files for all four backends with their respective extensions
     ```sh
     python -m glad --api="wgl=1.0" --extensions="../extensions/wgl.txt"  --out-path="../"
     ```
+- EGL
+    ```sh
+    python -m glad --api="egl=1.5" --extensions="../extensions/egl.txt"  --out-path="../"
+    ```
 
 Rename all files to .cpp to prevent compilation warnings

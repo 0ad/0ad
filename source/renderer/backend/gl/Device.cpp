@@ -43,11 +43,17 @@ extern void* wutil_GetAppHDC();
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
 
-// TODO: Support OpenGL platforms which don't use GLX as well.
-#if defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
+#if !CONFIG2_GLES && (defined(SDL_VIDEO_DRIVER_X11) || defined(SDL_VIDEO_DRIVER_WAYLAND))
+
+#if defined(SDL_VIDEO_DRIVER_X11)
 #include <glad/glx.h>
-#include <SDL_syswm.h>
 #endif
+#if defined(SDL_VIDEO_DRIVER_WAYLAND)
+#include <glad/egl.h>
+#endif
+#include <SDL_syswm.h>
+
+#endif // !CONFIG2_GLES && (defined(SDL_VIDEO_DRIVER_X11) || defined(SDL_VIDEO_DRIVER_WAYLAND))
 
 namespace Renderer
 {
@@ -236,8 +242,38 @@ std::unique_ptr<IDevice> CDevice::Create(SDL_Window* window, const bool arb)
 		}
 #if OS_WIN
 		ogl_Init(SDL_GL_GetProcAddress, wutil_GetAppHDC());
-#elif defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
-		ogl_Init(SDL_GL_GetProcAddress, GetX11Display(device->m_Window));
+#elif (defined(SDL_VIDEO_DRIVER_X11) || defined(SDL_VIDEO_DRIVER_WAYLAND)) && !CONFIG2_GLES
+		SDL_SysWMinfo wminfo;
+		// The info structure must be initialized with the SDL version.
+		SDL_VERSION(&wminfo.version);
+		if (!SDL_GetWindowWMInfo(window, &wminfo))
+		{
+			LOGERROR("Failed to query SDL WM info: %s", SDL_GetError());
+			return nullptr;
+		}
+		switch (wminfo.subsystem)
+		{
+#if defined(SDL_VIDEO_DRIVER_WAYLAND)
+		case SDL_SYSWM_WAYLAND:
+			// TODO: maybe we need to load X11 functions
+			// dynamically as well.
+			ogl_Init(SDL_GL_GetProcAddress,
+				GetWaylandDisplay(device->m_Window),
+				static_cast<int>(wminfo.subsystem));
+			break;
+#endif
+#if defined(SDL_VIDEO_DRIVER_X11)
+		case SDL_SYSWM_X11:
+			ogl_Init(SDL_GL_GetProcAddress,
+				GetX11Display(device->m_Window),
+				static_cast<int>(wminfo.subsystem));
+			break;
+#endif
+		default:
+			ogl_Init(SDL_GL_GetProcAddress, nullptr,
+				static_cast<int>(wminfo.subsystem));
+			break;
+		}
 #else
 		ogl_Init(SDL_GL_GetProcAddress);
 #endif
@@ -246,8 +282,31 @@ std::unique_ptr<IDevice> CDevice::Create(SDL_Window* window, const bool arb)
 	{
 #if OS_WIN
 		ogl_Init(SDL_GL_GetProcAddress, wutil_GetAppHDC());
-#elif defined(SDL_VIDEO_DRIVER_X11) && !CONFIG2_GLES
-		ogl_Init(SDL_GL_GetProcAddress, XOpenDisplay(NULL));
+#elif (defined(SDL_VIDEO_DRIVER_X11) || defined(SDL_VIDEO_DRIVER_WAYLAND)) && !CONFIG2_GLES
+		bool initialized = false;
+		// Currently we don't have access to the backend type without
+		// the window. So we use hack to detect X11.
+#if defined(SDL_VIDEO_DRIVER_X11)
+		Display* display = XOpenDisplay(NULL);
+		if (display)
+		{
+			ogl_Init(SDL_GL_GetProcAddress, display, static_cast<int>(SDL_SYSWM_X11));
+			initialized = true;
+		}
+#endif
+#if defined(SDL_VIDEO_DRIVER_WAYLAND)
+		if (!initialized)
+		{
+			// glad will find default EGLDisplay internally.
+			ogl_Init(SDL_GL_GetProcAddress, nullptr, static_cast<int>(SDL_SYSWM_WAYLAND));
+			initialized = true;
+		}
+#endif
+		if (!initialized)
+		{
+			LOGERROR("Can't initialize GL");
+			return nullptr;
+		}
 #else
 		ogl_Init(SDL_GL_GetProcAddress);
 #endif

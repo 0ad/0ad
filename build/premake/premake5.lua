@@ -947,7 +947,7 @@ function setup_all_libs ()
 		if os.istarget("windows") then
 			files { glad_path.."src/wgl.cpp" }
 		elseif os.istarget("linux") or os.istarget("bsd") then
-			files { glad_path.."src/glx.cpp" }
+			files { glad_path.."src/egl.cpp", glad_path.."src/glx.cpp" }
 		end
 	end
 
