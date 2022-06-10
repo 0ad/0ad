@@ -29,14 +29,9 @@ GameSettings.prototype.Attributes.VictoryConditions = class VictoryConditions ex
 
 	fromInitAttributes(attribs)
 	{
-		let legacy = this.getLegacySetting(attribs, "VictoryConditions");
-		if (legacy)
-		{
-			this.disabled = new Set();
-			this.active = new Set();
-			for (let cond of legacy)
-				this._add(cond);
-		}
+		const initAttribs = this.getLegacySetting(attribs, "VictoryConditions");
+		if (initAttribs)
+			this.fromList(initAttribs);
 	}
 
 	onMapChange()
@@ -44,12 +39,21 @@ GameSettings.prototype.Attributes.VictoryConditions = class VictoryConditions ex
 		if (this.settings.map.type != "scenario")
 			return;
 		// If a map specifies victory conditions, replace them all.
-		if (!this.getMapSetting("VictoryConditions"))
+		const conditions = this.getMapSetting("VictoryConditions");
+		if (conditions)
+			this.fromList(conditions);
+	}
+
+	fromList(conditionList)
+	{
+		conditionList = conditionList.filter(cond => cond in this.conditions);
+		if (!conditionList)
 			return;
+
 		this.disabled = new Set();
 		this.active = new Set();
 		// TODO: could be optimised.
-		for (let cond of this.getMapSetting("VictoryConditions"))
+		for (const cond of conditionList)
 			this._add(cond);
 	}
 
