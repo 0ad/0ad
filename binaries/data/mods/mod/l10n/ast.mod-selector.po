@@ -144,7 +144,7 @@ msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr "Esti servicio apurre un modu sinzielhu de baxar & installar modificaçones fheithæs pola communidá & ye provisto por DBolical Pty Ltd, la compaña de tras d’IndieDb & ModDB."
+msgstr "Esti servicio apurre un modu sinzielhu de discargar & installar modificaçones fheithæs pola communidá & ye provisto por DBolical Pty Ltd, la compaña de tras d’IndieDb & ModDB."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
@@ -208,12 +208,12 @@ msgid ""
 "File download failed.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Nun pudo baxase l archivo.\n\n%(technicalDetails)s"
+msgstr "Nun pudo discargase l archivo.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr "Error de baxada"
+msgstr "Error de discarga"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -261,15 +261,15 @@ msgstr "Incaboxa’ l anovaçon"
 #: gui/modio/modio.js:265
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr "Baxando “%(modname)s”"
+msgstr "Discargando “%(modname)s”"
 
 #: gui/modio/modio.js:268
 msgid "Downloading"
-msgstr "Baxando"
+msgstr "Discargando"
 
 #: gui/modio/modio.js:270
 msgid "Cancel Download"
-msgstr "Incaboxa’ la baxada"
+msgstr "Incaboxa’ la discarga"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with
@@ -322,7 +322,7 @@ msgstr "Actualiza’l repertorio"
 
 #: gui/modio/modio.xml:(caption):98
 msgid "Download"
-msgstr "Baxar"
+msgstr "Acquirir"
 
 #: gui/modio/modio.xml:(heading):54 gui/modmod/modmod.xml:(heading):90
 #: gui/modmod/modmod.xml:(heading):131
@@ -367,13 +367,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr "Pa installar modificaçones, simplemente abri l archivo cun 0 A.D. (ou picando duês vezes n archivo & abriendo-lo cuno xhuœw ou executando “pyrogenesis file.pyromod” in terminal). Intos la modificaçon vaî star disponible no selector de modificaçones. Puœdes activalla ou disactivalla cumo quieras. Si se precisa, tamien puœdes eliminalla manualmente usando l gëstor d’archivos (ver https://trac.wildfiregames.com/wiki/GameDataPaths)."
+msgstr "Par installar modificaçones, simplemente abri l archivo cun 0 A.D. (ou picando duês vezes n archivo & abriendo-lo cuno xhuœw ou executando “pyrogenesis file.pyromod” in terminal). Intos la modificaçon vaî star disponible no selector de modificaçones. Puœdes activalla ou disactivalla cumo quieras. Si se precisa, tamien puœdes eliminalla manualmente usando l gëstor d’archivos (ver https://trac.wildfiregames.com/wiki/GameDataPaths)."
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr "Par mas informaçon subre la modificaçon de l xhuœw, vei la Guía de modificaçon na rede (pica no boton “Guía de modificaçon” n baxo)."
+msgstr "Pa mas informaçon subre la modificaçon de l xhuœw, vei la Guía de modificaçon na rede (pica no boton “Guía de modificaçon” n baxo)."
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -382,7 +382,7 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr "El servicio de mod.io disindolrca-lo DBolical, la compaña de tras d’IndieDB & ModDB. ¡Ha quanto ya q’essos sitios na rede lhevæn spardiendo annunciæs de 0 A.D. & outros proiectos indie! Wœy mod.io nos permitte arrexhuntar & baxar todelæs modificaçones verificadæs pol personal. ¡Pica n “Baxar modificaçones” pa proballo & installar delhæs!"
+msgstr "El servicio de mod.io disindolrca-lo DBolical, la compaña de tras d’IndieDB & ModDB. ¡Ha quanto ya q’essos sitios na rede lhevæn spardiendo annunciæs de 0 A.D. & outros proiectos indie! Wœy mod.io nos permitte arrexhuntar & discargar todelæs modificaçones verificadæs pol personal. ¡Pica n “Discargar modificaçones” pa proballo & installar delhæs!"
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
@@ -460,7 +460,7 @@ msgstr "Adiuda"
 
 #: gui/modmod/modmod.xml:(caption):207
 msgid "Download Mods"
-msgstr "Baxar modificaçones"
+msgstr "Discargar modificaçones"
 
 #: gui/modmod/modmod.xml:(caption):212
 msgid "Save Configuration"
@@ -488,7 +488,7 @@ msgid ""
 "overwrite settings of mods loaded earlier. It is advisable to have more "
 "complex mods loaded last. Use the arrows on the right to change the loading "
 "order."
-msgstr "Læs modificaçones activæs cargæn-se de riba a baxo. Læs postreiræs in cargase puœden subrescribi’ los axhustes de læs primeiræs. Aconseya-se, pœs, carga’ læs modificaçones mas complexæs a la fin. Gasta læs flretsæs a mandreitha par camuda’l orde de carga."
+msgstr "Læs modificaçones activæs cargæn-se de riba a baxo. Læs postreiræs in cargase puœden subrescribi’ los axhustes de læs primeiræs. Aconseya-se, pœs, carga’ læs modificaçones mas complexæs a la fin. Gasta læs flretsæs a mandreitha pa camuda’l orde de carga."
 
 #: gui/modmod/modmod.xml:(tooltip):161 gui/modmod/modmod.xml:(tooltip):175
 msgid ""
