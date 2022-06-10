@@ -31,12 +31,20 @@
 #include "ps/CLogger.h"
 
 #if !CONFIG2_GLES
+
 # if OS_WIN
 #  include <glad/wgl.h>
 # elif !OS_MACOSX && !OS_MAC
-#  include <glad/glx.h>
+#  include <SDL_syswm.h>
+#  if defined(SDL_VIDEO_DRIVER_X11)
+#   include <glad/glx.h>
+#  endif
+#  if defined(SDL_VIDEO_DRIVER_WAYLAND)
+#   include <glad/egl.h>
+#  endif
 # endif
-#endif
+
+#endif // !CONFIG2_GLES
 
 #include <stdio.h>
 #include <string.h>
@@ -213,7 +221,12 @@ static int GLVersion;
 #if OS_WIN
 static int WGLVersion;
 #elif !CONFIG2_GLES && !OS_MACOSX && !OS_MAC
+#if defined(SDL_VIDEO_DRIVER_X11)
 static int GLXVersion;
+#endif
+#if defined(SDL_VIDEO_DRIVER_WAYLAND)
+static int EGLVersion;
+#endif
 #endif
 
 bool ogl_HaveVersion(int major, int minor)
@@ -416,7 +429,7 @@ bool ogl_SquelchError(GLenum err_to_ignore)
 #if OS_WIN
 bool ogl_Init(void* (load)(const char*), void* hdc)
 #elif !CONFIG2_GLES && !OS_MACOSX && !OS_MAC
-bool ogl_Init(void* (load)(const char*), void* display)
+bool ogl_Init(void* (load)(const char*), void* display, int subsystem)
 #else
 bool ogl_Init(void* (load)(const char*))
 #endif
@@ -446,12 +459,33 @@ bool ogl_Init(void* (load)(const char*))
 		return false;
 	}
 # elif !OS_MACOSX && !OS_MAC
-	GLXVersion = gladLoadGLX(reinterpret_cast<Display*>(display), DefaultScreen(display), loadFunc);
-	if (!GLXVersion)
+	const SDL_SYSWM_TYPE sysWMType = static_cast<SDL_SYSWM_TYPE>(subsystem);
+#  if defined(SDL_VIDEO_DRIVER_X11)
+	if (sysWMType == SDL_SYSWM_X11)
 	{
-		LOAD_ERROR("Failed to load GLX functions.");
-		return false;
+		GLXVersion = gladLoadGLX(reinterpret_cast<Display*>(display), DefaultScreen(display), loadFunc);
+		if (!GLXVersion)
+		{
+			LOAD_ERROR("Failed to load GLX functions.");
+			return false;
+		}
 	}
+#  endif
+#  if defined(SDL_VIDEO_DRIVER_WAYLAND)
+	if (sysWMType == SDL_SYSWM_WAYLAND)
+	{
+		// TODO: investiage do we need Wayland display to load EGL.
+		// Because without eglGetDisplay we can't get one. But the
+		// function is loaded inside gladLoadEGL. So maybe we need to
+		// call it twice.
+		EGLVersion = gladLoadEGL(nullptr, loadFunc);
+		if (!EGLVersion)
+		{
+			LOAD_ERROR("Failed to load EGL functions.");
+			return false;
+		}
+	}
+#  endif
 # endif
 #else
 	GLVersion = gladLoadGLES2(loadFunc);
@@ -484,15 +518,18 @@ bool ogl_Init(void* (load)(const char*))
 
 void ogl_SetVsyncEnabled(bool enabled)
 {
+	const int interval = enabled ? 1 : 0;
 #if !CONFIG2_GLES && OS_WIN
-	int interval = enabled ? 1 : 0;
 	if (ogl_HaveExtension("WGL_EXT_swap_control"))
 		wglSwapIntervalEXT(interval);
 #elif !CONFIG2_GLES && !OS_MACOSX && !OS_MAC
-	int interval = enabled ? 1 : 0;
-	if (ogl_HaveExtension("GLX_SGI_swap_control"))
+#if defined(SDL_VIDEO_DRIVER_X11)
+	if (GLXVersion && ogl_HaveExtension("GLX_SGI_swap_control"))
 		glXSwapIntervalSGI(interval);
 #else
-	UNUSED2(enabled);
+	UNUSED2(interval);
+#endif
+#else
+	UNUSED2(interval);
 #endif
 }

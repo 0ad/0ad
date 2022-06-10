@@ -41,11 +41,12 @@
  * initialization: import extension function pointers and do feature detect.
  * call before using any other function.
  * fails if OpenGL not ready for use.
+ * TODO: move loading functionality to GL backend.
  **/
 #if OS_WIN
 extern bool ogl_Init(void* (load)(const char*), void* hdc);
 #elif !OS_MACOSX && !OS_MAC && !CONFIG2_GLES
-extern bool ogl_Init(void* (load)(const char*), void* display);
+extern bool ogl_Init(void* (load)(const char*), void* display, int subsystem);
 #else
 extern bool ogl_Init(void* (load)(const char*));
 #endif
