@@ -5,8 +5,8 @@
 var g_Environment = {
 	"SkySet": "default", // textures for the skybox, subdirectory name of art/textures/skies
 	"SunColor": { "r": 1.03162, "g": 0.99521, "b": 0.865752, "a": 0 }, // all rgb from 0 to 1
-	"SunElevation": 1.85, // 0 to 2pi
-	"SunRotation": 0.0, // 0 to 2pi
+	"SunElevation": 0.7, // 0 to 2pi
+	"SunRotation": -0.909, // 0 to 2pi
 	"AmbientColor": { "r": 0.364706, "g": 0.376471, "b": 0.419608, "a": 0 },
 	"Water": {
 		"WaterBody": {

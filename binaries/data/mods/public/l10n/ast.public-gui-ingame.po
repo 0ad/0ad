@@ -79,7 +79,7 @@ msgstr "Pousar"
 #: gui/session/MenuButtons.js:221
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr "Calca %(hotkey)s par pousar ou continua’ la partida."
+msgstr "Calca %(hotkey)s pa pousar ou continua’ la partida."
 
 #: gui/session/MenuButtons.js:237
 msgid "Resign"
@@ -144,7 +144,7 @@ msgstr "Pousou-se la partida"
 
 #: gui/session/PauseOverlay.xml:(caption):11
 msgid "Click to Resume Game"
-msgstr "Pica par continua’ la partida"
+msgstr "Pica pa continua’ la partida"
 
 #: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:273
 #: gui/session/selection_details.js:291 gui/session/selection_panels.js:582
@@ -364,7 +364,7 @@ msgstr "Pica par infocar scontra la unidá attacada."
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr "%(player)s introcou %(amountGiven)s in para de %(amountGained)s."
+msgstr "%(player)s cambiou %(amountGiven)s in para de %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
@@ -679,7 +679,7 @@ msgstr "Inimigu"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr "Subornar alteatoriamente una unidá d’esti xhogador & comparti’ la suâ vista per un tiempu."
+msgstr "Subornar alteatoriamente una unidá d’esti xhogador & comparti’ la suæ vista per un tiempu."
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
 msgid "A failed bribe will cost you:"
@@ -1053,7 +1053,7 @@ msgstr "La formaçon predefinida sta disactivada."
 
 #: gui/session/selection_panels.js:278
 msgid "Right-click to disable the default formation feature."
-msgstr "Pica cuno boton dreithu par disactiva’ la funcçon “formaçon predefinida”."
+msgstr "Pica cuno boton dreithu pa disactiva’ la funcçon “formaçon predefinida”."
 
 #: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
@@ -1070,7 +1070,7 @@ msgstr "Disoccupar %(name)s"
 
 #: gui/session/selection_panels.js:339
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "Pica una vez par disoccupar 1. Calca cun Maiúsculæs premida par disoccupar todolos d’esti typu."
+msgstr "Pica una vez pa disoccupar 1. Calca cun Maiúsculæs premida pa disoccupar todolos d’esti typu."
 
 #: gui/session/selection_panels.js:341 gui/session/selection_panels.js:914
 #, javascript-format
@@ -1300,17 +1300,17 @@ msgstr "%(buildings)s*%(batchSize)s"
 #: gui/session/selection_panels_helpers.js:217
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
-msgstr "%(action)s par crear %(number)s (%(fullBatch)s + %(remainderBatch)s)."
+msgstr "%(action)s pa crear %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:219
 #, javascript-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
-msgstr "%(action)s par crear %(number)s (%(fullBatch)s)."
+msgstr "%(action)s pa crear %(number)s (%(fullBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:221
 #, javascript-format
 msgid "%(action)s to train %(number)s."
-msgstr "%(action)s par crear %(number)s."
+msgstr "%(action)s pa crear %(number)s."
 
 #: gui/session/selection_panels_helpers.js:226
 msgid "Shift-click"
@@ -1437,12 +1437,12 @@ msgstr "Scoyer un xhogador que ver"
 #: gui/session/trade/BarterButton.js:108
 #, javascript-format
 msgid "Buy %(resource)s"
-msgstr "Mercar %(resource)s"
+msgstr "Recibir %(resource)s"
 
 #: gui/session/trade/BarterButton.js:109
 #, javascript-format
 msgid "Sell %(resource)s"
-msgstr "Vender %(resource)s"
+msgstr "Dar %(resource)s"
 
 #: gui/session/trade/BarterButton.js:110
 #, javascript-format
@@ -1458,15 +1458,15 @@ msgstr "-%(amount)s"
 
 #: gui/session/trade/BarterPanel.xml:(caption):5
 msgid "Barter"
-msgstr "Troqueu"
+msgstr "Cambio"
 
 #: gui/session/trade/BarterPanel.xml:(caption):13
 msgid "Sell:"
-msgstr "Vender:"
+msgstr "Dar:"
 
 #: gui/session/trade/BarterPanel.xml:(caption):17
 msgid "Buy:"
-msgstr "Mercar:"
+msgstr "Recibir:"
 
 #: gui/session/trade/BarterPanel.xml:(caption):21
 msgid "No Markets Available"
@@ -1484,7 +1484,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "Scœyi l typu de bienes que quieres camudar picando n elhi, & lhœw usa læs flretsæs de los outros typos pa camuda’ læs suâs proporçones. Tamien puœdes premer %(hotkey)s al scoyer un typu de bienes pa txubi’ la suâ proporçon al 100 %%."
+msgstr "Scœyi l typu de bienes que quieras modificar picando n elhi, & lhœw usa læs flretsæs pa camuda’ la proporçon entre los bienes. Tamien puœdes premer %(hotkey)s al scoyer un typu de bienes pa txubi’ la suæ porçon al 100 %%."
 
 #: gui/session/trade/TradeDialogBarterPanel.js:45
 #, javascript-format
@@ -1493,11 +1493,11 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr "Intama scoyendo l recursu que quieres vender de la fhila superior. Siempre que se preman los botones inferiores, %(quantity)s de los recursos superiores vaî/van vendese pola quantidá amostrada de los inferiores. Premi & calten premidu/a %(hotkey)s par multiplicar temporalmente la quantidá introcada por %(multiplier)s."
+msgstr "Intama scoyendo de la fhila superior el recursu que quieras cambiar. Al premer un boton de la fhila inferior, vas dar %(quantity)s de l recursu superior n para de la quantidá indicada pa l inferior. Premi & calten premidu/a %(hotkey)s pa multiplicar temporalmente læs quantidades por %(multiplier)s."
 
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
-msgstr "Cambiu"
+msgstr "Commercio"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
@@ -1654,7 +1654,7 @@ msgstr "Occupantes actuales: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:1177
 msgid "Right-click to establish a default route for new traders."
-msgstr "Pica cuno boton dreithu p’afhitar una vía predefinida par commerciantes nuœvos."
+msgstr "Pica cuno boton dreithu p’afhitar una vía predefinida pa commerciantes nuœvos."
 
 #: gui/session/unit_actions.js:1181
 #, javascript-format
@@ -1730,7 +1730,7 @@ msgstr "Excusa’l curiador"
 #: gui/session/trade/TradeDialog.xml:(caption):9
 #: gui/session/unit_actions.js:1685
 msgid "Barter & Trade"
-msgstr "Commercio"
+msgstr "Cambio & commercio"
 
 #: gui/session/unit_actions.js:1705
 msgid "Patrol"
@@ -1742,11 +1742,11 @@ msgstr "Acometer a todelæs unidades inimigæs alcontradæs evitando construcço
 
 #: gui/session/unit_actions.js:1734
 msgid "Press to allow allies to use this dropsite"
-msgstr "Premi par deixar que los alliahos usen esti depósitu"
+msgstr "Premi pa deixar que los alliahos usen esti depósitu"
 
 #: gui/session/unit_actions.js:1739
 msgid "Press to prevent allies from using this dropsite"
-msgstr "Premi par quitar que los alliahos usen esti depósitu"
+msgstr "Premi pa quitar que los alliahos usen esti depósitu"
 
 #: gui/session/unit_actions.js:1774
 msgid "The use of this dropsite is prohibited"
@@ -1770,12 +1770,12 @@ msgstr "Disactiva’l inriestru automáticu næs construcçones scoyidæs."
 
 #: gui/session/unit_actions.js:1885
 msgid "The entity has to be killed before it can be gathered from"
-msgstr "Esso ha hi que lo matar pa explotallo"
+msgstr "Esso ha hi que lo matar par explotallo"
 
 #: gui/session/unit_actions.js:1888
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr "Nun puœdes eliminar esti ente, des que ti correspuœnde ménos de l dimidio de la suâ fidelidá"
+msgstr "Nun puœdes eliminar esti ente, des que ti correspuœnde ménos de l dimidio de la suæ fidelidá"
 
 #: gui/session/unit_actions.js:1891
 msgid "This entity is undeletable"
