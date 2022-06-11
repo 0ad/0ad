@@ -19,11 +19,7 @@
     <Static depth="20.0" width="20.0"/>
   </Obstruction>
   <ResourceSupply>
-    <KillBeforeGather>false</KillBeforeGather>
-    <Max>Infinity</Max>
-    <Type>food.rice</Type>
     <MaxGatherers>3</MaxGatherers>
-    <DiminishingReturns>0.90</DiminishingReturns>
   </ResourceSupply>
   <VisualActor>
     <Actor>structures/rice_paddy.xml</Actor>

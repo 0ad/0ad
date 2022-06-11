@@ -17,7 +17,7 @@
 	"researchTime": 60,
 	"tooltip": "Workers +25% rice gather rate.",
 	"modifications": [
-		{ "value": "ResourceGatherer/Rates/food.rice", "multiply": 1.25 }
+		{ "value": "ResourceGatherer/Rates/food.grain", "multiply": 1.25 }
 	],
 	"affects": ["Worker"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

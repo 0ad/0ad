@@ -23,7 +23,6 @@
     <variant file="biped/female_carry_metal.xml"/>
     <variant file="biped/approach_tree.xml"/>
     <variant file="biped/approach_grain.xml"/>
-    <variant file="biped/approach_rice.xml"/>
     <variant file="biped/approach_fruit.xml"/>
     <variant file="biped/approach_meat.xml"/>
     <variant file="biped/approach_rock.xml"/>
@@ -42,11 +41,6 @@
       </props>
     </variant>
     <variant file="biped/female_gather_grain.xml">
-      <props>
-        <prop actor="props/units/helmets/han_ricehat.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant file="biped/female_gather_rice.xml">
       <props>
         <prop actor="props/units/helmets/han_ricehat.xml" attachpoint="helmet"/>
       </props>
