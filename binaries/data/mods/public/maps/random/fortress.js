@@ -1,17 +1,17 @@
 Engine.LoadLibrary("rmgen");
 Engine.LoadLibrary("rmgen-common");
 
-const tGrass = ["temp_grass_aut", "temp_grass_aut", "temp_grass_d_aut"];
-const tForestFloor = "temp_grass_aut";
-const tGrassA = "temp_grass_plants_aut";
-const tGrassB = "temp_grass_b_aut";
-const tGrassC = "temp_grass_c_aut";
-const tHill = ["temp_highlands_aut", "temp_grass_long_b_aut"];
-const tCliff = ["temp_cliff_a", "temp_cliff_b"];
+const tGrass = ["temperate_grass_04", "temperate_grass_03", "temperate_grass_04"];
+const tForestFloor = "temperate_forestfloor_01";
+const tGrassA = "temperate_grass_05";
+const tGrassB = "temperate_grass_02";
+const tGrassC = "temperate_grass_mud_01";
+const tHill = "temperate_rocks_dirt_01";
+const tCliff = ["temperate_cliff_01", "temperate_cliff_02"];
 const tRoad = "temp_road_aut";
-const tGrassPatch = "temp_grass_plants_aut";
-const tShore = "temp_plants_bog_aut";
-const tWater = "temp_mud_a";
+const tGrassPatch = "temperate_grass_dirt_01";
+const tShore = "temperate_grass_mud_01";
+const tWater = "temperate_mud_01";
 
 const oBeech = "gaia/tree/euro_beech_aut";
 const oOak = "gaia/tree/oak_aut";
@@ -22,7 +22,8 @@ const oSheep = "gaia/fauna_rabbit";
 const oBerryBush = "gaia/fruit/berry_01";
 const oStoneLarge = "gaia/rock/temperate_large";
 const oStoneSmall = "gaia/rock/temperate_small";
-const oMetalLarge = "gaia/ore/temperate_large";
+const oMetalLarge = "gaia/ore/temperate_01";
+const oMetalSmall = "gaia/ore/temperate_small";
 const oFoodTreasure = "gaia/treasure/food_bin";
 const oWoodTreasure = "gaia/treasure/wood";
 const oStoneTreasure = "gaia/treasure/stone";
@@ -59,10 +60,10 @@ var clFood = g_Map.createTileClass();
 var clBaseResource = g_Map.createTileClass();
 
 var treasures = [
-	{ "template": oFoodTreasure, "distance": 5 },
-	{ "template": oWoodTreasure, "distance": 5 },
-	{ "template": oMetalTreasure, "distance": 3 },
-	{ "template": oStoneTreasure, "distance": 2 }
+	{ "template": oFoodTreasure, "count": 5 },
+	{ "template": oWoodTreasure, "count": 5 },
+	{ "template": oMetalTreasure, "count": 4 },
+	{ "template": oStoneTreasure, "count": 2 }
 ];
 
 var [playerIDs, playerPosition] = playerPlacementCircle(fractionToTiles(0.35));
@@ -89,7 +90,7 @@ for (let i = 0; i < numPlayers; ++i)
 	for (let j = 0; j < treasures.length; ++j)
 		createObjectGroup(
 			new SimpleGroup(
-				[new SimpleObject(treasures[j].template, treasures[j].distance, treasures[j].distance, 0, 2)],
+				[new SimpleObject(treasures[j].template, treasures[j].count, treasures[j].count, 0, 2)],
 				false,
 				clBaseResource,
 				Vector2D.add(playerPosition[i], new Vector2D(10, 0).rotate(-j * Math.PI / 2 - playerAngle))),
@@ -108,23 +109,12 @@ for (let i = 0; i < numPlayers; ++i)
 		]);
 
 	// Fortress
-	// To take into account houses that offer a lower population bonus
-	if (Engine.GetTemplate("structures/" + civ + "/house").Population.Bonus <= 5)
-	{
-		var wall = ["gate", "tower", "long",
-			"cornerIn", "long", "barracks", "tower", "long", "tower", "long",
-			"cornerIn", "long", "stable", "tower", "gate", "tower", "house", "long",
-			"cornerIn", "long", "house", "tower", "long", "tower", "house", "long",
-			"cornerIn", "long", "house", "tower"];
-	}
-	else
-	{
-		var wall = ["gate", "tower", "long",
-			"cornerIn", "long", "barracks", "tower", "long", "tower", "long",
-			"cornerIn", "long", "stable", "tower", "gate", "tower", "long",
-			"cornerIn", "long", "house", "tower", "long", "tower", "long",
-			"cornerIn", "long", "house", "tower"];
-	}
+	var wall = ["gate", "tower", "long",
+		"cornerIn", "long", "barracks", "tower", "long", "tower", "long",
+		"cornerIn", "long", "stable", "tower", "gate", "tower", "long",
+		"cornerIn", "long", "temple", "tower", "long", "tower", "long",
+		"cornerIn", "long", "market", "tower"];
+
 	placeCustomFortress(playerPosition[i], new Fortress("Spahbod", wall), civ, playerIDs[i], playerAngle);
 }
 
@@ -221,12 +211,11 @@ createMines(
 Engine.SetProgress(65);
 
 g_Map.log("Creating metal mines");
-createMines(
- [
-  [new SimpleObject(oMetalLarge, 1,1, 0,4)]
- ],
- avoidClasses(clWater, 0, clForest, 1, clPlayer, 5, clMetal, 10, clRock, 5, clHill, 1),
- clMetal
+createBalancedMetalMines(
+	oMetalSmall,
+	oMetalLarge,
+	clMetal,
+	avoidClasses(clWater, 0, clForest, 1, clPlayer, 5, clMetal, 10, clRock, 5, clHill, 1)
 );
 Engine.SetProgress(70);
 
