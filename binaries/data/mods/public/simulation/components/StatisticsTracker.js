@@ -367,7 +367,7 @@ StatisticsTracker.prototype.IncreaseResourceGatheredCounter = function(type, amo
 {
 	this.resourcesGathered[type] += amount;
 
-	if (type == "food" && (specificType == "fruit" || specificType == "grain" || specificType == "rice"))
+	if (type == "food" && (specificType == "fruit" || specificType == "grain"))
 		this.resourcesGathered.vegetarianFood += amount;
 };
 
