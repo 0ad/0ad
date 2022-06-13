@@ -1216,7 +1216,7 @@ msgstr "%(speed)s %(movementType)s"
 
 #: gui/common/tooltips.js:1020
 msgid "Walk"
-msgstr "步行"
+msgstr "行軍"
 
 #: gui/common/tooltips.js:1025
 msgid "Run"
@@ -1609,7 +1609,7 @@ msgstr "分類："
 
 #: gui/hotkeys/hotkeys.xml:(caption):24
 msgid "Filter:"
-msgstr "過濾器："
+msgstr "篩選："
 
 #: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):101
 #: gui/options/options.xml:(caption):43
@@ -1628,7 +1628,7 @@ msgstr "快捷鍵描述"
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr "點擊任意對應來修改它們。\\n 你可以用至多 4 個不同的快捷鍵。"
+msgstr "點擊任意對應來修改它們。\n你可以用至多 4 個不同的快捷鍵。"
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 #: gui/locale_advanced/locale_advanced.xml:(caption):75
@@ -4072,7 +4072,7 @@ msgstr "單位剪影"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Show outlines of units behind structures."
-msgstr "顯示在建築物後面的單位的輪廓"
+msgstr "顯示在建築物後面單位的輪廓。"
 
 #: gui/options/options.json[1].options[5].label
 msgid "Particles"
@@ -4211,7 +4211,7 @@ msgstr "MSAA (2×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr "慢，但是高品質的反鋸齒，對每個像素雙重取樣。GL3.3+ 支援。"
+msgstr "慢，但是高品質的反鋸齒，對每個像素雙重取樣。支援 GL3.3+。"
 
 #: gui/options/options.json[2].options[3].list[3].label
 msgid "MSAA (4×)"
@@ -4231,7 +4231,7 @@ msgstr "MSAA (8×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr "慢，但是高品質的反鋸齒，對每個像素八重取樣。GL3.3+ 支援。"
+msgstr "慢，但是高品質的反鋸齒，對每個像素八重取樣。支援 GL3.3+。"
 
 #: gui/options/options.json[2].options[3].list[5].label
 msgid "MSAA (16×)"
@@ -4241,7 +4241,7 @@ msgstr "MSAA (16×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
-msgstr "慢，但是高品質的反鋸齒，對每個像素十六重取樣。GL3.3+ 支援。"
+msgstr "慢，但是高品質的反鋸齒，對每個像素十六重取樣。支援 GL3.3+。"
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "Reduce aliasing effect on edges."
@@ -4814,7 +4814,7 @@ msgstr "按照值來動態排序資源與人口工具提示中的玩家。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].label
 msgid "Diplomacy colors: self"
-msgstr "自己的外交顏色"
+msgstr "外交顏色：自己"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[16].tooltip
 msgid "Color of your units when diplomacy colors are enabled."
@@ -4822,7 +4822,7 @@ msgstr "當外交顏色啟用時，你的單位之顏色。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].label
 msgid "Diplomacy colors: ally"
-msgstr "同盟的外交顏色"
+msgstr "外交顏色：同盟"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[17].tooltip
 msgid "Color of allies when diplomacy colors are enabled."
@@ -4830,7 +4830,7 @@ msgstr "當外交顏色啟用時，盟友的顏色。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].label
 msgid "Diplomacy colors: neutral"
-msgstr "中立的外交顏色"
+msgstr "外交顏色：中立"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
@@ -4838,7 +4838,7 @@ msgstr "當外交顏色啟用時，中立玩家的顏色。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].label
 msgid "Diplomacy colors: enemy"
-msgstr "敵人的外交顏色"
+msgstr "外交顏色：敵人"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
@@ -4915,7 +4915,7 @@ msgstr "陣型控制"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[0].label
 msgid "Walk/Patrol Only"
-msgstr "僅限行走/巡邏"
+msgstr "僅限行軍 / 巡邏"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[0].tooltip
 msgid "Other orders will disband existing formations."
@@ -4933,7 +4933,7 @@ msgstr "在陣型中的單位待在陣型中。"
 msgid ""
 "Decide whether formations are enabled for all orders or only 'Walk' and "
 "'Patrol'."
-msgstr "確定是否對所有指令啟用陣型，還是僅對「步行」和「巡邏」啟用。"
+msgstr "確定是否對所有指令啟用陣型，還是僅對「行軍」和「巡邏」啟用。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[23].label
 msgid "Battalion-style formations"
@@ -4988,7 +4988,7 @@ msgstr "如果有盟友在團隊鎖定的情況下進貢資源給另一個團隊
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].label
 msgid "Chat notification barter"
-msgstr "聊天通知交易"
+msgstr "聊天通知交換"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].tooltip
 msgid ""
