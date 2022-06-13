@@ -90,7 +90,6 @@ let groveActors = [
 	"actor|props/flora/bush.xml", "actor|props/flora/bush_dry_a.xml", "actor|props/flora/bush_highlands.xml",
 	"actor|props/flora/bush_tempe_a.xml", "actor|props/flora/bush_tempe_b.xml", "actor|props/flora/ferns.xml"
 ];
-let clGrove = g_Map.createTileClass();
 
 function placeGrove(point)
 {
@@ -108,10 +107,7 @@ function placeGrove(point)
 		g_Map.placeEntityPassable(pickRandom(objectList), 0, position, randomAngle());
 		createArea(
 			new ClumpPlacer(5, 1, 1, Infinity, position),
-			[
-				new TerrainPainter(tGrove),
-				new TileClassPainter(clGrove)
-			]);
+			new TerrainPainter(tGrove));
 	}
 }
 
@@ -143,7 +139,6 @@ function placeStartLocationResources(point, foodEntities = ["gaia/fruit/berry_01
 	let angle = currentAngle + randFloat(1, 3) * dAngle / 4;
 	let stonePosition = Vector2D.add(point, new Vector2D(12, 0).rotate(-angle));
 	placeMine(stonePosition, "gaia/rock/temperate_large");
-
 	currentAngle += dAngle;
 
 	// Wood
@@ -159,10 +154,7 @@ function placeStartLocationResources(point, foodEntities = ["gaia/fruit/berry_01
 		g_Map.placeEntityPassable(pickRandom(objectList), 0, woodPosition, randomAngle());
 		createArea(
 			new ClumpPlacer(5, 1, 1, Infinity, woodPosition),
-			[
-				new TerrainPainter("temp_grass_plants"),
-				new TileClassPainter(clGrove)
-			]);
+			new TerrainPainter("temp_grass_plants"));
 		currentAngle += dAngle;
 	}
 
@@ -238,58 +230,58 @@ g_Map.log("Determining height-dependent biome");
 let myBiome = [];
 myBiome.push({ // 0 Deep water
 	"texture": ["shoreline_stoney_a"],
-	"actor": [["gaia/fish/generic", "actor|geology/stone_granite_boulder.xml"], 0.02],
-	"textureHS": ["alpine_mountainside"], "actorHS": [["gaia/fish/generic"], 0.1]
+	"entity": [["gaia/fish/generic", "actor|geology/stone_granite_boulder.xml"], 0.02],
+	"textureHS": ["alpine_mountainside"], "entityHS": [["gaia/fish/generic"], 0.1]
 });
 myBiome.push({ // 1 Medium Water
 	"texture": ["shoreline_stoney_a", "alpine_shore_rocks"],
-	"actor": [["actor|geology/stone_granite_boulder.xml", "actor|geology/stone_granite_med.xml"], 0.03],
-	"textureHS": ["alpine_mountainside"], "actorHS": [["actor|geology/stone_granite_boulder.xml", "actor|geology/stone_granite_med.xml"], 0.0]
+	"entity": [["actor|geology/stone_granite_boulder.xml", "actor|geology/stone_granite_med.xml"], 0.03],
+	"textureHS": ["alpine_mountainside"], "entityHS": [["actor|geology/stone_granite_boulder.xml", "actor|geology/stone_granite_med.xml"], 0.0]
 });
 myBiome.push({ // 2 Shallow water
 	"texture": ["alpine_shore_rocks"],
-	"actor": [["actor|props/flora/reeds_pond_dry.xml", "actor|geology/stone_granite_large.xml", "actor|geology/stone_granite_med.xml", "actor|props/flora/reeds_pond_lush_b.xml"], 0.2],
-	"textureHS": ["alpine_mountainside"], "actorHS": [["actor|props/flora/reeds_pond_dry.xml", "actor|geology/stone_granite_med.xml"], 0.1]
+	"entity": [["actor|props/flora/reeds_pond_dry.xml", "actor|geology/stone_granite_large.xml", "actor|geology/stone_granite_med.xml", "actor|props/flora/reeds_pond_lush_b.xml"], 0.2],
+	"textureHS": ["alpine_mountainside"], "entityHS": [["actor|props/flora/reeds_pond_dry.xml", "actor|geology/stone_granite_med.xml"], 0.1]
 });
 myBiome.push({ // 3 Shore
 	"texture": ["alpine_shore_rocks_grass_50", "alpine_grass_rocky"],
-	"actor": [["gaia/tree/pine", "gaia/tree/bush_badlands", "actor|geology/highland1_moss.xml", "actor|props/flora/grass_soft_tuft_a.xml", "actor|props/flora/bush.xml"], 0.3],
-	"textureHS": ["alpine_mountainside"], "actorHS": [["actor|props/flora/grass_soft_tuft_a.xml"], 0.1]
+	"entity": [["gaia/tree/pine", "gaia/tree/bush_badlands", "actor|geology/highland1_moss.xml", "actor|props/flora/grass_soft_tuft_a.xml", "actor|props/flora/bush.xml"], 0.3],
+	"textureHS": ["alpine_mountainside"], "entityHS": [["actor|props/flora/grass_soft_tuft_a.xml"], 0.1]
 });
 myBiome.push({ // 4 Low ground
 	"texture": ["alpine_dirt_grass_50", "alpine_grass_rocky"],
-	"actor": [["actor|geology/stone_granite_med.xml", "actor|props/flora/grass_soft_tuft_a.xml", "actor|props/flora/bush.xml", "actor|props/flora/grass_medit_flowering_tall.xml"], 0.2],
-	"textureHS": ["alpine_grass_rocky"], "actorHS": [["actor|geology/stone_granite_med.xml", "actor|props/flora/grass_soft_tuft_a.xml"], 0.1]
+	"entity": [["actor|geology/stone_granite_med.xml", "actor|props/flora/grass_soft_tuft_a.xml", "actor|props/flora/bush.xml", "actor|props/flora/grass_medit_flowering_tall.xml"], 0.2],
+	"textureHS": ["alpine_grass_rocky"], "entityHS": [["actor|geology/stone_granite_med.xml", "actor|props/flora/grass_soft_tuft_a.xml"], 0.1]
 });
 myBiome.push({ // 5 Player and path height
 	"texture": ["new_alpine_grass_c", "new_alpine_grass_b", "new_alpine_grass_d"],
-	"actor": [["actor|geology/stone_granite_small.xml", "actor|props/flora/grass_soft_small.xml", "actor|props/flora/grass_medit_flowering_tall.xml"], 0.2],
-	"textureHS": ["alpine_grass_rocky"], "actorHS": [["actor|geology/stone_granite_small.xml", "actor|props/flora/grass_soft_small.xml"], 0.1]
+	"entity": [["actor|geology/stone_granite_small.xml", "actor|props/flora/grass_soft_small.xml", "actor|props/flora/grass_medit_flowering_tall.xml"], 0.2],
+	"textureHS": ["alpine_grass_rocky"], "entityHS": [["actor|geology/stone_granite_small.xml", "actor|props/flora/grass_soft_small.xml"], 0.1]
 });
 myBiome.push({ // 6 High ground
 	"texture": ["new_alpine_grass_a", "alpine_grass_rocky"],
-	"actor": [["actor|geology/stone_granite_med.xml", "actor|props/flora/grass_tufts_a.xml", "actor|props/flora/bush_highlands.xml", "actor|props/flora/grass_medit_flowering_tall.xml"], 0.2],
-	"textureHS": ["alpine_grass_rocky"], "actorHS": [["actor|geology/stone_granite_med.xml", "actor|props/flora/grass_tufts_a.xml"], 0.1]
+	"entity": [["actor|geology/stone_granite_med.xml", "actor|props/flora/grass_tufts_a.xml", "actor|props/flora/bush_highlands.xml", "actor|props/flora/grass_medit_flowering_tall.xml"], 0.2],
+	"textureHS": ["alpine_grass_rocky"], "entityHS": [["actor|geology/stone_granite_med.xml", "actor|props/flora/grass_tufts_a.xml"], 0.1]
 });
 myBiome.push({ // 7 Lower forest border
 	"texture": ["new_alpine_grass_mossy", "alpine_grass_rocky"],
-	"actor": [["gaia/tree/pine", "gaia/tree/oak", "actor|props/flora/grass_tufts_a.xml", "gaia/fruit/berry_01", "actor|geology/highland2_moss.xml", "gaia/fauna_goat", "actor|props/flora/bush_tempe_underbrush.xml"], 0.3],
-	"textureHS": ["alpine_cliff_c"], "actorHS": [["actor|props/flora/grass_tufts_a.xml", "actor|geology/highland2_moss.xml"], 0.1]
+	"entity": [["gaia/tree/pine", "gaia/tree/oak", "actor|props/flora/grass_tufts_a.xml", "gaia/fruit/berry_01", "actor|geology/highland2_moss.xml", "gaia/fauna_goat", "actor|props/flora/bush_tempe_underbrush.xml"], 0.3],
+	"textureHS": ["alpine_cliff_c"], "entityHS": [["actor|props/flora/grass_tufts_a.xml", "actor|geology/highland2_moss.xml"], 0.1]
 });
 myBiome.push({ // 8 Forest
 	"texture": ["alpine_forrestfloor"],
-	"actor": [["gaia/tree/pine", "gaia/tree/pine", "gaia/tree/pine", "gaia/tree/pine", "actor|geology/highland2_moss.xml", "actor|props/flora/bush_highlands.xml"], 0.5],
-	"textureHS": ["alpine_cliff_c"], "actorHS": [["actor|geology/highland2_moss.xml", "actor|geology/stone_granite_med.xml"], 0.1]
+	"entity": [["gaia/tree/pine", "gaia/tree/pine", "gaia/tree/pine", "gaia/tree/pine", "actor|geology/highland2_moss.xml", "actor|props/flora/bush_highlands.xml"], 0.5],
+	"textureHS": ["alpine_cliff_c"], "entityHS": [["actor|geology/highland2_moss.xml", "actor|geology/stone_granite_med.xml"], 0.1]
 });
 myBiome.push({ // 9 Upper forest border
 	"texture": ["alpine_forrestfloor_snow", "new_alpine_grass_dirt_a"],
-	"actor": [["gaia/tree/pine", "actor|geology/snow1.xml"], 0.3],
-	"textureHS": ["alpine_cliff_b"], "actorHS": [["actor|geology/stone_granite_med.xml", "actor|geology/snow1.xml"], 0.1]
+	"entity": [["gaia/tree/pine", "actor|geology/snow1.xml"], 0.3],
+	"textureHS": ["alpine_cliff_b"], "entityHS": [["actor|geology/stone_granite_med.xml", "actor|geology/snow1.xml"], 0.1]
 });
 myBiome.push({ // 10 Hilltop
 	"texture": ["alpine_cliff_a", "alpine_cliff_snow"],
-	"actor": [["actor|geology/highland1.xml"], 0.05],
-	"textureHS": ["alpine_cliff_c"], "actorHS": [["actor|geology/highland1.xml"], 0.0]
+	"entity": [["actor|geology/highland1.xml"], 0.05],
+	"textureHS": ["alpine_cliff_c"], "entityHS": [["actor|geology/highland1.xml"], 0.0]
 });
 
 let [playerIDs, playerPosition] = groupPlayersCycle(getStartLocationsByHeightmap({ "min": heighLimits[4], "max": heighLimits[5] }, 1000, 30));
@@ -378,25 +370,25 @@ g_Map.log("Painting areas by height and slope");
 for (let h = 0; h < heighLimits.length; ++h)
 	for (let point of areas[h])
 	{
-		let actor;
+		let entity;
 		let texture = pickRandom(myBiome[h].texture);
 
 		if (slopeMap[point.x][point.y] < 0.4 * (minSlope[h] + maxSlope[h]))
 		{
-			if (randBool(myBiome[h].actor[1]))
-				actor = pickRandom(myBiome[h].actor[0]);
+			if (randBool(myBiome[h].entity[1]))
+				entity = pickRandom(myBiome[h].entity[0]);
 		}
 		else
 		{
 			texture = pickRandom(myBiome[h].textureHS);
-			if (randBool(myBiome[h].actorHS[1]))
-				actor = pickRandom(myBiome[h].actorHS[0]);
+			if (randBool(myBiome[h].entityHS[1]))
+				entity = pickRandom(myBiome[h].entityHS[0]);
 		}
 
 		g_Map.setTexture(point, texture);
 
-		if (actor)
-			g_Map.placeEntityAnywhere(actor, 0, randomPositionOnTile(point), randomAngle());
+		if (entity)
+			g_Map.placeEntityPassable(entity, 0, randomPositionOnTile(point), randomAngle());
 	}
 Engine.SetProgress(80);
 
