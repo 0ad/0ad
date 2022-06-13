@@ -8,23 +8,11 @@
         <prop actor="props/units/heads/head_china.xml" attachpoint="head"/>
         <prop actor="props/units/helmets/han_cap.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/sheath/han_jian_sheath_left_d.xml" attachpoint="sheath_L"/>
-        <prop actor="props/units/shields/han_shield_03.xml" attachpoint="shield_arm"/>
+        <prop actor="props/units/weapons/spear/han_ji.xml" attachpoint="weapon_R"/>
       </props>
       <textures>
         <texture file="skeletal/han/lamellar_01_spec.png" name="specTex"/>
       </textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="han_standard_spear">
-      <props>
-        <prop actor="props/units/weapons/spear/han_standard_spear.xml" attachpoint="weapon_R"/>
-      </props>
-    </variant>
-    <variant frequency="1" name="han_ji">
-      <props>
-        <prop actor="props/units/weapons/spear/han_ji.xml" attachpoint="weapon_R"/>
-      </props>
     </variant>
   </group>
   <group>
@@ -45,7 +33,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/rider/cavalry/base_spearman_fast_shield_01.xml" frequency="1" name="Spearman-Fast-Shield-01"/>
+    <variant file="biped/rider/cavalry/base_spearman_2h_fast_relax.xml" name="Spearman-2h-Fast-Relax" frequency="1"/>
     <variant file="biped/rider/carry_meat.xml"/>
   </group>
   <group>
