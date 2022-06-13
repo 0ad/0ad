@@ -89,7 +89,7 @@ typename CShaderParams<value_t>::SItems* CShaderParams<value_t>::GetInterned(con
 	// Sanity test: the items list is meant to be sorted by name.
 	// This is a reasonable place to verify that, since this will be called once per distinct SItems.
 	typedef ItemNameCmp<value_t> Cmp;
-	ENSURE(std::adjacent_find(items.items.begin(), items.items.end(), std::binary_negate<Cmp>(Cmp())) == items.items.end());
+	ENSURE(std::adjacent_find(items.items.begin(), items.items.end(), std::not_fn<Cmp>(Cmp())) == items.items.end());
 
 	std::shared_ptr<SItems> ptr = std::make_shared<SItems>(items);
 	s_InternedItems.insert(std::make_pair(items, ptr));
