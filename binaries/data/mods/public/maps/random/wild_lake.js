@@ -22,38 +22,44 @@ let wildLakeBiome = [
 	// 0 Deep water
 	{
 		"texture": getArray(g_Terrains.water),
-		"actor": [[g_Gaia.fish], 0.01],
+		"entity": [[g_Gaia.fish], 0.005],
 		"textureHS": getArray(g_Terrains.water),
-		"actorHS": [[g_Gaia.fish], 0.03]
+		"entityHS": [[g_Gaia.fish], 0.01]
 	},
 	// 1 Shallow water
 	{
 		"texture": getArray(g_Terrains.water),
-		"actor": [[g_Decoratives.lillies, g_Decoratives.reeds], 0.3],
+		"entity": [[g_Decoratives.lillies, g_Decoratives.reeds], 0.3],
 		"textureHS": getArray(g_Terrains.water),
-		"actorHS": [[g_Decoratives.lillies], 0.1]
+		"entityHS": [[g_Decoratives.lillies], 0.1]
 	},
 	// 2 Shore
 	{
 		"texture": getArray(g_Terrains.shore),
-		"actor": [
+		"entity": [
 			[
-				g_Gaia.tree1, g_Gaia.tree1,
-				g_Gaia.tree2, g_Gaia.tree2,
+				g_Gaia.tree1, g_Gaia.tree1, g_Gaia.tree1, g_Gaia.tree1, g_Gaia.tree1,
+				g_Gaia.tree1, g_Gaia.tree1, g_Gaia.tree1, g_Gaia.tree1, g_Gaia.tree1,
+				g_Gaia.tree1, g_Gaia.tree1, g_Gaia.tree1, g_Gaia.tree1, g_Gaia.tree1,
+				g_Gaia.tree2, g_Gaia.tree2, g_Gaia.tree2, g_Gaia.tree2, g_Gaia.tree2,
+				g_Gaia.tree2, g_Gaia.tree2, g_Gaia.tree2, g_Gaia.tree2, g_Gaia.tree2,
+				g_Gaia.tree2, g_Gaia.tree2, g_Gaia.tree2, g_Gaia.tree2, g_Gaia.tree2,
 				g_Gaia.mainHuntableAnimal,
 				g_Decoratives.grass, g_Decoratives.grass,
-				g_Decoratives.rockMedium, g_Decoratives.rockMedium,
-				g_Decoratives.bushMedium, g_Decoratives.bushMedium
+				g_Decoratives.rockMedium, g_Decoratives.rockMedium, g_Decoratives.rockMedium, g_Decoratives.rockMedium,
+				g_Decoratives.rockMedium, g_Decoratives.rockMedium, g_Decoratives.rockMedium, g_Decoratives.rockMedium,
+				g_Decoratives.bushMedium, g_Decoratives.bushMedium, g_Decoratives.bushMedium, g_Decoratives.bushMedium,
+				g_Decoratives.bushMedium, g_Decoratives.bushMedium, g_Decoratives.bushMedium, g_Decoratives.bushMedium
 			],
 			0.3
 		],
 		"textureHS": getArray(g_Terrains.cliff),
-		"actorHS": [[g_Decoratives.grassShort, g_Decoratives.rockMedium, g_Decoratives.bushSmall], 0.1]
+		"entityHS": [[g_Decoratives.grassShort, g_Decoratives.rockMedium, g_Decoratives.bushSmall], 0.05]
 	},
 	// 3 Low ground
 	{
 		"texture": getArray(g_Terrains.tier1Terrain),
-		"actor": [
+		"entity": [
 			[
 				g_Decoratives.grass,
 				g_Decoratives.grassShort,
@@ -62,15 +68,15 @@ let wildLakeBiome = [
 				g_Decoratives.bushMedium,
 				g_Decoratives.bushSmall
 			],
-			0.2
+			0.07
 		],
 		"textureHS": getArray(g_Terrains.cliff),
-		"actorHS": [[g_Decoratives.grassShort, g_Decoratives.rockMedium, g_Decoratives.bushSmall], 0.1]
+		"entityHS": [[g_Decoratives.grassShort, g_Decoratives.rockMedium, g_Decoratives.bushSmall], 0.05]
 	},
 	// 4 Mid ground. Player and path height
 	{
 		"texture": getArray(g_Terrains.mainTerrain),
-		"actor": [
+		"entity": [
 			[
 				g_Decoratives.grass,
 				g_Decoratives.grassShort,
@@ -79,15 +85,15 @@ let wildLakeBiome = [
 				g_Decoratives.bushMedium,
 				g_Decoratives.bushSmall
 			],
-			0.2
+			0.07
 		],
 		"textureHS": getArray(g_Terrains.cliff),
-		"actorHS": [[g_Decoratives.grassShort, g_Decoratives.rockMedium, g_Decoratives.bushSmall], 0.1]
+		"entityHS": [[g_Decoratives.grassShort, g_Decoratives.rockMedium, g_Decoratives.bushSmall], 0.05]
 	},
 	// 5 High ground
 	{
 		"texture": getArray(g_Terrains.tier2Terrain),
-		"actor": [
+		"entity": [
 			[
 				g_Decoratives.grass,
 				g_Decoratives.grassShort,
@@ -96,33 +102,33 @@ let wildLakeBiome = [
 				g_Decoratives.bushMedium,
 				g_Decoratives.bushSmall
 			],
-			0.2
+			0.07
 		],
 		"textureHS": getArray(g_Terrains.cliff),
-		"actorHS": [[g_Decoratives.grassShort, g_Decoratives.rockMedium, g_Decoratives.bushSmall], 0.1]
+		"entityHS": [[g_Decoratives.grassShort, g_Decoratives.rockMedium, g_Decoratives.bushSmall], 0.05]
 	},
 	// 6 Lower hilltop forest border
 	{
 		"texture": getArray(g_Terrains.dirt),
-		"actor": [
+		"entity": [
 			[
-				g_Gaia.tree1,
-				g_Gaia.tree3,
+				g_Gaia.tree1, g_Gaia.tree1,
+				g_Gaia.tree3, g_Gaia.tree3,
 				g_Gaia.fruitBush,
 				g_Gaia.secondaryHuntableAnimal,
-				g_Decoratives.grass,
-				g_Decoratives.rockMedium,
-				g_Decoratives.bushMedium
+				g_Decoratives.grass, g_Decoratives.grass,
+				g_Decoratives.rockMedium, g_Decoratives.rockMedium,
+				g_Decoratives.bushMedium, g_Decoratives.bushMedium
 			],
-			0.3
+			0.25
 		],
 		"textureHS": getArray(g_Terrains.cliff),
-		"actorHS": [[g_Decoratives.grassShort, g_Decoratives.rockMedium, g_Decoratives.bushSmall], 0.1]
+		"entityHS": [[g_Decoratives.grassShort, g_Decoratives.rockMedium, g_Decoratives.bushSmall], 0.1]
 	},
 	// 7 Hilltop forest
 	{
 		"texture": getArray(g_Terrains.forestFloor1),
-		"actor": [
+		"entity": [
 			[
 				g_Gaia.tree1,
 				g_Gaia.tree2,
@@ -134,10 +140,10 @@ let wildLakeBiome = [
 				g_Decoratives.rockMedium,
 				g_Decoratives.bushMedium
 			],
-			0.5
+			0.3
 		],
 		"textureHS": getArray(g_Terrains.cliff),
-		"actorHS": [[g_Decoratives.grassShort, g_Decoratives.rockMedium, g_Decoratives.bushSmall], 0.1]
+		"entityHS": [[g_Decoratives.grassShort, g_Decoratives.rockMedium, g_Decoratives.bushSmall], 0.1]
 	}
 ];
 
@@ -175,7 +181,6 @@ function placeMine(position, centerEntity,
 
 // Groves, only wood
 let groveActors = [g_Decoratives.grass, g_Decoratives.rockMedium, g_Decoratives.bushMedium];
-let clGrove = g_Map.createTileClass();
 let clGaiaCamp = g_Map.createTileClass();
 
 function placeGrove(point,
@@ -325,11 +330,7 @@ function placeStartLocationResources(
 
 		createArea(
 			new ClumpPlacer(5, 1, 1, Infinity, position),
-			[
-				new TerrainPainter(groveTerrainTexture),
-				new TileClassPainter(clGrove)
-			]);
-
+			new TerrainPainter(groveTerrainTexture));
 		currentAngle += dAngle;
 	}
 
@@ -494,25 +495,25 @@ g_Map.log("Paint areas by height and slope");
 for (let h = 0; h < heighLimits.length; ++h)
 	for (let point of areas[h])
 	{
-		let actor;
+		let entity;
 		let texture = pickRandom(wildLakeBiome[h].texture);
 
 		if (slopeMap[point.x][point.y] < (minSlope[h] + maxSlope[h]) / 2)
 		{
-			if (randBool(wildLakeBiome[h].actor[1]))
-				actor = pickRandom(wildLakeBiome[h].actor[0]);
+			if (randBool(wildLakeBiome[h].entity[1]))
+				entity = pickRandom(wildLakeBiome[h].entity[0]);
 		}
 		else
 		{
 			texture = pickRandom(wildLakeBiome[h].textureHS);
-			if (randBool(wildLakeBiome[h].actorHS[1]))
-				actor = pickRandom(wildLakeBiome[h].actorHS[0]);
+			if (randBool(wildLakeBiome[h].entityHS[1]))
+				entity = pickRandom(wildLakeBiome[h].entityHS[0]);
 		}
 
 		g_Map.setTexture(point, texture);
 
-		if (actor)
-			g_Map.placeEntityAnywhere(actor, 0, randomPositionOnTile(point), randomAngle());
+		if (entity)
+			g_Map.placeEntityPassable(entity, 0, randomPositionOnTile(point), randomAngle());
 	}
 Engine.SetProgress(40);
 

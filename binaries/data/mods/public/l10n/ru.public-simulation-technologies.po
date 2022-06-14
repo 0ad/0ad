@@ -8,6 +8,7 @@
 # Alex
 # Boris Karalnik
 # Christo Keller
+# Dire Avenger
 # Dmitriy Kulikov
 # Дмитрий Ошкало
 # Максим Дронь
@@ -40,9 +41,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-27 07:09+0000\n"
+"POT-Creation-Date: 2022-06-10 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Дмитрий Ошкало <dmitry.oshkalo@gmail.com>, 2018-2019,2021-2022\n"
+"Last-Translator: Dire Avenger, 2022\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -165,7 +166,7 @@ msgstr "Доступно на этапе небольшого города."
 
 #: simulation/data/technologies/archer_attack_spread.jsontooltip
 msgid "Archers −20% ranged attack spread."
-msgstr "Уменьшение на 20% рассеивания для лучников."
+msgstr "Лучники стреляют на 20% точнее"
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -191,7 +192,7 @@ msgstr "Доступно на этапе деревни."
 
 #: simulation/data/technologies/archery_tradition.jsontooltip
 msgid "Archers +10 attack range."
-msgstr "Лучники +10 радиус атаки."
+msgstr "Лучники получают +10 к дальности атаки."
 
 #: simulation/data/technologies/architecture_kush.jsongenericName
 msgid "Monumental Architecture"
@@ -223,7 +224,7 @@ msgid ""
 "This famous and most important work of the Seven Military Classics teaches "
 "Han commanders everything about planning battles, maintaining armies, and "
 "defeating one's enemies."
-msgstr ""
+msgstr "Это знаменитое и самое важное произведение из Семи военных классиков учит военачальников Хань всему, что касается планирования сражений, поддержания армии и победы над врагами."
 
 #: simulation/data/technologies/art_of_war.jsongenericName
 msgid "Sun Tzu's \"The Art of War\""
@@ -235,7 +236,7 @@ msgstr ""
 
 #: simulation/data/technologies/art_of_war.jsontooltip
 msgid "All Citizen-Soldiers −25% required promotion experience."
-msgstr ""
+msgstr "Всем гражданам-солдатам надо на 25% меньше опыта для повышения."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -298,7 +299,7 @@ msgstr "Коневодство"
 
 #: simulation/data/technologies/cavalry_health.jsontooltip
 msgid "Cavalry +10% health."
-msgstr "Конница получает на 10% больше здоровья."
+msgstr "Здоровье конницы увеличивается на 10%"
 
 #: simulation/data/technologies/cavalry_movement_speed.jsondescription
 msgid "Train your horses to move faster."
@@ -373,7 +374,7 @@ msgstr "Объединив Китай под властью одного имп�
 
 #: simulation/data/technologies/civbonuses/han_population.jsongenericName
 msgid "Federated States"
-msgstr ""
+msgstr "Федеративные Штаты"
 
 #: simulation/data/technologies/civbonuses/han_population.jsontooltip
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
@@ -385,7 +386,7 @@ msgstr "+10 к предельной численности населения."
 msgid ""
 "The Han built massive walls made from rammed earth. These were gigantic "
 "fortifications several meters thick and stretching for kilometers."
-msgstr ""
+msgstr "Империя Хань славилась массивными укреплениями из утрамбованной земли толщиной в несколько метров, простиравшимися на многие километры."
 
 #: simulation/data/technologies/civbonuses/han_walls.jsongenericName
 msgid "Great Wall"
@@ -397,15 +398,15 @@ msgstr "+50% к прочности городских стен."
 
 #: simulation/data/technologies/civbonuses/mace_storehouse.jsondescription
 msgid "The Macedonian economy relied greatly on their vast natural resources."
-msgstr ""
+msgstr "Экономика Македонии, в значительной степени, опиралась на природные богатства."
 
 #: simulation/data/technologies/civbonuses/mace_storehouse.jsongenericName
 msgid "Resource-Rich Economy"
-msgstr ""
+msgstr "Богатая ресурсами экономика"
 
 #: simulation/data/technologies/civbonuses/mace_storehouse.jsontooltip
 msgid "Storehouse technologies −100% research time."
-msgstr ""
+msgstr "Технологии в складах исследуются в два раза быстрее."
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -487,7 +488,7 @@ msgstr "Дома и экономические здания требуют на 
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
 msgid "Civil Engineering − Level 1"
-msgstr ""
+msgstr "Гражданское строительство − Уровень 1"
 
 #: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
 #: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
@@ -496,19 +497,19 @@ msgstr ""
 
 #: simulation/data/technologies/civil_engineering_01.jsontooltip
 msgid "All structures −15% build time, +10% health and −5% cost."
-msgstr ""
+msgstr "Все здания возводятся на 15% быстрее и на 5% дешевле, имеют на 10% больше прочности."
 
 #: simulation/data/technologies/civil_engineering_02.jsongenericName
 msgid "Civil Engineering − Level 2"
-msgstr ""
+msgstr "Гражданское строительство − Уровень 2"
 
 #: simulation/data/technologies/civil_engineering_02.jsontooltip
 msgid "All structures −25% build time, +20% health and −5% cost."
-msgstr ""
+msgstr "Все здания возводятся на 25% быстрее и на 5% дешевле, имеют на 20% больше прочности."
 
 #: simulation/data/technologies/civil_service_01.jsongenericName
 msgid "Civil Service − Level 1"
-msgstr ""
+msgstr "Гражданская служба − Уровень 1"
 
 #: simulation/data/technologies/civil_service_01.jsonspecificName.han
 #: simulation/data/technologies/civil_service_02.jsonspecificName.han
@@ -520,11 +521,11 @@ msgstr ""
 msgid ""
 "Technologies at all buildings, except the Forge, −15% cost and −15% research"
 " time."
-msgstr ""
+msgstr "Технологии во всех зданиях, кроме Кузницы, стоят на 15% дешевле и на 15% быстрее изучаются."
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
 msgid "Civil Service − Level 2"
-msgstr ""
+msgstr "Гражданская служба − Уровень 2"
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -544,15 +545,15 @@ msgstr "Гражданские здания -25% к затратам време�
 msgid ""
 "The Han had a tradition of fine archery and a penchant for using massed "
 "crossbowmen in battle."
-msgstr ""
+msgstr "Ханьцы  традиционно были хорошими стрелками и боях активно использовали  арбалетчиков."
 
 #: simulation/data/technologies/crossbow_training.jsongenericName
 msgid "Crossbow Training"
-msgstr ""
+msgstr "Обучение стрельбе из арбалета"
 
 #: simulation/data/technologies/crossbow_training.jsontooltip
 msgid "Crossbow Infantry and Cavalry −20% firing time −20% train time."
-msgstr ""
+msgstr "Пехота и кавалерия с арбалетами на 20% быстрее стреляет и тренируется."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -656,17 +657,17 @@ msgstr "Тачка"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsondescription
 msgid "Install a chain pump for improved irrigation."
-msgstr ""
+msgstr "Установка цепного насоса улучшит орошение полей и позволит работникам добывать рис быстрее."
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsongenericName
 msgid "Chain Pump"
-msgstr ""
+msgstr "Цепной насос"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
 msgid "Workers +25% rice gather rate."
-msgstr ""
+msgstr "Работники добывают рис на 25% быстрее."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -708,7 +709,7 @@ msgstr "Железный плуг"
 
 #: simulation/data/technologies/gather_farming_seed_drill.jsondescription
 msgid "Equip your workers with seed drills."
-msgstr ""
+msgstr "Выдайте своим работникам сеялки."
 
 #: simulation/data/technologies/gather_farming_seed_drill.jsongenericName
 msgid "Seed Drill"
@@ -724,11 +725,11 @@ msgstr "Обучение сбору урожая"
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsondescription
 msgid "Remove water weeds to preserve nutrients for the rice plants."
-msgstr ""
+msgstr "Удалите водяные сорняки, чтобы сохранить питательные вещества для риса."
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsongenericName
 msgid "Water Weeding"
-msgstr ""
+msgstr "Прополка рисовых полей"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
@@ -1013,7 +1014,7 @@ msgstr "Время обучения пехоты сокращается на 10%
 msgid ""
 "Athenian gymnasium, docks and triremes can train Marines (Epibates "
 "Athenaikos) and Cretan Mercenary Archers (Toxotes Kretikos)."
-msgstr ""
+msgstr "Позволяет афинским гимназиям, докам и триремам обучать афинских эпибатов (афинская морская пехота) и критских лучников-наемников. "
 
 #: simulation/data/technologies/iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
@@ -1023,7 +1024,7 @@ msgstr "Реформы Ификрата"
 msgid ""
 "Athenian Gymnasia, Docks and Triremes can train Marines and Cretan Mercenary"
 " Archers."
-msgstr ""
+msgstr "Афинские Гимназии, Доки и Триремы могут обучать эпибатов (морских пехотинцев) и критских лучников-наемников."
 
 #: simulation/data/technologies/long_walls.jsondescription
 msgid ""
@@ -1211,7 +1212,7 @@ msgstr "Отравленные стрелы"
 
 #: simulation/data/technologies/poison_arrows.jsontooltip
 msgid "Ranged Soldiers +20% attack damage."
-msgstr ""
+msgstr "Стрелки наносят на 20% больше урона"
 
 #: simulation/data/technologies/poison_blades.jsongenericName
 msgid "Poison Blades"
@@ -1296,8 +1297,8 @@ msgid "Wooden reinforcement beams for ship hulls."
 msgstr "Деревянные шпангоуты для корабельных корпусов."
 
 #: simulation/data/technologies/ship_health.jsongenericName
-msgid "Reinforced hull"
-msgstr "Усиленный корпус"
+msgid "Reinforced Hull"
+msgstr ""
 
 #: simulation/data/technologies/ship_health.jsontooltip
 msgid "Ships +25% health."
@@ -1384,7 +1385,7 @@ msgstr "Шелковый Путь"
 
 #: simulation/data/technologies/silk_road.jsontooltip
 msgid "Traders +20% international trade bonus."
-msgstr ""
+msgstr "Торговцы приносят на 20% больше ресурсов при международной торговле"
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
@@ -1708,7 +1709,7 @@ msgstr "Торговый договор"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
 msgid "Traders +10% trade profit between allies."
-msgstr ""
+msgstr "Торговля между союзниками приносит на 10% больше ресурсов"
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription
