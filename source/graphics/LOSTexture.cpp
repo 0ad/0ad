@@ -132,7 +132,9 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::IDeviceCommandContext* devic
 	if (m_Dirty)
 	{
 		RecomputeTexture(deviceCommandContext);
-		m_LastTextureRecomputeTime = timer_Time();
+		// We need to subtract the frame time because without it we have the
+		// same output images for the current and previous frames.
+		m_LastTextureRecomputeTime = timer_Time() - g_Renderer.GetTimeManager().GetFrameDelta();
 		m_WhichTexture = 1u - m_WhichTexture;
 		m_Dirty = false;
 	}
