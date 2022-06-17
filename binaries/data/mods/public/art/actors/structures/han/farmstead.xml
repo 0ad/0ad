@@ -16,6 +16,14 @@
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_han.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
     <variant frequency="1" name="alive"/>
     <variant file="structures/destruction_small.xml"/>
   </group>
