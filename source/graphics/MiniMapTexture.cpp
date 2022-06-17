@@ -30,12 +30,15 @@
 #include "graphics/TerritoryTexture.h"
 #include "graphics/TextureManager.h"
 #include "lib/bits.h"
+#include "lib/hash.h"
 #include "lib/timer.h"
+#include "maths/MathUtil.h"
 #include "maths/Vector2D.h"
 #include "ps/ConfigDB.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
+#include "ps/Profile.h"
 #include "ps/VideoMode.h"
 #include "ps/World.h"
 #include "ps/XML/Xeromyces.h"
@@ -50,6 +53,8 @@
 #include "simulation2/components/ICmpRangeManager.h"
 #include "simulation2/system/ParamNode.h"
 
+#include <algorithm>
+#include <array>
 #include <cmath>
 
 namespace
@@ -59,11 +64,13 @@ namespace
 // 4 is the number of vertices per entity.
 // TODO: we should be cleverer about drawing them to reduce clutter,
 // f.e. use instancing.
-const size_t MAX_ENTITIES_DRAWN = 65536 / 4;
+constexpr size_t MAX_ENTITIES_DRAWN = 65536 / 4;
 
-const size_t MAX_ICON_COUNT = 128;
+constexpr size_t MAX_ICON_COUNT = 128;
+constexpr size_t MAX_UNIQUE_ICON_COUNT = 64;
+constexpr size_t ICON_COMBINING_GRID_SIZE = 10;
 
-const size_t FINAL_TEXTURE_SIZE = 512;
+constexpr size_t FINAL_TEXTURE_SIZE = 512;
 
 unsigned int ScaleColor(unsigned int color, float x)
 {
@@ -166,6 +173,27 @@ inline void AddEntity(const MinimapUnitVertex& v,
 }
 
 } // anonymous namespace
+
+size_t CMiniMapTexture::CellIconKeyHash::operator()(
+	const CellIconKey& key) const
+{
+	size_t seed = 0;
+	hash_combine(seed, key.path);
+	hash_combine(seed, key.r);
+	hash_combine(seed, key.g);
+	hash_combine(seed, key.b);
+	return seed;
+}
+
+bool CMiniMapTexture::CellIconKeyEqual::operator()(
+	const CellIconKey& lhs, const CellIconKey& rhs) const
+{
+	return
+		lhs.path == rhs.path &&
+		lhs.r == rhs.r &&
+		lhs.g == rhs.g &&
+		lhs.b == rhs.b;
+}
 
 CMiniMapTexture::CMiniMapTexture(CSimulation2& simulation)
 	: m_Simulation(simulation), m_IndexArray(false),
@@ -412,6 +440,7 @@ void CMiniMapTexture::RenderFinalTexture(
 		return;
 	m_FinalTextureDirty = false;
 
+	PROFILE3("Render minimap texture");
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render minimap texture");
 	deviceCommandContext->SetFramebuffer(m_FinalTextureFramebuffer.get());
 
@@ -517,6 +546,7 @@ void CMiniMapTexture::RenderFinalTexture(
 	if (doUpdate)
 	{
 		m_Icons.clear();
+		m_IconsCache.clear();
 
 		CSimulation2::InterfaceList ents = m_Simulation.GetEntitiesWithInterface(IID_Minimap);
 
@@ -573,24 +603,82 @@ void CMiniMapTexture::RenderFinalTexture(
 					if (!iconsEnabled || !cmpMinimap->HasIcon())
 						continue;
 
-					if (m_Icons.size() < MAX_ICON_COUNT)
+					const CellIconKey key{
+						cmpMinimap->GetIconPath(), v.r, v.g, v.b};
+					const u16 gridX = Clamp<u16>(
+						(v.position.X * invTileMapSize) * ICON_COMBINING_GRID_SIZE, 0, ICON_COMBINING_GRID_SIZE - 1);
+					const u16 gridY = Clamp<u16>(
+						(v.position.Y * invTileMapSize) * ICON_COMBINING_GRID_SIZE, 0, ICON_COMBINING_GRID_SIZE - 1);
+					CellIcon icon{
+						gridX, gridY, cmpMinimap->GetIconSize() * iconsSizeScale * 0.5f, v.position};
+					if (m_IconsCache.find(key) == m_IconsCache.end() && m_IconsCache.size() >= MAX_UNIQUE_ICON_COUNT)
 					{
-						CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(
-							CTextureProperties(cmpMinimap->GetIconPath()));
-						const CColor color(v.r / 255.0f, v.g / 255.0f, v.b / 255.0f, iconsOpacity);
-						m_Icons.emplace_back(Icon{
-							std::move(texture), color, v.position, cmpMinimap->GetIconSize() * iconsSizeScale * 0.5f});
+						iconsCountOverflow = true;
 					}
 					else
 					{
-						iconsCountOverflow = true;
+						m_IconsCache[key].emplace_back(std::move(icon));
 					}
 				}
 			}
 		}
 
+		// We need to combine too close icons with the same path, we use a grid for
+		// that. But to save some allocations and space we store only the current
+		// row.
+		struct Cell
+		{
+			u32 count;
+			float maxHalfSize;
+			CVector2D averagePosition;
+		};
+		std::array<Cell, ICON_COMBINING_GRID_SIZE> gridRow;
+		for (auto& [key, icons] : m_IconsCache)
+		{
+			CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(
+				CTextureProperties(key.path));
+			const CColor color(key.r / 255.0f, key.g / 255.0f, key.b / 255.0f, iconsOpacity);
+
+			std::sort(icons.begin(), icons.end(),
+				[](const CellIcon& lhs, const CellIcon& rhs) -> bool
+				{
+					if (lhs.gridY != rhs.gridY)
+						return lhs.gridY < rhs.gridY;
+					return lhs.gridX < rhs.gridX;
+				});
+
+			for (auto beginIt = icons.begin(); beginIt != icons.end();)
+			{
+				auto endIt = std::next(beginIt);
+				while (endIt != icons.end() && beginIt->gridY == endIt->gridY)
+					++endIt;
+				gridRow.fill({0, 0.0f, {}});
+				for (; beginIt != endIt; ++beginIt)
+				{
+					Cell& cell = gridRow[beginIt->gridX];
+					const float previousPositionWeight = static_cast<float>(cell.count) / (cell.count + 1);
+					cell.averagePosition = cell.averagePosition * previousPositionWeight + beginIt->worldPosition / static_cast<float>(cell.count + 1);
+					cell.maxHalfSize = std::max(cell.maxHalfSize, beginIt->halfSize);
+					++cell.count;
+				}
+				for (const Cell& cell : gridRow)
+				{
+					if (cell.count == 0)
+						continue;
+
+					if (m_Icons.size() < MAX_ICON_COUNT)
+					{
+						m_Icons.emplace_back(Icon{
+							texture, color, cell.averagePosition, cell.maxHalfSize});
+					}
+					else
+						iconsCountOverflow = true;
+				}
+			}
+		}
+
 		if (iconsCountOverflow)
-				LOGWARNING("Too many minimap icons to draw: %zu/%zu", m_Icons.size(), MAX_ICON_COUNT);
+			LOGWARNING("Too many minimap icons to draw.");
 
 		// Add the pinged vertices at the end, so they are drawn on top
 		for (const MinimapUnitVertex& vertex : pingingVertices)
