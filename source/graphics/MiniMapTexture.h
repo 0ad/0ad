@@ -26,6 +26,8 @@
 #include "renderer/VertexArray.h"
 
 #include <memory>
+#include <string>
+#include <unordered_map>
 #include <vector>
 
 class CSimulation2;
@@ -117,6 +119,29 @@ private:
 	bool m_BlinkState = false;
 
 	std::vector<Icon> m_Icons;
+	// We store the map as a member to avoid redundant reallocations on each
+	// update. We use a grid approach to combine icons by distance.
+	struct CellIconKey
+	{
+		std::string path;
+		u8 r, g, b;
+	};
+	struct CellIconKeyHash
+	{
+		size_t operator()(const CellIconKey& key) const;
+	};
+	struct CellIconKeyEqual
+	{
+		bool operator()(const CellIconKey& lhs, const CellIconKey& rhs) const;
+	};
+	struct CellIcon
+	{
+		// TODO: use CVector2DI.
+		u16 gridX, gridY;
+		float halfSize;
+		CVector2D worldPosition;
+	};
+	std::unordered_map<CellIconKey, std::vector<CellIcon>, CellIconKeyHash, CellIconKeyEqual> m_IconsCache;
 };
 
 #endif // INCLUDED_MINIMAPTEXTURE

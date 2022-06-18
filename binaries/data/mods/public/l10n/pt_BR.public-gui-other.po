@@ -49,9 +49,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-02 07:08+0000\n"
+"POT-Creation-Date: 2022-06-13 07:11+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Álvaro Tavares de Oliveira, 2022\n"
+"Last-Translator: Yuri Laskowski <yurinikolai00@gmail.com>, 2022\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -184,12 +184,12 @@ msgstr "venceu"
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
-msgstr "Sem Time"
+msgstr "Sem Equipe"
 
 #: gui/common/gamedescription.js:160
 #, javascript-format
 msgid "Team %(team)s"
-msgstr "Time %(team)s"
+msgstr "Equipe %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or
@@ -199,7 +199,7 @@ msgstr "Time %(team)s"
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
-msgstr "%(team)s:⏎\n%(playerDescriptions)s"
+msgstr "%(team)s:\n%(playerDescriptions)s"
 
 #: gui/common/gamedescription.js:171
 msgid "Observer"
@@ -257,11 +257,11 @@ msgstr "Heróis não podem ser guarnecidos e estão vulneráveis a ataques."
 
 #: gui/common/gamedescription.js:251
 msgid "Locked Teams"
-msgstr "Times Fechados"
+msgstr "Equipes Fechadas"
 
 #: gui/common/gamedescription.js:252
 msgid "Players can't change the initial teams."
-msgstr "Jogadores não podem mudar os times iniciais."
+msgstr "Jogadores não podem mudar as equipes iniciais."
 
 #: gui/common/gamedescription.js:256
 msgid "Diplomacy"
@@ -1810,7 +1810,7 @@ msgstr "Pular para câmera 4"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 1."
-msgstr ""
+msgstr "Pré-define a posição de salto 1 para a câmera."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.name
 msgctxt "hotkey metadata"
@@ -1820,7 +1820,7 @@ msgstr "Definir posição da câmera 1"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 2."
-msgstr ""
+msgstr "Pré-define a posição de salto 2 para a câmera."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.name
 msgctxt "hotkey metadata"
@@ -1830,7 +1830,7 @@ msgstr "Definir posição da câmera 2"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 3."
-msgstr ""
+msgstr "Pré-define a posição de salto 3 para a câmera."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.name
 msgctxt "hotkey metadata"
@@ -1840,7 +1840,7 @@ msgstr "Definir posição da câmera 3"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 4."
-msgstr ""
+msgstr "Pré-define a posição de salto 4 para a câmera."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.name
 msgctxt "hotkey metadata"
@@ -1885,7 +1885,7 @@ msgstr "Focalize a câmera no ponto de encontro do edifício selecionado."
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.name
 msgctxt "hotkey metadata"
 msgid "Focus on rallypoint"
-msgstr ""
+msgstr "Focar no ponto de reunião"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.desc
 msgctxt "hotkey metadata"
@@ -1895,28 +1895,28 @@ msgstr "Redefina a rotação da câmera para o padrão."
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.name
 msgctxt "hotkey metadata"
 msgid "Reset Camera"
-msgstr ""
+msgstr "Redefinir Câmera"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate right."
-msgstr ""
+msgstr "Rolar ou girar para a direita."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate right"
-msgstr ""
+msgstr "Rolar/Girar para a direita"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera counterclockwise around terrain."
-msgstr ""
+msgstr "Rotaciona a câmera em sentido anti-horário ao redor do terreno."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.name
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.name
 msgctxt "hotkey metadata"
 msgid "Rotate counterclockwise"
-msgstr ""
+msgstr "Girar em sentido anti-horário"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.desc
 msgctxt "hotkey metadata"
@@ -1942,12 +1942,12 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera rotation speed."
-msgstr ""
+msgstr "Diminui a velocidade de rotação da câmera."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease rotation speed"
-msgstr ""
+msgstr "Diminuir velocidade de rotação"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.desc
 msgctxt "hotkey metadata"
@@ -1988,7 +1988,7 @@ msgstr "Diminua a velocidade de rolagem da câmera."
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease scroll speed"
-msgstr ""
+msgstr "Diminuir velocidade de rolagem"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.desc
 msgctxt "hotkey metadata"
@@ -7224,21 +7224,6 @@ msgstr "Carne"
 msgctxt "withinSentence"
 msgid "Meat"
 msgstr "Carne"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word sentence.
-#: simulation/data/resources/food.jsonsubtypes.rice
-msgctxt "firstWord"
-msgid "Rice"
-msgstr "Arroz"
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using lowercase
-#. for your language).
-#: simulation/data/resources/food.jsonsubtypes.rice
-msgctxt "withinSentence"
-msgid "Rice"
-msgstr "arroz"
 
 #: simulation/data/resources/metal.jsondescription
 msgid "Mine from metal mines or quarries."
