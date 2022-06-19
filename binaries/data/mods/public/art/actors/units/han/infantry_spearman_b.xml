@@ -31,34 +31,18 @@
       </textures>
     </variant>
   </group>
-  <group>
-    <variant file="biped/base_spearman_shield_relax.xml"/>
-    <variant file="biped/carry_food.xml">
-      <props>
-        <prop actor="props/units/helmets/han_ricehat.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
-    <variant file="biped/attack_capture.xml"/>
-    <variant file="biped/formations/anti_cavalry_front.xml"/>
-    <variant file="biped/formations/anti_cavalry_back.xml"/>
-    <variant file="biped/attack_slaughter.xml"/>
-    <variant file="biped/gather_tree.xml"/>
-    <variant file="biped/gather_grain.xml"/>
-    <variant file="biped/gather_fruit.xml"/>
-    <variant file="biped/gather_meat.xml"/>
-    <variant file="biped/gather_rock.xml"/>
-    <variant file="biped/gather_ore.xml"/>
-    <variant file="biped/gather_ruins.xml"/>
-    <variant file="biped/gather_praise.xml"/>
-    <variant file="biped/build.xml"/>
-    <variant file="biped/build_farm.xml"/>
-    <variant file="biped/death_infantry.xml"/>
+    <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/carry_food_han.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>
     <variant file="biped/carry_stone.xml"/>
     <variant file="biped/carry_metal.xml"/>
+  </group>
+  <group>
+    <variant file="biped/base_spearman_shield_relax.xml"/>
     <variant file="biped/approach_tree.xml"/>
-    <variant file="biped/approach_grain.xml"/>
+    <variant file="biped/approach_grain_han.xml"/>
     <variant file="biped/approach_rice.xml"/>
     <variant file="biped/approach_fruit.xml"/>
     <variant file="biped/approach_meat.xml"/>
@@ -68,7 +52,22 @@
     <variant file="biped/approach_praise.xml"/>
   </group>
   <group>
-    <variant name="Idle"/>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/formations/anti_cavalry_front.xml"/>
+    <variant file="biped/formations/anti_cavalry_back.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/gather_tree.xml"/>
+    <variant file="biped/gather_grain_han.xml"/>
+    <variant file="biped/gather_fruit.xml"/>
+    <variant file="biped/gather_meat.xml"/>
+    <variant file="biped/gather_rock.xml"/>
+    <variant file="biped/gather_ore.xml"/>
+    <variant file="biped/gather_ruins.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/build.xml"/>
+    <variant file="biped/build_farm.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans.xml</material>
 </actor>
