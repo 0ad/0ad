@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Base">
+      <mesh>gaia/lavender_bush_01.dae</mesh>
+      <textures>
+        <texture file="gaia/poppy_bush_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans.xml</material>
+</actor>
