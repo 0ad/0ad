@@ -117,10 +117,8 @@ function Cheat(input)
 		else
 			return;
 
-		if (TechnologyTemplates.Has(parameter + "_" + cmpPlayer.civ))
-			parameter += "_" + cmpPlayer.civ;
-		else
-			parameter += "_generic";
+		const civ = Engine.QueryInterface(playerEnt, IID_Identity).GetCiv();
+		parameter += TechnologyTemplates.Has(parameter + "_" + civ) ? "_" + civ : "_generic";
 
 		Cheat({
 			"player": input.player,
