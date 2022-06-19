@@ -1,63 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<COLLADA version="1.4.1" xmlns="http://www.collada.org/2005/11/COLLADASchema">
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <asset>
     <contributor>
-      <author>PMD to COLLADA Converter</author>
-      <authoring_tool>pmd2collada.py, v3.0</authoring_tool>
+      <author>Blender User</author>
+      <authoring_tool>Blender 3.1.2 commit date:2022-03-31, commit time:17:40, hash:cc66d1020c3b</authoring_tool>
     </contributor>
-    <created>2012-01-26T22:20:51</created>
-    <modified>2012-01-26T22:20:51</modified>
-    <unit meter="0.01" name="centimeter"/>
+    <created>2022-06-19T19:21:28</created>
+    <modified>2022-06-19T19:21:28</modified>
+    <unit name="centimeter" meter="0.01"/>
     <up_axis>Z_UP</up_axis>
   </asset>
+  <library_images/>
   <library_geometries>
-    <geometry id="tool_hoe2-Geometry" name="tool_hoe2-Geometry">
+    <geometry id="tool_hoe2-mesh" name="tool_hoe2">
       <mesh>
-        <source id="tool_hoe2-Geometry-Position">
-          <float_array count="90" id="tool_hoe2-Geometry-Position-array">0.0080310 0.0629380 -1.5426850 0.0671500 0.1590710 2.2379780 0.0080310 0.0629370 2.2379780 0.0671500 0.1590710 -1.5426850 0.0671500 0.1590710 -1.5426850 -0.0510880 0.1590710 2.2379780 0.0671500 0.1590710 2.2379780 -0.0510880 0.1590710 -1.5426850 -0.0510880 0.1590710 -1.5426850 0.0080310 0.0629370 2.2379780 -0.0510880 0.1590710 2.2379780 0.0080310 0.0629380 -1.5426850 0.1168750 -0.3731640 1.9999620 0.1168750 0.1723560 2.1573810 -0.1168740 0.1723560 2.1573810 -0.1168740 -0.3731640 1.9999620 0.1168750 -0.3731640 1.9999620 -0.1168740 -0.3731640 1.9999620 -0.1168740 0.1390140 2.0133650 0.1168750 0.1390140 2.0133650 -0.1168740 -0.3731640 1.9999620 -0.1168740 0.1723560 2.1573810 -0.1168740 0.1390140 2.0133650 -0.1168740 0.1723560 2.1573810 0.1168750 0.1723560 2.1573810 0.1168750 0.1390140 2.0133650 -0.1168740 0.1390140 2.0133650 0.1168750 -0.3731640 1.9999620 0.1168750 0.1390140 2.0133650 0.1168750 0.1723560 2.1573810</float_array>
+        <source id="tool_hoe2-mesh-positions">
+          <float_array id="tool_hoe2-mesh-positions-array" count="54">0.06714999 0.159071 -1.542685 -0.05108797 0.159071 2.237978 0.06714999 0.159071 2.237978 -0.05108797 0.159071 -1.542685 0.008030951 0.06293696 2.237978 0.008030951 0.06293797 -1.542685 0.116875 -0.373164 1.999962 -0.116874 0.172356 2.157381 -0.116874 -0.373164 1.999962 -0.116874 0.139014 2.013365 0.116875 0.139014 2.013365 -0.116874 -0.373164 1.999962 -0.116874 0.172356 2.157381 0.116875 0.172356 2.157381 0.116875 0.139014 2.013365 -0.116874 0.139014 2.013365 0.116875 -0.373164 1.999962 0.116875 0.172356 2.157381</float_array>
           <technique_common>
-            <accessor count="30" source="tool_hoe2-Geometry-Position-array" stride="3">
+            <accessor source="#tool_hoe2-mesh-positions-array" count="18" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="tool_hoe2-Geometry-Normals">
-          <float_array count="90" id="tool_hoe2-Geometry-Normal-array">0.4765310 -0.8791580 -0.0000000 0.9996090 -0.0279780 -0.0000000 -0.4765310 -0.8791580 -0.0000000 0.4998040 0.8661380 0.0000000 0.4998040 0.8661380 0.0000000 -0.4998040 0.8661380 0.0000000 0.9996090 -0.0279780 -0.0000000 -0.9996090 -0.0279780 -0.0000000 -0.9996090 -0.0279780 -0.0000000 -0.4765310 -0.8791580 -0.0000000 -0.4998040 0.8661380 0.0000000 0.4765310 -0.8791580 -0.0000000 0.0000000 -0.2772530 0.9607970 0.0000000 -0.2772530 0.9607970 0.0000000 -0.2772530 0.9607970 0.0000000 -0.2772530 0.9607970 -0.0000000 0.0261590 -0.9996580 -0.0000000 0.0261590 -0.9996580 -0.0000000 0.0261590 -0.9996580 -0.0000000 0.0261590 -0.9996580 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 -1.0000000 -0.0000000 0.0000000 0.0000000 0.9742320 -0.2255490 0.0000000 0.9742320 -0.2255490 0.0000000 0.9742320 -0.2255490 -0.0000000 0.9742320 -0.2255490 1.0000000 0.0000000 -0.0000000 1.0000000 0.0000000 -0.0000000 1.0000000 0.0000000 -0.0000000</float_array>
+        <source id="tool_hoe2-mesh-normals">
+          <float_array id="tool_hoe2-mesh-normals-array" count="36">8.69243e-7 -1 -1.35872e-7 0.7268235 0.4062896 0.5537655 -9.89165e-7 -0.830749 0.5566474 0.8728808 0.4879337 0 -0.7268229 0.4062906 0.5537658 -0.8728814 0.4879326 -1.40431e-7 0 -0.2772542 0.9607967 0 0.02615976 -0.9996579 -1 0 0 0 0.9742316 -0.2255501 0 0.9742317 -0.22555 1 0 0</float_array>
           <technique_common>
-            <accessor count="30" source="tool_hoe2-Geometry-Normal-array" stride="3">
+            <accessor source="#tool_hoe2-mesh-normals-array" count="12" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="tool_hoe2-Geometry-UV">
-          <float_array count="60" id="tool_hoe2-Geometry-UV-array">0.778584 0.005872 0.974577 1.0011 0.778584 1.0011 0.974577 0.005872 0.677278 0.003492 0.87327 0.99872 0.677278 0.99872 0.87327 0.003492 0.779666 0.005872 0.975659 1.0011 0.779666 1.0011 0.975659 0.005872 0.483922 1.0 0.483922 -0.006218 0.093267 -0.006218 0.093267 1.0 0.093267 1.0 0.483922 1.0 0.483922 -0.006218 0.093267 -0.006218 0.553753 -0.009088 -0.000478 -0.009088 -0.000478 0.707045 0.004783 0.481052 0.597277 0.481052 0.597277 0.128422 0.004783 0.128422 -0.000478 0.707045 0.553753 0.707045 0.553753 -0.009088</float_array>
+        <source id="tool_hoe2-mesh-map-0">
+          <float_array id="tool_hoe2-mesh-map-0-array" count="90">0.4197309 0.3165208 0.4279384 0.9127129 0.4197303 0.9127129 0.4197309 0.3165208 0.4279384 0.3165208 0.4279384 0.9127129 0.4029245 0.3165207 0.4115222 0.9127128 0.4029232 0.9127128 0.4029245 0.3165207 0.4115234 0.3165208 0.4115222 0.9127128 0.4115234 0.3165208 0.4197303 0.9127129 0.4115222 0.9127128 0.4115234 0.3165208 0.4197309 0.3165208 0.4197303 0.9127129 0.7000704 0.2468678 0.7000704 0.1898598 0.6774024 0.1898598 0.6774024 0.1898598 0.6774024 0.2468678 0.7000704 0.2468678 0.7000704 0.2468678 0.6774024 0.2468678 0.6774024 0.1898598 0.6774024 0.1898598 0.7000704 0.1898598 0.7000704 0.2468678 0.6774024 0.2468678 0.6635258 0.185732 0.6774024 0.1898598 0.6774024 0.1898598 0.7000704 0.1898598 0.7000704 0.1755244 0.7000704 0.1755244 0.6774024 0.1755244 0.6774024 0.1898598 0.7000704 0.2468678 0.7000704 0.1898598 0.7139469 0.185732 0.4115222 0.9127128 0.4197303 0.9127129 0.4160269 0.9285965</float_array>
           <technique_common>
-            <accessor count="30" source="tool_hoe2-Geometry-UV-array" stride="2">
-              <param name="U" type="float"/>
-              <param name="V" type="float"/>
+            <accessor source="#tool_hoe2-mesh-map-0-array" count="45" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="tool_hoe2-Geometry-Vertex">
-          <input semantic="POSITION" source="#tool_hoe2-Geometry-Position"/>
+        <vertices id="tool_hoe2-mesh-vertices">
+          <input semantic="POSITION" source="#tool_hoe2-mesh-positions"/>
         </vertices>
-        <triangles count="14" material="material0">
-          <input offset="0" semantic="VERTEX" source="#tool_hoe2-Geometry-Vertex"/>
-          <input offset="0" semantic="NORMAL" source="#tool_hoe2-Geometry-Normals"/>
-          <input offset="0" semantic="TEXCOORD" source="#tool_hoe2-Geometry-UV"/>
-          <p>0 1 2 0 3 1 4 5 6 4 7 5 8 9 10 8 11 9 12 13 14 14 15 12 16 17 18 18 19 16 20 21 22 23 24 25 25 26 23 27 28 29</p>
+        <triangles count="15">
+          <input semantic="VERTEX" source="#tool_hoe2-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#tool_hoe2-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#tool_hoe2-mesh-map-0" offset="2" set="0"/>
+          <p>5 0 0 2 1 1 4 2 2 5 0 3 0 3 4 2 1 5 0 3 6 1 4 7 2 1 8 0 3 9 3 5 10 1 4 11 3 5 12 4 2 13 1 4 14 3 5 15 5 0 16 4 2 17 6 6 18 13 6 19 7 6 20 7 6 21 8 6 22 6 6 23 16 7 24 11 7 25 9 7 26 9 7 27 10 7 28 16 7 29 11 8 30 12 8 31 9 8 32 7 9 33 13 9 34 14 9 35 14 10 36 15 10 37 7 10 38 16 11 39 10 11 40 17 11 41 1 4 42 4 2 43 2 1 44</p>
         </triangles>
       </mesh>
     </geometry>
   </library_geometries>
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
-      <node id="tool_hoe2" layer="L1" name="tool_hoe2">
-        <instance_geometry url="#tool_hoe2-Geometry"/>
+      <node id="tool_hoe2" name="tool_hoe2" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#tool_hoe2-mesh" name="tool_hoe2"/>
       </node>
     </visual_scene>
   </library_visual_scenes>
