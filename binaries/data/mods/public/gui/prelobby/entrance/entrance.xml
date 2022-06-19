@@ -8,7 +8,7 @@
 	<!-- Add a translucent black background to fade out the menu page -->
 	<object type="image" sprite="ModernFade"/>
 
-	<object name="dialog" type="image" style="ModernDialog" size="50%-230 50%-130 50%+230 50%+130">
+	<object name="dialog" type="image" style="ModernDialog" size="50%-215 50%-130 50%+215 50%+130">
 
 		<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
 			<translatableAttribute id="caption">Multiplayer Lobby</translatableAttribute>
