@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<variant name="gather_praise">
+  <animations>
+    <animation file="biped/citizen/pray.dae" name="gather_praise" id="praise1" speed="100"/>
+    <animation file="biped/citizen/pray.dae" name="gather_praise" id="praise2" speed="200"/>
+    <animation file="biped/citizen/pray.dae" name="gather_praise" id="praise3" speed="50"/>
+  </animations>
+  <props>
+    <prop attachpoint="shield"/>
+    <prop attachpoint="weapon_R"/>
+    <prop attachpoint="weapon_L"/>
+    <prop attachpoint="ammo"/>
+    <prop attachpoint="shield_arm"/>
+    <prop attachpoint="weapon_bow"/>
+  </props>
+</variant>
