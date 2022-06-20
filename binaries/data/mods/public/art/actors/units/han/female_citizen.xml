@@ -16,13 +16,13 @@
   </group>
   <group>
     <variant file="biped/female_base_walk.xml"/>
-    <variant file="biped/female_carry_food.xml"/>
+    <variant file="biped/female_carry_food_han.xml"/>
     <variant file="biped/female_carry_meat.xml"/>
     <variant file="biped/female_carry_wood.xml"/>
     <variant file="biped/female_carry_stone.xml"/>
     <variant file="biped/female_carry_metal.xml"/>
     <variant file="biped/approach_tree.xml"/>
-    <variant file="biped/approach_grain.xml"/>
+    <variant file="biped/approach_grain_han.xml"/>
     <variant file="biped/approach_fruit.xml"/>
     <variant file="biped/approach_meat.xml"/>
     <variant file="biped/approach_rock.xml"/>
@@ -40,11 +40,7 @@
         <prop actor="props/units/helmets/han_ricehat.xml" attachpoint="helmet"/>
       </props>
     </variant>
-    <variant file="biped/female_gather_grain.xml">
-      <props>
-        <prop actor="props/units/helmets/han_ricehat.xml" attachpoint="helmet"/>
-      </props>
-    </variant>
+    <variant file="biped/female_gather_grain_han.xml"/>
     <variant file="biped/female_gather_fruit.xml">
       <props>
         <prop actor="props/units/helmets/han_ricehat.xml" attachpoint="helmet"/>
