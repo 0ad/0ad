@@ -160,7 +160,7 @@ msgstr "/me"
 msgid ""
 "Send text as a chat message (even if it starts with slash). Example: /say "
 "/help is a great command."
-msgstr "Inviar textu cumo recau (an que comience per barra). Exemplo: /say /help is a great command."
+msgstr "Inviar textu cumo recau (on que comience per barra). Exemplo: /say /help is a great command."
 
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:157
@@ -301,11 +301,11 @@ msgstr "\\[%(time)s]"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:45
 msgid "BANNED"
-msgstr "BANID@"
+msgstr "BANIDU"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:45
 msgid "KICKED"
-msgstr "IMPOBINAD@"
+msgstr "IMPOBINAU"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:61
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
@@ -465,7 +465,7 @@ msgstr "¡L amphitryon impobinou-te de l antepar!"
 
 #: gui/lobby/LobbyPage/KickStrings.js:40
 msgid "You have been banned from the lobby!"
-msgstr "¡Stas banid@ de l antepar!"
+msgstr "¡Stas banidu de l antepar!"
 
 #: gui/lobby/LobbyPage/KickStrings.js:43
 #, javascript-format
@@ -475,7 +475,7 @@ msgstr "L amphitryon impobinou de l antepar a %(nick)s."
 #: gui/lobby/LobbyPage/KickStrings.js:44
 #, javascript-format
 msgid "%(nick)s has been banned from the lobby."
-msgstr "%(nick)s sta banid@ de l antepar."
+msgstr "%(nick)s sta banidu de l antepar."
 
 #: gui/lobby/LobbyPage/KickStrings.js:49
 #, javascript-format
@@ -503,11 +503,11 @@ msgstr "Absente"
 
 #: gui/lobby/LobbyPage/PlayerList.js:208
 msgid "Busy"
-msgstr "Entremanad@"
+msgstr "Entremanau"
 
 #: gui/lobby/LobbyPage/PlayerList.js:214
 msgid "Offline"
-msgstr "Disconnectad@"
+msgstr "Disconnectau"
 
 #: gui/lobby/LobbyPage/PlayerList.js:220
 msgctxt "lobby presence"
@@ -631,7 +631,7 @@ msgstr "Læs tyaves nun concasæn"
 
 #: gui/prelobby/common/credentials/credentials.js:54
 msgid "Are you sure you want to delete the password after connecting?"
-msgstr "¿Stas ciert@ que quieres elimina’ la tyave n connectando?"
+msgstr "¿Stas ciertu que quieres elimina’ la tyave n connectando?"
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):6
 msgid "Login:"
@@ -1099,7 +1099,7 @@ msgstr "[font=\"sans-bold-14\"]Al usa’l Antepar de 0 A.D., accedes a:[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:11
 msgid " 1. Follow all usage policies."
-msgstr "1. Segir todelæs políticæs d’usu."
+msgstr "1. Segir todælæs políticæs d’usu."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:12
 msgid ""

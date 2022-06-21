@@ -7,10 +7,18 @@
   <Identity>
     <Civ>ptol</Civ>
     <SpecificName>Phrourion</SpecificName>
+    <Tooltip>Train Heroes. Garrison Soldiers for additional arrows.</Tooltip>
   </Identity>
   <Obstruction>
     <Static width="24.0" depth="26.0"/>
   </Obstruction>
+  <Trainer>
+    <Entities datatype="tokens">
+      units/{civ}/hero_ptolemy_i
+      units/{civ}/hero_ptolemy_iv
+      units/{civ}/hero_cleopatra_vii
+    </Entities>
+  </Trainer>
   <VisualActor>
     <Actor>structures/ptolemies/fortress.xml</Actor>
   </VisualActor>

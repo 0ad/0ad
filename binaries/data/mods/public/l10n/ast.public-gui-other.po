@@ -136,7 +136,7 @@ msgstr "Cultura disconhocida"
 #: gui/common/gamedescription.js:137
 msgctxt "playerstate"
 msgid "defeated"
-msgstr "apoderad@"
+msgstr "apoderau"
 
 #: gui/common/gamedescription.js:138
 msgctxt "playerstate"
@@ -175,7 +175,7 @@ msgstr "Partida infinita"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr "Non se vaî determina’l vincedor, an que todos stean vincidos."
+msgstr "Nun vaî determinase l vincedor, on que todu l mundu stea vincidu."
 
 #: gui/common/gamedescription.js:202
 #, javascript-format
@@ -415,7 +415,7 @@ msgstr "Vincedor/ora"
 
 #: gui/common/gamedescription.js:445
 msgid "Defeated"
-msgstr "Apoderad@"
+msgstr "Apoderau"
 
 #: gui/common/gamedescription.js:454
 #, javascript-format
@@ -470,7 +470,7 @@ msgstr "L amphitryon impobinou-te."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr "Stas banid@."
+msgstr "Stas banidu."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
@@ -1489,7 +1489,7 @@ msgstr "Referenciæs históricæs"
 
 #: gui/credits/texts/maps.jsonContent[0].Title
 msgid "Map Making"
-msgstr "Deseño gëográphico"
+msgstr "Diseño gëográphico"
 
 #: gui/credits/texts/maps.jsonContent[1].Title
 msgid "Random Map Scripts"
@@ -1525,7 +1525,7 @@ msgstr "Directores de l proiectu"
 
 #: gui/credits/texts/special.jsonContent[1].Content[2].Subtitle
 msgid "Co-Lead Designers"
-msgstr "Deseñadores codirectores"
+msgstr "Diseñadores codirectores"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
@@ -2706,7 +2706,7 @@ msgstr "Disoccupa’ læs turretæs"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to unload all units of type."
-msgstr "Camudador pa disoccupar todelæs unidades d’esti typu."
+msgstr "Camudador pa disoccupar todælæs unidades d’esti typu."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.name
 msgctxt "hotkey metadata"
@@ -3072,7 +3072,7 @@ msgstr "Aggregar a la scolheitha"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Un-select all units and cancel building placement."
-msgstr "Apartar de la scolheitha a todelæs unidades ou incaboxa’l assentamiento d’un edificio."
+msgstr "Apartar de la scolheitha a todælæs unidades ou incaboxa’l assentamiento d’un edificio."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
 msgctxt "hotkey metadata"
@@ -3497,7 +3497,7 @@ msgstr "Borra’ la partida guardada scoyida cun %(hotkey)s."
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:205
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr "Calten %(hotkey)s premid@ pa salta’l diálogu de confirmaçon al borrar."
+msgstr "Calten %(hotkey)s premido pa salta’l diálogu de confirmaçon al borrar."
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:51
 #, javascript-format
@@ -3506,7 +3506,7 @@ msgstr "“%(label)s”"
 
 #: gui/loadgame/SavegameDeleter.js:53
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr "La partida guardada vaî borrase da fheitho, ¿stas ciert@?"
+msgstr "La partida guardada vaî borrase da fheitho, ¿stas ciertu?"
 
 #: gui/loadgame/SavegameDeleter.js:54
 msgid "DELETE"
@@ -3575,7 +3575,7 @@ msgstr "Guardar"
 
 #: gui/loadgame/SavegameWriter.js:52
 msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr "La partida guardada vaî subrescribise da fheitho, ¿stas ciert@?"
+msgstr "La partida guardada vaî subrescribise da fheitho, ¿stas ciertu?"
 
 #: gui/loadgame/SavegameWriter.js:53
 msgid "OVERWRITE SAVE"
@@ -3722,7 +3722,7 @@ msgstr "Por defectu"
 
 #: gui/maps/MapFilters.js:92
 msgid "All maps except naval and demo maps."
-msgstr "Todelæs gëographíæs, excepto læs navales & læs demonstrativæs."
+msgstr "Todælæs gëographíæs, excepto læs navales & læs demonstrativæs."
 
 #: gui/maps/MapFilters.js:97
 msgid "Naval Maps"
@@ -3766,11 +3766,11 @@ msgstr "Gëographíæs que tienen eventos programmahos & podríæn gënerar unid
 
 #: gui/maps/MapFilters.js:127
 msgid "All Maps"
-msgstr "Todelæs gëogr."
+msgstr "Todælæs gëogr."
 
 #: gui/maps/MapFilters.js:128
 msgid "Every map of the chosen maptype."
-msgstr "Todelæs gëographíæs de l typu scoyidu."
+msgstr "Todælæs gëographíæs de l typu scoyidu."
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
@@ -3893,7 +3893,7 @@ msgstr "Al re-afhita’ læs opçones vas borra’ los axhustes guardahos. ¿Qui
 
 #: gui/options/options.js:412
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr "¡Los valores de varios axhustes son inválidos! ¿Stas ciert@ que quieres guardallos?"
+msgstr "¡Los valores de varios axhustes son inválidos! ¿Stas ciertu que quieres guardallos?"
 
 #: gui/options/options.js:438
 msgid "You have unsaved changes, do you want to close this window?"
@@ -3909,7 +3909,7 @@ msgstr "Nome de l xhogador (un xhogador)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr "El tyamatu de tou al xhogar sol@."
+msgstr "El tyamatu de tou al xhogar solu."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
@@ -4213,7 +4213,7 @@ msgstr "MSAA (2×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr "Anti-scalaho lento, pero d’alta qualidá, q’usa duês amostrançæs per píxel. Sofhitæn-llo los GL3.3+."
+msgstr "Anti-scalaho lento, pero d’alta qualidá, q’usa duæs amostrançæs per píxel. Sofhitæn-llo los GL3.3+."
 
 #: gui/options/options.json[2].options[3].list[3].label
 msgid "MSAA (4×)"
@@ -4925,7 +4925,7 @@ msgstr "Qualquier outro mandaho romperá formaçones existentes."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[1].label
 msgid "No override"
-msgstr "In sin romper"
+msgstr "Siempres"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[1].tooltip
 msgid "Units in formations stay in formations."
@@ -5325,7 +5325,7 @@ msgstr "Abri’l Editor gëográphicu Atlas n una feniestra nuœva. Fherrulará 
 
 #: gui/pregame/MainMenuItems.js:258
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr "¿Stas ciert@ que quieres salir de 0 A.D. & abri’l Editor gëográphicu?"
+msgstr "¿Stas ciertu que quieres salir de 0 A.D. & abri’l Editor gëográphicu?"
 
 #: gui/pregame/MainMenuItems.js:265
 msgid ""
@@ -5355,7 +5355,7 @@ msgstr "Salir de l xhuœw."
 
 #: gui/pregame/MainMenuItems.js:282
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr "¿Stas ciert@ que quieres salir de 0 A.D.?"
+msgstr "¿Stas ciertu que quieres salir de 0 A.D.?"
 
 #: gui/pregame/ProjectInformation.js:6
 msgid "WILDFIRE GAMES"
@@ -5600,21 +5600,21 @@ msgstr "%(listHeader)s %(listOfValues)s"
 #. structure selected.
 #: gui/reference/common/tooltips.js:27
 msgid "Built by:"
-msgstr "Construid@ por:"
+msgstr "Construido por:"
 
 #. Translation: Label before a list of the names of structures or units that
 #. train the unit
 #. selected.
 #: gui/reference/common/tooltips.js:33
 msgid "Trained by:"
-msgstr "Cread@ n:"
+msgstr "Creaho n:"
 
 #. Translation: Label before a list of names of structures or units that
 #. research the
 #. technology selected.
 #: gui/reference/common/tooltips.js:39
 msgid "Researched at:"
-msgstr "Disinvuœlt@ n:"
+msgstr "Disinvuœlto n:"
 
 #. Translation: Label before a list of the names of structures the selected
 #. unit can
@@ -5690,7 +5690,7 @@ msgstr "Nun ha hi datos disponibles."
 
 #: gui/replaymenu/replay_actions.js:175
 msgid "Are you sure you want to delete this replay permanently?"
-msgstr "¿Stas ciert@ que quieres borrar esta repetiçon da fheitho?"
+msgstr "¿Stas ciertu que quieres borrar esta repetiçon da fheitho?"
 
 #: gui/replaymenu/replay_actions.js:177
 msgid "Delete replay"
@@ -6002,7 +6002,7 @@ msgstr "Éqüites"
 
 #: gui/summary/layout.js:76
 msgid "Champion"
-msgstr "Invictos"
+msgstr "Victores"
 
 #: gui/summary/layout.js:77
 msgid "Heroes"
@@ -6073,7 +6073,7 @@ msgstr "Efficacia de cambio"
 #: gui/summary/layout.js:169
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
-msgstr "%(resourceFirstWord)s cambiad@"
+msgstr "%(resourceFirstWord)s cambiaho"
 
 #: gui/summary/layout.js:191
 msgid "Miscellaneous"
@@ -6224,7 +6224,7 @@ msgstr "Læs puntuaçones a la fin de la partida."
 
 #: gui/summary/summary.js:514
 msgid "You have been disconnected."
-msgstr "Fhuisti disconnectad@"
+msgstr "Fhuisti disconnectau"
 
 #: gui/summary/summary.js:516
 msgid "You have left the game."
@@ -6312,11 +6312,11 @@ msgstr "CASTRA ROMANA"
 msgid ""
 "Buildable in neutral or enemy territory. Good for building a secret base "
 "behind enemy lines or to consolidate gains within enemy territory."
-msgstr "Constrúi-se n campu neutral ou inimigo. Val cumo base secreta ou pa consolida’l abance de l exércitu."
+msgstr "Constrúi-se n campu neutral ou inimigu. Val cumo base secreta ou pa consolida’l abance d’un exércitu."
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct rams and train citizen soldiers."
-msgstr "Constrúi arietes & crea mílites civiles."
+msgstr "Constrúi arietes & crea mílites voluntarios."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
@@ -6330,11 +6330,11 @@ msgstr "INRIESTRU AUTOMÁTICU"
 
 #: gui/text/tips/autoqueue.txt:2
 msgid "Enable the autoqueue feature to automatically train units."
-msgstr "Activa’l inriestru automáticu pa crear unidades de modu automáticu."
+msgstr "Activa l inriestru automáticu pa crear unidades de modu automáticu."
 
 #: gui/text/tips/autoqueue.txt:3
 msgid "Works as long as you have enough resources, then it will stop."
-msgstr "Funcçona mentres tengas recursos abondos, & lhœw deixa de funcçonar."
+msgstr "Funcçona mentres tengas recursos abondos, & lhœw se termina."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -6344,7 +6344,7 @@ msgstr "CASTRO"
 msgid ""
 "Train all citizen soldiers. Some civilizations can unlock the training of "
 "champions as well."
-msgstr "Crea todolos mílites civiles. Delhæs culturæs tamien puœden dispeslla’ la creaçon d’invictos."
+msgstr "Crea todolos mílites voluntarios. In ciertæs culturæs, tamien puœde crear victores."
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
@@ -6354,11 +6354,11 @@ msgstr "Læs unidades exercitæn-se na milicia al star abellugadæs nel edificio
 msgid ""
 "Build one early to train citizen soldiers while you phase up your "
 "settlement."
-msgstr "Constrúi-lo ceho pa crear mílites civiles de la que demudæs de phase."
+msgstr "Constrúi-lo ceho pa crear mílites voluntarios de la que demudæs de phase."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
-msgstr "Constrúi-lu n una base abançada par inconta’l exércitu cun auxiliares."
+msgstr "Constrúi-lo n una base abançada p’arrefhorça’l exércitu cun auxiliares."
 
 #: gui/text/tips/biomes.txt:1
 msgid "BIOMES"
@@ -6368,7 +6368,7 @@ msgstr "BIOMAS"
 msgid ""
 "Biomes can be used on some random maps and determine which region of the "
 "world the map represents."
-msgstr "Los biomas puœdes usallos in delhæs gëographíæs scriptígënæs. Determinæn la staya de l mundo que la gëographíæ representa."
+msgstr "Los biomas puœdes usallos in ciertæs gëographíæs scriptígënæs. Determinæn la staya l mundu que la gëographíæ representa."
 
 #: gui/text/tips/biomes.txt:3
 msgid ""
@@ -6390,7 +6390,7 @@ msgstr "Tienen pouca vitalidá, pero cuœrren rápido & attacæn sin lherça."
 
 #: gui/text/tips/briton_war_dog.txt:4
 msgid "Use them as support in your army or for quick raids."
-msgstr "Valen par inconta’l exércitu ou fhazer incursiones rápidæs."
+msgstr "Valen par inconta’ la milicia ou fhazer incursiones."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -6398,19 +6398,19 @@ msgstr "CONSECRÁNEOS CARTHAGÏNESES"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr "Los Hastarios invictos & Éqüites hastarios invictos de Carthago."
+msgstr "Los Hastarios victores & Éqüites hastarios victores de Carthago."
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr "Todos dous se creæn in Templo n vez de l Castielho, a differencia de la maioríæ de los invictos."
+msgstr "Todos dous se creæn in Templo, a differencia de la maioríæ de los victores."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr "Usa los hastarios p’acabar cun éqüites. Usa los éqüites p’acabar cun máchinæs béllicæs & excursores."
+msgstr "Usa los Hastarios p’acabar cun éqüites. Usa los Éqüites p’acabar cun máchinæs béllicæs & excursores."
 
 #: gui/text/tips/carth_shipyard.txt:1
 msgid "CARTHAGINIAN NAVAL SHIPYARD"
@@ -6418,7 +6418,7 @@ msgstr "COTHON CARTHAGÏNES"
 
 #: gui/text/tips/carth_shipyard.txt:2
 msgid "Special dock of the Carthaginians to construct warships."
-msgstr "Puœrtu militar que ye exclusivu de los carthagïneses."
+msgstr "Puœrtu militar exclusivu de los carthagïneses."
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."
@@ -6434,7 +6434,7 @@ msgstr "CATAPULTÆS"
 
 #: gui/text/tips/catapults.txt:2
 msgid "Ranged siege engines that are good against structures."
-msgstr "Máchinæs tiradores q’arrefunden piedræs & sfhaen construcçones cun facilidá. "
+msgstr "Máchinæs tiradoræs q’arrefunden piedræs & sfhaen construcçones cun facilidá."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
@@ -6453,7 +6453,7 @@ msgstr "STABLRO"
 #: gui/text/tips/cavalry_stable.txt:2
 msgid ""
 "Trains cavalry units and lets you research cavalry specific technologies."
-msgstr "Crea unidades eqüestres & permitte-ti disinvolver téchnicæs eqüestres."
+msgstr "Crea éqüites & permitte disinvolver téchnicæs eqüestres."
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
@@ -6465,19 +6465,19 @@ msgstr "NAVE BÉLLICA CELTA"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "A medium trireme-class warship."
-msgstr "Un barcu trirreme de tamañu medianu."
+msgstr "Nave trirreme de tamañu medianu."
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."
-msgstr "Disponible a los britanos, galos y íberos."
+msgstr "Disponible a los britanos, gallos & íberos."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
-msgstr "Puede tresportar hasta 40 unidades."
+msgstr "Puœde transportar ta 40 unidades."
 
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
-msgstr "Enllena de pédites, l'ataque aumenta."
+msgstr "La suæ potencia augmenta cun pédites a bordu."
 
 #: gui/text/tips/city_walls.txt:1
 msgid "CITY WALLS"
@@ -6485,17 +6485,17 @@ msgstr "CERCÆS"
 
 #: gui/text/tips/city_walls.txt:2
 msgid "Strong stone walls that help you protect your city."
-msgstr "Cercæs de piedra que sierven pa protegë’ la vilha."
+msgstr "Cercæs de piedra que sierven pa defende’ la vilha."
 
 #: gui/text/tips/city_walls.txt:3
 msgid ""
 "When your ranged infantry units are occupying the turrets, they have "
 "additional armor and can shoot at the enemy. "
-msgstr "Al ocupar les torretes unidades tiradores, estes llogren más armadura y pueden tirar al enemigu."
+msgstr "Al occupa’ læs turretæs, læs unidades tiradoræs obtienen mas resistencia & puœden disparar al inimigu."
 
 #: gui/text/tips/city_walls.txt:4
 msgid "Vulnerable to siege weapons like catapults, rams and war elephants."
-msgstr "Vulnerables a catapultes, arietes, elefantes y otres máquines béliques."
+msgstr "Vulnerables a catapultæs, arietes, elephantes & outræs máchinæs béllicæs."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
@@ -6503,21 +6503,21 @@ msgstr "FOROS"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "The foundation of your new colony."
-msgstr "La fundación de la tua colonia nueva."
+msgstr "La piedra angular de la colonia."
 
 #: gui/text/tips/civic_centres.txt:3
 msgid "Claim large tracts of territory."
-msgstr "Toma possession de grandes extensiones de tierra."
+msgstr "Afhita ou inanta læs lhindes territoriales."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
-msgstr "Puede construise en territoriu neutral y amigo."
+msgstr "Puœde construise n campu neutral & amigu."
 
 #: gui/text/tips/civic_centres.txt:5
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr "Crea cives: cives féminæs, pédites civiles & éqüites civiles."
+msgstr "Crea cives: cives féminæs, pédites voluntarios & éqüites voluntarios."
 
 #: gui/text/tips/default_formation.txt:1
 msgid "DEFAULT FORMATION"
@@ -6527,17 +6527,17 @@ msgstr "FORMAÇON PREDEFINIDA"
 msgid ""
 "Right-click an icon to set the default formation: units that are ordered to "
 "walk or patrol will automatically use it."
-msgstr "Cuno boton dreithu, pica nuna ícone p’afhita’ la formaçon por defectu: læs unidades assumen-lla automaticamente al andar ou rondar."
+msgstr "Cuno boton dreithu, pica n una ícone p’afhita’ la formaçon predefinida: læs unidades assumen-lla automaticamente al andar ou roldar."
 
 #: gui/text/tips/default_formation.txt:3
 msgid "Can be de-activated by choosing “no formation” as the default."
-msgstr "Puedes desactivalla escoyendo «nenguna» como'l valor por defectu."
+msgstr "Puœdes disactivalla afhitando “nenguna” cumo l valor predefinidu."
 
 #: gui/text/tips/default_formation.txt:4
 msgid ""
 "The “Formation control” option lets you choose whether formations disband "
 "for orders other than walking or patrolling."
-msgstr "El modu de formación permítete escoyer si los mílites han caltenese en formación al nun estar andando o rondando."
+msgstr "El “modu de formaçon” determina si los mílites han caltenese siempre formahos ou formar solo al andar ou roldar."
 
 #: gui/text/tips/defense_towers.txt:1
 msgid "DEFENSE TOWERS"
@@ -6545,18 +6545,18 @@ msgstr "TORRES DE PIEDRA"
 
 #: gui/text/tips/defense_towers.txt:2
 msgid "Strong watchtowers, which help you defend your position."
-msgstr "Torres fortificades que sirven pa defender una posición."
+msgstr "Torres fortificadæs que valen pa defende’ la posiçon."
 
 #: gui/text/tips/defense_towers.txt:3
 msgid ""
 "They have a large vision range and will shoot arrows at the enemy in sight. "
-msgstr "Tienen muncha visión y tiren fleches al enemigu."
+msgstr "Tienen un ampliu radiu visual & tiræn al inimigu."
 
 #: gui/text/tips/defense_towers.txt:4
 msgid ""
 "You can garrison more infantry inside them to increase the number of arrows "
 "they shoot."
-msgstr "Puœdes intsellæs de mas pédites pa que tiren mas sayetæs."
+msgstr "Puœdes intsellæs de pédites pa que tiren mas saietæs."
 
 #: gui/text/tips/elephant_stable.txt:1
 msgid "ELEPHANT STABLE"
@@ -6565,7 +6565,7 @@ msgstr "STADA DE L ELEPHANTE"
 #: gui/text/tips/elephant_stable.txt:2
 msgid ""
 "The structure is available to some civilizations to train elephant units."
-msgstr "Algunæs culturæs disponen d’esta construcçon pa crear unidades elephantinæs."
+msgstr "Algunæs culturæs disponen d’esta construcçon pa crear elephantes."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES AND MERCENARY CAMPS"
@@ -6573,13 +6573,13 @@ msgstr "LEGAÇONES & CAMPAMENTOS DE MERCENARIOS"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special structures allowing you to hire mercenaries for your army."
-msgstr "Construcciones especiales que te dexen contratar mercenarios."
+msgstr "Construcçones speciales que deixæn contractar mercenarios."
 
 #: gui/text/tips/embassies.txt:3
 msgid ""
 "Mercenaries will not gather resources and cost only metal, but they are "
 "experienced and strong."
-msgstr "Los mercenarios nun llogren recursos y namái cuesten metal, pero son trallaos y fuertes."
+msgstr "Los mercenarios nun obtienen recursos & solo acceitæn metal, pero son curtidos & fhuœrtes."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -6587,7 +6587,7 @@ msgstr "PESCA"
 
 #: gui/text/tips/fishing.txt:2
 msgid "Fish the seas for a bountiful harvest."
-msgstr "Pesca la mar pa una collecha bayurosa."
+msgstr "Pesca par intse’ læs reservæs de mariscos."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
@@ -6595,13 +6595,13 @@ msgstr "Los pisqueiros trahen mũîthu pexe per marea."
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
-msgstr "La pesca ye mas rápida que la colleitha."
+msgstr "La pesca ye mas rápida que l agricultura."
 
 #: gui/text/tips/fishing.txt:5
 msgid ""
 "Careful! Fish are not an infinite resource! Although they do slowly "
 "repopulate when left alone."
-msgstr "¡Repara que'l pexe nun ye infinito! Sí qu'así, va dir aniciando si lo dexes en paz."
+msgstr "¡Arrepara! ¡Los pexes nun son infinitos!, pero iniciæn si los deixæs in paz."
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
@@ -6609,11 +6609,11 @@ msgstr "FRAWA"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."
-msgstr "Construcçon téchnica de todelæs culturæs."
+msgstr "Construcçon téchnica de todælæs culturæs."
 
 #: gui/text/tips/forge.txt:3
 msgid "Research weapon and armor upgrades for your units."
-msgstr "Desendolca armes y armadures nueves pa les unidades."
+msgstr "Disinvuœlve armæs & armaduræs pa la milicia."
 
 #: gui/text/tips/formations.txt:1
 msgid "FORMATIONS"
@@ -6622,7 +6622,7 @@ msgstr "FORMAÇONES"
 #: gui/text/tips/formations.txt:2
 msgid ""
 "Arrange your soldiers in formations to keep them organized during battles."
-msgstr "Usa formaciones pa caltener l'orde entre les tues files al batallar."
+msgstr "Usa formaçones pa caltene’l orde entre læs tuæs fhilæs en combate."
 
 #: gui/text/tips/formations.txt:3
 msgid ""
@@ -6638,11 +6638,11 @@ msgstr "CASTIELHO"
 msgid ""
 "Usually the strongest structure of a civilization and the place where you "
 "can train Heroes."
-msgstr "Suœl se’ la construcçon mas fortificada d’una cultura & el sitiu unde se creæn heroes."
+msgstr "Suœl se’ la construcçon mas fhuœrte d’una cultura & el sitiu unde se creæn heroes."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Garrison soldiers inside to add more firepower to its defense."
-msgstr "Ocúpala de mílites defensores p'aumentar l'ataque."
+msgstr "Occupa-lo de mílites pa que tire mas saietæs al defendese."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -6651,17 +6651,17 @@ msgstr "DISPOSIÇON IMPROVISADA"
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "Gain an advantage on the battleground by tactically positioning your units!"
-msgstr "¡Da ventaya a les tues forcies asitiándoles estratéxicamente!"
+msgstr "¡Gana ventaya disponiendo tácticamente læs unidades in campu bataya!"
 
 #: gui/text/tips/freehand_position.txt:3
 msgid ""
 "Therefore select some units, press and hold the right mouse button, draw any"
 " line, then release the button."
-msgstr "Pa elho, scœyi delhæs unidades, premi l boton dreithu de l mure, designa una lhiña & da reo suœlta l boton."
+msgstr "Pa elho, scœyi delhæs unidades, premi l boton dreithu de l mure, diseña una lhiña & da reo suœlta l boton."
 
 #: gui/text/tips/freehand_position.txt:4
 msgid "Your units will now spread out on this line."
-msgstr "Hagora læs unidades van spardese per toda la lhiña."
+msgstr "De puœis læs unidades van spardese per toda la lhiña."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -6669,7 +6669,7 @@ msgstr "OBTENÇON DE RECURSOS"
 
 #: gui/text/tips/gathering.txt:2
 msgid "Use citizen-soldiers and female citizens to gather resources."
-msgstr "Emplega los mílites civiles y les cives pa llograr recursos."
+msgstr "Usa los mílites voluntarios & læs cives par obtener recursos."
 
 #: gui/text/tips/gathering.txt:3
 msgid "Female citizens gather vegetable resources faster."
@@ -6677,17 +6677,17 @@ msgstr "Les cives cueyen frutos más rápido."
 
 #: gui/text/tips/gathering.txt:4
 msgid "Infantry citizen-soldiers are faster gathering minerals."
-msgstr "Los pédites civiles extrayen minerales más rápido."
+msgstr "Los pédites voluntarios extrahen minerales mas rápido."
 
 #: gui/text/tips/gathering.txt:5
 msgid "Cavalry citizen-soldiers are faster gathering meat."
-msgstr "Los éqüites civiles caçæn mas rápido."
+msgstr "Los éqüites voluntarios caçæn mas rápido."
 
 #: gui/text/tips/gathering.txt:6
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr "Quantu mas altu l grau de l mílite civil, (superior, singular), meyor lhuithará, pero tardará mas n obtener recursos."
+msgstr "Quantu mas altu l grau de l mílite voluntariu, (superior, singular), meyor lhuithará, pero tardará mas n obtener recursos."
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
@@ -6788,7 +6788,7 @@ msgstr "VARGANALES"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr "Una cerca de madeira barata & rápida de fhazer que ye disponible a todelæs culturæs."
+msgstr "Una cerca de madeira barata & rápida de fhazer que ye disponible a todælæs culturæs."
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
@@ -6917,7 +6917,7 @@ msgstr "El pédite más fuerte del xuegu."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr "Los espartanos disponen de Pédites invictos."
+msgstr "Los spartanos disponen de Pédites victores."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
@@ -6931,7 +6931,7 @@ msgstr "HASTARIOS"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "The basic melee infantry for every faction in the game."
-msgstr "El pédite commun a todelæs culturæs de l xhuœw."
+msgstr "El pédite commun a todælæs culturæs de l xhuœw."
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."

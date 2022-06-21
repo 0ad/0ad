@@ -52,7 +52,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-06-13 07:11+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Vladislav Belov, 2016-2018,2021-2022\n"
+"Last-Translator: Dire Avenger, 2022\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1349,7 +1349,7 @@ msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:1192
 msgid "Loot:"
-msgstr "Трофеи:"
+msgstr "Добыча:"
 
 #: gui/common/tooltips.js:1202
 #, javascript-format
@@ -1431,7 +1431,7 @@ msgstr "Гитара"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[12].Subtitle
 msgid "Handpan"
-msgstr ""
+msgstr "Ручная сковорода"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[13].Subtitle
 msgid "Harp"
@@ -1439,7 +1439,7 @@ msgstr "Арфа"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[14].Subtitle
 msgid "Shruti Box"
-msgstr ""
+msgstr "Шкатулка для Шрути"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[15].Subtitle
 msgid "Tin whistles"
@@ -1483,7 +1483,7 @@ msgstr "Джембе"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
 msgid "Dulcimer"
-msgstr ""
+msgstr "Цимбалы"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
 msgid "Flute"
@@ -2494,12 +2494,12 @@ msgstr "Уничтожить выбранных юнитов"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.desc
 msgctxt "hotkey metadata"
 msgid "Order an entity to leave a turret point."
-msgstr "Приказать покинуть турель."
+msgstr "Приказать гарнизону покинуть здание."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.name
 msgctxt "hotkey metadata"
 msgid "Leave Turret Point"
-msgstr "Покинуть турель"
+msgstr "Покинуть"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.desc
 msgctxt "hotkey metadata"
@@ -2544,12 +2544,12 @@ msgstr "Уничтожить без подтверждения"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to occupy a turret when clicking on a turret holder."
-msgstr "Модификатор принуждает юнита занять место в турели при клике на содержащий турель объект."
+msgstr "Модификатор принуждает юнита занять место в гарнизоне при клике на  подходящий объект."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.name
 msgctxt "hotkey metadata"
 msgid "Occupy Turret Point"
-msgstr "Занять турель"
+msgstr "Занять здание"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.desc
 msgctxt "hotkey metadata"
@@ -2564,7 +2564,7 @@ msgstr "Задание для одного юнита"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to patrol a unit."
-msgstr ""
+msgstr "Модификатор для патрулирования подразделения."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.name
 msgctxt "hotkey metadata"
@@ -2739,7 +2739,7 @@ msgstr "Остановить текущее действие."
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.name
 msgctxt "hotkey metadata"
 msgid "Stop units"
-msgstr "Остановить юнитов"
+msgstr "Остановить юниты"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.desc
 msgctxt "hotkey metadata"
@@ -2756,7 +2756,7 @@ msgstr "Переключить боевой порядок по умолчани
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.desc
 msgctxt "hotkey metadata"
 msgid "Unload garrisoned units when a building/mechanical unit is selected."
-msgstr "Высадить юнитов в гарнизоне если выбрана постройка или механизированный юнит."
+msgstr "Высадить юниты из гарнизона если выбрана постройка или осадный механизм ."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.name
 msgctxt "hotkey metadata"
@@ -2766,22 +2766,22 @@ msgstr "Вывести"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.desc
 msgctxt "hotkey metadata"
 msgid "Unload turreted units."
-msgstr "Высадить юнитов из турели."
+msgstr "Вывести гарнизон."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.name
 msgctxt "hotkey metadata"
 msgid "Unload Turrets"
-msgstr "Освободить турель"
+msgstr "Вывести гарнизон"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to unload all units of type."
-msgstr "Модификатор высаживает из гарнизона всех юнитов определенного типа."
+msgstr "Модификатор высаживает из гарнизона все юниты определенного типа."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.name
 msgctxt "hotkey metadata"
 msgid "Unload unit type"
-msgstr "Высадить из гарнизона тип юнитов"
+msgstr "Вывести из гарнизона определенный тип юнитов"
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.desc
 msgctxt "hotkey metadata"
@@ -2856,7 +2856,7 @@ msgstr "Показать личный чат"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.desc
 msgctxt "hotkey metadata"
 msgid "Load the latest quicksaved game. Does nothing if no quicksaves exist."
-msgstr "Загружает последнее \"Быстрое сохранение\" или ничего не делает если оно отсутствует."
+msgstr "Загружает последнее \"Быстрое сохранение\" если это возможно."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quickload.name
 msgctxt "hotkey metadata"
@@ -3062,7 +3062,7 @@ msgstr "Ауры"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.desc
 msgctxt "hotkey metadata"
 msgid "Toggle display of heal range overlays of selected units."
-msgstr ""
+msgstr "Переключите отображение наложений диапазона исцеления выбранных единиц."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.name
 msgctxt "hotkey metadata"
@@ -3082,12 +3082,12 @@ msgstr "Показать силуэты юнитов"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the structure tree."
-msgstr "Показать древо зданий"
+msgstr "Показать древо технологий"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.name
 msgctxt "hotkey metadata"
 msgid "Toggle structure tree"
-msgstr "Показать древо зданий"
+msgstr "Показать древо технологий"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.desc
 msgctxt "hotkey metadata"
@@ -3162,12 +3162,12 @@ msgstr "Добавить в отряд 1"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.10.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 10 to the current selection."
-msgstr ""
+msgstr "Добавить выбранное в отряд 10."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.10.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 10"
-msgstr ""
+msgstr "Добавить в отряд 10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.desc
 msgctxt "hotkey metadata"
@@ -3262,12 +3262,12 @@ msgstr "Создать отряд 1"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.10.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 10."
-msgstr ""
+msgstr "Сохранить выбранное как отряд 10."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.10.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 10"
-msgstr ""
+msgstr "Создать отряд 10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.desc
 msgctxt "hotkey metadata"
@@ -3362,12 +3362,12 @@ msgstr "Выбрать отряд 1"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.10.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 10."
-msgstr ""
+msgstr "Изменить выбранных на Отряд 10."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.10.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 10"
-msgstr ""
+msgstr "Выбрать отряд 10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.desc
 msgctxt "hotkey metadata"
@@ -4101,12 +4101,12 @@ msgstr "Запускать 0 A.D. в окне."
 
 #: gui/options/options.json[1].options[10].label
 msgid "Mouse drag"
-msgstr ""
+msgstr "Перетаскивание мышью"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid ""
 "Number of pixels the mouse can move before the action is considered a drag."
-msgstr ""
+msgstr "Количество пикселей, через которые переместится мышь, прежде чем действие будет считаться перетаскиванием."
 
 #: gui/options/options.json[1].options[1].label
 #: gui/options/options.json[2].options[1].label
@@ -4229,7 +4229,7 @@ msgstr "Графика (дополнительные)"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Renderer backend"
-msgstr ""
+msgstr "Серверная часть средств визуализации"
 
 #: gui/options/options.json[2].options[0].list[0].label
 msgid "OpenGL"
@@ -4237,7 +4237,7 @@ msgstr "OpenGL"
 
 #: gui/options/options.json[2].options[0].list[0].tooltip
 msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Серверная часть OpenGL по умолчанию с GLSL. \nТРЕБУЕТСЯ ПЕРЕЗАПУСК ИГРЫ"
 
 #: gui/options/options.json[2].options[0].list[1].label
 msgid "OpenGL ARB"
@@ -4245,11 +4245,11 @@ msgstr "OpenGL ARB"
 
 #: gui/options/options.json[2].options[0].list[1].tooltip
 msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Устаревший сервер OpenGL с шейдерами ARB. \nТРЕБУЕТСЯ ПЕРЕЗАПУСК ИГРЫ"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Выберите серверную часть средства визуализации. \nТРЕБУЕТСЯ ПЕРЕЗАПУСК ИГРЫ"
 
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
@@ -4429,7 +4429,7 @@ msgstr "Покрывать всю карту"
 msgid ""
 "When ON shadows cover the whole map and shadows cutoff distance is ignored. "
 "Useful for making screenshots of a whole map."
-msgstr ""
+msgstr "Когда ВКЛЮЧЕНО, тени покрывают всю карту, а расстояние исчезновения теней игнорируется. \nПолезно для создания скриншотов всей карты."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].label
 msgid "Water effects"
@@ -4538,13 +4538,13 @@ msgstr "16x"
 msgid ""
 "Makes textures look better, especially terrain. If the anisotropic filter "
 "value is unsupported it will be set to the max supported value."
-msgstr ""
+msgstr "Улучшает внешний вид текстур, особенно рельефа. \nЕсли значение анизотропного фильтра не поддерживается, оно будет установлено на максимальное поддерживаемое значение."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].tooltip
 msgid ""
 "Decrease texture quality making them blurrier but increases game "
 "performance."
-msgstr ""
+msgstr "Уменьшение качества текстур делает их более размытыми, но повышает производительность игры."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].label
 msgid "Master volume"
@@ -5034,11 +5034,11 @@ msgstr "Сколько секунд отображаются метки на м�
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].label
 msgid "Minimap icons"
-msgstr ""
+msgstr "Значки на миникарте"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].tooltip
 msgid "Show special icons for some entities on the minimap."
-msgstr ""
+msgstr "Отображение специальных значков для некоторых объектов на миникарте."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].label
 msgid "Chat notification attack"
@@ -5187,7 +5187,7 @@ msgstr "Обучение"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr "Научиться играть, начать обучающую кампанию, изучить древа технологий и историю цивилизаций."
+msgstr "Узнайте больше об игре. Прочитайте руководство по игре, пройдите обучающую кампанию, изучите древо технологий, обзор цивилизаций, карты и погребальные колесницы. "
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -5203,19 +5203,19 @@ msgstr "Обучающая кампания"
 
 #: gui/pregame/MainMenuItems.js:15
 msgid "Start the introductory tutorial."
-msgstr ""
+msgstr "Начните обучающее задание."
 
 #: gui/pregame/MainMenuItems.js:36
 #: gui/reference/common/Buttons/StructreeButton.js:21
 #: gui/reference/structree/structree.xml:(caption):20
 msgid "Structure Tree"
-msgstr "Древо зданий"
+msgstr "Древо технологий"
 
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr "%(hotkey)s: Посмотреть древо зданий цивилизаций, представленных в 0 A.D."
+msgstr "%(hotkey)s: Посмотреть древо технологий цивилизаций, представленных в 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:48
 #: gui/reference/civinfo/civinfo.xml:(caption):21
@@ -5246,12 +5246,12 @@ msgstr "Посмотреть различные карты, представле
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Continue Campaign"
-msgstr "Продолжить кампанию"
+msgstr "Исторические компании"
 
 #: gui/pregame/MainMenuItems.js:77 gui/pregame/MainMenuItems.js:111
 #: gui/pregame/MainMenuItems.js:127 gui/pregame/MainMenuItems.js:134
 msgid "Relive history through historical military campaigns."
-msgstr "Воспроизведите историю в исторических военных кампаниях."
+msgstr "Сыграйте в исторические компании, созданные различными авторами "
 
 #: gui/pregame/MainMenuItems.js:85 gui/pregame/MainMenuItems.js:119
 msgid "Error opening campaign run:"
@@ -5263,7 +5263,7 @@ msgstr "Одиночная игра"
 
 #: gui/pregame/MainMenuItems.js:93
 msgid "Start, load, or replay a single-player game."
-msgstr "Начать, загрузить или воспроизвести одиночную игру."
+msgstr "Начните или загрузите одиночное сражение, посмотрите повтор боя."
 
 #: gui/pregame/MainMenuItems.js:96
 msgid "Matches"
@@ -5291,7 +5291,7 @@ msgstr "Повторы"
 
 #: gui/pregame/MainMenuItems.js:144 gui/pregame/MainMenuItems.js:194
 msgid "Playback previous games."
-msgstr "Воспроизвести предыдущие игры."
+msgstr "Воспроизвести повтор игры."
 
 #: gui/pregame/MainMenuItems.js:158
 msgid "Multiplayer"
@@ -5299,7 +5299,7 @@ msgstr "Сетевая игра"
 
 #: gui/pregame/MainMenuItems.js:159
 msgid "Fight against one or more human players in a multiplayer game."
-msgstr "Сразиться с одним или несколькими игроками в сетевой игре."
+msgstr "Примите участие в сетевой игре."
 
 #. Translation: Join a game by specifying the host's IP address.
 #: gui/pregame/MainMenuItems.js:163
@@ -5731,7 +5731,7 @@ msgstr "Обучающие юниты"
 #: gui/reference/structree/StructreePage.js:85
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr "%(hotkey)s: Закрыть древо зданий."
+msgstr "%(hotkey)s: Закрыть древо технологий."
 
 #: gui/reference/viewer/ViewerPage.js:172
 #, javascript-format
@@ -6107,7 +6107,7 @@ msgstr "Торговцы"
 #: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(lost)s)"
-msgstr ""
+msgstr "Статистика юнитов (%(trained)s/%(killed)s/%(lost)s)"
 
 #: gui/summary/layout.js:108
 msgid "Resources"
@@ -6296,7 +6296,7 @@ msgstr ", "
 
 #: gui/summary/summary.js:340
 msgid "Time elapsed"
-msgstr "Времени прошло"
+msgstr "Прошло времени "
 
 #: gui/summary/summary.js:510
 msgid "Current Scores"
@@ -6344,7 +6344,7 @@ msgstr "%(hotkey)s: Выбрать состояние сетевой комна�
 #: gui/summary/summary.js:556
 #, javascript-format
 msgid "Focus the %(name)s summary tab."
-msgstr ""
+msgstr "Сфокусируйтесь%(name)s на вкладке сводка."
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
@@ -6396,17 +6396,17 @@ msgstr "РИМСКИЙ ВОЕННЫЙ ЛАГЕРЬ"
 msgid ""
 "Buildable in neutral or enemy territory. Good for building a secret base "
 "behind enemy lines or to consolidate gains within enemy territory."
-msgstr "Строится на нейтральной или вражеской территории. Годится для создания тайного лагеря в тылу врага или для закрепления на его территории. "
+msgstr "Строится на нейтральной или вражеской территории. Годится для создания тайного лагеря в тылу врага и для закрепления на его территории. "
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct rams and train citizen soldiers."
-msgstr "Стройте тараны и обучайте воинов-граждан. "
+msgstr "Позволяет обучать опытных римских мечников и копейщиков, а так же создавать тараны."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr "Разместите юниты внутри для медленного восстановления их здоровья и для защиты военного лагеря от нападений и разрушения."
+msgstr "Размещайте воинов в гарнизоне для защиты военного лагеря и их лечения."
 
 #: gui/text/tips/autoqueue.txt:1
 msgid "AUTOQUEUE"
@@ -6428,11 +6428,11 @@ msgstr "КАЗАРМЫ"
 msgid ""
 "Train all citizen soldiers. Some civilizations can unlock the training of "
 "champions as well."
-msgstr "Позволяет обучать воинов-граждан. Для некоторых фракций открывает также обучение гвардейцев."
+msgstr "Позволяет обучать воинов-граждан, а некоторым цивилизациям и гвардейцев, а так же изучать некоторые технологии."
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
-msgstr "Юниты набирают опыт, пока находятся внутри постройки."
+msgstr "Воины, размещенные в гарнизоне постепенно набирают опыт и становятся сильнее. "
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
@@ -6470,11 +6470,11 @@ msgstr "Собака, которую Бритты могут тренирова�
 
 #: gui/text/tips/briton_war_dog.txt:3
 msgid "Has low health, but is fast and will fearlessly attack enemies."
-msgstr "Мало здоровья, но он быстр и бесстрашно атакует врагов. "
+msgstr "имеет мало здоровья, но очень быстро и бесстрашно атакует врагов. "
 
 #: gui/text/tips/briton_war_dog.txt:4
 msgid "Use them as support in your army or for quick raids."
-msgstr "Используйте их как поддержку для своей армии или для быстрых рейдов."
+msgstr "Используется для поддержки армии или быстрых рейдов."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -6537,11 +6537,11 @@ msgstr "КОНЮШНЯ"
 #: gui/text/tips/cavalry_stable.txt:2
 msgid ""
 "Trains cavalry units and lets you research cavalry specific technologies."
-msgstr "Обучает конных юнитов и позволяет исследовать технологии, связанные с кавалерией."
+msgstr "Обучает конницу и позволяет исследовать технологии, связанные с кавалерией."
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
-msgstr "Юниты набирают опыт, пока находятся внутри."
+msgstr "Конница набирает опыт, пока находятся внутри."
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -6561,7 +6561,7 @@ msgstr "Может перевозить до 40 юнитов."
 
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
-msgstr "Огневая мощь увеличивается при размещении пехоты внутри."
+msgstr "Размещение пехоты увеличивает огневую мощь"
 
 #: gui/text/tips/city_walls.txt:1
 msgid "CITY WALLS"
@@ -6591,7 +6591,7 @@ msgstr "Основа вашей новой колонии."
 
 #: gui/text/tips/civic_centres.txt:3
 msgid "Claim large tracts of territory."
-msgstr "Удерживает большие участки территории."
+msgstr "Дает контроль большого участка территории."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
@@ -6601,7 +6601,7 @@ msgstr "Может быть построен на нейтральной и со
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr "Обучайте граждан: женщин, пеших воинов-граждан и всадников-граждан."
+msgstr "Позволяет обучать: женщин, пеших воинов-граждан и всадников-граждан."
 
 #: gui/text/tips/default_formation.txt:1
 msgid "DEFAULT FORMATION"
@@ -6629,12 +6629,12 @@ msgstr "ОБОРОНИТЕЛЬНЫЕ БАШНИ"
 
 #: gui/text/tips/defense_towers.txt:2
 msgid "Strong watchtowers, which help you defend your position."
-msgstr "Крепкие смотровые башни, которые помогут при обороне вашей позиции."
+msgstr "Крепкие дозорные башни, помогут при обороне ваших земель."
 
 #: gui/text/tips/defense_towers.txt:3
 msgid ""
 "They have a large vision range and will shoot arrows at the enemy in sight. "
-msgstr "Они обладают большим радиусом обзора и будут выпускать стрелы, завидев неприятеля."
+msgstr "Обладают большим радиусом обзора и будут выпускать стрелы во врагов"
 
 #: gui/text/tips/defense_towers.txt:4
 msgid ""
@@ -6663,7 +6663,7 @@ msgstr "Специальные постройки, позволяющие нан
 msgid ""
 "Mercenaries will not gather resources and cost only metal, but they are "
 "experienced and strong."
-msgstr "Наёмники не занимаются сбором ресурсов и для найма нужен только металл, но они опытные и сильные воины."
+msgstr "Наёмники не занимаются сбором ресурсов и для найма требуют много металла, но это опытные и сильные воины."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -6671,7 +6671,7 @@ msgstr "РЫБОЛОВСТВО"
 
 #: gui/text/tips/fishing.txt:2
 msgid "Fish the seas for a bountiful harvest."
-msgstr "Рыбачьте в море для богатого улова."
+msgstr "Рыбалка позволяет пополнить запасы пищи."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
@@ -6679,7 +6679,7 @@ msgstr "Рыбацкие лодки привозят большое количе
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
-msgstr "Рыбалка быстрее, чем сбор пищи на полях."
+msgstr "Рыбалка дает больше пищи, чем сбор с полей."
 
 #: gui/text/tips/fishing.txt:5
 msgid ""
@@ -6697,7 +6697,7 @@ msgstr "Здание для исследования технологий у в�
 
 #: gui/text/tips/forge.txt:3
 msgid "Research weapon and armor upgrades for your units."
-msgstr "Исследуйте улучшения вооружения и брони для ваших юнитов. "
+msgstr "Позволяет исследовать улучшения вооружения и брони для вашей армии. "
 
 #: gui/text/tips/formations.txt:1
 msgid "FORMATIONS"
@@ -6726,7 +6726,7 @@ msgstr "Обычно это самая сильная постройка цив�
 
 #: gui/text/tips/fortress.txt:3
 msgid "Garrison soldiers inside to add more firepower to its defense."
-msgstr "Разместите воинов внутри для усиления огневой мощи при его обороне."
+msgstr "Размещение воинов внутри усиливает огневую мощь при обороне."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -6785,7 +6785,7 @@ msgstr "Исторические фигуры, такие как Ксеркс, �
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
-msgstr "Огромное здоровье и сильнейший урон."
+msgstr "Обладают значительным здоровьем и уроном."
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
@@ -6813,7 +6813,7 @@ msgstr "МАЯК"
 msgid ""
 "Special Ptolemaic structures to increase your vision range when built on the"
 " shore."
-msgstr "Особые здания Птолемеев, увеличивающие дальность обзора, будучи построенными на берегу."
+msgstr "Особые здания Птолемеев, обладает огромной дальностью обзора, особенно если построен на берегу."
 
 #: gui/text/tips/map_flare.txt:1
 msgid "MAP FLARE"
@@ -6858,13 +6858,13 @@ msgstr "Строится на своей или нейтральной терр�
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."
-msgstr "Дешёвый и быстровозводимый, но хлипкий."
+msgstr "Дешёвые и очень быстро строятся, но не прочные."
 
 #: gui/text/tips/outposts.txt:4
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr "Резместите в гарнизоне пехоту, чтобы обеспечить хороший обзор и не потерять в случае утраты территории."
+msgstr "Разместите в гарнизоне пехоту, чтобы обеспечить хороший обзор и защиту, а так же что бы не потерять в случае утраты территории."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -6906,12 +6906,12 @@ msgstr "ПИКИНЁРЫ"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "Heavily armored and slow. Low attack."
-msgstr "Тяжелобронированные и медленные. Слабое вооружение."
+msgstr "Тяжелобронированная и медленная тяжелая пехота с низкой скоростью атаки."
 
 #: gui/text/tips/pikemen.txt:3
 msgid ""
 "Used against cavalry or against other melee infantry to pin them in place."
-msgstr "Применяется против конницы или против пехоты ближнего боя для сдерживания."
+msgstr "Крайне эффективны против конницы и могут долго сдерживать пехоту ближнего боя врага."
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
@@ -6993,7 +6993,7 @@ msgstr "Плотно стоящие здания могут, кроме проч
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
-msgstr "СПАРТИАТЫ"
+msgstr "СПАРТАНСКИЕ ГОПЛИТЫ"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "Strongest infantry unit in the game."
@@ -7001,7 +7001,7 @@ msgstr "Самый сильный пеший юнит в игре."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr "Гвардейская пехота доступна спартанцам."
+msgstr "Гвардейская пехота спартанцев."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
@@ -7019,17 +7019,17 @@ msgstr "Основной тип тяжёлой пехоты у всех циви
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
-msgstr "Используется против конницы для усиления атаки."
+msgstr "Очень эффективны против конницы"
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
-msgstr "Достойный рубящий урон делает их хорошей линейной пехотой."
+msgstr "Помимо колющего имеют и рубящий урон, что делает их хорошей линейной пехотой."
 
 #: gui/text/tips/spearmen.txt:5
 msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
-msgstr "Им противостоят воины с метательным оружием и мечники, поэтому поддерживайте своих копейщиков пращниками или конницей."
+msgstr "Уязвимы против воинов с метательным оружием и мечников, поэтому поддерживайте своих копейщиков стрелками или конницей."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
@@ -7043,7 +7043,7 @@ msgstr "Дешёвая точка разгрузки несъедобных ре
 msgid ""
 "Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr "Исследуйте технологии, увеличивающие производительность сбора ресурсов вашими гражданами."
+msgstr "Позволяет исследовать технологии, увеличивающие скорость сбора ресурсов вашими гражданами."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
@@ -7051,23 +7051,23 @@ msgstr "ХРАМЫ"
 
 #: gui/text/tips/temples.txt:2
 msgid "Town Phase structure."
-msgstr "Здание этапа небольшого города."
+msgstr "Становятся доступны на этапе небольшого города."
 
 #: gui/text/tips/temples.txt:3
 msgid "Recruit Healers to heal your troops on the battlefield."
-msgstr "Нанимайте целителей, чтобы лечить ваши войска на поле боя."
+msgstr "Позволяют обучать целителей, чтобы лечить ваши войска на поле боя."
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
-msgstr "Исследуйте технологии исцеления."
+msgstr "Позволяет исследовать технологии исцеления для целителей."
 
 #: gui/text/tips/temples.txt:5
 msgid "Its aura heals nearby units."
-msgstr "Его аура исцеляет близких юнитов."
+msgstr "Его аура исцеляет юнитов поблизости."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
-msgstr "Размещайте раненых юнитов в гарнизонах для их ускоренного исцеления."
+msgstr "Можно размещать раненых в гарнизонах для ускоренного исцеления."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
@@ -7098,7 +7098,7 @@ msgstr "ТЕАТР"
 msgid ""
 "Special structures of the Hellenic civilizations to increase the size of "
 "your territory while you control it."
-msgstr "Специальные сооружения эллинских цивилизаций для увеличения размеров вашей территории, пока вы ее контролируете."
+msgstr "Специальные сооружения эллинских цивилизаций  увеличивающее размер подконтрольной вам территории."
 
 #: gui/text/tips/treasure.txt:1
 msgid "TREASURES"
@@ -7129,7 +7129,7 @@ msgstr "Хорошо подходит для транспортировки и �
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
-msgstr "Разместите воинов на борту, чтобы увеличить огневую мощь."
+msgstr "Разместите воинов на борту для транспортировки и увеличения  огневой мощи."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"

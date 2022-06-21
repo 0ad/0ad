@@ -66,7 +66,7 @@ namespace
 // f.e. use instancing.
 constexpr size_t MAX_ENTITIES_DRAWN = 65536 / 4;
 
-constexpr size_t MAX_ICON_COUNT = 128;
+constexpr size_t MAX_ICON_COUNT = 256;
 constexpr size_t MAX_UNIQUE_ICON_COUNT = 64;
 constexpr size_t ICON_COMBINING_GRID_SIZE = 10;
 
