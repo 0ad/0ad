@@ -1,31 +1,25 @@
 {
-	"genericName": "Civil Engineering − Level 2",
+	"genericName": "Robust Architecture",
 	"specificName": { "han": "Gōngchéng" },
-	"supersedes": "civil_engineering_01",
 	"description": "",
 	"cost": {
 		"food": 0,
-		"wood": 500,
-		"stone": 500,
+		"wood": 300,
+		"stone": 300,
 		"metal": 0
 	},
 	"requirements": {
 		"all": [
-			{ "tech": "phase_city" },
+			{ "tech": "phase_town" },
 			{ "civ": "han" }
 		]
 	},
 	"requirementsTooltip": "Unlocked in City Phase.",
-	"icon": "chinese_engineering_02.png",
+	"icon": "blocks_three.png",
 	"researchTime": 40,
-	"tooltip": "All structures −25% build time, +20% health and −5% cost.",
+	"tooltip": "All structures +20% health.",
 	"modifications": [
-		{ "value": "Cost/BuildTime", "multiply": 0.75 },
-		{ "value": "Health/Max", "multiply": 1.2 },
-		{ "value": "Cost/Resources/food", "multiply": 0.95 },
-		{ "value": "Cost/Resources/wood", "multiply": 0.95 },
-		{ "value": "Cost/Resources/stone", "multiply": 0.95 },
-		{ "value": "Cost/Resources/metal", "multiply": 0.95 }
+		{ "value": "Health/Max", "multiply": 1.2 }
 	],
 	"affects": ["Structure"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

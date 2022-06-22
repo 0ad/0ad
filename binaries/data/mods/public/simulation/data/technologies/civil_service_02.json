@@ -1,31 +1,26 @@
 {
-	"genericName": "Civil Service − Level 2",
+	"genericName": "Intensive Training",
 	"specificName": { "han": "Guānliáo" },
-	"supersedes": "civil_service_01",
 	"description": "",
 	"cost": {
 		"food": 200,
 		"wood": 200,
-		"stone": 200,
-		"metal": 400
+		"stone": 0,
+		"metal": 0
 	},
 	"requirements": {
 		"all": [
-			{ "tech": "phase_city" },
+			{ "tech": "phase_town" },
 			{ "civ": "han" }
 		]
 	},
 	"requirementsTooltip": "Unlocked in City Phase.",
-	"icon": "chinese_bureaucracy_02.png",
+	"icon": "hospital.png",
 	"researchTime": 40,
-	"tooltip": "Technologies at all buildings, except the Forge, −15% cost and −15% research time.",
+	"tooltip": "Ministers +50% health.",
 	"modifications": [
-		{ "value": "Researcher/TechCostMultiplier/time", "multiply": 0.85 },
-		{ "value": "Researcher/TechCostMultiplier/wood", "multiply": 0.85 },
-		{ "value": "Researcher/TechCostMultiplier/food", "multiply": 0.85 },
-		{ "value": "Researcher/TechCostMultiplier/metal", "multiply": 0.85 },
-		{ "value": "Researcher/TechCostMultiplier/stone", "multiply": 0.85 }
+		{ "value": "Health/Max", "multiply": 1.5 }
 	],
-	"affects": ["Structure !Forge"],
+	"affects": ["Minister"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
