@@ -15,9 +15,9 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "flood_control.png",
 	"researchTime": 70,
-	"tooltip": "Workers +25% rice gather rate.",
+	"tooltip": "Workers +20% rice gather rate.",
 	"modifications": [
-		{ "value": "ResourceGatherer/Rates/food.rice", "multiply": 1.25 }
+		{ "value": "ResourceGatherer/Rates/food.rice", "multiply": 1.2 }
 	],
 	"affects": ["Worker"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

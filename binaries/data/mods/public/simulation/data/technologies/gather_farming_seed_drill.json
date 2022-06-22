@@ -14,9 +14,9 @@
 	"requirementsTooltip": "Unlocked in Village Phase.",
 	"icon": "torsion_springs.png",
 	"researchTime": 50,
-	"tooltip": "Workers +25% rice gather rate.",
+	"tooltip": "Workers +20% rice gather rate.",
 	"modifications": [
-		{ "value": "ResourceGatherer/Rates/food.rice", "multiply": 1.25 }
+		{ "value": "ResourceGatherer/Rates/food.rice", "multiply": 1.2 }
 	],
 	"affects": ["Worker"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
