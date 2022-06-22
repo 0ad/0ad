@@ -15,9 +15,9 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "patriotism.png",
 	"researchTime": 50,
-	"tooltip": "All Citizen-Soldiers −25% required promotion experience.",
+	"tooltip": "All Citizen-Soldiers −20% required promotion experience.",
 	"modifications": [
-		{ "value": "Promotion/RequiredXp", "multiply": 0.75 }
+		{ "value": "Promotion/RequiredXp", "multiply": 0.8 }
 	],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
