@@ -1,10 +1,10 @@
 {
-	"genericName": "Civil Service − Level 1",
+	"genericName": "Efficient Bureaucracy",
 	"specificName": { "han": "Guānliáo" },
 	"description": "",
 	"cost": {
-		"food": 250,
-		"wood": 250,
+		"food": 200,
+		"wood": 200,
 		"stone": 0,
 		"metal": 0
 	},
@@ -15,16 +15,12 @@
 		]
 	},
 	"requirementsTooltip": "Unlocked in Town Phase.",
-	"icon": "chinese_bureaucracy_01.png",
+	"icon": "sibylline_books.png",
 	"researchTime": 40,
-	"tooltip": "Technologies at all buildings, except the Forge, −15% cost and −15% research time.",
+	"tooltip": "Ministers −50% train time.",
 	"modifications": [
-		{ "value": "Researcher/TechCostMultiplier/time", "multiply": 0.85 },
-		{ "value": "Researcher/TechCostMultiplier/wood", "multiply": 0.85 },
-		{ "value": "Researcher/TechCostMultiplier/food", "multiply": 0.85 },
-		{ "value": "Researcher/TechCostMultiplier/metal", "multiply": 0.85 },
-		{ "value": "Researcher/TechCostMultiplier/stone", "multiply": 0.85 }
+		{ "value": "Cost/BuildTime", "multiply": 0.5 }
 	],
-	"affects": ["Structure !Forge"],
+	"affects": ["Minister"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
