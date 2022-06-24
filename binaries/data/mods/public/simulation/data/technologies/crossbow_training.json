@@ -1,6 +1,6 @@
 {
 	"genericName": "Crossbow Training",
-	"description": "The Han had a tradition of fine archery and a penchant for using massed crossbowmen in battle.",
+	"description": "The Han had a penchant for using massed crossbowmen in battle.",
 	"cost": {
 		"food": 400,
 		"wood": 400
@@ -14,9 +14,8 @@
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "armor_plates_ranged.png",
 	"researchTime": 40,
-	"tooltip": "Crossbow Infantry and Cavalry −20% firing time −20% train time.",
+	"tooltip": "Crossbow Infantry and Cavalry −20% train time.",
 	"modifications": [
-		{ "value": "Attack/Ranged/RepeatTime", "multiply": 0.8 },
 		{ "value": "Cost/BuildTime", "multiply": 0.8 }
 	],
 	"affects": ["Crossbowman"],
