@@ -39,6 +39,7 @@
 # dddb155916b6708524139dbbf813fa7c
 # Rui
 # Stanislas Dolcini
+# teadesu
 # e05a6f0c527312287ac027cf3d3a35f5_685166c
 # Tiago
 # Victor Gregório
@@ -51,7 +52,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-06-13 07:11+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Yuri Laskowski <yurinikolai00@gmail.com>, 2022\n"
+"Last-Translator: teadesu, 2022\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -87,7 +88,7 @@ msgstr "Tab"
 
 #: gui/common/functions_global_object.js:53
 msgid "Loading Aborted"
-msgstr "Carregamento Abortado"
+msgstr "Carregamento Cancelado"
 
 #: gui/common/functions_utility.js:42
 msgid "Gaia"
@@ -2473,7 +2474,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.kill.name
 msgctxt "hotkey metadata"
 msgid "Destroy selected units"
-msgstr ""
+msgstr "Destruir unidades selecionadas"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.desc
 msgctxt "hotkey metadata"
@@ -3859,7 +3860,7 @@ msgstr ""
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
-msgstr ""
+msgstr "Procurar Mapa:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
 msgid "Map Filter:"
@@ -3867,12 +3868,12 @@ msgstr "Filtro de Mapa:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
 msgid "Pick Random Map"
-msgstr ""
+msgstr "Mapa aleatório"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):54
 msgctxt "map selection dialog"
 msgid "Select"
-msgstr ""
+msgstr "Selecionar"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:27
 msgid "Go to the previous page."
@@ -4033,31 +4034,31 @@ msgstr "Exibe a hora em que uma mensagem de bate-papo foi postada."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Naming of entities."
-msgstr ""
+msgstr "Nome de entidades"
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific names first"
-msgstr ""
+msgstr "Nomes específicos primeiro"
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
 msgid "Display specific names before generic names."
-msgstr ""
+msgstr "Exibir nomes epecíficos antes de nomes genéricos"
 
 #: gui/options/options.json[0].options[9].list[1].label
 msgid "Generic names first"
-msgstr ""
+msgstr "Nomes genéricos primeiro"
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Display generic names before specific names."
-msgstr ""
+msgstr "Exibir nomes genéricos antes de nomes específicos"
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only specific names"
-msgstr ""
+msgstr "Apenas nomes específicos"
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
 msgid "Display only specific names for entities."
-msgstr ""
+msgstr "Exibir apenas nomes específicos para entidades"
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only generic names"
@@ -4065,15 +4066,15 @@ msgstr "Apenas nomes genéricos"
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
 msgid "Display only generic names for entities."
-msgstr ""
+msgstr "Exibir apenas nomes genéricos para entidades"
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
-msgstr ""
+msgstr "Como exibir os nomes de entidades"
 
 #: gui/options/options.json[1].label
 msgid "Graphics (general)"
-msgstr ""
+msgstr "Gráficos (geral)"
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
@@ -4209,7 +4210,7 @@ msgstr "Defina o equilíbrio entre performance e a qualidade visual."
 
 #: gui/options/options.json[2].label
 msgid "Graphics (advanced)"
-msgstr ""
+msgstr "Gráficos (avançado)"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Renderer backend"
@@ -4342,7 +4343,7 @@ msgstr "Baixo"
 
 #: gui/options/options.json[2].options[6].list[0].label.tooltip
 msgid "Simpler models for better performance."
-msgstr ""
+msgstr "Modelos mais simples para melhor desempenho."
 
 #: gui/options/options.json[2].options[6].list[0][1].label._string
 msgctxt "Option for the meshes' level of detail."
@@ -4351,7 +4352,7 @@ msgstr "Médio"
 
 #: gui/options/options.json[2].options[6].list[0][1].label.tooltip
 msgid "Average quality and average performance."
-msgstr ""
+msgstr "Qualidade média e desempenho médio."
 
 #: gui/options/options.json[2].options[6].list[0][1][2].label._string
 msgctxt "Option for the meshes' level of detail."
@@ -4360,7 +4361,7 @@ msgstr "Alto"
 
 #: gui/options/options.json[2].options[6].list[0][1][2].label.tooltip
 msgid "High quality models."
-msgstr ""
+msgstr "Modelos com alta qualidade."
 
 #: gui/options/options.json[2].options[6].list[0][7].label
 msgid "Model appearance randomization"
@@ -4377,7 +4378,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].label
 msgid "Quality"
-msgstr ""
+msgstr "Qualidade"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0].label._string
 msgctxt "Option for the shadow quality."
@@ -4709,7 +4710,7 @@ msgstr "Atribua automaticamente a junção de clientes a slots de jogadores grat
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].label
 msgid "Networking / Lobby"
-msgstr ""
+msgstr "Rede / Lobby"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].label
 msgid "TLS encryption"
@@ -5010,7 +5011,7 @@ msgstr "Número de vezes que você precisa rolar para aumentar/diminuir o tamanh
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].label
 msgid "Flare display duration"
-msgstr ""
+msgstr "Duração de sinalização"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
@@ -5018,11 +5019,11 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].label
 msgid "Minimap icons"
-msgstr ""
+msgstr "Ícones do minimapa"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].tooltip
 msgid "Show special icons for some entities on the minimap."
-msgstr ""
+msgstr "Exibir ícones especiais para algumas entidades no minimapa"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].label
 msgid "Chat notification attack"
@@ -5230,7 +5231,7 @@ msgstr "Veja os diferentes mapas apresentados em 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Continue Campaign"
-msgstr "Continue a Campanha"
+msgstr "Continuar Campanha"
 
 #: gui/pregame/MainMenuItems.js:77 gui/pregame/MainMenuItems.js:111
 #: gui/pregame/MainMenuItems.js:127 gui/pregame/MainMenuItems.js:134
@@ -5263,11 +5264,11 @@ msgstr "Carregue um jogo salvo."
 
 #: gui/pregame/MainMenuItems.js:126
 msgid "New Campaign"
-msgstr ""
+msgstr "Nova Campanha"
 
 #: gui/pregame/MainMenuItems.js:133
 msgid "Load Campaign"
-msgstr "Carregar campanha"
+msgstr "Carregar Campanha"
 
 #: gui/pregame/MainMenuItems.js:143 gui/pregame/MainMenuItems.js:193
 msgid "Replays"

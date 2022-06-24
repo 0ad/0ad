@@ -141,7 +141,7 @@ msgstr "apoderau"
 #: gui/common/gamedescription.js:138
 msgctxt "playerstate"
 msgid "won"
-msgstr "vincedor/ora"
+msgstr "vincedor"
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
@@ -175,7 +175,7 @@ msgstr "Partida infinita"
 
 #: gui/common/gamedescription.js:189
 msgid "No winner will be determined, even if everyone is defeated."
-msgstr "Nun vaî determinase l vincedor, on que todu l mundu stea vincidu."
+msgstr "Nun se determina l vincedor, on que todu l mundu stea vincidu."
 
 #: gui/common/gamedescription.js:202
 #, javascript-format
@@ -411,7 +411,7 @@ msgstr "Activarun-se"
 
 #: gui/common/gamedescription.js:440
 msgid "Victorious"
-msgstr "Vincedor/ora"
+msgstr "Vincedor"
 
 #: gui/common/gamedescription.js:445
 msgid "Defeated"
@@ -2364,22 +2364,22 @@ msgstr "Omitti’l coniunctu"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare while this hotkey is pressed."
-msgstr "Fhazer siñæs cuno cursor al tener esti atayu premidu."
+msgstr "Fhazer siñales cuno cursor al tener esti atayu premidu."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
 msgctxt "hotkey metadata"
 msgid "Flare (hold)"
-msgstr "Siñar (premiendo)"
+msgstr "Siñalar (premiendo)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare. The hotkey can be released."
-msgstr "Fhazer siñæs cuno cursor. L atayu puœde soltase."
+msgstr "Fhazer siñales cuno cursor. L atayu puœde soltase."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
 msgctxt "hotkey metadata"
 msgid "Flare (toggle)"
-msgstr "Siñar (alternancia)"
+msgstr "Siñalar (alternancia)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
@@ -4956,11 +4956,11 @@ msgstr "Númeru de vezes q’ha hi que gyra’ la ruœda l mure p’augmentar/re
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].label
 msgid "Flare display duration"
-msgstr "Durança de siñæs"
+msgstr "Durança de siñales"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
-msgstr "El tiempu n segundos que læs siñæs s’amuœstræn in mapa."
+msgstr "El tiempu n segundos que læs siñales s’amuœstræn in mapa."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].label
 msgid "Minimap icons"
@@ -6002,7 +6002,7 @@ msgstr "Éqüites"
 
 #: gui/summary/layout.js:76
 msgid "Champion"
-msgstr "Victores"
+msgstr "Decertadores"
 
 #: gui/summary/layout.js:77
 msgid "Heroes"
@@ -6322,7 +6322,7 @@ msgstr "Constrúi arietes & crea mílites voluntarios."
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr "Occupa-la d’unidades pa sanallæs pouco a pouco, defende’ la castra & preveni’ la suæ disassociaçon."
+msgstr "Intsi-la d’unidades pa sanallæs pouco a pouco, defende’ la castra & preveni’ la suæ disassociaçon."
 
 #: gui/text/tips/autoqueue.txt:1
 msgid "AUTOQUEUE"
@@ -6344,7 +6344,7 @@ msgstr "CASTRO"
 msgid ""
 "Train all citizen soldiers. Some civilizations can unlock the training of "
 "champions as well."
-msgstr "Crea todolos mílites voluntarios. In ciertæs culturæs, tamien puœde crear victores."
+msgstr "Crea todolos mílites voluntarios. In ciertæs culturæs, tamien puœde crear decertadores."
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
@@ -6382,7 +6382,7 @@ msgstr "CANES BÉLLICOS"
 
 #: gui/text/tips/briton_war_dog.txt:2
 msgid "A dog that the Britons can train at the cavalry stable."
-msgstr "Canes que los britannos puœden crear in stablro."
+msgstr "Canes que los britannos puœden crear na corte."
 
 #: gui/text/tips/briton_war_dog.txt:3
 msgid "Has low health, but is fast and will fearlessly attack enemies."
@@ -6398,13 +6398,13 @@ msgstr "CONSECRÁNEOS CARTHAGÏNESES"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr "Los Hastarios victores & Éqüites hastarios victores de Carthago."
+msgstr "Los Hastarios decertadores & Éqüites hastarios decertadores de Carthago."
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr "Todos dous se creæn in Templo, a differencia de la maioríæ de los victores."
+msgstr "Todos dous se creæn in Templo, a differencia de la maioríæ de los decertadores."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
@@ -6448,7 +6448,7 @@ msgstr "Disarma-læs pa movellæs & ¡arma-læs p’attacar!"
 
 #: gui/text/tips/cavalry_stable.txt:1
 msgid "CAVALRY STABLE"
-msgstr "STABLRO"
+msgstr "CORTE"
 
 #: gui/text/tips/cavalry_stable.txt:2
 msgid ""
@@ -6642,7 +6642,7 @@ msgstr "Suœl se’ la construcçon mas fhuœrte d’una cultura & el sitiu unde
 
 #: gui/text/tips/fortress.txt:3
 msgid "Garrison soldiers inside to add more firepower to its defense."
-msgstr "Occupa-lo de mílites pa que tire mas saietæs al defendese."
+msgstr "Intsi-lo de mílites pa que tire mas saietæs al defendese."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -6673,21 +6673,21 @@ msgstr "Usa los mílites voluntarios & læs cives par obtener recursos."
 
 #: gui/text/tips/gathering.txt:3
 msgid "Female citizens gather vegetable resources faster."
-msgstr "Les cives cueyen frutos más rápido."
+msgstr "Læs cives cuœyen recursos vegëtales per-rápido."
 
 #: gui/text/tips/gathering.txt:4
 msgid "Infantry citizen-soldiers are faster gathering minerals."
-msgstr "Los pédites voluntarios extrahen minerales mas rápido."
+msgstr "Los pédites voluntarios extrahen minerales per-rápido."
 
 #: gui/text/tips/gathering.txt:5
 msgid "Cavalry citizen-soldiers are faster gathering meat."
-msgstr "Los éqüites voluntarios caçæn mas rápido."
+msgstr "Los éqüites voluntarios caçæn per-rápido."
 
 #: gui/text/tips/gathering.txt:6
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr "Quantu mas altu l grau de l mílite voluntariu, (superior, singular), meyor lhuithará, pero tardará mas n obtener recursos."
+msgstr "Quantu maior el grau de l mílite voluntariu, (superior, singular), meyor lhuitha, pero tarda mas n obtener recursos."
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
@@ -6697,29 +6697,29 @@ msgstr "HEROES"
 msgid ""
 "Historical characters, such as Xerxes, Leonidas, Pericles, Hannibal, Scipio,"
 " and Boudicca."
-msgstr "Personaxes históricos, como son Xerxes, Leónides, Pericles, Haníbal, Escipión ya Boudica."
+msgstr "Personalidades históricæs, talæs cumo Xerxes, Leónidas, Pericles, Haníbal, Scipion & Boudica."
 
 #: gui/text/tips/heroes.txt:3
 msgid "A lot of health and very strong attacks."
-msgstr "Tienen muncha vida ya son perfuertes."
+msgstr "Tienen abonda vitalidá & son per-fhuœrtes."
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
-msgstr "Inflúin nas statísticas d’outras unidades ou construcciones."
+msgstr "Inflúin næs statísticæs d’outræs unidades ou construcçones."
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
-msgstr "Repara: ¡Cada unu de los heroes puœde crease una sola vez per partida!"
+msgstr "Arrepara: ¡Cada unu de los heroes puœde crease una sola vegada per partida!"
 
 #: gui/text/tips/iber_fireship.txt:1
 msgid "IBERIAN FIRESHIP"
-msgstr "SUONTZI"
+msgstr "AMBURIEGA"
 
 #: gui/text/tips/iber_fireship.txt:2
 msgid ""
 "The special Iberian fireship is very effective against other ships and "
 "buildings, but steadily loses health."
-msgstr "La nave amburiega íbera funde barcos y edificios con facilidá, pero a costa de dir perdiendo puntos de vida."
+msgstr "Esti barcu special íberu destrúi barcos & edificios cun facilidá, pero pierde vitalidá pouco a pouco."
 
 #: gui/text/tips/lighthouse.txt:1
 msgid "LIGHTHOUSE"
@@ -6729,7 +6729,7 @@ msgstr "PHARU"
 msgid ""
 "Special Ptolemaic structures to increase your vision range when built on the"
 " shore."
-msgstr "Construcción ptolemaica que vixila les orielles y muncha de la redolada."
+msgstr "Construcçon special ptolemaica q’amplía la tuæ vision vigïlando la marinha."
 
 #: gui/text/tips/map_flare.txt:1
 msgid "MAP FLARE"
@@ -6739,7 +6739,7 @@ msgstr "SIÑALAMIENTO"
 msgid ""
 "Use this feature to let your team know where on the map something important "
 "happens."
-msgstr "Usa siñales in mapa p’avisar al equipu d’acontecemientos importantes."
+msgstr "Fhai siñales in mapa p’avisar al equipu d’acontecemientos importantes."
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
@@ -6751,18 +6751,18 @@ msgstr "PYRÁMIDES DE MEDEWI"
 
 #: gui/text/tips/meroe_pyramids.txt:2
 msgid "Special structures available for the Kushites."
-msgstr "Construcciones exclusivas de los qesanos."
+msgstr "Construcçon exclusiva de los qesanos."
 
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
 "The small pyramids improve the gathering rate of the workers around them."
-msgstr "Les pirámides menores entaínen el llogru de recursos a obreros averaos."
+msgstr "Læs pyrámides minores muœven obreiros próximos a obtener recursos mas rápido."
 
 #: gui/text/tips/meroe_pyramids.txt:4
 msgid ""
 "The large pyramids increase the military capabilities of soldiers around "
 "them."
-msgstr "Læs pyrámides maiores augmentæn l arremangu gerreiru de mílites aveirahos."
+msgstr "Læs pyrámides maiores muœven mílites próximos a lhuithar cun fhœrça."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -6770,17 +6770,17 @@ msgstr "MIRADOÎROS"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral or own territory."
-msgstr "Llevanta en terrenu propriu o neutral."
+msgstr "Lhevantæn-se n campu propriu ou neutral."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."
-msgstr "Baratos ya rápidos de llevantar, pero sonces."
+msgstr "Baratos & rápidos de lhevantar, pero sonces."
 
 #: gui/text/tips/outposts.txt:4
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr "Occupa-lo de pédites par vigïla’ la redolada & preveni’ la perda de l miradoîro."
+msgstr "Intsi-lo de pédites p’amplia’ la vision & preveni’ la disassociaçon de l miradoîro."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -6917,7 +6917,7 @@ msgstr "El pédite más fuerte del xuegu."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr "Los spartanos disponen de Pédites victores."
+msgstr "Los spartanos disponen de Pédites decertadores."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
