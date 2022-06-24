@@ -490,7 +490,7 @@ void ShadowMapInternals::CreateTexture()
 		break;
 	// Ultra
 	case 2:
-		shadowMapSize = std::max(round_up_to_pow2(std::max(g_Renderer.GetWidth(), g_Renderer.GetHeight())) * 4, 4096);
+		shadowMapSize = std::max(round_up_to_pow2(std::max(g_Renderer.GetWidth(), g_Renderer.GetHeight())), 4096);
 		break;
 	// Medium as is
 	default:
