@@ -1,7 +1,7 @@
 function distributeButtonsHorizontally(button, captions)
 {
-	const y1 = "100%-60";
-	const y2 = "100%-20";
+	const y1 = "100%-46";
+	const y2 = "100%-18";
 	switch (captions.length)
 	{
 	case 1:
@@ -12,9 +12,9 @@ function distributeButtonsHorizontally(button, captions)
 		button[1].size = "50%+5 " + y1 + " 100%-18 " + y2;
 		break;
 	case 3:
-		button[0].size = "18 " + y1 + " 33%-3 " + y2;
-		button[1].size = "33%+3 " + y1 + " 66%-3 " + y2;
-		button[2].size = "66%+3 " + y1 + " 100%-18 " + y2;
+		button[0].size = "18 " + y1 + " 33%-5 " + y2;
+		button[1].size = "33%+5 " + y1 + " 66%-5 " + y2;
+		button[2].size = "66%+5 " + y1 + " 100%-18 " + y2;
 		break;
 	}
 }
