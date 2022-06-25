@@ -4,7 +4,7 @@
     <Ranged>
       <AttackName>Crossbow</AttackName>
       <Damage>
-        <Pierce>20</Pierce>
+        <Pierce>30</Pierce>
       </Damage>
       <MaxRange>45</MaxRange>
       <PrepareTime>600</PrepareTime>
@@ -21,19 +21,15 @@
   </Attack>
   <Cost>
     <Resources>
-      <wood>40</wood>
+      <wood>50</wood>
     </Resources>
   </Cost>
-  <Health>
-    <Max op="add">-10</Max>
-  </Health>
   <Identity>
     <GenericName>Infantry Crossbowman</GenericName>
     <VisibleClasses datatype="tokens">Crossbowman</VisibleClasses>
   </Identity>
   <Loot>
-    <wood>3</wood>
-    <metal>2</metal>
+    <wood>5</wood>
   </Loot>
   <Resistance>
     <Entity>

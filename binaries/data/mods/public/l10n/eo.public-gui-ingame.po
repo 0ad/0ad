@@ -5,13 +5,14 @@
 # Translators:
 # LaPingvino
 # Michael Moroni
+# Senlima Povigo
 # tuxayo/Victor Grousset
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-04-01 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
-"Last-Translator: tuxayo/Victor Grousset <victor@tuxayo.net>, 2021\n"
+"Last-Translator: Senlima Povigo, 2022\n"
 "Language-Team: Esperanto (http://www.transifex.com/wildfire-games/0ad/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,16 +22,16 @@ msgstr ""
 
 #: gui/session/Cheats.js:78
 msgid "This cheat requires a numeric parameter."
-msgstr ""
+msgstr "Tiu ĉi trompo bezonas nombran parametron."
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
-msgstr ""
+msgstr "Elektu rapidon de ludo"
 
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr ""
+msgstr "Premu %(hotkey)s por baskuli tiun ĉi menuon."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -38,7 +39,7 @@ msgstr "Babilejo"
 
 #: gui/session/MenuButtons.js:53
 msgid "Save"
-msgstr "Konservi"
+msgstr "Konservu"
 
 #: gui/session/MenuButtons.js:77
 msgid "Summary"
@@ -47,104 +48,104 @@ msgstr "Resumo"
 #: gui/session/MenuButtons.js:90
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr ""
+msgstr "Premu %(hotkey)s por malfermi la resuman ekranon."
 
 #: gui/session/MenuButtons.js:133
 msgid "Lobby"
-msgstr "Vestiblo"
+msgstr "Enkondukejo"
 
 #: gui/session/MenuButtons.js:142
 #, javascript-format
 msgid ""
 "Press %(hotkey)s to open the multiplayer lobby page without leaving the "
 "game."
-msgstr ""
+msgstr "Premu %(hotkey)s por malfermi la enkondukan paĝon sen forlasi la ludon."
 
 #: gui/session/MenuButtons.js:161
 msgid "Options"
-msgstr ""
+msgstr "Agordoj"
 
 #: gui/session/MenuButtons.js:185
 msgid "Hotkeys"
-msgstr ""
+msgstr "Agklavoj"
 
 #: gui/session/MenuButtons.js:220
 msgid "Resume"
-msgstr ""
+msgstr "Daŭrigu"
 
 #: gui/session/MenuButtons.js:220
 msgid "Pause"
-msgstr ""
+msgstr "Paŭzigu"
 
 #: gui/session/MenuButtons.js:221
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr ""
+msgstr "Premu %(hotkey)s por paŭzigi aŭ daŭrigi la ludon."
 
 #: gui/session/MenuButtons.js:237
 msgid "Resign"
-msgstr ""
+msgstr "Rezignu"
 
 #: gui/session/MenuButtons.js:261
 #: gui/session/NetworkStatusOverlay.xml:(caption):9
 msgid "Exit"
-msgstr "Eliri"
+msgstr "Eliru"
 
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
-msgstr ""
+msgstr "Malfruo ĝis senpera fluo: %(delay)s sek."
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
-msgstr ""
+msgstr "La konekto al la servilo aŭtentiĝis."
 
 #: gui/session/NetworkStatusOverlay.js:39
 msgid "Connected to the server."
-msgstr ""
+msgstr "Konektita al la servilo."
 
 #: gui/session/NetworkStatusOverlay.js:40
 msgid "Connection to the server has been lost."
-msgstr ""
+msgstr "La konekto al la servilo perdiĝis."
 
 #: gui/session/NetworkStatusOverlay.js:42
 msgid "Waiting for players to connect:"
-msgstr ""
+msgstr "Atendas por ludantoj konekti:"
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
-msgstr ""
+msgstr "Sinkronigas la ludstaton kun aliaj ludantoj..."
 
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #. Translation: The "x" means "times", with the mathematical meaning of
 #. multiplication.
 #: gui/session/OverlayCounterElapsedTime.js:33
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)s-obla)"
 
 #: gui/session/PauseOverlay.js:40
 #: gui/session/message_box/OutOfSyncNetwork.js:20
 msgctxt "Separator for a list of players"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/PauseOverlay.js:45
 #, javascript-format
 msgid "Paused by %(players)s"
-msgstr ""
+msgstr "Paŭzis de %(players)s"
 
 #: gui/session/PauseOverlay.xml:(caption):7
 msgid "Game Paused"
-msgstr ""
+msgstr "Ludo paŭzis"
 
 #: gui/session/PauseOverlay.xml:(caption):11
 msgid "Click to Resume Game"
-msgstr ""
+msgstr "Alklaku por daŭrigi la ludon"
 
 #: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:273
 #: gui/session/selection_details.js:291 gui/session/selection_panels.js:582
@@ -157,27 +158,27 @@ msgstr ""
 #. when not the first item in the queue.
 #: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:597
 msgid "This item is paused."
-msgstr ""
+msgstr "Tiu ĉi elemento estas paŭzita."
 
 #: gui/session/chat/ChatAddressees.js:93
 msgctxt "chat addressee"
 msgid "Everyone"
-msgstr ""
+msgstr "Ĉiu"
 
 #: gui/session/chat/ChatAddressees.js:99
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr ""
+msgstr "Aliancanoj"
 
 #: gui/session/chat/ChatAddressees.js:100
 msgctxt "chat message context"
 msgid "Ally"
-msgstr ""
+msgstr "Aliancano"
 
 #: gui/session/chat/ChatAddressees.js:110
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr ""
+msgstr "Malamikoj"
 
 #: gui/session/chat/ChatAddressees.js:111
 msgctxt "chat message context"
@@ -187,12 +188,12 @@ msgstr "Malamiko"
 #: gui/session/chat/ChatAddressees.js:121
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr ""
+msgstr "Observantoj"
 
 #: gui/session/chat/ChatAddressees.js:122
 msgctxt "chat message context"
 msgid "Observer"
-msgstr ""
+msgstr "Observanto"
 
 #: gui/session/chat/ChatAddressees.js:129
 msgctxt "chat message context"
@@ -216,94 +217,94 @@ msgstr "HH:MM"
 #: gui/session/chat/ChatHistory.js:89
 msgctxt "chat history filter"
 msgid "Chat and notifications"
-msgstr ""
+msgstr "Babilo kaj sciigoj"
 
 #: gui/session/chat/ChatHistory.js:94
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr ""
+msgstr "Babilaj mesaĝoj"
 
 #: gui/session/chat/ChatHistory.js:99
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "Babilo de ludantoj"
 
 #: gui/session/chat/ChatHistory.js:106
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr ""
+msgstr "Babilo de aliancanoj"
 
 #: gui/session/chat/ChatHistory.js:113
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "Babilo de malamikoj"
 
 #: gui/session/chat/ChatHistory.js:120
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "Babilo de observantoj"
 
 #: gui/session/chat/ChatHistory.js:127
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr ""
+msgstr "Privata babilo"
 
 #: gui/session/chat/ChatHistory.js:132
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr ""
+msgstr "Sciigoj de ludo"
 
 #: gui/session/chat/ChatHistory.js:137
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr ""
+msgstr "Sciigoj de reto"
 
 #: gui/session/chat/ChatInput.js:36
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr ""
+msgstr "Tajpu la mesaĝon por sendi."
 
 #: gui/session/chat/ChatInput.js:42
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr ""
+msgstr "Premu %(hotkey)s por malfermi la publikan babilon."
 
 #: gui/session/chat/ChatInput.js:45
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "Premu %(hotkey)s por malfermi la babilon de observantoj."
 
 #: gui/session/chat/ChatInput.js:46
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr ""
+msgstr "Premu %(hotkey)s por malfermi la babilon de aliancanoj."
 
 #: gui/session/chat/ChatInput.js:48
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr ""
+msgstr "Premu %(hotkey)s por malfermi la antaŭe elektitan privatan babilon."
 
 #. Translation: A player that left the game joins again
 #: gui/session/chat/ChatMessageFormatNetwork.js:24
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr ""
+msgstr "%(player)s komencas rekunigi al la ludo."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:26
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr ""
+msgstr "%(player)s komencas kunigi al la ludo."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:37
 #, javascript-format
 msgid "%(player)s has left the game."
-msgstr ""
+msgstr "%(player)s forlasis la ludon."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:51
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr ""
+msgstr "%(username)s estas malpermesita"
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:52
 #, javascript-format
@@ -314,23 +315,23 @@ msgstr "%(username)s estis forpelita"
 #: gui/session/chat/ChatMessageFormatNetwork.js:71
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr "%(player)s rekunigis al la ludo."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:73
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr ""
+msgstr "%(player)s kunigis al la ludo."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:62
 #, javascript-format
 msgid "<%(user)s>"
-msgstr ""
+msgstr "<%(user)s>"
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:161
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
-msgstr ""
+msgstr "(%(context)s) %(userTag)s %(message)s"
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:162
 #, javascript-format
@@ -350,127 +351,127 @@ msgstr ""
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)sViaj brutoj atakiĝis de %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)sVi atakiĝis de %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
-msgstr ""
+msgstr "Alklaku por fokusi ĉe la atakita unuo."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr ""
+msgstr "%(player)s interŝanĝis %(amountGiven)s por %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr ""
+msgstr "Vi nun alianciĝis kun %(player)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:82
 #, javascript-format
 msgid "You are now at war with %(player)s."
-msgstr ""
+msgstr "Vi nun militas kontraŭ %(player)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:83
 #, javascript-format
 msgid "You are now neutral with %(player)s."
-msgstr ""
+msgstr "Vi nun neŭtraliĝis kun %(player)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr ""
+msgstr "%(player)s nun alianciĝis kun vi."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:87
 #, javascript-format
 msgid "%(player)s is now at war with you."
-msgstr ""
+msgstr "%(player)s nun militas kontraŭ vin."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:88
 #, javascript-format
 msgid "%(player)s is now neutral with you."
-msgstr ""
+msgstr "%(player)s nun neŭtraliĝis kun vi."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:91
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr ""
+msgstr "%(player)s nun alianĉiĝis kun %(player2)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:92
 #, javascript-format
 msgid "%(player)s is now at war with %(player2)s."
-msgstr ""
+msgstr "%(player)s nun militas kontraŭ %(player2)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:93
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr ""
+msgstr "%(player)s nun neŭtraliĝis kun %(player2)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:109
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr ""
+msgstr "%(player)s progresas al la %(phaseName)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:111
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr ""
+msgstr "La %(phaseName)s de %(player)s ĉesis."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:114
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
-msgstr ""
+msgstr "%(player)s atingis la %(phaseName)sn."
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an
 #. enumeration.
 #: gui/session/chat/ChatMessageFormatSimulation.js:142
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:159
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
-msgstr ""
+msgstr "%(player)s donis al vi %(amounts)sn."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:161
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "Vi donis al %(player2)s %(amounts)sn."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:166
 #, javascript-format
 msgid "%(player)s has sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "%(player)s donis al %(player2)s %(amounts)sn."
 
 #: gui/session/chat/chat_window.xml:(caption):19
 msgctxt "chat input"
 msgid "Filter:"
-msgstr ""
+msgstr "Filtro:"
 
 #: gui/session/chat/chat_window.xml:(caption):46
 msgctxt "chat input"
 msgid "To:"
-msgstr ""
+msgstr "Al:"
 
 #: gui/session/chat/chat_window.xml:(caption):60
 msgctxt "chat input"
 msgid "Text:"
-msgstr ""
+msgstr "Teksto:"
 
 #: gui/session/chat/chat_window.xml:(caption):72
 msgid "Cancel"
-msgstr "Nuligi"
+msgstr "Nuligu"
 
 #: gui/session/chat/chat_window.xml:(caption):86
 msgctxt "chat"
 msgid "History"
-msgstr ""
+msgstr "Historio"
 
 #: gui/session/chat/chat_window.xml:(caption):91
 msgid "Send"
@@ -479,24 +480,24 @@ msgstr "Sendu"
 #: gui/session/chat/chat_window.xml:(tooltip):29
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr ""
+msgstr "Filtru la historion de la babilo."
 
 #: gui/session/chat/chat_window.xml:(tooltip):55
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr ""
+msgstr "Elektu la babilan adresaton."
 
 #: gui/session/developer_overlay/DeveloperOverlay.js:80
 msgid "The Developer Overlay was opened."
-msgstr ""
+msgstr "La programista surtavolo malfermiĝis."
 
 #: gui/session/developer_overlay/DeveloperOverlay.js:81
 msgid "The Developer Overlay was closed."
-msgstr ""
+msgstr "La programista surtavolo fermiĝis."
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:15
 msgid "Control all units"
-msgstr ""
+msgstr "Regu ĉiujn unuojn"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:42
 msgid "Change perspective"
@@ -536,11 +537,11 @@ msgstr ""
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:169
 msgid "Reveal map"
-msgstr ""
+msgstr "Malkovru la mapon"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:195
 msgid "Enable time warp"
-msgstr ""
+msgstr "Ŝaltu tempan rapidigon"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:214
 msgid "Activate Rejoin Test"
@@ -595,11 +596,11 @@ msgstr ""
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
-msgstr ""
+msgstr "Demando"
 
 #: gui/session/dialogs/yes_no.xml:(caption):15
 msgid "Yes or no?"
-msgstr ""
+msgstr "Jes aŭ ne?"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):15
 msgid "Name"
@@ -607,7 +608,7 @@ msgstr "Nomo"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):18
 msgid "Civilization"
-msgstr "Civito"
+msgstr "Civilizacio"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):21
 msgid "Team"
@@ -615,45 +616,45 @@ msgstr "Teamo"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):24
 msgid "Theirs"
-msgstr ""
+msgstr "Ilia"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):27
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):31
 msgid "N"
-msgstr ""
+msgstr "N"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):35
 msgid "E"
-msgstr ""
+msgstr "M"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):39
 msgid "Tribute"
-msgstr ""
+msgstr "Tributo"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):90
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):43
 #: gui/session/trade/TradeDialog.xml:(caption):22
 msgid "Close"
-msgstr "Fermi"
+msgstr "Fermu"
 
 #: gui/session/diplomacy/DiplomacyDialogCeasefireCounter.js:27
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr ""
+msgstr "Resta daŭro de pafĉesigo: %(time)s."
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):85
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
 #: gui/session/minimap/MiniMapDiplomacyColorsButton.js:36
 msgid "Toggle Diplomacy Colors"
-msgstr ""
+msgstr "Baskulu diplomatiajn kolorojn"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
-msgstr ""
+msgstr "Petu al viaj aliancanoj ataki tiun ĉi malamikon"
 
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
 msgctxt "team"
@@ -663,12 +664,12 @@ msgstr "Neniu"
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):28
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:78
 msgid "Ally"
-msgstr ""
+msgstr "Aliancano"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):32
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:81
 msgid "Neutral"
-msgstr ""
+msgstr "Neŭtralulo"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):36
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:84
@@ -679,11 +680,11 @@ msgstr "Malamiko"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr ""
+msgstr "Subaĉetu hazardan unuon el tiu ĉi ludanto kaj kunhavu ĝian vidon dum limigita daŭro."
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
 msgid "A failed bribe will cost you:"
-msgstr ""
+msgstr "Malsukcesa subaĉeto kostos vin:"
 
 #: gui/session/diplomacy/playercontrols/StanceButton.js:60
 msgctxt "diplomatic stance selection"
@@ -695,33 +696,33 @@ msgstr ""
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr ""
+msgstr "Tributu %(resourceAmount)s %(resourceType)sn al %(playerName)s. Maj+klako por tributi %(greaterAmount)s."
 
 #: gui/session/input.js:191
 #, javascript-format
 msgid "Basic range: %(range)s meter"
 msgid_plural "Basic range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Baza distanco: %(range)s metro"
+msgstr[1] "Baza distanco: %(range)s metroj"
 
 #: gui/session/input.js:192
 #, javascript-format
 msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Meznombra baza distanco: %(range)s metro"
+msgstr[1] "Meznombra baza distanco: %(range)s metroj"
 
 #: gui/session/input.js:702
 msgid "Cannot build wall here!"
-msgstr ""
+msgstr "Ne povas konstrui muron tie ĉi!"
 
 #: gui/session/message_box/DeleteSelectionConfirmation.js:10
 msgid "Delete"
-msgstr "Forigi"
+msgstr "Forigu"
 
 #: gui/session/message_box/DeleteSelectionConfirmation.js:11
 msgid "Destroy everything currently selected?"
-msgstr ""
+msgstr "Ĉu detruu ĉion el la elekto?"
 
 #: gui/session/dialogs/yes_no.xml:(caption):24
 #: gui/session/message_box/DeleteSelectionConfirmation.js:14
@@ -741,60 +742,60 @@ msgstr "Jes"
 #: gui/session/message_box/OutOfSyncReplay.js:26
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr ""
+msgstr "Missinkroniga eraro je vico %(turn)s."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:19
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
-msgstr ""
+msgstr "Ludantoj: %(players)s"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:24
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr ""
+msgstr "Via ludstato estas identa kun la ludstato de la gastiganto."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:25
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr ""
+msgstr "Via ludstato estas diferenca ol la ludstato de la gastiganto."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:31
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr ""
+msgstr "Rekunigi multludantajn ludojn kun artefaritaj intelektoj estas ne subtenate ankoraŭ!"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:34
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
-msgstr ""
+msgstr "Certigu, ke ĉiuj ludantoj uzi la samajn modifojn."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:35
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr ""
+msgstr "Alklaku \"Raportu cimon\" en la ĉefmenuo por helpi ripari tiun ĉi."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:36
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Replay saved to %(filepath)s"
-msgstr ""
+msgstr "Reludo konserviĝis al %(filepath)s"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:39
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
-msgstr ""
+msgstr "Ŝutas aktualan staton al %(filepath)s"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:51
 #: gui/session/message_box/OutOfSyncReplay.js:23
 msgid "Out of Sync"
-msgstr ""
+msgstr "Missinkroniga"
 
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr ""
+msgstr "Missinkroniga"
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:66
@@ -804,52 +805,52 @@ msgstr "Konfirmo"
 
 #: gui/session/message_box/QuitConfirmation.js:9
 msgid "The game has finished, what do you want to do?"
-msgstr ""
+msgstr "La ludo finiĝis. Kion vi volas fari?"
 
 #. Translation: Shown in the Dialog that shows up when the game finishes
 #: gui/session/message_box/QuitConfirmation.js:15
 #: gui/session/message_box/QuitConfirmationReplay.js:23
 msgid "Stay"
-msgstr ""
+msgstr "Restu"
 
 #. Translation: Shown in the Dialog that shows up when the game finishes
 #: gui/session/message_box/QuitConfirmation.js:19
 #: gui/session/message_box/QuitConfirmationReplay.js:27
 msgid "Quit and View Summary"
-msgstr ""
+msgstr "Ĉesu kaj vidu resumon"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:54
 msgid "VICTORIOUS!"
-msgstr ""
+msgstr "VENKINTA!"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:55
 msgid "DEFEATED!"
-msgstr ""
+msgstr "MALVENKINTA!"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:57
 msgid "Do you want to quit?"
-msgstr ""
+msgstr "Ĉu vi volas ĉesi?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:33
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr ""
+msgstr "Ĉu vi certas, ke si volas ĉesi? Lasi malkonektos ĉiujn aliajn ludantojn."
 
 #: gui/session/message_box/QuitConfirmationMenu.js:47
 msgid "Are you sure you want to quit?"
-msgstr ""
+msgstr "Ĉu vi certas, ke si volas ĉesi?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:67
 msgid "Do you want to resign or will you return soon?"
-msgstr ""
+msgstr "Ĉu vi volas rezigni aŭ revenos bladaŭ?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:70
 msgid "I will return"
-msgstr ""
+msgstr "Mi revenos"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:74
 msgid "I resign"
-msgstr ""
+msgstr "Mi rezignas"
 
 #: gui/session/message_box/QuitConfirmationReplay.js:14
 msgctxt "replayFinished"
@@ -859,37 +860,37 @@ msgstr "Konfirmo"
 #: gui/session/message_box/QuitConfirmationReplay.js:17
 msgctxt "replayFinished"
 msgid "The replay has finished. What do you want to do?"
-msgstr ""
+msgstr "La reludo finiĝis. Kion vi volas fari?"
 
 #: gui/session/message_box/ResignConfirmation.js:6
 msgid "Are you sure you want to resign?"
-msgstr ""
+msgstr "Ĉu vi certas, ke si volas rezigni?"
 
 #: gui/session/messages.js:104
 msgid "You have won!"
-msgstr ""
+msgstr "Vi venkis!"
 
 #: gui/session/messages.js:105
 msgid "You have been defeated!"
-msgstr ""
+msgstr "Vi venkiĝis!"
 
 #: gui/session/messages.js:410
 msgid "Click to quit this tutorial."
-msgstr ""
+msgstr "Ĉi-klaku por ĉesi tiun ĉi instruilon."
 
 #: gui/session/message_box/QuitConfirmation.js:24
 #: gui/session/message_box/QuitConfirmationReplay.js:32
 #: gui/session/messages.js:411
 msgid "Quit"
-msgstr ""
+msgstr "Ĉesu"
 
 #: gui/session/messages.js:415
 msgid "Click when ready."
-msgstr ""
+msgstr "Ĉi-klaku kiam pretus."
 
 #: gui/session/messages.js:419
 msgid "Follow the instructions."
-msgstr ""
+msgstr "Agu laŭ la instrukciojn."
 
 #: gui/session/messages.js:544
 msgid "Unknown Player"
@@ -897,271 +898,271 @@ msgstr "Nekonata ludanto"
 
 #: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
-msgstr ""
+msgstr "Ĵetu raketon al viaj aliancanoj."
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:43
 msgid ""
 "Find idle worker\n"
 "Number of idle workers."
-msgstr ""
+msgstr "Trovu senfaran laboriston\nNombro de senfaraj laboristoj."
 
 #: gui/session/selection_details.js:65
 #, javascript-format
 msgid "%(secondaryName)s — Packed"
-msgstr ""
+msgstr "%(secondaryName)s — Pakita"
 
 #: gui/session/selection_details.js:67
 msgid "Packed"
-msgstr ""
+msgstr "Pakita"
 
 #: gui/session/chat/ChatAddressees.js:79 gui/session/selection_details.js:78
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
-msgstr ""
+msgstr "\\[MALKONEKTITE] %(player)s"
 
 #: gui/session/selection_details.js:84
 #, javascript-format
 msgid "%(rank)s Rank"
-msgstr ""
+msgstr "%(rank)s Rango"
 
 #: gui/session/selection_details.js:141
 #, javascript-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
-msgstr ""
+msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
 #: gui/session/selection_details.js:182
 #, javascript-format
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
-msgstr ""
+msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
 #: gui/session/selection_details.js:202
 #, javascript-format
 msgid "%(experience)s %(current)s / %(required)s"
-msgstr ""
+msgstr "%(experience)s %(current)s / %(required)s"
 
 #: gui/session/selection_details.js:203 gui/session/selection_details.js:209
 msgid "Experience:"
-msgstr ""
+msgstr "Sperto:"
 
 #: gui/session/selection_details.js:208
 #, javascript-format
 msgid "%(experience)s %(current)s"
-msgstr ""
+msgstr "%(experience)s %(current)s"
 
 #: gui/session/selection_details.js:218
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/session/selection_details.js:219 gui/session/selection_details.js:249
 #: gui/session/selection_details.js:279
 #, javascript-format
 msgid "%(amount)s / %(max)s"
-msgstr ""
+msgstr "%(amount)s / %(max)s"
 
 #: gui/session/selection_details.js:231
 #, javascript-format
 msgid "%(resource)s:"
-msgstr ""
+msgstr "%(resource)s:"
 
 #: gui/session/selection_details.js:262 gui/session/unit_actions.js:680
 #: gui/session/unit_actions.js:689 gui/session/unit_actions.js:707
 #: gui/session/unit_actions.js:1180
 #, javascript-format
 msgid "Gain: %(gain)s"
-msgstr ""
+msgstr "Gajno: %(gain)s"
 
 #: gui/session/selection_details.js:271 gui/session/selection_details.js:289
 #, javascript-format
 msgid ""
 "(%(number)s)\n"
 "%(time)s"
-msgstr ""
+msgstr "(%(number)s)\n%(time)s"
 
 #: gui/session/selection_details.js:283
 msgid "Current/max gatherers"
-msgstr ""
+msgstr "Aktualaj/maksimumaj kolektistoj"
 
 #: gui/session/selection_details.js:315
 #, javascript-format
 msgid "(%(secondaryName)s)"
-msgstr ""
+msgstr "(%(secondaryName)s)"
 
 #: gui/session/selection_details.js:462
 msgid "Capture Points:"
-msgstr ""
+msgstr "Poentoj por kaptiĝi:"
 
 #: gui/session/selection_details.js:470
 #, javascript-format
 msgid "%(label)s: %(details)s\n"
-msgstr ""
+msgstr "%(label)s: %(details)s\n"
 
 #: gui/session/selection_details.js:471
 msgid "Garrison Size"
-msgstr ""
+msgstr "Garnizona enhaveco"
 
 #: gui/session/selection_details.js:476
 #, javascript-format
 msgid "%(label)s %(details)s\n"
-msgstr ""
+msgstr "%(label)s %(details)s\n"
 
 #: gui/session/selection_details.js:477
 msgid "Carrying:"
-msgstr ""
+msgstr "Portas:"
 
 #: gui/session/selection_details.js:480 gui/session/selection_details.js:489
 #, javascript-format
 msgid "%(type)s %(amount)s"
-msgstr ""
+msgstr "%(type)s %(amount)s"
 
 #: gui/session/selection_details.js:485
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:486
 msgid "Loot:"
-msgstr ""
+msgstr "Konkeraĵo:"
 
 #. Translation: Used in the trading gain tooltip
 #: gui/session/selection_details.js:547
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
-msgstr ""
+msgstr "%(gain)s (%(player)s)"
 
 #. Translation: Used in the trading gain tooltip to concatenate profits of
 #. different players
 #: gui/session/selection_details.js:571
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: gui/session/selection_details.js:578
 msgctxt "Separation mark in an enumeration"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/selection_panels.js:65
 msgid "Raise an alert!"
-msgstr ""
+msgstr "Alarmu!"
 
 #: gui/session/selection_panels.js:68
 msgid "End of alert."
-msgstr ""
+msgstr "Finu la alarmon."
 
 #: gui/session/selection_panels.js:277
 msgid "Default formation is disabled."
-msgstr ""
+msgstr "Defaŭlta formo estas malŝaltita."
 
 #: gui/session/selection_panels.js:278
 msgid "Right-click to disable the default formation feature."
-msgstr ""
+msgstr "Dekstre ĉi-klaku por malŝalti la eblecon de defaŭlta formo."
 
 #: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
-msgstr ""
+msgstr "Tio ĉi estas la defaŭlta formo, uzi por movaj komandoj."
 
 #: gui/session/selection_panels.js:282
 msgid "Right-click to set this as the default formation."
-msgstr ""
+msgstr "Dekstre ĉi-klaku por agordi tion ĉi kiel la defaŭlta formo."
 
 #: gui/session/selection_panels.js:338
 #, javascript-format
 msgid "Unload %(name)s"
-msgstr ""
+msgstr "Malŝarĝu %(name)s"
 
 #: gui/session/selection_panels.js:339
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr ""
+msgstr "Unuobla ĉi-klaku por malŝarĝi 1. Maj+klaku por malŝarĝi ĉiujn el tiu ĉi speco."
 
 #: gui/session/selection_panels.js:341 gui/session/selection_panels.js:914
 #, javascript-format
 msgid "Player: %(playername)s"
-msgstr ""
+msgstr "Ludanto: %(playername)s"
 
 #: gui/session/selection_panels.js:377
 msgid "Lock Gate"
-msgstr ""
+msgstr "Ŝlosu pordon"
 
 #: gui/session/selection_panels.js:383
 msgid "Unlock Gate"
-msgstr ""
+msgstr "Malŝlosu pordon"
 
 #: gui/session/selection_panels.js:434
 msgid "Pack"
-msgstr ""
+msgstr "Paku"
 
 #: gui/session/selection_panels.js:442
 msgid "Unpack"
-msgstr ""
+msgstr "Malpaku"
 
 #: gui/session/selection_panels.js:450
 msgid "Cancel Packing"
-msgstr ""
+msgstr "Nuligu pakadon"
 
 #: gui/session/selection_panels.js:458
 msgid "Cancel Unpacking"
-msgstr ""
+msgstr "Nuligu malpakadon"
 
 #: gui/session/selection_panels.js:558
 msgid "The auto-queue will try to train this item later."
-msgstr ""
+msgstr "La mem-envicigo penos trejni tiun ĉi elementon poste."
 
 #: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
-msgstr ""
+msgstr "Nesufiĉa enhaveco de loĝantaro:"
 
 #: gui/session/selection_panels.js:562
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
-msgstr ""
+msgstr "%(population)s %(neededSlots)s"
 
 #: gui/session/selection_panels.js:779
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ento de klaso"
+msgstr[1] "%(number)s entoj de klaso %(class)s"
 
 #: gui/session/selection_panels.js:785
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
-msgstr ""
+msgstr "Resto: %(entityCounts)s"
 
 #: gui/session/selection_panels.js:786
 msgctxt "Separator for a list of entity counts"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/selection_panels.js:838
 msgid "Cannot research while upgrading."
-msgstr ""
+msgstr "Ne eblas esplori dum progresigi."
 
 #: gui/session/selection_panels.js:1068
 msgid "Cannot train while upgrading."
-msgstr ""
+msgstr "Ne eblas trejni dum progresigi."
 
 #: gui/session/selection_panels.js:1137
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
-msgstr ""
+msgstr "Progresigu al %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
 #: gui/session/selection_panels.js:1143
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
-msgstr ""
+msgstr "Progresigu al %(primaryName)s (%(secondaryName)s)."
 
 #: gui/session/selection_panels.js:1151
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
-msgstr ""
+msgstr "Progresigu al %(primaryName)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1156
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
-msgstr ""
+msgstr "Progresigu al %(primaryName)s."
 
 #: gui/session/selection_panels.js:1193
 msgid "Cancel Upgrading"
-msgstr ""
+msgstr "Nuligu progresigon"
 
 #: gui/session/selection_panels.js:1208
 msgid ""
@@ -1170,33 +1171,33 @@ msgid ""
 msgid_plural ""
 "Cannot upgrade when all entities are training, researching or already "
 "upgrading."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ne eblas progresigi dum la ento estas trejnanta, esploranta aŭ jam progresanta."
+msgstr[1] "Ne eblas progresigi dum ĉiuj entoj estas trejnantaj, esplorantaj aŭ jam progresantaj."
 
 #: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
 msgid "Violent"
-msgstr ""
+msgstr "Perforte"
 
 #: gui/session/selection_panels_helpers.js:55
 msgctxt "stance"
 msgid "Aggressive"
-msgstr ""
+msgstr "Agreseme"
 
 #: gui/session/selection_panels_helpers.js:57
 msgctxt "stance"
 msgid "Defensive"
-msgstr "Malataka"
+msgstr "Defende"
 
 #: gui/session/selection_panels_helpers.js:59
 msgctxt "stance"
 msgid "Passive"
-msgstr ""
+msgstr "Pasive"
 
 #: gui/session/selection_panels_helpers.js:61
 msgctxt "stance"
 msgid "Standground"
-msgstr ""
+msgstr "Tenu ĉi-lokon"
 
 #: gui/session/selection_panels_helpers.js:73
 msgctxt "stance"
@@ -1319,19 +1320,19 @@ msgstr ""
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):16
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):40
 msgid "Health"
-msgstr ""
+msgstr "Sano"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Capture points"
-msgstr ""
+msgstr "Poentoj por kaptiĝi"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):82
 msgid "Attack and Resistance"
-msgstr ""
+msgstr "Atako kaj rezisto"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):97
 msgid "Experience"
-msgstr ""
+msgstr "Sperto"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):105
 msgid "Rank"
@@ -1339,7 +1340,7 @@ msgstr "Rango"
 
 #: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
 msgid "Production queue"
-msgstr ""
+msgstr "Vico de produktado"
 
 #: gui/session/session_objects/selection_group_icons.xml:(tooltip):7
 msgid ""
@@ -1349,7 +1350,7 @@ msgstr ""
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVI: Zhuangzi"
-msgstr ""
+msgstr "Alfa XXVI: Ĝuangzio"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1407,28 +1408,28 @@ msgstr ""
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):10
 #: gui/session/top_panel/IconButtons/DiplomacyDialogButton.js:29
 msgid "Diplomacy"
-msgstr ""
+msgstr "Diplomatio"
 
 #: gui/session/top_panel/IconButtons/GameSpeedButton.xml:(tooltip):9
 msgid "Game Speed"
-msgstr ""
+msgstr "Rapido de ludo"
 
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):15
 #: gui/session/top_panel/IconButtons/ObjectivesDialogButton.js:23
 msgid "Objectives"
-msgstr ""
+msgstr "Celoj"
 
 #: gui/session/top_panel/MenuButton.xml:(caption):15
 msgid "Menu"
-msgstr ""
+msgstr "Menuo"
 
 #: gui/session/top_panel/PlayerViewControl.js:123
 msgid "Observer"
-msgstr ""
+msgstr "Observanto"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(caption):17
 msgid "Observer Mode"
-msgstr ""
+msgstr "Reĝimo de observanto"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(tooltip):13
 msgid "Choose player to view"
@@ -1437,46 +1438,46 @@ msgstr ""
 #: gui/session/trade/BarterButton.js:108
 #, javascript-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "Aĉetu %(resource)s"
 
 #: gui/session/trade/BarterButton.js:109
 #, javascript-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "Vendu %(resource)s"
 
 #: gui/session/trade/BarterButton.js:110
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
-msgstr ""
+msgstr "+%(amount)s"
 
 #: gui/session/trade/BarterButton.js:111
 #, javascript-format
 msgctxt "sell action"
 msgid "-%(amount)s"
-msgstr ""
+msgstr "-%(amount)s"
 
 #: gui/session/trade/BarterPanel.xml:(caption):5
 msgid "Barter"
-msgstr ""
+msgstr "Interŝanĝado"
 
 #: gui/session/trade/BarterPanel.xml:(caption):13
 msgid "Sell:"
-msgstr ""
+msgstr "Vendu:"
 
 #: gui/session/trade/BarterPanel.xml:(caption):17
 msgid "Buy:"
-msgstr ""
+msgstr "Aĉetu:"
 
 #: gui/session/trade/BarterPanel.xml:(caption):21
 msgid "No Markets Available"
-msgstr ""
+msgstr "Ne merkatoj disponeblaj"
 
 #: gui/session/trade/TradeButton.js:56
 #, javascript-format
 msgctxt "trading good ratio"
 msgid "%(amount)s%%"
-msgstr ""
+msgstr "%(amount)s%%"
 
 #: gui/session/trade/TradeButtonManager.js:80
 #, javascript-format
@@ -1497,18 +1498,18 @@ msgstr ""
 
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
-msgstr ""
+msgstr "Komerco"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
-msgstr ""
+msgstr "Materialo:"
 
 #: gui/session/trade/TraderStatusTextLand.js:15
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Estas %(numberTrading)s surtera komercisto komerci"
+msgstr[1] "Estas %(numberTrading)s surteraj komercistoj komerci"
 
 #: gui/session/trade/TraderStatusTextLand.js:25
 #, javascript-format
@@ -1620,27 +1621,27 @@ msgstr ""
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr ""
+msgstr "Tio ĉi estas la origina komerca merkato.\nDekstre ĉi-klaku por nuligi komercan vojon."
 
 #: gui/session/unit_actions.js:678
 msgid "Origin trade market."
-msgstr ""
+msgstr "Origina komerca merkato."
 
 #: gui/session/unit_actions.js:688
 msgid "Destination trade market."
-msgstr ""
+msgstr "Cela komerca merkato."
 
 #: gui/session/unit_actions.js:695
 msgid "Right-click to set as origin trade market"
-msgstr ""
+msgstr "Dekstre ĉi-klaku por agordi kiel origina komerca merkato."
 
 #: gui/session/unit_actions.js:702 gui/session/unit_actions.js:1186
 msgid "This market is too close to the origin market."
-msgstr ""
+msgstr "Tiu ĉi merkato estas tro proksima al la origina merkato."
 
 #: gui/session/unit_actions.js:706
 msgid "Right-click to set as destination trade market."
-msgstr ""
+msgstr "Dekstre ĉi-klaku por agordi kiel cela komerca merkato."
 
 #: gui/session/unit_actions.js:771 gui/session/unit_actions.js:1118
 #, javascript-format
