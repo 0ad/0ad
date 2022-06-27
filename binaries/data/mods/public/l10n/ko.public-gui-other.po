@@ -707,7 +707,7 @@ msgstr "%(amount)s %(resourceType)s"
 #: gui/common/tooltips.js:72
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr "%(previousAmounts)s 와 %(lastAmount)s"
+msgstr "%(previousAmounts)s개 및 %(lastAmount)s개"
 
 #: gui/common/tooltips.js:101
 #, javascript-format
@@ -1086,13 +1086,13 @@ msgstr "남은 건설 시간:"
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] "다른 일꾼을 추가하면 짓는 속도를 %(second)s 초 향상합니다."
+msgstr[0] "다른 일꾼을 추가하면 건설 속도가 %(second)s초 빨라집니다."
 
 #: gui/common/tooltips.js:692
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
-msgstr[0] "일꾼을 추가하면 %(second)s 초 이내에 짓는것을 마칩니다."
+msgstr[0] "일꾼을 추가하면 %(second)s초 안에 건설을 마칠 수 있습니다."
 
 #: gui/common/tooltips.js:730 gui/common/tooltips.js:993
 #, javascript-format
@@ -4659,7 +4659,7 @@ msgstr "TLS 암호화"
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr "TLS 암호화를 사용하여 로비 서버와 교환되는 로그인 및 데이타를 보호합니다."
+msgstr "TLS 암호화를 사용하여 로비 서버와 교환되는 로그인 및 데이터를 보호합니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[1].label
 msgid "Chat backlog"
@@ -6061,7 +6061,7 @@ msgstr "물물교환 효율"
 #: gui/summary/layout.js:169
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
-msgstr "거래된 %(resourceFirstWord)s"
+msgstr " %(resourceFirstWord)s 교환함"
 
 #: gui/summary/layout.js:191
 msgid "Miscellaneous"
@@ -6089,11 +6089,11 @@ msgstr "지도 탐험"
 
 #: gui/summary/layout.js:199
 msgid "Vegetarian ratio"
-msgstr "채식 비율or 채식 율"
+msgstr "채식인 비율"
 
 #: gui/summary/layout.js:200
 msgid "Feminization"
-msgstr "여성화or 여성 비율"
+msgstr "여성비율"
 
 #: gui/summary/layout.js:203
 msgid "Bribes"

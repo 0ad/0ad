@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-27 07:09+0000\n"
+"POT-Creation-Date: 2022-06-24 07:09+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2019,2021-2022\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,14 +39,6 @@ msgstr "주둔한 선박은 내구력 회복 속도가 +10 증가합니다."
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
 msgstr "조선소 수리"
-
-#: simulation/data/auras/structures/han_laozi_gate.jsonauraDescription
-msgid "Humans +1 health regeneration rate, +25% health"
-msgstr "사람의 체력 회복 속도가 +1, 체력이 +25% 증가합니다"
-
-#: simulation/data/auras/structures/han_laozi_gate.jsonauraName
-msgid "Taoism"
-msgstr "도교"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -212,7 +204,7 @@ msgstr "물물교환 판매가격이 +20% 증가합니다."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Standardized Currency"
-msgstr "통화 표준화 or 표준화된 통화"
+msgstr "표준화된 통화"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
@@ -481,7 +473,7 @@ msgstr "브루투스는 군주제 전복과 로마 공화국 건국의 핵심 �
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_2.jsonauraName
 msgid "Founder and Defender of the Republic"
-msgstr "공화국의 창립자이자 수호자"
+msgstr "공화국의 설립자이자 수호자"
 
 #: simulation/data/auras/units/catafalques/sele_catafalque_1.jsonauraDescription
 msgid ""
@@ -568,11 +560,11 @@ msgstr "국유화된 산업들"
 
 #: simulation/data/auras/units/han_minister_gathering.jsonauraDescription
 msgid "Gatherers +2% gathering rate for every nearby Minister."
-msgstr "채집유닛은 주변의 모든 관리에 대해 +2%의 채집률을 제공합니다."
+msgstr "채집유닛은 근처의 모든 관리의 채집 속도를 +2% 증가시킵니다."
 
 #: simulation/data/auras/units/han_minister_gathering.jsonauraName
 msgid "Minister over the Masses"
-msgstr "대중 위에 있는 관리"
+msgstr "대중을 다스리는 관리"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid ""
@@ -653,7 +645,7 @@ msgstr "사람의 체력 회복 속도가 +0.8 증가합니다."
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
 msgid "Britannorum Rex"
-msgstr "브리타니아 국왕or 브리탄노룸 렉스(브리탄 왕)"
+msgstr "브리튼의 왕"
 
 #: simulation/data/auras/units/heroes/cart_hero_hamilcar_1.jsonauraDescription
 msgid "Soldiers and Siege Engines +15% movement speed."
@@ -712,8 +704,8 @@ msgid "Preparation for War"
 msgstr "전쟁 준비"
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_1.jsonauraDescription
-msgid "Soldiers −50% promotion experience."
-msgstr "병사들의 진급 경험치가 -50% 감소합니다."
+msgid "Soldiers −20% promotion experience."
+msgstr "병사들의 진급 경험치가 -20% 감소합니다."
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_1.jsonauraName
 msgid "Northern Army"
@@ -772,7 +764,7 @@ msgstr "주둔시, 건축물의 점령 포인트 주둔 회복 속도가 +2 증�
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
-msgstr "탁월한 방어"
+msgstr "방어 태세"
 
 #: simulation/data/auras/units/heroes/iber_hero_caros_1.jsonauraDescription
 msgid "When garrisoned, the Structure or Siege Tower has +75% arrow count."
@@ -895,7 +887,7 @@ msgstr "포위군"
 
 #: simulation/data/auras/units/heroes/mace_hero_philip_ii.jsonauraName
 msgid "Rise of Macedon"
-msgstr "마케도니아의 부활"
+msgstr "마케도니아의 번영"
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus_i.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage, −15% health."
@@ -982,7 +974,7 @@ msgstr "건축 유닛의 건설 속도가 +10% 증가합니다."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraName
 msgid "Patron of Construction"
-msgstr "건설의 후원자"
+msgstr "건축물의 후원자"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_2.jsonauraDescription
 msgid "Mercenaries −35% resource costs."

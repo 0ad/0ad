@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-10 07:08+0000\n"
+"POT-Creation-Date: 2022-06-24 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Senlima Povigo, 2022\n"
 "Language-Team: Esperanto (http://www.transifex.com/wildfire-games/0ad/language/eo/)\n"
@@ -204,8 +204,8 @@ msgid "Sūnzǐ BīngFǎ"
 msgstr ""
 
 #: simulation/data/technologies/art_of_war.jsontooltip
-msgid "All Citizen-Soldiers −25% required promotion experience."
-msgstr "Ĉiuj Civitan-soldatoj -25% nepra sperto por progresigi."
+msgid "All Citizen-Soldiers −20% required promotion experience."
+msgstr ""
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -456,8 +456,8 @@ msgid "Houses and Economic Structures −40% wood cost and health."
 msgstr "Domoj kaj ekonomiaj konstruaĵoj -40% kosto de ligno kaj sano."
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
-msgid "Civil Engineering − Level 1"
-msgstr "Civila inĝenierado − Nivelo 1"
+msgid "Improved Construction"
+msgstr ""
 
 #: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
 #: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
@@ -465,20 +465,20 @@ msgid "Gōngchéng"
 msgstr ""
 
 #: simulation/data/technologies/civil_engineering_01.jsontooltip
-msgid "All structures −15% build time, +10% health and −5% cost."
-msgstr "Ĉiuj konstruaĵoj -15% tempo por konstrui, +10% sano kaj -5% kosto."
+msgid "All structures −10% build time and −10% cost."
+msgstr ""
 
 #: simulation/data/technologies/civil_engineering_02.jsongenericName
-msgid "Civil Engineering − Level 2"
-msgstr "Civila inĝenierado − Nivelo 2"
+msgid "Robust Architecture"
+msgstr ""
 
 #: simulation/data/technologies/civil_engineering_02.jsontooltip
-msgid "All structures −25% build time, +20% health and −5% cost."
-msgstr "Ĉiuj konstruaĵoj -25% tempo por konstrui, +20% sano kaj -5% kosto."
+msgid "All structures +20% health."
+msgstr ""
 
 #: simulation/data/technologies/civil_service_01.jsongenericName
-msgid "Civil Service − Level 1"
-msgstr "Civila servo − Nivelo 1"
+msgid "Efficient Bureaucracy"
+msgstr ""
 
 #: simulation/data/technologies/civil_service_01.jsonspecificName.han
 #: simulation/data/technologies/civil_service_02.jsonspecificName.han
@@ -486,15 +486,16 @@ msgid "Guānliáo"
 msgstr ""
 
 #: simulation/data/technologies/civil_service_01.jsontooltip
-#: simulation/data/technologies/civil_service_02.jsontooltip
-msgid ""
-"Technologies at all buildings, except the Forge, −15% cost and −15% research"
-" time."
-msgstr "Teĥnologioj ĉe ĉiuj konstruaĵoj, escepte la Forĝejo, -15% kosto kaj -15% tempo por esplori."
+msgid "Ministers −50% train time."
+msgstr ""
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
-msgid "Civil Service − Level 2"
-msgstr "Civila servo − Nivelo 2"
+msgid "Intensive Training"
+msgstr ""
+
+#: simulation/data/technologies/civil_service_02.jsontooltip
+msgid "Ministers +50% health."
+msgstr ""
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -635,8 +636,8 @@ msgstr "Ĉenpumpilo"
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
-msgid "Workers +25% rice gather rate."
-msgstr "Laboristoj +25% kolekta rapido de rizo."
+msgid "Workers +20% rice gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -1044,6 +1045,14 @@ msgstr ""
 
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
+msgstr ""
+
+#: simulation/data/technologies/pair_unlock_civil_engineering_han.jsongenericName
+msgid "Civil Engineering"
+msgstr ""
+
+#: simulation/data/technologies/pair_unlock_civil_service_han.jsongenericName
+msgid "Civil Service"
 msgstr ""
 
 #: simulation/data/technologies/parade_of_daphne.jsondescription

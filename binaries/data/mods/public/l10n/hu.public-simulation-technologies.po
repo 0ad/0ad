@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-10 07:08+0000\n"
+"POT-Creation-Date: 2022-06-24 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Szabó Lambert, 2021-2022\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
@@ -215,7 +215,7 @@ msgid "Sūnzǐ BīngFǎ"
 msgstr "Sūnzǐ BīngFǎ"
 
 #: simulation/data/technologies/art_of_war.jsontooltip
-msgid "All Citizen-Soldiers −25% required promotion experience."
+msgid "All Citizen-Soldiers −20% required promotion experience."
 msgstr ""
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
@@ -467,8 +467,8 @@ msgid "Houses and Economic Structures −40% wood cost and health."
 msgstr "−40% faigény és életerő a házaknak és a gazdasági épületeknek"
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
-msgid "Civil Engineering − Level 1"
-msgstr "Építőmérnöki tudományok – 1-es szint"
+msgid "Improved Construction"
+msgstr ""
 
 #: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
 #: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
@@ -476,19 +476,19 @@ msgid "Gōngchéng"
 msgstr "Gōngchéng"
 
 #: simulation/data/technologies/civil_engineering_01.jsontooltip
-msgid "All structures −15% build time, +10% health and −5% cost."
-msgstr "−15% építési idő, +10% életerő és −5% nyersanyagigény minden építménynek"
+msgid "All structures −10% build time and −10% cost."
+msgstr ""
 
 #: simulation/data/technologies/civil_engineering_02.jsongenericName
-msgid "Civil Engineering − Level 2"
-msgstr "Építőmérnöki tudományok – 2-es szint"
+msgid "Robust Architecture"
+msgstr ""
 
 #: simulation/data/technologies/civil_engineering_02.jsontooltip
-msgid "All structures −25% build time, +20% health and −5% cost."
-msgstr "−25% építési idő, +20% életerő és −5% nyersanyagigény minden építménynek"
+msgid "All structures +20% health."
+msgstr ""
 
 #: simulation/data/technologies/civil_service_01.jsongenericName
-msgid "Civil Service − Level 1"
+msgid "Efficient Bureaucracy"
 msgstr ""
 
 #: simulation/data/technologies/civil_service_01.jsonspecificName.han
@@ -497,14 +497,15 @@ msgid "Guānliáo"
 msgstr "Guānliáo"
 
 #: simulation/data/technologies/civil_service_01.jsontooltip
-#: simulation/data/technologies/civil_service_02.jsontooltip
-msgid ""
-"Technologies at all buildings, except the Forge, −15% cost and −15% research"
-" time."
-msgstr "A kovácsműhelyeket leszámítva minden épületnél −15% nyersanyagigény és −15% kutatási idő a fejlesztéseknek"
+msgid "Ministers −50% train time."
+msgstr ""
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
-msgid "Civil Service − Level 2"
+msgid "Intensive Training"
+msgstr ""
+
+#: simulation/data/technologies/civil_service_02.jsontooltip
+msgid "Ministers +50% health."
 msgstr ""
 
 #: simulation/data/technologies/colonization.jsondescription
@@ -646,8 +647,8 @@ msgstr "Láncos vízemelő"
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
-msgid "Workers +25% rice gather rate."
-msgstr "+25% rizsbetakarítási sebesség a munkásoknak"
+msgid "Workers +20% rice gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -1056,6 +1057,14 @@ msgstr "+33% látótávolság az előőrsöknek"
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
 msgstr "Hagyományos sereg kontra Reform sereg"
+
+#: simulation/data/technologies/pair_unlock_civil_engineering_han.jsongenericName
+msgid "Civil Engineering"
+msgstr ""
+
+#: simulation/data/technologies/pair_unlock_civil_service_han.jsongenericName
+msgid "Civil Service"
+msgstr ""
 
 #: simulation/data/technologies/parade_of_daphne.jsondescription
 msgid ""

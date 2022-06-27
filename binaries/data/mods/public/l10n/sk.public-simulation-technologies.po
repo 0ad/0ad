@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-10 07:08+0000\n"
+"POT-Creation-Date: 2022-06-24 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Zuzana Miadoková, 2019,2021-2022\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
@@ -214,8 +214,8 @@ msgid "Sūnzǐ BīngFǎ"
 msgstr "Sūnzǐ BīngFǎ"
 
 #: simulation/data/technologies/art_of_war.jsontooltip
-msgid "All Citizen-Soldiers −25% required promotion experience."
-msgstr "Všetci vojaci-občania −25% skúseností potrebných pre povýšenie."
+msgid "All Citizen-Soldiers −20% required promotion experience."
+msgstr "Všetci vojaci-občania −20% skúseností potrebných pre povýšenie."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -466,8 +466,8 @@ msgid "Houses and Economic Structures −40% wood cost and health."
 msgstr "Domy a ekonomické budovy −40% ceny dreva a bodov zdravia."
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
-msgid "Civil Engineering − Level 1"
-msgstr "Civilné inžinierstvo − úroveň 1"
+msgid "Improved Construction"
+msgstr "Zdokonalené stavbárstvo"
 
 #: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
 #: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
@@ -475,20 +475,20 @@ msgid "Gōngchéng"
 msgstr "Gōngchéng"
 
 #: simulation/data/technologies/civil_engineering_01.jsontooltip
-msgid "All structures −15% build time, +10% health and −5% cost."
-msgstr "Všetky budovy −15% času výstavby, +10% zdravia a −5% ceny."
+msgid "All structures −10% build time and −10% cost."
+msgstr "Všetky budovy −10% času výstavby a −10% ceny."
 
 #: simulation/data/technologies/civil_engineering_02.jsongenericName
-msgid "Civil Engineering − Level 2"
-msgstr "Civilné inžinierstvo − úroveň 2"
+msgid "Robust Architecture"
+msgstr "Robustná architektúra"
 
 #: simulation/data/technologies/civil_engineering_02.jsontooltip
-msgid "All structures −25% build time, +20% health and −5% cost."
-msgstr "Všetky budovy −25% času výstavby, +20% zdravia a −5% ceny."
+msgid "All structures +20% health."
+msgstr "Všetky budovy +20% zdravia."
 
 #: simulation/data/technologies/civil_service_01.jsongenericName
-msgid "Civil Service − Level 1"
-msgstr "Civilné služby − úroveň 1"
+msgid "Efficient Bureaucracy"
+msgstr "Efektívna byrokracia"
 
 #: simulation/data/technologies/civil_service_01.jsonspecificName.han
 #: simulation/data/technologies/civil_service_02.jsonspecificName.han
@@ -496,15 +496,16 @@ msgid "Guānliáo"
 msgstr "Guānliáo"
 
 #: simulation/data/technologies/civil_service_01.jsontooltip
-#: simulation/data/technologies/civil_service_02.jsontooltip
-msgid ""
-"Technologies at all buildings, except the Forge, −15% cost and −15% research"
-" time."
-msgstr "Technológie všetkých stavieb okrem vyhne, −15% ceny a −15% času výskumu."
+msgid "Ministers −50% train time."
+msgstr "Ministri −50% čas tréningu."
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
-msgid "Civil Service − Level 2"
-msgstr "Civilné služby − úroveň 2"
+msgid "Intensive Training"
+msgstr "Intenzívny tréning"
+
+#: simulation/data/technologies/civil_service_02.jsontooltip
+msgid "Ministers +50% health."
+msgstr "Ministri +50% zdravia."
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -645,8 +646,8 @@ msgstr "Reťazová pumpa"
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
-msgid "Workers +25% rice gather rate."
-msgstr "Pracovníci +25% rýchlosť zberu ryže."
+msgid "Workers +20% rice gather rate."
+msgstr "Pracovníci +20% rýchlosť zberu ryže."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -1055,6 +1056,14 @@ msgstr "Rozhľadne +33% dohľad."
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
 msgstr "Tradičná armáda verzus reformovaná armáda"
+
+#: simulation/data/technologies/pair_unlock_civil_engineering_han.jsongenericName
+msgid "Civil Engineering"
+msgstr "Civilné inžinierstvo"
+
+#: simulation/data/technologies/pair_unlock_civil_service_han.jsongenericName
+msgid "Civil Service"
+msgstr "Štátna služba"
 
 #: simulation/data/technologies/parade_of_daphne.jsondescription
 msgid ""

@@ -38,7 +38,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-10 07:08+0000\n"
+"POT-Creation-Date: 2022-06-24 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2020-2022\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
@@ -232,8 +232,8 @@ msgid "Sūnzǐ BīngFǎ"
 msgstr "Sūnzǐ BīngFǎ"
 
 #: simulation/data/technologies/art_of_war.jsontooltip
-msgid "All Citizen-Soldiers −25% required promotion experience."
-msgstr "Ciudadanos-soldado (Requisitos de promoción: −25%)."
+msgid "All Citizen-Soldiers −20% required promotion experience."
+msgstr "Ciudadanos-soldado (Requisitos de promoción: −20%)."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -484,8 +484,8 @@ msgid "Houses and Economic Structures −40% wood cost and health."
 msgstr "Viviendas y estructuras económicas (Coste de madera y  resistencia: −40%)."
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
-msgid "Civil Engineering − Level 1"
-msgstr "Ingeniería civil − Nivel 1"
+msgid "Improved Construction"
+msgstr "Construcción mejorada"
 
 #: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
 #: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
@@ -493,20 +493,20 @@ msgid "Gōngchéng"
 msgstr "Gōngchéng"
 
 #: simulation/data/technologies/civil_engineering_01.jsontooltip
-msgid "All structures −15% build time, +10% health and −5% cost."
-msgstr "Todas las estructuras (Tiempo de construcción: −15%; Resistencia: +10%; Coste: −5%)."
+msgid "All structures −10% build time and −10% cost."
+msgstr "Todas las estructuras (Tiempo de construcción: −10%; Coste: −5%)."
 
 #: simulation/data/technologies/civil_engineering_02.jsongenericName
-msgid "Civil Engineering − Level 2"
-msgstr "Ingeniería civil − Nivel 2"
+msgid "Robust Architecture"
+msgstr "Arquitectura robusta"
 
 #: simulation/data/technologies/civil_engineering_02.jsontooltip
-msgid "All structures −25% build time, +20% health and −5% cost."
-msgstr "Todas las estructuras (Tiempo de construcción: −25%; Resistencia: +20%; Coste: −5%)."
+msgid "All structures +20% health."
+msgstr "Todas las estructuras (Resistencia: +20%)."
 
 #: simulation/data/technologies/civil_service_01.jsongenericName
-msgid "Civil Service − Level 1"
-msgstr "Servicio civil − Nivel 1"
+msgid "Efficient Bureaucracy"
+msgstr "Burocracia eficiente"
 
 #: simulation/data/technologies/civil_service_01.jsonspecificName.han
 #: simulation/data/technologies/civil_service_02.jsonspecificName.han
@@ -514,15 +514,16 @@ msgid "Guānliáo"
 msgstr "Guānliáo"
 
 #: simulation/data/technologies/civil_service_01.jsontooltip
-#: simulation/data/technologies/civil_service_02.jsontooltip
-msgid ""
-"Technologies at all buildings, except the Forge, −15% cost and −15% research"
-" time."
-msgstr "Tecnologías de todos los edificios excepto la fragua (Tiempo de investigación: −15%; Coste: −15%)."
+msgid "Ministers −50% train time."
+msgstr "Ministros (Tiempo de adiestramiento: −50%)."
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
-msgid "Civil Service − Level 2"
-msgstr "Servicio civil − Nivel 2"
+msgid "Intensive Training"
+msgstr "Entrenamiento intensivo"
+
+#: simulation/data/technologies/civil_service_02.jsontooltip
+msgid "Ministers +50% health."
+msgstr "Ministros (Salud: +50%)."
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -663,8 +664,8 @@ msgstr "Bomba de cadena"
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
-msgid "Workers +25% rice gather rate."
-msgstr "Trabajadores (Velocidad de cosecha de arroz: +25%)."
+msgid "Workers +20% rice gather rate."
+msgstr "Trabajadores (Velocidad de cosecha de arroz: +20%)."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -1073,6 +1074,14 @@ msgstr "Puestos de avanzada (Campo de visión: +33%)."
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
 msgstr "Ejercito tradicional versus Ejercito de la Reforma"
+
+#: simulation/data/technologies/pair_unlock_civil_engineering_han.jsongenericName
+msgid "Civil Engineering"
+msgstr "Ingeniería civil"
+
+#: simulation/data/technologies/pair_unlock_civil_service_han.jsongenericName
+msgid "Civil Service"
+msgstr "Servicio civil"
 
 #: simulation/data/technologies/parade_of_daphne.jsondescription
 msgid ""
