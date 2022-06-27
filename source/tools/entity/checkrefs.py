@@ -267,6 +267,38 @@ class CheckRefs:
                     if icon is not None and icon.text:
                         self.deps.append((str(fp), f'art/textures/ui/session/icons/{icon.text}'))
 
+                cmp_auras = entity.find('Auras')
+                if cmp_auras is not None:
+                    auraString = cmp_auras.text
+                    for aura in split(r'\s+', auraString):
+                        if not aura:
+                            continue
+                        if aura.startswith('-'):
+                            continue
+                        self.deps.append((str(fp), f'simulation/data/auras/{aura}.json'))
+
+                cmp_identity = entity.find('Identity')
+                if cmp_identity is not None:
+                    techTag = cmp_identity.find('RequiredTechnology')
+                    if techTag is not None:
+                        self.deps.append((str(fp), f'simulation/data/technologies/{techTag.text}.json'))
+
+                cmp_researcher = entity.find('Researcher')
+                if cmp_researcher is not None:
+                    techString = cmp_researcher.find('Technologies').text
+                    for tech in split(r'\s+', techString):
+                        if not tech:
+                            continue
+                        if tech.startswith('-'):
+                            continue
+                        if '{civ}' in tech and cmp_identity is not None and cmp_identity.find('Civ') is not None:
+                            civ = cmp_identity.find('Civ').text
+                            # TODO: This is a hack for a custom civ phase.
+                            if tech.startswith('phase') and civ != 'athen':
+                                civ = 'generic'
+                            tech = tech.replace('{civ}', civ)
+                        self.deps.append((str(fp), f'simulation/data/technologies/{tech}.json'))
+
     def append_variant_dependencies(self, variant, fp):
         variant_file = variant.get('file')
         mesh = variant.find('mesh')
@@ -501,13 +533,18 @@ class CheckRefs:
         self.logger.info("Loading techs...")
         for (fp, ffp) in sorted(self.find_files('simulation/data/technologies', 'json')):
             self.files.append(str(fp))
-            self.roots.append(str(fp))
             with open(ffp, encoding='utf-8') as f:
                 tech = load(f)
+            if tech.get('autoResearch', None):
+                self.roots.append(str(fp))
             if tech.get('icon', None):
                 self.deps.append((str(fp), f"art/textures/ui/session/portraits/technologies/{tech['icon']}"))
             if tech.get('supersedes', None):
                 self.deps.append((str(fp), f"simulation/data/technologies/{tech['supersedes']}.json"))
+            if tech.get('top', None):
+                self.deps.append((str(fp), f"simulation/data/technologies/{tech['top']}.json"))
+            if tech.get('bottom', None):
+                self.deps.append((str(fp), f"simulation/data/technologies/{tech['bottom']}.json"))
 
     def add_terrains(self):
         self.logger.info("Loading terrains...")
@@ -529,7 +566,6 @@ class CheckRefs:
         self.logger.info("Loading auras...")
         for (fp, ffp) in sorted(self.find_files('simulation/data/auras', 'json')):
             self.files.append(str(fp))
-            self.roots.append(str(fp))
             with open(ffp, encoding='utf-8') as f:
                 aura = load(f)
             if aura.get('overlayIcon', None):
