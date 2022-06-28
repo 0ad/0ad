@@ -41,7 +41,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-10 07:08+0000\n"
+"POT-Creation-Date: 2022-06-24 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Dire Avenger, 2022\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
@@ -235,8 +235,8 @@ msgid "Sūnzǐ BīngFǎ"
 msgstr ""
 
 #: simulation/data/technologies/art_of_war.jsontooltip
-msgid "All Citizen-Soldiers −25% required promotion experience."
-msgstr "Всем гражданам-солдатам надо на 25% меньше опыта для повышения."
+msgid "All Citizen-Soldiers −20% required promotion experience."
+msgstr ""
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -487,8 +487,8 @@ msgid "Houses and Economic Structures −40% wood cost and health."
 msgstr "Дома и экономические здания требуют на 40% меньше дерева, но их прочность снижается на 40%."
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
-msgid "Civil Engineering − Level 1"
-msgstr "Гражданское строительство − Уровень 1"
+msgid "Improved Construction"
+msgstr ""
 
 #: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
 #: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
@@ -496,20 +496,20 @@ msgid "Gōngchéng"
 msgstr ""
 
 #: simulation/data/technologies/civil_engineering_01.jsontooltip
-msgid "All structures −15% build time, +10% health and −5% cost."
-msgstr "Все здания возводятся на 15% быстрее и на 5% дешевле, имеют на 10% больше прочности."
+msgid "All structures −10% build time and −10% cost."
+msgstr ""
 
 #: simulation/data/technologies/civil_engineering_02.jsongenericName
-msgid "Civil Engineering − Level 2"
-msgstr "Гражданское строительство − Уровень 2"
+msgid "Robust Architecture"
+msgstr ""
 
 #: simulation/data/technologies/civil_engineering_02.jsontooltip
-msgid "All structures −25% build time, +20% health and −5% cost."
-msgstr "Все здания возводятся на 25% быстрее и на 5% дешевле, имеют на 20% больше прочности."
+msgid "All structures +20% health."
+msgstr ""
 
 #: simulation/data/technologies/civil_service_01.jsongenericName
-msgid "Civil Service − Level 1"
-msgstr "Гражданская служба − Уровень 1"
+msgid "Efficient Bureaucracy"
+msgstr ""
 
 #: simulation/data/technologies/civil_service_01.jsonspecificName.han
 #: simulation/data/technologies/civil_service_02.jsonspecificName.han
@@ -517,15 +517,16 @@ msgid "Guānliáo"
 msgstr "Гуанляо"
 
 #: simulation/data/technologies/civil_service_01.jsontooltip
-#: simulation/data/technologies/civil_service_02.jsontooltip
-msgid ""
-"Technologies at all buildings, except the Forge, −15% cost and −15% research"
-" time."
-msgstr "Технологии во всех зданиях, кроме Кузницы, стоят на 15% дешевле и на 15% быстрее изучаются."
+msgid "Ministers −50% train time."
+msgstr ""
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
-msgid "Civil Service − Level 2"
-msgstr "Гражданская служба − Уровень 2"
+msgid "Intensive Training"
+msgstr ""
+
+#: simulation/data/technologies/civil_service_02.jsontooltip
+msgid "Ministers +50% health."
+msgstr ""
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -666,8 +667,8 @@ msgstr "Цепной насос"
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
-msgid "Workers +25% rice gather rate."
-msgstr "Работники добывают рис на 25% быстрее."
+msgid "Workers +20% rice gather rate."
+msgstr ""
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -1076,6 +1077,14 @@ msgstr "Заставы +33% к дальности обзора."
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
 msgstr "Традиционная армия и реформированная армия"
+
+#: simulation/data/technologies/pair_unlock_civil_engineering_han.jsongenericName
+msgid "Civil Engineering"
+msgstr ""
+
+#: simulation/data/technologies/pair_unlock_civil_service_han.jsongenericName
+msgid "Civil Service"
+msgstr ""
 
 #: simulation/data/technologies/parade_of_daphne.jsondescription
 msgid ""

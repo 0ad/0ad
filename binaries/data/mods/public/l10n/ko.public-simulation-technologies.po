@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-10 07:08+0000\n"
+"POT-Creation-Date: 2022-06-24 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -209,8 +209,8 @@ msgid "Sūnzǐ BīngFǎ"
 msgstr "손자병법"
 
 #: simulation/data/technologies/art_of_war.jsontooltip
-msgid "All Citizen-Soldiers −25% required promotion experience."
-msgstr "모든 시민 병사들은 필요한 진급 경험치가 −25% 감소합니다."
+msgid "All Citizen-Soldiers −20% required promotion experience."
+msgstr "모든 시민 병사들의 필요한 진급 경험치가 −20% 감소합니다."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -308,7 +308,7 @@ msgstr "켈트의 건축물은 대부분 목조 건물 잔해를 기초로 사�
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsongenericName
 msgid "Wooden Construction"
-msgstr "목조 건축"
+msgstr "목조 건축물"
 
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
@@ -330,7 +330,7 @@ msgstr "기병의 근접 공격 피해량이 +10% 증가합니다."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr "그리스는 미케네 문명 초기부터 석조 건설을 이용했습니다."
+msgstr "그리스인들은 미케네 시대 초기부터 석조 건축물을 사용했습니다."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsongenericName
 msgid "Hellenic Architecture"
@@ -461,8 +461,8 @@ msgid "Houses and Economic Structures −40% wood cost and health."
 msgstr "집 및 국가 건축물의 목재 비용과 내구력이 -40% 감소합니다."
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
-msgid "Civil Engineering − Level 1"
-msgstr "토목 공학 - 레벨 1"
+msgid "Improved Construction"
+msgstr "향상된 건축물"
 
 #: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
 #: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
@@ -470,20 +470,20 @@ msgid "Gōngchéng"
 msgstr "Gōngchéng"
 
 #: simulation/data/technologies/civil_engineering_01.jsontooltip
-msgid "All structures −15% build time, +10% health and −5% cost."
-msgstr "모든 건축물 건설 시간이 -15%, 비용이 -5% 감소하고, 내구력이 +10% 증가합니다."
+msgid "All structures −10% build time and −10% cost."
+msgstr "모든 건축물의 건설 시간과 비용이 -10% 감소합니다."
 
 #: simulation/data/technologies/civil_engineering_02.jsongenericName
-msgid "Civil Engineering − Level 2"
-msgstr "토목 공학 - 레벨 2"
+msgid "Robust Architecture"
+msgstr "견고한 건축양식"
 
 #: simulation/data/technologies/civil_engineering_02.jsontooltip
-msgid "All structures −25% build time, +20% health and −5% cost."
-msgstr "모든 건축물 건설 시간이 -25%, 비용이 -5% 감소하고, 내구력이 +20% 증가합니다."
+msgid "All structures +20% health."
+msgstr "모든 건축물의 내구력이 +20% 중가합니다."
 
 #: simulation/data/technologies/civil_service_01.jsongenericName
-msgid "Civil Service − Level 1"
-msgstr "행정 조직 - 레벨 1"
+msgid "Efficient Bureaucracy"
+msgstr "효율적인 관료제"
 
 #: simulation/data/technologies/civil_service_01.jsonspecificName.han
 #: simulation/data/technologies/civil_service_02.jsonspecificName.han
@@ -491,15 +491,16 @@ msgid "Guānliáo"
 msgstr "Guānliáo"
 
 #: simulation/data/technologies/civil_service_01.jsontooltip
-#: simulation/data/technologies/civil_service_02.jsontooltip
-msgid ""
-"Technologies at all buildings, except the Forge, −15% cost and −15% research"
-" time."
-msgstr "대장간을 제외한 모든 건물의 기술 비용이 -15%, 연구 시간이 -15% 감소합니다."
+msgid "Ministers −50% train time."
+msgstr "관리들의 훈련 시간이 -50% 감소합니다."
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
-msgid "Civil Service − Level 2"
-msgstr "행정 조직 - 레벨 2"
+msgid "Intensive Training"
+msgstr "집중 훈련"
+
+#: simulation/data/technologies/civil_service_02.jsontooltip
+msgid "Ministers +50% health."
+msgstr "관리들의 체력이 +50% 증가합니다."
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -640,8 +641,8 @@ msgstr "수차"
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
-msgid "Workers +25% rice gather rate."
-msgstr "일꾼의 쌀 수확률이 +25% 증가합니다."
+msgid "Workers +20% rice gather rate."
+msgstr "일꾼의 쌀 수확률이 +20% 증가합니다."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -1050,6 +1051,14 @@ msgstr "전초기지의 시야가 +33% 증가합니다."
 #: simulation/data/technologies/pair_unlock_champions_sele.jsongenericName
 msgid "Traditional Army vs Reform Army"
 msgstr "전통군 대 개혁군"
+
+#: simulation/data/technologies/pair_unlock_civil_engineering_han.jsongenericName
+msgid "Civil Engineering"
+msgstr "토목공학"
+
+#: simulation/data/technologies/pair_unlock_civil_service_han.jsongenericName
+msgid "Civil Service"
+msgstr "관료"
 
 #: simulation/data/technologies/parade_of_daphne.jsondescription
 msgid ""

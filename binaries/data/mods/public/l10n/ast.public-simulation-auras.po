@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-27 07:09+0000\n"
+"POT-Creation-Date: 2022-06-24 07:09+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>, 2017-2022\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
@@ -33,14 +33,6 @@ msgstr "barcos tyenos d’unidades +10 rhythmu de reparaçon."
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
 msgstr "Iguæs navales"
-
-#: simulation/data/auras/structures/han_laozi_gate.jsonauraDescription
-msgid "Humans +1 health regeneration rate, +25% health"
-msgstr "Humanos +1 rhythmu d’halitamiento, +25% vitalidá."
-
-#: simulation/data/auras/structures/han_laozi_gate.jsonauraName
-msgid "Taoism"
-msgstr "Taoísmo"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -311,7 +303,7 @@ msgstr "Afhorfhugon"
 msgid ""
 "Leader of the Carthaginian heavy cavalry at Trebia and Cannae, where his triple charge had devastating effects on the enemy.\n"
 "Melee Cavalry +1 crush, hack, pierce resistance and +10% health."
-msgstr "cabo de la caballeiríæ pesada carthagïnense no Trebia & Cannæs, u sfharrapou al inimigu cun tres cargæs.\nÉqüites combatientes: resistencia a gœlpes, tayos & fhoradæs +1 vitalidá +10%."
+msgstr "cabo de la caballeiríæ pesada púnica no Trebia & Cannæs, u sfharrapou al inimigu cun tres cargæs.\nÉqüites combatientes: resistencia a gœlpes, tayos & fhoradæs +1 vitalidá +10%."
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
@@ -441,7 +433,7 @@ msgstr "Vamba Moriyar"
 msgid ""
 "Throughout his reign, much of Artaxerxes' wealth was spent on building projects. He restored the Palace of Darius I at Susa and restored the ancient city of Ecbatana.\n"
 "Structures −10% resource costs and +5% health."
-msgstr "Artaxšaça passou l sou reynaho gastando n obræs públicæs. Renovou l Palacio de Darayavahuš I in Çuša & remocicou l antigua urbe de Hagmatana.\nConstrucçones: costos in recursos −10% vitalidá +5%."
+msgstr "Artaxšaça passou l sou reynaho gastando n obræs públicæs. Renovou l Palacio de Darayavahuš I in Çuša & remocicou l antigua cildá de Hagmatana.\nConstrucçones: costos in recursos −10% vitalidá +5%."
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
@@ -451,7 +443,7 @@ msgstr "Edificador"
 msgid ""
 "Continuing his predecessors' work on the Great Library of Alexandria, he seized every book brought to the city, thus leaving to his people a vast amount of hoarded wisdom.\n"
 "Structure technologies −10% resource costs."
-msgstr "segiendo l lhabor de l sou predecessor na bibliotheca, prehendîu & duplicou todolos manuscriptos que pudo atopar n Alexandrea, & ansí deixou al puœblro un vasto archivo scientífico.\nTéchnicæs de construcçon: costos in recursos −10%."
+msgstr "segiendo l lhabor de l sou predecessor na bibliotheca, prehendîu & duplicou todolos manuscriptos que pudo atopar n Alexandrea, & ansí deixou al puœblru un vasto archivo scientífico.\nTéchnicæs de construcçon: costos in recursos −10%."
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
@@ -511,7 +503,7 @@ msgstr "Basileús Mégas"
 msgid ""
 "Lycurgus instituted several military reforms, thus the complete and undivided allegiance to Sparta from its citizens was implemented under his form of government.\n"
 "Citizen Infantry Spearmen −10% resource costs."
-msgstr "Lykurgos fhixzo variæs iguæs militares &, n effecto, demandou que la lhealtá de la xhente a Sparta fhuer absoluta so l sou gubierno.\nPédites hastarios voluntarios: costos in recursos −10%."
+msgstr "Lykurgos fhixzo variæs iguæs militares &, n effecto, demandou que la lhealtá de l puœblru a Lacedemon fhuer absoluta so l sou gubierno.\nPédites hastarios voluntarios: costos in recursos −10%."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_1.jsonauraName
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraName
@@ -520,7 +512,7 @@ msgstr "Militarismo"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "Champion Infantry Spearmen −5% resource costs."
-msgstr "Pédites hastarios decertadores: costos in recursos −5%."
+msgstr "Pédites decertadores hastarios: costos in recursos −5%."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraDescription
 msgid ""
@@ -706,8 +698,8 @@ msgid "Preparation for War"
 msgstr "Preparaçones marciales"
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_1.jsonauraDescription
-msgid "Soldiers −50% promotion experience."
-msgstr "mílites −50% experiencia p’ascender."
+msgid "Soldiers −20% promotion experience."
+msgstr "mílites −20% experiencia p’ascender."
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_1.jsonauraName
 msgid "Northern Army"
@@ -846,7 +838,7 @@ msgstr "Salvador de Qesa"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraDescription
 msgid "Kushite Triremes −50 wood and metal cost."
-msgstr "trirremes qesanæs −50 costu n madeira & metal."
+msgstr "trirremes ethíopes −50 costu n madeira & metal."
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraName
 msgid "Gift of Warships"
