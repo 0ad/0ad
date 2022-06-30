@@ -7,7 +7,7 @@
 
 	<object type="text" name="userReportText" style="userReportText" size="2 2 100%-2 100%-40"/>
 
-	<object type="button" name="userReportEnableButton" style="StoneButton" size="8 100%-36 151 100%-8"/>
+	<object type="button" name="userReportEnableButton" style="StoneButton" tooltip_style="pgToolTip" size="8 100%-36 151 100%-8"/>
 	<object type="button" name="userReportTermsButton" style="StoneButton" size="100%-151 100%-36 100%-8 100%-8"/>
 
 </object>
