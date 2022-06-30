@@ -380,33 +380,38 @@ Formation.prototype.SetMembers = function(ents)
 Formation.prototype.RemoveMembers = function(ents, renamed = false)
 {
 	this.offsets = undefined;
-	this.members = this.members.filter(ent => ents.indexOf(ent) === -1);
+	this.members = this.members.filter(ent => !ents.includes(ent));
 
-	for (let ent of ents)
+	for (const ent of ents)
 	{
 		this.finishedEntities.delete(ent);
-		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		const cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 		cmpUnitAI.UpdateWorkOrders();
-		cmpUnitAI.SetFormationController(INVALID_ENTITY);
+		cmpUnitAI.UnsetFormationController();
 	}
 
 	for (let ent of this.formationMembersWithAura)
 	{
-		let cmpAuras = Engine.QueryInterface(ent, IID_Auras);
+		const cmpAuras = Engine.QueryInterface(ent, IID_Auras);
 		cmpAuras.RemoveFormationAura(ents);
 
 		// The unit with the aura is also removed from the formation.
-		if (ents.indexOf(ent) !== -1)
+		if (ents.includes(ent))
 			cmpAuras.RemoveFormationAura(this.members);
 	}
 
-	this.formationMembersWithAura = this.formationMembersWithAura.filter(function(e) { return ents.indexOf(e) == -1; });
+	this.formationMembersWithAura = this.formationMembersWithAura.filter(ent => !ents.includes(ent));
 
 	// If there's nobody left, destroy the formation
 	// unless this is a rename where we can have 0 members temporarily.
-	if (this.members.length < +this.template.RequiredMemberCount && !renamed)
+	if (!renamed && this.members.length < +this.template.RequiredMemberCount)
 	{
-		this.Disband();
+		// Hack: switch to a clean state to stop timers.
+		const cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+		cmpUnitAI.UnitFsm.SwitchToNextState(cmpUnitAI, "");
+		Engine.QueryInterface(this.entity, IID_Position).MoveOutOfWorld();
+		this.DeleteTwinFormations();
+		Engine.DestroyEntity(this.entity);
 		return;
 	}
 
@@ -459,27 +464,7 @@ Formation.prototype.AddMembers = function(ents)
  */
 Formation.prototype.Disband = function()
 {
-	for (let ent of this.members)
-	{
-		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		cmpUnitAI.SetFormationController(INVALID_ENTITY);
-	}
-
-	for (let ent of this.formationMembersWithAura)
-	{
-		let cmpAuras = Engine.QueryInterface(ent, IID_Auras);
-		cmpAuras.RemoveFormationAura(this.members);
-	}
-
-	this.members = [];
-	this.finishedEntities.clear();
-	this.formationMembersWithAura = [];
-	this.offsets = undefined;
-
-	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
-	// Hack: switch to a clean state to stop timers.
-	cmpUnitAI.UnitFsm.SwitchToNextState(cmpUnitAI, "");
-	Engine.DestroyEntity(this.entity);
+	this.RemoveMembers(this.members);
 };
 
 /**
@@ -901,10 +886,13 @@ Formation.prototype.DoesAngleDifferenceAllowTurning = function(a1, a2)
  */
 Formation.prototype.ComputeMotionParameters = function()
 {
+	if (!this.members.length)
+		return;
+
 	let minSpeed = Infinity;
 	let minAcceleration = Infinity;
 	let maxClearance = 0;
-	let maxPassClass;
+	let maxPassClass = "default";
 
 	const cmpPathfinder = Engine.QueryInterface(SYSTEM_ENTITY, IID_Pathfinder);
 	for (let ent of this.members)
@@ -968,11 +956,9 @@ Formation.prototype.ShapeUpdate = function()
 
 		// Merge the members from the twin formation into this one
 		// twin formations should always have exactly the same orders.
-		let otherMembers = cmpOtherFormation.members;
+		const otherMembers = cmpOtherFormation.members;
 		cmpOtherFormation.RemoveMembers(otherMembers);
 		this.AddMembers(otherMembers);
-		Engine.DestroyEntity(this.twinFormations[i]);
-		this.twinFormations.splice(i, 1);
 	}
 	// Switch between column and box if necessary.
 	let cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);

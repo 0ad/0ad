@@ -5181,24 +5181,17 @@ UnitAI.prototype.SetFormationController = function(ent)
 {
 	this.formationController = ent;
 
-	// Set obstruction group, so we can walk through members
-	// of our own formation (or ourself if not in formation)
-	const cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
-	if (cmpObstruction)
-	{
-		if (ent == INVALID_ENTITY)
-			cmpObstruction.SetControlGroup(this.entity);
-		else
-			cmpObstruction.SetControlGroup(ent);
-	}
+	// Set obstruction group, so we can walk through members of our own formation.
+	Engine.QueryInterface(this.entity, IID_Obstruction)?.SetControlGroup(ent);
+	Engine.QueryInterface(this.entity, IID_UnitMotion)?.SetMemberOfFormation(ent);
+};
 
-	const cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	if (cmpUnitMotion)
-		cmpUnitMotion.SetMemberOfFormation(ent);
-
-	// If we were removed from a formation, let the FSM switch back to INDIVIDUAL
-	if (ent == INVALID_ENTITY)
-		this.UnitFsm.ProcessMessage(this, { "type": "FormationLeave" });
+UnitAI.prototype.UnsetFormationController = function()
+{
+	this.formationController = INVALID_ENTITY;
+	Engine.QueryInterface(this.entity, IID_Obstruction)?.SetControlGroup(this.entity);
+	Engine.QueryInterface(this.entity, IID_UnitMotion)?.SetMemberOfFormation(this.formationController);
+	this.UnitFsm.ProcessMessage(this, { "type": "FormationLeave" });
 };
 
 UnitAI.prototype.GetFormationController = function()
