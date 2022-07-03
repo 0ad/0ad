@@ -1,6 +1,9 @@
 {
-	"genericName": "Subterraneam Aqueducts",
-	"description": "Qanat, network of underground aqueducts connected to the yakhchal.",
+	"genericName": "Subterranean Aqueducts",
+	"specificName": {
+		"pers": "Kārēz"
+	},
+	"description": "Qanāt or Kārēz, a network of underground aqueducts connected to the yakhchal ice house.",
 	"cost": {
 		"wood": 300,
 		"stone": 300
@@ -12,9 +15,9 @@
 		]
 	},
 	"requirementsTooltip": "Unlocked in City Phase.",
-	"icon": "cornucopia.png",
+	"icon": "flood_control.png",
 	"researchTime": 40,
-	"tooltip": "IceHouse +1 trickle food rate per second.",
+	"tooltip": "Ice House +1 trickle food rate per second.",
 	"modifications": [
 		{ "value": "ResourceTrickle/Rates/food", "add": 1 }
 	],

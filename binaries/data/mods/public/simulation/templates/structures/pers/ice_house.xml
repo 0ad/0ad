@@ -41,9 +41,15 @@
   <ProductionQueue/>
   <Researcher>
     <Technologies datatype="tokens">
-      pers_food_trickle
+      subterranean_aqueducts
     </Technologies>
   </Researcher>
+  <ResourceTrickle>
+    <Rates>
+      <food>1.0</food>
+    </Rates>
+    <Interval>2000</Interval>
+  </ResourceTrickle>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_farmstead.xml</select>

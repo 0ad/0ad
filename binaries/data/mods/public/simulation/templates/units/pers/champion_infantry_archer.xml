@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry_archer">
+  <Health>
+    <Max>140</Max>
+  </Health>
+  <Identity>
+    <Civ>pers</Civ>
+    <Lang>persian</Lang>
+    <GenericName>Persian Immortal</GenericName>
+    <SpecificName>Anušiya</SpecificName>
+    <VisibleClasses datatype="tokens">Immortal</VisibleClasses>
+    <Icon>units/pers_champion_infantry_archer.png</Icon>
+  </Identity>
+  <Upgrade>
+    <Immortal_spearman>
+      <Entity>units/pers/champion_infantry</Entity>
+      <Tooltip>Switch to using a spear and shield.</Tooltip>
+      <Variant>upgrading</Variant>
+      <Time>8</Time>
+    </Immortal_spearman>
+  </Upgrade>
+  <UnitMotion>
+    <WalkSpeed op="mul">0.79</WalkSpeed>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>units/persians/infantry_archer_c.xml</Actor>
+  </VisualActor>
+</Entity>
