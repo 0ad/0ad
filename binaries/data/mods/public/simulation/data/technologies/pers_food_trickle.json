@@ -1,0 +1,23 @@
+{
+	"genericName": "Subterraneam Aqueducts",
+	"description": "Qanat, network of underground aqueducts connected to the yakhchal.",
+	"cost": {
+		"wood": 300,
+		"stone": 300
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "civ": "pers" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "cornucopia.png",
+	"researchTime": 40,
+	"tooltip": "IceHouse +1 trickle food rate per second.",
+	"modifications": [
+		{ "value": "ResourceTrickle/Rates/food", "add": 1 }
+	],
+	"affects": ["IceHouse"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

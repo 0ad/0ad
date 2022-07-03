@@ -1,0 +1,26 @@
+{
+	"genericName": "City Phase",
+	"description": "Advances from a bustling town to a veritable metropolis, full of the wonders of modern technology. This is the Persian city phase, where stable training rates are decreased because of the 'Times of War' bonus.",
+	"cost": {
+		"stone": 750,
+		"metal": 750
+	},
+	"requirements": {
+		"entity": {
+			"class": "Town",
+			"number": 3
+		}
+	},
+	"requirementsTooltip": "Requires three Town Structures.",
+	"supersedes": "phase_town_pers",
+	"replaces": ["phase_city"],
+	"icon": "city_phase.png",
+	"researchTime": 60,
+	"tooltip": "Advance to City Phase, which unlocks more entities and technologies. Civic Centers +50% territory influence radius. Structures +9 capture points regeneration rate per garrisoned unit. Stable −10% batch training time.",
+	"modifications": [
+		{ "value": "Capturable/GarrisonRegenRate", "add": 9, "affects": "Structure" },
+		{ "value": "Trainer/BatchTimeModifier", "add": -0.1, "affects": "Stable" },
+		{ "value": "TerritoryInfluence/Radius", "multiply": 1.5, "affects": "CivCentre" }
+	],
+	"soundComplete": "interface/alarm/alarm_phase.xml"
+}

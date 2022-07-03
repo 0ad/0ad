@@ -14,10 +14,9 @@
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "immortals.png",
 	"researchTime": 60,
-	"tooltip": "Immortals −50% training time, but −10% health.",
+	"tooltip": "Immortals −50% training time.",
 	"modifications": [
-		{ "value": "Cost/BuildTime", "multiply": 0.5 },
-		{ "value": "Health/Max", "multiply": 0.9 }
+		{ "value": "Cost/BuildTime", "multiply": 0.5 }
 	],
 	"affects": ["Immortal"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"

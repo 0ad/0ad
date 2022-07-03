@@ -6,7 +6,7 @@
   <Cost>
     <BuildTime>300</BuildTime>
     <Resources>
-      <stone>300</stone>
+      <stone>200</stone>
       <metal>200</metal>
     </Resources>
   </Cost>
@@ -31,7 +31,7 @@
     <Icon>structures/palace.png</Icon>
   </Identity>
   <Loot>
-    <stone>60</stone>
+    <stone>40</stone>
     <metal>40</metal>
   </Loot>
   <Obstruction>
@@ -47,10 +47,8 @@
     <Rates>
       <food>1.0</food>
       <wood>1.0</wood>
-      <stone>0.75</stone>
-      <metal>0.75</metal>
     </Rates>
-    <Interval>2000</Interval>
+    <Interval>1000</Interval>
   </ResourceTrickle>
   <Sound>
     <SoundGroups>

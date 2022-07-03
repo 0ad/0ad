@@ -4,7 +4,12 @@
 	"cost": {
 		"food": 500
 	},
-	"requirements": { "tech": "phase_city" },
+	"requirements": {
+		"all": [
+			{ "tech": "phase_city" },
+			{ "notciv": "pers" }
+		]
+	},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "fist_spear_fire.png",
 	"researchTime": 40,

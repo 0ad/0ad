@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>skeletal/new/m_armor_pants_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/new/head_pers_tiara.xml" attachpoint="head"/>
+        <prop actor="props/units/helmets/pers_kidaris_tied.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/bow_recurve.xml" attachpoint="weapon_bow"/>
+        <prop actor="props/units/pers_quiver_back.xml" attachpoint="back"/>
+      </props>
+      <textures>
+        <texture file="skeletal/pers/scale_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Armor Bronze Scales">
+      <textures>
+        <texture file="skeletal/pers/scale_04_02.png" name="baseTex"/>
+        <texture file="skeletal/pers/scale_04_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="Armor Iron Scales">
+      <textures>
+        <texture file="skeletal/pers/scale_03_01.dds" name="baseTex"/>
+        <texture file="skeletal/pers/scale_04_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="scale-1a">
+      <textures>
+        <texture file="skeletal/pers/scale_01_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="scale-1b">
+      <textures>
+        <texture file="skeletal/pers/scale_01_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="scale-1c">
+      <textures>
+        <texture file="skeletal/pers/scale_01_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="scale-1d">
+      <textures>
+        <texture file="skeletal/pers/scale_01_04.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="scale-1e">
+      <textures>
+        <texture file="skeletal/pers/scale_01_05.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="3" name="scale-1f">
+      <textures>
+        <texture file="skeletal/pers/scale_01_06.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="scale-1g">
+      <textures>
+        <texture file="skeletal/pers/scale_01_07.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="scale-1h">
+      <textures>
+        <texture file="skeletal/pers/scale_01_08.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant file="biped/base_archer_relax.xml" frequency="1" name="Archer-Relax"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+	<variant file="biped/attack_ranged_archer_hip.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans_spec.xml</material>
+</actor>
