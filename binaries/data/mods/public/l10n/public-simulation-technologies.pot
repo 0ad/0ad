@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2022-06-27 07:10+0000\n"
-"PO-Revision-Date: 2022-06-27 07:10+0000\n"
+"POT-Creation-Date: 2022-07-04 07:10+0000\n"
+"PO-Revision-Date: 2022-07-04 07:10+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -67,6 +67,7 @@ msgstr ""
 #: simulation/data/technologies/soldier_resistance_pierce_02.json:requirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_03.json:requirementsTooltip
 #: simulation/data/technologies/stable_batch_training.json:requirementsTooltip
+#: simulation/data/technologies/subterranean_aqueducts.json:requirementsTooltip
 #: simulation/data/technologies/tower_health.json:requirementsTooltip
 #: simulation/data/technologies/tower_murderholes.json:requirementsTooltip
 #: simulation/data/technologies/trade_gain_02.json:requirementsTooltip
@@ -93,7 +94,6 @@ msgstr ""
 
 #: simulation/data/technologies/archer_attack_spread.json:requirementsTooltip
 #: simulation/data/technologies/architecture_kush.json:requirementsTooltip
-#: simulation/data/technologies/cavalry_cost_time.json:requirementsTooltip
 #: simulation/data/technologies/cavalry_health.json:requirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.json:requirementsTooltip
 #: simulation/data/technologies/civil_service_01.json:requirementsTooltip
@@ -110,7 +110,6 @@ msgstr ""
 #: simulation/data/technologies/heal_range.json:requirementsTooltip
 #: simulation/data/technologies/heal_rate.json:requirementsTooltip
 #: simulation/data/technologies/hoplite_tradition.json:requirementsTooltip
-#: simulation/data/technologies/infantry_cost_time.json:requirementsTooltip
 #: simulation/data/technologies/iphicratean_reforms.json:requirementsTooltip
 #: simulation/data/technologies/pop_house_01.json:requirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.json:requirementsTooltip
@@ -230,18 +229,6 @@ msgstr ""
 
 #: simulation/data/technologies/barracks_batch_training.json:tooltip
 msgid "Barracks −10% batch training time."
-msgstr ""
-
-#: simulation/data/technologies/cavalry_cost_time.json:description
-msgid "Calling up cavalry levies in time of war helps bolster the ranks of a king's army."
-msgstr ""
-
-#: simulation/data/technologies/cavalry_cost_time.json:genericName
-msgid "Levy Cavalry"
-msgstr ""
-
-#: simulation/data/technologies/cavalry_cost_time.json:tooltip
-msgid "Cavalry −10% training time."
 msgstr ""
 
 #: simulation/data/technologies/cavalry_health.json:description
@@ -930,19 +917,7 @@ msgid "Immortals"
 msgstr ""
 
 #: simulation/data/technologies/immortals.json:tooltip
-msgid "Immortals −50% training time, but −10% health."
-msgstr ""
-
-#: simulation/data/technologies/infantry_cost_time.json:description
-msgid "Calling up infantry levies in time of war helps bolster the ranks of a king's army."
-msgstr ""
-
-#: simulation/data/technologies/infantry_cost_time.json:genericName
-msgid "Levy Infantry"
-msgstr ""
-
-#: simulation/data/technologies/infantry_cost_time.json:tooltip
-msgid "Infantry −10% training time."
+msgid "Immortals −50% training time."
 msgstr ""
 
 #: simulation/data/technologies/iphicratean_reforms.json:description
@@ -1040,6 +1015,7 @@ msgstr ""
 #: simulation/data/technologies/phase_city.json:genericName
 #: simulation/data/technologies/phase_city_athen.json:genericName
 #: simulation/data/technologies/phase_city_generic.json:genericName
+#: simulation/data/technologies/phase_city_pers.json:genericName
 msgid "City Phase"
 msgstr ""
 
@@ -1052,6 +1028,7 @@ msgstr ""
 
 #: simulation/data/technologies/phase_city_athen.json:requirementsTooltip
 #: simulation/data/technologies/phase_city_generic.json:requirementsTooltip
+#: simulation/data/technologies/phase_city_pers.json:requirementsTooltip
 msgid "Requires three Town Structures."
 msgstr ""
 
@@ -1087,6 +1064,20 @@ msgid ""
 "garrisoned unit."
 msgstr ""
 
+#: simulation/data/technologies/phase_city_pers.json:description
+msgid ""
+"Advances from a bustling town to a veritable metropolis, full of the wonders of modern "
+"technology. This is the Persian city phase, where stable training rates are decreased "
+"because of the 'Times of War' bonus."
+msgstr ""
+
+#: simulation/data/technologies/phase_city_pers.json:tooltip
+msgid ""
+"Advance to City Phase, which unlocks more entities and technologies. Civic Centers +50%"
+" territory influence radius. Structures +9 capture points regeneration rate per "
+"garrisoned unit. Stable −10% batch training time."
+msgstr ""
+
 #: simulation/data/technologies/phase_town.json:description
 msgid ""
 "Dummy technology for use in templates requirements, replaced by phase_town_generic or "
@@ -1096,6 +1087,7 @@ msgstr ""
 #: simulation/data/technologies/phase_town.json:genericName
 #: simulation/data/technologies/phase_town_athen.json:genericName
 #: simulation/data/technologies/phase_town_generic.json:genericName
+#: simulation/data/technologies/phase_town_pers.json:genericName
 msgid "Town Phase"
 msgstr ""
 
@@ -1108,6 +1100,7 @@ msgstr ""
 
 #: simulation/data/technologies/phase_town_athen.json:requirementsTooltip
 #: simulation/data/technologies/phase_town_generic.json:requirementsTooltip
+#: simulation/data/technologies/phase_town_pers.json:requirementsTooltip
 msgid "Requires five Village Structures."
 msgstr ""
 
@@ -1139,6 +1132,20 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic Centers +30%"
 " territory influence radius. Structures +7 capture points regeneration rate per "
 "garrisoned unit."
+msgstr ""
+
+#: simulation/data/technologies/phase_town_pers.json:description
+msgid ""
+"Advances from a small village to a bustling town, ready to expand rapidly. This is the "
+"Persian town phase, where stable training rates are decreased because of the 'Times of "
+"War' bonus."
+msgstr ""
+
+#: simulation/data/technologies/phase_town_pers.json:tooltip
+msgid ""
+"Advance to Town Phase, which unlocks more entities and technologies. Civic Centers +30%"
+" territory influence radius. Structures +7 capture points regeneration rate per "
+"garrisoned unit. Stable −10% batch training time."
 msgstr ""
 
 #: simulation/data/technologies/phase_village.json:genericName
@@ -1550,6 +1557,22 @@ msgstr ""
 
 #: simulation/data/technologies/stable_batch_training.json:tooltip
 msgid "Stables −10% batch training time."
+msgstr ""
+
+#: simulation/data/technologies/subterranean_aqueducts.json:description
+msgid "Qanāt or Kārēz, a network of underground aqueducts connected to the yakhchal ice house."
+msgstr ""
+
+#: simulation/data/technologies/subterranean_aqueducts.json:genericName
+msgid "Subterranean Aqueducts"
+msgstr ""
+
+#: simulation/data/technologies/subterranean_aqueducts.json:specificName.pers
+msgid "Kārēz"
+msgstr ""
+
+#: simulation/data/technologies/subterranean_aqueducts.json:tooltip
+msgid "Ice House +1 trickle food rate per second."
 msgstr ""
 
 #: simulation/data/technologies/tower_crenellations.json:description
