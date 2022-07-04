@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_spearman">
+  <Health>
+    <Max>140</Max>
+  </Health>
   <Identity>
     <Civ>pers</Civ>
     <Lang>persian</Lang>
@@ -8,6 +11,25 @@
     <VisibleClasses datatype="tokens">Immortal</VisibleClasses>
     <Icon>units/pers_champion_infantry.png</Icon>
   </Identity>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack op="add">-3</Hack>
+        <Pierce op="add">-3</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
+  <Upgrade>
+    <Immortal_archer>
+      <Entity>units/pers/champion_infantry_archer</Entity>
+      <Tooltip>Switch to using the bow and arrow.</Tooltip>
+      <Variant>upgrading</Variant>
+      <Time>8</Time>
+    </Immortal_archer>
+  </Upgrade>
+  <UnitMotion>
+    <WalkSpeed op="mul">0.9</WalkSpeed>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/persians/infantry_spearman_c2.xml</Actor>
   </VisualActor>
