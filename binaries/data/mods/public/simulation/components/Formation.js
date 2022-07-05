@@ -379,6 +379,9 @@ Formation.prototype.SetMembers = function(ents)
  */
 Formation.prototype.RemoveMembers = function(ents, renamed = false)
 {
+	if (!ents.length)
+		return;
+
 	this.offsets = undefined;
 	this.members = this.members.filter(ent => !ents.includes(ent));
 
@@ -406,12 +409,7 @@ Formation.prototype.RemoveMembers = function(ents, renamed = false)
 	// unless this is a rename where we can have 0 members temporarily.
 	if (!renamed && this.members.length < +this.template.RequiredMemberCount)
 	{
-		// Hack: switch to a clean state to stop timers.
-		const cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
-		cmpUnitAI.UnitFsm.SwitchToNextState(cmpUnitAI, "");
-		Engine.QueryInterface(this.entity, IID_Position).MoveOutOfWorld();
-		this.DeleteTwinFormations();
-		Engine.DestroyEntity(this.entity);
+		this.Disband();
 		return;
 	}
 
@@ -465,6 +463,13 @@ Formation.prototype.AddMembers = function(ents)
 Formation.prototype.Disband = function()
 {
 	this.RemoveMembers(this.members);
+
+	// Hack: switch to a clean state to stop timers.
+	const cmpUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
+	cmpUnitAI.UnitFsm.SwitchToNextState(cmpUnitAI, "");
+	Engine.QueryInterface(this.entity, IID_Position).MoveOutOfWorld();
+	this.DeleteTwinFormations();
+	Engine.DestroyEntity(this.entity);
 };
 
 /**
