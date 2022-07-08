@@ -41,7 +41,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-27 07:10+0000\n"
+"POT-Creation-Date: 2022-07-04 07:10+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Dire Avenger, 2022\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
@@ -106,6 +106,7 @@ msgstr "Агогэ"
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsonrequirementsTooltip
 #: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
+#: simulation/data/technologies/subterranean_aqueducts.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_health.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
@@ -132,7 +133,6 @@ msgstr "Обучение стрельбе из лука"
 
 #: simulation/data/technologies/archer_attack_spread.jsonrequirementsTooltip
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
-#: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
@@ -149,7 +149,6 @@ msgstr "Обучение стрельбе из лука"
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/hoplite_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/infantry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
@@ -274,20 +273,6 @@ msgstr "Воинская повинность"
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
 msgid "Barracks −10% batch training time."
 msgstr "Казармы обучают партиями на 10% быстрее."
-
-#: simulation/data/technologies/cavalry_cost_time.jsondescription
-msgid ""
-"Calling up cavalry levies in time of war helps bolster the ranks of a king's"
-" army."
-msgstr "Объявление призыва новобранцев в конницу во время войны поможет укрепить царскую армию."
-
-#: simulation/data/technologies/cavalry_cost_time.jsongenericName
-msgid "Levy Cavalry"
-msgstr "Набор конницы"
-
-#: simulation/data/technologies/cavalry_cost_time.jsontooltip
-msgid "Cavalry −10% training time."
-msgstr "Время обучения конницы сокращается на 10%."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -992,22 +977,8 @@ msgid "Immortals"
 msgstr "«Бессмертные»"
 
 #: simulation/data/technologies/immortals.jsontooltip
-msgid "Immortals −50% training time, but −10% health."
-msgstr "«Бессмертные» обучаются на 50% быстрее, но имеют на 10% меньше здоровья."
-
-#: simulation/data/technologies/infantry_cost_time.jsondescription
-msgid ""
-"Calling up infantry levies in time of war helps bolster the ranks of a "
-"king's army."
-msgstr "Объявление призыва новобранцев в пехоту во время войны поможет укрепить царскую армию."
-
-#: simulation/data/technologies/infantry_cost_time.jsongenericName
-msgid "Levy Infantry"
-msgstr "Набор пехоты"
-
-#: simulation/data/technologies/infantry_cost_time.jsontooltip
-msgid "Infantry −10% training time."
-msgstr "Время обучения пехоты сокращается на 10%."
+msgid "Immortals −50% training time."
+msgstr "Время обучения бессмертных сокращается на 50%."
 
 #: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
@@ -1107,6 +1078,7 @@ msgstr "Технология-манекен для использования в
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 #: simulation/data/technologies/phase_city_generic.jsongenericName
+#: simulation/data/technologies/phase_city_pers.jsongenericName
 msgid "City Phase"
 msgstr "Этап города"
 
@@ -1119,6 +1091,7 @@ msgstr "Расширьте шумный городок до настоящего
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_pers.jsonrequirementsTooltip
 msgid "Requires three Town Structures."
 msgstr "Требуется три постройки этапа небольшого города."
 
@@ -1154,6 +1127,20 @@ msgid ""
 "regeneration rate per garrisoned unit."
 msgstr "Перейдите на этап города, открывающий новые объекты и технологии. Радиус контроля территории городскими Центрами увеличивается на 50%. Скорость восстановления очков захвата зданиями увеличивается на 9 на душу гарнизона."
 
+#: simulation/data/technologies/phase_city_pers.jsondescription
+msgid ""
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology. This is the Persian city phase, where stable training"
+" rates are decreased because of the 'Times of War' bonus."
+msgstr "Расширьте шумный городок до настоящего метрополиса, полного чудес современных технологий. На этом этапе развития персидского города работает бонус \"Времена войны\", ускоряющий обучение."
+
+#: simulation/data/technologies/phase_city_pers.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more entities and technologies. Civic "
+"Centers +50% territory influence radius. Structures +9 capture points "
+"regeneration rate per garrisoned unit. Stable −10% batch training time."
+msgstr "Перейдите на этап города, открывающий новые объекты и технологии. Радиус контроля территории городскими Центрами увеличивается на 50%. Скорость восстановления очков захвата зданиями увеличивается на 9 на душу гарнизона. Время обучения групп воинов уменьшается на 10%"
+
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
@@ -1163,6 +1150,7 @@ msgstr "Технология-манекен для использования в
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
 #: simulation/data/technologies/phase_town_generic.jsongenericName
+#: simulation/data/technologies/phase_town_pers.jsongenericName
 msgid "Town Phase"
 msgstr "Этап небольшого города"
 
@@ -1171,10 +1159,11 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr "Улучшение маленькой деревни до до небольшого шумного города, готового к быстрому росту. Это этап строительства афинского небольшого города, когда сбор металла повышается благодаря бонусу «серебряные совы»."
+msgstr "Улучшение маленькой деревни до небольшого шумного города, готового к быстрому росту. Благодаря бонусу Афин «серебряные совы» возрастет скорость сбора металла ."
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_pers.jsonrequirementsTooltip
 msgid "Requires five Village Structures."
 msgstr "Требует наличия пяти строений деревенского этапа."
 
@@ -1208,6 +1197,20 @@ msgid ""
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
 msgstr "Перейдите на этап небольшого города, открывающий новые объекты и технологии. Радиус контроля территории городскими Центрами увеличивается на 30%. Скорость восстановления очков захвата зданиями увеличивается на 7 на душу гарнизона."
+
+#: simulation/data/technologies/phase_town_pers.jsondescription
+msgid ""
+"Advances from a small village to a bustling town, ready to expand rapidly. "
+"This is the Persian town phase, where stable training rates are decreased "
+"because of the 'Times of War' bonus."
+msgstr "Улучшение маленькой деревни до небольшого шумного города, готового к быстрому расширению. На этом этапе развития персидского города начнет работать бонус \"Времена войны\", ускоряющий обучение."
+
+#: simulation/data/technologies/phase_town_pers.jsontooltip
+msgid ""
+"Advance to Town Phase, which unlocks more entities and technologies. Civic "
+"Centers +30% territory influence radius. Structures +7 capture points "
+"regeneration rate per garrisoned unit. Stable −10% batch training time."
+msgstr "Перейдите на этап небольшого города, открывающий новые объекты и технологии. Радиус контроля территории городскими Центрами увеличивается на 30%. Скорость восстановления очков захвата зданиями увеличивается на 7 на душу гарнизона. Время обучения групп воинов уменьшается на 10%"
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1627,6 +1630,24 @@ msgstr "Значительно ускоряет подготовку конни�
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Stables −10% batch training time."
 msgstr "Конюшни обучают партиями на 10% быстрее."
+
+#: simulation/data/technologies/subterranean_aqueducts.jsondescription
+msgid ""
+"Qanāt or Kārēz, a network of underground aqueducts connected to the yakhchal"
+" ice house."
+msgstr "Qanāt или Kārēz - это сеть подземных акведуков, соединенных с ледником"
+
+#: simulation/data/technologies/subterranean_aqueducts.jsongenericName
+msgid "Subterranean Aqueducts"
+msgstr "Подземные акведуки"
+
+#: simulation/data/technologies/subterranean_aqueducts.jsonspecificName.pers
+msgid "Kārēz"
+msgstr ""
+
+#: simulation/data/technologies/subterranean_aqueducts.jsontooltip
+msgid "Ice House +1 trickle food rate per second."
+msgstr "Увеличивает производство еды ледником на 1"
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""

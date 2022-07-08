@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-27 07:10+0000\n"
+"POT-Creation-Date: 2022-07-04 07:10+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>, 2021\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
@@ -73,6 +73,7 @@ msgstr "An t‑Agoga"
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsonrequirementsTooltip
 #: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
+#: simulation/data/technologies/subterranean_aqueducts.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_health.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
@@ -99,7 +100,6 @@ msgstr "Oideachadh boghadaireachd"
 
 #: simulation/data/technologies/archer_attack_spread.jsonrequirementsTooltip
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
-#: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
@@ -116,7 +116,6 @@ msgstr "Oideachadh boghadaireachd"
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/hoplite_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/infantry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
@@ -241,20 +240,6 @@ msgstr "Dleastanas-airm"
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
 msgid "Barracks −10% batch training time."
 msgstr "Gheibh taighean-feachd −10% air ùine an oideachaidh ann an grunnan."
-
-#: simulation/data/technologies/cavalry_cost_time.jsondescription
-msgid ""
-"Calling up cavalry levies in time of war helps bolster the ranks of a king's"
-" army."
-msgstr "Cuiridh eachraidh a thogas tu o na saoranaich rè amannan cogaidh ri neart airm an rìgh."
-
-#: simulation/data/technologies/cavalry_cost_time.jsongenericName
-msgid "Levy Cavalry"
-msgstr "Tog eachraidh"
-
-#: simulation/data/technologies/cavalry_cost_time.jsontooltip
-msgid "Cavalry −10% training time."
-msgstr "Thèid eachraidh oideachadh −10% nas luaithe."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -959,22 +944,8 @@ msgid "Immortals"
 msgstr "Lèintean-crios neo-bhàsmhor"
 
 #: simulation/data/technologies/immortals.jsontooltip
-msgid "Immortals −50% training time, but −10% health."
-msgstr "Thèid lèintean-crios neo-bhàsmhor oideachadh nas luaithe le −50% ach gheibh iad −10% a shlàinte."
-
-#: simulation/data/technologies/infantry_cost_time.jsondescription
-msgid ""
-"Calling up infantry levies in time of war helps bolster the ranks of a "
-"king's army."
-msgstr "Cuiridh coisridh a thogas tu o na saoranaich rè amannan cogaidh ri neart airm an rìgh."
-
-#: simulation/data/technologies/infantry_cost_time.jsongenericName
-msgid "Levy Infantry"
-msgstr "Tog coisridh"
-
-#: simulation/data/technologies/infantry_cost_time.jsontooltip
-msgid "Infantry −10% training time."
-msgstr "Thèid coisridh oideachadh −10% nas luaithe."
+msgid "Immortals −50% training time."
+msgstr ""
 
 #: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
@@ -1074,6 +1045,7 @@ msgstr "Glèidheadair-àite teicneolais a chum iarrtasan teamplaide, thèid phas
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 #: simulation/data/technologies/phase_city_generic.jsongenericName
+#: simulation/data/technologies/phase_city_pers.jsongenericName
 msgid "City Phase"
 msgstr "Linn nam mòr-bhailtean"
 
@@ -1086,6 +1058,7 @@ msgstr "Adhartaich o bhaile iomairteach gu mòr-bhaile, làn chulaidhean-iongant
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_pers.jsonrequirementsTooltip
 msgid "Requires three Town Structures."
 msgstr "Feum air trì togalaichean o linn nam bailtean."
 
@@ -1121,6 +1094,20 @@ msgid ""
 "regeneration rate per garrisoned unit."
 msgstr "Adhartaich gu linn nam mòr-bhailtean a bheir a’ ghlas far barrachd nithean is teicneolasan. Gheibh ionadan sìobhalta +50% a dh’astar air am buaidh ranntair. Buannaichidh na togalaichean +9 air ath-ghintinn nam puingean glacaidh le gach aonad a bhios ’na ghearastan annta."
 
+#: simulation/data/technologies/phase_city_pers.jsondescription
+msgid ""
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology. This is the Persian city phase, where stable training"
+" rates are decreased because of the 'Times of War' bonus."
+msgstr ""
+
+#: simulation/data/technologies/phase_city_pers.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more entities and technologies. Civic "
+"Centers +50% territory influence radius. Structures +9 capture points "
+"regeneration rate per garrisoned unit. Stable −10% batch training time."
+msgstr ""
+
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
@@ -1130,6 +1117,7 @@ msgstr "Glèidheadair-àite teicneolais a chum iarrtasan teamplaide, thèid phas
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
 #: simulation/data/technologies/phase_town_generic.jsongenericName
+#: simulation/data/technologies/phase_town_pers.jsongenericName
 msgid "Town Phase"
 msgstr "Linn nam bailtean"
 
@@ -1142,6 +1130,7 @@ msgstr "Adhartaich o chlachan bheag gu baile iomairteach, ullamh airson leudacha
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_pers.jsonrequirementsTooltip
 msgid "Requires five Village Structures."
 msgstr "Feum air còig togalaichean o linn nan clachan."
 
@@ -1175,6 +1164,20 @@ msgid ""
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
 msgstr "Adhartaich gu linn nam bailtean a bheir a’ ghlas far barrachd nithean is teicneolasan. Gheibh ionadan sìobhalta +30% a dh’astar air am buaidh ranntair. Buannaichidh na togalaichean +7 air ath-ghintinn nam puingean glacaidh le gach aonad a bhios ’na ghearastan annta."
+
+#: simulation/data/technologies/phase_town_pers.jsondescription
+msgid ""
+"Advances from a small village to a bustling town, ready to expand rapidly. "
+"This is the Persian town phase, where stable training rates are decreased "
+"because of the 'Times of War' bonus."
+msgstr ""
+
+#: simulation/data/technologies/phase_town_pers.jsontooltip
+msgid ""
+"Advance to Town Phase, which unlocks more entities and technologies. Civic "
+"Centers +30% territory influence radius. Structures +7 capture points "
+"regeneration rate per garrisoned unit. Stable −10% batch training time."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1594,6 +1597,24 @@ msgstr "Meudaichidh seo luaths oideachaidh an eachraidh gu mòr nuair a thèid a
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Stables −10% batch training time."
 msgstr "Gheibh stàballan −10% air ùine an oideachaidh ann an grunnan."
+
+#: simulation/data/technologies/subterranean_aqueducts.jsondescription
+msgid ""
+"Qanāt or Kārēz, a network of underground aqueducts connected to the yakhchal"
+" ice house."
+msgstr ""
+
+#: simulation/data/technologies/subterranean_aqueducts.jsongenericName
+msgid "Subterranean Aqueducts"
+msgstr ""
+
+#: simulation/data/technologies/subterranean_aqueducts.jsonspecificName.pers
+msgid "Kārēz"
+msgstr ""
+
+#: simulation/data/technologies/subterranean_aqueducts.jsontooltip
+msgid "Ice House +1 trickle food rate per second."
+msgstr ""
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""

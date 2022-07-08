@@ -41,7 +41,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-27 07:10+0000\n"
+"POT-Creation-Date: 2022-07-04 07:10+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Yuri Laskowski <yurinikolai00@gmail.com>, 2022\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
@@ -106,6 +106,7 @@ msgstr "Agogê"
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsonrequirementsTooltip
 #: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
+#: simulation/data/technologies/subterranean_aqueducts.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_health.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
@@ -132,7 +133,6 @@ msgstr "Treinamento de Tiro com Arco"
 
 #: simulation/data/technologies/archer_attack_spread.jsonrequirementsTooltip
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
-#: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
@@ -149,7 +149,6 @@ msgstr "Treinamento de Tiro com Arco"
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/hoplite_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/infantry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
@@ -274,20 +273,6 @@ msgstr "Conscrição"
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
 msgid "Barracks −10% batch training time."
 msgstr "Quarteis −10% de tempo de treinamento em lote."
-
-#: simulation/data/technologies/cavalry_cost_time.jsondescription
-msgid ""
-"Calling up cavalry levies in time of war helps bolster the ranks of a king's"
-" army."
-msgstr "Convocar cavaleiros recrutas em tempos de guerra ajuda a encorpar as fileiras de seu exército."
-
-#: simulation/data/technologies/cavalry_cost_time.jsongenericName
-msgid "Levy Cavalry"
-msgstr "Cavalaria Recruta"
-
-#: simulation/data/technologies/cavalry_cost_time.jsontooltip
-msgid "Cavalry −10% training time."
-msgstr "Cavalaria −10% de tempo de treinamento."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -680,7 +665,7 @@ msgstr "Fertilizante"
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +20% grain gather rate."
-msgstr "Trabalhadores têm +20% taxa de coleta de grãos"
+msgstr "Trabalhadores têm +20% à taxa de coleta de grãos."
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -744,7 +729,7 @@ msgstr "Machado com Cabeças de Ferro"
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +25% wood gather rate."
-msgstr "Trabalhadores +25 taxa de coleta de madeira"
+msgstr "Trabalhadores +25 taxa de coleta de madeira."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Axe Heads"
@@ -772,7 +757,7 @@ msgstr "Hilotas"
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid "Workers +25% stone gather rate."
-msgstr "Trabalhadores +25 taxa de coleta de pedra"
+msgstr "Trabalhadores +25 taxa de coleta de pedra."
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
@@ -802,7 +787,7 @@ msgstr "Poços de Mineração"
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "Workers +25% metal gather rate."
-msgstr "Trabalhadores +25 taxa de coleta de metal"
+msgstr "Trabalhadores +25 taxa de coleta de metal."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsondescription
 msgid "Strike a vein of precious silver. Increases metal gathering rates."
@@ -992,22 +977,8 @@ msgid "Immortals"
 msgstr "Imortais"
 
 #: simulation/data/technologies/immortals.jsontooltip
-msgid "Immortals −50% training time, but −10% health."
-msgstr "Imortais −50% do tempo de treinamento, mas −10% da saúde."
-
-#: simulation/data/technologies/infantry_cost_time.jsondescription
-msgid ""
-"Calling up infantry levies in time of war helps bolster the ranks of a "
-"king's army."
-msgstr "Convocar recrutas de infantaria em tempos de guerra ajuda a reforçar o exército do rei."
-
-#: simulation/data/technologies/infantry_cost_time.jsongenericName
-msgid "Levy Infantry"
-msgstr "Infantaria Recruta"
-
-#: simulation/data/technologies/infantry_cost_time.jsontooltip
-msgid "Infantry −10% training time."
-msgstr "Infantaria −10% do tempo de treinamento."
+msgid "Immortals −50% training time."
+msgstr ""
 
 #: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
@@ -1107,6 +1078,7 @@ msgstr "Tecnologia fictícia para uso em requisitos de modelos, substituída por
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 #: simulation/data/technologies/phase_city_generic.jsongenericName
+#: simulation/data/technologies/phase_city_pers.jsongenericName
 msgid "City Phase"
 msgstr "Fase de Cidade"
 
@@ -1119,6 +1091,7 @@ msgstr "Avança de uma vila promissora para uma verdadeira metrópole, repleta d
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_pers.jsonrequirementsTooltip
 msgid "Requires three Town Structures."
 msgstr "Requer três Estruturas de Cidade."
 
@@ -1154,6 +1127,20 @@ msgid ""
 "regeneration rate per garrisoned unit."
 msgstr "Fase de avanço para a cidade, que desbloqueia mais entidades e tecnologias. Centros Cívicos +50% de raio de influência do território. Taxa de regeneração de estruturas +9 pontos de captura por unidade guarnecida."
 
+#: simulation/data/technologies/phase_city_pers.jsondescription
+msgid ""
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology. This is the Persian city phase, where stable training"
+" rates are decreased because of the 'Times of War' bonus."
+msgstr ""
+
+#: simulation/data/technologies/phase_city_pers.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more entities and technologies. Civic "
+"Centers +50% territory influence radius. Structures +9 capture points "
+"regeneration rate per garrisoned unit. Stable −10% batch training time."
+msgstr ""
+
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
@@ -1163,6 +1150,7 @@ msgstr "Tecnologia fictícia para uso em requisitos de modelos, substituída por
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
 #: simulation/data/technologies/phase_town_generic.jsongenericName
+#: simulation/data/technologies/phase_town_pers.jsongenericName
 msgid "Town Phase"
 msgstr "Fase de Vila"
 
@@ -1175,6 +1163,7 @@ msgstr "Avança de uma pequena aldeia para uma promissora cidade, pronta para ex
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_pers.jsonrequirementsTooltip
 msgid "Requires five Village Structures."
 msgstr "Requer cinco estruturas de aldeia."
 
@@ -1208,6 +1197,20 @@ msgid ""
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
 msgstr "Fase de avanço para a cidade, que desbloqueia mais entidades e tecnologias. Centros Cívicos + 30% de raio de influência do território. Taxa de regeneração de estruturas +7 pontos de captura por unidade guarnecida."
+
+#: simulation/data/technologies/phase_town_pers.jsondescription
+msgid ""
+"Advances from a small village to a bustling town, ready to expand rapidly. "
+"This is the Persian town phase, where stable training rates are decreased "
+"because of the 'Times of War' bonus."
+msgstr ""
+
+#: simulation/data/technologies/phase_town_pers.jsontooltip
+msgid ""
+"Advance to Town Phase, which unlocks more entities and technologies. Civic "
+"Centers +30% territory influence radius. Structures +7 capture points "
+"regeneration rate per garrisoned unit. Stable −10% batch training time."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1487,11 +1490,11 @@ msgstr "Soldados +20% ao dano de ataque corpo a corpo. Espadachins recebem um b�
 msgid ""
 "Improving the fletching of arrows increases their stability and speed, and "
 "thus their penetration."
-msgstr "Melhoraria na pena das flechas que aumenta sua estabilidade e velocidade, e portanto, sua penetração."
+msgstr "Melhorarias na fabricação das flechas que aumentam sua estabilidade e velocidade, e portanto, sua penetração."
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsongenericName
 msgid "Improved Fletching"
-msgstr "Melhoria Das flechas"
+msgstr "Aletas Melhoradas"
 
 #: simulation/data/technologies/soldier_attack_ranged_01.jsontooltip
 #: simulation/data/technologies/soldier_attack_ranged_02.jsontooltip
@@ -1627,6 +1630,24 @@ msgstr "Aumenta a velocidade de treinamento da cavalaria significantemente ao tr
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Stables −10% batch training time."
 msgstr "Estábulos -10% ao tempo de treinamento de grupos."
+
+#: simulation/data/technologies/subterranean_aqueducts.jsondescription
+msgid ""
+"Qanāt or Kārēz, a network of underground aqueducts connected to the yakhchal"
+" ice house."
+msgstr ""
+
+#: simulation/data/technologies/subterranean_aqueducts.jsongenericName
+msgid "Subterranean Aqueducts"
+msgstr ""
+
+#: simulation/data/technologies/subterranean_aqueducts.jsonspecificName.pers
+msgid "Kārēz"
+msgstr ""
+
+#: simulation/data/technologies/subterranean_aqueducts.jsontooltip
+msgid "Ice House +1 trickle food rate per second."
+msgstr ""
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""

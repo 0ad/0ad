@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-20 07:33+0000\n"
+"POT-Creation-Date: 2022-07-04 07:10+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
-"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2020-2022\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -640,6 +640,18 @@ msgstr "육로 상인의 교역 수입이 +25% 증가합니다."
 msgid "Darics"
 msgstr "다릭"
 
+#: simulation/data/civs/pers.jsonCivBonuses[2].Description
+msgid "Stable −10% batch training time per phase advance."
+msgstr "사육장의 단계 진행당 일괄 훈련 시간이 -10% 감소합니다."
+
+#: simulation/data/civs/pers.jsonCivBonuses[2].History
+msgid "The Persians were known for their large cavalry contingent"
+msgstr "페르시아인들은 대규모 기병 파견대로 유명했습니다"
+
+#: simulation/data/civs/pers.jsonCivBonuses[2].Name
+msgid "Time of War"
+msgstr "전쟁의 시대"
+
 #: simulation/data/civs/ptol.jsonAINames[0]
 msgid "Ptolemy Soter"
 msgstr "프톨레마이오스 소테르"
@@ -1027,11 +1039,11 @@ msgid ""
 "of conquest and Rome's authoritarian rule."
 msgstr "갈리아인은 유럽 대륙의 켈트 부족이었습니다. 사제의 신관 계급이 지배하고 고급 금속 가공, 농업, 교역, 심지어는 도로 설계에 관한 정교한 문화가 특징이었습니다. 중장비 보병과 기병으로 갈리아 병사는 카이사르의 원정과 로마의 권위 주의적 통치에 용감하게 저항했습니다."
 
-#: simulation/templates/special/players/han.xml:17
+#: simulation/templates/special/players/han.xml:16
 msgid "Han"
 msgstr "한족"
 
-#: simulation/templates/special/players/han.xml:18
+#: simulation/templates/special/players/han.xml:17
 msgid ""
 "The Han dynasty (206 BC – AD 220) was the second imperial dynasty of China, "
 "preceded by the Qin dynasty (221–207 BC) and succeeded by the Three Kingdoms"

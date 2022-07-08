@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-20 07:33+0000\n"
+"POT-Creation-Date: 2022-07-04 07:10+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: liu lizhi <xingzuo88@qq.com>, 2022\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
@@ -303,7 +303,7 @@ msgstr "弩骑兵"
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:27
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:24
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:24
-#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:32
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:29
 msgid "Crossbowman"
 msgstr "弩手"
 
@@ -380,7 +380,7 @@ msgstr "战象"
 #: simulation/templates/template_unit_fauna_hunt_passive-defensive_elephant.xml:4
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:4
 #: simulation/templates/template_unit_hero_elephant_melee.xml:32
-#: simulation/templates/template_unit_support_elephant.xml:21
+#: simulation/templates/template_unit_support_elephant.xml:18
 msgid "Elephant"
 msgstr "大象"
 
@@ -614,7 +614,7 @@ msgstr "近战步兵"
 msgid "Infantry Maceman"
 msgstr "骨朵兵"
 
-#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:31
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:28
 msgid "Infantry Crossbowman"
 msgstr "弩手"
 
@@ -812,7 +812,7 @@ msgstr "临车"
 msgid "Siege Tower"
 msgstr "临车"
 
-#: simulation/templates/template_unit_support_elephant.xml:20
+#: simulation/templates/template_unit_support_elephant.xml:17
 msgid "Worker Elephant"
 msgstr "工象"
 
@@ -1318,7 +1318,7 @@ msgstr "布立吞战车"
 #: simulation/templates/units/brit/champion_chariot.xml:12
 #: simulation/templates/units/brit/hero_boudicca.xml:15
 #: simulation/templates/units/han/champion_chariot.xml:11
-#: simulation/templates/units/han/hero_wei_qing_chariot.xml:22
+#: simulation/templates/units/han/hero_wei_qing_chariot.xml:21
 #: simulation/templates/units/kush/hero_amanirenas.xml:16
 #: simulation/templates/units/maur/champion_chariot.xml:12
 #: simulation/templates/units/maur/hero_ashoka.xml:15
@@ -1735,7 +1735,7 @@ msgid "Liú Bāng"
 msgstr "刘邦"
 
 #: simulation/templates/units/han/hero_wei_qing.xml:16
-#: simulation/templates/units/han/hero_wei_qing_chariot.xml:21
+#: simulation/templates/units/han/hero_wei_qing_chariot.xml:20
 #: simulation/templates/units/han/hero_wei_qing_horse.xml:16
 msgid "Wèi Qīng"
 msgstr "卫青"
@@ -1805,7 +1805,7 @@ msgstr "攻城槌"
 msgid "Nǔ Chē"
 msgstr "弩车"
 
-#: simulation/templates/units/han/siege_tower.xml:5
+#: simulation/templates/units/han/siege_tower.xml:9
 msgid "Gōngchéng Tǎ"
 msgstr "攻城塔"
 
@@ -2552,17 +2552,28 @@ msgstr "巴比伦卷镰战车"
 msgid "Pila Hinduya"
 msgstr "印度战象"
 
-#: simulation/templates/units/pers/champion_infantry.xml:6
+#: simulation/templates/units/pers/champion_infantry.xml:9
+#: simulation/templates/units/pers/champion_infantry_archer.xml:9
 msgid "Persian Immortal"
 msgstr "枪兵"
 
-#: simulation/templates/units/pers/champion_infantry.xml:7
+#: simulation/templates/units/pers/champion_infantry.xml:10
+#: simulation/templates/units/pers/champion_infantry_archer.xml:10
 msgid "Anušiya"
 msgstr "长生军"
 
-#: simulation/templates/units/pers/champion_infantry.xml:8
+#: simulation/templates/units/pers/champion_infantry.xml:11
+#: simulation/templates/units/pers/champion_infantry_archer.xml:11
 msgid "Immortal"
 msgstr "长生军"
+
+#: simulation/templates/units/pers/champion_infantry.xml:25
+msgid "Switch to using the bow and arrow."
+msgstr ""
+
+#: simulation/templates/units/pers/champion_infantry_archer.xml:17
+msgid "Switch to using a spear and shield."
+msgstr ""
 
 #: simulation/templates/units/pers/hero_cyrus_ii.xml:9
 msgid "Cyrus II The Great"
@@ -2590,27 +2601,27 @@ msgstr "薛西斯一世"
 msgid "Xšayāršā"
 msgstr "薛西斯一世"
 
-#: simulation/templates/units/pers/infantry_archer_b.xml:12
+#: simulation/templates/units/pers/infantry_archer_b.xml:13
 msgid "Sogdian Archer"
 msgstr "粟特弓箭手"
 
-#: simulation/templates/units/pers/infantry_archer_b.xml:13
+#: simulation/templates/units/pers/infantry_archer_b.xml:14
 msgid "Θanuvaniya Suguda"
 msgstr "粟特弓箭手"
 
-#: simulation/templates/units/pers/infantry_javelineer_b.xml:12
+#: simulation/templates/units/pers/infantry_javelineer_b.xml:13
 msgid "Lydian Auxiliary"
 msgstr "吕底亚标枪兵"
 
-#: simulation/templates/units/pers/infantry_javelineer_b.xml:13
+#: simulation/templates/units/pers/infantry_javelineer_b.xml:14
 msgid "Pastiš Spardiya"
 msgstr "安纳托利亚标枪兵"
 
-#: simulation/templates/units/pers/infantry_spearman_b.xml:12
+#: simulation/templates/units/pers/infantry_spearman_b.xml:13
 msgid "Shield Bearer"
 msgstr "执盾手"
 
-#: simulation/templates/units/pers/infantry_spearman_b.xml:13
+#: simulation/templates/units/pers/infantry_spearman_b.xml:14
 msgid "Sparabara"
 msgstr "波斯矛兵"
 
@@ -2666,11 +2677,11 @@ msgstr "亚述冲车"
 msgid "Hamaranakuba Aθuriya"
 msgstr "亚述冲车"
 
-#: simulation/templates/units/pers/support_female_citizen.xml:11
+#: simulation/templates/units/pers/support_female_citizen.xml:12
 msgid "Banu Miyanrudani"
 msgstr "美索不达米亚妇女"
 
-#: simulation/templates/units/pers/support_female_citizen.xml:12
+#: simulation/templates/units/pers/support_female_citizen.xml:13
 msgid "Mesopotamian Woman"
 msgstr "妇女"
 

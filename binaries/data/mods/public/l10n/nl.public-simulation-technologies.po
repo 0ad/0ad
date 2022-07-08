@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-27 07:10+0000\n"
+"POT-Creation-Date: 2022-07-04 07:10+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: rollieoo, 2021-2022\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
@@ -90,6 +90,7 @@ msgstr "De Agoge"
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsonrequirementsTooltip
 #: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
+#: simulation/data/technologies/subterranean_aqueducts.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_health.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
@@ -116,7 +117,6 @@ msgstr "Boogschutterstraining"
 
 #: simulation/data/technologies/archer_attack_spread.jsonrequirementsTooltip
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
-#: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
@@ -133,7 +133,6 @@ msgstr "Boogschutterstraining"
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/hoplite_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/infantry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
@@ -258,20 +257,6 @@ msgstr "Dienstplicht"
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
 msgid "Barracks −10% batch training time."
 msgstr "Kazerne −10% rekruteringstijd voor groepen."
-
-#: simulation/data/technologies/cavalry_cost_time.jsondescription
-msgid ""
-"Calling up cavalry levies in time of war helps bolster the ranks of a king's"
-" army."
-msgstr "Extra cavalerie werven in tijden van oorlog zorgt voor een onuitputtelijk leger."
-
-#: simulation/data/technologies/cavalry_cost_time.jsongenericName
-msgid "Levy Cavalry"
-msgstr "Cavaleriewerving"
-
-#: simulation/data/technologies/cavalry_cost_time.jsontooltip
-msgid "Cavalry −10% training time."
-msgstr "Cavalerie −10% rekruteringstijd."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -976,22 +961,8 @@ msgid "Immortals"
 msgstr "Onsterfelijken"
 
 #: simulation/data/technologies/immortals.jsontooltip
-msgid "Immortals −50% training time, but −10% health."
-msgstr "Onsterfelijken −50% rekruteringstijd, maar −10% gezondheid."
-
-#: simulation/data/technologies/infantry_cost_time.jsondescription
-msgid ""
-"Calling up infantry levies in time of war helps bolster the ranks of a "
-"king's army."
-msgstr "Extra infanterie werven in tijden van oorlog zorgt voor een onuitputtelijk leger."
-
-#: simulation/data/technologies/infantry_cost_time.jsongenericName
-msgid "Levy Infantry"
-msgstr "Infanterie recruteringen"
-
-#: simulation/data/technologies/infantry_cost_time.jsontooltip
-msgid "Infantry −10% training time."
-msgstr "Infanterie −10% rekruteringstijd."
+msgid "Immortals −50% training time."
+msgstr "Onsterfelijken −50% rekruteringstijd."
 
 #: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
@@ -1091,6 +1062,7 @@ msgstr "Dummy technologie voor gebruik in template benodigdheden, vervangen door
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 #: simulation/data/technologies/phase_city_generic.jsongenericName
+#: simulation/data/technologies/phase_city_pers.jsongenericName
 msgid "City Phase"
 msgstr "Grootstadsfase"
 
@@ -1103,6 +1075,7 @@ msgstr "Ga van een bruisend stadje naar een waarachtige metropool, vol wonderen 
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_pers.jsonrequirementsTooltip
 msgid "Requires three Town Structures."
 msgstr "Vereist drie stadsgebouwen."
 
@@ -1138,6 +1111,20 @@ msgid ""
 "regeneration rate per garrisoned unit."
 msgstr "Ga door naar de grootstadsfase, die meer entiteiten en technologieën ontsluit. Beschavingscentra +50% territorium invloed. Gebouwen +9 veroverpunten herstelsnelheid per bemande eenheid."
 
+#: simulation/data/technologies/phase_city_pers.jsondescription
+msgid ""
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology. This is the Persian city phase, where stable training"
+" rates are decreased because of the 'Times of War' bonus."
+msgstr "Ga van een bruisend stadje naar een waarachtige metropool, vol met de wonderen van moderne technologie. Dit is de Perzische grootstadsfase, waar rekrutering in de stallen sneller gaat dankzij de \"Tijden van Oorlog\" bonus."
+
+#: simulation/data/technologies/phase_city_pers.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more entities and technologies. Civic "
+"Centers +50% territory influence radius. Structures +9 capture points "
+"regeneration rate per garrisoned unit. Stable −10% batch training time."
+msgstr "Ga door naar de grootstadsfase, die meer entiteiten en technologieën ontsluit. Beschavingscentra +50% territorium invloed. Gebouwen +9 veroverpunten herstelsnelheid per bemande eenheid. Stallen +-10% rekruteringstijd voor groepen."
+
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
@@ -1147,6 +1134,7 @@ msgstr "Dummy technologie voor gebruik in template benodigdheden, vervangen door
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
 #: simulation/data/technologies/phase_town_generic.jsongenericName
+#: simulation/data/technologies/phase_town_pers.jsongenericName
 msgid "Town Phase"
 msgstr "Stadsfase"
 
@@ -1159,6 +1147,7 @@ msgstr "Ga van een klein dorpje naar een bloeiende stad, klaar om snel uit te br
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_pers.jsonrequirementsTooltip
 msgid "Requires five Village Structures."
 msgstr "Vereist 5 dorpsgebouwen."
 
@@ -1192,6 +1181,20 @@ msgid ""
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
 msgstr "Ga door naar de stadsfase, die meer entiteiten en technologieën ontsluit. Beschavingscentra +30% territorium invloed. Gebouwen +7 veroverpunten herstelsnelheid per bemande eenheid."
+
+#: simulation/data/technologies/phase_town_pers.jsondescription
+msgid ""
+"Advances from a small village to a bustling town, ready to expand rapidly. "
+"This is the Persian town phase, where stable training rates are decreased "
+"because of the 'Times of War' bonus."
+msgstr "Ga van een klein dorpje naar een bloeiende stad, klaar om snel uit te breiden. Dit is de Perzische stadsfase waar rekrutering in de stallen sneller gaat dankzij de \"Tijden van Oorlog\" bonus."
+
+#: simulation/data/technologies/phase_town_pers.jsontooltip
+msgid ""
+"Advance to Town Phase, which unlocks more entities and technologies. Civic "
+"Centers +30% territory influence radius. Structures +7 capture points "
+"regeneration rate per garrisoned unit. Stable −10% batch training time."
+msgstr "Ga door naar de grootstadsfase, die meer entiteiten en technologieën ontsluit. Beschavingscentra +30% territorium invloed. Gebouwen +7 veroverpunten herstelsnelheid per bemande eenheid. Stallen -10% rekruteringstijd voor groepen."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1611,6 +1614,24 @@ msgstr "Verbeter de rekruteersnelheid van cavalerie fors door hen in grote groep
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Stables −10% batch training time."
 msgstr "Stallen −10% rekruteringstijd voor groepen."
+
+#: simulation/data/technologies/subterranean_aqueducts.jsondescription
+msgid ""
+"Qanāt or Kārēz, a network of underground aqueducts connected to the yakhchal"
+" ice house."
+msgstr "Qanāt, of Kārēz, een netwerk van ondergrondse aquaducten verbonden met de yakhchal ijskelder."
+
+#: simulation/data/technologies/subterranean_aqueducts.jsongenericName
+msgid "Subterranean Aqueducts"
+msgstr "Ondergrondse aquaducten"
+
+#: simulation/data/technologies/subterranean_aqueducts.jsonspecificName.pers
+msgid "Kārēz"
+msgstr "Kārēz"
+
+#: simulation/data/technologies/subterranean_aqueducts.jsontooltip
+msgid "Ice House +1 trickle food rate per second."
+msgstr "IJskelder +1 voedselstroom per seconde."
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""

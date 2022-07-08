@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-20 07:33+0000\n"
+"POT-Creation-Date: 2022-07-04 07:10+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: yakup <mutouk@yandex.ru>, 2014-2017,2022\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
@@ -306,7 +306,7 @@ msgstr "Süvari Arbaletçi"
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:27
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:24
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:24
-#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:32
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:29
 msgid "Crossbowman"
 msgstr "Kundaklı Yaycı"
 
@@ -383,7 +383,7 @@ msgstr "Savaş Fili"
 #: simulation/templates/template_unit_fauna_hunt_passive-defensive_elephant.xml:4
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:4
 #: simulation/templates/template_unit_hero_elephant_melee.xml:32
-#: simulation/templates/template_unit_support_elephant.xml:21
+#: simulation/templates/template_unit_support_elephant.xml:18
 msgid "Elephant"
 msgstr "Fil"
 
@@ -617,7 +617,7 @@ msgstr "Yakın Dövüş Piyadesi"
 msgid "Infantry Maceman"
 msgstr "Topuzlu Piyade"
 
-#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:31
+#: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:28
 msgid "Infantry Crossbowman"
 msgstr "Piyade Arbaletçi"
 
@@ -815,7 +815,7 @@ msgstr "Kuşatma Kulesi\n"
 msgid "Siege Tower"
 msgstr "Kuşatma Kulesi"
 
-#: simulation/templates/template_unit_support_elephant.xml:20
+#: simulation/templates/template_unit_support_elephant.xml:17
 msgid "Worker Elephant"
 msgstr "İşçi Fil"
 
@@ -1321,7 +1321,7 @@ msgstr "Essedon"
 #: simulation/templates/units/brit/champion_chariot.xml:12
 #: simulation/templates/units/brit/hero_boudicca.xml:15
 #: simulation/templates/units/han/champion_chariot.xml:11
-#: simulation/templates/units/han/hero_wei_qing_chariot.xml:22
+#: simulation/templates/units/han/hero_wei_qing_chariot.xml:21
 #: simulation/templates/units/kush/hero_amanirenas.xml:16
 #: simulation/templates/units/maur/champion_chariot.xml:12
 #: simulation/templates/units/maur/hero_ashoka.xml:15
@@ -1738,7 +1738,7 @@ msgid "Liú Bāng"
 msgstr "Liú Bāng"
 
 #: simulation/templates/units/han/hero_wei_qing.xml:16
-#: simulation/templates/units/han/hero_wei_qing_chariot.xml:21
+#: simulation/templates/units/han/hero_wei_qing_chariot.xml:20
 #: simulation/templates/units/han/hero_wei_qing_horse.xml:16
 msgid "Wèi Qīng"
 msgstr "Wèi Qīng"
@@ -1808,7 +1808,7 @@ msgstr "Kuşatma Koçbaşı"
 msgid "Nǔ Chē"
 msgstr "Nǔ Chē"
 
-#: simulation/templates/units/han/siege_tower.xml:5
+#: simulation/templates/units/han/siege_tower.xml:9
 msgid "Gōngchéng Tǎ"
 msgstr "Kuşatma Kulesi"
 
@@ -2555,17 +2555,28 @@ msgstr "Raθa Bābiruviya"
 msgid "Pila Hinduya"
 msgstr "Pila Hinduya"
 
-#: simulation/templates/units/pers/champion_infantry.xml:6
+#: simulation/templates/units/pers/champion_infantry.xml:9
+#: simulation/templates/units/pers/champion_infantry_archer.xml:9
 msgid "Persian Immortal"
 msgstr "Pers Ölümsüzü"
 
-#: simulation/templates/units/pers/champion_infantry.xml:7
+#: simulation/templates/units/pers/champion_infantry.xml:10
+#: simulation/templates/units/pers/champion_infantry_archer.xml:10
 msgid "Anušiya"
 msgstr "Anušiya"
 
-#: simulation/templates/units/pers/champion_infantry.xml:8
+#: simulation/templates/units/pers/champion_infantry.xml:11
+#: simulation/templates/units/pers/champion_infantry_archer.xml:11
 msgid "Immortal"
 msgstr "Ölümsüz"
+
+#: simulation/templates/units/pers/champion_infantry.xml:25
+msgid "Switch to using the bow and arrow."
+msgstr ""
+
+#: simulation/templates/units/pers/champion_infantry_archer.xml:17
+msgid "Switch to using a spear and shield."
+msgstr ""
 
 #: simulation/templates/units/pers/hero_cyrus_ii.xml:9
 msgid "Cyrus II The Great"
@@ -2593,27 +2604,27 @@ msgstr "I. Kserkses "
 msgid "Xšayāršā"
 msgstr "Xšayāršā"
 
-#: simulation/templates/units/pers/infantry_archer_b.xml:12
+#: simulation/templates/units/pers/infantry_archer_b.xml:13
 msgid "Sogdian Archer"
 msgstr "Sogdian Okçu"
 
-#: simulation/templates/units/pers/infantry_archer_b.xml:13
+#: simulation/templates/units/pers/infantry_archer_b.xml:14
 msgid "Θanuvaniya Suguda"
 msgstr "Θanuvaniya Suguda"
 
-#: simulation/templates/units/pers/infantry_javelineer_b.xml:12
+#: simulation/templates/units/pers/infantry_javelineer_b.xml:13
 msgid "Lydian Auxiliary"
 msgstr "Lidyalı Destek"
 
-#: simulation/templates/units/pers/infantry_javelineer_b.xml:13
+#: simulation/templates/units/pers/infantry_javelineer_b.xml:14
 msgid "Pastiš Spardiya"
 msgstr "Pastiš Spardiya"
 
-#: simulation/templates/units/pers/infantry_spearman_b.xml:12
+#: simulation/templates/units/pers/infantry_spearman_b.xml:13
 msgid "Shield Bearer"
 msgstr "Kalkancı"
 
-#: simulation/templates/units/pers/infantry_spearman_b.xml:13
+#: simulation/templates/units/pers/infantry_spearman_b.xml:14
 msgid "Sparabara"
 msgstr "Sparabara"
 
@@ -2669,11 +2680,11 @@ msgstr "Asurlu Koçbaşı"
 msgid "Hamaranakuba Aθuriya"
 msgstr "Hamaranakuba Aθuriya"
 
-#: simulation/templates/units/pers/support_female_citizen.xml:11
+#: simulation/templates/units/pers/support_female_citizen.xml:12
 msgid "Banu Miyanrudani"
 msgstr "Banu Miyanrudani"
 
-#: simulation/templates/units/pers/support_female_citizen.xml:12
+#: simulation/templates/units/pers/support_female_citizen.xml:13
 msgid "Mesopotamian Woman"
 msgstr "Mezapotamyalı Kadın"
 
