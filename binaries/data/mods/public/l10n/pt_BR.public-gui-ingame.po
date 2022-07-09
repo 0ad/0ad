@@ -74,7 +74,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-04-01 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
-"Last-Translator: Álvaro Tavares de Oliveira, 2022\n"
+"Last-Translator: Yuri Laskowski <yurinikolai00@gmail.com>, 2020,2022\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -973,11 +973,11 @@ msgstr "Achar trabalhador ocioso\nQuantidade de trabalhadores ociosos."
 #: gui/session/selection_details.js:65
 #, javascript-format
 msgid "%(secondaryName)s — Packed"
-msgstr "%(secondaryName)s — Montado"
+msgstr "%(secondaryName)s — Desmontado"
 
 #: gui/session/selection_details.js:67
 msgid "Packed"
-msgstr "Empacotado"
+msgstr "Desmontado"
 
 #: gui/session/chat/ChatAddressees.js:79 gui/session/selection_details.js:78
 #, javascript-format
@@ -1208,22 +1208,22 @@ msgstr "Não é possível treinar durante a atualização."
 #: gui/session/selection_panels.js:1137
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
-msgstr "Atualizar para um %(primaryName)s (%(secondaryName)s). %(tooltip)s"
+msgstr "Melhorar para um %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
 #: gui/session/selection_panels.js:1143
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
-msgstr "Atualizar para um %(primaryName)s (%(secondaryName)s)."
+msgstr "Melhorar para um %(primaryName)s (%(secondaryName)s)."
 
 #: gui/session/selection_panels.js:1151
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
-msgstr "Atualizar para um %(primaryName)s. %(tooltip)s"
+msgstr "Melhorar para um %(primaryName)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1156
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
-msgstr "Atualizar para um %(primaryName)s."
+msgstr "Melhorar para um %(primaryName)s."
 
 #: gui/session/selection_panels.js:1193
 msgid "Cancel Upgrading"
@@ -1783,7 +1783,7 @@ msgstr "Ordene as unidades selecionadas a entrarem em uma estrutura ou unidade."
 
 #: gui/session/unit_actions.js:1525
 msgid "Order the selected units to occupy a turret point."
-msgstr "Ordene as unidades selecionadas a ocuparem um ponto de torreta."
+msgstr "Ordene as unidades selecionadas a ocuparem uma posição de torreta."
 
 #: gui/session/unit_actions.js:1547
 msgid "Unload"

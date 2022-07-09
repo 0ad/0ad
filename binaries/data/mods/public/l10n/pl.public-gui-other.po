@@ -23,6 +23,7 @@
 # Marcin Malinowski
 # Marcin S
 # Marek Opłotny
+# Michał Dariusz Nowakowski
 # Michał Karol
 # miragae
 # Norbert D
@@ -48,7 +49,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-06-13 07:11+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Marcin S <dzidek1003@o2.pl>, 2016-2017,2020-2022\n"
+"Last-Translator: Michał Dariusz Nowakowski, 2022\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -720,22 +721,22 @@ msgstr "Nieznane Warunki zwycięstwa"
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab right."
-msgstr ""
+msgstr "Przewiń w dół lub użyj %(hotkey)s, aby przenieść kartę w prawo."
 
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab left."
-msgstr ""
+msgstr "Przewiń w górę lub użyj %(hotkey)s, aby przenieść kartę w lewo."
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab down."
-msgstr ""
+msgstr "Przewiń w dół lub użyj %(hotkey)s, aby przenieść kartę w dół."
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab up."
-msgstr ""
+msgstr "Przewiń w górę lub użyj %(hotkey)s, aby przenieść kartę w górę."
 
 #: gui/common/tooltips.js:63
 #, javascript-format
@@ -1892,7 +1893,7 @@ msgstr "Pochyl kamerę"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.desc
 msgctxt "hotkey metadata"
 msgid "Focus the camera on the rally point of the selected building."
-msgstr ""
+msgstr " Skieruj kamerę na punkt zbiórki wybranego budynku."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.name
 msgctxt "hotkey metadata"
@@ -2045,7 +2046,7 @@ msgstr "Oddal"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera zoom speed."
-msgstr ""
+msgstr " Zmniejsz szybkość przybliżania kamery."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.name
 msgctxt "hotkey metadata"
@@ -2070,7 +2071,7 @@ msgstr "Powiększ kamerę - efekt jest zależny od FPSów."
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in (step-by-step)"
-msgstr ""
+msgstr "Przybliż (krok-po-kroku)"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.desc
 msgctxt "hotkey metadata"
@@ -2080,7 +2081,7 @@ msgstr "Pomniejsz kamerę - efekt jest zależny od FPSów."
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.name
 msgctxt "hotkey metadata"
 msgid "Zoom out (step-by-step)"
-msgstr ""
+msgstr "Oddal (krok-po-kroku)"
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.desc
 msgctxt "hotkey metadata"
@@ -2125,7 +2126,7 @@ msgstr "Potwierdź"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the console."
-msgstr ""
+msgstr "Włącz konsolę."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
 msgctxt "hotkey metadata"
@@ -2145,12 +2146,12 @@ msgstr "Skopiuj do schowka"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.desc
 msgctxt "hotkey metadata"
 msgid "Cut selected text and copy to the clipboard."
-msgstr ""
+msgstr "Wytnij zaznaczony tekst i skopiuj do schowka."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.name
 msgctxt "hotkey metadata"
 msgid "Cut to clipboard"
-msgstr ""
+msgstr "Wytnij do schowka."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.desc
 msgctxt "hotkey metadata"
@@ -2162,7 +2163,7 @@ msgstr "Własny skrót klawiszowy do wyjścia do pulpitu. Domyśle skróty  (Alt
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
 msgid "Custom exit to desktop"
-msgstr ""
+msgstr "Niestandardowe wyjście do pulpitu."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
 msgctxt "hotkey metadata"
@@ -2187,7 +2188,7 @@ msgstr "Zatrzymaj/Wznów"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.desc
 msgctxt "hotkey metadata"
 msgid "Save current profiler data to logs/profile.txt."
-msgstr ""
+msgstr "Zapisz aktualne dane profilera do logs/profile.txt."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.name
 msgctxt "hotkey metadata"
@@ -2197,22 +2198,22 @@ msgstr "Zapisz profil"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the real-time profiler."
-msgstr ""
+msgstr "Aktywuj profiler w czasie rzeczywistym."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler"
-msgstr ""
+msgstr "Włącz profiler."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle HTTP/GPU modes for new profiler."
-msgstr ""
+msgstr "Włącz HTTP/GPU tryby dla nowego profilera."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler2"
-msgstr ""
+msgstr "Włącz profiler2."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
@@ -2227,7 +2228,7 @@ msgstr "Zrzut ekranu"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.desc
 msgctxt "hotkey metadata"
 msgid "Toggle product/company watermark for official screenshots."
-msgstr ""
+msgstr "Aktywuj znak wodny produktu/marki dla oficjalnych zrzutów ekranu."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
 msgctxt "hotkey metadata"
@@ -2257,42 +2258,42 @@ msgstr "Poprzednia karta"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the left of cursor."
-msgstr ""
+msgstr "Usuń słowo na lewo od kursora."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.name
 msgctxt "hotkey metadata"
 msgid "Delete before cursor"
-msgstr ""
+msgstr "Usuń przed kursorem."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the right of cursor."
-msgstr ""
+msgstr "Usuń słowo na prawo od kursora."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.name
 msgctxt "hotkey metadata"
 msgid "Delete after cursor"
-msgstr ""
+msgstr "Usuń po kursorze"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the left of cursor."
-msgstr ""
+msgstr "Przenieś kursor do początku słowa, po lewej strony kursora."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to left word"
-msgstr ""
+msgstr "Przenieś kursor do słowa po lewej stronie"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the right of cursor."
-msgstr ""
+msgstr "Przenieś kursor do początku słowa, po prawej strony kursora."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to right word"
-msgstr ""
+msgstr " Przenieś kursor do słowa po prawej stronie"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.desc
 msgctxt "hotkey metadata"
@@ -2307,12 +2308,12 @@ msgstr "Włącz pełny ekran"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.desc
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode."
-msgstr ""
+msgstr "Włącz tryb wireframe."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.wireframe.name
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode"
-msgstr ""
+msgstr "Włącz tryb wireframe"
 
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.desc
 msgctxt "hotkey metadata"

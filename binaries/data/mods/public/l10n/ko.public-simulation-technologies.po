@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-27 07:10+0000\n"
+"POT-Creation-Date: 2022-07-04 07:10+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -80,6 +80,7 @@ msgstr "아고게"
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsonrequirementsTooltip
 #: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
+#: simulation/data/technologies/subterranean_aqueducts.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_health.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
@@ -106,7 +107,6 @@ msgstr "궁수 훈련"
 
 #: simulation/data/technologies/archer_attack_spread.jsonrequirementsTooltip
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
-#: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
@@ -123,7 +123,6 @@ msgstr "궁수 훈련"
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/hoplite_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/infantry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
@@ -248,20 +247,6 @@ msgstr "징병제"
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
 msgid "Barracks −10% batch training time."
 msgstr "병영의 일괄 훈련 시간이 -10% 감소합니다."
-
-#: simulation/data/technologies/cavalry_cost_time.jsondescription
-msgid ""
-"Calling up cavalry levies in time of war helps bolster the ranks of a king's"
-" army."
-msgstr "전쟁시에 기병을 소집하여 왕의 군대를 보강하는데 도움이 됩니다."
-
-#: simulation/data/technologies/cavalry_cost_time.jsongenericName
-msgid "Levy Cavalry"
-msgstr "소집 기병"
-
-#: simulation/data/technologies/cavalry_cost_time.jsontooltip
-msgid "Cavalry −10% training time."
-msgstr "기병의 훈련 시간이 -10% 감소합니다."
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -506,7 +491,7 @@ msgstr "관리들의 체력이 +50% 증가합니다."
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr "카르타고인은 많은 교역소를 식민지로 설립하고 마침내는 북아프리카에만 3백곳 이상의 도시와 마을을 지배하기에 이르렀습니다."
+msgstr "카르타고인은 많은 교역소를 식민지로 설립하고 마침내는 북아프리카에만 3백곳 이상의 도시와 소도시를 지배하기에 이르렀습니다."
 
 #: simulation/data/technologies/colonization.jsongenericName
 msgid "Colonization"
@@ -966,22 +951,8 @@ msgid "Immortals"
 msgstr "이모탈"
 
 #: simulation/data/technologies/immortals.jsontooltip
-msgid "Immortals −50% training time, but −10% health."
-msgstr "이모탈의 훈련시간이 -50% 감소하지만, 체력이 -10% 감소합니다."
-
-#: simulation/data/technologies/infantry_cost_time.jsondescription
-msgid ""
-"Calling up infantry levies in time of war helps bolster the ranks of a "
-"king's army."
-msgstr "전쟁시에 보병을 소집하여 왕의 군대를 보강하는 데 도움이 됩니다."
-
-#: simulation/data/technologies/infantry_cost_time.jsongenericName
-msgid "Levy Infantry"
-msgstr "소집 보병"
-
-#: simulation/data/technologies/infantry_cost_time.jsontooltip
-msgid "Infantry −10% training time."
-msgstr "보병의 훈련 시간이 -10% 감소합니다."
+msgid "Immortals −50% training time."
+msgstr "이모탈의 훈련시간이 -50% 감소합니다."
 
 #: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
@@ -1081,6 +1052,7 @@ msgstr "phase_city_generic 또는 phase_city_{civ}로 대체된 서식 요구 �
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 #: simulation/data/technologies/phase_city_generic.jsongenericName
+#: simulation/data/technologies/phase_city_pers.jsongenericName
 msgid "City Phase"
 msgstr "도시 단계"
 
@@ -1089,10 +1061,11 @@ msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
-msgstr "번화한 도시에서 현재 기술의 경이로움으로 가득찬 진정한 대도시로 발전합니다. 아테네 도시 단계에서는 '은 올빼미' 보너스로 인해 금속 채집량이 증가합니다."
+msgstr "분주한 소도시에서 현재 기술의 경이로움으로 가득찬 진정한 대도시로 발전합니다. 아테네 도시 단계에서는 '은 올빼미' 보너스로 인해 금속 채집량이 증가합니다."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_pers.jsonrequirementsTooltip
 msgid "Requires three Town Structures."
 msgstr "3개의 소도시 건축물이 필요합니다."
 
@@ -1115,7 +1088,7 @@ msgstr "더 많은 개체들과 기술을 잠금 해제하는 도시 단계로 �
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology."
-msgstr "번화한 도시에서 현재 기술의 경이로움으로 가득찬 진정한 대도시로 발전합니다."
+msgstr "분주한 소도시에서 현재 기술의 경이로움으로 가득찬 진정한 대도시로 발전합니다."
 
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.han
 msgid "Jùn"
@@ -1128,6 +1101,20 @@ msgid ""
 "regeneration rate per garrisoned unit."
 msgstr "더 많은 개체들과 기술을 잠금해제하는 도시 단계로 진행합니다. 시민 회관 영토 영향 반경이 +50% 증가합니다. 건축물은 주둔한 유닛당 점령 포인트 회복 속도가 +9 증가합니다."
 
+#: simulation/data/technologies/phase_city_pers.jsondescription
+msgid ""
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology. This is the Persian city phase, where stable training"
+" rates are decreased because of the 'Times of War' bonus."
+msgstr "분주한 소도시에서 현대 기술의 경이로운 것으로 가득한 진정한 대도시로 발전합니다. 이것은 '전쟁의 시대' 보너스 때문에 안정적인 훈련율이 떨어지는 페르시아 도시 단계입니다."
+
+#: simulation/data/technologies/phase_city_pers.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more entities and technologies. Civic "
+"Centers +50% territory influence radius. Structures +9 capture points "
+"regeneration rate per garrisoned unit. Stable −10% batch training time."
+msgstr "더 많은 개체들과 기술을 잠금 해제하는 도시 단계로 진행합니다. 시민 회관 영토 영향 반경이 +50% 증가합니다. 건축물은 주둔한 유닛당 점령 포인트 회복율이 +9 증가합니다. 사육장은 일괄 훈련 시간이 -10% 감소합니다."
+
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
@@ -1137,6 +1124,7 @@ msgstr "서식 요구사항에 사용하기 위한 더미 기술이며, phase_to
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
 #: simulation/data/technologies/phase_town_generic.jsongenericName
+#: simulation/data/technologies/phase_town_pers.jsongenericName
 msgid "Town Phase"
 msgstr "소도시 단계"
 
@@ -1145,10 +1133,11 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr "작은 부락에서 번화한 소도시로 빠르게 확장 할 준비가 되었습니다. 이것은 '은 올빼미' 보너스로 인해 금속 채집률이 상승하는 아테네 소도시 단계입니다."
+msgstr "작은 마을에서 분주한 소도시로 빠르게 확장할 준비가 되었습니다. 이것은 '은 올빼미' 보너스로 인해 금속 채집률이 상승하는 아테네 소도시 단계입니다."
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_pers.jsonrequirementsTooltip
 msgid "Requires five Village Structures."
 msgstr "5개의 부락 건축물이 필요합니다."
 
@@ -1170,7 +1159,7 @@ msgstr "더 많은 개체들과 기술을 잠금 해제하는 소도시 단계�
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr "작은 부락에서 번화한 소도시로 빠르게 확장할 준비가 되었습니다."
+msgstr "작은 마을에서 분주한 소도시로 빠르게 확장할 준비가 되었습니다."
 
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.han
 msgid "Xìan"
@@ -1182,6 +1171,20 @@ msgid ""
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
 msgstr "더 많은 개체들과 기술을 잠금 해제하는 소도시 다녜로 진행합니다. 시민 회관 영토 영향 반경이 +30% 증가합니다. 건축물은 주둔한 유닛당 점령 포인트 회복 속도가 +7 증가합니다."
+
+#: simulation/data/technologies/phase_town_pers.jsondescription
+msgid ""
+"Advances from a small village to a bustling town, ready to expand rapidly. "
+"This is the Persian town phase, where stable training rates are decreased "
+"because of the 'Times of War' bonus."
+msgstr "작은 마을에서 분주한 소도시로 빠르게 확장할 준비가 되었습니다. 이것은 '전쟁의 시대' 보너스로 인해 안정적인 훈련률이 감소하는 페르시아의 소도시 단계입니다."
+
+#: simulation/data/technologies/phase_town_pers.jsontooltip
+msgid ""
+"Advance to Town Phase, which unlocks more entities and technologies. Civic "
+"Centers +30% territory influence radius. Structures +7 capture points "
+"regeneration rate per garrisoned unit. Stable −10% batch training time."
+msgstr "더 많은 개체들과 기술을 잠금 해제하는 소도시 단계로 진행합니다. 시민 회관 영토 영향 반경이 +30% 증가합니다. 건축물은 주둔한 유닛당 점령 포인트 회복율이 +7 증가합니다. 사육장은 일괄 훈련 시간이 -10% 감소합니다."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1602,6 +1605,24 @@ msgstr "기병을 대규모 무리 또는 편대에서 훈련시켜 기병의 �
 msgid "Stables −10% batch training time."
 msgstr "사육장의 일괄 훈련 시간이 -10% 감소합니다."
 
+#: simulation/data/technologies/subterranean_aqueducts.jsondescription
+msgid ""
+"Qanāt or Kārēz, a network of underground aqueducts connected to the yakhchal"
+" ice house."
+msgstr "Qanāt 또는 Kārēz, Yakhchāl 얼음 저장고에 연결된 지하 수로 네트워크입니다."
+
+#: simulation/data/technologies/subterranean_aqueducts.jsongenericName
+msgid "Subterranean Aqueducts"
+msgstr "지하 수로"
+
+#: simulation/data/technologies/subterranean_aqueducts.jsonspecificName.pers
+msgid "Kārēz"
+msgstr "Kārēz"
+
+#: simulation/data/technologies/subterranean_aqueducts.jsontooltip
+msgid "Ice House +1 trickle food rate per second."
+msgstr "얼음 저장고의 매초 조금씩 나오는 음식 속도가 +1 증가합니다."
+
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""
 "Crenellations on the battlements allow soldiers wider range of fire in "
@@ -1752,7 +1773,7 @@ msgstr "아프리카 코끼리의 자원 비용, 훈련 시간, 체력, 공격 �
 msgid ""
 "Indian Elephants +10% resource costs, training time, health, attack damage, "
 "and loot."
-msgstr "인도 코끼리의 자원 비용, 훈련 시간, 체력, 공격 피해량 , 약탈이 +10% 증가합니다."
+msgstr "인도 코끼리의 자원 비용, 훈련 시간, 체력, 공격 피해량, 약탈이 +10% 증가합니다."
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""

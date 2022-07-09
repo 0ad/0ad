@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-27 07:10+0000\n"
+"POT-Creation-Date: 2022-07-04 07:10+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2021-2022\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -82,6 +82,7 @@ msgstr "斯巴達教育"
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsonrequirementsTooltip
 #: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
+#: simulation/data/technologies/subterranean_aqueducts.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_health.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_murderholes.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_02.jsonrequirementsTooltip
@@ -108,7 +109,6 @@ msgstr "箭術訓練"
 
 #: simulation/data/technologies/archer_attack_spread.jsonrequirementsTooltip
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
-#: simulation/data/technologies/cavalry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/cavalry_health.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_engineering_01.jsonrequirementsTooltip
 #: simulation/data/technologies/civil_service_01.jsonrequirementsTooltip
@@ -125,7 +125,6 @@ msgstr "箭術訓練"
 #: simulation/data/technologies/heal_range.jsonrequirementsTooltip
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/hoplite_tradition.jsonrequirementsTooltip
-#: simulation/data/technologies/infantry_cost_time.jsonrequirementsTooltip
 #: simulation/data/technologies/iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
@@ -250,20 +249,6 @@ msgstr "募兵"
 #: simulation/data/technologies/barracks_batch_training.jsontooltip
 msgid "Barracks −10% batch training time."
 msgstr "軍營 -10% 批次訓練時間。"
-
-#: simulation/data/technologies/cavalry_cost_time.jsondescription
-msgid ""
-"Calling up cavalry levies in time of war helps bolster the ranks of a king's"
-" army."
-msgstr "在戰時徵召騎兵協助支援國王的軍隊。"
-
-#: simulation/data/technologies/cavalry_cost_time.jsongenericName
-msgid "Levy Cavalry"
-msgstr "徵召騎兵"
-
-#: simulation/data/technologies/cavalry_cost_time.jsontooltip
-msgid "Cavalry −10% training time."
-msgstr "騎兵 -10% 訓練時間。"
 
 #: simulation/data/technologies/cavalry_health.jsondescription
 msgid "Selectively breed better war horses."
@@ -477,7 +462,7 @@ msgstr "所有建築 -10% 建造時間和 -10% 成本。"
 
 #: simulation/data/technologies/civil_engineering_02.jsongenericName
 msgid "Robust Architecture"
-msgstr "強大的架構"
+msgstr "堅固的架構"
 
 #: simulation/data/technologies/civil_engineering_02.jsontooltip
 msgid "All structures +20% health."
@@ -968,22 +953,8 @@ msgid "Immortals"
 msgstr "長生軍"
 
 #: simulation/data/technologies/immortals.jsontooltip
-msgid "Immortals −50% training time, but −10% health."
-msgstr "長生軍 -50% 訓練時間，但是 -10% 生命值"
-
-#: simulation/data/technologies/infantry_cost_time.jsondescription
-msgid ""
-"Calling up infantry levies in time of war helps bolster the ranks of a "
-"king's army."
-msgstr "在戰時徵召步兵協助支援國王的軍隊。"
-
-#: simulation/data/technologies/infantry_cost_time.jsongenericName
-msgid "Levy Infantry"
-msgstr "徵召步兵"
-
-#: simulation/data/technologies/infantry_cost_time.jsontooltip
-msgid "Infantry −10% training time."
-msgstr "步兵 -10% 訓練時間。"
+msgid "Immortals −50% training time."
+msgstr "長生軍 -50% 訓練時間。"
 
 #: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
@@ -1083,6 +1054,7 @@ msgstr "用於模板需要的假技術，由phase_city_generic 或 phase_city_{c
 #: simulation/data/technologies/phase_city.jsongenericName
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 #: simulation/data/technologies/phase_city_generic.jsongenericName
+#: simulation/data/technologies/phase_city_pers.jsongenericName
 msgid "City Phase"
 msgstr "城市階段"
 
@@ -1091,10 +1063,11 @@ msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Athenian city phase, where metal "
 "gathering rates are boosted because of the 'Silver Owls' bonus."
-msgstr "從繁華的大城市進展為一個名副其實的大都市，充滿著奇蹟與現代科技。這就是雅典人的城市階段，其中金屬採集速率因為「銀鴞」的加值而大大的提升。"
+msgstr "從繁華的大城市進展為一個名副其實的大都市，充滿著奇蹟與現代科技。這就是雅典人的城市階段，其中金屬採集速率因為「銀鴞」的加成而大幅提升。"
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_city_pers.jsonrequirementsTooltip
 msgid "Requires three Town Structures."
 msgstr "需要三座鄉鎮建築。"
 
@@ -1111,7 +1084,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "發展到城市階段，解鎖更多單位、建築和科技。城鎮中心 +50% 領土影響半徑。每個駐紮單位使建築 +9 占領值恢復速率。工人 +10% 金屬採集速率。"
+msgstr "發展到城市階段，解鎖更多單位、建築和科技。城鎮中心 +50% 領土影響半徑。每個駐紮單位使建築 +9 占領值恢復率。工人 +10% 金屬採集速率。"
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1130,6 +1103,20 @@ msgid ""
 "regeneration rate per garrisoned unit."
 msgstr "發展到城市階段，解鎖更多單位、建築和科技。城鎮中心 +50% 領土影響半徑。每個駐紮單位使建築 +9 占領值數恢復速率。"
 
+#: simulation/data/technologies/phase_city_pers.jsondescription
+msgid ""
+"Advances from a bustling town to a veritable metropolis, full of the wonders"
+" of modern technology. This is the Persian city phase, where stable training"
+" rates are decreased because of the 'Times of War' bonus."
+msgstr "從繁華的大城市進展為一個名副其實的大都市，充滿著奇蹟與現代科技。這就是波斯人的城市階段，其中馬廄的訓練速率因為「戰爭時期」的加成而大幅降低。"
+
+#: simulation/data/technologies/phase_city_pers.jsontooltip
+msgid ""
+"Advance to City Phase, which unlocks more entities and technologies. Civic "
+"Centers +50% territory influence radius. Structures +9 capture points "
+"regeneration rate per garrisoned unit. Stable −10% batch training time."
+msgstr "發展到城市階段，解鎖更多單位、建築和科技。城鎮中心 +50% 領土影響半徑。每個駐紮單位使建築 +9 占領值恢復率。馬廄 -10% 批次訓練時間。"
+
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
 "Dummy technology for use in templates requirements, replaced by "
@@ -1139,6 +1126,7 @@ msgstr "用於模板需要的假科技，由 phase_town_generic 或 phase_town_{
 #: simulation/data/technologies/phase_town.jsongenericName
 #: simulation/data/technologies/phase_town_athen.jsongenericName
 #: simulation/data/technologies/phase_town_generic.jsongenericName
+#: simulation/data/technologies/phase_town_pers.jsongenericName
 msgid "Town Phase"
 msgstr "鄉鎮階段"
 
@@ -1147,10 +1135,11 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Athenian town phase, where metal gathering rates are boosted "
 "because of the 'Silver Owls' bonus."
-msgstr "從小村莊進展為繁華的城鎮，準備好快速擴張。這就是雅典人的鄉鎮階段，其中金屬採集速率因為「銀鴞」的加值而大大的提升。"
+msgstr "從小村莊進展為繁華的城鎮，準備好快速擴張。這就是雅典人的鄉鎮階段，其中金屬採集速率因為「銀鴞」的加成而大幅提升。"
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
+#: simulation/data/technologies/phase_town_pers.jsonrequirementsTooltip
 msgid "Requires five Village Structures."
 msgstr "需要五個村莊建築。"
 
@@ -1184,6 +1173,20 @@ msgid ""
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit."
 msgstr "發展到鄉鎮階段，解鎖更多單位、建築和科技。城鎮中心 +30% 領土影響半徑。每個駐紮單位使建築 +7 占領值恢復速率。"
+
+#: simulation/data/technologies/phase_town_pers.jsondescription
+msgid ""
+"Advances from a small village to a bustling town, ready to expand rapidly. "
+"This is the Persian town phase, where stable training rates are decreased "
+"because of the 'Times of War' bonus."
+msgstr "從小村莊進展為繁華的城鎮，準備好快速擴張。這就是波斯人的鄉鎮階段，其中馬廄的訓練速率因為「戰爭時期」的加成而大幅降低。"
+
+#: simulation/data/technologies/phase_town_pers.jsontooltip
+msgid ""
+"Advance to Town Phase, which unlocks more entities and technologies. Civic "
+"Centers +30% territory influence radius. Structures +7 capture points "
+"regeneration rate per garrisoned unit. Stable −10% batch training time."
+msgstr "發展到鄉鎮階段，解鎖更多單位、建築和科技。城鎮中心 +30% 領土影響半徑。每個駐紮單位使建築 +7 占領值恢復率。馬廄 -10% 批次訓練時間。"
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1348,7 +1351,7 @@ msgstr "裝甲鍍鎳"
 
 #: simulation/data/technologies/siege_health.jsontooltip
 msgid "Battering Rams and Siege Towers +25% health."
-msgstr "攻城槌及攻城塔 +25%生命值。"
+msgstr "攻城槌及攻城塔 +25% 生命值。"
 
 #: simulation/data/technologies/siege_pack_unpack.jsondescription
 msgid "Military engineers are responsible for improvements in siege engines."
@@ -1603,6 +1606,24 @@ msgstr "大規模訓練顯著提升騎兵的訓練速度。"
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Stables −10% batch training time."
 msgstr "馬廄 -10% 批次訓練時間。"
+
+#: simulation/data/technologies/subterranean_aqueducts.jsondescription
+msgid ""
+"Qanāt or Kārēz, a network of underground aqueducts connected to the yakhchal"
+" ice house."
+msgstr "坎兒井或坎爾井，一個連接到冰窖的地下渡槽網路。"
+
+#: simulation/data/technologies/subterranean_aqueducts.jsongenericName
+msgid "Subterranean Aqueducts"
+msgstr "地下渡槽"
+
+#: simulation/data/technologies/subterranean_aqueducts.jsonspecificName.pers
+msgid "Kārēz"
+msgstr "坎兒井"
+
+#: simulation/data/technologies/subterranean_aqueducts.jsontooltip
+msgid "Ice House +1 trickle food rate per second."
+msgstr "冰窖 +1 每秒食物細流率。"
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""
