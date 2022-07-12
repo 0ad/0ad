@@ -6,13 +6,14 @@
 # Adrian Chaves
 # Adrián Chaves Fernández
 # mandruis
+# Nicolás Gómez
 # Stanislas Dolcini
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-06-13 07:11+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>, 2021\n"
+"Last-Translator: Nicolás Gómez, 2022\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +30,7 @@ msgstr "FPS: %(fps)4s"
 #: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s - %(templateName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -259,7 +260,7 @@ msgstr "desactivado"
 
 #: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
-msgstr ""
+msgstr "Durante os primeiros %(min)s minutos, o resto de xogadores permanecerán neutrais."
 
 #: gui/common/gamedescription.js:279
 #, javascript-format
@@ -327,7 +328,7 @@ msgstr "Recursos iniciais"
 #: gui/common/gamedescription.js:353
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Por Xogador"
 
 #: gui/common/gamedescription.js:354
 #, javascript-format
@@ -341,11 +342,11 @@ msgstr "Límite de poboación"
 #: gui/common/gamedescription.js:369
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Por Xogador"
 
 #: gui/common/gamedescription.js:377
 msgid "World Population Cap"
-msgstr ""
+msgstr "Poboación mundial máxima"
 
 #: gui/common/gamedescription.js:385
 msgid "Treasures"
@@ -371,7 +372,7 @@ msgstr "Mostrar mapa"
 
 #: gui/common/gamedescription.js:402
 msgid "Allied View"
-msgstr ""
+msgstr "Vista dos aliados"
 
 #: gui/common/gamedescription.js:407
 msgid "Cheats"
@@ -470,7 +471,7 @@ msgstr ""
 
 #: gui/common/network.js:72
 msgid "You have been banned."
-msgstr ""
+msgstr "Fuches vedado."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
@@ -498,7 +499,7 @@ msgstr ""
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
-msgstr ""
+msgstr "A contrasinal é inválida"
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
@@ -772,7 +773,7 @@ msgstr ""
 #: gui/common/tooltips.js:247 gui/common/tooltips.js:387
 msgctxt "damage type"
 msgid "Capture"
-msgstr ""
+msgstr "Capturar"
 
 #: gui/common/tooltips.js:262
 msgid "Status Effects:"
@@ -1015,7 +1016,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:578
 msgid "Garrison Size"
-msgstr ""
+msgstr "Tamaño do acuartelamento"
 
 #: gui/common/tooltips.js:581
 msgctxt "nested garrison"
@@ -1237,8 +1238,8 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 #: gui/common/tooltips.js:1048
 msgid "Health"
 msgid_plural "Health"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Vida"
+msgstr[1] "Vida"
 
 #: gui/common/tooltips.js:1072
 #, javascript-format
@@ -2054,7 +2055,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.name
 msgctxt "hotkey metadata"
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.desc
 msgctxt "hotkey metadata"
@@ -5213,7 +5214,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:133
 msgid "Load Campaign"
-msgstr ""
+msgstr "Cargar Campaña"
 
 #: gui/pregame/MainMenuItems.js:143 gui/pregame/MainMenuItems.js:193
 msgid "Replays"
@@ -5363,7 +5364,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXVI: Zhuangzi"
-msgstr ""
+msgstr "Alpha XXVI: Zhuangzi"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
