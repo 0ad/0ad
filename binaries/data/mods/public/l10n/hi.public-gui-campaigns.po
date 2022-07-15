@@ -6,13 +6,13 @@
 # Ravi Kumar
 # Mangat Ram
 # jaiprak tiger
-# Ajaysinh Nayak
+# Ritwik Raghav
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2022-04-18 07:10+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: Ajaysinh Nayak, 2022\n"
+"Last-Translator: Ritwik Raghav, 2022\n"
 "Language-Team: Hindi (https://www.transifex.com/wildfire-games/teams/17418/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,16 +26,18 @@ msgid ""
 "Discover the new and improved maps in Alpha XXVI with a demo campaign, "
 "taking you through all of them."
 msgstr ""
+"परीक्षण अभियान के साथ अल्फा २६ के नये और उन्नत मानचित्रों का अनुभव करें। यह "
+"आपको उन सभी की सैर करवायेगा।"
 
 #: campaigns/new_maps.jsonName
 msgctxt "Campaign Template"
 msgid "Demo campaign - new maps"
-msgstr "डेमो अभियान"
+msgstr "परीक्षण अभियान - नये मानचित्र"
 
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
-msgstr "सीखिए कि कैसे खेलें 0 A.D."
+msgstr "0 A.D. खेलना सीखिये"
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
 msgctxt "Campaign Template"
@@ -46,8 +48,11 @@ msgid ""
 " fast at the start, be prepared to run through the initial bit several "
 "times."
 msgstr ""
-"ये नक्शा खेल को लगभग उचित प्रकार से शुरू करने के लिए पथ प्रदर्शन करता है। खेल की शुरुआत में सबसे जरूरी वस्तु है, जितनी तेजी से हो सके साधन इक्कठे करना ताकि आप बाद में पर्याप्त सैनिक तैयार कर सके।\n"
-"चेतावनी: ये शुुुरुआत में बहुत तेज रहेगा, इस दौर को कई बार चलाने केे लिए तैयार रहें।"
+"यह मानचित्र खेल को प्रभावशाली तरीके से शुरु करने का एक कच्चा मार्गदर्शन करता"
+" है। आरंभिक खेल में सबसे महत्त्वपूर्ण वस्तु यह है कि जितनी तेजी से हो सके, "
+"संसाधन जुटाया जाये ताकि आप बाद में पर्याप्त सेना निर्माण कर सकें। चेतावनी : "
+"आरंभ में यह अत्यंत तेजी से होता है, इस आद्य काल से कई बार गुजरने के लिए "
+"तैयार रहें।"
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
@@ -57,7 +62,7 @@ msgstr "आर्थिक पूर्वाभ्यास"
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "ये आपको 0 A.D. खेलने की शुरूआत करने के लिए आधारभूत पाठ है।"
+msgstr "आपका 0 A.D. खेलना आरंभ करवाने के लिये यह एक मूलभूत पाठ है।"
 
 #: campaigns/tutorial.jsonLevels.introduction.Name
 msgctxt "Campaign Template"
@@ -72,7 +77,7 @@ msgstr "पाठ"
 #: gui/campaigns/default_menu/CampaignMenu.js:155
 msgctxt "campaign status"
 msgid "Completed"
-msgstr "समाप्त"
+msgstr "पूर्ण"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:157
 msgctxt "campaign status"
@@ -82,11 +87,11 @@ msgstr "उपलब्ध"
 #: gui/campaigns/default_menu/CampaignMenu.js:216
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr "अभियान के चलने में दिक्कत %s:%s"
+msgstr "अभियान चालन लोड करने में त्रुटि %s:%s"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
-msgstr "मिशन का नाम"
+msgstr "अभियान का नाम"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
 msgid "No scenario selected"
@@ -94,7 +99,7 @@ msgstr "किसी भी पटकथा का चयन नहीं"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):58
 msgid "Back to Main Menu"
-msgstr "मैन मेनू में वापस जाए"
+msgstr "मुख्य तालिका में वापस जायें"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):62
 msgid "Saved Games"
@@ -106,7 +111,7 @@ msgstr "पटकथा शुरू करें"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):69
 msgid "Resume Saved Game"
-msgstr "संरक्षित खेल जारी रखें"
+msgstr "संरक्षित खेल पुनरारंभ करें"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):27
 msgctxt "campaignLevelList"
@@ -120,14 +125,13 @@ msgstr "स्थिति"
 
 #: gui/campaigns/load_modal/LoadModal.js:18
 msgid "file cannot be loaded"
-msgstr "दस्तावेज नहीं उठा सकते"
+msgstr "फाइल लोड नहीं किया जा सका"
 
 #: gui/campaigns/load_modal/LoadModal.js:104
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
 msgstr ""
-"क्या आप चाल %s को मिटाने के प्रति आश्वस्त हैं ? इसको वापस सुधारा नहीं जा "
-"सकेगा।"
+"क्या आप चाल %s को मिटाने के प्रति आश्वस्त हैं? इसे बदला नहीं जा सकेगा।"
 
 #: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
@@ -152,7 +156,7 @@ msgstr "कोई चलायमान अभियान नहीं"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
-msgstr "चयनित चाल का नाम:"
+msgstr "चयनित चाल का नाम :"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):31
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
@@ -190,7 +194,7 @@ msgstr "किसी भी अभियान का चयन नहीं"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
 msgid "Main Menu"
-msgstr "प्रमुख तालिका सूची"
+msgstr "मुख्य तालिका"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(heading):26
 msgctxt "campaignsetup"

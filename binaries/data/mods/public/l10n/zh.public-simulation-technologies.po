@@ -214,7 +214,7 @@ msgstr "孙子兵法"
 
 #: simulation/data/technologies/art_of_war.jsontooltip
 msgid "All Citizen-Soldiers −20% required promotion experience."
-msgstr ""
+msgstr "全部民兵的升级所需经验 -20% ."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -452,7 +452,7 @@ msgstr "民居和经济设施的木材成本和生命值 −40％."
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
 msgid "Improved Construction"
-msgstr ""
+msgstr "建筑改良"
 
 #: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
 #: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
@@ -461,19 +461,19 @@ msgstr "工程"
 
 #: simulation/data/technologies/civil_engineering_01.jsontooltip
 msgid "All structures −10% build time and −10% cost."
-msgstr ""
+msgstr "所有建筑的建造时间 -10% 、资源花费 -10% ."
 
 #: simulation/data/technologies/civil_engineering_02.jsongenericName
 msgid "Robust Architecture"
-msgstr ""
+msgstr "坚固的建筑"
 
 #: simulation/data/technologies/civil_engineering_02.jsontooltip
 msgid "All structures +20% health."
-msgstr ""
+msgstr "所有建筑的生命值 +20% ."
 
 #: simulation/data/technologies/civil_service_01.jsongenericName
 msgid "Efficient Bureaucracy"
-msgstr ""
+msgstr "吏治高效"
 
 #: simulation/data/technologies/civil_service_01.jsonspecificName.han
 #: simulation/data/technologies/civil_service_02.jsonspecificName.han
@@ -482,15 +482,15 @@ msgstr "官僚"
 
 #: simulation/data/technologies/civil_service_01.jsontooltip
 msgid "Ministers −50% train time."
-msgstr ""
+msgstr "官吏的训练时间 -50% . "
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
 msgid "Intensive Training"
-msgstr ""
+msgstr "强化训练"
 
 #: simulation/data/technologies/civil_service_02.jsontooltip
 msgid "Ministers +50% health."
-msgstr ""
+msgstr "官吏的生命值 +50% ."
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -508,7 +508,7 @@ msgstr "民政设施：建造时间 -25% ，资源花费 -25% ."
 
 #: simulation/data/technologies/crossbow_training.jsondescription
 msgid "The Han had a penchant for using massed crossbowmen in battle."
-msgstr ""
+msgstr "汉朝士兵在战场上使用了大量弓弩。"
 
 #: simulation/data/technologies/crossbow_training.jsongenericName
 msgid "Crossbow Training"
@@ -516,7 +516,7 @@ msgstr "射艺"
 
 #: simulation/data/technologies/crossbow_training.jsontooltip
 msgid "Crossbow Infantry and Cavalry −20% train time."
-msgstr ""
+msgstr "步弩和骑弩的训练时间 -20% ."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -630,7 +630,7 @@ msgstr "汲水器"
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
 msgid "Workers +20% rice gather rate."
-msgstr ""
+msgstr "工人稻田效率 +20% ."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -957,7 +957,7 @@ msgstr "长生军"
 
 #: simulation/data/technologies/immortals.jsontooltip
 msgid "Immortals −50% training time."
-msgstr ""
+msgstr "长生军训练时间 -50% ."
 
 #: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
@@ -1028,11 +1028,11 @@ msgstr "传统或改革"
 
 #: simulation/data/technologies/pair_unlock_civil_engineering_han.jsongenericName
 msgid "Civil Engineering"
-msgstr ""
+msgstr "土木工程"
 
 #: simulation/data/technologies/pair_unlock_civil_service_han.jsongenericName
 msgid "Civil Service"
-msgstr ""
+msgstr "吏治体系"
 
 #: simulation/data/technologies/parade_of_daphne.jsondescription
 msgid ""
@@ -1111,14 +1111,14 @@ msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Persian city phase, where stable training"
 " rates are decreased because of the 'Times of War' bonus."
-msgstr ""
+msgstr "从繁华的城镇，进展为名副其实的城市，充满了奇观与现代技术。此为波斯的城市阶段，鉴于“战时”科技的辅助，马厩单位的生产效率大幅提升。"
 
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Stable −10% batch training time."
-msgstr ""
+msgstr "升级到城市阶段，解锁更多单位、科技及建筑. 市政中心的疆域影响范围 +50% . 马厩的批次训练时间 -10% . 每驻扎一名单位，建筑占领点就 +9 . "
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1182,14 +1182,14 @@ msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Persian town phase, where stable training rates are decreased "
 "because of the 'Times of War' bonus."
-msgstr ""
+msgstr "从小乡村发展为繁华城镇，准备快速扩张吧。此为波斯的城镇阶段，鉴于“战时”科技的辅助，马厩单位的生产效率大幅提升。"
 
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit. Stable −10% batch training time."
-msgstr ""
+msgstr "进展到城镇阶段，解锁了更多单位i、建筑及科技。市政中心的领土影响范围 +30% .马厩的批次训练时间 -10% . 每驻扎一名单位，建筑占领点就 +7 . "
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1287,7 +1287,7 @@ msgstr "以横梁加固船体。"
 
 #: simulation/data/technologies/ship_health.jsongenericName
 msgid "Reinforced Hull"
-msgstr ""
+msgstr "横梁加固"
 
 #: simulation/data/technologies/ship_health.jsontooltip
 msgid "Ships +25% health."
@@ -1614,19 +1614,19 @@ msgstr "马厩单位的批量训练时间 -10% ."
 msgid ""
 "Qanāt or Kārēz, a network of underground aqueducts connected to the yakhchal"
 " ice house."
-msgstr ""
+msgstr "坎儿井，可连接到冰窖的地下渡槽。"
 
 #: simulation/data/technologies/subterranean_aqueducts.jsongenericName
 msgid "Subterranean Aqueducts"
-msgstr ""
+msgstr "地下渡槽"
 
 #: simulation/data/technologies/subterranean_aqueducts.jsonspecificName.pers
 msgid "Kārēz"
-msgstr ""
+msgstr "坎儿井"
 
 #: simulation/data/technologies/subterranean_aqueducts.jsontooltip
 msgid "Ice House +1 trickle food rate per second."
-msgstr ""
+msgstr "冰窖的食物涓流每秒 +1 ."
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""
