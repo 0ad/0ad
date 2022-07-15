@@ -82,7 +82,8 @@ AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 	"GetPlayerByID": pID => 10 // Called in helpers/player.js::QueryPlayerIDInterface(), as part of Tests T2 and T5.
 });
 AddMock(SYSTEM_ENTITY, IID_TemplateManager, {
-	"GetTemplate": () => template // Called in components/Upgrade.js::ChangeUpgradedEntityCount().
+	"GetTemplate": () => template, // Called in components/Upgrade.js::ChangeUpgradedEntityCount().
+	"TemplateExists": (templ) => true
 });
 AddMock(SYSTEM_ENTITY, IID_Timer, {
 	"SetInterval": () => 1, // Called in components/Upgrade.js::Upgrade().
@@ -113,6 +114,9 @@ AddMock(10, IID_Player, {
 	"GetPlayerID": () => playerID, // Called in helpers/Player.js::QueryOwnerInterface() (and several times below).
 	"TrySubtractResources": () => true // Called in components/Upgrade.js::Upgrade().
 });
+AddMock(10, IID_Identity, {
+	"GetCiv": () => civCode
+});
 
 // Create an entity with an Upgrade component:
 AddMock(20, IID_Ownership, {
@@ -126,6 +130,7 @@ AddMock(20, IID_ProductionQueue, {
 });
 let cmpUpgrade = ConstructComponent(20, "Upgrade", template.Upgrade);
 cmpUpgrade.owner = playerID;
+cmpUpgrade.OnOwnershipChanged({ "to": playerID });
 
 /**
  * Now to start the test proper
