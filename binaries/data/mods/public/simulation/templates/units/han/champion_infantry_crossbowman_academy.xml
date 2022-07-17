@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry_crossbowman">
+  <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Juezhang</SpecificName>
+    <Icon>units/mace_champion_infantry_crossbowman.png</Icon>
+    <RequiredTechnology>phase_city</RequiredTechnology>
+  </Identity>
+  <VisualActor>
+    <Actor>units/han/infantry_crossbowman_c.xml</Actor>
+  </VisualActor>
+</Entity>

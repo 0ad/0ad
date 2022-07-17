@@ -2,7 +2,7 @@
 <Entity parent="template_unit_infantry_melee_pikeman">
   <Attack>
     <Melee>
-      <AttackName>Halberdier</AttackName>
+      <AttackName>Ji</AttackName>
       <Damage>
         <Hack op="add">1</Hack>
         <Pierce op="add">1</Pierce>
@@ -17,6 +17,7 @@
   <Identity>
     <Civ>han</Civ>
     <SelectionGroupName>units/han/infantry_pikeman_b</SelectionGroupName>
+    <GenericName>Halberdier</GenericName>
     <SpecificName>Jǐ Bīng</SpecificName>
     <Icon>units/han/infantry_halberdman.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
