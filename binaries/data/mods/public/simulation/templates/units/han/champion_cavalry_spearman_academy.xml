@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="units/han/champion_cavalry_spearman">
+<Entity parent="template_unit_champion_cavalry_spearman">
   <Identity>
+    <Civ>han</Civ>
+    <SpecificName>Wu Wei Yin Cao Cao Guard</SpecificName>
+    <SelectionGroupName>units/han/champion_cavalry</SelectionGroupName>
+    <Icon>units/han/champion_cavalry_spearman.png</Icon>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
+  <VisualActor>
+    <Actor>units/han/cavalry_spearman_c_m.xml</Actor>
+  </VisualActor>
 </Entity>

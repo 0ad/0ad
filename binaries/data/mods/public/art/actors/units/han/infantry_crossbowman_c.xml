@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant file="biped/base_archer_gastraphetes_relax.xml">
+      <mesh>skeletal/new/m_armor_tunic_long.dae</mesh>
+      <props>
+        <prop actor="props/units/heads/head_china.xml" attachpoint="head"/>
+        <prop actor="props/units/helmets/han_heavy_helmet_b.xml" attachpoint="helmet"/>
+        <prop actor="props/units/helmets/han_advanced_melee_helmet.xml" attachpoint="helmet"/>
+        <prop actor="props/units/weapons/gastraphetes.xml" attachpoint="weapon_L"/>
+        <prop actor="props/units/quiver_back_bamboo.xml" attachpoint="back"/>
+      </props>
+      <textures>
+        <texture file="skeletal/han/lamellar_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="Han-Officer-01">
+      <textures>
+        <texture file="skeletal/han/officer_01.png" name="baseTex"/>
+        <texture file="skeletal/han/officer_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant name="Han-Officer-02">
+      <textures>
+        <texture file="skeletal/han/officer_02.png" name="baseTex"/>
+        <texture file="skeletal/han/officer_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant name="Han-Officer-03">
+      <textures>
+        <texture file="skeletal/han/officer_03.png" name="baseTex"/>
+        <texture file="skeletal/han/officer_03_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant name="Han-Officer-04">
+      <textures>
+        <texture file="skeletal/han/officer_04.png" name="baseTex"/>
+        <texture file="skeletal/han/officer_04_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant name="Han-Officer-05">
+      <textures>
+        <texture file="skeletal/han/officer_05.png" name="baseTex"/>
+        <texture file="skeletal/han/officer_05_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant name="Han-Officer-06">
+      <textures>
+        <texture file="skeletal/han/officer_06.png" name="baseTex"/>
+        <texture file="skeletal/han/officer_06_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Idle"/>
+    <variant file="biped/attack_ranged_gastraphetes_fire.xml"/>
+    <variant file="biped/attack_slaughter.xml"/>
+    <variant file="biped/attack_capture.xml"/>
+    <variant file="biped/gather_praise.xml"/>
+    <variant file="biped/death_infantry.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
