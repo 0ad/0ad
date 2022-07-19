@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2022-07-04 07:10+0000\n"
-"PO-Revision-Date: 2022-07-04 07:10+0000\n"
+"POT-Creation-Date: 2022-07-18 07:11+0000\n"
+"PO-Revision-Date: 2022-07-18 07:11+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1296,7 +1296,7 @@ msgstr ""
 
 #: simulation/templates/units/brit/champion_chariot.xml:12
 #: simulation/templates/units/brit/hero_boudicca.xml:15
-#: simulation/templates/units/han/champion_chariot.xml:11
+#: simulation/templates/units/han/champion_chariot_academy.xml:11
 #: simulation/templates/units/han/hero_wei_qing_chariot.xml:21
 #: simulation/templates/units/kush/hero_amanirenas.xml:16
 #: simulation/templates/units/maur/champion_chariot.xml:12
@@ -1671,35 +1671,35 @@ msgstr ""
 msgid "Dāo Qíbīng"
 msgstr ""
 
-#: simulation/templates/units/han/champion_cavalry_crossbowman.xml:5
-msgid "Sun Wu Trouble Freeing Forces"
-msgstr ""
-
-#: simulation/templates/units/han/champion_cavalry_spearman.xml:5
+#: simulation/templates/units/han/champion_cavalry_spearman_academy.xml:5
 msgid "Wu Wei Yin Cao Cao Guard"
 msgstr ""
 
-#: simulation/templates/units/han/champion_chariot.xml:9
+#: simulation/templates/units/han/champion_chariot_academy.xml:9
 msgid "Han War Chariot"
 msgstr ""
 
-#: simulation/templates/units/han/champion_chariot.xml:10
+#: simulation/templates/units/han/champion_chariot_academy.xml:10
 msgid "Zhanche"
 msgstr ""
 
-#: simulation/templates/units/han/champion_infantry_archer.xml:5
+#: simulation/templates/units/han/champion_infantry_archer_academy.xml:5
 msgid "Palace Guard Archer"
 msgstr ""
 
-#: simulation/templates/units/han/champion_infantry_archer.xml:6
+#: simulation/templates/units/han/champion_infantry_archer_academy.xml:6
 msgid "Yǔ Lín"
 msgstr ""
 
-#: simulation/templates/units/han/champion_infantry_spearman.xml:5
+#: simulation/templates/units/han/champion_infantry_crossbowman_academy.xml:5
+msgid "Juezhang"
+msgstr ""
+
+#: simulation/templates/units/han/champion_infantry_spearman_academy.xml:5
 msgid "Palace Guard Spearman"
 msgstr ""
 
-#: simulation/templates/units/han/champion_infantry_spearman.xml:6
+#: simulation/templates/units/han/champion_infantry_spearman_academy.xml:6
 msgid "Hǔ Bēn"
 msgstr ""
 
@@ -1729,10 +1729,14 @@ msgstr ""
 
 #: simulation/templates/units/han/infantry_pikeman_b.xml:5
 msgctxt "Name of an attack, usually the weapon."
-msgid "Halberdier"
+msgid "Ji"
 msgstr ""
 
 #: simulation/templates/units/han/infantry_pikeman_b.xml:20
+msgid "Halberdier"
+msgstr ""
+
+#: simulation/templates/units/han/infantry_pikeman_b.xml:21
 msgid "Jǐ Bīng"
 msgstr ""
 
