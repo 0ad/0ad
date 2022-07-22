@@ -17,6 +17,7 @@
 # Victor Butko
 # Victor Ptah
 # Vladislav Trotsky
+# Xie Xie
 # yevhen.kulihin
 # 85c91c3444bcf82d63b07801f727e341
 # Andrii Bandura
@@ -25,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-07-04 07:10+0000\n"
+"POT-Creation-Date: 2022-07-18 07:11+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
-"Last-Translator: Lemak Maksym, 2022\n"
+"Last-Translator: Xie Xie, 2022\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -556,7 +557,7 @@ msgstr "Герой кавалеріських мечників"
 
 #: simulation/templates/template_unit_hero_elephant_melee.xml:31
 msgid "Hero Elephant"
-msgstr "Слон Героя"
+msgstr "Геройський слон"
 
 #: simulation/templates/template_unit_hero_healer.xml:27
 #: simulation/templates/template_unit_support.xml:5
@@ -1319,7 +1320,7 @@ msgstr "Есседон"
 
 #: simulation/templates/units/brit/champion_chariot.xml:12
 #: simulation/templates/units/brit/hero_boudicca.xml:15
-#: simulation/templates/units/han/champion_chariot.xml:11
+#: simulation/templates/units/han/champion_chariot_academy.xml:11
 #: simulation/templates/units/han/hero_wei_qing_chariot.xml:21
 #: simulation/templates/units/kush/hero_amanirenas.xml:16
 #: simulation/templates/units/maur/champion_chariot.xml:12
@@ -1676,60 +1677,60 @@ msgstr "Брітомарос"
 
 #: simulation/templates/units/han/catafalque.xml:9
 msgid "Emperor Wǔ (Liu Che)"
-msgstr "Імператор Ву(Лю Че)"
+msgstr "Імператор У (Лю Че)"
 
 #: simulation/templates/units/han/cavalry_archer_b.xml:6
 msgid "Gōng Qíbīng"
-msgstr "Гун Цібінг"
+msgstr "Гун цібін"
 
 #: simulation/templates/units/han/cavalry_crossbowman_b.xml:6
 msgid "Han Cavalry Crossbowman"
-msgstr "Ханьський кавалерійський арбалетчик"
+msgstr "Ханьський кавалерійський арбалетник"
 
 #: simulation/templates/units/han/cavalry_spearman_b.xml:6
 msgid "Máo Qíbīng"
-msgstr "Мао Цібін"
+msgstr "Мао цібін"
 
 #: simulation/templates/units/han/cavalry_swordsman_b.xml:6
 msgid "Dāo Qíbīng"
-msgstr "Дао Цібін"
+msgstr "Дао цібін"
 
-#: simulation/templates/units/han/champion_cavalry_crossbowman.xml:5
-msgid "Sun Wu Trouble Freeing Forces"
-msgstr "Сили Сунь Ву для зняття проблем"
-
-#: simulation/templates/units/han/champion_cavalry_spearman.xml:5
+#: simulation/templates/units/han/champion_cavalry_spearman_academy.xml:5
 msgid "Wu Wei Yin Cao Cao Guard"
-msgstr "Охоронець Ву Вей Інь Цао Цао"
+msgstr "Охорона У Вей Інь Цао Цао"
 
-#: simulation/templates/units/han/champion_chariot.xml:9
+#: simulation/templates/units/han/champion_chariot_academy.xml:9
 msgid "Han War Chariot"
-msgstr "Ханська Військова Колісниця"
+msgstr "Ханьська військова колісниця"
 
-#: simulation/templates/units/han/champion_chariot.xml:10
+#: simulation/templates/units/han/champion_chariot_academy.xml:10
 msgid "Zhanche"
-msgstr "Жанче"
+msgstr "Чжаньче"
 
-#: simulation/templates/units/han/champion_infantry_archer.xml:5
+#: simulation/templates/units/han/champion_infantry_archer_academy.xml:5
 msgid "Palace Guard Archer"
-msgstr "Лучник палацової гвардії"
+msgstr "Стрілець палацової охорони"
 
-#: simulation/templates/units/han/champion_infantry_archer.xml:6
+#: simulation/templates/units/han/champion_infantry_archer_academy.xml:6
 msgid "Yǔ Lín"
-msgstr "Ю Лін"
+msgstr "Юй лінь"
 
-#: simulation/templates/units/han/champion_infantry_spearman.xml:5
+#: simulation/templates/units/han/champion_infantry_crossbowman_academy.xml:5
+msgid "Juezhang"
+msgstr "Цзюечжан"
+
+#: simulation/templates/units/han/champion_infantry_spearman_academy.xml:5
 msgid "Palace Guard Spearman"
-msgstr "Списоносець палацової гвардії"
+msgstr "Списоносець палацової охорони"
 
-#: simulation/templates/units/han/champion_infantry_spearman.xml:6
+#: simulation/templates/units/han/champion_infantry_spearman_academy.xml:6
 msgid "Hǔ Bēn"
-msgstr "Ху Бен"
+msgstr "Ху бень"
 
 #: simulation/templates/units/han/hero_han_xin.xml:9
 #: simulation/templates/units/han/hero_han_xin_horse.xml:9
 msgid "Hán Xìn"
-msgstr "Хан Сінь"
+msgstr "Хань Сінь"
 
 #: simulation/templates/units/han/hero_liu_bang.xml:9
 #: simulation/templates/units/han/hero_liu_bang_horse.xml:9
@@ -1740,56 +1741,60 @@ msgstr "Лю Бан"
 #: simulation/templates/units/han/hero_wei_qing_chariot.xml:20
 #: simulation/templates/units/han/hero_wei_qing_horse.xml:16
 msgid "Wèi Qīng"
-msgstr "Вей Цинг"
+msgstr "Вей Цін"
 
 #: simulation/templates/units/han/infantry_archer_b.xml:11
 msgid "Shè Shǒu"
-msgstr "Ші Шу"
+msgstr "Ше шоу"
 
 #: simulation/templates/units/han/infantry_crossbowman_b.xml:11
 msgid "Nǔ Shǒu"
-msgstr "Ну Шу"
+msgstr "Ну шоу"
 
 #: simulation/templates/units/han/infantry_pikeman_b.xml:5
 msgctxt "Name of an attack, usually the weapon."
-msgid "Halberdier"
-msgstr "Алебарда"
+msgid "Ji"
+msgstr "Цзі"
 
 #: simulation/templates/units/han/infantry_pikeman_b.xml:20
+msgid "Halberdier"
+msgstr "Алебардник"
+
+#: simulation/templates/units/han/infantry_pikeman_b.xml:21
 msgid "Jǐ Bīng"
-msgstr "Дзі Бінг"
+msgstr "Цзі бін"
 
 #: simulation/templates/units/han/infantry_spearman_b.xml:11
 msgid "Máo Bīng"
-msgstr "Мао Бін"
+msgstr "Мао бін"
 
 #: simulation/templates/units/han/infantry_swordsman_b.xml:11
 msgid "Dāo Bīng"
-msgstr "Дао Бін"
+msgstr "Дао бін"
 
 #: simulation/templates/units/han/ship_bireme.xml:9
 msgid "Zhàn Chuán"
-msgstr "Чжан Чуан"
+msgstr "Чжань чуань"
 
 #: simulation/templates/units/han/ship_fire.xml:9
 msgid "Huǒ Chuán"
-msgstr "Хуо Чуан"
+msgstr "Хо чуань"
 
 #: simulation/templates/units/han/ship_fishing.xml:9
 msgid "Yú Chuán"
-msgstr "Ю Чуан"
+msgstr "Юй чуань"
 
 #: simulation/templates/units/han/ship_merchant.xml:9
 msgid "Shāng Chuán"
-msgstr "Шанг Чуан"
+msgstr "Шан чуань"
 
 #: simulation/templates/units/han/ship_quinquereme.xml:9
 msgid "Dà Lóu Chuán"
-msgstr "Да Лу Чуан"
+msgstr "Да лоу чуань"
 
 #: simulation/templates/units/han/ship_trireme.xml:9
 msgid "Lóu Chuán"
-msgstr "Лу Чуан"
+msgstr "Лоу чуань"
 
 #: simulation/templates/units/han/siege_mangonel_packed.xml:5
 msgid "Mangonel"
@@ -1840,7 +1845,7 @@ msgstr "Міністр"
 
 #: simulation/templates/units/han/support_trader.xml:9
 msgid "Shāngrén"
-msgstr "Шангрен"
+msgstr "Шанжень"
 
 #: simulation/templates/units/iber/catafalque.xml:9
 msgid "Mandonius"

@@ -96,7 +96,7 @@ msgstr "AI को आकार दें : %(description)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:135
 msgid "Select player."
-msgstr "खिलाड़ी का चयन करें."
+msgstr "खिलाड़ी का चयन करें।"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:222
 #, javascript-format
@@ -105,7 +105,7 @@ msgstr "AI : %(ai)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:257
 msgid "Unassigned"
-msgstr "असाइन नहीं की गई"
+msgstr "अनावंटित"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:90
 msgid "Choose the civilization for this player."
@@ -176,7 +176,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:38
 msgid "Toggle the usability of cheats."
-msgstr "जालसाजी "
+msgstr "कपट के प्रयोग में अंतरण करें।"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -208,7 +208,7 @@ msgstr "टोलियाँ बंद हुईं"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:33
 msgid "Toggle locked teams."
-msgstr "अवरोधित टीमें टॉगल करे."
+msgstr "अभिबद्ध टोलियों में अंतरण करें।"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:25
 msgid "Nomad"
@@ -226,7 +226,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:30
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "जालसाजी की उपयोगिता टॉगल करे."
+msgstr "अंकपटल के लिये इस खेल को अंकित किये जाने पर अंतरण करें।"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:27
 msgid "Hero Garrison"
@@ -248,7 +248,7 @@ msgstr ""
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:30
 msgid "Toggle revealed map (see everything)."
-msgstr "टॉगल करे प्रकाशित नक्शा."
+msgstr "प्रकट नक्शा में अंतरण करें (सब कुछ देखें)।"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:26
 msgid "Disable Spies"
@@ -317,7 +317,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:64
 msgid "Select game speed."
-msgstr "खेल की गति का चयन करें."
+msgstr "खेल की गति का चयन करें।"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:25
 msgctxt "landscape selection"
@@ -343,7 +343,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:85
 msgid "Select a map filter."
-msgstr "नक्शे का प्रकार चयन करें."
+msgstr "नक्शे के प्रकार का चयन करें।"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:26
 msgid "Map"
@@ -355,7 +355,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:144
 msgid "Select a map to play on."
-msgstr "खेलने के लिए नक्शे का चयन करें."
+msgstr "खेलने के लिए नक्शे का चयन करें।"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:150
 msgctxt "map selection"
@@ -372,7 +372,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:42
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "नक्शे का आकार चयन करें. (बड़े आकार प्रदर्शन को कम कर सकते.)"
+msgstr "नक्शे के आकार का चयन करें। (बड़ा आकार कार्यक्षमता घटा सकता है।)"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:65
 msgid "Map Type"
@@ -380,7 +380,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:68
 msgid "Select a map type."
-msgstr "नक्शे का प्रकार चयन करें."
+msgstr "नक्शे के प्रकार का चयन करें।"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:33
 msgid "Number of Players"
@@ -388,7 +388,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:36
 msgid "Select number of players."
-msgstr "खिलाड़ियों की संख्या का चयन करें."
+msgstr "खिलाड़ियों की संख्या का चयन करें।"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:52
 msgid "Population Cap"
@@ -416,7 +416,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:53
 msgid "Select the game's starting resources."
-msgstr "खेल के शुरुआती संसाधनों का चयन करें."
+msgstr "खेल के शुरुआती संसाधनों का चयन करें।"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:56
 #, javascript-format
@@ -561,7 +561,7 @@ msgstr "वापस"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:39
 msgid "Return to the lobby."
-msgstr "लॉबी में वापस जाएँ"
+msgstr "प्रतीक्षा कक्ष में वापस जाएँ"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:42
 msgid "Return to the main menu."
@@ -600,7 +600,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:87
 msgid "State that you are not ready to play."
-msgstr "बताएं कि आप खेलने के लिए तैयार नहीं हैं."
+msgstr "बताएं कि आप खेलने के लिए तैयार नहीं हैं।"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:29
 msgid ""
@@ -617,7 +617,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:68
 msgid "Start a new game with the current settings."
-msgstr "वर्तमान सेटिंग्स के साथ एक नया खेल शुरू करें."
+msgstr "वर्तमान सेटिंग्स के साथ एक नया खेल शुरू करें।"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:71
 msgid ""
@@ -647,7 +647,7 @@ msgstr "%(username)s %(message)s"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientConnection.js:27
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr "%(username)s शामिल हो गया है"
+msgstr "%(username)s जुड़ गया है"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientConnection.js:30
 #, javascript-format
@@ -667,12 +667,12 @@ msgstr "%(username)s पर प्रतिबंध लगा दिया ग�
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientReady.js:28
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr "%(username)s तैयार नहीं है"
+msgstr "%(username)s तैयार नहीं है।"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientReady.js:29
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr "%(username)s तैयार है"
+msgstr "%(username)s तैयार है!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/GameSettingsChanged.js:22
 msgid "Game settings have been changed"
@@ -728,7 +728,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
 msgid "Loading"
-msgstr "लोड हो रहा है"
+msgstr "तैयार किया जा रहा है"
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):11
 msgid "Loading map data. Please wait…"
@@ -904,12 +904,12 @@ msgstr ""
 #: gui/loading/TitleDisplay.js:15
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr "“%(map)s” उत्पन्न हो रहा है "
+msgstr "“%(map)s” उत्पन्न किया रहा है "
 
 #: gui/loading/TitleDisplay.js:17
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr "Loading “%(map)s”"
+msgstr "“%(map)s” तैयार किया जा रहा है"
 
 #: gui/text/quotes.txt:1
 msgid ""
