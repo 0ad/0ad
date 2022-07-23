@@ -247,7 +247,7 @@ msgstr "Victoria collectiva"
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr "El xhogador comparte la victoria cun los alliahos. El coniunctu d’alliahos que remanecier ye l vincedor."
+msgstr "El xhogador comparte la victoria cun los alliahos. El coniunctu d’alliahos que remanecier ie l vincedor."
 
 #: gui/common/gamedescription.js:273
 msgid "Ceasefire"
@@ -435,12 +435,12 @@ msgstr "%(player)s sta a perde’ la connexion (%(seconds)ss)"
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr "La connexion cuno servidor ye ruina (%(milliseconds)sms)"
+msgstr "La connexion cuno servidor ie ruina (%(milliseconds)sms)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr "La connexion cun %(player)s ye ruina (%(milliseconds)sms)"
+msgstr "La connexion cun %(player)s ie ruina (%(milliseconds)sms)"
 
 #: gui/common/network.js:66
 msgid ""
@@ -454,7 +454,7 @@ msgstr "L amphitryon terminou la partida."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr "La version de l protocollo de rede ye incorrecta."
+msgstr "La version de l protocollo de rede ie incorrecta."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
@@ -462,7 +462,7 @@ msgstr "La partida sta cargando-se, vœlvi temptallo mas sero."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr "La partida ya cominçou, non se permitten spectadores."
+msgstr "La partida ia cominçou, non se permitten spectadores."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
@@ -498,7 +498,7 @@ msgstr "Error: El cliente simulou una xhogada imprevista."
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
-msgstr "La tyave ye inválida."
+msgstr "La tyave ie inválida."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
@@ -619,7 +619,7 @@ msgstr "Aleatorio"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr "Crea una gëographíæ única u la distribuçon de recursos ye aleatoria. Scuœye-se l númeru de xhogadores & d’equipos."
+msgstr "Crea una gëographíæ única u la distribuçon de recursos ie aleatoria. Scuœye-se l númeru de xhogadores & d’equipos."
 
 #: gui/common/settings.js:192
 msgctxt "map"
@@ -2676,7 +2676,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Switch between null default formation and the last default formation used "
 "(defaults to 'box')."
-msgstr "Alternar entre nenguna formaçon predefinida & la última formaçon predefinida (ye “quadru” por defectu)"
+msgstr "Alternar entre nenguna formaçon predefinida & la última formaçon predefinida (ie “quadru” por defectu)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.name
 msgctxt "hotkey metadata"
@@ -3540,7 +3540,7 @@ msgstr "Cargar"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr "Esta partida guardada precisa de la version %(requiredVersion)s de 0 A.D., pero la version que tienes operativa ye la %(currentVersion)s."
+msgstr "Esta partida guardada precisa de la version %(requiredVersion)s de 0 A.D., pero la version que tienes operativa ie la %(currentVersion)s."
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
@@ -4905,7 +4905,7 @@ msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
-msgstr "Læs Unidades & Construcçones puœden star inxertæs in múltiples coniunctos. Ansí yes a tener al in par coniunctos pa wœstes stremadæs & un coniunctu pa l exércitu inteiru."
+msgstr "Læs Unidades & Construcçones puœden star inxertæs in múltiples coniunctos. Ansí ies a tener al in par coniunctos pa wœstes stremadæs & un coniunctu pa l exércitu inteiru."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].tooltip
 msgid "Decide whether units can be part of multiple control groups."
@@ -5069,7 +5069,7 @@ msgstr "Normal"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label.tooltip
 msgid "Entities appearance is randomized normally."
-msgstr "La diversidá de l aspectu de los entes ye normal."
+msgstr "La diversidá de l aspectu de los entes ie normal."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][8].label
 msgid "Shader effects"
@@ -5311,7 +5311,7 @@ msgstr "Acoyida"
 
 #: gui/pregame/MainMenuItems.js:244
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr "Volver amostra’ l acoyida. Esto ye útil si la occultares in sin querer."
+msgstr "Volver amostra’ l acoyida. Esto ie útil si la occultares in sin querer."
 
 #: gui/pregame/MainMenuItems.js:252
 msgid "Scenario Editor"
@@ -5879,19 +5879,19 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. You may "
 "encounter bugs, and some features are not as fleshed out as we would like."
-msgstr "[imgleft=\"constructionIcon\"]Esti xhuœw sta n phase de disinvolvemiento. Ye possible q’atopes falhos, & ha hi ciertos aspectos que nun stan tan polidos cumo nos prestaríæ."
+msgstr "[imgleft=\"constructionIcon\"]Esti xhuœw sta n phase de disinvolvemiento. Ie possible q’atopes falhos, & ha hi ciertos aspectos que nun stan tan polidos cumo nos prestaríæ."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr "[imgleft=\"iconLag\"]La efficiencia de l xhuœw puœde abalhicar, specialmente si la gëographíæ ye grande ou læs unidades numerosæs."
+msgstr "[imgleft=\"iconLag\"]La efficiencia de l xhuœw puœde abalhicar, specialmente si la gëographíæ ie grande ou læs unidades numerosæs."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr "[imgleft=\"iconMap\"]0 A.D. ye un programma lhibre: puœdes participar no sou disindolrcu."
+msgstr "[imgleft=\"iconMap\"]0 A.D. ie un programma lhibre: puœdes participar no sou disindolrcu."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
@@ -6426,7 +6426,7 @@ msgstr "Meti barcos n elhi par ir eguando-los pouco a pouco."
 
 #: gui/text/tips/carth_shipyard.txt:4
 msgid "Much stronger than other docks, but also more expensive."
-msgstr "Ye mũîtho mas fhuœrte q’outros puœrtos, pero tamien mas caru."
+msgstr "Ie mũîtho mas fhuœrte q’outros puœrtos, pero tamien mas caru."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -6595,7 +6595,7 @@ msgstr "Los pisqueiros trahen mũîthu pexe per marea."
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
-msgstr "La pesca ye mas rápida que l agricultura."
+msgstr "La pesca ie mas rápida que l agricultura."
 
 #: gui/text/tips/fishing.txt:5
 msgid ""
@@ -6788,7 +6788,7 @@ msgstr "VARGANAL"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr "Cierru baratu & rápidu de lhevantar que ye disponible a todælæs culturæs."
+msgstr "Cierru baratu & rápidu de lhevantar que ie disponible a todælæs culturæs."
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
