@@ -78,6 +78,9 @@ void CDebugRenderer::DrawLine(
 	const std::vector<CVector3D>& line, const CColor& color,
 	const float width, const bool depthTestEnabled)
 {
+	if (line.size() <= 1)
+		return;
+
 	CShaderTechniquePtr debugLineTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
