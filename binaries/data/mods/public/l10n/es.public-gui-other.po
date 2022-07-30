@@ -48,7 +48,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-06-13 07:11+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Rodrigo Vegas Sánchez-Ferrero <rodrigo.vegas@gmail.com>, 2018,2020-2022\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2018,2020-2022\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4533,7 +4533,7 @@ msgstr "Volumen general"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].tooltip
 msgid "Master audio gain."
-msgstr "Aumento de audio maestro"
+msgstr "Ganancia de sonido general."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[1].label
 msgid "Music volume"
@@ -4573,7 +4573,7 @@ msgstr "Notificación de usuario"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[5].tooltip
 msgid "Receive audio notification when someone types your nick."
-msgstr "Recibir notificación de audio cuando alguien escriba tu nick."
+msgstr "Recibir notificación de audio cuando alguien escriba tu alias."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[6].label
 msgid "New player notification in game setup"
@@ -4797,7 +4797,7 @@ msgstr "Salud de unidad herida"
 msgid ""
 "The wounded unit hotkey considers the selected units as wounded if their "
 "health percentage falls below this number."
-msgstr "La tecla rápida de herido considera las unidades seleccionadas como heridas si su porcentage de salud baja por debajo de este número."
+msgstr "El atajo de teclado para heridos considera las unidades seleccionadas como heridas si su porcentaje de salud está por debajo de este número."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].label
 msgid "Aura range visualization"
