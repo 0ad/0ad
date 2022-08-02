@@ -9,6 +9,7 @@
 # 009ee41e4c490a944b98e20dd0cc29dd_e31b370
 # Dmytro Ryl'kov
 # Halyna Bondar
+# Jethew Goldgrub
 # Lemak Maksym
 # Nicolas Auvray
 # Олег Вормов
@@ -17,7 +18,7 @@
 # Антон Курило
 # Victor Butko
 # Victor Ptah
-# Andrii Bandura
+# Андрій Бандура
 # Микола Франчук
 # Назарій Високінський
 # Сергій Дубик
@@ -26,7 +27,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-06-13 07:11+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Lemak Maksym, 2022\n"
+"Last-Translator: Jethew Goldgrub, 2022\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1264,7 +1265,7 @@ msgstr "Біг"
 
 #: gui/common/tooltips.js:1030
 msgid "Acceleration"
-msgstr ""
+msgstr "Прискорення"
 
 #: gui/common/tooltips.js:1045 gui/common/tooltips.js:1050
 #: gui/common/tooltips.js:1055 gui/common/tooltips.js:1080
@@ -3650,7 +3651,7 @@ msgstr "Ігровий час:"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):32
 #: gui/replaymenu/replay_menu.xml:(caption):153
 msgid "Map Type:"
-msgstr "Тип карти:"
+msgstr "Тип мапи:"
 
 #: gui/loadgame/load.xml:(caption):86
 #: gui/replaymenu/replay_menu.xml:(caption):168
@@ -3671,7 +3672,7 @@ msgstr "Дата / Час"
 #: gui/loadgame/load.xml:(heading):31
 msgctxt "replay"
 msgid "Map Type"
-msgstr "Тип карти"
+msgstr "Тип мапи"
 
 #: gui/loadgame/load.xml:(heading):35
 #: gui/replaymenu/replay_menu.xml:(heading):79
@@ -5204,11 +5205,11 @@ msgstr "%(hotkey)s: Дізнатися про цивілізації, предс
 
 #: gui/pregame/MainMenuItems.js:60
 msgid "Catafalque Overview"
-msgstr "Огляд Катафалку"
+msgstr "Огляд катафалку"
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr "Порівняти бонуси Катафалку представленого в 0 A.D."
+msgstr "Порівняти бонуси катафалку представленого в 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Map Overview"
@@ -5220,7 +5221,7 @@ msgstr "Переглянути різноманітні мапи, предста
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Continue Campaign"
-msgstr "Продовжити Кампанію"
+msgstr "Продовжити кампанію"
 
 #: gui/pregame/MainMenuItems.js:77 gui/pregame/MainMenuItems.js:111
 #: gui/pregame/MainMenuItems.js:127 gui/pregame/MainMenuItems.js:134
@@ -5253,11 +5254,11 @@ msgstr "Завантажити збережену гру."
 
 #: gui/pregame/MainMenuItems.js:126
 msgid "New Campaign"
-msgstr "Нова Кампанія"
+msgstr "Нова кампанія"
 
 #: gui/pregame/MainMenuItems.js:133
 msgid "Load Campaign"
-msgstr "Завантажити Кампанію"
+msgstr "Завантажити кампанію"
 
 #: gui/pregame/MainMenuItems.js:143 gui/pregame/MainMenuItems.js:193
 msgid "Replays"
@@ -5446,7 +5447,7 @@ msgstr "Клацнути, щоб відвідати 0 A.D. Trac, щоб пові
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
 msgid "FAQ"
-msgstr "Поширені Питання"
+msgstr "Поширені питання"
 
 #: gui/pregame/ProjectInformation.js:50
 msgid "Click to visit the Frequently Asked Questions page in your browser."
@@ -5548,7 +5549,7 @@ msgstr ""
 
 #: gui/reference/catafalque/catafalque.xml:(caption):18
 msgid "Catafalque Bonuses"
-msgstr "Бонуси Катафалку"
+msgstr "Бонуси катафалку"
 
 #. Translation: Description of an item in the CivInfo page, on a new line and
 #. indented.
@@ -6575,7 +6576,7 @@ msgstr "Може бути збудовано в дружній та нейтра
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr "Тренує громадян: городянок, солдатів піхоти та солдатів кавалерії."
+msgstr "Тренує громадян: громадянок, солдатів піхоти та солдатів кавалерії."
 
 #: gui/text/tips/default_formation.txt:1
 msgid "DEFAULT FORMATION"
@@ -6727,11 +6728,11 @@ msgstr "ЗБІР РЕСУРСІВ"
 
 #: gui/text/tips/gathering.txt:2
 msgid "Use citizen-soldiers and female citizens to gather resources."
-msgstr "Використайте солдат-городян і жінок городянок для збирання ресурсів."
+msgstr "Використайте солдат-громадян і жінок громадянок для збирання ресурсів."
 
 #: gui/text/tips/gathering.txt:3
 msgid "Female citizens gather vegetable resources faster."
-msgstr "Жінки-городянки швидші в збиранні овочевих ресурсів."
+msgstr "Жінки-громадянки швидші в збиранні овочевих ресурсів."
 
 #: gui/text/tips/gathering.txt:4
 msgid "Infantry citizen-soldiers are faster gathering minerals."
@@ -6923,7 +6924,7 @@ msgstr ""
 msgid ""
 "The number below it shows you how many citizens are currently gathering "
 "them."
-msgstr "Число нижче відображає, скільки городян їх зараз збирають."
+msgstr "Число нижче відображає, скільки громадян їх зараз збирають."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -7017,7 +7018,7 @@ msgstr "Дешеве місце для збору нехарчових ресу�
 msgid ""
 "Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr "Досліджуйте технології для збільшення можливостей збирання ваших городян."
+msgstr "Досліджуйте технології для збільшення можливостей збирання ваших громадян."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
