@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-    <castshadow/>
-    <group>
-        <variant frequency="1" name="Jue Zhang">
-            <mesh>props/weapons/crossbow/weap_han_juezhang.dae.dae</mesh>
-            <textures>
-                <texture file="props/siege_artillery_01.png" name="baseTex"/>
-                <texture file="props/siege_artillery_01_norm.png" name="normTex"/>
-                <texture file="props/siege_artillery_01_spec.png" name="specTex"/>
-            </textures>
-            <animations>
-                <animation file="mechanical/siege_artillery/gastraphetes_idle_01.dae" name="Idle" speed="100" />
-                <animation event="0.92" load="0.70" file="mechanical/siege_artillery/gastraphetes_attack_ranged_01.dae" name="attack_ranged" speed="120"/>
-                <animation file="mechanical/siege_artillery/gastraphetes_idle_01.dae" name="Death" speed="100" />
-            </animations>
-            <props>
-                <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
-                <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-projectile"/>
-            </props>
-        </variant>
-    </group>
-    <material>no_trans_parallax_spec.xml</material>
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Jue Zhang">
+      <mesh>props/weapons/crossbow/weap_han_juezhang.dae</mesh>
+      <textures>
+        <texture file="props/siege_artillery_01.png" name="baseTex"/>
+        <texture file="props/siege_artillery_01_norm.png" name="normTex"/>
+        <texture file="props/siege_artillery_01_spec.png" name="specTex"/>
+      </textures>
+      <animations>
+        <animation file="mechanical/siege_artillery/gastraphetes_idle_01.dae" name="Idle" speed="100" />
+        <animation event="0.92" load="0.70" file="mechanical/siege_artillery/gastraphetes_attack_ranged_01.dae" name="attack_ranged" speed="120"/>
+        <animation file="mechanical/siege_artillery/gastraphetes_idle_01.dae" name="Death" speed="100" />
+      </animations>
+      <props>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/arrow_back.xml" attachpoint="loaded-projectile"/>
+      </props>
+    </variant>
+  </group>
+  <material>no_trans_parallax_spec.xml</material>
 </actor>
