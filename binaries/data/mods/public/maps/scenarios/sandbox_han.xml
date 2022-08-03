@@ -48,7 +48,6 @@
   "LockTeams": false,
   "Name": "Sandbox - The Han",
   "PlayerData": [
-    null,
     {
       "Civ": "han",
       "Color": {
@@ -558,28 +557,28 @@
 			<Actor seed="62786"/>
 		</Entity>
 		<Entity uid="131">
-			<Template>units/han/champion_cavalry_crossbowman</Template>
+			<Template>units/han/champion_cavalry_spearman_academy</Template>
 			<Player>1</Player>
 			<Position x="503.98322" z="376.69434"/>
 			<Orientation y="1.5081"/>
 			<Actor seed="27268"/>
 		</Entity>
 		<Entity uid="132">
-			<Template>units/han/champion_cavalry_spearman</Template>
+			<Template>units/han/champion_cavalry_spearman_academy</Template>
 			<Player>1</Player>
 			<Position x="523.98469" z="344.02332"/>
 			<Orientation y="-5.7114"/>
 			<Actor seed="38634"/>
 		</Entity>
 		<Entity uid="133">
-			<Template>units/han/champion_cavalry_spearman</Template>
+			<Template>units/han/champion_cavalry_spearman_academy</Template>
 			<Player>1</Player>
 			<Position x="501.6749" z="369.31537"/>
 			<Orientation y="1.89814"/>
 			<Actor seed="8586"/>
 		</Entity>
 		<Entity uid="134">
-			<Template>units/han/champion_infantry_archer</Template>
+			<Template>units/han/champion_infantry_archer_academy</Template>
 			<Player>1</Player>
 			<Position x="497.71686" z="362.94538"/>
 			<Orientation y="1.89441"/>
@@ -635,56 +634,56 @@
 			<Actor seed="11549"/>
 		</Entity>
 		<Entity uid="146">
-			<Template>units/han/champion_infantry_spearman</Template>
+			<Template>units/han/champion_infantry_spearman_academy</Template>
 			<Player>1</Player>
 			<Position x="515.76282" z="354.06733"/>
 			<Orientation y="1.74135"/>
 			<Actor seed="36264"/>
 		</Entity>
 		<Entity uid="147">
-			<Template>units/han/champion_infantry_spearman</Template>
+			<Template>units/han/champion_infantry_spearman_academy</Template>
 			<Player>1</Player>
 			<Position x="533.5865" z="378.53177"/>
 			<Orientation y="3.02358"/>
 			<Actor seed="61806"/>
 		</Entity>
 		<Entity uid="148">
-			<Template>units/han/champion_infantry_spearman</Template>
+			<Template>units/han/champion_infantry_spearman_academy</Template>
 			<Player>1</Player>
 			<Position x="512.92353" z="352.32892"/>
 			<Orientation y="1.12636"/>
 			<Actor seed="63469"/>
 		</Entity>
 		<Entity uid="149">
-			<Template>units/han/champion_infantry_spearman</Template>
+			<Template>units/han/champion_infantry_spearman_academy</Template>
 			<Player>1</Player>
 			<Position x="515.7367" z="377.6287"/>
 			<Orientation y="2.93212"/>
 			<Actor seed="3047"/>
 		</Entity>
 		<Entity uid="150">
-			<Template>units/han/champion_infantry_spearman</Template>
+			<Template>units/han/champion_infantry_spearman_academy</Template>
 			<Player>1</Player>
 			<Position x="506.60904" z="355.45594"/>
 			<Orientation y="2.72068"/>
 			<Actor seed="28342"/>
 		</Entity>
 		<Entity uid="151">
-			<Template>units/han/champion_infantry_spearman</Template>
+			<Template>units/han/champion_infantry_spearman_academy</Template>
 			<Player>1</Player>
 			<Position x="534.15143" z="354.06733"/>
 			<Orientation y="-2.71428"/>
 			<Actor seed="25649"/>
 		</Entity>
 		<Entity uid="152">
-			<Template>units/han/champion_infantry_spearman</Template>
+			<Template>units/han/champion_infantry_spearman_academy</Template>
 			<Player>1</Player>
 			<Position x="531.53669" z="354.58854"/>
 			<Orientation y="-2.61142"/>
 			<Actor seed="51727"/>
 		</Entity>
 		<Entity uid="153">
-			<Template>units/han/champion_infantry_spearman</Template>
+			<Template>units/han/champion_infantry_spearman_academy</Template>
 			<Player>1</Player>
 			<Position x="506.25" z="361.74848"/>
 			<Orientation y="1.43174"/>
@@ -1093,6 +1092,13 @@
 			<Position x="489.03357" z="335.78806"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="30813"/>
+		</Entity>
+		<Entity uid="228">
+			<Template>units/han/champion_infantry_crossbowman_academy</Template>
+			<Player>1</Player>
+			<Position x="524.50605" z="357.12116"/>
+			<Orientation y="-2.89867"/>
+			<Actor seed="51378"/>
 		</Entity>
 	</Entities>
 	<Paths/>
