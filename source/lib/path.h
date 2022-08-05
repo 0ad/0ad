@@ -37,10 +37,14 @@
 #ifndef INCLUDED_PATH
 #define INCLUDED_PATH
 
+#include "lib/sysdep/os.h"
 #include "lib/utf8.h"
 
 #include <algorithm>
 #include <cstring>
+#if OS_WIN
+#include <filesystem>
+#endif
 #include <functional>
 
 namespace ERR
@@ -125,6 +129,19 @@ public:
 	{
 		return path.empty();
 	}
+
+	// TODO: This macro should be removed later when macOS supports std::filesystem.
+	// Currently it does in more recent SDKs, but it also causes a slowdown on
+	// OpenGL. See #6193.
+#if OS_WIN
+	/**
+	 * @returns a STL version of the path.
+	 */
+	std::filesystem::path fileSystemPath() const
+	{
+		return std::filesystem::path(path);
+	}
+#endif
 
 	const String& string() const
 	{
