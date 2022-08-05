@@ -193,21 +193,21 @@ msgstr "  hotkey.exit – 不經確認直接關閉遊戲"
 
 #: gui/manual/intro.txt:44
 msgid "  hotkey.togglefullscreen – Toggle between fullscreen and windowed"
-msgstr "  hotkey.togglefullscreen – 切換全螢幕或視窗模式"
+msgstr "  hotkey.togglefullscreen – 切換全螢幕和視窗模式"
 
 #: gui/manual/intro.txt:45
 msgid "  hotkey.console.toggle – Toggle console"
-msgstr "  hotkey.console.toggle – 開關主控臺"
+msgstr "  hotkey.console.toggle – 切換主控臺"
 
 #: gui/manual/intro.txt:46
 msgid "  hotkey.fps.toggle – Toggle frame counter (FPS)"
-msgstr "  hotkey.fps.toggle – 顯示幀數計數器 (FPS)"
+msgstr "  hotkey.fps.toggle – 切換幀數計數器 (FPS)"
 
 #: gui/manual/intro.txt:47
 msgid ""
 "  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
 "displays of information)"
-msgstr "  hotkey.profile.toggle – 啟用即時分析工具（循環切換顯示資訊）"
+msgstr "  hotkey.profile.toggle – 切換即時分析工具（循環顯示資訊）"
 
 #: gui/manual/intro.txt:48
 msgid ""
@@ -274,11 +274,11 @@ msgstr "  hotkey.quickload – 快速載入"
 
 #: gui/manual/intro.txt:61
 msgid "  hotkey.session.gui.menu.toggle – Toggle menu"
-msgstr "  hotkey.session.gui.menu.toggle – 顯示選單"
+msgstr "  hotkey.session.gui.menu.toggle – 切換選單"
 
 #: gui/manual/intro.txt:62
 msgid "  hotkey.timeelapsedcounter.toggle – Toggle time elapsed counter"
-msgstr "  hotkey.timeelapsedcounter.toggle – 顯示遊戲經過時間"
+msgstr "  hotkey.timeelapsedcounter.toggle – 切換遊戲經過時間"
 
 #: gui/manual/intro.txt:63
 msgid "  hotkey.cancel – Close all dialogs (chat, menu)"
@@ -306,13 +306,13 @@ msgstr "  hotkey.pause – 暫停或繼續遊戲"
 msgid ""
 "  hotkey.session.kill – Delete currently selected unit(s)/structure(s), ask "
 "for confirmation"
-msgstr "  hotkey.session.kill – 刪除選取的單位或建築，詢問是否確定"
+msgstr "  hotkey.session.kill – 刪除選取的單位 / 建築，詢問是否確定"
 
 #: gui/manual/intro.txt:69
 msgid ""
 "    • With hotkey.session.noconfirmation – Immediately delete currently "
 "selected unit(s)/structure(s), without asking for confirmation"
-msgstr "• 加上 hotkey.session.noconfirmation – 直接刪除選取的單位或建築而不經確認"
+msgstr "• 加上 hotkey.session.noconfirmation – 直接刪除選取的單位 / 建築而不經確認"
 
 #: gui/manual/intro.txt:70
 msgid ""
@@ -324,13 +324,13 @@ msgstr "  hotkey.selection.add – 指示鍵 – 加到選取中（適用點擊�
 msgid ""
 "  hotkey.selection.remove – Modifier – remove from selection (works with "
 "clicking and hotkeys, e.g. the idle hotkeys)"
-msgstr "  hotkey.selection.remove – 組合鍵 – 從選取中移除（適用點擊與快捷鍵，如閒置單位）"
+msgstr "  hotkey.selection.remove – 指示鍵 – 從選取中移除（適用點擊與快捷鍵，如閒置單位）"
 
 #: gui/manual/intro.txt:72
 msgid ""
 "  hotkey.selection.offscreen – Modifier – add all units, including offscreen"
 " units, to selection."
-msgstr "  hotkey.selection.offscreen – 組合鍵 – 添加包括螢幕外的所有單位到選取中。"
+msgstr "  hotkey.selection.offscreen – 指示鍵 – 添加包括螢幕外的所有單位到選取中。"
 
 #: gui/manual/intro.txt:73
 msgid ""
@@ -391,7 +391,7 @@ msgstr "  hotkey.selection.group.add.1 – 選取所選單位加入編隊 1（�
 msgid ""
 "  hotkey.camera.jump.set.1 – Mark the current camera position, for jumping "
 "back to later (by default, there are 4 possible positions)"
-msgstr "  hotkey.camera.jump.set.1 – 設定地域編隊以在稍後跳回（預設有 4 個位置可用）"
+msgstr "  hotkey.camera.jump.set.1 – 設定當前鏡頭位置以在稍後跳回（預設有 4 個位置可用）"
 
 #: gui/manual/intro.txt:85
 msgid ""
@@ -406,7 +406,7 @@ msgid ""
 "hotkey.session.queueunit.5, hotkey.session.queueunit.6, "
 "hotkey.session.queueunit.7 – With training structure selected. Add the 1st, "
 "2nd, … unit shown to the training queue for all the selected structures"
-msgstr "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – 選取生產建築時，將第一個、第二個……顯示的單位加到所有建築的訓練佇列"
+msgstr "  hotkey.session.queueunit.1, hotkey.session.queueunit.2, hotkey.session.queueunit.3, hotkey.session.queueunit.4, hotkey.session.queueunit.5, hotkey.session.queueunit.6, hotkey.session.queueunit.7 – 選取生產建築時，將第一個、第二個…顯示的單位加到所有建築的訓練佇列"
 
 #: gui/manual/intro.txt:87
 msgid ""
@@ -428,7 +428,7 @@ msgstr "  highlightguarding.showstatusbars – 顯示所有狀態列（同時也
 
 #: gui/manual/intro.txt:90
 msgid "  hotkey.summary – Toggle summary window"
-msgstr "  hotkey.summary – 顯示摘要視窗"
+msgstr "  hotkey.summary – 切換摘要視窗"
 
 #: gui/manual/intro.txt:91
 msgid "  hotkey.lobby – Show the multiplayer lobby in a dialog window"
@@ -436,29 +436,29 @@ msgstr "  hotkey.lobby – 在對話窗顯示多人遊戲大廳"
 
 #: gui/manual/intro.txt:92
 msgid "  hotkey.session.gui.diplomacy.toggle – Toggle in-game diplomacy panel"
-msgstr "  hotkey.session.gui.diplomacy.toggle – 顯示外交面板"
+msgstr "  hotkey.session.gui.diplomacy.toggle – 切換外交面板"
 
 #: gui/manual/intro.txt:93
 msgid ""
 "  hotkey.session.gui.barter.toggle – Toggle in-game barter and trade panel"
-msgstr "  hotkey.session.gui.barter.toggle – 顯示貿易面板"
+msgstr "  hotkey.session.gui.barter.toggle – 切換貿易面板"
 
 #: gui/manual/intro.txt:94
 msgid ""
 "  hotkey.session.gui.objectives.toggle – Toggle in-game objectives panel"
-msgstr "  hotkey.session.gui.objectives.toggle – 顯示目標面板"
+msgstr "  hotkey.session.gui.objectives.toggle – 切換目標面板"
 
 #: gui/manual/intro.txt:95
 msgid "  hotkey.session.gui.tutorial.toggle – Toggle in-game tutorial panel"
-msgstr "  hotkey.session.gui.tutorial.toggle – 顯示教學面板"
+msgstr "  hotkey.session.gui.tutorial.toggle – 切換教學面板"
 
 #: gui/manual/intro.txt:96
 msgid "  hotkey.structree – Toggle structure tree panel"
-msgstr "  hotkey.structree – 顯示科技樹面板"
+msgstr "  hotkey.structree – 切換科技樹面板"
 
 #: gui/manual/intro.txt:97
 msgid "  hotkey.civinfo – Toggle civilization info panel"
-msgstr "  hotkey.civinfo – 顯示文明資訊面板"
+msgstr "  hotkey.civinfo – 切換文明資訊面板"
 
 #: gui/manual/intro.txt:99
 msgid "[font=\"sans-bold-14\"]Modify mouse action[font=\"sans-14\"]"
@@ -535,7 +535,7 @@ msgstr "  hotkey.selection.idleonly + 左鍵框選地圖上的單位 – 只選�
 msgid ""
 "  hotkey.selection.woundedonly + Left Drag over units on map – Only select "
 "wounded units"
-msgstr "  hotkey.selection.woundedonly + 左鍵框選地圖上的單位 – 只選擇負傷單位"
+msgstr "  hotkey.selection.woundedonly + 左鍵框選地圖上的單位 – 只選擇受傷單位"
 
 #: gui/manual/intro.txt:113
 msgid ""
@@ -553,31 +553,31 @@ msgstr "  選取建築時在地圖上右鍵點擊 – 設定生產 / 卸載單�
 msgid ""
 "  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
-msgstr "  選取單位時按 hotkey.session.garrison + 右鍵 – 駐紮（如果游標在我方或盟友建築上）"
+msgstr "  hotkey.session.garrison + 右鍵於選取單位時 – 駐紮（如果游標在我方或盟友建築上）"
 
 #: gui/manual/intro.txt:116
 msgid ""
 "  hotkey.session.attack + Right Click with unit(s) selected – Attack "
 "(instead of capture or gather)"
-msgstr "  選取單位時按 hotkey.session.attack + 右鍵 – 攻擊（而非占領或採集）"
+msgstr "  hotkey.session.attack + 右鍵於選取單位時 – 攻擊（而非占領或採集）"
 
 #: gui/manual/intro.txt:117
 msgid ""
 "  hotkey.session.attackmove + Right Click with unit(s) selected – Attack "
 "move (by default all enemy units and structures along the way are targeted)"
-msgstr "  選取單位時按 hotkey.session.attackmove + 右鍵 – 攻擊移動（預設情況路徑上的所有敵方單位和建築皆為目標）"
+msgstr "  hotkey.session.attackmove + 右鍵於選取單位時 – 移動攻擊（預設情況路徑上的所有敵方單位和建築皆為目標）"
 
 #: gui/manual/intro.txt:118
 msgid ""
 "  hotkey.session.attackmoveUnit + Right Click with unit(s) selected – Attack"
 " move, only units along the way are targeted"
-msgstr "  選取單位時按 hotkey.session.attackmoveUnit + 右鍵 – 攻擊移動，只有單位為目標"
+msgstr "  hotkey.session.attackmoveUnit + 右鍵於選取單位時 – 移動攻擊，只有單位為目標"
 
 #: gui/manual/intro.txt:119
 msgid ""
 "  hotkey.session.snaptoedges + Mouse Move near structures – Align the new "
 "structure with an existing nearby structure"
-msgstr "  hotkey.session.snaptoedges + 游標靠近建築 – 將新建築與附近的一個建築對齊"
+msgstr "  hotkey.session.snaptoedges + 滑鼠移動靠近建築 – 將新建築與附近的一個建築對齊"
 
 #: gui/manual/intro.txt:120
 msgid "  hotkey.session.flare + Right Click – Send a flare to your allies"
@@ -589,13 +589,13 @@ msgstr "[font=\"sans-bold-14\"]覆蓋層[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:123
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
-msgstr "  hotkey.session.gui.toggle – 開關圖形介面"
+msgstr "  hotkey.session.gui.toggle – 切換圖形介面"
 
 #: gui/manual/intro.txt:124
 msgid ""
 "  hotkey.session.devcommands.toggle – Toggle developer overlay (with "
 "developer options)"
-msgstr "  hotkey.session.devcommands.toggle – 開關開發者介面（含開發者選項）"
+msgstr "  hotkey.session.devcommands.toggle – 切換開發者介面（含開發者選項）"
 
 #: gui/manual/intro.txt:125
 msgid ""
@@ -608,29 +608,29 @@ msgstr "  hotkey.wireframe – 切換線框模式（按一次使線框層覆蓋�
 msgid ""
 "  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
 "performance boost)"
-msgstr "  hotkey.silhouettes – 開關單位輪廓（可能稍為提升效能）"
+msgstr "  hotkey.silhouettes – 切換單位輪廓（可能稍為提升效能）"
 
 #: gui/manual/intro.txt:127
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
-msgstr "  hotkey.session.diplomacycolors – 開關外交色"
+msgstr "  hotkey.session.diplomacycolors – 切換外交色"
 
 #: gui/manual/intro.txt:128
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
-msgstr "  hotkey.session.toggleattackrange – 開關顯示所選單傡和建築的攻擊範圍"
+msgstr "  hotkey.session.toggleattackrange – 切換所選單傡和建築的攻擊範圍"
 
 #: gui/manual/intro.txt:129
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
-msgstr "  hotkey.session.toggleaurasrange – 開關顯示所選單位和建築的光環範圍"
+msgstr "  hotkey.session.toggleaurasrange – 切換所選單位和建築的光環範圍"
 
 #: gui/manual/intro.txt:130
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
-msgstr "  hotkey.session.togglehealrange – 開關顯示所選單位和建築的治療範圍"
+msgstr "  hotkey.session.togglehealrange – 切換所選單位和建築的治療範圍"
 
 #: gui/manual/intro.txt:132
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
