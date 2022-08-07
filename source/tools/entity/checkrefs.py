@@ -197,11 +197,35 @@ class CheckRefs:
                     terrain_name = f.read(length).decode('ascii')  # suppose ascii encoding
                     self.deps.append((str(fp), terrains.get(terrain_name, f'art/terrains/(unknown)/{terrain_name}')))
 
+    def get_existing_civ_codes(self):
+        existing_civs = set()
+        for (_, ffp) in sorted(self.find_files('simulation/data/civs', 'json')):
+            with open(ffp, encoding='utf-8') as f:
+                civ = load(f)
+                code = civ.get('Code', None)
+                if code is not None:
+                    existing_civs.add(code)
+
+        return existing_civs
+
+    def get_custom_phase_techs(self):
+        existing_civs = self.get_existing_civ_codes()
+        custom_phase_techs = []
+        for (fp, _)  in self.find_files("simulation/data/technologies", 'json'):
+            path_str = str(fp)
+            if "phase" in path_str:
+                # Get the last part of the phase tech name.
+                if basename(path_str).split("_")[-1].split(".")[0] in existing_civs:
+                    custom_phase_techs.append(str(fp.relative_to("simulation/data/technologies")).replace(sep, '/'))
+
+        return custom_phase_techs
+
     def add_entities(self):
         self.logger.info("Loading entities...")
         simul_templates_path = Path('simulation/templates')
         # TODO: We might want to get computed templates through the RL interface instead of computing the values ourselves.
         simul_template_entity = SimulTemplateEntity(self.vfs_root, self.logger)
+        custom_phase_techs = self.get_custom_phase_techs()
         for (fp, _) in sorted(self.find_files(simul_templates_path, 'xml')):
             self.files.append(str(fp))
             entity = simul_template_entity.load_inherited(simul_templates_path, str(fp.relative_to(simul_templates_path)), self.mods)
@@ -285,19 +309,20 @@ class CheckRefs:
 
                 cmp_researcher = entity.find('Researcher')
                 if cmp_researcher is not None:
-                    techString = cmp_researcher.find('Technologies').text
-                    for tech in split(r'\s+', techString):
-                        if not tech:
-                            continue
-                        if tech.startswith('-'):
-                            continue
-                        if '{civ}' in tech and cmp_identity is not None and cmp_identity.find('Civ') is not None:
-                            civ = cmp_identity.find('Civ').text
-                            # TODO: This is a hack for a custom civ phase.
-                            if tech.startswith('phase') and civ != 'athen':
-                                civ = 'generic'
-                            tech = tech.replace('{civ}', civ)
-                        self.deps.append((str(fp), f'simulation/data/technologies/{tech}.json'))
+                    techString = cmp_researcher.find('Technologies')
+                    if techString is not None:
+                        for tech in split(r'\s+', techString.text):
+                            if not tech:
+                                continue
+                            if tech.startswith('-'):
+                                continue
+                            if '{civ}' in tech and cmp_identity is not None and cmp_identity.find('Civ') is not None:
+                                civ = cmp_identity.find('Civ').text
+                                # Fallback for non specific phase techs.
+                                if tech.startswith('phase') and not bool([phase_tech for phase_tech in custom_phase_techs if (tech.replace('{civ}', civ) + ".json") == phase_tech]) :
+                                    civ = 'generic'
+                                tech = tech.replace('{civ}', civ)
+                            self.deps.append((str(fp), f'simulation/data/technologies/{tech}.json'))
 
     def append_variant_dependencies(self, variant, fp):
         variant_file = variant.get('file')
@@ -490,6 +515,7 @@ class CheckRefs:
         self.files.extend([str(fp) for (fp, ffp) in self.find_files('gui', 'js')])
         self.files.extend([str(fp) for (fp, ffp) in self.find_files('gamesettings', 'js')])
         self.files.extend([str(fp) for (fp, ffp) in self.find_files('autostart', 'js')])
+        self.roots.extend([str(fp) for (fp, ffp) in self.find_files('autostart', 'js')])
         self.files.extend([str(fp) for (fp, ffp) in self.find_files('art/textures/ui', *self.supportedTextureFormats)])
         self.files.extend([str(fp) for (fp, ffp) in self.find_files('art/textures/selection', *self.supportedTextureFormats)])
 
