@@ -651,7 +651,7 @@ function playerPlacementRiver(angle, width, center = undefined)
 		).rotateAround(angle, centerPosition).round();
 	}
 
-	return [primeSortAllPlayers(), playerPosition];
+	return groupPlayersByArea(new Array(numPlayers).fill(0).map((_p, i) => i + 1), playerPosition);
 }
 
 /**

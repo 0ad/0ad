@@ -5044,9 +5044,6 @@ UnitAI.prototype.RespondToTargetedEntities = function(ents)
 	if (!ents.length)
 		return false;
 
-	if (this.IsFormationMember())
-		return Engine.QueryInterface(this.GetFormationController(), IID_UnitAI).RespondToTargetedEntities(ents);
-
 	if (this.GetStance().respondChase)
 		return this.AttackVisibleEntity(ents);
 
