@@ -450,7 +450,7 @@ void CMiniMapTexture::RenderFinalTexture(
 
 	CmpPtr<ICmpRangeManager> cmpRangeManager(m_Simulation, SYSTEM_ENTITY);
 	ENSURE(cmpRangeManager);
-	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
+	CLOSTexture& losTexture = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 
 	const float invTileMapSize = 1.0f / static_cast<float>(TERRAIN_TILE_SIZE * m_MapSize);
 	const float texCoordMax = m_TerrainTexture ? static_cast<float>(m_MapSize - 1) / m_TerrainTexture->GetWidth() : 1.0f;
@@ -506,7 +506,8 @@ void CMiniMapTexture::RenderFinalTexture(
 	deviceCommandContext->BeginPass();
 
 	// Draw territory boundaries
-	CTerritoryTexture& territoryTexture = g_Game->GetView()->GetTerritoryTexture();
+	CTerritoryTexture& territoryTexture =
+		g_Renderer.GetSceneRenderer().GetScene().GetTerritoryTexture();
 
 	deviceCommandContext->SetTexture(
 		shader->GetBindingSlot(str_baseTex), territoryTexture.GetTexture());
