@@ -60,7 +60,7 @@ class TemplateParser
 			return null;
 
 		let template = this.TemplateLoader.loadEntityTemplate(templateName, civCode);
-		let parsed = GetTemplateDataHelper(template, null, this.TemplateLoader.auraData, this.modifiers[civCode] || {});
+		const parsed = GetTemplateDataHelper(template, null, this.TemplateLoader.auraData, g_ResourceData, this.modifiers[civCode] || {});
 		parsed.name.internal = templateName;
 
 		parsed.history = template.Identity.History;
@@ -180,7 +180,7 @@ class TemplateParser
 			return this.techs[civCode][technologyName];
 
 		let template = this.TemplateLoader.loadTechnologyTemplate(technologyName);
-		let tech = GetTechnologyDataHelper(template, civCode, g_ResourceData);
+		const tech = GetTechnologyDataHelper(template, civCode, g_ResourceData, this.modifiers[civCode] || {});
 		tech.name.internal = technologyName;
 
 		if (template.pair !== undefined)
@@ -251,7 +251,7 @@ class TemplateParser
 		{
 			upgrade.entity = upgrade.entity.replace(/\{(civ|native)\}/g, civCode);
 
-			let data = GetTemplateDataHelper(this.TemplateLoader.loadEntityTemplate(upgrade.entity, civCode), null, this.TemplateLoader.auraData, this.modifiers[civCode] || {});
+			const data = GetTemplateDataHelper(this.TemplateLoader.loadEntityTemplate(upgrade.entity, civCode), null, this.TemplateLoader.auraData, g_ResourceData, this.modifiers[civCode] || {});
 			data.name.internal = upgrade.entity;
 			data.cost = upgrade.cost;
 			data.icon = upgrade.icon || data.icon;

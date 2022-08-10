@@ -3,6 +3,14 @@
  */
 
 /**
+ * Provide the bare minimum so we can load templates without error.
+ * We don't actually need to know the actual resource codes.
+ */
+const g_Resources = {
+	"GetCodes": () => [],
+};
+
+/**
  * Set some globals for this module.
  */
 var g_WallStyles = loadWallsetsFromCivData();
@@ -40,7 +48,7 @@ function loadWallsetsFromCivData()
 function loadWallset(wallsetPath, civ)
 {
 	let newWallset = { "curves": [] };
-	let wallsetData = GetTemplateDataHelper(wallsetPath).wallSet;
+	const wallsetData = GetTemplateDataHelper(wallsetPath, null, null, g_Resources).wallSet;
 
 	for (let element in wallsetData.templates)
 		if (element == "curves")
@@ -263,7 +271,7 @@ function getWallElement(element, style)
 function readyWallElement(path, civCode)
 {
 	path = path.replace(/\{civ\}/g, civCode);
-	let template = GetTemplateDataHelper(Engine.GetTemplate(path), null, null);
+	const template = GetTemplateDataHelper(Engine.GetTemplate(path), null, null, g_Resources);
 	let length = template.wallPiece ? template.wallPiece.length : template.obstruction.shape.width;
 
 	return deepfreeze({

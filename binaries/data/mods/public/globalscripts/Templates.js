@@ -107,13 +107,14 @@ function MatchesClassList(classes, match)
  *
  * @param {Object} template - A valid template as returned from a template loader.
  * @param {string} value_path - Route to value within the xml template structure.
+ * @param {number} default_value - A value to use if one is not specified in the template.
  * @return {number}
  */
-function GetBaseTemplateDataValue(template, value_path)
+function GetBaseTemplateDataValue(template, value_path, default_value)
 {
 	let current_value = template;
 	for (let property of value_path.split("/"))
-		current_value = current_value[property] || 0;
+		current_value = current_value[property] || default_value;
 	return +current_value;
 }
 
@@ -126,11 +127,12 @@ function GetBaseTemplateDataValue(template, value_path)
  * @param {number} player - Optional player id.
  * @param {Object} modifiers - Value modifiers from auto-researched techs, unit upgrades,
  *                             etc. Optional as only used if no player id provided.
+ * @param {number} default_value - A value to use if one is not specified in the template.
  * @return {number} Modifier altered value.
  */
-function GetModifiedTemplateDataValue(template, value_path, mod_key, player, modifiers={})
+function GetModifiedTemplateDataValue(template, value_path, mod_key, player, modifiers={}, default_value)
 {
-	let current_value = GetBaseTemplateDataValue(template, value_path);
+	let current_value = GetBaseTemplateDataValue(template, value_path, default_value);
 	mod_key = mod_key || value_path;
 
 	if (player)
@@ -152,17 +154,19 @@ function GetModifiedTemplateDataValue(template, value_path, mod_key, player, mod
  * @param {number} player - An optional player id to get the technology modifications
  *                          of properties.
  * @param {Object} auraTemplates - In the form of { key: { "auraName": "", "auraDescription": "" } }.
+ * @param {Object} resources - An instance of the Resources class.
  * @param {Object} modifiers - Modifications from auto-researched techs, unit upgrades
  *                             etc. Optional as only used if there's no player
  *                             id provided.
  */
-function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
+function GetTemplateDataHelper(template, player, auraTemplates, resources, modifiers = {})
 {
 	// Return data either from template (in tech tree) or sim state (ingame).
 	// @param {string} value_path - Route to the value within the template.
 	// @param {string} mod_key - Modification key, if not the same as the value_path.
-	let getEntityValue = function(value_path, mod_key) {
-		return GetModifiedTemplateDataValue(template, value_path, mod_key, player, modifiers);
+	// @param {number} default_value - A value to use if one is not specified in the template.
+	const getEntityValue = function(value_path, mod_key, default_value = 0) {
+		return GetModifiedTemplateDataValue(template, value_path, mod_key, player, modifiers, default_value);
 	};
 
 	let ret = {};
@@ -481,8 +485,8 @@ function GetTemplateDataHelper(template, player, auraTemplates, modifiers = {})
 	if (template.Researcher)
 	{
 		ret.techCostMultiplier = {};
-		for (const res in template.Researcher.TechCostMultiplier)
-			ret.techCostMultiplier[res] = getEntityValue("Researcher/TechCostMultiplier/" + res);
+		for (const res of resources.GetCodes().concat(["time"]))
+			ret.techCostMultiplier[res] = getEntityValue("Researcher/TechCostMultiplier/" + res, null, 1);
 	}
 
 	if (template.Trader)
@@ -570,6 +574,7 @@ function GetTechnologyBasicDataHelper(template, civ)
  * Get information about a technology template.
  * @param {Object} template - A valid template as obtained by loading the tech JSON file.
  * @param {string} civ - Civilization for which the specific name and tech requirements should be returned.
+ * @param {Object} resources - An instance of the Resources class.
  */
 function GetTechnologyDataHelper(template, civ, resources)
 {

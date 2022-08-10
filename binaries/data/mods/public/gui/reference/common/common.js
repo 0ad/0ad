@@ -15,7 +15,7 @@ var g_Page;
 function GetTemplateData(templateName)
 {
 	let template = g_Page.TemplateLoader.loadEntityTemplate(templateName, g_Page.activeCiv);
-	return GetTemplateDataHelper(template, null, g_Page.TemplateLoader.auraData, g_Page.TemplateParser.getModifiers(g_Page.activeCiv));
+	return GetTemplateDataHelper(template, null, g_Page.TemplateLoader.auraData, g_ResourceData, g_Page.TemplateParser.getModifiers(g_Page.activeCiv));
 }
 
 /**
