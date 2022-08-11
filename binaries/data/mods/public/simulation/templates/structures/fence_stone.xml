@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure">
-  <Capturable disable=""/>
+  <Capturable>
+    <CapturePoints>100</CapturePoints>
+  </Capturable>
   <Footprint>
     <Square width="1.5" depth="11.0"/>
     <Height>4.0</Height>
@@ -24,7 +26,6 @@
   <StatusBars>
     <HeightOffset>6.0</HeightOffset>
   </StatusBars>
-  <TerritoryDecay disable=""/>
   <Trainer disable=""/>
   <VisualActor>
     <Actor>props/special/eyecandy/fence_stone_medit.xml</Actor>

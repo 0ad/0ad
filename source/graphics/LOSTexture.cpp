@@ -355,7 +355,7 @@ void CLOSTexture::RecomputeTexture(Renderer::Backend::IDeviceCommandContext* dev
 	std::unique_ptr<u8[]> losData = std::make_unique<u8[]>(
 		dataSize * m_TextureFormatStride);
 
-	CLosQuerier los(cmpRangeManager->GetLosQuerier(g_Game->GetSimulation2()->GetSimContext().GetCurrentDisplayedPlayer()));
+	CLosQuerier los(cmpRangeManager->GetLosQuerier(m_Simulation.GetSimContext().GetCurrentDisplayedPlayer()));
 
 	GenerateBitmap(los, &losData[0], m_MapSize, m_MapSize, pitch);
 

@@ -610,7 +610,7 @@ void TerrainRenderer::RenderSimpleWater(
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render Simple Water");
 
 	const WaterManager& waterManager = g_Renderer.GetSceneRenderer().GetWaterManager();
-	CLOSTexture& losTexture = g_Game->GetView()->GetLOSTexture();
+	CLOSTexture& losTexture = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 
 	const double time = waterManager.m_WaterTexTimer;
 
