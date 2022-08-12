@@ -16,21 +16,10 @@
   </Obstruction>
   <Researcher>
     <Technologies datatype="tokens">
-      -unlock_champion_cavalry
       archer_attack_spread
       crossbow_training
     </Technologies>
   </Researcher>
-  <Trainer>
-    <BatchTimeModifier>0.8</BatchTimeModifier>
-    <Entities datatype="tokens">
-      -units/{civ}/champion_cavalry
-      -units/{civ}/champion_cavalry_spearman
-      -units/{civ}/champion_cavalry_archer
-      -units/{civ}/champion_chariot
-      -units/{civ}/war_dog
-    </Entities>
-  </Trainer>
   <VisualActor>
     <Actor>structures/han/stable.xml</Actor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
