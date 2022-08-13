@@ -4,8 +4,10 @@
 	<object name="pgToolTip" style="TranslucentPanel" type="text" hidden="true" size="100%-313 25 100% 200" ghost="true"/>
 
 	<object name="mainMenu" type="image" style="MainMenuPanel" size="60 -2 300 100%+2" z="50">
-
-		<object name="mainMenuButtons" size="8 156 100%-8 356">
+		<!-- Set z value explicitly to be able to click buttons for low
+			resolutions, when they might be covered by project information.
+			Players should be able to exit at least. -->
+		<object name="mainMenuButtons" size="8 156 100%-8 356" z="60">
 			<repeat count="10">
 				<object name="mainMenuButton[n]" type="button" style="StoneButtonFancy" tooltip_style="pgToolTip"/>
 			</repeat>
