@@ -30,7 +30,6 @@
 
 #if !OS_WIN
 #include "lib/os_path.h"
-#include "lib/path.h"
 #endif
 
 #include <fstream>
@@ -119,7 +118,7 @@ CModInstaller::ModInstallationResult CModInstaller::Install(
 #if OS_WIN
 	const std::filesystem::path modJsonPath = (modDir / L"mod.json").fileSystemPath();
 #else
-	const Path::String modJsonPath = OsString(modDir / L"mod.json").c_str();
+	const char* modJsonPath = OsString(modDir / L"mod.json").c_str();
 #endif
 	std::ofstream mod_json(modJsonPath);
 	if (mod_json.good())

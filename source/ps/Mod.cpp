@@ -35,7 +35,6 @@
 
 #if !OS_WIN
 #include "lib/os_path.h"
-#include "lib/path.h"
 #endif
 
 #include <algorithm>
@@ -60,7 +59,7 @@ bool LoadModJSON(const PIVFS& vfs, OsPath modsPath, OsPath mod, std::string& tex
 #if OS_WIN
 	const std::filesystem::path modJsonPath = (modsPath / mod / L"mod.json").fileSystemPath();
 #else
-	const Path::String modJsonPath = OsString(modsPath / mod / L"mod.json").c_str();
+	const char* modJsonPath = OsString(modsPath / mod / L"mod.json").c_str();
 #endif
 	// Attempt to open mod.json first.
 	std::ifstream modjson(modJsonPath);
