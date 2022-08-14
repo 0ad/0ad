@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,13 +21,22 @@
 
 #include "lib/file/vfs/vfs_util.h"
 #include "lib/file/file_system.h"
+#include "lib/sysdep/os.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/XML/Xeromyces.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/JSON.h"
 
+#if !OS_WIN
+#include "lib/os_path.h"
+#include "lib/path.h"
+#endif
+
 #include <fstream>
+#if OS_WIN
+#include <filesystem>
+#endif
 
 CModInstaller::CModInstaller(const OsPath& modsdir, const OsPath& tempdir) :
 	m_ModsDir(modsdir), m_TempDir(tempdir / "_modscache"), m_CacheDir("cache/")
@@ -107,7 +116,12 @@ CModInstaller::ModInstallationResult CModInstaller::Install(
 
 	DeleteDirectory(modTemp.Parent());
 
-	std::ofstream mod_json((modDir / "mod.json").string8());
+#if OS_WIN
+	const std::filesystem::path modJsonPath = (modDir / L"mod.json").fileSystemPath();
+#else
+	const Path::String modJsonPath = OsString(modDir / L"mod.json").c_str();
+#endif
+	std::ofstream mod_json(modJsonPath);
 	if (mod_json.good())
 	{
 		mod_json << modinfo.GetAsString();
