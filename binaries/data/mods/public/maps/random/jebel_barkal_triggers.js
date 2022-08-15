@@ -164,7 +164,7 @@ var jebelBarkal_buildingGarrison = difficulty => [
 	},
 	{
 		"buildingClasses": ["Barracks", "Embassy"],
-		"unitTemplates": [...jebelBarkal_templates.citizenSoldiers, ...jebelBarkal_templates.champions],
+		"unitTemplates": [...jebelBarkal_templates.citizenSoldier_infantry, ...jebelBarkal_templates.champion_infantry],
 		"capacityRatio": 1
 	},
 	{

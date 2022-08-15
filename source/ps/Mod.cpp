@@ -33,6 +33,10 @@
 #include "scriptinterface/ScriptExceptions.h"
 #include "scriptinterface/ScriptInterface.h"
 
+#if !OS_WIN
+#include "lib/os_path.h"
+#endif
+
 #include <algorithm>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/classification.hpp>
@@ -55,7 +59,7 @@ bool LoadModJSON(const PIVFS& vfs, OsPath modsPath, OsPath mod, std::string& tex
 #if OS_WIN
 	const std::filesystem::path modJsonPath = (modsPath / mod / L"mod.json").fileSystemPath();
 #else
-	const std::string modJsonPath = (modsPath / mod / L"mod.json").string8();
+	const char* modJsonPath = OsString(modsPath / mod / L"mod.json").c_str();
 #endif
 	// Attempt to open mod.json first.
 	std::ifstream modjson(modJsonPath);
