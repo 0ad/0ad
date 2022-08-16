@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-07-18 07:11+0000\n"
+"POT-Creation-Date: 2022-08-12 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: Mohammed Allawi, 2022\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
@@ -508,7 +508,7 @@ msgstr "خيّال أشوس"
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
 #: simulation/templates/units/brit/hero_boudicca.xml:20
-#: simulation/templates/units/han/support_minister.xml:67
+#: simulation/templates/units/han/support_minister.xml:72
 #: simulation/templates/units/kush/hero_amanirenas.xml:21
 #: simulation/templates/units/maur/hero_ashoka.xml:20
 #: simulation/templates/units/pers/hero_darius_i.xml:20
@@ -883,7 +883,6 @@ msgstr ""
 #: simulation/templates/units/han/infantry_crossbowman_a.xml:4
 #: simulation/templates/units/han/infantry_pikeman_a.xml:4
 #: simulation/templates/units/han/infantry_spearman_a.xml:4
-#: simulation/templates/units/han/infantry_swordsman_a.xml:4
 #: simulation/templates/units/han/support_healer_a.xml:4
 #: simulation/templates/units/iber/cavalry_javelineer_a.xml:4
 #: simulation/templates/units/iber/cavalry_spearman_a.xml:4
@@ -1000,7 +999,6 @@ msgstr "Pródromos"
 #: simulation/templates/units/han/infantry_crossbowman_e.xml:4
 #: simulation/templates/units/han/infantry_pikeman_e.xml:4
 #: simulation/templates/units/han/infantry_spearman_e.xml:4
-#: simulation/templates/units/han/infantry_swordsman_e.xml:4
 #: simulation/templates/units/han/support_healer_e.xml:4
 #: simulation/templates/units/iber/cavalry_javelineer_e.xml:4
 #: simulation/templates/units/iber/cavalry_spearman_e.xml:4
@@ -1628,11 +1626,11 @@ msgstr "خيّال نبيل غاليّ"
 msgid "Uerouicos"
 msgstr ""
 
-#: simulation/templates/units/gaul/champion_fanatic.xml:5
+#: simulation/templates/units/gaul/champion_fanatic.xml:12
 msgid "Naked Fanatic"
 msgstr "متعصب عارٍ"
 
-#: simulation/templates/units/gaul/champion_fanatic.xml:6
+#: simulation/templates/units/gaul/champion_fanatic.xml:13
 msgid "Bariogaisatos"
 msgstr ""
 
@@ -1761,10 +1759,6 @@ msgstr ""
 
 #: simulation/templates/units/han/infantry_spearman_b.xml:11
 msgid "Máo Bīng"
-msgstr ""
-
-#: simulation/templates/units/han/infantry_swordsman_b.xml:11
-msgid "Dāo Bīng"
 msgstr ""
 
 #: simulation/templates/units/han/ship_bireme.xml:9
@@ -2555,17 +2549,17 @@ msgid "Pila Hinduya"
 msgstr ""
 
 #: simulation/templates/units/pers/champion_infantry.xml:9
-#: simulation/templates/units/pers/champion_infantry_archer.xml:9
+#: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:9
 msgid "Persian Immortal"
 msgstr "فارسي خالد"
 
 #: simulation/templates/units/pers/champion_infantry.xml:10
-#: simulation/templates/units/pers/champion_infantry_archer.xml:10
+#: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:10
 msgid "Anušiya"
 msgstr ""
 
 #: simulation/templates/units/pers/champion_infantry.xml:11
-#: simulation/templates/units/pers/champion_infantry_archer.xml:11
+#: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:11
 msgid "Immortal"
 msgstr ""
 
@@ -2573,7 +2567,7 @@ msgstr ""
 msgid "Switch to using the bow and arrow."
 msgstr ""
 
-#: simulation/templates/units/pers/champion_infantry_archer.xml:17
+#: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:17
 msgid "Switch to using a spear and shield."
 msgstr ""
 
@@ -2603,27 +2597,27 @@ msgstr "خشايار الأول"
 msgid "Xšayāršā"
 msgstr ""
 
-#: simulation/templates/units/pers/infantry_archer_b.xml:13
+#: simulation/templates/units/pers/infantry_archer_b.xml:7
 msgid "Sogdian Archer"
 msgstr "رامٍ سوقديانيّ"
 
-#: simulation/templates/units/pers/infantry_archer_b.xml:14
+#: simulation/templates/units/pers/infantry_archer_b.xml:8
 msgid "Θanuvaniya Suguda"
 msgstr ""
 
-#: simulation/templates/units/pers/infantry_javelineer_b.xml:13
+#: simulation/templates/units/pers/infantry_javelineer_b.xml:7
 msgid "Lydian Auxiliary"
 msgstr ""
 
-#: simulation/templates/units/pers/infantry_javelineer_b.xml:14
+#: simulation/templates/units/pers/infantry_javelineer_b.xml:8
 msgid "Pastiš Spardiya"
 msgstr ""
 
-#: simulation/templates/units/pers/infantry_spearman_b.xml:13
+#: simulation/templates/units/pers/infantry_spearman_b.xml:7
 msgid "Shield Bearer"
 msgstr "حامل الدرع"
 
-#: simulation/templates/units/pers/infantry_spearman_b.xml:14
+#: simulation/templates/units/pers/infantry_spearman_b.xml:8
 msgid "Sparabara"
 msgstr ""
 
@@ -2679,11 +2673,11 @@ msgstr "مدق حصار آشوري"
 msgid "Hamaranakuba Aθuriya"
 msgstr ""
 
-#: simulation/templates/units/pers/support_female_citizen.xml:12
+#: simulation/templates/units/pers/support_female_citizen.xml:6
 msgid "Banu Miyanrudani"
 msgstr ""
 
-#: simulation/templates/units/pers/support_female_citizen.xml:13
+#: simulation/templates/units/pers/support_female_citizen.xml:7
 msgid "Mesopotamian Woman"
 msgstr "امرأة رافديّة"
 

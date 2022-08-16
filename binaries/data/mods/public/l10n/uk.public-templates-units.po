@@ -27,7 +27,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-07-18 07:11+0000\n"
+"POT-Creation-Date: 2022-08-12 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: c042aea184b4e59405665b6829c96633_d043b8e, 2022\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
@@ -514,7 +514,7 @@ msgstr "Геройська кавалерія"
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
 #: simulation/templates/units/brit/hero_boudicca.xml:20
-#: simulation/templates/units/han/support_minister.xml:67
+#: simulation/templates/units/han/support_minister.xml:72
 #: simulation/templates/units/kush/hero_amanirenas.xml:21
 #: simulation/templates/units/maur/hero_ashoka.xml:20
 #: simulation/templates/units/pers/hero_darius_i.xml:20
@@ -889,7 +889,6 @@ msgstr "Солон"
 #: simulation/templates/units/han/infantry_crossbowman_a.xml:4
 #: simulation/templates/units/han/infantry_pikeman_a.xml:4
 #: simulation/templates/units/han/infantry_spearman_a.xml:4
-#: simulation/templates/units/han/infantry_swordsman_a.xml:4
 #: simulation/templates/units/han/support_healer_a.xml:4
 #: simulation/templates/units/iber/cavalry_javelineer_a.xml:4
 #: simulation/templates/units/iber/cavalry_spearman_a.xml:4
@@ -1006,7 +1005,6 @@ msgstr "Продромос"
 #: simulation/templates/units/han/infantry_crossbowman_e.xml:4
 #: simulation/templates/units/han/infantry_pikeman_e.xml:4
 #: simulation/templates/units/han/infantry_spearman_e.xml:4
-#: simulation/templates/units/han/infantry_swordsman_e.xml:4
 #: simulation/templates/units/han/support_healer_e.xml:4
 #: simulation/templates/units/iber/cavalry_javelineer_e.xml:4
 #: simulation/templates/units/iber/cavalry_spearman_e.xml:4
@@ -1634,11 +1632,11 @@ msgstr "Галльська шляхетна кавалерія"
 msgid "Uerouicos"
 msgstr "Уероуікос"
 
-#: simulation/templates/units/gaul/champion_fanatic.xml:5
+#: simulation/templates/units/gaul/champion_fanatic.xml:12
 msgid "Naked Fanatic"
 msgstr "Голий фанатик"
 
-#: simulation/templates/units/gaul/champion_fanatic.xml:6
+#: simulation/templates/units/gaul/champion_fanatic.xml:13
 msgid "Bariogaisatos"
 msgstr "Баріоґайсатос"
 
@@ -1768,10 +1766,6 @@ msgstr "Цзі бін"
 #: simulation/templates/units/han/infantry_spearman_b.xml:11
 msgid "Máo Bīng"
 msgstr "Мао бін"
-
-#: simulation/templates/units/han/infantry_swordsman_b.xml:11
-msgid "Dāo Bīng"
-msgstr "Дао бін"
 
 #: simulation/templates/units/han/ship_bireme.xml:9
 msgid "Zhàn Chuán"
@@ -2561,17 +2555,17 @@ msgid "Pila Hinduya"
 msgstr "Піла хіндуя"
 
 #: simulation/templates/units/pers/champion_infantry.xml:9
-#: simulation/templates/units/pers/champion_infantry_archer.xml:9
+#: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:9
 msgid "Persian Immortal"
 msgstr "Перський безсмертний"
 
 #: simulation/templates/units/pers/champion_infantry.xml:10
-#: simulation/templates/units/pers/champion_infantry_archer.xml:10
+#: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:10
 msgid "Anušiya"
 msgstr "Анушія"
 
 #: simulation/templates/units/pers/champion_infantry.xml:11
-#: simulation/templates/units/pers/champion_infantry_archer.xml:11
+#: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:11
 msgid "Immortal"
 msgstr "Безсмертний"
 
@@ -2579,7 +2573,7 @@ msgstr "Безсмертний"
 msgid "Switch to using the bow and arrow."
 msgstr "Перейдіть на використання лука та стріл."
 
-#: simulation/templates/units/pers/champion_infantry_archer.xml:17
+#: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:17
 msgid "Switch to using a spear and shield."
 msgstr "Перейдіть на використання списа та щита."
 
@@ -2609,27 +2603,27 @@ msgstr "Ксеркс I"
 msgid "Xšayāršā"
 msgstr "Хшаярша"
 
-#: simulation/templates/units/pers/infantry_archer_b.xml:13
+#: simulation/templates/units/pers/infantry_archer_b.xml:7
 msgid "Sogdian Archer"
 msgstr "Согдійський стрілець"
 
-#: simulation/templates/units/pers/infantry_archer_b.xml:14
+#: simulation/templates/units/pers/infantry_archer_b.xml:8
 msgid "Θanuvaniya Suguda"
 msgstr "Тануванія сугуда"
 
-#: simulation/templates/units/pers/infantry_javelineer_b.xml:13
+#: simulation/templates/units/pers/infantry_javelineer_b.xml:7
 msgid "Lydian Auxiliary"
 msgstr "Лідійський ауксіларій"
 
-#: simulation/templates/units/pers/infantry_javelineer_b.xml:14
+#: simulation/templates/units/pers/infantry_javelineer_b.xml:8
 msgid "Pastiš Spardiya"
 msgstr "Пастіш спардія"
 
-#: simulation/templates/units/pers/infantry_spearman_b.xml:13
+#: simulation/templates/units/pers/infantry_spearman_b.xml:7
 msgid "Shield Bearer"
 msgstr "Щитоносець"
 
-#: simulation/templates/units/pers/infantry_spearman_b.xml:14
+#: simulation/templates/units/pers/infantry_spearman_b.xml:8
 msgid "Sparabara"
 msgstr "Спарабара"
 
@@ -2685,11 +2679,11 @@ msgstr "Ассирійський облоговий таран"
 msgid "Hamaranakuba Aθuriya"
 msgstr "Хамаранакуба атурія"
 
-#: simulation/templates/units/pers/support_female_citizen.xml:12
+#: simulation/templates/units/pers/support_female_citizen.xml:6
 msgid "Banu Miyanrudani"
 msgstr "Бану міянрудані"
 
-#: simulation/templates/units/pers/support_female_citizen.xml:13
+#: simulation/templates/units/pers/support_female_citizen.xml:7
 msgid "Mesopotamian Woman"
 msgstr "Месопотамська жінка"
 
