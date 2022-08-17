@@ -59,7 +59,7 @@ bool LoadModJSON(const PIVFS& vfs, OsPath modsPath, OsPath mod, std::string& tex
 #if OS_WIN
 	const std::filesystem::path modJsonPath = (modsPath / mod / L"mod.json").fileSystemPath();
 #else
-	const char* modJsonPath = OsString(modsPath / mod / L"mod.json").c_str();
+	const std::string modJsonPath = OsString(modsPath / mod / L"mod.json");
 #endif
 	// Attempt to open mod.json first.
 	std::ifstream modjson(modJsonPath);

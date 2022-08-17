@@ -118,7 +118,7 @@ CModInstaller::ModInstallationResult CModInstaller::Install(
 #if OS_WIN
 	const std::filesystem::path modJsonPath = (modDir / L"mod.json").fileSystemPath();
 #else
-	const char* modJsonPath = OsString(modDir / L"mod.json").c_str();
+	const std::string modJsonPath = OsString(modDir / L"mod.json");
 #endif
 	std::ofstream mod_json(modJsonPath);
 	if (mod_json.good())
