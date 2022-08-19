@@ -54,11 +54,6 @@ class LoadGameButton
         g_GameSettings.pickRandomItems();
         this.setupWindow.controls.gameSettingsController.setNetworkInitAttributes();
         this.updateCaption();
-
-        // TODO @mbusy: to be removed, here to check the game launching settigns
-        print("###########\n");
-        print(JSON.stringify(this.setupWindow.controls.gameSettingsController.getSettings().settings.PlayerData, null, 2) + "\n");
-        print("###########\n");
     }
 
     onPressLoadSave()
@@ -77,9 +72,9 @@ class LoadGameButton
             return;
  
 
-        // WARNING: This line removes the null entry at index 0 of player data,
-        // accounting for Gaïa. TODO @mbusy, investigate how this works and if 
-        // this can be handled more gracefully
+        // WARNING: This line removes the null entry at index 0 of player data
+        // accounting for Gaïa (for display purposes). TODO: this can be
+        // handled more gracefully
         data.metadata.initAttributes.settings.PlayerData.splice(0, 1);
 
         // Update the data depending on if extra human players are present. If
@@ -127,7 +122,7 @@ LoadGameButton.prototype.Caption =
     "clear" : translate("Clear Save")
 };
 
-// TODO @mbusy: needs translation
+// TODO: needs translation
 LoadGameButton.prototype.Tooltip = 
 {
     "load" : translate("Load a previously created game. You will still have to press start after having loaded the game data"),
