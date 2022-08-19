@@ -11,6 +11,12 @@ class GameSettingControlCheckbox extends GameSettingControl
 		this.previousSelectedValue = undefined;
 	}
 
+	onSettingsChanged()
+	{
+		let enabled = g_IsController && !g_isSaveLoaded;
+		this.setEnabled(enabled);
+	}
+
 	setControl(gameSettingControlManager)
 	{
 		let row = gameSettingControlManager.getNextRow("checkboxSettingFrame");

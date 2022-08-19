@@ -21,6 +21,12 @@ class GameSettingControlSlider extends GameSettingControl
 			this.slider.max_value = this.MaxValue;
 	}
 
+	onSettingsChanged()
+	{
+		let enabled = g_IsController && !g_isSaveLoaded;
+		this.setEnabled(enabled);
+	}
+
 	setControl(gameSettingControlManager)
 	{
 		let row = gameSettingControlManager.getNextRow("sliderSettingFrame");

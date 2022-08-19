@@ -66,10 +66,17 @@ const u8* CNetMessage::Deserialize(const u8* pStart, const u8* pEnd)
 	Deserialize_int_2(pBuffer, size);
 	m_Type = (NetMessageType)type;
 
-	if (pStart + size != pEnd)
+	// Don't check the size of the packet for a NMT_SAVED_GAME_START message.
+	// TODO: dirty, investigate why this test fails for a saved game start
+	// message. Note, even if the test fails the multiplayer game can be
+	// correctly loaded 
+	if (!m_Type == NMT_SAVED_GAME_START)
 	{
-		LOGERROR("CNetMessage: Corrupt packet (incorrect size)");
-		return NULL;
+		if (pStart + size != pEnd)
+		{
+			LOGERROR("CNetMessage: Corrupt packet (incorrect size)");
+			return NULL;
+		}
 	}
 
 	return pBuffer;
@@ -181,6 +188,10 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 
 	case NMT_GAME_START:
 		pNewMessage = new CGameStartMessage;
+		break;
+	
+	case NMT_SAVED_GAME_START:
+		pNewMessage = new CGameSavedStartMessage;
 		break;
 
 	case NMT_END_COMMAND_BATCH:

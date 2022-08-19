@@ -14,6 +14,12 @@ PlayerSettingControls.PlayerCiv = class PlayerCiv extends GameSettingControlDrop
 		this.rebuild();
 	}
 
+	onSettingsChanged()
+	{
+		let enabled = g_IsController && !g_GameSettings.playerCiv.locked[this.playerIndex] && !g_isSaveLoaded;
+		this.setEnabled(enabled);
+	}
+
 	setControl()
 	{
 		this.label = Engine.GetGUIObjectByName("playerCivText[" + this.playerIndex + "]");

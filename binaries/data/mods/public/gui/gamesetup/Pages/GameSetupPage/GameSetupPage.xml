@@ -67,17 +67,20 @@
 
 		<object name="bottomLeftPanel">
 
-			<object size="20 100%-32 100%-312 100%">
+			<!-- <object size="20 100%-32 100%-312 100%"> -->
+			<object size="20 100%-32 100%-462 100%">
 				<include file="gui/gamesetup/Pages/GameSetupPage/Panels/Tooltip.xml"/>
 			</object>
 
-			<object size="0 100%-28 100%-320 100%">
+			<!-- <object size="0 100%-28 100%-320 100%"> -->
+			<object size="0 100%-28 100%-470 100%">
 				<include file="gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.xml"/>
 			</object>
 
 		</object>
 
-		<object name="bottomRightPanel" size="100%-314 100%-28 100% 100%">
+		<!-- <object name="bottomRightPanel" size="100%-314 100%-28 100% 100%"> -->
+		<object name="bottomRightPanel" size="100%-464 100%-28 100% 100%">
 
 			<object size="0 0 140 100%">
 				<include file="gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.xml"/>
@@ -86,6 +89,10 @@
 			<object	size="150 0 290 100%">
 				<include file="gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.xml"/>
 				<include file="gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.xml"/>
+			</object>
+
+			<object	size="300 0 440 100%">
+				<include file="gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LoadGameButton.xml"/>
 			</object>
 
 		</object>

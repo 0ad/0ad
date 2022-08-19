@@ -1,6 +1,6 @@
 class ReadyButton
 {
-	constructor(setupWindow)
+	constructor(setupWindow, loadGameButton)
 	{
 		this.readyController = setupWindow.controls.readyController;
 
@@ -16,6 +16,9 @@ class ReadyButton
 		setupWindow.controls.playerAssignmentsController.registerPlayerAssignmentsChangeHandler(this.onPlayerAssignmentsChange.bind(this));
 		setupWindow.controls.netMessages.registerNetMessageHandler("netstatus", this.onNetStatusMessage.bind(this));
 
+		this.buttonPositions = Engine.GetGUIObjectByName("bottomRightPanel").children;
+		loadGameButton.registerButtonHiddenChangeHandler(this.onNeighborButtonHiddenChange.bind(this));
+
 		if (g_IsController && g_IsNetworked)
 			this.readyController.setReady(this.readyController.StayReady, true);
 	}
@@ -23,6 +26,16 @@ class ReadyButton
 	registerButtonHiddenChangeHandler(handler)
 	{
 		this.buttonHiddenChangeHandlers.add(handler);
+	}
+
+	onNeighborButtonHiddenChange()
+	{
+		// Resizing the ready button if the load button is hidden
+		this.readyButton.size = this.buttonPositions[
+			this.buttonPositions[2].children.every(button => button.hidden) ? 1 : 0].size;
+		
+		for (let handler of this.buttonHiddenChangeHandlers)
+			handler();
 	}
 
 	onNetStatusMessage(message)
@@ -49,7 +62,7 @@ class ReadyButton
 		this.readyButton.hidden = hidden;
 
 		for (let handler of this.buttonHiddenChangeHandlers)
-			handler(this.readyButton);
+			handler();
 	}
 
 	registerReadyButtonPressHandler(handler)

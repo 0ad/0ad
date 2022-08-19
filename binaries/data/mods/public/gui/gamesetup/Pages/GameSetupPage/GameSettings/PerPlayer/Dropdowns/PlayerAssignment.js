@@ -34,6 +34,12 @@ PlayerSettingControls.PlayerAssignment = class PlayerAssignment extends GameSett
 		g_GameSettings.playerCount.watch((_, oldNb) => this.OnPlayerNbChange(oldNb), ["nbPlayers"]);
 	}
 
+	onSettingsChanged()
+	{
+		let enabled = g_IsController;
+		this.setEnabled(enabled);
+	}
+
 	setControl()
 	{
 		this.dropdown = Engine.GetGUIObjectByName("playerAssignment[" + this.playerIndex + "]");

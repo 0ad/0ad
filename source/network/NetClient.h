@@ -238,6 +238,8 @@ public:
 
 	void SendStartGameMessage(const CStr& initAttribs);
 
+	void SendStartSavedGameMessage(const CStr& initAttribs, const CStr& savedState);
+
 	/**
 	 * Call when the client has rejoined a running match and finished
 	 * the loading screen.
@@ -279,6 +281,7 @@ private:
 	static bool OnPlayerAssignment(void* context, CFsmEvent* event);
 	static bool OnInGame(void* context, CFsmEvent* event);
 	static bool OnGameStart(void* context, CFsmEvent* event);
+	static bool OnSavedGameStart(void* context, CFsmEvent* event);
 	static bool OnJoinSyncStart(void* context, CFsmEvent* event);
 	static bool OnJoinSyncEndCommandBatch(void* context, CFsmEvent* event);
 	static bool OnRejoined(void* context, CFsmEvent* event);

@@ -27,7 +27,11 @@ class SavegameLoader
 
 		if (sameEngineVersion && sameMods)
 		{
-			this.reallyLoadGame(gameId);
+			if (!Engine.HasNetClient())
+				this.reallyLoadGame(gameId);
+			else
+				this.reallyLoadMultiplayerGame(gameId);
+
 			return;
 		}
 
@@ -64,6 +68,7 @@ class SavegameLoader
 
 	reallyLoadGame(gameId)
 	{
+		//TODO, add security preventing to load multiplayer games
 		let metadata = Engine.StartSavedGame(gameId);
 		if (!metadata)
 		{
@@ -83,5 +88,16 @@ class SavegameLoader
 			},
 			"savedGUIData": metadata.gui
 		});
+	}
+
+	reallyLoadMultiplayerGame(gameId)
+	{
+		// Parses the data from a multiplayer game and sends it back to the
+		// mutliplayer gamesetup while the page is popped. The game won't be
+		// started from here
+
+		let metadata = Engine.ParseSavedGame(gameId);
+		Engine.PopGuiPage({"gameId": gameId, "metadata": metadata});
+		return;
 	}
 }

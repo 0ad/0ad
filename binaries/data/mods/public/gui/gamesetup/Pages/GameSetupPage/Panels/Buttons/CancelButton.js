@@ -24,8 +24,9 @@ class CancelButton
 
 	onNeighborButtonHiddenChange()
 	{
+		// Resizing the close button if the load button is hidden
 		this.cancelButton.size = this.buttonPositions[
-			this.buttonPositions[1].children.every(button => button.hidden) ? 1 : 0].size;
+			this.buttonPositions[2].children.every(button => button.hidden) ? 1 : 0].size;
 
 		for (let handler of this.cancelButtonResizeHandlers)
 			handler(this.cancelButton);

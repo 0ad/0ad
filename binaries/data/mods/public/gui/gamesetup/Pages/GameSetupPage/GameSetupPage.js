@@ -6,20 +6,27 @@ SetupWindowPages.GameSetupPage = class
 	constructor(setupWindow)
 	{
 		Engine.ProfileStart("GameSetupPage");
+		
+		// No save data has been loaded for now
+		g_isSaveLoaded = false;
+		g_savedGameId = undefined;
 
 		// This class instance owns all game setting GUI controls such as dropdowns and checkboxes visible in this page.
 		this.gameSettingControlManager = new GameSettingControlManager(setupWindow);
 
 		// These classes manage GUI buttons.
 		{
-			let startGameButton = new StartGameButton(setupWindow);
-			let readyButton = new ReadyButton(setupWindow);
+			let loadGameButton = new LoadGameButton(setupWindow);
+			let startGameButton = new StartGameButton(setupWindow, loadGameButton);
+			let readyButton = new ReadyButton(setupWindow, loadGameButton);
+			let cancelButton = new CancelButton(setupWindow, startGameButton, readyButton)
 			this.panelButtons = {
-				"cancelButton": new CancelButton(setupWindow, startGameButton, readyButton),
 				"civInfoButton": new CivInfoButton(),
 				"lobbyButton": new LobbyButton(),
+				"cancelButton": cancelButton,
 				"readyButton": readyButton,
-				"startGameButton": startGameButton
+				"startGameButton": startGameButton,
+				"loadGameButton": loadGameButton
 			};
 		}
 

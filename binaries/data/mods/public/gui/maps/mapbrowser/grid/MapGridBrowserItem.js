@@ -56,7 +56,9 @@ class MapGridBrowserItem extends GridBrowserItem
 
 	onMouseLeftDoubleClick()
 	{
-		this.mapBrowserPage.submitMapSelection();
+		// Only submit the map selection if no save is loaded
+		if (!g_isSaveLoaded)
+			this.mapBrowserPage.submitMapSelection();
 	}
 }
 

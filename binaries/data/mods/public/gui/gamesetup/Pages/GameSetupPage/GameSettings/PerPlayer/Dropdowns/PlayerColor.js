@@ -8,6 +8,12 @@ PlayerSettingControls.PlayerColor = class PlayerColor extends GameSettingControl
 		this.render();
 	}
 
+	onSettingsChanged()
+	{
+		let enabled = g_IsController && g_GameSettings.map.type !== "scenario" && !g_isSaveLoaded;
+		this.setEnabled(enabled);
+	}
+
 	setControl()
 	{
 		this.dropdown = Engine.GetGUIObjectByName("playerColor[" + this.playerIndex + "]");

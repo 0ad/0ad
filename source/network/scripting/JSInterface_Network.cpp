@@ -33,6 +33,7 @@
 #include "ps/GUID.h"
 #include "ps/Hashing.h"
 #include "ps/Pyrogenesis.h"
+#include "ps/SavedGame.h"
 #include "ps/Util.h"
 #include "scriptinterface/FunctionWrapper.h"
 #include "scriptinterface/StructuredClone.h"
@@ -266,6 +267,24 @@ void StartNetworkGame(const ScriptInterface& scriptInterface, JS::HandleValue at
 	g_NetClient->SendStartGameMessage(Script::StringifyJSON(rq, &attribs));
 }
 
+void StartNetworkSavedGame(const ScriptInterface& scriptInterface, const std::wstring& name, JS::HandleValue attribs1)
+{
+	ENSURE(g_NetClient);
+	ENSURE(g_Game);
+
+	ScriptRequest rq(scriptInterface);
+	JS::RootedValue attribs(rq.cx, attribs1);
+
+	JS::RootedValue guiContextMetadata(rq.cx);
+	std::string savedState;
+	Status err = SavedGames::Load(name, scriptInterface, &guiContextMetadata, savedState);
+
+	if (err < 0)
+		ScriptException::Raise(rq, "Failed to load the saved game");
+
+	g_NetClient->SendStartSavedGameMessage(Script::StringifyJSON(rq, &attribs), savedState);
+}
+
 void SetTurnLength(int length)
 {
 	if (g_NetServer)
@@ -293,6 +312,7 @@ void RegisterScriptFunctions(const ScriptRequest& rq)
 	ScriptFunction::Register<&SendNetworkReady>(rq, "SendNetworkReady");
 	ScriptFunction::Register<&ClearAllPlayerReady>(rq, "ClearAllPlayerReady");
 	ScriptFunction::Register<&StartNetworkGame>(rq, "StartNetworkGame");
+	ScriptFunction::Register<&StartNetworkSavedGame>(rq, "StartNetworkSavedGame");
 	ScriptFunction::Register<&SetTurnLength>(rq, "SetTurnLength");
 }
 }

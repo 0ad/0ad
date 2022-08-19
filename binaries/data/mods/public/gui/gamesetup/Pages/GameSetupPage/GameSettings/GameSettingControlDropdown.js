@@ -13,6 +13,12 @@ class GameSettingControlDropdown extends GameSettingControl
 			this.dropdown.onHoverChange = this.onHoverChange.bind(this);
 	}
 
+	onSettingsChanged()
+	{
+		let enabled = g_IsController && !g_isSaveLoaded;
+		this.setEnabled(enabled);
+	}
+
 	setControl(gameSettingControlManager)
 	{
 		let row = gameSettingControlManager.getNextRow("dropdownSettingFrame");

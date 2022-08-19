@@ -1,6 +1,6 @@
 class StartGameButton
 {
-	constructor(setupWindow)
+	constructor(setupWindow, loadGameButton)
 	{
 		this.setupWindow = setupWindow;
 		this.gameStarted = false;
@@ -13,6 +13,9 @@ class StartGameButton
 
 		setupWindow.registerLoadHandler(this.onLoad.bind(this));
 		setupWindow.controls.playerAssignmentsController.registerPlayerAssignmentsChangeHandler(this.update.bind(this));
+
+		this.buttonPositions = Engine.GetGUIObjectByName("bottomRightPanel").children;
+		loadGameButton.registerButtonHiddenChangeHandler(this.onNeighborButtonHiddenChange.bind(this));
 	}
 
 	registerButtonHiddenChangeHandler(handler)
@@ -20,9 +23,22 @@ class StartGameButton
 		this.buttonHiddenChangeHandlers.add(handler);
 	}
 
+	onNeighborButtonHiddenChange()
+	{
+		// Resizing the start game button if the load button is hidden
+		// (although is shouldn't be displayed), because in theory the player
+		// isn't the controller
+		this.startGameButton.size = this.buttonPositions[
+			this.buttonPositions[2].children.every(button => button.hidden) ? 1 : 0].size;
+		
+		for (let handler of this.buttonHiddenChangeHandlers)
+			handler();
+	}
+
 	onLoad()
 	{
 		this.startGameButton.hidden = !g_IsController;
+
 		for (let handler of this.buttonHiddenChangeHandlers)
 			handler();
 	}

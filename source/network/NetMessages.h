@@ -75,6 +75,7 @@ enum NetMessageType
 
 	NMT_LOADED_GAME,
 	NMT_GAME_START,
+	NMT_SAVED_GAME_START,
 	NMT_END_COMMAND_BATCH,
 
 	NMT_SYNC_CHECK,	// OOS-detection hash checking
@@ -215,6 +216,11 @@ END_NMT_CLASS()
 
 START_NMT_CLASS_(GameStart, NMT_GAME_START)
 	NMT_FIELD(CStr, m_InitAttributes)
+END_NMT_CLASS()
+
+START_NMT_CLASS_(GameSavedStart, NMT_SAVED_GAME_START)
+	NMT_FIELD(CStr, m_InitAttributes)
+	NMT_FIELD(CStr, m_SavedState)
 END_NMT_CLASS()
 
 START_NMT_CLASS_(EndCommandBatch, NMT_END_COMMAND_BATCH)

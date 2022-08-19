@@ -24,6 +24,12 @@ PlayerSettingControls.PlayerTeam = class PlayerTeam extends GameSettingControlDr
 		this.render();
 	}
 
+	onSettingsChanged()
+	{
+		let enabled = g_IsController && g_GameSettings.map.type != "scenario" && !g_isSaveLoaded;
+		this.setEnabled(enabled);
+	}
+
 	setControl()
 	{
 		this.label = Engine.GetGUIObjectByName("playerTeamText[" + this.playerIndex + "]");

@@ -25,6 +25,21 @@ var g_PlayerAssignments = {};
 var g_GameSettings;
 
 /**
+ * If save data has been loaded from the singleplayer or multiplayer gamesetup,
+ * this variable will be set to true. If not, it'll be set to false. This
+ * variable will be used to prevent settings modifications once the game has
+ * been loaded, but not yet started.
+ */
+var g_isSaveLoaded;
+
+/**
+ * This variable will contain the gameID of a saved game, selected from the
+ * multiplayer gamesetup. If no save has been loaded, or if the loaded save is
+ * cleared, this variable will be undefined
+ */
+ var g_savedGameId;
+
+/**
  * Whether this is a single- or multiplayer match.
  */
 const g_IsNetworked = Engine.HasNetClient();

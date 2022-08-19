@@ -2,7 +2,9 @@ class AIGameSettingControlDropdown extends GameSettingControlDropdown
 {
 	onOpenPage(playerIndex)
 	{
-		this.setEnabled(true);
+		let enabled = g_IsController && !g_isSaveLoaded;
+		this.setEnabled(enabled);
+
 		this.playerIndex = playerIndex;
 		this.render();
 	}

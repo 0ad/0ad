@@ -262,6 +262,11 @@ private:
 	void StartGame(const CStr& initAttribs);
 
 	/**
+	 * Switch in game mode and notify all clients to start the saved game.
+	 */
+	void StartSavedGame(const CStr& initAttribs, const CStr& savedData);
+
+	/**
 	 * Make a player name 'nicer' by limiting the length and removing forbidden characters etc.
 	 */
 	static CStrW SanitisePlayerName(const CStrW& original);
@@ -306,6 +311,7 @@ private:
 	static bool OnGameSetup(void* context, CFsmEvent* event);
 	static bool OnAssignPlayer(void* context, CFsmEvent* event);
 	static bool OnGameStart(void* context, CFsmEvent* event);
+	static bool OnSavedGameStart(void* context, CFsmEvent* event);
 	static bool OnLoadedGame(void* context, CFsmEvent* event);
 	static bool OnJoinSyncingLoadedGame(void* context, CFsmEvent* event);
 	static bool OnRejoined(void* context, CFsmEvent* event);

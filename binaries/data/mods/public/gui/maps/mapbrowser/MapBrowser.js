@@ -12,7 +12,7 @@ class MapBrowser
 		this.mapBrowserPageDialog = Engine.GetGUIObjectByName("mapBrowserPageDialog");
 
 		this.gridBrowser = new MapGridBrowser(this, setupWindow);
-		this.controls = new MapBrowserPageControls(this, this.gridBrowser);
+		this.controls = new MapBrowserPageControls(this, this.gridBrowser, setupWindow);
 
 		this.open = false;
 	}

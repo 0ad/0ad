@@ -75,6 +75,22 @@ void QuickLoad()
 		LOGERROR("Can't load quicksave if game is not running!");
 }
 
+JS::Value ParseSavedGame(const ScriptInterface& scriptInterface, const std::wstring& name)
+{
+	// Parses the metadata of a saved game.
+	ScriptRequest rqGui(scriptInterface);
+
+	// Load the saved game data from disk
+	JS::RootedValue guiContextMetadata(rqGui.cx);
+	std::string savedState;
+	Status err = SavedGames::Load(name, scriptInterface, &guiContextMetadata, savedState);
+
+	if (err < 0)
+		return JS::UndefinedValue();
+	
+	return guiContextMetadata;
+}
+
 JS::Value StartSavedGame(const ScriptInterface& scriptInterface, const std::wstring& name)
 {
 	// We need to be careful with different compartments and contexts.
@@ -131,6 +147,7 @@ void RegisterScriptFunctions(const ScriptRequest& rq)
 	ScriptFunction::Register<&QuickSave>(rq, "QuickSave");
 	ScriptFunction::Register<&QuickLoad>(rq, "QuickLoad");
 	ScriptFunction::Register<&ActivateRejoinTest>(rq, "ActivateRejoinTest");
+	ScriptFunction::Register<&ParseSavedGame>(rq, "ParseSavedGame");
 	ScriptFunction::Register<&StartSavedGame>(rq, "StartSavedGame");
 }
 }

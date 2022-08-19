@@ -698,6 +698,7 @@ void CNetServerWorker::SetupSession(CNetServerSession* session)
 	session->AddTransition(NSS_PREGAME, (uint)NMT_ASSIGN_PLAYER, NSS_PREGAME, (void*)&OnAssignPlayer, context);
 	session->AddTransition(NSS_PREGAME, (uint)NMT_KICKED, NSS_PREGAME, (void*)&OnKickPlayer, context);
 	session->AddTransition(NSS_PREGAME, (uint)NMT_GAME_START, NSS_PREGAME, (void*)&OnGameStart, context);
+	session->AddTransition(NSS_PREGAME, (uint)NMT_SAVED_GAME_START, NSS_PREGAME, (void*)&OnSavedGameStart, context);
 	session->AddTransition(NSS_PREGAME, (uint)NMT_LOADED_GAME, NSS_INGAME, (void*)&OnLoadedGame, context);
 
 	session->AddTransition(NSS_JOIN_SYNCING, (uint)NMT_KICKED, NSS_JOIN_SYNCING, (void*)&OnKickPlayer, context);
@@ -1336,6 +1337,20 @@ bool CNetServerWorker::OnGameStart(void* context, CFsmEvent* event)
 	return true;
 }
 
+bool CNetServerWorker::OnSavedGameStart(void* context, CFsmEvent* event)
+{
+	ENSURE(event->GetType() == (uint)NMT_SAVED_GAME_START);
+	CNetServerSession* session = (CNetServerSession*)context;
+	CNetServerWorker& server = session->GetServer();
+
+	if (session->GetGUID() != server.m_ControllerGUID)
+		return true;
+
+	CGameSavedStartMessage* message = (CGameSavedStartMessage*)event->GetParamRef();
+	server.StartSavedGame(message->m_InitAttributes, message->m_SavedState);
+	return true;
+}
+
 bool CNetServerWorker::OnLoadedGame(void* context, CFsmEvent* event)
 {
 	ENSURE(event->GetType() == (uint)NMT_LOADED_GAME);
@@ -1561,6 +1576,44 @@ void CNetServerWorker::StartGame(const CStr& initAttribs)
 	CGameStartMessage gameStart;
 	gameStart.m_InitAttributes = initAttribs;
 	Broadcast(&gameStart, { NSS_PREGAME });
+}
+
+void CNetServerWorker::StartSavedGame(const CStr& initAttribs, const CStr& savedState)
+{
+	for (std::pair<const CStr, PlayerAssignment>& player : m_PlayerAssignments)
+		if (player.second.m_Enabled && player.second.m_PlayerID != -1 && player.second.m_Status == 0)
+		{
+			LOGERROR("Tried to start the game without player \"%s\" being ready!", utf8_from_wstring(player.second.m_Name).c_str());
+			return;
+		}
+
+	m_ServerTurnManager = new CNetServerTurnManager(*this);
+
+	for (CNetServerSession* session : m_Sessions)
+	{
+		// Special case: the controller shouldn't be treated as an observer in any case.
+		bool isObserver = m_PlayerAssignments[session->GetGUID()].m_PlayerID == -1 && m_ControllerGUID != session->GetGUID();
+		m_ServerTurnManager->InitialiseClient(session->GetHostID(), 0, isObserver);
+	}
+
+	m_State = SERVER_STATE_LOADING;
+
+	// Remove players and observers that are not present when the game starts
+	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end();)
+		if (it->second.m_Enabled)
+			++it;
+		else
+			it = m_PlayerAssignments.erase(it);
+
+	SendPlayerAssignments();
+
+	// Update init attributes. They should no longer change.
+	Script::ParseJSON(ScriptRequest(m_ScriptInterface), initAttribs, &m_InitAttributes);
+
+	CGameSavedStartMessage gameSavedStart;
+	gameSavedStart.m_InitAttributes = initAttribs;
+	gameSavedStart.m_SavedState = savedState;
+	Broadcast(&gameSavedStart, { NSS_PREGAME });
 }
 
 CStrW CNetServerWorker::SanitisePlayerName(const CStrW& original)
