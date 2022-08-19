@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -25,15 +25,13 @@
  */
 
 #include "precompiled.h"
-#include "lib/file/file_system.h"
 
-#include <vector>
-#include <algorithm>
-#include <string>
+#include "lib/file/file_system.h"
 
 #include "lib/sysdep/filesystem.h"
 
 #include <boost/filesystem.hpp>
+#include <memory>
 
 bool DirectoryExists(const OsPath& path)
 {
@@ -200,7 +198,7 @@ Status RenameFile(const OsPath& path, const OsPath& newPath)
 
 	try
 	{
-		fs::rename(path.string8(), newPath.string8());
+		fs::rename(fs::path(path.string()), fs::path(newPath.string()));
 	}
 	catch (fs::filesystem_error& err)
 	{
@@ -220,9 +218,9 @@ Status CopyFile(const OsPath& path, const OsPath& newPath, bool override_if_exis
 	try
 	{
 		if(override_if_exists)
-			fs::copy_file(path.string8(), newPath.string8(), boost::filesystem::copy_option::overwrite_if_exists);
+			fs::copy_file(fs::path(path.string()), fs::path(newPath.string()), boost::filesystem::copy_option::overwrite_if_exists);
 		else
-			fs::copy_file(path.string8(), newPath.string8());
+			fs::copy_file(fs::path(path.string()), fs::path(newPath.string()));
 	}
 	catch(fs::filesystem_error& err)
 	{

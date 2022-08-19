@@ -7,13 +7,14 @@
 # Adrián Chaves Fernández
 # mandruis
 # Nicolás Gómez
+# Nicolás S.
 # Stanislas Dolcini
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-06-13 07:11+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Nicolás Gómez, 2022\n"
+"Last-Translator: Nicolás S. <nicogomfor@gmail.com>, 2022\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -451,23 +452,23 @@ msgstr ""
 
 #: gui/common/network.js:67
 msgid "The host has ended the game."
-msgstr ""
+msgstr "O anfitrión rematou a partida."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr ""
+msgstr "A versión do protocolo de rede é incorrecta."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr ""
+msgstr "A partida está cargándose, inténteo máis tarde."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "A partida xa comezou, non se permiten observadores."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
-msgstr ""
+msgstr "Fuches expulsado."
 
 #: gui/common/network.js:72
 msgid "You have been banned."
@@ -475,15 +476,15 @@ msgstr "Fuches vedado."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "Nome de xogador en uso. Se perdeu a conexión, volva intentalo nuns segundos"
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "Servidor cheo"
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
-msgstr ""
+msgstr "A autenticación segura da sala de espera fallou. Únase desde a sala de espera."
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
@@ -663,7 +664,7 @@ msgstr "Predeterminado"
 #: gui/common/settings.js:403
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(mundo)"
 
 #: gui/common/settings.js:404 gui/common/settings.js:408
 msgctxt "population capacity"
@@ -730,7 +731,7 @@ msgstr "%(healthLabel)s %(current)s / %(max)s"
 #: gui/common/tooltips.js:178
 #, javascript-format
 msgid "%(captureLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:179
 msgid "Capture points:"
@@ -746,29 +747,29 @@ msgstr "%(percentage)s%%"
 msgid ""
 "%(label)s\n"
 "%(details)s"
-msgstr ""
+msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:211
 msgid "Resistance:"
-msgstr ""
+msgstr "Resistencias:"
 
 #: gui/common/tooltips.js:222
 msgid "Damage:"
-msgstr ""
+msgstr "Danos:"
 
 #: gui/common/tooltips.js:225 gui/common/tooltips.js:245
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(resistancePercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(resistancePercentage)s"
 
 #: gui/common/tooltips.js:230 gui/common/tooltips.js:250
 #, javascript-format
 msgid "(%(resistancePercentage)s)"
-msgstr ""
+msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:243
 msgid "Capture:"
-msgstr ""
+msgstr "Captura"
 
 #: gui/common/tooltips.js:247 gui/common/tooltips.js:387
 msgctxt "damage type"
@@ -782,23 +783,23 @@ msgstr ""
 #: gui/common/tooltips.js:267
 #, javascript-format
 msgid "Blocks %(name)s"
-msgstr ""
+msgstr "Bloquea %(name)s"
 
 #: gui/common/tooltips.js:272 gui/common/tooltips.js:280
 #: gui/common/tooltips.js:287
 #, javascript-format
 msgid "%(name)s %(details)s"
-msgstr ""
+msgstr "%(name)s %(details)s"
 
 #: gui/common/tooltips.js:274
 #, javascript-format
 msgid "Duration reduction: %(durationReduction)s%%"
-msgstr ""
+msgstr "Redución da duración: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:282
 #, javascript-format
 msgid "Blocks: %(blockPercentage)s%%"
-msgstr ""
+msgstr "Bloquea: %(blockPercentage)s%%"
 
 #: gui/common/tooltips.js:289
 #, javascript-format
@@ -822,8 +823,8 @@ msgstr "ritmo:"
 #, javascript-format
 msgid "%(projectileCount)s %(projectileName)s"
 msgid_plural "%(projectileCount)s %(projectileName)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(projectileCount)s %(projectileName)s"
+msgstr[1] "%(projectileCount)s %(projectileName)s"
 
 #: gui/common/tooltips.js:315
 msgid "arrow"
@@ -834,7 +835,7 @@ msgstr[1] "frechas"
 #: gui/common/tooltips.js:318
 #, javascript-format
 msgid "%(projectileString)s / %(attackRateString)s"
-msgstr ""
+msgstr "%(projectileString)s / %(attackRateString)s"
 
 #. Translation: For example: Range: 2 to 10 (+2) meters
 #: gui/common/tooltips.js:338
@@ -842,25 +843,25 @@ msgstr ""
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
 "%(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 (+2) meters
 #: gui/common/tooltips.js:340
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 2 to 10 meters
 #: gui/common/tooltips.js:344
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 meters
 #: gui/common/tooltips.js:346
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
 #: gui/common/tooltips.js:356 gui/common/tooltips.js:1051
 msgid "Range:"
@@ -892,7 +893,7 @@ msgstr "%(damage)s de %(damageType)s"
 #: gui/common/tooltips.js:385
 #, javascript-format
 msgid "%(amount)s %(name)s"
-msgstr ""
+msgstr "%(amount)s %(name)s"
 
 #: gui/common/tooltips.js:393
 #, javascript-format
@@ -902,7 +903,7 @@ msgstr ""
 #: gui/common/tooltips.js:396
 #, javascript-format
 msgid "%(label)s: %(effects)s"
-msgstr ""
+msgstr "%(label)s: %(effects)s"
 
 #: gui/common/tooltips.js:402
 #, javascript-format
@@ -930,18 +931,18 @@ msgstr "Non"
 #: gui/common/tooltips.js:414
 #, javascript-format
 msgid "gives %(name)s"
-msgstr ""
+msgstr "da %(name)s"
 
 #: gui/common/tooltips.js:447
 #, javascript-format
 msgid "%(attackType)s"
-msgstr ""
+msgstr "%(attackType)s"
 
 #: gui/common/tooltips.js:466
 #, javascript-format
 msgid ""
 "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
 
 #: gui/common/tooltips.js:477
 msgid "Attack:"
@@ -950,17 +951,17 @@ msgstr "Ataque:"
 #: gui/common/tooltips.js:504
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s %(stackability)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s %(stackability)s"
 
 #: gui/common/tooltips.js:509
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s"
 
 #: gui/common/tooltips.js:520
 #, javascript-format
 msgid "%(durName)s: %(duration)s"
-msgstr ""
+msgstr "%(durName)s: %(duration)s"
 
 #: gui/common/tooltips.js:521
 msgid "Duration"
@@ -984,7 +985,7 @@ msgstr ""
 #: gui/common/tooltips.js:541
 #, javascript-format
 msgid "%(stackability)s"
-msgstr ""
+msgstr "%(stackability)s"
 
 #: gui/common/tooltips.js:552
 #, javascript-format
@@ -1012,7 +1013,7 @@ msgstr "Vida"
 #: gui/common/tooltips.js:577
 #, javascript-format
 msgid "%(label)s: %(garrisonSize)s %(extraSize)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonSize)s %(extraSize)s"
 
 #: gui/common/tooltips.js:578
 msgid "Garrison Size"
@@ -1021,16 +1022,16 @@ msgstr "Tamaño do acuartelamento"
 #: gui/common/tooltips.js:581
 msgctxt "nested garrison"
 msgid "+ "
-msgstr ""
+msgstr "+ "
 
 #: gui/common/tooltips.js:593
 #, javascript-format
 msgid "%(label)s: %(turretsLimit)s"
-msgstr ""
+msgstr "%(label)s: %(turretsLimit)s"
 
 #: gui/common/tooltips.js:594
 msgid "Turret Positions"
-msgstr ""
+msgstr "Posición de torretas"
 
 #: gui/common/tooltips.js:615 gui/common/tooltips.js:620
 #: gui/common/tooltips.js:625
@@ -1058,7 +1059,7 @@ msgstr "Número de reparadores:"
 
 #: gui/common/tooltips.js:642
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "Tempo de reparación restante:"
 
 #: gui/common/tooltips.js:646
 #, javascript-format
@@ -1081,7 +1082,7 @@ msgstr "Número de construtores:"
 
 #: gui/common/tooltips.js:676
 msgid "Remaining build time:"
-msgstr ""
+msgstr "Tempo de construción restante:"
 
 #: gui/common/tooltips.js:680
 #, javascript-format
@@ -1134,12 +1135,12 @@ msgstr "∞"
 
 #: gui/common/tooltips.js:814
 msgid "Reward:"
-msgstr ""
+msgstr "Recompensa:"
 
 #: gui/common/tooltips.js:817
 #, javascript-format
 msgid "%(resourceIcon)s %(reward)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(reward)s"
 
 #: gui/common/tooltips.js:835
 msgid "Resource Trickle:"
@@ -1190,7 +1191,7 @@ msgstr "Require %(technology)s"
 #: gui/common/tooltips.js:977
 #, javascript-format
 msgid "%(label)s %(bonus)s"
-msgstr ""
+msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:978
 msgid "Population Bonus:"
@@ -1259,12 +1260,12 @@ msgstr "alcance:"
 #: gui/common/tooltips.js:1104 gui/common/tooltips.js:1132
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
-msgstr ""
+msgstr "%(primaryName)s (%(secondaryName)s)"
 
 #: gui/common/tooltips.js:1108 gui/common/tooltips.js:1125
 #, javascript-format
 msgid "%(primaryName)s"
-msgstr ""
+msgstr "%(primaryName)s"
 
 #: gui/common/tooltips.js:1155
 msgid "Classes:"
@@ -1285,7 +1286,7 @@ msgstr "Botín:"
 #: gui/common/tooltips.js:1202
 #, javascript-format
 msgid "%(label)s %(icons)s"
-msgstr ""
+msgstr "%(label)s %(icons)s"
 
 #: gui/common/tooltips.js:1203
 msgid "Dropsite for:"
@@ -1308,17 +1309,17 @@ msgstr "Prema para ver máis información."
 #: gui/common/tooltips.js:1226
 msgctxt "One letter abbreviation for million"
 msgid "M"
-msgstr ""
+msgstr "M"
 
 #: gui/common/tooltips.js:1229 gui/common/tooltips.js:1232
 msgctxt "One letter abbreviation for thousand"
 msgid "k"
-msgstr ""
+msgstr "k"
 
 #: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
-msgstr ""
+msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
@@ -1564,7 +1565,7 @@ msgstr ""
 #: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
 msgid "#%i"
-msgstr ""
+msgstr "#%i"
 
 #: gui/hotkeys/HotkeyPicker.js:73
 msgid " (hold to register)"
@@ -1585,11 +1586,11 @@ msgstr ""
 
 #: gui/hotkeys/HotkeysPage.js:75
 msgid "All Hotkeys"
-msgstr ""
+msgstr "Todos os atallos do teclado"
 
 #: gui/hotkeys/HotkeysPage.js:109
 msgid "All available hotkeys."
-msgstr ""
+msgstr "Todos os atallos do teclado dispoñibles."
 
 #: gui/hotkeys/HotkeysPage.js:156
 msgid ""
@@ -1621,11 +1622,11 @@ msgstr "Restabelecer"
 
 #: gui/hotkeys/hotkeys.xml:(caption):72
 msgid "Hotkey"
-msgstr ""
+msgstr "Atallo do teclado"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
 msgid "Hotkey Description"
-msgstr ""
+msgstr "Descrición do atallo de teclado"
 
 #: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
@@ -1653,7 +1654,7 @@ msgstr "Nome"
 #: gui/hotkeys/hotkeys.xml:(heading):43
 msgctxt "hotkey list"
 msgid "Mapping"
-msgstr ""
+msgstr "Creación de mapas"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):44
@@ -1666,33 +1667,33 @@ msgstr "Garda os cambios"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):59
 msgid "Unsaved changes will be lost"
-msgstr ""
+msgstr "Todos os cambios non gravados perderanse."
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
-msgstr ""
+msgstr "Prema para cambiar o atallo do teclado"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
-msgstr ""
+msgstr "Prema para borrar o atallo do de teclado"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
-msgstr ""
+msgstr "Cambiar os atallos do teclado e pechar"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
-msgstr ""
+msgstr "Os atallos do teclado non serán modificados"
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.desc
 msgctxt "hotkey metadata"
 msgid "Camera-related hotkeys."
-msgstr ""
+msgstr "Atallos do teclado da cámara"
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.name
 msgctxt "hotkey metadata"
 msgid "Camera"
-msgstr ""
+msgstr "Cámara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.desc
 msgctxt "hotkey metadata"
@@ -1712,7 +1713,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.name
 msgctxt "hotkey metadata"
 msgid "Follow Unit"
-msgstr ""
+msgstr "Seguir unidade"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.desc
 msgctxt "hotkey metadata"
@@ -1842,7 +1843,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.name
 msgctxt "hotkey metadata"
 msgid "Reset Camera"
-msgstr ""
+msgstr "Reiniciar cámara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.desc
 msgctxt "hotkey metadata"
@@ -2070,7 +2071,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.desc
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard."
-msgstr ""
+msgstr "Copiar ao portapapeis"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.name
 msgctxt "hotkey metadata"
@@ -2152,7 +2153,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take PNG screenshot."
-msgstr ""
+msgstr "Facer unha captura de pantalla PNG"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.name
 msgctxt "hotkey metadata"
@@ -2177,7 +2178,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.name
 msgctxt "hotkey metadata"
 msgid "Next tab"
-msgstr ""
+msgstr "Seguinte xanela"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.desc
 msgctxt "hotkey metadata"
@@ -2287,7 +2288,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attack.name
 msgctxt "hotkey metadata"
 msgid "Force attack"
-msgstr ""
+msgstr "Forzar ataque"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.desc
 msgctxt "hotkey metadata"
@@ -2322,7 +2323,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.desc
 msgctxt "hotkey metadata"
 msgid "The unit will go back to work."
-msgstr ""
+msgstr "A unidade volverá ao traballo."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.backtowork.name
 msgctxt "hotkey metadata"
@@ -2415,12 +2416,12 @@ msgstr "Protexer"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.kill.desc
 msgctxt "hotkey metadata"
 msgid "Destroy selected units."
-msgstr ""
+msgstr "Destruír as unidades seleccionadas."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.kill.name
 msgctxt "hotkey metadata"
 msgid "Destroy selected units"
-msgstr ""
+msgstr "Destruír as unidades seleccionadas"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.desc
 msgctxt "hotkey metadata"
@@ -2520,7 +2521,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.name
 msgctxt "hotkey metadata"
 msgid "Queue order"
-msgstr ""
+msgstr "Orde da cola"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.desc
 msgctxt "hotkey metadata"
@@ -2670,7 +2671,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.name
 msgctxt "hotkey metadata"
 msgid "Stop units"
-msgstr ""
+msgstr "Parar unidades"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.desc
 msgctxt "hotkey metadata"
@@ -2722,7 +2723,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.name
 msgctxt "hotkey metadata"
 msgid "In-game GUI"
-msgstr ""
+msgstr "Interface gráfica no xogo"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.desc
 msgctxt "hotkey metadata"
@@ -2762,7 +2763,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle FPS counter"
-msgstr ""
+msgstr "Activar o contador de FPS"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.desc
 msgctxt "hotkey metadata"
@@ -2854,7 +2855,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.diplomacy.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy"
-msgstr ""
+msgstr "Establecer a diplomacia"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.desc
 msgctxt "hotkey metadata"
@@ -2924,7 +2925,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.name
 msgctxt "hotkey metadata"
 msgid "Delete saved game"
-msgstr ""
+msgstr "Borrar partida gardada"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.desc
 msgctxt "hotkey metadata"
@@ -2934,7 +2935,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Delete without confirmation"
-msgstr ""
+msgstr "Borrar sen confirmación"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.desc
 msgctxt "hotkey metadata"
@@ -3063,12 +3064,12 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.desc
 msgctxt "hotkey metadata"
 msgid "Add units to selection."
-msgstr ""
+msgstr "Engadir unidades á selección."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.name
 msgctxt "hotkey metadata"
 msgid "Add to selection"
-msgstr ""
+msgstr "Engadir a selección"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.desc
 msgctxt "hotkey metadata"
@@ -3078,7 +3079,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
 msgctxt "hotkey metadata"
 msgid "Cancel selection"
-msgstr ""
+msgstr "Cancelar selección"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.desc
 msgctxt "hotkey metadata"
@@ -3403,7 +3404,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle unit."
-msgstr ""
+msgstr "Seleccionar a seguinte unidade ociosa"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.name
 msgctxt "hotkey metadata"
@@ -3438,7 +3439,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select military only"
-msgstr ""
+msgstr "Seleccionar só militar"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.desc
 msgctxt "hotkey metadata"
@@ -3463,7 +3464,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.desc
 msgctxt "hotkey metadata"
 msgid "Remove units from selection."
-msgstr ""
+msgstr "Borrar unidades da selección"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.name
 msgctxt "hotkey metadata"
@@ -3751,7 +3752,7 @@ msgstr "Mapas engadidos na última versión do xogo."
 
 #: gui/maps/MapFilters.js:115
 msgid "Best for MP"
-msgstr ""
+msgstr "Mellor para multixogador"
 
 #: gui/maps/MapFilters.js:116
 msgid "Maps that are recommended for Multiplayer play."
@@ -4116,39 +4117,39 @@ msgstr "Para aforrar uso de CPU, limitar a frecuencia de renderización nas part
 #: gui/options/options.json[1].options[9].label
 #: gui/options/options.json[1].options[9].tooltip
 msgid "GUI scale"
-msgstr ""
+msgstr "Escala da interface gráfica"
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "75%"
-msgstr ""
+msgstr "75%"
 
 #: gui/options/options.json[1].options[9].list[1].label
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: gui/options/options.json[1].options[9].list[2].label
 msgid "125%"
-msgstr ""
+msgstr "125%"
 
 #: gui/options/options.json[1].options[9].list[3].label
 msgid "150%"
-msgstr ""
+msgstr "150%"
 
 #: gui/options/options.json[1].options[9].list[4].label
 msgid "175%"
-msgstr ""
+msgstr "175%"
 
 #: gui/options/options.json[1].options[9].list[5].label
 msgid "200%"
-msgstr ""
+msgstr "200%"
 
 #: gui/options/options.json[1].options[9].list[6].label
 msgid "225%"
-msgstr ""
+msgstr "225%"
 
 #: gui/options/options.json[1].options[9].list[7].label
 msgid "250%"
-msgstr ""
+msgstr "250%"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -4164,7 +4165,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[0].list[0].label
 msgid "OpenGL"
-msgstr ""
+msgstr "OpenGL"
 
 #: gui/options/options.json[2].options[0].list[0].tooltip
 msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
@@ -4172,7 +4173,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[0].list[1].label
 msgid "OpenGL ARB"
-msgstr ""
+msgstr "OpenGL ARB"
 
 #: gui/options/options.json[2].options[0].list[1].tooltip
 msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
@@ -4324,7 +4325,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].label
 msgid "Quality"
-msgstr ""
+msgstr "Calidade"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0].label._string
 msgctxt "Option for the shadow quality."
@@ -4338,7 +4339,7 @@ msgstr "Normal"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][11].label
 msgid "Filtering"
-msgstr ""
+msgstr "Filtrado"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][11].tooltip
 msgid "Smooth shadows."
@@ -4443,27 +4444,27 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[0].label
 msgid "1x"
-msgstr ""
+msgstr "1x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[1].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[1].tooltip
 msgid "2x"
-msgstr ""
+msgstr "2x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[2].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[2].tooltip
 msgid "4x"
-msgstr ""
+msgstr "4x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[3].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[3].tooltip
 msgid "8x"
-msgstr ""
+msgstr "8x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[4].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[4].tooltip
 msgid "16x"
-msgstr ""
+msgstr "16x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].tooltip
 msgid ""
@@ -4479,7 +4480,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].label
 msgid "Master volume"
-msgstr ""
+msgstr "Volume principal"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].tooltip
 msgid "Master audio gain."
@@ -4487,7 +4488,7 @@ msgstr "Ganancia principal de son."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[1].label
 msgid "Music volume"
-msgstr ""
+msgstr "Volume da música"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[1].tooltip
 msgid "In game music gain."
@@ -5190,7 +5191,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:92
 msgid "Single-player"
-msgstr ""
+msgstr "Un xogador"
 
 #: gui/pregame/MainMenuItems.js:93
 msgid "Start, load, or replay a single-player game."
@@ -5282,7 +5283,7 @@ msgstr "Axusta a configuración do xogo."
 
 #: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:222
 msgid "Hotkeys"
-msgstr ""
+msgstr "Atallos do teclado"
 
 #: gui/pregame/MainMenuItems.js:223
 msgid "Adjust hotkeys."
@@ -5514,7 +5515,7 @@ msgstr ""
 msgid ""
 "\n"
 "     %(description)s"
-msgstr ""
+msgstr "\n     %(description)s"
 
 #. Translation: An entry in the CivInfo Page. The newline and indentation of
 #. the description
@@ -5525,7 +5526,7 @@ msgstr ""
 #: gui/reference/civinfo/CivInfoPage.js:102
 #, javascript-format
 msgid "• %(name)s %(info_icon)s%(description)s"
-msgstr ""
+msgstr "• %(name)s %(info_icon)s%(description)s"
 
 #: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
@@ -5557,8 +5558,8 @@ msgstr[1] "Bonificacións do equipo"
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
 msgid_plural "Heroes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Heroes"
+msgstr[1] "Heroes"
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Specific Structure"
@@ -5755,7 +5756,7 @@ msgstr "Calquera"
 #: gui/replaymenu/replay_filters.js:146
 msgctxt "replay filter"
 msgid "Single-player"
-msgstr ""
+msgstr "Un xogador"
 
 #: gui/replaymenu/replay_filters.js:147
 msgctxt "replay filter"
@@ -5769,7 +5770,7 @@ msgstr "Campañas"
 
 #: gui/replaymenu/replay_filters.js:162
 msgid "Any victory condition"
-msgstr ""
+msgstr "Calquera condición de vitoria"
 
 #: gui/replaymenu/replay_filters.js:175
 msgid "Rated and unrated games"
@@ -5857,7 +5858,7 @@ msgstr "Duración"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "Buscar Xogador"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):98
 msgid "File path for the currently selected replay."
@@ -5880,7 +5881,7 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. You may "
 "encounter bugs, and some features are not as fleshed out as we would like."
-msgstr ""
+msgstr "[imgleft=\"constructionIcon\"]Este xogo inda está en desenvolvemento. Pode que encontres erros e que algunhas características non estean tan completas coma nos gustaría."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
@@ -5892,13 +5893,13 @@ msgstr "[imgleft=\"iconLag\"] O xogo pode sufrir problemas de rendemento, especi
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]0 A.D. é Software Libre: podes participar no seu desenvolvemento."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
 "If you want to help with art, sound, gameplay or programming, make sure to "
 "join our official forum."
-msgstr ""
+msgstr "Se queres axudar co arte, o son, a xogabilidade ou a programación podes unirte ao noso foro oficial."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -5914,7 +5915,7 @@ msgstr "Aceptar"
 
 #: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "Official Forum (web)"
-msgstr ""
+msgstr "Foro oficial (páxina web)"
 
 #: gui/summary/layout.js:13
 msgid "Score"
@@ -5944,7 +5945,7 @@ msgstr "Exploración"
 
 #: gui/summary/layout.js:31
 msgid "Structures"
-msgstr ""
+msgstr "Estructuras"
 
 #: gui/summary/layout.js:34 gui/summary/layout.js:72 gui/summary/layout.js:111
 msgid "Total"
@@ -5983,7 +5984,7 @@ msgstr "Marabillas"
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "Características da estructura (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:69
 msgid "Units"
@@ -6024,7 +6025,7 @@ msgstr "Comerciantes"
 #: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(lost)s)"
-msgstr ""
+msgstr "Estatísticas da unidade (%(trained)s / %(killed)s / %(lost)s)"
 
 #: gui/summary/layout.js:108
 msgid "Resources"
@@ -6141,7 +6142,7 @@ msgstr "Recollido"
 
 #: gui/summary/summary.js:44
 msgid "Count"
-msgstr ""
+msgstr "Conta"
 
 #: gui/summary/summary.js:49
 msgid "Sent"
@@ -6199,12 +6200,12 @@ msgstr "Fallado"
 #, javascript-format
 msgctxt "Player listing with color indicator"
 msgid "%(colorIndicator)s %(playerListing)s"
-msgstr ""
+msgstr "%(colorIndicator)s %(playerListing)s"
 
 #: gui/summary/summary.js:204
 msgctxt "Charts player color indicator"
 msgid "■"
-msgstr ""
+msgstr "■"
 
 #: gui/summary/summary.js:234
 msgctxt "Player listing"
@@ -6280,7 +6281,7 @@ msgstr "Tipo:"
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
-msgstr ""
+msgstr "Agrupar por equipos"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
@@ -6327,7 +6328,7 @@ msgstr "Acuartelar unidades para sandalas lentamente e protexer o campamento mil
 
 #: gui/text/tips/autoqueue.txt:1
 msgid "AUTOQUEUE"
-msgstr ""
+msgstr "AUTOCOLA"
 
 #: gui/text/tips/autoqueue.txt:2
 msgid "Enable the autoqueue feature to automatically train units."
@@ -6363,7 +6364,7 @@ msgstr "Construír nunha base adiantada para reabastecer o teu asalto con novas 
 
 #: gui/text/tips/biomes.txt:1
 msgid "BIOMES"
-msgstr ""
+msgstr "BIOMAS"
 
 #: gui/text/tips/biomes.txt:2
 msgid ""
@@ -6482,11 +6483,11 @@ msgstr "Aumenta a súa potencia de fogo con infantaría acuartelada."
 
 #: gui/text/tips/city_walls.txt:1
 msgid "CITY WALLS"
-msgstr ""
+msgstr "MUROS DA CIDADE"
 
 #: gui/text/tips/city_walls.txt:2
 msgid "Strong stone walls that help you protect your city."
-msgstr ""
+msgstr "Muros fortes de pedra que te axudan a protexer a túa cidade."
 
 #: gui/text/tips/city_walls.txt:3
 msgid ""
@@ -6606,7 +6607,7 @@ msgstr ""
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
-msgstr ""
+msgstr "FORXA"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."
@@ -6618,7 +6619,7 @@ msgstr "Investigar anovacións de armas e armaduras para as unidades."
 
 #: gui/text/tips/formations.txt:1
 msgid "FORMATIONS"
-msgstr ""
+msgstr "FORMACIÓNS"
 
 #: gui/text/tips/formations.txt:2
 msgid ""
@@ -6692,7 +6693,7 @@ msgstr "Canto máis alto sexa o nivel do cidadán soldado (avanzado, elite), mel
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
-msgstr ""
+msgstr "HEROES"
 
 #: gui/text/tips/heroes.txt:2
 msgid ""
@@ -6748,7 +6749,7 @@ msgstr ""
 
 #: gui/text/tips/meroe_pyramids.txt:1
 msgid "PYRAMIDS OF MEROË"
-msgstr ""
+msgstr "PIRÁMIDES DE MEROË"
 
 #: gui/text/tips/meroe_pyramids.txt:2
 msgid "Special structures available for the Kushites."
@@ -6771,7 +6772,7 @@ msgstr "Atalaias"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral or own territory."
-msgstr ""
+msgstr "Construir en territorio neutral ou propio."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."

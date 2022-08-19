@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_infantry_melee_swordsman">
+  <Builder>
+    <Entities datatype="tokens">
+      -structures/wallset_palisade
+    </Entities>
+  </Builder>
+  <Identity>
+    <Civ>han</Civ>
+    <SelectionGroupName>units/han/infantry_swordsman_b</SelectionGroupName>
+    <SpecificName>Dāo Bīng</SpecificName>
+    <Icon>units/han/infantry_swordsman.png</Icon>
+    <RequiredTechnology>phase_town</RequiredTechnology>
+  </Identity>
+  <Promotion>
+    <Entity>units/han/infantry_swordsman_special_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/han/infantry_swordsman_b.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-07-18 07:11+0000\n"
+"POT-Creation-Date: 2022-08-12 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS, 2020-2022\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
@@ -507,7 +507,7 @@ msgstr "Ήρωας Ιππέας"
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
 #: simulation/templates/units/brit/hero_boudicca.xml:20
-#: simulation/templates/units/han/support_minister.xml:67
+#: simulation/templates/units/han/support_minister.xml:72
 #: simulation/templates/units/kush/hero_amanirenas.xml:21
 #: simulation/templates/units/maur/hero_ashoka.xml:20
 #: simulation/templates/units/pers/hero_darius_i.xml:20
@@ -882,7 +882,6 @@ msgstr "Σόλων"
 #: simulation/templates/units/han/infantry_crossbowman_a.xml:4
 #: simulation/templates/units/han/infantry_pikeman_a.xml:4
 #: simulation/templates/units/han/infantry_spearman_a.xml:4
-#: simulation/templates/units/han/infantry_swordsman_a.xml:4
 #: simulation/templates/units/han/support_healer_a.xml:4
 #: simulation/templates/units/iber/cavalry_javelineer_a.xml:4
 #: simulation/templates/units/iber/cavalry_spearman_a.xml:4
@@ -999,7 +998,6 @@ msgstr "Πρόδρομος"
 #: simulation/templates/units/han/infantry_crossbowman_e.xml:4
 #: simulation/templates/units/han/infantry_pikeman_e.xml:4
 #: simulation/templates/units/han/infantry_spearman_e.xml:4
-#: simulation/templates/units/han/infantry_swordsman_e.xml:4
 #: simulation/templates/units/han/support_healer_e.xml:4
 #: simulation/templates/units/iber/cavalry_javelineer_e.xml:4
 #: simulation/templates/units/iber/cavalry_spearman_e.xml:4
@@ -1627,11 +1625,11 @@ msgstr "Ιππικό Γαλλατών Ευγενών"
 msgid "Uerouicos"
 msgstr "Ουρούικος"
 
-#: simulation/templates/units/gaul/champion_fanatic.xml:5
+#: simulation/templates/units/gaul/champion_fanatic.xml:12
 msgid "Naked Fanatic"
 msgstr "Γυμνός Φανατικός"
 
-#: simulation/templates/units/gaul/champion_fanatic.xml:6
+#: simulation/templates/units/gaul/champion_fanatic.xml:13
 msgid "Bariogaisatos"
 msgstr "Bariogaisatos"
 
@@ -1760,10 +1758,6 @@ msgstr ""
 
 #: simulation/templates/units/han/infantry_spearman_b.xml:11
 msgid "Máo Bīng"
-msgstr ""
-
-#: simulation/templates/units/han/infantry_swordsman_b.xml:11
-msgid "Dāo Bīng"
 msgstr ""
 
 #: simulation/templates/units/han/ship_bireme.xml:9
@@ -2554,17 +2548,17 @@ msgid "Pila Hinduya"
 msgstr "Πίλα Ιντούγια"
 
 #: simulation/templates/units/pers/champion_infantry.xml:9
-#: simulation/templates/units/pers/champion_infantry_archer.xml:9
+#: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:9
 msgid "Persian Immortal"
 msgstr "Πέρσης Αθάνατος"
 
 #: simulation/templates/units/pers/champion_infantry.xml:10
-#: simulation/templates/units/pers/champion_infantry_archer.xml:10
+#: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:10
 msgid "Anušiya"
 msgstr "Ανούσγια"
 
 #: simulation/templates/units/pers/champion_infantry.xml:11
-#: simulation/templates/units/pers/champion_infantry_archer.xml:11
+#: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:11
 msgid "Immortal"
 msgstr "Αθάνατος"
 
@@ -2572,7 +2566,7 @@ msgstr "Αθάνατος"
 msgid "Switch to using the bow and arrow."
 msgstr ""
 
-#: simulation/templates/units/pers/champion_infantry_archer.xml:17
+#: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:17
 msgid "Switch to using a spear and shield."
 msgstr ""
 
@@ -2602,27 +2596,27 @@ msgstr "Ξέρξης Α'"
 msgid "Xšayāršā"
 msgstr "Ξέρξης"
 
-#: simulation/templates/units/pers/infantry_archer_b.xml:13
+#: simulation/templates/units/pers/infantry_archer_b.xml:7
 msgid "Sogdian Archer"
 msgstr "Σογδιανός Τοξότης"
 
-#: simulation/templates/units/pers/infantry_archer_b.xml:14
+#: simulation/templates/units/pers/infantry_archer_b.xml:8
 msgid "Θanuvaniya Suguda"
 msgstr "Θενανανίγια Σογκούντα"
 
-#: simulation/templates/units/pers/infantry_javelineer_b.xml:13
+#: simulation/templates/units/pers/infantry_javelineer_b.xml:7
 msgid "Lydian Auxiliary"
 msgstr "Λύδιοι Έφεδροι"
 
-#: simulation/templates/units/pers/infantry_javelineer_b.xml:14
+#: simulation/templates/units/pers/infantry_javelineer_b.xml:8
 msgid "Pastiš Spardiya"
 msgstr "Πάστις Σπαρδίγια"
 
-#: simulation/templates/units/pers/infantry_spearman_b.xml:13
+#: simulation/templates/units/pers/infantry_spearman_b.xml:7
 msgid "Shield Bearer"
 msgstr "Ασπιδοφόρος"
 
-#: simulation/templates/units/pers/infantry_spearman_b.xml:14
+#: simulation/templates/units/pers/infantry_spearman_b.xml:8
 msgid "Sparabara"
 msgstr "Σπαραμπάρα"
 
@@ -2678,11 +2672,11 @@ msgstr "Ασσυριακός Πολιορκητικός κριός"
 msgid "Hamaranakuba Aθuriya"
 msgstr "Αμαναρακούμπα Αθαουρία"
 
-#: simulation/templates/units/pers/support_female_citizen.xml:12
+#: simulation/templates/units/pers/support_female_citizen.xml:6
 msgid "Banu Miyanrudani"
 msgstr "Μπάνου Μαγανρουντάνι"
 
-#: simulation/templates/units/pers/support_female_citizen.xml:13
+#: simulation/templates/units/pers/support_female_citizen.xml:7
 msgid "Mesopotamian Woman"
 msgstr "Μεσοποτάμια Γυναίκα"
 

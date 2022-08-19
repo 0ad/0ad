@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-07-18 07:11+0000\n"
+"POT-Creation-Date: 2022-08-12 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
-"Last-Translator: Vít Ponikelský, 2022\n"
+"Last-Translator: Tomáš Matýs <thommathys@gmail.com>, 2018,2021-2022\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -187,7 +187,7 @@ msgstr "Jízdní bojovník s oštěpem"
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 msgid "Counters: 2× vs Cavalry."
-msgstr ""
+msgstr "Bojuje: 2x proti jízdě."
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
@@ -509,7 +509,7 @@ msgstr "Hrdina jedoucí na koni"
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
 #: simulation/templates/units/brit/hero_boudicca.xml:20
-#: simulation/templates/units/han/support_minister.xml:67
+#: simulation/templates/units/han/support_minister.xml:72
 #: simulation/templates/units/kush/hero_amanirenas.xml:21
 #: simulation/templates/units/maur/hero_ashoka.xml:20
 #: simulation/templates/units/pers/hero_darius_i.xml:20
@@ -645,7 +645,7 @@ msgstr "Lehká válečná loď"
 msgid ""
 "Garrison units for transport and to increase firepower. Deals triple damage "
 "against Ships."
-msgstr ""
+msgstr "Obsaďte jednotkami kvůli přesunu a pro zvýšení palebné síly. Způsobuje trojité poškození lodím."
 
 #: simulation/templates/template_unit_ship_bireme.xml:52
 #: simulation/templates/template_unit_ship_fire.xml:42
@@ -884,7 +884,6 @@ msgstr "Solón"
 #: simulation/templates/units/han/infantry_crossbowman_a.xml:4
 #: simulation/templates/units/han/infantry_pikeman_a.xml:4
 #: simulation/templates/units/han/infantry_spearman_a.xml:4
-#: simulation/templates/units/han/infantry_swordsman_a.xml:4
 #: simulation/templates/units/han/support_healer_a.xml:4
 #: simulation/templates/units/iber/cavalry_javelineer_a.xml:4
 #: simulation/templates/units/iber/cavalry_spearman_a.xml:4
@@ -1001,7 +1000,6 @@ msgstr "Pródromos"
 #: simulation/templates/units/han/infantry_crossbowman_e.xml:4
 #: simulation/templates/units/han/infantry_pikeman_e.xml:4
 #: simulation/templates/units/han/infantry_spearman_e.xml:4
-#: simulation/templates/units/han/infantry_swordsman_e.xml:4
 #: simulation/templates/units/han/support_healer_e.xml:4
 #: simulation/templates/units/iber/cavalry_javelineer_e.xml:4
 #: simulation/templates/units/iber/cavalry_spearman_e.xml:4
@@ -1629,11 +1627,11 @@ msgstr "Galské šlechtické jezdectvo"
 msgid "Uerouicos"
 msgstr "Uerouicos"
 
-#: simulation/templates/units/gaul/champion_fanatic.xml:5
+#: simulation/templates/units/gaul/champion_fanatic.xml:12
 msgid "Naked Fanatic"
 msgstr "Nahý fanatik"
 
-#: simulation/templates/units/gaul/champion_fanatic.xml:6
+#: simulation/templates/units/gaul/champion_fanatic.xml:13
 msgid "Bariogaisatos"
 msgstr "Bariogaisatos"
 
@@ -1673,175 +1671,171 @@ msgstr "Britomaros"
 
 #: simulation/templates/units/han/catafalque.xml:9
 msgid "Emperor Wǔ (Liu Che)"
-msgstr ""
+msgstr "Císař Wǔ (Liu Che)"
 
 #: simulation/templates/units/han/cavalry_archer_b.xml:6
 msgid "Gōng Qíbīng"
-msgstr ""
+msgstr "Gōng Qíbīng jízdní střelec"
 
 #: simulation/templates/units/han/cavalry_crossbowman_b.xml:6
 msgid "Han Cavalry Crossbowman"
-msgstr ""
+msgstr "Hanský jízdní kušiník"
 
 #: simulation/templates/units/han/cavalry_spearman_b.xml:6
 msgid "Máo Qíbīng"
-msgstr ""
+msgstr "Máo Qíbīng jízdní oštěpař"
 
 #: simulation/templates/units/han/cavalry_swordsman_b.xml:6
 msgid "Dāo Qíbīng"
-msgstr ""
+msgstr "Dāo Qíbīng jízdní šermíř"
 
 #: simulation/templates/units/han/champion_cavalry_spearman_academy.xml:5
 msgid "Wu Wei Yin Cao Cao Guard"
-msgstr ""
+msgstr "Wu Wei Yin Stráž Cao Cao"
 
 #: simulation/templates/units/han/champion_chariot_academy.xml:9
 msgid "Han War Chariot"
-msgstr ""
+msgstr "Hanský válečný vůz"
 
 #: simulation/templates/units/han/champion_chariot_academy.xml:10
 msgid "Zhanche"
-msgstr ""
+msgstr "Zhanche"
 
 #: simulation/templates/units/han/champion_infantry_archer_academy.xml:5
 msgid "Palace Guard Archer"
-msgstr ""
+msgstr "Lučištník palácové gardy"
 
 #: simulation/templates/units/han/champion_infantry_archer_academy.xml:6
 msgid "Yǔ Lín"
-msgstr ""
+msgstr "Yǔ Lín"
 
 #: simulation/templates/units/han/champion_infantry_crossbowman_academy.xml:5
 msgid "Juezhang"
-msgstr ""
+msgstr "Juezhang"
 
 #: simulation/templates/units/han/champion_infantry_spearman_academy.xml:5
 msgid "Palace Guard Spearman"
-msgstr ""
+msgstr "Oštěpař palácové gardy"
 
 #: simulation/templates/units/han/champion_infantry_spearman_academy.xml:6
 msgid "Hǔ Bēn"
-msgstr ""
+msgstr "Hǔ Bēn"
 
 #: simulation/templates/units/han/hero_han_xin.xml:9
 #: simulation/templates/units/han/hero_han_xin_horse.xml:9
 msgid "Hán Xìn"
-msgstr ""
+msgstr "Hán Xìn"
 
 #: simulation/templates/units/han/hero_liu_bang.xml:9
 #: simulation/templates/units/han/hero_liu_bang_horse.xml:9
 msgid "Liú Bāng"
-msgstr ""
+msgstr "Liú Bāng"
 
 #: simulation/templates/units/han/hero_wei_qing.xml:16
 #: simulation/templates/units/han/hero_wei_qing_chariot.xml:20
 #: simulation/templates/units/han/hero_wei_qing_horse.xml:16
 msgid "Wèi Qīng"
-msgstr ""
+msgstr "Wèi Qīng"
 
 #: simulation/templates/units/han/infantry_archer_b.xml:11
 msgid "Shè Shǒu"
-msgstr ""
+msgstr "Shè Shǒu"
 
 #: simulation/templates/units/han/infantry_crossbowman_b.xml:11
 msgid "Nǔ Shǒu"
-msgstr ""
+msgstr "Nǔ Shǒu"
 
 #: simulation/templates/units/han/infantry_pikeman_b.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Ji"
-msgstr ""
+msgstr "Ji"
 
 #: simulation/templates/units/han/infantry_pikeman_b.xml:20
 msgid "Halberdier"
-msgstr ""
+msgstr "Halapartník"
 
 #: simulation/templates/units/han/infantry_pikeman_b.xml:21
 msgid "Jǐ Bīng"
-msgstr ""
+msgstr "Jǐ Bīng"
 
 #: simulation/templates/units/han/infantry_spearman_b.xml:11
 msgid "Máo Bīng"
-msgstr ""
-
-#: simulation/templates/units/han/infantry_swordsman_b.xml:11
-msgid "Dāo Bīng"
-msgstr ""
+msgstr "Máo Bīng"
 
 #: simulation/templates/units/han/ship_bireme.xml:9
 msgid "Zhàn Chuán"
-msgstr ""
+msgstr "Zhàn Chuán"
 
 #: simulation/templates/units/han/ship_fire.xml:9
 msgid "Huǒ Chuán"
-msgstr ""
+msgstr "Huǒ Chuán"
 
 #: simulation/templates/units/han/ship_fishing.xml:9
 msgid "Yú Chuán"
-msgstr ""
+msgstr "Yú Chuán"
 
 #: simulation/templates/units/han/ship_merchant.xml:9
 msgid "Shāng Chuán"
-msgstr ""
+msgstr "Shāng Chuán"
 
 #: simulation/templates/units/han/ship_quinquereme.xml:9
 msgid "Dà Lóu Chuán"
-msgstr ""
+msgstr "Dà Lóu Chuán"
 
 #: simulation/templates/units/han/ship_trireme.xml:9
 msgid "Lóu Chuán"
-msgstr ""
+msgstr "Lóu Chuán"
 
 #: simulation/templates/units/han/siege_mangonel_packed.xml:5
 msgid "Mangonel"
-msgstr ""
+msgstr "Mangonel"
 
 #: simulation/templates/units/han/siege_mangonel_packed.xml:6
 msgid "Tóushí Chē"
-msgstr ""
+msgstr "Tóushí Chē"
 
 #: simulation/templates/units/han/siege_ram.xml:4
 msgid "Gōngchéng Chuí"
-msgstr ""
+msgstr "Gōngchéng Chuí"
 
 #: simulation/templates/units/han/siege_shoushe.xml:9
 msgid "Nǔ Chē"
-msgstr ""
+msgstr "Nǔ Chē"
 
 #: simulation/templates/units/han/siege_tower.xml:9
 msgid "Gōngchéng Tǎ"
-msgstr ""
+msgstr "Gōngchéng Tǎ"
 
 #: simulation/templates/units/han/support_female_citizen.xml:10
 msgid "Fù Nǚ"
-msgstr ""
+msgstr "Fù Nǚ"
 
 #: simulation/templates/units/han/support_healer_b.xml:6
 msgid "Yīshī"
-msgstr ""
+msgstr "Yīshī"
 
 #: simulation/templates/units/han/support_minister.xml:41
 msgid "Imperial Minister"
-msgstr ""
+msgstr "Císařský ministr"
 
 #: simulation/templates/units/han/support_minister.xml:42
 msgid "Guānlì"
-msgstr ""
+msgstr "Guānlì"
 
 #: simulation/templates/units/han/support_minister.xml:43
 msgid ""
 "Use to boost the efficiency of nearby units and buildings. Garrison within a"
 " building to boost the efficiency of its production queue. Only Han "
 "buildings can garrison ministers."
-msgstr ""
+msgstr "Použijte ke zvýšení efektivity okolních jednotek a budov. Umístětě dovnitř budovy pro zvýšení efektivity její výrobní kapacity. Pouze v budovách Han mohou být umístěni ministři."
 
 #: simulation/templates/units/han/support_minister.xml:45
 msgid "Minister"
-msgstr ""
+msgstr "Ministr"
 
 #: simulation/templates/units/han/support_trader.xml:9
 msgid "Shāngrén"
-msgstr ""
+msgstr "Shāngrén"
 
 #: simulation/templates/units/iber/catafalque.xml:9
 msgid "Mandonius"
@@ -2260,7 +2254,7 @@ msgstr "Hemiolos"
 
 #: simulation/templates/units/mace/ship_trireme.xml:9
 msgid "Triḗrēs Makedonikḗ"
-msgstr ""
+msgstr "Triḗrēs Makedonikḗ"
 
 #: simulation/templates/units/mace/ship_trireme.xml:10
 msgid "Macedonian Trireme"
@@ -2377,7 +2371,7 @@ msgstr "Čandragupta Maurja"
 
 #: simulation/templates/units/maur/hero_chandragupta_infantry.xml:12
 msgid "This gives Chandragupta Maurya his War Elephant."
-msgstr ""
+msgstr "To dává Chandragupta Maurya jeho válečného slona."
 
 #: simulation/templates/units/maur/infantry_archer_b.xml:12
 msgid "Longbowman"
@@ -2556,27 +2550,27 @@ msgid "Pila Hinduya"
 msgstr "Pila Hinduya"
 
 #: simulation/templates/units/pers/champion_infantry.xml:9
-#: simulation/templates/units/pers/champion_infantry_archer.xml:9
+#: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:9
 msgid "Persian Immortal"
 msgstr "Perský nesmrtelný"
 
 #: simulation/templates/units/pers/champion_infantry.xml:10
-#: simulation/templates/units/pers/champion_infantry_archer.xml:10
+#: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:10
 msgid "Anušiya"
 msgstr "Anušiya"
 
 #: simulation/templates/units/pers/champion_infantry.xml:11
-#: simulation/templates/units/pers/champion_infantry_archer.xml:11
+#: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:11
 msgid "Immortal"
 msgstr "Nesmrtelný"
 
 #: simulation/templates/units/pers/champion_infantry.xml:25
 msgid "Switch to using the bow and arrow."
-msgstr ""
+msgstr "Přepněte na používání luku a šípu."
 
-#: simulation/templates/units/pers/champion_infantry_archer.xml:17
+#: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:17
 msgid "Switch to using a spear and shield."
-msgstr ""
+msgstr "Přepněte na používání kopí a štítu."
 
 #: simulation/templates/units/pers/hero_cyrus_ii.xml:9
 msgid "Cyrus II The Great"
@@ -2604,27 +2598,27 @@ msgstr "Xerxes I."
 msgid "Xšayāršā"
 msgstr "Xšayāršā"
 
-#: simulation/templates/units/pers/infantry_archer_b.xml:13
+#: simulation/templates/units/pers/infantry_archer_b.xml:7
 msgid "Sogdian Archer"
 msgstr "Sogdijský lučištník"
 
-#: simulation/templates/units/pers/infantry_archer_b.xml:14
+#: simulation/templates/units/pers/infantry_archer_b.xml:8
 msgid "Θanuvaniya Suguda"
 msgstr "Θanuvaniya Suguda"
 
-#: simulation/templates/units/pers/infantry_javelineer_b.xml:13
+#: simulation/templates/units/pers/infantry_javelineer_b.xml:7
 msgid "Lydian Auxiliary"
 msgstr "Lydijská podpůrná jednotka"
 
-#: simulation/templates/units/pers/infantry_javelineer_b.xml:14
+#: simulation/templates/units/pers/infantry_javelineer_b.xml:8
 msgid "Pastiš Spardiya"
 msgstr "Pastiš Spardiya"
 
-#: simulation/templates/units/pers/infantry_spearman_b.xml:13
+#: simulation/templates/units/pers/infantry_spearman_b.xml:7
 msgid "Shield Bearer"
 msgstr "Štítonoš"
 
-#: simulation/templates/units/pers/infantry_spearman_b.xml:14
+#: simulation/templates/units/pers/infantry_spearman_b.xml:8
 msgid "Sparabara"
 msgstr "Sparabara"
 
@@ -2680,11 +2674,11 @@ msgstr "Asyrské beranidlo"
 msgid "Hamaranakuba Aθuriya"
 msgstr "Hamaranakuba Aθuriya"
 
-#: simulation/templates/units/pers/support_female_citizen.xml:12
+#: simulation/templates/units/pers/support_female_citizen.xml:6
 msgid "Banu Miyanrudani"
 msgstr "Banu Miyanrudani"
 
-#: simulation/templates/units/pers/support_female_citizen.xml:13
+#: simulation/templates/units/pers/support_female_citizen.xml:7
 msgid "Mesopotamian Woman"
 msgstr "Mezopotámská žena"
 
@@ -2945,11 +2939,11 @@ msgstr "Centurión"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_05.xml:14
 msgid "Praetorian Guard"
-msgstr ""
+msgstr "Pretoriánská garda"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_05.xml:15
 msgid "Praetorianus"
-msgstr ""
+msgstr "Praetorianus"
 
 #: simulation/templates/units/rome/hero_marcellus.xml:10
 #: simulation/templates/units/rome/hero_marcellus_infantry.xml:10
