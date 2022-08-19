@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Abdulaziz Leila
 # Ahmed Albahhar
 # Eslam obeidat
 # Houssem Mhamdi
@@ -17,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-09-03 08:24+0000\n"
-"Last-Translator: Transifex Bot\n"
+"PO-Revision-Date: 2014-06-19 17:50+0000\n"
+"Last-Translator: Abdulaziz Leila, 2022\n"
 "Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,7 +97,7 @@ msgstr "لوحة الصّدارة"
 #: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):12
 msgid "Player Profile Lookup"
-msgstr ""
+msgstr "البحث عن ملف تعريف اللاعب"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
 msgctxt "previous page"
@@ -162,7 +163,7 @@ msgstr "أرسل رسالة دردشة تحدّث فيها عن نفسك. مثا
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:150
 msgid "/me"
-msgstr ""
+msgstr "/أنا"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:154
 msgid ""
@@ -173,7 +174,7 @@ msgstr "أرسل نصًّا كرسالة دردشة (حتّى لو بدأ بشَ
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:157
 msgid "/say"
-msgstr ""
+msgstr "/قل"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:161
 msgid "Clear all chat scrollback."
@@ -277,7 +278,7 @@ msgstr "== %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
 msgid "Connected."
-msgstr ""
+msgstr "متصل."
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:56
 msgid "Disconnected."
@@ -286,7 +287,7 @@ msgstr "قُطع الاتّصال."
 #. Translation: Caption for system notifications shown in the chat panel
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:25
 msgid "System:"
-msgstr ""
+msgstr "النظام:"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
 #, javascript-format
@@ -379,7 +380,7 @@ msgstr "اللاعبون: %(current)s/%(total)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:146
 msgid "Victory Conditions:"
-msgstr ""
+msgstr "شروط النّصر:"
 
 #. Translation: Comma used to concatenate victory conditions
 #: gui/lobby/LobbyPage/GameDetails.js:149
@@ -415,7 +416,7 @@ msgstr "حجم الخريطة:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:164
 msgid "Map Description:"
-msgstr ""
+msgstr "وصف الخريطة:"
 
 #: gui/lobby/LobbyPage/GameList.xml:(heading):16
 msgid "Map Name"
@@ -528,7 +529,7 @@ msgstr "الحالة"
 
 #: gui/lobby/LobbyPage/PlayerList.xml:(placeholder_text):4
 msgid "Search for Player"
-msgstr ""
+msgstr "البحث عن لاعب"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:106
 msgid "N/A"
@@ -593,7 +594,7 @@ msgstr "لم يُعثر على اللاعب ”%(nick)s“."
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):16
 msgid "Enter playername:"
-msgstr ""
+msgstr "أدخل اسم اللاعب:"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):22
 msgid "View Profile"
@@ -627,7 +628,7 @@ msgstr "رجاءً أدخل كلمة السّرّ"
 
 #: gui/prelobby/common/credentials/credentials.js:23
 msgid "Please choose a longer password"
-msgstr ""
+msgstr "الرجاء اختيار كلمة سر اطول"
 
 #: gui/prelobby/common/credentials/credentials.js:32
 msgid "Please enter your password again"
@@ -1245,7 +1246,7 @@ msgstr "شروط الخدمة"
 
 #: gui/prelobby/common/terms/termslobby.js:10
 msgid "Please read and accept the Terms of Service."
-msgstr ""
+msgstr "يرجى قراءة وقبول شروط الخدمة."
 
 #: gui/prelobby/common/terms/termslobby.js:19
 msgid "Terms of Use"
@@ -1253,15 +1254,15 @@ msgstr "شروط الاستخدام"
 
 #: gui/prelobby/common/terms/termslobby.js:20
 msgid "Please read and accept the Terms of Use."
-msgstr ""
+msgstr "يرجى قراءة وقبول شروط الاستخدام."
 
 #: gui/prelobby/common/terms/termslobby.js:29
 msgid "Privacy Policy"
-msgstr ""
+msgstr "سياسة الخصوصية"
 
 #: gui/prelobby/common/terms/termslobby.js:30
 msgid "Please read and accept the Privacy Policy."
-msgstr ""
+msgstr "يرجى قراءة وقبول سياسة الخصوصية."
 
 #: gui/prelobby/entrance/entrance.xml:(caption):20
 msgid "Create a new account"

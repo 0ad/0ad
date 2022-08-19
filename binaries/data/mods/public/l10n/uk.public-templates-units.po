@@ -23,13 +23,14 @@
 # 85c91c3444bcf82d63b07801f727e341
 # Андрій Бандура
 # Микола Франчук
+# Мордред Пендрагон
 # Тарас Коржик
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-08-12 07:08+0000\n"
+"POT-Creation-Date: 2022-08-15 07:11+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
-"Last-Translator: c042aea184b4e59405665b6829c96633_d043b8e, 2022\n"
+"Last-Translator: Мордред Пендрагон, 2022\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -889,6 +890,7 @@ msgstr "Солон"
 #: simulation/templates/units/han/infantry_crossbowman_a.xml:4
 #: simulation/templates/units/han/infantry_pikeman_a.xml:4
 #: simulation/templates/units/han/infantry_spearman_a.xml:4
+#: simulation/templates/units/han/infantry_swordsman_special_a.xml:4
 #: simulation/templates/units/han/support_healer_a.xml:4
 #: simulation/templates/units/iber/cavalry_javelineer_a.xml:4
 #: simulation/templates/units/iber/cavalry_spearman_a.xml:4
@@ -1005,6 +1007,7 @@ msgstr "Продромос"
 #: simulation/templates/units/han/infantry_crossbowman_e.xml:4
 #: simulation/templates/units/han/infantry_pikeman_e.xml:4
 #: simulation/templates/units/han/infantry_spearman_e.xml:4
+#: simulation/templates/units/han/infantry_swordsman_special_e.xml:4
 #: simulation/templates/units/han/support_healer_e.xml:4
 #: simulation/templates/units/iber/cavalry_javelineer_e.xml:4
 #: simulation/templates/units/iber/cavalry_spearman_e.xml:4
@@ -1767,6 +1770,10 @@ msgstr "Цзі бін"
 msgid "Máo Bīng"
 msgstr "Мао бін"
 
+#: simulation/templates/units/han/infantry_swordsman_special_b.xml:11
+msgid "Dāo Bīng"
+msgstr "Дао бін"
+
 #: simulation/templates/units/han/ship_bireme.xml:9
 msgid "Zhàn Chuán"
 msgstr "Чжань чуань"
@@ -2328,7 +2335,7 @@ msgstr "Йоддха"
 
 #: simulation/templates/units/maur/champion_maiden.xml:6
 msgid "Maiden Guard"
-msgstr "Дівчина охоронниця"
+msgstr "Дівчина-охоронниця"
 
 #: simulation/templates/units/maur/champion_maiden.xml:7
 #: simulation/templates/units/maur/champion_maiden_archer.xml:21

@@ -81,7 +81,7 @@ msgstr "Deter"
 #: gui/session/MenuButtons.js:221
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr ""
+msgstr "Prema %(hotkey)s para pausar ou continuar co xogo."
 
 #: gui/session/MenuButtons.js:237
 msgid "Resign"
@@ -366,7 +366,7 @@ msgstr ""
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr ""
+msgstr "%(player)s trocou %(amountGiven)s por %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
@@ -796,7 +796,7 @@ msgstr "Desincronizado"
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr ""
+msgstr "Desincronizado"
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:66
@@ -812,13 +812,13 @@ msgstr ""
 #: gui/session/message_box/QuitConfirmation.js:15
 #: gui/session/message_box/QuitConfirmationReplay.js:23
 msgid "Stay"
-msgstr ""
+msgstr "Continuar"
 
 #. Translation: Shown in the Dialog that shows up when the game finishes
 #: gui/session/message_box/QuitConfirmation.js:19
 #: gui/session/message_box/QuitConfirmationReplay.js:27
 msgid "Quit and View Summary"
-msgstr ""
+msgstr "Saír e ver resumo."
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:54
 msgid "VICTORIOUS!"
@@ -861,7 +861,7 @@ msgstr "Confirmación"
 #: gui/session/message_box/QuitConfirmationReplay.js:17
 msgctxt "replayFinished"
 msgid "The replay has finished. What do you want to do?"
-msgstr ""
+msgstr "Rematou a repetición. Que quere facer?"
 
 #: gui/session/message_box/ResignConfirmation.js:6
 msgid "Are you sure you want to resign?"
@@ -1059,11 +1059,11 @@ msgstr ""
 
 #: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
-msgstr ""
+msgstr "Esta é a formación por defecto, usada para ordes de movemento."
 
 #: gui/session/selection_panels.js:282
 msgid "Right-click to set this as the default formation."
-msgstr ""
+msgstr "Clic dereito para seleccionar esta formación coma a por defecto."
 
 #: gui/session/selection_panels.js:338
 #, javascript-format
@@ -1144,7 +1144,7 @@ msgstr "Non se pode adestrar mentres se mellora."
 #: gui/session/selection_panels.js:1137
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
-msgstr ""
+msgstr "Avanzar a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
 #: gui/session/selection_panels.js:1143
 #, javascript-format
@@ -1622,7 +1622,7 @@ msgstr "Listo"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr ""
+msgstr "Este é o mercado de orixe.\nFaga clic dereito para cancelar a ruta de comercio."
 
 #: gui/session/unit_actions.js:678
 msgid "Origin trade market."
@@ -1638,7 +1638,7 @@ msgstr "Preme co botón secundario para estabelecer como o mercado de orixe para
 
 #: gui/session/unit_actions.js:702 gui/session/unit_actions.js:1186
 msgid "This market is too close to the origin market."
-msgstr ""
+msgstr "Este mercado está demasiado cerca ao mercado de orixe."
 
 #: gui/session/unit_actions.js:706
 msgid "Right-click to set as destination trade market."
@@ -1679,7 +1679,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:1408
 msgid "Destroy the selected units or structures."
-msgstr ""
+msgstr "Destruír as unidades ou estruturas seleccionadas."
 
 #: gui/session/unit_actions.js:1410
 #, javascript-format
@@ -1722,7 +1722,7 @@ msgstr "Volver ao traballo"
 
 #: gui/session/unit_actions.js:1646
 msgid "Order the selected units to guard a structure or unit."
-msgstr ""
+msgstr "Ordenar á unidade seleccionada protexer unha estrutura ou unidade."
 
 #: gui/session/unit_actions.js:1666
 msgid "Remove guard"
@@ -1740,7 +1740,7 @@ msgstr "Patrullar"
 
 #: gui/session/unit_actions.js:1706
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr ""
+msgstr "Atacar todas as unidades inimigas que se atopen, evitando as estruturas."
 
 #: gui/session/unit_actions.js:1734
 msgid "Press to allow allies to use this dropsite"

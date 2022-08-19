@@ -8,6 +8,7 @@
 # Esther Randiny
 # Muhammad Furqon Abrori
 # Ilham Nur Pratama
+# Reza Almanda
 # Samuel
 # d5f629f7f4b251b1c1597d8275ebee28_4786982
 # Eggar Tirtayasa
@@ -15,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-08-12 07:08+0000\n"
+"POT-Creation-Date: 2022-08-15 07:11+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
-"Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>, 2021-2022\n"
+"Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>, 2022\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -877,6 +878,7 @@ msgstr "Solon"
 #: simulation/templates/units/han/infantry_crossbowman_a.xml:4
 #: simulation/templates/units/han/infantry_pikeman_a.xml:4
 #: simulation/templates/units/han/infantry_spearman_a.xml:4
+#: simulation/templates/units/han/infantry_swordsman_special_a.xml:4
 #: simulation/templates/units/han/support_healer_a.xml:4
 #: simulation/templates/units/iber/cavalry_javelineer_a.xml:4
 #: simulation/templates/units/iber/cavalry_spearman_a.xml:4
@@ -993,6 +995,7 @@ msgstr "Pródromos"
 #: simulation/templates/units/han/infantry_crossbowman_e.xml:4
 #: simulation/templates/units/han/infantry_pikeman_e.xml:4
 #: simulation/templates/units/han/infantry_spearman_e.xml:4
+#: simulation/templates/units/han/infantry_swordsman_special_e.xml:4
 #: simulation/templates/units/han/support_healer_e.xml:4
 #: simulation/templates/units/iber/cavalry_javelineer_e.xml:4
 #: simulation/templates/units/iber/cavalry_spearman_e.xml:4
@@ -1688,7 +1691,7 @@ msgstr "Wu Wei Yin, Pengawal Cao Cao"
 
 #: simulation/templates/units/han/champion_chariot_academy.xml:9
 msgid "Han War Chariot"
-msgstr ""
+msgstr "Kereta perang Han"
 
 #: simulation/templates/units/han/champion_chariot_academy.xml:10
 msgid "Zhanche"
@@ -1754,6 +1757,10 @@ msgstr "Jǐ Bīng"
 #: simulation/templates/units/han/infantry_spearman_b.xml:11
 msgid "Máo Bīng"
 msgstr "Máo Bīng"
+
+#: simulation/templates/units/han/infantry_swordsman_special_b.xml:11
+msgid "Dāo Bīng"
+msgstr "Dāo Bīng"
 
 #: simulation/templates/units/han/ship_bireme.xml:9
 msgid "Zhàn Chuán"
@@ -2559,11 +2566,11 @@ msgstr "Pasukan Abadi"
 
 #: simulation/templates/units/pers/champion_infantry.xml:25
 msgid "Switch to using the bow and arrow."
-msgstr ""
+msgstr "Ganti menggunakan busur dan anak panah."
 
 #: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:17
 msgid "Switch to using a spear and shield."
-msgstr ""
+msgstr "Ganti menggunakan tombak dan tameng."
 
 #: simulation/templates/units/pers/hero_cyrus_ii.xml:9
 msgid "Cyrus II The Great"

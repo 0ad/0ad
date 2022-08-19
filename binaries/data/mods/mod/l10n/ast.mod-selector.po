@@ -97,7 +97,7 @@ msgstr "Activos: %(mods)s"
 msgid ""
 "[font=\"sans-bold-20\"]You tried to start the game with incompatible or "
 "missing mods![/font]"
-msgstr "[font=\"sans-bold-20\"]¡Intentæsti iniciar una partida cun modificaçones incompatibles ou disapahecidæs![/font]"
+msgstr "[font=\"sans-bold-20\"]¡Intentæsti iniciar una partida cun modificaciones incompatibles ou disaparecidæs![/font]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
@@ -107,13 +107,13 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "Solve the compatibility issue by disabling invalid mods or enabling required"
 " dependencies. You can then save & start the game."
-msgstr "Egua l problema de compatibilidá disactivando modificaçones inválidæs ou activando dependenciæs precisæs. Lhœw puœdes guardar & inicia’ la partida."
+msgstr "Egua l problema de compatibilidá disactivando modificaciones inválidæs ou activando dependenciæs precisæs. Lhœw puœdes guardar & iniciare la partida."
 
 #: gui/incompatible_mods/incompatible_mods.txt:5
 msgid ""
 "Incompatible mods will appear in red in the list of enabled mods (bottom "
 "panel). Dependencies can be added by enabling them in the upper panel."
-msgstr "Læs modificaçones incompatibles amuœstræn-se n coloraho nel índiz de modificaçones activæs (quadro inferior). Læs dependenciæs puœdes addicionallæs activando-læs in quadro superior."
+msgstr "Læs modificaciones incompatibles amuœstræn-se n colorado nel índiz de modificaciones activæs (quadro inferior). Læs dependenciæs puœdes addicionallæs activando-læs in quadro superior."
 
 #: gui/incompatible_mods/incompatible_mods.txt:6
 msgid "[/font]"
@@ -121,7 +121,7 @@ msgstr "[/font]"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):12
 msgid "Incompatible mods"
-msgstr "Modificaçones incompatibles"
+msgstr "Modificaciones incompatibles"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):19
 msgid "Ok"
@@ -144,18 +144,18 @@ msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr "Esti servicio apurre un modu sinzielhu de discargar & installar modificaçones fheithæs pola communidá & ie provisto por DBolical Pty Ltd, la compaña de tras d’IndieDb & ModDB."
+msgstr "Esti servicio apurre un modu sinzielhu de discargar & installar modificaciones fheithæs pola communidá & ye provisto por DBolical Pty Ltd, la compaña de tras d’IndieDb & ModDB."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
-msgstr "El servicio ie par usuarios de 13 anhos d’edá pa riba."
+msgstr "El servicio ye par usuarios de 13 anhos d’edá pa riba."
 
 #: gui/modio/Disclaimer.txt:9
 msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr "Wildfire Games tien puœsto procuru n fhazer esta connexion segura & examinaho læs modificaçones pa detectar falhos de segurança, inda que nun puœde assegurar que nun supponga dal riesgu."
+msgstr "Wildfire Games tien puœsto procuru n fhazer esta connexion segura & examinado læs modificaciones pa detectar falhos de segurancia, inda que nun puœde assegurar que nun supponga dal riesgu."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
@@ -171,12 +171,12 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Nun pudo recuperase la identificaçon de l xhuœw.\n\n%(technicalDetails)s"
+msgstr "Nun pudo recobrasse la identificacion de l xhuœw.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr "Error d’iniciaçon"
+msgstr "Error d’iniciacion"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 msgid "Retry"
@@ -194,12 +194,12 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Nun pudo recuperase l índiz de modificaçones.\n\n%(technicalDetails)s"
+msgstr "Nun pudo recobrasse l índiz de modificaciones.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr "Error de recuperaçon"
+msgstr "Error de recobru"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -208,7 +208,7 @@ msgid ""
 "File download failed.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Nun pudo discargase l archivo.\n\n%(technicalDetails)s"
+msgstr "Nun pudo discargasse l archivo.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
@@ -222,12 +222,12 @@ msgid ""
 "File verification error.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr "Error de verificaçon d’archivos.\n\n%(technicalDetails)s"
+msgstr "Error de verificacion d’archivos.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
 msgid "Verification Error"
-msgstr "Error de verificaçon"
+msgstr "Error de verificacion"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
@@ -244,11 +244,11 @@ msgstr "Incaboxar"
 #: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
-msgstr "Modificaçon inválida: %(error)s"
+msgstr "Modificacion inválida: %(error)s"
 
 #: gui/modio/modio.js:246
 msgid "Fetching and updating list of available mods."
-msgstr "Recuperando & anovando l repertorio de modificaçones disponibles."
+msgstr "Recobrando & anovando l repertorio de modificaciones disponibles."
 
 #: gui/modio/modio.js:247
 msgid "Updating"
@@ -256,7 +256,7 @@ msgstr "Anovando"
 
 #: gui/modio/modio.js:249
 msgid "Cancel Update"
-msgstr "Incaboxa’ l anovaçon"
+msgstr "Incaboxare l anovacion"
 
 #: gui/modio/modio.js:265
 #, javascript-format
@@ -269,7 +269,7 @@ msgstr "Discargando"
 
 #: gui/modio/modio.js:270
 msgid "Cancel Download"
-msgstr "Incaboxa’ la discarga"
+msgstr "Incaboxare la discarga"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with
@@ -302,15 +302,15 @@ msgstr "%(number)s %(unit)s/s"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr "Modificaçones de mod.io"
+msgstr "Modificaciones de mod.io"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):70
 msgid "Available Mods"
-msgstr "Modificaçones disponibles"
+msgstr "Modificaciones disponibles"
 
 #: gui/modio/modio.xml:(caption):82
 msgid "Filter valid mods"
-msgstr "Penheira’ læs modificaçones válidæs"
+msgstr "Penheirare læs modificaciones válidæs"
 
 #: gui/modio/modio.xml:(caption):88
 msgid "Back"
@@ -318,7 +318,7 @@ msgstr "A tras"
 
 #: gui/modio/modio.xml:(caption):93
 msgid "Refresh List"
-msgstr "Actualiza’l repertorio"
+msgstr "Actualizare l repertorio"
 
 #: gui/modio/modio.xml:(caption):98
 msgid "Download"
@@ -357,7 +357,7 @@ msgstr "Penheira"
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr "0 A.D. sta diseñau pa ser fácile de modificar. Læs modificaçones reparten-se n fhorma d’archivos .pyromod, que puœdes abrir cumo archivos ZIP."
+msgstr "0 A.D. sta diseñadu pa ser fácile de modificar. Læs modificaciones reparten-se n fhorma d’archivos .pyromod, que puœdes abrir cumo archivos ZIP."
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -367,13 +367,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr "Par installar modificaçones, simplemente abri l archivo cun 0 A.D. (ou picando duæs vezes n archivo & abriendo-lo cuno xhuœw ou executando “pyrogenesis file.pyromod” in terminal). Intos la modificaçon vaî star disponible no selector de modificaçones. Puœdes activalla ou disactivalla cumo quieras. Si se precisa, tamien puœdes eliminalla manualmente usando l gëstor d’archivos (ver https://trac.wildfiregames.com/wiki/GameDataPaths)."
+msgstr "Par installar modificaciones, simplemente abri l archivo cun 0 A.D. (ou picando duæs vezes n archivo & abriendo-lo cuno xhuœw ou executando “pyrogenesis file.pyromod” in terminal). Intos la modificacion vaî star disponible no selector de modificaciones. Puœdes activalla ou disactivalla cumo quieras. Si se precisa, tamien puœdes eliminalla manualmente usando l gëstor d’archivos (ver https://trac.wildfiregames.com/wiki/GameDataPaths)."
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr "Pa mas informaçon sobre la modificaçon de l xhuœw, vei la Guía de modificaçon na rede (pica no boton “Guía de modificaçon” n baxo)."
+msgstr "Pa mas informacion sobre la modificacion de l xhuœw, véi la Guía de modificacion na rede (pica no boton “Guía de modificacion” n baxo)."
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -382,11 +382,11 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr "El servicio de mod.io disindolrca-lo DBolical, la compaña de tras d’IndieDB & ModDB. ¡Ha quanto ia q’essos sitios na rede lhevæn spardiendo annunciæs de 0 A.D. & outros proiectos indie! Wœi mod.io nos permitte arrexhuntar & discargar todælæs modificaçones verificadæs pol personal. ¡Pica n “Discargar modificaçones” pa proballo & installar delhæs!"
+msgstr "El servicio de mod.io disindolrca-lo DBolical, la compaña de tras d’IndieDB & ModDB. ¡Ha quanto ya q’essos sitios na rede lhevæn sparziendo annunciæs de 0 A.D. & outros proiectos indie! Wœi mod.io nos permitte arrexhuntar & discargar todælæs modificaciones verificadæs pol personal. ¡Pica n “Discargar modificaciones” pa proballo & installar delhæs!"
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr "Selector de modificaçones Pyrogenesis"
+msgstr "Selector de modificaciones Pyrogenesis"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
@@ -394,7 +394,7 @@ msgstr "Cerrar"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr "Guía de modificaçon"
+msgstr "Guía de modificacion"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
@@ -402,7 +402,7 @@ msgstr "Visitar mod.io"
 
 #: gui/modmod/modmod.js:67
 msgid "This mod does not exist"
-msgstr "Esta modificaçon nun existe"
+msgstr "Esta modificacion nun existe"
 
 #: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
 msgctxt "mod activation"
@@ -420,7 +420,7 @@ msgstr "Disactivar"
 
 #: gui/modmod/modmod.js:458
 msgid "No mod has been selected."
-msgstr "Non se scoyîu modificaçon dala."
+msgstr "Non se scolyîu modificacion dala."
 
 #: gui/modmod/modmod.js:461
 msgid "Enable at least 0ad mod"
@@ -428,7 +428,7 @@ msgstr "Activar pelo ménos 0ad mod"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
-msgstr "Modificaçones"
+msgstr "Modificaciones"
 
 #: gui/modmod/modmod.xml:(caption):37
 msgid "Negate"
@@ -440,15 +440,15 @@ msgstr "Penheirar por compatibilidá"
 
 #: gui/modmod/modmod.xml:(caption):63
 msgid "Description"
-msgstr "Descripçon"
+msgstr "Descripcion"
 
 #: gui/modmod/modmod.xml:(caption):114
 msgid "Enabled Mods"
-msgstr "Modificaçones activæs"
+msgstr "Modificaciones activæs"
 
 #: gui/modmod/modmod.xml:(caption):183
 msgid "Visit Website"
-msgstr "Visita’l sitiu na rede"
+msgstr "Visitare l sitiu na rede"
 
 #: gui/modmod/modmod.xml:(caption):192
 msgid "Quit"
@@ -460,11 +460,11 @@ msgstr "Adiuda"
 
 #: gui/modmod/modmod.xml:(caption):207
 msgid "Download Mods"
-msgstr "Discargar modificaçones"
+msgstr "Discargar modificaciones"
 
 #: gui/modmod/modmod.xml:(caption):212
 msgid "Save Configuration"
-msgstr "Guarda’ la configuraçon"
+msgstr "Guardare la configuracion"
 
 #: gui/modmod/modmod.xml:(caption):217
 msgid "Save and Restart"
@@ -488,13 +488,13 @@ msgid ""
 "overwrite settings of mods loaded earlier. It is advisable to have more "
 "complex mods loaded last. Use the arrows on the right to change the loading "
 "order."
-msgstr "Læs modificaçones activæs cargæn-se de riba a baxo. Læs postreiræs in cargase puœden subrescribi’ los axhustes de læs primeiræs. Aconseya-se, pœs, carga’ læs modificaçones mas complexæs a la fin. Gasta læs flretsæs a mandreitha pa camuda’l orde de carga."
+msgstr "Læs modificaciones activæs cargæn-se de riba a baxo. Læs postreiræs in cargasse puœden subrescribire los axhustes de læs primeiræs. Aconselya-se, puœis, cargare læs modificaciones mas complexæs a la fin. Gasta læs saietæs a manu direitha pa camudare l órdene de carga."
 
 #: gui/modmod/modmod.xml:(tooltip):161 gui/modmod/modmod.xml:(tooltip):175
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr "Camuda’l orde n que se lhançæn læs modificaçones. Esti ha concasar cun læs suæs dependenciæs."
+msgstr "Camudare l órdene n que se lhanciæn læs modificaciones. Esti ha concasar cun læs suæs dependenciæs."
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"

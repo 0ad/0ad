@@ -31,7 +31,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-08-12 07:08+0000\n"
+"POT-Creation-Date: 2022-08-15 07:11+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2018,2020-2022\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
@@ -893,6 +893,7 @@ msgstr "Solón"
 #: simulation/templates/units/han/infantry_crossbowman_a.xml:4
 #: simulation/templates/units/han/infantry_pikeman_a.xml:4
 #: simulation/templates/units/han/infantry_spearman_a.xml:4
+#: simulation/templates/units/han/infantry_swordsman_special_a.xml:4
 #: simulation/templates/units/han/support_healer_a.xml:4
 #: simulation/templates/units/iber/cavalry_javelineer_a.xml:4
 #: simulation/templates/units/iber/cavalry_spearman_a.xml:4
@@ -1009,6 +1010,7 @@ msgstr "Pródromos"
 #: simulation/templates/units/han/infantry_crossbowman_e.xml:4
 #: simulation/templates/units/han/infantry_pikeman_e.xml:4
 #: simulation/templates/units/han/infantry_spearman_e.xml:4
+#: simulation/templates/units/han/infantry_swordsman_special_e.xml:4
 #: simulation/templates/units/han/support_healer_e.xml:4
 #: simulation/templates/units/iber/cavalry_javelineer_e.xml:4
 #: simulation/templates/units/iber/cavalry_spearman_e.xml:4
@@ -1770,6 +1772,10 @@ msgstr "Jǐ Bīng"
 #: simulation/templates/units/han/infantry_spearman_b.xml:11
 msgid "Máo Bīng"
 msgstr "Máo Bīng"
+
+#: simulation/templates/units/han/infantry_swordsman_special_b.xml:11
+msgid "Dāo Bīng"
+msgstr "Dāo Bīng"
 
 #: simulation/templates/units/han/ship_bireme.xml:9
 msgid "Zhàn Chuán"
@@ -2575,11 +2581,11 @@ msgstr "Inmortal"
 
 #: simulation/templates/units/pers/champion_infantry.xml:25
 msgid "Switch to using the bow and arrow."
-msgstr "Cambia a arco y flechas."
+msgstr "Utilizar arco y flechas."
 
 #: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:17
 msgid "Switch to using a spear and shield."
-msgstr "Cambia a lanza y escudo."
+msgstr "Utilizar lanza y escudo."
 
 #: simulation/templates/units/pers/hero_cyrus_ii.xml:9
 msgid "Cyrus II The Great"
