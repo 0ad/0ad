@@ -3907,7 +3907,7 @@ msgstr "Xeral"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "Nome do xogador (un xogador)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
@@ -3915,11 +3915,11 @@ msgstr ""
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr ""
+msgstr "Nome do xogador (multixogador)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr ""
+msgstr "Como queres que se dirixan a ti nas partidas de varios xogadores (salvo na sala de espera)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
@@ -3931,7 +3931,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
-msgstr ""
+msgstr "Activar a pantalla de benvida"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
@@ -3941,7 +3941,7 @@ msgstr "Se a desactiva, a pantalla de benvida aínda aparecerá unha vez, cada v
 
 #: gui/options/options.json[0].options[4].label
 msgid "FPS overlay"
-msgstr ""
+msgstr "Mostrar os FPS"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show frames per second in top right corner."
@@ -3949,7 +3949,7 @@ msgstr "Mostrar o número de fotogramas por segundo na esquina superior dereita.
 
 #: gui/options/options.json[0].options[5].label
 msgid "Real time overlay"
-msgstr ""
+msgstr "Mostrar a hora"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show current system time in top right corner."
@@ -3957,7 +3957,7 @@ msgstr "Mostrar a hora actual do sistema na esquina superior dereita."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Game time overlay"
-msgstr ""
+msgstr "Mostrar a duración da partida"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current simulation time in top right corner."
@@ -3965,7 +3965,7 @@ msgstr "Mostrar o tempo que leva durado a partida na esquina superior dereita."
 
 #: gui/options/options.json[0].options[7].label
 msgid "Ceasefire time overlay"
-msgstr ""
+msgstr "Mostrar a duración da tregua"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -4021,11 +4021,11 @@ msgstr ""
 
 #: gui/options/options.json[1].label
 msgid "Graphics (general)"
-msgstr ""
+msgstr "Gráficos (Xeral)"
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
-msgstr ""
+msgstr "Modo xanela"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
@@ -4096,7 +4096,7 @@ msgstr "Usa sincronización vertical para evitar que aparezan ao mesmo tempo ima
 
 #: gui/options/options.json[1].options[7].label
 msgid "FPS throttling in menus"
-msgstr ""
+msgstr "Aceleración de FPS nos menús"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid ""
@@ -4106,7 +4106,7 @@ msgstr "Para aforrar uso de CPU, limitar a frecuencia de renderización en todos
 
 #: gui/options/options.json[1].options[8].label
 msgid "FPS throttling in games"
-msgstr ""
+msgstr "Aceleración de FPS nas partidas"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid ""
@@ -4157,7 +4157,7 @@ msgstr "Estabelecer o equilibrio entre rendemento e aparencia visual."
 
 #: gui/options/options.json[2].label
 msgid "Graphics (advanced)"
-msgstr ""
+msgstr "Gráficos (avanzado)"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Renderer backend"
@@ -4706,7 +4706,7 @@ msgstr "Permitir a todo o mundo ou só aos contactos unirse á partida como obse
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[5].label
 msgid "Observer limit"
-msgstr ""
+msgstr "Límite de observadores"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[5].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
