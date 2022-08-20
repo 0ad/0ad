@@ -20,6 +20,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#include "lib/config2.h"
+
 #include <memory>
 
 class CProfiler2;
