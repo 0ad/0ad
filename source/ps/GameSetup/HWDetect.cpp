@@ -53,6 +53,7 @@
 
 #include <sstream>
 #include <string>
+#include <thread>
 
 static void ReportSDL(const ScriptRequest& rq, JS::HandleValue settings);
 static void ReportFreeType(const ScriptRequest& rq, JS::HandleValue settings);
@@ -194,8 +195,10 @@ void RunHardwareDetection()
 
 	Script::SetProperty(rq, settings, "timer_resolution", timer_Resolution());
 
+	Script::SetProperty(rq, settings, "hardware_concurrency", std::thread::hardware_concurrency());
+
 	// The version should be increased for every meaningful change.
-	const int reportVersion = 19;
+	const int reportVersion = 20;
 
 	// Send the same data to the reporting system
 	g_UserReporter.SubmitReport(
@@ -225,6 +228,11 @@ static void ReportSDL(const ScriptRequest& rq, JS::HandleValue settings)
 	// This is null in atlas (and further the call triggers an assertion).
 	const char* backend = g_VideoMode.GetWindow() ? GetSDLSubsystem(g_VideoMode.GetWindow()) : "none";
 	Script::SetProperty(rq, settings, "sdl_video_backend", backend ? backend : "unknown");
+
+	Script::SetProperty(rq, settings, "sdl_display_count", SDL_GetNumVideoDisplays());
+
+	Script::SetProperty(rq, settings, "sdl_cpu_count", SDL_GetCPUCount());
+	Script::SetProperty(rq, settings, "sdl_system_ram", SDL_GetSystemRAM());
 }
 
 static void ReportFreeType(const ScriptRequest& rq, JS::HandleValue settings)

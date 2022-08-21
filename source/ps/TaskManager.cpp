@@ -36,15 +36,26 @@
 
 namespace Threading
 {
+
+namespace
+{
 /**
  * Minimum number of TaskManager workers.
  */
-static constexpr size_t MIN_THREADS = 3;
+constexpr size_t MIN_WORKERS = 3;
 
 /**
  * Maximum number of TaskManager workers.
  */
-static constexpr size_t MAX_THREADS = 32;
+constexpr size_t MAX_WORKERS = 32;
+
+size_t GetDefaultNumberOfWorkers()
+{
+	const size_t hardware_concurrency = std::thread::hardware_concurrency();
+	return hardware_concurrency ? Clamp(hardware_concurrency - 1, MIN_WORKERS, MAX_WORKERS) : MIN_WORKERS;
+}
+
+} // anonymous namespace
 
 std::unique_ptr<TaskManager> g_TaskManager;
 
@@ -155,14 +166,14 @@ protected:
 	mutable size_t m_RoundRobinIdx = 0;
 };
 
-TaskManager::TaskManager() : TaskManager(std::thread::hardware_concurrency() - 1)
+TaskManager::TaskManager() : TaskManager(GetDefaultNumberOfWorkers())
 {
 }
 
 TaskManager::TaskManager(size_t numberOfWorkers)
 {
 	m = std::make_unique<Impl>(*this);
-	numberOfWorkers = Clamp<size_t>(numberOfWorkers, MIN_THREADS, MAX_THREADS);
+	numberOfWorkers = Clamp<size_t>(numberOfWorkers, MIN_WORKERS, MAX_WORKERS);
 	m->SetupWorkers(numberOfWorkers);
 }
 
