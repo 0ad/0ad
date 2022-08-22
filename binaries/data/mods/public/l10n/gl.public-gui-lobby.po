@@ -110,7 +110,7 @@ msgstr "Menú principal"
 msgid ""
 "The command '%(cmd)s' is not supported. Try %(help)s to get more information"
 " about the supported commands."
-msgstr ""
+msgstr "O comando «%(cmd)s» non é compatible. Tenta %(help)s para obter máis información sobre os comandos compatibles."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:45
 #, javascript-format
@@ -120,7 +120,7 @@ msgstr "A orde «%(cmd)s» está restrinxida a moderadores."
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:67
 #, javascript-format
 msgid "The command '%(cmd)s' requires at least one argument."
-msgstr ""
+msgstr "O comando «%(cmd)s» require polo menos un argumento."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:88
 msgid "Set your state to 'Away'."
@@ -367,7 +367,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format
 msgid "Host: %(playername)s"
-msgstr ""
+msgstr "Anfitrión: %(playername)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:144
 #, javascript-format
@@ -412,7 +412,7 @@ msgstr "Tamaño:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:164
 msgid "Map Description:"
-msgstr ""
+msgstr "Descrición do mapa:"
 
 #: gui/lobby/LobbyPage/GameList.xml:(heading):16
 msgid "Map Name"
@@ -669,7 +669,7 @@ msgstr "[font=\"sans-bold-18\"]Política de intimidade da sala de espera de vari
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2020-12-24"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Data do documento:[/font] 2020-12-24"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:5
 msgid ""
@@ -693,7 +693,7 @@ msgid ""
 "players, moderators and developers to identify players they met before, "
 "communicate about the game, coordinate matches and enables moderators to "
 "enforce the Terms of Use."
-msgstr ""
+msgstr "Ter un nome de xogador único é un requisito para gañar unha puntuación, para permitir aos xogadores, moderadores e desenvolvedores identificar xogadores cos que se atoparon antes, e falar sobre o xogo, coordinar partidas e permite aos moderadores facer que se cumpran os termos de uso."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:9
 msgid ""
@@ -702,7 +702,7 @@ msgid ""
 " information (such as the real name) was disclosed on the Lobby Chat, other "
 "services of Wildfire Games or elsewhere in the public, or when the IP "
 "address is used to bring criminal proceedings."
-msgstr ""
+msgstr "O nome de xogador serve de pseudónimo. Wildfire Games descoñece a identidade (persoa natural) do xogador, salvo que este revelase información persoalmente identificábel (como o seu nome real) na conversa da sala de espera, outros servizos de Wildfire Games ou outro lugar público, ou cando o enderezo de IP se usa para iniciar dilixencias penais."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
@@ -1082,7 +1082,7 @@ msgid ""
 " by Wildfire Games that allows players to set up online multiplayer matches,"
 " discuss the game in a public chat room and gain a rating that reflects "
 "their skill."
-msgstr ""
+msgstr "A sala de espera de varios xogadores de 0 A.D. Empires Ascendant é un servizo por internet fornecido por Wildfire Games que permite aos xogadores configurar partidas de varios xogadores por internet, falar do xogo nunha sala de conversa pública e gañar unha puntuación que reflicte a súa habilidade."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""

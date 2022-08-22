@@ -47,7 +47,7 @@ msgstr "Pode cambiar entre os modos a pantalla completa e de xanela mediante Alt
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Como xogar[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:8
 msgid ""
@@ -55,31 +55,31 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr ""
+msgstr "Os controis e a forma de xogar debería resultarlle familiar a calquera afeito a xogos de estratexia en tempo real tradicionais. Nestes momentos faltan moitas funcionalidades e as estatísticas aínda non están ben equilibradas; terás que agardar ata a versión final para que todo funcione de maneira óptima."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls (by default):"
-msgstr ""
+msgstr "Controis básicos (por defecto):"
 
 #: gui/manual/intro.txt:11
 msgid "• Left-click to select units"
-msgstr ""
+msgstr "• Botón principal para seleccionar unidades."
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click-and-drag to select groups of units"
-msgstr ""
+msgstr "• Botón principal e arrastrar para seleccionar grupos de unidades."
 
 #: gui/manual/intro.txt:13
 msgid "• Right-click to order units to the target"
-msgstr ""
+msgstr "• Botón secundario para asignar unha acción ás unidades."
 
 #: gui/manual/intro.txt:14
 msgid "• Arrow keys or WASD keys to move the camera"
-msgstr ""
+msgstr "• Teclas de frechas ou teclas W, A, S e D para desprazar a vista."
 
 #: gui/manual/intro.txt:15
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera"
-msgstr ""
+msgstr "• Ctrl + teclas de frechas, ou Maiús + roda do rato, para rotar a vista."
 
 #: gui/manual/intro.txt:16
 msgid ""
@@ -89,7 +89,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Modos[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:19
 msgid "The main menu gives access to two game modes:"
@@ -107,7 +107,7 @@ msgstr ""
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Varios xogadores[font=\"sans-14\"] – Xoga contra opoñentes humanos por Internet."
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -115,7 +115,7 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr ""
+msgstr "Para preparar unha partida de varios xogadores, un dos xogadores debe seleccionar a opción «Aloxar unha partida». O xogo emprega o porto UDP 20595, así que o anfitrión debe configurar o NAT ou a devasa para permitir usar este porto. O resto dos xogadores poden seleccionar «Unirse a unha partida» e introducir o enderezo IP do anfitrión."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
