@@ -180,7 +180,7 @@ var jebelBarkal_buildingGarrison = difficulty => [
 	},
 	{
 		"buildingClasses": ["Stable"],
-		"unitTemplates": jebelBarkal_templates.champion_cavalry,
+		"unitTemplates": [...jebelBarkal_templates.citizenSoldier_cavalry, ...jebelBarkal_templates.champion_cavalry],
 		"capacityRatio": 1
 
 	},
