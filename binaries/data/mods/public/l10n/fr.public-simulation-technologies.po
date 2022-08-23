@@ -43,7 +43,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-07-04 07:10+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Swann Sanchez, 2021\n"
+"Last-Translator: François Poirotte <clicky@erebot.net>, 2016,2022\n"
 "Language-Team: French (http://www.transifex.com/wildfire-games/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -223,11 +223,11 @@ msgid ""
 "This famous and most important work of the Seven Military Classics teaches "
 "Han commanders everything about planning battles, maintaining armies, and "
 "defeating one's enemies."
-msgstr ""
+msgstr "Cet ouvrage connu est le plus important des Sept Traités de l'art militaire et enseigne aux commandants Han tout ce qu'il faut savoir sur la planification des batailles, le maintien des armées et l'art de vaincre ses ennemis."
 
 #: simulation/data/technologies/art_of_war.jsongenericName
 msgid "Sun Tzu's \"The Art of War\""
-msgstr ""
+msgstr "« L'Art de la Guerre » de Sun Tzu"
 
 #: simulation/data/technologies/art_of_war.jsonspecificName.han
 msgid "Sūnzǐ BīngFǎ"
@@ -235,7 +235,7 @@ msgstr ""
 
 #: simulation/data/technologies/art_of_war.jsontooltip
 msgid "All Citizen-Soldiers −20% required promotion experience."
-msgstr ""
+msgstr "Tous les soldats-citoyens : -20% d'expérience requis pour être promus"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -355,11 +355,11 @@ msgstr "Les structures gagnent +10% de santé et +10% de points de capture."
 msgid ""
 "By uniting China under one emperor, the Han Dynasty ruled over 40 million "
 "people, one of the largest empires of antiquity by population."
-msgstr ""
+msgstr "En unifiant la Chine sous un seul empereur, la dynastie Han a reigné sur plus de 40 millions de personnes, soit l'un des plus grands empires de l'antiquité en termes de population."
 
 #: simulation/data/technologies/civbonuses/han_population.jsongenericName
 msgid "Federated States"
-msgstr ""
+msgstr "États fédérés"
 
 #: simulation/data/technologies/civbonuses/han_population.jsontooltip
 #: simulation/data/technologies/civbonuses/maur_population.jsontooltip
@@ -371,27 +371,27 @@ msgstr "Augmente la limite de population maximale de +10%."
 msgid ""
 "The Han built massive walls made from rammed earth. These were gigantic "
 "fortifications several meters thick and stretching for kilometers."
-msgstr ""
+msgstr "Les Han ont construit des murs massifs à partir de terre tassée. Il s'agissait de fortifications gigantesques épaisses de plusieurs mètres et qui s'étendaient sur des kilomètres."
 
 #: simulation/data/technologies/civbonuses/han_walls.jsongenericName
 msgid "Great Wall"
-msgstr ""
+msgstr "Mur haut"
 
 #: simulation/data/technologies/civbonuses/han_walls.jsontooltip
 msgid "City Walls +50% health."
-msgstr ""
+msgstr "Murs de la ville : +50% de santé."
 
 #: simulation/data/technologies/civbonuses/mace_storehouse.jsondescription
 msgid "The Macedonian economy relied greatly on their vast natural resources."
-msgstr ""
+msgstr "L'économie Macédonienne reposait en grande partie sur ses ressources naturelles abondantes."
 
 #: simulation/data/technologies/civbonuses/mace_storehouse.jsongenericName
 msgid "Resource-Rich Economy"
-msgstr ""
+msgstr "Économie riche en ressources"
 
 #: simulation/data/technologies/civbonuses/mace_storehouse.jsontooltip
 msgid "Storehouse technologies −100% research time."
-msgstr ""
+msgstr "Technologies d'entrepôts : -100% de temps de recherche"
 
 #: simulation/data/technologies/civbonuses/maur_elephants.jsondescription
 msgid ""
@@ -473,7 +473,7 @@ msgstr "Habitations et bâtiments économiques : -40% de coûts en bois et de po
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
 msgid "Improved Construction"
-msgstr ""
+msgstr "Construction améliorée"
 
 #: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
 #: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
@@ -482,19 +482,19 @@ msgstr ""
 
 #: simulation/data/technologies/civil_engineering_01.jsontooltip
 msgid "All structures −10% build time and −10% cost."
-msgstr ""
+msgstr "Tous les bâtiments : -10% de temps de construction et -10% de coût."
 
 #: simulation/data/technologies/civil_engineering_02.jsongenericName
 msgid "Robust Architecture"
-msgstr ""
+msgstr "Architecture robuste"
 
 #: simulation/data/technologies/civil_engineering_02.jsontooltip
 msgid "All structures +20% health."
-msgstr ""
+msgstr "Tous les bâtiments : +20% de santé"
 
 #: simulation/data/technologies/civil_service_01.jsongenericName
 msgid "Efficient Bureaucracy"
-msgstr ""
+msgstr "Bureaucracie efficace"
 
 #: simulation/data/technologies/civil_service_01.jsonspecificName.han
 #: simulation/data/technologies/civil_service_02.jsonspecificName.han
@@ -503,15 +503,15 @@ msgstr ""
 
 #: simulation/data/technologies/civil_service_01.jsontooltip
 msgid "Ministers −50% train time."
-msgstr ""
+msgstr "Ministres : -50% de temps d'entraînement"
 
 #: simulation/data/technologies/civil_service_02.jsongenericName
 msgid "Intensive Training"
-msgstr ""
+msgstr "Entraînement intensif"
 
 #: simulation/data/technologies/civil_service_02.jsontooltip
 msgid "Ministers +50% health."
-msgstr ""
+msgstr "Ministres : +50% de santé"
 
 #: simulation/data/technologies/colonization.jsondescription
 msgid ""
@@ -529,15 +529,15 @@ msgstr "Bâtiments civils : -25% de temps de constructions et de coût en ressou
 
 #: simulation/data/technologies/crossbow_training.jsondescription
 msgid "The Han had a penchant for using massed crossbowmen in battle."
-msgstr ""
+msgstr "Les Han avait un penchant pour l'utilisation de groupes d'arbalétriers lors des batailles."
 
 #: simulation/data/technologies/crossbow_training.jsongenericName
 msgid "Crossbow Training"
-msgstr ""
+msgstr "Entraînement à l'arbalète"
 
 #: simulation/data/technologies/crossbow_training.jsontooltip
 msgid "Crossbow Infantry and Cavalry −20% train time."
-msgstr ""
+msgstr "Infanterie d'arbalétriers et Cavalerie : -20% de temps d'entraînement"
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -641,17 +641,17 @@ msgstr "Brouette"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsondescription
 msgid "Install a chain pump for improved irrigation."
-msgstr ""
+msgstr "Installer une pompe à chapelets pour améliorer l'irrigation."
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsongenericName
 msgid "Chain Pump"
-msgstr ""
+msgstr "Pompe à chapelets"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
 msgid "Workers +20% rice gather rate."
-msgstr ""
+msgstr "Ouvriers : +20% du taux de cueillette du riz"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -693,11 +693,11 @@ msgstr "Charrue en fer"
 
 #: simulation/data/technologies/gather_farming_seed_drill.jsondescription
 msgid "Equip your workers with seed drills."
-msgstr ""
+msgstr "Équiper vos ouvriers de semoirs."
 
 #: simulation/data/technologies/gather_farming_seed_drill.jsongenericName
 msgid "Seed Drill"
-msgstr ""
+msgstr "Semoir"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
@@ -709,11 +709,11 @@ msgstr "Entrainement de récolte"
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsondescription
 msgid "Remove water weeds to preserve nutrients for the rice plants."
-msgstr ""
+msgstr "Désherber l'eau pour préserver les nutriments pour les plants de riz."
 
 #: simulation/data/technologies/gather_farming_water_weeding.jsongenericName
 msgid "Water Weeding"
-msgstr ""
+msgstr "Désherbage de l'eau"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
@@ -978,7 +978,7 @@ msgstr "Immortels"
 
 #: simulation/data/technologies/immortals.jsontooltip
 msgid "Immortals −50% training time."
-msgstr ""
+msgstr "Immortels : -50% de temps d'entraînement"
 
 #: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
@@ -1049,11 +1049,11 @@ msgstr "Armée traditionnelle vs. Armée réformée"
 
 #: simulation/data/technologies/pair_unlock_civil_engineering_han.jsongenericName
 msgid "Civil Engineering"
-msgstr ""
+msgstr "Ingénieurie civile"
 
 #: simulation/data/technologies/pair_unlock_civil_service_han.jsongenericName
 msgid "Civil Service"
-msgstr ""
+msgstr "Service civil"
 
 #: simulation/data/technologies/parade_of_daphne.jsondescription
 msgid ""
@@ -1139,7 +1139,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +50% territory influence radius. Structures +9 capture points "
 "regeneration rate per garrisoned unit. Stable −10% batch training time."
-msgstr ""
+msgstr "Avancer à la Phase des Cités, ce qui débloque plus d'entités et de technologies. Centres-villes : +50% du rayon d'influence du territoire. Bâtiments : +9 points de capture du taux de régénération par unité en garnison. Écurie : -10% de temps d'entraînement en groupe."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1210,7 +1210,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +30% territory influence radius. Structures +7 capture points "
 "regeneration rate per garrisoned unit. Stable −10% batch training time."
-msgstr ""
+msgstr "Avancer à la Phase des Villes, ce qui débloque plus d'entités et de technologies. Centres-villes : +30% du rayon d'influence du territoire. Bâtiments : +7 points de capture du taux de régénération par unité en garnison. Écurie : -10% de temps d'entraînement en groupe."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1218,19 +1218,19 @@ msgstr "Phase des Villages"
 
 #: simulation/data/technologies/poison_arrows.jsongenericName
 msgid "Poison Arrows"
-msgstr ""
+msgstr "Flèches empoisonnées"
 
 #: simulation/data/technologies/poison_arrows.jsontooltip
 msgid "Ranged Soldiers +20% attack damage."
-msgstr ""
+msgstr "Soldats à distance : +20% de dégâts"
 
 #: simulation/data/technologies/poison_blades.jsongenericName
 msgid "Poison Blades"
-msgstr ""
+msgstr "Épées empoisonnées"
 
 #: simulation/data/technologies/poison_blades.jsontooltip
 msgid "Melee Soldiers +20% attack damage."
-msgstr ""
+msgstr "Soldats au corp-à-corp : +20% de dégâts"
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
@@ -1308,7 +1308,7 @@ msgstr "Poutres de renfort en bois pour les coques des navires."
 
 #: simulation/data/technologies/ship_health.jsongenericName
 msgid "Reinforced Hull"
-msgstr ""
+msgstr "Coque renforcée"
 
 #: simulation/data/technologies/ship_health.jsontooltip
 msgid "Ships +25% health."
@@ -1395,7 +1395,7 @@ msgstr "Route de la soie"
 
 #: simulation/data/technologies/silk_road.jsontooltip
 msgid "Traders +20% international trade bonus."
-msgstr ""
+msgstr "Troceurs : +20 de bonus aux échanges internationaux"
 
 #: simulation/data/technologies/silvershields.jsondescription
 msgid ""
@@ -1639,7 +1639,7 @@ msgstr ""
 
 #: simulation/data/technologies/subterranean_aqueducts.jsongenericName
 msgid "Subterranean Aqueducts"
-msgstr ""
+msgstr "Aqueducs souterrains"
 
 #: simulation/data/technologies/subterranean_aqueducts.jsonspecificName.pers
 msgid "Kārēz"
@@ -1737,7 +1737,7 @@ msgstr "Traité commercial"
 
 #: simulation/data/technologies/trade_commercial_treaty.jsontooltip
 msgid "Traders +10% trade profit between allies."
-msgstr ""
+msgstr "Troceurs : +10% de profit lors des échanges entre alliés"
 
 #: simulation/data/technologies/trade_gain_01.jsondescription
 #: simulation/data/technologies/trade_gain_02.jsondescription

@@ -49,11 +49,11 @@ msgstr "La velocidá d’approximacion diminuîu a %.1f"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
-msgstr "Cadenæs lhongæs"
+msgstr "Cadenas lhongas"
 
 #: lobby/XmppClient.cpp:1024
 msgid "unknown subtype (see logs)"
-msgstr "disconhoç-se l subtypu (veia-se los regïstros)"
+msgstr "disconhoç-se l subtypu (veia-se los registros)"
 
 #: lobby/XmppClient.cpp:1355
 msgid "The certificate is not trusted."
@@ -61,7 +61,7 @@ msgstr "El certificado nun ye d’infhoutu."
 
 #: lobby/XmppClient.cpp:1356
 msgid "The certificate hasn't got a known issuer."
-msgstr "Non se sabe quien dîou l certificado."
+msgstr "Nun se sabe quien dieu l certificado."
 
 #: lobby/XmppClient.cpp:1357
 msgid "The certificate has been revoked."
@@ -73,15 +73,15 @@ msgstr "El certificado caducou."
 
 #: lobby/XmppClient.cpp:1359
 msgid "The certificate is not yet active."
-msgstr "El certificado sige inactivo."
+msgstr "El certificado sigue inactivo."
 
 #: lobby/XmppClient.cpp:1360
 msgid "The certificate has not been issued for the peer connected to."
-msgstr "El certificado non se dîou pa l par a l que stas connectadu."
+msgstr "El certificado nun se dieu pa l par a l que stas connectadu."
 
 #: lobby/XmppClient.cpp:1361
 msgid "The certificate signer is not a certificate authority."
-msgstr "Quien roblrou l certificado nun teníæ authorizacion."
+msgstr "Quien robrou l certificado nun teníæ authorizacion."
 
 #: lobby/XmppClient.cpp:1383 lobby/XmppClient.cpp:1427
 #: lobby/XmppClient.cpp:1466
@@ -106,11 +106,11 @@ msgstr "Error internu de l servidor"
 
 #: lobby/XmppClient.cpp:1396
 msgid "Not allowed"
-msgstr "Non se permitte"
+msgstr "Nun se permitte"
 
 #: lobby/XmppClient.cpp:1397
 msgid "Not authorized"
-msgstr "Non s’authoriza"
+msgstr "Nun s’authoriza"
 
 #: lobby/XmppClient.cpp:1400
 msgid "Recipient temporarily unavailable"
@@ -118,7 +118,7 @@ msgstr "El receptor nun sta disponible temporalmente"
 
 #: lobby/XmppClient.cpp:1402
 msgid "Registration required"
-msgstr "Requier-se l regïstro"
+msgstr "Requier-se l registro"
 
 #: lobby/XmppClient.cpp:1406
 msgid "Service unavailable"
@@ -134,7 +134,7 @@ msgstr "Error de fluxu"
 
 #: lobby/XmppClient.cpp:1432
 msgid "The incoming stream version is unsupported"
-msgstr "Non se sofhita la version de l fluxu intrante"
+msgstr "Nun se sofhita la version de l fluxu intrante"
 
 #: lobby/XmppClient.cpp:1433
 msgid "The stream has been closed by the server"
@@ -154,13 +154,13 @@ msgstr "Houbo un falhu a l resolvere l nome d’amphitryon de l servidor"
 
 #: lobby/XmppClient.cpp:1441
 msgid "This system is out of memory"
-msgstr "Exhaurîu-se la memorîa l systema"
+msgstr "Exhaurîu-se la memoria l systema"
 
 #: lobby/XmppClient.cpp:1443
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr "Ou nun pudo verificasse l certificado de l servidor ou la negociacion TLS non se per-fhixzo cun éxitu"
+msgstr "Ou nun pudo verificasse l certificado de l servidor ou la negociacion TLS nun se per-fhezo cun éxitu"
 
 #: lobby/XmppClient.cpp:1444
 msgid "The server did not offer required TLS encryption"
@@ -168,7 +168,7 @@ msgstr "El servidor nun ofrîu l cifrado TLS que se requier"
 
 #: lobby/XmppClient.cpp:1446
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Falhou l authenticacion. Ou nun ye correcta la tyave d’accessu ou la cuœnta nun existe"
+msgstr "Falhou l authenticacion. Ou nun ye correcta la tyave d’accessu ou la cuonta nun existe"
 
 #: lobby/XmppClient.cpp:1447
 msgid "The user or system requested a disconnect"
@@ -180,11 +180,11 @@ msgstr "Nun ha hi connexiones activæs"
 
 #: lobby/XmppClient.cpp:1469
 msgid "Your account has been successfully registered"
-msgstr "Regïstrou-se cun éxitu la tuæ cuœnta"
+msgstr "Registrou-se cun éxitu la tua cuonta"
 
 #: lobby/XmppClient.cpp:1470
 msgid "Not all necessary information provided"
-msgstr "Non s’aporrîu toda la informacion precisa"
+msgstr "Nun s’aporrîu toda la informacion precisa"
 
 #: lobby/XmppClient.cpp:1471
 msgid "Username already exists"
@@ -200,7 +200,7 @@ msgstr "Nun pudo scribisse un mod.json externu pa la modificacion comprimida “
 #: ps/ModIo.cpp:264
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Houbo un falhu a l iniciar a consultar sobre la identificacion de l xhuœw. Error: %s; %s."
+msgstr "Houbo un falhu a l iniciar a consultar sobre la identificacion de l xhuow. Error: %s; %s."
 
 #: ps/ModIo.cpp:294
 #, c-format
@@ -230,7 +230,7 @@ msgstr "Falhu de discarga asýnchrona: %s, %s."
 #: ps/ModIo.cpp:428
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Falhou la discarga. Respuœsta de l servidor: %s; %s."
+msgstr "Falhou la discarga. Respuosta de l servidor: %s; %s."
 
 #: ps/ModIo.cpp:534
 msgid "Mismatched filesize."
@@ -247,7 +247,7 @@ msgstr "Houbo un falhu a l calculare la summa de verificacion final."
 
 #: ps/ModIo.cpp:573
 msgid "Failed to verify signature."
-msgstr "Houbo un falhu a l verificare la roblra."
+msgstr "Houbo un falhu a l verificare la robra."
 
 #: ps/SavedGame.cpp:142
 #, c-format
