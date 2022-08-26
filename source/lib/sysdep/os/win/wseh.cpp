@@ -277,7 +277,7 @@ long __stdcall wseh_ExceptionFilter(struct _EXCEPTION_POINTERS* ep)
 	const wchar_t* messageFormat =
 		L"Much to our regret we must report the program has encountered an error.\r\n"
 		L"\r\n"
-		L"Please let us know at http://trac.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files.\r\n"
+		L"Please let us know at https://trac.wildfiregames.com/ and attach the crashlog.txt and crashlog.dmp files.\r\n"
 		L"You may find paths to these files at https://trac.wildfiregames.com/wiki/GameDataPaths \r\n"
 		L"\r\n"
 		L"Details: unhandled exception (%ls)\r\n";

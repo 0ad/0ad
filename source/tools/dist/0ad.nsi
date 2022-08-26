@@ -133,7 +133,7 @@ Section "!Game and data files" GameSection
   File /r "${CHECKOUTPATH}\binaries\system\*.txt"
 
   ; Copy logs for writable root
-  SetOutPath "$INSTDIR\binaries\logs"
+  SetOutPath "$INSTDIR\binaries"
   File /r "${CHECKOUTPATH}\binaries\logs"
 
   !ifdef ARCHIVE_PATH
@@ -152,7 +152,7 @@ Section "!Game and data files" GameSection
   SetOutPath "$INSTDIR"
   CreateShortCut "$INSTDIR\0 A.D..lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" ""
   CreateShortCut "$INSTDIR\Map editor.lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" "-editor" "$INSTDIR\binaries\data\tools\atlas\icons\ScenarioEditor.ico"
-  WriteINIStr "$INSTDIR\Web site.url" "InternetShortcut" "URL" "http://play0ad.com/"
+  WriteINIStr "$INSTDIR\Web site.url" "InternetShortcut" "URL" "https://play0ad.com/"
 
   ;Store installation folder
   WriteRegStr SHCTX "Software\0 A.D." "" $INSTDIR
@@ -170,7 +170,7 @@ Section "!Game and data files" GameSection
   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "InstallLocation" "$\"$INSTDIR$\""
   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "UninstallString" "$\"$INSTDIR\Uninstall.exe$\""
   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "QuietUninstallString" "$\"$INSTDIR\Uninstall.exe$\" /S"
-  WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "URLInfoAbout" "http://play0ad.com"
+  WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "URLInfoAbout" "https://play0ad.com"
   WriteRegDWORD SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "NoModify" 1
   WriteRegDWORD SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "NoRepair" 1
 
@@ -184,7 +184,7 @@ Section "!Game and data files" GameSection
   SetOutPath "$INSTDIR"
   CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Open logs folder.lnk" "$INSTDIR\OpenLogsFolder.bat"
   CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
-  WriteINIStr "$SMPROGRAMS\$StartMenuFolder\Web site.url" "InternetShortcut" "URL" "http://play0ad.com/"
+  WriteINIStr "$SMPROGRAMS\$StartMenuFolder\Web site.url" "InternetShortcut" "URL" "https://play0ad.com/"
 
   !insertmacro MUI_STARTMENU_WRITE_END
 
