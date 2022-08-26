@@ -30,7 +30,7 @@ msgstr "Afhitare la velocidá de la partida"
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr "Calca %(hotkey)s p’alternar esti menú."
+msgstr "Calca %(hotkey)s p’alternar isti menú."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -79,7 +79,7 @@ msgstr "Pousar"
 #: gui/session/MenuButtons.js:221
 #, javascript-format
 msgid "Press %(hotkey)s to pause or resume the game."
-msgstr "Calca %(hotkey)s pa pousare ou continuare la partida."
+msgstr "Calca %(hotkey)s pa pousar ou continuare la partida."
 
 #: gui/session/MenuButtons.js:237
 msgid "Resign"
@@ -97,19 +97,19 @@ msgstr "Atrasu na transmission in directo: %(delay)ss"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
-msgstr "Authenticou-se la connexion cuno servidor."
+msgstr "Authenticou-se la conexion cul servidor."
 
 #: gui/session/NetworkStatusOverlay.js:39
 msgid "Connected to the server."
-msgstr "Connectou-se cuno servidor."
+msgstr "Conecteu-se cul servidor."
 
 #: gui/session/NetworkStatusOverlay.js:40
 msgid "Connection to the server has been lost."
-msgstr "Perdêu-se la connexion cuno servidor."
+msgstr "Perdeu-se la conexion cul servidor."
 
 #: gui/session/NetworkStatusOverlay.js:42
 msgid "Waiting for players to connect:"
-msgstr "Sperando a que se connecten los xhogadores:"
+msgstr "Sperando a que se conectan los xhogadores:"
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
@@ -157,7 +157,7 @@ msgstr "m:ss"
 #. when not the first item in the queue.
 #: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:597
 msgid "This item is paused."
-msgstr "Esti elemento sta n pousa"
+msgstr "Isti elemento sta n pousa"
 
 #: gui/session/chat/ChatAddressees.js:93
 msgctxt "chat addressee"
@@ -167,12 +167,12 @@ msgstr "Todos"
 #: gui/session/chat/ChatAddressees.js:99
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr "Alliados"
+msgstr "Comuñeiros"
 
 #: gui/session/chat/ChatAddressees.js:100
 msgctxt "chat message context"
 msgid "Ally"
-msgstr "Alliadu"
+msgstr "Comuñeiru"
 
 #: gui/session/chat/ChatAddressees.js:110
 msgctxt "chat addressee"
@@ -231,7 +231,7 @@ msgstr "Recados de xhogadores"
 #: gui/session/chat/ChatHistory.js:106
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr "Recados d’alliados"
+msgstr "Recados comuñeiros"
 
 #: gui/session/chat/ChatHistory.js:113
 msgctxt "chat history filter"
@@ -251,7 +251,7 @@ msgstr "Recados privados"
 #: gui/session/chat/ChatHistory.js:132
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr "Avisos de l xhuow"
+msgstr "Avisos de l xhuogu"
 
 #: gui/session/chat/ChatHistory.js:137
 msgctxt "chat history filter"
@@ -276,7 +276,7 @@ msgstr "Premi %(hotkey)s p’abrire la conversa spectadora."
 #: gui/session/chat/ChatInput.js:46
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr "Premi %(hotkey)s p’abrire la conversa cun los alliados."
+msgstr "Premi %(hotkey)s p’abrire la conversa cun los comuñeiros."
 
 #: gui/session/chat/ChatInput.js:48
 #, javascript-format
@@ -359,7 +359,7 @@ msgstr "%(icon)s ¡%(attacker)s sta aggrediendo-te!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
-msgstr "Pica par infocar escontra la unidá aggressa."
+msgstr "Pica par infocar escontra la unidá acometida."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
@@ -369,7 +369,7 @@ msgstr "%(player)s cambiou %(amountGiven)s in para de %(amountGained)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
 msgid "You are now allied with %(player)s."
-msgstr "Alliasti-te cun %(player)s."
+msgstr "Acomuñasti cun %(player)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:82
 #, javascript-format
@@ -384,7 +384,7 @@ msgstr "Volviesti-te neutral pa cun %(player)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:86
 #, javascript-format
 msgid "%(player)s is now allied with you."
-msgstr "%(player)s alliou-se cun tigo."
+msgstr "%(player)s acomuñou cun tigo."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:87
 #, javascript-format
@@ -394,12 +394,12 @@ msgstr "%(player)s imbelhou-se cun tigo."
 #: gui/session/chat/ChatMessageFormatSimulation.js:88
 #, javascript-format
 msgid "%(player)s is now neutral with you."
-msgstr "%(player)s volvêu-se neutral pa cun tigo."
+msgstr "%(player)s volveu-se neutral pa cun tigo."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:91
 #, javascript-format
 msgid "%(player)s is now allied with %(player2)s."
-msgstr "%(player)s alliou-se cun %(player2)s."
+msgstr "%(player)s acomuñou cun %(player2)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:92
 #, javascript-format
@@ -409,7 +409,7 @@ msgstr "%(player)s imbelhou-se cun %(player2)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:93
 #, javascript-format
 msgid "%(player)s is now neutral with %(player2)s."
-msgstr "%(player)s volvêu-se neutral pa cun %(player2)s."
+msgstr "%(player)s volveu-se neutral pa cun %(player2)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:109
 #, javascript-format
@@ -441,7 +441,7 @@ msgstr "%(player)s inviou-te %(amounts)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:161
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr "Inviæsti %(amounts)s a %(player2)s."
+msgstr "Inviasti %(amounts)s a %(player2)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:166
 #, javascript-format
@@ -479,7 +479,7 @@ msgstr "Inviar"
 #: gui/session/chat/chat_window.xml:(tooltip):29
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr "Penheirare la historia de læs conversæs."
+msgstr "Penheirare la historia de las conversas."
 
 #: gui/session/chat/chat_window.xml:(tooltip):55
 msgctxt "chat input"
@@ -556,7 +556,7 @@ msgstr "Activare l esmesson"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:287
 msgid "Lock cull camera"
-msgstr "Fixare la cámara d’esmesson"
+msgstr "Afhitare la cámara d’esmesson"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:305
 msgid "Display camera frustum"
@@ -564,7 +564,7 @@ msgstr "Amostrare l troncu de la cámara"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:323
 msgid "Display shadows frustum"
-msgstr "Amostrare los troncos de læs solombræs"
+msgstr "Amostrare los troncos de las solombras"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:22
 msgid "Render Debug Mode Disabled"
@@ -591,7 +591,7 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr "Nota: La opcion disindolcadora “modu alteracion temporal” nun sta pensada pa l usu prolhongadu. Si nun s’utiliza a xheitu puode exhaurire la memoria de l xhuow ou resultar in falhos."
+msgstr "Nota: La opcion disindolcadora “modu alteracion temporal” nun sta pensada pa l usu prolhongadu. Si nun s’utiliza a xheithu puode exhaurire la memoria de l xhuogu ou resultar in falhos."
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
@@ -643,7 +643,7 @@ msgstr "Concluir"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr "Tiempu restante de læs induciæs: %(time)s."
+msgstr "Tiempu restante de las inducias: %(time)s."
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):85
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
@@ -653,7 +653,7 @@ msgstr "Alternare los colores diplomáticos"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
-msgstr "Pedir a los alliados q’attaquen esti inimigu"
+msgstr "Pedir a los comuñeiros q’aggredan isti inimigu"
 
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
 msgctxt "team"
@@ -663,7 +663,7 @@ msgstr "Dalu"
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):28
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:78
 msgid "Ally"
-msgstr "Alliadu"
+msgstr "Comuñeiru"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):32
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:81
@@ -679,7 +679,7 @@ msgstr "Inimigu"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr "Subornar alteatoriamente una unidá d’esti xhogador & compartire la suæ vista per un tiempu."
+msgstr "Subornar alteatoriamente una unidá d’isti xhogador & compartire la sua vista per un tiempu."
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
 msgid "A failed bribe will cost you:"
@@ -741,7 +741,7 @@ msgstr "Sí"
 #: gui/session/message_box/OutOfSyncReplay.js:26
 #, javascript-format
 msgid "Out-Of-Sync error on turn %(turn)s."
-msgstr "Error assýnchronu no turnu %(turn)s."
+msgstr "Error assýnchronu na xhogada %(turn)s."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:19
 #, javascript-format
@@ -752,27 +752,27 @@ msgstr "Xhogadores: %(players)s"
 #: gui/session/message_box/OutOfSyncNetwork.js:24
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr "El stadu de partida concasa cuno de l amphitryon."
+msgstr "El stadu de partida ye egual a l de l amphitryon."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:25
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr "El stadu de partida nun concasa cuno de l amphitryon."
+msgstr "El stadu de partida ye estremadu a l de l amphitryon."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:31
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
-msgstr "¡Indagora nun sta sofhitado arrexhuntasse a partidæs entre múltiplos xhogadores & agentes intelligentes!"
+msgstr "¡Indagora nun sta sofhitado arrexhuntasse a partidas entre múltiplos xhogadores & agentes intelligentes!"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:34
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
-msgstr "Assegurade-vos de que todolos xhogadores usen læs meesmæs modificaciones."
+msgstr "Assegurade-vos de que todolos xhogadores usen las meesmas modificaciones."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:35
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr "Pica n “informar d’un falhu” no menú principal p’aïudar a eguallu."
+msgstr "Pica n “informar d’un falhu” nel menú principal p’axhudar a eguallu."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:36
 #, javascript-format
@@ -824,7 +824,7 @@ msgstr "¡VICTORIA!"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:55
 msgid "DEFEATED!"
-msgstr "¡DERROTA!"
+msgstr "¡ROTA!"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:57
 msgid "Do you want to quit?"
@@ -833,7 +833,7 @@ msgstr "¿Quieres salir?"
 #: gui/session/message_box/QuitConfirmationMenu.js:33
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "¿Stas ciertu que quieres salir? Si sales todolos outros xhogadores van disconnectasse."
+msgstr "¿Stas ciertu que quieres salir? Si sales todolos outros xhogadores van disconectesse."
 
 #: gui/session/message_box/QuitConfirmationMenu.js:47
 msgid "Are you sure you want to quit?"
@@ -867,7 +867,7 @@ msgstr "¿Stas ciertu que quieres rendite?"
 
 #: gui/session/messages.js:104
 msgid "You have won!"
-msgstr "¡Triumphæsti!"
+msgstr "¡Triumphasti!"
 
 #: gui/session/messages.js:105
 msgid "You have been defeated!"
@@ -875,7 +875,7 @@ msgstr "¡Stas vincidu!"
 
 #: gui/session/messages.js:410
 msgid "Click to quit this tutorial."
-msgstr "Pica pa salir d’esti docime."
+msgstr "Pica pa salir d’isti docime."
 
 #: gui/session/message_box/QuitConfirmation.js:24
 #: gui/session/message_box/QuitConfirmationReplay.js:32
@@ -889,7 +889,7 @@ msgstr "Pica quando steas preparadu."
 
 #: gui/session/messages.js:419
 msgid "Follow the instructions."
-msgstr "Sigui læs instrucciones."
+msgstr "Sigui las instrucciones."
 
 #: gui/session/messages.js:544
 msgid "Unknown Player"
@@ -897,7 +897,7 @@ msgstr "Xhogador disconhocidu"
 
 #: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
-msgstr "Siñalar a los alliados"
+msgstr "Siñalar a los comuñeiros"
 
 #: gui/session/minimap/MiniMapIdleWorkerButton.js:43
 msgid ""
@@ -917,7 +917,7 @@ msgstr "Armada"
 #: gui/session/chat/ChatAddressees.js:79 gui/session/selection_details.js:78
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
-msgstr "\\[SIN CONNEXION] %(player)s"
+msgstr "\\[SIN CONEXION] %(player)s"
 
 #: gui/session/selection_details.js:84
 #, javascript-format
@@ -1053,7 +1053,7 @@ msgstr "La formacion predefinida sta disactivada."
 
 #: gui/session/selection_panels.js:278
 msgid "Right-click to disable the default formation feature."
-msgstr "Pica cuno boton direithu pa disactivare la funccion “formacion predefinida”."
+msgstr "Pica cul boton direithu pa disactivare la funccion “formacion predefinida”."
 
 #: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
@@ -1061,7 +1061,7 @@ msgstr "Esta ye la formacion predefinida de la milicia a l movesse."
 
 #: gui/session/selection_panels.js:282
 msgid "Right-click to set this as the default formation."
-msgstr "Pica cuno boton direithu pa predefinir esta formacion."
+msgstr "Pica cul boton direithu pa predefinir esta formacion."
 
 #: gui/session/selection_panels.js:338
 #, javascript-format
@@ -1070,7 +1070,7 @@ msgstr "Disoccupar %(name)s"
 
 #: gui/session/selection_panels.js:339
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "Pica una vez pa disoccupar 1. Calca cun Maiúsculas premida pa disoccupar todolos d’esti typu."
+msgstr "Pica una vez pa disoccupar 1. Calca cun Maiúsculas premida pa disoccupar todolos d’isti typu."
 
 #: gui/session/selection_panels.js:341 gui/session/selection_panels.js:914
 #, javascript-format
@@ -1248,8 +1248,8 @@ msgstr "Puode construisse una sola vez."
 #, javascript-format
 msgid "Could only be constructed %(limit)s time."
 msgid_plural "Could only be constructed %(limit)s times."
-msgstr[0] "Mal pudo construisse a penæs %(limit)s vez."
-msgstr[1] "Mal pudo construisse a penæs %(limit)s vezes."
+msgstr[0] "Mal pudo construisse a penas %(limit)s vez."
+msgstr[1] "Mal pudo construisse a penas %(limit)s vezes."
 
 #: gui/session/selection_panels_helpers.js:148
 #, javascript-format
@@ -1261,8 +1261,8 @@ msgstr[1] "Puode construisse %(count)s vezes mas."
 #: gui/session/selection_panels_helpers.js:155
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] "Mal pudo creasse a penæs una vez."
-msgstr[1] "Mal pudo creasse a penæs %(limit)s vezes."
+msgstr[0] "Mal pudo creasse a penas una vez."
+msgstr[1] "Mal pudo creasse a penas %(limit)s vezes."
 
 #: gui/session/selection_panels_helpers.js:159
 msgid "Can be trained only once."
@@ -1278,8 +1278,8 @@ msgstr[1] "Puode creasse %(count)s vezes mas."
 #: gui/session/selection_panels_helpers.js:168
 msgid "Could only be created once."
 msgid_plural "Could only be created %(limit)s times."
-msgstr[0] "Mal pudo creasse a penæs una vez."
-msgstr[1] "Mal pudo creasse a penæs %(limit)s vezes."
+msgstr[0] "Mal pudo creasse a penas una vez."
+msgstr[1] "Mal pudo creasse a penas %(limit)s vezes."
 
 #: gui/session/selection_panels_helpers.js:172
 msgid "Can be created only once."
@@ -1327,7 +1327,7 @@ msgstr "Fidelidá"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):82
 msgid "Attack and Resistance"
-msgstr "Oufensa & resistencia"
+msgstr "Podencia & resistencia"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):97
 msgid "Experience"
@@ -1345,7 +1345,7 @@ msgstr "Riestra de produccion"
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr "Pica pa escolyer una grea d’unidades, pica duas vezes par infocar escontra elhi & pica cuno boton direitu pa disfazellu."
+msgstr "Pica pa escolyer una grea d’unidades, pica duas vezes par infhocar escontra ilhi & pica cul boton direithu pa disfhazellu."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVI: Zhuangzi"
@@ -1357,7 +1357,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Vere la Synopsis cultural / Árbore structural\nLa última abierta vai re-abrisse n picando."
+msgstr "%(civ)s\n%(hotkey_civinfo)s / %(hotkey_structree)s: Vere la Synopsis cultural / Árbore structural\nL últimu abiertu vai re-abrisse n picando."
 
 #: gui/session/top_panel/CounterManager.js:101
 #, javascript-format
@@ -1484,7 +1484,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "Escuolyi l typu de bienes que quieras modificar picando n elhi, & lhuow usa læs saietas pa camudare la proporcion entre los bienes. Tamien puodes premer %(hotkey)s a l escolyer un typu de bienes pa xubire la suæ porcion a l 100 %%."
+msgstr "Escolyi l typu de bienes que quieras modificar picando n ilhi, & lhuogo usa las saietas pa camudare la proporcion entre los bienes. Tamien puodes premer %(hotkey)s a l escolyer un typu de bienes pa xubire la sua porcion a l 100 %%."
 
 #: gui/session/trade/TradeDialogBarterPanel.js:45
 #, javascript-format
@@ -1493,7 +1493,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr "Intama escolyendo de la fhila superior el recursu que quieras cambiar. A l premer un boton de la fhila inferior, vas dar %(quantity)s de l recursu superior n para de la quantidá indicada pa l inferior. Premi & calten premidu/a %(hotkey)s pa multiplicar temporalmente læs quantidades por %(multiplier)s."
+msgstr "Intama escolyendo de la fhila superior el recursu que quieras cambiar. A l premer un boton de la fhila inferior, vas dar %(quantity)s de l recursu superior n para de la quantidá indicada pa l inferior. Premi & calten premidu/a %(hotkey)s pa multiplicar temporalmente las quantidades por %(multiplier)s."
 
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
@@ -1620,7 +1620,7 @@ msgstr "Preparadu"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr "Esti ye l mercadu d’orígene.\nPica cuno boton direithu par incaboxare la vía commercial"
+msgstr "Isti ye l mercadu d’orígene.\nPica cul boton direithu par incaboxare la vía commercial"
 
 #: gui/session/unit_actions.js:678
 msgid "Origin trade market."
@@ -1632,20 +1632,20 @@ msgstr "Mercadu de destinu."
 
 #: gui/session/unit_actions.js:695
 msgid "Right-click to set as origin trade market"
-msgstr "Pica cuno boton direithu p’afhitar cumo mercadu d’orígene"
+msgstr "Pica cul boton direithu p’afhitar cumo mercadu d’orígene"
 
 #: gui/session/unit_actions.js:702 gui/session/unit_actions.js:1186
 msgid "This market is too close to the origin market."
-msgstr "Esti mercadu sta per-cerca de l mercadu d’orígene."
+msgstr "Isti mercadu sta per-cerca de l mercadu d’orígene."
 
 #: gui/session/unit_actions.js:706
 msgid "Right-click to set as destination trade market."
-msgstr "Pica cuno boton direithu p’afhitar cumo mercadu de destinu."
+msgstr "Pica cul boton direithu p’afhitar cumo mercadu de destinu."
 
 #: gui/session/unit_actions.js:771 gui/session/unit_actions.js:1118
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
-msgstr "Turretæs: %(occupied)s/%(capacity)s"
+msgstr "Torretas: %(occupied)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:837 gui/session/unit_actions.js:1101
 #, javascript-format
@@ -1654,7 +1654,7 @@ msgstr "Occupantes actuales: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:1177
 msgid "Right-click to establish a default route for new traders."
-msgstr "Pica cuno boton direithu p’afhitar una vía predefinida pa commerciantes nuovos."
+msgstr "Pica cul boton direithu p’afhitar una vía predefinida pa commerciantes nuovos."
 
 #: gui/session/unit_actions.js:1181
 #, javascript-format
@@ -1664,20 +1664,20 @@ msgstr "Ganhancia prevista: %(gain)s"
 #: gui/session/unit_actions.js:1307
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
-msgstr[0] "A essi ente nun lli puodes mandar."
+msgstr[0] "A issi ente nun lli puodes mandar."
 msgstr[1] "A essos entes nun llis puodes mandar."
 
 #: gui/session/unit_actions.js:1353
 msgid "Unload All."
-msgstr "Disoccupallæs todæs."
+msgstr "Disoccupallas todas."
 
 #: gui/session/unit_actions.js:1388
 msgid "Unload Turrets."
-msgstr "Disoccupare læs turretæs."
+msgstr "Disoccupare las torretas."
 
 #: gui/session/unit_actions.js:1408
 msgid "Destroy the selected units or structures."
-msgstr "Eliminare læs unidades ou structuræs escolyidæs."
+msgstr "Eliminare las unidades ou structuras escolyidas."
 
 #: gui/session/unit_actions.js:1410
 #, javascript-format
@@ -1692,15 +1692,15 @@ msgstr "Abortare l mandado actual."
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
-msgstr "Inviare læs unidades escolyidæs a abançar a l sitiu siñaladu n deponiendo recursos."
+msgstr "Inviare las unidades escolyidas a abançar a l sitiu siñaladu n deponiendo recursos."
 
 #: gui/session/unit_actions.js:1503
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr "Mandar que læs unidades escolyidæs s’abelluguen n una structura ou unidá."
+msgstr "Mandar que las unidades escolyidas s’abelluguen n una structura ou unidá."
 
 #: gui/session/unit_actions.js:1525
 msgid "Order the selected units to occupy a turret point."
-msgstr "Mandar que læs unidades escolyidæs occupen una turreta."
+msgstr "Mandar que las unidades escolyidas occupen una torreta."
 
 #: gui/session/unit_actions.js:1547
 msgid "Unload"
@@ -1708,7 +1708,7 @@ msgstr "Disoccupar"
 
 #: gui/session/unit_actions.js:1567
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr "Mandar que læs unidades escolyidæs egüen una structura, barcu ou máchina."
+msgstr "Mandar que las unidades escolyidas egüen una structura, barcu ou máchina."
 
 #: gui/session/unit_actions.js:1588
 msgid "Focus on Rally Point."
@@ -1720,7 +1720,7 @@ msgstr "Volver a l lhabor"
 
 #: gui/session/unit_actions.js:1646
 msgid "Order the selected units to guard a structure or unit."
-msgstr "Mandar que læs unidades escolyidæs curien una structura ou unidá."
+msgstr "Mandar que las unidades escolyidas curien una structura ou unidá."
 
 #: gui/session/unit_actions.js:1666
 msgid "Remove guard"
@@ -1738,35 +1738,35 @@ msgstr "Roldar"
 
 #: gui/session/unit_actions.js:1706
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr "Acometer a todælæs unidades inimigæs alcontradæs evitando structuræs."
+msgstr "Acometer a todalas unidades inimigas alcontradas evitando structuras."
 
 #: gui/session/unit_actions.js:1734
 msgid "Press to allow allies to use this dropsite"
-msgstr "Premi pa deixar que los alliados usen esti depósitu"
+msgstr "Premi pa deixar que los comuñeiros usen isti depósitu"
 
 #: gui/session/unit_actions.js:1739
 msgid "Press to prevent allies from using this dropsite"
-msgstr "Premi pa quitar que los alliados usen esti depósitu"
+msgstr "Premi pa quitar que los comuñeiros usen isti depósitu"
 
 #: gui/session/unit_actions.js:1774
 msgid "The use of this dropsite is prohibited"
-msgstr "Nun puodes usar esti depósitu"
+msgstr "Nun puodes usar isti depósitu"
 
 #: gui/session/unit_actions.js:1780
 msgid "Allies are allowed to use this dropsite."
-msgstr "Los alliados puoden usar esti depósitu."
+msgstr "Los comuñeiros puoden usar isti depósitu."
 
 #: gui/session/unit_actions.js:1781
 msgid "You are allowed to use this dropsite"
-msgstr "Puodes usar esti depósitu"
+msgstr "Puodes usar isti depósitu"
 
 #: gui/session/unit_actions.js:1800
 msgid "Activate auto-queue for selected structures."
-msgstr "Activare l inriestru automáticu næs structuræs escolyidæs."
+msgstr "Activare l inriestru automáticu nas structuras escolyidas."
 
 #: gui/session/unit_actions.js:1820
 msgid "Deactivate auto-queue for selected structures."
-msgstr "Disactivare l inriestru automáticu næs structuræs escolyidæs."
+msgstr "Disactivare l inriestru automáticu nas structuras escolyidas."
 
 #: gui/session/unit_actions.js:1885
 msgid "The entity has to be killed before it can be gathered from"
@@ -1775,8 +1775,8 @@ msgstr "Esso ha hi que lo matar par explotallo"
 #: gui/session/unit_actions.js:1888
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr "Nun puodes eliminar esti ente, des que ti correspuonde menos de l dimidio de la suæ fidelidá"
+msgstr "Nun puodes eliminar isti ente, des que ti correspuonde menos de la metada de la sua fidelidá"
 
 #: gui/session/unit_actions.js:1891
 msgid "This entity is undeletable"
-msgstr "Esti ente nun ye eliminable"
+msgstr "Isti ente nun ye eliminable"

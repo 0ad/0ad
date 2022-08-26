@@ -370,7 +370,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Петра – стандартний бот в 0 A.D. Будь ласка, повідомляйте про проблеми в Wildfire Games (див. посилання в головному меню).\n\nШтучний інтелект має штраф/бонус на накопичення ресурсів (Пісочниця -58%, Дуже Легко -44%, Легко -25%, Середня складність ±0%, Важко +25%, Дуже Важко +56%). Найпростіші рівні також мають більш повільні дослідження, тренування та будівництво. Крім того, вороги на рівні Пісочниця не розширюються і не атакують."
+msgstr "Petra — це бот ШІ 0 A.D. за замовчуванням. Будь ласка, повідомляйте про проблеми до Wildfire Games (дивіться за посиланням у головному меню).\n\nТемп збирання ресурсів ШІ та прибуток від торгівлі залежать від рівня складності (пісочниця −58%, дуже легко −44%, легко −25%, посередньо ±0%, важко +25%, дуже важко +56%). Найпростіші рівні також мають повільніший темп дослідження, навчання та будівництво. Крім того, ШІ на рівні “пісочниця” не розширюється та не атакує."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -672,7 +672,7 @@ msgstr "Карта такого розміру забезпечує достат
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr "Це ідеальний розмір карти для гри на 4 чи 8 гравців, тому що є достатньо місця для розширення, а до сусідів можна швидко дістатись."
+msgstr "Це ідеальний розмір мапи для кількості від 4 до 8 гравців, оскільки є багато місця для розширення, а сусіди швидкодосяжні."
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
@@ -767,7 +767,7 @@ msgstr "Битва на смерть"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Title
 msgid "Very Easy"
-msgstr "Дуже Просто"
+msgstr "Дуже легко"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
@@ -775,7 +775,7 @@ msgstr "Виберіть цю складність, якщо Ви у проце�
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
-msgstr "Просто"
+msgstr "Легко"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Tooltip
 msgid "Choose this difficulty if you do not like being knocked down."
@@ -784,7 +784,7 @@ msgstr "Виберіть цю складність, якщо вам не под�
 #: simulation/data/settings/map_sizes.jsonData[3].Name
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Title
 msgid "Medium"
-msgstr "Середня"
+msgstr "Посередньо"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
@@ -801,7 +801,7 @@ msgstr "Виберіть цю складність, якщо хочете спр
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Title
 msgid "Very Hard"
-msgstr "Дуже Важко"
+msgstr "Дуже важко"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
 msgid "Choose this difficulty if you do not mind being swept out."
