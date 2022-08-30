@@ -18,6 +18,7 @@
 #include "lib/self_test.h"
 
 #include "graphics/FontManager.h"
+#include "graphics/FontMetrics.h"
 #include "gui/CGUI.h"
 #include "gui/CGUIText.h"
 #include "gui/SettingTypes/CGUIString.h"
@@ -29,10 +30,14 @@
 #include "renderer/Renderer.h"
 #include "scriptinterface/ScriptInterface.h"
 
+#include <algorithm>
+#include <array>
+
 class TestCGUIText : public CxxTest::TestSuite
 {
 	CProfileViewer* m_Viewer = nullptr;
 	CRenderer* m_Renderer = nullptr;
+
 public:
 	void setUp()
 	{
@@ -63,7 +68,7 @@ public:
 		CConfigDB::Shutdown();
 		CXeromyces::Terminate();
 		g_VFS.reset();
-		DeleteDirectory(DataDir()/"_testcache");
+		DeleteDirectory(DataDir() / "_testcache");
 	}
 
 	void test_empty()
@@ -76,11 +81,11 @@ public:
 	{
 		CGUI gui(g_ScriptContext);
 
-		static CStrW font = L"console";
+		const CStrW font = L"console";
 		// Make sure this matches the value of the file.
 		// TODO: load dynamically.
-		static const float lineHeight = 12.f;
-		static const float lineSpacing = 15.f;
+		const float lineHeight = 12.f;
+		const float lineSpacing = 15.f;
 
 		CGUIString string;
 		CGUIText text;
@@ -155,15 +160,119 @@ public:
 		TS_ASSERT_EQUALS(text.GetSize().Height, padding * 2 + lineHeight + lineSpacing * 2);
 	}
 
+	void test_layout_wrapping_center()
+	{
+		// The short word should be layouted the same as when there is no
+		// second word, because it's the only one word in the first line until
+		// the width is enough to fit both. So we need to check that for
+		// increasing width X positions of both words are also increasing until
+		// they fit into a single line.
+		//
+		// Width is too small for both:
+		// +--------------------+
+		// |     Shortword      |
+		// | (Veryverylongword) |
+		// +--------------------+
+		//
+		// Right before the big enough width:
+		// +---------------------------+
+		// |         Shortword         |
+		// |    (Veryverylongword)     |
+		// +---------------------------+
+		//
+		// Width is enough to fit both:
+		// +------------------------------+
+		// | Shortword (Veryverylongword) |
+		// +------------------------------+
+		//
+
+		CGUI gui(g_ScriptContext);
+		const CStrW firstWord = L"Shortword";
+		const CStrW secondWord = L"(Veryverylongword)";
+		const CStrW text = firstWord + L" " + secondWord;
+		CGUIString string;
+		string.SetValue(text);
+		const CStrW font = L"console";
+		CFontMetrics fontMetrics{CStrIntern(font.ToUTF8())};
+
+		int firstWordWidth = 0, firstWordHeight = 0;
+		fontMetrics.CalculateStringSize(firstWord.c_str(), firstWordWidth, firstWordHeight);
+		TS_ASSERT(firstWordWidth > 0);
+		int secondWordWidth = 0, secondWordHeight = 0;
+		fontMetrics.CalculateStringSize(secondWord.c_str(), secondWordWidth, secondWordHeight);
+		TS_ASSERT(secondWordWidth > 0);
+		TS_ASSERT(firstWordWidth < secondWordWidth);
+		const float spaceWidth = fontMetrics.GetCharacterWidth(L' ');
+
+		const float lineHeight = fontMetrics.GetHeight();
+		const float lineSpacing = fontMetrics.GetLineSpacing();
+
+		auto layoutText = [&gui, &string, &font, lineHeight, firstWordWidth](const float width)
+		{
+			const float padding = 0.0f;
+			const CGUIText text(gui, string, font, width, padding, EAlign::CENTER, nullptr);
+
+			std::array<CVector2D, 2> positions;
+			TS_ASSERT_EQUALS(text.GetTextCalls().size(), positions.size());
+
+			// If the second word is on the next line then the first word should be
+			// centered alone.
+			if (text.GetTextCalls()[0].m_Pos.Y + lineHeight <= text.GetTextCalls()[1].m_Pos.Y)
+			{
+				const float expectedX = (width - firstWordWidth) / 2.0f;
+				TS_ASSERT_EQUALS(text.GetTextCalls()[0].m_Pos.X, expectedX);
+			}
+
+			std::transform(
+				text.GetTextCalls().begin(), text.GetTextCalls().end(), positions.begin(),
+				[](const CGUIText::STextCall& textCall) { return textCall.m_Pos; });
+			return positions;
+		};
+
+		const float testPadding = 2;
+		const float beginWidth = firstWordWidth - testPadding;
+		const float endWidth = firstWordWidth + spaceWidth + secondWordWidth + testPadding;
+		std::array<CVector2D, 2> previousPositions = layoutText(beginWidth);
+		TS_ASSERT_EQUALS(std::get<0>(previousPositions).Y, lineHeight);
+		TS_ASSERT_EQUALS(std::get<1>(previousPositions).Y, lineHeight + lineSpacing);
+		bool firstFit = false;
+		for (float width = beginWidth; width <= endWidth; width += 1.0f)
+		{
+			std::array<CVector2D, 2> positions = layoutText(width);
+			TS_ASSERT_EQUALS(std::get<0>(positions).Y, lineHeight);
+			if (std::get<0>(positions).X >= std::get<0>(previousPositions).X)
+			{
+				if (firstFit)
+				{
+					TS_ASSERT_EQUALS(std::get<0>(positions).Y, std::get<1>(positions).Y);
+				}
+				else
+				{
+					TS_ASSERT_EQUALS(std::get<1>(positions).Y, lineHeight + lineSpacing);
+				}
+				TS_ASSERT(std::get<1>(positions).X >= std::get<1>(previousPositions).X);
+			}
+			else
+			{
+				TS_ASSERT(!firstFit);
+				firstFit = true;
+				TS_ASSERT_EQUALS(std::get<0>(positions).Y, std::get<1>(positions).Y);
+				TS_ASSERT(std::get<0>(positions).X < std::get<1>(positions).X);
+			}
+			previousPositions = positions;
+		}
+		TS_ASSERT(firstFit);
+	}
+
 	void test_overflow()
 	{
 		CGUI gui(g_ScriptContext);
 
-		static CStrW font = L"console";
+		const CStrW font = L"console";
 		// Make sure this matches the value of the file.
 		// TODO: load dynamically.
-		static const float lineHeight = 12.f;
-		static const float lineSpacing = 15.f;
+		const float lineHeight = 12.f;
+		const float lineSpacing = 15.f;
 
 		float renderedWidth = 0.f;
 		const float width = 200.f;
@@ -211,7 +320,7 @@ public:
 
 		CGUI gui(g_ScriptContext);
 
-		static CStrW font = L"sans-bold-13";
+		const CStrW font = L"sans-bold-13";
 		CGUIString string;
 		CGUIText text;
 
@@ -227,11 +336,11 @@ public:
 	{
 		CGUI gui(g_ScriptContext);
 
-		static CStrW font = L"console";
+		const CStrW font = L"console";
 		// Make sure this matches the value of the file.
 		// TODO: load dynamically.
-		static const float lineHeight = 12.f;
-		static const float lineSpacing = 15.f;
+		const float lineHeight = 12.f;
+		const float lineSpacing = 15.f;
 
 		CGUIString string;
 		CGUIText text;
