@@ -863,7 +863,7 @@ msgstr "Гарнизон будет выпускать стрелы"
 
 #: gui/common/tooltips.js:308 gui/common/tooltips.js:1056
 msgid "Interval:"
-msgstr "Интервал: "
+msgstr "Интервал:"
 
 #: gui/common/tooltips.js:312
 msgid "Rate:"
@@ -1372,7 +1372,7 @@ msgstr "Щёлкните правой кнопкой для дополнител
 #. will open the Template Details GUI page.
 #: gui/common/tooltips.js:1217
 msgid "Click to view more information."
-msgstr "Нажмите, чтобы посмотреть дополнительную информацию. "
+msgstr "Нажмите, чтобы посмотреть дополнительную информацию."
 
 #: gui/common/tooltips.js:1226
 msgctxt "One letter abbreviation for million"
@@ -1391,7 +1391,7 @@ msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
-msgstr "Внёсшие вклад в 0 A.D. "
+msgstr "Внёсшие вклад в 0 A.D."
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
@@ -4548,7 +4548,7 @@ msgstr "Уменьшение качества текстур делает их �
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].label
 msgid "Master volume"
-msgstr "Общая громкость "
+msgstr "Общая громкость"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].tooltip
 msgid "Master audio gain."
@@ -4788,7 +4788,7 @@ msgstr "Максимальная задержка для наблюдателе�
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
-msgstr "Создатель игры приостанавливает игру если наблюдатели отстают на большое количество ходов. Если установлено значение -1, наблюдатели игнорируются. "
+msgstr "Создатель игры приостанавливает игру, если наблюдатели отстают на большое количество ходов. Если установлено значение -1, наблюдатели игнорируются."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].label
 msgid "(Observer) Speed up when lagging."
@@ -5187,7 +5187,7 @@ msgstr "Обучение"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr "Узнайте больше об игре. Прочитайте руководство по игре, пройдите обучающую кампанию, изучите древо технологий, обзор цивилизаций, карты и погребальные колесницы. "
+msgstr "Узнайте больше об игре. Прочитайте руководство по игре, пройдите обучающую кампанию, изучите древо технологий, обзор цивилизаций, карты и погребальные колесницы."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -5251,7 +5251,7 @@ msgstr "Исторические компании"
 #: gui/pregame/MainMenuItems.js:77 gui/pregame/MainMenuItems.js:111
 #: gui/pregame/MainMenuItems.js:127 gui/pregame/MainMenuItems.js:134
 msgid "Relive history through historical military campaigns."
-msgstr "Сыграйте в исторические компании, созданные различными авторами "
+msgstr "Воспроизведите историю в исторических военных кампаниях."
 
 #: gui/pregame/MainMenuItems.js:85 gui/pregame/MainMenuItems.js:119
 msgid "Error opening campaign run:"
@@ -5459,7 +5459,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr "Нажмите для открытия IRC чата 0 A.D. в браузере (#0ad на webchat.quakenet.org). Там обсуждаются всевозможные задачи и вам ответят на все возникшие вопросы (на английском языке). "
+msgstr "Нажмите для открытия IRC чата 0 A.D. в браузере (#0ad на webchat.quakenet.org). Там обсуждаются всевозможные задачи и вам ответят на все возникшие вопросы (на английском языке)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5869,7 +5869,7 @@ msgstr "Нерейтинговые игры"
 #: gui/replaymenu/replay_menu.js:196
 msgid ""
 "Filter replays by typing one or more, partial or complete player names."
-msgstr "Отфильтровать повторы по частичным или полным именам игроков. "
+msgstr "Отфильтровать повторы по частичным или полным именам игроков."
 
 #: gui/replaymenu/replay_menu.js:200
 #, javascript-format
@@ -6296,7 +6296,7 @@ msgstr ", "
 
 #: gui/summary/summary.js:340
 msgid "Time elapsed"
-msgstr "Прошло времени "
+msgstr "Прошло времени"
 
 #: gui/summary/summary.js:510
 msgid "Current Scores"
@@ -6470,7 +6470,7 @@ msgstr "Собака, которую Бритты могут тренирова�
 
 #: gui/text/tips/briton_war_dog.txt:3
 msgid "Has low health, but is fast and will fearlessly attack enemies."
-msgstr "имеет мало здоровья, но очень быстро и бесстрашно атакует врагов. "
+msgstr "Имеет мало здоровья, но он быстр и бесстрашно атакует врагов."
 
 #: gui/text/tips/briton_war_dog.txt:4
 msgid "Use them as support in your army or for quick raids."
@@ -6634,7 +6634,7 @@ msgstr "Крепкие дозорные башни, помогут при обо
 #: gui/text/tips/defense_towers.txt:3
 msgid ""
 "They have a large vision range and will shoot arrows at the enemy in sight. "
-msgstr "Обладают большим радиусом обзора и будут выпускать стрелы во врагов"
+msgstr "Обладают большим радиусом обзора и будут выпускать стрелы во врагов."
 
 #: gui/text/tips/defense_towers.txt:4
 msgid ""
