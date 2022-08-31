@@ -204,12 +204,15 @@ void CGUIText::ComputeLineSize(
 		// Append X value.
 		x += feedback2.m_Size.Width;
 
-		if (width != 0 && x - spaceCorrection > widthRangeTo && j != tempFrom && !feedback2.m_NewLine)
+		const float currentSpaceCorrection = feedback2.m_EndsWithSpace ? spaceWidth : 0.0f;
+
+		const bool isLineOverflow = x - currentSpaceCorrection > widthRangeTo;
+		if (width != 0 && isLineOverflow && j != tempFrom && !feedback2.m_NewLine)
 			break;
 
 		// Update after the line-break detection, because otherwise spaceCorrection above
 		// will refer to the wrapped word and not the last-word-before-the-line-break.
-		spaceCorrection = feedback2.m_EndsWithSpace ? spaceWidth : 0.f;
+		spaceCorrection = currentSpaceCorrection;
 
 		// Let lineSize.cy be the maximum m_Height we encounter.
 		lineSize.Height = std::max(lineSize.Height, feedback2.m_Size.Height);
