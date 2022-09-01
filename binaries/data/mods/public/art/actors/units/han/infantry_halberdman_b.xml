@@ -31,6 +31,14 @@
   </group>
   <group>
     <variant file="biped/base_pikeman_relax.xml" frequency="1" name="Pikeman-Shield-Relax"/>
+    <variant file="biped/formations/syntagma_front.xml"/>
+    <variant file="biped/formations/syntagma_01.xml"/>
+    <variant file="biped/formations/syntagma_02.xml"/>
+    <variant file="biped/formations/syntagma_03.xml"/>
+    <variant file="biped/formations/syntagma_04.xml"/>
+    <variant file="biped/formations/syntagma_back.xml"/>
+    <variant file="biped/formations/anti_cavalry_front.xml"/>
+    <variant file="biped/formations/anti_cavalry_back.xml"/>
     <variant file="biped/carry_food_han.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>
@@ -49,8 +57,6 @@
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/attack_capture.xml"/>
-    <variant file="biped/formations/anti_cavalry_front.xml"/>
-    <variant file="biped/formations/anti_cavalry_back.xml"/>
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/gather_tree.xml"/>
     <variant file="biped/gather_grain_han.xml"/>
