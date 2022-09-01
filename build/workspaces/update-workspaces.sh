@@ -93,7 +93,7 @@ if [ "`uname -s`" != "Darwin" ]; then
   (cd ../../libraries/source/fcollada && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "FCollada build failed"
   echo
   if [ "$with_system_mozjs" = "false" ]; then
-    (cd ../../libraries/source/spidermonkey && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "SpiderMonkey build failed"
+    (cd ../../libraries/source/spidermonkey && MAKE=${MAKE} JOBS=${JOBS} PYTHONNOUSERSITE=true ./build.sh) || die "SpiderMonkey build failed"
   fi
   echo
   if [ "$with_system_nvtt" = "false" ] && [ "$without_nvtt" = "false" ]; then
