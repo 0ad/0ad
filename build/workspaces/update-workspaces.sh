@@ -61,6 +61,18 @@ done
 
 if [ "$enable_atlas" = "true" ]; then
   premake_args="${premake_args} --atlas"
+  if [ "$(uname -s)" = "Darwin" ]; then
+    # Provide path to wx-config on OS X (as wxwidgets doesn't support pkgconfig)
+    export WX_CONFIG="${WX_CONFIG:="$(pwd)/../../libraries/osx/wxwidgets/bin/wx-config"}"
+  else
+    export WX_CONFIG="${WX_CONFIG:="wx-config"}"
+  fi
+
+  if [ ! -x "$(command -v $WX_CONFIG)" ]
+  then
+    echo 'WX_CONFIG must be set and valid or wx-config must be present when --atlas is passed as argument.'
+    exit 1
+  fi
 fi
 
 cd "$(dirname $0)"
@@ -69,9 +81,6 @@ cd "$(dirname $0)"
 if [ "`uname -s`" = "Darwin" ]; then
   # Set minimal SDK version
   export MIN_OSX_VERSION=${MIN_OSX_VERSION:="10.12"}
-
-  # Provide path to wx-config on OS X (as wxwidgets doesn't support pkgconfig)
-  export WX_CONFIG=${WX_CONFIG:="$(pwd)/../../libraries/osx/wxwidgets/bin/wx-config"}
 fi
 
 # Don't want to build bundled libs on OS X
