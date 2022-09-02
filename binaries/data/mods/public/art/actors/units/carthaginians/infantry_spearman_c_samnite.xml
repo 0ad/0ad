@@ -125,7 +125,10 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/base_hoplite_fast.xml" frequency="1" name="Hoplite-Fast"/>
+    <variant file="biped/base_hoplite.xml" frequency="1" name="Hoplite-Relax"/>
+    <variant file="biped/formations/phalanx_front.xml"/>
+    <variant file="biped/formations/phalanx_mid.xml"/>
+    <variant file="biped/formations/phalanx_back.xml"/>
     <variant file="biped/attack_capture.xml">
       <props>
         <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>

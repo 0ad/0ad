@@ -141,6 +141,9 @@
   </group>
   <group>
     <variant file="biped/base_hoplite.xml"/>
+    <variant file="biped/formations/phalanx_front.xml"/>
+    <variant file="biped/formations/phalanx_mid.xml"/>
+    <variant file="biped/formations/phalanx_back.xml"/>
     <variant file="biped/carry_food.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>
@@ -157,16 +160,12 @@
   </group>
   <group>
     <variant frequency="1" name="Idle"/>
-    <variant file="biped/formations/phalanx_front.xml"/>
-    <variant file="biped/formations/phalanx_mid.xml"/>
-    <variant file="biped/formations/phalanx_back.xml"/>
     <variant file="biped/attack_capture.xml">
       <props>
         <prop actor="props/units/weapons/spear_lance_cavalry_reverse.xml" attachpoint="weapon_R"/>
       </props>
     </variant>
     <variant file="biped/attack_slaughter.xml"/>
-    <variant file="biped/death_infantry.xml"/>
     <variant file="biped/gather_tree.xml"/>
     <variant file="biped/gather_grain.xml"/>
     <variant file="biped/gather_fruit.xml"/>
@@ -177,6 +176,7 @@
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/build.xml"/>
     <variant file="biped/build_farm.xml"/>
+    <variant file="biped/death_infantry.xml"/>
   </group>
   <material>player_trans_spec.xml</material>
 </actor>
