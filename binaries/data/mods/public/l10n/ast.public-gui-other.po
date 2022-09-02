@@ -247,7 +247,7 @@ msgstr "Victoria comuñeira"
 msgid ""
 "If one player wins, his or her allies win too. If one group of allies "
 "remains, they win."
-msgstr "El xhogador comparte la victoria cun los comuñeiros. La grea de comuñeiros que remanecier ye l vincedor."
+msgstr "El xhogador comparte la victoria cun los comuñeiros. La comuña que remaneça vence."
 
 #: gui/common/gamedescription.js:273
 msgid "Ceasefire"
@@ -314,7 +314,7 @@ msgstr "Foros"
 msgid ""
 "Players start with only few units and have to find a suitable place to build"
 " their city."
-msgstr "Los xhogadores intaman cun un puñadu d’unidades & tienen de buscar un sitiu afhalyadiçu p’assentasse."
+msgstr "Los xhogadores intaman cun un puñadu d’unidades & tienen de buscar un sitiu afhatyadiçu p’assentasse."
 
 #: gui/common/gamedescription.js:344
 msgid "Players start with a Civic Center."
@@ -435,12 +435,12 @@ msgstr "%(player)s sta a perdere la conexion (%(seconds)ss)"
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr "La conexion cul servidor ye ruina (%(milliseconds)sms)"
+msgstr "La conexion cul servidor ie ruina (%(milliseconds)sms)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr "La conexion cun %(player)s ye ruina (%(milliseconds)sms)"
+msgstr "La conexion cun %(player)s ie ruina (%(milliseconds)sms)"
 
 #: gui/common/network.js:66
 msgid ""
@@ -454,7 +454,7 @@ msgstr "L amphitryon terminou la partida."
 
 #: gui/common/network.js:68
 msgid "Incorrect network protocol version."
-msgstr "La version de l protocollo de rede ye incorrecta."
+msgstr "La version de l protocollo de rede ie incorrecta."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
@@ -462,7 +462,7 @@ msgstr "La partida sta cargando-se, volvi tentallo mas sero."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr "La partida ya començou, nun se permitten spectadores."
+msgstr "La partida ia començou, nun se permitten spectadores."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
@@ -498,7 +498,7 @@ msgstr "Error: El cliente simulou una xhogada imprevista."
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
-msgstr "La tyave ye inválida."
+msgstr "La tyave ie inválida."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
@@ -619,7 +619,7 @@ msgstr "Aleatorio"
 msgid ""
 "Create a unique map with a different resource distribution each time. Freely"
 " select the number of players and teams."
-msgstr "Crea una geographía única u la distribucion de recursos ye aleatoria. Escuolye-se l númeru de xhogadores & de conxhuntos."
+msgstr "Crea una geographía única u la distribucion de recursos ie aleatoria. Escuolye-se l númeru de xhogadores & de conxhuntos."
 
 #: gui/common/settings.js:192
 msgctxt "map"
@@ -1554,7 +1554,7 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr "Magar relativamente fácile pa l xhogador veteranu, la difficultá predefinida de l AI suppon un rieltu pa principiantes in sin conhocemiento de la mechánica de l xhuogu. A estos aconselya-se-llis practicar cun un AI de menor difficultá (Fholgosa ou Per-fácile). Pa mudare la difficultá de l AI, pica na ícone de la ruoda dentada cabo l xhogador de l quadro superior que quieras modificar."
+msgstr "Magar relativamente fácile pa l xhogador veteranu, la difficultá predefinida de l AI suppon un retu pa principiantes in sin conhocemiento de la mechánica de l xhuogu. A estos aconselya-se-llis practicar cun un AI de menor difficultá (Fholgosa ou Per-fácile). Pa mudare la difficultá de l AI, pica nela ícone de la ruoda dentada cabo l xhogador de l quadro superior que quieras modificar."
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
@@ -1677,7 +1677,7 @@ msgstr "Pica par eliminare l atalyu"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
-msgstr "Mudare los atalyos & cerrar"
+msgstr "Mudare los atalyos & intyoer"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
@@ -2039,12 +2039,12 @@ msgstr "Semelya"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Close or cancel the current dialog box/popup."
-msgstr "Cerrar ou incaboxare la feniestra de diálogu activa."
+msgstr "Intyoer ou incaboxare la feniestra de diálogu activa."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.name
 msgctxt "hotkey metadata"
 msgid "Close/Cancel"
-msgstr "Cerrar/incaboxar"
+msgstr "Intyoer/incaboxar"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
 msgctxt "hotkey metadata"
@@ -2161,7 +2161,7 @@ msgstr "Semelyu"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.desc
 msgctxt "hotkey metadata"
 msgid "Toggle product/company watermark for official screenshots."
-msgstr "Alternare la marca translúcida de la compaña/productu nos semelyos oficiales."
+msgstr "Alternare la marca translúcida de la compaña/productu nelos semelyos oficiales."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
 msgctxt "hotkey metadata"
@@ -2251,7 +2251,7 @@ msgstr "Alternare l modu contornu"
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys active in the game setup screen."
-msgstr "Atalyos activos na página “Configuracion de partida”."
+msgstr "Atalyos activos nela página “Configuracion de partida”."
 
 #: gui/hotkeys/spec/gamesetup.jsoncategories.gamesetup.name
 msgctxt "hotkey metadata"
@@ -2354,7 +2354,7 @@ msgstr "Tyamar a las armas"
 msgctxt "hotkey metadata"
 msgid ""
 "Modifier to deselect units when clicking group icon, instead of selecting."
-msgstr "Camudador par omittire lo escolyido a l picar na ícone d’una grea, in cuontas d’escolyello."
+msgstr "Camudador par omittire lo escolyido a l picar nela ícone d’una grea, in cuontas d’escolyello."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.name
 msgctxt "hotkey metadata"
@@ -2474,7 +2474,7 @@ msgstr "Eliminar in sin confirmacion"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to occupy a turret when clicking on a turret holder."
-msgstr "Camudador pa fhazer occupar una torreta a l picar na sua base."
+msgstr "Camudador pa fhazer occupar una torreta a l picar nela sua base."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.name
 msgctxt "hotkey metadata"
@@ -2604,7 +2604,7 @@ msgstr "Inrestrare la 8a unidá"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.desc
 msgctxt "hotkey metadata"
 msgid "Turn off Auto-Queue for selected structures."
-msgstr "Disactivare l inriestru automáticu nas structuras escolyidas."
+msgstr "Disactivare l inriestru automáticu nelas structuras escolyidas."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.name
 msgctxt "hotkey metadata"
@@ -2614,7 +2614,7 @@ msgstr "Disactivare l inriestru automáticu"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.desc
 msgctxt "hotkey metadata"
 msgid "Turn on Auto-Queue for selected structures."
-msgstr "Activare l inriestru automáticu nas structuras escolyidas."
+msgstr "Activare l inriestru automáticu nelas structuras escolyidas."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.name
 msgctxt "hotkey metadata"
@@ -2676,7 +2676,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Switch between null default formation and the last default formation used "
 "(defaults to 'box')."
-msgstr "Alternar entre nenguna formacion predefinida & la última formacion predefinida (ye “quadru” por defectu)"
+msgstr "Alternar entre nenguna formacion predefinida & la última formacion predefinida (ie “quadru” por defectu)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.name
 msgctxt "hotkey metadata"
@@ -2918,7 +2918,7 @@ msgstr "Alternare l ressalte de los curiadores"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.desc
 msgctxt "hotkey metadata"
 msgid "Delete the saved game (in the save/load windows)."
-msgstr "Borrare la partida guardada (nas feniestras Guardar/Cargar)."
+msgstr "Borrare la partida guardada (nelas feniestras Guardar/Cargar)."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.name
 msgctxt "hotkey metadata"
@@ -2950,7 +2950,7 @@ msgstr "Alternare las barras de stadu"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.desc
 msgctxt "hotkey metadata"
 msgid "Activate fast-forward mode. Must have activated timewarp."
-msgstr "Adelantrar no tiempu. Ha hi que tener activa l alteracion temporal."
+msgstr "Adelantrar nel tiempu. Ha hi que tener activa l alteracion temporal."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.name
 msgctxt "hotkey metadata"
@@ -2960,7 +2960,7 @@ msgstr "Adelantrar (alteracion temporal)"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.desc
 msgctxt "hotkey metadata"
 msgid "Rewind time. Must have activated timewarp."
-msgstr "Retroceder no tiempu. Ha hi que tener activa l alteracion temporal."
+msgstr "Retroceder nel tiempu. Ha hi que tener activa l alteracion temporal."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
 msgctxt "hotkey metadata"
@@ -3452,7 +3452,7 @@ msgstr "Escolyer solo los non militares"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.desc
 msgctxt "hotkey metadata"
 msgid "Include offscreen units in selection."
-msgstr "Inxerir na escolheitha las unidades invisibles."
+msgstr "Inxerir nela escolheitha las unidades invisibles."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.name
 msgctxt "hotkey metadata"
@@ -3540,7 +3540,7 @@ msgstr "Cargar"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr "Esta partida guardada precisa de la version %(requiredVersion)s de 0 A.D., pero la version que tienes operativa ye la %(currentVersion)s."
+msgstr "Esta partida guardada precisa de la version %(requiredVersion)s de 0 A.D., pero la version que tienes operativa ie la %(currentVersion)s."
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
@@ -3670,7 +3670,7 @@ msgstr "localizacion inválida"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):25
 msgid "Country:"
-msgstr "Paýs:"
+msgstr "País:"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):34
 msgid "Script:"
@@ -3779,19 +3779,19 @@ msgstr "Catálogu geográphicu"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr "%(hotkey)s: Cerrare l catálogu geográphicu & escartare la escolheitha."
+msgstr "%(hotkey)s: Intyoere l catálogu geográphicu & escartare la escolheitha."
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
 #: gui/options/options.xml:(caption):61
 #: gui/reference/common/Buttons/CloseButton.js:13
 msgid "Close"
-msgstr "Cerrar"
+msgstr "Intyoer"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr "%(hotkey)s: Cerrare l catálogu geográphicu."
+msgstr "%(hotkey)s: Intyoere l catálogu geográphicu."
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -3897,7 +3897,7 @@ msgstr "¡Los valores de varios axhustes son inválidos! ¿Stas ciertu que quier
 
 #: gui/options/options.js:438
 msgid "You have unsaved changes, do you want to close this window?"
-msgstr "Tienes mudancias in sin guardar, ¿quieres cerrar esta feniestra?"
+msgstr "Tienes mudancias in sin guardar, ¿quieres intyoer esta feniestra?"
 
 #: gui/options/options.json[0].label
 msgid "General"
@@ -3943,7 +3943,7 @@ msgstr "Capa freqüencimétrica"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show frames per second in top right corner."
-msgstr "Amostrare los quadros per segundu na squina cimeira direitha."
+msgstr "Amostrare los quadros per segundu nela squina cimeira direitha."
 
 #: gui/options/options.json[0].options[5].label
 msgid "Real time overlay"
@@ -3951,7 +3951,7 @@ msgstr "Capa horaria"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show current system time in top right corner."
-msgstr "Amostrare la hora de l systema na squina cimeira direitha."
+msgstr "Amostrare la hora de l systema nela squina cimeira direitha."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Game time overlay"
@@ -3959,7 +3959,7 @@ msgstr "Capa chronométrica"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current simulation time in top right corner."
-msgstr "Amostrare l tiempu de simulacion corriente na squina cimeira direitha."
+msgstr "Amostrare l tiempu de simulacion corriente nela squina cimeira direitha."
 
 #: gui/options/options.json[0].options[7].label
 msgid "Ceasefire time overlay"
@@ -4090,17 +4090,17 @@ msgstr "Synchronizacion vertical"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "Activa la synchronizacion vertical par eguar ingurrias no visorio. REQUIER EL RE-INICIO DE L XHUOGU"
+msgstr "Activa la synchronizacion vertical par eguar ingurrias nel visorio. REQUIER EL RE-INICIO DE L XHUOGU"
 
 #: gui/options/options.json[1].options[7].label
 msgid "FPS throttling in menus"
-msgstr "Limitare los Q/s nos menús"
+msgstr "Limitare los Q/s nelos menús"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid ""
 "To save CPU workload, throttle render frequency in all menus. Set to maximum"
 " to disable throttling."
-msgstr "Limitare la freqüencia de quadros in todolos menús pa disincodilyare l ordenador. Afhita-la a l máximu pa disactivare l límite."
+msgstr "Limitare la freqüencia de quadros in todolos menús pa disincodiyare l ordenador. Afhita-la a l máximu pa disactivare l límite."
 
 #: gui/options/options.json[1].options[8].label
 msgid "FPS throttling in games"
@@ -4110,7 +4110,7 @@ msgstr "Limitare los Q/s a l xhogar"
 msgid ""
 "To save CPU workload, throttle render frequency in running games. Set to "
 "maximum to disable throttling."
-msgstr "Limitare la freqüencia de quadros a l xhogar pa disincodilyare l ordenador. Afhita-la a l máximu pa disactivare l límite."
+msgstr "Limitare la freqüencia de quadros a l xhogar pa disincodiyare l ordenador. Afhita-la a l máximu pa disactivare l límite."
 
 #: gui/options/options.json[1].options[9].label
 #: gui/options/options.json[1].options[9].tooltip
@@ -4175,7 +4175,7 @@ msgstr "OpenGL ARB"
 
 #: gui/options/options.json[2].options[0].list[1].tooltip
 msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
-msgstr "Motor d’OpenGL vielyu cun assolombradores ARB. REQUIER EL RE-INICIO DE L XHUOGU"
+msgstr "Motor d’OpenGL vietyu cun assolombradores ARB. REQUIER EL RE-INICIO DE L XHUOGU"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
@@ -4247,7 +4247,7 @@ msgstr "Anti-scalado lento, pero d’alta qualidá, q’usa selze amostranças p
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "Reduce aliasing effect on edges."
-msgstr "Reduzire l effectu scaladu nos cantos."
+msgstr "Reduzire l effectu scaladu nelos cantos."
 
 #: gui/options/options.json[2].options[4].label
 msgid "Sharpening"
@@ -4387,7 +4387,7 @@ msgstr "Reflexos aquáticos"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].tooltip
 msgid "Allow water to reflect a mirror image."
-msgstr "Fhazer possible que l agua spelye la redolada."
+msgstr "Fhazer possible que l agua speye la redolada."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][17].label
 msgid "Water refraction"
@@ -4403,7 +4403,7 @@ msgstr "Profundidá aquática effectiva"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][18].tooltip
 msgid "Use actual water depth in rendering calculations."
-msgstr "Usare la fhondura effectiva de l agua nos cálculos de sýnthesis gráphica."
+msgstr "Usare la fhondura effectiva de l agua nelos cálculos de sýnthesis gráphica."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].label
 msgid "Texture quality"
@@ -4550,7 +4550,7 @@ msgstr "Fhazer possible la esnidiadura de l quadro d’axhustes"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[1].tooltip
 msgid "Slide the settings panel when opening, closing or resizing."
-msgstr "Esnidiare l quadro d’axhustes a l abrire, cerrare, ingrandare ou amenorgare."
+msgstr "Esnidiare l quadro d’axhustes a l abrire, intyoere, ingrandare ou amenorgare."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[2].label
 msgid "Persist match settings"
@@ -4905,7 +4905,7 @@ msgid ""
 "Units and Structures can be part of multiple control groups. This is useful "
 "to keep control groups for distinct armies and a control group for the "
 "entire army simultaneously."
-msgstr "Las Unidades & Structuras puoden star inxertas in múltiples greas. Ansí yes a tener a l in par greas pa huostes estremadas & una grea pa l exércitu inteiru."
+msgstr "Las Unidades & Structuras puoden star inxertas in múltiples greas. Ansí ies a tener a l in par greas pa huostes estremadas & una grea pa l exércitu inteiru."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[21].tooltip
 msgid "Decide whether units can be part of multiple control groups."
@@ -5069,7 +5069,7 @@ msgstr "Normal"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label.tooltip
 msgid "Entities appearance is randomized normally."
-msgstr "La diversidá de l aspectu de los entes ye normal."
+msgstr "La diversidá de l aspectu de los entes ie normal."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][8].label
 msgid "Shader effects"
@@ -5311,7 +5311,7 @@ msgstr "Acolyida"
 
 #: gui/pregame/MainMenuItems.js:244
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr "Volver amostrare l acolyida. Esto ye útil si la occultares in sin querer."
+msgstr "Volver amostrare l acolyida. Esto ie útile si la occultares in sin querer."
 
 #: gui/pregame/MainMenuItems.js:252
 msgid "Scenario Editor"
@@ -5321,7 +5321,7 @@ msgstr "Eguador geográphicu"
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
-msgstr "Abrire l Eguador geográphicu Atlas n una feniestra nuova. Fherrulará melyor si inicias l xhuogu cuno argumento “-editor”."
+msgstr "Abrire l Eguador geográphicu Atlas n una feniestra nuova. Fherrulará melyor si inicias l xhuogu cul argumento “-editor”."
 
 #: gui/pregame/MainMenuItems.js:258
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
@@ -5331,7 +5331,7 @@ msgstr "¿Stas ciertu que quieres salir de 0 A.D. & abrire l Eguador geográphic
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr "L eguador geográphicu ou nun sta disponible ou nun pudo cargasse. Puodes atopar mas informacion nos registros de l xhuogu."
+msgstr "L eguador geográphicu ou nun sta disponible ou nun pudo cargasse. Puodes atopar mas informacion nelos registros de l xhuogu."
 
 #: gui/pregame/MainMenuItems.js:266 gui/replaymenu/replay_actions.js:126
 msgid "Error"
@@ -5373,7 +5373,7 @@ msgstr "Avisu: El xhuogu sta n phase de disinvolvemiento & inda fhaltan abondos 
 
 #: gui/pregame/ProjectInformation.js:25
 msgid "Website"
-msgstr "Sitiu na rede"
+msgstr "Sitiu na Rede"
 
 #: gui/pregame/ProjectInformation.js:26
 msgid "Click to open play0ad.com in your web browser."
@@ -5389,7 +5389,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr "Pica p’abrire la conversa IRC de 0 A.D. in navigador (#0ad in webchat.quakenet.org). Caltienen-lla voluntarios que tienen toda mena de xheiras, ansina que podríen tardar in responder. Cumo alternativa, puodes usare l foro (vere l sitiu na rede)."
+msgstr "Pica p’abrire la conversa IRC de 0 A.D. in navigador (#0ad in webchat.quakenet.org). Caltienen-lla voluntarios que tienen toda mena de xheiras, ansina que podríen tardar in responder. Cumo alternativa, puodes usare l foro (vere l sitiu na Rede)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5500,7 +5500,7 @@ msgstr "Puodes invianos informes automáticos p’axhudar a eguar falhos & amely
 #: gui/reference/catafalque/CatafalquePage.js:41
 #, javascript-format
 msgid "%(hotkey)s: Close Catafalque Bonuses."
-msgstr "%(hotkey)s: Cerrare la synopsis feretraria."
+msgstr "%(hotkey)s: Intyoere la synopsis feretraria."
 
 #: gui/reference/catafalque/catafalque.xml:(caption):18
 msgid "Catafalque Bonuses"
@@ -5529,7 +5529,7 @@ msgstr "• %(name)s %(info_icon)s%(description)s"
 #: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
-msgstr "%(hotkey)s: Cerrare la synopsis cultural."
+msgstr "%(hotkey)s: Intyoere la synopsis cultural."
 
 #: gui/reference/civinfo/Sections/GameplaySection.js:30
 #, javascript-format
@@ -5651,12 +5651,12 @@ msgstr "Creadores"
 #: gui/reference/structree/StructreePage.js:85
 #, javascript-format
 msgid "%(hotkey)s: Close Structure Tree."
-msgstr "%(hotkey)s: Cerrare l Árbore structural."
+msgstr "%(hotkey)s: Intyoere l Árbore structural."
 
 #: gui/reference/viewer/ViewerPage.js:172
 #, javascript-format
 msgid "%(hotkey)s: Close Template Viewer"
-msgstr "%(hotkey)s: Cerrare l Visor schemáticu"
+msgstr "%(hotkey)s: Intyoere l Visor schemáticu"
 
 #: gui/reference/viewer/viewer.xml:(caption):16
 msgid "Information"
@@ -5879,19 +5879,19 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. You may "
 "encounter bugs, and some features are not as fleshed out as we would like."
-msgstr "[imgleft=\"constructionIcon\"]Isti xhuogu sta n phase de disinvolvemiento. Ye possible q’atopes falhos, & ha hi ciertos aspectos que nun stan tan polidos cumo nos prestaríe."
+msgstr "[imgleft=\"constructionIcon\"]Isti xhuogu sta n phase de disinvolvemiento. Je possible q’atopes falhos, & ha hi ciertos aspectos que nun stan tan polidos cumo nos prestaríe."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
 "[imgleft=\"iconLag\"]The game can have performance problems, especially with"
 " large maps and a great number of units."
-msgstr "[imgleft=\"iconLag\"]La efficiencia de l xhuogu puode abalhicar, specialmente si la geographía ye grande ou las unidades numerosas."
+msgstr "[imgleft=\"iconLag\"]La efficiencia de l xhuogu puode abalhicar, specialmente si la geographía ie grande ou las unidades numerosas."
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr "[imgleft=\"iconMap\"]0 A.D. ye un programma lhibre: puodes participar nel sou disindolcu."
+msgstr "[imgleft=\"iconMap\"]0 A.D. ie un programma lhibre: puodes participar nel sou disindolcu."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
@@ -5901,7 +5901,7 @@ msgstr "Si quieres axhudar cun l arte, el son, la mechánica ou la programmacion
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
-msgstr "¡Afhalya-te!"
+msgstr "¡Afhatya-te!"
 
 #: gui/splashscreen/splashscreen.xml:(caption):19
 msgid "Show this message in the future"
@@ -6228,7 +6228,7 @@ msgstr "Fhuisti disconexu"
 
 #: gui/summary/summary.js:516
 msgid "You have left the game."
-msgstr "Deixasti la partida."
+msgstr "Deixesti la partida."
 
 #: gui/summary/summary.js:518
 msgid "You have won the battle!"
@@ -6240,7 +6240,7 @@ msgstr "Vincierun-te..."
 
 #: gui/summary/summary.js:521
 msgid "You have abandoned the game."
-msgstr "Abandonasti la partida."
+msgstr "Abandonesti la partida."
 
 #: gui/summary/summary.js:524
 #, javascript-format
@@ -6348,7 +6348,7 @@ msgstr "Crea todolos mílites voluntarios. In ciertas culturas, tamien puode cre
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
-msgstr "Las unidades exercitan-se na milicia a l star abellugadas no edificio."
+msgstr "Las unidades exercitan-se nela milicia a l star abellugadas nel edificio."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
@@ -6374,7 +6374,7 @@ msgstr "Los biomas puodes usallos in ciertas geographías aleatorias. Determinan
 msgid ""
 "They influence the appearence of the maps and also the amount of resources "
 "that are available."
-msgstr "Inflúin nel aspectu de las geographías & tamien na quantidá de recursos que contienen."
+msgstr "Inflúin nel aspectu de las geographías & tamien nela quantidá de recursos que contienen."
 
 #: gui/text/tips/briton_war_dog.txt:1
 msgid "WAR DOG"
@@ -6382,7 +6382,7 @@ msgstr "CAN BÉLLICU"
 
 #: gui/text/tips/briton_war_dog.txt:2
 msgid "A dog that the Britons can train at the cavalry stable."
-msgstr "Can que los britannos puoden crear na corte."
+msgstr "Can que los britannos puoden crear nela corte."
 
 #: gui/text/tips/briton_war_dog.txt:3
 msgid "Has low health, but is fast and will fearlessly attack enemies."
@@ -6426,7 +6426,7 @@ msgstr "Meti barcos n ilhi par ir eguando-los pouco a pouco."
 
 #: gui/text/tips/carth_shipyard.txt:4
 msgid "Much stronger than other docks, but also more expensive."
-msgstr "Ye muitho mas fhuorte q’outros puortos, pero tamien mas caru."
+msgstr "Je muitho mas fhuorte q’outros puortos, pero tamien mas caru."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -6457,7 +6457,7 @@ msgstr "Crea éqüites & permitte disinvolver téchnicas eqüestres."
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
-msgstr "Las unidades exercitan-se na milicia a l star abellugadas na structura."
+msgstr "Las unidades exercitan-se nela milicia a l star abellugadas nela structura."
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -6556,7 +6556,7 @@ msgstr "Tienen un ampliu radiu visual & tiran a l inimigu."
 msgid ""
 "You can garrison more infantry inside them to increase the number of arrows "
 "they shoot."
-msgstr "Puodes intyellas de pédites pa que tiren mas saietas."
+msgstr "Puodes intsellas de pédites pa que tiren mas saietas."
 
 #: gui/text/tips/elephant_stable.txt:1
 msgid "ELEPHANT STABLE"
@@ -6595,7 +6595,7 @@ msgstr "Los pisqueiros trahen muithu peixe per marea."
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
-msgstr "La pesca ye mas rápida que l agricultura."
+msgstr "La pesca ie mas rápida que l agricultura."
 
 #: gui/text/tips/fishing.txt:5
 msgid ""
@@ -6628,7 +6628,7 @@ msgstr "Usa formaciones pa caltene’l órdene entre las fhilas in combate."
 msgid ""
 "Formations are selected as a whole by default, but that can be changed in "
 "the game settings."
-msgstr "Las formaciones escuolyen-se n xhunto por defectu, pero esso puode mudasse nos axhustes de la partida."
+msgstr "Las formaciones escuolyen-se n xhunto por defectu, pero esso puode mudasse nelos axhustes de la partida."
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -6705,7 +6705,7 @@ msgstr "Tienen abonda vitalidá & son per-fhuortes."
 
 #: gui/text/tips/heroes.txt:4
 msgid "Have auras which alter the stats of other units or structures."
-msgstr "Inflúin nas statísticas d’outras unidades ou structuras."
+msgstr "Inflúin nelas statísticas d’outras unidades ou structuras."
 
 #: gui/text/tips/heroes.txt:5
 msgid "Caution: Each hero can be recruited only once per match!"
@@ -6743,7 +6743,7 @@ msgstr "Fhai siñales in mapa p’avisar a l conxhuntu d’acontecemientos impor
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
-msgstr "Veran la siñal in mapa."
+msgstr "Verán la siñal in mapa."
 
 #: gui/text/tips/meroe_pyramids.txt:1
 msgid "PYRAMIDS OF MEROË"
@@ -6788,11 +6788,11 @@ msgstr "VARGANAL"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr "Cierru baratu & rápidu de lhevantar que ye disponible a todalas culturas."
+msgstr "Cierru baratu & rápidu de lhevantar que ie disponible a todalas culturas."
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
-msgstr "La maioría de las culturas disponen d’elhos na Phase rural. "
+msgstr "La maioría de las culturas disponen d’elhos nela Phase rural. "
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
@@ -6971,7 +6971,7 @@ msgstr "Structura oppidana."
 
 #: gui/text/tips/temples.txt:3
 msgid "Recruit Healers to heal your troops on the battlefield."
-msgstr "Crea Curandeiros pa sanare la milicia na batalya."
+msgstr "Crea Curandeiros pa sanare la milicia nela batalya."
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
@@ -6992,13 +6992,13 @@ msgstr "DISASSOCIACION"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr "Las structuras disassocian-se a l nun star vincelyadas a un foro comuñeiro."
+msgstr "Las structuras disassocian-se a l nun star vinceyadas a un foro comuñeiro."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr "La disassociacion puodes frenalla ou invertilla abellugando unidades na structura."
+msgstr "La disassociacion puodes frenalla ou invertilla abellugando unidades nela structura."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
@@ -7023,7 +7023,7 @@ msgstr "ATYALGAS"
 #: gui/text/tips/treasure.txt:2
 msgid ""
 "Collectible chests and bare resources on land and shipwrecks on the shore."
-msgstr "Arcas & niadas de recursos nel interior, naufragios na marinha."
+msgstr "Arcas & niadas de recursos nel interior, naufragios nela marinha."
 
 #: gui/text/tips/treasure.txt:3
 msgid ""

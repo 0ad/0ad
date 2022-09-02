@@ -2967,7 +2967,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of status bars e.g. health indicator for all your "
 "buildings/units on the map (including unselected)."
-msgstr "Toon / verberg statusbalken, bijvoorbeeld de sterkte indicator, voor alle gebouwen / eenheden op de kaart (inclusief de niet-geselecteerde)."
+msgstr "Toon / verberg statusbalken, bijvoorbeeld de gezondheids- of sterkte indicator, voor alle eenheden / gebouwen op de kaart (inclusief de niet-geselecteerde)."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"
@@ -5615,7 +5615,7 @@ msgstr "Beschaving:"
 #: gui/reference/common/TemplateParser.js:152
 #, javascript-format
 msgid "%(health_min)s to %(health_max)s"
-msgstr "%(health_min)stot%(health_max)s"
+msgstr "%(health_min)s tot %(health_max)s"
 
 #. Translation: Label followed by a list of values.
 #: gui/reference/common/tooltips.js:10
@@ -6831,7 +6831,7 @@ msgstr "Speciale technologie voor de Perzen."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr "Gebouwen +25% gezondheid."
+msgstr "Gebouwen +25% sterkte."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."

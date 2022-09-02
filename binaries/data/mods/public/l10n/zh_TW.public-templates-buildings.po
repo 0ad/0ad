@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-10 07:08+0000\n"
+"POT-Creation-Date: 2022-08-29 07:13+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -348,6 +348,7 @@ msgstr "Dunon"
 #: simulation/templates/structures/iber/fortress.xml:6
 #: simulation/templates/structures/kush/fortress.xml:10
 #: simulation/templates/structures/mace/fortress.xml:10
+#: simulation/templates/structures/ptol/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
 msgid "Train Heroes. Garrison Soldiers for additional arrows."
 msgstr "訓練英雄。進駐士兵以增加箭數。"
@@ -586,21 +587,21 @@ msgstr "多立克柱"
 msgid "Fallen Doric Column"
 msgstr "倒下的多立克柱"
 
-#: simulation/templates/structures/fence_long.xml:12
-#: simulation/templates/structures/fence_short.xml:12
+#: simulation/templates/structures/fence_long.xml:14
+#: simulation/templates/structures/fence_short.xml:14
 msgid "Fence"
 msgstr "籬笆"
 
-#: simulation/templates/structures/fence_long.xml:13
+#: simulation/templates/structures/fence_long.xml:15
 msgid "Long Wooden Fence"
 msgstr "長木籬笆"
 
-#: simulation/templates/structures/fence_short.xml:13
+#: simulation/templates/structures/fence_short.xml:15
 msgid "Short Wooden Fence"
 msgstr "短木籬笆"
 
-#: simulation/templates/structures/fence_stone.xml:12
-#: simulation/templates/structures/fence_stone.xml:13
+#: simulation/templates/structures/fence_stone.xml:14
+#: simulation/templates/structures/fence_stone.xml:15
 msgid "Stone Fence"
 msgstr "石頭圍籬"
 
@@ -673,8 +674,8 @@ msgid "Jūn Yíng"
 msgstr "軍營"
 
 #: simulation/templates/structures/han/civil_centre.xml:12
-msgid "Gōngdiàn"
-msgstr "宮殿"
+msgid "Guān Shǔ"
+msgstr "官署"
 
 #: simulation/templates/structures/han/civil_centre.xml:33
 msgid ""
@@ -754,13 +755,12 @@ msgstr "堡壘"
 msgid "Mín Jū"
 msgstr "民居"
 
-#: simulation/templates/structures/han/laozigate.xml:9
-#: simulation/templates/structures/han/laozigate.xml:31
-#: simulation/templates/structures/han/laozigate.xml:34
+#: simulation/templates/structures/han/laozigate.xml:21
+#: simulation/templates/structures/han/laozigate.xml:24
 msgid "LaoziGate"
 msgstr "老子門"
 
-#: simulation/templates/structures/han/laozigate.xml:32
+#: simulation/templates/structures/han/laozigate.xml:22
 msgid "Lǎozǐ Mén"
 msgstr "老子門"
 
@@ -773,8 +773,8 @@ msgid "Imperial Ministry"
 msgstr "帝國官署"
 
 #: simulation/templates/structures/han/ministry.xml:37
-msgid "Guān Shǔ"
-msgstr "官署"
+msgid "Gōngdiàn"
+msgstr "宮殿"
 
 #: simulation/templates/structures/han/ministry.xml:39
 msgid "ImperialMinistry"
@@ -1404,15 +1404,15 @@ msgstr "Huvādā"
 msgid "Inn"
 msgstr "客棧"
 
-#: simulation/templates/structures/pers/ice_house.xml:26
+#: simulation/templates/structures/pers/ice_house.xml:25
 msgid "Ice House"
 msgstr "冰窖"
 
-#: simulation/templates/structures/pers/ice_house.xml:27
+#: simulation/templates/structures/pers/ice_house.xml:26
 msgid "Yakhchāl"
 msgstr "Yakhchāl"
 
-#: simulation/templates/structures/pers/ice_house.xml:28
+#: simulation/templates/structures/pers/ice_house.xml:27
 msgid "IceHouse"
 msgstr "冰窖"
 
@@ -1913,7 +1913,7 @@ msgid "House"
 msgstr "房舍"
 
 #: simulation/templates/structures/kush/pyramid_small.xml:26
-#: simulation/templates/structures/pers/ice_house.xml:28
+#: simulation/templates/structures/pers/ice_house.xml:27
 #: simulation/templates/template_structure_civic_house.xml:28
 #: simulation/templates/template_structure_economic_farmstead.xml:30
 #: simulation/templates/template_structure_economic_storehouse.xml:28
@@ -1934,9 +1934,10 @@ msgstr "村莊"
 msgid "Stoa"
 msgstr "門廊"
 
+#: simulation/templates/structures/athen/gymnasium.xml:26
 #: simulation/templates/structures/cart/apartment.xml:26
 #: simulation/templates/structures/gaul/tavern.xml:22
-#: simulation/templates/structures/han/laozigate.xml:34
+#: simulation/templates/structures/han/laozigate.xml:24
 #: simulation/templates/structures/han/ministry.xml:39
 #: simulation/templates/structures/iber/monument.xml:34
 #: simulation/templates/structures/maur/elephant_stable.xml:8
