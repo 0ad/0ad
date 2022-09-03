@@ -211,7 +211,7 @@ msgstr "Zet de mogelijkheid om vals te spelen aan / uit."
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:26
 msgid "Explored Map"
-msgstr "Verkende Kaart"
+msgstr "Onthulde kaart"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -222,7 +222,7 @@ msgstr "Verken de kaart (bekijk initiële kaart)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:26
 msgid "Last Man Standing"
-msgstr "Laatste Overlevende Wint"
+msgstr "Laatste overlevende is de winaar"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:29
 msgid ""
@@ -232,7 +232,7 @@ msgstr "Vecht tot de laatste speler, vink deze optie uit om het mogelijk te make
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:30
 msgid "Teams Locked"
-msgstr "Teams Vergrendeld"
+msgstr "Vergrendelde teams"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:33
 msgid "Toggle locked teams."
@@ -258,7 +258,7 @@ msgstr "Activeer dit als u wilt dat het spel uw score kan wijzigen."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:27
 msgid "Hero Garrison"
-msgstr "Held Bemanning"
+msgstr "Beman met Held"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:30
 msgid "Toggle whether heroes can be garrisoned."
@@ -280,7 +280,7 @@ msgstr "Toon / verberg de volledige kaart (bekijk alles)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:26
 msgid "Disable Spies"
-msgstr "Spionnen Uitschakelen"
+msgstr "Spionnen uitschakelen"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:29
 msgid "Disable spies during the game."
@@ -288,7 +288,7 @@ msgstr "Schakel spionnen uit tijdens het spel"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:25
 msgid "Disable Treasures"
-msgstr "Schatten Uitschakelen"
+msgstr "Schatten uitschakelen"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:28
 msgid "Do not add treasures to the map."
@@ -341,7 +341,7 @@ msgstr "Kies een willekeurig tijdstip."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:61
 msgid "Game Speed"
-msgstr "Spel Snelheid"
+msgstr "Spel snelheid"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:64
 msgid "Select game speed."
@@ -367,7 +367,7 @@ msgstr "Selecteer een landschap voor deze kaart."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:82
 msgid "Map Filter"
-msgstr "Kaart Filter"
+msgstr "Kaartfilter"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:85
 msgid "Select a map filter."
@@ -379,7 +379,7 @@ msgstr "Kaart"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:141
 msgid "Select Map"
-msgstr "Selecteer Kaart"
+msgstr "Selecteer kaart"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:144
 msgid "Select a map to play on."
@@ -412,7 +412,7 @@ msgstr "Selecteer kaarttype."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:33
 msgid "Number of Players"
-msgstr "Aantal Spelers"
+msgstr "Aantal spelers"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:36
 msgid "Select number of players."
@@ -542,7 +542,7 @@ msgstr "Relikwie duurtijd"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:41
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr "Aantal minuten totdat een speler een Relikwieënoverwinning heeft behaald."
+msgstr "Aantal minuten totdat de speler een Relikwieën overwinning heeft behaald."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:47
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:44
@@ -581,7 +581,7 @@ msgstr "Wonder duurtijd"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:41
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr "Minuten totdat de speler Wonder overwinning heeft bereikt"
+msgstr "Minuten totdat de speler een Wonder overwinning heeft bereikt"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -633,7 +633,7 @@ msgstr "Geef aan dat u nog niet klaar bent om te spelen."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:29
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr "Reset de gekozen beschavingen terug naar willekeurig."
+msgstr "Zet de gekozen beschavingen terug naar standaard (willekeurig)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:29
 msgid "Reset all teams to the default."
@@ -680,7 +680,7 @@ msgstr "%(username)s heeft zich aangesloten"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientConnection.js:30
 #, javascript-format
 msgid "%(username)s has left"
-msgstr "%(username)s is verdwenen"
+msgstr "%(username)s is vertrokken"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientKicked.js:22
 #, javascript-format

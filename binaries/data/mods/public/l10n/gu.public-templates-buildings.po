@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-10 07:08+0000\n"
+"POT-Creation-Date: 2022-08-29 07:13+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Language-Team: Gujarati (http://www.transifex.com/wildfire-games/0ad/language/gu/)\n"
 "MIME-Version: 1.0\n"
@@ -332,6 +332,7 @@ msgstr ""
 #: simulation/templates/structures/iber/fortress.xml:6
 #: simulation/templates/structures/kush/fortress.xml:10
 #: simulation/templates/structures/mace/fortress.xml:10
+#: simulation/templates/structures/ptol/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
 msgid "Train Heroes. Garrison Soldiers for additional arrows."
 msgstr ""
@@ -570,21 +571,21 @@ msgstr ""
 msgid "Fallen Doric Column"
 msgstr ""
 
-#: simulation/templates/structures/fence_long.xml:12
-#: simulation/templates/structures/fence_short.xml:12
+#: simulation/templates/structures/fence_long.xml:14
+#: simulation/templates/structures/fence_short.xml:14
 msgid "Fence"
 msgstr ""
 
-#: simulation/templates/structures/fence_long.xml:13
+#: simulation/templates/structures/fence_long.xml:15
 msgid "Long Wooden Fence"
 msgstr ""
 
-#: simulation/templates/structures/fence_short.xml:13
+#: simulation/templates/structures/fence_short.xml:15
 msgid "Short Wooden Fence"
 msgstr ""
 
-#: simulation/templates/structures/fence_stone.xml:12
-#: simulation/templates/structures/fence_stone.xml:13
+#: simulation/templates/structures/fence_stone.xml:14
+#: simulation/templates/structures/fence_stone.xml:15
 msgid "Stone Fence"
 msgstr ""
 
@@ -657,7 +658,7 @@ msgid "Jūn Yíng"
 msgstr ""
 
 #: simulation/templates/structures/han/civil_centre.xml:12
-msgid "Gōngdiàn"
+msgid "Guān Shǔ"
 msgstr ""
 
 #: simulation/templates/structures/han/civil_centre.xml:33
@@ -738,13 +739,12 @@ msgstr ""
 msgid "Mín Jū"
 msgstr ""
 
-#: simulation/templates/structures/han/laozigate.xml:9
-#: simulation/templates/structures/han/laozigate.xml:31
-#: simulation/templates/structures/han/laozigate.xml:34
+#: simulation/templates/structures/han/laozigate.xml:21
+#: simulation/templates/structures/han/laozigate.xml:24
 msgid "LaoziGate"
 msgstr ""
 
-#: simulation/templates/structures/han/laozigate.xml:32
+#: simulation/templates/structures/han/laozigate.xml:22
 msgid "Lǎozǐ Mén"
 msgstr ""
 
@@ -757,7 +757,7 @@ msgid "Imperial Ministry"
 msgstr ""
 
 #: simulation/templates/structures/han/ministry.xml:37
-msgid "Guān Shǔ"
+msgid "Gōngdiàn"
 msgstr ""
 
 #: simulation/templates/structures/han/ministry.xml:39
@@ -1388,15 +1388,15 @@ msgstr ""
 msgid "Inn"
 msgstr ""
 
-#: simulation/templates/structures/pers/ice_house.xml:26
+#: simulation/templates/structures/pers/ice_house.xml:25
 msgid "Ice House"
 msgstr ""
 
-#: simulation/templates/structures/pers/ice_house.xml:27
+#: simulation/templates/structures/pers/ice_house.xml:26
 msgid "Yakhchāl"
 msgstr ""
 
-#: simulation/templates/structures/pers/ice_house.xml:28
+#: simulation/templates/structures/pers/ice_house.xml:27
 msgid "IceHouse"
 msgstr ""
 
@@ -1897,7 +1897,7 @@ msgid "House"
 msgstr ""
 
 #: simulation/templates/structures/kush/pyramid_small.xml:26
-#: simulation/templates/structures/pers/ice_house.xml:28
+#: simulation/templates/structures/pers/ice_house.xml:27
 #: simulation/templates/template_structure_civic_house.xml:28
 #: simulation/templates/template_structure_economic_farmstead.xml:30
 #: simulation/templates/template_structure_economic_storehouse.xml:28
@@ -1918,9 +1918,10 @@ msgstr ""
 msgid "Stoa"
 msgstr ""
 
+#: simulation/templates/structures/athen/gymnasium.xml:26
 #: simulation/templates/structures/cart/apartment.xml:26
 #: simulation/templates/structures/gaul/tavern.xml:22
-#: simulation/templates/structures/han/laozigate.xml:34
+#: simulation/templates/structures/han/laozigate.xml:24
 #: simulation/templates/structures/han/ministry.xml:39
 #: simulation/templates/structures/iber/monument.xml:34
 #: simulation/templates/structures/maur/elephant_stable.xml:8

@@ -22,15 +22,15 @@
 # 85c91c3444bcf82d63b07801f727e341
 # Антон Курило
 # Микола Франчук
-# Мордред Пендрагон
+# aa4a75b616c7281b4c1ca3782cfac296_76b465e
 # Сергій Дубик
 # Тарас Коржик
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-10 07:08+0000\n"
+"POT-Creation-Date: 2022-08-29 07:13+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: Мордред Пендрагон, 2022\n"
+"Last-Translator: aa4a75b616c7281b4c1ca3782cfac296_76b465e, 2022\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -355,6 +355,7 @@ msgstr "Дунон"
 #: simulation/templates/structures/iber/fortress.xml:6
 #: simulation/templates/structures/kush/fortress.xml:10
 #: simulation/templates/structures/mace/fortress.xml:10
+#: simulation/templates/structures/ptol/fortress.xml:10
 #: simulation/templates/structures/rome/fortress.xml:6
 msgid "Train Heroes. Garrison Soldiers for additional arrows."
 msgstr "Навчання героїв. Розмістити солдатів у гарнізоні для додаткових стріл."
@@ -593,21 +594,21 @@ msgstr "Дорійська колона"
 msgid "Fallen Doric Column"
 msgstr "Впала дорійська колона"
 
-#: simulation/templates/structures/fence_long.xml:12
-#: simulation/templates/structures/fence_short.xml:12
+#: simulation/templates/structures/fence_long.xml:14
+#: simulation/templates/structures/fence_short.xml:14
 msgid "Fence"
 msgstr "Паркан"
 
-#: simulation/templates/structures/fence_long.xml:13
+#: simulation/templates/structures/fence_long.xml:15
 msgid "Long Wooden Fence"
 msgstr "Довгий дерев'яний паркан"
 
-#: simulation/templates/structures/fence_short.xml:13
+#: simulation/templates/structures/fence_short.xml:15
 msgid "Short Wooden Fence"
 msgstr "Короткий дерев'яний паркан"
 
-#: simulation/templates/structures/fence_stone.xml:12
-#: simulation/templates/structures/fence_stone.xml:13
+#: simulation/templates/structures/fence_stone.xml:14
+#: simulation/templates/structures/fence_stone.xml:15
 msgid "Stone Fence"
 msgstr "Кам'яний паркан"
 
@@ -680,8 +681,8 @@ msgid "Jūn Yíng"
 msgstr "Цзюнь їн"
 
 #: simulation/templates/structures/han/civil_centre.xml:12
-msgid "Gōngdiàn"
-msgstr "Ґундянь"
+msgid "Guān Shǔ"
+msgstr "Ґуань шу"
 
 #: simulation/templates/structures/han/civil_centre.xml:33
 msgid ""
@@ -761,13 +762,12 @@ msgstr "Баолей"
 msgid "Mín Jū"
 msgstr "Мінь цзюй"
 
-#: simulation/templates/structures/han/laozigate.xml:9
-#: simulation/templates/structures/han/laozigate.xml:31
-#: simulation/templates/structures/han/laozigate.xml:34
+#: simulation/templates/structures/han/laozigate.xml:21
+#: simulation/templates/structures/han/laozigate.xml:24
 msgid "LaoziGate"
 msgstr "Брама Лао-цзи"
 
-#: simulation/templates/structures/han/laozigate.xml:32
+#: simulation/templates/structures/han/laozigate.xml:22
 msgid "Lǎozǐ Mén"
 msgstr "Лаоцзи мень"
 
@@ -780,8 +780,8 @@ msgid "Imperial Ministry"
 msgstr "Імперське міністерство"
 
 #: simulation/templates/structures/han/ministry.xml:37
-msgid "Guān Shǔ"
-msgstr "Ґуань шу"
+msgid "Gōngdiàn"
+msgstr "Ґундянь"
 
 #: simulation/templates/structures/han/ministry.xml:39
 msgid "ImperialMinistry"
@@ -1411,15 +1411,15 @@ msgstr "Хувада"
 msgid "Inn"
 msgstr "Готель"
 
-#: simulation/templates/structures/pers/ice_house.xml:26
+#: simulation/templates/structures/pers/ice_house.xml:25
 msgid "Ice House"
 msgstr "Льодовня"
 
-#: simulation/templates/structures/pers/ice_house.xml:27
+#: simulation/templates/structures/pers/ice_house.xml:26
 msgid "Yakhchāl"
 msgstr "Якчал"
 
-#: simulation/templates/structures/pers/ice_house.xml:28
+#: simulation/templates/structures/pers/ice_house.xml:27
 msgid "IceHouse"
 msgstr "Льодовня"
 
@@ -1920,7 +1920,7 @@ msgid "House"
 msgstr "Будинок"
 
 #: simulation/templates/structures/kush/pyramid_small.xml:26
-#: simulation/templates/structures/pers/ice_house.xml:28
+#: simulation/templates/structures/pers/ice_house.xml:27
 #: simulation/templates/template_structure_civic_house.xml:28
 #: simulation/templates/template_structure_economic_farmstead.xml:30
 #: simulation/templates/template_structure_economic_storehouse.xml:28
@@ -1941,9 +1941,10 @@ msgstr "Село"
 msgid "Stoa"
 msgstr "Стоа"
 
+#: simulation/templates/structures/athen/gymnasium.xml:26
 #: simulation/templates/structures/cart/apartment.xml:26
 #: simulation/templates/structures/gaul/tavern.xml:22
-#: simulation/templates/structures/han/laozigate.xml:34
+#: simulation/templates/structures/han/laozigate.xml:24
 #: simulation/templates/structures/han/ministry.xml:39
 #: simulation/templates/structures/iber/monument.xml:34
 #: simulation/templates/structures/maur/elephant_stable.xml:8
