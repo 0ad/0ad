@@ -20,32 +20,32 @@ msgstr ""
 #: graphics/CameraController.cpp:657
 #, c-format
 msgid "Scroll speed increased to %.1f"
-msgstr "La velocidá de dislocacion augmentou a %.1f"
+msgstr "La velocidade de dislocacion augmentou a %.1f"
 
 #: graphics/CameraController.cpp:663
 #, c-format
 msgid "Scroll speed decreased to %.1f"
-msgstr "La velocidá de dislocacion diminuîu a %.1f"
+msgstr "La velocidade de dislocacion menorgou a %.1f"
 
 #: graphics/CameraController.cpp:670
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr "La velocidá gyratoria augmentou a X=%.3f, Y=%.3f"
+msgstr "La velocidade gyratoria augmentou a X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:677
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr "La velocidá gyratoria diminuîu a X=%.3f, Y=%.3f"
+msgstr "La velocidade gyratoria menorgou a X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:683
 #, c-format
 msgid "Zoom speed increased to %.1f"
-msgstr "La velocidá d’approximacion augmentou a %.1f"
+msgstr "La velocidade d’aveiradura augmentou a %.1f"
 
 #: graphics/CameraController.cpp:689
 #, c-format
 msgid "Zoom speed decreased to %.1f"
-msgstr "La velocidá d’approximacion diminuîu a %.1f"
+msgstr "La velocidade d’aveiradura menorgou a %.1f"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
@@ -57,7 +57,7 @@ msgstr "disconhoç-se l subtypu (veia-se los registros)"
 
 #: lobby/XmppClient.cpp:1355
 msgid "The certificate is not trusted."
-msgstr "El certificado nun ie d’infhoutu."
+msgstr "El certificado nun je d’infhoutu."
 
 #: lobby/XmppClient.cpp:1356
 msgid "The certificate hasn't got a known issuer."
@@ -94,7 +94,7 @@ msgstr "Nun ha hi errores"
 
 #: lobby/XmppClient.cpp:1388
 msgid "Player already logged in"
-msgstr "El xhogador ia s’authenticou"
+msgstr "El xhogador ja s’authenticou"
 
 #: lobby/XmppClient.cpp:1390
 msgid "Forbidden"
@@ -138,7 +138,7 @@ msgstr "Nun se sofhita la version de l fluxu intrante"
 
 #: lobby/XmppClient.cpp:1433
 msgid "The stream has been closed by the server"
-msgstr "El fluxu concluîu-lu l servidor"
+msgstr "El fluxu atyouîu-lu l servidor"
 
 #: lobby/XmppClient.cpp:1437
 msgid "An I/O error occurred"
@@ -160,7 +160,7 @@ msgstr "Exhaurîu-se la memoria l systema"
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr "Ou nun pudo verificasse l certificado de l servidor ou la negociacion TLS nun se per-fheʒo cun éxitu"
+msgstr "Ou nun pudo comprobasse l certificado de l servidor ou nun dieu l preste la negociacion TLS"
 
 #: lobby/XmppClient.cpp:1444
 msgid "The server did not offer required TLS encryption"
@@ -168,7 +168,7 @@ msgstr "El servidor nun ofrîu l cifrado TLS que se requier"
 
 #: lobby/XmppClient.cpp:1446
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Falhou l authenticacion. Ou nun ie correcta la tyave d’accessu ou la cuonta nun existe"
+msgstr "Falhou l authenticacion. Ou nun je correcta la tyave d’accessu ou la cuonta nun existe"
 
 #: lobby/XmppClient.cpp:1447
 msgid "The user or system requested a disconnect"
@@ -188,7 +188,7 @@ msgstr "Nun s’aporrîu toda la informacion necessaria"
 
 #: lobby/XmppClient.cpp:1471
 msgid "Username already exists"
-msgstr "Existe ia l nome d’usuariu"
+msgstr "Existe ja l nome d’usuariu"
 
 #: ps/Mod.cpp:82
 #, c-format
@@ -243,11 +243,11 @@ msgstr "Archivo inválido. Anticipaba-se l md5 “%s”, recibîu-se “%s”."
 
 #: ps/ModIo.cpp:567
 msgid "Failed to compute final hash."
-msgstr "Houbo un falhu a l calculare la summa de verificacion final."
+msgstr "Houbo un falhu a l calculare la summa final."
 
 #: ps/ModIo.cpp:573
 msgid "Failed to verify signature."
-msgstr "Houbo un falhu a l verificare la robra."
+msgstr "Houbo un falhu a l comprobare la robra."
 
 #: ps/SavedGame.cpp:142
 #, c-format

@@ -25,7 +25,7 @@ msgstr "Esta trampa requier un parámetro numérico."
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
-msgstr "Afhitare la velocidá de la partida"
+msgstr "Afhitare la velocidade de la partida"
 
 #: gui/session/Menu.js:41
 #, javascript-format
@@ -293,7 +293,7 @@ msgstr "%(player)s sta intamando arrexhuntasse a la partida."
 #: gui/session/chat/ChatMessageFormatNetwork.js:26
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr "%(player)s sta intamando axhuntasse a la partida."
+msgstr "%(player)s sta intamando xhunhisse a la partida."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:37
 #, javascript-format
@@ -320,7 +320,7 @@ msgstr "%(player)s arrexhuntou-se a la partida."
 #: gui/session/chat/ChatMessageFormatNetwork.js:73
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr "%(player)s axhuntou-se a la partida."
+msgstr "%(player)s xhunhîu-se a la partida."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:62
 #, javascript-format
@@ -359,7 +359,7 @@ msgstr "%(icon)s ¡%(attacker)s sta aggrediendo-te!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
-msgstr "Pica par infocar escontra la unidá acometida."
+msgstr "Pica par infocar escontra la unidat acometida."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
@@ -456,7 +456,7 @@ msgstr "Pen.:"
 #: gui/session/chat/chat_window.xml:(caption):46
 msgctxt "chat input"
 msgid "To:"
-msgstr "Pa:"
+msgstr "Par:"
 
 #: gui/session/chat/chat_window.xml:(caption):60
 msgctxt "chat input"
@@ -492,7 +492,7 @@ msgstr "Abrîu-se la capa disindolcadora."
 
 #: gui/session/developer_overlay/DeveloperOverlay.js:81
 msgid "The Developer Overlay was closed."
-msgstr "Intyoeu-se la capa disindolcadora."
+msgstr "Atyouîu-se la capa disindolcadora."
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:15
 msgid "Control all units"
@@ -508,15 +508,15 @@ msgstr "Amostrare l stadu de la escolheitha"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:73
 msgid "Pathfinder overlay"
-msgstr "Capa d’orientacion"
+msgstr "Capa d’aldu"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:86
 msgid "Hierarchical pathfinder overlay"
-msgstr "Capa d’orientacion hierárchica"
+msgstr "Capa d’aldu hierárchico"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:99
 msgid "Obstruction overlay"
-msgstr "Capa d’obstrucciones"
+msgstr "Capa de pexhadorias"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:112
 msgid "Unit motion overlay"
@@ -528,7 +528,7 @@ msgstr "Capa d’algame"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:138
 msgid "Bounding box overlay"
-msgstr "Capa de delimitaciones"
+msgstr "Capa de deslhindes"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:151
 msgid "Restrict camera"
@@ -637,7 +637,7 @@ msgstr "Tribuir"
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):43
 #: gui/session/trade/TradeDialog.xml:(caption):22
 msgid "Close"
-msgstr "Concluir"
+msgstr "Atyouir"
 
 #: gui/session/diplomacy/DiplomacyDialogCeasefireCounter.js:27
 #, javascript-format
@@ -679,7 +679,7 @@ msgstr "Inimigu"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr "Subornar alteatoriamente una unidá d’isti xhogador & compartire la sua vista per un tiempu."
+msgstr "Subornar alteatoriamente una unidade d’isti xhogador & compartire la sua vista per un tiempu."
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
 msgid "A failed bribe will cost you:"
@@ -752,12 +752,12 @@ msgstr "Xhogadores: %(players)s"
 #: gui/session/message_box/OutOfSyncNetwork.js:24
 msgctxt "Out-Of-Sync"
 msgid "Your game state is identical to the hosts game state."
-msgstr "El stadu de partida ie egual a l de l amphitryon."
+msgstr "El stadu de partida je egual a l de l amphitryon."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:25
 msgctxt "Out-Of-Sync"
 msgid "Your game state differs from the hosts game state."
-msgstr "El stadu de partida ie estremadu a l de l amphitryon."
+msgstr "El stadu de partida je estremadu a l de l amphitryon."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:31
 msgctxt "Out-Of-Sync"
@@ -988,7 +988,7 @@ msgstr "(%(secondaryName)s)"
 
 #: gui/session/selection_details.js:462
 msgid "Capture Points:"
-msgstr "Fidelidá:"
+msgstr "Fidelidade:"
 
 #: gui/session/selection_details.js:470
 #, javascript-format
@@ -1057,7 +1057,7 @@ msgstr "Pica cul boton direithu pa disactivare la funccion “formacion predefin
 
 #: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
-msgstr "Esta ie la formacion predefinida de la milicia a l movesse."
+msgstr "Esta je la formacion predefinida de la milicia a l movesse."
 
 #: gui/session/selection_panels.js:282
 msgid "Right-click to set this as the default formation."
@@ -1107,7 +1107,7 @@ msgstr "De poder, elho inrestrará-se mas a lantre de modu automáticu."
 
 #: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
-msgstr "Capacidá poblacional insufficiente:"
+msgstr "Capacidade poblacional insufficiente:"
 
 #: gui/session/selection_panels.js:562
 #, javascript-format
@@ -1319,11 +1319,11 @@ msgstr "Pica cun Maiúsculas premida"
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):16
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):40
 msgid "Health"
-msgstr "Vitalidá"
+msgstr "Vitalidade"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Capture points"
-msgstr "Fidelidá"
+msgstr "Fidelidade"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):82
 msgid "Attack and Resistance"
@@ -1345,7 +1345,7 @@ msgstr "Riestra de produccion"
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr "Pica pa escolyer una grea d’unidades, pica duas vezes par infhocar escontra ilhi & pica cul boton direithu pa disfhazellu."
+msgstr "Pica par escolyer una grea d’unidades, pica duas vezes par infhocar escontra ilhi & pica cul boton direithu pa disfhazellu."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVI: Zhuangzi"
@@ -1411,7 +1411,7 @@ msgstr "Diplomacia"
 
 #: gui/session/top_panel/IconButtons/GameSpeedButton.xml:(tooltip):9
 msgid "Game Speed"
-msgstr "Velocidá de la partida"
+msgstr "Velocidade de la partida"
 
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):15
 #: gui/session/top_panel/IconButtons/ObjectivesDialogButton.js:23
@@ -1484,7 +1484,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "Escolyi l typu de bienes que quieras modificar picando n ilhi, & lhuogo usa las saietas pa camudare la proporcion entre los bienes. Tamien puodes premer %(hotkey)s a l escolyer un typu de bienes pa xubire la sua porcion a l 100 %%."
+msgstr "Escolyi l typu de bienes que quieras modificar picando n ilhi, & lhuogo usa las saietas pa camudare la proporcion entre los bienes. Tambien puodes premer %(hotkey)s a l escolyer un typu de bienes pa xubire la sua porcion a l 100 %%."
 
 #: gui/session/trade/TradeDialogBarterPanel.js:45
 #, javascript-format
@@ -1493,7 +1493,7 @@ msgid ""
 "each time the lower buttons are pressed, %(quantity)s of the upper resource "
 "will be sold for the displayed quantity of the lower. Press and hold "
 "%(hotkey)s to temporarily multiply the traded amount by %(multiplier)s."
-msgstr "Intama escolyendo de la fhila superior el recursu que quieras cambiar. A l premer un boton de la fhila inferior, vas dar %(quantity)s de l recursu superior n para de la quantidá indicada pa l inferior. Premi & calten premidu/a %(hotkey)s pa multiplicar temporalmente las quantidades por %(multiplier)s."
+msgstr "Intama escolyendo de la fhila superior el recursu que quieras cambiar. A l premer un boton de la fhila inferior, vas dar %(quantity)s de l recursu superior n para de la quantidat indicada pa l inferior. Premi & calten premidu/a %(hotkey)s pa multiplicar temporalmente las quantidades por %(multiplier)s."
 
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
@@ -1620,7 +1620,7 @@ msgstr "Prontu"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr "Isti ie l mercadu d’orígene.\nPica cul boton direithu par incaboxare la vía commercial"
+msgstr "Isti je l mercadu d’orígene.\nPica cul boton direithu par incaboxare la vía commercial"
 
 #: gui/session/unit_actions.js:678
 msgid "Origin trade market."
@@ -1696,7 +1696,7 @@ msgstr "Inviare las unidades escolyidas a abançar a l sitiu siñaladu n deponie
 
 #: gui/session/unit_actions.js:1503
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr "Mandar que las unidades escolyidas s’abelluguen n una structura ou unidá."
+msgstr "Mandar que las unidades escolyidas s’abelluguen n una structura ou unidade."
 
 #: gui/session/unit_actions.js:1525
 msgid "Order the selected units to occupy a turret point."
@@ -1720,7 +1720,7 @@ msgstr "Volver a l lhabor"
 
 #: gui/session/unit_actions.js:1646
 msgid "Order the selected units to guard a structure or unit."
-msgstr "Mandar que las unidades escolyidas curien una structura ou unidá."
+msgstr "Mandar que las unidades escolyidas curien una structura ou unidade."
 
 #: gui/session/unit_actions.js:1666
 msgid "Remove guard"
@@ -1775,8 +1775,8 @@ msgstr "Esso ha hi que lo matar par explotallo"
 #: gui/session/unit_actions.js:1888
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr "Nun puodes eliminar isti ente, des que ti correspuonde menos de la metada de la sua fidelidá"
+msgstr "Nun puodes eliminar isti ente, des que ti correspuonde menos de la metada de la sua fidelidade"
 
 #: gui/session/unit_actions.js:1891
 msgid "This entity is undeletable"
-msgstr "Isti ente nun ie eliminable"
+msgstr "Isti ente nun je eliminable"
