@@ -25,7 +25,7 @@ msgstr "La velocidade de dislocacion augmentou a %.1f"
 #: graphics/CameraController.cpp:663
 #, c-format
 msgid "Scroll speed decreased to %.1f"
-msgstr "La velocidade de dislocacion menorgou a %.1f"
+msgstr "La velocidade de dislocacion aminorgou a %.1f"
 
 #: graphics/CameraController.cpp:670
 #, c-format
@@ -35,7 +35,7 @@ msgstr "La velocidade gyratoria augmentou a X=%.3f, Y=%.3f"
 #: graphics/CameraController.cpp:677
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr "La velocidade gyratoria menorgou a X=%.3f, Y=%.3f"
+msgstr "La velocidade gyratoria aminorgou a X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:683
 #, c-format
@@ -45,7 +45,7 @@ msgstr "La velocidade d’aveiradura augmentou a %.1f"
 #: graphics/CameraController.cpp:689
 #, c-format
 msgid "Zoom speed decreased to %.1f"
-msgstr "La velocidade d’aveiradura menorgou a %.1f"
+msgstr "La velocidade d’aveiradura aminorgou a %.1f"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
@@ -164,7 +164,7 @@ msgstr "Ou nun pudo comprobasse l certificado de l servidor ou nun dieu l preste
 
 #: lobby/XmppClient.cpp:1444
 msgid "The server did not offer required TLS encryption"
-msgstr "El servidor nun ofrîu l cifrado TLS que se requier"
+msgstr "El servidor nun oufreu l cifrado TLS que se requier"
 
 #: lobby/XmppClient.cpp:1446
 msgid "Authentication failed. Incorrect password or account does not exist"
@@ -184,7 +184,7 @@ msgstr "Registrou-se cun éxitu la tua cuonta"
 
 #: lobby/XmppClient.cpp:1470
 msgid "Not all necessary information provided"
-msgstr "Nun s’aporrîu toda la informacion necessaria"
+msgstr "Nun s’aprovîu toda la informacion necessaria"
 
 #: lobby/XmppClient.cpp:1471
 msgid "Username already exists"
@@ -195,42 +195,42 @@ msgstr "Existe ja l nome d’usuariu"
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr "Nun pudo scribisse un mod.json externu pa la modificacion comprimida “%s”. Ha hi que re-installare la modificacion."
+msgstr "Nun pudo scribisse un mod.json externu pa la camuda comprimida “%s”. Ha hi que re-alhogare la camuda."
 
 #: ps/ModIo.cpp:264
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Houbo un falhu a l iniciar a consultar sobre la identificacion de l xhuogu. Error: %s; %s."
+msgstr "Houbo un falhu a l intamar consultar sobre la identificacion de l xhuogu. Error: %s; %s."
 
 #: ps/ModIo.cpp:294
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "Houbo un falhu a l iniciar a consultar sobre modificaciones. Error: %s; %s."
+msgstr "Houbo un falhu a l intamar consultar sobre camudas. Error: %s; %s."
 
 #: ps/ModIo.cpp:320
 #, c-format
 msgid "Could not create mod directory: %s."
-msgstr "Nun pudo creasse l directorio de la modificacion: %s."
+msgstr "Nun pudo creasse l directorio de la camuda: %s."
 
 #: ps/ModIo.cpp:345
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "Nun pudo abrisse l archivo temporal pa discargare la modificacion: %s."
+msgstr "Nun pudo abrisse l archivo temporal par apercibire la camuda: %s."
 
 #: ps/ModIo.cpp:355
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "Houbo un falhu a l iniciare la discarga. Error: %s; %s."
+msgstr "Houbo un falhu a l intamare la percepcion. Error: %s; %s."
 
 #: ps/ModIo.cpp:400
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr "Falhu de discarga asýnchrona: %s, %s."
+msgstr "Falhu de percepcion asýnchrona: %s, %s."
 
 #: ps/ModIo.cpp:428
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Falhou la discarga. Respuosta de l servidor: %s; %s."
+msgstr "Falhou la percepcion. Respuosta de l servidor: %s; %s."
 
 #: ps/ModIo.cpp:534
 msgid "Mismatched filesize."
@@ -252,7 +252,7 @@ msgstr "Houbo un falhu a l comprobare la robra."
 #: ps/SavedGame.cpp:142
 #, c-format
 msgid "Saved game to '%s'"
-msgstr "Archivou-se la partida n “%s”"
+msgstr "Servou-se la partida n “%s”"
 
 #: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"

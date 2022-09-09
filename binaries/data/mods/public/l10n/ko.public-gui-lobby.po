@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-09-03 07:08+0000\n"
+"POT-Creation-Date: 2022-09-05 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:50+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -336,13 +336,13 @@ msgid "Yes"
 msgstr "예"
 
 #. Translation: The number of players and observers in this game
-#: gui/lobby/LobbyPage/Game.js:309
+#: gui/lobby/LobbyPage/Game.js:310
 #, javascript-format
 msgid "%(current)s/%(max)s +%(observercount)s"
 msgstr "%(current)s/%(max)s+%(observercount)s"
 
 #. Translation: The number of players in this game
-#: gui/lobby/LobbyPage/Game.js:312
+#: gui/lobby/LobbyPage/Game.js:313
 #, javascript-format
 msgid "%(current)s/%(max)s"
 msgstr "%(current)s/%(max)s"
@@ -497,23 +497,23 @@ msgstr "멀티플레이어 로비"
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s(%(rating)s)"
 
-#: gui/lobby/LobbyPage/PlayerList.js:196
+#: gui/lobby/LobbyPage/PlayerList.js:197
 msgid "Online"
 msgstr "접속중"
 
-#: gui/lobby/LobbyPage/PlayerList.js:202
+#: gui/lobby/LobbyPage/PlayerList.js:203
 msgid "Away"
 msgstr "자리비움"
 
-#: gui/lobby/LobbyPage/PlayerList.js:208
+#: gui/lobby/LobbyPage/PlayerList.js:209
 msgid "Busy"
 msgstr "바쁨"
 
-#: gui/lobby/LobbyPage/PlayerList.js:214
+#: gui/lobby/LobbyPage/PlayerList.js:215
 msgid "Offline"
 msgstr "접속 안함"
 
-#: gui/lobby/LobbyPage/PlayerList.js:220
+#: gui/lobby/LobbyPage/PlayerList.js:221
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "알수없음"
@@ -582,7 +582,7 @@ msgstr "패배:"
 msgid "Win Rate:"
 msgstr "승률:"
 
-#: gui/lobby/ProfilePage/ProfilePage.js:70
+#: gui/lobby/ProfilePage/ProfilePage.js:86
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
 msgstr "%(nick)s플레이어를 찾을 수 없습니다."
@@ -1164,33 +1164,39 @@ msgid ""
 msgstr "[font=\"sans-bold-18\"]0. A.D. 떠오르는 제국 멀티플레이어 로비 이용 약관[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:3
-msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-13"
-msgstr "[font=\"sans-bold-14\"]문서 날짜:[/font] 2018-10-13"
+msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2022-09-01"
+msgstr "[font=\"sans-bold-14\"]문서 날짜:[/font] 2022-09-01"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:6
 msgid ""
-" 1. Only create one account per person on the service unless authorized by "
-"Wildfire Games."
-msgstr " 1. Wildfire Games에서 승인하지 않는한 서비스에 대해 1인당 1개의 계정만 작성합니다."
+" 1. a. Only create one account per person on the service unless authorized "
+"by Wildfire Games."
+msgstr "1. a. Wildfire Games의 허가를 받지 않은 한 서비스에 대해 1인당 하나의 계정만 만드십시오."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:7
+msgid ""
+"    b. Not share your account with anyone and not publish or divulge to "
+"anyone the account password."
+msgstr "    b. 계정을 다른 사람과 공유하거나 계정 암호를 게시하거나 다른 사람에게 누설해서는 안 됩니다."
+
+#: gui/prelobby/common/terms/Terms_of_Use.txt:8
 msgid ""
 " 2. Not impersonate other users of the service and only use your registered "
 "username in multiplayer matches."
 msgstr " 2. 서비스의 다른 사용자를 사칭하지 말고 등록된 사용자 이름만 멀티플레이어 시합에서 사용합니다."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:8
+#: gui/prelobby/common/terms/Terms_of_Use.txt:9
 msgid " 3. Not post profanity, pejorative terms or pornographic content."
 msgstr " 3. 욕설, 경멸적인 용어, 포르노 콘텐츠가 아닙니다."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:9
+#: gui/prelobby/common/terms/Terms_of_Use.txt:10
 msgid ""
 " 4. Not harass, harm, intimidate, discriminate, threaten, defame, cause "
 "damage to others or purposefully demean the worth of others using this "
 "service."
 msgstr " 4. 괴롭히거나, 해를 끼치거나, 위협하거나, 차별하거나, 위협하거나, 명예를 훼손하거나, 본 서비스를 사용하는 다른 사람의 가치를 의도적으로 떨어뜨리지 않습니다."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:10
+#: gui/prelobby/common/terms/Terms_of_Use.txt:11
 msgid ""
 " 5. Not violate the privacy of others by disclosing personally identifiable "
 "information (for example real name, location, ID) or private details (for "
@@ -1198,11 +1204,11 @@ msgid ""
 "consent."
 msgstr " 5. 타인의 개인 식별 정보(예: 실명, 위치, ID) 또는 개인 정보(예: 소셜 미디어 또는 메신저 계정 이름)를 동의 없이 공개하여 타인의 개인 정보를 침해하지 않습니다."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:11
+#: gui/prelobby/common/terms/Terms_of_Use.txt:12
 msgid " 6. Not incite violence or promote illegal acts."
 msgstr " 6. 폭력을 조장하거나 불법 행위를 조장하지 않습니다."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:12
+#: gui/prelobby/common/terms/Terms_of_Use.txt:13
 msgid ""
 " 7. Not attempt to artificially adjust any user of the service's rating or "
 "any of the statistics which impact it. (Examples of this are, but are not "
@@ -1210,26 +1216,26 @@ msgid ""
 "taking advantage of other users of the service.)"
 msgstr " 7. 인위적으로 서비스 사용자의 레이팅 점수를 조작하려고 하거나, 그것에 영향을 줄수 있는 행위를 해서는 안됩니다. (예를 들어 다음과 같은 행위를 해서는 안되며, 나쁜 행위는 다음과 같은 것에만 국한하는 것은 아닙니다.: 랭크 게임에서 사기치기, 서비스를 리버스 엔지니어링하기, 서비스에서 다른 사람 이용해먹기)"
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:13
+#: gui/prelobby/common/terms/Terms_of_Use.txt:14
 msgid ""
 " 8. Not undermine the intended gameplay or purposefully gain unfair "
 "advantages in multiplayer matches (for example cheating, using exploits or "
 "bugs)."
 msgstr "8. 의도된 게임 플레이를 손상시키거나 멀티플레이어 게임에서 고의적으로 불공평한 이득을 취하지 않아야합니다(예: 부정행위, 악용 또는 버그 사용)."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:14
+#: gui/prelobby/common/terms/Terms_of_Use.txt:15
 msgid ""
 " 9. Not spam the service and not post large amounts of repetitive or "
 "unwanted messages."
 msgstr " 9. 서비스에 스팸을 보내지 않고 대량의 반복 또는 원하지 않는 메시지를 게시하지 않습니다."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:15
+#: gui/prelobby/common/terms/Terms_of_Use.txt:16
 msgid ""
 "10. Not use the service to promote specific goods, services, or products "
 "unless authorized by Wildfire Games."
 msgstr "10. Wildfire Games의 승인을 받지 않는한 이 서비스를 사용하여 특정 상품, 서비스 또는 제품을 홍보할 수 없습니다."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:17
+#: gui/prelobby/common/terms/Terms_of_Use.txt:18
 msgid ""
 "If a moderator deems your behavior to be inconsistent with these terms, your"
 " account may be restricted, suspended or terminated."

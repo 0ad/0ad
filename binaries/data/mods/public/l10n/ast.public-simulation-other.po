@@ -50,28 +50,28 @@ msgstr "Axhunto la milicia & lhuogo vou cun ti contra %(_player_)s."
 #: simulation/ai/petra/chatHelper.js:15
 #, javascript-format
 msgid "I am finishing preparations to attack %(_player_)s."
-msgstr "Sto a termina’ los intamos p’acometer a %(_player_)s."
+msgstr "Sto a termina’ los intamos p’acutir a %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
-msgstr "Je q’hagora mi fhaltan los mílites; mas lhuogo vou acometer contra %(_player_)s."
+msgstr "Je q’hagora mi fhaltan los mílites; mas lhuogo vou acutir a %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:19
 #, javascript-format
 msgid ""
 "Sorry, I still need to strengthen my army. However, I will attack "
 "%(_player_)s next."
-msgstr "Je que preciso refhorcia’ la milicia; pero d’a reo vou acometer contra %(_player_)s."
+msgstr "Je que preciso refhorcia’ la milicia; pero d’a reo vou acutir a %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, I am planning to "
 "attack %(_player_2)s first."
-msgstr "Nun puodo axhudate cun %(_player_)s indagora, que vou acometer contra %(_player_2)s."
+msgstr "Nun puodo ajudate cun %(_player_)s indagora, que vou acutir a %(_player_2)s."
 
 #: simulation/ai/petra/chatHelper.js:27
 #, javascript-format
@@ -100,13 +100,13 @@ msgstr "Preciso de %(resource)s, ¿podríes incontame? Compenso-ti-lo."
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr "Jou participaríe melyor n esta guerra si m’aporrieres %(resource)s."
+msgstr "Jou participaríe melyor n esta guerra si mi porrieres %(resource)s."
 
 #: simulation/ai/petra/chatHelper.js:35
 #, javascript-format
 msgid ""
 "If you can spare me some %(resource)s, I will be able to strengthen my army."
-msgstr "Si m’apurres daqué %(resource)s, puodo suplire la mia milicia."
+msgstr "Si mi purres daqué %(resource)s, puodo suplire la mia milicia."
 
 #: simulation/ai/petra/chatHelper.js:39
 #, javascript-format
@@ -360,7 +360,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra je l AI predefinida de 0 A.D. Fhai l favor d’informar de falhos a Wildfire Games (vere l vinceyu n menú principal).\n\nLa rapidez cun la que Petra obtien recursos & beneficios commerciales depende de la sua difficultade, (Fholgosa −58%, Per-fácile −44%, Fácile −25%, Normal ±0%, Diffícile +25%, Per-diffícile +56%). Nelas difficultades menores, tambien baxan los rhythmos de disinvolvemiento, de creacion & de construccion. D’arriendas, nela difficultade “Fholgosa” Petra nen s’expande nen invade."
+msgstr "Petra je l AI predefinida de 0 A.D. Fhai l favor d’informar de falhos a Wildfire Games (vere l vinceyu n menú principal).\n\nLa rapidez cun la que Petra obtien recursos & beneficios commerciales depende de la sua difficultade, (Fholgosa −58%, Per-fácile −44%, Fácile −25%, Normal ±0%, Diffícile +25%, Per-diffícile +56%). Nelas difficultades minores, tambien baxan los rhythmos de disinvolvemiento, de creacion & de construccion. D’arriendas, nela difficultade “Fholgosa” Petra nen s’expande nen invade."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -501,11 +501,11 @@ msgstr "inimigo"
 #: simulation/components/CeasefireManager.js:99
 #, javascript-format
 msgid "You can attack in %(time)s"
-msgstr "Puodes acometer in %(time)s"
+msgstr "Puodes cometer in %(time)s"
 
 #: simulation/components/CeasefireManager.js:112
 msgid "You can attack now!"
-msgstr "¡Hagora puodes acometer!"
+msgstr "¡Hagora puodes cometer!"
 
 #: simulation/components/EndGameManager.js:174
 #, javascript-format
@@ -562,7 +562,7 @@ msgstr "Recursos insufficientes - %(resourceAmount1)s de %(resourceType1)s, %(re
 
 #: simulation/components/ProductionQueue.js:312
 msgid "Entity is being upgraded. Cannot start production."
-msgstr "L ente sta anovando-se. Nun puode iniciasse la produccion."
+msgstr "L ente sta anovando-se. Nun puode intamasse la produccion."
 
 #: simulation/components/ProductionQueue.js:327
 msgid "The production queue is full."
@@ -578,7 +578,7 @@ msgstr "Nun puode atopasse un spacio u produzire las unidades creadas."
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
-msgstr "L ente sta produziendo. Nun puode iniciasse l anovacion."
+msgstr "L ente sta produziendo. Nun puode intamasse l anovacion."
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1×)"
@@ -805,7 +805,7 @@ msgstr "Reliquias"
 msgid ""
 "Defeat opponents by killing all their units and destroying all their "
 "structures."
-msgstr "Vence-se a l adversariu acabando cun todalas suas unidades & structuras."
+msgstr "Apodera-se a l adversariu bastiando todalas suas unidades & structuras."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
@@ -813,7 +813,7 @@ msgstr "Annihilacion"
 
 #: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Description
 msgid "Defeat opponents by destroying all their fully build civic centers."
-msgstr "Vence-se a l adversariu esbarrumbando todolos sous foros per-fheithos."
+msgstr "Apodera-se a l adversariu bastiando todolos sous foros per-fheithos."
 
 #: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Title
 msgid "Conquest Civic Centers"
@@ -821,7 +821,7 @@ msgstr "Annihilacion foros"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
-msgstr "Vence-se a l adversariu esbarrumbando todalas suas structuras."
+msgstr "Apodera-se a l adversariu bastiando todalas suas structuras."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
@@ -829,7 +829,7 @@ msgstr "Annihilacion struct."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Defeat opponents by killing all their units."
-msgstr "Vence-se a l adversariu acabando cun todalas suas unidades."
+msgstr "Apodera-se a l adversariu bastiando todalas suas unidades."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
@@ -837,7 +837,7 @@ msgstr "Annihilacion uds."
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero."
-msgstr "Vence-se a l adversariu acabando cul sou heroe."
+msgstr "Apodera-se a l adversariu bastiando l sou heroe."
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"
@@ -849,7 +849,7 @@ msgid ""
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
-msgstr "Sé l primeiru n fhazer—ou posseasse de—un Millagro & conserva-lo per un ciertu tiempu pa vincer. El temporizador re-afhita-se a l destruisse ou posseasse l Millagro. Si l modu victoria comuñeira sta activu, tambien se re-afhita a l mudar de comuña l donhu."
+msgstr "Sé l primeiru n fhazer—ou possiasse de—un Millagro & conserva-lo per un ciertu tiempu pa vincer. El temporizador re-afhita-se a l bastiasse ou possiasse l Millagro. Si l modu victoria comuñeira sta activu, tambien se re-afhita a l mudar de comuña l donhu."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
@@ -858,7 +858,7 @@ msgstr "Millagros"
 #: simulation/helpers/Cheat.js:57
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
-msgstr "Vinceu-se a %(player)s (trampa)."
+msgstr "%(player)s sta apoderadu (trampa)."
 
 #: simulation/helpers/Cheat.js:71
 msgid "You need to select a building that trains units."
@@ -890,7 +890,7 @@ msgstr "Nun puode anovasse des que nun se cumplen los requisitos de distancia ou
 #: simulation/helpers/Commands.js:817
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
-msgstr "Pedîu-se-ti aggredir a %(_player_)s."
+msgstr "Pedîu-se-ti acutir a %(_player_)s."
 
 #: simulation/helpers/Commands.js:856
 msgid "There are no bribable units"

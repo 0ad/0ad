@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -13,14 +13,14 @@
 # lkishalmi
 # Mátyás Demeter
 # Nagy András
-# ricsipontaz
+# Richard Somlói
 # Tibor Buzási
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-10-19 16:01+0000\n"
-"Last-Translator: Balázs Meskó\n"
+"POT-Creation-Date: 2022-09-05 07:09+0000\n"
+"PO-Revision-Date: 2014-06-19 17:50+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>, 2020-2021\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -342,13 +342,13 @@ msgid "Yes"
 msgstr "Igen"
 
 #. Translation: The number of players and observers in this game
-#: gui/lobby/LobbyPage/Game.js:309
+#: gui/lobby/LobbyPage/Game.js:310
 #, javascript-format
 msgid "%(current)s/%(max)s +%(observercount)s"
 msgstr "%(current)s/%(max)s +%(observercount)s"
 
 #. Translation: The number of players in this game
-#: gui/lobby/LobbyPage/Game.js:312
+#: gui/lobby/LobbyPage/Game.js:313
 #, javascript-format
 msgid "%(current)s/%(max)s"
 msgstr "%(current)s/%(max)s"
@@ -503,23 +503,23 @@ msgstr "Többjátékos váró"
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/LobbyPage/PlayerList.js:196
+#: gui/lobby/LobbyPage/PlayerList.js:197
 msgid "Online"
 msgstr "Elérhető"
 
-#: gui/lobby/LobbyPage/PlayerList.js:202
+#: gui/lobby/LobbyPage/PlayerList.js:203
 msgid "Away"
 msgstr "Távol"
 
-#: gui/lobby/LobbyPage/PlayerList.js:208
+#: gui/lobby/LobbyPage/PlayerList.js:209
 msgid "Busy"
 msgstr "Elfoglalt"
 
-#: gui/lobby/LobbyPage/PlayerList.js:214
+#: gui/lobby/LobbyPage/PlayerList.js:215
 msgid "Offline"
 msgstr "Kilépett"
 
-#: gui/lobby/LobbyPage/PlayerList.js:220
+#: gui/lobby/LobbyPage/PlayerList.js:221
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Ismeretlen"
@@ -588,7 +588,7 @@ msgstr "Vereségek:"
 msgid "Win Rate:"
 msgstr "Győzelmi arány:"
 
-#: gui/lobby/ProfilePage/ProfilePage.js:70
+#: gui/lobby/ProfilePage/ProfilePage.js:86
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
 msgstr "„%(nick)s” játékos nem található."
@@ -1170,33 +1170,39 @@ msgid ""
 msgstr "[font=\"sans-bold-18\"]0 A.D. Felemelkedő birodalmak többjátékos váró felhasználási feltételei[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:3
-msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-13"
-msgstr "[font=\"sans-bold-14\"]Dokumentum dátuma:[/font] 2018.10.13."
+msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2022-09-01"
+msgstr ""
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:6
 msgid ""
-" 1. Only create one account per person on the service unless authorized by "
-"Wildfire Games."
-msgstr " 1. Egy személy csak egy fiókkal rendelkezhet a szolgáltatásban a Wildfire Games külön jóváhagyása nélkül."
+" 1. a. Only create one account per person on the service unless authorized "
+"by Wildfire Games."
+msgstr ""
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:7
+msgid ""
+"    b. Not share your account with anyone and not publish or divulge to "
+"anyone the account password."
+msgstr ""
+
+#: gui/prelobby/common/terms/Terms_of_Use.txt:8
 msgid ""
 " 2. Not impersonate other users of the service and only use your registered "
 "username in multiplayer matches."
 msgstr " 2. Nem személyesíthetsz meg más felhasználókat a szolgáltatásban, és csak a regisztrált felhasználóneved használhatod az online játékokban."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:8
+#: gui/prelobby/common/terms/Terms_of_Use.txt:9
 msgid " 3. Not post profanity, pejorative terms or pornographic content."
 msgstr " 3. Nem tehetsz közzé trágár, pejoratív vagy pornográf tartalmat."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:9
+#: gui/prelobby/common/terms/Terms_of_Use.txt:10
 msgid ""
 " 4. Not harass, harm, intimidate, discriminate, threaten, defame, cause "
 "damage to others or purposefully demean the worth of others using this "
 "service."
 msgstr " 4. Nem zaklathatsz, árthatsz, félemlíthetsz meg, diszkriminálhatsz, fenyegethetsz, rágalmazhatsz másokat, és nem sértheted meg mások méltóságát a szolgáltatás használatakor."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:10
+#: gui/prelobby/common/terms/Terms_of_Use.txt:11
 msgid ""
 " 5. Not violate the privacy of others by disclosing personally identifiable "
 "information (for example real name, location, ID) or private details (for "
@@ -1204,11 +1210,11 @@ msgid ""
 "consent."
 msgstr " 5. Nem sértheted meg mások magánszféráját a személyes adataik (például a valódi nevük, helyük és azonosítójuk), vagy bizalmas adataik (például közösségi média és csevegőfiókjuk nevét) engedély nélküli megosztásával."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:11
+#: gui/prelobby/common/terms/Terms_of_Use.txt:12
 msgid " 6. Not incite violence or promote illegal acts."
 msgstr " 7. Nem szíthatsz erőszakot vagy támogathatsz törvénytelen tetteket."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:12
+#: gui/prelobby/common/terms/Terms_of_Use.txt:13
 msgid ""
 " 7. Not attempt to artificially adjust any user of the service's rating or "
 "any of the statistics which impact it. (Examples of this are, but are not "
@@ -1216,26 +1222,26 @@ msgid ""
 "taking advantage of other users of the service.)"
 msgstr "7. Nem kísérled meg a szolgáltatás egyetlen felhasználójának sem a minősítését, vagy az azt befolyásoló bármely statisztikájának mesterséges módosítását. (Például, de nem kizárólagosan: csalás rangsorolt játékban, a szolgáltatás visszafejtése, illetve a szolgáltatás más felhasználói elleni előnyszerzés.)"
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:13
+#: gui/prelobby/common/terms/Terms_of_Use.txt:14
 msgid ""
 " 8. Not undermine the intended gameplay or purposefully gain unfair "
 "advantages in multiplayer matches (for example cheating, using exploits or "
 "bugs)."
 msgstr " 8. Nem áshatod alá a szándékolt játékmenetet vagy szerezhetsz tisztességtelen előnyt a többjátékos mérkőzésekben (például csalással vagy hibák kihasználásával)"
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:14
+#: gui/prelobby/common/terms/Terms_of_Use.txt:15
 msgid ""
 " 9. Not spam the service and not post large amounts of repetitive or "
 "unwanted messages."
 msgstr " 9. Nem áraszthatod el a szolgáltatást nagy mennyiségű ismétlődő vagy kéretlen üzenettel."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:15
+#: gui/prelobby/common/terms/Terms_of_Use.txt:16
 msgid ""
 "10. Not use the service to promote specific goods, services, or products "
 "unless authorized by Wildfire Games."
 msgstr "10. Nem használhatod a szolgáltatást adott áruk, szolgáltatások és termékek promóciójához, hacsak nem engedélyezte ezt a Wildfire Games."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:17
+#: gui/prelobby/common/terms/Terms_of_Use.txt:18
 msgid ""
 "If a moderator deems your behavior to be inconsistent with these terms, your"
 " account may be restricted, suspended or terminated."
