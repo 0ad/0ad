@@ -38,7 +38,7 @@ msgstr "Conversar"
 
 #: gui/session/MenuButtons.js:53
 msgid "Save"
-msgstr "Guardar"
+msgstr "Servar"
 
 #: gui/session/MenuButtons.js:77
 msgid "Summary"
@@ -350,16 +350,16 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr "%(icon)s ¡%(attacker)s sta aggrediendo los reses!"
+msgstr "%(icon)s ¡%(attacker)s sta acutiendo los reses!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr "%(icon)s ¡%(attacker)s sta aggrediendo-te!"
+msgstr "%(icon)s ¡%(attacker)s sta acutiendo-te!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
-msgstr "Pica par infocar escontra la unidat acometida."
+msgstr "Pica par infocar escontra la unidat acutida."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
@@ -653,7 +653,7 @@ msgstr "Alternare los colores diplomáticos"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
-msgstr "Pedir a los comuñeiros q’aggredan isti inimigu"
+msgstr "Pedir a los comuñeiros q’acutan isti inimigu"
 
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
 msgctxt "team"
@@ -713,15 +713,15 @@ msgstr[1] "Algame addicional mediu: %(range)s metros"
 
 #: gui/session/input.js:702
 msgid "Cannot build wall here!"
-msgstr "¡Eiquí nun puode lhevantasse una cerca!"
+msgstr "¡Eiquí nun puode lhevantasse una muria!"
 
 #: gui/session/message_box/DeleteSelectionConfirmation.js:10
 msgid "Delete"
-msgstr "Eliminar"
+msgstr "Esmemorecer"
 
 #: gui/session/message_box/DeleteSelectionConfirmation.js:11
 msgid "Destroy everything currently selected?"
-msgstr "¿Eliminar todo lo escolyido?"
+msgstr "¿Disfhazer todo lo escolyido?"
 
 #: gui/session/dialogs/yes_no.xml:(caption):24
 #: gui/session/message_box/DeleteSelectionConfirmation.js:14
@@ -767,18 +767,18 @@ msgstr "¡Indagora nun sta sofhitado arrexhuntasse a partidas entre múltiplos x
 #: gui/session/message_box/OutOfSyncNetwork.js:34
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
-msgstr "Assegurade-vos de que todolos xhogadores usen las meesmas modificaciones."
+msgstr "Assegurade-vos de que todolos xhogadores usen las meesmas camudas."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:35
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr "Pica n “informar d’un falhu” nel menú principal p’axhudar a eguallu."
+msgstr "Pica n “informar d’un falhu” nel menú principal p’ajudar a eguallu."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:36
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Replay saved to %(filepath)s"
-msgstr "Archivou-se la repeticion in %(filepath)s"
+msgstr "Servou-se la repeticion in %(filepath)s"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:39
 #, javascript-format
@@ -841,7 +841,7 @@ msgstr "¿Stas ciertu que quieres salir?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:67
 msgid "Do you want to resign or will you return soon?"
-msgstr "¿Quieres rendite ou vas tornar de breve?"
+msgstr "¿Quieres rendite ou vas tornar de brieve?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:70
 msgid "I will return"
@@ -871,7 +871,7 @@ msgstr "¡Vinciesti!"
 
 #: gui/session/messages.js:105
 msgid "You have been defeated!"
-msgstr "¡Stas vincidu!"
+msgstr "¡Stas apoderadu!"
 
 #: gui/session/messages.js:410
 msgid "Click to quit this tutorial."
@@ -1201,29 +1201,29 @@ msgstr "Quedu"
 #: gui/session/selection_panels_helpers.js:73
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr "Acometer a inimigos próximos, centrando-se n aggresores & perseguiendo-los ta perdellos de vista"
+msgstr "Acutir inimigos próximos, centrando-se n aggresores & perseguiendo-los ta perdellos de vista"
 
 #: gui/session/selection_panels_helpers.js:75
 msgctxt "stance"
 msgid "Attack nearby opponents"
-msgstr "Acometer a inimigos próximos"
+msgstr "Acutir inimigos próximos"
 
 #: gui/session/selection_panels_helpers.js:77
 msgctxt "stance"
 msgid ""
 "Attack nearby opponents, chase a short distance and return to the original "
 "location"
-msgstr "Acometer a inimigos próximos, perseguiendo-los un pouco & d’a reo tornando a l sou puostu"
+msgstr "Acutir inimigos próximos, perseguiendo-los un pouco & d’a reo tornando a l sou puostu"
 
 #: gui/session/selection_panels_helpers.js:79
 msgctxt "stance"
 msgid "Flee if attacked"
-msgstr "Fhuxhir a l vesse acometidu"
+msgstr "Fhuxhir a l vesse acutidu"
 
 #: gui/session/selection_panels_helpers.js:81
 msgctxt "stance"
 msgid "Attack opponents in range, but don't move"
-msgstr "Acometer a inimigos aveirados in sin perseguillos"
+msgstr "Acutir inimigos aveirados in sin perseguillos"
 
 #: gui/session/selection_panels_helpers.js:95
 #, javascript-format
@@ -1484,7 +1484,7 @@ msgid ""
 "Select one type of goods you want to modify by clicking on it, and then use "
 "the arrows of the other types to modify their shares. You can also press "
 "%(hotkey)s while selecting one type of goods to bring its share to 100%%."
-msgstr "Escolyi l typu de bienes que quieras modificar picando n ilhi, & lhuogo usa las saietas pa camudare la proporcion entre los bienes. Tambien puodes premer %(hotkey)s a l escolyer un typu de bienes pa xubire la sua porcion a l 100 %%."
+msgstr "Escolyi l typu de bienes que quieras cambiar picando n ilhi, & lhuogo usa las saietas pa camudare la proporcion entre los bienes. Tambien puodes premer %(hotkey)s a l escolyer un typu de bienes pa xubire la sua porcion a l 100 %%."
 
 #: gui/session/trade/TradeDialogBarterPanel.js:45
 #, javascript-format
@@ -1677,7 +1677,7 @@ msgstr "Disoccupare las torretas."
 
 #: gui/session/unit_actions.js:1408
 msgid "Destroy the selected units or structures."
-msgstr "Eliminare las unidades ou structuras escolyidas."
+msgstr "Disfhazere las unidades ou structuras escolyidas."
 
 #: gui/session/unit_actions.js:1410
 #, javascript-format
@@ -1696,7 +1696,7 @@ msgstr "Inviare las unidades escolyidas a abançar a l sitiu siñaladu n deponie
 
 #: gui/session/unit_actions.js:1503
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr "Mandar que las unidades escolyidas s’abelluguen n una structura ou unidade."
+msgstr "Mandar que las unidades escolyidas s’abluguen n una structura ou unidade."
 
 #: gui/session/unit_actions.js:1525
 msgid "Order the selected units to occupy a turret point."
@@ -1738,7 +1738,7 @@ msgstr "Roldar"
 
 #: gui/session/unit_actions.js:1706
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr "Acometer a todalas unidades inimigas alcontradas evitando structuras."
+msgstr "Acutir todalas unidades inimigas alcontradas evitando structuras."
 
 #: gui/session/unit_actions.js:1734
 msgid "Press to allow allies to use this dropsite"
@@ -1775,8 +1775,8 @@ msgstr "Esso ha hi que lo matar par explotallo"
 #: gui/session/unit_actions.js:1888
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr "Nun puodes eliminar isti ente, des que ti correspuonde menos de la metada de la sua fidelidade"
+msgstr "Nun puodes disfhazer isti ente, des que ti correspuonde menos de la metada de la sua fidelidade"
 
 #: gui/session/unit_actions.js:1891
 msgid "This entity is undeletable"
-msgstr "Isti ente nun je eliminable"
+msgstr "Isti ente nun je disfactible"

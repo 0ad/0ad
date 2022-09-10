@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-09-03 07:08+0000\n"
+"POT-Creation-Date: 2022-09-05 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:50+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>, 2017-2022\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
@@ -61,19 +61,19 @@ msgstr "Ahospedar partida"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:40
 msgid "Your active mods do not match the mods of this game."
-msgstr "Las tuas modificaciones activas nun concassan cun las d’esta partida."
+msgstr "Las tuas camudas activas nun concassan cun las d’esta partida."
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
 msgid "Do you want to switch to the mod selection page?"
-msgstr "¿Quieres passar a la página “seleccion de modificaciones”?"
+msgstr "¿Quieres passar a la página “seleccion de camudas”?"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
 msgid "Incompatible mods"
-msgstr "Modificaciones incompatibles"
+msgstr "Camudas incompatibles"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
 msgid "The game has already started. Do you want to join as observer?"
-msgstr "La partida ja començou. ¿Quieres xhunhite cumo spectador?"
+msgstr "La partida ja intamou. ¿Quieres xhunhite cumo spectador?"
 
 #. Translation: Join the game currently selected in the list.
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:104
@@ -123,7 +123,7 @@ msgstr "Afhitare l stadu n “Absente”."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:95
 msgid "Set your state to 'Online'."
-msgstr "Afhitare l stadu n “Na Rede”."
+msgstr "Afhitare l stadu n “Nela Rede”."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:102
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
@@ -135,7 +135,7 @@ msgstr "Banir de l antepar a ciertu usuariu. Usu: /ban nick reason"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:126
 msgid "Show this help."
-msgstr "Amostrar esta axhuda."
+msgstr "Amostrar esta ajuda."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:129
 msgid "Chat commands:"
@@ -332,13 +332,13 @@ msgid "Yes"
 msgstr "Sí"
 
 #. Translation: The number of players and observers in this game
-#: gui/lobby/LobbyPage/Game.js:309
+#: gui/lobby/LobbyPage/Game.js:310
 #, javascript-format
 msgid "%(current)s/%(max)s +%(observercount)s"
 msgstr "%(current)s/%(max)s +%(observercount)s"
 
 #. Translation: The number of players in this game
-#: gui/lobby/LobbyPage/Game.js:312
+#: gui/lobby/LobbyPage/Game.js:313
 #, javascript-format
 msgid "%(current)s/%(max)s"
 msgstr "%(current)s/%(max)s"
@@ -353,11 +353,11 @@ msgstr "Partida infinita"
 msgid ""
 "You have some incompatible mods:\n"
 "%(details)s"
-msgstr "Tienes delhas modificaciones incompatibles:\n%(details)s"
+msgstr "Tienes delhas camudas incompatibles:\n%(details)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:123
 msgid "This mod does not affect MP compatibility"
-msgstr "Esta modificacion nun affecta a la compatibilidade cun outros xhogadores"
+msgstr "Esta camuda nun affecta a la compatibilidade cun outros xhogadores"
 
 #: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format
@@ -380,17 +380,17 @@ msgstr ", "
 
 #: gui/lobby/LobbyPage/GameDetails.js:151
 msgid "Mods:"
-msgstr "Modificaciones:"
+msgstr "Camudas:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:153
 msgid "Mods (incompatible):"
-msgstr "Modificaciones (incompatibles):"
+msgstr "Camudas (incompatibles):"
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/LobbyPage/GameDetails.js:156
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr "La partida imprimou a las %(time)s"
+msgstr "La partida intamou a las %(time)s"
 
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
 #: gui/lobby/LobbyPage/GameDetails.js:158
@@ -493,23 +493,23 @@ msgstr "Antepar"
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/LobbyPage/PlayerList.js:196
+#: gui/lobby/LobbyPage/PlayerList.js:197
 msgid "Online"
-msgstr "Na Rede"
+msgstr "Nela Rede"
 
-#: gui/lobby/LobbyPage/PlayerList.js:202
+#: gui/lobby/LobbyPage/PlayerList.js:203
 msgid "Away"
 msgstr "Absente"
 
-#: gui/lobby/LobbyPage/PlayerList.js:208
+#: gui/lobby/LobbyPage/PlayerList.js:209
 msgid "Busy"
 msgstr "Entremanadu"
 
-#: gui/lobby/LobbyPage/PlayerList.js:214
+#: gui/lobby/LobbyPage/PlayerList.js:215
 msgid "Offline"
 msgstr "Inconexu"
 
-#: gui/lobby/LobbyPage/PlayerList.js:220
+#: gui/lobby/LobbyPage/PlayerList.js:221
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Disconhoç-se"
@@ -578,7 +578,7 @@ msgstr "Rotas:"
 msgid "Win Rate:"
 msgstr "Taxa de victoria:"
 
-#: gui/lobby/ProfilePage/ProfilePage.js:70
+#: gui/lobby/ProfilePage/ProfilePage.js:86
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
 msgstr "Nun s’atopou a “%(nick)s”"
@@ -631,11 +631,11 @@ msgstr "Las tyaves nun concasan"
 
 #: gui/prelobby/common/credentials/credentials.js:54
 msgid "Are you sure you want to delete the password after connecting?"
-msgstr "¿Stas ciertu que quieres eliminare la tyave n conectiendo?"
+msgstr "¿Stas ciertu que quieres esmemorecere la tyave n conectiendo?"
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):6
 msgid "Login:"
-msgstr "Inicio de session:"
+msgstr "Intamu de session:"
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):15
 msgid "Password:"
@@ -680,7 +680,7 @@ msgstr "[font=\"sans-bold-14\"]1. Nome de l xhogador[/font]"
 msgid ""
 "The player is identified by a name that the player chooses at the time of "
 "registration."
-msgstr "A l xhogador identifica-se-lli pentre medias d’un nome que l xhogador escuolye a la hora de registrasse."
+msgstr "El xhogador je identificadu pentre medias d’un nome que l xhogador escuolye a la hora de registrasse."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:8
 msgid ""
@@ -697,7 +697,7 @@ msgid ""
 " information (such as the real name) was disclosed on the Lobby Chat, other "
 "services of Wildfire Games or elsewhere in the public, or when the IP "
 "address is used to bring criminal proceedings."
-msgstr "El nome de l xhogador sierve cumo pseudónimo. Wildfire Games disconhoç la identidade (persona natural) de los xhogadores, a nun ser que s’arrevelare informacion personalmente identificable (cumo l nome real) nela Conversa de l Antepar, n outros servicios de Wildfire Games ou n público, ou quando s’usen las siñas IP pa formular processos penales."
+msgstr "El nome de l xhogador sierve cumo pseudónimo. Wildfire Games disconhoç la identidade (persona natural) de los xhogadores, a nun ser que fhues arrevelada informacion personalmente identificable (cumo l nome real) nela Conversa de l Antepar, n outros servicios de Wildfire Games ou n público, ou quando fhueren usadas las siñas IP pa formular processos penales."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
@@ -707,14 +707,14 @@ msgstr "[font=\"sans-bold-14\"]2. Tyave d’accessu[/font]"
 msgid ""
 "A player is authenticated using a password that the player chooses at the "
 "time of registration."
-msgstr "A l xhogador authentica-se-lli pentre medias d’una tyave que l xhogador escuolye a la hora de registrasse."
+msgstr "El xhogador je authenticadu pentre medias d’una tyave que l xhogador escuolye a la hora de registrasse."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:13
 msgid ""
 "Wildfire Games only receives an encrypted version of the password, so that "
 "the password chosen by the user is not revealed to Wildfire Games or others "
 "in case of a breach."
-msgstr "Wildfire Games solo recibe una version cifrada de la tyave, pa que la tyave escolyida pol usuariu nun s’arrevele a Wildfire Games nen a outros in casu d’un falhu de segurancia."
+msgstr "Wildfire Games solo recibe una version cifrada de la tyave, pa que la tyave escolyida pol usuariu nun fhuer revelada a Wildfire Games nen a outros in casu d’un falhu de segurancia."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:15
 msgid "[font=\"sans-bold-14\"]3. IP address[/font]"
@@ -725,7 +725,7 @@ msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr "Quando l xhogador ahospeda una partida n Antepar, invian-se las siñas IP d’issi xhogador a todolos xhogadores que stuvieren nela Rede, pa q’outros xhogadores puodan xhunhisse a essa partida."
+msgstr "Quando l xhogador ahospeda una partida n Antepar, son inviadas las siñas IP d’essi xhogador a todolos xhogadores que stean nela Rede, pa q’outros xhogadores puodan xhunhisse a essa partida."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
@@ -751,7 +751,7 @@ msgstr "Las siñas IP nun van conservasse per mas de trés anhos par esti propó
 msgid ""
 " 2. Make it possible to bring criminal proceedings in case of a cyberattack "
 "(EU Court of Justice Press Release No 112/16)."
-msgstr " 2. Fhazer possible la formulacion de processos criminales in casu de ciber-agression (EU Court of Justice Press Release No 112/16)."
+msgstr " 2. Fhazer possible la formulacion de processos criminales in casu de cyber-agression (EU Court of Justice Press Release No 112/16)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:21
 msgid ""
@@ -759,7 +759,7 @@ msgid ""
 "particular not for marketing, not otherwise disclose IP addresses to the "
 "public or third parties and erase IP addresses if they are not relevant for "
 "the stated purposes anymore."
-msgstr "Wildfire Games nun vai usare l registro de siñas IP pa nengun outro propósito, in particular non pa mercadexhar, non arrevelar outramiente siñas IP a l público ou terceiros & vai borrar siñas IP si nun fhueren ja relevantes pa dithos propósitos."
+msgstr "Wildfire Games nun vai usare l registro de siñas IP pa nengun outro propósito, in particular non pa mercadexhar, non revelar outramiente siñas IP a l público ou terceiros & vai oblitterar siñas IP si nun fhueren ja relevantes pa dithos propósitos."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:23
 msgid "[font=\"sans-bold-14\"]4. Online presence[/font]"
@@ -836,7 +836,7 @@ msgstr "Wildfire Games atrousa statísticas de partida par:"
 msgid ""
 " 1. Verify the accuracy of the rating score and identify and enforce Terms "
 "of Use violations relating to that."
-msgstr " 1. Comprobare la precision de la classificacion & la identidade & fhazer complire las violaciones de los términos d’usu relativos a elho."
+msgstr " 1. Comprobare la exactitude de la classificacion & la identidade & fhazer complire las violaciones de los términos d’usu relativos a elho."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:39
 msgid ""
@@ -858,13 +858,13 @@ msgstr "La transmission de datos personales je assegurada pentre medias de l cif
 msgid ""
 "Personal data is protected against unintentional loss in encrypted backups "
 "for additional time (GDPR 30.1.g, GDPR 32)."
-msgstr "Los datos personales protegen-se contra la perda accidental in copias cifradas per mas tiempu (GDPR 30.1.g, GDPR 32)."
+msgstr "Datos personales son protegidos contra la perda involuntaria n copias cifradas per tiempu addicional (GDPR 30.1.g, GDPR 32)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:45
 msgid ""
 "All personal data that Wildfire Games processes is obtained from the user "
 "(GDPR 14)."
-msgstr "Todolos datos personales que trata Wildfire Games s’obtienen de l usuariu (GDPR 14)."
+msgstr "Todolos datos personales que Wildfire Games trata son obtenidos de l usuariu (GDPR 14)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:46
 msgid ""
@@ -889,14 +889,14 @@ msgid ""
 "Lobby, in the development and improvement of 0 A.D. and the Multiplayer "
 "Lobby, in enforcing the Terms of Use and in the protection against "
 "cyberattacks (GDPR 6.1.f)."
-msgstr "2. Wildfire Games tien interesses legítimos n aprovire l Antepar, nel disindolcu & melyora de 0 A.D. & l Antepar, in fhazer complire los términos d’usu & nela proteccion contra ciber-aggresiones (GDPR 6.1.f)."
+msgstr "2. Wildfire Games tien interesses legítimos n aprovire l Antepar, nel disindolcu & melyora de 0 A.D. & l Antepar, in fhazer complire los términos d’usu & nela proteccion contra cyber-aggresiones (GDPR 6.1.f)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:51
 msgid ""
 "3. Wildfire Games does not process any further data for the Multiplayer "
 "Lobby and does not ask for consent to process data (GDPR 6.1.a, GDPR 7, GDPR"
 " 8, GDPR 13.2.c)."
-msgstr "3. Wildfire Games nun trata outros datos pa l Antepar & nun pide assenso pa tratar datos (GDPR 6.1.a, GDPR 7, GDPR 8, GDPR 13.2.c)."
+msgstr "3. Wildfire Games nun trata dal outro dato pa l Antepar & nun pide assenso pa tratar datos (GDPR 6.1.a, GDPR 7, GDPR 8, GDPR 13.2.c)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:53
 msgid "[font=\"sans-bold-16\"]User rights:[/font]"
@@ -906,7 +906,7 @@ msgstr "[font=\"sans-bold-16\"]Direithos de l usuariu:[/font]"
 msgid ""
 "1. Contact Wildfire Games, by sending an email to webmaster at wildfiregames"
 " dot com (GDPR 13.1.a, GDPR 13.1.b)."
-msgstr "1. Ponesse n contactu cun Wildfire Games, inviando un correu electrónicu a webmaster arroba wildfiregames punto com (GDPR 13.1.a, GDPR 13.1.b)."
+msgstr "1. Contactar cun Wildfire Games, inviando una carta electrónica a webmaster arroba wildfiregames punto com (GDPR 13.1.a, GDPR 13.1.b)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:55
 msgid "   To exercise any user right, please refer to this contact."
@@ -930,14 +930,14 @@ msgid ""
 "5. Right to erasure of personal data where it is not relevant to the stated "
 "purposes, if the data was processed unlawfully or if the user objects to the"
 " processing and has overriding legitimate grounds (GDPR 17)."
-msgstr "5. Direithu a la borradura de datos personales quando nun fhueren relevantes a los propósitos indicados, si los datos se trataren illegalmente ou si l usuariu s’oponxier a l tratamiento & tuvier razonamientos legítimos par invalidallo (GDPR 17)."
+msgstr "5. Direithu a la oblitteracion de datos personales quando nun fhueren relevantes a los propósitos indicados, si los datos fhuessen tratados illegalmente ou si l usuariu s’oponxier a l tratamiento & tevier razonamientos legítimos par invalidallo (GDPR 17)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:60
 msgid ""
 "6. Right to restriction of personal data processing where the accuracy of "
 "the data is contested by the user, if the data was processed unlawfully or "
 "if the user requires the data for a legal claim (GDPR 18)."
-msgstr "6. Direithu a la restriccion de l tratamiento de datos personales quando l usuariu impugnare la precision de los datos, si los datos se trataren illegalmente ou si l usuariu requexhier de los datos par una demanda legal (GDPR 18)."
+msgstr "6. Direithu a la restriccion de l tratamiento de datos personales quando l usuariu impugnare la exactitude de los datos, si los datos fhuessen tratados illegalmente ou si l usuariu requexhier de los datos par una demanda legal (GDPR 18)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:61
 msgid ""
@@ -955,7 +955,7 @@ msgstr "8. Direithu a interponer una queixa ante una authoridade supervisora (GD
 msgid ""
 "Requests that are manifestly unfounded or excessive are not responded to or "
 "may be charged (GDPR 12.4, GDPR 12.5)."
-msgstr "Las peticiones que rescamplen por carecer de fundamento ou ser excessivas nun se respuonden ou puoden cargasse (GDPR 12.4, GDPR 12.5)."
+msgstr "Peticiones que rescamplen por carecer de fundamento ou ser excessivas nun se respuonden ou puoden ser cargadas (GDPR 12.4, GDPR 12.5)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:65
 msgid "[font=\"sans-bold-16\"]Wildfire Games obligations:[/font]"
@@ -987,7 +987,7 @@ msgid ""
 "is processed, recipients of personal data and where applicable, transfer of "
 "personal data to third countries and automated decision-making (GDPR "
 "13.1.c-f, GDPR 13.2.a, GDPR 13.2.e-f, GDPR 15.1, GDPR 15.4)."
-msgstr " 4. Wildfire Games informa a los usuarios de los propósitos, fundamentos legales, interesses legítimos & períodos de retencion de l tratamiento de datos personales a l in par que se tratan, receptores de datos personales & quando proceda, transferencia de datos personales a países terceiros & toma de determinos automatizada (GDPR 13.1.c-f, GDPR 13.2.a, GDPR 13.2.e-f, GDPR 15.1, GDPR 15.4)."
+msgstr " 4. Wildfire Games informa a los usuarios de los propósitos, fundamentos legales, interesses legítimos & períodos de retencion de l tratamiento de datos personales a la hora que son tratados, receptores de datos personales & quando proceda, transferencia de datos personales a países terceiros & toma de determinos automatizada (GDPR 13.1.c-f, GDPR 13.2.a, GDPR 13.2.e-f, GDPR 15.1, GDPR 15.4)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:70
 msgid ""
@@ -1021,7 +1021,7 @@ msgid ""
 "erase personal data and the right to restrict, to withdraw consent to, to "
 "object to personal data processing and to complain at a supervisory "
 "authority (GDPR 13.2.b, GDPR 13.2.c, GDPR 13.2.d)."
-msgstr " 9. Wildfire Games informa a los usuarios de l sou direithu a acceder, rectificar, borrar datos personales & el direithu a restringir, arretirare l assenso, opponesse a l tratamiento de datos personales & queixasse ante una authoridade supervisora (GDPR 13.2.b, GDPR 13.2.c, GDPR 13.2.d)."
+msgstr " 9. Wildfire Games informa a los usuarios de l sou direithu a acceder, rectificar, oblitterar datos personales & el direithu a restringir, arretirare l assenso, opponesse a l tratamiento de datos personales & queixasse ante una authoridade supervisora (GDPR 13.2.b, GDPR 13.2.c, GDPR 13.2.d)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:75
 msgid ""
@@ -1034,7 +1034,7 @@ msgid ""
 "11. Wildfire Games informs the users that to exercise their rights, users "
 "might need to provide additional information to identify the natural person "
 "or the data (GDPR 12.6, GDPR 13.2.e)."
-msgstr "11. Wildfire Games informa a los usuarios de que, par exercere los sous direithos, los usuarios podríen tener d’aporrir mas informacion par identificare la persona natural ou los datos (GDPR 12.6, GDPR 13.2.e)."
+msgstr "11. Wildfire Games informa a los usuarios de que, par exercere los sous direithos, los usuarios podríen tener d’aprovir mas informacion par identificare la persona natural ou los datos (GDPR 12.6, GDPR 13.2.e)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:77
 msgid ""
@@ -1042,7 +1042,7 @@ msgid ""
 "under the age of 13 (Children's Online Privacy Protection Act). If you "
 "believe Wildfire Games received any personal data from or about a child "
 "under 13, please contact Wildfire Games."
-msgstr "12. Wildfire Games nun vai arrexhuntar a sabiendas los datos personales de nenhos menores de 13 anhos (“Children's Online Privacy Protection Act”). Si creies que Wildfire Games recibiere qualesquiera datos personales de ou sobre un nenhu menor de 13 anhos, pon-te n contactu cun Wildfire Games, por favor."
+msgstr "12. Wildfire Games nun vai arrexhuntar a propriu intentu los datos personales de nenhos minores de 13 anhos (“Children's Online Privacy Protection Act”). Si creies que Wildfire Games recibiere qualesquiera datos personales de ou sobre un nenhu minor de 13 anhos, pon-te n contactu cun Wildfire Games, por favor."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:78
 msgid ""
@@ -1053,7 +1053,7 @@ msgid ""
 "interests do not override Wildfire Games legitimate interests, and that "
 "Wildfire Games is not using personal data in intrusive ways unless there is "
 "a very good reason to."
-msgstr "13. Quando Wildfire Games trata datos personales sensibles basadu n interesses legítimos, Wildfire Games considera fhazer, registrar & revisar periodicamente Evaluaciones d’Interesses Legítimos & Evaluaciones de l Impactu nela Proteccion de Datos (GDPR 35) p’assegurasse de que los interesses de l individuu nun invaliden los interesses legítimos de Wildfire Games, & que Wildfire Games nun use datos personales de fhorma invasiva, a nun ser q’habia per-bona razon pa fhazello."
+msgstr "13. Quando Wildfire Games trata datos personales sensibles basadu n interesses legítimos, Wildfire Games considera fhazer, registrar & revisar periodicamente Evaluaciones d’Interesses Legítimos & Evaluaciones de l Impactu nela Proteccion de Datos (GDPR 35) p’assegurasse de que los interesses de l individuu nun invaliden los interesses legítimos de Wildfire Games, & que Wildfire Games nun use datos personales de fhorma invasiva, a nun ser q’houbier per-bona razon pa fhazello."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:80
 msgid ""
@@ -1106,7 +1106,7 @@ msgid ""
 " 2. Not use the service with third-party software or mods that prevents the "
 "user from being informed of updated Terms and Conditions, unless authorized "
 "by a Wildfire Games team member."
-msgstr " 2. Nun usare l servicio cun programmas de terceiros ou modificaciones que torgaren a l usuariu informasse de términos & condiciones anovados, a nun ser q’un miembru de l personal de Wildfire Games lo authorize."
+msgstr " 2. Nun usare l servicio cun programmas de terceiros ou camudas que torgaren a l usuariu inteirasse de términos & condiciones anovados, a nun ser q’un miembru de l personal de Wildfire Games lo authorize."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:13
 msgid ""
@@ -1138,7 +1138,7 @@ msgid ""
 " 4. Change the service or the terms. The document date of the terms indicate"
 " its version, and the user is informed of the new terms before being able to"
 " use the service again."
-msgstr " 4. Mudare l servicio ou los términos. La data de l documento de los términos indica la version de sou, & a l usuariu informa-se-lli de los términos nuovos antea de poder tornar a usare l servicio. "
+msgstr " 4. Camudare l servicio ou los términos. La data de l documento de los términos indica la version de sou, & l usuariu je informadu de los términos nuovos antea de poder tornar a usare l servicio. "
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:20
 msgid ""
@@ -1151,7 +1151,7 @@ msgstr " 5. Tratar datos personales d’acordias cun la Política de Privacidade
 msgid ""
 "If parts of the terms are held to be illegal or otherwise unenforceable, the"
 " remainder of the terms shall still apply ('severability')."
-msgstr "Si daqué parte de los términos se tuvier por illegal ou outramiente inexecutable, el restu de los términos in toda vía applicarán (“severability”)."
+msgstr "Si daqué parte de los términos se tevier por illegal ou outramiente inexecutable, el restu de los términos in toda vía seran applicables (“severability”)."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:1
 msgid ""
@@ -1160,33 +1160,39 @@ msgid ""
 msgstr "[font=\"sans-bold-18\"]Términos d’Usu de l Antepar de 0 A.D. Empires Ascendant[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:3
-msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-13"
-msgstr "[font=\"sans-bold-14\"]Data de l documento:[/font] 2018-10-13"
+msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2022-09-01"
+msgstr "[font=\"sans-bold-14\"]Data de l documento:[/font] 2022-09-01"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:6
 msgid ""
-" 1. Only create one account per person on the service unless authorized by "
-"Wildfire Games."
-msgstr " 1. Crear nelo servicio solo una cuonta per persona, a nun ser que Wildfire Games lo authorize."
+" 1. a. Only create one account per person on the service unless authorized "
+"by Wildfire Games."
+msgstr " 1. a. Crear nel servicio solo una cuonta per persona, a nun ser que Wildfire Games lo authorize."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:7
+msgid ""
+"    b. Not share your account with anyone and not publish or divulge to "
+"anyone the account password."
+msgstr "    b. Nun compartir cun nengunu la tua cuonta & nun publicar ou esplenar a nengunu la tyave de la cuonta."
+
+#: gui/prelobby/common/terms/Terms_of_Use.txt:8
 msgid ""
 " 2. Not impersonate other users of the service and only use your registered "
 "username in multiplayer matches."
 msgstr " 2. Nun supplantar a outros usuarios de l servicio & usar solo l tou nome d’usuariu official in partidas de múltiplos xhogadores."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:8
+#: gui/prelobby/common/terms/Terms_of_Use.txt:9
 msgid " 3. Not post profanity, pejorative terms or pornographic content."
 msgstr "3. Nun publicar obscenidades, términos peiorativos ou contenido pornográfico."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:9
+#: gui/prelobby/common/terms/Terms_of_Use.txt:10
 msgid ""
 " 4. Not harass, harm, intimidate, discriminate, threaten, defame, cause "
 "damage to others or purposefully demean the worth of others using this "
 "service."
 msgstr " 4. Nun vexar, nocer, intimidar, discriminar, minaciar, diffamar, damnificar a outros ou vilitar a queriendas el valor d’outros usuarios d’esti servicio."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:10
+#: gui/prelobby/common/terms/Terms_of_Use.txt:11
 msgid ""
 " 5. Not violate the privacy of others by disclosing personally identifiable "
 "information (for example real name, location, ID) or private details (for "
@@ -1194,11 +1200,11 @@ msgid ""
 "consent."
 msgstr " 5. Nun violare la privacidade d’outros publicando informaciones personalmente identificables (por exemplo nome verdadeiru, ubicacion, ID) ou privadas (por exemplo nomes de medios sociales ou cuontas de messenger) d’outros sin l assenso de sou."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:11
+#: gui/prelobby/common/terms/Terms_of_Use.txt:12
 msgid " 6. Not incite violence or promote illegal acts."
 msgstr " 6. Nun incitare la violenca ou promover acciones illegales."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:12
+#: gui/prelobby/common/terms/Terms_of_Use.txt:13
 msgid ""
 " 7. Not attempt to artificially adjust any user of the service's rating or "
 "any of the statistics which impact it. (Examples of this are, but are not "
@@ -1206,30 +1212,30 @@ msgid ""
 "taking advantage of other users of the service.)"
 msgstr " 7. Nun tentar d’axhustar artificialmente la classificacion de nengun usuariu de l servicio nen dal statística que lli affecte. (Exemplos d’elho, entre outros, son: trampexhar in partidas classificadas, deduzire la structura de l servicio & aproveithasse d’outros usuarios de l servicio.)"
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:13
+#: gui/prelobby/common/terms/Terms_of_Use.txt:14
 msgid ""
 " 8. Not undermine the intended gameplay or purposefully gain unfair "
 "advantages in multiplayer matches (for example cheating, using exploits or "
 "bugs)."
 msgstr " 8. Nun surruere l disinvolvemiento normal de l xhuogu ou obtener a propósito ventalyas inxhustas in partidas de múltiplos xhogadores (por exemplo trampexhando, aproveithando explotaciones ou falhos)."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:14
+#: gui/prelobby/common/terms/Terms_of_Use.txt:15
 msgid ""
 " 9. Not spam the service and not post large amounts of repetitive or "
 "unwanted messages."
 msgstr " 9. Nun inviar a l servicio puxarra electrónica & nun publicar abondos recados repetitivos ou non deseiados."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:15
+#: gui/prelobby/common/terms/Terms_of_Use.txt:16
 msgid ""
 "10. Not use the service to promote specific goods, services, or products "
 "unless authorized by Wildfire Games."
 msgstr "10. Nun usare l servicio pa promover bienes, servicios, ou productos specíficos a nun ser que Wildfire Games lo authorize."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:17
+#: gui/prelobby/common/terms/Terms_of_Use.txt:18
 msgid ""
 "If a moderator deems your behavior to be inconsistent with these terms, your"
 " account may be restricted, suspended or terminated."
-msgstr "Si algun moderador xhulgare que la tua conducta nun s’afhai a estos términos, la tua cuonta puode restringisse, suspendesse ou terminasse."
+msgstr "Si algun moderador xhulgare sere la tua conducta inconcordante cun estos términos, la tua cuonta puode ser restringida, suspendida ou terminada."
 
 #: gui/prelobby/common/terms/termslobby.js:9
 msgid "Terms of Service"
@@ -1261,7 +1267,7 @@ msgstr "Crear una cuonta nuova"
 
 #: gui/prelobby/entrance/entrance.xml:(caption):25
 msgid "Login to an existing account"
-msgstr "Iniciar session"
+msgstr "Intamar session"
 
 #: gui/prelobby/login/login.js:5
 msgid "Connect"

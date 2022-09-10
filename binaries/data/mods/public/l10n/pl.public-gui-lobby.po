@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -26,9 +26,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-09-03 07:08+0000\n"
-"PO-Revision-Date: 2021-10-05 05:29+0000\n"
-"Last-Translator: Marcin S\n"
+"POT-Creation-Date: 2022-09-05 07:09+0000\n"
+"PO-Revision-Date: 2014-06-19 17:50+0000\n"
+"Last-Translator: Marcin S <dzidek1003@o2.pl>, 2016,2021\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -350,13 +350,13 @@ msgid "Yes"
 msgstr "Tak"
 
 #. Translation: The number of players and observers in this game
-#: gui/lobby/LobbyPage/Game.js:309
+#: gui/lobby/LobbyPage/Game.js:310
 #, javascript-format
 msgid "%(current)s/%(max)s +%(observercount)s"
 msgstr "%(current)s/%(max)s +%(observercount)s"
 
 #. Translation: The number of players in this game
-#: gui/lobby/LobbyPage/Game.js:312
+#: gui/lobby/LobbyPage/Game.js:313
 #, javascript-format
 msgid "%(current)s/%(max)s"
 msgstr "%(current)s/%(max)s"
@@ -511,23 +511,23 @@ msgstr "Poczekalnia trybu wieloosobowego"
 msgid "%(nick)s (%(rating)s)"
 msgstr "%(nick)s (%(rating)s)"
 
-#: gui/lobby/LobbyPage/PlayerList.js:196
+#: gui/lobby/LobbyPage/PlayerList.js:197
 msgid "Online"
 msgstr "Dostępny"
 
-#: gui/lobby/LobbyPage/PlayerList.js:202
+#: gui/lobby/LobbyPage/PlayerList.js:203
 msgid "Away"
 msgstr "Oddalony"
 
-#: gui/lobby/LobbyPage/PlayerList.js:208
+#: gui/lobby/LobbyPage/PlayerList.js:209
 msgid "Busy"
 msgstr "Zajęty"
 
-#: gui/lobby/LobbyPage/PlayerList.js:214
+#: gui/lobby/LobbyPage/PlayerList.js:215
 msgid "Offline"
 msgstr "Rozłączony"
 
-#: gui/lobby/LobbyPage/PlayerList.js:220
+#: gui/lobby/LobbyPage/PlayerList.js:221
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Nieznane"
@@ -596,7 +596,7 @@ msgstr "Przegrane:"
 msgid "Win Rate:"
 msgstr "Współczynnik zwycięstw:"
 
-#: gui/lobby/ProfilePage/ProfilePage.js:70
+#: gui/lobby/ProfilePage/ProfilePage.js:86
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
 msgstr "Gracz \"%(nick)s\" nie został znaleziony."
@@ -1178,33 +1178,39 @@ msgid ""
 msgstr "[font=\"sans-bold-18\"]Warunki korzystania z 0 A.D. Empires Ascendant Multiplayer Lobby[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:3
-msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-13"
-msgstr "[font=\"sans-bold-14\"]Data dokumentu:[/font] 13.10.2018"
+msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2022-09-01"
+msgstr ""
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:6
 msgid ""
-" 1. Only create one account per person on the service unless authorized by "
-"Wildfire Games."
-msgstr "1. Możesz stworzyć jedno konto w usłudze, chyba że masz autoryzację Wildfire Games."
+" 1. a. Only create one account per person on the service unless authorized "
+"by Wildfire Games."
+msgstr ""
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:7
+msgid ""
+"    b. Not share your account with anyone and not publish or divulge to "
+"anyone the account password."
+msgstr ""
+
+#: gui/prelobby/common/terms/Terms_of_Use.txt:8
 msgid ""
 " 2. Not impersonate other users of the service and only use your registered "
 "username in multiplayer matches."
 msgstr "2. Nie możesz podszywać się pod innych użytkowników usługi i używać jedynie swojej zarejestrowanej nazwy w grach multiplayer."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:8
+#: gui/prelobby/common/terms/Terms_of_Use.txt:9
 msgid " 3. Not post profanity, pejorative terms or pornographic content."
 msgstr "3. Nie publikuj wulgaryzmów, obraźliwych określeń ani treści pornograficznych."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:9
+#: gui/prelobby/common/terms/Terms_of_Use.txt:10
 msgid ""
 " 4. Not harass, harm, intimidate, discriminate, threaten, defame, cause "
 "damage to others or purposefully demean the worth of others using this "
 "service."
 msgstr "4. Nie wolno nękać, zastraszać, dyskryminować, grozić, zniesławiać, szkodzić innym ani celowo obniżać wartości innych osób korzystających z tej usługi."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:10
+#: gui/prelobby/common/terms/Terms_of_Use.txt:11
 msgid ""
 " 5. Not violate the privacy of others by disclosing personally identifiable "
 "information (for example real name, location, ID) or private details (for "
@@ -1212,11 +1218,11 @@ msgid ""
 "consent."
 msgstr "5. Nie naruszaj prywatności innych osób, ujawniając informacje umożliwiające identyfikację osoby (na przykład prawdziwe imię i nazwisko, położenie, media społecznościowe lub nazwy innych kont) bez jej zgody."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:11
+#: gui/prelobby/common/terms/Terms_of_Use.txt:12
 msgid " 6. Not incite violence or promote illegal acts."
 msgstr "6. Nie zachęcaj do przemocy ani nie promuj nielegalnych działań."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:12
+#: gui/prelobby/common/terms/Terms_of_Use.txt:13
 msgid ""
 " 7. Not attempt to artificially adjust any user of the service's rating or "
 "any of the statistics which impact it. (Examples of this are, but are not "
@@ -1224,26 +1230,26 @@ msgid ""
 "taking advantage of other users of the service.)"
 msgstr "7. Niedozwolona jest sztuczna zmiana oceny użytkownika lub innych statystyk, które na nią wpływają (Na przykład, lecz nie tylko: oszukiwanie w grach rankingowych, inżynieria wsteczna usługi, wykorzystywanie innych użytkowników korzystających z usługi)."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:13
+#: gui/prelobby/common/terms/Terms_of_Use.txt:14
 msgid ""
 " 8. Not undermine the intended gameplay or purposefully gain unfair "
 "advantages in multiplayer matches (for example cheating, using exploits or "
 "bugs)."
 msgstr "8. Nie niszcz rozgrywki lub celowo osiągaj nieuczciwe korzyści w rozgrywkach wieloosobowych (na przykład oszukiwanie, wykorzystywanie exploitów lub błędów)."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:14
+#: gui/prelobby/common/terms/Terms_of_Use.txt:15
 msgid ""
 " 9. Not spam the service and not post large amounts of repetitive or "
 "unwanted messages."
 msgstr "9. Nie spamuj i nie publikuj dużych liczb powtarzających się lub niechcianych wiadomości."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:15
+#: gui/prelobby/common/terms/Terms_of_Use.txt:16
 msgid ""
 "10. Not use the service to promote specific goods, services, or products "
 "unless authorized by Wildfire Games."
 msgstr "10. Nie używaj tej usługi do promowania określonych towarów, usług lub produktów, chyba że uzyskają autoryzację Wildfire Games."
 
-#: gui/prelobby/common/terms/Terms_of_Use.txt:17
+#: gui/prelobby/common/terms/Terms_of_Use.txt:18
 msgid ""
 "If a moderator deems your behavior to be inconsistent with these terms, your"
 " account may be restricted, suspended or terminated."

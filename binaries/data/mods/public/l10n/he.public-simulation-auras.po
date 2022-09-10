@@ -7,12 +7,13 @@
 # aqua -
 # jon hauger
 # Ruby Gross
+# Vladimir Amir
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-07-04 07:10+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: jon hauger <getnewsp@protonmail.com>, 2021\n"
+"Last-Translator: Vladimir Amir, 2022\n"
 "Language-Team: Hebrew (http://www.transifex.com/wildfire-games/0ad/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,23 +23,23 @@ msgstr ""
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr ""
+msgstr "מנועי מצור שמוצבים 3+ לקצב ההתחדשות התַּקִּינוֹת"
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
-msgstr "ארסנל תיקונים."
+msgstr "תיקונים בנשקייה "
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr ""
+msgstr "ספינות שמוצבות 10+ לקצב ההתחדשות התַּקִּינוֹת"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
-msgstr "תיקונים בספינה"
+msgstr "תיקונים במִספָּנָה"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr ""
+msgstr "חיילים 20%+ לנזק תקיפת תִגרָה או מרוחקת"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -47,7 +48,7 @@ msgstr "הלהט הדתי"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr "+15% מהירות נאסף לעובדים."
+msgstr "פועלים 15%+ מהירות איסוף"
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
@@ -57,15 +58,15 @@ msgstr "אַהֲבַת הַמוֹלֶדֶת"
 msgid ""
 "Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack "
 "damage."
-msgstr ""
+msgstr "חיילים 1+ לעמידות מפני ריסוק, גדיעה, דקירה ו- 10%+ לנזק תקיפת תִגרָה או מרוחקת"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
-msgstr "נוכחות מופנית"
+msgstr "נוכחות מעודדת"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
-msgstr "-5% בריאות לגיבורים."
+msgstr "לגיבורים 5% פחות בריאות"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -73,15 +74,15 @@ msgstr "הכהונה רבת עוצמה"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −15% technology resource costs and research time."
-msgstr ""
+msgstr "מבנים מפחיתים ב 5% עלות משאבים טכנולוגים וזמן המחקר"
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
-msgstr "מרכז המלגות"
+msgstr "מרכז הלַמדָנוּת"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
-msgstr ""
+msgstr "מבנים מעלים ב 50% את קצב ההתחדשות של נקודות לְכִידָה לחֵיל מַצָּב"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -89,7 +90,7 @@ msgstr "נאמנות"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
-msgstr "+20% מהירות תנועה לסוחרים."
+msgstr "סוחרים 20%+ מהירות תנועת"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
@@ -97,7 +98,7 @@ msgstr "צו של אשוקה"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraDescription
 msgid "Humans +1 health regeneration rate."
-msgstr ""
+msgstr "בני אדם מקבלים 1+ לקצב הבראה"
 
 #: simulation/data/auras/structures/temple_heal.jsonauraName
 msgid "Medical Treatment"
@@ -105,7 +106,7 @@ msgstr "טיפול רפואי"
 
 #: simulation/data/auras/structures/theater.jsonauraDescription
 msgid "Structures +20% territory influence radius."
-msgstr ""
+msgstr "מבנים מעלים את מחוג ההשפעה של שטח ב 20% "
 
 #: simulation/data/auras/structures/theater.jsonauraName
 msgid "Hellenization"
@@ -114,33 +115,33 @@ msgstr "ההלניזציה"
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid ""
 "Turreted Soldiers +3 crush, hack, pierce resistance and +20 vision range."
-msgstr ""
+msgstr "חיילים אמינים מקבלים 3+ לעמידות מפני ריסוק, גדיעה, דקירה ו 20+ למרחק תצפית"
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
-msgstr "הגנה על הקיר"
+msgstr "הגנת הקירות"
 
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraDescription
 msgid ""
 "+20% maximum population limit (requires the “Glorious Expansion” "
 "technology)."
-msgstr ""
+msgstr "20%+ למגבלת אוכלוסיה מרבית (דרושה טכנולוגיה \"התפשטות מפוארת\")"
 
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
-msgstr "התרחבות מפוארת"
+msgstr "התפשטות מפוארת"
 
 #: simulation/data/auras/structures/xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned inside the building."
-msgstr ""
+msgstr "יחידות צוברות ניסיון כל הזמן שמוצבות בתוך בניינים"
 
 #: simulation/data/auras/structures/xp_trickle.jsonauraName
 msgid "Rigorous Training"
-msgstr ""
+msgstr "אימון מַחמִיר"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Warships −25% construction time."
-msgstr ""
+msgstr "ספינות קרב נִבְנוֹת יותר מהר ב 25%"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Delian League"
@@ -148,7 +149,7 @@ msgstr "הליגה האטית-דלית\n "
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
-msgstr ""
+msgstr "20%- עלות משאבים להכשרת מַרְפְּאִים "
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -156,31 +157,31 @@ msgstr "דרואידים"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "+10% international trade bonus."
-msgstr ""
+msgstr "10%+  בונוס סחר בינלאומי"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Trademasters"
-msgstr "Trademasters"
+msgstr "אומני מסחר"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Forges −15% technology resource costs and research time."
-msgstr ""
+msgstr "מַפָּחָה מפחיתה ב 15% עלות משאבים טכנולוגים וזמן המחקר\n"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Products from Gaul"
-msgstr ""
+msgstr "מוצרים מגאליה"
 
 #: simulation/data/auras/teambonuses/han_player_teambonus.jsonauraDescription
 msgid "Allies +20% international trade bonus."
-msgstr ""
+msgstr "20%+  בונוס סחר בינלאומי לבני ברית"
 
 #: simulation/data/auras/teambonuses/han_player_teambonus.jsonauraName
 msgid "Silk Road"
-msgstr ""
+msgstr "דרך המשי"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Citizen Javelineers −10% resource costs."
-msgstr ""
+msgstr "10%- עלות משאבים עבור מַטִּילי כידונים"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -188,25 +189,25 @@ msgstr "סרפיקו "
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
 msgid "Elephants −20% resource costs and training time."
-msgstr ""
+msgstr "20%- עלות משאבים וזמן לאימון פילים\n"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
-msgstr "הספקים פיל"
+msgstr "ספקי פילים"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
 msgid "Siege Weapons and Arsenals −25% resource costs and build time."
-msgstr ""
+msgstr "20%- עלות משאבים וזמן הבניה של כלי מצור ונשקייות "
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Mechanical Innovation"
-msgstr ""
+msgstr "חדשנות מכנית"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
 "Temples −50% resource costs and building time; Temple technologies −50% "
 "resource costs and research time."
-msgstr ""
+msgstr "50%- עלות משאבים וזמן הבניה של בתי מקדש;\n50%- עלות משאבים וזמן המחקר של טכנולוגיות בבתי מקדש.\n"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -214,23 +215,23 @@ msgstr "תמיכה דתית של אשוקה"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Land Traders +15% trade gain."
-msgstr ""
+msgstr "15%+ הגברת רווח של סוחרים יבשתיים  "
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "The Royal Road"
-msgstr "הדרך המלכותית /"
+msgstr "הדרך המלכותית"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "+1.0 food trickle rate."
-msgstr ""
+msgstr "1.0+ קצב צבירת מזון"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
-msgstr "לחם של הים התיכון"
+msgstr "אזור ים תיכוני של עיבוד קרקע לדגני לחם"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "Citizen Infantry −10% training time."
-msgstr ""
+msgstr "10%- זמן אימון של חיל רגלי אזרחי "
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
@@ -238,7 +239,7 @@ msgstr "גִיוּס חוֹבָה"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid "Civil Centers −20% resource costs."
-msgstr ""
+msgstr "20%- עלות משאבים עבור מרכזי התיישבות"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -246,7 +247,7 @@ msgstr "טטריפוליס הסורית"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Citizen Infantry Spearmen +10% health."
-msgstr ""
+msgstr "10%+ לבריאות של חילי חוניות רגליים אזרחים"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
@@ -254,17 +255,17 @@ msgstr "ליגה פלופונסית"
 
 #: simulation/data/auras/units/carnyx.jsonauraDescription
 msgid "Enemy Soldiers −10% attack damage and capture attack strength."
-msgstr ""
+msgstr "חיילי אויב 10%- נזק התקפה ועוצמת התקפת כיבוש"
 
 #: simulation/data/auras/units/carnyx.jsonauraName
 msgid "Intimidating Sound"
-msgstr ""
+msgstr "צליל מאיים"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraDescription
 msgid ""
 "Solon instituted several economic reforms encouraging commerce and agriculture.\n"
 "Workers +15% gather speed."
-msgstr ""
+msgstr "סולון הנהיג מספר רפורמות כלכליות המעודדות מסחר וחקלאות. \n15%+ למהירות עובדים בלקט וצבירת משאבים."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
@@ -274,7 +275,7 @@ msgstr "רפורמות כלכליות"
 msgid ""
 "Solon brought in a new system of weights and measures, fathers were encouraged to find trades for their sons.\n"
 "Economic technologies −10% resource costs."
-msgstr ""
+msgstr "סולון הביא מערכת חדשה של משקולות ומידות; אבות היו מעודדים למצוא עסקאות עבור בניהם.  10%- עלות עבור טכנולוגיות כלכליות."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
@@ -284,7 +285,7 @@ msgstr "הון כלכלי"
 msgid ""
 "Seeing entrenched defense to be useless against the Roman army, Cassivellaunus resorted to guerrilla tactics. This was later employed by other chieftains too.\n"
 "Soldiers +15% movement speed and +15% vision range."
-msgstr ""
+msgstr "כשראה שלְעַגֵן הֵיטֶב הגנה זה חסר תועלת נגד הצבא הרומי, קסיוולאונוס נקט טקטיקות הגרילה. מאוחר יותר זה עומץ גם על ידי מושלים אחרים.  \n15%+ למהירות התנועה וטווח הראייה עבור כל החיילים."
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraName
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraName
@@ -339,7 +340,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/han_catafalque_1.jsonauraName
 msgid "Territorial Expansion"
-msgstr ""
+msgstr "התפשטות אזורית"
 
 #: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraDescription
 msgid ""
@@ -349,7 +350,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraName
 msgid "Imperial Music Bureau"
-msgstr ""
+msgstr "לִשְׁכָּה מַלכּוּתִית לענייני מוזיקה"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraDescription
 msgid ""
@@ -409,7 +410,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/mace_catafalque_2.jsonauraName
 msgid "Financial Reorganization"
-msgstr ""
+msgstr "אִרְגוּן מִחָדָשׁ של כלכלה"
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraDescription
 msgid ""
@@ -439,7 +440,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
-msgstr "בונה גדול"
+msgstr "בונה דגול"
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraDescription
 msgid ""
@@ -449,7 +450,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraName
 msgid "Great Librarian"
-msgstr "הספרן הגדול"
+msgstr "הספרן הדגול"
 
 #: simulation/data/auras/units/catafalques/rome_catafalque_1.jsonauraDescription
 msgid ""
@@ -532,7 +533,7 @@ msgstr ""
 
 #: simulation/data/auras/units/han_minister_building.jsonauraName
 msgid "Building Programs"
-msgstr ""
+msgstr "תוכניות פיתוח קרקע"
 
 #: simulation/data/auras/units/han_minister_garrison.jsonauraDescription
 msgid ""
@@ -824,7 +825,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraDescription
 msgid "Soldiers +10% melee and ranged attack damage, gain +50% resource loot."
-msgstr ""
+msgstr "חיילים מקבלים 10%+ לעוצמת פגיע תקיפת תִגרָה ומרוחקת, \nמקבלים 50%+ בשלל משאבים"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_1.jsonauraName
 msgid "Savior of Kush"
@@ -832,7 +833,7 @@ msgstr "מושיע קוש"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraDescription
 msgid "Kushite Triremes −50 wood and metal cost."
-msgstr ""
+msgstr "לת-חַתְרִיות קושיות עולות 50- עץ ומתכת"
 
 #: simulation/data/auras/units/heroes/kush_hero_nastasen_2.jsonauraName
 msgid "Gift of Warships"
@@ -840,7 +841,7 @@ msgstr "מתנה של ספינות מלחמה"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraDescription
 msgid "Structures +10% territory influence radius."
-msgstr ""
+msgstr "מבנים מעלים את מחוג ההשפעה של שטח ב 10% "
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraName
 msgid "Imperialism"
@@ -848,7 +849,7 @@ msgstr "אִימפֵּרִיאָלִיזְם"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
-msgstr ""
+msgstr "קצב ההתחדשות של נקודות כיבוש לחֵיל מַצָּב של מרכזי התיישבות של אויב קטן ב 50%"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
 msgid "Conqueror"
@@ -867,7 +868,7 @@ msgstr "מוניות"
 msgid ""
 "Siege Engines +1 crush, hack, pierce resistance, +20% melee and ranged "
 "attack damage, +10% ranged attack range, +10% vision range."
-msgstr ""
+msgstr "כלי מצור מקבלים: \n1+ עמידות מפני ריסוק, גדיעה, דקירה;\n20%+ לעוצמת פגיע בהתקפת תִגרָה או מרוחקת; \n10%+ למרחק התקפה מרוחקת; \n10%+ למרחק צפיה"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius_i.jsonauraName
 msgid "Besieger"
@@ -879,7 +880,7 @@ msgstr "עלייתו של מקדון"
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus_i.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage, −15% health."
-msgstr ""
+msgstr "חיילים מקבלים 20%+ לעוצמת פגיע תקיפת תִגרָה או מרוחקת, \nאבל 15% פחות בריאים"
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus_i.jsonauraName
 msgid "Pyrrhic Victory"
@@ -889,7 +890,7 @@ msgstr "ניצחון פירוס"
 msgid ""
 "Temples −50% resource costs and build time. Temple technologies −50% "
 "resource costs and research time."
-msgstr ""
+msgstr "50%- עלות משאבים וזמן הבניה של בתי מקדש;\n50%- עלות משאבים וזמן המחקר של טכנולוגיות בבתי מקדש.\n"
 
 #: simulation/data/auras/units/heroes/maur_hero_ashoka.jsonauraName
 msgid "Buddhism"
@@ -899,11 +900,11 @@ msgstr "בודהיזם"
 msgid ""
 "When garrisoned, the Structure's technologies have −20% resource cost and "
 "−50% research time."
-msgstr ""
+msgstr "כאשר במוצב טכנולוגיות בנייה עולות 20% פחות משאבים  \nוחצי מזמן מחקר"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
-msgstr "ומורה."
+msgstr "מורה"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
@@ -912,16 +913,16 @@ msgstr "הִתחַדְשׁוּת"
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraDescription
 msgid ""
 "Cavalry +1 capture attack strength, +20% melee and ranged attack damage."
-msgstr ""
+msgstr "חייל הפרשים מקבלים 1+ לעוצמת התקפה כובשת, \n20%+ לעוצמת פגיע בתקיפת תִגרָה ומרוחקת."
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraName
 msgid "Forefront Leader"
-msgstr "מנהיג Forefront"
+msgstr "מנהיג החזית"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius_i.jsonauraDescription
 msgid ""
 "Soldiers, Siege Engines, Traders, and Merchant Ships +15% movement speed."
-msgstr ""
+msgstr "חיילים, כלי המצור, סוחרים, ואוניות מסחריות מקבלות 15%+ למהירות תנוע"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius_i.jsonauraName
 msgid "Leadership"
@@ -929,7 +930,7 @@ msgstr "ההנהגה"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes_i.jsonauraDescription
 msgid "Workers +15% build rate and gather speed."
-msgstr ""
+msgstr "פועלים 15%+ מהירות בנייה איסוף"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes_i.jsonauraName
 msgid "Administrator"
@@ -937,7 +938,7 @@ msgstr "מנהל"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.jsonauraDescription
 msgid "Soldiers and Siege Engines −20% melee and ranged attack repeat time."
-msgstr ""
+msgstr "חיילים וכלי המצור מקבלים 20%- לקצב התקפות חוזרות תִגרָה ומרוחקות."
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_1.jsonauraName
 msgid "Patriot"
@@ -945,7 +946,7 @@ msgstr "פַּטרִיוֹט"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_2.jsonauraDescription
 msgid "Allied Heroes +10% health."
-msgstr ""
+msgstr "לגיבורי בעלות ברית 10%+ יותר בריאות"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_2.jsonauraName
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_3.jsonauraName
@@ -954,7 +955,7 @@ msgstr "בַּת זוּג"
 
 #: simulation/data/auras/units/heroes/ptol_hero_cleopatra_vii_3.jsonauraDescription
 msgid "Enemy Heroes −10% health."
-msgstr ""
+msgstr "לגיבורי האויב 10%- פחות בריאות"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraDescription
 msgid "Builders +10% build rate."
@@ -962,11 +963,11 @@ msgstr "+10% דירוג לבניית הבנאים"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraName
 msgid "Patron of Construction"
-msgstr "פטרון הבניה"
+msgstr "פטרון / משגיח הבניה"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_2.jsonauraDescription
 msgid "Mercenaries −35% resource costs."
-msgstr ""
+msgstr "20%- עלות משאבים להכשרת שכִירי חֶרֶב"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_2.jsonauraName
 msgid "Mercenary Patron"
@@ -982,7 +983,7 @@ msgstr "ראפיה"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraDescription
 msgid "Cavalry +15% melee and ranged attack damage."
-msgstr ""
+msgstr "חייל הפרשים מקבלים 20%+ לנזק תקיפת תִגרָה או מרוחקת"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_1.jsonauraName
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraName
@@ -991,11 +992,11 @@ msgstr "חרב רומא"
 
 #: simulation/data/auras/units/heroes/rome_hero_marcellus_2.jsonauraDescription
 msgid "Enemy Infantry −10% melee and ranged attack damage."
-msgstr ""
+msgstr "חיילי אויב מקבלים 20%- לנזק תקיפת תִגרָה או מרוחקת"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraDescription
 msgid "Humans and Structures +1 crush, hack, pierce resistance."
-msgstr ""
+msgstr "מבנים ואנשים מקבלים 1+ לעמידות מפני ריסוק, גדיעה, דקירה"
 
 #: simulation/data/auras/units/heroes/rome_hero_maximus.jsonauraName
 msgid "Shield of Rome"
@@ -1005,11 +1006,11 @@ msgstr "מגן של רומא /"
 msgid ""
 "Soldiers and Siege Engines +2 capture attack strength, +20% melee and ranged"
 " attack damage."
-msgstr ""
+msgstr "חיילים וכלי המצור מקבלים 2+ לעוצמת התקפה כובשת, \n20%+ לעוצמת פגיע בתקיפת תִגרָה ומרוחקת."
 
 #: simulation/data/auras/units/heroes/rome_hero_scipio.jsonauraName
 msgid "Triumph"
-msgstr "- ניצחון?"
+msgstr "נִצָחוֹן "
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iii.jsonauraDescription
 msgid "Cavalry +2 crush, hack, pierce resistance."
