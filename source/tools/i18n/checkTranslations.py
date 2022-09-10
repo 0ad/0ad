@@ -60,7 +60,7 @@ class MessageChecker:
                       f'Found unknown {self.human_name} {", ".join(["`" + x + "`" for x in unknown_patterns])} in the translation '
                       f'which do not match any of the URLs in the template: {", ".join(["`" + x + "`" for x in patterns])}')
 
-            if translationMessage.pluralizable:
+            if templateMessage.pluralizable and translationMessage.pluralizable:
                 for indx, val in enumerate(translationMessage.string):
                     if indx == 0:
                         continue
