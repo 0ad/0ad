@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,6 +29,7 @@ pipeline {
 		booleanParam(name: 'ONLY_MOD', defaultValue: true, description: 'Only archive the mod mod.')
 		booleanParam(name: 'DO_GZIP', defaultValue: true, description: 'Create .gz unix tarballs as well as .xz')
 		booleanParam(name: 'FULL_REBUILD', defaultValue: true, description: 'Do a full rebuild (safer for release, slower).')
+		booleanParam(name: 'WINDOWS_UNIX', defaultValue: true, description: 'Build windows and unix bundles.')
 	}
 
 	stages {
@@ -59,12 +60,12 @@ pipeline {
 		}
 		stage("Compile Mac Executable") {
 			steps {
-				sh "FULL_REBUILD=${params.FULL_REBUILD} source/tools/dist/build-osx-executable.sh"
+				sh "JOBS=\"-j\$(sysctl -n hw.ncpu)\" FULL_REBUILD=${params.FULL_REBUILD} source/tools/dist/build-osx-executable.sh"
 			}
 		}
 		stage("Create archive data") {
 			steps {
-				sh "ONLY_MOD=${params.ONLY_MOD} source/tools/dist/build-archives.sh"
+				sh "JOBS=\"-j\$(sysctl -n hw.ncpu)\" ONLY_MOD=${params.ONLY_MOD} source/tools/dist/build-archives.sh"
 			}
 		}
 		stage("Create Mac Bundle") {
@@ -74,23 +75,26 @@ pipeline {
 		}
 		stage("Create Windows installer & *nix files") {
 			steps {
-				// The files created by the mac compilation need to be deleted
-				sh "svn st {binaries/,build/} --no-ignore | cut -c 9- | xargs rm -rfv"
-				// Hide the libraries folder.
-				sh "mv libraries/ temp_libraries/"
-				sh "svn revert libraries/ -R"
-				// The generated tests use hardcoded paths so they must be deleted as well.
-				sh 'python3 -c \"import glob; print(\\\" \\\".join(glob.glob(\\\"source/**/tests/**.cpp\\\", recursive=True)));\" | xargs rm -v'
-				sh "svn revert build/ -R"
 				script {
-					try {
-						// Then run the core object.
-						sh "BUNDLE_VERSION=${params.BUNDLE_VERSION} DO_GZIP=${params.DO_GZIP} source/tools/dist/build-unix-win32.sh"
-					} finally {
-						// Un-hide the libraries.
-						sh "rm -rfv libraries/"
-						sh "mv temp_libraries/ libraries/"
-					}
+				    if(params.WINDOWS_UNIX)
+				    {
+	    				// The files created by the mac compilation need to be deleted
+        				sh "svn st {binaries/,build/} --no-ignore | cut -c 9- | xargs rm -rfv"
+        				// Hide the libraries folder.
+        				sh "mv libraries/ temp_libraries/"
+        				sh "svn revert libraries/ -R"
+        				// The generated tests use hardcoded paths so they must be deleted as well.
+        				sh 'python3 -c \"import glob; print(\\\" \\\".join(glob.glob(\\\"source/**/tests/**.cpp\\\", recursive=True)));\" | xargs rm -v'
+        				sh "svn revert build/ -R"
+    					try {
+    						// Then run the core object.
+    						sh "JOBS=\"-j\$(sysctl -n hw.ncpu)\" BUNDLE_VERSION=${params.BUNDLE_VERSION} DO_GZIP=${params.DO_GZIP} source/tools/dist/build-unix-win32.sh"
+    					} finally {
+    						// Un-hide the libraries.
+    						sh "rm -rfv libraries/"
+    						sh "mv temp_libraries/ libraries/"
+    					}		        
+				    }
 				}
 			}
 		}

@@ -55,12 +55,12 @@ pipeline {
 
 		stage('Setup workspace') {
 			steps {
-				bat "del binaries\\system\\pyrogenesis.pdb binaries\\system\\pyrogenesis.exe"
-				script {
+			   	bat "del binaries\\system\\pyrogenesis.pdb binaries\\system\\pyrogenesis.exe"
+				script { 
 					if (env.atlas == 'true') {
 						echo "atlas is enabled"
 						AtlasOption = "--atlas"
-						AtlasPrj = "/t:AtlasUI"
+						AtlasPrj = "/t:AtlasUI /t:ActorEditor"
 						bat "(robocopy /MIR C:\\wxwidgets-3.1.4\\lib libraries\\win32\\wxwidgets\\lib) ^& IF %ERRORLEVEL% LEQ 1 exit 0"
 						bat "(robocopy /MIR C:\\wxwidgets-3.1.4\\include libraries\\win32\\wxwidgets\\include) ^& IF %ERRORLEVEL% LEQ 1 exit 0"
 						bat "del binaries\\system\\AtlasUI.dll"
@@ -76,23 +76,24 @@ pipeline {
 						bat "del binaries\\system\\Collada.dll"
 					}
 					output = bat(returnStdout: true, script: 'svnversion source -n').trim()
-					output = output.readLines().drop(1).join("")
+					output = (output.readLines().drop(1).join("").toInteger() + 1)
 				}
 				bat "cd build\\workspaces && update-workspaces.bat ${AtlasOption} ${GlooxOption} --large-address-aware --jenkins-tests"
 				bat "echo L\"${output}\" > build\\svn_revision\\svn_revision.txt"
+				bat "echo ${output}"
 			}
 		}
 
 		stage ('Build') {
 			steps {
-				bat("cd build\\workspaces\\vs2017 && \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\MSBuild\\15.0\\Bin\\MSBuild.exe\" pyrogenesis.sln /m:${jobs} /p:PlatformToolset=v141_xp /t:pyrogenesis ${AtlasPrj} /t:test /p:Configuration=Release")
+				bat("cd build\\workspaces\\vs2017 && \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\MSBuild\\15.0\\Bin\\MSBuild.exe\" pyrogenesis.sln /nologo /p:XPDeprecationWarning=false /p:XPDeprecationWarning=false /m:${jobs} /p:PlatformToolset=v141_xp /t:pyrogenesis ${AtlasPrj} /t:test /p:Configuration=Release")
 			}
 		}
 
 		stage ('Build debug glooxwrapper') {
 			when { environment name: 'gloox', value: 'true'}
 			steps {
-					bat("cd build\\workspaces\\vs2017 && \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\MSBuild\\15.0\\Bin\\MSBuild.exe\" pyrogenesis.sln /m:${jobs} /p:PlatformToolset=v141_xp /t:glooxwrapper /p:Configuration=Debug")
+					bat("cd build\\workspaces\\vs2017 && \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\MSBuild\\15.0\\Bin\\MSBuild.exe\" pyrogenesis.sln /nologo /p:XPDeprecationWarning=false /p:XPDeprecationWarning=false /m:${jobs} /p:PlatformToolset=v141_xp /t:glooxwrapper /p:Configuration=Debug")
 			}
 		}
 
@@ -110,11 +111,11 @@ pipeline {
 			steps {
 				bat "svn changelist --remove --recursive --cl commit ."
 				script {
-					if (env.pyrogenesis == 'true') {
+	  				if (env.pyrogenesis == 'true') {
 						bat "svn changelist commit binaries\\system\\pyrogenesis.pdb binaries\\system\\pyrogenesis.exe"
 					}
 					if (env.atlas == 'true') {
-						bat "svn changelist commit binaries\\system\\AtlasUI.dll"
+						bat "svn changelist commit binaries\\system\\AtlasUI.dll binaries\\system\\ActorEditor.exe"
 					}
 					if (env.collada == 'true') {
 						bat "svn changelist commit binaries\\system\\Collada.dll"

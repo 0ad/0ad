@@ -29,6 +29,11 @@ pipeline {
 		stage("Prepare volume") {
 			steps {
 				sh "sudo zfs clone zpool0/trunk@latest zpool0/translations"
+				ws('/zpool0/translations') {
+					sh "svn revert . -R"
+					sh "svn st | cut -c 9- | xargs rm -rf"
+					sh "svn up"
+				}
 			}
 		}
 
@@ -36,7 +41,11 @@ pipeline {
 			steps {
 				ws('/zpool0/translations') {
 					withDockerContainer("0ad-translations:latest") {
-						sh "sh source/tools/i18n/maintenanceTasks.sh"
+						sh "python3 --version"
+						dir("source/tools/i18n/") {
+							sh "maintenanceTasks.sh"
+							sh "python3 generateDebugTranslation.py --long"
+						}
 					}
 				}
 			}
@@ -47,7 +56,6 @@ pipeline {
 				ws('/zpool0/translations') {
 					withCredentials([usernamePassword(credentialsId: 'redacted', passwordVariable: 'SVNPASS', usernameVariable: 'SVNUSER')]) {
 						sh "svn relocate --username ${SVNUSER} --password ${SVNPASS} --no-auth-cache https://svn.wildfiregames.com/svn/ps/trunk"
-						sh "svn add --force binaries/"
 						sh "svn commit --username ${SVNUSER} --password ${SVNPASS} --no-auth-cache --non-interactive -m '[i18n] Updated POT and PO files.'"
 					}
 				}

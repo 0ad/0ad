@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 
 // This pipeline is used to build patches on various compilers.
 
-def compilers = ["gcc7"]
+def compilers = ["gcc7", "clang7"]
 
 def patchesMap = compilers.collectEntries {
 	["${it}": patch(it)]
@@ -46,6 +46,7 @@ def build(compiler) {
 			try {
 				ws("/zpool0/${compiler}") {
 					docker.image("0ad-${compiler}:latest").inside {
+
 						sh "build/workspaces/update-workspaces.sh -j1 --jenkins-tests"
 
 						try {
@@ -120,6 +121,7 @@ pipeline {
 
 	stages {
 		stage("Patch") {
+			when { expression { return !!params.DIFF_ID } }
 			steps {
 				sh "arc patch --diff ${params.DIFF_ID} --force"
 				script { parallel patchesMap }
@@ -157,13 +159,13 @@ pipeline {
 			steps {
 				script {
 					try {
-						// arc lint outputs an empty file on success - unless there is nothing to lint.
+						 // arc lint outputs an empty file on success - unless there is nothing to lint.
 						// On failure, it'll output the file and a failure error code.
 						// Explicitly checking for the file presence is thus best to detect the linter did run
-						sh 'arc lint --output jenkins --outfile .phabricator-lint && touch .phabricator-lint'
+						sh 'arc lint --never-apply-patches --output jenkins --outfile .phabricator-lint && touch .phabricator-lint'
 					} catch (e) {
 						if (!fileExists(".phabricator-lint")) {
-							sh '''echo '{ "path": "general", code": "Jenkins", "severity": "error", "name": "ci-error", "description": "Error running lint", "bypassChangedLineFiltering": true }' > .phabricator-lint '''
+							sh '''echo '{"General":[{"line": 0, "char": 0, "code": "Jenkins", "severity": "error", "name": "ci-error", "description": "Error running lint", "original": null, "replacement": null, "granularity": 1, "locations": [], "bypassChangedLineFiltering": true, "context": null}]}' > .phabricator-lint '''
 						}
 					}
 				}
@@ -172,7 +174,7 @@ pipeline {
 		stage("Data checks") {
 			steps {
 				warnError('CheckRefs.pl script failed!') {
-					sh "cd source/tools/entity/ && perl checkrefs.pl --check-map-xml --validate-templates 2> data-errors.txt"
+					sh "cd source/tools/entity/ && python3 checkrefs.py -tax 2> data-errors.txt"
 				}
 			}
 		}

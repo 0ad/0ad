@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -58,7 +58,7 @@ pipeline {
 			steps {
 				script {
 					try {
-						bat "arc patch --diff ${params.DIFF_ID} --force"
+					 bat "arc patch --diff ${params.DIFF_ID} --force"
 					} catch (e) {
 						cleanFiles()
 						bat "arc patch --diff ${params.DIFF_ID} --force"
@@ -90,7 +90,7 @@ pipeline {
 				timeout(time: 30)
 			}
 			steps {
-				catchError { // Debug tests might not work on Windows, see #3753. uncomment just below if they do work.
+				catchError {
 					script {
 						try {
 							bat 'binaries\\system\\test_dbg.exe > cxxtest_debug.xml'
@@ -103,9 +103,11 @@ pipeline {
 			post {
 				failure {
 					echo (message: readFile (file: "cxxtest_debug.xml"))
+					archiveArtifacts artifacts: "cxxtest_debug.xml", fingerprint: true
 				}
 				always {
 					junit "cxxtest_debug.xml"
+					archiveArtifacts artifacts: "cxxtest_debug.xml", fingerprint: true
 				}
 			}
 		}
