@@ -35,4 +35,9 @@
       <attack_melee>attack/weapon/sword_attack.xml</attack_melee>
     </SoundGroups>
   </Sound>
+  <UnitAI>
+    <Formations datatype="tokens">
+      special/formations/testudo
+    </Formations>
+  </UnitAI>
 </Entity>
