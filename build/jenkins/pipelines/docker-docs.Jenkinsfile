@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -52,12 +52,19 @@ pipeline {
 				}
 			}
 		}
+		stage("Template Analyzer") {
+			steps {
+				ws("/zpool0/entity-docs"){
+					sh "cd source/tools/templatesanalyzer/ && python3 unitTables.py"
+				}
+			}
+		}
 		stage("Upload") {
 			steps {
 				ws("/zpool0/entity-docs"){
 					sh "rsync -rti --delete-after --progress docs/doxygen/html/ docs.wildfiregames.com:~/www/pyrogenesis/"
 					sh "rsync -ti --progress source/tools/entdocs/entity-docs.html docs.wildfiregames.com:~/www/entity-docs/trunk.html"
-					sh "rsync -ti --progress source/tools/entdocs/entity-docs.css docs.wildfiregames.com:~/www/entity-docs/"
+					sh "rsync -ti --progress source/tools/templatesanalyzer/unit_summary_table.html docs.wildfiregames.com:~/www/templatesanalyzer/index.html"
 				}
 			}
 		}
