@@ -43,7 +43,7 @@ pipeline {
 					withDockerContainer("0ad-translations:latest") {
 						sh "python3 --version"
 						dir("source/tools/i18n/") {
-							sh "maintenanceTasks.sh"
+							sh "./maintenanceTasks.sh"
 							sh "python3 generateDebugTranslation.py --long"
 						}
 					}

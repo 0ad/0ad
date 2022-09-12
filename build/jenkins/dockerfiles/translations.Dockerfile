@@ -1,7 +1,7 @@
 FROM build-base
 
 # This silences a transifex-client warning
-RUN apt-get install -qqy git
+RUN apt-get install -qqy git subversion
 
 RUN pip3 install transifex-client lxml babel
 
