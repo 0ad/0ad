@@ -271,6 +271,14 @@ vec4 getFoam(vec4 fancyeffects, float shadow)
 
 void main()
 {
+	float los = getLOS();
+	// We don't need to render a water fragment if it's invisible.
+	if (los < 0.001)
+	{
+		gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
+		return;
+	}
+
 #if USE_FANCY_EFFECTS
 	vec4 fancyeffects = texture2D(waterEffectsTex, gl_FragCoord.xy / screenSize);
 #else
@@ -306,5 +314,5 @@ void main()
 
 	color = applyFog(color);
 
-	gl_FragColor = vec4(applyDebugColor(color * getLOS(), 1.0, refrColor.a, 0.0), refrColor.a);
+	gl_FragColor = vec4(applyDebugColor(color * los, 1.0, refrColor.a, 0.0), refrColor.a);
 }
