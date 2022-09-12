@@ -565,7 +565,7 @@ msgstr "Recursos insuficientes. Necesítanse %(resourceAmount1)s unidades de %(r
 
 #: simulation/components/ProductionQueue.js:312
 msgid "Entity is being upgraded. Cannot start production."
-msgstr ""
+msgstr "A entidade está sendo mellorada. Non se pode iniciar a produción neste momento."
 
 #: simulation/components/ProductionQueue.js:327
 msgid "The production queue is full."
@@ -581,7 +581,7 @@ msgstr ""
 
 #: simulation/components/Upgrade.js:241
 msgid "Entity is producing. Cannot start upgrading."
-msgstr ""
+msgstr "A entidade está producindo algo. Non se pode mellorar neste momento."
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1×)"
@@ -601,7 +601,7 @@ msgstr "A modo (×0,5)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75×)"
-msgstr ""
+msgstr "Tranquilamente (×0,75)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1×)"
@@ -820,7 +820,7 @@ msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Title
 msgid "Conquest Civic Centers"
-msgstr ""
+msgstr "Conquista de centros cívicos"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
@@ -901,7 +901,7 @@ msgstr "Non hai unidades ás que se poida subornar"
 
 #: simulation/helpers/Commands.js:933
 msgid "Unable to unload unit(s)."
-msgstr ""
+msgstr "Incapaz de desguarnecer as unidad(es)"
 
 #: simulation/helpers/Commands.js:947
 msgid "Some unit(s) can't go back to work"

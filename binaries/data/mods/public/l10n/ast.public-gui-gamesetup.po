@@ -107,11 +107,11 @@ msgstr "Escolyere la cultura d’isti xhogador."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:93
 msgctxt "civilization"
 msgid "Random"
-msgstr "Aleatoria"
+msgstr "Casual"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:99
 msgid "Picks one civilization at random when the game starts."
-msgstr "Escuolye una cultura de modu aleatoriu a l intamare la partida."
+msgstr "Escuolye una cultura casualmente a l intamare la partida."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:48
 msgid "Pick a color."
@@ -211,7 +211,7 @@ msgstr "Nómada"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "In modu nómada, los xhogadores intaman cun un puñadu d’unidades & tienen de buscar un sitiu afhatyadiçu p’assentasse. Aconselyan-se las inducias."
+msgstr "In modu nómada, los xhogadores intaman cun un puñadu d’unidades & tienen de buscar un sitiu afhatyadiçu pa sitiasse. Aconselyan-se las inducias."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:27
 msgid "Rated Game"
@@ -280,11 +280,11 @@ msgstr "Escolyere la flora & la fauna."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:63
 msgctxt "biome"
 msgid "Random"
-msgstr "Aleatoriu"
+msgstr "Casual"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:66
 msgid "Pick a biome at random."
-msgstr "Escolyer un bioma de modu aleatoriu."
+msgstr "Escolyer casualmente un bioma."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:57
 msgid "Daytime"
@@ -297,12 +297,12 @@ msgstr "Escolyer si la partida succede pel díe ou pela nuoithe."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:63
 msgctxt "daytime selection"
 msgid "Random"
-msgstr "Aleatorio"
+msgstr "Casual"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:66
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr "Escolyer una hora de l díe ou nuoithe de modu aleatoriu."
+msgstr "Escolyer casualmente una hora de l díe ou nuoithe."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:61
 msgid "Game Speed"
@@ -315,12 +315,12 @@ msgstr "Escolyere la velocidade de la partida."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:25
 msgctxt "landscape selection"
 msgid "Random"
-msgstr "Aleatoriu"
+msgstr "Casual"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:26
 msgctxt "landscape selection"
 msgid "Select a random landscape."
-msgstr "Escolyer un ambiente de modu aleatoriu."
+msgstr "Escolyer casualmente un ambiente."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:78
 msgid "Landscape"
@@ -353,11 +353,11 @@ msgstr "Escolyer una geographía nela que xhogar."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:150
 msgctxt "map selection"
 msgid "Random"
-msgstr "Aleatoriu"
+msgstr "Casual"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:153
 msgid "Pick any of the given maps at random."
-msgstr "Escolyer una geographía de modu aleatoriu."
+msgstr "Escolyer casualmente una geographía."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:39
 msgid "Map Size"
@@ -432,12 +432,12 @@ msgstr "Escolyer una de las disposiciones iniciales d’esta geographía."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:60
 msgctxt "team placement"
 msgid "Random"
-msgstr "Aleatoria"
+msgstr "Casual"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:61
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr "Escolyere la disposicion inicial de los conxhuntos de modu aleatoriu."
+msgstr "Escolyer casualmente la disposicion inicial de los conxhuntos."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:41
 msgid "Difficulty"
@@ -445,7 +445,7 @@ msgstr "Difficultade"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:44
 msgid "Select the difficulty of this scenario."
-msgstr "Escolyere la difficultade de l scenario."
+msgstr "Escolyere la difficultade de la scena."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:47
 msgid "World Population Cap"
@@ -598,7 +598,7 @@ msgstr "Siñalar que nun stas prontu pa xhogar."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:29
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr "Re-afhitare las culturas escolyidas a l valor predefinidu (aleatoriu)."
+msgstr "Re-afhitare las culturas escolyidas a l valor predefinidu (casual)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:29
 msgid "Reset all teams to the default."
@@ -650,12 +650,12 @@ msgstr "%(username)s salîu"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientKicked.js:22
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr "L amphitryon impobinou a %(username)s"
+msgstr "L hospedeiru espuxou a %(username)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientKicked.js:25
 #, javascript-format
 msgid "%(username)s has been banned"
-msgstr "%(username)s sta banidu"
+msgstr "%(username)s sta estornadu"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientReady.js:28
 #, javascript-format
@@ -759,13 +759,13 @@ msgstr "Essa tyave nun je válida."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "You have been banned."
-msgstr "Stas banidu."
+msgstr "Stas estornadu."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:168
 msgid ""
 "Failed to get local IP of the server (it was assumed to be on the same "
 "network)."
-msgstr "Falhu a l obtenere l IP local de l servidor (suppunxo-se que s’atopaba nela meesma rede)."
+msgstr "Falhu a l obtenere l IP local de l servidor (suppunxo-se que s’atopaba nela miesma rede)."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
@@ -832,7 +832,7 @@ msgstr "Nome de l xhogador:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
-msgstr "Nome de l amphitryon ou IP de l serividor:"
+msgstr "Nome hospedeiru ou IP de l serividor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):48
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):95
@@ -933,7 +933,7 @@ msgstr "“El senescente tiempu insiña-llo todo.” \\n— Éschylu (“Prometh
 msgid ""
 "“His resolve is not to seem, but to be, the best.” \\n— Aeschylus (“Seven "
 "Against Thebes”, 592)"
-msgstr "“Non quier semelyar a l melyor, sinon sello.” \\n— Éschylu (“Siete contra Thebas”, 592)"
+msgstr "“Non quier semelyar a l melyor, mais sello.” \\n— Éschylu (“Siete contra Thebas”, 592)"
 
 #: gui/text/quotes.txt:6
 msgid "“A prosperous fool is a grievous burden.” \\n— Aeschylus (fragment 383)"
@@ -1642,7 +1642,7 @@ msgstr "«Ye duce y honorable morrer pola patria.» \\n— Horaciu («Odes», II
 
 #: gui/text/quotes.txt:108
 msgid "“I am Cyrus, king of the world…” \\n— Inscription (Cyrus Cylinder)"
-msgstr "“Jeu so Kuruš, el reie l universo…” \\n— Inscripcion (Cylindru de Cyru)"
+msgstr "“Jeu so Kuruš, el rei l universo…” \\n— Inscripcion (Cylindru de Cyru)"
 
 #: gui/text/quotes.txt:109
 msgid ""
