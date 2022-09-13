@@ -2,11 +2,8 @@ FROM debian:buster
 
 RUN useradd -ms /bin/bash --uid 1006 builder
 
-RUN apt-get -qq update
-
 # 0 A.D. dependencies.
-RUN apt-get install -qqy \
-      build-essential \
+RUN apt-get -qq update && apt-get install -qqy \
       cmake \
       curl \
       libboost-dev \
@@ -15,6 +12,7 @@ RUN apt-get install -qqy \
       libcurl4-gnutls-dev \
       libenet-dev \
       libfmt-dev \
+      libfreetype6-dev \
       libgloox-dev \
       libgnutls28-dev \
       libgtk-3-dev \
@@ -25,25 +23,18 @@ RUN apt-get install -qqy \
       libogg-dev \
       libopenal-dev \
       libpng-dev \
-      libsodium-dev \
       libsdl2-dev \
+      libsodium-dev \
       libvorbis-dev \
       libwxgtk3.0-dev \
       libxcursor-dev \
-      libxml2-dev \
       libxml-simple-perl \
+      libxml2-dev \
       llvm-7 \
-      zlib1g-dev \
- && apt-get clean
-
-# Other utilities
-RUN apt-get install -qqy \
       python3-dev \
       python3-pip \
-      rsync \
-      subversion \
-      vim \
-      mkdocs
+      zlib1g-dev \
+ && apt-get clean
 
 # Install rust and Cargo via rustup
 USER builder

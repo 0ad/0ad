@@ -12,7 +12,7 @@ float getLOS()
 #if !IGNORE_LOS
 	float los = texture2D(losTex, v_los).r;
 	float threshold = 0.03;
-	return (los - threshold) / (1.0 - threshold);
+	return clamp(los - threshold, 0.0, 1.0) / (1.0 - threshold);
 #else
 	return 1.0;
 #endif

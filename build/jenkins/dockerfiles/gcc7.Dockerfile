@@ -6,5 +6,5 @@ USER builder
 
 ENV LIBCC gcc-7
 ENV LIBCXX g++-7
-ENV PSCC gcc-7
-ENV PSCXX g++-7
+ENV CC gcc-7
+ENV CXX g++-7

@@ -1,0 +1,1217 @@
+
+msgid ""
+msgstr ""
+"Project-Id-Version: None\n"
+"POT-Creation-Date: 2022-09-12 11:00+0000\n"
+"PO-Revision-Date: 2022-09-12 11:00+0000\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit"
+
+msgid "Back"
+msgstr "Повернутися"
+
+msgid "Update"
+msgstr "Do gibts wos neis"
+
+msgid "Rank"
+msgstr "Kedudukan"
+
+msgid "Name"
+msgstr "Kromnomo"
+
+msgid "Rating"
+msgstr "Derecelendirme"
+
+msgid "Notice"
+msgstr "Pemberitahuan"
+
+msgid "Mark as Buddy"
+msgstr "'साथी' के लिए चिह्नित करें"
+
+msgid "Unmark as Buddy"
+msgstr "Odstrániť označenie Kamaráta"
+
+msgid "Host Game"
+msgstr "Herbrec'hiañ ur C'hoariadenn"
+
+msgid "Your active mods do not match the mods of this game."
+msgstr "Chan eil na tuilleadain ghnìomhach agad a-rèir tuilleadain a’ gheama seo."
+
+msgid "Do you want to switch to the mod selection page?"
+msgstr "A bheil thu airson leum a ghearradh gu duilleag taghadh nan tuilleadan?"
+
+msgid "Incompatible mods"
+msgstr "Tá na modhnuithe neamhréireacha"
+
+msgid "The game has already started. Do you want to join as observer?"
+msgstr "Tá an cluiche ag imirt cheana féin. Ar mhaith leat a theacht le chéile mar breathnóir?"
+
+msgid "Join Game"
+msgstr "Придружи се постојећој игри"
+
+msgid "Leaderboard"
+msgstr "Tabuľka najlepších hráčov"
+
+msgid "Player Profile Lookup"
+msgstr "Vyhľadávanie hráčskeho profilu"
+
+msgctxt "previous page"
+msgid "Back"
+msgstr "Повернутися"
+
+msgctxt "previous page"
+msgid "Main Menu"
+msgstr "A’ phrìomh chlàr-taice"
+
+#, python-format
+msgid ""
+"The command '%(cmd)s' is not supported. Try %(help)s to get more information about the "
+"supported commands."
+msgstr ""
+"Η εντολή '%(cmd)s' δέν υποστηρίζεταο. Δοκιμάστε %(help)s για να αποκτήσετε περισσότερες"
+" πληροφορίες σχετικά με τις υποστηριζόμενες εντολές."
+
+#, python-format
+msgid "The command '%(cmd)s' is restricted to moderators."
+msgstr "Der ‚%(cmd)s‘-Befehl darf nur von Moderatoren eingesetzt werden."
+
+#, python-format
+msgid "The command '%(cmd)s' requires at least one argument."
+msgstr "Perintah '%(cmd)s' memerlukan sekurang-kurangnya satu argumen."
+
+msgid "Set your state to 'Away'."
+msgstr "Tetapkan keadaan anda menjadi 'Keluar Sekejap'."
+
+msgid "Set your state to 'Online'."
+msgstr "Tetapkan keadaan anda menjadi 'Atas-Talian'."
+
+msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
+msgstr ""
+"Изритване на определен потребител от чакалнята. Начин на ползване: /kick псевдоним "
+"причина"
+
+msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
+msgstr ""
+"Блокиране на достъпа на определен потребител до чакалнята. Начин на ползване: /ban "
+"псевдоним причина"
+
+msgid "Show this help."
+msgstr "Yardım mesajını görüntüleyin."
+
+msgid "Chat commands:"
+msgstr "Commandes de discussion :"
+
+#, python-format
+msgid "%(command)s - %(description)s"
+msgstr "%(command)s - %(description)s"
+
+msgid "Send a chat message about yourself. Example: /me goes swimming."
+msgstr ""
+"Cuir teachdaireachd mu do dhèidhinn. Mar eisimpleir: /me a’ dol a shnàmh. Thoir an aire"
+" gum feum am /me a bhith air toiseach na loidhne."
+
+msgid "/me"
+msgstr "/ben"
+
+msgid ""
+"Send text as a chat message (even if it starts with slash). Example: /say /help is a "
+"great command."
+msgstr ""
+"Kasit un destenn evel ur gemennadenn flapva (ha pa grogfe gant ur veskell/slash). "
+"Skouer: /lavar/skoazell a zo un urzhiad eus ar c'hentañ."
+
+msgid "/say"
+msgstr "/سخن گفتن"
+
+msgid "Clear all chat scrollback."
+msgstr "Tyhjennä koko keskustelun näkyvissä oleva historia."
+
+#, python-format
+msgid "* %(sender)s %(message)s"
+msgstr "/eu %(sender)s%(message)s"
+
+#, python-format
+msgid "<%(sender)s>"
+msgstr "<%(sender)s>님"
+
+#, python-format
+msgid "%(sender)s %(message)s"
+msgstr "%(sender)s님 %(message)s"
+
+msgid "Private"
+msgstr "Príobháideach"
+
+#, python-format
+msgid "(%(private)s) %(message)s"
+msgstr "( %(private)s ) %(message)s"
+
+msgid "Send"
+msgstr "Изпращане"
+
+#, python-format
+msgid "%(nick)s has joined."
+msgstr "%(nick)s s'ha unit a la partida."
+
+#, python-format
+msgid "%(nick)s has left."
+msgstr "O/H %(nick)s αποχώρησε από το παιχνίδι."
+
+#, python-format
+msgid "%(oldnick)s is now known as %(newnick)s."
+msgstr "Ο χρήστης %(oldnick)s είναι τώρα γνωστός/ή ώς %(newnick)s."
+
+msgid "You have been muted."
+msgstr "Ți-a fost dezactivat microfonul."
+
+#, python-format
+msgid "%(nick)s has been muted."
+msgstr "Lui %(nick)s i-a fost oprit microfonul."
+
+msgid "You are now a moderator."
+msgstr "Vous êtes maintenant modérateur(trice)."
+
+#, python-format
+msgid "%(nick)s is now a moderator."
+msgstr "%(nick)s kini merupakan seorang moderator."
+
+msgid "You have been unmuted."
+msgstr "Du derfst jetz wieder dein Senf dazua gem."
+
+#, python-format
+msgid "%(nick)s has been unmuted."
+msgstr "%(nick)s derf jetz wieder sein Senf dazua gem."
+
+msgid "You are not a moderator anymore."
+msgstr "Vous n'êtes plus modérateur(trice)."
+
+#, python-format
+msgid "%(nick)s is not a moderator anymore."
+msgstr "Chan eil %(nick)s ’na m(h)aor tuilleadh."
+
+#, python-format
+msgid "%(nick)s changed the lobby subject to:"
+msgstr "%(nick)s heeft het onderwerp van de lobby veranderd in:"
+
+#, python-format
+msgid "%(nick)s deleted the lobby subject."
+msgstr "%(nick)s heeft het onderwerp van de lobby verwijderd."
+
+#, python-format
+msgid "== %(message)s"
+msgstr "== %(message)s"
+
+msgid "Connected."
+msgstr "Konektatuta."
+
+msgid "Disconnected."
+msgstr "Verbinding verbroken."
+
+msgid "System:"
+msgstr "Järjestelmä:"
+
+#, python-format
+msgid "=== %(system)s %(message)s"
+msgstr "=== %(system)s %(message)s"
+
+#, python-format
+msgid "%(time)s %(message)s"
+msgstr "%(times)s %(messages)s"
+
+#, python-format
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
+
+msgid "BANNED"
+msgstr "CHAIDH DO THOIRMEASG"
+
+msgid "KICKED"
+msgstr "FHUAIR THU A’ BHRÒG"
+
+msgid "You have been disconnected from the lobby. Do you want to reconnect?"
+msgstr "Du wurdest von der Lobby getrennt. Möchtest du die Verbindung wiederherstellen?"
+
+msgid "Confirmation"
+msgstr "Confirmar decisión"
+
+msgid "No"
+msgstr "Chan eil"
+
+msgid "Yes"
+msgstr "Sumuhun"
+
+#, python-format
+msgid "%(current)s/%(max)s +%(observercount)s"
+msgstr ""
+"Nº. de jogadores: %(current)s/%(max)s\n"
+"Nº de observadores: %(observercount)s"
+
+#, python-format
+msgid "%(current)s/%(max)s"
+msgstr "Nº de jogadores: %(current)s/%(max)s"
+
+msgctxt "victory condition"
+msgid "Endless Game"
+msgstr "Spui bis di da Boandlkramer hoid"
+
+#, python-format
+msgid ""
+"You have some incompatible mods:\n"
+"%(details)s"
+msgstr ""
+"Máte několik nekompatibilních pozměňovacích verzí:\n"
+"%(details)s"
+
+msgid "This mod does not affect MP compatibility"
+msgstr "Αυτή η τροποποίηση δέν επηρεάζει τη συμβατότητα παιχνιδιού πολλαπλών παικτών"
+
+#, python-format
+msgid "Host: %(playername)s"
+msgstr "Người tổ chức: %(playername)s"
+
+#, python-format
+msgid "Players: %(current)s/%(total)s"
+msgstr "Cluicheadairean: %(current)s/%(total)s"
+
+msgid "Victory Conditions:"
+msgstr "Vereisten voor overwinning:"
+
+msgid ", "
+msgstr "، و"
+
+msgid "Mods:"
+msgstr "Pozměňovací verze:"
+
+msgid "Mods (incompatible):"
+msgstr "Pozměňovací verze (nekompatibilní):"
+
+#, python-format
+msgid "Game started at %(time)s"
+msgstr "Tá an cluiche tosaithe ag %(time)s"
+
+msgid "HH:mm"
+msgstr "HH:mm "
+
+msgid "Map Type:"
+msgstr "Cineál Léarscáile:"
+
+msgid "Map Size:"
+msgstr "Velikost zemljevida:"
+
+msgid "Map Description:"
+msgstr "Omschrijving van de kaart:"
+
+msgid "Map Name"
+msgstr "Žemėlapio pavadinimas"
+
+msgctxt "map"
+msgid "Size"
+msgstr "Dimensione"
+
+msgctxt "map"
+msgid "Type"
+msgstr "Cineál"
+
+msgid "Players"
+msgstr "C'hoarierien"
+
+msgid "Show only open games"
+msgstr "Prikaži samo igre sa slobodnim pristupom."
+
+msgctxt "map size"
+msgid "Any"
+msgstr "Vilken som helst"
+
+msgctxt "map"
+msgid "Any"
+msgstr "Vilken som helst"
+
+msgctxt "player number"
+msgid "Any"
+msgstr "Vilken som helst"
+
+#, python-format
+msgctxt "gamelist filter"
+msgid "> %(rating)s"
+msgstr ">(%(rating)s)"
+
+#, python-format
+msgctxt "gamelist filter"
+msgid "< %(rating)s"
+msgstr "< %(rating)s"
+
+msgid "You have been kicked from the lobby!"
+msgstr "Anda telah ditendang keluar dari ruang legar!"
+
+msgid "You have been banned from the lobby!"
+msgstr "Jums buvo uždraustas prisijungimas prie žaidimo kambario!"
+
+#, python-format
+msgid "%(nick)s has been kicked from the lobby."
+msgstr "%(nick)s telah ditendang keluar dari ruang legar."
+
+#, python-format
+msgid "%(nick)s has been banned from the lobby."
+msgstr "A %(nick)s se le ha prohibido la entrada a la sala multijugador."
+
+#, python-format
+msgctxt "lobby kick"
+msgid "Reason: %(reason)s"
+msgstr "Priežastis: %(reason)s"
+
+msgid "Multiplayer Lobby"
+msgstr "Sala de Espera de Multi-Jogadores"
+
+#, python-format
+msgid "%(nick)s (%(rating)s)"
+msgstr "%(nick)s ‏(%(rating)s)"
+
+msgid "Online"
+msgstr "Συνδεδεμένος"
+
+msgid "Away"
+msgstr "Ikke til stede"
+
+msgid "Busy"
+msgstr "Απασχολημένος"
+
+msgid "Offline"
+msgstr "ఆఫ్‌లైనులో ఉన్నారు"
+
+msgctxt "lobby presence"
+msgid "Unknown"
+msgstr "Woas ma ned wos der duad"
+
+msgid "Status"
+msgstr "მდგომარეობა"
+
+msgid "Search for Player"
+msgstr "Αναζήτηση για Παίκτη/τρια"
+
+msgid "N/A"
+msgstr "Nie je k dispozícií"
+
+msgid "Moderator"
+msgstr "Người điều hành"
+
+msgid "Player"
+msgstr "Cluicheadair"
+
+msgid "Muted Player"
+msgstr "بازیکنی که وضعیتش خاموش شده است"
+
+msgctxt "Used for an undefined winning rate"
+msgid "-"
+msgstr "-"
+
+#, python-format
+msgid "%(percentage)s%%"
+msgstr "%(percentage)s %%"
+
+msgid "Current Rank:"
+msgstr "Classificacion actual:"
+
+msgid "Highest Rating:"
+msgstr "Miglior punteggio in classifica:"
+
+msgid "Total Games:"
+msgstr "Pelejä pelattu yhteensä:"
+
+msgid "Wins:"
+msgstr "Overwinningen:"
+
+msgid "Losses:"
+msgstr "Mağlubiyetler:"
+
+msgid "Win Rate:"
+msgstr "Razmerje zmag in porazov:"
+
+#, python-format
+msgid "Player \"%(nick)s\" not found."
+msgstr "Cha deach an cluicheadair “%(nick)s” a lorg."
+
+msgid "Enter playername:"
+msgstr "Inserisci il nome del giocatore:"
+
+msgid "View Profile"
+msgstr "Profil megtekintése"
+
+msgid "Please enter a player name."
+msgstr "Per favore inserisci il nome del giocatore."
+
+msgid "Password again:"
+msgstr "Vuelve a introducir la contraseña:"
+
+msgid "Please enter your username"
+msgstr "Cuir isteach d'ainm úsáideora le do thoil"
+
+msgid "Invalid username"
+msgstr "Ainm-cleachdaiche mì-dhligheach"
+
+msgctxt "register"
+msgid "Please enter your password"
+msgstr "Παρακαλώ, πληκτρολόγησε το συνθηματικό σου"
+
+msgctxt "login"
+msgid "Please enter your password"
+msgstr "Παρακαλώ, πληκτρολόγησε το συνθηματικό σου"
+
+msgid "Please choose a longer password"
+msgstr "Veuillez choisir un mot de passe plus long, s'il vous plait"
+
+msgid "Please enter your password again"
+msgstr "გთხოვ, კიდევ ერთხელ შეიყვანე დათქმული სიტყვა"
+
+msgid "Passwords do not match"
+msgstr "Host an schmarn zam gschriem bei de Passwörter"
+
+msgid "Are you sure you want to delete the password after connecting?"
+msgstr ""
+"A bheil thu cinnteach gu bheil thu airson am facal-faire a sguabadh às nuair a bhios u "
+"air ceangal a dhèanamh?"
+
+msgid "Login:"
+msgstr "Erabiltzaile izena:"
+
+msgid "Password:"
+msgstr "დათქმული სიტყვა:"
+
+msgid "Remember Password"
+msgstr "Derc'hel soñj eus ar ger-kuzh"
+
+msgid ""
+"Unknown error. This usually occurs because the same IP address is not allowed to "
+"register more than one account within one hour."
+msgstr ""
+"Unbekannter Fehler. Dieser Fehler tritt gewöhnlich auf, wenn dieselbe IP-Adresse "
+"benutzt wurde, um mehr als einen Account innerhalb einer Stunde zu erstellen."
+
+msgid "Cancel"
+msgstr "Hoit i mog noch ned"
+
+msgid "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy Policy[/font]"
+msgstr ""
+"[font=\"sans-bold-18\"] Zásady ochrany osobních údajů hry pro více hráčů jedné zájmové "
+"skupiny ve hře 0 A.D. Empires Ascendant[/font]"
+
+msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2020-12-24"
+msgstr "[font=\"sans-bold-14\"]Ceann-là na sgrìobhainn:[/font] 24mh Dubh 2020"
+
+msgid ""
+"[font=\"sans-bold-16\"]Personal data processed by Wildfire Games and purposes of "
+"processing:[/font]"
+msgstr ""
+"[font=\"sans-bold-16\"]An dàta pearsanta a thèid a phròiseasadh le Wildfire Games agus "
+"adhbharan a’ phròiseasaidh:[/font]"
+
+msgid "[font=\"sans-bold-14\"]1. Player name[/font]"
+msgstr "[font=\"sans-bold-14\"]1. Ονομα Παίκτη/τριας[/font]"
+
+msgid "The player is identified by a name that the player chooses at the time of registration."
+msgstr ""
+"El xhogador je identificadu pentre medias d’un nome que l xhogador escuolye a la hora "
+"de registrasse."
+
+msgid ""
+"Having a unique player name is a requirement to gain a rating, to allow players, "
+"moderators and developers to identify players they met before, communicate about the "
+"game, coordinate matches and enables moderators to enforce the Terms of Use."
+msgstr ""
+"Η ύπαρξη ενός μοναδικού ονόματος παίκτη/τριας είναι προαπαιτούμενο για να κερδίζεις "
+"βαθμολογία ,να επιτρέπετε σε παίκτες,σε συντονιστές και προγραμματιστές να αναγνωρίζουν"
+" παίκτες που έχουν συναντήσει πρίν. \n"
+"Να επικοινωνούν για το παιχνίδι, να συντονίζουν τους αγώνες και να δίνουν τη δυνατότητα"
+" στους επόπτες να επιβάλλουν τους Όρους Χρήσης."
+
+msgid ""
+"The player name serves as a pseudonym. The identity (natural person) of players is not "
+"known to Wildfire Games, except where personally identifiable information (such as the "
+"real name) was disclosed on the Lobby Chat, other services of Wildfire Games or "
+"elsewhere in the public, or when the IP address is used to bring criminal proceedings."
+msgstr ""
+"De naam van de speler is een pseudoniem. De identiteit (natuurlijke persoon) van "
+"spelers is niet bekend bij Wildfire Games, behalve waar persoonlijk identificeerbare "
+"informatie (zoals de echte naam) is onthuld in de Lobby Chat, andere diensten van "
+"Wildfire Games of elders in het publieke domein, of wanneer het IP-adres is gebruikt om"
+" strafrechtelijke procedures in te stellen."
+
+msgid "[font=\"sans-bold-14\"]2. Password[/font]"
+msgstr "[font=\"sans-bold-14\"]2. Κωδικός Πρόσβασης[/font]"
+
+msgid ""
+"A player is authenticated using a password that the player chooses at the time of "
+"registration."
+msgstr ""
+"Ο παίκτης επικυρώνεται χρησιμοποιώντας έναν κωδικό πρόσβασης τον οποίο ο παίκτης "
+"επιλέγει κατά τη στιγμή της εγγραφής."
+
+msgid ""
+"Wildfire Games only receives an encrypted version of the password, so that the password"
+" chosen by the user is not revealed to Wildfire Games or others in case of a breach."
+msgstr ""
+"Chan fhaigh Wildefire Games ach tionndadh crioptaichte dhen fhacal-fhaire, mar sin cha "
+"dèid am facal-faire a thaghas an cluicheadair a nochdadh do Wildfire Games no duine sam"
+" bith eile ma thèid briseadh a-steach oirnn."
+
+msgid "[font=\"sans-bold-14\"]3. IP address[/font]"
+msgstr "[font=\"sans-bold-14\"]3. Интернет IP адрес[/font]"
+
+msgid ""
+"When a player hosts a match in the Multiplayer Lobby, the IP address of that player is "
+"sent to every player who is online, so that other players can join that game."
+msgstr ""
+"Όταν ένας παίκτης φιλοξενεί έναν αγώνα στο Λόμπι για Πολλούς Παίκτες, η διεύθυνση IP "
+"αυτού του παίκτη αποστέλλεται σε κάθε παίκτη που είναι συνδεδεμένος, έτσι ώστε οι άλλοι"
+" παίκτες να μπορούν να συμμετάσχουν σε αυτό το παιχνίδι."
+
+msgid ""
+"Wildfire Games stores players IP addresses and may infer publicly available geolocation"
+" and internet service provider data (for example \"geolite2\") from the IP address in "
+"order to:"
+msgstr ""
+"Wildfire Games almacena las direcciones IP de los jugadores y puede inferir la "
+"localización geográfica disponible públicamente y los datos del proveedor de servicios "
+"(por ejemplo «geolite2») de las direcciones IP con el propósito de:"
+
+msgid ""
+" 1. Enforce the Terms of Use where persons create multiple accounts without Wildfire "
+"Games permission, in particular after having been banned from the service for violating"
+" the Terms of Use."
+msgstr ""
+" 1. Принудително прилагане на Условията за използване, когато потребители създават "
+"множество регистрации без разрешението на Wildfire Games, в резултат на забрана за "
+"достъп до услугата поради грубо нарушение на Условията за използване."
+
+msgid "    IP addresses will not be saved for longer than three years for this purpose."
+msgstr ""
+"    Οι διευθύνσεις IP δεν θα αποθηκεύονται για περισσότερο από τρία χρόνια για αυτό το "
+"σκοπό."
+
+msgid ""
+" 2. Make it possible to bring criminal proceedings in case of a cyberattack (EU Court "
+"of Justice Press Release No 112/16)."
+msgstr ""
+" 2. Comas a thoirt dhuinn ach an cuir sinn a-steach cùis mu eucoir ma bhios sinn fo "
+"sìobar-ionnsaigh (brath-naidheachd àireamh 112/16 aig Cùirt-cheartais an Aonaidh "
+"Eòrpaich)."
+
+msgid ""
+"Wildfire Games will not use the IP address logs for any other purpose, in particular "
+"not for marketing, not otherwise disclose IP addresses to the public or third parties "
+"and erase IP addresses if they are not relevant for the stated purposes anymore."
+msgstr ""
+"Cha chleachd Wildfire Games logaichean nan seòladhaidhean IP air adhbhar sam bith eile,"
+" gu sònraichte cha chleachd sinn iad airson margaidheachd is chan fhoillsich sinn "
+"seòlaidhean IP gu poblach no gu treas-phàrtaidhean agus sguabaidh sinn às dha na "
+"seòlaidhean IP mur eil iad iomchaidh airson nan adhbharan a mhìnich sinn tuilleadh."
+
+msgid "[font=\"sans-bold-14\"]4. Online presence[/font]"
+msgstr "[font=\"sans-bold-14\"]4. Làthaireachd air loidhne[/font]"
+
+msgid ""
+"Which players are currently connected to the Multiplayer Lobby and which match they "
+"joined is shown to all online players."
+msgstr ""
+"Seallaidh sinn dhan a h-uile cluicheadair a bhios air loidhne cò na cluicheadairean a "
+"bhios ceangailte ris an lobaidh ioma-chluicheadair aig an àm agus dè na maidsichean a "
+"bhios iad a’ gabhail pàirt annta."
+
+msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
+msgstr "[font=\"sans-bold-14\"]5. Teachdaireachdan na cabadaich[/font]"
+
+msgid ""
+"The Multiplayer Lobby features a public chat room that enables players to discuss the "
+"game and organize multiplayer matches."
+msgstr ""
+"Tha seòmar cabadaich poblach aig an lobaidh ioma-chluicheadair a leigeas leis na "
+"cluicheadairean bruidhinn mun gheama agus maidsichean ioma-chluicheadair a chur air "
+"dòigh."
+
+msgid ""
+"Wildfire Games stores a log of the public chat messages and online presence to meet the"
+" following purposes:"
+msgstr ""
+"Η Wildfire Games αποθηκεύει σε ένα αρχείο καταγραφής τα δημόσια μηνύματα συνομιλίας και"
+" την παρουσία στο Λόμπι για να ικανοποιήσει τους ακόλουθους σκοπούς:"
+
+msgid " 1. Moderators may screen chat messages to enforce the Terms of Use."
+msgstr ""
+" 1. Faodaidh maoir sgrùdadh a dhèanamh air teachdaireachdan na cabadaich feuch an "
+"èignich iad Teirmichean a’ chleachdaidh."
+
+msgid ""
+" 2. Wildfire Games may address or resolve bug reports, balancing issues or feature "
+"proposals indicated by players in the chat room."
+msgstr ""
+"  2. Η Wildfire Games μπορεί να απευθύνει ή να επιλύσει αναφορές σε σφάλματα, σε "
+"ζητήματα εξισορρόπησης ή σε προτάσεις για χαρακτηριστικά που υποδεικνύονται από τους "
+"παίκτες στην αίθουσα συνομιλίας."
+
+msgid ""
+" 3. Wildfire Games may assess trends amongst discussed topics, the growth of the active"
+" community and use these indicators as feedback to assess, improve and direct "
+"development of the game and the service."
+msgstr ""
+" 3. Faodaidh Wildfire Games measadh a dhèanamh air treandaichean am measg nan "
+"cuspairean a chaidh a dheasbaireachd, air fàs na coimhearsnachd gnìomhaich agus na "
+"treandaichean sin a chleachdadh mar bheachdan airson an t-seirbheis is an geama a "
+"mheas, piseach a thoirt air ’s a leasachadh gu dìreach."
+
+msgid "[font=\"sans-bold-14\"]6. Match statistics[/font]"
+msgstr "[font=\"sans-bold-14\"]6.Stadastaireachd nam maidsichean[/font]"
+
+msgid ""
+"Players can gain a rating on the Multiplayer Lobby that reflects their skill at the "
+"game."
+msgstr ""
+"Οι παίκτες μπορούν να κερδίσουν μια βαθμολογία στο Λόμπι Πολλών Παιχτών που "
+"αντικατοπτρίζει την ικανότητά τους στο παιχνίδι."
+
+msgid ""
+"The rating of all players is published by Wildfire Games and allows players to focus on"
+" competitive or balanced matchmaking if they wish to."
+msgstr ""
+"Die Bewertung aller Spieler wird von Wildfire Games veröffentlicht und schafft Spielern"
+" somit die Möglichkeit, sich auf ein wettbewerbsorientiertes oder ausgeglichenes "
+"Matchmaking zu konzentrieren, wenn sie es wünschen."
+
+msgid ""
+"During a rated match, players send data relating to the game (such as the number of "
+"units trained, resources gathered and the winner of the match) to Wildfire Games, so "
+"that Wildfire Games can adapt the players ratings based on these statistics."
+msgstr ""
+"Rè maidse rangaichte, cuiridh na cluicheadairean dàta a thaobh a’ gheama (can an "
+"àireamh de dh’ionadan a chaidh oideachadh, na stòrasan a chaidh a chruinneachadh is cò "
+"bhuannaich am maids) gu Wildfire Games ach an urrainn dha Wildfire Games gleus a chur "
+"air rangachaidhean nan cluicheadairean a tha stèidhichte air an stadastaireachd sin."
+
+msgid "Wildfire Games stores match statistics to:"
+msgstr "Wildfire Games съхранява данните и резултатите от игрите с цел да:"
+
+msgid ""
+" 1. Verify the accuracy of the rating score and identify and enforce Terms of Use "
+"violations relating to that."
+msgstr ""
+"  1. Επιβεβαιώσει την ακρίβεια της βαθμολογικής κατάταξης και για να προσδιορίσει και "
+"να επιβάλλει τους Όρους Χρήσης στις παραβιάσεις που σχετίζονται με αυτό."
+
+msgid ""
+" 2. Compute and publish community statistics to improve the game and the service, for "
+"example to improve the balancing of the game or to make certain aspects of the game "
+"more appealing."
+msgstr ""
+"  2. Υπολογίσει και δημοσιεύσει στατιστικά της κοινότητας για να βελτιώσει το παιχνίδι "
+"και την υπηρεσία, για παράδειγμα για να βελτιώσει την εξισορρόπηση του παιχνιδιού ή για"
+" να κάνει συγκεκριμένες πτυχές του παιχνιδιού πιο ελκυστικές."
+
+msgid "[font=\"sans-bold-14\"]Security of processing:[/font]"
+msgstr "[font=\"sans-bold-14\"]Защита на обработване на данни:[/font]"
+
+msgid "The transmission of personal data is secured using TLS encryption (GDPR 32)."
+msgstr ""
+"Η μετάδοση προσωπικών δεδομένων εξασφαλίζεται με κρυπτογράφηση TLS (Στρώμα Ασφαλών "
+"Υποδοχών) (Γενικός Κανονισμός για την Προστασία Δεδομένων 32)."
+
+msgid ""
+"Personal data is protected against unintentional loss in encrypted backups for "
+"additional time (GDPR 30.1.g, GDPR 32)."
+msgstr ""
+"Τα προσωπικά δεδομένα προστατεύονται από την ακούσια απώλεια κρυπτογραφημένων "
+"αντιγράφων ασφαλείας για επιπλέον χρόνο (Γενικός Κανονισμός για την Προστασία Δεδομένων"
+" 30.1.g, ΓΚΠΔ 32)."
+
+msgid "All personal data that Wildfire Games processes is obtained from the user (GDPR 14)."
+msgstr ""
+"Όλα τα προσωπικά δεδομένα που εξεργάζεται η Wildfire Games αποκτώνται από το χρήστη "
+"(Γενικός Κανονισμός για την Προστασία Δεδομένων 14)."
+
+msgid ""
+"Wildfire Games reserves the right to delete any service data (including personal data) "
+"at any time, except where a user has objected to the erasure of his or her personal "
+"data for performance of a legal claim."
+msgstr ""
+"Wildfire Games behoudt zich het recht voor om servicegegevens (inclusief persoonlijke "
+"gegevens) te allen tijde te verwijderen, behalve wanneer een gebruiker bezwaar heeft "
+"gemaakt tegen het wissen van zijn of haar persoonlijke gegevens voor de uitvoering van "
+"een rechtsvordering."
+
+msgid "[font=\"sans-bold-16\"]Legal basis for the processing:[/font]"
+msgstr "[font=\"sans-bold-16\"]Bunús dlithiúil le haghaidh na próiseála:[/font]"
+
+msgid ""
+"1. The processing is necessary for the performance of the service defined in the terms "
+"(GDPR 6.1.b)."
+msgstr ""
+"  1. Η επεξεργασία είναι απαραίτητη για την εκτέλεση της υπηρεσίας όπως ορίζεται στους "
+"όρους (Γενικός Κανονισμός για την Προστασία Δεδομένων 6.1.b)."
+
+msgid ""
+"2. Wildfire Games has legitimate interests in providing the Multiplayer Lobby, in the "
+"development and improvement of 0 A.D. and the Multiplayer Lobby, in enforcing the Terms"
+" of Use and in the protection against cyberattacks (GDPR 6.1.f)."
+msgstr ""
+"  2. Η Wildfire Games έχει νόμιμα συμφέροντα για την παροχή του Λόμπι Πολλών Παικτών, "
+"στην ανάπτυξη και βελτίωση του 0 A.D και του Λόμπι Πολλών Παικτών, στην επιβολή των "
+"Όρων Χρήσης και στην προστασία από τις κυβερνοεπιθέσεις (Γενικός Κανονισμός για την "
+"Προστασία Δεδομένων 6.1.f)."
+
+msgid ""
+"3. Wildfire Games does not process any further data for the Multiplayer Lobby and does "
+"not ask for consent to process data (GDPR 6.1.a, GDPR 7, GDPR 8, GDPR 13.2.c)."
+msgstr ""
+"  3. Η Wildfire Games δεν επεξεργάζεται περαιτέρω δεδομένα για το Λόμπι Πολλών Παιχτών "
+"και δεν ζητά τη συγκατάθεση για την επεξεργασία δεδομένων (Γενικός Κανονισμός για την "
+"Προστασία Δεδομένων 6.1.a, ΓΚΠΔ 7, ΓΚΠΔ 8, ΓΚΠΔ 13.2.c)."
+
+msgid "[font=\"sans-bold-16\"]User rights:[/font]"
+msgstr "[font=\"sans-bold-16\"]Erabiltzailearen eskubideak:[/font]"
+
+msgid ""
+"1. Contact Wildfire Games, by sending an email to webmaster at wildfiregames dot com "
+"(GDPR 13.1.a, GDPR 13.1.b)."
+msgstr ""
+"1. Επικοινώνησε με τη Wildfire Games, στέλνοντας ένα μήνυμα ηλεκτρονικού ταχυδρομείου "
+"στο webmaster παπάκι wildfiregames τελεία com (Γενικός Κανονισμός για την Προστασία "
+"Δεδομένων 13.1.a, ΓΚΠΔ 13.1.b)."
+
+msgid "   To exercise any user right, please refer to this contact."
+msgstr ""
+"   Cleachd am fiosrachadh conaltraidh seo a thaobh còir sam bith a’ chleachdaiche a cur"
+" an cèill."
+
+msgid "2. Right of access to personal data concerning him or her (GDPR 15)."
+msgstr ""
+"2. Δικαίωμα πρόσβασης στα προσωπικά δεδομένα που αφορούν αυτόν ή αυτή (Γενικός "
+"Κανονισμός για την Προστασία Δεδομένων 15)."
+
+msgid "3. Right to obtain personal data in a machine-readable format (GDPR 20)."
+msgstr ""
+"3. Δικαίωμα απόκτησης των προσωπικών δεδομένων σε μορφή αναγνώσιμη από μηχανή (Γενικός "
+"Κανονισμός για την Προστασία Δεδομένων 20)."
+
+msgid "4. Right to rectification of inaccurate personal data (GDPR 16)."
+msgstr ""
+"4. Δικαίωμα διόρθωσης ανακριβών προσωπικών δεδομένων (Γενικός Κανονισμός για την "
+"Προστασία Δεδομένων 16)."
+
+msgid ""
+"5. Right to erasure of personal data where it is not relevant to the stated purposes, "
+"if the data was processed unlawfully or if the user objects to the processing and has "
+"overriding legitimate grounds (GDPR 17)."
+msgstr ""
+"5. Diritto di cancellazione dei dati personali se questi non sono necessari rispetto ai"
+" motivi dichiarati, se i dati sono stati elaborati illegittimamente o se l'utente si "
+"oppone all'elaborazione e non sussiste alcun motivo legittimo prevalente per procedere "
+"al trattamento (GDPR 17)."
+
+msgid ""
+"6. Right to restriction of personal data processing where the accuracy of the data is "
+"contested by the user, if the data was processed unlawfully or if the user requires the"
+" data for a legal claim (GDPR 18)."
+msgstr ""
+"6. Δικαίωμα περιορισμού της επεξεργασίας των προσωπικών δεδομένων, όταν η ακρίβεια των "
+"δεδομένων αμφισβητείται από τον χρήστη, εάν τα δεδομένα υποβλήθηκαν σε παράνομη "
+"επεξεργασία ή εάν ο χρήστης απαιτεί τα δεδομένα για μια νομική αξίωση (Γενικός "
+"Κανονισμός για την Προστασία Δεδομένων 18)."
+
+msgid ""
+"7. Right to object to the processing of personal data concerning him or her on grounds "
+"relating to their particular situation (GDPR 21)."
+msgstr ""
+"7. Δικαίωμα διατύπωσης αντιρρήσεων για την επεξεργασία προσωπικών δεδομένων που αφορούν"
+" αυτόν ή αυτή για λόγους που σχετίζονται με την ιδιαίτερη κατάστασή τους (Γενικός "
+"Κανονισμός για την Προστασία Δεδομένων 21)."
+
+msgid "8. Right to lodge a complaint with a supervisory authority (GDPR 13.2.d, GDPR 77)."
+msgstr ""
+"8. Δικαίωμα υποβολής καταγγελίας σε εποπτική αρχή (Γενικός Κανονισμός για την Προστασία"
+" Δεδομένων 13.2.d, ΓΚΠΔ 77)."
+
+msgid ""
+"Requests that are manifestly unfounded or excessive are not responded to or may be "
+"charged (GDPR 12.4, GDPR 12.5)."
+msgstr ""
+"స్పష్టంగా ఆధారం లేని లేదా అధికంగా ఉన్న అభ్యర్థనలకు స్పందించబడదు లేదా వసూలు చేయబడవచ్చు "
+"(జిడిపిఆర్ 12.4, GDPస్పష్టంగా ఆధారం లేని లేదా అధికంగా ఉన్న అభ్యర్థనలకు స్పందించబడదు "
+"లేదా వసూలు చేయబడవచ్చు (GDPR 12.4, జిడిపిఆర్ 12.5).R 12.5)."
+
+msgid "[font=\"sans-bold-16\"]Wildfire Games obligations:[/font]"
+msgstr "[font=\"sans-bold-14\"]Wildfire Gamesin velvoitteet (GDPR 5, GDPR 13):[/font]"
+
+msgid " 1. Wildfire Games demonstrates compliance with GDPR (GDPR 5.2 'accountability')."
+msgstr ""
+"1. Wildfire Games демонстрирует соответствие с Общим регламентом по защите данных "
+"(Общий регламент по защите данных (ЕС) 5.2 «подотчетность»)."
+
+msgid ""
+" 2. Wildfire Games documents their processing activities appropriately, in particular "
+"the categories of processed personal data and security measures to protect it (GDPR "
+"30)."
+msgstr ""
+"  2. Η Wildfire Games καταγράφει κατάλληλα τις δραστηριότητές επεξεργασίας, ιδίως στις "
+"κατηγορίες των επεξεργασμένων προσωπικών δεδομένων και στα μέτρα ασφαλείας για την "
+"προστασία τους (Γενικός Κανονισμός για την Προστασία Δεδομένων 30)."
+
+msgid ""
+" 3. Wildfire Games processes personal data lawfully, fairly and transparently (GDPR "
+"5.1.a, GDPR 12.1)."
+msgstr ""
+"3. Η Wildfire Games επεξεργάζεται νόμιμα, δίκαια και με διαφάνεια τα προσωπικά δεδομένα"
+" (Γενικός Κανονισμός για την Προστασία Δεδομένων 5.1.a, ΓΚΠΔ 12.1)."
+
+msgid ""
+" 4. Wildfire Games informs users of the purposes, legal grounds, legitimate interests "
+"and retention periods of personal data processing at the time it is processed, "
+"recipients of personal data and where applicable, transfer of personal data to third "
+"countries and automated decision-making (GDPR 13.1.c-f, GDPR 13.2.a, GDPR 13.2.e-f, "
+"GDPR 15.1, GDPR 15.4)."
+msgstr ""
+"4. Wildfire Games informe les utilisateurs des finalités, des bases juridiques, des "
+"intérêts légitimes et des durées de conservation du traitement des données à caractère "
+"personnel au moment du traitement, des destinataires des données à caractère personnel "
+"et, quand applicable, du transfert de données à caractère personnel vers des pays tiers"
+" et de la prise de décision individuelle automatisée ( RGPD 13.1.cf, RGPD 13.2.a, RGPD "
+"13.2.e, RGPD 13.2.f, RGPD 15.1, RGPD 15.4)."
+
+msgid ""
+" 5. Wildfire Games does not processes personal data for purposes other than the "
+"specified ones (GDPR 5.1.b, 'purpose limitation', GDPR 13.3)."
+msgstr ""
+"  5. Η Wildfire Games δεν επεξεργάζεται προσωπικά δεδομένα για σκοπούς διαφορετικούς "
+"από τους καθορισμένους (Γενικός Κανονισμός για την Προστασία Δεδομένων 5.1.b, "
+"\"περιορισμός του σκοπού\", ΓΚΠΔ 13.3)."
+
+msgid ""
+" 6. Wildfire Games does not process personal data that is not needed for the specified "
+"purposes (GDPR 5.1.c, 'data minimization')."
+msgstr ""
+"  6. Η Wildfire Games δεν επεξεργάζεται προσωπικά δεδομένα που δεν χρειάζονται για τους"
+" καθορισμένους σκοπούς (Γενικός Κανονισμός για την Προστασία Δεδομένων 5.1.c, "
+"'ελαχιστοποίηση δεδομένων')."
+
+msgid ""
+" 7. Wildfire Games uses a storage form that does not allow identification of natural "
+"persons for longer than necessary (GDPR 5.1.e 'storage limitation')."
+msgstr ""
+"  7. Η Wildfire Games χρησιμοποιεί ένα τρόπο αποθήκευσης που δεν επιτρέπει την "
+"ταυτοποίηση φυσικών προσώπων για μεγαλύτερο χρονικό διάστημα από ό, τι είναι απαραίτητο"
+" (Γενικός Κανονισμός για την Προστασία Δεδομένων 5.1.e 'περιορισμός αποθήκευσης')."
+
+msgid ""
+" 8. Wildfire Games secures personal data processing to prevent unauthorised or unlawful"
+" processing and accidental loss (GDPR 5.1.f. 'integrity and confidentiality')."
+msgstr ""
+"  8. Η Wildfire Games διασφαλίζει την επεξεργασία των προσωπικών δεδομένων για την "
+"αποτροπή μη εξουσιοδοτημένης ή παράνομης επεξεργασίας και τυχαίας απώλειας (Γενικός "
+"Κανονισμός για την Προστασία Δεδομένων 5.1.f. 'ακεραιότητα και εμπιστευτικότητα')."
+
+msgid ""
+" 9. Wildfire Games informs users of their right to access, to rectify, to erase "
+"personal data and the right to restrict, to withdraw consent to, to object to personal "
+"data processing and to complain at a supervisory authority (GDPR 13.2.b, GDPR 13.2.c, "
+"GDPR 13.2.d)."
+msgstr ""
+"9. Η Wildfire Games ενημερώνει τους χρήστες για τα δικαίωμά τους, να έχουν πρόσβαση, να"
+" διορθώσουν, να διαγράψουν προσωπικά δεδομένα και να τα περιορίσουν, να αποσύρουν τη "
+"συγκατάθεσή τους, να αντιταχθούν στην επεξεργασία προσωπικών δεδομένων και να "
+"υποβάλλουν καταγγελίες σε μια εποπτική αρχή (Γενικός Κανονισμός για την Προστασία "
+"Δεδομένων 13.2.b, ΓΚΠΔ 13.2.c, ΓΚΠΔ 13.2.d)."
+
+msgid ""
+"10. Wildfire Games facilitates the exercise of user rights where possible (GDPR 12.2), "
+"without undue delay (GDPR 12.3)."
+msgstr ""
+"10. Wildfire Games способствует осуществлению прав пользователей там, где это возможно "
+"(Общий регламент по защите данных (ЕС) 12.2), без неоправданных задержек (Общий "
+"регламент по защите данных (ЕС) 12.3)."
+
+msgid ""
+"11. Wildfire Games informs the users that to exercise their rights, users might need to"
+" provide additional information to identify the natural person or the data (GDPR 12.6, "
+"GDPR 13.2.e)."
+msgstr ""
+"11. Η Wildfire Games ενημερώνει τους χρήστες ότι για να ασκήσουν τα δικαιώματά τους, οι"
+" χρήστες ενδέχεται να χρειαστεί να παράσχουν πρόσθετες πληροφορίες για τον προσδιορισμό"
+" του φυσικού προσώπου ή των δεδομένων (Γενικός Κανονισμός για την Προστασία Δεδομένων "
+"12.6, ΓΚΠΔ 13.2.e)."
+
+msgid ""
+"12. Wildfire Games will not knowingly collect personal data from children under the age"
+" of 13 (Children's Online Privacy Protection Act). If you believe Wildfire Games "
+"received any personal data from or about a child under 13, please contact Wildfire "
+"Games."
+msgstr ""
+"12. Η Wildfire Games δεν θα συλλέγει συνειδητά δεδομένα προσωπικού χαρακτήρα από παιδιά"
+" ηλικίας κάτω των 13 ετών (Νόμος για την προστασία της ιδιωτικής ζωής των παιδιών στο "
+"διαδίκτυο). Εάν πιστεύετε ότι η Wildfire Games έλαβε προσωπικά δεδομένα από ή για ένα "
+"παιδί κάτω των 13 ετών, παρακαλούμε επικοινωνήστε με τη Wildfire Games."
+
+msgid ""
+"13. Where Wildfire Games processes sensitive personal data based on legitimate "
+"interests, Wildfire Games considers performing, recording and periodically reviewing "
+"Legitimate Interests Assessments and Data Protection Impact Assessments (GDPR 35) to "
+"become confident that the individual's interests do not override Wildfire Games "
+"legitimate interests, and that Wildfire Games is not using personal data in intrusive "
+"ways unless there is a very good reason to."
+msgstr ""
+"13. Wildfire Gamesek interes legitimoetan oinarritutako datu pertsonal konfidentzialak "
+"prozesatzen dituenean, Wildfire Gamesek uste du, Wildfire Games delakoak, bere ustez, "
+"bidezko interesen ebaluazioak egitea (GDPR 35) , erregistratzea eta aldian-aldian "
+"berrikusteak ez duela esan nahi Wildfire Gamesen bidezko interesen ebaluazioak egin, "
+"erregistratu eta berrikusi behar dituenik, eta Wildfire Gamesek datuen babesaren "
+"gaineko ebaluazioak egin, erregistratu eta aldian-aldian berrikusteak ez du esan nahi "
+"Wildfire Games enpresaren interes legitimoak bere horretan direnik."
+
+msgid ""
+"For further information on Wildfire Games Privacy Policies, visit "
+"https://trac.wildfiregames.com/wiki/UserDataProtection"
+msgstr ""
+"Para máis información sobre as políticas de protección da intimidade de Wildfire Games,"
+" consulte https://trac.wildfiregames.com/wiki/UserDataProtection (en inglés)"
+
+msgid ""
+"[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
+"Service[/font]"
+msgstr ""
+"[font=\"sans-bold-18\"]Podmínky užití služby hry pro více hráčů jedné zájmové skupiny "
+"ve hře 0 A.D. Empires Ascendant[/font]"
+
+msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-16"
+msgstr "[font=\"sans-bold-14\"]Ceann-là na sgrìobhainn:[/font] 16mh Dàmh 2018"
+
+msgid ""
+"The 0 A.D. Empires Ascendant Multiplayer Lobby is an online service provided by "
+"Wildfire Games that allows players to set up online multiplayer matches, discuss the "
+"game in a public chat room and gain a rating that reflects their skill."
+msgstr ""
+"Το Λόμπι Πολλών Παιχτών του 0 A.D. η Άνοδος των Αυτοκρατοριών είναι μια διαδικτυακή "
+"υπηρεσία που παρέχεται από την Wildfire Games που επιτρέπει στους παίκτες να "
+"δημιουργήσουν διαδικτυακούς αγώνες για πολλούς παίκτες, να συζητήσουν για το παιχνίδι "
+"σε μια δημόσια αίθουσα συνομιλίας και να αποκτήσουν μια βαθμολογία που αντανακλά τις "
+"δεξιότητές τους."
+
+msgid ""
+"Due to the subject matter of historic warfare, description and depiction of violence "
+"and the language on the Multiplayer Lobby, 0 A.D. and the Multiplayer Lobby are not "
+"directed to young children (COPPA §312.2)."
+msgstr ""
+"Λόγω του περιεχομένου του ιστορικού πολέμου, της περιγραφής και της απεικόνισης της "
+"βίας καθώς και της γλώσσας στο Λόμπι Πολλών Παικτών, το 0 A.D. και το Λόμπι για Πολλούς"
+" Παίκτες δεν απευθύνεται σε μικρά παιδιά (Νόμος για την προστασία της ιδιωτικής ζωής "
+"των παιδιών στο διαδίκτυο §312.2)."
+
+msgid "The minimum age to use the Multiplayer Lobby is 13."
+msgstr "A idade mínima para usar a sala de espera para varios xogadores é 13 anos."
+
+msgid "[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree to:[/font]"
+msgstr ""
+"[font=\"sans-bold-14\"]Používaním 0 A.D. Multiplayer Lobby súhlasíš s nasledujúcimi "
+"podmienkami:[/font]"
+
+msgid " 1. Follow all usage policies."
+msgstr " 1. Gun lean thu na h-uile poileasaidh a’ chleachdaidh."
+
+msgid ""
+" 2. Not use the service with third-party software or mods that prevents the user from "
+"being informed of updated Terms and Conditions, unless authorized by a Wildfire Games "
+"team member."
+msgstr ""
+" 2. Nem használod a szolgáltatást olyan harmadik féltől származó szoftverekkel vagy "
+"modokkal, amelyek megakadályozzák, hogy a felhasználó értesüljön a felhasználási "
+"feltételek változásáról, hacsak ezt nem engedélyezte egy Wildfire Games csapattag."
+
+msgid ""
+" 3. Use the service at your own risk. Wildfire Games does not take responsibility for "
+"the content posted by users or damages resulting from this service."
+msgstr ""
+" 3. Gun cleachd thu an t-seirbheis air do chunnart fhèin. Chan eil uallach air Wildfire"
+" Games airson na susbainte a thèid a phostadh le cleachdaichean no airson dochann a "
+"chaidh adhbharachadh leis an t-seirbheis seo."
+
+msgid "[font=\"sans-bold-14\"]Wildfire Games reserves the right to:[/font]"
+msgstr "[font=\"sans-bold-14\"]Cúlchiste ag Wildfire Games leis na rialacha seo:[/font]"
+
+msgid ""
+" 1. Moderate the service, i.e. to enforce the Terms of Use by restricting, suspending "
+"or terminating user accounts."
+msgstr ""
+" 1. Не упражнявате ръководствен контрол над услугата, т.е. да не налагате Условия на "
+"използване чрез ограничаване, временно отстраняване или преустановяване на "
+"потребителски акаунти."
+
+msgid " 2. Appoint others to moderate the service."
+msgstr " 2. Gun cuir sinn càch ann an dreuchd ach an dèan iad maorsainneachd air an t-seirbheis."
+
+msgid " 3. Discontinue or interrupt any part of the service at any time."
+msgstr ""
+" 3. Gun sguir sinn de phàirt sam bith dhen t-seirbheis no gun cuir sinn ’na stad i uair"
+" sam bith."
+
+msgid ""
+" 4. Change the service or the terms. The document date of the terms indicate its "
+"version, and the user is informed of the new terms before being able to use the service"
+" again."
+msgstr ""
+" 4. Gun atharraich sinn an t-seirbheis no na teirmichean. Comharraichidh ceann-là nan "
+"teirmichean an tionndadh dhiubh agus innsidh sinn dhan chleachdaiche mu na teirmichean "
+"ùra mus urrainn dhaibh an t-seirbheis a chleachdadh a-rithist."
+
+msgid ""
+" 5. Process personal data in accordance with the Lobby Privacy Policy, the General Data"
+" Protection Regulation (GDPR) and the Children's Online Privacy Protection Act (COPPA) "
+"where applicable."
+msgstr ""
+" 5. Обработва лични данни в съответствие на Политиката на поверителност на Лобито, "
+"Общия регламент за защита на личните данни (General Data Protection Regulation (GDPR)) "
+"и Законът за защита на поверителността на интернет данните за деца (Children's Online "
+"Privacy Protection Act (COPPA))."
+
+msgid ""
+"If parts of the terms are held to be illegal or otherwise unenforceable, the remainder "
+"of the terms shall still apply ('severability')."
+msgstr ""
+"Ma thathar den bheachd gu bheil cuid de na teirmichean mì-laghail no nach gabh an "
+"èigneachadh air adhbhar eile, bidh an còrr de na teirmichean an sàs fhathast "
+"(“severability”)."
+
+msgid "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use[/font]"
+msgstr ""
+"[font=\"sans-bold-18\"]Podmínky užití hry pro více hráčů sdružených v zájmové skupině "
+"ve hře 0 A.D. Empires Ascendant[/font]"
+
+msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2022-09-01"
+msgstr "[font=\"sans-bold-14\"]Fecha del documento:[/font] 01/09/2022"
+
+msgid ""
+" 1. a. Only create one account per person on the service unless authorized by Wildfire "
+"Games."
+msgstr ""
+"1. a. Solo se puede crear una cuenta por persona en este servicio, salvo autorización "
+"expresa de Wildfire Games."
+
+msgid ""
+"    b. Not share your account with anyone and not publish or divulge to anyone the "
+"account password."
+msgstr ""
+"    b. Uw account niet met anderen te delen en het account wachtwoord niet te "
+"publiceren of aan anderen bekend te maken. "
+
+msgid ""
+" 2. Not impersonate other users of the service and only use your registered username in"
+" multiplayer matches."
+msgstr ""
+" 2. Не можете да злоупотребявате със самоличността на други потребители на услугата, "
+"като трябва да използате единствено своето регистрирано име в интернет игрите."
+
+msgid " 3. Not post profanity, pejorative terms or pornographic content."
+msgstr ""
+"3. Ne pas poster de propos blasphématoires, de termes péjoratifs ou de contenu "
+"pornographique."
+
+msgid ""
+" 4. Not harass, harm, intimidate, discriminate, threaten, defame, cause damage to "
+"others or purposefully demean the worth of others using this service."
+msgstr ""
+"4. Не переслідувати, не заподіювати шкоди, не залякувати, не дискримінувати, не "
+"погрожувати, не займатись наклепом, не заподіювати шкоду іншим чи цілеспрямовано "
+"принижувати цінність інших людей, використовуючи цю послугу."
+
+msgid ""
+" 5. Not violate the privacy of others by disclosing personally identifiable information"
+" (for example real name, location, ID) or private details (for example social media or "
+"messenger account names) of others without their consent."
+msgstr ""
+"5. Neporušovať súkromie ostatných odhaľovaním osobných informácií, poďla ktorých je "
+"možné ich identifikovať (napríklad skutočné meno, bydlisko, občiansky preukaz) alebo "
+"súkromné detaily (napríklad mená uživateľa na sociálnych sieťach alebo platformy na "
+"posielanie správ) druhých bez ich povolenia."
+
+msgid " 6. Not incite violence or promote illegal acts."
+msgstr " 6. Niet aanzetten tot geweld of het promoten van illegale handelingen."
+
+msgid ""
+" 7. Not attempt to artificially adjust any user of the service's rating or any of the "
+"statistics which impact it. (Examples of this are, but are not limited to: cheating in "
+"ranked games, reverse engineering the service, and taking advantage of other users of "
+"the service.)"
+msgstr ""
+"7. Nu încercați să ajustați în mod artificial evaluările utilizatorilor din clasamentul"
+" determinat de acest serviciu sau oricare dintre statisticile care îl influențează. "
+"(Exemple pentru acest lucru sunt următoarele, dar nu se limitează doar la: trișarea în "
+"jocuri clasificate, ingineria inversă a serviciului și profitarea de alți utilizatori "
+"ai serviciului.)"
+
+msgid ""
+" 8. Not undermine the intended gameplay or purposefully gain unfair advantages in "
+"multiplayer matches (for example cheating, using exploits or bugs)."
+msgstr ""
+" 8. Na toll an dòigh air a thathar ag amas an geama a chluiche is na coisinn buannachd "
+"air dòigh neo-chothromach ann am maidsichean ioma-chluicheadair (can cealgaireachd no "
+"le taic dubh-shaothrachaidh no bhugaichean)."
+
+msgid " 9. Not spam the service and not post large amounts of repetitive or unwanted messages."
+msgstr ""
+" 9. Не злоупотребявате с услугата като често изпращате огромно количество от повтарящи "
+"се и нежелани съобщения, водещи до пренатоварване на услугата.."
+
+msgid ""
+"10. Not use the service to promote specific goods, services, or products unless "
+"authorized by Wildfire Games."
+msgstr ""
+"10. Ne pas utiliser le service pour promouvoir des biens, services ou produits "
+"spécifiques, à moins que cela ne soit autorisé par Wildfire Games."
+
+msgid ""
+"If a moderator deems your behavior to be inconsistent with these terms, your account "
+"may be restricted, suspended or terminated."
+msgstr ""
+"Nuair a bhios maor dhen bheachd nach eil do ghiùlan a’ gèilleadh ris na teirmichean "
+"seo, dh’fhaoidte gun dèid an cunntas agad a chuingeachadh no a chur à rèim no crìoch a "
+"chur air."
+
+msgid "Terms of Service"
+msgstr "Pakalpojumu sniegšanas noteikumi"
+
+msgid "Please read and accept the Terms of Service."
+msgstr "Veuillez lire et accepter les termes de service, s'il vous plait."
+
+msgid "Terms of Use"
+msgstr "Conditions Générales d'Utilisation"
+
+msgid "Please read and accept the Terms of Use."
+msgstr "Veuillez lire et accepter les termes d'utilisation, s'il vous plait."
+
+msgid "Privacy Policy"
+msgstr "Zásady ochrany osobních údajů"
+
+msgid "Please read and accept the Privacy Policy."
+msgstr "Veuillez lire et accepter la politique de vie privée, s'il vous plait."
+
+msgid "Create a new account"
+msgstr "Δημιουργήστε ένα νέο λογαριασμό"
+
+msgid "Login to an existing account"
+msgstr "Kirjaudu sisään olemassa olevalle tunnukselle"
+
+msgid "Connect"
+msgstr "Присоединиться"
+
+msgid "Connecting…"
+msgstr "Connexion en cours..."
+
+msgid "Connect to the game lobby"
+msgstr "Połącz z poczekalnią gry wieloosobowej"
+
+msgid "Register"
+msgstr "Зарегистрироваться"
+
+msgid "Registering…"
+msgstr "กำลังดำเนินการสมัครสมาชิก...."
+
+msgid "Registered"
+msgstr "Novum nomen creatum"
+
+msgid "Registration"
+msgstr "Registreerimine"
+

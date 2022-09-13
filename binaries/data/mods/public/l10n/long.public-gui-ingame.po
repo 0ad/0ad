@@ -1,0 +1,1413 @@
+
+msgid ""
+msgstr ""
+"Project-Id-Version: None\n"
+"POT-Creation-Date: 2022-09-12 11:00+0000\n"
+"PO-Revision-Date: 2022-09-12 11:00+0000\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit"
+
+msgid "This cheat requires a numeric parameter."
+msgstr "To oszustwo wymaga podania parametru numerycznego."
+
+msgid "Choose game speed"
+msgstr "Seleccionar a velocidade da partida."
+
+#, python-format
+msgid "Press %(hotkey)s to toggle this menu."
+msgstr "Paina %(hotkey)s avataksesi tai sulkeaksesi tämän valikon."
+
+msgid "Chat"
+msgstr "Conversación"
+
+msgid "Save"
+msgstr "Sauvegarder"
+
+msgid "Summary"
+msgstr "Zusammenfassung"
+
+#, python-format
+msgid "Press %(hotkey)s to open the summary screen."
+msgstr "Appuyez sur %(hotkey)s pour ouvrir l'écran de résumé de partie."
+
+msgid "Lobby"
+msgstr "Sala multijugador"
+
+#, python-format
+msgid "Press %(hotkey)s to open the multiplayer lobby page without leaving the game."
+msgstr ""
+"Πάτα το πλήκτρο %(hotkey)s για να ανοίξεις τη σελίδα του λόμπι πολλών παιχτών χωρίς να "
+"βγεις από το παιχνίδι."
+
+msgid "Options"
+msgstr "Inställningar"
+
+msgid "Hotkeys"
+msgstr "Scorciatoie da tastiera"
+
+msgid "Resume"
+msgstr "Continuar o jogo"
+
+msgid "Pause"
+msgstr "தற்காலிகமாக நிறுத்து"
+
+#, python-format
+msgid "Press %(hotkey)s to pause or resume the game."
+msgstr "Πάτα το πλήκτρο %(hotkey)s για να σταματήσεις ή να επιστρέψεις στο παιχνίδι."
+
+msgid "Resign"
+msgstr "Atsistatydinti"
+
+msgid "Exit"
+msgstr "sisti lo nu kelci"
+
+#, python-format
+msgid "Delay to live stream: %(delay)ss"
+msgstr "Retraso en la transmisión en directo: %(delay)ss"
+
+msgid "Connection to the server has been authenticated."
+msgstr "Chaidh aithne a’ cheangail dhan fhrithealaiche a dhearbhadh."
+
+msgid "Connected to the server."
+msgstr "Chaidh ceangal a dhèanamh ris an fhrithealaiche."
+
+msgid "Connection to the server has been lost."
+msgstr "Chaidh an ceangal dhan fhrithealaiche air chall."
+
+msgid "Waiting for players to connect:"
+msgstr ""
+"プレイヤーの接続を待っています：\n"
+"                    \n"
+"                    保存\n"
+"                    \n"
+"                  "
+
+msgid "Synchronizing gameplay with other players…"
+msgstr "অন্যান্য খেলোয়াড়দের সাথে গেমপ্লে সিংক্রোনাইজ করা হচ্ছে ..."
+
+msgctxt "Separator for a list of client loading messages"
+msgid ", "
+msgstr "، و"
+
+#, python-format
+msgid "%(time)s (%(speed)sx)"
+msgstr "%(time)sবার (%(speed)sগুন গতিতে)"
+
+msgctxt "Separator for a list of players"
+msgid ", "
+msgstr "، و"
+
+#, python-format
+msgid "Paused by %(players)s"
+msgstr "Σε κατάσταση παύσης με εντολή του παίκτη %(players)s"
+
+msgid "Game Paused"
+msgstr "ஆட்டம் இடை நிறுத்தப்பட்டுள்ளது"
+
+msgid "Click to Resume Game"
+msgstr "Preme co botón principal en algures para retomar a partida."
+
+msgctxt "countdown format"
+msgid "m:ss"
+msgstr "মিনিট:সেকেন্ড"
+
+msgid "This item is paused."
+msgstr "Цей предмет поставлено на паузу"
+
+msgctxt "chat addressee"
+msgid "Everyone"
+msgstr "A h-uile duine"
+
+msgctxt "chat addressee"
+msgid "Allies"
+msgstr "Comhghuaillithe"
+
+msgctxt "chat message context"
+msgid "Ally"
+msgstr "Sąjungininkas"
+
+msgctxt "chat addressee"
+msgid "Enemies"
+msgstr "Nepriatelia"
+
+msgctxt "chat message context"
+msgid "Enemy"
+msgstr "Ienaidnieks"
+
+msgctxt "chat addressee"
+msgid "Observers"
+msgstr "Pozorovatelia"
+
+msgctxt "chat message context"
+msgid "Observer"
+msgstr "Спостерігача"
+
+msgctxt "chat message context"
+msgid "Private"
+msgstr "Príobháideach"
+
+#, python-format
+msgid "%(time)s %(message)s"
+msgstr "%(time)s %(message)s"
+
+#, python-format
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
+
+msgid "HH:mm"
+msgstr "HH:mm"
+
+msgctxt "chat history filter"
+msgid "Chat and notifications"
+msgstr "Discussions et notifications"
+
+msgctxt "chat history filter"
+msgid "Chat messages"
+msgstr "Teachdaireachdan na cabadaich"
+
+msgctxt "chat history filter"
+msgid "Players chat"
+msgstr "Cabadaich nan cluicheadair"
+
+msgctxt "chat history filter"
+msgid "Ally chat"
+msgstr "Cabadaich nan caidreabhach"
+
+msgctxt "chat history filter"
+msgid "Enemy chat"
+msgstr "Cabadaich nan nàimhdean"
+
+msgctxt "chat history filter"
+msgid "Observer chat"
+msgstr "Разговори между наблюдателите"
+
+msgctxt "chat history filter"
+msgid "Private chat"
+msgstr "Cabadaich phrìobhaideach"
+
+msgctxt "chat history filter"
+msgid "Game notifications"
+msgstr "Partidaren jakinarazpenak"
+
+msgctxt "chat history filter"
+msgid "Network notifications"
+msgstr "Denuntiationes retis 'network'"
+
+msgctxt "chat input"
+msgid "Type the message to send."
+msgstr "Πληκτρολογήστε το μήνυμα για την αποστολή."
+
+#, python-format
+msgid "Press %(hotkey)s to open the public chat."
+msgstr "A nyilvános csevegés megnyitásához nyomd meg a(z) %(hotkey)s gombot!"
+
+#, python-format
+msgid "Press %(hotkey)s to open the observer chat."
+msgstr "Appuyez sur %(hotkey)s pour ouvrir le salon de discussion des observateurs."
+
+#, python-format
+msgid "Press %(hotkey)s to open the ally chat."
+msgstr "A szövetséges csevegés megnyitásához nyomd meg a(z) %(hotkey)s gombot!"
+
+#, python-format
+msgid "Press %(hotkey)s to open the previously selected private chat."
+msgstr ""
+"Brùth air %(hotkey)s gus a’ chabadaich phrìobhaideach mu dheireadh a thagh thu "
+"fhosgladh."
+
+#, python-format
+msgid "%(player)s is starting to rejoin the game."
+msgstr "%(player)s a zo o kregiñ da emezelañ e-barzh ar c'hoariadenn."
+
+#, python-format
+msgid "%(player)s is starting to join the game."
+msgstr "%(player)s a zo o kregiñ da stagañ gant ar c'hoariadenn."
+
+#, python-format
+msgid "%(player)s has left the game."
+msgstr "%(player)s en eus kuitaet ar c'hoariadenn."
+
+#, python-format
+msgid "%(username)s has been banned"
+msgstr "Στον παίκτη %(username)s απαγορεύτηκε η πρόσβαση"
+
+#, python-format
+msgid "%(username)s has been kicked"
+msgstr "Ο παίκτης %(username)s εκδιώχθηκε από το παιχνίδι."
+
+#, python-format
+msgid "%(player)s has rejoined the game."
+msgstr "%(player)s heeft zich opnieuw bij het spel aangesloten."
+
+#, python-format
+msgid "%(player)s has joined the game."
+msgstr "%(player)s en deus staget gant ar c'hoariadenn."
+
+#, python-format
+msgid "<%(user)s>"
+msgstr "<%(user)s>님"
+
+#, python-format
+msgid "(%(context)s) %(userTag)s %(message)s"
+msgstr "(%(context)s) %(userTag)s %(message)s"
+
+#, python-format
+msgid "%(userTag)s %(message)s"
+msgstr " %(userTag)s %(message)s "
+
+#, python-format
+msgid "(%(context)s) * %(user)s %(message)s"
+msgstr "(%(context)s) * %(user)s %(message)s"
+
+#, python-format
+msgid "* %(user)s %(message)s"
+msgstr "* %(user)s %(message)s"
+
+#, python-format
+msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
+msgstr "%(icon)sاز حیوانات اهلی شما مورد حمله واقع شده اند به وسیله%(attacker)s!"
+
+#, python-format
+msgid "%(icon)sYou have been attacked by %(attacker)s!"
+msgstr "%(icon)sشما مورد حمله واقه شده است به وسیله%(attacker)s!"
+
+msgid "Click to focus on the attacked unit."
+msgstr "Kohdista hyökkäyksen kohteena olevaan yksikköön napsauttamalla tätä."
+
+#, python-format
+msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
+msgstr "%(player)s antoi vaihtokaupassa %(amountGiven)s ja sai %(amountGained)s."
+
+#, python-format
+msgid "You are now allied with %(player)s."
+msgstr "Tha thu fhèin is %(player)s ’nan caidreabhaich a-nis."
+
+#, python-format
+msgid "You are now at war with %(player)s."
+msgstr "ახლა შენ ხარ მოთამაშის %(player)s წინააღმდეგ ომში."
+
+#, python-format
+msgid "You are now neutral with %(player)s."
+msgstr "Sedaj ste v nevtralnih odnosih z igralcem %(player)s."
+
+#, python-format
+msgid "%(player)s is now allied with you."
+msgstr "Tha %(player)s is thu fhèin ’nan caidreabhaich a-nis."
+
+#, python-format
+msgid "%(player)s is now at war with you."
+msgstr "%(player)s este de acum în război cu dumneavoastră."
+
+#, python-format
+msgid "%(player)s is now neutral with you."
+msgstr "Hráč %(player)s je odteraz s vami v neutrálnom vzťahu."
+
+#, python-format
+msgid "%(player)s is now allied with %(player2)s."
+msgstr "%(player)s on nyt liittoutunut pelaajan %(player2)s kanssa."
+
+#, python-format
+msgid "%(player)s is now at war with %(player2)s."
+msgstr "%(player)s befindet sich jetzt mit %(player2)s im Krieg."
+
+#, python-format
+msgid "%(player)s is now neutral with %(player2)s."
+msgstr "%(player)s je sedaj v nevtralnih odnosih z igralcem %(player2)s."
+
+#, python-format
+msgid "%(player)s is advancing to the %(phaseName)s."
+msgstr "%(player)s sedang meningkatkan diri ke %(phaseName)s."
+
+#, python-format
+msgid "The %(phaseName)s of %(player)s has been aborted."
+msgstr "Overagngen til %(phaseName)s for %(player)s har blitt kansellert."
+
+#, python-format
+msgid "%(player)s has reached the %(phaseName)s."
+msgstr "%(player)s on saavuttanut vaiheen %(phaseName)s."
+
+msgid ", "
+msgstr "، و"
+
+#, python-format
+msgid "%(player)s has sent you %(amounts)s."
+msgstr "%(player)s telah menghantar kepada anda %(amounts)s."
+
+#, python-format
+msgid "You have sent %(player2)s %(amounts)s."
+msgstr "%(player2)s játékosnak küldtél ennyit: %(amounts)s."
+
+#, python-format
+msgid "%(player)s has sent %(player2)s %(amounts)s."
+msgstr "%(player)s %(player2)s játékosnak küldött ennyit: %(amounts)s."
+
+msgctxt "chat input"
+msgid "Filter:"
+msgstr "Iragazkia:"
+
+msgctxt "chat input"
+msgid "To:"
+msgstr "Címzett:"
+
+msgctxt "chat input"
+msgid "Text:"
+msgstr "Meddelande:"
+
+msgid "Cancel"
+msgstr "Hoit i mog noch ned"
+
+msgctxt "chat"
+msgid "History"
+msgstr "Geschiedenis"
+
+msgid "Send"
+msgstr "Надіслати"
+
+msgctxt "chat input"
+msgid "Filter the chat history."
+msgstr "Penheirare la historia de las conversas."
+
+msgctxt "chat input"
+msgid "Select chat addressee."
+msgstr "Seleziona il destinatario del messaggio."
+
+msgid "The Developer Overlay was opened."
+msgstr "Dreistgwiskad an diorroerien a zo bet digoret warni."
+
+msgid "The Developer Overlay was closed."
+msgstr "Dreistgwiskad an diorroerien a zo bet serret warni."
+
+msgid "Control all units"
+msgstr "Управляване на всички единици"
+
+msgid "Change perspective"
+msgstr "Atharraich a’ bhuaidh-astair"
+
+msgid "Display selection state"
+msgstr "Показване на състоянието на избраното"
+
+msgid "Pathfinder overlay"
+msgstr "Tar-chòmhdachadh an luirg-shlighean"
+
+msgid "Hierarchical pathfinder overlay"
+msgstr "Слой на йерархичния алгоритъм за търсене на път"
+
+msgid "Obstruction overlay"
+msgstr "Sovrapposizione Ostruzioni"
+
+msgid "Unit motion overlay"
+msgstr "Sobreposição de movimento de unidades"
+
+msgid "Range overlay"
+msgstr "Sovrapposizione Campo Visuale"
+
+msgid "Bounding box overlay"
+msgstr "Πλαίσιο οριοθέτησης της επικάλυψης"
+
+msgid "Restrict camera"
+msgstr "Srian a chur leis an gceamara"
+
+msgid "Reveal map"
+msgstr "Arrevelare la geographía"
+
+msgid "Enable time warp"
+msgstr "Ativar o modo de velocidade hiper rápida"
+
+msgid "Activate Rejoin Test"
+msgstr "Ενεργοποίηση  Δοκιμής Επανασύνδεσης."
+
+msgid "Promote selected units"
+msgstr "Ngre në pozitë njësitë e përzgjedhura"
+
+msgid "Enable culling"
+msgstr "No renderitzis els objectes fora del camp de visió"
+
+msgid "Lock cull camera"
+msgstr "Blocca determinazione della superficie nascosta della telecamera"
+
+msgid "Display camera frustum"
+msgstr "Показване на отсечената пирамида на камерата"
+
+msgid "Display shadows frustum"
+msgstr "Відобразити тіні зрізаного конусу камери"
+
+msgid "Render Debug Mode Disabled"
+msgstr "Απεικόνηση Λειτουργίας Εντοπισμού Σφαλμάτων Απενεργοποιημένη"
+
+msgid "Render Debug Mode AO"
+msgstr "Modo de depuración de errores de renderizado AO"
+
+msgid "Render Debug Mode Alpha"
+msgstr "Modo de depuración de errores de renderizado alfa"
+
+msgid "Render Debug Mode Custom"
+msgstr "Modo de depuración de errores de renderizado personalizado"
+
+msgid "Time warp mode"
+msgstr "Tryb zwielokrotnienia szybkości."
+
+msgid ""
+"Note: time warp mode is a developer option, and not intended for use over long periods "
+"of time. Using it incorrectly may cause the game to run out of memory or crash."
+msgstr ""
+"Let op: terug gaan in de tijd is een ontwikkeloptie, en niet bedoeld voor gebruik over "
+"een lange periode. Incorrect gebruik kan er voor zorgen dat uw computer geheugen tekort"
+" komt, en zo het spel laten crashen (of zelfs andere programma's)."
+
+msgid "Question"
+msgstr "Interrogatio"
+
+msgid "Yes or no?"
+msgstr "A bheil no nach eil?"
+
+msgid "Name"
+msgstr "Nombre"
+
+msgid "Civilization"
+msgstr "צִיבִילִיזָצִיָה"
+
+msgid "Team"
+msgstr "Liitlased"
+
+msgid "Theirs"
+msgstr "Їхній статус"
+
+msgid "A"
+msgstr "Sz"
+
+msgid "N"
+msgstr "N "
+
+msgid "E"
+msgstr "E "
+
+msgid "Tribute"
+msgstr "Φόρος υποτελείας"
+
+msgid "Close"
+msgstr "Schließen"
+
+#, python-format
+msgctxt "ceasefire"
+msgid "Remaining ceasefire time: %(time)s."
+msgstr "An ùine a tha air fhàgail air an fhois-losgaidh: %(time)s."
+
+msgid "Toggle Diplomacy Colors"
+msgstr "Решите, используются ли дипломатические цвета"
+
+msgid "Request your allies to attack this enemy"
+msgstr "Iarr air do chaidreabhaich gun doir iad ionnsaigh air an nàmhaid seo"
+
+msgctxt "team"
+msgid "None"
+msgstr "काहीही नाही"
+
+msgid "Ally"
+msgstr "Sąjungininkas"
+
+msgid "Neutral"
+msgstr "Neo-phàirteach"
+
+msgid "Enemy"
+msgstr "Ienaidnieks"
+
+msgid "Bribe a random unit from this player and share its vision during a limited period."
+msgstr ""
+"Gouestlaouit un unanenn dre-zegouezh eus ar c'hoarier-mañ ha rannit ganti e hed-sell "
+"e-pad ur frapadig amzer dermenet."
+
+msgid "A failed bribe will cost you:"
+msgstr "Ma dh’fhàilligeas a’ bhrìb, seo a’ choisgeas a dh’èireas:"
+
+msgctxt "diplomatic stance selection"
+msgid "x"
+msgstr "x"
+
+#, python-format
+msgid ""
+"Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click to tribute "
+"%(greaterAmount)s."
+msgstr ""
+"Tributar %(resourceAmount)s %(resourceType)s a %(playerName)s. Shift + clique do botão "
+"direito do rato para tributar %(greaterAmount)s."
+
+#, python-format
+msgid "Basic range: %(range)s meter"
+msgid_plural "Basic range: %(range)s meters"
+msgstr[0] "Alcance básico: %(range)s metros"
+msgstr[1] "Abast bàsic: %(range)s metres"
+
+#, python-format
+msgid "Average bonus range: %(range)s meter"
+msgid_plural "Average bonus range: %(range)s meters"
+msgstr[0] "میانگین امتیاز شعاع حمله : %(range)s متر"
+msgstr[1] "Bónus de alcance médio: %(range)s metros"
+
+msgid "Cannot build wall here!"
+msgstr "Pas possiblo de construire de muralye iqui"
+
+msgid "Delete"
+msgstr "Esmemorecer"
+
+msgid "Destroy everything currently selected?"
+msgstr "A bheil thu airson a h‑uile rud a thagh thu a mhilleadh?"
+
+msgid "No"
+msgstr "Chan eil"
+
+msgid "Yes"
+msgstr "ja'a go'i"
+
+#, python-format
+msgid "Out-Of-Sync error on turn %(turn)s."
+msgstr "Synchronizačná chyba (Out-Of-Sync error) na ťahu %(turn)s."
+
+#, python-format
+msgctxt "Out-Of-Sync"
+msgid "Players: %(players)s"
+msgstr "Cluicheadairean: %(players)s"
+
+msgctxt "Out-Of-Sync"
+msgid "Your game state is identical to the hosts game state."
+msgstr ""
+"Η κατάσταση του παιχνιδιού σας είναι ίδια με την κατάσταση του παιχνιδιού των "
+"εξυπηρετητών."
+
+msgctxt "Out-Of-Sync"
+msgid "Your game state differs from the hosts game state."
+msgstr ""
+"Η κατάσταση του παιχνιδιού σας είναι διαφορετική με την κατάσταση του παιχνιδιού των "
+"εξυπηρετητών."
+
+msgctxt "Out-Of-Sync"
+msgid "Rejoining Multiplayer games with AIs is not supported yet!"
+msgstr ""
+"¡Indagora nun sta sofhitado arrexhuntasse a partidas entre múltiplos xhogadores & "
+"agentes intelligentes!"
+
+msgctxt "Out-Of-Sync"
+msgid "Ensure all players use the same mods."
+msgstr "Zajistěte, aby všichni hráči používali stejně upravenou hru (její pozměněnou verzi)."
+
+msgctxt "Out-Of-Sync"
+msgid "Click on \"Report a Bug\" in the main menu to help fix this."
+msgstr ""
+"Haz clic sobre «informar de un fallo» en el menú principal si quieres ayudarnos a "
+"arreglar el problema."
+
+#, python-format
+msgctxt "Out-Of-Sync"
+msgid "Replay saved to %(filepath)s"
+msgstr "Chaidh an ath-chluiche a shàbhaladh gu %(filepath)s"
+
+#, python-format
+msgctxt "Out-Of-Sync"
+msgid "Dumping current state to %(filepath)s"
+msgstr "Diskargañ ar statud a zo er mare-mañ da %(filepath)s"
+
+msgid "Out of Sync"
+msgstr "Chailleadh an sioncronachadh"
+
+msgid "Out-Of-Sync"
+msgstr "Se ha perdido la sincronización"
+
+msgid "Confirmation"
+msgstr "Confirmar decisión"
+
+msgid "The game has finished, what do you want to do?"
+msgstr "Thàinig an geama gu crìoch, dè tha thu airson dèanamh?"
+
+msgid "Stay"
+msgstr "Tetap di sini"
+
+msgid "Quit and View Summary"
+msgstr "Fàg an-seo ’s seall air a’ gheàrr-chunntas"
+
+msgid "VICTORIOUS!"
+msgstr "AR MAOUT A ZO AET GANEOC'H!"
+
+msgid "DEFEATED!"
+msgstr "FLASTRET OC'H BET!"
+
+msgid "Do you want to quit?"
+msgstr "Estás seguro de que queres saír?"
+
+msgid "Are you sure you want to quit? Leaving will disconnect all other players."
+msgstr ""
+"Er du sikker på, at du vil forlade spillet? Hvis du forlader spillet vil øvrige "
+"spilleres forbindelse også afbrydes."
+
+msgid "Are you sure you want to quit?"
+msgstr "Ειστε σίγουροι οτι θέλετε να πραγματοποιήσετε έξοδο ;"
+
+msgid "Do you want to resign or will you return soon?"
+msgstr "Daoust hag-eñ ho peus c'hoant da zizerc'hel pe emaoc'h o vont da zistreiñ a-benn nebeut?"
+
+msgid "I will return"
+msgstr "Jag kommer att återvända"
+
+msgid "I resign"
+msgstr "నేను రాజీనామా చేస్తాను"
+
+msgctxt "replayFinished"
+msgid "Confirmation"
+msgstr "Apstiprinājums"
+
+msgctxt "replayFinished"
+msgid "The replay has finished. What do you want to do?"
+msgstr "Thàinig an ath-chluiche gu crìoch. Dè tha thu airson dèanamh?"
+
+msgid "Are you sure you want to resign?"
+msgstr "A bheil thu cinnteach gu bheil thu airson gèilleadh a thoirt?"
+
+msgid "You have won!"
+msgstr "Aet eo ar maout ganeoc'h!"
+
+msgid "You have been defeated!"
+msgstr "Vous avez été vaincu(e) !"
+
+msgid "Click to quit this tutorial."
+msgstr "ఈ ట్యుటోరియల్ నుండి నిష్క్రమించడానికి క్లిక్ చేయండి"
+
+msgid "Quit"
+msgstr "నిష్క్రమించండి"
+
+msgid "Click when ready."
+msgstr "సిద్ధంగా ఉన్నప్పుడు క్లిక్ చేయండి."
+
+msgid "Follow the instructions."
+msgstr "Sigue las instrucciones en pantalla."
+
+msgid "Unknown Player"
+msgstr "Cluicheadair neo-aithnichte"
+
+msgid "Send a flare to your allies"
+msgstr "Στείλε μία φωτοβολίδα στους συμμάχους σου."
+
+msgid ""
+"Find idle worker\n"
+"Number of idle workers."
+msgstr ""
+"Znajdź niepracującego pracownika\n"
+"Liczba niepracujących pracowników."
+
+#, python-format
+msgid "%(secondaryName)s — Packed"
+msgstr "%(secondaryName)s – air a phasgadh"
+
+msgid "Packed"
+msgstr "Air a phasgadh"
+
+#, python-format
+msgid "\\[OFFLINE] %(player)s"
+msgstr "\\[DESKONEKTATUTA] %(player)s"
+
+#, python-format
+msgid "%(rank)s Rank"
+msgstr "Graduação %(rank)s"
+
+#, python-format
+msgid "%(hitpoints)s / %(maxHitpoints)s"
+msgstr "%(hitpoints)s / %(maxHitpoints)s"
+
+#, python-format
+msgid "%(capturePoints)s / %(maxCapturePoints)s"
+msgstr "%(capturePoints)s / %(maxCapturePoints)s"
+
+#, python-format
+msgid "%(experience)s %(current)s / %(required)s"
+msgstr "%(experience)s %(current)s / %(required)s"
+
+msgid "Experience:"
+msgstr "Skiant-prenet:"
+
+#, python-format
+msgid "%(experience)s %(current)s"
+msgstr " %(experience)s %(current)s "
+
+msgid "∞"
+msgstr "бесконачно"
+
+#, python-format
+msgid "%(amount)s / %(max)s"
+msgstr " %(amount)s / %(max)s "
+
+#, python-format
+msgid "%(resource)s:"
+msgstr "ال%(resource)s:"
+
+#, python-format
+msgid "Gain: %(gain)s"
+msgstr "Padidėjimas: %(gain)s"
+
+#, python-format
+msgid ""
+"(%(number)s)\n"
+"%(time)s"
+msgstr ""
+"(%(number)s)\n"
+"%(time)s"
+
+msgid "Current/max gatherers"
+msgstr "Dabartinis / maksimalus rankiotojų skaičius"
+
+#, python-format
+msgid "(%(secondaryName)s)"
+msgstr "(%(secondaryName)s)"
+
+msgid "Capture Points:"
+msgstr "Punkty przejmowanio:"
+
+#, python-format
+msgid "%(label)s: %(details)s\n"
+msgstr "%(label)s : %(details)s\n"
+
+msgid "Garrison Size"
+msgstr "Tamaño do acuartelamento"
+
+#, python-format
+msgid "%(label)s %(details)s\n"
+msgstr "%(label)s %(details)s\n"
+
+msgid "Carrying:"
+msgstr "Transportant:"
+
+#, python-format
+msgid "%(type)s %(amount)s"
+msgstr "%(type)s %(amount)s"
+
+#, python-format
+msgid "%(label)s %(details)s"
+msgstr "%(label)s %(details)s"
+
+msgid "Loot:"
+msgstr "Ryöstösaalis:"
+
+#, python-format
+msgid "%(gain)s (%(player)s)"
+msgstr "%(gain)s (%(player)s님)"
+
+msgid "+"
+msgstr "+"
+
+msgctxt "Separation mark in an enumeration"
+msgid ", "
+msgstr "، و"
+
+msgid "Raise an alert!"
+msgstr "Lakaat da seniñ ar c'hloc'h-galv!"
+
+msgid "End of alert."
+msgstr "Nutraukti pavojaus skelbimą."
+
+msgid "Default formation is disabled."
+msgstr "Προεπιλεγμένος  σχηματισμός έχει απενεργοποιηθεί."
+
+msgid "Right-click to disable the default formation feature."
+msgstr "Щёлкните правой кнопкой, чтобы отключить построение в боевой порядок по умолчанию."
+
+msgid "This is the default formation, used for movement orders."
+msgstr "Aquesta és la formació per defecte, que s'utilitza per donar ordres de moviment."
+
+msgid "Right-click to set this as the default formation."
+msgstr "Clic droit pour sélectionner cette formation en tant que formation par défaut."
+
+#, python-format
+msgid "Unload %(name)s"
+msgstr "Stuur %(name)s naar buiten"
+
+msgid "Single-click to unload 1. Shift-click to unload all of this type."
+msgstr ""
+"Klik om een eenheid van dit type naar buiten te sturen. Shift-klik om alle eenheden van"
+" dit type naar buiten te sturen."
+
+#, python-format
+msgid "Player: %(playername)s"
+msgstr "Cluicheadair: %(playername)s"
+
+msgid "Lock Gate"
+msgstr "Заключване на портата"
+
+msgid "Unlock Gate"
+msgstr "Déverrouiller la porte"
+
+msgid "Pack"
+msgstr "Becsomagolás"
+
+msgid "Unpack"
+msgstr "Άνοιγμα πακέτου"
+
+msgid "Cancel Packing"
+msgstr "Becsomagolás megszakítása"
+
+msgid "Cancel Unpacking"
+msgstr "Спиране на разопаковането"
+
+msgid "The auto-queue will try to train this item later."
+msgstr ""
+"Η αυτόματη σειρά ουρά αναμονής θα προσπαθήσει να εκπαιδεύσει αυτό το αντκείμενο "
+"αργότερα."
+
+msgid "Insufficient population capacity:"
+msgstr "Kapacitet është i pamjaftueshëm per popullatën:"
+
+#, python-format
+msgid "%(population)s %(neededSlots)s"
+msgstr "%(population)s %(neededSlots)s"
+
+#, python-format
+msgid "%(number)s entity of class %(class)s"
+msgid_plural "%(number)s entities of class %(class)s"
+msgstr[0] "Tá %(number)s aonán amháin d'aicme %(class)s"
+msgstr[1] "%(class)s  sınıftaki %(number)s varlıkları  "
+
+#, python-format
+msgid "Remaining: %(entityCounts)s"
+msgstr "Εναπομένοντα:  %(entityCounts)s"
+
+msgctxt "Separator for a list of entity counts"
+msgid ", "
+msgstr "، و"
+
+msgid "Cannot research while upgrading."
+msgstr "Impossible de rechercher tant qu'une amélioration est en cours."
+
+msgid "Cannot train while upgrading."
+msgstr "Impossible de recruter tant qu'une amélioration est en cours."
+
+#, python-format
+msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
+msgstr "Frissítés a következőre: %(primaryName)s (%(secondaryName)s). %(tooltip)s"
+
+#, python-format
+msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
+msgstr "Frissítés a következőre: %(primaryName)s (%(secondaryName)s)."
+
+#, python-format
+msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
+msgstr "Frissítés a következőre: %(primaryName)s. %(tooltip)s"
+
+#, python-format
+msgid "Upgrade to a %(primaryName)s."
+msgstr "Frissítés a következőre: %(primaryName)s."
+
+msgid "Cancel Upgrading"
+msgstr "Спиране на надграждането"
+
+msgid "Cannot upgrade when the entity is training, researching or already upgrading."
+msgid_plural "Cannot upgrade when all entities are training, researching or already upgrading."
+msgstr[0] ""
+"Não é possível aprimorar quando a entidade está treinando, pesquisando ou já está sendo"
+" aprimorada."
+msgstr[1] ""
+"No es pot aplicar la millora mentre tots els edificis d'aquest tipus estan reclutant, "
+"investigant o ja s'estan millorant."
+
+msgctxt "stance"
+msgid "Violent"
+msgstr "Actitude violenta"
+
+msgctxt "stance"
+msgid "Aggressive"
+msgstr "Actitude agresiva"
+
+msgctxt "stance"
+msgid "Defensive"
+msgstr "Actitude defensiva"
+
+msgctxt "stance"
+msgid "Passive"
+msgstr "Actitude pasiva"
+
+msgctxt "stance"
+msgid "Standground"
+msgstr "Mantiene la posizione"
+
+msgctxt "stance"
+msgid "Attack nearby opponents, focus on attackers and chase while visible"
+msgstr ""
+"Thoiribh ionnsaigh air nàimhdean faisg oirbh, rachaibh às dèidh an fheadhainn a nì "
+"sabaid ribh fhad ’s a chì sibh iad"
+
+msgctxt "stance"
+msgid "Attack nearby opponents"
+msgstr "Thoiribh ionnsaigh air nàimhdean faisg oirbh"
+
+msgctxt "stance"
+msgid "Attack nearby opponents, chase a short distance and return to the original location"
+msgstr ""
+"Attaquer les adversaires à proximité, les poursuivre sur une courte distance et revenir"
+" à la position d'origine"
+
+msgctxt "stance"
+msgid "Flee if attacked"
+msgstr "Teichibh nuair a bheirear ionnsaigh oirbh"
+
+msgctxt "stance"
+msgid "Attack opponents in range, but don't move"
+msgstr "Hyökkää kantaman sisällä olevia vihollisia vastaan, mutta älä liiku"
+
+#, python-format
+msgid "Current Count: %(count)s, Limit: %(limit)s."
+msgstr "An t‑uiread an-dràsta: %(count)s, Cuingeachadh: %(limit)s."
+
+#, python-format
+msgid "%(changer)s enlarges the limit with %(change)s."
+msgstr "Bidh %(change)s a bharrachd ceadaichte dhut le %(changer)s."
+
+#, python-format
+msgid "%(changer)s lessens the limit with %(change)s."
+msgstr "%(changer)s csökkenti a határt %(change)s egységgel."
+
+msgid "Can be constructed only once."
+msgstr "Може бути споруджено тільки один раз."
+
+#, python-format
+msgid "Could only be constructed %(limit)s time."
+msgid_plural "Could only be constructed %(limit)s times."
+msgstr[0] "Mal pudo construisse a penas %(limit)s vez."
+msgstr[1] "Csak ennyiszer lehetett megépíteni: %(limit)s."
+
+#, python-format
+msgid "Can be constructed %(count)s more time."
+msgid_plural "Can be constructed %(count)s more times."
+msgstr[0] "Cha ghabh a thogail ach %(count)s turas eile."
+msgstr[1] "Może zostać stworzone jeszcze tylko %(count)s razy."
+
+#, python-format
+msgid "Could only be trained once."
+msgid_plural "Could only be trained %(limit)s times."
+msgstr[0] "Ne pouvait être entrainé qu'une fois."
+msgstr[1] "Csak ennyiszer lehetett kiképezni: %(limit)s."
+
+msgid "Can be trained only once."
+msgstr "Kan maar één keer gerekruteerd worden."
+
+#, python-format
+msgid "Can be trained %(count)s more time."
+msgid_plural "Can be trained %(count)s more times."
+msgstr[0] "Voidaan kouluttaa vielä %(count)s kerran."
+msgstr[1] "%(count)s aldi gehiagoetan trebatu liteke."
+
+#, python-format
+msgid "Could only be created once."
+msgid_plural "Could only be created %(limit)s times."
+msgstr[0] "Hanya bisa dibuat %(limit)s kali."
+msgstr[1] "Může být vytvořeno pouze %(limit)s krát."
+
+msgid "Can be created only once."
+msgstr "Cha ghabh a chruthachadh ach aon turas."
+
+#, python-format
+msgid "Can be created %(count)s more time."
+msgid_plural "Can be created %(count)s more times."
+msgstr[0] "Gali būti sukurta dar %(count)skartą."
+msgstr[1] "%(count)s aldi gehiagoetan sortu liteke."
+
+#, python-format
+msgid "%(buildings)s*%(batchSize)s"
+msgstr "%(buildings)s*%(batchSize)s"
+
+#, python-format
+msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
+msgstr "%(action)s agus %(number)s a thraenáil (%(fullBatch)s + %(remainderBatch)s)."
+
+#, python-format
+msgid "%(action)s to train %(number)s (%(fullBatch)s)."
+msgstr "%(action)s agus %(number)s a thraenáil (%(fullBatch)s)."
+
+#, python-format
+msgid "%(action)s to train %(number)s."
+msgstr "%(number)s tane eğitmek için %(action)s."
+
+msgid "Shift-click"
+msgstr "Podržaním klávesu Shift a kliknutím"
+
+msgid "Health"
+msgstr "Gesundheit"
+
+msgid "Capture points"
+msgstr "Poentoj por kaptiĝi"
+
+msgid "Attack and Resistance"
+msgstr "Angriff und Widerstandsfähigkeit"
+
+msgid "Experience"
+msgstr "Skiant-prenet"
+
+msgid "Rank"
+msgstr "Classificação"
+
+msgid "Production queue"
+msgstr "Produktionswarteschlange"
+
+msgid ""
+"Click to select grouped units, double-click to focus the grouped units and right-click "
+"to disband the group."
+msgstr ""
+"Kliknite pre označenie skupiny jednotiek, kliknite dva krát, aby ste presunuli kameru "
+"na skupinu jednotiek, alebo kliknite pravým tlačídlom pre rozpustenie skupiny "
+"jednotiek."
+
+msgid "Alpha XXVI: Zhuangzi"
+msgstr "Alpha XXVI: Zhuangzi (莊子)"
+
+#, python-format
+msgid ""
+"%(civ)s\n"
+"%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
+"Last opened will be reopened on click."
+msgstr ""
+"%(civ)s\n"
+"%(hotkey_civinfo)s / %(hotkey_structree)s: Seall foir-shealladh / craobh nan sìobhaltas"
+"\n"
+"Thèid am fear mu dheireadh air an robh thu fhosgladh a-rithist nuair a nì thu briogadh."
+
+#, python-format
+msgid "%(order)s: %(hotkey)s to change order."
+msgstr "%(order)s: spauskite %(hotkey)s norėdami pakeisti įsakymą."
+
+msgid "Unordered"
+msgstr "Без определен ред"
+
+msgid "Descending"
+msgstr "Φθίνουσα σειρά"
+
+msgid "Ascending"
+msgstr "По возрастанию"
+
+#, python-format
+msgid "%(playername)s: %(statValue)s"
+msgstr "%(playername)s : %(statValue)s"
+
+#, python-format
+msgid "%(popCount)s/%(popLimit)s (%(popMax)s)"
+msgstr "%(popCount)s / %(popLimit)s (%(popMax)s)"
+
+msgid "Population: current/limit (max)"
+msgstr "Népesség: jelenlegi/korlát (maximális)"
+
+msgid "Gatherers: current"
+msgstr "Количество сборщиков: текущее"
+
+msgctxt "observer mode"
+msgid "Follow Player"
+msgstr "Lean air a’ chluicheadair"
+
+msgid "Diplomacy"
+msgstr "Taidhleoireacht"
+
+msgid "Game Speed"
+msgstr "Velocidade de la partida"
+
+msgid "Objectives"
+msgstr "Žaidimo tikslai"
+
+msgid "Menu"
+msgstr "కార్యక్రమపట్టిక"
+
+msgid "Observer"
+msgstr "Pozorovateľ"
+
+msgid "Observer Mode"
+msgstr "Λειτουργία Παρατηρητή"
+
+msgid "Choose player to view"
+msgstr "Tagh cluicheadair airson a shealltainn"
+
+#, python-format
+msgid "Buy %(resource)s"
+msgstr "Купуване на %(resource)s"
+
+#, python-format
+msgid "Sell %(resource)s"
+msgstr "Продаване на %(resource)s"
+
+#, python-format
+msgctxt "buy action"
+msgid "+%(amount)s"
+msgstr ""
+"+%(amount)s\n"
+" "
+
+#, python-format
+msgctxt "sell action"
+msgid "-%(amount)s"
+msgstr "-%(amount)s"
+
+msgid "Barter"
+msgstr "Ανταλλαγή εμπορευμάτων"
+
+msgid "Sell:"
+msgstr "Verkaufen:"
+
+msgid "Buy:"
+msgstr "Ceannaigh:"
+
+msgid "No Markets Available"
+msgstr "Žiadne Trhoviská nie sú k dispozícii "
+
+#, python-format
+msgctxt "trading good ratio"
+msgid "%(amount)s%%"
+msgstr "%(amount)s %%"
+
+#, python-format
+msgid ""
+"Select one type of goods you want to modify by clicking on it, and then use the arrows "
+"of the other types to modify their shares. You can also press %(hotkey)s while "
+"selecting one type of goods to bring its share to 100%%."
+msgstr ""
+"Επιλέξτε ένα είδος των προϊόντων που θέλετε να τροποποιήσετε κάνοντας κλικ σε αυτό και "
+"στη συνέχεια χρησιμοποιήστε τα βέλη από τα άλλα είδη για την τροποποίηση των μεριδίων "
+"τους. Μπορείτε επίσης πατώντας %(hotkey)s ενώ είναι επιλεγμένο ένα είδος προϊόντος να "
+"ορίσετε το μερίδιο στο 100%%."
+
+#, python-format
+msgid ""
+"Start by selecting the resource you wish to sell from the upper row. For each time the "
+"lower buttons are pressed, %(quantity)s of the upper resource will be sold for the "
+"displayed quantity of the lower. Press and hold %(hotkey)s to temporarily multiply the "
+"traded amount by %(multiplier)s."
+msgstr ""
+"Commencez par sélectionner la ressource que vous souhaitez vendre sur la ligne "
+"supérieure. Chaque fois que vous appuyez sur le bouton inférieur, %(quantity)s de la "
+"ressource supérieure sera vendue pour la quantité affichée de la partie inférieure. "
+"Appuyez et maintenez la touche %(hotkey)s pour multiplier toutes les quantités "
+"échangées par %(multiplier)s."
+
+msgid "Trade"
+msgstr "Comercializar"
+
+msgid "Resources:"
+msgstr "Nyersanyagok:"
+
+#, python-format
+msgid "There is %(numberTrading)s land trader trading"
+msgid_plural "There are %(numberTrading)s land traders trading"
+msgstr[0] "Aici este %(numberTrading)s un comerciant de terenuri"
+msgstr[1] "Há %(numberTrading)s comerciantes terrestres a comercializar"
+
+#, python-format
+msgid "%(numberOfLandTraders)s inactive"
+msgid_plural "%(numberOfLandTraders)s inactive"
+msgstr[0] "%(numberOfLandTraders)s inactive"
+msgstr[1] "%(numberOfLandTraders)s inactius"
+
+#, python-format
+msgid "%(numberOfLandTraders)s land trader inactive"
+msgid_plural "%(numberOfLandTraders)s land traders inactive"
+msgstr[0] "%(numberOfLandTraders)s kara tüccarı devre dışı"
+msgstr[1] "%(numberOfLandTraders)s торговцев бездействует"
+
+#, python-format
+msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
+msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
+msgstr[0] "%(numberGarrisoned)s guarnição de um navio mercante comercial"
+msgstr[1] "%(numberGarrisoned)s refugiats en un vaixell mercant actiu"
+
+#, python-format
+msgid "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant ship"
+msgid_plural "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant ship"
+msgstr[0] "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant ship"
+msgstr[1] "Há %(numberGarrisoned)s comerciantes terrestres guarnecidos numa embarcação mercante"
+
+#, python-format
+msgid "%(openingTradingString)s, and %(garrisonedString)s."
+msgstr "%(openingTradingString)s、そして%(garrisonedString)sしています。"
+
+#, python-format
+msgid "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
+msgstr "%(openingTradingString)s、%(garrisonedString)s、そして%(inactiveString)sしています。"
+
+#, python-format
+msgid "%(openingTradingString)s."
+msgstr "%(openingTradingString)sです。"
+
+#, python-format
+msgid "%(openingTradingString)s, and %(inactiveString)s."
+msgstr "%(openingTradingString)s、そして%(inactiveString)sしています。"
+
+#, python-format
+msgid "%(openingGarrisonedString)s."
+msgstr "%(openingGarrisonedString)sしています。"
+
+#, python-format
+msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
+msgstr "%(openingGarrisonedString)s、そして%(inactiveString)sしています。"
+
+#, python-format
+msgid "There is %(inactiveString)s."
+msgid_plural "There are %(inactiveString)s."
+msgstr[0] "Terdapat %(inactiveString)s."
+msgstr[1] "Janë gjithsej %(inactiveString)s."
+
+msgid "There are no land traders."
+msgstr "Nejsou tu žádní obchodníci obchodující mezi zeměmi"
+
+#, python-format
+msgid "There is %(numberTrading)s merchant ship trading"
+msgid_plural "There are %(numberTrading)s merchant ships trading"
+msgstr[0] "Există %(numberTrading)s nava comercială care face negoț"
+msgstr[1] "Existem %(numberTrading)s navios mercantes de negociação"
+
+#, python-format
+msgid "%(numberOfShipTraders)s inactive"
+msgid_plural "%(numberOfShipTraders)s inactive"
+msgstr[0] "%(numberOfShipTraders)s inactive"
+msgstr[1] "%(numberOfShipTraders)s inactius"
+
+#, python-format
+msgid "%(numberOfShipTraders)s merchant ship inactive"
+msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
+msgstr[0] "%(numberOfShipTraders)s-لاتوجد سفن تجارية خاملة"
+msgstr[1] "%(numberOfShipTraders)s navios mercantes inativos"
+
+msgid "There are no merchant ships."
+msgstr "Nevlastníte žiadne obchodné lode."
+
+msgid "Ready"
+msgstr "సిద్ధంగా వున్న"
+
+msgid ""
+"This is the origin trade market.\n"
+"Right-click to cancel trade route."
+msgstr ""
+"Este é o mercado de origem da rota de comércio.\n"
+"Clique com o botão direito para cancelar a rota de comércio."
+
+msgid "Origin trade market."
+msgstr "Origen del intercambio comercial."
+
+msgid "Destination trade market."
+msgstr "Destino del intercambio comercial."
+
+msgid "Right-click to set as origin trade market"
+msgstr "Kliknij prawym przyciskiem myszy, aby ustawić rynek początkowy dla szlaku handlowego."
+
+msgid "This market is too close to the origin market."
+msgstr "Deze marktplaats is te dichtbij de marktplaats van vertrek."
+
+msgid "Right-click to set as destination trade market."
+msgstr ""
+"Preme co botón secundario noutro mercado para convertelo no mercado de destino para o "
+"comercio."
+
+#, python-format
+msgid "Current turrets: %(occupied)s/%(capacity)s"
+msgstr "Tykkitorneja tällä hetkellä: %(occupied)s/%(capacity)s"
+
+#, python-format
+msgid "Current garrison: %(garrisoned)s/%(capacity)s"
+msgstr "Actualmente están guarnecidos: %(garrisoned)s/%(capacity)s"
+
+msgid "Right-click to establish a default route for new traders."
+msgstr ""
+"Clica com o botão direito do rato para estabelecer uma rota pré-definida para os novos "
+"comerciantes."
+
+#, python-format
+msgid "Expected gain: %(gain)s"
+msgstr "Perolehan diharapkan: %(gain)s"
+
+msgid "This entity cannot be controlled."
+msgid_plural "These entities cannot be controlled."
+msgstr[0] "Šis dalykas negali būti valdomas."
+msgstr[1] "These entities cannot be controlled."
+
+msgid "Unload All."
+msgstr "Iedereen naar buiten sturen."
+
+msgid "Unload Turrets."
+msgstr "برجک ها بارگذاری نشده اند."
+
+msgid "Destroy the selected units or structures."
+msgstr "選択しているユニットまたは建造物を破壊します。Destroy the selected units or structures."
+
+#, python-format
+msgid "Use %(hotkey)s to avoid the confirmation dialog."
+msgstr "Onay iletişim kutularından kaçınmak için kısayol tuşlarını kullanın; %(hotkey)s "
+
+msgid "Abort the current order."
+msgstr "Dilezel ar gargadenn er mare-mañ."
+
+msgid ""
+"Send the selected units on attack move to the specified location after dropping "
+"resources."
+msgstr ""
+"Beveel de geselecteerde eenheden op aanvalstocht te gaan naar de aangewezen locatie "
+"nadat ze hun grondstoffen hebben afgeleverd."
+
+msgid "Order the selected units to garrison in a structure or unit."
+msgstr ""
+"Ordonner aux unités sélectionnées de se mettre en garnison dans une structure ou une "
+"unité."
+
+msgid "Order the selected units to occupy a turret point."
+msgstr "Ordonner au(x) unité(s) sélectionnée(s) de garder un point de tourelle."
+
+msgid "Unload"
+msgstr "Ausquartieren"
+
+msgid "Order the selected units to repair a structure, ship, or siege engine."
+msgstr ""
+"Ausgewählten Einheiten Befehl, ein Gebäude, ein Schiff oder eine Belagerungseinheit zu "
+"reparieren."
+
+msgid "Focus on Rally Point."
+msgstr "Infocar escontra l punto d’alcuontru."
+
+msgid "Back to Work"
+msgstr "Tillbaka till arbetet"
+
+msgid "Order the selected units to guard a structure or unit."
+msgstr "Ausgewählten Einheiten befehlen, ein Gebäude oder eine Einheit zu bewachen."
+
+msgid "Remove guard"
+msgstr "కాపలాదార్డుని తొలగించండి"
+
+msgid "Barter & Trade"
+msgstr "మార్చుకొను మరియు వాణిజ్యం"
+
+msgid "Patrol"
+msgstr "Patrouilleren"
+
+msgid "Attack all encountered enemy units while avoiding structures."
+msgstr " به تمام نیروهای دشمن که با آنها مواجه میشوید حمله کنید ولی از  ساختمان ها صرف نظر کنید"
+
+msgid "Press to allow allies to use this dropsite"
+msgstr "Klikit a-benn reiñ an aotre d'ar re gevredet ganeoc'h da ober gant al lec'h-daspugn-mañ"
+
+msgid "Press to prevent allies from using this dropsite"
+msgstr "Щракнете, за да забраните на съюзниците да използват това място за събиране на ресурси"
+
+msgid "The use of this dropsite is prohibited"
+msgstr "Използването на това място за събиране на ресурси е забранено."
+
+msgid "Allies are allowed to use this dropsite."
+msgstr "Σύμμαχοι επιτρέπετε να χρησιμοποιήσουν αυτό το προκαθορισμένο σημείο."
+
+msgid "You are allowed to use this dropsite"
+msgstr "شما اجازه پیدا کردید تا از این محل تخلیه منابع استفاده کنید"
+
+msgid "Activate auto-queue for selected structures."
+msgstr "Activer la mise automatique en file d'attente pour les structures sélectionnées."
+
+msgid "Deactivate auto-queue for selected structures."
+msgstr ""
+"\n"
+"Désactiver la mise automatique en file d'attente pour les structures sélectionnées."
+
+msgid "The entity has to be killed before it can be gathered from"
+msgstr "Die Einheit muss getötet werden, bevor ihre Ressourcen gesammelt werden können."
+
+msgid "You cannot destroy this entity as you own less than half the capture points"
+msgstr ""
+"N'hallit ket distruj an hennad-mañ keit ha ma vezec'h perc'henn war nebeutoc'h evit "
+"hanter ar poentoù-pakadur"
+
+msgid "This entity is undeletable"
+msgstr "Diese Einheit kann nicht gelöscht werden."
+
