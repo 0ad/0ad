@@ -35,7 +35,9 @@ struct CColor;
 class CCanvas2D
 {
 public:
-	CCanvas2D(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
+	CCanvas2D(
+		const uint32_t widthInPixels, const uint32_t heightInPixels, const float scale,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 	~CCanvas2D();
 
 	CCanvas2D(const CCanvas2D&) = delete;

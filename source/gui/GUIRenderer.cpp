@@ -23,7 +23,6 @@
 #include "graphics/TextureManager.h"
 #include "gui/CGUI.h"
 #include "gui/CGUISprite.h"
-#include "gui/GUIMatrix.h"
 #include "gui/SettingTypes/CGUIColor.h"
 #include "i18n/L10n.h"
 #include "lib/tex/tex.h"
