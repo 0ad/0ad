@@ -106,6 +106,8 @@ public:
 		size_t hash;
 
 		void RecalcHash();
+
+		static bool NameLess(const Item& a, const Item& b);
 	};
 
 	struct SItemsHash

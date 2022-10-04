@@ -24,6 +24,7 @@
 #include "maths/Vector4D.h"
 #include "ps/ThreadUtil.h"
 
+#include <algorithm>
 #include <sstream>
 
 namespace std
@@ -54,28 +55,10 @@ bool operator==(const CShaderParams<CVector4D>::SItems& a, const CShaderParams<C
 }
 
 template<typename value_t>
-struct ItemNameCmp
+bool CShaderParams<value_t>::SItems::NameLess(const Item& a, const Item& b)
 {
-	typedef typename CShaderParams<value_t>::SItems::Item Item;
-
-	typedef Item first_argument_type;
-	typedef Item second_argument_type;
-	bool operator()(const Item& a, const Item& b) const
-	{
-		return a.first < b.first;
-	}
-};
-
-template<typename value_t>
-struct ItemNameGeq
-{
-	typedef typename CShaderParams<value_t>::SItems::Item Item;
-
-	bool operator()(const Item& a, const Item& b) const
-	{
-		return !(b.first < a.first);
-	}
-};
+	return a.first < b.first;
+}
 
 template<typename value_t>
 typename CShaderParams<value_t>::SItems* CShaderParams<value_t>::GetInterned(const SItems& items)
@@ -88,8 +71,7 @@ typename CShaderParams<value_t>::SItems* CShaderParams<value_t>::GetInterned(con
 
 	// Sanity test: the items list is meant to be sorted by name.
 	// This is a reasonable place to verify that, since this will be called once per distinct SItems.
-	typedef ItemNameCmp<value_t> Cmp;
-	ENSURE(std::adjacent_find(items.items.begin(), items.items.end(), std::not_fn<Cmp>(Cmp())) == items.items.end());
+	ENSURE(std::is_sorted(items.items.begin(), items.items.end(), SItems::NameLess));
 
 	std::shared_ptr<SItems> ptr = std::make_shared<SItems>(items);
 	s_InternedItems.insert(std::make_pair(items, ptr));
@@ -152,7 +134,7 @@ void CShaderParams<value_t>::SetMany(const CShaderParams& params)
 		params.m_Items->items.begin(), params.m_Items->items.end(),
 		m_Items->items.begin(), m_Items->items.end(),
 		std::inserter(items.items, items.items.begin()),
-		ItemNameCmp<value_t>());
+		SItems::NameLess);
 	items.RecalcHash();
 	m_Items = GetInterned(items);
 }
