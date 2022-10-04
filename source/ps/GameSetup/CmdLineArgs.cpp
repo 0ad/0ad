@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,10 @@
 #include "CmdLineArgs.h"
 
 #include "lib/sysdep/sysdep.h"
+
+#include <algorithm>
+#include <iterator>
+#include <string_view>
 
 CmdLineArgs g_CmdLineArgs;
 
@@ -42,41 +46,37 @@ private:
 
 } // namespace
 
-CmdLineArgs::CmdLineArgs(int argc, const char* argv[])
+CmdLineArgs::CmdLineArgs(const PS::span<const char* const> argv)
 {
-	if (argc >= 1)
-	{
-		std::string arg0(argv[0]);
-		// avoid OsPath complaining about mixing both types of separators,
-		// which happens when running in the VC2010 debugger
-		std::replace(arg0.begin(), arg0.end(), '/', SYS_DIR_SEP);
-		m_Arg0 = arg0;
-	}
+	if (argv.empty())
+		return;
 
-	for (int i = 1; i < argc; ++i)
+	std::string arg0(argv[0]);
+	// avoid OsPath complaining about mixing both types of separators,
+	// which happens when running in the VC2010 debugger
+	std::replace(arg0.begin(), arg0.end(), '/', SYS_DIR_SEP);
+	m_Arg0 = arg0;
+
+	// Implicit conversion from const char* to std::string_view.
+	for (const std::string_view arg : argv.subspan(1))
 	{
 		// Only accept arguments that start with '-'
-		if (argv[i][0] != '-')
+		if (arg[0] != '-')
 		{
-			m_ArgsWithoutName.emplace_back(argv[i]);
+			m_ArgsWithoutName.emplace_back(arg);
 			continue;
 		}
 
 		// Allow -arg and --arg
-		char offset = argv[i][1] == '-' ? 2 : 1;
-		CStr name, value;
+		const std::string_view afterDashes = arg.substr(arg[1] == '-' ? 2 : 1);
 
 		// Check for "-arg=value"
-		const char* eq = strchr(argv[i], '=');
-		if (eq)
-		{
-			name = CStr(argv[i]+offset, eq-argv[i]-offset);
-			value = CStr(eq+1);
-		}
-		else
-			name = CStr(argv[i]+offset);
+		const std::string_view::iterator eq =
+			std::find(afterDashes.begin(), afterDashes.end(), '=');
 
-		m_Args.emplace_back(std::move(name), std::move(value));
+		CStr value = (eq != afterDashes.end()) ? CStr{eq + 1, afterDashes.end()} : CStr{};
+
+		m_Args.emplace_back(CStr(afterDashes.begin(), eq), std::move(value));
 	}
 }
 

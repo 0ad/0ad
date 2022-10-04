@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -63,12 +63,9 @@ public:
 	using StrBase = std::tstring;
 	using Char = typename std::tstring::value_type;
 
-	CStr() {}
-	CStr(const Char* str) : StrBase(str) {}
-	CStr(const Char* str, size_t len) : StrBase(str, len) {}
 	CStr(const StrBase& str) : StrBase(str) {}
-	template<class InputIterator>
-	CStr (InputIterator first, InputIterator last) : StrBase(first, last) {}
+
+	using StrBase::StrBase;
 
 	/**
 	 * Repeat: Named constructor, to avoid overload overload.

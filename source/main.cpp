@@ -108,8 +108,8 @@ typedef unsigned long DWORD;
 // Request the high performance GPU on Windows by default if no system override is specified.
 // See:
 // - https://github.com/supertuxkart/stk-code/pull/4693/commits/0a99c667ef513b2ce0f5755729a6e05df8aac48a
-// - https://docs.nvidia.com/gameworks/content/technologies/desktop/optimus.htm 
-// - https://gpuopen.com/learn/amdpowerxpressrequesthighperformance/ 
+// - https://docs.nvidia.com/gameworks/content/technologies/desktop/optimus.htm
+// - https://gpuopen.com/learn/amdpowerxpressrequesthighperformance/
 extern "C"
 {
 	__declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;
@@ -496,9 +496,9 @@ static void StartRLInterface(CmdLineArgs args)
 
 // moved into a helper function to ensure args is destroyed before
 // exit(), which may result in a memory leak.
-static void RunGameOrAtlas(int argc, const char* argv[])
+static void RunGameOrAtlas(const PS::span<const char* const> argv)
 {
-	CmdLineArgs args(argc, argv);
+	const CmdLineArgs args(argv);
 
 	g_CmdLineArgs = args;
 
@@ -736,7 +736,8 @@ extern "C" int main(int argc, char* argv[])
 
 	EarlyInit();	// must come at beginning of main
 
-	RunGameOrAtlas(argc, const_cast<const char**>(argv));
+	// static_cast is ok, argc is never negative.
+	RunGameOrAtlas({argv, static_cast<std::size_t>(argc)});
 
 	// Shut down profiler initialised by EarlyInit
 	g_Profiler2.Shutdown();

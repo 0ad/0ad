@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,13 +19,15 @@
 
 #include "ps/GameSetup/CmdLineArgs.h"
 
+#include <array>
+
 class TestCmdLineArgs : public CxxTest::TestSuite
 {
 public:
 	void test_has()
 	{
-		const char* argv[] = { "program", "-test2" };
-		CmdLineArgs c(ARRAY_SIZE(argv), argv);
+		constexpr std::array<const char*, 2> argv = { "program", "-test2" };
+		CmdLineArgs c(argv);
 		TS_ASSERT(!c.Has("test1"));
 		TS_ASSERT(c.Has("test2"));
 		TS_ASSERT(!c.Has("test3"));
@@ -34,8 +36,11 @@ public:
 
 	void test_get()
 	{
-		const char* argv[] = { "program", "-test1=", "--test2=x", "-test3=-y=y-", "-=z" };
-		CmdLineArgs c(ARRAY_SIZE(argv), argv);
+		constexpr std::array<const char*, 5> argv =
+		{
+			"program", "-test1=", "--test2=x", "-test3=-y=y-", "-=z"
+		};
+		CmdLineArgs c(argv);
 		TS_ASSERT(!c.Has("program"));
 		TS_ASSERT_STR_EQUALS(c.Get("test0"), "");
 		TS_ASSERT_STR_EQUALS(c.Get("test1"), "");
@@ -46,8 +51,11 @@ public:
 
 	void test_multiple()
 	{
-		const char* argv[] = { "program", "-test1=one", "--test1=two", "-test2=none", "-test1=three" };
-		CmdLineArgs c(ARRAY_SIZE(argv), argv);
+		constexpr std::array<const char*, 5> argv =
+		{
+			"program", "-test1=one", "--test1=two", "-test2=none", "-test1=three"
+		};
+		CmdLineArgs c(argv);
 
 		TS_ASSERT_STR_EQUALS(c.Get("test1"), "one");
 		TS_ASSERT_STR_EQUALS(c.Get("test2"), "none");
@@ -66,10 +74,10 @@ public:
 
 	void test_get_invalid()
 	{
-		const char* argv[] = {
+		constexpr std::array<const char*, 6> argv = {
 			"-test1", "--test2", "test3-", " -test4", "--", "-=="
 		};
-		CmdLineArgs c(ARRAY_SIZE(argv), argv);
+		CmdLineArgs c(argv);
 
 		TS_ASSERT(!c.Has("test1"));
 		TS_ASSERT(c.Has("test2"));
@@ -79,15 +87,15 @@ public:
 
 	void test_arg0()
 	{
-		const char* argv[] = { "program" };
-		CmdLineArgs c(ARRAY_SIZE(argv), argv);
+		constexpr std::array<const char*, 1> argv = { "program" };
+		CmdLineArgs c(argv);
 		TS_ASSERT_WSTR_EQUALS(c.GetArg0().string(), L"program");
 
-		CmdLineArgs c2(0, NULL);
+		CmdLineArgs c2(PS::span<const char* const>{});
 		TS_ASSERT_WSTR_EQUALS(c2.GetArg0().string(), L"");
 
-		const char* argv3[] = { "ab/cd/ef/gh/../ij" };
-		CmdLineArgs c3(ARRAY_SIZE(argv3), argv3);
+		const std::array<const char*, 1> argv3 = { "ab/cd/ef/gh/../ij" };
+		CmdLineArgs c3(argv3);
 #if OS_WIN
 		TS_ASSERT_WSTR_EQUALS(c3.GetArg0().string(), L"ab\\cd\\ef\\gh\\..\\ij");
 #else
@@ -97,8 +105,11 @@ public:
 
 	void test_get_without_names()
 	{
-		const char* argv[] = { "program", "test0", "-test1", "test2", "test3", "--test4=test5" };
-		CmdLineArgs c(ARRAY_SIZE(argv), argv);
+		constexpr std::array<const char*, 6> argv =
+		{
+			"program", "test0", "-test1", "test2", "test3", "--test4=test5"
+		};
+		CmdLineArgs c(argv);
 		TS_ASSERT(c.Has("test1"));
 		TS_ASSERT_STR_EQUALS(c.Get("test4"), "test5");
 		CStr expected_args[] = { "test0", "test2", "test3" };
