@@ -62,15 +62,25 @@ public:
 	 * The texture color is blended with its own grayscale version according to
 	 * the grayscale factor.
 	 */
-	void DrawTexture(CTexturePtr texture,
-		const CRect& destination, const CRect& source,
+	void DrawTexture(
+		const CTexturePtr& texture, const CRect& destination, const CRect& source,
 		const CColor& multiply, const CColor& add, const float grayscaleFactor);
 
 	/**
 	 * A simpler version of the previous one, draws the texture into the
 	 * destination rect without color modifications.
 	 */
-	void DrawTexture(CTexturePtr texture, const CRect& destination);
+	void DrawTexture(const CTexturePtr& texture, const CRect& destination);
+
+	/**
+	 * A similar to the original one, draws the texture into the
+	 * destination rect but rotates it first around the origin point by angle
+	 * radians (a positive angle denotes a clockwise rotation).
+	 */
+	void DrawRotatedTexture(
+		const CTexturePtr& texture, const CRect& destination, const CRect& source,
+		const CColor& multiply, const CColor& add, const float grayscaleFactor,
+		const CVector2D& origin, const float angle);
 
 	/**
 	 * Draws a text using canvas materials.

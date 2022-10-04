@@ -331,7 +331,7 @@ void CCanvas2D::DrawRect(const CRect& rect, const CColor& color)
 		m->BindingSlots);
 }
 
-void CCanvas2D::DrawTexture(CTexturePtr texture, const CRect& destination)
+void CCanvas2D::DrawTexture(const CTexturePtr& texture, const CRect& destination)
 {
 	DrawTexture(texture,
 		destination, CRect(0, 0, texture->GetWidth(), texture->GetHeight()),
@@ -339,7 +339,7 @@ void CCanvas2D::DrawTexture(CTexturePtr texture, const CRect& destination)
 }
 
 void CCanvas2D::DrawTexture(
-	CTexturePtr texture, const CRect& destination, const CRect& source,
+	const CTexturePtr& texture, const CRect& destination, const CRect& source,
 	const CColor& multiply, const CColor& add, const float grayscaleFactor)
 {
 	const PlaneArray2D uvs =
@@ -360,6 +360,45 @@ void CCanvas2D::DrawTexture(
 		destination.right, destination.top,
 		destination.left, destination.top
 	};
+
+	m->BindTechIfNeeded();
+	DrawTextureImpl(
+		m->DeviceCommandContext, texture, vertices, uvs,
+		multiply, add, grayscaleFactor, m->BindingSlots);
+}
+
+void CCanvas2D::DrawRotatedTexture(
+	const CTexturePtr& texture, const CRect& destination, const CRect& source,
+	const CColor& multiply, const CColor& add, const float grayscaleFactor,
+	const CVector2D& origin, const float angle)
+{
+	const PlaneArray2D uvs =
+	{
+		source.left, source.bottom,
+		source.right, source.bottom,
+		source.right, source.top,
+		source.left, source.bottom,
+		source.right, source.top,
+		source.left, source.top
+	};
+	std::array<CVector2D, 6> corners =
+	{
+		destination.BottomLeft(),
+		destination.BottomRight(),
+		destination.TopRight(),
+		destination.BottomLeft(),
+		destination.TopRight(),
+		destination.TopLeft()
+	};
+	PlaneArray2D vertices;
+	static_assert(vertices.size() == corners.size() * 2, "We need two coordinates from each corner.");
+	auto it = vertices.begin();
+	for (const CVector2D& corner : corners)
+	{
+		const CVector2D vertex = origin + (corner - origin).Rotated(angle);
+		*it++ = vertex.X;
+		*it++ = vertex.Y;
+	}
 
 	m->BindTechIfNeeded();
 	DrawTextureImpl(

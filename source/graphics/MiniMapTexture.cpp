@@ -344,11 +344,13 @@ void CMiniMapTexture::CreateTextures(
 
 	m_TerrainData = std::make_unique<u32[]>((m_MapSize - 1) * (m_MapSize - 1));
 
-	m_FinalTexture = backendDevice->CreateTexture2D("MiniMapFinalTexture",
-		Renderer::Backend::Format::R8G8B8A8_UNORM, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE, defaultSamplerDesc);
+	m_FinalTexture = g_Renderer.GetTextureManager().WrapBackendTexture(
+		backendDevice->CreateTexture2D("MiniMapFinalTexture",
+			Renderer::Backend::Format::R8G8B8A8_UNORM,
+			FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE, defaultSamplerDesc));
 
 	m_FinalTextureFramebuffer = backendDevice->CreateFramebuffer("MiniMapFinalFramebuffer",
-		m_FinalTexture.get(), nullptr);
+		m_FinalTexture->GetBackendTexture(), nullptr);
 	ENSURE(m_FinalTextureFramebuffer);
 }
 

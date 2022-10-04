@@ -23,29 +23,24 @@
 #include "graphics/GameView.h"
 #include "graphics/MiniMapTexture.h"
 #include "graphics/MiniPatch.h"
-#include "graphics/ShaderManager.h"
-#include "graphics/ShaderProgramPtr.h"
 #include "graphics/Terrain.h"
 #include "graphics/TerrainTextureEntry.h"
 #include "graphics/TerrainTextureManager.h"
 #include "graphics/TextureManager.h"
 #include "gui/CGUI.h"
 #include "gui/GUIManager.h"
-#include "gui/GUIMatrix.h"
 #include "lib/bits.h"
 #include "lib/external_libraries/libsdl.h"
 #include "lib/timer.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
-#include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
-#include "renderer/RenderingOptions.h"
 #include "renderer/SceneRenderer.h"
 #include "renderer/WaterManager.h"
 #include "scriptinterface/Object.h"
@@ -91,54 +86,6 @@ void CropPointsByCircle(const std::array<CVector3D, 4>& points, const CVector3D&
 		lines->emplace_back(
 			direction.Dot(nextPoint) < direction.Dot(intersectionB) ? nextPoint : intersectionB);
 	}
-}
-
-void DrawTexture(
-	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
-	float angle, float x, float y, float x2, float y2, float mapScale)
-{
-	// Rotate the texture coordinates (0,0)-(coordMax,coordMax) around their center point (m,m)
-	// Scale square maps to fit in circular minimap area
-	const float s = sin(angle) * mapScale;
-	const float c = cos(angle) * mapScale;
-	const float m = 0.5f;
-
-	float quadTex[] =
-	{
-		m*(-c + s + 1.f), m*(-c + -s + 1.f),
-		m*(c + s + 1.f), m*(-c + s + 1.f),
-		m*(c + -s + 1.f), m*(c + s + 1.f),
-
-		m*(c + -s + 1.f), m*(c + s + 1.f),
-		m*(-c + -s + 1.f), m*(c + -s + 1.f),
-		m*(-c + s + 1.f), m*(-c + -s + 1.f)
-	};
-	float quadVerts[] =
-	{
-		x, y, 0.0f,
-		x2, y, 0.0f,
-		x2, y2, 0.0f,
-
-		x2, y2, 0.0f,
-		x, y2, 0.0f,
-		x, y, 0.0f
-	};
-
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
-
-	deviceCommandContext->SetVertexBufferData(
-		0, quadVerts, std::size(quadVerts) * sizeof(quadVerts[0]));
-	deviceCommandContext->SetVertexBufferData(
-		1, quadTex, std::size(quadTex) * sizeof(quadTex[0]));
-
-	deviceCommandContext->Draw(0, 6);
 }
 
 } // anonymous namespace
@@ -402,8 +349,6 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 	if (!m_Mask)
 		canvas.DrawRect(m_CachedActualSize, CColor(0.0f, 0.0f, 0.0f, 1.0f));
 
-	canvas.Flush();
-
 	CSimulation2* sim = g_Game->GetSimulation2();
 	CmpPtr<ICmpRangeManager> cmpRangeManager(*sim, SYSTEM_ENTITY);
 	ENSURE(cmpRangeManager);
@@ -417,44 +362,16 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 	CMiniMapTexture& miniMapTexture = g_Game->GetView()->GetMiniMapTexture();
 	if (miniMapTexture.GetTexture())
 	{
-		CShaderDefines baseDefines;
-		baseDefines.Add(str_MINIMAP_BASE, str_1);
-
-		CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, baseDefines);
-		Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
-			tech->GetGraphicsPipelineStateDesc();
-		pipelineStateDesc.blendState.enabled = true;
-		pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
-			Renderer::Backend::BlendFactor::SRC_ALPHA;
-		pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
-			Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
-		pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
-			Renderer::Backend::BlendOp::ADD;
-		Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
-			g_Renderer.GetDeviceCommandContext();
-		deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
-		deviceCommandContext->BeginPass();
-
-		Renderer::Backend::IShaderProgram* shader = tech->GetShader();
-
-		deviceCommandContext->SetTexture(
-			shader->GetBindingSlot(str_baseTex), miniMapTexture.GetTexture());
-
-		const CMatrix3D baseTransform = GetDefaultGuiMatrix();
-		CMatrix3D baseTextureTransform;
-		baseTextureTransform.SetIdentity();
-
-		deviceCommandContext->SetUniform(
-			shader->GetBindingSlot(str_transform), baseTransform.AsFloatArray());
-		deviceCommandContext->SetUniform(
-			shader->GetBindingSlot(str_textureTransform), baseTextureTransform.AsFloatArray());
-
-		const float x = m_CachedActualSize.left, y = m_CachedActualSize.bottom;
-		const float x2 = m_CachedActualSize.right, y2 = m_CachedActualSize.top;
-		const float angle = GetAngle();
-		DrawTexture(deviceCommandContext, angle, x, y, x2, y2, m_MapScale);
-
-		deviceCommandContext->EndPass();
+		const CVector2D center = m_CachedActualSize.CenterPoint();
+		const CRect source(
+			0, miniMapTexture.GetTexture()->GetHeight(),
+			miniMapTexture.GetTexture()->GetWidth(), 0);
+		const CSize2D size(m_CachedActualSize.GetSize() / m_MapScale);
+		const CRect destination(center - size / 2.0f, size);
+		canvas.DrawRotatedTexture(
+			miniMapTexture.GetTexture(), destination, source,
+			CColor(1.0f, 1.0f, 1.0f, 1.0f), CColor(0.0f, 0.0f, 0.0f, 0.0f), 0.0f,
+			center, GetAngle());
 	}
 
 	for (const CMiniMapTexture::Icon& icon : miniMapTexture.GetIcons())
