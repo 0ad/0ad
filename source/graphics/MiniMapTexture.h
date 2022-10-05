@@ -50,7 +50,7 @@ public:
 	 */
 	void Render(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
-	Renderer::Backend::ITexture* GetTexture() const { return m_FinalTexture.get(); }
+	const CTexturePtr& GetTexture() const { return m_FinalTexture; }
 
 	/**
 	 * @return The maximum height for unit passage in water.
@@ -85,8 +85,9 @@ private:
 	double m_LastFinalTextureUpdate = 0.0;
 
 	// minimap texture handles
-	std::unique_ptr<Renderer::Backend::ITexture>
-		m_TerrainTexture, m_FinalTexture;
+	std::unique_ptr<Renderer::Backend::ITexture> m_TerrainTexture;
+
+	CTexturePtr m_FinalTexture;
 
 	std::unique_ptr<Renderer::Backend::IFramebuffer>
 		m_FinalTextureFramebuffer;

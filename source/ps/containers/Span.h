@@ -38,7 +38,7 @@ class span
 public:
 	using element_type = T;
 	using value_type = std::remove_cv_t<T>;
-	using size_type = std::size_t;
+	using size_type = size_t;
 	using pointer = T*;
 	using reference = T&;
 	using iterator = pointer;
@@ -51,6 +51,10 @@ public:
 
 	constexpr span(iterator first, iterator last)
 		: m_Pointer(first), m_Extent(static_cast<size_type>(last - first)) {}
+
+	template<typename OtherT, size_t N>
+	constexpr span(const std::array<OtherT, N>& arr)
+		: m_Pointer(arr.data()), m_Extent(arr.size()) {}
 
 	constexpr span(const span& other) = default;
 
@@ -66,10 +70,15 @@ public:
 	constexpr iterator begin() const { return m_Pointer; }
 	constexpr iterator end() const { return m_Pointer + m_Extent; }
 
+	constexpr span subspan(size_type offset) const { return {m_Pointer + offset, m_Extent - offset}; }
+
 private:
 	pointer m_Pointer;
 	size_type m_Extent;
 };
+
+template<typename T, size_t N>
+span(const std::array<T, N>&) -> span<const T>;
 
 } // namespace PS
 

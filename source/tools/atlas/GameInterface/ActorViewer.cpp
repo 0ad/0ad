@@ -43,6 +43,7 @@
 #include "ps/CLogger.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/ProfileViewer.h"
+#include "ps/VideoMode.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/Scene.h"
@@ -60,6 +61,8 @@
 #include "simulation2/components/ICmpVisual.h"
 #include "simulation2/components/ICmpWaterManager.h"
 #include "simulation2/helpers/Render.h"
+
+extern int g_xres, g_yres;
 
 struct ActorViewerImpl : public Scene
 {
@@ -530,7 +533,7 @@ void ActorViewer::Render()
 	g_Renderer.GetSceneRenderer().RenderScene(g_Renderer.GetDeviceCommandContext(), m);
 
 	{
-		CCanvas2D canvas(g_Renderer.GetDeviceCommandContext());
+		CCanvas2D canvas(g_xres, g_yres, g_VideoMode.GetScale(), g_Renderer.GetDeviceCommandContext());
 		g_Logger->Render(canvas);
 		g_ProfileViewer.RenderProfile(canvas);
 	}

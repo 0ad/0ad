@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,9 +18,11 @@
 #ifndef INCLUDED_CMDLINEARGS
 #define INCLUDED_CMDLINEARGS
 
-#include "ps/CStr.h"
 #include "lib/os_path.h"
+#include "ps/containers/Span.h"
+#include "ps/CStr.h"
 
+#include <utility>
 #include <vector>
 
 class CmdLineArgs
@@ -33,10 +35,9 @@ public:
 	 * All arguments are required to be of the form <tt>-name</tt> or
 	 * <tt>-name=value</tt> - anything else is ignored.
 	 *
-	 * @param argc size of argv array
-	 * @param argv array of arguments; argv[0] should be the program's name
+	 * @param argv span of arguments; argv[0] should be the program's name
 	 */
-	CmdLineArgs(int argc, const char* argv[]);
+	CmdLineArgs(const PS::span<const char* const> argv);
 
 	/**
 	 * Test whether the given name was specified, as either <tt>-name</tt> or

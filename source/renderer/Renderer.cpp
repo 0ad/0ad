@@ -491,7 +491,7 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 
 void CRenderer::RenderFrame2D(const bool renderGUI, const bool renderLogger)
 {
-	CCanvas2D canvas(m->deviceCommandContext.get());
+	CCanvas2D canvas(g_xres, g_yres, g_VideoMode.GetScale(), m->deviceCommandContext.get());
 
 	m->sceneRenderer.RenderTextOverlays(canvas);
 

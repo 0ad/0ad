@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -422,6 +422,7 @@ size_t CProfiler2::ThreadStorage::HoldLevel()
 
 u8 CProfiler2::ThreadStorage::HoldType()
 {
+	ENSURE(m_HeldDepth > 0);
 	return m_HoldBuffers[m_HeldDepth - 1].type;
 }
 
@@ -960,7 +961,7 @@ void CProfiler2::SaveToFile()
 CProfile2SpikeRegion::CProfile2SpikeRegion(const char* name, double spikeLimit) :
 	m_Name(name), m_Limit(spikeLimit), m_PushedHold(true)
 {
-	if (g_Profiler2.HoldLevel() < 8 &&  g_Profiler2.HoldType() != CProfiler2::ThreadStorage::BUFFER_AGGREGATE)
+	if (g_Profiler2.HoldLevel() < 8 && (g_Profiler2.HoldLevel() == 0 || g_Profiler2.HoldType() != CProfiler2::ThreadStorage::BUFFER_AGGREGATE))
 		g_Profiler2.HoldMessages(CProfiler2::ThreadStorage::BUFFER_SPIKE);
 	else
 		m_PushedHold = false;
@@ -981,7 +982,7 @@ CProfile2SpikeRegion::~CProfile2SpikeRegion()
 CProfile2AggregatedRegion::CProfile2AggregatedRegion(const char* name, double spikeLimit) :
 	m_Name(name), m_Limit(spikeLimit), m_PushedHold(true)
 {
-	if (g_Profiler2.HoldLevel() < 8 && g_Profiler2.HoldType() != CProfiler2::ThreadStorage::BUFFER_AGGREGATE)
+	if (g_Profiler2.HoldLevel() < 8 && (g_Profiler2.HoldLevel() == 0 || g_Profiler2.HoldType() != CProfiler2::ThreadStorage::BUFFER_AGGREGATE))
 		g_Profiler2.HoldMessages(CProfiler2::ThreadStorage::BUFFER_AGGREGATE);
 	else
 		m_PushedHold = false;

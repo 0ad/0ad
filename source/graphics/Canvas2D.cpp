@@ -23,7 +23,6 @@
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "graphics/TextureManager.h"
-#include "gui/GUIMatrix.h"
 #include "maths/Rect.h"
 #include "maths/Vector2D.h"
 #include "ps/CStrInternStatic.h"
@@ -69,11 +68,11 @@ inline void DrawTextureImpl(
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 
 	deviceCommandContext->SetVertexBufferData(
@@ -89,8 +88,11 @@ inline void DrawTextureImpl(
 class CCanvas2D::Impl
 {
 public:
-	Impl(Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
-		: DeviceCommandContext(deviceCommandContext)
+	Impl(
+		const uint32_t widthInPixels, const uint32_t heightInPixels, const float scale,
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
+		: WidthInPixels(widthInPixels), HeightInPixels(heightInPixels),
+		Scale(scale), DeviceCommandContext(deviceCommandContext)
 	{
 	}
 
@@ -114,7 +116,7 @@ public:
 		BindingSlots.grayscaleFactor = shader->GetBindingSlot(str_grayscaleFactor);
 		BindingSlots.tex = shader->GetBindingSlot(str_tex);
 
-		const CMatrix3D transform = GetDefaultGuiMatrix();
+		const CMatrix3D transform = GetTransform();
 		DeviceCommandContext->SetUniform(
 			BindingSlots.transform, transform.AsFloatArray());
 	}
@@ -128,6 +130,30 @@ public:
 		Tech.reset();
 	}
 
+	/**
+	 * Returns model-view-projection matrix with (0,0) in top-left of screen.
+	 */
+	CMatrix3D GetTransform()
+	{
+		const float width = static_cast<float>(WidthInPixels) / Scale;
+		const float height = static_cast<float>(HeightInPixels) / Scale;
+
+		CMatrix3D transform;
+		transform.SetIdentity();
+		transform.Scale(1.0f, -1.f, 1.0f);
+		transform.Translate(0.0f, height, -1000.0f);
+
+		CMatrix3D projection;
+		projection.SetOrtho(0.f, width, 0.f, height, -1.f, 1000.f);
+		transform = projection * transform;
+
+		return transform;
+	}
+
+	uint32_t WidthInPixels = 1;
+	uint32_t HeightInPixels = 1;
+	float Scale = 1.0f;
+
 	Renderer::Backend::IDeviceCommandContext* DeviceCommandContext = nullptr;
 	CShaderTechniquePtr Tech;
 
@@ -137,8 +163,9 @@ public:
 };
 
 CCanvas2D::CCanvas2D(
+	const uint32_t widthInPixels, const uint32_t heightInPixels, const float scale,
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
-	: m(std::make_unique<Impl>(deviceCommandContext))
+	: m(std::make_unique<Impl>(widthInPixels, heightInPixels, scale, deviceCommandContext))
 {
 
 }
@@ -331,7 +358,7 @@ void CCanvas2D::DrawRect(const CRect& rect, const CColor& color)
 		m->BindingSlots);
 }
 
-void CCanvas2D::DrawTexture(CTexturePtr texture, const CRect& destination)
+void CCanvas2D::DrawTexture(const CTexturePtr& texture, const CRect& destination)
 {
 	DrawTexture(texture,
 		destination, CRect(0, 0, texture->GetWidth(), texture->GetHeight()),
@@ -339,7 +366,7 @@ void CCanvas2D::DrawTexture(CTexturePtr texture, const CRect& destination)
 }
 
 void CCanvas2D::DrawTexture(
-	CTexturePtr texture, const CRect& destination, const CRect& source,
+	const CTexturePtr& texture, const CRect& destination, const CRect& source,
 	const CColor& multiply, const CColor& add, const float grayscaleFactor)
 {
 	const PlaneArray2D uvs =
@@ -367,6 +394,45 @@ void CCanvas2D::DrawTexture(
 		multiply, add, grayscaleFactor, m->BindingSlots);
 }
 
+void CCanvas2D::DrawRotatedTexture(
+	const CTexturePtr& texture, const CRect& destination, const CRect& source,
+	const CColor& multiply, const CColor& add, const float grayscaleFactor,
+	const CVector2D& origin, const float angle)
+{
+	const PlaneArray2D uvs =
+	{
+		source.left, source.bottom,
+		source.right, source.bottom,
+		source.right, source.top,
+		source.left, source.bottom,
+		source.right, source.top,
+		source.left, source.top
+	};
+	std::array<CVector2D, 6> corners =
+	{
+		destination.BottomLeft(),
+		destination.BottomRight(),
+		destination.TopRight(),
+		destination.BottomLeft(),
+		destination.TopRight(),
+		destination.TopLeft()
+	};
+	PlaneArray2D vertices;
+	static_assert(vertices.size() == corners.size() * 2, "We need two coordinates from each corner.");
+	auto it = vertices.begin();
+	for (const CVector2D& corner : corners)
+	{
+		const CVector2D vertex = origin + (corner - origin).Rotated(angle);
+		*it++ = vertex.X;
+		*it++ = vertex.Y;
+	}
+
+	m->BindTechIfNeeded();
+	DrawTextureImpl(
+		m->DeviceCommandContext, texture, vertices, uvs,
+		multiply, add, grayscaleFactor, m->BindingSlots);
+}
+
 void CCanvas2D::DrawText(CTextRenderer& textRenderer)
 {
 	m->BindTechIfNeeded();
@@ -374,7 +440,7 @@ void CCanvas2D::DrawText(CTextRenderer& textRenderer)
 	m->DeviceCommandContext->SetUniform(
 		m->BindingSlots.grayscaleFactor, 0.0f);
 
-	textRenderer.Render(m->DeviceCommandContext, m->Tech->GetShader(), GetDefaultGuiMatrix());
+	textRenderer.Render(m->DeviceCommandContext, m->Tech->GetShader(), m->GetTransform());
 }
 
 void CCanvas2D::Flush()

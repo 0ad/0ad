@@ -22,7 +22,6 @@
 #include "graphics/Camera.h"
 #include "graphics/LightEnv.h"
 #include "graphics/ShaderManager.h"
-#include "gui/GUIMatrix.h"
 #include "lib/bits.h"
 #include "maths/BoundingBoxAligned.h"
 #include "maths/Brush.h"

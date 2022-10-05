@@ -22,7 +22,6 @@
 #include "graphics/Canvas2D.h"
 #include "graphics/FontMetrics.h"
 #include "graphics/TextRenderer.h"
-#include "gui/GUIMatrix.h"
 #include "lib/external_libraries/libsdl.h"
 #include "maths/Size2D.h"
 #include "maths/Vector2D.h"

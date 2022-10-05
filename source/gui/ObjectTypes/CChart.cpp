@@ -20,7 +20,6 @@
 #include "CChart.h"
 
 #include "graphics/Canvas2D.h"
-#include "gui/GUIMatrix.h"
 #include "gui/SettingTypes/CGUIList.h"
 #include "gui/SettingTypes/CGUISeries.h"
 #include "gui/SettingTypes/CGUIString.h"
