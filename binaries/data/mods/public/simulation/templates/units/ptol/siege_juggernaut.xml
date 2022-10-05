@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/ptol/siege_lithobolos_packed">
+  <Cost disable=""/>
+  <Footprint disable=""/>
+  <Garrisonable disable=""/>
+  <Guard disable=""/>
+  <Health disable=""/>
+  <Identity>
+    <Icon>units/hele/siege_lithobolos.png</Icon>
+    <Formations disable=""/>
+    <Undeletable>true</Undeletable>
+  </Identity>
+  <Loot disable=""/>
+  <Minimap disable=""/>
+  <Obstruction disable=""/>
+  <Pack disable=""/>
+  <Repairable disable=""/>
+  <Resistance disable=""/>
+  <StatusBars disable=""/>
+  <StatusEffectsReceiver disable=""/>
+  <TreasureCollecter disable=""/>
+  <Turretable/>
+  <UnitMotion disable=""/>
+  <VisualActor>
+    <Actor>units/ptolemies/siege_lithobolos_med.xml</Actor>
+  </VisualActor>
+</Entity>

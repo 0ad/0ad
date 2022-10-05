@@ -2,8 +2,9 @@
 <Entity parent="template_unit_siege_ram">
   <Identity>
     <SpecificName>Gōngchéng Chuí</SpecificName>
-    <Icon>units/athen_siege_ram.png</Icon>
+    <Icon>units/athen/siege_ram.png</Icon>
   </Identity>
+  <!-- Needs new battering ram model -->
   <VisualActor>
     <Actor>structures/athenians/siege_ram.xml</Actor>
   </VisualActor>
