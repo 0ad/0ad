@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_obstructor">
+  <Footprint>
+    <Square width="38" depth="38"/>
+    <Height>9.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>gaia</Civ>
+    <GenericName>Movement Obstructor</GenericName>
+    <Icon>structures/wall.png</Icon>
+    <Tooltip>Placement obstructor to prevent movement and construction.</Tooltip>
+    <Undeletable>false</Undeletable>
+  </Identity>
+  <Obstruction>
+    <BlockMovement>true</BlockMovement>
+    <BlockPathfinding>true</BlockPathfinding>
+    <Static width="36" depth="36"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>special/obstructor_movement_36x36.xml</Actor>
+  </VisualActor>
+</Entity>
