@@ -1,4 +1,4 @@
-/* Copyright (c) 2020 Wildfire Games.
+/* Copyright (c) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -48,7 +48,7 @@
 #else
 # define LCC_VERSION 0
 #endif
-// .. MCST LCC (MCST eLbrus Compiler Collection)
+// .. MCST LCC (eLbrus Compiler Collection)
 #if defined(__LCC__) && defined(__MCST__)
 # define MCST_LCC_VERSION (__LCC__*100 + __LCC_MINOR__)
 #else
