@@ -15,8 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_RENDERER_DUMMY_DEVICECOMMANDCONTEXT
-#define INCLUDED_RENDERER_DUMMY_DEVICECOMMANDCONTEXT
+#ifndef INCLUDED_RENDERER_BACKEND_DUMMY_DEVICECOMMANDCONTEXT
+#define INCLUDED_RENDERER_BACKEND_DUMMY_DEVICECOMMANDCONTEXT
 
 #include "renderer/backend/Format.h"
 #include "renderer/backend/IDeviceCommandContext.h"
@@ -149,4 +149,4 @@ private:
 
 } // namespace Renderer
 
-#endif // INCLUDED_RENDERER_DUMMY_DEVICECOMMANDCONTEXT
+#endif // INCLUDED_RENDERER_BACKEND_DUMMY_DEVICECOMMANDCONTEXT
