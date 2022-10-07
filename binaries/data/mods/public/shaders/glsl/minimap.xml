@@ -3,7 +3,7 @@
 
 	<vertex file="glsl/minimap.vs">
 		<stream name="pos" attribute="a_vertex"/>
-		<stream name="uv0" attribute="a_uv0" if="MINIMAP_BASE || MINIMAP_LOS || MINIMAP_MASK"/>
+		<stream name="uv0" attribute="a_uv0" if="MINIMAP_BASE || MINIMAP_LOS"/>
 		<stream name="uv1" attribute="a_uv1" if="USE_GPU_INSTANCING"/>
 		<stream name="color" attribute="a_color" if="MINIMAP_POINT"/>
 	</vertex>
