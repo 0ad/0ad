@@ -152,7 +152,19 @@ std::unique_ptr<CTexture> CTexture::Create(CDevice* device, const char* name,
 		defaultSamplerDesc.addressModeV == Sampler::AddressMode::CLAMP_TO_BORDER ||
 		defaultSamplerDesc.addressModeW == Sampler::AddressMode::CLAMP_TO_BORDER)
 	{
-		glTexParameterfv(target, GL_TEXTURE_BORDER_COLOR, defaultSamplerDesc.borderColor.AsFloatArray().data());
+		CColor borderColor(0.0f, 0.0f, 0.0f, 0.0f);
+		switch (defaultSamplerDesc.borderColor)
+		{
+		case Sampler::BorderColor::TRANSPARENT_BLACK:
+			break;
+		case Sampler::BorderColor::OPAQUE_BLACK:
+			borderColor = CColor(0.0f, 0.0f, 0.0f, 1.0f);
+			break;
+		case Sampler::BorderColor::OPAQUE_WHITE:
+			borderColor = CColor(1.0f, 1.0f, 1.0f, 1.0f);
+			break;
+		}
+		glTexParameterfv(target, GL_TEXTURE_BORDER_COLOR, borderColor.AsFloatArray().data());
 	}
 
 	ogl_WarnIfError();
