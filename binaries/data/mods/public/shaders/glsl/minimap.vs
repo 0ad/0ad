@@ -3,12 +3,7 @@
 uniform mat4 transform;
 uniform mat4 textureTransform;
 
-#if MINIMAP_MASK
-  uniform mat4 maskTextureTransform;
-  varying vec2 v_maskUV;
-#endif
-
-#if MINIMAP_BASE || MINIMAP_LOS || MINIMAP_MASK
+#if MINIMAP_BASE || MINIMAP_LOS
   attribute vec3 a_vertex;
   attribute vec2 a_uv0;
 #endif
@@ -21,10 +16,6 @@ uniform mat4 textureTransform;
   attribute vec2 a_vertex;
   attribute vec3 a_color;
   varying vec3 color;
-#endif
-
-#if MINIMAP_LINE
-  attribute vec2 a_vertex;
 #endif
 
 #if MINIMAP_POINT && USE_GPU_INSTANCING
@@ -41,10 +32,6 @@ void main()
 	v_tex = (textureTransform * vec4(a_uv0, 0.0, 1.0)).xy;
 #endif
 
-#if MINIMAP_MASK
-	v_maskUV = (maskTextureTransform * vec4(a_uv0, 0.0, 1.0)).xy;
-#endif
-
 #if MINIMAP_POINT
 #if USE_GPU_INSTANCING
 	gl_Position = transform * vec4(a_vertex * width + a_uv1, 0.0, 1.0);
@@ -53,8 +40,4 @@ void main()
 #endif
 	color = a_color;
 #endif // MINIMAP_POINT
-
-#if MINIMAP_LINE
-	gl_Position = transform * vec4(a_vertex, 0.0, 1.0);
-#endif
 }

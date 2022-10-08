@@ -244,9 +244,9 @@ public:
 		textureName << "B:" << m_ColorFrom.b << ", ";
 		textureName << "A:" << m_ColorFrom.a << ")";
 		textureName << " To (";
-		textureName << "R:" << m_ColorTo.r << ",";
-		textureName << "G:" << m_ColorTo.g << ",";
-		textureName << "B:" << m_ColorTo.b << ",";
+		textureName << "R:" << m_ColorTo.r << ", ";
+		textureName << "G:" << m_ColorTo.g << ", ";
+		textureName << "B:" << m_ColorTo.b << ", ";
 		textureName << "A:" << m_ColorTo.a << ")";
 
 		std::unique_ptr<Renderer::Backend::ITexture> backendTexture =

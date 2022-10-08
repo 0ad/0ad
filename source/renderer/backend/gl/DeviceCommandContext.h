@@ -15,8 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_RENDERER_GL_DEVICECOMMANDCONTEXT
-#define INCLUDED_RENDERER_GL_DEVICECOMMANDCONTEXT
+#ifndef INCLUDED_RENDERER_BACKEND_GL_DEVICECOMMANDCONTEXT
+#define INCLUDED_RENDERER_BACKEND_GL_DEVICECOMMANDCONTEXT
 
 #include "lib/ogl.h"
 #include "ps/containers/Span.h"
@@ -232,4 +232,4 @@ private:
 
 } // namespace Renderer
 
-#endif // INCLUDED_RENDERER_GL_DEVICECOMMANDCONTEXT
+#endif // INCLUDED_RENDERER_BACKEND_GL_DEVICECOMMANDCONTEXT
