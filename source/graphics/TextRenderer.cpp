@@ -182,14 +182,6 @@ void CTextRenderer::PutString(float x, float y, const std::wstring* buf, bool ow
 	m_Batches.back().chars += buf->size();
 }
 
-
-struct t2f_v2i
-{
-	t2f_v2i() : u(0), v(0), x(0), y(0) { }
-	float u, v;
-	i16 x, y;
-};
-
 struct SBatchCompare
 {
 	bool operator()(const CTextRenderer::SBatch& a, const CTextRenderer::SBatch& b)
@@ -206,8 +198,9 @@ void CTextRenderer::Render(
 	Renderer::Backend::IShaderProgram* shader,
 	const CVector2D& transformScale, const CVector2D& translation)
 {
-	std::vector<u16> indexes;
-	std::vector<t2f_v2i> vertexes;
+	std::vector<u16> indices;
+	std::vector<CVector2D> positions;
+	std::vector<CVector2D> uvs;
 
 	// Try to merge non-consecutive batches that share the same font/color/translate:
 	// sort the batch list by font, then merge the runs of adjacent compatible batches
@@ -263,30 +256,23 @@ void CTextRenderer::Render(
 
 		deviceCommandContext->SetUniform(colorMulBindingSlot, batch.color.AsFloatArray());
 
-		vertexes.resize(std::min(MAX_CHAR_COUNT_PER_BATCH, batch.chars) * 4);
-		indexes.resize(std::min(MAX_CHAR_COUNT_PER_BATCH, batch.chars) * 6);
+		positions.resize(std::min(MAX_CHAR_COUNT_PER_BATCH, batch.chars) * 4);
+		uvs.resize(std::min(MAX_CHAR_COUNT_PER_BATCH, batch.chars) * 4);
+		indices.resize(std::min(MAX_CHAR_COUNT_PER_BATCH, batch.chars) * 6);
 
 		size_t idx = 0;
 
-		auto flush = [deviceCommandContext, &idx, &vertexes, &indexes]() -> void
+		auto flush = [deviceCommandContext, &idx, &positions, &uvs, &indices]() -> void
 		{
 			if (idx == 0)
 				return;
 
-			const uint32_t stride = sizeof(t2f_v2i);
-
-			deviceCommandContext->SetVertexAttributeFormat(
-				Renderer::Backend::VertexAttributeStream::POSITION,
-				Renderer::Backend::Format::R16G16_SINT, offsetof(t2f_v2i, x), stride,
-				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-			deviceCommandContext->SetVertexAttributeFormat(
-				Renderer::Backend::VertexAttributeStream::UV0,
-				Renderer::Backend::Format::R32G32_SFLOAT, offsetof(t2f_v2i, u), stride,
-				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-
 			deviceCommandContext->SetVertexBufferData(
-				0, vertexes.data(), vertexes.size() * sizeof(vertexes[0]));
-			deviceCommandContext->SetIndexBufferData(indexes.data(), indexes.size() * sizeof(indexes[0]));
+				0, positions.data(), positions.size() * sizeof(positions[0]));
+			deviceCommandContext->SetVertexBufferData(
+				1, uvs.data(), uvs.size() * sizeof(uvs[0]));
+			deviceCommandContext->SetIndexBufferData(
+				indices.data(), indices.size() * sizeof(indices[0]));
 
 			deviceCommandContext->DrawIndexed(0, idx * 6, 0);
 			idx = 0;
@@ -306,32 +292,32 @@ void CTextRenderer::Render(
 				if (!g) // Missing the missing glyph symbol - give up
 					continue;
 
-				vertexes[idx*4].u = g->u1;
-				vertexes[idx*4].v = g->v0;
-				vertexes[idx*4].x = g->x1 + x;
-				vertexes[idx*4].y = g->y0 + y;
+				uvs[idx*4].X = g->u1;
+				uvs[idx*4].Y = g->v0;
+				positions[idx*4].X = g->x1 + x;
+				positions[idx*4].Y = g->y0 + y;
 
-				vertexes[idx*4+1].u = g->u0;
-				vertexes[idx*4+1].v = g->v0;
-				vertexes[idx*4+1].x = g->x0 + x;
-				vertexes[idx*4+1].y = g->y0 + y;
+				uvs[idx*4+1].X = g->u0;
+				uvs[idx*4+1].Y = g->v0;
+				positions[idx*4+1].X = g->x0 + x;
+				positions[idx*4+1].Y = g->y0 + y;
 
-				vertexes[idx*4+2].u = g->u0;
-				vertexes[idx*4+2].v = g->v1;
-				vertexes[idx*4+2].x = g->x0 + x;
-				vertexes[idx*4+2].y = g->y1 + y;
+				uvs[idx*4+2].X = g->u0;
+				uvs[idx*4+2].Y = g->v1;
+				positions[idx*4+2].X = g->x0 + x;
+				positions[idx*4+2].Y = g->y1 + y;
 
-				vertexes[idx*4+3].u = g->u1;
-				vertexes[idx*4+3].v = g->v1;
-				vertexes[idx*4+3].x = g->x1 + x;
-				vertexes[idx*4+3].y = g->y1 + y;
+				uvs[idx*4+3].X = g->u1;
+				uvs[idx*4+3].Y = g->v1;
+				positions[idx*4+3].X = g->x1 + x;
+				positions[idx*4+3].Y = g->y1 + y;
 
-				indexes[idx*6+0] = static_cast<u16>(idx*4+0);
-				indexes[idx*6+1] = static_cast<u16>(idx*4+1);
-				indexes[idx*6+2] = static_cast<u16>(idx*4+2);
-				indexes[idx*6+3] = static_cast<u16>(idx*4+2);
-				indexes[idx*6+4] = static_cast<u16>(idx*4+3);
-				indexes[idx*6+5] = static_cast<u16>(idx*4+0);
+				indices[idx*6+0] = static_cast<u16>(idx*4+0);
+				indices[idx*6+1] = static_cast<u16>(idx*4+1);
+				indices[idx*6+2] = static_cast<u16>(idx*4+2);
+				indices[idx*6+3] = static_cast<u16>(idx*4+2);
+				indices[idx*6+4] = static_cast<u16>(idx*4+3);
+				indices[idx*6+5] = static_cast<u16>(idx*4+0);
 
 				x += g->xadvance;
 

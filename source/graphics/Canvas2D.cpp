@@ -67,15 +67,6 @@ inline void DrawTextureImpl(
 	deviceCommandContext->SetUniform(bindingSlots.colorMul, multiply.AsFloatArray());
 	deviceCommandContext->SetUniform(bindingSlots.grayscaleFactor, grayscaleFactor);
 
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
-
 	deviceCommandContext->SetVertexBufferData(
 		0, vertices.data(), vertices.size() * sizeof(vertices[0]));
 	deviceCommandContext->SetVertexBufferData(
@@ -126,6 +117,15 @@ public:
 			transform._11, transform._21, transform._12, transform._22);
 		DeviceCommandContext->SetUniform(
 			BindingSlots.translation, Translation.AsFloatArray());
+
+		DeviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+		DeviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::UV0,
+			Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 	}
 
 	void UnbindTech()
@@ -325,15 +325,6 @@ void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width
 		m->BindingSlots.colorMul, color.AsFloatArray());
 	m->DeviceCommandContext->SetUniform(
 		m->BindingSlots.grayscaleFactor, 0.0f);
-
-	m->DeviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	m->DeviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 
 	m->DeviceCommandContext->SetVertexBufferData(0, vertices.data(), vertices.size() * sizeof(vertices[0]));
 	m->DeviceCommandContext->SetVertexBufferData(1, uvs.data(), uvs.size() * sizeof(uvs[0]));
