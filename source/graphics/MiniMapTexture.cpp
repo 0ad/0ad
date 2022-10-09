@@ -106,11 +106,11 @@ void DrawTexture(
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 
 	deviceCommandContext->SetVertexBufferData(
