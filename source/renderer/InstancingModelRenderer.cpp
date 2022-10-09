@@ -323,12 +323,12 @@ void InstancingModelRenderer::PrepareModelDef(
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
 		m->imodeldef->m_Position.format,
-		firstVertexOffset + m->imodeldef->m_Position.offset, stride,
+		m->imodeldef->m_Position.offset, stride,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::NORMAL,
 		m->imodeldef->m_Normal.format,
-		firstVertexOffset + m->imodeldef->m_Normal.offset, stride,
+		m->imodeldef->m_Normal.offset, stride,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
 	constexpr size_t MAX_UV = 2;
@@ -339,7 +339,7 @@ void InstancingModelRenderer::PrepareModelDef(
 				static_cast<int>(Renderer::Backend::VertexAttributeStream::UV0) + uv);
 		deviceCommandContext->SetVertexAttributeFormat(
 			stream, m->imodeldef->m_UVs[uv].format,
-			firstVertexOffset + m->imodeldef->m_UVs[uv].offset, stride,
+			m->imodeldef->m_UVs[uv].offset, stride,
 			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	}
 
@@ -349,12 +349,12 @@ void InstancingModelRenderer::PrepareModelDef(
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV2,
 			m->imodeldef->m_BlendJoints.format,
-			firstVertexOffset + m->imodeldef->m_BlendJoints.offset, stride,
+			m->imodeldef->m_BlendJoints.offset, stride,
 			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV3,
 			m->imodeldef->m_BlendWeights.format,
-			firstVertexOffset + m->imodeldef->m_BlendWeights.offset, stride,
+			m->imodeldef->m_BlendWeights.offset, stride,
 			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	}
 
@@ -363,11 +363,12 @@ void InstancingModelRenderer::PrepareModelDef(
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV4,
 			m->imodeldef->m_Tangent.format,
-			firstVertexOffset + m->imodeldef->m_Tangent.offset, stride,
+			m->imodeldef->m_Tangent.offset, stride,
 			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	}
 
-	deviceCommandContext->SetVertexBuffer(0, m->imodeldef->m_Array.GetBuffer());
+	deviceCommandContext->SetVertexBuffer(
+		0, m->imodeldef->m_Array.GetBuffer(), firstVertexOffset);
 }
 
 

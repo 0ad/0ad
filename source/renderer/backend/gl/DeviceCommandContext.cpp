@@ -865,7 +865,7 @@ void CDeviceCommandContext::SetVertexAttributeFormat(
 }
 
 void CDeviceCommandContext::SetVertexBuffer(
-	const uint32_t bindingSlot, IBuffer* buffer)
+	const uint32_t bindingSlot, IBuffer* buffer, const uint32_t offset)
 {
 	ENSURE(buffer);
 	ENSURE(buffer->GetType() == IBuffer::Type::VERTEX);
@@ -879,7 +879,7 @@ void CDeviceCommandContext::SetVertexBuffer(
 		const VertexAttributeStream stream = static_cast<VertexAttributeStream>(index);
 		m_ShaderProgram->VertexAttribPointer(stream,
 			m_VertexAttributeFormat[index].format,
-			m_VertexAttributeFormat[index].offset,
+			m_VertexAttributeFormat[index].offset + offset,
 			m_VertexAttributeFormat[index].stride,
 			m_VertexAttributeFormat[index].rate,
 			nullptr);

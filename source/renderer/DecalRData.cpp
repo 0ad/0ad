@@ -251,7 +251,8 @@ void CDecalRData::RenderDecals(
 						offsetof(SDecalVertex, m_UV), stride,
 						Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
-					deviceCommandContext->SetVertexBuffer(0, batch.vertices->m_Owner->GetBuffer());
+					deviceCommandContext->SetVertexBuffer(
+						0, batch.vertices->m_Owner->GetBuffer(), 0);
 				}
 
 				if (lastIB != batch.indices->m_Owner)

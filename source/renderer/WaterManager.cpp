@@ -833,33 +833,33 @@ void WaterManager::RenderWaves(
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::POSITION,
 			Renderer::Backend::Format::R32G32B32_SFLOAT,
-			firstVertexOffset + offsetof(SWavesVertex, m_BasePosition), stride,
+			offsetof(SWavesVertex, m_BasePosition), stride,
 			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::NORMAL,
 			Renderer::Backend::Format::R32G32_SFLOAT,
-			firstVertexOffset + offsetof(SWavesVertex, m_PerpVect), stride,
+			offsetof(SWavesVertex, m_PerpVect), stride,
 			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV0,
 			Renderer::Backend::Format::R8G8_UINT,
-			firstVertexOffset + offsetof(SWavesVertex, m_UV), stride,
+			offsetof(SWavesVertex, m_UV), stride,
 			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV1,
 			Renderer::Backend::Format::R32G32B32_SFLOAT,
-			firstVertexOffset + offsetof(SWavesVertex, m_ApexPosition), stride,
+			offsetof(SWavesVertex, m_ApexPosition), stride,
 			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV2,
 			Renderer::Backend::Format::R32G32B32_SFLOAT,
-			firstVertexOffset + offsetof(SWavesVertex, m_SplashPosition), stride,
+			offsetof(SWavesVertex, m_SplashPosition), stride,
 			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV3,
 			Renderer::Backend::Format::R32G32B32_SFLOAT,
-			firstVertexOffset + offsetof(SWavesVertex, m_RetreatPosition), stride,
+			offsetof(SWavesVertex, m_RetreatPosition), stride,
 			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
 		deviceCommandContext->SetUniform(
@@ -867,7 +867,8 @@ void WaterManager::RenderWaves(
 		deviceCommandContext->SetUniform(
 			shader->GetBindingSlot(str_width), static_cast<float>(m_ShoreWaves[a]->m_Width));
 
-		deviceCommandContext->SetVertexBuffer(0, VBchunk->m_Owner->GetBuffer());
+		deviceCommandContext->SetVertexBuffer(
+			0, VBchunk->m_Owner->GetBuffer(), firstVertexOffset);
 		deviceCommandContext->SetIndexBuffer(m_ShoreWavesVBIndices->m_Owner->GetBuffer());
 
 		const uint32_t indexCount = (m_ShoreWaves[a]->m_Width - 1) * (7 * 6);
