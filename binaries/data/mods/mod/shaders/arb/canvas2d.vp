@@ -1,11 +1,14 @@
 !!ARBvp1.0
 
-PARAM transform[4] = { program.local[0..3] };
+PARAM transform = program.local[0];
+PARAM translation = program.local[1];
 
 TEMP position;
 
-DP4 position.x, transform[0], vertex.position;
-DP4 position.y, transform[1], vertex.position;
+MUL position, transform, vertex.position.xyxy;
+ADD position.x, position.x, position.y;
+ADD position.y, position.z, position.w;
+ADD position, position, translation;
 MOV position.z, 0.0;
 MOV position.w, 1.0;
 

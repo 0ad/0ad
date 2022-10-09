@@ -203,7 +203,8 @@ struct SBatchCompare
 
 void CTextRenderer::Render(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
-	Renderer::Backend::IShaderProgram* shader, const CMatrix3D& transform)
+	Renderer::Backend::IShaderProgram* shader,
+	const CVector2D& transformScale, const CVector2D& translation)
 {
 	std::vector<u16> indexes;
 	std::vector<t2f_v2i> vertexes;
@@ -225,11 +226,11 @@ void CTextRenderer::Render(
 	}
 
 	const int32_t texBindingSlot = shader->GetBindingSlot(str_tex);
-	const int32_t transformBindingSlot = shader->GetBindingSlot(str_transform);
+	const int32_t translationBindingSlot = shader->GetBindingSlot(str_translation);
 	const int32_t colorAddBindingSlot = shader->GetBindingSlot(str_colorAdd);
 	const int32_t colorMulBindingSlot = shader->GetBindingSlot(str_colorMul);
 
-	bool transformChanged = false;
+	bool translationChanged = false;
 
 	CTexture* lastTexture = nullptr;
 	for (std::list<SBatch>::iterator it = m_Batches.begin(); it != m_Batches.end(); ++it)
@@ -247,11 +248,10 @@ void CTextRenderer::Render(
 
 		if (batch.translate.X != 0.0f || batch.translate.Y != 0.0f)
 		{
-			CMatrix3D localTransform;
-			localTransform.SetTranslation(batch.translate.X, batch.translate.Y, 0.0f);
-			localTransform = transform * localTransform;
-			deviceCommandContext->SetUniform(transformBindingSlot, localTransform.AsFloatArray());
-			transformChanged = true;
+			const CVector2D localTranslation =
+				translation + CVector2D(batch.translate.X * transformScale.X, batch.translate.Y * transformScale.Y);
+			deviceCommandContext->SetUniform(translationBindingSlot, localTranslation.AsFloatArray());
+			translationChanged = true;
 		}
 
 		// ALPHA-only textures will have .rgb sampled as 0, so we need to
@@ -346,6 +346,6 @@ void CTextRenderer::Render(
 
 	m_Batches.clear();
 
-	if (transformChanged)
-		deviceCommandContext->SetUniform(transformBindingSlot, transform.AsFloatArray());
+	if (translationChanged)
+		deviceCommandContext->SetUniform(translationBindingSlot, translation.AsFloatArray());
 }

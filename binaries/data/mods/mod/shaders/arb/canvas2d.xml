@@ -4,7 +4,8 @@
     <vertex file="arb/canvas2d.vp">
         <stream name="pos"/>
         <stream name="uv0"/>
-        <uniform name="transform" loc="0" type="mat4"/>
+        <uniform name="transform" loc="0" type="vec4"/>
+        <uniform name="translation" loc="1" type="vec2"/>
     </vertex>
 
     <fragment file="arb/canvas2d.fp">
