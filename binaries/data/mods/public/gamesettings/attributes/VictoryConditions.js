@@ -17,9 +17,11 @@ GameSettings.prototype.Attributes.VictoryConditions = class VictoryConditions ex
 		for (let cond of conditions)
 			this.conditions[cond.Name] = cond;
 
+		let defaults = [];
 		for (let cond in this.conditions)
 			if (this.conditions[cond].Default)
-				this._add(this.conditions[cond].Name);
+				defaults.push(this.conditions[cond].Name);
+		this._add(this.active, this.disabled, defaults);
 	}
 
 	toInitAttributes(attribs)
@@ -50,11 +52,7 @@ GameSettings.prototype.Attributes.VictoryConditions = class VictoryConditions ex
 		if (!conditionList)
 			return;
 
-		this.disabled = new Set();
-		this.active = new Set();
-		// TODO: could be optimised.
-		for (const cond of conditionList)
-			this._add(cond);
+		this._add(new Set(), new Set(), conditionList);
 	}
 
 	_reconstructDisabled(active)
@@ -67,24 +65,27 @@ GameSettings.prototype.Attributes.VictoryConditions = class VictoryConditions ex
 		return disabled;
 	}
 
-	_add(name)
+	_add(currentActive, currentDisabled, names)
 	{
-		if (this.disabled.has(name))
-			return;
-		let active = clone(this.active);
-		active.add(name);
-		// Assume we want to remove incompatible ones.
-		if (this.conditions[name].DisabledWhenChecked)
-			this.conditions[name].DisabledWhenChecked.forEach(x => active.delete(x));
+		let active = clone(currentActive);
+		for (const name of names) {
+			if (currentDisabled.has(name))
+				continue;
+			active.add(name);
+			// Assume we want to remove incompatible ones.
+			if (this.conditions[name].DisabledWhenChecked)
+				this.conditions[name].DisabledWhenChecked.forEach(x => active.delete(x));
+		}
 		// TODO: sanity check
 		this.disabled = this._reconstructDisabled(active);
 		this.active = active;
 	}
 
-	_delete(name)
+	_delete(names)
 	{
 		let active = clone(this.active);
-		active.delete(name);
+		for (const name of names)
+			active.delete(name);
 		// TODO: sanity check
 		this.disabled = this._reconstructDisabled(active);
 		this.active = active;
@@ -93,8 +94,8 @@ GameSettings.prototype.Attributes.VictoryConditions = class VictoryConditions ex
 	setEnabled(name, enabled)
 	{
 		if (enabled)
-			this._add(name);
+			this._add(this.active, this.disabled, [name]);
 		else
-			this._delete(name);
+			this._delete([name]);
 	}
 };

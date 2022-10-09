@@ -46,6 +46,13 @@ enum class AddressMode
 	CLAMP_TO_BORDER,
 };
 
+enum class BorderColor
+{
+	TRANSPARENT_BLACK,
+	OPAQUE_BLACK,
+	OPAQUE_WHITE
+};
+
 struct Desc
 {
 	Filter magFilter;
@@ -58,7 +65,7 @@ struct Desc
 	bool anisotropyEnabled;
 	float maxAnisotropy;
 	// When some filter is CLAMP_TO_BORDER.
-	CColor borderColor;
+	BorderColor borderColor;
 	bool compareEnabled;
 	CompareOp compareOp;
 };
