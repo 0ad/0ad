@@ -175,6 +175,33 @@ PETRA.Config = function(difficulty = PETRA.DIFFICULTY_MEDIUM, behavior)
 		"Market/InternationalBonus",
 		"Player/sharedDropsites"
 	];
+
+	this.criticalPopulationFactors = [
+		0.8,
+		0.8,
+		0.7,
+		0.6,
+		0.5,
+		0.35
+	];
+
+	this.criticalStructureFactors = [
+		0.8,
+		0.8,
+		0.7,
+		0.6,
+		0.5,
+		0.35
+	];
+
+	this.criticalRootFactors = [
+		0.8,
+		0.8,
+		0.67,
+		0.5,
+		0.35,
+		0.2
+	];
 };
 
 PETRA.Config.prototype.setConfig = function(gameState)
@@ -286,6 +313,12 @@ PETRA.Config.prototype.setConfig = function(gameState)
 	this.Economy.workPhase4 = Math.min(this.Economy.workPhase4, this.Economy.targetNumWorkers);
 	if (this.difficulty < PETRA.DIFFICULTY_EASY)
 		this.Economy.workPhase3 = Infinity;	// prevent the phasing to city phase
+
+	this.emergencyValues = {
+		"population": this.criticalPopulationFactors[this.difficulty],
+		"structures": this.criticalStructureFactors[this.difficulty],
+		"roots": this.criticalRootFactors[this.difficulty],
+	};
 
 	if (this.debug < 2)
 		return;

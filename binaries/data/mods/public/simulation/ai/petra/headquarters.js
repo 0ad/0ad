@@ -44,6 +44,7 @@ PETRA.HQ = function(Config)
 	this.diplomacyManager = new PETRA.DiplomacyManager(this.Config);
 	this.garrisonManager = new PETRA.GarrisonManager(this.Config);
 	this.victoryManager = new PETRA.VictoryManager(this.Config);
+	this.emergencyManager = new PETRA.EmergencyManager(this.Config);
 
 	this.capturableTargets = new Map();
 	this.capturableTargetsTime = 0;
@@ -66,6 +67,7 @@ PETRA.HQ.prototype.init = function(gameState, queues)
 	this.treasures.registerUpdates();
 	this.currentPhase = gameState.currentPhase();
 	this.decayingStructures = new Set();
+	this.emergencyManager.init(gameState);
 };
 
 /**
@@ -2190,6 +2192,7 @@ PETRA.HQ.prototype.baseAtIndex = function(territoryIndex)
 PETRA.HQ.prototype.update = function(gameState, queues, events)
 {
 	Engine.ProfileStart("Headquarters update");
+	this.emergencyManager.update(gameState);
 	this.turnCache = {};
 	this.territoryMap = PETRA.createTerritoryMap(gameState);
 	this.canBarter = gameState.getOwnEntitiesByClass("Market", true).filter(API3.Filters.isBuilt()).hasEntities();
@@ -2337,6 +2340,7 @@ PETRA.HQ.prototype.Serialize = function()
 		API3.warn(" diplomacyManager " + uneval(this.diplomacyManager.Serialize()));
 		API3.warn(" garrisonManager " + uneval(this.garrisonManager.Serialize()));
 		API3.warn(" victoryManager " + uneval(this.victoryManager.Serialize()));
+		API3.warn(" emergencyManager " + uneval(this.emergencyManager.Serialize()));
 	}
 
 	return {
@@ -2352,6 +2356,7 @@ PETRA.HQ.prototype.Serialize = function()
 		"diplomacyManager": this.diplomacyManager.Serialize(),
 		"garrisonManager": this.garrisonManager.Serialize(),
 		"victoryManager": this.victoryManager.Serialize(),
+		"emergencyManager": this.emergencyManager.Serialize(),
 	};
 };
 
@@ -2395,4 +2400,7 @@ PETRA.HQ.prototype.Deserialize = function(gameState, data)
 
 	this.victoryManager = new PETRA.VictoryManager(this.Config);
 	this.victoryManager.Deserialize(data.victoryManager);
+
+	this.emergencyManager = new PETRA.EmergencyManager(this.Config);
+	this.emergencyManager.Deserialize(data.emergencyManager);
 };

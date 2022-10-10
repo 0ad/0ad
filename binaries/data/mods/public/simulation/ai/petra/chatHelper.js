@@ -132,6 +132,15 @@ PETRA.sendDiplomacyRequestMessages = {
 	}
 };
 
+PETRA.emergencyMessages = {
+	"enter": [
+		markForTranslation("My armies failed while defending my empire. Please honor our alliance and send help!")
+	],
+	"exit": [
+		markForTranslation("My empire regained its old strength, now it is time to seek revenge together!")
+	]
+};
+
 PETRA.chatLaunchAttack = function(gameState, player, type)
 {
 	Engine.PostCommand(PlayerID, {
@@ -232,5 +241,14 @@ PETRA.chatNewRequestDiplomacy = function(gameState, player, requestType, status)
 		"translateMessage": true,
 		"translateParameters": ["_player_"],
 		"parameters": { "_player_": player }
+	});
+};
+
+PETRA.chatEmergency = function(gameState, enable)
+{
+	Engine.PostCommand(PlayerID, {
+		"type": "aichat",
+		"message": "/allies " + pickRandom(this.emergencyMessages[enable ? "enter" : "exit"]),
+		"translateMessage": true
 	});
 };
