@@ -106,11 +106,11 @@ void DrawTexture(
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 
 	deviceCommandContext->SetVertexBufferData(
@@ -751,22 +751,23 @@ void CMiniMapTexture::RenderFinalTexture(
 		{
 			deviceCommandContext->SetVertexAttributeFormat(
 				Renderer::Backend::VertexAttributeStream::POSITION,
-				m_AttributePos.format,
-				m_InstanceVertexArray.GetOffset() + m_InstanceAttributePosition.offset,
+				m_AttributePos.format, m_InstanceAttributePosition.offset,
 				m_InstanceVertexArray.GetStride(),
 				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
 			deviceCommandContext->SetVertexAttributeFormat(
 				Renderer::Backend::VertexAttributeStream::UV1,
-				m_AttributePos.format, firstVertexOffset + m_AttributePos.offset, stride,
+				m_AttributePos.format, m_AttributePos.offset, stride,
 				Renderer::Backend::VertexAttributeRate::PER_INSTANCE, 1);
 			deviceCommandContext->SetVertexAttributeFormat(
 				Renderer::Backend::VertexAttributeStream::COLOR,
-				m_AttributeColor.format, firstVertexOffset + m_AttributeColor.offset, stride,
+				m_AttributeColor.format, m_AttributeColor.offset, stride,
 				Renderer::Backend::VertexAttributeRate::PER_INSTANCE, 1);
 
-			deviceCommandContext->SetVertexBuffer(0, m_InstanceVertexArray.GetBuffer());
-			deviceCommandContext->SetVertexBuffer(1, m_VertexArray.GetBuffer());
+			deviceCommandContext->SetVertexBuffer(
+				0, m_InstanceVertexArray.GetBuffer(), m_InstanceVertexArray.GetOffset());
+			deviceCommandContext->SetVertexBuffer(
+				1, m_VertexArray.GetBuffer(), firstVertexOffset);
 
 			deviceCommandContext->SetUniform(shader->GetBindingSlot(str_width), entityRadius);
 
@@ -778,14 +779,15 @@ void CMiniMapTexture::RenderFinalTexture(
 
 			deviceCommandContext->SetVertexAttributeFormat(
 				Renderer::Backend::VertexAttributeStream::POSITION,
-				m_AttributePos.format, firstVertexOffset + m_AttributePos.offset, stride,
+				m_AttributePos.format, m_AttributePos.offset, stride,
 				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 			deviceCommandContext->SetVertexAttributeFormat(
 				Renderer::Backend::VertexAttributeStream::COLOR,
-				m_AttributeColor.format, firstVertexOffset + m_AttributeColor.offset, stride,
+				m_AttributeColor.format, m_AttributeColor.offset, stride,
 				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
-			deviceCommandContext->SetVertexBuffer(0, m_VertexArray.GetBuffer());
+			deviceCommandContext->SetVertexBuffer(
+				0, m_VertexArray.GetBuffer(), firstVertexOffset);
 			deviceCommandContext->SetIndexBuffer(m_IndexArray.GetBuffer());
 
 			deviceCommandContext->DrawIndexed(m_IndexArray.GetOffset(), m_EntitiesDrawn * 6, 0);

@@ -200,18 +200,19 @@ void ShaderModelVertexRenderer::PrepareModelDef(
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV0,
 		m->shadermodeldef->m_UVs[0].format,
-		firstVertexOffset + m->shadermodeldef->m_UVs[0].offset, stride,
+		m->shadermodeldef->m_UVs[0].offset, stride,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	if (def.GetNumUVsPerVertex() >= 2)
 	{
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV1,
 			m->shadermodeldef->m_UVs[1].format,
-			firstVertexOffset + m->shadermodeldef->m_UVs[1].offset, stride,
+			m->shadermodeldef->m_UVs[1].offset, stride,
 			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	}
 
-	deviceCommandContext->SetVertexBuffer(0, m->shadermodeldef->m_Array.GetBuffer());
+	deviceCommandContext->SetVertexBuffer(
+		0, m->shadermodeldef->m_Array.GetBuffer(), firstVertexOffset);
 }
 
 // Render one model
@@ -231,15 +232,16 @@ void ShaderModelVertexRenderer::RenderModel(
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
 		Renderer::Backend::Format::R32G32B32_SFLOAT,
-		firstVertexOffset + shadermodel->m_Position.offset, stride,
+		shadermodel->m_Position.offset, stride,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::NORMAL,
 		Renderer::Backend::Format::R32G32B32_SFLOAT,
-		firstVertexOffset + shadermodel->m_Normal.offset, stride,
+		shadermodel->m_Normal.offset, stride,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 
-	deviceCommandContext->SetVertexBuffer(1, shadermodel->m_Array.GetBuffer());
+	deviceCommandContext->SetVertexBuffer(
+		1, shadermodel->m_Array.GetBuffer(), firstVertexOffset);
 	deviceCommandContext->SetIndexBuffer(m->shadermodeldef->m_IndexArray.GetBuffer());
 
 	// Render the lot.

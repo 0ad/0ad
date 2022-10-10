@@ -105,7 +105,8 @@ public:
 	 */
 	void Render(
 		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
-		Renderer::Backend::IShaderProgram* shader, const CMatrix3D& transform);
+		Renderer::Backend::IShaderProgram* shader,
+		const CVector2D& transformScale, const CVector2D& translation);
 
 private:
 	friend struct SBatchCompare;

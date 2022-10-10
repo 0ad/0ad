@@ -75,7 +75,7 @@ void CTexturedLineRData::Render(
 		offsetof(CTexturedLineRData::SVertex, m_UV), stride,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
-	deviceCommandContext->SetVertexBuffer(0, m_VB->m_Owner->GetBuffer());
+	deviceCommandContext->SetVertexBuffer(0, m_VB->m_Owner->GetBuffer(), 0);
 
 	deviceCommandContext->SetIndexBuffer(m_VBIndices->m_Owner->GetBuffer());
 	deviceCommandContext->DrawIndexed(m_VBIndices->m_Index, m_VBIndices->m_Count, 0);

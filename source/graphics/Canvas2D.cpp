@@ -39,6 +39,7 @@ using PlaneArray2D = std::array<float, 12>;
 struct SBindingSlots
 {
 	int32_t transform;
+	int32_t translation;
 	int32_t colorAdd;
 	int32_t colorMul;
 	int32_t grayscaleFactor;
@@ -65,15 +66,6 @@ inline void DrawTextureImpl(
 	deviceCommandContext->SetUniform(bindingSlots.colorAdd, add.AsFloatArray());
 	deviceCommandContext->SetUniform(bindingSlots.colorMul, multiply.AsFloatArray());
 	deviceCommandContext->SetUniform(bindingSlots.grayscaleFactor, grayscaleFactor);
-
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 
 	deviceCommandContext->SetVertexBufferData(
 		0, vertices.data(), vertices.size() * sizeof(vertices[0]));
@@ -111,14 +103,29 @@ public:
 		Renderer::Backend::IShaderProgram* shader = Tech->GetShader();
 
 		BindingSlots.transform = shader->GetBindingSlot(str_transform);
+		BindingSlots.translation = shader->GetBindingSlot(str_translation);
 		BindingSlots.colorAdd = shader->GetBindingSlot(str_colorAdd);
 		BindingSlots.colorMul = shader->GetBindingSlot(str_colorMul);
 		BindingSlots.grayscaleFactor = shader->GetBindingSlot(str_grayscaleFactor);
 		BindingSlots.tex = shader->GetBindingSlot(str_tex);
 
 		const CMatrix3D transform = GetTransform();
+		TransformScale = CVector2D(transform._11, transform._22);
+		Translation = CVector2D(transform._14, transform._24);
 		DeviceCommandContext->SetUniform(
-			BindingSlots.transform, transform.AsFloatArray());
+			BindingSlots.transform,
+			transform._11, transform._21, transform._12, transform._22);
+		DeviceCommandContext->SetUniform(
+			BindingSlots.translation, Translation.AsFloatArray());
+
+		DeviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+		DeviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::UV0,
+			Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 	}
 
 	void UnbindTech()
@@ -153,6 +160,8 @@ public:
 	uint32_t WidthInPixels = 1;
 	uint32_t HeightInPixels = 1;
 	float Scale = 1.0f;
+	CVector2D TransformScale;
+	CVector2D Translation;
 
 	Renderer::Backend::IDeviceCommandContext* DeviceCommandContext = nullptr;
 	CShaderTechniquePtr Tech;
@@ -317,15 +326,6 @@ void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width
 	m->DeviceCommandContext->SetUniform(
 		m->BindingSlots.grayscaleFactor, 0.0f);
 
-	m->DeviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	m->DeviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
-
 	m->DeviceCommandContext->SetVertexBufferData(0, vertices.data(), vertices.size() * sizeof(vertices[0]));
 	m->DeviceCommandContext->SetVertexBufferData(1, uvs.data(), uvs.size() * sizeof(uvs[0]));
 
@@ -440,7 +440,8 @@ void CCanvas2D::DrawText(CTextRenderer& textRenderer)
 	m->DeviceCommandContext->SetUniform(
 		m->BindingSlots.grayscaleFactor, 0.0f);
 
-	textRenderer.Render(m->DeviceCommandContext, m->Tech->GetShader(), m->GetTransform());
+	textRenderer.Render(
+		m->DeviceCommandContext, m->Tech->GetShader(), m->TransformScale, m->Translation);
 }
 
 void CCanvas2D::Flush()

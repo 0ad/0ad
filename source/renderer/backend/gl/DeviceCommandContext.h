@@ -92,7 +92,8 @@ public:
 		const uint32_t stride,
 		const VertexAttributeRate rate,
 		const uint32_t bindingSlot) override;
-	void SetVertexBuffer(const uint32_t bindingSlot, IBuffer* buffer) override;
+	void SetVertexBuffer(
+		const uint32_t bindingSlot, IBuffer* buffer, const uint32_t offset) override;
 	void SetVertexBufferData(
 		const uint32_t bindingSlot, const void* data, const uint32_t dataSize) override;
 

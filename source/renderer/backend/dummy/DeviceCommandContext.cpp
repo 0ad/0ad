@@ -134,7 +134,7 @@ void CDeviceCommandContext::SetVertexAttributeFormat(
 {
 }
 
-void CDeviceCommandContext::SetVertexBuffer(const uint32_t, IBuffer*)
+void CDeviceCommandContext::SetVertexBuffer(const uint32_t, IBuffer*, const uint32_t)
 {
 }
 

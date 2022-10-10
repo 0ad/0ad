@@ -129,7 +129,7 @@ void CDebugRenderer::DrawLine(
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexBufferData(
 		0, vertices.data(), vertices.size() * sizeof(vertices[0]));
@@ -184,7 +184,7 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexBufferData(
 		0, vertices.data(), vertices.size() * sizeof(vertices[0]));
@@ -264,7 +264,7 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexBufferData(
 		0, vertices.data(), vertices.size() * sizeof(vertices[0]));
@@ -287,7 +287,7 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexBufferData(
 		0, vertices.data(), vertices.size() * sizeof(vertices[0]));
@@ -348,7 +348,7 @@ void CDebugRenderer::DrawBoundingBox(
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexBufferData(
 		0, data.data(), data.size() * sizeof(data[0]));
@@ -402,7 +402,7 @@ void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color, bool wi
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexBufferData(
 		0, data.data(), data.size() * sizeof(data[0]));

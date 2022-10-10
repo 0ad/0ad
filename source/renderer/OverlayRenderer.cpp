@@ -565,22 +565,23 @@ void OverlayRenderer::RenderQuadOverlays(
 		// to the index offset when it's supported.
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::POSITION,
-			m->quadAttributePos.format, firstVertexOffset + m->quadAttributePos.offset, vertexStride,
+			m->quadAttributePos.format, m->quadAttributePos.offset, vertexStride,
 			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::COLOR,
-			m->quadAttributeColor.format, firstVertexOffset + m->quadAttributeColor.offset, vertexStride,
+			m->quadAttributeColor.format, m->quadAttributeColor.offset, vertexStride,
 			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV0,
-			m->quadAttributeUV.format, firstVertexOffset + m->quadAttributeUV.offset, vertexStride,
+			m->quadAttributeUV.format, m->quadAttributeUV.offset, vertexStride,
 			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::UV1,
-			m->quadAttributeUV.format, firstVertexOffset + m->quadAttributeUV.offset, vertexStride,
+			m->quadAttributeUV.format, m->quadAttributeUV.offset, vertexStride,
 			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
-		deviceCommandContext->SetVertexBuffer(0, m->quadVertices.GetBuffer());
+		deviceCommandContext->SetVertexBuffer(
+			0, m->quadVertices.GetBuffer(), firstVertexOffset);
 		deviceCommandContext->SetIndexBuffer(m->quadIndices.GetBuffer());
 
 		deviceCommandContext->DrawIndexed(m->quadIndices.GetOffset() + batchRenderData.m_IndicesBase, batchNumQuads * 6, 0);
@@ -637,11 +638,11 @@ void OverlayRenderer::RenderForegroundOverlays(
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
+		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, 0,
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 
 	deviceCommandContext->SetVertexBufferData(

@@ -86,7 +86,8 @@ public:
 		const uint32_t stride,
 		const VertexAttributeRate rate,
 		const uint32_t bindingSlot) = 0;
-	virtual void SetVertexBuffer(const uint32_t bindingSlot, IBuffer* buffer) = 0;
+	virtual void SetVertexBuffer(
+		const uint32_t bindingSlot, IBuffer* buffer, const uint32_t offset) = 0;
 	virtual void SetVertexBufferData(
 		const uint32_t bindingSlot, const void* data, const uint32_t dataSize) = 0;
 
