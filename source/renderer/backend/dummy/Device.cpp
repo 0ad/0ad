@@ -112,6 +112,11 @@ std::unique_ptr<IShaderProgram> CDevice::CreateShaderProgram(
 	return CShaderProgram::Create(this);
 }
 
+void CDevice::AcquireNextBackbuffer()
+{
+	// We have nothing to acquire.
+}
+
 void CDevice::Present()
 {
 	// We have nothing to present.

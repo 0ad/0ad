@@ -95,6 +95,7 @@ public:
 	virtual std::unique_ptr<IShaderProgram> CreateShaderProgram(
 		const CStr& name, const CShaderDefines& defines) = 0;
 
+	virtual void AcquireNextBackbuffer() = 0;
 	virtual void Present() = 0;
 
 	virtual bool IsTextureFormatSupported(const Format format) const = 0;
