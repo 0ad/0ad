@@ -19,9 +19,9 @@
 	"replaces": ["phase_city"],
 	"icon": "city_phase.png",
 	"researchTime": 60,
-	"tooltip": "Advance to City Phase, which unlocks more entities and technologies. Civic Centers +50% territory influence radius. Structures +9 capture points regeneration rate per garrisoned unit. Workers +10% metal gather rate.",
+	"tooltip": "Advance to City Phase, which unlocks more entities and technologies. Civic Centers +50% territory influence radius. Structures +1 capture points regeneration rate for garrisoned units. Workers +10% metal gather rate.",
 	"modifications": [
-		{ "value": "Capturable/GarrisonRegenRate", "add": 9, "affects": "Structure" },
+		{ "value": "Capturable/GarrisonRegenRate", "add": 1, "affects": "Structure" },
 		{ "value": "ResourceGatherer/Rates/metal.ore", "multiply": 1.1, "affects": "Worker" },
 		{ "value": "TerritoryInfluence/Radius", "multiply": 1.5, "affects": "CivCentre" }
 	],

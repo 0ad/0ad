@@ -345,6 +345,8 @@ Attack.prototype.GetFullAttackRange = function()
 Attack.prototype.GetAttackEffectsData = function(type, splash)
 {
 	let template = this.template[type];
+	if (!template)
+		return undefined;
 	if (splash)
 		template = template.Splash;
 	return AttackHelper.GetAttackEffectsData("Attack/" + type + (splash ? "/Splash" : ""), template, this.entity);

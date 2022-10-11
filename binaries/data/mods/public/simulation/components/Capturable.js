@@ -7,7 +7,7 @@ Capturable.prototype.Schema =
 	"<element name='RegenRate' a:help='Number of capture points that are regenerated per second in favour of the owner.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
-	"<element name='GarrisonRegenRate' a:help='Number of capture points that are regenerated per second and per garrisoned unit in favour of the owner.'>" +
+	"<element name='GarrisonRegenRate' a:help='Factor how much each garrisoned entity will add capture points to the regeneration per second in favour of the owner.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>";
 
@@ -182,11 +182,22 @@ Capturable.prototype.RegisterCapturePointsChanged = function()
 
 Capturable.prototype.GetRegenRate = function()
 {
-	let cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
+	const cmpGarrisonHolder = Engine.QueryInterface(this.entity, IID_GarrisonHolder);
 	if (!cmpGarrisonHolder)
 		return this.regenRate;
 
-	return this.regenRate + this.GetGarrisonRegenRate() * cmpGarrisonHolder.GetEntities().length;
+	let total = this.regenRate;
+	const garrisonRegenRate = this.GetGarrisonRegenRate();
+	for (const entity of cmpGarrisonHolder.GetEntities())
+	{
+		const captureStrength = Engine.QueryInterface(entity, IID_Attack)?.GetAttackEffectsData("Capture")?.Capture;
+		if (!captureStrength)
+			continue;
+
+		total += captureStrength * garrisonRegenRate;
+	}
+
+	return total;
 };
 
 Capturable.prototype.TimerTick = function()

@@ -14,11 +14,16 @@ var testData = {
 	"playerID": 1,
 	"regenRate": 2,
 	"garrisonedEntities": [30, 31, 32, 33],
-	"garrisonRegenRate": 5,
+	"garrisonRegenRate": 2,
 	"decay": false,
 	"decayRate": 30,
 	"maxCapturePoints": 3000,
 	"neighbours": [20, 0, 20, 10]
+};
+
+const testCaptureAttacks = {
+	"30": 1.5,
+	"32": 2.0
 };
 
 function testCapturable(testData, test_function)
@@ -81,7 +86,20 @@ function testCapturable(testData, test_function)
 		"GetConnectedNeighbours": () => testData.neighbours
 	});
 
-	TS_ASSERT_EQUALS(cmpCapturable.GetRegenRate(), testData.regenRate + testData.garrisonRegenRate * testData.garrisonedEntities.length);
+	let regenRate = testData.regenRate;
+	for (const entity of testData.garrisonedEntities)
+	{
+		if (testCaptureAttacks[entity] === undefined)
+			continue;
+		AddMock(entity, IID_Attack, {
+			"GetAttackEffectsData": (type) => {
+				return type === "Capture" ? { "Capture": testCaptureAttacks[entity] } : undefined;
+			},
+		});
+		regenRate += testCaptureAttacks[entity] * testData.garrisonRegenRate;
+	}
+
+	TS_ASSERT_EQUALS(cmpCapturable.GetRegenRate(), regenRate);
 	test_function(cmpCapturable);
 	Engine.PostMessage = (ent, iid, message) => {};
 }
@@ -142,13 +160,13 @@ function testRegen(testData, capturePointsIn, capturePointsOut, regenerating)
 	});
 }
 
-// With our testData, the total regen rate is 22. That should be taken from the ennemies
-testRegen(testData, [12, 2950, 2, 36], [1, 2972, 2, 25], true);
+// With our testData, the total regen rate is 9. That should be taken from the enemies
+testRegen(testData, [12, 2950, 2, 36], [7.5, 2959, 2, 31.5], true);
 testRegen(testData, [0, 2994, 2, 4], [0, 2998, 2, 0], true);
 testRegen(testData, [0, 2998, 2, 0], [0, 2998, 2, 0], false);
 
 // If the regeneration rate becomes negative, capture points are given in favour of gaia
-testData.regenRate = -32;
+testData.regenRate = -19;
 // With our testData, the total regen rate is -12. That should be taken from all players to gaia
 testRegen(testData, [100, 2800, 50, 50], [112, 2796, 46, 46], true);
 testData.regenRate = 2;
@@ -167,6 +185,8 @@ function testDecay(testData, capturePointsIn, capturePointsOut)
 	});
 }
 testData.decay = true;
+testData.regenRate = 8;
+testData.garrisonRegenRate = 4;
 // With our testData, the decay rate is 30, that should be given to all neighbours with weights [20/50, 0, 20/50, 10/50], then it regens.
 testDecay(testData, [2900, 35, 10, 55], [2901, 27, 22, 50]);
 testData.decay = false;
