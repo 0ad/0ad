@@ -298,7 +298,9 @@ void CMiniMapTexture::Update(const float UNUSED(deltaRealTime))
 	}
 }
 
-void CMiniMapTexture::Render(Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
+void CMiniMapTexture::Render(
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+	CLOSTexture& losTexture, CTerritoryTexture& territoryTexture)
 {
 	const CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	if (!terrain)
@@ -310,7 +312,7 @@ void CMiniMapTexture::Render(Renderer::Backend::IDeviceCommandContext* deviceCom
 	if (m_TerrainTextureDirty)
 		RebuildTerrainTexture(deviceCommandContext, terrain);
 
-	RenderFinalTexture(deviceCommandContext);
+	RenderFinalTexture(deviceCommandContext, losTexture, territoryTexture);
 }
 
 void CMiniMapTexture::CreateTextures(
@@ -428,7 +430,8 @@ void CMiniMapTexture::RebuildTerrainTexture(
 }
 
 void CMiniMapTexture::RenderFinalTexture(
-	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+	CLOSTexture& losTexture, CTerritoryTexture& territoryTexture)
 {
 	// only update 2x / second
 	// (note: since units only move a few pixels per second on the minimap,
@@ -452,7 +455,6 @@ void CMiniMapTexture::RenderFinalTexture(
 
 	CmpPtr<ICmpRangeManager> cmpRangeManager(m_Simulation, SYSTEM_ENTITY);
 	ENSURE(cmpRangeManager);
-	CLOSTexture& losTexture = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 
 	const float invTileMapSize = 1.0f / static_cast<float>(TERRAIN_TILE_SIZE * m_MapSize);
 	const float texCoordMax = m_TerrainTexture ? static_cast<float>(m_MapSize - 1) / m_TerrainTexture->GetWidth() : 1.0f;
@@ -508,9 +510,6 @@ void CMiniMapTexture::RenderFinalTexture(
 	deviceCommandContext->BeginPass();
 
 	// Draw territory boundaries
-	CTerritoryTexture& territoryTexture =
-		g_Renderer.GetSceneRenderer().GetScene().GetTerritoryTexture();
-
 	deviceCommandContext->SetTexture(
 		shader->GetBindingSlot(str_baseTex), territoryTexture.GetTexture());
 	deviceCommandContext->SetUniform(
@@ -751,7 +750,7 @@ void CMiniMapTexture::RenderFinalTexture(
 		{
 			deviceCommandContext->SetVertexAttributeFormat(
 				Renderer::Backend::VertexAttributeStream::POSITION,
-				m_AttributePos.format, m_InstanceAttributePosition.offset,
+				m_InstanceAttributePosition.format, m_InstanceAttributePosition.offset,
 				m_InstanceVertexArray.GetStride(),
 				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 

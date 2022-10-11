@@ -765,7 +765,8 @@ void CSceneRenderer::RenderSubmissions(
 
 	GetScene().GetLOSTexture().InterpolateLOS(deviceCommandContext);
 	GetScene().GetTerritoryTexture().UpdateIfNeeded(deviceCommandContext);
-	GetScene().GetMiniMapTexture().Render(deviceCommandContext);
+	GetScene().GetMiniMapTexture().Render(
+		deviceCommandContext, GetScene().GetLOSTexture(), GetScene().GetTerritoryTexture());
 
 	CShaderDefines context = m->globalContext;
 
