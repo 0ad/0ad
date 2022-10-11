@@ -95,18 +95,18 @@ void DrawTexture(
 	};
 	const float quadVertices[] =
 	{
-		-1.0f, -1.0f, 0.0f,
-		1.0f, -1.0f, 0.0f,
-		1.0f, 1.0f, 0.0f,
+		-1.0f, -1.0f,
+		1.0f, -1.0f,
+		1.0f, 1.0f,
 
-		1.0f, 1.0f, 0.0f,
-		-1.0f, 1.0f, 0.0f,
-		-1.0f, -1.0f, 0.0f
+		1.0f, 1.0f,
+		-1.0f, 1.0f,
+		-1.0f, -1.0f,
 	};
 
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
+		Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
 		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::UV0,
@@ -486,10 +486,16 @@ void CMiniMapTexture::RenderFinalTexture(
 	CMatrix3D terrainTransform;
 	terrainTransform.SetIdentity();
 	terrainTransform.Scale(texCoordMax, texCoordMax, 1.0f);
+
 	deviceCommandContext->SetUniform(
-		shader->GetBindingSlot(str_transform), baseTransform.AsFloatArray());
+		shader->GetBindingSlot(str_transform),
+		baseTransform._11, baseTransform._21, baseTransform._12, baseTransform._22);
 	deviceCommandContext->SetUniform(
-		shader->GetBindingSlot(str_textureTransform), terrainTransform.AsFloatArray());
+		shader->GetBindingSlot(str_textureTransform),
+		terrainTransform._11, terrainTransform._21, terrainTransform._12, terrainTransform._22);
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_translation),
+		baseTransform._14, baseTransform._24, terrainTransform._14, terrainTransform._24);
 
 	if (m_TerrainTexture)
 		DrawTexture(deviceCommandContext);
@@ -513,10 +519,15 @@ void CMiniMapTexture::RenderFinalTexture(
 	deviceCommandContext->SetTexture(
 		shader->GetBindingSlot(str_baseTex), territoryTexture.GetTexture());
 	deviceCommandContext->SetUniform(
-		shader->GetBindingSlot(str_transform), baseTransform.AsFloatArray());
+		shader->GetBindingSlot(str_transform),
+		baseTransform._11, baseTransform._21, baseTransform._12, baseTransform._22);
+	const CMatrix3D& territoryTransform = territoryTexture.GetMinimapTextureMatrix();
 	deviceCommandContext->SetUniform(
 		shader->GetBindingSlot(str_textureTransform),
-		territoryTexture.GetMinimapTextureMatrix().AsFloatArray());
+		territoryTransform._11, territoryTransform._21, territoryTransform._12, territoryTransform._22);
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_translation),
+		baseTransform._14, baseTransform._24, territoryTransform._14, territoryTransform._24);
 
 	DrawTexture(deviceCommandContext);
 	deviceCommandContext->EndPass();
@@ -530,10 +541,15 @@ void CMiniMapTexture::RenderFinalTexture(
 	deviceCommandContext->SetTexture(
 		shader->GetBindingSlot(str_baseTex), losTexture.GetTexture());
 	deviceCommandContext->SetUniform(
-		shader->GetBindingSlot(str_transform), baseTransform.AsFloatArray());
+		shader->GetBindingSlot(str_transform),
+		baseTransform._11, baseTransform._21, baseTransform._12, baseTransform._22);
+	const CMatrix3D& losTransform = losTexture.GetMinimapTextureMatrix();
 	deviceCommandContext->SetUniform(
 		shader->GetBindingSlot(str_textureTransform),
-		losTexture.GetMinimapTextureMatrix().AsFloatArray());
+		losTransform._11, losTransform._21, losTransform._12, losTransform._22);
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_translation),
+		baseTransform._14, baseTransform._24, losTransform._14, losTransform._24);
 
 	DrawTexture(deviceCommandContext);
 
@@ -723,8 +739,6 @@ void CMiniMapTexture::RenderFinalTexture(
 			tech->GetGraphicsPipelineStateDesc());
 		deviceCommandContext->BeginPass();
 		shader = tech->GetShader();
-		deviceCommandContext->SetUniform(
-			shader->GetBindingSlot(str_transform), baseTransform.AsFloatArray());
 
 		CMatrix3D unitMatrix;
 		unitMatrix.SetIdentity();
@@ -734,7 +748,11 @@ void CMiniMapTexture::RenderFinalTexture(
 		// Offset the coordinates to [-1, 1].
 		unitMatrix.Translate(CVector3D(-1.0f, -1.0f, 0.0f));
 		deviceCommandContext->SetUniform(
-			shader->GetBindingSlot(str_transform), unitMatrix.AsFloatArray());
+			shader->GetBindingSlot(str_transform),
+			unitMatrix._11, unitMatrix._21, unitMatrix._12, unitMatrix._22);
+		deviceCommandContext->SetUniform(
+			shader->GetBindingSlot(str_translation),
+			unitMatrix._14, unitMatrix._24, 0.0f, 0.0f);
 
 		Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
 		scissorRect.x = scissorRect.y = 1;
