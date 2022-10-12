@@ -30,8 +30,10 @@
 #include <unordered_map>
 #include <vector>
 
+class CLOSTexture;
 class CSimulation2;
 class CTerrain;
+class CTerritoryTexture;
 
 class CMiniMapTexture
 {
@@ -48,7 +50,9 @@ public:
 	/**
 	 * Redraws the texture if it's dirty.
 	 */
-	void Render(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
+	void Render(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		CLOSTexture& losTexture, CTerritoryTexture& territoryTexture);
 
 	const CTexturePtr& GetTexture() const { return m_FinalTexture; }
 
@@ -76,7 +80,8 @@ private:
 		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CTerrain* terrain);
 	void RenderFinalTexture(
-		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		CLOSTexture& losTexture, CTerritoryTexture& territoryTexture);
 
 	CSimulation2& m_Simulation;
 

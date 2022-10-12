@@ -426,6 +426,9 @@ void CRenderer::RenderFrame(const bool needsPresent)
 	}
 	else
 	{
+		if (needsPresent)
+			g_VideoMode.GetBackendDevice()->AcquireNextBackbuffer();
+
 		RenderFrameImpl(true, true);
 
 		m->deviceCommandContext->Flush();
@@ -540,6 +543,9 @@ void CRenderer::RenderScreenShot(const bool needsPresent)
 	const size_t width = static_cast<size_t>(g_xres), height = static_cast<size_t>(g_yres);
 	const size_t bpp = 24;
 
+	if (needsPresent)
+		g_VideoMode.GetBackendDevice()->AcquireNextBackbuffer();
+
 	// Hide log messages and re-render
 	RenderFrameImpl(true, false);
 
@@ -646,6 +652,9 @@ void CRenderer::RenderBigScreenShot(const bool needsPresent)
 				projection.SetPerspectiveTile(oldCamera.GetFOV(), aspectRatio, oldCamera.GetNearPlane(), oldCamera.GetFarPlane(), tiles, tileX, tileY);
 			}
 			g_Game->GetView()->GetCamera()->SetProjection(projection);
+
+			if (needsPresent)
+				g_VideoMode.GetBackendDevice()->AcquireNextBackbuffer();
 
 			RenderFrameImpl(false, false);
 

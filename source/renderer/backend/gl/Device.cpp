@@ -904,8 +904,17 @@ std::unique_ptr<IShaderProgram> CDevice::CreateShaderProgram(
 	return CShaderProgram::Create(this, name, defines);
 }
 
+void CDevice::AcquireNextBackbuffer()
+{
+	ENSURE(!m_BackbufferAcquired);
+	m_BackbufferAcquired = true;
+}
+
 void CDevice::Present()
 {
+	ENSURE(m_BackbufferAcquired);
+	m_BackbufferAcquired = false;
+
 	if (m_Window)
 	{
 		PROFILE3("swap buffers");

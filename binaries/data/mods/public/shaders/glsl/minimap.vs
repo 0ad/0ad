@@ -1,43 +1,48 @@
 #version 110
 
-uniform mat4 transform;
-uniform mat4 textureTransform;
-
-#if MINIMAP_BASE || MINIMAP_LOS
-  attribute vec3 a_vertex;
-  attribute vec2 a_uv0;
+uniform vec4 transform;
+uniform vec4 translation;
+uniform vec4 textureTransform;
+#if MINIMAP_POINT && USE_GPU_INSTANCING
+uniform float width;
 #endif
 
+attribute vec2 a_vertex;
+
 #if MINIMAP_BASE || MINIMAP_LOS
-  varying vec2 v_tex;
+attribute vec2 a_uv0;
 #endif
 
 #if MINIMAP_POINT
-  attribute vec2 a_vertex;
-  attribute vec3 a_color;
-  varying vec3 color;
+attribute vec3 a_color;
+#if USE_GPU_INSTANCING
+attribute vec2 a_uv1;
+#endif
 #endif
 
-#if MINIMAP_POINT && USE_GPU_INSTANCING
-attribute vec2 a_uv1;
-attribute vec4 a_uv2;
+#if MINIMAP_BASE || MINIMAP_LOS
+varying vec2 v_tex;
+#endif
 
-uniform float width;
+#if MINIMAP_POINT
+varying vec3 color;
 #endif
 
 void main()
 {
 #if MINIMAP_BASE || MINIMAP_LOS
-	gl_Position = transform * vec4(a_vertex, 1.0);
-	v_tex = (textureTransform * vec4(a_uv0, 0.0, 1.0)).xy;
+	vec2 position = a_vertex;
+	v_tex = mat2(textureTransform.xy, textureTransform.zw) * a_uv0 + translation.zw;
 #endif
 
 #if MINIMAP_POINT
 #if USE_GPU_INSTANCING
-	gl_Position = transform * vec4(a_vertex * width + a_uv1, 0.0, 1.0);
+	vec2 position = a_vertex * width + a_uv1;
 #else
-	gl_Position = transform * vec4(a_vertex, 0.0, 1.0);
+	vec2 position = a_vertex;
 #endif
 	color = a_color;
 #endif // MINIMAP_POINT
+
+	gl_Position = vec4(mat2(transform.xy, transform.zw) * position + translation.xy, 0.0, 1.0);
 }

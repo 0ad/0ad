@@ -89,6 +89,7 @@ public:
 	std::unique_ptr<IShaderProgram> CreateShaderProgram(
 		const CStr& name, const CShaderDefines& defines) override;
 
+	void AcquireNextBackbuffer() override;
 	void Present() override;
 
 	bool IsTextureFormatSupported(const Format format) const override;
@@ -116,6 +117,7 @@ private:
 	CDeviceCommandContext* m_ActiveCommandContext = nullptr;
 
 	std::unique_ptr<CFramebuffer> m_Backbuffer;
+	bool m_BackbufferAcquired = false;
 
 	Capabilities m_Capabilities{};
 };

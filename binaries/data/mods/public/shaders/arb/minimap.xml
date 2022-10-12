@@ -5,8 +5,9 @@
         <stream name="pos"/>
         <stream name="uv0" if="MINIMAP_BASE || MINIMAP_LOS"/>
         <stream name="color" if="MINIMAP_POINT"/>
-        <uniform name="transform" loc="0" type="mat4"/>
-        <uniform name="textureTransform" loc="4" type="mat4"/>
+        <uniform name="transform" loc="0" type="vec4"/>
+        <uniform name="translation" loc="1" type="vec4"/>
+        <uniform name="textureTransform" loc="2" type="vec4"/>
     </vertex>
 
     <fragment file="arb/minimap.fp">
