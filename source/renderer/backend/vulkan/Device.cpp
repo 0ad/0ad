@@ -84,12 +84,14 @@ std::unique_ptr<IDeviceCommandContext> CDevice::CreateCommandContext()
 	return nullptr;
 }
 
-std::unique_ptr<ITexture> CDevice::CreateTexture(const char* name, const ITexture::Type type,
+std::unique_ptr<ITexture> CDevice::CreateTexture(
+	const char* name, const ITexture::Type type, const uint32_t usage,
 	const Format format, const uint32_t width, const uint32_t height,
 	const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount)
 {
 	UNUSED2(name);
 	UNUSED2(type);
+	UNUSED2(usage);
 	UNUSED2(format);
 	UNUSED2(width);
 	UNUSED2(height);
@@ -99,18 +101,14 @@ std::unique_ptr<ITexture> CDevice::CreateTexture(const char* name, const ITextur
 	return nullptr;
 }
 
-std::unique_ptr<ITexture> CDevice::CreateTexture2D(const char* name,
+std::unique_ptr<ITexture> CDevice::CreateTexture2D(
+	const char* name, const uint32_t usage,
 	const Format format, const uint32_t width, const uint32_t height,
 	const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount)
 {
-	UNUSED2(name);
-	UNUSED2(format);
-	UNUSED2(width);
-	UNUSED2(height);
-	UNUSED2(defaultSamplerDesc);
-	UNUSED2(MIPLevelCount);
-	UNUSED2(sampleCount);
-	return nullptr;
+	return CreateTexture(
+		name, ITexture::Type::TEXTURE_2D, usage, format,
+		width, height, defaultSamplerDesc, MIPLevelCount, sampleCount);
 }
 
 std::unique_ptr<IFramebuffer> CDevice::CreateFramebuffer(

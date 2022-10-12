@@ -87,19 +87,21 @@ GLenum TypeToGLEnum(CTexture::Type type)
 } // anonymous namespace
 
 // static
-std::unique_ptr<CTexture> CTexture::Create(CDevice* device, const char* name,
-	const Type type, const Format format, const uint32_t width, const uint32_t height,
+std::unique_ptr<CTexture> CTexture::Create(
+	CDevice* device, const char* name, const Type type, const uint32_t usage,
+	const Format format, const uint32_t width, const uint32_t height,
 	const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount)
 {
 	std::unique_ptr<CTexture> texture(new CTexture());
 
 	ENSURE(format != Format::UNDEFINED);
 	ENSURE(width > 0 && height > 0 && MIPLevelCount > 0);
-	ENSURE((type == Type::TEXTURE_2D_MULTISAMPLE && sampleCount > 1) || sampleCount == 1);
+	ENSURE((type == Type::TEXTURE_2D_MULTISAMPLE && sampleCount > 1 && !(usage & ITexture::Usage::SAMPLED)) || sampleCount == 1);
 
 	texture->m_Device = device;
-	texture->m_Format = format;
 	texture->m_Type = type;
+	texture->m_Usage = usage;
+	texture->m_Format = format;
 	texture->m_Width = width;
 	texture->m_Height = height;
 	texture->m_MIPLevelCount = MIPLevelCount;

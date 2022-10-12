@@ -222,6 +222,7 @@ void CDeviceCommandContext::UploadTextureRegion(
 {
 	ENSURE(destinationTexture);
 	CTexture* texture = destinationTexture->As<CTexture>();
+	ENSURE(texture->GetUsage() & Renderer::Backend::ITexture::Usage::TRANSFER_DST);
 	ENSURE(width > 0 && height > 0);
 	if (texture->GetType() == CTexture::Type::TEXTURE_2D)
 	{
@@ -1075,6 +1076,8 @@ void CDeviceCommandContext::SetTexture(const int32_t bindingSlot, ITexture* text
 {
 	ENSURE(m_ShaderProgram);
 	ENSURE(texture);
+	ENSURE(texture->GetUsage() & Renderer::Backend::ITexture::Usage::SAMPLED);
+
 	const CShaderProgram::TextureUnit textureUnit =
 		m_ShaderProgram->GetTextureUnit(bindingSlot);
 	if (!textureUnit.type)

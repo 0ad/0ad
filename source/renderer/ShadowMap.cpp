@@ -529,6 +529,7 @@ void ShadowMapInternals::CreateTexture()
 	if (g_RenderingOptions.GetShadowAlphaFix())
 	{
 		DummyTexture = backendDevice->CreateTexture2D("ShadowMapDummy",
+			Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT,
 			Renderer::Backend::Format::R8G8B8A8_UNORM, Width, Height,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::NEAREST,
@@ -551,6 +552,8 @@ void ShadowMapInternals::CreateTexture()
 	samplerDesc.compareOp = Renderer::Backend::CompareOp::LESS_OR_EQUAL;
 
 	Texture = backendDevice->CreateTexture2D("ShadowMapDepth",
+		Renderer::Backend::ITexture::Usage::SAMPLED |
+			Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
 		backendFormat, Width, Height, samplerDesc);
 
 	Framebuffer = backendDevice->CreateFramebuffer("ShadowMapFramebuffer",

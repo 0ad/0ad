@@ -126,7 +126,10 @@ void CPostprocManager::RecreateBuffers()
 
 	#define GEN_BUFFER_RGBA(name, w, h) \
 		name = backendDevice->CreateTexture2D( \
-			"PostProc" #name, Renderer::Backend::Format::R8G8B8A8_UNORM, w, h, \
+			"PostProc" #name, \
+			Renderer::Backend::ITexture::Usage::SAMPLED | \
+				Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT, \
+			Renderer::Backend::Format::R8G8B8A8_UNORM, w, h, \
 			Renderer::Backend::Sampler::MakeDefaultSampler( \
 				Renderer::Backend::Sampler::Filter::LINEAR, \
 				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
@@ -155,7 +158,9 @@ void CPostprocManager::RecreateBuffers()
 	#undef GEN_BUFFER_RGBA
 
 	// Allocate the Depth/Stencil texture.
-	m_DepthTex = backendDevice->CreateTexture2D("PostPRocDepthTexture",
+	m_DepthTex = backendDevice->CreateTexture2D("PostProcDepthTexture",
+		Renderer::Backend::ITexture::Usage::SAMPLED |
+			Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
 		Renderer::Backend::Format::D24_S8, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
@@ -654,6 +659,7 @@ void CPostprocManager::CreateMultisampleBuffer()
 
 	m_MultisampleColorTex = backendDevice->CreateTexture("PostProcColorMS",
 		Renderer::Backend::ITexture::Type::TEXTURE_2D_MULTISAMPLE,
+		Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT,
 		Renderer::Backend::Format::R8G8B8A8_UNORM, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
@@ -662,6 +668,7 @@ void CPostprocManager::CreateMultisampleBuffer()
 	// Allocate the Depth/Stencil texture.
 	m_MultisampleDepthTex = backendDevice->CreateTexture("PostProcDepthMS",
 		Renderer::Backend::ITexture::Type::TEXTURE_2D_MULTISAMPLE,
+		Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
 		Renderer::Backend::Format::D24_S8, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,

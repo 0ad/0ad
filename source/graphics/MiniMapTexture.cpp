@@ -332,6 +332,8 @@ void CMiniMapTexture::CreateTextures(
 
 	// Create terrain texture
 	m_TerrainTexture = backendDevice->CreateTexture2D("MiniMapTerrainTexture",
+		Renderer::Backend::ITexture::Usage::TRANSFER_DST |
+			Renderer::Backend::ITexture::Usage::SAMPLED,
 		Renderer::Backend::Format::R8G8B8A8_UNORM, textureSize, textureSize, defaultSamplerDesc);
 
 	// Initialise texture with solid black, for the areas we don't
@@ -348,6 +350,8 @@ void CMiniMapTexture::CreateTextures(
 
 	m_FinalTexture = g_Renderer.GetTextureManager().WrapBackendTexture(
 		backendDevice->CreateTexture2D("MiniMapFinalTexture",
+			Renderer::Backend::ITexture::Usage::SAMPLED |
+				Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT,
 			Renderer::Backend::Format::R8G8B8A8_UNORM,
 			FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE, defaultSamplerDesc));
 
