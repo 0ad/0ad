@@ -682,7 +682,7 @@ void TerrainRenderer::RenderWaterFoamOccluders(
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render water foam occluders");
 
 	// Render normals and foam to a framebuffer if we're using fancy effects.
-	deviceCommandContext->SetFramebuffer(waterManager.m_FancyEffectsFramebuffer.get());
+	deviceCommandContext->BeginFramebufferPass(waterManager.m_FancyEffectsFramebuffer.get());
 
 	// Overwrite waves that would be behind the ground.
 	CShaderTechniquePtr dummyTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
@@ -706,8 +706,7 @@ void TerrainRenderer::RenderWaterFoamOccluders(
 
 	deviceCommandContext->EndPass();
 
-	deviceCommandContext->SetFramebuffer(
-		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
+	deviceCommandContext->EndFramebufferPass();
 }
 
 void TerrainRenderer::RenderPriorities(CCanvas2D& canvas, int cullGroup)

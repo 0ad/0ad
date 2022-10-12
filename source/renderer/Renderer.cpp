@@ -462,7 +462,7 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 		g_Game->GetView()->Render();
 	}
 
-	m->deviceCommandContext->SetFramebuffer(
+	m->deviceCommandContext->BeginFramebufferPass(
 		m->deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 
 	// If we're in Atlas game view, render special tools
@@ -477,6 +477,8 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 	}
 
 	RenderFrame2D(renderGUI, renderLogger);
+
+	m->deviceCommandContext->EndFramebufferPass();
 
 	EndFrame();
 

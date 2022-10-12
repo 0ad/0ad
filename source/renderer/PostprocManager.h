@@ -90,9 +90,11 @@ private:
 	void CreateMultisampleBuffer();
 	void DestroyMultisampleBuffer();
 
+	std::unique_ptr<Renderer::Backend::IFramebuffer> m_CaptureFramebuffer;
+
 	// Two framebuffers, that we flip between at each shader pass.
 	std::unique_ptr<Renderer::Backend::IFramebuffer>
-		m_CaptureFramebuffer, m_PingFramebuffer, m_PongFramebuffer;
+		m_PingFramebuffer, m_PongFramebuffer;
 
 	// Unique color textures for the framebuffers.
 	std::unique_ptr<Renderer::Backend::ITexture> m_ColorTex1, m_ColorTex2;

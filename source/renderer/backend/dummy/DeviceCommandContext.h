@@ -52,7 +52,8 @@ public:
 
 	void ClearFramebuffer() override;
 	void ClearFramebuffer(const bool color, const bool depth, const bool stencil) override;
-	void SetFramebuffer(IFramebuffer* framebuffer) override;
+	void BeginFramebufferPass(IFramebuffer* framebuffer) override;
+	void EndFramebufferPass() override;
 	void ReadbackFramebufferSync(
 		const uint32_t x, const uint32_t y, const uint32_t width, const uint32_t height,
 		void* data) override;

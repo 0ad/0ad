@@ -447,7 +447,7 @@ void CMiniMapTexture::RenderFinalTexture(
 
 	PROFILE3("Render minimap texture");
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render minimap texture");
-	deviceCommandContext->SetFramebuffer(m_FinalTextureFramebuffer.get());
+	deviceCommandContext->BeginFramebufferPass(m_FinalTextureFramebuffer.get());
 
 	const SViewPort oldViewPort = g_Renderer.GetViewport();
 	const SViewPort viewPort = { 0, 0, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE };
@@ -817,8 +817,7 @@ void CMiniMapTexture::RenderFinalTexture(
 		deviceCommandContext->EndPass();
 	}
 
-	deviceCommandContext->SetFramebuffer(
-		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
+	deviceCommandContext->EndFramebufferPass();
 	g_Renderer.SetViewport(oldViewPort);
 }
 

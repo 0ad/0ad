@@ -100,18 +100,14 @@ public:
 	CFrustum GetShadowCasterCullFrustum(const int cascade);
 
 	/**
-	 * BeginRender: Set OpenGL state for rendering into the shadow map texture.
-	 *
-	 * @todo this depends in non-obvious ways on the behaviour of the call-site
+	 * Sets backend state for rendering into the shadow map texture.
 	 */
-	void BeginRender();
+	void BeginRender(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	/**
-	 * EndRender: Finish rendering into the shadow map.
-	 *
-	 * @todo this depends in non-obvious ways on the behaviour of the call-site
+	 * Finishes rendering into the shadow map.
 	 */
-	void EndRender();
+	void EndRender(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Returns the current number of used cascades.
@@ -121,7 +117,8 @@ public:
 	/**
 	 * Sets the renderer camera for the cascade.
 	 */
-	void PrepareCamera(const int cascade);
+	void PrepareCamera(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext, const int cascade);
 
 	/**
 	 * Binds all needed resources and uniforms to draw shadows using the shader.

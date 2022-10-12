@@ -478,7 +478,9 @@ void CDeviceCommandContext::ResetStates()
 {
 	SetGraphicsPipelineStateImpl(MakeDefaultGraphicsPipelineStateDesc(), true);
 	SetScissors(0, nullptr);
-	SetFramebuffer(m_Device->GetCurrentBackbuffer());
+	m_Framebuffer = static_cast<CFramebuffer*>(m_Device->GetCurrentBackbuffer());
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_Framebuffer->GetHandle());
+	ogl_WarnIfError();
 }
 
 void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
@@ -730,6 +732,7 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 void CDeviceCommandContext::BlitFramebuffer(
 	IFramebuffer* dstFramebuffer, IFramebuffer* srcFramebuffer)
 {
+	ENSURE(!m_InsideFramebufferPass);
 	CFramebuffer* destinationFramebuffer = dstFramebuffer->As<CFramebuffer>();
 	CFramebuffer* sourceFramebuffer = srcFramebuffer->As<CFramebuffer>();
 #if CONFIG2_GLES
@@ -794,11 +797,22 @@ void CDeviceCommandContext::ClearFramebuffer(const bool color, const bool depth,
 		ApplyStencilMask(m_GraphicsPipelineStateDesc.depthStencilState.stencilWriteMask);
 }
 
-void CDeviceCommandContext::SetFramebuffer(IFramebuffer* framebuffer)
+void CDeviceCommandContext::BeginFramebufferPass(IFramebuffer* framebuffer)
 {
+	ENSURE(!m_InsideFramebufferPass);
+	m_InsideFramebufferPass = true;
 	ENSURE(framebuffer);
 	m_Framebuffer = framebuffer->As<CFramebuffer>();
 	ENSURE(m_Framebuffer->GetHandle() == 0 || (m_Framebuffer->GetWidth() > 0 && m_Framebuffer->GetHeight() > 0));
+	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_Framebuffer->GetHandle());
+	ogl_WarnIfError();
+}
+
+void CDeviceCommandContext::EndFramebufferPass()
+{
+	ENSURE(m_InsideFramebufferPass);
+	m_InsideFramebufferPass = false;
+	m_Framebuffer = static_cast<CFramebuffer*>(m_Device->GetCurrentBackbuffer());
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_Framebuffer->GetHandle());
 	ogl_WarnIfError();
 }

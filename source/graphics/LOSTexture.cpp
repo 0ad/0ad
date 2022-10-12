@@ -143,7 +143,7 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::IDeviceCommandContext* devic
 		return;
 
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render LOS texture");
-	deviceCommandContext->SetFramebuffer(m_SmoothFramebuffers[m_WhichTexture].get());
+	deviceCommandContext->BeginFramebufferPass(m_SmoothFramebuffers[m_WhichTexture].get());
 
 	deviceCommandContext->SetGraphicsPipelineState(
 		m_SmoothTech->GetGraphicsPipelineStateDesc());
@@ -209,9 +209,7 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::IDeviceCommandContext* devic
 	g_Renderer.SetViewport(oldVp);
 
 	deviceCommandContext->EndPass();
-
-	deviceCommandContext->SetFramebuffer(
-		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
+	deviceCommandContext->EndFramebufferPass();
 }
 
 

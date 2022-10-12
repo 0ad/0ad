@@ -59,7 +59,8 @@ public:
 
 	void ClearFramebuffer() override;
 	void ClearFramebuffer(const bool color, const bool depth, const bool stencil) override;
-	void SetFramebuffer(IFramebuffer* framebuffer) override;
+	void BeginFramebufferPass(IFramebuffer* framebuffer) override;
+	void EndFramebufferPass() override;
 	void ReadbackFramebufferSync(
 		const uint32_t x, const uint32_t y, const uint32_t width, const uint32_t height,
 		void* data) override;
@@ -175,6 +176,7 @@ private:
 	CBuffer* m_IndexBuffer = nullptr;
 	const void* m_IndexBufferData = nullptr;
 
+	bool m_InsideFramebufferPass = false;
 	bool m_InsidePass = false;
 
 	uint32_t m_ActiveTextureUnit = 0;

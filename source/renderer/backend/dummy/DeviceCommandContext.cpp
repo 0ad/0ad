@@ -111,7 +111,11 @@ void CDeviceCommandContext::ClearFramebuffer(const bool, const bool, const bool)
 {
 }
 
-void CDeviceCommandContext::SetFramebuffer(IFramebuffer*)
+void CDeviceCommandContext::BeginFramebufferPass(IFramebuffer*)
+{
+}
+
+void CDeviceCommandContext::EndFramebufferPass()
 {
 }
 

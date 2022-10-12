@@ -788,13 +788,14 @@ void WaterManager::RenderWaves(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CFrustum& frustrum)
 {
-	GPU_SCOPED_LABEL(deviceCommandContext, "Render Waves");
 	if (!m_WaterFancyEffects)
 		return;
 
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render Waves");
+
 	deviceCommandContext->SetGraphicsPipelineState(
 		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
-	deviceCommandContext->SetFramebuffer(m_FancyEffectsFramebuffer.get());
+	deviceCommandContext->BeginFramebufferPass(m_FancyEffectsFramebuffer.get());
 	deviceCommandContext->ClearFramebuffer();
 
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_water_waves);
@@ -878,8 +879,7 @@ void WaterManager::RenderWaves(
 		g_Renderer.GetStats().m_WaterTris += indexCount / 3;
 	}
 	deviceCommandContext->EndPass();
-	deviceCommandContext->SetFramebuffer(
-		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
+	deviceCommandContext->EndFramebufferPass();
 }
 
 void WaterManager::RecomputeWaterData()
