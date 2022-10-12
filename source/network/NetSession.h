@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 #define NETSESSION_H
 
 #include "lib/external_libraries/enet.h"
-#include "network/fsm.h"
+#include "network/FSM.h"
 #include "network/NetFileTransfer.h"
 #include "network/NetHost.h"
 #include "ps/CStr.h"
