@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+	<textures>
+		<texture name="baseTex" file="types/baltic_nordic/rock_moss_01.png"/>
+		<texture name="normTex" file="types/baltic_nordic/rock_moss_01_norm.png"/>
+		<texture name="specTex" file="types/baltic_nordic/rock_moss_01_spec.png"/>
+	</textures>
+	<props size="80.0"/> 
+	<material>terrain_norm_strong_spec.xml</material>
+</terrain>
