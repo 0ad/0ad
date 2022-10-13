@@ -409,13 +409,6 @@ void CRenderer::RenderFrame(const bool needsPresent)
 	if (!ShouldRender())
 		return;
 
-	if (m_ShouldPreloadResourcesBeforeNextFrame)
-	{
-		m_ShouldPreloadResourcesBeforeNextFrame = false;
-		// We don't need to render logger for the preload.
-		RenderFrameImpl(true, false);
-	}
-
 	if (m_ScreenShotType == ScreenShotType::BIG)
 	{
 		RenderBigScreenShot(needsPresent);
@@ -428,6 +421,13 @@ void CRenderer::RenderFrame(const bool needsPresent)
 	{
 		if (needsPresent)
 			g_VideoMode.GetBackendDevice()->AcquireNextBackbuffer();
+
+		if (m_ShouldPreloadResourcesBeforeNextFrame)
+		{
+			m_ShouldPreloadResourcesBeforeNextFrame = false;
+			// We don't need to render logger for the preload.
+			RenderFrameImpl(true, false);
+		}
 
 		RenderFrameImpl(true, true);
 
