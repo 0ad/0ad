@@ -58,6 +58,7 @@ std::unique_ptr<CFramebuffer> CFramebuffer::Create(
 	if (colorAttachment)
 	{
 		ENSURE(device->IsFramebufferFormatSupported(colorAttachment->GetFormat()));
+		ENSURE(colorAttachment->GetUsage() & Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT);
 
 		framebuffer->m_AttachmentMask |= GL_COLOR_BUFFER_BIT;
 
@@ -73,6 +74,8 @@ std::unique_ptr<CFramebuffer> CFramebuffer::Create(
 	}
 	if (depthStencilAttachment)
 	{
+		ENSURE(depthStencilAttachment->GetUsage() & Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT);
+
 		framebuffer->m_Width = depthStencilAttachment->GetWidth();
 		framebuffer->m_Height = depthStencilAttachment->GetHeight();
 		framebuffer->m_AttachmentMask |= GL_DEPTH_BUFFER_BIT;

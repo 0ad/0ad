@@ -146,6 +146,8 @@ public:
 		std::unique_ptr<Renderer::Backend::ITexture> backendTexture =
 			device->CreateTexture2D(
 				textureName.str().c_str(),
+				Renderer::Backend::ITexture::Usage::TRANSFER_DST |
+					Renderer::Backend::ITexture::Usage::SAMPLED,
 				Renderer::Backend::Format::R8G8B8A8_UNORM,
 				1, 1, Renderer::Backend::Sampler::MakeDefaultSampler(
 					Renderer::Backend::Sampler::Filter::LINEAR,
@@ -192,6 +194,8 @@ public:
 		std::unique_ptr<Renderer::Backend::ITexture> backendTexture =
 			device->CreateTexture(
 				textureName.str().c_str(), Renderer::Backend::ITexture::Type::TEXTURE_CUBE,
+				Renderer::Backend::ITexture::Usage::TRANSFER_DST |
+					Renderer::Backend::ITexture::Usage::SAMPLED,
 				Renderer::Backend::Format::R8G8B8A8_UNORM,
 				1, 1, Renderer::Backend::Sampler::MakeDefaultSampler(
 					Renderer::Backend::Sampler::Filter::LINEAR,
@@ -252,6 +256,8 @@ public:
 		std::unique_ptr<Renderer::Backend::ITexture> backendTexture =
 			device->CreateTexture2D(
 				textureName.str().c_str(),
+				Renderer::Backend::ITexture::Usage::TRANSFER_DST |
+					Renderer::Backend::ITexture::Usage::SAMPLED,
 				Renderer::Backend::Format::R8G8B8A8_UNORM,
 				WIDTH, 1, Renderer::Backend::Sampler::MakeDefaultSampler(
 					Renderer::Backend::Sampler::Filter::LINEAR,
@@ -562,6 +568,8 @@ public:
 
 		texture->m_BackendTexture = m_Device->CreateTexture2D(
 			texture->m_Properties.m_Path.string8().c_str(),
+			Renderer::Backend::ITexture::Usage::TRANSFER_DST |
+				Renderer::Backend::ITexture::Usage::SAMPLED,
 			format, (width >> texture->m_BaseLevelOffset), (height >> texture->m_BaseLevelOffset),
 			defaultSamplerDesc, MIPLevelCount - texture->m_BaseLevelOffset);
 	}

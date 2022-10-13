@@ -40,7 +40,19 @@ public:
 		TEXTURE_CUBE
 	};
 
+	// Using a struct instead of a enum allows using the same syntax while
+	// avoiding adding operator overrides and additional checks on casts.
+	struct Usage
+	{
+		static constexpr uint32_t TRANSFER_SRC = 1u << 0u;
+		static constexpr uint32_t TRANSFER_DST = 1u << 1u;
+		static constexpr uint32_t SAMPLED = 1u << 2u;
+		static constexpr uint32_t COLOR_ATTACHMENT = 1u << 3u;
+		static constexpr uint32_t DEPTH_STENCIL_ATTACHMENT = 1u << 4u;
+	};
+
 	virtual Type GetType() const = 0;
+	virtual uint32_t GetUsage() const = 0;
 	virtual Format GetFormat() const = 0;
 
 	virtual uint32_t GetWidth() const = 0;

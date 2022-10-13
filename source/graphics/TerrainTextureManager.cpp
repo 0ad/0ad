@@ -293,6 +293,8 @@ CTerrainTextureManager::LoadAlphaMap(const VfsPath& alphaMapType)
 #endif
 
 	result.m_CompositeAlphaMap = g_VideoMode.GetBackendDevice()->CreateTexture2D("CompositeAlphaMap",
+		Renderer::Backend::ITexture::Usage::TRANSFER_DST |
+			Renderer::Backend::ITexture::Usage::SAMPLED,
 		Renderer::Backend::Format::A8_UNORM, totalWidth, totalHeight,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,

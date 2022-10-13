@@ -47,6 +47,7 @@ public:
 	IDevice* GetDevice() override;
 
 	Type GetType() const override { return m_Type; }
+	uint32_t GetUsage() const override { return m_Usage; }
 	Format GetFormat() const override { return m_Format; }
 
 	uint32_t GetWidth() const override { return m_Width; }
@@ -64,13 +65,15 @@ private:
 
 	// GL before 3.3 doesn't support sampler objects, so each texture should have
 	// an own default sampler.
-	static std::unique_ptr<CTexture> Create(CDevice* device, const char* name,
-		const Type type, const Format format, const uint32_t width, const uint32_t height,
+	static std::unique_ptr<CTexture> Create(
+		CDevice* device, const char* name, const Type type, const uint32_t usage,
+		const Format format, const uint32_t width, const uint32_t height,
 		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount);
 
 	GLuint m_Handle = 0;
 
 	Type m_Type = Type::TEXTURE_2D;
+	uint32_t m_Usage = 0;
 	Format m_Format = Format::UNDEFINED;
 	uint32_t m_Width = 0;
 	uint32_t m_Height = 0;

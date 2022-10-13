@@ -73,18 +73,20 @@ std::unique_ptr<IDeviceCommandContext> CDevice::CreateCommandContext()
 	return CDeviceCommandContext::Create(this);
 }
 
-std::unique_ptr<ITexture> CDevice::CreateTexture(const char* UNUSED(name), const CTexture::Type type,
+std::unique_ptr<ITexture> CDevice::CreateTexture(
+	const char* UNUSED(name), const CTexture::Type type, const uint32_t usage,
 	const Format format, const uint32_t width, const uint32_t height,
 	const Sampler::Desc& UNUSED(defaultSamplerDesc), const uint32_t MIPLevelCount, const uint32_t UNUSED(sampleCount))
 {
-	return CTexture::Create(this, type, format, width, height, MIPLevelCount);
+	return CTexture::Create(this, type, usage, format, width, height, MIPLevelCount);
 }
 
-std::unique_ptr<ITexture> CDevice::CreateTexture2D(const char* name,
+std::unique_ptr<ITexture> CDevice::CreateTexture2D(
+	const char* name, const uint32_t usage,
 	const Format format, const uint32_t width, const uint32_t height,
 	const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount)
 {
-	return CreateTexture(name, ITexture::Type::TEXTURE_2D,
+	return CreateTexture(name, ITexture::Type::TEXTURE_2D, usage,
 		format, width, height, defaultSamplerDesc, MIPLevelCount, sampleCount);
 }
 

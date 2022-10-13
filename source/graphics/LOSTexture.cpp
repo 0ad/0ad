@@ -143,7 +143,7 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::IDeviceCommandContext* devic
 		return;
 
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render LOS texture");
-	deviceCommandContext->SetFramebuffer(m_SmoothFramebuffers[m_WhichTexture].get());
+	deviceCommandContext->BeginFramebufferPass(m_SmoothFramebuffers[m_WhichTexture].get());
 
 	deviceCommandContext->SetGraphicsPipelineState(
 		m_SmoothTech->GetGraphicsPipelineStateDesc());
@@ -209,9 +209,7 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::IDeviceCommandContext* devic
 	g_Renderer.SetViewport(oldVp);
 
 	deviceCommandContext->EndPass();
-
-	deviceCommandContext->SetFramebuffer(
-		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
+	deviceCommandContext->EndFramebufferPass();
 }
 
 
@@ -262,6 +260,8 @@ void CLOSTexture::ConstructTexture(Renderer::Backend::IDeviceCommandContext* dev
 	}
 
 	m_Texture = backendDevice->CreateTexture2D("LOSTexture",
+		Renderer::Backend::ITexture::Usage::TRANSFER_DST |
+			Renderer::Backend::ITexture::Usage::SAMPLED,
 		m_TextureFormat, textureSize, textureSize, defaultSamplerDesc);
 
 	// Initialise texture with SoD color, for the areas we don't
@@ -272,10 +272,14 @@ void CLOSTexture::ConstructTexture(Renderer::Backend::IDeviceCommandContext* dev
 
 	if (CRenderer::IsInitialised() && g_RenderingOptions.GetSmoothLOS())
 	{
+		const uint32_t usage =
+			Renderer::Backend::ITexture::Usage::TRANSFER_DST |
+			Renderer::Backend::ITexture::Usage::SAMPLED |
+			Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT;
 		m_SmoothTextures[0] = backendDevice->CreateTexture2D("LOSSmoothTexture0",
-			m_TextureFormat, textureSize, textureSize, defaultSamplerDesc);
+			usage, m_TextureFormat, textureSize, textureSize, defaultSamplerDesc);
 		m_SmoothTextures[1] = backendDevice->CreateTexture2D("LOSSmoothTexture1",
-			m_TextureFormat, textureSize, textureSize, defaultSamplerDesc);
+			usage, m_TextureFormat, textureSize, textureSize, defaultSamplerDesc);
 
 		m_SmoothFramebuffers[0] = backendDevice->CreateFramebuffer(
 			"LOSSmoothFramebuffer0", m_SmoothTextures[0].get(), nullptr);

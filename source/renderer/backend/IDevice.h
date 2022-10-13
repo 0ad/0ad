@@ -73,11 +73,13 @@ public:
 
 	virtual std::unique_ptr<IDeviceCommandContext> CreateCommandContext() = 0;
 
-	virtual std::unique_ptr<ITexture> CreateTexture(const char* name, const ITexture::Type type,
+	virtual std::unique_ptr<ITexture> CreateTexture(
+		const char* name, const ITexture::Type type, const uint32_t usage,
 		const Format format, const uint32_t width, const uint32_t height,
 		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount, const uint32_t sampleCount) = 0;
 
-	virtual std::unique_ptr<ITexture> CreateTexture2D(const char* name,
+	virtual std::unique_ptr<ITexture> CreateTexture2D(
+		const char* name, const uint32_t usage,
 		const Format format, const uint32_t width, const uint32_t height,
 		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount = 1, const uint32_t sampleCount = 1) = 0;
 

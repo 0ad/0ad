@@ -41,6 +41,7 @@ public:
 	IDevice* GetDevice() override;
 
 	Type GetType() const override { return m_Type; }
+	uint32_t GetUsage() const override { return m_Usage; }
 	Format GetFormat() const override { return m_Format; }
 
 	uint32_t GetWidth() const override { return m_Width; }
@@ -53,12 +54,13 @@ private:
 	CTexture();
 
 	static std::unique_ptr<ITexture> Create(
-		CDevice* device, const Type type, const Format format,
-		const uint32_t width, const uint32_t height,
+		CDevice* device, const Type type, const uint32_t usage,
+		const Format format, const uint32_t width, const uint32_t height,
 		const uint32_t MIPLevelCount);
 
 	CDevice* m_Device = nullptr;
 	Type m_Type = Type::TEXTURE_2D;
+	uint32_t m_Usage = 0;
 	Format m_Format = Format::UNDEFINED;
 	uint32_t m_Width = 0;
 	uint32_t m_Height = 0;

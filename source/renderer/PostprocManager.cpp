@@ -126,7 +126,10 @@ void CPostprocManager::RecreateBuffers()
 
 	#define GEN_BUFFER_RGBA(name, w, h) \
 		name = backendDevice->CreateTexture2D( \
-			"PostProc" #name, Renderer::Backend::Format::R8G8B8A8_UNORM, w, h, \
+			"PostProc" #name, \
+			Renderer::Backend::ITexture::Usage::SAMPLED | \
+				Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT, \
+			Renderer::Backend::Format::R8G8B8A8_UNORM, w, h, \
 			Renderer::Backend::Sampler::MakeDefaultSampler( \
 				Renderer::Backend::Sampler::Filter::LINEAR, \
 				Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
@@ -155,7 +158,9 @@ void CPostprocManager::RecreateBuffers()
 	#undef GEN_BUFFER_RGBA
 
 	// Allocate the Depth/Stencil texture.
-	m_DepthTex = backendDevice->CreateTexture2D("PostPRocDepthTexture",
+	m_DepthTex = backendDevice->CreateTexture2D("PostProcDepthTexture",
+		Renderer::Backend::ITexture::Usage::SAMPLED |
+			Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
 		Renderer::Backend::Format::D24_S8, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
@@ -190,7 +195,7 @@ void CPostprocManager::ApplyBlurDownscale2x(
 	Renderer::Backend::IFramebuffer* framebuffer,
 	Renderer::Backend::ITexture* inTex, int inWidth, int inHeight)
 {
-	deviceCommandContext->SetFramebuffer(framebuffer);
+	deviceCommandContext->BeginFramebufferPass(framebuffer);
 
 	// Get bloom shader with instructions to simply copy texels.
 	CShaderDefines defines;
@@ -250,6 +255,7 @@ void CPostprocManager::ApplyBlurDownscale2x(
 	g_Renderer.SetViewport(oldVp);
 
 	deviceCommandContext->EndPass();
+	deviceCommandContext->EndFramebufferPass();
 }
 
 void CPostprocManager::ApplyBlurGauss(
@@ -260,7 +266,7 @@ void CPostprocManager::ApplyBlurGauss(
 	Renderer::Backend::IFramebuffer* outFramebuffer,
 	int inWidth, int inHeight)
 {
-	deviceCommandContext->SetFramebuffer(tempFramebuffer);
+	deviceCommandContext->BeginFramebufferPass(tempFramebuffer);
 
 	// Get bloom shader, for a horizontal Gaussian blur pass.
 	CShaderDefines defines2;
@@ -320,8 +326,9 @@ void CPostprocManager::ApplyBlurGauss(
 	g_Renderer.SetViewport(oldVp);
 
 	deviceCommandContext->EndPass();
+	deviceCommandContext->EndFramebufferPass();
 
-	deviceCommandContext->SetFramebuffer(outFramebuffer);
+	deviceCommandContext->BeginFramebufferPass(outFramebuffer);
 
 	// Get bloom shader, for a vertical Gaussian blur pass.
 	CShaderDefines defines3;
@@ -360,6 +367,7 @@ void CPostprocManager::ApplyBlurGauss(
 	g_Renderer.SetViewport(oldVp);
 
 	deviceCommandContext->EndPass();
+	deviceCommandContext->EndFramebufferPass();
 }
 
 void CPostprocManager::ApplyBlur(
@@ -388,10 +396,8 @@ void CPostprocManager::CaptureRenderOutput(
 
 	// Leaves m_PingFbo selected for rendering; m_WhichBuffer stays true at this point.
 
-	if (m_UsingMultisampleBuffer)
-		deviceCommandContext->SetFramebuffer(m_MultisampleFramebuffer.get());
-	else
-		deviceCommandContext->SetFramebuffer(m_CaptureFramebuffer.get());
+	deviceCommandContext->BeginFramebufferPass(
+		m_UsingMultisampleBuffer ? m_MultisampleFramebuffer.get() : m_CaptureFramebuffer.get());
 
 	m_WhichBuffer = true;
 }
@@ -408,9 +414,6 @@ void CPostprocManager::ReleaseRenderOutput(
 	deviceCommandContext->BlitFramebuffer(
 		deviceCommandContext->GetDevice()->GetCurrentBackbuffer(),
 		(m_WhichBuffer ? m_PingFramebuffer : m_PongFramebuffer).get());
-
-	deviceCommandContext->SetFramebuffer(
-		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 }
 
 void CPostprocManager::ApplyEffect(
@@ -418,7 +421,7 @@ void CPostprocManager::ApplyEffect(
 	const CShaderTechniquePtr& shaderTech, int pass)
 {
 	// select the other FBO for rendering
-	deviceCommandContext->SetFramebuffer(
+	deviceCommandContext->BeginFramebufferPass(
 		(m_WhichBuffer ? m_PongFramebuffer : m_PingFramebuffer).get());
 
 	deviceCommandContext->SetGraphicsPipelineState(
@@ -492,6 +495,7 @@ void CPostprocManager::ApplyEffect(
 	deviceCommandContext->Draw(0, 6);
 
 	deviceCommandContext->EndPass();
+	deviceCommandContext->EndFramebufferPass();
 
 	m_WhichBuffer = !m_WhichBuffer;
 }
@@ -655,6 +659,7 @@ void CPostprocManager::CreateMultisampleBuffer()
 
 	m_MultisampleColorTex = backendDevice->CreateTexture("PostProcColorMS",
 		Renderer::Backend::ITexture::Type::TEXTURE_2D_MULTISAMPLE,
+		Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT,
 		Renderer::Backend::Format::R8G8B8A8_UNORM, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
@@ -663,6 +668,7 @@ void CPostprocManager::CreateMultisampleBuffer()
 	// Allocate the Depth/Stencil texture.
 	m_MultisampleDepthTex = backendDevice->CreateTexture("PostProcDepthMS",
 		Renderer::Backend::ITexture::Type::TEXTURE_2D_MULTISAMPLE,
+		Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
 		Renderer::Backend::Format::D24_S8, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
@@ -704,5 +710,4 @@ void CPostprocManager::ResolveMultisampleFramebuffer(
 	GPU_SCOPED_LABEL(deviceCommandContext, "Resolve postproc multisample");
 	deviceCommandContext->BlitFramebuffer(
 		m_PingFramebuffer.get(), m_MultisampleFramebuffer.get());
-	deviceCommandContext->SetFramebuffer(m_PingFramebuffer.get());
 }

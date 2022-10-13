@@ -305,13 +305,13 @@ void CSceneRenderer::RenderShadowMap(
 	CShaderDefines contextCast = shadowsContext;
 	contextCast.Add(str_MODE_SHADOWCAST, str_1);
 
-	m->shadow.BeginRender();
+	m->shadow.BeginRender(deviceCommandContext);
 
 	const int cascadeCount = m->shadow.GetCascadeCount();
 	ENSURE(0 <= cascadeCount && cascadeCount <= 4);
 	for (int cascade = 0; cascade < cascadeCount; ++cascade)
 	{
-		m->shadow.PrepareCamera(cascade);
+		m->shadow.PrepareCamera(deviceCommandContext, cascade);
 
 		const int cullGroup = CULL_SHADOWS_CASCADE_0 + cascade;
 		{
@@ -330,7 +330,7 @@ void CSceneRenderer::RenderShadowMap(
 		}
 	}
 
-	m->shadow.EndRender();
+	m->shadow.EndRender(deviceCommandContext);
 
 	g_Renderer.SetViewport(m_ViewCamera.GetViewPort());
 }
@@ -587,7 +587,7 @@ void CSceneRenderer::RenderReflections(
 
 	deviceCommandContext->SetGraphicsPipelineState(
 		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
-	deviceCommandContext->SetFramebuffer(wm.m_ReflectionFramebuffer.get());
+	deviceCommandContext->BeginFramebufferPass(wm.m_ReflectionFramebuffer.get());
 	deviceCommandContext->ClearFramebuffer();
 
 	CShaderDefines reflectionsContext = context;
@@ -606,6 +606,7 @@ void CSceneRenderer::RenderReflections(
 	}
 
 	deviceCommandContext->SetScissors(0, nullptr);
+	deviceCommandContext->EndFramebufferPass();
 
 	// Reset old camera
 	m_ViewCamera = normalCamera;
@@ -662,7 +663,7 @@ void CSceneRenderer::RenderRefractions(
 
 	deviceCommandContext->SetGraphicsPipelineState(
 		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
-	deviceCommandContext->SetFramebuffer(wm.m_RefractionFramebuffer.get());
+	deviceCommandContext->BeginFramebufferPass(wm.m_RefractionFramebuffer.get());
 	deviceCommandContext->ClearFramebuffer();
 
 	// Render terrain and models
@@ -675,6 +676,7 @@ void CSceneRenderer::RenderRefractions(
 	RenderTransparentModels(deviceCommandContext, context, CULL_REFRACTIONS, TRANSPARENT_OPAQUE);
 
 	deviceCommandContext->SetScissors(0, nullptr);
+	deviceCommandContext->EndFramebufferPass();
 
 	// Reset old camera
 	m_ViewCamera = normalCamera;
@@ -831,7 +833,7 @@ void CSceneRenderer::RenderSubmissions(
 	}
 	else
 	{
-		deviceCommandContext->SetFramebuffer(
+		deviceCommandContext->BeginFramebufferPass(
 			deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 	}
 
@@ -896,11 +898,15 @@ void CSceneRenderer::RenderSubmissions(
 
 	if (postprocManager.IsEnabled())
 	{
+		deviceCommandContext->EndFramebufferPass();
+
 		if (g_Renderer.GetPostprocManager().IsMultisampleEnabled())
 			g_Renderer.GetPostprocManager().ResolveMultisampleFramebuffer(deviceCommandContext);
 
 		postprocManager.ApplyPostproc(deviceCommandContext);
 		postprocManager.ReleaseRenderOutput(deviceCommandContext);
+		deviceCommandContext->BeginFramebufferPass(
+			deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
 	}
 
 	if (g_RenderingOptions.GetSilhouettes())
@@ -920,6 +926,8 @@ void CSceneRenderer::RenderSubmissions(
 
 	// render overlays that should appear on top of all other objects
 	m->overlayRenderer.RenderForegroundOverlays(deviceCommandContext, m_ViewCamera);
+
+	deviceCommandContext->EndFramebufferPass();
 }
 
 void CSceneRenderer::EndFrame()

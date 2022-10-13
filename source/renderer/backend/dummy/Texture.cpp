@@ -32,15 +32,16 @@ namespace Dummy
 
 // static
 std::unique_ptr<ITexture> CTexture::Create(
-	CDevice* device, const Type type, const Format format,
+	CDevice* device, const Type type, const uint32_t usage, const Format format,
 	const uint32_t width, const uint32_t height,
 	const uint32_t MIPLevelCount)
 {
 	std::unique_ptr<CTexture> texture(new CTexture());
 
 	texture->m_Device = device;
-	texture->m_Format = format;
 	texture->m_Type = type;
+	texture->m_Usage = usage;
+	texture->m_Format = format;
 	texture->m_Width = width;
 	texture->m_Height = height;
 	texture->m_MIPLevelCount = MIPLevelCount;

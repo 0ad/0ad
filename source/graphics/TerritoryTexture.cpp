@@ -87,6 +87,8 @@ void CTerritoryTexture::ConstructTexture(Renderer::Backend::IDeviceCommandContex
 	const uint32_t textureSize = round_up_to_pow2(static_cast<uint32_t>(m_MapSize));
 
 	m_Texture = deviceCommandContext->GetDevice()->CreateTexture2D("TerritoryTexture",
+		Renderer::Backend::ITexture::Usage::TRANSFER_DST |
+			Renderer::Backend::ITexture::Usage::SAMPLED,
 		Renderer::Backend::Format::R8G8B8A8_UNORM, textureSize, textureSize,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,

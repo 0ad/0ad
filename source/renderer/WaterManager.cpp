@@ -208,12 +208,16 @@ void WaterManager::RecreateOrLoadTexturesIfNeeded()
 	if (needsReflectionTextures && !m_ReflectionTexture)
 	{
 		m_ReflectionTexture = backendDevice->CreateTexture2D("WaterReflectionTexture",
+			Renderer::Backend::ITexture::Usage::SAMPLED |
+				Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT,
 			Renderer::Backend::Format::R8G8B8A8_UNORM, m_RefTextureSize, m_RefTextureSize,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::LINEAR,
 				Renderer::Backend::Sampler::AddressMode::MIRRORED_REPEAT));
 
 		m_ReflFboDepthTexture = backendDevice->CreateTexture2D("WaterReflectionDepthTexture",
+			Renderer::Backend::ITexture::Usage::SAMPLED |
+				Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
 			Renderer::Backend::Format::D32, m_RefTextureSize, m_RefTextureSize,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::NEAREST,
@@ -235,12 +239,16 @@ void WaterManager::RecreateOrLoadTexturesIfNeeded()
 	if (needsRefractionTextures && !m_RefractionTexture)
 	{
 		m_RefractionTexture = backendDevice->CreateTexture2D("WaterRefractionTexture",
+			Renderer::Backend::ITexture::Usage::SAMPLED |
+				Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT,
 			Renderer::Backend::Format::R8G8B8A8_UNORM, m_RefTextureSize, m_RefTextureSize,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::LINEAR,
 				Renderer::Backend::Sampler::AddressMode::MIRRORED_REPEAT));
 
 		m_RefrFboDepthTexture = backendDevice->CreateTexture2D("WaterRefractionDepthTexture",
+			Renderer::Backend::ITexture::Usage::SAMPLED |
+				Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
 			Renderer::Backend::Format::D32, m_RefTextureSize, m_RefTextureSize,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::NEAREST,
@@ -271,12 +279,15 @@ void WaterManager::RecreateOrLoadTexturesIfNeeded()
 	if (needsFancyTextures && !m_FancyTexture)
 	{
 		m_FancyTexture = backendDevice->CreateTexture2D("WaterFancyTexture",
+			Renderer::Backend::ITexture::Usage::SAMPLED |
+				Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT,
 			Renderer::Backend::Format::R8G8B8A8_UNORM, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::LINEAR,
 				Renderer::Backend::Sampler::AddressMode::REPEAT));
 
 		m_FancyTextureDepth = backendDevice->CreateTexture2D("WaterFancyDepthTexture",
+			Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
 			Renderer::Backend::Format::D32, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::LINEAR,
@@ -788,13 +799,14 @@ void WaterManager::RenderWaves(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CFrustum& frustrum)
 {
-	GPU_SCOPED_LABEL(deviceCommandContext, "Render Waves");
 	if (!m_WaterFancyEffects)
 		return;
 
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render Waves");
+
 	deviceCommandContext->SetGraphicsPipelineState(
 		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
-	deviceCommandContext->SetFramebuffer(m_FancyEffectsFramebuffer.get());
+	deviceCommandContext->BeginFramebufferPass(m_FancyEffectsFramebuffer.get());
 	deviceCommandContext->ClearFramebuffer();
 
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_water_waves);
@@ -878,8 +890,7 @@ void WaterManager::RenderWaves(
 		g_Renderer.GetStats().m_WaterTris += indexCount / 3;
 	}
 	deviceCommandContext->EndPass();
-	deviceCommandContext->SetFramebuffer(
-		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
+	deviceCommandContext->EndFramebufferPass();
 }
 
 void WaterManager::RecomputeWaterData()

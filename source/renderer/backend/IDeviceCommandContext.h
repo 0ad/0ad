@@ -47,7 +47,8 @@ public:
 
 	virtual void ClearFramebuffer() = 0;
 	virtual void ClearFramebuffer(const bool color, const bool depth, const bool stencil) = 0;
-	virtual void SetFramebuffer(IFramebuffer* framebuffer) = 0;
+	virtual void BeginFramebufferPass(IFramebuffer* framebuffer) = 0;
+	virtual void EndFramebufferPass() = 0;
 	virtual void ReadbackFramebufferSync(
 		const uint32_t x, const uint32_t y, const uint32_t width, const uint32_t height,
 		void* data) = 0;

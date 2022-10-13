@@ -120,6 +120,8 @@ void SkyManager::LoadAndUploadSkyTexturesIfNeeded(
 	std::unique_ptr<Renderer::Backend::ITexture> skyCubeMap =
 		g_VideoMode.GetBackendDevice()->CreateTexture("SkyCubeMap",
 			Renderer::Backend::ITexture::Type::TEXTURE_CUBE,
+			Renderer::Backend::ITexture::Usage::TRANSFER_DST |
+				Renderer::Backend::ITexture::Usage::SAMPLED,
 			Renderer::Backend::Format::R8G8B8A8_UNORM, textures[0].m_Width, textures[0].m_Height,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::LINEAR,

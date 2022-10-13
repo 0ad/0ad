@@ -323,6 +323,8 @@ void TerrainTextureOverlay::RenderAfterWater(
 	if (!m_Texture || m_Texture->GetWidth() != requiredWidth || m_Texture->GetHeight() != requiredHeight)
 	{
 		m_Texture = deviceCommandContext->GetDevice()->CreateTexture2D("TerrainOverlayTexture",
+			Renderer::Backend::ITexture::Usage::TRANSFER_DST |
+				Renderer::Backend::ITexture::Usage::SAMPLED,
 			Renderer::Backend::Format::R8G8B8A8_UNORM, requiredWidth, requiredHeight,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::NEAREST,

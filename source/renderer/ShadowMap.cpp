@@ -529,6 +529,7 @@ void ShadowMapInternals::CreateTexture()
 	if (g_RenderingOptions.GetShadowAlphaFix())
 	{
 		DummyTexture = backendDevice->CreateTexture2D("ShadowMapDummy",
+			Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT,
 			Renderer::Backend::Format::R8G8B8A8_UNORM, Width, Height,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::NEAREST,
@@ -551,6 +552,8 @@ void ShadowMapInternals::CreateTexture()
 	samplerDesc.compareOp = Renderer::Backend::CompareOp::LESS_OR_EQUAL;
 
 	Texture = backendDevice->CreateTexture2D("ShadowMapDepth",
+		Renderer::Backend::ITexture::Usage::SAMPLED |
+			Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
 		backendFormat, Width, Height, samplerDesc);
 
 	Framebuffer = backendDevice->CreateFramebuffer("ShadowMapFramebuffer",
@@ -565,18 +568,16 @@ void ShadowMapInternals::CreateTexture()
 	}
 }
 
-// Set up to render into shadow map texture
-void ShadowMap::BeginRender()
+void ShadowMap::BeginRender(
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
-	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
-		g_Renderer.GetDeviceCommandContext();
 	deviceCommandContext->SetGraphicsPipelineState(
 		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
 
 	{
 		PROFILE("bind framebuffer");
 		ENSURE(m->Framebuffer);
-		deviceCommandContext->SetFramebuffer(m->Framebuffer.get());
+		deviceCommandContext->BeginFramebufferPass(m->Framebuffer.get());
 	}
 
 	// clear buffers
@@ -591,7 +592,8 @@ void ShadowMap::BeginRender()
 	m->SavedViewCamera = g_Renderer.GetSceneRenderer().GetViewCamera();
 }
 
-void ShadowMap::PrepareCamera(const int cascade)
+void ShadowMap::PrepareCamera(
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext, const int cascade)
 {
 	m->CalculateShadowMatrices(cascade);
 
@@ -609,21 +611,17 @@ void ShadowMap::PrepareCamera(const int cascade)
 	scissorRect.y = cascadeViewPort.m_Y;
 	scissorRect.width = cascadeViewPort.m_Width;
 	scissorRect.height = cascadeViewPort.m_Height;
-	g_Renderer.GetDeviceCommandContext()->SetScissors(1, &scissorRect);
+	deviceCommandContext->SetScissors(1, &scissorRect);
 }
 
-// Finish rendering into shadow map texture
-void ShadowMap::EndRender()
+void ShadowMap::EndRender(
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
-	g_Renderer.GetDeviceCommandContext()->SetScissors(0, nullptr);
+	deviceCommandContext->SetScissors(0, nullptr);
+
+	deviceCommandContext->EndFramebufferPass();
 
 	g_Renderer.GetSceneRenderer().SetViewCamera(m->SavedViewCamera);
-
-	{
-		PROFILE("unbind framebuffer");
-		g_Renderer.GetDeviceCommandContext()->SetFramebuffer(
-			g_VideoMode.GetBackendDevice()->GetCurrentBackbuffer());
-	}
 
 	const SViewPort vp = { 0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight() };
 	g_Renderer.SetViewport(vp);
