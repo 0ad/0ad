@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@ public:
 		CStr ip;
 		TS_ASSERT(StunClient::FindLocalIP(ip));
 		// Quick validation that this looks like a valid IP address.
-		if (ip.size() < 8 || ip.size() > 15)
+		if (ip.size() < 7 || ip.size() > 15)
 		{
 			TS_FAIL("StunClient::FindLocalIP did not return a valid IPV4 address: wrong size");
 			return;
