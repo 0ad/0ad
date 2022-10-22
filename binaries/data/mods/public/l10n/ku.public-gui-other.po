@@ -3,11 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Îslam Zinar
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-13 07:11+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"Last-Translator: Îslam Zinar <islamzinar@yandex.com>, 2022\n"
 "Language-Team: Kurdish (http://www.transifex.com/wildfire-games/0ad/language/ku/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,12 +21,12 @@ msgstr ""
 #: gui/common/OverlayCounterFPS.js:28
 #, javascript-format
 msgid "FPS: %(fps)4s"
-msgstr ""
+msgstr "FPS: %(fps)4s"
 
 #: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s - %(templateName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -47,82 +49,82 @@ msgstr ""
 
 #: gui/common/functions_utility.js:42
 msgid "Gaia"
-msgstr ""
+msgstr "Gaia"
 
 #: gui/common/functions_utility.js:280
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr ""
+msgstr "Avakirin: %(buildDate)s (%(revision)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:68
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:71
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:77
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:80
 #, javascript-format
 msgid "%(playerName)s (%(AIdescription)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:90
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr ""
+msgstr "%(playerName)s (DERHÊL)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:93
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (DERHÊL, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:100
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:103
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:107
 #, javascript-format
 msgid "%(playerName)s"
-msgstr ""
+msgstr "%(playerName)s"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:110
 #, javascript-format
 msgid "%(playerName)s (%(state)s)"
-msgstr ""
+msgstr "%(playerName)s (%(state)s)"
 
 #: gui/common/gamedescription.js:130
 msgid "Unknown Civilization"
@@ -131,21 +133,21 @@ msgstr ""
 #: gui/common/gamedescription.js:137
 msgctxt "playerstate"
 msgid "defeated"
-msgstr ""
+msgstr "wendakirin"
 
 #: gui/common/gamedescription.js:138
 msgctxt "playerstate"
 msgid "won"
-msgstr ""
+msgstr "serketin"
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
-msgstr ""
+msgstr "Tîm Tune"
 
 #: gui/common/gamedescription.js:160
 #, javascript-format
 msgid "Team %(team)s"
-msgstr ""
+msgstr "Tîm %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or
@@ -155,7 +157,7 @@ msgstr ""
 msgid ""
 "%(team)s:\n"
 "%(playerDescriptions)s"
-msgstr ""
+msgstr "%(team)s:\n%(playerDescriptions)s"
 
 #: gui/common/gamedescription.js:171
 msgid "Observer"
@@ -250,7 +252,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:276 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
-msgstr ""
+msgstr "neçalak"
 
 #: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
@@ -286,7 +288,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:315
 msgid "Map Size"
-msgstr ""
+msgstr "Meziniya Nexşe"
 
 #: gui/common/gamedescription.js:324
 msgctxt "biome"
@@ -299,7 +301,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:340
 msgid "Nomad Mode"
-msgstr ""
+msgstr "Moda Koçerî"
 
 #: gui/common/gamedescription.js:340
 msgid "Civic Centers"
@@ -327,7 +329,7 @@ msgstr ""
 #: gui/common/gamedescription.js:354
 #, javascript-format
 msgid "%(startingResourcesTitle)s (%(amount)s)"
-msgstr ""
+msgstr "%(startingResourcesTitle)s (%(amount)s)"
 
 #: gui/common/gamedescription.js:365
 msgid "Population Limit"
@@ -349,7 +351,7 @@ msgstr ""
 #: gui/common/gamedescription.js:387
 msgctxt "treasures"
 msgid "Disabled"
-msgstr ""
+msgstr "Neçalak Bike"
 
 #: gui/common/gamedescription.js:388
 msgctxt "treasures"
@@ -385,7 +387,7 @@ msgstr ""
 #: gui/common/gamedescription.js:421 gui/common/gamedescription.js:428
 msgctxt "game setup option"
 msgid "disabled"
-msgstr ""
+msgstr "neçalak"
 
 #: gui/common/gamedescription.js:424 gui/common/tooltips.js:155
 #: gui/common/tooltips.js:221 gui/common/tooltips.js:242
@@ -397,12 +399,12 @@ msgstr ""
 #: gui/common/tooltips.js:1191
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/common/gamedescription.js:427
 msgctxt "game setup option"
 msgid "enabled"
-msgstr ""
+msgstr "çalak"
 
 #: gui/common/gamedescription.js:440
 msgid "Victorious"
@@ -410,12 +412,12 @@ msgstr ""
 
 #: gui/common/gamedescription.js:445
 msgid "Defeated"
-msgstr ""
+msgstr "Wendakirin"
 
 #: gui/common/gamedescription.js:454
 #, javascript-format
 msgid "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
-msgstr ""
+msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 
 #: gui/common/network.js:17
 #, javascript-format
@@ -529,7 +531,7 @@ msgstr ""
 #: gui/common/network.js:163
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
-msgstr ""
+msgstr "Bikarhênerên (%(num)s): %(users)s"
 
 #: gui/common/network.js:164 gui/common/tooltips.js:74
 #: gui/common/tooltips.js:234 gui/common/tooltips.js:295
@@ -552,52 +554,52 @@ msgstr ""
 #: gui/common/settings.js:120
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Pir Hêsan"
 
 #: gui/common/settings.js:124
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Hêsan"
 
 #: gui/common/settings.js:128
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Navîn"
 
 #: gui/common/settings.js:133
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Dijwar"
 
 #: gui/common/settings.js:137
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Pir Dijwar"
 
 #: gui/common/settings.js:147
 msgctxt "aiBehavior"
 msgid "Random"
-msgstr ""
+msgstr "Random"
 
 #: gui/common/settings.js:152
 msgctxt "aiBehavior"
 msgid "Balanced"
-msgstr ""
+msgstr "Hevseng"
 
 #: gui/common/settings.js:156
 msgctxt "aiBehavior"
 msgid "Defensive"
-msgstr ""
+msgstr "Xweparêz"
 
 #: gui/common/settings.js:160
 msgctxt "aiBehavior"
 msgid "Aggressive"
-msgstr ""
+msgstr "Êrişkar"
 
 #: gui/common/settings.js:173
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Şer"
 
 #: gui/common/settings.js:174
 msgid ""
@@ -608,7 +610,7 @@ msgstr ""
 #: gui/common/settings.js:183
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Random"
 
 #: gui/common/settings.js:184
 msgid ""
@@ -627,42 +629,42 @@ msgstr ""
 
 #: gui/common/settings.js:271 gui/common/settings.js:294
 msgid "Unlimited"
-msgstr ""
+msgstr "Bêsînor"
 
 #: gui/common/settings.js:342
 msgctxt "AI name"
 msgid "Unknown"
-msgstr ""
+msgstr "Nenas"
 
 #: gui/common/settings.js:353
 msgctxt "AI difficulty"
 msgid "Unknown"
-msgstr ""
+msgstr "Nenas"
 
 #: gui/common/settings.js:364
 msgctxt "AI behavior"
 msgid "Default"
-msgstr ""
+msgstr "Destçûnî"
 
 #: gui/common/settings.js:376
 msgctxt "map type"
 msgid "Unknown"
-msgstr ""
+msgstr "Nenas"
 
 #: gui/common/settings.js:388
 msgctxt "map size"
 msgid "Default"
-msgstr ""
+msgstr "Destçûnî"
 
 #: gui/common/settings.js:403
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(cîhan)"
 
 #: gui/common/settings.js:404 gui/common/settings.js:408
 msgctxt "population capacity"
 msgid "Unknown"
-msgstr ""
+msgstr "Nenas"
 
 #: gui/common/settings.js:420
 msgid "Unknown Victory Condition"
@@ -691,26 +693,26 @@ msgstr ""
 #: gui/common/tooltips.js:63
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/common/tooltips.js:72
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s û %(lastAmount)s"
 
 #: gui/common/tooltips.js:101
 #, javascript-format
 msgid "%(time)s %(second)s"
 msgid_plural "%(time)s %(second)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(time)s %(second)s"
+msgstr[1] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:103 gui/common/tooltips.js:564
 #: gui/common/tooltips.js:1058
 msgid "second"
 msgid_plural "seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "second"
+msgstr[1] "çirke"
 
 #: gui/common/tooltips.js:156 gui/common/tooltips.js:167
 msgid "Health:"
@@ -719,12 +721,12 @@ msgstr ""
 #: gui/common/tooltips.js:166
 #, javascript-format
 msgid "%(healthLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(healthLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:178
 #, javascript-format
 msgid "%(captureLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:179
 msgid "Capture points:"
@@ -733,14 +735,14 @@ msgstr ""
 #: gui/common/tooltips.js:190
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/common/tooltips.js:210 gui/common/tooltips.js:476
 #, javascript-format
 msgid ""
 "%(label)s\n"
 "%(details)s"
-msgstr ""
+msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:211
 msgid "Resistance:"
@@ -753,12 +755,12 @@ msgstr ""
 #: gui/common/tooltips.js:225 gui/common/tooltips.js:245
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(resistancePercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(resistancePercentage)s"
 
 #: gui/common/tooltips.js:230 gui/common/tooltips.js:250
 #, javascript-format
 msgid "(%(resistancePercentage)s)"
-msgstr ""
+msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:243
 msgid "Capture:"
@@ -776,13 +778,13 @@ msgstr ""
 #: gui/common/tooltips.js:267
 #, javascript-format
 msgid "Blocks %(name)s"
-msgstr ""
+msgstr "Astengkirî %(name)s"
 
 #: gui/common/tooltips.js:272 gui/common/tooltips.js:280
 #: gui/common/tooltips.js:287
 #, javascript-format
 msgid "%(name)s %(details)s"
-msgstr ""
+msgstr "%(name)s %(details)s"
 
 #: gui/common/tooltips.js:274
 #, javascript-format
@@ -792,7 +794,7 @@ msgstr ""
 #: gui/common/tooltips.js:282
 #, javascript-format
 msgid "Blocks: %(blockPercentage)s%%"
-msgstr ""
+msgstr "Astengkirî: %(blockPercentage)s%%"
 
 #: gui/common/tooltips.js:289
 #, javascript-format
@@ -810,25 +812,25 @@ msgstr ""
 
 #: gui/common/tooltips.js:312
 msgid "Rate:"
-msgstr ""
+msgstr "Rêje"
 
 #: gui/common/tooltips.js:313
 #, javascript-format
 msgid "%(projectileCount)s %(projectileName)s"
 msgid_plural "%(projectileCount)s %(projectileName)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(projectileCount)s %(projectileName)s"
+msgstr[1] "%(projectileCount)s %(projectileName)s"
 
 #: gui/common/tooltips.js:315
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "arrow"
+msgstr[1] "tîrên"
 
 #: gui/common/tooltips.js:318
 #, javascript-format
 msgid "%(projectileString)s / %(attackRateString)s"
-msgstr ""
+msgstr "%(projectileString)s / %(attackRateString)s"
 
 #. Translation: For example: Range: 2 to 10 (+2) meters
 #: gui/common/tooltips.js:338
@@ -836,25 +838,25 @@ msgstr ""
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
 "%(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s di %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 (+2) meters
 #: gui/common/tooltips.js:340
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 2 to 10 meters
 #: gui/common/tooltips.js:344
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s di %(maxRange)s %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 meters
 #: gui/common/tooltips.js:346
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
 #: gui/common/tooltips.js:356 gui/common/tooltips.js:1051
 msgid "Range:"
@@ -863,7 +865,7 @@ msgstr ""
 #: gui/common/tooltips.js:359
 #, javascript-format
 msgid "+%(number)s"
-msgstr ""
+msgstr "+%(number)s"
 
 #. Translation: For example "0.5 to 1 meters", "1 (+1) meters" or "1 to 2 (+3)
 #. meters"
@@ -881,12 +883,12 @@ msgstr[1] ""
 #: gui/common/tooltips.js:374
 #, javascript-format
 msgid "%(damage)s %(damageType)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s"
 
 #: gui/common/tooltips.js:385
 #, javascript-format
 msgid "%(amount)s %(name)s"
-msgstr ""
+msgstr "%(amount)s %(name)s"
 
 #: gui/common/tooltips.js:393
 #, javascript-format
@@ -896,7 +898,7 @@ msgstr ""
 #: gui/common/tooltips.js:396
 #, javascript-format
 msgid "%(label)s: %(effects)s"
-msgstr ""
+msgstr "%(label)s: %(effects)s"
 
 #: gui/common/tooltips.js:402
 #, javascript-format
@@ -924,37 +926,37 @@ msgstr "Na"
 #: gui/common/tooltips.js:414
 #, javascript-format
 msgid "gives %(name)s"
-msgstr ""
+msgstr "xelatên %(name)s"
 
 #: gui/common/tooltips.js:447
 #, javascript-format
 msgid "%(attackType)s"
-msgstr ""
+msgstr "%(attackType)s"
 
 #: gui/common/tooltips.js:466
 #, javascript-format
 msgid ""
 "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
 
 #: gui/common/tooltips.js:477
 msgid "Attack:"
-msgstr ""
+msgstr "Êrîş:"
 
 #: gui/common/tooltips.js:504
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s %(stackability)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s %(stackability)s"
 
 #: gui/common/tooltips.js:509
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s"
 
 #: gui/common/tooltips.js:520
 #, javascript-format
 msgid "%(durName)s: %(duration)s"
-msgstr ""
+msgstr "%(durName)s: %(duration)s"
 
 #: gui/common/tooltips.js:521
 msgid "Duration"
@@ -978,12 +980,12 @@ msgstr ""
 #: gui/common/tooltips.js:541
 #, javascript-format
 msgid "%(stackability)s"
-msgstr ""
+msgstr "%(stackability)s"
 
 #: gui/common/tooltips.js:552
 #, javascript-format
 msgid "%(label)s: %(garrisonLimit)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonLimit)s"
 
 #: gui/common/tooltips.js:553
 msgid "Garrison Limit"
@@ -992,21 +994,21 @@ msgstr ""
 #: gui/common/tooltips.js:560
 #, javascript-format
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
-msgstr ""
+msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
 #: gui/common/tooltips.js:561 gui/common/tooltips.js:1046
 msgid "Heal:"
-msgstr ""
+msgstr "Saxkirin:"
 
 #: gui/common/tooltips.js:563
 msgctxt "garrison tooltip"
 msgid "Health"
-msgstr ""
+msgstr "Tendûrûstî:"
 
 #: gui/common/tooltips.js:577
 #, javascript-format
 msgid "%(label)s: %(garrisonSize)s %(extraSize)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonSize)s %(extraSize)s"
 
 #: gui/common/tooltips.js:578
 msgid "Garrison Size"
@@ -1015,12 +1017,12 @@ msgstr ""
 #: gui/common/tooltips.js:581
 msgctxt "nested garrison"
 msgid "+ "
-msgstr ""
+msgstr "+ "
 
 #: gui/common/tooltips.js:593
 #, javascript-format
 msgid "%(label)s: %(turretsLimit)s"
-msgstr ""
+msgstr "%(label)s: %(turretsLimit)s"
 
 #: gui/common/tooltips.js:594
 msgid "Turret Positions"
@@ -1030,7 +1032,7 @@ msgstr ""
 #: gui/common/tooltips.js:625
 #, javascript-format
 msgid "%(label)s: %(value)s"
-msgstr ""
+msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:616
 msgid "Projectile Limit"
@@ -1039,7 +1041,7 @@ msgstr ""
 #: gui/common/tooltips.js:621
 msgctxt "projectiles"
 msgid "Default"
-msgstr ""
+msgstr "Destçûnî"
 
 #: gui/common/tooltips.js:626
 msgctxt "projectiles"
@@ -1095,7 +1097,7 @@ msgstr[1] ""
 #: gui/common/tooltips.js:730 gui/common/tooltips.js:993
 #, javascript-format
 msgid "%(component)s %(cost)s"
-msgstr ""
+msgstr "%(component)s %(cost)s"
 
 #: gui/common/tooltips.js:763
 msgid "Gather Rates:"
@@ -1105,7 +1107,7 @@ msgstr ""
 #: gui/common/tooltips.js:863
 #, javascript-format
 msgid "%(resourceIcon)s %(rate)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(rate)s"
 
 #. Translation: Label in tooltip showing the resource type and quantity of a
 #. given resource
@@ -1113,7 +1115,7 @@ msgstr ""
 #: gui/common/tooltips.js:784
 #, javascript-format
 msgid "%(label)s %(component)s %(amount)s"
-msgstr ""
+msgstr "%(label)s %(component)s %(amount)s"
 
 #: gui/common/tooltips.js:785
 msgid "Resource Supply:"
@@ -1128,12 +1130,12 @@ msgstr "∞"
 
 #: gui/common/tooltips.js:814
 msgid "Reward:"
-msgstr ""
+msgstr "Xelat:"
 
 #: gui/common/tooltips.js:817
 #, javascript-format
 msgid "%(resourceIcon)s %(reward)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(reward)s"
 
 #: gui/common/tooltips.js:835
 msgid "Resource Trickle:"
@@ -1142,7 +1144,7 @@ msgstr ""
 #: gui/common/tooltips.js:836 gui/common/tooltips.js:860
 #, javascript-format
 msgid "%(resources)s / %(time)s"
-msgstr ""
+msgstr "%(resources)s / %(time)s"
 
 #: gui/common/tooltips.js:859
 msgid "Upkeep:"
@@ -1153,7 +1155,7 @@ msgstr ""
 #: gui/common/tooltips.js:912
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(minimum)s di %(resourceIcon)s %(maximum)s"
 
 #: gui/common/tooltips.js:941
 #, javascript-format
@@ -1170,7 +1172,7 @@ msgstr ""
 #: gui/common/tooltips.js:950
 #, javascript-format
 msgid "%(label)s %(costs)s"
-msgstr ""
+msgstr "%(label)s %(costs)s"
 
 #: gui/common/tooltips.js:951
 msgid "Cost:"
@@ -1184,7 +1186,7 @@ msgstr ""
 #: gui/common/tooltips.js:977
 #, javascript-format
 msgid "%(label)s %(bonus)s"
-msgstr ""
+msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:978
 msgid "Population Bonus:"
@@ -1197,17 +1199,17 @@ msgstr ""
 #: gui/common/tooltips.js:1015
 #, javascript-format
 msgid "%(label)s %(speeds)s"
-msgstr ""
+msgstr "%(label)s %(speeds)s"
 
 #: gui/common/tooltips.js:1016
 msgid "Speed:"
-msgstr ""
+msgstr "Lez:"
 
 #: gui/common/tooltips.js:1018 gui/common/tooltips.js:1023
 #: gui/common/tooltips.js:1028
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
-msgstr ""
+msgstr "%(speed)s %(movementType)s"
 
 #: gui/common/tooltips.js:1020
 msgid "Walk"
@@ -1226,24 +1228,24 @@ msgstr ""
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(label)s %(val)s %(unit)s"
+msgstr[1] "%(label)s %(val)s %(unit)s"
 
 #: gui/common/tooltips.js:1048
 msgid "Health"
 msgid_plural "Health"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Health"
+msgstr[1] "Tendûrûstî"
 
 #: gui/common/tooltips.js:1072
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
-msgstr ""
+msgstr "%(auralabel)s %(aurainfo)s"
 
 #: gui/common/tooltips.js:1073
 #, javascript-format
 msgid "%(auraname)s:"
-msgstr ""
+msgstr "%(auraname)s:"
 
 #: gui/common/tooltips.js:1081
 msgctxt "aura"
@@ -1253,12 +1255,12 @@ msgstr ""
 #: gui/common/tooltips.js:1104 gui/common/tooltips.js:1132
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
-msgstr ""
+msgstr "%(primaryName)s (%(secondaryName)s)"
 
 #: gui/common/tooltips.js:1108 gui/common/tooltips.js:1125
 #, javascript-format
 msgid "%(primaryName)s"
-msgstr ""
+msgstr "%(primaryName)s"
 
 #: gui/common/tooltips.js:1155
 msgid "Classes:"
@@ -1270,7 +1272,7 @@ msgstr ""
 #: gui/common/tooltips.js:1182
 #, javascript-format
 msgid "%(component)s %(loot)s"
-msgstr ""
+msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:1192
 msgid "Loot:"
@@ -1279,7 +1281,7 @@ msgstr ""
 #: gui/common/tooltips.js:1202
 #, javascript-format
 msgid "%(label)s %(icons)s"
-msgstr ""
+msgstr "%(label)s %(icons)s"
 
 #: gui/common/tooltips.js:1203
 msgid "Dropsite for:"
@@ -1302,37 +1304,37 @@ msgstr ""
 #: gui/common/tooltips.js:1226
 msgctxt "One letter abbreviation for million"
 msgid "M"
-msgstr ""
+msgstr "M"
 
 #: gui/common/tooltips.js:1229 gui/common/tooltips.js:1232
 msgctxt "One letter abbreviation for thousand"
 msgid "k"
-msgstr ""
+msgstr "h"
 
 #: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
-msgstr ""
+msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
-msgstr ""
+msgstr "Çêkerên 0 A.D."
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
-msgstr ""
+msgstr "Pêşevanê hunerê"
 
 #: gui/credits/texts/art.jsonContent[1].Title
 msgid "2D Art"
-msgstr ""
+msgstr "2D Huner"
 
 #: gui/credits/texts/art.jsonContent[2].Title
 msgid "3D Art"
-msgstr ""
+msgstr "3D Huner"
 
 #: gui/credits/texts/art.jsonTitle
 msgid "Art"
-msgstr ""
+msgstr "Huner"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[0].Subtitle
 msgid "Sound Manager"
@@ -1416,7 +1418,7 @@ msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[1].Title
 msgid "Music"
-msgstr ""
+msgstr "Muzîk"
 
 #: gui/credits/texts/audio.jsonContent[2].Title
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].label
@@ -1492,7 +1494,7 @@ msgstr ""
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr ""
+msgstr "Nexşeyên"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -1540,7 +1542,7 @@ msgstr ""
 
 #: gui/credits/texts/translators.jsonTitle
 msgid "Translators"
-msgstr ""
+msgstr "Wergervan"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Tips.txt:1
 msgid ""
@@ -1549,16 +1551,16 @@ msgid ""
 "game. Beginners are advised to start by playing against a lower level AI "
 "(Sandbox or Very Easy). Change the AI level by clicking the gear icon next "
 "to the player you want to modify in the selection panel above."
-msgstr ""
+msgstr "Her çend ji bo lîstikvanek bi ezmûn bi maqûl hêsan be jî, asta AI-ya xwerû ji bo lîstikvanên nû hîn dijwar e ku hîn jî mekanîzmayên bingehîn ên lîstikê serdest bikin. Ji destpêkan re tê şîret kirin ku dest bi lîstina li dijî AI-ya asta jêrîn (Sandbox an Pir Hêsan) bikin. Asta AI-ê bi tikandina îkona gemarê ya li kêleka lîstikvanê ku hûn dixwazin di panela hilbijartinê ya li jor de biguhezînin biguhezînin."
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
-msgstr ""
+msgstr "Rêyênkin ên Din"
 
 #: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
 msgid "#%i"
-msgstr ""
+msgstr "#%i"
 
 #: gui/hotkeys/HotkeyPicker.js:73
 msgid " (hold to register)"
@@ -1579,7 +1581,7 @@ msgstr ""
 
 #: gui/hotkeys/HotkeysPage.js:75
 msgid "All Hotkeys"
-msgstr ""
+msgstr "Hemû Rêyênkin"
 
 #: gui/hotkeys/HotkeysPage.js:109
 msgid "All available hotkeys."
@@ -1594,7 +1596,7 @@ msgstr ""
 #: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:259
 #: gui/pregame/MainMenuItems.js:283
 msgid "Confirmation"
-msgstr ""
+msgstr "Tesdîq"
 
 #: gui/hotkeys/HotkeysPage.js:198
 msgid "No tooltip available."
@@ -1606,7 +1608,7 @@ msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):24
 msgid "Filter:"
-msgstr ""
+msgstr "Parzûn:"
 
 #: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):101
 #: gui/options/options.xml:(caption):43
@@ -1615,11 +1617,11 @@ msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):72
 msgid "Hotkey"
-msgstr ""
+msgstr "Rêyênkin"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
 msgid "Hotkey Description"
-msgstr ""
+msgstr "Daxuyaniya Rêyênkin"
 
 #: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
@@ -1656,7 +1658,7 @@ msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):54 gui/options/options.xml:(tooltip):56
 msgid "Saves changes"
-msgstr ""
+msgstr "Guheriyên Qeydkirî"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):59
 msgid "Unsaved changes will be lost"
@@ -1686,7 +1688,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsoncategories.camera.name
 msgctxt "hotkey metadata"
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.desc
 msgctxt "hotkey metadata"
@@ -2019,7 +2021,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsoncategories.general.name
 msgctxt "hotkey metadata"
 msgid "General"
-msgstr ""
+msgstr "Gelemperî"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.desc
 msgctxt "hotkey metadata"
@@ -3497,7 +3499,7 @@ msgstr ""
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:51
 #, javascript-format
 msgid "\"%(label)s\""
-msgstr ""
+msgstr "\"%(label)s\""
 
 #: gui/loadgame/SavegameDeleter.js:53
 msgid "Saved game will be permanently deleted, are you sure?"
@@ -3519,12 +3521,12 @@ msgstr ""
 #: gui/loadgame/SavegameList.js:192
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/loadgame/SavegameList.js:193
 #, javascript-format
 msgid "%(dateString)s %(map)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s"
 
 #: gui/loadgame/SavegameLoader.js:9
 msgid "Load"
@@ -3566,7 +3568,7 @@ msgstr ""
 #: gui/hotkeys/hotkeys.xml:(caption):53 gui/loadgame/SavegameWriter.js:16
 #: gui/options/options.xml:(caption):55
 msgid "Save"
-msgstr ""
+msgstr "Tomar Bike"
 
 #: gui/loadgame/SavegameWriter.js:52
 msgid "Saved game will be permanently overwritten, are you sure?"
@@ -3583,7 +3585,7 @@ msgstr ""
 #: gui/loadgame/load.xml:(caption):54
 #: gui/replaymenu/replay_menu.xml:(caption):234
 msgid "Delete"
-msgstr ""
+msgstr "Jê bibe"
 
 #: gui/loadgame/load.xml:(caption):64
 msgid "Filter compatible saved games"
@@ -3638,7 +3640,7 @@ msgstr "Daxuyanî"
 #: gui/locale/locale.xml:(caption):17
 #: gui/locale_advanced/locale_advanced.xml:(caption):17
 msgid "Language:"
-msgstr ""
+msgstr "Ziman:"
 
 #. A locale is a set of parameters that defines the user’s language, country
 #. and any special
@@ -3657,7 +3659,7 @@ msgstr ""
 #: gui/locale_advanced/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
-msgstr ""
+msgstr "Tune"
 
 #: gui/locale_advanced/locale_advanced.js:91
 msgid "invalid locale"
@@ -3705,7 +3707,7 @@ msgstr ""
 #: gui/maps/MapCache.js:59 gui/maps/mapbrowser/grid/MapGridBrowser.js:59
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Bêpayîn"
 
 #: gui/maps/MapCache.js:66
 msgid "A randomly selected map."
@@ -3713,7 +3715,7 @@ msgstr ""
 
 #: gui/maps/MapFilters.js:91
 msgid "Default"
-msgstr ""
+msgstr "Destçûnî"
 
 #: gui/maps/MapFilters.js:92
 msgid "All maps except naval and demo maps."
@@ -3791,12 +3793,12 @@ msgstr ""
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):18
 msgctxt "zoom out"
 msgid "−"
-msgstr ""
+msgstr "−"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
@@ -3854,19 +3856,19 @@ msgstr ""
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s, Max: %(max)s"
-msgstr ""
+msgstr "Min: %(min)s, Max: %(max)s"
 
 #: gui/options/options.js:123
 #, javascript-format
 msgctxt "option number"
 msgid "Min: %(min)s"
-msgstr ""
+msgstr "Min: %(min)s"
 
 #: gui/options/options.js:125
 #, javascript-format
 msgctxt "option number"
 msgid "Max: %(max)s"
-msgstr ""
+msgstr "Max: %(max)s"
 
 #: gui/options/options.js:170
 #, javascript-format
@@ -3896,7 +3898,7 @@ msgstr ""
 
 #: gui/options/options.json[0].label
 msgid "General"
-msgstr ""
+msgstr "Gelemperî"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
@@ -4186,7 +4188,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[2].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[2].label
 msgid "Disabled"
-msgstr ""
+msgstr "Neçalak Bike"
 
 #: gui/options/options.json[2].options[3].list[0].tooltip
 msgid "Do not use antialiasing."
@@ -4288,7 +4290,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][1].label._string
 msgctxt "Option for the meshes' level of detail."
 msgid "Medium"
-msgstr ""
+msgstr "Navîn"
 
 #: gui/options/options.json[2].options[6].list[0][1].label.tooltip
 msgid "Average quality and average performance."
@@ -4310,7 +4312,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0].label._string
 msgctxt "Option for the meshes' amount of variety."
 msgid "None"
-msgstr ""
+msgstr "Tune"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0].label.tooltip
 msgid "Entities will all look the same."
@@ -4328,7 +4330,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1].label._string
 msgctxt "Option for the shadow quality."
 msgid "Medium"
-msgstr ""
+msgstr "Navîn"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][11].label
 msgid "Filtering"
@@ -4416,11 +4418,11 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1].label._string
 msgctxt "Option for the texture quality."
 msgid "Medium"
-msgstr ""
+msgstr "Navîn"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1].label.tooltip
 msgid "Medium"
-msgstr ""
+msgstr "Navîn"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1][2].label._string
 msgctxt "Option for the texture quality."
@@ -4437,27 +4439,27 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[0].label
 msgid "1x"
-msgstr ""
+msgstr "1x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[1].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[1].tooltip
 msgid "2x"
-msgstr ""
+msgstr "2x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[2].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[2].tooltip
 msgid "4x"
-msgstr ""
+msgstr "4x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[3].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[3].tooltip
 msgid "8x"
-msgstr ""
+msgstr "8x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[4].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[4].tooltip
 msgid "16x"
-msgstr ""
+msgstr "16x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].tooltip
 msgid ""
@@ -4568,17 +4570,17 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1].label._string
 msgctxt "Option for the AI difficulty."
 msgid "Very Easy"
-msgstr ""
+msgstr "Pir Hêsan"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2].label._string
 msgctxt "Option for the AI difficulty."
 msgid "Easy"
-msgstr ""
+msgstr "Hêsan"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3].label._string
 msgctxt "Option for the AI difficulty."
 msgid "Medium"
-msgstr ""
+msgstr "Navîn"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].label
 msgid "Default AI behavior"
@@ -4587,23 +4589,23 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].label._string
 msgctxt "Option for the AI difficulty."
 msgid "Hard"
-msgstr ""
+msgstr "Dijwar"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[0].label
 msgid "Random"
-msgstr ""
+msgstr "Bêpayîn"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[1].label
 msgid "Balanced"
-msgstr ""
+msgstr "Hevseng"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[2].label
 msgid "Aggressive"
-msgstr ""
+msgstr "Êrişkar"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[3].label
 msgid "Defensive"
-msgstr ""
+msgstr "Xweparêz"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].tooltip
 msgid "Default behavior of the AI."
@@ -4612,7 +4614,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4][5].label._string
 msgctxt "Option for the AI difficulty."
 msgid "Very Hard"
-msgstr ""
+msgstr "Pir Dijwar"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].label
 msgid "Assign players"
@@ -4621,7 +4623,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[0].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[0].label
 msgid "Everyone"
-msgstr ""
+msgstr "Herkes"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
@@ -5002,7 +5004,7 @@ msgstr "Neçalak Bike"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[1].label
 msgid "Completed"
-msgstr ""
+msgstr "Xelaskirî"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[2].label
 msgid "All displayed"
@@ -5060,7 +5062,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label._string
 msgctxt "Option for the meshes' amount of variety."
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label.tooltip
 msgid "Entities appearance is randomized normally."
@@ -5124,7 +5126,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
-msgstr ""
+msgstr "Fêrbûn"
 
 #: gui/pregame/MainMenuItems.js:15
 msgid "Start the introductory tutorial."
@@ -5208,7 +5210,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:133
 msgid "Load Campaign"
-msgstr ""
+msgstr "Kampanyaya barkirinê"
 
 #: gui/pregame/MainMenuItems.js:143 gui/pregame/MainMenuItems.js:193
 msgid "Replays"
@@ -5268,7 +5270,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:212
 msgid "Options"
-msgstr ""
+msgstr "Mîheng"
 
 #: gui/pregame/MainMenuItems.js:213
 msgid "Adjust game settings."
@@ -5276,7 +5278,7 @@ msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:222
 msgid "Hotkeys"
-msgstr ""
+msgstr "Rêyên Kin ên Tûşa"
 
 #: gui/pregame/MainMenuItems.js:223
 msgid "Adjust hotkeys."
@@ -5342,7 +5344,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:277
 msgid "Exit"
-msgstr ""
+msgstr "Derkeve"
 
 #: gui/pregame/MainMenuItems.js:278
 msgid "Exit the game."
@@ -5376,7 +5378,7 @@ msgstr ""
 
 #: gui/pregame/ProjectInformation.js:33
 msgid "Chat"
-msgstr ""
+msgstr "Sohbet"
 
 #: gui/pregame/ProjectInformation.js:34
 msgid ""
@@ -5759,7 +5761,7 @@ msgstr ""
 #: gui/replaymenu/replay_filters.js:148
 msgctxt "replay filter"
 msgid "Campaigns"
-msgstr ""
+msgstr "Kampanya"
 
 #: gui/replaymenu/replay_filters.js:162
 msgid "Any victory condition"
@@ -5823,7 +5825,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(caption):247
 #: gui/summary/summary.xml:(caption):26
 msgid "Summary"
-msgstr ""
+msgstr "Berhevkirinî"
 
 #: gui/replaymenu/replay_menu.xml:(caption):253
 msgid "Start Replay"
@@ -5868,7 +5870,7 @@ msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
-msgstr ""
+msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:4
 msgid ""
@@ -5985,11 +5987,11 @@ msgstr ""
 
 #: gui/summary/layout.js:73
 msgid "Infantry"
-msgstr ""
+msgstr "Peya"
 
 #: gui/summary/layout.js:74
 msgid "Worker"
-msgstr ""
+msgstr "Karker"
 
 #: gui/summary/layout.js:75
 msgid "Cavalry"
@@ -5997,7 +5999,7 @@ msgstr "siwarî"
 
 #: gui/summary/layout.js:76
 msgid "Champion"
-msgstr ""
+msgstr "Şampiyon"
 
 #: gui/summary/layout.js:77
 msgid "Heroes"
@@ -6193,12 +6195,12 @@ msgstr ""
 #, javascript-format
 msgctxt "Player listing with color indicator"
 msgid "%(colorIndicator)s %(playerListing)s"
-msgstr ""
+msgstr "%(colorIndicator)s %(playerListing)s"
 
 #: gui/summary/summary.js:204
 msgctxt "Charts player color indicator"
 msgid "■"
-msgstr ""
+msgstr "■"
 
 #: gui/summary/summary.js:234
 msgctxt "Player listing"
@@ -6245,7 +6247,7 @@ msgstr ""
 #: gui/summary/summary.js:532
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
-msgstr ""
+msgstr "%(mapName)s - %(mapType)s"
 
 #: gui/summary/summary.js:544
 #, javascript-format
@@ -6343,7 +6345,7 @@ msgstr ""
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
-msgstr ""
+msgstr "Yekîne dema ku di hundurê avahiyê de garnîzon bûne ezmûnê digirin."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
@@ -7168,7 +7170,7 @@ msgstr ""
 #: simulation/data/resources/metal.jsonname
 msgctxt "firstWord"
 msgid "Metal"
-msgstr ""
+msgstr "Metal"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7176,7 +7178,7 @@ msgstr ""
 #: simulation/data/resources/metal.jsonname
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "Metal"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -7221,7 +7223,7 @@ msgstr ""
 #: simulation/data/resources/stone.jsonname
 msgctxt "firstWord"
 msgid "Stone"
-msgstr ""
+msgstr "Kevir"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7229,7 +7231,7 @@ msgstr ""
 #: simulation/data/resources/stone.jsonname
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr ""
+msgstr "Kevir"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -7255,7 +7257,7 @@ msgstr ""
 #: simulation/data/resources/wood.jsonname
 msgctxt "firstWord"
 msgid "Wood"
-msgstr ""
+msgstr "Êzing"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7263,14 +7265,14 @@ msgstr ""
 #: simulation/data/resources/wood.jsonname
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "Êzing"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: simulation/data/resources/wood.jsonsubtypes.tree
 msgctxt "firstWord"
 msgid "Tree"
-msgstr ""
+msgstr "Dar"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7278,4 +7280,4 @@ msgstr ""
 #: simulation/data/resources/wood.jsonsubtypes.tree
 msgctxt "withinSentence"
 msgid "Tree"
-msgstr ""
+msgstr "Dar"

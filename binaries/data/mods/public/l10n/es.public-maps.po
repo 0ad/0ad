@@ -31,7 +31,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-20 07:33+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2018,2020-2022\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
@@ -390,7 +390,7 @@ msgstr "Los jugadores comienzan con un fuerte ya construido y montones de recurs
 
 #: maps/random/fortress.jsonsettings.Name
 msgid "Fortress"
-msgstr "Fortaleza"
+msgstr "fortaleza"
 
 #: maps/random/frontier.jsonsettings.Description
 msgid "A wild, unknown landscape awaits rival explorers."
@@ -1506,7 +1506,7 @@ msgstr "Campaña estratégica - Prueba de concepto"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[0].Name:38
 msgid "Delian League"
-msgstr "Confederación de Delos"
+msgstr "Liga de Delos"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[1].Name:38
 #: maps/scenarios/peloponnese.xml:PlayerData[3].Name:38
@@ -2014,7 +2014,7 @@ msgstr "Ptolomeo «El salvador»"
 
 #: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[2].Name:38
 msgid "Seleucids"
-msgstr "Seleúcidas"
+msgstr "Seléucidas"
 
 #: maps/scenarios/sandbox_ptolemies_02.xml:PlayerData[3].Name:38
 msgid "Libyans"
@@ -2473,7 +2473,7 @@ msgstr "Posees una maravilla y tu y tus aliados venceréis en %(time)s."
 msgid "You own a Wonder and will win in %(time)s."
 msgstr "Posees una maravilla y vencerás en %(time)s."
 
-#: maps/scripts/WonderVictory.js:150
+#: maps/scripts/WonderVictory.js:139
 #, javascript-format
 msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
@@ -2481,7 +2481,7 @@ msgstr[0] "%(lastPlayer)s ha vencido (victoria por maravilla)."
 msgstr[1] "%(players)s y %(lastPlayer)s han vencido (victoria por maravilla)."
 msgstr[2] "%(players)s y %(lastPlayer)s han vencido (victoria por maravilla)."
 
-#: maps/scripts/WonderVictory.js:154
+#: maps/scripts/WonderVictory.js:143
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (wonder victory)."
 msgid_plural ""

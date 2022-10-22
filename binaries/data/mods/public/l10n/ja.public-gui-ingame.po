@@ -12,7 +12,7 @@
 # llen_llen
 # Mephisto Books
 # naoki yoshida
-# Photon man
+# Photon “PHN” man
 # sgensum
 # UNJIRO
 # Yukiharu YABUKI
@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-01 07:08+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
 "Last-Translator: 宮良一生, 2022\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
@@ -158,7 +158,7 @@ msgid "Click to Resume Game"
 msgstr "クリックしてゲームを再開"
 
 #: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:273
-#: gui/session/selection_details.js:291 gui/session/selection_panels.js:582
+#: gui/session/selection_details.js:291 gui/session/selection_panels.js:588
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -166,7 +166,7 @@ msgstr "m:ss"
 #. Translation: String displayed when the research is paused. E.g. by being
 #. garrisoned or
 #. when not the first item in the queue.
-#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:597
+#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:602
 msgid "This item is paused."
 msgstr ""
 
@@ -720,7 +720,7 @@ msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "平均ボーナス射程：%(range)sメートル"
 
-#: gui/session/input.js:702
+#: gui/session/input.js:701
 msgid "Cannot build wall here!"
 msgstr "ここに壁は建設できません"
 
@@ -1081,7 +1081,7 @@ msgstr "%(name)sを外に出す"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "シングルクリックで1体を外に出します。Shift+クリックで同種のユニットをすべて外に出します。"
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:914
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:919
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "プレイヤー：%(playername)s"
@@ -1123,55 +1123,55 @@ msgstr "人口上限の不足:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:779
+#: gui/session/selection_panels.js:784
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] ""
 
-#: gui/session/selection_panels.js:785
+#: gui/session/selection_panels.js:790
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "不足：%(entityCounts)s"
 
-#: gui/session/selection_panels.js:786
+#: gui/session/selection_panels.js:791
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:838
+#: gui/session/selection_panels.js:843
 msgid "Cannot research while upgrading."
 msgstr "アップグレード中は研究できません。"
 
-#: gui/session/selection_panels.js:1068
+#: gui/session/selection_panels.js:1073
 msgid "Cannot train while upgrading."
 msgstr "アップグレード中は養成できません。"
 
-#: gui/session/selection_panels.js:1137
+#: gui/session/selection_panels.js:1142
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr "%(primaryName)s (%(secondaryName)s)にアップグレード。 %(tooltip)s"
 
-#: gui/session/selection_panels.js:1143
+#: gui/session/selection_panels.js:1148
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr "%(primaryName)s (%(secondaryName)s)にアップグレード。"
 
-#: gui/session/selection_panels.js:1151
+#: gui/session/selection_panels.js:1156
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr "%(primaryName)sにアップグレード。 %(tooltip)s"
 
-#: gui/session/selection_panels.js:1156
+#: gui/session/selection_panels.js:1161
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr "%(primaryName)sにアップグレード。"
 
-#: gui/session/selection_panels.js:1193
+#: gui/session/selection_panels.js:1198
 msgid "Cancel Upgrading"
 msgstr "アップグレードをキャンセル"
 
-#: gui/session/selection_panels.js:1208
+#: gui/session/selection_panels.js:1213
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."

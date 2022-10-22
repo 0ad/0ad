@@ -4,7 +4,7 @@
 # project.
 # Translators:
 # 76407af6b051a571d67c2577de2183db_7380deb
-# Junghee Lee
+# JungHee Lee
 # Gu Hong Min
 # ks k
 # Muk Myung-Hee MyungHee
@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-20 07:33+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -147,7 +147,7 @@ msgstr "침식에 의해 생성된 높은 지형이 있는 실험용 지도로 �
 
 #: maps/random/belgian_uplands.jsonsettings.Name
 msgid "Belgian Uplands"
-msgstr "벨기에 높은 지대"
+msgstr "벨기에 고지대"
 
 #: maps/random/botswanan_haven.jsonsettings.Description
 msgid ""
@@ -2448,13 +2448,13 @@ msgstr "당신이 불가사의를 소유하고 있다면 당신과 당신의 동
 msgid "You own a Wonder and will win in %(time)s."
 msgstr "당신은 불가사의를 소유하고 있으며 %(time)s 후에 승리할 것입니다."
 
-#: maps/scripts/WonderVictory.js:150
+#: maps/scripts/WonderVictory.js:139
 #, javascript-format
 msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
 msgstr[0] "%(players)s님과 %(lastPlayer)s님이 승리했습니다 (불가사의 승리)."
 
-#: maps/scripts/WonderVictory.js:154
+#: maps/scripts/WonderVictory.js:143
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (wonder victory)."
 msgid_plural ""

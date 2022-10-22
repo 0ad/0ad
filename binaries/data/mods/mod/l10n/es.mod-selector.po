@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-09-20 07:08+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-09-12 20:06+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2020-2022\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
@@ -30,14 +30,14 @@ msgstr ""
 "Language: es\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#: gui/common/functions_msgbox.js:25
+#: gui/common/functions_msgbox.js:44
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
 msgstr "Abriendo %(url)s\n en el navegador predeterminado. Un momento por favor..."
 
-#: gui/common/functions_msgbox.js:28
+#: gui/common/functions_msgbox.js:47
 msgid "Opening page"
 msgstr "Abriendo página"
 
@@ -273,7 +273,7 @@ msgstr "Cancelar actualización"
 #: gui/modio/modio.js:265
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr "Descargando “%(modname)s”"
+msgstr "Descargando «%(modname)s»"
 
 #: gui/modio/modio.js:268
 msgid "Downloading"
@@ -394,7 +394,7 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr "El servicio mod.io esta desarrollado por DBolical, la compañía detrás de IndieDB y ModDB. Estas webs han promocionado 0 A.D. así como otros proyectos independientes durante mucho tiempo. ¡Ahora, mod.io nos permite buscar y descargar todos los mods que previamente ha verificado el equipo! ¡Haz clic en \"Descargar mods\" para probar e instalar algunos!"
+msgstr "El servicio mod.io esta desarrollado por DBolical, la compañía detrás de IndieDB y ModDB. ¡Estas webs han promocionado 0 A.D. así como otros proyectos independientes durante mucho tiempo! Ahora, mod.io nos permite buscar y descargar todos los mods previamente verificados por su equipo. ¡Haz clic en «Descargar mods» para probar e instalar algunos!"
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
@@ -520,7 +520,7 @@ msgstr "Términos y condiciones de mod.io"
 msgid "mod.io Privacy Policy"
 msgstr "Política de privacidad de mod.io"
 
-#: gui/msgbox/msgbox.js:25
+#: gui/msgbox/msgbox.js:25 gui/timedconfirmation/timedconfirmation.js:46
 msgid "OK"
 msgstr "Aceptar"
 

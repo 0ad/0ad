@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-13 07:11+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: Szabó Lambert, 2021-2022\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
@@ -5202,7 +5202,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:92
 msgid "Single-player"
-msgstr "Egyjátékos"
+msgstr "Egyjátékos mód"
 
 #: gui/pregame/MainMenuItems.js:93
 msgid "Start, load, or replay a single-player game."
@@ -5873,7 +5873,7 @@ msgstr "Játékos keresése"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):98
 msgid "File path for the currently selected replay."
-msgstr ""
+msgstr "A jelenleg kiválasztott végigjátszás elérési újta."
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):241
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
@@ -6417,7 +6417,7 @@ msgstr "Karthágói bajnok lándzsás és bajnok lovas lándzsás."
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr "A többi bajnoktól eltérően mindkettő a templomban képezhető az erőd helyett."
+msgstr "A többi bajnok egységtől eltérően ezeket a templomokban lehet kiképezni, nem pedig az erődökben."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
@@ -6592,7 +6592,7 @@ msgstr "Különleges építmények, melyek lehetővé teszik számodra, hogy zso
 msgid ""
 "Mercenaries will not gather resources and cost only metal, but they are "
 "experienced and strong."
-msgstr "A zsoldosok nem gyűjtenek nyersanyagokat és csak fémbe kerülnek, de erősek és tapasztaltak."
+msgstr "A zsoldosok nem gyűjtenek nyersanyagokat, felfogadásukhoz pedig csak fémre van szükség, ugyanakkor tapasztaltak és erősek."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -6614,7 +6614,7 @@ msgstr "A halászat gyorsabb, mint az élelem gyűjtése a mezőkről."
 msgid ""
 "Careful! Fish are not an infinite resource! Although they do slowly "
 "repopulate when left alone."
-msgstr ""
+msgstr "De vigyázz: a halállomány véges! (Habár szép lassan helyreáll magától, amennyiben nincs bolygatva.)"
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
@@ -6651,7 +6651,7 @@ msgstr "ERŐD"
 msgid ""
 "Usually the strongest structure of a civilization and the place where you "
 "can train Heroes."
-msgstr ""
+msgstr "Általában ez a civilizáció legerősebb épülete, illetve az a hely, ahol a hősök kiképzése zajlik."
 
 #: gui/text/tips/fortress.txt:3
 msgid "Garrison soldiers inside to add more firepower to its defense."

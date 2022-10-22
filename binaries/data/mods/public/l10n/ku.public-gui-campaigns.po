@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2022-04-18 07:10+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: Îslam Zinar <islamzinar@yandex.com>, 2021\n"
+"Last-Translator: Îslam Zinar <islamzinar@yandex.com>, 2022\n"
 "Language-Team: Kurdish (https://www.transifex.com/wildfire-games/teams/17418/ku/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,16 +23,18 @@ msgid ""
 "Discover the new and improved maps in Alpha XXVI with a demo campaign, "
 "taking you through all of them."
 msgstr ""
+"Nexşeyên nû û pêşkeftî yên li Alpha XXVI bi kampanyayek demo vedîtin, ku hûn"
+" hemî wan bişopînin."
 
 #: campaigns/new_maps.jsonName
 msgctxt "Campaign Template"
 msgid "Demo campaign - new maps"
-msgstr ""
+msgstr "Kampanya Demo - nexşeyên nû"
 
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
-msgstr ""
+msgstr "Fêr bibe ka meriv çawa 0 A.D. dilîze"
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
 msgctxt "Campaign Template"
@@ -43,88 +45,93 @@ msgid ""
 " fast at the start, be prepared to run through the initial bit several "
 "times."
 msgstr ""
+"Ev nexşe dê ji bo destpêkirina lîstikê bi bandor rêbernameyek hişk bide. Di "
+"destpêka lîstikê de ya herî girîng ev e ku meriv bi lez û bez çavkaniyan "
+"berhev bike da ku hûn paşê karibin têra xwe leşkeran ava bikin. Hişyarî: Ev "
+"di destpêkê de pir bilez e, amade bin ku çend caran biteya destpêkê "
+"bimeşînin."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
 msgid "Economy Walkthrough"
-msgstr ""
+msgstr "Aborî Walkthrough"
 
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
+msgstr "Ev dersdarek bingehîn e ku hûn dest bi lîstina 0 A.D. bikin."
 
 #: campaigns/tutorial.jsonLevels.introduction.Name
 msgctxt "Campaign Template"
 msgid "Introductory Tutorial"
-msgstr ""
+msgstr "Fêrbûna Destpêkê"
 
 #: campaigns/tutorial.jsonName
 msgctxt "Campaign Template"
 msgid "Tutorial"
-msgstr ""
+msgstr "Fêrbûn"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:155
 msgctxt "campaign status"
 msgid "Completed"
-msgstr ""
+msgstr "Xelaskirî"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:157
 msgctxt "campaign status"
 msgid "Available"
-msgstr ""
+msgstr "Berdeste"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:216
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr ""
+msgstr "Di barkirina kampanyayê de çewtî %s: %s."
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
-msgstr ""
+msgstr "Navê Kampanyayê"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
 msgid "No scenario selected"
-msgstr ""
+msgstr "Tu senaryo nehat hilbijartin"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):58
 msgid "Back to Main Menu"
-msgstr ""
+msgstr "Vegere Menuya Sereke"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):62
 msgid "Saved Games"
-msgstr ""
+msgstr "Lîstikên Qeydkirî"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
 msgid "Start Scenario"
-msgstr ""
+msgstr "Senaryoya Destpêkê"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):69
 msgid "Resume Saved Game"
-msgstr ""
+msgstr "Lîstika Qeydkirî Dîsa Veke"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):27
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
-msgstr ""
+msgstr "Navê Senaryoyê"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):31
 msgctxt "campaignLevelList"
 msgid "Status"
-msgstr ""
+msgstr "Cî"
 
 #: gui/campaigns/load_modal/LoadModal.js:18
 msgid "file cannot be loaded"
-msgstr ""
+msgstr "pel nayê barkirin"
 
 #: gui/campaigns/load_modal/LoadModal.js:104
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
-msgstr ""
+msgstr "Ma hûn pê bawer in ku hûn dixwazin %s jêbibin? Ev nayê betalkirin."
 
 #: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
-msgstr ""
+msgstr "Tesdîq"
 
 #: gui/campaigns/load_modal/LoadModal.js:106
 msgid "No"
@@ -137,15 +144,15 @@ msgstr "Erê"
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):13
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):39
 msgid "Load Campaign"
-msgstr ""
+msgstr "Kampanyaya barkirinê"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):20
 msgid "No ongoing campaigns."
-msgstr ""
+msgstr "Kampanyayên berdewam tune."
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
-msgstr ""
+msgstr "Navê rêça hilbijartî:"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):31
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
@@ -154,32 +161,32 @@ msgstr "Betal"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):35
 msgid "Delete"
-msgstr ""
+msgstr "Jê bibe"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
 msgid "Start a campaign"
-msgstr ""
+msgstr "Kampanyayek bidin destpêkirin"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run:"
-msgstr ""
+msgstr "Ji kerema xwe navê kampanyaya xweya nû binivîsin:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
 msgid "Start Campaign"
-msgstr ""
+msgstr "Kampanyayê dest pê bikin"
 
 #: gui/campaigns/setup/CampaignSetupPage.js:40
 msgid "No campaign selected."
-msgstr ""
+msgstr "Ti kampanya nehat hilbijartin."
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
 msgid "Campaigns"
-msgstr ""
+msgstr "Kampanya"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
 msgid "No Campaign selected"
-msgstr ""
+msgstr "Ti Kampanya nehat hilbijartin"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
 msgid "Main Menu"
@@ -193,4 +200,4 @@ msgstr "Nav"
 #: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s - %(templateName)s"

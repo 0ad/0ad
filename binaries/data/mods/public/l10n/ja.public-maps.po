@@ -7,15 +7,15 @@
 # Kanetaka Suto
 # llen_llen
 # naoki yoshida
-# Photon man
+# Photon “PHN” man
 # red hare
 # Yukiharu YABUKI
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-20 07:33+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: Photon man, 2021\n"
+"Last-Translator: Photon “PHN” man, 2021\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2447,13 +2447,13 @@ msgstr "象徴を所有した為、あなたと同盟国の勝利まで%(time)s�
 msgid "You own a Wonder and will win in %(time)s."
 msgstr "象徴を所有しました、あと%(time)sで勝利できます。"
 
-#: maps/scripts/WonderVictory.js:150
+#: maps/scripts/WonderVictory.js:139
 #, javascript-format
 msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
 msgstr[0] "%(players)sと%(lastPlayer)sの勝利です。(象徴勝利)"
 
-#: maps/scripts/WonderVictory.js:154
+#: maps/scripts/WonderVictory.js:143
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (wonder victory)."
 msgid_plural ""
