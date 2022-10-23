@@ -49,6 +49,9 @@ SkyManager::SkyManager()
 void SkyManager::LoadAndUploadSkyTexturesIfNeeded(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
+	if (m_VertexArray.GetNumberOfVertices() == 0)
+		CreateSkyCube();
+
 	if (m_SkyTextureCube)
 		return;
 
@@ -215,9 +218,6 @@ void SkyManager::RenderSky(
 	// Do nothing unless SetSkySet was called
 	if (m_SkySet.empty() || !m_SkyTextureCube)
 		return;
-
-	if (m_VertexArray.GetNumberOfVertices() == 0)
-		CreateSkyCube();
 
 	const CCamera& camera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
