@@ -1,18 +1,18 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
 # 76407af6b051a571d67c2577de2183db_7380deb
-# Junghee Lee
+# JungHee Lee
 # Gu Hong Min
 # ks k
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-09-20 07:08+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-09-12 20:06+0000\n"
-"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2021-2022\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2021-2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,14 +20,14 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gui/common/functions_msgbox.js:25
+#: gui/common/functions_msgbox.js:44
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
 msgstr "%(url)s 을(를)\n 기존의 웹 브라우저로 열고 있습니다. 잠시만 기다려 주십시오…"
 
-#: gui/common/functions_msgbox.js:28
+#: gui/common/functions_msgbox.js:47
 msgid "Opening page"
 msgstr "페이지를 여는중"
 
@@ -510,7 +510,7 @@ msgstr "mod.io 약관"
 msgid "mod.io Privacy Policy"
 msgstr "mod.io 개인 정보 보호 정책"
 
-#: gui/msgbox/msgbox.js:25
+#: gui/msgbox/msgbox.js:25 gui/timedconfirmation/timedconfirmation.js:46
 msgid "OK"
 msgstr "확인"
 

@@ -8,15 +8,16 @@
 # Dabiq 1441
 # Muhammad Furqon Abrori
 # Joshua Randiny
+# Mas Nnaw
 # Samuel
 # Eggar Tirtayasa
 # Ulzeta Ulzeta
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-20 07:33+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>, 2021-2022\n"
+"Last-Translator: Mas Nnaw, 2022\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1914,11 +1915,11 @@ msgstr "Sandbox - Bangsa Galia"
 
 #: maps/scenarios/sandbox_han.xml:Description:39
 msgid "A simple map showcasing the Han civilization's assets in the game."
-msgstr ""
+msgstr "Map sederhana tentang isi peradaban Han di dalam permainan. "
 
 #: maps/scenarios/sandbox_han.xml:Name:39
 msgid "Sandbox - The Han"
-msgstr ""
+msgstr "Sandbox - Han"
 
 #: maps/scenarios/sandbox_iberians.xml:Description:38
 msgid "A demo map for the Iberians."
@@ -2448,13 +2449,13 @@ msgstr "Anda memiliki Keajaiban dan Anda dan sekutu Anda akan menang dalam %(tim
 msgid "You own a Wonder and will win in %(time)s."
 msgstr "Anda memiliki Keajaiban dan Anda akan menang dalam %(time)s."
 
-#: maps/scripts/WonderVictory.js:150
+#: maps/scripts/WonderVictory.js:139
 #, javascript-format
 msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
 msgstr[0] "%(players)s dan %(lastPlayer)s telah menang (kemenangan keajaiban)."
 
-#: maps/scripts/WonderVictory.js:154
+#: maps/scripts/WonderVictory.js:143
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (wonder victory)."
 msgid_plural ""

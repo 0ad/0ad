@@ -46,7 +46,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-13 07:11+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2018,2020-2022\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
@@ -555,7 +555,7 @@ msgstr "\\[Valor erróneo %(id)s]"
 
 #: gui/common/network.js:98
 msgid "Lost connection to the server."
-msgstr "Conexión perdida con el servidor."
+msgstr "Perdida la conexión con el servidor."
 
 #: gui/common/network.js:99
 msgid "Failed to connect to the server."
@@ -607,7 +607,7 @@ msgstr "Fácil"
 #: gui/common/settings.js:128
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr "Intermedio"
+msgstr "Media"
 
 #: gui/common/settings.js:133
 msgctxt "aiDiff"
@@ -3473,12 +3473,12 @@ msgstr "Seleccionar el siguiente guerrero inactivo"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle worker."
-msgstr "Seleccionar el siguiente trabajador inactivo."
+msgstr "Selecciona el siguiente trabajador inactivo."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.name
 msgctxt "hotkey metadata"
 msgid "Select next idle worker"
-msgstr "Seleccionar el siguiente trabajador inactivo"
+msgstr "Seleccionar siguiente trabajador inactivo"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.desc
 msgctxt "hotkey metadata"
@@ -6021,7 +6021,7 @@ msgstr "Avanzadas"
 
 #: gui/summary/layout.js:38
 msgid "Military"
-msgstr "Militares"
+msgstr "Militar"
 
 #: gui/summary/layout.js:39
 msgid "Fortresses"
@@ -6048,15 +6048,15 @@ msgstr "Unidades"
 
 #: gui/summary/layout.js:73
 msgid "Infantry"
-msgstr "de Infantería"
+msgstr "Infantería"
 
 #: gui/summary/layout.js:74
 msgid "Worker"
-msgstr "Trabajadoras"
+msgstr "Trabajador"
 
 #: gui/summary/layout.js:75
 msgid "Cavalry"
-msgstr "de Caballería"
+msgstr "Caballería"
 
 #: gui/summary/layout.js:76
 msgid "Champion"
@@ -6380,7 +6380,7 @@ msgstr "Construye arietes y recluta ciudadanos-soldado."
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr "Guarnece unidades para sanarlos lentamente y proteger el campamento militar de los ataques y el desgaste."
+msgstr "Guarnece unidades para curarlos lentamente y proteger el campamento militar de los ataques y evitar que caiga en decadencia."
 
 #: gui/text/tips/autoqueue.txt:1
 msgid "AUTOQUEUE"
@@ -6406,7 +6406,7 @@ msgstr "Recluta todo tipo de ciudadanos-soldado. Algunas civilizaciones pueden d
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
-msgstr "Las unidades ganan experiencia mientras están guarnecidas."
+msgstr "Las unidades ganan experiencia cuando están guarnecidas en el edificio."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
@@ -6515,7 +6515,7 @@ msgstr "Recluta unidades de caballería y permite investigar tecnología relacio
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
-msgstr "Las unidades ganan experiencia mientras están guarnecidas en la estructura."
+msgstr "Las unidades ganan experiencia cuando están guarnecidas en la estructura."
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"

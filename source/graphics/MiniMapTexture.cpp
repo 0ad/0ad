@@ -443,11 +443,18 @@ void CMiniMapTexture::RenderFinalTexture(
 	// TODO: Update all but camera at same speed as simulation
 	const double currentTime = timer_Time();
 	const bool doUpdate = (currentTime - m_LastFinalTextureUpdate > 0.5) || m_FinalTextureDirty;
-	if (doUpdate)
-		m_LastFinalTextureUpdate = currentTime;
-	else
+	if (!doUpdate)
 		return;
+	m_LastFinalTextureUpdate = currentTime;
 	m_FinalTextureDirty = false;
+
+	// We might scale entities properly in the vertex shader but it requires
+	// additional space in the vertex buffer. So we assume that we don't need
+	// to change an entity size so often.
+	// Radius with instancing is lower because an entity has a more round shape.
+	const float entityRadius = static_cast<float>(m_MapSize) / 128.0f * (m_UseInstancing ? 5.0 : 6.0f);
+
+	UpdateAndUploadEntities(deviceCommandContext, entityRadius, currentTime);
 
 	PROFILE3("Render minimap texture");
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render minimap texture");
@@ -457,10 +464,6 @@ void CMiniMapTexture::RenderFinalTexture(
 	const SViewPort viewPort = { 0, 0, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE };
 	g_Renderer.SetViewport(viewPort);
 
-	CmpPtr<ICmpRangeManager> cmpRangeManager(m_Simulation, SYSTEM_ENTITY);
-	ENSURE(cmpRangeManager);
-
-	const float invTileMapSize = 1.0f / static_cast<float>(TERRAIN_TILE_SIZE * m_MapSize);
 	const float texCoordMax = m_TerrainTexture ? static_cast<float>(m_MapSize - 1) / m_TerrainTexture->GetWidth() : 1.0f;
 
 	Renderer::Backend::IShaderProgram* shader = nullptr;
@@ -559,270 +562,278 @@ void CMiniMapTexture::RenderFinalTexture(
 
 	deviceCommandContext->EndPass();
 
-	// We might scale entities properly in the vertex shader but it requires
-	// additional space in the vertex buffer. So we assume that we don't need
-	// to change an entity size so often.
-	// Radius with instancing is lower because an entity has a more round shape.
-	const float entityRadius = static_cast<float>(m_MapSize) / 128.0f * (m_UseInstancing ? 5.0 : 6.0f);
-
-	if (doUpdate)
-	{
-		m_Icons.clear();
-		m_IconsCache.clear();
-
-		CSimulation2::InterfaceList ents = m_Simulation.GetEntitiesWithInterface(IID_Minimap);
-
-		VertexArrayIterator<float[2]> attrPos = m_AttributePos.GetIterator<float[2]>();
-		VertexArrayIterator<u8[4]> attrColor = m_AttributeColor.GetIterator<u8[4]>();
-
-		m_EntitiesDrawn = 0;
-		MinimapUnitVertex v;
-		std::vector<MinimapUnitVertex> pingingVertices;
-		pingingVertices.reserve(MAX_ENTITIES_DRAWN / 2);
-
-		if (currentTime > m_NextBlinkTime)
-		{
-			m_BlinkState = !m_BlinkState;
-			m_NextBlinkTime = currentTime + m_HalfBlinkDuration;
-		}
-
-		bool iconsEnabled = false;
-		CFG_GET_VAL("gui.session.minimap.icons.enabled", iconsEnabled);
-		float iconsOpacity = 1.0f;
-		CFG_GET_VAL("gui.session.minimap.icons.opacity", iconsOpacity);
-		float iconsSizeScale = 1.0f;
-		CFG_GET_VAL("gui.session.minimap.icons.sizescale", iconsSizeScale);
-
-		bool iconsCountOverflow = false;
-
-		entity_pos_t posX, posZ;
-		for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
-		{
-			ICmpMinimap* cmpMinimap = static_cast<ICmpMinimap*>(it->second);
-			if (cmpMinimap->GetRenderData(v.r, v.g, v.b, posX, posZ))
-			{
-				LosVisibility vis = cmpRangeManager->GetLosVisibility(it->first, m_Simulation.GetSimContext().GetCurrentDisplayedPlayer());
-				if (vis != LosVisibility::HIDDEN)
-				{
-					v.a = 255;
-					v.position.X = posX.ToFloat();
-					v.position.Y = posZ.ToFloat();
-
-					// Check minimap pinging to indicate something
-					if (m_BlinkState && cmpMinimap->CheckPing(currentTime, m_PingDuration))
-					{
-						v.r = 255; // ping color is white
-						v.g = 255;
-						v.b = 255;
-						pingingVertices.push_back(v);
-					}
-					else
-					{
-						AddEntity(v, attrColor, attrPos, entityRadius, m_UseInstancing);
-						++m_EntitiesDrawn;
-					}
-
-					if (!iconsEnabled || !cmpMinimap->HasIcon())
-						continue;
-
-					const CellIconKey key{
-						cmpMinimap->GetIconPath(), v.r, v.g, v.b};
-					const u16 gridX = Clamp<u16>(
-						(v.position.X * invTileMapSize) * ICON_COMBINING_GRID_SIZE, 0, ICON_COMBINING_GRID_SIZE - 1);
-					const u16 gridY = Clamp<u16>(
-						(v.position.Y * invTileMapSize) * ICON_COMBINING_GRID_SIZE, 0, ICON_COMBINING_GRID_SIZE - 1);
-					CellIcon icon{
-						gridX, gridY, cmpMinimap->GetIconSize() * iconsSizeScale * 0.5f, v.position};
-					if (m_IconsCache.find(key) == m_IconsCache.end() && m_IconsCache.size() >= MAX_UNIQUE_ICON_COUNT)
-					{
-						iconsCountOverflow = true;
-					}
-					else
-					{
-						m_IconsCache[key].emplace_back(std::move(icon));
-					}
-				}
-			}
-		}
-
-		// We need to combine too close icons with the same path, we use a grid for
-		// that. But to save some allocations and space we store only the current
-		// row.
-		struct Cell
-		{
-			u32 count;
-			float maxHalfSize;
-			CVector2D averagePosition;
-		};
-		std::array<Cell, ICON_COMBINING_GRID_SIZE> gridRow;
-		for (auto& [key, icons] : m_IconsCache)
-		{
-			CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(
-				CTextureProperties(key.path));
-			const CColor color(key.r / 255.0f, key.g / 255.0f, key.b / 255.0f, iconsOpacity);
-
-			std::sort(icons.begin(), icons.end(),
-				[](const CellIcon& lhs, const CellIcon& rhs) -> bool
-				{
-					if (lhs.gridY != rhs.gridY)
-						return lhs.gridY < rhs.gridY;
-					return lhs.gridX < rhs.gridX;
-				});
-
-			for (auto beginIt = icons.begin(); beginIt != icons.end();)
-			{
-				auto endIt = std::next(beginIt);
-				while (endIt != icons.end() && beginIt->gridY == endIt->gridY)
-					++endIt;
-				gridRow.fill({0, 0.0f, {}});
-				for (; beginIt != endIt; ++beginIt)
-				{
-					Cell& cell = gridRow[beginIt->gridX];
-					const float previousPositionWeight = static_cast<float>(cell.count) / (cell.count + 1);
-					cell.averagePosition = cell.averagePosition * previousPositionWeight + beginIt->worldPosition / static_cast<float>(cell.count + 1);
-					cell.maxHalfSize = std::max(cell.maxHalfSize, beginIt->halfSize);
-					++cell.count;
-				}
-				for (const Cell& cell : gridRow)
-				{
-					if (cell.count == 0)
-						continue;
-
-					if (m_Icons.size() < MAX_ICON_COUNT)
-					{
-						m_Icons.emplace_back(Icon{
-							texture, color, cell.averagePosition, cell.maxHalfSize});
-					}
-					else
-						iconsCountOverflow = true;
-				}
-			}
-		}
-
-		if (iconsCountOverflow)
-			LOGWARNING("Too many minimap icons to draw.");
-
-		// Add the pinged vertices at the end, so they are drawn on top
-		for (const MinimapUnitVertex& vertex : pingingVertices)
-		{
-			AddEntity(vertex, attrColor, attrPos, entityRadius, m_UseInstancing);
-			++m_EntitiesDrawn;
-		}
-
-		ENSURE(m_EntitiesDrawn < MAX_ENTITIES_DRAWN);
-
-		if (!m_UseInstancing)
-		{
-			VertexArrayIterator<u16> index = m_IndexArray.GetIterator();
-			for (size_t entityIndex = 0; entityIndex < m_EntitiesDrawn; ++entityIndex)
-			{
-				index[entityIndex * 6 + 0] = static_cast<u16>(entityIndex * 4 + 0);
-				index[entityIndex * 6 + 1] = static_cast<u16>(entityIndex * 4 + 1);
-				index[entityIndex * 6 + 2] = static_cast<u16>(entityIndex * 4 + 2);
-				index[entityIndex * 6 + 3] = static_cast<u16>(entityIndex * 4 + 0);
-				index[entityIndex * 6 + 4] = static_cast<u16>(entityIndex * 4 + 2);
-				index[entityIndex * 6 + 5] = static_cast<u16>(entityIndex * 4 + 3);
-			}
-
-			m_IndexArray.Upload();
-		}
-
-		m_VertexArray.Upload();
-	}
-
-	m_VertexArray.PrepareForRendering();
-
 	if (m_EntitiesDrawn > 0)
-	{
-		CShaderDefines pointDefines;
-		pointDefines.Add(str_MINIMAP_POINT, str_1);
-		if (m_UseInstancing)
-			pointDefines.Add(str_USE_GPU_INSTANCING, str_1);
-		tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, pointDefines);
-		deviceCommandContext->SetGraphicsPipelineState(
-			tech->GetGraphicsPipelineStateDesc());
-		deviceCommandContext->BeginPass();
-		shader = tech->GetShader();
-
-		CMatrix3D unitMatrix;
-		unitMatrix.SetIdentity();
-		// Convert world space coordinates into [0, 2].
-		const float unitScale = invTileMapSize;
-		unitMatrix.Scale(unitScale * 2.0f, unitScale * 2.0f, 1.0f);
-		// Offset the coordinates to [-1, 1].
-		unitMatrix.Translate(CVector3D(-1.0f, -1.0f, 0.0f));
-		deviceCommandContext->SetUniform(
-			shader->GetBindingSlot(str_transform),
-			unitMatrix._11, unitMatrix._21, unitMatrix._12, unitMatrix._22);
-		deviceCommandContext->SetUniform(
-			shader->GetBindingSlot(str_translation),
-			unitMatrix._14, unitMatrix._24, 0.0f, 0.0f);
-
-		Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
-		scissorRect.x = scissorRect.y = 1;
-		scissorRect.width = scissorRect.height = FINAL_TEXTURE_SIZE - 2;
-		deviceCommandContext->SetScissors(1, &scissorRect);
-
-		m_VertexArray.UploadIfNeeded(deviceCommandContext);
-
-		const uint32_t stride = m_VertexArray.GetStride();
-		const uint32_t firstVertexOffset = m_VertexArray.GetOffset() * stride;
-
-		if (m_UseInstancing)
-		{
-			deviceCommandContext->SetVertexAttributeFormat(
-				Renderer::Backend::VertexAttributeStream::POSITION,
-				m_InstanceAttributePosition.format, m_InstanceAttributePosition.offset,
-				m_InstanceVertexArray.GetStride(),
-				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-
-			deviceCommandContext->SetVertexAttributeFormat(
-				Renderer::Backend::VertexAttributeStream::UV1,
-				m_AttributePos.format, m_AttributePos.offset, stride,
-				Renderer::Backend::VertexAttributeRate::PER_INSTANCE, 1);
-			deviceCommandContext->SetVertexAttributeFormat(
-				Renderer::Backend::VertexAttributeStream::COLOR,
-				m_AttributeColor.format, m_AttributeColor.offset, stride,
-				Renderer::Backend::VertexAttributeRate::PER_INSTANCE, 1);
-
-			deviceCommandContext->SetVertexBuffer(
-				0, m_InstanceVertexArray.GetBuffer(), m_InstanceVertexArray.GetOffset());
-			deviceCommandContext->SetVertexBuffer(
-				1, m_VertexArray.GetBuffer(), firstVertexOffset);
-
-			deviceCommandContext->SetUniform(shader->GetBindingSlot(str_width), entityRadius);
-
-			deviceCommandContext->DrawInstanced(0, m_InstanceVertexArray.GetNumberOfVertices(), 0, m_EntitiesDrawn);
-		}
-		else
-		{
-			m_IndexArray.UploadIfNeeded(deviceCommandContext);
-
-			deviceCommandContext->SetVertexAttributeFormat(
-				Renderer::Backend::VertexAttributeStream::POSITION,
-				m_AttributePos.format, m_AttributePos.offset, stride,
-				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-			deviceCommandContext->SetVertexAttributeFormat(
-				Renderer::Backend::VertexAttributeStream::COLOR,
-				m_AttributeColor.format, m_AttributeColor.offset, stride,
-				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-
-			deviceCommandContext->SetVertexBuffer(
-				0, m_VertexArray.GetBuffer(), firstVertexOffset);
-			deviceCommandContext->SetIndexBuffer(m_IndexArray.GetBuffer());
-
-			deviceCommandContext->DrawIndexed(m_IndexArray.GetOffset(), m_EntitiesDrawn * 6, 0);
-		}
-
-		g_Renderer.GetStats().m_DrawCalls++;
-
-		deviceCommandContext->SetScissors(0, nullptr);
-
-		deviceCommandContext->EndPass();
-	}
+		DrawEntities(deviceCommandContext, entityRadius);
 
 	deviceCommandContext->EndFramebufferPass();
 	g_Renderer.SetViewport(oldViewPort);
+}
+
+void CMiniMapTexture::UpdateAndUploadEntities(
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+	const float entityRadius, const double& currentTime)
+{
+	const float invTileMapSize = 1.0f / static_cast<float>(TERRAIN_TILE_SIZE * m_MapSize);
+
+	m_Icons.clear();
+	m_IconsCache.clear();
+
+	CSimulation2::InterfaceList ents = m_Simulation.GetEntitiesWithInterface(IID_Minimap);
+
+	VertexArrayIterator<float[2]> attrPos = m_AttributePos.GetIterator<float[2]>();
+	VertexArrayIterator<u8[4]> attrColor = m_AttributeColor.GetIterator<u8[4]>();
+
+	m_EntitiesDrawn = 0;
+	MinimapUnitVertex v;
+	std::vector<MinimapUnitVertex> pingingVertices;
+	pingingVertices.reserve(MAX_ENTITIES_DRAWN / 2);
+
+	CmpPtr<ICmpRangeManager> cmpRangeManager(m_Simulation, SYSTEM_ENTITY);
+	ENSURE(cmpRangeManager);
+
+	if (currentTime > m_NextBlinkTime)
+	{
+		m_BlinkState = !m_BlinkState;
+		m_NextBlinkTime = currentTime + m_HalfBlinkDuration;
+	}
+
+	bool iconsEnabled = false;
+	CFG_GET_VAL("gui.session.minimap.icons.enabled", iconsEnabled);
+	float iconsOpacity = 1.0f;
+	CFG_GET_VAL("gui.session.minimap.icons.opacity", iconsOpacity);
+	float iconsSizeScale = 1.0f;
+	CFG_GET_VAL("gui.session.minimap.icons.sizescale", iconsSizeScale);
+
+	bool iconsCountOverflow = false;
+
+	entity_pos_t posX, posZ;
+	for (CSimulation2::InterfaceList::const_iterator it = ents.begin(); it != ents.end(); ++it)
+	{
+		ICmpMinimap* cmpMinimap = static_cast<ICmpMinimap*>(it->second);
+		if (cmpMinimap->GetRenderData(v.r, v.g, v.b, posX, posZ))
+		{
+			LosVisibility vis = cmpRangeManager->GetLosVisibility(it->first, m_Simulation.GetSimContext().GetCurrentDisplayedPlayer());
+			if (vis != LosVisibility::HIDDEN)
+			{
+				v.a = 255;
+				v.position.X = posX.ToFloat();
+				v.position.Y = posZ.ToFloat();
+
+				// Check minimap pinging to indicate something
+				if (m_BlinkState && cmpMinimap->CheckPing(currentTime, m_PingDuration))
+				{
+					v.r = 255; // ping color is white
+					v.g = 255;
+					v.b = 255;
+					pingingVertices.push_back(v);
+				}
+				else
+				{
+					AddEntity(v, attrColor, attrPos, entityRadius, m_UseInstancing);
+					++m_EntitiesDrawn;
+				}
+
+				if (!iconsEnabled || !cmpMinimap->HasIcon())
+					continue;
+
+				const CellIconKey key{
+					cmpMinimap->GetIconPath(), v.r, v.g, v.b};
+				const u16 gridX = Clamp<u16>(
+					(v.position.X * invTileMapSize) * ICON_COMBINING_GRID_SIZE, 0, ICON_COMBINING_GRID_SIZE - 1);
+				const u16 gridY = Clamp<u16>(
+					(v.position.Y * invTileMapSize) * ICON_COMBINING_GRID_SIZE, 0, ICON_COMBINING_GRID_SIZE - 1);
+				CellIcon icon{
+					gridX, gridY, cmpMinimap->GetIconSize() * iconsSizeScale * 0.5f, v.position};
+				if (m_IconsCache.find(key) == m_IconsCache.end() && m_IconsCache.size() >= MAX_UNIQUE_ICON_COUNT)
+				{
+					iconsCountOverflow = true;
+				}
+				else
+				{
+					m_IconsCache[key].emplace_back(std::move(icon));
+				}
+			}
+		}
+	}
+
+	// We need to combine too close icons with the same path, we use a grid for
+	// that. But to save some allocations and space we store only the current
+	// row.
+	struct Cell
+	{
+		u32 count;
+		float maxHalfSize;
+		CVector2D averagePosition;
+	};
+	std::array<Cell, ICON_COMBINING_GRID_SIZE> gridRow;
+	for (auto& [key, icons] : m_IconsCache)
+	{
+		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(
+			CTextureProperties(key.path));
+		const CColor color(key.r / 255.0f, key.g / 255.0f, key.b / 255.0f, iconsOpacity);
+
+		std::sort(icons.begin(), icons.end(),
+			[](const CellIcon& lhs, const CellIcon& rhs) -> bool
+			{
+				if (lhs.gridY != rhs.gridY)
+					return lhs.gridY < rhs.gridY;
+				return lhs.gridX < rhs.gridX;
+			});
+
+		for (auto beginIt = icons.begin(); beginIt != icons.end();)
+		{
+			auto endIt = std::next(beginIt);
+			while (endIt != icons.end() && beginIt->gridY == endIt->gridY)
+				++endIt;
+			gridRow.fill({0, 0.0f, {}});
+			for (; beginIt != endIt; ++beginIt)
+			{
+				Cell& cell = gridRow[beginIt->gridX];
+				const float previousPositionWeight = static_cast<float>(cell.count) / (cell.count + 1);
+				cell.averagePosition = cell.averagePosition * previousPositionWeight + beginIt->worldPosition / static_cast<float>(cell.count + 1);
+				cell.maxHalfSize = std::max(cell.maxHalfSize, beginIt->halfSize);
+				++cell.count;
+			}
+			for (const Cell& cell : gridRow)
+			{
+				if (cell.count == 0)
+					continue;
+
+				if (m_Icons.size() < MAX_ICON_COUNT)
+				{
+					m_Icons.emplace_back(Icon{
+						texture, color, cell.averagePosition, cell.maxHalfSize});
+				}
+				else
+					iconsCountOverflow = true;
+			}
+		}
+	}
+
+	if (iconsCountOverflow)
+		LOGWARNING("Too many minimap icons to draw.");
+
+	// Add the pinged vertices at the end, so they are drawn on top
+	for (const MinimapUnitVertex& vertex : pingingVertices)
+	{
+		AddEntity(vertex, attrColor, attrPos, entityRadius, m_UseInstancing);
+		++m_EntitiesDrawn;
+	}
+
+	ENSURE(m_EntitiesDrawn < MAX_ENTITIES_DRAWN);
+
+	if (!m_UseInstancing)
+	{
+		VertexArrayIterator<u16> index = m_IndexArray.GetIterator();
+		for (size_t entityIndex = 0; entityIndex < m_EntitiesDrawn; ++entityIndex)
+		{
+			index[entityIndex * 6 + 0] = static_cast<u16>(entityIndex * 4 + 0);
+			index[entityIndex * 6 + 1] = static_cast<u16>(entityIndex * 4 + 1);
+			index[entityIndex * 6 + 2] = static_cast<u16>(entityIndex * 4 + 2);
+			index[entityIndex * 6 + 3] = static_cast<u16>(entityIndex * 4 + 0);
+			index[entityIndex * 6 + 4] = static_cast<u16>(entityIndex * 4 + 2);
+			index[entityIndex * 6 + 5] = static_cast<u16>(entityIndex * 4 + 3);
+		}
+
+		m_IndexArray.Upload();
+	}
+
+	m_VertexArray.Upload();
+
+	m_VertexArray.PrepareForRendering();
+
+	m_VertexArray.UploadIfNeeded(deviceCommandContext);
+	if (!m_UseInstancing)
+		m_IndexArray.UploadIfNeeded(deviceCommandContext);
+}
+
+void CMiniMapTexture::DrawEntities(
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+	const float entityRadius)
+{
+	const float invTileMapSize = 1.0f / static_cast<float>(TERRAIN_TILE_SIZE * m_MapSize);
+
+	CShaderDefines pointDefines;
+	pointDefines.Add(str_MINIMAP_POINT, str_1);
+	if (m_UseInstancing)
+		pointDefines.Add(str_USE_GPU_INSTANCING, str_1);
+	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, pointDefines);
+	deviceCommandContext->SetGraphicsPipelineState(
+		tech->GetGraphicsPipelineStateDesc());
+	deviceCommandContext->BeginPass();
+	Renderer::Backend::IShaderProgram* shader = tech->GetShader();
+
+	CMatrix3D unitMatrix;
+	unitMatrix.SetIdentity();
+	// Convert world space coordinates into [0, 2].
+	const float unitScale = invTileMapSize;
+	unitMatrix.Scale(unitScale * 2.0f, unitScale * 2.0f, 1.0f);
+	// Offset the coordinates to [-1, 1].
+	unitMatrix.Translate(CVector3D(-1.0f, -1.0f, 0.0f));
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_transform),
+		unitMatrix._11, unitMatrix._21, unitMatrix._12, unitMatrix._22);
+	deviceCommandContext->SetUniform(
+		shader->GetBindingSlot(str_translation),
+		unitMatrix._14, unitMatrix._24, 0.0f, 0.0f);
+
+	Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
+	scissorRect.x = scissorRect.y = 1;
+	scissorRect.width = scissorRect.height = FINAL_TEXTURE_SIZE - 2;
+	deviceCommandContext->SetScissors(1, &scissorRect);
+
+	const uint32_t stride = m_VertexArray.GetStride();
+	const uint32_t firstVertexOffset = m_VertexArray.GetOffset() * stride;
+
+	if (m_UseInstancing)
+	{
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::POSITION,
+			m_InstanceAttributePosition.format, m_InstanceAttributePosition.offset,
+			m_InstanceVertexArray.GetStride(),
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::UV1,
+			m_AttributePos.format, m_AttributePos.offset, stride,
+			Renderer::Backend::VertexAttributeRate::PER_INSTANCE, 1);
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::COLOR,
+			m_AttributeColor.format, m_AttributeColor.offset, stride,
+			Renderer::Backend::VertexAttributeRate::PER_INSTANCE, 1);
+
+		deviceCommandContext->SetVertexBuffer(
+			0, m_InstanceVertexArray.GetBuffer(), m_InstanceVertexArray.GetOffset());
+		deviceCommandContext->SetVertexBuffer(
+			1, m_VertexArray.GetBuffer(), firstVertexOffset);
+
+		deviceCommandContext->SetUniform(shader->GetBindingSlot(str_width), entityRadius);
+
+		deviceCommandContext->DrawInstanced(0, m_InstanceVertexArray.GetNumberOfVertices(), 0, m_EntitiesDrawn);
+	}
+	else
+	{
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::POSITION,
+			m_AttributePos.format, m_AttributePos.offset, stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+		deviceCommandContext->SetVertexAttributeFormat(
+			Renderer::Backend::VertexAttributeStream::COLOR,
+			m_AttributeColor.format, m_AttributeColor.offset, stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+
+		deviceCommandContext->SetVertexBuffer(
+			0, m_VertexArray.GetBuffer(), firstVertexOffset);
+		deviceCommandContext->SetIndexBuffer(m_IndexArray.GetBuffer());
+
+		deviceCommandContext->DrawIndexed(m_IndexArray.GetOffset(), m_EntitiesDrawn * 6, 0);
+	}
+
+	g_Renderer.GetStats().m_DrawCalls++;
+
+	deviceCommandContext->SetScissors(0, nullptr);
+
+	deviceCommandContext->EndPass();
 }
 
 // static

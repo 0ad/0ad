@@ -1,7 +1,6 @@
 from collections import Counter
 from decimal import Decimal
 from re import split
-from sys import stderr
 from xml.etree import ElementTree
 from os.path import exists
 
@@ -12,7 +11,7 @@ class SimulTemplateEntity:
 
     def get_file(self, base_path, vfs_path, mod):
         default_path = self.vfs_root / mod / base_path
-        file = (default_path/ "special" / "filter" / vfs_path).with_suffix('.xml')
+        file = (default_path / "special" / "filter" / vfs_path).with_suffix('.xml')
         if not exists(file):
             file = (default_path / "mixins" / vfs_path).with_suffix('.xml')
         if not exists(file):
@@ -48,28 +47,34 @@ class SimulTemplateEntity:
                 elif token not in final_tokens:
                     final_tokens.append(token)
             base_tag.text = ' '.join(final_tokens)
+            base_tag.set("datatype", "tokens")
         elif tag.get('op'):
             op = tag.get('op')
             op1 = Decimal(base_tag.text or '0')
             op2 = Decimal(tag.text or '0')
+            # Try converting to integers if possible, to pass validation.
             if op == 'add':
-                base_tag.text = str(op1 + op2)
+                base_tag.text = str(int(op1 + op2) if int(op1 + op2) == op1 + op2 else op1 + op2)
             elif op == 'mul':
-                base_tag.text = str(op1 * op2)
+                base_tag.text = str(int(op1 * op2) if int(op1 * op2) == op1 * op2 else op1 * op2)
             elif op == 'mul_round':
                 base_tag.text = str(round(op1 * op2))
             else:
                 raise ValueError(f"Invalid operator '{op}'")
         else:
             base_tag.text = tag.text
+            for prop in tag.attrib:
+                if prop not in ('disable', 'replace', 'parent', 'merge'):
+                    base_tag.set(prop, tag.get(prop))
         for child in tag:
             base_child = base_tag.find(child.tag)
             if 'disable' in child.attrib:
                 if base_child is not None:
                     base_tag.remove(base_child)
-            else:
+            elif ('merge' not in child.attrib) or (base_child is not None):
                 if 'replace' in child.attrib and base_child is not None:
                     base_tag.remove(base_child)
+                    base_child = None
                 if base_child is None:
                     base_child = ElementTree.Element(child.tag)
                     base_tag.append(base_child)
@@ -77,14 +82,19 @@ class SimulTemplateEntity:
                 if 'replace' in base_child.attrib:
                     del base_child.attrib['replace']
 
-    def load_inherited(self, base_path, vfs_path, mods, base = None):
+    def load_inherited(self, base_path, vfs_path, mods):
+        entity = self._load_inherited(base_path, vfs_path, mods)
+        entity[:] = sorted(entity[:], key=lambda x: x.tag)
+        return entity
+
+    def _load_inherited(self, base_path, vfs_path, mods, base=None):
         """
         vfs_path should be relative to base_path in a mod
         """
         if '|' in vfs_path:
-            paths = vfs_path.split("|", 2)
-            base = self.load_inherited(base_path, paths[1], mods, base);
-            base = self.load_inherited(base_path, paths[0], mods, base);
+            paths = vfs_path.split("|", 1)
+            base = self._load_inherited(base_path, paths[1], mods, base)
+            base = self._load_inherited(base_path, paths[0], mods, base)
             return base
 
         main_mod = self.get_main_mod(base_path, vfs_path, mods)
@@ -97,7 +107,7 @@ class SimulTemplateEntity:
                 for dup in duplicates:
                     self.logger.warning(f"Duplicate child node '{dup}' in tag {el.tag} of {fp}")
         if layer.get('parent'):
-            parent = self.load_inherited(base_path, layer.get('parent'), mods)
+            parent = self._load_inherited(base_path, layer.get('parent'), mods, base)
             self.apply_layer(parent, layer)
             return parent
         else:

@@ -82,6 +82,12 @@ private:
 	void RenderFinalTexture(
 		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		CLOSTexture& losTexture, CTerritoryTexture& territoryTexture);
+	void UpdateAndUploadEntities(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		const float entityRadius, const double& currentTime);
+	void DrawEntities(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		const float entityRadius);
 
 	CSimulation2& m_Simulation;
 

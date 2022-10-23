@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-20 07:33+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Timur Seber <seber.tatsoft@gmail.com>, 2021\n"
 "Language-Team: Tatar (http://www.transifex.com/wildfire-games/0ad/language/tt/)\n"
@@ -366,7 +366,7 @@ msgstr ""
 
 #: maps/random/fortress.jsonsettings.Name
 msgid "Fortress"
-msgstr ""
+msgstr "Крепость"
 
 #: maps/random/frontier.jsonsettings.Description
 msgid "A wild, unknown landscape awaits rival explorers."
@@ -1482,7 +1482,7 @@ msgstr ""
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[0].Name:38
 msgid "Delian League"
-msgstr ""
+msgstr "Дилос союзы"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[1].Name:38
 #: maps/scenarios/peloponnese.xml:PlayerData[3].Name:38
@@ -1509,7 +1509,7 @@ msgstr ""
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[6].Name:38
 msgid "Peloponnesian League"
-msgstr ""
+msgstr "Пелопоннес союзы"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[7].Name:38
 msgid "Religious Institutions"
@@ -2441,13 +2441,13 @@ msgstr ""
 msgid "You own a Wonder and will win in %(time)s."
 msgstr ""
 
-#: maps/scripts/WonderVictory.js:150
+#: maps/scripts/WonderVictory.js:139
 #, javascript-format
 msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
 msgstr[0] ""
 
-#: maps/scripts/WonderVictory.js:154
+#: maps/scripts/WonderVictory.js:143
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (wonder victory)."
 msgid_plural ""

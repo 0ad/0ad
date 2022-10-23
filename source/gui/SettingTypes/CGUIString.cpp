@@ -48,6 +48,7 @@ void CGUIString::SFeedback::Reset()
 	m_SpriteCalls.clear();
 	m_Size = CSize2D();
 	m_NewLine = false;
+	m_EndsWithSpace = false;
 }
 
 void CGUIString::GenerateTextCall(const CGUI& pGUI, SFeedback& Feedback, CStrIntern DefaultFont, const int& from, const int& to, const bool FirstLine, const IGUIObject* pObject) const

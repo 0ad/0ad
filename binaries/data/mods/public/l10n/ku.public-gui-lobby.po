@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-05 07:09+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:50+0000\n"
-"Last-Translator: Îslam Zinar <islamzinar@yandex.com>, 2021\n"
+"Last-Translator: Îslam Zinar <islamzinar@yandex.com>, 2021-2022\n"
 "Language-Team: Kurdish (http://www.transifex.com/wildfire-games/0ad/language/ku/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -144,7 +144,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:133
 #, javascript-format
 msgid "%(command)s - %(description)s"
-msgstr ""
+msgstr "%(command)s - %(description)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:147
 msgid "Send a chat message about yourself. Example: /me goes swimming."
@@ -174,26 +174,26 @@ msgstr ""
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatMe.js:24
 #, javascript-format
 msgid "* %(sender)s %(message)s"
-msgstr ""
+msgstr "* %(sender)s %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatSay.js:29
 #, javascript-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessageFormatSay.js:31
 #, javascript-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:23
 msgid "Private"
-msgstr ""
+msgstr "Taybet"
 
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:25
 #, javascript-format
 msgid "(%(private)s) %(message)s"
-msgstr ""
+msgstr "(%(private)s) %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatPanel.xml:(caption):12
 msgid "Send"
@@ -264,7 +264,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
 msgid "Connected."
@@ -282,13 +282,13 @@ msgstr ""
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
 #, javascript-format
 msgid "=== %(system)s %(message)s"
-msgstr ""
+msgstr "=== %(system)s %(message)s"
 
 #. Translation: Chat message format when there is a time prefix.
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:25
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the
@@ -296,7 +296,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:28
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:45
 msgid "BANNED"
@@ -314,7 +314,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/ConnectionHandler.js:62
 #: gui/prelobby/common/credentials/credentials.js:55
 msgid "Confirmation"
-msgstr ""
+msgstr "Tesdîq"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
@@ -334,13 +334,13 @@ msgstr "Erê"
 #: gui/lobby/LobbyPage/Game.js:310
 #, javascript-format
 msgid "%(current)s/%(max)s +%(observercount)s"
-msgstr ""
+msgstr "%(current)s/%(max)s +%(observercount)s"
 
 #. Translation: The number of players in this game
 #: gui/lobby/LobbyPage/Game.js:313
 #, javascript-format
 msgid "%(current)s/%(max)s"
-msgstr ""
+msgstr "%(current)s/%(max)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:65
 msgctxt "victory condition"
@@ -394,7 +394,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
 #: gui/lobby/LobbyPage/GameDetails.js:158
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/lobby/LobbyPage/GameDetails.js:160
 msgid "Map Type:"
@@ -450,13 +450,13 @@ msgstr ""
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "> %(rating)s"
-msgstr ""
+msgstr "> %(rating)s"
 
 #: gui/lobby/LobbyPage/GameListFilters/Rating.js:20
 #, javascript-format
 msgctxt "gamelist filter"
 msgid "< %(rating)s"
-msgstr ""
+msgstr "< %(rating)s"
 
 #: gui/lobby/LobbyPage/KickStrings.js:39
 msgid "You have been kicked from the lobby!"
@@ -490,7 +490,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/PlayerColor.js:34
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/LobbyPage/PlayerList.js:197
 msgid "Online"
@@ -511,11 +511,11 @@ msgstr ""
 #: gui/lobby/LobbyPage/PlayerList.js:221
 msgctxt "lobby presence"
 msgid "Unknown"
-msgstr ""
+msgstr "Nenas"
 
 #: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
 msgid "Status"
-msgstr ""
+msgstr "Cî"
 
 #: gui/lobby/LobbyPage/PlayerList.xml:(placeholder_text):4
 msgid "Search for Player"
@@ -540,12 +540,12 @@ msgstr ""
 #: gui/lobby/LobbyPage/ProfilePanel.js:120
 msgctxt "Used for an undefined winning rate"
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:122
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):8
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):30
@@ -638,7 +638,7 @@ msgstr ""
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):15
 msgid "Password:"
-msgstr ""
+msgstr "Şîfre"
 
 #: gui/prelobby/common/credentials/rememberpassword.xml:(caption):7
 msgid "Remember Password"
@@ -971,13 +971,13 @@ msgid ""
 " 2. Wildfire Games documents their processing activities appropriately, in "
 "particular the categories of processed personal data and security measures "
 "to protect it (GDPR 30)."
-msgstr ""
+msgstr "2. Lîstikên Wildfire çalakiyên wan ên pêvajokirinê bi guncan belge dikin, nemaze kategoriyên daneyên kesane yên hatî hilberandin û tedbîrên ewlehiyê ji bo parastina wê (GDPR 30)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:68
 msgid ""
 " 3. Wildfire Games processes personal data lawfully, fairly and "
 "transparently (GDPR 5.1.a, GDPR 12.1)."
-msgstr ""
+msgstr "3. Lîstikên Wildfire daneyên kesane bi qanûnî, adil û şefaf pêvajoyê dike (GDPR 5.1.a, GDPR 12.1)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:69
 msgid ""
@@ -1020,13 +1020,13 @@ msgid ""
 "erase personal data and the right to restrict, to withdraw consent to, to "
 "object to personal data processing and to complain at a supervisory "
 "authority (GDPR 13.2.b, GDPR 13.2.c, GDPR 13.2.d)."
-msgstr ""
+msgstr "9. Lîstikên Wildfire bikarhêneran agahdar dike ku mafê wan ê gihîştin, rastkirin, jêbirina daneyên kesane û mafê sînordarkirin, paşvekişandina razîbûnê, nerazîbûna li hember hilanîna daneyên kesane û gilîkirina li ber rayedarek çavdêriyê (GDPR 13.2.b, GDPR 13.2.c, GDPR 13.2.d)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:75
 msgid ""
 "10. Wildfire Games facilitates the exercise of user rights where possible "
 "(GDPR 12.2), without undue delay (GDPR 12.3)."
-msgstr ""
+msgstr "10. Lîstikên Wildfire li cîhê ku gengaz be karanîna mafên bikarhêneran hêsan dike (GDPR 12.2), bêyî derengmayînek nederbasdar (GDPR 12.3)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:76
 msgid ""

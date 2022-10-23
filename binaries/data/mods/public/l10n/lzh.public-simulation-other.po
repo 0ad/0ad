@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-03 07:08+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: liu lizhi <xingzuo88@qq.com>, 2022\n"
 "Language-Team: Chinese (Literary) (http://www.transifex.com/wildfire-games/0ad/language/lzh/)\n"
@@ -39,12 +39,12 @@ msgstr "吾将有事于%(_player_)s。"
 #: simulation/ai/petra/chatHelper.js:8
 #, javascript-format
 msgid "I have just sent an army against %(_player_)s."
-msgstr ""
+msgstr "余已张吾旗，伐%(_player_)s。"
 
 #: simulation/ai/petra/chatHelper.js:14
 #, javascript-format
 msgid "Let me regroup my army and I will then join you against %(_player_)s."
-msgstr ""
+msgstr "余勇可贾，待不谷重整三军，共谋%(_player_)s。"
 
 #: simulation/ai/petra/chatHelper.js:15
 #, javascript-format
@@ -572,7 +572,7 @@ msgstr ""
 msgid "Can't find free space to spawn trained units."
 msgstr ""
 
-#: simulation/components/Upgrade.js:241
+#: simulation/components/Upgrade.js:247
 msgid "Entity is producing. Cannot start upgrading."
 msgstr ""
 

@@ -4,8 +4,8 @@
 # project.
 # Translators:
 # 76407af6b051a571d67c2577de2183db_7380deb
-# Aksidion Kreimben
-# Junghee Lee
+# Aksidion Kreimben (programmer)
+# JungHee Lee
 # Dalrae Jin
 # Gu Hong Min
 # GyuTae Park
@@ -21,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-01 07:08+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
-"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2022\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -159,7 +159,7 @@ msgid "Click to Resume Game"
 msgstr "게임을 이어하려면 클릭"
 
 #: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:273
-#: gui/session/selection_details.js:291 gui/session/selection_panels.js:582
+#: gui/session/selection_details.js:291 gui/session/selection_panels.js:588
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -167,7 +167,7 @@ msgstr "m:ss"
 #. Translation: String displayed when the research is paused. E.g. by being
 #. garrisoned or
 #. when not the first item in the queue.
-#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:597
+#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:602
 msgid "This item is paused."
 msgstr "이 항목은 일시중지되었습니다."
 
@@ -721,7 +721,7 @@ msgid "Average bonus range: %(range)s meter"
 msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "추가 사정 거리: %(range)s 미터"
 
-#: gui/session/input.js:702
+#: gui/session/input.js:701
 msgid "Cannot build wall here!"
 msgstr "여기에는 성벽을 세울 수 없습니다!"
 
@@ -1082,7 +1082,7 @@ msgstr "%(name)s님을 내립니다"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "하나를 내리려면 한 번 클릭합니다.이 유형을 모두 내리려면 Shift 키를 누른 상태에서 클릭합니다."
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:914
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:919
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "플레이어: %(playername)s"
@@ -1124,55 +1124,55 @@ msgstr "불충분한 인구 수용력:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:779
+#: gui/session/selection_panels.js:784
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(class)s 계급의 %(number)s개 개체들"
 
-#: gui/session/selection_panels.js:785
+#: gui/session/selection_panels.js:790
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "남음: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:786
+#: gui/session/selection_panels.js:791
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:838
+#: gui/session/selection_panels.js:843
 msgid "Cannot research while upgrading."
 msgstr "판올림하는 동안에는 연구할 수 없습니다."
 
-#: gui/session/selection_panels.js:1068
+#: gui/session/selection_panels.js:1073
 msgid "Cannot train while upgrading."
 msgstr "판올림하는 동안에는 훈련할 수 없습니다."
 
-#: gui/session/selection_panels.js:1137
+#: gui/session/selection_panels.js:1142
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr "%(primaryName)s님으로 갱신합니다 (%(secondaryName)s). %(tooltip)s"
 
-#: gui/session/selection_panels.js:1143
+#: gui/session/selection_panels.js:1148
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr "%(primaryName)s님으로 갱신합니다 (%(secondaryName)s)."
 
-#: gui/session/selection_panels.js:1151
+#: gui/session/selection_panels.js:1156
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr "%(primaryName)s님으로 갱신합니다. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1156
+#: gui/session/selection_panels.js:1161
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr "%(primaryName)s님으로 갱신합니다."
 
-#: gui/session/selection_panels.js:1193
+#: gui/session/selection_panels.js:1198
 msgid "Cancel Upgrading"
 msgstr "업그레이드 취소"
 
-#: gui/session/selection_panels.js:1208
+#: gui/session/selection_panels.js:1213
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
