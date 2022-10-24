@@ -31,7 +31,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-03 07:08+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Michał Dariusz Nowakowski, 2022\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
@@ -378,6 +378,18 @@ msgid ""
 "us, I have abrogated my offer."
 msgstr "%(_player_)s, ponieważ nie odpowiedzieliście na moją prośbę o pokój między nami, unieważniłem moją ofertę."
 
+#: simulation/ai/petra/chatHelper.js:137
+msgid ""
+"My armies failed while defending my empire. Please honor our alliance and "
+"send help!"
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:140
+msgid ""
+"My empire regained its old strength, now it is time to seek revenge "
+"together!"
+msgstr ""
+
 #: simulation/ai/petra/data.jsondescription
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
@@ -605,7 +617,7 @@ msgstr "Nie można automatycznie ustawić jednostki w kolejce, dezaktywacja."
 msgid "Can't find free space to spawn trained units."
 msgstr "Nie można znaleźć wolnego miejsca na zbiórkę wyszkolonych jednostek."
 
-#: simulation/components/Upgrade.js:241
+#: simulation/components/Upgrade.js:247
 msgid "Entity is producing. Cannot start upgrading."
 msgstr "Jednostka jest produkowana. Nie można rozpocząć ulepszania."
 

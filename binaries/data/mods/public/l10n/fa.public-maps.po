@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-20 07:33+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: *Sociologist Abedi*, 2021\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
@@ -1331,6 +1331,7 @@ msgstr "آرکادیا"
 #: maps/scenarios/walls.xml:PlayerData[0].Name:26
 #: maps/scenarios/walltest.xml:PlayerData[0].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[1].Name:39
 msgid "Player 1"
 msgstr "بازیکن ۱"
 
@@ -1355,6 +1356,7 @@ msgstr "بازیکن ۱"
 #: maps/scenarios/walls.xml:PlayerData[1].Name:26
 #: maps/scenarios/walltest.xml:PlayerData[1].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[2].Name:39
 msgid "Player 2"
 msgstr "بازیکن ۲"
 
@@ -2452,14 +2454,14 @@ msgstr ""
 msgid "You own a Wonder and will win in %(time)s."
 msgstr ""
 
-#: maps/scripts/WonderVictory.js:150
+#: maps/scripts/WonderVictory.js:139
 #, javascript-format
 msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
 msgstr[0] ""
 msgstr[1] ""
 
-#: maps/scripts/WonderVictory.js:154
+#: maps/scripts/WonderVictory.js:143
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (wonder victory)."
 msgid_plural ""
@@ -2638,7 +2640,7 @@ msgstr "A deep rocky canyon slicing through the desert.\n\nEach player starts th
 msgid "Death Canyon (2)"
 msgstr "دره مرگ (2)"
 
-#: maps/skirmishes/deccan_plateau_2p.xml:Description:38
+#: maps/skirmishes/deccan_plateau_2p.xml:Description:39
 msgid ""
 "Two players square off across the heavily forested Deccan Plateau of central India.\n"
 "\n"
@@ -2647,9 +2649,9 @@ msgid ""
 "Virgin resources lie to the lowlands on either side of the plateau. The lowlands also offer opportunity for expansion and strategic maneuvering."
 msgstr "Two players square off across the heavily forested Deccan Plateau of central India.\n\nEach player starts the match with a free farmstead and free storehouse.\n\nVirgin resources lie to the lowlands on either side of the plateau. The lowlands also offer opportunity for expansion and strategic maneuvering."
 
-#: maps/skirmishes/deccan_plateau_2p.xml:Name:38
-msgid "Deccan Plateau (2)"
-msgstr "فلات دکن (2)"
+#: maps/skirmishes/deccan_plateau_2p.xml:Name:39
+msgid "Deccan Plateau (2 players)"
+msgstr ""
 
 #: maps/skirmishes/dueling_cliffs_3pv3p.xml:Description:39
 msgid ""
