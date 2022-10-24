@@ -80,7 +80,7 @@
 	<object size="50%-512 0 50%+512 100%">
 
 		<object size="50%-512 100%-200 50%-312 100%">
-			<include directory="gui/session/minimap/"/>
+			<include file="gui/session/minimap/MiniMap.xml"/>
 		</object>
 
 		<!-- Supplemental Details Panel (left). -->
