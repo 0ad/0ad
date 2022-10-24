@@ -126,10 +126,11 @@ GameSettings.prototype.Attributes.PlayerColor = class PlayerColor extends GameSe
 	_updateAvailable()
 	{
 		// Pick colors that the map specifies, add most unsimilar default colors
-		// Provide the access to g_MaxPlayers different colors, regardless of current playercount.
+		// Provide the access to all the colors defined in simulation/data/settings/player_defaults.json,
+		// regardless of current playercount.
 		let values = [];
 		let mapColors = false;
-		for (let i = 0; i < g_MaxPlayers; ++i)
+		for (let i = 0; i < this.defaultColors.length; ++i)
 		{
 			let col = this._getMapData(i);
 			if (col)
