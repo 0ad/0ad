@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-01 07:08+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
 "Last-Translator: caniro <carlod_39@yahoo.cl>, 2015\n"
 "Language-Team: Spanish (Chile) (http://www.transifex.com/wildfire-games/0ad/language/es_CL/)\n"
@@ -148,7 +148,7 @@ msgid "Click to Resume Game"
 msgstr "Clic para continuar el juego"
 
 #: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:273
-#: gui/session/selection_details.js:291 gui/session/selection_panels.js:582
+#: gui/session/selection_details.js:291 gui/session/selection_panels.js:588
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr ""
@@ -156,7 +156,7 @@ msgstr ""
 #. Translation: String displayed when the research is paused. E.g. by being
 #. garrisoned or
 #. when not the first item in the queue.
-#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:597
+#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:602
 msgid "This item is paused."
 msgstr ""
 
@@ -714,7 +714,7 @@ msgstr[0] "Promedio de rango de bonificación: %(range)s metro"
 msgstr[1] "Promedio de rango de bonificación: %(range)s metros"
 msgstr[2] "Promedio de rango de bonificación: %(range)s metros"
 
-#: gui/session/input.js:702
+#: gui/session/input.js:701
 msgid "Cannot build wall here!"
 msgstr "¡No se puede construir la pared aquí!"
 
@@ -1075,7 +1075,7 @@ msgstr "Descargar %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Un solo clic para descargar 1. Mayús + clic para descargar todas las unidades de este tipo."
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:914
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:919
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr ""
@@ -1117,7 +1117,7 @@ msgstr "Capacidad de población insuficiente:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:779
+#: gui/session/selection_panels.js:784
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
@@ -1125,49 +1125,49 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/session/selection_panels.js:785
+#: gui/session/selection_panels.js:790
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:786
+#: gui/session/selection_panels.js:791
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ""
 
-#: gui/session/selection_panels.js:838
+#: gui/session/selection_panels.js:843
 msgid "Cannot research while upgrading."
 msgstr ""
 
-#: gui/session/selection_panels.js:1068
+#: gui/session/selection_panels.js:1073
 msgid "Cannot train while upgrading."
 msgstr ""
 
-#: gui/session/selection_panels.js:1137
+#: gui/session/selection_panels.js:1142
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1143
+#: gui/session/selection_panels.js:1148
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr ""
 
-#: gui/session/selection_panels.js:1151
+#: gui/session/selection_panels.js:1156
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr ""
 
-#: gui/session/selection_panels.js:1156
+#: gui/session/selection_panels.js:1161
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr ""
 
-#: gui/session/selection_panels.js:1193
+#: gui/session/selection_panels.js:1198
 msgid "Cancel Upgrading"
 msgstr ""
 
-#: gui/session/selection_panels.js:1208
+#: gui/session/selection_panels.js:1213
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1359,7 +1359,7 @@ msgid ""
 msgstr "Haga clic para seleccionar un grupo de unidades, haga doble clic para mostrar las unidades agrupadas y haga clic derecho para disolver el grupo."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "Alpha XXVI: Zhuangzi"
+msgid "Alpha XXVII: ———"
 msgstr ""
 
 #: gui/session/top_panel/CivIcon.js:80

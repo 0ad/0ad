@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-10 20:43+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Language-Team: Tajik (http://www.transifex.com/wildfire-games/0ad/language/tg/)\n"
 "MIME-Version: 1.0\n"
@@ -981,7 +981,7 @@ msgstr ""
 msgid "Rainforest Tree"
 msgstr ""
 
-#: simulation/templates/mixins/builder.xml:40
+#: simulation/templates/mixins/builder.xml:41
 msgid "Builder"
 msgstr ""
 
@@ -1001,12 +1001,33 @@ msgstr ""
 msgid "Trading Post"
 msgstr ""
 
+#: simulation/templates/obstructors/movement_36x36.xml:9
+#: simulation/templates/obstructors/movement_8x36.xml:9
+#: simulation/templates/obstructors/movement_8x8.xml:9
+msgid "Movement Obstructor"
+msgstr ""
+
+#: simulation/templates/obstructors/movement_36x36.xml:11
+#: simulation/templates/obstructors/movement_8x36.xml:11
+#: simulation/templates/obstructors/movement_8x8.xml:11
+msgid "Placement obstructor to prevent movement and construction."
+msgstr ""
+
 #: simulation/templates/obstructors/placement.xml:10
 msgid "Obstructor"
 msgstr ""
 
 #: simulation/templates/obstructors/placement.xml:12
+#: simulation/templates/obstructors/placement_36x36.xml:11
+#: simulation/templates/obstructors/placement_8x36.xml:11
+#: simulation/templates/obstructors/placement_8x8.xml:11
 msgid "Placement obstructor to prevent construction but not movement"
+msgstr ""
+
+#: simulation/templates/obstructors/placement_36x36.xml:9
+#: simulation/templates/obstructors/placement_8x36.xml:9
+#: simulation/templates/obstructors/placement_8x8.xml:9
+msgid "Placement Obstructor"
 msgstr ""
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5

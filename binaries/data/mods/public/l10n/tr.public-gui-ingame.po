@@ -49,7 +49,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-01 07:08+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
 "Last-Translator: yakup <mutouk@yandex.ru>, 2014-2017,2019,2021-2022\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
@@ -187,7 +187,7 @@ msgid "Click to Resume Game"
 msgstr "Oyuna Geri Dönmek İçin Tıklayın"
 
 #: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:273
-#: gui/session/selection_details.js:291 gui/session/selection_panels.js:582
+#: gui/session/selection_details.js:291 gui/session/selection_panels.js:588
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -195,7 +195,7 @@ msgstr "m:ss"
 #. Translation: String displayed when the research is paused. E.g. by being
 #. garrisoned or
 #. when not the first item in the queue.
-#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:597
+#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:602
 msgid "This item is paused."
 msgstr "Bu öğe duraklatıldı."
 
@@ -751,7 +751,7 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Ortalama ilave menzil: %(range)s metre"
 msgstr[1] "Ortalama ilave menzil: %(range)s metre"
 
-#: gui/session/input.js:702
+#: gui/session/input.js:701
 msgid "Cannot build wall here!"
 msgstr "Buraya duvar yapılamaz!"
 
@@ -1112,7 +1112,7 @@ msgstr "Kaldır %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Tek tıklamayla 1 tane kaldır. Shift + tıklama ile bu türdeki tümünü kaldır."
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:914
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:919
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Oyuncu: %(playername)s"
@@ -1154,56 +1154,56 @@ msgstr "Yetersiz nüfüs kapasitesi:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:779
+#: gui/session/selection_panels.js:784
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(class)s sınıfındaki %(number)s varlıkları"
 msgstr[1] "%(class)s  sınıftaki %(number)s varlıkları  "
 
-#: gui/session/selection_panels.js:785
+#: gui/session/selection_panels.js:790
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Kalan: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:786
+#: gui/session/selection_panels.js:791
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:838
+#: gui/session/selection_panels.js:843
 msgid "Cannot research while upgrading."
 msgstr "Geliştirilirken araştırılamaz."
 
-#: gui/session/selection_panels.js:1068
+#: gui/session/selection_panels.js:1073
 msgid "Cannot train while upgrading."
 msgstr "Geliştirilirken eğitilemez."
 
-#: gui/session/selection_panels.js:1137
+#: gui/session/selection_panels.js:1142
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr "%(primaryName)s (%(secondaryName)s)'a yükselt.%(tooltip)s"
 
-#: gui/session/selection_panels.js:1143
+#: gui/session/selection_panels.js:1148
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr "%(primaryName)s (%(secondaryName)s) 'a yükselt."
 
-#: gui/session/selection_panels.js:1151
+#: gui/session/selection_panels.js:1156
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr "%(primaryName)s'a yükselt. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1156
+#: gui/session/selection_panels.js:1161
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr "%(primaryName)s'a yükselt."
 
-#: gui/session/selection_panels.js:1193
+#: gui/session/selection_panels.js:1198
 msgid "Cancel Upgrading"
 msgstr "Geliştirmeyi Durdur"
 
-#: gui/session/selection_panels.js:1208
+#: gui/session/selection_panels.js:1213
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1388,8 +1388,8 @@ msgid ""
 msgstr "Gruplanmış birimlere tıklayın, çift tıklayarak gruplanmış birimlere odaklanın ve sağ tıklayarak grubu dağıtın."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "Alpha XXVI: Zhuangzi"
-msgstr "Alfa XXVI: Zhuangzi"
+msgid "Alpha XXVII: ———"
+msgstr "Alfa XXVII: ———"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format

@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-07-04 07:10+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: rollieoo, 2021-2022\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
@@ -632,10 +632,13 @@ msgid "Chain Pump"
 msgstr "Kettingpomp"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
+#: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
+#: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
+#: simulation/data/technologies/gather_farming_training.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
-msgid "Workers +20% rice gather rate."
-msgstr "Arbeiders verzamelen +20% sneller rijst."
+msgid "Workers +20% grain gather rate."
+msgstr "Arbeiders verzamelen +20% sneller graan."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -644,12 +647,6 @@ msgstr "Extra voedingsstoffen voor boerderijen."
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
 msgstr "Mest"
-
-#: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
-#: simulation/data/technologies/gather_farming_plows.jsontooltip
-#: simulation/data/technologies/gather_farming_training.jsontooltip
-msgid "Workers +20% grain gather rate."
-msgstr "Arbeiders verzamelen +20% sneller graan."
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -1090,9 +1087,9 @@ msgstr "Megalopolis"
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Ga door naar de grootstadsfase, die meer entiteiten en technologieën ontsluit. Beschavingscentra +50% territorium invloed. Gebouwen +9 veroverpunten herstelsnelheid per bemande eenheid. Arbeiders +10% metaal verzamelsnelheid."
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units. Workers +10% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1107,9 +1104,9 @@ msgstr "Jùn"
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit."
-msgstr "Ga door naar de grootstadsfase, die meer entiteiten en technologieën ontsluit. Beschavingscentra +50% territorium invloed. Gebouwen +9 veroverpunten herstelsnelheid per bemande eenheid."
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
@@ -1121,9 +1118,9 @@ msgstr "Ga van een bruisend stadje naar een waarachtige metropool, vol met de wo
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit. Stable −10% batch training time."
-msgstr "Ga door naar de grootstadsfase, die meer entiteiten en technologieën ontsluit. Beschavingscentra +50% territorium invloed. Gebouwen +9 veroverpunten herstelsnelheid per bemande eenheid. Stallen +-10% rekruteringstijd voor groepen."
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units. Stable −10% batch training time."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1162,9 +1159,9 @@ msgstr "Kōmopolis"
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Ga door naar de stadsfase, die meer entiteiten en technologieën ontsluit. Beschavingscentra +30% territorium invloed. Gebouwen +7 veroverpunten herstelsnelheid per bemande eenheid. Arbeiders +10% metaal verzamelsnelheid."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units. Workers +10% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1178,9 +1175,9 @@ msgstr "Xìan"
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit."
-msgstr "Ga door naar de stadsfase, die meer entiteiten en technologieën ontsluit. Beschavingscentra +30% territorium invloed. Gebouwen +7 veroverpunten herstelsnelheid per bemande eenheid."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_pers.jsondescription
 msgid ""
@@ -1192,9 +1189,9 @@ msgstr "Ga van een klein dorpje naar een bloeiende stad, klaar om snel uit te br
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit. Stable −10% batch training time."
-msgstr "Ga door naar de grootstadsfase, die meer entiteiten en technologieën ontsluit. Beschavingscentra +30% territorium invloed. Gebouwen +7 veroverpunten herstelsnelheid per bemande eenheid. Stallen -10% rekruteringstijd voor groepen."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units. Stable −10% batch training time."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"

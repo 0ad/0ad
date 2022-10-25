@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-04-01 07:08+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>, 2020-2022\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
@@ -166,7 +166,7 @@ msgid "Click to Resume Game"
 msgstr "Kattints a játék folytatásához"
 
 #: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:273
-#: gui/session/selection_details.js:291 gui/session/selection_panels.js:582
+#: gui/session/selection_details.js:291 gui/session/selection_panels.js:588
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -174,7 +174,7 @@ msgstr "m:ss"
 #. Translation: String displayed when the research is paused. E.g. by being
 #. garrisoned or
 #. when not the first item in the queue.
-#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:597
+#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:602
 msgid "This item is paused."
 msgstr "Az elem szüneteltetve van."
 
@@ -730,7 +730,7 @@ msgid_plural "Average bonus range: %(range)s meters"
 msgstr[0] "Átlagos bónusz hatótávolság: %(range)s méter"
 msgstr[1] "Átlagos bónusz hatótávolság: %(range)s méter"
 
-#: gui/session/input.js:702
+#: gui/session/input.js:701
 msgid "Cannot build wall here!"
 msgstr "Ide nem építhető fal!"
 
@@ -1091,7 +1091,7 @@ msgstr "%(name)s kirakása"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Egy kattintás 1 kirakásához. Shift-kattintás az összes ilyen típusú kirakásához."
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:914
+#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:919
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "Játékos: %(playername)s"
@@ -1133,56 +1133,56 @@ msgstr "Nem elegendő népességkapacitás:"
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:779
+#: gui/session/selection_panels.js:784
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(number)s, %(class)s osztályú entitás"
 msgstr[1] "%(number)s, %(class)s osztályú entitás"
 
-#: gui/session/selection_panels.js:785
+#: gui/session/selection_panels.js:790
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "Hátralévő: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:786
+#: gui/session/selection_panels.js:791
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:838
+#: gui/session/selection_panels.js:843
 msgid "Cannot research while upgrading."
 msgstr "Fejlesztés közben nem lehet kutatni."
 
-#: gui/session/selection_panels.js:1068
+#: gui/session/selection_panels.js:1073
 msgid "Cannot train while upgrading."
 msgstr "Fejlesztés közben nem lehet kiképezni."
 
-#: gui/session/selection_panels.js:1137
+#: gui/session/selection_panels.js:1142
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr "Frissítés a következőre: %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
-#: gui/session/selection_panels.js:1143
+#: gui/session/selection_panels.js:1148
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr "Frissítés a következőre: %(primaryName)s (%(secondaryName)s)."
 
-#: gui/session/selection_panels.js:1151
+#: gui/session/selection_panels.js:1156
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr "Frissítés a következőre: %(primaryName)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1156
+#: gui/session/selection_panels.js:1161
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr "Frissítés a következőre: %(primaryName)s."
 
-#: gui/session/selection_panels.js:1193
+#: gui/session/selection_panels.js:1198
 msgid "Cancel Upgrading"
 msgstr "Fejlesztés megszakítása"
 
-#: gui/session/selection_panels.js:1208
+#: gui/session/selection_panels.js:1213
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1367,8 +1367,8 @@ msgid ""
 msgstr "Kattintás a csoportosított egységek kiválasztásához, dupla kattintás a csoportosított egységekre fókuszáláshoz, és jobb kattintás a csoport feloszlatásához."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "Alpha XXVI: Zhuangzi"
-msgstr "Alfa XXVI: Csuang-ce"
+msgid "Alpha XXVII: ———"
+msgstr ""
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format

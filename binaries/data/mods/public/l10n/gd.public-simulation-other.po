@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-06-03 07:08+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: GunChleoc, 2015-2018,2021\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
@@ -354,6 +354,18 @@ msgid ""
 "us, I have abrogated my offer."
 msgstr "%(_player_)s, o nach do fhreagair thu ri mo thairgse airson sìth eadarainn, chan eil mi ’ga tairgsinn dhut tuilleadh."
 
+#: simulation/ai/petra/chatHelper.js:137
+msgid ""
+"My armies failed while defending my empire. Please honor our alliance and "
+"send help!"
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:140
+msgid ""
+"My empire regained its old strength, now it is time to seek revenge "
+"together!"
+msgstr ""
+
 #: simulation/ai/petra/data.jsondescription
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
@@ -581,7 +593,7 @@ msgstr "Cha b’ urrainn dhuinn an t-aonad a chur air a’ chiutha gu fèin-obra
 msgid "Can't find free space to spawn trained units."
 msgstr "Cha do lorg sinn rum saor gus na h-aonadan air an oideachadh a shìoladh."
 
-#: simulation/components/Upgrade.js:241
+#: simulation/components/Upgrade.js:247
 msgid "Entity is producing. Cannot start upgrading."
 msgstr "Tha an nì ri dèanadas. Cha ghabh tòiseachadh air an àrdachadh."
 
