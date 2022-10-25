@@ -49,11 +49,11 @@ CPostprocManager::~CPostprocManager()
 
 bool CPostprocManager::IsEnabled() const
 {
+	Renderer::Backend::IDevice* device = g_VideoMode.GetBackendDevice();
 	return
 		g_RenderingOptions.GetPostProc() &&
-		g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB &&
-		g_VideoMode.GetBackendDevice()->IsTextureFormatSupported(
-			Renderer::Backend::Format::D24_S8);
+		device->GetBackend() != Renderer::Backend::Backend::GL_ARB &&
+		device->IsTextureFormatSupported(Renderer::Backend::Format::D24_S8);
 }
 
 void CPostprocManager::Cleanup()
@@ -507,7 +507,7 @@ void CPostprocManager::ApplyPostproc(
 
 	// Don't do anything if we are using the default effect and no AA.
 	const bool hasEffects = m_PostProcEffect != L"default";
-	const bool hasARB = g_VideoMode.GetBackend() == CVideoMode::Backend::GL_ARB;
+	const bool hasARB = g_VideoMode.GetBackendDevice()->GetBackend() == Renderer::Backend::Backend::GL_ARB;
 	const bool hasAA = m_AATech && !hasARB;
 	const bool hasSharp = m_SharpTech && !hasARB;
 	if (!hasEffects && !hasAA && !hasSharp)
@@ -577,7 +577,8 @@ void CPostprocManager::SetPostEffect(const CStrW& name)
 
 void CPostprocManager::UpdateAntiAliasingTechnique()
 {
-	if (g_VideoMode.GetBackend() == CVideoMode::Backend::GL_ARB || !m_IsInitialized)
+	Renderer::Backend::IDevice* device = g_VideoMode.GetBackendDevice();
+	if (device->GetBackend() == Renderer::Backend::Backend::GL_ARB || !m_IsInitialized)
 		return;
 
 	CStr newAAName;
@@ -606,7 +607,7 @@ void CPostprocManager::UpdateAntiAliasingTechnique()
 		// We don't want to enable MSAA in Atlas, because it uses wxWidgets and its canvas.
 		if (g_AtlasGameLoop && g_AtlasGameLoop->running)
 			return;
-		if (!g_VideoMode.GetBackendDevice()->GetCapabilities().multisampling || m_AllowedSampleCounts.empty())
+		if (!device->GetCapabilities().multisampling || m_AllowedSampleCounts.empty())
 		{
 			LOGWARNING("MSAA is unsupported.");
 			return;
@@ -616,7 +617,7 @@ void CPostprocManager::UpdateAntiAliasingTechnique()
 		if (std::find(std::begin(m_AllowedSampleCounts), std::end(m_AllowedSampleCounts), m_MultisampleCount) ==
 		        std::end(m_AllowedSampleCounts))
 		{
-			m_MultisampleCount = std::min(4u, g_VideoMode.GetBackendDevice()->GetCapabilities().maxSampleCount);
+			m_MultisampleCount = std::min(4u, device->GetCapabilities().maxSampleCount);
 			LOGWARNING("Wrong MSAA sample count: %s.", m_AAName.EscapeToPrintableASCII().c_str());
 		}
 		m_UsingMultisampleBuffer = true;
@@ -626,7 +627,7 @@ void CPostprocManager::UpdateAntiAliasingTechnique()
 
 void CPostprocManager::UpdateSharpeningTechnique()
 {
-	if (g_VideoMode.GetBackend() == CVideoMode::Backend::GL_ARB || !m_IsInitialized)
+	if (g_VideoMode.GetBackendDevice()->GetBackend() == Renderer::Backend::Backend::GL_ARB || !m_IsInitialized)
 		return;
 
 	CStr newSharpName;

@@ -18,6 +18,7 @@
 #ifndef INCLUDED_RENDERER_BACKEND_DUMMY_DEVICE
 #define INCLUDED_RENDERER_BACKEND_DUMMY_DEVICE
 
+#include "renderer/backend/dummy/DeviceForward.h"
 #include "renderer/backend/IDevice.h"
 
 class CShaderDefines;
@@ -38,6 +39,8 @@ class CDevice : public IDevice
 public:
 	CDevice();
 	~CDevice() override;
+
+	Backend GetBackend() const override { return Backend::DUMMY; }
 
 	const std::string& GetName() const override { return m_Name; }
 	const std::string& GetVersion() const override { return m_Version; }

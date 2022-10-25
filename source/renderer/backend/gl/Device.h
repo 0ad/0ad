@@ -20,6 +20,7 @@
 
 #include "renderer/backend/Format.h"
 #include "renderer/backend/gl/Buffer.h"
+#include "renderer/backend/gl/DeviceForward.h"
 #include "renderer/backend/gl/Framebuffer.h"
 #include "renderer/backend/gl/ShaderProgram.h"
 #include "renderer/backend/gl/Texture.h"
@@ -53,6 +54,8 @@ public:
 	 * Creates the GL device and the GL context for the window if it presents.
 	 */
 	static std::unique_ptr<IDevice> Create(SDL_Window* window, const bool arb);
+
+	Backend GetBackend() const override { return m_ARB ? Backend::GL_ARB : Backend::GL; }
 
 	const std::string& GetName() const override { return m_Name; }
 	const std::string& GetVersion() const override { return m_Version; }

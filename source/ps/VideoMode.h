@@ -19,6 +19,7 @@
 #define INCLUDED_VIDEOMODE
 
 #include "ps/CStrForward.h"
+#include "renderer/backend/Backend.h"
 
 #include <memory>
 
@@ -35,13 +36,6 @@ class IDevice;
 class CVideoMode
 {
 public:
-	enum class Backend
-	{
-		GL,
-		GL_ARB,
-		DUMMY
-	};
-
 	CVideoMode();
 	~CVideoMode();
 
@@ -124,8 +118,6 @@ public:
 	void SetCursor(const CStrW& name);
 	void ResetCursor();
 
-	Backend GetBackend() const { return m_Backend; }
-
 	Renderer::Backend::IDevice* GetBackendDevice() { return m_BackendDevice.get(); }
 
 private:
@@ -181,7 +173,7 @@ private:
 	class CCursor;
 	std::unique_ptr<CCursor> m_Cursor;
 
-	Backend m_Backend = Backend::GL;
+	Renderer::Backend::Backend m_Backend = Renderer::Backend::Backend::GL;
 	std::unique_ptr<Renderer::Backend::IDevice> m_BackendDevice;
 };
 

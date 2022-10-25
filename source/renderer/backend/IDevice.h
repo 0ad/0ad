@@ -19,6 +19,7 @@
 #define INCLUDED_RENDERER_BACKEND_IDEVICE
 
 #include "graphics/Color.h"
+#include "renderer/backend/Backend.h"
 #include "renderer/backend/Format.h"
 #include "renderer/backend/IBuffer.h"
 #include "renderer/backend/IDevice.h"
@@ -61,6 +62,8 @@ public:
 	};
 
 	virtual ~IDevice() {}
+
+	virtual Backend GetBackend() const = 0;
 
 	virtual const std::string& GetName() const = 0;
 	virtual const std::string& GetVersion() const = 0;

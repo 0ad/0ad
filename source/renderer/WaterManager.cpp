@@ -1070,7 +1070,7 @@ void WaterManager::UpdateQuality()
 bool WaterManager::WillRenderFancyWater() const
 {
 	return
-		m_RenderWater && g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB &&
+		m_RenderWater && g_VideoMode.GetBackendDevice()->GetBackend() != Renderer::Backend::Backend::GL_ARB &&
 		g_RenderingOptions.GetWaterEffects();
 }
 

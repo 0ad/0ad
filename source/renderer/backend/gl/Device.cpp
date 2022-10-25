@@ -1003,6 +1003,11 @@ bool CDevice::IsFramebufferFormatSupported(const Format format) const
 	return supported;
 }
 
+std::unique_ptr<IDevice> CreateDevice(SDL_Window* window, const bool arb)
+{
+	return GL::CDevice::Create(window, arb);
+}
+
 } // namespace GL
 
 } // namespace Backend

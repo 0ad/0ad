@@ -134,6 +134,11 @@ bool CDevice::IsFramebufferFormatSupported(const Format UNUSED(format)) const
 	return true;
 }
 
+std::unique_ptr<IDevice> CreateDevice(SDL_Window* UNUSED(window))
+{
+	return std::make_unique<Dummy::CDevice>();
+}
+
 } // namespace Dummy
 
 } // namespace Backend

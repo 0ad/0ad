@@ -373,7 +373,7 @@ void CRenderer::SetRenderPath(RenderPath rp)
 	// Renderer has been opened, so validate the selected renderpath
 	const bool hasShadersSupport =
 		g_VideoMode.GetBackendDevice()->GetCapabilities().ARBShaders ||
-		g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB;
+		g_VideoMode.GetBackendDevice()->GetBackend() != Renderer::Backend::Backend::GL_ARB;
 	if (rp == RenderPath::DEFAULT)
 	{
 		if (hasShadersSupport)

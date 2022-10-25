@@ -170,6 +170,11 @@ bool CDevice::IsFramebufferFormatSupported(const Format format) const
 	return false;
 }
 
+std::unique_ptr<IDevice> CreateDevice(SDL_Window* window)
+{
+	return Vulkan::CDevice::Create(window);
+}
+
 } // namespace Vulkan
 
 } // namespace Backend
