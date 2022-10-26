@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * Copyright (C) 2013-2016 SuperTuxKart-Team.
  * This file is part of 0 A.D.
  *
@@ -21,15 +21,15 @@
 #include "StunClient.h"
 
 #include "lib/byte_order.h"
+#include "lib/external_libraries/enet.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/CStr.h"
 
-#include "lib/external_libraries/enet.h"
-
 #include <chrono>
-#include <vector>
+#include <cstddef>
 #include <thread>
+#include <vector>
 
 namespace StunClient
 {
