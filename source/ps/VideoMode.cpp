@@ -32,8 +32,9 @@
 #include "ps/Game.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Pyrogenesis.h"
-#include "renderer/backend/dummy/Device.h"
-#include "renderer/backend/gl/Device.h"
+#include "renderer/backend/dummy/DeviceForward.h"
+#include "renderer/backend/gl/DeviceForward.h"
+#include "renderer/backend/IDevice.h"
 #include "renderer/Renderer.h"
 
 namespace
@@ -235,11 +236,11 @@ void CVideoMode::ReadConfig()
 	CStr rendererBackend;
 	CFG_GET_VAL("rendererbackend", rendererBackend);
 	if (rendererBackend == "glarb")
-		m_Backend = Backend::GL_ARB;
+		m_Backend = Renderer::Backend::Backend::GL_ARB;
 	else if (rendererBackend == "dummy")
-		m_Backend = Backend::DUMMY;
+		m_Backend = Renderer::Backend::Backend::DUMMY;
 	else
-		m_Backend = Backend::GL;
+		m_Backend = Renderer::Backend::Backend::GL;
 }
 
 bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
@@ -529,16 +530,17 @@ void CVideoMode::Shutdown()
 
 bool CVideoMode::CreateBackendDevice(const bool createSDLContext)
 {
-	if (m_Backend == Backend::DUMMY)
+	if (m_Backend == Renderer::Backend::Backend::DUMMY)
 	{
-		m_BackendDevice = std::make_unique<Renderer::Backend::Dummy::CDevice>();
+		m_BackendDevice = Renderer::Backend::Dummy::CreateDevice(m_Window);
+		ENSURE(m_BackendDevice);
 		return true;
 	}
-	m_BackendDevice = Renderer::Backend::GL::CDevice::Create(createSDLContext ? m_Window : nullptr, m_Backend == Backend::GL_ARB);
-	if (!m_BackendDevice && m_Backend == Backend::GL)
+	m_BackendDevice = Renderer::Backend::GL::CreateDevice(createSDLContext ? m_Window : nullptr, m_Backend == Renderer::Backend::Backend::GL_ARB);
+	if (!m_BackendDevice && m_Backend == Renderer::Backend::Backend::GL)
 	{
 		LOGERROR("Unable to create device for GL backend, switching to ARB.", static_cast<int>(m_Backend));
-		m_Backend = Backend::GL_ARB;
+		m_Backend = Renderer::Backend::Backend::GL_ARB;
 		return CreateBackendDevice(createSDLContext);
 	}
 	return !!m_BackendDevice;

@@ -124,7 +124,7 @@ void ShadowMapInternals::UpdateCascadesParameters()
 	CascadeCount = 1;
 	CFG_GET_VAL("shadowscascadecount", CascadeCount);
 
-	if (CascadeCount < 1 || CascadeCount > MAX_CASCADE_COUNT || g_VideoMode.GetBackend() == CVideoMode::Backend::GL_ARB)
+	if (CascadeCount < 1 || CascadeCount > MAX_CASCADE_COUNT || g_VideoMode.GetBackendDevice()->GetBackend() == Renderer::Backend::Backend::GL_ARB)
 		CascadeCount = 1;
 
 	ShadowsCoverMap = false;

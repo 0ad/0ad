@@ -139,8 +139,10 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 	if (ret != PSRETURN_OK)
 		return false;
 
+	Renderer::Backend::IDevice* device = g_VideoMode.GetBackendDevice();
+
 	// By default we assume that we have techinques for every dummy shader.
-	if (g_VideoMode.GetBackend() == CVideoMode::Backend::DUMMY)
+	if (device->GetBackend() == Renderer::Backend::Backend::DUMMY)
 	{
 		const Renderer::Backend::GraphicsPipelineStateDesc passPipelineStateDesc =
 			Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc();
@@ -210,15 +212,15 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 			{
 				if (Attrs.GetNamedItem(at_shaders) == "arb")
 				{
-					if (g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB ||
-						!g_VideoMode.GetBackendDevice()->GetCapabilities().ARBShaders)
+					if (device->GetBackend() != Renderer::Backend::Backend::GL_ARB ||
+						!device->GetCapabilities().ARBShaders)
 					{
 						isUsable = false;
 					}
 				}
 				else if (Attrs.GetNamedItem(at_shaders) == "glsl")
 				{
-					if (g_VideoMode.GetBackend() != CVideoMode::Backend::GL)
+					if (device->GetBackend() != Renderer::Backend::Backend::GL)
 						isUsable = false;
 				}
 				else if (!Attrs.GetNamedItem(at_context).empty())

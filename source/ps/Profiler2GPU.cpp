@@ -28,6 +28,7 @@
 #include "ps/ConfigDB.h"
 #include "ps/Profiler2.h"
 #include "ps/VideoMode.h"
+#include "renderer/backend/IDevice.h"
 
 #include <deque>
 #include <stack>
@@ -70,7 +71,7 @@ class CProfiler2GPUARB
 public:
 	static bool IsSupported()
 	{
-		if (g_VideoMode.GetBackend() != CVideoMode::Backend::GL)
+		if (g_VideoMode.GetBackendDevice()->GetBackend() != Renderer::Backend::Backend::GL)
 			return false;
 		return ogl_HaveExtension("GL_ARB_timer_query");
 	}

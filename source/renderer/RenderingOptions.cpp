@@ -25,6 +25,7 @@
 #include "ps/CStr.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/VideoMode.h"
+#include "renderer/backend/IDevice.h"
 #include "renderer/Renderer.h"
 #include "renderer/PostprocManager.h"
 #include "renderer/SceneRenderer.h"
@@ -239,7 +240,7 @@ void CRenderingOptions::ReadConfigAndSetupHooks()
 	m_ConfigHooks->Setup("gpuskinning", [this]() {
 		bool enabled;
 		CFG_GET_VAL("gpuskinning", enabled);
-		if (enabled && g_VideoMode.GetBackend() == CVideoMode::Backend::GL_ARB)
+		if (enabled && g_VideoMode.GetBackendDevice()->GetBackend() == Renderer::Backend::Backend::GL_ARB)
 			LOGWARNING("GPUSkinning has been disabled, because it is not supported with ARB shaders.");
 		else if (enabled)
 			m_GPUSkinning = true;

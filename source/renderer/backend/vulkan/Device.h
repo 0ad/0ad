@@ -19,6 +19,7 @@
 #define INCLUDED_RENDERER_BACKEND_VULKAN_DEVICE
 
 #include "renderer/backend/IDevice.h"
+#include "renderer/backend/vulkan/DeviceForward.h"
 #include "scriptinterface/ScriptForward.h"
 
 #include <memory>
@@ -43,6 +44,8 @@ public:
 	static std::unique_ptr<CDevice> Create(SDL_Window* window);
 
 	~CDevice() override;
+
+	Backend GetBackend() const override { return Backend::VULKAN; }
 
 	const std::string& GetName() const override { return m_Name; }
 	const std::string& GetVersion() const override { return m_Version; }

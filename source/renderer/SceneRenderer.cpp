@@ -215,11 +215,13 @@ void CSceneRenderer::ReloadShaders()
 {
 	m->globalContext = CShaderDefines();
 
+	Renderer::Backend::IDevice* device = g_VideoMode.GetBackendDevice();
+
 	if (g_RenderingOptions.GetShadows())
 	{
 		m->globalContext.Add(str_USE_SHADOW, str_1);
-		if (g_VideoMode.GetBackend() == CVideoMode::Backend::GL_ARB &&
-			g_VideoMode.GetBackendDevice()->GetCapabilities().ARBShadersShadow)
+		if (device->GetBackend() == Renderer::Backend::Backend::GL_ARB &&
+			device->GetCapabilities().ARBShadersShadow)
 		{
 			m->globalContext.Add(str_USE_FP_SHADOW, str_1);
 		}
@@ -237,18 +239,18 @@ void CSceneRenderer::ReloadShaders()
 	m->globalContext.Add(str_RENDER_DEBUG_MODE,
 		RenderDebugModeEnum::ToString(g_RenderingOptions.GetRenderDebugMode()));
 
-	if (g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB && g_RenderingOptions.GetFog())
+	if (device->GetBackend() != Renderer::Backend::Backend::GL_ARB && g_RenderingOptions.GetFog())
 		m->globalContext.Add(str_USE_FOG, str_1);
 
 	m->Model.ModShader = LitRenderModifierPtr(new ShaderRenderModifier());
 
 	ENSURE(g_RenderingOptions.GetRenderPath() != RenderPath::FIXED);
 	m->Model.VertexRendererShader = ModelVertexRendererPtr(new ShaderModelVertexRenderer());
-	m->Model.VertexInstancingShader = ModelVertexRendererPtr(new InstancingModelRenderer(false, g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB));
+	m->Model.VertexInstancingShader = ModelVertexRendererPtr(new InstancingModelRenderer(false, device->GetBackend() != Renderer::Backend::Backend::GL_ARB));
 
 	if (g_RenderingOptions.GetGPUSkinning()) // TODO: should check caps and GLSL etc too
 	{
-		m->Model.VertexGPUSkinningShader = ModelVertexRendererPtr(new InstancingModelRenderer(true, g_VideoMode.GetBackend() != CVideoMode::Backend::GL_ARB));
+		m->Model.VertexGPUSkinningShader = ModelVertexRendererPtr(new InstancingModelRenderer(true, device->GetBackend() != Renderer::Backend::Backend::GL_ARB));
 		m->Model.NormalSkinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexGPUSkinningShader));
 		m->Model.TranspSkinned = ModelRendererPtr(new ShaderModelRenderer(m->Model.VertexGPUSkinningShader));
 	}
