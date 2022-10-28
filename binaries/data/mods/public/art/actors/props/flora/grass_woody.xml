@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <group>
-    <variant frequency="1" name="a">
-      <mesh>gaia/grass_summer.dae</mesh>
+    <variant frequency="1" name="grass_la_tall_a">
+      <mesh>gaia/grass_la_tall_a.dae</mesh>
     </variant>
-    <variant frequency="1" name="b">
-      <mesh>gaia/grass_summer_b.dae</mesh>
-    </variant>
-    <variant frequency="2" name="c">
-      <mesh>gaia/grass_leafy_a.dae</mesh>
+    <variant frequency="1" name="grass_la_tall_b">
+      <mesh>gaia/grass_la_tall_b.dae</mesh>
     </variant>
   </group>
   <group>
