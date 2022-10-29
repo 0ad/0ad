@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
   <group>
-    <variant name="a">
-      <mesh>gaia/cross_large_short.dae</mesh>
+    <variant frequency="1" name="grass_la_tall_a">
+      <mesh>gaia/grass_la_tall_a.dae</mesh>
     </variant>
-    <variant name="b">
-      <mesh>gaia/cross_large_tall.dae</mesh>
-    </variant>
-    <variant name="c">
-      <mesh>gaia/cross_angledfromtop.dae</mesh>
+    <variant frequency="1" name="grass_la_tall_b">
+      <mesh>gaia/grass_la_tall_b.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant>
       <textures><texture file="gaia/grass_field_dry_a.dds" name="baseTex"/></textures>
     </variant>
   </group>
-  <material>basic_trans_wind.xml</material>
-
+  <material>basic_trans_wind_grain.xml</material>
 </actor>
