@@ -815,7 +815,7 @@ void CPatchRData::RenderBases(
 
 				for (VertexBufferBatches::iterator itv = itt->second.begin(); itv != itt->second.end(); ++itv)
 				{
-					itv->first->UploadIfNeeded(deviceCommandContext);
+					ENSURE(!itv->first->GetBuffer()->IsDynamic());
 
 					const uint32_t stride = sizeof(SBaseVertex);
 
@@ -839,7 +839,7 @@ void CPatchRData::RenderBases(
 
 					for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
 					{
-						it->first->UploadIfNeeded(deviceCommandContext);
+						ENSURE(!it->first->GetBuffer()->IsDynamic());
 						deviceCommandContext->SetIndexBuffer(it->first->GetBuffer());
 
 						BatchElements& batch = it->second;
@@ -1067,7 +1067,7 @@ void CPatchRData::RenderBlends(
 						lastVB = itv->first;
 						previousShader = shader;
 
-						itv->first->UploadIfNeeded(deviceCommandContext);
+						ENSURE(!itv->first->GetBuffer()->IsDynamic());
 
 						const uint32_t stride = sizeof(SBlendVertex);
 
@@ -1097,7 +1097,7 @@ void CPatchRData::RenderBlends(
 
 					for (IndexBufferBatches::iterator it = itv->second.begin(); it != itv->second.end(); ++it)
 					{
-						it->first->UploadIfNeeded(deviceCommandContext);
+						ENSURE(!it->first->GetBuffer()->IsDynamic());
 						deviceCommandContext->SetIndexBuffer(it->first->GetBuffer());
 
 						BatchElements& batch = it->second;
@@ -1166,13 +1166,13 @@ void CPatchRData::RenderStreams(
  	// Render each batch
 	for (const std::pair<CVertexBuffer* const, StreamIndexBufferBatches>& streamBatch : batches)
 	{
-		streamBatch.first->UploadIfNeeded(deviceCommandContext);
+		ENSURE(!streamBatch.first->GetBuffer()->IsDynamic());
 
 		deviceCommandContext->SetVertexBuffer(0, streamBatch.first->GetBuffer(), 0);
 
 		for (const std::pair<CVertexBuffer* const, StreamBatchElements>& batchIndexBuffer : streamBatch.second)
 		{
-			batchIndexBuffer.first->UploadIfNeeded(deviceCommandContext);
+			ENSURE(!batchIndexBuffer.first->GetBuffer()->IsDynamic());
 			deviceCommandContext->SetIndexBuffer(batchIndexBuffer.first->GetBuffer());
 
 			const StreamBatchElements& batch = batchIndexBuffer.second;
@@ -1244,8 +1244,7 @@ void CPatchRData::RenderSides(
 		if (lastVB != patch->m_VBSides->m_Owner)
 		{
 			lastVB = patch->m_VBSides->m_Owner;
-			patch->m_VBSides->m_Owner->UploadIfNeeded(deviceCommandContext);
-
+			ENSURE(!lastVB->GetBuffer()->IsDynamic());
 			deviceCommandContext->SetVertexBuffer(0, patch->m_VBSides->m_Owner->GetBuffer(), 0);
 		}
 
@@ -1493,8 +1492,8 @@ void CPatchRData::RenderWaterSurface(
 	if (!m_VBWater)
 		return;
 
-	m_VBWater->m_Owner->UploadIfNeeded(deviceCommandContext);
-	m_VBWaterIndices->m_Owner->UploadIfNeeded(deviceCommandContext);
+	ENSURE(!m_VBWater->m_Owner->GetBuffer()->IsDynamic());
+	ENSURE(!m_VBWaterIndices->m_Owner->GetBuffer()->IsDynamic());
 
 	const uint32_t stride = sizeof(SWaterVertex);
 	const uint32_t firstVertexOffset = m_VBWater->m_Index * stride;
@@ -1531,8 +1530,8 @@ void CPatchRData::RenderWaterShore(
 	if (!m_VBWaterShore)
 		return;
 
-	m_VBWaterShore->m_Owner->UploadIfNeeded(deviceCommandContext);
-	m_VBWaterIndicesShore->m_Owner->UploadIfNeeded(deviceCommandContext);
+	ENSURE(!m_VBWaterShore->m_Owner->GetBuffer()->IsDynamic());
+	ENSURE(!m_VBWaterIndicesShore->m_Owner->GetBuffer()->IsDynamic());
 
 	const uint32_t stride = sizeof(SWaterVertex);
 	const uint32_t firstVertexOffset = m_VBWaterShore->m_Index * stride;

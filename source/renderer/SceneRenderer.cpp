@@ -796,6 +796,18 @@ void CSceneRenderer::RenderSubmissions(
 
 	m->particleRenderer.PrepareForRendering(context);
 
+	{
+		PROFILE3("upload models");
+		m->Model.NormalSkinned->UploadModels(deviceCommandContext);
+		m->Model.TranspSkinned->UploadModels(deviceCommandContext);
+		if (m->Model.NormalUnskinned != m->Model.NormalSkinned)
+			m->Model.NormalUnskinned->UploadModels(deviceCommandContext);
+		if (m->Model.TranspUnskinned != m->Model.TranspSkinned)
+			m->Model.TranspUnskinned->UploadModels(deviceCommandContext);
+	}
+
+	m->overlayRenderer.Upload(deviceCommandContext);
+
 	if (g_RenderingOptions.GetShadows())
 	{
 		RenderShadowMap(deviceCommandContext, context);

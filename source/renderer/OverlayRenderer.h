@@ -86,9 +86,16 @@ public:
 	/**
 	 * Prepare internal data structures for rendering.
 	 * Must be called after all Submit calls for a frame, and before
-	 * any rendering calls.
+	 * uploading data.
 	 */
 	void PrepareForRendering();
+
+	/**
+	 * Upload prepared data to backend.
+	 * Must be called after preparing, and before any rendering calls.
+	 */
+	void Upload(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Reset the list of submitted overlays.

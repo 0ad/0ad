@@ -339,18 +339,21 @@ void CDeviceCommandContext::UploadTextureRegion(
 
 void CDeviceCommandContext::UploadBuffer(IBuffer* buffer, const void* data, const uint32_t dataSize)
 {
+	ENSURE(!m_InsideFramebufferPass);
 	UploadBufferRegion(buffer, data, dataSize, 0);
 }
 
 void CDeviceCommandContext::UploadBuffer(
 	IBuffer* buffer, const UploadBufferFunction& uploadFunction)
 {
+	ENSURE(!m_InsideFramebufferPass);
 	UploadBufferRegion(buffer, 0, buffer->GetSize(), uploadFunction);
 }
 
 void CDeviceCommandContext::UploadBufferRegion(
 	IBuffer* buffer, const void* data, const uint32_t dataOffset, const uint32_t dataSize)
 {
+	ENSURE(!m_InsideFramebufferPass);
 	ENSURE(data);
 	ENSURE(dataOffset + dataSize <= buffer->GetSize());
 	const GLenum target = BufferTypeToGLTarget(buffer->GetType());
@@ -373,6 +376,7 @@ void CDeviceCommandContext::UploadBufferRegion(
 	IBuffer* buffer, const uint32_t dataOffset, const uint32_t dataSize,
 	const UploadBufferFunction& uploadFunction)
 {
+	ENSURE(!m_InsideFramebufferPass);
 	ENSURE(dataOffset + dataSize <= buffer->GetSize());
 	const GLenum target = BufferTypeToGLTarget(buffer->GetType());
 	ScopedBufferBind scopedBufferBind(this, buffer->As<CBuffer>());

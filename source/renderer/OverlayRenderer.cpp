@@ -367,6 +367,13 @@ void OverlayRenderer::PrepareForRendering()
 	m->quadVertices.PrepareForRendering();
 }
 
+void OverlayRenderer::Upload(
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
+{
+	m->quadVertices.UploadIfNeeded(deviceCommandContext);
+	m->quadIndices.UploadIfNeeded(deviceCommandContext);
+}
+
 void OverlayRenderer::RenderOverlaysBeforeWater(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
@@ -533,9 +540,6 @@ void OverlayRenderer::RenderQuadOverlays(
 		g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
 	deviceCommandContext->SetUniform(
 		shader->GetBindingSlot(str_transform), transform.AsFloatArray());
-
-	m->quadVertices.UploadIfNeeded(deviceCommandContext);
-	m->quadIndices.UploadIfNeeded(deviceCommandContext);
 
 	const uint32_t vertexStride = m->quadVertices.GetStride();
 	const uint32_t firstVertexOffset = m->quadVertices.GetOffset() * vertexStride;

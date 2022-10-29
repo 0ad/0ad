@@ -230,8 +230,7 @@ void CDecalRData::RenderDecals(
 				if (lastVB != batch.vertices->m_Owner)
 				{
 					lastVB = batch.vertices->m_Owner;
-
-					batch.vertices->m_Owner->UploadIfNeeded(deviceCommandContext);
+					ENSURE(!lastVB->GetBuffer()->IsDynamic());
 
 					const uint32_t stride = sizeof(SDecalVertex);
 
@@ -258,7 +257,7 @@ void CDecalRData::RenderDecals(
 				if (lastIB != batch.indices->m_Owner)
 				{
 					lastIB = batch.indices->m_Owner;
-					batch.indices->m_Owner->UploadIfNeeded(deviceCommandContext);
+					ENSURE(!lastIB->GetBuffer()->IsDynamic());
 					deviceCommandContext->SetIndexBuffer(batch.indices->m_Owner->GetBuffer());
 				}
 

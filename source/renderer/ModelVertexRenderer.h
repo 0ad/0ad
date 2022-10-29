@@ -86,32 +86,18 @@ public:
 	 */
 	virtual void UpdateModelData(CModel* model, CModelRData* data, int updateflags) = 0;
 
-
 	/**
-	 * BeginPass: Setup backend state for this ModelVertexRenderer.
+	 * Upload per-model data to backend.
 	 *
-	 * ModelVertexRenderer implementations should prepare "heavy"
-	 * state such as vertex shader state to prepare for rendering models
-	 * and delivering vertex data to the fragment stage as described by
-	 * shader.
+	 * ModelRenderer implementations must call this after UpdateModelData once
+	 * per frame for every model that is to be rendered in this frame.
 	 *
-	 * ModelRenderer implementations must call this function before any
-	 * calls to other rendering related functions.
-	 *
-	 * Recursive calls to BeginPass are not allowed, and every BeginPass
-	 * is matched by a corresponding call to EndPass.
+	 * ModelVertexRenderer implementations should use this function to
+	 * upload all needed data to backend.
 	 */
-	virtual void BeginPass() = 0;
-
-
-	/**
-	 * EndPass: Cleanup OpenGL state set up by BeginPass.
-	 *
-	 * ModelRenderer implementations must call this function after
-	 * rendering related functions for one pass have been called.
-	 */
-	virtual void EndPass(Renderer::Backend::IDeviceCommandContext* deviceCommandContext) = 0;
-
+	virtual void UploadModelData(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		CModel* model, CModelRData* data) = 0;
 
 	/**
 	 * PrepareModelDef: Setup backend state for rendering of models that
