@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -83,7 +83,7 @@ public:
 	 * @sa GetAllLocales()
 	 * @sa ReevaluateCurrentLocaleAndReload()
 	 */
-	icu::Locale GetCurrentLocale() const;
+	const icu::Locale& GetCurrentLocale() const;
 
 	/**
 	 * Returns the code of the current locale.
@@ -506,7 +506,7 @@ private:
 	 *   2. Reload the translation dictionary with\n
 	 *      ReevaluateCurrentLocaleAndReload().
 	 */
-	icu::Locale currentLocale;
+	icu::Locale m_CurrentLocale;
 
 	/**
 	 * Vector with the locales that the game supports.
@@ -517,7 +517,7 @@ private:
 	 * @sa GetSupportedLocaleBaseNames()
 	 * @sa GetSupportedLocaleDisplayNames()
 	 */
-	std::vector<std::unique_ptr<icu::Locale>> availableLocales;
+	std::vector<icu::Locale> m_AvailableLocales;
 
 	/**
 	 * Whether the game is using the default game locale (@c true), 'en_US', or
@@ -526,7 +526,7 @@ private:
 	 * This variable is used in the L10n implementation for performance reasons.
 	 * Many localization steps can be skipped when this variable is @c true.
 	 */
-	bool currentLocaleIsOriginalGameLocale;
+	bool m_CurrentLocaleIsOriginalGameLocale{false};
 
 	/**
 	 * Whether the game is using the special game locale with the longest
@@ -534,7 +534,7 @@ private:
 	 *
 	 * @sa http://trac.wildfiregames.com/wiki/Implementation_of_Internationalization_and_Localization#LongStringsLocale
 	 */
-	bool useLongStrings;
+	bool m_UseLongStrings{false};
 
 	/**
 	 * Loads the translation files for the
@@ -552,18 +552,6 @@ private:
 	 * @sa ReadPoIntoDictionary()
 	 */
 	void LoadDictionaryForCurrentLocale();
-
-	/**
-	 * Determines the list of locales that the game supports.
-	 *
-	 * LoadListOfAvailableLocales() checks the locale codes of the translation
-	 * files in the 'l10n' folder of the virtual filesystem. If it finds a
-	 * translation file prefixed with a locale code followed by a dot, it
-	 * determines that the game supports that locale.
-	 *
-	 * @sa availableLocales
-	 */
-	void LoadListOfAvailableLocales();
 };
 
 #endif // INCLUDED_L10N
