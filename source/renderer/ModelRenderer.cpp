@@ -232,10 +232,8 @@ void ShaderModelRenderer::PrepareModels()
 {
 	for (int cullGroup = 0; cullGroup < CSceneRenderer::CULL_MAX; ++cullGroup)
 	{
-		for (size_t i = 0; i < m->submissions[cullGroup].size(); ++i)
+		for (CModel* model : m->submissions[cullGroup])
 		{
-			CModel* model = m->submissions[cullGroup][i];
-
 			model->ValidatePosition();
 
 			CModelRData* rdata = static_cast<CModelRData*>(model->GetRenderData());
@@ -247,6 +245,20 @@ void ShaderModelRenderer::PrepareModels()
 	}
 }
 
+void ShaderModelRenderer::UploadModels(
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
+{
+	for (int cullGroup = 0; cullGroup < CSceneRenderer::CULL_MAX; ++cullGroup)
+	{
+		for (CModel* model : m->submissions[cullGroup])
+		{
+			CModelRData* rdata = static_cast<CModelRData*>(model->GetRenderData());
+			ENSURE(rdata->GetKey() == m->vertexRenderer.get());
+
+			m->vertexRenderer->UploadModelData(deviceCommandContext, model, rdata);
+		}
+	}
+}
 
 // Clear the submissions list
 void ShaderModelRenderer::EndFrame()
@@ -615,8 +627,6 @@ void ShaderModelRenderer::Render(
 				bool boundWaterTexture = false;
 				bool boundSkyCube = false;
 
-				m->vertexRenderer->BeginPass();
-
 				// When the shader technique changes, textures need to be
 				// rebound, so ensure there are no remnants from the last pass.
 				// (the vector size is set to 0, but memory is not freed)
@@ -752,8 +762,6 @@ void ShaderModelRenderer::Render(
 						m->vertexRenderer->RenderModel(deviceCommandContext, shader, model, rdata);
 					}
 				}
-
-				m->vertexRenderer->EndPass(deviceCommandContext);
 
 				deviceCommandContext->EndPass();
 			}

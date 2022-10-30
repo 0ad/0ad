@@ -906,10 +906,11 @@ std::unique_ptr<IShaderProgram> CDevice::CreateShaderProgram(
 	return CShaderProgram::Create(this, name, defines);
 }
 
-void CDevice::AcquireNextBackbuffer()
+bool CDevice::AcquireNextBackbuffer()
 {
 	ENSURE(!m_BackbufferAcquired);
 	m_BackbufferAcquired = true;
+	return true;
 }
 
 void CDevice::Present()

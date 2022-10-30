@@ -47,8 +47,8 @@ void CTexturedLineRData::Render(
 	line.m_TextureBase->UploadBackendTextureIfNeeded(deviceCommandContext);
 	line.m_TextureMask->UploadBackendTextureIfNeeded(deviceCommandContext);
 
-	m_VB->m_Owner->UploadIfNeeded(deviceCommandContext);
-	m_VBIndices->m_Owner->UploadIfNeeded(deviceCommandContext);
+	ENSURE(!m_VB->m_Owner->GetBuffer()->IsDynamic());
+	ENSURE(!m_VBIndices->m_Owner->GetBuffer()->IsDynamic());
 
 	deviceCommandContext->SetTexture(
 		shader->GetBindingSlot(str_baseTex), line.m_TextureBase->GetBackendTexture());

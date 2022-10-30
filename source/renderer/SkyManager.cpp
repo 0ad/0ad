@@ -248,9 +248,6 @@ void SkyManager::RenderSky(
 	deviceCommandContext->SetUniform(
 		shader->GetBindingSlot(str_transform), transform.AsFloatArray());
 
-	m_VertexArray.PrepareForRendering();
-	m_VertexArray.UploadIfNeeded(deviceCommandContext);
-
 	const uint32_t stride = m_VertexArray.GetStride();
 	const uint32_t firstVertexOffset = m_VertexArray.GetOffset() * stride;
 

@@ -292,16 +292,11 @@ void InstancingModelRenderer::UpdateModelData(CModel* UNUSED(model), CModelRData
 	// We have no per-CModel data
 }
 
-
-// Setup one rendering pass.
-void InstancingModelRenderer::BeginPass()
+void InstancingModelRenderer::UploadModelData(
+	Renderer::Backend::IDeviceCommandContext* UNUSED(deviceCommandContext),
+	CModel* UNUSED(model), CModelRData* UNUSED(data))
 {
-}
-
-// Cleanup rendering pass.
-void InstancingModelRenderer::EndPass(
-	Renderer::Backend::IDeviceCommandContext* UNUSED(deviceCommandContext))
-{
+	// Data uploaded once during creation as we don't update it dynamically.
 }
 
 // Prepare UV coordinates for this modeldef
@@ -310,10 +305,7 @@ void InstancingModelRenderer::PrepareModelDef(
 	const CModelDef& def)
 {
 	m->imodeldef = (IModelDef*)def.GetRenderData(m);
-
 	ENSURE(m->imodeldef);
-	m->imodeldef->m_Array.UploadIfNeeded(deviceCommandContext);
-	m->imodeldef->m_IndexArray.UploadIfNeeded(deviceCommandContext);
 
 	deviceCommandContext->SetIndexBuffer(m->imodeldef->m_IndexArray.GetBuffer());
 

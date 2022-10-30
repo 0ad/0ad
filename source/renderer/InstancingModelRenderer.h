@@ -42,9 +42,9 @@ public:
 	CModelRData* CreateModelData(const void* key, CModel* model) override;
 	void UpdateModelData(CModel* model, CModelRData* data, int updateflags) override;
 
-	void BeginPass() override;
-	void EndPass(
-		Renderer::Backend::IDeviceCommandContext* deviceCommandContext) override;
+	void UploadModelData(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		CModel* model, CModelRData* data) override;
 	void PrepareModelDef(
 		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		const CModelDef& def) override;

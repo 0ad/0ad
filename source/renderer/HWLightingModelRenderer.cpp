@@ -171,16 +171,19 @@ void ShaderModelVertexRenderer::UpdateModelData(CModel* model, CModelRData* data
 	shadermodel->m_Array.PrepareForRendering();
 }
 
-
-// Setup one rendering pass
-void ShaderModelVertexRenderer::BeginPass()
+void ShaderModelVertexRenderer::UploadModelData(
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+	CModel* model, CModelRData* data)
 {
-}
+	ShaderModelDef* shaderModelDef = static_cast<ShaderModelDef*>(model->GetModelDef()->GetRenderData(m));
+	ENSURE(shaderModelDef);
 
-// Cleanup one rendering pass
-void ShaderModelVertexRenderer::EndPass(
-	Renderer::Backend::IDeviceCommandContext* UNUSED(deviceCommandContext))
-{
+	shaderModelDef->m_Array.UploadIfNeeded(deviceCommandContext);
+	shaderModelDef->m_IndexArray.UploadIfNeeded(deviceCommandContext);
+
+	ShaderModel* shaderModel = static_cast<ShaderModel*>(data);
+
+	shaderModel->m_Array.UploadIfNeeded(deviceCommandContext);
 }
 
 // Prepare UV coordinates for this modeldef
@@ -191,8 +194,6 @@ void ShaderModelVertexRenderer::PrepareModelDef(
 	m->shadermodeldef = (ShaderModelDef*)def.GetRenderData(m);
 
 	ENSURE(m->shadermodeldef);
-
-	m->shadermodeldef->m_Array.UploadIfNeeded(deviceCommandContext);
 
 	const uint32_t stride = m->shadermodeldef->m_Array.GetStride();
 	const uint32_t firstVertexOffset = m->shadermodeldef->m_Array.GetOffset() * stride;
@@ -222,9 +223,6 @@ void ShaderModelVertexRenderer::RenderModel(
 {
 	const CModelDefPtr& mdldef = model->GetModelDef();
 	ShaderModel* shadermodel = static_cast<ShaderModel*>(data);
-
-	shadermodel->m_Array.UploadIfNeeded(deviceCommandContext);
-	m->shadermodeldef->m_IndexArray.UploadIfNeeded(deviceCommandContext);
 
 	const uint32_t stride = shadermodel->m_Array.GetStride();
 	const uint32_t firstVertexOffset = shadermodel->m_Array.GetOffset() * stride;

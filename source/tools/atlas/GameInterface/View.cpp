@@ -223,7 +223,8 @@ void AtlasViewGame::Update(float realFrameLength)
 
 void AtlasViewGame::Render()
 {
-	g_VideoMode.GetBackendDevice()->AcquireNextBackbuffer();
+	if (!g_VideoMode.GetBackendDevice()->AcquireNextBackbuffer())
+		return;
 
 	SViewPort vp = { 0, 0, g_xres, g_yres };
 	CCamera& camera = GetCamera();

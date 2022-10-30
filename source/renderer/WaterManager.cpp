@@ -802,6 +802,9 @@ void WaterManager::RenderWaves(
 	if (!m_WaterFancyEffects)
 		return;
 
+	m_WaveTex->UploadBackendTextureIfNeeded(deviceCommandContext);
+	m_FoamTex->UploadBackendTextureIfNeeded(deviceCommandContext);
+
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render Waves");
 
 	deviceCommandContext->SetGraphicsPipelineState(
@@ -814,9 +817,6 @@ void WaterManager::RenderWaves(
 		tech->GetGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginPass();
 	Renderer::Backend::IShaderProgram* shader = tech->GetShader();
-
-	m_WaveTex->UploadBackendTextureIfNeeded(deviceCommandContext);
-	m_FoamTex->UploadBackendTextureIfNeeded(deviceCommandContext);
 
 	deviceCommandContext->SetTexture(
 		shader->GetBindingSlot(str_waveTex), m_WaveTex->GetBackendTexture());
@@ -836,8 +836,8 @@ void WaterManager::RenderWaves(
 			continue;
 
 		CVertexBuffer::VBChunk* VBchunk = m_ShoreWaves[a]->m_VBVertices.Get();
-		VBchunk->m_Owner->UploadIfNeeded(deviceCommandContext);
-		m_ShoreWavesVBIndices->m_Owner->UploadIfNeeded(deviceCommandContext);
+		ENSURE(!VBchunk->m_Owner->GetBuffer()->IsDynamic());
+		ENSURE(!m_ShoreWavesVBIndices->m_Owner->GetBuffer()->IsDynamic());
 
 		const uint32_t stride = sizeof(SWavesVertex);
 		const uint32_t firstVertexOffset = VBchunk->m_Index * stride;

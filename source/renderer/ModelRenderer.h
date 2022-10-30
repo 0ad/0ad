@@ -136,6 +136,15 @@ public:
 	virtual void PrepareModels() = 0;
 
 	/**
+	 * Upload renderer data for all previously submitted models to backend.
+	 *
+	 * Must be called before any rendering calls and after all models
+	 * for this frame have been prepared.
+	 */
+	virtual void UploadModels(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext) = 0;
+
+	/**
 	 * EndFrame: Remove all models from the list of submitted
 	 * models.
 	 */
@@ -250,10 +259,7 @@ public:
 
 /**
  * Implementation of ModelRenderer that loads the appropriate shaders for
- * rendering each model, and that batches by shader (and by mesh and texture).
- *
- * Note that the term "Shader" is somewhat misleading, as this handled
- * fixed-function rendering using the same API as real GLSL/ARB shaders.
+ * rendering each model, and that batches by shader technique (and by mesh and texture).
  */
 class ShaderModelRenderer : public ModelRenderer
 {
@@ -261,15 +267,17 @@ class ShaderModelRenderer : public ModelRenderer
 
 public:
 	ShaderModelRenderer(ModelVertexRendererPtr vertexrender);
-	virtual ~ShaderModelRenderer();
+	~ShaderModelRenderer() override;
 
 	// Batching implementations
-	virtual void Submit(int cullGroup, CModel* model);
-	virtual void PrepareModels();
-	virtual void EndFrame();
-	virtual void Render(
+	void Submit(int cullGroup, CModel* model) override;
+	void PrepareModels() override;
+	void UploadModels(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext) override;
+	void EndFrame() override;
+	void Render(
 		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
-		const RenderModifierPtr& modifier, const CShaderDefines& context, int cullGroup, int flags);
+		const RenderModifierPtr& modifier, const CShaderDefines& context, int cullGroup, int flags) override;
 
 private:
 	struct ShaderModelRendererInternals;

@@ -150,8 +150,9 @@ std::unique_ptr<IShaderProgram> CDevice::CreateShaderProgram(
 	return nullptr;
 }
 
-void CDevice::AcquireNextBackbuffer()
+bool CDevice::AcquireNextBackbuffer()
 {
+	return false;
 }
 
 void CDevice::Present()

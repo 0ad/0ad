@@ -539,7 +539,7 @@ bool CVideoMode::CreateBackendDevice(const bool createSDLContext)
 	m_BackendDevice = Renderer::Backend::GL::CreateDevice(createSDLContext ? m_Window : nullptr, m_Backend == Renderer::Backend::Backend::GL_ARB);
 	if (!m_BackendDevice && m_Backend == Renderer::Backend::Backend::GL)
 	{
-		LOGERROR("Unable to create device for GL backend, switching to ARB.", static_cast<int>(m_Backend));
+		LOGERROR("Unable to create device for GL backend, switching to ARB.");
 		m_Backend = Renderer::Backend::Backend::GL_ARB;
 		return CreateBackendDevice(createSDLContext);
 	}
