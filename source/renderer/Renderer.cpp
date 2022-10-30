@@ -420,7 +420,11 @@ void CRenderer::RenderFrame(const bool needsPresent)
 	else
 	{
 		if (needsPresent)
-			g_VideoMode.GetBackendDevice()->AcquireNextBackbuffer();
+		{
+			// In case of no acquired backbuffer we have nothing render to.
+			if (!g_VideoMode.GetBackendDevice()->AcquireNextBackbuffer())
+				return;
+		}
 
 		if (m_ShouldPreloadResourcesBeforeNextFrame)
 		{
@@ -545,8 +549,8 @@ void CRenderer::RenderScreenShot(const bool needsPresent)
 	const size_t width = static_cast<size_t>(g_xres), height = static_cast<size_t>(g_yres);
 	const size_t bpp = 24;
 
-	if (needsPresent)
-		g_VideoMode.GetBackendDevice()->AcquireNextBackbuffer();
+	if (needsPresent && !g_VideoMode.GetBackendDevice()->AcquireNextBackbuffer())
+		return;
 
 	// Hide log messages and re-render
 	RenderFrameImpl(true, false);
@@ -655,15 +659,14 @@ void CRenderer::RenderBigScreenShot(const bool needsPresent)
 			}
 			g_Game->GetView()->GetCamera()->SetProjection(projection);
 
-			if (needsPresent)
-				g_VideoMode.GetBackendDevice()->AcquireNextBackbuffer();
+			if (needsPresent && g_VideoMode.GetBackendDevice()->AcquireNextBackbuffer())
+			{
+				RenderFrameImpl(false, false);
 
-			RenderFrameImpl(false, false);
-
-			m->deviceCommandContext->ReadbackFramebufferSync(0, 0, tileWidth, tileHeight, tileData);
-			m->deviceCommandContext->Flush();
-			if (needsPresent)
+				m->deviceCommandContext->ReadbackFramebufferSync(0, 0, tileWidth, tileHeight, tileData);
+				m->deviceCommandContext->Flush();
 				g_VideoMode.GetBackendDevice()->Present();
+			}
 
 			// Copy the tile pixels into the main image
 			for (int y = 0; y < tileHeight; ++y)
