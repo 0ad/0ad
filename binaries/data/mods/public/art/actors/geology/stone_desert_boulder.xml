@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="a">
+      <mesh>gaia/stone_granite_boulder_a.dae</mesh>
+    </variant>
+    <variant name="b">
+      <mesh>gaia/stone_granite_boulder_b.dae</mesh>
+    </variant>
+    <variant name="c">
+      <mesh>gaia/stone_granite_boulder_c.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant>
+      <textures>
+        <texture file="gaia/stone_sahara_01.png" name="baseTex"/>
+        <texture file="gaia/stone_sahara_01_norm.png" name="normTex"/>
+        <texture file="gaia/stone_sahara_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>no_trans_norm_spec.xml</material>
+</actor>
