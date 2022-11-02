@@ -53,11 +53,11 @@ class BuddyButton
 		else
 			g_Buddies.push(this.playerName);
 
-		Engine.ConfigDB_CreateAndWriteValueToFile(
+		Engine.ConfigDB_CreateAndSaveValue(
 			"user",
 			"lobby.buddies",
-			g_Buddies.filter(nick => nick).join(g_BuddyListDelimiter) || g_BuddyListDelimiter,
-			"config/user.cfg");
+			g_Buddies.filter(nick => nick).join(g_BuddyListDelimiter) || g_BuddyListDelimiter
+		);
 
 		this.rebuild();
 

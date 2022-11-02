@@ -155,8 +155,7 @@ function initGUIButtons(data)
 function saveMods()
 {
 	sortEnabledMods();
-	Engine.ConfigDB_CreateValue("user", "mod.enabledmods", ["mod"].concat(g_ModsEnabled).join(" "));
-	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+	Engine.ConfigDB_CreateAndSaveValue("user", "mod.enabledmods", ["mod"].concat(g_ModsEnabled).join(" "));
 
 	Engine.GetGUIObjectByName("saveConfigurationButton").enabled = false;
 }

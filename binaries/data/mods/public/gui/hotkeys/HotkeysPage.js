@@ -163,7 +163,7 @@ class HotkeysPage
 						this.categories[cat].hotkeys.forEach(([name, _]) => {
 							Engine.ConfigDB_RemoveValue("user", "hotkey." + name);
 						});
-					Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+					Engine.ConfigDB_SaveChanges("user");
 					Engine.ReloadHotkeys();
 					this.saveButton.enabled = false;
 					this.setupHotkeyData();
@@ -184,7 +184,7 @@ class HotkeysPage
 			if (keymap.join("") !== formatHotkeyCombinations(defaultData[hotkey], false).join(""))
 				Engine.ConfigDB_CreateValues("user", "hotkey." + hotkey, keymap);
 		}
-		Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+		Engine.ConfigDB_SaveChanges("user");
 		Engine.ReloadHotkeys();
 	}
 }

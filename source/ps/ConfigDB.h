@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -134,7 +134,7 @@ public:
 	/**
 	 * Remove a config value in the specified namespace.
 	 */
-	void RemoveValue(EConfigNamespace ns, const CStr& name);
+	bool RemoveValue(EConfigNamespace ns, const CStr& name);
 
 	/**
 	 * Set the path to the config file used to populate the specified namespace

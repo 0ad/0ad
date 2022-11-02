@@ -832,7 +832,7 @@ function updateDisplayedNames()
 function toggleConfigBool(configName)
 {
 	let enabled = Engine.ConfigDB_GetValue("user", configName) != "true";
-	Engine.ConfigDB_CreateAndWriteValueToFile("user", configName, String(enabled), "config/user.cfg");
+	Engine.ConfigDB_CreateAndSaveValue("user", configName, String(enabled));
 	return enabled;
 }
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -264,17 +264,18 @@ void CConfigDB::SetValueList(EConfigNamespace ns, const CStr& name, std::vector<
 	it->second = values;
 }
 
-void CConfigDB::RemoveValue(EConfigNamespace ns, const CStr& name)
+bool CConfigDB::RemoveValue(EConfigNamespace ns, const CStr& name)
 {
-	CHECK_NS(;);
+	CHECK_NS(false);
 
 	std::lock_guard<std::recursive_mutex> s(m_Mutex);
 	TConfigMap::iterator it = m_Map[ns].find(name);
 	if (it == m_Map[ns].end())
-		return;
+		return false;
 	m_Map[ns].erase(it);
 
 	TriggerAllHooks(m_Hooks, name);
+	return true;
 }
 
 void CConfigDB::SetConfigFile(EConfigNamespace ns, const VfsPath& path)

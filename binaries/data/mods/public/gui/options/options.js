@@ -292,7 +292,6 @@ function displayOptions()
 
 			const hasChanges = Engine.ConfigDB_HasChanges("user");
 			Engine.ConfigDB_CreateValue("user", option.config, String(value));
-			Engine.ConfigDB_SetChanges("user", true);
 
 			g_ChangedKeys.add(option.config);
 			fireConfigChangeHandlers(new Set([option.config]));
@@ -374,16 +373,17 @@ function reallySetDefaults()
 			g_ChangedKeys.add(option.config);
 		}
 
-	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+	Engine.ConfigDB_SaveChanges("user");
 	revertChanges();
 }
 
 function revertChange(option, oldValue, hadChanges)
 {
+	Engine.ConfigDB_CreateValue("user", option.config, String(oldValue));
+
 	if (!hadChanges)
 		Engine.ConfigDB_SetChanges("user", false);
 
-	Engine.ConfigDB_CreateValue("user", option.config, String(oldValue));
 	if (option.function)
 		Engine[option.function](oldValue);
 
@@ -393,7 +393,6 @@ function revertChange(option, oldValue, hadChanges)
 function revertChanges()
 {
 	Engine.ConfigDB_Reload("user");
-	Engine.ConfigDB_SetChanges("user", false);
 
 	for (let category in g_Options)
 		for (let option of g_Options[category].options)
@@ -436,8 +435,7 @@ function saveChanges()
 
 function reallySaveChanges()
 {
-	Engine.ConfigDB_WriteFile("user", "config/user.cfg");
-	Engine.ConfigDB_SetChanges("user", false);
+	Engine.ConfigDB_SaveChanges("user");
 	enableButtons();
 }
 
