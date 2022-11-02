@@ -28,8 +28,9 @@
 					<object name="option_control_boolean[n]" size="90% 2 100% 100%+2" type="checkbox" style="ModernTickBox"/>
 					<object name="option_control_string[n]" size="65% 0 100%-8 100%" type="input" style="ModernInput"/>
 					<object name="option_control_color[n]" size="65%+40 0 100%-8 100%" type="input" style="ModernInput">
-						<object type="image" size="-40 4 -4 100%-4" sprite="color:gold"/>
-						<object type="image" size="-39 5 -5 100%-5"/>
+						<object type="image" size="-40 4 -24 100%-4" sprite="color:gold"/>
+						<object type="image" size="-39 5 -25 100%-5"/>
+						<object type="button" size="-20 4 0 100%-4" style="ModernButtonRed"/>
 					</object>
 					<object name="option_control_number[n]" size="65% 0 100%-8 100%" type="input" style="ModernInput"/>
 					<object name="option_control_dropdown[n]" size="65% 0 100%-8 100%" type="dropdown" style="ModernDropDown" tooltip_style="tooltipInstant"/>

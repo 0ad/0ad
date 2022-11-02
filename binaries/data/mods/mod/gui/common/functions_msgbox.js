@@ -34,6 +34,17 @@ function timedConfirmation(width, height, message, timeParameter, timeout, title
 		});
 }
 
+function colorMixer(color, callback)
+{
+	Engine.PushGuiPage(
+		"page_colormixer.xml",
+		color,
+		result => {
+			callback(result);
+		}
+	);
+}
+
 function openURL(url)
 {
 	Engine.OpenURL(url);

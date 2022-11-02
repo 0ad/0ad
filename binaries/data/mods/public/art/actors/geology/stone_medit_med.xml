@@ -1,40 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant name="shape-a">
+    <variant frequency="3" name="shape-a">
       <mesh>gaia/stone_granite_me_a.dae</mesh>
     </variant>
-    <variant name="b">
+    <variant frequency="3" name="b">
       <mesh>gaia/stone_granite_me_b.dae</mesh>
     </variant>
-    <variant name="c">
+    <variant frequency="1" name="c">
       <mesh>gaia/stone_granite_me_c.dae</mesh>
     </variant>
-    <variant name="d">
+    <variant frequency="3" name="d">
       <mesh>gaia/stone_granite_me_d.dae</mesh>
     </variant>
-    <variant name="e">
+    <variant frequency="3" name="e">
       <mesh>gaia/stone_granite_me_e.dae</mesh>
     </variant>
-    <variant name="f">
+    <variant frequency="3" name="f">
       <mesh>gaia/stone_granite_me_f.dae</mesh>
     </variant>
-    <variant name="shape-g">
+    <variant frequency="3" name="shape-g">
       <mesh>gaia/stone_granite_me_g.dae</mesh>
+    </variant>
+    <variant frequency="1" name="1">
+      <mesh>gaia/wrld_rock_1.dae</mesh>
+    </variant>
+    <variant frequency="1" name="2">
+      <mesh>gaia/wrld_rock_2.dae</mesh>
+    </variant>
+    <variant frequency="1" name="3">
+      <mesh>gaia/wrld_rock_3.dae</mesh>
+    </variant>
+    <variant frequency="1" name="4">
+      <mesh>gaia/wrld_rock_4.dae</mesh>
+    </variant>
+    <variant frequency="1" name="5">
+      <mesh>gaia/wrld_rock_5.dae</mesh>
+    </variant>
+    <variant frequency="1" name="6">
+      <mesh>gaia/wrld_rock_6.dae</mesh>
+    </variant>
+    <variant frequency="1" name="7">
+      <mesh>gaia/wrld_rock_7.dae</mesh>
+    </variant>
+    <variant frequency="1" name="8">
+      <mesh>gaia/wrld_rock_8.dae</mesh>
     </variant>
   </group>
   <group>
-    <variant name="stone color a">
+    <variant>
       <textures>
-        <texture file="gaia/stone_medit_a.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant name="stone color c">
-      <textures>
-        <texture file="gaia/stone_medit_c.dds" name="baseTex"/>
+        <texture file="gaia/stone_aegean_01.png" name="baseTex"/>
+        <texture file="gaia/stone_sahara_02_norm.png" name="normTex"/>
+        <texture file="gaia/stone_sahara_02_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>default.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

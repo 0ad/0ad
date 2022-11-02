@@ -79,6 +79,20 @@ var g_OptionType = {
 		"valueToGui": (value, control) => {
 			control.caption = value;
 		},
+		"initGUI": (option, control) => {
+			control.children[2].onPress = () => {
+				colorMixer(
+					control.caption,
+					(color) => {
+						if (color != control.caption)
+						{
+							control.caption = color;
+							control.onTextEdit();
+						}
+					}
+				);
+			};
+		},
 		"guiToValue": control => control.caption,
 		"guiSetter": "onTextEdit",
 		"sanitizeValue": (value, control, option) => {

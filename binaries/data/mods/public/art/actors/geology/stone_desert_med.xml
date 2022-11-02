@@ -1,26 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="2" name="shape-a">
+    <variant frequency="3" name="shape-a">
       <mesh>gaia/stone_granite_me_a.dae</mesh>
     </variant>
-    <variant frequency="2" name="b">
+    <variant frequency="3" name="b">
       <mesh>gaia/stone_granite_me_b.dae</mesh>
     </variant>
-    <variant frequency="2" name="c">
+    <variant frequency="1" name="c">
       <mesh>gaia/stone_granite_me_c.dae</mesh>
     </variant>
-    <variant frequency="2" name="d">
+    <variant frequency="3" name="d">
       <mesh>gaia/stone_granite_me_d.dae</mesh>
     </variant>
-    <variant frequency="2" name="e">
+    <variant frequency="3" name="e">
       <mesh>gaia/stone_granite_me_e.dae</mesh>
     </variant>
-    <variant frequency="2" name="f">
+    <variant frequency="3" name="f">
       <mesh>gaia/stone_granite_me_f.dae</mesh>
     </variant>
-    <variant frequency="2" name="shape-g">
+    <variant frequency="3" name="shape-g">
       <mesh>gaia/stone_granite_me_g.dae</mesh>
     </variant>
     <variant frequency="1" name="1">
@@ -49,11 +49,13 @@
     </variant>
   </group>
   <group>
-    <variant name="stone color a">
+    <variant>
       <textures>
-        <texture file="gaia/stone_desert_small_a.dds" name="baseTex"/>
+        <texture file="gaia/stone_sahara_01.png" name="baseTex"/>
+        <texture file="gaia/stone_sahara_01_norm.png" name="normTex"/>
+        <texture file="gaia/stone_sahara_01_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>default.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>
