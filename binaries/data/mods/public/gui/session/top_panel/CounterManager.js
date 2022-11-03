@@ -55,11 +55,10 @@ class CounterManager
 
 	onPress()
 	{
-		Engine.ConfigDB_CreateAndWriteValueToFile(
+		Engine.ConfigDB_CreateAndSaveValue(
 			"user",
 			"gui.session.respoptooltipsort",
-			String((+Engine.ConfigDB_GetValue("user", "gui.session.respoptooltipsort") + 2) % 3 - 1),
-			"config/user.cfg");
+			String((+Engine.ConfigDB_GetValue("user", "gui.session.respoptooltipsort") + 2) % 3 - 1));
 		this.rebuild();
 	}
 

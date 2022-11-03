@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -113,6 +113,7 @@ bool CreateValue(const std::wstring& cfgNsString, const std::string& name, const
 		return false;
 
 	g_ConfigDB.SetValueString(cfgNs, name, value);
+	g_ConfigDB.SetChanges(cfgNs, true);
 	return true;
 }
 
@@ -126,6 +127,7 @@ bool CreateValues(const std::wstring& cfgNsString, const std::string& name, cons
 		return false;
 
 	g_ConfigDB.SetValueList(cfgNs, name, values);
+	g_ConfigDB.SetChanges(cfgNs, true);
 	return true;
 }
 
@@ -139,20 +141,36 @@ bool RemoveValue(const std::wstring& cfgNsString, const std::string& name)
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
 		return false;
 
-	g_ConfigDB.RemoveValue(cfgNs, name);
-	return true;
+	bool result = g_ConfigDB.RemoveValue(cfgNs, name);
+	if (result)
+		g_ConfigDB.SetChanges(cfgNs, true);
+
+	return result;
 }
 
-bool WriteFile(const std::wstring& cfgNsString, const Path& path)
+bool SaveChanges(const std::wstring& cfgNsString)
 {
 	EConfigNamespace cfgNs;
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
 		return false;
 
-	return g_ConfigDB.WriteFile(cfgNs, path);
+	bool result = g_ConfigDB.WriteFile(cfgNs);
+	if (result)
+		g_ConfigDB.SetChanges(cfgNs, false);
+
+	return result;
 }
 
-bool WriteValueToFile(const std::wstring& cfgNsString,  const std::string& name, const std::string& value, const Path& path)
+bool RemoveValueAndSave(const std::wstring& cfgNsString, const std::string& name)
+{
+	if (RemoveValue(cfgNsString, name))
+		return SaveChanges(cfgNsString);
+
+	return false;
+}
+
+
+bool SaveValue(const std::wstring& cfgNsString,  const std::string& name, const std::string& value)
 {
 	if (IsProtectedConfigName(name))
 		return false;
@@ -161,13 +179,13 @@ bool WriteValueToFile(const std::wstring& cfgNsString,  const std::string& name,
 	if (!GetConfigNamespace(cfgNsString, cfgNs))
 		return false;
 
-	return g_ConfigDB.WriteValueToFile(cfgNs, name, value, path);
+	return g_ConfigDB.WriteValueToFile(cfgNs, name, value);
 }
 
-void CreateAndWriteValueToFile(const std::wstring& cfgNsString,  const std::string& name, const std::string& value, const Path& path)
+void CreateAndSaveValue(const std::wstring& cfgNsString,  const std::string& name, const std::string& value)
 {
-	CreateValue(cfgNsString, name, value);
-	WriteValueToFile(cfgNsString, name, value, path);
+	if (CreateValue(cfgNsString, name, value))
+		SaveValue(cfgNsString, name, value);
 }
 
 bool Reload(const std::wstring& cfgNsString)
@@ -177,16 +195,6 @@ bool Reload(const std::wstring& cfgNsString)
 		return false;
 
 	return g_ConfigDB.Reload(cfgNs);
-}
-
-bool SetFile(const std::wstring& cfgNsString, const Path& path)
-{
-	EConfigNamespace cfgNs;
-	if (!GetConfigNamespace(cfgNsString, cfgNs))
-		return false;
-
-	g_ConfigDB.SetConfigFile(cfgNs, path);
-	return true;
 }
 
 void PauseOnFocusLoss(bool pause)
@@ -207,10 +215,10 @@ void RegisterScriptFunctions(const ScriptRequest& rq)
 	ScriptFunction::Register<&CreateValue>(rq, "ConfigDB_CreateValue");
 	ScriptFunction::Register<&CreateValues>(rq, "ConfigDB_CreateValues");
 	ScriptFunction::Register<&RemoveValue>(rq, "ConfigDB_RemoveValue");
-	ScriptFunction::Register<&WriteFile>(rq, "ConfigDB_WriteFile");
-	ScriptFunction::Register<&WriteValueToFile>(rq, "ConfigDB_WriteValueToFile");
-	ScriptFunction::Register<&CreateAndWriteValueToFile>(rq, "ConfigDB_CreateAndWriteValueToFile");
-	ScriptFunction::Register<&SetFile>(rq, "ConfigDB_SetFile");
+	ScriptFunction::Register<&RemoveValueAndSave>(rq, "ConfigDB_RemoveValueAndSave");
+	ScriptFunction::Register<&SaveChanges>(rq, "ConfigDB_SaveChanges");
+	ScriptFunction::Register<&SaveValue>(rq, "ConfigDB_SaveValue");
+	ScriptFunction::Register<&CreateAndSaveValue>(rq, "ConfigDB_CreateAndSaveValue");
 	ScriptFunction::Register<&Reload>(rq, "ConfigDB_Reload");
 	ScriptFunction::Register<&PauseOnFocusLoss>(rq, "PauseOnFocusLoss");
 	ScriptFunction::Register<&SetGUIScale>(rq, "SetGUIScale");

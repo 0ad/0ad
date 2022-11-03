@@ -51,11 +51,10 @@ class RangeOverlayManager
 	{
 		let enabled = !this.isEnabled(type);
 
-		Engine.ConfigDB_CreateAndWriteValueToFile(
+		Engine.ConfigDB_CreateAndSaveValue(
 			"user",
 			type.config,
-			String(enabled),
-			"config/user.cfg");
+			String(enabled));
 
 		this.setEnabled(type, enabled);
 	}

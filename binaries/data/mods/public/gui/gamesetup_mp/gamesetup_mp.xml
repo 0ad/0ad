@@ -122,7 +122,7 @@
 
 			<object name="hostSTUNWrapper" size="120 136 100% 180">
 				<object name="useSTUN" size="0 10 32 100%" type="checkbox" style="ModernTickBox">
-					<action on="Press">Engine.ConfigDB_CreateAndWriteValueToFile("user", "lobby.stun.enabled", String(this.checked), "config/user.cfg");</action>
+					<action on="Press">Engine.ConfigDB_CreateAndSaveValue("user", "lobby.stun.enabled", String(this.checked));</action>
 				</object>
 				<object type="text" size="26 0 100% 100%" style="ModernLeftLabelText">
 					<translatableAttribute id="caption">Use STUN to work around firewalls</translatableAttribute>

@@ -38,10 +38,7 @@ class AutoFormation
 		this.defaultFormation = formation;
 		if (formation !== NULL_FORMATION)
 			this.lastDefault = this.defaultFormation;
-		Engine.ConfigDB_CreateValue("user", "gui.session.defaultformation", this.defaultFormation);
-		// TODO: It's extremely terrible that we have to explicitly flush the config...
-		Engine.ConfigDB_SetChanges("user", true);
-		Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+		Engine.ConfigDB_ConfigDB_CreateAndSaveValue("user", "gui.session.defaultformation", this.defaultFormation);
 		return true;
 	}
 

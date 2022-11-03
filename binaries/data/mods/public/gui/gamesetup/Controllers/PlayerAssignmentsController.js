@@ -14,7 +14,7 @@ class PlayerAssignmentsController
 			let name = singleplayerName();
 
 			// Replace empty player name when entering a single-player match for the first time.
-			Engine.ConfigDB_CreateAndWriteValueToFile("user", this.ConfigNameSingleplayer, name, "config/user.cfg");
+			Engine.ConfigDB_CreateAndSaveValue("user", this.ConfigNameSingleplayer, name);
 
 			// By default, assign the player to the first slot.
 			g_PlayerAssignments = {

@@ -24,11 +24,11 @@ class TipsPanel
 
 	onPress()
 	{
-		Engine.ConfigDB_CreateAndWriteValueToFile(
+		Engine.ConfigDB_CreateAndSaveValue(
 			"user",
 			this.Config,
-			String(this.displaySPTips.checked),
-			"config/user.cfg");
+			String(this.displaySPTips.checked)
+		);
 	}
 
 	onGameSettingsPanelResize(settingsPanel)

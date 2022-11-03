@@ -30,8 +30,7 @@ class HotkeyPicker
 
 		Engine.GetGUIObjectByName("hotkeyPickerReset").onPress = () => {
 			// This is a bit "using a bazooka to kill a fly"
-			Engine.ConfigDB_RemoveValue("user", "hotkey." + this.name);
-			Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+			Engine.ConfigDB_RemoveValueAndSave("user", "hotkey." + this.name);
 			Engine.ReloadHotkeys();
 			let data = Engine.GetHotkeyMap();
 			this.combinations = data[this.name];

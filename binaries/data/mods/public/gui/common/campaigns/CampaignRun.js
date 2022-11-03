@@ -38,8 +38,7 @@ class CampaignRun
 
 	static clearCurrentRun()
 	{
-		Engine.ConfigDB_RemoveValue("user", "currentcampaign");
-		Engine.ConfigDB_WriteFile("user", "config/user.cfg");
+		Engine.ConfigDB_RemoveValueAndSave("user", "currentcampaign");
 	}
 
 	constructor(name = "")
