@@ -78,13 +78,14 @@ function getEncryptedPassword()
 function saveCredentials()
 {
 	let username = Engine.GetGUIObjectByName("username").caption;
-	Engine.ConfigDB_CreateAndSaveValue("user", "playername.multiplayer", username);
-	Engine.ConfigDB_CreateAndSaveValue("user", "lobby.login", username);
+	Engine.ConfigDB_CreateValue("user", "playername.multiplayer", username);
+	Engine.ConfigDB_CreateValue("user", "lobby.login", username);
 
 	if (Engine.ConfigDB_GetValue("user", "lobby.rememberpassword") == "true")
-		Engine.ConfigDB_CreateAndSaveValue("user", "lobby.password", getEncryptedPassword());
+		Engine.ConfigDB_CreateValue("user", "lobby.password", getEncryptedPassword());
 	else
 	{
-		Engine.ConfigDB_RemoveValueAndSave("user", "lobby.password");
+		Engine.ConfigDB_RemoveValue("user", "lobby.password");
 	}
+	Engine.ConfigDB_SaveChanges("user");
 }
