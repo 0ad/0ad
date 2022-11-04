@@ -2,6 +2,7 @@
 
 #include "common/los_vertex.h"
 #include "common/shadows_vertex.h"
+#include "common/vertex.h"
 
 uniform mat4 transform;
 uniform vec3 cameraPos;
@@ -43,5 +44,5 @@ void main()
 	v_normal = normalMatrix * a_normal;
 	v_lighting = max(0.0, dot(v_normal, -sunDir)) * sunColor;
 
-	gl_Position = transform * worldPos;
+	OUTPUT_VERTEX_POSITION(transform * worldPos);
 }

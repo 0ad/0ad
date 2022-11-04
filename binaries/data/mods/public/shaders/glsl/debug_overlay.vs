@@ -1,5 +1,7 @@
 #version 110
 
+#include "common/vertex.h"
+
 uniform mat4 transform;
 #if DEBUG_TEXTURED
 uniform mat4 textureTransform;
@@ -18,5 +20,5 @@ void main()
 #if DEBUG_TEXTURED
 	v_tex = (textureTransform * vec4(a_uv0, 1.0)).xy;
 #endif
-	gl_Position = transform * vec4(a_vertex, 1.0);
+	OUTPUT_VERTEX_POSITION(transform * vec4(a_vertex, 1.0));
 }

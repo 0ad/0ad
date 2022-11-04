@@ -1,6 +1,7 @@
 #version 110
 
 #include "common/los_vertex.h"
+#include "common/vertex.h"
 
 attribute vec3 a_vertex;
 
@@ -18,5 +19,5 @@ void main()
 
 	v_coords = a_vertex.xz / repeatPeriod + vec2(tx, tz);
 	calculateLOSCoordinates(a_vertex.xz);
-	gl_Position = transform * vec4(a_vertex, 1.0);
+	OUTPUT_VERTEX_POSITION(transform * vec4(a_vertex, 1.0));
 }

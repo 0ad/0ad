@@ -2,6 +2,7 @@
 
 #include "common/los_vertex.h"
 #include "common/shadows_vertex.h"
+#include "common/vertex.h"
 
 uniform mat4 transform;
 uniform vec3 cameraPos;
@@ -38,5 +39,5 @@ void main()
 
 	calculateLOSCoordinates(worldPos.xz);
 
-	gl_Position = transform * worldPos;
+	OUTPUT_VERTEX_POSITION(transform * worldPos);
 }

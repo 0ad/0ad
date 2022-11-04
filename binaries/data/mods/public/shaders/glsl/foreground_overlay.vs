@@ -1,5 +1,7 @@
 #version 110
 
+#include "common/vertex.h"
+
 uniform mat4 transform;
 
 varying vec2 v_tex;
@@ -9,6 +11,6 @@ attribute vec2 a_uv0;
 
 void main()
 {
-	gl_Position = transform * vec4(a_vertex, 1.0);
+	OUTPUT_VERTEX_POSITION(transform * vec4(a_vertex, 1.0));
 	v_tex = a_uv0;
 }

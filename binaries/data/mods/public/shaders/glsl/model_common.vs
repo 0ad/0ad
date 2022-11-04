@@ -2,6 +2,7 @@
 
 #include "common/los_vertex.h"
 #include "common/shadows_vertex.h"
+#include "common/vertex.h"
 
 uniform mat4 transform;
 uniform vec3 cameraPos;
@@ -132,7 +133,7 @@ void main()
   #endif
 
 
-  gl_Position = transform * position;
+  OUTPUT_VERTEX_POSITION(transform * position);
 
   #if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX
     v_normal.xyz = normal;

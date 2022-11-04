@@ -2,6 +2,7 @@
 
 #include "common/los_vertex.h"
 #include "common/shadows_vertex.h"
+#include "common/vertex.h"
 
 uniform mat4 transform;
 uniform vec3 cameraPos;
@@ -45,7 +46,7 @@ void main()
 {
   vec4 position = vec4(a_vertex, 1.0);
 
-  gl_Position = transform * position;
+  OUTPUT_VERTEX_POSITION(transform * position);
 
   v_lighting = clamp(-dot(a_normal, sunDir), 0.0, 1.0) * sunColor;
 

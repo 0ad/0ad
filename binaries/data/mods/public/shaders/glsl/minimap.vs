@@ -1,5 +1,7 @@
 #version 110
 
+#include "common/vertex.h"
+
 uniform vec4 transform;
 uniform vec4 translation;
 uniform vec4 textureTransform;
@@ -44,5 +46,5 @@ void main()
 	color = a_color;
 #endif // MINIMAP_POINT
 
-	gl_Position = vec4(mat2(transform.xy, transform.zw) * position + translation.xy, 0.0, 1.0);
+	OUTPUT_VERTEX_POSITION(vec4(mat2(transform.xy, transform.zw) * position + translation.xy, 0.0, 1.0));
 }

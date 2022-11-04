@@ -1,6 +1,7 @@
 #version 110
 
 #include "common/los_vertex.h"
+#include "common/vertex.h"
 
 uniform mat4 transform;
 uniform mat4 modelViewMatrix;
@@ -21,7 +22,7 @@ void main()
 
   vec3 position = axis1*offset.x + axis1*offset.y + axis2*offset.x + axis2*-offset.y + a_vertex;
 
-  gl_Position = transform * vec4(position, 1.0);
+  OUTPUT_VERTEX_POSITION(transform * vec4(position, 1.0));
 
   calculateLOSCoordinates(position.xz);
 
