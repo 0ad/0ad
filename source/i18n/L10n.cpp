@@ -134,13 +134,8 @@ icu::DateFormat* CreateDateTimeInstance(const L10n::DateTimeType& type, const ic
 
 } // anonymous namespace
 
-void L10n::DictionaryDeleter::operator()(tinygettext::Dictionary* dictionary)
-{
-	delete dictionary;
-}
-
 L10n::L10n()
-	: m_Dictionary(new tinygettext::Dictionary())
+	: m_Dictionary(std::make_unique<tinygettext::Dictionary>())
 {
 	// Determine whether or not to print tinygettext messages to the standard
 	// error output, which it tinygettext's default behavior, but not ours.
@@ -567,7 +562,7 @@ Status L10n::ReloadChangedFile(const VfsPath& path)
 
 void L10n::LoadDictionaryForCurrentLocale()
 {
-	m_Dictionary.reset(new tinygettext::Dictionary());
+	m_Dictionary = std::make_unique<tinygettext::Dictionary>();
 	VfsPaths filenames;
 
 	if (m_UseLongStrings)
