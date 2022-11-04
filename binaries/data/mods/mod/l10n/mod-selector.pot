@@ -5,21 +5,49 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pyrogenesis - Mod Selector\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
-"PO-Revision-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2022-11-04 08:09+0000\n"
+"PO-Revision-Date: 2022-11-04 08:09+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit"
 
-#: gui/common/functions_msgbox.js:44
+#: gui/colormixer/colormixer.js:24
+msgid "Color"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:25
+msgid "Move the sliders to change the Red, Green and Blue components of the Color"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:90
+msgid "Red"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:90
+msgid "Green"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:90
+msgid "Blue"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:91
+msgid "Save"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:91 gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):197
+msgid "Cancel"
+msgstr ""
+
+#: gui/common/functions_msgbox.js:55
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
 msgstr ""
 
-#: gui/common/functions_msgbox.js:47
+#: gui/common/functions_msgbox.js:58
 msgid "Opening page"
 msgstr ""
 
@@ -227,10 +255,6 @@ msgstr ""
 msgid "Initializing"
 msgstr ""
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):197
-msgid "Cancel"
-msgstr ""
-
 #: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
@@ -390,25 +414,25 @@ msgstr ""
 msgid "This mod does not exist"
 msgstr ""
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Enable"
 msgstr ""
 
-#: gui/modmod/modmod.js:168
+#: gui/modmod/modmod.js:167
 msgid "Dependencies not met"
 msgstr ""
 
-#: gui/modmod/modmod.js:450
+#: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
 msgstr ""
 
-#: gui/modmod/modmod.js:458
+#: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
 msgstr ""
 
-#: gui/modmod/modmod.js:461
+#: gui/modmod/modmod.js:460
 msgid "Enable at least 0ad mod"
 msgstr ""
 
