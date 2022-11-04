@@ -38,7 +38,7 @@ class AutoFormation
 		this.defaultFormation = formation;
 		if (formation !== NULL_FORMATION)
 			this.lastDefault = this.defaultFormation;
-		Engine.ConfigDB_ConfigDB_CreateAndSaveValue("user", "gui.session.defaultformation", this.defaultFormation);
+		Engine.ConfigDB_CreateAndSaveValue("user", "gui.session.defaultformation", this.defaultFormation);
 		return true;
 	}
 

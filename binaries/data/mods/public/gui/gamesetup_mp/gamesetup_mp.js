@@ -347,10 +347,10 @@ function startHost(playername, servername, port, password)
 {
 	startConnectionStatus("server");
 
-	Engine.ConfigDB_CreateAndSaveValue("user", "playername.multiplayer", playername);
-
-	Engine.ConfigDB_CreateAndSaveValue("user", "multiplayerhosting.port", port);
-
+	Engine.ConfigDB_CreateValue("user", "playername.multiplayer", playername);
+	Engine.ConfigDB_CreateValue("user", "multiplayerhosting.port", port);
+	Engine.ConfigDB_SaveChanges("user");
+	
 	let hostFeedback = Engine.GetGUIObjectByName("hostFeedback");
 
 	// Disallow identically named games in the multiplayer lobby
@@ -415,9 +415,10 @@ function startJoin(playername, ip, port)
 		Engine.LobbySetPlayerPresence("playing");
 
 	// Only save the player name and host address if they're valid.
-	Engine.ConfigDB_CreateAndSaveValue("user", "playername.multiplayer", playername);
-	Engine.ConfigDB_CreateAndSaveValue("user", "multiplayerserver", ip);
-	Engine.ConfigDB_CreateAndSaveValue("user", "multiplayerjoining.port", port);
+	Engine.ConfigDB_CreateValue("user", "playername.multiplayer", playername);
+	Engine.ConfigDB_CreateValue("user", "multiplayerserver", ip);
+	Engine.ConfigDB_CreateValue("user", "multiplayerjoining.port", port);
+	Engine.ConfigDB_SaveChanges("user");
 	return true;
 }
 
