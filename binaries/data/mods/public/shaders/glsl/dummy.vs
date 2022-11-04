@@ -2,7 +2,7 @@
 
 #include "common/vertex.h"
 
-attribute vec3 a_vertex;
+VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
 
 uniform mat4 transform;
 

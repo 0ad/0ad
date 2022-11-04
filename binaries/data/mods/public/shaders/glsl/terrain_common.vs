@@ -37,10 +37,10 @@ varying vec3 v_normal;
   #endif
 #endif
 
-attribute vec3 a_vertex;
-attribute vec3 a_normal;
-attribute vec2 a_uv0;
-attribute vec2 a_uv1;
+VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
+VERTEX_INPUT_ATTRIBUTE(1, vec3, a_normal);
+VERTEX_INPUT_ATTRIBUTE(2, vec2, a_uv0);
+VERTEX_INPUT_ATTRIBUTE(3, vec2, a_uv1);
 
 void main()
 {

@@ -4,7 +4,7 @@
 
 uniform mat4 transform;
 
-attribute vec3 a_vertex;
+VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
 
 void main()
 {

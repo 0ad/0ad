@@ -41,20 +41,20 @@ varying vec2 v_tex;
   #endif
 #endif
 
-attribute vec3 a_vertex;
-attribute vec3 a_normal;
+VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
+VERTEX_INPUT_ATTRIBUTE(1, vec3, a_normal);
 #if (USE_INSTANCING || USE_GPU_SKINNING)
-  attribute vec4 a_tangent;
+  VERTEX_INPUT_ATTRIBUTE(2, vec4, a_tangent);
 #endif
-attribute vec2 a_uv0;
-attribute vec2 a_uv1;
+VERTEX_INPUT_ATTRIBUTE(3, vec2, a_uv0);
+VERTEX_INPUT_ATTRIBUTE(4, vec2, a_uv1);
 
 #if USE_GPU_SKINNING
   const int MAX_INFLUENCES = 4;
   const int MAX_BONES = 64;
   uniform mat4 skinBlendMatrices[MAX_BONES];
-  attribute vec4 a_skinJoints;
-  attribute vec4 a_skinWeights;
+  VERTEX_INPUT_ATTRIBUTE(5, vec4, a_skinJoints);
+  VERTEX_INPUT_ATTRIBUTE(6, vec4, a_skinWeights);
 #endif
 
 

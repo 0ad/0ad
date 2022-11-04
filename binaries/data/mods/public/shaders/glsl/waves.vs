@@ -2,14 +2,12 @@
 
 #include "common/vertex.h"
 
-attribute vec2 a_uv0;
-
-attribute vec2 a_normal;
-
-attribute vec3 a_basePosition;
-attribute vec3 a_apexPosition;
-attribute vec3 a_splashPosition;
-attribute vec3 a_retreatPosition;
+VERTEX_INPUT_ATTRIBUTE(0, vec3, a_basePosition);
+VERTEX_INPUT_ATTRIBUTE(1, vec3, a_apexPosition);
+VERTEX_INPUT_ATTRIBUTE(2, vec3, a_splashPosition);
+VERTEX_INPUT_ATTRIBUTE(3, vec3, a_retreatPosition);
+VERTEX_INPUT_ATTRIBUTE(4, vec2, a_normal);
+VERTEX_INPUT_ATTRIBUTE(5, vec2, a_uv0);
 
 uniform float time;
 uniform float translation;

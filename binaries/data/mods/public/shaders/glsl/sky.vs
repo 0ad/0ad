@@ -3,8 +3,9 @@
 #include "common/vertex.h"
 
 varying vec3 v_tex;
-attribute vec3 a_vertex;
-attribute vec3 a_uv0;
+
+VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
+VERTEX_INPUT_ATTRIBUTE(1, vec3, a_uv0);
 
 uniform mat4 transform;
 

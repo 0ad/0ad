@@ -5,11 +5,11 @@
 
 uniform mat4 transform;
 
-attribute vec3 a_vertex;
-attribute vec2 a_uv0;
+VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
+VERTEX_INPUT_ATTRIBUTE(1, vec2, a_uv0);
 
 #if !USE_OBJECTCOLOR
-attribute vec4 a_color;
+VERTEX_INPUT_ATTRIBUTE(2, vec4, a_color);
 varying vec4 v_color;
 #endif
 

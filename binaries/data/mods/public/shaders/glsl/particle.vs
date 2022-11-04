@@ -9,10 +9,10 @@ uniform mat4 modelViewMatrix;
 varying vec2 v_tex;
 varying vec4 v_color;
 
-attribute vec3 a_vertex;
-attribute vec4 a_color;
-attribute vec2 a_uv0;
-attribute vec2 a_uv1;
+VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
+VERTEX_INPUT_ATTRIBUTE(1, vec4, a_color);
+VERTEX_INPUT_ATTRIBUTE(2, vec2, a_uv0);
+VERTEX_INPUT_ATTRIBUTE(3, vec2, a_uv1);
 
 void main()
 {

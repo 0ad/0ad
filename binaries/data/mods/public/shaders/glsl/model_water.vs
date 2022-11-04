@@ -13,10 +13,10 @@ uniform mat4 instancingTransform;
 uniform float sim_time;
 uniform vec2 translation;
 
-attribute vec3 a_vertex;
-attribute vec3 a_normal;
-attribute vec2 a_uv0;
-attribute vec2 a_uv1;
+VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
+VERTEX_INPUT_ATTRIBUTE(1, vec3, a_normal);
+VERTEX_INPUT_ATTRIBUTE(2, vec2, a_uv0);
+VERTEX_INPUT_ATTRIBUTE(3, vec2, a_uv1);
 
 varying vec4 worldPos;
 varying vec4 v_tex;
