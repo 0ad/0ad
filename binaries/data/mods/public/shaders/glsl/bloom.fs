@@ -1,5 +1,7 @@
 #version 110
 
+#include "common/fragment.h"
+
 varying vec2 v_tex;
 uniform sampler2D renderedTex;
 uniform vec2 texSize;
@@ -7,8 +9,7 @@ uniform vec2 texSize;
 void main()
 {
   #if BLOOM_NOP
-    gl_FragColor = texture2D(renderedTex, v_tex);
-    gl_FragColor.a = 1.0;
+    OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(texture2D(renderedTex, v_tex).rgb, 1.0));
   #endif
 
   #if BLOOM_PASS_H
@@ -21,8 +22,7 @@ void main()
       v_tex_offs += vec2(0.004, 0.0);
     }
     
-    gl_FragColor.rgb = color.rgb / 6.0;
-    gl_FragColor.a = 1.0;
+    OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(color.rgb / 6.0, 1.0));
   #endif
 
   #if BLOOM_PASS_V
@@ -35,7 +35,6 @@ void main()
       v_tex_offs += vec2(0.0, 0.004);
     }
     
-    gl_FragColor.rgb = color.rgb / 6.0;
-    gl_FragColor.a = 1.0;
+    OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(color.rgb / 6.0, 1.0));
   #endif
 }

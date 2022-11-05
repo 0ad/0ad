@@ -1,5 +1,7 @@
 #version 110
 
+#include "common/fragment.h"
+
 uniform sampler2D baseTex;
 
 varying vec2 v_tex;
@@ -13,5 +15,5 @@ void main()
       discard;
   #endif
 
-  gl_FragColor = tex;
+  OUTPUT_FRAGMENT_SINGLE_COLOR(tex);
 }

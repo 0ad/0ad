@@ -1,6 +1,7 @@
 #version 120
 
 #include "common/debug_fragment.h"
+#include "common/fragment.h"
 #include "common/los_fragment.h"
 
 uniform sampler2D baseTex;
@@ -30,5 +31,5 @@ void main()
 
     color *= getLOS();
 
-    gl_FragColor = vec4(applyDebugColor(color, 1.0, alpha * base.a, 0.0), alpha * base.a);
+    OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(applyDebugColor(color, 1.0, alpha * base.a, 0.0), alpha * base.a));
 }

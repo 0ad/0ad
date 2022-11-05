@@ -1,5 +1,7 @@
 #version 120
 
+#include "common/fragment.h"
+
 uniform sampler2D renderedTex;
 uniform sampler2D depthTex;
 uniform sampler2D blurTex2;
@@ -56,8 +58,7 @@ void main(void)
 	color = (amount >= 0.50 && amount < 0.75) ? mix(blur4, blur8, (amount - 0.50) / (0.25)) : color;
 	color = (amount >= 0.75 && amount <= 1.00) ? blur8 : color;
 
-	gl_FragColor.rgb = color;
-	gl_FragColor.a = 1.0;
+	OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(color, 1.0));
 }
 
 

@@ -1,5 +1,7 @@
 #version 110
 
+#include "common/fragment.h"
+
 uniform sampler2D waveTex;
 uniform sampler2D foamTex;
 
@@ -39,5 +41,5 @@ void main()
 	foam *= texture2D(foamTex, -v_tex.xy/5.0 + vec2(0.8,-0.8) + vec2(-0.05,-0.25)*-cos(ttime/2.0)*1.2).rbg;
 	Tex.g = foamAlpha * clamp(foam.r * 3.0, 0.0, 1.0) * 0.4;
 
-	gl_FragColor = Tex;
+	OUTPUT_FRAGMENT_SINGLE_COLOR(Tex);
 }

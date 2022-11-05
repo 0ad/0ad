@@ -2,6 +2,7 @@
 
 #include "common/debug_fragment.h"
 #include "common/fog.h"
+#include "common/fragment.h"
 #include "common/los_fragment.h"
 #include "common/shadows_fragment.h"
 
@@ -275,7 +276,7 @@ void main()
 	// We don't need to render a water fragment if it's invisible.
 	if (los < 0.001)
 	{
-		gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
+		OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(0.0, 0.0, 0.0, 1.0));
 		return;
 	}
 
@@ -314,5 +315,5 @@ void main()
 
 	color = applyFog(color);
 
-	gl_FragColor = vec4(applyDebugColor(color * los, 1.0, refrColor.a, 0.0), refrColor.a);
+	OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(applyDebugColor(color * los, 1.0, refrColor.a, 0.0), refrColor.a));
 }

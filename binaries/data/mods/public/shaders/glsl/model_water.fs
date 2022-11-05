@@ -1,6 +1,7 @@
 #version 120
 
 #include "common/debug_fragment.h"
+#include "common/fragment.h"
 #include "common/los_fragment.h"
 #include "common/shadows_fragment.h"
 
@@ -98,5 +99,5 @@ void main()
 	t = 18.0 * max(0.0, 0.7 - v.y);
 	float alpha = 0.15 * waterDepth * (1.2 + t + fresnel);
 
-	gl_FragColor = vec4(applyDebugColor(color, 1.0, alpha, 0.0), alpha);
+	OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(applyDebugColor(color, 1.0, alpha, 0.0), alpha));
 }

@@ -6,6 +6,8 @@
 // * Removed unused macro (such as FXAA_DISCARD, FXAA_GATHER4_ALPHA, ...).
 // * Luma calculated by 3 components instead of the only green one.
 
+#include "common/fragment.h"
+
 #define FXAA_QUALITY__PRESET 10
 
 //
@@ -614,10 +616,10 @@ void main()
     const float fxaaQualitySubpix = 0.75;
     const float fxaaQualityEdgeThreshold = 0.125;
     const float fxaaQualityEdgeThresholdMin = 0.0312;
-    gl_FragColor = FxaaPixelShader(
+    OUTPUT_FRAGMENT_SINGLE_COLOR(FxaaPixelShader(
         v_tex, renderedTex,
         vec2(1.0, 1.0) / vec2(width, height),
         fxaaQualitySubpix,
         fxaaQualityEdgeThreshold,
-        fxaaQualityEdgeThresholdMin);
+        fxaaQualityEdgeThresholdMin));
 }

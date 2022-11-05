@@ -1,6 +1,7 @@
 #version 120
 
 #include "common/debug_fragment.h"
+#include "common/fragment.h"
 #include "common/los_fragment.h"
 #include "common/shadows_fragment.h"
 
@@ -38,5 +39,5 @@ void main()
 
 	color *= getLOS();
 
-	gl_FragColor = vec4(applyDebugColor(color, 1.0, texdiffuse.a, 0.0), texdiffuse.a);
+	OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(applyDebugColor(color, 1.0, texdiffuse.a, 0.0), texdiffuse.a));
 }

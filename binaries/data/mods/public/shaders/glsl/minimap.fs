@@ -1,5 +1,7 @@
 #version 110
 
+#include "common/fragment.h"
+
 #if MINIMAP_BASE || MINIMAP_LOS
 uniform sampler2D baseTex;
 #endif
@@ -15,14 +17,14 @@ varying vec3 color;
 void main()
 {
 #if MINIMAP_BASE
-	gl_FragColor = texture2D(baseTex, v_tex);
+	OUTPUT_FRAGMENT_SINGLE_COLOR(texture2D(baseTex, v_tex));
 #endif
 
 #if MINIMAP_LOS
-	gl_FragColor = texture2D(baseTex, v_tex).rrrr;
+	OUTPUT_FRAGMENT_SINGLE_COLOR(texture2D(baseTex, v_tex).rrrr);
 #endif
 
 #if MINIMAP_POINT
-	gl_FragColor = vec4(color, 1.0);
+	OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(color, 1.0));
 #endif
 }

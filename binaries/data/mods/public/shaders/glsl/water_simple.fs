@@ -1,5 +1,6 @@
 #version 110
 
+#include "common/fragment.h"
 #include "common/los_fragment.h"
 
 uniform sampler2D baseTex;
@@ -9,5 +10,5 @@ varying vec2 v_coords;
 
 void main()
 {
-	gl_FragColor = vec4(texture2D(baseTex, v_coords).rgb * color * getLOS(), 1.0);
+	OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(texture2D(baseTex, v_coords).rgb * color * getLOS(), 1.0));
 }

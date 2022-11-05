@@ -1,5 +1,7 @@
 #version 110
 
+#include "common/fragment.h"
+
 uniform samplerCube baseTex;
 varying vec3 v_tex;
 
@@ -10,5 +12,5 @@ void main()
     float m = (1.0 - v_tex.y) - 0.75;
     m *= 4.0;
 
-    gl_FragColor = (v_tex.y > 0.0) ? (tex * m) : tex;
+    OUTPUT_FRAGMENT_SINGLE_COLOR((v_tex.y > 0.0) ? (tex * m) : tex);
 }
