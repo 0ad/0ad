@@ -62,8 +62,11 @@ function initLanguageSelection()
 
 		// current locale
 		let currentLocaleDict = Engine.GetFallbackToAvailableDictLocale(Engine.GetCurrentLocale());
-		if (currentLocaleDict != baseNames[0])
-			list.push(displayNames[baseNames.indexOf(currentLocaleDict)]);
+		let index = baseNames.indexOf(currentLocaleDict);
+		if (index == -1)
+			warn("Language '"+currentLocaleDict+"' is not available");
+		else if (currentLocaleDict != baseNames[0])
+			list.push(displayNames[index]);
 
 		return list;
 	})();
