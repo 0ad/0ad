@@ -1,5 +1,7 @@
 #version 110
 
+#include "common/vertex.h"
+
 uniform vec4 transform;
 uniform vec4 translation;
 uniform vec4 textureTransform;
@@ -7,16 +9,16 @@ uniform vec4 textureTransform;
 uniform float width;
 #endif
 
-attribute vec2 a_vertex;
+VERTEX_INPUT_ATTRIBUTE(0, vec2, a_vertex);
 
 #if MINIMAP_BASE || MINIMAP_LOS
-attribute vec2 a_uv0;
+VERTEX_INPUT_ATTRIBUTE(1, vec2, a_uv0);
 #endif
 
 #if MINIMAP_POINT
-attribute vec3 a_color;
+VERTEX_INPUT_ATTRIBUTE(1, vec3, a_color);
 #if USE_GPU_INSTANCING
-attribute vec2 a_uv1;
+VERTEX_INPUT_ATTRIBUTE(2, vec2, a_uv1);
 #endif
 #endif
 
@@ -44,5 +46,5 @@ void main()
 	color = a_color;
 #endif // MINIMAP_POINT
 
-	gl_Position = vec4(mat2(transform.xy, transform.zw) * position + translation.xy, 0.0, 1.0);
+	OUTPUT_VERTEX_POSITION(vec4(mat2(transform.xy, transform.zw) * position + translation.xy, 0.0, 1.0));
 }

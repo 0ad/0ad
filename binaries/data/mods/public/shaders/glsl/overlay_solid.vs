@@ -1,12 +1,14 @@
 #version 120
 
+#include "common/vertex.h"
+
 uniform mat4 transform;
 uniform mat4 instancingTransform;
 
-attribute vec3 a_vertex;
+VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
 
 void main()
 {
 	vec4 worldPos = instancingTransform * vec4(a_vertex, 1.0);
-	gl_Position = transform * worldPos;
+	OUTPUT_VERTEX_POSITION(transform * worldPos);
 }

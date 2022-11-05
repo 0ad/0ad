@@ -480,11 +480,6 @@ public:
 	Status ReloadChangedFile(const VfsPath& path);
 
 private:
-	struct DictionaryDeleter
-	{
-		void operator()(tinygettext::Dictionary* dictionary);
-	};
-
 	/**
 	 * Dictionary that contains the translations for the
 	 * @link L10n::GetCurrentLocale() current locale@endlink and the matching
@@ -492,7 +487,7 @@ private:
 	 *
 	 * @sa LoadDictionaryForCurrentLocale()
 	 */
-	std::unique_ptr<tinygettext::Dictionary, DictionaryDeleter> m_Dictionary;
+	std::unique_ptr<tinygettext::Dictionary> m_Dictionary;
 
 	/**
 	 * Locale that the game is currently using.

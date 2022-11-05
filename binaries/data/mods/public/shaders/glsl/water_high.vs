@@ -2,6 +2,7 @@
 
 #include "common/los_vertex.h"
 #include "common/shadows_vertex.h"
+#include "common/vertex.h"
 
 uniform mat4 reflectionMatrix;
 uniform mat4 refractionMatrix;
@@ -34,8 +35,8 @@ varying vec3 refractionCoords;
 varying float fwaviness;
 varying vec2 WindCosSin;
 
-attribute vec3 a_vertex;
-attribute vec2 a_waterInfo;
+VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
+VERTEX_INPUT_ATTRIBUTE(1, vec2, a_waterInfo);
 
 void main()
 {
@@ -68,5 +69,5 @@ void main()
 	// Fix the waviness for local wind strength
 	fwaviness = waviness * (0.15 + a_waterInfo.r / 1.15);
 
-	gl_Position = transform * vec4(a_vertex, 1.0);
+	OUTPUT_VERTEX_POSITION(transform * vec4(a_vertex, 1.0));
 }
