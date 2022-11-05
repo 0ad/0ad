@@ -64,7 +64,7 @@ function initLanguageSelection()
 		let currentLocaleDict = Engine.GetFallbackToAvailableDictLocale(Engine.GetCurrentLocale());
 		let index = baseNames.indexOf(currentLocaleDict);
 		if (index == -1)
-			warn("Language '"+currentLocaleDict+"' is not available");
+			warn("Language '" + currentLocaleDict + "' is not available");
 		else if (currentLocaleDict != baseNames[0])
 			list.push(displayNames[index]);
 
