@@ -8,18 +8,19 @@ uniform float width;
 
 varying float ttime;
 varying vec2 normal;
+varying vec2 v_tex;
 
 void main()
 {
-	vec4 Tex = texture2D(waveTex, -gl_TexCoord[0].xy/8.0).rbga;
+	vec4 Tex = texture2D(waveTex, -v_tex.xy/8.0).rbga;
 
 	Tex.rgb -= vec3(0.5,0.0,0.5);
 	Tex.rb *= -1.0;
 	
 	float halfwidth = (width-1.0) / 2.0;
 	
-	float forceAlpha = min(1.0,2.0-abs(gl_TexCoord[0].x-halfwidth)/(halfwidth/2.0));
-	float val = min(1.0,gl_TexCoord[0].y);
+	float forceAlpha = min(1.0,2.0-abs(v_tex.x-halfwidth)/(halfwidth/2.0));
+	float val = min(1.0,v_tex.y);
 	forceAlpha *= val;
 	
 	float timeAlpha = 1.0 - clamp((ttime - 6.0)/4.0,0.0,1.0);
@@ -34,8 +35,8 @@ void main()
 	Tex.r = norm.x * normal.x - norm.y * normal.x;
 	Tex.b = norm.x * normal.y + norm.y * normal.y;
 	
-	vec3 foam = texture2D(foamTex, -gl_TexCoord[0].xy/vec2(2.5,7.0) + vec2(0.05,-0.3)*-cos(ttime/2.0)).rbg;
-	foam *= texture2D(foamTex, -gl_TexCoord[0].xy/5.0 + vec2(0.8,-0.8) + vec2(-0.05,-0.25)*-cos(ttime/2.0)*1.2).rbg;
+	vec3 foam = texture2D(foamTex, -v_tex.xy/vec2(2.5,7.0) + vec2(0.05,-0.3)*-cos(ttime/2.0)).rbg;
+	foam *= texture2D(foamTex, -v_tex.xy/5.0 + vec2(0.8,-0.8) + vec2(-0.05,-0.25)*-cos(ttime/2.0)*1.2).rbg;
 	Tex.g = foamAlpha * clamp(foam.r * 3.0, 0.0, 1.0) * 0.4;
 
 	gl_FragColor = Tex;
