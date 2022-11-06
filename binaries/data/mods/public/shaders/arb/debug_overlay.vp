@@ -2,7 +2,7 @@
 
 PARAM transform[4] = { program.local[0..3] };
 #if DEBUG_TEXTURED
-PARAM textureTransform[4] = { program.local[4..7] };
+PARAM textureTransform = program.local[4];
 #endif
 
 ATTRIB position = vertex.position;
@@ -18,8 +18,8 @@ DP4 result.position.w, transform[3], position;
 #if DEBUG_TEXTURED
 OUTPUT v_tex = result.texcoord[0];
 
-DP4 v_tex.x, textureTransform[0], uv;
-DP4 v_tex.y, textureTransform[1], uv;
+MUL v_tex.x, textureTransform.x, uv.x;
+MUL v_tex.y, textureTransform.y, uv.z;
 #endif
 
 END
