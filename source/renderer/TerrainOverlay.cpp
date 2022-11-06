@@ -25,6 +25,7 @@
 #include "graphics/Terrain.h"
 #include "lib/bits.h"
 #include "maths/MathUtil.h"
+#include "maths/Vector2D.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
@@ -339,14 +340,11 @@ void TerrainTextureOverlay::RenderAfterWater(
 
 	free(data);
 
-	CMatrix3D matrix;
-	matrix.SetZero();
-	matrix._11 = m_TexelsPerTile / (m_Texture->GetWidth() * TERRAIN_TILE_SIZE);
-	matrix._23 = m_TexelsPerTile / (m_Texture->GetHeight() * TERRAIN_TILE_SIZE);
-	matrix._44 = 1;
-
+	const CVector2D textureTransform{
+		m_TexelsPerTile / (m_Texture->GetWidth() * TERRAIN_TILE_SIZE),
+		m_TexelsPerTile / (m_Texture->GetHeight() * TERRAIN_TILE_SIZE)};
 	g_Renderer.GetSceneRenderer().GetTerrainRenderer().RenderTerrainOverlayTexture(
-		deviceCommandContext, cullGroup, matrix, m_Texture.get());
+		deviceCommandContext, cullGroup, textureTransform, m_Texture.get());
 }
 
 SColor4ub TerrainTextureOverlay::GetColor(size_t idx, u8 alpha) const

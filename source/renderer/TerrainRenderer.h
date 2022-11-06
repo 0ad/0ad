@@ -31,11 +31,11 @@
 
 class CCamera;
 class CCanvas2D;
-class CMatrix3D;
 class CModelDecal;
 class CPatch;
 class CShaderDefines;
 class CSimulation2;
+class CVector2D;
 
 class ShadowMap;
 
@@ -167,7 +167,7 @@ public:
 	 */
 	void RenderTerrainOverlayTexture(
 		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
-		int cullGroup, CMatrix3D& textureMatrix, Renderer::Backend::ITexture* texture);
+		int cullGroup, const CVector2D& textureTransform, Renderer::Backend::ITexture* texture);
 
 private:
 	TerrainRendererInternals* m;

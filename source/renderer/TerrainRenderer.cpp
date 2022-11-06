@@ -32,6 +32,7 @@
 #include "graphics/TextRenderer.h"
 #include "graphics/TextureManager.h"
 #include "maths/MathUtil.h"
+#include "maths/Vector2D.h"
 #include "ps/CLogger.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
@@ -162,7 +163,7 @@ void TerrainRenderer::EndFrame()
 
 void TerrainRenderer::RenderTerrainOverlayTexture(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
-	int cullGroup, CMatrix3D& textureMatrix,
+	int cullGroup, const CVector2D& textureTransform,
 	Renderer::Backend::ITexture* texture)
 {
 	ENSURE(m->phase == Phase_Render);
@@ -183,7 +184,7 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 	deviceCommandContext->SetUniform(
 		debugOverlayShader->GetBindingSlot(str_transform), transform.AsFloatArray());
 	deviceCommandContext->SetUniform(
-		debugOverlayShader->GetBindingSlot(str_textureTransform), textureMatrix.AsFloatArray());
+		debugOverlayShader->GetBindingSlot(str_textureTransform), textureTransform.AsFloatArray());
 	CPatchRData::RenderStreams(deviceCommandContext, visiblePatches, true);
 
 	// To make the overlay visible over water, render an additional map-sized
