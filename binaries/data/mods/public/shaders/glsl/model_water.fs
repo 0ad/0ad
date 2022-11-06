@@ -1,6 +1,7 @@
 #version 120
 
 #include "common/debug_fragment.h"
+#include "common/fragment.h"
 #include "common/los_fragment.h"
 #include "common/shadows_fragment.h"
 
@@ -62,8 +63,8 @@ void main()
 
 	fresnel = pow(1.0 - ndotv, 0.8);	// A rather random Fresnel approximation
 
-	//refrCoords = (0.5*gl_TexCoord[2].xy - 0.8*waviness*n.xz) / gl_TexCoord[2].w + 0.5;	// Unbias texture coords
-	//reflCoords = (0.5*gl_TexCoord[1].xy + waviness*n.xz) / gl_TexCoord[1].w + 0.5;	// Unbias texture coords
+	//refrCoords = (0.5*v_tex2.xy - 0.8*waviness*n.xz) / v_tex2.w + 0.5;	// Unbias texture coords
+	//reflCoords = (0.5*v_tex.xy + waviness*n.xz) / v_tex.w + 0.5;	// Unbias texture coords
 
 	//vec3 dir = normalize(v + vec3(waviness*n.x, 0.0, waviness*n.z));
 
@@ -98,5 +99,5 @@ void main()
 	t = 18.0 * max(0.0, 0.7 - v.y);
 	float alpha = 0.15 * waterDepth * (1.2 + t + fresnel);
 
-	gl_FragColor = vec4(applyDebugColor(color, 1.0, alpha, 0.0), alpha);
+	OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(applyDebugColor(color, 1.0, alpha, 0.0), alpha));
 }

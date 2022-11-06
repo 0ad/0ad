@@ -1,6 +1,7 @@
 #version 110
 
 #include "common/fog.h"
+#include "common/fragment.h"
 #include "common/los_fragment.h"
 
 uniform sampler2D baseTex;
@@ -17,5 +18,5 @@ void main()
 	color.rgb = applyFog(color.rgb);
 	color.rgb *= getLOS();
 
-	gl_FragColor = color;
+	OUTPUT_FRAGMENT_SINGLE_COLOR(color);
 }

@@ -1,5 +1,7 @@
 #version 120
 
+#include "common/fragment.h"
+
 uniform sampler2D renderedTex;
 uniform sampler2D depthTex;
 uniform sampler2D blurTex2;
@@ -33,7 +35,7 @@ void main(void)
 	bloomv = mix(bloomv, color, bloom/0.2);
 
 	color = max(bloomv, color);
-	
+
 	color += vec3(brightness);
 
 	color -= vec3(0.5);
@@ -41,9 +43,8 @@ void main(void)
 	color += vec3(0.5);
 
 	color = mix(vec3(dot(color, vec3(0.299, 0.587, 0.114))), color, saturation);
-	
-	gl_FragColor.rgb = color;
-	gl_FragColor.a = 1.0;
+
+	OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(color, 1.0));
 }
 
 

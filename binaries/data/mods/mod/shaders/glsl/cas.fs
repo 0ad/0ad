@@ -19,6 +19,8 @@
 
 // GLSL port of the CasFilter() (no scaling). https://github.com/GPUOpen-Effects/FidelityFX-CAS/blob/master/ffx-cas/ffx_cas.h
 
+#include "common/fragment.h"
+
 uniform sampler2D renderedTex;
 uniform float width;
 uniform float height;
@@ -26,11 +28,13 @@ uniform float sharpness;
 
 varying vec2 v_tex;
 
-float saturate(float inputFloat){
+float saturate(float inputFloat)
+{
     return clamp(inputFloat, 0.0, 1.0);
 }
 
-vec3 saturate(vec3 inputFloat){
+vec3 saturate(vec3 inputFloat)
+{
     return vec3(saturate(inputFloat.x), saturate(inputFloat.y), saturate(inputFloat.z));
 }
 
@@ -87,5 +91,5 @@ vec3 sharpen()
 
 void main()
 {
-    gl_FragColor.rgb = sharpen();
+    OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(sharpen(), 1.0));
 }

@@ -2,6 +2,7 @@
 
 #include "common/debug_fragment.h"
 #include "common/fog.h"
+#include "common/fragment.h"
 #include "common/los_fragment.h"
 #include "common/shadows_fragment.h"
 
@@ -175,5 +176,5 @@ void main()
 
   color = applyDebugColor(color, ao, alpha, 0.0);
 
-  gl_FragColor = vec4(color, alpha);
+  OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(color, alpha));
 }

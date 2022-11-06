@@ -31,7 +31,7 @@
 namespace JSI_VFS
 {
 // Only allow engine compartments to read files they may be concerned about.
-#define PathRestriction_GUI {L""}
+#define PathRestriction_GUI {L"gui/", L"simulation/", L"maps/", L"campaigns/", L"saves/campaigns/", L"config/matchsettings.json", L"config/matchsettings.mp.json", L"moddata"}
 #define PathRestriction_Simulation {L"simulation/"}
 #define PathRestriction_Maps {L"simulation/", L"maps/"}
 
@@ -64,7 +64,7 @@ bool PathRestrictionMet(const ScriptRequest& rq, const std::vector<CStrW>& valid
 		allowedPaths += L"\"" + validPaths[i] + L"\"";
 	}
 
-	ScriptException::Raise(rq, "This part of the engine may only read from %s!", utf8_from_wstring(allowedPaths).c_str());
+	ScriptException::Raise(rq, "Restricted access to %s. This part of the engine may only read from %s!", utf8_from_wstring(filePath).c_str(), utf8_from_wstring(allowedPaths).c_str());
 
 	return false;
 }
@@ -150,8 +150,11 @@ unsigned int GetFileSize(const std::wstring& filename)
 }
 
 // Return file contents in a string. Assume file is UTF-8 encoded text.
-JS::Value ReadFile(const ScriptRequest& rq, const std::wstring& filename)
+JS::Value ReadFile(const ScriptRequest& rq, const std::vector<CStrW>& validPaths, const CStrW& filename)
 {
+	if (!PathRestrictionMet(rq, validPaths, filename))
+		return JS::NullValue();
+
 	CVFSFile file;
 	if (file.Load(g_VFS, filename) != PSRETURN_OK)
 		return JS::NullValue();
@@ -168,8 +171,11 @@ JS::Value ReadFile(const ScriptRequest& rq, const std::wstring& filename)
 }
 
 // Return file contents as an array of lines. Assume file is UTF-8 encoded text.
-JS::Value ReadFileLines(const ScriptRequest& rq, const std::wstring& filename)
+JS::Value ReadFileLines(const ScriptRequest& rq, const std::vector<CStrW>& validPaths, const CStrW& filename)
 {
+	if (!PathRestrictionMet(rq, validPaths, filename))
+		return JS::NullValue();
+
 	CVFSFile file;
 	if (file.Load(g_VFS, filename) != PSRETURN_OK)
 		return JS::NullValue();
@@ -212,9 +218,11 @@ JS::Value ReadJSONFile(const ScriptInterface& scriptInterface, const std::vector
 }
 
 // Save given JS Object to a JSON file
-void WriteJSONFile(const ScriptInterface& scriptInterface, const std::wstring& filePath, JS::HandleValue val1)
+void WriteJSONFile(const ScriptInterface& scriptInterface, const std::vector<CStrW>& validPaths, const CStrW& filePath, JS::HandleValue val1)
 {
 	ScriptRequest rq(scriptInterface);
+	if (!PathRestrictionMet(rq, validPaths, filePath))
+		return;
 
 	// TODO: This is a workaround because we need to pass a MutableHandle to StringifyJSON.
 	JS::RootedValue val(rq.cx, val1);
@@ -251,6 +259,18 @@ JS::Value Script_ReadJSONFile_##context(const ScriptInterface& scriptInterface, 
 {\
 	return ReadJSONFile(scriptInterface, PathRestriction_##context, filePath);\
 }\
+void Script_WriteJSONFile_##context(const ScriptInterface& scriptInterface, const std::wstring& filePath, JS::HandleValue val1)\
+{\
+	return WriteJSONFile(scriptInterface, PathRestriction_##context, filePath, val1);\
+}\
+JS::Value Script_ReadFile_##context(const ScriptInterface& scriptInterface, const std::wstring& filePath)\
+{\
+	return ReadFile(scriptInterface, PathRestriction_##context, filePath);\
+}\
+JS::Value Script_ReadFileLines_##context(const ScriptInterface& scriptInterface, const std::wstring& filePath)\
+{\
+	return ReadFileLines(scriptInterface, PathRestriction_##context, filePath);\
+}\
 JS::Value Script_ListDirectoryFiles_##context(const ScriptInterface& scriptInterface, const std::wstring& path, const std::wstring& filterStr, bool recurse)\
 {\
 	return BuildDirEntList(scriptInterface, PathRestriction_##context, path, filterStr, recurse);\
@@ -271,10 +291,10 @@ void RegisterScriptFunctions_ReadWriteAnywhere(const ScriptRequest& rq)
 	ScriptFunction::Register<&Script_FileExists_GUI>(rq, "FileExists");
 	ScriptFunction::Register<&GetFileMTime>(rq, "GetFileMTime");
 	ScriptFunction::Register<&GetFileSize>(rq, "GetFileSize");
-	ScriptFunction::Register<&ReadFile>(rq, "ReadFile");
-	ScriptFunction::Register<&ReadFileLines>(rq, "ReadFileLines");
+	ScriptFunction::Register<&Script_ReadFile_GUI>(rq, "ReadFile");
+	ScriptFunction::Register<&Script_ReadFileLines_GUI>(rq, "ReadFileLines");
 	ScriptFunction::Register<&Script_ReadJSONFile_GUI>(rq, "ReadJSONFile");
-	ScriptFunction::Register<&WriteJSONFile>(rq, "WriteJSONFile");
+	ScriptFunction::Register<&Script_WriteJSONFile_GUI>(rq, "WriteJSONFile");
 	ScriptFunction::Register<&DeleteCampaignSave>(rq, "DeleteCampaignSave");
 }
 

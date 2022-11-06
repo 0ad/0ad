@@ -1,5 +1,7 @@
 #version 110
 
+#include "common/fragment.h"
+
 #if DEBUG_TEXTURED
 uniform sampler2D baseTex;
 
@@ -11,8 +13,8 @@ uniform vec4 color;
 void main()
 {
 #if DEBUG_TEXTURED
-    gl_FragColor = texture2D(baseTex, v_tex);
+	OUTPUT_FRAGMENT_SINGLE_COLOR(texture2D(baseTex, v_tex));
 #else
-    gl_FragColor = color;
+	OUTPUT_FRAGMENT_SINGLE_COLOR(color);
 #endif
 }

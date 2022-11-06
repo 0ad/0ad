@@ -17,11 +17,12 @@ uniform mat4 transform;
 
 varying float ttime;
 varying vec2 normal;
+varying vec2 v_tex;
 
 void main()
 {
 	normal = a_normal;
-	gl_TexCoord[0].xy = a_uv0.xy;
+	v_tex = a_uv0.xy;
 
 	float tttime = mod(time + translation ,10.0);
 	ttime = tttime;
