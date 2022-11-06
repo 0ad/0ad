@@ -174,6 +174,12 @@ void CParticleEmitter::PrepareForRendering()
 	m_VertexArray.PrepareForRendering();
 }
 
+void CParticleEmitter::UploadData(
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
+{
+	m_VertexArray.UploadIfNeeded(deviceCommandContext);
+}
+
 void CParticleEmitter::Bind(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	Renderer::Backend::IShaderProgram* shader)
@@ -205,9 +211,6 @@ void CParticleEmitter::RenderArray(
 {
 	if (m_Particles.empty())
 		return;
-
-	m_VertexArray.UploadIfNeeded(deviceCommandContext);
-	m_IndexArray.UploadIfNeeded(deviceCommandContext);
 
 	const uint32_t stride = m_VertexArray.GetStride();
 	const uint32_t firstVertexOffset = m_VertexArray.GetOffset() * stride;
@@ -259,8 +262,6 @@ void CParticleEmitter::SetEntityVariable(const std::string& name, float value)
 {
 	m_EntityVariables[name] = value;
 }
-
-
 
 CModelParticleEmitter::CModelParticleEmitter(const CParticleEmitterTypePtr& type) :
 	m_Type(type)

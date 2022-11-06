@@ -808,6 +808,8 @@ void CSceneRenderer::RenderSubmissions(
 
 	m->overlayRenderer.Upload(deviceCommandContext);
 
+	m->particleRenderer.Upload(deviceCommandContext);
+
 	if (g_RenderingOptions.GetShadows())
 	{
 		RenderShadowMap(deviceCommandContext, context);
