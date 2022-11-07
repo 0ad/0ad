@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-09-20 07:08+0000\n"
+"POT-Creation-Date: 2022-11-04 08:09+0000\n"
 "PO-Revision-Date: 2014-09-12 20:06+0000\n"
 "Last-Translator: Szabó Lambert, 2021\n"
 "Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
@@ -22,14 +22,44 @@ msgstr ""
 "Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/common/functions_msgbox.js:25
+#: gui/colormixer/colormixer.js:24
+msgid "Color"
+msgstr "Szín"
+
+#: gui/colormixer/colormixer.js:25
+msgid ""
+"Move the sliders to change the Red, Green and Blue components of the Color"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:90
+msgid "Red"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:90
+msgid "Green"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:90
+msgid "Blue"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:91
+msgid "Save"
+msgstr "Mentés"
+
+#: gui/colormixer/colormixer.js:91 gui/modio/modio.js:136
+#: gui/modmod/modmod.xml:(caption):197
+msgid "Cancel"
+msgstr "Mégse"
+
+#: gui/common/functions_msgbox.js:55
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
 msgstr "%(url)s megnyitása\naz alapértelmezett böngészőben, várj…"
 
-#: gui/common/functions_msgbox.js:28
+#: gui/common/functions_msgbox.js:58
 msgid "Opening page"
 msgstr "Nyitólap"
 
@@ -241,10 +271,6 @@ msgstr "A mod.io felület előkészítése."
 msgid "Initializing"
 msgstr "Előkészítés"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):197
-msgid "Cancel"
-msgstr "Mégse"
-
 #: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
@@ -408,25 +434,25 @@ msgstr "mod.io felkeresése"
 msgid "This mod does not exist"
 msgstr "Ez a mod nem létezik"
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Engedélyezés"
 
-#: gui/modmod/modmod.js:168
+#: gui/modmod/modmod.js:167
 msgid "Dependencies not met"
 msgstr "A függőségek nem teljesülnek"
 
-#: gui/modmod/modmod.js:450
+#: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Letiltás"
 
-#: gui/modmod/modmod.js:458
+#: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
 msgstr "Nincs kijelölt módosítás."
 
-#: gui/modmod/modmod.js:461
+#: gui/modmod/modmod.js:460
 msgid "Enable at least 0ad mod"
 msgstr "Engedélyezd legalább a 0ad modot"
 
@@ -512,7 +538,7 @@ msgstr "mod.io Feltételek"
 msgid "mod.io Privacy Policy"
 msgstr "mod.io Adatvédelmi nyilatkozat"
 
-#: gui/msgbox/msgbox.js:25
+#: gui/msgbox/msgbox.js:25 gui/timedconfirmation/timedconfirmation.js:46
 msgid "OK"
 msgstr "OK"
 

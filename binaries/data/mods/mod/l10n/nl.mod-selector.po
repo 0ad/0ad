@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-09-20 07:08+0000\n"
+"POT-Creation-Date: 2022-11-04 08:09+0000\n"
 "PO-Revision-Date: 2014-09-12 20:06+0000\n"
 "Last-Translator: rollieoo, 2021-2022\n"
 "Language-Team: Dutch (http://www.transifex.com/wildfire-games/0ad/language/nl/)\n"
@@ -26,14 +26,44 @@ msgstr ""
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/common/functions_msgbox.js:25
+#: gui/colormixer/colormixer.js:24
+msgid "Color"
+msgstr "Kleur "
+
+#: gui/colormixer/colormixer.js:25
+msgid ""
+"Move the sliders to change the Red, Green and Blue components of the Color"
+msgstr "Door te schuiven kunt u de kleurwaarden van rood, groen en blauw aanpassen."
+
+#: gui/colormixer/colormixer.js:90
+msgid "Red"
+msgstr "Rood"
+
+#: gui/colormixer/colormixer.js:90
+msgid "Green"
+msgstr "Groen"
+
+#: gui/colormixer/colormixer.js:90
+msgid "Blue"
+msgstr "Blauw"
+
+#: gui/colormixer/colormixer.js:91
+msgid "Save"
+msgstr "Opslaan"
+
+#: gui/colormixer/colormixer.js:91 gui/modio/modio.js:136
+#: gui/modmod/modmod.xml:(caption):197
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: gui/common/functions_msgbox.js:55
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
 msgstr "Opent %(url)s\nin webbrowser. Een moment..."
 
-#: gui/common/functions_msgbox.js:28
+#: gui/common/functions_msgbox.js:58
 msgid "Opening page"
 msgstr "Pagina wordt geopend"
 
@@ -245,10 +275,6 @@ msgstr "Initialiseer mod.io interface."
 msgid "Initializing"
 msgstr "Initialiseren"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):197
-msgid "Cancel"
-msgstr "Annuleren"
-
 #: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
@@ -412,25 +438,25 @@ msgstr "Bezoek mod.io"
 msgid "This mod does not exist"
 msgstr "Deze mod bestaat niet"
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Activeer"
 
-#: gui/modmod/modmod.js:168
+#: gui/modmod/modmod.js:167
 msgid "Dependencies not met"
 msgstr "Afhankelijkheden niet correct"
 
-#: gui/modmod/modmod.js:450
+#: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Schakel uit"
 
-#: gui/modmod/modmod.js:458
+#: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
 msgstr "Er is geen modificatie geselecteerd."
 
-#: gui/modmod/modmod.js:461
+#: gui/modmod/modmod.js:460
 msgid "Enable at least 0ad mod"
 msgstr "Tenminste 0ad mod inschakelen"
 
@@ -516,7 +542,7 @@ msgstr "mod.io Gebruikersvoorwaarden"
 msgid "mod.io Privacy Policy"
 msgstr "mod.io Privacybeleid"
 
-#: gui/msgbox/msgbox.js:25
+#: gui/msgbox/msgbox.js:25 gui/timedconfirmation/timedconfirmation.js:46
 msgid "OK"
 msgstr "OK"
 

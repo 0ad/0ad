@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-09-20 07:08+0000\n"
+"POT-Creation-Date: 2022-11-04 08:09+0000\n"
 "PO-Revision-Date: 2014-09-12 20:06+0000\n"
 "Last-Translator: GunChleoc, 2014,2016,2018,2021\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/wildfire-games/0ad/language/gd/)\n"
@@ -17,14 +17,44 @@ msgstr ""
 "Language: gd\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
 
-#: gui/common/functions_msgbox.js:25
+#: gui/colormixer/colormixer.js:24
+msgid "Color"
+msgstr "Dath"
+
+#: gui/colormixer/colormixer.js:25
+msgid ""
+"Move the sliders to change the Red, Green and Blue components of the Color"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:90
+msgid "Red"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:90
+msgid "Green"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:90
+msgid "Blue"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:91
+msgid "Save"
+msgstr "Sàbhail"
+
+#: gui/colormixer/colormixer.js:91 gui/modio/modio.js:136
+#: gui/modmod/modmod.xml:(caption):197
+msgid "Cancel"
+msgstr "Sguir dheth"
+
+#: gui/common/functions_msgbox.js:55
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
 msgstr "A’ fosgladh %(url)s\nsa bhrabhsair-lìn bhunaiteach. Fuirich ort…"
 
-#: gui/common/functions_msgbox.js:28
+#: gui/common/functions_msgbox.js:58
 msgid "Opening page"
 msgstr "A’ fosgladh duilleige"
 
@@ -236,10 +266,6 @@ msgstr "A’ cur eadar-aghaidh mod.io gu dol."
 msgid "Initializing"
 msgstr "’Ga thòiseachadh"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):197
-msgid "Cancel"
-msgstr "Sguir dheth"
-
 #: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
@@ -403,25 +429,25 @@ msgstr "Tadhail air mod.io"
 msgid "This mod does not exist"
 msgstr "Chan eil an tuilleadan seo ann"
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Cuir an comas"
 
-#: gui/modmod/modmod.js:168
+#: gui/modmod/modmod.js:167
 msgid "Dependencies not met"
 msgstr "Cha deach na h-eisimeileachdan a choileanadh"
 
-#: gui/modmod/modmod.js:450
+#: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Cuir à comas"
 
-#: gui/modmod/modmod.js:458
+#: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
 msgstr "Cha deach tuilleadan a thaghadh."
 
-#: gui/modmod/modmod.js:461
+#: gui/modmod/modmod.js:460
 msgid "Enable at least 0ad mod"
 msgstr "Cuir an comas an tuilleadan 0ad air a char as lugha"
 
@@ -507,7 +533,7 @@ msgstr "Teirmichean mod.io"
 msgid "mod.io Privacy Policy"
 msgstr "Poileasaidh prìobhaideachd mod.io"
 
-#: gui/msgbox/msgbox.js:25
+#: gui/msgbox/msgbox.js:25 gui/timedconfirmation/timedconfirmation.js:46
 msgid "OK"
 msgstr "Ceart ma-thà"
 
