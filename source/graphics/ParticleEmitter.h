@@ -120,6 +120,12 @@ public:
 	void PrepareForRendering();
 
 	/**
+	 * Upload the vertex data to the backend.
+	 */
+	void UploadData(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
+
+	/**
 	 * Bind rendering state (textures and blend modes).
 	 */
 	void Bind(

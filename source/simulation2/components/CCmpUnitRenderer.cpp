@@ -363,9 +363,8 @@ void CCmpUnitRenderer::Interpolate(float frameTime, float frameOffset)
 	m_DebugSpheres.clear();
 	if (m_EnableDebugOverlays)
 	{
-		for (size_t i = 0; i < m_Units.size(); i++)
+		for (const SUnit& unit : m_Units)
 		{
-			SUnit& unit = m_Units[i];
 			if (!(unit.actor && unit.inWorld))
 				continue;
 

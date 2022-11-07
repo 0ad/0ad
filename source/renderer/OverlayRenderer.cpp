@@ -795,15 +795,10 @@ void OverlayRenderer::RenderSphereOverlays(
 	deviceCommandContext->SetIndexBufferData(
 		m->sphereIndexes.data(), m->sphereIndexes.size() * sizeof(m->sphereIndexes[0]));
 
-	for (size_t i = 0; i < m->spheres.size(); ++i)
+	for (const SOverlaySphere* sphere : m->spheres)
 	{
-		SOverlaySphere* sphere = m->spheres[i];
-
-		CMatrix3D instancingTransform;
-		instancingTransform.SetIdentity();
-		instancingTransform.Scale(
-			sphere->m_Radius, sphere->m_Radius, sphere->m_Radius);
-		instancingTransform.Translate(sphere->m_Center);
+		const CVector4D instancingTransform{
+			sphere->m_Center.X, sphere->m_Center.Y, sphere->m_Center.Z, sphere->m_Radius};
 
 		deviceCommandContext->SetUniform(
 			shader->GetBindingSlot(str_instancingTransform),

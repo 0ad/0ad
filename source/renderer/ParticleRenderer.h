@@ -48,6 +48,13 @@ public:
 	void PrepareForRendering(const CShaderDefines& context);
 
 	/**
+	 * Upload internal data to the backend. Must be called after the data is
+	 * prepared and before any rendering calls.
+	 */
+	void Upload(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
+
+	/**
 	 * Reset the list of submitted overlays.
 	 */
 	void EndFrame();

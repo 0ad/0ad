@@ -58,8 +58,8 @@ void ParticleRenderer::Submit(int cullGroup, CParticleEmitter* emitter)
 
 void ParticleRenderer::EndFrame()
 {
-	for (int cullGroup = 0; cullGroup < CSceneRenderer::CULL_MAX; ++cullGroup)
-		m->emitters[cullGroup].clear();
+	for (std::vector<CParticleEmitter*>& cullGroupEmitters : m->emitters)
+		cullGroupEmitters.clear();
 	// this should leave the capacity unchanged, which is okay since it
 	// won't be very large or very variable
 }
@@ -103,27 +103,34 @@ void ParticleRenderer::PrepareForRendering(const CShaderDefines& context)
 
 	++m->frameNumber;
 
-	for (int cullGroup = 0; cullGroup < CSceneRenderer::CULL_MAX; ++cullGroup)
+	for (std::vector<CParticleEmitter*>& cullGroupEmitters : m->emitters)
 	{
 		PROFILE("update emitters");
-		for (size_t i = 0; i < m->emitters[cullGroup].size(); ++i)
+		for (CParticleEmitter* emitter : cullGroupEmitters)
 		{
-			CParticleEmitter* emitter = m->emitters[cullGroup][i];
 			emitter->UpdateArrayData(m->frameNumber);
 			emitter->PrepareForRendering();
 		}
 	}
 
-	for (int cullGroup = 0; cullGroup < CSceneRenderer::CULL_MAX; ++cullGroup)
+	CMatrix3D worldToCamera;
+	g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetInverse(worldToCamera);
+	for (std::vector<CParticleEmitter*>& cullGroupEmitters : m->emitters)
 	{
 		// Sort back-to-front by distance from camera
 		PROFILE("sort emitters");
-		CMatrix3D worldToCam;
-		g_Renderer.GetSceneRenderer().GetViewCamera().GetOrientation().GetInverse(worldToCam);
-		std::stable_sort(m->emitters[cullGroup].begin(), m->emitters[cullGroup].end(), SortEmitterDistance(worldToCam));
+		std::stable_sort(cullGroupEmitters.begin(), cullGroupEmitters.end(), SortEmitterDistance(worldToCamera));
 	}
 
 	// TODO: should batch by texture here when possible, maybe
+}
+
+void ParticleRenderer::Upload(
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
+{
+	for (std::vector<CParticleEmitter*>& cullGroupEmitters : m->emitters)
+		for (CParticleEmitter* emitter : cullGroupEmitters)
+			emitter->UploadData(deviceCommandContext);
 }
 
 void ParticleRenderer::RenderParticles(

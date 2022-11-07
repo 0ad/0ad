@@ -1,13 +1,13 @@
 !!ARBvp1.0
 
 PARAM transform[4] = { program.local[0..3] };
-PARAM instancingTransform[4] = { program.local[4..7] };
+PARAM instancingTransform = program.local[4];
 
 TEMP position;
 
-DP4 position.x, instancingTransform[0], vertex.position;
-DP4 position.y, instancingTransform[1], vertex.position;
-DP4 position.z, instancingTransform[2], vertex.position;
+MAD position.x, vertex.position.x, instancingTransform.w, instancingTransform.x;
+MAD position.y, vertex.position.y, instancingTransform.w, instancingTransform.y;
+MAD position.z, vertex.position.z, instancingTransform.w, instancingTransform.z;
 MOV position.w, 1.0;
 
 DP4 result.position.x, transform[0], position;
