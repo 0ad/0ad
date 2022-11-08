@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
@@ -10,7 +10,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-09-20 07:08+0000\n"
+"POT-Creation-Date: 2022-11-04 08:09+0000\n"
 "PO-Revision-Date: 2014-09-12 20:06+0000\n"
 "Last-Translator: Zapa Csitul <magicfiresnake@yahoo.com>, 2018\n"
 "Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
@@ -20,14 +20,44 @@ msgstr ""
 "Language: ro\n"
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
 
-#: gui/common/functions_msgbox.js:25
+#: gui/colormixer/colormixer.js:24
+msgid "Color"
+msgstr "Culoare"
+
+#: gui/colormixer/colormixer.js:25
+msgid ""
+"Move the sliders to change the Red, Green and Blue components of the Color"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:90
+msgid "Red"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:90
+msgid "Green"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:90
+msgid "Blue"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:91
+msgid "Save"
+msgstr "Salvează"
+
+#: gui/colormixer/colormixer.js:91 gui/modio/modio.js:136
+#: gui/modmod/modmod.xml:(caption):197
+msgid "Cancel"
+msgstr "Anulează"
+
+#: gui/common/functions_msgbox.js:55
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
 msgstr ""
 
-#: gui/common/functions_msgbox.js:28
+#: gui/common/functions_msgbox.js:58
 msgid "Opening page"
 msgstr "Se deschide pagina"
 
@@ -239,10 +269,6 @@ msgstr ""
 msgid "Initializing"
 msgstr ""
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):197
-msgid "Cancel"
-msgstr "Anulează"
-
 #: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
@@ -406,25 +432,25 @@ msgstr "Vizitează mod.io"
 msgid "This mod does not exist"
 msgstr ""
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Activează"
 
-#: gui/modmod/modmod.js:168
+#: gui/modmod/modmod.js:167
 msgid "Dependencies not met"
 msgstr ""
 
-#: gui/modmod/modmod.js:450
+#: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Dezactivează"
 
-#: gui/modmod/modmod.js:458
+#: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
 msgstr "Niciun mod nu a fost selectat."
 
-#: gui/modmod/modmod.js:461
+#: gui/modmod/modmod.js:460
 msgid "Enable at least 0ad mod"
 msgstr ""
 
@@ -510,7 +536,7 @@ msgstr ""
 msgid "mod.io Privacy Policy"
 msgstr ""
 
-#: gui/msgbox/msgbox.js:25
+#: gui/msgbox/msgbox.js:25 gui/timedconfirmation/timedconfirmation.js:46
 msgid "OK"
 msgstr "OK"
 

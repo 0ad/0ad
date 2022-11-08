@@ -1,5 +1,5 @@
 # Translation template for Pyrogenesis - Mod Selector.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector
 # project.
 # Translators:
@@ -11,7 +11,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2021-09-20 07:08+0000\n"
+"POT-Creation-Date: 2022-11-04 08:09+0000\n"
 "PO-Revision-Date: 2014-09-12 20:06+0000\n"
 "Last-Translator: Albin Nilsson <abbin44@gmail.com>, 2021\n"
 "Language-Team: Swedish (http://www.transifex.com/wildfire-games/0ad/language/sv/)\n"
@@ -21,14 +21,44 @@ msgstr ""
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/common/functions_msgbox.js:25
+#: gui/colormixer/colormixer.js:24
+msgid "Color"
+msgstr "Färg"
+
+#: gui/colormixer/colormixer.js:25
+msgid ""
+"Move the sliders to change the Red, Green and Blue components of the Color"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:90
+msgid "Red"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:90
+msgid "Green"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:90
+msgid "Blue"
+msgstr ""
+
+#: gui/colormixer/colormixer.js:91
+msgid "Save"
+msgstr "Spara"
+
+#: gui/colormixer/colormixer.js:91 gui/modio/modio.js:136
+#: gui/modmod/modmod.xml:(caption):197
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: gui/common/functions_msgbox.js:55
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
 msgstr "Öppnar %(url)s\ni standardwebbläsaren. Var god vänta..."
 
-#: gui/common/functions_msgbox.js:28
+#: gui/common/functions_msgbox.js:58
 msgid "Opening page"
 msgstr "Öppnar sidan"
 
@@ -240,10 +270,6 @@ msgstr "Initialiserar mod.io gränssnittet."
 msgid "Initializing"
 msgstr "Initialiserar"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):197
-msgid "Cancel"
-msgstr "Avbryt"
-
 #: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
@@ -407,25 +433,25 @@ msgstr "Besök mod.io"
 msgid "This mod does not exist"
 msgstr "Detta moddet finns inte"
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "Aktivera"
 
-#: gui/modmod/modmod.js:168
+#: gui/modmod/modmod.js:167
 msgid "Dependencies not met"
 msgstr "Beroenden är inte mötta."
 
-#: gui/modmod/modmod.js:450
+#: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "Inaktivera"
 
-#: gui/modmod/modmod.js:458
+#: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
 msgstr "Ingen mod har valts."
 
-#: gui/modmod/modmod.js:461
+#: gui/modmod/modmod.js:460
 msgid "Enable at least 0ad mod"
 msgstr "Aktivera minst 0ad moddet"
 
@@ -511,7 +537,7 @@ msgstr "mod.io Villkor"
 msgid "mod.io Privacy Policy"
 msgstr "mod.io Sekretesspolicy"
 
-#: gui/msgbox/msgbox.js:25
+#: gui/msgbox/msgbox.js:25 gui/timedconfirmation/timedconfirmation.js:46
 msgid "OK"
 msgstr "OK"
 
