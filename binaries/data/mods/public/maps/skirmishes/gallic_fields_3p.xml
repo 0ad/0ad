@@ -2,46 +2,50 @@
 
 <Scenario version="7">
 	<Environment>
-		<SkySet>sunset</SkySet>
-		<SunColor r="1.20313" g="1.00025" b="0.632233"/>
-		<SunElevation angle="0.348537"/>
-		<SunRotation angle="0.343612"/>
+		<SkySet>cloudless</SkySet>
+		<SunColor r="0.9606" g="0.929105" b="0.810999"/>
+		<SunElevation angle="0.751651"/>
+		<SunRotation angle="1.93282"/>
 		<AmbientColor r="0.392157" g="0.47451" b="0.654902"/>
 		<Fog>
 			<FogFactor>0.00298828</FogFactor>
 			<FogThickness>0</FogThickness>
-			<FogColor r="0.866667" g="0.776471" b="0.486275"/>
+			<FogColor r="0.862745" g="0.909804" b="0.929412"/>
 		</Fog>
 		<Water>
 			<WaterBody>
-				<Type>lake</Type>
-				<Color r="0.219608" g="0.247059" b="0.356863"/>
-				<Height>21.0885</Height>
-				<Waviness>1.0</Waviness>
-				<Murkiness>0.871094</Murkiness>
+				<Type>ocean</Type>
+				<Color r="0.317647" g="0.247059" b="0.141176"/>
 				<Tint r="0.592157" g="0.639216" b="0.756863"/>
+				<Height>21.0885</Height>
+				<Waviness>1</Waviness>
+				<Murkiness>0.970703</Murkiness>
+				<WindAngle>1.25173</WindAngle>
 			</WaterBody>
 		</Water>
 		<Postproc>
 			<Brightness>0</Brightness>
-			<Contrast>1.03906</Contrast>
-			<Saturation>1.05859</Saturation>
+			<Contrast>1.00195</Contrast>
+			<Saturation>0.958984</Saturation>
 			<Bloom>0.1999</Bloom>
-			<PostEffect>default</PostEffect>
+			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="533.642" y="94.8386" z="705.501"/>
-		<Rotation angle="0.542233"/>
+		<Position x="516.515" y="119.503" z="37.4581"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
   "Description": "Defend your Gallic outpost against attacks from your treacherous neighbors!\n\nEach player begins the match with a wooden palisade and some guard towers atop a low embankment.\n\nWatch out for Romans passing by!",
-  "Keywords": ["trigger"],
+  "Keywords": [
+    "trigger"
+  ],
   "Name": "Gallic Fields (3)",
   "PlayerData": [
+    null,
     {},
     {},
     {}
@@ -4413,7 +4417,7 @@
 		<Entity uid="777">
 			<Template>gaia/tree/pine</Template>
 			<Player>0</Player>
-			<Position x="807.38965" z="328.89014"/>
+			<Position x="791.77009" z="368.31843"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="778">
@@ -4505,2164 +4509,2092 @@
 			<Orientation y="-0.0089"/>
 		</Entity>
 		<Entity uid="830">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="80.1608" z="413.55137"/>
 			<Orientation y="-2.18749"/>
 		</Entity>
 		<Entity uid="831">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="73.61132" z="403.66492"/>
 			<Orientation y="2.95005"/>
 		</Entity>
 		<Entity uid="832">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="77.03876" z="388.16056"/>
 			<Orientation y="3.04946"/>
 		</Entity>
 		<Entity uid="833">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="75.80025" z="378.4792"/>
 			<Orientation y="-2.53795"/>
 		</Entity>
 		<Entity uid="834">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="71.20173" z="370.63147"/>
 			<Orientation y="-2.65105"/>
 		</Entity>
 		<Entity uid="835">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="69.0358" z="352.99891"/>
 			<Orientation y="3.09546"/>
 		</Entity>
 		<Entity uid="836">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="70.45562" z="343.26001"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="837">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="73.58548" z="348.94578"/>
 			<Orientation y="0.49448"/>
 		</Entity>
 		<Entity uid="838">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="80.76236" z="363.64158"/>
 			<Orientation y="0.0499"/>
 		</Entity>
 		<Entity uid="839">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="82.00028" z="378.46354"/>
 			<Orientation y="0.4612"/>
 		</Entity>
 		<Entity uid="840">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="85.97294" z="388.64945"/>
 			<Orientation y="-0.1027"/>
 		</Entity>
 		<Entity uid="841">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="116.99373" z="411.29926"/>
 			<Orientation y="-3.08024"/>
 		</Entity>
 		<Entity uid="842">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="116.466" z="397.07178"/>
 			<Orientation y="-3.11307"/>
 		</Entity>
 		<Entity uid="843">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="116.05234" z="379.5359"/>
 			<Orientation y="-3.08985"/>
 		</Entity>
 		<Entity uid="844">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="114.08445" z="365.11442"/>
 			<Orientation y="-2.26879"/>
 		</Entity>
 		<Entity uid="845">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="108.51" z="361.21631"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="846">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="105.16308" z="353.92356"/>
 			<Orientation y="-2.8652"/>
 		</Entity>
 		<Entity uid="847">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="101.80814" z="336.54874"/>
 			<Orientation y="2.83251"/>
 		</Entity>
 		<Entity uid="848">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="110.32033" z="326.05945"/>
 			<Orientation y="0.27976"/>
 		</Entity>
 		<Entity uid="849">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="116.13411" z="346.29657"/>
 			<Orientation y="0.32049"/>
 		</Entity>
 		<Entity uid="850">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="120.62516" z="359.77845"/>
 			<Orientation y="0.44251"/>
 		</Entity>
 		<Entity uid="851">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="126.4581" z="373.7204"/>
 			<Orientation y="-0.13769"/>
 		</Entity>
 		<Entity uid="852">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="123.47112" z="394.41477"/>
 			<Orientation y="0.17716"/>
 		</Entity>
 		<Entity uid="853">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="129.04276" z="410.65714"/>
 			<Orientation y="2.00022"/>
 		</Entity>
 		<Entity uid="854">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="214.26493" z="114.8906"/>
 			<Orientation y="2.70694"/>
 		</Entity>
 		<Entity uid="855">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="296.63587" z="119.2883"/>
 			<Orientation y="-2.71058"/>
 		</Entity>
 		<Entity uid="856">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="292.30231" z="109.66529"/>
 			<Orientation y="-2.7392"/>
 		</Entity>
 		<Entity uid="857">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="289.9336" z="93.89246"/>
 			<Orientation y="3.10302"/>
 		</Entity>
 		<Entity uid="858">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="291.72437" z="83.7536"/>
 			<Orientation y="2.81818"/>
 		</Entity>
 		<Entity uid="859">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="298.70301" z="69.63443"/>
 			<Orientation y="2.42251"/>
 		</Entity>
 		<Entity uid="860">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="342.66868" z="124.98453"/>
 			<Orientation y="-2.882"/>
 		</Entity>
 		<Entity uid="861">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="340.24735" z="116.25336"/>
 			<Orientation y="-3.01145"/>
 		</Entity>
 		<Entity uid="862">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="340.15772" z="103.27085"/>
 			<Orientation y="2.62552"/>
 		</Entity>
 		<Entity uid="863">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="349.11985" z="94.90654"/>
 			<Orientation y="0.46572"/>
 		</Entity>
 		<Entity uid="864">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="352.86637" z="96.9612"/>
 			<Orientation y="2.67737"/>
 		</Entity>
 		<Entity uid="865">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="360.33362" z="81.16239"/>
 			<Orientation y="-2.92396"/>
 		</Entity>
 		<Entity uid="866">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="358.38431" z="74.73766"/>
 			<Orientation y="3.11509"/>
 		</Entity>
 		<Entity uid="867">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="360.58222" z="65.79232"/>
 			<Orientation y="2.00734"/>
 		</Entity>
 		<Entity uid="868">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="368.0233" z="63.68487"/>
 			<Orientation y="0.35454"/>
 		</Entity>
 		<Entity uid="869">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="371.07367" z="71.09844"/>
 			<Orientation y="2.49628"/>
 		</Entity>
 		<Entity uid="870">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="375.75046" z="64.86687"/>
 			<Orientation y="2.90351"/>
 		</Entity>
 		<Entity uid="871">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="378.78873" z="58.44426"/>
 			<Orientation y="2.32261"/>
 		</Entity>
 		<Entity uid="872">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="346.0279" z="90.90424"/>
 			<Orientation y="-3.00753"/>
 		</Entity>
 		<Entity uid="873">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="343.32471" z="81.64856"/>
 			<Orientation y="2.72718"/>
 		</Entity>
 		<Entity uid="874">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="353.66306" z="75.55015"/>
 			<Orientation y="0.08001"/>
 		</Entity>
 		<Entity uid="875">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="341.42554" z="91.43915"/>
 			<Orientation y="-2.34874"/>
 		</Entity>
 		<Entity uid="876">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="441.28177" z="36.1075"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="877">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="449.40488" z="36.84946"/>
 			<Orientation y="1.75174"/>
 		</Entity>
 		<Entity uid="878">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="455.08353" z="33.65946"/>
 			<Orientation y="3.06438"/>
 		</Entity>
 		<Entity uid="879">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="454.70469" z="26.54226"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="880">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="454.17573" z="22.43766"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="881">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="445.83304" z="24.11991"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="882">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="445.48282" z="29.17022"/>
 			<Orientation y="1.0046"/>
 		</Entity>
 		<Entity uid="883">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="527.62311" z="58.02703"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="884">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="535.66907" z="54.85482"/>
 			<Orientation y="2.10644"/>
 		</Entity>
 		<Entity uid="885">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="543.21888" z="51.52135"/>
 			<Orientation y="-3.07587"/>
 		</Entity>
 		<Entity uid="886">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="541.44788" z="35.32331"/>
 			<Orientation y="0.5687"/>
 		</Entity>
 		<Entity uid="887">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="546.18366" z="46.8487"/>
 			<Orientation y="0.19547"/>
 		</Entity>
 		<Entity uid="888">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="550.26191" z="63.449"/>
 			<Orientation y="1.19162"/>
 		</Entity>
 		<Entity uid="889">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="557.0713" z="64.00051"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="890">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="560.46283" z="56.55207"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="891">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="561.85138" z="55.72286"/>
 			<Orientation y="-2.2184"/>
 		</Entity>
 		<Entity uid="892">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="551.09046" z="43.36219"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="893">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="555.58814" z="56.42215"/>
 			<Orientation y="1.79609"/>
 		</Entity>
 		<Entity uid="894">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="536.6388" z="42.75794"/>
 			<Orientation y="-1.3753"/>
 		</Entity>
 		<Entity uid="895">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="525.21155" z="49.80785"/>
 			<Orientation y="1.17173"/>
 		</Entity>
 		<Entity uid="896">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="418.38172" z="185.26871"/>
 			<Orientation y="-0.01212"/>
 		</Entity>
 		<Entity uid="897">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="417.45838" z="191.1941"/>
 			<Orientation y="-1.33431"/>
 		</Entity>
 		<Entity uid="898">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="400.30625" z="192.07773"/>
 			<Orientation y="-1.60143"/>
 		</Entity>
 		<Entity uid="899">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="388.79084" z="192.41453"/>
 			<Orientation y="-0.94446"/>
 		</Entity>
 		<Entity uid="900">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="393.04755" z="185.77457"/>
 			<Orientation y="-0.14357"/>
 		</Entity>
 		<Entity uid="901">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="389.60071" z="198.9761"/>
 			<Orientation y="1.71511"/>
 		</Entity>
 		<Entity uid="902">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="413.52607" z="195.27"/>
 			<Orientation y="1.88337"/>
 		</Entity>
 		<Entity uid="903">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="435.06739" z="190.64005"/>
 			<Orientation y="1.67716"/>
 		</Entity>
 		<Entity uid="904">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="447.06373" z="188.58619"/>
 			<Orientation y="2.73739"/>
 		</Entity>
 		<Entity uid="905">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="438.10761" z="181.47641"/>
 			<Orientation y="-1.40174"/>
 		</Entity>
 		<Entity uid="906">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="415.35718" z="184.16611"/>
 			<Orientation y="-1.55619"/>
 		</Entity>
 		<Entity uid="907">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="404.7559" z="185.98371"/>
 			<Orientation y="-1.68631"/>
 		</Entity>
 		<Entity uid="908">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="385.8093" z="182.73774"/>
 			<Orientation y="-1.27446"/>
 		</Entity>
 		<Entity uid="909">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="411.50757" z="196.94956"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="910">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="424.72995" z="195.75165"/>
 			<Orientation y="2.41622"/>
 		</Entity>
 		<Entity uid="911">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="409.97675" z="201.83149"/>
 			<Orientation y="-0.7632"/>
 		</Entity>
 		<Entity uid="912">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="725.8595" z="118.7175"/>
 			<Orientation y="-2.78246"/>
 		</Entity>
 		<Entity uid="913">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="723.03345" z="98.60138"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="914">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="718.82007" z="85.62855"/>
 			<Orientation y="-1.9557"/>
 		</Entity>
 		<Entity uid="915">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="707.5492" z="80.60206"/>
 			<Orientation y="-2.16996"/>
 		</Entity>
 		<Entity uid="916">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="703.25751" z="77.85428"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="917">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="712.04645" z="67.96012"/>
 			<Orientation y="0.81516"/>
 		</Entity>
 		<Entity uid="918">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="719.0417" z="74.7006"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="919">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="722.03437" z="81.93348"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="920">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="728.56525" z="90.8617"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="921">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="733.39203" z="98.33301"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="922">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="732.52308" z="111.81324"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="923">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="735.1048" z="118.29163"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="924">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="884.53077" z="231.22779"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="925">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="881.21753" z="228.90857"/>
 			<Orientation y="-1.33016"/>
 		</Entity>
 		<Entity uid="926">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="870.50611" z="234.11118"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="927">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="868.6698" z="241.8501"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="928">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="861.75586" z="230.21415"/>
 			<Orientation y="3.13932"/>
 		</Entity>
 		<Entity uid="929">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="861.84626" z="217.33271"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="930">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="861.64094" z="212.21366"/>
 			<Orientation y="-2.09054"/>
 		</Entity>
 		<Entity uid="931">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="847.5279" z="206.37494"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="932">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="847.35328" z="197.81785"/>
 			<Orientation y="-3.13176"/>
 		</Entity>
 		<Entity uid="933">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="845.3584" z="186.22098"/>
 			<Orientation y="1.80367"/>
 		</Entity>
 		<Entity uid="934">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="865.04871" z="186.7464"/>
 			<Orientation y="0.20981"/>
 		</Entity>
 		<Entity uid="935">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="866.66169" z="197.3902"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="936">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="867.1825" z="206.78638"/>
 			<Orientation y="0.36181"/>
 		</Entity>
 		<Entity uid="937">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="873.03742" z="219.04136"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="938">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="876.17542" z="219.51331"/>
 			<Orientation y="2.3119"/>
 		</Entity>
 		<Entity uid="939">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="884.03174" z="213.01966"/>
 			<Orientation y="-2.9219"/>
 		</Entity>
 		<Entity uid="940">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="881.46637" z="204.45456"/>
 			<Orientation y="-2.69095"/>
 		</Entity>
 		<Entity uid="941">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="877.42255" z="197.53171"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="942">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="860.08887" z="192.41511"/>
 			<Orientation y="1.45733"/>
 		</Entity>
 		<Entity uid="943">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="851.92658" z="201.83393"/>
 			<Orientation y="-3.02462"/>
 		</Entity>
 		<Entity uid="944">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="855.21503" z="185.31223"/>
 			<Orientation y="0.70257"/>
 		</Entity>
 		<Entity uid="945">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="871.23163" z="186.21763"/>
 			<Orientation y="2.85488"/>
 		</Entity>
 		<Entity uid="946">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="877.46094" z="180.23902"/>
 			<Orientation y="0.26018"/>
 		</Entity>
 		<Entity uid="947">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="878.53675" z="195.03483"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="948">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="880.08796" z="201.7169"/>
 			<Orientation y="0.93665"/>
 		</Entity>
 		<Entity uid="949">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="884.54206" z="204.90561"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="950">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="886.15741" z="208.0152"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="951">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="887.64673" z="215.46183"/>
 			<Orientation y="0.7026"/>
 		</Entity>
 		<Entity uid="952">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="863.33008" z="167.80073"/>
 			<Orientation y="-3.0259"/>
 		</Entity>
 		<Entity uid="953">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="862.66913" z="162.50838"/>
 			<Orientation y="-1.34746"/>
 		</Entity>
 		<Entity uid="954">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="848.65381" z="166.549"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="955">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="848.07099" z="166.96177"/>
 			<Orientation y="-2.00562"/>
 		</Entity>
 		<Entity uid="956">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="838.18769" z="161.6312"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="957">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="851.15888" z="156.68918"/>
 			<Orientation y="1.0818"/>
 		</Entity>
 		<Entity uid="958">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="759.49292" z="586.2378"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="959">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="762.41492" z="586.62153"/>
 			<Orientation y="2.73583"/>
 		</Entity>
 		<Entity uid="960">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="765.64307" z="577.85743"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="961">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="770.96021" z="576.10193"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="962">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="772.51832" z="578.80665"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="963">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="777.0492" z="573.14161"/>
 			<Orientation y="2.45562"/>
 		</Entity>
 		<Entity uid="964">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="781.25483" z="573.32264"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="965">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="785.98487" z="575.44861"/>
 			<Orientation y="2.20005"/>
 		</Entity>
 		<Entity uid="966">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="791.83631" z="570.46698"/>
 			<Orientation y="3.04786"/>
 		</Entity>
 		<Entity uid="967">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="797.01392" z="567.44361"/>
 			<Orientation y="0.20914"/>
 		</Entity>
 		<Entity uid="968">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="797.6814" z="572.68836"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="969">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="800.1579" z="573.09015"/>
 			<Orientation y="2.51752"/>
 		</Entity>
 		<Entity uid="970">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="802.57966" z="569.77942"/>
 			<Orientation y="2.76256"/>
 		</Entity>
 		<Entity uid="971">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="805.74714" z="561.6811"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="972">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="810.36213" z="563.2953"/>
 			<Orientation y="0.50274"/>
 		</Entity>
 		<Entity uid="973">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="814.03162" z="569.82325"/>
 			<Orientation y="1.34583"/>
 		</Entity>
 		<Entity uid="974">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="819.37183" z="570.35981"/>
 			<Orientation y="2.76998"/>
 		</Entity>
 		<Entity uid="975">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="821.1468" z="565.3954"/>
 			<Orientation y="1.40062"/>
 		</Entity>
 		<Entity uid="976">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="829.56647" z="565.51026"/>
 			<Orientation y="0.56159"/>
 		</Entity>
 		<Entity uid="977">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="833.98536" z="569.26868"/>
 			<Orientation y="1.13714"/>
 		</Entity>
 		<Entity uid="978">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="788.76032" z="563.5279"/>
 			<Orientation y="0.67597"/>
 		</Entity>
 		<Entity uid="979">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="814.12342" z="541.99897"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="980">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="807.20765" z="549.11591"/>
 			<Orientation y="-1.23995"/>
 		</Entity>
 		<Entity uid="981">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="795.19098" z="557.7223"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="982">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="767.9958" z="568.90094"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="983">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="752.95154" z="583.5428"/>
 			<Orientation y="0.51433"/>
 		</Entity>
 		<Entity uid="984">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="828.65125" z="551.61011"/>
 			<Orientation y="0.7105"/>
 		</Entity>
 		<Entity uid="985">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="850.91596" z="572.03418"/>
 			<Orientation y="-3.13398"/>
 		</Entity>
 		<Entity uid="986">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="781.11835" z="557.86188"/>
 			<Orientation y="0.65471"/>
 		</Entity>
 		<Entity uid="987">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="86.55999" z="576.77131"/>
 			<Orientation y="-0.71985"/>
 		</Entity>
 		<Entity uid="988">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="74.47294" z="586.66785"/>
 			<Orientation y="-0.39478"/>
 		</Entity>
 		<Entity uid="989">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="64.6709" z="611.12177"/>
 			<Orientation y="-0.09314"/>
 		</Entity>
 		<Entity uid="990">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="60.36236" z="635.10639"/>
 			<Orientation y="1.0661"/>
 		</Entity>
 		<Entity uid="991">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="39.20522" z="562.74073"/>
 			<Orientation y="-3.1171"/>
 		</Entity>
 		<Entity uid="992">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="42.0831" z="525.28693"/>
 			<Orientation y="2.70952"/>
 		</Entity>
 		<Entity uid="993">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="47.09375" z="506.91086"/>
 			<Orientation y="-2.71041"/>
 		</Entity>
 		<Entity uid="994">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="36.42467" z="498.10456"/>
 			<Orientation y="2.26323"/>
 		</Entity>
 		<Entity uid="995">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="79.01345" z="511.83744"/>
 			<Orientation y="-0.10465"/>
 		</Entity>
 		<Entity uid="996">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="70.18166" z="553.58564"/>
 			<Orientation y="-3.05088"/>
 		</Entity>
 		<Entity uid="997">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="73.65055" z="462.01771"/>
 			<Orientation y="1.23095"/>
 		</Entity>
 		<Entity uid="998">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="257.35389" z="539.77393"/>
 			<Orientation y="1.6972"/>
 		</Entity>
 		<Entity uid="999">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="268.05616" z="554.2389"/>
 			<Orientation y="1.91544"/>
 		</Entity>
 		<Entity uid="1000">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="284.80961" z="549.52424"/>
 			<Orientation y="2.20784"/>
 		</Entity>
 		<Entity uid="1001">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="311.91642" z="555.46912"/>
 			<Orientation y="0.32868"/>
 		</Entity>
 		<Entity uid="1002">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="316.67981" z="567.89185"/>
 			<Orientation y="2.23154"/>
 		</Entity>
 		<Entity uid="1003">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="321.06617" z="562.80439"/>
 			<Orientation y="2.61011"/>
 		</Entity>
 		<Entity uid="1004">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="331.03025" z="551.60114"/>
 			<Orientation y="1.16735"/>
 		</Entity>
 		<Entity uid="1005">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="335.02512" z="557.7497"/>
 			<Orientation y="0.43033"/>
 		</Entity>
 		<Entity uid="1006">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="342.95987" z="570.45594"/>
 			<Orientation y="2.64638"/>
 		</Entity>
 		<Entity uid="1007">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="345.61146" z="565.82679"/>
 			<Orientation y="-3.08133"/>
 		</Entity>
 		<Entity uid="1008">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="338.9712" z="549.25599"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1009">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="322.48856" z="550.11744"/>
 			<Orientation y="0.38314"/>
 		</Entity>
 		<Entity uid="1010">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="315.34314" z="556.97925"/>
 			<Orientation y="0.68577"/>
 		</Entity>
 		<Entity uid="1011">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="304.50614" z="563.74842"/>
 			<Orientation y="-1.95517"/>
 		</Entity>
 		<Entity uid="1012">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="291.84653" z="563.18702"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1013">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="301.11701" z="557.84144"/>
 			<Orientation y="0.9792"/>
 		</Entity>
 		<Entity uid="1014">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="300.02341" z="566.2508"/>
 			<Orientation y="3.10726"/>
 		</Entity>
 		<Entity uid="1015">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="375.20658" z="633.31446"/>
 			<Orientation y="1.81016"/>
 		</Entity>
 		<Entity uid="1016">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="380.11857" z="638.79853"/>
 			<Orientation y="1.54589"/>
 		</Entity>
 		<Entity uid="1017">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="388.14435" z="645.93647"/>
 			<Orientation y="1.41366"/>
 		</Entity>
 		<Entity uid="1018">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="397.09305" z="652.53357"/>
 			<Orientation y="1.11725"/>
 		</Entity>
 		<Entity uid="1019">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="402.91916" z="657.31238"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1020">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="351.50483" z="676.81043"/>
 			<Orientation y="1.83024"/>
 		</Entity>
 		<Entity uid="1021">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="350.99704" z="700.73615"/>
 			<Orientation y="1.34583"/>
 		</Entity>
 		<Entity uid="1022">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="356.5308" z="700.8144"/>
 			<Orientation y="1.90683"/>
 		</Entity>
 		<Entity uid="1023">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="360.0431" z="699.35132"/>
 			<Orientation y="1.34583"/>
 		</Entity>
 		<Entity uid="1024">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="366.38895" z="700.23792"/>
 			<Orientation y="1.34583"/>
 		</Entity>
 		<Entity uid="1025">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="373.02646" z="701.8274"/>
 			<Orientation y="1.53663"/>
 		</Entity>
 		<Entity uid="1026">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="380.57572" z="702.22675"/>
 			<Orientation y="1.47783"/>
 		</Entity>
 		<Entity uid="1027">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="249.19347" z="639.37244"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1028">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="245.77587" z="640.79139"/>
 			<Orientation y="-2.53571"/>
 		</Entity>
 		<Entity uid="1029">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="242.50562" z="639.64545"/>
 			<Orientation y="-0.23865"/>
 		</Entity>
 		<Entity uid="1030">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="236.78338" z="640.66175"/>
 			<Orientation y="2.90081"/>
 		</Entity>
 		<Entity uid="1031">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="229.2857" z="643.90918"/>
 			<Orientation y="-1.61294"/>
 		</Entity>
 		<Entity uid="1032">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="221.3867" z="648.11762"/>
 			<Orientation y="1.11727"/>
 		</Entity>
 		<Entity uid="1033">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="264.83271" z="613.31867"/>
 			<Orientation y="-0.13215"/>
 		</Entity>
 		<Entity uid="1034">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="259.16529" z="610.84211"/>
 			<Orientation y="-2.77968"/>
 		</Entity>
 		<Entity uid="1035">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="255.13334" z="607.35767"/>
 			<Orientation y="-2.59339"/>
 		</Entity>
 		<Entity uid="1036">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="247.76243" z="605.58893"/>
 			<Orientation y="1.57653"/>
 		</Entity>
 		<Entity uid="1037">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="241.15014" z="603.46851"/>
 			<Orientation y="-1.5186"/>
 		</Entity>
 		<Entity uid="1038">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="237.58822" z="604.03577"/>
 			<Orientation y="-1.79577"/>
 		</Entity>
 		<Entity uid="1039">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="230.07248" z="603.7204"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1040">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="297.62238" z="784.08686"/>
 			<Orientation y="-0.04691"/>
 		</Entity>
 		<Entity uid="1041">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="307.06128" z="777.66822"/>
 			<Orientation y="2.21766"/>
 		</Entity>
 		<Entity uid="1042">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="316.94086" z="769.70545"/>
 			<Orientation y="2.90311"/>
 		</Entity>
 		<Entity uid="1043">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="325.78608" z="747.154"/>
 			<Orientation y="0.3636"/>
 		</Entity>
 		<Entity uid="1044">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="315.49555" z="752.08283"/>
 			<Orientation y="0.2048"/>
 		</Entity>
 		<Entity uid="1045">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="295.65632" z="773.56537"/>
 			<Orientation y="1.63186"/>
 		</Entity>
 		<Entity uid="1046">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="303.39243" z="772.82471"/>
 			<Orientation y="2.08207"/>
 		</Entity>
 		<Entity uid="1047">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="312.8968" z="767.01301"/>
 			<Orientation y="2.19318"/>
 		</Entity>
 		<Entity uid="1048">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="318.16437" z="763.43122"/>
 			<Orientation y="2.1676"/>
 		</Entity>
 		<Entity uid="1049">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="309.51191" z="784.70905"/>
 			<Orientation y="2.27527"/>
 		</Entity>
 		<Entity uid="1050">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="317.51801" z="775.69056"/>
 			<Orientation y="2.57294"/>
 		</Entity>
 		<Entity uid="1051">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="326.45023" z="764.01331"/>
 			<Orientation y="2.13228"/>
 		</Entity>
 		<Entity uid="1052">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="302.6992" z="765.16492"/>
 			<Orientation y="0.8657"/>
 		</Entity>
 		<Entity uid="1053">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="387.52591" z="622.50654"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1054">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="380.74714" z="595.46515"/>
 			<Orientation y="1.06682"/>
 		</Entity>
 		<Entity uid="1055">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="790.90595" z="826.25068"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1056">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="800.23548" z="816.05164"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1057">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="857.0973" z="721.06672"/>
 			<Orientation y="2.6761"/>
 		</Entity>
 		<Entity uid="1058">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="861.97876" z="711.69275"/>
 			<Orientation y="3.02387"/>
 		</Entity>
 		<Entity uid="1059">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="863.76447" z="699.16126"/>
 			<Orientation y="-3.0402"/>
 		</Entity>
 		<Entity uid="1060">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="867.06006" z="688.79578"/>
 			<Orientation y="1.9047"/>
 		</Entity>
 		<Entity uid="1061">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="867.40015" z="707.18006"/>
 			<Orientation y="0.09754"/>
 		</Entity>
 		<Entity uid="1062">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="725.91742" z="679.62623"/>
 			<Orientation y="-2.82699"/>
 		</Entity>
 		<Entity uid="1063">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="720.32435" z="678.33863"/>
 			<Orientation y="-1.88042"/>
 		</Entity>
 		<Entity uid="1064">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="713.31366" z="684.65528"/>
 			<Orientation y="-0.53643"/>
 		</Entity>
 		<Entity uid="1065">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="708.1999" z="694.55848"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1066">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="703.78193" z="703.28895"/>
 			<Orientation y="-1.00683"/>
 		</Entity>
 		<Entity uid="1067">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="696.0254" z="709.5149"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1068">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="698.11445" z="697.06293"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1069">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="700.94294" z="687.34449"/>
 			<Orientation y="2.37043"/>
 		</Entity>
 		<Entity uid="1070">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="705.97486" z="683.68592"/>
 			<Orientation y="1.86765"/>
 		</Entity>
 		<Entity uid="1071">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="712.6186" z="681.48737"/>
 			<Orientation y="2.07641"/>
 		</Entity>
 		<Entity uid="1072">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="717.44123" z="679.25965"/>
 			<Orientation y="-2.89655"/>
 		</Entity>
 		<Entity uid="1073">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="737.52118" z="822.36731"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1074">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="734.75086" z="821.89161"/>
 			<Orientation y="-1.78386"/>
 		</Entity>
 		<Entity uid="1075">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="728.4687" z="822.04041"/>
 			<Orientation y="-1.7383"/>
 		</Entity>
 		<Entity uid="1076">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="722.6034" z="823.0871"/>
 			<Orientation y="-1.53982"/>
 		</Entity>
 		<Entity uid="1077">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="714.9773" z="826.15088"/>
 			<Orientation y="-1.9321"/>
 		</Entity>
 		<Entity uid="1078">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="710.12482" z="825.28095"/>
 			<Orientation y="-2.13401"/>
 		</Entity>
 		<Entity uid="1079">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="705.41272" z="822.99"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1080">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="704.63257" z="820.57782"/>
 			<Orientation y="1.26525"/>
 		</Entity>
 		<Entity uid="1081">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="713.40497" z="822.17896"/>
 			<Orientation y="0.84513"/>
 		</Entity>
 		<Entity uid="1082">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="716.69043" z="824.81019"/>
 			<Orientation y="0.74068"/>
 		</Entity>
 		<Entity uid="1083">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="719.55518" z="827.67688"/>
 			<Orientation y="0.37697"/>
 		</Entity>
 		<Entity uid="1084">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="722.26148" z="834.09467"/>
 			<Orientation y="1.8482"/>
 		</Entity>
 		<Entity uid="1085">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="701.17426" z="825.5683"/>
 			<Orientation y="1.43256"/>
 		</Entity>
 		<Entity uid="1086">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="700.13428" z="811.14014"/>
 			<Orientation y="-1.61881"/>
 		</Entity>
 		<Entity uid="1087">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="693.89924" z="817.90674"/>
 			<Orientation y="1.53333"/>
 		</Entity>
 		<Entity uid="1088">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="711.0088" z="816.97693"/>
 			<Orientation y="1.15943"/>
 		</Entity>
 		<Entity uid="1089">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="605.6897" z="99.53267"/>
 			<Orientation y="0.03608"/>
 		</Entity>
 		<Entity uid="1090">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="606.5337" z="123.02344"/>
 			<Orientation y="-0.87027"/>
 		</Entity>
 		<Entity uid="1091">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="599.12433" z="126.547"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1092">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="597.69227" z="134.42392"/>
 			<Orientation y="1.51014"/>
 		</Entity>
 		<Entity uid="1093">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="603.85328" z="133.61704"/>
 			<Orientation y="2.5334"/>
 		</Entity>
 		<Entity uid="1094">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="611.71705" z="122.1367"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1095">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="613.2577" z="118.16243"/>
 			<Orientation y="2.65961"/>
 		</Entity>
 		<Entity uid="1096">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="615.87989" z="108.93786"/>
 			<Orientation y="-1.79468"/>
 		</Entity>
 		<Entity uid="1097">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="608.1001" z="105.84253"/>
 			<Orientation y="-0.43256"/>
 		</Entity>
 		<Entity uid="1098">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="604.2569" z="113.88982"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1099">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="604.79834" z="119.32741"/>
 			<Orientation y="0.72413"/>
 		</Entity>
 		<Entity uid="1100">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="612.00031" z="142.35961"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1101">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="610.83381" z="144.34592"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1102">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="623.34321" z="124.13755"/>
 			<Orientation y="2.89307"/>
 		</Entity>
 		<Entity uid="1103">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="623.02131" z="118.8928"/>
 			<Orientation y="-0.67754"/>
 		</Entity>
 		<Entity uid="1104">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="617.62397" z="129.83077"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1105">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="616.88825" z="117.035"/>
 			<Orientation y="0.47124"/>
 		</Entity>
 		<Entity uid="1106">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="369.78235" z="394.1402"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1107">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="374.20856" z="398.98951"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1108">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="373.99418" z="406.06763"/>
 			<Orientation y="1.99863"/>
 		</Entity>
 		<Entity uid="1109">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="163.32761" z="285.17823"/>
 			<Orientation y="2.16724"/>
 		</Entity>
 		<Entity uid="1110">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="181.68427" z="268.5363"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1111">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="188.5641" z="258.39402"/>
 			<Orientation y="2.20214"/>
 		</Entity>
 		<Entity uid="1112">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="157.4415" z="252.8223"/>
 			<Orientation y="-1.84585"/>
 		</Entity>
 		<Entity uid="1113">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="123.48058" z="259.03827"/>
 			<Orientation y="-1.24271"/>
 		</Entity>
 		<Entity uid="1114">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="97.66018" z="270.25153"/>
 			<Orientation y="-0.41797"/>
 		</Entity>
 		<Entity uid="1115">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="174.81771" z="731.82923"/>
 			<Orientation y="0.40581"/>
 		</Entity>
 		<Entity uid="1116">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="189.21456" z="790.62964"/>
 			<Orientation y="0.2123"/>
 		</Entity>
 		<Entity uid="1117">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="211.88686" z="843.6587"/>
 			<Orientation y="0.69451"/>
 		</Entity>
 		<Entity uid="1118">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="247.75344" z="829.71424"/>
 			<Orientation y="1.80727"/>
 		</Entity>
 		<Entity uid="1119">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="260.44446" z="878.97584"/>
 			<Orientation y="0.0829"/>
 		</Entity>
 		<Entity uid="1120">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="260.63935" z="899.88221"/>
 			<Orientation y="-0.25857"/>
 		</Entity>
 		<Entity uid="1121">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="258.04859" z="910.79078"/>
 			<Orientation y="0.62157"/>
 		</Entity>
 		<Entity uid="1122">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="270.36432" z="926.33265"/>
 			<Orientation y="-2.6668"/>
 		</Entity>
 		<Entity uid="1123">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="268.26752" z="912.00892"/>
 			<Orientation y="1.41678"/>
 		</Entity>
 		<Entity uid="1124">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="270.66663" z="892.1836"/>
 			<Orientation y="0.13524"/>
 		</Entity>
 		<Entity uid="1125">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="270.19907" z="879.47651"/>
 			<Orientation y="2.4329"/>
 		</Entity>
 		<Entity uid="1126">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="275.86945" z="886.21326"/>
 			<Orientation y="3.07056"/>
 		</Entity>
 		<Entity uid="1127">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="397.779" z="786.34424"/>
 			<Orientation y="2.51938"/>
 		</Entity>
 		<Entity uid="1128">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="445.71952" z="757.79609"/>
 			<Orientation y="2.77718"/>
 		</Entity>
 		<Entity uid="1129">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
-			<Position x="451.37922" z="742.13294"/>
+			<Position x="394.6107" z="767.73316"/>
 			<Orientation y="3.126"/>
 		</Entity>
 		<Entity uid="1130">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
-			<Position x="450.2447" z="728.09473"/>
+			<Position x="459.50226" z="705.31843"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1131">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="592.2776" z="599.5987"/>
 			<Orientation y="1.79424"/>
 		</Entity>
 		<Entity uid="1132">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="617.57154" z="595.39502"/>
 			<Orientation y="2.35389"/>
 		</Entity>
 		<Entity uid="1133">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="631.70661" z="582.75532"/>
 			<Orientation y="3.0334"/>
 		</Entity>
 		<Entity uid="1134">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="629.86902" z="568.73963"/>
 			<Orientation y="-2.99236"/>
 		</Entity>
 		<Entity uid="1135">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="619.1991" z="576.6554"/>
 			<Orientation y="-0.48488"/>
 		</Entity>
 		<Entity uid="1136">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="750.60389" z="450.09766"/>
 			<Orientation y="1.57029"/>
 		</Entity>
 		<Entity uid="1137">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="765.55542" z="452.81531"/>
 			<Orientation y="1.28057"/>
 		</Entity>
 		<Entity uid="1138">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="877.54786" z="291.45786"/>
 			<Orientation y="2.4811"/>
 		</Entity>
 		<Entity uid="1139">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="897.93238" z="266.26795"/>
 			<Orientation y="2.33706"/>
 		</Entity>
 		<Entity uid="1140">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="913.61207" z="253.30912"/>
 			<Orientation y="2.26833"/>
 		</Entity>
 		<Entity uid="1141">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="973.0362" z="359.05872"/>
 			<Orientation y="0.51478"/>
 		</Entity>
 		<Entity uid="1142">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="999.1258" z="453.52515"/>
 			<Orientation y="-2.95081"/>
 		</Entity>
 		<Entity uid="1143">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="990.38282" z="646.15314"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1144">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="966.86237" z="717.50245"/>
 			<Orientation y="0.36767"/>
 		</Entity>
 		<Entity uid="1145">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="857.20215" z="828.0597"/>
 			<Orientation y="-0.04422"/>
 		</Entity>
 		<Entity uid="1146">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="824.35907" z="869.67469"/>
 			<Orientation y="-1.83523"/>
 		</Entity>
 		<Entity uid="1147">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="802.25562" z="868.1355"/>
 			<Orientation y="-2.60732"/>
 		</Entity>
 		<Entity uid="1148">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="841.67951" z="799.90772"/>
 			<Orientation y="0.45089"/>
 		</Entity>
 		<Entity uid="1149">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="811.13465" z="612.02411"/>
 			<Orientation y="0.75042"/>
 		</Entity>
 		<Entity uid="1150">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="477.09308" z="598.25721"/>
 			<Orientation y="-0.8999"/>
 		</Entity>
 		<Entity uid="1151">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="414.13855" z="505.3678"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1152">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="398.8813" z="498.10859"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1153">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="409.73963" z="495.12406"/>
 			<Orientation y="0.3962"/>
 		</Entity>
 		<Entity uid="1154">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="318.68738" z="446.62623"/>
 			<Orientation y="-1.66793"/>
 		</Entity>
 		<Entity uid="1155">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="230.54049" z="336.5475"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1156">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="431.4766" z="990.62592"/>
 			<Orientation y="1.64922"/>
 		</Entity>
 		<Entity uid="1157">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="457.81019" z="986.72889"/>
 			<Orientation y="3.06032"/>
 		</Entity>
 		<Entity uid="1158">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="457.77625" z="972.26526"/>
 			<Orientation y="-2.46279"/>
 		</Entity>
 		<Entity uid="1159">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="444.07245" z="953.24665"/>
 			<Orientation y="-2.886"/>
 		</Entity>
 		<Entity uid="1160">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="442.12137" z="937.7016"/>
 			<Orientation y="2.83619"/>
 		</Entity>
 		<Entity uid="1161">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="450.10538" z="926.41761"/>
 			<Orientation y="1.55474"/>
 		</Entity>
 		<Entity uid="1162">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="478.33771" z="931.47864"/>
 			<Orientation y="-0.18212"/>
 		</Entity>
 		<Entity uid="1163">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="472.19193" z="953.22461"/>
 			<Orientation y="-0.38222"/>
 		</Entity>
 		<Entity uid="1164">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="471.17432" z="968.52295"/>
 			<Orientation y="0.50878"/>
 		</Entity>
 		<Entity uid="1165">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="484.73795" z="993.63685"/>
 			<Orientation y="2.92775"/>
 		</Entity>
 		<Entity uid="1166">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="485.89103" z="967.7574"/>
 			<Orientation y="-2.72622"/>
 		</Entity>
 		<Entity uid="1167">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="473.606" z="940.97211"/>
 			<Orientation y="-2.5824"/>
 		</Entity>
 		<Entity uid="1168">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="461.55521" z="922.48615"/>
 			<Orientation y="2.6009"/>
 		</Entity>
 		<Entity uid="1169">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="619.79365" z="974.86121"/>
 			<Orientation y="-1.81194"/>
 		</Entity>
 		<Entity uid="1170">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="601.08924" z="957.4574"/>
 			<Orientation y="-2.66266"/>
 		</Entity>
 		<Entity uid="1171">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="608.38013" z="901.23426"/>
 			<Orientation y="2.28745"/>
 		</Entity>
 		<Entity uid="1172">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="615.87342" z="894.02161"/>
 			<Orientation y="-3.13117"/>
 		</Entity>
 		<Entity uid="1173">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="614.51215" z="863.6836"/>
 			<Orientation y="2.7698"/>
 		</Entity>
 		<Entity uid="1174">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="617.38929" z="861.84791"/>
 			<Orientation y="0.40745"/>
 		</Entity>
 		<Entity uid="1175">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="628.03223" z="896.3606"/>
 			<Orientation y="0.03081"/>
 		</Entity>
 		<Entity uid="1176">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="628.48139" z="910.93744"/>
 			<Orientation y="0.192"/>
 		</Entity>
 		<Entity uid="1177">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="636.72028" z="948.75599"/>
 			<Orientation y="0.98452"/>
-		</Entity>
-		<Entity uid="1181">
-			<Template>gaia/ore/temperate_large</Template>
-			<Player>0</Player>
-			<Position x="165.62598" z="415.83698"/>
-			<Orientation y="1.34702"/>
-		</Entity>
-		<Entity uid="1182">
-			<Template>gaia/ore/temperate_large</Template>
-			<Player>0</Player>
-			<Position x="799.87183" z="323.32953"/>
-			<Orientation y="0.43871"/>
-		</Entity>
-		<Entity uid="1183">
-			<Template>gaia/ore/temperate_large</Template>
-			<Player>0</Player>
-			<Position x="465.51719" z="895.96827"/>
-			<Orientation y="-2.38521"/>
-		</Entity>
-		<Entity uid="1186">
-			<Template>gaia/ore/temperate_large</Template>
-			<Player>0</Player>
-			<Position x="273.85502" z="826.4563"/>
-			<Orientation y="1.78231"/>
-		</Entity>
-		<Entity uid="1187">
-			<Template>gaia/ore/temperate_large</Template>
-			<Player>0</Player>
-			<Position x="308.97324" z="519.42872"/>
-			<Orientation y="0.52384"/>
-		</Entity>
-		<Entity uid="1188">
-			<Template>gaia/ore/temperate_large</Template>
-			<Player>0</Player>
-			<Position x="308.79114" z="188.61"/>
-			<Orientation y="1.29139"/>
-		</Entity>
-		<Entity uid="1189">
-			<Template>gaia/ore/temperate_large</Template>
-			<Player>0</Player>
-			<Position x="636.45606" z="95.61957"/>
-			<Orientation y="0.0028"/>
-		</Entity>
-		<Entity uid="1190">
-			<Template>gaia/ore/temperate_large</Template>
-			<Player>0</Player>
-			<Position x="719.24244" z="903.42359"/>
-			<Orientation y="-2.2581"/>
-		</Entity>
-		<Entity uid="1191">
-			<Template>gaia/ore/temperate_large</Template>
-			<Player>0</Player>
-			<Position x="780.1006" z="533.87775"/>
-			<Orientation y="-0.2191"/>
-		</Entity>
-		<Entity uid="1192">
-			<Template>gaia/ore/temperate_large</Template>
-			<Player>0</Player>
-			<Position x="816.77698" z="660.37989"/>
-			<Orientation y="1.1207"/>
-		</Entity>
-		<Entity uid="1193">
-			<Template>gaia/ore/temperate_large</Template>
-			<Player>0</Player>
-			<Position x="494.50178" z="237.17551"/>
-			<Orientation y="-2.22135"/>
-		</Entity>
-		<Entity uid="1194">
-			<Template>gaia/ore/temperate_large</Template>
-			<Player>0</Player>
-			<Position x="283.1005" z="683.2494"/>
-			<Orientation y="-1.15635"/>
 		</Entity>
 		<Entity uid="1195">
 			<Template>actor|props/special/eyecandy/campfire.xml</Template>
@@ -12595,61 +12527,61 @@
 			<Orientation y="-2.04897"/>
 		</Entity>
 		<Entity uid="2198">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="405.70081" z="137.36815"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2199">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="401.2526" z="133.17046"/>
 			<Orientation y="-2.47258"/>
 		</Entity>
 		<Entity uid="2200">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="398.46818" z="128.5593"/>
 			<Orientation y="3.0804"/>
 		</Entity>
 		<Entity uid="2201">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="398.98328" z="120.12708"/>
 			<Orientation y="2.81302"/>
 		</Entity>
 		<Entity uid="2202">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="401.12906" z="116.10445"/>
 			<Orientation y="2.24433"/>
 		</Entity>
 		<Entity uid="2203">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="407.23304" z="113.04944"/>
 			<Orientation y="0.39739"/>
 		</Entity>
 		<Entity uid="2204">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="408.65592" z="118.00712"/>
 			<Orientation y="-0.25025"/>
 		</Entity>
 		<Entity uid="2205">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="406.43757" z="124.71827"/>
 			<Orientation y="0.04043"/>
 		</Entity>
 		<Entity uid="2206">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="406.78437" z="131.23704"/>
 			<Orientation y="1.26134"/>
 		</Entity>
 		<Entity uid="2207">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="398.9657" z="108.17489"/>
 			<Orientation y="1.02643"/>
@@ -13305,26 +13237,26 @@
 		<Entity uid="2316">
 			<Template>gaia/tree/bush_temperate</Template>
 			<Player>0</Player>
-			<Position x="499.43677" z="502.25373"/>
+			<Position x="513.17707" z="504.88633"/>
 			<Orientation y="0.79897"/>
 		</Entity>
 		<Entity uid="2317">
 			<Template>gaia/tree/bush_temperate</Template>
 			<Player>0</Player>
-			<Position x="510.74177" z="512.25611"/>
+			<Position x="526.77234" z="489.60981"/>
 			<Orientation y="0.96125"/>
 		</Entity>
 		<Entity uid="2318">
 			<Template>gaia/tree/bush_temperate</Template>
 			<Player>0</Player>
-			<Position x="518.14588" z="519.52576"/>
+			<Position x="523.0948" z="520.82013"/>
 			<Orientation y="0.89623"/>
 		</Entity>
 		<Entity uid="2319">
 			<Template>gaia/tree/bush_temperate</Template>
 			<Player>0</Player>
-			<Position x="526.57679" z="526.30665"/>
-			<Orientation y="1.23301"/>
+			<Position x="537.62208" z="499.8892"/>
+			<Orientation y="-2.30565"/>
 		</Entity>
 		<Entity uid="2320">
 			<Template>gaia/tree/bush_temperate</Template>
@@ -14133,7 +14065,7 @@
 		<Entity uid="2454">
 			<Template>gaia/tree/bush_temperate</Template>
 			<Player>0</Player>
-			<Position x="848.64594" z="642.08826"/>
+			<Position x="841.25031" z="646.53016"/>
 			<Orientation y="-2.93396"/>
 		</Entity>
 		<Entity uid="2455">
@@ -14269,73 +14201,73 @@
 			<Orientation y="2.9941"/>
 		</Entity>
 		<Entity uid="2477">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="749.14155" z="769.73145"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2478">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="754.04065" z="774.32966"/>
 			<Orientation y="2.29838"/>
 		</Entity>
 		<Entity uid="2479">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="761.14484" z="770.32032"/>
 			<Orientation y="1.28264"/>
 		</Entity>
 		<Entity uid="2480">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="771.56684" z="773.52222"/>
 			<Orientation y="-2.55678"/>
 		</Entity>
 		<Entity uid="2481">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="767.03113" z="766.77472"/>
 			<Orientation y="1.11254"/>
 		</Entity>
 		<Entity uid="2482">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="781.04841" z="767.98066"/>
 			<Orientation y="0.86941"/>
 		</Entity>
 		<Entity uid="2483">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="780.38697" z="656.99994"/>
 			<Orientation y="2.79607"/>
 		</Entity>
 		<Entity uid="2484">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="784.67939" z="643.7834"/>
 			<Orientation y="2.37075"/>
 		</Entity>
 		<Entity uid="2485">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="813.1001" z="697.37482"/>
 			<Orientation y="-2.35158"/>
 		</Entity>
 		<Entity uid="2486">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="820.95527" z="697.50818"/>
 			<Orientation y="1.38563"/>
 		</Entity>
 		<Entity uid="2487">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="825.04139" z="698.70228"/>
 			<Orientation y="2.13164"/>
 		</Entity>
 		<Entity uid="2488">
-			<Template>gaia/tree/euro_beech</Template>
+			<Template>gaia/tree/oak_hungarian</Template>
 			<Player>0</Player>
 			<Position x="832.44916" z="692.72608"/>
 			<Orientation y="3.02749"/>
@@ -15277,343 +15209,343 @@
 			<Orientation y="-2.22738"/>
 		</Entity>
 		<Entity uid="2646">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="208.54291" z="578.19623"/>
 			<Orientation y="-3.00042"/>
 		</Entity>
 		<Entity uid="2647">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="209.62725" z="555.42536"/>
 			<Orientation y="1.78226"/>
 		</Entity>
 		<Entity uid="2648">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="220.23433" z="559.75452"/>
 			<Orientation y="1.6327"/>
 		</Entity>
 		<Entity uid="2649">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="227.8365" z="544.81086"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2650">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="576.12757" z="567.485"/>
 			<Orientation y="0.96088"/>
 		</Entity>
 		<Entity uid="2651">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="587.62433" z="574.13032"/>
 			<Orientation y="2.57361"/>
 		</Entity>
 		<Entity uid="2652">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="595.80243" z="557.83454"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2653">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="603.99195" z="553.21637"/>
 			<Orientation y="0.79607"/>
 		</Entity>
 		<Entity uid="2654">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="692.25007" z="519.44227"/>
 			<Orientation y="2.39837"/>
 		</Entity>
 		<Entity uid="2655">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="700.1894" z="511.16257"/>
 			<Orientation y="2.78006"/>
 		</Entity>
 		<Entity uid="2656">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="705.91639" z="493.46372"/>
 			<Orientation y="2.35492"/>
 		</Entity>
 		<Entity uid="2657">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="720.24988" z="502.12745"/>
 			<Orientation y="-0.09247"/>
 		</Entity>
 		<Entity uid="2658">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="707.02454" z="523.60822"/>
 			<Orientation y="-0.60785"/>
 		</Entity>
 		<Entity uid="2659">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="707.45667" z="110.35177"/>
 			<Orientation y="-2.7013"/>
 		</Entity>
 		<Entity uid="2660">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="700.94678" z="100.90947"/>
 			<Orientation y="-2.16988"/>
 		</Entity>
 		<Entity uid="2661">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="688.21357" z="94.08577"/>
 			<Orientation y="-1.72144"/>
 		</Entity>
 		<Entity uid="2662">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="671.71723" z="88.11861"/>
 			<Orientation y="3.09017"/>
 		</Entity>
 		<Entity uid="2663">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="683.3194" z="68.81884"/>
 			<Orientation y="0.61057"/>
 		</Entity>
 		<Entity uid="2664">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="683.48353" z="100.35485"/>
 			<Orientation y="0.6419"/>
 		</Entity>
 		<Entity uid="2665">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="249.06394" z="516.97077"/>
 			<Orientation y="0.36689"/>
 		</Entity>
 		<Entity uid="2666">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="256.17722" z="116.8861"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2667">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="263.09778" z="126.0391"/>
 			<Orientation y="1.05178"/>
 		</Entity>
 		<Entity uid="2668">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="271.32023" z="135.28393"/>
 			<Orientation y="0.94794"/>
 		</Entity>
 		<Entity uid="2669">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="278.6049" z="147.0072"/>
 			<Orientation y="1.12012"/>
 		</Entity>
 		<Entity uid="2670">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="290.56083" z="154.93319"/>
 			<Orientation y="0.81016"/>
 		</Entity>
 		<Entity uid="2671">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="477.04996" z="355.39014"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2672">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="488.22959" z="348.77677"/>
 			<Orientation y="-0.24024"/>
 		</Entity>
 		<Entity uid="2673">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="479.83912" z="332.98472"/>
 			<Orientation y="0.76584"/>
 		</Entity>
 		<Entity uid="2674">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="473.78827" z="341.44007"/>
 			<Orientation y="0.03133"/>
 		</Entity>
 		<Entity uid="2675">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="504.47251" z="353.7627"/>
 			<Orientation y="-1.52042"/>
 		</Entity>
 		<Entity uid="2676">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="964.771" z="414.44288"/>
 			<Orientation y="2.7825"/>
 		</Entity>
 		<Entity uid="2677">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="969.47187" z="399.78141"/>
 			<Orientation y="2.99985"/>
 		</Entity>
 		<Entity uid="2678">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="972.40552" z="390.18812"/>
 			<Orientation y="2.51198"/>
 		</Entity>
 		<Entity uid="2679">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="983.51978" z="377.50904"/>
 			<Orientation y="1.49424"/>
 		</Entity>
 		<Entity uid="2680">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="986.82844" z="391.26041"/>
 			<Orientation y="-0.93487"/>
 		</Entity>
 		<Entity uid="2681">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="979.8614" z="402.0453"/>
 			<Orientation y="0.095"/>
 		</Entity>
 		<Entity uid="2682">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="978.99598" z="412.68641"/>
 			<Orientation y="-1.18226"/>
 		</Entity>
 		<Entity uid="2683">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="739.28156" z="757.8606"/>
 			<Orientation y="0.97196"/>
 		</Entity>
 		<Entity uid="2684">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="763.84894" z="747.38355"/>
 			<Orientation y="0.5256"/>
 		</Entity>
 		<Entity uid="2685">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="826.23694" z="680.21241"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2686">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="839.57551" z="665.91279"/>
 			<Orientation y="0.53444"/>
 		</Entity>
 		<Entity uid="2687">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="831.43995" z="621.33692"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2688">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="299.44962" z="613.06202"/>
 			<Orientation y="2.32094"/>
 		</Entity>
 		<Entity uid="2689">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="309.16419" z="611.50013"/>
 			<Orientation y="2.41094"/>
 		</Entity>
 		<Entity uid="2690">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="319.82926" z="609.0489"/>
 			<Orientation y="0.52692"/>
 		</Entity>
 		<Entity uid="2691">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="325.91788" z="622.60248"/>
 			<Orientation y="0.68271"/>
 		</Entity>
 		<Entity uid="2692">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="431.60724" z="87.37531"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2693">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="444.48346" z="84.97016"/>
 			<Orientation y="0.7438"/>
 		</Entity>
 		<Entity uid="2694">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="431.09076" z="104.50277"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2695">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="423.51853" z="112.48952"/>
 			<Orientation y="-0.1375"/>
 		</Entity>
 		<Entity uid="2696">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="421.9556" z="124.24013"/>
 			<Orientation y="1.30324"/>
 		</Entity>
 		<Entity uid="2697">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="430.2115" z="128.2582"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2698">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="437.47846" z="115.84856"/>
 			<Orientation y="0.9539"/>
 		</Entity>
 		<Entity uid="2699">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="144.74303" z="362.59449"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2700">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="91.68665" z="553.72907"/>
 			<Orientation y="1.52186"/>
 		</Entity>
 		<Entity uid="2701">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="488.51148" z="567.13477"/>
 			<Orientation y="0.95904"/>
 		</Entity>
 		<Entity uid="2702">
-			<Template>gaia/fruit/apple</Template>
+			<Template>gaia/fruit/berry_01</Template>
 			<Player>0</Player>
 			<Position x="796.84339" z="541.41175"/>
 			<Orientation y="2.35621"/>
@@ -16131,7 +16063,7 @@
 		<Entity uid="2788">
 			<Template>gaia/fauna_deer</Template>
 			<Player>0</Player>
-			<Position x="553.29822" z="447.60447"/>
+			<Position x="546.87134" z="455.63956"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="2789">
@@ -18492,22 +18424,22 @@
 		</Entity>
 		<Entity uid="3257">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="708.38172" z="432.03235"/>
+			<Position x="655.5976" z="236.95203"/>
 			<Orientation y="2.90572"/>
 		</Entity>
 		<Entity uid="3258">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="710.91578" z="428.49665"/>
+			<Position x="633.00715" z="202.5106"/>
 			<Orientation y="-2.93325"/>
 		</Entity>
 		<Entity uid="3259">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="713.0337" z="423.50812"/>
+			<Position x="644.55231" z="215.30692"/>
 			<Orientation y="-2.81521"/>
 		</Entity>
 		<Entity uid="3260">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="726.78327" z="421.206"/>
+			<Position x="677.43372" z="218.99595"/>
 			<Orientation y="-2.897"/>
 		</Entity>
 		<Entity uid="3261">
@@ -18517,17 +18449,17 @@
 		</Entity>
 		<Entity uid="3262">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="720.99054" z="421.63691"/>
+			<Position x="671.641" z="219.42685"/>
 			<Orientation y="2.3452"/>
 		</Entity>
 		<Entity uid="3263">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="722.13123" z="420.1279"/>
-			<Orientation y="2.9509"/>
+			<Position x="628.52735" z="176.07944"/>
+			<Orientation y="0.64419"/>
 		</Entity>
 		<Entity uid="3264">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="723.38263" z="417.27808"/>
+			<Position x="674.03309" z="215.06794"/>
 			<Orientation y="1.58753"/>
 		</Entity>
 		<Entity uid="3265">
@@ -18542,7 +18474,7 @@
 		</Entity>
 		<Entity uid="3267">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="727.49286" z="430.88718"/>
+			<Position x="678.14332" z="228.67737"/>
 			<Orientation y="-1.31952"/>
 		</Entity>
 		<Entity uid="3268">
@@ -18552,7 +18484,7 @@
 		</Entity>
 		<Entity uid="3269">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="727.0489" z="434.9408"/>
+			<Position x="677.69935" z="232.731"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3270">
@@ -18837,7 +18769,7 @@
 		</Entity>
 		<Entity uid="3326">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="793.60608" z="368.3502"/>
+			<Position x="809.34638" z="326.77988"/>
 			<Orientation y="-2.96241"/>
 		</Entity>
 		<Entity uid="3327">
@@ -20767,32 +20699,32 @@
 		</Entity>
 		<Entity uid="3712">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="761.05066" z="276.64444"/>
+			<Position x="761.32441" z="312.65894"/>
 			<Orientation y="2.37407"/>
 		</Entity>
 		<Entity uid="3713">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="765.30414" z="248.38828"/>
+			<Position x="752.46851" z="244.23026"/>
 			<Orientation y="-0.1399"/>
 		</Entity>
 		<Entity uid="3714">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="769.1908" z="267.48475"/>
+			<Position x="802.97687" z="267.85587"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3715">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="768.59083" z="280.46451"/>
+			<Position x="766.54377" z="311.74058"/>
 			<Orientation y="-2.67328"/>
 		</Entity>
 		<Entity uid="3716">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="763.20978" z="284.69147"/>
+			<Position x="760.69867" z="320.16169"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3717">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="759.06464" z="291.60029"/>
+			<Position x="761.60029" z="306.99"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="3718">
@@ -20807,7 +20739,7 @@
 		</Entity>
 		<Entity uid="3720">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="762.97156" z="278.2537"/>
+			<Position x="750.6537" z="228.55127"/>
 			<Orientation y="-1.51104"/>
 		</Entity>
 		<Entity uid="3721">
@@ -20827,13 +20759,13 @@
 		</Entity>
 		<Entity uid="3724">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="766.06232" z="287.86966"/>
+			<Position x="762.38721" z="321.80628"/>
 			<Orientation y="1.0598"/>
 		</Entity>
 		<Entity uid="3725">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="800.17414" z="317.63428"/>
-			<Orientation y="2.35621"/>
+			<Position x="796.24115" z="316.35477"/>
+			<Orientation y="0.60376"/>
 		</Entity>
 		<Entity uid="3726">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
@@ -20842,7 +20774,7 @@
 		</Entity>
 		<Entity uid="3727">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
-			<Position x="808.60895" z="320.94892"/>
+			<Position x="790.99549" z="328.90265"/>
 			<Orientation y="0.91805"/>
 		</Entity>
 		<Entity uid="3728">
@@ -21135,7 +21067,7 @@
 		<Entity uid="3806">
 			<Template>gaia/rock/temperate_large_02</Template>
 			<Player>0</Player>
-			<Position x="719.625" z="430.80335"/>
+			<Position x="670.27546" z="228.59354"/>
 			<Orientation y="0.67426"/>
 		</Entity>
 		<Entity uid="3811">
@@ -21155,7 +21087,7 @@
 		<Entity uid="3816">
 			<Template>skirmish/structures/default_civil_centre</Template>
 			<Player>2</Player>
-			<Position x="767.4936" z="271.0109"/>
+			<Position x="768.85553" z="271.73884"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="55570"/>
 		</Entity>
@@ -21690,6 +21622,97 @@
 			<Position x="676.52369" z="981.33338"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="7004"/>
+		</Entity>
+		<Entity uid="3893">
+			<Template>gaia/ore/temperate_01</Template>
+			<Player>0</Player>
+			<Position x="166.60386" z="419.14469"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="18664"/>
+		</Entity>
+		<Entity uid="3894">
+			<Template>gaia/ore/temperate_01</Template>
+			<Player>0</Player>
+			<Position x="307.09876" z="187.6941"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="20511"/>
+		</Entity>
+		<Entity uid="3895">
+			<Template>gaia/ore/temperate_02</Template>
+			<Player>0</Player>
+			<Position x="636.01227" z="99.27927"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="43753"/>
+		</Entity>
+		<Entity uid="3896">
+			<Template>gaia/ore/temperate_02</Template>
+			<Player>0</Player>
+			<Position x="800.72645" z="322.5398"/>
+			<Orientation y="-2.40683"/>
+			<Actor seed="20574"/>
+		</Entity>
+		<Entity uid="3897">
+			<Template>gaia/ore/temperate_01</Template>
+			<Player>0</Player>
+			<Position x="778.8249" z="534.50098"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="8328"/>
+		</Entity>
+		<Entity uid="3898">
+			<Template>gaia/ore/temperate_01</Template>
+			<Player>0</Player>
+			<Position x="816.6825" z="660.1496"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="44022"/>
+		</Entity>
+		<Entity uid="3899">
+			<Template>gaia/ore/temperate_02</Template>
+			<Player>0</Player>
+			<Position x="720.41492" z="902.62049"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="30299"/>
+		</Entity>
+		<Entity uid="3900">
+			<Template>gaia/ore/temperate_02</Template>
+			<Player>0</Player>
+			<Position x="464.89283" z="896.37671"/>
+			<Orientation y="-5.59845"/>
+			<Actor seed="43314"/>
+		</Entity>
+		<Entity uid="3901">
+			<Template>gaia/ore/temperate_01</Template>
+			<Player>0</Player>
+			<Position x="273.60077" z="825.56269"/>
+			<Orientation y="2.43961"/>
+			<Actor seed="22507"/>
+		</Entity>
+		<Entity uid="3902">
+			<Template>gaia/ore/temperate_01</Template>
+			<Player>0</Player>
+			<Position x="282.59943" z="683.28663"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="63767"/>
+		</Entity>
+		<Entity uid="3903">
+			<Template>gaia/ore/temperate_01</Template>
+			<Player>0</Player>
+			<Position x="309.73737" z="518.04078"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="48754"/>
+		</Entity>
+		<Entity uid="3904">
+			<Template>gaia/ore/temperate_01</Template>
+			<Player>0</Player>
+			<Position x="493.31696" z="236.79596"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1755"/>
+		</Entity>
+		<Entity uid="3905">
+			<Template>structures/gaul/farmstead</Template>
+			<Player>0</Player>
+			<Position x="545.45856" z="479.22498"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1892"/>
 		</Entity>
 	</Entities>
 	<Paths/>
