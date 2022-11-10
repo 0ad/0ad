@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <group>
-    <variant frequency="1" name="grass_la_tall_a">
+    <variant frequency="5" name="grass_savanna_a">
       <mesh>gaia/grass_la_tall_a.dae</mesh>
+      <textures>
+        <texture file="gaia/grass_field_savanna.dds" name="baseTex"/>
+      </textures>
     </variant>
-    <variant frequency="1" name="grass_la_tall_b">
+    <variant frequency="5" name="grass_savanna_b">
       <mesh>gaia/grass_la_tall_b.dae</mesh>
+      <textures>
+        <texture file="gaia/grass_field_savanna.dds" name="baseTex"/>
+      </textures>
     </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="savanna">
-      <textures><texture file="gaia/grass_field_savanna.dds" name="baseTex"/></textures>
+    <variant frequency="2" name="grass_savanna_woody_a">
+      <mesh>gaia/grass_la_tall_a.dae</mesh>
+      <textures>
+        <texture file="gaia/grass_woody_dry.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="grass_savanna_woody_b">
+      <mesh>gaia/grass_la_tall_b.dae</mesh>
+      <textures>
+        <texture file="gaia/grass_woody_dry.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>basic_trans_wind_grain.xml</material>

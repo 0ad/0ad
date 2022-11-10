@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Metal Mine Square Savanna">
+      <props>
+        <prop actor="props/structures/decals/gravel_savanna_3v3.xml" attachpoint="root"/>
+        <prop actor="particle/sparkle_goldmine.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/metal_square_col_savanna.png" name="baseTex"/>
+        <texture file="gaia/metal_square_col_spec.png" name="specTex"/>
+        <texture file="gaia/metal_square_col_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="Square Mesh A">
+      <mesh>gaia/stonemine_square_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Square Mesh B">
+      <mesh>gaia/stonemine_square_b.dae</mesh>
+    </variant>
+  </group>
+  <material>no_trans_norm_spec.xml</material>
+</actor>

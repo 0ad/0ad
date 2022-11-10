@@ -6,8 +6,8 @@
       <mesh>gaia/rock_stone_bl01.dae</mesh>
       <textures>
         <texture file="gaia/stonequarry_desert_badlands.png" name="baseTex"/>
-        <texture file="gaia/stonequarry_desert_badlands_spec.png" name="specTex"/>
-        <texture file="gaia/stonequarry_desert_badlands_norm.png" name="normTex"/>
+        <texture file="gaia/stone_temperate_01_norm.png" name="normTex"/>
+        <texture file="gaia/stone_temperate_01_spec.png" name="specTex"/>
         <texture file="gaia/ao/rock_stone_bl01_ao.png" name="aoTex"/>
       </textures>
     </variant>
@@ -15,8 +15,8 @@
       <mesh>gaia/rock_stone_bl02.dae</mesh>
       <textures>
         <texture file="gaia/stonequarry_desert_badlands.png" name="baseTex"/>
-        <texture file="gaia/stonequarry_desert_badlands_spec.png" name="specTex"/>
-        <texture file="gaia/stonequarry_desert_badlands_norm.png" name="normTex"/>
+        <texture file="gaia/stone_temperate_01_norm.png" name="normTex"/>
+        <texture file="gaia/stone_temperate_01_spec.png" name="specTex"/>
         <texture file="gaia/ao/rock_stone_bl02_ao.png" name="aoTex"/>
       </textures>
     </variant>
@@ -28,5 +28,5 @@
       </props>
     </variant>
   </group>
-  <material>rock_norm_spec_ao.xml</material>
+  <material>no_trans_ao_parallax_spec.xml</material>
 </actor>

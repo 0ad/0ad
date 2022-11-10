@@ -9,11 +9,17 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="green">
+    <variant frequency="1" name="grass_field_temperate">
       <textures><texture file="gaia/grass_field_temperate.dds" name="baseTex"/></textures>
     </variant>
-    <variant frequency="1" name="greener">
+    <variant frequency="1" name="grass_field_temperate_2">
       <textures><texture file="gaia/grass_field_temperate_2.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="forest_grass_temp_01">
+      <textures><texture file="gaia/forest_grass_temp_01.png" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="forest_grass_temp_04">
+      <textures><texture file="gaia/forest_grass_temp_04.png" name="baseTex"/></textures>
     </variant>
   </group>
   <material>basic_trans_wind_grain.xml</material>

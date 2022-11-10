@@ -49,15 +49,29 @@
     </variant>
   </group>
   <group>
-    <variant name="stone color a">
+    <variant frequency="1" name="NormSpec">
       <textures>
-        <texture file="gaia/stone_savanna_b.dds" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant name="stone color b">
-      <textures>
-        <texture file="gaia/stone_savanna_a.dds" name="baseTex"/>
+        <texture file="gaia/stonequarry_temperate_norm.png" name="normTex"/>
+        <texture file="gaia/stonequarry_temperate_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
+  <group>
+    <variant frequency="1" name="Stone Color Brown">
+      <textures>
+        <texture file="gaia/stone_savanna_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Stone Color Sandy">
+      <textures>
+        <texture file="gaia/stone_savanna_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Stone Color Red">
+      <textures>
+        <texture file="gaia/stone_savanna_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>no_trans_parallax_spec.xml</material>
 </actor>

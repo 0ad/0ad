@@ -5,8 +5,8 @@
     <variant frequency="1" name="base">
       <textures>
         <texture file="gaia/stonequarry_desert_badlands.png" name="baseTex"/>
-        <texture file="gaia/stonequarry_desert_badlands_spec.png" name="specTex"/>
-        <texture file="gaia/stonequarry_desert_badlands_norm.png" name="normTex"/>
+        <texture file="gaia/stone_temperate_01_norm.png" name="normTex"/>
+        <texture file="gaia/stone_temperate_01_spec.png" name="specTex"/>
       </textures>
       <props>
         <prop actor="props/structures/decals/gravel_sahara_3v3.xml" attachpoint="root"/>
@@ -33,5 +33,5 @@
       </textures>
     </variant>
   </group>
-  <material>rock_norm_spec_ao.xml</material>
+  <material>no_trans_ao_parallax_spec.xml</material>
 </actor>
