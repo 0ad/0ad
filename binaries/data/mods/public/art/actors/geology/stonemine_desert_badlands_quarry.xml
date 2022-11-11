@@ -5,13 +5,15 @@
     <variant frequency="1" name="Jagged">
       <mesh>gaia/geo_stonemine_large.dae</mesh>
       <props>
-        <prop actor="geology/decal_stone_medit_a.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/gravel_sahara_3v3.xml" attachpoint="root"/>
       </props>
       <textures>
         <texture file="gaia/stonequarry_desert_badlands.png" name="baseTex"/>
+        <texture file="gaia/stone_temperate_01_norm.png" name="normTex"/>
+        <texture file="gaia/stone_temperate_01_spec.png" name="specTex"/>
         <texture file="gaia/ao/geo_stonemine_large_ao.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
-  <material>no_trans_ao.xml</material>
+  <material>no_trans_ao_parallax_spec.xml</material>
 </actor>

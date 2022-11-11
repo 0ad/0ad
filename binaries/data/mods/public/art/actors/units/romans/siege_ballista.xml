@@ -19,8 +19,8 @@
         <prop actor="units/romans/ballista_operator_b.xml" attachpoint="operator_03"/>
         <prop actor="units/romans/ballista_operator_c.xml" attachpoint="operator_04"/>
         <prop actor="units/romans/ballista_operator_d.xml" attachpoint="operator_05"/>
-        <prop actor="props/units/siege_artillery/stone_projectile_large_flaming.xml" attachpoint="projectile"/>
-        <prop actor="props/units/siege_artillery/stone_projectile_large.xml" attachpoint="loaded-projectile"/>
+        <prop actor="props/units/weapons/rock_flaming.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/rock.xml" attachpoint="loaded-projectile"/>
       </props>
     </variant>
   </group>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
   <group>
     <variant frequency="1" name="grass_la_tall_a">
@@ -9,9 +9,21 @@
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="taxture">
+    <variant frequency="1" name="grass_field_temperate">
+      <textures><texture file="gaia/grass_field_temperate.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="grass_field_temperate_2">
+      <textures><texture file="gaia/grass_field_temperate_2.dds" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="2" name="forest_grass_temp_01">
+      <textures><texture file="gaia/forest_grass_temp_01.png" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="2" name="forest_grass_temp_04">
+      <textures><texture file="gaia/forest_grass_temp_04.png" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="3" name="grass_tropic_a">
       <textures><texture file="gaia/grass_tropic_a.png" name="baseTex"/></textures>
     </variant>
   </group>
-  <material>basic_trans_wind.xml</material>
+  <material>basic_trans_wind_grain.xml</material>
 </actor>

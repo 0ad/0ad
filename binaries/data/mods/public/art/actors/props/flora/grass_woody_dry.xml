@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <group>
+    <variant frequency="1" name="grass_la_tall_a">
+      <mesh>gaia/grass_la_tall_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="grass_la_tall_b">
+      <mesh>gaia/grass_la_tall_b.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="1">
+      <textures>
+        <texture file="gaia/grass_woody_dry.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_wind_grain.xml</material>
+</actor>

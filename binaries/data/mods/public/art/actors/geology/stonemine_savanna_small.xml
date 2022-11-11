@@ -2,6 +2,29 @@
 <actor version="1">
   <castshadow/>
   <group>
+    <variant frequency="1" name="Stone Savanna 03">
+      <textures>
+        <texture file="gaia/stone_savanna_03.png" name="baseTex"/>
+        <texture file="gaia/stone_savanna_03_norm.png" name="normTex"/>
+        <texture file="gaia/stone_savanna_03_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Stone Savanna 02">
+      <textures>
+        <texture file="gaia/stone_savanna_02.png" name="baseTex"/>
+        <texture file="gaia/stone_savanna_02_norm.png" name="normTex"/>
+        <texture file="gaia/stone_savanna_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="Stone Savanna 01">
+      <textures>
+        <texture file="gaia/stone_savanna_01.png" name="baseTex"/>
+        <texture file="gaia/stone_savanna_01_norm.png" name="normTex"/>
+        <texture file="gaia/stone_savanna_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
     <variant frequency="1" name="formation-01">
       <mesh>gaia/geo_medit_01.dae</mesh>
     </variant>
@@ -21,19 +44,5 @@
       <mesh>gaia/geo_medit_06.dae</mesh>
     </variant>
   </group>
-  <group>
-    <variant frequency="1" name="Stone Savanna (A)">
-      <textures><texture file="gaia/stone_savanna_a.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="Stone Savanna (B)">
-      <textures><texture file="gaia/stone_savanna_b.dds" name="baseTex"/></textures>
-    </variant>
-  </group>
-  <group>
-    <variant frequency="1" name="decal">
-      <props>
-        <prop actor="geology/decal_stone_desert_a.xml" attachpoint="root"/>
-      </props>
-    </variant>
-  </group>
+  <material>rock_norm_strong_spec.xml</material>
 </actor>
