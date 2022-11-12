@@ -168,8 +168,7 @@ void CPostprocManager::RecreateBuffers()
 
 	// Set up the framebuffers with some initial textures.
 	m_CaptureFramebuffer = backendDevice->CreateFramebuffer("PostprocCaptureFramebuffer",
-		m_ColorTex1.get(), m_DepthTex.get(),
-		g_VideoMode.GetBackendDevice()->GetCurrentBackbuffer()->GetClearColor());
+		m_ColorTex1.get(), m_DepthTex.get(), CColor(0.0f, 0.0f, 0.0f, 0.0f));
 
 	m_PingFramebuffer = backendDevice->CreateFramebuffer("PostprocPingFramebuffer",
 		m_ColorTex1.get(), nullptr);
@@ -677,8 +676,7 @@ void CPostprocManager::CreateMultisampleBuffer()
 
 	// Set up the framebuffers with some initial textures.
 	m_MultisampleFramebuffer = backendDevice->CreateFramebuffer("PostprocMultisampleFramebuffer",
-		m_MultisampleColorTex.get(), m_MultisampleDepthTex.get(),
-		g_VideoMode.GetBackendDevice()->GetCurrentBackbuffer()->GetClearColor());
+		m_MultisampleColorTex.get(), m_MultisampleDepthTex.get(), CColor(0.0f, 0.0f, 0.0f, 0.0f));
 
 	if (!m_MultisampleFramebuffer)
 	{

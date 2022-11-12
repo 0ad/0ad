@@ -22,7 +22,6 @@
 #include "lib/code_annotation.h"
 #include "lib/config2.h"
 #include "ps/CLogger.h"
-#include "ps/ConfigDB.h"
 #include "renderer/backend/gl/Device.h"
 #include "renderer/backend/gl/Texture.h"
 
@@ -158,9 +157,7 @@ std::unique_ptr<CFramebuffer> CFramebuffer::CreateBackbuffer(
 	std::unique_ptr<CFramebuffer> framebuffer(new CFramebuffer());
 	framebuffer->m_Device = device;
 	framebuffer->m_AttachmentMask = GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT;
-	CStr skyString = "0 0 0";
-	CFG_GET_VAL("skycolor", skyString);
-	framebuffer->m_ClearColor.ParseString(skyString, 0.0f);
+	framebuffer->m_ClearColor = CColor(0.0f, 0.0f, 0.0f, 0.0f);
 	return framebuffer;
 }
 
