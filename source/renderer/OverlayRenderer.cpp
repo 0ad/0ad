@@ -163,7 +163,7 @@ OverlayRendererInternals::OverlayRendererInternals()
 	quadAttributeColor.format = Renderer::Backend::Format::R8G8B8A8_UNORM;
 	quadVertices.AddAttribute(&quadAttributeColor);
 
-	quadAttributeUV.format = Renderer::Backend::Format::R16G16_SINT;
+	quadAttributeUV.format = Renderer::Backend::Format::R32G32_SFLOAT;
 	quadVertices.AddAttribute(&quadAttributeUV);
 
 	// Note that we're reusing the textured overlay line shader for the quad overlay rendering. This
@@ -308,7 +308,7 @@ void OverlayRenderer::PrepareForRendering()
 	// Write quad overlay vertices/indices to VA backing store
 	VertexArrayIterator<CVector3D> vertexPos = m->quadAttributePos.GetIterator<CVector3D>();
 	VertexArrayIterator<SColor4ub> vertexColor = m->quadAttributeColor.GetIterator<SColor4ub>();
-	VertexArrayIterator<short[2]> vertexUV = m->quadAttributeUV.GetIterator<short[2]>();
+	VertexArrayIterator<float[2]> vertexUV = m->quadAttributeUV.GetIterator<float[2]>();
 
 	size_t indicesIdx = 0;
 	size_t totalNumQuads = 0;
@@ -544,6 +544,23 @@ void OverlayRenderer::RenderQuadOverlays(
 	const uint32_t vertexStride = m->quadVertices.GetStride();
 	const uint32_t firstVertexOffset = m->quadVertices.GetOffset() * vertexStride;
 
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::POSITION,
+		m->quadAttributePos.format, m->quadAttributePos.offset, vertexStride,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::COLOR,
+		m->quadAttributeColor.format, m->quadAttributeColor.offset, vertexStride,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+	deviceCommandContext->SetVertexAttributeFormat(
+		Renderer::Backend::VertexAttributeStream::UV0,
+		m->quadAttributeUV.format, m->quadAttributeUV.offset, vertexStride,
+		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+
+	deviceCommandContext->SetVertexBuffer(
+		0, m->quadVertices.GetBuffer(), firstVertexOffset);
+	deviceCommandContext->SetIndexBuffer(m->quadIndices.GetBuffer());
+
 	const int32_t baseTexBindingSlot = shader->GetBindingSlot(str_baseTex);
 	const int32_t maskTexBindingSlot = shader->GetBindingSlot(str_maskTex);
 
@@ -564,29 +581,6 @@ void OverlayRenderer::RenderQuadOverlays(
 			baseTexBindingSlot, maskPair.m_Texture->GetBackendTexture());
 		deviceCommandContext->SetTexture(
 			maskTexBindingSlot, maskPair.m_TextureMask->GetBackendTexture());
-
-		// TODO: move setting format out of the loop, we might want move the offset
-		// to the index offset when it's supported.
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::POSITION,
-			m->quadAttributePos.format, m->quadAttributePos.offset, vertexStride,
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::COLOR,
-			m->quadAttributeColor.format, m->quadAttributeColor.offset, vertexStride,
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::UV0,
-			m->quadAttributeUV.format, m->quadAttributeUV.offset, vertexStride,
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::UV1,
-			m->quadAttributeUV.format, m->quadAttributeUV.offset, vertexStride,
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-
-		deviceCommandContext->SetVertexBuffer(
-			0, m->quadVertices.GetBuffer(), firstVertexOffset);
-		deviceCommandContext->SetIndexBuffer(m->quadIndices.GetBuffer());
 
 		deviceCommandContext->DrawIndexed(m->quadIndices.GetOffset() + batchRenderData.m_IndicesBase, batchNumQuads * 6, 0);
 
