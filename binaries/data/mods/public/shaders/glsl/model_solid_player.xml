@@ -7,6 +7,6 @@
 		<stream name="uv3" attribute="a_skinWeights" if="USE_GPU_SKINNING"/>
 	</vertex>
 
-	<fragment file="glsl/solid_player.fs"/>
+	<fragment file="glsl/model_solid_player.fs"/>
 
 </program>
