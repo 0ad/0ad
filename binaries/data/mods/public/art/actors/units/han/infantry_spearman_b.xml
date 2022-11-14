@@ -31,16 +31,13 @@
       </textures>
     </variant>
   </group>
-    <group>
-    <variant frequency="1" name="Idle"/>
+  <group>
+    <variant file="biped/base_spearman_shield_relax.xml"/>
     <variant file="biped/carry_food_han.xml"/>
     <variant file="biped/carry_meat.xml"/>
     <variant file="biped/carry_wood.xml"/>
     <variant file="biped/carry_stone.xml"/>
     <variant file="biped/carry_metal.xml"/>
-  </group>
-  <group>
-    <variant file="biped/base_spearman_shield_relax.xml"/>
     <variant file="biped/approach_tree.xml"/>
     <variant file="biped/approach_grain_han.xml"/>
     <variant file="biped/approach_fruit.xml"/>
