@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Statue Arethusa">
+      <mesh>props/statue_aphrodite_huge_pedastal.dae</mesh>
+      <props>
+        <prop actor="props/special/eyecandy/statue_aphrodite_huge.xml" attachpoint="statue"/>
+      </props>
+      <textures>
+        <texture file="campaigns/units/pedestal_mace_1.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="alive"/>
+    <variant file="structures/destruction_small.xml"/>
+  </group>
+  <material>player_trans.xml</material>
+</actor>

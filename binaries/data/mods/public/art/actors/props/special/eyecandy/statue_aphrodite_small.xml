@@ -4,7 +4,12 @@
   <group>
     <variant>
       <mesh>props/statue_aphrodite_small.dae</mesh>
-      <textures><texture file="props/marble.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/marble.png" name="baseTex"/>
+        <texture file="props/marble_spec.png" name="specTex"/>
+        <texture file="props/ao/statue_aphrodite.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
+  <material>no_trans_ao_spec.xml</material>
 </actor>
