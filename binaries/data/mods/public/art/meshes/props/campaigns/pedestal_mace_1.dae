@@ -15,61 +15,9 @@
     <unit meter="0.025400"/>
     <up_axis>Y_UP</up_axis>
   </asset>
-  <library_images>
-    <image id="Map__353-image" name="Map__353">
-      <init_from>file://C:\Users\Michael\Wildfire Games\0 A.D\binaries\data\mods\internal\art\textures\skins\campaigns\units\pedestal_mace_1.png</init_from>
-    </image>
-  </library_images>
-  <library_materials>
-    <material id="_17___Default" name="_17___Default">
-      <instance_effect url="#_17___Default-fx"/>
-    </material>
-  </library_materials>
-  <library_effects>
-    <effect id="_17___Default-fx" name="_17___Default">
-      <profile_COMMON>
-        <technique sid="standard">
-          <phong>
-            <emission>
-              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
-            </emission>
-            <ambient>
-              <color sid="ambient">0.588000  0.588000 0.588000 1.000000</color>
-            </ambient>
-            <diffuse>
-              <texture texture="Map__353-image" texcoord="CHANNEL0">
-                <extra>
-                  <technique profile="MAYA">
-                    <wrapU sid="wrapU0">TRUE</wrapU>
-                    <wrapV sid="wrapV0">TRUE</wrapV>
-                    <blend_mode>ADD</blend_mode>
-                  </technique>
-                </extra>
-              </texture>
-            </diffuse>
-            <specular>
-              <color sid="specular">0.000000  0.000000 0.000000 1.000000</color>
-            </specular>
-            <shininess>
-              <float sid="shininess">2.000000</float>
-            </shininess>
-            <reflective>
-              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
-            </reflective>
-            <reflectivity>
-              <float sid="reflectivity">1.000000</float>
-            </reflectivity>
-            <transparent>
-              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
-            </transparent>
-            <transparency>
-              <float sid="transparency">0.000000</float>
-            </transparency>
-          </phong>
-        </technique>
-      </profile_COMMON>
-    </effect>
-  </library_effects>
+  <library_images/>
+  <library_materials/>
+  <library_effects/>
   <library_geometries>
     <geometry id="Cube-lib" name="CubeMesh">
       <mesh>

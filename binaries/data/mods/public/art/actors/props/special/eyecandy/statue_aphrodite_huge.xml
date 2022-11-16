@@ -4,7 +4,13 @@
   <group>
     <variant>
       <mesh>props/statue_aphrodite_huge.dae</mesh>
-      <textures><texture file="props/marble.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/bronze_01.png" name="baseTex"/>
+        <texture file="props/bronze_01_spec.png" name="specTex"/>
+        <texture file="props/bronze_01_norm.png" name="normTex"/>
+        <texture file="props/ao/statue_aphrodite_large.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
+  <material>no_trans_ao_parallax_spec.xml</material>
 </actor>
