@@ -18,6 +18,7 @@
 #ifndef INCLUDED_GAMEVIEW
 #define INCLUDED_GAMEVIEW
 
+#include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/Scene.h"
 #include "simulation2/system/Entity.h"
 
@@ -37,7 +38,7 @@ class CGameView : private Scene
 	NONCOPYABLE(CGameView);
 public:
 	CGameView(CGame *pGame);
-	~CGameView();
+	~CGameView() override;
 
 	void SetViewport(const SViewPort& vp);
 
@@ -53,7 +54,9 @@ public:
 	void Update(const float deltaRealTime);
 
 	void BeginFrame();
-	void Render();
+	void Prepare(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
+	void Render(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
+	void RenderOverlays(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	InReaction HandleEvent(const SDL_Event_* ev);
 

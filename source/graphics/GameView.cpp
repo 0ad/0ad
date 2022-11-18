@@ -233,9 +233,22 @@ void CGameView::BeginFrame()
 	m->Game->CachePlayerColors();
 }
 
-void CGameView::Render()
+void CGameView::Prepare(
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
-	g_Renderer.GetSceneRenderer().RenderScene(g_Renderer.GetDeviceCommandContext(), *this);
+	g_Renderer.GetSceneRenderer().PrepareScene(deviceCommandContext, *this);
+}
+
+void CGameView::Render(
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
+{
+	g_Renderer.GetSceneRenderer().RenderScene(deviceCommandContext);
+}
+
+void CGameView::RenderOverlays(
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
+{
+	g_Renderer.GetSceneRenderer().RenderSceneOverlays(deviceCommandContext);
 }
 
 ///////////////////////////////////////////////////////////
