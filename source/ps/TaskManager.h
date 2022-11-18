@@ -77,7 +77,7 @@ private:
 	void DoPushTask(std::function<void()>&& task, TaskPriority priority);
 
 	class Impl;
-	std::unique_ptr<Impl> m;
+	const std::unique_ptr<Impl> m;
 };
 } // namespace Threading
 

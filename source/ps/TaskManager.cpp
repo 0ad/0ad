@@ -124,7 +124,7 @@ class TaskManager::Impl
 	friend class TaskManager;
 	friend class WorkerThread;
 public:
-	Impl(TaskManager& backref);
+	Impl() = default;
 	~Impl()
 	{
 		ClearQueue();
@@ -149,9 +149,6 @@ protected:
 	template<TaskPriority Priority>
 	bool PopTask(std::function<void()>& taskOut);
 
-	// Back reference (keep this first).
-	TaskManager& m_TaskManager;
-
 	std::atomic<bool> m_HasWork = false;
 	std::atomic<bool> m_HasLowPriorityWork = false;
 	std::mutex m_GlobalMutex;
@@ -161,9 +158,6 @@ protected:
 
 	// Ideally this would be a vector, since it does get iterated, but that requires movable types.
 	std::deque<WorkerThread> m_Workers;
-
-	// Round-robin counter for GetWorker.
-	mutable size_t m_RoundRobinIdx = 0;
 };
 
 TaskManager::TaskManager() : TaskManager(GetDefaultNumberOfWorkers())
@@ -171,18 +165,13 @@ TaskManager::TaskManager() : TaskManager(GetDefaultNumberOfWorkers())
 }
 
 TaskManager::TaskManager(size_t numberOfWorkers)
+	: m{std::make_unique<Impl>()}
 {
-	m = std::make_unique<Impl>(*this);
 	numberOfWorkers = Clamp<size_t>(numberOfWorkers, MIN_WORKERS, MAX_WORKERS);
 	m->SetupWorkers(numberOfWorkers);
 }
 
 TaskManager::~TaskManager() = default;
-
-TaskManager::Impl::Impl(TaskManager& backref)
-	: m_TaskManager(backref)
-{
-}
 
 void TaskManager::Impl::SetupWorkers(size_t numberOfWorkers)
 {
