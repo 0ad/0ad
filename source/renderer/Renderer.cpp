@@ -463,11 +463,52 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 
 	if (g_Game && g_Game->IsGameStarted())
 	{
-		g_Game->GetView()->Render();
-	}
+		g_Game->GetView()->Prepare(m->deviceCommandContext.get());
 
-	m->deviceCommandContext->BeginFramebufferPass(
-		m->deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
+		m->deviceCommandContext->SetGraphicsPipelineState(
+			Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
+
+		CPostprocManager& postprocManager = g_Renderer.GetPostprocManager();
+		if (postprocManager.IsEnabled())
+		{
+			// We have to update the post process manager with real near/far planes
+			// that we use for the scene rendering.
+			postprocManager.SetDepthBufferClipPlanes(
+				m->sceneRenderer.GetViewCamera().GetNearPlane(),
+				m->sceneRenderer.GetViewCamera().GetFarPlane()
+			);
+			postprocManager.Initialize();
+			postprocManager.CaptureRenderOutput(m->deviceCommandContext.get());
+		}
+		else
+		{
+			m->deviceCommandContext->BeginFramebufferPass(
+				m->deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
+		}
+
+		g_Game->GetView()->Render(m->deviceCommandContext.get());
+
+		if (postprocManager.IsEnabled())
+		{
+			m->deviceCommandContext->EndFramebufferPass();
+
+			if (postprocManager.IsMultisampleEnabled())
+				postprocManager.ResolveMultisampleFramebuffer(m->deviceCommandContext.get());
+
+			postprocManager.ApplyPostproc(m->deviceCommandContext.get());
+			postprocManager.ReleaseRenderOutput(m->deviceCommandContext.get());
+
+			m->deviceCommandContext->BeginFramebufferPass(
+				m->deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
+		}
+
+		g_Game->GetView()->RenderOverlays(m->deviceCommandContext.get());
+	}
+	else
+	{
+		m->deviceCommandContext->BeginFramebufferPass(
+			m->deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
+	}
 
 	// If we're in Atlas game view, render special tools
 	if (g_AtlasGameLoop && g_AtlasGameLoop->view)

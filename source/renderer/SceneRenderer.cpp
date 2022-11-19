@@ -51,7 +51,6 @@
 #include "renderer/ModelRenderer.h"
 #include "renderer/OverlayRenderer.h"
 #include "renderer/ParticleRenderer.h"
-#include "renderer/PostprocManager.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/RenderModifiers.h"
@@ -757,13 +756,12 @@ void CSceneRenderer::RenderParticles(
 	}
 }
 
-// RenderSubmissions: force rendering of any batched objects
-void CSceneRenderer::RenderSubmissions(
+void CSceneRenderer::PrepareSubmissions(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	const CBoundingBoxAligned& waterScissor)
 {
-	PROFILE3("render submissions");
-	GPU_SCOPED_LABEL(deviceCommandContext, "Render submissions");
+	PROFILE3("prepare submissions");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Prepare submissions");
 
 	m->skyManager.LoadAndUploadSkyTexturesIfNeeded(deviceCommandContext);
 
@@ -773,8 +771,6 @@ void CSceneRenderer::RenderSubmissions(
 		deviceCommandContext, GetScene().GetLOSTexture(), GetScene().GetTerritoryTexture());
 
 	CShaderDefines context = m->globalContext;
-
-	int cullGroup = CULL_DEFAULT;
 
 	// Set the camera
 	g_Renderer.SetViewport(m_ViewCamera.GetViewPort());
@@ -829,29 +825,21 @@ void CSceneRenderer::RenderSubmissions(
 				RenderRefractions(deviceCommandContext, context, waterScissor);
 
 			if (g_RenderingOptions.GetWaterFancyEffects())
-				m->terrainRenderer.RenderWaterFoamOccluders(deviceCommandContext, cullGroup);
+				m->terrainRenderer.RenderWaterFoamOccluders(deviceCommandContext, CULL_DEFAULT);
 		}
 	}
+}
 
-	deviceCommandContext->SetGraphicsPipelineState(
-		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
+void CSceneRenderer::RenderSubmissions(
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+	const CBoundingBoxAligned& waterScissor)
+{
+	PROFILE3("render submissions");
+	GPU_SCOPED_LABEL(deviceCommandContext, "Render submissions");
 
-	CPostprocManager& postprocManager = g_Renderer.GetPostprocManager();
-	if (postprocManager.IsEnabled())
-	{
-		// We have to update the post process manager with real near/far planes
-		// that we use for the scene rendering.
-		postprocManager.SetDepthBufferClipPlanes(
-			m_ViewCamera.GetNearPlane(), m_ViewCamera.GetFarPlane()
-		);
-		postprocManager.Initialize();
-		postprocManager.CaptureRenderOutput(deviceCommandContext);
-	}
-	else
-	{
-		deviceCommandContext->BeginFramebufferPass(
-			deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
-	}
+	CShaderDefines context = m->globalContext;
+
+	constexpr int cullGroup = CULL_DEFAULT;
 
 	{
 		PROFILE3_GPU("clear buffers");
@@ -912,24 +900,6 @@ void CSceneRenderer::RenderSubmissions(
 		RenderParticles(deviceCommandContext, cullGroup);
 	}
 
-	if (postprocManager.IsEnabled())
-	{
-		deviceCommandContext->EndFramebufferPass();
-
-		if (g_Renderer.GetPostprocManager().IsMultisampleEnabled())
-			g_Renderer.GetPostprocManager().ResolveMultisampleFramebuffer(deviceCommandContext);
-
-		postprocManager.ApplyPostproc(deviceCommandContext);
-		postprocManager.ReleaseRenderOutput(deviceCommandContext);
-		deviceCommandContext->BeginFramebufferPass(
-			deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
-	}
-
-	if (g_RenderingOptions.GetSilhouettes())
-	{
-		RenderSilhouettes(deviceCommandContext, context);
-	}
-
 	// render debug lines
 	if (g_RenderingOptions.GetDisplayFrustum())
 		DisplayFrustum();
@@ -938,12 +908,6 @@ void CSceneRenderer::RenderSubmissions(
 		m->shadow.RenderDebugBounds();
 
 	m->silhouetteRenderer.RenderDebugBounds(deviceCommandContext);
-	m->silhouetteRenderer.RenderDebugOverlays(deviceCommandContext);
-
-	// render overlays that should appear on top of all other objects
-	m->overlayRenderer.RenderForegroundOverlays(deviceCommandContext, m_ViewCamera);
-
-	deviceCommandContext->EndFramebufferPass();
 }
 
 void CSceneRenderer::EndFrame()
@@ -1093,8 +1057,7 @@ void CSceneRenderer::SubmitNonRecursive(CModel* model)
 	}
 }
 
-// Render the given scene
-void CSceneRenderer::RenderScene(
+void CSceneRenderer::PrepareScene(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext, Scene& scene)
 {
 	m_CurrentScene = &scene;
@@ -1131,19 +1094,18 @@ void CSceneRenderer::RenderScene(
 		}
 	}
 
-	CBoundingBoxAligned waterScissor;
 	if (m->waterManager.m_RenderWater)
 	{
-		waterScissor = m->terrainRenderer.ScissorWater(CULL_DEFAULT, m_ViewCamera);
+		m_WaterScissor = m->terrainRenderer.ScissorWater(CULL_DEFAULT, m_ViewCamera);
 
-		if (waterScissor.GetVolume() > 0 && m->waterManager.WillRenderFancyWater())
+		if (m_WaterScissor.GetVolume() > 0 && m->waterManager.WillRenderFancyWater())
 		{
 			if (g_RenderingOptions.GetWaterReflection())
 			{
 				m_CurrentCullGroup = CULL_REFLECTIONS;
 
 				CCamera reflectionCamera;
-				ComputeReflectionCamera(reflectionCamera, waterScissor);
+				ComputeReflectionCamera(reflectionCamera, m_WaterScissor);
 
 				scene.EnumerateObjects(reflectionCamera.GetFrustum(), this);
 			}
@@ -1153,7 +1115,7 @@ void CSceneRenderer::RenderScene(
 				m_CurrentCullGroup = CULL_REFRACTIONS;
 
 				CCamera refractionCamera;
-				ComputeRefractionCamera(refractionCamera, waterScissor);
+				ComputeRefractionCamera(refractionCamera, m_WaterScissor);
 
 				scene.EnumerateObjects(refractionCamera.GetFrustum(), this);
 			}
@@ -1162,12 +1124,35 @@ void CSceneRenderer::RenderScene(
 			m->waterManager.RenderWaves(deviceCommandContext, frustum);
 		}
 	}
+	else
+		m_WaterScissor = CBoundingBoxAligned{};
 
 	m_CurrentCullGroup = -1;
 
-	RenderSubmissions(deviceCommandContext, waterScissor);
+	PrepareSubmissions(deviceCommandContext, m_WaterScissor);
+}
 
-	m_CurrentScene = NULL;
+void CSceneRenderer::RenderScene(
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
+{
+	ENSURE(m_CurrentScene);
+	RenderSubmissions(deviceCommandContext, m_WaterScissor);
+}
+
+void CSceneRenderer::RenderSceneOverlays(
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
+{
+	if (g_RenderingOptions.GetSilhouettes())
+	{
+		RenderSilhouettes(deviceCommandContext, m->globalContext);
+	}
+
+	m->silhouetteRenderer.RenderDebugOverlays(deviceCommandContext);
+
+	// Render overlays that should appear on top of all other objects.
+	m->overlayRenderer.RenderForegroundOverlays(deviceCommandContext, m_ViewCamera);
+
+	m_CurrentScene = nullptr;
 }
 
 Scene& CSceneRenderer::GetScene()

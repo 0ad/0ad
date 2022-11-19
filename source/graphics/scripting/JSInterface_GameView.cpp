@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -72,15 +72,44 @@ void RegisterScriptFunctions_Settings(const ScriptRequest& rq)
 
 #undef REGISTER_BOOLEAN_SCRIPT_SETTING
 
+JS::Value GetCameraRotation(const ScriptRequest& rq)
+{
+	if (!g_Game || !g_Game->GetView())
+		return JS::UndefinedValue();
+
+	const CVector3D rotation = g_Game->GetView()->GetCameraRotation();
+	JS::RootedValue val(rq.cx);
+	Script::CreateObject(rq, &val, "x", rotation.X, "y", rotation.Y);
+	return val;
+}
+
+JS::Value GetCameraZoom()
+{
+	if (!g_Game || !g_Game->GetView())
+		return JS::UndefinedValue();
+	return JS::NumberValue(g_Game->GetView()->GetCameraZoom());
+}
+
 JS::Value GetCameraPivot(const ScriptRequest& rq)
 {
-	CVector3D pivot(-1, -1, -1);
-	if (g_Game && g_Game->GetView())
-		pivot = g_Game->GetView()->GetCameraPivot();
+	if (!g_Game || !g_Game->GetView())
+		return JS::UndefinedValue();
 
+	const CVector3D pivot = g_Game->GetView()->GetCameraPivot();
 	JS::RootedValue pivotValue(rq.cx);
 	Script::CreateObject(rq, &pivotValue, "x", pivot.X, "z", pivot.Z);
 	return pivotValue;
+}
+
+JS::Value GetCameraPosition(const ScriptRequest& rq)
+{
+	if (!g_Game || !g_Game->GetView())
+		return JS::UndefinedValue();
+
+	const CVector3D position = g_Game->GetView()->GetCameraPosition();
+	JS::RootedValue positionValue(rq.cx);
+	Script::CreateObject(rq, &positionValue, "x", position.X, "y", position.Y, "z", position.Z);
+	return positionValue;
 }
 
 /**
@@ -166,7 +195,10 @@ void RegisterScriptFunctions(const ScriptRequest& rq)
 {
 	RegisterScriptFunctions_Settings(rq);
 
+	ScriptFunction::Register<&GetCameraRotation>(rq, "GetCameraRotation");
+	ScriptFunction::Register<&GetCameraZoom>(rq, "GetCameraZoom");
 	ScriptFunction::Register<&GetCameraPivot>(rq, "GetCameraPivot");
+	ScriptFunction::Register<&GetCameraPosition>(rq, "GetCameraPosition");
 	ScriptFunction::Register<&CameraMoveTo>(rq, "CameraMoveTo");
 	ScriptFunction::Register<&SetCameraTarget>(rq, "SetCameraTarget");
 	ScriptFunction::Register<&SetCameraData>(rq, "SetCameraData");

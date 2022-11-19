@@ -44,6 +44,8 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/ProfileViewer.h"
 #include "ps/VideoMode.h"
+#include "renderer/backend/IDevice.h"
+#include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/Scene.h"
@@ -509,8 +511,10 @@ void ActorViewer::Render()
 {
 	// TODO: ActorViewer should reuse CRenderer code and not duplicate it.
 
+	CSceneRenderer& sceneRenderer = g_Renderer.GetSceneRenderer();
+
 	// Set simulation context for rendering purposes
-	g_Renderer.GetSceneRenderer().SetSimulation(&m.Simulation2);
+	sceneRenderer.SetSimulation(&m.Simulation2);
 
 	// Find the centre of the interesting region, in the middle of the patch
 	// and half way up the model (assuming there is one)
@@ -526,17 +530,28 @@ void ActorViewer::Render()
 	camera.m_Orientation.Translate(centre.X, centre.Y, centre.Z);
 	camera.UpdateFrustum();
 
-	g_Renderer.GetSceneRenderer().SetSceneCamera(camera, camera);
+	sceneRenderer.SetSceneCamera(camera, camera);
 
 	g_Renderer.BeginFrame();
 
-	g_Renderer.GetSceneRenderer().RenderScene(g_Renderer.GetDeviceCommandContext(), m);
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
+		g_Renderer.GetDeviceCommandContext();
+
+	sceneRenderer.PrepareScene(deviceCommandContext, m);
+
+	deviceCommandContext->BeginFramebufferPass(
+		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
+
+	sceneRenderer.RenderScene(deviceCommandContext);
+	sceneRenderer.RenderSceneOverlays(deviceCommandContext);
 
 	{
-		CCanvas2D canvas(g_xres, g_yres, g_VideoMode.GetScale(), g_Renderer.GetDeviceCommandContext());
+		CCanvas2D canvas(g_xres, g_yres, g_VideoMode.GetScale(), deviceCommandContext);
 		g_Logger->Render(canvas);
 		g_ProfileViewer.RenderProfile(canvas);
 	}
+
+	deviceCommandContext->EndFramebufferPass();
 
 	g_Renderer.EndFrame();
 }

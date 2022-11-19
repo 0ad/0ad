@@ -21,6 +21,7 @@
 #include "graphics/Camera.h"
 #include "graphics/ShaderDefines.h"
 #include "graphics/ShaderProgramPtr.h"
+#include "maths/BoundingBoxAligned.h"
 #include "ps/Singleton.h"
 #include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/RenderingOptions.h"
@@ -94,10 +95,24 @@ public:
 	void SetSceneCamera(const CCamera& viewCamera, const CCamera& cullCamera);
 
 	/**
-	 * Render the given scene immediately.
-	 * @param scene a Scene object describing what should be rendered.
+	 * Enumerate and submit all objects of the given scene which should be rendered.
+	 * Must be called before RenderScene.
 	 */
-	void RenderScene(Renderer::Backend::IDeviceCommandContext* deviceCommandContext, Scene& scene);
+	void PrepareScene(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext, Scene& scene);
+
+	/**
+	 * Render submitted objects of the previously given scene.
+	 */
+	void RenderScene(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
+
+	/**
+	 * Render overlays of the previously given scene.
+	 * Must be called after RenderScene.
+	 */
+	void RenderSceneOverlays(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 	/**
 	 * Return the scene that is currently being rendered.
@@ -193,6 +208,13 @@ protected:
 	void Submit(SOverlaySphere* overlay) override;
 	void SubmitNonRecursive(CModel* model) override;
 
+	/**
+	 * Update and upload all needed data for submitted objects.
+	 */
+	void PrepareSubmissions(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		const CBoundingBoxAligned& waterScissor);
+
 	// render any batched objects
 	void RenderSubmissions(
 		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
@@ -271,6 +293,8 @@ protected:
 	// only valid inside a call to RenderScene
 	Scene* m_CurrentScene;
 	int m_CurrentCullGroup;
+
+	CBoundingBoxAligned m_WaterScissor;
 
 	// current lighting setup
 	CLightEnv* m_LightEnv;
