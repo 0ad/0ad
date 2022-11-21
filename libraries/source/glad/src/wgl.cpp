@@ -1,3 +1,6 @@
+/**
+ * SPDX-License-Identifier: (WTFPL OR CC0-1.0) AND Apache-2.0
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -111,6 +114,7 @@ int gladLoadWGLUserPtr(HDC hdc, GLADuserptrloadfunc load, void *userptr) {
     glad_wgl_load_WGL_ARB_extensions_string(load, userptr);
     glad_wgl_load_WGL_EXT_extensions_string(load, userptr);
     glad_wgl_load_WGL_EXT_swap_control(load, userptr);
+
 
     return version;
 }
