@@ -30,7 +30,7 @@ msgstr "FPS: %(fps)4s"
 #: gui/common/campaigns/CampaignRun.js:117
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr ""
+msgstr "%(userDesc)s-%(templateName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -1007,7 +1007,7 @@ msgstr ""
 #: gui/common/tooltips.js:563
 msgctxt "garrison tooltip"
 msgid "Health"
-msgstr ""
+msgstr "Helbred"
 
 #: gui/common/tooltips.js:577
 #, javascript-format
@@ -1016,7 +1016,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:578
 msgid "Garrison Size"
-msgstr ""
+msgstr "Garnisons størrelse"
 
 #: gui/common/tooltips.js:581
 msgctxt "nested garrison"
@@ -2500,7 +2500,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.name
 msgctxt "hotkey metadata"
 msgid "Patrol"
-msgstr ""
+msgstr "Patruljer"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.desc
 msgctxt "hotkey metadata"
@@ -4627,7 +4627,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[0].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[0].label
 msgid "Everyone"
-msgstr ""
+msgstr "Alle"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
@@ -4800,15 +4800,15 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[0].label
 msgid "Unordered"
-msgstr ""
+msgstr "Uordnet"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[1].label
 msgid "Ascending"
-msgstr ""
+msgstr "Tiltagende"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].list[2].label
 msgid "Descending"
-msgstr ""
+msgstr "Aftagende"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].tooltip
 msgid ""
@@ -5008,7 +5008,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[1].label
 msgid "Completed"
-msgstr ""
+msgstr "Gennemførte"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].list[2].label
 msgid "All displayed"
@@ -5130,7 +5130,7 @@ msgstr "Åbn 0 A.D. spilmanualen."
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
-msgstr ""
+msgstr "Guide"
 
 #: gui/pregame/MainMenuItems.js:15
 msgid "Start the introductory tutorial."
@@ -5214,7 +5214,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:133
 msgid "Load Campaign"
-msgstr ""
+msgstr "Indlæs kampagne"
 
 #: gui/pregame/MainMenuItems.js:143 gui/pregame/MainMenuItems.js:193
 msgid "Replays"
@@ -5282,7 +5282,7 @@ msgstr "Justér spilindstillinger."
 
 #: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:222
 msgid "Hotkeys"
-msgstr ""
+msgstr "Genveje"
 
 #: gui/pregame/MainMenuItems.js:223
 msgid "Adjust hotkeys."

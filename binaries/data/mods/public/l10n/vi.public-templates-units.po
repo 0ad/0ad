@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Christopher Wilson
 # DUC PHM
 # Nghĩa Cipher
 # Nguyen Dinh Phuoc Duc
@@ -11,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-08-15 07:11+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
-"Last-Translator: Nghĩa Cipher, 2022\n"
+"Last-Translator: Christopher Wilson, 2022\n"
 "Language-Team: Vietnamese (http://www.transifex.com/wildfire-games/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_catafalque.xml:16
 msgid "Relic"
-msgstr "Thánh tích"
+msgstr "Thánh Tích"
 
 #: simulation/templates/template_unit_catafalque.xml:17
 msgid "Catafalque"
@@ -47,7 +48,7 @@ msgstr "Chiếm lấy"
 #: simulation/templates/template_unit_support_female_citizen.xml:14
 msgctxt "Name of an attack, usually the weapon."
 msgid "Slaughter"
-msgstr "Giết mổ"
+msgstr "Tàn sát"
 
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_cavalry.xml:35
@@ -176,7 +177,7 @@ msgstr "Kỵ binh giáo"
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 msgid "Counters: 2× vs Cavalry."
-msgstr ""
+msgstr "Kỵ binh Nhẹ Ấn Độ"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
@@ -270,7 +271,7 @@ msgstr "Lính cung"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:29
 msgid "Cavalry Archer"
-msgstr "Kỵ binh bắn cung"
+msgstr "Kỵ binh tầm xa"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:5
@@ -361,7 +362,7 @@ msgstr "Kỵ binh gươm tinh nhuệ"
 #: simulation/templates/template_unit_champion_elephant.xml:19
 #: simulation/templates/template_unit_elephant.xml:8
 msgid "War Elephant"
-msgstr "Voi chiến"
+msgstr "Tượng Binh"
 
 #: simulation/templates/template_unit_champion_elephant.xml:20
 #: simulation/templates/template_unit_elephant.xml:11
@@ -418,7 +419,7 @@ msgstr "Thương"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:26
 msgid "Champion Pikeman"
-msgstr "Lính thương tinh nhuệ"
+msgstr "Lính cầm thương tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:27
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:27
@@ -438,7 +439,7 @@ msgstr "Lính thương"
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:26
 msgid "Champion Spearman"
-msgstr "Lính giáo tinh nhuệ"
+msgstr "Giáo Binh tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:20
 msgid "Champion Swordsman"
@@ -446,7 +447,7 @@ msgstr "Lính gươm tinh nhuệ"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:27
 msgid "Trumpeter"
-msgstr ""
+msgstr "Lính Thổi Kèn Hiệu"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:28
 msgid "Champion Infantry Trumpeter"
@@ -463,7 +464,7 @@ msgstr "Chó chiến"
 
 #: simulation/templates/template_unit_dog.xml:32
 msgid "Cannot attack Structures, Ships, or Siege Engines."
-msgstr "Không thể tấn công công trình, tàu thuyền, hay vũ khí công thành"
+msgstr "Không thể tấn công các công trình, tàu thuyền, hay vũ khí công thành"
 
 #: simulation/templates/template_unit_dog.xml:34
 msgid "Dog"
@@ -472,7 +473,7 @@ msgstr "Chó"
 #: simulation/templates/template_unit_elephant_archer.xml:34
 #: simulation/templates/units/maur/elephant_archer_b.xml:5
 msgid "Elephant Archer"
-msgstr "Tượng binh bắn cung"
+msgstr "Tượng binh tầm xa"
 
 #: simulation/templates/template_unit_fauna_herd.xml:4
 #: simulation/templates/template_unit_fauna_hunt.xml:4
@@ -618,7 +619,7 @@ msgstr "Ná bắn đá"
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:30
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:31
 msgid "Slinger"
-msgstr "Lính bắn đá"
+msgstr "Lính ném đá"
 
 #: simulation/templates/template_unit_ship.xml:27
 #: simulation/templates/template_unit_ship.xml:29
@@ -648,7 +649,7 @@ msgstr "Tàu chiến"
 #: simulation/templates/units/ptol/ship_bireme.xml:9
 #: simulation/templates/units/sele/ship_bireme.xml:9
 msgid "Bireme"
-msgstr "Tàu chiến Bireme"
+msgstr "Tàu chiến hạng nặng"
 
 #: simulation/templates/template_unit_ship_fire.xml:5
 #: simulation/templates/template_unit_siege_flamethrower.xml:5
@@ -659,7 +660,7 @@ msgstr "Khai hoả"
 #: simulation/templates/template_unit_ship_fire.xml:22
 #: simulation/templates/template_unit_siege_flamethrower.xml:35
 msgid "Circular"
-msgstr ""
+msgstr "Di Chuyển Vòng Quanh"
 
 #: simulation/templates/template_unit_ship_fire.xml:40
 msgid "Fire Ship"
@@ -807,7 +808,7 @@ msgstr ""
 #: simulation/templates/template_unit_support_female_citizen.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Dagger"
-msgstr ""
+msgstr "Dao găm"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:34
 msgid "Female Citizen"
@@ -829,7 +830,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
-msgstr ""
+msgstr "Giao thương hàng hóa của bạn với Đồng Minh."
 
 #: simulation/templates/units/athen/catafalque.xml:8
 msgid "Solon"
@@ -2569,15 +2570,15 @@ msgstr ""
 
 #: simulation/templates/units/pers/hero_cyrus_ii.xml:9
 msgid "Cyrus II The Great"
-msgstr ""
+msgstr "Cyrus Đại Đế"
 
 #: simulation/templates/units/pers/hero_cyrus_ii.xml:10
 msgid "Kuruš"
-msgstr "Kuruš"
+msgstr "Cyrus Đại Đế"
 
 #: simulation/templates/units/pers/hero_darius_i.xml:13
 msgid "Darius I the Great"
-msgstr ""
+msgstr "Darius Đại Đế"
 
 #: simulation/templates/units/pers/hero_darius_i.xml:14
 msgid "Dārayavahuš"
@@ -2586,16 +2587,16 @@ msgstr "Dārayavahuš"
 #: simulation/templates/units/pers/hero_xerxes_i.xml:9
 #: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:13
 msgid "Xerxes I"
-msgstr "Xerxes I"
+msgstr "Xerxes I Đại Đế"
 
 #: simulation/templates/units/pers/hero_xerxes_i.xml:10
 #: simulation/templates/units/pers/hero_xerxes_i_chariot.xml:14
 msgid "Xšayāršā"
-msgstr "Xšayāršā"
+msgstr "Xerxes I Đại Đế"
 
 #: simulation/templates/units/pers/infantry_archer_b.xml:7
 msgid "Sogdian Archer"
-msgstr ""
+msgstr "Cung Thủ Sodigan"
 
 #: simulation/templates/units/pers/infantry_archer_b.xml:8
 msgid "Θanuvaniya Suguda"
@@ -2603,7 +2604,7 @@ msgstr "Θanuvaniya Suguda"
 
 #: simulation/templates/units/pers/infantry_javelineer_b.xml:7
 msgid "Lydian Auxiliary"
-msgstr ""
+msgstr "Trợ Binh Lydia"
 
 #: simulation/templates/units/pers/infantry_javelineer_b.xml:8
 msgid "Pastiš Spardiya"
@@ -2611,7 +2612,7 @@ msgstr "Pastiš Spardiya"
 
 #: simulation/templates/units/pers/infantry_spearman_b.xml:7
 msgid "Shield Bearer"
-msgstr ""
+msgstr "Lính Dùng Khiên"
 
 #: simulation/templates/units/pers/infantry_spearman_b.xml:8
 msgid "Sparabara"
@@ -2619,7 +2620,7 @@ msgstr "Sparabara"
 
 #: simulation/templates/units/pers/kardakes_hoplite.xml:6
 msgid "Cardaces Hoplite"
-msgstr ""
+msgstr "Giáo Binh Nặng của Ba Tư"
 
 #: simulation/templates/units/pers/kardakes_hoplite.xml:7
 msgid "Hoplites Kardakes"
@@ -2863,7 +2864,7 @@ msgstr ""
 
 #: simulation/templates/units/rome/cavalry_javelineer_b.xml:6
 msgid "Allied Cavalry"
-msgstr ""
+msgstr "Kỵ Binh Đồng Minh"
 
 #: simulation/templates/units/rome/cavalry_javelineer_b.xml:7
 msgid "Eques Socius"
@@ -2871,7 +2872,7 @@ msgstr ""
 
 #: simulation/templates/units/rome/cavalry_spearman_b.xml:7
 msgid "Roman Cavalry"
-msgstr ""
+msgstr "Kỵ Binh La Mã"
 
 #: simulation/templates/units/rome/cavalry_spearman_b.xml:8
 msgid "Eques Rōmānus"
@@ -2883,7 +2884,7 @@ msgstr ""
 
 #: simulation/templates/units/rome/champion_cavalry.xml:7
 msgid "Consular Bodyguard"
-msgstr ""
+msgstr "Vệ Sĩ của Quan Chấp Chính"
 
 #: simulation/templates/units/rome/champion_infantry_spear_gladiator.xml:17
 #: simulation/templates/units/rome/champion_infantry_sword_gladiator.xml:17
@@ -2892,7 +2893,7 @@ msgstr ""
 
 #: simulation/templates/units/rome/champion_infantry_spear_gladiator.xml:20
 msgid "Gladiator Spearman"
-msgstr ""
+msgstr "Giáo Sĩ La Mã"
 
 #: simulation/templates/units/rome/champion_infantry_spear_gladiator.xml:21
 msgid "Hoplomachus"
@@ -2900,7 +2901,7 @@ msgstr ""
 
 #: simulation/templates/units/rome/champion_infantry_sword_gladiator.xml:20
 msgid "Gladiator Swordsman"
-msgstr ""
+msgstr "Kiếm Sĩ La Mã"
 
 #: simulation/templates/units/rome/champion_infantry_sword_gladiator.xml:21
 msgid "Murmillo"
@@ -2908,7 +2909,7 @@ msgstr ""
 
 #: simulation/templates/units/rome/champion_infantry_swordsman.xml:12
 msgid "Italic Heavy Infantry"
-msgstr ""
+msgstr "Bộ Binh Ý Hạng Nặng"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman.xml:13
 msgid "Extrāōrdinārius"
@@ -2917,7 +2918,7 @@ msgstr ""
 #: simulation/templates/units/rome/champion_infantry_swordsman_02.xml:4
 #: simulation/templates/units/rome/champion_infantry_swordsman_03.xml:11
 msgid "Marian Legionary"
-msgstr ""
+msgstr "Lính Lê Dương Marius"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_02.xml:5
 #: simulation/templates/units/rome/champion_infantry_swordsman_03.xml:12
@@ -2926,7 +2927,7 @@ msgstr ""
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_04.xml:14
 msgid "Roman Centurion"
-msgstr ""
+msgstr "Bách Binh Trưởng"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_04.xml:15
 msgid "Centuriō"
@@ -2934,7 +2935,7 @@ msgstr ""
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_05.xml:14
 msgid "Praetorian Guard"
-msgstr ""
+msgstr "Pháp Quan La Mã"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_05.xml:15
 msgid "Praetorianus"
@@ -2943,7 +2944,7 @@ msgstr ""
 #: simulation/templates/units/rome/hero_marcellus.xml:10
 #: simulation/templates/units/rome/hero_marcellus_infantry.xml:10
 msgid "Mārcus Claudius Mārcellus"
-msgstr ""
+msgstr "Quan Chấp Chính Tối Cao Gaius Claudius Marcellus"
 
 #: simulation/templates/units/rome/hero_maximus.xml:9
 #: simulation/templates/units/rome/hero_maximus_infantry.xml:9
@@ -2953,11 +2954,11 @@ msgstr ""
 #: simulation/templates/units/rome/hero_scipio.xml:9
 #: simulation/templates/units/rome/hero_scipio_infantry.xml:9
 msgid "Pūblius Cornēlius Scīpiō Āfricānus"
-msgstr ""
+msgstr "Tướng Quân Scipio Africanus"
 
 #: simulation/templates/units/rome/infantry_javelineer_b.xml:13
 msgid "Roman Skirmisher"
-msgstr ""
+msgstr "Lính ném lao La Mã"
 
 #: simulation/templates/units/rome/infantry_javelineer_b.xml:14
 msgid "Vēles"
@@ -2965,7 +2966,7 @@ msgstr ""
 
 #: simulation/templates/units/rome/infantry_spearman_b.xml:19
 msgid "Veteran Spearman"
-msgstr ""
+msgstr "Giáo Binh Kỳ Cựu"
 
 #: simulation/templates/units/rome/infantry_spearman_b.xml:20
 msgid "Triārius"
@@ -2973,7 +2974,7 @@ msgstr ""
 
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:19
 msgid "Roman Swordsman"
-msgstr ""
+msgstr "Gươm Binh La Mã"
 
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:20
 msgid "Hastātus"
@@ -3009,19 +3010,19 @@ msgstr ""
 
 #: simulation/templates/units/rome/ship_trireme.xml:9
 msgid "Roman Trireme"
-msgstr ""
+msgstr "Tàu Chiến La Mã"
 
 #: simulation/templates/units/rome/siege_onager.xml:26
 msgid "Onager"
-msgstr ""
+msgstr "Máy Ném  Đá"
 
 #: simulation/templates/units/rome/siege_ram.xml:15
 msgid "Ariēs"
-msgstr ""
+msgstr "Máy Công Thành"
 
 #: simulation/templates/units/rome/siege_scorpio_packed.xml:8
 msgid "Scorpiō"
-msgstr ""
+msgstr "Máy Bắn Cung "
 
 #: simulation/templates/units/rome/support_female_citizen.xml:12
 msgid "Rōmāna"
@@ -3029,7 +3030,7 @@ msgstr ""
 
 #: simulation/templates/units/rome/support_female_citizen.xml:13
 msgid "Roman Woman"
-msgstr "Dân nữ La Mã"
+msgstr "Nữ Dân La Mã"
 
 #: simulation/templates/units/rome/support_healer_b.xml:6
 msgid "Doctor"
@@ -3041,7 +3042,7 @@ msgstr ""
 
 #: simulation/templates/units/rome/support_trader.xml:10
 msgid "Plebeian Merchant"
-msgstr ""
+msgstr "Thương Nhân tự do"
 
 #: simulation/templates/units/rome/support_trader.xml:11
 msgid "Mercātor"
@@ -3055,7 +3056,7 @@ msgstr ""
 #: simulation/templates/units/samnite_spearman.xml:4
 #: simulation/templates/units/samnite_spearman.xml:5
 msgid "Samnite Spearman"
-msgstr ""
+msgstr "Giáo Binh Samnite"
 
 #: simulation/templates/units/cart/infantry_swordsman_ital_b.xml:13
 #: simulation/templates/units/samnite_swordsman.xml:4
@@ -3069,7 +3070,7 @@ msgstr ""
 
 #: simulation/templates/units/sele/cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
-msgstr ""
+msgstr "Cung Thủ Cưỡi Ngựa Dahae"
 
 #: simulation/templates/units/sele/cavalry_archer_b.xml:8
 msgid "Hippotoxotès Dahae"
@@ -3077,7 +3078,7 @@ msgstr "Hippotoxotès Dahae"
 
 #: simulation/templates/units/sele/cavalry_javelineer_b.xml:7
 msgid "Militia Cavalry"
-msgstr ""
+msgstr "Kỵ Binh dân sự"
 
 #: simulation/templates/units/sele/cavalry_javelineer_b.xml:8
 msgid "Hippakontistès Politès"
@@ -3089,7 +3090,7 @@ msgstr "Hippos Hetairike"
 
 #: simulation/templates/units/sele/champion_cavalry.xml:6
 msgid "Seleucid Cataphract"
-msgstr ""
+msgstr "Kỵ Binh Hạng Nặng của Seleucid"
 
 #: simulation/templates/units/sele/champion_cavalry.xml:7
 msgid "Seleukidón Kataphraktos"
@@ -3097,7 +3098,7 @@ msgstr "Seleukidón Kataphraktos"
 
 #: simulation/templates/units/sele/champion_chariot.xml:10
 msgid "Scythed Chariot"
-msgstr ""
+msgstr "Xe Ngựa Kéo Scythica"
 
 #: simulation/templates/units/sele/champion_chariot.xml:11
 msgid "Drepanèphoros"
@@ -3105,7 +3106,7 @@ msgstr "Drepanèphoros"
 
 #: simulation/templates/units/sele/champion_elephant.xml:6
 msgid "Armored War Elephant"
-msgstr ""
+msgstr "Tượng Binh Hạng Nặng"
 
 #: simulation/templates/units/sele/champion_elephant.xml:7
 msgid "Thorakisménos Eléphantos"
@@ -3113,7 +3114,7 @@ msgstr "Thorakisménos Eléphantos"
 
 #: simulation/templates/units/sele/champion_infantry_pikeman.xml:6
 msgid "Silver Shield"
-msgstr ""
+msgstr "Lính \"Khiên Bạc\""
 
 #: simulation/templates/units/sele/champion_infantry_pikeman.xml:7
 msgid "Argyraspis"
@@ -3129,7 +3130,7 @@ msgstr "Thorakitès Rhomaïkós"
 
 #: simulation/templates/units/sele/hero_antiochus_iii.xml:9
 msgid "Antiochus III the Great"
-msgstr ""
+msgstr "Antiochos III Đại đế"
 
 #: simulation/templates/units/sele/hero_antiochus_iii.xml:10
 msgid "Antiokhos G' Megas"
@@ -3137,7 +3138,7 @@ msgstr ""
 
 #: simulation/templates/units/sele/hero_antiochus_iv.xml:9
 msgid "Antiochus IV"
-msgstr ""
+msgstr "Antichous Đệ Tứ"
 
 #: simulation/templates/units/sele/hero_antiochus_iv.xml:10
 msgid "Antiokhos D' Epiphanēs"
@@ -3145,7 +3146,7 @@ msgstr ""
 
 #: simulation/templates/units/sele/hero_seleucus_i.xml:9
 msgid "Seleucus I"
-msgstr ""
+msgstr "Seleucus Đệ Nhất"
 
 #: simulation/templates/units/sele/hero_seleucus_i.xml:10
 msgid "Seleukos A' Nikatōr"
@@ -3153,7 +3154,7 @@ msgstr ""
 
 #: simulation/templates/units/sele/infantry_archer_merc_b.xml:7
 msgid "Syrian Archer"
-msgstr ""
+msgstr "Cung Thủ Syria"
 
 #: simulation/templates/units/sele/infantry_archer_merc_b.xml:8
 msgid "Toxótēs Syrías"
@@ -3161,7 +3162,7 @@ msgstr "Toxótēs Syrías"
 
 #: simulation/templates/units/sele/infantry_javelineer_b.xml:7
 msgid "Arab Javelineer"
-msgstr ""
+msgstr "Lính ném lao Ả Rập"
 
 #: simulation/templates/units/sele/infantry_javelineer_b.xml:8
 msgid "Pezakontistès Aravikós"
@@ -3169,11 +3170,11 @@ msgstr "Pezakontistès Aravikós"
 
 #: simulation/templates/units/sele/infantry_pikeman_b.xml:7
 msgid "Phalangite"
-msgstr ""
+msgstr "Bộ binh Phalanx"
 
 #: simulation/templates/units/sele/infantry_pikeman_b.xml:8
 msgid "Phalangitēs"
-msgstr ""
+msgstr "Giáo Binh Phalanx"
 
 #: simulation/templates/units/sele/infantry_spearman_b.xml:7
 msgid "Militia Thureos Spearman"
@@ -3217,7 +3218,7 @@ msgstr ""
 
 #: simulation/templates/units/spart/cavalry_javelineer_b.xml:7
 msgid "Perioikoi Cavalryman"
-msgstr ""
+msgstr "Kỵ Binh Trung Lưu"
 
 #: simulation/templates/units/spart/cavalry_javelineer_b.xml:8
 msgid "Pródromos Perioïkós"
@@ -3225,7 +3226,7 @@ msgstr "Pródromos Perioïkós"
 
 #: simulation/templates/units/spart/cavalry_spearman_b.xml:7
 msgid "Greek Allied Cavalry"
-msgstr ""
+msgstr "Kỵ Binh Đồng Minh của Hy Lạp"
 
 #: simulation/templates/units/spart/cavalry_spearman_b.xml:8
 msgid "Hippeús Symmakhikós"
@@ -3233,7 +3234,7 @@ msgstr "Hippeús Symmakhikós"
 
 #: simulation/templates/units/spart/champion_infantry_pike.xml:6
 msgid "Spartan Pikeman"
-msgstr ""
+msgstr "Giáo binh Spartan"
 
 #: simulation/templates/units/spart/champion_infantry_pike.xml:7
 msgid "Phalangites Spartiatis"
@@ -3241,7 +3242,7 @@ msgstr ""
 
 #: simulation/templates/units/spart/champion_infantry_spear.xml:6
 msgid "Spartan Hoplite"
-msgstr ""
+msgstr "Giáo Binh Nặng Spartan"
 
 #: simulation/templates/units/spart/champion_infantry_spear.xml:7
 msgid "Spartiátēs"
@@ -3270,7 +3271,7 @@ msgstr "Brasidas"
 
 #: simulation/templates/units/spart/hero_leonidas.xml:9
 msgid "Leonidas I"
-msgstr ""
+msgstr "Vua Leonidas Đệ Nhất"
 
 #: simulation/templates/units/spart/hero_leonidas.xml:10
 msgid "Leōnidēs"
