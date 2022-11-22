@@ -53,7 +53,7 @@ function Cheat(input)
 	case "defeatplayer":
 		if (isNaN(input.parameter))
 			return;
-		QueryPlayerIDInterface(input.parameter)?.SetState("defeated",
+		QueryPlayerIDInterface(input.parameter)?.Defeat(
 			markForTranslation("%(player)s has been defeated (cheat).")
 		);
 		return;

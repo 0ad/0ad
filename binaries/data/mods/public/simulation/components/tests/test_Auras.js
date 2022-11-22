@@ -9,7 +9,7 @@ Engine.LoadComponentScript("ModifiersManager.js");
 
 var playerID = [0, 1, 2];
 var playerEnt = [10, 11, 12];
-var playerState = ["active", "active", "active"];
+var playerDefeated = [false, false, false];
 var sourceEnt = 20;
 var targetEnt = 30;
 var auraRange = 40;
@@ -55,14 +55,14 @@ function testAuras(name, test_function)
 		"IsAlly": id => id == playerID[1] || id == playerID[2],
 		"IsEnemy": id => id != playerID[1] || id != playerID[2],
 		"GetPlayerID": () => playerID[1],
-		"GetState": () => playerState[1]
+		"IsDefeated": () => playerDefeated[1]
 	});
 
 	AddMock(playerEnt[2], IID_Player, {
 		"IsAlly": id => id == playerID[1] || id == playerID[2],
 		"IsEnemy": id => id != playerID[1] || id != playerID[2],
 		"GetPlayerID": () => playerID[2],
-		"GetState": () => playerState[2]
+		"IsDefeated": () => playerDefeated[2]
 	});
 
 	AddMock(targetEnt, IID_Identity, {
@@ -154,7 +154,7 @@ testAuras("global", (name, cmpAuras) => {
 	TS_ASSERT_EQUALS(ApplyValueModificationsToTemplate("Component/Value", 5, playerID[2], template), 5);
 });
 
-playerState[1] = "defeated";
+playerDefeated[1] = true;
 testAuras("global", (name, cmpAuras) => {
 	cmpAuras.OnGlobalPlayerDefeated({ "playerId": playerID[1] });
 	TS_ASSERT_EQUALS(ApplyValueModificationsToTemplate("Component/Value", 5, playerID[2], template), 5);

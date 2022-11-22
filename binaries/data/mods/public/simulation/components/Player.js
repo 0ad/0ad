@@ -27,6 +27,11 @@ Player.prototype.Schema =
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>";
 
+// The GUI expects these strings.
+Player.prototype.STATE_ACTIVE = "active";
+Player.prototype.STATE_DEFEATED = "defeated";
+Player.prototype.STATE_WON = "won";
+
 /**
  * Don't serialize diplomacyColor or displayDiplomacyColor since they're modified by the GUI.
  */
@@ -68,7 +73,7 @@ Player.prototype.Init = function()
 	this.tradingGoods = []; // Goods for next trade-route and its probabilities * 100.
 	this.team = -1;	// Team number of the player, players on the same team will always have ally diplomatic status. Also this is useful for team emblems, scoring, etc.
 	this.teamsLocked = false;
-	this.state = "active"; // Game state. One of "active", "defeated", "won".
+	this.state = this.STATE_ACTIVE;
 	this.diplomacy = [];	// Array of diplomatic stances for this player with respect to other players (including gaia and self).
 	this.sharedDropsites = false;
 	this.formations = this.template.Formations._string.split(" ");
@@ -427,6 +432,25 @@ Player.prototype.SetTradingGoods = function(tradingGoods)
 		});
 };
 
+/**
+ * @param {string} message - The message to send in the chat. May be undefined.
+ */
+Player.prototype.Win = function(message)
+{
+	this.SetState(this.STATE_WON, message);
+};
+
+/**
+ * @param {string} message - The message to send in the chat. May be undefined.
+ */
+Player.prototype.Defeat = function(message)
+{
+	this.SetState(this.STATE_DEFEATED, message);
+};
+
+/**
+ * @return {string} - The string identified with the current state.
+ */
 Player.prototype.GetState = function()
 {
 	return this.state;
@@ -437,7 +461,23 @@ Player.prototype.GetState = function()
  */
 Player.prototype.IsActive = function()
 {
-	return this.state === "active";
+	return this.state === this.STATE_ACTIVE;
+};
+
+/**
+ * @return {boolean} -
+ */
+Player.prototype.IsDefeated = function()
+{
+	return this.state === this.STATE_DEFEATED;
+};
+
+/**
+ * @return {boolean} -
+ */
+Player.prototype.HasWon = function()
+{
+	return this.state === this.STATE_WON;
 };
 
 /**
@@ -448,12 +488,12 @@ Player.prototype.IsActive = function()
  */
 Player.prototype.SetState = function(newState, message)
 {
-	if (this.state != "active")
+	if (!this.IsActive())
 		return;
 
-	if (newState != "won" && newState != "defeated")
+	if (newState != this.STATE_WON && newState != this.STATE_DEFEATED)
 	{
-		warn("Can't change playerstate to " + this.state);
+		warn("Can't change playerstate to " + newState);
 		return;
 	}
 
@@ -465,7 +505,7 @@ Player.prototype.SetState = function(newState, message)
 
 	this.state = newState;
 
-	let won = newState == "won";
+	const won = this.HasWon();
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (won)
 		cmpRangeManager.SetLosRevealAll(this.playerID, true);
@@ -567,7 +607,7 @@ Player.prototype.SetDiplomacyIndex = function(idx, value)
 	if (!cmpPlayer)
 		return;
 
-	if (this.state != "active" || cmpPlayer.state != "active")
+	if (!this.IsActive() || !cmpPlayer.IsActive())
 		return;
 
 	this.diplomacy[idx] = value;
@@ -846,7 +886,7 @@ Player.prototype.TributeResource = function(player, amounts)
 	if (!cmpPlayer)
 		return;
 
-	if (this.state != "active" || cmpPlayer.state != "active")
+	if (!this.IsActive() || !cmpPlayer.IsActive())
 		return;
 
 	let resTribCodes = Resources.GetTributableCodes();
@@ -943,7 +983,7 @@ Player.prototype.OnGlobalPlayerDefeated = function(msg)
 	if (!cmpSound)
 		return;
 
-	let soundGroup = cmpSound.GetSoundGroup(this.playerID === msg.playerId ? "defeated" : this.IsAlly(msg.playerId) ? "defeated_ally" : this.state === "won" ? "won" : "defeated_enemy");
+	const soundGroup = cmpSound.GetSoundGroup(this.playerID === msg.playerId ? "defeated" : this.IsAlly(msg.playerId) ? "defeated_ally" : this.HasWon() ? "won" : "defeated_enemy");
 	if (soundGroup)
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_SoundManager).PlaySoundGroupForPlayer(soundGroup, this.playerID);
 };
