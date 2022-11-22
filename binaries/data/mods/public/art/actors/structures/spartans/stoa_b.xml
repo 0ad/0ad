@@ -4,6 +4,12 @@
   <group>
     <variant frequency="1" name="stoa">
       <mesh>structural/spart_stoa_b.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/aspis_lambda_01.xml" attachpoint="shield_01"/>
+        <prop actor="props/units/shields/aspis_lambda_02.xml" attachpoint="shield_02"/>
+        <prop actor="props/units/shields/aspis_spart_d.xml" attachpoint="shield_03"/>
+        <prop actor="props/units/shields/aspis_spart_c.xml" attachpoint="shield_04"/>
+      </props>
       <textures>
         <texture file="structural/sparta_struct.png" name="baseTex"/>
         <texture file="structural/sparta_struct_norm.png" name="normTex"/>

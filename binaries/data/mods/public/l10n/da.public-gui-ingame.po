@@ -10,6 +10,7 @@
 # Fijure
 # 2e6e5c4f3fb0926d774d4b28c1ee12bb_86780ae
 # Joe Hansen
+# Lars Henrik Ørn
 # Mads Overgård Henningsen
 # Magnus Kahr Sejersen
 # MrKahr
@@ -20,7 +21,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
-"Last-Translator: Joe Hansen <joedalton2@yahoo.dk>, 2017,2019-2020\n"
+"Last-Translator: Lars Henrik Ørn, 2022\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,7 +76,7 @@ msgstr "Indstillinger"
 
 #: gui/session/MenuButtons.js:185
 msgid "Hotkeys"
-msgstr ""
+msgstr "Genveje"
 
 #: gui/session/MenuButtons.js:220
 msgid "Resume"
@@ -166,17 +167,17 @@ msgstr "m:ss"
 #. when not the first item in the queue.
 #: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:602
 msgid "This item is paused."
-msgstr ""
+msgstr "Denne handling er sat på pause"
 
 #: gui/session/chat/ChatAddressees.js:93
 msgctxt "chat addressee"
 msgid "Everyone"
-msgstr ""
+msgstr "Alle"
 
 #: gui/session/chat/ChatAddressees.js:99
 msgctxt "chat addressee"
 msgid "Allies"
-msgstr ""
+msgstr "Allierede"
 
 #: gui/session/chat/ChatAddressees.js:100
 msgctxt "chat message context"
@@ -186,7 +187,7 @@ msgstr "Allieret"
 #: gui/session/chat/ChatAddressees.js:110
 msgctxt "chat addressee"
 msgid "Enemies"
-msgstr ""
+msgstr "Fjender"
 
 #: gui/session/chat/ChatAddressees.js:111
 msgctxt "chat message context"
@@ -196,12 +197,12 @@ msgstr "Fjende"
 #: gui/session/chat/ChatAddressees.js:121
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr ""
+msgstr "Observatører"
 
 #: gui/session/chat/ChatAddressees.js:122
 msgctxt "chat message context"
 msgid "Observer"
-msgstr ""
+msgstr "Observatør"
 
 #: gui/session/chat/ChatAddressees.js:129
 msgctxt "chat message context"
@@ -260,12 +261,12 @@ msgstr "Privat diskussion"
 #: gui/session/chat/ChatHistory.js:132
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr ""
+msgstr "Spil underretninger"
 
 #: gui/session/chat/ChatHistory.js:137
 msgctxt "chat history filter"
 msgid "Network notifications"
-msgstr ""
+msgstr "Netværks underretninger"
 
 #: gui/session/chat/ChatInput.js:36
 msgctxt "chat input"
@@ -302,7 +303,7 @@ msgstr ""
 #: gui/session/chat/ChatMessageFormatNetwork.js:26
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr ""
+msgstr "%(player)sskal til at spille med"
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:37
 #, javascript-format
@@ -323,13 +324,13 @@ msgstr "%(username)s er blevet smidt af"
 #: gui/session/chat/ChatMessageFormatNetwork.js:71
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr "%(player)sspiller med igen"
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:73
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr ""
+msgstr "%(player)ser kommet med i spillet"
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:62
 #, javascript-format
@@ -364,11 +365,11 @@ msgstr ""
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
 msgid "%(icon)sYou have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)sDu er blevet angrebet af %(attacker)s!`"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:27
 msgid "Click to focus on the attacked unit."
-msgstr ""
+msgstr "Klik med musen på den angrebne enhed."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
@@ -428,12 +429,12 @@ msgstr ""
 #: gui/session/chat/ChatMessageFormatSimulation.js:111
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr ""
+msgstr "%(phaseName)saf%(player)ser blevet afbrudt"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:114
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
-msgstr ""
+msgstr "%(player)ser nået til%(phaseName)s"
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an
@@ -450,7 +451,7 @@ msgstr "%(player)s har sendt dig %(amounts)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:161
 #, javascript-format
 msgid "You have sent %(player2)s %(amounts)s."
-msgstr ""
+msgstr "Du har sendt %(player2)s%(amounts)s"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:166
 #, javascript-format
@@ -465,7 +466,7 @@ msgstr ""
 #: gui/session/chat/chat_window.xml:(caption):46
 msgctxt "chat input"
 msgid "To:"
-msgstr ""
+msgstr "Til:"
 
 #: gui/session/chat/chat_window.xml:(caption):60
 msgctxt "chat input"
@@ -652,13 +653,13 @@ msgstr "Luk"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr ""
+msgstr "Tilbageværende tid af vøbenhvile %(time)s."
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):85
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
 #: gui/session/minimap/MiniMapDiplomacyColorsButton.js:36
 msgid "Toggle Diplomacy Colors"
-msgstr ""
+msgstr "Vælg diplomati farver"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
@@ -756,7 +757,7 @@ msgstr ""
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
-msgstr ""
+msgstr "Spillere %(players)s"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:24
 msgctxt "Out-Of-Sync"
@@ -819,13 +820,13 @@ msgstr ""
 #: gui/session/message_box/QuitConfirmation.js:15
 #: gui/session/message_box/QuitConfirmationReplay.js:23
 msgid "Stay"
-msgstr ""
+msgstr "Bliv"
 
 #. Translation: Shown in the Dialog that shows up when the game finishes
 #: gui/session/message_box/QuitConfirmation.js:19
 #: gui/session/message_box/QuitConfirmationReplay.js:27
 msgid "Quit and View Summary"
-msgstr ""
+msgstr "Afslut og se en gennemgang af spillet"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:54
 msgid "VICTORIOUS!"
@@ -884,7 +885,7 @@ msgstr "Du er blevet besejret!"
 
 #: gui/session/messages.js:410
 msgid "Click to quit this tutorial."
-msgstr ""
+msgstr "Klik for at afslutte dette tutorial."
 
 #: gui/session/message_box/QuitConfirmation.js:24
 #: gui/session/message_box/QuitConfirmationReplay.js:32
@@ -894,7 +895,7 @@ msgstr "Afslut"
 
 #: gui/session/messages.js:415
 msgid "Click when ready."
-msgstr ""
+msgstr "Klik når du er klar."
 
 #: gui/session/messages.js:419
 msgid "Follow the instructions."
@@ -1006,7 +1007,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:471
 msgid "Garrison Size"
-msgstr ""
+msgstr "Garnisons størrelse"
 
 #: gui/session/selection_details.js:476
 #, javascript-format
@@ -1015,7 +1016,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:477
 msgid "Carrying:"
-msgstr ""
+msgstr "Medbringer"
 
 #: gui/session/selection_details.js:480 gui/session/selection_details.js:489
 #, javascript-format
@@ -1084,7 +1085,7 @@ msgstr "Klik en gang for at aflæsse 1. Shift-klik for at aflæsse alle enheder 
 #: gui/session/selection_panels.js:341 gui/session/selection_panels.js:919
 #, javascript-format
 msgid "Player: %(playername)s"
-msgstr ""
+msgstr "Spiller:%(playername)s"
 
 #: gui/session/selection_panels.js:377
 msgid "Lock Gate"
@@ -1133,7 +1134,7 @@ msgstr[1] ""
 #: gui/session/selection_panels.js:790
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
-msgstr ""
+msgstr "Resterende %(entityCounts)s"
 
 #: gui/session/selection_panels.js:791
 msgctxt "Separator for a list of entity counts"
@@ -1142,31 +1143,31 @@ msgstr ", "
 
 #: gui/session/selection_panels.js:843
 msgid "Cannot research while upgrading."
-msgstr ""
+msgstr "Kan ikke forske under opgradering"
 
 #: gui/session/selection_panels.js:1073
 msgid "Cannot train while upgrading."
-msgstr ""
+msgstr "Kan ikke træne under opgradering."
 
 #: gui/session/selection_panels.js:1142
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
-msgstr ""
+msgstr "Opgrader til %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
 #: gui/session/selection_panels.js:1148
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
-msgstr ""
+msgstr "Opgrader til en %(primaryName)s (%(secondaryName)s)."
 
 #: gui/session/selection_panels.js:1156
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
-msgstr ""
+msgstr "Opgrader til en %(primaryName)s. %(tooltip)s"
 
 #: gui/session/selection_panels.js:1161
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
-msgstr ""
+msgstr "Opgrader til en %(primaryName)s."
 
 #: gui/session/selection_panels.js:1198
 msgid "Cancel Upgrading"
@@ -1251,7 +1252,7 @@ msgstr "%(changer)s sænker begrænsningen med %(change)s."
 
 #: gui/session/selection_panels_helpers.js:140
 msgid "Can be constructed only once."
-msgstr ""
+msgstr "Kan kun bygges en gang."
 
 #: gui/session/selection_panels_helpers.js:142
 #, javascript-format
@@ -1328,7 +1329,7 @@ msgstr "Shift-klik"
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):16
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):40
 msgid "Health"
-msgstr ""
+msgstr "Helbred"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
 msgid "Capture points"
@@ -1336,7 +1337,7 @@ msgstr ""
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):82
 msgid "Attack and Resistance"
-msgstr ""
+msgstr "Angreb og modstand"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):97
 msgid "Experience"
@@ -1375,15 +1376,15 @@ msgstr ""
 
 #: gui/session/top_panel/CounterManager.js:105
 msgid "Unordered"
-msgstr ""
+msgstr "Uordnet"
 
 #: gui/session/top_panel/CounterManager.js:107
 msgid "Descending"
-msgstr ""
+msgstr "Aftagende"
 
 #: gui/session/top_panel/CounterManager.js:108
 msgid "Ascending"
-msgstr ""
+msgstr "Tiltagende"
 
 #: gui/session/top_panel/CounterManager.js:133
 #, javascript-format
@@ -1425,7 +1426,7 @@ msgstr "Spilhastighed"
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):15
 #: gui/session/top_panel/IconButtons/ObjectivesDialogButton.js:23
 msgid "Objectives"
-msgstr ""
+msgstr "Mål"
 
 #: gui/session/top_panel/MenuButton.xml:(caption):15
 msgid "Menu"
@@ -1433,11 +1434,11 @@ msgstr "Menu"
 
 #: gui/session/top_panel/PlayerViewControl.js:123
 msgid "Observer"
-msgstr ""
+msgstr "Observatør"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(caption):17
 msgid "Observer Mode"
-msgstr ""
+msgstr "Observatør tilstand"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(tooltip):13
 msgid "Choose player to view"
@@ -1510,7 +1511,7 @@ msgstr "Handel"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
-msgstr ""
+msgstr "Ressourcer:"
 
 #: gui/session/trade/TraderStatusTextLand.js:15
 #, javascript-format
@@ -1629,7 +1630,7 @@ msgstr "Klar"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr ""
+msgstr "Dette er det oprindelige marked.\nHøjre-klik for at afbryde handelsruten"
 
 #: gui/session/unit_actions.js:678
 msgid "Origin trade market."
@@ -1645,7 +1646,7 @@ msgstr "Højreklik for at vælge oprindelsesmarked"
 
 #: gui/session/unit_actions.js:702 gui/session/unit_actions.js:1186
 msgid "This market is too close to the origin market."
-msgstr ""
+msgstr "Dette marked er for tæt på det oprindelige marked."
 
 #: gui/session/unit_actions.js:706
 msgid "Right-click to set as destination trade market."
@@ -1743,7 +1744,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:1705
 msgid "Patrol"
-msgstr ""
+msgstr "Patruljer"
 
 #: gui/session/unit_actions.js:1706
 msgid "Attack all encountered enemy units while avoiding structures."
