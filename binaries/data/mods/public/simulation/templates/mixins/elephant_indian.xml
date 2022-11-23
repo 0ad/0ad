@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Entity>
+  <Attack>
+    <Melee>
+      <Damage>
+        <Hack op="mul">1.1</Hack>
+        <Pierce op="mul">1.1</Pierce>
+        <Crush op="mul">1.1</Crush>
+      </Damage>
+    </Melee>
+  </Attack>
+  <Cost>
+    <BuildTime op="mul">1.1</BuildTime>
+    <Resources>
+      <food op="mul">1.1</food>
+      <wood op="mul">1.1</wood>
+      <stone op="mul">1.1</stone>
+      <metal op="mul">1.1</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max op="mul">1.1</Max>
+  </Health>
+  <Loot>
+    <food op="mul">1.1</food>
+    <wood op="mul">1.1</wood>
+    <stone op="mul">1.1</stone>
+    <metal op="mul">1.1</metal>
+    <xp op="mul">1.1</xp>
+  </Loot>
+</Entity>

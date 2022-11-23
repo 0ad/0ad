@@ -17,7 +17,7 @@ AddMock(SYSTEM_ENTITY, IID_GuiInterface, {
 
 AddMock(playerEnt1, IID_Player, {
 	"GetName": () => "Player 1",
-	"GetState": () => "active",
+	"IsActive": () => true,
 });
 
 TS_ASSERT_EQUALS(cmpEndGameManager.skipAlliedVictoryCheck, true);

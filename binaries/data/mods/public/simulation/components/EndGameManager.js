@@ -57,17 +57,17 @@ EndGameManager.prototype.SetGameSettings = function(newSettings = {})
  */
 EndGameManager.prototype.MarkPlayerAndAlliesAsWon = function(playerID, victoryString, defeatString)
 {
-	let state = QueryPlayerIDInterface(playerID).GetState();
-	if (state != "active")
+	const cmpPlayer = QueryPlayerIDInterface(playerID);
+	if (!cmpPlayer.IsActive())
 	{
-		warn("Can't mark player " + playerID + " as won, since the state is " + state);
+		warn("Can't mark player " + playerID + " as won, since the state is " + cmpPlayer.GetState());
 		return;
 	}
 
 	let winningPlayers = [playerID];
 	if (this.alliedVictory)
-		winningPlayers = QueryPlayerIDInterface(playerID).GetMutualAllies(playerID).filter(
-			player => QueryPlayerIDInterface(player).GetState() == "active");
+		winningPlayers = cmpPlayer.GetMutualAllies(playerID).filter(
+			player => QueryPlayerIDInterface(player).IsActive());
 
 	this.MarkPlayersAsWon(winningPlayers, victoryString, defeatString);
 };
@@ -88,20 +88,19 @@ EndGameManager.prototype.MarkPlayersAsWon = function(winningPlayers, victoryStri
 	for (let playerID of winningPlayers)
 	{
 		let cmpPlayer = QueryPlayerIDInterface(playerID);
-		let state = cmpPlayer.GetState();
-		if (state != "active")
+		if (!cmpPlayer.IsActive())
 		{
-			warn("Can't mark player " + playerID + " as won, since the state is " + state);
+			warn("Can't mark player " + playerID + " as won, since the state is " + cmpPlayer.GetState());
 			continue;
 		}
-		cmpPlayer.SetState("won", undefined);
+		cmpPlayer.Win(undefined);
 	}
 
 	let defeatedPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetActivePlayers().filter(
 		playerID => winningPlayers.indexOf(playerID) == -1);
 
 	for (let playerID of defeatedPlayers)
-		QueryPlayerIDInterface(playerID).SetState("defeated", undefined);
+		QueryPlayerIDInterface(playerID).Defeat(undefined);
 
 	let cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGUIInterface.PushNotification({
@@ -146,7 +145,7 @@ EndGameManager.prototype.AlliedVictoryCheck = function()
 	for (let playerID = 1; playerID < numPlayers; ++playerID)
 	{
 		let cmpPlayer = QueryPlayerIDInterface(playerID);
-		if (cmpPlayer.GetState() != "active")
+		if (!cmpPlayer.IsActive())
 			continue;
 
 		if (allies.length && !cmpPlayer.IsMutualAlly(allies[0]))
@@ -160,12 +159,8 @@ EndGameManager.prototype.AlliedVictoryCheck = function()
 
 	if (this.alliedVictory || allies.length == 1)
 	{
-		for (let playerID of allies)
-		{
-			let cmpPlayer = QueryPlayerIDInterface(playerID);
-			if (cmpPlayer)
-				cmpPlayer.SetState("won", undefined);
-		}
+		for (const playerID of allies)
+			QueryPlayerIDInterface(playerID)?.Win(undefined);
 
 		cmpGuiInterface.PushNotification({
 			"type": "won",

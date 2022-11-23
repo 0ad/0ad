@@ -120,14 +120,14 @@ Auras.prototype.CalculateAffectedPlayers = function(name)
 	if (!cmpPlayer)
 		cmpPlayer = QueryOwnerInterface(this.entity);
 
-	if (!cmpPlayer || cmpPlayer.GetState() == "defeated")
+	if (!cmpPlayer || cmpPlayer.IsDefeated())
 		return;
 
 	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	for (let i of cmpPlayerManager.GetAllPlayers())
 	{
 		let cmpAffectedPlayer = QueryPlayerIDInterface(i);
-		if (!cmpAffectedPlayer || cmpAffectedPlayer.GetState() == "defeated")
+		if (!cmpAffectedPlayer || cmpAffectedPlayer.IsDefeated())
 			continue;
 
 		if (affectedPlayers.some(p => p == "Player" ? cmpPlayer.GetPlayerID() == i : cmpPlayer["Is" + p](i)))

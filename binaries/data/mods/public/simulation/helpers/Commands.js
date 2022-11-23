@@ -470,7 +470,7 @@ var g_Commands = {
 
 	"resign": function(player, cmd, data)
 	{
-		data.cmpPlayer.SetState("defeated", markForTranslation("%(player)s has resigned."));
+		data.cmpPlayer.Defeat(markForTranslation("%(player)s has resigned."));
 	},
 
 	"occupy-turret": function(player, cmd, data)
