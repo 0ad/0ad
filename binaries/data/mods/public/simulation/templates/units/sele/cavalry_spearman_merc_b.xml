@@ -7,7 +7,9 @@
     <GenericName>Companion Cavalry</GenericName>
     <SpecificName>Hippos Hetairike</SpecificName>
     <Icon>units/sele/cavalry_spearman_merc.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/sele/cavalry_spearman_merc_a</Entity>

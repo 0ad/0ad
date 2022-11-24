@@ -11,7 +11,9 @@
     <SpecificName>Raθa Bābiruviya</SpecificName>
     <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
     <Icon>units/pers/chariot_archer.png</Icon>
-    <RequiredTechnology>unlock_champion_chariots</RequiredTechnology>
+    <Requirements>
+      <Techs>unlock_champion_chariots</Techs>
+    </Requirements>
   </Identity>
   <VisualActor>
     <Actor>units/persians/chariot_archer_e_m.xml</Actor>

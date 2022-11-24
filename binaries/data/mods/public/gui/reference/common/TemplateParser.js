@@ -71,12 +71,12 @@ class TemplateParser
 
 		// Set the minimum phase that this entity is available.
 		// For gaia objects, this is meaningless.
-		if (!parsed.requiredTechnology)
+		if (!parsed.requirements)
 			parsed.phase = this.phaseList[0];
-		else if (this.TemplateLoader.isPhaseTech(parsed.requiredTechnology))
-			parsed.phase = this.getActualPhase(parsed.requiredTechnology);
+		else if (this.TemplateLoader.isPhaseTech(parsed.requirements.Techs))
+			parsed.phase = this.getActualPhase(parsed.requirements.Techs);
 		else
-			parsed.phase = this.getPhaseOfTechnology(parsed.requiredTechnology, civCode);
+			parsed.phase = this.getPhaseOfTechnology(parsed.requirements.Techs, civCode);
 
 		if (template.Identity.Rank)
 			parsed.promotion = {
@@ -256,14 +256,14 @@ class TemplateParser
 			data.cost = upgrade.cost;
 			data.icon = upgrade.icon || data.icon;
 			data.tooltip = upgrade.tooltip || data.tooltip;
-			data.requiredTechnology = upgrade.requiredTechnology || data.requiredTechnology;
+			data.requirements = upgrade.requirements || data.requirements;
 
-			if (!data.requiredTechnology)
+			if (!data.requirements)
 				data.phase = this.phaseList[0];
-			else if (this.TemplateLoader.isPhaseTech(data.requiredTechnology))
-				data.phase = this.getActualPhase(data.requiredTechnology);
+			else if (this.TemplateLoader.isPhaseTech(data.requirements.Techs))
+				data.phase = this.getActualPhase(data.requirements.Techs);
 			else
-				data.phase = this.getPhaseOfTechnology(data.requiredTechnology, civCode);
+				data.phase = this.getPhaseOfTechnology(data.requirements.Techs, civCode);
 
 			newUpgrades.push(data);
 		}

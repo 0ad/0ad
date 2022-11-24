@@ -76,9 +76,7 @@ Identity.prototype.Schema =
 		"<text/>" +
 	"</element>" +
 	"<optional>" +
-		"<element name='RequiredTechnology' a:help='Optional name of a technology which must be researched before the entity can be produced.'>" +
-			"<text/>" +
-		"</element>" +
+		RequirementsHelper.BuildSchema() +
 	"</optional>" +
 	"<optional>" +
 		"<element name='Controllable' a:help='Whether players can control this entity. Defaults to true.'>" +

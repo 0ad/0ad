@@ -6,7 +6,9 @@
     <SpecificName>Yǔ Lín</SpecificName>
     <SelectionGroupName>units/han/champion_infantry_archer</SelectionGroupName>
     <Icon>units/han/champion_infantry_archer.png</Icon>
-    <RequiredTechnology>phase_city</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_city</Techs>
+    </Requirements>
   </Identity>
   <VisualActor>
     <Actor>units/han/infantry_archer_c.xml</Actor>

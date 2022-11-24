@@ -30,7 +30,9 @@
     <Tooltip>Train Champions and research their technologies.</Tooltip>
     <VisibleClasses datatype="tokens">-Village City Academy</VisibleClasses>
     <Icon>structures/embassy_italic.png</Icon>
-    <RequiredTechnology>phase_city</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_city</Techs>
+    </Requirements>
   </Identity>
   <Obstruction>
     <Static depth="22.0" width="22.0"/>

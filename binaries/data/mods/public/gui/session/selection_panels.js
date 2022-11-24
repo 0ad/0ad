@@ -166,8 +166,8 @@ g_SelectionPanels.Construction = {
 		if (!template)
 			return false;
 
-		let technologyEnabled = Engine.GuiInterfaceCall("IsTechnologyResearched", {
-			"tech": template.requiredTechnology,
+		const requirementsMet = Engine.GuiInterfaceCall("AreRequirementsMet", {
+			"requirements": template.requirements,
 			"player": data.player
 		});
 
@@ -203,13 +203,13 @@ g_SelectionPanels.Construction = {
 		tooltips.push(
 			formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers),
 			formatMatchLimitString(limits.matchLimit, limits.matchCount, limits.type),
-			getRequiredTechnologyTooltip(technologyEnabled, template.requiredTechnology, GetSimState().players[data.player].civ),
+			getRequirementsTooltip(requirementsMet, template.requirements, GetSimState().players[data.player].civ),
 			getNeededResourcesTooltip(neededResources));
 
 		data.button.tooltip = tooltips.filter(tip => tip).join("\n");
 
 		let modifier = "";
-		if (!technologyEnabled || limits.canBeAddedCount == 0)
+		if (!requirementsMet || limits.canBeAddedCount == 0)
 		{
 			data.button.enabled = false;
 			modifier += "color:0 0 0 127:grayscale:";
@@ -990,8 +990,8 @@ g_SelectionPanels.Training = {
 		if (!template)
 			return false;
 
-		let technologyEnabled = Engine.GuiInterfaceCall("IsTechnologyResearched", {
-			"tech": template.requiredTechnology,
+		const requirementsMet = Engine.GuiInterfaceCall("AreRequirementsMet", {
+			"requirements": template.requirements,
 			"player": data.player
 		});
 
@@ -1048,13 +1048,13 @@ g_SelectionPanels.Training = {
 		tooltips.push(showTemplateViewerOnRightClickTooltip());
 		tooltips.push(
 			formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch),
-			getRequiredTechnologyTooltip(technologyEnabled, template.requiredTechnology, GetSimState().players[data.player].civ),
+			getRequirementsTooltip(requirementsMet, template.requirements, GetSimState().players[data.player].civ),
 			getNeededResourcesTooltip(neededResources));
 
 		data.button.tooltip = tooltips.filter(tip => tip).join("\n");
 
 		let modifier = "";
-		if (!technologyEnabled || limits.canBeAddedCount == 0)
+		if (!requirementsMet || limits.canBeAddedCount == 0)
 		{
 			data.button.enabled = false;
 			modifier = "color:0 0 0 127:grayscale:";
@@ -1106,11 +1106,9 @@ g_SelectionPanels.Upgrade = {
 		let progressOverlay = Engine.GetGUIObjectByName("unitUpgradeProgressSlider[" + data.i + "]");
 		progressOverlay.hidden = true;
 
-		let technologyEnabled = true;
-
-		if (data.item.requiredTechnology)
-			technologyEnabled = Engine.GuiInterfaceCall("IsTechnologyResearched", {
-				"tech": data.item.requiredTechnology,
+		const requirementsMet = !data.item.requirements ||
+			Engine.GuiInterfaceCall("AreRequirementsMet", {
+				"requirements": data.item.requirements,
 				"player": data.player
 			});
 
@@ -1167,7 +1165,7 @@ g_SelectionPanels.Upgrade = {
 				getEntityCostTooltip(data.item, undefined, undefined, data.unitEntStates.length),
 				formatLimitString(limits.entLimit, limits.entCount, limits.entLimitChangers),
 				formatMatchLimitString(limits.matchLimit, limits.matchCount, limits.type),
-				getRequiredTechnologyTooltip(technologyEnabled, data.item.requiredTechnology, GetSimState().players[data.player].civ),
+				getRequirementsTooltip(requirementsMet, data.item.requirements, GetSimState().players[data.player].civ),
 				getNeededResourcesTooltip(neededResources),
 				showTemplateViewerOnRightClickTooltip());
 
@@ -1179,7 +1177,7 @@ g_SelectionPanels.Upgrade = {
 				    upgradableEntStates.map(state => state.id));
 			};
 
-			if (!technologyEnabled || limits.canBeAddedCount == 0 &&
+			if (!requirementsMet || limits.canBeAddedCount == 0 &&
 				!upgradableEntStates.some(state => hasSameRestrictionCategory(data.item.entity, state.template)))
 			{
 				data.button.enabled = false;

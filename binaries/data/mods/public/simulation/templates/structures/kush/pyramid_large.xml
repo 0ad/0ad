@@ -27,8 +27,10 @@
     <SpecificName>mr ʿȝ</SpecificName>
     <Classes datatype="tokens">-ConquestCritical CivSpecific</Classes>
     <VisibleClasses datatype="tokens">City Pyramid</VisibleClasses>
-    <RequiredTechnology>phase_city</RequiredTechnology>
     <Icon>structures/kush_pyramid_big.png</Icon>
+    <Requirements>
+      <Techs>phase_city</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <stone>90</stone>

@@ -27,8 +27,10 @@
     <SelectionGroupName>template_structure_military_elephant_stable</SelectionGroupName>
     <Tooltip>Train Elephants and research Elephant technologies.</Tooltip>
     <VisibleClasses datatype="tokens">City ElephantStable</VisibleClasses>
-    <RequiredTechnology>phase_city</RequiredTechnology>
     <Icon>structures/stable_elephant.png</Icon>
+    <Requirements>
+      <Techs>phase_city</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <wood>40</wood>

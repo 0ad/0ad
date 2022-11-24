@@ -27,7 +27,9 @@
     <SelectionGroupName>template_structure_civic_house</SelectionGroupName>
     <VisibleClasses datatype="tokens">Village House</VisibleClasses>
     <Icon>structures/house.png</Icon>
-    <RequiredTechnology>phase_village</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_village</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <wood>15</wood>

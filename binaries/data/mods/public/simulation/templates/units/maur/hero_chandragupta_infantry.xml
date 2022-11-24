@@ -10,12 +10,14 @@
     <Mount>
       <Entity>units/maur/hero_chandragupta</Entity>
       <Tooltip>This gives Chandragupta Maurya his War Elephant.</Tooltip>
-	  <RequiredTechnology>phase_city</RequiredTechnology>
       <Cost>
         <food>200</food>
         <metal>200</metal>
       </Cost>
       <Time>10</Time>
+      <Requirements>
+        <Techs>phase_city</Techs>
+      </Requirements>
     </Mount>
   </Upgrade>
   <VisualActor>

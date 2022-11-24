@@ -20,14 +20,13 @@
     <GenericName>Halberdier</GenericName>
     <SpecificName>Jǐ Bīng</SpecificName>
     <Icon>units/han/infantry_halberdman.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/han/infantry_pikeman_a</Entity>
   </Promotion>
-  <VisualActor>
-    <Actor>units/han/infantry_halberdman_b.xml</Actor>
-  </VisualActor>
   <Resistance>
     <Entity>
       <Damage>
@@ -41,4 +40,7 @@
       special/formations/anti_cavalry
     </Formations>
   </UnitAI>
+  <VisualActor>
+    <Actor>units/han/infantry_halberdman_b.xml</Actor>
+  </VisualActor>
 </Entity>

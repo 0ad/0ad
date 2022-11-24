@@ -52,7 +52,9 @@
     <SelectionGroupName>template_structure_defensive_tower_bolt</SelectionGroupName>
     <VisibleClasses datatype="tokens">BoltTower</VisibleClasses>
     <Icon>structures/tower_bolt.png</Icon>
-    <RequiredTechnology>phase_city</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_city</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <stone>40</stone>

@@ -11,7 +11,9 @@
     <SelectionGroupName>units/maur/champion_chariot</SelectionGroupName>
     <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
     <Icon>units/maur/champion_chariot.png</Icon>
-    <RequiredTechnology>unlock_champion_chariots</RequiredTechnology>
+    <Requirements>
+      <Techs>unlock_champion_chariots</Techs>
+    </Requirements>
   </Identity>
   <VisualActor>
     <Actor>units/mauryas/chariot_archer_c_m.xml</Actor>

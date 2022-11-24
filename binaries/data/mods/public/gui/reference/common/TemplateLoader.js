@@ -293,8 +293,8 @@ class TemplateLoader
 				if (parentTemplate.Upgrade[upgrade].Entity)
 					return [inheritedVariance[0], TemplateVariant.upgrade, upgrade.toLowerCase()];
 
-		if (template.Identity.RequiredTechnology)
-			return [inheritedVariance[0], TemplateVariant.unlockedByTechnology, template.Identity.RequiredTechnology];
+		if (template.Identity.Requirements?.Techs)
+			return [inheritedVariance[0], TemplateVariant.unlockedByTechnology, template.Identity.Requirements?.Techs];
 
 		if (parentTemplate.Cost)
 			for (let res in parentTemplate.Cost.Resources)

@@ -12,7 +12,9 @@
     <GenericName>Temple of Mars</GenericName>
     <SpecificName>Aedēs Mārtiālis</SpecificName>
     <VisibleClasses datatype="tokens">-Town City TempleOfMars</VisibleClasses>
-    <RequiredTechnology>phase_city</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_city</Techs>
+    </Requirements>
   </Identity>
   <Obstruction>
     <Static width="20.0" depth="40.0"/>

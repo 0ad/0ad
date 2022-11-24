@@ -7,7 +7,9 @@
     <SpecificName>Hypaspistḗs</SpecificName>
     <SelectionGroupName>units/mace/champion_infantry_spearman</SelectionGroupName>
     <Icon>units/mace/hypaspist.png</Icon>
-    <RequiredTechnology>unlock_champion_infantry</RequiredTechnology>
+    <Requirements>
+      <Techs>unlock_champion_infantry</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/mace/champion_infantry_spearman_02</Entity>

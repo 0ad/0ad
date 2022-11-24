@@ -27,8 +27,10 @@
     <GenericName>Healer</GenericName>
     <SelectionGroupName>template_unit_support_healer</SelectionGroupName>
     <Rank>Basic</Rank>
-    <RequiredTechnology>phase_town</RequiredTechnology>
     <Tooltip>Heal units.</Tooltip>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <xp>8</xp>

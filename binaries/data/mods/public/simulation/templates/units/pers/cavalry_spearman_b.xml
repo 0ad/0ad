@@ -7,7 +7,9 @@
     <GenericName>Cappadocian Cavalry</GenericName>
     <SpecificName>Asabāra Katpatuka</SpecificName>
     <Icon>units/pers/cavalry_spearman.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/pers/cavalry_spearman_a</Entity>

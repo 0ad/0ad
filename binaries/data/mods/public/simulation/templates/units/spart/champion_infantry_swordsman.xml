@@ -18,7 +18,9 @@
     <SpecificName>Ékdromos Skirítēs</SpecificName>
     <Rank>Elite</Rank>
     <Icon>units/spart/champion_infantry_sword.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <metal op="add">3</metal>

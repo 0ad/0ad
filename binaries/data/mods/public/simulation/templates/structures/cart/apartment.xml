@@ -25,7 +25,9 @@
     <Classes datatype="tokens">CivSpecific</Classes>
     <VisibleClasses datatype="tokens">-Village Town</VisibleClasses>
     <Icon>structures/apartment.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <wood op="add">10</wood>
@@ -37,11 +39,11 @@
   <Population>
     <Bonus op="add">10</Bonus>
   </Population>
+  <TerritoryDecay>
+    <DecayRate op="mul">2</DecayRate>
+  </TerritoryDecay>
   <VisualActor>
     <FoundationActor>structures/carthaginians/fndn_house.xml</FoundationActor>
     <Actor>structures/carthaginians/apartment.xml</Actor>
   </VisualActor>
-  <TerritoryDecay>
-    <DecayRate op="mul">2</DecayRate>
-  </TerritoryDecay>
 </Entity>

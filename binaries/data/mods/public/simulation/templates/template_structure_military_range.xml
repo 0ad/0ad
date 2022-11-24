@@ -24,7 +24,9 @@
     <Tooltip>Train Ranged Infantry and research technologies.</Tooltip>
     <VisibleClasses datatype="tokens">Village Range</VisibleClasses>
     <Icon>structures/range.png</Icon>
-    <RequiredTechnology>phase_village</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_village</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <wood>40</wood>

@@ -441,7 +441,7 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, modif
 		};
 		ret.icon = template.Identity.Icon;
 		ret.tooltip = template.Identity.Tooltip;
-		ret.requiredTechnology = template.Identity.RequiredTechnology;
+		ret.requirements = template.Identity.Requirements;
 		ret.visibleIdentityClasses = GetVisibleIdentityClasses(template.Identity);
 		ret.nativeCiv = template.Identity.Civ;
 	}
@@ -476,8 +476,8 @@ function GetTemplateDataHelper(template, player, auraTemplates, resources, modif
 				"entity": upgrade.Entity,
 				"tooltip": upgrade.Tooltip,
 				"cost": cost,
-				"icon": upgrade.Icon || undefined,
-				"requiredTechnology": upgrade.RequiredTechnology || undefined
+				"icon": upgrade.Icon,
+				"requirements": upgrade.Requirements
 			});
 		}
 	}

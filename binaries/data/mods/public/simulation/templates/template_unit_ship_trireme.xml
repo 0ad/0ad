@@ -50,7 +50,9 @@
     <GenericName>Medium Warship</GenericName>
     <Tooltip>Garrison units for transport and to increase firepower. Deals triple damage against Ships.</Tooltip>
     <VisibleClasses datatype="tokens">Ranged Warship Trireme</VisibleClasses>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <xp>140</xp>

@@ -3,8 +3,10 @@
   <Identity>
     <Civ>cart</Civ>
     <SpecificName>Low Wall</SpecificName>
-    <RequiredTechnology>phase_village</RequiredTechnology>
     <Icon>structures/palisade_wall.png</Icon>
+    <Requirements>
+      <Techs>phase_village</Techs>
+    </Requirements>
   </Identity>
   <WallSet>
     <Templates>

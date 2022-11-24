@@ -6,7 +6,9 @@
     <GenericName>Indian Raiding Cavalry</GenericName>
     <SpecificName>Aśvārohagaṇaḥ</SpecificName>
     <Icon>units/maur/cavalry_swordsman.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/maur/cavalry_swordsman_a</Entity>

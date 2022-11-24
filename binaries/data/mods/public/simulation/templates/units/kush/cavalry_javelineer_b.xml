@@ -6,8 +6,10 @@
     <SelectionGroupName>units/kush/cavalry_javelineer_b</SelectionGroupName>
     <SpecificName>iry hr ssmwtt</SpecificName>
     <GenericName>Napatan Light Cavalry</GenericName>
-    <RequiredTechnology>phase_village</RequiredTechnology>
     <Icon>units/kush/cavalry_javelinist.png</Icon>
+    <Requirements>
+      <Techs>phase_village</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/kush/cavalry_javelineer_a</Entity>

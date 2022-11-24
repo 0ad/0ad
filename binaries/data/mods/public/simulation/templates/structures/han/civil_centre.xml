@@ -31,13 +31,15 @@
     <ImperialCourt>
       <Entity>structures/{civ}/civil_centre_court</Entity>
       <Tooltip>This greatly increases the health, capture resistance, and garrison capacity of this specific Civic Center. Unlock training of Heroes here and reduce its research and batch training times by half.</Tooltip>
-      <RequiredTechnology>phase_city</RequiredTechnology>
       <Cost>
         <stone>300</stone>
         <wood>300</wood>
       </Cost>
       <Time>40</Time>
       <Variant>upgrading</Variant>
+      <Requirements>
+        <Techs>phase_city</Techs>
+      </Requirements>
     </ImperialCourt>
   </Upgrade>
   <VisualActor>

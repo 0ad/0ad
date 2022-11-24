@@ -25,7 +25,7 @@ PETRA.ConstructionPlan.prototype.canStart = function(gameState)
 	if (!this.isGo(gameState))
 		return false;
 
-	if (this.template.requiredTech() && !gameState.isResearched(this.template.requiredTech()))
+	if (!this.template.available(gameState))
 		return false;
 
 	return gameState.ai.HQ.buildManager.hasBuilder(this.type);

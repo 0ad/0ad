@@ -15,7 +15,9 @@
     <Classes datatype="tokens">-Organic</Classes>
     <VisibleClasses datatype="tokens">Siege</VisibleClasses>
     <GenericName>Siege</GenericName>
-    <RequiredTechnology>phase_city</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_city</Techs>
+    </Requirements>
   </Identity>
   <Position>
     <Anchor>pitch-roll</Anchor>

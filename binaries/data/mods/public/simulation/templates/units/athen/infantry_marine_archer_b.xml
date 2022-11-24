@@ -5,7 +5,9 @@
     <GenericName>Cretan Mercenary Archer</GenericName>
     <SpecificName>Toxótēs Krētikós</SpecificName>
     <Icon>units/mace/infantry_archer.png</Icon>
-    <RequiredTechnology>iphicratean_reforms</RequiredTechnology>
+    <Requirements>
+      <Techs>iphicratean_reforms</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/athen/infantry_marine_archer_a</Entity>

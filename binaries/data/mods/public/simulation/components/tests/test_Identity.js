@@ -1,3 +1,4 @@
+Engine.LoadHelperScript("Requirements.js");
 Engine.LoadComponentScript("Identity.js");
 
 let cmpIdentity = ConstructComponent(5, "Identity", {
@@ -32,7 +33,9 @@ cmpIdentity = ConstructComponent(6, "Identity", {
 	"Classes": { "_string": "CitizenSoldier Human Organic" },
 	"VisibleClasses": { "_string": "Javelineer" },
 	"Icon": "units/iber_infantry_javelineer.png",
-	"RequiredTechnology": "phase_town"
+	"Requirements": {
+		"Techs": "phase_town"
+	}
 });
 
 TS_ASSERT_EQUALS(cmpIdentity.GetCiv(), "iber");

@@ -10,8 +10,10 @@
     <Tooltip>Wall off an area.</Tooltip>
     <VisibleClasses datatype="tokens">Wall</VisibleClasses>
     <Icon>structures/wall.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
     <Undeletable>true</Undeletable>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Visibility>
     <RetainInFog>false</RetainInFog>

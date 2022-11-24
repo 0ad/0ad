@@ -14,7 +14,9 @@
     <Tooltip>Wall off your town for a stout defense.</Tooltip>
     <VisibleClasses datatype="tokens">Wall</VisibleClasses>
     <Icon>structures/wall.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Obstruction>
     <Static width="6.0" depth="6.0"/>

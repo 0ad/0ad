@@ -44,7 +44,9 @@
     <Classes datatype="tokens">Organic Human</Classes>
     <VisibleClasses datatype="tokens">Minister</VisibleClasses>
     <Icon>units/han/minister.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <xp>150</xp>

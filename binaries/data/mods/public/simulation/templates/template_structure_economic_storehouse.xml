@@ -27,7 +27,9 @@
     <Classes datatype="tokens">DropsiteWood DropsiteMetal DropsiteStone</Classes>
     <VisibleClasses datatype="tokens">Village Storehouse</VisibleClasses>
     <Icon>structures/storehouse.png</Icon>
-    <RequiredTechnology>phase_village</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_village</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <wood>20</wood>

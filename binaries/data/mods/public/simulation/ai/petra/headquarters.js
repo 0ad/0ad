@@ -1897,7 +1897,7 @@ PETRA.HQ.prototype.canBuild = function(gameState, structure)
 
 	if (!template.available(gameState))
 	{
-		this.buildManager.setUnbuildable(gameState, type, 30, "tech");
+		this.buildManager.setUnbuildable(gameState, type, 30, "requirements");
 		return false;
 	}
 

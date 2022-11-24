@@ -5,7 +5,9 @@
     <SelectionGroupName>units/gaul/cavalry_swordsman_b</SelectionGroupName>
     <SpecificName>Eporedos</SpecificName>
     <Icon>units/gaul/cavalry_swordsman.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/gaul/cavalry_swordsman_a</Entity>
