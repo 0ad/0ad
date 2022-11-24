@@ -33,18 +33,6 @@
   <TrainingRestrictions>
     <Category>Juggernaut</Category>
   </TrainingRestrictions>
-  <TurretHolder>
-    <TurretPoints>
-      <Siege>
-        <Template>units/ptol/siege_juggernaut</Template>
-        <Ejectable>false</Ejectable>
-        <X>0</X>
-        <Y>4.0</Y>
-        <Z>-15.5</Z>
-        <Angle>0</Angle>
-      </Siege>
-    </TurretPoints>
-  </TurretHolder>
   <VisualActor>
     <Actor>structures/romans/quinquereme.xml</Actor>
   </VisualActor>
