@@ -3,6 +3,9 @@
   <Identity>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
+  <ResourceTrickle>
+    <Interval>2000</Interval>
+  </ResourceTrickle>
   <Sound>
     <SoundGroups>
       <select>actor/fauna/animal/cattle_select.xml</select>

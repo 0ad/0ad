@@ -1,0 +1,9 @@
+{
+	"type": "garrisonedUnits",
+	"affects": ["Domestic"],
+	"modifications": [
+		{ "value": "ResourceTrickle/Rates/food", "add": 1 }
+	],
+	"auraDescription" : "Garrison domesticated animals within the Corral to enable a slow trickle of food per animal.",
+	"auraName": "Ranching and Corralling"
+}

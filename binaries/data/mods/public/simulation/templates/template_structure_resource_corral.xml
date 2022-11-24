@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_resource">
+  <Auras datatype="tokens">
+    structures/corral_garrison
+  </Auras>
   <Cost>
     <BuildTime>50</BuildTime>
     <Resources>
@@ -10,6 +13,14 @@
     <Square width="18.0" depth="17.0"/>
     <Height>5.0</Height>
   </Footprint>
+  <GarrisonHolder>
+    <Max>8</Max>
+    <EjectHealth>0.5</EjectHealth>
+    <EjectClassesOnDestroy datatype="tokens">Animal</EjectClassesOnDestroy>
+    <List datatype="tokens">Animal</List>
+    <BuffHeal>1</BuffHeal>
+    <LoadingRange>4</LoadingRange>
+  </GarrisonHolder>
   <Health>
     <Max>500</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_stone_3x3</SpawnEntityOnDeath>
@@ -17,7 +28,7 @@
   <Identity>
     <GenericName>Corral</GenericName>
     <SelectionGroupName>template_structure_resource_corral</SelectionGroupName>
-    <Tooltip>Raise Domestic Animals for food.</Tooltip>
+    <Tooltip>Raise Domestic Animals for immediate slaughter, or garrison them instead to gain a free trickle of food.</Tooltip>
     <VisibleClasses datatype="tokens">Economic Village Corral</VisibleClasses>
     <Icon>structures/corral.png</Icon>
     <RequiredTechnology>phase_village</RequiredTechnology>
