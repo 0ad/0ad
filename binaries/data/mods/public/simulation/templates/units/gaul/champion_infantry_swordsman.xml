@@ -4,7 +4,9 @@
     <Civ>gaul</Civ>
     <SpecificName>Soliduros</SpecificName>
     <Icon>units/gaul/champion_infantry.png</Icon>
-    <RequiredTechnology>unlock_champion_infantry</RequiredTechnology>
+    <Requirements>
+      <Techs>unlock_champion_infantry</Techs>
+    </Requirements>
   </Identity>
   <VisualActor>
     <Actor>units/gauls/infantry_swordsman_c.xml</Actor>

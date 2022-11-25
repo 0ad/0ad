@@ -73,29 +73,13 @@ m.Template = m.Class({
 		return this._classes && MatchesClassList(this._classes, array);
 	},
 
-	"requiredTech": function() { return this.get("Identity/RequiredTechnology"); },
-
-	"available": function(gameState) {
-		let techRequired = this.requiredTech();
-		if (!techRequired)
-			return true;
-		return gameState.isResearched(techRequired);
+	"requirements": function() {
+		return this.get("Identity/Requirements");
 	},
 
-	// specifically
-	"phase": function() {
-		let techRequired = this.requiredTech();
-		if (!techRequired)
-			return 0;
-		if (techRequired == "phase_village")
-			return 1;
-		if (techRequired == "phase_town")
-			return 2;
-		if (techRequired == "phase_city")
-			return 3;
-		if (techRequired.startsWith("phase_"))
-			return 4;
-		return 0;
+	"available": function(gameState) {
+		const requirements = this.requirements();
+		return !requirements || Sim.RequirementsHelper.AreRequirementsMet(requirements, PlayerID);
 	},
 
 	"cost": function(productionQueue) {

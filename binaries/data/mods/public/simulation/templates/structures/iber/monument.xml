@@ -33,7 +33,9 @@
     <Classes datatype="tokens">CivSpecific</Classes>
     <VisibleClasses datatype="tokens">Monument Town</VisibleClasses>
     <Icon>structures/iberian_bull.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <stone>20</stone>

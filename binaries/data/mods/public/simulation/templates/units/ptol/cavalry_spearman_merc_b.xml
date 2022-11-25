@@ -6,7 +6,9 @@
     <GenericName>Macedonian Settler Cavalry</GenericName>
     <SpecificName>Hippeús Makedonikós</SpecificName>
     <Icon>units/ptol/cavalry_spearman.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/ptol/cavalry_spearman_merc_a</Entity>

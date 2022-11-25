@@ -6,7 +6,9 @@
     <SpecificName>Vachii Gaja</SpecificName>
     <SelectionGroupName>units/maur/elephant_archer_b</SelectionGroupName>
     <Icon>units/maur/elephant_archer.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/maur/elephant_archer_a</Entity>

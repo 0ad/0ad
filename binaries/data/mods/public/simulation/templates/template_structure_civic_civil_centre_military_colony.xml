@@ -28,7 +28,9 @@
     <SelectionGroupName>template_structure_civic_civil_centre_military_colony</SelectionGroupName>
     <VisibleClasses datatype="tokens">Colony</VisibleClasses>
     <Icon>structures/military_settlement.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <wood>40</wood>

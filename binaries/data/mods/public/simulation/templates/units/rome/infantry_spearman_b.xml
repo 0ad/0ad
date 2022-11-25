@@ -19,7 +19,9 @@
     <GenericName>Veteran Spearman</GenericName>
     <SpecificName>Triārius</SpecificName>
     <Icon>units/rome/infantry_spearman.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/rome/infantry_spearman_a</Entity>

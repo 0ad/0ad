@@ -65,15 +65,15 @@ DiplomacyDialogPlayerControl.prototype.SpyRequestButton = class
 
 		let tooltip = translate(this.Tooltip);
 
-		if (template.requiredTechnology &&
-			!Engine.GuiInterfaceCall("IsTechnologyResearched", {
-				"tech": template.requiredTechnology,
+		if (template.requirements &&
+			!Engine.GuiInterfaceCall("AreRequirementsMet", {
+				"requirements": template.requirements,
 				"player": g_ViewedPlayer
 			}))
 		{
-			tooltip += "\n" + getRequiredTechnologyTooltip(
+			tooltip += "\n" + getRequirementsTooltip(
 				false,
-				template.requiredTechnology,
+				template.requirements,
 				GetSimState().players[g_ViewedPlayer].civ);
 
 			this.diplomacySpyRequest.enabled = false;

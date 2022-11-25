@@ -956,14 +956,17 @@ function getEntityCostTooltip(template, player, entity, buildingsCountToTrainFul
 	return "";
 }
 
-function getRequiredTechnologyTooltip(technologyEnabled, requiredTechnology, civ)
+function getRequirementsTooltip(enabled, requirements, civ)
 {
-	if (technologyEnabled)
+	if (enabled)
 		return "";
 
-	return sprintf(translate("Requires %(technology)s"), {
-		"technology": getEntityNames(GetTechnologyData(requiredTechnology, civ))
-	});
+	// Simple requirements (one tech) can be translated on the fly.
+	if ("Techs" in requirements && !requirements.Techs.includes(" "))
+		return sprintf(translate("Requires %(technology)s"), {
+			"technology": getEntityNames(GetTechnologyData(requirements.Techs, civ))
+		});
+	return translate(requirements.Tooltip);
 }
 
 /**

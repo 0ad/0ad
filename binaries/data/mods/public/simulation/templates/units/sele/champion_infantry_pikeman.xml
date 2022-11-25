@@ -6,7 +6,9 @@
     <GenericName>Silver Shield</GenericName>
     <SpecificName>Argyraspis</SpecificName>
     <Icon>units/sele/champion_pikeman.png</Icon>
-    <RequiredTechnology>traditional_army_sele</RequiredTechnology>
+    <Requirements>
+      <Techs>traditional_army_sele</Techs>
+    </Requirements>
   </Identity>
   <VisualActor>
     <Actor>units/seleucids/infantry_pikeman_c.xml</Actor>

@@ -24,8 +24,10 @@
     <SpecificName>mr</SpecificName>
     <Classes datatype="tokens">-ConquestCritical CivSpecific</Classes>
     <VisibleClasses datatype="tokens">Village Pyramid</VisibleClasses>
-    <RequiredTechnology>phase_village</RequiredTechnology>
     <Icon>structures/kush_pyramid_small.png</Icon>
+    <Requirements>
+      <Techs>phase_village</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <stone>30</stone>

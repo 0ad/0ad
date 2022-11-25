@@ -30,7 +30,9 @@
     <Classes datatype="tokens">CivSpecific</Classes>
     <VisibleClasses datatype="tokens">-Town City TempleOfAmun</VisibleClasses>
     <Icon>structures/temple_epic.png</Icon>
-    <RequiredTechnology>phase_city</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_city</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <stone op="mul">2</stone>

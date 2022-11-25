@@ -12,7 +12,9 @@
     <GenericName>Mercenary Thureos Skirmisher</GenericName>
     <SpecificName>Thureophóros Akrobolistḗs</SpecificName>
     <Icon>units/ptol/infantry_javelinist_merc.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/ptol/infantry_javelineer_a</Entity>

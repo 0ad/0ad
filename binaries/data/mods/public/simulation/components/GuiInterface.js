@@ -661,16 +661,10 @@ GuiInterface.prototype.GetTemplateData = function(player, data)
 	return GetTemplateDataHelper(template, owner, aurasTemplate, Resources);
 };
 
-GuiInterface.prototype.IsTechnologyResearched = function(player, data)
+GuiInterface.prototype.AreRequirementsMet = function(player, data)
 {
-	if (!data.tech)
-		return true;
-
-	let cmpTechnologyManager = QueryPlayerIDInterface(data.player !== undefined ? data.player : player, IID_TechnologyManager);
-	if (!cmpTechnologyManager)
-		return false;
-
-	return cmpTechnologyManager.IsTechnologyResearched(data.tech);
+	return !data.requirements || RequirementsHelper.AreRequirementsMet(data.requirements,
+		data.player !== undefined ? data.player : player);
 };
 
 /**
@@ -2076,7 +2070,7 @@ let exposedFunctions = {
 	"GetMultipleEntityStates": 1,
 	"GetAverageRangeForBuildings": 1,
 	"GetTemplateData": 1,
-	"IsTechnologyResearched": 1,
+	"AreRequirementsMet": 1,
 	"CheckTechnologyRequirements": 1,
 	"GetStartedResearch": 1,
 	"GetBattleState": 1,

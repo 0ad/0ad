@@ -68,7 +68,9 @@
     <Classes datatype="tokens">GarrisonFortress</Classes>
     <VisibleClasses datatype="tokens">Defensive Fortress</VisibleClasses>
     <Icon>structures/fortress.png</Icon>
-    <RequiredTechnology>phase_city</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_city</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <wood>60</wood>

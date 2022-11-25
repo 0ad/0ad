@@ -32,7 +32,9 @@
     <Tooltip>Garrison Infantry for additional arrows. Needs the “Murder Holes” technology to protect its foot.</Tooltip>
     <VisibleClasses datatype="tokens">StoneTower</VisibleClasses>
     <Icon>structures/defense_tower.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <wood>20</wood>

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/pers/cavalry_javelineer_e">
   <Identity>
-    <RequiredTechnology>equine_transports</RequiredTechnology>
+    <Requirements>
+      <Techs>equine_transports</Techs>
+    </Requirements>
   </Identity>
 </Entity>

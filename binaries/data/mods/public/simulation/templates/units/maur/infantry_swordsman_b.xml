@@ -17,7 +17,9 @@
     <GenericName>Indian Swordsman</GenericName>
     <SpecificName>Khadagdhari</SpecificName>
     <Icon>units/maur/infantry_swordsman.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/maur/infantry_swordsman_a</Entity>

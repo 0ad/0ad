@@ -28,8 +28,10 @@
     <Classes datatype="tokens">
 	  CivSpecific
 	</Classes>
-    <RequiredTechnology>phase_village</RequiredTechnology>
     <Icon>structures/yakhchal.png</Icon>
+    <Requirements>
+      <Techs>phase_village</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <stone>20</stone>

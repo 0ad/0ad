@@ -55,7 +55,9 @@
     <SelectionGroupName>template_structure_defensive_tower_artillery</SelectionGroupName>
     <VisibleClasses datatype="tokens">ArtilleryTower</VisibleClasses>
     <Icon>structures/tower_artillery.png</Icon>
-    <RequiredTechnology>phase_city</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_city</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <wood>40</wood>

@@ -19,7 +19,9 @@
     <Classes datatype="tokens">FastMoving</Classes>
     <VisibleClasses datatype="tokens">Cavalry</VisibleClasses>
     <GenericName>Champion Cavalry</GenericName>
-    <RequiredTechnology>unlock_champion_cavalry</RequiredTechnology>
+    <Requirements>
+      <Techs>unlock_champion_cavalry</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <xp>200</xp>

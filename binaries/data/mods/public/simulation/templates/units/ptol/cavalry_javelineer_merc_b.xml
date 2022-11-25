@@ -6,7 +6,9 @@
     <GenericName>Tarantine Settler Cavalry</GenericName>
     <SpecificName>Hippeús Tarantînos</SpecificName>
     <Icon>units/hele/tarentine_cavalry_e.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/ptol/cavalry_javelineer_merc_a</Entity>

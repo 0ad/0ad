@@ -40,12 +40,7 @@ Upgrade.prototype.Schema =
 					"</element>" +
 				"</optional>" +
 				"<optional>" +
-					"<element name='RequiredTechnology' a:help='Define what technology is required for this upgrade'>" +
-						"<choice>" +
-							"<text/>" +
-							"<empty/>" +
-						"</choice>" +
-					"</element>" +
+					RequirementsHelper.BuildSchema() +
 				"</optional>" +
 				"<optional>" +
 					"<element name='CheckPlacementRestrictions' a:help='Upgrading will check for placement restrictions (nb:GUI only)'><empty/></element>" +
@@ -153,7 +148,7 @@ Upgrade.prototype.GetUpgrades = function()
 			"icon": choice.Icon || undefined,
 			"cost": hasCost ? cost : undefined,
 			"tooltip": choice.Tooltip || undefined,
-			"requiredTechnology": this.GetRequiredTechnology(option),
+			"requirements": this.GetRequirements(option),
 		});
 	}
 
@@ -189,14 +184,14 @@ Upgrade.prototype.WillCheckPlacementRestrictions = function(template)
 	return "CheckPlacementRestrictions" in this.template[this.upgradeTemplates[template]];
 };
 
-Upgrade.prototype.GetRequiredTechnology = function(templateArg)
+Upgrade.prototype.GetRequirements = function(templateArg)
 {
 	let choice = this.upgradeTemplates[templateArg] || templateArg;
 
-	if (this.template[choice].RequiredTechnology)
-		return this.template[choice].RequiredTechnology;
+	if (this.template[choice].Requirements)
+		return this.template[choice].Requirements;
 
-	if (!("RequiredTechnology" in this.template[choice]))
+	if (!("Requirements" in this.template[choice]))
 		return undefined;
 
 	let cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
@@ -207,7 +202,7 @@ Upgrade.prototype.GetRequiredTechnology = function(templateArg)
 		entType = entType.replace(/\{civ\}/g, cmpIdentity.GetCiv());
 
 	let template = cmpTemplateManager.GetTemplate(entType);
-	return template.Identity.RequiredTechnology || undefined;
+	return template.Identity.Requirements || undefined;
 };
 
 Upgrade.prototype.GetResourceCosts = function(template)

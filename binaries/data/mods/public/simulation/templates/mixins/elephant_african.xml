@@ -12,20 +12,23 @@
   <Cost>
     <BuildTime op="mul">0.9</BuildTime>
     <Resources>
-      <food op="mul">0.9</food>
-      <wood op="mul">0.9</wood>
-      <stone op="mul">0.9</stone>
-      <metal op="mul">0.9</metal>
+      <food op="mul_round">0.9</food>
+      <wood op="mul_round">0.9</wood>
+      <stone op="mul_round">0.9</stone>
+      <metal op="mul_round">0.9</metal>
     </Resources>
   </Cost>
   <Health>
     <Max op="mul">0.9</Max>
   </Health>
+  <Identity>
+    <Classes datatype="tokens">AfricanElephant</Classes>
+  </Identity>
   <Loot>
-    <food op="mul">0.9</food>
-    <wood op="mul">0.9</wood>
-    <stone op="mul">0.9</stone>
-    <metal op="mul">0.9</metal>
-    <xp op="mul">0.9</xp>
+    <food op="mul_round">0.9</food>
+    <wood op="mul_round">0.9</wood>
+    <stone op="mul_round">0.9</stone>
+    <metal op="mul_round">0.9</metal>
+    <xp op="mul_round">0.9</xp>
   </Loot>
 </Entity>

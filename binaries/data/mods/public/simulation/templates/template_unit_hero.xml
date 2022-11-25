@@ -25,7 +25,9 @@
     <VisibleClasses datatype="tokens">Soldier Hero</VisibleClasses>
     <GenericName>Hero</GenericName>
     <Icon>technologies/laurel_wreath.png</Icon>
-    <RequiredTechnology>phase_city</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_city</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <xp>400</xp>

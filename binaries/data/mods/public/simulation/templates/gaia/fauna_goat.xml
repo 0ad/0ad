@@ -25,6 +25,9 @@
     <Max>70</Max>
     <MaxGatherers>2</MaxGatherers>
   </ResourceSupply>
+  <ResourceTrickle>
+    <Interval>5000</Interval>
+  </ResourceTrickle>
   <Sound>
     <SoundGroups>
       <select>actor/fauna/animal/goat_select.xml</select>

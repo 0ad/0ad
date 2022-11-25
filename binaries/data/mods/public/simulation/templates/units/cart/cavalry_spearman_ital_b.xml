@@ -6,7 +6,9 @@
     <SpecificName>Ḥayyāl Romaḥ Raḫūv</SpecificName>
     <SelectionGroupName>units/cart/cavalry_spearman_ital_b</SelectionGroupName>
     <Icon>units/cart/cavalry_spearman.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/cart/cavalry_spearman_ital_a</Entity>

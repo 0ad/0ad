@@ -1,4 +1,5 @@
 Engine.LoadHelperScript("Player.js");
+Engine.LoadHelperScript("Requirements.js");
 Engine.LoadHelperScript("ValueModification.js");
 Resources = {
 	"BuildSchema": type => {

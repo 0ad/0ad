@@ -4,7 +4,9 @@
     <GenericName>Athenian Marine</GenericName>
     <SpecificName>Epibátēs Athēnaîos</SpecificName>
     <Icon>units/athen/champion_marine.png</Icon>
-    <RequiredTechnology>iphicratean_reforms</RequiredTechnology>
+    <Requirements>
+      <Techs>iphicratean_reforms</Techs>
+    </Requirements>
   </Identity>
   <VisualActor>
     <Actor>units/athenians/infantry_swordsman_c.xml</Actor>

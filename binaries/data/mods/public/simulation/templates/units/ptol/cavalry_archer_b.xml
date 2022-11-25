@@ -17,7 +17,9 @@
     <GenericName>Nabataean Camel Archer</GenericName>
     <SpecificName>Mutsābiq Gamal Nabatu</SpecificName>
     <Icon>units/ptol/camel_archer.png</Icon>
-    <RequiredTechnology>phase_village</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_village</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/ptol/cavalry_archer_a</Entity>

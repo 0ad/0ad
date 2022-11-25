@@ -16,7 +16,9 @@
     <Classes datatype="tokens">CivSpecific</Classes>
     <VisibleClasses datatype="tokens">Naval</VisibleClasses>
     <Icon>structures/crannog.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Obstruction>
     <Static width="29" depth="29"/>

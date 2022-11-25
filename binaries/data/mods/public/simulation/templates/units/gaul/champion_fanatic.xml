@@ -12,7 +12,9 @@
     <GenericName>Naked Fanatic</GenericName>
     <SpecificName>Bariogaisatos</SpecificName>
     <Icon>units/gaul/champion_fanatic.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <food>12</food>

@@ -10,7 +10,9 @@
     <GenericName>Greek Cavalry</GenericName>
     <SpecificName>Hippeús</SpecificName>
     <Icon>units/athen/cavalry_swordsman.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/athen/cavalry_swordsman_a</Entity>

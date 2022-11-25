@@ -4,6 +4,8 @@
     <BuildTime>30</BuildTime>
   </Cost>
   <Identity>
-    <RequiredTechnology>unlock_females_house</RequiredTechnology>
+    <Requirements>
+      <Techs>unlock_females_house</Techs>
+    </Requirements>
   </Identity>
 </Entity>

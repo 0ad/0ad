@@ -7,7 +7,9 @@
     <GenericName>Hyrcanian Cavalry</GenericName>
     <SpecificName>Asabāra Varkaniya</SpecificName>
     <Icon>units/pers/cavalry_axeman.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/pers/cavalry_axeman_a</Entity>

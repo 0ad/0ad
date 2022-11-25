@@ -7,7 +7,9 @@
     <GenericName>Dahae Horse Archer</GenericName>
     <SpecificName>Hippotoxotès Dahae</SpecificName>
     <Icon>units/pers/cavalry_archer.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/sele/cavalry_archer_a</Entity>

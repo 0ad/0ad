@@ -29,7 +29,9 @@
     <Classes datatype="tokens">DropsiteFood</Classes>
     <VisibleClasses datatype="tokens">Village Farmstead</VisibleClasses>
     <Icon>structures/farmstead.png</Icon>
-    <RequiredTechnology>phase_village</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_village</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <wood>20</wood>

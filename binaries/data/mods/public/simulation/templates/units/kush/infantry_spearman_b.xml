@@ -14,8 +14,10 @@
     <SelectionGroupName>units/kush/infantry_spearman_b</SelectionGroupName>
     <GenericName>Nubian Spearman</GenericName>
     <SpecificName>iry-rdwy Nhsyw</SpecificName>
-    <RequiredTechnology>phase_village</RequiredTechnology>
     <Icon>units/kush/infantry_spearman.png</Icon>
+    <Requirements>
+      <Techs>phase_village</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/kush/infantry_spearman_a</Entity>

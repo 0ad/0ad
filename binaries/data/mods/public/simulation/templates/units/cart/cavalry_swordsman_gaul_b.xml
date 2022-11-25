@@ -6,7 +6,9 @@
     <SpecificName>Ḥayyāl Ḥerev Raḫūv</SpecificName>
     <SelectionGroupName>units/cart/cavalry_swordsman_gaul_b</SelectionGroupName>
     <Icon>units/cart/cavalry_swordsman_2.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/cart/cavalry_swordsman_gaul_a</Entity>

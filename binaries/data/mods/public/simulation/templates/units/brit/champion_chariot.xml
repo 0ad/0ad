@@ -11,7 +11,9 @@
     <SelectionGroupName>units/brit/champion_chariot</SelectionGroupName>
     <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
     <Icon>units/brit/champion_chariot.png</Icon>
-    <RequiredTechnology>unlock_champion_chariots</RequiredTechnology>
+    <Requirements>
+      <Techs>unlock_champion_chariots</Techs>
+    </Requirements>
   </Identity>
   <VisualActor>
     <Actor>units/britons/chariot_javelinist_c_m.xml</Actor>

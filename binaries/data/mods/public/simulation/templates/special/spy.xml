@@ -15,8 +15,10 @@
     <Classes datatype="tokens">Spy</Classes>
     <GenericName>Spy</GenericName>
     <Icon>technologies/spy_trader.png</Icon>
-    <RequiredTechnology>unlock_spies</RequiredTechnology>
     <Undeletable>true</Undeletable>
+    <Requirements>
+      <Techs>unlock_spies</Techs>
+    </Requirements>
   </Identity>
   <VisionSharing>
     <Bribable>false</Bribable>

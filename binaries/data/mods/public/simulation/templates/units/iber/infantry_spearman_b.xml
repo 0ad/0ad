@@ -10,7 +10,9 @@
     <SelectionGroupName>units/iber/infantry_spearman_b</SelectionGroupName>
     <SpecificName>Ezkutari</SpecificName>
     <Icon>units/iber/infantry_spearman.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/iber/infantry_spearman_a</Entity>

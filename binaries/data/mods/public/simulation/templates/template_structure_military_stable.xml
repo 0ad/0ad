@@ -28,7 +28,9 @@
     <Tooltip>Train Cavalry and research Cavalry technologies.</Tooltip>
     <VisibleClasses datatype="tokens">Village Stable</VisibleClasses>
     <Icon>structures/stable_01.png</Icon>
-    <RequiredTechnology>phase_village</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_village</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <wood>40</wood>

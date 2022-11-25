@@ -11,7 +11,9 @@
     <GenericName>Thracian Black Cloak</GenericName>
     <SpecificName>Rhomphaiaphoros</SpecificName>
     <Icon>units/thrac/champion_infantry_swordsman.png</Icon>
-    <RequiredTechnology>unlock_champion_infantry</RequiredTechnology>
+    <Requirements>
+      <Techs>unlock_champion_infantry</Techs>
+    </Requirements>
   </Identity>
   <VisualActor>
     <Actor>units/macedonians/infantry_swordsman_c_thracian.xml</Actor>

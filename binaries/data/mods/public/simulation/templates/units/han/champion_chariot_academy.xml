@@ -9,8 +9,10 @@
     <GenericName>Han War Chariot</GenericName>
     <SpecificName>Zhanche</SpecificName>
     <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
-    <RequiredTechnology>phase_city</RequiredTechnology>
     <Icon>units/han/chariot.png</Icon>
+    <Requirements>
+      <Techs>phase_city</Techs>
+    </Requirements>
   </Identity>
   <VisualActor>
     <Actor>units/han/chariot_archer_m.xml</Actor>

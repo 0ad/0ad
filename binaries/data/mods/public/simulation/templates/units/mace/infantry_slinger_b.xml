@@ -7,7 +7,9 @@
     <GenericName>Rhodian Slinger</GenericName>
     <SpecificName>Sphendonḗtēs Rhódios</SpecificName>
     <Icon>units/mace/infantry_slinger.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/mace/infantry_slinger_a</Entity>

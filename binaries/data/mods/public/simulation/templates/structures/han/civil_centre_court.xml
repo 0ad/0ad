@@ -18,8 +18,10 @@
     <SpecificName>Cháotíng</SpecificName>
     <VisibleClasses datatype="tokens">Defensive ImperialCourt City</VisibleClasses>
     <Classes datatype="tokens">CivCentre CivSpecific</Classes>
-    <RequiredTechnology>phase_city</RequiredTechnology>
     <Icon>structures/military_settlement.png</Icon>
+    <Requirements>
+      <Techs>phase_city</Techs>
+    </Requirements>
   </Identity>
   <Population>
     <Bonus>30</Bonus>

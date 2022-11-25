@@ -18,7 +18,9 @@
     <SpecificName>nhw Bulahau gml</SpecificName>
     <VisibleClasses datatype="tokens">Camel</VisibleClasses>
     <Icon>units/kush/camel_javelinist.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/kush/cavalry_javelineer_merc_a</Entity>

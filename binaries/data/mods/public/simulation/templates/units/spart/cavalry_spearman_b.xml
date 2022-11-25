@@ -7,7 +7,9 @@
     <GenericName>Greek Allied Cavalry</GenericName>
     <SpecificName>Hippeús Symmakhikós</SpecificName>
     <Icon>units/spart/cavalry_spearman.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/spart/cavalry_spearman_a</Entity>

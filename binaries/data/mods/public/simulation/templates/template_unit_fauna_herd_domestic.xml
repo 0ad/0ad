@@ -2,7 +2,14 @@
 <Entity parent="template_unit_fauna_herd">
   <Identity>
     <Classes datatype="tokens">Domestic</Classes>
+    <Tooltip>Kill to gather meat for quick food, or garrison in a Corral for a slow food trickle.</Tooltip>
   </Identity>
+  <ResourceTrickle>
+    <Rates>
+      <food>0</food>
+    </Rates>
+    <Interval>4000</Interval>
+  </ResourceTrickle>
   <Vision>
     <Range>6</Range>
   </Vision>

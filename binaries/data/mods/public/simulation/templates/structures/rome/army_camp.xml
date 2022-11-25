@@ -75,7 +75,9 @@
     <Classes datatype="tokens">ConquestCritical CivSpecific</Classes>
     <VisibleClasses datatype="tokens">City ArmyCamp</VisibleClasses>
     <Icon>structures/roman_camp.png</Icon>
-    <RequiredTechnology>phase_city</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_city</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <wood>100</wood>

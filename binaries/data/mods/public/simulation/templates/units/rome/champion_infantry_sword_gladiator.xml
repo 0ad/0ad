@@ -21,7 +21,9 @@
     <SpecificName>Murmillo</SpecificName>
     <Rank>Elite</Rank>
     <Icon>units/rome/champion_infantry_gladiator_sword.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion disable=""/>
   <Resistance>

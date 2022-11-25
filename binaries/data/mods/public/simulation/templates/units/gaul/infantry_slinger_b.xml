@@ -10,7 +10,9 @@
     <SelectionGroupName>units/gaul/infantry_slinger_b</SelectionGroupName>
     <SpecificName>Talmoris</SpecificName>
     <Icon>units/gaul/infantry_slinger.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/gaul/infantry_slinger_a</Entity>

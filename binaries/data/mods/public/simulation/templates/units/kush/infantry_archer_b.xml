@@ -14,8 +14,10 @@
     <SelectionGroupName>units/kush/infantry_archer_b</SelectionGroupName>
     <GenericName>Nubian Archer</GenericName>
     <SpecificName>Pdty Nhsyw</SpecificName>
-    <RequiredTechnology>phase_village</RequiredTechnology>
     <Icon>units/kush/infantry_archer.png</Icon>
+    <Requirements>
+      <Techs>phase_village</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/kush/infantry_archer_a</Entity>

@@ -14,7 +14,9 @@
     <SpecificName>Sǝḫīr Kidōn</SpecificName>
     <SelectionGroupName>units/cart/infantry_javelineer_iber_b</SelectionGroupName>
     <Icon>units/cart/infantry_javelinist.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Promotion>
     <Entity>units/cart/infantry_javelineer_iber_a</Entity>

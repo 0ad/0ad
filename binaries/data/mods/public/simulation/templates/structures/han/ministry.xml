@@ -38,8 +38,10 @@
     <Classes datatype="tokens">CivSpecific</Classes>
     <VisibleClasses datatype="tokens">ImperialMinistry Town</VisibleClasses>
     <Tooltip>Train the Nine Ministers. Territory root. Research a powerful suite of Administrative technologies.</Tooltip>
-    <RequiredTechnology>phase_town</RequiredTechnology>
     <Icon>structures/imperial_ministry.png</Icon>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <xp>200</xp>

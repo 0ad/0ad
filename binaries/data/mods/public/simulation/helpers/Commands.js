@@ -783,10 +783,7 @@ var g_Commands = {
 				continue;
 			}
 
-			let cmpTechnologyManager = QueryOwnerInterface(ent, IID_TechnologyManager);
-			let requiredTechnology = cmpUpgrade.GetRequiredTechnology(cmd.template);
-
-			if (requiredTechnology && (!cmpTechnologyManager || !cmpTechnologyManager.IsTechnologyResearched(requiredTechnology)))
+			if (!RequirementsHelper.AreRequirementsMet(cmpUpgrade.GetRequirements(cmd.template), player))
 			{
 				if (g_DebugCommands)
 					warn("Invalid command: upgrading is not possible for this player or requires unresearched technology: " + uneval(cmd));

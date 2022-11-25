@@ -25,6 +25,9 @@
     <Max>150</Max>
     <MaxGatherers>4</MaxGatherers>
   </ResourceSupply>
+  <ResourceTrickle>
+    <Interval>3000</Interval>
+  </ResourceTrickle>
   <Sound>
     <SoundGroups>
       <select>actor/fauna/animal/pig_select.xml</select>

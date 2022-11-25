@@ -22,7 +22,9 @@
     <GenericName>Embassy</GenericName>
     <SelectionGroupName>template_structure_military_embassy</SelectionGroupName>
     <VisibleClasses datatype="tokens">Town Embassy</VisibleClasses>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Obstruction>
     <Static width="16.0" depth="16.0"/>

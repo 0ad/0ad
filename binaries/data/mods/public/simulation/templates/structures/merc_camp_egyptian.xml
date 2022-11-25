@@ -30,7 +30,9 @@
     <Classes datatype="tokens">MercenaryCamp</Classes>
     <Tooltip>Capture this structure to train mercenaries from Hellenistic Egypt.</Tooltip>
     <Icon>structures/military_settlement.png</Icon>
-    <RequiredTechnology>phase_town</RequiredTechnology>
+    <Requirements>
+      <Techs>phase_town</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <wood>20</wood>
