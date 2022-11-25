@@ -7,6 +7,7 @@
 # Facundo Abiega
 # Facundo Decena
 # Franco Falleti
+# Gabriel Sarthou
 # Javier Benintendi
 # Juan Delhon
 # Matías Gaglio
@@ -17,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-05 07:09+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:50+0000\n"
-"Last-Translator: Nicolás Vilurón <viluronnicolas@gmail.com>, 2019\n"
+"Last-Translator: Gabriel Sarthou, 2022\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/wildfire-games/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -97,7 +98,7 @@ msgstr "Tabla de clasificación"
 #: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):12
 msgid "Player Profile Lookup"
-msgstr ""
+msgstr "Búsqueda del perfil del jugador"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
 msgctxt "previous page"
@@ -114,7 +115,7 @@ msgstr "Menú principal"
 msgid ""
 "The command '%(cmd)s' is not supported. Try %(help)s to get more information"
 " about the supported commands."
-msgstr ""
+msgstr "El comando \"%(cmd)s\" no es soportado. Intente %(help)s para obtener más información acerca de los comandos soportados."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:45
 #, javascript-format
@@ -124,7 +125,7 @@ msgstr "El comando \"%(cmd)s\" solo puede ser usado por moderadores."
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:67
 #, javascript-format
 msgid "The command '%(cmd)s' requires at least one argument."
-msgstr ""
+msgstr "El comando \"%(cmd)s\" requiere por lo menos un argumento."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:88
 msgid "Set your state to 'Away'."
