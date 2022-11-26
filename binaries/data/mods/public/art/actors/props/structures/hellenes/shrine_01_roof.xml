@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant>
+      <mesh>structural/hele_shrine_01_roof.dae</mesh>
+      <textures>
+        <texture file="structural/hele_struct.dds" name="baseTex"/>
+        <texture file="structural/hele_struct_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>basic_specmap.xml</material>
+</actor>

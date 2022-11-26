@@ -103,7 +103,7 @@ msgstr "Afslut"
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
-msgstr ""
+msgstr "Forsinkelse til livestream: %(delay)s "
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
@@ -281,23 +281,23 @@ msgstr "Tryk %(hotkey)s for at åbne den offentlige samtale."
 #: gui/session/chat/ChatInput.js:45
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "Tryk %(hotkey)s for at åbne observatørchatten."
 
 #: gui/session/chat/ChatInput.js:46
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr ""
+msgstr "Tryk %(hotkey)s for at åbne allierede chatten."
 
 #: gui/session/chat/ChatInput.js:48
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr ""
+msgstr "Tryk på %(hotkey)s for at åbne den tidligere valgte private chat."
 
 #. Translation: A player that left the game joins again
 #: gui/session/chat/ChatMessageFormatNetwork.js:24
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr ""
+msgstr "%(player)s er ved at tilslutte sig spillet igen."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:26
@@ -360,7 +360,7 @@ msgstr "* %(user)s %(message)s"
 #: gui/session/chat/ChatMessageFormatSimulation.js:16
 #, javascript-format
 msgid "%(icon)sYour livestock has been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(icon)s Dine husdyr er blevet angrebet af %(attacker)s!"
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:17
 #, javascript-format
@@ -374,7 +374,7 @@ msgstr "Klik med musen på den angrebne enhed."
 #: gui/session/chat/ChatMessageFormatSimulation.js:46
 #, javascript-format
 msgid "%(player)s bartered %(amountGiven)s for %(amountGained)s."
-msgstr ""
+msgstr "%(player)s byttede %(amountGiven)s for %(amountGained)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:81
 #, javascript-format
@@ -424,7 +424,7 @@ msgstr "%(player)s er nu neutral med %(player2)s."
 #: gui/session/chat/ChatMessageFormatSimulation.js:109
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr ""
+msgstr "%(player)s er nået til %(phaseName)s."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:111
 #, javascript-format
@@ -494,7 +494,7 @@ msgstr "Filtrer diskussionhistorikken."
 #: gui/session/chat/chat_window.xml:(tooltip):55
 msgctxt "chat input"
 msgid "Select chat addressee."
-msgstr ""
+msgstr "Vælg chat adresse."
 
 #: gui/session/developer_overlay/DeveloperOverlay.js:80
 msgid "The Developer Overlay was opened."
@@ -554,7 +554,7 @@ msgstr "Slå tidsforskydning til"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:214
 msgid "Activate Rejoin Test"
-msgstr ""
+msgstr "Aktiver genoptag spil testen"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:248
 msgid "Promote selected units"
@@ -869,7 +869,7 @@ msgstr "Bekræftelse"
 #: gui/session/message_box/QuitConfirmationReplay.js:17
 msgctxt "replayFinished"
 msgid "The replay has finished. What do you want to do?"
-msgstr ""
+msgstr "Gentagelsen er afsluttet. Hvad vil du lave?"
 
 #: gui/session/message_box/ResignConfirmation.js:6
 msgid "Are you sure you want to resign?"
@@ -913,7 +913,7 @@ msgstr ""
 msgid ""
 "Find idle worker\n"
 "Number of idle workers."
-msgstr ""
+msgstr "Find ledig arbejder\nAntal af ledige arbejdere."
 
 #: gui/session/selection_details.js:65
 #, javascript-format
@@ -1030,7 +1030,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:486
 msgid "Loot:"
-msgstr ""
+msgstr "Plyndret:"
 
 #. Translation: Used in the trading gain tooltip
 #: gui/session/selection_details.js:547
@@ -1059,19 +1059,19 @@ msgstr "Alarm afsluttet."
 
 #: gui/session/selection_panels.js:277
 msgid "Default formation is disabled."
-msgstr ""
+msgstr "Standard formation er deaktiveret."
 
 #: gui/session/selection_panels.js:278
 msgid "Right-click to disable the default formation feature."
-msgstr ""
+msgstr "Højreklik for at deaktivere standard information.\n "
 
 #: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
-msgstr ""
+msgstr "Dette er standardformationen, der bruges til bevægelsesordrer.\n "
 
 #: gui/session/selection_panels.js:282
 msgid "Right-click to set this as the default formation."
-msgstr ""
+msgstr "Højreklik for at indstille dette som standardformation.\n "
 
 #: gui/session/selection_panels.js:338
 #, javascript-format
@@ -1113,7 +1113,7 @@ msgstr "Afbryd Udpakning"
 
 #: gui/session/selection_panels.js:558
 msgid "The auto-queue will try to train this item later."
-msgstr ""
+msgstr "Auto-køen vil forsøge at træne dette element senere."
 
 #: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
@@ -1211,7 +1211,7 @@ msgstr "Stå stille"
 #: gui/session/selection_panels_helpers.js:73
 msgctxt "stance"
 msgid "Attack nearby opponents, focus on attackers and chase while visible"
-msgstr ""
+msgstr "Angrib nærliggende modstandere, fokuser på angribere og jag, mens du er synlig\n "
 
 #: gui/session/selection_panels_helpers.js:75
 msgctxt "stance"
@@ -1276,7 +1276,7 @@ msgstr[1] ""
 
 #: gui/session/selection_panels_helpers.js:159
 msgid "Can be trained only once."
-msgstr ""
+msgstr "Kan kun trænes en gang."
 
 #: gui/session/selection_panels_helpers.js:161
 #, javascript-format
@@ -1293,7 +1293,7 @@ msgstr[1] ""
 
 #: gui/session/selection_panels_helpers.js:172
 msgid "Can be created only once."
-msgstr ""
+msgstr "Kan kun laves en gang."
 
 #: gui/session/selection_panels_helpers.js:174
 #, javascript-format
