@@ -49,6 +49,11 @@ public:
 	GLuint GetHandle() const { return m_Handle; }
 	GLbitfield GetAttachmentMask() const { return m_AttachmentMask; }
 
+	AttachmentLoadOp GetColorAttachmentLoadOp() const { return m_ColorAttachmentLoadOp; }
+	AttachmentStoreOp GetColorAttachmentStoreOp() const { return m_ColorAttachmentStoreOp; }
+	AttachmentLoadOp GetDepthStencilAttachmentLoadOp() const { return m_DepthStencilAttachmentLoadOp; }
+	AttachmentStoreOp GetDepthStencilAttachmentStoreOp() const { return m_DepthStencilAttachmentStoreOp; }
+
 	uint32_t GetWidth() const { return m_Width; }
 	uint32_t GetHeight() const { return m_Height; }
 
@@ -56,17 +61,29 @@ private:
 	friend class CDevice;
 
 	static std::unique_ptr<CFramebuffer> Create(
-		CDevice* device, const char* name,
-		CTexture* colorAttachment, CTexture* depthStencilAttachment, const CColor& clearColor);
-	static std::unique_ptr<CFramebuffer> CreateBackbuffer(CDevice* device);
+		CDevice* device, const char* name, SColorAttachment* colorAttachment,
+		SDepthStencilAttachment* depthStencilAttachment);
+	static std::unique_ptr<CFramebuffer> CreateBackbuffer(
+		CDevice* device,
+		const AttachmentLoadOp colorAttachmentLoadOp,
+		const AttachmentStoreOp colorAttachmentStoreOp,
+		const AttachmentLoadOp depthStencilAttachmentLoadOp,
+		const AttachmentStoreOp depthStencilAttachmentStoreOp);
 
 	CFramebuffer();
 
 	CDevice* m_Device = nullptr;
+
 	GLuint m_Handle = 0;
 	uint32_t m_Width = 0, m_Height = 0;
 	GLbitfield m_AttachmentMask = 0;
+
 	CColor m_ClearColor;
+
+	AttachmentLoadOp m_ColorAttachmentLoadOp = AttachmentLoadOp::DONT_CARE;
+	AttachmentStoreOp m_ColorAttachmentStoreOp = AttachmentStoreOp::DONT_CARE;
+	AttachmentLoadOp m_DepthStencilAttachmentLoadOp = AttachmentLoadOp::DONT_CARE;
+	AttachmentStoreOp m_DepthStencilAttachmentStoreOp = AttachmentStoreOp::DONT_CARE;
 };
 
 } // namespace GL

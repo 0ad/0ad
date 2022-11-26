@@ -27,9 +27,67 @@ namespace Renderer
 namespace Backend
 {
 
+class ITexture;
+
+/**
+ * Load operation is set for each attachment, what should be done with its
+ * content on BeginFramebufferPass.
+ */
+enum class AttachmentLoadOp
+{
+	// Loads the attachment content.
+	LOAD,
+	// Clears the attachment content without loading. Prefer to use that
+	// operation over manual ClearFramebuffer.
+	CLEAR,
+	// After BeginFramebufferPass the attachment content is undefined.
+	DONT_CARE
+};
+
+/**
+ * Store operation is set for each attachment, what should be done with its
+ * content on EndFramebufferPass.
+ */
+enum class AttachmentStoreOp
+{
+	// Stores the attachment content.
+	STORE,
+	// After EndFramebufferPass the attachment content is undefined.
+	DONT_CARE
+};
+
+struct SColorAttachment
+{
+	ITexture* texture = nullptr;
+	AttachmentLoadOp loadOp = AttachmentLoadOp::DONT_CARE;
+	AttachmentStoreOp storeOp = AttachmentStoreOp::DONT_CARE;
+	CColor clearColor;
+};
+
+struct SDepthStencilAttachment
+{
+	ITexture* texture = nullptr;
+	AttachmentLoadOp loadOp = AttachmentLoadOp::DONT_CARE;
+	AttachmentStoreOp storeOp = AttachmentStoreOp::DONT_CARE;
+};
+
+/**
+ * IFramebuffer stores attachments which should be used by backend as rendering
+ * destinations. That combining allows to set these destinations at once.
+ * IFramebuffer doesn't own its attachments so clients must keep them alive.
+ * The number of framebuffers ever created for a device during its lifetime
+ * should be as small as possible.
+ *
+ * Framebuffer is a term from OpenGL/Vulkan worlds (D3D synonym is a render
+ * target).
+ */
 class IFramebuffer : public IDeviceObject<IFramebuffer>
 {
 public:
+	/**
+	 * Returns a clear color for all color attachments of the framebuffer.
+	 * @see IDevice::CreateFramebuffer()
+	 */
 	virtual const CColor& GetClearColor() const = 0;
 };
 

@@ -45,10 +45,25 @@ public:
 	virtual void BlitFramebuffer(
 		IFramebuffer* destinationFramebuffer, IFramebuffer* sourceFramebuffer) = 0;
 
-	virtual void ClearFramebuffer() = 0;
-	virtual void ClearFramebuffer(const bool color, const bool depth, const bool stencil) = 0;
+	/**
+	 * Starts a framebuffer pass, performs attachment load operations.
+	 * It should be called as rarely as possible.
+	 *
+	 * @see IFramebuffer
+	 */
 	virtual void BeginFramebufferPass(IFramebuffer* framebuffer) = 0;
+
+	/**
+	 * Finishes a framebuffer pass, performs attachment store operations.
+	 */
 	virtual void EndFramebufferPass() = 0;
+
+	/**
+	 * Clears all mentioned attachments. Prefer to use attachment load operations over
+	 * this function. It should be called only inside a framebuffer pass.
+	 */
+	virtual void ClearFramebuffer(const bool color, const bool depth, const bool stencil) = 0;
+
 	virtual void ReadbackFramebufferSync(
 		const uint32_t x, const uint32_t y, const uint32_t width, const uint32_t height,
 		void* data) = 0;

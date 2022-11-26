@@ -355,8 +355,13 @@ void CMiniMapTexture::CreateTextures(
 			Renderer::Backend::Format::R8G8B8A8_UNORM,
 			FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE, defaultSamplerDesc));
 
-	m_FinalTextureFramebuffer = backendDevice->CreateFramebuffer("MiniMapFinalFramebuffer",
-		m_FinalTexture->GetBackendTexture(), nullptr);
+	Renderer::Backend::SColorAttachment colorAttachment{};
+	colorAttachment.texture = m_FinalTexture->GetBackendTexture();
+	colorAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::DONT_CARE;
+	colorAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
+	colorAttachment.clearColor = CColor{0.0f, 0.0f, 0.0f, 0.0f};
+	m_FinalTextureFramebuffer = backendDevice->CreateFramebuffer(
+		"MiniMapFinalFramebuffer", &colorAttachment, nullptr);
 	ENSURE(m_FinalTextureFramebuffer);
 }
 

@@ -20,6 +20,7 @@
 #include "Device.h"
 
 #include "lib/external_libraries/libsdl.h"
+#include "lib/hash.h"
 #include "lib/ogl.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
@@ -358,7 +359,11 @@ std::unique_ptr<IDevice> CDevice::Create(SDL_Window* window, const bool arb)
 #endif
 	}
 
-	device->m_Backbuffer = CFramebuffer::CreateBackbuffer(device.get());
+#if CONFIG2_GLES
+	device->m_UseFramebufferInvalidating = ogl_HaveExtension("GL_EXT_discard_framebuffer");
+#else
+	device->m_UseFramebufferInvalidating = !arb && ogl_HaveExtension("GL_ARB_invalidate_subdata");
+#endif
 
 	Capabilities& capabilities = device->m_Capabilities;
 	capabilities.ARBShaders = !ogl_HaveExtensions(0, "GL_ARB_vertex_program", "GL_ARB_fragment_program", nullptr);
@@ -880,18 +885,11 @@ std::unique_ptr<ITexture> CDevice::CreateTexture2D(
 }
 
 std::unique_ptr<IFramebuffer> CDevice::CreateFramebuffer(
-	const char* name, ITexture* colorAttachment,
-	ITexture* depthStencilAttachment)
-{
-	return CreateFramebuffer(name, colorAttachment, depthStencilAttachment, CColor(0.0f, 0.0f, 0.0f, 0.0f));
-}
-
-std::unique_ptr<IFramebuffer> CDevice::CreateFramebuffer(
-	const char* name, ITexture* colorAttachment,
-	ITexture* depthStencilAttachment, const CColor& clearColor)
+	const char* name, SColorAttachment* colorAttachment,
+	SDepthStencilAttachment* depthStencilAttachment)
 {
 	return CFramebuffer::Create(
-		this, name, colorAttachment->As<CTexture>(), depthStencilAttachment->As<CTexture>(), clearColor);
+		this, name, colorAttachment, depthStencilAttachment);
 }
 
 std::unique_ptr<IBuffer> CDevice::CreateBuffer(
@@ -911,6 +909,35 @@ bool CDevice::AcquireNextBackbuffer()
 	ENSURE(!m_BackbufferAcquired);
 	m_BackbufferAcquired = true;
 	return true;
+}
+
+size_t CDevice::BackbufferKeyHash::operator()(const BackbufferKey& key) const
+{
+	size_t seed = 0;
+	hash_combine(seed, std::get<0>(key));
+	hash_combine(seed, std::get<1>(key));
+	hash_combine(seed, std::get<2>(key));
+	hash_combine(seed, std::get<3>(key));
+	return seed;
+}
+
+IFramebuffer* CDevice::GetCurrentBackbuffer(
+	const AttachmentLoadOp colorAttachmentLoadOp,
+	const AttachmentStoreOp colorAttachmentStoreOp,
+	const AttachmentLoadOp depthStencilAttachmentLoadOp,
+	const AttachmentStoreOp depthStencilAttachmentStoreOp)
+{
+	const BackbufferKey key{
+		colorAttachmentLoadOp, colorAttachmentStoreOp,
+		depthStencilAttachmentLoadOp, depthStencilAttachmentStoreOp};
+	auto it = m_Backbuffers.find(key);
+	if (it == m_Backbuffers.end())
+	{
+		it = m_Backbuffers.emplace(key, CFramebuffer::CreateBackbuffer(
+			this, colorAttachmentLoadOp, colorAttachmentStoreOp,
+			depthStencilAttachmentLoadOp, depthStencilAttachmentStoreOp)).first;
+	}
+	return it->second.get();
 }
 
 void CDevice::Present()

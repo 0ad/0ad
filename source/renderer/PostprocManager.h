@@ -74,10 +74,13 @@ public:
 	void ApplyPostproc(
 		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
-	// Blits the final postprocessed texture to the system framebuffer. The system framebuffer
-	// is selected as the output buffer. Should be called before silhouette rendering.
+	// Blits the final postprocessed texture to the system framebuffer. The system
+	// framebuffer is selected as the output buffer. Should be called before
+	// silhouette rendering.
 	// @note CPostprocManager must be initialized first
-	void ReleaseRenderOutput(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
+	void ReleaseRenderOutput(
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IFramebuffer* destination);
 
 	// Returns true if we render main scene in the MSAA framebuffer.
 	bool IsMultisampleEnabled() const;

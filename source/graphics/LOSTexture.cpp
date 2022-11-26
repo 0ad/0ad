@@ -281,10 +281,16 @@ void CLOSTexture::ConstructTexture(Renderer::Backend::IDeviceCommandContext* dev
 		m_SmoothTextures[1] = backendDevice->CreateTexture2D("LOSSmoothTexture1",
 			usage, m_TextureFormat, textureSize, textureSize, defaultSamplerDesc);
 
+		Renderer::Backend::SColorAttachment colorAttachment{};
+		colorAttachment.texture = m_SmoothTextures[0].get();
+		colorAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::DONT_CARE;
+		colorAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
+		colorAttachment.clearColor = CColor{0.0f, 0.0f, 0.0f, 0.0f};
 		m_SmoothFramebuffers[0] = backendDevice->CreateFramebuffer(
-			"LOSSmoothFramebuffer0", m_SmoothTextures[0].get(), nullptr);
+			"LOSSmoothFramebuffer0", &colorAttachment, nullptr);
+		colorAttachment.texture = m_SmoothTextures[1].get();
 		m_SmoothFramebuffers[1] = backendDevice->CreateFramebuffer(
-			"LOSSmoothFramebuffer1", m_SmoothTextures[1].get(), nullptr);
+			"LOSSmoothFramebuffer1", &colorAttachment, nullptr);
 		if (!m_SmoothFramebuffers[0] || !m_SmoothFramebuffers[1])
 		{
 			LOGERROR("Failed to create LOS framebuffers");

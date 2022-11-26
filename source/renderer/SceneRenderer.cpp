@@ -589,7 +589,6 @@ void CSceneRenderer::RenderReflections(
 	deviceCommandContext->SetGraphicsPipelineState(
 		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginFramebufferPass(wm.m_ReflectionFramebuffer.get());
-	deviceCommandContext->ClearFramebuffer();
 
 	CShaderDefines reflectionsContext = context;
 	reflectionsContext.Add(str_PASS_REFLECTIONS, str_1);
@@ -665,7 +664,6 @@ void CSceneRenderer::RenderRefractions(
 	deviceCommandContext->SetGraphicsPipelineState(
 		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginFramebufferPass(wm.m_RefractionFramebuffer.get());
-	deviceCommandContext->ClearFramebuffer();
 
 	// Render terrain and models
 	RenderPatches(deviceCommandContext, context, CULL_REFRACTIONS);
@@ -840,13 +838,6 @@ void CSceneRenderer::RenderSubmissions(
 	CShaderDefines context = m->globalContext;
 
 	constexpr int cullGroup = CULL_DEFAULT;
-
-	{
-		PROFILE3_GPU("clear buffers");
-		// We don't need to clear the color attachment of the framebuffer if the sky
-		// is going to be rendered. Because it covers the whole view.
-		deviceCommandContext->ClearFramebuffer(!m->skyManager.IsSkyVisible(), true, true);
-	}
 
 	m->skyManager.RenderSky(deviceCommandContext);
 

@@ -29,6 +29,8 @@
 
 #include <memory>
 #include <string>
+#include <tuple>
+#include <unordered_map>
 #include <vector>
 
 typedef struct SDL_Window SDL_Window;
@@ -64,8 +66,6 @@ public:
 
 	void Report(const ScriptRequest& rq, JS::HandleValue settings) override;
 
-	IFramebuffer* GetCurrentBackbuffer() override { return m_Backbuffer.get(); }
-
 	std::unique_ptr<IDeviceCommandContext> CreateCommandContext() override;
 
 	CDeviceCommandContext* GetActiveCommandContext() { return m_ActiveCommandContext; }
@@ -81,12 +81,8 @@ public:
 		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount = 1, const uint32_t sampleCount = 1) override;
 
 	std::unique_ptr<IFramebuffer> CreateFramebuffer(
-		const char* name, ITexture* colorAttachment,
-		ITexture* depthStencilAttachment) override;
-
-	std::unique_ptr<IFramebuffer> CreateFramebuffer(
-		const char* name, ITexture* colorAttachment,
-		ITexture* depthStencilAttachment, const CColor& clearColor) override;
+		const char* name, SColorAttachment* colorAttachment,
+		SDepthStencilAttachment* depthStencilAttachment) override;
 
 	std::unique_ptr<IBuffer> CreateBuffer(
 		const char* name, const IBuffer::Type type, const uint32_t size, const bool dynamic) override;
@@ -95,7 +91,16 @@ public:
 		const CStr& name, const CShaderDefines& defines) override;
 
 	bool AcquireNextBackbuffer() override;
+
+	IFramebuffer* GetCurrentBackbuffer(
+		const AttachmentLoadOp colorAttachmentLoadOp,
+		const AttachmentStoreOp colorAttachmentStoreOp,
+		const AttachmentLoadOp depthStencilAttachmentLoadOp,
+		const AttachmentStoreOp depthStencilAttachmentStoreOp) override;
+
 	void Present() override;
+
+	bool UseFramebufferInvalidating() const { return m_UseFramebufferInvalidating; }
 
 	bool IsTextureFormatSupported(const Format format) const override;
 
@@ -121,8 +126,20 @@ private:
 	// it's used only as a helper for transition.
 	CDeviceCommandContext* m_ActiveCommandContext = nullptr;
 
-	std::unique_ptr<CFramebuffer> m_Backbuffer;
+	using BackbufferKey = std::tuple<
+		AttachmentLoadOp, AttachmentStoreOp,
+		AttachmentLoadOp, AttachmentStoreOp>;
+	struct BackbufferKeyHash
+	{
+		size_t operator()(const BackbufferKey& key) const;
+	};
+	// We use std::unordered_map to avoid storing sizes of Attachment*Op
+	// enumerations. If it becomes a performance issue we'll replace it
+	// by an array.
+	std::unordered_map<
+		BackbufferKey, std::unique_ptr<CFramebuffer>, BackbufferKeyHash> m_Backbuffers;
 	bool m_BackbufferAcquired = false;
+	bool m_UseFramebufferInvalidating = false;
 
 	Capabilities m_Capabilities{};
 };

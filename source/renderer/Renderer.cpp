@@ -482,8 +482,14 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 		}
 		else
 		{
+			// We don't need to clear the color attachment of the framebuffer as the sky
+			// is going to be rendered anyway.
 			m->deviceCommandContext->BeginFramebufferPass(
-				m->deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
+				m->deviceCommandContext->GetDevice()->GetCurrentBackbuffer(
+					Renderer::Backend::AttachmentLoadOp::DONT_CARE,
+					Renderer::Backend::AttachmentStoreOp::STORE,
+					Renderer::Backend::AttachmentLoadOp::CLEAR,
+					Renderer::Backend::AttachmentStoreOp::DONT_CARE));
 		}
 
 		g_Game->GetView()->Render(m->deviceCommandContext.get());
@@ -496,29 +502,41 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 				postprocManager.ResolveMultisampleFramebuffer(m->deviceCommandContext.get());
 
 			postprocManager.ApplyPostproc(m->deviceCommandContext.get());
-			postprocManager.ReleaseRenderOutput(m->deviceCommandContext.get());
 
-			m->deviceCommandContext->BeginFramebufferPass(
-				m->deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
+			Renderer::Backend::IFramebuffer* backbuffer =
+				m->deviceCommandContext->GetDevice()->GetCurrentBackbuffer(
+					Renderer::Backend::AttachmentLoadOp::LOAD,
+					Renderer::Backend::AttachmentStoreOp::STORE,
+					Renderer::Backend::AttachmentLoadOp::LOAD,
+					Renderer::Backend::AttachmentStoreOp::DONT_CARE);
+			postprocManager.ReleaseRenderOutput(
+				m->deviceCommandContext.get(), backbuffer);
+
+			m->deviceCommandContext->BeginFramebufferPass(backbuffer);
 		}
 
 		g_Game->GetView()->RenderOverlays(m->deviceCommandContext.get());
+
+		g_Game->GetView()->GetCinema()->Render();
 	}
 	else
 	{
+		// We have a fullscreen background in our UI so we don't need
+		// to clear the color attachment.
+		// We don't need a depth test to render so we don't care about the
+		// depth-stencil attachment content.
 		m->deviceCommandContext->BeginFramebufferPass(
-			m->deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
+			m->deviceCommandContext->GetDevice()->GetCurrentBackbuffer(
+				Renderer::Backend::AttachmentLoadOp::DONT_CARE,
+				Renderer::Backend::AttachmentStoreOp::STORE,
+				Renderer::Backend::AttachmentLoadOp::DONT_CARE,
+				Renderer::Backend::AttachmentStoreOp::DONT_CARE));
 	}
 
 	// If we're in Atlas game view, render special tools
 	if (g_AtlasGameLoop && g_AtlasGameLoop->view)
 	{
 		g_AtlasGameLoop->view->DrawCinemaPathTool();
-	}
-
-	if (g_Game && g_Game->IsGameStarted())
-	{
-		g_Game->GetView()->GetCinema()->Render();
 	}
 
 	RenderFrame2D(renderGUI, renderLogger);

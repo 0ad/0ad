@@ -36,15 +36,24 @@ namespace GL
 
 // static
 std::unique_ptr<CFramebuffer> CFramebuffer::Create(
-	CDevice* device, const char* name,
-	CTexture* colorAttachment, CTexture* depthStencilAttachment,
-	const CColor& clearColor)
+	CDevice* device, const char* name, SColorAttachment* colorAttachment,
+	SDepthStencilAttachment* depthStencilAttachment)
 {
 	ENSURE(colorAttachment || depthStencilAttachment);
 
 	std::unique_ptr<CFramebuffer> framebuffer(new CFramebuffer());
 	framebuffer->m_Device = device;
-	framebuffer->m_ClearColor = clearColor;
+	if (colorAttachment)
+	{
+		framebuffer->m_ClearColor = colorAttachment->clearColor;
+		framebuffer->m_ColorAttachmentLoadOp = colorAttachment->loadOp;
+		framebuffer->m_ColorAttachmentStoreOp = colorAttachment->storeOp;
+	}
+	if (depthStencilAttachment)
+	{
+		framebuffer->m_DepthStencilAttachmentLoadOp = depthStencilAttachment->loadOp;
+		framebuffer->m_DepthStencilAttachmentStoreOp = depthStencilAttachment->storeOp;
+	}
 
 	glGenFramebuffersEXT(1, &framebuffer->m_Handle);
 	if (!framebuffer->m_Handle)
@@ -56,59 +65,62 @@ std::unique_ptr<CFramebuffer> CFramebuffer::Create(
 
 	if (colorAttachment)
 	{
-		ENSURE(device->IsFramebufferFormatSupported(colorAttachment->GetFormat()));
-		ENSURE(colorAttachment->GetUsage() & Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT);
+		CTexture* colorAttachmentTexture = colorAttachment->texture->As<CTexture>();
+		ENSURE(device->IsFramebufferFormatSupported(colorAttachmentTexture->GetFormat()));
+		ENSURE(colorAttachmentTexture->GetUsage() & Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT);
 
 		framebuffer->m_AttachmentMask |= GL_COLOR_BUFFER_BIT;
 
 #if CONFIG2_GLES
-		ENSURE(colorAttachment->GetType() == CTexture::Type::TEXTURE_2D);
+		ENSURE(colorAttachmentTexture->GetType() == CTexture::Type::TEXTURE_2D);
 		const GLenum textureTarget = GL_TEXTURE_2D;
 #else
-		const GLenum textureTarget = colorAttachment->GetType() == CTexture::Type::TEXTURE_2D_MULTISAMPLE ?
+		const GLenum textureTarget = colorAttachmentTexture->GetType() == CTexture::Type::TEXTURE_2D_MULTISAMPLE ?
 			GL_TEXTURE_2D_MULTISAMPLE : GL_TEXTURE_2D;
 #endif
-		glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
-			textureTarget, colorAttachment->GetHandle(), 0);
+		glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0,
+			textureTarget, colorAttachmentTexture->GetHandle(), 0);
 	}
+
 	if (depthStencilAttachment)
 	{
-		ENSURE(depthStencilAttachment->GetUsage() & Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT);
+		CTexture* depthStencilAttachmentTexture = depthStencilAttachment->texture->As<CTexture>();
+		ENSURE(depthStencilAttachmentTexture->GetUsage() & Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT);
 
-		framebuffer->m_Width = depthStencilAttachment->GetWidth();
-		framebuffer->m_Height = depthStencilAttachment->GetHeight();
+		framebuffer->m_Width = depthStencilAttachmentTexture->GetWidth();
+		framebuffer->m_Height = depthStencilAttachmentTexture->GetHeight();
 		framebuffer->m_AttachmentMask |= GL_DEPTH_BUFFER_BIT;
-		if (depthStencilAttachment->GetFormat() == Format::D24_S8)
+		if (depthStencilAttachmentTexture->GetFormat() == Format::D24_S8)
 			framebuffer->m_AttachmentMask |= GL_STENCIL_BUFFER_BIT;
 		if (colorAttachment)
 		{
-			ENSURE(colorAttachment->GetWidth() == depthStencilAttachment->GetWidth());
-			ENSURE(colorAttachment->GetHeight() == depthStencilAttachment->GetHeight());
-			ENSURE(colorAttachment->GetType() == depthStencilAttachment->GetType());
+			ENSURE(colorAttachment->texture->GetWidth() == depthStencilAttachmentTexture->GetWidth());
+			ENSURE(colorAttachment->texture->GetHeight() == depthStencilAttachmentTexture->GetHeight());
+			ENSURE(colorAttachment->texture->GetType() == depthStencilAttachmentTexture->GetType());
 		}
 		ENSURE(
-			depthStencilAttachment->GetFormat() == Format::D16 ||
-			depthStencilAttachment->GetFormat() == Format::D24 ||
-			depthStencilAttachment->GetFormat() == Format::D32 ||
-			depthStencilAttachment->GetFormat() == Format::D24_S8);
+			depthStencilAttachmentTexture->GetFormat() == Format::D16 ||
+			depthStencilAttachmentTexture->GetFormat() == Format::D24 ||
+			depthStencilAttachmentTexture->GetFormat() == Format::D32 ||
+			depthStencilAttachmentTexture->GetFormat() == Format::D24_S8);
 #if CONFIG2_GLES
-		ENSURE(depthStencilAttachment->GetFormat() != Format::D24_S8);
+		ENSURE(depthStencilAttachmentTexture->GetFormat() != Format::D24_S8);
 		const GLenum attachment = GL_DEPTH_ATTACHMENT;
-		ENSURE(depthStencilAttachment->GetType() == CTexture::Type::TEXTURE_2D);
+		ENSURE(depthStencilAttachmentTexture->GetType() == CTexture::Type::TEXTURE_2D);
 		const GLenum textureTarget = GL_TEXTURE_2D;
 #else
-		const GLenum attachment = depthStencilAttachment->GetFormat() == Format::D24_S8 ?
+		const GLenum attachment = depthStencilAttachmentTexture->GetFormat() == Format::D24_S8 ?
 			GL_DEPTH_STENCIL_ATTACHMENT : GL_DEPTH_ATTACHMENT;
-		const GLenum textureTarget = depthStencilAttachment->GetType() == CTexture::Type::TEXTURE_2D_MULTISAMPLE ?
+		const GLenum textureTarget = depthStencilAttachmentTexture->GetType() == CTexture::Type::TEXTURE_2D_MULTISAMPLE ?
 			GL_TEXTURE_2D_MULTISAMPLE : GL_TEXTURE_2D;
 #endif
 		glFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, attachment,
-			textureTarget, depthStencilAttachment->GetHandle(), 0);
+			textureTarget, depthStencilAttachmentTexture->GetHandle(), 0);
 	}
 	else
 	{
-		framebuffer->m_Width = colorAttachment->GetWidth();
-		framebuffer->m_Height = colorAttachment->GetHeight();
+		framebuffer->m_Width = colorAttachment->texture->GetWidth();
+		framebuffer->m_Height = colorAttachment->texture->GetHeight();
 	}
 
 	ogl_WarnIfError();
@@ -120,7 +132,7 @@ std::unique_ptr<CFramebuffer> CFramebuffer::Create(
 		glDrawBuffer(GL_NONE);
 	}
 	else
-		glDrawBuffer(GL_COLOR_ATTACHMENT0_EXT);
+		glDrawBuffer(GL_COLOR_ATTACHMENT0);
 #endif
 
 	ogl_WarnIfError();
@@ -151,13 +163,21 @@ std::unique_ptr<CFramebuffer> CFramebuffer::Create(
 
 // static
 std::unique_ptr<CFramebuffer> CFramebuffer::CreateBackbuffer(
-	CDevice* device)
+	CDevice* device,
+	const AttachmentLoadOp colorAttachmentLoadOp,
+	const AttachmentStoreOp colorAttachmentStoreOp,
+	const AttachmentLoadOp depthStencilAttachmentLoadOp,
+	const AttachmentStoreOp depthStencilAttachmentStoreOp)
 {
 	// Backbuffer for GL is a special case with a zero framebuffer.
 	std::unique_ptr<CFramebuffer> framebuffer(new CFramebuffer());
 	framebuffer->m_Device = device;
 	framebuffer->m_AttachmentMask = GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT;
 	framebuffer->m_ClearColor = CColor(0.0f, 0.0f, 0.0f, 0.0f);
+	framebuffer->m_ColorAttachmentLoadOp = colorAttachmentLoadOp;
+	framebuffer->m_ColorAttachmentStoreOp = colorAttachmentStoreOp;
+	framebuffer->m_DepthStencilAttachmentLoadOp = depthStencilAttachmentLoadOp;
+	framebuffer->m_DepthStencilAttachmentStoreOp = depthStencilAttachmentStoreOp;
 	return framebuffer;
 }
 

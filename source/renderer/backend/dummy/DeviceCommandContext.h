@@ -50,7 +50,6 @@ public:
 
 	void BlitFramebuffer(IFramebuffer* destinationFramebuffer, IFramebuffer* sourceFramebuffer) override;
 
-	void ClearFramebuffer() override;
 	void ClearFramebuffer(const bool color, const bool depth, const bool stencil) override;
 	void BeginFramebufferPass(IFramebuffer* framebuffer) override;
 	void EndFramebufferPass() override;

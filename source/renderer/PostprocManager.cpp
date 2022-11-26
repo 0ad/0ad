@@ -148,8 +148,13 @@ void CPostprocManager::RecreateBuffers()
 		for (BlurScale::Step& step : scale.steps)
 		{
 			GEN_BUFFER_RGBA(step.texture, width, height);
-			step.framebuffer = backendDevice->CreateFramebuffer("BlurScaleSteoFramebuffer",
-				step.texture.get(), nullptr);
+			Renderer::Backend::SColorAttachment colorAttachment{};
+			colorAttachment.texture = step.texture.get();
+			colorAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::LOAD;
+			colorAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
+			colorAttachment.clearColor = CColor{0.0f, 0.0f, 0.0f, 0.0f};
+			step.framebuffer = backendDevice->CreateFramebuffer(
+				"BlurScaleSteoFramebuffer", &colorAttachment, nullptr);
 		}
 		width /= 2;
 		height /= 2;
@@ -167,13 +172,29 @@ void CPostprocManager::RecreateBuffers()
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
 
 	// Set up the framebuffers with some initial textures.
-	m_CaptureFramebuffer = backendDevice->CreateFramebuffer("PostprocCaptureFramebuffer",
-		m_ColorTex1.get(), m_DepthTex.get(), CColor(0.0f, 0.0f, 0.0f, 0.0f));
+	Renderer::Backend::SColorAttachment colorAttachment{};
+	colorAttachment.texture = m_ColorTex1.get();
+	colorAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::DONT_CARE;
+	colorAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
+	colorAttachment.clearColor = CColor{0.0f, 0.0f, 0.0f, 0.0f};
 
+	Renderer::Backend::SDepthStencilAttachment depthStencilAttachment{};
+	depthStencilAttachment.texture = m_DepthTex.get();
+	depthStencilAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::CLEAR;
+	depthStencilAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
+
+	m_CaptureFramebuffer = backendDevice->CreateFramebuffer("PostprocCaptureFramebuffer",
+		&colorAttachment, &depthStencilAttachment);
+
+	colorAttachment.texture = m_ColorTex1.get();
+	colorAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::LOAD;
+	colorAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
 	m_PingFramebuffer = backendDevice->CreateFramebuffer("PostprocPingFramebuffer",
-		m_ColorTex1.get(), nullptr);
+		&colorAttachment, nullptr);
+
+	colorAttachment.texture = m_ColorTex2.get();
 	m_PongFramebuffer = backendDevice->CreateFramebuffer("PostprocPongFramebuffer",
-		m_ColorTex2.get(), nullptr);
+		&colorAttachment, nullptr);
 
 	if (!m_CaptureFramebuffer || !m_PingFramebuffer || !m_PongFramebuffer)
 	{
@@ -403,7 +424,8 @@ void CPostprocManager::CaptureRenderOutput(
 
 
 void CPostprocManager::ReleaseRenderOutput(
-	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IFramebuffer* destination)
 {
 	ENSURE(m_IsInitialized);
 
@@ -411,8 +433,7 @@ void CPostprocManager::ReleaseRenderOutput(
 
 	// We blit to the backbuffer from the previous active buffer.
 	deviceCommandContext->BlitFramebuffer(
-		deviceCommandContext->GetDevice()->GetCurrentBackbuffer(),
-		(m_WhichBuffer ? m_PingFramebuffer : m_PongFramebuffer).get());
+		destination, (m_WhichBuffer ? m_PingFramebuffer : m_PongFramebuffer).get());
 }
 
 void CPostprocManager::ApplyEffect(
@@ -675,8 +696,19 @@ void CPostprocManager::CreateMultisampleBuffer()
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1, m_MultisampleCount);
 
 	// Set up the framebuffers with some initial textures.
-	m_MultisampleFramebuffer = backendDevice->CreateFramebuffer("PostprocMultisampleFramebuffer",
-		m_MultisampleColorTex.get(), m_MultisampleDepthTex.get(), CColor(0.0f, 0.0f, 0.0f, 0.0f));
+	Renderer::Backend::SColorAttachment colorAttachment{};
+	colorAttachment.texture = m_MultisampleColorTex.get();
+	colorAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::DONT_CARE;
+	colorAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
+	colorAttachment.clearColor = CColor{0.0f, 0.0f, 0.0f, 0.0f};
+
+	Renderer::Backend::SDepthStencilAttachment depthStencilAttachment{};
+	depthStencilAttachment.texture = m_MultisampleDepthTex.get();
+	depthStencilAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::CLEAR;
+	depthStencilAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
+
+	m_MultisampleFramebuffer = backendDevice->CreateFramebuffer(
+		"PostprocMultisampleFramebuffer", &colorAttachment, &depthStencilAttachment);
 
 	if (!m_MultisampleFramebuffer)
 	{

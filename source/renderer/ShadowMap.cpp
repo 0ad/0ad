@@ -510,7 +510,7 @@ void ShadowMapInternals::CreateTexture()
 	const char* formatName;
 	Renderer::Backend::Format backendFormat = Renderer::Backend::Format::UNDEFINED;
 #if CONFIG2_GLES
-	formatName = "DEPTH_COMPONENT";
+	formatName = "Format::D24";
 	backendFormat = Renderer::Backend::Format::D24;
 #else
 	switch (DepthTextureBits)
@@ -556,9 +556,24 @@ void ShadowMapInternals::CreateTexture()
 			Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
 		backendFormat, Width, Height, samplerDesc);
 
-	Framebuffer = backendDevice->CreateFramebuffer("ShadowMapFramebuffer",
-		g_RenderingOptions.GetShadowAlphaFix() ? DummyTexture.get() : nullptr, Texture.get());
+	const bool useDummyTexture = g_RenderingOptions.GetShadowAlphaFix();
 
+	// In case we used ShadowAlphaFix, we ought to clear the unused
+	// color buffer too, else Mali 400 drivers get confused.
+	// Might as well clear stencil too for completeness.
+	Renderer::Backend::SColorAttachment colorAttachment{};
+	colorAttachment.texture = DummyTexture.get();
+	colorAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::CLEAR;
+	colorAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::DONT_CARE;
+	colorAttachment.clearColor = CColor{0.0f, 0.0f, 0.0f, 0.0f};
+
+	Renderer::Backend::SDepthStencilAttachment depthStencilAttachment{};
+	depthStencilAttachment.texture = Texture.get();
+	depthStencilAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::CLEAR;
+	depthStencilAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
+
+	Framebuffer = backendDevice->CreateFramebuffer("ShadowMapFramebuffer",
+		useDummyTexture ? &colorAttachment : nullptr, &depthStencilAttachment);
 	if (!Framebuffer)
 	{
 		LOGERROR("Failed to create shadows framebuffer");
@@ -574,20 +589,8 @@ void ShadowMap::BeginRender(
 	deviceCommandContext->SetGraphicsPipelineState(
 		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
 
-	{
-		PROFILE("bind framebuffer");
-		ENSURE(m->Framebuffer);
-		deviceCommandContext->BeginFramebufferPass(m->Framebuffer.get());
-	}
-
-	// clear buffers
-	{
-		PROFILE("clear depth texture");
-		// In case we used m_ShadowAlphaFix, we ought to clear the unused
-		// color buffer too, else Mali 400 drivers get confused.
-		// Might as well clear stencil too for completeness.
-		deviceCommandContext->ClearFramebuffer();
-	}
+	ENSURE(m->Framebuffer);
+	deviceCommandContext->BeginFramebufferPass(m->Framebuffer.get());
 
 	m->SavedViewCamera = g_Renderer.GetSceneRenderer().GetViewCamera();
 }
