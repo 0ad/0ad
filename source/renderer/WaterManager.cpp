@@ -218,13 +218,24 @@ void WaterManager::RecreateOrLoadTexturesIfNeeded()
 		m_ReflFboDepthTexture = backendDevice->CreateTexture2D("WaterReflectionDepthTexture",
 			Renderer::Backend::ITexture::Usage::SAMPLED |
 				Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
-			Renderer::Backend::Format::D32, m_RefTextureSize, m_RefTextureSize,
+			Renderer::Backend::Format::D24, m_RefTextureSize, m_RefTextureSize,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::NEAREST,
 				Renderer::Backend::Sampler::AddressMode::REPEAT));
 
+		Renderer::Backend::SColorAttachment colorAttachment{};
+		colorAttachment.texture = m_ReflectionTexture.get();
+		colorAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::CLEAR;
+		colorAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
+		colorAttachment.clearColor = CColor{0.5f, 0.5f, 1.0f, 0.0f};
+
+		Renderer::Backend::SDepthStencilAttachment depthStencilAttachment{};
+		depthStencilAttachment.texture = m_ReflFboDepthTexture.get();
+		depthStencilAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::CLEAR;
+		depthStencilAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
+
 		m_ReflectionFramebuffer = backendDevice->CreateFramebuffer("ReflectionFramebuffer",
-			m_ReflectionTexture.get(), m_ReflFboDepthTexture.get(), CColor(0.5f, 0.5f, 1.0f, 0.0f));
+			&colorAttachment, &depthStencilAttachment);
 		if (!m_ReflectionFramebuffer)
 		{
 			g_RenderingOptions.SetWaterReflection(false);
@@ -249,13 +260,24 @@ void WaterManager::RecreateOrLoadTexturesIfNeeded()
 		m_RefrFboDepthTexture = backendDevice->CreateTexture2D("WaterRefractionDepthTexture",
 			Renderer::Backend::ITexture::Usage::SAMPLED |
 				Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
-			Renderer::Backend::Format::D32, m_RefTextureSize, m_RefTextureSize,
+			Renderer::Backend::Format::D24, m_RefTextureSize, m_RefTextureSize,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::NEAREST,
 				Renderer::Backend::Sampler::AddressMode::REPEAT));
 
+		Renderer::Backend::SColorAttachment colorAttachment{};
+		colorAttachment.texture = m_RefractionTexture.get();
+		colorAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::CLEAR;
+		colorAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
+		colorAttachment.clearColor = CColor{1.0f, 0.0f, 0.0f, 0.0f};
+
+		Renderer::Backend::SDepthStencilAttachment depthStencilAttachment{};
+		depthStencilAttachment.texture = m_RefrFboDepthTexture.get();
+		depthStencilAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::CLEAR;
+		depthStencilAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
+
 		m_RefractionFramebuffer = backendDevice->CreateFramebuffer("RefractionFramebuffer",
-			m_RefractionTexture.get(), m_RefrFboDepthTexture.get(), CColor(1.0f, 0.0f, 0.0f, 0.0f));
+			&colorAttachment, &depthStencilAttachment);
 		if (!m_RefractionFramebuffer)
 		{
 			g_RenderingOptions.SetWaterRefraction(false);
@@ -288,13 +310,24 @@ void WaterManager::RecreateOrLoadTexturesIfNeeded()
 
 		m_FancyTextureDepth = backendDevice->CreateTexture2D("WaterFancyDepthTexture",
 			Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
-			Renderer::Backend::Format::D32, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
+			Renderer::Backend::Format::D24, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::LINEAR,
 				Renderer::Backend::Sampler::AddressMode::REPEAT));
 
+		Renderer::Backend::SColorAttachment colorAttachment{};
+		colorAttachment.texture = m_FancyTexture.get();
+		colorAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::CLEAR;
+		colorAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
+		colorAttachment.clearColor = CColor{0.0f, 0.0f, 0.0f, 0.0f};
+
+		Renderer::Backend::SDepthStencilAttachment depthStencilAttachment{};
+		depthStencilAttachment.texture = m_FancyTextureDepth.get();
+		depthStencilAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::CLEAR;
+		depthStencilAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::DONT_CARE;
+
 		m_FancyEffectsFramebuffer = backendDevice->CreateFramebuffer("FancyEffectsFramebuffer",
-			m_FancyTexture.get(), m_FancyTextureDepth.get());
+			&colorAttachment, &depthStencilAttachment);
 		if (!m_FancyEffectsFramebuffer)
 		{
 			g_RenderingOptions.SetWaterRefraction(false);
@@ -810,7 +843,6 @@ void WaterManager::RenderWaves(
 	deviceCommandContext->SetGraphicsPipelineState(
 		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginFramebufferPass(m_FancyEffectsFramebuffer.get());
-	deviceCommandContext->ClearFramebuffer();
 
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_water_waves);
 	deviceCommandContext->SetGraphicsPipelineState(

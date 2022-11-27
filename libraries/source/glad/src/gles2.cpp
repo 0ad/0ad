@@ -24,6 +24,7 @@ extern "C" {
 
 
 int GLAD_GL_ES_VERSION_2_0 = 0;
+int GLAD_GL_EXT_discard_framebuffer = 0;
 int GLAD_GL_EXT_texture_compression_s3tc = 0;
 int GLAD_GL_EXT_texture_filter_anisotropic = 0;
 int GLAD_GL_EXT_texture_format_BGRA8888 = 0;
@@ -78,6 +79,7 @@ PFNGLDEPTHRANGEFPROC glad_glDepthRangef = NULL;
 PFNGLDETACHSHADERPROC glad_glDetachShader = NULL;
 PFNGLDISABLEPROC glad_glDisable = NULL;
 PFNGLDISABLEVERTEXATTRIBARRAYPROC glad_glDisableVertexAttribArray = NULL;
+PFNGLDISCARDFRAMEBUFFEREXTPROC glad_glDiscardFramebufferEXT = NULL;
 PFNGLDRAWARRAYSPROC glad_glDrawArrays = NULL;
 PFNGLDRAWELEMENTSPROC glad_glDrawElements = NULL;
 PFNGLENABLEPROC glad_glEnable = NULL;
@@ -346,6 +348,10 @@ static void glad_gl_load_GL_ES_VERSION_2_0( GLADuserptrloadfunc load, void* user
     glad_glVertexAttribPointer = (PFNGLVERTEXATTRIBPOINTERPROC) load(userptr, "glVertexAttribPointer");
     glad_glViewport = (PFNGLVIEWPORTPROC) load(userptr, "glViewport");
 }
+static void glad_gl_load_GL_EXT_discard_framebuffer( GLADuserptrloadfunc load, void* userptr) {
+    if(!GLAD_GL_EXT_discard_framebuffer) return;
+    glad_glDiscardFramebufferEXT = (PFNGLDISCARDFRAMEBUFFEREXTPROC) load(userptr, "glDiscardFramebufferEXT");
+}
 static void glad_gl_load_GL_KHR_debug( GLADuserptrloadfunc load, void* userptr) {
     if(!GLAD_GL_KHR_debug) return;
     glad_glDebugMessageCallbackKHR = (PFNGLDEBUGMESSAGECALLBACKKHRPROC) load(userptr, "glDebugMessageCallbackKHR");
@@ -484,6 +490,7 @@ static int glad_gl_find_extensions_gles2( int version) {
     char **exts_i = NULL;
     if (!glad_gl_get_extensions(version, &exts, &num_exts_i, &exts_i)) return 0;
 
+    GLAD_GL_EXT_discard_framebuffer = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_discard_framebuffer");
     GLAD_GL_EXT_texture_compression_s3tc = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_texture_compression_s3tc");
     GLAD_GL_EXT_texture_filter_anisotropic = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_texture_filter_anisotropic");
     GLAD_GL_EXT_texture_format_BGRA8888 = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_texture_format_BGRA8888");
@@ -538,6 +545,7 @@ int gladLoadGLES2UserPtr( GLADuserptrloadfunc load, void *userptr) {
     glad_gl_load_GL_ES_VERSION_2_0(load, userptr);
 
     if (!glad_gl_find_extensions_gles2(version)) return 0;
+    glad_gl_load_GL_EXT_discard_framebuffer(load, userptr);
     glad_gl_load_GL_KHR_debug(load, userptr);
     glad_gl_load_GL_OES_mapbuffer(load, userptr);
     glad_gl_load_GL_OES_texture_border_clamp(load, userptr);

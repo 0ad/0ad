@@ -38,6 +38,7 @@ int GLAD_GL_ARB_fragment_shader = 0;
 int GLAD_GL_ARB_framebuffer_object = 0;
 int GLAD_GL_ARB_geometry_shader4 = 0;
 int GLAD_GL_ARB_instanced_arrays = 0;
+int GLAD_GL_ARB_invalidate_subdata = 0;
 int GLAD_GL_ARB_map_buffer_range = 0;
 int GLAD_GL_ARB_multitexture = 0;
 int GLAD_GL_ARB_occlusion_query = 0;
@@ -399,6 +400,12 @@ PFNGLINDEXUBPROC glad_glIndexub = NULL;
 PFNGLINDEXUBVPROC glad_glIndexubv = NULL;
 PFNGLINITNAMESPROC glad_glInitNames = NULL;
 PFNGLINTERLEAVEDARRAYSPROC glad_glInterleavedArrays = NULL;
+PFNGLINVALIDATEBUFFERDATAPROC glad_glInvalidateBufferData = NULL;
+PFNGLINVALIDATEBUFFERSUBDATAPROC glad_glInvalidateBufferSubData = NULL;
+PFNGLINVALIDATEFRAMEBUFFERPROC glad_glInvalidateFramebuffer = NULL;
+PFNGLINVALIDATESUBFRAMEBUFFERPROC glad_glInvalidateSubFramebuffer = NULL;
+PFNGLINVALIDATETEXIMAGEPROC glad_glInvalidateTexImage = NULL;
+PFNGLINVALIDATETEXSUBIMAGEPROC glad_glInvalidateTexSubImage = NULL;
 PFNGLISBUFFERPROC glad_glIsBuffer = NULL;
 PFNGLISBUFFERARBPROC glad_glIsBufferARB = NULL;
 PFNGLISENABLEDPROC glad_glIsEnabled = NULL;
@@ -1544,6 +1551,15 @@ static void glad_gl_load_GL_ARB_instanced_arrays( GLADuserptrloadfunc load, void
     if(!GLAD_GL_ARB_instanced_arrays) return;
     glad_glVertexAttribDivisorARB = (PFNGLVERTEXATTRIBDIVISORARBPROC) load(userptr, "glVertexAttribDivisorARB");
 }
+static void glad_gl_load_GL_ARB_invalidate_subdata( GLADuserptrloadfunc load, void* userptr) {
+    if(!GLAD_GL_ARB_invalidate_subdata) return;
+    glad_glInvalidateBufferData = (PFNGLINVALIDATEBUFFERDATAPROC) load(userptr, "glInvalidateBufferData");
+    glad_glInvalidateBufferSubData = (PFNGLINVALIDATEBUFFERSUBDATAPROC) load(userptr, "glInvalidateBufferSubData");
+    glad_glInvalidateFramebuffer = (PFNGLINVALIDATEFRAMEBUFFERPROC) load(userptr, "glInvalidateFramebuffer");
+    glad_glInvalidateSubFramebuffer = (PFNGLINVALIDATESUBFRAMEBUFFERPROC) load(userptr, "glInvalidateSubFramebuffer");
+    glad_glInvalidateTexImage = (PFNGLINVALIDATETEXIMAGEPROC) load(userptr, "glInvalidateTexImage");
+    glad_glInvalidateTexSubImage = (PFNGLINVALIDATETEXSUBIMAGEPROC) load(userptr, "glInvalidateTexSubImage");
+}
 static void glad_gl_load_GL_ARB_map_buffer_range( GLADuserptrloadfunc load, void* userptr) {
     if(!GLAD_GL_ARB_map_buffer_range) return;
     glad_glFlushMappedBufferRange = (PFNGLFLUSHMAPPEDBUFFERRANGEPROC) load(userptr, "glFlushMappedBufferRange");
@@ -2019,6 +2035,7 @@ static int glad_gl_find_extensions_gl( int version) {
     GLAD_GL_ARB_framebuffer_object = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_framebuffer_object");
     GLAD_GL_ARB_geometry_shader4 = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_geometry_shader4");
     GLAD_GL_ARB_instanced_arrays = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_instanced_arrays");
+    GLAD_GL_ARB_invalidate_subdata = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_invalidate_subdata");
     GLAD_GL_ARB_map_buffer_range = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_map_buffer_range");
     GLAD_GL_ARB_multitexture = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_multitexture");
     GLAD_GL_ARB_occlusion_query = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_occlusion_query");
@@ -2113,6 +2130,7 @@ int gladLoadGLUserPtr( GLADuserptrloadfunc load, void *userptr) {
     glad_gl_load_GL_ARB_framebuffer_object(load, userptr);
     glad_gl_load_GL_ARB_geometry_shader4(load, userptr);
     glad_gl_load_GL_ARB_instanced_arrays(load, userptr);
+    glad_gl_load_GL_ARB_invalidate_subdata(load, userptr);
     glad_gl_load_GL_ARB_map_buffer_range(load, userptr);
     glad_gl_load_GL_ARB_multitexture(load, userptr);
     glad_gl_load_GL_ARB_occlusion_query(load, userptr);

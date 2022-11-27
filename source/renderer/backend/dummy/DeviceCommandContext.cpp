@@ -103,10 +103,6 @@ void CDeviceCommandContext::BlitFramebuffer(IFramebuffer*, IFramebuffer*)
 {
 }
 
-void CDeviceCommandContext::ClearFramebuffer()
-{
-}
-
 void CDeviceCommandContext::ClearFramebuffer(const bool, const bool, const bool)
 {
 }

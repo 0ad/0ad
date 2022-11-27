@@ -212,12 +212,10 @@ void SkyManager::RenderSky(
 {
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render sky");
 
-	if (!m_SkyVisible)
-		return;
-
-	// Do nothing unless SetSkySet was called
-	if (m_SkySet.empty() || !m_SkyTextureCube)
-		return;
+	const CTexturePtr& skyTextureCube =
+		!m_SkyVisible || m_SkySet.empty() || !m_SkyTextureCube
+			? g_Renderer.GetTextureManager().GetBlackTextureCube()
+			: m_SkyTextureCube;
 
 	const CCamera& camera = g_Renderer.GetSceneRenderer().GetViewCamera();
 
@@ -228,7 +226,7 @@ void SkyManager::RenderSky(
 	deviceCommandContext->BeginPass();
 	Renderer::Backend::IShaderProgram* shader = skytech->GetShader();
 	deviceCommandContext->SetTexture(
-		shader->GetBindingSlot(str_baseTex), m_SkyTextureCube->GetBackendTexture());
+		shader->GetBindingSlot(str_baseTex), skyTextureCube->GetBackendTexture());
 
 	// Translate so the sky center is at the camera space origin.
 	CMatrix3D translate;

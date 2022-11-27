@@ -91,13 +91,7 @@ std::unique_ptr<ITexture> CDevice::CreateTexture2D(
 }
 
 std::unique_ptr<IFramebuffer> CDevice::CreateFramebuffer(
-	const char*, ITexture*, ITexture*)
-{
-	return CFramebuffer::Create(this);
-}
-
-std::unique_ptr<IFramebuffer> CDevice::CreateFramebuffer(
-	const char*, ITexture*, ITexture*, const CColor&)
+	const char*, SColorAttachment*, SDepthStencilAttachment*)
 {
 	return CFramebuffer::Create(this);
 }
@@ -118,6 +112,13 @@ bool CDevice::AcquireNextBackbuffer()
 {
 	// We have nothing to acquire.
 	return true;
+}
+
+IFramebuffer* CDevice::GetCurrentBackbuffer(
+	const AttachmentLoadOp, const AttachmentStoreOp,
+	const AttachmentLoadOp, const AttachmentStoreOp)
+{
+	return m_Backbuffer.get();
 }
 
 void CDevice::Present()

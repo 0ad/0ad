@@ -540,7 +540,11 @@ void ActorViewer::Render()
 	sceneRenderer.PrepareScene(deviceCommandContext, m);
 
 	deviceCommandContext->BeginFramebufferPass(
-		deviceCommandContext->GetDevice()->GetCurrentBackbuffer());
+		deviceCommandContext->GetDevice()->GetCurrentBackbuffer(
+			Renderer::Backend::AttachmentLoadOp::DONT_CARE,
+			Renderer::Backend::AttachmentStoreOp::STORE,
+			Renderer::Backend::AttachmentLoadOp::DONT_CARE,
+			Renderer::Backend::AttachmentStoreOp::DONT_CARE));
 
 	sceneRenderer.RenderScene(deviceCommandContext);
 	sceneRenderer.RenderSceneOverlays(deviceCommandContext);

@@ -74,11 +74,6 @@ void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 	Script::SetProperty(rq, settings, "status", vulkanSupport);
 }
 
-IFramebuffer* CDevice::GetCurrentBackbuffer()
-{
-	return nullptr;
-}
-
 std::unique_ptr<IDeviceCommandContext> CDevice::CreateCommandContext()
 {
 	return nullptr;
@@ -112,23 +107,12 @@ std::unique_ptr<ITexture> CDevice::CreateTexture2D(
 }
 
 std::unique_ptr<IFramebuffer> CDevice::CreateFramebuffer(
-	const char* name, ITexture* colorAttachment,
-	ITexture* depthStencilAttachment)
+	const char* name, SColorAttachment* colorAttachment,
+	SDepthStencilAttachment* depthStencilAttachment)
 {
 	UNUSED2(name);
 	UNUSED2(colorAttachment);
 	UNUSED2(depthStencilAttachment);
-	return nullptr;
-}
-
-std::unique_ptr<IFramebuffer> CDevice::CreateFramebuffer(
-	const char* name, ITexture* colorAttachment,
-	ITexture* depthStencilAttachment, const CColor& clearColor)
-{
-	UNUSED2(name);
-	UNUSED2(colorAttachment);
-	UNUSED2(depthStencilAttachment);
-	UNUSED2(clearColor);
 	return nullptr;
 }
 
@@ -153,6 +137,19 @@ std::unique_ptr<IShaderProgram> CDevice::CreateShaderProgram(
 bool CDevice::AcquireNextBackbuffer()
 {
 	return false;
+}
+
+IFramebuffer* CDevice::GetCurrentBackbuffer(
+	const AttachmentLoadOp colorAttachmentLoadOp,
+	const AttachmentStoreOp colorAttachmentStoreOp,
+	const AttachmentLoadOp depthStencilAttachmentLoadOp,
+	const AttachmentStoreOp depthStencilAttachmentStoreOp)
+{
+	UNUSED2(colorAttachmentLoadOp);
+	UNUSED2(colorAttachmentStoreOp);
+	UNUSED2(depthStencilAttachmentLoadOp);
+	UNUSED2(depthStencilAttachmentStoreOp);
+	return nullptr;
 }
 
 void CDevice::Present()

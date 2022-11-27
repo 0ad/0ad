@@ -72,8 +72,6 @@ public:
 
 	virtual void Report(const ScriptRequest& rq, JS::HandleValue settings) = 0;
 
-	virtual IFramebuffer* GetCurrentBackbuffer() = 0;
-
 	virtual std::unique_ptr<IDeviceCommandContext> CreateCommandContext() = 0;
 
 	virtual std::unique_ptr<ITexture> CreateTexture(
@@ -86,13 +84,19 @@ public:
 		const Format format, const uint32_t width, const uint32_t height,
 		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount = 1, const uint32_t sampleCount = 1) = 0;
 
+	/**
+	 * @see IFramebuffer
+	 *
+	 * The color attachment and the depth-stencil attachment should not be
+	 * nullptr at the same time. There should not be many different clear
+	 * colors along all color attachments for all framebuffers created for
+	 * the device.
+	 *
+	 * @return A valid framebuffer if it was created successfully else nullptr.
+	 */
 	virtual std::unique_ptr<IFramebuffer> CreateFramebuffer(
-		const char* name, ITexture* colorAttachment,
-		ITexture* depthStencilAttachment) = 0;
-
-	virtual std::unique_ptr<IFramebuffer> CreateFramebuffer(
-		const char* name, ITexture* colorAttachment,
-		ITexture* depthStencilAttachment, const CColor& clearColor) = 0;
+		const char* name, SColorAttachment* colorAttachment,
+		SDepthStencilAttachment* depthStencilAttachment) = 0;
 
 	virtual std::unique_ptr<IBuffer> CreateBuffer(
 		const char* name, const IBuffer::Type type, const uint32_t size, const bool dynamic) = 0;
@@ -100,7 +104,36 @@ public:
 	virtual std::unique_ptr<IShaderProgram> CreateShaderProgram(
 		const CStr& name, const CShaderDefines& defines) = 0;
 
+	/**
+	 * Acquires a backbuffer for rendering a frame.
+	 *
+	 * @return True if it was successfully acquired and we can render to it.
+	 */
 	virtual bool AcquireNextBackbuffer() = 0;
+
+	/**
+	 * Returns a framebuffer for the current backbuffer with the required
+	 * attachment operations. It should not be called if the last
+	 * AcquireNextBackbuffer call returned false.
+	 *
+	 * It's guaranteed that for the same acquired backbuffer this function returns
+	 * a framebuffer with the same attachments and properties except load and
+	 * store operations.
+	 *
+	 * @return The last successfully acquired framebuffer that wasn't
+	 * presented.
+	 */
+	virtual IFramebuffer* GetCurrentBackbuffer(
+		const AttachmentLoadOp colorAttachmentLoadOp,
+		const AttachmentStoreOp colorAttachmentStoreOp,
+		const AttachmentLoadOp depthStencilAttachmentLoadOp,
+		const AttachmentStoreOp depthStencilAttachmentStoreOp) = 0;
+
+	/**
+	 * Presents the backbuffer to the swapchain queue to be flipped on a
+	 * screen. Should be called only if the last AcquireNextBackbuffer call
+	 * returned true.
+	 */
 	virtual void Present() = 0;
 
 	virtual bool IsTextureFormatSupported(const Format format) const = 0;

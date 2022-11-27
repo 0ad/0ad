@@ -54,8 +54,6 @@ public:
 
 	void Report(const ScriptRequest& rq, JS::HandleValue settings) override;
 
-	IFramebuffer* GetCurrentBackbuffer() override;
-
 	std::unique_ptr<IDeviceCommandContext> CreateCommandContext() override;
 
 	std::unique_ptr<ITexture> CreateTexture(
@@ -69,12 +67,8 @@ public:
 		const Sampler::Desc& defaultSamplerDesc, const uint32_t MIPLevelCount = 1, const uint32_t sampleCount = 1) override;
 
 	std::unique_ptr<IFramebuffer> CreateFramebuffer(
-		const char* name, ITexture* colorAttachment,
-		ITexture* depthStencilAttachment) override;
-
-	std::unique_ptr<IFramebuffer> CreateFramebuffer(
-		const char* name, ITexture* colorAttachment,
-		ITexture* depthStencilAttachment, const CColor& clearColor) override;
+		const char* name, SColorAttachment* colorAttachment,
+		SDepthStencilAttachment* depthStencilAttachment) override;
 
 	std::unique_ptr<IBuffer> CreateBuffer(
 		const char* name, const IBuffer::Type type, const uint32_t size, const bool dynamic) override;
@@ -83,6 +77,13 @@ public:
 		const CStr& name, const CShaderDefines& defines) override;
 
 	bool AcquireNextBackbuffer() override;
+
+	IFramebuffer* GetCurrentBackbuffer(
+		const AttachmentLoadOp colorAttachmentLoadOp,
+		const AttachmentStoreOp colorAttachmentStoreOp,
+		const AttachmentLoadOp depthStencilAttachmentLoadOp,
+		const AttachmentStoreOp depthStencilAttachmentStoreOp) override;
+
 	void Present() override;
 
 	bool IsTextureFormatSupported(const Format format) const override;

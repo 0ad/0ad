@@ -150,13 +150,76 @@ void UploadDynamicBufferRegionImpl(
 	}
 }
 
+/**
+ * In case we don't need a framebuffer content (because of the following clear
+ * or overwriting by a shader) we might give a hint to a driver via
+ * glInvalidateFramebuffer.
+ */
+void InvalidateFramebuffer(
+	CFramebuffer* framebuffer, const bool color, const bool depthStencil)
+{
+	GLsizei numberOfAttachments = 0;
+	GLenum attachments[8];
+	const bool isBackbuffer = framebuffer->GetHandle() == 0;
+	if (color && (framebuffer->GetAttachmentMask() & GL_COLOR_BUFFER_BIT))
+	{
+		if (isBackbuffer)
+#if CONFIG2_GLES
+			attachments[numberOfAttachments++] = GL_COLOR_EXT;
+#else
+			attachments[numberOfAttachments++] = GL_COLOR;
+#endif
+		else
+			attachments[numberOfAttachments++] = GL_COLOR_ATTACHMENT0;
+	}
+	if (depthStencil)
+	{
+		if (isBackbuffer)
+		{
+			if (framebuffer->GetAttachmentMask() & GL_DEPTH_BUFFER_BIT)
+#if CONFIG2_GLES
+				attachments[numberOfAttachments++] = GL_DEPTH_EXT;
+#else
+				attachments[numberOfAttachments++] = GL_DEPTH;
+#endif
+			if (framebuffer->GetAttachmentMask() & GL_STENCIL_BUFFER_BIT)
+#if CONFIG2_GLES
+				attachments[numberOfAttachments++] = GL_STENCIL_EXT;
+#else
+				attachments[numberOfAttachments++] = GL_STENCIL;
+#endif
+		}
+		else
+		{
+			if (framebuffer->GetAttachmentMask() & GL_DEPTH_BUFFER_BIT)
+				attachments[numberOfAttachments++] = GL_DEPTH_ATTACHMENT;
+			if (framebuffer->GetAttachmentMask() & GL_STENCIL_BUFFER_BIT)
+				attachments[numberOfAttachments++] = GL_STENCIL_ATTACHMENT;
+		}
+	}
+
+	if (numberOfAttachments > 0)
+	{
+#if CONFIG2_GLES
+		glDiscardFramebufferEXT(GL_FRAMEBUFFER_EXT, numberOfAttachments, attachments);
+#else
+		glInvalidateFramebuffer(GL_FRAMEBUFFER_EXT, numberOfAttachments, attachments);
+#endif
+		ogl_WarnIfError();
+	}
+}
+
 } // anonymous namespace
 
 // static
 std::unique_ptr<CDeviceCommandContext> CDeviceCommandContext::Create(CDevice* device)
 {
 	std::unique_ptr<CDeviceCommandContext> deviceCommandContext(new CDeviceCommandContext(device));
-	deviceCommandContext->m_Framebuffer = static_cast<CFramebuffer*>(device->GetCurrentBackbuffer());
+	deviceCommandContext->m_Framebuffer = device->GetCurrentBackbuffer(
+		Renderer::Backend::AttachmentLoadOp::DONT_CARE,
+		Renderer::Backend::AttachmentStoreOp::DONT_CARE,
+		Renderer::Backend::AttachmentLoadOp::DONT_CARE,
+		Renderer::Backend::AttachmentStoreOp::DONT_CARE)->As<CFramebuffer>();
 	deviceCommandContext->ResetStates();
 	return deviceCommandContext;
 }
@@ -483,7 +546,11 @@ void CDeviceCommandContext::ResetStates()
 {
 	SetGraphicsPipelineStateImpl(MakeDefaultGraphicsPipelineStateDesc(), true);
 	SetScissors(0, nullptr);
-	m_Framebuffer = static_cast<CFramebuffer*>(m_Device->GetCurrentBackbuffer());
+	m_Framebuffer = m_Device->GetCurrentBackbuffer(
+		Renderer::Backend::AttachmentLoadOp::DONT_CARE,
+		Renderer::Backend::AttachmentStoreOp::DONT_CARE,
+		Renderer::Backend::AttachmentLoadOp::DONT_CARE,
+		Renderer::Backend::AttachmentStoreOp::DONT_CARE)->As<CFramebuffer>();
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_Framebuffer->GetHandle());
 	ogl_WarnIfError();
 }
@@ -761,13 +828,9 @@ void CDeviceCommandContext::BlitFramebuffer(
 #endif
 }
 
-void CDeviceCommandContext::ClearFramebuffer()
-{
-	ClearFramebuffer(true, true, true);
-}
-
 void CDeviceCommandContext::ClearFramebuffer(const bool color, const bool depth, const bool stencil)
 {
+	ENSURE(m_InsideFramebufferPass);
 	const bool needsColor = color && (m_Framebuffer->GetAttachmentMask() & GL_COLOR_BUFFER_BIT) != 0;
 	const bool needsDepth = depth && (m_Framebuffer->GetAttachmentMask() & GL_DEPTH_BUFFER_BIT) != 0;
 	const bool needsStencil = stencil && (m_Framebuffer->GetAttachmentMask() & GL_STENCIL_BUFFER_BIT) != 0;
@@ -811,15 +874,46 @@ void CDeviceCommandContext::BeginFramebufferPass(IFramebuffer* framebuffer)
 	ENSURE(m_Framebuffer->GetHandle() == 0 || (m_Framebuffer->GetWidth() > 0 && m_Framebuffer->GetHeight() > 0));
 	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_Framebuffer->GetHandle());
 	ogl_WarnIfError();
+	if (m_Device->UseFramebufferInvalidating())
+	{
+		InvalidateFramebuffer(
+			m_Framebuffer,
+			m_Framebuffer->GetColorAttachmentLoadOp() != AttachmentLoadOp::LOAD,
+			m_Framebuffer->GetDepthStencilAttachmentLoadOp() != AttachmentLoadOp::LOAD);
+	}
+	const bool needsClearColor =
+		m_Framebuffer->GetColorAttachmentLoadOp() == AttachmentLoadOp::CLEAR;
+	const bool needsClearDepthStencil =
+		m_Framebuffer->GetDepthStencilAttachmentLoadOp() == AttachmentLoadOp::CLEAR;
+	if (needsClearColor || needsClearDepthStencil)
+	{
+		ClearFramebuffer(
+			needsClearColor, needsClearDepthStencil, needsClearDepthStencil);
+	}
 }
 
 void CDeviceCommandContext::EndFramebufferPass()
 {
+	if (m_Device->UseFramebufferInvalidating())
+	{
+		InvalidateFramebuffer(
+			m_Framebuffer,
+			m_Framebuffer->GetColorAttachmentStoreOp() != AttachmentStoreOp::STORE,
+			m_Framebuffer->GetDepthStencilAttachmentStoreOp() != AttachmentStoreOp::STORE);
+	}
 	ENSURE(m_InsideFramebufferPass);
 	m_InsideFramebufferPass = false;
-	m_Framebuffer = static_cast<CFramebuffer*>(m_Device->GetCurrentBackbuffer());
-	glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_Framebuffer->GetHandle());
-	ogl_WarnIfError();
+	CFramebuffer* framebuffer = m_Device->GetCurrentBackbuffer(
+		Renderer::Backend::AttachmentLoadOp::DONT_CARE,
+		Renderer::Backend::AttachmentStoreOp::DONT_CARE,
+		Renderer::Backend::AttachmentLoadOp::DONT_CARE,
+		Renderer::Backend::AttachmentStoreOp::DONT_CARE)->As<CFramebuffer>();
+	if (framebuffer->GetHandle() != m_Framebuffer->GetHandle())
+	{
+		glBindFramebufferEXT(GL_FRAMEBUFFER_EXT, framebuffer->GetHandle());
+		ogl_WarnIfError();
+	}
+	m_Framebuffer = framebuffer;
 }
 
 void CDeviceCommandContext::ReadbackFramebufferSync(
