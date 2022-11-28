@@ -5,19 +5,19 @@
 	type="image"
 >
 
-	<!-- Background image -->
-	<object
-		type="image"
-		size="4 4 100%-4 100%-4"
-		sprite="stretched:session/minimap_circle_modern.png"
-		ghost="true"
-	/>
-
 	<!-- Civ background image -->
 	<object
 		name="minimapBackgroundTexture"
 		type="image"
 		size="4 4 100%-4 100%-4"
+		ghost="true"
+	/>
+
+	<!-- Background circle -->
+	<object
+		type="image"
+		size="4 4 100%-4 100%-4"
+		sprite="stretched:session/minimap_circle_modern.png"
 		ghost="true"
 	/>
 
