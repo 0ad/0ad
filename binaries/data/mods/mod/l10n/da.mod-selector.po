@@ -6,12 +6,13 @@
 # David Lemser
 # Wachsmuth
 # Joe Hansen
+# Lars Henrik Ørn
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-11-04 08:09+0000\n"
 "PO-Revision-Date: 2014-09-12 20:06+0000\n"
-"Last-Translator: Joe Hansen <joedalton2@yahoo.dk>, 2019\n"
+"Last-Translator: Lars Henrik Ørn, 2022\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,19 +27,19 @@ msgstr "Farve"
 #: gui/colormixer/colormixer.js:25
 msgid ""
 "Move the sliders to change the Red, Green and Blue components of the Color"
-msgstr ""
+msgstr "Flyt skyderne for at ændre de røde, grønne og blå komponenter i farven"
 
 #: gui/colormixer/colormixer.js:90
 msgid "Red"
-msgstr ""
+msgstr "Rød"
 
 #: gui/colormixer/colormixer.js:90
 msgid "Green"
-msgstr ""
+msgstr "Grøn"
 
 #: gui/colormixer/colormixer.js:90
 msgid "Blue"
-msgstr ""
+msgstr "Blå"
 
 #: gui/colormixer/colormixer.js:91
 msgid "Save"
@@ -54,7 +55,7 @@ msgstr "Annuller"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
-msgstr ""
+msgstr "Åbner %(url)s\ni standard browseren. Vent venligst..."
 
 #: gui/common/functions_msgbox.js:58
 msgid "Opening page"
@@ -63,28 +64,28 @@ msgstr "Åbningsside"
 #: gui/common/l10n.js:9
 msgctxt "filesize unit"
 msgid "B"
-msgstr ""
+msgstr "B"
 
 #: gui/common/l10n.js:10
 msgctxt "filesize unit"
 msgid "KiB"
-msgstr ""
+msgstr "KiB"
 
 #: gui/common/l10n.js:11
 msgctxt "filesize unit"
 msgid "MiB"
-msgstr ""
+msgstr "MiB"
 
 #: gui/common/l10n.js:12
 msgctxt "filesize unit"
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 #. Translation: For example: 123.4 KiB
 #: gui/common/l10n.js:33
 #, javascript-format
 msgid "%(filesize)s %(unit)s"
-msgstr ""
+msgstr "%(filesize)s%(unit)s"
 
 #. Translation: Time-format string. See http://userguide.icu-
 #. project.org/formatparse/datetime
@@ -106,7 +107,7 @@ msgstr ","
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "%(mod)s (%(version)s)"
-msgstr ""
+msgstr "%(mod)s(%(version)s)"
 
 #: gui/common/mod.js:31
 msgid ", "
@@ -116,19 +117,19 @@ msgstr ","
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
-msgstr ""
+msgstr "Krævet: %(mods)s"
 
 #: gui/common/mod.js:41
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "Aktiv: %(mods)s"
 
 #: gui/incompatible_mods/incompatible_mods.txt:1
 msgid ""
 "[font=\"sans-bold-20\"]You tried to start the game with incompatible or "
 "missing mods![/font]"
-msgstr ""
+msgstr " \n[font=\"sans-bold-20\"]Du forsøgte at starte spillet med inkompatible eller manglende mods![/font]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
@@ -138,29 +139,29 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "Solve the compatibility issue by disabling invalid mods or enabling required"
 " dependencies. You can then save & start the game."
-msgstr ""
+msgstr "Løs kompatibilitetsproblemet ved at deaktivere ugyldige mods eller aktivere nødvendige afhængigheder. Du kan derefter gemme og starte spillet."
 
 #: gui/incompatible_mods/incompatible_mods.txt:5
 msgid ""
 "Incompatible mods will appear in red in the list of enabled mods (bottom "
 "panel). Dependencies can be added by enabling them in the upper panel."
-msgstr ""
+msgstr "Inkompatible mods vises i rødt på listen over aktiverede mods (nederste panel). Afhængigheder kan tilføjes ved at aktivere dem i det øverste panel."
 
 #: gui/incompatible_mods/incompatible_mods.txt:6
 msgid "[/font]"
-msgstr ""
+msgstr "[/font]"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):12
 msgid "Incompatible mods"
-msgstr ""
+msgstr "Ikke kompatibel mod"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):19
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
 #: gui/modio/Disclaimer.txt:1
 msgid "0 A.D. Empires Ascendant mod.io Disclaimer"
-msgstr ""
+msgstr "0 A.D. Empires Ascendant mod.io Disclaimer"
 
 #: gui/modio/Disclaimer.txt:3
 msgid "Document Date: 2018-10-12"
@@ -168,32 +169,32 @@ msgstr ""
 
 #: gui/modio/Disclaimer.txt:5
 msgid "You are about to connect to the mod.io online service."
-msgstr ""
+msgstr "du er ved at oprette forbindelse til mod.io onlinetjenesten."
 
 #: gui/modio/Disclaimer.txt:6
 msgid ""
 "This service provides an easy way to download and install community-made "
 "mods and is provided by DBolical Pty Ltd, the company behind IndieDB and "
 "ModDB."
-msgstr ""
+msgstr "Denne service giver en nem måde at downloade og installere community-made mods og leveres af DBolical Pty Ltd, virksomheden bag IndieDB og ModDB."
 
 #: gui/modio/Disclaimer.txt:7
 msgid "The service is for users age 13 and over."
-msgstr ""
+msgstr "Tjenesten er for brugere på 13 år og derover.\n "
 
 #: gui/modio/Disclaimer.txt:9
 msgid ""
 "Wildfire Games has taken care to make this connection secure and reviewed "
 "the mods for security flaws, but cannot guarantee that this does not pose "
 "any risks."
-msgstr ""
+msgstr "Wildfire Games har sørget for at gøre denne forbindelse sikker og gennemgået mods for sikkerhedsfejl, men kan ikke garantere, at dette ikke udgør nogen risici."
 
 #: gui/modio/Disclaimer.txt:11
 msgid ""
 "By using the service, you understand that mod.io's Terms of Use and Privacy "
 "Policy apply and that Wildfire Games is not liable for any damages resulting"
 " from this service."
-msgstr ""
+msgstr "Ved at bruge tjenesten forstår du, at mod.io's vilkår for brug og privatlivspolitik gælder, og at Wildfire Games ikke er ansvarlig for skader som følge af denne tjeneste."
 
 #: gui/modio/modio.js:80
 #, javascript-format
@@ -202,12 +203,12 @@ msgid ""
 "Game ID could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "Spil ID kunne ikke modtages.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr ""
+msgstr "Initialiserings fejl"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 msgid "Retry"
@@ -225,7 +226,7 @@ msgid ""
 "Mod List could not be retrieved.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "Mod listen kunne ikke modtages.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
@@ -244,7 +245,7 @@ msgstr ""
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr ""
+msgstr "Fejl ved hentning"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -279,7 +280,7 @@ msgstr ""
 
 #: gui/modio/modio.js:247
 msgid "Updating"
-msgstr ""
+msgstr "Opdaterer"
 
 #: gui/modio/modio.js:249
 msgid "Cancel Update"
@@ -288,11 +289,11 @@ msgstr ""
 #: gui/modio/modio.js:265
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr ""
+msgstr "Henter “%(modname)s”"
 
 #: gui/modio/modio.js:268
 msgid "Downloading"
-msgstr ""
+msgstr "Henter"
 
 #: gui/modio/modio.js:270
 msgid "Cancel Download"
@@ -345,11 +346,11 @@ msgstr "Tilbage"
 
 #: gui/modio/modio.xml:(caption):93
 msgid "Refresh List"
-msgstr ""
+msgstr "Genopfrisk liste"
 
 #: gui/modio/modio.xml:(caption):98
 msgid "Download"
-msgstr ""
+msgstr "Hent"
 
 #: gui/modio/modio.xml:(heading):54 gui/modmod/modmod.xml:(heading):90
 #: gui/modmod/modmod.xml:(heading):131
@@ -368,7 +369,7 @@ msgstr "Mod mærkat"
 
 #: gui/modio/modio.xml:(heading):63
 msgid "File Size"
-msgstr ""
+msgstr "Fil størrelse"
 
 #: gui/modio/modio.xml:(heading):66 gui/modmod/modmod.xml:(heading):102
 #: gui/modmod/modmod.xml:(heading):143
@@ -384,7 +385,7 @@ msgstr "Filter"
 msgid ""
 "0 A.D. is designed to be easily modded. Mods are distributed in the form of "
 ".pyromod files, which can be opened like .zip files."
-msgstr ""
+msgstr "0 A.D. er designet til at være let at modificere. Mods distribueres i form af .pyromod-filer, som kan åbnes som .zip-filer."
 
 #: gui/modmod/help/help.txt:3
 msgid ""
@@ -394,13 +395,13 @@ msgid ""
 "selector. You can enable it and disable it at will. You can delete the mod "
 "manually using your file browser if needed (see "
 "https://trac.wildfiregames.com/wiki/GameDataPaths)."
-msgstr ""
+msgstr "For at installere en mod skal du blot åbne filen med 0 A.D. (enten dobbeltklik på filen og vælg at åbne den med spillet, eller kør \"pyrogenesis file.pyromod\" i en terminal). Mod'en vil derefter være tilgængelig i mod vælgeren. Du kan aktivere og deaktivere den efter behag. Du kan slette mod'et manuelt ved hjælp af din filbrowser, hvis det er nødvendigt (se https://trac.wildfiregames.com/wiki/GameDataPaths)."
 
 #: gui/modmod/help/help.txt:5
 msgid ""
 "For more information about modding the game, see the Modding Guide online "
 "(click the Modding Guide button below)."
-msgstr ""
+msgstr "For mere information om modding af spillet, se Modding Guide online (klik på knappen Modding Guide nedenfor)."
 
 #: gui/modmod/help/help.txt:7
 msgid ""
@@ -409,11 +410,11 @@ msgid ""
 "projects for a long time! Today, mod.io allows us to list and download all "
 "the mods that were verified by the team. Click \"Download Mods\" to try it "
 "out and install some!"
-msgstr ""
+msgstr "Mod.io-tjenesten er udviklet af DBolical, virksomheden bag IndieDB og ModDB. Disse websteder har spredt budskabet om 0 A.D. og andre indie-projekter i lang tid! I dag giver mod.io os mulighed for at liste og downloade alle de mods, der blev bekræftet af holdet. Klik på \"Download Mods\" for at prøve det og installere nogle!"
 
 #: gui/modmod/help/help.xml:(caption):13
 msgid "Pyrogenesis Mod Selector"
-msgstr ""
+msgstr "Pyrogenesis Mod Selector"
 
 #: gui/modmod/help/help.xml:(caption):21
 msgid "Close"
@@ -421,15 +422,15 @@ msgstr "Luk"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr ""
+msgstr "Modding Guide"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr ""
+msgstr "Besøg mod.io"
 
 #: gui/modmod/modmod.js:67
 msgid "This mod does not exist"
-msgstr ""
+msgstr "Denne mod findes ikke"
 
 #: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
@@ -443,7 +444,7 @@ msgstr ""
 #: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
-msgstr ""
+msgstr "Deaktiver"
 
 #: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
@@ -451,7 +452,7 @@ msgstr "Ingen mod er valgt."
 
 #: gui/modmod/modmod.js:460
 msgid "Enable at least 0ad mod"
-msgstr ""
+msgstr "Aktiver mindst 0ad mod"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -463,7 +464,7 @@ msgstr "negere"
 
 #: gui/modmod/modmod.xml:(caption):51
 msgid "Filter compatible"
-msgstr ""
+msgstr "Filter kompatibel "
 
 #: gui/modmod/modmod.xml:(caption):63
 msgid "Description"
@@ -483,11 +484,11 @@ msgstr "Afslut"
 
 #: gui/modmod/modmod.xml:(caption):202
 msgid "Help"
-msgstr ""
+msgstr "Hjælp"
 
 #: gui/modmod/modmod.xml:(caption):207
 msgid "Download Mods"
-msgstr ""
+msgstr "Hent mods"
 
 #: gui/modmod/modmod.xml:(caption):212
 msgid "Save Configuration"
@@ -495,7 +496,7 @@ msgstr "Gem Indstillinger"
 
 #: gui/modmod/modmod.xml:(caption):217
 msgid "Save and Restart"
-msgstr ""
+msgstr "Gem og genstart"
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):137
 msgid "(Folder)"
@@ -515,13 +516,13 @@ msgid ""
 "overwrite settings of mods loaded earlier. It is advisable to have more "
 "complex mods loaded last. Use the arrows on the right to change the loading "
 "order."
-msgstr ""
+msgstr "Aktiverede mods indlæses fra top til bund. Mods, der indlæses senere, kan overskrive indstillinger for mods, der er indlæst tidligere. Det er tilrådeligt at have mere komplekse mods indlæst sidst. Brug pilene til højre for at ændre indlæsningsrækkefølgen."
 
 #: gui/modmod/modmod.xml:(tooltip):161 gui/modmod/modmod.xml:(tooltip):175
 msgid ""
 "Change the order in which mods are launched. This should match the mods "
 "dependencies."
-msgstr ""
+msgstr "Skift rækkefølgen, som mods lanceres i. Dette bør matche mods-afhængighederne."
 
 #: gui/modmod/modmodio.js:5
 msgid "Disclaimer"
@@ -544,12 +545,12 @@ msgstr "OK"
 #. default webbrowser.
 #: gui/termsdialog/termsdialog.js:30
 msgid "View online"
-msgstr ""
+msgstr "Se online"
 
 #: gui/termsdialog/termsdialog.js:38
 #, javascript-format
 msgid "Open %(url)s in the browser."
-msgstr ""
+msgstr "Åbn %(url)s i browseren."
 
 #: gui/termsdialog/termsdialog.xml:(caption):15
 msgid "Language"
@@ -557,7 +558,7 @@ msgstr "Sprog"
 
 #: gui/termsdialog/termsdialog.xml:(caption):33
 msgid "Decline"
-msgstr ""
+msgstr "Nægt"
 
 #: gui/termsdialog/termsdialog.xml:(caption):38
 msgid "Accept"

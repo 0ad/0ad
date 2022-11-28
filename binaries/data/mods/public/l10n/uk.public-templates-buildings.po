@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-08-29 07:13+0000\n"
+"POT-Creation-Date: 2022-11-25 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: aa4a75b616c7281b4c1ca3782cfac296_76b465e, 2022\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
@@ -711,7 +711,7 @@ msgstr "Сюй лань"
 msgid "Fángyù Tǎ"
 msgstr "Фан'юй та"
 
-#: simulation/templates/structures/han/defense_tower.xml:17
+#: simulation/templates/structures/han/defense_tower.xml:23
 msgid ""
 "This tower has greater range, greater attack, greater health, and is twice "
 "as difficult to capture."
@@ -1928,7 +1928,7 @@ msgstr "Будинок"
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_range.xml:25
 #: simulation/templates/template_structure_military_stable.xml:29
-#: simulation/templates/template_structure_resource_corral.xml:21
+#: simulation/templates/template_structure_resource_corral.xml:32
 msgid "Village"
 msgstr "Село"
 
@@ -1947,7 +1947,7 @@ msgstr "Стоа"
 #: simulation/templates/structures/han/laozigate.xml:24
 #: simulation/templates/structures/han/ministry.xml:39
 #: simulation/templates/structures/iber/monument.xml:34
-#: simulation/templates/structures/maur/elephant_stable.xml:8
+#: simulation/templates/structures/maur/elephant_stable.xml:7
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_economic_market.xml:28
@@ -2041,7 +2041,7 @@ msgstr "Розмістити піхоту у гарнізоні для дода�
 msgid "SentryTower"
 msgstr "Сторожова вежа"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:59
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:61
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Зміцнити каменем та вдосконалити до захисної вежі."
 
@@ -2087,7 +2087,7 @@ msgstr "Господарська споруда"
 
 #: simulation/templates/template_structure_economic.xml:5
 #: simulation/templates/template_structure_military_dock.xml:27
-#: simulation/templates/template_structure_resource_corral.xml:21
+#: simulation/templates/template_structure_resource_corral.xml:32
 msgid "Economic"
 msgstr "Господарське"
 
@@ -2250,14 +2250,16 @@ msgstr "Ресурсна споруда"
 msgid "Resource"
 msgstr "Ресурс"
 
-#: simulation/templates/template_structure_resource_corral.xml:18
-#: simulation/templates/template_structure_resource_corral.xml:21
+#: simulation/templates/template_structure_resource_corral.xml:29
+#: simulation/templates/template_structure_resource_corral.xml:32
 msgid "Corral"
 msgstr "Загін"
 
-#: simulation/templates/template_structure_resource_corral.xml:20
-msgid "Raise Domestic Animals for food."
-msgstr "Вирощування свійських тварин для їжі."
+#: simulation/templates/template_structure_resource_corral.xml:31
+msgid ""
+"Raise Domestic Animals for immediate slaughter, or garrison them instead to "
+"gain a free trickle of food."
+msgstr ""
 
 #: simulation/templates/template_structure_resource_field.xml:18
 #: simulation/templates/template_structure_resource_field.xml:20

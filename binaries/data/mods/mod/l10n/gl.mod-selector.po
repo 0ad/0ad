@@ -6,12 +6,13 @@
 # Adrian Chaves
 # Adrián Chaves Fernández
 # Nicolás S.
+# Xurxo Guerra Perez
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-11-04 08:09+0000\n"
 "PO-Revision-Date: 2014-09-12 20:06+0000\n"
-"Last-Translator: Nicolás S. <nicogomfor@gmail.com>, 2022\n"
+"Last-Translator: Xurxo Guerra Perez, 2022\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,19 +27,19 @@ msgstr "Cor"
 #: gui/colormixer/colormixer.js:25
 msgid ""
 "Move the sliders to change the Red, Green and Blue components of the Color"
-msgstr ""
+msgstr "Move os controis de desprazábeis para mudar os compoñentes de cor Vermello, Verde e Azul"
 
 #: gui/colormixer/colormixer.js:90
 msgid "Red"
-msgstr ""
+msgstr "Vermello"
 
 #: gui/colormixer/colormixer.js:90
 msgid "Green"
-msgstr ""
+msgstr "Verde"
 
 #: gui/colormixer/colormixer.js:90
 msgid "Blue"
-msgstr ""
+msgstr "Azul"
 
 #: gui/colormixer/colormixer.js:91
 msgid "Save"
@@ -128,7 +129,7 @@ msgstr "Activas: %(mods)s"
 msgid ""
 "[font=\"sans-bold-20\"]You tried to start the game with incompatible or "
 "missing mods![/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"]Tentaches iniciar o xogo con modificacións incompatíbeis ou que faltan![/font]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
@@ -138,13 +139,13 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "Solve the compatibility issue by disabling invalid mods or enabling required"
 " dependencies. You can then save & start the game."
-msgstr ""
+msgstr "Resolve o problema de compatibilidade desactivando as modificacións non válidas ou activando as dependencias requiridas. Entón podes gardar e iniciar o xogo."
 
 #: gui/incompatible_mods/incompatible_mods.txt:5
 msgid ""
 "Incompatible mods will appear in red in the list of enabled mods (bottom "
 "panel). Dependencies can be added by enabling them in the upper panel."
-msgstr ""
+msgstr "As modificacións incompatíbeis aparecerán en vermello na listaxe de modificacións activadas (panel inferior). Pódense engadir dependencias activándoas no panel superior."
 
 #: gui/incompatible_mods/incompatible_mods.txt:6
 msgid "[/font]"
@@ -271,7 +272,7 @@ msgstr "Preparando"
 #: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
-msgstr ""
+msgstr "Modificación non válida: %(error)s"
 
 #: gui/modio/modio.js:246
 msgid "Fetching and updating list of available mods."
@@ -337,7 +338,7 @@ msgstr "Modificacións dispoñíbeis"
 
 #: gui/modio/modio.xml:(caption):82
 msgid "Filter valid mods"
-msgstr ""
+msgstr "Filtrar modificacións válidas"
 
 #: gui/modio/modio.xml:(caption):88
 msgid "Back"
@@ -429,7 +430,7 @@ msgstr "Visitar mod.io"
 
 #: gui/modmod/modmod.js:67
 msgid "This mod does not exist"
-msgstr ""
+msgstr "Esta modificación non existe"
 
 #: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
@@ -438,7 +439,7 @@ msgstr "Activar"
 
 #: gui/modmod/modmod.js:167
 msgid "Dependencies not met"
-msgstr ""
+msgstr "Dependencias non atopadas"
 
 #: gui/modmod/modmod.js:449
 msgctxt "mod activation"
@@ -451,7 +452,7 @@ msgstr "Non se seleccionou ningunha modificación."
 
 #: gui/modmod/modmod.js:460
 msgid "Enable at least 0ad mod"
-msgstr ""
+msgstr "Activar polo menos o mod 0ad"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -463,7 +464,7 @@ msgstr "Negar"
 
 #: gui/modmod/modmod.xml:(caption):51
 msgid "Filter compatible"
-msgstr ""
+msgstr "Filtro compatíbel"
 
 #: gui/modmod/modmod.xml:(caption):63
 msgid "Description"
@@ -515,7 +516,7 @@ msgid ""
 "overwrite settings of mods loaded earlier. It is advisable to have more "
 "complex mods loaded last. Use the arrows on the right to change the loading "
 "order."
-msgstr ""
+msgstr "As modificacións activadas cargaranse de arriba para abaixo. As modificacións cargadas posteriormente poden sobrescribir os axustes das cargadas previamente. É aconsellábel cargar as modificacións máis complexas as últimas. Emprega as frechas da dereita para mudar a orde de carga."
 
 #: gui/modmod/modmod.xml:(tooltip):161 gui/modmod/modmod.xml:(tooltip):175
 msgid ""
@@ -533,7 +534,7 @@ msgstr "Condicións de mod.io"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr "Política de Protección da Intimidade de mod.io"
+msgstr "Política de Privacidade de mod.io"
 
 #: gui/msgbox/msgbox.js:25 gui/timedconfirmation/timedconfirmation.js:46
 msgid "OK"

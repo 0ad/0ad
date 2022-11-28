@@ -36,7 +36,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-08-29 07:13+0000\n"
+"POT-Creation-Date: 2022-11-25 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS, 2020-2022\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
@@ -719,7 +719,7 @@ msgstr ""
 msgid "Fángyù Tǎ"
 msgstr ""
 
-#: simulation/templates/structures/han/defense_tower.xml:17
+#: simulation/templates/structures/han/defense_tower.xml:23
 msgid ""
 "This tower has greater range, greater attack, greater health, and is twice "
 "as difficult to capture."
@@ -1936,7 +1936,7 @@ msgstr "Σπίτι"
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_range.xml:25
 #: simulation/templates/template_structure_military_stable.xml:29
-#: simulation/templates/template_structure_resource_corral.xml:21
+#: simulation/templates/template_structure_resource_corral.xml:32
 msgid "Village"
 msgstr "Χωριό"
 
@@ -1955,7 +1955,7 @@ msgstr "Στοά"
 #: simulation/templates/structures/han/laozigate.xml:24
 #: simulation/templates/structures/han/ministry.xml:39
 #: simulation/templates/structures/iber/monument.xml:34
-#: simulation/templates/structures/maur/elephant_stable.xml:8
+#: simulation/templates/structures/maur/elephant_stable.xml:7
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_economic_market.xml:28
@@ -2049,7 +2049,7 @@ msgstr "Πεζικό Φρουράς για επιπλέον βέλη. Χρειά
 msgid "SentryTower"
 msgstr "Αμυντικός Πύργος"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:59
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:61
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Ενίσχυσε με πέτρα και αναβάθμισε σε πύργο άμυνας."
 
@@ -2095,7 +2095,7 @@ msgstr "Οικονομική Δομή"
 
 #: simulation/templates/template_structure_economic.xml:5
 #: simulation/templates/template_structure_military_dock.xml:27
-#: simulation/templates/template_structure_resource_corral.xml:21
+#: simulation/templates/template_structure_resource_corral.xml:32
 msgid "Economic"
 msgstr "Οικονομικό"
 
@@ -2258,14 +2258,16 @@ msgstr "Δομή Πόρων"
 msgid "Resource"
 msgstr "Πόροι"
 
-#: simulation/templates/template_structure_resource_corral.xml:18
-#: simulation/templates/template_structure_resource_corral.xml:21
+#: simulation/templates/template_structure_resource_corral.xml:29
+#: simulation/templates/template_structure_resource_corral.xml:32
 msgid "Corral"
 msgstr "Μαντρί"
 
-#: simulation/templates/template_structure_resource_corral.xml:20
-msgid "Raise Domestic Animals for food."
-msgstr "Μεγαλώστε Οικόσιτα Ζώα για τροφή."
+#: simulation/templates/template_structure_resource_corral.xml:31
+msgid ""
+"Raise Domestic Animals for immediate slaughter, or garrison them instead to "
+"gain a free trickle of food."
+msgstr ""
 
 #: simulation/templates/template_structure_resource_field.xml:18
 #: simulation/templates/template_structure_resource_field.xml:20

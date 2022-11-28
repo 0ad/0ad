@@ -5,6 +5,7 @@
 # Translators:
 # Wachsmuth
 # Joe Hansen
+# Lars Henrik Ørn
 # Mads Dyrmann
 # Nicolai Nystrup-Eriksen
 msgid ""
@@ -12,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Joe Hansen <joedalton2@yahoo.dk>, 2019\n"
+"Last-Translator: Lars Henrik Ørn, 2022\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,19 +26,19 @@ msgstr ""
 msgid ""
 "I am starting a massive military campaign against %(_player_)s, come and "
 "join me."
-msgstr ""
+msgstr "Jeg starter en massiv militærkampagne mod %(_player_)s, kom og vær med."
 
 #: simulation/ai/petra/chatHelper.js:4
 #, javascript-format
 msgid ""
 "I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
-msgstr ""
+msgstr "Jeg har oprettet en kæmpe hær for at knuse %(_player_)s. Slut dig til mig, og du vil få din del af byttet."
 
 #: simulation/ai/petra/chatHelper.js:7
 #, javascript-format
 msgid "I am launching an attack against %(_player_)s."
-msgstr ""
+msgstr "Jeg starter et angreb mod %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:8
 #, javascript-format
@@ -47,334 +48,334 @@ msgstr "Jeg har lige sendt en hær imod %(_player_)s."
 #: simulation/ai/petra/chatHelper.js:14
 #, javascript-format
 msgid "Let me regroup my army and I will then join you against %(_player_)s."
-msgstr ""
+msgstr "Lad mig omgruppere min hær, og så vil jeg slutte mig til dig imod %(_player_)s. "
 
 #: simulation/ai/petra/chatHelper.js:15
 #, javascript-format
 msgid "I am finishing preparations to attack %(_player_)s."
-msgstr ""
+msgstr "Jeg er ved at afslutte forberedlserne til at angribe %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:18
 #, javascript-format
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
-msgstr ""
+msgstr "Beklager, jeg har ikke nok soldater i øjeblikket; men mit næste angreb vil være målrettet %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:19
 #, javascript-format
 msgid ""
 "Sorry, I still need to strengthen my army. However, I will attack "
 "%(_player_)s next."
-msgstr ""
+msgstr "Undskyld, jeg mangler stadig at styrke min hær. Jeg vil dog angribe %(_player_)s næste gang.\n "
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
 msgid ""
 "I cannot help you against %(_player_)s for the time being, I am planning to "
 "attack %(_player_2)s first."
-msgstr ""
+msgstr "Jeg kan ikke hjælpe dig imod %(_player_)s foreløbig, jeg planlægger at angribe %(_player_2)s først."
 
 #: simulation/ai/petra/chatHelper.js:27
 #, javascript-format
 msgid "Here is a gift for you, %(_player_)s. Make good use of it."
-msgstr ""
+msgstr "Her er en gave til dig, %(_player_)s. Gør god brug af den."
 
 #: simulation/ai/petra/chatHelper.js:28
 #, javascript-format
 msgid "I see you are in a bad situation, %(_player_)s. I hope this helps."
-msgstr ""
+msgstr "Jeg kan se du er i en dårlig situation, %(_player_)s. Jeg håber dette hjælper."
 
 #: simulation/ai/petra/chatHelper.js:29
 #, javascript-format
 msgid ""
 "I can help you this time, %(_player_)s, but you should manage your resources"
 " more carefully in the future."
-msgstr ""
+msgstr "Jeg kan hjælpe dig denne gang, %(_player_)s, men du bør administrere dine ressourcer mere omhyggeligt i fremtiden. "
 
 #: simulation/ai/petra/chatHelper.js:33
 #, javascript-format
 msgid "I am in need of %(resource)s, can you help? I will make it up to you."
-msgstr ""
+msgstr "Jeg har brug for %(resource)s, kan du hjælpe? Jeg vil lade det være op til dig."
 
 #: simulation/ai/petra/chatHelper.js:34
 #, javascript-format
 msgid ""
 "I would participate more efficiently in our common war effort if you could "
 "provide me some %(resource)s."
-msgstr ""
+msgstr "Jeg ville deltage mere effektivt i vores fælles krigsindsats, hvis du kunne give mig nogle %(resource)s."
 
 #: simulation/ai/petra/chatHelper.js:35
 #, javascript-format
 msgid ""
 "If you can spare me some %(resource)s, I will be able to strengthen my army."
-msgstr ""
+msgstr "Hvis du kan spare mig for noget %(resource)s, vil jeg være i stand til at styrke min hær."
 
 #: simulation/ai/petra/chatHelper.js:39
 #, javascript-format
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
-msgstr ""
+msgstr "Jeg har oprettet en ny rute med %(_player_)s. Handel vil være rentabelt for os alle."
 
 #: simulation/ai/petra/chatHelper.js:40
 #, javascript-format
 msgid ""
 "A new trade route is set up with %(_player_)s. Take your share of the "
 "profits."
-msgstr ""
+msgstr " \nEn ny handelsrute oprettes med %(_player_)s. Tag din del af overskuddet."
 
 #: simulation/ai/petra/chatHelper.js:45
 #, javascript-format
 msgid "%(_player_)s and I are now allies."
-msgstr ""
+msgstr "%(_player_)s og jeg er nu allierede."
 
 #: simulation/ai/petra/chatHelper.js:48
 #, javascript-format
 msgid "%(_player_)s and I are now neutral."
-msgstr ""
+msgstr "%(_player_)s og jeg er nu neutrale."
 
 #: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
-msgstr ""
+msgstr "%(_player_)s og jeg er nu fjender."
 
 #: simulation/ai/petra/chatHelper.js:58
 #, javascript-format
 msgid "I cannot accept your offer to become allies, %(_player_)s."
-msgstr ""
+msgstr "Jeg kan ikke acceptere dit tilbud om at blive allierede, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:61
 #, javascript-format
 msgid ""
 "I will not be your ally, %(_player_)s. However, I will consider a neutrality"
 " pact."
-msgstr ""
+msgstr "Jeg vil ikke være din allierede, %(_player_)s. Jeg vil dog overveje en neutralitetspagt."
 
 #: simulation/ai/petra/chatHelper.js:62
 #, javascript-format
 msgid ""
 "I reject your request for alliance, %(_player_)s, but we could become "
 "neutral."
-msgstr ""
+msgstr "Jeg afviser din anmodning om alliance, %(_player_)s, men vi kunne blive neutrale."
 
 #: simulation/ai/petra/chatHelper.js:63
 #, javascript-format
 msgid "%(_player_)s, only a neutrality agreement is conceivable to me."
-msgstr ""
+msgstr "%(_player_)s, kun en neutralitetsaftale er tænkelig for mig."
 
 #: simulation/ai/petra/chatHelper.js:66
 #, javascript-format
 msgid ""
 "Our previous alliance did not work out, %(_player_)s. I must decline your "
 "offer."
-msgstr ""
+msgstr "Vores tidligere alliance fungerede ikke, %(_player_)s. Jeg må afslå dit tilbud.\n "
 
 #: simulation/ai/petra/chatHelper.js:67
 #, javascript-format
 msgid "I won’t ally you again, %(_player_)s!"
-msgstr ""
+msgstr "Jeg vil ikke alliere dig igen, %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:68
 #, javascript-format
 msgid "No more alliances between us, %(_player_)s!"
-msgstr ""
+msgstr "Ikke flere alliancer mellem os, %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:69
 #, javascript-format
 msgid "Your request for peace means nothing to me anymore, %(_player_)s!"
-msgstr ""
+msgstr "Din anmodning om fred betyder intet for mig længere, %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:70
 #, javascript-format
 msgid ""
 "My answer to your repeated peace proposal will remain war, %(_player_)s!"
-msgstr ""
+msgstr "Mit svar på dit gentagne fredsforslag vil forblive krig, %(_player_)s!"
 
 #: simulation/ai/petra/chatHelper.js:73
 #, javascript-format
 msgid ""
 "I will accept your offer to become allies, %(_player_)s. We will both "
 "benefit from this partnership."
-msgstr ""
+msgstr "Jeg vil acceptere dit tilbud om at blive allierede, %(_player_)s. Vi vil begge drage fordel af dette partnerskab."
 
 #: simulation/ai/petra/chatHelper.js:74
 #, javascript-format
 msgid "An alliance between us is a good idea, %(_player_)s."
-msgstr ""
+msgstr "En alliance mellem os er en god idé, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:75
 #, javascript-format
 msgid ""
 "Let both of our people prosper from a peaceful association, %(_player_)s."
-msgstr ""
+msgstr "Lad begge vores folk trives fra en fredelig forening, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:76
 #, javascript-format
 msgid "We have found common ground, %(_player_)s. I accept the alliance."
-msgstr ""
+msgstr "Vi har fundet fælles fodslag, %(_player_)s. Jeg accepterer alliancen."
 
 #: simulation/ai/petra/chatHelper.js:77
 #, javascript-format
 msgid "%(_player_)s, consider us allies from now on."
-msgstr ""
+msgstr "%(_player_)s, betragter os som allierede fra nu af."
 
 #: simulation/ai/petra/chatHelper.js:80
 #, javascript-format
 msgid ""
 "I will ally with you, %(_player_)s, but only if you send me a tribute of "
 "%(_amount_)s %(_resource_)s."
-msgstr ""
+msgstr " Jeg vil alliere mig med dig, %(_player_)s, men kun hvis du sender mig en tribut bestående af %(_amount_)s %(_resource_)s."
 
 #: simulation/ai/petra/chatHelper.js:81
 #, javascript-format
 msgid ""
 "%(_player_)s, you must send me a tribute of %(_amount_)s %(_resource_)s "
 "before I accept an alliance with you."
-msgstr ""
+msgstr "%(_player_)s , du skal sende mig en tribut bestående af %(_amount_)s%(_resource_)s, før jeg accepterer en alliance med dig."
 
 #: simulation/ai/petra/chatHelper.js:82
 #, javascript-format
 msgid ""
 "Unless you send me %(_amount_)s %(_resource_)s, an alliance won’t be formed,"
 " %(_player_)s."
-msgstr ""
+msgstr "Medmindre du sender mig %(_amount_)s %(_resource_)s, vil der ikke blive dannet en alliance, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:85
 #, javascript-format
 msgid ""
 "%(_player_)s, my offer still stands. I will ally with you only if you send "
 "me a tribute of %(_amount_)s %(_resource_)s."
-msgstr ""
+msgstr "%(_player_)s, mit tilbud står stadig. Jeg vil kun alliere mig med dig, hvis du sender mig en tribut bestående af %(_amount_)s%(_resource_)s."
 
 #: simulation/ai/petra/chatHelper.js:86
 #, javascript-format
 msgid ""
 "I’m still waiting for %(_amount_)s %(_resource_)s before accepting your "
 "alliance, %(_player_)s."
-msgstr ""
+msgstr "Jeg venter stadig på %(_amount_)s %(_resource_)s, før jeg accepterer din alliance, %(_player_)s. "
 
 #: simulation/ai/petra/chatHelper.js:87 simulation/ai/petra/chatHelper.js:108
 #, javascript-format
 msgid ""
 "%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
 "tribute soon, I will break off our negotiations."
-msgstr ""
+msgstr "%(_player_)s, hvis du ikke sender mig en del af %(_amount_)s %(_resource_)s tributten snart, vil jeg afbryde vores forhandlinger."
 
 #: simulation/ai/petra/chatHelper.js:92
 #, javascript-format
 msgid "I will not become neutral with you, %(_player_)s."
-msgstr ""
+msgstr "Jeg vil ikke blive neutral over for dig, %(_player_)s"
 
 #: simulation/ai/petra/chatHelper.js:93
 #, javascript-format
 msgid "%(_player_)s, I must decline your request for a neutrality pact."
-msgstr ""
+msgstr "%(_player_)s, jeg må afslå din anmodning om en neutralitetspagt."
 
 #: simulation/ai/petra/chatHelper.js:96
 #, javascript-format
 msgid ""
 "Our previous neutrality agreement ended in failure, %(_player_)s; I will not"
 " consider another one."
-msgstr ""
+msgstr "Vores tidligere neutralitetsaftale endte i fiasko, %(_player_)s; Jeg vil ikke overveje en anden."
 
 #: simulation/ai/petra/chatHelper.js:99
 #, javascript-format
 msgid ""
 "I welcome your request for peace between our civilizations, %(_player_)s. I "
 "will accept."
-msgstr ""
+msgstr "Jeg hilser din anmodning om fred mellem vores civilisationer velkommen %(_player_)s. Jeg vil acceptere den."
 
 #: simulation/ai/petra/chatHelper.js:100
 #, javascript-format
 msgid ""
 "%(_player_)s, I will accept your neutrality request. May both our "
 "civilizations benefit."
-msgstr ""
+msgstr "%(_player_)s, vil jeg acceptere din anmodning om neutralitet. Må begge vores civilisationer få gavn af det."
 
 #: simulation/ai/petra/chatHelper.js:103
 #, javascript-format
 msgid ""
 "If you send me a tribute of %(_amount_)s %(_resource_)s, I will accept your "
 "neutrality request, %(_player_)s."
-msgstr ""
+msgstr "Hvis du sender mig en tribut bestående af %(_amount_)s %(_resource_)s, vil jeg acceptere din neutralitetsanmodning, %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:104
 #, javascript-format
 msgid ""
 "%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
 "neutrality pact."
-msgstr ""
+msgstr "%(_player_)s, hvis du sender mig %(_amount_)s %(_resource_)s, vil jeg acceptere en neutralitetspagt."
 
 #: simulation/ai/petra/chatHelper.js:107
 #, javascript-format
 msgid ""
 "%(_player_)s, I will not accept your neutrality request unless you tribute "
 "me %(_amount_)s %(_resource_)s soon."
-msgstr ""
+msgstr "%(_player_)s, jeg vil ikke acceptere din neutralitetsanmodning, medmindre du snart sender mig %(_amount_)s%(_resource_)s i tribut.\n "
 
 #: simulation/ai/petra/chatHelper.js:116
 #, javascript-format
 msgid ""
 "%(_player_)s, it would help both of our civilizations if we formed an "
 "alliance. If you become allies with me, I will respond in kind."
-msgstr ""
+msgstr "%(_player_)s, det ville hjælpe begge vores civilisationer, hvis vi dannede en alliance. Hvis du bliver allierede med mig, vil jeg svare i naturalier."
 
 #: simulation/ai/petra/chatHelper.js:119
 #, javascript-format
 msgid "%(_player_)s, my offer for an alliance has expired."
-msgstr ""
+msgstr "%(_player_)s, mit tilbud om en alliance er udløbet."
 
 #: simulation/ai/petra/chatHelper.js:120
 #, javascript-format
 msgid ""
 "%(_player_)s, I have rescinded my previous offer for an alliance between us."
-msgstr ""
+msgstr "%(_player_)s, jeg har tilbagekaldt mit tidligere tilbud om en alliance mellem os."
 
 #: simulation/ai/petra/chatHelper.js:125
 #, javascript-format
 msgid ""
 "%(_player_)s, I would like to request a neutrality pact between our "
 "civilizations. If you become neutral with me, I will respond in kind."
-msgstr ""
+msgstr "%(_player_)s, jeg vil gerne anmode om en neutralitetspagt mellem vores civilisationer. Hvis du bliver neutral over for mig, vil jeg svare i naturalier."
 
 #: simulation/ai/petra/chatHelper.js:126
 #, javascript-format
 msgid ""
 "%(_player_)s, it would be both to our benefit if we negotiated a neutrality "
 "pact. I will become neutral with you if you do the same."
-msgstr ""
+msgstr "%(_player_)s, ville det være til vores fordel, hvis vi forhandlede en neutralitetspagt. Jeg vil være neutral over for dig, hvis du gør det samme mod mig."
 
 #: simulation/ai/petra/chatHelper.js:129
 #, javascript-format
 msgid "%(_player_)s, I have decided to revoke my offer for a neutrality pact."
-msgstr ""
+msgstr "%(_player_)s, har jeg besluttet at tilbagekalde mit tilbud om en neutralitetspagt."
 
 #: simulation/ai/petra/chatHelper.js:130
 #, javascript-format
 msgid ""
 "%(_player_)s, as you have failed to respond to my request for peace between "
 "us, I have abrogated my offer."
-msgstr ""
+msgstr "%(_player_)s, da du ikke har reageret på min anmodning om fred mellem os, har jeg ophævet mit tilbud. "
 
 #: simulation/ai/petra/chatHelper.js:137
 msgid ""
 "My armies failed while defending my empire. Please honor our alliance and "
 "send help!"
-msgstr ""
+msgstr "Mine hære svigtede, mens de forsvarede mit imperium. Vær venlig at ære vores alliance og send hjælp!"
 
 #: simulation/ai/petra/chatHelper.js:140
 msgid ""
 "My empire regained its old strength, now it is time to seek revenge "
 "together!"
-msgstr ""
+msgstr "Mit imperium genvandt sin gamle styrke, nu er det tid til at søge hævn sammen!"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra er standard 0 A.D. AI bot. Rapportér venligst problemer til Wildfire Games (se linket i hovedmenuen).\n\nAI'ens ressource indsamlingshastighed og handelsgevinst afhænger af sværhedsgraden (Sandbox -58%, Meget let -44%, Nem -25%, Medium ±0%, Hard +25%, Meget hård +56%). De nemmeste niveauer har også en langsommere research-, trænings- og opbygningshastighed. Derudover udvider eller angriber Sandbox-niveauet ikke."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -414,7 +415,7 @@ msgstr "eget"
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "unconnected own"
-msgstr ""
+msgstr "ikke forbundne egne"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -422,7 +423,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:199
 msgctxt "Territory type"
 msgid "allied"
-msgstr ""
+msgstr "allieret"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -430,7 +431,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:202
 msgctxt "Territory type"
 msgid "unconnected allied"
-msgstr ""
+msgstr "ikke forbundne allierede"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -530,7 +531,7 @@ msgstr[1] ""
 
 #: simulation/components/EndGameManager.js:182
 msgid "Last remaining player wins."
-msgstr ""
+msgstr "Sidst tilbageværende spiller vinder."
 
 #: simulation/components/EntityLimits.js:195
 #, javascript-format
@@ -576,7 +577,7 @@ msgstr "Utilstrækkelige ressourcer - %(resourceAmount1)s %(resourceType1)s, %(r
 
 #: simulation/components/ProductionQueue.js:312
 msgid "Entity is being upgraded. Cannot start production."
-msgstr ""
+msgstr "Enheden er ved at blive opgraderet. Kan ikke starte produktionen."
 
 #: simulation/components/ProductionQueue.js:327
 msgid "The production queue is full."
@@ -584,59 +585,59 @@ msgstr "Produktionskøen er fuld."
 
 #: simulation/components/ProductionQueue.js:450
 msgid "Could not auto-queue unit, de-activating."
-msgstr ""
+msgstr "Kunne ikke automatisk sætte enheden i kø, deaktiverer."
 
 #: simulation/components/Trainer.js:317
 msgid "Can't find free space to spawn trained units."
-msgstr ""
+msgstr "Kan ikke finde ledig plads til at skabe trænede enheder."
 
 #: simulation/components/Upgrade.js:247
 msgid "Entity is producing. Cannot start upgrading."
-msgstr ""
+msgstr "Enheden producerer. Kan ikke starte opgraderingen."
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1×)"
-msgstr ""
+msgstr "Skildpadde (0.1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[10].Title
 msgid "Fast Forward (20×)"
-msgstr ""
+msgstr "Hurtigt fremad (20×)"
 
 #: simulation/data/settings/game_speeds.jsonData[1].Title
 msgid "Slow (0.25×)"
-msgstr ""
+msgstr "Langsomt (0.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[2].Title
 msgid "Leisurely (0.5×)"
-msgstr ""
+msgstr "Meget afslappet (0.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[3].Title
 msgid "Relaxed (0.75×)"
-msgstr ""
+msgstr "Afslappet (0,75×)"
 
 #: simulation/data/settings/game_speeds.jsonData[4].Title
 msgid "Normal (1×)"
-msgstr ""
+msgstr "Normal (1×)"
 
 #: simulation/data/settings/game_speeds.jsonData[5].Title
 msgid "Fast (1.25×)"
-msgstr ""
+msgstr "Hurtigt (1.25×)"
 
 #: simulation/data/settings/game_speeds.jsonData[6].Title
 msgid "Very Fast (1.5×)"
-msgstr ""
+msgstr "Meget hurtigt (1.5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[7].Title
 msgid "Insane (2×)"
-msgstr ""
+msgstr "Sindsygt (2×)"
 
 #: simulation/data/settings/game_speeds.jsonData[8].Title
 msgid "Fast Forward (5×)"
-msgstr ""
+msgstr "Hurtigt fremad (5×)"
 
 #: simulation/data/settings/game_speeds.jsonData[9].Title
 msgid "Fast Forward (10×)"
-msgstr ""
+msgstr "Hurtigt fremad (10×)"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Name
 msgid "Tiny"
@@ -644,7 +645,7 @@ msgstr "Lillebitte"
 
 #: simulation/data/settings/map_sizes.jsonData[0].Tooltip
 msgid "This map size has barely any room for even the most basic resources."
-msgstr ""
+msgstr "Denne kortstørrelse har knap plads til selv de mest basale ressourcer."
 
 #: simulation/data/settings/map_sizes.jsonData[1].Name
 msgid "Small"
@@ -654,7 +655,7 @@ msgstr "Lille"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr ""
+msgstr "Små kort er velegnede til 1v1-kampe, da spillere kan nå fjenden hurtigt, mens de stadig har lidt plads til at udvide."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Normal"
@@ -664,13 +665,13 @@ msgstr "Normal"
 msgid ""
 "This map size provides plenty of space for two players, but even eight "
 "players fit."
-msgstr ""
+msgstr "Denne kortstørrelse giver masser af plads til to spillere, men selv otte spillere vil have plads."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr ""
+msgstr "Dette er den ideelle kortstørrelse for 4 til 8 spillere, fordi der er masser af plads til at udvide, mens naboerne er hurtigt tilgængelige."
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
@@ -680,7 +681,7 @@ msgstr "Stor"
 msgid ""
 "The large mapsize is recommended when great portions of the map are covered "
 "with water or inaccessible mountains."
-msgstr ""
+msgstr " Den store kortstørrelse anbefales, når store dele af kortet er dækket af vand eller utilgængelige bjerge."
 
 #: simulation/data/settings/map_sizes.jsonData[5].Name
 msgid "Very Large"
@@ -691,7 +692,7 @@ msgstr "Meget Stor"
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr ""
+msgstr "Meget store kort anbefales ikke, da det tager meget lang tid at nå fjenden, og spillets ydeevne kan reduceres."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
@@ -863,7 +864,7 @@ msgid ""
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
-msgstr ""
+msgstr "Vær den første til at bygge eller fange et vidunder, og behold det i en vis tid for at vinde spillet. Timeren nulstilles, når vidunderet bliver ødelagt eller fanget. Hvis den allierede sejrs tilstand er aktiveret, nulstilles timeren også, når ejerens alliancer ændres."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
