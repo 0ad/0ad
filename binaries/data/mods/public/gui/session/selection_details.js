@@ -186,7 +186,7 @@ function displaySingle(entState)
 
 		let showSmallCapture = showResource && showHealth;
 		Engine.GetGUIObjectByName("captureStats").caption = showSmallCapture ? "" : captureText;
-		Engine.GetGUIObjectByName("capture").tooltip = showSmallCapture ? captureText : "";
+		Engine.GetGUIObjectByName("captureTooltip").tooltip = showSmallCapture ? getCurrentCaptureTooltip(entState) : translate("Capture Points");
 	}
 
 	// Experience
@@ -319,7 +319,7 @@ function displaySingle(entState)
 
 	let isGaia = playerState.civ == "gaia";
 	Engine.GetGUIObjectByName("playerCivIcon").sprite = isGaia ? "" : "cropped:1.0, 0.15625 center:grayscale:" + civEmblem;
-	Engine.GetGUIObjectByName("player").tooltip = isGaia ? "" : civName;
+	Engine.GetGUIObjectByName("civilizationTooltip").tooltip = isGaia ? "" : civName;
 
 	// TODO: we should require all entities to have icons
 	Engine.GetGUIObjectByName("icon").sprite = template.icon ? ("stretched:session/portraits/" + template.icon) : "BackgroundBlack";

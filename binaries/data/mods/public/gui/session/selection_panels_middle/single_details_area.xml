@@ -15,6 +15,7 @@
 			<object type="image" sprite="bottomEdgedPanelShader" ghost="true"/>
 			<!-- Player name. -->
 			<object size="0 50%-10 100% 50%+10" name="player" type="text" style="largeCenteredOutlinedText"/>
+			<object name="civilizationTooltip" type="image" tooltip_style="sessionToolTip" />
 		</object>
 
 		<!-- Primary and secondary names. -->
@@ -34,11 +35,24 @@
 			<object size="96 11 100% 34" name="sectionPosMiddle" hidden="true"/>
 			<object size="96 32 100% 55" name="sectionPosBottom" hidden="true"/>
 
+			<!-- Capture bar -->
+			<object name="captureSection">
+				<object size="0 0 100% 12" name="captureLabel" type="text" style="StatsTextLeft" ghost="true">
+					<translatableAttribute id="tooltip">Capture points</translatableAttribute>
+				</object>
+				<object size="0 0 100% 12" name="captureStats" type="text" style="StatsTextRight" ghost="true"/>
+				<object size="1 14 100% 21" name="capture" type="image">
+					<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
+					<repeat count="9">
+						<object type="image" sprite="playerColorBackground" ghost="true" name="captureBar[n]" hidden="true"/>
+					</repeat>
+					<object type="image" sprite="statsBarShaderHorizontal" ghost="true"/>
+				</object>
+				<object type="image" name="captureTooltip" tooltip_style="sessionToolTip"/>
+			</object>
+
 			<!-- Health bar -->
 			<object name="healthSection">
-				<object size="0 0 100% 12" name="healthLabel" type="text" style="StatsTextLeft" ghost="true">
-					<translatableAttribute id="tooltip">Health</translatableAttribute>
-				</object>
 				<object size="0 0 100% 12" name="healthStats" type="text" style="StatsTextRight" ghost="true"/>
 				<object size="1 14 100% 21" name="health" type="image" tooltip_style="sessionToolTip">
 					<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
@@ -46,20 +60,8 @@
 					<object type="image" sprite="healthForeground" ghost="true" name="healthBar"/>
 					<object type="image" sprite="statsBarShaderHorizontal" ghost="true"/>
 				</object>
-			</object>
-
-			<!-- Capture bar -->
-			<object name="captureSection">
-				<object size="0 0 100% 12" name="captureLabel" type="text" style="StatsTextLeft" ghost="true">
-					<translatableAttribute id="tooltip">Capture points</translatableAttribute>
-				</object>
-				<object size="0 0 100% 12" name="captureStats" type="text" style="StatsTextRight" ghost="true"/>
-				<object size="1 14 100% 21" name="capture" type="image" tooltip_style="sessionToolTip">
-					<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
-					<repeat count="9">
-						<object type="image" sprite="playerColorBackground" ghost="true" name="captureBar[n]" hidden="true"/>
-					</repeat>
-					<object type="image" sprite="statsBarShaderHorizontal" ghost="true"/>
+				<object type="image" tooltip_style="sessionToolTip">
+					<translatableAttribute id="tooltip">Health</translatableAttribute>
 				</object>
 			</object>
 
