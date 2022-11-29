@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-08-29 07:13+0000\n"
+"POT-Creation-Date: 2022-11-25 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -704,7 +704,7 @@ msgstr "畜欄"
 msgid "Fángyù Tǎ"
 msgstr "防禦塔"
 
-#: simulation/templates/structures/han/defense_tower.xml:17
+#: simulation/templates/structures/han/defense_tower.xml:23
 msgid ""
 "This tower has greater range, greater attack, greater health, and is twice "
 "as difficult to capture."
@@ -1921,7 +1921,7 @@ msgstr "房舍"
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_range.xml:25
 #: simulation/templates/template_structure_military_stable.xml:29
-#: simulation/templates/template_structure_resource_corral.xml:21
+#: simulation/templates/template_structure_resource_corral.xml:32
 msgid "Village"
 msgstr "村莊"
 
@@ -1940,7 +1940,7 @@ msgstr "門廊"
 #: simulation/templates/structures/han/laozigate.xml:24
 #: simulation/templates/structures/han/ministry.xml:39
 #: simulation/templates/structures/iber/monument.xml:34
-#: simulation/templates/structures/maur/elephant_stable.xml:8
+#: simulation/templates/structures/maur/elephant_stable.xml:7
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_economic_market.xml:28
@@ -2034,7 +2034,7 @@ msgstr "進駐步兵以增加箭數。需要「殲敵洞」科技保護底部。
 msgid "SentryTower"
 msgstr "哨戒塔"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:59
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:61
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "以石頭強化並升級至防禦塔。"
 
@@ -2080,7 +2080,7 @@ msgstr "經濟建築"
 
 #: simulation/templates/template_structure_economic.xml:5
 #: simulation/templates/template_structure_military_dock.xml:27
-#: simulation/templates/template_structure_resource_corral.xml:21
+#: simulation/templates/template_structure_resource_corral.xml:32
 msgid "Economic"
 msgstr "經濟"
 
@@ -2243,14 +2243,16 @@ msgstr "資源建築"
 msgid "Resource"
 msgstr "資源"
 
-#: simulation/templates/template_structure_resource_corral.xml:18
-#: simulation/templates/template_structure_resource_corral.xml:21
+#: simulation/templates/template_structure_resource_corral.xml:29
+#: simulation/templates/template_structure_resource_corral.xml:32
 msgid "Corral"
 msgstr "畜欄"
 
-#: simulation/templates/template_structure_resource_corral.xml:20
-msgid "Raise Domestic Animals for food."
-msgstr "飼養作為食物的家畜。"
+#: simulation/templates/template_structure_resource_corral.xml:31
+msgid ""
+"Raise Domestic Animals for immediate slaughter, or garrison them instead to "
+"gain a free trickle of food."
+msgstr "飼養家畜來立即屠宰，或派駐牠們來獲得食物細流。"
 
 #: simulation/templates/template_structure_resource_field.xml:18
 #: simulation/templates/template_structure_resource_field.xml:20

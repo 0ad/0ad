@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-08-29 07:13+0000\n"
+"POT-Creation-Date: 2022-11-25 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Zuzana Miadoková, 2019,2021-2022\n"
 "Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
@@ -708,7 +708,7 @@ msgstr "Xù Lán"
 msgid "Fángyù Tǎ"
 msgstr "Fángyù Tǎ"
 
-#: simulation/templates/structures/han/defense_tower.xml:17
+#: simulation/templates/structures/han/defense_tower.xml:23
 msgid ""
 "This tower has greater range, greater attack, greater health, and is twice "
 "as difficult to capture."
@@ -1925,7 +1925,7 @@ msgstr "Dom"
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_range.xml:25
 #: simulation/templates/template_structure_military_stable.xml:29
-#: simulation/templates/template_structure_resource_corral.xml:21
+#: simulation/templates/template_structure_resource_corral.xml:32
 msgid "Village"
 msgstr "Dedina"
 
@@ -1944,7 +1944,7 @@ msgstr "Stoa"
 #: simulation/templates/structures/han/laozigate.xml:24
 #: simulation/templates/structures/han/ministry.xml:39
 #: simulation/templates/structures/iber/monument.xml:34
-#: simulation/templates/structures/maur/elephant_stable.xml:8
+#: simulation/templates/structures/maur/elephant_stable.xml:7
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_economic_market.xml:28
@@ -2038,7 +2038,7 @@ msgstr "Umiestni posádku pre dodatočné šípy. Potrebuje technológiu vražia
 msgid "SentryTower"
 msgstr "Strážna veža"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:59
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:61
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Posilnite ju kameňom a povýšte na obrannú vežu."
 
@@ -2084,7 +2084,7 @@ msgstr "Ekonomická budova"
 
 #: simulation/templates/template_structure_economic.xml:5
 #: simulation/templates/template_structure_military_dock.xml:27
-#: simulation/templates/template_structure_resource_corral.xml:21
+#: simulation/templates/template_structure_resource_corral.xml:32
 msgid "Economic"
 msgstr "Ekonomické"
 
@@ -2247,14 +2247,16 @@ msgstr "Budova na zber surovín"
 msgid "Resource"
 msgstr "Surovina"
 
-#: simulation/templates/template_structure_resource_corral.xml:18
-#: simulation/templates/template_structure_resource_corral.xml:21
+#: simulation/templates/template_structure_resource_corral.xml:29
+#: simulation/templates/template_structure_resource_corral.xml:32
 msgid "Corral"
 msgstr "Ohrada pre dobytok"
 
-#: simulation/templates/template_structure_resource_corral.xml:20
-msgid "Raise Domestic Animals for food."
-msgstr "Chová domáce zvieratá na mäso."
+#: simulation/templates/template_structure_resource_corral.xml:31
+msgid ""
+"Raise Domestic Animals for immediate slaughter, or garrison them instead to "
+"gain a free trickle of food."
+msgstr ""
 
 #: simulation/templates/template_structure_resource_field.xml:18
 #: simulation/templates/template_structure_resource_field.xml:20
