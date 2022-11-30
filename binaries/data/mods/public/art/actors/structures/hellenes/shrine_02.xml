@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Hellenes_Shrine_02">
+      <mesh>structural/hele_shrine_02_struct.dae</mesh>
+      <textures>
+        <texture file="structural/sparta_struct.png" name="baseTex"/>
+        <texture file="structural/sparta_struct_spec.png" name="specTex"/>
+        <texture file="structural/sparta_struct_norm.png" name="normTex"/>
+        <texture file="structural/ao/spart_market_AO.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="ungarrisoned" frequency="1"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="alive" frequency="1"/>
+    <variant file="structures/destruction_small.xml"/>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>
