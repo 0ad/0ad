@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-11-25 08:08+0000\n"
+"POT-Creation-Date: 2022-11-28 09:03+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: aa4a75b616c7281b4c1ca3782cfac296_76b465e, 2022\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
@@ -204,15 +204,6 @@ msgstr "Ґіппон"
 #: simulation/templates/structures/spart/storehouse.xml:8
 msgid "Apothēkē"
 msgstr "Апотхеке"
-
-#: simulation/templates/structures/athen/temple.xml:9
-#: simulation/templates/structures/mace/temple.xml:9
-#: simulation/templates/structures/ptol/temple.xml:12
-#: simulation/templates/structures/ptol/temple_2.xml:11
-#: simulation/templates/structures/sele/temple.xml:9
-#: simulation/templates/structures/spart/temple.xml:9
-msgid "Naos"
-msgstr "Наос"
 
 #: simulation/templates/structures/athen/theater.xml:5
 #: simulation/templates/structures/mace/theater.xml:5
@@ -1069,6 +1060,10 @@ msgstr "Пер-педет"
 msgid "tsmt"
 msgstr "Тесемет"
 
+#: simulation/templates/structures/kush/shrine.xml:12
+msgid "Shrine"
+msgstr "Святиня"
+
 #: simulation/templates/structures/kush/shrine.xml:13
 msgid "ḥwt-nṯr"
 msgstr "Хут-нечер"
@@ -1724,26 +1719,24 @@ msgstr "Коринфська колонада"
 msgid "Bǎotǎ"
 msgstr "Баота"
 
-#: simulation/templates/structures/shrine_chinese.xml:10
-msgid "Pagoda"
-msgstr "Пагода"
-
 #: simulation/templates/structures/shrine_egyptian.xml:5
+#: simulation/templates/structures/shrine_kushite.xml:5
 msgid "Sanctuary Kiosk"
 msgstr "Кіоск святилища"
 
-#: simulation/templates/structures/shrine_italian.xml:9
-msgid "Temple of Healing"
-msgstr "Храм зцілення"
+#: simulation/templates/structures/athen/temple.xml:9
+#: simulation/templates/structures/mace/temple.xml:9
+#: simulation/templates/structures/ptol/temple.xml:12
+#: simulation/templates/structures/ptol/temple_2.xml:11
+#: simulation/templates/structures/sele/temple.xml:9
+#: simulation/templates/structures/shrine_greek.xml:9
+#: simulation/templates/structures/spart/temple.xml:9
+msgid "Naos"
+msgstr "Наос"
 
-#: simulation/templates/structures/shrine_italian.xml:10
+#: simulation/templates/structures/shrine_italian.xml:9
 msgid "Aedēs Sanitatem"
 msgstr "Едес санітатем"
-
-#: simulation/templates/structures/kush/shrine.xml:12
-#: simulation/templates/structures/shrine_kushite.xml:5
-msgid "Shrine"
-msgstr "Святиня"
 
 #: simulation/templates/structures/spart/gerousia.xml:22
 msgid "Spartan Senate"

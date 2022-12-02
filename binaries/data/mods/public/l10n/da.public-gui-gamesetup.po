@@ -10,6 +10,7 @@
 # Fijure
 # 2e6e5c4f3fb0926d774d4b28c1ee12bb_86780ae
 # Joe Hansen
+# Lars Henrik Ørn
 # Mads Dyrmann
 # Mads Overgård Henningsen
 # Morten Lautrup
@@ -19,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-16 07:09+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:48+0000\n"
-"Last-Translator: Morten Lautrup, 2022\n"
+"Last-Translator: Lars Henrik Ørn, 2022\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -204,7 +205,7 @@ msgstr "Sidste Stående Mand"
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr ""
+msgstr "Skift om den sidste tilbageværende spiller eller det sidste resterende sæt allierede vinder."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:30
 msgid "Teams Locked"
@@ -291,7 +292,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:63
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Tilfældig"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:66
 msgid "Pick a biome at random."
@@ -364,7 +365,7 @@ msgstr "Vælg en bane at spille på."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:150
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Tilfældig"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:153
 msgid "Pick any of the given maps at random."
@@ -475,7 +476,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:35
 msgid "Ceasefire"
-msgstr ""
+msgstr "Våbenhvile"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:38
 msgid "Set time where no attacks are possible."
@@ -699,7 +700,7 @@ msgstr "%(time)s %(message)s"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:28
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/TimestampWrapper.js:31
 msgid "HH:mm"
@@ -707,7 +708,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:40
 msgid "Cheats enabled."
-msgstr ""
+msgstr "Snudekoder tilladt"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:43
 msgid "Rated game."
@@ -938,7 +939,7 @@ msgstr ""
 msgid ""
 "“Time in the long run teaches all things.” \\n— Aeschylus (“Prometheus "
 "Bound”, 981)"
-msgstr ""
+msgstr "\"I det lange løb lærer tiden alt.\" \\n— Aeschylus (“Prometheus Bound”, 981)"
 
 #: gui/text/quotes.txt:5
 msgid ""
@@ -954,7 +955,7 @@ msgstr ""
 msgid ""
 "“The gods help those that help themselves.” \\n— Aesop (“Hercules and the "
 "Wagoner”)"
-msgstr ""
+msgstr "“Guderne hjælper dem, der hjælper sig selv” \\n— Aesop (“Hercules and the Wagoner”)"
 
 #: gui/text/quotes.txt:8
 msgid ""
@@ -976,7 +977,7 @@ msgstr ""
 msgid ""
 "“Familiarity breeds contempt; acquaintance softens prejudices.” \\n— Aesop "
 "(“The Fox and the Lion”)"
-msgstr ""
+msgstr "“Kendskab afføder foragt; bekendtskab dæmper fordomme.” \\n— Aesop (“The Fox and the Lion”)"
 
 #: gui/text/quotes.txt:12
 msgid ""
@@ -1066,7 +1067,7 @@ msgstr ""
 msgid ""
 "“To the strongest!” \\n— Alexander the Great, on his death bed, when asked "
 "who should succeed him as king (Arrian, “The Anabasis of Alexander”, 7.26)"
-msgstr ""
+msgstr "“Den stærkeste!” \\n— Alexander the Great, on his death bed, when asked who should succeed him as king (Arrian, “The Anabasis of Alexander”, 7.26)"
 
 #: gui/text/quotes.txt:26
 msgid ""
@@ -1120,7 +1121,7 @@ msgstr ""
 msgid ""
 "“It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.” \\n— Aristophanes (“Birds”)"
-msgstr ""
+msgstr "\"Det er fra deres fjender, ikke deres venner, at byer lærer lektien af ​​at bygge høje mure og krigsskibe.\" \\n—Aristophanes (“Birds”)"
 
 #: gui/text/quotes.txt:34
 msgid ""
@@ -1139,13 +1140,13 @@ msgstr ""
 msgid ""
 "“Man is by nature a political animal.” \\n— Aristotle (“Politics”, I. "
 "1253a.2)"
-msgstr ""
+msgstr "\"Mennesket er af natur et politisk dyr.\" \\n— Aristotle (“Politics”, I. 1253a.2)"
 
 #: gui/text/quotes.txt:37
 msgid ""
 "“Both oligarch and tyrant mistrust the people, and therefore deprive them of"
 " their arms.” \\n— Aristotle (“Politics, V. 1311a.11)"
-msgstr ""
+msgstr "“Både oligarken og tyrannen mistror folket og berøver dem derfor deres våben.” \\n— Aristotle (“Politics, V. 1311a.11)"
 
 #: gui/text/quotes.txt:38
 msgid ""
@@ -1212,7 +1213,7 @@ msgid ""
 "foreign nations which could with safety be pardoned I preferred to save "
 "rather than to destroy.” \\n— Augustus, in his autobiography (“Res Gestae "
 "Divi Augusti”, sec. 3)"
-msgstr ""
+msgstr "“Krige, både borgerlige og udenlandske, førte jeg over hele verden, til vands og til lands, og da jeg vandt, skånede jeg alle borgere, der sagsøgte om benådning. De fremmede nationer, som med sikkerhed kunne tilgives, foretrak jeg at redde frem for at ødelægge.” \\n— Augustus, in his autobiography (“Res Gestae Divi Augusti”, sec. 3)"
 
 #: gui/text/quotes.txt:46
 msgid ""
@@ -1227,7 +1228,7 @@ msgid ""
 "“How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.” \\n— Bion of Borysthenes (Cicero, "
 "“Tusculan Disputations”, III. 26)"
-msgstr ""
+msgstr "“Hvor var det dumt af kongen at rive sit hår ud i sorg, som om skaldethed var en kur mod sorg.” \\n— Bion of Borysthenes (Cicero, “Tusculan Disputations”, III. 26)"
 
 #: gui/text/quotes.txt:48
 msgid ""
@@ -1281,7 +1282,7 @@ msgid ""
 "“Moreover, I consider that Carthage should be destroyed.” \\n— Cato the "
 "Elder, who ended all speeches in his later life with this statement "
 "(Plutarch, “Parallel Lives”, “Cato the Elder”, sec. 27)"
-msgstr ""
+msgstr "“Desuden mener jeg, at Kartago bør ødelægges” \\n— Cato the Elder, who ended all speeches in his later life with this statement (Plutarch, “Parallel Lives”, “Cato the Elder”, sec. 27)"
 
 #: gui/text/quotes.txt:56
 msgid ""
@@ -1412,7 +1413,7 @@ msgid ""
 "“Stranger, go tell the Spartans that we lie here, obedient to their laws.” "
 "\\n— Epitaph at Thermopylae for Leonidas and his men (Herodotus, “The "
 "Histories”, VII. 228)"
-msgstr ""
+msgstr "\"Fremmed, fortæl spartanerne, at vi ligger her, lydige mod deres love.\" \\n— Epitafium ved Thermopylae for Leonidas og hans mænd (Herodotus, \"The Histories\", VII. 228)"
 
 #: gui/text/quotes.txt:74
 msgid ""
@@ -1455,7 +1456,7 @@ msgstr ""
 msgid ""
 "“Men willingly believe what they wish.” \\n— Caesar (“De Bello Gallico”, "
 "III. 18)"
-msgstr ""
+msgstr "\"Mænd tror villigt, hvad de ønsker.\" \\n— Cæsar (\"De Bello Gallico\", III. 18)"
 
 #: gui/text/quotes.txt:81
 msgid ""
@@ -1538,7 +1539,7 @@ msgid ""
 "world as theirs and subject to their pleasure. With whom we are to be at "
 "war, with whom at peace, they think it right that they should determine.” "
 "\\n— Hannibal, addressing his troops (Livy, “History of Rome”, XXI. 44)"
-msgstr ""
+msgstr "\"De mest umenneskelige og mest arrogante af nationer, de \\[romerne] regner verden som deres og underlagt deres fornøjelse. Hvem vi skal være i krig med, med hvem i fred. De mener, det er rigtigt, at de bestemmer.\" \\n— Hannibal, addressing his troops (Livy, “History of Rome”, XXI. 44)"
 
 #: gui/text/quotes.txt:92
 msgid ""
@@ -1588,7 +1589,7 @@ msgid ""
 "“The Lacedaemonians \\[Spartans] fought a memorable battle; they made it "
 "quite clear that they were the experts, and that they were fighting against "
 "amateurs.” \\n— Herodotus (“The Histories”, VII. 211)"
-msgstr ""
+msgstr "“Lacedaemonians \\[Spartans] kæmpede en mindeværdig kamp; de gjorde det helt klart, at de var eksperterne, og at de kæmpede mod amatører.” \\n— Herodotus (“The Histories”, VII. 211)"
 
 #: gui/text/quotes.txt:100
 msgid ""
@@ -1617,7 +1618,7 @@ msgid ""
 "the Athenians!” \\n— Herodotus, narrating how the Athenian support for the "
 "Ionian revolt caught the wrath of Darius I, the Persian king (“The "
 "Histories”, V. 105)"
-msgstr ""
+msgstr "\"Han \\[Kong Darius] spurgte, hvem athenerne var, og efter at have fået at vide, kaldte han på sin bue, og placerede en pil på snoren, skød op i himlen og sagde, mens han lod skaftet flyve: Giv mig, Zeus , for at hævne mig på athenerne!” \\n— Herodot, der fortæller, hvordan den athenske støtte til det ioniske oprør fangede Darius I, den persiske konges vrede (“The Histories”, V. 105)"
 
 #: gui/text/quotes.txt:103
 msgid ""
@@ -1631,7 +1632,7 @@ msgstr ""
 msgid ""
 "“Conquered Greece took captive her savage conqueror and brought her arts "
 "into rustic Latium.” \\n— Horace (“Epistles”, epistle I., 156–157)"
-msgstr ""
+msgstr "“Det erobrede Grækenland tog sin vilde erobrer til fange og bragte hendes kunst ind i det rustikke Latium.” \\n— Horace (“Epistles”, epistle I., 156–157)"
 
 #: gui/text/quotes.txt:105
 msgid ""
@@ -1653,7 +1654,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:108
 msgid "“I am Cyrus, king of the world…” \\n— Inscription (Cyrus Cylinder)"
-msgstr ""
+msgstr "“Jeg er Cyrus, verdens konge...” \\n— Inscription (Cyrus Cylinder)"
 
 #: gui/text/quotes.txt:109
 msgid ""
@@ -1698,7 +1699,7 @@ msgid ""
 " Livy, describing the aftermath of the Battle of Cannae, where Hannibal "
 "inflicted the greatest defeat on the Romans in all their history (“History "
 "of Rome”, XXII. 51)"
-msgstr ""
+msgstr "“Nogle blev opdaget liggende der i live, med lår og sener skåret over, blottede deres nakke og struber og bad deres erobrere om at dræne resterne af deres blod. Andre blev fundet med deres hoveder begravet i huller gravet i jorden. De havde tilsyneladende lavet disse gruber til sig selv” \\n— Livy, describing the aftermath of the Battle of Cannae, where Hannibal inflicted the greatest defeat on the Romans in all their history (“History of Rome”, XXII. 51)"
 
 #: gui/text/quotes.txt:115
 msgid ""
@@ -1776,7 +1777,7 @@ msgid ""
 " rising to show that he was alive until Marcus Agrippa had routed the "
 "enemy.” \\n— Mark Antony, taunting Augustus who delegated his duties as "
 "naval commander (Suetonius, “Divus Augustus”, sec. 16)"
-msgstr ""
+msgstr "\"Han rejste sig ikke engang for at gennemgå sin flåde, da skibene allerede var ved deres kamp positioner, men han lå på ryggen og stirrede op mod himlen og rejste sig aldrig for at vise, at han var i live, før Marcus Agrippa havde styrtet fjenden.\"\\n— Mark Antony, taunting Augustus who delegated his duties as naval commander (Suetonius, “Divus Augustus”, sec. 16)"
 
 #: gui/text/quotes.txt:127
 msgid ""
@@ -1814,7 +1815,7 @@ msgid ""
 " we think it an indispensable preliminary to any wise action at all.” \\n— "
 "Pericles in his Funeral Oration for Athenians that died in the first year of"
 " the war (Thucydides, “History of the Peloponnesian War”, II. 40.2)"
-msgstr ""
+msgstr "“I stedet for at se på diskussion som en anstødssten i handlingsmåden, mener vi, at det er en uundværlig forudsætning for enhver klog handling overhovedet.” \\n— Pericles in his Funeral Oration for Athenians that died in the first year of the war (Thucydides, “History of the Peloponnesian War”, II. 40.2)"
 
 #: gui/text/quotes.txt:133
 msgid ""
@@ -1903,7 +1904,7 @@ msgid ""
 "“He \\[Alexander] thought nothing invincible for the courageous, and nothing"
 " secure for the cowardly.” \\n— Plutarch (“Parallel Lives”, “Alexander”, "
 "sec. 58)"
-msgstr ""
+msgstr "\"Han \\[Alexander] troede intet uovervindeligt for de modige, og intet sikkert for de feje.\" \\n—  Plutarch (“Parallel Lives”, “Alexander”, sec. 58)"
 
 #: gui/text/quotes.txt:145
 msgid ""
@@ -1950,7 +1951,7 @@ msgid ""
 "escaping the dangers of the widest seas and the most violent storms, they "
 "wreck their ship in harbor and close to shore.” \\n— Polybius on the "
 "Athenian constitution (“Histories”, VI. 44)"
-msgstr ""
+msgstr "Det athenske folk er altid i positionen som et skib uden en chef. Frygt for fjenden eller storm får mandskabet til at være enigt og adlyde rorsmanden, alt går godt; men hvis de kommer sig \\[...] skændes de med hinanden \\[...], og resultatet har ofte været, at de efter at være undsluppet farerne ved det bredeste hav og de voldsomste storme ødelægger deres skib i havn og tæt på land .” \\n— Polybius on the Athenian constitution (“Histories”, VI. 44)"
 
 #: gui/text/quotes.txt:150
 msgid ""
@@ -1987,7 +1988,7 @@ msgid ""
 "detachment, or in a single maniple, or even by himself.” \\n— Polybius, "
 "explaining how the Romans can defeat the Macedonian phalanx (“Histories”, "
 "XVIII. 32)"
-msgstr ""
+msgstr "“Den romerske orden på den anden side er fleksibel: for enhver romer, en gang bevæbnet og på banen, er lige godt rustet til ethvert sted, tidspunkt eller fremtræden af ​​fjenden. Han er desuden helt klar og behøver ikke at foretage nogen forandring, hvad enten han er forpligtet til at kæmpe i hovedhæren, eller i en deling, eller i en enkelt gruppe, eller endda alene.” \\n— Polybius, explaining how the Romans can defeat the Macedonian phalanx (“Histories”, XVIII. 32)"
 
 #: gui/text/quotes.txt:154
 msgid ""
@@ -2023,7 +2024,7 @@ msgstr ""
 msgid ""
 "“Let your speech be better than silence, or be silent.” \\n— Pythagoras "
 "(Stobaeus, “Florilegium”, 24)"
-msgstr ""
+msgstr "\"Lad din tale være bedre end tavshed, eller vær stille.\" \\n— Pythagoras (Stobaeus, \"Florilegium\", 24)"
 
 #: gui/text/quotes.txt:159
 msgid ""
@@ -2053,7 +2054,7 @@ msgid ""
 "inventive, hardworking, and watchful, bullheaded and brilliant, friendly and"
 " fierce, straightforward and subtle.” \\n— Socrates (Xenophon, "
 "“Memorabilia”, 3.1.6)"
-msgstr ""
+msgstr "“Men taktisk videnskab er kun en del af generalskabet. En general skal være i stand til at udruste sine styrker og sørge for sine mænd. Han skal også være opfindsom, hårdtarbejdende og årvågen, bullheaded og genial, venlig og hård, ligefrem og subtil.” \\n— Sokrates (Xenophon, \"Memorabilia\", 3.1.6)"
 
 #: gui/text/quotes.txt:163
 msgid ""
@@ -2260,7 +2261,7 @@ msgid ""
 "“Attack the enemy where he is weakest, even if that is a long way off, since"
 " hard work is less dangerous than a struggle against superior forces.” \\n— "
 "Xenophon (“The Cavalry General”, sec. 4.14)"
-msgstr ""
+msgstr "\"Angreb fjenden, hvor han er svagest, selvom det er langt væk, da hårdt arbejde er mindre farligt end en kamp mod overlegne styrker.\" \\n— Xenophon (\"Kavalerigeneralen\", afsnit 4.14)"
 
 #: gui/text/quotes.txt:191
 msgid ""
