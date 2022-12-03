@@ -27,7 +27,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-11-25 08:08+0000\n"
+"POT-Creation-Date: 2022-11-28 09:03+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: yakup <mutouk@yandex.ru>, 2014-2017,2022\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
@@ -203,15 +203,6 @@ msgstr "Hippōn"
 #: simulation/templates/structures/spart/storehouse.xml:8
 msgid "Apothēkē"
 msgstr "Apothēkē"
-
-#: simulation/templates/structures/athen/temple.xml:9
-#: simulation/templates/structures/mace/temple.xml:9
-#: simulation/templates/structures/ptol/temple.xml:12
-#: simulation/templates/structures/ptol/temple_2.xml:11
-#: simulation/templates/structures/sele/temple.xml:9
-#: simulation/templates/structures/spart/temple.xml:9
-msgid "Naos"
-msgstr "Naos"
 
 #: simulation/templates/structures/athen/theater.xml:5
 #: simulation/templates/structures/mace/theater.xml:5
@@ -1068,6 +1059,10 @@ msgstr "Pr-Pdt"
 msgid "tsmt"
 msgstr "tsmt"
 
+#: simulation/templates/structures/kush/shrine.xml:12
+msgid "Shrine"
+msgstr "Tapınak"
+
 #: simulation/templates/structures/kush/shrine.xml:13
 msgid "ḥwt-nṯr"
 msgstr "ḥwt-nṯr"
@@ -1723,26 +1718,24 @@ msgstr "Korint Tarzı Kemeraltı"
 msgid "Bǎotǎ"
 msgstr "Türbe"
 
-#: simulation/templates/structures/shrine_chinese.xml:10
-msgid "Pagoda"
-msgstr "Türbe"
-
 #: simulation/templates/structures/shrine_egyptian.xml:5
+#: simulation/templates/structures/shrine_kushite.xml:5
 msgid "Sanctuary Kiosk"
 msgstr "Kutsal Köşk"
 
-#: simulation/templates/structures/shrine_italian.xml:9
-msgid "Temple of Healing"
-msgstr "Şifa Tapınağı"
+#: simulation/templates/structures/athen/temple.xml:9
+#: simulation/templates/structures/mace/temple.xml:9
+#: simulation/templates/structures/ptol/temple.xml:12
+#: simulation/templates/structures/ptol/temple_2.xml:11
+#: simulation/templates/structures/sele/temple.xml:9
+#: simulation/templates/structures/shrine_greek.xml:9
+#: simulation/templates/structures/spart/temple.xml:9
+msgid "Naos"
+msgstr "Naos"
 
-#: simulation/templates/structures/shrine_italian.xml:10
+#: simulation/templates/structures/shrine_italian.xml:9
 msgid "Aedēs Sanitatem"
 msgstr "Şifa Tapınağı"
-
-#: simulation/templates/structures/kush/shrine.xml:12
-#: simulation/templates/structures/shrine_kushite.xml:5
-msgid "Shrine"
-msgstr "Tapınak"
 
 #: simulation/templates/structures/spart/gerousia.xml:22
 msgid "Spartan Senate"

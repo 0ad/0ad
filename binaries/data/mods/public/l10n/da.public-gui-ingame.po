@@ -217,7 +217,7 @@ msgstr "%(time)s %(message)s"
 #: gui/session/chat/ChatHistory.js:68
 #, javascript-format
 msgid "\\[%(time)s]"
-msgstr ""
+msgstr "\\[%(time)s]"
 
 #: gui/session/chat/ChatHistory.js:69
 msgid "HH:mm"
@@ -1012,7 +1012,7 @@ msgstr "Garnisons størrelse"
 #: gui/session/selection_details.js:476
 #, javascript-format
 msgid "%(label)s %(details)s\n"
-msgstr ""
+msgstr "%(label)s%(details)s\n"
 
 #: gui/session/selection_details.js:477
 msgid "Carrying:"
@@ -1021,12 +1021,12 @@ msgstr "Medbringer"
 #: gui/session/selection_details.js:480 gui/session/selection_details.js:489
 #, javascript-format
 msgid "%(type)s %(amount)s"
-msgstr ""
+msgstr "%(type)s%(amount)s"
 
 #: gui/session/selection_details.js:485
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s%(details)s"
 
 #: gui/session/selection_details.js:486
 msgid "Loot:"
@@ -1389,7 +1389,7 @@ msgstr "Tiltagende"
 #: gui/session/top_panel/CounterManager.js:133
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
-msgstr ""
+msgstr "%(playername)s: %(statValue)s"
 
 #. Translation: Do not insert spaces around the slash symbol for this exact
 #. string. Keep only
@@ -1696,7 +1696,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:1460
 msgid "Abort the current order."
-msgstr ""
+msgstr "Afbryd den aktuelle ordre."
 
 #: gui/session/unit_actions.js:1481
 msgid ""
@@ -1785,7 +1785,7 @@ msgstr ""
 #: gui/session/unit_actions.js:1888
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
-msgstr ""
+msgstr "Du kan ikke ødelægge denne enhed, da du ejer mindre end halvdelen af ​​dens capture points"
 
 #: gui/session/unit_actions.js:1891
 msgid "This entity is undeletable"

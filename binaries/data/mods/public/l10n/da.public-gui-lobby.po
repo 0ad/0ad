@@ -5,6 +5,7 @@
 # Translators:
 # Wachsmuth
 # Joe Hansen
+# Lars Henrik Ørn
 # Mads Overgård Henningsen
 # Nicolai Nystrup-Eriksen
 msgid ""
@@ -12,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:50+0000\n"
-"Last-Translator: Joe Hansen <joedalton2@yahoo.dk>, 2019\n"
+"Last-Translator: Lars Henrik Ørn, 2022\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -191,7 +192,7 @@ msgstr "%(sender)s %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:23
 msgid "Private"
-msgstr ""
+msgstr "Privat"
 
 #: gui/lobby/LobbyPage/Chat/ChatMessages/ChatMessagePrivateWrapper.js:25
 #, javascript-format
@@ -369,7 +370,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/GameDetails.js:144
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
-msgstr ""
+msgstr "Spillere: %(current)s/%(total)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:146
 msgid "Victory Conditions:"
@@ -392,7 +393,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/GameDetails.js:156
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr ""
+msgstr "Spillet begyndte %(time)s"
 
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
 #: gui/lobby/LobbyPage/GameDetails.js:158
@@ -595,7 +596,7 @@ msgstr "Vis Profil"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):55
 msgid "Please enter a player name."
-msgstr ""
+msgstr "Skriv et spiller navn."
 
 #: gui/prelobby/common/credentials/confirmpassword.xml:(caption):4
 msgid "Password again:"
