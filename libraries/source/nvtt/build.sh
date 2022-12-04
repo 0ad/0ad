@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-LIB_VERSION="nvtt-2.1.1+wildfiregames.4"
+LIB_VERSION="nvtt-2.1.1+wildfiregames.5"
 JOBS=${JOBS:="-j2"}
 MAKE=${MAKE:="make"}
 LDFLAGS=${LDFLAGS:=""}

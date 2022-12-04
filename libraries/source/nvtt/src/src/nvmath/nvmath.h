@@ -14,7 +14,7 @@
 #include <float.h>  // finite, isnan
 #endif
 
-#if NV_CPU_X86 || NV_CPU_X86_64
+#if NV_CPU_X86 || NV_CPU_X86_64 || NV_CPU_E2K
     //#include <intrin.h>
     #include <xmmintrin.h>
 #endif
@@ -48,6 +48,15 @@
 #   elif NV_CC_MSVC && defined(_M_IX86_FP)
         // Also on x86 with the /arch:SSE flag in MSVC.
 #       define NV_USE_SSE _M_IX86_FP       // 1=SSE, 2=SS2
+#   elif NV_CPU_E2K
+        // mcst-lcc compiler flags determine e2k CPU features
+#       if defined(__SSE2__)
+#              define NV_USE_SSE 2
+#       elif defined(__SSE__)
+#              define NV_USE_SSE 1
+#       else
+#              define NV_USE_SSE 0
+#       endif
 #   elif defined(__SSE__)
 #       define NV_USE_SSE 1
 #   elif defined(__SSE2__)

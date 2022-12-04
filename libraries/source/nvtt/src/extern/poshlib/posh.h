@@ -206,6 +206,12 @@ Metrowerks:
 LLVM:
    - __llvm__
    - __clang__
+
+MCST LCC (eLbrus Compiler Collection):
+   - __LCC__
+   - __MCST__
+   - __e2k__: on MCST E2K (Elbrus 2000) processor platforms
+   - __sparc__ and __sparc: on MCST R (SPARC v9) processor platforms
 */
 
 /*
@@ -285,6 +291,11 @@ LLVM:
 #if defined __WATCOMC__
 #  define POSH_COMPILER_STRING "Watcom C/C++"
 #  define POSH_COMPILER_WATCOM 1
+#endif
+
+#if defined __LCC__ && defined __MCST__
+   /* we don't define the compiler string here, let it be GNU */
+#  define POSH_COMPILER_MCST_LCC 1
 #endif
 
 #if !defined POSH_COMPILER_STRING
@@ -540,6 +551,11 @@ LLVM:
 #  define POSH_CPU_STRING "PA-RISC"
 #endif
 
+#if defined __e2k__
+#  define POSH_CPU_E2K 1
+#  define POSH_CPU_STRING "MCST E2K"
+#endif
+
 #if !defined POSH_CPU_STRING
 #  error POSH cannot determine target CPU
 #  define POSH_CPU_STRING "Unknown" /* this is here for Doxygen's benefit */
@@ -677,7 +693,7 @@ LLVM:
 ** the MIPS series, so we have to be careful about those.
 ** ----------------------------------------------------------------------------
 */
-#if defined POSH_CPU_X86 || defined POSH_CPU_AXP || defined POSH_CPU_STRONGARM || defined POSH_CPU_AARCH64 || defined POSH_OS_WIN32 || defined POSH_OS_WINCE || defined __MIPSEL__ || defined __ORDER_LITTLE_ENDIAN__
+#if defined POSH_CPU_X86 || defined POSH_CPU_AXP || defined POSH_CPU_STRONGARM || defined POSH_CPU_AARCH64 || defined POSH_CPU_E2K || defined POSH_OS_WIN32 || defined POSH_OS_WINCE || defined __MIPSEL__ || defined __ORDER_LITTLE_ENDIAN__
 #  define POSH_ENDIAN_STRING "little"
 #  define POSH_LITTLE_ENDIAN 1
 #else
@@ -705,7 +721,7 @@ LLVM:
 ** for 64-bit support, we ignore the POSH_USE_LIMITS_H directive.
 ** ----------------------------------------------------------------------------
 */
-#if defined ( __LP64__ ) || defined ( __powerpc64__ ) || defined POSH_CPU_SPARC64
+#if defined ( __LP64__ ) || defined ( __powerpc64__ ) || defined POSH_CPU_SPARC64 || defined POSH_CPU_E2K
 #  define POSH_64BIT_INTEGER 1
 typedef long posh_i64_t; 
 typedef unsigned long posh_u64_t;
@@ -874,7 +890,7 @@ POSH_COMPILE_TIME_ASSERT(posh_i32_t, sizeof(posh_i32_t) == 4);
 #  define POSH_64BIT_POINTER 1
 #endif
 
-#if defined POSH_CPU_SPARC64 || defined POSH_OS_WIN64 || defined __64BIT__ || defined __LP64 || defined _LP64 || defined __LP64__ || defined _ADDR64 || defined _CRAYC
+#if defined POSH_CPU_SPARC64 || defined POSH_CPU_E2K || defined POSH_OS_WIN64 || defined __64BIT__ || defined __LP64 || defined _LP64 || defined __LP64__ || defined _ADDR64 || defined _CRAYC
 #   define POSH_64BIT_POINTER 1
 #endif
 

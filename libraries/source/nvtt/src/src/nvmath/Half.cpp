@@ -489,12 +489,12 @@ nv::half_to_float( uint16 h )
 }
 
 
-#if !NV_OS_IOS && (defined(__i386__) || defined(__x86_64__))
+#if !NV_OS_IOS && (defined(__i386__) || defined(__x86_64__) || defined(__e2k__))
 
 #if NV_CC_GNUC
 #if defined(__i386__)
 #include <x86intrin.h>
-#elif defined(__x86_64__)
+#elif defined(__x86_64__) || defined(__e2k__)
 #include <xmmintrin.h>
 #endif
 #endif
