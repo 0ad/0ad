@@ -40,7 +40,7 @@ bool CTemplateLoader::LoadTemplateFile(CParamNode& node, std::string_view templa
 	// Handle infinite loops more gracefully than running out of stack space and crashing
 	if (depth > 100)
 	{
-		LOGERROR("Probable infinite inheritance loop in entity template '%s'", std::string(templateName));
+		LOGERROR("Probable infinite inheritance loop in entity template '%s'", templateName);
 		return false;
 	}
 

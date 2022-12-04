@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -85,7 +85,7 @@ public:
 		std::string s = mainlog->str();
 		size_t start = s.find(header_end);
 		TS_ASSERT_DIFFERS(start, s.npos);
-		s = s.substr(start + header_end.length());
+		s.erase(0, start + header_end.length());
 
 		size_t n = 0, m;
 		while (s.npos != (m = s.find('\n', n)))

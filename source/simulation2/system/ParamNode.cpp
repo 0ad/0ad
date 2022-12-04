@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@
 #include "scriptinterface/ScriptRequest.h"
 
 #include <sstream>
+#include <string_view>
 
 #include <boost/algorithm/string.hpp>
 
@@ -143,21 +144,31 @@ void CParamNode::ApplyLayer(const XMBData& xmb, const XMBElement& element, const
 
 				// Merge the two lists
 				std::vector<std::string> tokens = oldTokens;
-				for (size_t i = 0; i < newTokens.size(); ++i)
+				for (const std::string& newToken : newTokens)
 				{
-					if (newTokens[i][0] == '-')
+					if (newToken[0] == '-')
 					{
-						std::vector<std::string>::iterator tokenIt = std::find(tokens.begin(), tokens.end(), newTokens[i].substr(1));
+						std::vector<std::string>::iterator tokenIt =
+							std::find(tokens.begin(), tokens.end(),
+								std::string_view{newToken}.substr(1));
 						if (tokenIt != tokens.end())
 							tokens.erase(tokenIt);
 						else
-							LOGWARNING("[ParamNode] Could not remove token '%s' from node '%s'%s; not present in list nor inherited (possible typo?)",
-								newTokens[i].substr(1), name, sourceIdentifier ? (" in '" + utf8_from_wstring(sourceIdentifier) + "'").c_str() : "");
+						{
+							const std::string identifier{
+								sourceIdentifier ? (" in '" +
+									utf8_from_wstring(sourceIdentifier) + "'") : ""};
+							LOGWARNING("[ParamNode] Could not remove token "
+								"'%s' from node '%s'%s; not present in "
+								"list nor inherited (possible typo?)",
+								std::string_view{newToken}.substr(1), name,
+								identifier);
+						}
 					}
 					else
 					{
-						if (std::find(oldTokens.begin(), oldTokens.end(), newTokens[i]) == oldTokens.end())
-							tokens.push_back(newTokens[i]);
+						if (std::find(oldTokens.begin(), oldTokens.end(), newToken) == oldTokens.end())
+							tokens.push_back(newToken);
 					}
 				}
 

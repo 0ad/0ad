@@ -32,6 +32,8 @@
 #include "simulation2/system/ParamNode.h"
 #include "simulation2/system/SimContext.h"
 
+#include <string_view>
+
 /**
  * Used for script-only message types.
  */
@@ -273,26 +275,27 @@ void CComponentManager::Script_RegisterComponentType_Common(int iid, const std::
 		return;
 	}
 
-	for (std::vector<std::string>::const_iterator it = methods.begin(); it != methods.end(); ++it)
+	for (const std::string& method : methods)
 	{
-		// TODO C++17: string_view
-		if (strncmp((it->c_str()), "On", 2) != 0)
+		if (std::string_view{method}.substr(0, 2) != "On")
 			continue;
 
-		std::string name = (*it).substr(2); // strip the "On" prefix
+		std::string_view name{std::string_view{method}.substr(2)}; // strip the "On" prefix
 
 		// Handle "OnGlobalFoo" functions specially
 		bool isGlobal = false;
-		if (strncmp(name.c_str(), "Global", 6) == 0)
+		if (std::string_view{name}.substr(0, 6) == "Global")
 		{
 			isGlobal = true;
-			name = name.substr(6);
+			name.remove_prefix(6);
 		}
 
-		std::map<std::string, MessageTypeId>::const_iterator mit = m_MessageTypeIdsByName.find(name);
+		auto mit = m_MessageTypeIdsByName.find(std::string{name});
 		if (mit == m_MessageTypeIdsByName.end())
 		{
-			ScriptException::Raise(rq, "Registered component has unrecognized '%s' message handler method", it->c_str());
+			ScriptException::Raise(rq,
+				"Registered component has unrecognized '%s' message handler method",
+				method.c_str());
 			return;
 		}
 

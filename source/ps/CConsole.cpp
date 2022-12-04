@@ -41,6 +41,7 @@
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/JSON.h"
 
+#include <string_view>
 #include <vector>
 #include <wctype.h>
 
@@ -548,7 +549,8 @@ void CConsole::InsertMessage(const std::string& message)
 			m_MsgHistory.push_front(wrapAround.substr(oldNewline, distance));
 			oldNewline += distance+1;
 		}
-		m_MsgHistory.push_front(wrapAround.substr(oldNewline));
+		wrapAround.erase(0, oldNewline);
+		m_MsgHistory.push_front(std::move(wrapAround));
 	}
 }
 
@@ -615,7 +617,7 @@ void CConsole::LoadHistory()
 		{
 			if (pos > 0)
 				m_BufHistory.push_front(str.Left(str[pos-1] == '\r' ? pos - 1 : pos));
-			str = str.substr(pos + 1);
+			str.erase(0, pos + 1);
 		}
 		else if (str.length() > 0)
 			m_BufHistory.push_front(str);

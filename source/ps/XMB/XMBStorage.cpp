@@ -28,6 +28,7 @@
 #include "scriptinterface/ScriptInterface.h"
 
 #include <libxml/parser.h>
+#include <string_view>
 #include <unordered_map>
 
 const char* XMBStorage::HeaderMagicStr = "XMB0";
@@ -235,7 +236,8 @@ bool JSNodeData::Setup(XMBStorageWriter& xmb, JS::HandleValue value)
 		std::string_view name = prop;
 		if (!attrib && !prop.empty() && prop.back() == '@')
 		{
-			size_t idx = prop.substr(0, prop.size()-1).find_last_of('@');
+			const size_t idx = std::string_view{prop}.substr(0, prop.size() - 1)
+				.find_last_of('@');
 			if (idx == std::string::npos)
 			{
 				LOGERROR("Object key name cannot end with an '@' unless it is an index specifier.");

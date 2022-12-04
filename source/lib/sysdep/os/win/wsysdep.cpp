@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -42,6 +42,8 @@
 #if CONFIG_ENABLE_BOOST
 # include <boost/algorithm/string.hpp>
 #endif
+
+#include <string_view>
 
 
 #if MSC_VERSION
@@ -538,9 +540,10 @@ static std::wstring parse_proxy(const std::wstring& input)
 	std::vector<std::wstring> parts;
 	split(parts, input, boost::algorithm::is_any_of("; \t\r\n"), boost::algorithm::token_compress_on);
 
-	for(size_t i = 0; i < parts.size(); ++i)
-		if(boost::algorithm::starts_with(parts[i], "http="))
-			return parts[i].substr(5);
+	constexpr std::wstring_view http{L"http="};
+	for(const std::wstring& part : parts)
+		if(std::wstring_view{part}.substr(0, http.size()) == http)
+			return part.substr(http.size());
 
 	// If we got this far, proxies were only set for non-HTTP protocols
 	return L"";

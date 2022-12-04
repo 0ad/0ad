@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,6 +30,8 @@
 #include "simulation2/components/ICmpVisual.h"
 #include "simulation2/components/ICmpUnitRenderer.h"
 #include "simulation2/system/ComponentManager.h"
+
+#include <string_view>
 
 entity_id_t EntitySelection::PickEntityAtPoint(CSimulation2& simulation, const CCamera& camera, int screenX, int screenY, player_id_t player, bool allowEditorSelectables)
 {
@@ -215,9 +217,11 @@ std::vector<entity_id_t> EntitySelection::PickSimilarEntities(CSimulation2& simu
 		if (matchRank)
 		{
 			// Exact template name matching, optionally also allowing foundations
-			std::string curTemplateName = cmpTemplateManager->GetCurrentTemplateName(ent);
+			const std::string curTemplateName = cmpTemplateManager->GetCurrentTemplateName(ent);
 			bool matches = (curTemplateName == templateName ||
-			                (allowFoundations && curTemplateName.substr(0, 11) == "foundation|" && curTemplateName.substr(11) == templateName));
+				(allowFoundations &&
+				std::string_view{curTemplateName}.substr(0, 11) == "foundation|" &&
+				std::string_view{curTemplateName}.substr(11) == templateName));
 			if (!matches)
 				continue;
 		}

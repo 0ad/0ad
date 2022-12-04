@@ -36,6 +36,8 @@
 #include "renderer/RenderingOptions.h"
 #include "tools/atlas/GameInterface/GameLoop.h"
 
+#include <string_view>
+
 CPostprocManager::CPostprocManager()
 	: m_IsInitialized(false), m_PostProcEffect(L"default"), m_WhichBuffer(true),
 	m_Sharpness(0.3f), m_UsingMultisampleBuffer(false), m_MultisampleCount(0)
@@ -617,12 +619,13 @@ void CPostprocManager::UpdateAntiAliasingTechnique()
 	// We have to hardcode names in the engine, because anti-aliasing
 	// techinques strongly depend on the graphics pipeline.
 	// We might use enums in future though.
-	const CStr msaaPrefix = "msaa";
+	constexpr std::string_view msaaPrefix{"msaa"};
 	if (m_AAName == "fxaa")
 	{
 		m_AATech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("fxaa"));
 	}
-	else if (m_AAName.size() > msaaPrefix.size() && m_AAName.substr(0, msaaPrefix.size()) == msaaPrefix)
+	else if (m_AAName.size() > msaaPrefix.size() &&
+		std::string_view{m_AAName}.substr(0, msaaPrefix.size()) == msaaPrefix)
 	{
 		// We don't want to enable MSAA in Atlas, because it uses wxWidgets and its canvas.
 		if (g_AtlasGameLoop && g_AtlasGameLoop->running)

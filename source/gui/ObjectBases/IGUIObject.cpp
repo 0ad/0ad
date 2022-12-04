@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,6 +33,7 @@
 #include "soundmanager/ISoundManager.h"
 
 #include <algorithm>
+#include <string_view>
 #include <unordered_map>
 
 const CStr IGUIObject::EventNameMouseEnter = "MouseEnter";
@@ -461,7 +462,7 @@ CStr IGUIObject::GetPresentableName() const
 	if (m_Name.length() <= 12)
 		return m_Name;
 
-	if (m_Name.substr(0, 10) == "__internal")
+	if (std::string_view{m_Name}.substr(0, 10) == "__internal")
 		return CStr("[unnamed object]");
 	else
 		return m_Name;

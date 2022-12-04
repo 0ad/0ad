@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@
 #include "scriptinterface/ScriptRequest.h"
 
 #include <string>
+#include <string_view>
 
 template <typename T>
 JSI_GUIProxy<T>& JSI_GUIProxy<T>::Singleton()
@@ -307,7 +308,7 @@ bool JSI_GUIProxy<T>::delete_(JSContext* cx, JS::HandleObject proxy, JS::HandleI
 		return result.fail(JSMSG_BAD_PROP_ID);
 
 	// event handlers
-	if (propName.substr(0, 2) == "on")
+	if (std::string_view{propName}.substr(0, 2) == "on")
 	{
 		CStr eventName(propName.substr(2));
 		e->UnsetScriptHandler(eventName);
