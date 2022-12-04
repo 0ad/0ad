@@ -543,7 +543,7 @@ void ActorViewer::Render()
 		deviceCommandContext->GetDevice()->GetCurrentBackbuffer(
 			Renderer::Backend::AttachmentLoadOp::DONT_CARE,
 			Renderer::Backend::AttachmentStoreOp::STORE,
-			Renderer::Backend::AttachmentLoadOp::DONT_CARE,
+			Renderer::Backend::AttachmentLoadOp::CLEAR,
 			Renderer::Backend::AttachmentStoreOp::DONT_CARE));
 
 	sceneRenderer.RenderScene(deviceCommandContext);
