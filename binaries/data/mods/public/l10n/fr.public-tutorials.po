@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -11,17 +11,16 @@
 # Stanislas Dolcini
 # François Magimel
 # Raz Ou
-# youritch ....
 # Xavier Tardieu
 # Valentin Diwali
-# Rome Dev
 # François Poirotte
+# mcorteel
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-10-29 07:08+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: François Poirotte <clicky@erebot.net>, 2022\n"
+"Last-Translator: mcorteel <mcorteel@gmail.com>, 2022\n"
 "Language-Team: French (https://www.transifex.com/wildfire-games/teams/17418/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -173,8 +172,8 @@ msgid ""
 msgstr ""
 "Construisez une caserne à coté. Quand la population maximum est atteinte, "
 "construisez une maison supplémentaire en utilisant n'importe quel unité "
-"disponible. Ce-que vous avez construit sera le pied de la phase \"Village\" "
-"de votre ville, qui vous permettra de passer à la phase \"Ville\""
+"disponible. Ce sera la cinquième structure de la phase \"Village\" de votre "
+"ville, ce qui vous permettra de passer à la phase \"Ville\"."
 
 #: maps/tutorials/introductory_tutorial.js:193
 msgid ""
@@ -184,8 +183,8 @@ msgid ""
 msgstr ""
 "Sélectionnez à nouveau le Centre-ville et améliorez le à la phase \"Ville\" "
 "en cliquant sur l'icône \"II\" (il faut attendre que la construction de la "
-"caserne soit fini). Ce qui permettra de pouvoir construire la phase "
-"\"Ville\"."
+"caserne soit finie). Ce qui permettra de pouvoir construire les bâtiments de"
+" la phase \"Ville\"."
 
 #: maps/tutorials/introductory_tutorial.js:205
 msgid ""
@@ -201,7 +200,7 @@ msgid ""
 " of your territory."
 msgstr ""
 "Ordonnez à vos Tirailleurs inactifs de construire un avant-poste au nord-est"
-" au bord de votre territoire."
+" de votre territoire."
 
 #: maps/tutorials/introductory_tutorial.js:228
 msgid ""
@@ -249,7 +248,7 @@ msgid ""
 "The enemy attack has been thwarted. Now build a market and a temple while "
 "you assign new units to gather required resources."
 msgstr ""
-"L’attaque ennemie a été déjouée. Maintenant construisez un marché et un "
+"L’attaque ennemie a été déjouée. Construisez maintenant un marché et un "
 "temple, pendant que vous assignerez de nouvelles unités à rassembler les "
 "ressources nécessaires."
 
@@ -259,7 +258,7 @@ msgid ""
 "advance to City Phase."
 msgstr ""
 "Une fois que vous répondez aux exigences de la Phase des Villes, "
-"sélectionnez votre Centre-ville et passez à la Phase des Villes."
+"sélectionnez votre Centre-ville et passez à la Phase des Cités."
 
 #: maps/tutorials/introductory_tutorial.js:333
 msgid ""
@@ -283,9 +282,9 @@ msgid ""
 "find the enemy Civic Center on the map. Once the enemy's base has been "
 "spotted, send your Siege Engines and all remaining soldiers to destroy it.\n"
 msgstr ""
-"Stoppez tout vos soldats collectant des ressources et formez à la place des "
+"Stoppez tous vos soldats collectant des ressources et formez à la place des "
 "petits groupes pour trouver le Centre-ville ennemi sur la carte. Une fois la"
-" base ennemie trouvée, envoyez vos Armes de siège et tout vos soldats "
+" base ennemie trouvée, envoyez vos Armes de siège et tous vos soldats "
 "restants la détruire.\n"
 
 #: maps/tutorials/introductory_tutorial.js:368
@@ -298,7 +297,7 @@ msgstr "L’ennemi a été vaincu. Ce tutoriel est maintenant terminé."
 
 #: maps/tutorials/introductory_tutorial.xml:Description:38
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "C’est un tutoriel basique pour commencer le jeu 0 A.D."
+msgstr "Un tutoriel basique pour commencer le jeu 0 A.D."
 
 #: maps/tutorials/introductory_tutorial.xml:Name:38
 msgid "Introductory Tutorial"
@@ -323,8 +322,8 @@ msgstr ""
 "Ce tutoriel va vous apprendre les bases afin de développer votre économie. "
 "Généralement, vous commencerez avec un Centre-ville et quelques unités dans "
 "la Phase des Villages et finalement, votre but sera de développer et "
-"agrandir votre empire, souvent en progressant ensuite vers la Phase des "
-"Villes et la Phase des Cités.\n"
+"agrandir votre empire, souvent en progressant vers la Phase des Villes et la"
+" Phase des Cités.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -471,10 +470,10 @@ msgid ""
 "the specified unit in your visible window. %(hotkey)s+double-click will "
 "select all units of the same type on the entire map.\n"
 msgstr ""
-"3) Double-cliquez sur une unité. Cela va séléctioner toutes les unités du "
-"même type que vous pouvez appercevoir. Mais si vous faites "
-"%(hotkey)s+double-clique, cela va séléctioner toutes les unités du même type"
-" sur la carte entière !"
+"3) Double-cliquer sur une unité. Cela va séléctioner toutes les unités du "
+"même type que vous pouvez apercevoir. Mais si vous faites %(hotkey)s+double-"
+"clic, cela séléctionera toutes les unités du même type sur la carte entière "
+"!"
 
 #: maps/tutorials/starting_economy_walkthrough.js:48
 msgid ""
@@ -505,7 +504,7 @@ msgid ""
 " him to hunt the chickens around your Civic Center in similar fashion."
 msgstr ""
 "Les Soldats-citoyens montés sont de bons chasseurs. Sélectionnez votre "
-"Cavalerie et ordonnez-la de chasser les poulets autour de votre Centre-"
+"Cavalerie et ordonnez-lui de chasser les poulets autour de votre Centre-"
 "ville."
 
 #: maps/tutorials/starting_economy_walkthrough.js:81
@@ -838,7 +837,7 @@ msgid ""
 msgstr ""
 "Mais vos bâtisseurs de Maison chercheront uniquement quelque chose d’autre à"
 " construire, si rien n’est trouvé ils deviendront inactifs. Attendons qu’ils"
-" aient terminés de construire les Maisons."
+" aient terminé de construire les Maisons."
 
 #: maps/tutorials/starting_economy_walkthrough.js:295
 msgid ""
@@ -947,7 +946,7 @@ msgstr ""
 "Nous avons maintenant assez de ressources, mais il nous manque une "
 "structure. Même si il s’agit d’un tutoriel sur l’économie, il est toutefois "
 "utile d’être préparé pour se défendre en cas d’attaque, donc construisons "
-"une caserne.\n"
+"une Caserne.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:376
 msgid ""
@@ -972,7 +971,7 @@ msgstr ""
 "Attendons que les Casernes soient construites. Puisque cette construction "
 "est lente, vous pouvez ajouter deux autres soldats afin de construire plus "
 "vite. Pour ce faire, sélectionnez le Centre-ville et placez un point de "
-"ralliements sur les fondations des casernes en faisant un clic droit dessus "
+"ralliement sur les fondations des casernes en faisant un clic droit dessus "
 "(vous devriez apercevoir une icône « marteau »). Ensuite produisez deux "
 "autres constructeurs en cliquant sur l’icône « Hoplite » deux fois."
 
@@ -1032,8 +1031,8 @@ msgstr ""
 "Centre-ville qui se trouve sur le chemin. Pour ce faire, on va lancer une "
 "série d’ordres les uns à la suite des autres en utilisant la touche Maj. "
 "enfoncée : sélectionnez vos soldats, maintenez la touche Maj. enfoncée et "
-"faites un clic droit sur le Centre-ville pour déposer le bois puis de "
-"nouveau maintenez la touche Maj. enfoncée et faites un clic droit sur la "
+"faites un clic droit sur le Centre-ville pour déposer le bois puis, en "
+"maintenant toujours la touche Maj. enfoncée, faites un clic droit sur la "
 "carrière de pierre pour la récolter.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:419
