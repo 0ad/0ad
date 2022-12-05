@@ -363,12 +363,12 @@ void Shutdown(int flags)
 
 	g_Profiler2.ShutdownGPU();
 
+	if (hasRenderer)
+		g_VideoMode.Shutdown();
+
 	TIMER_BEGIN(L"shutdown SDL");
 	ShutdownSDL();
 	TIMER_END(L"shutdown SDL");
-
-	if (hasRenderer)
-		g_VideoMode.Shutdown();
 
 	TIMER_BEGIN(L"shutdown UserReporter");
 	g_UserReporter.Deinitialize();

@@ -97,6 +97,7 @@
 // NV_CPU_PPC
 // NV_CPU_ARM
 // NV_CPU_AARCH64
+// NV_CPU_E2K
 
 #define NV_CPU_STRING   POSH_CPU_STRING
 
@@ -111,6 +112,8 @@
 #   define NV_CPU_ARM 1
 #elif defined POSH_CPU_AARCH64
 #   define NV_CPU_AARCH64 1
+#elif defined POSH_CPU_E2K
+#   define NV_CPU_E2K 1
 #else
 #   error "Unsupported CPU"
 #endif

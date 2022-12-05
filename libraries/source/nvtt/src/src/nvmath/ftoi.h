@@ -53,7 +53,7 @@ namespace nv
         return (val<0) ? ftoi_ceil_xs(val) : ftoi_floor_xs(val);
     }
 
-#if NV_CPU_X86 || NV_CPU_X86_64
+#if NV_CPU_X86 || NV_CPU_X86_64 || NV_CPU_E2K
 
     NV_FORCEINLINE int ftoi_round_sse(float f) {
         return _mm_cvt_ss2si(_mm_set_ss(f));

@@ -525,11 +525,16 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 		// to clear the color attachment.
 		// We don't need a depth test to render so we don't care about the
 		// depth-stencil attachment content.
+		// In case of Atlas we don't have g_Game, so we still need to clear depth.
+		const Renderer::Backend::AttachmentLoadOp depthStencilLoadOp =
+			g_AtlasGameLoop && g_AtlasGameLoop->view
+				? Renderer::Backend::AttachmentLoadOp::CLEAR
+				: Renderer::Backend::AttachmentLoadOp::DONT_CARE;
 		m->deviceCommandContext->BeginFramebufferPass(
 			m->deviceCommandContext->GetDevice()->GetCurrentBackbuffer(
 				Renderer::Backend::AttachmentLoadOp::DONT_CARE,
 				Renderer::Backend::AttachmentStoreOp::STORE,
-				Renderer::Backend::AttachmentLoadOp::DONT_CARE,
+				depthStencilLoadOp,
 				Renderer::Backend::AttachmentStoreOp::DONT_CARE));
 	}
 
@@ -718,13 +723,15 @@ void CRenderer::RenderBigScreenShot(const bool needsPresent)
 			}
 			g_Game->GetView()->GetCamera()->SetProjection(projection);
 
-			if (needsPresent && g_VideoMode.GetBackendDevice()->AcquireNextBackbuffer())
+			if (!needsPresent || g_VideoMode.GetBackendDevice()->AcquireNextBackbuffer())
 			{
 				RenderFrameImpl(false, false);
 
 				m->deviceCommandContext->ReadbackFramebufferSync(0, 0, tileWidth, tileHeight, tileData);
 				m->deviceCommandContext->Flush();
-				g_VideoMode.GetBackendDevice()->Present();
+
+				if (needsPresent)
+					g_VideoMode.GetBackendDevice()->Present();
 			}
 
 			// Copy the tile pixels into the main image

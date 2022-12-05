@@ -635,7 +635,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 
 		// Check max length
 		if (m_MaxLength != 0 && caption.length() + text.length() > static_cast<size_t>(m_MaxLength))
-			text = text.substr(0, static_cast<size_t>(m_MaxLength) - caption.length());
+			text.erase(static_cast<size_t>(m_MaxLength) - caption.length());
 
 		if (SelectingText())
 			DeleteCurSelection();
@@ -1552,7 +1552,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	CStrW& caption = m_Caption.GetMutable();
 
 	if (m_MaxLength != 0 && caption.length() > static_cast<size_t>(m_MaxLength))
-		caption = caption.substr(0, m_MaxLength);
+		caption.erase(m_MaxLength);
 
 	CStrIntern font_name(m_Font->ToUTF8());
 

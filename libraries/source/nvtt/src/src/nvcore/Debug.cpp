@@ -674,6 +674,9 @@ namespace
 #    elif NV_CPU_AARCH64
         ucontext_t * ucp = (ucontext_t *)secret;
         return (void *) ucp->uc_mcontext.pc;
+#  elif NV_CPU_E2K
+        ucontext_t * ucp = (ucontext_t *)secret;
+        return (void *) ucp->uc_mcontext.cr0_hi;
 #    else
 #      error "Unknown CPU"
 #    endif

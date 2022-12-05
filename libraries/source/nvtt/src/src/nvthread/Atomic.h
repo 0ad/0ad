@@ -54,7 +54,7 @@ namespace nv {
     {
         nvDebugCheck((intptr_t(ptr) & 3) == 0);
 
-#if POSH_CPU_X86 || POSH_CPU_X86_64
+#if POSH_CPU_X86 || POSH_CPU_X86_64 || POSH_CPU_E2K
         uint32 ret = *ptr;  // on x86, loads are Acquire
         nvCompilerReadBarrier();
         return ret;
@@ -88,7 +88,7 @@ namespace nv {
         nvDebugCheck((intptr_t(ptr) & 3) == 0);
         nvDebugCheck((intptr_t(&value) & 3) == 0);
 
-#if POSH_CPU_X86 || POSH_CPU_X86_64
+#if POSH_CPU_X86 || POSH_CPU_X86_64 || POSH_CPU_E2K
         nvCompilerWriteBarrier();
         *ptr = value;   // on x86, stores are Release
         //nvCompilerWriteBarrier(); // @@ IC: Where does this barrier go? In nvtt it was after, in Witness before. Not sure which one is right.

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,8 @@
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
 #include "scriptinterface/ScriptConversions.h"
+
+#include <string_view>
 
 class IGUIObject;
 class IGUISetting;
@@ -83,11 +85,12 @@ public:
 	static constexpr std::string_view identifier = "texture:";
 	static constexpr size_t specOffset = identifier.size();
 
-	static std::unique_ptr<CGUIMouseEventMaskTexture> Create(const std::string& spec)
+	static std::unique_ptr<CGUIMouseEventMaskTexture> Create(const std::string_view spec)
 	{
 		std::shared_ptr<u8> shapeFile;
 		CCacheLoader loader(g_VFS, L".dds");
-		VfsPath sourcePath = VfsPath("art") / L"textures" / L"ui" / spec.substr(specOffset);
+		VfsPath sourcePath = VfsPath("art") / L"textures" / L"ui" /
+			std::string{spec.substr(specOffset)};
 		VfsPath archivePath = loader.ArchiveCachePath(sourcePath);
 		Status status;
 		size_t size;

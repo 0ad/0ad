@@ -26,6 +26,12 @@ namespace nv {
         __asm__ __volatile__ ("rdtsc" : "=a"(lo), "=d"(hi));
         return uint64(lo) | (uint64(hi) << 32);
     }
+#elif NV_CPU_E2K
+    NV_FORCEINLINE uint64 fastCpuClock() {
+        uint64 val;
+        asm volatile("rrd %%clkr, %0" : "=r" (val));
+        return val;
+    }
 #else
     NV_FORCEINLINE uint64 fastCpuClock() { return 0; }    
 #endif
