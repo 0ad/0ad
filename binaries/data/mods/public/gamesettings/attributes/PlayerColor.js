@@ -5,8 +5,6 @@ GameSettings.prototype.Attributes.PlayerColor = class PlayerColor extends GameSe
 {
 	init()
 	{
-		this.defaultColors = g_Settings.PlayerDefaults.slice(1).map(pData => pData.Color);
-
 		this.watch(() => this.maybeUpdate(), ["available"]);
 		this.settings.playerCount.watch(() => this.maybeUpdate(), ["nbPlayers"]);
 		this.settings.map.watch(() => this.onMapChange(), ["map"]);
@@ -130,7 +128,7 @@ GameSettings.prototype.Attributes.PlayerColor = class PlayerColor extends GameSe
 		// regardless of current playercount.
 		let values = [];
 		let mapColors = false;
-		for (let i = 0; i < this.defaultColors.length; ++i)
+		for (let i = 0; i < this.DefaultColors.length; ++i)
 		{
 			let col = this._getMapData(i);
 			if (col)
@@ -138,7 +136,7 @@ GameSettings.prototype.Attributes.PlayerColor = class PlayerColor extends GameSe
 			if (mapColors)
 				values.push(col || this._findFarthestUnusedColor(values));
 			else
-				values.push(this.defaultColors[i]);
+				values.push(this.DefaultColors[i]);
 		}
 		this.available = values;
 	}
@@ -164,7 +162,7 @@ GameSettings.prototype.Attributes.PlayerColor = class PlayerColor extends GameSe
 		let farthestColor;
 		let farthestDistance = 0;
 
-		for (let defaultColor of this.defaultColors)
+		for (let defaultColor of this.DefaultColors)
 		{
 			let smallestDistance = Infinity;
 			for (let usedColor of values)
@@ -190,3 +188,22 @@ GameSettings.prototype.Attributes.PlayerColor = class PlayerColor extends GameSe
 		});
 	}
 };
+
+GameSettings.prototype.Attributes.PlayerColor.prototype.DefaultColors = [
+	{ "r": 10, "g": 10, "b": 190 },
+	{ "r": 230, "g": 10, "b": 10 },
+	{ "r": 125 , "g": 235, "b": 15 },
+	{ "r": 255, "g": 255, "b": 55 },
+	{ "r": 130, "g": 0, "b": 230 },
+	{ "r": 255, "g": 130, "b": 0 },
+	{ "r": 10, "g": 230, "b": 230 },
+	{ "r": 20, "g": 80, "b": 60 },
+	{ "r": 220, "g": 160, "b": 220 },
+	{ "r": 80, "g": 255, "b": 190 },
+	{ "r": 50, "g": 150, "b": 255 },
+	{ "r": 100, "g": 150, "b": 30 },
+	{ "r": 100, "g": 60, "b": 30 },
+	{ "r": 128, "g": 0, "b": 64 },
+	{ "r": 255, "g": 200, "b": 140 },
+	{ "r": 80, "g": 80, "b": 80 }
+];
