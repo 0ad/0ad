@@ -636,14 +636,14 @@ public:
 #if CONFIG2_GLES
 		// Ugly hack to replace desktop GLSL 1.10/1.20 with GLSL ES 1.00,
 		// and also to set default float precision for fragment shaders
-		vertexCode.Replace("#version 110\n", "#version 100\n");
-		vertexCode.Replace("#version 110\r\n", "#version 100\n");
-		vertexCode.Replace("#version 120\n", "#version 100\n");
-		vertexCode.Replace("#version 120\r\n", "#version 100\n");
-		fragmentCode.Replace("#version 110\n", "#version 100\nprecision mediump float;\n");
-		fragmentCode.Replace("#version 110\r\n", "#version 100\nprecision mediump float;\n");
-		fragmentCode.Replace("#version 120\n", "#version 100\nprecision mediump float;\n");
-		fragmentCode.Replace("#version 120\r\n", "#version 100\nprecision mediump float;\n");
+		vertexCode.Replace("#version 110\n", "#version 100\nprecision highp float;\n");
+		vertexCode.Replace("#version 110\r\n", "#version 100\nprecision highp float;\n");
+		vertexCode.Replace("#version 120\n", "#version 100\nprecision highp float;\n");
+		vertexCode.Replace("#version 120\r\n", "#version 100\nprecision highp float;\n");
+		fragmentCode.Replace("#version 110\n", "#version 100\nprecision highp float;\n");
+		fragmentCode.Replace("#version 110\r\n", "#version 100\nprecision highp float;\n");
+		fragmentCode.Replace("#version 120\n", "#version 100\nprecision highp float;\n");
+		fragmentCode.Replace("#version 120\r\n", "#version 100\nprecision highp float;\n");
 #endif
 
 		// TODO: replace by scoped bind.
