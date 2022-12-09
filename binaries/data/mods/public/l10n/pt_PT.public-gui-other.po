@@ -6,6 +6,7 @@
 # e8f1a29f7bd45d2490d729ad149fc504_6eadd8e
 # Carlos Moreira
 # Danny Reese
+# lecalam
 # Luis Neves
 # Manuela Silva
 # Mário Branco
@@ -20,7 +21,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>, 2021\n"
+"Last-Translator: lecalam, 2022\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -270,7 +271,7 @@ msgstr "desativado"
 
 #: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
-msgstr ""
+msgstr "Durante o primeiro minuto, os outros jogadores manter-se-ão neutros."
 
 #: gui/common/gamedescription.js:279
 #, javascript-format
@@ -383,7 +384,7 @@ msgstr "Mapa revelado"
 
 #: gui/common/gamedescription.js:402
 msgid "Allied View"
-msgstr ""
+msgstr "Visão aliada"
 
 #: gui/common/gamedescription.js:407
 msgid "Cheats"
@@ -486,7 +487,7 @@ msgstr "Foste banido."
 
 #: gui/common/network.js:73
 msgid "Player name in use. If you were disconnected, retry in few seconds."
-msgstr ""
+msgstr "O nome de jogador já está a ser usado. Se foste desligado, tenta novamente após alguns segundos."
 
 #: gui/common/network.js:74
 msgid "Server full."
@@ -498,27 +499,27 @@ msgstr "A autenticação segura da sala de espera falhou. Entra na sala de esper
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr ""
+msgstr "Erro: o servidor não conseguiu alocar um identificador de cliente único."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
-msgstr ""
+msgstr "Erro: os comandos do cliente estavam prontos para um turno de jogo inesperado."
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
-msgstr ""
+msgstr "Erro: o cliente simulou um turno de jogo inesperado."
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
-msgstr ""
+msgstr "A palavra-passe é inválida."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
-msgstr ""
+msgstr "Não foi possível encontrar uma porta não utilizada para o cliente ENET STUN."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr ""
+msgstr "Não foi possível encontrar o STUN endpoint."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -620,7 +621,7 @@ msgstr "Escaramuça"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr ""
+msgstr "Um mapa com uma paisagem e número de jogadores predefinidos. Escolha livremente as outras configurações do mapa."
 
 #: gui/common/settings.js:183
 msgctxt "map"
@@ -674,7 +675,7 @@ msgstr "Padrão"
 #: gui/common/settings.js:403
 msgctxt "population capacity addendum"
 msgid "(world)"
-msgstr ""
+msgstr "(mundo)"
 
 #: gui/common/settings.js:404 gui/common/settings.js:408
 msgctxt "population capacity"
@@ -688,22 +689,22 @@ msgstr "Condição desconhecida de vitória"
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab right."
-msgstr ""
+msgstr "Desce para baixo ou usa %(hotkey)s para mover um separador para a direita."
 
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab left."
-msgstr ""
+msgstr "Sobe para cima ou usa %(hotkey)s para mover um separador para a esquerda."
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab down."
-msgstr ""
+msgstr "Desce para baixo ou usa %(hotkey)s para mover um separador para baixo."
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab up."
-msgstr ""
+msgstr "Sobe para cima ou usa %(hotkey)s para mover um separador para cima."
 
 #: gui/common/tooltips.js:63
 #, javascript-format
@@ -743,7 +744,7 @@ msgstr "%(healthLabel)s %(current)s / %(max)s"
 #: gui/common/tooltips.js:178
 #, javascript-format
 msgid "%(captureLabel)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(captureLabel)s %(current)s / %(max)s"
 
 #: gui/common/tooltips.js:179
 msgid "Capture points:"
@@ -759,34 +760,34 @@ msgstr "%(percentage)s%%"
 msgid ""
 "%(label)s\n"
 "%(details)s"
-msgstr ""
+msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:211
 msgid "Resistance:"
-msgstr ""
+msgstr "Resistência:"
 
 #: gui/common/tooltips.js:222
 msgid "Damage:"
-msgstr ""
+msgstr "Dano:"
 
 #: gui/common/tooltips.js:225 gui/common/tooltips.js:245
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(resistancePercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(resistancePercentage)s"
 
 #: gui/common/tooltips.js:230 gui/common/tooltips.js:250
 #, javascript-format
 msgid "(%(resistancePercentage)s)"
-msgstr ""
+msgstr "(%(resistancePercentage)s)"
 
 #: gui/common/tooltips.js:243
 msgid "Capture:"
-msgstr ""
+msgstr "Captura:"
 
 #: gui/common/tooltips.js:247 gui/common/tooltips.js:387
 msgctxt "damage type"
 msgid "Capture"
-msgstr ""
+msgstr "Captura"
 
 #: gui/common/tooltips.js:262
 msgid "Status Effects:"
@@ -801,12 +802,12 @@ msgstr ""
 #: gui/common/tooltips.js:287
 #, javascript-format
 msgid "%(name)s %(details)s"
-msgstr ""
+msgstr "%(name)s %(details)s"
 
 #: gui/common/tooltips.js:274
 #, javascript-format
 msgid "Duration reduction: %(durationReduction)s%%"
-msgstr ""
+msgstr "Redução da duração: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:282
 #, javascript-format
@@ -821,7 +822,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:305
 msgid "Garrison to fire arrows"
-msgstr ""
+msgstr "Guarnece para disparar flechas"
 
 #: gui/common/tooltips.js:308 gui/common/tooltips.js:1056
 msgid "Interval:"
@@ -835,9 +836,9 @@ msgstr "Velocidade:"
 #, javascript-format
 msgid "%(projectileCount)s %(projectileName)s"
 msgid_plural "%(projectileCount)s %(projectileName)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(projectileCount)s %(projectileName)s"
+msgstr[1] "%(projectileCount)s %(projectileName)s"
+msgstr[2] "%(projectileCount)s %(projectileName)s"
 
 #: gui/common/tooltips.js:315
 msgid "arrow"
@@ -849,7 +850,7 @@ msgstr[2] "setas"
 #: gui/common/tooltips.js:318
 #, javascript-format
 msgid "%(projectileString)s / %(attackRateString)s"
-msgstr ""
+msgstr "%(projectileString)s / %(attackRateString)s"
 
 #. Translation: For example: Range: 2 to 10 (+2) meters
 #: gui/common/tooltips.js:338
@@ -857,25 +858,25 @@ msgstr ""
 msgid ""
 "%(rangeLabel)s %(minRange)s to %(maxRange)s (%(relativeRange)s) "
 "%(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s a %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 (+2) meters
 #: gui/common/tooltips.js:340
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s (%(relativeRange)s) %(rangeUnit)s"
 
 #. Translation: For example: Range: 2 to 10 meters
 #: gui/common/tooltips.js:344
 #, javascript-format
 msgid "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(minRange)s a %(maxRange)s %(rangeUnit)s"
 
 #. Translation: For example: Range: 10 meters
 #: gui/common/tooltips.js:346
 #, javascript-format
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
-msgstr ""
+msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
 #: gui/common/tooltips.js:356 gui/common/tooltips.js:1051
 msgid "Range:"
@@ -908,7 +909,7 @@ msgstr "%(damage)s %(damageType)s"
 #: gui/common/tooltips.js:385
 #, javascript-format
 msgid "%(amount)s %(name)s"
-msgstr ""
+msgstr "%(amount)s %(name)s"
 
 #: gui/common/tooltips.js:393
 #, javascript-format
@@ -918,7 +919,7 @@ msgstr ""
 #: gui/common/tooltips.js:396
 #, javascript-format
 msgid "%(label)s: %(effects)s"
-msgstr ""
+msgstr "%(label)s: %(effects)s"
 
 #: gui/common/tooltips.js:402
 #, javascript-format
@@ -946,18 +947,18 @@ msgstr "Não"
 #: gui/common/tooltips.js:414
 #, javascript-format
 msgid "gives %(name)s"
-msgstr ""
+msgstr "dá %(name)s"
 
 #: gui/common/tooltips.js:447
 #, javascript-format
 msgid "%(attackType)s"
-msgstr ""
+msgstr "%(attackType)s"
 
 #: gui/common/tooltips.js:466
 #, javascript-format
 msgid ""
 "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
-msgstr ""
+msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(splash)s"
 
 #: gui/common/tooltips.js:477
 msgid "Attack:"
@@ -966,17 +967,17 @@ msgstr "Ataque:"
 #: gui/common/tooltips.js:504
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s %(stackability)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s %(stackability)s"
 
 #: gui/common/tooltips.js:509
 #, javascript-format
 msgid "%(statusName)s: %(statusInfo)s"
-msgstr ""
+msgstr "%(statusName)s: %(statusInfo)s"
 
 #: gui/common/tooltips.js:520
 #, javascript-format
 msgid "%(durName)s: %(duration)s"
-msgstr ""
+msgstr "%(durName)s: %(duration)s"
 
 #: gui/common/tooltips.js:521
 msgid "Duration"
@@ -985,22 +986,22 @@ msgstr "Duração"
 #: gui/common/tooltips.js:535
 msgctxt "status effect stackability"
 msgid "(extends)"
-msgstr ""
+msgstr "(alarga)"
 
 #: gui/common/tooltips.js:537
 msgctxt "status effect stackability"
 msgid "(replaces)"
-msgstr ""
+msgstr "(substitui)"
 
 #: gui/common/tooltips.js:539
 msgctxt "status effect stackability"
 msgid "(stacks)"
-msgstr ""
+msgstr "(acumula)"
 
 #: gui/common/tooltips.js:541
 #, javascript-format
 msgid "%(stackability)s"
-msgstr ""
+msgstr "%(stackability)s"
 
 #: gui/common/tooltips.js:552
 #, javascript-format
@@ -1028,21 +1029,21 @@ msgstr "Vida"
 #: gui/common/tooltips.js:577
 #, javascript-format
 msgid "%(label)s: %(garrisonSize)s %(extraSize)s"
-msgstr ""
+msgstr "%(label)s: %(garrisonSize)s %(extraSize)s"
 
 #: gui/common/tooltips.js:578
 msgid "Garrison Size"
-msgstr ""
+msgstr "Tamanho da guarnição"
 
 #: gui/common/tooltips.js:581
 msgctxt "nested garrison"
 msgid "+ "
-msgstr ""
+msgstr "+ "
 
 #: gui/common/tooltips.js:593
 #, javascript-format
 msgid "%(label)s: %(turretsLimit)s"
-msgstr ""
+msgstr "%(label)s: %(turretsLimit)s"
 
 #: gui/common/tooltips.js:594
 msgid "Turret Positions"
@@ -1074,7 +1075,7 @@ msgstr "Número de reparadores:"
 
 #: gui/common/tooltips.js:642
 msgid "Remaining repair time:"
-msgstr ""
+msgstr "Tempo restante de reparação:"
 
 #: gui/common/tooltips.js:646
 #, javascript-format
@@ -1099,7 +1100,7 @@ msgstr "Número de construtores:"
 
 #: gui/common/tooltips.js:676
 msgid "Remaining build time:"
-msgstr ""
+msgstr "Tempo restante de construção:"
 
 #: gui/common/tooltips.js:680
 #, javascript-format
@@ -1154,12 +1155,12 @@ msgstr "∞"
 
 #: gui/common/tooltips.js:814
 msgid "Reward:"
-msgstr ""
+msgstr "Recompensa:"
 
 #: gui/common/tooltips.js:817
 #, javascript-format
 msgid "%(resourceIcon)s %(reward)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(reward)s"
 
 #: gui/common/tooltips.js:835
 msgid "Resource Trickle:"
@@ -1172,7 +1173,7 @@ msgstr "%(resources)s / %(time)s"
 
 #: gui/common/tooltips.js:859
 msgid "Upkeep:"
-msgstr ""
+msgstr "Manutenção:"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
@@ -1210,7 +1211,7 @@ msgstr "Requer desenvolvimento de %(technology)s"
 #: gui/common/tooltips.js:977
 #, javascript-format
 msgid "%(label)s %(bonus)s"
-msgstr ""
+msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:978
 msgid "Population Bonus:"
@@ -1245,7 +1246,7 @@ msgstr "Correr"
 
 #: gui/common/tooltips.js:1030
 msgid "Acceleration"
-msgstr ""
+msgstr "Aceleração"
 
 #: gui/common/tooltips.js:1045 gui/common/tooltips.js:1050
 #: gui/common/tooltips.js:1055 gui/common/tooltips.js:1080
@@ -1259,9 +1260,9 @@ msgstr[2] "%(label)s %(val)s %(unit)s"
 #: gui/common/tooltips.js:1048
 msgid "Health"
 msgid_plural "Health"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Vida"
+msgstr[1] "Vida"
+msgstr[2] "Vida:"
 
 #: gui/common/tooltips.js:1072
 #, javascript-format
@@ -1281,12 +1282,12 @@ msgstr "Alcance:"
 #: gui/common/tooltips.js:1104 gui/common/tooltips.js:1132
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
-msgstr ""
+msgstr "%(primaryName)s (%(secondaryName)s)"
 
 #: gui/common/tooltips.js:1108 gui/common/tooltips.js:1125
 #, javascript-format
 msgid "%(primaryName)s"
-msgstr ""
+msgstr "%(primaryName)s"
 
 #: gui/common/tooltips.js:1155
 msgid "Classes:"
@@ -1307,11 +1308,11 @@ msgstr "Pilhagem:"
 #: gui/common/tooltips.js:1202
 #, javascript-format
 msgid "%(label)s %(icons)s"
-msgstr ""
+msgstr "%(label)s %(icons)s"
 
 #: gui/common/tooltips.js:1203
 msgid "Dropsite for:"
-msgstr ""
+msgstr "Armazém de:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
@@ -1330,17 +1331,17 @@ msgstr "Clica para ver mais informação."
 #: gui/common/tooltips.js:1226
 msgctxt "One letter abbreviation for million"
 msgid "M"
-msgstr ""
+msgstr "M"
 
 #: gui/common/tooltips.js:1229 gui/common/tooltips.js:1232
 msgctxt "One letter abbreviation for thousand"
 msgid "k"
-msgstr ""
+msgstr "k"
 
 #: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
-msgstr ""
+msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
@@ -1368,11 +1369,11 @@ msgstr "Gestor de som"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
-msgstr ""
+msgstr "Compositor Chefe"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
-msgstr ""
+msgstr "Gestores de áudio"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
 msgid "Frame drum, darbuka, riq, toms"
@@ -1380,7 +1381,7 @@ msgstr "Tambor de moldura, darbuka, riq, timbalão"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[11].Subtitle
 msgid "Guitar"
-msgstr ""
+msgstr "Guitarra"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[12].Subtitle
 msgid "Handpan"
@@ -1388,7 +1389,7 @@ msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[1].Content[13].Subtitle
 msgid "Harp"
-msgstr ""
+msgstr "Arpa"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[14].Subtitle
 msgid "Shruti Box"
@@ -1420,7 +1421,7 @@ msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
 msgid "Cello"
-msgstr ""
+msgstr "Violoncelo"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
 msgid "Celtic harp"
@@ -1436,7 +1437,7 @@ msgstr "Djembê"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
 msgid "Dulcimer"
-msgstr ""
+msgstr "Saltério"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
 msgid "Flute"
@@ -1461,7 +1462,7 @@ msgstr "Latim"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
 msgid "Napatan"
-msgstr ""
+msgstr "Napata"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
 msgid "Persian"
@@ -1473,7 +1474,7 @@ msgstr "Vozes"
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
-msgstr ""
+msgstr "Áudio"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -1482,7 +1483,7 @@ msgstr "Direção"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr ""
+msgstr "Balanceamento"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
@@ -1520,7 +1521,7 @@ msgstr "Scripts de mapas aleatórios"
 
 #: gui/credits/texts/maps.jsonTitle
 msgid "Maps"
-msgstr ""
+msgstr "Mapas"
 
 #: gui/credits/texts/programming.jsonContent[0].Title
 msgid "Programming managers"
@@ -1581,43 +1582,43 @@ msgstr "Apesar de ser relativamente fácil para um jogador experiente, o nível 
 
 #: gui/hotkeys/HotkeyMetadata.js:69
 msgid "Other Hotkeys"
-msgstr ""
+msgstr "Outras teclas de atalho"
 
 #: gui/hotkeys/HotkeyPicker.js:57
 #, javascript-format
 msgid "#%i"
-msgstr ""
+msgstr "#%i"
 
 #: gui/hotkeys/HotkeyPicker.js:73
 msgid " (hold to register)"
-msgstr ""
+msgstr " (manter premida para registar)"
 
 #: gui/hotkeys/HotkeyPicker.js:74 gui/hotkeys/HotkeyPicker.js:105
 msgid "Enter new Hotkey, hold to register."
-msgstr ""
+msgstr "Insere a nova tecla de atalho, mantém premida para registar."
 
 #: gui/hotkeys/HotkeyPicker.js:107
 msgctxt "Unassigned hotkey"
 msgid "(unused)"
-msgstr ""
+msgstr "(não utilizada)"
 
 #: gui/hotkeys/HotkeyPicker.js:116
 msgid "May conflict with: "
-msgstr ""
+msgstr "Pode estar em conflito com: "
 
 #: gui/hotkeys/HotkeysPage.js:75
 msgid "All Hotkeys"
-msgstr ""
+msgstr "Todas as teclas de atalho"
 
 #: gui/hotkeys/HotkeysPage.js:109
 msgid "All available hotkeys."
-msgstr ""
+msgstr "Todas as teclas de atalho disponíveis."
 
 #: gui/hotkeys/HotkeysPage.js:156
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
-msgstr ""
+msgstr "Repor todas as teclas de atalho para as teclas originais?\nAVISO: isto não pode ser revertido."
 
 #: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:259
 #: gui/pregame/MainMenuItems.js:283
@@ -1626,7 +1627,7 @@ msgstr "Confirmação"
 
 #: gui/hotkeys/HotkeysPage.js:198
 msgid "No tooltip available."
-msgstr ""
+msgstr "Sem dica de contexto disponível."
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -1643,17 +1644,17 @@ msgstr "Repor"
 
 #: gui/hotkeys/hotkeys.xml:(caption):72
 msgid "Hotkey"
-msgstr ""
+msgstr "Tecla de atalho"
 
 #: gui/hotkeys/hotkeys.xml:(caption):76
 msgid "Hotkey Description"
-msgstr ""
+msgstr "Descrição da tecla de atalho"
 
 #: gui/hotkeys/hotkeys.xml:(caption):80
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr ""
+msgstr "Clica em qualquer mapeamento de tecla para alterá-la.\\n Podes ter até 4 teclas de atalho diferentes."
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 #: gui/locale_advanced/locale_advanced.xml:(caption):75
@@ -1675,7 +1676,7 @@ msgstr "Nome"
 #: gui/hotkeys/hotkeys.xml:(heading):43
 msgctxt "hotkey list"
 msgid "Mapping"
-msgstr ""
+msgstr "Mapeamento"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):44
@@ -1688,361 +1689,361 @@ msgstr "Guarda alterações"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):59
 msgid "Unsaved changes will be lost"
-msgstr ""
+msgstr "As alterações por guardar serão perdidas"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):90
 msgid "Click to set the hotkey"
-msgstr ""
+msgstr "Clica para definir a tecla de atalho"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):94
 msgid "Click to delete the hotkey"
-msgstr ""
+msgstr "Clica para eliminar a tecla de atalho"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):107
 msgid "Change the hotkeys and close"
-msgstr ""
+msgstr "Alterar as teclas de atalho e fechar"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):112
 msgid "The hotkeys will not be modified"
-msgstr ""
+msgstr "As teclas de atalho não serão alteradas"
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.desc
 msgctxt "hotkey metadata"
 msgid "Camera-related hotkeys."
-msgstr ""
+msgstr "Teclas de atalho relacionadas com a câmara."
 
 #: gui/hotkeys/spec/camera.jsoncategories.camera.name
 msgctxt "hotkey metadata"
 msgid "Camera"
-msgstr ""
+msgstr "Câmara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.desc
 msgctxt "hotkey metadata"
 msgid "Scroll backwards or rotate down."
-msgstr ""
+msgstr "Desloca para trás ou roda para baixo."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate down"
-msgstr ""
+msgstr "Deslocar/rodar para baixo"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.desc
 msgctxt "hotkey metadata"
 msgid "Follow the first unit in the selection."
-msgstr ""
+msgstr "Segue a primeira unidade na seleção."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.name
 msgctxt "hotkey metadata"
 msgid "Follow Unit"
-msgstr ""
+msgstr "Seguir unidade"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 1 (see “Set camera jump 1”)."
-msgstr ""
+msgstr "Salta para a posição da câmara 1 (ver “Definir salto da câmara 1”)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 1"
-msgstr ""
+msgstr "Saltar para a câmara 1"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 2 (see “Set camera jump 2”)."
-msgstr ""
+msgstr "Salta para a posição da câmara 2 (ver “Definir salto da câmara 2”)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 2"
-msgstr ""
+msgstr "Saltar para a câmara 2"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 3 (see “Set camera jump 3”)."
-msgstr ""
+msgstr "Salta para a posição da câmara 3 (ver “Definir salto da câmara 3”)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 3"
-msgstr ""
+msgstr "Saltar para a câmara 3"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 4 (see “Set camera jump 4”)."
-msgstr ""
+msgstr "Salta para a posição da câmara 4 (ver “Definir salto da câmara 4”)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 4"
-msgstr ""
+msgstr "Saltar para a câmara 4"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 1."
-msgstr ""
+msgstr "Define a posição de salto da câmara 1."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 1"
-msgstr ""
+msgstr "Definir salto da câmara 1."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 2."
-msgstr ""
+msgstr "Define a posição de salto da câmara 2."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 2"
-msgstr ""
+msgstr "Definir salto da câmara 2."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 3."
-msgstr ""
+msgstr "Define a posição de salto da câmara 3."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 3"
-msgstr ""
+msgstr "Definir salto da câmara 3."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 4."
-msgstr ""
+msgstr "Define a posição de salto da câmara 4."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 4"
-msgstr ""
+msgstr "Definir salto da câmara 4."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.desc
 msgctxt "hotkey metadata"
 msgid "Focus the camera on the position of the last attack notification."
-msgstr ""
+msgstr "Foca a câmara na posição da última notificação de ataque."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.name
 msgctxt "hotkey metadata"
 msgid "Focus on last attack notification"
-msgstr ""
+msgstr "Focar na última notificação de ataque"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate left."
-msgstr ""
+msgstr "Desloca ou roda para a esquerda."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate left"
-msgstr ""
+msgstr "Deslocar/rodar à esquerda"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.desc
 msgctxt "hotkey metadata"
 msgid "Enable scrolling by moving the mouse."
-msgstr ""
+msgstr "Ativa a deslocação da visão ao mover o rato."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.name
 msgctxt "hotkey metadata"
 msgid "Pan camera"
-msgstr ""
+msgstr "Deslocar câmara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.desc
 msgctxt "hotkey metadata"
 msgid "Focus the camera on the rally point of the selected building."
-msgstr ""
+msgstr "Focaliza a câmara no ponto de encontro do edifício selecionado."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.name
 msgctxt "hotkey metadata"
 msgid "Focus on rallypoint"
-msgstr ""
+msgstr "Focar no ponto de encontro"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.desc
 msgctxt "hotkey metadata"
 msgid "Reset camera rotation to default."
-msgstr ""
+msgstr "Repor na rotação padrão da câmara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.name
 msgctxt "hotkey metadata"
 msgid "Reset Camera"
-msgstr ""
+msgstr "Repor câmara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate right."
-msgstr ""
+msgstr "Desloca ou roda para a direita."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate right"
-msgstr ""
+msgstr "Deslocar/rodar à direita"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera counterclockwise around terrain."
-msgstr ""
+msgstr "Roda a câmara no sentido inverso ao dos ponteiros do relógio ao redor do terreno."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.name
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.name
 msgctxt "hotkey metadata"
 msgid "Rotate counterclockwise"
-msgstr ""
+msgstr "Rodar no sentido anti-horário"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain."
-msgstr ""
+msgstr "Roda a câmara no sentido dos ponteiros do relógio ao redor do terreno."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.name
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.name
 msgctxt "hotkey metadata"
 msgid "Rotate clockwise"
-msgstr ""
+msgstr "Rodar no sentido horário"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera to look downwards."
-msgstr ""
+msgstr "Rodar a câmara para olhar para baixo."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.name
 msgctxt "hotkey metadata"
 msgid "Rotate Down"
-msgstr ""
+msgstr "Rodar para baixo"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera rotation speed."
-msgstr ""
+msgstr "Diminui a velocidade de rotação da câmara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease rotation speed"
-msgstr ""
+msgstr "Diminuir velocidade de rotação"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera rotation speed."
-msgstr ""
+msgstr "Aumenta a velocidade de rotação da câmara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase rotation speed"
-msgstr ""
+msgstr "Aumentar velocidade de rotação"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera to look upwards."
-msgstr ""
+msgstr "Rodar a câmara para olhar para cima."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.name
 msgctxt "hotkey metadata"
 msgid "Rotate up"
-msgstr ""
+msgstr "Rodar para cima"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Rotate camera counterclockwise around terrain - the effect depends on FPS."
-msgstr ""
+msgstr "Roda a câmara no sentido inverso dos ponteiros do relógio ao redor do terreno - o efeito depende dos FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain - the effect depends on FPS."
-msgstr ""
+msgstr "Roda a câmara no sentido dos ponteiros do relógio ao redor do terreno - o efeito depende dos FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera scroll speed."
-msgstr ""
+msgstr "Diminui a velocidade de rotação da câmara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease scroll speed"
-msgstr ""
+msgstr "Diminuir velocidade de deslocação"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera scroll speed."
-msgstr ""
+msgstr "Diminui a velocidade de deslocação da câmara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase scroll speed"
-msgstr ""
+msgstr "Aumentar velocidade de deslocação"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.desc
 msgctxt "hotkey metadata"
 msgid "Scroll forwards or rotate up."
-msgstr ""
+msgstr "Desloca para a frente ou roda para cima."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate up"
-msgstr ""
+msgstr "Deslocar/rodar para cima"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in."
-msgstr ""
+msgstr "Aproxima a câmara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in"
-msgstr ""
+msgstr "Aproximar"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out."
-msgstr ""
+msgstr "Afasta a câmara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.name
 msgctxt "hotkey metadata"
 msgid "Zoom out"
-msgstr ""
+msgstr "Afastar"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera zoom speed."
-msgstr ""
+msgstr "Diminui a velocidade de aproximação/afastamento da câmara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease zoom speed"
-msgstr ""
+msgstr "Diminuir velocidade de aproximação"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera zoom speed."
-msgstr ""
+msgstr "Aumenta a velocidade de aproximação/afastamento da câmara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase zoom speed"
-msgstr ""
+msgstr "Aumentar velocidade de aproximação"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in - the effect depends on FPS."
-msgstr ""
+msgstr "Aproximar a câmara - o efeito depende dos FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in (step-by-step)"
-msgstr ""
+msgstr "Aproximar (passo-a-passo)"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out - the effect depends on FPS."
-msgstr ""
+msgstr "Afastar a câmara - o efeito depende dos FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.name
 msgctxt "hotkey metadata"
 msgid "Zoom out (step-by-step)"
-msgstr ""
+msgstr "Afastar (passo-a-passo)"
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.desc
 msgctxt "hotkey metadata"
 msgid "General hotkeys."
-msgstr ""
+msgstr "Teclas de atalho gerais."
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.name
 msgctxt "hotkey metadata"
@@ -2052,94 +2053,94 @@ msgstr "Geral"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take large BMP screenshot."
-msgstr ""
+msgstr "Faz uma captura grande de ecrã em BMP."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.name
 msgctxt "hotkey metadata"
 msgid "Big screenshot"
-msgstr ""
+msgstr "Captura grande de ecrã"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Close or cancel the current dialog box/popup."
-msgstr ""
+msgstr "Fecha ou cancela a caixa de diálogo/popup atual."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.name
 msgctxt "hotkey metadata"
 msgid "Close/Cancel"
-msgstr ""
+msgstr "Fechar/cancelar"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
 msgctxt "hotkey metadata"
 msgid "Confirm the current command."
-msgstr ""
+msgstr "Confirma o comando atual."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.name
 msgctxt "hotkey metadata"
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the console."
-msgstr ""
+msgstr "Ativa / desativa a consola de comandos"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle Console"
-msgstr ""
+msgstr "Ativar/desativar consola"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.desc
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard."
-msgstr ""
+msgstr "Copiar para a área de transferência."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.name
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Copiar para a área de transferência"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.desc
 msgctxt "hotkey metadata"
 msgid "Cut selected text and copy to the clipboard."
-msgstr ""
+msgstr "Recorta o texto selecionado e copia-o para a área de transferência."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.name
 msgctxt "hotkey metadata"
 msgid "Cut to clipboard"
-msgstr ""
+msgstr "Recortar para a área de transferência"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Custom hotkey to trigger exit-to-desktop. The native hotkeys (Alt+F4 / Cmd+Q"
 " / etc.) are always active."
-msgstr ""
+msgstr "Tecla de atalho para sair para a área de trabalho do sistema operativo. As teclas de atalho nativas (Alt+F4 / Cmd+Q / etc.) estarão sempre ativas."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
 msgid "Custom exit to desktop"
-msgstr ""
+msgstr "Sair para a área de trabalho"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard."
-msgstr ""
+msgstr "Colar da área de transferência."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.name
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard"
-msgstr ""
+msgstr "Colar da a área de transferência"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause the game."
-msgstr ""
+msgstr "Pausar / continuar o jogo."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.name
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause"
-msgstr ""
+msgstr "Pausar / continuar"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.desc
 msgctxt "hotkey metadata"
@@ -2149,7 +2150,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.name
 msgctxt "hotkey metadata"
 msgid "Save profile"
-msgstr ""
+msgstr "Guardar perfil"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
@@ -2174,82 +2175,82 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take PNG screenshot."
-msgstr ""
+msgstr "Faz uma captura de ecrã no formato PNG."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.name
 msgctxt "hotkey metadata"
 msgid "Screenshot"
-msgstr ""
+msgstr "Captura de ecrã"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.desc
 msgctxt "hotkey metadata"
 msgid "Toggle product/company watermark for official screenshots."
-msgstr ""
+msgstr "Ativa ou desativa a marca d'água do produto/da empresa para capturas de ecrã oficiais."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
 msgctxt "hotkey metadata"
 msgid "Toggle watermark"
-msgstr ""
+msgstr "Ativar/desativar marca d'água."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.desc
 msgctxt "hotkey metadata"
 msgid "Show the next tab."
-msgstr ""
+msgstr "Mostra o separador seguinte."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.name
 msgctxt "hotkey metadata"
 msgid "Next tab"
-msgstr ""
+msgstr "Separador seguinte"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.desc
 msgctxt "hotkey metadata"
 msgid "Show the previous tab."
-msgstr ""
+msgstr "Mostra o separador anterior."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.name
 msgctxt "hotkey metadata"
 msgid "Previous tab"
-msgstr ""
+msgstr "Separador anterior"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the left of cursor."
-msgstr ""
+msgstr "Elimina a palavra à esquerda do cursor."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.name
 msgctxt "hotkey metadata"
 msgid "Delete before cursor"
-msgstr ""
+msgstr "Eliminar antes do cursor"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the right of cursor."
-msgstr ""
+msgstr "Elimina a palavra à direita do cursor."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.name
 msgctxt "hotkey metadata"
 msgid "Delete after cursor"
-msgstr ""
+msgstr "Eliminar após o cursor"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the left of cursor."
-msgstr ""
+msgstr "Move o cursor para o início da palavra à esquerda do cursor."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to left word"
-msgstr ""
+msgstr "Mover cursor para a palavra à esquerda"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the right of cursor."
-msgstr ""
+msgstr "Move o cursor para o início da palavra à direita do cursor."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to right word"
-msgstr ""
+msgstr "Mover cursor para a palavra à direita"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.togglefullscreen.desc
 msgctxt "hotkey metadata"
@@ -2366,7 +2367,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
-msgstr ""
+msgstr "Enviar as unidades selecionadas em movimento de ataque para o local definido depois de deixarem os recursos."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.calltoarms.name
 msgctxt "hotkey metadata"
@@ -2789,7 +2790,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.desc
 msgctxt "hotkey metadata"
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "Mostrar a sala de espera multi-jogador numa janela."
+msgstr "Mostrar a sala de espera multijogador numa janela."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.name
 msgctxt "hotkey metadata"
@@ -2946,17 +2947,17 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.name
 msgctxt "hotkey metadata"
 msgid "Delete saved game"
-msgstr ""
+msgstr "Eliminar jogo guardado"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.desc
 msgctxt "hotkey metadata"
 msgid "Don't ask for confirmation when deleting a saved game."
-msgstr ""
+msgstr "Não pede confirmação ao eliminar um jogo guardado."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Delete without confirmation"
-msgstr ""
+msgstr "Eliminar  sem confirmação"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.desc
 msgctxt "hotkey metadata"
@@ -3080,447 +3081,447 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsoncategories.selection.name
 msgctxt "hotkey metadata"
 msgid "Selecting Units"
-msgstr ""
+msgstr "Selecionar unidades"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.desc
 msgctxt "hotkey metadata"
 msgid "Add units to selection."
-msgstr ""
+msgstr "Adicionar unidades à seleção."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.add.name
 msgctxt "hotkey metadata"
 msgid "Add to selection"
-msgstr ""
+msgstr "Adicionar à seleção"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Un-select all units and cancel building placement."
-msgstr ""
+msgstr "Desselecionar todas as unidades e cancelar o posicionamento do edifício."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
 msgctxt "hotkey metadata"
 msgid "Cancel selection"
-msgstr ""
+msgstr "Cancelar seleção"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 1 to the current selection."
-msgstr ""
+msgstr "Adiciona o Grupo de Controlo 1 à seleção atual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 1"
-msgstr ""
+msgstr "Adicionar Grupo de Controlo 1"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.10.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 10 to the current selection."
-msgstr ""
+msgstr "Adiciona o Grupo de Controlo 10 à seleção atual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.10.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 10"
-msgstr ""
+msgstr "Adicionar Grupo de Controlo 10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 2 to the current selection."
-msgstr ""
+msgstr "Adiciona o Grupo de Controlo 2 à seleção atual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 2"
-msgstr ""
+msgstr "Adicionar Grupo de Controlo 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.3.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 3 to the current selection."
-msgstr ""
+msgstr "Adiciona o Grupo de Controlo 3 à seleção atual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.3.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 3"
-msgstr ""
+msgstr "Adicionar Grupo de Controlo 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.4.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 4 to the current selection."
-msgstr ""
+msgstr "Adiciona o Grupo de Controlo 4 à seleção atual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.4.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 4"
-msgstr ""
+msgstr "Adicionar Grupo de Controlo 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.5.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 5 to the current selection."
-msgstr ""
+msgstr "Adiciona o Grupo de Controlo 5 à seleção atual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.5.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 5"
-msgstr ""
+msgstr "Adicionar Grupo de Controlo 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.6.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 6 to the current selection."
-msgstr ""
+msgstr "Adiciona o Grupo de Controlo 6 à seleção atual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.6.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 6"
-msgstr ""
+msgstr "Adicionar Grupo de Controlo 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.7.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 7 to the current selection."
-msgstr ""
+msgstr "Adiciona o Grupo de Controlo 7 à seleção atual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.7.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 7"
-msgstr ""
+msgstr "Adicionar Grupo de Controlo 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.8.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 8 to the current selection."
-msgstr ""
+msgstr "Adiciona o Grupo de Controlo 8 à seleção atual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.8.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 8"
-msgstr ""
+msgstr "Adicionar Grupo de Controlo 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.9.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 9 to the current selection."
-msgstr ""
+msgstr "Adiciona o Grupo de Controlo 9 à seleção atual."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.9.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 9"
-msgstr ""
+msgstr "Adicionar Grupo de Controlo 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 1."
-msgstr ""
+msgstr "Guarda a seleção atual como Grupo de Controlo 1."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.1.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 1"
-msgstr ""
+msgstr "Definir Grupo de Controlo 1"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.10.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 10."
-msgstr ""
+msgstr "Guarda a seleção atual como Grupo de Controlo 10."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.10.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 10"
-msgstr ""
+msgstr "Definir Grupo de Controlo 10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 2."
-msgstr ""
+msgstr "Guarda a seleção atual como Grupo de Controlo 2."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 2"
-msgstr ""
+msgstr "Definir Grupo de Controlo 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 3."
-msgstr ""
+msgstr "Guarda a seleção atual como Grupo de Controlo 3."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.3.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 3"
-msgstr ""
+msgstr "Definir Grupo de Controlo 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 4."
-msgstr ""
+msgstr "Guarda a seleção atual como Grupo de Controlo 4."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.4.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 4"
-msgstr ""
+msgstr "Definir Grupo de Controlo 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 5."
-msgstr ""
+msgstr "Guarda a seleção atual como Grupo de Controlo 5."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.5.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 5"
-msgstr ""
+msgstr "Definir Grupo de Controlo 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 6."
-msgstr ""
+msgstr "Guarda a seleção atual como Grupo de Controlo 6."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.6.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 6"
-msgstr ""
+msgstr "Definir Grupo de Controlo 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 7."
-msgstr ""
+msgstr "Guarda a seleção atual como Grupo de Controlo 7."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.7.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 7"
-msgstr ""
+msgstr "Definir Grupo de Controlo 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 8."
-msgstr ""
+msgstr "Guarda a seleção atual como Grupo de Controlo 8."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.8.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 8"
-msgstr ""
+msgstr "Definir Grupo de Controlo 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 9."
-msgstr ""
+msgstr "Guarda a seleção atual como Grupo de Controlo 9."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.9.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 9"
-msgstr ""
+msgstr "Definir Grupo de Controlo 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 1."
-msgstr ""
+msgstr "Muda a seleção atual para o Grupo de Controlo 1."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.1.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 1"
-msgstr ""
+msgstr "Selecionar Grupo de Controlo 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.10.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 10."
-msgstr ""
+msgstr "Muda a seleção atual para o Grupo de Controlo 10."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.10.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 10"
-msgstr ""
+msgstr "Selecionar Grupo de Controlo 10"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 2."
-msgstr ""
+msgstr "Muda a seleção atual para o Grupo de Controlo 2."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 2"
-msgstr ""
+msgstr "Selecionar Grupo de Controlo 2"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 3."
-msgstr ""
+msgstr "Muda a seleção atual para o Grupo de Controlo 3."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.3.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 3"
-msgstr ""
+msgstr "Selecionar Grupo de Controlo 3"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 4."
-msgstr ""
+msgstr "Muda a seleção atual para o Grupo de Controlo 4."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.4.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 4"
-msgstr ""
+msgstr "Selecionar Grupo de Controlo 4"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 5."
-msgstr ""
+msgstr "Muda a seleção atual para o Grupo de Controlo 5."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.5.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 5"
-msgstr ""
+msgstr "Selecionar Grupo de Controlo 5"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 6."
-msgstr ""
+msgstr "Muda a seleção atual para o Grupo de Controlo 6."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.6.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 6"
-msgstr ""
+msgstr "Selecionar Grupo de Controlo 6"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 7."
-msgstr ""
+msgstr "Muda a seleção atual para o Grupo de Controlo 7."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.7.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 7"
-msgstr ""
+msgstr "Selecionar Grupo de Controlo 7"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 8."
-msgstr ""
+msgstr "Muda a seleção atual para o Grupo de Controlo 8."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.8.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 8"
-msgstr ""
+msgstr "Selecionar Grupo de Controlo 8"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 9."
-msgstr ""
+msgstr "Muda a seleção atual para o Grupo de Controlo 9."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.9.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 9"
-msgstr ""
+msgstr "Selecionar Grupo de Controlo 9"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle builder."
-msgstr ""
+msgstr "Seleciona o próximo construtor parado."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlebuilder.name
 msgctxt "hotkey metadata"
 msgid "Select next idle builder"
-msgstr ""
+msgstr "Selecionar o próximo construtor parado"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only idle units."
-msgstr ""
+msgstr "Seleciona apenas unidades paradas."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleonly.name
 msgctxt "hotkey metadata"
 msgid "Select only idle units"
-msgstr ""
+msgstr "Selecionar apenas unidades paradas"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle unit."
-msgstr ""
+msgstr "Seleciona a próxima unidade parada."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleunit.name
 msgctxt "hotkey metadata"
 msgid "Select next idle unit"
-msgstr ""
+msgstr "Selecionar a próxima unidade parada"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior."
-msgstr ""
+msgstr "Seleciona a próxima unidade de combate parada."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idlewarrior.name
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior"
-msgstr ""
+msgstr "Selecionar a próxima unidade de combate parada"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.desc
 msgctxt "hotkey metadata"
 msgid "Select next idle worker."
-msgstr ""
+msgstr "Seleciona o próximo trabalhador parado."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.idleworker.name
 msgctxt "hotkey metadata"
 msgid "Select next idle worker"
-msgstr ""
+msgstr "Selecionar o próximo trabalhador parado"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only military units to the selection."
-msgstr ""
+msgstr "Adiciona apenas unidades militares à seleção."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select military only"
-msgstr ""
+msgstr "Selecionar apenas militares"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only non-military units to the selection."
-msgstr ""
+msgstr "Adiciona apenas unidades não-militares à seleção."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select non-military only"
-msgstr ""
+msgstr "Selecionar apenas não-militares"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.desc
 msgctxt "hotkey metadata"
 msgid "Include offscreen units in selection."
-msgstr ""
+msgstr "Inclui unidades fora do ecrã na seleção."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.name
 msgctxt "hotkey metadata"
 msgid "Include offscreen"
-msgstr ""
+msgstr "Incluir unidades fora do ecrã"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.desc
 msgctxt "hotkey metadata"
 msgid "Remove units from selection."
-msgstr ""
+msgstr "Remove unidades da seleção."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.remove.name
 msgctxt "hotkey metadata"
 msgid "Remove units from selection"
-msgstr ""
+msgstr "Remover unidades da seleção"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to select units individually, opposed to per formation."
-msgstr ""
+msgstr "Modificador para selecionar unidades individuais em vez de formações."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.name
 msgctxt "hotkey metadata"
 msgid "Single selection"
-msgstr ""
+msgstr "Seleção individual"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.desc
 msgctxt "hotkey metadata"
 msgid "Select only wounded units."
-msgstr ""
+msgstr "Seleciona apenas unidades com ferimentos."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.woundedonly.name
 msgctxt "hotkey metadata"
 msgid "Select only wounded units"
-msgstr ""
+msgstr "Selecionar apenas unidades feridas"
 
 #: gui/loadgame/SavegameDeleter.js:34
 #, javascript-format
 msgid "Delete the selected savegame using %(hotkey)s."
-msgstr ""
+msgstr "Elimina o jogo guardado selecionado usando %(hotkey)s."
 
 #: gui/loadgame/SavegameDeleter.js:39 gui/replaymenu/replay_menu.js:205
 #, javascript-format
 msgid "Hold %(hotkey)s to skip the confirmation dialog while deleting."
-msgstr ""
+msgstr "Mantém premida a tecla %(hotkey)s para não mostrar o diálogo de confirmação ao eliminar."
 
 #: gui/loadgame/SavegameDeleter.js:52 gui/loadgame/SavegameWriter.js:51
 #, javascript-format
@@ -3689,7 +3690,7 @@ msgstr "Nenhuma"
 
 #: gui/locale_advanced/locale_advanced.js:91
 msgid "invalid locale"
-msgstr ""
+msgstr "região inválida (locale)"
 
 #: gui/locale_advanced/locale_advanced.xml:(caption):25
 msgid "Country:"
@@ -3773,11 +3774,11 @@ msgstr "Mapas que são novos nesta versão do jogo."
 
 #: gui/maps/MapFilters.js:115
 msgid "Best for MP"
-msgstr ""
+msgstr "Melhor para multijogador"
 
 #: gui/maps/MapFilters.js:116
 msgid "Maps that are recommended for Multiplayer play."
-msgstr ""
+msgstr "Mapas recomendados para jogos multijogadores."
 
 #: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
@@ -3797,12 +3798,12 @@ msgstr "Todos os mapas do tipo de mapa escolhido."
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
-msgstr ""
+msgstr "Navegador de mapas"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:31
 #, javascript-format
 msgid "%(hotkey)s: Close map browser and discard the selection."
-msgstr ""
+msgstr "%(hotkey)s: fecha o navegador de mapas e descarta a seleção."
 
 #: gui/credits/credits.xml:(caption):32 gui/hotkeys/hotkeys.xml:(caption):58
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:34
@@ -3814,7 +3815,7 @@ msgstr "Fechar"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.js:36
 #, javascript-format
 msgid "%(hotkey)s: Close map browser."
-msgstr ""
+msgstr "%(hotkey)s: fechar navegador de mapas"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
@@ -3824,11 +3825,11 @@ msgstr "+"
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):18
 msgctxt "zoom out"
 msgid "−"
-msgstr ""
+msgstr "−"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):26
 msgid "Search Map:"
-msgstr ""
+msgstr "Procurar mapa:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):38
 msgid "Map Filter:"
@@ -3836,42 +3837,42 @@ msgstr "Filtro de Mapas:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
 msgid "Pick Random Map"
-msgstr ""
+msgstr "Escolher mapa aleatório"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):54
 msgctxt "map selection dialog"
 msgid "Select"
-msgstr ""
+msgstr "Selecionar"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:27
 msgid "Go to the previous page."
-msgstr ""
+msgstr "Ir para a página anterior."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:28
 msgid "Go to the next page."
-msgstr ""
+msgstr "Ir para a próxima página."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:32
 msgid "Increase map preview size."
-msgstr ""
+msgstr "Aumenta o tamanho da pré-visualização do mapa."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:33
 msgid "Decrease map preview size."
-msgstr ""
+msgstr "Diminui o tamanho da pré-visualização do mapa."
 
 #: gui/maps/mapbrowser/controls/Pagination.js:39
 #, javascript-format
 msgid "Maps: %(mapCount)s"
-msgstr ""
+msgstr "Mapas: %(mapCount)s"
 
 #: gui/maps/mapbrowser/controls/Pagination.js:43
 #, javascript-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
-msgstr ""
+msgstr "Página: %(currentPage)s/%(maxPage)s"
 
 #: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
-msgstr ""
+msgstr "Escolhe um mapa aleatoriamente."
 
 #: gui/options/options.js:95
 #, javascript-format
@@ -3900,7 +3901,7 @@ msgstr "Máx: %(max)s"
 #, javascript-format
 msgid ""
 "Changes will be reverted in %(time)s seconds. Do you want to keep changes?"
-msgstr ""
+msgstr "As alterações serão revertidas em %(time)s segundos. Queres manter estas alterações?"
 
 #: gui/options/options.js:192
 #, javascript-format
@@ -3916,7 +3917,7 @@ msgstr "Reiniciar as configurações irá eliminar as configurações guardadas.
 
 #: gui/options/options.js:412
 msgid "Some setting values are invalid! Are you sure you want to save them?"
-msgstr ""
+msgstr "Algumas configurações são inválidas! Tens a certeza que queres guardá-las?"
 
 #: gui/options/options.js:438
 msgid "You have unsaved changes, do you want to close this window?"
@@ -3928,31 +3929,31 @@ msgstr "Geral"
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "Nome do jogador (um jogador)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "Como queres ser chamado em partidas de um jogador."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr ""
+msgstr "Nome do jogador (multijogador)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr ""
+msgstr "Como queres ser chamado em partidas de vários jogadores (exceto na sala de espera)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
-msgstr ""
+msgstr "Pausa de segundo plano"
 
 #: gui/options/options.json[0].options[2].tooltip
 msgid "Pause single-player games when window loses focus."
-msgstr ""
+msgstr "Pausar jogo de um jogador quando a janela do jogo não estiver ativa."
 
 #: gui/options/options.json[0].options[3].label
 msgid "Enable welcome screen"
-msgstr ""
+msgstr "Ativar ecrã de boas-vindas"
 
 #: gui/options/options.json[0].options[3].tooltip
 msgid ""
@@ -3962,7 +3963,7 @@ msgstr "Se o desativares, o ecrã de boas-vindas irá aparecer apenas uma vez, d
 
 #: gui/options/options.json[0].options[4].label
 msgid "FPS overlay"
-msgstr ""
+msgstr "Mostrador de FPS"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show frames per second in top right corner."
@@ -3970,7 +3971,7 @@ msgstr "Mostrar fotogramas por segundo no canto superior direito."
 
 #: gui/options/options.json[0].options[5].label
 msgid "Real time overlay"
-msgstr ""
+msgstr "Mostrador de tempo real"
 
 #: gui/options/options.json[0].options[5].tooltip
 msgid "Show current system time in top right corner."
@@ -3978,7 +3979,7 @@ msgstr "Mostrar a hora atual no canto superior direito."
 
 #: gui/options/options.json[0].options[6].label
 msgid "Game time overlay"
-msgstr ""
+msgstr "Mostrador de tempo real"
 
 #: gui/options/options.json[0].options[6].tooltip
 msgid "Show current simulation time in top right corner."
@@ -3986,7 +3987,7 @@ msgstr "Mostrar hora atual da simulação no canto superior direito."
 
 #: gui/options/options.json[0].options[7].label
 msgid "Ceasefire time overlay"
-msgstr ""
+msgstr "Mostrador de tempo do cessar-fogo"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Always show the remaining ceasefire time."
@@ -3994,59 +3995,59 @@ msgstr "Mostrar sempre o tempo restante do cessar-fogo."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Chat timestamp"
-msgstr ""
+msgstr "Marca de data e hora em conversas"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Display the time at which a chat message was posted."
-msgstr ""
+msgstr "Mostrar a hora em que uma mensagem de conversa foi publicada."
 
 #: gui/options/options.json[0].options[9].label
 msgid "Naming of entities."
-msgstr ""
+msgstr "Nome de entidades."
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific names first"
-msgstr ""
+msgstr "Nomes específicos primeiro"
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
 msgid "Display specific names before generic names."
-msgstr ""
+msgstr "Mostrar nomes específicos antes de nomes genéricos"
 
 #: gui/options/options.json[0].options[9].list[1].label
 msgid "Generic names first"
-msgstr ""
+msgstr "Nomes genéricos primeiro"
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Display generic names before specific names."
-msgstr ""
+msgstr "Mostrar nomes genéricos antes de nomes específicos"
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only specific names"
-msgstr ""
+msgstr "Apenas nomes específicos"
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
 msgid "Display only specific names for entities."
-msgstr ""
+msgstr "Mostrar apenas nomes específicos para entidades"
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only generic names"
-msgstr ""
+msgstr "Apenas nomes genéricos"
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
 msgid "Display only generic names for entities."
-msgstr ""
+msgstr "Mostrar apenas nomes genéricos para entidades"
 
 #: gui/options/options.json[0].options[9].tooltip
 msgid "How to show entity names."
-msgstr ""
+msgstr "Como mostrar os nomes de entidades."
 
 #: gui/options/options.json[1].label
 msgid "Graphics (general)"
-msgstr ""
+msgstr "Gráficos (geral)"
 
 #: gui/options/options.json[1].options[0].label
 msgid "Windowed mode"
-msgstr ""
+msgstr "Modo em janela"
 
 #: gui/options/options.json[1].options[0].tooltip
 msgid "Start 0 A.D. in a window."
@@ -4054,12 +4055,12 @@ msgstr "Iniciar o 0 A.D. numa janela"
 
 #: gui/options/options.json[1].options[10].label
 msgid "Mouse drag"
-msgstr ""
+msgstr "Arrastamento do rato"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid ""
 "Number of pixels the mouse can move before the action is considered a drag."
-msgstr ""
+msgstr "Número de píxeis que o rato pode deslocar-se antes da ação ser considerada um arrastar do rato."
 
 #: gui/options/options.json[1].options[1].label
 #: gui/options/options.json[2].options[1].label
@@ -4069,12 +4070,12 @@ msgstr "Névoa"
 #: gui/options/options.json[1].options[1].tooltip
 #: gui/options/options.json[2].options[1].tooltip
 msgid "Enable fog."
-msgstr ""
+msgstr "Ativar névoa."
 
 #: gui/options/options.json[1].options[2].label
 #: gui/options/options.json[2].options[2].label
 msgid "Post-processing"
-msgstr ""
+msgstr "Pós-processamento"
 
 #: gui/options/options.json[1].options[2].tooltip
 #: gui/options/options.json[2].options[2].tooltip
@@ -4093,11 +4094,11 @@ msgstr "Ativar sombras."
 
 #: gui/options/options.json[1].options[4].label
 msgid "Unit silhouettes"
-msgstr ""
+msgstr "Silhuetas das unidades"
 
 #: gui/options/options.json[1].options[4].tooltip
 msgid "Show outlines of units behind structures."
-msgstr ""
+msgstr "Mostrar contornos de unidades que estejam atrás de estruturas."
 
 #: gui/options/options.json[1].options[5].label
 msgid "Particles"
@@ -4138,23 +4139,23 @@ msgstr "Para poupar o processador, regular a frequência de renderização nos j
 #: gui/options/options.json[1].options[9].label
 #: gui/options/options.json[1].options[9].tooltip
 msgid "GUI scale"
-msgstr ""
+msgstr "Escala da interface gráfica"
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "75%"
-msgstr ""
+msgstr "75%"
 
 #: gui/options/options.json[1].options[9].list[1].label
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: gui/options/options.json[1].options[9].list[2].label
 msgid "125%"
-msgstr ""
+msgstr "125%"
 
 #: gui/options/options.json[1].options[9].list[3].label
 msgid "150%"
-msgstr ""
+msgstr "150%"
 
 #: gui/options/options.json[1].options[9].list[4].label
 msgid "175%"
@@ -4162,15 +4163,15 @@ msgstr ""
 
 #: gui/options/options.json[1].options[9].list[5].label
 msgid "200%"
-msgstr ""
+msgstr "200%"
 
 #: gui/options/options.json[1].options[9].list[6].label
 msgid "225%"
-msgstr ""
+msgstr "225%"
 
 #: gui/options/options.json[1].options[9].list[7].label
 msgid "250%"
-msgstr ""
+msgstr "250%"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -4178,7 +4179,7 @@ msgstr "Definir o equilíbrio entre a performance e a aparência visual."
 
 #: gui/options/options.json[2].label
 msgid "Graphics (advanced)"
-msgstr ""
+msgstr "Gráficos (avançado)"
 
 #: gui/options/options.json[2].options[0].label
 msgid "Renderer backend"
@@ -4186,7 +4187,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[0].list[0].label
 msgid "OpenGL"
-msgstr ""
+msgstr "OpenGL"
 
 #: gui/options/options.json[2].options[0].list[0].tooltip
 msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
@@ -4194,7 +4195,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[0].list[1].label
 msgid "OpenGL ARB"
-msgstr ""
+msgstr "OpenGL ARB"
 
 #: gui/options/options.json[2].options[0].list[1].tooltip
 msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
@@ -4222,7 +4223,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[3].list[1].label
 msgid "FXAA"
-msgstr ""
+msgstr "FXAA"
 
 #: gui/options/options.json[2].options[3].list[1].tooltip
 msgid "Fast, but simple antialiasing."
@@ -4230,7 +4231,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[3].list[2].label
 msgid "MSAA (2×)"
-msgstr ""
+msgstr "MSAA (2×)"
 
 #: gui/options/options.json[2].options[3].list[2].tooltip
 msgid ""
@@ -4240,7 +4241,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[3].list[3].label
 msgid "MSAA (4×)"
-msgstr ""
+msgstr "MSAA (4×)"
 
 #: gui/options/options.json[2].options[3].list[3].tooltip
 msgid ""
@@ -4250,7 +4251,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[3].list[4].label
 msgid "MSAA (8×)"
-msgstr ""
+msgstr "MSAA (8×)"
 
 #: gui/options/options.json[2].options[3].list[4].tooltip
 msgid ""
@@ -4260,7 +4261,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[3].list[5].label
 msgid "MSAA (16×)"
-msgstr ""
+msgstr "MSAA (16×)"
 
 #: gui/options/options.json[2].options[3].list[5].tooltip
 msgid ""
@@ -4302,7 +4303,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].label
 msgid "Model quality"
-msgstr ""
+msgstr "Qualidade de modelos"
 
 #: gui/options/options.json[2].options[6].list[0].label._string
 msgctxt "Option for the meshes' level of detail."
@@ -4311,7 +4312,7 @@ msgstr "Poucos"
 
 #: gui/options/options.json[2].options[6].list[0].label.tooltip
 msgid "Simpler models for better performance."
-msgstr ""
+msgstr "Modelos mais simples para melhor desempenho."
 
 #: gui/options/options.json[2].options[6].list[0][1].label._string
 msgctxt "Option for the meshes' level of detail."
@@ -4329,7 +4330,7 @@ msgstr "Muitos"
 
 #: gui/options/options.json[2].options[6].list[0][1][2].label.tooltip
 msgid "High quality models."
-msgstr ""
+msgstr "Modelos com alta qualidade."
 
 #: gui/options/options.json[2].options[6].list[0][7].label
 msgid "Model appearance randomization"
@@ -4346,7 +4347,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].label
 msgid "Quality"
-msgstr ""
+msgstr "Qualidade"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0].label._string
 msgctxt "Option for the shadow quality."
@@ -4386,7 +4387,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].label
 msgid "Water effects"
-msgstr ""
+msgstr "Efeitos de água"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].tooltip
 msgid ""
@@ -4396,7 +4397,7 @@ msgstr "Quando desativado, usa as configurações mais baixas possíveis para mo
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][15].label
 msgid "High-quality water effects"
-msgstr ""
+msgstr "Efeitos de água de alta qualidade"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][15].tooltip
 msgid ""
@@ -4406,7 +4407,7 @@ msgstr "Usar efeitos de alta qualidade para a água, renderização de ondas, es
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].label
 msgid "Water reflections"
-msgstr ""
+msgstr "Reflexos na água"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].tooltip
 msgid "Allow water to reflect a mirror image."
@@ -4414,7 +4415,7 @@ msgstr "Permite que a água espelhe imagens."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][17].label
 msgid "Water refraction"
-msgstr ""
+msgstr "Refração da água"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][17].tooltip
 msgid "Use a real water refraction map and not transparency."
@@ -4422,7 +4423,7 @@ msgstr "Usar um mapa de refração da água e não da transparência."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][18].label
 msgid "Real water depth"
-msgstr ""
+msgstr "Profundidade real da água"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][18].tooltip
 msgid "Use actual water depth in rendering calculations."
@@ -4430,7 +4431,7 @@ msgstr "Usar profundidade atual da água nos cálculos de renderização."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].label
 msgid "Texture quality"
-msgstr ""
+msgstr "Qualidade da textura"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0].label._string
 msgctxt "Option for the texture quality."
@@ -4465,27 +4466,27 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[0].label
 msgid "1x"
-msgstr ""
+msgstr "1x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[1].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[1].tooltip
 msgid "2x"
-msgstr ""
+msgstr "2x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[2].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[2].tooltip
 msgid "4x"
-msgstr ""
+msgstr "4x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[3].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[3].tooltip
 msgid "8x"
-msgstr ""
+msgstr "8x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[4].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].list[4].tooltip
 msgid "16x"
-msgstr ""
+msgstr "16x"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][20].tooltip
 msgid ""
@@ -5063,12 +5064,12 @@ msgstr "Dificuldade padrão da inteligência artificial."
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][2].label._string
 msgctxt "Option for the shadow quality."
 msgid "High"
-msgstr "Muitos"
+msgstr "Alta"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][2][3].label._string
 msgctxt "Option for the shadow quality."
 msgid "Very High"
-msgstr "Muito alto"
+msgstr "Muito alta"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].tooltip
 msgid ""
@@ -5079,7 +5080,7 @@ msgstr "Resolução dos mapas de sombras. Os valores altos podem bloquear o jogo
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1].label._string
 msgctxt "Option for the meshes' amount of variety."
 msgid "Limited"
-msgstr ""
+msgstr "Limitado"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1].label.tooltip
 msgid "Entities will be less diverse."
@@ -5110,11 +5111,11 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Model quality setting."
-msgstr ""
+msgstr "Configuração da qualidade dos modelos."
 
 #: gui/options/options.json[2].tooltip
 msgid "More specific rendering settings."
-msgstr ""
+msgstr "Configurações de renderização mais específicas."
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"
@@ -5140,7 +5141,7 @@ msgstr "Aprender a jogar"
 msgid ""
 "Learn how to play, start the tutorial, discover the technology trees, and "
 "the history behind the civilizations."
-msgstr ""
+msgstr "Aprende a jogar, inicia o tutorial, descobre as árvores de tecnologia e a história por detrás das civilizações."
 
 #: gui/pregame/MainMenuItems.js:7
 msgid "Manual"
@@ -5156,7 +5157,7 @@ msgstr "Tutorial"
 
 #: gui/pregame/MainMenuItems.js:15
 msgid "Start the introductory tutorial."
-msgstr ""
+msgstr "Começa o tutorial de economia."
 
 #: gui/pregame/MainMenuItems.js:36
 #: gui/reference/common/Buttons/StructreeButton.js:21
@@ -5174,12 +5175,12 @@ msgstr "%(hotkey)s: Ver a árvore de estrutura de civilizações presentes no 0 
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
-msgstr ""
+msgstr "Visão geral da civilização"
 
 #: gui/pregame/MainMenuItems.js:49
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: conhece as civilizações presentes no 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:60
 msgid "Catafalque Overview"
@@ -5191,32 +5192,32 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Map Overview"
-msgstr ""
+msgstr "Visão geral do mapa"
 
 #: gui/pregame/MainMenuItems.js:68
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "Vê os diferentes mapas presentes no 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Continue Campaign"
-msgstr ""
+msgstr "Continuar campanha"
 
 #: gui/pregame/MainMenuItems.js:77 gui/pregame/MainMenuItems.js:111
 #: gui/pregame/MainMenuItems.js:127 gui/pregame/MainMenuItems.js:134
 msgid "Relive history through historical military campaigns."
-msgstr ""
+msgstr "Revê a história através de campanhas militares históricas."
 
 #: gui/pregame/MainMenuItems.js:85 gui/pregame/MainMenuItems.js:119
 msgid "Error opening campaign run:"
-msgstr ""
+msgstr "Erro ao carregar a campanha executada:"
 
 #: gui/pregame/MainMenuItems.js:92
 msgid "Single-player"
-msgstr ""
+msgstr "Um jogador"
 
 #: gui/pregame/MainMenuItems.js:93
 msgid "Start, load, or replay a single-player game."
-msgstr ""
+msgstr "Inicia, carrega ou revê um jogo de um jogador."
 
 #: gui/pregame/MainMenuItems.js:96
 msgid "Matches"
@@ -5224,19 +5225,19 @@ msgstr "Partida"
 
 #: gui/pregame/MainMenuItems.js:97
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "Inicia um novo jogo de um jogador."
 
 #: gui/pregame/MainMenuItems.js:104
 msgid "Load a saved game."
-msgstr ""
+msgstr "Carrega um jogo guardado."
 
 #: gui/pregame/MainMenuItems.js:126
 msgid "New Campaign"
-msgstr ""
+msgstr "Nova campanha"
 
 #: gui/pregame/MainMenuItems.js:133
 msgid "Load Campaign"
-msgstr "Carregar Campanha"
+msgstr "Carregar campanha"
 
 #: gui/pregame/MainMenuItems.js:143 gui/pregame/MainMenuItems.js:193
 msgid "Replays"
@@ -5269,7 +5270,7 @@ msgstr "Hospedar jogo"
 
 #: gui/pregame/MainMenuItems.js:173
 msgid "Host a multiplayer game."
-msgstr ""
+msgstr "Hospeda um jogo de vários jogadores."
 
 #: gui/pregame/MainMenuItems.js:181
 msgid "Game Lobby"
@@ -5292,7 +5293,7 @@ msgstr "Configurações"
 
 #: gui/pregame/MainMenuItems.js:209
 msgid "Change game options."
-msgstr ""
+msgstr "Altera as opções do jogo."
 
 #: gui/pregame/MainMenuItems.js:212
 msgid "Options"
@@ -5304,11 +5305,11 @@ msgstr "Ajustar as configurações do jogo."
 
 #: gui/hotkeys/hotkeys.xml:(caption):14 gui/pregame/MainMenuItems.js:222
 msgid "Hotkeys"
-msgstr ""
+msgstr "Teclas de atalho"
 
 #: gui/pregame/MainMenuItems.js:223
 msgid "Adjust hotkeys."
-msgstr ""
+msgstr "Ajusta as teclas de atalho."
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale_advanced/locale_advanced.xml:(caption):14
@@ -5334,7 +5335,7 @@ msgstr "Ecrã de boas-vindas"
 
 #: gui/pregame/MainMenuItems.js:244
 msgid "Show the Welcome Screen again. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Mostra o ecrã de boas-vindas novamente. Útil se a ocultaste por engano."
 
 #: gui/pregame/MainMenuItems.js:252
 msgid "Scenario Editor"
@@ -5366,7 +5367,7 @@ msgstr "Créditos"
 
 #: gui/pregame/MainMenuItems.js:271
 msgid "Show the 0 A.D. credits."
-msgstr ""
+msgstr "Mostra os créditos do 0 A.D."
 
 #: gui/pregame/MainMenuItems.js:277
 msgid "Exit"
@@ -5374,7 +5375,7 @@ msgstr "Sair"
 
 #: gui/pregame/MainMenuItems.js:278
 msgid "Exit the game."
-msgstr ""
+msgstr "Sai do jogo."
 
 #: gui/pregame/MainMenuItems.js:282
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -5386,7 +5387,7 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXVII: ———"
-msgstr ""
+msgstr "Alpha XXVII: ———"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5581,28 +5582,28 @@ msgstr[2] "Bónus das equipas"
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
 msgid_plural "Heroes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Herói"
+msgstr[1] "Heróis"
+msgstr[2] "Heróis"
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Specific Structure"
 msgid_plural "Specific Structures"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Estrutura específica"
+msgstr[1] "Estruturas específicas"
+msgstr[2] "Estruturas específicas"
 
 #: gui/reference/civinfo/Sections/Subsections/TechnologiesSubsection.js:28
 msgid "Specific Technology"
 msgid_plural "Specific Technologies"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Tecnologia específica"
+msgstr[1] "Tecnologias específicas"
+msgstr[2] "Tecnologias específicas"
 
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr ""
+msgstr "%(hotkey)s: mudar para visão geral da civilização."
 
 #: gui/reference/common/Buttons/StructreeButton.js:27
 #, javascript-format
@@ -5784,12 +5785,12 @@ msgstr "Qualquer"
 #: gui/replaymenu/replay_filters.js:146
 msgctxt "replay filter"
 msgid "Single-player"
-msgstr ""
+msgstr "Um jogador"
 
 #: gui/replaymenu/replay_filters.js:147
 msgctxt "replay filter"
 msgid "Multiplayer"
-msgstr "Multi-jogador"
+msgstr "Multijogador"
 
 #: gui/replaymenu/replay_filters.js:148
 msgctxt "replay filter"
@@ -5798,7 +5799,7 @@ msgstr "Campanhas"
 
 #: gui/replaymenu/replay_filters.js:162
 msgid "Any victory condition"
-msgstr ""
+msgstr "Qualquer condição de vitória"
 
 #: gui/replaymenu/replay_filters.js:175
 msgid "Rated and unrated games"
@@ -5820,7 +5821,7 @@ msgstr "Filtrar repetições ao digitar um ou mais nomes de jogadores, parciais 
 #: gui/replaymenu/replay_menu.js:200
 #, javascript-format
 msgid "Delete the selected replay using %(hotkey)s."
-msgstr ""
+msgstr "Elimina a repetição selecionada com %(hotkey)s"
 
 #: gui/replaymenu/replay_menu.js:285
 #, javascript-format
@@ -5853,7 +5854,7 @@ msgstr "Menu principal"
 
 #: gui/replaymenu/replay_menu.xml:(caption):240
 msgid "Rebuild Cache"
-msgstr ""
+msgstr "Reconstruir cache"
 
 #: gui/replaymenu/replay_menu.xml:(caption):247
 #: gui/summary/summary.xml:(caption):26
@@ -5890,7 +5891,7 @@ msgstr "Procurar por jogador"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):98
 msgid "File path for the currently selected replay."
-msgstr ""
+msgstr "Caminho de ficheiros para a repetição atualmente selecionada."
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):241
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
@@ -5909,7 +5910,7 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. You may "
 "encounter bugs, and some features are not as fleshed out as we would like."
-msgstr ""
+msgstr "[imgleft=\"constructionIcon\"]Este jogo ainda está em desenvolvimento. Podes encontrar erros e algumas funcionalidades que não estão tão elaboradas quanto gostaríamos."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
@@ -5921,13 +5922,13 @@ msgstr "[imgleft=\"iconLag\"]O jogo pode ter problemas de desempenho, especialme
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]0 A.D. é um programa informático livre: podes participar do seu desenvolvimento."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
 "If you want to help with art, sound, gameplay or programming, make sure to "
 "join our official forum."
-msgstr ""
+msgstr "Se quiseres ajudar com arte, som, jogabilidade ou programação, não deixes de participar no nosso fórum oficial."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -5943,7 +5944,7 @@ msgstr "OK"
 
 #: gui/splashscreen/splashscreen.xml:(caption):30
 msgid "Official Forum (web)"
-msgstr ""
+msgstr "Fórum oficial (web)"
 
 #: gui/summary/layout.js:13
 msgid "Score"
@@ -5973,7 +5974,7 @@ msgstr "Exploração"
 
 #: gui/summary/layout.js:31
 msgid "Structures"
-msgstr ""
+msgstr "Estruturas"
 
 #: gui/summary/layout.js:34 gui/summary/layout.js:72 gui/summary/layout.js:111
 msgid "Total"
@@ -6012,7 +6013,7 @@ msgstr "Maravilhas"
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "Estatísticas das estruturas (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:69
 msgid "Units"
@@ -6053,7 +6054,7 @@ msgstr "Comerciantes"
 #: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(lost)s)"
-msgstr ""
+msgstr "Estatísticas das unidades (%(trained)s / %(killed)s / %(lost)s)"
 
 #: gui/summary/layout.js:108
 msgid "Resources"
@@ -6170,7 +6171,7 @@ msgstr "Recolhido"
 
 #: gui/summary/summary.js:44
 msgid "Count"
-msgstr ""
+msgstr "Contagem"
 
 #: gui/summary/summary.js:49
 msgid "Sent"
@@ -6228,12 +6229,12 @@ msgstr "Falhado"
 #, javascript-format
 msgctxt "Player listing with color indicator"
 msgid "%(colorIndicator)s %(playerListing)s"
-msgstr ""
+msgstr "%(colorIndicator)s %(playerListing)s"
 
 #: gui/summary/summary.js:204
 msgctxt "Charts player color indicator"
 msgid "■"
-msgstr ""
+msgstr "■"
 
 #: gui/summary/summary.js:234
 msgctxt "Player listing"
@@ -6309,7 +6310,7 @@ msgstr "Tipo:"
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
-msgstr ""
+msgstr "Agrupar por equipas"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
@@ -6346,7 +6347,7 @@ msgstr "Pode ser construído em território neutro ou inimigo. Útil para a cons
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct rams and train citizen soldiers."
-msgstr ""
+msgstr "Constrói aríetes e treina cidadãos-soldados."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
@@ -6378,7 +6379,7 @@ msgstr ""
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
-msgstr ""
+msgstr "Unidades ganham experiência enquanto guarnecidas dentro do edifício."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
@@ -6392,13 +6393,13 @@ msgstr "Constrói quartéis em bases avançadas para reabastecer os teus ataques
 
 #: gui/text/tips/biomes.txt:1
 msgid "BIOMES"
-msgstr ""
+msgstr "BIOMAS"
 
 #: gui/text/tips/biomes.txt:2
 msgid ""
 "Biomes can be used on some random maps and determine which region of the "
 "world the map represents."
-msgstr ""
+msgstr "Os biomas podem ser usados em alguns mapas aleatórios para determinar que região do mundo o mapa representa."
 
 #: gui/text/tips/biomes.txt:3
 msgid ""
@@ -6448,7 +6449,7 @@ msgstr ""
 
 #: gui/text/tips/carth_shipyard.txt:2
 msgid "Special dock of the Carthaginians to construct warships."
-msgstr ""
+msgstr "Doca especial dos cartagineses para construir barcos de guerra."
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."
@@ -6456,7 +6457,7 @@ msgstr ""
 
 #: gui/text/tips/carth_shipyard.txt:4
 msgid "Much stronger than other docks, but also more expensive."
-msgstr ""
+msgstr "Mais robusta que outras docas mas também mais cara."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -6834,7 +6835,7 @@ msgstr "Tecnologia especial dos persas."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
-msgstr ""
+msgstr "Estruturas +25% vida."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "Build time lengthened by +20% as a consequence."

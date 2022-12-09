@@ -8,6 +8,7 @@
 # Danny Reese
 # Hugo Alves
 # Hugo Carvalho
+# lecalam
 # Mário Branco
 # mogafi
 # Pedro matias
@@ -18,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-05 07:09+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:50+0000\n"
-"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>, 2021\n"
+"Last-Translator: lecalam, 2022\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,7 +116,7 @@ msgstr "Menu Principal"
 msgid ""
 "The command '%(cmd)s' is not supported. Try %(help)s to get more information"
 " about the supported commands."
-msgstr ""
+msgstr "O comando '%(cmd)s' não é suportado. Tenta %(help)s para obter mais informações sobre os comandos disponíveis."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:45
 #, javascript-format
@@ -363,11 +364,11 @@ msgstr "Jogo sem fim"
 msgid ""
 "You have some incompatible mods:\n"
 "%(details)s"
-msgstr ""
+msgstr "Tens alguns mods incompatíveis:\n%(details)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:123
 msgid "This mod does not affect MP compatibility"
-msgstr ""
+msgstr "Este mod não afeta a compatibilidade de multijogador"
 
 #: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format
@@ -670,11 +671,11 @@ msgstr "Cancelar"
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy "
 "Policy[/font]"
-msgstr "[font=\"sans-bold-18\"]Política de Privacidade da Sala de Espera Multi-Jogador do 0 A.D. Empires Ascendant[/font]"
+msgstr "[font=\"sans-bold-18\"]Política de Privacidade da Sala de Espera Multijogador do 0 A.D. Empires Ascendant[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2020-12-24"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Data do documento:[/font] 2020-12-24"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:5
 msgid ""
@@ -684,7 +685,7 @@ msgstr "[font=\"sans-bold-16\"]Dados pessoais processados pela Wildfire Games e 
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:6
 msgid "[font=\"sans-bold-14\"]1. Player name[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]1. Nome do jogador[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:7
 msgid ""
@@ -698,7 +699,7 @@ msgid ""
 "players, moderators and developers to identify players they met before, "
 "communicate about the game, coordinate matches and enables moderators to "
 "enforce the Terms of Use."
-msgstr ""
+msgstr "É preciso ter um nome único de jogador para obter uma classificação, para permitir que jogadores, moderadores e programadores identifiquem jogadores que se conheceram antes, comuniquem sobre o jogo, coordenem partidas e permite que os moderadores façam cumprir os Termos de Utilização."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:9
 msgid ""
@@ -707,7 +708,7 @@ msgid ""
 " information (such as the real name) was disclosed on the Lobby Chat, other "
 "services of Wildfire Games or elsewhere in the public, or when the IP "
 "address is used to bring criminal proceedings."
-msgstr ""
+msgstr "O nome do jogador serve de pseudónimo. A identidade (pessoa física) dos jogadores não é conhecida pela Wildfire Games, a não ser quando a informação pessoalmente identificável (como o nome real) tenha sido referida na Conversação da Sala de Espera, outros serviços da Wildfire Games ou outros locais em público, ou quando o endereço IP for utilizado para procedimentos criminais."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
@@ -735,7 +736,7 @@ msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr "Quando um jogador aloja uma partida na Sala de Espera Multi-Jogador, o endereço IP desse jogador é enviado para todos os jogadores que estejam online, para que os outros jogadores possam juntar-se a essa partida."
+msgstr "Quando um jogador aloja uma partida na Sala de Espera Multijogador, o endereço IP desse jogador é enviado para todos os jogadores que estejam online, para que os outros jogadores possam juntar-se a essa partida."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
@@ -779,7 +780,7 @@ msgstr "[font=\"sans-bold-14\"]4. Presença online[/font]"
 msgid ""
 "Which players are currently connected to the Multiplayer Lobby and which "
 "match they joined is shown to all online players."
-msgstr "É mostrados a todos os outros jogadores online quais jogadores estão atualmente conectados na Sala de Espera Multi-Jogador e em que partidas estes participaram."
+msgstr "É mostrados a todos os outros jogadores online quais jogadores estão atualmente conectados na Sala de Espera Multijogador e em que partidas estes participaram."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
@@ -789,7 +790,7 @@ msgstr "[font=\"sans-bold-14\"]5. Mensagens de conversação[/font]"
 msgid ""
 "The Multiplayer Lobby features a public chat room that enables players to "
 "discuss the game and organize multiplayer matches."
-msgstr "A Sala de Espera Multi-Jogador consiste numa sala de conversação que permite aos jogadores discutir sobre o jogo e organizar partidas multi-jogador."
+msgstr "A Sala de Espera Multijogador consiste numa sala de conversação que permite aos jogadores discutir sobre o jogo e organizar partidas multi-jogador."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:28
 msgid ""
@@ -822,7 +823,7 @@ msgstr "[font=\"sans-bold-14\"]6. Estatísticas das partidas[/font]"
 msgid ""
 "Players can gain a rating on the Multiplayer Lobby that reflects their skill"
 " at the game."
-msgstr "Os jogadores podem obter uma classificação da Sala de Espera Multi-Jogador que reflete as habilidades no jogo."
+msgstr "Os jogadores podem obter uma classificação da Sala de Espera Multijogador que reflete as habilidades no jogo."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:35
 msgid ""
@@ -899,14 +900,14 @@ msgid ""
 "Lobby, in the development and improvement of 0 A.D. and the Multiplayer "
 "Lobby, in enforcing the Terms of Use and in the protection against "
 "cyberattacks (GDPR 6.1.f)."
-msgstr "2. A Wildfire Games tem interesses legítimos em fornecer a Sala de Espera Multi-Jogador no desenvolvimento e melhoria do 0 A.D. e na Sala de Espera Multi-Jogador na aplicação dos Termos de Uso e na proteção contra ciberataques (RGPD 6.1.f)."
+msgstr "2. A Wildfire Games tem interesses legítimos em fornecer a Sala de Espera Multijogador no desenvolvimento e melhoria do 0 A.D. e na Sala de Espera Multi-Jogador na aplicação dos Termos de Uso e na proteção contra ciberataques (RGPD 6.1.f)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:51
 msgid ""
 "3. Wildfire Games does not process any further data for the Multiplayer "
 "Lobby and does not ask for consent to process data (GDPR 6.1.a, GDPR 7, GDPR"
 " 8, GDPR 13.2.c)."
-msgstr "3. A Wildfire Games não processa nenhuns dados adicionais para Sala de Espera Multi-Jogador e não solicita o consentimento para processar dados (RGPD 6.1.a, RGPD 7, RGPD 8, RGPD 13.2.c)."
+msgstr "3. A Wildfire Games não processa nenhuns dados adicionais para Sala de Espera Multijogador e não solicita o consentimento para processar dados (RGPD 6.1.a, RGPD 7, RGPD 8, RGPD 13.2.c)."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:53
 msgid "[font=\"sans-bold-16\"]User rights:[/font]"
@@ -1075,7 +1076,7 @@ msgstr "Para mais informações sobre as Políticas de Privacidade da Wildfire G
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Service[/font]"
-msgstr "[font=\"sans-bold-18\"]Termos de Serviço da Sala de Espera Multi-Jogador do 0 A.D. Empires Ascendant[/font]"
+msgstr "[font=\"sans-bold-18\"]Termos de Serviço da Sala de Espera Multijogador do 0 A.D. Empires Ascendant[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-16"
@@ -1087,25 +1088,25 @@ msgid ""
 " by Wildfire Games that allows players to set up online multiplayer matches,"
 " discuss the game in a public chat room and gain a rating that reflects "
 "their skill."
-msgstr ""
+msgstr "A Sala de Espera Multijogador do 0 A.D. Empires Ascendant é um serviço online fornecido pela Wildfire Games que permite aos jogadores configurarem partidas multi-jogadores online, discutir sobre o jogo numa sala de conversação pública e obter uma classificação que reflete a sua habilidade como jogador."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""
 "Due to the subject matter of historic warfare, description and depiction of "
 "violence and the language on the Multiplayer Lobby, 0 A.D. and the "
 "Multiplayer Lobby are not directed to young children (COPPA §312.2)."
-msgstr "Devido ao assunto de guerra histórica, a descrição, a representação de violência e a linguagem na Sala de Espera Multi-Jogador, o 0 A.D. e a Sala de Espera Multi-Jogador não são direcionados a crianças (COPPA §312.2)."
+msgstr "Devido ao assunto de guerra histórica, a descrição, a representação de violência e a linguagem na Sala de Espera Multijogador, o 0 A.D. e a Sala de Espera Multi-Jogador não são direcionados a crianças (COPPA §312.2)."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid "The minimum age to use the Multiplayer Lobby is 13."
-msgstr "A idade mínima para usar a Sala de Espera Multi-Jogador é 13 anos."
+msgstr "A idade mínima para usar a Sala de Espera Multijogador é 13 anos."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:10
 #: gui/prelobby/common/terms/Terms_of_Use.txt:5
 msgid ""
 "[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree "
 "to:[/font]"
-msgstr "[font=\"sans-bold-14\"]Ao utilizar a Sala de Espera Multi-jogador do 0 A.D., você concorda com:[/font]"
+msgstr "[font=\"sans-bold-14\"]Ao utilizar a Sala de Espera Multijogador do 0 A.D., você concorda com:[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:11
 msgid " 1. Follow all usage policies."
@@ -1167,29 +1168,29 @@ msgstr "Se parte dos termos forem considerados ilegais ou inaplicável, os resta
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Use[/font]"
-msgstr "[font=\"sans-bold-18\"]Termos de Utilização da Sala de Conversção Multi-Jogador do 0 A.D. Empires Ascendant[/font]"
+msgstr "[font=\"sans-bold-18\"]Termos de Utilização da Sala de Conversação Multijogador do 0 A.D. Empires Ascendant[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2022-09-01"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Data do documento:[/font] 2022-09-01"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:6
 msgid ""
 " 1. a. Only create one account per person on the service unless authorized "
 "by Wildfire Games."
-msgstr ""
+msgstr " 1. a. Apenas criar uma conta por pessoa no serviço a não ser que esteja autorizado pela Wildfire Games."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:7
 msgid ""
 "    b. Not share your account with anyone and not publish or divulge to "
 "anyone the account password."
-msgstr ""
+msgstr "    b. Não partilhar a conta com ninguém e não publicar ou divulgar a ninguém a palavra-passe da conta."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:8
 msgid ""
 " 2. Not impersonate other users of the service and only use your registered "
 "username in multiplayer matches."
-msgstr " 2. Não se fazer passar por outros utilizadores do serviço e a usar o seu nome de utilizador registado em partidas multi-jogador."
+msgstr " 2. Não se fazer passar por outros utilizadores do serviço e a usar o seu nome de utilizador registado em partidas multijogador."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:9
 msgid " 3. Not post profanity, pejorative terms or pornographic content."
@@ -1227,7 +1228,7 @@ msgid ""
 " 8. Not undermine the intended gameplay or purposefully gain unfair "
 "advantages in multiplayer matches (for example cheating, using exploits or "
 "bugs)."
-msgstr " 8. Não sabotar a jogabilidade pretendida ou propositadamente obter vantagens injustas em partidas multi-jogador (por exemplo cheating, utilizando exploits ou erros do programa)."
+msgstr " 8. Não sabotar a jogabilidade pretendida ou propositadamente obter vantagens injustas em partidas multijogador (por exemplo cheating, utilizando exploits ou erros do programa)."
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:15
 msgid ""

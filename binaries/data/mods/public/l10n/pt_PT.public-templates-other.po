@@ -6,6 +6,7 @@
 # Carlos Moreira
 # Danny Reese
 # Damixinho
+# lecalam
 # Luis Neves
 # Mário Branco
 # mogafi
@@ -16,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: Damixinho <rapazamistoso@gmail.com>, 2020\n"
+"Last-Translator: lecalam, 2022\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,32 +28,32 @@ msgstr ""
 #: simulation/data/attack_effects/applystatus.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Various (timed) effects."
-msgstr ""
+msgstr "Vários efeitos (cronometrados)."
 
 #: simulation/data/attack_effects/applystatus.jsonname
 msgctxt "effect caused by an attack"
 msgid "Apply Status"
-msgstr ""
+msgstr "Aplicar Estado"
 
 #: simulation/data/attack_effects/capture.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
-msgstr ""
+msgstr "Reduz os pontos de captura de um alvo."
 
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
 msgid "Capture"
-msgstr ""
+msgstr "Captura"
 
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces the health of a target."
-msgstr ""
+msgstr "Reduz a vida de um alvo."
 
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
 msgid "Damage"
-msgstr ""
+msgstr "Dano"
 
 #: simulation/data/damage_types/crush.jsondescription
 msgctxt "damage type"
@@ -67,19 +68,19 @@ msgstr "Esmagamento"
 #: simulation/data/damage_types/fire.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by burning objects, like a torch or a flaming arrow."
-msgstr ""
+msgstr "Danos causados por objetos em chamas, como uma tocha ou uma flecha em chamas."
 
 #: simulation/data/damage_types/fire.jsonname
 msgctxt "damage type"
 msgid "Fire"
-msgstr ""
+msgstr "Fogo"
 
 #: simulation/data/damage_types/hack.jsondescription
 msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
-msgstr "Dano causado por objetos afiados cortanto ou talhando, como com uma espada ou machado."
+msgstr "Dano causado por objetos afiados cortando ou talhando, como com uma espada ou machado."
 
 #: simulation/data/damage_types/hack.jsonname
 msgctxt "damage type"
@@ -101,42 +102,42 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by venomous or poisoned objects, like a snake or a poisoned "
 "weapon."
-msgstr ""
+msgstr "Danos causados por objetos venenosos ou envenenados, como uma cobra ou uma arma envenenada."
 
 #: simulation/data/damage_types/poison.jsonname
 msgctxt "damage type"
 msgid "Poison"
-msgstr ""
+msgstr "Veneno"
 
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes fire damage."
-msgstr ""
+msgstr "Esta unidade causa dano de fogo."
 
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is burning."
-msgstr ""
+msgstr "Esta unidade está a arder."
 
 #: simulation/data/status_effects/burning.jsonstatusName
 msgctxt "status effect"
 msgid "Burning"
-msgstr ""
+msgstr "A arder"
 
 #: simulation/data/status_effects/poisoned.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes poison damage."
-msgstr ""
+msgstr "Esta unidade causa dano de veneno."
 
 #: simulation/data/status_effects/poisoned.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is poisoned."
-msgstr ""
+msgstr "Esta unidade está envenenada."
 
 #: simulation/data/status_effects/poisoned.jsonstatusName
 msgctxt "status effect"
 msgid "Poisoned"
-msgstr ""
+msgstr "Envenenado"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
@@ -209,7 +210,7 @@ msgstr "Santuário Religioso Grego"
 #: simulation/templates/gaia/fauna_tiger.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Paws"
-msgstr ""
+msgstr "Patas"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:24
 msgid "Black Bear"
@@ -240,7 +241,7 @@ msgstr "Urso Polar (Urso Branco)"
 #: simulation/templates/gaia/fauna_walrus.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Tusks"
-msgstr ""
+msgstr "Presas"
 
 #: simulation/templates/gaia/fauna_boar.xml:23
 msgid "Wild Boar"
@@ -261,7 +262,7 @@ msgstr "Camelus dromedarius"
 #: simulation/templates/gaia/fauna_cattle_bull.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Horns"
-msgstr ""
+msgstr "Chifres"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:25
 msgid "Bull"
@@ -303,7 +304,7 @@ msgstr "Gallus gallus domesticus"
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Teeth"
-msgstr ""
+msgstr "Dentes"
 
 #: simulation/templates/gaia/fauna_crocodile_nile.xml:23
 msgid "Nile Crocodile"
@@ -328,7 +329,7 @@ msgstr "Cervus elaphus"
 #: simulation/templates/gaia/fauna_wolf.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fangs"
-msgstr ""
+msgstr "Presas"
 
 #: simulation/templates/gaia/fauna_dog_mastiff.xml:24
 msgid "Mastiff"
@@ -356,7 +357,7 @@ msgstr "Equus africanus asinus"
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Trunk"
-msgstr ""
+msgstr "Tronco"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:25
 msgid "African Bush Elephant"
@@ -512,7 +513,7 @@ msgstr "Oryctolagus cuniculus"
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Horn"
-msgstr ""
+msgstr "Chifre"
 
 #: simulation/templates/gaia/fauna_rhinoceros_white.xml:24
 msgid "White Rhinoceros"
@@ -608,7 +609,7 @@ msgstr "Atum"
 
 #: simulation/templates/gaia/fruit/apple.xml:7
 msgid "Apple"
-msgstr ""
+msgstr "Maçã"
 
 #: simulation/templates/gaia/fruit/banana.xml:7
 msgid "Banana"
@@ -642,7 +643,7 @@ msgstr "Coluna Dórica"
 
 #: simulation/templates/gaia/ruins/metal_statue_isis.xml:9
 msgid "Isis Cult Image"
-msgstr ""
+msgstr "Imagem de Culto a Ísis"
 
 #: simulation/templates/gaia/ruins/pyramid_great.xml:8
 msgid "Great Pyramid"
@@ -659,33 +660,33 @@ msgstr "Pedra Celta"
 
 #: simulation/templates/gaia/ruins/stone_statues_egyptian.xml:8
 msgid "Egyptian Statue"
-msgstr ""
+msgstr "Estátua Egípcia"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite.xml:8
 msgid "Kushite Statue"
-msgstr "Estátua cuxita"
+msgstr "Estátua Cuxita"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:9
 #: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:9
 #: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:9
 msgid "Stone Resource"
-msgstr ""
+msgstr "Recurso de Pedra"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:10
 msgid "Kushite Bird Statue"
-msgstr ""
+msgstr "Estátua de Pássaro Cuxita"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:10
 msgid "Apademak Lion Statue"
-msgstr ""
+msgstr "Estátua de Leão de Apedemak"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:10
 msgid "Ammon-Ra Ram Statue"
-msgstr ""
+msgstr "Estátua de Carneiro de Ámon-Rá"
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statue"
-msgstr ""
+msgstr "Estátua Romana"
 
 #: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:8
 msgid "Unfinished Greek Temple"
@@ -751,16 +752,16 @@ msgstr "Tesouro de Pedra"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite.xml:4
 msgid "Cut Granite"
-msgstr ""
+msgstr "Granito Esculpido"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite_large.xml:8
 msgid "Cut Stone"
-msgstr ""
+msgstr "Pedra Esculpida"
 
 #: simulation/templates/gaia/treasure/stone_pile_red.xml:8
 #: simulation/templates/gaia/treasure/stone_pile_sandstone.xml:4
 msgid "Cut Sandstone"
-msgstr ""
+msgstr "Arenito Esculpido"
 
 #: simulation/templates/gaia/treasure/wood.xml:8
 msgid "Wood Treasure"
@@ -768,19 +769,19 @@ msgstr "Tesouro de Madeira"
 
 #: simulation/templates/gaia/treasure/wood_lumber.xml:8
 msgid "Milled Lumber"
-msgstr ""
+msgstr "Lenha Aparada"
 
 #: simulation/templates/gaia/tree/acacia.xml:4
 msgid "Acacia"
-msgstr ""
+msgstr "Acácia"
 
 #: simulation/templates/gaia/tree/acacia_large.xml:4
 msgid "Ancient Acacia"
-msgstr ""
+msgstr "Acácia Antiga"
 
 #: simulation/templates/gaia/tree/aleppo_pine.xml:4
 msgid "Aleppo Pine"
-msgstr ""
+msgstr "Pinheiro-de-alepo"
 
 #: simulation/templates/gaia/tree/bamboo.xml:4
 #: simulation/templates/gaia/tree/bamboo_single.xml:4
@@ -815,11 +816,11 @@ msgstr "Arbusto Robusto"
 
 #: simulation/templates/gaia/tree/bush_mediterranean.xml:4
 msgid "Scrub"
-msgstr ""
+msgstr "Arbusto"
 
 #: simulation/templates/gaia/tree/carob.xml:4
 msgid "Carob"
-msgstr ""
+msgstr "Alfarroba"
 
 #: simulation/templates/gaia/tree/cedar_atlas_1_sapling.xml:4
 msgid "Atlas Cedar Sapling"
@@ -833,7 +834,7 @@ msgstr "Cedro-do-atlas"
 
 #: simulation/templates/gaia/tree/cherry_blossom.xml:4
 msgid "Cherry Blossom"
-msgstr ""
+msgstr "Cerejeira"
 
 #: simulation/templates/gaia/tree/cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/tree/cretan_date_palm_short.xml:4
@@ -845,7 +846,7 @@ msgstr "Palmeira Cretense"
 #: simulation/templates/gaia/tree/cypress_wild.xml:4
 #: simulation/templates/gaia/tree/cypress_windswept.xml:4
 msgid "Cypress"
-msgstr ""
+msgstr "Cipreste"
 
 #: simulation/templates/gaia/tree/dead.xml:4
 #: simulation/templates/gaia/tree/temperate.xml:4
@@ -857,12 +858,12 @@ msgstr "Árvore de folha caduca"
 #: simulation/templates/gaia/tree/elm.xml:4
 #: simulation/templates/gaia/tree/elm_dead.xml:4
 msgid "Elm"
-msgstr ""
+msgstr "Olmo"
 
 #: simulation/templates/gaia/tree/euro_beech.xml:4
 #: simulation/templates/gaia/tree/euro_beech_aut.xml:4
 msgid "European Beech"
-msgstr ""
+msgstr "Faia Europeia"
 
 #: simulation/templates/gaia/tree/euro_birch.xml:4
 msgid "Silver Birch"
@@ -871,7 +872,7 @@ msgstr "Bétula-branca"
 #: simulation/templates/gaia/tree/fir.xml:4
 #: simulation/templates/gaia/tree/fir_winter.xml:4
 msgid "Fir"
-msgstr ""
+msgstr "Abeto"
 
 #: simulation/templates/gaia/tree/fir_sapling.xml:4
 msgid "Fir Sapling"
@@ -900,7 +901,7 @@ msgstr "Palmeira Ibérica"
 #: simulation/templates/gaia/tree/oak_dead.xml:4
 #: simulation/templates/gaia/tree/oak_new.xml:4
 msgid "Oak"
-msgstr ""
+msgstr "Carvalho"
 
 #: simulation/templates/gaia/tree/oak_holly.xml:4
 #: simulation/templates/gaia/tree/oak_holly_autumn.xml:4
@@ -914,11 +915,11 @@ msgstr "Carvalho Húngaro"
 
 #: simulation/templates/gaia/tree/oak_large.xml:4
 msgid "Large Oak"
-msgstr ""
+msgstr "Carvalho Grande"
 
 #: simulation/templates/gaia/tree/olive.xml:7
 msgid "Olive"
-msgstr ""
+msgstr "Oliveira"
 
 #: simulation/templates/gaia/tree/palm_areca.xml:4
 msgid "Areca Palm"
@@ -943,7 +944,7 @@ msgstr "Palmeira Tropical"
 #: simulation/templates/gaia/tree/pine.xml:4
 #: simulation/templates/gaia/tree/pine_w.xml:4
 msgid "Pine"
-msgstr ""
+msgstr "Pinheiro"
 
 #: simulation/templates/gaia/tree/pine_black.xml:4
 #: simulation/templates/gaia/tree/pine_black_dead.xml:4
@@ -964,7 +965,7 @@ msgstr "Choupo"
 #: simulation/templates/gaia/tree/poplar_lombardy.xml:4
 #: simulation/templates/gaia/tree/poplar_lombardy_dead.xml:4
 msgid "Black Poplar"
-msgstr ""
+msgstr "Álamo Preto"
 
 #: simulation/templates/gaia/tree/senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -976,7 +977,7 @@ msgstr "Figueira estranguladora"
 
 #: simulation/templates/gaia/tree/tamarix.xml:4
 msgid "Tamarix"
-msgstr ""
+msgstr "Tamargueira"
 
 #: simulation/templates/gaia/tree/teak.xml:8
 msgid "Teak"
@@ -984,7 +985,7 @@ msgstr "Teca"
 
 #: simulation/templates/gaia/tree/toona.xml:4
 msgid "Toona"
-msgstr ""
+msgstr "Cedro-australiano"
 
 #: simulation/templates/gaia/tree/tropic_rainforest.xml:4
 msgid "Rainforest Tree"
@@ -992,7 +993,7 @@ msgstr "Árvore de floresta húmida"
 
 #: simulation/templates/mixins/builder.xml:41
 msgid "Builder"
-msgstr ""
+msgstr "Construtor"
 
 #: simulation/templates/mixins/bush.xml:4
 msgid "Bush"
@@ -1008,36 +1009,36 @@ msgstr "Santuário"
 
 #: simulation/templates/mixins/trading_post.xml:8
 msgid "Trading Post"
-msgstr ""
+msgstr "Posto de Comércio"
 
 #: simulation/templates/obstructors/movement_36x36.xml:9
 #: simulation/templates/obstructors/movement_8x36.xml:9
 #: simulation/templates/obstructors/movement_8x8.xml:9
 msgid "Movement Obstructor"
-msgstr ""
+msgstr "Obstrução de movimento"
 
 #: simulation/templates/obstructors/movement_36x36.xml:11
 #: simulation/templates/obstructors/movement_8x36.xml:11
 #: simulation/templates/obstructors/movement_8x8.xml:11
 msgid "Placement obstructor to prevent movement and construction."
-msgstr ""
+msgstr "Obstrutor de localização para impedir construção e movimento"
 
 #: simulation/templates/obstructors/placement.xml:10
 msgid "Obstructor"
-msgstr ""
+msgstr "Obstrução"
 
 #: simulation/templates/obstructors/placement.xml:12
 #: simulation/templates/obstructors/placement_36x36.xml:11
 #: simulation/templates/obstructors/placement_8x36.xml:11
 #: simulation/templates/obstructors/placement_8x8.xml:11
 msgid "Placement obstructor to prevent construction but not movement"
-msgstr ""
+msgstr "Obstrutor de localização para impedir construção mas não movimento"
 
 #: simulation/templates/obstructors/placement_36x36.xml:9
 #: simulation/templates/obstructors/placement_8x36.xml:9
 #: simulation/templates/obstructors/placement_8x8.xml:9
 msgid "Placement Obstructor"
-msgstr ""
+msgstr "Obstrutor de Localização"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
@@ -1146,7 +1147,7 @@ msgstr "Espião"
 
 #: simulation/templates/template_formation.xml:15
 msgid "Requires at least 2 Soldiers or Siege Engines."
-msgstr ""
+msgstr "Requer pelo menos 2 Soldados ou Armas de Cerco."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"

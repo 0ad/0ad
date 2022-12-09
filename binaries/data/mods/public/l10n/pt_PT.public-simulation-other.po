@@ -8,6 +8,7 @@
 # Damixinho
 # Danny Reese
 # Fil Silvi
+# lecalam
 # Luis Neves
 # Mário Branco
 # mogafi
@@ -22,7 +23,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Damixinho <rapazamistoso@gmail.com>, 2020\n"
+"Last-Translator: lecalam, 2022\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -371,13 +372,13 @@ msgstr "%(_player_)s, como não respondeste ao meu pedido de paz entre nós, rev
 msgid ""
 "My armies failed while defending my empire. Please honor our alliance and "
 "send help!"
-msgstr ""
+msgstr "Os meus exércitos falharam ao defenderem o meu império. Por favor, honrem a nossa aliança e enviem-me ajuda!"
 
 #: simulation/ai/petra/chatHelper.js:140
 msgid ""
 "My empire regained its old strength, now it is time to seek revenge "
 "together!"
-msgstr ""
+msgstr "O meu império recuperou a sua antiga força, agora é tempo de procurarmos vingança juntos!"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
@@ -589,7 +590,7 @@ msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s, %(resour
 
 #: simulation/components/ProductionQueue.js:312
 msgid "Entity is being upgraded. Cannot start production."
-msgstr ""
+msgstr "A entidade está a ser promovida. Não é possível iniciar a produção."
 
 #: simulation/components/ProductionQueue.js:327
 msgid "The production queue is full."
@@ -597,15 +598,15 @@ msgstr "A fila de produção está cheia."
 
 #: simulation/components/ProductionQueue.js:450
 msgid "Could not auto-queue unit, de-activating."
-msgstr ""
+msgstr "Não foi possível definir a fila automática para a unidade, a desativar."
 
 #: simulation/components/Trainer.js:317
 msgid "Can't find free space to spawn trained units."
-msgstr ""
+msgstr "Não há espaço livre onde possam aparecer as unidades treinadas."
 
 #: simulation/components/Upgrade.js:247
 msgid "Entity is producing. Cannot start upgrading."
-msgstr ""
+msgstr "A entidade está a produzir. Não é possível iniciar a promoção."
 
 #: simulation/data/settings/game_speeds.jsonData[0].Title
 msgid "Turtle (0.1×)"
@@ -840,11 +841,11 @@ msgstr "Conquistar"
 
 #: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Description
 msgid "Defeat opponents by destroying all their fully build civic centers."
-msgstr ""
+msgstr "Derrota os oponentes destruindo todos os Centros Cívicos totalmente construídos."
 
 #: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Title
 msgid "Conquest Civic Centers"
-msgstr ""
+msgstr "Conquista de Centros Cívicos"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
@@ -925,7 +926,7 @@ msgstr "Não existem unidades subornáveis"
 
 #: simulation/helpers/Commands.js:933
 msgid "Unable to unload unit(s)."
-msgstr ""
+msgstr "Não se consegue retirar as unidades."
 
 #: simulation/helpers/Commands.js:947
 msgid "Some unit(s) can't go back to work"
@@ -934,7 +935,7 @@ msgstr "Algumas unidades não podem voltar a trabalhar"
 #: simulation/helpers/Commands.js:966
 #, javascript-format
 msgid "%(unit)s can't be controlled."
-msgstr ""
+msgstr "%(unit)s não podem ser controladas."
 
 #: simulation/helpers/Commands.js:1217
 msgid "The building's technology requirements are not met."
