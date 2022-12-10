@@ -15,8 +15,6 @@ void main()
 	float repeatPeriod = 16.0;
 
 	v_coords = a_vertex.xz / repeatPeriod + vec2(tx, tz);
-#if !IGNORE_LOS
 	v_los = calculateLOSCoordinates(a_vertex.xz, losTransform);
-#endif
 	OUTPUT_VERTEX_POSITION(transform * vec4(a_vertex, 1.0));
 }

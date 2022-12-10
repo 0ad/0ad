@@ -30,9 +30,7 @@ void main()
 	refractionCoords = (refractionMatrix * vec4(a_vertex, 1.0)).rga;
 #endif
 
-#if !IGNORE_LOS
 	v_los = calculateLOSCoordinates(a_vertex.xz, losTransform);
-#endif
 
 	calculatePositionInShadowSpace(vec4(a_vertex, 1.0));
 

@@ -5,23 +5,21 @@ BEGIN_DRAW_TEXTURES
 	TEXTURE_CUBE(0, skyCube)
 	TEXTURE_2D(1, normalMap)
 	TEXTURE_2D(2, normalMap2)
+	TEXTURE_2D(3, losTex)
 #if USE_FANCY_EFFECTS
-	TEXTURE_2D(3, waterEffectsTex)
+	TEXTURE_2D(4, waterEffectsTex)
 #endif
 #if USE_REFLECTION
-	TEXTURE_2D(4, reflectionMap)
+	TEXTURE_2D(5, reflectionMap)
 #endif
 #if USE_REFRACTION
-	TEXTURE_2D(5, refractionMap)
+	TEXTURE_2D(6, refractionMap)
 #if USE_REAL_DEPTH
-	TEXTURE_2D(6, depthTex)
+	TEXTURE_2D(7, depthTex)
 #endif
-#endif
-#if !IGNORE_LOS
-	TEXTURE_2D(4, losTex)
 #endif
 #if USE_SHADOW
-	SHADOWS_TEXTURES(5)
+	SHADOWS_TEXTURES(8)
 #endif
 END_DRAW_TEXTURES
 
@@ -72,14 +70,12 @@ VERTEX_OUTPUT(4, float, moddedTime);
 VERTEX_OUTPUT(5, vec2, windCosSin);
 VERTEX_OUTPUT(6, vec3, v_eyeVec);
 VERTEX_OUTPUT(7, vec4, normalCoords);
+VERTEX_OUTPUT(8, vec2, v_los);
 #if USE_REFLECTION
-VERTEX_OUTPUT(8, vec3, reflectionCoords);
+VERTEX_OUTPUT(9, vec3, reflectionCoords);
 #endif
 #if USE_REFRACTION
-VERTEX_OUTPUT(9, vec3, refractionCoords);
-#endif
-#if !IGNORE_LOS
-VERTEX_OUTPUT(10, vec2, v_los);
+VERTEX_OUTPUT(10, vec3, refractionCoords);
 #endif
 #if USE_SHADOW
 SHADOWS_VERTEX_OUTPUTS(11)
