@@ -1,12 +1,10 @@
 #version 110
 
-#include "common/fragment.h"
+#include "foreground_overlay.h"
 
-uniform sampler2D baseTex;
-uniform vec4 colorMul;
-varying vec2 v_tex;
+#include "common/fragment.h"
 
 void main()
 {
-	OUTPUT_FRAGMENT_SINGLE_COLOR(texture2D(baseTex, v_tex) * colorMul);
+	OUTPUT_FRAGMENT_SINGLE_COLOR(SAMPLE_2D(GET_DRAW_TEXTURE_2D(baseTex), v_tex) * colorMul);
 }

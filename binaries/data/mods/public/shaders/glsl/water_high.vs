@@ -1,39 +1,10 @@
 #version 110
 
+#include "water_high.h"
+
 #include "common/los_vertex.h"
 #include "common/shadows_vertex.h"
 #include "common/vertex.h"
-
-uniform mat4 reflectionMatrix;
-uniform mat4 refractionMatrix;
-uniform float repeatScale;
-uniform float windAngle;
-// "Wildness" of the reflections and refractions; choose based on texture
-uniform float waviness;
-
-uniform float time;
-
-uniform mat4 transform;
-uniform vec3 cameraPos;
-
-varying float moddedTime;
-
-varying vec3 worldPos;
-varying float waterDepth;
-varying vec2 waterInfo;
-
-varying vec3 v_eyeVec;
-
-varying vec4 normalCoords;
-#if USE_REFLECTION
-varying vec3 reflectionCoords;
-#endif
-#if USE_REFRACTION
-varying vec3 refractionCoords;
-#endif
-
-varying float fwaviness;
-varying vec2 WindCosSin;
 
 VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
 VERTEX_INPUT_ATTRIBUTE(1, vec2, a_waterInfo);
@@ -44,10 +15,10 @@ void main()
 	waterInfo = a_waterInfo;
 	waterDepth = a_waterInfo.g;
 
-	WindCosSin = vec2(cos(-windAngle), sin(-windAngle));
+	windCosSin = vec2(cos(-windAngle), sin(-windAngle));
 
-	float newX = a_vertex.x * WindCosSin.x - a_vertex.z * WindCosSin.y;
-	float newY = a_vertex.x * WindCosSin.y + a_vertex.z * WindCosSin.x;
+	float newX = a_vertex.x * windCosSin.x - a_vertex.z * windCosSin.y;
+	float newY = a_vertex.x * windCosSin.y + a_vertex.z * windCosSin.x;
 
 	normalCoords = vec4(newX, newY, time, 0.0);
 	normalCoords.xy *= repeatScale;
@@ -58,7 +29,10 @@ void main()
 #if USE_REFRACTION
 	refractionCoords = (refractionMatrix * vec4(a_vertex, 1.0)).rga;
 #endif
-	calculateLOSCoordinates(a_vertex.xz);
+
+#if !IGNORE_LOS
+	v_los = calculateLOSCoordinates(a_vertex.xz, losTransform);
+#endif
 
 	calculatePositionInShadowSpace(vec4(a_vertex, 1.0));
 

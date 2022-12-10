@@ -20,13 +20,19 @@
 // GLSL port of the CasFilter() (no scaling). https://github.com/GPUOpen-Effects/FidelityFX-CAS/blob/master/ffx-cas/ffx_cas.h
 
 #include "common/fragment.h"
+#include "common/stage.h"
 
-uniform sampler2D renderedTex;
-uniform float width;
-uniform float height;
-uniform float sharpness;
+BEGIN_DRAW_TEXTURES
+	TEXTURE_2D(0, renderedTex)
+END_DRAW_TEXTURES
 
-varying vec2 v_tex;
+BEGIN_DRAW_UNIFORMS
+	UNIFORM(float, width)
+	UNIFORM(float, height)
+	UNIFORM(float, sharpness)
+END_DRAW_UNIFORMS
+
+VERTEX_OUTPUT(0, vec2, v_tex);
 
 float saturate(float inputFloat)
 {
@@ -38,7 +44,7 @@ vec3 saturate(vec3 inputFloat)
     return vec3(saturate(inputFloat.x), saturate(inputFloat.y), saturate(inputFloat.z));
 }
 
-vec3 sharpen()
+vec3 sharpen(sampler2D tex)
 {
     vec2 invSSize = vec2(1.0 / width, 1.0 / height);
 
@@ -46,15 +52,15 @@ vec3 sharpen()
     //  a b c
     //  d(e)f
     //  g h i
-    vec3 a = texture2D(renderedTex, v_tex + vec2(-1.0, -1.0) * invSSize).rgb;
-    vec3 b = texture2D(renderedTex, v_tex + vec2(0.0, -1.0) * invSSize).rgb;
-    vec3 c = texture2D(renderedTex, v_tex + vec2(1.0, -1.0) * invSSize).rgb;
-    vec3 d = texture2D(renderedTex, v_tex + vec2(-1.0, 0.0) * invSSize).rgb;
-    vec3 e = texture2D(renderedTex, v_tex + vec2(0.0, 0.0) * invSSize).rgb;
-    vec3 f = texture2D(renderedTex, v_tex + vec2(1.0, 0.0) * invSSize).rgb;
-    vec3 g = texture2D(renderedTex, v_tex + vec2(-1.0, 1.0) * invSSize).rgb;
-    vec3 h = texture2D(renderedTex, v_tex + vec2(0.0, 1.0) * invSSize).rgb;
-    vec3 i = texture2D(renderedTex, v_tex + vec2(1.0, 1.0) * invSSize).rgb;
+    vec3 a = SAMPLE_2D(tex, v_tex + vec2(-1.0, -1.0) * invSSize).rgb;
+    vec3 b = SAMPLE_2D(tex, v_tex + vec2(0.0, -1.0) * invSSize).rgb;
+    vec3 c = SAMPLE_2D(tex, v_tex + vec2(1.0, -1.0) * invSSize).rgb;
+    vec3 d = SAMPLE_2D(tex, v_tex + vec2(-1.0, 0.0) * invSSize).rgb;
+    vec3 e = SAMPLE_2D(tex, v_tex + vec2(0.0, 0.0) * invSSize).rgb;
+    vec3 f = SAMPLE_2D(tex, v_tex + vec2(1.0, 0.0) * invSSize).rgb;
+    vec3 g = SAMPLE_2D(tex, v_tex + vec2(-1.0, 1.0) * invSSize).rgb;
+    vec3 h = SAMPLE_2D(tex, v_tex + vec2(0.0, 1.0) * invSSize).rgb;
+    vec3 i = SAMPLE_2D(tex, v_tex + vec2(1.0, 1.0) * invSSize).rgb;
 
     // Soft min and max.
     //  a b c             b
@@ -91,5 +97,5 @@ vec3 sharpen()
 
 void main()
 {
-    OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(sharpen(), 1.0));
+    OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(sharpen(GET_DRAW_TEXTURE_2D(renderedTex)), 1.0));
 }

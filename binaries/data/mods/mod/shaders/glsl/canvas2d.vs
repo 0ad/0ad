@@ -1,14 +1,11 @@
 #version 110
 
-#include "common/vertex.h"
+#include "canvas2d.h"
 
-uniform vec4 transform;
-uniform vec2 translation;
+#include "common/vertex.h"
 
 VERTEX_INPUT_ATTRIBUTE(0, vec2, a_vertex);
 VERTEX_INPUT_ATTRIBUTE(1, vec2, a_uv0);
-
-varying vec2 v_uv;
 
 void main()
 {

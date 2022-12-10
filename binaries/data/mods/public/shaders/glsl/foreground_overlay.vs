@@ -1,10 +1,8 @@
 #version 110
 
+#include "foreground_overlay.h"
+
 #include "common/vertex.h"
-
-uniform mat4 transform;
-
-varying vec2 v_tex;
 
 VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
 VERTEX_INPUT_ATTRIBUTE(1, vec2, a_uv0);

@@ -3,9 +3,7 @@
 
 	<vertex file="glsl/model_water.vs">
 		<stream name="pos" attribute="a_vertex"/>
-		<stream name="normal" attribute="a_normal"/>
 		<stream name="uv0" attribute="a_uv0"/>
-		<stream name="uv1" attribute="a_uv1" if="USE_AO"/>
 	</vertex>
 
 	<fragment file="glsl/model_water.fs"/>

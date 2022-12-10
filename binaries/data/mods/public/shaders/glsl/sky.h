@@ -1,0 +1,11 @@
+#include "common/stage.h"
+
+BEGIN_DRAW_TEXTURES
+	TEXTURE_CUBE(0, baseTex)
+END_DRAW_TEXTURES
+
+BEGIN_DRAW_UNIFORMS
+	UNIFORM(mat4, transform)
+END_DRAW_UNIFORMS
+
+VERTEX_OUTPUT(0, vec3, v_tex);

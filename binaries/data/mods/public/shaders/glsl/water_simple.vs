@@ -1,14 +1,11 @@
 #version 110
 
+#include "water_simple.h"
+
 #include "common/los_vertex.h"
 #include "common/vertex.h"
 
 VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
-
-uniform mat4 transform;
-uniform float time;
-
-varying vec2 v_coords;
 
 void main()
 {
@@ -18,6 +15,8 @@ void main()
 	float repeatPeriod = 16.0;
 
 	v_coords = a_vertex.xz / repeatPeriod + vec2(tx, tz);
-	calculateLOSCoordinates(a_vertex.xz);
+#if !IGNORE_LOS
+	v_los = calculateLOSCoordinates(a_vertex.xz, losTransform);
+#endif
 	OUTPUT_VERTEX_POSITION(transform * vec4(a_vertex, 1.0));
 }

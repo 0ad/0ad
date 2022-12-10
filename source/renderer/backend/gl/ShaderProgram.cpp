@@ -173,7 +173,7 @@ int GetAttributeLocationFromStream(
 }
 
 bool PreprocessShaderFile(
-	bool arb, const CShaderDefines& defines, const VfsPath& path,
+	bool arb, const CShaderDefines& defines, const VfsPath& path, const char* stage,
 	CStr& source, std::vector<VfsPath>& fileDependencies)
 {
 	CVFSFile file;
@@ -201,6 +201,8 @@ bool PreprocessShaderFile(
 			return true;
 		});
 	preprocessor.AddDefines(defines);
+	if (!arb)
+		preprocessor.AddDefine(stage, "1");
 
 #if CONFIG2_GLES
 	if (!arb)
@@ -284,10 +286,10 @@ public:
 		std::vector<VfsPath> newFileDependencies = {path, vertexFilePath, fragmentFilePath};
 
 		CStr vertexCode;
-		if (!PreprocessShaderFile(true, defines, vertexFilePath, vertexCode, newFileDependencies))
+		if (!PreprocessShaderFile(true, defines, vertexFilePath, "STAGE_VERTEX", vertexCode, newFileDependencies))
 			return;
 		CStr fragmentCode;
-		if (!PreprocessShaderFile(true, defines, fragmentFilePath, fragmentCode, newFileDependencies))
+		if (!PreprocessShaderFile(true, defines, fragmentFilePath, "STAGE_FRAGMENT", fragmentCode, newFileDependencies))
 			return;
 
 		m_FileDependencies = std::move(newFileDependencies);
@@ -614,10 +616,10 @@ public:
 		std::vector<VfsPath> newFileDependencies = {path, vertexFilePath, fragmentFilePath};
 
 		CStr vertexCode;
-		if (!PreprocessShaderFile(false, defines, vertexFilePath, vertexCode, newFileDependencies))
+		if (!PreprocessShaderFile(false, defines, vertexFilePath, "STAGE_VERTEX", vertexCode, newFileDependencies))
 			return;
 		CStr fragmentCode;
-		if (!PreprocessShaderFile(false, defines, fragmentFilePath, fragmentCode, newFileDependencies))
+		if (!PreprocessShaderFile(false, defines, fragmentFilePath, "STAGE_FRAGMENT", fragmentCode, newFileDependencies))
 			return;
 
 		m_FileDependencies = std::move(newFileDependencies);

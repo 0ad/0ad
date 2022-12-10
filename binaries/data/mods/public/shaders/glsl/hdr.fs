@@ -1,30 +1,33 @@
 #version 120
 
 #include "common/fragment.h"
+#include "common/stage.h"
 
-uniform sampler2D renderedTex;
-uniform sampler2D depthTex;
-uniform sampler2D blurTex2;
-uniform sampler2D blurTex4;
-uniform sampler2D blurTex8;
+BEGIN_DRAW_TEXTURES
+	TEXTURE_2D(0, renderedTex)
+	TEXTURE_2D(1, depthTex)
+	TEXTURE_2D(2, blurTex2)
+	TEXTURE_2D(3, blurTex4)
+	TEXTURE_2D(4, blurTex8)
+END_DRAW_TEXTURES
 
-uniform float width;
-uniform float height;
+BEGIN_DRAW_UNIFORMS
+	UNIFORM(float, width)
+	UNIFORM(float, height)
+	UNIFORM(float, brightness)
+	UNIFORM(float, hdr)
+	UNIFORM(float, saturation)
+	UNIFORM(float, bloom)
+END_DRAW_UNIFORMS
 
-uniform float brightness;
-uniform float hdr;
-uniform float saturation;
-uniform float bloom;
-
-varying vec2 v_tex;
-
+VERTEX_OUTPUT(0, vec2, v_tex);
 
 void main(void)
 {
-	vec3 color = texture2D(renderedTex, v_tex).rgb;
-	vec3 bloomv2 = texture2D(blurTex2, v_tex).rgb;
-	vec3 bloomv4 = texture2D(blurTex4, v_tex).rgb;
-	vec3 bloomv8 = texture2D(blurTex8, v_tex).rgb;
+	vec3 color = SAMPLE_2D(GET_DRAW_TEXTURE_2D(renderedTex), v_tex).rgb;
+	vec3 bloomv2 = SAMPLE_2D(GET_DRAW_TEXTURE_2D(blurTex2), v_tex).rgb;
+	vec3 bloomv4 = SAMPLE_2D(GET_DRAW_TEXTURE_2D(blurTex4), v_tex).rgb;
+	vec3 bloomv8 = SAMPLE_2D(GET_DRAW_TEXTURE_2D(blurTex8), v_tex).rgb;
 
 	bloomv2 = max(bloomv2 - bloom, vec3(0.0));
 	bloomv4 = max(bloomv4 - bloom, vec3(0.0));
@@ -46,5 +49,3 @@ void main(void)
 
 	OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(color, 1.0));
 }
-
-

@@ -1,5 +1,7 @@
 #version 110
 
+#include "waves.h"
+
 #include "common/vertex.h"
 
 VERTEX_INPUT_ATTRIBUTE(0, vec3, a_basePosition);
@@ -8,16 +10,6 @@ VERTEX_INPUT_ATTRIBUTE(2, vec3, a_splashPosition);
 VERTEX_INPUT_ATTRIBUTE(3, vec3, a_retreatPosition);
 VERTEX_INPUT_ATTRIBUTE(4, vec2, a_normal);
 VERTEX_INPUT_ATTRIBUTE(5, vec2, a_uv0);
-
-uniform float time;
-uniform float translation;
-uniform float width;
-
-uniform mat4 transform;
-
-varying float ttime;
-varying vec2 normal;
-varying vec2 v_tex;
 
 void main()
 {
