@@ -12,6 +12,7 @@
 # Grim Kriegor
 # Helder Meneses
 # Hugo Alves
+# lecalam
 # Leonor Bravo
 # Luís Guedes
 # Luis Neves
@@ -31,9 +32,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-05-16 07:09+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:48+0000\n"
-"Last-Translator: Leonor Bravo, 2021\n"
+"Last-Translator: lecalam, 2022\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,7 +69,7 @@ msgstr "Nenhum"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:44
 msgid "AI Player"
-msgstr "Jogador Artificial"
+msgstr "Jogador artificial"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:142
 #, javascript-format
@@ -176,15 +177,15 @@ msgstr "Pesquisar mapas"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:39
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr ""
+msgstr "Pressionar %(hotkey)s para ver a lista de mapas disponíveis."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:26
 msgid "Allied View"
-msgstr ""
+msgstr "Visão aliada"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:30
 msgid "Toggle allied view (see what your allies see)."
-msgstr ""
+msgstr "Alternar visão aliada (ver o que os aliados veem)"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
@@ -284,13 +285,13 @@ msgstr "Não adicionar tesouros ao mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:25
 msgid "World Population"
-msgstr ""
+msgstr "População mundial"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:28
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr ""
+msgstr "Esta opção ativa um limite global de população, distribuída entre todos os jogadores vivos."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:54
 msgid "Biome"
@@ -343,7 +344,7 @@ msgstr "Aleatório"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:26
 msgctxt "landscape selection"
 msgid "Select a random landscape."
-msgstr ""
+msgstr "Selecionar uma paisagem."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:78
 msgid "Landscape"
@@ -351,7 +352,7 @@ msgstr "Paisagem"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:81
 msgid "Select one of the landscapes of this map."
-msgstr "Seleciona uma das paisagens deste mapa."
+msgstr "Selecionar uma das paisagens deste mapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:82
 msgid "Map Filter"
@@ -472,7 +473,7 @@ msgstr "Selecionar a dificuldade deste cenário."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:47
 msgid "World Population Cap"
-msgstr "Limite da População Mundial"
+msgstr "Limite da população mundial"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:50
 msgid "Select world population limit."
@@ -483,7 +484,7 @@ msgstr "Selecionar limite da população mundial."
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr "Aviso: Poderão existir problemas de performance se %(popCap)s for atingido."
+msgstr "Aviso: poderão existir problemas de desempenho se atingir o limite de %(popCap)s pessoas."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:35
 msgid "Ceasefire"
@@ -592,11 +593,11 @@ msgstr "Regressar ao menu principal."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr ""
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Visão geral da civilização / Árvore estrutural\nA última aberta será reaberta ao clicar."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "Mostrar a sala de espera multi-jogador numa janela."
+msgstr "Mostrar a sala de espera multijogador numa janela."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:79
 msgid "I'm ready"
@@ -736,11 +737,11 @@ msgstr "Clique para alternar o separador de configurações %(name)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:27
 msgid "No selected map"
-msgstr ""
+msgstr "Nenhum mapa selecionado"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr ""
+msgstr "Clica para ver a lista de mapas disponíveis."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):10
 msgid "Show this message in the future."
@@ -778,11 +779,11 @@ msgstr "A ligar ao servidor..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:165
 msgid "Server is not running."
-msgstr ""
+msgstr "O servidor não está em execução."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Password is invalid."
-msgstr ""
+msgstr "A palavra-passe é inválida."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "You have been banned."
@@ -792,12 +793,12 @@ msgstr "Foste banido."
 msgid ""
 "Failed to get local IP of the server (it was assumed to be on the same "
 "network)."
-msgstr ""
+msgstr "Falha ao obter o IP local do servidor (presumiu-se que estavas na mesma rede)."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
-msgstr ""
+msgstr "\\[Valor inválido %(reason)s]"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
@@ -805,7 +806,7 @@ msgstr "Falhou ao conectar ao servidor."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
-msgstr ""
+msgstr "Falha na conexão"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
@@ -846,7 +847,7 @@ msgstr "Jogo de %(playername)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
-msgstr "Multi-jogador"
+msgstr "Multijogador"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
@@ -876,7 +877,7 @@ msgstr "Nome do servidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
 msgid "Server Password:"
-msgstr ""
+msgstr "Palavra-passe do servidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
@@ -896,7 +897,7 @@ msgstr "Palavra-passe:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
@@ -905,7 +906,7 @@ msgstr "Deixar vazio para usar a porta padrão."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
-msgstr ""
+msgstr "Deixar em branco para não exigir."
 
 #: gui/loading/ProgressBar.js:48
 #, javascript-format
@@ -936,116 +937,116 @@ msgid ""
 "“Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.” \\n— Aeschylus (“Agamemnon”, 176–183)"
-msgstr ""
+msgstr "“Zeus \\[...] estabeleceu a sua lei: a sabedoria vem através do sofrimento. \\[...] Assim, os homens, contra a sua vontade, aprendem a praticar a moderação. \\[...] Tal graça é dura e violenta.” \\n— Ésquilo (“Agamemnon”, 176–183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "“She \\[Helen] brought to Ilium her dowry, destruction.” \\n— Aeschylus "
 "(“Agamemnon”, 406)"
-msgstr ""
+msgstr "“Ela, \\[Helena], trouxe para Ílio o seu dote, a destruição”. \\n— Ésquilo (“Agamemnon”, 406)"
 
 #: gui/text/quotes.txt:3
 msgid ""
 "“In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.” \\n— Aeschylus (“Prometheus Bound”, 224–225)"
-msgstr ""
+msgstr "“No coração de todo tirano brota no final este veneno, que o impede de confiar num amigo.” \\n— Ésquilo (“Prometeu Acorrentado”, 224–225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
 "“Time in the long run teaches all things.” \\n— Aeschylus (“Prometheus "
 "Bound”, 981)"
-msgstr ""
+msgstr "“O tempo a longo prazo ensina todas as coisas.” \\n— Ésquilo (“Prometeu Acorrentado”, 981)"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "“His resolve is not to seem, but to be, the best.” \\n— Aeschylus (“Seven "
 "Against Thebes”, 592)"
-msgstr ""
+msgstr "“A sua determinação não é parecer, mas ser, o melhor.” \\n— Ésquilo (“Sete Contra Tebas”, 592)"
 
 #: gui/text/quotes.txt:6
 msgid "“A prosperous fool is a grievous burden.” \\n— Aeschylus (fragment 383)"
-msgstr ""
+msgstr "“Um tolo próspero é um fardo pesado.” \\n— Ésquilo (fragmento 383)"
 
 #: gui/text/quotes.txt:7
 msgid ""
 "“The gods help those that help themselves.” \\n— Aesop (“Hercules and the "
 "Wagoner”)"
-msgstr ""
+msgstr "“Os deuses ajudam aos que ajudam a si próprios.” \\n— Esopo (“Hércules e o Carroceiro”)"
 
 #: gui/text/quotes.txt:8
 msgid ""
 "“It is thrifty to prepare today for the wants of tomorrow.” \\n— Aesop (“The"
 " Ant and the Grasshopper”)"
-msgstr ""
+msgstr "“É económico preparar hoje para as necessidades de amanhã.” \\n— Esopo (“A Formiga e o Gafanhoto”)"
 
 #: gui/text/quotes.txt:9
 msgid "“Union gives strength.” \\n— Aesop (“The Bundle of Sticks”)"
-msgstr ""
+msgstr "“A união faz a força” \\n— Esopo (“O Feixe de Varas”)"
 
 #: gui/text/quotes.txt:10
 msgid ""
 "“Never trust advice from a man in the throes of his own difficulty.” \\n— "
 "Aesop (“The Fox and the Goat”)"
-msgstr ""
+msgstr "“Nunca confies no conselho de um homem em dificuldades.” \\n— Esopo (“A Raposa e a Cabra”)"
 
 #: gui/text/quotes.txt:11
 msgid ""
 "“Familiarity breeds contempt; acquaintance softens prejudices.” \\n— Aesop "
 "(“The Fox and the Lion”)"
-msgstr ""
+msgstr "\"A familiaridade gera desprezo, o conhecimento amolece os preconceitos.” \\n— Esopo (“A Raposa e o Leão”)"
 
 #: gui/text/quotes.txt:12
 msgid ""
 "“Self-conceit may lead to self-destruction.” \\n— Aesop (“The Frog and the "
 "Ox”)"
-msgstr ""
+msgstr "“A presunção pode levar à autodestruição.” \\n— Esopo (“O Sapo e o Boi”)"
 
 #: gui/text/quotes.txt:13
 msgid ""
 "“Slow and steady wins the race.” \\n— Aesop (“The Hare and the Tortoise”)"
-msgstr ""
+msgstr "“Lento e constante ganha a corrida.” \\n— Esopo (“A Lebre e a Tartaruga”)"
 
 #: gui/text/quotes.txt:14
 msgid ""
 "“Better be wise by the misfortunes of others than by your own.” \\n— Aesop "
 "(“The Lion, the Ass, and the Fox Hunting”)"
-msgstr ""
+msgstr "“É melhor ser sábio pelos infortúnios dos outros do que pelos seus próprios.” \\n— Esopo (“O Leão, o Burro e a Caça da Raposa”)"
 
 #: gui/text/quotes.txt:15
 msgid ""
 "“Enemies' promises were made to be broken.” \\n— Aesop (“The Nurse and the "
 "Wolf”)"
-msgstr ""
+msgstr "“As promessas dos inimigos foram feitas para serem quebradas.” \\n— Esopo (“A Enfermeira e o Lobo”)"
 
 #: gui/text/quotes.txt:16
 msgid "“Any excuse will serve a tyrant.” \\n— Aesop (“The Wolf and the Lamb”)"
-msgstr ""
+msgstr "“Qualquer desculpa servirá a um tirano.” \\n— Esopo (“O Lobo e o Cordeiro”)"
 
 #: gui/text/quotes.txt:17
 msgid ""
 "“If I have done anything noble, that is a sufficient memorial; if I have "
 "not, all the statues in the world will not preserve my memory.” \\n— "
 "Agesilaus II of Sparta (Plutarch, “Moralia”, “Sayings of Spartans”, 215a)"
-msgstr ""
+msgstr "“Se eu fiz alguma coisa nobre, isso é um memorial suficiente, se não for, todas as estátuas do mundo não preservarão minha memória.” \\n— Agesilau II de Esparta (Plutarco, \"Morália\", \"Provérbios de Espartanos\", 215a)"
 
 #: gui/text/quotes.txt:18
 msgid ""
 "“Spartans do not ask how many, only where the enemy are.” \\n— Agis II of "
 "Sparta (Plutarch, “Moralia”, “Sayings of Spartans”, 215d)"
-msgstr ""
+msgstr "“Os espartanos não perguntam quantos, apenas onde estão os inimigos.” \\n— Agis II de Esparta (Plutarco, “Morália”, “Provérbios de Espartanos”, 215d)"
 
 #: gui/text/quotes.txt:19
 msgid ""
 "“Weep not for me, as I suffer unjustly, I am in a happier situation than my "
 "murderers.” \\n— Agis IV of Sparta upon seeing one of his executioners cry "
 "(Plutarch, “Parallel Lives”, “Agis”, sec. 20)"
-msgstr ""
+msgstr "“Não choreis por mim, como sofro injustamente, estou numa situação mais feliz do que os meus assassinos.” \\n— Agis IV de Esparta ao ver um de seus carrascos chorar (Plutarco, \"Vidas Paralelas\", \"Agis\", secção 20)"
 
 #: gui/text/quotes.txt:20
 msgid ""
 "“Sex and sleep alone make me conscious that I am mortal.” \\n— Alexander the"
 " Great (Plutarch, “Parallel Lives”, “Alexander”, sec. 22)"
-msgstr ""
+msgstr "“Só o sexo e o sono me consciencializam que sou mortal.” \\n— Alexandre o Grande (Plutarco, “Vidas Paralelas”, “Alexandre”, secção 22)"
 
 #: gui/text/quotes.txt:21
 msgid ""
@@ -1053,7 +1054,7 @@ msgid ""
 "you know that the end and object of conquest is to avoid the vices and "
 "infirmities of the subdued?” \\n— Alexander the Great (Plutarch, “Parallel "
 "Lives”, “Alexander”, sec. 40)"
-msgstr ""
+msgstr "“É muito servil viver no luxo, mas muito nobre trabalhar. \\[…] Não sabes que o fim e o objetivo da conquista é evitar os vícios e enfermidades dos subjugados?” \\n— Alexandre o Grande (Plutarco, “Vidas Paralelas”, “Alexandre”, secção 40)"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -1061,7 +1062,7 @@ msgid ""
 "danger; and it is delightful to live a life of valor and to die leaving "
 "behind immortal glory.” \\n— Alexander the Great, addressing his troops "
 "(Arrian, “The Anabasis of Alexander”, 5.26)"
-msgstr ""
+msgstr "“Gloriosos são os feitos daqueles que se submetem ao trabalho e correm o risco do perigo, e é delicioso viver uma vida de valor e morrer deixando para trás a glória imortal.” \\n— Alexandre o Grande, dirigindo-se às suas tropas (Arriano, \"O Anábase de Alexandre\", 5.26)"
 
 #: gui/text/quotes.txt:23
 msgid ""
@@ -1069,7 +1070,7 @@ msgid ""
 "labors themselves, provided they lead to glorious achievements.” \\n— "
 "Alexander the Great, addressing his troops (Arrian, “The Anabasis of "
 "Alexander”, 5.26)"
-msgstr ""
+msgstr "“Penso que para um homem corajoso não há fim para os trabalhos, exceto para os próprios trabalhos, desde que levem a realizações gloriosas.” \\n— Alexandre o Grande, dirigindo-se às suas tropas (Arriano, \"A Anábase de Alexandre\", 5.26)"
 
 #: gui/text/quotes.txt:24
 msgid ""

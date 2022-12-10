@@ -7,6 +7,7 @@
 # G N
 # João Oliveira
 # Damixinho
+# lecalam
 # Nuno de Mendonça Raimundo
 # Pedro matias
 # Pedro Santos
@@ -17,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-01-07 08:19+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2013-06-22 12:54+0000\n"
-"Last-Translator: Damixinho <rapazamistoso@gmail.com>, 2020\n"
+"Last-Translator: lecalam, 2022\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/wildfire-games/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,35 +28,35 @@ msgstr ""
 "Language: pt_PT\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
-#: graphics/CameraController.cpp:657
+#: graphics/CameraController.cpp:659
 #, c-format
 msgid "Scroll speed increased to %.1f"
-msgstr ""
+msgstr "Velocidade de deslocamento da vista aumentada para %.1f"
 
-#: graphics/CameraController.cpp:663
+#: graphics/CameraController.cpp:665
 #, c-format
 msgid "Scroll speed decreased to %.1f"
-msgstr ""
+msgstr "Velocidade de deslocamento da vista diminuída para %.1f"
 
-#: graphics/CameraController.cpp:670
+#: graphics/CameraController.cpp:672
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr ""
+msgstr "Velocidade de rotação aumentada para X=%.3f, Y=%.3f"
 
-#: graphics/CameraController.cpp:677
+#: graphics/CameraController.cpp:679
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr ""
+msgstr "Velocidade de rotação reduzida para X=%.3f, Y=%.3f"
 
-#: graphics/CameraController.cpp:683
+#: graphics/CameraController.cpp:685
 #, c-format
 msgid "Zoom speed increased to %.1f"
-msgstr ""
+msgstr "Velocidade do zoom aumentada para %.1f"
 
-#: graphics/CameraController.cpp:689
+#: graphics/CameraController.cpp:691
 #, c-format
 msgid "Zoom speed decreased to %.1f"
-msgstr ""
+msgstr "Velocidade do zoom diminuída para %.1f"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
@@ -200,12 +201,12 @@ msgstr "A Informação fornecida é insuficiente"
 msgid "Username already exists"
 msgstr "Nome de utilizador já existe"
 
-#: ps/Mod.cpp:82
+#: ps/Mod.cpp:93
 #, c-format
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr ""
+msgstr "Não foi possível gravar mod.json externo para o mod compactado '%s'. O mod deve ser reinstalado."
 
 #: ps/ModIo.cpp:264
 #, c-format
@@ -268,8 +269,8 @@ msgstr "Jogo guardado em '%s'"
 msgid "custom build"
 msgstr "compilação personalizada"
 
-#: renderer/Renderer.cpp:614 renderer/Renderer.cpp:617
-#: renderer/Renderer.cpp:754 renderer/Renderer.cpp:757
+#: renderer/Renderer.cpp:565 renderer/Renderer.cpp:568
+#: renderer/Renderer.cpp:680 renderer/Renderer.cpp:683
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Captura de ecrã guardada em '%s'"
