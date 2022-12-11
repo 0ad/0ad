@@ -1,13 +1,11 @@
 #version 110
 
-#include "common/vertex.h"
+#include "sky.h"
 
-varying vec3 v_tex;
+#include "common/vertex.h"
 
 VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
 VERTEX_INPUT_ATTRIBUTE(1, vec3, a_uv0);
-
-uniform mat4 transform;
 
 void main()
 {

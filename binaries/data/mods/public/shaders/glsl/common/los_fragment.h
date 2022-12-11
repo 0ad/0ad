@@ -1,21 +1,17 @@
-#ifndef INCLUDED_LOS_FRAGMENT
-#define INCLUDED_LOS_FRAGMENT
+#ifndef INCLUDED_COMMON_LOS_FRAGMENT
+#define INCLUDED_COMMON_LOS_FRAGMENT
+
+#include "common/texture.h"
 
 #if !IGNORE_LOS
-	uniform sampler2D losTex;
-
-	varying vec2 v_los;
-#endif
-
-float getLOS()
+float getLOS(sampler2D losTex, vec2 uv)
 {
-#if !IGNORE_LOS
-	float los = texture2D(losTex, v_los).r;
+	float los = SAMPLE_2D(losTex, uv).r;
 	float threshold = 0.03;
 	return clamp(los - threshold, 0.0, 1.0) / (1.0 - threshold);
-#else
-	return 1.0;
-#endif
-}
 
-#endif // INCLUDED_LOS_FRAGMENT
+	return 1.0;
+}
+#endif
+
+#endif // INCLUDED_COMMON_LOS_FRAGMENT

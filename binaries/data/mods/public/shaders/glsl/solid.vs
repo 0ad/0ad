@@ -1,8 +1,8 @@
 #version 110
 
-#include "common/vertex.h"
+#include "solid.h"
 
-uniform mat4 transform;
+#include "common/vertex.h"
 
 VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
 

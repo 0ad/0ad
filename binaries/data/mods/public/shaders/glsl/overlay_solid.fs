@@ -1,8 +1,8 @@
 #version 120
 
-#include "common/fragment.h"
+#include "overlay_solid.h"
 
-uniform vec4 color;
+#include "common/fragment.h"
 
 void main()
 {

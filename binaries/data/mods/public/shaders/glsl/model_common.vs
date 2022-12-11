@@ -1,69 +1,28 @@
 #version 120
 
+#include "model_common.h"
+
 #include "common/los_vertex.h"
 #include "common/shadows_vertex.h"
 #include "common/vertex.h"
 
-uniform mat4 transform;
-uniform vec3 cameraPos;
-#ifdef GL_ES
-uniform mediump vec3 sunDir;
-uniform mediump vec3 sunColor;
-#else
-uniform vec3 sunDir;
-uniform vec3 sunColor;
-#endif
-uniform mat4 instancingTransform;
-
-#if USE_WIND
-  uniform float sim_time;
-  uniform vec4 windData;
-#endif
-
-varying vec4 v_lighting;
-varying vec2 v_tex;
-
-#if (USE_INSTANCING || USE_GPU_SKINNING) && USE_AO
-  varying vec2 v_tex2;
-#endif
-
-#if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX
-  varying vec4 v_normal;
-  #if (USE_INSTANCING || USE_GPU_SKINNING) && (USE_NORMAL_MAP || USE_PARALLAX)
-    varying vec4 v_tangent;
-    //varying vec3 v_bitangent;
-  #endif
-  #if USE_SPECULAR || USE_SPECULAR_MAP
-    varying vec3 v_half;
-  #endif
-  #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_PARALLAX
-    varying vec3 v_eyeVec;
-  #endif
-#endif
-
 VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
 VERTEX_INPUT_ATTRIBUTE(1, vec3, a_normal);
 #if (USE_INSTANCING || USE_GPU_SKINNING)
-  VERTEX_INPUT_ATTRIBUTE(2, vec4, a_tangent);
+VERTEX_INPUT_ATTRIBUTE(2, vec4, a_tangent);
 #endif
 VERTEX_INPUT_ATTRIBUTE(3, vec2, a_uv0);
 VERTEX_INPUT_ATTRIBUTE(4, vec2, a_uv1);
-
 #if USE_GPU_SKINNING
-  const int MAX_INFLUENCES = 4;
-  const int MAX_BONES = 64;
-  uniform mat4 skinBlendMatrices[MAX_BONES];
-  VERTEX_INPUT_ATTRIBUTE(5, vec4, a_skinJoints);
-  VERTEX_INPUT_ATTRIBUTE(6, vec4, a_skinWeights);
+VERTEX_INPUT_ATTRIBUTE(5, vec4, a_skinJoints);
+VERTEX_INPUT_ATTRIBUTE(6, vec4, a_skinWeights);
 #endif
-
 
 vec4 fakeCos(vec4 x)
 {
 	vec4 tri = abs(fract(x + 0.5) * 2.0 - 1.0);
 	return tri * tri *(3.0 - 2.0 * tri);
 }
-
 
 void main()
 {
@@ -168,5 +127,7 @@ void main()
 
   calculatePositionInShadowSpace(position);
 
-  calculateLOSCoordinates(position.xz);
+#if !IGNORE_LOS
+  v_los = calculateLOSCoordinates(position.xz, losTransform);
+#endif
 }

@@ -7,6 +7,7 @@
 // * Luma calculated by 3 components instead of the only green one.
 
 #include "common/fragment.h"
+#include "common/stage.h"
 
 #define FXAA_QUALITY__PRESET 10
 
@@ -604,11 +605,16 @@ vec4 FxaaPixelShader(
     return vec4(FxaaTexTop(tex, posM).xyz, lumaM);
 }
 
-uniform sampler2D renderedTex;
-uniform float width;
-uniform float height;
+BEGIN_DRAW_TEXTURES
+	TEXTURE_2D(0, renderedTex)
+END_DRAW_TEXTURES
 
-varying vec2 v_tex;
+BEGIN_DRAW_UNIFORMS
+	UNIFORM(float, width)
+	UNIFORM(float, height)
+END_DRAW_UNIFORMS
+
+VERTEX_OUTPUT(0, vec2, v_tex);
 
 void main()
 {
@@ -617,7 +623,7 @@ void main()
     const float fxaaQualityEdgeThreshold = 0.125;
     const float fxaaQualityEdgeThresholdMin = 0.0312;
     OUTPUT_FRAGMENT_SINGLE_COLOR(FxaaPixelShader(
-        v_tex, renderedTex,
+        v_tex, GET_DRAW_TEXTURE_2D(renderedTex),
         vec2(1.0, 1.0) / vec2(width, height),
         fxaaQualitySubpix,
         fxaaQualityEdgeThreshold,

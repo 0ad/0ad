@@ -1,12 +1,7 @@
-#ifndef INCLUDED_FOG
-#define INCLUDED_FOG
+#ifndef INCLUDED_COMMON_FOG
+#define INCLUDED_COMMON_FOG
 
-#if USE_FOG
-uniform vec3 fogColor;
-uniform vec2 fogParams;
-#endif
-
-vec3 applyFog(vec3 color)
+vec3 applyFog(vec3 color, vec3 fogColor, vec2 fogParams)
 {
 #if USE_FOG
 	float density = fogParams.x;
@@ -26,4 +21,4 @@ vec3 applyFog(vec3 color)
 #endif
 }
 
-#endif // INCLUDED_FOG
+#endif // INCLUDED_COMMON_FOG

@@ -1,8 +1,8 @@
 #version 110
 
-#include "common/fragment.h"
+#include "solid.h"
 
-uniform vec4 color;
+#include "common/fragment.h"
 
 void main()
 {

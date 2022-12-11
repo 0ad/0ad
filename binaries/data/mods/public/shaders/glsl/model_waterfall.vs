@@ -1,40 +1,28 @@
 #version 120
 
+#include "model_waterfall.h"
+
 #include "common/los_vertex.h"
 #include "common/shadows_vertex.h"
 #include "common/vertex.h"
-
-uniform mat4 transform;
-uniform vec3 cameraPos;
-uniform vec3 sunDir;
-uniform vec3 sunColor;
-uniform mat4 instancingTransform;
-
-uniform float sim_time;
-uniform vec2 translation;
 
 VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
 VERTEX_INPUT_ATTRIBUTE(1, vec3, a_normal);
 VERTEX_INPUT_ATTRIBUTE(2, vec2, a_uv0);
 VERTEX_INPUT_ATTRIBUTE(3, vec2, a_uv1);
 
-varying vec4 worldPos;
-varying vec4 v_tex;
-varying vec3 v_half;
-varying vec3 v_normal;
-varying float v_transp;
-varying vec3 v_lighting;
-
 void main()
 {
-	worldPos = instancingTransform * vec4(a_vertex, 1.0);
+	vec4 worldPos = instancingTransform * vec4(a_vertex, 1.0);
 
 	v_tex.xy = a_uv0 + sim_time * translation;
 	v_transp = a_uv1.x;
 
 	calculatePositionInShadowSpace(worldPos);
 
-	calculateLOSCoordinates(worldPos.xz);
+#if !IGNORE_LOS
+	v_los = calculateLOSCoordinates(worldPos.xz, losTransform);
+#endif
 
 	vec3 eyeVec = cameraPos.xyz - worldPos.xyz;
 	vec3 sunVec = -sunDir;

@@ -1,25 +1,13 @@
 #version 120
 
+#include "model_water.h"
+
 #include "common/los_vertex.h"
 #include "common/shadows_vertex.h"
 #include "common/vertex.h"
 
-uniform mat4 transform;
-uniform vec3 cameraPos;
-uniform vec3 sunDir;
-uniform vec3 sunColor;
-uniform mat4 instancingTransform;
-
-uniform float sim_time;
-uniform vec2 translation;
-
 VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
-VERTEX_INPUT_ATTRIBUTE(1, vec3, a_normal);
 VERTEX_INPUT_ATTRIBUTE(2, vec2, a_uv0);
-VERTEX_INPUT_ATTRIBUTE(3, vec2, a_uv1);
-
-varying vec4 worldPos;
-varying vec4 v_tex;
 
 vec4 fakeCos(vec4 x)
 {
@@ -37,7 +25,9 @@ void main()
 
 	calculatePositionInShadowSpace(worldPos);
 
-	calculateLOSCoordinates(worldPos.xz);
+#if !IGNORE_LOS
+	v_los = calculateLOSCoordinates(worldPos.xz, losTransform);
+#endif
 
 	OUTPUT_VERTEX_POSITION(transform * worldPos);
 }

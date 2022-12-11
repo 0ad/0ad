@@ -1,44 +1,14 @@
 #version 120
 
+#include "model_water.h"
+
 #include "common/debug_fragment.h"
 #include "common/fragment.h"
 #include "common/los_fragment.h"
 #include "common/shadows_fragment.h"
 
-uniform sampler2D baseTex;
-uniform sampler2D aoTex;
-uniform sampler2D normTex;
-uniform sampler2D specTex;
-
-uniform sampler2D waterTex;
-uniform samplerCube skyCube;
-
-#if USE_OBJECTCOLOR
-  uniform vec3 objectColor;
-#else
-#if USE_PLAYERCOLOR
-  uniform vec3 playerColor;
-#endif
-#endif
-
-uniform vec3 shadingColor;
-uniform vec3 ambient;
-uniform vec3 sunColor;
-uniform vec3 sunDir;
-uniform vec3 cameraPos;
-
-uniform float specularStrength;
-uniform float waviness;
-uniform vec3 waterTint;
-uniform float murkiness;
-uniform vec3 reflectionTint;
-uniform float reflectionTintStrength;
-
 float waterDepth = 4.0;
 float fullDepth = 5.0;		// Depth at which to use full murkiness (shallower water will be clearer)
-
-varying vec4 worldPos;
-varying vec4 v_tex;
 
 void main()
 {
@@ -50,7 +20,7 @@ void main()
 	vec3 reflColor, refrColor, specular;
 
 	//vec4 wtex = textureGrad(waterTex, vec3(fract(v_tex.xy), v_tex.z), dFdx(v_tex.xy), dFdy(v_tex.xy));
-	vec4 wtex = texture2D(waterTex, fract(v_tex.xy));
+	vec4 wtex = SAMPLE_2D(GET_DRAW_TEXTURE_2D(waterTex), fract(v_tex.xy));
 
 	n = normalize(wtex.xzy - vec3(0.5, 0.5, 0.5));
 	l = -sunDir;
@@ -70,7 +40,7 @@ void main()
 
 	vec3 eye = reflect(v, n);
 
-	vec3 tex = textureCube(skyCube, eye).rgb;
+	vec3 tex = SAMPLE_CUBE(GET_DRAW_TEXTURE_CUBE(skyCube), eye).rgb;
 
 	reflColor = mix(tex, sunColor * reflectionTint,
 					reflectionTintStrength);
@@ -92,7 +62,9 @@ void main()
 #endif
 
 	vec3 color = mix(refrColor + 0.3*specular, reflColor + specular, fresShadow);
-	color *= getLOS();
+#if !IGNORE_LOS
+	color *= getLOS(GET_DRAW_TEXTURE_2D(losTex), v_los);
+#endif
 
 	// Make alpha vary based on both depth (so it blends with the shore) and view angle (make it
 	// become opaque faster at lower view angles so we can't look "underneath" the water plane)

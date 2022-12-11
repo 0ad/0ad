@@ -1,46 +1,19 @@
 #version 120
 
+#include "terrain_common.h"
+
 #include "common/los_vertex.h"
 #include "common/shadows_vertex.h"
 #include "common/vertex.h"
 
-uniform mat4 transform;
-uniform vec3 cameraPos;
-#ifdef GL_ES
-uniform mediump vec3 sunDir;
-uniform mediump vec3 sunColor;
-#else
-uniform vec3 sunDir;
-uniform vec3 sunColor;
-#endif
-uniform vec2 textureTransform;
-
-varying vec3 v_lighting;
-
-varying vec2 v_blend;
-
-#if USE_TRIPLANAR
-  varying vec3 v_tex;
-#else
-  varying vec2 v_tex;
-#endif
-
-varying vec3 v_normal;
-
-#if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP
-  #if USE_NORMAL_MAP
-    varying vec4 v_tangent;
-    varying vec3 v_bitangent;
-  #endif
-  #if USE_SPECULAR || USE_SPECULAR_MAP
-    varying vec3 v_half;
-  #endif
-#endif
-
 VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
 VERTEX_INPUT_ATTRIBUTE(1, vec3, a_normal);
+#if DECAL
 VERTEX_INPUT_ATTRIBUTE(2, vec2, a_uv0);
+#endif
+#if BLEND
 VERTEX_INPUT_ATTRIBUTE(3, vec2, a_uv1);
+#endif
 
 void main()
 {
@@ -78,8 +51,9 @@ void main()
   #endif
 
   calculatePositionInShadowSpace(vec4(a_vertex, 1.0));
-
+#if USE_SPECULAR || USE_SPECULAR_MAP || USE_NORMAL_MAP || USE_TRIPLANAR
   v_normal = a_normal;
+#endif
 
   #if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_TRIPLANAR
     #if USE_NORMAL_MAP
@@ -98,5 +72,7 @@ void main()
     #endif
   #endif
 
-  calculateLOSCoordinates(a_vertex.xz);
+#if !IGNORE_LOS
+  v_los = calculateLOSCoordinates(a_vertex.xz, losTransform);
+#endif
 }

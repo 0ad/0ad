@@ -1,15 +1,8 @@
 #version 110
 
+#include "debug_overlay.h"
+
 #include "common/vertex.h"
-
-uniform mat4 transform;
-#if DEBUG_TEXTURED
-uniform vec2 textureTransform;
-#endif
-
-#if DEBUG_TEXTURED
-varying vec2 v_tex;
-#endif
 
 VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
 #if DEBUG_TEXTURED

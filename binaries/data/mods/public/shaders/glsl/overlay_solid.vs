@@ -1,9 +1,8 @@
 #version 120
 
-#include "common/vertex.h"
+#include "overlay_solid.h"
 
-uniform mat4 transform;
-uniform vec4 instancingTransform;
+#include "common/vertex.h"
 
 VERTEX_INPUT_ATTRIBUTE(0, vec3, a_vertex);
 

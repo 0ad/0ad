@@ -1,24 +1,7 @@
 #ifndef INCLUDED_SHADOWS_FRAGMENT
 #define INCLUDED_SHADOWS_FRAGMENT
 
-#if USE_SHADOW
-  varying float v_depth;
-  #if USE_SHADOW_SAMPLER
-    uniform sampler2DShadow shadowTex;
-    #if USE_SHADOW_PCF
-      uniform vec4 shadowScale;
-    #endif
-  #else
-    uniform sampler2D shadowTex;
-  #endif
-  #if SHADOWS_CASCADE_COUNT == 1
-    uniform float shadowDistance;
-    varying vec4 v_shadow;
-  #else
-    uniform float shadowDistances[SHADOWS_CASCADE_COUNT];
-    varying vec4 v_shadow[SHADOWS_CASCADE_COUNT];
-  #endif
-#endif
+#include "common/shadows.h"
 
 float getShadowImpl(vec4 shadowVertex, float shadowBias)
 {
@@ -30,17 +13,17 @@ float getShadowImpl(vec4 shadowVertex, float shadowBias)
       vec4 size = vec4(offset + 1.0, 2.0 - offset);
       vec4 weight = (vec4(1.0, 1.0, -0.5, -0.5) + (shadowVertex.xy - 0.5*offset).xyxy) * shadowScale.zwzw;
       return (1.0/9.0)*dot(size.zxzx*size.wwyy,
-        vec4(shadow2D(shadowTex, vec3(weight.zw, biasedShdwZ)).r,
-             shadow2D(shadowTex, vec3(weight.xw, biasedShdwZ)).r,
-             shadow2D(shadowTex, vec3(weight.zy, biasedShdwZ)).r,
-             shadow2D(shadowTex, vec3(weight.xy, biasedShdwZ)).r));
+        vec4(SAMPLE_2D_SHADOW(GET_DRAW_TEXTURE_2D_SHADOW(shadowTex), vec3(weight.zw, biasedShdwZ)).r,
+             SAMPLE_2D_SHADOW(GET_DRAW_TEXTURE_2D_SHADOW(shadowTex), vec3(weight.xw, biasedShdwZ)).r,
+             SAMPLE_2D_SHADOW(GET_DRAW_TEXTURE_2D_SHADOW(shadowTex), vec3(weight.zy, biasedShdwZ)).r,
+             SAMPLE_2D_SHADOW(GET_DRAW_TEXTURE_2D_SHADOW(shadowTex), vec3(weight.xy, biasedShdwZ)).r));
     #else
-      return shadow2D(shadowTex, vec3(shadowVertex.xy, biasedShdwZ)).r;
+      return SAMPLE_2D_SHADOW(GET_DRAW_TEXTURE_2D_SHADOW(shadowTex), vec3(shadowVertex.xy, biasedShdwZ)).r;
     #endif
   #else
     if (biasedShdwZ >= 1.0)
       return 1.0;
-    return (biasedShdwZ < texture2D(shadowTex, shadowVertex.xy).x ? 1.0 : 0.0);
+    return (biasedShdwZ < SAMPLE_2D(GET_DRAW_TEXTURE_2D(shadowTex), shadowVertex.xy).x ? 1.0 : 0.0);
   #endif
 #else
   return 1.0;

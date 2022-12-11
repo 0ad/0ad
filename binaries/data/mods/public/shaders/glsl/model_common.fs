@@ -1,58 +1,12 @@
 #version 120
 
+#include "model_common.h"
+
 #include "common/debug_fragment.h"
 #include "common/fog.h"
 #include "common/fragment.h"
 #include "common/los_fragment.h"
 #include "common/shadows_fragment.h"
-
-uniform sampler2D baseTex;
-uniform sampler2D aoTex;
-uniform sampler2D normTex;
-uniform sampler2D specTex;
-
-#if USE_OBJECTCOLOR
-  uniform vec3 objectColor;
-#else
-#if USE_PLAYERCOLOR
-  uniform vec3 playerColor;
-#endif
-#endif
-
-uniform vec3 shadingColor;
-uniform vec3 ambient;
-uniform vec3 sunColor;
-uniform vec3 sunDir;
-
-varying vec4 v_lighting;
-varying vec2 v_tex;
-
-#if (USE_INSTANCING || USE_GPU_SKINNING) && USE_AO
-  varying vec2 v_tex2;
-#endif
-
-#if USE_SPECULAR
-  uniform float specularPower;
-  uniform vec3 specularColor;
-#endif
-
-#if USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX || USE_AO
-  uniform vec4 effectSettings;
-#endif
-
-#if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX
-  varying vec4 v_normal;
-  #if (USE_INSTANCING || USE_GPU_SKINNING) && (USE_NORMAL_MAP || USE_PARALLAX)
-    varying vec4 v_tangent;
-    //varying vec3 v_bitangent;
-  #endif
-  #if USE_SPECULAR || USE_SPECULAR_MAP
-    varying vec3 v_half;
-  #endif
-  #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_PARALLAX
-    varying vec3 v_eyeVec;
-  #endif
-#endif
 
 void main()
 {
@@ -65,7 +19,7 @@ void main()
 
   #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_PARALLAX
   {
-    float h = texture2D(normTex, coord).a;
+    float h = SAMPLE_2D(GET_DRAW_TEXTURE_2D(normTex), coord).a;
 
     vec3 eyeDir = normalize(v_eyeVec * tbn);
     float dist = length(v_eyeVec);
@@ -88,19 +42,19 @@ void main()
 		  t = (h < height) ? s : 0.0;
 		  vec2 temp = (h < height) ? move : nil;
 		  coord += temp;
-		  h = texture2D(normTex, coord).a;
+		  h = SAMPLE_2D(GET_DRAW_TEXTURE_2D(normTex), coord).a;
 		}
 
 		// Move back to where we collided with the surface.
 		// This assumes the surface is linear between the sample point before we
 		// intersect the surface and after we intersect the surface
-		float hp = texture2D(normTex, coord - move).a;
+		float hp = SAMPLE_2D(GET_DRAW_TEXTURE_2D(normTex), coord - move).a;
 		coord -= move * ((h - height) / (s + h - hp));
 	}
   }
   #endif
 
-  vec4 tex = texture2D(baseTex, coord);
+  vec4 tex = SAMPLE_2D(GET_DRAW_TEXTURE_2D(baseTex), coord);
 
   // Alpha-test as early as possible
   #ifdef REQUIRE_ALPHA_GEQUAL
@@ -117,12 +71,10 @@ void main()
   vec3 texdiffuse = tex.rgb;
 
   // Apply-coloring based on texture alpha
-  #if USE_OBJECTCOLOR
-    texdiffuse *= mix(objectColor, vec3(1.0, 1.0, 1.0), tex.a);
-  #else
   #if USE_PLAYERCOLOR
-    texdiffuse *= mix(playerColor, vec3(1.0, 1.0, 1.0), tex.a);
-  #endif
+    texdiffuse *= mix(playerColor.rgb, vec3(1.0, 1.0, 1.0), tex.a);
+  #elif USE_OBJECTCOLOR
+    texdiffuse *= mix(objectColor, vec3(1.0, 1.0, 1.0), tex.a);
   #endif
 
   #if USE_SPECULAR || USE_SPECULAR_MAP || USE_NORMAL_MAP
@@ -130,7 +82,7 @@ void main()
   #endif
 
   #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_NORMAL_MAP
-    vec3 ntex = texture2D(normTex, coord).rgb * 2.0 - 1.0;
+    vec3 ntex = SAMPLE_2D(GET_DRAW_TEXTURE_2D(normTex), coord).rgb * 2.0 - 1.0;
     ntex.y = -ntex.y;
     normal = normalize(tbn * ntex);
     vec3 bumplight = max(dot(-sunDir, normal), 0.0) * sunColor;
@@ -144,7 +96,7 @@ void main()
     vec3 specCol;
     float specPow;
     #if USE_SPECULAR_MAP
-      vec4 s = texture2D(specTex, coord);
+      vec4 s = SAMPLE_2D(GET_DRAW_TEXTURE_2D(specTex), coord);
       specCol = s.rgb;
       specular.a = s.a;
       specPow = effectSettings.y;
@@ -156,7 +108,7 @@ void main()
   #endif
 
   #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_AO
-    float ao = texture2D(aoTex, v_tex2).r;
+    float ao = SAMPLE_2D(GET_DRAW_TEXTURE_2D(aoTex), v_tex2).r;
   #else
     float ao = 1.0;
   #endif
@@ -168,9 +120,11 @@ void main()
     color = mix(texdiffuse, color, specular.a);
   #endif
 
-  color = applyFog(color);
+  color = applyFog(color, fogColor, fogParams);
 
-  color *= getLOS();
+#if !IGNORE_LOS
+  color *= getLOS(GET_DRAW_TEXTURE_2D(losTex), v_los);
+#endif
 
   color *= shadingColor;
 
