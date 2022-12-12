@@ -50,7 +50,7 @@ msgstr "Escolher a velocidade do jogo"
 #: gui/session/Menu.js:41
 #, javascript-format
 msgid "Press %(hotkey)s to toggle this menu."
-msgstr "Pressiona  %(hotkey)s para abrir o menu."
+msgstr "Pressiona %(hotkey)s para abrir ou fechar este menu."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
@@ -67,11 +67,11 @@ msgstr "Estatísticas"
 #: gui/session/MenuButtons.js:90
 #, javascript-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr "Pressiona %(hotkey)s para abrir o ecrã de estatísticas."
+msgstr "Pressiona %(hotkey)s para abrir ou fechar o ecrã de estatísticas."
 
 #: gui/session/MenuButtons.js:133
 msgid "Lobby"
-msgstr "Sala de Espera"
+msgstr "Sala de espera"
 
 #: gui/session/MenuButtons.js:142
 #, javascript-format
@@ -271,7 +271,7 @@ msgstr "Conversa privada"
 #: gui/session/chat/ChatHistory.js:132
 msgctxt "chat history filter"
 msgid "Game notifications"
-msgstr "Notificações do jogo."
+msgstr "Notificações do jogo"
 
 #: gui/session/chat/ChatHistory.js:137
 msgctxt "chat history filter"
@@ -572,19 +572,19 @@ msgstr "Promover unidades selecionadas"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:269
 msgid "Enable culling"
-msgstr "Habilitar selecção"
+msgstr "Ativar \"culling\""
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:287
 msgid "Lock cull camera"
-msgstr "Bloquear câmara selecionada."
+msgstr "Bloquear câmara \"cull\""
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:305
 msgid "Display camera frustum"
-msgstr "Mostrar frustum da câmara,"
+msgstr "Mostrar tronco da câmara"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:323
 msgid "Display shadows frustum"
-msgstr "Exibir frustum das sombras."
+msgstr "Mostrar tronco das sombras"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:22
 msgid "Render Debug Mode Disabled"
@@ -592,15 +592,15 @@ msgstr "Modo de depuração de render desativado"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:23
 msgid "Render Debug Mode AO"
-msgstr "Modo de depuração de render AO"
+msgstr "Modo de depuração de render de oclusão do ambiente"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:24
 msgid "Render Debug Mode Alpha"
-msgstr "Modo de depuração de render Alpha"
+msgstr "Modo de depuração de render alfa"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:25
 msgid "Render Debug Mode Custom"
-msgstr "Modo de depuração de render Personalizado"
+msgstr "Modo de depuração de render personalizado"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -699,7 +699,7 @@ msgstr "Inimigo"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr "Subornar uma unidade aleatória deste jogador e partilhar a sua visão durante um período limitado."
+msgstr "Suborna uma unidade aleatória deste jogador e partilha a sua visão durante um período limitado."
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
 msgid "A failed bribe will cost you:"
@@ -794,7 +794,7 @@ msgstr "Certifica-te que todos os jogadores usam os mesmos mods."
 #: gui/session/message_box/OutOfSyncNetwork.js:35
 msgctxt "Out-Of-Sync"
 msgid "Click on \"Report a Bug\" in the main menu to help fix this."
-msgstr "Clica em \"Comunicar um Erro\" no menu principal para ajudares a corrigir isto."
+msgstr "Clica em \"Comunicar um erro\" no menu principal para nos ajudares a corrigir isto."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:36
 #, javascript-format
@@ -806,7 +806,7 @@ msgstr "Repetição gravada em %(filepath)s"
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Dumping current state to %(filepath)s"
-msgstr "A fazer dumping do estado atual para %(filepath)s"
+msgstr "A fazer \"dumping\" do estado atual para %(filepath)s"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:51
 #: gui/session/message_box/OutOfSyncReplay.js:23
@@ -816,7 +816,7 @@ msgstr "Fora de sincronismo"
 #. Translation: This is shown if replay is out of sync
 #: gui/session/message_box/OutOfSyncReplay.js:28
 msgid "Out-Of-Sync"
-msgstr "Dessincronizado."
+msgstr "Dessincronizado"
 
 #: gui/session/message_box/QuitConfirmation.js:6
 #: gui/session/message_box/QuitConfirmationMenu.js:66
@@ -838,7 +838,7 @@ msgstr "Ficar"
 #: gui/session/message_box/QuitConfirmation.js:19
 #: gui/session/message_box/QuitConfirmationReplay.js:27
 msgid "Quit and View Summary"
-msgstr "Sair e ver o resumo"
+msgstr "Sair e ver as estatísticas"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:54
 msgid "VICTORIOUS!"
@@ -925,7 +925,7 @@ msgstr "Enviar um sinal para os teus aliados"
 msgid ""
 "Find idle worker\n"
 "Number of idle workers."
-msgstr "Encontrar trabalhador parado\nQuantidade de trabalhadores parados."
+msgstr "Encontra trabalhadores parados\nQuantidade de trabalhadores parados."
 
 #: gui/session/selection_details.js:65
 #, javascript-format
@@ -1147,7 +1147,7 @@ msgstr[2] "%(number)s entidades da classe %(class)s"
 #: gui/session/selection_panels.js:790
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
-msgstr "Restante: %(entityCounts)s"
+msgstr "Falta: %(entityCounts)s"
 
 #: gui/session/selection_panels.js:791
 msgctxt "Separator for a list of entity counts"
@@ -1156,11 +1156,11 @@ msgstr ", "
 
 #: gui/session/selection_panels.js:843
 msgid "Cannot research while upgrading."
-msgstr "Não é possível desenvolver durante a promoção."
+msgstr "Não é possível pesquisar durante a uma promoção."
 
 #: gui/session/selection_panels.js:1073
 msgid "Cannot train while upgrading."
-msgstr "Não é possível treinar durante a promoção."
+msgstr "Não é possível treinar durante uma promoção."
 
 #: gui/session/selection_panels.js:1142
 #, javascript-format
@@ -1357,7 +1357,7 @@ msgstr "Pontos de captura"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):82
 msgid "Attack and Resistance"
-msgstr "Ataque e Resistência"
+msgstr "Ataque e resistência"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):97
 msgid "Experience"
@@ -1387,7 +1387,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s/%(hotkey_structree)s: Ver informações gerais da civilização / Árvore de Estrutura\nA última abertura será aberta ao clicar."
+msgstr "%(civ)s\n%(hotkey_civinfo)s/%(hotkey_structree)s: ver informações gerais da civilização / árvore de estrutura\nA última aberta será reaberta ao clicar."
 
 #: gui/session/top_panel/CounterManager.js:101
 #, javascript-format
@@ -1422,7 +1422,7 @@ msgstr "%(popCount)s/%(popLimit)s (%(popMax)s)"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 msgid "Population: current/limit (max)"
-msgstr "População: atual/limite (máx)"
+msgstr "População: atual / limite (máximo)"
 
 #: gui/session/top_panel/CounterPopulation.js:70
 msgid "Gatherers: current"
@@ -1478,7 +1478,7 @@ msgstr "Vender %(resource)s"
 #, javascript-format
 msgctxt "buy action"
 msgid "+%(amount)s"
-msgstr "+%(amount)s\n "
+msgstr "+%(amount)s"
 
 #: gui/session/trade/BarterButton.js:111
 #, javascript-format
@@ -1659,7 +1659,7 @@ msgstr "Pronto"
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
-msgstr "Este é o mercado de origem da rota de comércio.\nClique com o botão direito para cancelar a rota de comércio."
+msgstr "Este é o mercado de origem da rota de comércio.\nClica com o botão direito para cancelar a rota de comércio."
 
 #: gui/session/unit_actions.js:678
 msgid "Origin trade market."
@@ -1713,11 +1713,11 @@ msgstr "Desalojar todos."
 
 #: gui/session/unit_actions.js:1388
 msgid "Unload Turrets."
-msgstr "Desocupar cubelos."
+msgstr "Desocupa os cubelos."
 
 #: gui/session/unit_actions.js:1408
 msgid "Destroy the selected units or structures."
-msgstr "Destruir as unidades ou estruturas selecionadas."
+msgstr "Destrói as unidades ou estruturas selecionadas."
 
 #: gui/session/unit_actions.js:1410
 #, javascript-format
@@ -1732,15 +1732,15 @@ msgstr "Cancelar a ordem atual."
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
-msgstr "Enviar as unidades selecionadas em movimento de ataque para o local definido depois de deixarem os recursos."
+msgstr "Envia as unidades selecionadas em movimento de ataque para o local definido depois de armazenarem os recursos."
 
 #: gui/session/unit_actions.js:1503
 msgid "Order the selected units to garrison in a structure or unit."
-msgstr "Ordenar às unidades selecionadas para guarnecerem uma estrutura ou unidade."
+msgstr "Ordena às unidades selecionadas que entrem numa estrutura ou unidade."
 
 #: gui/session/unit_actions.js:1525
 msgid "Order the selected units to occupy a turret point."
-msgstr "Ordenar as unidades selecionadas a ocuparem um cubelo."
+msgstr "Ordena às unidades selecionadas que ocupem um cubelo."
 
 #: gui/session/unit_actions.js:1547
 msgid "Unload"
@@ -1748,7 +1748,7 @@ msgstr "Desalojar"
 
 #: gui/session/unit_actions.js:1567
 msgid "Order the selected units to repair a structure, ship, or siege engine."
-msgstr "Ordenar às unidades selecionadas para reparar uma estrutura, um navio ou uma máquina de cerco."
+msgstr "Ordena às unidades selecionadas que reparem uma estrutura, um barco ou uma máquina de cerco."
 
 #: gui/session/unit_actions.js:1588
 msgid "Focus on Rally Point."
@@ -1760,7 +1760,7 @@ msgstr "Voltar a trabalhar"
 
 #: gui/session/unit_actions.js:1646
 msgid "Order the selected units to guard a structure or unit."
-msgstr "Ordenar às unidades selecionadas para vigiarem uma estrutura ou unidade."
+msgstr "Ordena às unidades selecionadas que vigiem uma estrutura ou unidade."
 
 #: gui/session/unit_actions.js:1666
 msgid "Remove guard"
@@ -1778,7 +1778,7 @@ msgstr "Patrulha"
 
 #: gui/session/unit_actions.js:1706
 msgid "Attack all encountered enemy units while avoiding structures."
-msgstr "Atacar todas as unidades inimigas e evitar estruturas."
+msgstr "Ataca todas as unidades inimigas e evita estruturas."
 
 #: gui/session/unit_actions.js:1734
 msgid "Press to allow allies to use this dropsite"
@@ -1802,11 +1802,11 @@ msgstr "Podes usar este armazém"
 
 #: gui/session/unit_actions.js:1800
 msgid "Activate auto-queue for selected structures."
-msgstr "Ativar a fila automática nas estruturas selecionadas."
+msgstr "Ativa a fila automática nas estruturas selecionadas."
 
 #: gui/session/unit_actions.js:1820
 msgid "Deactivate auto-queue for selected structures."
-msgstr "Desativar a fila automática nas estruturas selecionadas."
+msgstr "Desativa a fila automática nas estruturas selecionadas."
 
 #: gui/session/unit_actions.js:1885
 msgid "The entity has to be killed before it can be gathered from"
