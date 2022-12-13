@@ -1581,7 +1581,7 @@ msgstr "Recursos:"
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] "Há %(numberTrading)s comerciante de terra de negociação"
+msgstr[0] "Há %(numberTrading)s comerciante terrestre de negociação"
 msgstr[1] "Existem %(numberTrading)s comerciantes terrestres em negociação"
 msgstr[2] "Existem %(numberTrading)s comerciantes terrestres em negociação"
 
@@ -1597,9 +1597,9 @@ msgstr[2] "%(numberOfLandTraders)s inativo"
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] "%(numberOfLandTraders)s comerciante de terra inativo"
-msgstr[1] "%(numberOfLandTraders)s comerciantes de terra inativos"
-msgstr[2] "%(numberOfLandTraders)s comerciantes de terra inativos"
+msgstr[0] "%(numberOfLandTraders)s comerciante terrestre inativo"
+msgstr[1] "%(numberOfLandTraders)s comerciantes terrestres inativos"
+msgstr[2] "%(numberOfLandTraders)s comerciantes terrestres inativos"
 
 #: gui/session/trade/TraderStatusTextLand.js:40
 #, javascript-format
@@ -1617,9 +1617,9 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] "Há %(numberGarrisoned)s comerciantes de terra guarnecidos em um navio mercante comercial"
-msgstr[1] "Existem %(numberGarrisoned)s comerciantes de terra guarnecidos em um navio mercante comercial"
-msgstr[2] "Existem %(numberGarrisoned)s comerciantes de terra guarnecidos em um navio mercante comercial"
+msgstr[0] "Há %(numberGarrisoned)s comerciante terrestre guarnecido em um navio mercante comercial"
+msgstr[1] "Existem %(numberGarrisoned)s comerciantes terrestres guarnecidos em um navio mercante comercial"
+msgstr[2] "Existem %(numberGarrisoned)s comerciantes terrestres guarnecidos em um navio mercante comercial"
 
 #: gui/session/trade/TraderStatusTextLand.js:65
 #, javascript-format
@@ -1665,7 +1665,7 @@ msgstr[2] "Existem %(inactiveString)s."
 
 #: gui/session/trade/TraderStatusTextLand.js:80
 msgid "There are no land traders."
-msgstr "Não há nenhum comerciante de terra."
+msgstr "Não há nenhum comerciante terrestre."
 
 #: gui/session/trade/TraderStatusTextShip.js:14
 #, javascript-format
@@ -1737,7 +1737,7 @@ msgstr "Guarnição atual: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:1177
 msgid "Right-click to establish a default route for new traders."
-msgstr "Clique com o direito para estabelecer uma rota para novos mercadores."
+msgstr "Clique com o botão direito para estabelecer uma rota para novos comerciantes."
 
 #: gui/session/unit_actions.js:1181
 #, javascript-format
