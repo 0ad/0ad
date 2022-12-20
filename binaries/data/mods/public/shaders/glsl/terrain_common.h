@@ -17,11 +17,7 @@ END_DRAW_TEXTURES
 BEGIN_DRAW_UNIFORMS
 	UNIFORM(vec3, shadingColor)
 	UNIFORM(vec2, textureTransform)
-#if USE_SPECULAR
-	UNIFORM(float, specularPower)
-	UNIFORM(vec3, specularColor)
-#endif
-#if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_AO
+#if USE_NORMAL_MAP || USE_SPECULAR_MAP
 	UNIFORM(vec4, effectSettings)
 #endif
 END_DRAW_UNIFORMS
@@ -40,7 +36,7 @@ BEGIN_MATERIAL_UNIFORMS
 #endif
 END_MATERIAL_UNIFORMS
 
-#if USE_SPECULAR || USE_SPECULAR_MAP || USE_NORMAL_MAP || USE_TRIPLANAR
+#if USE_SPECULAR_MAP || USE_NORMAL_MAP || USE_TRIPLANAR
 VERTEX_OUTPUT(0, vec3, v_normal);
 #endif
 VERTEX_OUTPUT(1, vec3, v_lighting);
@@ -52,14 +48,12 @@ VERTEX_OUTPUT(3, vec3, v_tex);
 #else
 VERTEX_OUTPUT(3, vec2, v_tex);
 #endif
-#if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP
 #if USE_NORMAL_MAP
 VERTEX_OUTPUT(4, vec4, v_tangent);
 VERTEX_OUTPUT(5, vec3, v_bitangent);
 #endif
-#if USE_SPECULAR || USE_SPECULAR_MAP
+#if USE_SPECULAR_MAP
 VERTEX_OUTPUT(6, vec3, v_half);
-#endif
 #endif
 #if !IGNORE_LOS
 VERTEX_OUTPUT(7, vec2, v_los);
