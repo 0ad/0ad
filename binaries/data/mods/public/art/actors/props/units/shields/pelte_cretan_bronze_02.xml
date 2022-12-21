@@ -39,6 +39,11 @@
         <texture file="props/shield/aspis_athen_08.png" name="baseTex"/>
       </textures>
     </variant>
+    <variant frequency="1" name="Bronze Trident">
+      <textures>
+        <texture file="props/shield/aspis_athen_06.png" name="baseTex"/>
+      </textures>
+    </variant>
   </group>
    <material>player_trans_parallax_spec.xml</material>
 </actor>

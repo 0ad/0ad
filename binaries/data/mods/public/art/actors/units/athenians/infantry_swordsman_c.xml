@@ -3,7 +3,7 @@
   <castshadow/>
   <group>
     <variant>
-      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
+      <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
         <prop actor="props/units/shields/aspis_athen_m.xml" attachpoint="shield_arm"/>
@@ -66,6 +66,7 @@
   </group>
   <group>
     <variant frequency="1" name="padded_marine_01_01">
+      <mesh>skeletal/new/m_armor_tunic_short.dae</mesh>
       <textures>
         <texture file="skeletal/athen/padded_marine_01_01.png" name="baseTex"/>
       </textures>

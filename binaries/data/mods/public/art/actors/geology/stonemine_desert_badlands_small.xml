@@ -21,12 +21,5 @@
       </textures>
     </variant>
   </group>
-  <group>
-    <variant frequency="1" name="decal">
-      <props>
-        <prop actor="props/structures/decals/gravel_sahara_3v3.xml" attachpoint="root"/>
-      </props>
-    </variant>
-  </group>
   <material>no_trans_ao_parallax_spec.xml</material>
 </actor>
