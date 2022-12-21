@@ -83,7 +83,7 @@ void main()
 
   vec3 texdiffuse = tex.rgb;
 
-  #if USE_SPECULAR || USE_SPECULAR_MAP || USE_NORMAL_MAP
+  #if USE_SPECULAR_MAP || USE_NORMAL_MAP
     vec3 normal = v_normal;
   #endif
 
@@ -103,22 +103,17 @@ void main()
   #endif
 
   vec4 specular = vec4(0.0);
-  #if USE_SPECULAR || USE_SPECULAR_MAP
+  #if USE_SPECULAR_MAP
     vec3 specCol;
     float specPow;
-    #if USE_SPECULAR_MAP
-      #if USE_TRIPLANAR
-        vec4 s = triplanar(GET_DRAW_TEXTURE_2D(specTex), v_tex);
-      #else
-        vec4 s = SAMPLE_2D(GET_DRAW_TEXTURE_2D(specTex), v_tex);
-      #endif
-      specCol = s.rgb;
-      specular.a = s.a;
-      specPow = effectSettings.y;
+    #if USE_TRIPLANAR
+      vec4 s = triplanar(GET_DRAW_TEXTURE_2D(specTex), v_tex);
     #else
-      specCol = specularColor;
-      specPow = specularPower;
+      vec4 s = SAMPLE_2D(GET_DRAW_TEXTURE_2D(specTex), v_tex);
     #endif
+    specCol = s.rgb;
+    specular.a = s.a;
+    specPow = effectSettings.y;
     specular.rgb = sunColor * specCol * pow(max(0.0, dot(normalize(normal), v_half)), specPow);
   #endif
 

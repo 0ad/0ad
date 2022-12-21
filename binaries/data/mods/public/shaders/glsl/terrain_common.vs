@@ -51,11 +51,11 @@ void main()
   #endif
 
   calculatePositionInShadowSpace(vec4(a_vertex, 1.0));
-#if USE_SPECULAR || USE_SPECULAR_MAP || USE_NORMAL_MAP || USE_TRIPLANAR
+#if USE_SPECULAR_MAP || USE_NORMAL_MAP || USE_TRIPLANAR
   v_normal = a_normal;
 #endif
 
-  #if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_TRIPLANAR
+  #if USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_TRIPLANAR
     #if USE_NORMAL_MAP
       vec3 t = vec3(1.0, 0.0, 0.0);
       t = normalize(t - v_normal * dot(v_normal, t));
@@ -63,12 +63,10 @@ void main()
       v_bitangent = cross(v_normal, t);
     #endif
 
-    #if USE_SPECULAR || USE_SPECULAR_MAP
+    #if USE_SPECULAR_MAP
       vec3 eyeVec = cameraPos.xyz - position.xyz;
-      #if USE_SPECULAR || USE_SPECULAR_MAP
-        vec3 sunVec = -sunDir;
-        v_half = normalize(sunVec + normalize(eyeVec));
-      #endif
+      vec3 sunVec = -sunDir;
+      v_half = normalize(sunVec + normalize(eyeVec));
     #endif
   #endif
 
