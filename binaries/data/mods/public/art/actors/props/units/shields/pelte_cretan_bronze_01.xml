@@ -44,14 +44,19 @@
         <texture file="props/shield/aspis_bronze.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Bronze Tripod">
+    <variant frequency="2" name="Bronze Tripod">
       <textures>
         <texture file="props/shield/aspis_athen_01.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant frequency="1" name="Bronze Snake">
+    <variant frequency="2" name="Bronze Snake">
       <textures>
         <texture file="props/shield/aspis_athen_04.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="2" name="Bronze Trident">
+      <textures>
+        <texture file="props/shield/aspis_athen_03.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

@@ -1,45 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="2" name="formation-a">
       <mesh>gaia/stonemine_granite_a.dae</mesh>
-      <textures><texture file="gaia/stone_granite_greek.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="formation-b">
       <mesh>gaia/stonemine_granite_b.dae</mesh>
-      <textures><texture file="gaia/stone_granite_greek.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="formation-c">
       <mesh>gaia/stonemine_granite_c.dae</mesh>
-      <textures><texture file="gaia/stone_granite_greek.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="formation-d">
       <mesh>gaia/stonemine_granite_a.dae</mesh>
-      <textures><texture file="gaia/stone_granite.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="formation-e">
       <mesh>gaia/stonemine_granite_b.dae</mesh>
-      <textures><texture file="gaia/stone_granite.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="1" name="formation-f">
       <mesh>gaia/stonemine_granite_c.dae</mesh>
-      <textures><texture file="gaia/stone_granite.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="boulder-a">
       <mesh>gaia/stone_granite_boulder_a.dae</mesh>
-      <textures><texture file="gaia/stone_granite_greek_hi.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="boulder-b">
       <mesh>gaia/stone_granite_boulder_b.dae</mesh>
-      <textures><texture file="gaia/stone_granite_greek_hi.dds" name="baseTex"/></textures>
     </variant>
     <variant frequency="2" name="boulder-c">
       <mesh>gaia/stone_granite_boulder_c.dae</mesh>
-      <textures><texture file="gaia/stone_granite_greek_hi.dds" name="baseTex"/></textures>
     </variant>
   </group>
-
+  <group>
+    <variant frequency="1" name="Texture">
+      <textures>
+        <texture file="gaia/stone_aegean_01.png" name="baseTex"/>
+        <texture file="gaia/stone_india_01_norm.png" name="normTex"/>
+        <texture file="gaia/stone_india_01_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>no_trans_norm_spec.xml</material>
 </actor>
