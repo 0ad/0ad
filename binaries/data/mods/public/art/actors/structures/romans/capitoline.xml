@@ -4,16 +4,17 @@
   <group>
     <variant>
       <mesh>structural/rome_capitoline.dae</mesh>
-      <props>
+	  <props>
         <prop actor="props/structures/romans/rome_quadriga_statue.xml" attachpoint="quadriga_statue"/>
         <prop actor="props/structures/romans/rome_capitoline_pediment.xml" attachpoint="pediment"/>
         <prop actor="props/structures/romans/rome_capitoline_statues.xml" attachpoint="statue"/>
+        <prop actor="props/structures/romans/rome_capitoline_statues_gold.xml" attachpoint="root"/>
       </props>
       <textures>
-        <texture file="structural/rome_struct.png" name="baseTex"/>
+        <texture file="structural/rome_struct_capitol.png" name="baseTex"/>
+        <texture file="structural/rome_struct_capitol_norm.png" name="normTex"/>
+        <texture file="structural/rome_struct_capitol_spec.png" name="specTex"/>
         <texture file="structural/ao/rome_capitoline.png" name="aoTex"/>
-        <texture file="structural/rome_struct_norm.png" name="normTex"/>
-        <texture file="structural/rome_struct_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -27,7 +28,14 @@
   </group>
   <group>
     <variant name="alive" frequency="1"/>
-    <variant file="structures/destruction_large.xml"/>
+    <variant file="structures/destruction_large.xml">
+	  <props>
+        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
+        <prop actor="props/structures/romans/rome_capitoline_statues_gold.xml" attachpoint="root"/>
+      </props>
+    </variant>
   </group>
   <material>player_trans_ao_parallax_spec.xml</material>
 </actor>
