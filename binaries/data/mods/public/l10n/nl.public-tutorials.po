@@ -1,13 +1,11 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2021 Wildfire Games
+# Copyright (C) 2022 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 # Ellen Roels
-# Sander Deryckere
 # Robin van der Kruit
 # bb
-# Darryl Smits
 # 魔大农
 # Andreas I
 # Freagarach
@@ -16,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2021-10-29 07:08+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2017-06-04 12:59+0000\n"
-"Last-Translator: rollieoo, 2021\n"
+"Last-Translator: rollieoo, 2022\n"
 "Language-Team: Dutch (https://www.transifex.com/wildfire-games/teams/17418/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,7 +34,7 @@ msgid ""
 "that Female Citizen gather food. Female Citizens gather vegetables faster "
 "than other units."
 msgstr ""
-"Klik links op een vrouwelijke burger, klik vervolgens rechts op een "
+"Klik links op een vrouwelijke burger en klik vervolgens rechts op een "
 "fruitstruik zodat zij voedsel gaat verzamelen. Vrouwelijke burgers kunnen "
 "sneller voedsel verzamelen dan mannen."
 
@@ -46,7 +44,7 @@ msgid ""
 "begin gathering wood. Citizen Soldiers gather wood faster than Female "
 "Citizens."
 msgstr ""
-"Selecteer de burgersoldaat, klik rechts op een boom in de buurt van het "
+"Selecteer de burgersoldaat en klik rechts op een boom in de buurt van het "
 "beschavingscentrum zodat hij hout gaat verzamelen. Burgersoldaten kunnen wat"
 " sneller hout verzamelen dan vrouwelijke burgers."
 
@@ -101,11 +99,11 @@ msgid ""
 "Skirmisher icon in the Civic Center."
 msgstr ""
 "Rekruteer een groep speerwerpers door %(hotkey)s vast te houden en op het "
-"speerwerper icoontje in het beschavingscentrum te klikken."
+"Speerwerper icoontje in het beschavingscentrum te klikken."
 
 #: maps/tutorials/introductory_tutorial.js:80
 msgid "Click on the Skirmisher icon."
-msgstr "Klik op het Speerwerpericoon"
+msgstr "Klik op het Speerwerpericoon."
 
 #: maps/tutorials/introductory_tutorial.js:88
 msgid ""
@@ -117,7 +115,7 @@ msgstr ""
 
 #: maps/tutorials/introductory_tutorial.js:100
 msgid "Let's wait for the Farmstead to be built."
-msgstr "Wacht tot de boerderij gebouwd is."
+msgstr "Even wachten tot de boerderij gebouwd is."
 
 #: maps/tutorials/introductory_tutorial.js:112
 msgid ""
@@ -135,7 +133,7 @@ msgid ""
 "Field. Using the newly created group of skirmishers, get them to build "
 "another House nearby."
 msgstr ""
-"De werkers zullen nu vanzelf voedsel gaan verzamelen van de akker. Laat de "
+"De werkers zullen nu vanzelf voedsel gaan verzamelen op de akker. Laat de "
 "nieuwe groep speerwerpers in de buurt een nieuw huis bouwen."
 
 #: maps/tutorials/introductory_tutorial.js:144
@@ -165,7 +163,7 @@ msgid ""
 msgstr ""
 "Bouw een kazerne. Telkens wanneer u de bevolkingslimiet bereikt, moet u "
 "extra huizen bouwen met de beschikbare werkkrachten. Dit wordt het vijfde "
-"gebouw van de dorpsfase wat u hebt gebouwd, daardoor kunt u door naar de "
+"gebouw van de dorpsfase wat u hebt gebouwd, waardoor u door kunt naar de "
 "stadsfase."
 
 #: maps/tutorials/introductory_tutorial.js:193
@@ -214,7 +212,7 @@ msgid ""
 msgstr ""
 "Bereid u voor op een aanval van een vijandelijke speler. Rekruteer meer "
 "soldaten uit de kazerne en laat inactieve soldaten een toren bouwen in de "
-"buurt van je uitkijkpost. "
+"buurt van uw uitkijkpost. "
 
 #: maps/tutorials/introductory_tutorial.js:274
 msgid ""
@@ -247,8 +245,8 @@ msgid ""
 "Once you meet the City Phase requirements, select your Civic Center and "
 "advance to City Phase."
 msgstr ""
-"Wanneer u aan de vereisten voor de Grootstadsfase voldoet, selecteer uw "
-"Beschavingscentrum en ga verder naar de Grootstadsfase."
+"Wanneer u aan de vereisten voor de grootstadsfase voldoet, selecteer uw "
+"beschavingscentrum en ga verder naar de grootstadsfase."
 
 #: maps/tutorials/introductory_tutorial.js:333
 msgid ""
@@ -263,8 +261,8 @@ msgid ""
 "Now that you are in City Phase, build the Arsenal nearby and then use it to "
 "construct 2 Battering Rams."
 msgstr ""
-"Nu u in grootstadsfase bent, bouw een arsenaal en construeer vervolgens 2 "
-"stormrammen."
+"Nu u in grootstadsfase bent, bouw een arsenaal en construeer vervolgens twee"
+" stormrammen."
 
 #: maps/tutorials/introductory_tutorial.js:367
 msgid ""
@@ -283,15 +281,17 @@ msgstr "Vrouwelijke burgers gaan het beste door met grondstoffen verzamelen."
 
 #: maps/tutorials/introductory_tutorial.js:379
 msgid "The enemy has been defeated. These tutorial tasks are now completed."
-msgstr " De vijand is verslagen, alle opdrachten zijn nu beëindigd. "
+msgstr ""
+" De vijand is verslagen, alle opdrachten van deze instructie zijn nu "
+"beëindigd. "
 
 #: maps/tutorials/introductory_tutorial.xml:Description:38
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "Dit is een simpele zelfstudie om 0 A.D. te leren spelen."
+msgstr "Met deze eenvoudige lessen leert u snel hoe 0 A.D. te spelen."
 
 #: maps/tutorials/introductory_tutorial.xml:Name:38
 msgid "Introductory Tutorial"
-msgstr "Inleidende zelfstudie"
+msgstr "Basisoefeningen"
 
 #: maps/tutorials/introductory_tutorial.xml:PlayerData[0].Name:38
 #: maps/tutorials/starting_economy_walkthrough.xml:PlayerData[0].Name:39
@@ -309,10 +309,11 @@ msgid ""
 "ultimately, your goal will be to develop and expand your empire, often by "
 "evolving to Town Phase and City Phase afterward.\n"
 msgstr ""
-"Deze hulptekst wijst u de weg in de ontwikkeling van uw economie. Een "
-"normaal spel start met een Beschavingscentrum en een paar eenheden in "
-"'Dorpsfase'. Het doel is om uw rijk te ontwikkelen en uit te breiden, vaak "
-"door te evolueren naar een 'Stadsfase' en vervolgens naar 'Grootstadsfase'."
+"Met deze basisoefeningen leert u de weg in de ontwikkeling van uw economie. "
+"Een normaal spel start  in de Dorpsfase met een beschavingscentrum en een "
+"paar eenheden. Het doel is om uw rijk te ontwikkelen en uit te breiden, over"
+" het algemeen door te evolueren naar de 'Stadsfase' en vervolgens naar de "
+"'Grootstadsfase'.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:6
 #, javascript-format
@@ -342,7 +343,7 @@ msgid ""
 "You may also toggle between showing and hiding this tutorial panel at any moment using %(hotkey)s.\n"
 msgstr ""
 "\n"
-"U kunt het laten zien van dit tutorialpaneel ook op elk moment aan- en uitzetten met %(hotkey)s.\n"
+"U kunt dit tutorialpaneel ook op elk moment tonen of verbergen met %(hotkey)s.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:19
 msgid ""
@@ -350,7 +351,7 @@ msgid ""
 "selection ring in the color of your civilization will be displayed after "
 "clicking."
 msgstr ""
-"Om te beginnen selecteert u uw gebouw, het Beschavingscentrum, door erop te "
+"Om te beginnen selecteert u uw gebouw, het beschavingscentrum, door erop te "
 "klikken. Na het klikken wordt er een selectie-ring getoond in de kleur van "
 "uw beschaving."
 
@@ -364,12 +365,12 @@ msgid ""
 "sufficient resources to perform that action, respectively. Additionally, you"
 " can hover the cursor over any icon to show a tooltip with more details.\n"
 msgstr ""
-"Nu u het Beschavingscentrum hebt geselecteerd, merk op dat er een productie-"
+"Nu u het beschavingscentrum hebt geselecteerd, merk op dat er een productie-"
 "paneel zichtbaar is rechtsonder in het scherm met de mogelijke acties voor "
 "dit gebouw. De beschikbare acties worden niet gemaskeerd; de iconen die in "
-"grijs of rood gemaskeerdzijn, zijn respectievelijk nog niet onderzocht of "
-"vereisen meer grondstoffen. U kunt de muispijl boven een icoon plaatsen om "
-"extra informatie te krijgen.\n"
+"grijs of rood gemaskeerd zijn, zijn respectievelijk nog niet beschikbaar of "
+"vereisen meer grondstoffen. U kunt de muispijl boven een icoon plaatsen voor"
+" extra informatie.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:25
 msgid ""
@@ -382,7 +383,7 @@ msgstr ""
 "De bovenste rij iconen toont afbeeldingen van eenheden die in dat gebouw "
 "gerekruteerd kunnen worden; de rij of rijen eronder tonen technologieën die "
 "onderzocht kunnen worden. Plaats de cursor op het 'II' icoon. De tekst die "
-"verschijnt zegt u dat voor de overgang naar de stadsfase zowel meer gebouwen"
+"verschijnt zegt u dat voor de overgang naar de Stadsfase zowel meer gebouwen"
 " als meer voedsel en hout nodig is. "
 
 #: maps/tutorials/starting_economy_walkthrough.js:30
@@ -409,8 +410,8 @@ msgid ""
 "clicking with an entity selected represents an order (gather, build, fight, "
 "etc.).\n"
 msgstr ""
-"De algemene regel is dat u met de linkermuisknop eenheden selecteert en met "
-"de rechtermuisknop bevelen geeft (verzamel, bouw, vecht, etc.).\n"
+"De vuistregel is dat u met de linkermuisknop eenheden selecteert en met de "
+"rechtermuisknop bevelen geeft (verzamel, bouw, vecht, etc.).\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:40
 msgid ""
@@ -418,7 +419,7 @@ msgid ""
 " your economy, so let's start with gathering food. Female Citizens gather "
 "vegetables faster than other units.\n"
 msgstr ""
-"Op dit moment zijn voedsel en hout de belangrijkste grondstoffen om de "
+"Op dit moment zijn voedsel en hout de belangrijkste grondstoffen om uw "
 "economie te  ontwikkelen, dus laten we beginnen met voedsel verzamelen. "
 "Vrouwelijke burgers kunnen sneller voedsel verzamelen dan andere eenheden.\n"
 
@@ -452,8 +453,8 @@ msgid ""
 "select all units of the same type on the entire map.\n"
 msgstr ""
 "3) Dubbelklik op een eenheid. Dit selecteert elke eenheid van dezelfde soort"
-" als de aangegeven eenheid in uw zichtbare venster. %(hotkey)s + dubbelklik "
-"selecteert alle eenheden van dezelfde soort op de hele kaart.\n"
+" als de aangegeven eenheid in het zichtbare venster. %(hotkey)s + dubbelklik"
+" selecteert alle eenheden van dezelfde soort op de hele kaart.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:48
 msgid ""
@@ -474,9 +475,9 @@ msgid ""
 " Infantry Citizen Soldiers and order them to gather wood by right-clicking "
 "on the nearest tree."
 msgstr ""
-"Laten we nu wat hout verzamelen met uw infanterie burgersoldaten. Selecteer "
-"uw infanterie burgersoldaten en laat hen hout verzamelen door rechts te "
-"klikken op de dichtstbijzijnde boom."
+"Laten we nu uw infanterie burgersoldaten wat hout verzamelen. Selecteer uw "
+"infanterie burgersoldaten en laat hen hout verzamelen door rechts te klikken"
+" op de dichtstbijzijnde boom."
 
 #: maps/tutorials/starting_economy_walkthrough.js:70
 msgid ""
@@ -508,8 +509,8 @@ msgstr ""
 "eenheid na rekrutering automatisch een taak toegewezen krijgen. We willen "
 "dat de net gerekruteerde eenheden hout gaan verzamelen bij de groep bomen "
 "ten zuiden van het beschavingscentrum. Om dat te doen selecteert u het "
-"beschavingscentrum door erop te klikken en vervolgens met de rechter "
-"muisknop op één van de bomen.\n"
+"beschavingscentrum door erop te klikken en vervolgens klikt u met de rechter"
+" muisknop op één van de bomen.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:83
 msgid ""
@@ -552,7 +553,9 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:111
 msgid "Do not forget to hold Shift while clicking to train several units."
-msgstr "Vergeet niet Shift in te drukken om meerdere eenheden te rekruteren."
+msgstr ""
+"Vergeet niet Shift in te drukken om meerdere eenheden tegelijk te "
+"rekruteren."
 
 #: maps/tutorials/starting_economy_walkthrough.js:112
 msgid "Hold Shift and click on the Hoplite icon."
@@ -571,8 +574,8 @@ msgid ""
 "(or another dropsite), you will see the amount of the corresponding resource"
 " increase.\n"
 msgstr ""
-"Terwijl u wacht kunt u even het bord bovenaan uw scherm bekijken. Bovenaan "
-"links kunt u uw huidige grondstoffenvoorraad controleren (voedsel, hout, "
+"Terwijl u wacht kunt u even het paneel bovenaan uw scherm bekijken. Bovenaan"
+" links kunt u uw huidige grondstoffenvoorraad controleren (voedsel, hout, "
 "steen en metaal). Bemerk dat wanneer een werker grondstoffen levert aan het "
 "beschavingscentrum (of een andere afleverplaats), het bijhorende "
 "grondstoffenaantal toeneemt.\n"
@@ -585,7 +588,7 @@ msgid ""
 " gathering efficiency."
 msgstr ""
 "Dit is een zeer belangrijk concept om in gedachten te houden: verzamelde "
-"grondstoffen moeten eerst naar een pakhuis gebracht worden alvorens ze "
+"grondstoffen moeten eerst afgeleverd zijn bij een pakhuis alvorens ze "
 "meegeteld worden. Daarom dient u altijd de afstand tussen de grondstof en "
 "het dichtsbijzijnde pakhuis zo klein als mogelijk te houden om de "
 "verzamelefficiëntie te verbeteren."
@@ -595,8 +598,8 @@ msgid ""
 "The newly trained units automatically go to the trees and start gathering "
 "wood.\n"
 msgstr ""
-"De zojuist gerekruteerde eenheden gaan automatisch naar de bomen en beginnen"
-" hout te verzamelen.\n"
+"De zojuist gerekruteerde eenheden gaan vanzelf naar de bomen en beginnen "
+"hout te verzamelen.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:133
 msgid ""
@@ -615,7 +618,7 @@ msgstr ""
 "burgersoldaten. Vervolgens zoekt u op het constructiepaneel in de rechter "
 "benedenhoek het icoon met het pakhuis en klikt u daar op. Verplaats de "
 "cursor zo dicht mogelijk bij de bomen die u wilt verzamelen. Klik tenslotte "
-"op een geschikte plaats om het pakhuis te bouwen."
+"op een geschikte plaats om het pakhuis te bouwen.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:134
 msgid ""
@@ -638,8 +641,7 @@ msgid ""
 "When construction finishes, the builders default to gathering wood "
 "automatically.\n"
 msgstr ""
-"Wanneer het gebouw voltooid is gaan de bouwers automatisch hout "
-"verzamelen.\n"
+"Wanneer het gebouw voltooid is gaan de bouwers vanzelf hout verzamelen.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:156
 msgid ""
@@ -648,20 +650,20 @@ msgid ""
 " Citizens."
 msgstr ""
 "Laten we nu enkele vrouwelijke burgers rekruteren om meer voedsel te "
-"verzamelen. Selecteer het beschavingscentrum, houdt de shift-toets "
+"verzamelen. Selecteer het beschavingscentrum, houdt de Shift-toets "
 "ingedrukt, en klik op het vrouwelijke burger icoon om vijf vrouwen te "
 "rekruteren."
 
 #: maps/tutorials/starting_economy_walkthrough.js:170
 msgid "Do not forget to hold Shift and click to train several units."
 msgstr ""
-"Vergeet niet om de shift-toets ingedrukt te houden om meerdere eenheden te "
+"Vergeet niet om de Shift-toets ingedrukt te houden om meerdere eenheden te "
 "rekruteren."
 
 #: maps/tutorials/starting_economy_walkthrough.js:171
 msgid "Hold shift and click on the Female Citizen icon."
 msgstr ""
-"Houd de shift-toets ingedrukt en klik op het vrouwelijke burger icoon."
+"Houd de Shift-toets ingedrukt en klik op het vrouwelijke burger icoon."
 
 #: maps/tutorials/starting_economy_walkthrough.js:181
 msgid ""
@@ -677,7 +679,7 @@ msgstr ""
 
 #: maps/tutorials/starting_economy_walkthrough.js:195
 msgid "The units should be ready soon.\n"
-msgstr "De units zullen snel klaar zijn."
+msgstr "De werkers zullen snel klaar zijn."
 
 #: maps/tutorials/starting_economy_walkthrough.js:196
 msgid ""
@@ -700,7 +702,7 @@ msgid ""
 "effective structure to increase your population limit is the House.\n"
 msgstr ""
 "Omdat u bijna de bevolkingslimiet bereikt heeft moet u deze verhogen door "
-"een aantal nieuwe gebouwen te bouwen. Dan pas kunt u meer eenheden "
+"een aantal nieuwe gebouwen te bouwen. Dan pas kunt u weer nieuwe eenheden "
 "rekruteren. Het gebouw wat het meest kostenefficiënt de bevolkingslimiet "
 "verhoogt is het huis.\n"
 
@@ -844,12 +846,12 @@ msgid ""
 " go, and when you see a herd of camels, right-click on one of them to start "
 "hunting for food."
 msgstr ""
-"De cavalerie-eenheid zou nu alle kippen geslacht moeten hebben. Selecteer de"
-" ruiter en verken het gebied ten Zuiden van het beschavingscentrum: hier is "
-"een meertje met enige kamelen eromheen. Verplaats uw cavalerie door rechts "
-"te klikken op het punt waar u wilt dat hij heen gaat en, wanneer u de kudde "
-"kamelen ziet, klik rechts op één van hen om te beginnen met voedsel "
-"verzamelen door de jacht."
+"De cavalerie-eenheid zou inmiddels wel alle kippen verschalkt moeten hebben."
+" Selecteer de ruiter en verken het gebied ten Zuiden van het "
+"beschavingscentrum: hier is een meertje met enige kamelen eromheen. "
+"Verplaats uw cavalerie door rechts te klikken op het punt waar u wilt dat "
+"hij heen gaat en, wanneer u de kudde kamelen ziet, klik rechts op één van "
+"hen om te beginnen met voedsel verzamelen door de jacht."
 
 #: maps/tutorials/starting_economy_walkthrough.js:317
 msgid ""
@@ -879,7 +881,7 @@ msgstr ""
 #: maps/tutorials/starting_economy_walkthrough.js:347
 msgid "Click without holding Shift to train a single unit."
 msgstr ""
-"Klik zonder Shift ingedrukt te houden om enkele eenheden te rekruteren."
+"Klik zonder Shift ingedrukt te houden om een enkele eenheid te rekruteren."
 
 #: maps/tutorials/starting_economy_walkthrough.js:358
 msgid ""
@@ -887,7 +889,7 @@ msgid ""
 "technologies available in some buildings.\n"
 msgstr ""
 "U kunt de verzamelingssnelheden van uw werkers vergroten door nieuwe "
-"technologieën te onderzoeken welke beschikbaar zijn in sommige gebouwen.\n"
+"technologieën te onderzoeken die in sommige gebouwen beschikbaar zijn.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:359
 msgid ""
@@ -909,10 +911,10 @@ msgid ""
 "many more units and buildings. Select the Civic Center and hover the cursor "
 "over the Town Phase icon to see what is still needed.\n"
 msgstr ""
-"We moeten ons voorbereiden om een fase verder te gaan, naar Stadsfase, dat "
-"veel meer eenheden en gebouwen zal ontsluiten. Selecteer het "
-"Beschavingscentrum en beweeg de muis over het Stadsfase-icoon om te zien wat"
-" daar nog voor nodig is. "
+"We moeten ons voorbereiden om een fase verder te gaan, naar de Stadsfase, "
+"die veel meer eenheden en gebouwen zal ontsluiten. Selecteer het "
+"beschavingscentrum en beweeg de muis over het Stadsfase-icoon om te zien wat"
+" daar nog voor nodig is.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:375
 msgid ""
@@ -931,10 +933,10 @@ msgid ""
 "panel and then lay down a foundation not far from your Civic Center where "
 "you want to build."
 msgstr ""
-"Selecteer vier van uw soldaten en vraag hen een Kazerne te bouwen: evenzoals"
-" eerder, begin door het selecteren van de soldaten, klik op het Kazerne "
-"icoon in het productie paneel en leg vervolgens de fundering niet ver van uw"
-" Beschavingscentrum waar u bouwen wilt."
+"Selecteer vier van uw soldaten en vraag hen een kazerne te bouwen: evenzoals"
+" eerder, begin door het selecteren van de soldaten, klik op het kazerne "
+"icoon in het productie paneel en leg vervolgens de fundering waar u bouwen "
+"wilt, niet te ver van uw beschavingscentrum."
 
 #: maps/tutorials/starting_economy_walkthrough.js:387
 msgid ""
@@ -956,8 +958,8 @@ msgid ""
 "You should now be able to research Town Phase. Select the Civic Center and "
 "click on the technology icon.\n"
 msgstr ""
-"U zou de Stadsfase nu moeten kunnen onderzoeken. Selecteer het "
-"Beschavingscentrum en klik op het technologie icoon.\n"
+"U zou nu de Stadsfase moeten kunnen onderzoeken. Selecteer het "
+"beschavingscentrum en klik op het technologie icoon.\n"
 
 #: maps/tutorials/starting_economy_walkthrough.js:398
 msgid ""
@@ -1023,8 +1025,8 @@ msgid ""
 "This is the end of the walkthrough. This should give you a good idea of the "
 "basics of setting up your economy."
 msgstr ""
-"Dit is het einde van de zelfstudie. Het zou u een goed idee moeten geven hoe"
-" u het beste een florerende economie opbouwt."
+"Dit besluit de basisoefeningen. Het zou u een goed idee moeten geven hoe u "
+"het beste een florerende economie opbouwt."
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Description:39
 msgid ""
@@ -1033,9 +1035,10 @@ msgid ""
 "possible so you are able to build enough troops later."
 msgstr ""
 "Deze kaart geeft u een globale leidraad om effectief op gang te komen met "
-"het spel. Vroeg in het spel is het belangrijk om zo snel mogelijk "
-"grondstoffen te verzamelen, zodat u later een groot leger kunt opbouwen."
+"het spel. Aan het begin van het spel is het belangrijk om zo snel mogelijk "
+"grondstoffen te verzamelen, zodat u later in staat bent een leger op te "
+"bouwen."
 
 #: maps/tutorials/starting_economy_walkthrough.xml:Name:39
 msgid "Starting Economy Walkthrough"
-msgstr "Wegwijs door de economiestart"
+msgstr "Wegwijs door de speleconomie"
