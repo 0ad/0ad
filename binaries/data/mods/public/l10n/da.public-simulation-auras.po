@@ -8,6 +8,7 @@
 # J Wehage
 # Martin Lynge
 # Michael Millet
+# Paw Jensen
 # osandum
 # Søren Mølgaard
 # Thomas Andersen
@@ -19,7 +20,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: Michael Millet <mikevlet@protonmail.com>, 2021\n"
+"Last-Translator: Paw Jensen, 2022\n"
 "Language-Team: Danish (http://www.transifex.com/wildfire-games/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -139,7 +140,7 @@ msgstr "Hæderlig Udvidelse"
 
 #: simulation/data/auras/structures/xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned inside the building."
-msgstr ""
+msgstr "Enheder optjener erfaring imens de er garnisonerede i kaserner."
 
 #: simulation/data/auras/structures/xp_trickle.jsonauraName
 msgid "Rigorous Training"
@@ -555,19 +556,19 @@ msgstr ""
 msgid ""
 "The Imperial Ministry gains a +0.1 wood, stone, metal trickle for each "
 "garrisoned minister."
-msgstr ""
+msgstr "Imperial Ministeriet tjener +0.1 Træ, Sten, Metal tilfalder alle garnisoneret garnisoneret ministre."
 
 #: simulation/data/auras/units/han_minister_garrison_ministry.jsonauraName
 msgid "Nationalized Industries"
-msgstr ""
+msgstr "Nationaliseret Industrier"
 
 #: simulation/data/auras/units/han_minister_gathering.jsonauraDescription
 msgid "Gatherers +2% gathering rate for every nearby Minister."
-msgstr ""
+msgstr "Samler +2% samler hastighed for i nærheden af minister."
 
 #: simulation/data/auras/units/han_minister_gathering.jsonauraName
 msgid "Minister over the Masses"
-msgstr ""
+msgstr "Minister over flertallet "
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid ""
@@ -589,7 +590,7 @@ msgstr "Peltastreformer"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
 msgid "Builders +15% build rate."
-msgstr ""
+msgstr "Arbejdere +15% bygge hastighed."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Building Program"
@@ -708,32 +709,32 @@ msgstr "Krigsforberedelse"
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_1.jsonauraDescription
 msgid "Soldiers −20% promotion experience."
-msgstr ""
+msgstr "Soldater -20% Forfremmelse erfaring."
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_1.jsonauraName
 msgid "Northern Army"
-msgstr ""
+msgstr "Nordlige Hær"
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_2.jsonauraDescription
 msgid "Own and Allied Soldiers +25% vision range."
-msgstr ""
+msgstr "Egne og Allierede Soldater +25% synsrækkevidde."
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_2.jsonauraName
 msgid "Southern Army"
-msgstr ""
+msgstr "Sydlige Hær"
 
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_1.jsonauraDescription
 msgid "Walls +10 health regeneration rate."
-msgstr ""
+msgstr "Vægge +10 helbreds-regenerationsrate."
 
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_1.jsonauraName
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_2.jsonauraName
 msgid "Confucian Reforms"
-msgstr ""
+msgstr "Konfucianismen Reformer"
 
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_2.jsonauraDescription
 msgid "Cavalry +20% attack damage."
-msgstr ""
+msgstr "Kavaleri +20% angrebsskade."
 
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_1.jsonauraDescription
 #: simulation/data/auras/units/heroes/kush_hero_amanirenas.jsonauraDescription
@@ -745,17 +746,17 @@ msgstr "Elitesoldater +2 erobrings-angrebsstyrke, +20% nærkamps- og langdistanc
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_1.jsonauraName
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_2.jsonauraName
 msgid "Mandate of Heaven"
-msgstr ""
+msgstr "mandatet af Himlen"
 
 #: simulation/data/auras/units/heroes/han_hero_wei_qing_2.jsonauraDescription
 msgid "Enemy Cavalry −10% melee and ranged attack damage."
-msgstr ""
+msgstr "Fjendtligt Infanteri -10% nærkamps- og langdistance-angrebsskade."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraDescription
 msgid ""
 "When garrisoned, the Structure has +1 capture points garrison regeneration "
 "rate."
-msgstr ""
+msgstr "Når garnisoneret, har Bygningen +1 erobrings point garnisonerede regenerationsrate."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
@@ -965,7 +966,7 @@ msgstr "Fjendtlige Helte -10% helbred."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraDescription
 msgid "Builders +10% build rate."
-msgstr ""
+msgstr "Arbejdere +10% bygge hastighed."
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraName
 msgid "Patron of Construction"
@@ -1028,7 +1029,7 @@ msgstr "Ilarkès"
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iv.jsonauraDescription
 msgid "Enemy Structures, Ships, and Siege Engines −20% health."
-msgstr ""
+msgstr "Fjendtlige Bygninger, Skibe og Belejringsvåben -20% helbred."
 
 #: simulation/data/auras/units/heroes/sele_hero_antiochus_iv.jsonauraName
 msgid "Renowned Conqueror"
