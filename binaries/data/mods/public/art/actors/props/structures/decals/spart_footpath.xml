@@ -6,8 +6,9 @@
       <textures>
         <texture file="props/spart_footpath_decal.png" name="baseTex"/>
         <texture file="props/spart_footpath_decal_norm.png" name="normTex"/>
+		<texture name="specTex" file="types/blackness.dds"/>
       </textures>
     </variant>
   </group>
-  <material>terrain_norm.xml</material>
+  <material>terrain_norm_spec.xml</material>
 </actor>
