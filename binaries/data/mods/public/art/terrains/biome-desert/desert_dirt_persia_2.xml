@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <terrain>
-        <textures>
-                <texture name="baseTex" file="types/desert_dirt_persia_2.png"/>
-        </textures>
+	<textures>
+		<texture name="baseTex" file="types/desert_dirt_persia_2.png"/>
+		<texture name="normTex" file="types/default_norm.png"/>
+		<texture name="specTex" file="types/blackness.dds"/>
+	</textures>
 	<props angle="10.0"/>
-        <material>terrain_base.xml</material>
+	<material>terrain_norm_spec.xml</material>
 </terrain>

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <terrain>
-        <textures>
-                <texture name="baseTex" file="types/ocean_rock_b.dds"/>
-        </textures>
-	<props groups="water" mmap="91 89 82"/>
-        <material>terrain_base.xml</material>
+	<textures>
+		<texture name="baseTex" file="types/ocean_rock_b.dds"/>
+		<texture name="normTex" file="types/default_norm.png"/>
+		<texture name="specTex" file="types/blackness.dds"/>
+	</textures>
+	<props mmap="91 89 82" groups="water"/>
+	<material>terrain_norm_spec.xml</material>
 </terrain>

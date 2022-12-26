@@ -1,1 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?> <terrain> <textures> <texture name="baseTex" file="types/green.png"/>  </textures> <material>terrain_base.xml</material> </terrain>
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+	<textures>
+		<texture name="baseTex" file="types/green.png"/>
+		<texture name="normTex" file="types/default_norm.png"/>
+		<texture name="specTex" file="types/blackness.dds"/>
+	</textures>
+	<material>terrain_norm_spec.xml</material>
+</terrain>
