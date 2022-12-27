@@ -21,6 +21,7 @@
     <variant frequency="100" name="texture">
       <textures>
         <texture file="skeletal/animal_whale_fin.png" name="baseTex"/>
+        <texture name="specTex" file="null_white.dds"/>
       </textures>
     </variant>
   </group>
@@ -32,5 +33,6 @@
       </props>
     </variant>
   </group>
-  <material>basic_spec.xml</material>
+  <material>no_trans_spec.xml</material>
 </actor>
+

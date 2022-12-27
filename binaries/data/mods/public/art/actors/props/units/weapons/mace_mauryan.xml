@@ -5,6 +5,7 @@
     <variant frequency="100" name="Base">
       <textures>
         <texture file="props/prop_weap.dds" name="baseTex"/>
+        <texture name="specTex" file="null_white.dds"/>
       </textures>
     </variant>
   </group>
@@ -19,5 +20,6 @@
       <mesh>props/maur_spiked_mace.dae</mesh>
     </variant>
   </group>
-  <material>basic_spec.xml</material>
+  <material>no_trans_spec.xml</material>
 </actor>
+

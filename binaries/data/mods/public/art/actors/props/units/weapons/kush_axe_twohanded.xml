@@ -6,8 +6,10 @@
       <mesh>props/kush_axe.dae</mesh>
       <textures>
         <texture file="props/weapon/prop_weap_bronze.png" name="baseTex"/>
+        <texture name="specTex" file="null_white.dds"/>
       </textures>
     </variant>
   </group>
-  <material>basic_spec.xml</material>
+  <material>no_trans_spec.xml</material>
 </actor>
+

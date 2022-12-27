@@ -10,8 +10,10 @@
     <variant frequency="1" name="Kush Metal Helmet 1">
       <textures>
         <texture file="props/helmet/kush_metal_01.png" name="baseTex"/>
+        <texture name="specTex" file="null_white.dds"/>
       </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
+
