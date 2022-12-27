@@ -6,8 +6,9 @@
       <textures>
         <texture file="props/decal_struct_gaul_theater.png" name="baseTex"/>
         <texture file="props/decal_struct_gaul_theater_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>terrain_norm.xml</material>
+  <material>terrain_norm_spec.xml</material>
 </actor>

@@ -2,6 +2,8 @@
 <terrain>
 	<textures>
 		<texture name="baseTex" file="types/medit_dirt_e.png"/>
+		<texture name="normTex" file="types/default_norm.png"/>
+		<texture name="specTex" file="types/blackness.dds"/>
 	</textures>
-	<material>terrain_base.xml</material> 
+	<material>terrain_norm_spec.xml</material>
 </terrain>

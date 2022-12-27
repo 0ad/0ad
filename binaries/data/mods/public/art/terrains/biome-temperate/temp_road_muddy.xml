@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <terrain>
-        <textures>
-                <texture name="baseTex" file="types/temp_road_muddy.png"/>
-        </textures>
-	<props groups="city" mmap="230 227 198"/>
-        <material>terrain_base.xml</material>
+	<textures>
+		<texture name="baseTex" file="types/temp_road_muddy.png"/>
+		<texture name="normTex" file="types/default_norm.png"/>
+		<texture name="specTex" file="types/blackness.dds"/>
+	</textures>
+	<props mmap="230 227 198" groups="city"/>
+	<material>terrain_norm_spec.xml</material>
 </terrain>
