@@ -81,8 +81,7 @@ class CampaignRun
 
 	setCurrent()
 	{
-		Engine.ConfigDB_CreateValue("user", "currentcampaign", this.filename);
-		Engine.ConfigDB_WriteValueToFile("user", "currentcampaign", this.filename, "config/user.cfg");
+		Engine.ConfigDB_CreateAndSaveValue("user", "currentcampaign", this.filename);
 		g_CurrentCampaignRun = {
 			"ID": this.filename,
 			"run": this
