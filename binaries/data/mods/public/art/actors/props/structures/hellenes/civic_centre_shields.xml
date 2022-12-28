@@ -6,8 +6,10 @@
       <mesh>structural/hele_civic_shields.dae</mesh>
       <textures>
         <texture file="props/hele_props_b.dds" name="baseTex"/>
+        <texture name="specTex" file="null_white.dds"/>
       </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
+

@@ -4,8 +4,12 @@
   <group>
     <variant>
       <mesh>props/hele_fortress_up_shields.dae</mesh>
-      <textures><texture file="props/spart_prop_shields.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/spart_prop_shields.png" name="baseTex"/>
+        <texture name="specTex" file="null_white.dds"/>
+      </textures>
     </variant>
   </group>
-  <material>playercolor_spec.xml</material>
+  <material>player_trans_spec.xml</material>
 </actor>
+

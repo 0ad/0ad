@@ -6,8 +6,10 @@
       <mesh>skeletal/goat_male.dae</mesh>
       <textures>
         <texture file="skeletal/special_fleece.png" name="baseTex"/>
+        <texture name="specTex" file="null_white.dds"/>
       </textures>
     </variant>
   </group>
-  <material>basic_spec.xml</material>
+  <material>no_trans_spec.xml</material>
 </actor>
+

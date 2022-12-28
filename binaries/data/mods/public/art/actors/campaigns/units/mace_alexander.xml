@@ -4,8 +4,12 @@
   <group>
     <variant>
       <mesh>skeletal/campaigns/alexander.dae</mesh>
-      <textures><texture file="campaigns/units/mace_alexander.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="campaigns/units/mace_alexander.png" name="baseTex"/>
+        <texture name="specTex" file="null_white.dds"/>
+      </textures>
     </variant>
   </group>
-  <material>basic_spec.xml</material>
+  <material>no_trans_spec.xml</material>
 </actor>
+

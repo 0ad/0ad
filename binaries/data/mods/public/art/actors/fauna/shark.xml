@@ -5,7 +5,7 @@
   <group>
     <variant frequency="1" name="shark_great_white">
       <animations>
-		  <animation file="other/shark_idle.dae" name="idle" speed="10"/>
+        <animation file="other/shark_idle.dae" name="idle" speed="10"/>
         <animation file="other/shark_walk.dae" name="walk" speed="10"/>
         <animation file="other/shark_run.dae" name="run" speed="12"/>
       </animations>
@@ -14,11 +14,18 @@
   </group>
   <group>
     <variant frequency="1" name="shark_light">
-      <textures><texture file="skeletal/animal_shark.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/animal_shark.dds" name="baseTex"/>
+        <texture name="specTex" file="null_white.dds"/>
+      </textures>
     </variant>
     <variant frequency="1" name="shark_dark">
-      <textures><texture file="skeletal/animal_sharkdark.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/animal_sharkdark.dds" name="baseTex"/>
+        <texture name="specTex" file="null_white.dds"/>
+      </textures>
     </variant>
   </group>
-  <material>basic_spec.xml</material>
+  <material>no_trans_spec.xml</material>
 </actor>
+

@@ -23,13 +23,22 @@
   </group>
   <group>
     <variant frequency="1" name="medit_stone_a">
-      <textures><texture file="gaia/metal_medit_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/metal_medit_a.dds" name="baseTex"/>
+        <texture name="specTex" file="null_white.dds"/>
+      </textures>
     </variant>
     <variant frequency="1" name="medit_stone_b">
-      <textures><texture file="gaia/metal_medit_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/metal_medit_b.dds" name="baseTex"/>
+        <texture name="specTex" file="null_white.dds"/>
+      </textures>
     </variant>
     <variant frequency="1" name="medit_stone_c">
-      <textures><texture file="gaia/metal_medit_c.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/metal_medit_c.dds" name="baseTex"/>
+        <texture name="specTex" file="null_white.dds"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -39,5 +48,6 @@
       </props>
     </variant>
   </group>
-  <material>basic_spec.xml</material>
+  <material>no_trans_spec.xml</material>
 </actor>
+

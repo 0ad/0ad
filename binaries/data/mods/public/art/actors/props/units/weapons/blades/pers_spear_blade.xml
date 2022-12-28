@@ -5,6 +5,7 @@
     <variant frequency="1" name="Base">
       <textures>
         <texture file="props/prop_weap.dds" name="baseTex"/>
+        <texture name="specTex" file="null_white.dds"/>
       </textures>
     </variant>
   </group>
@@ -16,5 +17,6 @@
       <mesh>props/spear_blade_pers_b.dae</mesh>
     </variant>
   </group>
-  <material>basic_spec.xml</material>
+  <material>no_trans_spec.xml</material>
 </actor>
+

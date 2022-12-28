@@ -4,8 +4,12 @@
   <group>
     <variant frequency="100" name="army spartan hero leonidas">
       <mesh>skeletal/campaigns/spart_leonidas.dae</mesh>
-      <textures><texture file="campaigns/units/spart_leonidas.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="campaigns/units/spart_leonidas.png" name="baseTex"/>
+        <texture name="specTex" file="null_white.dds"/>
+      </textures>
     </variant>
   </group>
-  <material>basic_spec.xml</material>
+  <material>no_trans_spec.xml</material>
 </actor>
+

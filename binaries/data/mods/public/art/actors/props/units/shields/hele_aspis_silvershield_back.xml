@@ -4,8 +4,12 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/shield/aspis_b.dae</mesh>
-      <textures><texture file="props/shield/hele_aspis_back_silver.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/hele_aspis_back_silver.png" name="baseTex"/>
+        <texture name="specTex" file="null_white.dds"/>
+      </textures>
     </variant>
   </group>
-  <material>basic_spec.xml</material>
+  <material>no_trans_spec.xml</material>
 </actor>
+
