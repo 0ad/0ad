@@ -24,6 +24,7 @@
 #include <condition_variable>
 #include <functional>
 #include <mutex>
+#include <optional>
 #include <type_traits>
 
 template<typename ResultType>
@@ -39,45 +40,22 @@ enum class Status
 	CANCELED
 };
 
-template<typename ResultType>
-class SharedStateResult
-{
-public:
-	void ResetResult()
-	{
-		if (m_HasResult)
-			m_Result.m_Result.~ResultType();
-		m_HasResult = false;
-	}
-
-	union Result
-	{
-		std::aligned_storage_t<sizeof(ResultType), alignof(ResultType)> m_Bytes;
-		ResultType m_Result;
-		Result() : m_Bytes() {};
-		~Result() {};
-	};
-	// We don't use Result directly so the result doesn't have to be default constructible.
-	Result m_Result;
-	bool m_HasResult = false;
-};
-
-// Don't have m_Result for void ReturnType
-template<>
-class SharedStateResult<void>
-{
-};
+template<typename T>
+using ResultHolder = std::conditional_t<std::is_void_v<T>, std::nullopt_t, std::optional<T>>;
 
 /**
  * The shared state between futures and packaged state.
  * Holds all relevant data.
  */
 template<typename ResultType>
-class SharedState : public SharedStateResult<ResultType>
+class SharedState : public ResultHolder<ResultType>
 {
 	static constexpr bool VoidResult = std::is_same_v<ResultType, void>;
 public:
-	SharedState(std::function<ResultType()>&& func) : m_Func(std::move(func)) {}
+	SharedState(std::function<ResultType()>&& func) :
+		ResultHolder<ResultType>{std::nullopt},
+		m_Func(std::move(func))
+	{}
 	~SharedState()
 	{
 		// For safety, wait on started task completion, but not on pending ones (auto-cancelled).
@@ -86,8 +64,6 @@ public:
 			Wait();
 			Cancel();
 		}
-		if constexpr (!VoidResult)
-			SharedStateResult<ResultType>::ResetResult();
 	}
 
 	SharedState(const SharedState&) = delete;
@@ -122,7 +98,7 @@ public:
 			if (m_Status == Status::DONE)
 				m_Status = Status::CANCELED;
 			if constexpr (!VoidResult)
-				SharedStateResult<ResultType>::ResetResult();
+				this->reset();
 			m_ConditionVariable.notify_all();
 			return cancelled;
 		}
@@ -136,10 +112,11 @@ public:
 	std::enable_if_t<!std::is_same_v<_ResultType, void>, ResultType> GetResult()
 	{
 		// The caller must ensure that this is only called if we have a result.
-		ENSURE(SharedStateResult<ResultType>::m_HasResult);
+		ENSURE(this->has_value());
 		m_Status = Status::CANCELED;
-		SharedStateResult<ResultType>::m_HasResult = false;
-		return std::move(SharedStateResult<ResultType>::m_Result.m_Result);
+		ResultType ret = std::move(**this);
+		this->reset();
+		return ret;
 	}
 
 	std::atomic<Status> m_Status = Status::PENDING;
@@ -283,11 +260,7 @@ public:
 		if constexpr (VoidResult)
 			m_SharedState->m_Func();
 		else
-		{
-			// To avoid UB, explicitly placement-new the value.
-			new (&m_SharedState->m_Result) ResultType{std::move(m_SharedState->m_Func())};
-			m_SharedState->m_HasResult = true;
-		}
+			m_SharedState->emplace(m_SharedState->m_Func());
 
 		// Because we might have threads waiting on us, we need to make sure that they either:
 		// - don't wait on our condition variable
