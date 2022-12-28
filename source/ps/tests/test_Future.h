@@ -95,8 +95,7 @@ public:
 		{
 			Future<NonDef> future;
 			std::function<void()> task = future.Wrap([]() { return 1; });
-			future.Cancel();
-			future.Wait();
+			future.CancelOrWait();
 			TS_ASSERT_THROWS(future.Get(), const Future<NonDef>::BadFutureAccess&);
 		}
 		 */

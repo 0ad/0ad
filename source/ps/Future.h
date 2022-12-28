@@ -222,17 +222,6 @@ public:
 		m_SharedState.reset();
 	}
 
-	/**
-	 * Cancels the task (without waiting).
-	 * The result is always invalid, even if the task had completed before.
-	 * Note that this cannot stop started tasks.
-	 */
-	void Cancel()
-	{
-		if (m_SharedState)
-			m_SharedState->Cancel();
-		m_SharedState.reset();
-	}
 protected:
 	std::shared_ptr<SharedState> m_SharedState;
 };
