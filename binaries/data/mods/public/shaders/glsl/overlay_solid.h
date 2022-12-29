@@ -9,7 +9,3 @@ BEGIN_DRAW_UNIFORMS
 	UNIFORM(vec4, instancingTransform)
 	UNIFORM(vec4, color)
 END_DRAW_UNIFORMS
-
-uniform mat4 transform;
-uniform vec4 instancingTransform;
-uniform vec4 color;
