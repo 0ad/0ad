@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<material>
-  <define name="USE_SPECULAR" value="1"/>
-  <uniform name="specularPower" value="16.0"/>
-  <uniform name="specularColor" value="1.0 1.0 1.0"/>
-  <required_texture name="baseTex"/>
-  <shader effect="model"/>
-</material>
