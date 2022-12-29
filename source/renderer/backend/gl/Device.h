@@ -100,6 +100,8 @@ public:
 
 	void Present() override;
 
+	void OnWindowResize(const uint32_t width, const uint32_t height) override;
+
 	bool UseFramebufferInvalidating() const { return m_UseFramebufferInvalidating; }
 
 	bool IsTextureFormatSupported(const Format format) const override;
@@ -113,6 +115,7 @@ private:
 
 	SDL_Window* m_Window = nullptr;
 	SDL_GLContext m_Context = nullptr;
+	int m_SurfaceDrawableWidth = 0, m_SurfaceDrawableHeight = 0;
 
 	bool m_ARB = false;
 

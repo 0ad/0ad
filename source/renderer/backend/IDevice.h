@@ -136,6 +136,13 @@ public:
 	 */
 	virtual void Present() = 0;
 
+	/**
+	 * Should be called on window surface resize. It's the device owner
+	 * responsibility to call that function. Shouldn't be called during
+	 * rendering to an acquired backbuffer.
+	 */
+	virtual void OnWindowResize(const uint32_t width, const uint32_t height) = 0;
+
 	virtual bool IsTextureFormatSupported(const Format format) const = 0;
 
 	virtual bool IsFramebufferFormatSupported(const Format format) const = 0;

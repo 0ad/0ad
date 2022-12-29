@@ -465,9 +465,10 @@ void CMiniMapTexture::RenderFinalTexture(
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render minimap texture");
 	deviceCommandContext->BeginFramebufferPass(m_FinalTextureFramebuffer.get());
 
-	const SViewPort oldViewPort = g_Renderer.GetViewport();
-	const SViewPort viewPort = { 0, 0, FINAL_TEXTURE_SIZE, FINAL_TEXTURE_SIZE };
-	g_Renderer.SetViewport(viewPort);
+	Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
+	viewportRect.width = FINAL_TEXTURE_SIZE;
+	viewportRect.height = FINAL_TEXTURE_SIZE;
+	deviceCommandContext->SetViewports(1, &viewportRect);
 
 	const float texCoordMax = m_TerrainTexture ? static_cast<float>(m_MapSize - 1) / m_TerrainTexture->GetWidth() : 1.0f;
 
@@ -478,9 +479,8 @@ void CMiniMapTexture::RenderFinalTexture(
 	baseDefines.Add(str_MINIMAP_BASE, str_1);
 
 	tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, baseDefines);
-	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
-		tech->GetGraphicsPipelineStateDesc();
-	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+	deviceCommandContext->SetGraphicsPipelineState(
+		tech->GetGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginPass();
 	shader = tech->GetShader();
 
@@ -513,6 +513,8 @@ void CMiniMapTexture::RenderFinalTexture(
 		DrawTexture(deviceCommandContext);
 	deviceCommandContext->EndPass();
 
+	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
+		tech->GetGraphicsPipelineStateDesc();
 	pipelineStateDesc.blendState.enabled = true;
 	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
 		Renderer::Backend::BlendFactor::SRC_ALPHA;
@@ -571,7 +573,6 @@ void CMiniMapTexture::RenderFinalTexture(
 		DrawEntities(deviceCommandContext, entityRadius);
 
 	deviceCommandContext->EndFramebufferPass();
-	g_Renderer.SetViewport(oldViewPort);
 }
 
 void CMiniMapTexture::UpdateAndUploadEntities(

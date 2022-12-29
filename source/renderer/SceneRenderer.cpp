@@ -332,8 +332,6 @@ void CSceneRenderer::RenderShadowMap(
 	}
 
 	m->shadow.EndRender(deviceCommandContext);
-
-	g_Renderer.SetViewport(m_ViewCamera.GetViewPort());
 }
 
 void CSceneRenderer::RenderPatches(
@@ -565,8 +563,6 @@ void CSceneRenderer::RenderReflections(
 		return;
 	}
 
-	g_Renderer.SetViewport(m_ViewCamera.GetViewPort());
-
 	// Save the model-view-projection matrix so the shaders can use it for projective texturing
 	wm.m_ReflectionMatrix = m_ViewCamera.GetViewProjection();
 
@@ -579,16 +575,21 @@ void CSceneRenderer::RenderReflections(
 	screenScissor.x2 = static_cast<int>(ceil((reflectionScissor[1].X * 0.5f + 0.5f) * vpWidth));
 	screenScissor.y2 = static_cast<int>(ceil((reflectionScissor[1].Y * 0.5f + 0.5f) * vpHeight));
 
+	deviceCommandContext->SetGraphicsPipelineState(
+		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
+	deviceCommandContext->BeginFramebufferPass(wm.m_ReflectionFramebuffer.get());
+
+	Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
+	viewportRect.width = vpWidth;
+	viewportRect.height = vpHeight;
+	deviceCommandContext->SetViewports(1, &viewportRect);
+
 	Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
 	scissorRect.x = screenScissor.x1;
 	scissorRect.y = screenScissor.y1;
 	scissorRect.width = screenScissor.x2 - screenScissor.x1;
 	scissorRect.height = screenScissor.y2 - screenScissor.y1;
 	deviceCommandContext->SetScissors(1, &scissorRect);
-
-	deviceCommandContext->SetGraphicsPipelineState(
-		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
-	deviceCommandContext->BeginFramebufferPass(wm.m_ReflectionFramebuffer.get());
 
 	CShaderDefines reflectionsContext = context;
 	reflectionsContext.Add(str_PASS_REFLECTIONS, str_1);
@@ -610,7 +611,6 @@ void CSceneRenderer::RenderReflections(
 
 	// Reset old camera
 	m_ViewCamera = normalCamera;
-	g_Renderer.SetViewport(m_ViewCamera.GetViewPort());
 }
 
 // RenderRefractions: render the water refractions to the refraction texture
@@ -638,8 +638,6 @@ void CSceneRenderer::RenderRefractions(
 	CVector4D camPlane(0, -1, 0, wm.m_WaterHeight + 2.0f);
 	SetObliqueFrustumClipping(m_ViewCamera, camPlane);
 
-	g_Renderer.SetViewport(m_ViewCamera.GetViewPort());
-
 	// Save the model-view-projection matrix so the shaders can use it for projective texturing
 	wm.m_RefractionMatrix = m_ViewCamera.GetViewProjection();
 	wm.m_RefractionProjInvMatrix = m_ViewCamera.GetProjection().GetInverse();
@@ -654,16 +652,21 @@ void CSceneRenderer::RenderRefractions(
 	screenScissor.x2 = static_cast<int>(ceil((refractionScissor[1].X * 0.5f + 0.5f) * vpWidth));
 	screenScissor.y2 = static_cast<int>(ceil((refractionScissor[1].Y * 0.5f + 0.5f) * vpHeight));
 
+	deviceCommandContext->SetGraphicsPipelineState(
+		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
+	deviceCommandContext->BeginFramebufferPass(wm.m_RefractionFramebuffer.get());
+
+	Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
+	viewportRect.width = vpWidth;
+	viewportRect.height = vpHeight;
+	deviceCommandContext->SetViewports(1, &viewportRect);
+
 	Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
 	scissorRect.x = screenScissor.x1;
 	scissorRect.y = screenScissor.y1;
 	scissorRect.width = screenScissor.x2 - screenScissor.x1;
 	scissorRect.height = screenScissor.y2 - screenScissor.y1;
 	deviceCommandContext->SetScissors(1, &scissorRect);
-
-	deviceCommandContext->SetGraphicsPipelineState(
-		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
-	deviceCommandContext->BeginFramebufferPass(wm.m_RefractionFramebuffer.get());
 
 	// Render terrain and models
 	RenderPatches(deviceCommandContext, context, CULL_REFRACTIONS);
@@ -679,7 +682,6 @@ void CSceneRenderer::RenderRefractions(
 
 	// Reset old camera
 	m_ViewCamera = normalCamera;
-	g_Renderer.SetViewport(m_ViewCamera.GetViewPort());
 }
 
 void CSceneRenderer::RenderSilhouettes(
@@ -769,9 +771,6 @@ void CSceneRenderer::PrepareSubmissions(
 		deviceCommandContext, GetScene().GetLOSTexture(), GetScene().GetTerritoryTexture());
 
 	CShaderDefines context = m->globalContext;
-
-	// Set the camera
-	g_Renderer.SetViewport(m_ViewCamera.GetViewPort());
 
 	// Prepare model renderers
 	{

@@ -160,14 +160,10 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::IDeviceCommandContext* devic
 		(timer_Time() - m_LastTextureRecomputeTime) * 2.0f, 0.0f, 1.0f);
 	deviceCommandContext->SetUniform(shader->GetBindingSlot(str_delta), delta);
 
-	const SViewPort oldVp = g_Renderer.GetViewport();
-	const SViewPort vp =
-	{
-		0, 0,
-		static_cast<int>(m_Texture->GetWidth()),
-		static_cast<int>(m_Texture->GetHeight())
-	};
-	g_Renderer.SetViewport(vp);
+	Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
+	viewportRect.width = m_Texture->GetWidth();
+	viewportRect.height = m_Texture->GetHeight();
+	deviceCommandContext->SetViewports(1, &viewportRect);
 
 	float quadVerts[] =
 	{
@@ -205,8 +201,6 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::IDeviceCommandContext* devic
 		1, quadTex, std::size(quadTex) * sizeof(quadTex[0]));
 
 	deviceCommandContext->Draw(0, 6);
-
-	g_Renderer.SetViewport(oldVp);
 
 	deviceCommandContext->EndPass();
 	deviceCommandContext->EndFramebufferPass();

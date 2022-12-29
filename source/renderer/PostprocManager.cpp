@@ -219,6 +219,11 @@ void CPostprocManager::ApplyBlurDownscale2x(
 {
 	deviceCommandContext->BeginFramebufferPass(framebuffer);
 
+	Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
+	viewportRect.width = inWidth / 2;
+	viewportRect.height = inHeight / 2;
+	deviceCommandContext->SetViewports(1, &viewportRect);
+
 	// Get bloom shader with instructions to simply copy texels.
 	CShaderDefines defines;
 	defines.Add(str_BLOOM_NOP, str_1);
@@ -231,10 +236,6 @@ void CPostprocManager::ApplyBlurDownscale2x(
 
 	deviceCommandContext->SetTexture(
 		shader->GetBindingSlot(str_renderedTex), inTex);
-
-	const SViewPort oldVp = g_Renderer.GetViewport();
-	const SViewPort vp = { 0, 0, inWidth / 2, inHeight / 2 };
-	g_Renderer.SetViewport(vp);
 
 	// TODO: remove the fullscreen quad drawing duplication.
 	float quadVerts[] =
@@ -274,8 +275,6 @@ void CPostprocManager::ApplyBlurDownscale2x(
 
 	deviceCommandContext->Draw(0, 6);
 
-	g_Renderer.SetViewport(oldVp);
-
 	deviceCommandContext->EndPass();
 	deviceCommandContext->EndFramebufferPass();
 }
@@ -290,6 +289,11 @@ void CPostprocManager::ApplyBlurGauss(
 {
 	deviceCommandContext->BeginFramebufferPass(tempFramebuffer);
 
+	Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
+	viewportRect.width = inWidth;
+	viewportRect.height = inHeight;
+	deviceCommandContext->SetViewports(1, &viewportRect);
+
 	// Get bloom shader, for a horizontal Gaussian blur pass.
 	CShaderDefines defines2;
 	defines2.Add(str_BLOOM_PASS_H, str_1);
@@ -303,10 +307,6 @@ void CPostprocManager::ApplyBlurGauss(
 		shader->GetBindingSlot(str_renderedTex), inTex);
 	deviceCommandContext->SetUniform(
 		shader->GetBindingSlot(str_texSize), inWidth, inHeight);
-
-	const SViewPort oldVp = g_Renderer.GetViewport();
-	const SViewPort vp = { 0, 0, inWidth, inHeight };
-	g_Renderer.SetViewport(vp);
 
 	float quadVerts[] =
 	{
@@ -345,12 +345,12 @@ void CPostprocManager::ApplyBlurGauss(
 
 	deviceCommandContext->Draw(0, 6);
 
-	g_Renderer.SetViewport(oldVp);
-
 	deviceCommandContext->EndPass();
 	deviceCommandContext->EndFramebufferPass();
 
 	deviceCommandContext->BeginFramebufferPass(outFramebuffer);
+
+	deviceCommandContext->SetViewports(1, &viewportRect);
 
 	// Get bloom shader, for a vertical Gaussian blur pass.
 	CShaderDefines defines3;
@@ -368,8 +368,6 @@ void CPostprocManager::ApplyBlurGauss(
 	deviceCommandContext->SetUniform(
 		shader->GetBindingSlot(str_texSize), inWidth, inHeight);
 
-	g_Renderer.SetViewport(vp);
-
 	deviceCommandContext->SetVertexAttributeFormat(
 		Renderer::Backend::VertexAttributeStream::POSITION,
 		Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
@@ -385,8 +383,6 @@ void CPostprocManager::ApplyBlurGauss(
 		1, quadTex, std::size(quadTex) * sizeof(quadTex[0]));
 
 	deviceCommandContext->Draw(0, 6);
-
-	g_Renderer.SetViewport(oldVp);
 
 	deviceCommandContext->EndPass();
 	deviceCommandContext->EndFramebufferPass();
@@ -410,22 +406,18 @@ void CPostprocManager::ApplyBlur(
 	}
 }
 
-
-void CPostprocManager::CaptureRenderOutput(
-	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
+Renderer::Backend::IFramebuffer* CPostprocManager::PrepareAndGetOutputFramebuffer()
 {
 	ENSURE(m_IsInitialized);
 
 	// Leaves m_PingFbo selected for rendering; m_WhichBuffer stays true at this point.
 
-	deviceCommandContext->BeginFramebufferPass(
-		m_UsingMultisampleBuffer ? m_MultisampleFramebuffer.get() : m_CaptureFramebuffer.get());
-
 	m_WhichBuffer = true;
+
+	return m_UsingMultisampleBuffer ? m_MultisampleFramebuffer.get() : m_CaptureFramebuffer.get();
 }
 
-
-void CPostprocManager::ReleaseRenderOutput(
+void CPostprocManager::BlitOutputFramebuffer(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 	Renderer::Backend::IFramebuffer* destination)
 {
@@ -443,8 +435,14 @@ void CPostprocManager::ApplyEffect(
 	const CShaderTechniquePtr& shaderTech, int pass)
 {
 	// select the other FBO for rendering
-	deviceCommandContext->BeginFramebufferPass(
-		(m_WhichBuffer ? m_PongFramebuffer : m_PingFramebuffer).get());
+	Renderer::Backend::IFramebuffer* framebuffer =
+		(m_WhichBuffer ? m_PongFramebuffer : m_PingFramebuffer).get();
+	deviceCommandContext->BeginFramebufferPass(framebuffer);
+
+	Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
+	viewportRect.width = framebuffer->GetWidth();
+	viewportRect.height = framebuffer->GetHeight();
+	deviceCommandContext->SetViewports(1, &viewportRect);
 
 	deviceCommandContext->SetGraphicsPipelineState(
 		shaderTech->GetGraphicsPipelineStateDesc(pass));

@@ -302,14 +302,6 @@ CRenderer::CRenderer()
 	// the first Frame.
 	GetSceneRenderer().SetLightEnv(&g_LightEnv);
 
-	// I haven't seen the camera affecting GUI rendering and such, but the
-	// viewport has to be updated according to the video mode
-	SViewPort vp;
-	vp.m_X = 0;
-	vp.m_Y = 0;
-	vp.m_Width = g_xres;
-	vp.m_Height = g_yres;
-	SetViewport(vp);
 	ModelDefActivateFastImpl();
 	ColorActivateFastImpl();
 	ModelRenderer::Init();
@@ -468,6 +460,8 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 		m->deviceCommandContext->SetGraphicsPipelineState(
 			Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
 
+		Renderer::Backend::IFramebuffer* framebuffer = nullptr;
+
 		CPostprocManager& postprocManager = g_Renderer.GetPostprocManager();
 		if (postprocManager.IsEnabled())
 		{
@@ -478,19 +472,26 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 				m->sceneRenderer.GetViewCamera().GetFarPlane()
 			);
 			postprocManager.Initialize();
-			postprocManager.CaptureRenderOutput(m->deviceCommandContext.get());
+			framebuffer = postprocManager.PrepareAndGetOutputFramebuffer();
 		}
 		else
 		{
 			// We don't need to clear the color attachment of the framebuffer as the sky
 			// is going to be rendered anyway.
-			m->deviceCommandContext->BeginFramebufferPass(
+			framebuffer =
 				m->deviceCommandContext->GetDevice()->GetCurrentBackbuffer(
 					Renderer::Backend::AttachmentLoadOp::DONT_CARE,
 					Renderer::Backend::AttachmentStoreOp::STORE,
 					Renderer::Backend::AttachmentLoadOp::CLEAR,
-					Renderer::Backend::AttachmentStoreOp::DONT_CARE));
+					Renderer::Backend::AttachmentStoreOp::DONT_CARE);
 		}
+
+		m->deviceCommandContext->BeginFramebufferPass(framebuffer);
+
+		Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
+		viewportRect.width = framebuffer->GetWidth();
+		viewportRect.height = framebuffer->GetHeight();
+		m->deviceCommandContext->SetViewports(1, &viewportRect);
 
 		g_Game->GetView()->Render(m->deviceCommandContext.get());
 
@@ -509,10 +510,15 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 					Renderer::Backend::AttachmentStoreOp::STORE,
 					Renderer::Backend::AttachmentLoadOp::LOAD,
 					Renderer::Backend::AttachmentStoreOp::DONT_CARE);
-			postprocManager.ReleaseRenderOutput(
+			postprocManager.BlitOutputFramebuffer(
 				m->deviceCommandContext.get(), backbuffer);
 
 			m->deviceCommandContext->BeginFramebufferPass(backbuffer);
+
+			Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
+			viewportRect.width = backbuffer->GetWidth();
+			viewportRect.height = backbuffer->GetHeight();
+			m->deviceCommandContext->SetViewports(1, &viewportRect);
 		}
 
 		g_Game->GetView()->RenderOverlays(m->deviceCommandContext.get());
@@ -530,12 +536,18 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 			g_AtlasGameLoop && g_AtlasGameLoop->view
 				? Renderer::Backend::AttachmentLoadOp::CLEAR
 				: Renderer::Backend::AttachmentLoadOp::DONT_CARE;
-		m->deviceCommandContext->BeginFramebufferPass(
+		Renderer::Backend::IFramebuffer* backbuffer =
 			m->deviceCommandContext->GetDevice()->GetCurrentBackbuffer(
 				Renderer::Backend::AttachmentLoadOp::DONT_CARE,
 				Renderer::Backend::AttachmentStoreOp::STORE,
 				depthStencilLoadOp,
-				Renderer::Backend::AttachmentStoreOp::DONT_CARE));
+				Renderer::Backend::AttachmentStoreOp::DONT_CARE);
+		m->deviceCommandContext->BeginFramebufferPass(backbuffer);
+
+		Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
+		viewportRect.width = backbuffer->GetWidth();
+		viewportRect.height = backbuffer->GetHeight();
+		m->deviceCommandContext->SetViewports(1, &viewportRect);
 	}
 
 	// If we're in Atlas game view, render special tools
@@ -787,22 +799,6 @@ void CRenderer::EndFrame()
 	PROFILE3("end frame");
 
 	m->sceneRenderer.EndFrame();
-}
-
-void CRenderer::SetViewport(const SViewPort &vp)
-{
-	m_Viewport = vp;
-	Renderer::Backend::IDeviceCommandContext::Rect viewportRect;
-	viewportRect.x = vp.m_X;
-	viewportRect.y = vp.m_Y;
-	viewportRect.width = vp.m_Width;
-	viewportRect.height = vp.m_Height;
-	m->deviceCommandContext->SetViewports(1, &viewportRect);
-}
-
-SViewPort CRenderer::GetViewport()
-{
-	return m_Viewport;
 }
 
 void CRenderer::MakeShadersDirty()

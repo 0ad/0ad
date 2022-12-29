@@ -62,11 +62,8 @@ public:
 
 	void SetDepthBufferClipPlanes(float nearPlane, float farPlane);
 
-	// Clears the two color buffers and depth buffer, and redirects all rendering
-	// to our textures instead of directly to the system framebuffer.
 	// @note CPostprocManager must be initialized first
-	void CaptureRenderOutput(
-		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
+	Renderer::Backend::IFramebuffer* PrepareAndGetOutputFramebuffer();
 
 	// First renders blur textures, then calls ApplyEffect for each effect pass,
 	// ping-ponging the buffers at each step.
@@ -78,7 +75,7 @@ public:
 	// framebuffer is selected as the output buffer. Should be called before
 	// silhouette rendering.
 	// @note CPostprocManager must be initialized first
-	void ReleaseRenderOutput(
+	void BlitOutputFramebuffer(
 		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
 		Renderer::Backend::IFramebuffer* destination);
 

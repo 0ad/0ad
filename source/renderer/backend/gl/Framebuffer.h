@@ -46,6 +46,9 @@ public:
 
 	const CColor& GetClearColor() const override { return m_ClearColor; }
 
+	uint32_t GetWidth() const override { return m_Width; }
+	uint32_t GetHeight() const override { return m_Height; }
+
 	GLuint GetHandle() const { return m_Handle; }
 	GLbitfield GetAttachmentMask() const { return m_AttachmentMask; }
 
@@ -53,9 +56,6 @@ public:
 	AttachmentStoreOp GetColorAttachmentStoreOp() const { return m_ColorAttachmentStoreOp; }
 	AttachmentLoadOp GetDepthStencilAttachmentLoadOp() const { return m_DepthStencilAttachmentLoadOp; }
 	AttachmentStoreOp GetDepthStencilAttachmentStoreOp() const { return m_DepthStencilAttachmentStoreOp; }
-
-	uint32_t GetWidth() const { return m_Width; }
-	uint32_t GetHeight() const { return m_Height; }
 
 private:
 	friend class CDevice;
@@ -65,6 +65,7 @@ private:
 		SDepthStencilAttachment* depthStencilAttachment);
 	static std::unique_ptr<CFramebuffer> CreateBackbuffer(
 		CDevice* device,
+		const int surfaceDrawableWidth, const int surfaceDrawableHeight,
 		const AttachmentLoadOp colorAttachmentLoadOp,
 		const AttachmentStoreOp colorAttachmentStoreOp,
 		const AttachmentLoadOp depthStencilAttachmentLoadOp,

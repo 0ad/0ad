@@ -673,11 +673,11 @@ void CVideoMode::UpdateRenderer(int w, int h)
 
 	SViewPort vp = { 0, 0, w, h };
 
+	if (g_VideoMode.GetBackendDevice())
+		g_VideoMode.GetBackendDevice()->OnWindowResize(w, h);
+
 	if (CRenderer::IsInitialised())
-	{
-		g_Renderer.SetViewport(vp);
 		g_Renderer.Resize(w, h);
-	}
 
 	if (g_GUI)
 		g_GUI->UpdateResolution();

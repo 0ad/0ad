@@ -156,6 +156,12 @@ void CDevice::Present()
 {
 }
 
+void CDevice::OnWindowResize(const uint32_t width, const uint32_t height)
+{
+	UNUSED2(width);
+	UNUSED2(height);
+}
+
 bool CDevice::IsTextureFormatSupported(const Format format) const
 {
 	UNUSED2(format);

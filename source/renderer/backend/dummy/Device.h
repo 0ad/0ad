@@ -79,6 +79,8 @@ public:
 
 	void Present() override;
 
+	void OnWindowResize(const uint32_t width, const uint32_t height) override;
+
 	bool IsTextureFormatSupported(const Format format) const override;
 
 	bool IsFramebufferFormatSupported(const Format format) const override;

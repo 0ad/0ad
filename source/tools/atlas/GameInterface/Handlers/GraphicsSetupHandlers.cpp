@@ -39,6 +39,7 @@
 #include "ps/VideoMode.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/GameSetup/GameSetup.h"
+#include "renderer/backend/IDevice.h"
 #include "renderer/Renderer.h"
 #include "renderer/SceneRenderer.h"
 
@@ -117,6 +118,8 @@ MESSAGEHANDLER(InitGraphics)
 	UNUSED2(msg);
 
 	g_VideoMode.CreateBackendDevice(false);
+
+	g_VideoMode.GetBackendDevice()->OnWindowResize(g_xres, g_yres);
 
 	InitGraphics(g_AtlasGameLoop->args, g_InitFlags, {});
 }
