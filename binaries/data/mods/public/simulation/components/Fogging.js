@@ -131,12 +131,17 @@ Fogging.prototype.LoadMirage = function(player)
 	Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).RequestVisibilityUpdate(this.entity);
 };
 
+/**
+ * Should only be called for entities that are currently explored, but not visible or
+ * things will 'bug out' (double entities and such).
+ */
 Fogging.prototype.ForceMiraging = function(player)
 {
+	this.seen[player] = true;
+
 	if (!this.activated)
 		return;
 
-	this.seen[player] = true;
 	this.LoadMirage(player);
 };
 
