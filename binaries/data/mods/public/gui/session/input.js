@@ -1259,22 +1259,22 @@ function positionUnitsFreehandSelectionMouseUp(ev)
 	return true;
 }
 
-function triggerFlareAction(target)
+function triggerFlareAction(position)
 {
-		let now = Date.now();
-		if (g_LastFlareTime && now < g_LastFlareTime + g_FlareCooldown)
-			return;
+	let now = Date.now();
+	if (g_LastFlareTime && now < g_LastFlareTime + g_FlareCooldown)
+		return;
 
-		g_LastFlareTime = now;
-		displayFlare(target, Engine.GetPlayerID());
-		Engine.PlayUISound(g_FlareSound, false);
-		Engine.PostNetworkCommand({
-			"type": "map-flare",
-			"target": target
-		});
+	g_LastFlareTime = now;
+	displayFlare(position, Engine.GetPlayerID());
+	Engine.PlayUISound(g_FlareSound, false);
+	Engine.PostNetworkCommand({
+		"type": "map-flare",
+		"position": position
+	});
 }
 
-function handleUnitAction(target, action)
+function handleUnitAction(position, action)
 {
 	if (!g_UnitActions[action.type] || !g_UnitActions[action.type].execute)
 	{
@@ -1288,7 +1288,7 @@ function handleUnitAction(target, action)
 	// of running it immediately. If the pushorderfront hotkey is down, execute the order
 	// immidiately and continue the rest of the queue afterwards.
 	return g_UnitActions[action.type].execute(
-		target,
+		position,
 		action,
 		selection,
 		Engine.HotkeyIsPressed("session.queue"),
