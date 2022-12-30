@@ -539,12 +539,18 @@ void ActorViewer::Render()
 
 	sceneRenderer.PrepareScene(deviceCommandContext, m);
 
-	deviceCommandContext->BeginFramebufferPass(
+	Renderer::Backend::IFramebuffer* backbuffer =
 		deviceCommandContext->GetDevice()->GetCurrentBackbuffer(
 			Renderer::Backend::AttachmentLoadOp::DONT_CARE,
 			Renderer::Backend::AttachmentStoreOp::STORE,
 			Renderer::Backend::AttachmentLoadOp::CLEAR,
-			Renderer::Backend::AttachmentStoreOp::DONT_CARE));
+			Renderer::Backend::AttachmentStoreOp::DONT_CARE);
+	deviceCommandContext->BeginFramebufferPass(backbuffer);
+
+	Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
+	viewportRect.width = backbuffer->GetWidth();
+	viewportRect.height = backbuffer->GetHeight();
+	deviceCommandContext->SetViewports(1, &viewportRect);
 
 	sceneRenderer.RenderScene(deviceCommandContext);
 	sceneRenderer.RenderSceneOverlays(deviceCommandContext);

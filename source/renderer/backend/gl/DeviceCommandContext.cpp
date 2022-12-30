@@ -950,6 +950,7 @@ void CDeviceCommandContext::SetScissors(const uint32_t scissorCount, const Rect*
 
 void CDeviceCommandContext::SetViewports(const uint32_t viewportCount, const Rect* viewports)
 {
+	ENSURE(m_InsideFramebufferPass);
 	ENSURE(viewportCount == 1);
 	glViewport(viewports[0].x, viewports[0].y, viewports[0].width, viewports[0].height);
 	ogl_WarnIfError();

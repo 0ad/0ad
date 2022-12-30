@@ -77,17 +77,29 @@ class GameSettingsController
 
 	onLoad(initData, hotloadData)
 	{
-		if (hotloadData)
-			this.parseSettings(hotloadData.initAttributes);
-		else if (g_IsController && (initData?.gameSettings || this.persistentMatchSettings.enabled))
-		{
-			// Allow opting-in to persistence when sending initial data (though default off)
-			if (initData?.gameSettings)
-				this.persistentMatchSettings.enabled = !!initData.gameSettings?.usePersistence;
-			const settings = initData?.gameSettings || this.persistentMatchSettings.loadFile();
-			if (settings)
-				this.parseSettings(settings);
+		// This initial settings parsing in wrapped in a try-catch because it can fail unexpectedly,
+		// and particularly could fail with mods that change persistent settings, so this is
+		// difficult to fully fix from the gameSettings code.
+		// Also include hotloaded data because that can also fail and having to restart isn't very useful.
+		try {
+			if (hotloadData)
+				this.parseSettings(hotloadData.initAttributes);
+			else if (g_IsController && (initData?.gameSettings || this.persistentMatchSettings.enabled))
+			{
+				// Allow opting-in to persistence when sending initial data (though default off)
+				if (initData?.gameSettings)
+					this.persistentMatchSettings.enabled = !!initData.gameSettings?.usePersistence;
+				const settings = initData?.gameSettings || this.persistentMatchSettings.loadFile();
+					if (settings)
+						this.parseSettings(settings);
+			}
+		} catch(err) {
+			error("There was an error loading game settings. You may need to disable persistent match settings.");
+			warn(err?.toString() ?? uneval(err));
+			if (err.stack)
+				warn(err.stack)
 		}
+
 		// If the new settings led to AI & players conflict, remove the AI.
 		for (const guid in g_PlayerAssignments)
 			if (g_PlayerAssignments[guid].player !== -1 &&

@@ -42,6 +42,9 @@ public:
 
 	const CColor& GetClearColor() const override { return m_ClearColor; }
 
+	uint32_t GetWidth() const override { return 1; }
+	uint32_t GetHeight() const override { return 1; }
+
 private:
 	friend class CDevice;
 

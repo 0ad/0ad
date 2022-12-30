@@ -286,16 +286,15 @@ var g_Commands = {
 				["Soldier", "Warship", "Siege", "Healer"])
 		);
 		GetFormationUnitAIs(unitsToMove, player, cmd, data.formation).forEach(cmpUnitAI => {
-			const target = cmd.target;
 			if (cmd.pushFront)
 			{
-				cmpUnitAI.WalkAndFight(target.x, target.z, cmd.targetClasses, cmd.allowCapture, false, cmd.pushFront);
+				cmpUnitAI.WalkAndFight(cmd.position.x, cmd.position.z, cmd.targetClasses, cmd.allowCapture, false, cmd.pushFront);
 				cmpUnitAI.DropAtNearestDropSite(false, cmd.pushFront);
 			}
 			else
 			{
 				cmpUnitAI.DropAtNearestDropSite(cmd.queued, false)
-				cmpUnitAI.WalkAndFight(target.x, target.z, cmd.targetClasses, cmd.allowCapture, true, false);
+				cmpUnitAI.WalkAndFight(cmd.position.x, cmd.position.z, cmd.targetClasses, cmd.allowCapture, true, false);
 			}
 		});
 	},
@@ -892,7 +891,7 @@ var g_Commands = {
 		cmpGuiInterface.PushNotification({
 			"type": "map-flare",
 			"players": [player],
-			"target": cmd.target
+			"position": cmd.position
 		});
 	},
 

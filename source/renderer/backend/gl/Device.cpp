@@ -241,6 +241,8 @@ std::unique_ptr<IDevice> CDevice::Create(SDL_Window* window, const bool arb)
 			LOGERROR("SDL_GL_CreateContext failed: '%s'", SDL_GetError());
 			return nullptr;
 		}
+		SDL_GL_GetDrawableSize(window, &device->m_SurfaceDrawableWidth, &device->m_SurfaceDrawableHeight);
+
 #if OS_WIN
 		ogl_Init(SDL_GL_GetProcAddress, wutil_GetAppHDC());
 #elif (defined(SDL_VIDEO_DRIVER_X11) || defined(SDL_VIDEO_DRIVER_WAYLAND)) && !CONFIG2_GLES
@@ -934,7 +936,8 @@ IFramebuffer* CDevice::GetCurrentBackbuffer(
 	if (it == m_Backbuffers.end())
 	{
 		it = m_Backbuffers.emplace(key, CFramebuffer::CreateBackbuffer(
-			this, colorAttachmentLoadOp, colorAttachmentStoreOp,
+			this, m_SurfaceDrawableWidth, m_SurfaceDrawableHeight,
+			colorAttachmentLoadOp, colorAttachmentStoreOp,
 			depthStencilAttachmentLoadOp, depthStencilAttachmentStoreOp)).first;
 	}
 	return it->second.get();
@@ -963,6 +966,14 @@ void CDevice::Present()
 	// synchronizations during rendering.
 	if (GLenum err = glGetError())
 		ONCE(LOGERROR("GL error %s (0x%04x) occurred", ogl_GetErrorName(err), err));
+}
+
+void CDevice::OnWindowResize(const uint32_t width, const uint32_t height)
+{
+	ENSURE(!m_BackbufferAcquired);
+	m_Backbuffers.clear();
+	m_SurfaceDrawableWidth = width;
+	m_SurfaceDrawableHeight = height;
 }
 
 bool CDevice::IsTextureFormatSupported(const Format format) const

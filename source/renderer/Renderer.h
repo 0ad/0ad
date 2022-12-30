@@ -99,12 +99,6 @@ public:
 	// trigger a reload of shaders (when parameters they depend on have changed)
 	void MakeShadersDirty();
 
-	// set the viewport
-	void SetViewport(const SViewPort &);
-
-	// get the last viewport
-	SViewPort GetViewport();
-
 	// return stats accumulated for current frame
 	Stats& GetStats() { return m_Stats; }
 
@@ -167,8 +161,6 @@ protected:
 	int m_Width = 0;
 	// view height
 	int m_Height = 0;
-
-	SViewPort m_Viewport;
 
 	// per-frame renderer stats
 	Stats m_Stats;

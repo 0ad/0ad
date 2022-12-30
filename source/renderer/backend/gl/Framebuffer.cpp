@@ -164,6 +164,7 @@ std::unique_ptr<CFramebuffer> CFramebuffer::Create(
 // static
 std::unique_ptr<CFramebuffer> CFramebuffer::CreateBackbuffer(
 	CDevice* device,
+	const int surfaceDrawableWidth, const int surfaceDrawableHeight,
 	const AttachmentLoadOp colorAttachmentLoadOp,
 	const AttachmentStoreOp colorAttachmentStoreOp,
 	const AttachmentLoadOp depthStencilAttachmentLoadOp,
@@ -178,6 +179,8 @@ std::unique_ptr<CFramebuffer> CFramebuffer::CreateBackbuffer(
 	framebuffer->m_ColorAttachmentStoreOp = colorAttachmentStoreOp;
 	framebuffer->m_DepthStencilAttachmentLoadOp = depthStencilAttachmentLoadOp;
 	framebuffer->m_DepthStencilAttachmentStoreOp = depthStencilAttachmentStoreOp;
+	framebuffer->m_Width = surfaceDrawableWidth;
+	framebuffer->m_Height = surfaceDrawableHeight;
 	return framebuffer;
 }
 

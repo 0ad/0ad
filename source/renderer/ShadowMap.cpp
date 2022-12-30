@@ -600,8 +600,10 @@ void ShadowMap::PrepareCamera(
 {
 	m->CalculateShadowMatrices(cascade);
 
-	const SViewPort vp = { 0, 0, m->EffectiveWidth, m->EffectiveHeight };
-	g_Renderer.SetViewport(vp);
+	Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
+	viewportRect.width = m->EffectiveWidth;
+	viewportRect.height = m->EffectiveHeight;
+	deviceCommandContext->SetViewports(1, &viewportRect);
 
 	CCamera camera = m->SavedViewCamera;
 	camera.SetProjection(m->Cascades[cascade].LightProjection);
@@ -625,9 +627,6 @@ void ShadowMap::EndRender(
 	deviceCommandContext->EndFramebufferPass();
 
 	g_Renderer.GetSceneRenderer().SetViewCamera(m->SavedViewCamera);
-
-	const SViewPort vp = { 0, 0, g_Renderer.GetWidth(), g_Renderer.GetHeight() };
-	g_Renderer.SetViewport(vp);
 }
 
 void ShadowMap::BindTo(
