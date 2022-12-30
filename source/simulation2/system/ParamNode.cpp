@@ -241,6 +241,15 @@ void CParamNode::ApplyLayer(const XMBData& xmb, const XMBElement& element, const
 	}
 }
 
+const CParamNode& CParamNode::GetOnlyChild() const
+{
+	if (m_Childs.empty())
+		return g_NullNode;
+
+	ENSURE(m_Childs.size() == 1);
+	return m_Childs.begin()->second;
+}
+
 const CParamNode& CParamNode::GetChild(const char* name) const
 {
 	ChildrenMap::const_iterator it = m_Childs.find(name);

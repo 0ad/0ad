@@ -248,7 +248,7 @@ void CMapGeneratorWorker::SetProgress(int progress)
 
 CParamNode CMapGeneratorWorker::GetTemplate(const std::string& templateName)
 {
-	const CParamNode& templateRoot = m_TemplateLoader.GetTemplateFileData(templateName).GetChild("Entity");
+	const CParamNode& templateRoot = m_TemplateLoader.GetTemplateFileData(templateName).GetOnlyChild();
 	if (!templateRoot.IsOk())
 		LOGERROR("Invalid template found for '%s'", templateName.c_str());
 

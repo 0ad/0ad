@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,6 +50,7 @@ public:
 		TS_ASSERT_EQUALS(node.GetChild("test").GetChild("Bar").GetChild("Baz").ToInt(), 3);
 		TS_ASSERT(node.GetChild("test").GetChild("Qux").IsOk());
 		TS_ASSERT(!node.GetChild("test").GetChild("Qux").GetChild("Baz").IsOk());
+		TS_ASSERT_STR_EQUALS(node.GetChild("test").ToXMLString(), node.GetOnlyChild().ToXMLString());
 
 		CParamNode nullOne(false);
 		CParamNode nullTwo = nullOne;

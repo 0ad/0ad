@@ -1148,7 +1148,8 @@ std::string CComponentManager::GenerateSchema() const
 	std::sort(componentTypes.begin(), componentTypes.end());
 	schema +=
 		"<start>"
-			"<element name='Entity'>"
+			"<element>"
+				"<anyName/>"
 				"<optional><attribute name='parent'/></optional>";
 	for (std::vector<std::string>::const_iterator it = componentTypes.begin(); it != componentTypes.end(); ++it)
 		schema += "<optional><ref name='component." + *it + "'/></optional>";

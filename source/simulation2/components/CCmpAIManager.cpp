@@ -354,7 +354,7 @@ public:
 	{
 		if (!m_TemplateLoader.TemplateExists(name))
 			return CParamNode(false);
-		return m_TemplateLoader.GetTemplateFileData(name).GetChild("Entity");
+		return m_TemplateLoader.GetTemplateFileData(name).GetOnlyChild();
 	}
 
 	/**

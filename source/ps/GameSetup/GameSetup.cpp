@@ -787,7 +787,7 @@ CParamNode GetTemplate(const std::string& templateName)
 	// This is very cheap to create so let's just do it every time.
 	CTemplateLoader templateLoader;
 
-	const CParamNode& templateRoot = templateLoader.GetTemplateFileData(templateName).GetChild("Entity");
+	const CParamNode& templateRoot = templateLoader.GetTemplateFileData(templateName).GetOnlyChild();
 	if (!templateRoot.IsOk())
 		LOGERROR("Invalid template found for '%s'", templateName.c_str());
 
