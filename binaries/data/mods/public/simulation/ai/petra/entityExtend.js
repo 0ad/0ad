@@ -168,8 +168,13 @@ PETRA.allowCapture = function(gameState, ent, target)
 		return !target.decaying();
 
 	let antiCapture = target.defaultRegenRate();
-	if (target.isGarrisonHolder() && target.garrisoned())
-		antiCapture += target.garrisonRegenRate() * target.garrisoned().length;
+	if (target.isGarrisonHolder())
+	{
+		const garrisonRegenRate = target.garrisonRegenRate();
+		for (const garrisonedEntity of target.garrisoned())
+			antiCapture += garrisonRegenRate * (gameState.getEntityById(garrisonedEntity)?.captureStrength() || 0);
+	}
+
 	if (target.decaying())
 		antiCapture -= target.territoryDecayRate();
 

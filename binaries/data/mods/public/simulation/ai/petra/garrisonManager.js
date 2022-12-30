@@ -316,7 +316,7 @@ PETRA.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, around)
 			return around.meleeSiege;
 		return holder.buffHeal() && ent.needsHeal();
 	case PETRA.GarrisonManager.TYPE_DECAY:
-		return this.decayingStructures.has(holder.id());
+		return ent.captureStrength() && this.decayingStructures.has(holder.id());
 	case PETRA.GarrisonManager.TYPE_EMERGENCY: // f.e. hero in regicide mode
 		if (holder.buffHeal() && ent.isHealable() && ent.healthLevel() < this.Config.garrisonHealthLevel.high)
 			return true;
