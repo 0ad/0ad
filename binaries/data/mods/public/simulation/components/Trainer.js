@@ -145,19 +145,15 @@ Trainer.prototype.Item.prototype.Stop = function()
 			cmpPlayerEntityLimits.ChangeMatchCount(this.templateName, -this.count);
 	}
 
-	const cmpStatisticsTracker = QueryPlayerIDInterface(this.player, IID_StatisticsTracker);
-	const totalCosts = {};
-	for (const resource in this.resources)
-	{
-		totalCosts[resource] = Math.floor(this.count * this.resources[resource]);
-		if (cmpStatisticsTracker)
-			cmpStatisticsTracker.IncreaseResourceUsedCounter(resource, -totalCosts[resource]);
-	}
-
 	if (cmpPlayer)
 	{
 		if (this.started)
 			cmpPlayer.UnReservePopulationSlots(this.population * this.count);
+
+		const totalCosts = {};
+		for (const resource in this.resources)
+			totalCosts[resource] = Math.floor(this.count * this.resources[resource]);
+
 		cmpPlayer.RefundResources(totalCosts);
 		cmpPlayer.UnBlockTraining();
 	}
