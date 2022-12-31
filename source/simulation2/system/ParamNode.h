@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2022 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -189,6 +189,12 @@ public:
 	const CParamNode& GetChild(const char* name) const;
 	// (Children are returned as const in order to allow future optimisations, where we assume
 	// a node is always modified explicitly and not indirectly via its children, e.g. to cache JS::Values)
+
+	/**
+	 * Returns the only child node, or a node with IsOk() == false if there is none.
+	 * This is mainly useful for the root node.
+	 */
+	const CParamNode& GetOnlyChild() const;
 
 	/**
 	 * Returns true if this is a valid CParamNode, false if it represents a non-existent node

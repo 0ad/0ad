@@ -170,7 +170,7 @@ const CParamNode* CCmpTemplateManager::GetTemplate(const std::string& templateNa
 			return NULL;
 	}
 
-	const CParamNode& templateRoot = fileData.GetChild("Entity");
+	const CParamNode& templateRoot = fileData.GetOnlyChild();
 	if (!templateRoot.IsOk())
 	{
 		// The validator should never let this happen
@@ -183,7 +183,7 @@ const CParamNode* CCmpTemplateManager::GetTemplate(const std::string& templateNa
 
 const CParamNode* CCmpTemplateManager::GetTemplateWithoutValidation(const std::string& templateName)
 {
-	const CParamNode& templateRoot = m_templateLoader.GetTemplateFileData(templateName).GetChild("Entity");
+	const CParamNode& templateRoot = m_templateLoader.GetTemplateFileData(templateName).GetOnlyChild();
 	if (!templateRoot.IsOk())
 		return NULL;
 

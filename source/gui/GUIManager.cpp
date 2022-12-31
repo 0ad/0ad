@@ -415,7 +415,7 @@ bool CGUIManager::TemplateExists(const std::string& templateName) const
 
 const CParamNode& CGUIManager::GetTemplate(const std::string& templateName)
 {
-	const CParamNode& templateRoot = m_TemplateLoader.GetTemplateFileData(templateName).GetChild("Entity");
+	const CParamNode& templateRoot = m_TemplateLoader.GetTemplateFileData(templateName).GetOnlyChild();
 	if (!templateRoot.IsOk())
 		LOGERROR("Invalid template found for '%s'", templateName.c_str());
 
