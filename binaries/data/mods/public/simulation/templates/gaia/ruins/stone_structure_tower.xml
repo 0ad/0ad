@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_gaia_ruins">
+  <Footprint replace="">
+    <Square width="11" depth="8"/>
+    <Height>12.0</Height>
+  </Footprint>
+  <Identity>
+    <Civ>gaia</Civ>
+    <GenericName>Stone Resource</GenericName>
+    <SpecificName>Ruined Tower</SpecificName>
+    <Icon>gaia/geology_stone_1.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Static width="9" depth="6"/>
+  </Obstruction>
+  <ResourceSupply>
+    <Max>500</Max>
+    <Type>stone.ruins</Type>
+  </ResourceSupply>
+  <Sound>
+    <SoundGroups>
+      <select>interface/select/building/sel_universal.xml</select>
+    </SoundGroups>
+  </Sound>
+  <VisualActor>
+    <Actor>structures/carthaginians/fndn_defense_tower.xml</Actor>
+  </VisualActor>
+</Entity>
