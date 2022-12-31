@@ -20,6 +20,7 @@
 
 #include "graphics/Color.h"
 #include "renderer/backend/CompareOp.h"
+#include "renderer/backend/IDeviceObject.h"
 #include "renderer/backend/IShaderProgram.h"
 
 class CStr;
@@ -53,7 +54,7 @@ enum class StencilOp
 	DECREMENT_AND_WRAP
 };
 
-struct StencilOpState
+struct SStencilOpState
 {
 	StencilOp failOp;
 	StencilOp passOp;
@@ -61,7 +62,7 @@ struct StencilOpState
 	CompareOp compareOp;
 };
 
-struct DepthStencilStateDesc
+struct SDepthStencilStateDesc
 {
 	bool depthTestEnabled;
 	CompareOp depthCompareOp;
@@ -70,8 +71,8 @@ struct DepthStencilStateDesc
 	uint32_t stencilReadMask;
 	uint32_t stencilWriteMask;
 	uint32_t stencilReference;
-	StencilOpState stencilFrontFace;
-	StencilOpState stencilBackFace;
+	SStencilOpState stencilFrontFace;
+	SStencilOpState stencilBackFace;
 };
 
 // TODO: add per constant description.
@@ -118,7 +119,7 @@ constexpr uint8_t BLUE = 0x04;
 constexpr uint8_t ALPHA = 0x08;
 } // namespace ColorWriteMask
 
-struct BlendStateDesc
+struct SBlendStateDesc
 {
 	bool enabled;
 	BlendFactor srcColorBlendFactor;
@@ -150,7 +151,7 @@ enum class FrontFace
 	CLOCKWISE
 };
 
-struct RasterizationStateDesc
+struct SRasterizationStateDesc
 {
 	PolygonMode polygonMode;
 	CullMode cullMode;
@@ -160,19 +161,19 @@ struct RasterizationStateDesc
 	float depthBiasSlopeFactor;
 };
 
-struct GraphicsPipelineStateDesc
+struct SGraphicsPipelineStateDesc
 {
 	// It's a backend client reponsibility to keep the shader program alive
 	// while it's bound.
 	IShaderProgram* shaderProgram;
-	DepthStencilStateDesc depthStencilState;
-	BlendStateDesc blendState;
-	RasterizationStateDesc rasterizationState;
+	SDepthStencilStateDesc depthStencilState;
+	SBlendStateDesc blendState;
+	SRasterizationStateDesc rasterizationState;
 };
 
 // We don't provide additional helpers intentionally because all custom states
 // should be described with a related shader and should be switched together.
-GraphicsPipelineStateDesc MakeDefaultGraphicsPipelineStateDesc();
+SGraphicsPipelineStateDesc MakeDefaultGraphicsPipelineStateDesc();
 
 StencilOp ParseStencilOp(const CStr& str);
 
@@ -182,6 +183,15 @@ BlendOp ParseBlendOp(const CStr& str);
 PolygonMode ParsePolygonMode(const CStr& str);
 CullMode ParseCullMode(const CStr& str);
 FrontFace ParseFrontFace(const CStr& str);
+
+/**
+ * A holder for precompiled graphics pipeline description.
+ */
+class IGraphicsPipelineState : public IDeviceObject<IGraphicsPipelineState>
+{
+public:
+	virtual IShaderProgram* GetShaderProgram() const = 0;
+};
 
 } // namespace Backend
 

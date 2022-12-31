@@ -21,6 +21,10 @@
 #include "renderer/backend/dummy/DeviceForward.h"
 #include "renderer/backend/IDevice.h"
 
+#include <memory>
+#include <string>
+#include <vector>
+
 class CShaderDefines;
 
 namespace Renderer
@@ -50,6 +54,9 @@ public:
 	void Report(const ScriptRequest& rq, JS::HandleValue settings) override;
 
 	std::unique_ptr<IDeviceCommandContext> CreateCommandContext() override;
+
+	std::unique_ptr<IGraphicsPipelineState> CreateGraphicsPipelineState(
+		const SGraphicsPipelineStateDesc& pipelineStateDesc) override;
 
 	std::unique_ptr<ITexture> CreateTexture(
 		const char* name, const ITexture::Type type, const uint32_t usage,

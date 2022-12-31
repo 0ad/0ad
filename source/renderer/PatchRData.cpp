@@ -772,7 +772,7 @@ void CPatchRData::RenderBases(
 		for (int pass = 0; pass < numPasses; ++pass)
 		{
 			deviceCommandContext->SetGraphicsPipelineState(
-				techBase->GetGraphicsPipelineStateDesc(pass));
+				techBase->GetGraphicsPipelineState(pass));
 			deviceCommandContext->BeginPass();
 			Renderer::Backend::IShaderProgram* shader = techBase->GetShader(pass);
 			TerrainRenderer::PrepareShader(deviceCommandContext, shader, shadow);
@@ -978,8 +978,12 @@ void CPatchRData::RenderBlends(
 		{
 			CShaderDefines defines = contextBlend;
 			defines.SetMany(bestTex->GetMaterial().GetShaderDefines());
+			// TODO: move enabling blend to XML.
+			const CStrIntern shaderEffect = bestTex->GetMaterial().GetShaderEffect();
+			if (shaderEffect != str_terrain_base)
+				ONCE(LOGWARNING("Shader effect '%s' doesn't support semi-transparent terrain rendering.", shaderEffect.c_str()));
 			layer.m_ShaderTech = g_Renderer.GetShaderManager().LoadEffect(
-				bestTex->GetMaterial().GetShaderEffect(), defines);
+				shaderEffect == str_terrain_base ? str_terrain_blend : shaderEffect, defines);
 		}
 		batches.push_back(layer);
 	}
@@ -997,16 +1001,8 @@ void CPatchRData::RenderBlends(
 		const int numPasses = techBase->GetNumPasses();
 		for (int pass = 0; pass < numPasses; ++pass)
 		{
-			Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
-				techBase->GetGraphicsPipelineStateDesc(pass);
-			pipelineStateDesc.blendState.enabled = true;
-			pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
-				Renderer::Backend::BlendFactor::SRC_ALPHA;
-			pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
-				Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
-			pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
-				Renderer::Backend::BlendOp::ADD;
-			deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+			deviceCommandContext->SetGraphicsPipelineState(
+				techBase->GetGraphicsPipelineState(pass));
 			deviceCommandContext->BeginPass();
 
 			Renderer::Backend::IShaderProgram* shader = techBase->GetShader(pass);

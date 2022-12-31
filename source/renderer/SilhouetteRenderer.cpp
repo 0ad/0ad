@@ -469,15 +469,22 @@ void SilhouetteRenderer::RenderDebugOverlays(
 	proj.SetOrtho(0.f, g_MaxCoord, 0.f, g_MaxCoord, -1.f, 1000.f);
 	m = proj * m;
 
-	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
-	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
-		shaderTech->GetGraphicsPipelineStateDesc();
-	deviceCommandContext->BeginPass();
-	pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
-	pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
-	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+	if (!m_ShaderTech)
+	{
+		m_ShaderTech = g_Renderer.GetShaderManager().LoadEffect(
+			str_solid, {},
+			[](Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc)
+			{
+				pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
+				pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
+			});
+	}
 
-	Renderer::Backend::IShaderProgram* shader = shaderTech->GetShader();
+	deviceCommandContext->BeginPass();
+	deviceCommandContext->SetGraphicsPipelineState(
+		m_ShaderTech->GetGraphicsPipelineState());
+
+	Renderer::Backend::IShaderProgram* shader = m_ShaderTech->GetShader();
 	deviceCommandContext->SetUniform(
 		shader->GetBindingSlot(str_transform), proj.AsFloatArray());
 

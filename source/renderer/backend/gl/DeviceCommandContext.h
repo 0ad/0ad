@@ -53,7 +53,9 @@ public:
 
 	IDevice* GetDevice() override;
 
-	void SetGraphicsPipelineState(const GraphicsPipelineStateDesc& pipelineStateDesc) override;
+	void SetGraphicsPipelineState(const SGraphicsPipelineStateDesc& pipelineState);
+
+	void SetGraphicsPipelineState(IGraphicsPipelineState* pipelineState) override;
 
 	void BlitFramebuffer(IFramebuffer* destinationFramebuffer, IFramebuffer* sourceFramebuffer) override;
 
@@ -155,14 +157,14 @@ private:
 	void ResetStates();
 
 	void SetGraphicsPipelineStateImpl(
-		const GraphicsPipelineStateDesc& pipelineStateDesc, const bool force);
+		const SGraphicsPipelineStateDesc& pipelineStateDesc, const bool force);
 
 	void BindTexture(const uint32_t unit, const GLenum target, const GLuint handle);
 	void BindBuffer(const IBuffer::Type type, CBuffer* buffer);
 
 	CDevice* m_Device = nullptr;
 
-	GraphicsPipelineStateDesc m_GraphicsPipelineStateDesc{};
+	SGraphicsPipelineStateDesc m_GraphicsPipelineStateDesc{};
 	CFramebuffer* m_Framebuffer = nullptr;
 	CShaderProgram* m_ShaderProgram = nullptr;
 	uint32_t m_ScissorCount = 0;

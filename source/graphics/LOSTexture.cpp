@@ -146,7 +146,7 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::IDeviceCommandContext* devic
 	deviceCommandContext->BeginFramebufferPass(m_SmoothFramebuffers[m_WhichTexture].get());
 
 	deviceCommandContext->SetGraphicsPipelineState(
-		m_SmoothTech->GetGraphicsPipelineStateDesc());
+		m_SmoothTech->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 
 	Renderer::Backend::IShaderProgram* shader = m_SmoothTech->GetShader();

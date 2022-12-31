@@ -27,9 +27,9 @@ namespace Renderer
 namespace Backend
 {
 
-GraphicsPipelineStateDesc MakeDefaultGraphicsPipelineStateDesc()
+SGraphicsPipelineStateDesc MakeDefaultGraphicsPipelineStateDesc()
 {
-	GraphicsPipelineStateDesc desc{};
+	SGraphicsPipelineStateDesc desc{};
 
 	desc.shaderProgram = nullptr;
 

@@ -22,6 +22,7 @@
 #include "renderer/backend/dummy/Buffer.h"
 #include "renderer/backend/dummy/DeviceCommandContext.h"
 #include "renderer/backend/dummy/Framebuffer.h"
+#include "renderer/backend/dummy/PipelineState.h"
 #include "renderer/backend/dummy/ShaderProgram.h"
 #include "renderer/backend/dummy/Texture.h"
 #include "scriptinterface/JSON.h"
@@ -71,6 +72,12 @@ void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 std::unique_ptr<IDeviceCommandContext> CDevice::CreateCommandContext()
 {
 	return CDeviceCommandContext::Create(this);
+}
+
+std::unique_ptr<IGraphicsPipelineState> CDevice::CreateGraphicsPipelineState(
+	const SGraphicsPipelineStateDesc& pipelineStateDesc)
+{
+	return CGraphicsPipelineState::Create(this, pipelineStateDesc);
 }
 
 std::unique_ptr<ITexture> CDevice::CreateTexture(

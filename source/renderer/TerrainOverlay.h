@@ -23,8 +23,10 @@
 #ifndef INCLUDED_TERRAINOVERLAY
 #define INCLUDED_TERRAINOVERLAY
 
+#include "graphics/ShaderTechniquePtr.h"
 #include "renderer/backend/ITexture.h"
 #include "renderer/backend/IDeviceCommandContext.h"
+#include "renderer/backend/PipelineState.h"
 
 struct CColor;
 struct SColor4ub;
@@ -179,6 +181,9 @@ private:
 	ssize_t m_i, m_j;
 
 	CTerrain* m_Terrain;
+
+	CShaderTechniquePtr m_OverlayTechTile, m_OverlayTechTileHidden;
+	CShaderTechniquePtr m_OverlayTechOutline, m_OverlayTechOutlineHidden;
 };
 
 /**

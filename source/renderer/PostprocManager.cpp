@@ -230,7 +230,7 @@ void CPostprocManager::ApplyBlurDownscale2x(
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom, defines);
 
 	deviceCommandContext->SetGraphicsPipelineState(
-		tech->GetGraphicsPipelineStateDesc());
+		tech->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 	Renderer::Backend::IShaderProgram* shader = tech->GetShader();
 
@@ -300,7 +300,7 @@ void CPostprocManager::ApplyBlurGauss(
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom, defines2);
 
 	deviceCommandContext->SetGraphicsPipelineState(
-		tech->GetGraphicsPipelineStateDesc());
+		tech->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 	Renderer::Backend::IShaderProgram* shader = tech->GetShader();
 	deviceCommandContext->SetTexture(
@@ -357,7 +357,7 @@ void CPostprocManager::ApplyBlurGauss(
 	defines3.Add(str_BLOOM_PASS_V, str_1);
 	tech = g_Renderer.GetShaderManager().LoadEffect(str_bloom, defines3);
 	deviceCommandContext->SetGraphicsPipelineState(
-		tech->GetGraphicsPipelineStateDesc());
+		tech->GetGraphicsPipelineState());
 
 	deviceCommandContext->BeginPass();
 	shader = tech->GetShader();
@@ -445,7 +445,7 @@ void CPostprocManager::ApplyEffect(
 	deviceCommandContext->SetViewports(1, &viewportRect);
 
 	deviceCommandContext->SetGraphicsPipelineState(
-		shaderTech->GetGraphicsPipelineStateDesc(pass));
+		shaderTech->GetGraphicsPipelineState(pass));
 	deviceCommandContext->BeginPass();
 	Renderer::Backend::IShaderProgram* shader = shaderTech->GetShader(pass);
 

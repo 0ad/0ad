@@ -52,7 +52,7 @@ IDevice* CDeviceCommandContext::GetDevice()
 }
 
 void CDeviceCommandContext::SetGraphicsPipelineState(
-	const GraphicsPipelineStateDesc&)
+	IGraphicsPipelineState*)
 {
 }
 

@@ -31,6 +31,7 @@
 #include "ps/CStrInternStatic.h"
 #include "ps/Game.h"
 #include "ps/Profile.h"
+#include "renderer/backend/PipelineState.h"
 #include "renderer/DebugRenderer.h"
 #include "renderer/Renderer.h"
 #include "renderer/SceneRenderer.h"
@@ -47,12 +48,50 @@
 namespace
 {
 
-CShaderTechniquePtr GetOverlayLineShaderTechnique(const CShaderDefines& defines)
+struct Shader
 {
-	return g_Renderer.GetShaderManager().LoadEffect(str_overlay_line, defines);
+	CShaderTechniquePtr technique, techniqueWireframe;
+
+	const CShaderTechniquePtr& GetTechnique() const
+	{
+		return g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME
+			? techniqueWireframe : technique;
+	}
+};
+
+void AdjustOverlayGraphicsPipelineState(Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc)
+{
+	pipelineStateDesc.depthStencilState.depthWriteEnabled = false;
+	pipelineStateDesc.blendState.enabled = true;
+	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
+		Renderer::Backend::BlendFactor::SRC_ALPHA;
+	pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
+		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
+	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
+		Renderer::Backend::BlendOp::ADD;
 }
 
-} // anonymous namespace
+Shader CreateShader(
+	const CStrIntern name, const CShaderDefines& defines)
+{
+	Shader shader;
+
+	shader.technique = g_Renderer.GetShaderManager().LoadEffect(
+		name, defines,
+		[](Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc)
+		{
+			AdjustOverlayGraphicsPipelineState(pipelineStateDesc);
+		});
+	shader.techniqueWireframe = g_Renderer.GetShaderManager().LoadEffect(
+		name, defines,
+		[](Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc)
+		{
+			AdjustOverlayGraphicsPipelineState(pipelineStateDesc);
+			pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
+		});
+
+	return shader;
+}
 
 /**
  * Key used to group quads into batches for more efficient rendering. Currently groups by the combination
@@ -104,12 +143,16 @@ public:
 	size_t m_NumRenderQuads;
 };
 
+} // anonymous namespace
+
 struct OverlayRendererInternals
 {
 	using QuadBatchMap = std::unordered_map<QuadBatchKey, QuadBatchData, QuadBatchHash>;
 
 	OverlayRendererInternals();
-	~OverlayRendererInternals(){ }
+	~OverlayRendererInternals() = default;
+
+	Renderer::Backend::IDevice* device = nullptr;
 
 	std::vector<SOverlayLine*> lines;
 	std::vector<SOverlayTexturedLine*> texlines;
@@ -138,6 +181,12 @@ struct OverlayRendererInternals
 	CShaderDefines defsOverlayLineNormal;
 	CShaderDefines defsOverlayLineAlwaysVisible;
 	CShaderDefines defsQuadOverlay;
+
+	Shader shaderTexLineNormal;
+	Shader shaderTexLineAlwaysVisible;
+	Shader shaderQuadOverlay;
+	Shader shaderForegroundOverlay;
+	Shader shaderOverlaySolid;
 
 	// Geometry for a unit sphere
 	std::vector<float> sphereVertexes;
@@ -202,6 +251,17 @@ void OverlayRendererInternals::Initialize()
 	}
 	quadIndices.Upload();
 	quadIndices.FreeBackingStore();
+
+	shaderTexLineNormal =
+		CreateShader(str_overlay_line, defsOverlayLineNormal);
+	shaderTexLineAlwaysVisible =
+		CreateShader(str_overlay_line, defsOverlayLineAlwaysVisible);
+	shaderQuadOverlay =
+		CreateShader(str_overlay_line, defsQuadOverlay);
+	shaderForegroundOverlay =
+		CreateShader(str_foreground_overlay, {});
+	shaderOverlaySolid =
+		CreateShader(str_overlay_solid, {});
 }
 
 OverlayRenderer::OverlayRenderer()
@@ -407,25 +467,14 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::IDeviceComma
 
 	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 
-	CShaderTechniquePtr shaderTechTexLineNormal = GetOverlayLineShaderTechnique(m->defsOverlayLineNormal);
-	if (shaderTechTexLineNormal)
+	if (m->shaderTexLineNormal.technique)
 	{
-		Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
-			shaderTechTexLineNormal->GetGraphicsPipelineStateDesc();
-		pipelineStateDesc.depthStencilState.depthWriteEnabled = false;
-		pipelineStateDesc.blendState.enabled = true;
-		pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
-			Renderer::Backend::BlendFactor::SRC_ALPHA;
-		pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
-			Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
-		pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
-			Renderer::Backend::BlendOp::ADD;
-		if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
-			pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
-		deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+		const CShaderTechniquePtr& shaderTechnique = m->shaderTexLineNormal.GetTechnique();
+		deviceCommandContext->SetGraphicsPipelineState(
+			shaderTechnique->GetGraphicsPipelineState());
 		deviceCommandContext->BeginPass();
 
-		Renderer::Backend::IShaderProgram* shaderTexLineNormal = shaderTechTexLineNormal->GetShader();
+		Renderer::Backend::IShaderProgram* shaderTexLineNormal = shaderTechnique->GetShader();
 
 		deviceCommandContext->SetTexture(
 			shaderTexLineNormal->GetBindingSlot(str_losTex), los.GetTexture());
@@ -444,25 +493,15 @@ void OverlayRenderer::RenderTexturedOverlayLines(Renderer::Backend::IDeviceComma
 		deviceCommandContext->EndPass();
 	}
 
-	CShaderTechniquePtr shaderTechTexLineAlwaysVisible = GetOverlayLineShaderTechnique(m->defsOverlayLineAlwaysVisible);
-	if (shaderTechTexLineAlwaysVisible)
+	if (m->shaderTexLineAlwaysVisible.technique)
 	{
-		Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
-			shaderTechTexLineAlwaysVisible->GetGraphicsPipelineStateDesc();
-		pipelineStateDesc.depthStencilState.depthWriteEnabled = false;
-		pipelineStateDesc.blendState.enabled = true;
-		pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
-			Renderer::Backend::BlendFactor::SRC_ALPHA;
-		pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
-			Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
-		pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
-			Renderer::Backend::BlendOp::ADD;
-		if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
-			pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
-		deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+		const CShaderTechniquePtr& shaderTechnique = m->shaderTexLineAlwaysVisible.GetTechnique();
+		deviceCommandContext->SetGraphicsPipelineState(
+			shaderTechnique->GetGraphicsPipelineState());
 		deviceCommandContext->BeginPass();
 
-		Renderer::Backend::IShaderProgram* shaderTexLineAlwaysVisible = shaderTechTexLineAlwaysVisible->GetShader();
+		Renderer::Backend::IShaderProgram* shaderTexLineAlwaysVisible =
+			shaderTechnique->GetShader();
 
 		// TODO: losTex and losTransform are unused in the always visible shader; see if these can be safely omitted
 		deviceCommandContext->SetTexture(
@@ -506,27 +545,15 @@ void OverlayRenderer::RenderQuadOverlays(
 	if (m->quadBatchMap.empty())
 		return;
 
-	CShaderTechniquePtr shaderTech = GetOverlayLineShaderTechnique(m->defsQuadOverlay);
-
-	if (!shaderTech)
+	if (!m->shaderQuadOverlay.technique)
 		return;
 
-	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
-		shaderTech->GetGraphicsPipelineStateDesc();
-	pipelineStateDesc.depthStencilState.depthWriteEnabled = false;
-	pipelineStateDesc.blendState.enabled = true;
-	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
-		Renderer::Backend::BlendFactor::SRC_ALPHA;
-	pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
-		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
-	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
-		Renderer::Backend::BlendOp::ADD;
-	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
-		pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
-	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+	const CShaderTechniquePtr& shaderTechnique = m->shaderQuadOverlay.GetTechnique();
+	deviceCommandContext->SetGraphicsPipelineState(
+		shaderTechnique->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 
-	Renderer::Backend::IShaderProgram* shader = shaderTech->GetShader();
+	Renderer::Backend::IShaderProgram* shader = shaderTechnique->GetShader();
 
 	CLOSTexture& los = g_Renderer.GetSceneRenderer().GetScene().GetLOSTexture();
 
@@ -601,23 +628,12 @@ void OverlayRenderer::RenderForegroundOverlays(
 	const CVector3D right = -viewCamera.GetOrientation().GetLeft();
 	const CVector3D up = viewCamera.GetOrientation().GetUp();
 
-	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_foreground_overlay);
-	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
-		tech->GetGraphicsPipelineStateDesc();
-	pipelineStateDesc.depthStencilState.depthTestEnabled = false;
-	pipelineStateDesc.blendState.enabled = true;
-	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
-		Renderer::Backend::BlendFactor::SRC_ALPHA;
-	pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
-		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
-	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
-		Renderer::Backend::BlendOp::ADD;
-	if (g_Renderer.GetSceneRenderer().GetOverlayRenderMode() == WIREFRAME)
-		pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
-	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+	const CShaderTechniquePtr& shaderTechnique = m->shaderForegroundOverlay.GetTechnique();
+	deviceCommandContext->SetGraphicsPipelineState(
+		shaderTechnique->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 
-	Renderer::Backend::IShaderProgram* shader = tech->GetShader();
+	Renderer::Backend::IShaderProgram* shader = shaderTechnique->GetShader();
 
 	const CMatrix3D transform =
 		g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
@@ -750,27 +766,15 @@ void OverlayRenderer::RenderSphereOverlays(
 {
 	PROFILE3_GPU("overlays (spheres)");
 
-	if (m->spheres.empty())
+	if (m->spheres.empty() || m->shaderOverlaySolid.technique)
 		return;
 
-	Renderer::Backend::IShaderProgram* shader = nullptr;
-	CShaderTechniquePtr tech;
-
-	tech = g_Renderer.GetShaderManager().LoadEffect(str_overlay_solid);
-	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
-		tech->GetGraphicsPipelineStateDesc();
-	pipelineStateDesc.depthStencilState.depthWriteEnabled = false;
-	pipelineStateDesc.blendState.enabled = true;
-	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
-		Renderer::Backend::BlendFactor::SRC_ALPHA;
-	pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
-		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
-	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
-		Renderer::Backend::BlendOp::ADD;
-	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+	const CShaderTechniquePtr& shaderTechnique = m->shaderOverlaySolid.GetTechnique();
+	deviceCommandContext->SetGraphicsPipelineState(
+		shaderTechnique->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 
-	shader = tech->GetShader();
+	Renderer::Backend::IShaderProgram* shader = shaderTechnique->GetShader();
 
 	const CMatrix3D transform =
 		g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();

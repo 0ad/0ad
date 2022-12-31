@@ -18,6 +18,10 @@
 #ifndef INCLUDED_DEBUGRENDERER
 #define INCLUDED_DEBUGRENDERER
 
+#include "graphics/ShaderTechniquePtr.h"
+#include "ps/CStrIntern.h"
+
+#include <unordered_map>
 #include <vector>
 
 class CBoundingBoxAligned;
@@ -64,6 +68,29 @@ public:
 	 * Render the surfaces of the brush as triangles.
 	 */
 	void DrawBrush(const CBrush& brush, const CColor& color, bool wireframe = false);
+
+private:
+	const CShaderTechniquePtr& GetShaderTechnique(
+		const CStrIntern name, const CColor& color, const bool depthTestEnabled = true,
+		const bool wireframe = false);
+
+	struct ShaderTechniqueKey
+	{
+		CStrIntern name;
+		bool transparent;
+		bool depthTestEnabled;
+		bool wireframe;
+	};
+	struct ShaderTechniqueKeyHash
+	{
+		size_t operator()(const ShaderTechniqueKey& key) const;
+	};
+	struct ShaderTechniqueKeyEqual
+	{
+		bool operator()(const ShaderTechniqueKey& lhs, const ShaderTechniqueKey& rhs) const;
+	};
+	std::unordered_map<ShaderTechniqueKey, CShaderTechniquePtr, ShaderTechniqueKeyHash, ShaderTechniqueKeyEqual>
+		m_ShaderTechniqueMapping;
 };
 
 #endif // INCLUDED_DEBUGRENDERER

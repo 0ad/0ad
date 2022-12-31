@@ -575,8 +575,6 @@ void CSceneRenderer::RenderReflections(
 	screenScissor.x2 = static_cast<int>(ceil((reflectionScissor[1].X * 0.5f + 0.5f) * vpWidth));
 	screenScissor.y2 = static_cast<int>(ceil((reflectionScissor[1].Y * 0.5f + 0.5f) * vpHeight));
 
-	deviceCommandContext->SetGraphicsPipelineState(
-		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginFramebufferPass(wm.m_ReflectionFramebuffer.get());
 
 	Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
@@ -652,8 +650,6 @@ void CSceneRenderer::RenderRefractions(
 	screenScissor.x2 = static_cast<int>(ceil((refractionScissor[1].X * 0.5f + 0.5f) * vpWidth));
 	screenScissor.y2 = static_cast<int>(ceil((refractionScissor[1].Y * 0.5f + 0.5f) * vpHeight));
 
-	deviceCommandContext->SetGraphicsPipelineState(
-		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginFramebufferPass(wm.m_RefractionFramebuffer.get());
 
 	Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
@@ -704,8 +700,6 @@ void CSceneRenderer::RenderSilhouettes(
 	// inverted depth test so any behind an occluder will get drawn in a constant
 	// color.
 
-	deviceCommandContext->SetGraphicsPipelineState(
-		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
 	deviceCommandContext->ClearFramebuffer(false, true, true);
 
 	// Render occluders:

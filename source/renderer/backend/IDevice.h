@@ -27,6 +27,7 @@
 #include "renderer/backend/IFramebuffer.h"
 #include "renderer/backend/IShaderProgram.h"
 #include "renderer/backend/ITexture.h"
+#include "renderer/backend/PipelineState.h"
 #include "scriptinterface/ScriptForward.h"
 
 #include <memory>
@@ -73,6 +74,13 @@ public:
 	virtual void Report(const ScriptRequest& rq, JS::HandleValue settings) = 0;
 
 	virtual std::unique_ptr<IDeviceCommandContext> CreateCommandContext() = 0;
+
+	/**
+	 * Creates a graphics pipeline state. It's a caller responsibility to
+	 * guarantee a lifespan of IShaderProgram stored in the description.
+	 */
+	virtual std::unique_ptr<IGraphicsPipelineState> CreateGraphicsPipelineState(
+		const SGraphicsPipelineStateDesc& pipelineStateDesc) = 0;
 
 	virtual std::unique_ptr<ITexture> CreateTexture(
 		const char* name, const ITexture::Type type, const uint32_t usage,

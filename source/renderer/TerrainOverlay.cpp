@@ -39,9 +39,55 @@
 
 #include <algorithm>
 
-// Global overlay list management:
+namespace
+{
 
-static std::vector<std::pair<ITerrainOverlay*, int> > g_TerrainOverlayList;
+// Global overlay list management:
+std::vector<std::pair<ITerrainOverlay*, int>> g_TerrainOverlayList;
+
+void AdjustOverlayGraphicsPipelineState(
+	Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc, const bool drawHidden)
+{
+	pipelineStateDesc.depthStencilState.depthTestEnabled = !drawHidden;
+	pipelineStateDesc.blendState.enabled = true;
+	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
+		Renderer::Backend::BlendFactor::SRC_ALPHA;
+	pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
+		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
+	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
+		Renderer::Backend::BlendOp::ADD;
+	pipelineStateDesc.rasterizationState.cullMode =
+		drawHidden ? Renderer::Backend::CullMode::NONE : Renderer::Backend::CullMode::BACK;
+}
+
+ CShaderTechniquePtr CreateOverlayTileShaderTechnique(const bool drawHidden)
+{
+	return g_Renderer.GetShaderManager().LoadEffect(
+		str_debug_line, {},
+		[drawHidden](Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc)
+		{
+			AdjustOverlayGraphicsPipelineState(pipelineStateDesc, drawHidden);
+			// To ensure that outlines are drawn on top of the terrain correctly (and
+			// don't Z-fight and flicker nastily), use detph bias to pull them towards
+			// the camera.
+			pipelineStateDesc.rasterizationState.depthBiasEnabled = true;
+			pipelineStateDesc.rasterizationState.depthBiasConstantFactor = -1.0f;
+			pipelineStateDesc.rasterizationState.depthBiasSlopeFactor = -1.0f;
+		});
+}
+
+CShaderTechniquePtr CreateOverlayOutlineShaderTechnique(const bool drawHidden)
+{
+	return g_Renderer.GetShaderManager().LoadEffect(
+		str_debug_line, {},
+		[drawHidden](Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc)
+		{
+			AdjustOverlayGraphicsPipelineState(pipelineStateDesc, drawHidden);
+			pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
+		});
+}
+
+} // anonymous namespace
 
 ITerrainOverlay::ITerrainOverlay(int priority)
 {
@@ -93,9 +139,15 @@ void ITerrainOverlay::RenderOverlaysAfterWater(
 
 //////////////////////////////////////////////////////////////////////////
 
-TerrainOverlay::TerrainOverlay(const CSimContext& simContext, int priority /* = 100 */)
+TerrainOverlay::TerrainOverlay(
+	const CSimContext& simContext, int priority /* = 100 */)
 	: ITerrainOverlay(priority), m_Terrain(&simContext.GetTerrain())
 {
+	m_OverlayTechTile = CreateOverlayTileShaderTechnique(false);
+	m_OverlayTechTileHidden = CreateOverlayTileShaderTechnique(true);
+
+	m_OverlayTechOutline = CreateOverlayOutlineShaderTechnique(false);
+	m_OverlayTechOutlineHidden = CreateOverlayOutlineShaderTechnique(true);
 }
 
 void TerrainOverlay::StartRender()
@@ -188,30 +240,12 @@ void TerrainOverlay::RenderTile(
 	}
 #undef ADD
 
-	CShaderTechniquePtr overlayTech =
-		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
-	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
-		overlayTech->GetGraphicsPipelineStateDesc();
-	pipelineStateDesc.depthStencilState.depthTestEnabled = !drawHidden;
-	pipelineStateDesc.blendState.enabled = true;
-	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
-		Renderer::Backend::BlendFactor::SRC_ALPHA;
-	pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
-		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
-	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
-		Renderer::Backend::BlendOp::ADD;
-	pipelineStateDesc.rasterizationState.cullMode =
-		drawHidden ? Renderer::Backend::CullMode::NONE : Renderer::Backend::CullMode::BACK;
-	// To ensure that outlines are drawn on top of the terrain correctly (and
-	// don't Z-fight and flicker nastily), use detph bias to pull them towards
-	// the camera.
-	pipelineStateDesc.rasterizationState.depthBiasEnabled = true;
-	pipelineStateDesc.rasterizationState.depthBiasConstantFactor = -1.0f;
-	pipelineStateDesc.rasterizationState.depthBiasSlopeFactor = -1.0f;
-	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+	const CShaderTechniquePtr& shaderTechnique = drawHidden ? m_OverlayTechTileHidden : m_OverlayTechTile;
+	deviceCommandContext->SetGraphicsPipelineState(
+		shaderTechnique->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 
-	Renderer::Backend::IShaderProgram* overlayShader = overlayTech->GetShader();
+	Renderer::Backend::IShaderProgram* overlayShader = shaderTechnique->GetShader();
 
 	const CMatrix3D transform =
 		g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
@@ -260,25 +294,12 @@ void TerrainOverlay::RenderTileOutline(
 	ADD(i, j + 1);
 #undef ADD
 
-	CShaderTechniquePtr overlayTech =
-		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
-	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
-		overlayTech->GetGraphicsPipelineStateDesc();
-	pipelineStateDesc.depthStencilState.depthTestEnabled = !drawHidden;
-	pipelineStateDesc.blendState.enabled = true;
-	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
-		Renderer::Backend::BlendFactor::SRC_ALPHA;
-	pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
-		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
-	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
-		Renderer::Backend::BlendOp::ADD;
-	pipelineStateDesc.rasterizationState.cullMode =
-		drawHidden ? Renderer::Backend::CullMode::NONE : Renderer::Backend::CullMode::BACK;
-	pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
-	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+	const CShaderTechniquePtr& shaderTechnique = drawHidden ? m_OverlayTechOutlineHidden : m_OverlayTechOutline;
+	deviceCommandContext->SetGraphicsPipelineState(
+		shaderTechnique->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 
-	Renderer::Backend::IShaderProgram* overlayShader = overlayTech->GetShader();
+	Renderer::Backend::IShaderProgram* overlayShader = shaderTechnique->GetShader();
 
 	const CMatrix3D transform =
 		g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();

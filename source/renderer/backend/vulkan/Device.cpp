@@ -79,6 +79,13 @@ std::unique_ptr<IDeviceCommandContext> CDevice::CreateCommandContext()
 	return nullptr;
 }
 
+std::unique_ptr<IGraphicsPipelineState> CDevice::CreateGraphicsPipelineState(
+	const SGraphicsPipelineStateDesc& pipelineStateDesc)
+{
+	UNUSED2(pipelineStateDesc);
+	return nullptr;
+}
+
 std::unique_ptr<ITexture> CDevice::CreateTexture(
 	const char* name, const ITexture::Type type, const uint32_t usage,
 	const Format format, const uint32_t width, const uint32_t height,

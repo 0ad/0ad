@@ -56,6 +56,9 @@ public:
 
 	std::unique_ptr<IDeviceCommandContext> CreateCommandContext() override;
 
+	std::unique_ptr<IGraphicsPipelineState> CreateGraphicsPipelineState(
+		const SGraphicsPipelineStateDesc& pipelineStateDesc) override;
+
 	std::unique_ptr<ITexture> CreateTexture(
 		const char* name, const ITexture::Type type, const uint32_t usage,
 		const Format format, const uint32_t width, const uint32_t height,

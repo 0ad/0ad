@@ -20,17 +20,20 @@
 #include "ShaderTechnique.h"
 
 #include "graphics/ShaderProgram.h"
+#include "renderer/backend/IDevice.h"
 
 CShaderPass::CShaderPass(
-	const Renderer::Backend::GraphicsPipelineStateDesc& pipelineStateDesc,
+	std::unique_ptr<Renderer::Backend::IGraphicsPipelineState> pipelineState,
 	const CShaderProgramPtr& shader)
-	: m_PipelineStateDesc(pipelineStateDesc), m_Shader(shader)
+	: m_Shader(shader), m_PipelineState(std::move(pipelineState))
 {
-	m_PipelineStateDesc.shaderProgram = m_Shader->GetBackendShaderProgram();
+	ENSURE(shader);
 }
 
-CShaderTechnique::CShaderTechnique(const VfsPath& path, const CShaderDefines& defines)
-	: m_Path(path), m_Defines(defines)
+CShaderTechnique::CShaderTechnique(
+	const VfsPath& path, const CShaderDefines& defines,
+	const PipelineStateDescCallback& callback)
+	: m_Path(path), m_Defines(defines), m_PipelineStateDescCallback(callback)
 {
 }
 
@@ -47,14 +50,14 @@ int CShaderTechnique::GetNumPasses() const
 Renderer::Backend::IShaderProgram* CShaderTechnique::GetShader(int pass) const
 {
 	ENSURE(0 <= pass && pass < (int)m_Passes.size());
-	return m_Passes[pass].GetShader();
+	return m_Passes[pass].GetPipelineState()->GetShaderProgram();
 }
 
-const Renderer::Backend::GraphicsPipelineStateDesc&
-CShaderTechnique::GetGraphicsPipelineStateDesc(int pass) const
+Renderer::Backend::IGraphicsPipelineState*
+CShaderTechnique::GetGraphicsPipelineState(int pass) const
 {
 	ENSURE(0 <= pass && pass < static_cast<int>(m_Passes.size()));
-	return m_Passes[pass].GetPipelineStateDesc();
+	return m_Passes[pass].GetPipelineState();
 }
 
 bool CShaderTechnique::GetSortByDistance() const

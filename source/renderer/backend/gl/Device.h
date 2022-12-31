@@ -68,6 +68,9 @@ public:
 
 	std::unique_ptr<IDeviceCommandContext> CreateCommandContext() override;
 
+	std::unique_ptr<IGraphicsPipelineState> CreateGraphicsPipelineState(
+		const SGraphicsPipelineStateDesc& pipelineStateDesc) override;
+
 	CDeviceCommandContext* GetActiveCommandContext() { return m_ActiveCommandContext; }
 
 	std::unique_ptr<ITexture> CreateTexture(
