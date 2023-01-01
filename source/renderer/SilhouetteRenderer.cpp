@@ -493,7 +493,7 @@ void SilhouetteRenderer::RenderDebugOverlays(
 	{
 		deviceCommandContext->SetUniform(
 			colorBindingSlot, r.color.AsFloatArray());
-		u16 verts[] =
+		const float vertices[] =
 		{
 			r.x0, r.y0,
 			r.x1, r.y0,
@@ -505,11 +505,11 @@ void SilhouetteRenderer::RenderDebugOverlays(
 
 		deviceCommandContext->SetVertexAttributeFormat(
 			Renderer::Backend::VertexAttributeStream::POSITION,
-			Renderer::Backend::Format::R16G16_SINT, 0, 0,
+			Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
 			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
 
 		deviceCommandContext->SetVertexBufferData(
-			0, verts, std::size(verts) * sizeof(verts[0]));
+			0, vertices, std::size(vertices) * sizeof(vertices[0]));
 
 		deviceCommandContext->Draw(0, 6);
 	}
