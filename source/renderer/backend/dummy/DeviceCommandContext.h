@@ -46,7 +46,7 @@ public:
 
 	IDevice* GetDevice() override;
 
-	void SetGraphicsPipelineState(const GraphicsPipelineStateDesc& pipelineStateDesc) override;
+	void SetGraphicsPipelineState(IGraphicsPipelineState* pipelineState) override;
 
 	void BlitFramebuffer(IFramebuffer* destinationFramebuffer, IFramebuffer* sourceFramebuffer) override;
 

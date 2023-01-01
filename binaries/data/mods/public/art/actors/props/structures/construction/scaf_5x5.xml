@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <mesh>props/scaf_5x5.dae</mesh>
+      <textures>
+        <texture file="structural/kart_struct.dds" name="baseTex"/>
+        <texture file="structural/kart_struct_spec.png" name="specTex"/>
+        <texture file="structural/kart_struct_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>no_trans_parallax_spec.xml</material>
+</actor>

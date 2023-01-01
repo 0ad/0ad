@@ -152,8 +152,9 @@ void CDecalRData::RenderDecals(
 
 		CShaderDefines defines = contextDecal;
 		defines.SetMany(itTechBegin->shaderDefines);
+		// TODO: move enabling blend to XML.
 		CShaderTechniquePtr techBase = g_Renderer.GetShaderManager().LoadEffect(
-			itTechBegin->shaderEffect, defines);
+			itTechBegin->shaderEffect == str_terrain_base ? str_terrain_decal : itTechBegin->shaderEffect, defines);
 		if (!techBase)
 		{
 			LOGERROR("Terrain renderer failed to load shader effect (%s)\n",
@@ -164,17 +165,8 @@ void CDecalRData::RenderDecals(
 		const int numPasses = techBase->GetNumPasses();
 		for (int pass = 0; pass < numPasses; ++pass)
 		{
-			Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
-				techBase->GetGraphicsPipelineStateDesc(pass);
-			pipelineStateDesc.blendState.enabled = true;
-			pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
-				Renderer::Backend::BlendFactor::SRC_ALPHA;
-			pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
-				Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
-			pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
-				Renderer::Backend::BlendOp::ADD;
-			pipelineStateDesc.depthStencilState.depthWriteEnabled = false;
-			deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+			deviceCommandContext->SetGraphicsPipelineState(
+				techBase->GetGraphicsPipelineState(pass));
 			deviceCommandContext->BeginPass();
 
 			Renderer::Backend::IShaderProgram* shader = techBase->GetShader(pass);

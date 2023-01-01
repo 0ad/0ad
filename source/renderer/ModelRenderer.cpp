@@ -615,7 +615,7 @@ void ShaderModelRenderer::Render(
 			for (int pass = 0; pass < currentTech->GetNumPasses(); ++pass)
 			{
 				deviceCommandContext->SetGraphicsPipelineState(
-					currentTech->GetGraphicsPipelineStateDesc(pass));
+					currentTech->GetGraphicsPipelineState(pass));
 				deviceCommandContext->BeginPass();
 
 				Renderer::Backend::IShaderProgram* shader = currentTech->GetShader(pass);

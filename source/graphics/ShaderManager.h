@@ -21,7 +21,9 @@
 #include "graphics/ShaderDefines.h"
 #include "graphics/ShaderProgram.h"
 #include "graphics/ShaderTechnique.h"
+#include "renderer/backend/PipelineState.h"
 
+#include <functional>
 #include <memory>
 #include <set>
 #include <unordered_map>
@@ -48,9 +50,17 @@ public:
 	CShaderTechniquePtr LoadEffect(CStrIntern name, const CShaderDefines& defines);
 
 	/**
-	 * Load a shader effect, with default system defines (from CRenderer::GetSystemShaderDefines).
+	 * Load a shader effect, with empty defines.
 	 */
 	CShaderTechniquePtr LoadEffect(CStrIntern name);
+
+	/**
+	 * Load a shader effect with the pipeline state description overwriting.
+	 * TODO: we should set all needed states in XML.
+	 */
+	using PipelineStateDescCallback = CShaderTechnique::PipelineStateDescCallback;
+	CShaderTechniquePtr LoadEffect(
+		CStrIntern name, const CShaderDefines& defines, const PipelineStateDescCallback& callback);
 
 	/**
 	 * Returns the number of shader effects that are currently loaded.
@@ -71,7 +81,7 @@ private:
 		}
 	};
 
-	// A CShaderProgram contains expensive GL state, so we ought to cache it.
+	// A CShaderProgram contains expensive backend state, so we ought to cache it.
 	// The compiled state depends solely on the filename and list of defines,
 	// so we store that in CacheKey.
 	// TODO: is this cache useful when we already have an effect cache?

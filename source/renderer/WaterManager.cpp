@@ -840,13 +840,11 @@ void WaterManager::RenderWaves(
 
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render Waves");
 
-	deviceCommandContext->SetGraphicsPipelineState(
-		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
 	deviceCommandContext->BeginFramebufferPass(m_FancyEffectsFramebuffer.get());
 
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_water_waves);
 	deviceCommandContext->SetGraphicsPipelineState(
-		tech->GetGraphicsPipelineStateDesc());
+		tech->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 	Renderer::Backend::IShaderProgram* shader = tech->GetShader();
 

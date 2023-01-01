@@ -282,6 +282,26 @@ CMiniMapTexture::CMiniMapTexture(CSimulation2& simulation)
 		m_InstanceVertexArray.Upload();
 		m_InstanceVertexArray.FreeBackingStore();
 	}
+
+	CShaderDefines baseDefines;
+	baseDefines.Add(str_MINIMAP_BASE, str_1);
+
+	m_TerritoryTechnique = g_Renderer.GetShaderManager().LoadEffect(
+		str_minimap, baseDefines,
+		[](Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc)
+		{
+			pipelineStateDesc.blendState.enabled = true;
+			pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
+				Renderer::Backend::BlendFactor::SRC_ALPHA;
+			pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
+				Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
+			pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
+				Renderer::Backend::BlendOp::ADD;
+			pipelineStateDesc.blendState.colorWriteMask =
+				Renderer::Backend::ColorWriteMask::RED |
+				Renderer::Backend::ColorWriteMask::GREEN |
+				Renderer::Backend::ColorWriteMask::BLUE;
+		});
 }
 
 CMiniMapTexture::~CMiniMapTexture()
@@ -480,7 +500,7 @@ void CMiniMapTexture::RenderFinalTexture(
 
 	tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, baseDefines);
 	deviceCommandContext->SetGraphicsPipelineState(
-		tech->GetGraphicsPipelineStateDesc());
+		tech->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 	shader = tech->GetShader();
 
@@ -513,20 +533,9 @@ void CMiniMapTexture::RenderFinalTexture(
 		DrawTexture(deviceCommandContext);
 	deviceCommandContext->EndPass();
 
-	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
-		tech->GetGraphicsPipelineStateDesc();
-	pipelineStateDesc.blendState.enabled = true;
-	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
-		Renderer::Backend::BlendFactor::SRC_ALPHA;
-	pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
-		Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
-	pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
-		Renderer::Backend::BlendOp::ADD;
-	pipelineStateDesc.blendState.colorWriteMask =
-		Renderer::Backend::ColorWriteMask::RED |
-		Renderer::Backend::ColorWriteMask::GREEN |
-		Renderer::Backend::ColorWriteMask::BLUE;
-	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+	deviceCommandContext->SetGraphicsPipelineState(
+		m_TerritoryTechnique->GetGraphicsPipelineState());
+	shader = m_TerritoryTechnique->GetShader();
 	deviceCommandContext->BeginPass();
 
 	// Draw territory boundaries
@@ -548,7 +557,7 @@ void CMiniMapTexture::RenderFinalTexture(
 
 	tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap_los, CShaderDefines());
 	deviceCommandContext->SetGraphicsPipelineState(
-		tech->GetGraphicsPipelineStateDesc());
+		tech->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 	shader = tech->GetShader();
 
@@ -765,7 +774,7 @@ void CMiniMapTexture::DrawEntities(
 		pointDefines.Add(str_USE_GPU_INSTANCING, str_1);
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap, pointDefines);
 	deviceCommandContext->SetGraphicsPipelineState(
-		tech->GetGraphicsPipelineStateDesc());
+		tech->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 	Renderer::Backend::IShaderProgram* shader = tech->GetShader();
 

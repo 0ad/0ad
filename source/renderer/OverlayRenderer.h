@@ -135,7 +135,7 @@ private:
 	/**
 	 * Helper method; renders all overlay lines currently registered in the internals. Batch-
 	 * renders textured overlay lines batched according to their visibility status by delegating
-	 * to RenderTexturedOverlayLines(CShaderProgramPtr, bool).
+	 * to RenderTexturedOverlayLines(IShaderProgram, bool).
 	 */
 	void RenderTexturedOverlayLines(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 

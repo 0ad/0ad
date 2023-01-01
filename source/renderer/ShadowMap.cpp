@@ -586,9 +586,6 @@ void ShadowMapInternals::CreateTexture()
 void ShadowMap::BeginRender(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
 {
-	deviceCommandContext->SetGraphicsPipelineState(
-		Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
-
 	ENSURE(m->Framebuffer);
 	deviceCommandContext->BeginFramebufferPass(m->Framebuffer.get());
 

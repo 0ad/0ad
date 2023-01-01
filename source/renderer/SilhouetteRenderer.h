@@ -19,6 +19,7 @@
 #define INCLUDED_SILHOUETTERENDERER
 
 #include "graphics/Overlay.h"
+#include "graphics/ShaderTechniquePtr.h"
 #include "maths/BoundingBoxAligned.h"
 #include "renderer/backend/IDeviceCommandContext.h"
 
@@ -75,6 +76,8 @@ private:
 	std::vector<DebugRect> m_DebugRects;
 
 	std::vector<SOverlaySphere> m_DebugSpheres;
+
+	CShaderTechniquePtr m_ShaderTech;
 };
 
 #endif // INCLUDED_SILHOUETTERENDERER

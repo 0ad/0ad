@@ -24,6 +24,7 @@
 #include "renderer/backend/gl/Device.h"
 #include "renderer/backend/gl/Framebuffer.h"
 #include "renderer/backend/gl/Mapping.h"
+#include "renderer/backend/gl/PipelineState.h"
 #include "renderer/backend/gl/ShaderProgram.h"
 #include "renderer/backend/gl/Texture.h"
 
@@ -43,7 +44,7 @@ namespace GL
 namespace
 {
 
-bool operator==(const StencilOpState& lhs, const StencilOpState& rhs)
+bool operator==(const SStencilOpState& lhs, const SStencilOpState& rhs)
 {
 	return
 		lhs.failOp == rhs.failOp &&
@@ -51,7 +52,7 @@ bool operator==(const StencilOpState& lhs, const StencilOpState& rhs)
 		lhs.depthFailOp == rhs.depthFailOp &&
 		lhs.compareOp == rhs.compareOp;
 }
-bool operator!=(const StencilOpState& lhs, const StencilOpState& rhs)
+bool operator!=(const SStencilOpState& lhs, const SStencilOpState& rhs)
 {
 	return !operator==(lhs, rhs);
 }
@@ -259,9 +260,17 @@ IDevice* CDeviceCommandContext::GetDevice()
 }
 
 void CDeviceCommandContext::SetGraphicsPipelineState(
-	const GraphicsPipelineStateDesc& pipelineStateDesc)
+	const SGraphicsPipelineStateDesc& pipelineState)
 {
-	SetGraphicsPipelineStateImpl(pipelineStateDesc, false);
+	SetGraphicsPipelineStateImpl(pipelineState, false);
+}
+
+void CDeviceCommandContext::SetGraphicsPipelineState(
+	IGraphicsPipelineState* pipelineState)
+{
+	ENSURE(pipelineState);
+	SetGraphicsPipelineStateImpl(
+		pipelineState->As<CGraphicsPipelineState>()->GetDesc(), false);
 }
 
 void CDeviceCommandContext::UploadTexture(
@@ -556,7 +565,7 @@ void CDeviceCommandContext::ResetStates()
 }
 
 void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
-	const GraphicsPipelineStateDesc& pipelineStateDesc, const bool force)
+	const SGraphicsPipelineStateDesc& pipelineStateDesc, const bool force)
 {
 	ENSURE(!m_InsidePass);
 
@@ -589,8 +598,8 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 		m_ShaderProgram = nextShaderProgram;
 	}
 
-	const DepthStencilStateDesc& currentDepthStencilStateDesc = m_GraphicsPipelineStateDesc.depthStencilState;
-	const DepthStencilStateDesc& nextDepthStencilStateDesc = pipelineStateDesc.depthStencilState;
+	const SDepthStencilStateDesc& currentDepthStencilStateDesc = m_GraphicsPipelineStateDesc.depthStencilState;
+	const SDepthStencilStateDesc& nextDepthStencilStateDesc = pipelineStateDesc.depthStencilState;
 	if (force || currentDepthStencilStateDesc.depthTestEnabled != nextDepthStencilStateDesc.depthTestEnabled)
 	{
 		if (nextDepthStencilStateDesc.depthTestEnabled)
@@ -675,8 +684,8 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 		}
 	}
 
-	const BlendStateDesc& currentBlendStateDesc = m_GraphicsPipelineStateDesc.blendState;
-	const BlendStateDesc& nextBlendStateDesc = pipelineStateDesc.blendState;
+	const SBlendStateDesc& currentBlendStateDesc = m_GraphicsPipelineStateDesc.blendState;
+	const SBlendStateDesc& nextBlendStateDesc = pipelineStateDesc.blendState;
 	if (force || currentBlendStateDesc.enabled != nextBlendStateDesc.enabled)
 	{
 		if (nextBlendStateDesc.enabled)
@@ -739,9 +748,9 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 		ApplyColorMask(nextBlendStateDesc.colorWriteMask);
 	}
 
-	const RasterizationStateDesc& currentRasterizationStateDesc =
+	const SRasterizationStateDesc& currentRasterizationStateDesc =
 		m_GraphicsPipelineStateDesc.rasterizationState;
-	const RasterizationStateDesc& nextRasterizationStateDesc =
+	const SRasterizationStateDesc& nextRasterizationStateDesc =
 		pipelineStateDesc.rasterizationState;
 	if (force ||
 		currentRasterizationStateDesc.polygonMode != nextRasterizationStateDesc.polygonMode)
@@ -867,6 +876,9 @@ void CDeviceCommandContext::ClearFramebuffer(const bool color, const bool depth,
 
 void CDeviceCommandContext::BeginFramebufferPass(IFramebuffer* framebuffer)
 {
+	SetGraphicsPipelineStateImpl(
+		MakeDefaultGraphicsPipelineStateDesc(), false);
+
 	ENSURE(!m_InsideFramebufferPass);
 	m_InsideFramebufferPass = true;
 	ENSURE(framebuffer);

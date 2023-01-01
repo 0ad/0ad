@@ -457,9 +457,6 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 	{
 		g_Game->GetView()->Prepare(m->deviceCommandContext.get());
 
-		m->deviceCommandContext->SetGraphicsPipelineState(
-			Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc());
-
 		Renderer::Backend::IFramebuffer* framebuffer = nullptr;
 
 		CPostprocManager& postprocManager = g_Renderer.GetPostprocManager();

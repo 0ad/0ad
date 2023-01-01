@@ -19,6 +19,7 @@
 #define INCLUDED_MINIMAPTEXTURE
 
 #include "graphics/Color.h"
+#include "graphics/ShaderTechniquePtr.h"
 #include "graphics/Texture.h"
 #include "maths/Vector2D.h"
 #include "renderer/backend/IDeviceCommandContext.h"
@@ -122,6 +123,8 @@ private:
 	// Vertex data if instancing is supported.
 	VertexArray m_InstanceVertexArray;
 	VertexArray::Attribute m_InstanceAttributePosition;
+
+	CShaderTechniquePtr m_TerritoryTechnique;
 
 	size_t m_EntitiesDrawn = 0;
 

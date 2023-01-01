@@ -23,6 +23,7 @@
 #include "graphics/Color.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/ShaderProgram.h"
+#include "lib/hash.h"
 #include "maths/BoundingBoxAligned.h"
 #include "maths/Brush.h"
 #include "maths/Matrix3D.h"
@@ -33,36 +34,6 @@
 #include "renderer/SceneRenderer.h"
 
 #include <cmath>
-
-namespace
-{
-
-void SetGraphicsPipelineStateFromTechAndColor(
-	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
-	const CShaderTechniquePtr& tech, const CColor& color, const bool depthTestEnabled = true,
-	const bool wireframe = false)
-{
-	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc = tech->GetGraphicsPipelineStateDesc();
-	pipelineStateDesc.depthStencilState.depthTestEnabled = depthTestEnabled;
-	if (color.a != 1.0f)
-	{
-		pipelineStateDesc.blendState.enabled = true;
-		pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
-			Renderer::Backend::BlendFactor::SRC_ALPHA;
-		pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
-			Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
-		pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
-			Renderer::Backend::BlendOp::ADD;
-	}
-	else
-		pipelineStateDesc.blendState.enabled = false;
-	if (wireframe)
-		pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
-	pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
-	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
-}
-
-} // anonymous namespace
 
 void CDebugRenderer::DrawLine(
 	const CVector3D& from, const CVector3D& to, const CColor& color,
@@ -81,12 +52,13 @@ void CDebugRenderer::DrawLine(
 	if (line.size() <= 1)
 		return;
 
-	CShaderTechniquePtr debugLineTech =
-		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
 		g_Renderer.GetDeviceCommandContext();
-	SetGraphicsPipelineStateFromTechAndColor(
-		deviceCommandContext, debugLineTech, color, depthTestEnabled);
+
+	CShaderTechniquePtr debugLineTech =
+		GetShaderTechnique(str_debug_line, color, depthTestEnabled);
+	deviceCommandContext->SetGraphicsPipelineState(
+		debugLineTech->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 
 	const CCamera& viewCamera = g_Renderer.GetSceneRenderer().GetViewCamera();
@@ -142,11 +114,13 @@ void CDebugRenderer::DrawLine(
 void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, const CColor& color)
 {
 	CShaderTechniquePtr debugCircleTech =
-		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
+		GetShaderTechnique(str_debug_line, color);
+
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
 		g_Renderer.GetDeviceCommandContext();
-	SetGraphicsPipelineStateFromTechAndColor(
-		deviceCommandContext, debugCircleTech, color);
+
+	deviceCommandContext->SetGraphicsPipelineState(
+		debugCircleTech->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 
 	const CCamera& camera = g_Renderer.GetSceneRenderer().GetViewCamera();
@@ -208,11 +182,12 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 	}
 
 	CShaderTechniquePtr overlayTech =
-		g_Renderer.GetShaderManager().LoadEffect(str_debug_line);
+		GetShaderTechnique(str_debug_line, color, true, wireframe);
+
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
 		g_Renderer.GetDeviceCommandContext();
-	SetGraphicsPipelineStateFromTechAndColor(
-		deviceCommandContext, overlayTech, color, true, wireframe);
+	deviceCommandContext->SetGraphicsPipelineState(
+		overlayTech->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 
 	Renderer::Backend::IShaderProgram* overlayShader = overlayTech->GetShader();
@@ -311,11 +286,13 @@ void CDebugRenderer::DrawBoundingBox(
 	const CBoundingBoxAligned& boundingBox, const CColor& color,
 	const CMatrix3D& transform, bool wireframe)
 {
-	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
+	CShaderTechniquePtr shaderTech =
+		GetShaderTechnique(str_debug_line, color, true, wireframe);
+
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
 		g_Renderer.GetDeviceCommandContext();
-	SetGraphicsPipelineStateFromTechAndColor(
-		deviceCommandContext, shaderTech, color, true, wireframe);
+	deviceCommandContext->SetGraphicsPipelineState(
+		shaderTech->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 
 	Renderer::Backend::IShaderProgram* shader = shaderTech->GetShader();
@@ -360,11 +337,13 @@ void CDebugRenderer::DrawBoundingBox(
 
 void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color, bool wireframe)
 {
-	CShaderTechniquePtr shaderTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
+	CShaderTechniquePtr shaderTech =
+		GetShaderTechnique(str_debug_line, color, true, wireframe);
+
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
 		g_Renderer.GetDeviceCommandContext();
-	SetGraphicsPipelineStateFromTechAndColor(
-		deviceCommandContext, shaderTech, color, true, wireframe);
+	deviceCommandContext->SetGraphicsPipelineState(
+		shaderTech->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 
 	Renderer::Backend::IShaderProgram* shader = shaderTech->GetShader();
@@ -412,3 +391,56 @@ void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color, bool wi
 	deviceCommandContext->EndPass();
 }
 
+size_t CDebugRenderer::ShaderTechniqueKeyHash::operator()(
+	const ShaderTechniqueKey& key) const
+{
+	size_t seed = 0;
+	hash_combine(seed, key.name.GetHash());
+	hash_combine(seed, key.transparent);
+	hash_combine(seed, key.depthTestEnabled);
+	hash_combine(seed, key.wireframe);
+	return seed;
+}
+
+bool CDebugRenderer::ShaderTechniqueKeyEqual::operator()(
+	const ShaderTechniqueKey& lhs, const ShaderTechniqueKey& rhs) const
+{
+	return
+		lhs.name == rhs.name && lhs.transparent == rhs.transparent &&
+		lhs.depthTestEnabled == rhs.depthTestEnabled &&
+		lhs.wireframe == rhs.wireframe;
+}
+
+const CShaderTechniquePtr& CDebugRenderer::GetShaderTechnique(
+	const CStrIntern name, const CColor& color, const bool depthTestEnabled,
+	const bool wireframe)
+{
+	const ShaderTechniqueKey key{
+		name, color.a != 1.0f, depthTestEnabled, wireframe};
+	CShaderTechniquePtr& shaderTechnique = m_ShaderTechniqueMapping[key];
+	if (shaderTechnique)
+		return shaderTechnique;
+
+	shaderTechnique = g_Renderer.GetShaderManager().LoadEffect(
+		name, {},
+		[key](Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc)
+		{
+			pipelineStateDesc.depthStencilState.depthTestEnabled = key.depthTestEnabled;
+			if (key.transparent)
+			{
+				pipelineStateDesc.blendState.enabled = true;
+				pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
+					Renderer::Backend::BlendFactor::SRC_ALPHA;
+				pipelineStateDesc.blendState.dstColorBlendFactor = pipelineStateDesc.blendState.dstAlphaBlendFactor =
+					Renderer::Backend::BlendFactor::ONE_MINUS_SRC_ALPHA;
+				pipelineStateDesc.blendState.colorBlendOp = pipelineStateDesc.blendState.alphaBlendOp =
+					Renderer::Backend::BlendOp::ADD;
+			}
+			else
+				pipelineStateDesc.blendState.enabled = false;
+			if (key.wireframe)
+				pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
+			pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
+		});
+	return shaderTechnique;
+}

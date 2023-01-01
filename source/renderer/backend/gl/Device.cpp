@@ -26,6 +26,7 @@
 #include "ps/ConfigDB.h"
 #include "ps/Profile.h"
 #include "renderer/backend/gl/DeviceCommandContext.h"
+#include "renderer/backend/gl/PipelineState.h"
 #include "renderer/backend/gl/Texture.h"
 #include "scriptinterface/JSON.h"
 #include "scriptinterface/Object.h"
@@ -866,6 +867,12 @@ std::unique_ptr<IDeviceCommandContext> CDevice::CreateCommandContext()
 	std::unique_ptr<CDeviceCommandContext> commandContet = CDeviceCommandContext::Create(this);
 	m_ActiveCommandContext = commandContet.get();
 	return commandContet;
+}
+
+std::unique_ptr<IGraphicsPipelineState> CDevice::CreateGraphicsPipelineState(
+	const SGraphicsPipelineStateDesc& pipelineStateDesc)
+{
+	return CGraphicsPipelineState::Create(this, pipelineStateDesc);
 }
 
 std::unique_ptr<ITexture> CDevice::CreateTexture(

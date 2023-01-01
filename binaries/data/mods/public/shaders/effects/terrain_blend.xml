@@ -7,6 +7,7 @@
 		<pass shader="arb/terrain_blend">
 			<depth mask="false"/>
 			<cull mode="FRONT"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
 		</pass>
 	</technique>
 
@@ -16,8 +17,10 @@
 		<pass shader="glsl/terrain_blend">
 			<depth mask="false"/>
 			<cull mode="FRONT"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
 		</pass>
 	</technique>
+
 
 	<technique>
 		<require shaders="arb"/>
@@ -25,6 +28,7 @@
 		<pass shader="arb/terrain_blend">
 			<depth mask="false"/>
 			<polygon mode="LINE"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
 		</pass>
 	</technique>
 
@@ -34,6 +38,7 @@
 		<pass shader="glsl/terrain_blend">
 			<depth mask="false"/>
 			<polygon mode="LINE"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
 		</pass>
 	</technique>
 
@@ -42,6 +47,7 @@
 		<require shaders="arb"/>
 		<pass shader="arb/terrain_blend">
 			<depth mask="false"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
 		</pass>
 	</technique>
 
@@ -49,6 +55,7 @@
 		<require shaders="glsl"/>
 		<pass shader="glsl/terrain_blend">
 			<depth mask="false"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
 		</pass>
 	</technique>
 

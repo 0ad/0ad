@@ -116,7 +116,8 @@ CShaderTechniquePtr CShaderManager::LoadEffect(CStrIntern name, const CShaderDef
 
 	// First time we've seen this key, so construct a new effect:
 	const VfsPath xmlFilename = L"shaders/effects/" + wstring_from_utf8(name.string()) + L".xml";
-	CShaderTechniquePtr tech(new CShaderTechnique(xmlFilename, defines));
+	CShaderTechniquePtr tech = std::make_shared<CShaderTechnique>(
+		xmlFilename, defines, PipelineStateDescCallback{});
 	if (!LoadTechnique(tech))
 	{
 		LOGERROR("Failed to load effect '%s'", name.c_str());
@@ -125,6 +126,20 @@ CShaderTechniquePtr CShaderManager::LoadEffect(CStrIntern name, const CShaderDef
 
 	m_EffectCache[key] = tech;
 	return tech;
+}
+
+CShaderTechniquePtr CShaderManager::LoadEffect(
+	CStrIntern name, const CShaderDefines& defines, const PipelineStateDescCallback& callback)
+{
+	// We don't cache techniques with callbacks.
+	const VfsPath xmlFilename = L"shaders/effects/" + wstring_from_utf8(name.string()) + L".xml";
+	CShaderTechniquePtr technique = std::make_shared<CShaderTechnique>(xmlFilename, defines, callback);
+	if (!LoadTechnique(technique))
+	{
+		LOGERROR("Failed to load effect '%s'", name.c_str());
+		return {};
+	}
+	return technique;
 }
 
 bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
@@ -144,9 +159,14 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 	// By default we assume that we have techinques for every dummy shader.
 	if (device->GetBackend() == Renderer::Backend::Backend::DUMMY)
 	{
-		const Renderer::Backend::GraphicsPipelineStateDesc passPipelineStateDesc =
+		CShaderProgramPtr shaderProgram = LoadProgram("dummy", tech->GetShaderDefines());
+		std::vector<CShaderPass> techPasses;
+		Renderer::Backend::SGraphicsPipelineStateDesc passPipelineStateDesc =
 			Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc();
-		tech->SetPasses({{passPipelineStateDesc, LoadProgram("dummy", tech->GetShaderDefines())}});
+		passPipelineStateDesc.shaderProgram = shaderProgram->GetBackendShaderProgram();
+		techPasses.emplace_back(
+			device->CreateGraphicsPipelineState(passPipelineStateDesc), shaderProgram);
+		tech->SetPasses(std::move(techPasses));
 		return true;
 	}
 
@@ -267,7 +287,7 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 		{
 			CShaderDefines passDefines = techDefines;
 
-			Renderer::Backend::GraphicsPipelineStateDesc passPipelineStateDesc =
+			Renderer::Backend::SGraphicsPipelineStateDesc passPipelineStateDesc =
 				Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc();
 
 			XERO_ITER_EL(Child, Element)
@@ -410,7 +430,11 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 			{
 				for (const VfsPath& shaderProgramPath : shaderProgram->GetFileDependencies())
 					AddTechniqueFileDependency(tech, shaderProgramPath);
-				techPasses.emplace_back(passPipelineStateDesc, shaderProgram);
+				if (tech->GetPipelineStateDescCallback())
+					tech->GetPipelineStateDescCallback()(passPipelineStateDesc);
+				passPipelineStateDesc.shaderProgram = shaderProgram->GetBackendShaderProgram();
+				techPasses.emplace_back(
+					device->CreateGraphicsPipelineState(passPipelineStateDesc), shaderProgram);
 			}
 		}
 	}

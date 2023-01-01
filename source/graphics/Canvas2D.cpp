@@ -98,7 +98,7 @@ public:
 		// The canvas technique must be loaded because we can't render UI without it.
 		ENSURE(Tech);
 		DeviceCommandContext->SetGraphicsPipelineState(
-			Tech->GetGraphicsPipelineStateDesc());
+			Tech->GetGraphicsPipelineState());
 		DeviceCommandContext->BeginPass();
 		Renderer::Backend::IShaderProgram* shader = Tech->GetShader();
 

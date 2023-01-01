@@ -40,7 +40,7 @@ class ITexture;
 class IDeviceCommandContext : public IDeviceObject<IDeviceCommandContext>
 {
 public:
-	virtual void SetGraphicsPipelineState(const GraphicsPipelineStateDesc& pipelineStateDesc) = 0;
+	virtual void SetGraphicsPipelineState(IGraphicsPipelineState* pipelineState) = 0;
 
 	virtual void BlitFramebuffer(
 		IFramebuffer* destinationFramebuffer, IFramebuffer* sourceFramebuffer) = 0;

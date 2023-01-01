@@ -161,7 +161,7 @@ void ParticleRenderer::RenderParticles(
 			if (lastTech)
 				deviceCommandContext->EndPass();
 			lastTech = currentTech;
-			deviceCommandContext->SetGraphicsPipelineState(lastTech->GetGraphicsPipelineStateDesc());
+			deviceCommandContext->SetGraphicsPipelineState(lastTech->GetGraphicsPipelineState());
 			deviceCommandContext->BeginPass();
 
 			Renderer::Backend::IShaderProgram* shader = lastTech->GetShader();

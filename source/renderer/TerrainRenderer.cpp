@@ -40,6 +40,7 @@
 #include "ps/Profile.h"
 #include "ps/World.h"
 #include "renderer/backend/IDevice.h"
+#include "renderer/backend/PipelineState.h"
 #include "renderer/DecalRData.h"
 #include "renderer/PatchRData.h"
 #include "renderer/Renderer.h"
@@ -49,6 +50,8 @@
 #include "renderer/SkyManager.h"
 #include "renderer/VertexArray.h"
 #include "renderer/WaterManager.h"
+
+#include <memory>
 
 /**
  * TerrainRenderer keeps track of which phase it is in, to detect
@@ -77,6 +80,8 @@ struct TerrainRendererInternals
 
 	/// Fancy water shader
 	CShaderTechniquePtr fancyWaterTech;
+
+	CShaderTechniquePtr shaderTechniqueSolid, shaderTechniqueSolidDepthTest;
 
 	CSimulation2* simulation;
 };
@@ -173,7 +178,7 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 	CShaderTechniquePtr debugOverlayTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_debug_overlay);
 	deviceCommandContext->SetGraphicsPipelineState(
-		debugOverlayTech->GetGraphicsPipelineStateDesc());
+		debugOverlayTech->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 	Renderer::Backend::IShaderProgram* debugOverlayShader = debugOverlayTech->GetShader();
 
@@ -284,15 +289,22 @@ void TerrainRenderer::RenderTerrainShader(
 	if (visiblePatches.empty() && visibleDecals.empty())
 		return;
 
+	if (!m->shaderTechniqueSolid)
+	{
+		m->shaderTechniqueSolid = g_Renderer.GetShaderManager().LoadEffect(
+			str_solid, {},
+			[](Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc)
+			{
+				pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
+			});
+	}
+
 	// render the solid black sides of the map first
-	CShaderTechniquePtr techSolid = g_Renderer.GetShaderManager().LoadEffect(str_solid);
-	Renderer::Backend::GraphicsPipelineStateDesc solidPipelineStateDesc =
-		techSolid->GetGraphicsPipelineStateDesc();
-	solidPipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
-	deviceCommandContext->SetGraphicsPipelineState(solidPipelineStateDesc);
+	deviceCommandContext->SetGraphicsPipelineState(
+		m->shaderTechniqueSolid->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 
-	Renderer::Backend::IShaderProgram* shaderSolid = techSolid->GetShader();
+	Renderer::Backend::IShaderProgram* shaderSolid = m->shaderTechniqueSolid->GetShader();
 	const CMatrix3D transform =
 		g_Renderer.GetSceneRenderer().GetViewCamera().GetViewProjection();
 	deviceCommandContext->SetUniform(
@@ -328,7 +340,7 @@ void TerrainRenderer::RenderPatches(
 
 	CShaderTechniquePtr solidTech = g_Renderer.GetShaderManager().LoadEffect(str_terrain_solid, defines);
 	deviceCommandContext->SetGraphicsPipelineState(
-		solidTech->GetGraphicsPipelineStateDesc());
+		solidTech->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 
 	Renderer::Backend::IShaderProgram* solidShader = solidTech->GetShader();
@@ -436,7 +448,7 @@ bool TerrainRenderer::RenderFancyWater(
 	const float repeatPeriod = waterManager.m_RepeatPeriod;
 
 	deviceCommandContext->SetGraphicsPipelineState(
-		m->fancyWaterTech->GetGraphicsPipelineStateDesc());
+		m->fancyWaterTech->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 	Renderer::Backend::IShaderProgram* fancyWaterShader = m->fancyWaterTech->GetShader();
 
@@ -622,7 +634,7 @@ void TerrainRenderer::RenderSimpleWater(
 	CShaderTechniquePtr waterSimpleTech =
 		g_Renderer.GetShaderManager().LoadEffect(str_water_simple, context);
 	deviceCommandContext->SetGraphicsPipelineState(
-		waterSimpleTech->GetGraphicsPipelineStateDesc());
+		waterSimpleTech->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 	Renderer::Backend::IShaderProgram* waterSimpleShader = waterSimpleTech->GetShader();
 
@@ -680,21 +692,28 @@ void TerrainRenderer::RenderWaterFoamOccluders(
 	if (!waterManager.WillRenderFancyWater())
 		return;
 
+	if (!m->shaderTechniqueSolidDepthTest)
+	{
+		m->shaderTechniqueSolidDepthTest = g_Renderer.GetShaderManager().LoadEffect(
+		str_solid, {},
+		[](Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc)
+		{
+			pipelineStateDesc.depthStencilState.depthTestEnabled = true;
+			pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
+		});
+	}
+
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render water foam occluders");
 
 	// Render normals and foam to a framebuffer if we're using fancy effects.
 	deviceCommandContext->BeginFramebufferPass(waterManager.m_FancyEffectsFramebuffer.get());
 
 	// Overwrite waves that would be behind the ground.
-	CShaderTechniquePtr dummyTech = g_Renderer.GetShaderManager().LoadEffect(str_solid);
-	Renderer::Backend::GraphicsPipelineStateDesc pipelineStateDesc =
-		dummyTech->GetGraphicsPipelineStateDesc();
-	pipelineStateDesc.depthStencilState.depthTestEnabled = true;
-	pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
-	deviceCommandContext->SetGraphicsPipelineState(pipelineStateDesc);
+	deviceCommandContext->SetGraphicsPipelineState(
+		m->shaderTechniqueSolidDepthTest->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 
-	Renderer::Backend::IShaderProgram* dummyShader = dummyTech->GetShader();
+	Renderer::Backend::IShaderProgram* dummyShader = m->shaderTechniqueSolidDepthTest->GetShader();
 
 	const CMatrix3D transform = sceneRenderer.GetViewCamera().GetViewProjection();
 	deviceCommandContext->SetUniform(

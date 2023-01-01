@@ -222,7 +222,7 @@ void SkyManager::RenderSky(
 	CShaderTechniquePtr skytech =
 		g_Renderer.GetShaderManager().LoadEffect(str_sky_simple);
 	deviceCommandContext->SetGraphicsPipelineState(
-		skytech->GetGraphicsPipelineStateDesc());
+		skytech->GetGraphicsPipelineState());
 	deviceCommandContext->BeginPass();
 	Renderer::Backend::IShaderProgram* shader = skytech->GetShader();
 	deviceCommandContext->SetTexture(

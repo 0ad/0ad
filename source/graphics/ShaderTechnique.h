@@ -21,29 +21,35 @@
 #include "graphics/ShaderDefines.h"
 #include "graphics/ShaderProgram.h"
 #include "graphics/ShaderTechniquePtr.h"
+#include "lib/code_annotation.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "renderer/backend/PipelineState.h"
 
+#include <functional>
+#include <memory>
 #include <vector>
 
 /**
- * Implements a render pass consisting of various GL state changes and a shader,
+ * Implements a render pass consisting of a pipeline state and a shader,
  * used by CShaderTechnique.
  */
 class CShaderPass
 {
 public:
-	CShaderPass(const Renderer::Backend::GraphicsPipelineStateDesc& pipelineStateDesc, const CShaderProgramPtr& shader);
+	CShaderPass(
+		std::unique_ptr<Renderer::Backend::IGraphicsPipelineState> pipelineState,
+		const CShaderProgramPtr& shader);
+	MOVABLE(CShaderPass);
 
-	Renderer::Backend::IShaderProgram* GetShader() const { return m_Shader->GetBackendShaderProgram(); }
+	const CShaderProgramPtr& GetShaderProgram() const noexcept { return m_Shader; }
 
-	const Renderer::Backend::GraphicsPipelineStateDesc&
-	GetPipelineStateDesc() const { return m_PipelineStateDesc; }
+	Renderer::Backend::IGraphicsPipelineState*
+	GetPipelineState() const noexcept { return m_PipelineState.get(); }
 
 private:
 	CShaderProgramPtr m_Shader;
 
-	Renderer::Backend::GraphicsPipelineStateDesc m_PipelineStateDesc{};
+	std::unique_ptr<Renderer::Backend::IGraphicsPipelineState> m_PipelineState;
 };
 
 /**
@@ -53,7 +59,10 @@ private:
 class CShaderTechnique
 {
 public:
-	CShaderTechnique(const VfsPath& path, const CShaderDefines& defines);
+	using PipelineStateDescCallback =
+		std::function<void(Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc)>;
+
+	CShaderTechnique(const VfsPath& path, const CShaderDefines& defines, const PipelineStateDescCallback& callback);
 
 	void SetPasses(std::vector<CShaderPass>&& passes);
 
@@ -61,8 +70,8 @@ public:
 
 	Renderer::Backend::IShaderProgram* GetShader(int pass = 0) const;
 
-	const Renderer::Backend::GraphicsPipelineStateDesc&
-	GetGraphicsPipelineStateDesc(int pass = 0) const;
+	Renderer::Backend::IGraphicsPipelineState*
+	GetGraphicsPipelineState(int pass = 0) const;
 
 	/**
 	 * Whether this technique uses alpha blending that requires objects to be
@@ -76,6 +85,8 @@ public:
 
 	const CShaderDefines& GetShaderDefines() { return m_Defines; }
 
+	const PipelineStateDescCallback& GetPipelineStateDescCallback() const { return m_PipelineStateDescCallback; };
+
 private:
 	std::vector<CShaderPass> m_Passes;
 
@@ -84,6 +95,8 @@ private:
 	// We need additional data to reload the technique.
 	VfsPath m_Path;
 	CShaderDefines m_Defines;
+
+	PipelineStateDescCallback m_PipelineStateDescCallback;
 };
 
 #endif // INCLUDED_SHADERTECHNIQUE
