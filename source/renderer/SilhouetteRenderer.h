@@ -69,7 +69,7 @@ private:
 	struct DebugRect
 	{
 		CColor color;
-		u16 x0, y0, x1, y1;
+		float x0, y0, x1, y1;
 	};
 
 	std::vector<DebugBounds> m_DebugBounds;
