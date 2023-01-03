@@ -115,7 +115,7 @@ var g_UnitActions =
 				"formation": g_AutoFormation.getNull()
 			});
 
-			DrawTargetMarker(target);
+			DrawTargetMarker(position);
 
 			Engine.GuiInterfaceCall("PlaySound", {
 				"name": "order_attack_move",
@@ -1893,12 +1893,12 @@ function isUndeletable(entState)
 	return false;
 }
 
-function DrawTargetMarker(target)
+function DrawTargetMarker(position)
 {
 	Engine.GuiInterfaceCall("AddTargetMarker", {
 		"template": g_TargetMarker.move,
-		"x": target.x,
-		"z": target.z
+		"x": position.x,
+		"z": position.z
 	});
 }
 
