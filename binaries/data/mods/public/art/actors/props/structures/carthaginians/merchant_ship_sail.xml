@@ -5,8 +5,28 @@
   <group>
     <variant>
       <mesh>props/kart_merchant_ship_sail.dae</mesh>
-      <textures><texture file="props/kart_merchant_sail_a.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/ptol_sail_norm.png" name="normTex"/>
+        <texture file="props/sail_spec_1.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <group>
+    <variant name="sail_stripes_1">
+      <textures>
+        <texture file="props/sail_stripes_1.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="sail_stripes_2">
+      <textures>
+        <texture file="props/sail_stripes_2.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="sail_stripes_3">
+      <textures>
+        <texture file="props/kart_merchant_sail_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

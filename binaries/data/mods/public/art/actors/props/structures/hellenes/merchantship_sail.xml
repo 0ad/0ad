@@ -21,6 +21,11 @@
         <texture file="props/sail_stripes_2.png" name="baseTex"/>
       </textures>
     </variant>
+    <variant name="sail_stripes_3">
+      <textures>
+        <texture file="props/kart_merchant_sail_a.png" name="baseTex"/>
+      </textures>
+    </variant>
   </group>
   <material>player_trans_norm_spec.xml</material>
 </actor>
