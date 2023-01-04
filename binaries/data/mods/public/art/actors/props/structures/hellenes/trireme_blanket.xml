@@ -7,7 +7,10 @@
       <mesh>props/hele_trireme_blanket.dae</mesh>
       <textures>
 		<texture file="props/stall_big_cloth.png" name="baseTex"/>
+		<texture file="props/stall_big_cloth_norm.png" name="normTex"/>
+		<texture file="props/stall_big_cloth_spec.png" name="specTex"/>
 	  </textures>
     </variant>
   </group>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

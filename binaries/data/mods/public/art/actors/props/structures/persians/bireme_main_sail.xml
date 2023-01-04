@@ -5,6 +5,10 @@
   <group>
     <variant file="others/ships/main_sail_base.xml" name="Bireme Sail">
       <mesh>props/pers_bireme_sail.dae</mesh>
+      <textures>
+       <texture file="props/ptol_sail_norm.png" name="normTex"/>
+       <texture file="props/sail_spec_1.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>

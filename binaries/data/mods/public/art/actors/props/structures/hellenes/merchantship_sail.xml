@@ -4,30 +4,23 @@
   <group>
     <variant frequency="100" name="mesh">
       <mesh>props/kyrenia_sail.dae</mesh>
+      <textures>
+        <texture file="props/ptol_sail_norm.png" name="normTex"/>
+        <texture file="props/sail_spec_1.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="sail-pegasus">
-      <textures><texture file="props/hele_sail_pegasus.dds" name="baseTex"/></textures>
+    <variant name="sail_stripes_1">
+      <textures>
+        <texture file="props/sail_stripes_1.png" name="baseTex"/>
+      </textures>
     </variant>
-    <variant frequency="1" name="sail-krater">
-      <textures><texture file="props/hele_sail_krater.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="sail-triskeles">
-      <textures><texture file="props/hele_sail_runner.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="sail-star">
-      <textures><texture file="props/hele_sail_star_a.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="sail-pegasus2">
-      <textures><texture file="props/hele_sail_pegasus_2.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="sail-hawk">
-      <textures><texture file="props/hele_sail_hawk_a.dds" name="baseTex"/></textures>
-    </variant>
-    <variant frequency="1" name="sail-eye">
-      <textures><texture file="props/hele_sail_eye.dds" name="baseTex"/></textures>
+    <variant name="sail_stripes_2">
+      <textures>
+        <texture file="props/sail_stripes_2.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

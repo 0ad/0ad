@@ -5,13 +5,43 @@
   <group>
     <variant file="others/ships/main_sail_base.xml" name="Trireme Sail">
       <mesh>props/spart_trireme_main_sail.dae</mesh>
+      <textures>
+        <texture file="props/ptol_sail_norm.png" name="normTex"/>
+        <texture file="props/sail_spec_1.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" file="others/ships/spart_sail_01.xml" name="scorpion"/>
-    <variant frequency="100" file="others/ships/spart_sail_02.xml" name="chair"/>
-    <variant frequency="100" file="others/ships/spart_sail_03.xml" name="aegis"/>
-    <variant frequency="100" file="others/ships/spart_sail_04.xml" name="face"/>
+    <variant frequency="1" name="medusa 1">
+      <textures>
+        <texture file="props/spart_sail_6.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="medusa 2">
+      <textures>
+        <texture file="props/spart_sail_5.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="scorpion">
+      <textures>
+        <texture file="props/spart_sail_a.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="dokana">
+      <textures>
+        <texture file="props/spart_sail_b.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="lamda">
+      <textures>
+        <texture file="props/spart_sail_c.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="face">
+      <textures>
+        <texture file="props/spart_sail_d.png" name="baseTex"/>
+      </textures>
+    </variant>
   </group>
-  <material>player_trans_parallax_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

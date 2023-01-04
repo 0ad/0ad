@@ -5,15 +5,33 @@
   <group>
     <variant file="others/ships/main_sail_base.xml" name="Trireme Sail">
       <mesh>props/athen_trireme_main_sail.dae</mesh>
+      <textures>
+        <texture file="props/ptol_sail_norm.png" name="normTex"/>
+        <texture file="props/sail_spec_1.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" file="others/ships/hele_sail_01.xml" name="eye"/>
-    <variant frequency="100" file="others/ships/hele_sail_02.xml" name="pegasus"/>
-    <variant frequency="100" file="others/ships/hele_sail_03.xml" name="runner"/>
-    <variant frequency="100" file="others/ships/hele_sail_04.xml" name="star"/>
-    <variant frequency="100" file="others/ships/hele_sail_05.xml" name="hawk"/>
-    <variant frequency="100" file="others/ships/hele_sail_06.xml" name="krater"/>
+    <variant frequency="1" name="owl 1">
+      <textures>
+        <texture file="props/athen_sail_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="pegasus">
+      <textures>
+        <texture file="props/athen_sail_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="owl 2">
+      <textures>
+        <texture file="props/athen_sail_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="alpha">
+      <textures>
+        <texture file="props/athen_sail_04.png" name="baseTex"/>
+      </textures>
+    </variant>
   </group>
   <material>player_trans_parallax_spec.xml</material>
 </actor>

@@ -5,6 +5,10 @@
   <group>
     <variant file="others/ships/main_sail_base.xml" name="Persian Trireme">
       <mesh>props/pers_trireme_sail.dae</mesh>
+      <textures>
+       <texture file="props/ptol_sail_norm.png" name="normTex"/>
+       <texture file="props/sail_spec_1.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -12,5 +16,5 @@
     <variant frequency="100" file="others/ships/pers_sail_02.xml" name="royal standard"/>
     <variant frequency="100" file="others/ships/pers_sail_03.xml" name="standard"/>
   </group>
-  <material>player_trans_parallax_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

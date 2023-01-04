@@ -6,7 +6,6 @@
     <variant frequency="1" file="others/ships/rome_bireme_oars.xml"  name="Rome Brireme">
       <mesh>structural/rome_ship_bireme.dae</mesh>
       <props>
-        <prop actor="props/structures/romans/bireme_fore_sail.xml" attachpoint="fore_sail"/>
         <prop actor="props/structures/romans/bireme_main_sail.xml" attachpoint="main_sail"/>
         <prop actor="props/structures/romans/rome_bridge_base.xml" attachpoint="bridge"/>
         <prop actor="props/units/siege_artillery/bolt_projectile_med.xml" attachpoint="projectile"/>
