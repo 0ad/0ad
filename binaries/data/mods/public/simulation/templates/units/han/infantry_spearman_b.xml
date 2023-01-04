@@ -14,12 +14,12 @@
   <Promotion>
     <Entity>units/han/infantry_spearman_a</Entity>
   </Promotion>
-  <VisualActor>
-    <Actor>units/han/infantry_spearman_b.xml</Actor>
-  </VisualActor>
   <UnitAI>
     <Formations datatype="tokens">
       special/formations/anti_cavalry
     </Formations>
   </UnitAI>
+  <VisualActor>
+    <Actor>units/han/infantry_spearman_b.xml</Actor>
+  </VisualActor>
 </Entity>
