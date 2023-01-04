@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant file="others/ships/main_sail_base.xml" name="Pirate Ship Sail">
+      <mesh>props/pers_bireme_sail.dae</mesh>
+      <textures>
+        <texture file="props/sail_norm_1.png" name="normTex"/>
+        <texture file="props/sail_spec_1.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="Trident 01">
+      <textures>
+        <texture file="props/sail_pirate_trident_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="Trident 02">
+      <textures>
+        <texture file="props/sail_pirate_trident_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>no_trans_norm_spec.xml</material>
+</actor>
