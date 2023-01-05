@@ -3,36 +3,36 @@
 <Scenario version="7">
 	<Environment>
 		<SkySet>sunny</SkySet>
-		<SunColor r="0.972488" g="0.910677" b="0.778814"/>
-		<SunElevation angle="0.914253"/>
+		<SunColor r="1.02312" g="0.902753" b="0.698129"/>
+		<SunElevation angle="0.730175"/>
 		<SunRotation angle="-0.909753"/>
-		<AmbientColor r="0.384314" g="0.384314" b="0.384314"/>
+		<AmbientColor r="0.356863" g="0.356863" b="0.356863"/>
 		<Fog>
-			<FogFactor>0.00209961</FogFactor>
+			<FogFactor>0.00195313</FogFactor>
 			<FogThickness>0.0351563</FogThickness>
 			<FogColor r="0.839216" g="0.866667" b="0.882353"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>ocean</Type>
-				<Color r="0.184314" g="0.337255" b="0.439216"/>
-				<Tint r="0" g="1" b="0.6"/>
-				<Height>20.0348</Height>
-				<Waviness>5.25391</Waviness>
-				<Murkiness>0.831055</Murkiness>
-				<WindAngle>1.20878</WindAngle>
+				<Color r="0.137255" g="0.356863" b="0.521569"/>
+				<Tint r="0" g="1" b="0.619608"/>
+				<Height>20.0394</Height>
+				<Waviness>4.66797</Waviness>
+				<Murkiness>0.783203</Murkiness>
+				<WindAngle>1.95736</WindAngle>
 			</WaterBody>
 		</Water>
 		<Postproc>
 			<Brightness>-0.015625</Brightness>
-			<Contrast>0.972656</Contrast>
-			<Saturation>0.853516</Saturation>
+			<Contrast>0.984375</Contrast>
+			<Saturation>0.757813</Saturation>
 			<Bloom>0.160156</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="457.213" y="102.197" z="75.2638"/>
+		<Position x="476.536" y="107.275" z="396.157"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -32272,6 +32272,20 @@
 			<Position x="828.22553" z="129.95063"/>
 			<Orientation y="-2.90854"/>
 			<Actor seed="2636"/>
+		</Entity>
+		<Entity uid="11119">
+			<Template>vision_revealers/50_meters</Template>
+			<Player>2</Player>
+			<Position x="906.96845" z="753.27503"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="45905"/>
+		</Entity>
+		<Entity uid="11120">
+			<Template>vision_revealers/50_meters</Template>
+			<Player>1</Player>
+			<Position x="789.80793" z="296.67096"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="55577"/>
 		</Entity>
 	</Entities>
 	<Paths/>
