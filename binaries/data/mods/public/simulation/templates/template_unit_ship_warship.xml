@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_ship">
+  <Attack>
+    <Ranged>
+      <AttackName>Bow</AttackName>
+      <Damage>
+        <Pierce>12</Pierce>
+      </Damage>
+      <MaxRange>45</MaxRange>
+      <PrepareTime>1000</PrepareTime>
+      <RepeatTime>2000</RepeatTime>
+      <Bonuses>
+        <BonusShip>
+          <Classes>Ship</Classes>
+          <Multiplier>3.0</Multiplier>
+        </BonusShip>
+      </Bonuses>
+      <Projectile>
+        <Speed>100</Speed>
+        <Spread>2</Spread>
+        <Gravity>50</Gravity>
+        <FriendlyFire>false</FriendlyFire>
+        <LaunchPoint y="3"/>
+      </Projectile>
+      <PreferredClasses datatype="tokens">Ship Human</PreferredClasses>
+    </Ranged>
+  </Attack>
+  <BuildingAI>
+    <GarrisonArrowMultiplier>1</GarrisonArrowMultiplier>
+    <GarrisonArrowClasses>Infantry Cavalry</GarrisonArrowClasses>
+  </BuildingAI>
+  <GarrisonHolder>
+    <List datatype="tokens">Support Soldier</List>
+  </GarrisonHolder>
+  <Identity>
+    <GenericName>Light Warship</GenericName>
+    <Tooltip>Garrison units for transport and to increase firepower. Deals triple damage against Ships.</Tooltip>
+    <VisibleClasses datatype="tokens">Ranged Warship</VisibleClasses>
+  </Identity>
+  <Selectable>
+    <Overlay>
+      <Texture>
+        <MainTexture>128x512/cartouche.png</MainTexture>
+        <MainTextureMask>128x512/cartouche_mask.png</MainTextureMask>
+      </Texture>
+    </Overlay>
+  </Selectable>
+  <Sound>
+    <SoundGroups>
+      <attack_impact_ranged>attack/impact/arrow_impact.xml</attack_impact_ranged>
+      <attack_ranged>attack/weapon/bow_attack.xml</attack_ranged>
+    </SoundGroups>
+  </Sound>
+</Entity>

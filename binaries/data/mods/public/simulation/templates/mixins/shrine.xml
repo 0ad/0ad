@@ -34,6 +34,15 @@
     </Technologies>
   </Researcher>
   <Resistance replace=""/>
+  <Selectable>
+    <Overlay>
+      <Outline>
+        <LineTexture>outline_border_02.png</LineTexture>
+        <LineTextureMask>outline_border_02_mask.png</LineTextureMask>
+        <LineThickness>0.5</LineThickness>
+      </Outline>
+    </Overlay>
+  </Selectable>
   <StatusBars>
     <HeightOffset>15.0</HeightOffset>
   </StatusBars>

@@ -32,7 +32,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="731.425" y="93.3792" z="762.184"/>
+		<Position x="696.284" y="138.828" z="-7.53761"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -43,6 +43,7 @@
   "Keywords": [],
   "Name": "Saharan Oases (4)",
   "PlayerData": [
+    null,
     {},
     {},
     {},
@@ -21158,26 +21159,26 @@
 		</Entity>
 		<Entity uid="5690">
 			<Template>actor|props/structures/decals/dirt_4x4.xml</Template>
-			<Position x="699.07868" z="1674.3838"/>
-			<Orientation y="2.35621"/>
+			<Position x="777.2494" z="1872.7162"/>
+			<Orientation y="-3.16221"/>
 			<Actor seed="784"/>
 		</Entity>
 		<Entity uid="5691">
 			<Template>actor|props/structures/decals/dirt_6x6.xml</Template>
-			<Position x="1479.07361" z="415.20951"/>
+			<Position x="1775.49646" z="463.22822"/>
 			<Orientation y="-2.21235"/>
 			<Actor seed="2024"/>
 		</Entity>
 		<Entity uid="5692">
 			<Template>actor|props/structures/decals/dirt_8x8.xml</Template>
-			<Position x="458.85474" z="556.78504"/>
+			<Position x="301.05903" z="529.75831"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="49212"/>
 		</Entity>
 		<Entity uid="5693">
 			<Template>actor|props/structures/decals/dirt_8x8.xml</Template>
-			<Position x="1705.0647" z="1286.34437"/>
-			<Orientation y="-2.30404"/>
+			<Position x="1761.36731" z="1506.45423"/>
+			<Orientation y="-2.01932"/>
 			<Actor seed="55122"/>
 		</Entity>
 		<Entity uid="5694">
@@ -21493,29 +21494,11 @@
 			<Orientation y="-1.67605"/>
 			<Actor seed="39572"/>
 		</Entity>
-		<Entity uid="5747">
-			<Template>actor|props/structures/gauls/stable_hay_stack.xml</Template>
-			<Position x="1237.99158" z="1047.73792"/>
-			<Orientation y="0.96503"/>
-			<Actor seed="11648"/>
-		</Entity>
-		<Entity uid="5748">
-			<Template>actor|props/structures/iberians/farmstead_hay.xml</Template>
-			<Position x="1208.92542" z="1015.10114"/>
-			<Orientation y="1.62595"/>
-			<Actor seed="28200"/>
-		</Entity>
 		<Entity uid="5749">
 			<Template>actor|props/special/eyecandy/handcart_1_broken.xml</Template>
 			<Position x="1239.78028" z="1032.47547"/>
 			<Orientation y="-2.77897"/>
 			<Actor seed="64730"/>
-		</Entity>
-		<Entity uid="5750">
-			<Template>actor|props/special/eyecandy/hay_cart.xml</Template>
-			<Position x="1184.08521" z="1037.83741"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="60364"/>
 		</Entity>
 		<Entity uid="5751">
 			<Template>actor|props/special/eyecandy/hay_cart.xml</Template>
@@ -25719,6 +25702,106 @@
 			<Position x="1176.78882" z="681.86982"/>
 			<Orientation y="-2.61551"/>
 			<Actor seed="16662"/>
+		</Entity>
+		<Entity uid="6446">
+			<Template>structures/farmstead_middle_eastern</Template>
+			<Player>0</Player>
+			<Position x="686.19874" z="706.99708"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="60640"/>
+		</Entity>
+		<Entity uid="6447">
+			<Template>structures/farmstead_middle_eastern</Template>
+			<Player>0</Player>
+			<Position x="749.00837" z="1309.54249"/>
+			<Orientation y="2.35622"/>
+			<Actor seed="60640"/>
+		</Entity>
+		<Entity uid="6448">
+			<Template>actor|props/structures/gauls/stable_hay_stack.xml</Template>
+			<Position x="744.3028" z="1300.92676"/>
+			<Orientation y="-0.68033"/>
+			<Actor seed="56150"/>
+		</Entity>
+		<Entity uid="6449">
+			<Template>actor|props/special/eyecandy/hay_small.xml</Template>
+			<Position x="755.95307" z="1293.30115"/>
+			<Orientation y="-1.75495"/>
+			<Actor seed="55694"/>
+		</Entity>
+		<Entity uid="6450">
+			<Template>actor|props/structures/celts/special_hay.xml</Template>
+			<Position x="736.97883" z="1313.35352"/>
+			<Orientation y="1.43465"/>
+			<Actor seed="5108"/>
+		</Entity>
+		<Entity uid="6451">
+			<Template>actor|props/structures/gauls/stable_hay_stack.xml</Template>
+			<Position x="742.18085" z="1301.54249"/>
+			<Orientation y="2.35622"/>
+			<Actor seed="55976"/>
+		</Entity>
+		<Entity uid="6457">
+			<Template>structures/farmstead_middle_eastern</Template>
+			<Player>0</Player>
+			<Position x="1194.54249" z="858.67237"/>
+			<Orientation y="2.35622"/>
+			<Actor seed="60640"/>
+		</Entity>
+		<Entity uid="6458">
+			<Template>actor|props/structures/gauls/stable_hay_stack.xml</Template>
+			<Position x="1189.83692" z="850.05665"/>
+			<Orientation y="-0.68033"/>
+			<Actor seed="56150"/>
+		</Entity>
+		<Entity uid="6459">
+			<Template>actor|props/special/eyecandy/hay_small.xml</Template>
+			<Position x="1201.48719" z="842.43104"/>
+			<Orientation y="-1.75495"/>
+			<Actor seed="55694"/>
+		</Entity>
+		<Entity uid="6460">
+			<Template>actor|props/structures/celts/special_hay.xml</Template>
+			<Position x="1182.51294" z="862.4834"/>
+			<Orientation y="1.43465"/>
+			<Actor seed="5108"/>
+		</Entity>
+		<Entity uid="6461">
+			<Template>actor|props/structures/gauls/stable_hay_stack.xml</Template>
+			<Position x="1187.71497" z="850.67237"/>
+			<Orientation y="2.35622"/>
+			<Actor seed="55976"/>
+		</Entity>
+		<Entity uid="6462">
+			<Template>structures/farmstead_middle_eastern</Template>
+			<Player>0</Player>
+			<Position x="1296.59095" z="1258.84351"/>
+			<Orientation y="2.35622"/>
+			<Actor seed="60640"/>
+		</Entity>
+		<Entity uid="6463">
+			<Template>actor|props/structures/gauls/stable_hay_stack.xml</Template>
+			<Position x="1291.88538" z="1250.22779"/>
+			<Orientation y="-0.68033"/>
+			<Actor seed="56150"/>
+		</Entity>
+		<Entity uid="6464">
+			<Template>actor|props/special/eyecandy/hay_small.xml</Template>
+			<Position x="1303.53565" z="1242.60218"/>
+			<Orientation y="-1.75495"/>
+			<Actor seed="55694"/>
+		</Entity>
+		<Entity uid="6465">
+			<Template>actor|props/structures/celts/special_hay.xml</Template>
+			<Position x="1284.56141" z="1262.65455"/>
+			<Orientation y="1.43465"/>
+			<Actor seed="5108"/>
+		</Entity>
+		<Entity uid="6466">
+			<Template>actor|props/structures/gauls/stable_hay_stack.xml</Template>
+			<Position x="1289.76343" z="1250.84351"/>
+			<Orientation y="2.35622"/>
+			<Actor seed="55976"/>
 		</Entity>
 	</Entities>
 	<Paths/>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="1" file="others/ships/pers_bireme_oars.xml" name="Persian bireme">
+      <mesh>structural/pers_ship_bireme.dae</mesh>
+      <props>
+        <prop actor="props/structures/pirates/bireme_main_sail.xml" attachpoint="sail"/>
+        <prop actor="props/units/siege_artillery/bolt_projectile_med.xml" attachpoint="projectile"/>
+      </props>
+      <textures>
+        <texture file="structural/pers_bireme.png" name="baseTex"/>
+        <texture file="structural/pers_bireme_spec.png" name="specTex"/>
+        <texture file="structural/pers_bireme_norm.png" name="normTex"/>
+        <texture file="structural/ao/pers_bireme.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

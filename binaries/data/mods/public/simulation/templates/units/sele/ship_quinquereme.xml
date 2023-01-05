@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_ship_quinquereme">
+<Entity parent="template_unit_ship_warship_heavy">
   <Identity>
     <Civ>sele</Civ>
     <SpecificName>Pentères</SpecificName>
     <Icon>units/ptol/ship_quinquereme.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>structures/ptolemies/quinquereme.xml</Actor>
+    <Actor>structures/seleucids/quinquereme.xml</Actor>
   </VisualActor>
 </Entity>

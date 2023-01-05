@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_ship_trireme">
+<Entity parent="template_unit_ship_warship_medium">
   <Footprint>
     <Square width="10.0" depth="40.0"/>
     <Height>8.0</Height>
@@ -11,6 +11,6 @@
     <Icon>units/hele/ship_trireme.png</Icon>
   </Identity>
   <VisualActor>
-    <Actor>structures/athenians/trireme.xml</Actor>
+    <Actor>structures/macedonians/trireme.xml</Actor>
   </VisualActor>
 </Entity>

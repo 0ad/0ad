@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,17 +25,17 @@
 // Name: CFsmEvent()
 // Desc: Constructor
 //-----------------------------------------------------------------------------
-CFsmEvent::CFsmEvent( unsigned int type )
+CFsmEvent::CFsmEvent(unsigned int type)
 {
-	m_Type	= type;
-	m_Param	= NULL;
+	m_Type = type;
+	m_Param = NULL;
 }
 
 //-----------------------------------------------------------------------------
 // Name; ~CFsmEvent()
 // Desc: Destructor
 //-----------------------------------------------------------------------------
-CFsmEvent::~CFsmEvent( void )
+CFsmEvent::~CFsmEvent()
 {
 	m_Param = NULL;
 }
@@ -44,7 +44,7 @@ CFsmEvent::~CFsmEvent( void )
 // Name: SetParamRef()
 // Desc: Sets the parameter for the event
 //-----------------------------------------------------------------------------
-void CFsmEvent::SetParamRef( void* pParam )
+void CFsmEvent::SetParamRef(void* pParam)
 {
 	m_Param = pParam;
 }
@@ -53,16 +53,16 @@ void CFsmEvent::SetParamRef( void* pParam )
 // Name: CFsmTransition()
 // Desc: Constructor
 //-----------------------------------------------------------------------------
-CFsmTransition::CFsmTransition( unsigned int state )
+CFsmTransition::CFsmTransition(unsigned int state)
 {
-	m_CurrState	= state;
+	m_CurrState = state;
 }
 
 //-----------------------------------------------------------------------------
 // Name: ~CFsmTransition()
 // Desc: Destructor
 //-----------------------------------------------------------------------------
-CFsmTransition::~CFsmTransition( void )
+CFsmTransition::~CFsmTransition()
 {
 	m_Actions.clear();
 	m_Conditions.clear();
@@ -72,37 +72,37 @@ CFsmTransition::~CFsmTransition( void )
 // Name: RegisterAction()
 // Desc: Adds action that will be executed when the transition will occur
 //-----------------------------------------------------------------------------
-void CFsmTransition::RegisterAction( void* pAction, void* pContext )
+void CFsmTransition::RegisterAction(void* pAction, void* pContext)
 {
 	CallbackFunction callback;
 
 	// Add action at the end of actions list
-	callback.pFunction	= pAction;
-	callback.pContext	= pContext;
+	callback.pFunction = pAction;
+	callback.pContext = pContext;
 
-	m_Actions.push_back( callback );
+	m_Actions.push_back(callback);
 }
 
 //-----------------------------------------------------------------------------
 // Name: AddCondition()
 // Desc: Adds condition which will be evaluated when the transition will occurs
 //-----------------------------------------------------------------------------
-void CFsmTransition::RegisterCondition( void* pCondition, void* pContext )
+void CFsmTransition::RegisterCondition(void* pCondition, void* pContext)
 {
 	CallbackFunction callback;
 
 	// Add condition at the end of conditions list
-	callback.pFunction	= pCondition;
-	callback.pContext	= pContext;
+	callback.pFunction = pCondition;
+	callback.pContext = pContext;
 
-	m_Conditions.push_back( callback );
+	m_Conditions.push_back(callback);
 }
 
 //-----------------------------------------------------------------------------
 // Name: SetEvent()
 // Desc: Set event for which transition will occur
 //-----------------------------------------------------------------------------
-void CFsmTransition::SetEvent( CFsmEvent* pEvent )
+void CFsmTransition::SetEvent(CFsmEvent* pEvent)
 {
 	m_Event = pEvent;
 }
@@ -111,7 +111,7 @@ void CFsmTransition::SetEvent( CFsmEvent* pEvent )
 // Name: SetNextState()
 // Desc: Set next state the transition will switch the system to
 //-----------------------------------------------------------------------------
-void CFsmTransition::SetNextState( unsigned int nextState )
+void CFsmTransition::SetNextState(unsigned int nextState)
 {
 	m_NextState = nextState;
 }
@@ -121,22 +121,22 @@ void CFsmTransition::SetNextState( unsigned int nextState )
 // Desc: Evaluate conditions for the transition
 // Note: If there are no conditions, assume true
 //-----------------------------------------------------------------------------
-bool CFsmTransition::ApplyConditions( void ) const
+bool CFsmTransition::ApplyConditions() const
 {
     bool eval = true;
 
 	CallbackList::const_iterator it = m_Conditions.begin();
-    for( ; it != m_Conditions.end(); ++it )
+	for (; it != m_Conditions.end(); ++it)
 	{
-		if ( it->pFunction )
+		if (it->pFunction)
 		{
 			// Evaluate condition
-			CONDITION Condition = ( CONDITION )it->pFunction;
-			eval &= Condition( it->pContext );
+			CONDITION Condition = (CONDITION)it->pFunction;
+			eval &= Condition(it->pContext);
 		}
-    }
+	}
 
-    return eval;
+	return eval;
 }
 
 //-----------------------------------------------------------------------------
@@ -144,18 +144,18 @@ bool CFsmTransition::ApplyConditions( void ) const
 // Desc: Execute actions for the transition
 // Note: If there are no actions, assume true
 //-----------------------------------------------------------------------------
-bool CFsmTransition::RunActions( void ) const
+bool CFsmTransition::RunActions() const
 {
 	bool result = true;
 
 	CallbackList::const_iterator it = m_Actions.begin();
-	for( ; it != m_Actions.end(); ++it )
+	for (; it != m_Actions.end(); ++it)
 	{
-		if ( it->pFunction )
+		if (it->pFunction)
 		{
 			// Run action
-			ACTION Action = ( ACTION )it->pFunction;
-			result &= Action( it->pContext, m_Event );
+			ACTION Action = (ACTION)it->pFunction;
+			result &= Action(it->pContext, m_Event);
 		}
 	}
 
@@ -166,19 +166,19 @@ bool CFsmTransition::RunActions( void ) const
 // Name: CFsm()
 // Desc: Constructor
 //-----------------------------------------------------------------------------
-CFsm::CFsm( void )
+CFsm::CFsm()
 {
-	m_Done		 = false;
+	m_Done = false;
 	m_FirstState = FSM_INVALID_STATE;
-	m_CurrState	 = FSM_INVALID_STATE;
-	m_NextState  = FSM_INVALID_STATE;
+	m_CurrState = FSM_INVALID_STATE;
+	m_NextState = FSM_INVALID_STATE;
 }
 
 //-----------------------------------------------------------------------------
 // Name: ~CFsm()
 // Desc: Destructor
 //-----------------------------------------------------------------------------
-CFsm::~CFsm( void )
+CFsm::~CFsm()
 {
 	Shutdown();
 }
@@ -187,7 +187,7 @@ CFsm::~CFsm( void )
 // Name: Setup()
 // Desc: Setup events, actions and state transitions
 //-----------------------------------------------------------------------------
-void CFsm::Setup( void )
+void CFsm::Setup()
 {
 	// Does nothing by default
 }
@@ -196,24 +196,26 @@ void CFsm::Setup( void )
 // Name: Reset()
 // Desc: Shuts down the state machine and releases any resources
 //-----------------------------------------------------------------------------
-void CFsm::Shutdown( void )
+void CFsm::Shutdown()
 {
 	// Release transitions
 	TransitionList::iterator itTransition = m_Transitions.begin();
-	for ( ; itTransition < m_Transitions.end(); ++itTransition )
+	for (; itTransition < m_Transitions.end(); ++itTransition)
 	{
 		CFsmTransition* pCurrTransition = *itTransition;
-		if ( !pCurrTransition ) continue;
+		if (!pCurrTransition)
+			continue;
 
 		delete pCurrTransition;
 	}
 
 	// Release events
 	EventMap::iterator itEvent = m_Events.begin();
-	for( ; itEvent != m_Events.end(); ++itEvent )
+	for (; itEvent != m_Events.end(); ++itEvent)
 	{
 		CFsmEvent* pCurrEvent = itEvent->second;
-		if ( !pCurrEvent ) continue;
+		if (!pCurrEvent)
+			continue;
 
 		delete pCurrEvent;
 	}
@@ -222,10 +224,10 @@ void CFsm::Shutdown( void )
 	m_Events.clear();
 	m_Transitions.clear();
 
-	m_Done		 = false;
+	m_Done = false;
 	m_FirstState = FSM_INVALID_STATE;
-	m_CurrState	 = FSM_INVALID_STATE;
-	m_NextState  = FSM_INVALID_STATE;
+	m_CurrState = FSM_INVALID_STATE;
+	m_NextState = FSM_INVALID_STATE;
 }
 
 //-----------------------------------------------------------------------------
@@ -233,9 +235,9 @@ void CFsm::Shutdown( void )
 // Desc: Adds the specified state to the internal list of states
 // Note: If a state with the specified ID exists, the state is not added
 //-----------------------------------------------------------------------------
-void CFsm::AddState( unsigned int state )
+void CFsm::AddState(unsigned int state)
 {
-	m_States.insert( state );
+	m_States.insert(state);
 }
 
 //-----------------------------------------------------------------------------
@@ -243,23 +245,24 @@ void CFsm::AddState( unsigned int state )
 // Desc: Adds the specified event to the internal list of events
 // Note: If an eveny with the specified ID exists, the event is not added
 //-----------------------------------------------------------------------------
-CFsmEvent* CFsm::AddEvent( unsigned int eventType )
+CFsmEvent* CFsm::AddEvent(unsigned int eventType)
 {
 	CFsmEvent* pEvent = NULL;
 
 	// Lookup event by type
-	EventMap::iterator it = m_Events.find( eventType );
-	if ( it != m_Events.end() )
+	EventMap::iterator it = m_Events.find(eventType);
+	if (it != m_Events.end())
 	{
 		pEvent = it->second;
 	}
 	else
 	{
-		pEvent = new CFsmEvent( eventType );
-		if ( !pEvent ) return NULL;
+		pEvent = new CFsmEvent(eventType);
+		if (!pEvent)
+			return NULL;
 
 		// Store new event into internal map
-		m_Events[ eventType ] = pEvent;
+		m_Events[eventType] = pEvent;
 	}
 
 	return pEvent;
@@ -269,35 +272,33 @@ CFsmEvent* CFsm::AddEvent( unsigned int eventType )
 // Name: AddTransition()
 // Desc: Adds a new transistion to the state machine
 //-----------------------------------------------------------------------------
-CFsmTransition* CFsm::AddTransition(
-									unsigned int state,
-									unsigned int eventType,
-									unsigned int nextState )
+CFsmTransition* CFsm::AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState )
 {
 	// Make sure we store the current state
-	AddState( state );
+	AddState(state);
 
 	// Make sure we store the next state
-	AddState( nextState );
+	AddState(nextState);
 
 	// Make sure we store the event
-	CFsmEvent* pEvent = AddEvent( eventType );
-	if ( !pEvent ) return NULL;
+	CFsmEvent* pEvent = AddEvent(eventType);
+	if (!pEvent)
+		return NULL;
 
 	// Create new transition
-	CFsmTransition* pNewTransition = new CFsmTransition( state );
-	if ( !pNewTransition )
+	CFsmTransition* pNewTransition = new CFsmTransition(state);
+	if (!pNewTransition)
 	{
 		delete pEvent;
 		return NULL;
 	}
 
 	// Setup new transition
-	pNewTransition->SetEvent( pEvent );
-	pNewTransition->SetNextState( nextState );
+	pNewTransition->SetEvent(pEvent);
+	pNewTransition->SetNextState(nextState);
 
 	// Store new transition
-	m_Transitions.push_back( pNewTransition );
+	m_Transitions.push_back(pNewTransition);
 
 	return pNewTransition;
 }
@@ -306,19 +307,16 @@ CFsmTransition* CFsm::AddTransition(
 // Name: AddTransition()
 // Desc: Adds a new transition to the state machine
 //-----------------------------------------------------------------------------
-CFsmTransition* CFsm::AddTransition(
-									unsigned int state,
-									unsigned int eventType,
-									unsigned int nextState,
-									void* pAction,
-									void* pContext )
+CFsmTransition* CFsm::AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState,
+	void* pAction, void* pContext)
 {
-	CFsmTransition* pTransition = AddTransition( state, eventType, nextState );
-	if ( !pTransition ) return NULL;
+	CFsmTransition* pTransition = AddTransition(state, eventType, nextState);
+	if (!pTransition)
+		return NULL;
 
 	// If action specified, register it
-	if ( pAction )
-		pTransition->RegisterAction( pAction, pContext );
+	if (pAction)
+		pTransition->RegisterAction(pAction, pContext);
 
 	return pTransition;
 }
@@ -327,32 +325,31 @@ CFsmTransition* CFsm::AddTransition(
 // Name: GetTransition()
 // Desc: Lookup transition given the state, event and next state to transition
 //-----------------------------------------------------------------------------
-CFsmTransition* CFsm::GetTransition(
-									unsigned int state,
-									unsigned int eventType ) const
+CFsmTransition* CFsm::GetTransition(unsigned int state, unsigned int eventType) const
 {
 	// Valid state?
-	if ( !IsValidState( state ) ) return NULL;
+	if (!IsValidState(state))
+		return NULL;
 
 	// Valid event?
-	if ( !IsValidEvent( eventType ) ) return NULL;
+	if (!IsValidEvent(eventType))
+		return NULL;
 
 	// Loop through the list of transitions
 	TransitionList::const_iterator it = m_Transitions.begin();
-	for ( ; it != m_Transitions.end(); ++it )
+	for (; it != m_Transitions.end(); ++it)
 	{
 		CFsmTransition* pCurrTransition = *it;
-		if ( !pCurrTransition ) continue;
+		if ( !pCurrTransition )
+			continue;
 
 		CFsmEvent* pCurrEvent = pCurrTransition->GetEvent();
-		if ( !pCurrEvent ) continue;
+		if (!pCurrEvent)
+			continue;
 
 		// Is it our transition?
-		if ( pCurrTransition->GetCurrState() == state &&
-			 pCurrEvent->GetType() == eventType )
-		{
+		if (pCurrTransition->GetCurrState() == state &&  pCurrEvent->GetType() == eventType)
 			return pCurrTransition;
-		}
 	}
 
 	// No transition found
@@ -363,7 +360,7 @@ CFsmTransition* CFsm::GetTransition(
 // Name: SetFirstState()
 // Desc: Set initial state for FSM
 //-----------------------------------------------------------------------------
-void CFsm::SetFirstState( unsigned int firstState )
+void CFsm::SetFirstState(unsigned int firstState)
 {
 	m_FirstState = firstState;
 }
@@ -372,7 +369,7 @@ void CFsm::SetFirstState( unsigned int firstState )
 // Name: SetCurrState()
 // Desc: Set current state and update last state to current state
 //-----------------------------------------------------------------------------
-void CFsm::SetCurrState( unsigned int state )
+void CFsm::SetCurrState(unsigned int state)
 {
 	m_CurrState = state;
 }
@@ -381,55 +378,56 @@ void CFsm::SetCurrState( unsigned int state )
 // Name: IsFirstTime()
 // Desc: Verifies if the state machine has been already updated
 //-----------------------------------------------------------------------------
-bool CFsm::IsFirstTime( void ) const
+bool CFsm::IsFirstTime() const
 {
-	return ( m_CurrState == FSM_INVALID_STATE );
+	return (m_CurrState == FSM_INVALID_STATE);
 }
 
 //-----------------------------------------------------------------------------
 // Name: Update()
 // Desc: Updates state machine and retrieves next state
 //-----------------------------------------------------------------------------
-bool CFsm::Update( unsigned int eventType, void* pEventParam )
+bool CFsm::Update(unsigned int eventType, void* pEventParam)
 {
 	// Valid event?
-	if ( !IsValidEvent( eventType ) )
+	if (!IsValidEvent(eventType))
 		return false;
 
 	// First time update?
-	if ( IsFirstTime() )
+	if (IsFirstTime())
 		m_CurrState = m_FirstState;
 
 	// Lookup transition
-	CFsmTransition* pTransition = GetTransition( m_CurrState, eventType );
-	if ( !pTransition )
+	CFsmTransition* pTransition = GetTransition(m_CurrState, eventType);
+	if (!pTransition)
 		return false;
 
 	// Setup event parameter
-	EventMap::iterator it = m_Events.find( eventType );
-	if ( it != m_Events.end() )
+	EventMap::iterator it = m_Events.find(eventType);
+	if (it != m_Events.end())
 	{
 		CFsmEvent* pEvent = it->second;
-		if ( pEvent ) pEvent->SetParamRef( pEventParam );
+		if (pEvent)
+			pEvent->SetParamRef(pEventParam);
 	}
 
 	// Valid transition?
-	if ( !pTransition->ApplyConditions() )
+	if (!pTransition->ApplyConditions())
 		return false;
 
 	// Save the default state transition (actions might call SetNextState
 	// to override this)
-	SetNextState( pTransition->GetNextState() );
+	SetNextState(pTransition->GetNextState());
 
 	// Run transition actions
-	if ( !pTransition->RunActions() )
+	if (!pTransition->RunActions())
 		return false;
 
 	// Switch state
-	SetCurrState( GetNextState() );
+	SetCurrState(GetNextState());
 
 	// Reset the next state since it's no longer valid
-	SetNextState( FSM_INVALID_STATE );
+	SetNextState(FSM_INVALID_STATE);
 
 	return true;
 }
@@ -439,7 +437,7 @@ bool CFsm::Update( unsigned int eventType, void* pEventParam )
 // Desc: Tests whether the state machine has finished its work
 // Note: This is state machine specific
 //-----------------------------------------------------------------------------
-bool CFsm::IsDone( void ) const
+bool CFsm::IsDone() const
 {
 	// By default the internal flag m_Done is tested
 	return m_Done;
@@ -449,10 +447,11 @@ bool CFsm::IsDone( void ) const
 // Name: IsValidState()
 // Desc: Verifies whether the specified state is managed by FSM
 //-----------------------------------------------------------------------------
-bool CFsm::IsValidState( unsigned int state ) const
+bool CFsm::IsValidState(unsigned int state) const
 {
-	StateSet::const_iterator it = m_States.find( state );
-	if ( it == m_States.end() ) return false;
+	StateSet::const_iterator it = m_States.find(state);
+	if (it == m_States.end())
+		return false;
 
 	return true;
 }
@@ -461,10 +460,11 @@ bool CFsm::IsValidState( unsigned int state ) const
 // Name: IsValidEvent()
 // Desc: Verifies whether the specified event is managed by FSM
 //-----------------------------------------------------------------------------
-bool CFsm::IsValidEvent( unsigned int eventType ) const
+bool CFsm::IsValidEvent(unsigned int eventType) const
 {
-	EventMap::const_iterator it = m_Events.find( eventType );
-	if ( it == m_Events.end() ) return false;
+	EventMap::const_iterator it = m_Events.find(eventType);
+	if (it == m_Events.end())
+		return false;
 
 	return true;
 }

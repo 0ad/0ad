@@ -1,30 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <Auras datatype="tokens">
+    structures/farmstead_60
+  </Auras>
+  <BuildRestrictions>
+    <Territory>own neutral</Territory>
+    <Category>RotaryMill</Category>
+  </BuildRestrictions>
+  <Capturable>
+    <CapturePoints>500</CapturePoints>
+    <RegenRate>0</RegenRate>
+    <GarrisonRegenRate>3</GarrisonRegenRate>
+  </Capturable>
   <Cost>
     <BuildTime>100</BuildTime>
     <Resources>
+      <food>0</food>
       <wood>200</wood>
       <stone>100</stone>
+      <metal>0</metal>
     </Resources>
   </Cost>
   <Footprint replace="">
-    <Circle radius="9.0"/>
+    <Circle radius="10.0"/>
     <Height>6.0</Height>
   </Footprint>
   <GarrisonHolder disable=""/>
-  <Health>
-    <Max>2000</Max>
-  </Health>
+  <Health disable=""/>
   <Identity>
-    <GenericName>Rotary Mill</GenericName>
-    <SelectionGroupName>template_structure_special_rotarymill</SelectionGroupName>
-    <VisibleClasses datatype="tokens">RotaryMill</VisibleClasses>
+    <Civ>gaia</Civ>
+    <GenericName>Farmstead</GenericName>
+    <SpecificName>Rotary Mill</SpecificName>
+    <VisibleClasses datatype="tokens">Farmstead</VisibleClasses>
+    <Classes datatype="tokens">
+	  RotaryMill
+	</Classes>
+    <Tooltip>Dropsite for harvested Food. Capture one of these to increase nearby food production.</Tooltip>
     <Icon>structures/rotarymill.png</Icon>
   </Identity>
   <Loot>
-    <wood>40</wood>
-    <stone>20</stone>
+    <xp>100</xp>
+    <food>100</food>
   </Loot>
+  <Minimap>
+    <Type>structure</Type>
+    <Icon size="16.0">other.png</Icon>
+  </Minimap>
   <Obstruction>
     <Static width="16.0" depth="16.0"/>
   </Obstruction>
@@ -33,24 +54,32 @@
     <Types>food</Types>
     <Sharable>true</Sharable>
   </ResourceDropsite>
+  <Selectable>
+    <Overlay>
+      <Outline>
+        <LineTexture>outline_border_02.png</LineTexture>
+        <LineTextureMask>outline_border_02_mask.png</LineTextureMask>
+        <LineThickness>0.5</LineThickness>
+      </Outline>
+    </Overlay>
+  </Selectable>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_ffactri.xml</select>
       <constructed>interface/complete/building/complete_ffactri.xml</constructed>
+      <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
   <StatusBars>
     <HeightOffset>8.0</HeightOffset>
   </StatusBars>
-  <TerritoryInfluence>
-    <Root>false</Root>
-    <Radius>32</Radius>
-    <Weight>40000</Weight>
-  </TerritoryInfluence>
+  <TerritoryDecay disable=""/>
+  <TerritoryInfluence disable=""/>
   <Vision>
-    <Range>40</Range>
+    <Range>30</Range>
   </Vision>
   <VisualActor>
+    <Actor>structures/celts/special.xml</Actor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
   </VisualActor>
 </Entity>
