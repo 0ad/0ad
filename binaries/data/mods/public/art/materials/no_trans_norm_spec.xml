@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <material>
-  <alternative material="no_trans_spec.xml" quality="8"/>
-  <required_texture name="baseTex"/>
-  <required_texture name="normTex" define="USE_NORMAL_MAP"/>
-  <required_texture name="specTex" define="USE_SPECULAR_MAP"/>
-  <shader effect="model"/>
-  <uniform name="effectSettings" value="1 50 0"/>
+	<alternative material="default.xml" quality="3"/>
+	<required_texture name="baseTex"/>
+	<required_texture name="normTex" define="USE_NORMAL_MAP"/>
+	<required_texture name="specTex" define="USE_SPECULAR_MAP"/>
+	<shader effect="model"/>
+	<uniform name="effectSettings" value="1 50 0"/>
 </material>

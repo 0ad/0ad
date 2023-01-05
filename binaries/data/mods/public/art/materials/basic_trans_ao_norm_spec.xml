@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <material>
 	<alpha_blending/>
-	<alternative material="basic_trans_ao.xml" quality="3"/>
+	<alternative material="basic_trans.xml" quality="3"/>
 	<define name="USE_TRANSPARENT" value="1"/>
 	<required_texture name="baseTex"/>
 	<required_texture name="normTex" define="USE_NORMAL_MAP"/>
