@@ -6,7 +6,7 @@
     <variant file="others/ships/main_sail_base.xml" name="Pirate Ship Sail">
       <mesh>props/pers_bireme_sail.dae</mesh>
       <textures>
-        <texture file="props/sail_norm_1.png" name="normTex"/>
+        <texture file="props/ptol_sail_norm.png" name="normTex"/>
         <texture file="props/sail_spec_1.png" name="specTex"/>
       </textures>
     </variant>
@@ -33,5 +33,5 @@
       </textures>
     </variant>
   </group>
-  <material>no_trans_norm_spec.xml</material>
+  <material>no_trans_parallax_spec.xml</material>
 </actor>
