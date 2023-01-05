@@ -9,6 +9,7 @@
       </props>
       <textures>
         <texture file="skeletal/spart/female_03.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
         <texture file="skeletal/spart/female_03_spec.png" name="specTex"/>
       </textures>
     </variant>
@@ -47,5 +48,5 @@
     <variant file="biped/female_build.xml"/>
     <variant file="biped/female_build_farm.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>
