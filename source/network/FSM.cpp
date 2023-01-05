@@ -28,7 +28,7 @@
 CFsmEvent::CFsmEvent(unsigned int type)
 {
 	m_Type = type;
-	m_Param = NULL;
+	m_Param = nullptr;
 }
 
 //-----------------------------------------------------------------------------
@@ -37,7 +37,7 @@ CFsmEvent::CFsmEvent(unsigned int type)
 //-----------------------------------------------------------------------------
 CFsmEvent::~CFsmEvent()
 {
-	m_Param = NULL;
+	m_Param = nullptr;
 }
 
 //-----------------------------------------------------------------------------
@@ -123,7 +123,7 @@ void CFsmTransition::SetNextState(unsigned int nextState)
 //-----------------------------------------------------------------------------
 bool CFsmTransition::ApplyConditions() const
 {
-    bool eval = true;
+	bool eval = true;
 
 	CallbackList::const_iterator it = m_Conditions.begin();
 	for (; it != m_Conditions.end(); ++it)
@@ -201,24 +201,12 @@ void CFsm::Shutdown()
 	// Release transitions
 	TransitionList::iterator itTransition = m_Transitions.begin();
 	for (; itTransition < m_Transitions.end(); ++itTransition)
-	{
-		CFsmTransition* pCurrTransition = *itTransition;
-		if (!pCurrTransition)
-			continue;
-
-		delete pCurrTransition;
-	}
+		delete *itTransition;
 
 	// Release events
 	EventMap::iterator itEvent = m_Events.begin();
 	for (; itEvent != m_Events.end(); ++itEvent)
-	{
-		CFsmEvent* pCurrEvent = itEvent->second;
-		if (!pCurrEvent)
-			continue;
-
-		delete pCurrEvent;
-	}
+		delete itEvent->second;
 
 	m_States.clear();
 	m_Events.clear();
@@ -247,7 +235,7 @@ void CFsm::AddState(unsigned int state)
 //-----------------------------------------------------------------------------
 CFsmEvent* CFsm::AddEvent(unsigned int eventType)
 {
-	CFsmEvent* pEvent = NULL;
+	CFsmEvent* pEvent = nullptr;
 
 	// Lookup event by type
 	EventMap::iterator it = m_Events.find(eventType);
@@ -258,8 +246,6 @@ CFsmEvent* CFsm::AddEvent(unsigned int eventType)
 	else
 	{
 		pEvent = new CFsmEvent(eventType);
-		if (!pEvent)
-			return NULL;
 
 		// Store new event into internal map
 		m_Events[eventType] = pEvent;
@@ -283,15 +269,10 @@ CFsmTransition* CFsm::AddTransition(unsigned int state, unsigned int eventType, 
 	// Make sure we store the event
 	CFsmEvent* pEvent = AddEvent(eventType);
 	if (!pEvent)
-		return NULL;
+		return nullptr;
 
 	// Create new transition
 	CFsmTransition* pNewTransition = new CFsmTransition(state);
-	if (!pNewTransition)
-	{
-		delete pEvent;
-		return NULL;
-	}
 
 	// Setup new transition
 	pNewTransition->SetEvent(pEvent);
@@ -312,7 +293,7 @@ CFsmTransition* CFsm::AddTransition(unsigned int state, unsigned int eventType, 
 {
 	CFsmTransition* pTransition = AddTransition(state, eventType, nextState);
 	if (!pTransition)
-		return NULL;
+		return nullptr;
 
 	// If action specified, register it
 	if (pAction)
@@ -329,18 +310,18 @@ CFsmTransition* CFsm::GetTransition(unsigned int state, unsigned int eventType) 
 {
 	// Valid state?
 	if (!IsValidState(state))
-		return NULL;
+		return nullptr;
 
 	// Valid event?
 	if (!IsValidEvent(eventType))
-		return NULL;
+		return nullptr;
 
 	// Loop through the list of transitions
 	TransitionList::const_iterator it = m_Transitions.begin();
 	for (; it != m_Transitions.end(); ++it)
 	{
 		CFsmTransition* pCurrTransition = *it;
-		if ( !pCurrTransition )
+		if (!pCurrTransition)
 			continue;
 
 		CFsmEvent* pCurrEvent = pCurrTransition->GetEvent();
@@ -353,7 +334,7 @@ CFsmTransition* CFsm::GetTransition(unsigned int state, unsigned int eventType) 
 	}
 
 	// No transition found
-	return NULL;
+	return nullptr;
 }
 
 //-----------------------------------------------------------------------------
