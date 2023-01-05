@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special_rotarymill">
+  <Footprint replace="">
+    <Circle radius="13.0"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <Identity>
+    <Lang>persian</Lang>
+    <SpecificName>Kaštašta</SpecificName>
+  </Identity>
+  <Obstruction>
+    <Static width="18.0" depth="18.0"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/persians/farmstead.xml</Actor>
+  </VisualActor>
+</Entity>

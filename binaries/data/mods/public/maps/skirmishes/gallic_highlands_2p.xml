@@ -32,7 +32,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="403.517" y="96.2557" z="448.798"/>
+		<Position x="193.858" y="92.812" z="725.4"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -43,6 +43,7 @@
   "Keywords": [],
   "Name": "Gallic Highlands (2)",
   "PlayerData": [
+    null,
     {},
     {}
   ],
@@ -2635,13 +2636,6 @@
 			<Position x="408.20795" z="415.25272"/>
 			<Orientation y="-9.28301"/>
 			<Actor seed="1984"/>
-		</Entity>
-		<Entity uid="487">
-			<Template>structures/brit/rotarymill</Template>
-			<Player>0</Player>
-			<Position x="293.59366" z="507.13285"/>
-			<Orientation y="-3.87388"/>
-			<Actor seed="49364"/>
 		</Entity>
 		<Entity uid="488">
 			<Template>structures/brit/farmstead</Template>
@@ -15521,14 +15515,14 @@
 		</Entity>
 		<Entity uid="2536">
 			<Template>actor|props/structures/decals/field_temperate_5x5.xml</Template>
-			<Position x="557.3484" z="164.14133"/>
+			<Position x="552.60303" z="177.75022"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="17982"/>
 		</Entity>
 		<Entity uid="2537">
 			<Template>actor|props/structures/decals/field_temperate_5x5.xml</Template>
-			<Position x="570.97779" z="151.05127"/>
-			<Orientation y="2.35621"/>
+			<Position x="523.53174" z="174.40326"/>
+			<Orientation y="-0.76522"/>
 			<Actor seed="46686"/>
 		</Entity>
 		<Entity uid="2538">
@@ -21614,12 +21608,6 @@
 			<Orientation y="-0.79177"/>
 			<Actor seed="8182"/>
 		</Entity>
-		<Entity uid="3516">
-			<Template>actor|props/structures/decals/field_temperate_5x5.xml</Template>
-			<Position x="546.11164" z="906.29273"/>
-			<Orientation y="-0.79177"/>
-			<Actor seed="17982"/>
-		</Entity>
 		<Entity uid="3517">
 			<Template>actor|props/structures/decals/field_temperate_5x5.xml</Template>
 			<Position x="502.1699" z="648.636"/>
@@ -21664,7 +21652,7 @@
 		</Entity>
 		<Entity uid="3524">
 			<Template>actor|props/structures/decals/field_temperate_5x5.xml</Template>
-			<Position x="532.39875" z="919.2953"/>
+			<Position x="507.03092" z="915.0185"/>
 			<Orientation y="-0.79177"/>
 			<Actor seed="46686"/>
 		</Entity>
@@ -31578,7 +31566,7 @@
 		<Entity uid="5069">
 			<Template>gaia/fauna_sheep</Template>
 			<Player>0</Player>
-			<Position x="257.69568" z="765.98304"/>
+			<Position x="294.30506" z="771.33545"/>
 			<Orientation y="-2.26282"/>
 			<Actor seed="17968"/>
 		</Entity>
@@ -31710,7 +31698,7 @@
 		<Entity uid="5091">
 			<Template>gaia/fauna_sheep</Template>
 			<Player>0</Player>
-			<Position x="265.48652" z="760.64728"/>
+			<Position x="302.0959" z="765.9997"/>
 			<Orientation y="2.35622"/>
 			<Actor seed="12406"/>
 		</Entity>
@@ -31997,21 +31985,21 @@
 		<Entity uid="5137">
 			<Template>gaia/fauna_sheep</Template>
 			<Player>0</Player>
-			<Position x="250.70228" z="769.4198"/>
+			<Position x="287.31165" z="774.77222"/>
 			<Orientation y="-2.46171"/>
 			<Actor seed="1222"/>
 		</Entity>
 		<Entity uid="5138">
 			<Template>gaia/fauna_sheep</Template>
 			<Player>0</Player>
-			<Position x="245.2649" z="758.38318"/>
+			<Position x="281.87427" z="763.7356"/>
 			<Orientation y="1.16419"/>
 			<Actor seed="23682"/>
 		</Entity>
 		<Entity uid="5139">
 			<Template>gaia/fauna_sheep</Template>
 			<Player>0</Player>
-			<Position x="253.75751" z="759.2248"/>
+			<Position x="290.36689" z="764.57721"/>
 			<Orientation y="2.35622"/>
 			<Actor seed="28636"/>
 		</Entity>
@@ -35355,13 +35343,6 @@
 			<Orientation y="-2.99556"/>
 			<Actor seed="34086"/>
 		</Entity>
-		<Entity uid="5752">
-			<Template>structures/brit/rotarymill</Template>
-			<Player>0</Player>
-			<Position x="727.9806" z="533.82612"/>
-			<Orientation y="-8.5385"/>
-			<Actor seed="49364"/>
-		</Entity>
 		<Entity uid="5754">
 			<Template>gaia/tree/bush_temperate</Template>
 			<Player>0</Player>
@@ -35474,7 +35455,7 @@
 		</Entity>
 		<Entity uid="5803">
 			<Template>actor|props/special/eyecandy/handcart_1_broken.xml</Template>
-			<Position x="596.31104" z="142.1207"/>
+			<Position x="600.08631" z="142.91007"/>
 			<Orientation y="-2.86295"/>
 			<Actor seed="28402"/>
 		</Entity>
@@ -35543,48 +35524,6 @@
 			<Position x="651.38209" z="593.91547"/>
 			<Orientation y="-8.88221"/>
 			<Actor seed="60144"/>
-		</Entity>
-		<Entity uid="5815">
-			<Template>structures/brit/rotarymill</Template>
-			<Player>0</Player>
-			<Position x="470.10303" z="704.75489"/>
-			<Orientation y="-10.0944"/>
-			<Actor seed="49364"/>
-		</Entity>
-		<Entity uid="5816">
-			<Template>structures/brit/rotarymill</Template>
-			<Player>0</Player>
-			<Position x="598.33478" z="153.03394"/>
-			<Orientation y="-7.12975"/>
-			<Actor seed="49364"/>
-		</Entity>
-		<Entity uid="5817">
-			<Template>structures/brit/rotarymill</Template>
-			<Player>0</Player>
-			<Position x="257.97944" z="782.71106"/>
-			<Orientation y="-3.9703"/>
-			<Actor seed="49364"/>
-		</Entity>
-		<Entity uid="5818">
-			<Template>structures/brit/rotarymill</Template>
-			<Player>0</Player>
-			<Position x="584.5511" z="917.56959"/>
-			<Orientation y="-0.94622"/>
-			<Actor seed="49364"/>
-		</Entity>
-		<Entity uid="5819">
-			<Template>structures/brit/rotarymill</Template>
-			<Player>0</Player>
-			<Position x="877.09076" z="293.88935"/>
-			<Orientation y="-3.9488"/>
-			<Actor seed="49364"/>
-		</Entity>
-		<Entity uid="5820">
-			<Template>structures/brit/rotarymill</Template>
-			<Player>0</Player>
-			<Position x="496.6644" z="439.89344"/>
-			<Orientation y="-3.86715"/>
-			<Actor seed="49364"/>
 		</Entity>
 		<Entity uid="5821">
 			<Template>structures/gaul/civil_centre</Template>
@@ -36219,12 +36158,6 @@
 			<Orientation y="2.35621"/>
 			<Actor seed="54776"/>
 		</Entity>
-		<Entity uid="5965">
-			<Template>actor|props/structures/decals/field_temperate_5x5.xml</Template>
-			<Position x="555.76392" z="134.8779"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="40082"/>
-		</Entity>
 		<Entity uid="5966">
 			<Template>actor|props/structures/decals/field_temperate_5x5.xml</Template>
 			<Position x="568.31489" z="115.18157"/>
@@ -36242,12 +36175,6 @@
 			<Position x="527.80628" z="129.12198"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="34746"/>
-		</Entity>
-		<Entity uid="5969">
-			<Template>actor|props/structures/decals/field_temperate_5x5.xml</Template>
-			<Position x="538.3379" z="147.65137"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="13128"/>
 		</Entity>
 		<Entity uid="5970">
 			<Template>actor|props/structures/decals/field_temperate_5x5.xml</Template>
@@ -36279,15 +36206,9 @@
 			<Orientation y="2.35621"/>
 			<Actor seed="188"/>
 		</Entity>
-		<Entity uid="5976">
-			<Template>actor|props/structures/decals/field_temperate_5x5.xml</Template>
-			<Position x="553.65424" z="929.5553"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="56236"/>
-		</Entity>
 		<Entity uid="5977">
 			<Template>actor|props/structures/decals/field_temperate_5x5.xml</Template>
-			<Position x="569.485" z="913.24262"/>
+			<Position x="568.07648" z="930.11164"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="19686"/>
 		</Entity>
@@ -36639,7 +36560,7 @@
 		<Entity uid="6053">
 			<Template>units/cart/infantry_swordsman_gaul_e</Template>
 			<Player>0</Player>
-			<Position x="175.05451" z="825.30073"/>
+			<Position x="174.93155" z="825.34772"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="42452"/>
 		</Entity>
@@ -36677,6 +36598,174 @@
 			<Position x="421.09858" z="991.29291"/>
 			<Orientation y="3.1088"/>
 			<Actor seed="9428"/>
+		</Entity>
+		<Entity uid="6059">
+			<Template>structures/farmstead_temperate_europe</Template>
+			<Player>0</Player>
+			<Position x="552.5777" z="151.42515"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="14903"/>
+		</Entity>
+		<Entity uid="6060">
+			<Template>structures/farmstead_temperate_europe</Template>
+			<Player>0</Player>
+			<Position x="527.90796" z="396.787"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="49630"/>
+		</Entity>
+		<Entity uid="6061">
+			<Template>structures/farmstead_temperate_europe</Template>
+			<Player>0</Player>
+			<Position x="685.52607" z="526.57795"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="39873"/>
+		</Entity>
+		<Entity uid="6062">
+			<Template>structures/farmstead_temperate_europe</Template>
+			<Player>0</Player>
+			<Position x="484.4437" z="678.02424"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="33412"/>
+		</Entity>
+		<Entity uid="6063">
+			<Template>structures/farmstead_temperate_europe</Template>
+			<Player>0</Player>
+			<Position x="261.63892" z="766.55622"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="45604"/>
+		</Entity>
+		<Entity uid="6064">
+			<Template>structures/farmstead_temperate_europe</Template>
+			<Player>0</Player>
+			<Position x="841.44025" z="313.67838"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="38707"/>
+		</Entity>
+		<Entity uid="6065">
+			<Template>structures/farmstead_temperate_europe</Template>
+			<Player>0</Player>
+			<Position x="544.2721" z="923.48157"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="53478"/>
+		</Entity>
+		<Entity uid="6066">
+			<Template>structures/farmstead_field_wheat</Template>
+			<Player>0</Player>
+			<Position x="536.71863" z="132.0807"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="46724"/>
+		</Entity>
+		<Entity uid="6067">
+			<Template>structures/farmstead_field_wheat</Template>
+			<Player>0</Player>
+			<Position x="556.9242" z="113.38668"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="31536"/>
+		</Entity>
+		<Entity uid="6070">
+			<Template>structures/farmstead_field_wheat</Template>
+			<Player>0</Player>
+			<Position x="571.97394" z="167.81034"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="59130"/>
+		</Entity>
+		<Entity uid="6074">
+			<Template>structures/farmstead_field_wheat</Template>
+			<Player>0</Player>
+			<Position x="527.55384" z="902.12836"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="42043"/>
+		</Entity>
+		<Entity uid="6075">
+			<Template>structures/farmstead_field_wheat</Template>
+			<Player>0</Player>
+			<Position x="545.47205" z="885.08088"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="63509"/>
+		</Entity>
+		<Entity uid="6076">
+			<Template>structures/farmstead_field_wheat</Template>
+			<Player>0</Player>
+			<Position x="566.23578" z="903.18018"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="63509"/>
+		</Entity>
+		<Entity uid="6077">
+			<Template>structures/farmstead_field_wheat</Template>
+			<Player>0</Player>
+			<Position x="583.90986" z="918.8689"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="5428"/>
+		</Entity>
+		<Entity uid="6078">
+			<Template>structures/farmstead_field_wheat</Template>
+			<Player>0</Player>
+			<Position x="567.10871" z="940.24671"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1357"/>
+		</Entity>
+		<Entity uid="6079">
+			<Template>structures/farmstead_field_wheat</Template>
+			<Player>0</Player>
+			<Position x="549.73597" z="961.11023"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1357"/>
+		</Entity>
+		<Entity uid="6080">
+			<Template>structures/farmstead_field_wheat</Template>
+			<Player>0</Player>
+			<Position x="528.7284" z="942.64411"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="25447"/>
+		</Entity>
+		<Entity uid="6083">
+			<Template>structures/farmstead_field_wheat</Template>
+			<Player>0</Player>
+			<Position x="507.78644" z="924.49073"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="43830"/>
+		</Entity>
+		<Entity uid="6086">
+			<Template>structures/farmstead_field_wheat</Template>
+			<Player>0</Player>
+			<Position x="577.60651" z="132.72608"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="40979"/>
+		</Entity>
+		<Entity uid="6087">
+			<Template>structures/farmstead_field_wheat</Template>
+			<Player>0</Player>
+			<Position x="517.94965" z="153.20237"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="40655"/>
+		</Entity>
+		<Entity uid="6094">
+			<Template>structures/farmstead_field_wheat</Template>
+			<Player>0</Player>
+			<Position x="549.81775" z="188.36121"/>
+			<Orientation y="-0.73974"/>
+			<Actor seed="34326"/>
+		</Entity>
+		<Entity uid="6095">
+			<Template>structures/farmstead_field_wheat</Template>
+			<Player>0</Player>
+			<Position x="534.23047" z="171.28171"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27697"/>
+		</Entity>
+		<Entity uid="6096">
+			<Template>structures/farmstead_field_wheat</Template>
+			<Player>0</Player>
+			<Position x="594.34412" z="151.52247"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27008"/>
+		</Entity>
+		<Entity uid="6097">
+			<Template>structures/farmstead_temperate_europe</Template>
+			<Player>0</Player>
+			<Position x="311.81083" z="479.94526"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="11893"/>
 		</Entity>
 	</Entities>
 	<Paths/>

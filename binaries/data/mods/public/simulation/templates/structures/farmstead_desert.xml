@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure_special_rotarymill">
+  <Footprint replace="">
+    <Circle radius="12.0"/>
+    <Height>10.0</Height>
+  </Footprint>
+  <Obstruction>
+    <Static width="20.0" depth="17.0"/>
+  </Obstruction>
+  <VisualActor>
+    <Actor>structures/ptolemies/farmstead.xml</Actor>
+  </VisualActor>
+</Entity>
