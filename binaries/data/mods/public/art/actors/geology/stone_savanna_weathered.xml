@@ -13,20 +13,23 @@
       <mesh>gaia/stone_weathered_1.dae</mesh>
       <textures>
         <texture file="gaia/stone_weathered_1_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
     <variant name="2">
       <mesh>gaia/stone_weathered_2.dae</mesh>
       <textures>
         <texture file="gaia/stone_weathered_1_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
     <variant name="3">
       <mesh>gaia/stone_weathered_3.dae</mesh>
       <textures>
         <texture file="gaia/stone_weathered_1_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_parallax.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

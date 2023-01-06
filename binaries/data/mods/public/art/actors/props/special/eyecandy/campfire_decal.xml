@@ -3,8 +3,12 @@
   <group>
     <variant name="Base1">
       <decal width="6" depth="6" angle="0" offsetx="0" offsetz="0"/>
-      <textures><texture file="props/decal_campfire.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/decal_campfire.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>terrain_base.xml</material>
+  <material>terrain_norm_spec.xml</material>
 </actor>

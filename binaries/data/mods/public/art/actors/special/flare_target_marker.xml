@@ -11,8 +11,9 @@
       <textures>
         <texture file="skeletal/flare_target_marker_diffuse.png" name="baseTex"/>
         <texture file="skeletal/flare_target_marker_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

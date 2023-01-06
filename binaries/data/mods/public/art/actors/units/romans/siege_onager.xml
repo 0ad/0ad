@@ -1,16 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
     <variant frequency="100" name="rome onager">
       <animations>
-        <animation file="mechanical/siege_onager_idle.dae" name="Idle" speed="100" />
+        <animation file="mechanical/siege_onager_idle.dae" name="Idle" speed="100"/>
         <animation event="0.145" load="0.05" file="mechanical/siege_onager_attack.dae" name="attack_ranged" speed="100"/>
       </animations>
       <mesh>structural/siege_onager.dae</mesh>
       <textures>
         <texture file="structural/rome_siege_onager.png" name="baseTex"/>
         <texture file="structural/rome_siege_onager_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
       <props>
         <prop actor="props/units/siege_artillery/stone_projectile_large_flaming.xml" attachpoint="projectile"/>
@@ -18,5 +19,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -15,6 +15,7 @@
       <textures>
         <texture file="skeletal/ptol/cuirass_gorgon_01_01.png" name="baseTex"/>
         <texture file="skeletal/ptol/cuirass_gorgon_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -22,5 +23,5 @@
     <variant file="biped/rider/cavalry/base_spearman_relax_shield_01.xml" name="Spearman-Relax-Shield-01" frequency="1"/>
     <variant file="biped/rider/death.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

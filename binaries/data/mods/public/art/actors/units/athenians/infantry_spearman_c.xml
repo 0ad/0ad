@@ -11,6 +11,7 @@
       </props>
       <textures>
         <texture file="skeletal/hele/linothorax_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -115,5 +116,5 @@
   <group>
     <variant frequency="1" name="Idle"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

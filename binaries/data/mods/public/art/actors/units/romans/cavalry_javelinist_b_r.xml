@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -12,6 +12,7 @@
       </props>
       <textures>
         <texture file="skeletal/ital/tunic_belt_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -50,28 +51,28 @@
   <group>
     <variant frequency="1" name="tunic_pattern_01_a">
       <textures>
-	    <texture file="skeletal/ital/tunic_pattern_01_01.png" name="baseTex"/>
-	  </textures>
+        <texture file="skeletal/ital/tunic_pattern_01_01.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="tunic_pattern_01_b">
       <textures>
-	    <texture file="skeletal/ital/tunic_pattern_01_02.png" name="baseTex"/>
-	  </textures>
+        <texture file="skeletal/ital/tunic_pattern_01_02.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="tunic_pattern_01_c">
       <textures>
-	    <texture file="skeletal/ital/tunic_pattern_01_03.png" name="baseTex"/>
-	  </textures>
+        <texture file="skeletal/ital/tunic_pattern_01_03.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="tunic_pattern_01_d">
       <textures>
-	    <texture file="skeletal/ital/tunic_pattern_01_04.png" name="baseTex"/>
-	  </textures>
+        <texture file="skeletal/ital/tunic_pattern_01_04.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="tunic_pattern_01_e">
       <textures>
-	    <texture file="skeletal/ital/tunic_pattern_01_05.png" name="baseTex"/>
-	  </textures>
+        <texture file="skeletal/ital/tunic_pattern_01_05.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -81,10 +82,10 @@
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/rider/cavalry/attack_ranged_javelin.xml"/>
-    <variant file="biped/rider/promotion_shield.xml" />
+    <variant file="biped/rider/promotion_shield.xml"/>
     <variant file="biped/rider/attack_slaughter_shield_rome.xml"/>
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death_ranged.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

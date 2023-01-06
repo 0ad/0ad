@@ -11,20 +11,23 @@
       <textures>
         <texture file="props/shield/iber_round_01_02.png" name="baseTex"/>
         <texture file="props/shield/iber_round_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="iber-round-shield-01-08">
       <textures>
         <texture file="props/shield/iber_round_01_08.png" name="baseTex"/>
         <texture file="props/shield/iber_round_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="iber-round-shield-02-02">
       <textures>
         <texture file="props/shield/iber_round_02_02.png" name="baseTex"/>
         <texture file="props/shield/iber_round_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

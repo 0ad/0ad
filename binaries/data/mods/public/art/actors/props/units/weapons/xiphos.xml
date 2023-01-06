@@ -6,6 +6,7 @@
       <textures>
         <texture file="props/prop_weap.dds" name="baseTex"/>
         <texture name="specTex" file="null_white.dds"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -26,6 +27,5 @@
       <mesh>props/weap_xiphos_f.dae</mesh>
     </variant>
   </group>
-  <material>no_trans_spec.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>
-

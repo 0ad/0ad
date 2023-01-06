@@ -13,6 +13,7 @@
       </props>
       <textures>
         <texture file="skeletal/hele/linothorax_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -22,6 +23,7 @@
       <textures>
         <texture file="skeletal/thrac/tunic_black_01_01.png" name="baseTex"/>
         <texture file="null_black.dds" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="thesp-linothorax-1a">
@@ -109,5 +111,5 @@
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_cape_black.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

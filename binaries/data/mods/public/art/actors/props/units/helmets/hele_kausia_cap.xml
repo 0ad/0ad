@@ -10,7 +10,7 @@
     </variant>
   </group>
   <group>
-     <variant frequency="1" name="Kausia Cap 1">
+    <variant frequency="1" name="Kausia Cap 1">
       <textures>
         <texture file="props/helmet/hele_kausia_cap_01.png" name="baseTex"/>
       </textures>
@@ -24,7 +24,11 @@
       <textures>
         <texture file="props/helmet/hele_kausia_cap_03.png" name="baseTex"/>
       </textures>
-    </variant> 
+    </variant>
   </group>
-  <material>default.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

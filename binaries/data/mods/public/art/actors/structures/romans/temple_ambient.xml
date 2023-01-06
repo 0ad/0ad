@@ -10,7 +10,11 @@
         <prop actor="particle/flame_jav.xml" attachpoint="flame02"/>
         <prop actor="particle/smoke_small_light.xml" attachpoint="flame02"/>
       </props>
-      <textures><texture file="structural/rome_hc_01.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/rome_hc_01.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -21,5 +25,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

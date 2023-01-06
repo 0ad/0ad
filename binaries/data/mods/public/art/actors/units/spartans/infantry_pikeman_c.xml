@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -55,66 +55,77 @@
       <textures>
         <texture file="skeletal/hele/cuirass_01_01.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="cuirass-1b">
       <textures>
         <texture file="skeletal/hele/cuirass_01_02.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="cuirass-1c">
       <textures>
         <texture file="skeletal/hele/cuirass_01_03.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
-	</variant>
+    </variant>
     <variant frequency="1" name="cuirass-2a">
       <textures>
         <texture file="skeletal/hele/cuirass_02_01.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="cuirass-2b">
       <textures>
         <texture file="skeletal/hele/cuirass_02_02.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="cuirass-2c">
       <textures>
         <texture file="skeletal/hele/cuirass_02_03.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="cuirass-2d">
       <textures>
         <texture file="skeletal/hele/cuirass_02_04.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="cuirass-2e">
       <textures>
         <texture file="skeletal/hele/cuirass_02_05.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="sele-cuirass_01">
       <textures>
         <texture file="skeletal/sele/cuirass_01.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="sele-cuirass_02">
       <textures>
         <texture file="skeletal/sele/cuirass_02.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="sele-cuirass_03">
       <textures>
         <texture file="skeletal/sele/cuirass_03.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -159,5 +170,5 @@
     <variant file="biped/build_farm.xml"/>
     <variant file="biped/death_cape_long.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

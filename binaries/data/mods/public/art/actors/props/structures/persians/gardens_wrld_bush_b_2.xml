@@ -6,8 +6,10 @@
       <mesh>structural/pers_gardens_wrld_bush_b_2.dae</mesh>
       <textures>
         <texture file="gaia/wrld_bush_b_2.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>basic_trans_norm_spec.xml</material>
 </actor>

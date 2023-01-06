@@ -1,28 +1,32 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <float/>
-
   <group>
     <variant frequency="1" name="mesh">
       <mesh>gaia/water_lillies.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="lillies-a">
-      <textures><texture file="gaia/water_lillies.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/water_lillies.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="lillies-b">
-      <textures><texture file="gaia/water_lillies_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/water_lillies_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="lillies-c">
-      <textures><texture file="gaia/water_lillies_c.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/water_lillies_c.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
-  <material>basic_trans.xml</material>
-
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>basic_trans_norm_spec.xml</material>
 </actor>

@@ -13,6 +13,8 @@
     <variant frequency="1" name="Kausia Cap 1">
       <textures>
         <texture file="props/helmet/hele_kausia_cap_player.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -21,5 +23,5 @@
       <color>255 255 255</color>
     </variant>
   </group>
-  <material>objectcolor.xml</material>
+  <material>objectcolor_norm_spec.xml</material>
 </actor>

@@ -7,6 +7,8 @@
       <mesh>props/ship_oar_short.dae</mesh>
       <textures>
         <texture file="structural/han_struct.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
       <animations>
         <animation file="other/ship_oar_idle_left.dae" name="idle" speed="50"/>
@@ -14,5 +16,5 @@
       </animations>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

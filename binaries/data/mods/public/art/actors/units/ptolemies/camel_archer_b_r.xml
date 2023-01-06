@@ -59,5 +59,9 @@
     <variant file="biped/rider/camelry/attack_slaughter.xml"/>
     <variant file="biped/rider/camelry/gather_meat.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

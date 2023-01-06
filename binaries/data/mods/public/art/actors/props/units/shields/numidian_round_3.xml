@@ -11,17 +11,29 @@
   </group>
   <group>
     <variant frequency="1" name="Shield-Numidian-Leopard">
-      <textures><texture file="props/shield/kart_round_u.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/kart_round_u.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Shield-Numidian-Orynx">
-      <textures><texture file="props/shield/kart_round_v.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/kart_round_v.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Shield-Numidian-Patchy-S">
-      <textures><texture file="props/shield/kart_round_s.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/kart_round_s.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Shield-Numidian-Patchy-A">
-      <textures><texture file="props/shield/kart_round_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/kart_round_a.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

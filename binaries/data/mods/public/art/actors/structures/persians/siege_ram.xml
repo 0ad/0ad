@@ -13,12 +13,13 @@
       <textures>
         <texture file="structural/assyrian_ram_2.png" name="baseTex"/>
         <texture file="structural/assyrian_ram_2_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
   <group>
-   <variant name="ungarrisoned" frequency="1"/>
-   <variant name="garrisoned">
+    <variant name="ungarrisoned" frequency="1"/>
+    <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/garrison_flag_persians.xml" attachpoint="garrisoned"/>
       </props>
@@ -33,5 +34,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

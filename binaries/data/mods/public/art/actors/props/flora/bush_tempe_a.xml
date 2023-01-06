@@ -129,5 +129,9 @@
       </textures>
     </variant>
   </group>
-  <material>basic_trans_wind.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>basic_trans_wind_norm_spec.xml</material>
 </actor>

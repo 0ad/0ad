@@ -6,8 +6,10 @@
       <mesh>props/heads/feather_ostrich_2.dae</mesh>
       <textures>
         <texture file="props/head/feather_ostrich_white.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>default.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

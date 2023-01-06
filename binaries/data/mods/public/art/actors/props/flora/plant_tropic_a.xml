@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="plant-lrg">
       <mesh>gaia/wrld_fol_plant_lg.dae</mesh>
@@ -11,34 +9,51 @@
       <mesh>gaia/wrld_fol_plant_sm.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="plant-leaves-a">
-      <textures><texture file="gaia/plant_tropic_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/plant_tropic_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="plant-leaves-b">
-      <textures><texture file="gaia/plant_tropic_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/plant_tropic_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="plant-leaves-c">
-      <textures><texture file="gaia/plant_tropic_c.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/plant_tropic_c.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="plant-leaves-d">
-      <textures><texture file="gaia/plant_tropic_d.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/plant_tropic_d.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="plant-leaves-e">
-      <textures><texture file="gaia/plant_tropic_e.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/plant_tropic_e.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="plant-leaves-f">
-      <textures><texture file="gaia/plant_tropic_f.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/plant_tropic_f.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="plant-leaves-g">
-      <textures><texture file="gaia/plant_tropic_g.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/plant_tropic_g.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="plant-leaves-h">
-      <textures><texture file="gaia/plant_tropic_h.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/plant_tropic_h.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
-  <material>basic_trans.xml</material>
-
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>basic_trans_norm_spec.xml</material>
 </actor>

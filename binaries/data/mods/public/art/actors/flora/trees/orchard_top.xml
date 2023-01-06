@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="foliage-mesh-a">
       <mesh>gaia/tree_carob_top_a.dae</mesh>
@@ -23,16 +21,21 @@
       <mesh>gaia/tree_carob_top_f.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="foliage-texture-apple">
-      <textures><texture file="gaia/orchard_apple_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/orchard_apple_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="foliage-texture-pear">
-      <textures><texture file="gaia/orchard_pear_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/orchard_pear_a.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
-  <material>basic_trans_wind.xml</material>
-
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>basic_trans_wind_norm_spec.xml</material>
 </actor>

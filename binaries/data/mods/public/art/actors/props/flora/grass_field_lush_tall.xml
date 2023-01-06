@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <group>
     <variant name="a">
@@ -11,16 +11,21 @@
       <mesh>gaia/cross_angledfromtop.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant name="a">
-      <textures><texture file="gaia/grass_field_lush_tall.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/grass_field_lush_tall.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="b">
-      <textures><texture file="gaia/grass_field_lush_tall_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/grass_field_lush_tall_b.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
-  <material>basic_trans_wind.xml</material>
-
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>basic_trans_wind_norm_spec.xml</material>
 </actor>

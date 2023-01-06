@@ -7,8 +7,9 @@
       <textures>
         <texture file="props/helmet/old/hele_alexander.dds" name="baseTex"/>
         <texture file="props/helmet/old/hele_alexander_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_spec_helmet.xml</material>
+  <material>player_trans_norm_spec_helmet.xml</material>
 </actor>

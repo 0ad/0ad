@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <group>
     <variant frequency="1" name="grass_la_tall_a">
@@ -10,17 +10,29 @@
   </group>
   <group>
     <variant frequency="10" name="White / Daisy">
-      <textures><texture file="gaia/grass_field_flowering_tall_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/grass_field_flowering_tall_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="5" name="Red / Poppy">
-      <textures><texture file="gaia/grass_field_flowering_tall_red.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/grass_field_flowering_tall_red.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="5" name="Yellow">
-      <textures><texture file="gaia/grass_field_flowering_tall_yellow.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/grass_field_flowering_tall_yellow.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="Violet">
-      <textures><texture file="gaia/grass_field_flowering_tall_violet.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/grass_field_flowering_tall_violet.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>basic_trans_wind_grain.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>basic_trans_wind_grain_norm_spec.xml</material>
 </actor>

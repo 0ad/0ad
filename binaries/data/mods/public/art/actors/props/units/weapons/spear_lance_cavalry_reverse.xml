@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -6,8 +6,10 @@
       <mesh>props/spear_lance_cavalry_reverse.dae</mesh>
       <textures>
         <texture file="props/prop_weap.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>default.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

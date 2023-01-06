@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="beard-small">
       <mesh>props/head_beard_small.dae</mesh>
@@ -14,19 +12,23 @@
       <mesh>props/head_beard_wide.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="face-e">
-      <textures><texture file="props/head/hele_e.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/hele_e.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="face-f">
-      <textures><texture file="props/head/hele_f.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/hele_f.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="face-g">
-      <textures><texture file="props/head/hele_g.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/hele_g.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="dark brown">
       <color>184 151 98</color>
@@ -41,7 +43,9 @@
       <color>129 152 153</color>
     </variant>
   </group>
-
-  <material>objectcolor.xml</material>
-
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>objectcolor_norm_spec.xml</material>
 </actor>

@@ -10,8 +10,10 @@
       <textures>
         <texture file="gaia/stonequarry_temperate.png" name="baseTex"/>
         <texture file="gaia/ao/geo_stonemine_large_ao.png" name="aoTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>no_trans_ao.xml</material>
+  <material>no_trans_ao_norm_spec.xml</material>
 </actor>

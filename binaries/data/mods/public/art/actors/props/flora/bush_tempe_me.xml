@@ -1,35 +1,47 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="100" name="Bush Tempe Medium">
       <mesh>gaia/bush_me_1.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="100" name="B">
       <mesh>gaia/bush_me_2.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="100" name="C">
       <mesh>gaia/bush_me_3.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="100" name="D">
       <mesh>gaia/bush_me_4.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="100" name="E">
       <mesh>gaia/bush_me_5.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="100" name="F">
       <mesh>gaia/bush_me_6.dae</mesh>
-      <textures><texture file="gaia/bush_tempe_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_b.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
-  <material>basic_trans.xml</material>
-
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>basic_trans_norm_spec.xml</material>
 </actor>

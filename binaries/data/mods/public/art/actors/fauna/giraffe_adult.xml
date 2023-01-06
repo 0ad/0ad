@@ -16,10 +16,14 @@
   </group>
   <group>
     <variant frequency="1" name="Light">
-      <textures><texture file="skeletal/animal_giraffe.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/animal_giraffe.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Dark">
-      <textures><texture file="skeletal/animal_giraffeb.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/animal_giraffeb.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -48,4 +52,9 @@
       </props>
     </variant>
   </group>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

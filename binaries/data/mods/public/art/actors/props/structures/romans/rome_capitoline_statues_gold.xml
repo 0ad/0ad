@@ -8,8 +8,9 @@
         <texture file="props/rome_cc_statues_gold.png" name="baseTex"/>
         <texture file="props/rome_cc_statues_gold.png" name="specTex"/>
         <texture file="structural/ao/mausoleum.png" name="aoTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>no_trans_ao_spec.xml</material>
+  <material>no_trans_ao_norm_spec.xml</material>
 </actor>

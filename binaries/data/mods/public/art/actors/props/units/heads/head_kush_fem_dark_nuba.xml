@@ -11,20 +11,23 @@
       <textures>
         <texture file="props/head/african_fem_a_dark_red.png" name="baseTex"/>
         <texture file="props/head/african_fem_a_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="African-Female-Bald">
       <textures>
         <texture file="props/head/african_fem_a_dark_bald.png" name="baseTex"/>
         <texture file="props/head/african_fem_bald_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="African-Female-Black-Hair">
       <textures>
         <texture file="props/head/african_fem_a_dark.png" name="baseTex"/>
         <texture file="props/head/african_fem_a_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>basic_specmap.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

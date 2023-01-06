@@ -30,14 +30,18 @@
     </variant>
   </group>
   <group>
-    <variant file="quadraped/base_camel_mount.xml" />
-    <variant file="quadraped/base_camel_run.xml" />
-    <variant file="quadraped/base_camel_death.xml" />
+    <variant file="quadraped/base_camel_mount.xml"/>
+    <variant file="quadraped/base_camel_run.xml"/>
+    <variant file="quadraped/base_camel_death.xml"/>
     <variant file="quadraped/base_camel_gather_meat.xml" name="gather_meat">
       <props>
         <prop actor="units/kushites/camel_swordsman_r.xml" attachpoint="rider_L"/>
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

@@ -10,17 +10,29 @@
   </group>
   <group>
     <variant name="Dry">
-      <textures><texture file="gaia/grass_field_dry.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/grass_field_dry.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="Green">
-      <textures><texture file="gaia/grass_field_medit.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/grass_field_medit.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="Mixed">
-      <textures><texture file="gaia/grass_field_mixed.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/grass_field_mixed.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="flowery">
-      <textures><texture file="gaia/grass_field_medit_flowering.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/grass_field_medit_flowering.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>basic_trans_wind_grain.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>basic_trans_wind_grain_norm_spec.xml</material>
 </actor>

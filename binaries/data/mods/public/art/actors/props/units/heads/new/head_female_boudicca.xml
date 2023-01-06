@@ -6,6 +6,8 @@
       <mesh>props/new/head_boudicca.dae</mesh>
       <textures>
         <texture file="props/head/celt_fem_boudicca_1.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -14,5 +16,5 @@
       <color>129 40 3</color>
     </variant>
   </group>
-  <material>objectcolor.xml</material>
+  <material>objectcolor_norm_spec.xml</material>
 </actor>

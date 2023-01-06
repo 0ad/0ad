@@ -43,18 +43,21 @@
       <textures>
         <texture file="skeletal/ital/cardiopylax_01_01.png" name="baseTex"/>
         <texture file="skeletal/ital/cardiopylax_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="cardiopylax_01_02">
       <textures>
         <texture file="skeletal/ital/cardiopylax_01_02.png" name="baseTex"/>
         <texture file="skeletal/ital/cardiopylax_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="cardiopylax_01_03">
       <textures>
         <texture file="skeletal/ital/cardiopylax_01_03.png" name="baseTex"/>
         <texture file="skeletal/ital/cardiopylax_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -90,5 +93,5 @@
     <variant file="biped/build_farm.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

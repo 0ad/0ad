@@ -5,11 +5,12 @@
     <variant name="broch top">
       <mesh>props/brit_crannog_dirt.dae</mesh>
       <textures>
-		<texture file="props/celt_barracks_decal.png" name="baseTex"/>
-		<texture file="props/celt_barracks_decal_norm.png" name="normTex"/>
-		<texture file="structural/ao/brit_crannog.png" name="aoTex"/>
-	  </textures>
+        <texture file="props/celt_barracks_decal.png" name="baseTex"/>
+        <texture file="props/celt_barracks_decal_norm.png" name="normTex"/>
+        <texture file="structural/ao/brit_crannog.png" name="aoTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>no_trans_parallax_ao.xml</material>
+  <material>no_trans_ao_parallax_spec.xml</material>
 </actor>

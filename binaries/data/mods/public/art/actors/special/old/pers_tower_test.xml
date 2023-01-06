@@ -4,7 +4,11 @@
   <group>
     <variant>
       <mesh>temp/test_tower.dae</mesh>
-      <textures><texture file="structural/pers_tower_01.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/pers_tower_01.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -17,5 +21,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

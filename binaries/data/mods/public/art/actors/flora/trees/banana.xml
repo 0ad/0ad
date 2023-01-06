@@ -9,6 +9,8 @@
     <variant frequency="3" name="a">
       <textures>
         <texture file="gaia/banana.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -20,5 +22,5 @@
       <mesh>gaia/banana_2.dae</mesh>
     </variant>
   </group>
-  <material>basic_trans_wind.xml</material>
+  <material>basic_trans_wind_norm_spec.xml</material>
 </actor>

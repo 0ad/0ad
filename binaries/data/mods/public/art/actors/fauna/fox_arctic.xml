@@ -8,7 +8,11 @@
   </group>
   <group>
     <variant frequency="1" name="Arctic">
-      <textures><texture file="skeletal/animal_fox_arctic.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/animal_fox_arctic.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -19,4 +23,5 @@
       </props>
     </variant>
   </group>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

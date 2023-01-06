@@ -1,29 +1,33 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="10" name="Base">
       <mesh>props/head_lime.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant name="head e">
-      <textures><texture file="props/head/celt_e.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/celt_e.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="head f">
-      <textures><texture file="props/head/celt_f.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/celt_f.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="head g">
-      <textures><texture file="props/head/celt_g.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/celt_g.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="head h">
-      <textures><texture file="props/head/celt_h.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/celt_h.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
   <group>
     <variant name="dark brown">
       <color>75 61 38</color>
@@ -41,7 +45,9 @@
       <color>255 194 78</color>
     </variant>
   </group>
-
-  <material>objectcolor.xml</material>
-
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>objectcolor_norm_spec.xml</material>
 </actor>

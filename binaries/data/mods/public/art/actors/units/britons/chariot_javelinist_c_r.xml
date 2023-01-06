@@ -65,18 +65,21 @@
       <textures>
         <texture file="skeletal/brit/chainmail_04_01.png" name="baseTex"/>
         <texture file="skeletal/celt/chainmail_04_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="chainmail-4b">
       <textures>
         <texture file="skeletal/brit/chainmail_04_02.png" name="baseTex"/>
         <texture file="skeletal/celt/chainmail_04_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="chainmail-4c">
       <textures>
         <texture file="skeletal/brit/chainmail_04_03.png" name="baseTex"/>
         <texture file="skeletal/celt/chainmail_04_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -86,5 +89,5 @@
     <variant file="biped/attack_capture.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

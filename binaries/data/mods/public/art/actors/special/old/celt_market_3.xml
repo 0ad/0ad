@@ -10,7 +10,12 @@
         <prop actor="props/structures/celts/market_newer_props_wooden.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/gravel_5x5.xml" attachpoint="root"/>
       </props>
-      <textures><texture file="structural/celt_struct_1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/celt_struct_1.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

@@ -4,8 +4,12 @@
   <group>
     <variant frequency="100" name="shields">
       <mesh>props/kart_embassy_iber_props.dae</mesh>
-      <textures><texture file="props/iber_prop_shields.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/iber_prop_shields.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

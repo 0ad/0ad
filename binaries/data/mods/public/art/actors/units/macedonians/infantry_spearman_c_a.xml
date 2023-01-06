@@ -11,6 +11,7 @@
       </props>
       <textures>
         <texture file="skeletal/hele/linothorax_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -102,24 +103,28 @@
       <textures>
         <texture file="skeletal/mace/scale_02_01.png" name="baseTex"/>
         <texture file="skeletal/hele/scale_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-scale-4a">
       <textures>
         <texture file="skeletal/mace/scale_04_01.png" name="baseTex"/>
         <texture file="skeletal/hele/scale_04_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-lamellar-1a">
       <textures>
         <texture file="skeletal/mace/lamellar_01_01.png" name="baseTex"/>
         <texture file="skeletal/hele/lamellar_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="mace-cuirass-1a">
       <textures>
         <texture file="skeletal/mace/cuirass_01_04.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -137,5 +142,5 @@
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

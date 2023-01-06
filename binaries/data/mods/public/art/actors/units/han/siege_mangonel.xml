@@ -10,6 +10,8 @@
       <mesh>structural/han_mangonel.dae</mesh>
       <textures>
         <texture file="structural/hele_siege.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
       <props>
         <prop actor="props/units/weapons/rock.xml" attachpoint="loaded-projectile"/>
@@ -23,4 +25,5 @@
       </props>
     </variant>
   </group>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

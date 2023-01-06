@@ -15,6 +15,7 @@
       <textures>
         <texture file="skeletal/sele/cataphract_splint_01_01.png" name="baseTex"/>
         <texture file="skeletal/sele/cataphract_splint_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -22,5 +23,5 @@
     <variant file="biped/rider/cavalry/base_swordsman_ready_shield.xml" name="Swordsman-Ready-Shield" frequency="1"/>
     <variant file="biped/rider/death_aspis.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

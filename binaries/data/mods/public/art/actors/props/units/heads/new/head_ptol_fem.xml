@@ -7,13 +7,14 @@
     </variant>
     <variant frequency="100" name="egypt_long_hair">
       <mesh>props/new/head_ptol_female_2.dae</mesh>
-    </variant>	
+    </variant>
   </group>
   <group>
     <variant frequency="1" name="face-a">
       <textures>
         <texture file="props/head/maur_fem_a.dds" name="baseTex"/>
         <texture file="props/head/maur_fem_a_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -22,5 +23,5 @@
       <color>0 0 0</color>
     </variant>
   </group>
-  <material>objectcolor_specmap.xml</material>
+  <material>objectcolor_norm_spec.xml</material>
 </actor>

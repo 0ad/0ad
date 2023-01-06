@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
-    <variant >
+    <variant>
       <mesh>skeletal/new/m_tunic_short.dae</mesh>
       <props>
         <prop actor="props/units/heads/new/head_hele_b.xml" attachpoint="head"/>
@@ -47,9 +47,13 @@
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/rider/attack_slaughter_shield_hele.xml"/>
-    <variant file="biped/rider/promotion_shield.xml" />
+    <variant file="biped/rider/promotion_shield.xml"/>
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death_aspis.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

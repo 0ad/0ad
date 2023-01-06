@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="variant-a">
       <mesh>gaia/tree_lumbardypoplar_a_top.dae</mesh>
@@ -23,13 +21,14 @@
       <mesh>gaia/tree_lumbardypoplar_f_top.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="texture-a">
-      <textures><texture file="gaia/tree_lumbardypoplar_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/tree_lumbardypoplar_a.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
-
-  <material>basic_trans_wind.xml</material>
-
+  <material>basic_trans_wind_norm_spec.xml</material>
 </actor>

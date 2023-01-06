@@ -1,35 +1,43 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant name="mesh">
       <mesh>props/head_beard_small.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="face-a">
-      <textures><texture file="props/head/celt_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/celt_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="face-b">
-      <textures><texture file="props/head/celt_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/celt_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="face-c">
-      <textures><texture file="props/head/celt_c.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/celt_c.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="face-d">
-      <textures><texture file="props/head/celt_d.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/celt_d.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="face-g">
-      <textures><texture file="props/head/celt_g.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/celt_g.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="face-j">
-      <textures><texture file="props/head/celt_j.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/celt_j.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="hair-dark brown">
       <color>75 61 38</color>
@@ -47,7 +55,9 @@
       <color>255 194 78</color>
     </variant>
   </group>
-
-  <material>objectcolor.xml</material>
-
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>objectcolor_norm_spec.xml</material>
 </actor>

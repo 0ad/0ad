@@ -7,8 +7,9 @@
       <textures>
         <texture file="props/helmets/han_bandana.png" name="baseTex"/>
         <texture file="props/helmets/han_bandana_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_norm.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

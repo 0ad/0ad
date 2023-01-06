@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -6,6 +6,8 @@
       <mesh>structural/rome_siege_wall.dae</mesh>
       <textures>
         <texture file="structural/rome_special_1.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -13,4 +15,5 @@
     <variant name="alive" frequency="1"/>
     <variant file="structures/destruction_medium.xml"/>
   </group>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

@@ -17,9 +17,9 @@
       <textures>
         <texture file="structural/hele_pentekonter.png" name="baseTex"/>
         <texture name="specTex" file="null_white.dds"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>
-

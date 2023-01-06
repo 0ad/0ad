@@ -11,13 +11,24 @@
   </group>
   <group>
     <variant frequency="1" name="Shield-Numidian-1">
-      <textures><texture file="props/shield/kart_round_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/kart_round_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Shield-Numidian-2">
-      <textures><texture file="props/shield/kart_round_r.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/kart_round_r.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Shield-Numidian-3">
-      <textures><texture file="props/shield/kart_round_t.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/kart_round_t.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

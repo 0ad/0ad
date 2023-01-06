@@ -9,7 +9,12 @@
         <prop actor="props/structures/celts/warship_sail.xml" attachpoint="root"/>
         <prop actor="props/units/siege_artillery/bolt_projectile_med.xml" attachpoint="projectile"/>
       </props>
-      <textures><texture file="structural/celt_ship.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/celt_ship.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

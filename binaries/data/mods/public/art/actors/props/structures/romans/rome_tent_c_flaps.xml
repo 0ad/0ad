@@ -4,8 +4,12 @@
   <group>
     <variant name="Tent C flaps">
       <mesh>props/rome_tent_c_flaps.dae</mesh>
-      <textures><texture file="props/rome_sb_tent.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/rome_sb_tent.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>basic_trans_norm_spec.xml</material>
 </actor>

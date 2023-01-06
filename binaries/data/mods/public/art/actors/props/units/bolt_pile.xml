@@ -18,5 +18,9 @@
       </textures>
     </variant>
   </group>
-  <material>default.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

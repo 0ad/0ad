@@ -8,8 +8,9 @@
         <texture file="structural/sele_apollo_gold.png" name="baseTex"/>
         <texture file="structural/sele_apollo_gold_spec.png" name="specTex"/>
         <texture file="structural/ao/sele_wonder_statue_AO.png" name="aoTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>no_trans_ao_spec.xml</material>
+  <material>no_trans_ao_norm_spec.xml</material>
 </actor>

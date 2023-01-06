@@ -19,6 +19,7 @@
       <textures>
         <texture file="skeletal/pers/scale_armband_01_01.png" name="baseTex"/>
         <texture file="skeletal/pers/scale_armband_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
       <props>
         <prop actor="props/units/armor/pers_neckguard_bronze_archer.xml" attachpoint="root"/>
@@ -28,6 +29,7 @@
       <textures>
         <texture file="skeletal/pers/scale_armband_01_02.png" name="baseTex"/>
         <texture file="skeletal/pers/scale_armband_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
       <props>
         <prop actor="props/units/armor/pers_neckguard_iron_archer.xml" attachpoint="root"/>
@@ -37,6 +39,7 @@
       <textures>
         <texture file="skeletal/pers/scale_armband_full_01_01.png" name="baseTex"/>
         <texture file="skeletal/pers/scale_armband_full_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
       <props>
         <prop actor="props/units/armor/pers_neckguard_bronze_archer.xml" attachpoint="root"/>
@@ -46,6 +49,7 @@
       <textures>
         <texture file="skeletal/pers/scale_armband_full_01_02.png" name="baseTex"/>
         <texture file="skeletal/pers/scale_armband_full_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
       <props>
         <prop actor="props/units/armor/pers_neckguard_iron_archer.xml" attachpoint="root"/>
@@ -55,6 +59,7 @@
       <textures>
         <texture file="skeletal/pers/scale_sleeve_full_01_01.png" name="baseTex"/>
         <texture file="skeletal/pers/scale_sleeve_full_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
       <props>
         <prop actor="props/units/armor/pers_neckguard_bronze_archer.xml" attachpoint="root"/>
@@ -64,6 +69,7 @@
       <textures>
         <texture file="skeletal/pers/scale_sleeve_full_01_02.png" name="baseTex"/>
         <texture file="skeletal/pers/scale_sleeve_full_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
       <props>
         <prop actor="props/units/armor/pers_neckguard_iron_archer.xml" attachpoint="root"/>
@@ -78,5 +84,5 @@
     <variant name="carry_meat"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans_spec_helmet.xml</material>
+  <material>player_trans_norm_spec_helmet.xml</material>
 </actor>

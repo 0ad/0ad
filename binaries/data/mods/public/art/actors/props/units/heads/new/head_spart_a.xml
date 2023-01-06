@@ -8,10 +8,14 @@
   </group>
   <group>
     <variant frequency="1" name="head-c">
-      <textures><texture file="props/head/hele_c.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/hele_c.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="head-d">
-      <textures><texture file="props/head/hele_d.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/hele_d.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -28,5 +32,9 @@
       <color>129 152 153</color>
     </variant>
   </group>
-  <material>objectcolor.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>objectcolor_norm_spec.xml</material>
 </actor>

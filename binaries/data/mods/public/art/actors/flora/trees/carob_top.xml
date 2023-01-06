@@ -23,17 +23,29 @@
   </group>
   <group>
     <variant frequency="3" name="leaf-texture-a">
-      <textures><texture file="gaia/tree_carob_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/tree_carob_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="leaf-texture-b">
-      <textures><texture file="gaia/tree_carob_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/tree_carob_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="leaf-texture-c">
-      <textures><texture file="gaia/tree_carob_c.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/tree_carob_c.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="leaf-texture-d">
-      <textures><texture file="gaia/tree_carob_d.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/tree_carob_d.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>basic_trans_wind.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>basic_trans_wind_norm_spec.xml</material>
 </actor>

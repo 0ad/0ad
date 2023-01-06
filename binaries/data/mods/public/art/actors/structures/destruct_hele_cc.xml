@@ -6,9 +6,9 @@
       <mesh>props/hele_cc_rubble.dae</mesh>
       <props>
         <prop actor="structures/destruct_hele_struct.xml" attachpoint="root"/>
-<prop actor="structures/destruct_hele_struct_b.xml" attachpoint="root"/>
-<prop actor="structures/destruct_hele_tile_b.xml" attachpoint="root"/>
-<prop actor="structures/destruct_hele_props.xml" attachpoint="root"/>
+        <prop actor="structures/destruct_hele_struct_b.xml" attachpoint="root"/>
+        <prop actor="structures/destruct_hele_tile_b.xml" attachpoint="root"/>
+        <prop actor="structures/destruct_hele_props.xml" attachpoint="root"/>
         <prop actor="particle/flame.xml" attachpoint="flame1"/>
         <prop actor="particle/smoke.xml" attachpoint="flame1"/>
         <prop actor="particle/flame_jav.xml" attachpoint="flame2"/>
@@ -18,8 +18,10 @@
       <textures>
         <texture file="props/rubble_stone.png" name="baseTex"/>
         <texture file="props/ao/rome_cc_rubble.png" name="aoTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_ao.xml</material>
+  <material>player_trans_ao_norm_spec.xml</material>
 </actor>

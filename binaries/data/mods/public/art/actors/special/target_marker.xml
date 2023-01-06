@@ -10,8 +10,9 @@
       <textures>
         <texture file="skeletal/target_marker_red_and_gold.png" name="baseTex"/>
         <texture file="skeletal/target_marker_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>basic_trans_spec.xml</material>
+  <material>basic_trans_norm_spec.xml</material>
 </actor>

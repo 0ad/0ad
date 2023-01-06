@@ -32,13 +32,17 @@
   </group>
   <group>
     <variant file="quadraped/base_camel_mount.xml"/>
-    <variant file="quadraped/base_camel_run.xml" />
-    <variant file="quadraped/base_camel_death.xml" />
+    <variant file="quadraped/base_camel_run.xml"/>
+    <variant file="quadraped/base_camel_death.xml"/>
     <variant file="quadraped/base_camel_gather_meat.xml" name="gather_meat">
       <props>
         <prop actor="units/ptolemies/camel_archer_b_r.xml" attachpoint="rider_L"/>
       </props>
     </variant>
   </group>
-  <material>default.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

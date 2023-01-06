@@ -1,23 +1,28 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <float/>
-  
   <castshadow/>
-
   <group>
     <variant frequency="1" name="A">
       <animations/>
-		<mesh>props/iceberg_a.dae</mesh>
+      <mesh>props/iceberg_a.dae</mesh>
       <props/>
-      <textures><texture file="props/iceberg.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/iceberg.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="B">
       <animations/>
-		<mesh>props/iceberg_b.dae</mesh>
+      <mesh>props/iceberg_b.dae</mesh>
       <props/>
-      <textures><texture file="props/iceberg.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/iceberg.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

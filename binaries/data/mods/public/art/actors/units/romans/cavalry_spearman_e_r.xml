@@ -24,12 +24,14 @@
       <textures>
         <texture file="skeletal/mace/compound_linothorax_02_01.png" name="baseTex"/>
         <texture file="skeletal/mace/compound_linothorax_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-muscled-cuirass">
       <textures>
         <texture file="skeletal/rome/cuirass_01_01.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -44,5 +46,5 @@
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death_shield.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

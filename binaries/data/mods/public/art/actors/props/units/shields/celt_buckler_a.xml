@@ -1,25 +1,29 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="shield-C">
       <mesh>props/shield/pict_b_f.dae</mesh>
       <props>
         <prop actor="props/units/shields/celt_buckler_b_back.xml" attachpoint="back"/>
       </props>
-      <textures><texture file="props/shield/pict_c.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/pict_c.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="shield-D">
       <mesh>props/shield/pict_a_f.dae</mesh>
       <props>
         <prop actor="props/units/shields/celt_buckler_a_back.xml" attachpoint="back"/>
       </props>
-      <textures><texture file="props/shield/pict_d.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/pict_d.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
-  <material>player_trans.xml</material>
-
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

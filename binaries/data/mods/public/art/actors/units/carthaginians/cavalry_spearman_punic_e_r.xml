@@ -49,18 +49,21 @@
       <textures>
         <texture file="skeletal/cart/cuirass_01_01.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="lamellar_01_01">
       <textures>
         <texture file="skeletal/cart/lamellar_01_01.png" name="baseTex"/>
         <texture file="skeletal/hele/lamellar_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scale_01_01">
       <textures>
         <texture file="skeletal/cart/scale_01_01.png" name="baseTex"/>
         <texture file="skeletal/cart/scale_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -91,9 +94,9 @@
   <group>
     <variant frequency="1" name="Idle"/>
     <variant file="biped/rider/attack_slaughter_spart.xml"/>
-    <variant file="biped/rider/promotion.xml" />
+    <variant file="biped/rider/promotion.xml"/>
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

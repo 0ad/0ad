@@ -1,44 +1,61 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant name="Base">
       <mesh>gaia/wrld_fol_plant_lg.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant name="a">
-      <textures><texture file="gaia/wrld_fol_plant1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/wrld_fol_plant1.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="b">
-      <textures><texture file="gaia/wrld_fol_plant2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/wrld_fol_plant2.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="c">
-      <textures><texture file="gaia/wrld_fol_plant3.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/wrld_fol_plant3.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="d">
-      <textures><texture file="gaia/wrld_fol_plant4.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/wrld_fol_plant4.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="e">
-      <textures><texture file="gaia/wrld_fol_plant5.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/wrld_fol_plant5.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="f">
-      <textures><texture file="gaia/wrld_fol_plant6.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/wrld_fol_plant6.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="g">
-      <textures><texture file="gaia/wrld_fol_plant7.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/wrld_fol_plant7.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="h">
-      <textures><texture file="gaia/wrld_fol_plant8.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/wrld_fol_plant8.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="i">
-      <textures><texture file="gaia/wrld_fol_plant9.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/wrld_fol_plant9.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
-  <material>basic_trans.xml</material>
-
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>basic_trans_norm_spec.xml</material>
 </actor>

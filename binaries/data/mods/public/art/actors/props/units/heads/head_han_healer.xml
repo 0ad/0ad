@@ -10,8 +10,10 @@
     <variant frequency="1" name="face-old">
       <textures>
         <texture file="props/head/han_old_b.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>objectcolor.xml</material>
+  <material>objectcolor_norm_spec.xml</material>
 </actor>

@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant name="mesh-plant-large">
       <mesh>gaia/wrld_fol_plant_lg.dae</mesh>
@@ -11,22 +9,31 @@
       <mesh>gaia/wrld_fol_plant_sm.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant name="artichoke-a">
-      <textures><texture file="gaia/plant_medit_artichoke_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/plant_medit_artichoke_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="artichoke-b-flowering">
-      <textures><texture file="gaia/plant_medit_artichoke_b_flower.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/plant_medit_artichoke_b_flower.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="artichoke-c">
-      <textures><texture file="gaia/plant_medit_artichoke_c.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/plant_medit_artichoke_c.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant name="artichoke-d-flowering">
-      <textures><texture file="gaia/plant_medit_artichoke_d_flower.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/plant_medit_artichoke_d_flower.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
-  <material>basic_trans.xml</material>
-
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>basic_trans_norm_spec.xml</material>
 </actor>

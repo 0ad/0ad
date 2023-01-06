@@ -5,10 +5,12 @@
     <variant>
       <mesh>props/rome_capitoline_statues.dae</mesh>
       <textures>
-	    <texture file="props/rome_cc_statues.png" name="baseTex"/>
+        <texture file="props/rome_cc_statues.png" name="baseTex"/>
         <texture file="structural/ao/rome_capitoline.png" name="aoTex"/>
-	  </textures>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans_ao.xml</material>
+  <material>player_trans_ao_norm_spec.xml</material>
 </actor>

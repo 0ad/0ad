@@ -4,40 +4,62 @@
   <group>
     <variant frequency="2" name="face-beard-small-a">
       <mesh>props/head_beard_small.dae</mesh>
-      <textures><texture file="props/head/pers_face_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/pers_face_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="face-beard-small-b">
       <mesh>props/head_beard_small.dae</mesh>
-      <textures><texture file="props/head/pers_face_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/pers_face_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="face-beard-large-a">
       <mesh>props/head_beard_large.dae</mesh>
-      <textures><texture file="props/head/pers_face_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/pers_face_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="face-beard-large-b">
       <mesh>props/head_beard_large.dae</mesh>
-      <textures><texture file="props/head/pers_face_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/pers_face_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="face-beard-wide-a">
       <mesh>props/head_beard_wide.dae</mesh>
-      <textures><texture file="props/head/pers_face_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/pers_face_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="face-beard-wide-b">
       <mesh>props/head_beard_wide.dae</mesh>
-      <textures><texture file="props/head/pers_face_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/pers_face_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="face-scrubby-i">
       <mesh>props/dude_head.dae</mesh>
-      <textures><texture file="props/head/pers_face_i.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/pers_face_i.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="face-beard-large-j">
       <mesh>props/head_beard_large.dae</mesh>
-      <textures><texture file="props/head/pers_face_j.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/pers_face_j.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="face-beard-small-j">
       <mesh>props/head_beard_small.dae</mesh>
-      <textures><texture file="props/head/pers_face_j.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/pers_face_j.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>objectcolor.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>objectcolor_norm_spec.xml</material>
 </actor>

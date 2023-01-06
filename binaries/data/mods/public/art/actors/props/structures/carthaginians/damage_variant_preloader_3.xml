@@ -6,8 +6,9 @@
       <textures>
         <texture file="structural/kart_struct_damaged_heavy.png" name="baseTex"/>
         <texture file="structural/kart_struct_damaged_heavy_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_parallax.xml</material>
+  <material>player_trans_parallax_spec.xml</material>
 </actor>

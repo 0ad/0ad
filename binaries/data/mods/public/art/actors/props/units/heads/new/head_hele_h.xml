@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -8,19 +8,29 @@
   </group>
   <group>
     <variant frequency="1" name="face-a">
-      <textures><texture file="props/head/hele_c.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/hele_c.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="face-b">
-      <textures><texture file="props/head/hele_d.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/hele_d.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="face-c">
-      <textures><texture file="props/head/hele_e.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/hele_e.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="face-d">
-      <textures><texture file="props/head/hele_f.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/hele_f.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="face-e">
-      <textures><texture file="props/head/hele_g.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/hele_g.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -37,5 +47,9 @@
       <color>129 152 153</color>
     </variant>
   </group>
-  <material>objectcolor.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>objectcolor_norm_spec.xml</material>
 </actor>

@@ -5,6 +5,8 @@
       <mesh>props/weapons/crossbow/weap_han_nu.dae</mesh>
       <textures>
         <texture file="structural/rome_ballista.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
       <props>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
@@ -23,4 +25,5 @@
       </animations>
     </variant>
   </group>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

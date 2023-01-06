@@ -1,41 +1,56 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant>
       <mesh>props/hele_tri2.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="Sail-Plain">
-      <textures><texture file="props/hele_sail.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/hele_sail.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="Sail-Pegasus">
-      <textures><texture file="props/hele_sail_pegasus.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/hele_sail_pegasus.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="Sail-Pegasus-2">
-      <textures><texture file="props/hele_sail_pegasus_2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/hele_sail_pegasus_2.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="Sail-Runner">
-      <textures><texture file="props/hele_sail_runner.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/hele_sail_runner.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="Sail-Eye">
-      <textures><texture file="props/hele_sail_eye.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/hele_sail_eye.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="Sail-Hawk">
-      <textures><texture file="props/hele_sail_hawk_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/hele_sail_hawk_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="Sail-Krater">
-      <textures><texture file="props/hele_sail_krater.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/hele_sail_krater.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="5" name="Sail-Star">
-      <textures><texture file="props/hele_sail_star_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/hele_sail_star_a.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
-  <material>player_trans.xml</material>
-
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

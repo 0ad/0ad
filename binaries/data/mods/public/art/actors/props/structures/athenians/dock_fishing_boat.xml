@@ -6,9 +6,11 @@
       <mesh>props/athen_dock_fishboat.dae</mesh>
       <textures>
         <texture file="structural/hele_fishing_boat.dds" name="baseTex"/>
-		<texture file="structural/ao/athen_dock.png" name="aoTex"/>
+        <texture file="structural/ao/athen_dock.png" name="aoTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_ao.xml</material>
+  <material>player_trans_ao_norm_spec.xml</material>
 </actor>

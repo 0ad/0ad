@@ -4,6 +4,8 @@
     <variant frequency="1" name="Elm base">
       <textures>
         <texture file="props/tree_elm_base.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -15,5 +17,5 @@
       <decal width="10.0" depth="10.0" angle="0" offsetx="0" offsetz="0"/>
     </variant>
   </group>
-  <material>terrain_base.xml</material>
+  <material>terrain_norm_spec.xml</material>
 </actor>

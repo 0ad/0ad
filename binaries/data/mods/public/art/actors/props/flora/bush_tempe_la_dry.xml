@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="2" name="A">
       <mesh>gaia/bush_la_1.dae</mesh>
@@ -26,13 +24,14 @@
       <mesh>gaia/bush_la_7.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant name="texture">
-      <textures><texture file="gaia/bush_tempe_c.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/bush_tempe_c.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
-
-  <material>basic_trans.xml</material>
-
+  <material>basic_trans_norm_spec.xml</material>
 </actor>

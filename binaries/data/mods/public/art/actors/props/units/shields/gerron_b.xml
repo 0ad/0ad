@@ -11,14 +11,24 @@
   </group>
   <group>
     <variant frequency="1" name="shield-gerron-a">
-      <textures><texture file="props/shield/pers_gerron_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/pers_gerron_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="shield-gerron-b">
-      <textures><texture file="props/shield/pers_gerron_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/pers_gerron_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="shield-gerron-e">
-      <textures><texture file="props/shield/pers_gerron_e.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/shield/pers_gerron_e.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

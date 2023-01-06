@@ -8,11 +8,19 @@
   </group>
   <group>
     <variant frequency="1" name="sail design - boar">
-      <textures><texture file="props/celt_sail_boar.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/celt_sail_boar.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="sail design - circle">
-      <textures><texture file="props/celt_sail_circle.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/celt_sail_circle.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

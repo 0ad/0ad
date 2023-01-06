@@ -14,15 +14,16 @@
       <textures>
         <texture file="props/shield/pers_round_a.dds" name="baseTex"/>
         <texture name="specTex" file="null_white.dds"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="shield-bronze-B">
       <textures>
         <texture file="props/shield/pers_round_b.dds" name="baseTex"/>
         <texture name="specTex" file="null_white.dds"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>
-

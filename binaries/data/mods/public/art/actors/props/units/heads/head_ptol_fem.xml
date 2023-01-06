@@ -13,13 +13,14 @@
       <props>
         <prop actor="props/units/heads/maur_earrings_1.xml" attachpoint="root"/>
       </props>
-    </variant>	
+    </variant>
   </group>
   <group>
     <variant frequency="1" name="face-a">
       <textures>
         <texture file="props/head/maur_fem_a.dds" name="baseTex"/>
         <texture file="props/head/maur_fem_a_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -28,5 +29,5 @@
       <color>0 0 0</color>
     </variant>
   </group>
-  <material>objectcolor_specmap.xml</material>
+  <material>objectcolor_norm_spec.xml</material>
 </actor>

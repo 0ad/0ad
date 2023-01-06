@@ -18,36 +18,42 @@
       <textures>
         <texture file="skeletal/han/officer_01.png" name="baseTex"/>
         <texture file="skeletal/han/officer_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant name="Han-Officer-02">
       <textures>
         <texture file="skeletal/han/officer_02.png" name="baseTex"/>
         <texture file="skeletal/han/officer_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant name="Han-Officer-03">
       <textures>
         <texture file="skeletal/han/officer_03.png" name="baseTex"/>
         <texture file="skeletal/han/officer_03_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant name="Han-Officer-04">
       <textures>
         <texture file="skeletal/han/officer_04.png" name="baseTex"/>
         <texture file="skeletal/han/officer_04_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant name="Han-Officer-05">
       <textures>
         <texture file="skeletal/han/officer_05.png" name="baseTex"/>
         <texture file="skeletal/han/officer_05_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant name="Han-Officer-06">
       <textures>
         <texture file="skeletal/han/officer_06.png" name="baseTex"/>
         <texture file="skeletal/han/officer_06_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -59,5 +65,5 @@
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

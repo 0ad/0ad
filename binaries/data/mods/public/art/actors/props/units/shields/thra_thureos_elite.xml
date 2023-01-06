@@ -6,6 +6,7 @@
       <mesh>props/shield/ptol_thureos_curved.dae</mesh>
       <textures>
         <texture file="props/shield/thra_thureos_elite_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -39,14 +40,16 @@
       <textures>
         <texture file="props/shield/thra_thureos_elite_02_01.png" name="baseTex"/>
         <texture file="props/shield/thra_thureos_elite_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Thureos-02-02">
       <textures>
         <texture file="props/shield/thra_thureos_elite_02_02.png" name="baseTex"/>
         <texture file="props/shield/thra_thureos_elite_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

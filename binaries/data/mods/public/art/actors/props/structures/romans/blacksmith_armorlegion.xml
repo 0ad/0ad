@@ -7,9 +7,10 @@
       <textures>
         <texture file="skeletal/imp/lorica_segmentata_01_01.png" name="baseTex"/>
         <texture file="skeletal/imp/lorica_segmentata_01_spec.png" name="specTex"/>
-	    <texture file="structural/ao/rome_blacksmith.png" name="aoTex"/>
+        <texture file="structural/ao/rome_blacksmith.png" name="aoTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>no_trans_ao_spec.xml</material>
+  <material>no_trans_ao_norm_spec.xml</material>
 </actor>

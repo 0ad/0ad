@@ -17,42 +17,49 @@
       <textures>
         <texture file="skeletal/pers/scale_04_01.png" name="baseTex"/>
         <texture file="skeletal/pers/scale_04_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scale-1a">
       <textures>
         <texture file="skeletal/pers/scale_01_01.png" name="baseTex"/>
         <texture file="skeletal/pers/scale_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scale-1c">
       <textures>
         <texture file="skeletal/pers/scale_01_03.png" name="baseTex"/>
         <texture file="skeletal/pers/scale_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scale-1f">
       <textures>
         <texture file="skeletal/pers/scale_01_06.png" name="baseTex"/>
         <texture file="skeletal/pers/scale_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scale-sleeve-top-1b">
       <textures>
         <texture file="skeletal/pers/scale_sleeve_top_01_02.png" name="baseTex"/>
         <texture file="skeletal/pers/scale_sleeve_top_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scale-sleeve-bottom-1b">
       <textures>
         <texture file="skeletal/pers/scale_sleeve_bottom_01_02.png" name="baseTex"/>
         <texture file="skeletal/pers/scale_sleeve_bottom_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="scale-sleeve-full-1b">
       <textures>
         <texture file="skeletal/pers/scale_sleeve_full_01_02.png" name="baseTex"/>
         <texture file="skeletal/pers/scale_sleeve_full_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -67,5 +74,5 @@
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death_shield.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

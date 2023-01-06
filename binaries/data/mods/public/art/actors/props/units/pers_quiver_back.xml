@@ -8,10 +8,19 @@
   </group>
   <group>
     <variant frequency="1" name="quiver light">
-      <textures><texture file="props/pers_quiver_light.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/pers_quiver_light.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="quiver dark">
-      <textures><texture file="props/pers_quiver_dark.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/pers_quiver_dark.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

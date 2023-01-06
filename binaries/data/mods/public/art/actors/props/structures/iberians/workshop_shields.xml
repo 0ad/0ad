@@ -7,8 +7,10 @@
       <textures>
         <texture file="props/iber_prop_shields.dds" name="baseTex"/>
         <texture file="structural/ao/iber_workshop_ao1.png" name="aoTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_ao.xml</material>
+  <material>player_trans_ao_norm_spec.xml</material>
 </actor>

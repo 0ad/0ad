@@ -14,13 +14,19 @@
   </group>
   <group>
     <variant frequency="1" name="Face-01">
-      <textures><texture file="props/head/celt_fem_b.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/celt_fem_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Face-02">
-      <textures><texture file="props/head/celt_fem_boudicca_1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/celt_fem_boudicca_1.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Face-03">
-      <textures><texture file="props/head/celt_fem_c.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/celt_fem_c.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -34,5 +40,9 @@
       <color>120 114 35</color>
     </variant>
   </group>
-  <material>objectcolor.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>objectcolor_norm_spec.xml</material>
 </actor>

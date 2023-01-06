@@ -1,35 +1,46 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="oak-new-top-mesh-f">
       <mesh>gaia/tree_oak_new_top_f.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant frequency="2" name="f-oak-top-texture-a">
-      <textures><texture file="gaia/tree_oak_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/tree_oak_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="f-oak-aut-top-texture-a">
-      <textures><texture file="gaia/tree_oak_a_aut.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/tree_oak_a_aut.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="f-oak-aut-top-texture-b">
-      <textures><texture file="gaia/tree_oak_b_aut.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/tree_oak_b_aut.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="4" name="f-oak-aut-top-texture-c">
-      <textures><texture file="gaia/tree_oak_c_aut.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/tree_oak_c_aut.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="4" name="f-oak-aut-top-texture-d">
-      <textures><texture file="gaia/tree_oak_d_aut.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/tree_oak_d_aut.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="4" name="f-oak-aut-top-texture-e">
-      <textures><texture file="gaia/tree_oak_e_aut.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/tree_oak_e_aut.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="3" name="f-beech-aut-top-texture-c">
-      <textures><texture file="gaia/tree_euro_beech_c_aut.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/tree_euro_beech_c_aut.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -44,7 +55,9 @@
       </props>
     </variant>
   </group>
-
-  <material>basic_trans_wind.xml</material>
-
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>basic_trans_wind_norm_spec.xml</material>
 </actor>

@@ -20,8 +20,9 @@
       <textures>
         <texture file="props/head/african_fem_a_light.png" name="baseTex"/>
         <texture file="props/head/african_fem_a_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>basic_specmap.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

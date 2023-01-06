@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -18,36 +18,42 @@
       <textures>
         <texture file="skeletal/kush/padded_01_01.png" name="baseTex"/>
         <texture file="skeletal/kush/padded_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Kushite Elite Swordsman 02">
       <textures>
         <texture file="skeletal/kush/padded_01_02.png" name="baseTex"/>
         <texture file="skeletal/kush/padded_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Kushite Elite Swordsman 03">
       <textures>
         <texture file="skeletal/kush/padded_05_02.png" name="baseTex"/>
         <texture file="skeletal/kush/padded_05_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Kushite Elite Swordsman 04">
       <textures>
         <texture file="skeletal/kush/padded_04_01.png" name="baseTex"/>
         <texture file="skeletal/kush/padded_04_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Kushite Elite Swordsman 05">
       <textures>
         <texture file="skeletal/kush/padded_05_03.png" name="baseTex"/>
         <texture file="skeletal/kush/padded_05_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Kushite Elite Swordsman 06">
       <textures>
         <texture file="skeletal/kush/padded_05_01.png" name="baseTex"/>
         <texture file="skeletal/kush/padded_05_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Kushite Elite Swordsman 07">
@@ -55,6 +61,7 @@
       <textures>
         <texture file="skeletal/kush/padded_02_01.png" name="baseTex"/>
         <texture file="skeletal/kush/padded_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Kushite Elite Swordsman 08">
@@ -62,6 +69,7 @@
       <textures>
         <texture file="skeletal/kush/padded_03_01.png" name="baseTex"/>
         <texture file="skeletal/kush/padded_03_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Kushite Elite Swordsman 09">
@@ -69,6 +77,7 @@
       <textures>
         <texture file="skeletal/kush/padded_03_02.png" name="baseTex"/>
         <texture file="skeletal/kush/padded_03_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Kushite Elite Swordsman 10">
@@ -76,6 +85,7 @@
       <textures>
         <texture file="skeletal/kush/padded_02_02.png" name="baseTex"/>
         <texture file="skeletal/kush/padded_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -135,5 +145,5 @@
     <variant file="biped/build_farm.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

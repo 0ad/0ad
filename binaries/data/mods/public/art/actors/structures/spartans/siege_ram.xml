@@ -12,6 +12,8 @@
       <mesh>structural/spart_siege_ram.dae</mesh>
       <textures>
         <texture file="structural/spart_siege_ram.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -37,5 +39,5 @@
     <variant frequency="100" name="Idle"/>
     <variant file="structures/destruction_small.xml"/>
   </group>
-  <material>default.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

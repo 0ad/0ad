@@ -10,9 +10,11 @@
       </animations>
       <textures>
         <texture file="skeletal/animal_seagull.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
       <mesh>skeletal/seagull.dae</mesh>
     </variant>
   </group>
-  <material>default.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

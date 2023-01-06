@@ -6,8 +6,10 @@
       <mesh>props/siege_artillery/ammo_stone_med.dae</mesh>
       <textures>
         <texture file="gaia/stone_temperate_granite.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>default.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

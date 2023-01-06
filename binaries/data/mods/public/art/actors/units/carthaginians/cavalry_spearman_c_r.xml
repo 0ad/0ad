@@ -13,6 +13,7 @@
       </props>
       <textures>
         <texture file="skeletal/hele/linothorax_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -49,6 +50,7 @@
       <textures>
         <texture file="skeletal/cart/scale_01_02.png" name="baseTex"/>
         <texture file="skeletal/cart/scale_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Lamellar-1b">
@@ -56,6 +58,7 @@
       <textures>
         <texture file="skeletal/cart/lamellar_01_02.png" name="baseTex"/>
         <texture file="skeletal/hele/lamellar_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Linothorax-1a">
@@ -78,5 +81,5 @@
     <variant file="biped/rider/cavalry/base_spearman_2h_fast_relax.xml" frequency="1" name="Spearman-2h-Fast-Relax"/>
     <variant file="biped/rider/death_2h.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

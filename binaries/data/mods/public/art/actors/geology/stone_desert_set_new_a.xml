@@ -5,29 +5,33 @@
     <variant frequency="0" name="set-a">
       <mesh>gaia/rock-set-desert-01.dae</mesh>
     </variant>
-  <variant frequency="0" name="set-b">
+    <variant frequency="0" name="set-b">
       <mesh>gaia/rock-set-desert-02.dae</mesh>
     </variant>
-  <variant frequency="0" name="set-c">
+    <variant frequency="0" name="set-c">
       <mesh>gaia/rock-set-desert-03.dae</mesh>
     </variant>
-  <variant frequency="0" name="set-d">
+    <variant frequency="0" name="set-d">
       <mesh>gaia/rock-set-desert-04.dae</mesh>
     </variant>
-  <variant frequency="0" name="set-e">
+    <variant frequency="0" name="set-e">
       <mesh>gaia/rock-set-desert-05.dae</mesh>
     </variant>
-  <variant frequency="0" name="set-f">
+    <variant frequency="0" name="set-f">
       <mesh>gaia/rock-set-desert-06.dae</mesh>
     </variant>
-  <variant frequency="0" name="set-g">
+    <variant frequency="0" name="set-g">
       <mesh>gaia/rock-set-desert-07.dae</mesh>
     </variant>
-
   </group>
   <group>
     <variant name="stone color a">
-      <textures><texture file="gaia/stonequarry_desert.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/stonequarry_desert.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant name="a">
       <mesh>gaia/reed_beach_a.dae</mesh>
@@ -14,13 +12,14 @@
       <mesh>gaia/reed_beach_c.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant>
-      <textures><texture file="gaia/reeds_beach_mythos1.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/reeds_beach_mythos1.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
-
-  <material>basic_trans.xml</material>
-
+  <material>basic_trans_norm_spec.xml</material>
 </actor>

@@ -4,20 +4,32 @@
   <group>
     <variant frequency="1" name="foundation 4x2 A">
       <mesh>props/wrld_wood_a.dae</mesh>
-	  <textures><texture file="props/wrld_wood_1.dds" name="baseTex"/></textures>	
+      <textures>
+        <texture file="props/wrld_wood_1.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="foundation 4x2 B">
       <mesh>props/wrld_wood_b.dae</mesh>
-	  <textures><texture file="props/wrld_wood_1.dds" name="baseTex"/></textures>	
+      <textures>
+        <texture file="props/wrld_wood_1.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="foundation 4x2 A">
       <mesh>props/wrld_wood_c.dae</mesh>
-	  <textures><texture file="props/wrld_wood_1.dds" name="baseTex"/></textures>	
+      <textures>
+        <texture file="props/wrld_wood_1.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="foundation 4x2 B">
       <mesh>props/wrld_wood_d.dae</mesh>
-	  <textures><texture file="props/wrld_wood_1.dds" name="baseTex"/></textures>	
+      <textures>
+        <texture file="props/wrld_wood_1.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

@@ -7,11 +7,19 @@
   </group>
   <group>
     <variant frequency="1" name="decal_01">
-      <textures><texture file="gaia/decal_quarry_tropic_a.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/decal_quarry_tropic_a.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="decal_02">
-      <textures><texture file="gaia/decal_quarry_tropic_b.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/decal_quarry_tropic_b.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>terrain_base.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>terrain_norm_spec.xml</material>
 </actor>

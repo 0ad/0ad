@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <group>
     <variant frequency="1" name="grass_la_tall_a">
@@ -10,17 +10,29 @@
   </group>
   <group>
     <variant frequency="1" name="dry-ish">
-      <textures><texture file="gaia/grass_field_dry_d.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/grass_field_dry_d.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="dry">
-      <textures><texture file="gaia/grass_field_temperate_dry_2.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/grass_field_temperate_dry_2.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="dryer">
-      <textures><texture file="gaia/grass_field_temperate_dry_3.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/grass_field_temperate_dry_3.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="dryest">
-      <textures><texture file="gaia/grass_field_temperate_dry.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/grass_field_temperate_dry.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-  <material>basic_trans_wind_grain.xml</material>
+  <textures>
+    <texture file="default_norm.png" name="normTex"/>
+    <texture file="null_black.dds" name="specTex"/>
+  </textures>
+  <material>basic_trans_wind_grain_norm_spec.xml</material>
 </actor>

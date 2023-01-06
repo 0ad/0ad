@@ -3,10 +3,9 @@
   <castshadow/>
   <group>
     <variant frequency="100" name="Mesh">
-        <animations>
+      <animations>
         <animation file="quadraped/rhino_idle.dae" name="Idle" speed="100"/>
         <animation file="quadraped/rhino_idle2.dae" name="Idle" speed="100"/>
-                                               
         <animation file="quadraped/rhino_walk.dae" name="Walk" speed="20"/>
         <animation file="quadraped/rhino_run.dae" name="run" speed="10"/>
         <animation file="quadraped/rhino_death.dae" name="death" speed="100"/>
@@ -18,9 +17,10 @@
   <group>
     <variant frequency="1" name="standard">
       <textures>
-		<texture file="skeletal/animal_rhino.png" name="baseTex"/>
-		<texture file="skeletal/animal_rhino_spec.png" name="specTex"/>
-	  </textures>
+        <texture file="skeletal/animal_rhino.png" name="baseTex"/>
+        <texture file="skeletal/animal_rhino_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -31,5 +31,5 @@
       </props>
     </variant>
   </group>
-  <material>basic_specmap.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>
