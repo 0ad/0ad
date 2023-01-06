@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -63,6 +63,145 @@ const ssize_t BlendOffsets[9][2] = {
 	{  1, -1 },
 	{  0,  0 }
 };
+
+// static
+Renderer::Backend::IVertexInputLayout* CPatchRData::GetBaseVertexInputLayout()
+{
+	const uint32_t stride = sizeof(SBaseVertex);
+	const std::array<Renderer::Backend::SVertexAttributeFormat, 3> attributes{{
+		{Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32B32_SFLOAT,
+			offsetof(SBaseVertex, m_Position), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::NORMAL,
+			Renderer::Backend::Format::R32G32B32_SFLOAT,
+			offsetof(SBaseVertex, m_Normal), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::UV0,
+			Renderer::Backend::Format::R32G32B32_SFLOAT,
+			offsetof(SBaseVertex, m_Position), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+	}};
+	return g_Renderer.GetVertexInputLayout(attributes);
+}
+
+// static
+Renderer::Backend::IVertexInputLayout* CPatchRData::GetBlendVertexInputLayout()
+{
+	const uint32_t stride = sizeof(SBlendVertex);
+	const std::array<Renderer::Backend::SVertexAttributeFormat, 4> attributes{{
+		{Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32B32_SFLOAT,
+			offsetof(SBlendVertex, m_Position), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::NORMAL,
+			Renderer::Backend::Format::R32G32B32_SFLOAT,
+			offsetof(SBlendVertex, m_Normal), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::UV0,
+			Renderer::Backend::Format::R32G32B32_SFLOAT,
+			offsetof(SBlendVertex, m_Position), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::UV1,
+			Renderer::Backend::Format::R32G32_SFLOAT,
+			offsetof(SBlendVertex, m_AlphaUVs), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+	}};
+	return g_Renderer.GetVertexInputLayout(attributes);
+}
+
+// static
+Renderer::Backend::IVertexInputLayout* CPatchRData::GetStreamVertexInputLayout(
+	const bool bindPositionAsTexCoord)
+{
+	const uint32_t stride = sizeof(SBaseVertex);
+	if (bindPositionAsTexCoord)
+	{
+		const std::array<Renderer::Backend::SVertexAttributeFormat, 2> attributes{{
+			{Renderer::Backend::VertexAttributeStream::POSITION,
+				Renderer::Backend::Format::R32G32B32_SFLOAT,
+				offsetof(SBaseVertex, m_Position), stride,
+				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+			{Renderer::Backend::VertexAttributeStream::UV0,
+				Renderer::Backend::Format::R32G32B32_SFLOAT,
+				offsetof(SBaseVertex, m_Position), stride,
+				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+		}};
+		return g_Renderer.GetVertexInputLayout(attributes);
+	}
+	else
+	{
+		const std::array<Renderer::Backend::SVertexAttributeFormat, 1> attributes{{
+			{Renderer::Backend::VertexAttributeStream::POSITION,
+				Renderer::Backend::Format::R32G32B32_SFLOAT,
+				offsetof(SBaseVertex, m_Position), stride,
+				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+		}};
+		return g_Renderer.GetVertexInputLayout(attributes);
+	}
+}
+
+// static
+Renderer::Backend::IVertexInputLayout* CPatchRData::GetSideVertexInputLayout()
+{
+	const uint32_t stride = sizeof(SSideVertex);
+	const std::array<Renderer::Backend::SVertexAttributeFormat, 1> attributes{{
+		{Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32B32_SFLOAT,
+			offsetof(SSideVertex, m_Position), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+	}};
+	return g_Renderer.GetVertexInputLayout(attributes);
+}
+
+// static
+Renderer::Backend::IVertexInputLayout* CPatchRData::GetWaterSurfaceVertexInputLayout(
+	const bool bindWaterData)
+{
+	const uint32_t stride = sizeof(SWaterVertex);
+	if (bindWaterData)
+	{
+		const std::array<Renderer::Backend::SVertexAttributeFormat, 2> attributes{{
+			{Renderer::Backend::VertexAttributeStream::POSITION,
+				Renderer::Backend::Format::R32G32B32_SFLOAT,
+				offsetof(SWaterVertex, m_Position), stride,
+				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+			// UV1 will be used only in case of bindWaterData.
+			{Renderer::Backend::VertexAttributeStream::UV1,
+				Renderer::Backend::Format::R32G32_SFLOAT,
+				offsetof(SWaterVertex, m_WaterData), stride,
+				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+		}};
+		return g_Renderer.GetVertexInputLayout(attributes);
+	}
+	else
+	{
+		const std::array<Renderer::Backend::SVertexAttributeFormat, 1> attributes{{
+			{Renderer::Backend::VertexAttributeStream::POSITION,
+				Renderer::Backend::Format::R32G32B32_SFLOAT,
+				offsetof(SWaterVertex, m_Position), stride,
+				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+		}};
+		return g_Renderer.GetVertexInputLayout(attributes);
+	}
+}
+
+// static
+Renderer::Backend::IVertexInputLayout* CPatchRData::GetWaterShoreVertexInputLayout()
+{
+	const uint32_t stride = sizeof(SWaterVertex);
+	const std::array<Renderer::Backend::SVertexAttributeFormat, 2> attributes{ {
+		{Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32B32_SFLOAT,
+			offsetof(SWaterVertex, m_Position), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::UV1,
+			Renderer::Backend::Format::R32G32_SFLOAT,
+			offsetof(SWaterVertex, m_WaterData), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+	}};
+	return g_Renderer.GetVertexInputLayout(attributes);
+}
 
 CPatchRData::CPatchRData(CPatch* patch, CSimulation2* simulation) :
 	m_Patch(patch), m_Simulation(simulation)
@@ -716,6 +855,7 @@ using ShaderTechniqueBatches = PooledBatchMap<std::pair<CStrIntern, CShaderDefin
 
 void CPatchRData::RenderBases(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IVertexInputLayout* vertexInputLayout,
 	const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow)
 {
 	PROFILE3("render terrain bases");
@@ -817,23 +957,7 @@ void CPatchRData::RenderBases(
 				{
 					ENSURE(!itv->first->GetBuffer()->IsDynamic());
 
-					const uint32_t stride = sizeof(SBaseVertex);
-
-					deviceCommandContext->SetVertexAttributeFormat(
-						Renderer::Backend::VertexAttributeStream::POSITION,
-						Renderer::Backend::Format::R32G32B32_SFLOAT,
-						offsetof(SBaseVertex, m_Position), stride,
-						Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-					deviceCommandContext->SetVertexAttributeFormat(
-						Renderer::Backend::VertexAttributeStream::NORMAL,
-						Renderer::Backend::Format::R32G32B32_SFLOAT,
-						offsetof(SBaseVertex, m_Normal), stride,
-						Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-					deviceCommandContext->SetVertexAttributeFormat(
-						Renderer::Backend::VertexAttributeStream::UV0,
-						Renderer::Backend::Format::R32G32B32_SFLOAT,
-						offsetof(SBaseVertex, m_Position), stride,
-						Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+					deviceCommandContext->SetVertexInputLayout(vertexInputLayout);
 
 					deviceCommandContext->SetVertexBuffer(0, itv->first->GetBuffer(), 0);
 
@@ -891,6 +1015,7 @@ struct SBlendStackItem
 
 void CPatchRData::RenderBlends(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IVertexInputLayout* vertexInputLayout,
 	const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow)
 {
 	PROFILE3("render terrain blends");
@@ -1065,28 +1190,7 @@ void CPatchRData::RenderBlends(
 
 						ENSURE(!itv->first->GetBuffer()->IsDynamic());
 
-						const uint32_t stride = sizeof(SBlendVertex);
-
-						deviceCommandContext->SetVertexAttributeFormat(
-							Renderer::Backend::VertexAttributeStream::POSITION,
-							Renderer::Backend::Format::R32G32B32_SFLOAT,
-							offsetof(SBlendVertex, m_Position), stride,
-							Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-						deviceCommandContext->SetVertexAttributeFormat(
-							Renderer::Backend::VertexAttributeStream::NORMAL,
-							Renderer::Backend::Format::R32G32B32_SFLOAT,
-							offsetof(SBlendVertex, m_Normal), stride,
-							Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-						deviceCommandContext->SetVertexAttributeFormat(
-							Renderer::Backend::VertexAttributeStream::UV0,
-							Renderer::Backend::Format::R32G32B32_SFLOAT,
-							offsetof(SBlendVertex, m_Position), stride,
-							Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-						deviceCommandContext->SetVertexAttributeFormat(
-							Renderer::Backend::VertexAttributeStream::UV1,
-							Renderer::Backend::Format::R32G32_SFLOAT,
-							offsetof(SBlendVertex, m_AlphaUVs), stride,
-							Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+						deviceCommandContext->SetVertexInputLayout(vertexInputLayout);
 
 						deviceCommandContext->SetVertexBuffer(0, itv->first->GetBuffer(), 0);
 					}
@@ -1114,7 +1218,8 @@ void CPatchRData::RenderBlends(
 
 void CPatchRData::RenderStreams(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
-	const std::vector<CPatchRData*>& patches, const bool bindPositionAsTexCoord)
+	Renderer::Backend::IVertexInputLayout* vertexInputLayout,
+	const std::vector<CPatchRData*>& patches)
 {
 	PROFILE3("render terrain streams");
 
@@ -1143,21 +1248,7 @@ void CPatchRData::RenderStreams(
 
  	PROFILE_END("compute batches");
 
-	const uint32_t stride = sizeof(SBaseVertex);
-
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT,
-		offsetof(SBaseVertex, m_Position), stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	if (bindPositionAsTexCoord)
-	{
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::UV0,
-			Renderer::Backend::Format::R32G32B32_SFLOAT,
-			offsetof(SBaseVertex, m_Position), stride,
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	}
+	deviceCommandContext->SetVertexInputLayout(vertexInputLayout);
 
  	// Render each batch
 	for (const std::pair<CVertexBuffer* const, StreamIndexBufferBatches>& streamBatch : batches)
@@ -1216,6 +1307,7 @@ void CPatchRData::RenderOutline()
 
 void CPatchRData::RenderSides(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IVertexInputLayout* vertexInputLayout,
 	const std::vector<CPatchRData*>& patches)
 {
 	PROFILE3("render terrain sides");
@@ -1224,12 +1316,7 @@ void CPatchRData::RenderSides(
 	if (patches.empty())
 		return;
 
-	const uint32_t stride = sizeof(SSideVertex);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT,
-		offsetof(SSideVertex, m_Position), stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+	deviceCommandContext->SetVertexInputLayout(vertexInputLayout);
 
 	CVertexBuffer* lastVB = nullptr;
 	for (CPatchRData* patch : patches)
@@ -1481,7 +1568,7 @@ void CPatchRData::BuildWater()
 
 void CPatchRData::RenderWaterSurface(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
-	const bool bindWaterData)
+	Renderer::Backend::IVertexInputLayout* vertexInputLayout)
 {
 	ASSERT(m_UpdateFlags == 0);
 
@@ -1494,19 +1581,7 @@ void CPatchRData::RenderWaterSurface(
 	const uint32_t stride = sizeof(SWaterVertex);
 	const uint32_t firstVertexOffset = m_VBWater->m_Index * stride;
 
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT,
-		offsetof(SWaterVertex, m_Position), stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	if (bindWaterData)
-	{
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::UV1,
-			Renderer::Backend::Format::R32G32_SFLOAT,
-			offsetof(SWaterVertex, m_WaterData), stride,
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	}
+	deviceCommandContext->SetVertexInputLayout(vertexInputLayout);
 
 	deviceCommandContext->SetVertexBuffer(
 		0, m_VBWater->m_Owner->GetBuffer(), firstVertexOffset);
@@ -1519,7 +1594,8 @@ void CPatchRData::RenderWaterSurface(
 }
 
 void CPatchRData::RenderWaterShore(
-	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IVertexInputLayout* vertexInputLayout)
 {
 	ASSERT(m_UpdateFlags == 0);
 
@@ -1532,16 +1608,7 @@ void CPatchRData::RenderWaterShore(
 	const uint32_t stride = sizeof(SWaterVertex);
 	const uint32_t firstVertexOffset = m_VBWaterShore->m_Index * stride;
 
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT,
-		offsetof(SWaterVertex, m_Position), stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::UV1,
-		Renderer::Backend::Format::R32G32_SFLOAT,
-		offsetof(SWaterVertex, m_WaterData), stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+	deviceCommandContext->SetVertexInputLayout(vertexInputLayout);
 
 	deviceCommandContext->SetVertexBuffer(
 		0, m_VBWaterShore->m_Owner->GetBuffer(), firstVertexOffset);

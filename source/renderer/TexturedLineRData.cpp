@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,8 +35,30 @@
  * because it allows you to work with variable amounts of vertices and indices more easily. New code should prefer
  * to use VertexArray where possible, though. */
 
+// static
+Renderer::Backend::IVertexInputLayout* CTexturedLineRData::GetVertexInputLayout()
+{
+	const uint32_t stride = sizeof(CTexturedLineRData::SVertex);
+	const std::array<Renderer::Backend::SVertexAttributeFormat, 3> attributes{{
+		{Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32B32_SFLOAT,
+			offsetof(CTexturedLineRData::SVertex, m_Position), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::UV0,
+			Renderer::Backend::Format::R32G32_SFLOAT,
+			offsetof(CTexturedLineRData::SVertex, m_UV), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::UV1,
+			Renderer::Backend::Format::R32G32_SFLOAT,
+			offsetof(CTexturedLineRData::SVertex, m_UV), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+	}};
+	return g_Renderer.GetVertexInputLayout(attributes);
+}
+
 void CTexturedLineRData::Render(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IVertexInputLayout* vertexInputLayout,
 	const SOverlayTexturedLine& line, Renderer::Backend::IShaderProgram* shader)
 {
 	if (!m_VB || !m_VBIndices)
@@ -57,23 +79,7 @@ void CTexturedLineRData::Render(
 	deviceCommandContext->SetUniform(
 		shader->GetBindingSlot(str_objectColor), line.m_Color.AsFloatArray());
 
-	const uint32_t stride = sizeof(CTexturedLineRData::SVertex);
-
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT,
-		offsetof(CTexturedLineRData::SVertex, m_Position), stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT,
-		offsetof(CTexturedLineRData::SVertex, m_UV), stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::UV1,
-		Renderer::Backend::Format::R32G32_SFLOAT,
-		offsetof(CTexturedLineRData::SVertex, m_UV), stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+	deviceCommandContext->SetVertexInputLayout(vertexInputLayout);
 
 	deviceCommandContext->SetVertexBuffer(0, m_VB->m_Owner->GetBuffer(), 0);
 

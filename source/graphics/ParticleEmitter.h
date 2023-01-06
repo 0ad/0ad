@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -176,6 +176,8 @@ private:
 	VertexArray::Attribute m_AttributeAxis;
 	VertexArray::Attribute m_AttributeUV;
 	VertexArray::Attribute m_AttributeColor;
+
+	Renderer::Backend::IVertexInputLayout* m_VertexInputLayout = nullptr;
 
 	int m_LastFrameNumber;
 };

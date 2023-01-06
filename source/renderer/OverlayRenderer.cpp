@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -188,6 +188,12 @@ struct OverlayRendererInternals
 	Shader shaderForegroundOverlay;
 	Shader shaderOverlaySolid;
 
+	Renderer::Backend::IVertexInputLayout* quadVertexInputLayout = nullptr;
+	Renderer::Backend::IVertexInputLayout* foregroundVertexInputLayout = nullptr;
+	Renderer::Backend::IVertexInputLayout* sphereVertexInputLayout = nullptr;
+
+	Renderer::Backend::IVertexInputLayout* texturedLineVertexInputLayout = nullptr;
+
 	// Geometry for a unit sphere
 	std::vector<float> sphereVertexes;
 	std::vector<u16> sphereIndexes;
@@ -262,6 +268,39 @@ void OverlayRendererInternals::Initialize()
 		CreateShader(str_foreground_overlay, {});
 	shaderOverlaySolid =
 		CreateShader(str_overlay_solid, {});
+
+	const uint32_t quadStride = quadVertices.GetStride();
+	const std::array<Renderer::Backend::SVertexAttributeFormat, 3> quadAttributes{{
+		{Renderer::Backend::VertexAttributeStream::POSITION,
+			quadAttributePos.format, quadAttributePos.offset, quadStride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::COLOR,
+			quadAttributeColor.format, quadAttributeColor.offset, quadStride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::UV0,
+			quadAttributeUV.format, quadAttributeUV.offset, quadStride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+	}};
+	quadVertexInputLayout = g_Renderer.GetVertexInputLayout(quadAttributes);
+
+	const std::array<Renderer::Backend::SVertexAttributeFormat, 2> foregroundAttributes{{
+		{Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::UV0,
+			Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1}
+	}};
+	foregroundVertexInputLayout = g_Renderer.GetVertexInputLayout(foregroundAttributes);
+
+	const std::array<Renderer::Backend::SVertexAttributeFormat, 1> shpereAttributes{{
+		{Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+	}};
+	sphereVertexInputLayout = g_Renderer.GetVertexInputLayout(shpereAttributes);
+
+	texturedLineVertexInputLayout = CTexturedLineRData::GetVertexInputLayout();
 }
 
 OverlayRenderer::OverlayRenderer()
@@ -535,7 +574,8 @@ void OverlayRenderer::RenderTexturedOverlayLines(
 			continue;
 
 		ENSURE(line->m_RenderData);
-		line->m_RenderData->Render(deviceCommandContext, *line, shader);
+		line->m_RenderData->Render(
+			deviceCommandContext, m->texturedLineVertexInputLayout, *line, shader);
 	}
 }
 
@@ -571,18 +611,7 @@ void OverlayRenderer::RenderQuadOverlays(
 	const uint32_t vertexStride = m->quadVertices.GetStride();
 	const uint32_t firstVertexOffset = m->quadVertices.GetOffset() * vertexStride;
 
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		m->quadAttributePos.format, m->quadAttributePos.offset, vertexStride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::COLOR,
-		m->quadAttributeColor.format, m->quadAttributeColor.offset, vertexStride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::UV0,
-		m->quadAttributeUV.format, m->quadAttributeUV.offset, vertexStride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+	deviceCommandContext->SetVertexInputLayout(m->quadVertexInputLayout);
 
 	deviceCommandContext->SetVertexBuffer(
 		0, m->quadVertices.GetBuffer(), firstVertexOffset);
@@ -650,14 +679,7 @@ void OverlayRenderer::RenderForegroundOverlays(
 		{0.0f, 0.0f},
 	};
 
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
+	deviceCommandContext->SetVertexInputLayout(m->foregroundVertexInputLayout);
 
 	deviceCommandContext->SetVertexBufferData(
 		1, &uvs[0], std::size(uvs) * sizeof(uvs[0]));
@@ -783,10 +805,7 @@ void OverlayRenderer::RenderSphereOverlays(
 
 	m->GenerateSphere();
 
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+	deviceCommandContext->SetVertexInputLayout(m->sphereVertexInputLayout);
 
 	deviceCommandContext->SetVertexBufferData(
 		0, m->sphereVertexes.data(), m->sphereVertexes.size() * sizeof(m->sphereVertexes[0]));

@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 #define INCLUDED_RENDERER_BACKEND_IDEVICE
 
 #include "graphics/Color.h"
+#include "ps/containers/Span.h"
 #include "renderer/backend/Backend.h"
 #include "renderer/backend/Format.h"
 #include "renderer/backend/IBuffer.h"
@@ -81,6 +82,13 @@ public:
 	 */
 	virtual std::unique_ptr<IGraphicsPipelineState> CreateGraphicsPipelineState(
 		const SGraphicsPipelineStateDesc& pipelineStateDesc) = 0;
+
+	/**
+	 * Creates a vertex input layout. It's recommended to use as few different
+	 * layouts as posible.
+	 */
+	virtual std::unique_ptr<IVertexInputLayout> CreateVertexInputLayout(
+		const PS::span<const SVertexAttributeFormat> attributes) = 0;
 
 	virtual std::unique_ptr<ITexture> CreateTexture(
 		const char* name, const ITexture::Type type, const uint32_t usage,

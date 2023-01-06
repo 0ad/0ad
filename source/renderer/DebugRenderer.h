@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
 
 #include "graphics/ShaderTechniquePtr.h"
 #include "ps/CStrIntern.h"
+#include "renderer/backend/IShaderProgram.h"
 
 #include <unordered_map>
 #include <vector>
@@ -37,6 +38,8 @@ struct CColor;
 class CDebugRenderer
 {
 public:
+	void Initialize();
+
 	/**
 	 * Render the line in world space.
 	 */
@@ -91,6 +94,8 @@ private:
 	};
 	std::unordered_map<ShaderTechniqueKey, CShaderTechniquePtr, ShaderTechniqueKeyHash, ShaderTechniqueKeyEqual>
 		m_ShaderTechniqueMapping;
+
+	Renderer::Backend::IVertexInputLayout* m_VertexInputLayout = nullptr;
 };
 
 #endif // INCLUDED_DEBUGRENDERER

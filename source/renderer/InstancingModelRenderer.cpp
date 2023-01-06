@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,6 +25,7 @@
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
 #include "ps/CLogger.h"
+#include "ps/containers/StaticVector.h"
 #include "ps/CStrInternStatic.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderModifiers.h"
@@ -46,6 +47,8 @@ struct IModelDef : public CModelDefRPrivate
 
 	/// The number of UVs is determined by the model
 	std::vector<VertexArray::Attribute> m_UVs;
+
+	Renderer::Backend::IVertexInputLayout* m_VertexInputLayout = nullptr;
 
 	/// Indices are the same for all models, so share them
 	VertexIndexArray m_IndexArray;
@@ -234,8 +237,52 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 		m_IndexArray.Upload();
 		m_IndexArray.FreeBackingStore();
 	}
-}
 
+	const uint32_t stride = m_Array.GetStride();
+	constexpr size_t MAX_UV = 2;
+
+	PS::StaticVector<Renderer::Backend::SVertexAttributeFormat, 5 + MAX_UV> attributes{
+		{Renderer::Backend::VertexAttributeStream::POSITION,
+			m_Position.format, m_Position.offset, stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::NORMAL,
+			m_Normal.format, m_Normal.offset, stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+	};
+
+	for (size_t uv = 0; uv < std::min(MAX_UV, mdef->GetNumUVsPerVertex()); ++uv)
+	{
+		const Renderer::Backend::VertexAttributeStream stream =
+			static_cast<Renderer::Backend::VertexAttributeStream>(
+				static_cast<int>(Renderer::Backend::VertexAttributeStream::UV0) + uv);
+		attributes.push_back({
+			stream, m_UVs[uv].format, m_UVs[uv].offset, stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0});
+	}
+
+	// GPU skinning requires extra attributes to compute positions/normals.
+	if (gpuSkinning)
+	{
+		attributes.push_back({
+			Renderer::Backend::VertexAttributeStream::UV2,
+			m_BlendJoints.format, m_BlendJoints.offset, stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0});
+		attributes.push_back({
+			Renderer::Backend::VertexAttributeStream::UV3,
+			m_BlendWeights.format, m_BlendWeights.offset, stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0});
+	}
+
+	if (calculateTangents)
+	{
+		attributes.push_back({
+			Renderer::Backend::VertexAttributeStream::UV4,
+			m_Tangent.format, m_Tangent.offset, stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0});
+	}
+
+	m_VertexInputLayout = g_Renderer.GetVertexInputLayout({attributes.begin(), attributes.end()});
+}
 
 struct InstancingModelRendererInternals
 {
@@ -307,57 +354,12 @@ void InstancingModelRenderer::PrepareModelDef(
 	m->imodeldef = (IModelDef*)def.GetRenderData(m);
 	ENSURE(m->imodeldef);
 
+	deviceCommandContext->SetVertexInputLayout(m->imodeldef->m_VertexInputLayout);
+
 	deviceCommandContext->SetIndexBuffer(m->imodeldef->m_IndexArray.GetBuffer());
 
 	const uint32_t stride = m->imodeldef->m_Array.GetStride();
 	const uint32_t firstVertexOffset = m->imodeldef->m_Array.GetOffset() * stride;
-
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		m->imodeldef->m_Position.format,
-		m->imodeldef->m_Position.offset, stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::NORMAL,
-		m->imodeldef->m_Normal.format,
-		m->imodeldef->m_Normal.offset, stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-
-	constexpr size_t MAX_UV = 2;
-	for (size_t uv = 0; uv < std::min(MAX_UV, def.GetNumUVsPerVertex()); ++uv)
-	{
-		const Renderer::Backend::VertexAttributeStream stream =
-			static_cast<Renderer::Backend::VertexAttributeStream>(
-				static_cast<int>(Renderer::Backend::VertexAttributeStream::UV0) + uv);
-		deviceCommandContext->SetVertexAttributeFormat(
-			stream, m->imodeldef->m_UVs[uv].format,
-			m->imodeldef->m_UVs[uv].offset, stride,
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	}
-
-	// GPU skinning requires extra attributes to compute positions/normals.
-	if (m->gpuSkinning)
-	{
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::UV2,
-			m->imodeldef->m_BlendJoints.format,
-			m->imodeldef->m_BlendJoints.offset, stride,
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::UV3,
-			m->imodeldef->m_BlendWeights.format,
-			m->imodeldef->m_BlendWeights.offset, stride,
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	}
-
-	if (m->calculateTangents)
-	{
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::UV4,
-			m->imodeldef->m_Tangent.format,
-			m->imodeldef->m_Tangent.offset, stride,
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	}
 
 	deviceCommandContext->SetVertexBuffer(
 		0, m->imodeldef->m_Array.GetBuffer(), firstVertexOffset);

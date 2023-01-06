@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -90,6 +90,16 @@ bool CLOSTexture::CreateShader()
 		g_RenderingOptions.SetSmoothLOS(false);
 		return false;
 	}
+
+	const std::array<Renderer::Backend::SVertexAttributeFormat, 2> attributes{{
+		{Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::UV0,
+			Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1}
+	}};
+	m_VertexInputLayout = g_Renderer.GetVertexInputLayout(attributes);
 
 	return true;
 }
@@ -186,14 +196,7 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::IDeviceCommandContext* devic
 		1.0f, 1.0f
 	};
 
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
+	deviceCommandContext->SetVertexInputLayout(m_VertexInputLayout);
 
 	deviceCommandContext->SetVertexBufferData(
 		0, quadVerts, std::size(quadVerts) * sizeof(quadVerts[0]));

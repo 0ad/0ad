@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #include "renderer/backend/Format.h"
 #include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/backend/IFramebuffer.h"
+#include "renderer/backend/IShaderProgram.h"
 #include "renderer/backend/ITexture.h"
 
 #include <memory>
@@ -96,6 +97,7 @@ private:
 	size_t m_TextureFormatStride = 0;
 	std::unique_ptr<Renderer::Backend::ITexture>
 		m_Texture, m_SmoothTextures[2];
+	Renderer::Backend::IVertexInputLayout* m_VertexInputLayout = nullptr;
 
 	uint32_t m_WhichTexture = 0;
 	double m_LastTextureRecomputeTime = 0.0;

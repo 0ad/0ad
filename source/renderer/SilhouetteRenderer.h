@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "graphics/ShaderTechniquePtr.h"
 #include "maths/BoundingBoxAligned.h"
 #include "renderer/backend/IDeviceCommandContext.h"
+#include "renderer/backend/IShaderProgram.h"
 
 class CCamera;
 class CModel;
@@ -78,6 +79,7 @@ private:
 	std::vector<SOverlaySphere> m_DebugSpheres;
 
 	CShaderTechniquePtr m_ShaderTech;
+	Renderer::Backend::IVertexInputLayout* m_VertexInputLayout = nullptr;
 };
 
 #endif // INCLUDED_SILHOUETTERENDERER

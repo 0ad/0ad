@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,6 +40,10 @@ class ITexture;
 class IDeviceCommandContext : public IDeviceObject<IDeviceCommandContext>
 {
 public:
+	/**
+	 * Binds the graphics pipeline state. It should be called only inside a
+	 * framebuffer pass and as rarely as possible.
+	 */
 	virtual void SetGraphicsPipelineState(IGraphicsPipelineState* pipelineState) = 0;
 
 	virtual void BlitFramebuffer(
@@ -95,13 +99,14 @@ public:
 	virtual void SetScissors(const uint32_t scissorCount, const Rect* scissors) = 0;
 	virtual void SetViewports(const uint32_t viewportCount, const Rect* viewports) = 0;
 
-	virtual void SetVertexAttributeFormat(
-		const VertexAttributeStream stream,
-		const Format format,
-		const uint32_t offset,
-		const uint32_t stride,
-		const VertexAttributeRate rate,
-		const uint32_t bindingSlot) = 0;
+	/**
+	 * Binds the vertex input layout. It should be compatible with the shader
+	 * program's one. It should be called only inside a framebuffer pass and as
+	 * rarely as possible.
+	 */
+	virtual void SetVertexInputLayout(
+		IVertexInputLayout* vertexInputLayout) = 0;
+
 	virtual void SetVertexBuffer(
 		const uint32_t bindingSlot, IBuffer* buffer, const uint32_t offset) = 0;
 	virtual void SetVertexBufferData(

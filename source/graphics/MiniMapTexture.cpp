@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -81,7 +81,8 @@ unsigned int ScaleColor(unsigned int color, float x)
 }
 
 void DrawTexture(
-	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IVertexInputLayout* quadVertexInputLayout)
 {
 	const float quadUVs[] =
 	{
@@ -104,14 +105,7 @@ void DrawTexture(
 		-1.0f, -1.0f,
 	};
 
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::UV0,
-		Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
+	deviceCommandContext->SetVertexInputLayout(quadVertexInputLayout);
 
 	deviceCommandContext->SetVertexBufferData(
 		0, quadVertices, std::size(quadVertices) * sizeof(quadVertices[0]));
@@ -247,6 +241,17 @@ CMiniMapTexture::CMiniMapTexture(CSimulation2& simulation)
 	}
 	m_VertexArray.Upload();
 
+	const std::array<Renderer::Backend::SVertexAttributeFormat, 2> attributes{{
+		{Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::UV0,
+			Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1}
+	}};
+	m_QuadVertexInputLayout = g_Renderer.GetVertexInputLayout(attributes);
+
+	const uint32_t stride = m_VertexArray.GetStride();
 	if (g_VideoMode.GetBackendDevice()->GetCapabilities().instancing)
 	{
 		m_UseInstancing = true;
@@ -281,6 +286,32 @@ CMiniMapTexture::CMiniMapTexture(CSimulation2& simulation)
 
 		m_InstanceVertexArray.Upload();
 		m_InstanceVertexArray.FreeBackingStore();
+
+		const std::array<Renderer::Backend::SVertexAttributeFormat, 3> attributes{{
+			{Renderer::Backend::VertexAttributeStream::POSITION,
+				m_InstanceAttributePosition.format, m_InstanceAttributePosition.offset,
+				m_InstanceVertexArray.GetStride(),
+				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+			{Renderer::Backend::VertexAttributeStream::UV1,
+				m_AttributePos.format, m_AttributePos.offset, stride,
+				Renderer::Backend::VertexAttributeRate::PER_INSTANCE, 1},
+			{Renderer::Backend::VertexAttributeStream::COLOR,
+				m_AttributeColor.format, m_AttributeColor.offset, stride,
+				Renderer::Backend::VertexAttributeRate::PER_INSTANCE, 1},
+		}};
+		m_EntitiesVertexInputLayout = g_Renderer.GetVertexInputLayout(attributes);
+	}
+	else
+	{
+		const std::array<Renderer::Backend::SVertexAttributeFormat, 2> entitiesAttributes{{
+			{Renderer::Backend::VertexAttributeStream::POSITION,
+				m_AttributePos.format, m_AttributePos.offset, stride,
+				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+			{Renderer::Backend::VertexAttributeStream::COLOR,
+				m_AttributeColor.format, m_AttributeColor.offset, stride,
+				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+		}};
+		m_EntitiesVertexInputLayout = g_Renderer.GetVertexInputLayout(entitiesAttributes);
 	}
 
 	CShaderDefines baseDefines;
@@ -530,7 +561,7 @@ void CMiniMapTexture::RenderFinalTexture(
 		baseTransform._14, baseTransform._24, terrainTransform._14, terrainTransform._24);
 
 	if (m_TerrainTexture)
-		DrawTexture(deviceCommandContext);
+		DrawTexture(deviceCommandContext, m_QuadVertexInputLayout);
 	deviceCommandContext->EndPass();
 
 	deviceCommandContext->SetGraphicsPipelineState(
@@ -552,7 +583,7 @@ void CMiniMapTexture::RenderFinalTexture(
 		shader->GetBindingSlot(str_translation),
 		baseTransform._14, baseTransform._24, territoryTransform._14, territoryTransform._24);
 
-	DrawTexture(deviceCommandContext);
+	DrawTexture(deviceCommandContext, m_QuadVertexInputLayout);
 	deviceCommandContext->EndPass();
 
 	tech = g_Renderer.GetShaderManager().LoadEffect(str_minimap_los, CShaderDefines());
@@ -574,7 +605,7 @@ void CMiniMapTexture::RenderFinalTexture(
 		shader->GetBindingSlot(str_translation),
 		baseTransform._14, baseTransform._24, losTransform._14, losTransform._24);
 
-	DrawTexture(deviceCommandContext);
+	DrawTexture(deviceCommandContext, m_QuadVertexInputLayout);
 
 	deviceCommandContext->EndPass();
 
@@ -800,23 +831,9 @@ void CMiniMapTexture::DrawEntities(
 	const uint32_t stride = m_VertexArray.GetStride();
 	const uint32_t firstVertexOffset = m_VertexArray.GetOffset() * stride;
 
+	deviceCommandContext->SetVertexInputLayout(m_EntitiesVertexInputLayout);
 	if (m_UseInstancing)
 	{
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::POSITION,
-			m_InstanceAttributePosition.format, m_InstanceAttributePosition.offset,
-			m_InstanceVertexArray.GetStride(),
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::UV1,
-			m_AttributePos.format, m_AttributePos.offset, stride,
-			Renderer::Backend::VertexAttributeRate::PER_INSTANCE, 1);
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::COLOR,
-			m_AttributeColor.format, m_AttributeColor.offset, stride,
-			Renderer::Backend::VertexAttributeRate::PER_INSTANCE, 1);
-
 		deviceCommandContext->SetVertexBuffer(
 			0, m_InstanceVertexArray.GetBuffer(), m_InstanceVertexArray.GetOffset());
 		deviceCommandContext->SetVertexBuffer(
@@ -828,15 +845,6 @@ void CMiniMapTexture::DrawEntities(
 	}
 	else
 	{
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::POSITION,
-			m_AttributePos.format, m_AttributePos.offset, stride,
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::COLOR,
-			m_AttributeColor.format, m_AttributeColor.offset, stride,
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-
 		deviceCommandContext->SetVertexBuffer(
 			0, m_VertexArray.GetBuffer(), firstVertexOffset);
 		deviceCommandContext->SetIndexBuffer(m_IndexArray.GetBuffer());

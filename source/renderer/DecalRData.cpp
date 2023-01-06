@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -76,6 +76,27 @@ struct SDecalBatchComparator
 
 } // anonymous namespace
 
+// static
+Renderer::Backend::IVertexInputLayout* CDecalRData::GetVertexInputLayout()
+{
+	const uint32_t stride = sizeof(SDecalVertex);
+	const std::array<Renderer::Backend::SVertexAttributeFormat, 3> attributes{{
+		{Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32B32_SFLOAT,
+			offsetof(SDecalVertex, m_Position), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::NORMAL,
+			Renderer::Backend::Format::R32G32B32_SFLOAT,
+			offsetof(SDecalVertex, m_Normal), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::UV0,
+			Renderer::Backend::Format::R32G32_SFLOAT,
+			offsetof(SDecalVertex, m_UV), stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+	}};
+	return g_Renderer.GetVertexInputLayout(attributes);
+}
+
 CDecalRData::CDecalRData(CModelDecal* decal, CSimulation2* simulation)
 	: m_Decal(decal), m_Simulation(simulation)
 {
@@ -96,6 +117,7 @@ void CDecalRData::Update(CSimulation2* simulation)
 
 void CDecalRData::RenderDecals(
 	Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+	Renderer::Backend::IVertexInputLayout* vertexInputLayout,
 	const std::vector<CDecalRData*>& decals, const CShaderDefines& context, ShadowMap* shadow)
 {
 	PROFILE3("render terrain decals");
@@ -224,23 +246,7 @@ void CDecalRData::RenderDecals(
 					lastVB = batch.vertices->m_Owner;
 					ENSURE(!lastVB->GetBuffer()->IsDynamic());
 
-					const uint32_t stride = sizeof(SDecalVertex);
-
-					deviceCommandContext->SetVertexAttributeFormat(
-						Renderer::Backend::VertexAttributeStream::POSITION,
-						Renderer::Backend::Format::R32G32B32_SFLOAT,
-						offsetof(SDecalVertex, m_Position), stride,
-						Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-					deviceCommandContext->SetVertexAttributeFormat(
-						Renderer::Backend::VertexAttributeStream::NORMAL,
-						Renderer::Backend::Format::R32G32B32_SFLOAT,
-						offsetof(SDecalVertex, m_Normal), stride,
-						Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-					deviceCommandContext->SetVertexAttributeFormat(
-						Renderer::Backend::VertexAttributeStream::UV0,
-						Renderer::Backend::Format::R32G32_SFLOAT,
-						offsetof(SDecalVertex, m_UV), stride,
-						Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+					deviceCommandContext->SetVertexInputLayout(vertexInputLayout);
 
 					deviceCommandContext->SetVertexBuffer(
 						0, batch.vertices->m_Owner->GetBuffer(), 0);

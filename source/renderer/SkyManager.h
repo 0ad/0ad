@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
 
 #include "graphics/Texture.h"
 #include "renderer/backend/IDeviceCommandContext.h"
+#include "renderer/backend/IShaderProgram.h"
 #include "renderer/backend/ITexture.h"
 #include "renderer/VertexArray.h"
 
@@ -107,6 +108,8 @@ private:
 	VertexArray m_VertexArray;
 	VertexArray::Attribute m_AttributePosition;
 	VertexArray::Attribute m_AttributeUV;
+
+	Renderer::Backend::IVertexInputLayout* m_VertexInputLayout = nullptr;
 };
 
 

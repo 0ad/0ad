@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -249,14 +249,7 @@ void SkyManager::RenderSky(
 	const uint32_t stride = m_VertexArray.GetStride();
 	const uint32_t firstVertexOffset = m_VertexArray.GetOffset() * stride;
 
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION, m_AttributePosition.format,
-		m_AttributePosition.offset, stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::UV0, m_AttributeUV.format,
-		m_AttributeUV.offset, stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+	deviceCommandContext->SetVertexInputLayout(m_VertexInputLayout);
 
 	deviceCommandContext->SetVertexBuffer(
 		0, m_VertexArray.GetBuffer(), firstVertexOffset);
@@ -343,4 +336,15 @@ void SkyManager::CreateSkyCube()
 
 	m_VertexArray.Upload();
 	m_VertexArray.FreeBackingStore();
+
+	const uint32_t stride = m_VertexArray.GetStride();
+	const std::array<Renderer::Backend::SVertexAttributeFormat, 2> attributes{{
+		{Renderer::Backend::VertexAttributeStream::POSITION,
+			m_AttributePosition.format, m_AttributePosition.offset, stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::UV0,
+			m_AttributeUV.format, m_AttributeUV.offset, stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+	}};
+	m_VertexInputLayout = g_Renderer.GetVertexInputLayout(attributes);
 }

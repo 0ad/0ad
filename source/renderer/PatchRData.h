@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,15 +44,26 @@ public:
 	CPatchRData(CPatch* patch, CSimulation2* simulation);
 	~CPatchRData();
 
+	static Renderer::Backend::IVertexInputLayout* GetBaseVertexInputLayout();
+	static Renderer::Backend::IVertexInputLayout* GetBlendVertexInputLayout();
+	static Renderer::Backend::IVertexInputLayout* GetStreamVertexInputLayout(
+		const bool bindPositionAsTexCoord);
+	static Renderer::Backend::IVertexInputLayout* GetSideVertexInputLayout();
+
+	static Renderer::Backend::IVertexInputLayout* GetWaterSurfaceVertexInputLayout(
+		const bool bindWaterData);
+	static Renderer::Backend::IVertexInputLayout* GetWaterShoreVertexInputLayout();
+
 	void Update(CSimulation2* simulation);
 	void RenderOutline();
 	void RenderPriorities(CTextRenderer& textRenderer);
 
 	void RenderWaterSurface(
 		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
-		const bool bindWaterData);
+		Renderer::Backend::IVertexInputLayout* vertexInputLayout);
 	void RenderWaterShore(
-		Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
+		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IVertexInputLayout* vertexInputLayout);
 
 	CPatch* GetPatch() { return m_Patch; }
 
@@ -60,15 +71,19 @@ public:
 
 	static void RenderBases(
 		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IVertexInputLayout* vertexInputLayout,
 		const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow);
 	static void RenderBlends(
 		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IVertexInputLayout* vertexInputLayout,
 		const std::vector<CPatchRData*>& patches, const CShaderDefines& context, ShadowMap* shadow);
 	static void RenderStreams(
 		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
-		const std::vector<CPatchRData*>& patches, const bool bindPositionAsTexCoord);
+		Renderer::Backend::IVertexInputLayout* vertexInputLayout,
+		const std::vector<CPatchRData*>& patches);
 	static void RenderSides(
 		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IVertexInputLayout* vertexInputLayout,
 		const std::vector<CPatchRData*>& patches);
 
 	static void PrepareShader(ShadowMap* shadow);

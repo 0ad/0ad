@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@
 #include "maths/Vector2D.h"
 #include "renderer/backend/IDeviceCommandContext.h"
 #include "renderer/backend/IFramebuffer.h"
+#include "renderer/backend/IShaderProgram.h"
 #include "renderer/backend/ITexture.h"
 #include "renderer/VertexBufferManager.h"
 
@@ -59,6 +60,8 @@ public:
 	std::vector<std::unique_ptr<WaveObject>> m_ShoreWaves;
 	// Waves indices buffer. Only one since All Wave Objects have the same.
 	CVertexBufferManager::Handle m_ShoreWavesVBIndices;
+
+	Renderer::Backend::IVertexInputLayout* m_ShoreVertexInputLayout = nullptr;
 
 	size_t m_MapSize;
 	ssize_t m_TexSize;
@@ -128,6 +131,8 @@ public:
 public:
 	WaterManager();
 	~WaterManager();
+
+	void Initialize();
 
 	/**
 	 * LoadWaterTextures: Load water textures from within the

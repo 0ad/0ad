@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,6 +27,7 @@
 #include "graphics/TerrainTextureManager.h"
 #include "i18n/L10n.h"
 #include "lib/allocators/shared_ptr.h"
+#include "lib/hash.h"
 #include "lib/tex/tex.h"
 #include "gui/GUIManager.h"
 #include "ps/CConsole.h"
@@ -271,6 +272,15 @@ public:
 
 	CFontManager fontManager;
 
+	struct VertexAttributesHash
+	{
+		size_t operator()(const std::vector<Renderer::Backend::SVertexAttributeFormat>& attributes) const;
+	};
+
+	std::unordered_map<
+		std::vector<Renderer::Backend::SVertexAttributeFormat>,
+		std::unique_ptr<Renderer::Backend::IVertexInputLayout>, VertexAttributesHash> vertexInputLayouts;
+
 	Internals() :
 		IsOpen(false), ShadersDirty(true), profileTable(g_Renderer.m_Stats),
 		deviceCommandContext(g_VideoMode.GetBackendDevice()->CreateCommandContext()),
@@ -278,6 +288,23 @@ public:
 	{
 	}
 };
+
+size_t CRenderer::Internals::VertexAttributesHash::operator()(
+	const std::vector<Renderer::Backend::SVertexAttributeFormat>& attributes) const
+{
+	size_t seed = 0;
+	hash_combine(seed, attributes.size());
+	for (const Renderer::Backend::SVertexAttributeFormat& attribute : attributes)
+	{
+		hash_combine(seed, attribute.stream);
+		hash_combine(seed, attribute.format);
+		hash_combine(seed, attribute.offset);
+		hash_combine(seed, attribute.stride);
+		hash_combine(seed, attribute.rate);
+		hash_combine(seed, attribute.bindingSlot);
+	}
+	return seed;
+}
 
 CRenderer::CRenderer()
 {
@@ -335,6 +362,8 @@ bool CRenderer::Open(int width, int height)
 
 	// Validate the currently selected render path
 	SetRenderPath(g_RenderingOptions.GetRenderPath());
+
+	m->debugRenderer.Initialize();
 
 	if (m->postprocManager.IsEnabled())
 		m->postprocManager.Initialize();
@@ -852,4 +881,14 @@ void CRenderer::MakeScreenShotOnNextFrame(ScreenShotType screenShotType)
 Renderer::Backend::IDeviceCommandContext* CRenderer::GetDeviceCommandContext()
 {
 	return m->deviceCommandContext.get();
+}
+
+Renderer::Backend::IVertexInputLayout* CRenderer::GetVertexInputLayout(
+	const PS::span<const Renderer::Backend::SVertexAttributeFormat> attributes)
+{
+	const auto [it, inserted] = m->vertexInputLayouts.emplace(
+		std::vector<Renderer::Backend::SVertexAttributeFormat>{attributes.begin(), attributes.end()}, nullptr);
+	if (inserted)
+		it->second = g_VideoMode.GetBackendDevice()->CreateVertexInputLayout(attributes);
+	return it->second.get();
 }

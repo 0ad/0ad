@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
 
 #include "lib/ogl.h"
 #include "lib/file/vfs/vfs_path.h"
+#include "ps/containers/Span.h"
 #include "ps/CStrForward.h"
 #include "renderer/backend/Format.h"
 #include "renderer/backend/gl/Texture.h"
@@ -44,6 +45,31 @@ namespace GL
 {
 
 class CDevice;
+
+class CVertexInputLayout : public IVertexInputLayout
+{
+public:
+	CVertexInputLayout(CDevice* device, const PS::span<const SVertexAttributeFormat> attributes)
+		: m_Device(device), m_Attributes(attributes.begin(), attributes.end())
+	{
+		for (const SVertexAttributeFormat& attribute : m_Attributes)
+		{
+			ENSURE(attribute.format != Format::UNDEFINED);
+			ENSURE(attribute.stride > 0);
+		}
+	}
+
+	~CVertexInputLayout() override = default;
+
+	IDevice* GetDevice() override;
+
+	const std::vector<SVertexAttributeFormat>& GetAttributes() const noexcept { return m_Attributes; }
+
+private:
+	CDevice* m_Device = nullptr;
+
+	std::vector<SVertexAttributeFormat> m_Attributes;
+};
 
 /**
  * A compiled vertex+fragment shader program.
