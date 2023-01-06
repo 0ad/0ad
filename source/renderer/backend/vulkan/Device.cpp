@@ -188,6 +188,15 @@ bool CDevice::IsFramebufferFormatSupported(const Format format) const
 	return false;
 }
 
+Format CDevice::GetPreferredDepthStencilFormat(
+	const uint32_t usage, const bool depth, const bool stencil) const
+{
+	UNUSED2(usage);
+	UNUSED2(depth);
+	UNUSED2(stencil);
+	return Format::UNDEFINED;
+}
+
 std::unique_ptr<IDevice> CreateDevice(SDL_Window* window)
 {
 	return Vulkan::CDevice::Create(window);

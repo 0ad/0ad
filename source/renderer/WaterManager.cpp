@@ -235,6 +235,12 @@ void WaterManager::RecreateOrLoadTexturesIfNeeded()
 		m_RefTextureSize = newRefTextureSize;
 	}
 
+	const Renderer::Backend::Format depthFormat =
+		backendDevice->GetPreferredDepthStencilFormat(
+			Renderer::Backend::ITexture::Usage::SAMPLED |
+				Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
+			true, false);
+
 	// Create reflection textures.
 	const bool needsReflectionTextures =
 		g_RenderingOptions.GetWaterEffects() &&
@@ -252,7 +258,7 @@ void WaterManager::RecreateOrLoadTexturesIfNeeded()
 		m_ReflFboDepthTexture = backendDevice->CreateTexture2D("WaterReflectionDepthTexture",
 			Renderer::Backend::ITexture::Usage::SAMPLED |
 				Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
-			Renderer::Backend::Format::D24, m_RefTextureSize, m_RefTextureSize,
+			depthFormat, m_RefTextureSize, m_RefTextureSize,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::NEAREST,
 				Renderer::Backend::Sampler::AddressMode::REPEAT));
@@ -294,7 +300,7 @@ void WaterManager::RecreateOrLoadTexturesIfNeeded()
 		m_RefrFboDepthTexture = backendDevice->CreateTexture2D("WaterRefractionDepthTexture",
 			Renderer::Backend::ITexture::Usage::SAMPLED |
 				Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
-			Renderer::Backend::Format::D24, m_RefTextureSize, m_RefTextureSize,
+			depthFormat, m_RefTextureSize, m_RefTextureSize,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::NEAREST,
 				Renderer::Backend::Sampler::AddressMode::REPEAT));
@@ -345,7 +351,7 @@ void WaterManager::RecreateOrLoadTexturesIfNeeded()
 
 		m_FancyTextureDepth = backendDevice->CreateTexture2D("WaterFancyDepthTexture",
 			Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
-			Renderer::Backend::Format::D24, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
+			depthFormat, g_Renderer.GetWidth(), g_Renderer.GetHeight(),
 			Renderer::Backend::Sampler::MakeDefaultSampler(
 				Renderer::Backend::Sampler::Filter::LINEAR,
 				Renderer::Backend::Sampler::AddressMode::REPEAT));
