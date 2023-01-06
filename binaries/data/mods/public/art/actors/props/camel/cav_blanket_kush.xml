@@ -14,5 +14,13 @@
     <variant file="quadraped/base_horse_pace.xml" name="Horse-Pace" frequency="1"/>
     <variant file="quadraped/base_horse_walk.xml" name="Horse-Walk" frequency="1"/>
   </group>
+  <group>
+    <variant>
+      <textures>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
   <material>player_trans_norm_spec.xml</material>
 </actor>
