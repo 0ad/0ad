@@ -71,12 +71,25 @@ class TemplateParser
 
 		// Set the minimum phase that this entity is available.
 		// For gaia objects, this is meaningless.
-		if (!parsed.requirements)
+		// Complex requirements are too difficult to process for now, so assume the first phase.
+		if (!parsed.requirements?.Techs)
 			parsed.phase = this.phaseList[0];
-		else if (this.TemplateLoader.isPhaseTech(parsed.requirements.Techs))
-			parsed.phase = this.getActualPhase(parsed.requirements.Techs);
 		else
-			parsed.phase = this.getPhaseOfTechnology(parsed.requirements.Techs, civCode);
+		{
+			let highestPhaseIndex = 0;
+			for (const tech of parsed.requirements.Techs.split(" "))
+			{
+				if (tech[0] === "!")
+					continue;
+
+				const phaseIndex = this.phaseList.indexOf(
+					this.TemplateLoader.isPhaseTech(tech) ? this.getActualPhase(tech) :
+						this.getPhaseOfTechnology(tech, civCode));
+				if (phaseIndex > highestPhaseIndex)
+					highestPhaseIndex = phaseIndex;
+			}
+			parsed.phase = this.phaseList[highestPhaseIndex];
+		}
 
 		if (template.Identity.Rank)
 			parsed.promotion = {

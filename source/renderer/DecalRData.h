@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "maths/Vector2D.h"
 #include "maths/Vector3D.h"
 #include "renderer/backend/IDeviceCommandContext.h"
+#include "renderer/backend/IShaderProgram.h"
 #include "renderer/VertexBufferManager.h"
 
 #include <vector>
@@ -37,10 +38,13 @@ public:
 	CDecalRData(CModelDecal* decal, CSimulation2* simulation);
 	~CDecalRData();
 
+	static Renderer::Backend::IVertexInputLayout* GetVertexInputLayout();
+
 	void Update(CSimulation2* simulation);
 
 	static void RenderDecals(
 		Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IVertexInputLayout* vertexInputLayout,
 		const std::vector<CDecalRData*>& decals, const CShaderDefines& context, ShadowMap* shadow);
 
 	CModelDecal* GetDecal() { return m_Decal; }

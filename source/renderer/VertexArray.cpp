@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@
 namespace
 {
 
-size_t GetAttributeSize(const Renderer::Backend::Format format)
+uint32_t GetAttributeSize(const Renderer::Backend::Format format)
 {
 	switch (format)
 	{
@@ -209,7 +209,7 @@ VertexArrayIterator<short[2]> VertexArray::Attribute::GetIterator<short[2]>() co
 	return vertexArray->MakeIterator<short[2]>(this);
 }
 
-static size_t RoundStride(size_t stride)
+static uint32_t RoundStride(uint32_t stride)
 {
 	if (stride <= 0)
 		return 0;
@@ -238,7 +238,7 @@ void VertexArray::Layout()
 		if (attr->format == Renderer::Backend::Format::UNDEFINED)
 			continue;
 
-		const size_t attrSize = GetAttributeSize(attr->format);
+		const uint32_t attrSize = GetAttributeSize(attr->format);
 		ENSURE(attrSize > 0);
 
 		attr->offset = m_Stride;

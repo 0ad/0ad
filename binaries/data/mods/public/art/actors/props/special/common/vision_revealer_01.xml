@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="mesh">
+      <mesh>props/vision_revealer_01.dae</mesh>
+      <textures>
+        <texture file="props/ptol_sail_norm.png" name="normTex"/>
+        <texture file="props/sail_spec_1.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="sail_stripes_1">
+      <textures>
+        <texture file="props/sail_stripes_1.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_norm_spec.xml</material>
+</actor>

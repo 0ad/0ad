@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -968,26 +968,26 @@ void CDeviceCommandContext::SetViewports(const uint32_t viewportCount, const Rec
 	ogl_WarnIfError();
 }
 
-void CDeviceCommandContext::SetVertexAttributeFormat(
-	const VertexAttributeStream stream,
-	const Format format,
-	const uint32_t offset,
-	const uint32_t stride,
-	const VertexAttributeRate rate,
-	const uint32_t bindingSlot)
+void CDeviceCommandContext::SetVertexInputLayout(
+	IVertexInputLayout* vertexInputLayout)
 {
-	const uint32_t index = static_cast<uint32_t>(stream);
-	ENSURE(index < m_VertexAttributeFormat.size());
-	ENSURE(bindingSlot < m_VertexAttributeFormat.size());
-	if (!m_VertexAttributeFormat[index].active)
-		return;
-	m_VertexAttributeFormat[index].format = format;
-	m_VertexAttributeFormat[index].offset = offset;
-	m_VertexAttributeFormat[index].stride = stride;
-	m_VertexAttributeFormat[index].rate = rate;
-	m_VertexAttributeFormat[index].bindingSlot = bindingSlot;
+	ENSURE(vertexInputLayout);
+	for (const SVertexAttributeFormat& attribute : vertexInputLayout->As<CVertexInputLayout>()->GetAttributes())
+	{
+		const uint32_t index = static_cast<uint32_t>(attribute.stream);
+		ENSURE(index < m_VertexAttributeFormat.size());
+		ENSURE(attribute.bindingSlot < m_VertexAttributeFormat.size());
+		if (!m_VertexAttributeFormat[index].active)
+			continue;
 
-	m_VertexAttributeFormat[index].initialized = true;
+		m_VertexAttributeFormat[index].format = attribute.format;
+		m_VertexAttributeFormat[index].offset = attribute.offset;
+		m_VertexAttributeFormat[index].stride = attribute.stride;
+		m_VertexAttributeFormat[index].rate = attribute.rate;
+		m_VertexAttributeFormat[index].bindingSlot = attribute.bindingSlot;
+
+		m_VertexAttributeFormat[index].initialized = true;
+	}
 }
 
 void CDeviceCommandContext::SetVertexBuffer(

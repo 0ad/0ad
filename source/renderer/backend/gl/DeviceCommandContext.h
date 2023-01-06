@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -87,13 +87,9 @@ public:
 	void SetScissors(const uint32_t scissorCount, const Rect* scissors) override;
 	void SetViewports(const uint32_t viewportCount, const Rect* viewports) override;
 
-	void SetVertexAttributeFormat(
-		const VertexAttributeStream stream,
-		const Format format,
-		const uint32_t offset,
-		const uint32_t stride,
-		const VertexAttributeRate rate,
-		const uint32_t bindingSlot) override;
+	void SetVertexInputLayout(
+		IVertexInputLayout* vertexInputLayout) override;
+
 	void SetVertexBuffer(
 		const uint32_t bindingSlot, IBuffer* buffer, const uint32_t offset) override;
 	void SetVertexBufferData(

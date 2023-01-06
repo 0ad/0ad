@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -478,6 +478,13 @@ void SilhouetteRenderer::RenderDebugOverlays(
 				pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
 				pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
 			});
+
+		const std::array<Renderer::Backend::SVertexAttributeFormat, 1> attributes{{
+			{Renderer::Backend::VertexAttributeStream::POSITION,
+				Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
+				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+		}};
+		m_VertexInputLayout = g_Renderer.GetVertexInputLayout(attributes);
 	}
 
 	deviceCommandContext->BeginPass();
@@ -503,10 +510,7 @@ void SilhouetteRenderer::RenderDebugOverlays(
 			r.x0, r.y1,
 		};
 
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::POSITION,
-			Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+		deviceCommandContext->SetVertexInputLayout(m_VertexInputLayout);
 
 		deviceCommandContext->SetVertexBufferData(
 			0, vertices, std::size(vertices) * sizeof(vertices[0]));

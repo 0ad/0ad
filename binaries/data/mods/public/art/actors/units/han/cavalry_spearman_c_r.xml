@@ -44,5 +44,12 @@
     <variant file="biped/rider/cavalry/base_spearman_2h_fast_relax.xml" name="Spearman-2h-Fast-Relax" frequency="1"/>
     <variant file="biped/rider/death_2h.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <group>
+    <variant>
+      <textures>
+        <texture file="default_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

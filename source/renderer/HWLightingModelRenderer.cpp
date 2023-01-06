@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,10 +27,19 @@
 #include "lib/bits.h"
 #include "lib/sysdep/rtl.h"
 #include "maths/Vector3D.h"
+#include "ps/containers/StaticVector.h"
 #include "renderer/Renderer.h"
 #include "renderer/RenderModifiers.h"
 #include "renderer/VertexArray.h"
 
+namespace
+{
+
+constexpr uint32_t MODEL_VERTEX_ATTRIBUTE_STRIDE = 32;
+constexpr uint32_t MODEL_VERTEX_ATTRIBUTE_POSITION_OFFSET = 16;
+constexpr uint32_t MODEL_VERTEX_ATTRIBUTE_NORMAL_OFFSET = 0;
+
+} // anonymous namespace
 
 struct ShaderModelDef : public CModelDefRPrivate
 {
@@ -42,6 +51,8 @@ struct ShaderModelDef : public CModelDefRPrivate
 
 	/// The number of UVs is determined by the model
 	std::vector<VertexArray::Attribute> m_UVs;
+
+	Renderer::Backend::IVertexInputLayout* m_VertexInputLayout = nullptr;
 
 	ShaderModelDef(const CModelDefPtr& mdef);
 };
@@ -77,6 +88,31 @@ ShaderModelDef::ShaderModelDef(const CModelDefPtr& mdef)
 	ModelRenderer::BuildIndices(mdef, m_IndexArray.GetIterator());
 	m_IndexArray.Upload();
 	m_IndexArray.FreeBackingStore();
+
+	const uint32_t stride = m_Array.GetStride();
+	PS::StaticVector<Renderer::Backend::SVertexAttributeFormat, 4> attributes{
+		{Renderer::Backend::VertexAttributeStream::UV0,
+			m_UVs[0].format, m_UVs[0].offset, stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32B32_SFLOAT,
+			MODEL_VERTEX_ATTRIBUTE_POSITION_OFFSET, MODEL_VERTEX_ATTRIBUTE_STRIDE,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1},
+		{Renderer::Backend::VertexAttributeStream::NORMAL,
+			Renderer::Backend::Format::R32G32B32_SFLOAT,
+			MODEL_VERTEX_ATTRIBUTE_NORMAL_OFFSET, MODEL_VERTEX_ATTRIBUTE_STRIDE,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1}
+	};
+
+	if (mdef->GetNumUVsPerVertex() >= 2)
+	{
+		attributes.push_back({
+			Renderer::Backend::VertexAttributeStream::UV1,
+			m_UVs[1].format, m_UVs[1].offset, stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0});
+	}
+
+	m_VertexInputLayout = g_Renderer.GetVertexInputLayout({attributes.begin(), attributes.end()});
 }
 
 
@@ -147,6 +183,13 @@ CModelRData* ShaderModelVertexRenderer::CreateModelData(const void* key, CModel*
 	ENSURE(shadermodel->m_Normal.offset % 16 == 0);
 	ENSURE(shadermodel->m_Array.GetStride() % 16 == 0);
 
+	// We assume that the vertex input layout is the same for all models with the
+	// same ShaderModelDef.
+	// TODO: we need a more strict way to guarantee that.
+	ENSURE(shadermodel->m_Array.GetStride() == MODEL_VERTEX_ATTRIBUTE_STRIDE);
+	ENSURE(shadermodel->m_Position.offset == MODEL_VERTEX_ATTRIBUTE_POSITION_OFFSET);
+	ENSURE(shadermodel->m_Normal.offset == MODEL_VERTEX_ATTRIBUTE_NORMAL_OFFSET);
+
 	return shadermodel;
 }
 
@@ -195,22 +238,10 @@ void ShaderModelVertexRenderer::PrepareModelDef(
 
 	ENSURE(m->shadermodeldef);
 
+	deviceCommandContext->SetVertexInputLayout(m->shadermodeldef->m_VertexInputLayout);
+
 	const uint32_t stride = m->shadermodeldef->m_Array.GetStride();
 	const uint32_t firstVertexOffset = m->shadermodeldef->m_Array.GetOffset() * stride;
-
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::UV0,
-		m->shadermodeldef->m_UVs[0].format,
-		m->shadermodeldef->m_UVs[0].offset, stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	if (def.GetNumUVsPerVertex() >= 2)
-	{
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::UV1,
-			m->shadermodeldef->m_UVs[1].format,
-			m->shadermodeldef->m_UVs[1].offset, stride,
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	}
 
 	deviceCommandContext->SetVertexBuffer(
 		0, m->shadermodeldef->m_Array.GetBuffer(), firstVertexOffset);
@@ -226,17 +257,6 @@ void ShaderModelVertexRenderer::RenderModel(
 
 	const uint32_t stride = shadermodel->m_Array.GetStride();
 	const uint32_t firstVertexOffset = shadermodel->m_Array.GetOffset() * stride;
-
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT,
-		shadermodel->m_Position.offset, stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::NORMAL,
-		Renderer::Backend::Format::R32G32B32_SFLOAT,
-		shadermodel->m_Normal.offset, stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
 
 	deviceCommandContext->SetVertexBuffer(
 		1, shadermodel->m_Array.GetBuffer(), firstVertexOffset);

@@ -14,16 +14,22 @@
     <variant frequency="1" name="tunic_fur_01_01">
       <textures>
         <texture file="skeletal/hele/tunic_fur_01_01.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="tunic_fur_01_02">
       <textures>
         <texture file="skeletal/hele/tunic_fur_01_02.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="tunic_fur_01_03">
       <textures>
         <texture file="skeletal/hele/tunic_fur_01_03.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -61,5 +67,5 @@
     <variant file="biped/female_build.xml"/>
     <variant file="biped/female_build_farm.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

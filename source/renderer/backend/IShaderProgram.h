@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
 
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CStrIntern.h"
+#include "renderer/backend/Format.h"
 #include "renderer/backend/IDeviceObject.h"
 
 namespace Renderer
@@ -47,6 +48,30 @@ enum class VertexAttributeRate : uint32_t
 {
 	PER_VERTEX,
 	PER_INSTANCE
+};
+
+struct SVertexAttributeFormat
+{
+	VertexAttributeStream stream;
+	Format format;
+	uint32_t offset;
+	uint32_t stride;
+	VertexAttributeRate rate;
+	uint32_t bindingSlot;
+
+	constexpr bool operator==(const SVertexAttributeFormat& other) const noexcept
+	{
+		return stream == other.stream && format == other.format &&
+			offset == other.offset && stride == other.stride &&
+			rate == other.rate && bindingSlot == other.bindingSlot;
+	}
+};
+
+/**
+ * IVertexInputLayout stores precompiled list of vertex attributes.
+ */
+class IVertexInputLayout : public IDeviceObject<IVertexInputLayout>
+{
 };
 
 /**

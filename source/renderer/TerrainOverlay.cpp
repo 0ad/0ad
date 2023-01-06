@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -148,6 +148,14 @@ TerrainOverlay::TerrainOverlay(
 
 	m_OverlayTechOutline = CreateOverlayOutlineShaderTechnique(false);
 	m_OverlayTechOutlineHidden = CreateOverlayOutlineShaderTechnique(true);
+
+	const std::array<Renderer::Backend::SVertexAttributeFormat, 1> attributes{{
+		{Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+	}};
+
+	m_VertexInputLayout = g_Renderer.GetVertexInputLayout(attributes);
 }
 
 void TerrainOverlay::StartRender()
@@ -254,10 +262,7 @@ void TerrainOverlay::RenderTile(
 	deviceCommandContext->SetUniform(
 		overlayShader->GetBindingSlot(str_color), color.AsFloatArray());
 
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+	deviceCommandContext->SetVertexInputLayout(m_VertexInputLayout);
 
 	deviceCommandContext->SetVertexBufferData(
 		0, vertices.data(), vertices.size() * sizeof(vertices[0]));
@@ -308,10 +313,7 @@ void TerrainOverlay::RenderTileOutline(
 	deviceCommandContext->SetUniform(
 		overlayShader->GetBindingSlot(str_color), color.AsFloatArray());
 
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+	deviceCommandContext->SetVertexInputLayout(m_VertexInputLayout);
 
 	deviceCommandContext->SetVertexBufferData(
 		0, vertices.data(), vertices.size() * sizeof(vertices[0]));

@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #include "graphics/Texture.h"
 #include "maths/Vector2D.h"
 #include "renderer/backend/IDeviceCommandContext.h"
+#include "renderer/backend/IShaderProgram.h"
 #include "renderer/backend/ITexture.h"
 #include "renderer/VertexArray.h"
 
@@ -113,6 +114,9 @@ private:
 	// Maximal water height to allow the passage of a unit (for underwater shallows).
 	float m_ShallowPassageHeight = 0.0f;
 	float m_WaterHeight = 0.0f;
+
+	Renderer::Backend::IVertexInputLayout* m_QuadVertexInputLayout = nullptr;
+	Renderer::Backend::IVertexInputLayout* m_EntitiesVertexInputLayout = nullptr;
 
 	VertexIndexArray m_IndexArray;
 	VertexArray m_VertexArray;

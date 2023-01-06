@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -86,6 +86,15 @@ public:
 		: WidthInPixels(widthInPixels), HeightInPixels(heightInPixels),
 		Scale(scale), DeviceCommandContext(deviceCommandContext)
 	{
+		constexpr std::array<Renderer::Backend::SVertexAttributeFormat, 2> attributes{{
+			{Renderer::Backend::VertexAttributeStream::POSITION,
+				Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
+				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+			{Renderer::Backend::VertexAttributeStream::UV0,
+				Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
+				Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1}
+		}};
+		m_VertexInputLayout = g_Renderer.GetVertexInputLayout(attributes);
 	}
 
 	void BindTechIfNeeded()
@@ -118,14 +127,7 @@ public:
 		DeviceCommandContext->SetUniform(
 			BindingSlots.translation, Translation.AsFloatArray());
 
-		DeviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::POSITION,
-			Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-		DeviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::UV0,
-			Renderer::Backend::Format::R32G32_SFLOAT, 0, sizeof(float) * 2,
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 1);
+		DeviceCommandContext->SetVertexInputLayout(m_VertexInputLayout);
 	}
 
 	void UnbindTech()
@@ -162,6 +164,8 @@ public:
 	float Scale = 1.0f;
 	CVector2D TransformScale;
 	CVector2D Translation;
+
+	Renderer::Backend::IVertexInputLayout* m_VertexInputLayout = nullptr;
 
 	Renderer::Backend::IDeviceCommandContext* DeviceCommandContext = nullptr;
 	CShaderTechniquePtr Tech;

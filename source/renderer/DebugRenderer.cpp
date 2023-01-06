@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,6 +34,16 @@
 #include "renderer/SceneRenderer.h"
 
 #include <cmath>
+
+void CDebugRenderer::Initialize()
+{
+	const std::array<Renderer::Backend::SVertexAttributeFormat, 1> attributes{{
+		{Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+	}};
+	m_VertexInputLayout = g_Renderer.GetVertexInputLayout(attributes);
+}
 
 void CDebugRenderer::DrawLine(
 	const CVector3D& from, const CVector3D& to, const CColor& color,
@@ -99,10 +109,7 @@ void CDebugRenderer::DrawLine(
 
 #undef ADD
 
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+	deviceCommandContext->SetVertexInputLayout(m_VertexInputLayout);
 	deviceCommandContext->SetVertexBufferData(
 		0, vertices.data(), vertices.size() * sizeof(vertices[0]));
 
@@ -156,10 +163,7 @@ void CDebugRenderer::DrawCircle(const CVector3D& origin, const float radius, con
 
 #undef ADD
 
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+	deviceCommandContext->SetVertexInputLayout(m_VertexInputLayout);
 	deviceCommandContext->SetVertexBufferData(
 		0, vertices.data(), vertices.size() * sizeof(vertices[0]));
 
@@ -237,10 +241,7 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 		ADD(intermediatePoints[3]);
 	}
 
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+	deviceCommandContext->SetVertexInputLayout(m_VertexInputLayout);
 	deviceCommandContext->SetVertexBufferData(
 		0, vertices.data(), vertices.size() * sizeof(vertices[0]));
 
@@ -260,10 +261,7 @@ void CDebugRenderer::DrawCameraFrustum(const CCamera& camera, const CColor& colo
 		ADD(farPoints[nextI]);
 	}
 
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+	deviceCommandContext->SetVertexInputLayout(m_VertexInputLayout);
 	deviceCommandContext->SetVertexBufferData(
 		0, vertices.data(), vertices.size() * sizeof(vertices[0]));
 
@@ -323,10 +321,7 @@ void CDebugRenderer::DrawBoundingBox(
 
 #undef ADD_FACE
 
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+	deviceCommandContext->SetVertexInputLayout(m_VertexInputLayout);
 	deviceCommandContext->SetVertexBufferData(
 		0, data.data(), data.size() * sizeof(data[0]));
 
@@ -379,10 +374,7 @@ void CDebugRenderer::DrawBrush(const CBrush& brush, const CColor& color, bool wi
 
 #undef ADD_VERT
 
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+	deviceCommandContext->SetVertexInputLayout(m_VertexInputLayout);
 	deviceCommandContext->SetVertexBufferData(
 		0, data.data(), data.size() * sizeof(data[0]));
 

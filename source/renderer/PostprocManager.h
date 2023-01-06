@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "ps/CStr.h"
 #include "renderer/backend/IFramebuffer.h"
 #include "renderer/backend/IDeviceCommandContext.h"
+#include "renderer/backend/IShaderProgram.h"
 #include "renderer/backend/ITexture.h"
 
 #include <array>
@@ -117,6 +118,8 @@ private:
 
 	// Indicates which of the ping-pong buffers is used for reading and which for drawing.
 	bool m_WhichBuffer;
+
+	Renderer::Backend::IVertexInputLayout* m_VertexInputLayout = nullptr;
 
 	// The name and shader technique we are using. "default" name means no technique is used
 	// (i.e. while we do allocate the buffers, no effects are rendered).

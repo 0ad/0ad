@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -265,6 +265,11 @@ std::tuple<GLenum, GLenum, GLint> GetElementTypeAndCountFromString(const CStr& s
 #endif // !CONFIG2_GLES
 
 } // anonymous namespace
+
+IDevice* CVertexInputLayout::GetDevice()
+{
+	return m_Device;
+}
 
 #if !CONFIG2_GLES
 

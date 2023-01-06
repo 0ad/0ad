@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,6 +24,7 @@
 #include "graphics/TextureManager.h"
 #include "maths/BoundingBoxAligned.h"
 #include "renderer/backend/IDeviceCommandContext.h"
+#include "renderer/backend/IShaderProgram.h"
 #include "renderer/VertexBufferManager.h"
 
 class CFrustum;
@@ -47,12 +48,14 @@ class CTexturedLineRData : public CRenderData
 	NONCOPYABLE(CTexturedLineRData);
 
 public:
-
 	CTexturedLineRData() = default;
 	~CTexturedLineRData() = default;
 
+	static Renderer::Backend::IVertexInputLayout* GetVertexInputLayout();
+
 	void Update(const SOverlayTexturedLine& line);
 	void Render(Renderer::Backend::IDeviceCommandContext* deviceCommandContext,
+		Renderer::Backend::IVertexInputLayout* vertexInputLayout,
 		const SOverlayTexturedLine& line, Renderer::Backend::IShaderProgram* shader);
 
 	bool IsVisibleInFrustum(const CFrustum& frustum) const;

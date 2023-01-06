@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -142,7 +142,7 @@ public:
 		Renderer::Backend::Format format = Renderer::Backend::Format::UNDEFINED;
 
 		// Offset (in bytes) into a vertex structure (filled in by Layout())
-		size_t offset = 0;
+		uint32_t offset = 0;
 
 		VertexArray* vertexArray = nullptr;
 
@@ -169,7 +169,7 @@ public:
 	void AddAttribute(Attribute* attr);
 
 	size_t GetNumberOfVertices() const { return m_NumberOfVertices; }
-	size_t GetStride() const { return m_Stride; }
+	uint32_t GetStride() const { return m_Stride; }
 
 	// Layout the vertex array format and create backing buffer in RAM.
 	// You must call Layout() after changing the number of vertices or
@@ -208,7 +208,7 @@ private:
 	std::vector<Attribute*> m_Attributes;
 
 	CVertexBufferManager::Handle m_VB;
-	size_t m_Stride;
+	uint32_t m_Stride;
 	char* m_BackingStore; // 16-byte aligned, to allow fast SSE access
 };
 

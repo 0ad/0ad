@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -83,6 +83,19 @@ struct TerrainRendererInternals
 
 	CShaderTechniquePtr shaderTechniqueSolid, shaderTechniqueSolidDepthTest;
 
+	Renderer::Backend::IVertexInputLayout* overlayVertexInputLayout = nullptr;
+	Renderer::Backend::IVertexInputLayout* decalsVertexInputLayout = nullptr;
+
+	Renderer::Backend::IVertexInputLayout* baseVertexInputLayout = nullptr;
+	Renderer::Backend::IVertexInputLayout* blendVertexInputLayout = nullptr;
+	Renderer::Backend::IVertexInputLayout* streamVertexInputLayout = nullptr;
+	Renderer::Backend::IVertexInputLayout* streamWithPositionAsTexCoordVertexInputLayout = nullptr;
+	Renderer::Backend::IVertexInputLayout* sideVertexInputLayout = nullptr;
+
+	Renderer::Backend::IVertexInputLayout* waterSurfaceVertexInputLayout = nullptr;
+	Renderer::Backend::IVertexInputLayout* waterSurfaceWithDataVertexInputLayout = nullptr;
+	Renderer::Backend::IVertexInputLayout* waterShoreVertexInputLayout = nullptr;
+
 	CSimulation2* simulation;
 };
 
@@ -99,6 +112,32 @@ TerrainRenderer::TerrainRenderer()
 TerrainRenderer::~TerrainRenderer()
 {
 	delete m;
+}
+
+void TerrainRenderer::Initialize()
+{
+	const std::array<Renderer::Backend::SVertexAttributeFormat, 2> overlayAttributes{{
+		{Renderer::Backend::VertexAttributeStream::POSITION,
+			Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::UV0,
+			Renderer::Backend::Format::R32G32B32_SFLOAT, 0, sizeof(float) * 3,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0}
+	}};
+	m->overlayVertexInputLayout = g_Renderer.GetVertexInputLayout(overlayAttributes);
+
+	m->decalsVertexInputLayout = CDecalRData::GetVertexInputLayout();
+
+	m->baseVertexInputLayout = CPatchRData::GetBaseVertexInputLayout();
+	m->blendVertexInputLayout = CPatchRData::GetBlendVertexInputLayout();
+	m->streamVertexInputLayout = CPatchRData::GetStreamVertexInputLayout(false);
+	m->streamWithPositionAsTexCoordVertexInputLayout =
+		CPatchRData::GetStreamVertexInputLayout(true);
+	m->sideVertexInputLayout = CPatchRData::GetSideVertexInputLayout();
+
+	m->waterSurfaceVertexInputLayout = CPatchRData::GetWaterSurfaceVertexInputLayout(false);
+	m->waterSurfaceWithDataVertexInputLayout = CPatchRData::GetWaterSurfaceVertexInputLayout(true);
+	m->waterShoreVertexInputLayout = CPatchRData::GetWaterShoreVertexInputLayout();
 }
 
 void TerrainRenderer::SetSimulation(CSimulation2* simulation)
@@ -190,7 +229,8 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 		debugOverlayShader->GetBindingSlot(str_transform), transform.AsFloatArray());
 	deviceCommandContext->SetUniform(
 		debugOverlayShader->GetBindingSlot(str_textureTransform), textureTransform.AsFloatArray());
-	CPatchRData::RenderStreams(deviceCommandContext, visiblePatches, true);
+	CPatchRData::RenderStreams(
+		deviceCommandContext, m->streamWithPositionAsTexCoordVertexInputLayout, visiblePatches);
 
 	// To make the overlay visible over water, render an additional map-sized
 	// water-height patch.
@@ -211,14 +251,7 @@ void TerrainRenderer::RenderTerrainOverlayTexture(
 			waterBounds[0].X, height, waterBounds[1].Z
 		};
 
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::POSITION,
-			Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-		deviceCommandContext->SetVertexAttributeFormat(
-			Renderer::Backend::VertexAttributeStream::UV0,
-			Renderer::Backend::Format::R32G32B32_SFLOAT, 0, 0,
-			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+		deviceCommandContext->SetVertexInputLayout(m->overlayVertexInputLayout);
 
 		deviceCommandContext->SetVertexBufferData(
 			0, waterPos, std::size(waterPos) * sizeof(waterPos[0]));
@@ -312,16 +345,20 @@ void TerrainRenderer::RenderTerrainShader(
 	deviceCommandContext->SetUniform(
 		shaderSolid->GetBindingSlot(str_color), 0.0f, 0.0f, 0.0f, 1.0f);
 
-	CPatchRData::RenderSides(deviceCommandContext, visiblePatches);
+	CPatchRData::RenderSides(
+		deviceCommandContext, m->sideVertexInputLayout, visiblePatches);
 
 	deviceCommandContext->EndPass();
 
-	CPatchRData::RenderBases(deviceCommandContext, visiblePatches, context, shadow);
+	CPatchRData::RenderBases(
+		deviceCommandContext, m->baseVertexInputLayout, visiblePatches, context, shadow);
 
 	// render blend passes for each patch
-	CPatchRData::RenderBlends(deviceCommandContext, visiblePatches, context, shadow);
+	CPatchRData::RenderBlends(
+		deviceCommandContext, m->blendVertexInputLayout, visiblePatches, context, shadow);
 
-	CDecalRData::RenderDecals(deviceCommandContext, visibleDecals, context, shadow);
+	CDecalRData::RenderDecals(
+		deviceCommandContext, m->decalsVertexInputLayout, visibleDecals, context, shadow);
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -352,7 +389,8 @@ void TerrainRenderer::RenderPatches(
 	deviceCommandContext->SetUniform(
 		solidShader->GetBindingSlot(str_color), color.AsFloatArray());
 
-	CPatchRData::RenderStreams(deviceCommandContext, visiblePatches, false);
+	CPatchRData::RenderStreams(
+		deviceCommandContext, m->streamVertexInputLayout, visiblePatches);
 	deviceCommandContext->EndPass();
 }
 
@@ -606,9 +644,10 @@ bool TerrainRenderer::RenderFancyWater(
 
 	for (CPatchRData* data : m->visiblePatches[cullGroup])
 	{
-		data->RenderWaterSurface(deviceCommandContext, true);
+		data->RenderWaterSurface(
+			deviceCommandContext, m->waterSurfaceWithDataVertexInputLayout);
 		if (waterManager.m_WaterFancyEffects)
-			data->RenderWaterShore(deviceCommandContext);
+			data->RenderWaterShore(deviceCommandContext, m->waterShoreVertexInputLayout);
 	}
 	deviceCommandContext->EndPass();
 
@@ -659,11 +698,10 @@ void TerrainRenderer::RenderSimpleWater(
 	deviceCommandContext->SetUniform(
 		waterSimpleShader->GetBindingSlot(str_color), waterManager.m_WaterColor.AsFloatArray());
 
-	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
-	for (size_t i = 0; i < visiblePatches.size(); ++i)
+	for (CPatchRData* data : m->visiblePatches[cullGroup])
 	{
-		CPatchRData* data = visiblePatches[i];
-		data->RenderWaterSurface(deviceCommandContext, false);
+		data->RenderWaterSurface(
+			deviceCommandContext, m->waterSurfaceVertexInputLayout);
 	}
 
 	deviceCommandContext->EndPass();
@@ -722,7 +760,7 @@ void TerrainRenderer::RenderWaterFoamOccluders(
 		dummyShader->GetBindingSlot(str_color), 0.0f, 0.0f, 0.0f, 0.0f);
 
 	for (CPatchRData* data : m->visiblePatches[cullGroup])
-		data->RenderWaterShore(deviceCommandContext);
+		data->RenderWaterShore(deviceCommandContext, m->waterShoreVertexInputLayout);
 
 	deviceCommandContext->EndPass();
 

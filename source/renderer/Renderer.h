@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,8 +21,10 @@
 #include "graphics/Camera.h"
 #include "graphics/ShaderDefines.h"
 #include "graphics/ShaderProgramPtr.h"
+#include "ps/containers/Span.h"
 #include "ps/Singleton.h"
 #include "renderer/backend/IDeviceCommandContext.h"
+#include "renderer/backend/IShaderProgram.h"
 #include "renderer/RenderingOptions.h"
 #include "renderer/Scene.h"
 
@@ -131,6 +133,16 @@ public:
 	void MakeScreenShotOnNextFrame(ScreenShotType screenShotType);
 
 	Renderer::Backend::IDeviceCommandContext* GetDeviceCommandContext();
+
+	/**
+	 * Returns a cached vertex input layout. The renderer owns the layout to be
+	 * able to share it between different clients. As backend should have
+	 * as few different layouts as possible.
+	 * The function isn't cheap so it should be called as rarely as possible.
+	 * TODO: we need to make VertexArray less error prone by passing layout.
+	 */
+	Renderer::Backend::IVertexInputLayout* GetVertexInputLayout(
+		const PS::span<const Renderer::Backend::SVertexAttributeFormat> attributes);
 
 protected:
 	friend class CPatchRData;

@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -268,6 +268,8 @@ void CSceneRenderer::Initialize()
 {
 	// Let component renderers perform one-time initialization after graphics capabilities and
 	// the shader path have been determined.
+	m->waterManager.Initialize();
+	m->terrainRenderer.Initialize();
 	m->overlayRenderer.Initialize();
 }
 

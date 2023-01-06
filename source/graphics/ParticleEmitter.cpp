@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -77,6 +77,23 @@ CParticleEmitter::CParticleEmitter(const CParticleEmitterTypePtr& type) :
 	}
 	m_IndexArray.Upload();
 	m_IndexArray.FreeBackingStore();
+
+	const uint32_t stride = m_VertexArray.GetStride();
+	const std::array<Renderer::Backend::SVertexAttributeFormat, 4> attributes{{
+		{Renderer::Backend::VertexAttributeStream::POSITION,
+			m_AttributePos.format, m_AttributePos.offset, stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::COLOR,
+			m_AttributeColor.format, m_AttributeColor.offset, stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::UV0,
+			m_AttributeUV.format, m_AttributeUV.offset, stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+		{Renderer::Backend::VertexAttributeStream::UV1,
+			m_AttributeAxis.format, m_AttributeAxis.offset, stride,
+			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
+	}};
+	m_VertexInputLayout = g_Renderer.GetVertexInputLayout(attributes);
 }
 
 void CParticleEmitter::UpdateArrayData(int frameNumber)
@@ -215,22 +232,7 @@ void CParticleEmitter::RenderArray(
 	const uint32_t stride = m_VertexArray.GetStride();
 	const uint32_t firstVertexOffset = m_VertexArray.GetOffset() * stride;
 
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::POSITION,
-		m_AttributePos.format, m_AttributePos.offset, stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::COLOR,
-		m_AttributeColor.format, m_AttributeColor.offset, stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::UV0,
-		m_AttributeUV.format, m_AttributeUV.offset, stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
-	deviceCommandContext->SetVertexAttributeFormat(
-		Renderer::Backend::VertexAttributeStream::UV1,
-		m_AttributeAxis.format, m_AttributeAxis.offset, stride,
-		Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0);
+	deviceCommandContext->SetVertexInputLayout(m_VertexInputLayout);
 
 	deviceCommandContext->SetVertexBuffer(
 		0, m_VertexArray.GetBuffer(), firstVertexOffset);
