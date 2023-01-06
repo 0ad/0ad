@@ -42,6 +42,7 @@
 #include "ps/XML/XMLWriter.h"
 #endif
 
+#include <optional>
 #include <vector>
 
 TIMER_ADD_CLIENT(tc_ShaderValidation);
@@ -214,23 +215,22 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 	CPreprocessorWrapper preprocessor;
 	preprocessor.AddDefines(tech->GetShaderDefines());
 
-	XMBElement Root = XeroFile.GetRoot();
+	XMBElement root = XeroFile.GetRoot();
 
 	// Find all the techniques that we can use, and their preference
 
-	std::vector<XMBElement> usableTechs;
-
-	XERO_ITER_EL(Root, Technique)
+	std::optional<XMBElement> usableTech;
+	XERO_ITER_EL(root, technique)
 	{
 		bool isUsable = true;
-		XERO_ITER_EL(Technique, Child)
+		XERO_ITER_EL(technique, child)
 		{
-			XMBAttributeList Attrs = Child.GetAttributes();
+			XMBAttributeList attrs = child.GetAttributes();
 
 			// TODO: require should be an attribute of the tech and not its child.
-			if (Child.GetNodeName() == el_require)
+			if (child.GetNodeName() == el_require)
 			{
-				if (Attrs.GetNamedItem(at_shaders) == "arb")
+				if (attrs.GetNamedItem(at_shaders) == "arb")
 				{
 					if (device->GetBackend() != Renderer::Backend::Backend::GL_ARB ||
 						!device->GetCapabilities().ARBShaders)
@@ -238,14 +238,14 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 						isUsable = false;
 					}
 				}
-				else if (Attrs.GetNamedItem(at_shaders) == "glsl")
+				else if (attrs.GetNamedItem(at_shaders) == "glsl")
 				{
 					if (device->GetBackend() != Renderer::Backend::Backend::GL)
 						isUsable = false;
 				}
-				else if (!Attrs.GetNamedItem(at_context).empty())
+				else if (!attrs.GetNamedItem(at_context).empty())
 				{
-					CStr cond = Attrs.GetNamedItem(at_context);
+					CStr cond = attrs.GetNamedItem(at_context);
 					if (!preprocessor.TestConditional(cond))
 						isUsable = false;
 				}
@@ -253,10 +253,13 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 		}
 
 		if (isUsable)
-			usableTechs.emplace_back(Technique);
+		{
+			usableTech.emplace(technique);
+			break;
+		}
 	}
 
-	if (usableTechs.empty())
+	if (!usableTech.has_value())
 	{
 		debug_warn(L"Can't find a usable technique");
 		return false;
@@ -265,7 +268,7 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 	tech->SetSortByDistance(false);
 
 	CShaderDefines techDefines = tech->GetShaderDefines();
-	XERO_ITER_EL(usableTechs[0], Child)
+	XERO_ITER_EL(usableTech.value(), Child)
 	{
 		if (Child.GetNodeName() == el_define)
 		{
@@ -281,7 +284,7 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 	// TODO: we might want to implement that in a proper way via splitting passes
 	// and tags in different groups in XML.
 	std::vector<CShaderPass> techPasses;
-	XERO_ITER_EL(usableTechs[0], Child)
+	XERO_ITER_EL(usableTech.value(), Child)
 	{
 		if (Child.GetNodeName() == el_pass)
 		{
