@@ -733,18 +733,23 @@ void TerrainRenderer::RenderWaterFoamOccluders(
 	if (!m->shaderTechniqueSolidDepthTest)
 	{
 		m->shaderTechniqueSolidDepthTest = g_Renderer.GetShaderManager().LoadEffect(
-		str_solid, {},
-		[](Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc)
-		{
-			pipelineStateDesc.depthStencilState.depthTestEnabled = true;
-			pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
-		});
+			str_solid, {},
+			[](Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc)
+			{
+				pipelineStateDesc.depthStencilState.depthTestEnabled = true;
+				pipelineStateDesc.rasterizationState.cullMode = Renderer::Backend::CullMode::NONE;
+			});
 	}
 
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render water foam occluders");
 
-	// Render normals and foam to a framebuffer if we're using fancy effects.
-	deviceCommandContext->BeginFramebufferPass(waterManager.m_FancyEffectsFramebuffer.get());
+	Renderer::Backend::IFramebuffer* framebuffer =
+		waterManager.m_FancyEffectsOccludersFramebuffer.get();
+	deviceCommandContext->BeginFramebufferPass(framebuffer);
+	Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
+	viewportRect.width = framebuffer->GetWidth();
+	viewportRect.height = framebuffer->GetHeight();
+	deviceCommandContext->SetViewports(1, &viewportRect);
 
 	// Overwrite waves that would be behind the ground.
 	deviceCommandContext->SetGraphicsPipelineState(

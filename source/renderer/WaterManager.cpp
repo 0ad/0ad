@@ -119,6 +119,7 @@ WaterManager::~WaterManager()
 	m_WindStrength.reset();
 
 	m_FancyEffectsFramebuffer.reset();
+	m_FancyEffectsOccludersFramebuffer.reset();
 	m_RefractionFramebuffer.reset();
 	m_ReflectionFramebuffer.reset();
 
@@ -323,6 +324,7 @@ void WaterManager::RecreateOrLoadTexturesIfNeeded()
 	if (m_FancyTexture && (m_FancyTexture->GetWidth() != newWidth || m_FancyTexture->GetHeight() != newHeight))
 	{
 		m_FancyEffectsFramebuffer.reset();
+		m_FancyEffectsOccludersFramebuffer.reset();
 		m_FancyTexture.reset();
 		m_FancyTextureDepth.reset();
 	}
@@ -357,11 +359,26 @@ void WaterManager::RecreateOrLoadTexturesIfNeeded()
 		Renderer::Backend::SDepthStencilAttachment depthStencilAttachment{};
 		depthStencilAttachment.texture = m_FancyTextureDepth.get();
 		depthStencilAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::CLEAR;
-		depthStencilAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::DONT_CARE;
+		// We need to store depth for later rendering occluders.
+		depthStencilAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
 
 		m_FancyEffectsFramebuffer = backendDevice->CreateFramebuffer("FancyEffectsFramebuffer",
 			&colorAttachment, &depthStencilAttachment);
-		if (!m_FancyEffectsFramebuffer)
+
+		Renderer::Backend::SColorAttachment occludersColorAttachment{};
+		occludersColorAttachment.texture = m_FancyTexture.get();
+		occludersColorAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::LOAD;
+		occludersColorAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
+		occludersColorAttachment.clearColor = CColor{0.0f, 0.0f, 0.0f, 0.0f};
+
+		Renderer::Backend::SDepthStencilAttachment occludersDepthStencilAttachment{};
+		occludersDepthStencilAttachment.texture = m_FancyTextureDepth.get();
+		occludersDepthStencilAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::LOAD;
+		occludersDepthStencilAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::DONT_CARE;
+
+		m_FancyEffectsOccludersFramebuffer = backendDevice->CreateFramebuffer("FancyEffectsOccludersFramebuffer",
+			&occludersColorAttachment, &occludersDepthStencilAttachment);
+		if (!m_FancyEffectsFramebuffer || !m_FancyEffectsOccludersFramebuffer)
 		{
 			g_RenderingOptions.SetWaterRefraction(false);
 			UpdateQuality();
@@ -873,7 +890,13 @@ void WaterManager::RenderWaves(
 
 	GPU_SCOPED_LABEL(deviceCommandContext, "Render Waves");
 
-	deviceCommandContext->BeginFramebufferPass(m_FancyEffectsFramebuffer.get());
+	Renderer::Backend::IFramebuffer* framebuffer =
+		m_FancyEffectsFramebuffer.get();
+	deviceCommandContext->BeginFramebufferPass(framebuffer);
+	Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
+	viewportRect.width = framebuffer->GetWidth();
+	viewportRect.height = framebuffer->GetHeight();
+	deviceCommandContext->SetViewports(1, &viewportRect);
 
 	CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_water_waves);
 	deviceCommandContext->SetGraphicsPipelineState(

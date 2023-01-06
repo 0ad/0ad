@@ -112,6 +112,7 @@ public:
 	std::unique_ptr<Renderer::Backend::IFramebuffer> m_RefractionFramebuffer;
 	std::unique_ptr<Renderer::Backend::IFramebuffer> m_ReflectionFramebuffer;
 	std::unique_ptr<Renderer::Backend::IFramebuffer> m_FancyEffectsFramebuffer;
+	std::unique_ptr<Renderer::Backend::IFramebuffer> m_FancyEffectsOccludersFramebuffer;
 
 	// Model-view-projection matrices for reflected & refracted cameras
 	// (used to let the vertex shader do projective texturing)

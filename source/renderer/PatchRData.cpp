@@ -190,7 +190,7 @@ Renderer::Backend::IVertexInputLayout* CPatchRData::GetWaterSurfaceVertexInputLa
 Renderer::Backend::IVertexInputLayout* CPatchRData::GetWaterShoreVertexInputLayout()
 {
 	const uint32_t stride = sizeof(SWaterVertex);
-	const std::array<Renderer::Backend::SVertexAttributeFormat, 2> attributes{ {
+	const std::array<Renderer::Backend::SVertexAttributeFormat, 2> attributes{{
 		{Renderer::Backend::VertexAttributeStream::POSITION,
 			Renderer::Backend::Format::R32G32B32_SFLOAT,
 			offsetof(SWaterVertex, m_Position), stride,
