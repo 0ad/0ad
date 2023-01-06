@@ -73,9 +73,13 @@
     <variant file="biped/female_build.xml"/>
     <variant file="biped/female_build_farm.xml"/>
   </group>
-  <textures>
-    <texture file="default_norm.png" name="normTex"/>
-    <texture file="null_black.dds" name="specTex"/>
-  </textures>
+  <group>
+    <variant>
+      <textures>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
   <material>player_trans_norm_spec.xml</material>
 </actor>

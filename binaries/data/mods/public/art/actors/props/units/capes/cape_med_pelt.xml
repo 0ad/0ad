@@ -91,9 +91,13 @@
     <variant file="biped/cape_build_farm.xml"/>
     <variant file="biped/death_cape.xml"/>
   </group>
-  <textures>
-    <texture file="default_norm.png" name="normTex"/>
-    <texture file="null_black.dds" name="specTex"/>
-  </textures>
+  <group>
+    <variant>
+      <textures>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
   <material>basic_trans_norm_spec.xml</material>
 </actor>

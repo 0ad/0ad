@@ -29,9 +29,13 @@
     <variant file="biped/rider/cavalry/base_spearman_fast_shield_01.xml" frequency="1" name="Spearman-Fast-Shield-01"/>
     <variant file="biped/rider/death_shield.xml"/>
   </group>
-  <textures>
-    <texture file="default_norm.png" name="normTex"/>
-    <texture file="null_black.dds" name="specTex"/>
-  </textures>
+  <group>
+    <variant>
+      <textures>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
   <material>player_trans_norm_spec.xml</material>
 </actor>

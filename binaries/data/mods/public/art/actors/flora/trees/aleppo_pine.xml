@@ -44,9 +44,13 @@
       <mesh>gaia/tree_pine_aleppo_8.dae</mesh>
     </variant>
   </group>
-  <textures>
-    <texture file="default_norm.png" name="normTex"/>
-    <texture file="null_black.dds" name="specTex"/>
-  </textures>
+  <group>
+    <variant>
+      <textures>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
   <material>basic_trans_wind_norm_spec.xml</material>
 </actor>

@@ -37,9 +37,13 @@
     <variant frequency="100" name="Idle"/>
     <variant file="quadraped/base_bovidae_death.xml" name="death"/>
   </group>
-  <textures>
-    <texture file="default_norm.png" name="normTex"/>
-    <texture file="null_black.dds" name="specTex"/>
-  </textures>
+  <group>
+    <variant>
+      <textures>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
   <material>no_trans_norm_spec.xml</material>
 </actor>

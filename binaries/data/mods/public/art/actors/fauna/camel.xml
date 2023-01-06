@@ -31,9 +31,13 @@
     <variant file="quadraped/base_camel_run.xml"/>
     <variant file="quadraped/base_camel_death.xml"/>
   </group>
-  <textures>
-    <texture file="default_norm.png" name="normTex"/>
-    <texture file="null_black.dds" name="specTex"/>
-  </textures>
+  <group>
+    <variant>
+      <textures>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
   <material>no_trans_norm_spec.xml</material>
 </actor>
