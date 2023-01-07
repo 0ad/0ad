@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -126,6 +126,14 @@ void COList::HandleMessage(SGUIMessage& Message)
 
 	switch (Message.type)
 	{
+
+	case GUIM_SETTINGS_UPDATED:
+	{
+		if (Message.value.find("heading_") == 0)
+			SetupText();
+		break;
+	}
+
 	// If somebody clicks on the column heading
 	case GUIM_MOUSE_PRESS_LEFT:
 	{
@@ -234,7 +242,7 @@ bool COList::HandleAdditionalChildren(const XMBData& xmb, const XMBElement& chil
 			}
 			else if (attr_name == "heading")
 			{
-				column.m_Heading = attr_value.FromUTF8();
+				column.m_Heading.Set(attr_value.FromUTF8(), false);
 			}
 		}
 
@@ -259,12 +267,12 @@ bool COList::HandleAdditionalChildren(const XMBData& xmb, const XMBElement& chil
 			if (!context.empty())
 			{
 				CStr translatedValue(g_L10n.TranslateWithContext(context, value));
-				column.m_Heading = translatedValue.FromUTF8();
+				column.m_Heading.Set(translatedValue.FromUTF8(), false);
 			}
 			else
 			{
 				CStr translatedValue(g_L10n.Translate(value));
-				column.m_Heading = translatedValue.FromUTF8();
+				column.m_Heading.Set(translatedValue.FromUTF8(), false);
 			}
 		}
 
