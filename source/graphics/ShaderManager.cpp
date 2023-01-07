@@ -268,7 +268,7 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 	tech->SetSortByDistance(false);
 
 	CShaderDefines techDefines = tech->GetShaderDefines();
-	XERO_ITER_EL(usableTech.value(), Child)
+	XERO_ITER_EL((*usableTech), Child)
 	{
 		if (Child.GetNodeName() == el_define)
 		{
@@ -284,7 +284,7 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 	// TODO: we might want to implement that in a proper way via splitting passes
 	// and tags in different groups in XML.
 	std::vector<CShaderPass> techPasses;
-	XERO_ITER_EL(usableTech.value(), Child)
+	XERO_ITER_EL((*usableTech), Child)
 	{
 		if (Child.GetNodeName() == el_pass)
 		{
