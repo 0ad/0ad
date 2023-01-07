@@ -18,30 +18,31 @@
 #ifndef FSM_H
 #define FSM_H
 
-#include <vector>
-#include <set>
+#include <limits>
 #include <map>
+#include <set>
+#include <vector>
 
 
-#define FSM_INVALID_STATE (unsigned int)(~0)
+constexpr unsigned int FSM_INVALID_STATE{std::numeric_limits<unsigned int>::max()};
 
 class CFsmEvent;
 class CFsmTransition;
 class CFsm;
 
-typedef bool (*CONDITION)(void* pContext);
-typedef bool (*ACTION)(void* pContext, const CFsmEvent* pEvent);
+using Condition = bool(void* pContext);
+using Action = bool(void* pContext, const CFsmEvent* pEvent);
 
-typedef struct
+struct CallbackFunction
 {
 	void* pFunction;
 	void* pContext;
-} CallbackFunction;
+};
 
-typedef std::set<unsigned int> StateSet;
-typedef std::map<unsigned int, CFsmEvent*> EventMap;
-typedef std::vector<CFsmTransition*> TransitionList;
-typedef std::vector<CallbackFunction> CallbackList;
+using StateSet = std::set<unsigned int>;
+using EventMap = std::map<unsigned int, CFsmEvent*>;
+using TransitionList = std::vector<CFsmTransition*>;
+using CallbackList = std::vector<CallbackFunction>;
 
 /**
  * Represents a signal in the state machine that a change has occurred.

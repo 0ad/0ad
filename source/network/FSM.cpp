@@ -88,8 +88,8 @@ bool CFsmTransition::ApplyConditions() const
 		if (it->pFunction)
 		{
 			// Evaluate condition
-			CONDITION Condition = (CONDITION)it->pFunction;
-			eval &= Condition(it->pContext);
+			Condition* condition = reinterpret_cast<Condition*>(it->pFunction);
+			eval &= condition(it->pContext);
 		}
 	}
 
@@ -106,8 +106,8 @@ bool CFsmTransition::RunActions() const
 		if (it->pFunction)
 		{
 			// Run action
-			ACTION Action = (ACTION)it->pFunction;
-			result &= Action(it->pContext, m_Event);
+			Action* action = reinterpret_cast<Action*>(it->pFunction);
+			result &= action(it->pContext, m_Event);
 		}
 	}
 
