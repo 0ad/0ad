@@ -1,14 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant name="Base">
-      <textures><texture file="gaia/wrld_plant_highlands_a.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="gaia/wrld_plant_highlands_a.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
-
   <group>
     <variant name="a">
       <mesh>gaia/wrld_plant_highland_1.dae</mesh>
@@ -32,7 +33,5 @@
       <mesh>gaia/wrld_plant_highland_7.dae</mesh>
     </variant>
   </group>
-
-  <material>basic_trans.xml</material>
-
+  <material>basic_trans_norm_spec.xml</material>
 </actor>

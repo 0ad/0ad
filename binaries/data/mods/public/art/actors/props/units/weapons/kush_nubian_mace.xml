@@ -2,7 +2,11 @@
 <actor version="1">
   <group>
     <variant frequency="1" name="Base">
-      <textures><texture file="props/prop_weap.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/prop_weap.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -52,5 +56,5 @@
       <mesh>props/kush_maces_e_bronze_stripes.dae</mesh>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

@@ -5,9 +5,10 @@
       <mesh>props/special/aura_rays.dae</mesh>
       <textures>
         <texture file="temp/aura_heal_test.png" name="baseTex"/>
-		<texture file="temp/aura_heal_test.png" name="specTex"/>
+        <texture file="temp/aura_heal_test.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>aura.xml</material>
+  <material>aura_norm_spec.xml</material>
 </actor>

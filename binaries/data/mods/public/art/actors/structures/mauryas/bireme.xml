@@ -9,27 +9,29 @@
       <props>
         <prop actor="props/units/siege_artillery/bolt_projectile_med.xml" attachpoint="projectile"/>
         <prop actor="props/special/eyecandy/basket_celt_a.xml" attachpoint="wrld_basket_a1"/>
-		<prop actor="props/special/eyecandy/basket_celt_a.xml" attachpoint="wrld_basket_a2"/>
-		<prop actor="props/special/eyecandy/basket_celt_a.xml" attachpoint="wrld_basket_a3"/>
-		<prop actor="props/units/shields/maur_bell_a.xml" attachpoint="maur_shield_bell1"/>
-		<prop actor="props/units/shields/maur_bell_b.xml" attachpoint="maur_shield_bell2"/>
-		<prop actor="props/units/shields/maur_bell_straight_b.xml" attachpoint="maur_shield_bell3"/>
-		<prop actor="props/units/shields/maur_tall_roundtop_a.xml" attachpoint="maur_shield_tall_round1"/>
-		<prop actor="props/units/shields/maur_tall_roundtop_b.xml" attachpoint="maur_shield_tall_round2"/>
-		<prop actor="props/units/shields/maur_tall_roundtop_a.xml" attachpoint="maur_shield_tall_round3"/>
-		<prop actor="props/units/weapons/longsword_mauryan.xml" attachpoint="maur_long_sword1"/>
-		<prop actor="props/units/weapons/longsword_mauryan.xml" attachpoint="maur_long_sword2"/>
-		<prop actor="props/units/weapons/longsword_mauryan.xml" attachpoint="maur_long_sword3"/>
-		<prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="wrld_barrel_a004"/>
+        <prop actor="props/special/eyecandy/basket_celt_a.xml" attachpoint="wrld_basket_a2"/>
+        <prop actor="props/special/eyecandy/basket_celt_a.xml" attachpoint="wrld_basket_a3"/>
+        <prop actor="props/units/shields/maur_bell_a.xml" attachpoint="maur_shield_bell1"/>
+        <prop actor="props/units/shields/maur_bell_b.xml" attachpoint="maur_shield_bell2"/>
+        <prop actor="props/units/shields/maur_bell_straight_b.xml" attachpoint="maur_shield_bell3"/>
+        <prop actor="props/units/shields/maur_tall_roundtop_a.xml" attachpoint="maur_shield_tall_round1"/>
+        <prop actor="props/units/shields/maur_tall_roundtop_b.xml" attachpoint="maur_shield_tall_round2"/>
+        <prop actor="props/units/shields/maur_tall_roundtop_a.xml" attachpoint="maur_shield_tall_round3"/>
+        <prop actor="props/units/weapons/longsword_mauryan.xml" attachpoint="maur_long_sword1"/>
+        <prop actor="props/units/weapons/longsword_mauryan.xml" attachpoint="maur_long_sword2"/>
+        <prop actor="props/units/weapons/longsword_mauryan.xml" attachpoint="maur_long_sword3"/>
+        <prop actor="props/special/eyecandy/barrel_a.xml" attachpoint="wrld_barrel_a004"/>
       </props>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="Blue Eye">
       <textures>
-	  <texture file="structural/maur_bireme.png" name="baseTex"/>
-	 </textures>
+        <texture file="structural/maur_bireme.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

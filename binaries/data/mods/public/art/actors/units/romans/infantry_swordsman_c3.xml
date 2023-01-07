@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -56,19 +56,22 @@
     <variant frequency="1" name="lorica_segmentata_00_01">
       <textures>
         <texture file="skeletal/imp/lorica_segmentata_01_01.png" name="baseTex"/>
-	    <texture file="skeletal/imp/lorica_segmentata_01_spec.png" name="specTex"/>
+        <texture file="skeletal/imp/lorica_segmentata_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="lorica_segmentata_01_01">
       <textures>
         <texture file="skeletal/imp/lorica_segmentata_02_01.png" name="baseTex"/>
-	    <texture file="skeletal/imp/lorica_segmentata_02_spec.png" name="specTex"/>
+        <texture file="skeletal/imp/lorica_segmentata_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Lorica Segmentata with Manicae">
       <textures>
         <texture file="skeletal/imp/lorica_segmentata_03_01.png" name="baseTex"/>
         <texture file="skeletal/imp/lorica_segmentata_03_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Lorica Hamata Bronze">
@@ -77,8 +80,9 @@
         <prop actor="" attachpoint="shoulderpad_R"/>
       </props>
       <textures>
-	    <texture file="skeletal/imp/scale_bronze_01.png" name="baseTex"/>
-	    <texture file="skeletal/imp/scale_bronze_01_spec.png" name="specTex"/>
+        <texture file="skeletal/imp/scale_bronze_01.png" name="baseTex"/>
+        <texture file="skeletal/imp/scale_bronze_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Lorica Hamata Bronze with Manicae">
@@ -87,8 +91,9 @@
         <prop actor="" attachpoint="shoulderpad_R"/>
       </props>
       <textures>
-	    <texture file="skeletal/imp/scale_bronze_01_manicae.png" name="baseTex"/>
-	    <texture file="skeletal/imp/scale_bronze_01_manicae_spec.png" name="specTex"/>
+        <texture file="skeletal/imp/scale_bronze_01_manicae.png" name="baseTex"/>
+        <texture file="skeletal/imp/scale_bronze_01_manicae_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -105,5 +110,5 @@
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

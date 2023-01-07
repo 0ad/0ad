@@ -39,18 +39,21 @@
       <textures>
         <texture file="skeletal/rome/cardiopylax_01_01.png" name="baseTex"/>
         <texture file="skeletal/rome/cardiopylax_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="cardiopylax-1b">
       <textures>
         <texture file="skeletal/rome/cardiopylax_01_02.png" name="baseTex"/>
         <texture file="skeletal/rome/cardiopylax_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="3" name="cardiopylax-1c">
       <textures>
         <texture file="skeletal/rome/cardiopylax_01_03.png" name="baseTex"/>
         <texture file="skeletal/rome/cardiopylax_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="cardiopylax-2a">
@@ -58,6 +61,7 @@
       <textures>
         <texture file="skeletal/rome/cardiopylax_02_01.png" name="baseTex"/>
         <texture file="skeletal/rome/cardiopylax_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="cardiopylax-2b">
@@ -65,6 +69,7 @@
       <textures>
         <texture file="skeletal/rome/cardiopylax_02_02.png" name="baseTex"/>
         <texture file="skeletal/rome/cardiopylax_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="3" name="cardiopylax-2c">
@@ -72,12 +77,14 @@
       <textures>
         <texture file="skeletal/rome/cardiopylax_02_03.png" name="baseTex"/>
         <texture file="skeletal/rome/cardiopylax_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="cardiopylax-padded-1a">
       <textures>
         <texture file="skeletal/rome/cardiopylax_padded_01_01.png" name="baseTex"/>
         <texture file="skeletal/rome/cardiopylax_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -119,5 +126,5 @@
     <variant file="biped/build.xml"/>
     <variant file="biped/build_farm.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

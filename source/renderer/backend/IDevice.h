@@ -163,6 +163,13 @@ public:
 
 	virtual bool IsFramebufferFormatSupported(const Format format) const = 0;
 
+	/**
+	 * Returns the most suitable format for the usage. Returns
+	 * Format::UNDEFINED if there is no such format.
+	 */
+	virtual Format GetPreferredDepthStencilFormat(
+		const uint32_t usage, const bool depth, const bool stencil) const = 0;
+
 	virtual const Capabilities& GetCapabilities() const = 0;
 };
 

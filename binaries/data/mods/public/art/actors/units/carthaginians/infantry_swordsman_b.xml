@@ -11,6 +11,7 @@
       </props>
       <textures>
         <texture file="skeletal/ital/tunic_belt_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -44,18 +45,18 @@
   <group>
     <variant frequency="1" name="tunic_pattern_06_01">
       <textures>
-	    <texture file="skeletal/ital/tunic_pattern_06_01.png" name="baseTex"/>
-	  </textures>
+        <texture file="skeletal/ital/tunic_pattern_06_01.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="tunic_pattern_06_02">
       <textures>
-	    <texture file="skeletal/ital/tunic_pattern_06_02.png" name="baseTex"/>
-	  </textures>
+        <texture file="skeletal/ital/tunic_pattern_06_02.png" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="tunic_pattern_06_03">
       <textures>
-	    <texture file="skeletal/ital/tunic_pattern_06_03.png" name="baseTex"/>
-	  </textures>
+        <texture file="skeletal/ital/tunic_pattern_06_03.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -90,5 +91,5 @@
     <variant file="biped/build_farm.xml"/>
     <variant file="biped/death_infantry.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

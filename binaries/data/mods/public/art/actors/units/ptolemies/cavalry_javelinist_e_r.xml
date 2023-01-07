@@ -43,30 +43,35 @@
       <textures>
         <texture file="skeletal/mace/scale_02_01.png" name="baseTex"/>
         <texture file="skeletal/hele/scale_03_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="hele-scale-1-a">
       <textures>
         <texture file="skeletal/hele/scale_01_01.png" name="baseTex"/>
         <texture file="skeletal/hele/scale_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="hele-lamellar-1a">
       <textures>
         <texture file="skeletal/hele/lamellar_01_01.png" name="baseTex"/>
         <texture file="skeletal/hele/lamellar_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="hele-linothorax-lamellar-1a">
       <textures>
         <texture file="skeletal/hele/linothorax_lamellar_01_01.png" name="baseTex"/>
         <texture file="skeletal/hele/linothorax_lamellar_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="hele-linothorax-lamellar-1b">
       <textures>
         <texture file="skeletal/hele/linothorax_lamellar_01_02.png" name="baseTex"/>
         <texture file="skeletal/hele/linothorax_lamellar_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -82,5 +87,5 @@
     <variant file="biped/gather_meat.xml"/>
     <variant file="biped/rider/death_ranged.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

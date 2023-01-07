@@ -9,6 +9,8 @@
       </props>
       <textures>
         <texture file="campaigns/units/pedestal_mace_1.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -16,5 +18,5 @@
     <variant frequency="1" name="alive"/>
     <variant file="structures/destruction_small.xml"/>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

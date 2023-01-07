@@ -16,12 +16,14 @@
       <textures>
         <texture file="skeletal/kush/tunic_blemmye_01.png" name="baseTex"/>
         <texture file="skeletal/kush/tunic_blemmye_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="tunic 2">
       <textures>
         <texture file="skeletal/kush/tunic_blemmye_02.png" name="baseTex"/>
         <texture file="skeletal/kush/tunic_blemmye_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -38,7 +40,7 @@
     </variant>
   </group>
   <group>
-    <variant file="biped/rider/camelry/base_swordsman_shield_relax.xml" />
+    <variant file="biped/rider/camelry/base_swordsman_shield_relax.xml"/>
     <variant file="biped/rider/camelry/carry_meat.xml"/>
   </group>
   <group>
@@ -47,5 +49,5 @@
     <variant file="biped/rider/camelry/attack_slaughter.xml"/>
     <variant file="biped/rider/camelry/gather_meat.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

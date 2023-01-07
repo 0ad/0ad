@@ -10,8 +10,9 @@
       <textures>
         <texture file="props/head/maur_fem_b.png" name="baseTex"/>
         <texture file="props/head/maur_fem_b_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>basic_specmap.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

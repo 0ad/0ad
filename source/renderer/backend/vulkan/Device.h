@@ -98,6 +98,9 @@ public:
 
 	bool IsFramebufferFormatSupported(const Format format) const override;
 
+	Format GetPreferredDepthStencilFormat(
+		const uint32_t usage, const bool depth, const bool stencil) const override;
+
 	const Capabilities& GetCapabilities() const override { return m_Capabilities; }
 
 private:

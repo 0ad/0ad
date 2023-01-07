@@ -14,7 +14,11 @@
         <animation file="quadraped/peacock_death.dae" name="death" speed="75"/>
       </animations>
       <mesh>skeletal/peacock.dae</mesh>
-      <textures><texture file="skeletal/animal_peacock.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/animal_peacock.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -25,5 +29,5 @@
       </props>
     </variant>
   </group>
-  <material>basic_trans.xml</material>
+  <material>basic_trans_norm_spec.xml</material>
 </actor>

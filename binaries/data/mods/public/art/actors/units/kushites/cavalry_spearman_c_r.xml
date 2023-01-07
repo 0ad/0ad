@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -17,12 +17,14 @@
       <textures>
         <texture file="skeletal/kush/scale_01.png" name="baseTex"/>
         <texture file="skeletal/kush/scale_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="kush_champion_02">
       <textures>
         <texture file="skeletal/kush/scale_02.png" name="baseTex"/>
         <texture file="skeletal/kush/scale_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="kush_champion_03_lightskin">
@@ -32,6 +34,7 @@
       <textures>
         <texture file="skeletal/kush/scale_03.png" name="baseTex"/>
         <texture file="skeletal/kush/scale_03_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="kush_champion_04_lightskin">
@@ -41,6 +44,7 @@
       <textures>
         <texture file="skeletal/kush/scale_04.png" name="baseTex"/>
         <texture file="skeletal/kush/scale_04_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -48,5 +52,5 @@
     <variant file="biped/rider/cavalry/base_spearman_fast_shield_01.xml" name="Spearman-Fast-Shield-01" frequency="1"/>
     <variant file="biped/rider/death_shield.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

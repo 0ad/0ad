@@ -6,6 +6,8 @@
       <mesh>props/new/capes/m_cape_medium.dae</mesh>
       <textures>
         <texture file="props/cape_iber_viriato.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -79,5 +81,5 @@
     <variant file="biped/cape_build_farm.xml"/>
     <variant file="biped/death_cape.xml"/>
   </group>
-  <material>basic_trans.xml</material>
+  <material>basic_trans_norm_spec.xml</material>
 </actor>

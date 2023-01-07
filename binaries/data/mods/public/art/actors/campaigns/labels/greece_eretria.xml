@@ -3,8 +3,12 @@
   <group>
     <variant name="decal_campaign_eretria">
       <decal angle="45" depth="25" offsetx="0" offsetz="0" width="100"/>
-      <textures><texture file="campaigns/labels/greece_eretria.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="campaigns/labels/greece_eretria.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>terrain_base.xml</material>
+  <material>terrain_norm_spec.xml</material>
 </actor>

@@ -5,8 +5,12 @@
     <variant frequency="1" name="priestess head">
       <color>29 28 24</color>
       <mesh>props/new/head_iber_healer.dae</mesh>
-      <textures><texture file="props/head/hele_fem_b_cin.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/hele_fem_b_cin.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>objectcolor.xml</material>
+  <material>objectcolor_norm_spec.xml</material>
 </actor>

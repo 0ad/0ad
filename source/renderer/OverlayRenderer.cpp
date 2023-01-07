@@ -59,8 +59,11 @@ struct Shader
 	}
 };
 
-void AdjustOverlayGraphicsPipelineState(Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc)
+void AdjustOverlayGraphicsPipelineState(
+	Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc,
+	const bool depthTestEnabled)
 {
+	pipelineStateDesc.depthStencilState.depthTestEnabled = depthTestEnabled;
 	pipelineStateDesc.depthStencilState.depthWriteEnabled = false;
 	pipelineStateDesc.blendState.enabled = true;
 	pipelineStateDesc.blendState.srcColorBlendFactor = pipelineStateDesc.blendState.srcAlphaBlendFactor =
@@ -72,21 +75,22 @@ void AdjustOverlayGraphicsPipelineState(Renderer::Backend::SGraphicsPipelineStat
 }
 
 Shader CreateShader(
-	const CStrIntern name, const CShaderDefines& defines)
+	const CStrIntern name, const CShaderDefines& defines,
+	const bool depthTestEnabled)
 {
 	Shader shader;
 
 	shader.technique = g_Renderer.GetShaderManager().LoadEffect(
 		name, defines,
-		[](Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc)
+		[depthTestEnabled](Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc)
 		{
-			AdjustOverlayGraphicsPipelineState(pipelineStateDesc);
+			AdjustOverlayGraphicsPipelineState(pipelineStateDesc, depthTestEnabled);
 		});
 	shader.techniqueWireframe = g_Renderer.GetShaderManager().LoadEffect(
 		name, defines,
-		[](Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc)
+		[depthTestEnabled](Renderer::Backend::SGraphicsPipelineStateDesc& pipelineStateDesc)
 		{
-			AdjustOverlayGraphicsPipelineState(pipelineStateDesc);
+			AdjustOverlayGraphicsPipelineState(pipelineStateDesc, depthTestEnabled);
 			pipelineStateDesc.rasterizationState.polygonMode = Renderer::Backend::PolygonMode::LINE;
 		});
 
@@ -259,15 +263,15 @@ void OverlayRendererInternals::Initialize()
 	quadIndices.FreeBackingStore();
 
 	shaderTexLineNormal =
-		CreateShader(str_overlay_line, defsOverlayLineNormal);
+		CreateShader(str_overlay_line, defsOverlayLineNormal, true);
 	shaderTexLineAlwaysVisible =
-		CreateShader(str_overlay_line, defsOverlayLineAlwaysVisible);
+		CreateShader(str_overlay_line, defsOverlayLineAlwaysVisible, true);
 	shaderQuadOverlay =
-		CreateShader(str_overlay_line, defsQuadOverlay);
+		CreateShader(str_overlay_line, defsQuadOverlay, true);
 	shaderForegroundOverlay =
-		CreateShader(str_foreground_overlay, {});
+		CreateShader(str_foreground_overlay, {}, false);
 	shaderOverlaySolid =
-		CreateShader(str_overlay_solid, {});
+		CreateShader(str_overlay_solid, {}, true);
 
 	const uint32_t quadStride = quadVertices.GetStride();
 	const std::array<Renderer::Backend::SVertexAttributeFormat, 3> quadAttributes{{

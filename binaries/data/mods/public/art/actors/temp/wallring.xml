@@ -5,8 +5,10 @@
       <decal width="300" depth="300" angle="0" offsetx="0" offsetz="0"/>
       <textures>
         <texture file="temp/wallring.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>terrain_base.xml</material>
+  <material>terrain_norm_spec.xml</material>
 </actor>

@@ -5,6 +5,8 @@
     <variant frequency="100" name="Gaul Storehouse Ore">
       <textures>
         <texture file="props/rome_sb_turf.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -16,5 +18,5 @@
       <mesh>props/gaul_storehouse_ore_b.dae</mesh>
     </variant>
   </group>
-  <material>default.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

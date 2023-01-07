@@ -11,14 +11,16 @@
       <textures>
         <texture file="props/head/african_fem_amanirenas.png" name="baseTex"/>
         <texture file="props/head/african_fem_amanirenas_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="half blind">
       <textures>
         <texture file="props/head/african_fem_amanirenas_blind.png" name="baseTex"/>
         <texture file="props/head/african_fem_amanirenas_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>no_trans_spec.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

@@ -13,6 +13,7 @@
       </props>
       <textures>
         <texture file="skeletal/ptol/linothorax_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -53,12 +54,14 @@
       <textures>
         <texture file="skeletal/ptol/scale_agema_01.png" name="baseTex"/>
         <texture file="skeletal/hele/scale_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="Scale-Agema-02">
       <textures>
         <texture file="skeletal/ptol/scale_agema_02.png" name="baseTex"/>
         <texture file="skeletal/hele/scale_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -79,5 +82,5 @@
   <group>
     <variant frequency="1" name="Idle"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

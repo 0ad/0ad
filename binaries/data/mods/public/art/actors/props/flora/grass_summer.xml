@@ -12,8 +12,10 @@
     <variant frequency="1" name="1">
       <textures>
         <texture file="gaia/grass_summer.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>basic_trans_wind_grain.xml</material>
+  <material>basic_trans_wind_grain_norm_spec.xml</material>
 </actor>

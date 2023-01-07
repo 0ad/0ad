@@ -6,8 +6,10 @@
       <mesh>props/new/head_mauryan_short_hair.dae</mesh>
       <textures>
         <texture file="props/helmet/maur_face_c.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

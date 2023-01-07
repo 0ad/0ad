@@ -90,36 +90,42 @@
       <textures>
         <texture file="skeletal/mace/cuirass_01_05.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-cuirass-1f">
       <textures>
         <texture file="skeletal/mace/cuirass_01_06.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-linothorax-1h">
       <textures>
         <texture file="skeletal/mace/linothorax_01_08.png" name="baseTex"/>
         <texture file="skeletal/hele/linothorax_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="sele-cuirass_06">
       <textures>
         <texture file="skeletal/sele/cuirass_06.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-scale-2b">
       <textures>
         <texture file="skeletal/mace/scale_02_02.png" name="baseTex"/>
         <texture file="skeletal/hele/scale_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-scale-3b">
       <textures>
         <texture file="skeletal/mace/scale_03_02.png" name="baseTex"/>
         <texture file="skeletal/hele/scale_03_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -137,5 +143,5 @@
     <variant file="biped/formations/phalanx_back.xml"/>
     <variant file="biped/gather_praise.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

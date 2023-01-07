@@ -4,22 +4,26 @@
   <group>
     <variant frequency="100" name="Mesh">
       <mesh>skeletal/wolf.dae</mesh>
-        <animations>
-          <animation file="quadraped/wolf_walk.dae" name="Walk" speed="75"/>
-          <animation file="quadraped/wolf_run.dae" name="Run" speed="10"/>
-          <animation file="quadraped/wolf_attack_01.dae" name="attack_melee" speed="165"/>
-          <animation file="quadraped/wolf_attack_02.dae" name="attack_melee" speed="165"/>
-          <animation file="quadraped/wolf_idle_01.dae" name="Idle" speed="100"/>
-          <animation file="quadraped/wolf_idle_02.dae" name="Idle" speed="100"/>
-          <animation file="quadraped/wolf_idle_03.dae" name="Idle" speed="100"/>
-          <animation file="quadraped/wolf_death_01.dae" name="death" speed="100"/>
-          <animation file="quadraped/wolf_death_02.dae" name="death" speed="100"/>
-        </animations>
+      <animations>
+        <animation file="quadraped/wolf_walk.dae" name="Walk" speed="75"/>
+        <animation file="quadraped/wolf_run.dae" name="Run" speed="10"/>
+        <animation file="quadraped/wolf_attack_01.dae" name="attack_melee" speed="165"/>
+        <animation file="quadraped/wolf_attack_02.dae" name="attack_melee" speed="165"/>
+        <animation file="quadraped/wolf_idle_01.dae" name="Idle" speed="100"/>
+        <animation file="quadraped/wolf_idle_02.dae" name="Idle" speed="100"/>
+        <animation file="quadraped/wolf_idle_03.dae" name="Idle" speed="100"/>
+        <animation file="quadraped/wolf_death_01.dae" name="death" speed="100"/>
+        <animation file="quadraped/wolf_death_02.dae" name="death" speed="100"/>
+      </animations>
     </variant>
   </group>
   <group>
     <variant frequency="1" name="fur-white">
-      <textures><texture file="skeletal/animal_wolf_white.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="skeletal/animal_wolf_white.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -30,4 +34,5 @@
       </props>
     </variant>
   </group>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

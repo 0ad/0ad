@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -11,6 +11,7 @@
       <textures>
         <texture file="skeletal/kush/skirt_female_01_light.png" name="baseTex"/>
         <texture file="skeletal/kush/skirt_female_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="5" name="Skirt Medium Skin">
@@ -22,6 +23,7 @@
       <textures>
         <texture file="skeletal/kush/skirt_female_01_medium.png" name="baseTex"/>
         <texture file="skeletal/kush/skirt_female_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="3" name="Skirt Dark Skin">
@@ -33,6 +35,7 @@
       <textures>
         <texture file="skeletal/kush/skirt_female_01_dark.png" name="baseTex"/>
         <texture file="skeletal/kush/skirt_female_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="White Dress Light Skin">
@@ -44,6 +47,7 @@
       <textures>
         <texture file="skeletal/kush/dress_female_01_light.png" name="baseTex"/>
         <texture file="skeletal/kush/dress_female_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="5" name="White Dress Medium Skin">
@@ -55,6 +59,7 @@
       <textures>
         <texture file="skeletal/kush/dress_female_01_medium.png" name="baseTex"/>
         <texture file="skeletal/kush/dress_female_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="3" name="White Dress Dark Skin">
@@ -66,6 +71,7 @@
       <textures>
         <texture file="skeletal/kush/dress_female_01_dark.png" name="baseTex"/>
         <texture file="skeletal/kush/dress_female_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="0" name="Striped Dress Light Skin">
@@ -77,6 +83,7 @@
       <textures>
         <texture file="skeletal/kush/dress_female_02_light.png" name="baseTex"/>
         <texture file="skeletal/kush/dress_female_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="0" name="Striped Dress Medium Skin">
@@ -88,6 +95,7 @@
       <textures>
         <texture file="skeletal/kush/dress_female_02_medium.png" name="baseTex"/>
         <texture file="skeletal/kush/dress_female_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="0" name="Striped Dress Dark Skin">
@@ -99,6 +107,7 @@
       <textures>
         <texture file="skeletal/kush/dress_female_02_dark.png" name="baseTex"/>
         <texture file="skeletal/kush/dress_female_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="0" name="Nuba Woman 01">
@@ -110,6 +119,7 @@
       <textures>
         <texture file="skeletal/kush/skirt_female_noba_01.png" name="baseTex"/>
         <texture file="skeletal/kush/skirt_female_noba_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -145,5 +155,5 @@
     <variant file="biped/female_build.xml"/>
     <variant file="biped/female_build_farm.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

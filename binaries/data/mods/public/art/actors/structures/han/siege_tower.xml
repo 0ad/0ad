@@ -12,6 +12,8 @@
       </props>
       <textures>
         <texture file="structural/hele_siege_tower.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
       <animations>
         <animation file="mechanical/han_siege_tower_idle.dae" name="idle" speed="100"/>
@@ -37,5 +39,5 @@
       </props>
     </variant>
   </group>
-  <material>default.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

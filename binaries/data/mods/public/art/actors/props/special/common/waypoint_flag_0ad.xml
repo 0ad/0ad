@@ -4,11 +4,15 @@
   <group>
     <variant frequency="100" name="Base">
       <mesh>props/garrison_flag.dae</mesh>
-      <textures><texture file="props/wrld_waypoint_flag.dds" name="baseTex"/></textures>
-      <animations> 
-        <animation file="mechanical/garrison_flag_idle.dae" name="Idle" speed="25"/>		
-      </animations> 
+      <textures>
+        <texture file="props/wrld_waypoint_flag.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
+      <animations>
+        <animation file="mechanical/garrison_flag_idle.dae" name="Idle" speed="25"/>
+      </animations>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

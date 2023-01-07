@@ -26,18 +26,21 @@
       <textures>
         <texture file="gaia/metal_medit_a.dds" name="baseTex"/>
         <texture name="specTex" file="null_white.dds"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="medit_stone_b">
       <textures>
         <texture file="gaia/metal_medit_b.dds" name="baseTex"/>
         <texture name="specTex" file="null_white.dds"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="medit_stone_c">
       <textures>
         <texture file="gaia/metal_medit_c.dds" name="baseTex"/>
         <texture name="specTex" file="null_white.dds"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -48,6 +51,5 @@
       </props>
     </variant>
   </group>
-  <material>no_trans_spec.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>
-

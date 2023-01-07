@@ -1,14 +1,16 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="cunobelin-head">
       <color>78 55 24</color>
       <mesh>props/dude_head.dae</mesh>
-      <textures><texture file="props/head/celt_cunobelin.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/celt_cunobelin.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
-
+  <material>no_trans_norm_spec.xml</material>
 </actor>

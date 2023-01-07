@@ -7,6 +7,7 @@
       <textures>
         <texture file="skeletal/animal-elephant-base.dds" name="baseTex"/>
         <texture file="skeletal/animal-elephant-base_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -15,5 +16,5 @@
     <variant file="quadraped/base_elephant_death.xml"/>
     <variant file="quadraped/base_elephant_run.xml"/>
   </group>
-  <material>no_trans_spec.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>

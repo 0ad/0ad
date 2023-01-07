@@ -7,6 +7,7 @@
       <textures>
         <texture file="gaia/metal_alpine_a.dds" name="baseTex"/>
         <texture name="specTex" file="null_white.dds"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="formation-b">
@@ -14,6 +15,7 @@
       <textures>
         <texture file="gaia/metal_alpine_a.dds" name="baseTex"/>
         <texture name="specTex" file="null_white.dds"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="formation-c">
@@ -21,6 +23,7 @@
       <textures>
         <texture file="gaia/metal_alpine_a.dds" name="baseTex"/>
         <texture name="specTex" file="null_white.dds"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="boulder-a">
@@ -28,6 +31,7 @@
       <textures>
         <texture file="gaia/metal_alpine_a_256.dds" name="baseTex"/>
         <texture name="specTex" file="null_white.dds"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="boulder-b">
@@ -35,6 +39,7 @@
       <textures>
         <texture file="gaia/metal_alpine_a_256.dds" name="baseTex"/>
         <texture name="specTex" file="null_white.dds"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="boulder-c">
@@ -42,9 +47,9 @@
       <textures>
         <texture file="gaia/metal_alpine_a_256.dds" name="baseTex"/>
         <texture name="specTex" file="null_white.dds"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
-  <material>no_trans_spec.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>
-

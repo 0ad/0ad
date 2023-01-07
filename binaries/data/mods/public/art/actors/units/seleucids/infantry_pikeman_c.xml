@@ -35,66 +35,77 @@
       <textures>
         <texture file="skeletal/sele/cuirass_06.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="2" name="sele-cuirass-1g">
       <textures>
         <texture file="skeletal/sele/cuirass_07.png" name="baseTex"/>
         <texture file="skeletal/hele/cuirass_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-cuirass-vergina-1a">
       <textures>
         <texture file="skeletal/mace/cuirass_vergina_01_01.png" name="baseTex"/>
         <texture file="skeletal/mace/cuirass_vergina_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-cuirass-vergina-1b">
       <textures>
         <texture file="skeletal/mace/cuirass_vergina_01_02.png" name="baseTex"/>
         <texture file="skeletal/mace/cuirass_vergina_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-cuirass-vergina-1c">
       <textures>
         <texture file="skeletal/mace/cuirass_vergina_01_03.png" name="baseTex"/>
         <texture file="skeletal/mace/cuirass_vergina_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-cuirass-vergina-1d">
       <textures>
         <texture file="skeletal/mace/cuirass_vergina_01_04.png" name="baseTex"/>
         <texture file="skeletal/mace/cuirass_vergina_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-linothorax-1h">
       <textures>
         <texture file="skeletal/mace/linothorax_01_08.png" name="baseTex"/>
         <texture file="skeletal/hele/linothorax_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-linothorax-1j">
       <textures>
         <texture file="skeletal/mace/linothorax_01_10.png" name="baseTex"/>
         <texture file="skeletal/hele/linothorax_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-cuirass-gorgon-1a">
       <textures>
         <texture file="skeletal/mace/cuirass_gorgon_01_01.png" name="baseTex"/>
         <texture file="skeletal/mace/cuirass_gorgon_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-scale-2b">
       <textures>
         <texture file="skeletal/mace/scale_02_02.png" name="baseTex"/>
         <texture file="skeletal/hele/scale_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="mace-scale-3b">
       <textures>
         <texture file="skeletal/mace/scale_03_02.png" name="baseTex"/>
         <texture file="skeletal/hele/scale_03_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -114,5 +125,5 @@
     <variant file="biped/build_farm.xml"/>
     <variant file="biped/approach_praise.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

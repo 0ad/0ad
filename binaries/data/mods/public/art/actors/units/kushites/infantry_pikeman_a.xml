@@ -17,12 +17,14 @@
       <textures>
         <texture file="skeletal/kush/skirt_leather_02.png" name="baseTex"/>
         <texture file="skeletal/kush/skirt_leather_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="kush_pikeman_01">
       <textures>
         <texture file="skeletal/kush/tunic_basic_02_01.png" name="baseTex"/>
         <texture file="skeletal/kush/tunic_basic_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="kush_pikesman_02_lightskin">
@@ -32,6 +34,7 @@
       <textures>
         <texture file="skeletal/kush/tunic_basic_02_02.png" name="baseTex"/>
         <texture file="skeletal/kush/tunic_basic_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="kush_pikesman_03_lightskin">
@@ -41,18 +44,21 @@
       <textures>
         <texture file="skeletal/kush/tunic_basic_02_03.png" name="baseTex"/>
         <texture file="skeletal/kush/tunic_basic_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="kush_pikesman_04">
       <textures>
         <texture file="skeletal/kush/tunic_advanced_01_01.png" name="baseTex"/>
         <texture file="skeletal/kush/tunic_advanced_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="kush_pikesman_05">
       <textures>
         <texture file="skeletal/kush/tunic_advanced_01_02.png" name="baseTex"/>
         <texture file="skeletal/kush/tunic_advanced_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="kush_pikesman_06_lightskin">
@@ -62,6 +68,7 @@
       <textures>
         <texture file="skeletal/kush/tunic_advanced_01_03.png" name="baseTex"/>
         <texture file="skeletal/kush/tunic_advanced_01_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -103,5 +110,5 @@
     <variant file="biped/build.xml"/>
     <variant file="biped/build_farm.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

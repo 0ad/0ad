@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -11,7 +11,7 @@
         <animation file="mechanical/chariot_move.dae" name="Run" speed="7"/>
         <animation file="mechanical/chariot_death.dae" name="Death" id="death1" speed="100"/>
         <animation file="mechanical/chariot_death.dae" name="Death" id="death2" speed="100"/>
-    		<animation file="mechanical/chariot_idle.dae" name="attack_ranged" speed="80"/>
+        <animation file="mechanical/chariot_idle.dae" name="attack_ranged" speed="80"/>
       </animations>
       <mesh>structural/pers_chariot_e.dae</mesh>
       <props>
@@ -26,6 +26,7 @@
       <textures>
         <texture file="structural/pers_chariot_xerxes.png" name="baseTex"/>
         <texture file="structural/pers_chariot_hero_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -42,5 +43,5 @@
       </props>
     </variant>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

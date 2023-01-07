@@ -7,8 +7,10 @@
       <textures>
         <texture file="skeletal/rome/chainmail_02_03.png" name="baseTex"/>
         <texture file="structural/ao/rome_blacksmith.png" name="aoTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>player_trans_ao.xml</material>
+  <material>player_trans_ao_norm_spec.xml</material>
 </actor>

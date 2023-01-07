@@ -1,19 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-    
   <group>
     <variant frequency="100" name="palisade rocks gate">
-      <animations> 
+      <animations>
         <animation file="mechanical/palisade_rocks_gate_closed.dae" name="gate_closed" speed="65"/>
         <animation file="mechanical/palisade_rocks_gate_opening.dae" name="gate_opening" speed="65"/>
         <animation file="mechanical/palisade_rocks_gate_open.dae" name="gate_open" speed="65"/>
         <animation file="mechanical/palisade_rocks_gate_closing.dae" name="gate_closing" speed="65"/>
-      </animations> 
+      </animations>
       <mesh>props/palisade_rocks_gate.dae</mesh>
-      <textures><texture file="props/palisade_main.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/palisade_main.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
-
+  <material>no_trans_norm_spec.xml</material>
 </actor>

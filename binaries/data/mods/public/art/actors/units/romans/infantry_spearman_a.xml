@@ -67,72 +67,84 @@
       <textures>
         <texture file="skeletal/rome/chainmail_02_01.png" name="baseTex"/>
         <texture file="skeletal/rome/chainmail_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-chainmail-2b">
       <textures>
         <texture file="skeletal/rome/chainmail_02_02.png" name="baseTex"/>
         <texture file="skeletal/rome/chainmail_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-chainmail-2c">
       <textures>
         <texture file="skeletal/rome/chainmail_02_03.png" name="baseTex"/>
         <texture file="skeletal/rome/chainmail_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-chainmail-3a">
       <textures>
         <texture file="skeletal/rome/chainmail_03_01.png" name="baseTex"/>
         <texture file="skeletal/rome/chainmail_03_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-chainmail-3b">
       <textures>
         <texture file="skeletal/rome/chainmail_03_02.png" name="baseTex"/>
         <texture file="skeletal/rome/chainmail_03_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-chainmail-3c">
       <textures>
         <texture file="skeletal/rome/chainmail_03_03.png" name="baseTex"/>
         <texture file="skeletal/rome/chainmail_03_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-chainmail-4a">
       <textures>
         <texture file="skeletal/rome/chainmail_04_01.png" name="baseTex"/>
         <texture file="skeletal/celt/chainmail_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-chainmail-4b">
       <textures>
         <texture file="skeletal/rome/chainmail_04_02.png" name="baseTex"/>
         <texture file="skeletal/celt/chainmail_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-chainmail-4c">
       <textures>
         <texture file="skeletal/rome/chainmail_04_03.png" name="baseTex"/>
         <texture file="skeletal/celt/chainmail_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-chainmail-4d">
       <textures>
         <texture file="skeletal/rome/chainmail_04_04.png" name="baseTex"/>
         <texture file="skeletal/celt/chainmail_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-chainmail-4e">
       <textures>
         <texture file="skeletal/rome/chainmail_04_05.png" name="baseTex"/>
         <texture file="skeletal/celt/chainmail_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="rome-chainmail-4f">
       <textures>
         <texture file="skeletal/rome/chainmail_04_06.png" name="baseTex"/>
         <texture file="skeletal/celt/chainmail_02_spec.png" name="specTex"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -176,5 +188,5 @@
     <variant file="biped/build.xml"/>
     <variant file="biped/build_farm.xml"/>
   </group>
-  <material>player_trans_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

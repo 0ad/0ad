@@ -6,6 +6,7 @@
       <textures>
         <texture file="props/prop_weap.dds" name="baseTex"/>
         <texture name="specTex" file="null_white.dds"/>
+        <texture file="default_norm.png" name="normTex"/>
       </textures>
     </variant>
   </group>
@@ -22,10 +23,9 @@
     <variant frequency="1" name="falcata-steel">
       <mesh>props/weap_falcata_d.dae</mesh>
     </variant>
-    <variant frequency="&#09;1" name="falcata-e">
+    <variant frequency="	1" name="falcata-e">
       <mesh>props/weap_falcata_e.dae</mesh>
     </variant>
   </group>
-  <material>no_trans_spec.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>
-

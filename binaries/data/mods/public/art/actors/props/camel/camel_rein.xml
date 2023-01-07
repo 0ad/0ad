@@ -10,12 +10,14 @@
         <mesh>props/horse/rein_camel_01.dae</mesh>
         <textures>
           <texture file="null_brown.png" name="baseTex"/>
+          <texture file="default_norm.png" name="normTex"/>
+          <texture file="null_black.dds" name="specTex"/>
         </textures>
       </variant>
     </group>
     <group>
       <variant file="quadraped/base_camel_mount.xml"/>
     </group>
-    <material>default.xml</material>
+    <material>no_trans_norm_spec.xml</material>
   </inline>
 </qualitylevels>

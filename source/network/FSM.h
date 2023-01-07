@@ -18,12 +18,11 @@
 #ifndef FSM_H
 #define FSM_H
 
-// INCLUDES
 #include <vector>
 #include <set>
 #include <map>
 
-// DECLARATIONS
+
 #define FSM_INVALID_STATE (unsigned int)(~0)
 
 class CFsmEvent;
@@ -86,14 +85,32 @@ public:
 	CFsmTransition(unsigned int state);
 	~CFsmTransition();
 
+	/**
+	 * Registers an action that will be executed when the transition occurs.
+	 * @param pAction the function which will be executed.
+	 * @param pContext data passed to the function.
+	 */
 	void RegisterAction(void* pAction, void* pContext);
+
+	/**
+	 * Registers a condition which will be evaluated when the transition occurs.
+	 * @param pCondition the predicate which will be executed.
+	 * @param pContext data passed to the predicate.
+	 */
 	void RegisterCondition(void* pCondition, void* pContext);
+
+	/**
+	 * Set event for which transition will occur.
+	 */
 	void SetEvent(CFsmEvent* pEvent);
 	CFsmEvent* GetEvent() const
 	{
 		return m_Event;
 	}
 
+	/**
+	 * Set next state the transition will switch the system to.
+	 */
 	void SetNextState(unsigned int nextState);
 	unsigned int GetNextState() const
 	{
@@ -115,15 +132,25 @@ public:
 		return m_Conditions;
 	}
 
+	/**
+	 * Evaluates conditions for the transition.
+	 * @return whether all the conditions are true.
+	 */
 	bool ApplyConditions() const;
+
+	/**
+	 * Executes actions for the transition.
+	 * @note If there are no actions, assume true.
+	 * @return whether all the actions returned true.
+	 */
 	bool RunActions() const;
 
 private:
-	unsigned int m_CurrState; // Current state
-	unsigned int m_NextState; // Next state
-	CFsmEvent* m_Event; // Transition event
-	CallbackList m_Actions; // List of actions for transition
-	CallbackList m_Conditions; // List of conditions for transition
+	unsigned int m_CurrState;
+	unsigned int m_NextState;
+	CFsmEvent* m_Event;
+	CallbackList m_Actions;
+	CallbackList m_Conditions;
 };
 
 /**
@@ -135,7 +162,7 @@ private:
  *
  * A Mealy state machine has behaviour associated with state
  * transitions; Mealy machines are event driven where an
- * event triggers a state transition
+ * event triggers a state transition.
  */
 class CFsm
 {
@@ -147,24 +174,55 @@ public:
 
 	/**
 	 * Constructs the state machine. This method must be overriden so that
-	 * connections are constructed for the particular state machine implemented
+	 * connections are constructed for the particular state machine implemented.
 	 */
 	virtual void Setup();
 
 	/**
-	 * Clear event, action and condition lists and reset state machine
+	 * Clear event, action and condition lists and reset state machine.
 	 */
 	void Shutdown();
 
+	/**
+	 * Adds the specified state to the internal list of states.
+	 * @note If a state with the specified ID exists, the state is not added.
+	 */
 	void AddState(unsigned int state);
+
+	/**
+	 * Adds the specified event to the internal list of events.
+	 * @note If an eveny with the specified ID exists, the event is not added.
+	 * @return a pointer to the new event.
+	 */
 	CFsmEvent* AddEvent(unsigned int eventType);
+
+	/**
+	 * Adds a new transistion to the state machine.
+	 * @return a pointer to the new transition.
+	 */
 	CFsmTransition* AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState );
+
+	/**
+	 * Adds a new transition to the state machine.
+	 * @return a pointer to the new transition.
+	 */
 	CFsmTransition* AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState,
 		 void* pAction, void* pContext);
+
+	/**
+	 * Looks up the transition given the state, event and next state to transition to.
+	 */
 	CFsmTransition* GetTransition(unsigned int state, unsigned int eventType) const;
 	CFsmTransition* GetEventTransition (unsigned int eventType) const;
 
+	/**
+	 * Sets the initial state for FSM.
+	 */
 	void SetFirstState(unsigned int firstState);
+
+	/**
+	 * Sets the current state and update the last state to the current state.
+	 */
 	void SetCurrState(unsigned int state);
 	unsigned int GetCurrState() const
 	{
@@ -196,21 +254,41 @@ public:
 		return m_Transitions;
 	}
 
+	/**
+	 * Updates the FSM and retrieves next state.
+	 * @return whether the state was changed.
+	 */
 	bool Update(unsigned int eventType, void* pEventData);
+
+	/**
+	 * Verifies whether the specified state is managed by the FSM.
+	 */
 	bool IsValidState(unsigned int state) const;
+
+	/**
+	 * Verifies whether the specified event is managed by the FSM.
+	 */
 	bool IsValidEvent(unsigned int eventType) const;
+
+	/**
+	 * Tests whether the state machine has finished its work.
+	 * @note This is state machine specific.
+	 */
 	virtual bool IsDone() const;
 
 private:
+	/**
+	 * Verifies whether state machine has already been updated.
+	 */
 	bool IsFirstTime() const;
 
-	bool m_Done; // FSM work is done
-	unsigned int m_FirstState; // Initial state
-	unsigned int m_CurrState; // Current state
-	unsigned int m_NextState; // Next state
-	StateSet m_States; // List of states
-	EventMap m_Events; // List of events
-	TransitionList m_Transitions; // State transitions
+	bool m_Done;
+	unsigned int m_FirstState;
+	unsigned int m_CurrState;
+	unsigned int m_NextState;
+	StateSet m_States;
+	EventMap m_Events;
+	TransitionList m_Transitions;
 };
 
 #endif // FSM_H

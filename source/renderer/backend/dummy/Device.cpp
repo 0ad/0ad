@@ -153,6 +153,12 @@ bool CDevice::IsFramebufferFormatSupported(const Format UNUSED(format)) const
 	return true;
 }
 
+Format CDevice::GetPreferredDepthStencilFormat(
+	const uint32_t, const bool, const bool) const
+{
+	return Format::D24_S8;
+}
+
 std::unique_ptr<IDevice> CreateDevice(SDL_Window* UNUSED(window))
 {
 	return std::make_unique<Dummy::CDevice>();

@@ -1,8 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
     <variant frequency="1" name="Beard-Small">
       <mesh>props/head_beard_small.dae</mesh>
@@ -14,13 +12,15 @@
       <mesh>props/head_beard_wide.dae</mesh>
     </variant>
   </group>
-
   <group>
     <variant>
-      <textures><texture file="props/head/celt_c.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/head/celt_c.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
-
   <group>
     <variant frequency="1" name="medium blonde">
       <color>208 188 119</color>
@@ -32,7 +32,5 @@
       <color>244 213 117</color>
     </variant>
   </group>
-
-  <material>objectcolor.xml</material>
-
+  <material>objectcolor_norm_spec.xml</material>
 </actor>

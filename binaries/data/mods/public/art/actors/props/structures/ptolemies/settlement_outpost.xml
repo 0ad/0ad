@@ -6,12 +6,14 @@
       <mesh>props/ptol_settlement_outpost.dae</mesh>
       <props>
         <prop actor="props/structures/ptolemies/settlement_outpost_props.xml" attachpoint="root"/>
-      </props>      
+      </props>
       <textures>
         <texture file="props/scaffold.png" name="baseTex"/>
         <texture file="structural/ao/ptol_settlement.png" name="aoTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
-  <material>no_trans_ao.xml</material>  
+  <material>no_trans_ao_norm_spec.xml</material>
 </actor>

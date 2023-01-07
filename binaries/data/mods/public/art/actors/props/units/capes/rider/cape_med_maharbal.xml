@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
   <castshadow/>
   <group>
@@ -6,6 +6,8 @@
       <mesh>props/new/capes/m_cape_medium.dae</mesh>
       <textures>
         <texture file="props/cape_kart_maharbal.dds" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -53,5 +55,5 @@
     <variant file="biped/rider/attack_slaughter.xml"/>
     <variant file="biped/cape_gather_meat.xml"/>
   </group>
-  <material>basic_trans.xml</material>
+  <material>basic_trans_norm_spec.xml</material>
 </actor>

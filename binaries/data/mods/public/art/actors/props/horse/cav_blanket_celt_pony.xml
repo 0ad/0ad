@@ -2,10 +2,18 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant file="quadraped/base_pony_chariot.xml"  name="Chariot Pony"/>
+    <variant file="quadraped/base_pony_chariot.xml" name="Chariot Pony"/>
   </group>
   <group>
     <variant file="quadraped/horse/props/blanket_celt_pony_01.xml" name="pony-blanket-celtic-01"/>
   </group>
-  <material>player_trans.xml</material>
+  <group>
+    <variant>
+      <textures>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

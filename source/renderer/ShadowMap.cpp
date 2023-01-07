@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -518,7 +518,13 @@ void ShadowMapInternals::CreateTexture()
 	case 16: formatName = "Format::D16"; backendFormat = Renderer::Backend::Format::D16; break;
 	case 24: formatName = "Format::D24"; backendFormat = Renderer::Backend::Format::D24; break;
 	case 32: formatName = "Format::D32"; backendFormat = Renderer::Backend::Format::D32; break;
-	default: formatName = "Format::D24"; backendFormat = Renderer::Backend::Format::D24; break;
+	default:
+		formatName = "Default";
+		backendFormat = backendDevice->GetPreferredDepthStencilFormat(
+			Renderer::Backend::ITexture::Usage::SAMPLED |
+				Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
+			true, false);
+		break;
 	}
 #endif
 	ENSURE(formatName);

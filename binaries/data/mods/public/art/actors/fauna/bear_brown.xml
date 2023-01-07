@@ -10,6 +10,8 @@
     <variant frequency="1" name="Fur-Brown">
       <textures>
         <texture file="skeletal/animal_bear_brown.png" name="baseTex"/>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
       </textures>
     </variant>
   </group>
@@ -17,5 +19,5 @@
     <variant file="quadraped/base_bear.xml"/>
     <variant file="quadraped/base_bear_death.xml"/>
   </group>
-  <material>default.xml</material>
+  <material>no_trans_norm_spec.xml</material>
 </actor>
