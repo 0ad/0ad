@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,7 +29,8 @@ class COListColumn
 {
 public:
 	COListColumn(IGUIObject* owner, const CStr& cid)
-		: m_Width(0), m_Id(cid), m_List(owner, "list_" + cid), m_Hidden(owner, "hidden_" + cid, false)
+		: m_Id(cid), m_Width(0), m_Heading(owner, "heading_" + cid), m_List(owner, "list_" + cid),
+		m_Hidden(owner, "hidden_" + cid, false)
 	{}
 	// Avoid copying the strings.
 	NONCOPYABLE(COListColumn);
@@ -37,7 +38,7 @@ public:
 	CGUIColor m_TextColor;
 	CStr m_Id;
 	float m_Width;
-	CStrW m_Heading; // CGUIString??
+	CGUISimpleSetting<CStrW> m_Heading; // CGUIString??
 	CGUISimpleSetting<CGUIList> m_List;
 	CGUISimpleSetting<bool> m_Hidden;
 };
