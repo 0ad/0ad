@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -124,6 +124,9 @@ private:
 	void ReadConfig();
 	int GetBestBPP();
 	bool SetVideoMode(int w, int h, int bpp, bool fullscreen);
+
+	bool TryCreateBackendDevice(SDL_Window* window);
+	void DowngradeBackendSettingAfterCreationFailure();
 
 	/**
 	 * Remember whether Init has been called. (This isn't used for anything
