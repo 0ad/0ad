@@ -1,10 +1,11 @@
 {
 	"type": "global",
-	"affects": ["Ship"],
+	"affects": ["Wall","Palisade"],
 	"modifications": [
 		{ "value": "Cost/BuildTime", "multiply": 0.8 },
-		{ "value": "Cost/Resources/metal", "multiply": 0.5 }
+		{ "value": "Cost/Resources/stone", "multiply": 0.5 },
+		{ "value": "Cost/Resources/wood", "multiply": 0.5 }
 	],
-	"auraName": "Naval Architect",
-	"auraDescription": "Ships −50% metal cost, −20% construction time."
+	"auraName": "Themistoclean Walls",
+	"auraDescription": "Walls and Palisades −50% resource costs and −20% construction time."
 }
