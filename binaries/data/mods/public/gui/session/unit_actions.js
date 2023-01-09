@@ -181,6 +181,11 @@ var g_UnitActions =
 				})
 			};
 		},
+		"hotkeyActionCheck": function(target, selection)
+		{
+			return Engine.HotkeyIsPressed("session.capture") &&
+				this.actionCheck(target, selection);
+		},
 		"actionCheck": function(target, selection)
 		{
 			let actionInfo = getActionInfo("capture", target, selection);
@@ -191,7 +196,7 @@ var g_UnitActions =
 				"firstAbleEntity": actionInfo.entity
 			};
 		},
-		"specificness": 9,
+		"specificness": 10,
 	},
 
 	"attack":
@@ -243,7 +248,7 @@ var g_UnitActions =
 				"firstAbleEntity": actionInfo.entity
 			};
 		},
-		"specificness": 10,
+		"specificness": 9,
 	},
 
 	"call-to-arms": {
@@ -261,7 +266,7 @@ var g_UnitActions =
 				"targetClasses": targetClasses,
 				"queued": queued,
 				"pushFront": pushFront,
-				"allowCapture": true,
+				"allowCapture": Engine.HotkeyIsPressed("session.capture"),
 				"formation": g_AutoFormation.getNull()
 			});
 			return true;
@@ -305,7 +310,7 @@ var g_UnitActions =
 				"target": action.target,
 				"targetClasses": { "attack": g_PatrolTargets },
 				"queued": queued,
-				"allowCapture": false,
+				"allowCapture": Engine.HotkeyIsPressed("session.capture"),
 				"formation": g_AutoFormation.getDefault()
 			});
 

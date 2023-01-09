@@ -185,6 +185,8 @@ var g_LeaveFoundationRange = 4;
 
 UnitAI.prototype.notifyToCheerInRange = 30;
 
+UnitAI.prototype.DEFAULT_CAPTURE = false;
+
 // To reject an order, use 'return this.FinishOrder();'
 const ACCEPT_ORDER = true;
 
@@ -535,7 +537,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			if (!this.AbleToMove() && !this.CheckTargetRange(msg.data.target, IID_Attack, bestAttack))
 				return this.FinishOrder();
 
-			this.PushOrderFront("Attack", { "target": msg.data.target, "force": !!msg.data.force, "hunting": true, "allowCapture": false });
+			this.PushOrderFront("Attack", { "target": msg.data.target, "force": !!msg.data.force, "hunting": true });
 			return ACCEPT_ORDER;
 		}
 
@@ -767,7 +769,6 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		"Order.Attack": function(msg) {
 			let target = msg.data.target;
-			let allowCapture = msg.data.allowCapture;
 			let cmpTargetUnitAI = Engine.QueryInterface(target, IID_UnitAI);
 			if (cmpTargetUnitAI && cmpTargetUnitAI.IsFormationMember())
 				target = cmpTargetUnitAI.GetFormationController();
@@ -781,7 +782,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				}
 				return this.FinishOrder();
 			}
-			this.CallMemberFunction("Attack", [target, allowCapture, false]);
+			this.CallMemberFunction("Attack", [target, msg.data.allowCapture, false]);
 			let cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
 			if (cmpAttack && cmpAttack.CanAttackAsFormation())
 				this.SetNextState("COMBAT.ATTACKING");
@@ -832,7 +833,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					}
 					return ACCEPT_ORDER;
 				}
-				this.PushOrderFront("Attack", { "target": msg.data.target, "force": !!msg.data.force, "hunting": true, "allowCapture": false, "min": 0, "max": 10 });
+				this.PushOrderFront("Attack", { "target": msg.data.target, "force": !!msg.data.force, "hunting": true, "min": 0, "max": 10 });
 				return ACCEPT_ORDER;
 			}
 
@@ -1300,8 +1301,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			"ATTACKING": {
 				// Wait for individual members to finish
 				"enter": function(msg) {
-					let target = this.order.data.target;
-					let allowCapture = this.order.data.allowCapture;
+					const target = this.order.data.target;
 					if (!this.CheckFormationTargetAttackRange(target))
 					{
 						if (this.CanAttack(target) && this.CheckTargetVisible(target))
@@ -1322,8 +1322,7 @@ UnitAI.prototype.UnitFsmSpec = {
 				},
 
 				"Timer": function(msg) {
-					let target = this.order.data.target;
-					let allowCapture = this.order.data.allowCapture;
+					const target = this.order.data.target;
 					if (!this.CheckFormationTargetAttackRange(target))
 					{
 						if (this.CanAttack(target) && this.CheckTargetVisible(target))
@@ -1568,7 +1567,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			}
 
 			if (this.CheckTargetVisible(msg.data.attacker))
-				this.PushOrderFront("Attack", { "target": msg.data.attacker, "force": false, "allowCapture": true });
+				this.PushOrderFront("Attack", { "target": msg.data.attacker, "force": false });
 			else
 			{
 				var cmpPosition = Engine.QueryInterface(msg.data.attacker, IID_Position);
@@ -2112,9 +2111,6 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.PushOrder("WalkAndFight", {
 							"x": lastPos.x, "z": lastPos.z,
 							"force": false,
-							// Force to true - otherwise structures might be attacked instead of captured,
-							// which is generally not expected (attacking units usually has allowCapture false).
-							"allowCapture": true
 						});
 						return;
 					}
@@ -4992,12 +4988,9 @@ UnitAI.prototype.CheckTargetIsInVisionRange = function(target)
 	return distance < range;
 };
 
-UnitAI.prototype.GetBestAttackAgainst = function(target, allowCapture)
+UnitAI.prototype.GetBestAttackAgainst = function(target, allowCapture = this.DEFAULT_CAPTURE)
 {
-	var cmpAttack = Engine.QueryInterface(this.entity, IID_Attack);
-	if (!cmpAttack)
-		return undefined;
-	return cmpAttack.GetBestAttackAgainst(target, allowCapture);
+	return Engine.QueryInterface(this.entity, IID_Attack)?.GetBestAttackAgainst(target, allowCapture);
 };
 
 /**
@@ -5011,7 +5004,7 @@ UnitAI.prototype.AttackVisibleEntity = function(ents)
 	if (!target)
 		return false;
 
-	this.PushOrderFront("Attack", { "target": target, "force": false, "allowCapture": true });
+	this.PushOrderFront("Attack", { "target": target, "force": false });
 	return true;
 };
 
@@ -5030,7 +5023,7 @@ UnitAI.prototype.AttackEntityInZone = function(ents)
 	if (!target)
 		return false;
 
-	this.PushOrderFront("Attack", { "target": target, "force": false, "allowCapture": true });
+	this.PushOrderFront("Attack", { "target": target, "force": false });
 	return true;
 };
 
@@ -5454,12 +5447,12 @@ UnitAI.prototype.WalkToTarget = function(target, queued, pushFront)
  * to a player order, and so is forced.
  * If targetClasses is given, only entities matching the targetClasses can be attacked.
  */
-UnitAI.prototype.WalkAndFight = function(x, z, targetClasses, allowCapture = true, queued = false, pushFront = false)
+UnitAI.prototype.WalkAndFight = function(x, z, targetClasses, allowCapture = this.DEFAULT_CAPTURE, queued = false, pushFront = false)
 {
 	this.AddOrder("WalkAndFight", { "x": x, "z": z, "targetClasses": targetClasses, "allowCapture": allowCapture, "force": true }, queued, pushFront);
 };
 
-UnitAI.prototype.Patrol = function(x, z, targetClasses, allowCapture = true, queued = false, pushFront = false)
+UnitAI.prototype.Patrol = function(x, z, targetClasses, allowCapture = this.DEFAULT_CAPTURE, queued = false, pushFront = false)
 {
 	if (!this.CanPatrol())
 	{
@@ -5497,7 +5490,7 @@ UnitAI.prototype.LeaveFoundation = function(target)
 /**
  * Adds attack order to the queue, forced by the player.
  */
-UnitAI.prototype.Attack = function(target, allowCapture = true, queued = false, pushFront = false)
+UnitAI.prototype.Attack = function(target, allowCapture = this.DEFAULT_CAPTURE, queued = false, pushFront = false)
 {
 	if (!this.CanAttack(target))
 	{
@@ -6033,7 +6026,7 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 		const order = {
 			"target": target,
 			"force": false,
-			"allowCapture": this.order?.data?.allowCapture
+			"allowCapture": this.order?.data?.allowCapture || this.DEFAULT_CAPTURE
 		};
 		if (this.IsFormationMember())
 			this.ReplaceOrder("Attack", order);
