@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #include "gui/GUIManager.h"
 #include "lib/config2.h"
 #include "lib/external_libraries/libsdl.h"
+#include "lib/sysdep/os.h"
 #include "lib/tex/tex.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
@@ -35,7 +36,10 @@
 #include "renderer/backend/dummy/DeviceForward.h"
 #include "renderer/backend/gl/DeviceForward.h"
 #include "renderer/backend/IDevice.h"
+#include "renderer/backend/vulkan/DeviceForward.h"
 #include "renderer/Renderer.h"
+
+#include <string_view>
 
 namespace
 {
@@ -47,6 +51,49 @@ int DEFAULT_FULLSCREEN_W = 1024;
 int DEFAULT_FULLSCREEN_H = 768;
 
 const wchar_t DEFAULT_CURSOR_NAME[] = L"default-arrow";
+
+Renderer::Backend::Backend GetFallbackBackend(const Renderer::Backend::Backend backend)
+{
+	Renderer::Backend::Backend fallback = Renderer::Backend::Backend::DUMMY;
+	// We use a switch instead of a list to have compile-time checks for missed
+	// values and because a linear priority list doesn't work for general case.
+	switch (backend)
+	{
+	case Renderer::Backend::Backend::GL:
+		fallback = Renderer::Backend::Backend::GL_ARB;
+		break;
+	case Renderer::Backend::Backend::GL_ARB:
+		fallback = Renderer::Backend::Backend::DUMMY;
+		break;
+	case Renderer::Backend::Backend::DUMMY:
+		break;
+	case Renderer::Backend::Backend::VULKAN:
+		fallback = Renderer::Backend::Backend::GL;
+		break;
+	}
+	return fallback;
+}
+
+std::string_view GetBackendName(const Renderer::Backend::Backend backend)
+{
+	std::string_view name{"Unknown"};
+	switch (backend)
+	{
+	case Renderer::Backend::Backend::GL:
+		name = "GL";
+		break;
+	case Renderer::Backend::Backend::GL_ARB:
+		name = "GL ARB";
+		break;
+	case Renderer::Backend::Backend::DUMMY:
+		name = "Dummy";
+		break;
+	case Renderer::Backend::Backend::VULKAN:
+		name = "Vulkan";
+		break;
+	}
+	return name;
+}
 
 } // anonymous namespace
 
@@ -239,8 +286,15 @@ void CVideoMode::ReadConfig()
 		m_Backend = Renderer::Backend::Backend::GL_ARB;
 	else if (rendererBackend == "dummy")
 		m_Backend = Renderer::Backend::Backend::DUMMY;
+	else if (rendererBackend == "vulkan")
+		m_Backend = Renderer::Backend::Backend::VULKAN;
 	else
 		m_Backend = Renderer::Backend::Backend::GL;
+
+#if OS_WIN
+	if (m_ConfigEnableHiDPI)
+		wutil_EnableHiDPIOnWindows();
+#endif
 }
 
 bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
@@ -262,14 +316,79 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 
 	if (!m_Window)
 	{
+		const bool isGLBackend =
+			m_Backend == Renderer::Backend::Backend::GL ||
+			m_Backend == Renderer::Backend::Backend::GL_ARB;
+		if (isGLBackend)
+		{
+			SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
+			SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+			SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
+			SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
+			bool debugContext = false;
+			CFG_GET_VAL("renderer.backend.debugcontext", debugContext);
+			if (debugContext)
+				SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_DEBUG_FLAG);
+
+			bool forceGLVersion = false;
+			CFG_GET_VAL("forceglversion", forceGLVersion);
+			if (forceGLVersion)
+			{
+				CStr forceGLProfile = "compatibility";
+				int forceGLMajorVersion = 3;
+				int forceGLMinorVersion = 0;
+				CFG_GET_VAL("forceglprofile", forceGLProfile);
+				CFG_GET_VAL("forceglmajorversion", forceGLMajorVersion);
+				CFG_GET_VAL("forceglminorversion", forceGLMinorVersion);
+
+				int profile = SDL_GL_CONTEXT_PROFILE_COMPATIBILITY;
+				if (forceGLProfile == "es")
+					profile = SDL_GL_CONTEXT_PROFILE_ES;
+				else if (forceGLProfile == "core")
+					profile = SDL_GL_CONTEXT_PROFILE_CORE;
+				else if (forceGLProfile != "compatibility")
+					LOGWARNING("Unknown force GL profile '%s', compatibility profile is used", forceGLProfile.c_str());
+
+				if (forceGLMajorVersion < 1 || forceGLMinorVersion < 0)
+				{
+					LOGERROR("Unsupported force GL version: %d.%d", forceGLMajorVersion, forceGLMinorVersion);
+				}
+				else
+				{
+					SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, profile);
+					SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, forceGLMajorVersion);
+					SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, forceGLMinorVersion);
+				}
+			}
+			else
+			{
+#if CONFIG2_GLES
+				// Require GLES 2.0
+				SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
+				SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+				SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+#else
+				// Some macOS and MESA drivers might not create a context even if they can
+				// with the core profile. So disable it for a while until we can guarantee
+				// its creation.
 #if OS_WIN
-		if (m_ConfigEnableHiDPI)
-			wutil_EnableHiDPIOnWindows();
+				SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 #endif
+				SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+				SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
+#endif
+			}
+		}
+
 		// Note: these flags only take affect in SDL_CreateWindow
-		flags |= SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE;
+		flags |= SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE;
 		if (m_ConfigEnableHiDPI)
 			flags |= SDL_WINDOW_ALLOW_HIGHDPI;
+		if (isGLBackend)
+			flags |= SDL_WINDOW_OPENGL;
+		else if (m_Backend == Renderer::Backend::Backend::VULKAN)
+			flags |= SDL_WINDOW_VULKAN;
 		m_WindowedX = m_WindowedY = SDL_WINDOWPOS_CENTERED_DISPLAY(m_ConfigDisplay);
 
 		m_Window = SDL_CreateWindow(main_window_name, m_WindowedX, m_WindowedY, w, h, flags);
@@ -287,6 +406,20 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 			}
 			else
 			{
+				if (isGLBackend)
+				{
+					int depthSize = 24;
+					SDL_GL_GetAttribute(SDL_GL_DEPTH_SIZE, &depthSize);
+					if (depthSize > 16)
+					{
+						// Fall back to a smaller depth buffer
+						// (The rendering may be ugly but this helps when running in VMware)
+						SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
+
+						return SetVideoMode(w, h, bpp, fullscreen);
+					}
+				}
+
 				LOGERROR("SetVideoMode failed in SDL_CreateWindow: %dx%d:%d %d (\"%s\")",
 					w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
 				return false;
@@ -305,12 +438,16 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 		wutil_SetAppWindow(m_Window);
 #endif
 
-		if (!CreateBackendDevice(true))
+		if (!TryCreateBackendDevice(m_Window))
 		{
-			LOGERROR("SetVideoMode failed in backend device creation: %dx%d:%d %d",
-				w, h, bpp, fullscreen ? 1 : 0);
-			return false;
+			DowngradeBackendSettingAfterCreationFailure();
+			SDL_DestroyWindow(m_Window);
+			m_Window = nullptr;
+			return SetVideoMode(w, h, bpp, fullscreen);
 		}
+
+		if (isGLBackend)
+			SDL_GL_SetSwapInterval(m_ConfigVSync ? 1 : 0);
 	}
 	else
 	{
@@ -403,78 +540,9 @@ bool CVideoMode::InitSDL()
 			h = std::min(h, m_PreferredH);
 	}
 
-	int bpp = GetBestBPP();
-
-	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
-	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
-	SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 8);
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-
-	bool debugContext = false;
-	CFG_GET_VAL("renderer.backend.debugcontext", debugContext);
-	if (debugContext)
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_DEBUG_FLAG);
-
-	bool forceGLVersion = false;
-	CFG_GET_VAL("forceglversion", forceGLVersion);
-	if (forceGLVersion)
-	{
-		CStr forceGLProfile = "compatibility";
-		int forceGLMajorVersion = 3;
-		int forceGLMinorVersion = 0;
-		CFG_GET_VAL("forceglprofile", forceGLProfile);
-		CFG_GET_VAL("forceglmajorversion", forceGLMajorVersion);
-		CFG_GET_VAL("forceglminorversion", forceGLMinorVersion);
-
-		int profile = SDL_GL_CONTEXT_PROFILE_COMPATIBILITY;
-		if (forceGLProfile == "es")
-			profile = SDL_GL_CONTEXT_PROFILE_ES;
-		else if (forceGLProfile == "core")
-			profile = SDL_GL_CONTEXT_PROFILE_CORE;
-		else if (forceGLProfile != "compatibility")
-			LOGWARNING("Unknown force GL profile '%s', compatibility profile is used", forceGLProfile.c_str());
-
-		if (forceGLMajorVersion < 1 || forceGLMinorVersion < 0)
-		{
-			LOGERROR("Unsupported force GL version: %d.%d", forceGLMajorVersion, forceGLMinorVersion);
-		}
-		else
-		{
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, profile);
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, forceGLMajorVersion);
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, forceGLMinorVersion);
-		}
-	}
-	else
-	{
-#if CONFIG2_GLES
-		// Require GLES 2.0
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
-#else
-		// Some macOS and MESA drivers might not create a context even if they can
-		// with the core profile. So disable it for a while until we can guarantee
-		// its creation.
-#if OS_WIN
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-#endif
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
-		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
-#endif
-	}
-
+	const int bpp = GetBestBPP();
 	if (!SetVideoMode(w, h, bpp, m_ConfigFullscreen))
-	{
-		// Fall back to a smaller depth buffer
-		// (The rendering may be ugly but this helps when running in VMware)
-		SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
-
-		if (!SetVideoMode(w, h, bpp, m_ConfigFullscreen))
-			return false;
-	}
-
-	SDL_GL_SetSwapInterval(m_ConfigVSync ? 1 : 0);
+		return false;
 
 	// Work around a bug in the proprietary Linux ATI driver (at least versions 8.16.20 and 8.14.13).
 	// The driver appears to register its own atexit hook on context creation.
@@ -530,20 +598,45 @@ void CVideoMode::Shutdown()
 
 bool CVideoMode::CreateBackendDevice(const bool createSDLContext)
 {
-	if (m_Backend == Renderer::Backend::Backend::DUMMY)
+	if (!createSDLContext && m_Backend == Renderer::Backend::Backend::VULKAN)
+		m_Backend = Renderer::Backend::Backend::GL;
+	SDL_Window* window = createSDLContext ? m_Window : nullptr;
+	while (m_Backend != Renderer::Backend::Backend::DUMMY)
 	{
-		m_BackendDevice = Renderer::Backend::Dummy::CreateDevice(m_Window);
+		if (TryCreateBackendDevice(window))
+			return true;
+		DowngradeBackendSettingAfterCreationFailure();
+	}
+	return TryCreateBackendDevice(window);
+}
+
+bool CVideoMode::TryCreateBackendDevice(SDL_Window* window)
+{
+	switch (m_Backend)
+	{
+	case Renderer::Backend::Backend::GL:
+		m_BackendDevice = Renderer::Backend::GL::CreateDevice(window, false);
+		break;
+	case Renderer::Backend::Backend::GL_ARB:
+		m_BackendDevice = Renderer::Backend::GL::CreateDevice(window, true);
+		break;
+	case Renderer::Backend::Backend::DUMMY:
+		m_BackendDevice = Renderer::Backend::Dummy::CreateDevice(window);
 		ENSURE(m_BackendDevice);
-		return true;
+		break;
+	case Renderer::Backend::Backend::VULKAN:
+		m_BackendDevice = Renderer::Backend::Vulkan::CreateDevice(window);
+		break;
 	}
-	m_BackendDevice = Renderer::Backend::GL::CreateDevice(createSDLContext ? m_Window : nullptr, m_Backend == Renderer::Backend::Backend::GL_ARB);
-	if (!m_BackendDevice && m_Backend == Renderer::Backend::Backend::GL)
-	{
-		LOGERROR("Unable to create device for GL backend, switching to ARB.");
-		m_Backend = Renderer::Backend::Backend::GL_ARB;
-		return CreateBackendDevice(createSDLContext);
-	}
-	return !!m_BackendDevice;
+	return static_cast<bool>(m_BackendDevice);
+}
+
+void CVideoMode::DowngradeBackendSettingAfterCreationFailure()
+{
+	const Renderer::Backend::Backend fallback = GetFallbackBackend(m_Backend);
+	LOGERROR("Unable to create device for %s backend, switching to %s.",
+		GetBackendName(m_Backend), GetBackendName(fallback));
+	m_Backend = fallback;
 }
 
 bool CVideoMode::ResizeWindow(int w, int h)

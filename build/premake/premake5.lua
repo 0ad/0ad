@@ -800,7 +800,8 @@ function setup_all_libs ()
 		"renderer/backend/vulkan",
 		"renderer/scripting",
 		"third_party/mikktspace",
-		"third_party/ogre3d_preprocessor"
+		"third_party/ogre3d_preprocessor",
+		"third_party/vma"
 	}
 	extern_libs = {
 		"sdl",	-- key definitions
@@ -945,6 +946,7 @@ function setup_all_libs ()
 	setup_static_lib_project("gladwrapper", {}, used_extern_libs, { no_pch = 1 })
 	glad_path = libraries_source_dir.."glad/"
 	sysincludedirs { glad_path.."include" }
+	files { glad_path.."src/vulkan.cpp" }
 	if _OPTIONS["gles"] then
 		files { glad_path.."src/gles2.cpp" }
 	else

@@ -36,5 +36,9 @@ Build the source files for all four backends with their respective extensions
     ```sh
     python -m glad --api="egl=1.5" --extensions="../extensions/egl.txt" --out-path="../" c
     ```
+- Vulkan
+    ```sh
+    python -m glad --api="vulkan=1.1" --extensions="../extensions/vulkan.txt" --out-path="../" c
+    ```
 
 Rename all files to .cpp to prevent compilation warnings
