@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-11-28 09:03+0000\n"
+"POT-Creation-Date: 2023-01-06 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -78,14 +78,6 @@ msgstr "Pyrgion"
 #: simulation/templates/structures/spart/dock.xml:12
 msgid "Limēn"
 msgstr "Limēn"
-
-#: simulation/templates/structures/athen/farmstead.xml:11
-#: simulation/templates/structures/mace/farmstead.xml:11
-#: simulation/templates/structures/ptol/farmstead.xml:8
-#: simulation/templates/structures/sele/farmstead.xml:8
-#: simulation/templates/structures/spart/farmstead.xml:11
-msgid "Epoikion"
-msgstr "Epoikion"
 
 #: simulation/templates/structures/athen/field.xml:5
 #: simulation/templates/structures/mace/field.xml:5
@@ -364,10 +356,6 @@ msgstr "Antosolicon"
 msgid "Budinadon"
 msgstr "Budinadon"
 
-#: simulation/templates/structures/brit/rotarymill.xml:5
-msgid "Melonas"
-msgstr "Melonas"
-
 #: simulation/templates/structures/brit/stable.xml:11
 #: simulation/templates/structures/gaul/stable.xml:11
 msgid "Eposton"
@@ -578,6 +566,39 @@ msgstr "多立克柱"
 msgid "Fallen Doric Column"
 msgstr "倒下的多立克柱"
 
+#: simulation/templates/structures/farmstead_field_wheat.xml:7
+#: simulation/templates/structures/generic_field.xml:8
+msgid "Wheat Field"
+msgstr "麥田"
+
+#: simulation/templates/structures/athen/farmstead.xml:11
+#: simulation/templates/structures/farmstead_greek.xml:8
+#: simulation/templates/structures/mace/farmstead.xml:11
+#: simulation/templates/structures/ptol/farmstead.xml:8
+#: simulation/templates/structures/sele/farmstead.xml:8
+#: simulation/templates/structures/spart/farmstead.xml:11
+msgid "Epoikion"
+msgstr "Epoikion"
+
+#: simulation/templates/structures/farmstead_indian.xml:8
+#: simulation/templates/structures/maur/farmstead.xml:11
+msgid "Kantu"
+msgstr "Kantu"
+
+#: simulation/templates/structures/farmstead_italian.xml:8
+msgid "Villa"
+msgstr "別墅"
+
+#: simulation/templates/structures/farmstead_middle_eastern.xml:9
+#: simulation/templates/structures/pers/farmstead.xml:8
+msgid "Kaštašta"
+msgstr "Kaštašta"
+
+#: simulation/templates/structures/brit/rotarymill.xml:5
+#: simulation/templates/structures/farmstead_temperate_europe.xml:4
+msgid "Melonas"
+msgstr "Melonas"
+
 #: simulation/templates/structures/fence_long.xml:14
 #: simulation/templates/structures/fence_short.xml:14
 msgid "Fence"
@@ -635,10 +656,6 @@ msgstr "科朗聖所"
 #: simulation/templates/structures/gaul/wonder.xml:10
 msgid "Celicnon"
 msgstr "賽里克農"
-
-#: simulation/templates/structures/generic_field.xml:8
-msgid "Wheat Field"
-msgstr "麥田"
 
 #: simulation/templates/structures/han/academy.xml:27
 msgid "Imperial Academy"
@@ -1156,10 +1173,6 @@ msgstr "Naukasthanaka"
 msgid "Vāraṇaśālā"
 msgstr "Vāraṇaśālā"
 
-#: simulation/templates/structures/maur/farmstead.xml:11
-msgid "Kantu"
-msgstr "Kantu"
-
 #: simulation/templates/structures/maur/field.xml:5
 msgid "Kshetra"
 msgstr "Kshetra"
@@ -1361,10 +1374,6 @@ msgstr "Pāyaud"
 #: simulation/templates/structures/pers/dock.xml:12
 msgid "Nāvašta"
 msgstr "Nāvašta"
-
-#: simulation/templates/structures/pers/farmstead.xml:8
-msgid "Kaštašta"
-msgstr "Kaštašta"
 
 #: simulation/templates/structures/pers/field.xml:5
 msgid "Kaštrya"
@@ -1722,7 +1731,8 @@ msgstr "聖殿亭"
 #: simulation/templates/structures/ptol/temple.xml:12
 #: simulation/templates/structures/ptol/temple_2.xml:11
 #: simulation/templates/structures/sele/temple.xml:9
-#: simulation/templates/structures/shrine_greek.xml:9
+#: simulation/templates/structures/shrine_greek_01.xml:9
+#: simulation/templates/structures/shrine_greek_02.xml:9
 #: simulation/templates/structures/spart/temple.xml:9
 msgid "Naos"
 msgstr "Naos"
@@ -2079,6 +2089,8 @@ msgstr "經濟"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:26
 #: simulation/templates/template_structure_economic_farmstead.xml:30
+#: simulation/templates/template_structure_special_rotarymill.xml:32
+#: simulation/templates/template_structure_special_rotarymill.xml:34
 msgid "Farmstead"
 msgstr "農舍"
 
@@ -2272,13 +2284,15 @@ msgstr "希臘圓型劇場"
 msgid "Library"
 msgstr "圖書館"
 
-#: simulation/templates/template_structure_special_rotarymill.xml:19
+#: simulation/templates/template_structure_special_rotarymill.xml:33
 msgid "Rotary Mill"
 msgstr "旋轉式磨坊"
 
-#: simulation/templates/template_structure_special_rotarymill.xml:21
-msgid "RotaryMill"
-msgstr "旋轉式磨坊"
+#: simulation/templates/template_structure_special_rotarymill.xml:38
+msgid ""
+"Dropsite for harvested Food. Capture one of these to increase nearby food "
+"production."
+msgstr ""
 
 #: simulation/templates/template_structure_special_theater.xml:25
 #: simulation/templates/template_structure_special_theater.xml:27
