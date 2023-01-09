@@ -1,10 +1,12 @@
 {
 	"type": "global",
-	"affects": ["Trader !Ship"],
+	"affects": ["Barracks","Stable"],
 	"affectedPlayers": ["MutualAlly"],
 	"modifications": [
-		{ "value": "Trader/GainMultiplier", "multiply": 1.15 }
+		{ "value": "Cost/Resources/wood", "multiply": 0.8 },
+		{ "value": "Cost/Resources/stone", "multiply": 0.8 },
+		{ "value": "Cost/BuildTime", "multiply": 0.8 }
 	],
-	"auraName": "The Royal Road",
-	"auraDescription": "Land Traders +15% trade gain."
+	"auraName": "Training Regimes",
+	"auraDescription": "Barracks and Stables −20% wood and stone cost and build time."
 }

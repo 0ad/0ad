@@ -1,10 +1,14 @@
 {
 	"type": "global",
-	"affects": ["Warship"],
+	"affects": ["CivilCentre"],
 	"affectedPlayers": ["MutualAlly"],
 	"modifications": [
-		{ "value": "Cost/BuildTime", "multiply": 0.75 }
+		{ "value": "Researcher/TechCostMultiplier/food", "multiply": 0.7 },
+		{ "value": "Researcher/TechCostMultiplier/wood", "multiply": 0.7 },
+		{ "value": "Researcher/TechCostMultiplier/stone", "multiply": 0.7 },
+		{ "value": "Researcher/TechCostMultiplier/metal", "multiply": 0.7 },
+		{ "value": "Researcher/TechCostMultiplier/time", "multiply": 0.5 }
 	],
-	"auraName": "Delian League",
-	"auraDescription": "Warships −25% construction time."
+	"auraName": "Democracy",
+	"auraDescription": "Civic center technologies −50% research time and −30% cost."
 }
