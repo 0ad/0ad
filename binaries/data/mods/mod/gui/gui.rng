@@ -107,6 +107,12 @@
       <data type="decimal"/>
     </list>
   </define>
+  <define name="sort_order">
+    <choice>
+      <value>asc</value>
+      <value>desc</value>
+    </choice>
+  </define>
   <define name="unique_settings">
     <a:documentation/>
     <!-- Defines # -->
@@ -594,6 +600,11 @@
         <optional>
           <attribute name="hidden">
             <ref name="bool"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="sort_order">
+            <ref name="sort_order"/>
           </attribute>
         </optional>
       </interleave>
