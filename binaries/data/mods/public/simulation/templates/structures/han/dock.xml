@@ -12,11 +12,6 @@
   <Obstruction>
     <Static depth="32.0" width="26.0"/>
   </Obstruction>
-  <Trainer>
-    <Entities datatype="tokens">
-      -units/{civ}/ship_fire
-    </Entities>
-  </Trainer>
   <VisualActor>
     <Actor>structures/han/dock.xml</Actor>
     <FoundationActor>structures/fndn_6x4_dock.xml</FoundationActor>
