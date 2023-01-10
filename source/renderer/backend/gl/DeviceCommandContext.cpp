@@ -103,6 +103,10 @@ GLenum BufferTypeToGLTarget(const CBuffer::Type type)
 	case CBuffer::Type::INDEX:
 		target = GL_ELEMENT_ARRAY_BUFFER;
 		break;
+	case CBuffer::Type::UPLOAD:
+	case CBuffer::Type::UNIFORM:
+		debug_warn("Unsupported buffer type.");
+		break;
 	};
 	return target;
 }

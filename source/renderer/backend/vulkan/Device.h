@@ -20,9 +20,19 @@
 
 #include "renderer/backend/IDevice.h"
 #include "renderer/backend/vulkan/DeviceForward.h"
+#include "renderer/backend/vulkan/DeviceSelection.h"
+#include "renderer/backend/vulkan/Texture.h"
+#include "renderer/backend/vulkan/VMA.h"
 #include "scriptinterface/ScriptForward.h"
 
+#include <glad/vulkan.h>
 #include <memory>
+#include <limits>
+#include <queue>
+#include <string>
+#include <tuple>
+#include <unordered_map>
+#include <vector>
 
 typedef struct SDL_Window SDL_Window;
 
@@ -35,7 +45,18 @@ namespace Backend
 namespace Vulkan
 {
 
-class CDevice : public IDevice
+static constexpr size_t NUMBER_OF_FRAMES_IN_FLIGHT = 3;
+
+class CBuffer;
+class CDescriptorManager;
+class CFramebuffer;
+class CRenderPassManager;
+class CRingCommandContext;
+class CSamplerManager;
+class CSubmitScheduler;
+class CSwapChain;
+
+class CDevice final : public IDevice
 {
 public:
 	/**
@@ -79,6 +100,9 @@ public:
 	std::unique_ptr<IBuffer> CreateBuffer(
 		const char* name, const IBuffer::Type type, const uint32_t size, const bool dynamic) override;
 
+	std::unique_ptr<CBuffer> CreateCBuffer(
+		const char* name, const IBuffer::Type type, const uint32_t size, const bool dynamic);
+
 	std::unique_ptr<IShaderProgram> CreateShaderProgram(
 		const CStr& name, const CShaderDefines& defines) override;
 
@@ -103,15 +127,88 @@ public:
 
 	const Capabilities& GetCapabilities() const override { return m_Capabilities; }
 
+	VkDevice GetVkDevice() { return m_Device; }
+
+	VmaAllocator GetVMAAllocator() { return m_VMAAllocator; }
+
+	void ScheduleObjectToDestroy(
+		VkObjectType type, const void* handle, const VmaAllocation allocation)
+	{
+		ScheduleObjectToDestroy(type, reinterpret_cast<uint64_t>(handle), allocation);
+	}
+
+	void ScheduleObjectToDestroy(
+		VkObjectType type, const uint64_t handle, const VmaAllocation allocation);
+
+	void ScheduleTextureToDestroy(const CTexture::UID uid);
+
+	void SetObjectName(VkObjectType type, const void* handle, const char* name)
+	{
+		SetObjectName(type, reinterpret_cast<uint64_t>(handle), name);
+	}
+
+	void SetObjectName(VkObjectType type, const uint64_t handle, const char* name);
+
+	std::unique_ptr<CRingCommandContext> CreateRingCommandContext(const size_t size);
+
+	const SAvailablePhysicalDevice& GetChoosenPhysicalDevice() const { return m_ChoosenDevice; }
+
+	CRenderPassManager& GetRenderPassManager() { return *m_RenderPassManager; }
+
+	CSamplerManager& GetSamplerManager() { return *m_SamplerManager; }
+
+	CDescriptorManager& GetDescriptorManager() { return *m_DescriptorManager; }
+
 private:
 	CDevice();
 
+	void RecreateSwapChain();
+	bool IsSwapChainValid();
+	void ProcessObjectToDestroyQueue(const bool ignoreFrameID = false);
+	void ProcessTextureToDestroyQueue(const bool ignoreFrameID = false);
+
 	std::string m_Name;
 	std::string m_Version;
+	std::string m_VendorID;
 	std::string m_DriverInformation;
 	std::vector<std::string> m_Extensions;
+	std::vector<std::string> m_InstanceExtensions;
+	std::vector<std::string> m_ValidationLayers;
+
+	SAvailablePhysicalDevice m_ChoosenDevice{};
+	std::vector<SAvailablePhysicalDevice> m_AvailablePhysicalDevices;
 
 	Capabilities m_Capabilities{};
+
+	VkInstance m_Instance = VK_NULL_HANDLE;
+
+	VkDebugUtilsMessengerEXT m_DebugMessenger = VK_NULL_HANDLE;
+
+	SDL_Window* m_Window = nullptr;
+	VkSurfaceKHR m_Surface = VK_NULL_HANDLE;
+	VkDevice m_Device = VK_NULL_HANDLE;
+	VmaAllocator m_VMAAllocator = VK_NULL_HANDLE;
+	VkQueue m_GraphicsQueue = VK_NULL_HANDLE;
+	uint32_t m_GraphicsQueueFamilyIndex = std::numeric_limits<uint32_t>::max();
+
+	std::unique_ptr<CSwapChain> m_SwapChain;
+
+	uint32_t m_FrameID = 0;
+
+	struct ObjectToDestroy
+	{
+		uint32_t frameID;
+		VkObjectType type;
+		uint64_t handle;
+		VmaAllocation allocation;
+	};
+	std::queue<ObjectToDestroy> m_ObjectToDestroyQueue;
+	std::queue<std::pair<uint32_t, CTexture::UID>> m_TextureToDestroyQueue;
+
+	std::unique_ptr<CRenderPassManager> m_RenderPassManager;
+	std::unique_ptr<CSamplerManager> m_SamplerManager;
+	std::unique_ptr<CDescriptorManager> m_DescriptorManager;
+	std::unique_ptr<CSubmitScheduler> m_SubmitScheduler;
 };
 
 } // namespace Vulkan

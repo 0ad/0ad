@@ -15,37 +15,8 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INCLUDED_RENDERER_BACKEND_IBUFFER
-#define INCLUDED_RENDERER_BACKEND_IBUFFER
+#include "precompiled.h"
 
-#include "renderer/backend/IDeviceObject.h"
+#define VMA_IMPLEMENTATION
 
-#include <cstdint>
-
-namespace Renderer
-{
-
-namespace Backend
-{
-
-class IBuffer : public IDeviceObject<IBuffer>
-{
-public:
-	enum class Type
-	{
-		VERTEX,
-		INDEX,
-		UPLOAD,
-		UNIFORM,
-	};
-
-	virtual Type GetType() const = 0;
-	virtual uint32_t GetSize() const = 0;
-	virtual bool IsDynamic() const = 0;
-};
-
-} // namespace Backend
-
-} // namespace Renderer
-
-#endif // INCLUDED_RENDERER_BACKEND_IBUFFER
+#include "VMA.h"

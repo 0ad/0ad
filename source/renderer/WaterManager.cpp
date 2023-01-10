@@ -57,10 +57,7 @@ struct SWavesVertex
 	CVector3D m_RetreatPosition;
 
 	CVector2D m_PerpVect;
-	u8 m_UV[3];
-
-	// pad to a power of two
-	u8 m_Padding[5];
+	float m_UV[2];
 };
 cassert(sizeof(SWavesVertex) == 64);
 
@@ -143,7 +140,7 @@ void WaterManager::Initialize()
 			offsetof(SWavesVertex, m_PerpVect), stride,
 			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
 		{Renderer::Backend::VertexAttributeStream::UV0,
-			Renderer::Backend::Format::R8G8_UINT,
+			Renderer::Backend::Format::R32G32_SFLOAT,
 			offsetof(SWavesVertex, m_UV), stride,
 			Renderer::Backend::VertexAttributeRate::PER_VERTEX, 0},
 

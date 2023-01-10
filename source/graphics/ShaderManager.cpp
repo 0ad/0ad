@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -241,6 +241,11 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 				else if (attrs.GetNamedItem(at_shaders) == "glsl")
 				{
 					if (device->GetBackend() != Renderer::Backend::Backend::GL)
+						isUsable = false;
+				}
+				else if (attrs.GetNamedItem(at_shaders) == "spirv")
+				{
+					if (device->GetBackend() != Renderer::Backend::Backend::VULKAN)
 						isUsable = false;
 				}
 				else if (!attrs.GetNamedItem(at_context).empty())

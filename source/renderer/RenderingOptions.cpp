@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -240,10 +240,15 @@ void CRenderingOptions::ReadConfigAndSetupHooks()
 	m_ConfigHooks->Setup("gpuskinning", [this]() {
 		bool enabled;
 		CFG_GET_VAL("gpuskinning", enabled);
-		if (enabled && g_VideoMode.GetBackendDevice()->GetBackend() == Renderer::Backend::Backend::GL_ARB)
-			LOGWARNING("GPUSkinning has been disabled, because it is not supported with ARB shaders.");
-		else if (enabled)
-			m_GPUSkinning = true;
+		if (enabled)
+		{
+			if (g_VideoMode.GetBackendDevice()->GetBackend() == Renderer::Backend::Backend::GL_ARB)
+				LOGWARNING("GPUSkinning has been disabled, because it is not supported with ARB shaders.");
+			else if (g_VideoMode.GetBackendDevice()->GetBackend() == Renderer::Backend::Backend::VULKAN)
+				LOGWARNING("GPUSkinning has been disabled, because it is not supported for Vulkan backend yet.");
+			else
+				m_GPUSkinning = true;
+		}
 	});
 
 	m_ConfigHooks->Setup("renderactors", m_RenderActors);
