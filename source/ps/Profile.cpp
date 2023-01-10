@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -42,17 +42,16 @@ class CProfileNodeTable : public AbstractProfileTable
 {
 public:
 	CProfileNodeTable(CProfileNode* n);
-	virtual ~CProfileNodeTable();
 
 	// Implementation of AbstractProfileTable interface
-	virtual CStr GetName();
-	virtual CStr GetTitle();
-	virtual size_t GetNumberRows();
-	virtual const std::vector<ProfileColumn>& GetColumns();
+	CStr GetName() override;
+	CStr GetTitle() override;
+	size_t GetNumberRows() override;
+	const std::vector<ProfileColumn>& GetColumns() override;
 
-	virtual CStr GetCellText(size_t row, size_t col);
-	virtual AbstractProfileTable* GetChild(size_t row);
-	virtual bool IsHighlightRow(size_t row);
+	CStr GetCellText(size_t row, size_t col) override;
+	AbstractProfileTable* GetChild(size_t row) override;
+	bool IsHighlightRow(size_t row) override;
 
 private:
 	/**
@@ -88,10 +87,6 @@ CProfileNodeTable::ColumnDescription CProfileNodeTable::columnDescription;
 CProfileNodeTable::CProfileNodeTable(CProfileNode* n)
 {
 	node = n;
-}
-
-CProfileNodeTable::~CProfileNodeTable()
-{
 }
 
 // Short name (= name of profile node)
