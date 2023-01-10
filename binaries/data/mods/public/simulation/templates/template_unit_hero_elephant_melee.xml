@@ -6,8 +6,17 @@
       <AttackName>Trunk</AttackName>
       <Damage>
         <Hack>60</Hack>
-        <Crush>240</Crush>
+        <Crush>60</Crush>
       </Damage>
+      <Splash>
+        <Shape>Circular</Shape>
+        <Range>2</Range>
+        <FriendlyFire>true</FriendlyFire>
+        <Damage>
+          <Hack>60</Hack>
+          <Crush>60</Crush>
+        </Damage>
+      </Splash>
       <MaxRange>5</MaxRange>
       <PrepareTime>750</PrepareTime>
       <RepeatTime>1500</RepeatTime>

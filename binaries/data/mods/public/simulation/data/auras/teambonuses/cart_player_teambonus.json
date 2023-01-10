@@ -1,10 +1,10 @@
 {
 	"type": "global",
-	"affects": ["Trade"],
+	"affects": ["Mercenary Infantry"],
 	"affectedPlayers": ["MutualAlly"],
 	"modifications": [
-		{ "value": "Market/InternationalBonus", "add": 0.1 }
+		{ "value": "Cost/BuildTime", "multiply": 0.5 }
 	],
-	"auraName": "Trademasters",
-	"auraDescription": "+10% international trade bonus."
+	"auraName": "Mercenary Transports",
+	"auraDescription": "Mercenaries −50% train time."
 }

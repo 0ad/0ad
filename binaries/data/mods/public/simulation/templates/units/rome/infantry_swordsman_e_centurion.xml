@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_champion_infantry_swordsman">
+  <TrainingRestrictions>
+    <Category>Centurion</Category>
+  </TrainingRestrictions>
+  <Auras datatype="tokens">
+    units/centurion
+  </Auras>
+  <Identity>
+    <GenericName>Roman Centurion</GenericName>
+    <SpecificName>Centurion</SpecificName>
+    <Icon>units/rome/champion_infantry_centurion.png</Icon>
+  </Identity>
+  <VisualActor>
+    <Actor>units/romans/infantry_swordsman_f.xml</Actor>
+  </VisualActor>
+</Entity>

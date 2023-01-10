@@ -7,6 +7,13 @@
         <Pierce op="mul">1.1</Pierce>
         <Crush op="mul">1.1</Crush>
       </Damage>
+      <Splash>
+        <Damage>
+          <Hack op="mul">1.1</Hack>
+          <Pierce op="mul">1.1</Pierce>
+          <Crush op="mul">1.1</Crush>
+        </Damage>
+      </Splash>
     </Melee>
   </Attack>
   <Cost>

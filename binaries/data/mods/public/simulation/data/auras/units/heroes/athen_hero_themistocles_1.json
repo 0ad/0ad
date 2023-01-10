@@ -1,11 +1,11 @@
 {
-	"type": "garrison",
+	"type": "global",
 	"affects": ["Ship"],
-	"affectedPlayers": ["MutualAlly"],
 	"modifications": [
-		{ "value": "Trainer/BatchTimeModifier", "multiply": 0.7 },
-		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.5 }
+		{ "value": "Cost/BuildTime", "multiply": 0.5 },
+		{ "value": "Cost/Resources/metal", "multiply": 0.5 },
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.15 }
 	],
-	"auraName": "Naval Commander",
-	"auraDescription": "When garrisoned, the Ship has −30% batch training time and +50% movement speed."
+	"auraName": "Naval Preparation",
+	"auraDescription": "−50% metal cost, Ships −50% construction time, +15% move speed."
 }

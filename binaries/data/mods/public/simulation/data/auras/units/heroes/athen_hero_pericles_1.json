@@ -1,11 +1,16 @@
 {
 	"type": "range",
 	"radius": 60,
-	"affects": ["Builder"],
+	"affects": ["Soldier", "Ship", "Siege", "Structure"],
 	"modifications": [
-		{ "value": "Builder/Rate", "multiply": 1.15 }
+		{ "value": "Loot/xp", "replace": 0 },
+		{ "value": "Loot/food", "replace": 0},
+		{ "value": "Loot/wood", "replace": 0},
+		{ "value": "Loot/stone", "replace": 0},
+		{ "value": "Loot/metal", "replace": 0},
+		{ "value": "Capturable/CapturePoints", "multiply": 1.5}
 	],
-	"auraName": "Periclean Building Program",
-	"auraDescription": "Builders +15% build rate.",
-	"overlayIcon": "art/textures/ui/session/auras/build_bonus.png"
+	"auraName": "Periclean Defensive Strategy",
+	"auraDescription": "Soldiers, Ships, Siege Engines and Structures do not give loot, +50% Structure capture points.",
+	"overlayIcon": "art/textures/ui/session/auras/standground.png"
 }

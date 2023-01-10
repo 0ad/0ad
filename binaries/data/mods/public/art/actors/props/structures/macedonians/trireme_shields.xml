@@ -5,12 +5,12 @@
   <group>
     <variant name="Trireme Shields">
       <mesh>props/mace_trireme_shields.dae</mesh>
-	    <textures>
-	  	  <texture file="props/mace_prop_shields.png" name="baseTex"/>
-	  	  <texture file="props/mace_prop_shields_norm.png" name="normTex"/>
-	  	  <texture file="props/mace_prop_shields_spec.png" name="specTex"/>
-	    </textures>
+      <textures>
+  	    <texture file="props/mace_prop_shields.png" name="baseTex"/>
+  	    <texture file="props/mace_prop_shields_norm.png" name="normTex"/>
+  	    <texture file="props/mace_prop_shields_spec.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
-  <material>player_trans_parallax_spec.xml</material>
+  <material>player_trans_norm_spec.xml</material>
 </actor>

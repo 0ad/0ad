@@ -1,10 +1,13 @@
 {
 	"type": "global",
-	"affects": ["Temple"],
+	"affects": ["Structure"],
 	"modifications": [
-		{ "value": "Cost/Resources/stone", "multiply": 0.75 },
-		{ "value": "GarrisonHolder/BuffHeal", "add": 2 }
+		{ "value": "Researcher/TechCostMultiplier/food", "multiply": 0.90 },
+		{ "value": "Researcher/TechCostMultiplier/wood", "multiply": 0.90 },
+		{ "value": "Researcher/TechCostMultiplier/stone", "multiply": 0.90 },
+		{ "value": "Researcher/TechCostMultiplier/metal", "multiply": 0.90 },
+		{ "value": "Researcher/TechCostMultiplier/time", "multiply": 0.50 }
 	],
-	"auraName": "Temple of Athena Nike",
-	"auraDescription": "Temples −25% stone cost, +2 garrisoned heal rate."
+	"auraName": "Scholarship and the Arts",
+	"auraDescription": "Technologies −10% resource costs, −50% research time."
 }

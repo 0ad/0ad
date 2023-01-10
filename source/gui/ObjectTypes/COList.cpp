@@ -161,7 +161,7 @@ void COList::HandleMessage(SGUIMessage& Message)
 			{
 				if (column.m_Id != static_cast<CStr>(m_SelectedColumn))
 				{
-					m_SelectedColumnOrder.Set(-1, true);
+					m_SelectedColumnOrder.Set(column.m_SortOrder, true);
 					CStr selected_column = column.m_Id;
 					m_SelectedColumn.Set(selected_column, true);
 				}
@@ -243,6 +243,10 @@ bool COList::HandleAdditionalChildren(const XMBData& xmb, const XMBElement& chil
 			else if (attr_name == "heading")
 			{
 				column.m_Heading.Set(attr_value.FromUTF8(), false);
+			}
+			else if (attr_name == "sort_order")
+			{
+				column.m_SortOrder.Set(attr_value == "desc" ? -1 : 1, false);
 			}
 		}
 

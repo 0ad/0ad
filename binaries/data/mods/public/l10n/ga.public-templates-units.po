@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-11-25 08:08+0000\n"
+"POT-Creation-Date: 2023-01-06 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>, 2018-2019\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
@@ -228,9 +228,7 @@ msgstr "Claimhteoir"
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:24
 #: simulation/templates/template_unit_infantry_ranged.xml:7
 #: simulation/templates/template_unit_infantry_ranged.xml:8
-#: simulation/templates/template_unit_ship_bireme.xml:52
-#: simulation/templates/template_unit_ship_quinquereme.xml:56
-#: simulation/templates/template_unit_ship_trireme.xml:52
+#: simulation/templates/template_unit_ship_warship.xml:38
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
 #: simulation/templates/template_unit_siege_tower.xml:62
@@ -248,8 +246,7 @@ msgstr "Marcach Raonta"
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:5
 #: simulation/templates/template_unit_hero_infantry_archer.xml:5
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:5
-#: simulation/templates/template_unit_ship_bireme.xml:5
-#: simulation/templates/template_unit_ship_trireme.xml:5
+#: simulation/templates/template_unit_ship_warship.xml:5
 #: simulation/templates/template_unit_siege_tower.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
@@ -629,31 +626,6 @@ msgstr "Tabhallóir"
 msgid "Ship"
 msgstr "Long"
 
-#: simulation/templates/template_unit_ship_bireme.xml:50
-msgid "Light Warship"
-msgstr "Long Chogaidh Lúfar"
-
-#: simulation/templates/template_unit_ship_bireme.xml:51
-#: simulation/templates/template_unit_ship_trireme.xml:51
-msgid ""
-"Garrison units for transport and to increase firepower. Deals triple damage "
-"against Ships."
-msgstr ""
-
-#: simulation/templates/template_unit_ship_bireme.xml:52
-#: simulation/templates/template_unit_ship_fire.xml:42
-#: simulation/templates/template_unit_ship_quinquereme.xml:56
-#: simulation/templates/template_unit_ship_trireme.xml:52
-msgid "Warship"
-msgstr "Long Chogaidh"
-
-#: simulation/templates/template_unit_ship_bireme.xml:52
-#: simulation/templates/units/cart/ship_bireme.xml:9
-#: simulation/templates/units/ptol/ship_bireme.xml:9
-#: simulation/templates/units/sele/ship_bireme.xml:9
-msgid "Bireme"
-msgstr "Bíréim"
-
 #: simulation/templates/template_unit_ship_fire.xml:5
 #: simulation/templates/template_unit_siege_flamethrower.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -676,6 +648,11 @@ msgstr ""
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Fireship"
 msgstr "Long Dóiteáin"
+
+#: simulation/templates/template_unit_ship_fire.xml:42
+#: simulation/templates/template_unit_ship_warship.xml:38
+msgid "Warship"
+msgstr "Long Chogaidh"
 
 #: simulation/templates/template_unit_ship_fishing.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -716,34 +693,48 @@ msgstr "So-bhreabata"
 msgid "Trader"
 msgstr "Trádálaí"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:5
+#: simulation/templates/template_unit_ship_warship.xml:36
+#: simulation/templates/template_unit_ship_warship_light.xml:22
+msgid "Light Warship"
+msgstr "Long Chogaidh Lúfar"
+
+#: simulation/templates/template_unit_ship_warship.xml:37
+#: simulation/templates/template_unit_ship_warship_medium.xml:24
+msgid ""
+"Garrison units for transport and to increase firepower. Deals triple damage "
+"against Ships."
+msgstr ""
+
+#: simulation/templates/template_unit_ship_warship_heavy.xml:5
 #: simulation/templates/template_unit_siege_stonethrower.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "Cloch"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:54
+#: simulation/templates/template_unit_ship_warship_heavy.xml:53
 msgid "Heavy Warship"
 msgstr "Tromlong Chogaidh"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:55
-#: simulation/templates/template_unit_siege_tower.xml:64
-msgid "Garrison units for transport and to increase firepower."
-msgstr "Cuir aonaid i ngarastún a n-iompar a dhéanamh agus cumhacht lámhaigh a mhéadú."
+#: simulation/templates/template_unit_ship_warship_heavy.xml:54
+msgid ""
+"Garrison units for transport. Garrison Stone Throwers to increase firepower."
+msgstr ""
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:56
-#: simulation/templates/units/cart/ship_quinquereme.xml:5
-msgid "Quinquereme"
-msgstr "Cúigréim"
+#: simulation/templates/template_unit_ship_warship_heavy.xml:55
+msgid "Heavy"
+msgstr ""
 
-#: simulation/templates/template_unit_ship_trireme.xml:50
+#: simulation/templates/template_unit_ship_warship_light.xml:23
+msgid "Light"
+msgstr ""
+
+#: simulation/templates/template_unit_ship_warship_medium.xml:23
 msgid "Medium Warship"
 msgstr "Long Chogaidh Meánach"
 
-#: simulation/templates/template_unit_ship_trireme.xml:52
-#: simulation/templates/units/cart/ship_trireme.xml:9
-msgid "Trireme"
-msgstr "Tríréim"
+#: simulation/templates/template_unit_ship_warship_medium.xml:25
+msgid "Medium"
+msgstr "Meán"
 
 #: simulation/templates/template_unit_siege.xml:16
 #: simulation/templates/template_unit_siege.xml:17
@@ -803,6 +794,10 @@ msgstr "Túr Léigir"
 #: simulation/templates/template_unit_siege_tower.xml:63
 msgid "Siege Tower"
 msgstr "Túr Léigir"
+
+#: simulation/templates/template_unit_siege_tower.xml:64
+msgid "Garrison units for transport and to increase firepower."
+msgstr "Cuir aonaid i ngarastún a n-iompar a dhéanamh agus cumhacht lámhaigh a mhéadú."
 
 #: simulation/templates/template_unit_support_elephant.xml:17
 msgid "Worker Elephant"
@@ -1562,6 +1557,12 @@ msgstr "Seḫīr Ḥerev"
 msgid "Seḫīr Romaḥ"
 msgstr "Seḫīr Romaḥ"
 
+#: simulation/templates/units/cart/ship_bireme.xml:9
+#: simulation/templates/units/ptol/ship_bireme.xml:9
+#: simulation/templates/units/sele/ship_bireme.xml:9
+msgid "Bireme"
+msgstr "Bíréim"
+
 #: simulation/templates/units/cart/ship_bireme.xml:10
 msgid "Du-Mašōt"
 msgstr "Du-Mašōt"
@@ -1581,9 +1582,17 @@ msgid ""
 "have +25% sea trading bonus."
 msgstr "Trádáil idir dhugaí. Cuir Ceannaí i ngarastún do bhrabús breise a fháil (+20% do gach cheann atá i ngarastún). Bailigh taiscí brabúsach sna farraigí. Tá bónas +25% do thrádáil fharraige ag na Cartagaigh."
 
+#: simulation/templates/units/cart/ship_quinquereme.xml:5
+msgid "Quinquereme"
+msgstr "Cúigréim"
+
 #: simulation/templates/units/cart/ship_quinquereme.xml:6
 msgid "Ḥameš-Mašōt"
 msgstr "Ḥameš-Mašōt"
+
+#: simulation/templates/units/cart/ship_trireme.xml:9
+msgid "Trireme"
+msgstr "Tríréim"
 
 #: simulation/templates/units/cart/ship_trireme.xml:10
 msgid "Tlat-Mašōt"
@@ -2702,6 +2711,10 @@ msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
 msgstr "Trádáil acmhainní idir do mhargaidh féin agus margaidh chomhghuaillithe. Tá bónas +25% do thrádáil talún ag na Perisigh."
+
+#: simulation/templates/units/pirates/ship_bireme.xml:9
+msgid "Cilician Pirate Ship"
+msgstr ""
 
 #: simulation/templates/units/plane.xml:5
 msgctxt "Name of an attack of a World War II fighter plane."

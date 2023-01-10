@@ -183,41 +183,30 @@ var g_Commands = {
 
 	"attack-walk": function(player, cmd, data)
 	{
-		let allowCapture = cmd.allowCapture || cmd.allowCapture == null;
-
 		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
-			cmpUnitAI.WalkAndFight(cmd.x, cmd.z, cmd.targetClasses, allowCapture, cmd.queued, cmd.pushFront);
+			cmpUnitAI.WalkAndFight(cmd.x, cmd.z, cmd.targetClasses, cmd.allowCapture, cmd.queued, cmd.pushFront);
 		});
 	},
 
 	"attack-walk-custom": function(player, cmd, data)
 	{
-		let allowCapture = cmd.allowCapture || cmd.allowCapture == null;
 		for (let ent in data.entities)
 			GetFormationUnitAIs([data.entities[ent]], player, cmd, data.formation).forEach(cmpUnitAI => {
-				cmpUnitAI.WalkAndFight(cmd.targetPositions[ent].x, cmd.targetPositions[ent].y, cmd.targetClasses, allowCapture, cmd.queued, cmd.pushFront);
+				cmpUnitAI.WalkAndFight(cmd.targetPositions[ent].x, cmd.targetPositions[ent].y, cmd.targetClasses, cmd.allowCapture, cmd.queued, cmd.pushFront);
 			});
 	},
 
 	"attack": function(player, cmd, data)
 	{
-		let allowCapture = cmd.allowCapture || cmd.allowCapture == null;
-
-		if (g_DebugCommands && !allowCapture &&
-		   !(IsOwnedByEnemyOfPlayer(player, cmd.target) || IsOwnedByNeutralOfPlayer(player, cmd.target)))
-			warn("Invalid command: attack target is not owned by enemy of player "+player+": "+uneval(cmd));
-
 		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI => {
-			cmpUnitAI.Attack(cmd.target, allowCapture, cmd.queued, cmd.pushFront);
+			cmpUnitAI.Attack(cmd.target, cmd.allowCapture, cmd.queued, cmd.pushFront);
 		});
 	},
 
 	"patrol": function(player, cmd, data)
 	{
-		let allowCapture = cmd.allowCapture || cmd.allowCapture == null;
-
 		GetFormationUnitAIs(data.entities, player, cmd, data.formation).forEach(cmpUnitAI =>
-			cmpUnitAI.Patrol(cmd.x, cmd.z, cmd.targetClasses, allowCapture, cmd.queued)
+			cmpUnitAI.Patrol(cmd.x, cmd.z, cmd.targetClasses, cmd.allowCapture, cmd.queued)
 		);
 	},
 

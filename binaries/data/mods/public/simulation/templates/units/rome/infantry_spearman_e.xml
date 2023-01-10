@@ -4,6 +4,18 @@
     <Rank>Elite</Rank>
   </Identity>
   <Promotion disable=""/>
+  <Upgrade>
+    <Centurion>
+      <Entity>units/rome/infantry_swordsman_e_centurion</Entity>
+      <Tooltip>Give this combat veteran the rank of Centurion.</Tooltip>
+      <Cost>
+        <food>100</food>
+        <metal>50</metal>
+      </Cost>
+      <Variant>upgrading</Variant>
+      <Time>8</Time>
+    </Centurion>
+  </Upgrade>
   <VisualActor>
     <Actor>units/romans/infantry_spearman_e.xml</Actor>
   </VisualActor>

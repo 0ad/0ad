@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -47,7 +47,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-11-25 08:08+0000\n"
+"POT-Creation-Date: 2023-01-06 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: Vladislav Belov, 2016,2021-2022\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
@@ -266,9 +266,7 @@ msgstr "Мечник"
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:24
 #: simulation/templates/template_unit_infantry_ranged.xml:7
 #: simulation/templates/template_unit_infantry_ranged.xml:8
-#: simulation/templates/template_unit_ship_bireme.xml:52
-#: simulation/templates/template_unit_ship_quinquereme.xml:56
-#: simulation/templates/template_unit_ship_trireme.xml:52
+#: simulation/templates/template_unit_ship_warship.xml:38
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
 #: simulation/templates/template_unit_siege_tower.xml:62
@@ -286,8 +284,7 @@ msgstr "Конные стрелки"
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:5
 #: simulation/templates/template_unit_hero_infantry_archer.xml:5
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:5
-#: simulation/templates/template_unit_ship_bireme.xml:5
-#: simulation/templates/template_unit_ship_trireme.xml:5
+#: simulation/templates/template_unit_ship_warship.xml:5
 #: simulation/templates/template_unit_siege_tower.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
@@ -667,31 +664,6 @@ msgstr "Пращник"
 msgid "Ship"
 msgstr "Судно"
 
-#: simulation/templates/template_unit_ship_bireme.xml:50
-msgid "Light Warship"
-msgstr "Лёгкий военный корабль"
-
-#: simulation/templates/template_unit_ship_bireme.xml:51
-#: simulation/templates/template_unit_ship_trireme.xml:51
-msgid ""
-"Garrison units for transport and to increase firepower. Deals triple damage "
-"against Ships."
-msgstr "Наносит тройной урон кораблям. Разместите воинов на борту для транспортировки и увеличения огневой мощи."
-
-#: simulation/templates/template_unit_ship_bireme.xml:52
-#: simulation/templates/template_unit_ship_fire.xml:42
-#: simulation/templates/template_unit_ship_quinquereme.xml:56
-#: simulation/templates/template_unit_ship_trireme.xml:52
-msgid "Warship"
-msgstr "Боевой корабль"
-
-#: simulation/templates/template_unit_ship_bireme.xml:52
-#: simulation/templates/units/cart/ship_bireme.xml:9
-#: simulation/templates/units/ptol/ship_bireme.xml:9
-#: simulation/templates/units/sele/ship_bireme.xml:9
-msgid "Bireme"
-msgstr "Бирема"
-
 #: simulation/templates/template_unit_ship_fire.xml:5
 #: simulation/templates/template_unit_siege_flamethrower.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -714,6 +686,11 @@ msgstr "Не подлежит ремонту. Постепенно повреж�
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Fireship"
 msgstr "Брандер"
+
+#: simulation/templates/template_unit_ship_fire.xml:42
+#: simulation/templates/template_unit_ship_warship.xml:38
+msgid "Warship"
+msgstr "Боевой корабль"
 
 #: simulation/templates/template_unit_ship_fishing.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -754,34 +731,48 @@ msgstr "Подкупной"
 msgid "Trader"
 msgstr "Торговец"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:5
+#: simulation/templates/template_unit_ship_warship.xml:36
+#: simulation/templates/template_unit_ship_warship_light.xml:22
+msgid "Light Warship"
+msgstr "Лёгкий военный корабль"
+
+#: simulation/templates/template_unit_ship_warship.xml:37
+#: simulation/templates/template_unit_ship_warship_medium.xml:24
+msgid ""
+"Garrison units for transport and to increase firepower. Deals triple damage "
+"against Ships."
+msgstr "Наносит тройной урон кораблям. Разместите воинов на борту для транспортировки и увеличения огневой мощи."
+
+#: simulation/templates/template_unit_ship_warship_heavy.xml:5
 #: simulation/templates/template_unit_siege_stonethrower.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "Камень"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:54
+#: simulation/templates/template_unit_ship_warship_heavy.xml:53
 msgid "Heavy Warship"
 msgstr "Тяжёлый боевой корабль"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:55
-#: simulation/templates/template_unit_siege_tower.xml:64
-msgid "Garrison units for transport and to increase firepower."
-msgstr "Разместите воинов на борту для транспортировки и увеличения  огневой мощи."
+#: simulation/templates/template_unit_ship_warship_heavy.xml:54
+msgid ""
+"Garrison units for transport. Garrison Stone Throwers to increase firepower."
+msgstr ""
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:56
-#: simulation/templates/units/cart/ship_quinquereme.xml:5
-msgid "Quinquereme"
-msgstr "Квинквирема"
+#: simulation/templates/template_unit_ship_warship_heavy.xml:55
+msgid "Heavy"
+msgstr ""
 
-#: simulation/templates/template_unit_ship_trireme.xml:50
+#: simulation/templates/template_unit_ship_warship_light.xml:23
+msgid "Light"
+msgstr ""
+
+#: simulation/templates/template_unit_ship_warship_medium.xml:23
 msgid "Medium Warship"
 msgstr "Средний военный корабль"
 
-#: simulation/templates/template_unit_ship_trireme.xml:52
-#: simulation/templates/units/cart/ship_trireme.xml:9
-msgid "Trireme"
-msgstr "Трирема"
+#: simulation/templates/template_unit_ship_warship_medium.xml:25
+msgid "Medium"
+msgstr "Среднее"
 
 #: simulation/templates/template_unit_siege.xml:16
 #: simulation/templates/template_unit_siege.xml:17
@@ -841,6 +832,10 @@ msgstr "Осадная башня"
 #: simulation/templates/template_unit_siege_tower.xml:63
 msgid "Siege Tower"
 msgstr "Осадная башня"
+
+#: simulation/templates/template_unit_siege_tower.xml:64
+msgid "Garrison units for transport and to increase firepower."
+msgstr "Разместите воинов на борту для транспортировки и увеличения  огневой мощи."
 
 #: simulation/templates/template_unit_support_elephant.xml:17
 msgid "Worker Elephant"
@@ -1600,6 +1595,12 @@ msgstr "Сехир Херев"
 msgid "Seḫīr Romaḥ"
 msgstr "Сехир Ромах"
 
+#: simulation/templates/units/cart/ship_bireme.xml:9
+#: simulation/templates/units/ptol/ship_bireme.xml:9
+#: simulation/templates/units/sele/ship_bireme.xml:9
+msgid "Bireme"
+msgstr "Бирема"
+
 #: simulation/templates/units/cart/ship_bireme.xml:10
 msgid "Du-Mašōt"
 msgstr "Ду-Машот"
@@ -1619,9 +1620,17 @@ msgid ""
 "have +25% sea trading bonus."
 msgstr "Ведёт торговлю между портами. Размещение на борту торговцев увеличивает прибыль (+20% за каждого). Собирает морские сокровища.  Карфагенцы получают на 25% больше прибыли от морской торговли."
 
+#: simulation/templates/units/cart/ship_quinquereme.xml:5
+msgid "Quinquereme"
+msgstr "Квинквирема"
+
 #: simulation/templates/units/cart/ship_quinquereme.xml:6
 msgid "Ḥameš-Mašōt"
 msgstr "Хамеш-Машот"
+
+#: simulation/templates/units/cart/ship_trireme.xml:9
+msgid "Trireme"
+msgstr "Трирема"
 
 #: simulation/templates/units/cart/ship_trireme.xml:10
 msgid "Tlat-Mašōt"
@@ -2740,6 +2749,10 @@ msgid ""
 "Trade resources between your own markets and those of your allies. Persians "
 "have a +25% land trading bonus."
 msgstr "Ведёт торговлю между вашими рынками и рынками союзников. Персы получают на 25% больше прибыли от сухопутной торговли."
+
+#: simulation/templates/units/pirates/ship_bireme.xml:9
+msgid "Cilician Pirate Ship"
+msgstr ""
 
 #: simulation/templates/units/plane.xml:5
 msgctxt "Name of an attack of a World War II fighter plane."
