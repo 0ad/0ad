@@ -46,9 +46,8 @@
   <Cost>
     <BuildTime>250</BuildTime>
     <Resources>
-      <wood>500</wood>
-      <stone>100</stone>
-      <metal>100</metal>
+      <wood>400</wood>
+      <stone>150</stone>
     </Resources>
   </Cost>
   <Footprint>
@@ -64,7 +63,7 @@
     <LoadingRange>6</LoadingRange>
   </GarrisonHolder>
   <Health>
-    <Max>2250</Max>
+    <Max>1750</Max>
     <SpawnEntityOnDeath>decay|rubble/rubble_rome_sb</SpawnEntityOnDeath>
   </Health>
   <Identity>
@@ -73,14 +72,15 @@
     <SpecificName>Castra</SpecificName>
     <Tooltip>Build in neutral or enemy territory. Train Advanced Melee Infantry. Construct Rams. Garrison Soldiers for additional arrows.</Tooltip>
     <Classes datatype="tokens">ConquestCritical CivSpecific</Classes>
-    <VisibleClasses datatype="tokens">City ArmyCamp</VisibleClasses>
+    <VisibleClasses datatype="tokens">Town ArmyCamp</VisibleClasses>
     <Icon>structures/roman_camp.png</Icon>
     <Requirements>
-      <Techs>phase_city</Techs>
+      <Techs>phase_town</Techs>
     </Requirements>
   </Identity>
   <Loot>
-    <wood>100</wood>
+    <wood>80</wood>
+    <stone>30</stone>
   </Loot>
   <Obstruction>
     <Static width="36.0" depth="36.0"/>
