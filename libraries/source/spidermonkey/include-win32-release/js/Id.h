@@ -26,10 +26,12 @@
 
 #include "jstypes.h"
 
+#include "js/GCAnnotations.h"
 #include "js/HeapAPI.h"
 #include "js/RootingAPI.h"
+#include "js/TraceKind.h"
+#include "js/TracingAPI.h"
 #include "js/TypeDecls.h"
-#include "js/Utility.h"
 
 // All jsids with the low bit set are integer ids. This means the other type
 // tags must all be even.
@@ -39,7 +41,7 @@
 #define JSID_TYPE_STRING 0x0
 #define JSID_TYPE_VOID 0x2
 #define JSID_TYPE_SYMBOL 0x4
-#define JSID_TYPE_EMPTY 0x6
+// (0x6 is unused)
 #define JSID_TYPE_MASK 0x7
 
 namespace JS {
@@ -59,6 +61,12 @@ struct PropertyKey {
 
   bool operator==(const PropertyKey& rhs) const { return asBits == rhs.asBits; }
   bool operator!=(const PropertyKey& rhs) const { return asBits != rhs.asBits; }
+
+  MOZ_ALWAYS_INLINE bool isVoid() const {
+    MOZ_ASSERT_IF((asBits & JSID_TYPE_MASK) == JSID_TYPE_VOID,
+                  asBits == JSID_TYPE_VOID);
+    return asBits == JSID_TYPE_VOID;
+  }
 
   MOZ_ALWAYS_INLINE bool isInt() const {
     return !!(asBits & JSID_TYPE_INT_BIT);
@@ -92,14 +100,21 @@ struct PropertyKey {
     return reinterpret_cast<JS::Symbol*>(asBits ^ JSID_TYPE_SYMBOL);
   }
 
+  js::gc::Cell* toGCThing() const {
+    MOZ_ASSERT(isGCThing());
+    return reinterpret_cast<js::gc::Cell*>(asBits & ~(size_t)JSID_TYPE_MASK);
+  }
+
   GCCellPtr toGCCellPtr() const {
-    void* thing = (void*)(asBits & ~(size_t)JSID_TYPE_MASK);
+    js::gc::Cell* thing = toGCThing();
     if (isString()) {
       return JS::GCCellPtr(thing, JS::TraceKind::String);
     }
     MOZ_ASSERT(isSymbol());
     return JS::GCCellPtr(thing, JS::TraceKind::Symbol);
   }
+
+  bool isPrivateName() const;
 
   bool isWellKnownSymbol(JS::SymbolCode code) const;
 
@@ -144,6 +159,17 @@ struct PropertyKey {
     return PropertyKey::fromRawBits(size_t(str) | JSID_TYPE_STRING);
   }
 
+  // Internal API!
+  // All string PropertyKeys are actually atomized.
+  MOZ_ALWAYS_INLINE bool isAtom() const { return isString(); }
+
+  MOZ_ALWAYS_INLINE bool isAtom(JSAtom* atom) const {
+    MOZ_ASSERT(PropertyKey::isNonIntAtom(atom));
+    return isAtom() && toAtom() == atom;
+  }
+
+  MOZ_ALWAYS_INLINE JSAtom* toAtom() const { return (JSAtom*)toString(); }
+
  private:
   static bool isNonIntAtom(JSAtom* atom);
   static bool isNonIntAtom(JSString* atom);
@@ -178,12 +204,6 @@ static MOZ_ALWAYS_INLINE jsid INT_TO_JSID(int32_t i) {
   return id;
 }
 
-static MOZ_ALWAYS_INLINE bool JSID_IS_SYMBOL(jsid id) { return id.isSymbol(); }
-
-static MOZ_ALWAYS_INLINE JS::Symbol* JSID_TO_SYMBOL(jsid id) {
-  return id.toSymbol();
-}
-
 static MOZ_ALWAYS_INLINE jsid SYMBOL_TO_JSID(JS::Symbol* sym) {
   jsid id;
   MOZ_ASSERT(sym != nullptr);
@@ -194,22 +214,12 @@ static MOZ_ALWAYS_INLINE jsid SYMBOL_TO_JSID(JS::Symbol* sym) {
 }
 
 static MOZ_ALWAYS_INLINE bool JSID_IS_VOID(const jsid id) {
-  MOZ_ASSERT_IF((JSID_BITS(id) & JSID_TYPE_MASK) == JSID_TYPE_VOID,
-                JSID_BITS(id) == JSID_TYPE_VOID);
-  return JSID_BITS(id) == JSID_TYPE_VOID;
-}
-
-static MOZ_ALWAYS_INLINE bool JSID_IS_EMPTY(const jsid id) {
-  MOZ_ASSERT_IF((JSID_BITS(id) & JSID_TYPE_MASK) == JSID_TYPE_EMPTY,
-                JSID_BITS(id) == JSID_TYPE_EMPTY);
-  return JSID_BITS(id) == JSID_TYPE_EMPTY;
+  return id.isVoid();
 }
 
 constexpr const jsid JSID_VOID;
-constexpr const jsid JSID_EMPTY = jsid::fromRawBits(JSID_TYPE_EMPTY);
 
 extern JS_PUBLIC_DATA const JS::HandleId JSID_VOIDHANDLE;
-extern JS_PUBLIC_DATA const JS::HandleId JSID_EMPTYHANDLE;
 
 namespace JS {
 
@@ -223,6 +233,12 @@ struct GCPolicy<jsid> {
   static bool isValid(jsid id) {
     return !id.isGCThing() ||
            js::gc::IsCellPointerValid(id.toGCCellPtr().asCell());
+  }
+
+  static bool isTenured(jsid id) {
+    MOZ_ASSERT_IF(id.isGCThing(),
+                  !js::gc::IsInsideNursery(id.toGCCellPtr().asCell()));
+    return true;
   }
 };
 
@@ -241,11 +257,8 @@ namespace js {
 template <>
 struct BarrierMethods<jsid> {
   static gc::Cell* asGCThingOrNull(jsid id) {
-    if (JSID_IS_STRING(id)) {
-      return reinterpret_cast<gc::Cell*>(JSID_TO_STRING(id));
-    }
-    if (JSID_IS_SYMBOL(id)) {
-      return reinterpret_cast<gc::Cell*>(JSID_TO_SYMBOL(id));
+    if (id.isGCThing()) {
+      return id.toGCThing();
     }
     return nullptr;
   }
@@ -264,11 +277,11 @@ struct BarrierMethods<jsid> {
 // pointer and return the result wrapped in a Maybe, otherwise return None().
 template <typename F>
 auto MapGCThingTyped(const jsid& id, F&& f) {
-  if (JSID_IS_STRING(id)) {
-    return mozilla::Some(f(JSID_TO_STRING(id)));
+  if (id.isString()) {
+    return mozilla::Some(f(id.toString()));
   }
-  if (JSID_IS_SYMBOL(id)) {
-    return mozilla::Some(f(JSID_TO_SYMBOL(id)));
+  if (id.isSymbol()) {
+    return mozilla::Some(f(id.toSymbol()));
   }
   MOZ_ASSERT(!id.isGCThing());
   using ReturnType = decltype(f(static_cast<JSString*>(nullptr)));
@@ -294,6 +307,7 @@ class WrappedPtrOperations<JS::PropertyKey, Wrapper> {
   }
 
  public:
+  bool isVoid() const { return id().isVoid(); }
   bool isInt() const { return id().isInt(); }
   bool isString() const { return id().isString(); }
   bool isSymbol() const { return id().isSymbol(); }
@@ -303,9 +317,16 @@ class WrappedPtrOperations<JS::PropertyKey, Wrapper> {
   JSString* toString() const { return id().toString(); }
   JS::Symbol* toSymbol() const { return id().toSymbol(); }
 
+  bool isPrivateName() const { return id().isPrivateName(); }
+
   bool isWellKnownSymbol(JS::SymbolCode code) const {
     return id().isWellKnownSymbol(code);
   }
+
+  // Internal API
+  bool isAtom() const { return id().isAtom(); }
+  bool isAtom(JSAtom* atom) const { return id().isAtom(atom); }
+  JSAtom* toAtom() const { return id().toAtom(); }
 };
 
 }  // namespace js

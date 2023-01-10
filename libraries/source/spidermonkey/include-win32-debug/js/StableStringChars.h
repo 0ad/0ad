@@ -12,27 +12,24 @@
 #define js_StableStringChars_h
 
 #include "mozilla/Assertions.h"  // MOZ_ASSERT
-#include "mozilla/Attributes.h"  // MOZ_INIT_OUTSIDE_CTOR, MOZ_STACK_CLASS, MOZ_MUST_USE
-#include "mozilla/Maybe.h"  // mozilla::Maybe
-#include "mozilla/Range.h"  // mozilla::Range
+#include "mozilla/Attributes.h"  // MOZ_INIT_OUTSIDE_CTOR, MOZ_STACK_CLASS
+#include "mozilla/Maybe.h"       // mozilla::Maybe
+#include "mozilla/Range.h"       // mozilla::Range
 
 #include <stddef.h>  // size_t
 #include <stdint.h>  // uint8_t
 
-#include "jstypes.h"  // JS_FRIEND_API
+#include "jstypes.h"  // JS_PUBLIC_API
 
-#include "js/HeapAPI.h"     // JS::shadow::String
+#include "js/AllocPolicy.h"
 #include "js/RootingAPI.h"  // JS::Handle, JS::Rooted
+#include "js/String.h"      // JS::GetStringLength
 #include "js/TypeDecls.h"   // JSContext, JS::Latin1Char, JSString
 #include "js/Vector.h"      // js::Vector
 
 class JSLinearString;
 
 namespace JS {
-
-MOZ_ALWAYS_INLINE size_t GetStringLength(JSString* s) {
-  return reinterpret_cast<shadow::String*>(s)->length();
-}
 
 /**
  * This class provides safe access to a string's chars across a GC. If we ever
@@ -42,7 +39,7 @@ MOZ_ALWAYS_INLINE size_t GetStringLength(JSString* s) {
  * and often the code can be rewritten so that only indexes instead of char
  * pointers are used in parts of the code that can GC.
  */
-class MOZ_STACK_CLASS JS_FRIEND_API AutoStableStringChars final {
+class MOZ_STACK_CLASS JS_PUBLIC_API AutoStableStringChars final {
   /*
    * When copying string char, use this many bytes of inline storage.  This is
    * chosen to allow the inline string types to be copied without allocating.
@@ -64,10 +61,10 @@ class MOZ_STACK_CLASS JS_FRIEND_API AutoStableStringChars final {
   explicit AutoStableStringChars(JSContext* cx)
       : s_(cx), state_(Uninitialized) {}
 
-  MOZ_MUST_USE bool init(JSContext* cx, JSString* s);
+  [[nodiscard]] bool init(JSContext* cx, JSString* s);
 
   /* Like init(), but Latin1 chars are inflated to TwoByte. */
-  MOZ_MUST_USE bool initTwoByte(JSContext* cx, JSString* s);
+  [[nodiscard]] bool initTwoByte(JSContext* cx, JSString* s);
 
   bool isLatin1() const { return state_ == Latin1; }
   bool isTwoByte() const { return state_ == TwoByte; }

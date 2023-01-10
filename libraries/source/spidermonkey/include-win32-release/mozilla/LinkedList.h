@@ -64,6 +64,7 @@
 #ifndef mozilla_LinkedList_h
 #define mozilla_LinkedList_h
 
+#include <algorithm>
 #include <utility>
 
 #include "mozilla/Assertions.h"
@@ -313,7 +314,7 @@ class LinkedListElement {
    */
   void setNextUnsafe(RawType aElem) {
     LinkedListElement* listElem = static_cast<LinkedListElement*>(aElem);
-    MOZ_ASSERT(!listElem->isInList());
+    MOZ_RELEASE_ASSERT(!listElem->isInList());
 
     listElem->mNext = this->mNext;
     listElem->mPrev = this;
@@ -329,7 +330,7 @@ class LinkedListElement {
    */
   void setPreviousUnsafe(RawType aElem) {
     LinkedListElement<T>* listElem = static_cast<LinkedListElement<T>*>(aElem);
-    MOZ_ASSERT(!listElem->isInList());
+    MOZ_RELEASE_ASSERT(!listElem->isInList());
 
     listElem->mNext = this;
     listElem->mPrev = this->mPrev;
@@ -434,10 +435,15 @@ class LinkedList {
   }
 
   ~LinkedList() {
-    MOZ_ASSERT(isEmpty(),
-               "failing this assertion means this LinkedList's creator is "
-               "buggy: it should have removed all this list's elements before "
-               "the list's destruction");
+#  ifdef DEBUG
+    if (!isEmpty()) {
+      MOZ_CRASH_UNSAFE_PRINTF(
+          "%s has a buggy user: "
+          "it should have removed all this list's elements before "
+          "the list's destruction",
+          __PRETTY_FUNCTION__);
+    }
+#  endif
   }
 
   /*
@@ -515,15 +521,7 @@ class LinkedList {
   /**
    * Return the length of elements in the list.
    */
-  size_t length() const {
-    size_t length = 0;
-    ConstRawType element = getFirst();
-    while (element) {
-      length++;
-      element = element->getNext();
-    }
-    return length;
-  }
+  size_t length() const { return std::distance(begin(), end()); }
 
   /*
    * Allow range-based iteration:
@@ -636,6 +634,26 @@ class LinkedList {
   LinkedList& operator=(const LinkedList<T>& aOther) = delete;
   LinkedList(const LinkedList<T>& aOther) = delete;
 };
+
+template <typename T>
+inline void ImplCycleCollectionUnlink(LinkedList<RefPtr<T>>& aField) {
+  aField.clear();
+}
+
+template <typename T>
+inline void ImplCycleCollectionTraverse(
+    nsCycleCollectionTraversalCallback& aCallback,
+    LinkedList<RefPtr<T>>& aField, const char* aName, uint32_t aFlags = 0) {
+  typedef typename detail::LinkedListElementTraits<T> Traits;
+  typedef typename Traits::RawType RawType;
+  for (RawType element : aField) {
+    // RefPtr is stored as a raw pointer in LinkedList.
+    // So instead of creating a new RefPtr from the raw
+    // pointer (which is not allowed), we simply call
+    // CycleCollectionNoteChild against the raw pointer
+    CycleCollectionNoteChild(aCallback, element, aName, aFlags);
+  }
+}
 
 template <typename T>
 class AutoCleanLinkedList : public LinkedList<T> {

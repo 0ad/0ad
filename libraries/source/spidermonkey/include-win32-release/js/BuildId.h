@@ -12,8 +12,6 @@
 #ifndef js_BuildId_h
 #define js_BuildId_h
 
-#include "mozilla/Attributes.h"  // MOZ_MUST_USE
-
 #include "jstypes.h"  // JS_PUBLIC_API
 
 #include "js/Vector.h"  // js::Vector
@@ -57,7 +55,26 @@ extern JS_PUBLIC_API void SetProcessBuildIdOp(BuildIdOp buildIdOp);
  * on having consistent buildId *and* on the CPU supporting features identical
  * to those in play when the cached data was computed.
  */
-extern MOZ_MUST_USE JS_PUBLIC_API bool GetOptimizedEncodingBuildId(
+[[nodiscard]] extern JS_PUBLIC_API bool GetOptimizedEncodingBuildId(
+    BuildIdCharVector* buildId);
+
+/**
+ * Script bytecode is dependent on the buildId and a few other things.
+ *
+ * This function produces a buildId that includes:
+ *
+ *   * The buildId defined by the embedder-provided BuildIdOp set by
+ *     JS::SetProcessBuildIdOp.
+ *   * Additional bytes describing things like endianness, pointer size and
+ *     other state XDR buffers depend on.
+ *
+ * Note: this value may depend on runtime preferences so isn't guaranteed to be
+ * stable across restarts.
+ *
+ * Embedders should use this function to tag transcoded bytecode.
+ * See Transcoding.h.
+ */
+[[nodiscard]] extern JS_PUBLIC_API bool GetScriptTranscodingBuildId(
     BuildIdCharVector* buildId);
 
 }  // namespace JS

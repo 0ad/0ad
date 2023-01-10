@@ -7,7 +7,8 @@
 #ifndef js_experimental_CodeCoverage_h
 #define js_experimental_CodeCoverage_h
 
-#include "jstypes.h"     // JS_FRIEND_API
+#include "jstypes.h"     // JS_PUBLIC_API
+#include "js/Utility.h"  // JS::UniqueChars
 
 struct JS_PUBLIC_API JSContext;
 
@@ -18,7 +19,21 @@ namespace js {
  * Must be called before a runtime is created and before any calls to
  * GetCodeCoverageSummary.
  */
-extern JS_FRIEND_API void EnableCodeCoverage();
+extern JS_PUBLIC_API void EnableCodeCoverage();
+
+/**
+ * Generate lcov trace file content for the current realm, and allocate a new
+ * buffer and return the content in it, the size of the newly allocated content
+ * within the buffer would be set to the length out-param. The 'All' variant
+ * will collect data for all realms in the runtime.
+ *
+ * In case of out-of-memory, this function returns nullptr. The length
+ * out-param is undefined on failure.
+ */
+extern JS_PUBLIC_API JS::UniqueChars GetCodeCoverageSummary(JSContext* cx,
+                                                            size_t* length);
+extern JS_PUBLIC_API JS::UniqueChars GetCodeCoverageSummaryAll(JSContext* cx,
+                                                               size_t* length);
 
 }  // namespace js
 

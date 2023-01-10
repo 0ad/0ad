@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -105,7 +105,7 @@ template<> bool Script::FromJSVal<std::wstring>(const ScriptRequest& rq,  JS::Ha
 	if (!str)
 		FAIL("Argument must be convertible to a string");
 
-	if (JS_StringHasLatin1Chars(str))
+	if (JS::StringHasLatin1Chars(str))
 	{
 		size_t length;
 		JS::AutoCheckCannotGC nogc;

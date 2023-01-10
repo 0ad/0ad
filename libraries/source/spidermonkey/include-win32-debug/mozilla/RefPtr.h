@@ -565,6 +565,17 @@ inline already_AddRefed<T> do_AddRef(const RefPtr<T>& aObj) {
 
 namespace mozilla {
 
+template <typename T>
+class AlignmentFinder;
+
+// Provide a specialization of AlignmentFinder to allow MOZ_ALIGNOF(RefPtr<T>)
+// with an incomplete T.
+template <typename T>
+class AlignmentFinder<RefPtr<T>> {
+ public:
+  static const size_t alignment = alignof(T*);
+};
+
 /**
  * Helper function to be able to conveniently write things like:
  *
@@ -594,5 +605,14 @@ RefPtr<T> MakeRefPtr(Args&&... aArgs) {
 }
 
 }  // namespace mozilla
+
+/**
+ * Deduction guide to allow simple `RefPtr` definitions from an
+ * already_AddRefed<T> without repeating the type, e.g.:
+ *
+ *   RefPtr ptr = MakeAndAddRef<SomeType>(...);
+ */
+template <typename T>
+RefPtr(already_AddRefed<T>) -> RefPtr<T>;
 
 #endif /* mozilla_RefPtr_h */

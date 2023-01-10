@@ -91,7 +91,7 @@ class SystemAllocPolicy : public AllocPolicyBase {
   bool checkSimulatedOOM() const { return !js::oom::ShouldFailWithOOM(); }
 };
 
-MOZ_COLD JS_FRIEND_API void ReportOutOfMemory(JSContext* cx);
+MOZ_COLD JS_PUBLIC_API void ReportOutOfMemory(JSContext* cx);
 
 /*
  * Allocation policy that calls the system memory functions and reports errors
@@ -102,7 +102,7 @@ MOZ_COLD JS_FRIEND_API void ReportOutOfMemory(JSContext* cx);
  * FIXME bug 647103 - rewrite this in terms of temporary allocation functions,
  * not the system ones.
  */
-class TempAllocPolicy : public AllocPolicyBase {
+class JS_PUBLIC_API TempAllocPolicy : public AllocPolicyBase {
   JSContext* const cx_;
 
   /*
@@ -110,7 +110,7 @@ class TempAllocPolicy : public AllocPolicyBase {
    * code bloat.
    */
   void* onOutOfMemory(arena_id_t arenaId, AllocFunction allocFunc,
-                                    size_t nbytes, void* reallocPtr = nullptr);
+                      size_t nbytes, void* reallocPtr = nullptr);
 
   template <typename T>
   T* onOutOfMemoryTyped(arena_id_t arenaId, AllocFunction allocFunc,
@@ -185,6 +185,21 @@ class TempAllocPolicy : public AllocPolicyBase {
 
     return true;
   }
+};
+
+/*
+ * A replacement for MallocAllocPolicy that allocates in the JS heap and adds no
+ * extra behaviours.
+ *
+ * This is currently used for allocating source buffers for parsing. Since these
+ * are temporary and will not be freed by GC, the memory is not tracked by the
+ * usual accounting.
+ */
+class MallocAllocPolicy : public AllocPolicyBase {
+ public:
+  void reportAllocOverflow() const {}
+
+  [[nodiscard]] bool checkSimulatedOOM() const { return true; }
 };
 
 } /* namespace js */

@@ -1,20 +1,16 @@
 --- a/python/mozbuild/mozbuild/virtualenv.py
 +++ b/python/mozbuild/mozbuild/virtualenv.py
-@@ -235,7 +235,7 @@
-         if os.path.islink(venv_python):
-             os.remove(venv_python)
+@@ -246,11 +246,12 @@
+         if os.path.exists(self.virtualenv_root):
+             shutil.rmtree(self.virtualenv_root)
  
--        args = [python, self.virtualenv_script_path,
-+        args = [python, "-m" "virtualenv",
-                 # Without this, virtualenv.py may attempt to contact the outside
-                 # world and search for or download a newer version of pip,
-                 # setuptools, or wheel. This is bad for security, reproducibility,
-@@ -438,7 +438,7 @@
-                 handle_package(package)
- 
-             sitecustomize = os.path.join(
--                os.path.dirname(os.__file__), 'sitecustomize.py')
-+                os.path.dirname(sys.executable), 'sitecustomize.py')
-             with open(sitecustomize, 'w') as f:
-                 f.write(
-                     '# Importing mach_bootstrap has the side effect of\n'
+         args = [
+             python,
+-            self.virtualenv_script_path,
++            "-m",
++            "virtualenv",
+             # Without this, virtualenv.py may attempt to contact the outside
+             # world and search for or download a newer version of pip,
+             # setuptools, or wheel. This is bad for security, reproducibility,
+             # and speed.
+             "--no-download",

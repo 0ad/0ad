@@ -52,7 +52,6 @@
 #ifndef js_CompileOptions_h
 #define js_CompileOptions_h
 
-#include "mozilla/Attributes.h"       // MOZ_MUST_USE
 #include "mozilla/MemoryReporting.h"  // mozilla::MallocSizeOf
 
 #include <stddef.h>  // size_t
@@ -72,7 +71,9 @@ namespace JS {
 
 enum class AsmJSOption : uint8_t {
   Enabled,
-  Disabled,
+  DisabledByAsmJSPref,
+  DisabledByLinker,
+  DisabledByNoWasmCompiler,
   DisabledByDebugger,
 };
 
@@ -122,14 +123,45 @@ class JS_PUBLIC_API TransitiveCompileOptions {
  public:
   // POD options.
   bool selfHostingMode = false;
-  AsmJSOption asmJSOption = AsmJSOption::Disabled;
+  AsmJSOption asmJSOption = AsmJSOption::DisabledByAsmJSPref;
   bool throwOnAsmJSValidationFailureOption = false;
   bool forceAsync = false;
   bool discardSource = false;
   bool sourceIsLazy = false;
   bool allowHTMLComments = true;
   bool hideScriptFromDebugger = false;
+
+  // If set, this script will be hidden from the debugger. The requirement
+  // is that once compilation is finished, a call to UpdateDebugMetadata will
+  // be made, which will update the SSO with the appropiate debug metadata,
+  // and expose the script to the debugger (if hideScriptFromDebugger isn't set)
+  bool deferDebugMetadata = false;
+
+  bool hideFromNewScriptInitial() const {
+    return deferDebugMetadata || hideScriptFromDebugger;
+  }
+
   bool nonSyntacticScope = false;
+  bool privateClassFields = false;
+  bool privateClassMethods = false;
+  bool topLevelAwait = true;
+
+  bool classStaticBlocks = false;
+
+  // True if transcoding to XDR should use Stencil instead of JSScripts.
+  bool useStencilXDR = false;
+
+  // True if off-thread parsing should use a parse GlobalObject in order to
+  // directly allocate to the GC from a helper thread. If false, transfer the
+  // CompilationStencil back to main thread before allocating GC objects.
+  bool useOffThreadParseGlobal = true;
+
+  // When decoding from XDR, borrow ImmutableScriptData from the XDR buffer
+  // instead of copying out of it.
+  //
+  // NOTE: When using this mode, the XDR buffer must live until JS_Shutdown is
+  // called. There is currently no mechanism to release the data sooner.
+  bool usePinnedBytecode = false;
 
   /**
    * |introductionType| is a statically allocated C string: one of "eval",
@@ -141,8 +173,7 @@ class JS_PUBLIC_API TransitiveCompileOptions {
   uint32_t introductionOffset = 0;
   bool hasIntroductionInfo = false;
 
-  // Mask of operation kinds which should be instrumented.
-  uint32_t instrumentationKinds = 0;
+  bool useFdlibmForSinCosTan = false;
 
  protected:
   TransitiveCompileOptions() = default;
@@ -162,18 +193,6 @@ class JS_PUBLIC_API TransitiveCompileOptions {
   const char* filename() const { return filename_; }
   const char* introducerFilename() const { return introducerFilename_; }
   const char16_t* sourceMapURL() const { return sourceMapURL_; }
-  virtual Value privateValue() const = 0;
-  virtual JSString* elementAttributeName() const = 0;
-  virtual JSScript* introductionScript() const = 0;
-
-  // For some compilations the spec requires the ScriptOrModule field of the
-  // resulting script to be set to the currently executing script. This can be
-  // achieved by setting this option with setScriptOrModule() below.
-  //
-  // Note that this field doesn't explicitly exist in our implementation;
-  // instead the ScriptSourceObject's private value is set to that associated
-  // with the specified script.
-  virtual JSScript* scriptOrModule() const = 0;
 
   TransitiveCompileOptions(const TransitiveCompileOptions&) = delete;
   TransitiveCompileOptions& operator=(const TransitiveCompileOptions&) = delete;
@@ -233,29 +252,33 @@ class JS_PUBLIC_API ReadOnlyCompileOptions : public TransitiveCompileOptions {
  * anything else it entrains, will never be freed.
  */
 class JS_PUBLIC_API OwningCompileOptions final : public ReadOnlyCompileOptions {
-  PersistentRooted<JSString*> elementAttributeNameRoot;
-  PersistentRooted<JSScript*> introductionScriptRoot;
-  PersistentRooted<JSScript*> scriptOrModuleRoot;
-  PersistentRooted<Value> privateValueRoot;
-
  public:
   // A minimal constructor, for use with OwningCompileOptions::copy.
   explicit OwningCompileOptions(JSContext* cx);
   ~OwningCompileOptions();
 
-  Value privateValue() const override { return privateValueRoot; }
-  JSString* elementAttributeName() const override {
-    return elementAttributeNameRoot;
-  }
-  JSScript* introductionScript() const override {
-    return introductionScriptRoot;
-  }
-  JSScript* scriptOrModule() const override { return scriptOrModuleRoot; }
-
   /** Set this to a copy of |rhs|.  Return false on OOM. */
   bool copy(JSContext* cx, const ReadOnlyCompileOptions& rhs);
 
   size_t sizeOfExcludingThis(mozilla::MallocSizeOf mallocSizeOf) const;
+
+  OwningCompileOptions& setIsRunOnce(bool once) {
+    isRunOnce = once;
+    return *this;
+  }
+
+  OwningCompileOptions& setForceStrictMode() {
+    forceStrictMode_ = true;
+    return *this;
+  }
+
+  OwningCompileOptions& setModule() {
+    // ES6 10.2.1 Module code is always strict mode code.
+    setForceStrictMode();
+    setIsRunOnce(true);
+    allowHTMLComments = false;
+    return *this;
+  }
 
  private:
   void release();
@@ -273,12 +296,6 @@ class JS_PUBLIC_API OwningCompileOptions final : public ReadOnlyCompileOptions {
  */
 class MOZ_STACK_CLASS JS_PUBLIC_API CompileOptions final
     : public ReadOnlyCompileOptions {
- private:
-  Rooted<JSString*> elementAttributeNameRoot;
-  Rooted<JSScript*> introductionScriptRoot;
-  Rooted<JSScript*> scriptOrModuleRoot;
-  Rooted<Value> privateValueRoot;
-
  public:
   // Default options determined using the JSContext.
   explicit CompileOptions(JSContext* cx);
@@ -286,34 +303,14 @@ class MOZ_STACK_CLASS JS_PUBLIC_API CompileOptions final
   // Copy both the transitive and the non-transitive options from another
   // options object.
   CompileOptions(JSContext* cx, const ReadOnlyCompileOptions& rhs)
-      : ReadOnlyCompileOptions(),
-        elementAttributeNameRoot(cx),
-        introductionScriptRoot(cx),
-        scriptOrModuleRoot(cx),
-        privateValueRoot(cx) {
+      : ReadOnlyCompileOptions() {
     copyPODNonTransitiveOptions(rhs);
     copyPODTransitiveOptions(rhs);
 
     filename_ = rhs.filename();
     introducerFilename_ = rhs.introducerFilename();
     sourceMapURL_ = rhs.sourceMapURL();
-    privateValueRoot = rhs.privateValue();
-    elementAttributeNameRoot = rhs.elementAttributeName();
-    introductionScriptRoot = rhs.introductionScript();
-    scriptOrModuleRoot = rhs.scriptOrModule();
   }
-
-  Value privateValue() const override { return privateValueRoot; }
-
-  JSString* elementAttributeName() const override {
-    return elementAttributeNameRoot;
-  }
-
-  JSScript* introductionScript() const override {
-    return introductionScriptRoot;
-  }
-
-  JSScript* scriptOrModule() const override { return scriptOrModuleRoot; }
 
   CompileOptions& setFile(const char* f) {
     filename_ = f;
@@ -333,21 +330,6 @@ class MOZ_STACK_CLASS JS_PUBLIC_API CompileOptions final
 
   CompileOptions& setSourceMapURL(const char16_t* s) {
     sourceMapURL_ = s;
-    return *this;
-  }
-
-  CompileOptions& setPrivateValue(const Value& v) {
-    privateValueRoot = v;
-    return *this;
-  }
-
-  CompileOptions& setElementAttributeName(JSString* p) {
-    elementAttributeNameRoot = p;
-    return *this;
-  }
-
-  CompileOptions& setScriptOrModule(JSScript* s) {
-    scriptOrModuleRoot = s;
     return *this;
   }
 
@@ -401,21 +383,31 @@ class MOZ_STACK_CLASS JS_PUBLIC_API CompileOptions final
     return *this;
   }
 
+  CompileOptions& setdeferDebugMetadata(bool v = true) {
+    deferDebugMetadata = v;
+    return *this;
+  }
+
   CompileOptions& setIntroductionInfo(const char* introducerFn,
                                       const char* intro, unsigned line,
-                                      JSScript* script, uint32_t offset) {
+                                      uint32_t offset) {
     introducerFilename_ = introducerFn;
     introductionType = intro;
     introductionLineno = line;
-    introductionScriptRoot = script;
     introductionOffset = offset;
     hasIntroductionInfo = true;
     return *this;
   }
 
   // Set introduction information according to any currently executing script.
-  CompileOptions& setIntroductionInfoToCaller(JSContext* cx,
-                                              const char* introductionType);
+  CompileOptions& setIntroductionInfoToCaller(
+      JSContext* cx, const char* introductionType,
+      JS::MutableHandle<JSScript*> introductionScript);
+
+  CompileOptions& setDiscardSource() {
+    discardSource = true;
+    return *this;
+  }
 
   CompileOptions& setForceFullParse() {
     forceFullParse_ = true;
@@ -424,6 +416,14 @@ class MOZ_STACK_CLASS JS_PUBLIC_API CompileOptions final
 
   CompileOptions& setForceStrictMode() {
     forceStrictMode_ = true;
+    return *this;
+  }
+
+  CompileOptions& setModule() {
+    // ES6 10.2.1 Module code is always strict mode code.
+    setForceStrictMode();
+    setIsRunOnce(true);
+    allowHTMLComments = false;
     return *this;
   }
 

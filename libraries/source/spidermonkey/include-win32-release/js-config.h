@@ -15,6 +15,9 @@
 /* Define to 1 if SpiderMonkey is in debug mode. */
 /* #undef JS_DEBUG */
 
+/* Define to 1 if SpiderMonkey is in 64-bit mode. */
+/* #undef JS_64BIT */
+
 /*
  * NB: We have a special case for rust-bindgen, which wants to be able to
  * generate both debug and release bindings on a single objdir.
@@ -34,9 +37,6 @@
 
 /* Define to 1 if SpiderMonkey should include trace logging support. */
 /* #undef JS_TRACE_LOGGING */
-
-/* Define to 1 if SpiderMonkey should include typed objects support. */
-/* #undef JS_HAS_TYPED_OBJECTS */
 
 /* Define to 1 if SpiderMonkey should include support for the Intl API. */
 /* #undef JS_HAS_INTL_API */
@@ -61,8 +61,17 @@
 /* Define to 1 if SpiderMonkey is in PUNBOX64 mode. */
 /* #undef JS_PUNBOX64 */
 
+/* Define to 1 if SpiderMonkey should support SmooshMonkey parser. */
+/* #undef JS_ENABLE_SMOOSH */
+
+/* Experimental WASM features */
+/* #undef ENABLE_WASM_EXCEPTIONS */
+/* #undef ENABLE_WASM_FUNCTION_REFERENCES */
+/* #undef ENABLE_WASM_GC */
+#define ENABLE_WASM_SIMD 1
+
 /* MOZILLA JSAPI version number components */
-#define MOZJS_MAJOR_VERSION 78
-#define MOZJS_MINOR_VERSION 6
+#define MOZJS_MAJOR_VERSION 91
+#define MOZJS_MINOR_VERSION 13
 
 #endif /* js_config_h */

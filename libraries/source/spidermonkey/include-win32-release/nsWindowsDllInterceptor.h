@@ -221,18 +221,19 @@ class MOZ_ONLY_USED_TO_AVOID_STATIC_CONSTRUCTORS FuncHookCrossProcess final {
   FuncHookCrossProcess() {}
 #endif  // defined(DEBUG)
 
-  bool Set(HANDLE aProcess, InterceptorT& aInterceptor, const char* aName,
-           FuncPtrT aHookDest) {
+  bool Set(nt::CrossExecTransferManager& aTransferMgr,
+           InterceptorT& aInterceptor, const char* aName, FuncPtrT aHookDest) {
     FuncPtrT origFunc;
     if (!aInterceptor.AddHook(aName, reinterpret_cast<intptr_t>(aHookDest),
                               reinterpret_cast<void**>(&origFunc))) {
       return false;
     }
 
-    return CopyStubToChildProcess(origFunc, aProcess);
+    return CopyStubToChildProcess(aTransferMgr, aInterceptor, origFunc);
   }
 
-  bool SetDetour(HANDLE aProcess, InterceptorT& aInterceptor, const char* aName,
+  bool SetDetour(nt::CrossExecTransferManager& aTransferMgr,
+                 InterceptorT& aInterceptor, const char* aName,
                  FuncPtrT aHookDest) {
     FuncPtrT origFunc;
     if (!aInterceptor.AddDetour(aName, reinterpret_cast<intptr_t>(aHookDest),
@@ -240,7 +241,7 @@ class MOZ_ONLY_USED_TO_AVOID_STATIC_CONSTRUCTORS FuncHookCrossProcess final {
       return false;
     }
 
-    return CopyStubToChildProcess(origFunc, aProcess);
+    return CopyStubToChildProcess(aTransferMgr, aInterceptor, origFunc);
   }
 
   explicit operator bool() const { return !!mOrigFunc; }
@@ -261,11 +262,21 @@ class MOZ_ONLY_USED_TO_AVOID_STATIC_CONSTRUCTORS FuncHookCrossProcess final {
 #endif  // defined(DEBUG)
 
  private:
-  bool CopyStubToChildProcess(FuncPtrT aStub, HANDLE aProcess) {
-    SIZE_T bytesWritten;
-    return ::WriteProcessMemory(aProcess, &mOrigFunc, &aStub, sizeof(FuncPtrT),
-                                &bytesWritten) &&
-           bytesWritten == sizeof(FuncPtrT);
+  bool CopyStubToChildProcess(nt::CrossExecTransferManager& aTransferMgr,
+                              InterceptorT& aInterceptor, FuncPtrT aStub) {
+    LauncherVoidResult writeResult =
+        aTransferMgr.Transfer(&mOrigFunc, &aStub, sizeof(FuncPtrT));
+    if (writeResult.isErr()) {
+#ifdef MOZ_USE_LAUNCHER_ERROR
+      const mozilla::WindowsError& err = writeResult.inspectErr().mError;
+#else
+      const mozilla::WindowsError& err = writeResult.inspectErr();
+#endif
+      aInterceptor.SetLastDetourError(FUNCHOOKCROSSPROCESS_COPYSTUB_ERROR,
+                                      err.AsHResult());
+      return false;
+    }
+    return true;
   }
 
  private:
@@ -287,8 +298,7 @@ struct TypeResolver<mozilla::interceptor::MMPolicyOutOfProcess, InterceptorT> {
   using FuncHookType = FuncHookCrossProcess<InterceptorT, FuncPtrT>;
 };
 
-template <typename VMPolicy = mozilla::interceptor::VMSharingPolicyShared<
-              mozilla::interceptor::MMPolicyInProcess, true>>
+template <typename VMPolicy = mozilla::interceptor::VMSharingPolicyShared>
 class WindowsDllInterceptor final
     : public TypeResolver<typename VMPolicy::MMPolicyT,
                           WindowsDllInterceptor<VMPolicy>> {
@@ -362,6 +372,16 @@ class WindowsDllInterceptor final
     // NB: We intentionally leak mModule
   }
 
+#if defined(NIGHTLY_BUILD)
+  const Maybe<DetourError>& GetLastDetourError() const {
+    return mDetourPatcher.GetLastDetourError();
+  }
+#endif  // defined(NIGHTLY_BUILD)
+  template <typename... Args>
+  void SetLastDetourError(Args&&... aArgs) {
+    return mDetourPatcher.SetLastDetourError(std::forward<Args>(aArgs)...);
+  }
+
   constexpr static uint32_t GetWorstCaseRequiredBytesToPatch() {
     return WindowsDllDetourPatcherPrimitive<
         typename VMPolicy::MMPolicyT>::GetWorstCaseRequiredBytesToPatch();
@@ -382,11 +402,27 @@ class WindowsDllInterceptor final
     // Use a nop space patch if possible, otherwise fall back to a detour.
     // This should be the preferred method for adding hooks.
     if (!mModule) {
+      mDetourPatcher.SetLastDetourError(DetourResultCode::INTERCEPTOR_MOD_NULL);
+      return false;
+    }
+
+    if (!mDetourPatcher.IsPageAccessible(
+            nt::PEHeaders::HModuleToBaseAddr<uintptr_t>(mModule))) {
+      mDetourPatcher.SetLastDetourError(
+          DetourResultCode::INTERCEPTOR_MOD_INACCESSIBLE);
       return false;
     }
 
     FARPROC proc = mDetourPatcher.GetProcAddress(mModule, aName);
     if (!proc) {
+      mDetourPatcher.SetLastDetourError(
+          DetourResultCode::INTERCEPTOR_PROC_NULL);
+      return false;
+    }
+
+    if (!mDetourPatcher.IsPageAccessible(reinterpret_cast<uintptr_t>(proc))) {
+      mDetourPatcher.SetLastDetourError(
+          DetourResultCode::INTERCEPTOR_PROC_INACCESSIBLE);
       return false;
     }
 
@@ -413,11 +449,27 @@ class WindowsDllInterceptor final
     // Generally, code should not call this method directly. Use AddHook unless
     // there is a specific need to avoid nop space patches.
     if (!mModule) {
+      mDetourPatcher.SetLastDetourError(DetourResultCode::INTERCEPTOR_MOD_NULL);
+      return false;
+    }
+
+    if (!mDetourPatcher.IsPageAccessible(
+            nt::PEHeaders::HModuleToBaseAddr<uintptr_t>(mModule))) {
+      mDetourPatcher.SetLastDetourError(
+          DetourResultCode::INTERCEPTOR_MOD_INACCESSIBLE);
       return false;
     }
 
     FARPROC proc = mDetourPatcher.GetProcAddress(mModule, aName);
     if (!proc) {
+      mDetourPatcher.SetLastDetourError(
+          DetourResultCode::INTERCEPTOR_PROC_NULL);
+      return false;
+    }
+
+    if (!mDetourPatcher.IsPageAccessible(reinterpret_cast<uintptr_t>(proc))) {
+      mDetourPatcher.SetLastDetourError(
+          DetourResultCode::INTERCEPTOR_PROC_INACCESSIBLE);
       return false;
     }
 
@@ -439,6 +491,9 @@ class WindowsDllInterceptor final
 
       bool isKernel32Dll = (mModule == ::GetModuleHandleW(L"kernel32.dll"));
 
+      bool isDuplicateHandle = (reinterpret_cast<void*>(aProc) ==
+                                reinterpret_cast<void*>(&::DuplicateHandle));
+
       // CloseHandle on Windows 8/8.1 only accomodates 10-byte patches.
       needs10BytePatch |= isWin8Or81 && isKernel32Dll &&
                           (reinterpret_cast<void*>(aProc) ==
@@ -448,11 +503,16 @@ class WindowsDllInterceptor final
       needs10BytePatch |= isWin8 && isKernel32Dll &&
                           ((reinterpret_cast<void*>(aProc) ==
                             reinterpret_cast<void*>(&::CreateFileA)) ||
-                           (reinterpret_cast<void*>(aProc) ==
-                            reinterpret_cast<void*>(&::DuplicateHandle)));
+                           isDuplicateHandle);
 
       if (needs10BytePatch) {
         flags |= DetourFlags::eEnable10BytePatch;
+      }
+
+      if (isWin8 && isDuplicateHandle) {
+        // Because we can't detour Win8's KERNELBASE!DuplicateHandle,
+        // we detour kernel32!DuplicateHandle (See bug 1659398).
+        flags |= DetourFlags::eDontResolveRedirection;
       }
 #endif  // defined(_M_X64)
 

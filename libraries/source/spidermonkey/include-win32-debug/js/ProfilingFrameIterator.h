@@ -7,12 +7,14 @@
 #ifndef js_ProfilingFrameIterator_h
 #define js_ProfilingFrameIterator_h
 
+#include "mozilla/Assertions.h"
 #include "mozilla/Attributes.h"
 #include "mozilla/Maybe.h"
 
-#include "js/GCAPI.h"
+#include "jstypes.h"
+
+#include "js/GCAnnotations.h"
 #include "js/TypeDecls.h"
-#include "js/Utility.h"
 
 namespace js {
 class Activation;
@@ -140,6 +142,11 @@ class MOZ_NON_PARAM JS_PUBLIC_API ProfilingFrameIterator {
 
   mozilla::Maybe<Frame> getPhysicalFrameWithoutLabel() const;
 
+  // Return the registers from the native caller frame.
+  // Nothing{} if this iterator is NOT pointing at a native-to-JIT entry frame,
+  // or if the information is not accessible/implemented on this platform.
+  mozilla::Maybe<RegisterState> getCppEntryRegisters() const;
+
  private:
   mozilla::Maybe<Frame> getPhysicalFrameAndEntry(
       js::jit::JitcodeGlobalEntry* entry) const;
@@ -150,7 +157,7 @@ class MOZ_NON_PARAM JS_PUBLIC_API ProfilingFrameIterator {
   bool iteratorDone();
 } JS_HAZ_GC_INVALIDATED;
 
-JS_FRIEND_API bool IsProfilingEnabledForContext(JSContext* cx);
+JS_PUBLIC_API bool IsProfilingEnabledForContext(JSContext* cx);
 
 /**
  * After each sample run, this method should be called with the current buffer
@@ -160,7 +167,7 @@ JS_FRIEND_API bool IsProfilingEnabledForContext(JSContext* cx);
  * See the field |profilerSampleBufferRangeStart| on JSRuntime for documentation
  * about what this value is used for.
  */
-JS_FRIEND_API void SetJSContextProfilerSampleBufferRangeStart(
+JS_PUBLIC_API void SetJSContextProfilerSampleBufferRangeStart(
     JSContext* cx, uint64_t rangeStart);
 
 class ProfiledFrameRange;

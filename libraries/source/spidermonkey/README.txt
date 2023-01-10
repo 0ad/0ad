@@ -28,16 +28,20 @@ Building on Windows:
 We provide precompiled binaries for Windows.
 If you still need to build on Windows, here's a short guide.
 
-The basic idea is to follow the instructions to build Firefox:
-https://firefox-source-docs.mozilla.org/setup/windows_build.html#mozillabuild
-And after running "mach boostrap", run ./build.sh
+In the Visual Studio Installer:
+- Install Clang, Clang-CL
 
-The customised option (which I used):
-- Install mozilla-build per the instructions above
-- Install rust (make sure to add it to your PATH)
-- Open Powershell and run "rustup install i686-pc-windows-msvc" and "rustup install x86_64-pc-windows-msvc"
-- Install LLVM 8 prebuilt binaries from https://releases.llvm.org somewhere.
-- From powershell, run ". C:/mozilla-build/start-shell.bat", cd to 0ad/libraries/source/spidermonkey and then run "./build.sh"
-- This will fail. Edit build.sh to not rebuild (REBUILD=false)
-- Edit the build/moz.configure/toolchain.configure file to have your LLVM/bin folder in the `toolchain_search_path`. I added the path directly to the bootstrapped variable L721
-- Rerun build.sh. It should run.
+Install Rust from the official website.
+
+Download & install Mozilla Build from [here](https://ftp.mozilla.org/pub/mozilla/libraries/win32/MozillaBuildSetup-Latest.exe).
+In Mozilla build run:
+rustup target add i686-pc-windows-msvc
+rustup target add x86_64-pc-windows-msvc
+
+From powershell, run the following commands.
+They will start a mozbuild shell, setup LLVM_LOCATION (may vary),
+then run the build.
+. C:/mozilla-build/start-shell.bat
+LLVM_LOCATION="/c/PROGRA~1/MICROS~1/2017/Community/VC/Tools/Llvm/x64/bin/"
+export PATH="$PATH:$LLVM_LOCATION"
+cd "/libraries/source/spidermonkey" &&".\build.sh"

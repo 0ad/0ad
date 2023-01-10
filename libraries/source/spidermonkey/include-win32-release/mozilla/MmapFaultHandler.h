@@ -33,10 +33,17 @@
 #  define MMAP_FAULT_HANDLER_BEGIN_BUFFER(buf, bufLen) {
 #  define MMAP_FAULT_HANDLER_CATCH(retval) }
 
+#elif defined(__wasi__)
+
+#  define MMAP_FAULT_HANDLER_BEGIN_HANDLE(fd) {
+#  define MMAP_FAULT_HANDLER_BEGIN_BUFFER(buf, bufLen) {
+#  define MMAP_FAULT_HANDLER_CATCH(retval) }
+
 #else
 // Linux
 
-#  include "mozilla/GuardObjects.h"
+#  include "mozilla/Attributes.h"
+#  include "mozilla/Types.h"
 #  include <stdint.h>
 #  include <setjmp.h>
 

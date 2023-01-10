@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -533,11 +533,11 @@ bool ScriptInterface::SetGlobal_(const char* name, JS::HandleValue value, bool r
 		return false;
 	if (found)
 	{
-		JS::Rooted<JS::PropertyDescriptor> desc(rq.cx);
-		if (!JS_GetOwnPropertyDescriptor(rq.cx, global, name, &desc))
+		JS::Rooted<mozilla::Maybe<JS::PropertyDescriptor>> desc(rq.cx);
+		if (!JS_GetOwnPropertyDescriptor(rq.cx, global, name, &desc) || !desc.isSome())
 			return false;
 
-		if (!desc.writable())
+		if (!desc->writable())
 		{
 			if (!replace)
 			{
@@ -547,7 +547,7 @@ bool ScriptInterface::SetGlobal_(const char* name, JS::HandleValue value, bool r
 
 			// This is not supposed to happen, unless the user has called SetProperty with constant = true on the global object
 			// instead of using SetGlobal.
-			if (!desc.configurable())
+			if (!desc->configurable())
 			{
 				ScriptException::Raise(rq, "The global \"%s\" is permanent and cannot be hotloaded", name);
 				return false;

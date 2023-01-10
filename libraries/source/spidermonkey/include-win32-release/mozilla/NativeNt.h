@@ -26,9 +26,7 @@
 #include "mozilla/interceptor/TargetFunction.h"
 
 #if defined(MOZILLA_INTERNAL_API)
-#  include "nsHashKeys.h"
 #  include "nsString.h"
-#  include "nsTHashtable.h"
 #endif  // defined(MOZILLA_INTERNAL_API)
 
 // The declarations within this #if block are intended to be used for initial
@@ -49,6 +47,10 @@ extern "C" {
 #  if !defined(STATUS_UNSUCCESSFUL)
 #    define STATUS_UNSUCCESSFUL ((NTSTATUS)0xC0000001L)
 #  endif  // !defined(STATUS_UNSUCCESSFUL)
+
+#  if !defined(STATUS_INFO_LENGTH_MISMATCH)
+#    define STATUS_INFO_LENGTH_MISMATCH ((NTSTATUS)0xC0000004L)
+#  endif
 
 enum SECTION_INHERIT { ViewShare = 1, ViewUnmap = 2 };
 
@@ -93,6 +95,9 @@ VOID NTAPI RtlReleaseSRWLockShared(PSRWLOCK aLock);
 
 ULONG NTAPI RtlNtStatusToDosError(NTSTATUS aStatus);
 VOID NTAPI RtlSetLastWin32Error(DWORD aError);
+DWORD NTAPI RtlGetLastWin32Error();
+
+VOID NTAPI RtlRunOnceInitialize(PRTL_RUN_ONCE aRunOnce);
 
 NTSTATUS NTAPI NtReadVirtualMemory(HANDLE aProcessHandle, PVOID aBaseAddress,
                                    PVOID aBuffer, SIZE_T aNumBytesToRead,
@@ -149,6 +154,15 @@ class AllocatedUnicodeString final {
       delete;
 #else
   explicit AllocatedUnicodeString(PCUNICODE_STRING aSrc) {
+    if (!aSrc) {
+      mUnicodeString = {};
+      return;
+    }
+
+    Duplicate(aSrc);
+  }
+
+  explicit AllocatedUnicodeString(const char* aSrc) {
     if (!aSrc) {
       mUnicodeString = {};
       return;
@@ -226,6 +240,19 @@ class AllocatedUnicodeString final {
       mUnicodeString = {};
     }
   }
+
+  void Duplicate(const char* aSrc) {
+    MOZ_ASSERT(aSrc);
+
+    ANSI_STRING ansiStr;
+    RtlInitAnsiString(&ansiStr, aSrc);
+    NTSTATUS ntStatus =
+        ::RtlAnsiStringToUnicodeString(&mUnicodeString, &ansiStr, TRUE);
+    MOZ_ASSERT(NT_SUCCESS(ntStatus));
+    if (!NT_SUCCESS(ntStatus)) {
+      mUnicodeString = {};
+    }
+  }
 #endif  // !defined(MOZILLA_INTERNAL_API)
 
   void Clear() {
@@ -285,6 +312,50 @@ struct MemorySectionNameBuf : public _MEMORY_SECTION_NAME {
   }
 
   operator PCUNICODE_STRING() const { return &mSectionFileName; }
+};
+
+class MemorySectionNameOnHeap {
+  UniquePtr<uint8_t[]> mBuffer;
+
+  MemorySectionNameOnHeap() = default;
+  explicit MemorySectionNameOnHeap(size_t aBufferLen)
+      : mBuffer(MakeUnique<uint8_t[]>(aBufferLen)) {}
+
+ public:
+  static MemorySectionNameOnHeap GetBackingFilePath(HANDLE aProcess,
+                                                    void* aSectionAddr) {
+    SIZE_T bufferLen = MAX_PATH * 2;
+    do {
+      MemorySectionNameOnHeap sectionName(bufferLen);
+
+      SIZE_T requiredBytes;
+      NTSTATUS ntStatus = ::NtQueryVirtualMemory(
+          aProcess, aSectionAddr, MemorySectionName, sectionName.mBuffer.get(),
+          bufferLen, &requiredBytes);
+      if (NT_SUCCESS(ntStatus)) {
+        return sectionName;
+      }
+
+      if (ntStatus != STATUS_INFO_LENGTH_MISMATCH ||
+          bufferLen >= requiredBytes) {
+        break;
+      }
+
+      bufferLen = requiredBytes;
+    } while (1);
+
+    return MemorySectionNameOnHeap();
+  }
+
+  // Allow move & Disallow copy
+  MemorySectionNameOnHeap(MemorySectionNameOnHeap&&) = default;
+  MemorySectionNameOnHeap& operator=(MemorySectionNameOnHeap&&) = default;
+  MemorySectionNameOnHeap(const MemorySectionNameOnHeap&) = delete;
+  MemorySectionNameOnHeap& operator=(const MemorySectionNameOnHeap&) = delete;
+
+  PCUNICODE_STRING AsUnicodeString() const {
+    return reinterpret_cast<PCUNICODE_STRING>(mBuffer.get());
+  }
 };
 
 inline bool FindCharInUnicodeString(const UNICODE_STRING& aStr, WCHAR aChar,
@@ -400,11 +471,20 @@ inline void GetLeafName(PUNICODE_STRING aDestString,
 
 #if defined(MOZILLA_INTERNAL_API)
 
-inline const nsDependentSubstring GetLeafName(const nsString& aString) {
-  int32_t lastBackslashPos = aString.RFindChar(L'\\');
-  int32_t leafStartPos =
-      (lastBackslashPos == kNotFound) ? 0 : (lastBackslashPos + 1);
-  return Substring(aString, leafStartPos);
+inline const nsDependentSubstring GetLeafName(const nsAString& aString) {
+  auto it = aString.EndReading();
+  size_t pos = aString.Length();
+  while (it > aString.BeginReading()) {
+    if (*(it - 1) == u'\\') {
+      return Substring(aString, pos);
+    }
+
+    MOZ_ASSERT(pos > 0);
+    --pos;
+    --it;
+  }
+
+  return Substring(aString, 0);  // No backslash in the string
 }
 
 #endif  // defined(MOZILLA_INTERNAL_API)
@@ -448,6 +528,15 @@ inline size_t StrlenASCII(const char* aStr) {
 
   return len;
 }
+
+struct CodeViewRecord70 {
+  uint32_t signature;
+  GUID pdbSignature;
+  uint32_t pdbAge;
+  // A UTF-8 string, according to
+  // https://github.com/Microsoft/microsoft-pdb/blob/082c5290e5aff028ae84e43affa8be717aa7af73/PDB/dbi/locator.cpp#L785
+  char pdbFileName[1];
+};
 
 class MOZ_RAII PEHeaders final {
   /**
@@ -558,7 +647,18 @@ class MOZ_RAII PEHeaders final {
     return Some(Range(base, imageSize));
   }
 
-  PIMAGE_IMPORT_DESCRIPTOR GetImportDirectory() {
+  DWORD GetFileCharacteristics() const {
+    return mPeHeader ? mPeHeader->FileHeader.Characteristics : 0;
+  }
+
+  bool IsWithinImage(const void* aAddress) const {
+    uintptr_t addr = reinterpret_cast<uintptr_t>(aAddress);
+    uintptr_t imageBase = reinterpret_cast<uintptr_t>(mMzHeader);
+    uintptr_t imageLimit = reinterpret_cast<uintptr_t>(mImageLimit);
+    return addr >= imageBase && addr <= imageLimit;
+  }
+
+  PIMAGE_IMPORT_DESCRIPTOR GetImportDirectory() const {
     // If the import directory is already tampered, we skip bounds check
     // because it could be located outside the mapped image.
     return mIsImportDirectoryTampered
@@ -627,7 +727,7 @@ class MOZ_RAII PEHeaders final {
   }
 
   PIMAGE_IMPORT_DESCRIPTOR
-  GetImportDescriptor(const char* aModuleNameASCII) {
+  GetImportDescriptor(const char* aModuleNameASCII) const {
     for (PIMAGE_IMPORT_DESCRIPTOR curImpDesc = GetImportDirectory();
          IsValid(curImpDesc); ++curImpDesc) {
       auto curName = mIsImportDirectoryTampered
@@ -648,10 +748,8 @@ class MOZ_RAII PEHeaders final {
     return nullptr;
   }
 
-#if defined(MOZILLA_INTERNAL_API)
-  nsTHashtable<nsStringCaseInsensitiveHashKey> GenerateDependentModuleSet() {
-    nsTHashtable<nsStringCaseInsensitiveHashKey> dependentModuleSet;
-
+  template <typename CallbackT>
+  void EnumImportChunks(const CallbackT& aCallback) const {
     for (PIMAGE_IMPORT_DESCRIPTOR curImpDesc = GetImportDirectory();
          IsValid(curImpDesc); ++curImpDesc) {
       auto curName = mIsImportDirectoryTampered
@@ -661,12 +759,9 @@ class MOZ_RAII PEHeaders final {
         continue;
       }
 
-      dependentModuleSet.PutEntry(GetLeafName(NS_ConvertASCIItoUTF16(curName)));
+      aCallback(curName);
     }
-
-    return dependentModuleSet;
   }
-#endif  // defined(MOZILLA_INTERNAL_API)
 
   /**
    * If |aBoundaries| is given, this method checks whether each IAT entry is
@@ -675,7 +770,7 @@ class MOZ_RAII PEHeaders final {
    */
   Maybe<Span<IMAGE_THUNK_DATA>> GetIATThunksForModule(
       const char* aModuleNameASCII,
-      const Range<const uint8_t>* aBoundaries = nullptr) {
+      const Range<const uint8_t>* aBoundaries = nullptr) const {
     PIMAGE_IMPORT_DESCRIPTOR impDesc = GetImportDescriptor(aModuleNameASCII);
     if (!impDesc) {
       return Nothing();
@@ -702,7 +797,7 @@ class MOZ_RAII PEHeaders final {
       ++curIatThunk;
     }
 
-    return Some(MakeSpan(firstIatThunk, curIatThunk));
+    return Some(Span(firstIatThunk, curIatThunk));
   }
 
   /**
@@ -745,7 +840,7 @@ class MOZ_RAII PEHeaders final {
 
     auto dataEntry =
         RVAToPtr<PIMAGE_RESOURCE_DATA_ENTRY>(topLevel, langEntry->OffsetToData);
-    return RVAToPtr<T>(dataEntry->OffsetToData);
+    return dataEntry ? RVAToPtr<T>(dataEntry->OffsetToData) : nullptr;
   }
 
   template <size_t N>
@@ -783,7 +878,7 @@ class MOZ_RAII PEHeaders final {
       }
 
       auto base = RVAToPtr<const uint8_t*>(rva);
-      return Some(MakeSpan(base, size));
+      return Some(Span(base, size));
     }
 
     return Nothing();
@@ -809,6 +904,19 @@ class MOZ_RAII PEHeaders final {
     // Use the unchecked version because the entrypoint may be tampered.
     return RVAToPtrUnchecked<FARPROC>(
         mPeHeader->OptionalHeader.AddressOfEntryPoint);
+  }
+
+  const CodeViewRecord70* GetPdbInfo() const {
+    PIMAGE_DEBUG_DIRECTORY debugDirectory =
+        GetImageDirectoryEntry<PIMAGE_DEBUG_DIRECTORY>(
+            IMAGE_DIRECTORY_ENTRY_DEBUG);
+    if (!debugDirectory) {
+      return nullptr;
+    }
+
+    const CodeViewRecord70* debugInfo =
+        RVAToPtr<CodeViewRecord70*>(debugDirectory->AddressOfRawData);
+    return (debugInfo && debugInfo->signature == 'SDSR') ? debugInfo : nullptr;
   }
 
  private:
@@ -840,11 +948,15 @@ class MOZ_RAII PEHeaders final {
     // The Windows loader has an internal limit of 96 sections (per PE spec)
     auto numSections =
         std::min(mPeHeader->FileHeader.NumberOfSections, WORD(96));
-    return MakeSpan(base, numSections);
+    return Span{base, numSections};
   }
 
   PIMAGE_RESOURCE_DIRECTORY_ENTRY
   FindResourceEntry(PIMAGE_RESOURCE_DIRECTORY aCurLevel, WORD aId) const {
+    if (!aCurLevel) {
+      return nullptr;
+    }
+
     // Immediately after the IMAGE_RESOURCE_DIRECTORY structure is an array
     // of IMAGE_RESOURCE_DIRECTORY_ENTRY structures. Since this function
     // searches by ID, we need to skip past any named entries before iterating.
@@ -1236,7 +1348,7 @@ inline LauncherResult<void*> GetProcessPebPtr(HANDLE aProcess) {
 inline LauncherResult<HMODULE> GetProcessExeModule(HANDLE aProcess) {
   LauncherResult<void*> ppeb = GetProcessPebPtr(aProcess);
   if (ppeb.isErr()) {
-    return LAUNCHER_ERROR_FROM_RESULT(ppeb);
+    return ppeb.propagateErr();
   }
 
   PEB peb;
@@ -1282,13 +1394,110 @@ inline LauncherResult<HMODULE> GetProcessExeModule(HANDLE aProcess) {
   return static_cast<HMODULE>(baseAddress);
 }
 
+#if defined(_MSC_VER)
+extern "C" IMAGE_DOS_HEADER __ImageBase;
+#endif
+
+// This class manages data transfer from the local process's executable
+// to another process's executable via WriteProcessMemory.
+// Bug 1662560 told us the same executable may be mapped onto a different
+// address in a different process.  This means when we transfer data within
+// the mapped executable such as a global variable or IAT from the current
+// process to another process, we need to shift its address by the difference
+// between two executable's mapped imagebase.
+class CrossExecTransferManager final {
+  HANDLE mRemoteProcess;
+  uint8_t* mLocalImagebase;
+  PEHeaders mLocalExec;
+  uint8_t* mRemoteImagebase;
+
+  static HMODULE GetLocalExecModule() {
+#if defined(_MSC_VER)
+    return reinterpret_cast<HMODULE>(&__ImageBase);
+#else
+    return ::GetModuleHandleW(nullptr);
+#endif
+  }
+
+  LauncherVoidResult EnsureRemoteImagebase() {
+    if (!mRemoteImagebase) {
+      LauncherResult<HMODULE> remoteImageBaseResult =
+          GetProcessExeModule(mRemoteProcess);
+      if (remoteImageBaseResult.isErr()) {
+        return remoteImageBaseResult.propagateErr();
+      }
+
+      mRemoteImagebase =
+          reinterpret_cast<uint8_t*>(remoteImageBaseResult.unwrap());
+    }
+    return Ok();
+  }
+
+  template <typename T>
+  T* LocalExecToRemoteExec(T* aLocalAddress) const {
+    MOZ_ASSERT(mRemoteImagebase);
+    MOZ_ASSERT(mLocalExec.IsWithinImage(aLocalAddress));
+
+    if (!mRemoteImagebase || !mLocalExec.IsWithinImage(aLocalAddress)) {
+      return aLocalAddress;
+    }
+
+    uintptr_t offset = reinterpret_cast<uintptr_t>(aLocalAddress) -
+                       reinterpret_cast<uintptr_t>(mLocalImagebase);
+    return reinterpret_cast<T*>(mRemoteImagebase + offset);
+  }
+
+ public:
+  explicit CrossExecTransferManager(HANDLE aRemoteProcess)
+      : mRemoteProcess(aRemoteProcess),
+        mLocalImagebase(
+            PEHeaders::HModuleToBaseAddr<uint8_t*>(GetLocalExecModule())),
+        mLocalExec(mLocalImagebase),
+        mRemoteImagebase(nullptr) {}
+
+  CrossExecTransferManager(HANDLE aRemoteProcess, HMODULE aLocalImagebase)
+      : mRemoteProcess(aRemoteProcess),
+        mLocalImagebase(
+            PEHeaders::HModuleToBaseAddr<uint8_t*>(aLocalImagebase)),
+        mLocalExec(mLocalImagebase),
+        mRemoteImagebase(nullptr) {}
+
+  explicit operator bool() const { return !!mLocalExec; }
+  HANDLE RemoteProcess() const { return mRemoteProcess; }
+  const PEHeaders& LocalPEHeaders() const { return mLocalExec; }
+
+  AutoVirtualProtect Protect(void* aLocalAddress, size_t aLength,
+                             DWORD aProtFlags) {
+    // If EnsureRemoteImagebase() fails, a subsequent operaion will fail.
+    Unused << EnsureRemoteImagebase();
+    return AutoVirtualProtect(LocalExecToRemoteExec(aLocalAddress), aLength,
+                              aProtFlags, mRemoteProcess);
+  }
+
+  LauncherVoidResult Transfer(LPVOID aDestinationAddress,
+                              LPCVOID aBufferToWrite, SIZE_T aBufferSize) {
+    LauncherVoidResult result = EnsureRemoteImagebase();
+    if (result.isErr()) {
+      return result.propagateErr();
+    }
+
+    if (!::WriteProcessMemory(mRemoteProcess,
+                              LocalExecToRemoteExec(aDestinationAddress),
+                              aBufferToWrite, aBufferSize, nullptr)) {
+      return LAUNCHER_ERROR_FROM_LAST();
+    }
+
+    return Ok();
+  }
+};
+
 #if !defined(MOZILLA_INTERNAL_API)
 
 inline LauncherResult<HMODULE> GetModuleHandleFromLeafName(
     const UNICODE_STRING& aTarget) {
   auto maybePeb = nt::GetProcessPebPtr(kCurrentProcess);
   if (maybePeb.isErr()) {
-    return LAUNCHER_ERROR_FROM_RESULT(maybePeb);
+    return maybePeb.propagateErr();
   }
 
   const PPEB peb = reinterpret_cast<PPEB>(maybePeb.unwrap());
@@ -1424,6 +1633,71 @@ class RtlAllocPolicy {
   void reportAllocOverflow() const {}
 
   [[nodiscard]] bool checkSimulatedOOM() const { return true; }
+};
+
+class AutoMappedView final {
+  void* mView;
+
+  void Unmap() {
+    if (!mView) {
+      return;
+    }
+
+#if defined(MOZILLA_INTERNAL_API)
+    ::UnmapViewOfFile(mView);
+#else
+    NTSTATUS status = ::NtUnmapViewOfSection(nt::kCurrentProcess, mView);
+    if (!NT_SUCCESS(status)) {
+      ::RtlSetLastWin32Error(::RtlNtStatusToDosError(status));
+    }
+#endif
+    mView = nullptr;
+  }
+
+ public:
+  explicit AutoMappedView(void* aView) : mView(aView) {}
+
+  AutoMappedView(HANDLE aSection, ULONG aProtectionFlags) : mView(nullptr) {
+#if defined(MOZILLA_INTERNAL_API)
+    mView = ::MapViewOfFile(aSection, aProtectionFlags, 0, 0, 0);
+#else
+    SIZE_T viewSize = 0;
+    NTSTATUS status = ::NtMapViewOfSection(aSection, nt::kCurrentProcess,
+                                           &mView, 0, 0, nullptr, &viewSize,
+                                           ViewUnmap, 0, aProtectionFlags);
+    if (!NT_SUCCESS(status)) {
+      ::RtlSetLastWin32Error(::RtlNtStatusToDosError(status));
+    }
+#endif
+  }
+  ~AutoMappedView() { Unmap(); }
+
+  // Allow move & Disallow copy
+  AutoMappedView(AutoMappedView&& aOther) : mView(aOther.mView) {
+    aOther.mView = nullptr;
+  }
+  AutoMappedView& operator=(AutoMappedView&& aOther) {
+    if (this != &aOther) {
+      Unmap();
+      mView = aOther.mView;
+      aOther.mView = nullptr;
+    }
+    return *this;
+  }
+  AutoMappedView(const AutoMappedView&) = delete;
+  AutoMappedView& operator=(const AutoMappedView&) = delete;
+
+  explicit operator bool() const { return !!mView; }
+  template <typename T>
+  T* as() {
+    return reinterpret_cast<T*>(mView);
+  }
+
+  void* release() {
+    void* p = mView;
+    mView = nullptr;
+    return p;
+  }
 };
 
 }  // namespace nt
