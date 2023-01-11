@@ -1,10 +1,10 @@
 {
 	"type": "range",
 	"radius": 30,
-	"affectedPlayers": [ "Enemy" ],
+	"affectedPlayers": ["Enemy"],
 	"affects": ["Soldier", "Structure"],
 	"modifications": [
-		{"value": "Attack/Melee/Damage/Hack","multiply": 0.9 },
+		{ "value": "Attack/Melee/Damage/Hack","multiply": 0.9 },
 		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 0.9 },
 		{ "value": "Attack/Melee/Damage/Crush", "multiply": 0.9 },
 		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 0.9 },

@@ -1,8 +1,8 @@
 {
 	"type": "range",
 	"radius": 60,
-	"affects": ["CivilCentre"],
 	"affectedPlayers": ["Enemy"],
+	"affects": ["CivilCentre"],
 	"modifications": [
 		{ "value": "Capturable/GarrisonRegenRate", "multiply": 0.5 }
 	],
