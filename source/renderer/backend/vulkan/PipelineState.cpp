@@ -39,6 +39,21 @@ namespace Backend
 namespace Vulkan
 {
 
+namespace
+{
+
+VkStencilOpState MakeStencilOpState(const SStencilOpState& opState)
+{
+	VkStencilOpState result{};
+	result.failOp = Mapping::FromStencilOp(opState.failOp);
+	result.passOp = Mapping::FromStencilOp(opState.passOp);
+	result.depthFailOp = Mapping::FromStencilOp(opState.depthFailOp);
+	result.compareOp = Mapping::FromCompareOp(opState.compareOp);
+	return result;
+}
+
+} // anonymous namespace
+
 size_t CGraphicsPipelineState::CacheKeyHash::operator()(const CacheKey& cacheKey) const
 {
 	size_t seed = 0;
@@ -168,7 +183,18 @@ VkPipeline CGraphicsPipelineState::GetOrCreatePipeline(
 		Mapping::FromCompareOp(m_Desc.depthStencilState.depthCompareOp);
 	depthStencilStateCreateInfo.stencilTestEnable =
 		m_Desc.depthStencilState.stencilTestEnabled ? VK_TRUE : VK_FALSE;
-	// TODO: VkStencilOpState front, back.
+
+	depthStencilStateCreateInfo.front =
+		MakeStencilOpState(m_Desc.depthStencilState.stencilFrontFace);
+	depthStencilStateCreateInfo.front.reference = m_Desc.depthStencilState.stencilReference;
+	depthStencilStateCreateInfo.front.compareMask = m_Desc.depthStencilState.stencilReadMask;
+	depthStencilStateCreateInfo.front.writeMask = m_Desc.depthStencilState.stencilWriteMask;
+
+	depthStencilStateCreateInfo.back =
+		MakeStencilOpState(m_Desc.depthStencilState.stencilBackFace);
+	depthStencilStateCreateInfo.back.reference = m_Desc.depthStencilState.stencilReference;
+	depthStencilStateCreateInfo.back.compareMask = m_Desc.depthStencilState.stencilReadMask;
+	depthStencilStateCreateInfo.back.writeMask = m_Desc.depthStencilState.stencilWriteMask;
 
 	VkPipelineRasterizationStateCreateInfo rasterizationStateCreateInfo{};
 	rasterizationStateCreateInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
