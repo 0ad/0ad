@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,12 +33,12 @@ public:
 	void Add(const ScriptInterface* scriptInterface, const std::string& title);
 	void Remove(const ScriptInterface* scriptInterface);
 
-	virtual CStr GetName();
-	virtual CStr GetTitle();
-	virtual size_t GetNumberRows();
-	virtual const std::vector<ProfileColumn>& GetColumns();
-	virtual CStr GetCellText(size_t row, size_t col);
-	virtual AbstractProfileTable* GetChild(size_t row);
+	CStr GetName() override;
+	CStr GetTitle() override;
+	size_t GetNumberRows() override;
+	const std::vector<ProfileColumn>& GetColumns() override;
+	CStr GetCellText(size_t row, size_t col) override;
+	AbstractProfileTable* GetChild(size_t row) override;
 
 private:
 	std::vector<std::pair<const ScriptInterface*, std::string> > m_ScriptInterfaces;

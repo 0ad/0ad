@@ -1,0 +1,18 @@
+{
+        "genericName": "Fertile Crescent",
+        "autoResearch": true,
+        "description": "The seleucid empire was located in a highly fertile region with productive soils. Farms are cheaper and faster to build,",
+        "requirements": {
+                "any": [
+                        { "civ": "sele" }
+                ]
+        },
+        "icon": "stone_blocks_brown.png",
+        "tooltip": "Farms -25% wood cost and -75% build time.",
+        "modifications": [
+                { "value": "Cost/Resources/wood", "multiply": 0.75 },
+                { "value": "Loot/wood", "multiply": 0.75 },
+		{ "value": "Cost/BuildTime", "multiply": 0.25 }
+        ],
+        "affects": ["Field"]
+}

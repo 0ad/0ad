@@ -175,6 +175,11 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::IDeviceCommandContext* devic
 	viewportRect.height = m_Texture->GetHeight();
 	deviceCommandContext->SetViewports(1, &viewportRect);
 
+	const bool flip =
+		deviceCommandContext->GetDevice()->GetBackend() == Renderer::Backend::Backend::VULKAN;
+	const float bottomV = flip ? 1.0 : 0.0f;
+	const float topV = flip ? 0.0f : 1.0f;
+
 	float quadVerts[] =
 	{
 		1.0f, 1.0f,
@@ -187,13 +192,13 @@ void CLOSTexture::InterpolateLOS(Renderer::Backend::IDeviceCommandContext* devic
 	};
 	float quadTex[] =
 	{
-		1.0f, 1.0f,
-		0.0f, 1.0f,
-		0.0f, 0.0f,
+		1.0f, topV,
+		0.0f, topV,
+		0.0f, bottomV,
 
-		0.0f, 0.0f,
-		1.0f, 0.0f,
-		1.0f, 1.0f
+		0.0f, bottomV,
+		1.0f, bottomV,
+		1.0f, topV
 	};
 
 	deviceCommandContext->SetVertexInputLayout(m_VertexInputLayout);

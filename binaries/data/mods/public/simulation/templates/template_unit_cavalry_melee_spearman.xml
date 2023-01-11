@@ -37,6 +37,9 @@
       </Damage>
     </Entity>
   </Resistance>
+  <UnitMotion>
+    <Acceleration op="mul">1.15</Acceleration>
+  </UnitMotion>
   <Sound>
     <SoundGroups>
       <attack_melee>attack/weapon/spear_attack.xml</attack_melee>

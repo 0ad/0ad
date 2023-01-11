@@ -86,12 +86,12 @@ public:
 	CRendererStatsTable(const CRenderer::Stats& st);
 
 	// Implementation of AbstractProfileTable interface
-	CStr GetName();
-	CStr GetTitle();
-	size_t GetNumberRows();
-	const std::vector<ProfileColumn>& GetColumns();
-	CStr GetCellText(size_t row, size_t col);
-	AbstractProfileTable* GetChild(size_t row);
+	CStr GetName() override;
+	CStr GetTitle() override;
+	size_t GetNumberRows() override;
+	const std::vector<ProfileColumn>& GetColumns() override;
+	CStr GetCellText(size_t row, size_t col) override;
+	AbstractProfileTable* GetChild(size_t row) override;
 
 private:
 	/// Reference to the renderer singleton's stats

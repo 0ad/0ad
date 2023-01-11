@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -364,8 +364,10 @@ void CMiniMap::Draw(CCanvas2D& canvas)
 	{
 		const CVector2D center = m_CachedActualSize.CenterPoint();
 		const CRect source(
-			0, miniMapTexture.GetTexture()->GetHeight(),
-			miniMapTexture.GetTexture()->GetWidth(), 0);
+			0,
+			miniMapTexture.IsFlipped() ? 0 : miniMapTexture.GetTexture()->GetHeight(),
+			miniMapTexture.GetTexture()->GetWidth(),
+			miniMapTexture.IsFlipped() ? miniMapTexture.GetTexture()->GetHeight() : 0);
 		const CSize2D size(m_CachedActualSize.GetSize() / m_MapScale);
 		const CRect destination(center - size / 2.0f, size);
 		canvas.DrawRotatedTexture(

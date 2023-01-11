@@ -9,8 +9,6 @@
 #ifndef js_Modules_h
 #define js_Modules_h
 
-#include "mozilla/Utf8.h"  // mozilla::Utf8Unit
-
 #include <stdint.h>  // uint32_t
 
 #include "jstypes.h"  // JS_PUBLIC_API
@@ -29,10 +27,14 @@ template <typename UnitT>
 class SourceText;
 }  // namespace JS
 
+namespace mozilla {
+union Utf8Unit;
+}
+
 namespace JS {
 
 using ModuleResolveHook = JSObject* (*)(JSContext*, Handle<Value>,
-                                        Handle<JSString*>);
+                                        Handle<JSObject*>);
 
 /**
  * Get the HostResolveImportedModule hook for the runtime.
@@ -62,7 +64,7 @@ extern JS_PUBLIC_API void SetModuleMetadataHook(JSRuntime* rt,
 
 using ModuleDynamicImportHook = bool (*)(JSContext* cx,
                                          Handle<Value> referencingPrivate,
-                                         Handle<JSString*> specifier,
+                                         Handle<JSObject*> moduleRequest,
                                          Handle<JSObject*> promise);
 
 /**
@@ -81,9 +83,35 @@ GetModuleDynamicImportHook(JSRuntime* rt);
 extern JS_PUBLIC_API void SetModuleDynamicImportHook(
     JSRuntime* rt, ModuleDynamicImportHook func);
 
+/**
+ * Passed to FinishDynamicModuleImport to indicate the result of the dynamic
+ * import operation.
+ */
+enum class DynamicImportStatus { Failed = 0, Ok };
+
+/**
+ * This must be called after a dynamic import operation is complete.
+ *
+ * If |evaluationPromise| is rejected, the rejection reason will be used to
+ * complete the user's promise.
+ */
 extern JS_PUBLIC_API bool FinishDynamicModuleImport(
-    JSContext* cx, Handle<Value> referencingPrivate,
-    Handle<JSString*> specifier, Handle<JSObject*> promise);
+    JSContext* cx, Handle<JSObject*> evaluationPromise,
+    Handle<Value> referencingPrivate, Handle<JSObject*> moduleRequest,
+    Handle<JSObject*> promise);
+
+/**
+ * This must be called after a dynamic import operation is complete.
+ *
+ * This is used so that Top Level Await functionality can be turned off
+ * entirely. It will be removed in bug#1676612.
+ *
+ * If |status| is Failed, any pending exception on the context will be used to
+ * complete the user's promise.
+ */
+extern JS_PUBLIC_API bool FinishDynamicModuleImport_NoTLA(
+    JSContext* cx, DynamicImportStatus status, Handle<Value> referencingPrivate,
+    Handle<JSObject*> moduleRequest, Handle<JSObject*> promise);
 
 /**
  * Parse the given source buffer as a module in the scope of the current global
@@ -125,16 +153,32 @@ extern JS_PUBLIC_API bool ModuleInstantiate(JSContext* cx,
                                             Handle<JSObject*> moduleRecord);
 
 /*
- * Perform the ModuleEvaluate operation on the given source text module record.
+ * Perform the ModuleEvaluate operation on the given source text module record
+ * and returns a bool. A result value is returned in result and is either
+ * undefined (and ignored) or a promise (if Top Level Await is enabled).
  *
- * This does nothing if this module has already been evaluated. Otherwise, it
- * transitively evaluates all dependences of this module and then evaluates this
- * module.
+ * If this module has already been evaluated, it returns the evaluation
+ * promise. Otherwise, it transitively evaluates all dependences of this module
+ * and then evaluates this module.
  *
  * ModuleInstantiate must have completed prior to calling this.
  */
 extern JS_PUBLIC_API bool ModuleEvaluate(JSContext* cx,
-                                         Handle<JSObject*> moduleRecord);
+                                         Handle<JSObject*> moduleRecord,
+                                         MutableHandleValue rval);
+
+/*
+ * If a module evaluation fails, unwrap the resulting evaluation promise
+ * and rethrow.
+ *
+ * This does nothing if this module succeeds in evaluation. Otherwise, it
+ * takes the reason for the module throwing, unwraps it and throws it as a
+ * regular error rather than as an uncaught promise.
+ *
+ * ModuleEvaluate must have completed prior to calling this.
+ */
+extern JS_PUBLIC_API bool ThrowOnModuleEvaluationFailure(
+    JSContext* cx, Handle<JSObject*> evaluationPromise);
 
 /*
  * Get a list of the module specifiers used by a source text module
@@ -166,6 +210,11 @@ extern JS_PUBLIC_API void GetRequestedModuleSourcePos(
  * Get the top-level script for a module which has not yet been executed.
  */
 extern JS_PUBLIC_API JSScript* GetModuleScript(Handle<JSObject*> moduleRecord);
+
+extern JS_PUBLIC_API JSObject* CreateModuleRequest(
+    JSContext* cx, Handle<JSString*> specifierArg);
+extern JS_PUBLIC_API JSString* GetModuleRequestSpecifier(
+    JSContext* cx, Handle<JSObject*> moduleRequestArg);
 
 }  // namespace JS
 

@@ -38,6 +38,50 @@
 
 #include <string_view>
 
+namespace
+{
+
+void DrawFullscreenQuad(
+	Renderer::Backend::IVertexInputLayout* vertexInputLayout,
+	Renderer::Backend::IDeviceCommandContext* deviceCommandContext)
+{
+	float quadVerts[] =
+	{
+		1.0f, 1.0f,
+		-1.0f, 1.0f,
+		-1.0f, -1.0f,
+
+		-1.0f, -1.0f,
+		1.0f, -1.0f,
+		1.0f, 1.0f
+	};
+	const bool flip =
+		deviceCommandContext->GetDevice()->GetBackend() == Renderer::Backend::Backend::VULKAN;
+	const float bottomV = flip ? 1.0 : 0.0f;
+	const float topV = flip ? 0.0f : 1.0f;
+	float quadTex[] =
+	{
+		1.0f, topV,
+		0.0f, topV,
+		0.0f, bottomV,
+
+		0.0f, bottomV,
+		1.0f, bottomV,
+		1.0f, topV
+	};
+
+	deviceCommandContext->SetVertexInputLayout(vertexInputLayout);
+
+	deviceCommandContext->SetVertexBufferData(
+		0, quadVerts, std::size(quadVerts) * sizeof(quadVerts[0]));
+	deviceCommandContext->SetVertexBufferData(
+		1, quadTex, std::size(quadTex) * sizeof(quadTex[0]));
+
+	deviceCommandContext->Draw(0, 6);
+}
+
+} // anonymous namespace
+
 CPostprocManager::CPostprocManager()
 	: m_IsInitialized(false), m_PostProcEffect(L"default"), m_WhichBuffer(true),
 	m_Sharpness(0.3f), m_UsingMultisampleBuffer(false), m_MultisampleCount(0)
@@ -140,7 +184,9 @@ void CPostprocManager::RecreateBuffers()
 		name = backendDevice->CreateTexture2D( \
 			"PostProc" #name, \
 			Renderer::Backend::ITexture::Usage::SAMPLED | \
-				Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT, \
+				Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT | \
+				Renderer::Backend::ITexture::Usage::TRANSFER_SRC | \
+				Renderer::Backend::ITexture::Usage::TRANSFER_DST, \
 			Renderer::Backend::Format::R8G8B8A8_UNORM, w, h, \
 			Renderer::Backend::Sampler::MakeDefaultSampler( \
 				Renderer::Backend::Sampler::Filter::LINEAR, \
@@ -247,36 +293,7 @@ void CPostprocManager::ApplyBlurDownscale2x(
 	deviceCommandContext->SetTexture(
 		shader->GetBindingSlot(str_renderedTex), inTex);
 
-	// TODO: remove the fullscreen quad drawing duplication.
-	float quadVerts[] =
-	{
-		1.0f, 1.0f,
-		-1.0f, 1.0f,
-		-1.0f, -1.0f,
-
-		-1.0f, -1.0f,
-		1.0f, -1.0f,
-		1.0f, 1.0f
-	};
-	float quadTex[] =
-	{
-		1.0f, 1.0f,
-		0.0f, 1.0f,
-		0.0f, 0.0f,
-
-		0.0f, 0.0f,
-		1.0f, 0.0f,
-		1.0f, 1.0f
-	};
-
-	deviceCommandContext->SetVertexInputLayout(m_VertexInputLayout);
-
-	deviceCommandContext->SetVertexBufferData(
-		0, quadVerts, std::size(quadVerts) * sizeof(quadVerts[0]));
-	deviceCommandContext->SetVertexBufferData(
-		1, quadTex, std::size(quadTex) * sizeof(quadTex[0]));
-
-	deviceCommandContext->Draw(0, 6);
+	DrawFullscreenQuad(m_VertexInputLayout, deviceCommandContext);
 
 	deviceCommandContext->EndPass();
 	deviceCommandContext->EndFramebufferPass();
@@ -311,35 +328,7 @@ void CPostprocManager::ApplyBlurGauss(
 	deviceCommandContext->SetUniform(
 		shader->GetBindingSlot(str_texSize), inWidth, inHeight);
 
-	float quadVerts[] =
-	{
-		1.0f, 1.0f,
-		-1.0f, 1.0f,
-		-1.0f, -1.0f,
-
-		-1.0f, -1.0f,
-		1.0f, -1.0f,
-		1.0f, 1.0f
-	};
-	float quadTex[] =
-	{
-		1.0f, 1.0f,
-		0.0f, 1.0f,
-		0.0f, 0.0f,
-
-		0.0f, 0.0f,
-		1.0f, 0.0f,
-		1.0f, 1.0f
-	};
-
-	deviceCommandContext->SetVertexInputLayout(m_VertexInputLayout);
-
-	deviceCommandContext->SetVertexBufferData(
-		0, quadVerts, std::size(quadVerts) * sizeof(quadVerts[0]));
-	deviceCommandContext->SetVertexBufferData(
-		1, quadTex, std::size(quadTex) * sizeof(quadTex[0]));
-
-	deviceCommandContext->Draw(0, 6);
+	DrawFullscreenQuad(m_VertexInputLayout, deviceCommandContext);
 
 	deviceCommandContext->EndPass();
 	deviceCommandContext->EndFramebufferPass();
@@ -364,14 +353,7 @@ void CPostprocManager::ApplyBlurGauss(
 	deviceCommandContext->SetUniform(
 		shader->GetBindingSlot(str_texSize), inWidth, inHeight);
 
-	deviceCommandContext->SetVertexInputLayout(m_VertexInputLayout);
-
-	deviceCommandContext->SetVertexBufferData(
-		0, quadVerts, std::size(quadVerts) * sizeof(quadVerts[0]));
-	deviceCommandContext->SetVertexBufferData(
-		1, quadTex, std::size(quadTex) * sizeof(quadTex[0]));
-
-	deviceCommandContext->Draw(0, 6);
+	DrawFullscreenQuad(m_VertexInputLayout, deviceCommandContext);
 
 	deviceCommandContext->EndPass();
 	deviceCommandContext->EndFramebufferPass();
@@ -466,35 +448,7 @@ void CPostprocManager::ApplyEffect(
 	deviceCommandContext->SetUniform(shader->GetBindingSlot(str_saturation), g_LightEnv.m_Saturation);
 	deviceCommandContext->SetUniform(shader->GetBindingSlot(str_bloom), g_LightEnv.m_Bloom);
 
-	float quadVerts[] =
-	{
-		1.0f, 1.0f,
-		-1.0f, 1.0f,
-		-1.0f, -1.0f,
-
-		-1.0f, -1.0f,
-		1.0f, -1.0f,
-		1.0f, 1.0f
-	};
-	float quadTex[] =
-	{
-		1.0f, 1.0f,
-		0.0f, 1.0f,
-		0.0f, 0.0f,
-
-		0.0f, 0.0f,
-		1.0f, 0.0f,
-		1.0f, 1.0f
-	};
-
-	deviceCommandContext->SetVertexInputLayout(m_VertexInputLayout);
-
-	deviceCommandContext->SetVertexBufferData(
-		0, quadVerts, std::size(quadVerts) * sizeof(quadVerts[0]));
-	deviceCommandContext->SetVertexBufferData(
-		1, quadTex, std::size(quadTex) * sizeof(quadTex[0]));
-
-	deviceCommandContext->Draw(0, 6);
+	DrawFullscreenQuad(m_VertexInputLayout, deviceCommandContext);
 
 	deviceCommandContext->EndPass();
 	deviceCommandContext->EndFramebufferPass();
@@ -663,7 +617,8 @@ void CPostprocManager::CreateMultisampleBuffer()
 
 	m_MultisampleColorTex = backendDevice->CreateTexture("PostProcColorMS",
 		Renderer::Backend::ITexture::Type::TEXTURE_2D_MULTISAMPLE,
-		Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT,
+		Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT |
+			Renderer::Backend::ITexture::Usage::TRANSFER_SRC,
 		Renderer::Backend::Format::R8G8B8A8_UNORM, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
@@ -672,7 +627,8 @@ void CPostprocManager::CreateMultisampleBuffer()
 	// Allocate the Depth/Stencil texture.
 	m_MultisampleDepthTex = backendDevice->CreateTexture("PostProcDepthMS",
 		Renderer::Backend::ITexture::Type::TEXTURE_2D_MULTISAMPLE,
-		Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
+		Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT |
+			Renderer::Backend::ITexture::Usage::TRANSFER_SRC,
 		Renderer::Backend::Format::D24_S8, m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,

@@ -36,6 +36,8 @@ enum class DetourFlags : uint32_t {
   eEnable10BytePatch = 1,  // Allow 10-byte patches when conditions allow
   eTestOnlyForceShortPatch =
       2,  // Force short patches at all times (x86-64 and arm64 testing only)
+  eDontResolveRedirection =
+      4,  // Don't resolve the redirection of JMP (e.g. kernel32 -> kernelbase)
 };
 
 MOZ_MAKE_ENUM_CLASS_BITWISE_OPERATORS(DetourFlags)
@@ -425,7 +427,10 @@ class WindowsDllDetourPatcher final
 
   bool AddHook(FARPROC aTargetFn, intptr_t aHookDest, void** aOrigFunc) {
     ReadOnlyTargetFunction<MMPolicyT> target(
-        this->ResolveRedirectedAddress(aTargetFn));
+        (mFlags.value() & DetourFlags::eDontResolveRedirection)
+            ? ReadOnlyTargetFunction<MMPolicyT>(
+                  this->mVMPolicy, reinterpret_cast<uintptr_t>(aTargetFn))
+            : this->ResolveRedirectedAddress(aTargetFn));
 
     TrampPoolT* trampPool = nullptr;
 
@@ -445,6 +450,8 @@ class WindowsDllDetourPatcher final
 
     Maybe<Trampoline<MMPolicyT>> maybeTramp(trampPool->GetNextTrampoline());
     if (!maybeTramp) {
+      this->SetLastDetourError(
+          DetourResultCode::DETOUR_PATCHER_NEXT_TRAMPOLINE_ERROR);
       return false;
     }
 
@@ -490,20 +497,29 @@ class WindowsDllDetourPatcher final
   Maybe<TrampPoolT> ReserveForModule(HMODULE aModule) {
     nt::PEHeaders moduleHeaders(aModule);
     if (!moduleHeaders) {
+      this->SetLastDetourError(
+          DetourResultCode::DETOUR_PATCHER_RESERVE_FOR_MODULE_PE_ERROR);
       return Nothing();
     }
 
     Maybe<Span<const uint8_t>> textSectionInfo =
         moduleHeaders.GetTextSectionInfo();
     if (!textSectionInfo) {
+      this->SetLastDetourError(
+          DetourResultCode::DETOUR_PATCHER_RESERVE_FOR_MODULE_TEXT_ERROR);
       return Nothing();
     }
 
     const uint8_t* median = textSectionInfo.value().data() +
                             (textSectionInfo.value().LengthBytes() / 2);
 
-    return this->mVMPolicy.Reserve(reinterpret_cast<uintptr_t>(median),
-                                   GetDefaultPivotDistance());
+    Maybe<TrampPoolT> maybeTrampPool = this->mVMPolicy.Reserve(
+        reinterpret_cast<uintptr_t>(median), GetDefaultPivotDistance());
+    if (!maybeTrampPool) {
+      this->SetLastDetourError(
+          DetourResultCode::DETOUR_PATCHER_RESERVE_FOR_MODULE_RESERVE_ERROR);
+    }
+    return maybeTrampPool;
   }
 
   Maybe<TrampPoolT> DoReserve(HMODULE aModule = nullptr) {
@@ -524,7 +540,14 @@ class WindowsDllDetourPatcher final
     }
 #endif  // defined(_M_X64)
 
-    return this->mVMPolicy.Reserve(pivot, distance);
+    Maybe<TrampPoolT> maybeTrampPool = this->mVMPolicy.Reserve(pivot, distance);
+#if defined(NIGHTLY_BUILD)
+    if (!maybeTrampPool && this->GetLastDetourError().isNothing()) {
+      this->SetLastDetourError(
+          DetourResultCode::DETOUR_PATCHER_DO_RESERVE_ERROR);
+    }
+#endif  // defined(NIGHTLY_BUILD)
+    return maybeTrampPool;
   }
 
  protected:
@@ -627,7 +650,7 @@ class WindowsDllDetourPatcher final
   }
 
 #  if defined(_M_X64)
-  enum class JumpType{Je, Jne, Jmp, Call};
+  enum class JumpType{Je, Jne, Jae, Jmp, Call};
 
   static bool GenerateJump(Trampoline<MMPolicyT>& aTramp,
                            uintptr_t aAbsTargetAddress, const JumpType aType) {
@@ -644,6 +667,8 @@ class WindowsDllDetourPatcher final
       return !!aTramp;
     }
 
+    // Write an opposite conditional jump because the destination branches
+    // are swapped.
     if (aType == JumpType::Je) {
       // JNE RIP+14
       aTramp.WriteByte(0x75);
@@ -651,6 +676,10 @@ class WindowsDllDetourPatcher final
     } else if (aType == JumpType::Jne) {
       // JE RIP+14
       aTramp.WriteByte(0x74);
+      aTramp.WriteByte(14);
+    } else if (aType == JumpType::Jae) {
+      // JB RIP+14
+      aTramp.WriteByte(0x72);
       aTramp.WriteByte(14);
     }
 
@@ -873,6 +902,8 @@ class WindowsDllDetourPatcher final
 
     Trampoline<MMPolicyT>& tramp = aTramp;
     if (!tramp) {
+      this->SetLastDetourError(
+          DetourResultCode::DETOUR_PATCHER_INVALID_TRAMPOLINE);
       return;
     }
 
@@ -884,20 +915,48 @@ class WindowsDllDetourPatcher final
     // just a pointer to that trampoline's target address.
     tramp.WriteEncodedPointer(this);
     if (!tramp) {
+      this->SetLastDetourError(
+          DetourResultCode::DETOUR_PATCHER_WRITE_POINTER_ERROR);
       return;
     }
 
-    auto clearInstanceOnFailure = MakeScopeExit([aOutTramp, &tramp]() -> void {
+    auto clearInstanceOnFailure = MakeScopeExit([this, aOutTramp, &tramp,
+                                                 &origBytes]() -> void {
       // *aOutTramp is not set until CreateTrampoline has completed
       // successfully, so we can use that to check for success.
       if (*aOutTramp) {
         return;
       }
 
-      // Clear the instance pointer so that we don't try to reset a nonexistent
-      // hook.
+      // Clear the instance pointer so that we don't try to reset a
+      // nonexistent hook.
       tramp.Rewind();
       tramp.WriteEncodedPointer(nullptr);
+
+#if defined(NIGHTLY_BUILD)
+      origBytes.Rewind();
+      this->SetLastDetourError(
+          DetourResultCode::DETOUR_PATCHER_CREATE_TRAMPOLINE_ERROR);
+      DetourError& lastError = *this->mVMPolicy.mLastError;
+      size_t bytesToCapture = std::min(
+          ArrayLength(lastError.mOrigBytes),
+          static_cast<size_t>(PrimitiveT::GetWorstCaseRequiredBytesToPatch()));
+#  if defined(_M_ARM64)
+      size_t numInstructionsToCapture = bytesToCapture / sizeof(uint32_t);
+      auto origBytesDst = reinterpret_cast<uint32_t*>(lastError.mOrigBytes);
+      for (size_t i = 0; i < numInstructionsToCapture; ++i) {
+        origBytesDst[i] = origBytes.ReadNextInstruction();
+      }
+#  else
+      for (size_t i = 0; i < bytesToCapture; ++i) {
+        lastError.mOrigBytes[i] = origBytes[i];
+      }
+#  endif  // defined(_M_ARM64)
+#else
+      // Silence -Wunused-lambda-capture in non-Nightly.
+      Unused << this;
+      Unused << origBytes;
+#endif  // defined(NIGHTLY_BUILD)
     });
 
     tramp.WritePointer(origBytes.AsEncodedPtr());
@@ -967,12 +1026,12 @@ class WindowsDllDetourPatcher final
         // INC r32
         origBytes += 1;
       } else if (*origBytes == 0x83) {
-        uint8_t mod = static_cast<uint8_t>(origBytes[1]) >> 6;
-        uint8_t rm = static_cast<uint8_t>(origBytes[1]) & 7;
-        if (mod == 3) {
+        uint8_t mod = static_cast<uint8_t>(origBytes[1]) & kMaskMod;
+        uint8_t rm = static_cast<uint8_t>(origBytes[1]) & kMaskRm;
+        if (mod == kModReg) {
           // ADD|OR|ADC|SBB|AND|SUB|XOR|CMP r, imm8
           origBytes += 3;
-        } else if (mod == 1 && rm != 4) {
+        } else if (mod == kModDisp8 && rm != kRmNeedSib) {
           // ADD|OR|ADC|SBB|AND|SUB|XOR|CMP [r+disp8], imm8
           origBytes += 4;
         } else {
@@ -1080,13 +1139,18 @@ class WindowsDllDetourPatcher final
           } else {
             COPY_CODES(nModRmSibBytes);
           }
-        } else if (*origBytes == 0x84) {
-          // je rel32
+        } else if (*origBytes >= 0x83 && *origBytes <= 0x85) {
+          // 0f 83 cd    JAE rel32
+          // 0f 84 cd    JE  rel32
+          // 0f 85 cd    JNE rel32
+          const JumpType kJumpTypes[] = {JumpType::Jae, JumpType::Je,
+                                         JumpType::Jne};
+          auto jumpType = kJumpTypes[*origBytes - 0x83];
           ++origBytes;
           --tramp;  // overwrite the 0x0f we copied above
 
           if (!GenerateJump(tramp, origBytes.ReadDisp32AsAbsolute(),
-                            JumpType::Je)) {
+                            jumpType)) {
             return;
           }
         } else {
@@ -1207,6 +1271,9 @@ class WindowsDllDetourPatcher final
           } else {
             COPY_CODES(len + 1);
           }
+        } else if ((*origBytes & 0xf8) == 0xb8) {
+          // MOV r64, imm64
+          COPY_CODES(9);
         } else if (*origBytes == 0xc7) {
           // MOV r/m64, imm32
           if (origBytes[1] == 0x44) {
@@ -1382,6 +1449,9 @@ class WindowsDllDetourPatcher final
         // bit shifts/rotates : (SA|SH|RO|RC)(R|L) r32
         // (e.g. 0xd1 0xe0 is SAL, 0xd1 0xc8 is ROR)
         COPY_CODES(2);
+      } else if (*origBytes == 0x83 && (origBytes[1] & kMaskMod) == kModReg) {
+        // ADD|OR|ADC|SBB|AND|SUB|XOR|CMP r, imm8
+        COPY_CODES(3);
       } else if (*origBytes == 0xc3) {
         // ret
         COPY_CODES(1);
@@ -1397,13 +1467,14 @@ class WindowsDllDetourPatcher final
                           foundJmp ? JumpType::Jmp : JumpType::Call)) {
           return;
         }
-      } else if (*origBytes == 0x74 ||  // je rel8 (0x74)
-                 *origBytes == 0x75) {  // jne rel8 (0x75)
+      } else if (*origBytes >= 0x73 && *origBytes <= 0x75) {
+        // 73 cb    JAE rel8
+        // 74 cb    JE  rel8
+        // 75 cb    JNE rel8
+        const JumpType kJumpTypes[] = {JumpType::Jae, JumpType::Je,
+                                       JumpType::Jne};
+        auto jumpType = kJumpTypes[*origBytes - 0x73];
         uint8_t offset = origBytes[1];
-        auto jumpType = JumpType::Je;
-        if (*origBytes == 0x75) {
-          jumpType = JumpType::Jne;
-        }
 
         origBytes += 2;
 
@@ -1412,36 +1483,46 @@ class WindowsDllDetourPatcher final
           return;
         }
       } else if (*origBytes == 0xff) {
-        if ((origBytes[1] & (kMaskMod | kMaskReg)) == 0xf0) {
-          // push r64
+        uint8_t mod = origBytes[1] & kMaskMod;
+        uint8_t reg = (origBytes[1] & kMaskReg) >> kRegFieldShift;
+        uint8_t rm = origBytes[1] & kMaskRm;
+        if (mod == kModReg && (reg == 0 || reg == 1 || reg == 2 || reg == 6)) {
+          // INC|DEC|CALL|PUSH r64
           COPY_CODES(2);
-        } else if (origBytes[1] == 0x25) {
-          // jmp absolute indirect m32
-          foundJmp = true;
-
+        } else if (mod == kModNoRegDisp && reg == 2 &&
+                   rm == kRmNoRegDispDisp32) {
+          // FF 15    CALL [disp32]
           origBytes += 2;
-
-          uintptr_t jmpDest = origBytes.ChasePointerFromDisp();
-
-          if (!GenerateJump(tramp, jmpDest, JumpType::Jmp)) {
+          if (!GenerateJump(tramp, origBytes.ChasePointerFromDisp(),
+                            JumpType::Call)) {
             return;
           }
-        } else if ((origBytes[1] & (kMaskMod | kMaskReg)) ==
-                   BuildModRmByte(kModReg, 2, 0)) {
-          // CALL reg (ff nn)
-          COPY_CODES(2);
-        } else if (((origBytes[1] & kMaskReg) >> kRegFieldShift) == 4) {
-          // JMP r/m
-          int len = CountModRmSib(origBytes + 1);
-          if (len < 0) {
-            // RIP-relative not yet supported
-            MOZ_ASSERT_UNREACHABLE("Unrecognized opcode sequence");
-            return;
+        } else if (reg == 4) {
+          // FF /4 (Opcode=ff, REG=4): JMP r/m
+          if (mod == kModNoRegDisp && rm == kRmNoRegDispDisp32) {
+            // FF 25    JMP [disp32]
+            foundJmp = true;
+
+            origBytes += 2;
+
+            uintptr_t jmpDest = origBytes.ChasePointerFromDisp();
+
+            if (!GenerateJump(tramp, jmpDest, JumpType::Jmp)) {
+              return;
+            }
+          } else {
+            // JMP r/m except JMP [disp32]
+            int len = CountModRmSib(origBytes + 1);
+            if (len < 0) {
+              // RIP-relative not yet supported
+              MOZ_ASSERT_UNREACHABLE("Unrecognized opcode sequence");
+              return;
+            }
+
+            COPY_CODES(len + 1);
+
+            foundJmp = true;
           }
-
-          COPY_CODES(len + 1);
-
-          foundJmp = true;
         } else {
           MOZ_ASSERT_UNREACHABLE("Unrecognized opcode sequence");
           return;

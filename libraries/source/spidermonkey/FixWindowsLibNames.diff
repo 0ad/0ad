@@ -1,0 +1,16 @@
+--- a/js/src/old-configure
++++ b/js/src/old-configure
+@@ -7035,10 +7035,10 @@
+ 
+ 
+ 
+-if test -n "$JS_STANDALONE"; then
+-JS_LIBRARY_NAME="mozjs-$MOZILLA_SYMBOLVERSION"
++if test -n "$MOZ_DEBUG"; then
++JS_LIBRARY_NAME="mozjs$MOZILLA_SYMBOLVERSION-ps-debug"
+ else
+-JS_LIBRARY_NAME="mozjs"
++JS_LIBRARY_NAME="mozjs$MOZILLA_SYMBOLVERSION-ps-release"
+ fi
+ JS_CONFIG_LIBS="$NSPR_LIBS $LIBS"
+ if test -n "$GNU_CC"; then

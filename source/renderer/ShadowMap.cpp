@@ -460,6 +460,15 @@ void ShadowMapInternals::CalculateShadowMatrices(const int cascade)
 	lightToTex._34 = -shadowRenderBound[0].Z * texscalez;
 	lightToTex._44 = 1.0;
 
+	if (g_VideoMode.GetBackendDevice()->GetBackend() == Renderer::Backend::Backend::VULKAN)
+	{
+		CMatrix3D flip;
+		flip.SetIdentity();
+		flip._22 = -1.0f;
+		flip._24 = 1.0;
+		lightToTex = flip * lightToTex;
+	}
+
 	Cascades[cascade].TextureMatrix = lightToTex * LightTransform;
 }
 

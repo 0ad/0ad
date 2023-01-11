@@ -13,7 +13,9 @@
 #include "js/HashTable.h"
 #include "js/RootingAPI.h"
 #include "js/SweepingAPI.h"
-#include "js/TracingAPI.h"
+#include "js/TypeDecls.h"
+
+class JSTracer;
 
 namespace JS {
 
@@ -52,8 +54,9 @@ struct DefaultMapSweepPolicy {
 //
 // Note that this HashMap only knows *how* to trace and sweep, but it does not
 // itself cause tracing or sweeping to be invoked. For tracing, it must be used
-// with Rooted or PersistentRooted, or barriered and traced manually. For
-// sweeping, currently it requires an explicit call to <map>.sweep().
+// as Rooted<GCHashMap> or PersistentRooted<GCHashMap>, or barriered and traced
+// manually. For sweeping, currently it requires an explicit call to
+// <map>.sweep().
 template <typename Key, typename Value,
           typename HashPolicy = js::DefaultHasher<Key>,
           typename AllocPolicy = js::TempAllocPolicy,
@@ -76,7 +79,12 @@ class GCHashMap : public js::HashMap<Key, Value, HashPolicy, AllocPolicy> {
   bool needsSweep() const { return !this->empty(); }
 
   void sweep() {
-    for (typename Base::Enum e(*this); !e.empty(); e.popFront()) {
+    typename Base::Enum e(*this);
+    sweepEntries(e);
+  }
+
+  void sweepEntries(typename Base::Enum& e) {
+    for (; !e.empty(); e.popFront()) {
       if (MapSweepPolicy::needsSweep(&e.front().mutableKey(),
                                      &e.front().value())) {
         e.removeFront();
@@ -270,7 +278,12 @@ class GCHashSet : public js::HashSet<T, HashPolicy, AllocPolicy> {
   bool needsSweep() const { return !this->empty(); }
 
   void sweep() {
-    for (typename Base::Enum e(*this); !e.empty(); e.popFront()) {
+    typename Base::Enum e(*this);
+    sweepEntries(e);
+  }
+
+  void sweepEntries(typename Base::Enum& e) {
+    for (; !e.empty(); e.popFront()) {
       if (GCPolicy<T>::needsSweep(&e.mutableFront())) {
         e.removeFront();
       }
@@ -348,10 +361,15 @@ class MutableWrappedPtrOperations<JS::GCHashSet<Args...>, Wrapper>
 
   void clear() { set().clear(); }
   void clearAndCompact() { set().clearAndCompact(); }
-  MOZ_MUST_USE bool reserve(uint32_t len) { return set().reserve(len); }
+  [[nodiscard]] bool reserve(uint32_t len) { return set().reserve(len); }
   void remove(Ptr p) { set().remove(p); }
   void remove(const Lookup& l) { set().remove(l); }
   AddPtr lookupForAdd(const Lookup& l) { return set().lookupForAdd(l); }
+
+  template <typename TInput>
+  void replaceKey(Ptr p, const Lookup& l, TInput&& newValue) {
+    set().replaceKey(p, l, std::forward<TInput>(newValue));
+  }
 
   template <typename TInput>
   bool add(AddPtr& p, TInput&& t) {
@@ -410,9 +428,22 @@ class WeakCache<GCHashMap<Key, Value, HashPolicy, AllocPolicy, MapSweepPolicy>>
 
   bool needsSweep() override { return map.needsSweep(); }
 
-  size_t sweep() override {
+  size_t sweep(js::gc::StoreBuffer* sbToLock) override {
     size_t steps = map.count();
-    map.sweep();
+
+    // Create an Enum and sweep the table entries.
+    mozilla::Maybe<typename Map::Enum> e;
+    e.emplace(map);
+    map.sweepEntries(e.ref());
+
+    // Potentially take a lock while the Enum's destructor is called as this can
+    // rehash/resize the table and access the store buffer.
+    mozilla::Maybe<js::gc::AutoLockStoreBuffer> lock;
+    if (sbToLock) {
+      lock.emplace(sbToLock);
+    }
+    e.reset();
+
     return steps;
   }
 
@@ -593,9 +624,24 @@ class WeakCache<GCHashSet<T, HashPolicy, AllocPolicy>>
         set(std::forward<Args>(args)...),
         needsBarrier(false) {}
 
-  size_t sweep() override {
+  size_t sweep(js::gc::StoreBuffer* sbToLock) override {
     size_t steps = set.count();
-    set.sweep();
+
+    // Create an Enum and sweep the table entries. It's not necessary to take
+    // the store buffer lock yet.
+    mozilla::Maybe<typename Set::Enum> e;
+    e.emplace(set);
+    set.sweepEntries(e.ref());
+
+    // Destroy the Enum, potentially rehashing or resizing the table. Since this
+    // can access the store buffer, we need to take a lock for this if we're
+    // called off main thread.
+    mozilla::Maybe<js::gc::AutoLockStoreBuffer> lock;
+    if (sbToLock) {
+      lock.emplace(sbToLock);
+    }
+    e.reset();
+
     return steps;
   }
 
@@ -725,6 +771,11 @@ class WeakCache<GCHashSet<T, HashPolicy, AllocPolicy>>
     if (p) {
       remove(p);
     }
+  }
+
+  template <typename TInput>
+  void replaceKey(Ptr p, const Lookup& l, TInput&& newValue) {
+    set.replaceKey(p, l, std::forward<TInput>(newValue));
   }
 
   template <typename TInput>

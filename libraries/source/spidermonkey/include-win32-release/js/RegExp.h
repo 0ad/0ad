@@ -14,8 +14,7 @@
 #include "jstypes.h"  // JS_PUBLIC_API
 
 #include "js/RegExpFlags.h"  // JS::RegExpFlags
-#include "js/RootingAPI.h"   // JS::{,Mutable}Handle
-#include "js/Value.h"        // JS::Value
+#include "js/TypeDecls.h"
 
 struct JS_PUBLIC_API JSContext;
 class JS_PUBLIC_API JSString;
@@ -45,7 +44,7 @@ extern JS_PUBLIC_API bool ClearRegExpStatics(JSContext* cx,
 
 extern JS_PUBLIC_API bool ExecuteRegExp(JSContext* cx, Handle<JSObject*> obj,
                                         Handle<JSObject*> reobj,
-                                        char16_t* chars, size_t length,
+                                        const char16_t* chars, size_t length,
                                         size_t* indexp, bool test,
                                         MutableHandle<Value> rval);
 

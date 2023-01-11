@@ -75,7 +75,12 @@ namespace detail {
 template <typename T>
 struct CopyablePtr {
   T mPtr;
-  explicit CopyablePtr(T aPtr) : mPtr{std::move(aPtr)} {}
+
+  template <typename U>
+  explicit CopyablePtr(U&& aPtr) : mPtr{std::forward<U>(aPtr)} {}
+
+  template <typename U>
+  explicit CopyablePtr(CopyablePtr<U> aPtr) : mPtr{std::move(aPtr.mPtr)} {}
 };
 }  // namespace detail
 
@@ -88,6 +93,7 @@ class MovingNotNull;
 // - NotNull<char*>
 // - NotNull<RefPtr<Event>>
 // - NotNull<nsCOMPtr<Event>>
+// - NotNull<UniquePtr<Pointee>>
 //
 // NotNull has the following notable properties.
 //
@@ -110,8 +116,9 @@ class MovingNotNull;
 //   boolean context, which eliminates the possibility of unnecessary null
 //   checks.
 //
-// NotNull currently doesn't work with UniquePtr. See
-// https://github.com/Microsoft/GSL/issues/89 for some discussion.
+// - It is not movable, but copyable if the base pointer type is copyable. It
+//   may be used together with MovingNotNull to avoid unnecessary copies or when
+//   the base pointer type is not copyable (such as UniquePtr<T>).
 //
 template <typename T>
 class NotNull {
@@ -146,7 +153,7 @@ class NotNull {
 
   template <typename U>
   constexpr MOZ_IMPLICIT NotNull(MovingNotNull<U>&& aOther)
-      : mBasePtr(std::move(aOther)) {}
+      : mBasePtr(std::move(aOther).unwrapBasePtr()) {}
 
   // Disallow null checks, which are unnecessary for this type.
   explicit operator bool() const = delete;
@@ -289,10 +296,14 @@ class MOZ_NON_AUTOABLE MovingNotNull {
  public:
   MovingNotNull() = delete;
 
-  MOZ_IMPLICIT MovingNotNull(const NotNull<T>& aSrc) : mBasePtr(aSrc) {}
+  MOZ_IMPLICIT MovingNotNull(const NotNull<T>& aSrc) : mBasePtr(aSrc.get()) {}
 
   template <typename U>
-  MOZ_IMPLICIT MovingNotNull(const NotNull<U>& aSrc) : mBasePtr(aSrc) {}
+  MOZ_IMPLICIT MovingNotNull(const NotNull<U>& aSrc) : mBasePtr(aSrc.get()) {}
+
+  template <typename U>
+  MOZ_IMPLICIT MovingNotNull(MovingNotNull<U>&& aSrc)
+      : mBasePtr(std::move(aSrc).unwrapBasePtr()) {}
 
   MOZ_IMPLICIT operator T() && { return std::move(*this).unwrapBasePtr(); }
 

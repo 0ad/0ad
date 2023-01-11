@@ -1,0 +1,110 @@
+--- a/modules/fdlibm/src/math_private.h
++++ b/modules/fdlibm/src/math_private.h
+@@ -30,8 +30,13 @@
+  * Adapted from https://github.com/freebsd/freebsd-src/search?q=__double_t
+  */
+ 
++#if defined __FLT_EVAL_METHOD__ && (__FLT_EVAL_METHOD__ == 2)
++typedef long double      __double_t;
++#else
+ typedef double      __double_t;
++#endif
+ typedef __double_t  double_t;
++typedef float   __float_t;
+ 
+ /*
+  * The original fdlibm code used statements like:
+@@ -630,6 +634,53 @@
+ 	return ((double)(x + 0x1.8p52) - 0x1.8p52);
+ }
+ 
++static inline float
++rnintf(__float_t x)
++{
++	/*
++	 * As for rnint(), except we could just call that to handle the
++	 * extra precision case, usually without losing efficiency.
++	 */
++	return ((float)(x + 0x1.8p23F) - 0x1.8p23F);
++}
++
++#ifdef LDBL_MANT_DIG
++/*
++ * The complications for extra precision are smaller for rnintl() since it
++ * can safely assume that the rounding precision has been increased from
++ * its default to FP_PE on x86.  We don't exploit that here to get small
++ * optimizations from limiting the rangle to double.  We just need it for
++ * the magic number to work with long doubles.  ld128 callers should use
++ * rnint() instead of this if possible.  ld80 callers should prefer
++ * rnintl() since for amd64 this avoids swapping the register set, while
++ * for i386 it makes no difference (assuming FP_PE), and for other arches
++ * it makes little difference.
++ */
++
++static inline long double
++rnintl(long double x)
++{
++  /* The WRAPPED__CONCAT() macro below is required for non-FreeBSD targets
++     which don't have a multi-level CONCAT macro implementation. On those
++     targets the hexadecimal floating-point values being created don't expand
++     properly resulting in code that cannot be compiled.
++
++     The extra level provided by this macro should not affect FreeBSD, should
++     this code be used there.
++
++     See the following for more details:
++
++       https://gcc.gnu.org/onlinedocs/gcc-3.0.1/cpp_3.html#SEC32
++       https://sources.debian.org/src/glibc/2.32-3/misc/sys/cdefs.h/
++       https://github.com/freebsd/freebsd-src/blob/main/sys/sys/cdefs.h
++  */
++	#define WRAPPED__CONCAT(x,y) __CONCAT(x,y)
++
++	return (x + WRAPPED__CONCAT(0x1.8p, LDBL_MANT_DIG) / 2 -
++		WRAPPED__CONCAT(0x1.8p, LDBL_MANT_DIG) / 2);
++}
++#endif /* LDBL_MANT_DIG */
++
+ /*
+  * irint() and i64rint() give the same result as casting to their integer
+  * return type provided their arg is a floating point integer.  They can
+@@ -646,6 +697,39 @@
+ #define	irint(x)	((int)(x))
+ #endif
+ 
++#define	i64rint(x)	((int64_t)(x))	/* only needed for ld128 so not opt. */
++
++#if defined(__i386__) && defined(__GNUCLIKE_ASM)
++static __inline int
++irintf(float x)
++{
++	int n;
++
++	__asm("fistl %0" : "=m" (n) : "t" (x));
++	return (n);
++}
++
++static __inline int
++irintd(double x)
++{
++	int n;
++
++	__asm("fistl %0" : "=m" (n) : "t" (x));
++	return (n);
++}
++#endif
++
++#if (defined(__amd64__) || defined(__i386__)) && defined(__GNUCLIKE_ASM)
++static __inline int
++irintl(long double x)
++{
++	int n;
++
++	__asm("fistl %0" : "=m" (n) : "t" (x));
++	return (n);
++}
++#endif
++
+ #ifdef DEBUG
+ #if defined(__amd64__) || defined(__i386__)
+ #define	breakpoint()	asm("int $3")

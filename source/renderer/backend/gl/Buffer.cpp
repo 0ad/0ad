@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -40,6 +40,7 @@ std::unique_ptr<CBuffer> CBuffer::Create(
 	CDevice* device, const char* name,
 	const Type type, const uint32_t size, const bool dynamic)
 {
+	ENSURE(type == Type::VERTEX || type == Type::INDEX);
 	std::unique_ptr<CBuffer> buffer(new CBuffer());
 	buffer->m_Device = device;
 	buffer->m_Type = type;

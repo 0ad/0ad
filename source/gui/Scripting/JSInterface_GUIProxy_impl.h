@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -89,7 +89,7 @@ IGUIObject* IGUIProxyObject::FromPrivateSlot<IGUIObject>(JSObject* obj)
 {
 	if (!obj)
 		return nullptr;
-	if (JS_GetClass(obj) != &JSInterface_GUIProxy::ClassDefinition())
+	if (JS::GetClass(obj) != &JSInterface_GUIProxy::ClassDefinition())
 		return nullptr;
 	return UnsafeFromPrivateSlot<IGUIObject>(obj);
 }

@@ -9,7 +9,6 @@
 #define js_MemoryFunctions_h
 
 #include "mozilla/Assertions.h"  // MOZ_ASSERT
-#include "mozilla/Attributes.h"  // MOZ_MUST_USE
 
 #include <stddef.h>  // size_t
 
@@ -65,7 +64,6 @@ namespace JS {
   _(CDataBuffer)                         \
   _(CClosureInfo)                        \
   _(CTypesInt64)                         \
-  _(PerfMeasurement)                     \
   _(Embedding1)                          \
   _(Embedding2)                          \
   _(Embedding3)                          \

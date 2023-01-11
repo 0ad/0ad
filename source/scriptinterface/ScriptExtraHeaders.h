@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,6 +59,10 @@
 #include "js/SourceText.h"
 #include "js/Proxy.h"
 #include "js/Warnings.h"
+
+#include "js/experimental/TypedData.h"
+
+#include "js/friend/ErrorMessages.h"
 
 #undef signbit
 

@@ -21,6 +21,7 @@
 
 #include "jstypes.h"
 #include "mozmemory.h"
+#include "js/TypeDecls.h"
 
 /* The public JS engine namespace. */
 namespace JS {}
@@ -53,29 +54,19 @@ namespace js {
  * adding new thread types.
  */
 enum ThreadType {
-  THREAD_TYPE_NONE = 0,      // 0
-  THREAD_TYPE_MAIN,          // 1
-  THREAD_TYPE_WASM,          // 2
-  THREAD_TYPE_ION,           // 3
-  THREAD_TYPE_PARSE,         // 4
-  THREAD_TYPE_COMPRESS,      // 5
-  THREAD_TYPE_GCPARALLEL,    // 6
-  THREAD_TYPE_PROMISE_TASK,  // 7
-  THREAD_TYPE_ION_FREE,      // 8
-  THREAD_TYPE_WASM_TIER2,    // 9
-  THREAD_TYPE_WORKER,        // 10
-  THREAD_TYPE_MAX            // Used to check shell function arguments
-};
-
-/*
- * Threads need a universal way to dispatch from xpcom thread pools,
- * so having objects inherit from this struct enables
- * mozilla::HelperThreadPool's runnable handler to call runTask() on each type.
- */
-struct RunnableTask {
-  virtual ThreadType threadType() = 0;
-  virtual void runTask() = 0;
-  virtual ~RunnableTask() = default;
+  THREAD_TYPE_NONE = 0,              // 0
+  THREAD_TYPE_MAIN,                  // 1
+  THREAD_TYPE_WASM_COMPILE_TIER1,    // 2
+  THREAD_TYPE_WASM_COMPILE_TIER2,    // 3
+  THREAD_TYPE_ION,                   // 4
+  THREAD_TYPE_PARSE,                 // 5
+  THREAD_TYPE_COMPRESS,              // 6
+  THREAD_TYPE_GCPARALLEL,            // 7
+  THREAD_TYPE_PROMISE_TASK,          // 8
+  THREAD_TYPE_ION_FREE,              // 9
+  THREAD_TYPE_WASM_GENERATOR_TIER2,  // 10
+  THREAD_TYPE_WORKER,                // 11
+  THREAD_TYPE_MAX                    // Used to check shell function arguments
 };
 
 namespace oom {
@@ -94,11 +85,11 @@ namespace oom {
 // Define the range of threads tested by simulated OOM testing and the
 // like. Testing worker threads is not supported.
 const ThreadType FirstThreadTypeToTest = THREAD_TYPE_MAIN;
-const ThreadType LastThreadTypeToTest = THREAD_TYPE_WASM_TIER2;
+const ThreadType LastThreadTypeToTest = THREAD_TYPE_WASM_GENERATOR_TIER2;
 
 extern bool InitThreadType(void);
 extern void SetThreadType(ThreadType);
-extern JS_FRIEND_API uint32_t GetThreadType(void);
+extern JS_PUBLIC_API uint32_t GetThreadType(void);
 
 #  else
 
@@ -255,14 +246,6 @@ inline bool HadSimulatedInterrupt() {
         if (js::oom::ShouldFailWithStackOOM()) return false; \
       } while (0)
 
-#    define JS_STACK_OOM_POSSIBLY_FAIL_REPORT()  \
-      do {                                       \
-        if (js::oom::ShouldFailWithStackOOM()) { \
-          ReportOverRecursed(cx);                \
-          return false;                          \
-        }                                        \
-      } while (0)
-
 #    define JS_INTERRUPT_POSSIBLY_FAIL()                             \
       do {                                                           \
         if (MOZ_UNLIKELY(js::oom::ShouldFailWithInterrupt())) {      \
@@ -281,9 +264,6 @@ inline bool HadSimulatedInterrupt() {
       } while (0)
 #    define JS_STACK_OOM_POSSIBLY_FAIL() \
       do {                               \
-      } while (0)
-#    define JS_STACK_OOM_POSSIBLY_FAIL_REPORT() \
-      do {                                      \
       } while (0)
 #    define JS_INTERRUPT_POSSIBLY_FAIL() \
       do {                               \
@@ -545,7 +525,8 @@ namespace js {
  * instances of type |T|.  Return false if the calculation overflowed.
  */
 template <typename T>
-MOZ_MUST_USE inline bool CalculateAllocSize(size_t numElems, size_t* bytesOut) {
+[[nodiscard]] inline bool CalculateAllocSize(size_t numElems,
+                                             size_t* bytesOut) {
   *bytesOut = numElems * sizeof(T);
   return (numElems & mozilla::tl::MulOverflowMask<sizeof(T)>::value) == 0;
 }
@@ -556,8 +537,8 @@ MOZ_MUST_USE inline bool CalculateAllocSize(size_t numElems, size_t* bytesOut) {
  * false if the calculation overflowed.
  */
 template <typename T, typename Extra>
-MOZ_MUST_USE inline bool CalculateAllocSizeWithExtra(size_t numExtra,
-                                                     size_t* bytesOut) {
+[[nodiscard]] inline bool CalculateAllocSizeWithExtra(size_t numExtra,
+                                                      size_t* bytesOut) {
   *bytesOut = sizeof(T) + numExtra * sizeof(Extra);
   return (numExtra & mozilla::tl::MulOverflowMask<sizeof(Extra)>::value) == 0 &&
          *bytesOut >= sizeof(T);
@@ -650,6 +631,7 @@ struct FreePolicy {
 
 typedef mozilla::UniquePtr<char[], JS::FreePolicy> UniqueChars;
 typedef mozilla::UniquePtr<char16_t[], JS::FreePolicy> UniqueTwoByteChars;
+typedef mozilla::UniquePtr<JS::Latin1Char[], JS::FreePolicy> UniqueLatin1Chars;
 
 }  // namespace JS
 

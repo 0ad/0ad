@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -107,7 +107,8 @@ ScriptContext::ScriptContext(int contextSize, int heapGrowthBytesGCTrigger):
 	JS::SetGCSliceCallback(m_cx, GCSliceCallbackHook);
 
 	JS_SetGCParameter(m_cx, JSGC_MAX_BYTES, m_ContextSize);
-	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_INCREMENTAL);
+	JS_SetGCParameter(m_cx, JSGC_INCREMENTAL_GC_ENABLED, true);
+	JS_SetGCParameter(m_cx, JSGC_PER_ZONE_GC_ENABLED, false);
 
 	JS_SetOffthreadIonCompilationEnabled(m_cx, true);
 
@@ -143,7 +144,7 @@ void ScriptContext::UnRegisterRealm(JS::Realm* realm)
 	// Schedule the zone for GC, which will destroy the realm.
 	if (JS::IsIncrementalGCInProgress(m_cx))
 		JS::FinishIncrementalGC(m_cx, JS::GCReason::API);
-	JS::PrepareZoneForGC(js::GetRealmZone(realm));
+	JS::PrepareZoneForGC(m_cx, js::GetRealmZone(realm));
 	m_Realms.remove(realm);
 }
 
@@ -241,7 +242,7 @@ void ScriptContext::MaybeIncrementalGC(double delay)
 #endif
 				PrepareZonesForIncrementalGC();
 				if (!JS::IsIncrementalGCInProgress(m_cx))
-					JS::StartIncrementalGC(m_cx, GC_NORMAL, JS::GCReason::API, GCSliceTimeBudget);
+					JS::StartIncrementalGC(m_cx, JS::GCOptions::Normal, JS::GCReason::API, GCSliceTimeBudget);
 				else
 					JS::IncrementalGCSlice(m_cx, JS::GCReason::API, GCSliceTimeBudget);
 			}
@@ -252,14 +253,16 @@ void ScriptContext::MaybeIncrementalGC(double delay)
 
 void ScriptContext::ShrinkingGC()
 {
-	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_ZONE);
+	JS_SetGCParameter(m_cx, JSGC_INCREMENTAL_GC_ENABLED, false);
+	JS_SetGCParameter(m_cx, JSGC_PER_ZONE_GC_ENABLED, true);
 	JS::PrepareForFullGC(m_cx);
-	JS::NonIncrementalGC(m_cx, GC_SHRINK, JS::GCReason::API);
-	JS_SetGCParameter(m_cx, JSGC_MODE, JSGC_MODE_INCREMENTAL);
+	JS::NonIncrementalGC(m_cx, JS::GCOptions::Shrink, JS::GCReason::API);
+	JS_SetGCParameter(m_cx, JSGC_INCREMENTAL_GC_ENABLED, true);
+	JS_SetGCParameter(m_cx, JSGC_PER_ZONE_GC_ENABLED, false);
 }
 
 void ScriptContext::PrepareZonesForIncrementalGC() const
 {
 	for (JS::Realm* const& realm : m_Realms)
-		JS::PrepareZoneForGC(js::GetRealmZone(realm));
+		JS::PrepareZoneForGC(m_cx, js::GetRealmZone(realm));
 }

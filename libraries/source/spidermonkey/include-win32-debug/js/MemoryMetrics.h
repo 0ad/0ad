@@ -16,17 +16,27 @@
 #include <string.h>
 #include <type_traits>
 
-#include "jspubtd.h"
+#include "jstypes.h"
 
 #include "js/AllocPolicy.h"
 #include "js/HashTable.h"
-#include "js/TracingAPI.h"
+#include "js/TraceKind.h"
+#include "js/TypeDecls.h"
 #include "js/Utility.h"
 #include "js/Vector.h"
 
 class nsISupports;  // Needed for ObjectPrivateVisitor.
 
+namespace js {
+class SystemAllocPolicy;
+}
+
+namespace mozilla {
+struct CStringHasher;
+}
+
 namespace JS {
+class JS_PUBLIC_API AutoRequireNoGC;
 
 struct TabSizes {
   TabSizes() = default;
@@ -120,7 +130,7 @@ namespace js {
  * We need to define this value here, rather than in the code which actually
  * generates the memory reports, because NotableStringInfo uses this value.
  */
-JS_FRIEND_API size_t MemoryReportingSundriesThreshold();
+JS_PUBLIC_API size_t MemoryReportingSundriesThreshold();
 
 /**
  * This hash policy avoids flattening ropes (which perturbs the site being
@@ -219,13 +229,11 @@ struct ClassInfo {
 };
 
 struct ShapeInfo {
-#define FOR_EACH_SIZE(MACRO)                           \
-  MACRO(Other, GCHeapUsed, shapesGCHeapTree)           \
-  MACRO(Other, GCHeapUsed, shapesGCHeapDict)           \
-  MACRO(Other, GCHeapUsed, shapesGCHeapBase)           \
-  MACRO(Other, MallocHeap, shapesMallocHeapTreeTables) \
-  MACRO(Other, MallocHeap, shapesMallocHeapDictTables) \
-  MACRO(Other, MallocHeap, shapesMallocHeapTreeChildren)
+#define FOR_EACH_SIZE(MACRO)                   \
+  MACRO(Other, GCHeapUsed, shapesGCHeapShared) \
+  MACRO(Other, GCHeapUsed, shapesGCHeapDict)   \
+  MACRO(Other, GCHeapUsed, shapesGCHeapBase)   \
+  MACRO(Other, MallocHeap, shapesMallocHeapCache)
 
   ShapeInfo() = default;
 
@@ -452,7 +460,8 @@ struct HelperThreadStats {
   MACRO(_, MallocHeap, stateData)      \
   MACRO(_, MallocHeap, parseTask)      \
   MACRO(_, MallocHeap, ionCompileTask) \
-  MACRO(_, MallocHeap, wasmCompile)
+  MACRO(_, MallocHeap, wasmCompile)    \
+  MACRO(_, MallocHeap, contexts)
 
   HelperThreadStats() = default;
 
@@ -535,17 +544,18 @@ struct RuntimeSizes {
 };
 
 struct UnusedGCThingSizes {
-#define FOR_EACH_SIZE(MACRO)              \
-  MACRO(Other, GCHeapUnused, object)      \
-  MACRO(Other, GCHeapUnused, script)      \
-  MACRO(Other, GCHeapUnused, shape)       \
-  MACRO(Other, GCHeapUnused, baseShape)   \
-  MACRO(Other, GCHeapUnused, objectGroup) \
-  MACRO(Other, GCHeapUnused, string)      \
-  MACRO(Other, GCHeapUnused, symbol)      \
-  MACRO(Other, GCHeapUnused, bigInt)      \
-  MACRO(Other, GCHeapUnused, jitcode)     \
-  MACRO(Other, GCHeapUnused, scope)       \
+#define FOR_EACH_SIZE(MACRO)               \
+  MACRO(Other, GCHeapUnused, object)       \
+  MACRO(Other, GCHeapUnused, script)       \
+  MACRO(Other, GCHeapUnused, shape)        \
+  MACRO(Other, GCHeapUnused, baseShape)    \
+  MACRO(Other, GCHeapUnused, getterSetter) \
+  MACRO(Other, GCHeapUnused, propMap)      \
+  MACRO(Other, GCHeapUnused, string)       \
+  MACRO(Other, GCHeapUnused, symbol)       \
+  MACRO(Other, GCHeapUnused, bigInt)       \
+  MACRO(Other, GCHeapUnused, jitcode)      \
+  MACRO(Other, GCHeapUnused, scope)        \
   MACRO(Other, GCHeapUnused, regExpShared)
 
   UnusedGCThingSizes() = default;
@@ -574,11 +584,14 @@ struct UnusedGCThingSizes {
       case JS::TraceKind::BaseShape:
         baseShape += n;
         break;
+      case JS::TraceKind::GetterSetter:
+        getterSetter += n;
+        break;
+      case JS::TraceKind::PropMap:
+        propMap += n;
+        break;
       case JS::TraceKind::JitCode:
         jitcode += n;
-        break;
-      case JS::TraceKind::ObjectGroup:
-        objectGroup += n;
         break;
       case JS::TraceKind::Scope:
         scope += n;
@@ -621,17 +634,21 @@ struct ZoneStats {
   MACRO(Other, MallocHeap, bigIntsMallocHeap)              \
   MACRO(Other, GCHeapAdmin, gcHeapArenaAdmin)              \
   MACRO(Other, GCHeapUsed, jitCodesGCHeap)                 \
-  MACRO(Other, GCHeapUsed, objectGroupsGCHeap)             \
-  MACRO(Other, MallocHeap, objectGroupsMallocHeap)         \
+  MACRO(Other, GCHeapUsed, getterSettersGCHeap)            \
+  MACRO(Other, GCHeapUsed, compactPropMapsGCHeap)          \
+  MACRO(Other, GCHeapUsed, normalPropMapsGCHeap)           \
+  MACRO(Other, GCHeapUsed, dictPropMapsGCHeap)             \
+  MACRO(Other, MallocHeap, propMapChildren)                \
+  MACRO(Other, MallocHeap, propMapTables)                  \
   MACRO(Other, GCHeapUsed, scopesGCHeap)                   \
   MACRO(Other, MallocHeap, scopesMallocHeap)               \
   MACRO(Other, GCHeapUsed, regExpSharedsGCHeap)            \
   MACRO(Other, MallocHeap, regExpSharedsMallocHeap)        \
-  MACRO(Other, MallocHeap, typePool)                       \
   MACRO(Other, MallocHeap, regexpZone)                     \
   MACRO(Other, MallocHeap, jitZone)                        \
   MACRO(Other, MallocHeap, baselineStubsOptimized)         \
   MACRO(Other, MallocHeap, uniqueIdMap)                    \
+  MACRO(Other, MallocHeap, initialPropMapTable)            \
   MACRO(Other, MallocHeap, shapeTables)                    \
   MACRO(Other, MallocHeap, compartmentObjects)             \
   MACRO(Other, MallocHeap, crossCompartmentWrappersTables) \
@@ -710,24 +727,21 @@ struct RealmStats {
   // actually guaranteed. But for Servo, at least, it's a moot point because
   // it doesn't provide an ObjectPrivateVisitor so the value will always be
   // zero.
-#define FOR_EACH_SIZE(MACRO)                                  \
-  MACRO(Private, MallocHeap, objectsPrivate)                  \
-  MACRO(Other, GCHeapUsed, scriptsGCHeap)                     \
-  MACRO(Other, MallocHeap, scriptsMallocHeapData)             \
-  MACRO(Other, MallocHeap, baselineData)                      \
-  MACRO(Other, MallocHeap, baselineStubsFallback)             \
-  MACRO(Other, MallocHeap, ionData)                           \
-  MACRO(Other, MallocHeap, jitScripts)                        \
-  MACRO(Other, MallocHeap, typeInferenceAllocationSiteTables) \
-  MACRO(Other, MallocHeap, typeInferenceArrayTypeTables)      \
-  MACRO(Other, MallocHeap, typeInferenceObjectTypeTables)     \
-  MACRO(Other, MallocHeap, realmObject)                       \
-  MACRO(Other, MallocHeap, realmTables)                       \
-  MACRO(Other, MallocHeap, innerViewsTable)                   \
-  MACRO(Other, MallocHeap, objectMetadataTable)               \
-  MACRO(Other, MallocHeap, savedStacksSet)                    \
-  MACRO(Other, MallocHeap, varNamesSet)                       \
-  MACRO(Other, MallocHeap, nonSyntacticLexicalScopesTable)    \
+#define FOR_EACH_SIZE(MACRO)                               \
+  MACRO(Private, MallocHeap, objectsPrivate)               \
+  MACRO(Other, GCHeapUsed, scriptsGCHeap)                  \
+  MACRO(Other, MallocHeap, scriptsMallocHeapData)          \
+  MACRO(Other, MallocHeap, baselineData)                   \
+  MACRO(Other, MallocHeap, baselineStubsFallback)          \
+  MACRO(Other, MallocHeap, ionData)                        \
+  MACRO(Other, MallocHeap, jitScripts)                     \
+  MACRO(Other, MallocHeap, realmObject)                    \
+  MACRO(Other, MallocHeap, realmTables)                    \
+  MACRO(Other, MallocHeap, innerViewsTable)                \
+  MACRO(Other, MallocHeap, objectMetadataTable)            \
+  MACRO(Other, MallocHeap, savedStacksSet)                 \
+  MACRO(Other, MallocHeap, varNamesSet)                    \
+  MACRO(Other, MallocHeap, nonSyntacticLexicalScopesTable) \
   MACRO(Other, MallocHeap, jitRealm)
 
   RealmStats() = default;
@@ -792,12 +806,12 @@ struct RuntimeStats {
   // values from the zones and compartments. Both of those values are not
   // reported directly, but are just present for sanity-checking other
   // values.
-#define FOR_EACH_SIZE(MACRO)                           \
-  MACRO(_, Ignore, gcHeapChunkTotal)                   \
-  MACRO(_, GCHeapDecommitted, gcHeapDecommittedArenas) \
-  MACRO(_, GCHeapUnused, gcHeapUnusedChunks)           \
-  MACRO(_, GCHeapUnused, gcHeapUnusedArenas)           \
-  MACRO(_, GCHeapAdmin, gcHeapChunkAdmin)              \
+#define FOR_EACH_SIZE(MACRO)                          \
+  MACRO(_, Ignore, gcHeapChunkTotal)                  \
+  MACRO(_, GCHeapDecommitted, gcHeapDecommittedPages) \
+  MACRO(_, GCHeapUnused, gcHeapUnusedChunks)          \
+  MACRO(_, GCHeapUnused, gcHeapUnusedArenas)          \
+  MACRO(_, GCHeapAdmin, gcHeapChunkAdmin)             \
   MACRO(_, Ignore, gcHeapGCThings)
 
   explicit RuntimeStats(mozilla::MallocSizeOf mallocSizeOf)
@@ -807,8 +821,8 @@ struct RuntimeStats {
   //
   // - rtStats.gcHeapChunkTotal
   //   - decommitted bytes
-  //     - rtStats.gcHeapDecommittedArenas
-  //         (decommitted arenas in non-empty chunks)
+  //     - rtStats.gcHeapDecommittedPages
+  //         (decommitted pages in non-empty chunks)
   //   - unused bytes
   //     - rtStats.gcHeapUnusedChunks (empty chunks)
   //     - rtStats.gcHeapUnusedArenas (empty arenas within non-empty chunks)
@@ -821,8 +835,8 @@ struct RuntimeStats {
   //       == (rtStats.zTotals.sizeOfLiveGCThings() +
   //           rtStats.cTotals.sizeOfLiveGCThings())
   //
-  // It's possible that some arenas in empty chunks may be decommitted, but
-  // we don't count those under rtStats.gcHeapDecommittedArenas because (a)
+  // It's possible that some pages in empty chunks may be decommitted, but
+  // we don't count those under rtStats.gcHeapDecommittedPages because (a)
   // it's rare, and (b) this means that rtStats.gcHeapUnusedChunks is a
   // multiple of the chunk size, which is good.
 
@@ -845,9 +859,10 @@ struct RuntimeStats {
 
   mozilla::MallocSizeOf mallocSizeOf_;
 
-  virtual void initExtraRealmStats(JS::Handle<JS::Realm*> realm,
-                                   RealmStats* rstats) = 0;
-  virtual void initExtraZoneStats(JS::Zone* zone, ZoneStats* zstats) = 0;
+  virtual void initExtraRealmStats(JS::Realm* realm, RealmStats* rstats,
+                                   const JS::AutoRequireNoGC& nogc) = 0;
+  virtual void initExtraZoneStats(JS::Zone* zone, ZoneStats* zstats,
+                                  const JS::AutoRequireNoGC& nogc) = 0;
 
 #undef FOR_EACH_SIZE
 };

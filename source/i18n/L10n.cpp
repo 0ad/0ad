@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -116,19 +116,22 @@ void ReadPoIntoDictionary(const std::string& poContent, tinygettext::Dictionary*
  *        parsing.
  * @return ICU date formatter.
  */
-icu::DateFormat* CreateDateTimeInstance(const L10n::DateTimeType& type, const icu::DateFormat::EStyle& style, const icu::Locale& locale)
+std::unique_ptr<icu::DateFormat> CreateDateTimeInstance(const L10n::DateTimeType& type, const icu::DateFormat::EStyle& style, const icu::Locale& locale)
 {
 	switch (type)
 	{
 	case L10n::Date:
-		return icu::SimpleDateFormat::createDateInstance(style, locale);
+		return std::unique_ptr<icu::DateFormat>{
+			icu::SimpleDateFormat::createDateInstance(style, locale)};
 
 	case L10n::Time:
-		return icu::SimpleDateFormat::createTimeInstance(style, locale);
+		return std::unique_ptr<icu::DateFormat>{
+			icu::SimpleDateFormat::createTimeInstance(style, locale)};
 
-	case L10n::DateTime:
+	case L10n::DateTime: FALLTHROUGH;
 	default:
-		return icu::SimpleDateFormat::createDateTimeInstance(style, style, locale);
+		return std::unique_ptr<icu::DateFormat>{
+			icu::SimpleDateFormat::createDateTimeInstance(style, style, locale)};
 	}
 }
 
@@ -446,24 +449,21 @@ UDate L10n::ParseDateTime(const std::string& dateTimeString, const std::string& 
 	icu::UnicodeString utf16DateTimeString = icu::UnicodeString::fromUTF8(dateTimeString.c_str());
 	icu::UnicodeString utf16DateTimeFormat = icu::UnicodeString::fromUTF8(dateTimeFormat.c_str());
 
-	icu::DateFormat* dateFormatter = new icu::SimpleDateFormat(utf16DateTimeFormat, locale, success);
-	UDate date = dateFormatter->parse(utf16DateTimeString, success);
-	delete dateFormatter;
-
-	return date;
+	const icu::SimpleDateFormat dateFormatter{utf16DateTimeFormat, locale, success};
+	return dateFormatter.parse(utf16DateTimeString, success);
 }
 
 std::string L10n::LocalizeDateTime(const UDate dateTime, const DateTimeType& type, const icu::DateFormat::EStyle& style) const
 {
 	icu::UnicodeString utf16Date;
 
-	icu::DateFormat* dateFormatter = CreateDateTimeInstance(type, style, m_CurrentLocale);
+	const std::unique_ptr<const icu::DateFormat> dateFormatter{
+		CreateDateTimeInstance(type, style, m_CurrentLocale)};
 	dateFormatter->format(dateTime, utf16Date);
 	char utf8Date[512];
 	icu::CheckedArrayByteSink sink(utf8Date, ARRAY_SIZE(utf8Date));
 	utf16Date.toUTF8(sink);
 	ENSURE(!sink.Overflowed());
-	delete dateFormatter;
 
 	return std::string(utf8Date, sink.NumberOfBytesWritten());
 }
@@ -475,21 +475,21 @@ std::string L10n::FormatMillisecondsIntoDateString(const UDate milliseconds, con
 	std::string resultString;
 
 	icu::UnicodeString unicodeFormat = icu::UnicodeString::fromUTF8(formatString.c_str());
-	icu::SimpleDateFormat* dateFormat = new icu::SimpleDateFormat(unicodeFormat, status);
+	icu::SimpleDateFormat dateFormat{unicodeFormat, status};
 	if (U_FAILURE(status))
 		LOGERROR("Error creating SimpleDateFormat: %s", u_errorName(status));
 
 	status = U_ZERO_ERROR;
-	icu::Calendar* calendar = useLocalTimezone ?
-		icu::Calendar::createInstance(m_CurrentLocale, status) :
-		icu::Calendar::createInstance(*icu::TimeZone::getGMT(), m_CurrentLocale, status);
+	std::unique_ptr<icu::Calendar> calendar{
+		useLocalTimezone ?
+			icu::Calendar::createInstance(m_CurrentLocale, status) :
+			icu::Calendar::createInstance(*icu::TimeZone::getGMT(), m_CurrentLocale, status)};
 
 	if (U_FAILURE(status))
 		LOGERROR("Error creating calendar: %s", u_errorName(status));
 
-	dateFormat->adoptCalendar(calendar);
-	dateFormat->format(milliseconds, dateString);
-	delete dateFormat;
+	dateFormat.adoptCalendar(calendar.release());
+	dateFormat.format(milliseconds, dateString);
 
 	dateString.toUTF8String(resultString);
 	return resultString;
@@ -499,8 +499,8 @@ std::string L10n::FormatDecimalNumberIntoString(double number) const
 {
 	UErrorCode success = U_ZERO_ERROR;
 	icu::UnicodeString utf16Number;
-	icu::NumberFormat* numberFormatter = icu::NumberFormat::createInstance(m_CurrentLocale,
-		UNUM_DECIMAL, success);
+	std::unique_ptr<icu::NumberFormat> numberFormatter{
+		icu::NumberFormat::createInstance(m_CurrentLocale, UNUM_DECIMAL, success)};
 	numberFormatter->format(number, utf16Number);
 	char utf8Number[512];
 	icu::CheckedArrayByteSink sink(utf8Number, ARRAY_SIZE(utf8Number));

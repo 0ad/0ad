@@ -567,6 +567,13 @@ void CSceneRenderer::RenderReflections(
 
 	// Save the model-view-projection matrix so the shaders can use it for projective texturing
 	wm.m_ReflectionMatrix = m_ViewCamera.GetViewProjection();
+	if (g_VideoMode.GetBackendDevice()->GetBackend() == Renderer::Backend::Backend::VULKAN)
+	{
+		CMatrix3D flip;
+		flip.SetIdentity();
+		flip._22 = -1.0f;
+		wm.m_ReflectionMatrix = flip * wm.m_ReflectionMatrix;
+	}
 
 	float vpHeight = wm.m_RefTextureSize;
 	float vpWidth = wm.m_RefTextureSize;
@@ -643,6 +650,15 @@ void CSceneRenderer::RenderRefractions(
 	wm.m_RefractionProjInvMatrix = m_ViewCamera.GetProjection().GetInverse();
 	wm.m_RefractionViewInvMatrix = m_ViewCamera.GetOrientation();
 
+	if (g_VideoMode.GetBackendDevice()->GetBackend() == Renderer::Backend::Backend::VULKAN)
+	{
+		CMatrix3D flip;
+		flip.SetIdentity();
+		flip._22 = -1.0f;
+		wm.m_RefractionMatrix = flip * wm.m_RefractionMatrix;
+		wm.m_RefractionProjInvMatrix = wm.m_RefractionProjInvMatrix * flip;
+	}
+
 	float vpHeight = wm.m_RefTextureSize;
 	float vpWidth = wm.m_RefTextureSize;
 
@@ -702,6 +718,7 @@ void CSceneRenderer::RenderSilhouettes(
 	// inverted depth test so any behind an occluder will get drawn in a constant
 	// color.
 
+	// TODO: do we need clear here?
 	deviceCommandContext->ClearFramebuffer(false, true, true);
 
 	// Render occluders:

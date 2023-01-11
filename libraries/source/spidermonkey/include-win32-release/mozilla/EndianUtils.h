@@ -81,73 +81,23 @@
 #  pragma intrinsic(_byteswap_uint64)
 #endif
 
-#if defined(_WIN64)
-#  if defined(_M_X64) || defined(_M_AMD64) || defined(_AMD64_)
-#    define MOZ_TMP_LITTLE_ENDIAN
-#  elif defined(_M_ARM64)
-#    define MOZ_TMP_LITTLE_ENDIAN
-#  else
-#    error "CPU type is unknown"
-#  endif
-#elif defined(_WIN32)
-#  if defined(_M_IX86)
-#    define MOZ_TMP_LITTLE_ENDIAN
-#  elif defined(_M_ARM)
-#    define MOZ_TMP_LITTLE_ENDIAN
-#  else
-#    error "CPU type is unknown"
-#  endif
-#elif defined(__APPLE__) || defined(__powerpc__) || defined(__ppc__)
-#  if __LITTLE_ENDIAN__
-#    define MOZ_TMP_LITTLE_ENDIAN
-#  elif __BIG_ENDIAN__
-#    define MOZ_TMP_BIG_ENDIAN
-#  endif
-#elif defined(__GNUC__) && defined(__BYTE_ORDER__) && \
-    defined(__ORDER_LITTLE_ENDIAN__) && defined(__ORDER_BIG_ENDIAN__)
 /*
- * Some versions of GCC provide architecture-independent macros for
- * this.  Yes, there are more than two values for __BYTE_ORDER__.
+ * Our supported compilers provide architecture-independent macros for this.
+ * Yes, there are more than two values for __BYTE_ORDER__.
  */
+#if defined(__BYTE_ORDER__) && defined(__ORDER_LITTLE_ENDIAN__) && \
+    defined(__ORDER_BIG_ENDIAN__)
 #  if __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__
-#    define MOZ_TMP_LITTLE_ENDIAN
+#    define MOZ_LITTLE_ENDIAN() 1
+#    define MOZ_BIG_ENDIAN() 0
 #  elif __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__
-#    define MOZ_TMP_BIG_ENDIAN
+#    define MOZ_LITTLE_ENDIAN() 0
+#    define MOZ_BIG_ENDIAN() 1
 #  else
 #    error "Can't handle mixed-endian architectures"
 #  endif
-/*
- * We can't include useful headers like <endian.h> or <sys/isa_defs.h>
- * here because they're not present on all platforms.  Instead we have
- * this big conditional that ideally will catch all the interesting
- * cases.
- */
-#elif defined(__sparc) || defined(__sparc__) || defined(_POWER) || \
-    defined(__hppa) || defined(_MIPSEB) || defined(__ARMEB__) ||   \
-    defined(__s390__) || defined(__AARCH64EB__) ||                 \
-    (defined(__sh__) && defined(__LITTLE_ENDIAN__)) ||             \
-    (defined(__ia64) && defined(__BIG_ENDIAN__))
-#  define MOZ_TMP_BIG_ENDIAN
-#elif defined(__i386) || defined(__i386__) || defined(__x86_64) ||   \
-    defined(__x86_64__) || defined(_MIPSEL) || defined(__ARMEL__) || \
-    defined(__alpha__) || defined(__AARCH64EL__) ||                  \
-    (defined(__sh__) && defined(__BIG_ENDIAN__)) ||                  \
-    (defined(__ia64) && !defined(__BIG_ENDIAN__))
-#  define MOZ_TMP_LITTLE_ENDIAN
 #else
 #  error "Don't know how to determine endianness"
-#endif
-
-#if defined(MOZ_TMP_LITTLE_ENDIAN)
-#  define MOZ_LITTLE_ENDIAN() 1
-#  define MOZ_BIG_ENDIAN() 0
-#  undef MOZ_TMP_LITTLE_ENDIAN
-#elif defined(MOZ_TMP_BIG_ENDIAN)
-#  define MOZ_LITTLE_ENDIAN() 0
-#  define MOZ_BIG_ENDIAN() 1
-#  undef MOZ_TMP_BIG_ENDIAN
-#else
-#  error "Cannot determine endianness"
 #endif
 
 #if defined(__clang__)
@@ -330,42 +280,42 @@ template <Endianness ThisEndian>
 class Endian : private EndianUtils {
  protected:
   /** Read a uint16_t in ThisEndian endianness from |aPtr| and return it. */
-  static MOZ_MUST_USE uint16_t readUint16(const void* aPtr) {
+  [[nodiscard]] static uint16_t readUint16(const void* aPtr) {
     return read<uint16_t>(aPtr);
   }
 
   /** Read a uint32_t in ThisEndian endianness from |aPtr| and return it. */
-  static MOZ_MUST_USE uint32_t readUint32(const void* aPtr) {
+  [[nodiscard]] static uint32_t readUint32(const void* aPtr) {
     return read<uint32_t>(aPtr);
   }
 
   /** Read a uint64_t in ThisEndian endianness from |aPtr| and return it. */
-  static MOZ_MUST_USE uint64_t readUint64(const void* aPtr) {
+  [[nodiscard]] static uint64_t readUint64(const void* aPtr) {
     return read<uint64_t>(aPtr);
   }
 
   /** Read a uintptr_t in ThisEndian endianness from |aPtr| and return it. */
-  static MOZ_MUST_USE uintptr_t readUintptr(const void* aPtr) {
+  [[nodiscard]] static uintptr_t readUintptr(const void* aPtr) {
     return read<uintptr_t>(aPtr);
   }
 
   /** Read an int16_t in ThisEndian endianness from |aPtr| and return it. */
-  static MOZ_MUST_USE int16_t readInt16(const void* aPtr) {
+  [[nodiscard]] static int16_t readInt16(const void* aPtr) {
     return read<int16_t>(aPtr);
   }
 
   /** Read an int32_t in ThisEndian endianness from |aPtr| and return it. */
-  static MOZ_MUST_USE int32_t readInt32(const void* aPtr) {
+  [[nodiscard]] static int32_t readInt32(const void* aPtr) {
     return read<uint32_t>(aPtr);
   }
 
   /** Read an int64_t in ThisEndian endianness from |aPtr| and return it. */
-  static MOZ_MUST_USE int64_t readInt64(const void* aPtr) {
+  [[nodiscard]] static int64_t readInt64(const void* aPtr) {
     return read<int64_t>(aPtr);
   }
 
   /** Read an intptr_t in ThisEndian endianness from |aPtr| and return it. */
-  static MOZ_MUST_USE intptr_t readIntptr(const void* aPtr) {
+  [[nodiscard]] static intptr_t readIntptr(const void* aPtr) {
     return read<intptr_t>(aPtr);
   }
 
@@ -403,7 +353,7 @@ class Endian : private EndianUtils {
    * format for transmission.
    */
   template <typename T>
-  MOZ_MUST_USE static T swapToLittleEndian(T aValue) {
+  [[nodiscard]] static T swapToLittleEndian(T aValue) {
     return maybeSwap<ThisEndian, Little>(aValue);
   }
 
@@ -432,7 +382,7 @@ class Endian : private EndianUtils {
    * Converts a value of type T to big-endian format.
    */
   template <typename T>
-  MOZ_MUST_USE static T swapToBigEndian(T aValue) {
+  [[nodiscard]] static T swapToBigEndian(T aValue) {
     return maybeSwap<ThisEndian, Big>(aValue);
   }
 
@@ -463,7 +413,7 @@ class Endian : private EndianUtils {
    */
 
   template <typename T>
-  MOZ_MUST_USE static T swapToNetworkOrder(T aValue) {
+  [[nodiscard]] static T swapToNetworkOrder(T aValue) {
     return swapToBigEndian(aValue);
   }
 
@@ -482,7 +432,7 @@ class Endian : private EndianUtils {
    * Converts a value of type T from little-endian format.
    */
   template <typename T>
-  MOZ_MUST_USE static T swapFromLittleEndian(T aValue) {
+  [[nodiscard]] static T swapFromLittleEndian(T aValue) {
     return maybeSwap<Little, ThisEndian>(aValue);
   }
 
@@ -511,7 +461,7 @@ class Endian : private EndianUtils {
    * Converts a value of type T from big-endian format.
    */
   template <typename T>
-  MOZ_MUST_USE static T swapFromBigEndian(T aValue) {
+  [[nodiscard]] static T swapFromBigEndian(T aValue) {
     return maybeSwap<Big, ThisEndian>(aValue);
   }
 
@@ -541,7 +491,7 @@ class Endian : private EndianUtils {
    * in network code.
    */
   template <typename T>
-  MOZ_MUST_USE static T swapFromNetworkOrder(T aValue) {
+  [[nodiscard]] static T swapFromNetworkOrder(T aValue) {
     return swapFromBigEndian(aValue);
   }
 

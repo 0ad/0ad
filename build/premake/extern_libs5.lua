@@ -605,7 +605,6 @@ extern_lib_defs = {
 			else
 				if os.istarget("windows") then
 					include_dir = "include-win32"
-					buildoptions { "/FI\"js/RequiredDefines.h\"" }
 				else
 					include_dir = "include-unix"
 				end
@@ -626,14 +625,14 @@ extern_lib_defs = {
 				end
 			else
 				filter { "Debug", "action:vs*" }
-					links { "mozjs78-ps-debug" }
-					links { "mozjs78-ps-rust-debug" }
+					links { "mozjs91-ps-debug" }
+					links { "mozjs91-ps-rust-debug" }
 				filter { "Debug", "action:not vs*" }
-					links { "mozjs78-ps-debug" }
-					links { "mozjs78-ps-rust" }
+					links { "mozjs91-ps-debug" }
+					links { "mozjs91-ps-rust" }
 				filter { "Release" }
-					links { "mozjs78-ps-release" }
-					links { "mozjs78-ps-rust" }
+					links { "mozjs91-ps-release" }
+					links { "mozjs91-ps-rust" }
 				filter { }
 				add_source_lib_paths("spidermonkey")
 			end

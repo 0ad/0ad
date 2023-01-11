@@ -58,6 +58,8 @@ public:
 
 	const CTexturePtr& GetTexture() const { return m_FinalTexture; }
 
+	bool IsFlipped() const { return m_Flipped; }
+
 	/**
 	 * @return The maximum height for unit passage in water.
 	 */
@@ -96,6 +98,7 @@ private:
 	bool m_TerrainTextureDirty = true;
 	bool m_FinalTextureDirty = true;
 	double m_LastFinalTextureUpdate = 0.0;
+	bool m_Flipped = false;
 
 	// minimap texture handles
 	std::unique_ptr<Renderer::Backend::ITexture> m_TerrainTexture;

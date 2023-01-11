@@ -17,9 +17,9 @@
 #include "mozilla/Types.h"
 
 #include <algorithm>
+#include <climits>
 #include <limits>
 #include <stdint.h>
-#include <type_traits>
 
 namespace mozilla {
 
@@ -463,6 +463,19 @@ static MOZ_ALWAYS_INLINE bool NumberIsInt32(T aValue, int32_t* aInt32) {
 }
 
 /**
+ * If |aValue| is identical to some |int64_t| value, set |*aInt64| to that value
+ * and return true.  Otherwise return false, leaving |*aInt64| in an
+ * indeterminate state.
+ *
+ * This method returns false for negative zero.  If you want to consider -0 to
+ * be 0, use NumberEqualsInt64 below.
+ */
+template <typename T>
+static MOZ_ALWAYS_INLINE bool NumberIsInt64(T aValue, int64_t* aInt64) {
+  return detail::NumberIsSignedInteger(aValue, aInt64);
+}
+
+/**
  * If |aValue| is equal to some int32_t value (where -0 and +0 are considered
  * equal), set |*aInt32| to that value and return true.  Otherwise return false,
  * leaving |*aInt32| in an indeterminate state.
@@ -473,6 +486,19 @@ static MOZ_ALWAYS_INLINE bool NumberIsInt32(T aValue, int32_t* aInt32) {
 template <typename T>
 static MOZ_ALWAYS_INLINE bool NumberEqualsInt32(T aValue, int32_t* aInt32) {
   return detail::NumberEqualsSignedInteger(aValue, aInt32);
+}
+
+/**
+ * If |aValue| is equal to some int64_t value (where -0 and +0 are considered
+ * equal), set |*aInt64| to that value and return true.  Otherwise return false,
+ * leaving |*aInt64| in an indeterminate state.
+ *
+ * |NumberEqualsInt64(-0.0, ...)| will return true.  To test whether a value can
+ * be losslessly converted to |int64_t| and back, use NumberIsInt64 above.
+ */
+template <typename T>
+static MOZ_ALWAYS_INLINE bool NumberEqualsInt64(T aValue, int64_t* aInt64) {
+  return detail::NumberEqualsSignedInteger(aValue, aInt64);
 }
 
 /**
@@ -498,11 +524,19 @@ static MOZ_ALWAYS_INLINE T UnspecifiedNaN() {
  */
 template <typename T>
 static inline bool NumbersAreIdentical(T aValue1, T aValue2) {
-  typedef FloatingPoint<T> Traits;
-  typedef typename Traits::Bits Bits;
+  using Bits = typename FloatingPoint<T>::Bits;
   if (IsNaN(aValue1)) {
     return IsNaN(aValue2);
   }
+  return BitwiseCast<Bits>(aValue1) == BitwiseCast<Bits>(aValue2);
+}
+
+/**
+ * Compare two floating point values for bit-wise equality.
+ */
+template <typename T>
+static inline bool NumbersAreBitwiseIdentical(T aValue1, T aValue2) {
+  using Bits = typename FloatingPoint<T>::Bits;
   return BitwiseCast<Bits>(aValue1) == BitwiseCast<Bits>(aValue2);
 }
 
@@ -607,8 +641,7 @@ static MOZ_ALWAYS_INLINE bool FuzzyEqualsMultiplicative(
  * representable (even though the bit patterns of double precision NaNs can't
  * all be exactly represented in single precision).
  */
-MOZ_MUST_USE
-extern MFBT_API bool IsFloat32Representable(double aValue);
+[[nodiscard]] extern MFBT_API bool IsFloat32Representable(double aValue);
 
 } /* namespace mozilla */
 

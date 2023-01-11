@@ -13,11 +13,7 @@
 
 #include "jstypes.h"  // JS_PUBLIC_API
 
-#include "js/RootingAPI.h"  // JS::Handle
-#include "js/Value.h"       // JS::Value
-
-struct JS_PUBLIC_API JSContext;
-class JS_PUBLIC_API JSObject;
+#include "js/TypeDecls.h"
 
 namespace JS {
 
@@ -63,6 +59,9 @@ extern JS_PUBLIC_API bool IsArrayObject(JSContext* cx, Handle<JSObject*> obj,
 /**
  * Store |*lengthp = ToLength(obj.length)| and return true on success, else
  * return false.
+ *
+ * If the length does not fit in |uint32_t|, an exception is reported and false
+ * is returned.
  *
  * |ToLength| converts its input to an integer usable to index an
  * array-like object.

@@ -191,7 +191,8 @@
 				"config": "rendererbackend",
 				"list": [
 					{ "value": "gl", "label": "OpenGL", "tooltip": "Default OpenGL backend with GLSL. REQUIRES GAME RESTART" },
-					{ "value": "glarb", "label": "OpenGL ARB", "tooltip": "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART" }
+					{ "value": "glarb", "label": "OpenGL ARB", "tooltip": "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART" },
+					{ "value": "vulkan", "label": "Vulkan", "tooltip": "Modern API, requires up-to-date drivers. REQUIRES GAME RESTART" }
 				]
 			},
 			{

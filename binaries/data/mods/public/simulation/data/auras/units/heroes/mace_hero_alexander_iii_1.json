@@ -1,10 +1,17 @@
 {
-	"type": "global",
-	"affects": ["Structure"],
+	"type": "range",
+	"radius": 60,
+	"affects": ["Soldier"],
 	"modifications": [
-		{ "value": "TerritoryInfluence/Radius", "multiply": 1.1 }
+		{"value": "Attack/Melee/Damage/Hack","multiply": 1.1 },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.1 },
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.1 },
+		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.1 },
+		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.1 },
+		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.1 },
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.15 }
 	],
-	"auraName": "Imperialism",
-	"auraDescription": "Structures +10% territory influence radius.",
-	"overlayIcon": "art/textures/ui/session/auras/laurel.png"
+	"auraName": "Rapid Conquest",
+	"auraDescription": "Soldiers +10% attack damage, +15% movement speed.",
+	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
 }

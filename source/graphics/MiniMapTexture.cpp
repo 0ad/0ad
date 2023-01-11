@@ -251,8 +251,11 @@ CMiniMapTexture::CMiniMapTexture(CSimulation2& simulation)
 	}};
 	m_QuadVertexInputLayout = g_Renderer.GetVertexInputLayout(attributes);
 
+	Renderer::Backend::IDevice* device = g_VideoMode.GetBackendDevice();
+	m_Flipped = device->GetBackend() == Renderer::Backend::Backend::VULKAN;
+
 	const uint32_t stride = m_VertexArray.GetStride();
-	if (g_VideoMode.GetBackendDevice()->GetCapabilities().instancing)
+	if (device->GetCapabilities().instancing)
 	{
 		m_UseInstancing = true;
 

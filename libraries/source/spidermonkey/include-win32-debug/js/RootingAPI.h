@@ -10,7 +10,6 @@
 #include "mozilla/Attributes.h"
 #include "mozilla/DebugOnly.h"
 #include "mozilla/EnumeratedArray.h"
-#include "mozilla/GuardObjects.h"
 #include "mozilla/LinkedList.h"
 #include "mozilla/Maybe.h"
 
@@ -23,12 +22,12 @@
 #include "js/GCAnnotations.h"
 #include "js/GCPolicyAPI.h"
 #include "js/GCTypeMacros.h"  // JS_FOR_EACH_PUBLIC_{,TAGGED_}GC_POINTER_TYPE
+#include "js/HashTable.h"
 #include "js/HeapAPI.h"
 #include "js/ProfilingStack.h"
 #include "js/Realm.h"
 #include "js/TypeDecls.h"
 #include "js/UniquePtr.h"
-#include "js/Utility.h"
 
 /*
  * [SMDOC] Stack Rooting
@@ -152,13 +151,8 @@ JS_FOR_EACH_PUBLIC_GC_POINTER_TYPE(DECLARE_IS_HEAP_CONSTRUCTIBLE_TYPE)
 JS_FOR_EACH_PUBLIC_TAGGED_GC_POINTER_TYPE(DECLARE_IS_HEAP_CONSTRUCTIBLE_TYPE)
 #undef DECLARE_IS_HEAP_CONSTRUCTIBLE_TYPE
 
-template <typename T, typename Wrapper>
-class PersistentRootedBase : public MutableWrappedPtrOperations<T, Wrapper> {};
-
 namespace gc {
 struct Cell;
-template <typename T>
-struct PersistentRootedMarker;
 } /* namespace gc */
 
 // Important: Return a reference so passing a Rooted<T>, etc. to
@@ -201,20 +195,20 @@ struct PersistentRootedMarker;
 
 namespace JS {
 
-JS_FRIEND_API void HeapObjectPostWriteBarrier(JSObject** objp, JSObject* prev,
+JS_PUBLIC_API void HeapObjectPostWriteBarrier(JSObject** objp, JSObject* prev,
                                               JSObject* next);
-JS_FRIEND_API void HeapStringPostWriteBarrier(JSString** objp, JSString* prev,
+JS_PUBLIC_API void HeapStringPostWriteBarrier(JSString** objp, JSString* prev,
                                               JSString* next);
-JS_FRIEND_API void HeapBigIntPostWriteBarrier(JS::BigInt** bip,
+JS_PUBLIC_API void HeapBigIntPostWriteBarrier(JS::BigInt** bip,
                                               JS::BigInt* prev,
                                               JS::BigInt* next);
-JS_FRIEND_API void HeapObjectWriteBarriers(JSObject** objp, JSObject* prev,
+JS_PUBLIC_API void HeapObjectWriteBarriers(JSObject** objp, JSObject* prev,
                                            JSObject* next);
-JS_FRIEND_API void HeapStringWriteBarriers(JSString** objp, JSString* prev,
+JS_PUBLIC_API void HeapStringWriteBarriers(JSString** objp, JSString* prev,
                                            JSString* next);
-JS_FRIEND_API void HeapBigIntWriteBarriers(JS::BigInt** bip, JS::BigInt* prev,
+JS_PUBLIC_API void HeapBigIntWriteBarriers(JS::BigInt** bip, JS::BigInt* prev,
                                            JS::BigInt* next);
-JS_FRIEND_API void HeapScriptWriteBarriers(JSScript** objp, JSScript* prev,
+JS_PUBLIC_API void HeapScriptWriteBarriers(JSScript** objp, JSScript* prev,
                                            JSScript* next);
 
 /**
@@ -255,8 +249,8 @@ inline T SafelyInitialized() {
  * For generational GC, assert that an object is in the tenured generation as
  * opposed to being in the nursery.
  */
-extern JS_FRIEND_API void AssertGCThingMustBeTenured(JSObject* obj);
-extern JS_FRIEND_API void AssertGCThingIsNotNurseryAllocable(
+extern JS_PUBLIC_API void AssertGCThingMustBeTenured(JSObject* obj);
+extern JS_PUBLIC_API void AssertGCThingIsNotNurseryAllocable(
     js::gc::Cell* cell);
 #else
 inline void AssertGCThingMustBeTenured(JSObject* obj) {}
@@ -312,12 +306,13 @@ class MOZ_NON_MEMMOVABLE Heap : public js::HeapBase<T, Heap<T>> {
   explicit Heap(const T& p) { init(p); }
 
   /*
-   * For Heap, move semantics are equivalent to copy semantics. In C++, a
-   * copy constructor taking const-ref is the way to get a single function
-   * that will be used for both lvalue and rvalue copies, so we can simply
-   * omit the rvalue variant.
+   * For Heap, move semantics are equivalent to copy semantics. However, we want
+   * the copy constructor to be explicit, and an explicit move constructor
+   * breaks common usage of move semantics, so we need to define both, even
+   * though they are equivalent.
    */
   explicit Heap(const Heap<T>& other) { init(other.ptr); }
+  Heap(Heap<T>&& other) { init(other.ptr); }
 
   Heap& operator=(Heap<T>&& other) {
     set(other.unbarrieredGet());
@@ -583,6 +578,8 @@ class MOZ_NONHEAP_CLASS Handle : public js::HandleBase<T, Handle<T>> {
  public:
   using ElementType = T;
 
+  Handle(const Handle<T>&) = default;
+
   /* Creates a handle from a handle of a type convertible to T. */
   template <typename S>
   MOZ_IMPLICIT Handle(
@@ -687,6 +684,7 @@ class MOZ_STACK_CLASS MutableHandle
   MutableHandle(decltype(nullptr)) = delete;
 
  public:
+  MutableHandle(const MutableHandle<T>&) = default;
   void set(const T& v) {
     *ptr = v;
     MOZ_ASSERT(GCPolicy<T>::isValid(*ptr));
@@ -831,7 +829,8 @@ struct JS_PUBLIC_API MovableCellHasher {
   static bool ensureHash(const Lookup& l);
   static HashNumber hash(const Lookup& l);
   static bool match(const Key& k, const Lookup& l);
-  static void rekey(Key& k, const Key& newKey) { k = newKey; }
+  // The rekey hash policy method is not provided since you dont't need to
+  // rekey any more when using this policy.
 };
 
 template <typename T>
@@ -851,7 +850,6 @@ struct JS_PUBLIC_API MovableCellHasher<JS::Heap<T>> {
   static bool match(const Key& k, const Lookup& l) {
     return MovableCellHasher<T>::match(k.unbarrieredGet(), l);
   }
-  static void rekey(Key& k, const Key& newKey) { k.unsafeSet(newKey); }
 };
 
 }  // namespace js
@@ -925,19 +923,29 @@ enum class AutoGCRooterKind : uint8_t {
   Limit
 };
 
-// Our instantiations of Rooted<void*> and PersistentRooted<void*> require an
-// instantiation of MapTypeToRootKind.
+namespace detail {
+// Dummy type to store root list entry pointers as. This code does not just use
+// the actual type, because then eg JSObject* and JSFunction* would be assumed
+// to never alias but they do (they are stored in the same list). Also, do not
+// use `void*` so that `Rooted<void*>` is a compile error.
+struct RootListEntry;
+}  // namespace detail
+
 template <>
-struct MapTypeToRootKind<void*> {
+struct MapTypeToRootKind<detail::RootListEntry*> {
   static const RootKind kind = RootKind::Traceable;
 };
-// VS17 instantiates RootedTraceable::trace for void*, which fails.
-// To work around this, specialize it.
-template<>
-struct GCPolicy<void*> : public IgnoreGCPolicy<void*> {};
+
+// Workaround MSVC issue where GCPolicy is needed even though this dummy type is
+// never instantiated. Ideally, RootListEntry is removed in the future and an
+// appropriate class hierarchy for the Rooted<T> types.
+template <>
+struct GCPolicy<detail::RootListEntry*>
+    : public IgnoreGCPolicy<detail::RootListEntry*> {};
 
 using RootedListHeads =
-    mozilla::EnumeratedArray<RootKind, RootKind::Limit, Rooted<void*>*>;
+    mozilla::EnumeratedArray<RootKind, RootKind::Limit,
+                             Rooted<detail::RootListEntry*>*>;
 
 using AutoRooterListHeads =
     mozilla::EnumeratedArray<AutoGCRooterKind, AutoGCRooterKind::Limit,
@@ -990,6 +998,14 @@ class RootingContext {
   /* Limit pointer for checking native stack consumption. */
   uintptr_t nativeStackLimit[StackKindCount];
 
+#ifdef __wasi__
+  // For WASI we can't catch call-stack overflows with stack-pointer checks, so
+  // we count recursion depth with RAII based AutoCheckRecursionLimit.
+  uint32_t wasiRecursionDepth = 0u;
+
+  static constexpr uint32_t wasiRecursionDepthLimit = 100u;
+#endif  // __wasi__
+
   static const RootingContext* get(const JSContext* cx) {
     return reinterpret_cast<const RootingContext*>(cx);
   }
@@ -1040,6 +1056,26 @@ class JS_PUBLIC_API AutoGCRooter {
   void operator=(AutoGCRooter& ida) = delete;
 } JS_HAZ_ROOTED_BASE;
 
+/**
+ * Custom rooting behavior for internal and external clients.
+ *
+ * Deprecated. Where possible, use Rooted<> instead.
+ */
+class MOZ_RAII JS_PUBLIC_API CustomAutoRooter : private AutoGCRooter {
+ public:
+  template <typename CX>
+  explicit CustomAutoRooter(const CX& cx)
+      : AutoGCRooter(cx, AutoGCRooter::Kind::Custom) {}
+
+  friend void AutoGCRooter::trace(JSTracer* trc);
+
+ protected:
+  virtual ~CustomAutoRooter() = default;
+
+  /** Supplied by derived class to trace roots. */
+  virtual void trace(JSTracer* trc) = 0;
+};
+
 namespace detail {
 
 template <typename T>
@@ -1077,7 +1113,7 @@ class MOZ_RAII Rooted : public js::RootedBase<T, Rooted<T>> {
   inline void registerWithRootLists(RootedListHeads& roots) {
     this->stack = &roots[JS::MapTypeToRootKind<T>::kind];
     this->prev = *stack;
-    *stack = reinterpret_cast<Rooted<void*>*>(this);
+    *stack = reinterpret_cast<Rooted<detail::RootListEntry*>*>(this);
   }
 
   inline RootedListHeads& rootLists(RootingContext* cx) {
@@ -1127,7 +1163,8 @@ class MOZ_RAII Rooted : public js::RootedBase<T, Rooted<T>> {
   }
 
   ~Rooted() {
-    MOZ_ASSERT(*stack == reinterpret_cast<Rooted<void*>*>(this));
+    MOZ_ASSERT(*stack ==
+               reinterpret_cast<Rooted<detail::RootListEntry*>*>(this));
     *stack = prev;
   }
 
@@ -1159,12 +1196,12 @@ class MOZ_RAII Rooted : public js::RootedBase<T, Rooted<T>> {
 
  private:
   /*
-   * These need to be templated on void* to avoid aliasing issues between, for
-   * example, Rooted<JSObject> and Rooted<JSFunction>, which use the same
-   * stack head pointer for different classes.
+   * These need to be templated on RootListEntry* to avoid aliasing issues
+   * between, for example, Rooted<JSObject*> and Rooted<JSFunction*>, which use
+   * the same stack head pointer for different classes.
    */
-  Rooted<void*>** stack;
-  Rooted<void*>* prev;
+  Rooted<detail::RootListEntry*>** stack;
+  Rooted<detail::RootListEntry*>* prev;
 
   Ptr ptr;
 
@@ -1293,11 +1330,13 @@ inline MutableHandle<T>::MutableHandle(PersistentRooted<T>* root) {
   ptr = root->address();
 }
 
-JS_PUBLIC_API void AddPersistentRoot(RootingContext* cx, RootKind kind,
-                                     PersistentRooted<void*>* root);
+JS_PUBLIC_API void AddPersistentRoot(
+    RootingContext* cx, RootKind kind,
+    PersistentRooted<detail::RootListEntry*>* root);
 
-JS_PUBLIC_API void AddPersistentRoot(JSRuntime* rt, RootKind kind,
-                                     PersistentRooted<void*>* root);
+JS_PUBLIC_API void AddPersistentRoot(
+    JSRuntime* rt, RootKind kind,
+    PersistentRooted<detail::RootListEntry*>* root);
 
 /**
  * A copyable, assignable global GC root type with arbitrary lifetime, an
@@ -1346,15 +1385,17 @@ class PersistentRooted
   void registerWithRootLists(RootingContext* cx) {
     MOZ_ASSERT(!initialized());
     JS::RootKind kind = JS::MapTypeToRootKind<T>::kind;
-    AddPersistentRoot(cx, kind,
-                      reinterpret_cast<JS::PersistentRooted<void*>*>(this));
+    AddPersistentRoot(
+        cx, kind,
+        reinterpret_cast<JS::PersistentRooted<detail::RootListEntry*>*>(this));
   }
 
   void registerWithRootLists(JSRuntime* rt) {
     MOZ_ASSERT(!initialized());
     JS::RootKind kind = JS::MapTypeToRootKind<T>::kind;
-    AddPersistentRoot(rt, kind,
-                      reinterpret_cast<JS::PersistentRooted<void*>*>(this));
+    AddPersistentRoot(
+        rt, kind,
+        reinterpret_cast<JS::PersistentRooted<detail::RootListEntry*>*>(this));
   }
 
  public:
@@ -1482,7 +1523,7 @@ class MutableWrappedPtrOperations<UniquePtr<T, D>, Container>
   UniquePtr<T, D>& uniquePtr() { return static_cast<Container*>(this)->get(); }
 
  public:
-  MOZ_MUST_USE typename UniquePtr<T, D>::Pointer release() {
+  [[nodiscard]] typename UniquePtr<T, D>::Pointer release() {
     return uniquePtr().release();
   }
   void reset(T* ptr = T()) { uniquePtr().reset(ptr); }

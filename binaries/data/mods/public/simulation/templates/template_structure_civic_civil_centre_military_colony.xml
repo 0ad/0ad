@@ -16,7 +16,7 @@
     <Resources>
       <wood>200</wood>
       <stone>200</stone>
-      <metal>200</metal>
+      <metal>150</metal>
     </Resources>
   </Cost>
   <Health>
@@ -35,7 +35,7 @@
   <Loot>
     <wood>40</wood>
     <stone>40</stone>
-    <metal>40</metal>
+    <metal>30</metal>
   </Loot>
   <Researcher>
     <Technologies datatype="tokens">
@@ -51,6 +51,6 @@
     </SoundGroups>
   </Sound>
   <TerritoryInfluence>
-    <Radius>80</Radius>
+    <Radius>75</Radius>
   </TerritoryInfluence>
 </Entity>

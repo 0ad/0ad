@@ -16,6 +16,8 @@
 
 namespace mozilla {
 
+struct ErrorPropagationTag;
+
 // Allow nsresult errors to automatically convert to nsresult values, so MOZ_TRY
 // can be used in XPCOM methods with Result<T, nserror> results.
 template <>
@@ -30,7 +32,10 @@ class MOZ_MUST_USE_TYPE GenericErrorResult<nsresult> {
     MOZ_ASSERT(NS_FAILED(aErrorValue));
   }
 
-  operator nsresult() { return mErrorValue; }
+  GenericErrorResult(nsresult aErrorValue, const ErrorPropagationTag&)
+      : GenericErrorResult(aErrorValue) {}
+
+  operator nsresult() const { return mErrorValue; }
 };
 
 // Allow MOZ_TRY to handle `PRStatus` values.
@@ -66,6 +71,14 @@ template <typename R, typename RArgMapper, typename Func, typename... Args>
 Result<R, nsresult> ToResultInvokeInternal(const Func& aFunc,
                                            const RArgMapper& aRArgMapper,
                                            Args&&... aArgs) {
+  // XXX Thereotically, if R is a pointer to a non-refcounted type, this might
+  // be a non-owning pointer, but unless we find a case where this actually is
+  // relevant, it's safe to forbid any raw pointer result.
+  static_assert(
+      !std::is_pointer_v<R>,
+      "Raw pointer results are not supported, please specify a smart pointer "
+      "result type explicitly, so that getter_AddRefs is used");
+
   R res;
   nsresult rv = aFunc(std::forward<Args>(aArgs)..., aRArgMapper(res));
   if (NS_FAILED(rv)) {
@@ -92,11 +105,12 @@ struct outparam_as_reference<T*> {
 
 template <typename R, template <typename> typename RArg, typename Func,
           typename... Args>
-using to_result_retval_t = decltype(
-    std::declval<Func&>()(std::declval<Args&&>()...,
-                          std::declval<typename RArg<decltype(
-                              ResultRefAsParam(std::declval<R&>()))>::type>()),
-    Result<R, nsresult>(NS_OK));
+using to_result_retval_t =
+    decltype(std::declval<Func&>()(
+                 std::declval<Args&&>()...,
+                 std::declval<typename RArg<decltype(ResultRefAsParam(
+                     std::declval<R&>()))>::type>()),
+             Result<R, nsresult>(Err(NS_ERROR_FAILURE)));
 
 // There are two ToResultInvokeSelector overloads, which cover the cases of a) a
 // pointer-typed output parameter, and b) a reference-typed output parameter,
@@ -183,15 +197,32 @@ auto ToResultInvokeMemberFunction(T& aObj, const Func& aFunc, Args&&... aArgs) {
     return mozilla::ToResult((aObj.*aFunc)(std::forward<Args>(aArgs)...));
   }
 }
+
+// For use in MOZ_TO_RESULT_INVOKE.
+template <typename T>
+auto DerefHelper(const T&) -> T&;
+
+template <typename T>
+auto DerefHelper(T*) -> T&;
+
+template <template <class> class SmartPtr, typename T,
+          typename = decltype(*std::declval<const SmartPtr<T>>())>
+auto DerefHelper(const SmartPtr<T>&) -> T&;
+
+template <typename T>
+using DerefedType =
+    std::remove_reference_t<decltype(DerefHelper(std::declval<const T&>()))>;
 }  // namespace detail
 
-template <typename T, typename U, typename... XArgs, typename... Args>
+template <typename T, typename U, typename... XArgs, typename... Args,
+          typename = std::enable_if_t<std::is_base_of_v<U, T>>>
 auto ToResultInvoke(T& aObj, nsresult (U::*aFunc)(XArgs...), Args&&... aArgs) {
   return detail::ToResultInvokeMemberFunction<detail::select_last_t<XArgs...>>(
       aObj, aFunc, std::forward<Args>(aArgs)...);
 }
 
-template <typename T, typename U, typename... XArgs, typename... Args>
+template <typename T, typename U, typename... XArgs, typename... Args,
+          typename = std::enable_if_t<std::is_base_of_v<U, T>>>
 auto ToResultInvoke(const T& aObj, nsresult (U::*aFunc)(XArgs...) const,
                     Args&&... aArgs) {
   return detail::ToResultInvokeMemberFunction<detail::select_last_t<XArgs...>>(
@@ -210,15 +241,35 @@ auto ToResultInvoke(const T* const aObj, nsresult (U::*aFunc)(XArgs...) const,
   return ToResultInvoke(*aObj, aFunc, std::forward<Args>(aArgs)...);
 }
 
+template <template <class> class SmartPtr, typename T, typename U,
+          typename... XArgs, typename... Args,
+          typename = std::enable_if_t<std::is_base_of_v<U, T>>,
+          typename = decltype(*std::declval<const SmartPtr<T>>())>
+auto ToResultInvoke(const SmartPtr<T>& aObj, nsresult (U::*aFunc)(XArgs...),
+                    Args&&... aArgs) {
+  return ToResultInvoke(*aObj, aFunc, std::forward<Args>(aArgs)...);
+}
+
+template <template <class> class SmartPtr, typename T, typename U,
+          typename... XArgs, typename... Args,
+          typename = std::enable_if_t<std::is_base_of_v<U, T>>,
+          typename = decltype(*std::declval<const SmartPtr<T>>())>
+auto ToResultInvoke(const SmartPtr<const T>& aObj,
+                    nsresult (U::*aFunc)(XArgs...) const, Args&&... aArgs) {
+  return ToResultInvoke(*aObj, aFunc, std::forward<Args>(aArgs)...);
+}
+
 #if defined(XP_WIN) && !defined(_WIN64)
-template <typename T, typename U, typename... XArgs, typename... Args>
+template <typename T, typename U, typename... XArgs, typename... Args,
+          typename = std::enable_if_t<std::is_base_of_v<U, T>>>
 auto ToResultInvoke(T& aObj, nsresult (__stdcall U::*aFunc)(XArgs...),
                     Args&&... aArgs) {
   return detail::ToResultInvokeMemberFunction<detail::select_last_t<XArgs...>>(
       aObj, aFunc, std::forward<Args>(aArgs)...);
 }
 
-template <typename T, typename U, typename... XArgs, typename... Args>
+template <typename T, typename U, typename... XArgs, typename... Args,
+          typename = std::enable_if_t<std::is_base_of_v<U, T>>>
 auto ToResultInvoke(const T& aObj,
                     nsresult (__stdcall U::*aFunc)(XArgs...) const,
                     Args&&... aArgs) {
@@ -238,7 +289,51 @@ auto ToResultInvoke(const T* const aObj,
                     Args&&... aArgs) {
   return ToResultInvoke(*aObj, aFunc, std::forward<Args>(aArgs)...);
 }
+
+template <template <class> class SmartPtr, typename T, typename U,
+          typename... XArgs, typename... Args,
+          typename = std::enable_if_t<std::is_base_of_v<U, T>>,
+          typename = decltype(*std::declval<const SmartPtr<T>>())>
+auto ToResultInvoke(const SmartPtr<T>& aObj,
+                    nsresult (__stdcall U::*aFunc)(XArgs...), Args&&... aArgs) {
+  return ToResultInvoke(*aObj, aFunc, std::forward<Args>(aArgs)...);
+}
+
+template <template <class> class SmartPtr, typename T, typename U,
+          typename... XArgs, typename... Args,
+          typename = std::enable_if_t<std::is_base_of_v<U, T>>,
+          typename = decltype(*std::declval<const SmartPtr<T>>())>
+auto ToResultInvoke(const SmartPtr<const T>& aObj,
+                    nsresult (__stdcall U::*aFunc)(XArgs...) const,
+                    Args&&... aArgs) {
+  return ToResultInvoke(*aObj, aFunc, std::forward<Args>(aArgs)...);
+}
 #endif
+
+// Macro version of ToResultInvoke for member functions. The macro has the
+// advantage of not requiring spelling out the member function's declarator type
+// name, at the expense of having a non-standard syntax. It can be used like
+// this:
+//
+//     nsCOMPtr<nsIFile> file;
+//     auto existsOrErr = MOZ_TO_RESULT_INVOKE(file, Exists);
+#define MOZ_TO_RESULT_INVOKE(obj, methodname, ...)                       \
+  ::mozilla::ToResultInvoke(                                             \
+      (obj), &::mozilla::detail::DerefedType<decltype(obj)>::methodname, \
+      ##__VA_ARGS__)
+
+// Macro version of ToResultInvoke for member functions, where the result type
+// does not match the output parameter type. The macro has the advantage of not
+// requiring spelling out the member function's declarator type name, at the
+// expense of having a non-standard syntax. It can be used like this:
+//
+//     nsCOMPtr<nsIFile> file;
+//     auto existsOrErr = MOZ_TO_RESULT_INVOKE(nsCOMPtr<nsIFile>, file, Clone);
+#define MOZ_TO_RESULT_INVOKE_TYPED(resultType, obj, methodname, ...)   \
+  ::mozilla::ToResultInvoke<resultType>(                               \
+      ::std::mem_fn(                                                   \
+          &::mozilla::detail::DerefedType<decltype(obj)>::methodname), \
+      (obj), ##__VA_ARGS__)
 
 }  // namespace mozilla
 
