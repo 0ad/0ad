@@ -465,7 +465,9 @@ Health.prototype.RecalculateValues = function()
 	let newMaxHitpoints = ApplyValueModificationsToEntity("Health/Max", +this.template.Max, this.entity);
 	if (oldMaxHitpoints != newMaxHitpoints)
 	{
-		let newHitpoints = this.hitpoints * newMaxHitpoints/oldMaxHitpoints;
+		// Don't recalculate hitpoints when full health due to float imprecision: #6657.
+		const newHitpoints = (this.hitpoints === oldMaxHitpoints) ? newMaxHitpoints :
+			this.hitpoints * newMaxHitpoints/oldMaxHitpoints;
 		this.maxHitpoints = newMaxHitpoints;
 		this.SetHitpoints(newHitpoints);
 	}
