@@ -9,6 +9,13 @@ class HistorySection
 
 	update(civInfo)
 	{
+		if (!civInfo.History)
+		{
+			this.CivHistoryHeading.caption = "";
+			this.CivHistoryText.caption = "";
+			return;
+		}
+
 		this.CivHistoryHeading.caption =
 			this.page.formatHeading(
 				sprintf(this.headingCaption, { "civilization": civInfo.Name }),

@@ -39,10 +39,7 @@ class CivInfoPage extends ReferencePage
 		if(!civInfo)
 			error(sprintf("Error loading civ data for \"%(code)s\"", { "code": civCode }));
 
-		// Update civ gameplay display
 		this.gameplaySection.update(this.activeCiv, civInfo);
-
-		// Update civ history display
 		this.historySection.update(civInfo);
 	}
 
