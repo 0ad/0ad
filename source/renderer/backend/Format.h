@@ -51,10 +51,11 @@ enum class Format
 	R32G32B32_SFLOAT,
 	R32G32B32A32_SFLOAT,
 
-	D16,
-	D24,
-	D24_S8,
-	D32,
+	D16_UNORM,
+	D24_UNORM,
+	D24_UNORM_S8_UINT,
+	D32_SFLOAT,
+	D32_SFLOAT_S8_UINT,
 
 	BC1_RGB_UNORM,
 	BC1_RGBA_UNORM,
@@ -65,10 +66,11 @@ enum class Format
 inline bool IsDepthFormat(const Format format)
 {
 	return
-		format == Format::D16 ||
-		format == Format::D24 ||
-		format == Format::D24_S8 ||
-		format == Format::D32;
+		format == Format::D16_UNORM ||
+		format == Format::D24_UNORM ||
+		format == Format::D24_UNORM_S8_UINT ||
+		format == Format::D32_SFLOAT ||
+		format == Format::D32_SFLOAT_S8_UINT;
 }
 
 } // namespace Backend

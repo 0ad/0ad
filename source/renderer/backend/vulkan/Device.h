@@ -167,6 +167,8 @@ private:
 	void ProcessObjectToDestroyQueue(const bool ignoreFrameID = false);
 	void ProcessTextureToDestroyQueue(const bool ignoreFrameID = false);
 
+	bool IsFormatSupportedForUsage(const Format format, const uint32_t usage) const;
+
 	std::string m_Name;
 	std::string m_Version;
 	std::string m_VendorID;

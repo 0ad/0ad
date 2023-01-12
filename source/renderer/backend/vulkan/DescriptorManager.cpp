@@ -285,10 +285,7 @@ uint32_t CDescriptorManager::GetTextureDescriptor(CTexture* texture)
 
 	uint32_t binding = 0;
 	if (texture->GetType() == ITexture::Type::TEXTURE_2D &&
-		(texture->GetFormat() == Format::D16 ||
-			texture->GetFormat() == Format::D24 ||
-			texture->GetFormat() == Format::D32 ||
-			texture->GetFormat() == Format::D24_S8) &&
+		IsDepthFormat(texture->GetFormat()) &&
 		texture->IsCompareEnabled())
 		binding = 2;
 	else if (texture->GetType() == ITexture::Type::TEXTURE_CUBE)

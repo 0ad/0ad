@@ -186,7 +186,10 @@ std::unique_ptr<CSwapChain> CSwapChain::Create(
 
 	swapChain->m_DepthTexture = CTexture::Create(
 		device, "SwapChainDepthTexture", ITexture::Type::TEXTURE_2D,
-		ITexture::Usage::DEPTH_STENCIL_ATTACHMENT, Format::D24_S8,
+		ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
+		device->GetPreferredDepthStencilFormat(
+			Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
+			true, true),
 		swapChainWidth, swapChainHeight, Sampler::MakeDefaultSampler(
 			Sampler::Filter::NEAREST, Sampler::AddressMode::CLAMP_TO_EDGE),
 		1, 1);

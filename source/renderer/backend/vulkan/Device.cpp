@@ -784,38 +784,25 @@ void CDevice::OnWindowResize(const uint32_t width, const uint32_t height)
 
 bool CDevice::IsTextureFormatSupported(const Format format) const
 {
-	bool supported = false;
 	switch (format)
 	{
 	case Format::UNDEFINED:
-		break;
-
-	case Format::R8G8B8_UNORM: FALLTHROUGH;
-	case Format::R8G8B8A8_UNORM: FALLTHROUGH;
-	case Format::A8_UNORM: FALLTHROUGH;
-	case Format::L8_UNORM: FALLTHROUGH;
-	case Format::R32_SFLOAT: FALLTHROUGH;
-	case Format::R32G32_SFLOAT: FALLTHROUGH;
-	case Format::R32G32B32_SFLOAT: FALLTHROUGH;
-	case Format::R32G32B32A32_SFLOAT: FALLTHROUGH;
-	case Format::D16: FALLTHROUGH;
-	case Format::D24: FALLTHROUGH;
-	case Format::D24_S8: FALLTHROUGH;
-	case Format::D32:
-		supported = true;
-		break;
+		return false;
 
 	case Format::BC1_RGB_UNORM: FALLTHROUGH;
 	case Format::BC1_RGBA_UNORM: FALLTHROUGH;
 	case Format::BC2_UNORM: FALLTHROUGH;
 	case Format::BC3_UNORM:
-		supported = m_Capabilities.S3TC;
-		break;
+		return m_Capabilities.S3TC;
 
 	default:
 		break;
 	}
-	return supported;
+
+	VkFormatProperties formatProperties{};
+	vkGetPhysicalDeviceFormatProperties(
+		m_ChoosenDevice.device, Mapping::FromFormat(format), &formatProperties);
+	return formatProperties.optimalTilingFeatures & VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT;
 }
 
 bool CDevice::IsFramebufferFormatSupported(const Format format) const
@@ -829,26 +816,56 @@ bool CDevice::IsFramebufferFormatSupported(const Format format) const
 }
 
 Format CDevice::GetPreferredDepthStencilFormat(
-	const uint32_t UNUSED(usage), const bool depth, const bool stencil) const
+	const uint32_t usage, const bool depth, const bool stencil) const
 {
-	// TODO: account usage.
 	ENSURE(depth || stencil);
 	Format format = Format::UNDEFINED;
 	if (stencil)
 	{
-		format = Format::D24_S8;
+		// https://github.com/KhronosGroup/Vulkan-Guide/blob/main/chapters/depth.adoc#depth-formats
+		// At least one of VK_FORMAT_D24_UNORM_S8_UINT or VK_FORMAT_D32_SFLOAT_S8_UINT
+		// must also be supported.
+		if (IsFormatSupportedForUsage(Format::D24_UNORM_S8_UINT, usage))
+			format = Format::D24_UNORM_S8_UINT;
+		else
+			format = Format::D32_SFLOAT_S8_UINT;
 	}
 	else
 	{
+		std::array<Format, 3> formatRequestOrder;
 		// TODO: add most known vendors to enum.
 		// https://developer.nvidia.com/blog/vulkan-dos-donts/
 		if (m_ChoosenDevice.properties.vendorID == 0x10DE)
-			format = Format::D24;
+			formatRequestOrder = {Format::D24_UNORM, Format::D32_SFLOAT, Format::D16_UNORM};
 		else
-			format = Format::D24;
+			formatRequestOrder = {Format::D32_SFLOAT, Format::D24_UNORM, Format::D16_UNORM};
+		for (const Format formatRequest : formatRequestOrder)
+			if (IsFormatSupportedForUsage(formatRequest, usage))
+			{
+				format = formatRequest;
+				break;
+			}
 	}
-	ENSURE(IsFramebufferFormatSupported(format));
 	return format;
+}
+
+bool CDevice::IsFormatSupportedForUsage(const Format format, const uint32_t usage) const
+{
+	VkFormatProperties formatProperties{};
+	vkGetPhysicalDeviceFormatProperties(
+		m_ChoosenDevice.device, Mapping::FromFormat(format), &formatProperties);
+	VkFormatFeatureFlags expectedFeatures = 0;
+	if (usage & ITexture::Usage::COLOR_ATTACHMENT)
+		expectedFeatures |= VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT;
+	if (usage & ITexture::Usage::DEPTH_STENCIL_ATTACHMENT)
+		expectedFeatures |= VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT;
+	if (usage & ITexture::Usage::SAMPLED)
+		expectedFeatures |= VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT;
+	if (usage & ITexture::Usage::TRANSFER_SRC)
+		expectedFeatures |= VK_FORMAT_FEATURE_TRANSFER_SRC_BIT;
+	if (usage & ITexture::Usage::TRANSFER_DST)
+		expectedFeatures |= VK_FORMAT_FEATURE_TRANSFER_DST_BIT;
+	return (formatProperties.optimalTilingFeatures & expectedFeatures) == expectedFeatures;
 }
 
 void CDevice::ScheduleObjectToDestroy(

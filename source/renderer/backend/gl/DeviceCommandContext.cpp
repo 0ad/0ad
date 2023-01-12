@@ -111,15 +111,6 @@ GLenum BufferTypeToGLTarget(const CBuffer::Type type)
 	return target;
 }
 
-#if !CONFIG2_GLES
-bool IsDepthTexture(const Format format)
-{
-	return
-		format == Format::D16 || format == Format::D24 ||
-		format == Format::D32 || format == Format::D24_S8;
-}
-#endif // !CONFIG2_GLES
-
 void UploadDynamicBufferRegionImpl(
 	const GLenum target, const uint32_t bufferSize,
 	const uint32_t dataOffset, const uint32_t dataSize,
@@ -1211,7 +1202,7 @@ void CDeviceCommandContext::SetTexture(const int32_t bindingSlot, ITexture* text
 #if !CONFIG2_GLES
 	if (textureUnit.type == GL_SAMPLER_2D_SHADOW)
 	{
-		if (!IsDepthTexture(texture->GetFormat()))
+		if (!IsDepthFormat(texture->GetFormat()))
 		{
 			LOGERROR("CDeviceCommandContext::SetTexture: Invalid texture type (expected depth texture)");
 			return;
