@@ -282,7 +282,7 @@ void CDeviceCommandContext::BlitFramebuffer(IFramebuffer* destinationFramebuffer
 	if (sourceFramebuffer->As<CFramebuffer>()->GetSampleCount() == 1)
 	{
 		// TODO: we need to check for VK_FORMAT_FEATURE_BLIT_*_BIT for used formats.
-		for (size_t index = 0; index < destinationColorAttachments.size(); ++index)
+		for (CFramebuffer::ColorAttachments::size_type index = 0; index < destinationColorAttachments.size(); ++index)
 		{
 			CTexture* sourceColorAttachment = sourceColorAttachments[index];
 			CTexture* destinationColorAttachment = destinationColorAttachments[index];
@@ -318,7 +318,7 @@ void CDeviceCommandContext::BlitFramebuffer(IFramebuffer* destinationFramebuffer
 		ENSURE(destinationFramebuffer->As<CFramebuffer>()->GetSampleCount() == 1);
 		ENSURE(sourceFramebuffer->As<CFramebuffer>()->GetWidth() == destinationFramebuffer->As<CFramebuffer>()->GetWidth());
 		ENSURE(sourceFramebuffer->As<CFramebuffer>()->GetHeight() == destinationFramebuffer->As<CFramebuffer>()->GetHeight());
-		for (size_t index = 0; index < destinationColorAttachments.size(); ++index)
+		for (CFramebuffer::ColorAttachments::size_type index = 0; index < destinationColorAttachments.size(); ++index)
 		{
 			CTexture* sourceColorAttachment = sourceColorAttachments[index];
 			CTexture* destinationColorAttachment = destinationColorAttachments[index];
