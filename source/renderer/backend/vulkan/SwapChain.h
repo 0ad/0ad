@@ -62,6 +62,8 @@ public:
 		const AttachmentLoadOp depthStencilAttachmentLoadOp,
 		const AttachmentStoreOp depthStencilAttachmentStoreOp);
 
+	CTexture* GetDepthTexture() { return m_DepthTexture.get(); }
+
 private:
 	friend class CDevice;
 

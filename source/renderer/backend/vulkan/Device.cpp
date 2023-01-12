@@ -674,7 +674,6 @@ void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 std::unique_ptr<IGraphicsPipelineState> CDevice::CreateGraphicsPipelineState(
 	const SGraphicsPipelineStateDesc& pipelineStateDesc)
 {
-	UNUSED2(pipelineStateDesc);
 	return CGraphicsPipelineState::Create(this, pipelineStateDesc);
 }
 
@@ -778,8 +777,12 @@ void CDevice::Present()
 
 void CDevice::OnWindowResize(const uint32_t width, const uint32_t height)
 {
-	UNUSED2(width);
-	UNUSED2(height);
+	if (!IsSwapChainValid() ||
+	    width != m_SwapChain->GetDepthTexture()->GetWidth() ||
+	    height != m_SwapChain->GetDepthTexture()->GetHeight())
+	{
+		RecreateSwapChain();
+	}
 }
 
 bool CDevice::IsTextureFormatSupported(const Format format) const
