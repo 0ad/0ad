@@ -303,9 +303,22 @@ class CheckRefs:
 
                 cmp_identity = entity.find('Identity')
                 if cmp_identity is not None:
-                    techTag = cmp_identity.find('RequiredTechnology')
-                    if techTag is not None:
-                        self.deps.append((str(fp), f'simulation/data/technologies/{techTag.text}.json'))
+                    reqTag = cmp_identity.find('Requirements')
+                    if reqTag is not None:
+                        def parse_requirements(req, recursionDepth = 1):
+                            techTag = req.find('Techs')
+                            if techTag is not None:
+                                self.deps.append((str(fp), f'simulation/data/technologies/{techTag.text}.json'))
+
+                            if recursionDepth > 0:
+                                recursionDepth -= 1
+                                allReqTag = req.find('All')
+                                if allReqTag is not None:
+                                    parse_requirements(allReqTag, recursionDepth)
+                                anyReqTag = req.find('Any')
+                                if anyReqTag is not None:
+                                    parse_requirements(anyReqTag, recursionDepth)
+                        parse_requirements(reqTag)
 
                 cmp_researcher = entity.find('Researcher')
                 if cmp_researcher is not None:
