@@ -9,14 +9,15 @@
 # бахром дуниахо
 # Etienne Beguin
 # kamiyar heidarnezhad
+# Mostafa Jahandar
 # Mostafa Lotfi
 # SMAH 1
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-01-06 08:09+0000\n"
+"POT-Creation-Date: 2023-01-09 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
-"Last-Translator: Ali Ahadu, 2022\n"
+"Last-Translator: Mostafa Jahandar, 2023\n"
 "Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,14 +44,14 @@ msgstr "یک تابوت که دارای بقایای یک رهبر بزرگ اس
 #: simulation/templates/units/han/support_minister.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Capture"
-msgstr "اسیر کردن"
+msgstr "تسخیر"
 
 #: simulation/templates/template_unit_cavalry.xml:12
 #: simulation/templates/template_unit_infantry.xml:12
 #: simulation/templates/template_unit_support_female_citizen.xml:14
 msgctxt "Name of an attack, usually the weapon."
 msgid "Slaughter"
-msgstr "ذبح"
+msgstr "سلاخی"
 
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_cavalry.xml:35
@@ -123,11 +124,11 @@ msgstr "نزدیکزن"
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Axe"
-msgstr "تبر"
+msgstr "تبرزین"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:23
 msgid "Cavalry Axeman"
-msgstr "تبرزن سواره نظام"
+msgstr "سوار تبرزین‌دار"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:24
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:20
@@ -137,7 +138,7 @@ msgstr "تبرزن سواره نظام"
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:23
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:24
 msgid "Axeman"
-msgstr "تبردار"
+msgstr "مرد تبرزین‌دار"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:5
@@ -147,11 +148,11 @@ msgstr "تبردار"
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Mace"
-msgstr "گربه"
+msgstr "گُرز"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:21
 msgid "Cavalry Maceman"
-msgstr "میسمن سواره نظام"
+msgstr "سوار گُرزدار"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:22
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:20
@@ -179,7 +180,7 @@ msgstr "سوار نیزه دار"
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 msgid "Counters: 2× vs Cavalry."
-msgstr ""
+msgstr "شمارنده: 2× در مقابل سواره نظام."
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
@@ -280,11 +281,11 @@ msgstr "سوار کماندار"
 #: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Crossbow"
-msgstr "کمان پولادی"
+msgstr "کمان زنبورکی"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:28
 msgid "Cavalry Crossbowman"
-msgstr "تیرانداز سواره نظام"
+msgstr "سوار کمان‌پولادی"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:24
@@ -293,7 +294,7 @@ msgstr "تیرانداز سواره نظام"
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:24
 #: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:29
 msgid "Crossbowman"
-msgstr "جنگنده کمان پولادی"
+msgstr "مرد کمان پولادی‌دار"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:5
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:5
@@ -307,7 +308,7 @@ msgstr "زوبین"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:28
 msgid "Cavalry Javelineer"
-msgstr ""
+msgstr "سوار زوبین‌دار"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:29
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:24
@@ -316,7 +317,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:24
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:29
 msgid "Javelineer"
-msgstr ""
+msgstr "زوبین‌دار"
 
 #: simulation/templates/template_unit_champion.xml:14
 msgid "Champion"
@@ -332,23 +333,23 @@ msgstr "سوار سلحشور"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:24
 msgid "Champion Cavalry Archer"
-msgstr "کماندار سواره نظام سلحشور"
+msgstr "سوار کماندار سلحشور"
 
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
 msgid "Champion Cavalry Axeman"
-msgstr "سواره نظام تبردار قهرمان"
+msgstr "سلحشور سوار تبرزین‌دار"
 
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:23
 msgid "Champion Cavalry Crossbowman"
-msgstr "تیرانداز سواره نظام قهرمان"
+msgstr "سلحشور سوار کمان پولادی‌ "
 
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:23
 msgid "Champion Cavalry Javelineer"
-msgstr ""
+msgstr "سوار زوبین‌دار سلحشور"
 
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:19
 msgid "Champion Cavalry Maceman"
-msgstr "سواره نظام گرزدار قهرمان"
+msgstr "سوار گرزدار سلحشور"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
 msgid "Champion Cavalry Spearman"
@@ -376,7 +377,7 @@ msgstr "فیل"
 #: simulation/templates/template_unit_hero_elephant_melee.xml:6
 msgctxt "Name of an attack, usually the weapon."
 msgid "Trunk"
-msgstr ""
+msgstr "تنه"
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
 #: simulation/templates/template_unit_hero_infantry.xml:14
@@ -395,26 +396,26 @@ msgstr "سلحشور کماندار"
 
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:21
 msgid "Champion Axeman"
-msgstr "تبردار قهرمان"
+msgstr "سلحشور تبرزین‌دار"
 
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:26
 msgid "Champion Infantry Crossbowman"
-msgstr ""
+msgstr "سلحشور پیاده کمان‌پولادی"
 
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:26
 msgid "Champion Infantry Javelineer"
-msgstr ""
+msgstr "سلحشور پیاده زوبین‌دار"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:19
 msgid "Champion Infantry Maceman"
-msgstr ""
+msgstr "سلحشور پیاده گرزدار"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:5
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:5
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Pike"
-msgstr "نیزه بلند"
+msgstr "دراز نیزه"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:26
 msgid "Champion Pikeman"
@@ -427,7 +428,7 @@ msgstr "سلحشور نیزه بلند دار"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:29
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:29
 msgid "Counters: 3× vs Cavalry."
-msgstr ""
+msgstr "شمارنده: 3× در مقابل سواره نظام."
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:28
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
@@ -446,11 +447,11 @@ msgstr "سلحشور شمشیرزن"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:27
 msgid "Trumpeter"
-msgstr ""
+msgstr "شیپور زن"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:28
 msgid "Champion Infantry Trumpeter"
-msgstr ""
+msgstr "سلحشور پیاده شیپور زن"
 
 #: simulation/templates/template_unit_dog.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -463,7 +464,7 @@ msgstr "سگ جنگی"
 
 #: simulation/templates/template_unit_dog.xml:32
 msgid "Cannot attack Structures, Ships, or Siege Engines."
-msgstr ""
+msgstr "نمی تواند به سازه‌ها، کشتی‌ها یا تجهیزات محاصره حمله کند."
 
 #: simulation/templates/template_unit_dog.xml:34
 msgid "Dog"
@@ -520,19 +521,19 @@ msgstr "قهرمان سواره کماندار"
 
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
 msgid "Hero Cavalry Axeman"
-msgstr ""
+msgstr "سوار تبرزین‌دار قهرمان"
 
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:23
 msgid "Hero Cavalry Crossbowman"
-msgstr ""
+msgstr "سوار کمان‌پولادی قهرمان"
 
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:23
 msgid "Hero Cavalry Javelineer"
-msgstr ""
+msgstr "سوار زوبین‌دار قهرمان"
 
 #: simulation/templates/template_unit_hero_cavalry_maceman.xml:16
 msgid "Hero Cavalry Maceman"
-msgstr ""
+msgstr "سوار گُرزدار قهرمان"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:23
 msgid "Hero Cavalry Spearman"
@@ -548,7 +549,7 @@ msgstr "قهرمان سواره شمشیرزن"
 
 #: simulation/templates/template_unit_hero_elephant_melee.xml:31
 msgid "Hero Elephant"
-msgstr ""
+msgstr "فیل قهرمان"
 
 #: simulation/templates/template_unit_hero_healer.xml:27
 #: simulation/templates/template_unit_support.xml:5
@@ -568,19 +569,19 @@ msgstr "قهرمان کماندار"
 
 #: simulation/templates/template_unit_hero_infantry_axeman.xml:18
 msgid "Hero Axeman"
-msgstr ""
+msgstr "تبرزین‌دار قهرمان"
 
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:23
 msgid "Hero Infantry Crossbowman"
-msgstr ""
+msgstr "کمان‌پولادی پیاده قرمان"
 
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:23
 msgid "Hero Infantry Javelineer"
-msgstr ""
+msgstr "قهرمان پیاده زوبین‌دار"
 
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:16
 msgid "Hero Infantry Maceman"
-msgstr ""
+msgstr "قهرمان پیاده گرزدار"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:23
 msgid "Hero Pikeman"
@@ -614,7 +615,7 @@ msgstr "کماندار پیاده"
 
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:28
 msgid "Infantry Javelineer"
-msgstr ""
+msgstr "زوبین‌دار پیاده"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -1212,7 +1213,6 @@ msgid "Ploîon Phortēgikón"
 msgstr "Ploîon Phortēgikón"
 
 #: simulation/templates/units/athen/ship_trireme.xml:8
-#: simulation/templates/units/spart/ship_trireme.xml:9
 msgid "Triḗrēs Athēnaía"
 msgstr "Triḗrēs Athēnaía"
 
@@ -1596,6 +1596,7 @@ msgid "Ḥameš-Mašōt"
 msgstr "Ḥameš-Mašōt"
 
 #: simulation/templates/units/cart/ship_trireme.xml:9
+#: simulation/templates/units/spart/ship_trireme.xml:10
 msgid "Trireme"
 msgstr "ناو تریرم"
 
@@ -3314,9 +3315,9 @@ msgstr "هاپلایت پریویکویی"
 msgid "Hoplítēs Períoikos"
 msgstr "Hoplítēs Períoikos"
 
-#: simulation/templates/units/spart/ship_trireme.xml:10
-msgid "Spartan Trireme"
-msgstr "ترایریم سپارتا"
+#: simulation/templates/units/spart/ship_trireme.xml:9
+msgid "Triḗrēs"
+msgstr "Triḗrēs"
 
 #: simulation/templates/units/spart/support_female_citizen.xml:25
 msgid "Spartan Woman"

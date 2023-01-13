@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-01-07 08:19+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2013-06-22 12:54+0000\n"
-"Last-Translator: Nicolás S. <nicogomfor@gmail.com>, 2022\n"
+"Last-Translator: Nicolás S. <nicogomfor@gmail.com>, 2022-2023\n"
 "Language-Team: Galician (http://www.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,32 +19,32 @@ msgstr ""
 "Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: graphics/CameraController.cpp:657
+#: graphics/CameraController.cpp:659
 #, c-format
 msgid "Scroll speed increased to %.1f"
 msgstr "Velocidade de desprazamento aumentada a %.1f"
 
-#: graphics/CameraController.cpp:663
+#: graphics/CameraController.cpp:665
 #, c-format
 msgid "Scroll speed decreased to %.1f"
 msgstr "Velocidade de desprazamento diminuída a %.1f"
 
-#: graphics/CameraController.cpp:670
+#: graphics/CameraController.cpp:672
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
 msgstr "Velocidade de rotación aumentada a X=%.3f, Y=%.3f"
 
-#: graphics/CameraController.cpp:677
+#: graphics/CameraController.cpp:679
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
 msgstr "Velocidade de rotación diminuída a X=%.3f, Y=%.3f"
 
-#: graphics/CameraController.cpp:683
+#: graphics/CameraController.cpp:685
 #, c-format
 msgid "Zoom speed increased to %.1f"
 msgstr "Velocidade de zoom aumentada a %.1f"
 
-#: graphics/CameraController.cpp:689
+#: graphics/CameraController.cpp:691
 #, c-format
 msgid "Zoom speed decreased to %.1f"
 msgstr "Velocidade de zoom diminuída a %.1f"
@@ -79,7 +79,7 @@ msgstr "O certificado xa non está activo."
 
 #: lobby/XmppClient.cpp:1360
 msgid "The certificate has not been issued for the peer connected to."
-msgstr ""
+msgstr "O certificado no foi emitido para o par ao que se conectou."
 
 #: lobby/XmppClient.cpp:1361
 msgid "The certificate signer is not a certificate authority."
@@ -192,7 +192,7 @@ msgstr "Non se forneceu toda a información necesaria."
 msgid "Username already exists"
 msgstr "O nome de usuario xa existe."
 
-#: ps/Mod.cpp:82
+#: ps/Mod.cpp:93
 #, c-format
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
@@ -260,8 +260,8 @@ msgstr "A partida gardouse en «%s»."
 msgid "custom build"
 msgstr "personalizada"
 
-#: renderer/Renderer.cpp:614 renderer/Renderer.cpp:617
-#: renderer/Renderer.cpp:754 renderer/Renderer.cpp:757
+#: renderer/Renderer.cpp:565 renderer/Renderer.cpp:568
+#: renderer/Renderer.cpp:680 renderer/Renderer.cpp:683
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "A captura gardouse en «%s»."
