@@ -90,7 +90,10 @@ std::unique_ptr<CFramebuffer> CFramebuffer::Create(
 		framebuffer->m_Width = depthStencilAttachmentTexture->GetWidth();
 		framebuffer->m_Height = depthStencilAttachmentTexture->GetHeight();
 		framebuffer->m_AttachmentMask |= GL_DEPTH_BUFFER_BIT;
-		if (depthStencilAttachmentTexture->GetFormat() == Format::D24_S8)
+		const bool hasStencil =
+			depthStencilAttachmentTexture->GetFormat() == Format::D24_UNORM_S8_UINT ||
+				depthStencilAttachmentTexture->GetFormat() == Format::D32_SFLOAT_S8_UINT;
+		if (hasStencil)
 			framebuffer->m_AttachmentMask |= GL_STENCIL_BUFFER_BIT;
 		if (colorAttachment)
 		{
@@ -98,18 +101,14 @@ std::unique_ptr<CFramebuffer> CFramebuffer::Create(
 			ENSURE(colorAttachment->texture->GetHeight() == depthStencilAttachmentTexture->GetHeight());
 			ENSURE(colorAttachment->texture->GetType() == depthStencilAttachmentTexture->GetType());
 		}
-		ENSURE(
-			depthStencilAttachmentTexture->GetFormat() == Format::D16 ||
-			depthStencilAttachmentTexture->GetFormat() == Format::D24 ||
-			depthStencilAttachmentTexture->GetFormat() == Format::D32 ||
-			depthStencilAttachmentTexture->GetFormat() == Format::D24_S8);
+		ENSURE(IsDepthFormat(depthStencilAttachmentTexture->GetFormat()));
 #if CONFIG2_GLES
-		ENSURE(depthStencilAttachmentTexture->GetFormat() != Format::D24_S8);
+		ENSURE(depthStencilAttachmentTexture->GetFormat() == Format::D24_UNORM);
 		const GLenum attachment = GL_DEPTH_ATTACHMENT;
 		ENSURE(depthStencilAttachmentTexture->GetType() == CTexture::Type::TEXTURE_2D);
 		const GLenum textureTarget = GL_TEXTURE_2D;
 #else
-		const GLenum attachment = depthStencilAttachmentTexture->GetFormat() == Format::D24_S8 ?
+		const GLenum attachment = hasStencil ?
 			GL_DEPTH_STENCIL_ATTACHMENT : GL_DEPTH_ATTACHMENT;
 		const GLenum textureTarget = depthStencilAttachmentTexture->GetType() == CTexture::Type::TEXTURE_2D_MULTISAMPLE ?
 			GL_TEXTURE_2D_MULTISAMPLE : GL_TEXTURE_2D;

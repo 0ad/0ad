@@ -211,33 +211,33 @@ std::unique_ptr<CTexture> CTexture::Create(
 			break;
 #if CONFIG2_GLES
 		// GLES requires pixel type == UNSIGNED_SHORT or UNSIGNED_INT for depth.
-		case Format::D16: FALLTHROUGH;
-		case Format::D24: FALLTHROUGH;
-		case Format::D32:
+		case Format::D16_UNORM: FALLTHROUGH;
+		case Format::D24_UNORM: FALLTHROUGH;
+		case Format::D32_SFLOAT:
 			internalFormat = GL_DEPTH_COMPONENT;
 			pixelFormat = GL_DEPTH_COMPONENT;
 			pixelType = GL_UNSIGNED_SHORT;
 			break;
-		case Format::D24_S8:
+		case Format::D24_UNORM_S8_UINT:
 			debug_warn("Unsupported format");
 			break;
 #else
-		case Format::D16:
+		case Format::D16_UNORM:
 			internalFormat = GL_DEPTH_COMPONENT16;
 			pixelFormat = GL_DEPTH_COMPONENT;
 			pixelType = GL_UNSIGNED_SHORT;
 			break;
-		case Format::D24:
+		case Format::D24_UNORM:
 			internalFormat = GL_DEPTH_COMPONENT24;
 			pixelFormat = GL_DEPTH_COMPONENT;
 			pixelType = GL_UNSIGNED_SHORT;
 			break;
-		case Format::D32:
+		case Format::D32_SFLOAT:
 			internalFormat = GL_DEPTH_COMPONENT32;
 			pixelFormat = GL_DEPTH_COMPONENT;
 			pixelType = GL_UNSIGNED_SHORT;
 			break;
-		case Format::D24_S8:
+		case Format::D24_UNORM_S8_UINT:
 			internalFormat = GL_DEPTH24_STENCIL8_EXT;
 			pixelFormat = GL_DEPTH_STENCIL_EXT;
 			pixelType = GL_UNSIGNED_INT_24_8_EXT;
@@ -271,7 +271,7 @@ std::unique_ptr<CTexture> CTexture::Create(
 		{
 			glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, sampleCount, GL_RGBA8, width, height, GL_TRUE);
 		}
-		else if (format == Format::D24_S8)
+		else if (format == Format::D24_UNORM_S8_UINT)
 		{
 			glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, sampleCount, GL_DEPTH24_STENCIL8_EXT, width, height, GL_TRUE);
 		}
@@ -284,8 +284,7 @@ std::unique_ptr<CTexture> CTexture::Create(
 
 
 #if !CONFIG2_GLES
-	if (format == Format::D16 || format == Format::D24 || format == Format::D32 ||
-		format == Format::D24_S8)
+	if (IsDepthFormat(format))
 	{
 		if (defaultSamplerDesc.compareEnabled)
 		{

@@ -48,7 +48,7 @@ class StructreePage extends ReferencePage
 
 		this.CivEmblem.sprite = "stretched:" + this.civData[this.activeCiv].Emblem;
 		this.CivName.caption = this.civData[this.activeCiv].Name;
-		this.CivHistory.caption = this.civData[this.activeCiv].History;
+		this.CivHistory.caption = this.civData[this.activeCiv].History || "";
 
 		let templateLists = this.TemplateLister.getTemplateLists(this.activeCiv);
 		this.TreeSection.draw(templateLists.structures, this.activeCiv);

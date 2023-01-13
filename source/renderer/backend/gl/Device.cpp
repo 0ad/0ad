@@ -1010,15 +1010,18 @@ bool CDevice::IsTextureFormatSupported(const Format format) const
 	case Format::R32G32B32A32_SFLOAT:
 		break;
 
-	case Format::D16: FALLTHROUGH;
-	case Format::D24: FALLTHROUGH;
-	case Format::D32:
+	case Format::D16_UNORM: FALLTHROUGH;
+	case Format::D24_UNORM: FALLTHROUGH;
+	case Format::D32_SFLOAT:
 		supported = true;
 		break;
-	case Format::D24_S8:
+	case Format::D24_UNORM_S8_UINT:
 #if !CONFIG2_GLES
 		supported = true;
 #endif
+		break;
+
+	case Format::D32_SFLOAT_S8_UINT:
 		break;
 
 	case Format::BC1_RGB_UNORM: FALLTHROUGH;
@@ -1063,10 +1066,10 @@ Format CDevice::GetPreferredDepthStencilFormat(
 #if CONFIG2_GLES
 		return Format::UNDEFINED;
 #else
-		return Format::D24_S8;
+		return Format::D24_UNORM_S8_UINT;
 #endif
 	else
-		return Format::D24;
+		return Format::D24_UNORM;
 }
 
 std::unique_ptr<IDevice> CreateDevice(SDL_Window* window, const bool arb)

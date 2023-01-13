@@ -52,7 +52,8 @@ public:
 	VkRenderPass GetRenderPass() const { return m_RenderPass; }
 	VkFramebuffer GetFramebuffer() const { return m_Framebuffer; }
 
-	const PS::StaticVector<CTexture*, 4>& GetColorAttachments() { return m_ColorAttachments; }
+	using ColorAttachments = PS::StaticVector<CTexture*, 4>;
+	const ColorAttachments& GetColorAttachments() { return m_ColorAttachments; }
 	CTexture* GetDepthStencilAttachment() { return m_DepthStencilAttachment; }
 
 	AttachmentLoadOp GetColorAttachmentLoadOp() const { return m_ColorAttachmentLoadOp; }
@@ -97,7 +98,7 @@ private:
 
 	// It's reponsibility of CFramebuffer owner to guarantee lifetime of
 	// attachments.
-	PS::StaticVector<CTexture*, 4> m_ColorAttachments;
+	ColorAttachments m_ColorAttachments;
 	CTexture* m_DepthStencilAttachment = nullptr;
 };
 

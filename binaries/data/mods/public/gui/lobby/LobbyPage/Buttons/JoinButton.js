@@ -15,6 +15,8 @@ class JoinButton
 
 		gameList.gamesBox.onMouseLeftDoubleClickItem = this.onPress.bind(this);
 		gameList.registerSelectionChangeHandler(this.onSelectedGameChange.bind(this, dialog));
+
+		this.onSelectedGameChange();
 	}
 
 	onSelectedGameChange(dialog, selectedGame)

@@ -96,10 +96,14 @@ CPostprocManager::~CPostprocManager()
 bool CPostprocManager::IsEnabled() const
 {
 	Renderer::Backend::IDevice* device = g_VideoMode.GetBackendDevice();
+	const bool isDepthStencilFormatPresent =
+		device->GetPreferredDepthStencilFormat(
+			Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT, true, true)
+				!= Renderer::Backend::Format::UNDEFINED;
 	return
 		g_RenderingOptions.GetPostProc() &&
 		device->GetBackend() != Renderer::Backend::Backend::GL_ARB &&
-		device->IsTextureFormatSupported(Renderer::Backend::Format::D24_S8);
+		isDepthStencilFormatPresent;
 }
 
 void CPostprocManager::Cleanup()
@@ -224,7 +228,11 @@ void CPostprocManager::RecreateBuffers()
 	m_DepthTex = backendDevice->CreateTexture2D("PostProcDepthTexture",
 		Renderer::Backend::ITexture::Usage::SAMPLED |
 			Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
-		Renderer::Backend::Format::D24_S8, m_Width, m_Height,
+		backendDevice->GetPreferredDepthStencilFormat(
+			Renderer::Backend::ITexture::Usage::SAMPLED |
+				Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
+			true, true),
+		m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE));
@@ -629,7 +637,11 @@ void CPostprocManager::CreateMultisampleBuffer()
 		Renderer::Backend::ITexture::Type::TEXTURE_2D_MULTISAMPLE,
 		Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT |
 			Renderer::Backend::ITexture::Usage::TRANSFER_SRC,
-		Renderer::Backend::Format::D24_S8, m_Width, m_Height,
+		backendDevice->GetPreferredDepthStencilFormat(
+			Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT |
+				Renderer::Backend::ITexture::Usage::TRANSFER_SRC,
+			true, true),
+		m_Width, m_Height,
 		Renderer::Backend::Sampler::MakeDefaultSampler(
 			Renderer::Backend::Sampler::Filter::LINEAR,
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1, m_MultisampleCount);

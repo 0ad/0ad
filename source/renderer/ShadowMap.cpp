@@ -519,14 +519,14 @@ void ShadowMapInternals::CreateTexture()
 	const char* formatName;
 	Renderer::Backend::Format backendFormat = Renderer::Backend::Format::UNDEFINED;
 #if CONFIG2_GLES
-	formatName = "Format::D24";
-	backendFormat = Renderer::Backend::Format::D24;
+	formatName = "Format::D24_UNORM";
+	backendFormat = Renderer::Backend::Format::D24_UNORM;
 #else
 	switch (DepthTextureBits)
 	{
-	case 16: formatName = "Format::D16"; backendFormat = Renderer::Backend::Format::D16; break;
-	case 24: formatName = "Format::D24"; backendFormat = Renderer::Backend::Format::D24; break;
-	case 32: formatName = "Format::D32"; backendFormat = Renderer::Backend::Format::D32; break;
+	case 16: formatName = "Format::D16_UNORM"; backendFormat = Renderer::Backend::Format::D16_UNORM; break;
+	case 24: formatName = "Format::D24_UNORM"; backendFormat = Renderer::Backend::Format::D24_UNORM; break;
+	case 32: formatName = "Format::D32_SFLOAT"; backendFormat = Renderer::Backend::Format::D32_SFLOAT; break;
 	default:
 		formatName = "Default";
 		backendFormat = backendDevice->GetPreferredDepthStencilFormat(

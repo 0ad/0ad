@@ -30,7 +30,7 @@ class COListColumn
 public:
 	COListColumn(IGUIObject* owner, const CStr& cid)
 		: m_Id(cid), m_Width(0), m_Heading(owner, "heading_" + cid), m_List(owner, "list_" + cid),
-		m_Hidden(owner, "hidden_" + cid, false), m_SortOrder(owner, " sort_order_" + cid, -1)
+		m_Hidden(owner, "hidden_" + cid, false), m_SortOrder(owner, " sort_order_" + cid, 1)
 	{}
 	// Avoid copying the strings.
 	NONCOPYABLE(COListColumn);

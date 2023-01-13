@@ -76,6 +76,7 @@ std::unique_ptr<CTexture> CTexture::Create(
 
 	VkImageUsageFlags usageFlags = 0;
 	// Vulkan 1.0 implies that TRANSFER_SRC and TRANSFER_DST are supported.
+	// TODO: account Vulkan 1.1.
 	if (usage & Usage::TRANSFER_SRC)
 		usageFlags |= VK_IMAGE_USAGE_TRANSFER_SRC_BIT;
 	if (usage & Usage::TRANSFER_DST)
@@ -115,7 +116,7 @@ std::unique_ptr<CTexture> CTexture::Create(
 	{
 		texture->m_AttachmentImageAspectMask = VK_IMAGE_ASPECT_DEPTH_BIT;
 		texture->m_SamplerImageAspectMask = VK_IMAGE_ASPECT_DEPTH_BIT;
-		if (format == Format::D24_S8)
+		if (format == Format::D24_UNORM_S8_UINT || format == Format::D32_SFLOAT_S8_UINT)
 			texture->m_AttachmentImageAspectMask |= VK_IMAGE_ASPECT_STENCIL_BIT;
 	}
 	else
