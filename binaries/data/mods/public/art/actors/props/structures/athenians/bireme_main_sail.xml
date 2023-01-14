@@ -8,12 +8,17 @@
     </variant>
   </group>
   <group>
-    <variant frequency="100" file="others/ships/hele_sail_01.xml" name="eye"/>
-    <variant frequency="100" file="others/ships/hele_sail_02.xml" name="pegasus"/>
-    <variant frequency="100" file="others/ships/hele_sail_03.xml" name="runner"/>
-    <variant frequency="100" file="others/ships/hele_sail_04.xml" name="star"/>
-    <variant frequency="100" file="others/ships/hele_sail_05.xml" name="hawk"/>
-    <variant frequency="100" file="others/ships/hele_sail_06.xml" name="krater"/>
+    <variant frequency="1" file="others/ships/hele_sail_01.xml" name="eye"/>
+    <variant frequency="1" file="others/ships/hele_sail_02.xml" name="pegasus"/>
+    <variant frequency="1" file="others/ships/hele_sail_03.xml" name="runner"/>
+    <variant frequency="1" file="others/ships/hele_sail_04.xml" name="star"/>
+    <variant frequency="1" file="others/ships/hele_sail_05.xml" name="hawk"/>
+    <variant frequency="1" file="others/ships/hele_sail_06.xml" name="krater"/>
+    <variant frequency="1" name="boar">
+      <textures>
+        <texture file="props/hele_sail_7.png" name="baseTex"/>
+      </textures>
+    </variant>
   </group>
   <material>player_trans_parallax_spec.xml</material>
 </actor>
