@@ -32,3 +32,10 @@ then
     export PYTHONPATH="$(pwd)/virtualenv:$PYTHONPATH"
     patch -p1 < ../FixVirtualEnv.diff
 fi
+
+# python 3.11 support
+PYTHON_MINOR_VERSION="$(python3 -c 'import sys; print(sys.version_info.minor)')"
+if [ "$PYTHON_MINOR_VERSION" -ge 11 ];
+then
+    patch -p1 < ../FixVirtualEnv.diff
+fi
