@@ -394,6 +394,13 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 		m_Window = SDL_CreateWindow(main_window_name, m_WindowedX, m_WindowedY, w, h, flags);
 		if (!m_Window)
 		{
+			// SDL might fail to create a window in case of missing a Vulkan driver.
+			if (m_Backend == Renderer::Backend::Backend::VULKAN)
+			{
+				DowngradeBackendSettingAfterCreationFailure();
+				return SetVideoMode(w, h, bpp, fullscreen);
+			}
+
 			// If fullscreen fails, try windowed mode
 			if (fullscreen)
 			{
