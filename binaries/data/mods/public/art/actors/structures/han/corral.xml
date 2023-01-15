@@ -26,8 +26,7 @@
     <variant frequency="1" name="ungarrisoned"/>
     <variant name="garrisoned">
       <props>
-        <prop actor="fauna/zebu.xml" attachpoint="root"/>
-        <prop actor="props/structures/han/corral_decal.xml" attachpoint="root"/>
+        <prop actor="props/special/common/garrison_flag_han.xml" attachpoint="garrisoned"/>
       </props>
     </variant>
   </group>
