@@ -14,6 +14,13 @@
     <variant frequency="100" file="others/ships/hele_sail_04.xml" name="star"/>
     <variant frequency="100" file="others/ships/hele_sail_05.xml" name="hawk"/>
     <variant frequency="100" file="others/ships/hele_sail_06.xml" name="krater"/>
+    <variant frequency="1" name="mace_sail_01">
+      <textures>
+        <texture file="props/mace_sail_01.png" name="baseTex"/>
+        <texture file="props/ptol_sail_norm.png" name="normTex"/>
+        <texture file="props/sail_spec_1.png" name="specTex"/>
+      </textures>
+    </variant>
   </group>
   <material>player_trans_parallax_spec.xml</material>
 </actor>

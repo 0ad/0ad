@@ -1,6 +1,7 @@
 #!/bin/sh
 set -e
 
+OS="${OS:=$(uname -s)}"
 # Apply patches if needed
 # This script gets called from build.sh.
 
@@ -22,12 +23,19 @@ then
 	patch -p1 < ../FixFpNormIssue.diff
 fi
 
-if [ "$(uname -s)" = "Darwin" ]
+if [ "$OS" = "Darwin" ]
 then
     # The bundled virtualenv version is not working on MacOS
     # with recent homebrew and needs to be upgraded.
     # Install it locally to not pollute anything.
 	pip3 install --upgrade -t virtualenv virtualenv
     export PYTHONPATH="$(pwd)/virtualenv:$PYTHONPATH"
-    patch -p1 < ../FixVirtualenv.diff
+    patch -p1 < ../FixVirtualEnv.diff
+fi
+
+# Python >= 3.11 support
+PYTHON_MINOR_VERSION="$(python3 -c 'import sys; print(sys.version_info.minor)')"
+if [ "$PYTHON_MINOR_VERSION" -ge 11 ];
+then
+    patch -p1 < ../Fix-use-of-removed-U-support-in-python-3.11.patch
 fi

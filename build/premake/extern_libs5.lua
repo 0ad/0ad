@@ -600,7 +600,7 @@ extern_lib_defs = {
 		compile_settings = function()
 			if _OPTIONS["with-system-mozjs"] then
 				if not _OPTIONS["android"] then
-					pkgconfig.add_includes("mozjs-78")
+					pkgconfig.add_includes("mozjs-91")
 				end
 			else
 				if os.istarget("windows") then
@@ -619,9 +619,9 @@ extern_lib_defs = {
 		link_settings = function()
 			if _OPTIONS["with-system-mozjs"] then
 				if _OPTIONS["android"] then
-					links { "mozjs-78" }
+					links { "mozjs-91" }
 				else
-					pkgconfig.add_links("mozjs-78")
+					pkgconfig.add_links("mozjs-91")
 				end
 			else
 				filter { "Debug", "action:vs*" }
