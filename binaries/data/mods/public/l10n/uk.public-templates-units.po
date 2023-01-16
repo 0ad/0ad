@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-01-09 08:09+0000\n"
+"POT-Creation-Date: 2023-01-13 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
 "Last-Translator: aa4a75b616c7281b4c1ca3782cfac296_76b465e, 2022\n"
 "Language-Team: Ukrainian (http://www.transifex.com/wildfire-games/0ad/language/uk/)\n"
@@ -76,7 +76,7 @@ msgstr "Кавалерія"
 #: simulation/templates/template_unit_cavalry.xml:33
 #: simulation/templates/template_unit_elephant.xml:9
 #: simulation/templates/template_unit_infantry.xml:37
-#: simulation/templates/template_unit_support_healer.xml:29
+#: simulation/templates/template_unit_support_healer.xml:30
 msgctxt "Rank"
 msgid "Basic"
 msgstr "Основний"
@@ -105,7 +105,7 @@ msgstr "Кавалерія ближнього бою"
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:20
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:19
-#: simulation/templates/template_unit_champion_elephant_melee.xml:18
+#: simulation/templates/template_unit_champion_elephant_melee.xml:27
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:20
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:20
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:28
@@ -117,7 +117,7 @@ msgstr "Кавалерія ближнього бою"
 #: simulation/templates/template_unit_hero_cavalry_maceman.xml:17
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:22
-#: simulation/templates/template_unit_hero_elephant_melee.xml:32
+#: simulation/templates/template_unit_hero_elephant_melee.xml:41
 #: simulation/templates/template_unit_hero_infantry_axeman.xml:17
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:17
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
@@ -381,7 +381,7 @@ msgstr "Бойовий слон"
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_fauna_hunt_passive-defensive_elephant.xml:4
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:4
-#: simulation/templates/template_unit_hero_elephant_melee.xml:32
+#: simulation/templates/template_unit_hero_elephant_melee.xml:41
 #: simulation/templates/template_unit_support_elephant.xml:18
 msgid "Elephant"
 msgstr "Слон"
@@ -391,6 +391,13 @@ msgstr "Слон"
 msgctxt "Name of an attack, usually the weapon."
 msgid "Trunk"
 msgstr "Хобот"
+
+#: simulation/templates/template_unit_champion_elephant_melee.xml:12
+#: simulation/templates/template_unit_hero_elephant_melee.xml:12
+#: simulation/templates/template_unit_ship_fire.xml:22
+#: simulation/templates/template_unit_siege_flamethrower.xml:35
+msgid "Circular"
+msgstr "Навкруги"
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
 #: simulation/templates/template_unit_hero_infantry.xml:14
@@ -514,7 +521,7 @@ msgid "Hero Cavalry"
 msgstr "Геройська кавалерія"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:36
-#: simulation/templates/template_unit_hero_elephant_melee.xml:52
+#: simulation/templates/template_unit_hero_elephant_melee.xml:61
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
 #: simulation/templates/units/brit/hero_boudicca.xml:20
@@ -560,7 +567,7 @@ msgstr "Контрудар 1.75х проти кавалерії"
 msgid "Hero Cavalry Swordsman"
 msgstr "Герой кавалеріських мечників"
 
-#: simulation/templates/template_unit_hero_elephant_melee.xml:31
+#: simulation/templates/template_unit_hero_elephant_melee.xml:40
 msgid "Hero Elephant"
 msgstr "Геройський слон"
 
@@ -571,8 +578,8 @@ msgid "Support"
 msgstr "Підтримка"
 
 #: simulation/templates/template_unit_hero_healer.xml:27
-#: simulation/templates/template_unit_support_healer.xml:26
 #: simulation/templates/template_unit_support_healer.xml:27
+#: simulation/templates/template_unit_support_healer.xml:28
 msgid "Healer"
 msgstr "Цілитель"
 
@@ -650,11 +657,6 @@ msgstr "Корабель"
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fire"
 msgstr "Вогонь"
-
-#: simulation/templates/template_unit_ship_fire.xml:22
-#: simulation/templates/template_unit_siege_flamethrower.xml:35
-msgid "Circular"
-msgstr "Навкруги"
 
 #: simulation/templates/template_unit_ship_fire.xml:40
 msgid "Fire Ship"
@@ -831,7 +833,7 @@ msgstr "Кинджал"
 msgid "Female Citizen"
 msgstr "Громадянка"
 
-#: simulation/templates/template_unit_support_healer.xml:30
+#: simulation/templates/template_unit_support_healer.xml:31
 msgid "Heal units."
 msgstr "Зцілити підрозділи."
 
@@ -1793,10 +1795,6 @@ msgstr "Дао бін"
 msgid "Zhàn Chuán"
 msgstr "Чжань чуань"
 
-#: simulation/templates/units/han/ship_fire.xml:9
-msgid "Huǒ Chuán"
-msgstr "Хо чуань"
-
 #: simulation/templates/units/han/ship_fishing.xml:9
 msgid "Yú Chuán"
 msgstr "Юй чуань"
@@ -2205,15 +2203,15 @@ msgstr "Хіпаспістес аргіраспіді"
 msgid "Rhomphaiaphoros"
 msgstr "Ромфаіафорос"
 
-#: simulation/templates/units/mace/hero_alexander_iii.xml:21
+#: simulation/templates/units/mace/hero_alexander_iii.xml:22
 msgid "Alexander III the Great"
 msgstr "Александр III Великий"
 
-#: simulation/templates/units/mace/hero_alexander_iii.xml:22
+#: simulation/templates/units/mace/hero_alexander_iii.xml:23
 msgid "Alexandros ho Megas"
 msgstr "Александрос хо Мегас"
 
-#: simulation/templates/units/mace/hero_alexander_iii.xml:23
+#: simulation/templates/units/mace/hero_alexander_iii.xml:24
 msgid "Counters: 1.2× vs Heroes."
 msgstr "Контрудари: 1.2× проти героїв."
 
@@ -2961,10 +2959,12 @@ msgid "Legiōnārius"
 msgstr "Лєґіонаріус"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_04.xml:14
+#: simulation/templates/units/rome/infantry_swordsman_e_centurion.xml:10
 msgid "Roman Centurion"
 msgstr "Римський центуріон"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_04.xml:15
+#: simulation/templates/units/rome/infantry_swordsman_e_centurion.xml:11
 msgid "Centuriō"
 msgstr "Центуріо"
 
@@ -3007,6 +3007,15 @@ msgstr "Досвідчений списоносець"
 msgid "Triārius"
 msgstr "Тріаріус"
 
+#: simulation/templates/units/rome/infantry_spearman_b.xml:25
+msgid "Elite rank Spearmen can be promoted to champion Centurions."
+msgstr ""
+
+#: simulation/templates/units/rome/infantry_spearman_e.xml:10
+#: simulation/templates/units/rome/infantry_swordsman_e.xml:10
+msgid "Give this combat veteran the rank of Centurion."
+msgstr ""
+
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:19
 msgid "Roman Swordsman"
 msgstr "Римський мечник"
@@ -3014,6 +3023,10 @@ msgstr "Римський мечник"
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:20
 msgid "Hastātus"
 msgstr "Гастатус"
+
+#: simulation/templates/units/rome/infantry_swordsman_b.xml:22
+msgid "Elite rank Swordsmen can be promoted to champion Centurions."
+msgstr ""
 
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:20
 msgid "Servus"
