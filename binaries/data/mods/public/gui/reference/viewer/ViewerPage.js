@@ -76,7 +76,13 @@ class ViewerPage extends ReferencePage
 
 			let researchers = templateLists.techs.get(currentTemplateName);
 			if (researchers && researchers.length)
+			{
 				this.currentTemplate.researchedByListOfNames = researchers.map(researcher => getEntityNames(this.TemplateParser.getEntity(researcher, this.activeCiv)));
+				const {techCostMultiplier} = this.TemplateParser.getEntity(researchers[0], this.activeCiv);
+				for (const res in this.currentTemplate.cost)
+					if (this.currentTemplate.cost[res])
+						this.currentTemplate.cost[res] *= techCostMultiplier[res];
+			}
 		}
 
 		if (this.currentTemplate.builder && this.currentTemplate.builder.length)
