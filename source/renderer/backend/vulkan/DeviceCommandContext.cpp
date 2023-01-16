@@ -730,7 +730,6 @@ void CDeviceCommandContext::DrawIndexedInRange(
 	const uint32_t firstIndex, const uint32_t indexCount,
 	const uint32_t UNUSED(start), const uint32_t UNUSED(end))
 {
-	PreDraw();
 	DrawIndexed(firstIndex, indexCount, 0);
 }
 

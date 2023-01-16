@@ -3,6 +3,7 @@
   <castshadow/>
   <group>
     <variant name="base">
+      <mesh>structural/spart_corral.dae</mesh>
       <props>
         <prop actor="props/structures/decals/spart_3x3.xml" attachpoint="root"/>
         <prop actor="props/structures/decals/iber_corral_mud.xml" attachpoint="root"/>
@@ -11,16 +12,16 @@
         <texture file="structural/sparta_struct.png" name="baseTex"/>
         <texture file="structural/sparta_struct_spec.png" name="specTex"/>
         <texture file="structural/sparta_struct_norm.png" name="normTex"/>
-        <texture file="structural/ao/spart_temple_AO.png" name="aoTex"/>
+        <texture file="structural/ao/spart_corral_AO.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="1" name="a">
-      <mesh>structural/spart_corral.dae</mesh>
-      <textures>
-        <texture file="structural/ao/spart_corral_AO.png" name="aoTex"/>
-      </textures>
+    <variant frequency="1" name="ungarrisoned"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
+      </props>
     </variant>
   </group>
   <group>

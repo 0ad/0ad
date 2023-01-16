@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,8 +19,6 @@
 
 #include "Material.h"
 #include "ps/CStrInternStatic.h"
-
-static CColor BrokenColor(0.3f, 0.3f, 0.3f, 1.0f);
 
 CMaterial::CMaterial() :
 	m_AlphaBlending(false)
