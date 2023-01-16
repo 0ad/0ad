@@ -48,6 +48,7 @@
 #if GCC_VERSION
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wformat"
+#pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
 #pragma GCC diagnostic ignored "-Wundef"
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 #pragma GCC diagnostic ignored "-Wunused-variable"
@@ -62,7 +63,9 @@
 #endif
 #if MSC_VERSION
 #pragma warning(push, 1)
-#pragma warning(disable: 4100)
+#pragma warning(disable: 4100) // Unreferenced formal parameter.
+#pragma warning(disable: 4701) // Potentially uninitialized local variable used.
+#pragma warning(disable: 4703) // Potentially uninitialized local pointer variable used.
 #endif
 
 #include "third_party/vma/vk_mem_alloc.h"
