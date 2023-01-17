@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -33,6 +33,7 @@
 #include "ps/Pyrogenesis.h"
 #include "third_party/mongoose/mongoose.h"
 
+#include <fmt/format.h>
 #include <fstream>
 #include <iomanip>
 #include <map>
