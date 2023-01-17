@@ -1,0 +1,15 @@
+--- a/third_party/python/virtualenv/virtualenv/discovery/py_info.py
++++ b/third_party/python/virtualenv/virtualenv/discovery/py_info.py
+@@ -177,7 +177,11 @@
+         )
+         if not os.path.exists(path):  # some broken packaging don't respect the sysconfig, fallback to distutils path
+             # the pattern include the distribution name too at the end, remove that via the parent call
+-            fallback = os.path.join(self.prefix, os.path.dirname(self.distutils_install["headers"]))
++            # A hack for https://github.com/pypa/virtualenv/issues/2208
++            distutils_path = self.distutils_install["headers"]
++            if distutils_path.startswith(u"local/"):
++                distutils_path = distutils_path[6:]
++            fallback = os.path.join(self.prefix, os.path.dirname(distutils_path))
+             if os.path.exists(fallback):
+                 path = fallback
+         return path

@@ -5,7 +5,7 @@ set -e
 # This should match the version in config/milestone.txt
 FOLDER="mozjs-91.13.1"
 # If same-version changes are needed, increment this.
-LIB_VERSION="91.13.1+0"
+LIB_VERSION="91.13.1+1"
 LIB_NAME="mozjs91-ps"
 
 # Since this script is called by update-workspaces.sh, we want to quickly
@@ -20,6 +20,10 @@ fi
 
 echo "Building SpiderMonkey..."
 echo
+
+# Prevent the SpiderMonkey build system from reading dependencies from
+# user-installed python packages.
+PYTHONNOUSERSITE=true
 
 OS="${OS:=$(uname -s)}"
 

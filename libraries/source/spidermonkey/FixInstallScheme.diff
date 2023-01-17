@@ -1,0 +1,26 @@
+--- a/python/mozbuild/mozbuild/virutalenv.py
++++ b/python/mozbuild/mozbuild/virtualenv.py
+@@ -587,18 +587,11 @@
+         """
+ 
+-        # Defer "distutils" import until this function is called so that
+-        # "mach bootstrap" doesn't fail due to Linux distro python-distutils
+-        # package not being installed.
+-        # By the time this function is called, "distutils" must be installed
+-        # because it's needed by the "virtualenv" package.
+-        from distutils import dist
++        import sysconfig
+ 
+-        distribution = dist.Distribution({"script_args": "--no-user-cfg"})
+-        installer = distribution.get_command_obj("install")
+-        installer.prefix = os.path.normpath(self.virtualenv_root)
+-        installer.finalize_options()
+-
+         # Path to virtualenv's "site-packages" directory
+-        site_packages = installer.install_purelib
++        site_packages = sysconfig.get_path(
++            'purelib',
++             scheme='posix_prefix',
++             vars={ 'base': os.path.normpath(self.virtualenv_root) })
+ 
+         pip_dist_info = next(

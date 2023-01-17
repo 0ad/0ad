@@ -20,7 +20,7 @@ patch -p1 < ../FixWindowsLibNames.diff
 # https://bugzilla.mozilla.org/show_bug.cgi?id=1729459
 if [ "$(uname -m)" = "i686" ] && [ "${OS}" != "Windows_NT" ]
 then
-	patch -p1 < ../FixFpNormIssue.diff
+    patch -p1 < ../FixFpNormIssue.diff
 fi
 
 if [ "$OS" = "Darwin" ]
@@ -28,14 +28,28 @@ then
     # The bundled virtualenv version is not working on MacOS
     # with recent homebrew and needs to be upgraded.
     # Install it locally to not pollute anything.
-	pip3 install --upgrade -t virtualenv virtualenv
+    pip3 install --upgrade -t virtualenv virtualenv
     export PYTHONPATH="$(pwd)/virtualenv:$PYTHONPATH"
     patch -p1 < ../FixVirtualEnv.diff
+fi
+
+if [ "$OS" = "Linux" ]
+then
+    # Use sysconfig instead of distutils with the bundled virtualenv
+    # This fixes an issue with install schemes on recent Debian and Fedora
+    # Furthermore, distutils is going to be deprecated and is replaced
+    # by sysconfig in ESR102
+    patch -p1 < ../FixInstallScheme.diff
+
+    # Extend the previous fix with a portion of the following commit
+    # https://phabricator.services.mozilla.com/D130410
+    # This will prevent bug 1739486 from happening on Fedora
+    patch -p1 < ../FixFedoraVirtualEnv.diff
 fi
 
 # Python >= 3.11 support
 PYTHON_MINOR_VERSION="$(python3 -c 'import sys; print(sys.version_info.minor)')"
 if [ "$PYTHON_MINOR_VERSION" -ge 11 ];
 then
-    patch -p1 < ../Fix-use-of-removed-U-support-in-python-3.11.patch
+    patch -p1 < ../FixUnicodePython311.diff
 fi
