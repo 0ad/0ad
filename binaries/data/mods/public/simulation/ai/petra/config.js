@@ -320,9 +320,26 @@ PETRA.Config.prototype.setConfig = function(gameState)
 		"roots": this.criticalRootFactors[this.difficulty],
 	};
 
+	this.Cheat(gameState);
+
 	if (this.debug < 2)
 		return;
 	API3.warn(" >>>  Petra bot: personality = " + uneval(this.personality));
+};
+
+PETRA.Config.prototype.Cheat = function(gameState)
+{
+	// Sandbox, Very Easy, Easy, Medium, Hard, Very Hard
+	// rate apply on resource stockpiling as gathering and trading
+	// time apply on building, upgrading, packing, training and technologies
+	const rate = [ 0.42, 0.56, 0.75, 1.00, 1.25, 1.56 ];
+	const time = [ 1.40, 1.25, 1.10, 1.00, 1.00, 1.00 ];
+	const AIDiff = Math.min(this.difficulty, rate.length - 1);
+	SimEngine.QueryInterface(Sim.SYSTEM_ENTITY, Sim.IID_ModifiersManager).AddModifiers("AI Bonus", {
+		"ResourceGatherer/BaseSpeed": [{ "affects": ["Unit", "Structure"], "multiply": rate[AIDiff] }],
+		"Trader/GainMultiplier": [{ "affects": ["Unit", "Structure"], "multiply": rate[AIDiff] }],
+		"Cost/BuildTime": [{ "affects": ["Unit", "Structure"], "multiply": time[AIDiff] }],
+	}, gameState.playerData.entity);
 };
 
 PETRA.Config.prototype.Serialize = function()
