@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- mode: python-mode; python-indent-offset: 4; -*-
 #
-# Copyright (C) 2022 Wildfire Games.
+# Copyright (C) 2023 Wildfire Games.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -21,14 +21,17 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-
+import sys
+sys.path
+sys.path.append('../entity')
+from scriptlib import SimulTemplateEntity
 
 import xml.etree.ElementTree as ET
+from pathlib import Path
 import os
 import glob
 
-# TODO: Add other damage types.
-AttackTypes = ["Hack", "Pierce", "Crush"]
+AttackTypes = ["Hack", "Pierce", "Crush", "Poison", "Fire"]
 Resources = ["food", "wood", "stone", "metal"]
 
 # Generic templates to load
@@ -52,6 +55,7 @@ Civs = [
     "gaul",
     "iber",
     "kush",
+    "han",
     "mace",
     "maur",
     "pers",
@@ -89,24 +93,12 @@ AddSortingOverlay = True
 
 # This is the path to the /templates/ folder to consider. Change this for mod
 # support.
-basePath = (
-    os.path.realpath(__file__).replace("unitTables.py", "")
-    + "../../../binaries/data/mods/public/simulation/templates/"
-)
+modsFolder = Path(__file__).resolve().parents[3] / 'binaries' / 'data' / 'mods'
+basePath =  modsFolder / 'public' / 'simulation' / 'templates'
 
 # For performance purposes, cache opened templates files.
 globalTemplatesList = {}
-
-
-def showChild(root):
-    """root is of ElementTree.getroot() type"""
-    # Not used; use it for debugging
-    print("----------------  Children:  ----------------")
-    [print(child.tag, child.attrib) for child in root]
-
-    print("\n--------------  Neighbours:  --------------")
-    [print(neighbor.attrib) for neighbor in root.iter("neighbor")]
-
+sim_entity = SimulTemplateEntity(modsFolder, None)
 
 def htbout(file, balise, value):
     file.write("<" + balise + ">" + value + "</" + balise + ">\n")
@@ -116,171 +108,97 @@ def htout(file, value):
     file.write("<p>" + value + "</p>\n")
 
 
-def fastParse(templateName):
+def fastParse(template_name):
     """Run ET.parse() with memoising in a global table."""
-    if templateName in globalTemplatesList:
-        return globalTemplatesList[templateName]
-    globalTemplatesList[templateName] = ET.parse(templateName)
-    return globalTemplatesList[templateName]
+    if template_name in globalTemplatesList:
+        return globalTemplatesList[template_name]
+    parent_string = ET.parse(template_name).getroot().get("parent")
+    globalTemplatesList[template_name] = sim_entity.load_inherited('simulation/templates/', str(template_name), ['public'])
+    globalTemplatesList[template_name].set("parent", parent_string)
+    return globalTemplatesList[template_name]
 
+
+def getParents(template_name):
+    template_data = fastParse(template_name)
+    parents_string = template_data.get("parent")
+    if parents_string is None:
+        return set()
+    parents = set()
+    for parent in parents_string.split("|"):
+        parents.add(parent)
+        for element in getParents(sim_entity.get_file('simulation/templates/',  parent + ".xml", 'public')):
+            parents.add(element)
+
+    return parents
+
+
+def ExtractValue(value):
+    return float(value.text) if value is not None else 0.0
 
 # This function checks that a template has the given parent.
-def hasParentTemplate(UnitName, parentName):
-    Template = fastParse(UnitName)
-
-    found = False
-    Name = UnitName
-
-    # parent_str = 'parent '
-    while found != True and Template.getroot().get("parent") != None:
-        longName = Template.getroot().get("parent") + ".xml"
-        # 0ad started using unit class/category prefixed to the unit name
-        # separated by |, known as mixins since A25 (rP25223)
-        #
-        # We strip these categories for now. The | syntax
-        # gives a unit its "category" (like merc_cav, merc_inf, hoplite,
-        # builder, shrine, civ/athen). This can be used later for
-        # classification
-
-        Name = longName.split("|")[-1]
-
-        mixins = {x.replace('civ/', '') for x in longName.split("|")[0:-1]}
-        civ = set(Civs).intersection(mixins)
-        if len(civ) > 0:
-            # mixin category contains a civ name
-            # we honor mixin civ hierarchy
-            # This assumes a unit only belongs to a single civ parent
-            unit_civ = list(civ)[0] + '.xml'
-            # unit_civ is not used in this function for now
-
-        if Name == parentName:
-            return True
-
-        Template = ET.parse(Name)
-
-        # parent_str += 'parent '
-
-    return False
-
-
-def NumericStatProcess(unitValue, templateValue):
-    val = float(templateValue.text)
-    if not "op" in templateValue.attrib:
-        return val
-    if templateValue.attrib["op"] == "add":
-        unitValue += val
-    elif templateValue.attrib["op"] == "sub":
-        unitValue -= val
-    elif templateValue.attrib["op"] == "mul":
-        unitValue *= val
-    elif templateValue.attrib["op"] == "mul_round":
-        unitValue = round(unitValue * val)
-    elif templateValue.attrib["op"] == "div":
-        unitValue /= val
-    return unitValue
+def hasParentTemplate(template_name, parentName):
+    return any(parentName == parent + '.xml' for parent in getParents(template_name))
 
 
 def CalcUnit(UnitName, existingUnit=None):
-    """Parse the entity values recursively through fastParse()."""
-    unit = {
-        "HP": "0",
-        "BuildTime": "0",
-        "Cost": {
-            "food": "0",
-            "wood": "0",
-            "stone": "0",
-            "metal": "0",
-            "population": "0",
-        },
-        "Attack": {
-            "Melee": {"Hack": 0, "Pierce": 0, "Crush": 0},
-            "Ranged": {"Hack": 0, "Pierce": 0, "Crush": 0},
-        },
-        "RepeatRate": {"Melee": "0", "Ranged": "0"},
-        "PrepRate": {"Melee": "0", "Ranged": "0"},
-        "Resistance": {"Hack": 0, "Pierce": 0, "Crush": 0},
-        "Ranged": False,
-        "Classes": [],
-        "AttackBonuses": {},
-        "Restricted": [],
-        "WalkSpeed": 0,
-        "Range": 0,
-        "Spread": 0,
-        "Civ": None,
-    }
-
     if existingUnit != None:
         unit = existingUnit
+    else:
+        unit = {
+            "HP": 0,
+            "BuildTime": 0,
+            "Cost": {
+                "food": 0,
+                "wood": 0,
+                "stone": 0,
+                "metal": 0,
+                "population": 0,
+            },
+            "Attack": {
+                "Melee": {"Hack": 0, "Pierce": 0, "Crush": 0},
+                "Ranged": {"Hack": 0, "Pierce": 0, "Crush": 0},
+            },
+            "RepeatRate": {"Melee": "0", "Ranged": "0"},
+            "PrepRate": {"Melee": "0", "Ranged": "0"},
+            "Resistance": {"Hack": 0, "Pierce": 0, "Crush": 0},
+            "Ranged": False,
+            "Classes": [],
+            "AttackBonuses": {},
+            "Restricted": [],
+            "WalkSpeed": 0,
+            "Range": 0,
+            "Spread": 0,
+            "Civ": None,
+        }
 
     Template = fastParse(UnitName)
 
-    # Recursively get data from our parent which we'll override.
-    unit_civ = None
-    if Template.getroot().get("parent") != None:
-        # 0ad started using unit class/category prefixed to the unit name
-        # separated by |, known as mixins since A25 (rP25223)
-        # We strip these categories for now
-        # This can be used later for classification
-        longName = Template.getroot().get("parent")
-        Name = longName.split("|")[-1] + ".xml"
+    # 0ad started using unit class/category prefixed to the unit name
+    # separated by |, known as mixins since A25 (rP25223)
+    # We strip these categories for now
+    # This can be used later for classification
+    unit["Parent"] = Template.get("parent").split("|")[-1] + ".xml"
+    unit["Civ"] = Template.find("./Identity/Civ").text
+    unit["HP"] = ExtractValue(Template.find("./Health/Max"))
+    unit["BuildTime"] = ExtractValue(Template.find("./Cost/BuildTime"))
+    unit["Cost"]["population"] = ExtractValue(Template.find("./Cost/Population"))
 
-        mixins = {x.replace('civ/', '') for x in longName.split("|")[0:-1]}
-        civ = set(Civs).intersection(mixins)
-        if len(civ) > 0:
-            # mixin category contains a civ name
-            # we honor mixin civ hierarchy
-            # This assumes a unit only belongs to a single civ parent
-            unit_civ = list(civ)[0]
+    resource_cost = Template.find("./Cost/Resources")
+    if resource_cost is not None:
+        for type in list(resource_cost):
+            unit["Cost"][type.tag] = ExtractValue(type)
 
-
-        unit = CalcUnit(Name, unit)
-        unit["Parent"] = Name
-
-    if unit_civ:
-        unit["Civ"] = unit_civ
-    elif Template.find("./Identity/Civ") != None:
-        unit["Civ"] = Template.find("./Identity/Civ").text
-
-
-
-    if Template.find("./Health/Max") != None:
-        unit["HP"] = NumericStatProcess(
-            unit["HP"], Template.find("./Health/Max"))
-
-    if Template.find("./Cost/BuildTime") != None:
-        unit["BuildTime"] = NumericStatProcess(
-            unit["BuildTime"], Template.find("./Cost/BuildTime")
-        )
-
-    if Template.find("./Cost/Resources") != None:
-        for type in list(Template.find("./Cost/Resources")):
-            unit["Cost"][type.tag] = NumericStatProcess(
-                unit["Cost"][type.tag], type)
-
-    if Template.find("./Cost/Population") != None:
-        unit["Cost"]["population"] = NumericStatProcess(
-            unit["Cost"]["population"], Template.find("./Cost/Population")
-        )
 
     if Template.find("./Attack/Melee") != None:
-        if Template.find("./Attack/Melee/RepeatTime") != None:
-            unit["RepeatRate"]["Melee"] = NumericStatProcess(
-                unit["RepeatRate"]["Melee"],
-                Template.find("./Attack/Melee/RepeatTime")
-            )
-        if Template.find("./Attack/Melee/PrepareTime") != None:
-            unit["PrepRate"]["Melee"] = NumericStatProcess(
-                unit["PrepRate"]["Melee"],
-                Template.find("./Attack/Melee/PrepareTime")
-            )
+        unit["RepeatRate"]["Melee"] = ExtractValue(Template.find("./Attack/Melee/RepeatTime"))
+        unit["PrepRate"]["Melee"] = ExtractValue(Template.find("./Attack/Melee/PrepareTime"))
+
         for atttype in AttackTypes:
-            if Template.find("./Attack/Melee/Damage/" + atttype) != None:
-                unit["Attack"]["Melee"][atttype] = NumericStatProcess(
-                    unit["Attack"]["Melee"][atttype],
-                    Template.find("./Attack/Melee/Damage/" + atttype),
-                )
-        if Template.find("./Attack/Melee/Bonuses") != None:
-            for Bonus in Template.find("./Attack/Melee/Bonuses"):
+            unit["Attack"]["Melee"][atttype] = ExtractValue( Template.find("./Attack/Melee/Damage/" + atttype))
+
+        attack_melee_bonus = Template.find("./Attack/Melee/Bonuses")
+        if attack_melee_bonus is not None:
+            for Bonus in attack_melee_bonus:
                 Against = []
                 CivAg = []
                 if Bonus.find("Classes") != None \
@@ -294,9 +212,10 @@ def CalcUnit(UnitName, existingUnit=None):
                     "Civs": CivAg,
                     "Multiplier": Val,
                 }
-        if Template.find("./Attack/Melee/RestrictedClasses") != None:
-            newClasses = Template.find("./Attack/Melee/RestrictedClasses")\
-                                 .text.split(" ")
+
+        attack_restricted_classes = Template.find("./Attack/Melee/RestrictedClasses")
+        if attack_restricted_classes is not None:
+            newClasses = attack_restricted_classes.text.split(" ")
             for elem in newClasses:
                 if elem.find("-") != -1:
                     newClasses.pop(newClasses.index(elem))
@@ -304,32 +223,16 @@ def CalcUnit(UnitName, existingUnit=None):
                         unit["Restricted"].pop(newClasses.index(elem))
             unit["Restricted"] += newClasses
 
-    if Template.find("./Attack/Ranged") != None:
+    elif Template.find("./Attack/Ranged") != None:
         unit["Ranged"] = True
-        if Template.find("./Attack/Ranged/MaxRange") != None:
-            unit["Range"] = NumericStatProcess(
-                unit["Range"], Template.find("./Attack/Ranged/MaxRange")
-            )
-        if Template.find("./Attack/Ranged/Spread") != None:
-            unit["Spread"] = NumericStatProcess(
-                unit["Spread"], Template.find("./Attack/Ranged/Spread")
-            )
-        if Template.find("./Attack/Ranged/RepeatTime") != None:
-            unit["RepeatRate"]["Ranged"] = NumericStatProcess(
-                unit["RepeatRate"]["Ranged"],
-                Template.find("./Attack/Ranged/RepeatTime"),
-            )
-        if Template.find("./Attack/Ranged/PrepareTime") != None:
-            unit["PrepRate"]["Ranged"] = NumericStatProcess(
-                unit["PrepRate"]["Ranged"],
-                Template.find("./Attack/Ranged/PrepareTime")
-            )
+        unit["Range"] = ExtractValue(Template.find("./Attack/Ranged/MaxRange"))
+        unit["Spread"] = ExtractValue(Template.find("./Attack/Ranged/Projectile/Spread"))
+        unit["RepeatRate"]["Ranged"] = ExtractValue(Template.find("./Attack/Ranged/RepeatTime"))
+        unit["PrepRate"]["Ranged"] = ExtractValue(Template.find("./Attack/Ranged/PrepareTime"))
+
         for atttype in AttackTypes:
-            if Template.find("./Attack/Ranged/Damage/" + atttype) != None:
-                unit["Attack"]["Ranged"][atttype] = NumericStatProcess(
-                    unit["Attack"]["Ranged"][atttype],
-                    Template.find("./Attack/Ranged/Damage/" + atttype),
-                )
+            unit["Attack"]["Ranged"][atttype] = ExtractValue(Template.find("./Attack/Ranged/Damage/" + atttype) )
+
         if Template.find("./Attack/Ranged/Bonuses") != None:
             for Bonus in Template.find("./Attack/Ranged/Bonuses"):
                 Against = []
@@ -356,23 +259,16 @@ def CalcUnit(UnitName, existingUnit=None):
             unit["Restricted"] += newClasses
 
     if Template.find("Resistance") != None:
-        # Resistance lives insdie a new node Entity, e.g.
-        # list(ET.parse('template_unit_cavalry.xml').find('Resistance/Entity/Damage'))
-
         for atttype in AttackTypes:
-            extracted_resistance = Template.find(
+            unit["Resistance"][atttype] = ExtractValue(Template.find(
                 "./Resistance/Entity/Damage/" + atttype
-            )
-            if extracted_resistance != None:
-                unit["Resistance"][atttype] = NumericStatProcess(
-                    unit["Resistance"][atttype], extracted_resistance
-                )
+            ))
+
+
 
     if Template.find("./UnitMotion") != None:
         if Template.find("./UnitMotion/WalkSpeed") != None:
-            unit["WalkSpeed"] = NumericStatProcess(
-                unit["WalkSpeed"], Template.find("./UnitMotion/WalkSpeed")
-            )
+            unit["WalkSpeed"] = ExtractValue(Template.find("./UnitMotion/WalkSpeed"))
 
     if Template.find("./Identity/VisibleClasses") != None:
         newClasses = Template.find("./Identity/VisibleClasses").text.split(" ")
@@ -398,7 +294,7 @@ def CalcUnit(UnitName, existingUnit=None):
 def WriteUnit(Name, UnitDict):
     ret = "<tr>"
     ret += '<td class="Sub">' + Name + "</td>"
-    ret += "<td>" + str(int(UnitDict["HP"])) + "</td>"
+    ret += "<td>" + str("%.0f" % float(UnitDict["HP"])) + "</td>"
     ret += "<td>" + str("%.0f" % float(UnitDict["BuildTime"])) + "</td>"
     ret += "<td>" + str("%.1f" % float(UnitDict["WalkSpeed"])) + "</td>"
 
@@ -517,6 +413,10 @@ def WriteColouredDiff(file, diff, isChanged):
 def computeUnitEfficiencyDiff(TemplatesByParent, Civs):
     efficiency_table = {}
     for parent in TemplatesByParent:
+        for template in [template for template in TemplatesByParent[parent] if template[1]["Civ"] not in Civs]:
+            print(template)
+
+        TemplatesByParent[parent] = [template for template in TemplatesByParent[parent] if template[1]["Civ"] in Civs]
         TemplatesByParent[parent].sort(key=lambda x: Civs.index(x[1]["Civ"]))
 
         for tp in TemplatesByParent[parent]:
@@ -614,7 +514,6 @@ def computeTemplates(LoadTemplatesIfParent):
                     break
             if found == True:
                 templates[template] = CalcUnit(template)
-                # f.write(WriteUnit(template, templates[template]))
     os.chdir(pwd)
     return templates
 
@@ -738,15 +637,15 @@ def writeHTML():
   <thead>
     <tr>
       <th> </th> <th>HP </th> <th>BuildTime </th> <th>Speed(walk) </th>
-          <th colspan="3">Resistance </th>
-          <th colspan="6">Attack (DPS) </th>
+          <th colspan="5">Resistance </th>
+          <th colspan="8">Attack (DPS) </th>
           <th colspan="5">Costs </th>
           <th>Efficient Against </th>
         </tr>
     <tr class="Label" style="border-bottom:1px black solid;">
       <th> </th> <th> </th> <th> </th> <th> </th>
-          <th>H </th> <th>P </th> <th>C </th>
-          <th>H </th> <th>P </th> <th>C </th>
+          <th>H </th> <th>P </th> <th>C </th><th>P </th><th>F </th>
+          <th>H </th> <th>P </th> <th>C </th><th>P </th><th>F </th>
       <th>Rate </th> <th>Range </th> <th>Spread (/100m) </th>
           <th>F </th> <th>W </th> <th>S </th> <th>M </th> <th>P </th>
           <th> </th>
@@ -780,15 +679,15 @@ differences between the two.
     <tr>
       <th> </th> <th> </th> <th>HP </th> <th>BuildTime </th>
           <th>Speed (/100m) </th>
-          <th colspan="3">Resistance </th>
-          <th colspan="6">Attack </th>
+          <th colspan="5">Resistance </th>
+          <th colspan="8">Attack </th>
           <th colspan="5">Costs </th>
           <th>Civ </th>
         </tr>
     <tr class="Label" style="border-bottom:1px black solid;">
       <th> </th> <th> </th> <th> </th> <th> </th> <th> </th>
-          <th>H </th> <th>P </th> <th>C </th>
-          <th>H </th> <th>P </th> <th>C </th>
+          <th>H </th> <th>P </th> <th>C </th><th>P </th><th>F </th>
+          <th>H </th> <th>P </th> <th>C </th><th>P </th><th>F </th>
       <th>Rate </th> <th>Range </th> <th>Spread </th>
           <th>F </th> <th>W </th> <th>S </th> <th>M </th> <th>P </th>
           <th> </th>
@@ -879,7 +778,7 @@ differences between the two.
                         ff, +1j + (mySpread - parentSpread), isChanged
                     )
                 else:
-                    ff.write("<td></td><td></td>")
+                    ff.write("<td><span style='color:rgb(200,200,200);'>-</span></td><td><span style='color:rgb(200,200,200);'>-</span></td>")
             else:
                 ff.write("<td></td><td></td><td></td><td></td><td></td><td></td>")
 
@@ -985,7 +884,6 @@ each loaded generic template.
     if AddSortingOverlay:
         f.write(
             """
-<script src="tablefilter/tablefilter.js"></script>
 <script data-config>
 var cast = function (val) {
 console.log(val);                       if (+val != val)
