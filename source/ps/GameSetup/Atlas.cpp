@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -74,6 +74,12 @@ bool ATLAS_RunIfOnCmdLine(const CmdLineArgs& args, bool force)
 {
 	if (force || args.Has("editor"))
 	{
+		if (args.Has("dumpSchema"))
+		{
+			LOGERROR("-dumpSchema and -editor arguments are incompatible: Atlas will not be started.");
+			return false;
+		}
+
 		ATLAS_Run(args, ATLAS_NO_GUI);
 		return true;
 	}
