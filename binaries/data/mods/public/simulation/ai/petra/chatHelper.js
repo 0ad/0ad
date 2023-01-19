@@ -225,9 +225,9 @@ PETRA.chatAnswerRequestDiplomacy = function(gameState, player, requestType, resp
 		"message": "/msg " + gameState.sharedScript.playersData[player].name + " " +
 			pickRandom(this.answerDiplomacyRequestMessages[requestType][response]),
 		"translateMessage": true,
-		"translateParameters": requiredTribute ? ["_amount_", "_resource_", "_player_"] : ["_player_"],
+		"translateParameters": requiredTribute ? { "_amount_": null, "_resource_": "withinSentence", "_player_": null } : ["_player_"],
 		"parameters": requiredTribute ?
-			{ "_amount_": requiredTribute.wanted, "_resource_": requiredTribute.type, "_player_": player } :
+			{ "_amount_": requiredTribute.wanted, "_resource_": Resources.GetNames()[requiredTribute.type], "_player_": player } :
 			{ "_player_": player }
 	});
 };
