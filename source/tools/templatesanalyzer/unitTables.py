@@ -884,6 +884,7 @@ each loaded generic template.
     if AddSortingOverlay:
         f.write(
             """
+<script src="tablefilter/tablefilter.js"></script>
 <script data-config>
 var cast = function (val) {
 console.log(val);                       if (+val != val)
