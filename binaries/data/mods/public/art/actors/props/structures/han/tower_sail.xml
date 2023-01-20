@@ -6,8 +6,8 @@
       <mesh>props/han_tower_sail.dae</mesh>
       <textures>
         <texture file="props/han_sail_square.png" name="baseTex"/>
-        <texture file="default_norm.png" name="normTex"/>
-        <texture file="null_black.dds" name="specTex"/>
+        <texture file="props/han_sail_square_norm.png" name="normTex"/>
+        <texture file="props/han_sail_square_spec.png" name="specTex"/>
       </textures>
     </variant>
   </group>
