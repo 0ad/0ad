@@ -114,7 +114,7 @@ CXXFLAGS="$CXXFLAGS -arch $ARCH"
 LDFLAGS="$LDFLAGS -arch $ARCH"
 
 # CMake doesn't seem to pick up on architecture with CFLAGS only
-CMAKE_FLAGS="-DCMAKE_OSX_ARCHITECTURES=$ARCH"
+CMAKE_FLAGS="-DCMAKE_OSX_ARCHITECTURES=$ARCH -DCMAKE_OSX_DEPLOYMENT_TARGET=$MIN_OSX_VERSION"
 
 JOBS=${JOBS:="-j2"}
 
@@ -1027,7 +1027,7 @@ then
       -DFMT_TEST=False \
       -DFMT_DOC=False \
       -DCMAKE_INSTALL_PREFIX="$INSTALL_DIR" \
-      "$CMAKE_FLAGS" \
+      $CMAKE_FLAGS \
     && make fmt ${JOBS} && make install) || die "fmt build failed"
 
   popd
@@ -1065,7 +1065,7 @@ then
   rm -f .already-built
 fi
 
-CXXFLAGS="$CXXFLAGS" CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" CMAKE_FLAGS="$CMAKE_FLAGS" JOBS="$JOBS" ./build.sh || die "Error building NVTT"
+CXXFLAGS="$CXXFLAGS" CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" CMAKE_FLAGS=$CMAKE_FLAGS JOBS="$JOBS" ./build.sh || die "Error building NVTT"
 
 popd > /dev/null
 

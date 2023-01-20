@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -73,8 +73,9 @@ extern const std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags);
 extern void MountMods(const Paths& paths, const std::vector<CStr>& mods);
 
 /**
- * Returns true if successful, false if mods changed and restart_engine was called.
- * In the latter case the caller should call Shutdown() with SHUTDOWN_FROM_CONFIG.
+ * Returns true if successful, false if Init is aborted early (for instance if
+ * mods changed, or if we are using -dumpSchema).
+ * If false is returned, the caller should call Shutdown() with SHUTDOWN_FROM_CONFIG.
  */
 extern bool Init(const CmdLineArgs& args, int flags);
 extern void InitInput();
