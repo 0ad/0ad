@@ -22,9 +22,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-01-13 08:09+0000\n"
+"POT-Creation-Date: 2023-01-16 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
-"Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022\n"
+"Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022-2023\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -496,7 +496,7 @@ msgstr "宰殺以採集肉類食物。"
 
 #: simulation/templates/template_unit_fauna_herd_domestic.xml:5
 msgid ""
-"Kill to gather meat for quick food, or garrison in a Corral for a slow food "
+"Kill to gather meat for quick food or garrison in a Corral for a slow food "
 "trickle."
 msgstr "宰殺來採集現成的食物，或駐守到畜欄來產生緩慢的食物細流。"
 
@@ -733,7 +733,7 @@ msgstr "重型軍艦"
 #: simulation/templates/template_unit_ship_warship_heavy.xml:54
 msgid ""
 "Garrison units for transport. Garrison Stone Throwers to increase firepower."
-msgstr ""
+msgstr "進駐單位以運輸。進駐投石機可提升火力。"
 
 #: simulation/templates/template_unit_ship_warship_heavy.xml:55
 msgid "Heavy"
@@ -749,7 +749,7 @@ msgstr "中型軍艦"
 
 #: simulation/templates/template_unit_ship_warship_medium.xml:25
 msgid "Medium"
-msgstr "中"
+msgstr "中型"
 
 #: simulation/templates/template_unit_siege.xml:16
 #: simulation/templates/template_unit_siege.xml:17
@@ -2725,7 +2725,7 @@ msgstr "在您與盟友的市集間貿易資源。波斯人擁有 +25% 的陸地
 
 #: simulation/templates/units/pirates/ship_bireme.xml:9
 msgid "Cilician Pirate Ship"
-msgstr ""
+msgstr "奇里乞亞海盜船"
 
 #: simulation/templates/units/plane.xml:5
 msgctxt "Name of an attack of a World War II fighter plane."
@@ -3003,12 +3003,12 @@ msgstr "Triārius"
 
 #: simulation/templates/units/rome/infantry_spearman_b.xml:25
 msgid "Elite rank Spearmen can be promoted to champion Centurions."
-msgstr ""
+msgstr "菁英等級的矛兵可晉升為鬥士百夫長。"
 
 #: simulation/templates/units/rome/infantry_spearman_e.xml:10
 #: simulation/templates/units/rome/infantry_swordsman_e.xml:10
 msgid "Give this combat veteran the rank of Centurion."
-msgstr ""
+msgstr "授予這位戰鬥老兵百夫長的軍銜。"
 
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:19
 msgid "Roman Swordsman"
@@ -3020,7 +3020,7 @@ msgstr "Hastātus"
 
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:22
 msgid "Elite rank Swordsmen can be promoted to champion Centurions."
-msgstr ""
+msgstr "菁英等級的劍兵可晉升為鬥士百夫長。"
 
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:20
 msgid "Servus"

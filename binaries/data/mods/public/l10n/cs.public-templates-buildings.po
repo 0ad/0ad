@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-01-06 08:09+0000\n"
+"POT-Creation-Date: 2023-01-16 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Tomáš Matýs <thommathys@gmail.com>, 2018,2021-2022\n"
 "Language-Team: Czech (http://www.transifex.com/wildfire-games/0ad/language/cs/)\n"
@@ -1522,22 +1522,22 @@ msgstr "Arcus Triumphālis"
 msgid "TriumphalArch"
 msgstr "Triumfální oblouk"
 
-#: simulation/templates/structures/rome/army_camp.xml:72
+#: simulation/templates/structures/rome/army_camp.xml:71
 msgid "Army Camp"
 msgstr "Vojenský tábor"
 
-#: simulation/templates/structures/rome/army_camp.xml:73
+#: simulation/templates/structures/rome/army_camp.xml:72
 msgid "Castra"
 msgstr "Castra"
 
-#: simulation/templates/structures/rome/army_camp.xml:74
+#: simulation/templates/structures/rome/army_camp.xml:73
 msgid ""
 "Build in neutral or enemy territory. Train Advanced Melee Infantry. "
 "Construct Rams. Garrison Soldiers for additional arrows."
 msgstr "Budujte na neutrálním nebo nepřátelském území. Vycvičte pokročilou pěchotu na blízko. Postavte beranidla. Umístěte posádku vojáků pro další šípy."
 
 #: simulation/templates/structures/rome/army_camp.xml:31
-#: simulation/templates/structures/rome/army_camp.xml:76
+#: simulation/templates/structures/rome/army_camp.xml:75
 msgid "ArmyCamp"
 msgstr "Vojenský tábor"
 
@@ -1944,6 +1944,7 @@ msgstr "Kolonáda"
 #: simulation/templates/structures/han/ministry.xml:39
 #: simulation/templates/structures/iber/monument.xml:34
 #: simulation/templates/structures/maur/elephant_stable.xml:7
+#: simulation/templates/structures/rome/army_camp.xml:75
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_economic_market.xml:28
@@ -2147,7 +2148,6 @@ msgstr "Vycvičte elitní pěší kušníky/kušiníky. Stavějte obléhací str
 #: simulation/templates/structures/han/civil_centre_court.xml:19
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
-#: simulation/templates/structures/rome/army_camp.xml:76
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stable.xml:29
@@ -2254,10 +2254,8 @@ msgid "Corral"
 msgstr "Ohrada"
 
 #: simulation/templates/template_structure_resource_corral.xml:31
-msgid ""
-"Raise Domestic Animals for immediate slaughter, or garrison them instead to "
-"gain a free trickle of food."
-msgstr ""
+msgid "Raise Domestic Animals for food."
+msgstr "Chov domácích zvířat pro jídlo."
 
 #: simulation/templates/template_structure_resource_field.xml:18
 #: simulation/templates/template_structure_resource_field.xml:20
