@@ -192,25 +192,33 @@ SAvailablePhysicalDevice MakeAvailablePhysicalDevice(
 	availablePhysicalDevice.hostTotalMemory =
 		GetHostTotalMemory(availablePhysicalDevice.memoryProperties);
 
-	VkPhysicalDeviceDescriptorIndexingPropertiesEXT descriptorIndexingProperties{};
-	descriptorIndexingProperties.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES_EXT;
+	if (hasExtension(VK_EXT_DESCRIPTOR_INDEXING_EXTENSION_NAME))
+	{
+		VkPhysicalDeviceDescriptorIndexingPropertiesEXT descriptorIndexingProperties{};
+		descriptorIndexingProperties.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_PROPERTIES_EXT;
 
-	VkPhysicalDeviceProperties2 deviesProperties2{};
-	deviesProperties2.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2;
-	deviesProperties2.pNext = &descriptorIndexingProperties;
-	vkGetPhysicalDeviceProperties2(availablePhysicalDevice.device, &deviesProperties2);
-	availablePhysicalDevice.properties = deviesProperties2.properties;
-	availablePhysicalDevice.descriptorIndexingProperties = descriptorIndexingProperties;
+		VkPhysicalDeviceProperties2 devicesProperties2{};
+		devicesProperties2.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PROPERTIES_2;
+		devicesProperties2.pNext = &descriptorIndexingProperties;
+		vkGetPhysicalDeviceProperties2(availablePhysicalDevice.device, &devicesProperties2);
+		availablePhysicalDevice.properties = devicesProperties2.properties;
+		availablePhysicalDevice.descriptorIndexingProperties = descriptorIndexingProperties;
 
-	VkPhysicalDeviceDescriptorIndexingFeaturesEXT descriptorIndexingFeatures{};
-	descriptorIndexingFeatures.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES_EXT;
+		VkPhysicalDeviceDescriptorIndexingFeaturesEXT descriptorIndexingFeatures{};
+		descriptorIndexingFeatures.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES_EXT;
 
-	VkPhysicalDeviceFeatures2 deviceFeatures2{};
-	deviceFeatures2.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2;
-	deviceFeatures2.pNext = &descriptorIndexingFeatures;
-	vkGetPhysicalDeviceFeatures2(availablePhysicalDevice.device, &deviceFeatures2);
-	availablePhysicalDevice.features = deviceFeatures2.features;
-	availablePhysicalDevice.descriptorIndexingFeatures = descriptorIndexingFeatures;
+		VkPhysicalDeviceFeatures2 deviceFeatures2{};
+		deviceFeatures2.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_FEATURES_2;
+		deviceFeatures2.pNext = &descriptorIndexingFeatures;
+		vkGetPhysicalDeviceFeatures2(availablePhysicalDevice.device, &deviceFeatures2);
+		availablePhysicalDevice.features = deviceFeatures2.features;
+		availablePhysicalDevice.descriptorIndexingFeatures = descriptorIndexingFeatures;
+	}
+	else
+	{
+		vkGetPhysicalDeviceProperties(availablePhysicalDevice.device, &availablePhysicalDevice.properties);
+		vkGetPhysicalDeviceFeatures(availablePhysicalDevice.device, &availablePhysicalDevice.features);
+	}
 
 	uint32_t queueFamilyCount = 0;
 	vkGetPhysicalDeviceQueueFamilyProperties(availablePhysicalDevice.device, &queueFamilyCount, nullptr);
