@@ -21,6 +21,7 @@
 
 #include "lib/external_libraries/libsdl.h"
 #include "lib/hash.h"
+#include "lib/sysdep/os.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
@@ -411,11 +412,18 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window)
 		return nullptr;
 	}
 
+#if !OS_MACOSX
 	auto hasDeviceExtension = [&extensions = choosenDevice.extensions](const char* name) -> bool
 	{
 		return std::find(extensions.begin(), extensions.end(), name) != extensions.end();
 	};
 	const bool hasDescriptorIndexing = hasDeviceExtension(VK_EXT_DESCRIPTOR_INDEXING_EXTENSION_NAME);
+#else
+	// Metal on macOS doesn't support combined samplers natively. Currently
+	// they break compiling SPIR-V shaders with descriptor indexing into MTL
+	// shaders when using MoltenVK.
+	const bool hasDescriptorIndexing = false;
+#endif
 	const bool hasNeededDescriptorIndexingFeatures =
 		hasDescriptorIndexing &&
 		choosenDevice.descriptorIndexingProperties.maxUpdateAfterBindDescriptorsInAllPools >= 65536 &&
