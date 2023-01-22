@@ -397,6 +397,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 			// SDL might fail to create a window in case of missing a Vulkan driver.
 			if (m_Backend == Renderer::Backend::Backend::VULKAN)
 			{
+				LOGWARNING("Failed to create a Vulkan window: %s", SDL_GetError());
 				DowngradeBackendSettingAfterCreationFailure();
 				return SetVideoMode(w, h, bpp, fullscreen);
 			}
