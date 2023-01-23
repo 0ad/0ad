@@ -90,7 +90,7 @@ RequirementsHelper.prototype.AreRequirementsMet = function(template, playerID)
 		return true;
 
 	const cmpTechManager = QueryPlayerIDInterface(playerID, IID_TechnologyManager);
-	return this.AllRequirementsMet(template, cmpTechManager);
+	return cmpTechManager && this.AllRequirementsMet(template, cmpTechManager);
 };
 
 /**
