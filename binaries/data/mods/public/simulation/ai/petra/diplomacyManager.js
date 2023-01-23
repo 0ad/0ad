@@ -181,6 +181,12 @@ PETRA.DiplomacyManager.prototype.checkEvents = function(gameState, events)
 	if (events.DiplomacyChanged.length || events.PlayerDefeated.length || events.CeasefireEnded.length)
 		this.lastManStandingCheck(gameState);
 
+	for (let evt of events.PlayerDefeated)
+	{
+		this.receivedDiplomacyRequests.delete(evt.playerId);
+		this.sentDiplomacyRequests.delete(evt.playerId);
+	}
+
 	for (let evt of events.DiplomacyChanged)
 	{
 		if (evt.otherPlayer !== PlayerID)
