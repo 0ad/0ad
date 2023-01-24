@@ -13,6 +13,11 @@ function ChangeEntityTemplate(oldEnt, newTemplate)
 
 	Engine.ProfileStart("Transform");
 
+	const cmpVisual = Engine.QueryInterface(oldEnt, IID_Visual);
+	const cmpNewVisual = Engine.QueryInterface(newEnt, IID_Visual);
+	if (cmpVisual && cmpNewVisual)
+		cmpNewVisual.SetActorSeed(cmpVisual.GetActorSeed());
+
 	var cmpPosition = Engine.QueryInterface(oldEnt, IID_Position);
 	var cmpNewPosition = Engine.QueryInterface(newEnt, IID_Position);
 	if (cmpPosition && cmpNewPosition)
