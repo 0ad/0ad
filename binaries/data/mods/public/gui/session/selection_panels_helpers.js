@@ -98,7 +98,7 @@ function formatLimitString(trainEntLimit, trainEntCount, trainEntLimitChangers)
 	});
 
 	if (trainEntCount >= trainEntLimit)
-		text = coloredText(text, "red");
+		text = objectionFont(text);
 
 	for (var c in trainEntLimitChangers)
 	{
@@ -176,7 +176,7 @@ function formatMatchLimitString(matchEntLimit, matchEntCount, type)
 			});
 	}
 
-	return passedLimit ? coloredText(text, "red") : text;
+	return passedLimit ? objectionFont(text) : text;
 }
 
 /**

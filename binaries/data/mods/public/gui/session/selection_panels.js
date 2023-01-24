@@ -282,7 +282,7 @@ g_SelectionPanels.Formation = {
 				translate("Right-click to set this as the default formation."));
 
 		if (!formationOk && formationInfo.tooltip)
-			tooltip += "\n" + coloredText(translate(formationInfo.tooltip), "red");
+			tooltip += "\n" + objectionFont(translate(formationInfo.tooltip));
 		data.button.tooltip = tooltip;
 
 		data.button.enabled = formationOk && controlsPlayer(data.player);
@@ -558,7 +558,7 @@ g_SelectionPanels.Queue = {
 			tooltips.push(translate("The auto-queue will try to train this item later."));
 		if (queuedItem.neededSlots)
 		{
-			tooltips.push(coloredText(translate("Insufficient population capacity:"), "red"));
+			tooltips.push(objectionFont(translate("Insufficient population capacity:")));
 			tooltips.push(sprintf(translate("%(population)s %(neededSlots)s"), {
 				"population": resourceIcon("population"),
 				"neededSlots": queuedItem.neededSlots
@@ -791,7 +791,7 @@ g_SelectionPanels.Research = {
 						"entityCounts": entityCounts.join(translateWithContext("Separator for a list of entity counts", ", "))
 					});
 				}
-				tooltips.push(tip);
+				tooltips.push(objectionFont(tip));
 			}
 			tooltips.push(getNeededResourcesTooltip(neededResources));
 			button.tooltip = tooltips.filter(tip => tip).join("\n");
@@ -840,7 +840,7 @@ g_SelectionPanels.Research = {
 			{
 				button.enabled = false;
 				modifier += "color:0 0 0 127:grayscale:";
-				button.tooltip += "\n" + coloredText(translate("Cannot research while upgrading."), "red");
+				button.tooltip += "\n" + objectionFont(translate("Cannot research while upgrading."));
 
 			}
 
@@ -1070,7 +1070,7 @@ g_SelectionPanels.Training = {
 		{
 			data.button.enabled = false;
 			modifier = "color:0 0 0 127:grayscale:";
-			data.button.tooltip += "\n" + coloredText(translate("Cannot train while upgrading."), "red");
+			data.button.tooltip += "\n" + objectionFont(translate("Cannot train while upgrading."));
 		}
 
 		if (template.icon)
@@ -1208,10 +1208,10 @@ g_SelectionPanels.Upgrade = {
 		}
 		else
 		{
-			tooltip = coloredText(translatePlural(
+			tooltip = objectionFont(translatePlural(
 				"Cannot upgrade when the entity is training, researching or already upgrading.",
 				"Cannot upgrade when all entities are training, researching or already upgrading.",
-				data.unitEntStates.length), "red");
+				data.unitEntStates.length));
 
 			data.button.onPress = function() {};
 
