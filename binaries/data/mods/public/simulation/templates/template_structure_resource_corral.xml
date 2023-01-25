@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_resource">
-  <Auras datatype="tokens">
-    structures/corral_garrison
-  </Auras>
   <Cost>
     <BuildTime>50</BuildTime>
     <Resources>
@@ -28,13 +25,19 @@
   <Identity>
     <GenericName>Corral</GenericName>
     <SelectionGroupName>template_structure_resource_corral</SelectionGroupName>
-    <Tooltip>Raise Domestic Animals for food.</Tooltip>
+    <Tooltip>Raise Domestic Animals for food. Garrison animals to gain a trickle of food.</Tooltip>
     <VisibleClasses datatype="tokens">Economic Village Corral</VisibleClasses>
     <Icon>structures/corral.png</Icon>
     <Requirements>
       <Techs>phase_village</Techs>
     </Requirements>
   </Identity>
+  <ResourceTrickle>
+    <Rates>
+      <food>0</food>
+    </Rates>
+    <Interval>5000</Interval>
+  </ResourceTrickle>
   <Loot>
     <wood>20</wood>
   </Loot>
