@@ -2,6 +2,7 @@ var g_TooltipTextFormats = {
 	"unit": { "font": "sans-10", "color": "orange" },
 	"header": { "font": "sans-bold-13" },
 	"body": { "font": "sans-13" },
+	"objection": { "font": "sans-bold-13", "color": "red" },
 	"comma": { "font": "sans-12" },
 	"namePrimaryBig": { "font": "sans-bold-16" },
 	"namePrimarySmall": { "font": "sans-bold-12" },
@@ -79,6 +80,11 @@ function getLocalizedResourceAmounts(resources)
 function bodyFont(text)
 {
 	return setStringTags(text, g_TooltipTextFormats.body);
+}
+
+function objectionFont(text)
+{
+	return setStringTags(text, g_TooltipTextFormats.objection);
 }
 
 function headerFont(text)
@@ -963,10 +969,10 @@ function getRequirementsTooltip(enabled, requirements, civ)
 
 	// Simple requirements (one tech) can be translated on the fly.
 	if ("Techs" in requirements && !requirements.Techs.includes(" "))
-		return sprintf(translate("Requires %(technology)s"), {
+		return objectionFont(sprintf(translate("Requires %(technology)s"), {
 			"technology": getEntityNames(GetTechnologyData(requirements.Techs, civ))
-		});
-	return translate(requirements.Tooltip);
+		}));
+	return objectionFont(translate(requirements.Tooltip));
 }
 
 /**
@@ -997,10 +1003,8 @@ function getNeededResourcesTooltip(resources)
 			"component": '[font="sans-12"]' + resourceIcon(resource) + '[/font]',
 			"cost": Math.ceil(resources[resource])
 		}));
-	return coloredText(
-		'[font="sans-bold-13"]' + translate("Insufficient resources:") + '[/font]',
-		"red") + " " +
-		formatted.join("  ");
+	return objectionFont(translate("Insufficient resources:")) +
+		" " + formatted.join("  ");
 }
 
 function getSpeedTooltip(template)
