@@ -192,15 +192,19 @@ std::unique_ptr<CTexture> CTexture::Create(
 		imageViewCreateInfo.components.a = VK_COMPONENT_SWIZZLE_IDENTITY;
 	}
 
-	imageViewCreateInfo.subresourceRange.aspectMask = texture->m_AttachmentImageAspectMask;
-	ENSURE_VK_SUCCESS(vkCreateImageView(
-		device->GetVkDevice(), &imageViewCreateInfo, nullptr, &texture->m_AttachmentImageView));
-	imageViewCreateInfo.subresourceRange.aspectMask = texture->m_SamplerImageAspectMask;
-	ENSURE_VK_SUCCESS(vkCreateImageView(
-		device->GetVkDevice(), &imageViewCreateInfo, nullptr, &texture->m_SamplerImageView));
+	if ((usage & Usage::COLOR_ATTACHMENT) || (usage & Usage::DEPTH_STENCIL_ATTACHMENT))
+	{
+		imageViewCreateInfo.subresourceRange.aspectMask = texture->m_AttachmentImageAspectMask;
+		ENSURE_VK_SUCCESS(vkCreateImageView(
+			device->GetVkDevice(), &imageViewCreateInfo, nullptr, &texture->m_AttachmentImageView));
+	}
 
 	if (usage & Usage::SAMPLED)
 	{
+		imageViewCreateInfo.subresourceRange.aspectMask = texture->m_SamplerImageAspectMask;
+		ENSURE_VK_SUCCESS(vkCreateImageView(
+			device->GetVkDevice(), &imageViewCreateInfo, nullptr, &texture->m_SamplerImageView));
+
 		texture->m_Sampler = device->GetSamplerManager().GetOrCreateSampler(
 			defaultSamplerDesc);
 		texture->m_IsCompareEnabled = defaultSamplerDesc.compareEnabled;
