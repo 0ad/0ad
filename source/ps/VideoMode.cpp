@@ -29,6 +29,9 @@
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/CStr.h"
+#if OS_MACOSX && SDL_VERSION_ATLEAST(2, 0, 6)
+#include "ps/DllLoader.h"
+#endif
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
 #include "ps/GameSetup/Config.h"
@@ -40,6 +43,11 @@
 #include "renderer/Renderer.h"
 
 #include <string_view>
+
+#if OS_MACOSX && SDL_VERSION_ATLEAST(2, 0, 6)
+#include <SDL_vulkan.h>
+#include <stdlib.h>
+#endif
 
 namespace
 {
@@ -390,6 +398,23 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 		else if (m_Backend == Renderer::Backend::Backend::VULKAN)
 			flags |= SDL_WINDOW_VULKAN;
 		m_WindowedX = m_WindowedY = SDL_WINDOWPOS_CENTERED_DISPLAY(m_ConfigDisplay);
+
+#if OS_MACOSX && SDL_VERSION_ATLEAST(2, 0, 6)
+		if (m_Backend == Renderer::Backend::Backend::VULKAN)
+		{
+			// MoltenVK - enable full component swizzling support.
+			setenv("MVK_CONFIG_FULL_IMAGE_VIEW_SWIZZLE", "1", 1);
+			CStr fullPathToVulkanLibrary = DllLoader::GenerateFilename("MoltenVK", "", ".dylib");
+			if (SDL_Vulkan_LoadLibrary(fullPathToVulkanLibrary.c_str()) != 0)
+			{
+				LOGWARNING("Failed to load %s.", fullPathToVulkanLibrary.c_str());
+				DowngradeBackendSettingAfterCreationFailure();
+				return SetVideoMode(w, h, bpp, fullscreen);
+			}
+			else
+				LOGMESSAGE("Loaded %s.", fullPathToVulkanLibrary.c_str());
+		}
+#endif
 
 		m_Window = SDL_CreateWindow(main_window_name, m_WindowedX, m_WindowedY, w, h, flags);
 		if (!m_Window)

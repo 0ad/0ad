@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,7 +21,6 @@
 
 #include "lib/timer.h"
 #include "lib/posix/posix_dlfcn.h"
-#include "ps/CStr.h"
 
 #if OS_MACOSX
 # include "lib/sysdep/os/osx/osx_bundle.h"
@@ -69,7 +68,7 @@ static CStr extensions[] = {
 // the naming/location convention above - it'll need to be changed if we want
 // to support other DLLs.)
 
-static CStr GenerateFilename(const CStr& name, const CStr& suffix, const CStr& extension)
+CStr DllLoader::GenerateFilename(const CStr& name, const CStr& suffix, const CStr& extension)
 {
 	CStr n;
 
@@ -114,7 +113,7 @@ static void* LoadAnyVariant(const CStr& name, std::stringstream& errors)
 	{
 		for (size_t idxExtension = 0; idxExtension < ARRAY_SIZE(extensions); idxExtension++)
 		{
-			CStr filename = GenerateFilename(name, suffixes[idxSuffix], extensions[idxExtension]);
+			CStr filename = DllLoader::GenerateFilename(name, suffixes[idxSuffix], extensions[idxExtension]);
 
 			// we don't really care when relocations take place, but one of
 			// {RTLD_NOW, RTLD_LAZY} must be specified. go with the former because

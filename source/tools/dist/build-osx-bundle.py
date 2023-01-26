@@ -60,6 +60,7 @@ shutil.copy("binaries/system/pyrogenesis", BUNDLE_BIN)
 print("Copying libs")
 shutil.copy("binaries/system/libAtlasUI.dylib", BUNDLE_FRAMEWORKS)
 shutil.copy("binaries/system/libCollada.dylib", BUNDLE_FRAMEWORKS)
+shutil.copy("binaries/system/libMoltenVK.dylib", BUNDLE_FRAMEWORKS)
 
 if not args.dev:
     print("Copying archived game data from archives/")

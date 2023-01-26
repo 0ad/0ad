@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
 
 #include "ps/Errors.h"
 #include "ps/CLogger.h"
+#include "ps/CStr.h"
 
 ERROR_GROUP(DllLoader);
 ERROR_TYPE(DllLoader, DllNotLoaded);
@@ -75,6 +76,8 @@ public:
 	 * Override the build-time setting of the directory to search for libraries.
 	 */
 	static void OverrideLibdir(const char* libdir);
+
+	static CStr GenerateFilename(const CStr& name, const CStr& suffix, const CStr& extension);
 
 private:
 	// Typeless version - the public LoadSymbol hides the slightly ugly

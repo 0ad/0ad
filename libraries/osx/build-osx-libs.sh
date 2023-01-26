@@ -48,6 +48,7 @@ ENET_VERSION="enet-1.3.17"
 MINIUPNPC_VERSION="miniupnpc-2.2.2"
 SODIUM_VERSION="libsodium-1.0.18"
 FMT_VERSION="7.1.3"
+MOLTENVK_VERSION="1.2.2"
 # --------------------------------------------------------------
 # Bundled with the game:
 # * SpiderMonkey
@@ -1034,6 +1035,33 @@ then
   popd
   cp -f lib/pkgconfig/* $PC_PATH
   echo "$FMT_VERSION" > .already-built
+else
+  already_built
+fi
+popd > /dev/null
+
+# --------------------------------------------------------------
+echo -e "Building Molten VK..."
+LIB_DIRECTORY="MoltenVK-$MOLTENVK_VERSION"
+LIB_ARCHIVE="MoltenVK-$MOLTENVK_VERSION.tar.gz"
+LIB_URL="https://releases.wildfiregames.com/libs/"
+
+mkdir -p "molten-vk"
+pushd "molten-vk" > /dev/null
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$MOLTENVK_VERSION" ]]
+then
+  INSTALL_DIR="../../../../binaries/system/"
+  rm -f .already-built
+  download_lib $LIB_URL $LIB_ARCHIVE
+  rm -rf "$LIB_DIRECTORY"
+  tar -xf $LIB_ARCHIVE
+  pushd $LIB_DIRECTORY
+  # The CI cannot build MoltenVK so we provide prebuild binaries instead.
+  # Use mv instead of copy to preserve binary signature integrity. See:
+  # https://developer.apple.com/forums/thread/130313?answerId=410541022#410541022
+  mv dylib/libMoltenVK.dylib $INSTALL_DIR
+  popd > /dev/null
+  echo "$MOLTENVK_VERSION" > .already-built
 else
   already_built
 fi
