@@ -801,6 +801,9 @@ bool CDevice::IsTextureFormatSupported(const Format format) const
 	case Format::UNDEFINED:
 		return false;
 
+	case Format::R8G8B8_UNORM:
+		return false;
+
 	case Format::BC1_RGB_UNORM: FALLTHROUGH;
 	case Format::BC1_RGBA_UNORM: FALLTHROUGH;
 	case Format::BC2_UNORM: FALLTHROUGH;
