@@ -11,6 +11,7 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_SOFTWAREVERSION )
 
 #ifndef SOFTWAREVERSION_H__
 #define SOFTWAREVERSION_H__
@@ -99,3 +100,5 @@ namespace gloox
 }
 
 #endif// SOFTWAREVERSION_H__
+
+#endif // GLOOX_MINIMAL

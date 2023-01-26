@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_BYTESTREAM )
+
 #ifndef VCARDMANAGER_H__
 #define VCARDMANAGER_H__
 
@@ -154,3 +156,5 @@ namespace gloox
 }
 
 #endif // VCARDMANAGER_H__
+
+#endif // GLOOX_MINIMAL

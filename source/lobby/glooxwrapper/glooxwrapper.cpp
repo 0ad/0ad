@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -209,7 +209,11 @@ public:
 		m_Wrapped->handleAlreadyRegistered(fromWrapped);
 	}
 
+#if OS_WIN
+	virtual void handleRegistrationResult(const gloox::JID& from, gloox::RegistrationResult regResult, const gloox::Error* UNUSED(error))
+#else
 	virtual void handleRegistrationResult(const gloox::JID& from, gloox::RegistrationResult regResult)
+#endif
 	{
 		glooxwrapper::JID fromWrapped(from);
 		m_Wrapped->handleRegistrationResult(fromWrapped, regResult);
@@ -691,8 +695,10 @@ bool glooxwrapper::Registration::createAccount(int fields, const glooxwrapper::R
 	COPY(phone);
 	COPY(url);
 	COPY(date);
+#if !OS_WIN
 	COPY(misc);
 	COPY(text);
+#endif
 #undef COPY
 	return m_Wrapped->createAccount(fields, valuesUnwrapped);
 }

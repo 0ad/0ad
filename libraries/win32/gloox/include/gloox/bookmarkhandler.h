@@ -11,6 +11,7 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_BOOKMARKSTORAGE )
 
 #ifndef BOOKMARKHANDLER_H__
 #define BOOKMARKHANDLER_H__
@@ -80,3 +81,5 @@ namespace gloox
 }
 
 #endif // BOOKMARKHANDLER_H__
+
+#endif // GLOOX_MINIMAL

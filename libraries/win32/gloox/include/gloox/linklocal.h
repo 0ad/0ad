@@ -10,6 +10,9 @@
   This software is distributed without any warranty.
 */
 
+
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_LINKLOCAL )
+
 #ifndef LINKLOCAL_H__
 #define LINKLOCAL_H__
 
@@ -77,3 +80,5 @@ namespace gloox
 #endif // HAVE_MDNS
 
 #endif // LINKLOCAL_H__
+
+#endif // GLOOX_MINIMAL

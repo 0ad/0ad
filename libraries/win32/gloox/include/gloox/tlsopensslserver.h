@@ -49,8 +49,9 @@ namespace gloox
     private:
       // reimplemented from OpenSSLBase
       virtual bool privateInit();
-      // reimplemented from OpenSSLBase
-      virtual bool setType();
+
+      // reimplemented from TLSOpenSSLBase
+      virtual bool createCTX();
 
       // reimplemented from OpenSSLBase
       virtual int handshakeFunction();

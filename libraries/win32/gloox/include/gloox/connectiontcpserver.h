@@ -11,6 +11,9 @@
 */
 
 
+
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_CONNECTIONTCPSERVER )
+
 #ifndef CONNECTIONTCPSERVER_H__
 #define CONNECTIONTCPSERVER_H__
 
@@ -60,7 +63,7 @@ namespace gloox
        * constructor.
        */
       // reimplemented from ConnectionBase
-      virtual ConnectionError connect();
+      virtual ConnectionError connect( int timeout = -1 );
 
       // reimplemented from ConnectionBase
       virtual ConnectionBase* newInstance() const;
@@ -75,3 +78,5 @@ namespace gloox
 }
 
 #endif // CONNECTIONTCPSERVER_H__
+
+#endif // GLOOX_MINIMAL

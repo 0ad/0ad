@@ -14,12 +14,10 @@
 #ifndef CONFIG_H__
 #define CONFIG_H__
 
-#if ( defined _WIN32 ) && !defined( __SYMBIAN32__ )
+#if ( defined _WIN32 )
 # include "../config.h.win"
 #elif defined( _WIN32_WCE )
 # include "../config.h.win"
-#elif defined( __SYMBIAN32__ )
-# include "../config.h.symbian"
 #else
 # include "config.h.unix" // run ./configure to create config.h.unix
 #endif

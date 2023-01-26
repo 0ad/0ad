@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_JINGLE )
+
 #ifndef JINGLEPLUGINFACTORY_H__
 #define JINGLEPLUGINFACTORY_H__
 
@@ -80,3 +82,5 @@ namespace gloox
 }
 
 #endif // JINGLEPLUGINFACTORY_H__
+
+#endif // GLOOX_MINIMAL

@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_PUBSUB )
+
 #ifndef PUBSUBITEM_H__
 #define PUBSUBITEM_H__
 
@@ -100,3 +102,5 @@ namespace gloox
 }
 
 #endif // PUBSUBITEM_H__
+
+#endif // GLOOX_MINIMAL

@@ -11,6 +11,7 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_ADHOC )
 
 #ifndef ADHOCCOMMANDPROVIDER_H__
 #define ADHOCCOMMANDPROVIDER_H__
@@ -77,3 +78,5 @@ namespace gloox
 }
 
 #endif // ADHOCCOMMANDPROVIDER_H__
+
+#endif // GLOOX_MINIMAL

@@ -77,6 +77,14 @@ namespace gloox
        */
       void feed( const std::string& data );
 
+      /**
+       * Static function to quickly get an SHA1 hash in hex.
+       * @param data The data to hash.
+       * @return The hash in hex.
+       * @since 1.1
+       */
+      static const std::string hex( const std::string& data );
+
     private:
       void process();
       void pad();

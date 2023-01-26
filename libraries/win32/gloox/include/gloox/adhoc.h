@@ -11,6 +11,7 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_ADHOC )
 
 #ifndef ADHOC_H__
 #define ADHOC_H__
@@ -309,13 +310,6 @@ namespace gloox
           /**
            * Returns the command's embedded AdhocPlugin (e.g. DataForm).
            * @return The command's embedded AdhocPlugin (e.g. DataForm). May be 0.
-           * @note This will be removed in 1.1. Use plugin() instead.
-           */
-          GLOOX_DEPRECATED const AdhocPlugin* form() const { return m_plugin; }
-
-          /**
-           * Returns the command's embedded AdhocPlugin (e.g. DataForm).
-           * @return The command's embedded AdhocPlugin (e.g. DataForm). May be 0.
            */
           const AdhocPlugin* plugin() const { return m_plugin; }
 
@@ -498,3 +492,5 @@ namespace gloox
 }
 
 #endif // ADHOC_H__
+
+#endif // GLOOX_MINIMAL

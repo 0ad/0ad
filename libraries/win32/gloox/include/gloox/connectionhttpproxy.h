@@ -11,6 +11,9 @@
 */
 
 
+
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_CONNECTIONHTTPPROXY )
+
 #ifndef CONNECTIONHTTPPROXY_H__
 #define CONNECTIONHTTPPROXY_H__
 
@@ -90,13 +93,16 @@ namespace gloox
       virtual ~ConnectionHTTPProxy();
 
       // reimplemented from ConnectionBase
-      virtual ConnectionError connect();
+      virtual ConnectionError connect( int timeout = -1 );
 
       // reimplemented from ConnectionBase
       virtual ConnectionError recv( int timeout = -1 );
 
       // reimplemented from ConnectionBase
       virtual bool send( const std::string& data );
+
+      // reimplemented from ConnectionBase
+      virtual bool send( const char* data, const size_t len ) ;
 
       // reimplemented from ConnectionBase
       virtual ConnectionError receive();
@@ -169,3 +175,5 @@ namespace gloox
 }
 
 #endif // CONNECTIONHTTPPROXY_H__
+
+#endif // GLOOX_MINIMAL

@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_LASTACTIVITY )
+
 #ifndef LASTACTIVITY_H__
 #define LASTACTIVITY_H__
 
@@ -164,3 +166,5 @@ namespace gloox
 }
 
 #endif // LASTACTIVITY_H__
+
+#endif // GLOOX_MINIMAL

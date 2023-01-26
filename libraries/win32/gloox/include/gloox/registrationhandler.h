@@ -11,6 +11,7 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_REGISTRATION )
 
 #ifndef REGISTRATIONHANDLER_H__
 #define REGISTRATIONHANDLER_H__
@@ -25,6 +26,7 @@ namespace gloox
   class OOB;
   class JID;
   class DataForm;
+  class Error;
 
   /**
    * Possible results of a @xep{0077} operation.
@@ -105,8 +107,9 @@ namespace gloox
        * This funtion is called to notify about the result of an operation.
        * @param from The server or service the result came from.
        * @param regResult The result of the last operation.
+       * @param error If registration failed, this is the Error object sent by the server (if any), 0 otherwise. @since 1.1
        */
-      virtual void handleRegistrationResult( const JID& from, RegistrationResult regResult ) = 0;
+      virtual void handleRegistrationResult( const JID& from, RegistrationResult regResult, const Error* error ) = 0;
 
       /**
        * This function is called additionally to @ref handleRegistrationFields() if the server
@@ -129,3 +132,5 @@ namespace gloox
 }
 
 #endif // REGISTRATIONHANDLER_H__
+
+#endif // GLOOX_MINIMAL

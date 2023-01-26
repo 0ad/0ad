@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_DELAYEDDELIVERY )
+
 #ifndef DELAYEDDELIVERY_H__
 #define DELAYEDDELIVERY_H__
 
@@ -128,3 +130,5 @@ namespace gloox
 }
 
 #endif // DELAYEDDELIVERY_H__
+
+#endif // GLOOX_MINIMAL

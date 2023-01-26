@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_JINGLE )
+
 #ifndef JINGLESESSION_H__
 #define JINGLESESSION_H__
 
@@ -573,3 +575,5 @@ namespace gloox
 }
 
 #endif // JINGLESESSION_H__
+
+#endif // GLOOX_MINIMAL

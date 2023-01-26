@@ -22,9 +22,13 @@
 namespace gloox
 {
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_CAPABILITIES )
   class Capabilities;
+#endif // GLOOX_MINIMAL
   class RosterManager;
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_NONSASLAUH )
   class NonSaslAuth;
+#endif // GLOOX_MINIMAL
   class IQ;
 
   /**
@@ -117,7 +121,9 @@ namespace gloox
   {
     public:
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_NONSASLAUTH )
       friend class NonSaslAuth;
+#endif // GLOOX_MINIMAL
       friend class Parser;
 
       /**
@@ -327,12 +333,14 @@ namespace gloox
        */
       Presence& presence() { return m_presence; }
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_NONSASLAUH )
       /**
        * This is a temporary hack to enforce Non-SASL login. You should not need to use it.
        * @param force Whether to force non-SASL auth. Default @b true.
        * @deprecated Please update the server to properly support SASL instead.
        */
       GLOOX_DEPRECATED void setForceNonSasl( bool force = true ) { m_forceNonSasl = force; }
+#endif // GLOOX_MINIMAL
 
       /**
        * Disables the automatic roster management.
@@ -362,10 +370,12 @@ namespace gloox
       bool login();
 
     protected:
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_NONSASLAUH )
       /**
        * Initiates non-SASL login.
        */
       void nonSaslLogin();
+#endif // GLOOX_MINIMAL
 
     private:
 #ifdef CLIENT_TEST
@@ -508,11 +518,13 @@ namespace gloox
       };
 
       RosterManager* m_rosterManager;
+
+      #if !defined( GLOOX_MINIMAL ) || defined( WANT_NONSASLAUTH )
       NonSaslAuth* m_auth;
+      bool m_forceNonSasl;
+#endif // GLOOX_MINIMAL
 
       Presence m_presence;
-
-      bool m_forceNonSasl;
       bool m_manageRoster;
 
       std::string m_smId;

@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_SI )
+
 #ifndef SIHANDLER_H__
 #define SIHANDLER_H__
 
@@ -68,3 +70,5 @@ namespace gloox
 }
 
 #endif // SIHANDLER_H__
+
+#endif // GLOOX_MINIMAL

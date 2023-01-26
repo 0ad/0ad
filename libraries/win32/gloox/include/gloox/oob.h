@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_OOB )
+
 #ifndef OOB_H__
 #define OOB_H__
 
@@ -99,3 +101,5 @@ namespace gloox
 }
 
 #endif // OOB_H__
+
+#endif // GLOOX_MINIMAL

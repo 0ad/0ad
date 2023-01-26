@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_XHTMLIM )
+
 #ifndef XHTMLIM_H__
 #define XHTMLIM_H__
 
@@ -76,3 +78,5 @@ namespace gloox
 }
 
 #endif // XHTMLIM_H__
+
+#endif // GLOOX_MINIMAL

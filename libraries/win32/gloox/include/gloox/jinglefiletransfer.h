@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_JINGLE )
+
 #ifndef JINGLEFILETRANSFER_H__
 #define JINGLEFILETRANSFER_H__
 
@@ -132,3 +134,5 @@ namespace gloox
 }
 
 #endif // JINGLEFILETRANSFER_H__
+
+#endif // GLOOX_MINIMAL

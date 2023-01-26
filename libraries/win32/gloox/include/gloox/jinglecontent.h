@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_JINGLE )
+
 #ifndef JINGLECONTENT_H__
 #define JINGLECONTENT_H__
 
@@ -136,3 +138,5 @@ namespace gloox
 }
 
 #endif // JINGLECONTENT_H__
+
+#endif // GLOOX_MINIMAL

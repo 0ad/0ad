@@ -11,6 +11,9 @@
 */
 
 
+
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_CONNECTIONSOCKS5PROXY )
+
 #ifndef CONNECTIONSOCKS5PROXY_H__
 #define CONNECTIONSOCKS5PROXY_H__
 
@@ -92,13 +95,20 @@ namespace gloox
       virtual ~ConnectionSOCKS5Proxy();
 
       // reimplemented from ConnectionBase
-      virtual ConnectionError connect();
+      virtual ConnectionError connect( int timeout = -1 );
 
       // reimplemented from ConnectionBase
       virtual ConnectionError recv( int timeout = -1 );
 
       // reimplemented from ConnectionBase
       virtual bool send( const std::string& data );
+
+      // reimplemented from ConnectionBase
+      virtual bool send( const char* /*data*/, const size_t /*len*/ )
+      {
+        m_logInstance.err( LogAreaClassConnectionSOCKS5Proxy, "Sending binary not implemented" );
+        return false;
+      }
 
       // reimplemented from ConnectionBase
       virtual ConnectionError receive();
@@ -176,3 +186,5 @@ namespace gloox
 }
 
 #endif // CONNECTIONSOCKS5PROXY_H__
+
+#endif // GLOOX_MINIMAL

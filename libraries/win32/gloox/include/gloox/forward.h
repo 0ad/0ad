@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_FORWARD )
+
 #ifndef FORWARD_H__
 #define FORWARD_H__
 
@@ -102,3 +104,5 @@ namespace gloox
 }
 
 #endif // FORWARD_H__
+
+#endif // GLOOX_MINIMAL

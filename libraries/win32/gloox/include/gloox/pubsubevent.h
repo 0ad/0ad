@@ -10,6 +10,9 @@
   This software is distributed without any warranty.
 */
 
+
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_PUBSUB )
+
 #ifndef PUBSUBEVENT_H__
 #define PUBSUBEVENT_H__
 
@@ -69,17 +72,10 @@ namespace gloox
         typedef std::list<ItemOperation*> ItemOperationList;
 
         /**
-         * PubSub event notification Stanza Extension.  This constructor can
-         * be used to create an empty instance for registering the
-         * StanzaExtension.
-         */
-        Event();
-
-        /**
          * PubSub event notification Stanza Extension.
          * @param event A tag to parse.
          */
-        Event( const Tag* event );
+        Event( const Tag* event = 0 );
 
         /**
          * PubSub event notification Stanza Extension.
@@ -178,3 +174,5 @@ namespace gloox
 }
 
 #endif // PUBSUBEVENT_H__
+
+#endif // GLOOX_MINIMAL

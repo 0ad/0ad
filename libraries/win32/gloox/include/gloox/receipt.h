@@ -10,6 +10,9 @@
   This software is distributed without any warranty.
 */
 
+
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_RECEIPT )
+
 #ifndef RECEIPT_H__
 #define RECEIPT_H__
 
@@ -46,7 +49,7 @@ namespace gloox
        * Constructs a new object from the given Tag.
        * @param tag A Tag to parse.
        */
-      Receipt( const Tag* tag );
+      Receipt( const Tag* tag = 0 );
 
       /**
        * Constructs a new object of the given type.
@@ -101,3 +104,5 @@ namespace gloox
 }
 
 #endif // RECEIPT_H__
+
+#endif // GLOOX_MINIMAL

@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_SEARCH )
+
 #ifndef SEARCHHANDLER_H__
 #define SEARCHHANDLER_H__
 
@@ -193,3 +195,5 @@ namespace gloox
 }
 
 #endif // SEARCHHANDLER_H__
+
+#endif // GLOOX_MINIMAL

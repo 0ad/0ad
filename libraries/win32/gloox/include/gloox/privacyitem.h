@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_PRIVACYLISTS )
+
 #ifndef PRIVACYITEM_H__
 #define PRIVACYITEM_H__
 
@@ -124,3 +126,5 @@ namespace gloox
 }
 
 #endif // PRIVACYITEM_H__
+
+#endif // GLOOX_MINIMAL

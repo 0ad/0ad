@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_FLEXOFF )
+
 #ifndef FLEXOFFHANDLER_H__
 #define FLEXOFFHANDLER_H__
 
@@ -80,3 +82,5 @@ namespace gloox
 }
 
 #endif // FLEXOFFHANDLER_H__
+
+#endif // GLOOX_MINIMAL

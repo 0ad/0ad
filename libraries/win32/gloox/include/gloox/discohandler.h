@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_DISCO )
+
 #ifndef DISCOHANDLER_H__
 #define DISCOHANDLER_H__
 
@@ -81,3 +83,5 @@ namespace gloox
 }
 
 #endif // DISCOHANDLER_H__
+
+#endif // GLOOX_MINIMAL

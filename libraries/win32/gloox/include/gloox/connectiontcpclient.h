@@ -68,7 +68,7 @@ namespace gloox
       virtual ConnectionError recv( int timeout = -1 );
 
       // reimplemented from ConnectionBase
-      virtual ConnectionError connect();
+      virtual ConnectionError connect( int timeout = -1 );
 
       // reimplemented from ConnectionBase
       virtual ConnectionBase* newInstance() const;

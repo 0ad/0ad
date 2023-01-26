@@ -11,6 +11,7 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_ANNOTATIONS )
 
 #ifndef ANNOTATIONSHANDLER_H__
 #define ANNOTATIONSHANDLER_H__
@@ -64,3 +65,5 @@ namespace gloox
 }
 
 #endif // ANNOTATIONSHANDLER_H__
+
+#endif // GLOOX_MINIMAL

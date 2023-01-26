@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_CAPABILITIES )
+
 #ifndef CAPABILITIES_H__
 #define CAPABILITIES_H__
 
@@ -29,7 +31,8 @@ namespace gloox
   /**
    * @brief This is an implementation of @xep{0115} (Entity Capabilities).
    *
-   * XEP Version: 1.5-15
+   * XEP Version: 1.5
+   *
    * @author Jakob Schröter <js@camaya.net>
    * @since 1.0
    */
@@ -130,3 +133,5 @@ namespace gloox
 }
 
 #endif // CAPABILITIES_H__
+
+#endif // GLOOX_MINIMAL

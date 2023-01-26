@@ -219,7 +219,7 @@ namespace gloox
     /**
      * Checks whether the given input is valid UTF-8.
      * @param data The data to check for validity.
-     * @return @@b True if the input is valid UTF-8, @b false otherwise.
+     * @return @b True if the input is valid UTF-8, @b false otherwise.
      */
     GLOOX_API bool checkValidXMLChars( const std::string& data );
 

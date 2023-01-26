@@ -10,6 +10,9 @@
   This software is distributed without any warranty.
 */
 
+
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_NICKNAME )
+
 #ifndef NICKNAME_H__
 #define NICKNAME_H__
 
@@ -85,3 +88,5 @@ namespace gloox
 }
 
 #endif // NICKNAME_H__
+
+#endif // GLOOX_MINIMAL

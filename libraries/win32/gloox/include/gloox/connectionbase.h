@@ -40,7 +40,7 @@ namespace gloox
        * received data.
        */
       ConnectionBase( ConnectionDataHandler* cdh )
-        : m_handler( cdh ), m_state( StateDisconnected ), m_port( -1 )
+        : m_handler( cdh ), m_state( StateDisconnected ), m_port( -1 ), m_timeout( -1 )
       {}
 
       /**
@@ -50,9 +50,10 @@ namespace gloox
 
       /**
        * Used to initiate the connection.
+       * @param timeout The timeout to use for select() in milliseconds. Default of -1 means blocking.
        * @return Returns the connection state.
        */
-      virtual ConnectionError connect() = 0;
+      virtual ConnectionError connect( int timeout = -1 ) = 0;
 
       /**
        * Use this periodically to receive data from the socket.
@@ -69,6 +70,16 @@ namespace gloox
        * in case of an error.
        */
       virtual bool send( const std::string& data ) = 0;
+
+      /**
+       * Use this function to send an arbitrary chunk of data over the wire. The function returns only after
+       * all data has been sent.
+       * @param data The data to send.
+       * @param len The length of data to send.
+       * @return @b True if the data has been sent (no guarantee of receipt), @b false
+       * in case of an error.
+       */
+       virtual bool send( const char* data, const size_t len ) = 0;
 
       /**
        * Use this function to put the connection into 'receive mode', i.e. this function returns only
@@ -127,6 +138,13 @@ namespace gloox
       virtual int localPort() const { return -1; }
 
       /**
+       * Returns the open timeout value.
+       * If return value is >= 0 this is a non-blocking connection.
+       * @return The timeout value.
+       */
+       int timeout() const { return m_timeout; }
+
+      /**
        * Returns the locally bound IP address.
        * @return The locally bound IP address.
        */
@@ -147,6 +165,19 @@ namespace gloox
        */
       virtual ConnectionBase* newInstance() const = 0;
 
+      /**
+       * Sends the stream header.
+       */
+      virtual std::string header( std::string to, std::string xmlns, std::string xmllang )
+      {
+        std::string head = "<?xml version='1.0' ?>";
+        head += "<stream:stream to='" + to + "' xmlns='" + xmlns + "' ";
+        head += "xmlns:stream='http://etherx.jabber.org/streams'  xml:lang='" + xmllang + "' ";
+        head += "version='" + XMPP_STREAM_VERSION_MAJOR + "." + XMPP_STREAM_VERSION_MINOR + "'>";
+
+        return head;
+      }
+
     protected:
       /** A handler for incoming data and connect/disconnect events. */
       ConnectionDataHandler* m_handler;
@@ -160,6 +191,8 @@ namespace gloox
       /** Holds the port to connect to. */
       int m_port;
 
+       /** If timeout is >= 0 this is a non-blocking connection. */
+      int m_timeout;
   };
 
 }

@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_SI )
+
 #ifndef SIPROFILEFT_H__
 #define SIPROFILEFT_H__
 
@@ -331,6 +333,7 @@ namespace gloox
       SOCKS5BytestreamManager* m_socks5Manager;
       StreamHostList m_hosts;
       StringMap m_id2sid;
+      util::Mutex m_id2sidMutex;
       bool m_delManager;
       bool m_delS5Manager;
 
@@ -339,3 +342,5 @@ namespace gloox
 }
 
 #endif // SIPROFILEFT_H__
+
+#endif // GLOOX_MINIMAL

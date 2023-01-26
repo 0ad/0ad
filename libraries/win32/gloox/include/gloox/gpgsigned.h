@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_GPGSIGNED )
+
 #ifndef GPGSIGNED_H__
 #define GPGSIGNED_H__
 
@@ -89,3 +91,5 @@ namespace gloox
 }
 
 #endif // GPGSIGNED_H__
+
+#endif // GLOOX_MINIMAL

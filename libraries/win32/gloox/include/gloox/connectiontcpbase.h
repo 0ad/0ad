@@ -76,6 +76,9 @@ namespace gloox
       virtual bool send( const std::string& data );
 
       // reimplemented from ConnectionBase
+      virtual bool send( const char* data, const size_t len );
+
+      // reimplemented from ConnectionBase
       virtual ConnectionError receive();
 
       // reimplemented from ConnectionBase
@@ -119,6 +122,7 @@ namespace gloox
       void init( const std::string& server, int port );
       bool dataAvailable( int timeout = -1 );
       void cancel();
+      int waitForSocketReady( bool readop = true );
 
       const LogSink& m_logInstance;
       util::Mutex m_sendMutex;

@@ -121,6 +121,7 @@ namespace gloox
        */
       void setID( const std::string& id ) { m_id = id; }
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_DELAYEDDELIVERY )
       /**
        * Convenience function that returns a pointer to a DelayedDelivery StanzaExtension, if the
        * message contains one.
@@ -132,6 +133,7 @@ namespace gloox
       {
         return static_cast<const DelayedDelivery*>( findExtension( ExtDelay ) );
       }
+#endif // GLOOX_MINIMAL
 
       // reimplemented from Stanza
       virtual Tag* tag() const;

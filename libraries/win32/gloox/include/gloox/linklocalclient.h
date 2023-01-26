@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_LINKLOCAL )
+
 #ifndef LINKLOCALCLIENT_H__
 #define LINKLOCALCLIENT_H__
 
@@ -123,3 +125,5 @@ namespace gloox
 #endif // HAVE_MDNS
 
 #endif // LINKLOCALCLIENT_H__
+
+#endif // GLOOX_MINIMAL
