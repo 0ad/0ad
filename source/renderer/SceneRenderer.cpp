@@ -1089,7 +1089,7 @@ void CSceneRenderer::PrepareScene(
 
 	if (g_RenderingOptions.GetShadows())
 	{
-		for (int cascade = 0; cascade <= m->shadow.GetCascadeCount(); ++cascade)
+		for (int cascade = 0; cascade < m->shadow.GetCascadeCount(); ++cascade)
 		{
 			m_CurrentCullGroup = CULL_SHADOWS_CASCADE_0 + cascade;
 			const CFrustum shadowFrustum = m->shadow.GetShadowCasterCullFrustum(cascade);
