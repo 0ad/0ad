@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_fauna_hunt_skittish">
+  <Auras datatype="tokens">
+    structures/corral_garrison_medium
+  </Auras>
   <Footprint>
     <Square width="2.5" depth="5.0"/>
     <Height>5.5</Height>

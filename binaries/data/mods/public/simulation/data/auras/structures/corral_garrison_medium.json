@@ -1,0 +1,10 @@
+{
+	"type": "garrison",
+	"affects": ["Corral"],
+	"modifications": [
+		{ "value": "ResourceTrickle/Rates/food", "add": 2 }
+	],
+	"auraDescription" : "Garrison within the Corral to gain a slow trickle of +2 food.",
+	"auraName": "Ranching and Corralling",
+	"stackable": true
+}
