@@ -464,6 +464,7 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window)
 
 	deviceFeatures.textureCompressionBC = choosenDevice.features.textureCompressionBC;
 	deviceFeatures.samplerAnisotropy = choosenDevice.features.samplerAnisotropy;
+	deviceFeatures.fillModeNonSolid = choosenDevice.features.fillModeNonSolid;
 
 	descriptorIndexingFeatures.sType = VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_DESCRIPTOR_INDEXING_FEATURES_EXT;
 	descriptorIndexingFeatures.shaderSampledImageArrayNonUniformIndexing =
@@ -798,6 +799,9 @@ bool CDevice::IsTextureFormatSupported(const Format format) const
 	switch (format)
 	{
 	case Format::UNDEFINED:
+		return false;
+
+	case Format::R8G8B8_UNORM:
 		return false;
 
 	case Format::BC1_RGB_UNORM: FALLTHROUGH;

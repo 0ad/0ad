@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_JINGLE )
+
 #ifndef JINGLEICEUDP_H__
 #define JINGLEICEUDP_H__
 
@@ -139,3 +141,5 @@ namespace gloox
 }
 
 #endif // JINGLEICEUDP_H__
+
+#endif // GLOOX_MINIMAL

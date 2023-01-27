@@ -11,6 +11,7 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_PRIVATEXML )
 
 #ifndef PRIVATEXML_H__
 #define PRIVATEXML_H__
@@ -158,3 +159,5 @@ namespace gloox
 }
 
 #endif // PRIVATEXML_H__
+
+#endif // GLOOX_MINIMAL

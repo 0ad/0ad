@@ -28,7 +28,7 @@ namespace gloox
 {
 
   /**
-   * @brief This class implements a TLS backend using GnuTLS.
+   * @brief This class implements a TLS client backend using GnuTLS.
    *
    * You should not need to use this class directly.
    *
@@ -60,6 +60,9 @@ namespace gloox
 
       // reimplemented from TLSBase
       virtual void setClientCert( const std::string& clientKey, const std::string& clientCerts );
+
+      // reimplemented from TLSBase
+      virtual void setTLSVersion( TLSVersion tlsVersion );
 
       // reimplemented from TLSBase
       virtual void cleanup();

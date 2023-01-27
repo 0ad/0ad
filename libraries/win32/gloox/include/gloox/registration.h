@@ -11,12 +11,13 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_REGISTRATION )
+
 #ifndef REGISTRATION_H__
 #define REGISTRATION_H__
 
 #include "iqhandler.h"
 #include "registrationhandler.h"
-#include "dataform.h"
 #include "jid.h"
 #include "oob.h"
 
@@ -27,6 +28,7 @@ namespace gloox
 {
 
   class ClientBase;
+  class DataForm;
   class Stanza;
 
   /**
@@ -49,8 +51,6 @@ namespace gloox
     std::string phone;              /**< User's phone number. */
     std::string url;                /**< User's homepage URL (or other URL). */
     std::string date;               /**< Date (?) */
-    std::string misc;               /**< Misc (?) */
-    std::string text;               /**< Text (?)*/
   };
 
   /**
@@ -86,6 +86,8 @@ namespace gloox
    *
    * Check @c tests/register_test.cpp for an example.
    *
+   * XEP Version: 2.4
+   *
    * @author Jakob Schröter <js@camaya.net>
    * @since 0.2
    */
@@ -111,9 +113,7 @@ namespace gloox
         FieldZip       =  1024,     /**< ZIP requested */
         FieldPhone     =  2048,     /**< Phone no. requested */
         FieldUrl       =  4096,     /**< Homepage or other URL requested */
-        FieldDate      =  8192,     /**< Date requested (unknown purpose; see @xep{0077}) */
-        FieldMisc      = 16384,     /**< Misc data requested (unknown purpose; see @xep{0077}) */
-        FieldText      = 32768      /**< Extra text requested (unknown purpose; see @xep{0077}) */
+        FieldDate      =  8192      /**< Date requested (unknown purpose; see @xep{0077}) */
       };
 
       /**
@@ -210,18 +210,7 @@ namespace gloox
           virtual Tag* tag() const;
 
           // reimplemented from StanzaExtension
-          virtual StanzaExtension* clone() const
-          {
-            Query* q = new Query();
-            q->m_form = m_form ? new DataForm( *m_form ) : 0;
-            q->m_fields = m_fields;
-            q->m_values = m_values;
-            q->m_instructions = m_instructions;
-            q->m_oob = new OOB( *m_oob );
-            q->m_del = m_del;
-            q->m_reg = m_reg;
-            return q;
-          }
+          virtual StanzaExtension* clone() const;
 
         private:
           DataForm* m_form;
@@ -337,3 +326,5 @@ namespace gloox
 }
 
 #endif // REGISTRATION_H__
+
+#endif // GLOOX_MINIMAL

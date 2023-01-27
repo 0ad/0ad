@@ -10,6 +10,7 @@
   This software is distributed without any warranty.
 */
 
+
 #ifndef ERROR_H__
 #define ERROR_H__
 
@@ -142,4 +143,4 @@ namespace gloox
 
 }
 
-#endif // ERROR_H__
+#endif /* ERROR_H__ */

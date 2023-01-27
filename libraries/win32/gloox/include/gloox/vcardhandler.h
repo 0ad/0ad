@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_VCARD )
+
 #ifndef VCARDHANDLER_H__
 #define VCARDHANDLER_H__
 
@@ -73,3 +75,5 @@ namespace gloox
 }
 
 #endif // VCARDHANDLER_H__
+
+#endif // GLOOX_MINIMAL

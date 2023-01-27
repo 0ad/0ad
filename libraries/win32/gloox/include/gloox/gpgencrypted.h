@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_GPGENCRYPTED )
+
 #ifndef GPGENCRYPTED_H__
 #define GPGENCRYPTED_H__
 
@@ -89,3 +91,5 @@ namespace gloox
 }
 
 #endif // GPGENCRYPTED_H__
+
+#endif // GLOOX_MINIMAL

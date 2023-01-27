@@ -11,6 +11,7 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_ADHOC )
 
 #ifndef ADHOCHANDLER_H__
 #define ADHOCHANDLER_H__
@@ -77,3 +78,5 @@ namespace gloox
 }
 
 #endif // ADHOCHANDLER_H__
+
+#endif // GLOOX_MINIMAL

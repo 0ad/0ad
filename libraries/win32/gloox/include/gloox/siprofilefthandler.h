@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_SI )
+
 #ifndef SIPROFILEFTHANDLER_H__
 #define SIPROFILEFTHANDLER_H__
 
@@ -102,3 +104,5 @@ namespace gloox
 }
 
 #endif // SIPROFILEFTHANDLER_H__
+
+#endif // GLOOX_MINIMAL

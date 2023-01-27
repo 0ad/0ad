@@ -10,6 +10,10 @@
  * This software is distributed without any warranty.
  */
 
+
+
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_CONNECTIONTLSSERVER )
+
 #ifndef CONNECTIONTLSSERVER_H__
 #define CONNECTIONTLSSERVER_H__
 
@@ -79,3 +83,5 @@ namespace gloox
 }
 
 #endif // CONNECTIONTLSSERVER_H__
+
+#endif // GLOOX_MINIMAL

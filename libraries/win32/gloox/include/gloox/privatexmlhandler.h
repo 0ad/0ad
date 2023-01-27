@@ -11,6 +11,7 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_PRIVATEXML )
 
 #ifndef PRIVATEXMLHANDLER_H__
 #define PRIVATEXMLHANDLER_H__
@@ -71,3 +72,5 @@ namespace gloox
 }
 
 #endif // PRIVATEXMLHANDLER_H__
+
+#endif // GLOOX_MINIMAL

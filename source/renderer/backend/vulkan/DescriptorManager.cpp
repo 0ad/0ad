@@ -251,6 +251,8 @@ VkDescriptorSet CDescriptorManager::GetSingleTypeDescritorSet(
 		{
 			if (!textures[index])
 				continue;
+			ENSURE(textures[index]->GetUsage() & ITexture::Usage::SAMPLED);
+
 			VkDescriptorImageInfo descriptorImageInfo{};
 			descriptorImageInfo.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
 			descriptorImageInfo.imageView = textures[index]->GetSamplerImageView();
@@ -282,6 +284,7 @@ uint32_t CDescriptorManager::GetUniformSet() const
 uint32_t CDescriptorManager::GetTextureDescriptor(CTexture* texture)
 {
 	ENSURE(m_UseDescriptorIndexing);
+	ENSURE(texture->GetUsage() & ITexture::Usage::SAMPLED);
 
 	uint32_t binding = 0;
 	if (texture->GetType() == ITexture::Type::TEXTURE_2D &&

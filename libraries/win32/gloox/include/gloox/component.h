@@ -12,6 +12,8 @@
 
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_COMPONENT )
+
 #ifndef COMPONENT_H__
 #define COMPONENT_H__
 
@@ -75,3 +77,5 @@ namespace gloox
 }
 
 #endif // COMPONENT_H__
+
+#endif // GLOOX_MINIMAL

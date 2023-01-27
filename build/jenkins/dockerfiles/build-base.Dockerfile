@@ -1,14 +1,14 @@
 FROM debian:buster
 
 RUN useradd -ms /bin/bash --uid 1006 builder
-
 # 0 A.D. dependencies.
-RUN apt-get -qq update && apt-get install -qqy \
+ARG DEBIAN_FRONTEND=noninteractive
+ARG DEBCONF_NOWARNINGS="yes"
+RUN apt-get -qqy update && apt-get install -qqy \
       cmake \
       curl \
       libboost-dev \
       libboost-filesystem-dev \
-      libclang-7-dev \
       libcurl4-gnutls-dev \
       libenet-dev \
       libfmt-dev \
@@ -30,7 +30,7 @@ RUN apt-get -qq update && apt-get install -qqy \
       libxcursor-dev \
       libxml-simple-perl \
       libxml2-dev \
-      llvm-7 \
+      m4 \
       python3-dev \
       python3-pip \
       zlib1g-dev \
@@ -43,3 +43,4 @@ ENV PATH="${PATH}:/home/builder/.cargo/bin"
 USER root
 
 ENV SHELL /bin/bash
+

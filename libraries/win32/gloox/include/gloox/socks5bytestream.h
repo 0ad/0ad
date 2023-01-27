@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_BYTESTREAM )
+
 #ifndef SOCKS5BYTESTREAM_H__
 #define SOCKS5BYTESTREAM_H__
 
@@ -53,6 +55,7 @@ namespace gloox
        * This function starts the connection process. That is, it attempts to connect
        * to each of the available StreamHosts. Once a working StreamHosts is found, the
        * SOCKS5BytestreamManager is notified and the function returns.
+       * @param timeout The timeout to use for select() in milliseconds. Default of -1 means blocking.
        * @return @b True if a connection to a StreamHost could be established, @b false
        * otherwise.
        * @note If @b false is returned you should hand this SOCKS5Bytestream object
@@ -60,7 +63,7 @@ namespace gloox
        * @note Make sure you have a SOCKS5BytestreamDataHandler registered (using
        * registerSOCKS5BytestreamDataHandler()) before calling this function.
        */
-      virtual bool connect();
+      virtual bool connect( int timeout = -1 );
 
       /**
        * Closes the bytestream.
@@ -106,6 +109,25 @@ namespace gloox
        */
       void setStreamHosts( const StreamHostList& hosts ) { m_hosts = hosts; }
 
+      /**
+       * Returns the current list of stream hosts.
+       * @return The current list of stream hosts.
+       */
+      StreamHostList hosts() const;
+
+      /**
+       * Returns whether this instance is the stream's initiator.
+       * @return @True if this instance is the stream's initiator, @b false otherwise.
+       */
+      bool isInitiator() const;
+
+      /**
+       * Use this function to indicate that this instance is the stream's initiator.
+       * @param isInitiator Set to @b true if this instance is the stream's
+       * initiator, set to @b false otherwise.
+       */
+      void setIsInitiator( bool isInitiator );
+
       // reimplemented from ConnectionDataHandler
       virtual void handleReceivedData( const ConnectionBase* connection, const std::string& data );
 
@@ -126,6 +148,7 @@ namespace gloox
       ConnectionBase* m_socks5;
       JID m_proxy;
       bool m_connected;
+      bool m_isInitiator;
 
       StreamHostList m_hosts;
 
@@ -134,3 +157,5 @@ namespace gloox
 }
 
 #endif // SOCKS5BYTESTREAM_H__
+
+#endif // GLOOX_MINIMAL

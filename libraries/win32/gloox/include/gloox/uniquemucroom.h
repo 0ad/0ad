@@ -11,6 +11,7 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_MUC )
 
 #ifndef UNIQUEMUCROOM_H__
 #define UNIQUEMUCROOM_H__
@@ -115,3 +116,5 @@ namespace gloox
 }
 
 #endif // UNIQUEMUCROOM_H__
+
+#endif // GLOOX_MINIMAL

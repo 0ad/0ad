@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_VCARD )
+
 #ifndef VCARDUPDATE_H__
 #define VCARDUPDATE_H__
 
@@ -104,3 +106,5 @@ namespace gloox
 }
 
 #endif // VCARDUPDATE_H__
+
+#endif // GLOOX_MINIMAL

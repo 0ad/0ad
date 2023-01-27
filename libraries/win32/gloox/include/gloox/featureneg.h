@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_FEATURENEG )
+
 #ifndef FEATURENEG_H__
 #define FEATURENEG_H__
 
@@ -84,3 +86,5 @@ namespace gloox
 }
 
 #endif // FEATURENEG_H__
+
+#endif // GLOOX_MINIMAL

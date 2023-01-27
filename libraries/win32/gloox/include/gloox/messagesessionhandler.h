@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_MESSAGESESSION )
+
 #ifndef MESSAGESESSIONHANDLER_H__
 #define MESSAGESESSIONHANDLER_H__
 
@@ -65,3 +67,5 @@ namespace gloox
 }
 
 #endif // MESSAGESESSIONHANDLER_H__
+
+#endif // GLOOX_MINIMAL

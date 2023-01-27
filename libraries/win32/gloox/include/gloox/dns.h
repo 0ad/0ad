@@ -95,9 +95,10 @@ namespace gloox
        * and connects to one of them.
        * @param host The host to resolve SRV records for.
        * @param logInstance A LogSink to use for logging.
+       * @param timeout The timeout to use for select() in milliseconds. Default of -1 means blocking.
        * @return A file descriptor for the established connection.
        */
-      static int connect( const std::string& host, const LogSink& logInstance );
+      static int connect( const std::string& host, const LogSink& logInstance, const int timeout = -1  );
 
       /**
        * This is a convenience function which connects to the given host and port. No SRV
@@ -105,9 +106,10 @@ namespace gloox
        * @param host The host/IP address to connect to.
        * @param port A custom port to connect to.
        * @param logInstance A LogSink to use for logging.
+       * @param timeout The timeout to use for select() in milliseconds. Default of -1 means blocking.
        * @return A file descriptor for the established connection.
        */
-      static int connect( const std::string& host, int port, const LogSink& logInstance );
+      static int connect( const std::string& host, int port, const LogSink& logInstance, const int timeout = -1 );
 
       /**
        * A convenience function that prepares and returnes a simple, unconnected TCP socket.

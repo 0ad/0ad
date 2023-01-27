@@ -311,6 +311,7 @@
  * @li @xep{0131} @link gloox::SHIM Stanza Headers and Internet Metadata @endlink
  * @li @xep{0138} Stream Compression (used automatically if gloox is compiled with zlib and if the server
  * supports it)
+ * @li @xep{0144} @link gloox::RosterX Roster Item Exchange @endlink
  * @li @xep{0145} @link gloox::Annotations Annotations @endlink
  * @li @xep{0153} @link gloox::VCardUpdate vCard-based Avatars @endlink
  * @li @xep{0166} @link gloox::Jingle::SessionManager Jingle @endlink
@@ -327,7 +328,13 @@
  * @li @xep{0256} @link gloox::LastActivity::Query Last Activity in Presence @endlink
  * @li @xep{0280} @link gloox::Carbons Message Carbons @endlink
  * @li @xep{0297} @link gloox::Forward Stanza Forwarding @endlink
+ * @li @xep{0333} @link gloox::ChatMarker Chat Markers @endlink
+ * @li @xep{0334} @link gloox::Hint Message Processing Hints @endlink
  * @li @xep{0352} @link gloox::Client::hasClientStateIndication() Client State Indication @endlink
+ * @li @xep{0372} @link gloox::Reference References @endlink
+ * @li @xep{0394} @link gloox::MessageMarkup Message Markup @endlink
+ *
+ * @li RFC 7395: XMPP Over WebSocket, see @link gloox::ConnectionWebSocket WebSocket @endlink
  *
  * Further extensions can easily be implemented using
  * @link gloox::StanzaExtension StanzaExtensions @endlink.
@@ -354,6 +361,8 @@
 #define GLOOX_H__
 
 #include "macros.h"
+
+#include <inttypes.h>
 
 #include <string>
 #include <list>
@@ -604,6 +613,9 @@ namespace gloox
   /** Message Carbons namespace (@xep{0280}) */
   GLOOX_API extern const std::string XMLNS_MESSAGE_CARBONS;
 
+  /** Shared XML Editing namespace (@xep{0284}) */
+  GLOOX_API extern const std::string XMLNS_SXE;
+
   /** Client State Indication namespace (@xep{0352}) */
   GLOOX_API extern const std::string XMLNS_CLIENT_STATE_INDICATION;
 
@@ -612,6 +624,30 @@ namespace gloox
 
   /** IO Data (@xep{0244}) */
   GLOOX_API extern const std::string XMLNS_IODATA;
+
+  /** Roster Item Exchange (@xep{0144}) */
+  GLOOX_API extern const std::string XMLNS_ROSTER_X;
+
+  /** Websocket protocol (RFC 7395) */
+  GLOOX_API extern const std::string XMLNS_XMPP_FRAMING;
+
+  /** Chat Markers (@xep{0333}) */
+  GLOOX_API extern const std::string XMLNS_CHAT_MARKERS;
+
+  /** Message Markup (@xep{0394}) */
+  GLOOX_API extern const std::string XMLNS_MESSAGE_MARKUP;
+
+  /** Message Markup (@xep{0372}) */
+  GLOOX_API extern const std::string XMLNS_REFERENCES;
+
+  /** Message Processing Hints (@xep{0334}) */
+  GLOOX_API extern const std::string XMLNS_HINTS;
+
+  /** Bits of Binary (@xep{0231}) */
+  GLOOX_API extern const std::string XMLNS_BOB;
+
+  /** Data Form Media Element (@xep{0221}) */
+  GLOOX_API extern const std::string XMLNS_DATAFORM_MEDIA;
 
   /** Supported stream version (major). */
   GLOOX_API extern const std::string XMPP_STREAM_VERSION_MAJOR;
@@ -687,6 +723,8 @@ namespace gloox
                                      * Use ClientBase::streamError() to find the reason. */
     ConnStreamVersionError,         /**< The incoming stream's version is not supported */
     ConnStreamClosed,               /**< The stream has been closed (by the server). */
+    ConnProxyGatewayTimeout,        /**< The server, while acting as a gateway or proxy, did not receive a
+                                     * timely response from the upstream server specified by the URI. */
     ConnProxyAuthRequired,          /**< The HTTP/SOCKS5 proxy requires authentication.
                                      * @since 0.9 */
     ConnProxyAuthFailed,            /**< HTTP/SOCKS5 proxy authentication failed.
@@ -712,7 +750,8 @@ namespace gloox
     ConnAuthenticationFailed,       /**< Authentication failed. Username/password wrong or account does
                                      * not exist. Use ClientBase::authError() to find the reason. */
     ConnUserDisconnected,           /**< The user (or higher-level protocol) requested a disconnect. */
-    ConnNotConnected                /**< There is no active connection. */
+    ConnNotConnected,                /**< There is no active connection. */
+    ConnAttemptTimeout               /**< The connection attempt timed out. */
   };
 
   /**
@@ -725,6 +764,24 @@ namespace gloox
     TLSRequired                     /**< Don't attempt to log in if the server didn't offer TLS
                                      * or if TLS was not compiled in. Disconnect error will be
                                      * ConnTlsNotAvailable. */
+  };
+
+  /**
+   * The (minimum) required/requested TLS version. Use with ClientBase::setTls() or
+   * directly with a TLSBase-derived object (setTLSVersion()).
+   */
+  enum TLSVersion
+  {
+    SSLv3,                          /**< Insecure and outdated version. Use at your own risk.
+                                     * Possibly not supported by your crypto lib. */
+    TLSv1,                          /**< Use this to require TLS v1 as a minimum. Default. */
+    TLSv1_1,                        /**< Use this to require TLS v1.1 as a minimum. */
+    TLSv1_2,                        /**< Use this to require TLS v1.2 as a minimum. */
+//    TLSv1_3,                        /**< Use this to require TLS v1.3 as a minimum. */
+    DTLSv1,                         /**< Use this to require DTLS v1 as a minimum.
+                                     * Requires a datagram-based transport (e.g. UDP). */
+    DTLSv1_2                        /**< Use this to require DTLS v1.2 as a minimum.
+                                     * Requires a datagram-based transport (e.g. UDP). */
   };
 
   /**
@@ -984,6 +1041,11 @@ namespace gloox
   };
 
   /**
+   * A list of strings.
+   */
+  typedef std::list<std::string> StringList;
+
+  /**
    * Describes the certificate presented by the peer.
    */
   struct CertInfo
@@ -1002,6 +1064,7 @@ namespace gloox
     std::string cipher;             /**< The cipher used for the connection. */
     std::string mac;                /**< The MAC used for the connection. */
     std::string compression;        /**< The compression used for the connection. */
+    StringList listSAN;             /**< List of Subject Alternative Names. */
   };
 
   /**
@@ -1066,6 +1129,7 @@ namespace gloox
     LogAreaClassConnectionBOSH        = 0x001000, /**< Log messages from ConnectionBOSH */
     LogAreaClassConnectionTLS         = 0x002000, /**< Log messages from ConnectionTLS */
     LogAreaLinkLocalManager           = 0x004000, /**< Log messages from LinkLocalManager */
+    LogAreaClassConnectionWebSocket   = 0x008000, /**< Log messages from ConnectionWebSocket */
     LogAreaAllClasses                 = 0x01FFFF, /**< All log messages from all the classes. */
     LogAreaXmlIncoming                = 0x020000, /**< Incoming XML. */
     LogAreaXmlOutgoing                = 0x040000, /**< Outgoing XML. */
@@ -1110,6 +1174,19 @@ namespace gloox
     ChatStateGone         = 16,     /**< User has effectively ended their participation in the chat
                                      * session. */
     ChatStateInvalid      = 32      /**< Invalid type. */
+  };
+
+  /**
+   * The available Chat Marker types according to @xep{0333}.
+   */
+  enum ChatMarkerType
+  {
+    ChatMarkerReceived     =  1,    /**< The message has been received by a client. */
+    ChatMarkerDisplayed    =  2,    /**< The message has been displayed to a user in a active chat
+                                     * and not in a system notification. */
+    ChatMarkerAcknowledged =  4,    /**< The message has been acknowledged by some user interaction
+                                     * e.g. pressing an acknowledgement button. */
+    ChatMarkerInvalid      =  8     /**< Invalid type. */
   };
 
   /**

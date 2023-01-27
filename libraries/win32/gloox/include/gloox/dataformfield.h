@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_DATAFORM ) || defined( WANT_ADHOC )
+
 #ifndef DATAFORMFIELD_H__
 #define DATAFORMFIELD_H__
 
@@ -23,6 +25,7 @@ namespace gloox
 {
 
   class Tag;
+  class DataFormMedia;
 
   /**
     * @brief An abstraction of a single field in a @xep{0004} Data Form.
@@ -229,6 +232,7 @@ namespace gloox
 
       StringMultiMap m_options;
       StringList m_values;
+      DataFormMedia* m_media;
 
       std::string m_name;
       std::string m_desc;
@@ -240,3 +244,5 @@ namespace gloox
 }
 
 #endif // DATAFORMFIELD_H__
+
+#endif // GLOOX_MINIMAL

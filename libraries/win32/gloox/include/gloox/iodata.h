@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_IODATA ) || defined( WANT_ADHOC )
+
 #ifndef IODATA_H__
 #define IODATA_H__
 
@@ -190,3 +192,5 @@ namespace gloox
 }
 
 #endif // IODATA_H__
+
+#endif // GLOOX_MINIMAL

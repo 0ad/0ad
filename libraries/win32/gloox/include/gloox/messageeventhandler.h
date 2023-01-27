@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_MESSAGEEVENT )
+
 #ifndef MESSAGEEVENTHANDLER_H__
 #define MESSAGEEVENTHANDLER_H__
 
@@ -20,6 +22,7 @@ namespace gloox
 {
 
   class JID;
+  class MessageEvent;
 
   /**
    * @brief A virtual interface that enables an object to be notified about
@@ -42,10 +45,12 @@ namespace gloox
        * @param from The originator of the Event.
        * @param event The Event which has been raised.
        */
-      virtual void handleMessageEvent( const JID& from, MessageEventType event ) = 0;
+      virtual void handleMessageEvent( const JID& from, const MessageEvent* event ) = 0;
 
   };
 
 }
 
 #endif // MESSAGEEVENTHANDLER_H__
+
+#endif // GLOOX_MINIMAL

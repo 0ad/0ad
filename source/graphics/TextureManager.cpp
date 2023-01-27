@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,7 +48,8 @@
 namespace
 {
 
-Renderer::Backend::Format ChooseFormatAndTransformTextureDataIfNeeded(Tex& textureData, const bool hasS3TC)
+Renderer::Backend::Format ChooseFormatAndTransformTextureDataIfNeeded(
+	Renderer::Backend::IDevice* device, Tex& textureData, const bool hasS3TC)
 {
 	const bool alpha = (textureData.m_Flags & TEX_ALPHA) != 0;
 	const bool grey = (textureData.m_Flags & TEX_GREY) != 0;
@@ -92,7 +93,14 @@ Renderer::Backend::Format ChooseFormatAndTransformTextureDataIfNeeded(Tex& textu
 		return Renderer::Backend::Format::L8_UNORM;
 	case 24:
 		ENSURE(!alpha);
-		return Renderer::Backend::Format::R8G8B8_UNORM;
+		if (device->IsTextureFormatSupported(Renderer::Backend::Format::R8G8B8_UNORM))
+			return Renderer::Backend::Format::R8G8B8_UNORM;
+		else
+		{
+			LOGWARNING("Using slow path to convert unsupported RGB texture to RGBA.");
+			textureData.transform_to(textureData.m_Flags & TEX_ALPHA);
+			return Renderer::Backend::Format::R8G8B8A8_UNORM;
+		}
 	case 32:
 		ENSURE(alpha);
 		return Renderer::Backend::Format::R8G8B8A8_UNORM;
@@ -507,7 +515,7 @@ public:
 		}
 		else
 		{
-			format = ChooseFormatAndTransformTextureDataIfNeeded(textureData, m_HasS3TC);
+			format = ChooseFormatAndTransformTextureDataIfNeeded(m_Device, textureData, m_HasS3TC);
 		}
 
 		if (format == Renderer::Backend::Format::UNDEFINED)

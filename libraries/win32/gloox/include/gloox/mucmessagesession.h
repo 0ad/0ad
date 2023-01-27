@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_MUC )
+
 #ifndef MUCMESSAGESESSION_H__
 #define MUCMESSAGESESSION_H__
 
@@ -64,3 +66,5 @@ namespace gloox
 }
 
 #endif // MUCMESSAGESESSION_H__
+
+#endif // GLOOX_MINIMAL

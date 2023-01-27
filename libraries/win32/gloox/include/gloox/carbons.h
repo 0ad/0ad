@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_CARBONS )
+
 #ifndef CARBONS_H__
 #define CARBONS_H__
 
@@ -183,3 +185,5 @@ namespace gloox
 }
 
 #endif // CARBONS_H__
+
+#endif // GLOOX_MINIMAL

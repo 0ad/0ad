@@ -55,6 +55,9 @@ namespace gloox
                          const StringList& cacerts = StringList() );
 
       // reimplemented from TLSBase
+      virtual void setTLSVersion( TLSVersion tlsVersion );
+
+      // reimplemented from TLSBase
       virtual void cleanup();
 
     private:

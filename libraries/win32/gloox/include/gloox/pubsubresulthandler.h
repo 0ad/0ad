@@ -10,6 +10,9 @@
   This software is distributed without any warranty.
 */
 
+
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_PUBSUB )
+
 #ifndef PUBSUBRESULTHANDLER_H__
 #define PUBSUBRESULTHANDLER_H__
 
@@ -393,3 +396,4 @@ namespace gloox
 
 #endif // PUBSUBRESULTHANDLER_H__
 
+#endif // GLOOX_MINIMAL

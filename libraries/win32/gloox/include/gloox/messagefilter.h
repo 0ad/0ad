@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_MESSAGESESSION )
+
 #ifndef MESSAGEFILTER_H__
 #define MESSAGEFILTER_H__
 
@@ -82,3 +84,5 @@ namespace gloox
 }
 
 #endif // MESSAGEFILTER_H__
+
+#endif // GLOOX_MINIMAL

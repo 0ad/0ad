@@ -10,6 +10,8 @@
   This software is distributed without any warranty.
 */
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_CHATSTATE )
+
 #ifndef CHATSTATE_H__
 #define CHATSTATE_H__
 
@@ -85,3 +87,5 @@ namespace gloox
 }
 
 #endif // CHATSTATE_H__
+
+#endif // GLOOX_MINIMAL

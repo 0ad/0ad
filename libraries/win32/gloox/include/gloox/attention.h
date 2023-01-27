@@ -11,6 +11,7 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_ATTENTION )
 
 #ifndef ATTENTION_H__
 #define ATTENTION_H__
@@ -68,3 +69,5 @@ namespace gloox
 }
 
 #endif// ATTENTION_H__
+
+#endif // GLOOX_MINIMAL

@@ -11,6 +11,7 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_ANNOTATIONS )
 
 #ifndef ANNOTATIONS_H__
 #define ANNOTATIONS_H__
@@ -145,3 +146,5 @@ namespace gloox
 }
 
 #endif // ANNOTATIONS_H__
+
+#endif // GLOOX_MINIMAL

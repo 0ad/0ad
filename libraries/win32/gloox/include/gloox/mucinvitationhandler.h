@@ -11,6 +11,7 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_MUC )
 
 #ifndef MUCINVITATIONHANDLER_H__
 #define MUCINVITATIONHANDLER_H__
@@ -65,3 +66,5 @@ namespace gloox
 }
 
 #endif // MUCINVITATIONHANDLER_H__
+
+#endif // GLOOX_MINIMAL

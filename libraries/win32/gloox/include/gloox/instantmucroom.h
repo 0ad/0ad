@@ -11,6 +11,7 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_MUC )
 
 #ifndef INSTANTMUCROOM_H__
 #define INSTANTMUCROOM_H__
@@ -58,3 +59,5 @@ namespace gloox
 }
 
 #endif // INSTANTMUCROOM_H__
+
+#endif // GLOOX_MINIMAL

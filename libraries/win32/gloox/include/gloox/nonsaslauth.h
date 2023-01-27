@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_NONSASLAUTH )
+
 #ifndef NONSASLAUTH_H__
 #define NONSASLAUTH_H__
 
@@ -145,3 +147,5 @@ namespace gloox
 }
 
 #endif // NONSASLAUTH_H__
+
+#endif // GLOOX_MINIMAL

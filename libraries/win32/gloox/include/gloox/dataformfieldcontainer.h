@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_DATAFORM ) || defined( WANT_ADHOC )
+
 #ifndef DATAFORMFIELDCONTAINER_H__
 #define DATAFORMFIELDCONTAINER_H__
 
@@ -123,3 +125,5 @@ namespace gloox
 }
 
 #endif // DATAFORMFIELDCONTAINER_H__
+
+#endif // GLOOX_MINIMAL

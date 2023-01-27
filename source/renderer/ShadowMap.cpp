@@ -620,6 +620,7 @@ void ShadowMap::PrepareCamera(
 	CCamera camera = m->SavedViewCamera;
 	camera.SetProjection(m->Cascades[cascade].LightProjection);
 	camera.GetOrientation() = m->InvLightTransform;
+	camera.UpdateFrustum();
 	g_Renderer.GetSceneRenderer().SetViewCamera(camera);
 
 	const SViewPort& cascadeViewPort = m->Cascades[cascade].ViewPort;

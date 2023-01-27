@@ -128,14 +128,24 @@ namespace gloox
        */
       void registerTLSHandler( TLSHandler* th ) { m_tlsHandler = th; }
 
+      /**
+       * This function is used to set the minimum required/requested TLS version. Default is to use
+       * at least TLS v1.
+       * @param tlsVersion The TLS version.
+       */
+      void setTLSVersion( TLSVersion tlsVersion) { m_tlsVersion = tlsVersion; }
+
       // reimplemented from ConnectionBase
-      virtual ConnectionError connect();
+      virtual ConnectionError connect( int timeout = -1 );
 
       // reimplemented from ConnectionBase
       virtual ConnectionError recv( int timeout = -1 );
 
       // reimplemented from ConnectionBase
       virtual bool send( const std::string& data );
+
+      // reimplemented from ConnectionBase
+      virtual bool send( const char* data, const size_t len );
 
       // reimplemented from ConnectionBase
       virtual ConnectionError receive();
@@ -189,6 +199,7 @@ namespace gloox
       StringList m_cacerts;
       std::string m_clientCerts;
       std::string m_clientKey;
+      TLSVersion m_tlsVersion;
 
     private:
       ConnectionTLS& operator=( const ConnectionTLS& );

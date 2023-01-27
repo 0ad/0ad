@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_CHATSTATE )
+
 #ifndef CHATSTATEHANDLER_H__
 #define CHATSTATEHANDLER_H__
 
@@ -49,3 +51,5 @@ namespace gloox
 }
 
 #endif // CHATSTATEHANDLER_H__
+
+#endif // GLOOX_MINIMAL

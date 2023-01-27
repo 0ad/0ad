@@ -127,7 +127,15 @@ namespace gloox
        */
       void reset();
 
-    private:
+      /**
+       * Static function to quickly get an SHA1 hash in hex.
+       * @param data The data to hash.
+       * @return The hash in hex.
+       * @since 1.1
+       */
+      static const std::string hex( const std::string& data );
+
+  private:
       struct MD5State
       {
           unsigned int count[2]; /* message length in bits, lsw first */

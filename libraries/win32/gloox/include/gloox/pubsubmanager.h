@@ -10,6 +10,9 @@
   This software is distributed without any warranty.
 */
 
+
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_PUBSUB )
+
 #ifndef PUBSUBMANAGER_H__
 #define PUBSUBMANAGER_H__
 
@@ -71,7 +74,7 @@ namespace gloox
      * XEP Version: 1.12
      *
      * @author Jakob Schröter <js@camaya.net>
-     * @author Vincent Thomasset <vthomasset@gmail.com>
+     * @author Vincent Thomasset
      *
      * @since 1.0
      */
@@ -866,3 +869,5 @@ namespace gloox
 }
 
 #endif // PUBSUBMANAGER_H__
+
+#endif // GLOOX_MINIMAL

@@ -100,6 +100,7 @@ namespace gloox
       size_t m_trailer_max;
 
       std::string m_buffer;
+      std::string m_bufferDecrypt;
 
       bool m_cleanedup;
 

@@ -20,7 +20,9 @@
 namespace gloox
 {
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_CAPABILITIES )
   class Capabilities;
+#endif // GLOOX_MINIMAL
   class JID;
 
   /**
@@ -75,11 +77,13 @@ namespace gloox
        */
       PresenceType subtype() const { return m_subtype; }
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_CAPABILITIES )
       /**
        * A convenience function returning the stanza's Capabilities, if any. May be 0.
        * @return A pointer to a Capabilities object, or 0.
        */
       const Capabilities* capabilities() const;
+#endif // GLOOX_MINIMAL
 
       /**
        * Returns the presence's type.

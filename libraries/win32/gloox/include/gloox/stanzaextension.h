@@ -89,8 +89,15 @@ namespace gloox
     ExtAttention,                   /**< An extension dealing with Attention (@xep{0224}). */
     ExtForward,                     /**< An extension dealing with Stanza Forwarding (@xep{0297}). */
     ExtCarbons,                     /**< An extension dealing with Message Carbons (@xep{0280}). */
-    ExtIOData,                      /**< An extension dealing with IO Data (@xep{0244}) (though the IOData extension
-                                     * is not actually used as/meant to be a StanzaExtension. */
+    ExtIOData,                      /**< An extension dealing with IO Data (@xep{0244}) (though the IOData
+                                     * extension is not actually used as/meant to be a StanzaExtension. */
+    ExtRosterX,                     /**< An extension dealing with Roster Item Exchange (@yep{0144}). */
+    ExtChatMarkers,                 /**< The Chat Markers extension (@xep{0333}). */
+    ExtMessageMarkup,               /**< The Message Markup extension (@xep{0394}). */
+    ExtReference,                   /**< The References extension (@xep{0372}). */
+    ExtHint,                        /**< The Message Processing Hints extension (@xep{0334}). */
+    ExtSXE,                         /**< An extension dealing with Shared XML Editing (@xep{0284}). */
+    ExtBOB,                         /**< An extension dealing with Bits of Binary (BOB) (@xep{0231}). */
     ExtUser                         /**< User-supplied extensions must use IDs above this. Do
                                      * not hard-code ExtUser's value anywhere, it is subject
                                      * to change. */

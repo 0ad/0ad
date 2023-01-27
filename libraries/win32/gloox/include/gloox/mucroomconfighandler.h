@@ -11,6 +11,7 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_MUC )
 
 #ifndef MUCROOMCONFIGHANDLER_H__
 #define MUCROOMCONFIGHANDLER_H__
@@ -224,3 +225,5 @@ namespace gloox
 }
 
 #endif // MUCROOMCONFIGHANDLER_H__
+
+#endif // GLOOX_MINIMAL

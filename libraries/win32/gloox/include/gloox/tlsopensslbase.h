@@ -23,6 +23,10 @@
 
 #include <openssl/ssl.h>
 
+#ifdef HAVE_PTHREAD
+#include <pthread.h>
+#endif
+
 namespace gloox
 {
 
@@ -72,7 +76,18 @@ namespace gloox
       virtual void setClientCert( const std::string& clientKey, const std::string& clientCerts );
 
     protected:
-      virtual bool setType() = 0;
+      /**
+       * Possible results of hostname verification.
+       */
+      enum HostnameValidationResult {
+        MatchFound,
+        MatchNotFound,
+        NoSANPresent,
+        MalformedCertificate,
+        Error
+      };
+
+      virtual bool createCTX() = 0;
       virtual int handshakeFunction() = 0;
 
       SSL* m_ssl;
@@ -93,11 +108,25 @@ namespace gloox
 
       void doTLSOperation( TLSOperation op );
       int ASN1Time2UnixTime( ASN1_TIME* time );
+      HostnameValidationResult matchesCommonName( const char* hostname, const X509* server_cert );
+      HostnameValidationResult matchesSubjectAlternativeName( const char* hostname, const X509* server_cert );
+      HostnameValidationResult validateHostname( const char* hostname, const X509* server_cert,
+                                                 StringList& listSAN );
+      void fillSubjectAlternativeName( StringList& list, const X509 *server_cert );
+#ifdef HAVE_PTHREAD
+      static void lockCallback( int mode, int type, char *file, int line );
+      static unsigned long threadId();
+      void initLocks();
+      void killLocks();
+#endif
 
       std::string m_recvBuffer;
       std::string m_sendBuffer;
       char* m_buf;
       const int m_bufsize;
+#ifdef HAVE_PTHREAD
+      static pthread_mutex_t **lockarray;
+#endif
 
   };
 

@@ -15,6 +15,7 @@
 #define ROSTERLISTENER_H__
 
 #include "rosteritem.h"
+#include "rosterx.h"
 
 #include <string>
 #include <map>
@@ -166,6 +167,18 @@ namespace gloox
        * @param iq The error stanza.
        */
       virtual void handleRosterError( const IQ& iq ) = 0;
+
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_ROSTER_ITEM_EXCHANGE )
+      /**
+       * This function is called for incoming Roster Item Exchange (@xep{0144}) suggestions. See RosterX.
+       * @param from The entity suggesting the Roster Item exchange.
+       * @param items The suggested item(s). Check the items' action() function to find out whether
+       * this is a suggested addition/deletion/modification.
+       * @since 1.1
+       */
+      virtual void handleRosterItemExchange( const JID& from, const RosterX* items ) = 0;
+#endif // GLOOX_MINIMAL
+
   };
 
 }

@@ -61,6 +61,7 @@ std::unique_ptr<CFramebuffer> CFramebuffer::Create(
 	if (colorAttachment)
 	{
 		CTexture* colorAttachmentTexture = colorAttachment->texture->As<CTexture>();
+		ENSURE(colorAttachmentTexture->GetUsage() & ITexture::Usage::COLOR_ATTACHMENT);
 
 		framebuffer->m_Width = colorAttachmentTexture->GetWidth();
 		framebuffer->m_Height = colorAttachmentTexture->GetHeight();
@@ -75,6 +76,7 @@ std::unique_ptr<CFramebuffer> CFramebuffer::Create(
 	if (depthStencilAttachment)
 	{
 		CTexture* depthStencilAttachmentTexture = depthStencilAttachment->texture->As<CTexture>();
+		ENSURE(depthStencilAttachmentTexture->GetUsage() & ITexture::Usage::DEPTH_STENCIL_ATTACHMENT);
 
 		framebuffer->m_Width = depthStencilAttachmentTexture->GetWidth();
 		framebuffer->m_Height = depthStencilAttachmentTexture->GetHeight();

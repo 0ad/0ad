@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_PRIVACYLISTS )
+
 #ifndef PRIVACYLISTHANDLER_H__
 #define PRIVACYLISTHANDLER_H__
 
@@ -97,3 +99,5 @@ namespace gloox
 }
 
 #endif // PRIVACYLISTHANDLER_H__
+
+#endif // GLOOX_MINIMAL

@@ -11,6 +11,8 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_AMP )
+
 #ifndef AMP_H__
 #define AMP_H__
 
@@ -241,3 +243,5 @@ namespace gloox
 }
 
 #endif // AMP_H__
+
+#endif // GLOOX_MINIMAL

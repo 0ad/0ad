@@ -11,10 +11,13 @@
 */
 
 
+#if !defined( GLOOX_MINIMAL ) || defined( WANT_SI )
+
 #ifndef SIMANAGER_H__
 #define SIMANAGER_H__
 
 #include "iqhandler.h"
+#include "mutex.h"
 
 namespace gloox
 {
@@ -230,6 +233,7 @@ namespace gloox
       };
       typedef std::map<std::string, TrackStruct> TrackMap;
       TrackMap m_track;
+      util::Mutex m_trackMutex;
 
       ClientBase* m_parent;
 
@@ -243,3 +247,5 @@ namespace gloox
 }
 
 #endif // SIMANAGER_H__
+
+#endif // GLOOX_MINIMAL
