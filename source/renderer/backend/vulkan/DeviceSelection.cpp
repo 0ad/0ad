@@ -480,6 +480,8 @@ void ReportAvailablePhysicalDevice(const SAvailablePhysicalDevice& device,
 	Script::CreateObject(rq, &features);
 #define REPORT_FEATURE(NAME) \
 	Script::SetProperty(rq, features, #NAME, static_cast<bool>(device.features.NAME));
+	REPORT_FEATURE(robustBufferAccess);
+	REPORT_FEATURE(fullDrawIndexUint32);
 	REPORT_FEATURE(imageCubeArray);
 	REPORT_FEATURE(geometryShader);
 	REPORT_FEATURE(tessellationShader);
@@ -487,11 +489,14 @@ void ReportAvailablePhysicalDevice(const SAvailablePhysicalDevice& device,
 	REPORT_FEATURE(multiDrawIndirect);
 	REPORT_FEATURE(depthClamp);
 	REPORT_FEATURE(depthBiasClamp);
+	REPORT_FEATURE(fillModeNonSolid);
 	REPORT_FEATURE(samplerAnisotropy);
 	REPORT_FEATURE(textureCompressionETC2);
 	REPORT_FEATURE(textureCompressionASTC_LDR);
 	REPORT_FEATURE(textureCompressionBC);
 	REPORT_FEATURE(pipelineStatisticsQuery);
+	REPORT_FEATURE(shaderUniformBufferArrayDynamicIndexing);
+	REPORT_FEATURE(shaderSampledImageArrayDynamicIndexing);
 #undef REPORT_FEATURE
 
 #define REPORT_DESCRIPTOR_INDEXING_FEATURE(NAME) \
