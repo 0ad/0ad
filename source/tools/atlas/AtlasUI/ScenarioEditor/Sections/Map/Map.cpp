@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -718,6 +718,11 @@ void MapSidebar::OnRandomGenerate(wxCommandEvent& WXUNUSED(evt))
 	// Copy the old map settings, so we don't lose them if the map generation fails
 	AtObj oldSettings = settings;
 
+	// Deactivate tools, so they don't carry forwards into the new CWorld
+	// and crash.
+	m_ScenarioEditor.GetToolManager().SetCurrentTool(_T(""));
+	// TODO: clear the undo buffer, etc
+
 	AtlasMessage::qGenerateMap qry((std::wstring)scriptName.wc_str(), json);
 	qry.Post();
 
@@ -729,6 +734,8 @@ void MapSidebar::OnRandomGenerate(wxCommandEvent& WXUNUSED(evt))
 	}
 
 	m_ScenarioEditor.NotifyOnMapReload();
+
+	m_ScenarioEditor.GetCommandProc().ClearCommands();
 }
 
 void MapSidebar::OnOpenPlayerPanel(wxCommandEvent& WXUNUSED(evt))
