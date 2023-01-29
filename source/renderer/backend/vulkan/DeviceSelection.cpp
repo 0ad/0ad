@@ -324,7 +324,9 @@ bool ComparePhysicalDevices(
 		return deviceTypeScore1 > deviceTypeScore2;
 	// We use a total device memory amount to compare. We assume that more memory
 	// means better performance as previous metrics are equal.
-	return device1.deviceTotalMemory > device2.deviceTotalMemory;
+	if (device1.deviceTotalMemory != device2.deviceTotalMemory)
+		return device1.deviceTotalMemory > device2.deviceTotalMemory;
+	return device1.index < device2.index;
 }
 
 bool IsSurfaceFormatSupported(
