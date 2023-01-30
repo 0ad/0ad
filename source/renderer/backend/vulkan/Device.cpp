@@ -349,6 +349,19 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window)
 		LOGMESSAGE("  ID: %u VendorID: %u API Version: %u Driver Version: %u",
 			device.properties.deviceID, device.properties.vendorID,
 			device.properties.apiVersion, device.properties.driverVersion);
+		LOGMESSAGE("  hasRequiredExtensions: %c hasOutputToSurfaceSupport: %c",
+			device.hasRequiredExtensions ? 'Y' : 'N', device.hasOutputToSurfaceSupport ? 'Y' : 'N');
+		LOGMESSAGE("  graphicsQueueFamilyIndex: %u presentQueueFamilyIndex: %u families: %zu",
+			device.graphicsQueueFamilyIndex, device.presentQueueFamilyIndex,
+			device.queueFamilies.size());
+		LOGMESSAGE("  maxBoundDescriptorSets: %u", device.properties.limits.maxBoundDescriptorSets);
+		for (const VkSurfaceFormatKHR& surfaceFormat : device.surfaceFormats)
+		{
+			LOGMESSAGE("  Surface format: %u colorSpace: %u Supported: %c",
+				static_cast<uint32_t>(surfaceFormat.format),
+				static_cast<uint32_t>(surfaceFormat.colorSpace),
+				IsSurfaceFormatSupported(surfaceFormat) ? 'Y' : 'N');
+		}
 		for (uint32_t memoryTypeIndex = 0; memoryTypeIndex < device.memoryProperties.memoryTypeCount; ++memoryTypeIndex)
 		{
 			const VkMemoryType& type = device.memoryProperties.memoryTypes[memoryTypeIndex];
