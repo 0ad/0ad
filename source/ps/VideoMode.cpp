@@ -405,6 +405,8 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 			// MoltenVK - enable full component swizzling support.
 			setenv("MVK_CONFIG_FULL_IMAGE_VIEW_SWIZZLE", "1", 1);
 			CStr fullPathToVulkanLibrary = DllLoader::GenerateFilename("MoltenVK", "", ".dylib");
+			// MoltenVK - only print warnings and errors.
+			setenv("MVK_CONFIG_LOG_LEVEL", "2", 1);
 			if (SDL_Vulkan_LoadLibrary(fullPathToVulkanLibrary.c_str()) != 0)
 			{
 				LOGWARNING("Failed to load %s.", fullPathToVulkanLibrary.c_str());
