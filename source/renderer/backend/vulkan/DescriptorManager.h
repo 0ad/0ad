@@ -76,7 +76,14 @@ private:
 		VkDescriptorSetLayout layout;
 		VkDescriptorPool pool;
 		int16_t firstFreeIndex = 0;
-		std::vector<std::pair<VkDescriptorSet, int16_t>> elements;
+		static constexpr int16_t INVALID_INDEX = -1;
+		struct Element
+		{
+			VkDescriptorSet set = VK_NULL_HANDLE;
+			uint32_t version = 0;
+			int16_t nextFreeIndex = INVALID_INDEX;
+		};
+		std::vector<Element> elements;
 	};
 	SingleTypePool& GetSingleTypePool(const VkDescriptorType type, const uint32_t size);
 
@@ -105,7 +112,14 @@ private:
 	std::unordered_map<CTexture::UID, uint32_t> m_TextureToBindingMap;
 
 	std::unordered_map<VkDescriptorType, std::vector<SingleTypePool>> m_SingleTypePools;
-	std::unordered_map<CTexture::UID, std::vector<std::tuple<VkDescriptorType, uint8_t, int16_t>>> m_TextureSingleTypePoolMap;
+	struct SingleTypePoolReference
+	{
+		VkDescriptorType type = VK_DESCRIPTOR_TYPE_MAX_ENUM;
+		uint32_t version = 0;
+		int16_t elementIndex = SingleTypePool::INVALID_INDEX;
+		uint8_t size = 0;
+	};
+	std::unordered_map<CTexture::UID, std::vector<SingleTypePoolReference>> m_TextureSingleTypePoolMap;
 
 	using SingleTypeCacheKey = std::pair<VkDescriptorSetLayout, std::vector<CTexture::UID>>;
 	struct SingleTypeCacheKeyHash
@@ -113,6 +127,8 @@ private:
 		size_t operator()(const SingleTypeCacheKey& key) const;
 	};
 	std::unordered_map<SingleTypeCacheKey, VkDescriptorSet, SingleTypeCacheKeyHash> m_SingleTypeSets;
+
+	std::unique_ptr<ITexture> m_ErrorTexture;
 };
 
 } // namespace Vulkan
