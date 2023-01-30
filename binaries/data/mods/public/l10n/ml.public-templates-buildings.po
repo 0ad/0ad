@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-01-16 08:08+0000\n"
+"POT-Creation-Date: 2023-01-27 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Arun SL <arun.sukumaran.latha@gmail.com>, 2019\n"
 "Language-Team: Malayalam (http://www.transifex.com/wildfire-games/0ad/language/ml/)\n"
@@ -691,7 +691,7 @@ msgstr ""
 msgid "ImperialCourt"
 msgstr ""
 
-#: simulation/templates/structures/han/corral.xml:9
+#: simulation/templates/structures/han/corral.xml:12
 msgid "Xù Lán"
 msgstr ""
 
@@ -1911,7 +1911,7 @@ msgstr "വീട്"
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_range.xml:25
 #: simulation/templates/template_structure_military_stable.xml:29
-#: simulation/templates/template_structure_resource_corral.xml:32
+#: simulation/templates/template_structure_resource_corral.xml:29
 msgid "Village"
 msgstr "ഗ്രാമം"
 
@@ -2071,7 +2071,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_economic.xml:5
 #: simulation/templates/template_structure_military_dock.xml:27
-#: simulation/templates/template_structure_resource_corral.xml:32
+#: simulation/templates/template_structure_resource_corral.xml:29
 msgid "Economic"
 msgstr ""
 
@@ -2235,13 +2235,14 @@ msgstr ""
 msgid "Resource"
 msgstr ""
 
+#: simulation/templates/template_structure_resource_corral.xml:26
 #: simulation/templates/template_structure_resource_corral.xml:29
-#: simulation/templates/template_structure_resource_corral.xml:32
 msgid "Corral"
 msgstr "തൊഴുത്ത്‌"
 
-#: simulation/templates/template_structure_resource_corral.xml:31
-msgid "Raise Domestic Animals for food."
+#: simulation/templates/template_structure_resource_corral.xml:28
+msgid ""
+"Raise Domestic Animals for food. Garrison animals to gain a trickle of food."
 msgstr ""
 
 #: simulation/templates/template_structure_resource_field.xml:18

@@ -2706,12 +2706,12 @@ msgstr "Lasta av"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.desc
 msgctxt "hotkey metadata"
 msgid "Unload turreted units."
-msgstr ""
+msgstr "Lossa kanontornförsedda enheter."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.name
 msgctxt "hotkey metadata"
 msgid "Unload Turrets"
-msgstr ""
+msgstr "Lossa torn"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.desc
 msgctxt "hotkey metadata"
@@ -3032,7 +3032,7 @@ msgstr "Växla strukturträd"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game summary."
-msgstr ""
+msgstr "Växla sammanfattning i spelet."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.name
 msgctxt "hotkey metadata"
@@ -3764,7 +3764,7 @@ msgstr "Bäst för MP"
 
 #: gui/maps/MapFilters.js:116
 msgid "Maps that are recommended for Multiplayer play."
-msgstr ""
+msgstr "Kartor som rekommenderas för fleranvändarspel."
 
 #: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
@@ -4320,7 +4320,7 @@ msgstr "Hög kvalitativa modeller."
 
 #: gui/options/options.json[2].options[6].list[0][7].label
 msgid "Model appearance randomization"
-msgstr ""
+msgstr "Slumpning av modellutseende"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0].label._string
 msgctxt "Option for the meshes' amount of variety."
@@ -4355,7 +4355,7 @@ msgstr "Mjuka skuggor."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][12].label
 msgid "Cutoff distance"
-msgstr ""
+msgstr "Avbrottsavstånd"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][12].tooltip
 msgid "Hides shadows beyond a certain distance from a camera."
@@ -4722,17 +4722,17 @@ msgstr "Hindra ytterligare observatörer från att ansluta om gränsen nås."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[6].label
 msgid "Max lag for observers"
-msgstr ""
+msgstr "Max fördröjning för observatörer"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[6].tooltip
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
-msgstr ""
+msgstr "När du är värd, pausa spelet om observatörer släpar efter mer än så många varv. Om satt till -1 ignoreras observatörer."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].label
 msgid "(Observer) Speed up when lagging."
-msgstr ""
+msgstr "(Observatör) Snabba upp vid eftersläpning."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].tooltip
 msgid ""
@@ -5079,7 +5079,7 @@ msgstr "Normal"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label.tooltip
 msgid "Entities appearance is randomized normally."
-msgstr ""
+msgstr "Enheternas utseende är normalt skapat slumpvis."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][8].label
 msgid "Shader effects"
@@ -6400,7 +6400,7 @@ msgstr "Har låg hälsa, men är snabb och kommer att orädd attackera fiender."
 
 #: gui/text/tips/briton_war_dog.txt:4
 msgid "Use them as support in your army or for quick raids."
-msgstr ""
+msgstr "Använd dem som stöd i din armé eller för snabba räder."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -6432,7 +6432,7 @@ msgstr "Speciell brygga för karthagerna för att konstruera krigsfartyg."
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."
-msgstr ""
+msgstr "Förlägg fartyg inuti för att långsamt reparera dem."
 
 #: gui/text/tips/carth_shipyard.txt:4
 msgid "Much stronger than other docks, but also more expensive."
@@ -6458,12 +6458,12 @@ msgstr "Packa ihop till vagnar för att förflytta dem, packa upp till stationä
 
 #: gui/text/tips/cavalry_stable.txt:1
 msgid "CAVALRY STABLE"
-msgstr ""
+msgstr "KAVALLERISTALL"
 
 #: gui/text/tips/cavalry_stable.txt:2
 msgid ""
 "Trains cavalry units and lets you research cavalry specific technologies."
-msgstr ""
+msgstr "Tränar kavallerienheter och låter dig undersöka kavallerispecifik teknik."
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
@@ -6579,7 +6579,7 @@ msgstr "Strukturen är tillgänglig för vissa civilisationer för att träna el
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES AND MERCENARY CAMPS"
-msgstr ""
+msgstr "AMBASSIER OCH LEGOKNEKTLÄGER"
 
 #: gui/text/tips/embassies.txt:2
 msgid "Special structures allowing you to hire mercenaries for your army."
@@ -6627,7 +6627,7 @@ msgstr "Forska fram vapen- och rustningsförbättringar för dina enheter."
 
 #: gui/text/tips/formations.txt:1
 msgid "FORMATIONS"
-msgstr ""
+msgstr "FORMATIONER"
 
 #: gui/text/tips/formations.txt:2
 msgid ""
@@ -6733,7 +6733,7 @@ msgstr "Det speciella iberiska eldskeppet är mycket effektivt mot andra fartyg 
 
 #: gui/text/tips/lighthouse.txt:1
 msgid "LIGHTHOUSE"
-msgstr ""
+msgstr "FYR"
 
 #: gui/text/tips/lighthouse.txt:2
 msgid ""
@@ -6743,7 +6743,7 @@ msgstr "Särskilda ptolemaiska strukturer för att öka ditt synområde när det
 
 #: gui/text/tips/map_flare.txt:1
 msgid "MAP FLARE"
-msgstr ""
+msgstr "KARTBLOSS"
 
 #: gui/text/tips/map_flare.txt:2
 msgid ""
@@ -7018,7 +7018,7 @@ msgstr "När förfallen är komplett ges byggnaden till grannen med mest inflyta
 
 #: gui/text/tips/theater.txt:1
 msgid "THEATER"
-msgstr ""
+msgstr "TEATER"
 
 #: gui/text/tips/theater.txt:2
 msgid ""
@@ -7028,7 +7028,7 @@ msgstr "Särskilda strukturer av de grekiska civilisationerna för att öka stor
 
 #: gui/text/tips/treasure.txt:1
 msgid "TREASURES"
-msgstr ""
+msgstr "SKATTER"
 
 #: gui/text/tips/treasure.txt:2
 msgid ""
