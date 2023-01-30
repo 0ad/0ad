@@ -16,7 +16,7 @@
     <SpecificName>knw hps</SpecificName>
     <Icon>units/kush/infantry_swordsman.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Promotion>

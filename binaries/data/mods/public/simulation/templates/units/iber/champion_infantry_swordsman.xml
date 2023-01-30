@@ -10,7 +10,7 @@
     <SpecificName>Leial Ezpatari</SpecificName>
     <Icon>units/iber/champion_infantry.png</Icon>
     <Requirements>
-      <Techs>unlock_champion_infantry</Techs>
+      <Techs datatype="tokens">unlock_champion_infantry</Techs>
     </Requirements>
   </Identity>
   <VisualActor>

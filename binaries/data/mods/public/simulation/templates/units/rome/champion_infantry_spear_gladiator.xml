@@ -22,7 +22,7 @@
     <Rank>Elite</Rank>
     <Icon>units/rome/champion_infantry_gladiator_spear.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Promotion disable=""/>

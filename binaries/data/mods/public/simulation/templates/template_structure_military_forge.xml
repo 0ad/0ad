@@ -26,7 +26,7 @@
     <VisibleClasses datatype="tokens">Town Forge</VisibleClasses>
     <Icon>structures/blacksmith.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Loot>

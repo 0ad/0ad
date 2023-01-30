@@ -7,7 +7,7 @@
     <GenericName>Celtic Cavalry</GenericName>
     <Icon>units/brit/cavalry_swordsman.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Promotion>

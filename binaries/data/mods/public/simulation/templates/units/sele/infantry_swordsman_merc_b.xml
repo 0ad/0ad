@@ -13,7 +13,7 @@
     <SpecificName>Rhomphaiaphoros Thrakikós</SpecificName>
     <Icon>units/sele/infantry_swordsman.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Promotion>

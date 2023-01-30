@@ -7,7 +7,7 @@
     <SpecificName>Argyraspis</SpecificName>
     <Icon>units/sele/champion_pikeman.png</Icon>
     <Requirements>
-      <Techs>traditional_army_sele</Techs>
+      <Techs datatype="tokens">-phase_city traditional_army_sele</Techs>
     </Requirements>
   </Identity>
   <VisualActor>

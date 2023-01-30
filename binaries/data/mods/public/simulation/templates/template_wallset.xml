@@ -12,7 +12,7 @@
     <Icon>structures/wall.png</Icon>
     <Undeletable>true</Undeletable>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Visibility>

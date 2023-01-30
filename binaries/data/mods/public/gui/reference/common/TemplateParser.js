@@ -77,7 +77,7 @@ class TemplateParser
 		else
 		{
 			let highestPhaseIndex = 0;
-			for (const tech of parsed.requirements.Techs.split(" "))
+			for (const tech of parsed.requirements.Techs._string.split(" "))
 			{
 				if (tech[0] === "!")
 					continue;
@@ -271,12 +271,24 @@ class TemplateParser
 			data.tooltip = upgrade.tooltip || data.tooltip;
 			data.requirements = upgrade.requirements || data.requirements;
 
-			if (!data.requirements)
+			if (!data.requirements?.Techs)
 				data.phase = this.phaseList[0];
-			else if (this.TemplateLoader.isPhaseTech(data.requirements.Techs))
-				data.phase = this.getActualPhase(data.requirements.Techs);
 			else
-				data.phase = this.getPhaseOfTechnology(data.requirements.Techs, civCode);
+			{
+				let highestPhaseIndex = 0;
+				for (const tech of data.requirements.Techs._string.split(" "))
+				{
+					if (tech[0] === "!")
+						continue;
+
+					const phaseIndex = this.phaseList.indexOf(
+						this.TemplateLoader.isPhaseTech(tech) ? this.getActualPhase(tech) :
+							this.getPhaseOfTechnology(tech, civCode));
+					if (phaseIndex > highestPhaseIndex)
+						highestPhaseIndex = phaseIndex;
+				}
+				data.phase = this.phaseList[highestPhaseIndex];
+			}
 
 			newUpgrades.push(data);
 		}

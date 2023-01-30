@@ -306,9 +306,10 @@ class CheckRefs:
                     reqTag = cmp_identity.find('Requirements')
                     if reqTag is not None:
                         def parse_requirements(req, recursionDepth = 1):
-                            techTag = req.find('Techs')
-                            if techTag is not None:
-                                self.deps.append((str(fp), f'simulation/data/technologies/{techTag.text}.json'))
+                            techsTag = req.find('Techs')
+                            if techsTag is not None:
+                                for techTag in techsTag.text.split():
+                                    self.deps.append((str(fp), f'simulation/data/technologies/{techTag}.json'))
 
                             if recursionDepth > 0:
                                 recursionDepth -= 1

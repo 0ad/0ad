@@ -2,7 +2,7 @@
 <Entity parent="template_unit_fauna_herd_domestic">
   <Identity>
     <Requirements>
-      <Techs>phase_city</Techs>
+      <Techs datatype="tokens">phase_city</Techs>
     </Requirements>
   </Identity>
   <Sound>

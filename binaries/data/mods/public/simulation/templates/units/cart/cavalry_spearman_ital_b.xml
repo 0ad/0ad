@@ -7,7 +7,7 @@
     <SelectionGroupName>units/cart/cavalry_spearman_ital_b</SelectionGroupName>
     <Icon>units/cart/cavalry_spearman.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Promotion>

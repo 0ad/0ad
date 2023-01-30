@@ -2,7 +2,7 @@
 <Entity parent="units/pers/cavalry_javelineer_a">
   <Identity>
     <Requirements>
-      <Techs>equine_transports</Techs>
+      <Techs datatype="tokens">equine_transports</Techs>
     </Requirements>
   </Identity>
   <Promotion>

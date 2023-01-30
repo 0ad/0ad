@@ -53,7 +53,7 @@
     <VisibleClasses datatype="tokens">BoltTower</VisibleClasses>
     <Icon>structures/tower_bolt.png</Icon>
     <Requirements>
-      <Techs>phase_city</Techs>
+      <Techs datatype="tokens">phase_city</Techs>
     </Requirements>
   </Identity>
   <Loot>

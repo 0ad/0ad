@@ -8,7 +8,7 @@
     <SpecificName>Toxótēs Syrías</SpecificName>
     <Icon>units/sele/infantry_archer.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Promotion>

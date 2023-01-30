@@ -11,7 +11,7 @@
     <SpecificName>Ezkutari</SpecificName>
     <Icon>units/iber/infantry_spearman.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Promotion>
