@@ -345,8 +345,7 @@ Foundation.prototype.Build = function(builderEnt, work)
 			if (cmpBuildingIdentity.GetPhenotype() !== oldPhenotype)
 			{
 				cmpBuildingIdentity.SetPhenotype(oldPhenotype);
-				if (cmpVisualCorpse)
-					cmpVisualCorpse.RecomputeActorName();
+				Engine.QueryInterface(building, IID_Visual)?.RecomputeActorName();
 			}
 		}
 
