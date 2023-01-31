@@ -58,7 +58,7 @@ namespace gloox
       * @param body The content of the ping or pong stanza.
       * @since 1.1
       */
-      virtual void handlePing( PingType type, const std::string& body ) = 0;
+      virtual void handlePing( const PingType type, const std::string& body ) = 0;
     
   };
 
