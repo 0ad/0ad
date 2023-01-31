@@ -228,19 +228,20 @@ SAvailablePhysicalDevice MakeAvailablePhysicalDevice(
 
 	availablePhysicalDevice.graphicsQueueFamilyIndex = availablePhysicalDevice.queueFamilies.size();
 	availablePhysicalDevice.presentQueueFamilyIndex = availablePhysicalDevice.queueFamilies.size();
-	for (size_t familyIdx = 0; familyIdx < availablePhysicalDevice.queueFamilies.size(); ++familyIdx)
+	if (surface != VK_NULL_HANDLE)
 	{
-		const VkQueueFamilyProperties& queueFamily = availablePhysicalDevice.queueFamilies[familyIdx];
-		if (surface != VK_NULL_HANDLE)
+		for (size_t familyIdx = 0; familyIdx < availablePhysicalDevice.queueFamilies.size(); ++familyIdx)
 		{
+			const VkQueueFamilyProperties& queueFamily = availablePhysicalDevice.queueFamilies[familyIdx];
 			VkBool32 hasOutputToSurfaceSupport = false;
 			ENSURE_VK_SUCCESS(vkGetPhysicalDeviceSurfaceSupportKHR(
 				availablePhysicalDevice.device, familyIdx, surface, &hasOutputToSurfaceSupport));
-			availablePhysicalDevice.hasOutputToSurfaceSupport = hasOutputToSurfaceSupport;
 			if ((queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT) && hasOutputToSurfaceSupport)
 			{
+				availablePhysicalDevice.hasOutputToSurfaceSupport = hasOutputToSurfaceSupport;
 				availablePhysicalDevice.graphicsQueueFamilyIndex = familyIdx;
 				availablePhysicalDevice.presentQueueFamilyIndex = familyIdx;
+				break;
 			}
 		}
 	}
