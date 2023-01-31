@@ -11,7 +11,7 @@
     <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
     <Icon>units/han/chariot.png</Icon>
     <Requirements>
-      <Techs>phase_city</Techs>
+      <Techs datatype="tokens">-unlock_champion_cavalry phase_city</Techs>
     </Requirements>
   </Identity>
   <VisualActor>

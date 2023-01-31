@@ -1,6 +1,6 @@
 ; To generate the installer (on Linux):
 ;  Do an 'svn export' into a directory called e.g. "export-win32"
-;  makensis -nocd -dcheckoutpath=export-win32 -drevision=1234 -dprefix=0ad-0.1.2-alpha export-win32/source/tools/dist/0ad.nsi
+;  makensis -nocd -dcheckoutpath=export-win32 -drevision=1234 -dversion=0.1.2 -dprefix=0ad-0.1.2-alpha export-win32/source/tools/dist/0ad.nsi
 
   SetCompressor /SOLID LZMA
 
@@ -162,7 +162,7 @@ Section "!Game and data files" GameSection
 
   ;Add uninstall information
   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "DisplayName" "0 A.D."
-  WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "DisplayVersion" "r${REVISION}-alpha"
+  WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "DisplayVersion" "${VERSION}"
   WriteRegDWORD SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "VersionMajor" 0
   WriteRegDWORD SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "VersionMinor" ${REVISION}
   WriteRegStr SHCTX "Software\Microsoft\Windows\CurrentVersion\Uninstall\0 A.D." "Publisher" "Wildfire Games"

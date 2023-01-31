@@ -15,7 +15,7 @@
     <SelectionGroupName>units/cart/infantry_slinger_iber_b</SelectionGroupName>
     <Icon>units/cart/infantry_slinger.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Promotion>

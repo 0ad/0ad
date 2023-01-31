@@ -15,7 +15,7 @@
     <SelectionGroupName>units/cart/infantry_javelineer_iber_b</SelectionGroupName>
     <Icon>units/cart/infantry_javelinist.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Promotion>

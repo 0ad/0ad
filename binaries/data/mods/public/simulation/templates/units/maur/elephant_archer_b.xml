@@ -7,7 +7,7 @@
     <SelectionGroupName>units/maur/elephant_archer_b</SelectionGroupName>
     <Icon>units/maur/elephant_archer.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Promotion>

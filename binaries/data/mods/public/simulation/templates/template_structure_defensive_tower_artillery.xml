@@ -56,7 +56,7 @@
     <VisibleClasses datatype="tokens">ArtilleryTower</VisibleClasses>
     <Icon>structures/tower_artillery.png</Icon>
     <Requirements>
-      <Techs>phase_city</Techs>
+      <Techs datatype="tokens">phase_city</Techs>
     </Requirements>
   </Identity>
   <Loot>

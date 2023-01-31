@@ -23,6 +23,9 @@ RequirementsHelper.prototype.EntityRequirementsSchema =
 
 RequirementsHelper.prototype.TechnologyRequirementsSchema =
 	"<element name='Techs' a:help='White-space separated list of technologies that need to be researched. ! negates a tech.'>" +
+		"<attribute name='datatype'>" +
+			"<value>tokens</value>" +
+		"</attribute>" +
 		"<text/>" +
 	"</element>";
 
@@ -118,8 +121,8 @@ RequirementsHelper.prototype.AllRequirementsMet = function(template, cmpTechMana
 					return false;
 			}
 		}
-		if (requirementType === "Techs")
-			for (const tech of requirement.split(" "))
+		if (requirementType === "Techs" && requirement._string)
+			for (const tech of requirement._string.split(" "))
 				if (tech[0] === "!" ? cmpTechManager.IsTechnologyResearched(tech.substring(1)) :
 					!cmpTechManager.IsTechnologyResearched(tech))
 					return false;
@@ -152,8 +155,8 @@ RequirementsHelper.prototype.AnyRequirementsMet = function(template, cmpTechMana
 					return true;
 			}
 		}
-		if (requirementType === "Techs")
-			for (const tech of requirement.split(" "))
+		if (requirementType === "Techs" && requirement._string)
+			for (const tech of requirement._string.split(" "))
 				if (tech[0] === "!" ? !cmpTechManager.IsTechnologyResearched(tech.substring(1)) :
 					cmpTechManager.IsTechnologyResearched(tech))
 					return true;

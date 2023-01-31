@@ -21,7 +21,7 @@ met();
 
 // Simple requirements are assumed to be additive.
 template = {
-	"Techs": "phase_city"
+	"Techs": { "_string": "phase_city" }
 };
 
 AddMock(playerEnt, IID_TechnologyManager, {
@@ -40,7 +40,7 @@ AddMock(playerEnt, IID_TechnologyManager, {
 met();
 
 template = {
-	"Techs": "cartography phase_city"
+	"Techs": { "_string": "cartography phase_city" }
 };
 
 AddMock(playerEnt, IID_TechnologyManager, {
@@ -248,7 +248,7 @@ met();
 // Technology requirements.
 template = {
 	"All": {
-		"Techs": "phase_town"
+		"Techs": { "_string": "phase_town" }
 	}
 };
 
@@ -264,14 +264,14 @@ met();
 
 template = {
 	"All": {
-		"Techs": "phase_city"
+		"Techs": { "_string": "phase_city" }
 	}
 };
 notMet();
 
 template = {
 	"All": {
-		"Techs": "phase_town phase_city"
+		"Techs": { "_string": "phase_town phase_city" }
 	}
 };
 notMet();
@@ -283,14 +283,14 @@ met();
 
 template = {
 	"All": {
-		"Techs": "!phase_city"
+		"Techs": { "_string": "!phase_city" }
 	}
 };
 notMet();
 
 template = {
 	"All": {
-		"Techs": "!phase_town phase_city"
+		"Techs": { "_string": "!phase_town phase_city"}
 	}
 };
 notMet();
@@ -310,7 +310,7 @@ template = {
 				"Variants": 2
 			}
 		},
-		"Techs": "phase_town"
+		"Techs": { "_string": "phase_town" }
 	}
 };
 
@@ -423,7 +423,7 @@ met();
 // Technology requirements.
 template = {
 	"Any": {
-		"Techs": "phase_town"
+		"Techs": { "_string": "phase_town" }
 	}
 };
 
@@ -439,7 +439,7 @@ met();
 
 template = {
 	"Any": {
-		"Techs": "phase_town phase_city"
+		"Techs": { "_string": "phase_town phase_city" }
 	}
 };
 
@@ -450,7 +450,7 @@ met();
 
 template = {
 	"Any": {
-		"Techs": "!phase_town"
+		"Techs": { "_string": "!phase_town" }
 	}
 };
 
@@ -466,7 +466,7 @@ met();
 
 template = {
 	"Any": {
-		"Techs": "!phase_town phase_city"
+		"Techs": { "_string": "!phase_town phase_city" }
 	}
 };
 
@@ -485,7 +485,7 @@ template = {
 				"Variants": 2
 			}
 		},
-		"Techs": "!phase_town"
+		"Techs": { "_string": "!phase_town" }
 	}
 };
 
@@ -507,7 +507,7 @@ met();
 template = {
 	"All": {
 		"All": {
-			"Techs": "!phase_town"
+			"Techs": { "_string": "!phase_town" }
 		},
 		"Any": {
 			"Entities": {
@@ -516,7 +516,7 @@ template = {
 					"Variants": 2
 				}
 			},
-			"Techs": "phase_city"
+			"Techs": { "_string": "phase_city" }
 		}
 	}
 };
@@ -578,7 +578,7 @@ met();
 template = {
 	"Any": {
 		"All": {
-			"Techs": "!phase_town"
+			"Techs": { "_string": "!phase_town" }
 		},
 		"Any": {
 			"Entities": {
@@ -587,7 +587,7 @@ template = {
 					"Variants": 2
 				}
 			},
-			"Techs": "phase_city"
+			"Techs": { "_string": "phase_city" }
 		}
 	}
 };
@@ -651,7 +651,7 @@ template = {
 	"All": {
 		"Any": {
 			"All": {
-				"Techs": "cartography phase_imperial",
+				"Techs": { "_string": "cartography phase_imperial" }
 			},
 			"Entities": {
 				"class_1": {
@@ -659,9 +659,9 @@ template = {
 					"Variants": 2
 				}
 			},
-			"Techs": "phase_city"
+			"Techs": { "_string": "phase_city" }
 		},
-		"Techs": "!phase_town"
+		"Techs": { "_string": "!phase_town" }
 	}
 };
 

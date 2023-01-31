@@ -16,7 +16,7 @@
     <SpecificName>nhw Noba</SpecificName>
     <Icon>units/kush/infantry_maceman.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Promotion>

@@ -10,7 +10,7 @@
     <Tooltip>Trade between docks. Garrison a Trader aboard for additional profit (+20% for each garrisoned). Gather profitable aquatic treasures. Carthaginians have +25% sea trading bonus.</Tooltip>
     <Icon>units/cart/ship_merchant.png</Icon>
     <Requirements>
-      <Techs>phase_village</Techs>
+      <Techs datatype="tokens">-phase_town phase_village</Techs>
     </Requirements>
   </Identity>
   <Selectable>

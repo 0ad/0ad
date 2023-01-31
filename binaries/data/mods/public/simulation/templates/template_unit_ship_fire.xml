@@ -41,7 +41,7 @@
     <Tooltip>Unrepairable. Gradually loses health. Can only attack Ships.</Tooltip>
     <VisibleClasses datatype="tokens">Melee Warship Fireship</VisibleClasses>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Loot disable=""/>

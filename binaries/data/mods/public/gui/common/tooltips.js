@@ -968,9 +968,9 @@ function getRequirementsTooltip(enabled, requirements, civ)
 		return "";
 
 	// Simple requirements (one tech) can be translated on the fly.
-	if ("Techs" in requirements && !requirements.Techs.includes(" "))
+	if ("Techs" in requirements && !requirements.Techs._string.includes(" "))
 		return objectionFont(sprintf(translate("Requires %(technology)s"), {
-			"technology": getEntityNames(GetTechnologyData(requirements.Techs, civ))
+			"technology": getEntityNames(GetTechnologyData(requirements.Techs._string, civ))
 		}));
 	return objectionFont(translate(requirements.Tooltip));
 }

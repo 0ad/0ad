@@ -8,7 +8,7 @@
     <GenericName>Napatan Light Cavalry</GenericName>
     <Icon>units/kush/cavalry_javelinist.png</Icon>
     <Requirements>
-      <Techs>phase_village</Techs>
+      <Techs datatype="tokens">phase_village</Techs>
     </Requirements>
   </Identity>
   <Promotion>

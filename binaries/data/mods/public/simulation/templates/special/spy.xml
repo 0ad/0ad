@@ -17,7 +17,7 @@
     <Icon>technologies/spy_trader.png</Icon>
     <Undeletable>true</Undeletable>
     <Requirements>
-      <Techs>unlock_spies</Techs>
+      <Techs datatype="tokens">unlock_spies</Techs>
     </Requirements>
   </Identity>
   <VisionSharing>

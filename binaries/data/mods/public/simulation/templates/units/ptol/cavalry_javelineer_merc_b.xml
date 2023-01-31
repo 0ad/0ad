@@ -7,7 +7,7 @@
     <SpecificName>Hippeús Tarantînos</SpecificName>
     <Icon>units/hele/tarentine_cavalry_e.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Promotion>

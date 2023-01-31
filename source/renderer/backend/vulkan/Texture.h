@@ -72,6 +72,7 @@ public:
 	 * a too big texture flow.
 	 */
 	using UID = uint32_t;
+	static constexpr UID INVALID_UID = 0;
 	UID GetUID() const { return m_UID; }
 
 private:

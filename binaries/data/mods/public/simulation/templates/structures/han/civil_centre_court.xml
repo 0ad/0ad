@@ -20,7 +20,7 @@
     <Classes datatype="tokens">CivCentre CivSpecific</Classes>
     <Icon>structures/military_settlement.png</Icon>
     <Requirements>
-      <Techs>phase_city</Techs>
+      <Techs datatype="tokens">phase_city</Techs>
     </Requirements>
   </Identity>
   <Population>

@@ -6,7 +6,7 @@
     <SelectionGroupName>units/han/champion_cavalry</SelectionGroupName>
     <Icon>units/han/champion_cavalry_spearman.png</Icon>
     <Requirements>
-      <Techs>phase_city</Techs>
+      <Techs datatype="tokens">-unlock_champion_cavalry phase_city</Techs>
     </Requirements>
   </Identity>
   <VisualActor>

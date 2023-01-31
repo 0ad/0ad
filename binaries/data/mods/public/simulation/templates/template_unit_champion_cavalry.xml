@@ -20,7 +20,7 @@
     <VisibleClasses datatype="tokens">Cavalry</VisibleClasses>
     <GenericName>Champion Cavalry</GenericName>
     <Requirements>
-      <Techs>unlock_champion_cavalry</Techs>
+      <Techs datatype="tokens">-phase_city unlock_champion_cavalry</Techs>
     </Requirements>
   </Identity>
   <Loot>

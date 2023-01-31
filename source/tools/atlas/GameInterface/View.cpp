@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,6 +32,7 @@
 #include "lib/timer.h"
 #include "lib/utf8.h"
 #include "maths/MathUtil.h"
+#include "ps/ConfigDB.h"
 #include "ps/Game.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/VideoMode.h"
@@ -404,7 +405,9 @@ void AtlasViewGame::SetBandbox(bool visible, float x0, float y0, float x1, float
 		if (y0 > y1)
 			std::swap(y0, y1);
 
-		m_Bandbox = CRect(x0, y0, x1, y1);
+		float scale;
+		CFG_GET_VAL("gui.scale", scale);
+		m_Bandbox = CRect(x0 / scale, y0 / scale, x1 / scale, y1 / scale);
 	}
 	else
 	{

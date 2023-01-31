@@ -2,7 +2,7 @@
 <Entity parent="units/pers/cavalry_axeman_a">
   <Identity>
     <Requirements>
-      <Techs>equine_transports</Techs>
+      <Techs datatype="tokens">-phase_town equine_transports</Techs>
     </Requirements>
   </Identity>
   <Promotion>

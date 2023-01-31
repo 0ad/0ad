@@ -41,6 +41,7 @@ fi
 makensis -V4 -nocd \
 	-dcheckoutpath="." \
 	-drevision=${SVN_REV} \
+	-dversion=${BUNDLE_VERSION} \
 	-dprefix=${PREFIX} \
 	-darchive_path="archives/" \
 	source/tools/dist/0ad.nsi

@@ -23,7 +23,7 @@
     <SelectionGroupName>template_structure_military_embassy</SelectionGroupName>
     <VisibleClasses datatype="tokens">Town Embassy</VisibleClasses>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Obstruction>

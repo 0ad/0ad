@@ -19,7 +19,7 @@
     <Rank>Elite</Rank>
     <Icon>units/spart/champion_infantry_sword.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Loot>

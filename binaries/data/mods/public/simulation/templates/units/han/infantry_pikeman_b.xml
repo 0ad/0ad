@@ -21,7 +21,7 @@
     <SpecificName>Jǐ Bīng</SpecificName>
     <Icon>units/han/infantry_halberdman.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Promotion>

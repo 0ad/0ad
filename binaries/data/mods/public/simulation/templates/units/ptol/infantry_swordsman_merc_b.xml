@@ -13,7 +13,7 @@
     <SelectionGroupName>units/ptol/infantry_swordsman_merc_b</SelectionGroupName>
     <Icon>units/cart/infantry_swordsman.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Promotion>

@@ -40,7 +40,7 @@
     <Tooltip>Train the Nine Ministers. Territory root. Research a powerful suite of Administrative technologies.</Tooltip>
     <Icon>structures/imperial_ministry.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">phase_town</Techs>
     </Requirements>
   </Identity>
   <Loot>

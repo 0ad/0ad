@@ -16,7 +16,7 @@
     <SpecificName>Pdty Nhsyw</SpecificName>
     <Icon>units/kush/infantry_archer.png</Icon>
     <Requirements>
-      <Techs>phase_village</Techs>
+      <Techs datatype="tokens">phase_village</Techs>
     </Requirements>
   </Identity>
   <Promotion>

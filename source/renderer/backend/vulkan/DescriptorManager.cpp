@@ -39,7 +39,13 @@ namespace Vulkan
 {
 
 CDescriptorManager::CDescriptorManager(CDevice* device, const bool useDescriptorIndexing)
-	: m_Device(device), m_UseDescriptorIndexing(useDescriptorIndexing)
+	: m_Device(device), m_UseDescriptorIndexing(useDescriptorIndexing),
+	m_ErrorTexture(device->CreateTexture(
+		"DescriptorManagerErrorTexture", ITexture::Type::TEXTURE_2D,
+		ITexture::Usage::TRANSFER_DST | ITexture::Usage::SAMPLED,
+		Format::R8G8B8A8_UNORM, 1, 1,
+		Sampler::MakeDefaultSampler(Sampler::Filter::NEAREST, Sampler::AddressMode::REPEAT),
+		1, 1))
 {
 	if (useDescriptorIndexing)
 	{
@@ -190,8 +196,8 @@ CDescriptorManager::SingleTypePool& CDescriptorManager::GetSingleTypePool(
 		pool.firstFreeIndex = 0;
 		pool.elements.reserve(maxSets);
 		for (uint32_t index = 0; index < maxSets; ++index)
-			pool.elements.push_back({VK_NULL_HANDLE, static_cast<int16_t>(index + 1)});
-		pool.elements.back().second = -1;
+			pool.elements.push_back({VK_NULL_HANDLE, 1, static_cast<int16_t>(index + 1)});
+		pool.elements.back().nextFreeIndex = SingleTypePool::INVALID_INDEX;
 	}
 	return pool;
 }
@@ -224,11 +230,15 @@ VkDescriptorSet CDescriptorManager::GetSingleTypeDescritorSet(
 	{
 		SingleTypePool& pool = GetSingleTypePool(type, texturesUID.size());
 		const int16_t elementIndex = pool.firstFreeIndex;
-		ENSURE(elementIndex != -1);
-		std::pair<VkDescriptorSet, int16_t>& element = pool.elements[elementIndex];
-		pool.firstFreeIndex = element.second;
+		ENSURE(elementIndex != SingleTypePool::INVALID_INDEX);
+		SingleTypePool::Element& element = pool.elements[elementIndex];
+		ENSURE(pool.firstFreeIndex != element.nextFreeIndex);
+		pool.firstFreeIndex = element.nextFreeIndex;
+		++element.version;
+		// Occupy the index.
+		element.nextFreeIndex = SingleTypePool::INVALID_INDEX;
 
-		if (element.first == VK_NULL_HANDLE)
+		if (element.set == VK_NULL_HANDLE)
 		{
 			VkDescriptorSetAllocateInfo descriptorSetAllocateInfo{};
 			descriptorSetAllocateInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_ALLOCATE_INFO;
@@ -237,41 +247,40 @@ VkDescriptorSet CDescriptorManager::GetSingleTypeDescritorSet(
 			descriptorSetAllocateInfo.pSetLayouts = &layout;
 
 			ENSURE_VK_SUCCESS(vkAllocateDescriptorSets(
-				m_Device->GetVkDevice(), &descriptorSetAllocateInfo, &element.first));
+				m_Device->GetVkDevice(), &descriptorSetAllocateInfo, &element.set));
 		}
 
-		it = m_SingleTypeSets.emplace(key, element.first).first;
+		it = m_SingleTypeSets.emplace(key, element.set).first;
 
 		for (const CTexture::UID uid : texturesUID)
-			m_TextureSingleTypePoolMap[uid].push_back({type, static_cast<uint8_t>(texturesUID.size()), elementIndex});
+			if (uid != CTexture::INVALID_UID)
+				m_TextureSingleTypePoolMap[uid].push_back({type, element.version, elementIndex, static_cast<uint8_t>(texturesUID.size())});
 
 		PS::StaticVector<VkDescriptorImageInfo, 16> infos;
-		PS::StaticVector<VkWriteDescriptorSet, 16> writes;
-		for (size_t index = 0; index < textures.size(); ++index)
+		for (CTexture* texture : textures)
 		{
-			if (!textures[index])
-				continue;
-			ENSURE(textures[index]->GetUsage() & ITexture::Usage::SAMPLED);
+			if (!texture)
+				texture = m_ErrorTexture->As<CTexture>();
+			ENSURE(texture->GetUsage() & ITexture::Usage::SAMPLED);
 
 			VkDescriptorImageInfo descriptorImageInfo{};
 			descriptorImageInfo.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
-			descriptorImageInfo.imageView = textures[index]->GetSamplerImageView();
-			descriptorImageInfo.sampler = textures[index]->GetSampler();
+			descriptorImageInfo.imageView = texture->GetSamplerImageView();
+			descriptorImageInfo.sampler = texture->GetSampler();
 			infos.emplace_back(std::move(descriptorImageInfo));
-
-			VkWriteDescriptorSet writeDescriptorSet{};
-			writeDescriptorSet.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-			writeDescriptorSet.dstSet = element.first;
-			writeDescriptorSet.dstBinding = index;
-			writeDescriptorSet.dstArrayElement = 0;
-			writeDescriptorSet.descriptorType = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
-			writeDescriptorSet.descriptorCount = 1;
-			writeDescriptorSet.pImageInfo = &infos.back();
-			writes.emplace_back(std::move(writeDescriptorSet));
 		}
 
+		VkWriteDescriptorSet writeDescriptorSet{};
+		writeDescriptorSet.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+		writeDescriptorSet.dstSet = element.set;
+		writeDescriptorSet.dstBinding = 0;
+		writeDescriptorSet.dstArrayElement = 0;
+		writeDescriptorSet.descriptorType = type;
+		writeDescriptorSet.descriptorCount = static_cast<uint32_t>(infos.size());
+		writeDescriptorSet.pImageInfo = infos.data();
+
 		vkUpdateDescriptorSets(
-			m_Device->GetVkDevice(), writes.size(), writes.data(), 0, nullptr);
+			m_Device->GetVkDevice(), 1, &writeDescriptorSet, 0, nullptr);
 	}
 	return it->second;
 }
@@ -330,6 +339,7 @@ uint32_t CDescriptorManager::GetTextureDescriptor(CTexture* texture)
 
 void CDescriptorManager::OnTextureDestroy(const CTexture::UID uid)
 {
+	ENSURE(uid != CTexture::INVALID_UID);
 	if (m_UseDescriptorIndexing)
 	{
 		DescriptorIndexingBindingMap& bindingMap =
@@ -342,6 +352,7 @@ void CDescriptorManager::OnTextureDestroy(const CTexture::UID uid)
 		const int16_t index = it->second;
 		bindingMap.elements[index] = bindingMap.firstFreeIndex;
 		bindingMap.firstFreeIndex = index;
+		bindingMap.map.erase(it);
 	}
 	else
 	{
@@ -350,11 +361,18 @@ void CDescriptorManager::OnTextureDestroy(const CTexture::UID uid)
 			return;
 		for (const auto& entry : it->second)
 		{
-			SingleTypePool& pool = GetSingleTypePool(std::get<0>(entry), std::get<1>(entry));
-			const int16_t elementIndex = std::get<2>(entry);
-			pool.elements[elementIndex].second = pool.firstFreeIndex;
-			pool.firstFreeIndex = elementIndex;
+			SingleTypePool& pool = GetSingleTypePool(entry.type, entry.size);
+			SingleTypePool::Element& element = pool.elements[entry.elementIndex];
+			// Multiple textures might be used by the same descriptor set and
+			// we don't need to reset it if it was already.
+			if (element.version == entry.version && element.nextFreeIndex == SingleTypePool::INVALID_INDEX)
+			{
+				ENSURE(pool.firstFreeIndex != entry.elementIndex);
+				element.nextFreeIndex = pool.firstFreeIndex;
+				pool.firstFreeIndex = entry.elementIndex;
+			}
 		}
+		m_TextureSingleTypePoolMap.erase(it);
 	}
 }
 
