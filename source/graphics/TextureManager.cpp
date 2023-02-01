@@ -685,6 +685,11 @@ public:
 		}
 	}
 
+	VfsPath GetCachedPath(const VfsPath& path) const
+	{
+		return m_CacheLoader.ArchiveCachePath(path);
+	}
+
 	bool MakeProgress()
 	{
 		// Process any completed conversion tasks
@@ -1103,6 +1108,11 @@ bool CTextureManager::MakeUploadProgress(
 bool CTextureManager::GenerateCachedTexture(const VfsPath& path, VfsPath& outputPath)
 {
 	return m->GenerateCachedTexture(path, outputPath);
+}
+
+VfsPath CTextureManager::GetCachedPath(const VfsPath& path) const
+{
+	return m->GetCachedPath(path);
 }
 
 size_t CTextureManager::GetBytesUploaded() const
