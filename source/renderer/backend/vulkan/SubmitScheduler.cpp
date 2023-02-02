@@ -37,6 +37,8 @@ CSubmitScheduler::CSubmitScheduler(
 	CDevice* device, const uint32_t queueFamilyIndex, VkQueue queue)
 	: m_Device(device), m_Queue(queue)
 {
+	// Currently we need exactly NUMBER_OF_FRAMES_IN_FLIGHT fences to avoid
+	// possible overlapping of different work between frames.
 	constexpr size_t numberOfFences = NUMBER_OF_FRAMES_IN_FLIGHT;
 	m_Fences.reserve(numberOfFences);
 	for (size_t index = 0; index < numberOfFences; ++index)

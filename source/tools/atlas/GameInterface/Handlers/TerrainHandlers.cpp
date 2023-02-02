@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,6 +30,7 @@
 #include "ps/World.h"
 #include "lib/tex/tex.h"
 #include "ps/Filesystem.h"
+#include "renderer/Renderer.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPathfinder.h"
 #include "simulation2/components/ICmpTerrain.h"
@@ -76,12 +77,23 @@ sTerrainTexturePreview GetPreview(CTerrainTextureEntry* tex, size_t width, size_
 	// interesting; so just go down one mipmap level, then crop a chunk
 	// out of the middle.
 
+	VfsPath texturePath;
+	if (!tex->GetDiffuseTexturePath().empty())
+	{
+		const VfsPath cachedTexturePath = g_Renderer.GetTextureManager().GetCachedPath(
+			tex->GetDiffuseTexturePath());
+		if (g_VFS->GetFileInfo(cachedTexturePath, nullptr) == INFO::OK)
+			texturePath = cachedTexturePath;
+		else
+			texturePath = tex->GetDiffuseTexturePath();
+	}
+
 	std::shared_ptr<u8> fileData;
 	size_t fileSize;
 	Tex texture;
 	const bool canUsePreview =
-		!tex->GetDiffuseTexturePath().empty() &&
-		g_VFS->LoadFile(tex->GetDiffuseTexturePath(), fileData, fileSize) == INFO::OK &&
+		!texturePath.empty() &&
+		g_VFS->LoadFile(texturePath, fileData, fileSize) == INFO::OK &&
 		texture.decode(fileData, fileSize) == INFO::OK &&
 		// Check that we can fit the texture into the preview size before any transform.
 		texture.m_Width >= width && texture.m_Height >= height &&

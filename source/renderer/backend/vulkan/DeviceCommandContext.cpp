@@ -19,6 +19,7 @@
 
 #include "DeviceCommandContext.h"
 
+#include "lib/bits.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/containers/Span.h"
@@ -34,6 +35,7 @@
 #include "renderer/backend/vulkan/Utilities.h"
 
 #include <algorithm>
+#include <cstddef>
 
 namespace Renderer
 {
@@ -47,8 +49,8 @@ namespace Vulkan
 namespace
 {
 
-constexpr uint32_t UNIFORM_BUFFER_SIZE = 8 * 1024 * 1024;
-constexpr uint32_t FRAME_INPLACE_BUFFER_SIZE = 1024 * 1024;
+constexpr uint32_t UNIFORM_BUFFER_INITIAL_SIZE = 1024 * 1024;
+constexpr uint32_t FRAME_INPLACE_BUFFER_INITIAL_SIZE = 128 * 1024;
 
 struct SBaseImageState
 {
@@ -130,6 +132,121 @@ private:
 
 } // anonymous namespace
 
+// A helper class to store consequent uploads to avoid many copy functions.
+// We use a buffer in the device memory and NUMBER_OF_FRAMES_IN_FLIGHT
+// times bigger buffer in the host memory.
+class CDeviceCommandContext::CUploadRing
+{
+public:
+	CUploadRing(
+		CDevice* device, const IBuffer::Type type, const uint32_t initialCapacity);
+
+	CBuffer* GetBuffer() { return m_Buffer.get(); }
+
+	uint32_t ScheduleUpload(
+		VkCommandBuffer commandBuffer, const PS::span<const std::byte> data,
+		const uint32_t alignment);
+
+	void ExecuteUploads(VkCommandBuffer commandBuffer);
+
+private:
+	void ResizeIfNeeded(
+		VkCommandBuffer commandBuffer, const uint32_t dataSize);
+
+	CDevice* m_Device = nullptr;
+	IBuffer::Type m_Type = IBuffer::Type::VERTEX;
+	uint32_t m_Capacity = 0;
+	uint32_t m_BlockIndex = 0, m_BlockOffset = 0;
+	std::unique_ptr<CBuffer> m_Buffer, m_StagingBuffer;
+	std::byte* m_StagingBufferMappedData = nullptr;
+};
+
+CDeviceCommandContext::CUploadRing::CUploadRing(
+	CDevice* device, const IBuffer::Type type, const uint32_t initialCapacity)
+	: m_Device(device), m_Type(type)
+{
+	ResizeIfNeeded(VK_NULL_HANDLE, initialCapacity);
+}
+
+void CDeviceCommandContext::CUploadRing::ResizeIfNeeded(
+	VkCommandBuffer commandBuffer, const uint32_t dataSize)
+{
+	const bool resizeNeeded = !m_Buffer || m_BlockOffset + dataSize > m_Capacity;
+	if (!resizeNeeded)
+		return;
+
+	if (m_Buffer && m_BlockOffset > 0)
+	{
+		ENSURE(commandBuffer != VK_NULL_HANDLE);
+		ExecuteUploads(commandBuffer);
+	}
+
+	m_Capacity = std::max(m_Capacity * 2, round_up_to_pow2(dataSize));
+
+	m_Buffer = m_Device->CreateCBuffer(
+		"UploadRingBuffer", m_Type, m_Capacity, true);
+	m_StagingBuffer = m_Device->CreateCBuffer(
+		"UploadRingStagingBuffer", IBuffer::Type::UPLOAD, NUMBER_OF_FRAMES_IN_FLIGHT * m_Capacity, true);
+	ENSURE(m_Buffer && m_StagingBuffer);
+	m_StagingBufferMappedData = static_cast<std::byte*>(m_StagingBuffer->GetMappedData());
+	ENSURE(m_StagingBufferMappedData);
+
+	m_BlockIndex = 0;
+	m_BlockOffset = 0;
+}
+
+uint32_t CDeviceCommandContext::CUploadRing::ScheduleUpload(
+	VkCommandBuffer commandBuffer, const PS::span<const std::byte> data,
+	const uint32_t alignment)
+{
+	ENSURE(data.size() > 0);
+	ENSURE(is_pow2(alignment));
+
+	m_BlockOffset = (m_BlockOffset + alignment - 1) & ~(alignment - 1);
+
+	ResizeIfNeeded(commandBuffer, data.size());
+
+	const uint32_t destination = m_BlockIndex * m_Capacity + m_BlockOffset;
+	const uint32_t offset = m_BlockOffset;
+	m_BlockOffset += data.size();
+	std::memcpy(m_StagingBufferMappedData + destination, data.data(), data.size());
+	return offset;
+}
+
+void CDeviceCommandContext::CUploadRing::ExecuteUploads(
+	VkCommandBuffer commandBuffer)
+{
+	if (m_BlockOffset == 0)
+		return;
+
+	VkBufferCopy region{};
+	region.srcOffset = m_BlockIndex * m_Capacity;
+	region.dstOffset = 0;
+	region.size = m_BlockOffset;
+
+	vkCmdCopyBuffer(
+		commandBuffer,
+		m_StagingBuffer->GetVkBuffer(), m_Buffer->GetVkBuffer(),
+		1, &region);
+
+	VkMemoryBarrier memoryBarrier{};
+	memoryBarrier.sType = VK_STRUCTURE_TYPE_MEMORY_BARRIER;
+	memoryBarrier.srcAccessMask = VK_ACCESS_MEMORY_WRITE_BIT;
+	memoryBarrier.dstAccessMask = VK_ACCESS_MEMORY_READ_BIT;
+
+	const VkPipelineStageFlags dstStageMask =
+		m_Type == IBuffer::Type::UNIFORM
+			? VK_PIPELINE_STAGE_VERTEX_SHADER_BIT | VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT
+			: VK_PIPELINE_STAGE_VERTEX_INPUT_BIT;
+	vkCmdPipelineBarrier(
+		commandBuffer,
+		VK_PIPELINE_STAGE_TRANSFER_BIT, dstStageMask, 0,
+		1, &memoryBarrier, 0, nullptr, 0, nullptr);
+
+	m_BlockIndex = (m_BlockIndex + 1) % NUMBER_OF_FRAMES_IN_FLIGHT;
+	m_BlockOffset = 0;
+}
+
 // static
 std::unique_ptr<IDeviceCommandContext> CDeviceCommandContext::Create(CDevice* device)
 {
@@ -141,30 +258,12 @@ std::unique_ptr<IDeviceCommandContext> CDeviceCommandContext::Create(CDevice* de
 	deviceCommandContext->m_CommandContext =
 		device->CreateRingCommandContext(NUMBER_OF_FRAMES_IN_FLIGHT);
 
-	deviceCommandContext->m_InPlaceVertexBuffer = device->CreateCBuffer(
-		"InPlaceVertexBuffer", IBuffer::Type::VERTEX, FRAME_INPLACE_BUFFER_SIZE, true);
-	deviceCommandContext->m_InPlaceIndexBuffer = device->CreateCBuffer(
-		"InPlaceIndexBuffer", IBuffer::Type::INDEX, FRAME_INPLACE_BUFFER_SIZE, true);
-
-	deviceCommandContext->m_InPlaceVertexStagingBuffer = device->CreateCBuffer(
-		"InPlaceVertexStagingBuffer", IBuffer::Type::UPLOAD, NUMBER_OF_FRAMES_IN_FLIGHT * FRAME_INPLACE_BUFFER_SIZE, true);
-	deviceCommandContext->m_InPlaceIndexStagingBuffer = device->CreateCBuffer(
-		"InPlaceIndexStagingBuffer", IBuffer::Type::UPLOAD, NUMBER_OF_FRAMES_IN_FLIGHT * FRAME_INPLACE_BUFFER_SIZE, true);
-
-	deviceCommandContext->m_UniformBuffer = device->CreateCBuffer(
-		"UniformBuffer", IBuffer::Type::UNIFORM, UNIFORM_BUFFER_SIZE, true);
-	deviceCommandContext->m_UniformStagingBuffer = device->CreateCBuffer(
-		"UniformStagingBuffer", IBuffer::Type::UPLOAD, NUMBER_OF_FRAMES_IN_FLIGHT * UNIFORM_BUFFER_SIZE, true);
-
-	deviceCommandContext->m_InPlaceVertexStagingBufferMappedData =
-		deviceCommandContext->m_InPlaceVertexStagingBuffer->GetMappedData();
-	ENSURE(deviceCommandContext->m_InPlaceVertexStagingBufferMappedData);
-	deviceCommandContext->m_InPlaceIndexStagingBufferMappedData =
-		deviceCommandContext->m_InPlaceIndexStagingBuffer->GetMappedData();
-	ENSURE(deviceCommandContext->m_InPlaceIndexStagingBufferMappedData);
-	deviceCommandContext->m_UniformStagingBufferMappedData =
-		deviceCommandContext->m_UniformStagingBuffer->GetMappedData();
-	ENSURE(deviceCommandContext->m_UniformStagingBufferMappedData);
+	deviceCommandContext->m_VertexUploadRing = std::make_unique<CUploadRing>(
+		device, IBuffer::Type::VERTEX, FRAME_INPLACE_BUFFER_INITIAL_SIZE);
+	deviceCommandContext->m_IndexUploadRing = std::make_unique<CUploadRing>(
+		device, IBuffer::Type::INDEX, FRAME_INPLACE_BUFFER_INITIAL_SIZE);
+	deviceCommandContext->m_UniformUploadRing = std::make_unique<CUploadRing>(
+		device, IBuffer::Type::UNIFORM, UNIFORM_BUFFER_INITIAL_SIZE);
 
 	// TODO: reduce the code duplication.
 	VkDescriptorPoolSize descriptorPoolSize{};
@@ -188,10 +287,13 @@ std::unique_ptr<IDeviceCommandContext> CDeviceCommandContext::Create(CDevice* de
 	ENSURE_VK_SUCCESS(vkAllocateDescriptorSets(
 		device->GetVkDevice(), &descriptorSetAllocateInfo, &deviceCommandContext->m_UniformDescriptorSet));
 
+	CBuffer* uniformBuffer = deviceCommandContext->m_UniformUploadRing->GetBuffer();
+	ENSURE(uniformBuffer);
+
 	// TODO: fix the hard-coded size.
 	const VkDescriptorBufferInfo descriptorBufferInfos[1] =
 	{
-		{deviceCommandContext->m_UniformBuffer->GetVkBuffer(), 0u, 512u}
+		{uniformBuffer->GetVkBuffer(), 0u, 512u}
 	};
 
 	VkWriteDescriptorSet writeDescriptorSet{};
@@ -652,13 +754,10 @@ void CDeviceCommandContext::SetVertexBufferData(
 	// TODO: check vertex buffer alignment.
 	const uint32_t ALIGNMENT = 32;
 
-	uint32_t destination = m_InPlaceBlockIndex * FRAME_INPLACE_BUFFER_SIZE + m_InPlaceBlockVertexOffset;
-	uint32_t destination2 = m_InPlaceBlockVertexOffset;
-	// TODO: add overflow checks.
-	m_InPlaceBlockVertexOffset = (m_InPlaceBlockVertexOffset + dataSize + ALIGNMENT - 1) & ~(ALIGNMENT - 1);
-	std::memcpy(static_cast<uint8_t*>(m_InPlaceVertexStagingBufferMappedData) + destination, data, dataSize);
-
-	BindVertexBuffer(bindingSlot, m_InPlaceVertexBuffer.get(), destination2);
+	const uint32_t offset = m_VertexUploadRing->ScheduleUpload(
+		m_PrependCommandContext->GetCommandBuffer(),
+		PS::span<const std::byte>{static_cast<const std::byte*>(data), dataSize}, ALIGNMENT);
+	BindVertexBuffer(bindingSlot, m_VertexUploadRing->GetBuffer(), offset);
 }
 
 void CDeviceCommandContext::SetIndexBuffer(IBuffer* buffer)
@@ -672,13 +771,10 @@ void CDeviceCommandContext::SetIndexBufferData(
 	// TODO: check index buffer alignment.
 	const uint32_t ALIGNMENT = 32;
 
-	uint32_t destination = m_InPlaceBlockIndex * FRAME_INPLACE_BUFFER_SIZE + m_InPlaceBlockIndexOffset;
-	uint32_t destination2 = m_InPlaceBlockIndexOffset;
-	// TODO: add overflow checks.
-	m_InPlaceBlockIndexOffset = (m_InPlaceBlockIndexOffset + dataSize + ALIGNMENT - 1) & (~(ALIGNMENT - 1));
-	std::memcpy(static_cast<uint8_t*>(m_InPlaceIndexStagingBufferMappedData) + destination, data, dataSize);
-
-	BindIndexBuffer(m_InPlaceIndexBuffer.get(), destination2);
+	const uint32_t offset = m_IndexUploadRing->ScheduleUpload(
+		m_PrependCommandContext->GetCommandBuffer(),
+		PS::span<const std::byte>{static_cast<const std::byte*>(data), dataSize}, ALIGNMENT);
+	BindIndexBuffer(m_IndexUploadRing->GetBuffer(), offset);
 }
 
 void CDeviceCommandContext::BeginPass()
@@ -818,67 +914,13 @@ void CDeviceCommandContext::EndScopedLabel()
 void CDeviceCommandContext::Flush()
 {
 	ENSURE(!m_InsideFramebufferPass);
-	// TODO: remove hard-coded values and reduce duplication.
 	// TODO: fix unsafe copying when overlaping flushes/frames.
 
-	if (m_InPlaceBlockVertexOffset > 0)
-	{
-		VkBufferCopy region{};
-		region.srcOffset = m_InPlaceBlockIndex * FRAME_INPLACE_BUFFER_SIZE;
-		region.dstOffset = 0;
-		region.size = m_InPlaceBlockVertexOffset;
-
-		vkCmdCopyBuffer(
-			m_PrependCommandContext->GetCommandBuffer(),
-			m_InPlaceVertexStagingBuffer->GetVkBuffer(),
-			m_InPlaceVertexBuffer->GetVkBuffer(), 1, &region);
-	}
-
-	if (m_InPlaceBlockIndexOffset > 0)
-	{
-		VkBufferCopy region{};
-		region.srcOffset = m_InPlaceBlockIndex * FRAME_INPLACE_BUFFER_SIZE;
-		region.dstOffset = 0;
-		region.size = m_InPlaceBlockIndexOffset;
-		vkCmdCopyBuffer(
-			m_PrependCommandContext->GetCommandBuffer(),
-			m_InPlaceIndexStagingBuffer->GetVkBuffer(),
-			m_InPlaceIndexBuffer->GetVkBuffer(), 1, &region);
-	}
-
-	if (m_InPlaceBlockVertexOffset > 0 || m_InPlaceBlockIndexOffset > 0)
-	{
-		VkMemoryBarrier memoryBarrier{};
-		memoryBarrier.sType = VK_STRUCTURE_TYPE_MEMORY_BARRIER;
-		memoryBarrier.srcAccessMask = VK_ACCESS_MEMORY_WRITE_BIT;
-		memoryBarrier.dstAccessMask = VK_ACCESS_MEMORY_READ_BIT;
-
-		vkCmdPipelineBarrier(
-			m_PrependCommandContext->GetCommandBuffer(),
-			VK_PIPELINE_STAGE_TRANSFER_BIT, VK_PIPELINE_STAGE_VERTEX_INPUT_BIT, 0,
-			1, &memoryBarrier, 0, nullptr, 0, nullptr);
-	}
-
-	if (m_UniformOffset > 0)
-	{
-		VkBufferCopy region{};
-		// TODO: fix values
-		region.srcOffset = (m_UniformStagingBuffer->GetSize() / NUMBER_OF_FRAMES_IN_FLIGHT) * m_UniformIndexOffset;
-		region.dstOffset = 0;
-		region.size = m_UniformOffset;
-		vkCmdCopyBuffer(
-			m_PrependCommandContext->GetCommandBuffer(),
-			m_UniformStagingBuffer->GetVkBuffer(),
-			m_UniformBuffer->GetVkBuffer(), 1, &region);
-		m_UniformIndexOffset = (m_UniformIndexOffset + 1) % NUMBER_OF_FRAMES_IN_FLIGHT;
-		m_UniformOffset = 0;
-	}
+	m_VertexUploadRing->ExecuteUploads(m_PrependCommandContext->GetCommandBuffer());
+	m_IndexUploadRing->ExecuteUploads(m_PrependCommandContext->GetCommandBuffer());
+	m_UniformUploadRing->ExecuteUploads(m_PrependCommandContext->GetCommandBuffer());
 
 	m_IsPipelineStateDirty = true;
-	// TODO: maybe move management to CDevice.
-	m_InPlaceBlockIndex = (m_InPlaceBlockIndex + 1) % NUMBER_OF_FRAMES_IN_FLIGHT;
-	m_InPlaceBlockVertexOffset = 0;
-	m_InPlaceBlockIndexOffset = 0;
 
 	m_PrependCommandContext->Flush();
 	m_CommandContext->Flush();
@@ -893,19 +935,18 @@ void CDeviceCommandContext::PreDraw()
 	{
 		const VkDeviceSize alignment =
 			std::max(static_cast<VkDeviceSize>(16), m_Device->GetChoosenPhysicalDevice().properties.limits.minUniformBufferOffsetAlignment);
-		const uint32_t offset = m_UniformOffset + m_UniformIndexOffset * (m_UniformStagingBuffer->GetSize() / NUMBER_OF_FRAMES_IN_FLIGHT);
-		std::memcpy(static_cast<uint8_t*>(m_UniformStagingBufferMappedData) + offset,
-			m_ShaderProgram->GetMaterialConstantsData(),
-			m_ShaderProgram->GetMaterialConstantsDataSize());
+		const uint32_t offset = m_UniformUploadRing->ScheduleUpload(
+			m_PrependCommandContext->GetCommandBuffer(),
+			PS::span<const std::byte>{
+				m_ShaderProgram->GetMaterialConstantsData(),
+				m_ShaderProgram->GetMaterialConstantsDataSize()}, alignment);
 		m_ShaderProgram->UpdateMaterialConstantsData();
 
 		// TODO: maybe move inside shader program to reduce the # of bind calls.
 		vkCmdBindDescriptorSets(
 			m_CommandContext->GetCommandBuffer(), m_ShaderProgram->GetPipelineBindPoint(),
 			m_ShaderProgram->GetPipelineLayout(), m_Device->GetDescriptorManager().GetUniformSet(),
-			1, &m_UniformDescriptorSet, 1, &m_UniformOffset);
-
-		m_UniformOffset += (m_ShaderProgram->GetMaterialConstantsDataSize() + alignment - 1) & ~(alignment - 1);
+			1, &m_UniformDescriptorSet, 1, &offset);
 	}
 }
 

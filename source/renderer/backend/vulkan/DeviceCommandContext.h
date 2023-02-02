@@ -165,26 +165,11 @@ private:
 	CBuffer* m_BoundIndexBuffer = nullptr;
 	uint32_t m_BoundIndexBufferOffset = 0;
 
-	// TODO: reduce code duplication.
-	std::unique_ptr<CBuffer> m_UniformBuffer;
-	std::unique_ptr<CBuffer> m_UniformStagingBuffer;
+	class CUploadRing;
+	std::unique_ptr<CUploadRing> m_VertexUploadRing, m_IndexUploadRing, m_UniformUploadRing;
+
 	VkDescriptorPool m_UniformDescriptorPool = VK_NULL_HANDLE;
 	VkDescriptorSet m_UniformDescriptorSet = VK_NULL_HANDLE;
-	// TODO: combine buffers.
-	// Vertex buffer for in-place vertex data.
-	std::unique_ptr<CBuffer> m_InPlaceVertexBuffer;
-	std::unique_ptr<CBuffer> m_InPlaceIndexBuffer;
-	std::unique_ptr<CBuffer> m_InPlaceVertexStagingBuffer;
-	std::unique_ptr<CBuffer> m_InPlaceIndexStagingBuffer;
-	void* m_InPlaceVertexStagingBufferMappedData = nullptr;
-	void* m_InPlaceIndexStagingBufferMappedData = nullptr;
-	void* m_UniformStagingBufferMappedData = nullptr;
-	// TODO: add descriptions.
-	uint32_t m_InPlaceBlockIndex = 0;
-	uint32_t m_InPlaceBlockVertexOffset = 0;
-	uint32_t m_InPlaceBlockIndexOffset = 0;
-	uint32_t m_UniformOffset = 0;
-	uint32_t m_UniformIndexOffset = 0;
 };
 
 } // namespace Vulkan

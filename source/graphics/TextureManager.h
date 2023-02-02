@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -142,6 +142,11 @@ public:
 	 * @return true on success
 	 */
 	bool GenerateCachedTexture(const VfsPath& path, VfsPath& outputPath);
+
+	/**
+	 * @return a cached version of the path
+	 */
+	VfsPath GetCachedPath(const VfsPath& path) const;
 
 	/**
 	 * Returns true if the given texture exists.
