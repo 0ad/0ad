@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Language-Team: Kurdish (http://www.transifex.com/wildfire-games/0ad/language/ku/)\n"
 "MIME-Version: 1.0\n"
@@ -162,7 +162,7 @@ msgstr ""
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:21
 #: simulation/templates/campaigns/campaign_city_test.xml:21
 msgid "Market"
-msgstr ""
+msgstr "Bazar"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:22
 #: simulation/templates/campaigns/campaign_city_test.xml:22
@@ -629,7 +629,7 @@ msgstr ""
 
 #: simulation/templates/gaia/ruins/column_doric.xml:8
 msgid "Doric Column"
-msgstr ""
+msgstr "Kolona dorîk"
 
 #: simulation/templates/gaia/ruins/metal_statue_isis.xml:9
 msgid "Isis Cult Image"
@@ -719,7 +719,7 @@ msgstr ""
 
 #: simulation/templates/gaia/treasure/metal_weapons_small.xml:8
 msgid "Iron Weapons"
-msgstr ""
+msgstr "Çekên hesin"
 
 #: simulation/templates/gaia/treasure/pegasus.xml:8
 msgid "Pegasus"
@@ -995,10 +995,22 @@ msgstr ""
 
 #: simulation/templates/mixins/shrine.xml:12
 msgid "Shrine"
-msgstr ""
+msgstr "Mirîşo"
 
 #: simulation/templates/mixins/trading_post.xml:8
 msgid "Trading Post"
+msgstr ""
+
+#: simulation/templates/obstructors/movement_36x36.xml:9
+#: simulation/templates/obstructors/movement_8x36.xml:9
+#: simulation/templates/obstructors/movement_8x8.xml:9
+msgid "Movement Obstructor"
+msgstr ""
+
+#: simulation/templates/obstructors/movement_36x36.xml:11
+#: simulation/templates/obstructors/movement_8x36.xml:11
+#: simulation/templates/obstructors/movement_8x8.xml:11
+msgid "Placement obstructor to prevent movement and construction."
 msgstr ""
 
 #: simulation/templates/obstructors/placement.xml:10
@@ -1006,7 +1018,16 @@ msgid "Obstructor"
 msgstr ""
 
 #: simulation/templates/obstructors/placement.xml:12
+#: simulation/templates/obstructors/placement_36x36.xml:11
+#: simulation/templates/obstructors/placement_8x36.xml:11
+#: simulation/templates/obstructors/placement_8x8.xml:11
 msgid "Placement obstructor to prevent construction but not movement"
+msgstr ""
+
+#: simulation/templates/obstructors/placement_36x36.xml:9
+#: simulation/templates/obstructors/placement_8x36.xml:9
+#: simulation/templates/obstructors/placement_8x8.xml:9
+msgid "Placement Obstructor"
 msgstr ""
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
@@ -1195,7 +1216,7 @@ msgstr ""
 #: simulation/templates/template_wallset.xml:9
 #: simulation/templates/template_wallset.xml:11
 msgid "Wall"
-msgstr ""
+msgstr "Dîwar"
 
 #: simulation/templates/template_wallset.xml:10
 msgid "Wall off an area."

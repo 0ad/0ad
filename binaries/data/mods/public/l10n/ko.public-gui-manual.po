@@ -1,9 +1,9 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# JungHee Lee
+# Junghee Lee
 # moolow
 # EK lee
 # 손가현
@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2023-01-13 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2020-2022\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,9 +47,9 @@ msgstr "[font=\"sans-bold-16\"]그래픽 설정[font=\"sans-14\"]"
 msgid ""
 "You can switch between fullscreen and windowed mode by pressing Alt + Enter."
 " In windowed mode, you can resize the window. If the game runs too slowly, "
-"you can change some settings in the options window: try disabling the “HQ "
-"Water Effects” and “Shadows” options."
-msgstr "Alt + Enter 키를 눌러서 창모드와 전체화면 간에 전환할 수 있습니다. 창모드에서 창 크기를 조절할 수 있습니다. 만약 게임이 너무 느리다면 옵션 창에서 약간의 설정을 바꿀 수 있습니다: “HQ 물 효과”와 “그림자” 옵션을 비활성화해보세요."
+"you can change some settings in the options window: try disabling the “High-"
+"quality water effects” and “Shadows” options."
+msgstr "Alt + Enter를 눌러 전체화면과 창 모드 사이를 전환할 수 있습니다. 창 모드에서는 창 크기를 조정할 수 있습니다. 게임이 너무 느리게 실행되면, 옵션 창에서 일부 설정을 변경할 수 있습니다: \"고품질 물 효과\" 및 \"그림자\" 옵션을 비활성화하십시오."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -107,13 +107,13 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr "• [font=\"sans-bold-14\"]싱글플레이어[font=\"sans-14\"] – 샌드박스 게임을 하거나 하나 이상의 컴퓨터 플레이어(AI)를 상대로 합니다. 기본 AI(Petra)는 개발 중이며 새로운 기능에 대한 최신 정보는 아니지만 그래도 게임을 할 수 있습니다."
+msgstr "• [font=\"sans-bold-14\"]싱글플레이어[font=\"sans-14\"] – 샌드박스 게임을 하거나 하나 이상의 컴퓨터 플레이어(AI)를 상대로 합니다. 기본 AI(Petra)는 개발 중이며 새로운 기능에 대해 항상 최신 상태가 아닐 수 있지만, 그렇더라도 당신은 게임을 할 수도 있고 AI를 상대로 게임을 할 수도 있습니다."
 
 #: gui/manual/intro.txt:21
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] – Play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]멀티플레이어[font=\"sans-14\"] – 인터넷을 통해 인간과 대결합니다."
+msgstr "• [font=\"sans-bold-14\"]멀티플레이어[font=\"sans-14\"] – 인터넷을 통해 인간을 생대로 게임을 합니다."
 
 #: gui/manual/intro.txt:23
 msgid ""
@@ -160,7 +160,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr "그런 다음 지도를 추가로 필터링할 수 있습니다. 기본 지도는 일반적으로 재생할 수 있는 지도입니다. 해군 지도는 육지에서 모든 적에게 접근할 수 없는 지도이며 데모 지도는 테스트 목적으로 사용되는 지도입니다(일반적으로 재생에는 유용하지 않음). 모든 지도 필터는 모든 지도를 하나의 목록에 함께 표시합니다."
+msgstr "그런 다음 지도를 추가로 필터링할 수 있습니다. 기본 지도는 일반적으로 재생할 수 있는 지도입니다. 해전 지도는 육지에서 모든 적에게 접근할 수 없는 지도이며 데모 지도는 테스트 목적으로 사용되는 지도입니다(일반적으로 재생에는 유용하지 않음). 모든 지도 필터는 모든 지도를 하나의 목록에 함께 표시합니다."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -210,12 +210,12 @@ msgstr "  hotkey.fps.toggle – 프레임 카운터(FPS) 전환"
 msgid ""
 "  hotkey.profile.toggle – Toggle real-time profiler (cycles through the "
 "displays of information)"
-msgstr "  hotkey.profile.toggle – 실시간 프로파일러 전환(정보 표시를 통한 주기)"
+msgstr "  hotkey.profile.toggle – 실시간 Profiler 전환(정보 표시를 통한 주기)"
 
 #: gui/manual/intro.txt:48
 msgid ""
 "  hotkey.profile.save – Save current profiler data to “logs/profile.txt”"
-msgstr "  hotkey.profile.save – 현재 프로파일러 데이터를 \"logs/profile.txt\"에 저장"
+msgstr "  hotkey.profile.save – 현재 Profiler 데이터를 \"logs/profile.txt\"에 저장"
 
 #: gui/manual/intro.txt:49
 msgid ""
@@ -253,19 +253,19 @@ msgstr " 마우스 왼쪽 두번 연속 클릭 \\[유닛에 대고] – 화면�
 msgid ""
 "  Triple Left Click \\[on unit] – Select all of your units of the same kind "
 "and the same rank on the screen"
-msgstr " 마우스 왼쪽 세번 연속 클릭 \\[유닛에 대고] – 화면에서 종류와 등급이 같은 유닛을 전부 선택"
+msgstr " 마우스 왼쪽 세번 연속 클릭 \\[유닛에 대고] – 화면에서 같은 유형과 같은 계급의 유닛을 모두 선택합니다"
 
 #: gui/manual/intro.txt:57
 msgid ""
 "  Alt + Double Left Click \\[on unit] – Select all your units of the same "
 "kind on the entire map (even if they have different ranks)"
-msgstr " Alt + 마우스 왼쪽 더블 클릭 \\[유닛에 대고] – 전체 지도에서 같은 유형의 유닛을 전부 선택 (다른 등급이라도)"
+msgstr " Alt + 마우스 왼쪽 더블 클릭 \\[유닛에 대고] – 전체 지도에서 같은 유형의 유닛을 전부 선택 (계급이 다르더라도)"
 
 #: gui/manual/intro.txt:58
 msgid ""
 "  Alt + Triple Left Click \\[on unit] – Select all your units of the same "
 "kind and rank on the entire map"
-msgstr " Alt + 마우스 왼쪽 세번 연속 클릭 \\[유닛에 대고] – 전체 지도에서 유형과 등급이 같은 유닛을 전부 선택"
+msgstr " Alt + 마우스 왼쪽 세번 연속 클릭 \\[유닛에 대고] – 전체 지도에서 같은 유형과 같은 계급의 유닛을 모두 선택합니다"
 
 #: gui/manual/intro.txt:59
 msgid "  hotkey.quicksave – Quicksave"
@@ -370,7 +370,7 @@ msgstr "  hotkey.session.backtowork – 유닛이 다시 일할 것입니다"
 msgid ""
 "  hotkey.session.unload – Unload the garrisoned units of the selected "
 "structure(s)"
-msgstr "  hotkey.session.unload – 선택한 건축물의 주둔 유닛을 내립니다"
+msgstr "  hotkey.session.unload – 선택한 건축물(들)의 주둔 유닛들을 내보냅니다"
 
 #: gui/manual/intro.txt:81
 msgid ""
@@ -469,7 +469,7 @@ msgstr "[font=\"sans-bold-14\"]마우스 작업 수정[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:100
 msgid "  hotkey.session.garrison + Right Click on structure – Garrison"
-msgstr "  hotkey.session.garrison + 건축물을 마우스 오른쪽 버튼으로 클릭 – 주둔지"
+msgstr "  hotkey.session.garrison + 건축물을 마우스 오른쪽 버튼으로 클릭 – 배치하기"
 
 #: gui/manual/intro.txt:101
 msgid "  hotkey.session.repair + Right Click on structure – Repair"
@@ -556,13 +556,13 @@ msgstr "  건축물(들)을 선택한 상태에서 마우스 오른쪽 클릭 �
 msgid ""
 "  hotkey.session.garrison + Right Click with unit(s) selected – Garrison (If"
 " the cursor is over an own or allied structure)"
-msgstr "  hotkey.session.garrison + 유닛을 선택한 상태에서 마우스 오른쪽 버튼 – 주둔지(커서가 자신의 또는 동맹 건축물 위에 있는 경우)"
+msgstr "  hotkey.session.garrison + 유닛을 선택한 상태에서 마우스 오른쪽 버튼 – 배치하기 (커서가 자신의 또는 동맹 건축물 위에 있는 경우)"
 
 #: gui/manual/intro.txt:116
 msgid ""
 "  hotkey.session.attack + Right Click with unit(s) selected – Attack "
-"(instead of capture or gather)"
-msgstr "  hotkey.session.attack + 유닛을 선택한 상태에서 마우스 오른쪽 버튼 – 공격(점령 또는 채집 대신)"
+"(instead of another action)"
+msgstr "  hotkey.session.attack + 유닛(들)을 선택한 상태에서 마우스 오른쪽 버튼 클릭 – 공격 (다른 동작 대신)"
 
 #: gui/manual/intro.txt:117
 msgid ""
@@ -578,171 +578,177 @@ msgstr "  hotkey.session.attackmoveUnit + 유닛을 선택한 상태에서 마�
 
 #: gui/manual/intro.txt:119
 msgid ""
+"  hotkey.session.capture + Right Click with unit(s) selected – Capture "
+"(instead of another action)"
+msgstr "  hotkey.session.capture + 유닛(들)을 선택한 상태에서 마우스 오른쪽 버튼 클릭 – 포획 (다른 동작 대신)"
+
+#: gui/manual/intro.txt:120
+msgid ""
 "  hotkey.session.snaptoedges + Mouse Move near structures – Align the new "
 "structure with an existing nearby structure"
 msgstr "  hotkey.session.snaptoedges + 건축물 주변로 마우스 이동 – 새 건축물을 기존 주변 건축물과 정렬"
 
-#: gui/manual/intro.txt:120
+#: gui/manual/intro.txt:121
 msgid "  hotkey.session.flare + Right Click – Send a flare to your allies"
 msgstr "  hotkey.session.flare + 마우스 오른쪽 버튼 – 동맹국에게 플레어 보내기"
 
-#: gui/manual/intro.txt:122
+#: gui/manual/intro.txt:123
 msgid "[font=\"sans-bold-14\"]Overlays[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]오버레이[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:123
+#: gui/manual/intro.txt:124
 msgid "  hotkey.session.gui.toggle – Toggle the GUI"
 msgstr "  hotkey.session.gui.toggle – GUI를 전환합니다"
 
-#: gui/manual/intro.txt:124
+#: gui/manual/intro.txt:125
 msgid ""
 "  hotkey.session.devcommands.toggle – Toggle developer overlay (with "
 "developer options)"
 msgstr "  hotkey.session.devcommands.toggle – 개발자 오버레이를 전환합니다(개발자 옵션 포함)"
 
-#: gui/manual/intro.txt:125
+#: gui/manual/intro.txt:126
 msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
 msgstr "  hotkey.wireframe – 와이어프레임 모드 전환(한 번 누르면 텍스처 모델 위에 와이어프레임이 중첩되고, 두 번 누르면 텍스처별로 색칠된 와이어프레임만 가져오고, 세 번 누르면 정상적인 텍스처 모드로 돌아갑니다)"
 
-#: gui/manual/intro.txt:126
+#: gui/manual/intro.txt:127
 msgid ""
 "  hotkey.silhouettes – Toggle unit silhouettes (might give a small "
 "performance boost)"
 msgstr "  hotkey.silhouettes – 유닛 실루엣을 전환합니다(성능이 약간 향상될 수 있음)"
 
-#: gui/manual/intro.txt:127
+#: gui/manual/intro.txt:128
 msgid "  hotkey.session.diplomacycolors – Toggle diplomacy colors"
 msgstr "  hotkey.session.diplomacycolors – 외교 색상을 전환합니다"
 
-#: gui/manual/intro.txt:128
+#: gui/manual/intro.txt:129
 msgid ""
 "  hotkey.session.toggleattackrange – Toggle attack range visualizations of "
 "selected units and structures"
 msgstr "  hotkey.session.toggleattackrange – 선택한 유닛 및 건축물의 공격 범위 시각화를 전환합니다"
 
-#: gui/manual/intro.txt:129
+#: gui/manual/intro.txt:130
 msgid ""
 "  hotkey.session.toggleaurasrange – Toggle aura range visualizations of "
 "selected units and structures"
 msgstr "  hotkey.session.toggleaurasrange – 선택한 유닛 및 건축물의 아우라 범위 시각화를 전환합니다"
 
-#: gui/manual/intro.txt:130
+#: gui/manual/intro.txt:131
 msgid ""
 "  hotkey.session.togglehealrange – Toggle heal range visualizations of "
 "selected units"
 msgstr "  hotkey.session.togglehealrange – 선택한 유닛의 치료 범위 시각화를 전환합니다"
 
-#: gui/manual/intro.txt:132
+#: gui/manual/intro.txt:133
 msgid "[font=\"sans-bold-14\"]Camera manipulation[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]카메라 조작[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:133
+#: gui/manual/intro.txt:134
 msgid "  hotkey.camera.up – Pan screen up"
 msgstr "  hotkey.camera.up – 화면을 위로 이동"
 
-#: gui/manual/intro.txt:134
+#: gui/manual/intro.txt:135
 msgid "  hotkey.camera.down – Pan screen down"
 msgstr "  hotkey.camera.down – 화면을 아래로 이동"
 
-#: gui/manual/intro.txt:135
+#: gui/manual/intro.txt:136
 msgid "  hotkey.camera.left – Pan screen left"
 msgstr "  hotkey.camera.left – 화면을 왼쪽으로 이동"
 
-#: gui/manual/intro.txt:136
+#: gui/manual/intro.txt:137
 msgid "  hotkey.camera.right – Pan screen right"
 msgstr "  hotkey.camera.right – 화면을 오른쪽으로 이동"
 
-#: gui/manual/intro.txt:137
+#: gui/manual/intro.txt:138
 msgid "  hotkey.camera.rotate.up – Rotate camera to look upward"
 msgstr "  hotkey.camera.rotate.up – 카메라를 회전하여 위쪽을 봅니다"
 
-#: gui/manual/intro.txt:138
+#: gui/manual/intro.txt:139
 msgid "  hotkey.camera.rotate.down – Rotate camera to look downward"
 msgstr "  hotkey.camera.rotate.down – 카메라를 아래쪽으로 회전시킵니다"
 
-#: gui/manual/intro.txt:139
+#: gui/manual/intro.txt:140
 msgid "  hotkey.camera.rotate.cw – Rotate camera clockwise around terrain"
 msgstr "  hotkey.camera.rotate.cw – 지형 주위에서 카메라를 시계 방향으로 돌립니다"
 
-#: gui/manual/intro.txt:140
+#: gui/manual/intro.txt:141
 msgid ""
 "  hotkey.camera.rotate.ccw – Rotate camera counter-clockwise around terrain"
 msgstr "  hotkey.camera.rotate.ccw – 지형 주위에서 카메라를 시계 반대 방향으로 돌립니다"
 
-#: gui/manual/intro.txt:141
+#: gui/manual/intro.txt:142
 msgid ""
 "  hotkey.camera.rotate.wheel.cw – Rotate camera clockwise around terrain"
 msgstr "  hotkey.camera.rotate.wheel.cw – 지형 주위에서 카메라를 시계 방향으로 돌립니다"
 
-#: gui/manual/intro.txt:142
+#: gui/manual/intro.txt:143
 msgid ""
 "  hotkey.camera.rotate.wheel.ccw – Rotate camera counter-clockwise around "
 "terrain"
 msgstr "  hotkey.camera.rotate.wheel.ccw – 지형 주위에서 카메라를 시계 반대 방향으로 돌립니다"
 
-#: gui/manual/intro.txt:143
+#: gui/manual/intro.txt:144
 msgid ""
 "  hotkey.camera.follow – Follow the selected unit (move the camera to stop "
 "following the unit)"
 msgstr "  hotkey.camera.follow – 선택한 유닛을 따라갑니다(유닛을 따라 정지하려면 카메라를 이동합니다)."
 
-#: gui/manual/intro.txt:144
+#: gui/manual/intro.txt:145
 msgid "  hotkey.camera.reset – Reset camera zoom and orientation"
 msgstr "  hotkey.camera.reset – 카메라 확대축소 및 방향 재설정"
 
-#: gui/manual/intro.txt:145
+#: gui/manual/intro.txt:146
 msgid ""
 "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – Zoom in (keep pressed"
 " for continuous zoom)"
 msgstr "  hotkey.camera.zoom.in, hotkey.camera.zoom.wheel.in – 확대(연속 확대하려면 계속 누름)"
 
-#: gui/manual/intro.txt:146
+#: gui/manual/intro.txt:147
 msgid ""
 "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – Zoom out (keep "
 "pressed for continuous zoom)"
 msgstr "  hotkey.camera.zoom.out, hotkey.camera.zoom.wheel.out – 축소(연속 확대/축소 시 계속 누르기)"
 
-#: gui/manual/intro.txt:147
+#: gui/manual/intro.txt:148
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
 msgstr "  hotkey.camera.pan – 누른 채로 마우스를 이동시킵니다"
 
-#: gui/manual/intro.txt:149
+#: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]건축물 배치 중[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:150
+#: gui/manual/intro.txt:151
 msgid ""
 "  hotkey.session.rotate.ccw – Rotate structure 15 degrees counter-clockwise"
 msgstr "  hotkey.session.rotate.ccw – 건축물을 시계 반대 방향으로 15도 회전합니다"
 
-#: gui/manual/intro.txt:151
+#: gui/manual/intro.txt:152
 msgid "  hotkey.session.rotate.cw – Rotate structure 15 degrees clockwise"
 msgstr "  hotkey.session.rotate.cw – 건축물을 시계 방향으로 15도 회전합니다"
 
-#: gui/manual/intro.txt:152
+#: gui/manual/intro.txt:153
 msgid ""
 "  Left Drag – Rotate structure using mouse (foundation will be placed on "
 "mouse release)"
 msgstr "  마우스 왼쪽 버튼으로 드레그 – 마우스를 사용하여 건축물을 돌림 (토대는 마우스를 놓을 때 배치됨)"
 
-#: gui/manual/intro.txt:154
+#: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
 msgstr "[font=\"sans-bold-14\"]저장된 게임을 볼러올 때[font=\"sans-14\"]"
 
-#: gui/manual/intro.txt:155
-msgid "  hotkey.cancel – Cancel"
-msgstr "  hotkey.cancel – 취소"
-
 #: gui/manual/intro.txt:156
+msgid "  hotkey.cancel – Cancel"
+msgstr "  hotkey.cancel – 취소하기"
+
+#: gui/manual/intro.txt:157
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
 msgstr "  hotkey.session.savedgames.delete – 선택한 저장된 게임을 삭제하고 확인을 요청합니다"
 
-#: gui/manual/intro.txt:157
+#: gui/manual/intro.txt:158
 msgid ""
 "    • With hotkey.session.savedgames.noconfirmation – Don't ask for "
 "confirmation"
@@ -758,4 +764,4 @@ msgstr "닫기"
 
 #: gui/manual/manual.xml:(caption):26
 msgid "View Online"
-msgstr "온라인에서 보기"
+msgstr "온라인 보기"

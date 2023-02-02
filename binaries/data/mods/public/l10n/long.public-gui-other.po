@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2022-10-22 14:59+0000\n"
-"PO-Revision-Date: 2022-10-22 14:59+0000\n"
+"POT-Creation-Date: 2023-02-02 21:48+0000\n"
+"PO-Revision-Date: 2023-02-02 21:48+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -65,15 +65,15 @@ msgstr "%(playerName)s (ΕΚΤΟΣ ΣΥΝΔΕΣΗΣ, %(state)s)"
 
 #, python-format
 msgid "%(playerName)s (%(civ)s)"
-msgstr "%(playerName)s (%(civ)s)"
+msgstr "%(playerName)s님 (%(civ)s)"
 
 #, python-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr "%(playerName)s (%(civ)s, %(state)s)"
+msgstr "%(playerName)s님 (%(civ)s, %(state)s)"
 
 #, python-format
 msgid "%(playerName)s"
-msgstr "%(playerName)s"
+msgstr "%(playerName)s님"
 
 #, python-format
 msgid "%(playerName)s (%(state)s)"
@@ -95,7 +95,7 @@ msgstr "Nessuna Squadra"
 
 #, python-format
 msgid "Team %(team)s"
-msgstr "Conẍuntu %(team)s"
+msgstr "Conjuntu %(team)s"
 
 #, python-format
 msgid ""
@@ -262,7 +262,7 @@ msgstr "Harta Karun"
 
 msgctxt "treasures"
 msgid "Disabled"
-msgstr "Απενεργοποιήθηκε"
+msgstr "Dishabilitarun-se"
 
 msgctxt "treasures"
 msgid "As defined by the map."
@@ -553,7 +553,7 @@ msgstr[0] "soicind"
 msgstr[1] "ثانیه ها"
 
 msgid "Health:"
-msgstr "Առողջություն՝"
+msgstr "Puntos de vida:"
 
 #, python-format
 msgid "%(healthLabel)s %(current)s / %(max)s"
@@ -608,7 +608,7 @@ msgstr "Estää kohteen %(name)s"
 
 #, python-format
 msgid "%(name)s %(details)s"
-msgstr "%(name)s %(details)s"
+msgstr "%(name)s님 %(details)s"
 
 #, python-format
 msgid "Duration reduction: %(durationReduction)s%%"
@@ -683,7 +683,7 @@ msgstr "%(damage)s de %(damageType)s"
 
 #, python-format
 msgid "%(amount)s %(name)s"
-msgstr "%(amount)s %(name)s"
+msgstr "%(amount)s %(name)s님"
 
 #, python-format
 msgid "%(splashShape)s Splash"
@@ -765,7 +765,7 @@ msgstr "Penyembuhan:"
 
 msgctxt "garrison tooltip"
 msgid "Health"
-msgstr "Tendûrûstî:"
+msgstr "Puntos de vida"
 
 #, python-format
 msgid "%(label)s: %(garrisonSize)s %(extraSize)s"
@@ -876,7 +876,7 @@ msgstr "Náklady na vydržiavanie:"
 
 #, python-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr "%(resourceIcon)s %(minimum)s to(번역확인할것) %(resourceIcon)s %(maximum)s"
+msgstr "Entre %(minimum)s %(resourceIcon)s e %(maximum)s %(resourceIcon)s."
 
 #, python-format
 msgid "Walls:  %(costs)s"
@@ -902,7 +902,7 @@ msgid "%(label)s %(bonus)s"
 msgstr "%(label)s %(bonus)s"
 
 msgid "Population Bonus:"
-msgstr "Bonificación de poboación:"
+msgstr "Bonificacion na lhende de poblacion:"
 
 msgid "Insufficient resources:"
 msgstr "N'eus ket a walc'h a vammennoù:"
@@ -919,10 +919,10 @@ msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
 msgid "Walk"
-msgstr "A l andar"
+msgstr "Caminhar"
 
 msgid "Run"
-msgstr "A l correr"
+msgstr "correndo"
 
 msgid "Acceleration"
 msgstr "Beschleunigung"
@@ -966,7 +966,7 @@ msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
 msgid "Loot:"
-msgstr "이 유닛이 약탈 당했을때 보상:"
+msgstr "Ryöstösaalis:"
 
 #, python-format
 msgid "%(label)s %(icons)s"
@@ -1021,7 +1021,7 @@ msgid "Frame drum, darbuka, riq, toms"
 msgstr "Frame drum, bęben kielichowy (darbuka), bęben obręczowy (riq), bębny (toms)"
 
 msgid "Guitar"
-msgstr "Chitarra"
+msgstr "Guitarra"
 
 msgid "Handpan"
 msgstr "Ручная сковорода"
@@ -1048,7 +1048,7 @@ msgid "Additional music"
 msgstr "Musique additionnelle"
 
 msgid "Cajon"
-msgstr "Kaxoia"
+msgstr " Кахон"
 
 msgid "Cello"
 msgstr "Violoncello"
@@ -1127,7 +1127,7 @@ msgid "Random Map Scripts"
 msgstr "Sgrìobtaichean tuaireamach nam mapaichean"
 
 msgid "Maps"
-msgstr "Geographíæs"
+msgstr "Geographíɐs"
 
 msgid "Programming managers"
 msgstr "Manaidsearan a’ phrògramachaidh"
@@ -1145,7 +1145,7 @@ msgid "0 A.D. Founder"
 msgstr "Fundador del 0 A. D."
 
 msgid "Project Leaders"
-msgstr "Directores de l projectu"
+msgstr "Directores de l proiectu"
 
 msgid "Co-Lead Designers"
 msgstr "Diseinatzaile laguntzaileak"
@@ -1189,7 +1189,7 @@ msgid "#%i"
 msgstr "#%i"
 
 msgid " (hold to register)"
-msgstr "(Calten-llu premidu par’ assignallu)"
+msgstr "(Calten-llu premidu par’ assigná-llu)"
 
 msgid "Enter new Hotkey, hold to register."
 msgstr "Entrez un nouveau raccourci clavier, maintenez-le enfoncé pour l'enregistrer."
@@ -1293,7 +1293,7 @@ msgstr "Μετακίνηση ροδέλας ποντικού/Περιστροφ�
 
 msgctxt "hotkey metadata"
 msgid "Follow the first unit in the selection."
-msgstr "Seguir a la primeira unidade de la escolyeiꞇha."
+msgstr "Seguir a la primeira unidá de la escolyeiꞇha."
 
 msgctxt "hotkey metadata"
 msgid "Follow Unit"
@@ -1393,7 +1393,7 @@ msgstr "Cuir fòcas a’ chamara air ceann-cruinneachaidh an togalaich a thagh t
 
 msgctxt "hotkey metadata"
 msgid "Focus on rallypoint"
-msgstr "Infocar escontra l punto d’alcuœntru"
+msgstr "Összpontosítás a gyülekezési pontra"
 
 msgctxt "hotkey metadata"
 msgid "Reset camera rotation to default."
@@ -1513,7 +1513,7 @@ msgstr "Ζούμ κάμερας πίσω"
 
 msgctxt "hotkey metadata"
 msgid "Decrease camera zoom speed."
-msgstr "Baʃʃare la velocidade d’approximacion de la vista."
+msgstr "Diminui a velocidade de aproximação/afastamento da câmara."
 
 msgctxt "hotkey metadata"
 msgid "Decrease zoom speed"
@@ -1521,7 +1521,7 @@ msgstr "Zniž rýchlosť približovania/oddialenia"
 
 msgctxt "hotkey metadata"
 msgid "Increase camera zoom speed."
-msgstr "ʃubire la velocidade d’approximacion de la vista."
+msgstr "Aumenta a velocidade de aproximação/afastamento da câmara."
 
 msgctxt "hotkey metadata"
 msgid "Increase zoom speed"
@@ -1577,7 +1577,7 @@ msgstr "Підтвердити"
 
 msgctxt "hotkey metadata"
 msgid "Toggle the console."
-msgstr "Megnyitja vagy bezárja a konzolt."
+msgstr "Ativa / desativa a consola de comandos"
 
 msgctxt "hotkey metadata"
 msgid "Toggle Console"
@@ -1585,11 +1585,11 @@ msgstr "Afficher / masquer la Console"
 
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard."
-msgstr "Copia para a área de transferência."
+msgstr "Copiar para a área de transferência."
 
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard"
-msgstr "In die Zwischenablage kopieren"
+msgstr "Copiar para a área de transferência"
 
 msgctxt "hotkey metadata"
 msgid "Cut selected text and copy to the clipboard."
@@ -1597,7 +1597,7 @@ msgstr "Geàrr às an teacsa a thagh tu is cuir lethbhreac dheth air an stòr-bh
 
 msgctxt "hotkey metadata"
 msgid "Cut to clipboard"
-msgstr "Cortar para a área de transferência"
+msgstr "Recortar para a área de transferência"
 
 msgctxt "hotkey metadata"
 msgid ""
@@ -1617,7 +1617,7 @@ msgstr "Coller à partir du presse-papier."
 
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard"
-msgstr "Coller à partir du presse-papier"
+msgstr "Colar da a área de transferência"
 
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause the game."
@@ -1639,7 +1639,7 @@ msgstr "Сохранить данные профилировщика"
 
 msgctxt "hotkey metadata"
 msgid "Toggle the real-time profiler."
-msgstr "Käytä tai poista käytöstä reaaliaikainen profilointi."
+msgstr "Ativa ou desativa o analisador de perfil em tempo real."
 
 msgctxt "hotkey metadata"
 msgid "Toggle profiler"
@@ -1689,7 +1689,7 @@ msgstr "Edellinen välilehti"
 
 msgctxt "hotkey metadata"
 msgid "Delete word to the left of cursor."
-msgstr "Esmemorecere la pallabra a la ezkierda de l cursor."
+msgstr "Esmemorecere la pallabra a la esquierda de l cursor."
 
 msgctxt "hotkey metadata"
 msgid "Delete before cursor"
@@ -1701,7 +1701,7 @@ msgstr "Esmemorecere la pallabra a la direiꞇha de l cursor."
 
 msgctxt "hotkey metadata"
 msgid "Delete after cursor"
-msgstr "Esmemorecere l textu de tras de l cursor"
+msgstr "Effacer ce qui est après le curseur"
 
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the left of cursor."
@@ -1721,7 +1721,7 @@ msgstr " Przenieś kursor do słowa po prawej stronie"
 
 msgctxt "hotkey metadata"
 msgid "Toggle fullscreen/windowed mode."
-msgstr "Alternar intre los modos “vista completa” & “feniestra”."
+msgstr "Basculer entre l'affichage plein écran et le fenêtré."
 
 msgctxt "hotkey metadata"
 msgid "Toggle Fullscreen"
@@ -1729,7 +1729,7 @@ msgstr "Activer / désactiver l'affichage plein écran"
 
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode."
-msgstr "Megjeleníti vagy elrejti a terep és a modellek drótvázait."
+msgstr "Mostra os vários modos de visualização dos modelos 3D em linhas."
 
 msgctxt "hotkey metadata"
 msgid "Toggle wireframe mode"
@@ -1830,6 +1830,14 @@ msgid "Call to arms"
 msgstr "Egységek fegyverbe szólítása"
 
 msgctxt "hotkey metadata"
+msgid "Modifier to capture instead of another action (e.g. attack)."
+msgstr "Modifier to capture instead of another action (e.g. attack)."
+
+msgctxt "hotkey metadata"
+msgid "Force capture"
+msgstr "Force capture"
+
+msgctxt "hotkey metadata"
 msgid "Modifier to deselect units when clicking group icon, instead of selecting."
 msgstr ""
 "Speciale toets om eenheden te deselecteren in plaats van te selecteren wanneer u op het"
@@ -1837,7 +1845,7 @@ msgstr ""
 
 msgctxt "hotkey metadata"
 msgid "Deselect unit type"
-msgstr "Quitar selección de un tipo de unidad"
+msgstr "Apartar de la escolyeiꞇha un typu d’unidá"
 
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare while this hotkey is pressed."
@@ -1861,7 +1869,7 @@ msgstr "Speciale toets om de handel in de gewenste grondstof naar 100% te brenge
 
 msgctxt "hotkey metadata"
 msgid "Set trade to 100%"
-msgstr "Afhitare l artículu commercial a l 100%"
+msgstr "Afitar l artículu commercial a l 100%"
 
 msgctxt "hotkey metadata"
 msgid "Modifier to garrison when clicking on building."
@@ -1881,7 +1889,7 @@ msgstr "Охороняти"
 
 msgctxt "hotkey metadata"
 msgid "Destroy selected units."
-msgstr "Vernietig de geselecteerde eenheden."
+msgstr "Elimina as unidades que estejam selecionadas."
 
 msgctxt "hotkey metadata"
 msgid "Destroy selected units"
@@ -2055,9 +2063,7 @@ msgstr "Cuir an ciutha fèin-obrachail an gnìomh"
 
 msgctxt "hotkey metadata"
 msgid "Modifier to repair when clicking on building/mechanical unit."
-msgstr ""
-"Modificador para reparar quando estiver clicando sobre uma unidade de "
-"contrução/mecânica."
+msgstr "Modificador para reparar quando estiver clicando sobre um edifício / unidade mecânica."
 
 msgctxt "hotkey metadata"
 msgid "Repair"
@@ -2073,7 +2079,7 @@ msgstr "Rotation du bâtiment dans le sens inverse des aigulles d'une montre"
 
 msgctxt "hotkey metadata"
 msgid "Rotate building placement preview clockwise."
-msgstr "Rota en sentido horario la previsualización d elos cimientos del edificio."
+msgstr "Elforgatja az elhelyezendő épületet az óramutató járásával megegyező irányban."
 
 msgctxt "hotkey metadata"
 msgid "Rotate building clockwise"
@@ -2125,7 +2131,7 @@ msgstr "Dì-luchdaich na h-aonadan a tha sna turaidean."
 
 msgctxt "hotkey metadata"
 msgid "Unload Turrets"
-msgstr "Disoccupare læs torretæs"
+msgstr "Décharger les tourelles"
 
 msgctxt "hotkey metadata"
 msgid "Modifier to unload all units of type."
@@ -2145,7 +2151,7 @@ msgstr "Εμφάνιση περιβάλλον χρήστη εντός παιχν
 
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter."
-msgstr "Afficher le compteur du cessez-le-feu."
+msgstr "Ativar ou desativar cronómetro do cessar-fogo."
 
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter"
@@ -2250,7 +2256,7 @@ msgstr "Kereskedelmi ablak megnyitása / bezárása"
 
 msgctxt "hotkey metadata"
 msgid "Toggle in-game diplomacy page."
-msgstr "Toglaich duilleag na dioplòmasachd am broinn a’ gheama."
+msgstr "Mostra ou oculta a página de diplomacia durante um jogo."
 
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy"
@@ -2336,8 +2342,8 @@ msgstr "Állapotsávok megjelenítése / elrejtése"
 msgctxt "hotkey metadata"
 msgid "Activate fast-forward mode. Must have activated timewarp."
 msgstr ""
-"Cuir am modh toinnidh air adhart an comas. Feumaidh modh dlùthadh an ama a bhith "
-"gnìomhach."
+"Hızlı ileri alma modunu etkinleştirme. Etkinleştirilmiş bir zaman akış değiştiricisinin"
+" olması gerekiyor. "
 
 msgctxt "hotkey metadata"
 msgid "Fast-forward (timewarp)"
@@ -2345,7 +2351,7 @@ msgstr "Γρήγορη προσπέλαση χρόνου (χρονοδίνη)"
 
 msgctxt "hotkey metadata"
 msgid "Rewind time. Must have activated timewarp."
-msgstr "Vuelve atrás en el tiempo. Necesita tener activado los saltos de tiempo."
+msgstr "Rebobina o tempo. Tem de se ter ativada a opção \"Modo de alteração do tempo\"."
 
 msgctxt "hotkey metadata"
 msgid "Rewind (timewarp)"
@@ -2439,9 +2445,7 @@ msgstr "Aggregar a la escolyeiꞇha"
 
 msgctxt "hotkey metadata"
 msgid "Un-select all units and cancel building placement."
-msgstr ""
-"Apartar de la escolyeiꞇha a todælæs unidades ou incaboxare l assentamiento d’un "
-"edificio."
+msgstr "Apartar de la escolyeiꞇha a todɐlɐs unidades ou incaboxar l assentamiento d’un edificio."
 
 msgctxt "hotkey metadata"
 msgid "Cancel selection"
@@ -2453,15 +2457,15 @@ msgstr "Hozzáadja az 1. irányítható csoportot az aktuális kijelöléshez."
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 1"
-msgstr "1. irányítható csoport hozzáadása"
+msgstr "Az 1. irányítható csoport hozzáadása"
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 10 to the current selection."
-msgstr "Aggiungi Gruppo di controllo 10 alla selezione corrente."
+msgstr "Hozzáadja a 10. irányítható csoportot az aktuális kijelöléshez."
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 10"
-msgstr "Aggiungi Gruppo di controllo 10"
+msgstr "A 10. irányítható csoport hozzáadása"
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 2 to the current selection."
@@ -2469,7 +2473,7 @@ msgstr "Hozzáadja a 2. irányítható csoportot az aktuális kijelöléshez."
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 2"
-msgstr "2. irányítható csoport hozzáadása"
+msgstr "A 2. irányítható csoport hozzáadása"
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 3 to the current selection."
@@ -2477,7 +2481,7 @@ msgstr "Hozzáadja a 3. irányítható csoportot az aktuális kijelöléshez."
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 3"
-msgstr "3. irányítható csoport hozzáadása"
+msgstr "A 3. irányítható csoport hozzáadása"
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 4 to the current selection."
@@ -2485,7 +2489,7 @@ msgstr "Hozzáadja a 4. irányítható csoportot az aktuális kijelöléshez."
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 4"
-msgstr "4. irányítható csoport hozzáadása"
+msgstr "A 4. irányítható csoport hozzáadása"
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 5 to the current selection."
@@ -2493,7 +2497,7 @@ msgstr "Hozzáadja az 5. irányítható csoportot az aktuális kijelöléshez."
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 5"
-msgstr "5. irányítható csoport hozzáadása"
+msgstr "Az 5. irányítható csoport hozzáadása"
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 6 to the current selection."
@@ -2501,7 +2505,7 @@ msgstr "Hozzáadja a 6. irányítható csoportot az aktuális kijelöléshez."
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 6"
-msgstr "6. irányítható csoport hozzáadása"
+msgstr "A 6. irányítható csoport hozzáadása"
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 7 to the current selection."
@@ -2509,7 +2513,7 @@ msgstr "Hozzáadja a 7. irányítható csoportot az aktuális kijelöléshez."
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 7"
-msgstr "7. irányítható csoport hozzáadása"
+msgstr "A 7. irányítható csoport hozzáadása"
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 8 to the current selection."
@@ -2517,7 +2521,7 @@ msgstr "Hozzáadja a 8. irányítható csoportot az aktuális kijelöléshez."
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 8"
-msgstr "8. irányítható csoport hozzáadása"
+msgstr "A 8. irányítható csoport hozzáadása"
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 9 to the current selection."
@@ -2525,7 +2529,7 @@ msgstr "Hozzáadja a 9. irányítható csoportot az aktuális kijelöléshez."
 
 msgctxt "hotkey metadata"
 msgid "Add Control Group 9"
-msgstr "9. irányítható csoport hozzáadása"
+msgstr "A 9. irányítható csoport hozzáadása"
 
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 1."
@@ -2533,7 +2537,7 @@ msgstr "Az aktuális kijelölés elmentésével létrehozza az 1. irányítható
 
 msgctxt "hotkey metadata"
 msgid "Set Control Group 1"
-msgstr "1. irányítható csoport létrehozása"
+msgstr "Az 1. irányítható csoport létrehozása"
 
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 10."
@@ -2541,7 +2545,7 @@ msgstr "Az aktuális kijelölés elmentésével létrehozza a 10. irányítható
 
 msgctxt "hotkey metadata"
 msgid "Set Control Group 10"
-msgstr "10. irányítható csoport létrehozása"
+msgstr "A 10. irányítható csoport létrehozása"
 
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 2."
@@ -2549,7 +2553,7 @@ msgstr "Az aktuális kijelölés elmentésével létrehozza a 2. irányítható 
 
 msgctxt "hotkey metadata"
 msgid "Set Control Group 2"
-msgstr "2. irányítható csoport létrehozása"
+msgstr "A 2. irányítható csoport létrehozása"
 
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 3."
@@ -2557,7 +2561,7 @@ msgstr "Az aktuális kijelölés elmentésével létrehozza a 3. irányítható 
 
 msgctxt "hotkey metadata"
 msgid "Set Control Group 3"
-msgstr "3. irányítható csoport létrehozása"
+msgstr "A 3. irányítható csoport létrehozása"
 
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 4."
@@ -2565,7 +2569,7 @@ msgstr "Az aktuális kijelölés elmentésével létrehozza a 4. irányítható 
 
 msgctxt "hotkey metadata"
 msgid "Set Control Group 4"
-msgstr "4. irányítható csoport létrehozása"
+msgstr "A 4. irányítható csoport létrehozása"
 
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 5."
@@ -2573,7 +2577,7 @@ msgstr "Az aktuális kijelölés elmentésével létrehozza az 5. irányítható
 
 msgctxt "hotkey metadata"
 msgid "Set Control Group 5"
-msgstr "5. irányítható csoport létrehozása"
+msgstr "Az 5. irányítható csoport létrehozása"
 
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 6."
@@ -2581,7 +2585,7 @@ msgstr "Az aktuális kijelölés elmentésével létrehozza a 6. irányítható 
 
 msgctxt "hotkey metadata"
 msgid "Set Control Group 6"
-msgstr "6. irányítható csoport létrehozása"
+msgstr "A 6. irányítható csoport létrehozása"
 
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 7."
@@ -2589,7 +2593,7 @@ msgstr "Az aktuális kijelölés elmentésével létrehozza a 7. irányítható 
 
 msgctxt "hotkey metadata"
 msgid "Set Control Group 7"
-msgstr "7. irányítható csoport létrehozása"
+msgstr "A 7. irányítható csoport létrehozása"
 
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 8."
@@ -2597,7 +2601,7 @@ msgstr "Az aktuális kijelölés elmentésével létrehozza a 8. irányítható 
 
 msgctxt "hotkey metadata"
 msgid "Set Control Group 8"
-msgstr "8. irányítható csoport létrehozása"
+msgstr "A 8. irányítható csoport létrehozása"
 
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 9."
@@ -2605,7 +2609,7 @@ msgstr "Az aktuális kijelölés elmentésével létrehozza a 9. irányítható 
 
 msgctxt "hotkey metadata"
 msgid "Set Control Group 9"
-msgstr "9. irányítható csoport létrehozása"
+msgstr "A 9. irányítható csoport létrehozása"
 
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 1."
@@ -2613,7 +2617,7 @@ msgstr "Cambia la selezione corrente al Gruppo di Controllo 1."
 
 msgctxt "hotkey metadata"
 msgid "Select Control Group 1"
-msgstr "1. irányítható csoport kijelölése"
+msgstr "Az 1. irányítható csoport kijelölése"
 
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 10."
@@ -2621,7 +2625,7 @@ msgstr "Cambia la selezione corrente in Gruppo di controllo 10."
 
 msgctxt "hotkey metadata"
 msgid "Select Control Group 10"
-msgstr "10. irányítható csoport kijelölése"
+msgstr "A 10. irányítható csoport kijelölése"
 
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 2."
@@ -2629,7 +2633,7 @@ msgstr "Cambia la selezione corrente al Gruppo di Controllo 2."
 
 msgctxt "hotkey metadata"
 msgid "Select Control Group 2"
-msgstr "2. irányítható csoport kijelölése"
+msgstr "A 2. irányítható csoport kijelölése"
 
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 3."
@@ -2637,7 +2641,7 @@ msgstr "Cambia la selezione corrente al Gruppo di Controllo 3."
 
 msgctxt "hotkey metadata"
 msgid "Select Control Group 3"
-msgstr "3. irányítható csoport kijelölése"
+msgstr "A 3. irányítható csoport kijelölése"
 
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 4."
@@ -2645,7 +2649,7 @@ msgstr "Cambia la selezione corrente al Gruppo di Controllo 4."
 
 msgctxt "hotkey metadata"
 msgid "Select Control Group 4"
-msgstr "4. irányítható csoport kijelölése"
+msgstr "A 4. irányítható csoport kijelölése"
 
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 5."
@@ -2653,7 +2657,7 @@ msgstr "Cambia la selezione corrente al Gruppo di Controllo 5."
 
 msgctxt "hotkey metadata"
 msgid "Select Control Group 5"
-msgstr "5. irányítható csoport kijelölése"
+msgstr "Az 5. irányítható csoport kijelölése"
 
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 6."
@@ -2661,7 +2665,7 @@ msgstr "Cambia la selezione corrente al Gruppo di Controllo 6."
 
 msgctxt "hotkey metadata"
 msgid "Select Control Group 6"
-msgstr "6. irányítható csoport kijelölése"
+msgstr "A 6. irányítható csoport kijelölése"
 
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 7."
@@ -2669,7 +2673,7 @@ msgstr "Cambia la selezione corrente al Gruppo di Controllo 7."
 
 msgctxt "hotkey metadata"
 msgid "Select Control Group 7"
-msgstr "7. irányítható csoport kijelölése"
+msgstr "A 7. irányítható csoport kijelölése"
 
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 8."
@@ -2677,7 +2681,7 @@ msgstr "Cambia la selezione corrente al Gruppo di Controllo 8."
 
 msgctxt "hotkey metadata"
 msgid "Select Control Group 8"
-msgstr "8. irányítható csoport kijelölése"
+msgstr "A 8. irányítható csoport kijelölése"
 
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 9."
@@ -2685,7 +2689,7 @@ msgstr "Cambia la selezione corrente al Gruppo di Controllo 9."
 
 msgctxt "hotkey metadata"
 msgid "Select Control Group 9"
-msgstr "9. irányítható csoport kijelölése"
+msgstr "A 9. irányítható csoport kijelölése"
 
 msgctxt "hotkey metadata"
 msgid "Select next idle builder."
@@ -2717,7 +2721,7 @@ msgstr "Seleciona a próxima unidade de combate ociosa."
 
 msgctxt "hotkey metadata"
 msgid "Select next idle warrior"
-msgstr "Seleccionar el siguiente guerrero inactivo"
+msgstr "Selecionar a próxima unidade de combate parada"
 
 msgctxt "hotkey metadata"
 msgid "Select next idle worker."
@@ -2765,7 +2769,7 @@ msgstr "Modifier afin de sélectionner les unités individuellement, contraireme
 
 msgctxt "hotkey metadata"
 msgid "Single selection"
-msgstr "Individuálny výber"
+msgstr "Seleção individual"
 
 msgctxt "hotkey metadata"
 msgid "Select only wounded units."
@@ -2822,7 +2826,7 @@ msgstr ""
 "jelenleg a következő verziót használod: %(currentVersion)s"
 
 msgid "This savegame needs an older version of 0 A.D."
-msgstr "Αυτό το σωσμένο παιχνίδι χρειάζεται μία παλαιότερη έκδοση του 0 A.D."
+msgstr "Ennek a mentésnek a betöltéséhez a 0 A.D.-nek egy régebbi verziójára van szükség."
 
 msgid "This savegame needs a different sequence of mods:"
 msgstr "Αυτή η αποθήκευση παιχνιδιού χρειάζεται μια διαφορετική αλληλουχία από mods:"
@@ -2931,8 +2935,8 @@ msgid ""
 "Optional four-letter script code part following the language code (as listed in ISO "
 "15924)"
 msgstr ""
-"Códigu de scriptura optativu compuœstu de læs quatro lhetræs que siguen a l códigu "
-"lingüísticu (talu cumo s’arrecuœlye nela norma ISO 15924)"
+"Códigu de scriptura optativu compuöstu de lɐs quatro lhetrɐs que siguen a l códigu "
+"lingüísticu (talu cumo s’arrecuölye na norma ISO 15924)"
 
 msgid "Not implemented yet."
 msgstr "Esta funcionalidade aínda non está lista para usarse."
@@ -2965,7 +2969,7 @@ msgstr ""
 "функционалности."
 
 msgid "New Maps"
-msgstr "Geographíæs nuœvæs"
+msgstr "Geographíɐs nuövɐs"
 
 msgid "Maps that are brand new in this release of the game."
 msgstr "Mapaichean ùra a chaidh a chur ris a’ gheama leis an sgaoileadh seo."
@@ -3032,14 +3036,14 @@ msgid "Go to the next page."
 msgstr "Перейти до наступної сторінки."
 
 msgid "Increase map preview size."
-msgstr "Aumenta o tamanho da pré-visualização do mapa."
+msgstr "Öka storleken på förhandsgranskningen av kartan."
 
 msgid "Decrease map preview size."
-msgstr "Зменшити розмір попереднього перегляду карти."
+msgstr "Diminui o tamanho da pré-visualização do mapa."
 
 #, python-format
 msgid "Maps: %(mapCount)s"
-msgstr "Geographíæs: %(mapCount)s"
+msgstr "Geographíɐs: %(mapCount)s"
 
 #, python-format
 msgid "Page: %(currentPage)s/%(maxPage)s"
@@ -3152,7 +3156,7 @@ msgid "Always show the remaining ceasefire time."
 msgstr "Seall an ùine a tha air fhàgail air an fhois-losgaidh an-còmhnaidh."
 
 msgid "Chat timestamp"
-msgstr "Marcação de data e hora do chat"
+msgstr "Marca de data e hora em conversas"
 
 msgid "Display the time at which a chat message was posted."
 msgstr "Affiche l'heure à laquelle un message de discussion a été posté."
@@ -3185,7 +3189,7 @@ msgid "Display only generic names for entities."
 msgstr "Afficher uniquement les noms génériques des entités. "
 
 msgid "How to show entity names."
-msgstr "Wie Namen von Gebäuden/Einheiten angezeigt werden."
+msgstr "Így lesznek megjelenítve az egységek és az építmények nevei."
 
 msgid "Graphics (general)"
 msgstr "Algemene grafische instellingen"
@@ -3215,14 +3219,14 @@ msgstr "Pròiseasadh an dèidh làimh"
 
 msgid "Use screen-space post-processing filters (HDR, Bloom, DOF, etc)."
 msgstr ""
-"Usar penheiræs de post-tratamiento in synthetizando l spacio de l visorio (HDR, Bloom, "
+"Usar penheirɐs de post-tratamiento n synthetizando l spacio de l visorio (HDR, Bloom, "
 "FDC, etc.)."
 
 msgid "Shadows"
 msgstr "Schaduwen"
 
 msgid "Enable shadows."
-msgstr "Cuir sgàilean an comas."
+msgstr "Habilitare lɐs solombrɐs."
 
 msgid "Unit silhouettes"
 msgstr "Sgàil-riochdan nan aonadan"
@@ -3316,8 +3320,14 @@ msgstr "OpenGL ARB"
 msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
 msgstr "Backend OpenGL dìleabach le sgàileadairean ARB. FEUMAIDH TU AN GEAMA ATH-THÒISEACHADH"
 
+msgid "Vulkan"
+msgstr "Vulkan"
+
+msgid "Modern API, requires up-to-date drivers. REQUIRES GAME RESTART"
+msgstr "Modern API, requires up-to-date drivers. REQUIRES GAME RESTART"
+
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
-msgstr "Escolyi l motor de l synthetizador gráphicu. REQUIER EL RE-ARRINCU DE L ẌUŒGU"
+msgstr "Escolyi l motor de l synthetizador gráphicu. REQUIER EL REARRINCU DE L JUÖGU"
 
 msgid "Antialiasing"
 msgstr "Εξομάλυνση γραφικών."
@@ -3395,7 +3405,7 @@ msgid "The sharpness of the choosen pass."
 msgstr "Степень повышения резкости выбранного алгоритма."
 
 msgid "Model quality"
-msgstr "Qualidade de los modellos"
+msgstr "Càileachd nam modailean"
 
 msgctxt "Option for the meshes' level of detail."
 msgid "Low"
@@ -3473,7 +3483,7 @@ msgstr ""
 "rendimiento significativamente. Al activarse inutiliza otras opciones relacionadas."
 
 msgid "High-quality water effects"
-msgstr "Effectos aquáticos d’alta qualidade"
+msgstr "Efeitos de água de alta qualidade"
 
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, and ships "
@@ -3497,13 +3507,13 @@ msgstr ""
 "прозрачност."
 
 msgid "Real water depth"
-msgstr "Fhondura aquática effectiva"
+msgstr "Profondeur réelle de l'eau"
 
 msgid "Use actual water depth in rendering calculations."
 msgstr "Използване на истинската дълбочина на водата по време на изчисленията за изчертаването."
 
 msgid "Texture quality"
-msgstr "Qualidade de læs texturæs"
+msgstr "Qualidá de lɐs texturɐs"
 
 msgctxt "Option for the texture quality."
 msgid "Low"
@@ -3554,8 +3564,8 @@ msgstr ""
 
 msgid "Decrease texture quality making them blurrier but increases game performance."
 msgstr ""
-"Aminorgare la qualidade de læs texturæs, fhaziendo-llæs maæs diffusæs & augmentando la "
-"efficiencia de l ẍuœgu."
+"Aminorgare la qualidá de lɐs texturɐs, fazhiendo-llɐs más diffusɐs & augmentando la "
+"efficiencia de l juögu."
 
 msgid "Master volume"
 msgstr "Maighstir àirde na fuaime"
@@ -3949,8 +3959,8 @@ msgstr "Muodostelmissa olevat yksiköt pysyvät muodostelmissaan."
 
 msgid "Decide whether formations are enabled for all orders or only 'Walk' and 'Patrol'."
 msgstr ""
-"Eldönti, hogy a formációk minden egység számára engedélyezve legyenek, vagy csak a "
-"sétáló és őrjáratozó egységek számára."
+"Askeri formasyonların sadece yürüme ve devriye gezme komutlarında mı yoksa bütün "
+"emirlerde mı açık olup olmadığına karar ver. "
 
 msgid "Battalion-style formations"
 msgstr "Cumaidhean ann an stoidhle còrachaidh"
@@ -3979,7 +3989,7 @@ msgid "Show special icons for some entities on the minimap."
 msgstr "Afficher des icônes spéciales pour certaines entités sur la mini-carte."
 
 msgid "Chat notification attack"
-msgstr "Notification du chat lors d'attaque."
+msgstr "Notificação de ataque na conversação"
 
 msgid "Show a chat notification if you are attacked by another player."
 msgstr ""
@@ -4012,7 +4022,7 @@ msgid "Disable"
 msgstr "Poista käytöstä"
 
 msgid "Completed"
-msgstr "Mudanciæs de phase"
+msgstr "Mudanciɐs de phase"
 
 msgid "All displayed"
 msgstr "Wszystko wyświetlone"
@@ -4201,7 +4211,7 @@ msgid "Host Game"
 msgstr "Herbrec'hiañ ur C'hoariadenn"
 
 msgid "Host a multiplayer game."
-msgstr "Ahospedar una partida de varios ẍogadores."
+msgstr "Ahospedar una partida de varios jogadores."
 
 msgid "Game Lobby"
 msgstr "Žaidimo Vestibiulis"
@@ -4304,7 +4314,7 @@ msgstr ""
 " "
 
 msgid "Alpha XXVII: ———"
-msgstr "Alpha XXVII: ———"
+msgstr "Alpha XXVII : ———"
 
 msgid "Notice: This game is under development and many features have not been added yet."
 msgstr ""
@@ -4436,7 +4446,7 @@ msgstr ""
 
 #, python-format
 msgid "• %(name)s %(info_icon)s%(description)s"
-msgstr "• %(name)s %(info_icon)s%(description)s"
+msgstr "• %(name)s님 %(info_icon)s%(description)s"
 
 #, python-format
 msgid "%(hotkey)s: Close Civilization Overview."
@@ -4453,7 +4463,7 @@ msgstr "%(civilization)s zibilizazioaren historia"
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Zivilisationsbonus"
-msgstr[1] "Ventalyæs culturales"
+msgstr[1] "Ventalyɐs culturales"
 
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
@@ -4617,10 +4627,10 @@ msgid "Rated and unrated games"
 msgstr "Permainan berperingkat dan tak berperingkat"
 
 msgid "Rated games"
-msgstr "Partidæs classificatoriæs"
+msgstr "Partidɐs classificatoriɐs"
 
 msgid "Unrated games"
-msgstr "Partidæs non classificatoriæs"
+msgstr "Partidɐs non classificatoriɐs"
 
 msgid "Filter replays by typing one or more, partial or complete player names."
 msgstr ""
@@ -4682,7 +4692,7 @@ msgid "Search for Player"
 msgstr "Αναζήτηση για Παίκτη/τρια"
 
 msgid "File path for the currently selected replay."
-msgstr "Caminho de arquivo para a gravação atualmente selecionada."
+msgstr "Caminho de ficheiros para a repetição atualmente selecionada."
 
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
 msgstr ""
@@ -4816,7 +4826,7 @@ msgstr "Kenwerzhourien"
 
 #, python-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(lost)s)"
-msgstr "Unitatearen estatistikak  (%(trained)s / %(killed)s / %(lost)s)"
+msgstr "Estatísticas das unidades (%(trained)s / %(killed)s / %(lost)s)"
 
 msgid "Resources"
 msgstr "Grondstoffen"
@@ -4968,7 +4978,7 @@ msgid "Current Scores"
 msgstr "Pašreizējie Rezultāti"
 
 msgid "Scores at the end of the game."
-msgstr "Læs puntuaciones a la fin de la partida."
+msgstr "Lɐs puntuaciones a la fin de la partida."
 
 msgid "You have been disconnected."
 msgstr "Deine Verbindung wurde getrennt."
@@ -5083,8 +5093,8 @@ msgstr ""
 
 msgid "Build one early to train citizen soldiers while you phase up your settlement."
 msgstr ""
-"Construisez-en un tôt pour former des soldats citoyens au fur et à mesure que vous "
-"faites avancer votre colonie vers la prochaine étape."
+"Érdemes már a játszma elején építeni egyet, hogy akkor is tudj majd hol katonákat "
+"kiképezni, amikor a kolóniád épp egy másik szakaszba lép át."
 
 msgid "Build in a forward base to resupply your assault with fresh troops."
 msgstr ""
@@ -5156,7 +5166,7 @@ msgid "CATAPULTS"
 msgstr "CRAINN-THABHAILL"
 
 msgid "Ranged siege engines that are good against structures."
-msgstr "Máchina emissora q’arreflunde piedræs & disfhaz structuræs cun facilidade."
+msgstr "Máchina de cerco tiradora q’arrefunde piedrɐs & disfaz structurɐs cun facilidá."
 
 msgid "Expensive and slow."
 msgstr "Mahal dan lambat bergerak."
@@ -5167,7 +5177,7 @@ msgstr ""
 "senjata kekal untuk menyerang!"
 
 msgid "CAVALRY STABLE"
-msgstr "KANDANG KUDA KAVALERI"
+msgstr "ESTÁBULO DE ELEFANTES"
 
 msgid "Trains cavalry units and lets you research cavalry specific technologies."
 msgstr ""
@@ -5204,8 +5214,8 @@ msgid ""
 "When your ranged infantry units are occupying the turrets, they have additional armor "
 "and can shoot at the enemy. "
 msgstr ""
-"Quando suas unidades de infantaria de ataque à distância estiverem ocupando as torres, "
-"elas têm armadura adicional e podem atirar no inimigo."
+"Quando as tuas unidades de infantaria de ataque à distância estiverem a ocupar os "
+"cubelos, elas têm armadura adicional e podem disparar no inimigo."
 
 msgid "Vulnerable to siege weapons like catapults, rams and war elephants."
 msgstr ""
@@ -5394,14 +5404,16 @@ msgid ""
 "Historical characters, such as Xerxes, Leonidas, Pericles, Hannibal, Scipio, and "
 "Boudicca."
 msgstr ""
-"Ιστορικοί χαρακτήρες όπως ο Ξέρξης,  ο Λεωνίδας,  ο Περικλής,  ο Αννίβας, ο Σίσυφος και"
-" η Βοαδίκεια."
+"Olyan történelmi személyiségek, mint például Khsajársá, Leónidasz, Periklész, Hannibál,"
+" Scipio vagy Boudicca."
 
 msgid "A lot of health and very strong attacks."
 msgstr "Paljon terveyttä ja erittäin voimakkaita hyökkäyksiä."
 
 msgid "Have auras which alter the stats of other units or structures."
-msgstr "Possèdent des auras qui modfient les statistiques des autres unités ou bâtiments."
+msgstr ""
+"Aura veszi őket körül, mely megváltoztatja a közelükben lévő egységek és építmények "
+"értékeit."
 
 msgid "Caution: Each hero can be recruited only once per match!"
 msgstr "Thoir an aire: Chan urrainn dhut gach curaidh a thrusadh ach aon turas ann am maidse!"
@@ -5576,7 +5588,7 @@ msgid "SPARTIATES"
 msgstr "HOPLITES SPARTIATES"
 
 msgid "Strongest infantry unit in the game."
-msgstr "El maæs fhuœrte de todolos pedestres de l ẍuœgu."
+msgstr "Unit infrantri paling kuat di dalam permainan."
 
 msgid "Champion Infantry available to the Spartans."
 msgstr "Infantaria campeã disponível apenas para os espartanos."
@@ -5698,7 +5710,7 @@ msgid "Garrison troops aboard to increase fire power."
 msgstr "Разместите воинов на борту для транспортировки и увеличения  огневой мощи."
 
 msgid "WAR ELEPHANTS"
-msgstr "ELEFANTES DE COMBATE"
+msgstr "ELEPHANTES DE GUERRA"
 
 msgid "Huge beasts from Africa and India, trained for war."
 msgstr ""

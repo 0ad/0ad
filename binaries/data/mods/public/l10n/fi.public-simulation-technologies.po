@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Matti Tuhola, 2021-2022\n"
 "Language-Team: Finnish (http://www.transifex.com/wildfire-games/0ad/language/fi/)\n"
@@ -622,10 +622,13 @@ msgid "Chain Pump"
 msgstr "Ketjupumppu"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
+#: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
+#: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
+#: simulation/data/technologies/gather_farming_training.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
-msgid "Workers +20% rice gather rate."
-msgstr "Työntekijöille +20 % riisin keräysnopeutta."
+msgid "Workers +20% grain gather rate."
+msgstr "Työntekijöille +20% viljan keräysnopeus."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -634,12 +637,6 @@ msgstr "Lisäravinteita pelloille."
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
 msgstr "Lannoite"
-
-#: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
-#: simulation/data/technologies/gather_farming_plows.jsontooltip
-#: simulation/data/technologies/gather_farming_training.jsontooltip
-msgid "Workers +20% grain gather rate."
-msgstr "Työntekijöille +20% viljan keräysnopeus."
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -1080,9 +1077,9 @@ msgstr "Megalopolis"
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Etene kaupunkivaiheeseen, joka avaa lisää entiteettejä ja teknologioita. Kaupunkikeskuksille +50% alueen vaikutussäde. Rakenteille +9 kaappauspisteiden uusiutumisnopeus miehitysyksikköä kohti. Työntekijöille +10 % metallin keräysaste."
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units. Workers +10% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1097,9 +1094,9 @@ msgstr "Jùn"
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit."
-msgstr "Etene kaupunkivaiheeseen, joka avaa lisää entiteettejä ja teknologioita. Kaupunkikeskuksille +50% alueen vaikutussäde. Rakenteille +9 kaappauspisteiden uusiutumisnopeus miehitysyksikköä kohti."
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
@@ -1111,9 +1108,9 @@ msgstr "Kehity vilkkaasta kauppalasta todelliseksi metropoliksi, joka on täynn�
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit. Stable −10% batch training time."
-msgstr "Etene kaupunkivaiheeseen, joka avaa lisää entiteettejä ja teknologioita. Kaupunkikeskuksille +50% alueen vaikutussäde. Rakenteille +9 kaappauspisteiden uusiutumisnopeus miehitysyksikköä kohti. Talleille -10 % eräkoulutusajasta."
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units. Stable −10% batch training time."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1152,9 +1149,9 @@ msgstr "Kōmopolis"
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Etene kauppalavaiheeseen, joka avaa lisää entiteettejä ja teknologioita. Kaupunkikeskuksille +30% alueen vaikutussäde. Rakenteille +7 kaappauspisteiden uusiutumisnopeus miehitysyksikköä kohti. Työntekijöille +10 % metallin keräysaste."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units. Workers +10% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1168,9 +1165,9 @@ msgstr "Xìan"
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit."
-msgstr "Etene kauppalavaiheeseen, joka avaa lisää entiteettejä ja teknologioita. Kansalaiskeskuksille +30% alueen vaikutussäde. Rakenteille +7 kaappauspisteiden uusiutumisnopeus miehitysyksikköä kohti."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_pers.jsondescription
 msgid ""
@@ -1182,9 +1179,9 @@ msgstr "Kehity pienestä kylästä vilkkaaksi kauppalaksi, joka on valmis laajen
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit. Stable −10% batch training time."
-msgstr "Etene kauppalavaiheeseen, joka avaa lisää entiteettejä ja teknologioita. Kaupunkikeskuksille +30% alueen vaikutussäde. Rakenteille +7 kaappauspisteiden uusiutumisnopeus miehitysyksikköä kohti. Talleille -10 % eräkoulutusajasta."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units. Stable −10% batch training time."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"

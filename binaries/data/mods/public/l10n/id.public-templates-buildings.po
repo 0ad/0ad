@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -24,7 +24,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2023-01-27 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Mas Nnaw, 2022\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
@@ -81,14 +81,6 @@ msgstr "Pyrgion"
 #: simulation/templates/structures/spart/dock.xml:12
 msgid "Limēn"
 msgstr "Limēn"
-
-#: simulation/templates/structures/athen/farmstead.xml:11
-#: simulation/templates/structures/mace/farmstead.xml:11
-#: simulation/templates/structures/ptol/farmstead.xml:8
-#: simulation/templates/structures/sele/farmstead.xml:8
-#: simulation/templates/structures/spart/farmstead.xml:11
-msgid "Epoikion"
-msgstr "Epoikion"
 
 #: simulation/templates/structures/athen/field.xml:5
 #: simulation/templates/structures/mace/field.xml:5
@@ -200,15 +192,6 @@ msgstr "Hippōn"
 #: simulation/templates/structures/spart/storehouse.xml:8
 msgid "Apothēkē"
 msgstr "Apothēkē"
-
-#: simulation/templates/structures/athen/temple.xml:9
-#: simulation/templates/structures/mace/temple.xml:9
-#: simulation/templates/structures/ptol/temple.xml:12
-#: simulation/templates/structures/ptol/temple_2.xml:11
-#: simulation/templates/structures/sele/temple.xml:9
-#: simulation/templates/structures/spart/temple.xml:9
-msgid "Naos"
-msgstr "Naos"
 
 #: simulation/templates/structures/athen/theater.xml:5
 #: simulation/templates/structures/mace/theater.xml:5
@@ -375,10 +358,6 @@ msgstr "Antosolicon"
 #: simulation/templates/structures/gaul/range.xml:8
 msgid "Budinadon"
 msgstr "Budinadon"
-
-#: simulation/templates/structures/brit/rotarymill.xml:5
-msgid "Melonas"
-msgstr "Melonas"
 
 #: simulation/templates/structures/brit/stable.xml:11
 #: simulation/templates/structures/gaul/stable.xml:11
@@ -590,6 +569,39 @@ msgstr "Kolom Doria"
 msgid "Fallen Doric Column"
 msgstr "Reruntuhan Kolom Doria"
 
+#: simulation/templates/structures/farmstead_field_wheat.xml:7
+#: simulation/templates/structures/generic_field.xml:8
+msgid "Wheat Field"
+msgstr "Ladang Gandum"
+
+#: simulation/templates/structures/athen/farmstead.xml:11
+#: simulation/templates/structures/farmstead_greek.xml:8
+#: simulation/templates/structures/mace/farmstead.xml:11
+#: simulation/templates/structures/ptol/farmstead.xml:8
+#: simulation/templates/structures/sele/farmstead.xml:8
+#: simulation/templates/structures/spart/farmstead.xml:11
+msgid "Epoikion"
+msgstr "Epoikion"
+
+#: simulation/templates/structures/farmstead_indian.xml:8
+#: simulation/templates/structures/maur/farmstead.xml:11
+msgid "Kantu"
+msgstr "Kantu"
+
+#: simulation/templates/structures/farmstead_italian.xml:8
+msgid "Villa"
+msgstr "Villa"
+
+#: simulation/templates/structures/farmstead_middle_eastern.xml:9
+#: simulation/templates/structures/pers/farmstead.xml:8
+msgid "Kaštašta"
+msgstr "Kaštašta"
+
+#: simulation/templates/structures/brit/rotarymill.xml:5
+#: simulation/templates/structures/farmstead_temperate_europe.xml:4
+msgid "Melonas"
+msgstr "Melonas"
+
 #: simulation/templates/structures/fence_long.xml:14
 #: simulation/templates/structures/fence_short.xml:14
 msgid "Fence"
@@ -648,10 +660,6 @@ msgstr "Suaka Corent"
 msgid "Celicnon"
 msgstr "Celicnon"
 
-#: simulation/templates/structures/generic_field.xml:8
-msgid "Wheat Field"
-msgstr "Ladang Gandum"
-
 #: simulation/templates/structures/han/academy.xml:27
 msgid "Imperial Academy"
 msgstr "Akademi Kekaisaran"
@@ -699,7 +707,7 @@ msgstr "Cháotíng"
 msgid "ImperialCourt"
 msgstr "MahkamahKekaisaran"
 
-#: simulation/templates/structures/han/corral.xml:9
+#: simulation/templates/structures/han/corral.xml:12
 msgid "Xù Lán"
 msgstr "Xù Lán"
 
@@ -707,7 +715,7 @@ msgstr "Xù Lán"
 msgid "Fángyù Tǎ"
 msgstr "Fángyù Tǎ"
 
-#: simulation/templates/structures/han/defense_tower.xml:17
+#: simulation/templates/structures/han/defense_tower.xml:23
 msgid ""
 "This tower has greater range, greater attack, greater health, and is twice "
 "as difficult to capture."
@@ -1065,6 +1073,10 @@ msgstr "Pr-Pdt"
 msgid "tsmt"
 msgstr "tsmt"
 
+#: simulation/templates/structures/kush/shrine.xml:12
+msgid "Shrine"
+msgstr "Pemujaan"
+
 #: simulation/templates/structures/kush/shrine.xml:13
 msgid "ḥwt-nṯr"
 msgstr "ḥwt-nṯr"
@@ -1163,10 +1175,6 @@ msgstr "Naukasthanaka"
 #: simulation/templates/structures/maur/elephant_stable.xml:5
 msgid "Vāraṇaśālā"
 msgstr "Vāraṇaśālā"
-
-#: simulation/templates/structures/maur/farmstead.xml:11
-msgid "Kantu"
-msgstr "Kantu"
 
 #: simulation/templates/structures/maur/field.xml:5
 msgid "Kshetra"
@@ -1370,10 +1378,6 @@ msgstr "Pāyaud"
 msgid "Nāvašta"
 msgstr "Nāvašta"
 
-#: simulation/templates/structures/pers/farmstead.xml:8
-msgid "Kaštašta"
-msgstr "Kaštašta"
-
 #: simulation/templates/structures/pers/field.xml:5
 msgid "Kaštrya"
 msgstr "Kaštrya"
@@ -1521,22 +1525,22 @@ msgstr "Arc de Triomphe"
 msgid "TriumphalArch"
 msgstr "PelengkungKemenangan"
 
-#: simulation/templates/structures/rome/army_camp.xml:72
+#: simulation/templates/structures/rome/army_camp.xml:71
 msgid "Army Camp"
 msgstr "Kemah Prajurit"
 
-#: simulation/templates/structures/rome/army_camp.xml:73
+#: simulation/templates/structures/rome/army_camp.xml:72
 msgid "Castra"
 msgstr "Castra"
 
-#: simulation/templates/structures/rome/army_camp.xml:74
+#: simulation/templates/structures/rome/army_camp.xml:73
 msgid ""
 "Build in neutral or enemy territory. Train Advanced Melee Infantry. "
 "Construct Rams. Garrison Soldiers for additional arrows."
 msgstr "Bangun di wilayah netral atau musuh. Melatih Infanteri Jarak Dekat Menengah dan membangun Pelantak. Tempatkan prajurit untuk tambahan panah."
 
 #: simulation/templates/structures/rome/army_camp.xml:31
-#: simulation/templates/structures/rome/army_camp.xml:76
+#: simulation/templates/structures/rome/army_camp.xml:75
 msgid "ArmyCamp"
 msgstr "KemahPrajurit"
 
@@ -1720,26 +1724,25 @@ msgstr "Deretan Kolom Korintus"
 msgid "Bǎotǎ"
 msgstr "Bǎotǎ"
 
-#: simulation/templates/structures/shrine_chinese.xml:10
-msgid "Pagoda"
-msgstr "Pagoda"
-
 #: simulation/templates/structures/shrine_egyptian.xml:5
+#: simulation/templates/structures/shrine_kushite.xml:5
 msgid "Sanctuary Kiosk"
 msgstr "Kios Suaka"
 
-#: simulation/templates/structures/shrine_italian.xml:9
-msgid "Temple of Healing"
-msgstr "Kuil Penyembuhan"
+#: simulation/templates/structures/athen/temple.xml:9
+#: simulation/templates/structures/mace/temple.xml:9
+#: simulation/templates/structures/ptol/temple.xml:12
+#: simulation/templates/structures/ptol/temple_2.xml:11
+#: simulation/templates/structures/sele/temple.xml:9
+#: simulation/templates/structures/shrine_greek_01.xml:9
+#: simulation/templates/structures/shrine_greek_02.xml:9
+#: simulation/templates/structures/spart/temple.xml:9
+msgid "Naos"
+msgstr "Naos"
 
-#: simulation/templates/structures/shrine_italian.xml:10
+#: simulation/templates/structures/shrine_italian.xml:9
 msgid "Aedēs Sanitatem"
 msgstr "Aedēs Sanitatem"
-
-#: simulation/templates/structures/kush/shrine.xml:12
-#: simulation/templates/structures/shrine_kushite.xml:5
-msgid "Shrine"
-msgstr "Pemujaan"
 
 #: simulation/templates/structures/spart/gerousia.xml:22
 msgid "Spartan Senate"
@@ -1924,7 +1927,7 @@ msgstr "Rumah"
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_range.xml:25
 #: simulation/templates/template_structure_military_stable.xml:29
-#: simulation/templates/template_structure_resource_corral.xml:21
+#: simulation/templates/template_structure_resource_corral.xml:29
 msgid "Village"
 msgstr "Desa"
 
@@ -1943,7 +1946,8 @@ msgstr "Stoa"
 #: simulation/templates/structures/han/laozigate.xml:24
 #: simulation/templates/structures/han/ministry.xml:39
 #: simulation/templates/structures/iber/monument.xml:34
-#: simulation/templates/structures/maur/elephant_stable.xml:8
+#: simulation/templates/structures/maur/elephant_stable.xml:7
+#: simulation/templates/structures/rome/army_camp.xml:75
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
 #: simulation/templates/template_structure_economic_market.xml:28
@@ -2037,7 +2041,7 @@ msgstr "Tempatkan Prajurit untuk panah tambahan. Membutuhkan teknologi “Lubang
 msgid "SentryTower"
 msgstr "MenaraJaga"
 
-#: simulation/templates/template_structure_defensive_tower_sentry.xml:59
+#: simulation/templates/template_structure_defensive_tower_sentry.xml:61
 msgid "Reinforce with stone and upgrade to a defense tower."
 msgstr "Perkuat dengan batu dan tingkatkan ke menara pertahanan."
 
@@ -2083,12 +2087,14 @@ msgstr "Bangunan Ekonomi"
 
 #: simulation/templates/template_structure_economic.xml:5
 #: simulation/templates/template_structure_military_dock.xml:27
-#: simulation/templates/template_structure_resource_corral.xml:21
+#: simulation/templates/template_structure_resource_corral.xml:29
 msgid "Economic"
 msgstr "Ekonomi"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:26
 #: simulation/templates/template_structure_economic_farmstead.xml:30
+#: simulation/templates/template_structure_special_rotarymill.xml:32
+#: simulation/templates/template_structure_special_rotarymill.xml:34
 msgid "Farmstead"
 msgstr "Lumbung"
 
@@ -2145,7 +2151,6 @@ msgstr "Melatih Jawara Infanteri Pemanah Busur Silang, membangun Mesin Kepung, d
 #: simulation/templates/structures/han/civil_centre_court.xml:19
 #: simulation/templates/structures/kush/pyramid_large.xml:29
 #: simulation/templates/structures/kush/temple_amun.xml:31
-#: simulation/templates/structures/rome/army_camp.xml:76
 #: simulation/templates/structures/rome/temple_mars.xml:14
 #: simulation/templates/template_structure_military_arsenal.xml:28
 #: simulation/templates/template_structure_military_elephant_stable.xml:29
@@ -2246,14 +2251,15 @@ msgstr "Bangunan sumber daya"
 msgid "Resource"
 msgstr "Sumber Daya"
 
-#: simulation/templates/template_structure_resource_corral.xml:18
-#: simulation/templates/template_structure_resource_corral.xml:21
+#: simulation/templates/template_structure_resource_corral.xml:26
+#: simulation/templates/template_structure_resource_corral.xml:29
 msgid "Corral"
 msgstr "Kandang Ternak"
 
-#: simulation/templates/template_structure_resource_corral.xml:20
-msgid "Raise Domestic Animals for food."
-msgstr "Memelihara Hewan Ternak sebagai sumber pakan."
+#: simulation/templates/template_structure_resource_corral.xml:28
+msgid ""
+"Raise Domestic Animals for food. Garrison animals to gain a trickle of food."
+msgstr ""
 
 #: simulation/templates/template_structure_resource_field.xml:18
 #: simulation/templates/template_structure_resource_field.xml:20
@@ -2280,13 +2286,15 @@ msgstr "Ampiteater"
 msgid "Library"
 msgstr "Perpustakaan"
 
-#: simulation/templates/template_structure_special_rotarymill.xml:19
+#: simulation/templates/template_structure_special_rotarymill.xml:33
 msgid "Rotary Mill"
 msgstr "Penggilingan"
 
-#: simulation/templates/template_structure_special_rotarymill.xml:21
-msgid "RotaryMill"
-msgstr "Penggilingan"
+#: simulation/templates/template_structure_special_rotarymill.xml:38
+msgid ""
+"Dropsite for harvested Food. Capture one of these to increase nearby food "
+"production."
+msgstr ""
 
 #: simulation/templates/template_structure_special_theater.xml:25
 #: simulation/templates/template_structure_special_theater.xml:27

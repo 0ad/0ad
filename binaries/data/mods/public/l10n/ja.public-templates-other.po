@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Photon “PHN” man, 2021-2022\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
@@ -1008,12 +1008,33 @@ msgstr "神殿"
 msgid "Trading Post"
 msgstr "交易所"
 
+#: simulation/templates/obstructors/movement_36x36.xml:9
+#: simulation/templates/obstructors/movement_8x36.xml:9
+#: simulation/templates/obstructors/movement_8x8.xml:9
+msgid "Movement Obstructor"
+msgstr ""
+
+#: simulation/templates/obstructors/movement_36x36.xml:11
+#: simulation/templates/obstructors/movement_8x36.xml:11
+#: simulation/templates/obstructors/movement_8x8.xml:11
+msgid "Placement obstructor to prevent movement and construction."
+msgstr ""
+
 #: simulation/templates/obstructors/placement.xml:10
 msgid "Obstructor"
 msgstr ""
 
 #: simulation/templates/obstructors/placement.xml:12
+#: simulation/templates/obstructors/placement_36x36.xml:11
+#: simulation/templates/obstructors/placement_8x36.xml:11
+#: simulation/templates/obstructors/placement_8x8.xml:11
 msgid "Placement obstructor to prevent construction but not movement"
+msgstr ""
+
+#: simulation/templates/obstructors/placement_36x36.xml:9
+#: simulation/templates/obstructors/placement_8x36.xml:9
+#: simulation/templates/obstructors/placement_8x8.xml:9
+msgid "Placement Obstructor"
 msgstr ""
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5

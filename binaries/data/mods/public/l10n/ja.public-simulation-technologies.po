@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Photon “PHN” man, 2021\n"
 "Language-Team: Japanese (http://www.transifex.com/wildfire-games/0ad/language/ja/)\n"
@@ -619,10 +619,13 @@ msgid "Chain Pump"
 msgstr ""
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
+#: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
+#: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
+#: simulation/data/technologies/gather_farming_training.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
-msgid "Workers +20% rice gather rate."
-msgstr ""
+msgid "Workers +20% grain gather rate."
+msgstr "労働者の畑からの収穫率+20%"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -631,12 +634,6 @@ msgstr "畑への追加の栄養です。"
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
 msgstr "肥料"
-
-#: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
-#: simulation/data/technologies/gather_farming_plows.jsontooltip
-#: simulation/data/technologies/gather_farming_training.jsontooltip
-msgid "Workers +20% grain gather rate."
-msgstr "労働者の畑からの収穫率+20%"
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -1077,9 +1074,9 @@ msgstr "Megalopolis"
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "都市の段階に進むと、より多くの事業体や技術が解放されます。町の中心 領土範囲+50% 駐留しているユニットごとの占領ポイント再生率+9%。労働者の金属採掘率+10%"
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units. Workers +10% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1094,9 +1091,9 @@ msgstr ""
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit."
-msgstr "都市の段階に進むと、より多くの事業体や技術が解放されます。町の中心 領土範囲+50% 駐留しているユニットごとの占領ポイント再生率+9%"
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
@@ -1108,8 +1105,8 @@ msgstr ""
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit. Stable −10% batch training time."
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units. Stable −10% batch training time."
 msgstr ""
 
 #: simulation/data/technologies/phase_town.jsondescription
@@ -1149,9 +1146,9 @@ msgstr "Kōmopolis"
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "町の段階に発展すると、より多くの事業体や技術が解放されます。町の中心 領土範囲+30% 駐留しているユニットごとの占領ポイント再生率+7%。労働者の金属採掘率+10%。"
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units. Workers +10% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1165,9 +1162,9 @@ msgstr ""
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit."
-msgstr "町の段階に発展すると、より多くの事業体や技術が解放されます。町の中心 領土範囲+30% 駐留しているユニットごとの占領ポイント再生率+7%"
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_pers.jsondescription
 msgid ""
@@ -1179,8 +1176,8 @@ msgstr ""
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit. Stable −10% batch training time."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units. Stable −10% batch training time."
 msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName

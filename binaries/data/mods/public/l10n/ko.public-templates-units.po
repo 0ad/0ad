@@ -1,10 +1,10 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 # 76407af6b051a571d67c2577de2183db_7380deb
-# JungHee Lee
+# Junghee Lee
 # 미워하지 않아
 # Gu Hong Min
 # GyuTae Park
@@ -12,16 +12,16 @@
 # moolow
 # jjj
 # ks k
+# 개발자무일푼
 # sang gyu nam
 # Valtiel
-# 개발자무일푼
 # YongNam Kim
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2023-01-27 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2022\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2021-2023\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +39,7 @@ msgstr "영구대"
 
 #: simulation/templates/template_unit_catafalque.xml:20
 msgid "A catafalque that holds the remains of a great leader."
-msgstr "위대한 지도자의 유골을 보관하는 영구대."
+msgstr "위대한 지도자의 유골을 보관하는 영구대입니다."
 
 #: simulation/templates/template_unit_cavalry.xml:5
 #: simulation/templates/template_unit_champion.xml:5
@@ -67,10 +67,10 @@ msgstr "기병"
 #: simulation/templates/template_unit_cavalry.xml:33
 #: simulation/templates/template_unit_elephant.xml:9
 #: simulation/templates/template_unit_infantry.xml:37
-#: simulation/templates/template_unit_support_healer.xml:29
+#: simulation/templates/template_unit_support_healer.xml:30
 msgctxt "Rank"
 msgid "Basic"
-msgstr "보통"
+msgstr "기본"
 
 #: simulation/templates/template_unit_cavalry.xml:35
 #: simulation/templates/template_unit_champion.xml:14
@@ -96,7 +96,7 @@ msgstr "근접 기병"
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:20
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:19
-#: simulation/templates/template_unit_champion_elephant_melee.xml:18
+#: simulation/templates/template_unit_champion_elephant_melee.xml:27
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:20
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:20
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:28
@@ -108,7 +108,7 @@ msgstr "근접 기병"
 #: simulation/templates/template_unit_hero_cavalry_maceman.xml:17
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:22
-#: simulation/templates/template_unit_hero_elephant_melee.xml:32
+#: simulation/templates/template_unit_hero_elephant_melee.xml:41
 #: simulation/templates/template_unit_hero_infantry_axeman.xml:17
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:17
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
@@ -238,9 +238,7 @@ msgstr "검병"
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:24
 #: simulation/templates/template_unit_infantry_ranged.xml:7
 #: simulation/templates/template_unit_infantry_ranged.xml:8
-#: simulation/templates/template_unit_ship_bireme.xml:52
-#: simulation/templates/template_unit_ship_quinquereme.xml:56
-#: simulation/templates/template_unit_ship_trireme.xml:52
+#: simulation/templates/template_unit_ship_warship.xml:38
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
 #: simulation/templates/template_unit_siege_tower.xml:62
@@ -258,8 +256,7 @@ msgstr "원거리 기병"
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:5
 #: simulation/templates/template_unit_hero_infantry_archer.xml:5
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:5
-#: simulation/templates/template_unit_ship_bireme.xml:5
-#: simulation/templates/template_unit_ship_trireme.xml:5
+#: simulation/templates/template_unit_ship_warship.xml:5
 #: simulation/templates/template_unit_siege_tower.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
@@ -278,7 +275,7 @@ msgstr "궁사"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:29
 msgid "Cavalry Archer"
-msgstr "궁 기병"
+msgstr "궁기병"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:5
@@ -292,7 +289,7 @@ msgstr "석궁"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:28
 msgid "Cavalry Crossbowman"
-msgstr "노기병"
+msgstr "석궁 기병"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:24
@@ -348,7 +345,7 @@ msgstr "정예 도끼 기병"
 
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:23
 msgid "Champion Cavalry Crossbowman"
-msgstr "정예 노기병"
+msgstr "정예 석궁 기병"
 
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:23
 msgid "Champion Cavalry Javelineer"
@@ -375,7 +372,7 @@ msgstr "전투 코끼리"
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_fauna_hunt_passive-defensive_elephant.xml:4
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:4
-#: simulation/templates/template_unit_hero_elephant_melee.xml:32
+#: simulation/templates/template_unit_hero_elephant_melee.xml:41
 #: simulation/templates/template_unit_support_elephant.xml:18
 msgid "Elephant"
 msgstr "코끼리"
@@ -385,6 +382,13 @@ msgstr "코끼리"
 msgctxt "Name of an attack, usually the weapon."
 msgid "Trunk"
 msgstr "통나무"
+
+#: simulation/templates/template_unit_champion_elephant_melee.xml:12
+#: simulation/templates/template_unit_hero_elephant_melee.xml:12
+#: simulation/templates/template_unit_ship_fire.xml:22
+#: simulation/templates/template_unit_siege_flamethrower.xml:35
+msgid "Circular"
+msgstr "원형"
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
 #: simulation/templates/template_unit_hero_infantry.xml:14
@@ -471,7 +475,7 @@ msgstr "군견"
 
 #: simulation/templates/template_unit_dog.xml:32
 msgid "Cannot attack Structures, Ships, or Siege Engines."
-msgstr "건축물, 선박, 공성 전차는 공격 할 수 없습니다."
+msgstr "건축물, 선박, 공성 무기는 공격할 수 없습니다."
 
 #: simulation/templates/template_unit_dog.xml:34
 msgid "Dog"
@@ -486,6 +490,10 @@ msgstr "코끼리 궁병"
 #: simulation/templates/template_unit_fauna_hunt.xml:4
 msgid "Kill to gather meat for food."
 msgstr "식량을 위해 고기를 모으려면 죽입니다."
+
+#: simulation/templates/template_unit_fauna_herd_domestic.xml:5
+msgid "Kill to gather meat for quick food."
+msgstr "신속히 식량을 얻기 위해 고기를 모으려면 도살하십시오."
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:8
 msgid "Kill to butcher for food."
@@ -502,11 +510,11 @@ msgid "Hero Cavalry"
 msgstr "영웅 기병"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:36
-#: simulation/templates/template_unit_hero_elephant_melee.xml:52
+#: simulation/templates/template_unit_hero_elephant_melee.xml:61
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
 #: simulation/templates/units/brit/hero_boudicca.xml:20
-#: simulation/templates/units/han/support_minister.xml:72
+#: simulation/templates/units/han/support_minister.xml:74
 #: simulation/templates/units/kush/hero_amanirenas.xml:21
 #: simulation/templates/units/maur/hero_ashoka.xml:20
 #: simulation/templates/units/pers/hero_darius_i.xml:20
@@ -526,7 +534,7 @@ msgstr "영웅 도끼 기병"
 
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:23
 msgid "Hero Cavalry Crossbowman"
-msgstr "영웅 노기병"
+msgstr "영웅 석궁 기병"
 
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:23
 msgid "Hero Cavalry Javelineer"
@@ -548,7 +556,7 @@ msgstr "기병에 대한 공격력 보너스×1.75"
 msgid "Hero Cavalry Swordsman"
 msgstr "영웅 검기병"
 
-#: simulation/templates/template_unit_hero_elephant_melee.xml:31
+#: simulation/templates/template_unit_hero_elephant_melee.xml:40
 msgid "Hero Elephant"
 msgstr "영웅 코끼리"
 
@@ -559,8 +567,8 @@ msgid "Support"
 msgstr "지원"
 
 #: simulation/templates/template_unit_hero_healer.xml:27
-#: simulation/templates/template_unit_support_healer.xml:26
 #: simulation/templates/template_unit_support_healer.xml:27
+#: simulation/templates/template_unit_support_healer.xml:28
 msgid "Healer"
 msgstr "치료사"
 
@@ -633,41 +641,11 @@ msgstr "투석병"
 msgid "Ship"
 msgstr "선박"
 
-#: simulation/templates/template_unit_ship_bireme.xml:50
-msgid "Light Warship"
-msgstr "경군선"
-
-#: simulation/templates/template_unit_ship_bireme.xml:51
-#: simulation/templates/template_unit_ship_trireme.xml:51
-msgid ""
-"Garrison units for transport and to increase firepower. Deals triple damage "
-"against Ships."
-msgstr "수송 및 화력 증강을 위한 주둔지 유닛입니다. 선박에 맞서 3배의 피해를 입힙니다."
-
-#: simulation/templates/template_unit_ship_bireme.xml:52
-#: simulation/templates/template_unit_ship_fire.xml:42
-#: simulation/templates/template_unit_ship_quinquereme.xml:56
-#: simulation/templates/template_unit_ship_trireme.xml:52
-msgid "Warship"
-msgstr "군선"
-
-#: simulation/templates/template_unit_ship_bireme.xml:52
-#: simulation/templates/units/cart/ship_bireme.xml:9
-#: simulation/templates/units/ptol/ship_bireme.xml:9
-#: simulation/templates/units/sele/ship_bireme.xml:9
-msgid "Bireme"
-msgstr "비르메"
-
 #: simulation/templates/template_unit_ship_fire.xml:5
 #: simulation/templates/template_unit_siege_flamethrower.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fire"
 msgstr "불"
-
-#: simulation/templates/template_unit_ship_fire.xml:22
-#: simulation/templates/template_unit_siege_flamethrower.xml:35
-msgid "Circular"
-msgstr "원형"
 
 #: simulation/templates/template_unit_ship_fire.xml:40
 msgid "Fire Ship"
@@ -680,6 +658,11 @@ msgstr "수리할 수 ​​없습니다. 점차적으로 내구력을 잃습니
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Fireship"
 msgstr "화공선"
+
+#: simulation/templates/template_unit_ship_fire.xml:42
+#: simulation/templates/template_unit_ship_warship.xml:38
+msgid "Warship"
+msgstr "군선"
 
 #: simulation/templates/template_unit_ship_fishing.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -707,7 +690,7 @@ msgstr "상선"
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
-msgstr "선착장끼리 교역을 합니다. 배에 상인을 태우면 이익이 증가합니다 (한 사람당 +20%). 물속에서 귀한 보물을 찾을 수 있습니다."
+msgstr "선착장끼리 교역을 합니다. 배에 상인을 태우면 이윤이 증가합니다 (한 사람당 +20%). 물속에서 귀한 보물을 찾을 수 있습니다."
 
 #: simulation/templates/template_unit_ship_merchant.xml:21
 #: simulation/templates/template_unit_support_trader.xml:15
@@ -720,34 +703,48 @@ msgstr "매수 가능"
 msgid "Trader"
 msgstr "상인"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:5
+#: simulation/templates/template_unit_ship_warship.xml:36
+#: simulation/templates/template_unit_ship_warship_light.xml:22
+msgid "Light Warship"
+msgstr "소형 군선"
+
+#: simulation/templates/template_unit_ship_warship.xml:37
+#: simulation/templates/template_unit_ship_warship_medium.xml:24
+msgid ""
+"Garrison units for transport and to increase firepower. Deals triple damage "
+"against Ships."
+msgstr "수송 및 화력 증강을 위한 유닛들을 주둔시킵니다. 선박을 상대로 3배의 피해를 입힙니다."
+
+#: simulation/templates/template_unit_ship_warship_heavy.xml:5
 #: simulation/templates/template_unit_siege_stonethrower.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "돌"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:54
+#: simulation/templates/template_unit_ship_warship_heavy.xml:53
 msgid "Heavy Warship"
-msgstr "중군선"
+msgstr "대형 군선"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:55
-#: simulation/templates/template_unit_siege_tower.xml:64
-msgid "Garrison units for transport and to increase firepower."
-msgstr "수송 및 화력 향상을 위한 주둔지 유닛."
+#: simulation/templates/template_unit_ship_warship_heavy.xml:54
+msgid ""
+"Garrison units for transport. Garrison Stone Throwers to increase firepower."
+msgstr "수송을 위한 유닛을 주둔시킵니다. 화력을 높이기 위해 투석기를 주둔시킵니다."
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:56
-#: simulation/templates/units/cart/ship_quinquereme.xml:5
-msgid "Quinquereme"
-msgstr "퀸퀘임"
+#: simulation/templates/template_unit_ship_warship_heavy.xml:55
+msgid "Heavy"
+msgstr "대형"
 
-#: simulation/templates/template_unit_ship_trireme.xml:50
+#: simulation/templates/template_unit_ship_warship_light.xml:23
+msgid "Light"
+msgstr "소형"
+
+#: simulation/templates/template_unit_ship_warship_medium.xml:23
 msgid "Medium Warship"
 msgstr "중형 군선"
 
-#: simulation/templates/template_unit_ship_trireme.xml:52
-#: simulation/templates/units/cart/ship_trireme.xml:9
-msgid "Trireme"
-msgstr "3단노선"
+#: simulation/templates/template_unit_ship_warship_medium.xml:25
+msgid "Medium"
+msgstr "중형"
 
 #: simulation/templates/template_unit_siege.xml:16
 #: simulation/templates/template_unit_siege.xml:17
@@ -808,6 +805,10 @@ msgstr "공성탑"
 msgid "Siege Tower"
 msgstr "공성탑"
 
+#: simulation/templates/template_unit_siege_tower.xml:64
+msgid "Garrison units for transport and to increase firepower."
+msgstr "수송 및 화력 증가를 위해 유닛들을 주둔시킵니다."
+
 #: simulation/templates/template_unit_support_elephant.xml:17
 msgid "Worker Elephant"
 msgstr "일꾼 코끼리"
@@ -833,7 +834,7 @@ msgstr "노예"
 
 #: simulation/templates/template_unit_support_slave.xml:20
 msgid "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr "한정된 수명을 가진 채집유닛. 광업 및 벌목에 보너스를 제공합니다."
+msgstr "수명이 한정된 채집꾼입니다. 채광과 벌목에 보너스를 받습니다."
 
 #: simulation/templates/template_unit_support_trader.xml:18
 msgid "Trade resources between your own markets and those of your allies."
@@ -958,7 +959,7 @@ msgstr "상급"
 
 #: simulation/templates/units/athen/cavalry_javelineer_b.xml:5
 msgid "Pródromos"
-msgstr "프로드로모스"
+msgstr "프로드롬"
 
 #: simulation/templates/units/athen/cavalry_javelineer_e.xml:4
 #: simulation/templates/units/athen/cavalry_swordsman_e.xml:4
@@ -1124,7 +1125,7 @@ msgstr "토소테스 스키티코스"
 
 #: simulation/templates/units/athen/hero_iphicrates.xml:8
 msgid "Iphicrates"
-msgstr "아이피프로테스"
+msgstr "이피크라테스"
 
 #: simulation/templates/units/athen/hero_iphicrates.xml:9
 msgid "Iphikratēs"
@@ -1160,7 +1161,7 @@ msgstr "트라키아 작은 방패병"
 
 #: simulation/templates/units/athen/infantry_javelineer_b.xml:6
 msgid "Peltastḗs Thrâx"
-msgstr "트락스 작은 방패병"
+msgstr "펠타스테스 트락스"
 
 #: simulation/templates/units/athen/infantry_marine_archer_b.xml:5
 #: simulation/templates/units/mace/infantry_archer_b.xml:7
@@ -1216,7 +1217,6 @@ msgid "Ploîon Phortēgikón"
 msgstr "프로이온 프호르테기콘"
 
 #: simulation/templates/units/athen/ship_trireme.xml:8
-#: simulation/templates/units/spart/ship_trireme.xml:9
 msgid "Triḗrēs Athēnaía"
 msgstr "트리에레스 아테나이아"
 
@@ -1301,11 +1301,11 @@ msgstr "에포레도스"
 
 #: simulation/templates/units/brit/cavalry_swordsman_b.xml:7
 msgid "Celtic Cavalry"
-msgstr "켈트 기병"
+msgstr "켈트족 기병"
 
 #: simulation/templates/units/brit/champion_chariot.xml:9
 msgid "Celtic Chariot"
-msgstr "켈트 전차"
+msgstr "켈트족 전차"
 
 #: simulation/templates/units/brit/champion_chariot.xml:10
 msgid "Essedon"
@@ -1370,7 +1370,7 @@ msgstr "아드레토스"
 
 #: simulation/templates/units/brit/infantry_slinger_b.xml:6
 msgid "Celtic Slinger"
-msgstr "켈트 투석병"
+msgstr "켈트족 투석병"
 
 #: simulation/templates/units/brit/infantry_slinger_b.xml:7
 #: simulation/templates/units/gaul/infantry_slinger_b.xml:11
@@ -1379,7 +1379,7 @@ msgstr "탈모리스"
 
 #: simulation/templates/units/brit/infantry_spearman_b.xml:6
 msgid "Celtic Spearman"
-msgstr "켈트 창병"
+msgstr "켈트족 창병"
 
 #: simulation/templates/units/brit/infantry_spearman_b.xml:7
 #: simulation/templates/units/gaul/infantry_spearman_b.xml:11
@@ -1409,7 +1409,7 @@ msgstr "몰톤"
 #: simulation/templates/units/brit/support_female_citizen.xml:5
 #: simulation/templates/units/gaul/support_female_citizen.xml:10
 msgid "Celtic Woman"
-msgstr "켈트 여자"
+msgstr "켈트족 여자"
 
 #: simulation/templates/units/brit/support_female_citizen.xml:6
 #: simulation/templates/units/gaul/support_female_citizen.xml:11
@@ -1511,7 +1511,7 @@ msgstr "한니발 바르카"
 
 #: simulation/templates/units/cart/hero_hannibal.xml:9
 msgid "Ḥannibaʿal Baraq"
-msgstr "Ḥannibaʿal Baraq"
+msgstr "한니바알 바라크"
 
 #: simulation/templates/units/cart/hero_maharbal.xml:8
 msgid "Maharbal"
@@ -1519,7 +1519,7 @@ msgstr "마하르발"
 
 #: simulation/templates/units/cart/hero_maharbal.xml:9
 msgid "Maharbaʿal"
-msgstr "Maharbaʿal"
+msgstr "마하르바알"
 
 #: simulation/templates/units/cart/infantry_archer_b.xml:14
 msgid "Mauritanian Archer"
@@ -1535,7 +1535,7 @@ msgstr "이베리아 척후 용병"
 
 #: simulation/templates/units/cart/infantry_javelineer_iber_b.xml:14
 msgid "Sǝḫīr Kidōn"
-msgstr "서히르 키도느"
+msgstr "수이르 키돈"
 
 #: simulation/templates/units/cart/infantry_slinger_iber_b.xml:13
 msgid "Balearic Slinger"
@@ -1543,7 +1543,7 @@ msgstr "발레아레스 투석병"
 
 #: simulation/templates/units/cart/infantry_slinger_iber_b.xml:14
 msgid "Qallāʿ Ibušimi"
-msgstr "Qallāʿ Ibušimi"
+msgstr "콸라 이부시미"
 
 #: simulation/templates/units/cart/infantry_spearman_b.xml:14
 msgid "Libyan Spearman"
@@ -1566,6 +1566,12 @@ msgstr "세히르 헤레브"
 msgid "Seḫīr Romaḥ"
 msgstr "세히르 로마흐"
 
+#: simulation/templates/units/cart/ship_bireme.xml:9
+#: simulation/templates/units/ptol/ship_bireme.xml:9
+#: simulation/templates/units/sele/ship_bireme.xml:9
+msgid "Bireme"
+msgstr "비르메"
+
 #: simulation/templates/units/cart/ship_bireme.xml:10
 msgid "Du-Mašōt"
 msgstr "두-마소트"
@@ -1583,11 +1589,20 @@ msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Carthaginians "
 "have +25% sea trading bonus."
-msgstr "선착장 사이를 교역을 합니다. 주둔지 상인은 추가 이익을 위해 승선합니다 (사람마다 +20%). 귀한 수중 보물을 수집합니다. 카르타고인은 +25%의 해양 교역 보너스가 붙습니다."
+msgstr "선착장 사이를 교역을 합니다. 주둔지 상인은 추가 이윤을 위해 승선합니다 (사람마다 +20%). 귀한 수중 보물을 수집합니다. 카르타고인은 +25%의 해양 교역 보너스가 붙습니다."
+
+#: simulation/templates/units/cart/ship_quinquereme.xml:5
+msgid "Quinquereme"
+msgstr "퀸퀘임(5단 노예선)"
 
 #: simulation/templates/units/cart/ship_quinquereme.xml:6
 msgid "Ḥameš-Mašōt"
 msgstr "하메스-마소트"
+
+#: simulation/templates/units/cart/ship_trireme.xml:9
+#: simulation/templates/units/spart/ship_trireme.xml:10
+msgid "Trireme"
+msgstr "3단노선"
 
 #: simulation/templates/units/cart/ship_trireme.xml:10
 msgid "Tlat-Mašōt"
@@ -1600,7 +1615,7 @@ msgstr "발리스타"
 
 #: simulation/templates/units/cart/support_female_citizen.xml:13
 msgid "Aštāh"
-msgstr "아스타흐"
+msgstr "아쉬타"
 
 #: simulation/templates/units/cart/support_female_citizen.xml:14
 msgid "Carthaginian Woman"
@@ -1674,19 +1689,19 @@ msgstr "전한 무제 (유철)"
 
 #: simulation/templates/units/han/cavalry_archer_b.xml:6
 msgid "Gōng Qíbīng"
-msgstr "Gōng Qíbīng"
+msgstr "궁기병"
 
 #: simulation/templates/units/han/cavalry_crossbowman_b.xml:6
 msgid "Han Cavalry Crossbowman"
-msgstr "한나라 노기병"
+msgstr "한나라 석궁 기병"
 
 #: simulation/templates/units/han/cavalry_spearman_b.xml:6
 msgid "Máo Qíbīng"
-msgstr "Máo Qíbīng"
+msgstr "창병"
 
 #: simulation/templates/units/han/cavalry_swordsman_b.xml:6
 msgid "Dāo Qíbīng"
-msgstr "Dāo Qíbīng"
+msgstr "도기병"
 
 #: simulation/templates/units/han/champion_cavalry_spearman_academy.xml:5
 msgid "Wu Wei Yin Cao Cao Guard"
@@ -1698,7 +1713,7 @@ msgstr "한족 전차"
 
 #: simulation/templates/units/han/champion_chariot_academy.xml:10
 msgid "Zhanche"
-msgstr "Zhanche"
+msgstr "전차"
 
 #: simulation/templates/units/han/champion_infantry_archer_academy.xml:5
 msgid "Palace Guard Archer"
@@ -1706,7 +1721,7 @@ msgstr "궁전 경호 궁병"
 
 #: simulation/templates/units/han/champion_infantry_archer_academy.xml:6
 msgid "Yǔ Lín"
-msgstr "우림"
+msgstr "금위군"
 
 #: simulation/templates/units/han/champion_infantry_crossbowman_academy.xml:5
 msgid "Juezhang"
@@ -1738,11 +1753,11 @@ msgstr "위청"
 
 #: simulation/templates/units/han/infantry_archer_b.xml:11
 msgid "Shè Shǒu"
-msgstr "Shè Shǒu"
+msgstr "사수"
 
 #: simulation/templates/units/han/infantry_crossbowman_b.xml:11
 msgid "Nǔ Shǒu"
-msgstr "Nǔ Shǒu"
+msgstr "노수"
 
 #: simulation/templates/units/han/infantry_pikeman_b.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -1755,31 +1770,27 @@ msgstr "미늘창병"
 
 #: simulation/templates/units/han/infantry_pikeman_b.xml:21
 msgid "Jǐ Bīng"
-msgstr "Jǐ Bīng"
+msgstr "극병"
 
 #: simulation/templates/units/han/infantry_spearman_b.xml:11
 msgid "Máo Bīng"
-msgstr "Máo Bīng"
+msgstr "모병"
 
 #: simulation/templates/units/han/infantry_swordsman_special_b.xml:11
 msgid "Dāo Bīng"
-msgstr "Dāo Bīng"
+msgstr "도병"
 
 #: simulation/templates/units/han/ship_bireme.xml:9
 msgid "Zhàn Chuán"
 msgstr "전선"
 
-#: simulation/templates/units/han/ship_fire.xml:9
-msgid "Huǒ Chuán"
-msgstr "Huǒ Chuán"
-
 #: simulation/templates/units/han/ship_fishing.xml:9
 msgid "Yú Chuán"
-msgstr "Yú Chuán"
+msgstr "어선"
 
 #: simulation/templates/units/han/ship_merchant.xml:9
 msgid "Shāng Chuán"
-msgstr "Shāng Chuán"
+msgstr "상선"
 
 #: simulation/templates/units/han/ship_quinquereme.xml:9
 msgid "Dà Lóu Chuán"
@@ -1795,7 +1806,7 @@ msgstr "견인투석기"
 
 #: simulation/templates/units/han/siege_mangonel_packed.xml:6
 msgid "Tóushí Chē"
-msgstr "Tóushí Chē"
+msgstr "투석기"
 
 #: simulation/templates/units/han/siege_ram.xml:4
 msgid "Gōngchéng Chuí"
@@ -1803,19 +1814,19 @@ msgstr "공성추"
 
 #: simulation/templates/units/han/siege_shoushe.xml:9
 msgid "Nǔ Chē"
-msgstr "Nǔ Chē"
+msgstr "노차"
 
 #: simulation/templates/units/han/siege_tower.xml:9
 msgid "Gōngchéng Tǎ"
-msgstr "Gōngchéng Tǎ"
+msgstr "공성탑"
 
 #: simulation/templates/units/han/support_female_citizen.xml:10
 msgid "Fù Nǚ"
-msgstr "Fù Nǚ"
+msgstr "부녀자"
 
 #: simulation/templates/units/han/support_healer_b.xml:6
 msgid "Yīshī"
-msgstr "Yīshī"
+msgstr "의사"
 
 #: simulation/templates/units/han/support_minister.xml:41
 msgid "Imperial Minister"
@@ -1823,14 +1834,14 @@ msgstr "제국 대신"
 
 #: simulation/templates/units/han/support_minister.xml:42
 msgid "Guānlì"
-msgstr "Guānlì"
+msgstr "관리"
 
 #: simulation/templates/units/han/support_minister.xml:43
 msgid ""
 "Use to boost the efficiency of nearby units and buildings. Garrison within a"
 " building to boost the efficiency of its production queue. Only Han "
 "buildings can garrison ministers."
-msgstr "주변 유닛 및 건물의 효율성을 높이는 데 사용합니다. 생산 대기열의 효율성을 높이기 위해 건물 내에 주둔합니다. 오직 한 건물에만 관리들을 주둔시킬 수 있습니다."
+msgstr "주변 유닛 및 건물의 효율성을 높이는 데 사용합니다. 생산 대기열의 효율성을 높이기 위해 건물 내에 주둔시킵니다. 오직 한 건물에만 관리들을 주둔시킬 수 있습니다."
 
 #: simulation/templates/units/han/support_minister.xml:45
 msgid "Minister"
@@ -1838,7 +1849,7 @@ msgstr "관리"
 
 #: simulation/templates/units/han/support_trader.xml:9
 msgid "Shāngrén"
-msgstr "Shāngrén"
+msgstr "상인"
 
 #: simulation/templates/units/iber/catafalque.xml:9
 msgid "Mandonius"
@@ -1935,7 +1946,7 @@ msgstr "샤나크다크헤토"
 
 #: simulation/templates/units/kush/cavalry_javelineer_b.xml:7
 msgid "iry hr ssmwtt"
-msgstr "나파탄 경기병"
+msgstr "이리 헤레 세세무테테"
 
 #: simulation/templates/units/kush/cavalry_javelineer_b.xml:8
 msgid "Napatan Light Cavalry"
@@ -1947,7 +1958,7 @@ msgstr "블렘몌 사막 침입자"
 
 #: simulation/templates/units/kush/cavalry_javelineer_merc_b.xml:18
 msgid "nhw Bulahau gml"
-msgstr "블리미 사막 침입자"
+msgstr "네후 부라하우 게메레"
 
 #: simulation/templates/units/kush/cavalry_javelineer_merc_b.xml:19
 #: simulation/templates/units/ptol/cavalry_archer_b.xml:15
@@ -1960,7 +1971,7 @@ msgstr "메로에족 중갑 기병"
 
 #: simulation/templates/units/kush/cavalry_spearman_b.xml:8
 msgid "Htr"
-msgstr "메로아틱 중기병"
+msgstr "헤테레"
 
 #: simulation/templates/units/kush/champion_cavalry.xml:6
 msgid "Noble Cavalry"
@@ -1968,7 +1979,7 @@ msgstr "귀족 기병"
 
 #: simulation/templates/units/kush/champion_cavalry.xml:7
 msgid "Htr Msʿ n mh-ib"
-msgstr "Htr Msʿ n mh-ib"
+msgstr "헤테레 메세 네 메헤-이베"
 
 #: simulation/templates/units/kush/champion_elephant.xml:6
 msgid "Meroitic War Elephant"
@@ -1976,7 +1987,7 @@ msgstr "메로에족 전투 코끼리"
 
 #: simulation/templates/units/kush/champion_elephant.xml:7
 msgid "Abore ʿhȝ"
-msgstr "Abore ʿhȝ"
+msgstr "아보레 하"
 
 #: simulation/templates/units/kush/champion_infantry_amun.xml:12
 msgid "Napatan Temple Guard"
@@ -1984,7 +1995,7 @@ msgstr "나파탄 사원 경호대"
 
 #: simulation/templates/units/kush/champion_infantry_amun.xml:13
 msgid "rs ʿImn"
-msgstr "rs ʿImn"
+msgstr "레세 이메네"
 
 #: simulation/templates/units/kush/champion_infantry_apedemak.xml:6
 msgid "Meroitic Temple Guard"
@@ -1992,7 +2003,7 @@ msgstr "메로에족 사원 경호대"
 
 #: simulation/templates/units/kush/champion_infantry_apedemak.xml:7
 msgid "rs ʿIprmk"
-msgstr "rs ʿIprmk"
+msgstr "레세 이페레메케"
 
 #: simulation/templates/units/kush/champion_infantry_archer.xml:6
 msgid "Noble Archer"
@@ -2000,7 +2011,7 @@ msgstr "귀족 궁병"
 
 #: simulation/templates/units/kush/champion_infantry_archer.xml:7
 msgid "Hry pdty"
-msgstr "귀족 궁병"
+msgstr "헤리 페데티"
 
 #: simulation/templates/units/kush/hero_amanirenas.xml:14
 #: simulation/templates/units/kush/hero_amanirenas_infantry.xml:9
@@ -2018,11 +2029,11 @@ msgstr "아라카마니"
 
 #: simulation/templates/units/kush/hero_arakamani.xml:12
 msgid "I͗rk-k-I͗mn H̱nm-ı͗-Rʿ"
-msgstr "I͗rk-k-I͗mn H̱nm-ı͗-Rʿ"
+msgstr "이레케-케-이메네 헤네메-이-레"
 
 #: simulation/templates/units/kush/hero_harsiotef.xml:6
 msgid "Ḥr-sȝ-it.f Sȝ-mrı͗-I͗mn"
-msgstr "Ḥr-sȝ-it.f Sȝ-mrı͗-I͗mn"
+msgstr "헤레-세에-이테.페 세에-메리-이메네"
 
 #: simulation/templates/units/kush/hero_nastasen.xml:10
 msgid "Nastasen"
@@ -2030,7 +2041,7 @@ msgstr "나스타센"
 
 #: simulation/templates/units/kush/hero_nastasen.xml:11
 msgid "N-ı͗-s-tȝ-s-nn Kȝ-ʿnḫ-Rʿ"
-msgstr "N-ı͗-s-tȝ-s-nn Kȝ-ʿnḫ-Rʿ"
+msgstr "네-이-세-테에-세-네네 케에-네헤-레"
 
 #: simulation/templates/units/kush/infantry_archer_b.xml:15
 msgid "Nubian Archer"
@@ -2038,7 +2049,7 @@ msgstr "누비아 궁병"
 
 #: simulation/templates/units/kush/infantry_archer_b.xml:16
 msgid "Pdty Nhsyw"
-msgstr "Pdty Nhsyw"
+msgstr "페데티 네헤시우"
 
 #: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:15
 msgid "Noba Skirmisher"
@@ -2046,7 +2057,7 @@ msgstr "노바 척후병"
 
 #: simulation/templates/units/kush/infantry_javelineer_merc_b.xml:16
 msgid "nhw ʿhȝw Noba"
-msgstr "nhw ʿhȝw Noba"
+msgstr "네후 하우 노바"
 
 #: simulation/templates/units/kush/infantry_maceman_merc_b.xml:15
 msgid "Noba Maceman"
@@ -2054,7 +2065,7 @@ msgstr "노바 철퇴병"
 
 #: simulation/templates/units/kush/infantry_maceman_merc_b.xml:16
 msgid "nhw Noba"
-msgstr "nhw Noba"
+msgstr "네후 노바"
 
 #: simulation/templates/units/kush/infantry_pikeman_b.xml:15
 msgid "Meroitic Pikeman"
@@ -2062,7 +2073,7 @@ msgstr "메로에족 단창병"
 
 #: simulation/templates/units/kush/infantry_pikeman_b.xml:16
 msgid "siȝwrd"
-msgstr "siȝwrd"
+msgstr "시아우레데"
 
 #: simulation/templates/units/kush/infantry_spearman_b.xml:15
 msgid "Nubian Spearman"
@@ -2070,7 +2081,7 @@ msgstr "누비아 창병"
 
 #: simulation/templates/units/kush/infantry_spearman_b.xml:16
 msgid "iry-rdwy Nhsyw"
-msgstr "iry-rdwy Nhsyw"
+msgstr "이리-레데두이 네헤시우"
 
 #: simulation/templates/units/kush/infantry_swordsman_b.xml:15
 msgid "Meroitic Swordsman"
@@ -2078,11 +2089,11 @@ msgstr "메로에족 검병"
 
 #: simulation/templates/units/kush/infantry_swordsman_b.xml:16
 msgid "knw hps"
-msgstr "knw hps"
+msgstr "케누 헤페세"
 
 #: simulation/templates/units/kush/ship_fishing.xml:10
 msgid "Whʿ-rmw"
-msgstr "Whʿ-rmw"
+msgstr "우헤-레무"
 
 #: simulation/templates/units/kush/ship_merchant.xml:9
 msgid "Nile Trading Barge"
@@ -2090,7 +2101,7 @@ msgstr "나일 교역 바지선"
 
 #: simulation/templates/units/kush/ship_merchant.xml:10
 msgid "Dȝy sbt"
-msgstr "Dȝy sbt"
+msgstr "다이 세베테"
 
 #: simulation/templates/units/kush/ship_trireme.xml:10
 msgid "Ptolemaic Mercenary Trireme"
@@ -2098,7 +2109,7 @@ msgstr "프톨레마이오스 용병 3단노선"
 
 #: simulation/templates/units/kush/ship_trireme.xml:11
 msgid "shry ʿȝ"
-msgstr "shry ʿȝ"
+msgstr "쉬리 아"
 
 #: simulation/templates/units/kush/siege_tower.xml:5
 msgid "Kushite Siege Tower"
@@ -2106,11 +2117,11 @@ msgstr "쿠시인 공성탑"
 
 #: simulation/templates/units/kush/siege_tower.xml:6
 msgid "iwn n ms"
-msgstr "iwn n ms"
+msgstr "이운 네 메세"
 
 #: simulation/templates/units/kush/support_female_citizen.xml:14
 msgid "Shmt"
-msgstr "Shmt"
+msgstr "세헤메테"
 
 #: simulation/templates/units/kush/support_female_citizen.xml:15
 msgid "Kushite Woman"
@@ -2122,7 +2133,7 @@ msgstr "성직자"
 
 #: simulation/templates/units/kush/support_healer_b.xml:7
 msgid "wʿb nsw"
-msgstr "wʿb nsw"
+msgstr "우베 네수"
 
 #: simulation/templates/units/kush/support_trader.xml:10
 msgid "Nilotic Merchant"
@@ -2130,7 +2141,7 @@ msgstr "나일족 상인"
 
 #: simulation/templates/units/kush/support_trader.xml:11
 msgid "rmt sbt"
-msgstr "rmt sbt"
+msgstr "레메테 세베테"
 
 #: simulation/templates/units/mace/catafalque.xml:9
 msgid "Philip V"
@@ -2181,15 +2192,15 @@ msgstr "히파스피스테스 아르기라스피디"
 msgid "Rhomphaiaphoros"
 msgstr "르홈프하이아프호로스"
 
-#: simulation/templates/units/mace/hero_alexander_iii.xml:21
+#: simulation/templates/units/mace/hero_alexander_iii.xml:22
 msgid "Alexander III the Great"
 msgstr "알렉산더 3세 대왕"
 
-#: simulation/templates/units/mace/hero_alexander_iii.xml:22
+#: simulation/templates/units/mace/hero_alexander_iii.xml:23
 msgid "Alexandros ho Megas"
 msgstr "알렉산드로스 호 메가스"
 
-#: simulation/templates/units/mace/hero_alexander_iii.xml:23
+#: simulation/templates/units/mace/hero_alexander_iii.xml:24
 msgid "Counters: 1.2× vs Heroes."
 msgstr "영웅에 대한 공격력 보너스×1.2"
 
@@ -2217,7 +2228,7 @@ msgstr "마케도니아 필리포스 2세"
 #: simulation/templates/units/mace/hero_philip_ii.xml:10
 #: simulation/templates/units/mace/hero_philip_ii_pike.xml:10
 msgid "Philippos B' ho Makedōn"
-msgstr "프히리포스 2세 호 마케돈"
+msgstr "프히리포스 비 호 마케돈"
 
 #: simulation/templates/units/mace/hero_pyrrhus_i.xml:9
 msgid "Pyrrhus I of Epirus"
@@ -2233,7 +2244,7 @@ msgstr "아그리아니스 작은 방패병"
 
 #: simulation/templates/units/mace/infantry_javelineer_b.xml:8
 msgid "Peltastḗs Agrías"
-msgstr "아그리아스 작은 방패병"
+msgstr "펠타스테스 아그리아스"
 
 #: simulation/templates/units/mace/infantry_pikeman_b.xml:7
 msgid "Foot Companion"
@@ -2289,7 +2300,7 @@ msgstr "인도 경기병"
 
 #: simulation/templates/units/maur/cavalry_javelineer_b.xml:7
 msgid "Ashwarohi"
-msgstr "아쉬와로히"
+msgstr "아슈와로히"
 
 #: simulation/templates/units/maur/cavalry_swordsman_b.xml:6
 msgid "Indian Raiding Cavalry"
@@ -2297,7 +2308,7 @@ msgstr "인도 기습 기병"
 
 #: simulation/templates/units/maur/cavalry_swordsman_b.xml:7
 msgid "Aśvārohagaṇaḥ"
-msgstr "아스바로하가나흐"
+msgstr "아스바로하가나하"
 
 #: simulation/templates/units/maur/champion_chariot.xml:9
 msgid "War Chariot"
@@ -2513,7 +2524,7 @@ msgstr "아사바라 바르카니야"
 
 #: simulation/templates/units/pers/cavalry_javelineer_b.xml:7
 msgid "Median Light Cavalry"
-msgstr "중간 경기병"
+msgstr "중앙 경기병"
 
 #: simulation/templates/units/pers/cavalry_javelineer_b.xml:8
 msgid "Asabāra Māda"
@@ -2542,7 +2553,7 @@ msgstr "박트리아 중갑 궁기병"
 
 #: simulation/templates/units/pers/champion_chariot.xml:10
 msgid "Babylonian Scythed Chariot"
-msgstr "바빌로니아 큰낫 전차"
+msgstr "바빌로니아 낫전차"
 
 #: simulation/templates/units/pers/champion_chariot.xml:11
 msgid "Raθa Bābiruviya"
@@ -2687,7 +2698,7 @@ msgstr "메소포타미아 여성"
 
 #: simulation/templates/units/pers/support_healer_b.xml:6
 msgid "Median Magus"
-msgstr "메디아 마법사"
+msgstr "중앙 마법사"
 
 #: simulation/templates/units/pers/support_healer_b.xml:7
 msgid "Maguš Māda"
@@ -2707,6 +2718,10 @@ msgid ""
 "have a +25% land trading bonus."
 msgstr "자국과 동맹국의 시장간에 자원을 교역합니다. 페르시아인은 +25% 육로 교역 보너스가 있습니다."
 
+#: simulation/templates/units/pirates/ship_bireme.xml:9
+msgid "Cilician Pirate Ship"
+msgstr "킬리키아 해적선"
+
 #: simulation/templates/units/plane.xml:5
 msgctxt "Name of an attack of a World War II fighter plane."
 msgid "Machine Guns"
@@ -2718,7 +2733,7 @@ msgstr "P-51 무스탕"
 
 #: simulation/templates/units/plane.xml:48
 msgid "A World War II American fighter plane."
-msgstr "제2차 세계 대전 미국 전투기."
+msgstr "제2차 세계 대전 미국 전투기입니다."
 
 #: simulation/templates/units/ptol/catafalque.xml:8
 msgid "Ptolemy III Euergetes (Benefactor)"
@@ -2786,7 +2801,7 @@ msgstr "클레오파트라 7세"
 
 #: simulation/templates/units/ptol/hero_cleopatra_vii.xml:12
 msgid "Kleopatra H' Philopatōr"
-msgstr "클레오파트라 7세 필로파토르"
+msgstr "클레오파트라 8세 필로파토르"
 
 #: simulation/templates/units/ptol/hero_ptolemy_i.xml:9
 msgid "Ptolemy I"
@@ -2933,10 +2948,12 @@ msgid "Legiōnārius"
 msgstr "레기오나리우스"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_04.xml:14
+#: simulation/templates/units/rome/infantry_swordsman_e_centurion.xml:12
 msgid "Roman Centurion"
 msgstr "로마 100인 대장"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_04.xml:15
+#: simulation/templates/units/rome/infantry_swordsman_e_centurion.xml:13
 msgid "Centuriō"
 msgstr "센투리오"
 
@@ -2979,6 +2996,15 @@ msgstr "베테랑 창병"
 msgid "Triārius"
 msgstr "트리아리우스"
 
+#: simulation/templates/units/rome/infantry_spearman_b.xml:25
+msgid "Elite rank Spearmen can be promoted to champion Centurions."
+msgstr "엘리트 계급 창병은 정예 100인 대장으로 진급할 수 있습니다."
+
+#: simulation/templates/units/rome/infantry_spearman_e.xml:10
+#: simulation/templates/units/rome/infantry_swordsman_e.xml:10
+msgid "Give this combat veteran the rank of Centurion."
+msgstr "이 전투 베테랑에게 100인 대장의 계급을 부여하세요."
+
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:19
 msgid "Roman Swordsman"
 msgstr "로마 검병"
@@ -2986,6 +3012,10 @@ msgstr "로마 검병"
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:20
 msgid "Hastātus"
 msgstr "하스타투스"
+
+#: simulation/templates/units/rome/infantry_swordsman_b.xml:22
+msgid "Elite rank Swordsmen can be promoted to champion Centurions."
+msgstr "엘리트 계급 검병은 정예 100인 대장으로 진급할 수 있습니다."
 
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:20
 msgid "Servus"
@@ -3097,7 +3127,7 @@ msgstr "히포스 헤타이어리케"
 
 #: simulation/templates/units/sele/champion_cavalry.xml:6
 msgid "Seleucid Cataphract"
-msgstr "셀레우코스 비늘 갑옷 병사"
+msgstr "셀레우코스 철갑기병"
 
 #: simulation/templates/units/sele/champion_cavalry.xml:7
 msgid "Seleukidón Kataphraktos"
@@ -3149,7 +3179,7 @@ msgstr "안티오코스 4세"
 
 #: simulation/templates/units/sele/hero_antiochus_iv.xml:10
 msgid "Antiokhos D' Epiphanēs"
-msgstr "안티오코스 4세 에피파네스"
+msgstr "안티오코스 디 에피파네스"
 
 #: simulation/templates/units/sele/hero_seleucus_i.xml:9
 msgid "Seleucus I"
@@ -3157,7 +3187,7 @@ msgstr "셀레우코스 1세"
 
 #: simulation/templates/units/sele/hero_seleucus_i.xml:10
 msgid "Seleukos A' Nikatōr"
-msgstr "셀레우코스 1세 니카토르"
+msgstr "셀레우코스 에이 니카토르"
 
 #: simulation/templates/units/sele/infantry_archer_merc_b.xml:7
 msgid "Syrian Archer"
@@ -3300,9 +3330,9 @@ msgstr "페리오이코이 장갑보병"
 msgid "Hoplítēs Períoikos"
 msgstr "호프리테스 페리오이코스"
 
-#: simulation/templates/units/spart/ship_trireme.xml:10
-msgid "Spartan Trireme"
-msgstr "스파르타 3단노선"
+#: simulation/templates/units/spart/ship_trireme.xml:9
+msgid "Triḗrēs"
+msgstr "3단노선"
 
 #: simulation/templates/units/spart/support_female_citizen.xml:25
 msgid "Spartan Woman"
