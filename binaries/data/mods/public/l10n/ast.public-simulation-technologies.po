@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-10-22 14:55+0000\n"
+"POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>, 2017-2023\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
@@ -63,14 +63,10 @@ msgstr "Agogá"
 #: simulation/data/technologies/siege_pack_unpack.jsonrequirementsTooltip
 #: simulation/data/technologies/silk_road.jsonrequirementsTooltip
 #: simulation/data/technologies/silvershields.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_03.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_ranged_03.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_resistance_hack_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_03.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsonrequirementsTooltip
 #: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
 #: simulation/data/technologies/subterranean_aqueducts.jsonrequirementsTooltip
@@ -119,9 +115,13 @@ msgstr "Exercicios de puntería"
 #: simulation/data/technologies/iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_hack_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
@@ -435,8 +435,24 @@ msgid "Sun-dried Mud Bricks"
 msgstr "Adobe"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
-msgid "Houses and Economic Structures −40% wood cost and health."
-msgstr "Casɐs & Structurɐs económicɐs: puntos de vida & costu n madeira −40%."
+msgid ""
+"Houses and Economic Structures −40% wood cost, health, and capture points as"
+" well as +50% build time."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/sele_farms.jsondescription
+msgid ""
+"The Seleucid empire was located in a highly fertile region with productive "
+"soils. Farms are cheaper and faster to build,"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/sele_farms.jsongenericName
+msgid "Fertile Crescent"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/sele_farms.jsontooltip
+msgid "Farms −25% wood cost and −75% build time."
+msgstr ""
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
 msgid "Improved Construction"
@@ -503,8 +519,8 @@ msgid "Crossbow Training"
 msgstr "Exercicios arcuballistarios"
 
 #: simulation/data/technologies/crossbow_training.jsontooltip
-msgid "Crossbow Infantry and Cavalry −20% train time."
-msgstr "Peones & cabalheiros arcuballistarios: tiempu de creacion −20%."
+msgid "Crossbow Infantry −20% train time."
+msgstr ""
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -519,7 +535,7 @@ msgstr "Los acheménidas tomarun medidɐs para fazher de l imperio pérsico l pr
 
 #: simulation/data/technologies/equine_transports.jsongenericName
 msgid "Equine Transports"
-msgstr "Transportes eqüinos"
+msgstr "Tresportes eqüinos"
 
 #: simulation/data/technologies/equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train Cavalry."
@@ -707,7 +723,7 @@ msgstr "Gruössɐs"
 msgid ""
 "Compel serfs to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr "Faz que los siervos adiuden a extraher piedra de lɐs canteirɐs. Augmenta la taxa de recaldu de piedra."
+msgstr "Faz que los siervos adiuden a sacar piedra de lɐs canteirɐs. Augmenta la taxa de recaldu de piedra."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -725,7 +741,7 @@ msgstr "Obreiros: taxa de recaldu de piedra +25%."
 
 #: simulation/data/technologies/gather_mining_servants.jsondescription
 msgid "Hire servants to help quarry stone. Increases stone gathering rates."
-msgstr "Contractar servientes par’ extraher piedra de lɐs canteirɐs. Augmenta la taxa de recaldu de piedra."
+msgstr "Contractar servientes para sacar piedra de lɐs canteirɐs. Augmenta la taxa de recaldu de piedra."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -773,7 +789,7 @@ msgstr "Minɐs de Crénides"
 msgid ""
 "Buy slaves to help your workers quarry stone. Increases stone gathering "
 "rates."
-msgstr "Merca siervos par’ extraher piedra de lɐs canteirɐs. Augmenta la taxa de recaldu de piedra."
+msgstr "Merca siervos para sacar piedra de lɐs canteirɐs. Augmenta la taxa de recaldu de piedra."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -1070,9 +1086,9 @@ msgstr "Megalópolis"
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +1 capture points "
+"Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units. Workers +10% metal gather rate."
-msgstr "Abançar a la “Phase urbana”, q’introduz más entes & téchnicɐs. Foros: radiu d’influencia nɐs lhendes territoriales +50%. Structurɐs: taxa de regeneracion de puntos de posse per occupante +1. Obreiros: taxa de recaldu de metal +10%."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1087,9 +1103,9 @@ msgstr "Jùn"
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +1 capture points "
+"Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units."
-msgstr "Abançar a la “Phase urbana”, q’introduz más entes & téchnicɐs. Foros: radiu d’influencia nɐs lhendes territoriales +50%. Structurɐs: taxa de regeneracion de puntos de posse per occupante +1."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
@@ -1101,9 +1117,9 @@ msgstr "Passa d’un vibrante óppido a una urbe de verdá, lhena de lɐs marabi
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +1 capture points "
+"Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units. Stable −10% batch training time."
-msgstr "Abançar a la “Phase urbana”, q’introduz más entes & téchnicɐs. Foros: radiu d’influencia nɐs lhendes territoriales +50%. Structurɐs: taxa de regeneracion de puntos de posse per occupante +1. Corte: tiempu de concreacion −10%."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1142,9 +1158,9 @@ msgstr "Kōmopolis"
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +0.5 capture points "
+"Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units. Workers +10% metal gather rate."
-msgstr "Abançar a la “Phase oppidana”, q’introduz más entes & téchnicɐs. Foros: radiu d’influencia nɐs lhendes territoriales +30%. Structurɐs: taxa de regeneracion de puntos de posse per occupante +0.5. Obreiros: taxa de recaldu de metal +10%."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1158,9 +1174,9 @@ msgstr "Xìan"
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +0.5 capture points "
+"Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units."
-msgstr "Abançar a la “Phase oppidana”, q’introduz más entes & téchnicɐs. Foros: radiu d’influencia nɐs lhendes territoriales +30%. Structurɐs: taxa de regeneracion de puntos de posse per occupante +0.5."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_pers.jsondescription
 msgid ""
@@ -1172,9 +1188,9 @@ msgstr "Passa d’un pequenhu vicu a un óppido vibrante & creciente. Na phase o
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +0.5 capture points "
+"Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units. Stable −10% batch training time."
-msgstr "Abançar a la “Phase oppidana”, q’introduz más entes & téchnicɐs. Foros: radiu d’influencia nɐs lhendes territoriales +30%. Structurɐs: taxa de regeneracion de puntos de posse per occupante +0.5. Corte: tiempu de concreacion −10%."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1753,18 +1769,6 @@ msgid ""
 "damage; Ranged units −20% spread."
 msgstr "Unidades superiores, supremɐs: tiempu de creacion +20% puntos de vida +25% podencia de posseu +0.7 cacida +20% velocidá de recaldu −30%; Curadeiros: podencia de cura +5 algame de cura +3; Combatedores: resistencia +1 daño offensivo +20%; Tiradores: imprecision −20%."
 
-#: simulation/data/technologies/unit_elephant_african.jsontooltip
-msgid ""
-"African Elephants −10% resource costs, training time, health, attack damage,"
-" and loot."
-msgstr "Elephantes africanos: costu, tiempu de creacion, puntos de vida, daño offensivo & cacida −10%."
-
-#: simulation/data/technologies/unit_elephant_indian.jsontooltip
-msgid ""
-"Indian Elephants +10% resource costs, training time, health, attack damage, "
-"and loot."
-msgstr "Elephantes índicos: costu, tiempu de creacion, puntos de vida, daño offensivo & cacida +10%."
-
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
 "Elite units +20% training time, +25% health, +0.8 capture attack strength, "
@@ -1907,7 +1911,7 @@ msgstr "El millagro attrahe muĩꞇha más giente a l país."
 
 #: simulation/data/technologies/wonder_population_cap.jsongenericName
 msgid "Glorious Expansion"
-msgstr "Inançhamiento glorioso"
+msgstr "Inançhadura gloriosa"
 
 #: simulation/data/technologies/wonder_population_cap.jsonspecificName.athen
 #: simulation/data/technologies/wonder_population_cap.jsonspecificName.mace
@@ -1921,4 +1925,4 @@ msgstr "Perístasis"
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
-msgstr "Habilita la influencia “inançhamiento glorioso”: lhende de poblacion +20% per millagro."
+msgstr "Habilita la influencia “inançhadura gloriosa”: lhende de poblacion +20% per millagro."

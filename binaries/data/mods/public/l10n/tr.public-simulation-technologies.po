@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -29,7 +29,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-10-22 14:55+0000\n"
+"POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Yahya Şanverdi, 2022\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
@@ -84,14 +84,10 @@ msgstr "Zorlu Askeri Eğitim"
 #: simulation/data/technologies/siege_pack_unpack.jsonrequirementsTooltip
 #: simulation/data/technologies/silk_road.jsonrequirementsTooltip
 #: simulation/data/technologies/silvershields.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_03.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_ranged_03.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_resistance_hack_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_03.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsonrequirementsTooltip
 #: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
 #: simulation/data/technologies/subterranean_aqueducts.jsonrequirementsTooltip
@@ -140,9 +136,13 @@ msgstr "Okçu Eğitimi"
 #: simulation/data/technologies/iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_hack_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
@@ -456,8 +456,24 @@ msgid "Sun-dried Mud Bricks"
 msgstr "Güneşte kurutulmuş kerpiç tuğlalar"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
-msgid "Houses and Economic Structures −40% wood cost and health."
-msgstr "Evlere ve ekonomik yapılara -%40 odun maliyeti ve sağlık."
+msgid ""
+"Houses and Economic Structures −40% wood cost, health, and capture points as"
+" well as +50% build time."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/sele_farms.jsondescription
+msgid ""
+"The Seleucid empire was located in a highly fertile region with productive "
+"soils. Farms are cheaper and faster to build,"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/sele_farms.jsongenericName
+msgid "Fertile Crescent"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/sele_farms.jsontooltip
+msgid "Farms −25% wood cost and −75% build time."
+msgstr ""
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
 msgid "Improved Construction"
@@ -524,7 +540,7 @@ msgid "Crossbow Training"
 msgstr "Arbalet eğitimi"
 
 #: simulation/data/technologies/crossbow_training.jsontooltip
-msgid "Crossbow Infantry and Cavalry −20% train time."
+msgid "Crossbow Infantry −20% train time."
 msgstr ""
 
 #: simulation/data/technologies/equine_transports.jsondescription
@@ -1091,7 +1107,7 @@ msgstr "Megalopolis"
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +1 capture points "
+"Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units. Workers +10% metal gather rate."
 msgstr ""
 
@@ -1108,7 +1124,7 @@ msgstr "Jùn"
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +1 capture points "
+"Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units."
 msgstr ""
 
@@ -1122,7 +1138,7 @@ msgstr "Hareketli bir kasabadan modern teknolojinin harikalarıyla dolu gerçek 
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +1 capture points "
+"Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units. Stable −10% batch training time."
 msgstr ""
 
@@ -1163,7 +1179,7 @@ msgstr "Kōmopolis"
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +0.5 capture points "
+"Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units. Workers +10% metal gather rate."
 msgstr ""
 
@@ -1179,7 +1195,7 @@ msgstr "Xìan"
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +0.5 capture points "
+"Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units."
 msgstr ""
 
@@ -1193,7 +1209,7 @@ msgstr "Küçük bir köyden, hızla genişlemeye hazır, hareketli bir kasabaya
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +0.5 capture points "
+"Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units. Stable −10% batch training time."
 msgstr ""
 
@@ -1773,18 +1789,6 @@ msgid ""
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
 msgstr "Gelişmiş ve Elit birimler +20% eğitim süresi, +25% sağlık, +0,7 ele geçirme saldırısı gücü, +20% ganimet ve −30% toplama hızı; Şifacılar +5 iyileştirme gücü ve +3 iyileştirme aralığı; Yakın dövüş birimleri +1 direnç ve +20% saldırı gücü; Menzilli birimler −20% sapma."
-
-#: simulation/data/technologies/unit_elephant_african.jsontooltip
-msgid ""
-"African Elephants −10% resource costs, training time, health, attack damage,"
-" and loot."
-msgstr "Afrika Filleri -%10 kaynak maliyeti, eğitim süresi, sağlık, saldırı hasarı ve yağma."
-
-#: simulation/data/technologies/unit_elephant_indian.jsontooltip
-msgid ""
-"Indian Elephants +10% resource costs, training time, health, attack damage, "
-"and loot."
-msgstr "Hint Filleri 4%10 kaynak maliyeti, eğitim süresi, sağlık, saldırı hasarı ve yağma."
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""

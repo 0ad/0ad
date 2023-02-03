@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -12,7 +12,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-10-22 14:55+0000\n"
+"POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Любомир Василев, 2016-2019\n"
 "Language-Team: Bulgarian (http://www.transifex.com/wildfire-games/0ad/language/bg/)\n"
@@ -1330,6 +1330,7 @@ msgstr "Аркадия"
 #: maps/scenarios/walltest.xml:PlayerData[0].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[1].Name:39
 msgid "Player 1"
 msgstr "Играч 1"
 
@@ -1355,6 +1356,7 @@ msgstr "Играч 1"
 #: maps/scenarios/walltest.xml:PlayerData[1].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[2].Name:39
 msgid "Player 2"
 msgstr "Играч 2"
 
@@ -2556,14 +2558,14 @@ msgstr "На юг от Сахара и на изток от Нил има поч
 msgid "Island of Meroë (2)"
 msgstr ""
 
-#: maps/skirmishes/caspian_sea_2pv2p.xml:Description:38
+#: maps/skirmishes/caspian_sea_2pv2p.xml:Description:39
 msgid ""
 "Two teams face off across a long, very large saltwater lake.\n"
 "\n"
 "Fishing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits."
 msgstr "Два отбора се изправят един срещу друг, разделени от голямо солено езеро.\n\nЦентралното езеро е подходящо за риболов. На картата има големи залежи на камъни и метал."
 
-#: maps/skirmishes/caspian_sea_2pv2p.xml:Name:38
+#: maps/skirmishes/caspian_sea_2pv2p.xml:Name:39
 msgid "Caspian Sea (2v2)"
 msgstr "Каспийско море (2 срещу 2)"
 
@@ -2721,7 +2723,7 @@ msgstr "Горска карта, на която играчите се боря�
 msgid "Forest Battle (4)"
 msgstr "Горска битка (4)"
 
-#: maps/skirmishes/gallic_fields_3p.xml:Description:38
+#: maps/skirmishes/gallic_fields_3p.xml:Description:39
 msgid ""
 "Defend your Gallic outpost against attacks from your treacherous neighbors!\n"
 "\n"
@@ -2730,7 +2732,7 @@ msgid ""
 "Watch out for Romans passing by!"
 msgstr "Защитете своя галски аванпост от нападенията на коварните си съседи!\n\nВсеки от играчите започва с дървена ограда и няколко защитни кули върху нисък насип.\n\nВнимавайте за преминаващи римляни!"
 
-#: maps/skirmishes/gallic_fields_3p.xml:Name:38
+#: maps/skirmishes/gallic_fields_3p.xml:Name:39
 msgid "Gallic Fields (3)"
 msgstr "Галски полета (3)"
 
@@ -2742,14 +2744,14 @@ msgstr ""
 msgid "Gallic Highlands (2)"
 msgstr ""
 
-#: maps/skirmishes/gambia_river_3p.xml:Description:38
+#: maps/skirmishes/gambia_river_3p.xml:Description:39
 msgid ""
 "All players start on one bank of the river, with minimal harvestable metal. Across the Gambia River is a savanna with many deposits of metal to be claimed. \n"
 "\n"
 "(Warning: Large map. Good computer specs recommended)"
 msgstr "Всички играчи започват на единия бряг на река Гамбия, с много малко метал за добив. Отвъд реката има савана с много метал.\n\n(Внимание: това е огромна карта. Препоръчва се добър компютър.)"
 
-#: maps/skirmishes/gambia_river_3p.xml:Name:38
+#: maps/skirmishes/gambia_river_3p.xml:Name:39
 msgid "Gambia River (3)"
 msgstr "Река Гамбия (3)"
 
@@ -2935,6 +2937,17 @@ msgstr "Египетска пустинна карта, пресечена от 
 #: maps/skirmishes/nile_river_4p.xml:Name:38
 msgid "Nile River (4)"
 msgstr "Река Нил (4)"
+
+#: maps/skirmishes/north_african_savanna_2p.xml:Description:39
+msgid ""
+"The Savanna is open and foreboding, chock full of animal, both huntable and hunter. \n"
+"\n"
+"Here we have an example of the two seasons prevelant on the savanna: The wet season and the dry season."
+msgstr ""
+
+#: maps/skirmishes/north_african_savanna_2p.xml:Name:39
+msgid "North African Savanna (2 players)"
+msgstr ""
 
 #: maps/skirmishes/northern_island_2p.xml:Description:39
 msgid ""
@@ -3237,15 +3250,15 @@ msgstr ""
 msgid "Chang Jiang (2)"
 msgstr ""
 
-#: maps/skirmishes/zagros_mountains_2p.xml:Description:38
+#: maps/skirmishes/zagros_mountains_2p.xml:Description:39
 msgid ""
-"The mountains buffering the Persian homeland, straddling Persis, Susiana, and Media.\n"
+"The mountains buffering the Persian homeland, straddling Persis, Susiana, and Media. This map simulates the many valleys and choke points that criss cross the mountain range. \n"
 "\n"
-"Players start the match near the Persian Gulf in their own province with 1 free Temple. \n"
+"Players start the match nestled in their own province with 1 free Persian temple. Access to untapped resources and territories can be found through the rugged hinterlands, but is also chock full of dangerous animals, such as Asian bears and Caspian tigers.\n"
 "\n"
-"Access to untapped resources and territories can be found through the rugged hinterlands."
-msgstr "Планините, разнообразяващи пейзажа на Персия, и обхващащи Перс, Суза и Мидия.\n\nИграчите започват срещата в близост до Персийския залив, в своя собствена провинция с 1 предварително построен храм.\n\nВ неравните околности могат да бъдат открити неизползвани ресурси и свободни територии."
+"The central valley is wide open for expansion, with an unclaimed Civic Center, farms, and Trading Posts. Cliffs along the valley's edge may offer vantage points for defensive or offensive fortifications."
+msgstr ""
 
-#: maps/skirmishes/zagros_mountains_2p.xml:Name:38
-msgid "Zagros Mountains (2)"
-msgstr "Планините Загрос (2)"
+#: maps/skirmishes/zagros_mountains_2p.xml:Name:39
+msgid "Zagros Mountains (2 players)"
+msgstr ""

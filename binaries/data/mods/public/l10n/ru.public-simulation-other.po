@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -28,7 +28,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-10-22 14:55+0000\n"
+"POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Dire Avenger, 2022-2023\n"
 "Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
@@ -543,7 +543,7 @@ msgstr "Вы сможете атаковать через %(time)s"
 msgid "You can attack now!"
 msgstr "Вы можете атаковать прямо сейчас!"
 
-#: simulation/components/EndGameManager.js:174
+#: simulation/components/EndGameManager.js:169
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
@@ -552,7 +552,7 @@ msgstr[1] "%(lastPlayer)s победили (последние игроки ос
 msgstr[2] "%(players)s и %(lastPlayer)s победили (последние игроки остались в живых)."
 msgstr[3] "%(players)s и %(lastPlayer)s победили (последние игроки остались в живых)."
 
-#: simulation/components/EndGameManager.js:182
+#: simulation/components/EndGameManager.js:177
 msgid "Last remaining player wins."
 msgstr "Последний оставшийся игрок одерживает победу."
 
@@ -571,26 +571,26 @@ msgstr "%(category)s достиг предела обучения в колич�
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s предел в количестве %(limit)s достигнут"
 
-#: simulation/components/Player.js:323
+#: simulation/components/Player.js:328
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Не хватает ресурса — %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:325
+#: simulation/components/Player.js:330
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Не хватает ресурсов — %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:327
+#: simulation/components/Player.js:332
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Не хватает ресурсов — %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:329
+#: simulation/components/Player.js:334
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -610,11 +610,11 @@ msgstr "Очередь заполнена."
 msgid "Could not auto-queue unit, de-activating."
 msgstr "Не удалось поставить задание в авто-очередь, отключаем опцию."
 
-#: simulation/components/Trainer.js:317
+#: simulation/components/Trainer.js:313
 msgid "Can't find free space to spawn trained units."
 msgstr "Невозможно найти свободное место для обученных юнитов."
 
-#: simulation/components/Upgrade.js:247
+#: simulation/components/Upgrade.js:242
 msgid "Entity is producing. Cannot start upgrading."
 msgstr "Объект ведёт производство. Нельзя начать улучшение."
 
@@ -850,8 +850,8 @@ msgid "Conquest"
 msgstr "Завоевание"
 
 #: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Description
-msgid "Defeat opponents by destroying all their fully build civic centers."
-msgstr "Победите противников, уничтожив все их городские центры."
+msgid "Defeat opponents by destroying all their fully built civic centers."
+msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Title
 msgid "Conquest Civic Centers"
@@ -910,43 +910,43 @@ msgstr "(Чит — управлять всеми юнитами)"
 msgid "(Cheat - reveal map)"
 msgstr "(Чит — открыть всю карту)"
 
-#: simulation/helpers/Commands.js:473
+#: simulation/helpers/Commands.js:461
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s сдался."
 
-#: simulation/helpers/Commands.js:651
+#: simulation/helpers/Commands.js:639
 msgid "(Cheat - promoted units)"
 msgstr "(Чит — улучшать юниты)"
 
-#: simulation/helpers/Commands.js:772
+#: simulation/helpers/Commands.js:760
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Невозможно улучшить, так как необходимое расстояния не выдержано или имеются препятствия на местности. "
 
-#: simulation/helpers/Commands.js:817
+#: simulation/helpers/Commands.js:802
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Запрос атаки на %(_player_)s."
 
-#: simulation/helpers/Commands.js:856
+#: simulation/helpers/Commands.js:841
 msgid "There are no bribable units"
 msgstr "Нет юнитов, которых можно было бы подкупить"
 
-#: simulation/helpers/Commands.js:933
+#: simulation/helpers/Commands.js:918
 msgid "Unable to unload unit(s)."
 msgstr "Невозможно высадить юнита(ов)."
 
-#: simulation/helpers/Commands.js:947
+#: simulation/helpers/Commands.js:932
 msgid "Some unit(s) can't go back to work"
 msgstr "Некоторые юниты не могут вернуться к работе"
 
-#: simulation/helpers/Commands.js:966
+#: simulation/helpers/Commands.js:951
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr "%(unit)s — управление невозможно."
 
-#: simulation/helpers/Commands.js:1217
+#: simulation/helpers/Commands.js:1202
 msgid "The building's technology requirements are not met."
 msgstr "Технологии, необходимые для здания, отсутствуют."

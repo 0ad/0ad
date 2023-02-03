@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-10-22 14:55+0000\n"
+"POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: liu lizhi <xingzuo88@qq.com>, 2022\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
@@ -252,11 +252,11 @@ msgstr "野猪"
 msgid "Sus scrofa"
 msgstr "野猪"
 
-#: simulation/templates/gaia/fauna_camel.xml:11
+#: simulation/templates/gaia/fauna_camel.xml:14
 msgid "Dromedary"
 msgstr "单峰骆驼"
 
-#: simulation/templates/gaia/fauna_camel.xml:12
+#: simulation/templates/gaia/fauna_camel.xml:15
 msgid "Camelus dromedarius"
 msgstr "单峰骆驼"
 
@@ -270,27 +270,27 @@ msgid "Bull"
 msgstr "公牛"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:26
-#: simulation/templates/gaia/fauna_cattle_cow.xml:18
+#: simulation/templates/gaia/fauna_cattle_cow.xml:21
 msgid "Bos taurus taurus"
 msgstr "骆驼"
 
-#: simulation/templates/gaia/fauna_cattle_cow.xml:17
+#: simulation/templates/gaia/fauna_cattle_cow.xml:20
 msgid "Cow"
 msgstr "母牛"
 
-#: simulation/templates/gaia/fauna_cattle_sanga.xml:17
+#: simulation/templates/gaia/fauna_cattle_sanga.xml:20
 msgid "Sanga Cattle"
 msgstr "南非土牛"
 
-#: simulation/templates/gaia/fauna_cattle_sanga.xml:18
+#: simulation/templates/gaia/fauna_cattle_sanga.xml:21
 msgid "Bos taurus africanus"
 msgstr "南非土牛"
 
-#: simulation/templates/gaia/fauna_cattle_zebu.xml:17
+#: simulation/templates/gaia/fauna_cattle_zebu.xml:20
 msgid "Zebu"
 msgstr "瘤牛"
 
-#: simulation/templates/gaia/fauna_cattle_zebu.xml:18
+#: simulation/templates/gaia/fauna_cattle_zebu.xml:21
 msgid "Bos taurus indicus"
 msgstr "瘤牛"
 
@@ -431,11 +431,11 @@ msgstr "努比亚长颈鹿"
 msgid "Juvenile Giraffe"
 msgstr "小长颈鹿"
 
-#: simulation/templates/gaia/fauna_goat.xml:17
+#: simulation/templates/gaia/fauna_goat.xml:20
 msgid "Goat"
 msgstr "山羊"
 
-#: simulation/templates/gaia/fauna_goat.xml:18
+#: simulation/templates/gaia/fauna_goat.xml:21
 msgid "Capra aegagrus hircus"
 msgstr "山羊"
 
@@ -447,11 +447,11 @@ msgstr "河马"
 msgid "Hippopotamus amphibius"
 msgstr "河马"
 
-#: simulation/templates/gaia/fauna_horse.xml:11
+#: simulation/templates/gaia/fauna_horse.xml:14
 msgid "Horse"
 msgstr "马"
 
-#: simulation/templates/gaia/fauna_horse.xml:12
+#: simulation/templates/gaia/fauna_horse.xml:15
 msgid "Equus ferus caballus"
 msgstr "马"
 
@@ -487,11 +487,11 @@ msgstr "孔雀"
 msgid "Pavo cristatus"
 msgstr "蓝孔雀"
 
-#: simulation/templates/gaia/fauna_pig.xml:17
+#: simulation/templates/gaia/fauna_pig.xml:20
 msgid "Pig"
 msgstr "猪"
 
-#: simulation/templates/gaia/fauna_pig.xml:18
+#: simulation/templates/gaia/fauna_pig.xml:21
 msgid "Sus scrofa domesticus"
 msgstr "猪"
 
@@ -532,11 +532,11 @@ msgstr "大白鲨"
 msgid "Carcharodon carcharias"
 msgstr "大白鲨"
 
-#: simulation/templates/gaia/fauna_sheep.xml:17
+#: simulation/templates/gaia/fauna_sheep.xml:20
 msgid "Sheep"
 msgstr "羊"
 
-#: simulation/templates/gaia/fauna_sheep.xml:18
+#: simulation/templates/gaia/fauna_sheep.xml:21
 msgid "Ovis aries"
 msgstr "绵羊"
 
@@ -670,6 +670,10 @@ msgstr "库什雕像"
 #: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:9
 #: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:9
 #: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:9
+#: simulation/templates/gaia/ruins/stone_structure_farmstead.xml:9
+#: simulation/templates/gaia/ruins/stone_structure_house.xml:9
+#: simulation/templates/gaia/ruins/stone_structure_small.xml:9
+#: simulation/templates/gaia/ruins/stone_structure_tower.xml:9
 msgid "Stone Resource"
 msgstr "石料资源"
 
@@ -688,6 +692,22 @@ msgstr "阿蒙-拉雕像"
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statue"
 msgstr "罗马雕像"
+
+#: simulation/templates/gaia/ruins/stone_structure_farmstead.xml:10
+msgid "Ruined Farmstead"
+msgstr ""
+
+#: simulation/templates/gaia/ruins/stone_structure_house.xml:10
+msgid "Ruined House"
+msgstr ""
+
+#: simulation/templates/gaia/ruins/stone_structure_small.xml:10
+msgid "Ruined Structure"
+msgstr ""
+
+#: simulation/templates/gaia/ruins/stone_structure_tower.xml:10
+msgid "Ruined Tower"
+msgstr ""
 
 #: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:8
 msgid "Unfinished Greek Temple"
@@ -1005,6 +1025,8 @@ msgid "Mercenary"
 msgstr "雇佣兵"
 
 #: simulation/templates/mixins/shrine.xml:12
+#: simulation/templates/mixins/shrine.xml:13
+#: simulation/templates/mixins/shrine.xml:14
 msgid "Shrine"
 msgstr "神庙"
 
@@ -1224,6 +1246,10 @@ msgstr "建筑"
 msgid "Unit"
 msgstr "单位"
 
+#: simulation/templates/template_vision_revealer.xml:23
+msgid "Vision Revealer"
+msgstr ""
+
 #: simulation/templates/template_wallset.xml:9
 #: simulation/templates/template_wallset.xml:11
 msgid "Wall"
@@ -1232,3 +1258,35 @@ msgstr "城墙"
 #: simulation/templates/template_wallset.xml:10
 msgid "Wall off an area."
 msgstr "用墙分隔一片区域。"
+
+#: simulation/templates/vision_revealers/10_meters.xml:4
+msgid "Vision Revealer / 10 meters"
+msgstr ""
+
+#: simulation/templates/vision_revealers/15_meters.xml:4
+msgid "Vision Revealer / 15 meters"
+msgstr ""
+
+#: simulation/templates/vision_revealers/20_meters.xml:4
+msgid "Vision Revealer / 20 meters"
+msgstr ""
+
+#: simulation/templates/vision_revealers/25_meters.xml:4
+msgid "Vision Revealer / 25 meters"
+msgstr ""
+
+#: simulation/templates/vision_revealers/30_meters.xml:4
+msgid "Vision Revealer / 30 meters"
+msgstr ""
+
+#: simulation/templates/vision_revealers/40_meters.xml:4
+msgid "Vision Revealer / 40 meters"
+msgstr ""
+
+#: simulation/templates/vision_revealers/50_meters.xml:4
+msgid "Vision Revealer / 50 meters"
+msgstr ""
+
+#: simulation/templates/vision_revealers/60_meters.xml:4
+msgid "Vision Revealer / 60 meters"
+msgstr ""

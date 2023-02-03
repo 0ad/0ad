@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-10-22 14:55+0000\n"
+"POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Mas Nnaw, 2022\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
@@ -1333,6 +1333,7 @@ msgstr "Arkadia"
 #: maps/scenarios/walltest.xml:PlayerData[0].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[1].Name:39
 msgid "Player 1"
 msgstr "Pemain 1"
 
@@ -1358,6 +1359,7 @@ msgstr "Pemain 1"
 #: maps/scenarios/walltest.xml:PlayerData[1].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[2].Name:39
 msgid "Player 2"
 msgstr "Pemain 2"
 
@@ -2553,14 +2555,14 @@ msgstr "Di selatan Sahara, di Timur Sungai Nil, terdapat kawasan semi-kering yan
 msgid "Island of Meroë (2)"
 msgstr "Pulau Meroë (2)"
 
-#: maps/skirmishes/caspian_sea_2pv2p.xml:Description:38
+#: maps/skirmishes/caspian_sea_2pv2p.xml:Description:39
 msgid ""
 "Two teams face off across a long, very large saltwater lake.\n"
 "\n"
 "Fishing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits."
 msgstr "Dua regu memulai berseberangan di antara danau air asin besar\n\nPenangkapan ikan dapat dilakukan di tengah danau. Peta ini juga dipenuhi cadangan Batu dan Logam."
 
-#: maps/skirmishes/caspian_sea_2pv2p.xml:Name:38
+#: maps/skirmishes/caspian_sea_2pv2p.xml:Name:39
 msgid "Caspian Sea (2v2)"
 msgstr "Laut Kaspia (2v2)"
 
@@ -2718,7 +2720,7 @@ msgstr "Peta pertempuran berhutan dimana semua pemain bertempur untuk mendapatka
 msgid "Forest Battle (4)"
 msgstr "Pertempuran Hutan (4)"
 
-#: maps/skirmishes/gallic_fields_3p.xml:Description:38
+#: maps/skirmishes/gallic_fields_3p.xml:Description:39
 msgid ""
 "Defend your Gallic outpost against attacks from your treacherous neighbors!\n"
 "\n"
@@ -2727,7 +2729,7 @@ msgid ""
 "Watch out for Romans passing by!"
 msgstr "Pertahankan pos pengawasan Galia Anda dari serangan dari tetangga Anda yang berbahaya!\n\nSetiap pemain memulai pertandingan dengan palisade kayu dan beberapa menara penjaga di atas tanggul yang rendah.\n\nHati-hati terhadap orang Romawi yang lewat!"
 
-#: maps/skirmishes/gallic_fields_3p.xml:Name:38
+#: maps/skirmishes/gallic_fields_3p.xml:Name:39
 msgid "Gallic Fields (3)"
 msgstr "Medan Galia (3)"
 
@@ -2739,14 +2741,14 @@ msgstr "Dataran tinggi di Galia tengah."
 msgid "Gallic Highlands (2)"
 msgstr "Dataran Tinggi Galia (2)"
 
-#: maps/skirmishes/gambia_river_3p.xml:Description:38
+#: maps/skirmishes/gambia_river_3p.xml:Description:39
 msgid ""
 "All players start on one bank of the river, with minimal harvestable metal. Across the Gambia River is a savanna with many deposits of metal to be claimed. \n"
 "\n"
 "(Warning: Large map. Good computer specs recommended)"
 msgstr "Semua pemain mulai dari satu tepi sungai, dengan sedikit logam yang bisa dikumpulkan. Di seberang Sungai Gambia adalah sabana dengan banyak cadangan logam yang bisa diambil.\n\n(Peringatan: Peta besar. Spesifikasi komputer yang baik disarankan)"
 
-#: maps/skirmishes/gambia_river_3p.xml:Name:38
+#: maps/skirmishes/gambia_river_3p.xml:Name:39
 msgid "Gambia River (3)"
 msgstr "Sungai Gambia (3)"
 
@@ -2932,6 +2934,17 @@ msgstr "Sebuah peta gurun pasir Mesir yang terbagi dua oleh Sungai Nil yang leba
 #: maps/skirmishes/nile_river_4p.xml:Name:38
 msgid "Nile River (4)"
 msgstr "Sungai Nil (4)"
+
+#: maps/skirmishes/north_african_savanna_2p.xml:Description:39
+msgid ""
+"The Savanna is open and foreboding, chock full of animal, both huntable and hunter. \n"
+"\n"
+"Here we have an example of the two seasons prevelant on the savanna: The wet season and the dry season."
+msgstr ""
+
+#: maps/skirmishes/north_african_savanna_2p.xml:Name:39
+msgid "North African Savanna (2 players)"
+msgstr ""
 
 #: maps/skirmishes/northern_island_2p.xml:Description:39
 msgid ""
@@ -3234,15 +3247,15 @@ msgstr "Sungai Panjang di Tiongkok."
 msgid "Chang Jiang (2)"
 msgstr "Chang Jiang (2)"
 
-#: maps/skirmishes/zagros_mountains_2p.xml:Description:38
+#: maps/skirmishes/zagros_mountains_2p.xml:Description:39
 msgid ""
-"The mountains buffering the Persian homeland, straddling Persis, Susiana, and Media.\n"
+"The mountains buffering the Persian homeland, straddling Persis, Susiana, and Media. This map simulates the many valleys and choke points that criss cross the mountain range. \n"
 "\n"
-"Players start the match near the Persian Gulf in their own province with 1 free Temple. \n"
+"Players start the match nestled in their own province with 1 free Persian temple. Access to untapped resources and territories can be found through the rugged hinterlands, but is also chock full of dangerous animals, such as Asian bears and Caspian tigers.\n"
 "\n"
-"Access to untapped resources and territories can be found through the rugged hinterlands."
-msgstr "Pegunungan penyangga tanah air Persia, mengangkangi Persis, Susiana, dan Media.\n\nPemain memulai pertandingan di dekat Teluk Persia di provinsi mereka sendiri dengan 1 Kuil gratis.\n\nAkses ke sumber daya dan wilayah yang belum dimanfaatkan dapat ditemukan melalui daerah pedalaman yang berbatu."
+"The central valley is wide open for expansion, with an unclaimed Civic Center, farms, and Trading Posts. Cliffs along the valley's edge may offer vantage points for defensive or offensive fortifications."
+msgstr ""
 
-#: maps/skirmishes/zagros_mountains_2p.xml:Name:38
-msgid "Zagros Mountains (2)"
-msgstr "Pegunungan Zagros (2)"
+#: maps/skirmishes/zagros_mountains_2p.xml:Name:39
+msgid "Zagros Mountains (2 players)"
+msgstr ""

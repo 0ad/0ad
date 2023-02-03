@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-10-22 14:55+0000\n"
+"POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2019,2021-2023\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -70,14 +70,10 @@ msgstr "아고게"
 #: simulation/data/technologies/siege_pack_unpack.jsonrequirementsTooltip
 #: simulation/data/technologies/silk_road.jsonrequirementsTooltip
 #: simulation/data/technologies/silvershields.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_03.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_ranged_03.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_resistance_hack_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_03.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsonrequirementsTooltip
 #: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
 #: simulation/data/technologies/subterranean_aqueducts.jsonrequirementsTooltip
@@ -126,9 +122,13 @@ msgstr "궁수 훈련"
 #: simulation/data/technologies/iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_hack_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
@@ -442,8 +442,24 @@ msgid "Sun-dried Mud Bricks"
 msgstr "햇볕에 말린 진흙 벽돌"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
-msgid "Houses and Economic Structures −40% wood cost and health."
-msgstr "집 및 국가 건축물의 목재 비용과 내구력이 -40% 감소합니다."
+msgid ""
+"Houses and Economic Structures −40% wood cost, health, and capture points as"
+" well as +50% build time."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/sele_farms.jsondescription
+msgid ""
+"The Seleucid empire was located in a highly fertile region with productive "
+"soils. Farms are cheaper and faster to build,"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/sele_farms.jsongenericName
+msgid "Fertile Crescent"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/sele_farms.jsontooltip
+msgid "Farms −25% wood cost and −75% build time."
+msgstr ""
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
 msgid "Improved Construction"
@@ -510,8 +526,8 @@ msgid "Crossbow Training"
 msgstr "석궁 훈련"
 
 #: simulation/data/technologies/crossbow_training.jsontooltip
-msgid "Crossbow Infantry and Cavalry −20% train time."
-msgstr "석궁 보병 및 기병의 훈련 시간이 -20% 감소합니다."
+msgid "Crossbow Infantry −20% train time."
+msgstr ""
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -1077,9 +1093,9 @@ msgstr "거대 도시"
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +1 capture points "
+"Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units. Workers +10% metal gather rate."
-msgstr "더 많은 개체들과 기술을 잠금 해제하는 도시 단계로 진행합니다. 시민 회관 영토 영향 반경이 +50% 증가합니다. 건축물의 주둔 유닛당 점령 포인트 회복율이 +1 증가합니다. 일꾼은 금속 채집률을 +10% 증가합니다."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1094,9 +1110,9 @@ msgstr "고을"
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +1 capture points "
+"Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units."
-msgstr "더 많은 개체들과 기술을 잠금해제하는 도시 단계로 진행합니다. 시민 회관 영토 영향 반경이 +50% 증가합니다. 건축물은 주둔 유닛당 점령 포인트 회복 속도가 +1 증가합니다."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
@@ -1108,9 +1124,9 @@ msgstr "분주한 소도시에서 현대 기술의 경이로운 것으로 가득
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +1 capture points "
+"Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units. Stable −10% batch training time."
-msgstr "더 많은 개체들과 기술을 잠금 해제하는 도시 단계로 진행합니다. 시민 회관 영토 영향 반경이 +50% 증가합니다. 건축물의 주둔 유닛당 점령 포인트 회복율이 +1 증가합니다. 사육장은 일괄 훈련 시간이 -10% 감소합니다."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1149,9 +1165,9 @@ msgstr "코모폴리스"
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +0.5 capture points "
+"Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units. Workers +10% metal gather rate."
-msgstr "더 많은 개체들과 기술을 잠금 해제하는 소도시 단계로 진행합니다. 시민 회관 영토 영향 반경이 +30% 증가합니다. 건축물의 주둔 유닛당 점령 포인트 회복 속도가 +0.5 증가합니다. 일꾼은 금속 채집률이 +10% 증가합니다."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1165,9 +1181,9 @@ msgstr "현"
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +0.5 capture points "
+"Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units."
-msgstr "더 많은 개체들과 기술을 잠금 해제하는 소도시 단계로 진행합니다. 시민 회관 영토 영향 반경이 +30% 증가합니다. 건축물의 주둔 유닛당 점령 포인트 회복 속도가 +0.5 증가합니다."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_pers.jsondescription
 msgid ""
@@ -1179,9 +1195,9 @@ msgstr "작은 마을에서 분주한 소도시로 빠르게 확장할 준비가
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +0.5 capture points "
+"Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units. Stable −10% batch training time."
-msgstr "더 많은 개체들과 기술을 잠금 해제하는 소도시 단계로 진행합니다. 시민 회관 영토 영향 반경이 +30% 증가합니다. 건축물의 주둔 유닛당 점령 포인트 회복 속도가 +0.5 증가합니다. 사육장은 일괄 훈련 시간이 -10% 감소합니다."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1759,18 +1775,6 @@ msgid ""
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
 msgstr "상급 유닛들 및 엘리트 유닛들의 훈련 시간이 +20%, 체력이 +25%, 점령 공격력이 +0.7, 노획물이 +20% 증가하고, 수집 속도가 −30% 감소합니다; 치료사의 치유력이 +5, 치유 범위가 +3 증가합니다; 근접 유닛의 저항력이 +1, 공격 피해량이 +20% 증가합니다; 원거리 유닛의 전개가 -20% 감소합니다."
-
-#: simulation/data/technologies/unit_elephant_african.jsontooltip
-msgid ""
-"African Elephants −10% resource costs, training time, health, attack damage,"
-" and loot."
-msgstr "아프리카 코끼리의 자원 비용, 훈련 시간, 체력, 공격 피해량, 노획물이 −10% 감소합니다."
-
-#: simulation/data/technologies/unit_elephant_indian.jsontooltip
-msgid ""
-"Indian Elephants +10% resource costs, training time, health, attack damage, "
-"and loot."
-msgstr "인도 코끼리의 자원 비용, 훈련 시간, 체력, 공격 피해량, 노획물이 +10% 증가합니다."
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
