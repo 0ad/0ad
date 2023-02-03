@@ -13,6 +13,7 @@
 # Hahahaha kala
 # LOUKAS SKOUROLIAKOS
 # Markos G.
+# Nikolaos Kokkos
 # Steven Gikas
 # Vasilis Drosos
 # Xenophon Sp
@@ -20,9 +21,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Steven Gikas <stevengk123@gmail.com>, 2016\n"
+"Last-Translator: Nikolaos Kokkos, 2022\n"
 "Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -627,10 +628,13 @@ msgid "Chain Pump"
 msgstr ""
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
+#: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
+#: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
+#: simulation/data/technologies/gather_farming_training.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
-msgid "Workers +20% rice gather rate."
-msgstr ""
+msgid "Workers +20% grain gather rate."
+msgstr "Εργάτες +20%  ρυθμός συλλογής σπόρων"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -639,12 +643,6 @@ msgstr "Επιπλέον θρεπτικά συστατικά για τα αγρ�
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
 msgstr "Λίπασμα"
-
-#: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
-#: simulation/data/technologies/gather_farming_plows.jsontooltip
-#: simulation/data/technologies/gather_farming_training.jsontooltip
-msgid "Workers +20% grain gather rate."
-msgstr "Εργάτες +20%  ρυθμός συλλογής σπόρων"
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -1085,9 +1083,9 @@ msgstr "Μεγαλόπολις"
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Προχωρήστε στην φάση Πόλης,η οποία ξεκλειδώνει περισσότερες οντότητες και τεχνολογίες. Κέντρα Πόλης +30% στην ακτίνα επιρροής περιοχής. Κατασκευές +7% πόντοι κατάληψης ρυθμός ανανέωσης υγείας ανα φρουρούμενη μονάδα. Εργάτες +10% στο ρυθμό συγκομιδής."
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units. Workers +10% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1102,9 +1100,9 @@ msgstr ""
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit."
-msgstr "Προχωρήστε στη φάση πόλης, η οποία ξεκλειδώνει περισσότερες οντότητες και τενολογίες. Κέντρα Πόλης +50%  στην ακτίνα επιρροής. Κατασκευές +9 πόντοι κατάληψης ρυθμός ανανέβσης ανα φρουρούμενη μονάδα."
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
@@ -1116,8 +1114,8 @@ msgstr ""
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit. Stable −10% batch training time."
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units. Stable −10% batch training time."
 msgstr ""
 
 #: simulation/data/technologies/phase_town.jsondescription
@@ -1157,9 +1155,9 @@ msgstr "Κωμόπολη"
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Προχωρήστε στην φάση Kωμόπολης ,η οποία ξεκλειδώνει περισσότερες οντότητες και τεχνολογίες. Κέντρα Πόλης +30% στην ακτίνα  επιρροής περιοχής. Κατασκευές +7% πόντοι κατάληψης  ρυθμός ανανέωσης υγείας  ανα φρουρούμενη μονάδα. Εργάτες +10% στο ρυθμό συγκομιδής."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units. Workers +10% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1173,9 +1171,9 @@ msgstr ""
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit."
-msgstr "Προχωρήστε στη Φάση Κωμόπολης , η οποία ξεκλειδώνει περισσότερες οντότητες και τεχνολογίες. Κέντρα Πόλης αποκτούν +30% σε έκταση εύρους περιοχής. Οι Κατασκευές +7 πόντους κατάληψης\nρυθμός ανανέωσης για κάθε φρουρούμενη μονάδα."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_pers.jsondescription
 msgid ""
@@ -1187,8 +1185,8 @@ msgstr ""
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit. Stable −10% batch training time."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units. Stable −10% batch training time."
 msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
@@ -1197,7 +1195,7 @@ msgstr "Φάση Χωριό"
 
 #: simulation/data/technologies/poison_arrows.jsongenericName
 msgid "Poison Arrows"
-msgstr ""
+msgstr "Δηλητηριώδη Βέλη"
 
 #: simulation/data/technologies/poison_arrows.jsontooltip
 msgid "Ranged Soldiers +20% attack damage."

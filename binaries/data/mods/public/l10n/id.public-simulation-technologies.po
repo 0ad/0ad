@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Mas Nnaw, 2022\n"
 "Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
@@ -624,10 +624,13 @@ msgid "Chain Pump"
 msgstr "Pompa Rantai"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
+#: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
+#: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
+#: simulation/data/technologies/gather_farming_training.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
-msgid "Workers +20% rice gather rate."
-msgstr "Pekerja +20% Laju pengumpulan beras."
+msgid "Workers +20% grain gather rate."
+msgstr "Pekerja +20% laju pengumpulan padi-padian."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -636,12 +639,6 @@ msgstr "Gizi tambahan untuk ladang."
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
 msgstr "Pupuk"
-
-#: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
-#: simulation/data/technologies/gather_farming_plows.jsontooltip
-#: simulation/data/technologies/gather_farming_training.jsontooltip
-msgid "Workers +20% grain gather rate."
-msgstr "Pekerja +20% laju pengumpulan padi-padian."
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -1082,9 +1079,9 @@ msgstr "Megalopolis"
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Maju ke Fase Kotaraya, yang membuka lebih banyak entitas dan teknologi. Pusat Bangsa +50% jangkauan pengaruh wilayah. Bangunan +9 laju pemulihan poin perebutan tiap unit yang ditempatkan. Pekerja +10% laju pengumpulan logam.\n"
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units. Workers +10% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1099,9 +1096,9 @@ msgstr "Jùn"
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit."
-msgstr "Maju ke Fase Kotaraya, yang membuka lebih banyak entitas dan teknologi. Pusat Bangsa +50% jangkauan pengaruh wilayah. Bangunan +9 laju pemulihan poin perebutan tiap unit yang ditempatkan."
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
@@ -1113,9 +1110,9 @@ msgstr ""
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit. Stable −10% batch training time."
-msgstr "Lanjutkan ke Fase Kotaraya  untuk membuka lebih banyak hal dan teknologi. Pusat Bangsa +50% pengaruh wilayah. Bangunan +9 Poin Perebutan laju pemulihan setiap unit yang ditempati. Tempat pelatihan -10% waktu latih untuk setiap kelompok."
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units. Stable −10% batch training time."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1154,9 +1151,9 @@ msgstr "Kōmopolis"
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Maju ke Fase Kota, yang membuka lebih banyak entitas dan teknologi. Pusat Bangsa +30% jangkauan pengaruh wilayah. Struktur +7 laju pemulihan poin perebutan tiap unit yang ditempatkan. Pekerja +10% laju pengumpulan logam."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units. Workers +10% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1170,9 +1167,9 @@ msgstr "Xìan"
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit."
-msgstr "Maju ke Fase Kota, yang membuka lebih banyak entitas dan teknologi. Pusat Bangsa +30% jangkauan pengaruh wilayah. Bangunan +7 laju pemulihan poin perebutan tiap unit yang ditempatkan."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_pers.jsondescription
 msgid ""
@@ -1184,9 +1181,9 @@ msgstr "Lanjutkan dari desa,kampung menjadi kota yang ramai, siap berkembang pes
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit. Stable −10% batch training time."
-msgstr "Lanjutkan ke Fase Kota untuk membuka lebih banyak hal dan teknologi. Pusat Bangsa +30% pengaruh wilayah. Bangunan +7 Poin Perebutan laju pemulihan setiap unit yang ditempati. Tempat pelatihan -10% waktu latih untuk setiap kelompok."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units. Stable −10% batch training time."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"

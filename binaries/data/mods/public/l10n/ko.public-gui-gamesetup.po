@@ -5,7 +5,7 @@
 # Translators:
 # 76407af6b051a571d67c2577de2183db_7380deb
 # Aksidion Kreimben (programmer)
-# JungHee Lee
+# Junghee Lee
 # Dalrae Jin
 # Gu Hong Min
 # Hong Won Gi
@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:48+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2022\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -73,7 +73,7 @@ msgstr "예"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlCheckbox.js:60
 msgid "No"
-msgstr "아니오"
+msgstr "아니요"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlDropdown.js:64
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlSlider.js:84
@@ -358,7 +358,7 @@ msgstr "지도"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:141
 msgid "Select Map"
-msgstr "지도 선택"
+msgstr "지도 선택하기"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:144
 msgid "Select a map to play on."
@@ -415,7 +415,7 @@ msgstr "/ 플레이어"
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "경고: %(players)s명의 모든 플레이어가 %(popCap)s명의 인구에 도달하면 성능 문제가 있을 수 있습니다."
+msgstr "경고: %(players)s의 모든 플레이어가 %(popCap)s명의 인구에 도달하면 성능 문제가 발생할 수 있습니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:50
 msgid "Starting Resources"
@@ -474,7 +474,7 @@ msgstr "세계 인구 제한을 선택합니다."
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr "경고: %(popCap)s인구가 상한에 도달하면 성능 문제가 발생할 수 있습니다."
+msgstr "경고: %(popCap)s명의 인구에 도달하면 성능 문제가 발생할 수 있습니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:35
 msgid "Ceasefire"
@@ -504,7 +504,7 @@ msgstr "유물 개수"
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
-msgstr[0] "유물 %(number)s개"
+msgstr[0] "%(number)s개 유물"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:44
 msgid ""
@@ -715,7 +715,7 @@ msgstr "등급 게임입니다."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:74
 #, javascript-format
 msgid "Click to toggle the %(name)s settings tab."
-msgstr "%(name)s설정 탭을 전환하려면 클릭합니다."
+msgstr "%(name)s님 설정 탭을 전환하려면 클릭합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:27
 msgid "No selected map"
@@ -867,11 +867,11 @@ msgstr "STUN을 사용하여 방화벽 우회"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):136
 msgid "Continue"
-msgstr "계속"
+msgstr "계속하기"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):141
 msgid "Cancel"
-msgstr "취소"
+msgstr "취소하기"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):152
 msgid "Password:"
@@ -1479,7 +1479,7 @@ msgid ""
 "legion, Publius Sextius Baculus, a very valiant man, who was so exhausted by"
 " many and severe wounds, that he was already unable to support himself.” "
 "\\n— Caesar about the Battle of the Sabis (“De Bello Gallico”, II. 25)"
-msgstr "“네 번째 집단의 모든 백인대장은 살해되었고, 지도자는 살해되었고, 깃발은 사라졌고 다른 집잔의 거의 모든 백인대장들이 부상당하거나 살해당하거나 그들중 군단의 최고 백인대장이자 매우 용맹한 푸블리우스 섹티우스 바쿨루스는 많고 심한 상처에 지쳐서 이미 자신을 지탱할 수 없었다.” \\n— 사비스 전투에 관한 카이사르 (“갈리아 전기”, II. 25)"
+msgstr "“네 번째 부대의 모든 100인 대장이 죽임을 당했고, 군기를 든 자가 죽었으며, 군기는 잃었고, 다른 부대의 거의 모든 100인 대장이 부상을 입거나 살해당했으며, 그중에는 군단의 최고 100인 대장이자 매우 용맹한 병사인 푸블리우스 섹티우스 바쿨루스가 있었고, 그는 많은 심각한 부상으로 너무 지쳐서 이미 스스로를 지탱할 수 없었다.” \\n— 카이사르, 사비스 전투에 대해서 (“갈리아 전기”, II. 25)"
 
 #: gui/text/quotes.txt:84
 msgid ""
@@ -1489,7 +1489,7 @@ msgid ""
 "while the survivors used the heap as a vantage point for throwing missiles "
 "at our men, or catching our spears and throwing them back.” \\n— Caesar "
 "about the Battle of the Sabis (“De Bello Gallico”, II. 27)"
-msgstr "“그러나 적 \\[…] 은 그런 큰 용기를 보여주었다. 최전선 사람들이 죽으면 그들 뒤에 있던 부하들이 그들의 시체 위에 서서 싸움을 계속하고, 이들도 죽으면, 시체 더미가 더 높이 쌓이고, 살아남은 자들이 그 더미를 우리 부하들에게 던지거나 우리의 창을 잡고 던져서 유리한 지점으로 삼았다.” \\n— 사비스 전투에 관한 카이사르 (“갈리아 전기”, II. 27)"
+msgstr "“그러나 적 \\[…] 은 대단한 용기를 보여주었고, 앞열의 사람들이 죽으면 그들 뒤에 있던 병사들이 그들의 시체 위에 서서 전투를 계속했고, 이들도 죽으면, 시체 더미가 더 높이 쌓였고, 살아남은 자들은 그 더미를 아군 병사들에게 던지거나, 아군 창을 붙잡아 다시 던질 유리한 지점으로 삼았다.” \\n— 카이사르, 사비스 전투에 대해서 (“갈리아 전기”, II. 27)"
 
 #: gui/text/quotes.txt:85
 msgid ""

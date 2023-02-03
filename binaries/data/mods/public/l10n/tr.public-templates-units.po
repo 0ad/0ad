@@ -1,8 +1,9 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Ahmet
 # ubuntuki
 # ali topçu
 # Cem Aktas
@@ -26,9 +27,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2023-01-27 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>, 2014-2017,2022\n"
+"Last-Translator: Ahmet, 2022\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,7 +75,7 @@ msgstr "Süvari"
 #: simulation/templates/template_unit_cavalry.xml:33
 #: simulation/templates/template_unit_elephant.xml:9
 #: simulation/templates/template_unit_infantry.xml:37
-#: simulation/templates/template_unit_support_healer.xml:29
+#: simulation/templates/template_unit_support_healer.xml:30
 msgctxt "Rank"
 msgid "Basic"
 msgstr "Temel"
@@ -103,7 +104,7 @@ msgstr "Yakın Dövüş Süvarisi"
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:20
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:19
-#: simulation/templates/template_unit_champion_elephant_melee.xml:18
+#: simulation/templates/template_unit_champion_elephant_melee.xml:27
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:20
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:20
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:28
@@ -115,7 +116,7 @@ msgstr "Yakın Dövüş Süvarisi"
 #: simulation/templates/template_unit_hero_cavalry_maceman.xml:17
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:25
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:22
-#: simulation/templates/template_unit_hero_elephant_melee.xml:32
+#: simulation/templates/template_unit_hero_elephant_melee.xml:41
 #: simulation/templates/template_unit_hero_infantry_axeman.xml:17
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:17
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
@@ -191,7 +192,7 @@ msgstr "Mızrakçı Süvari"
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 msgid "Counters: 2× vs Cavalry."
-msgstr ""
+msgstr "Süvariye 2× karşı koyar."
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
@@ -245,9 +246,7 @@ msgstr "Kılıçlı"
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:24
 #: simulation/templates/template_unit_infantry_ranged.xml:7
 #: simulation/templates/template_unit_infantry_ranged.xml:8
-#: simulation/templates/template_unit_ship_bireme.xml:52
-#: simulation/templates/template_unit_ship_quinquereme.xml:56
-#: simulation/templates/template_unit_ship_trireme.xml:52
+#: simulation/templates/template_unit_ship_warship.xml:38
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 #: simulation/templates/template_unit_siege_stonethrower.xml:45
 #: simulation/templates/template_unit_siege_tower.xml:62
@@ -265,8 +264,7 @@ msgstr "Menzilli Süvari"
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:5
 #: simulation/templates/template_unit_hero_infantry_archer.xml:5
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:5
-#: simulation/templates/template_unit_ship_bireme.xml:5
-#: simulation/templates/template_unit_ship_trireme.xml:5
+#: simulation/templates/template_unit_ship_warship.xml:5
 #: simulation/templates/template_unit_siege_tower.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bow"
@@ -382,7 +380,7 @@ msgstr "Savaş Fili"
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_fauna_hunt_passive-defensive_elephant.xml:4
 #: simulation/templates/template_unit_fauna_hunt_skittish_elephant_infant.xml:4
-#: simulation/templates/template_unit_hero_elephant_melee.xml:32
+#: simulation/templates/template_unit_hero_elephant_melee.xml:41
 #: simulation/templates/template_unit_support_elephant.xml:18
 msgid "Elephant"
 msgstr "Fil"
@@ -392,6 +390,13 @@ msgstr "Fil"
 msgctxt "Name of an attack, usually the weapon."
 msgid "Trunk"
 msgstr "Gövde"
+
+#: simulation/templates/template_unit_champion_elephant_melee.xml:12
+#: simulation/templates/template_unit_hero_elephant_melee.xml:12
+#: simulation/templates/template_unit_ship_fire.xml:22
+#: simulation/templates/template_unit_siege_flamethrower.xml:35
+msgid "Circular"
+msgstr "Dairesel"
 
 #: simulation/templates/template_unit_champion_infantry.xml:15
 #: simulation/templates/template_unit_hero_infantry.xml:14
@@ -494,6 +499,10 @@ msgstr "Filli Okçu"
 msgid "Kill to gather meat for food."
 msgstr "Et elde ederek besin toplamak için öldür."
 
+#: simulation/templates/template_unit_fauna_herd_domestic.xml:5
+msgid "Kill to gather meat for quick food."
+msgstr ""
+
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:8
 msgid "Kill to butcher for food."
 msgstr "Et elde ederek besin toplamak için öldür."
@@ -509,11 +518,11 @@ msgid "Hero Cavalry"
 msgstr "Kahraman Süvari"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:36
-#: simulation/templates/template_unit_hero_elephant_melee.xml:52
+#: simulation/templates/template_unit_hero_elephant_melee.xml:61
 #: simulation/templates/template_unit_hero_healer.xml:43
 #: simulation/templates/template_unit_hero_infantry.xml:31
 #: simulation/templates/units/brit/hero_boudicca.xml:20
-#: simulation/templates/units/han/support_minister.xml:72
+#: simulation/templates/units/han/support_minister.xml:74
 #: simulation/templates/units/kush/hero_amanirenas.xml:21
 #: simulation/templates/units/maur/hero_ashoka.xml:20
 #: simulation/templates/units/pers/hero_darius_i.xml:20
@@ -555,7 +564,7 @@ msgstr "Süvarilere karşı 1,75 etkili"
 msgid "Hero Cavalry Swordsman"
 msgstr "Kahraman Kılıçlı Süvari"
 
-#: simulation/templates/template_unit_hero_elephant_melee.xml:31
+#: simulation/templates/template_unit_hero_elephant_melee.xml:40
 msgid "Hero Elephant"
 msgstr "Kahraman Fil"
 
@@ -566,8 +575,8 @@ msgid "Support"
 msgstr "Destek"
 
 #: simulation/templates/template_unit_hero_healer.xml:27
-#: simulation/templates/template_unit_support_healer.xml:26
 #: simulation/templates/template_unit_support_healer.xml:27
+#: simulation/templates/template_unit_support_healer.xml:28
 msgid "Healer"
 msgstr "Şifacı"
 
@@ -640,41 +649,11 @@ msgstr "Sapancı"
 msgid "Ship"
 msgstr "Gemi"
 
-#: simulation/templates/template_unit_ship_bireme.xml:50
-msgid "Light Warship"
-msgstr "Hafif Savaş Gemisi"
-
-#: simulation/templates/template_unit_ship_bireme.xml:51
-#: simulation/templates/template_unit_ship_trireme.xml:51
-msgid ""
-"Garrison units for transport and to increase firepower. Deals triple damage "
-"against Ships."
-msgstr "Nakliye ve ateş gücünü artırmak için birimleri konuşlandır. Gemilere karşı üç kat hasar verir."
-
-#: simulation/templates/template_unit_ship_bireme.xml:52
-#: simulation/templates/template_unit_ship_fire.xml:42
-#: simulation/templates/template_unit_ship_quinquereme.xml:56
-#: simulation/templates/template_unit_ship_trireme.xml:52
-msgid "Warship"
-msgstr "Savaş Gemisi"
-
-#: simulation/templates/template_unit_ship_bireme.xml:52
-#: simulation/templates/units/cart/ship_bireme.xml:9
-#: simulation/templates/units/ptol/ship_bireme.xml:9
-#: simulation/templates/units/sele/ship_bireme.xml:9
-msgid "Bireme"
-msgstr "Bireme"
-
 #: simulation/templates/template_unit_ship_fire.xml:5
 #: simulation/templates/template_unit_siege_flamethrower.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Fire"
 msgstr "Ateş"
-
-#: simulation/templates/template_unit_ship_fire.xml:22
-#: simulation/templates/template_unit_siege_flamethrower.xml:35
-msgid "Circular"
-msgstr "Dairesel"
 
 #: simulation/templates/template_unit_ship_fire.xml:40
 msgid "Fire Ship"
@@ -687,6 +666,11 @@ msgstr "Tamir edilemez. Yavaşça sağlık kaybeder. Sad3ce gemilere saldırabil
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Fireship"
 msgstr "Ateş Gemisi"
+
+#: simulation/templates/template_unit_ship_fire.xml:42
+#: simulation/templates/template_unit_ship_warship.xml:38
+msgid "Warship"
+msgstr "Savaş Gemisi"
 
 #: simulation/templates/template_unit_ship_fishing.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -727,34 +711,48 @@ msgstr "Rüşvet verilebilir"
 msgid "Trader"
 msgstr "Tüccar"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:5
+#: simulation/templates/template_unit_ship_warship.xml:36
+#: simulation/templates/template_unit_ship_warship_light.xml:22
+msgid "Light Warship"
+msgstr "Hafif Savaş Gemisi"
+
+#: simulation/templates/template_unit_ship_warship.xml:37
+#: simulation/templates/template_unit_ship_warship_medium.xml:24
+msgid ""
+"Garrison units for transport and to increase firepower. Deals triple damage "
+"against Ships."
+msgstr "Nakliye ve ateş gücünü artırmak için birimleri konuşlandır. Gemilere karşı üç kat hasar verir."
+
+#: simulation/templates/template_unit_ship_warship_heavy.xml:5
 #: simulation/templates/template_unit_siege_stonethrower.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Stone"
 msgstr "Taş"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:54
+#: simulation/templates/template_unit_ship_warship_heavy.xml:53
 msgid "Heavy Warship"
 msgstr "Ağır Savaş Gemisi"
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:55
-#: simulation/templates/template_unit_siege_tower.xml:64
-msgid "Garrison units for transport and to increase firepower."
-msgstr "Garnizon birlikleri için nakliye ve güç arttırımı."
+#: simulation/templates/template_unit_ship_warship_heavy.xml:54
+msgid ""
+"Garrison units for transport. Garrison Stone Throwers to increase firepower."
+msgstr ""
 
-#: simulation/templates/template_unit_ship_quinquereme.xml:56
-#: simulation/templates/units/cart/ship_quinquereme.xml:5
-msgid "Quinquereme"
-msgstr "Quinquereme"
+#: simulation/templates/template_unit_ship_warship_heavy.xml:55
+msgid "Heavy"
+msgstr "Ağır"
 
-#: simulation/templates/template_unit_ship_trireme.xml:50
+#: simulation/templates/template_unit_ship_warship_light.xml:23
+msgid "Light"
+msgstr "Işık"
+
+#: simulation/templates/template_unit_ship_warship_medium.xml:23
 msgid "Medium Warship"
 msgstr "Orta Savaş gemisi"
 
-#: simulation/templates/template_unit_ship_trireme.xml:52
-#: simulation/templates/units/cart/ship_trireme.xml:9
-msgid "Trireme"
-msgstr "Trireme"
+#: simulation/templates/template_unit_ship_warship_medium.xml:25
+msgid "Medium"
+msgstr "Orta"
 
 #: simulation/templates/template_unit_siege.xml:16
 #: simulation/templates/template_unit_siege.xml:17
@@ -814,6 +812,10 @@ msgstr "Kuşatma Kulesi\n"
 #: simulation/templates/template_unit_siege_tower.xml:63
 msgid "Siege Tower"
 msgstr "Kuşatma Kulesi"
+
+#: simulation/templates/template_unit_siege_tower.xml:64
+msgid "Garrison units for transport and to increase firepower."
+msgstr "Garnizon birlikleri için nakliye ve güç arttırımı."
 
 #: simulation/templates/template_unit_support_elephant.xml:17
 msgid "Worker Elephant"
@@ -1223,7 +1225,6 @@ msgid "Ploîon Phortēgikón"
 msgstr "Ploîon Phortēgikón"
 
 #: simulation/templates/units/athen/ship_trireme.xml:8
-#: simulation/templates/units/spart/ship_trireme.xml:9
 msgid "Triḗrēs Athēnaía"
 msgstr "Triḗrēs Athēnaía"
 
@@ -1573,6 +1574,12 @@ msgstr "Seḫīr Ḥerev"
 msgid "Seḫīr Romaḥ"
 msgstr "Seḫīr Romaḥ"
 
+#: simulation/templates/units/cart/ship_bireme.xml:9
+#: simulation/templates/units/ptol/ship_bireme.xml:9
+#: simulation/templates/units/sele/ship_bireme.xml:9
+msgid "Bireme"
+msgstr "Bireme"
+
 #: simulation/templates/units/cart/ship_bireme.xml:10
 msgid "Du-Mašōt"
 msgstr "Du-Mašōt"
@@ -1592,9 +1599,18 @@ msgid ""
 "have +25% sea trading bonus."
 msgstr "Rıhtımlar arasında ticaret yap. Ek kazanç için gemiye tüccar yerleştir. ( her bir tüccar için +%20 kazanç ). Sudaki kârlı hazineleri toplayın. Kartacalılar +%25 deniz ticareti bonusuna sahipler."
 
+#: simulation/templates/units/cart/ship_quinquereme.xml:5
+msgid "Quinquereme"
+msgstr "Quinquereme"
+
 #: simulation/templates/units/cart/ship_quinquereme.xml:6
 msgid "Ḥameš-Mašōt"
 msgstr "Ḥameš-Mašōt"
+
+#: simulation/templates/units/cart/ship_trireme.xml:9
+#: simulation/templates/units/spart/ship_trireme.xml:10
+msgid "Trireme"
+msgstr "Trireme"
 
 #: simulation/templates/units/cart/ship_trireme.xml:10
 msgid "Tlat-Mašōt"
@@ -1701,7 +1717,7 @@ msgstr "MIzraklı Şampiyon Süvari"
 
 #: simulation/templates/units/han/champion_chariot_academy.xml:9
 msgid "Han War Chariot"
-msgstr ""
+msgstr "Han Atlı Savaş Arabası"
 
 #: simulation/templates/units/han/champion_chariot_academy.xml:10
 msgid "Zhanche"
@@ -1775,10 +1791,6 @@ msgstr "Kılıçlı Piyade"
 #: simulation/templates/units/han/ship_bireme.xml:9
 msgid "Zhàn Chuán"
 msgstr "Çift sıra kürekli Kadırga"
-
-#: simulation/templates/units/han/ship_fire.xml:9
-msgid "Huǒ Chuán"
-msgstr "Ateş Gemisi"
 
 #: simulation/templates/units/han/ship_fishing.xml:9
 msgid "Yú Chuán"
@@ -2188,15 +2200,15 @@ msgstr "Hypaspistḗs Argyraspídi"
 msgid "Rhomphaiaphoros"
 msgstr "Rhomphaiaphoros"
 
-#: simulation/templates/units/mace/hero_alexander_iii.xml:21
+#: simulation/templates/units/mace/hero_alexander_iii.xml:22
 msgid "Alexander III the Great"
 msgstr "III. Büyük İskender"
 
-#: simulation/templates/units/mace/hero_alexander_iii.xml:22
+#: simulation/templates/units/mace/hero_alexander_iii.xml:23
 msgid "Alexandros ho Megas"
 msgstr "Alexandros ho Megas"
 
-#: simulation/templates/units/mace/hero_alexander_iii.xml:23
+#: simulation/templates/units/mace/hero_alexander_iii.xml:24
 msgid "Counters: 1.2× vs Heroes."
 msgstr "Kahramanlara 1.2x karşı koyar."
 
@@ -2714,6 +2726,10 @@ msgid ""
 "have a +25% land trading bonus."
 msgstr "Kendi ve müttefik pazarlar arasında kaynak ticareti yap. Perslerin +%25 kara ticareti bonusu var."
 
+#: simulation/templates/units/pirates/ship_bireme.xml:9
+msgid "Cilician Pirate Ship"
+msgstr ""
+
 #: simulation/templates/units/plane.xml:5
 msgctxt "Name of an attack of a World War II fighter plane."
 msgid "Machine Guns"
@@ -2940,10 +2956,12 @@ msgid "Legiōnārius"
 msgstr "Legiōnārius"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_04.xml:14
+#: simulation/templates/units/rome/infantry_swordsman_e_centurion.xml:12
 msgid "Roman Centurion"
 msgstr "Romalı Yüzbaşı"
 
 #: simulation/templates/units/rome/champion_infantry_swordsman_04.xml:15
+#: simulation/templates/units/rome/infantry_swordsman_e_centurion.xml:13
 msgid "Centuriō"
 msgstr "Centuriō"
 
@@ -2986,6 +3004,15 @@ msgstr "Kıdemli Mızrakçı"
 msgid "Triārius"
 msgstr "Triārius"
 
+#: simulation/templates/units/rome/infantry_spearman_b.xml:25
+msgid "Elite rank Spearmen can be promoted to champion Centurions."
+msgstr ""
+
+#: simulation/templates/units/rome/infantry_spearman_e.xml:10
+#: simulation/templates/units/rome/infantry_swordsman_e.xml:10
+msgid "Give this combat veteran the rank of Centurion."
+msgstr ""
+
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:19
 msgid "Roman Swordsman"
 msgstr "Romalı Kılıçlı"
@@ -2993,6 +3020,10 @@ msgstr "Romalı Kılıçlı"
 #: simulation/templates/units/rome/infantry_swordsman_b.xml:20
 msgid "Hastātus"
 msgstr "Hastātus"
+
+#: simulation/templates/units/rome/infantry_swordsman_b.xml:22
+msgid "Elite rank Swordsmen can be promoted to champion Centurions."
+msgstr ""
 
 #: simulation/templates/units/rome/infantry_swordsman_slave.xml:20
 msgid "Servus"
@@ -3307,9 +3338,9 @@ msgstr "Perioikoi Ağır Mızraklı Piyade"
 msgid "Hoplítēs Períoikos"
 msgstr "Hoplítēs Períoikos"
 
-#: simulation/templates/units/spart/ship_trireme.xml:10
-msgid "Spartan Trireme"
-msgstr "Spartalı Trireme"
+#: simulation/templates/units/spart/ship_trireme.xml:9
+msgid "Triḗrēs"
+msgstr "Triḗrēs"
 
 #: simulation/templates/units/spart/support_female_citizen.xml:25
 msgid "Spartan Woman"

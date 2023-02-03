@@ -23,6 +23,7 @@
 # Patrick B
 # Paul Friedrig
 # Paul Müller
+# Philipp Falke
 # qwertz
 # Raymond Vetter
 # Robert Halbscheffel
@@ -30,9 +31,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Latein Lebt, 2021-2022\n"
+"Last-Translator: Philipp Falke, 2022\n"
 "Language-Team: German (http://www.transifex.com/wildfire-games/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -637,10 +638,13 @@ msgid "Chain Pump"
 msgstr "Kettenpumpe"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
+#: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
+#: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
+#: simulation/data/technologies/gather_farming_training.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
-msgid "Workers +20% rice gather rate."
-msgstr "Arbeiter +20 % Sammelrate für Reis."
+msgid "Workers +20% grain gather rate."
+msgstr "Arbeiter +20 % Sammelrate für Getreide."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -649,12 +653,6 @@ msgstr "Zusätzliche Nährstoffe für Farmen."
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
 msgstr "Dünger"
-
-#: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
-#: simulation/data/technologies/gather_farming_plows.jsontooltip
-#: simulation/data/technologies/gather_farming_training.jsontooltip
-msgid "Workers +20% grain gather rate."
-msgstr "Arbeiter +20 % Sammelrate für Getreide."
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -1095,9 +1093,9 @@ msgstr "Megalopolis"
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Steige zur Großstadtphase auf, die mehr Einheiten, Gebäude und Technologien freischaltet. Verwaltungssitze +50 % Gebietsradius. Gebäude +9 Einnehmpunkteregeneration pro einquartierter Einheit. Arbeiter +10 % Metallsammelrate."
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units. Workers +10% metal gather rate."
+msgstr "Schreite in die Stadt Phase, welche mehr Einheiten und Technologien freischaltet, vor. Zivile Zentren erhalten +50% auf den Einfluss Radius der Terretorien. Gebäude erhalten +1 Erorberungpunkte Regenerations Rate für einquartierte Einheiten. Arbeiter erhalten +10% mentale Sammel Rate."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1112,9 +1110,9 @@ msgstr "Jùn"
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit."
-msgstr "Steige zur Großstadtphase auf, die mehr Einheiten, Gebäude und Technologien freischaltet. Verwaltungssitze +50 % Gebietsradius. Gebäude +9 Einnehmpunkteregeneration pro einquartierter Einheit."
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units."
+msgstr "Schreite in die Stadt Phase, welche mehr Einheiten und Technologien freischaltet, vor. Zivile Zentren erhalten +50% auf den Einfluss Radius der Terretorien. Gebäude erhalten +1 Erorberungpunkte Regenerations Rate für einquartierte Einheiten."
 
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
@@ -1126,9 +1124,9 @@ msgstr "Steige von einer lebhaften Stadt zu einer wahren Metropole voll mit Wund
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit. Stable −10% batch training time."
-msgstr "Steige zur Großstadtphase auf, die mehr Einheiten, Gebäude und Technologien freischaltet. Verwaltungssitze +50 % Gebietsradius. Strukturen +9 Einnehmpunkteregeneration pro einquartierter Einheit. Ställe −10 % Gruppenausbildungszeit."
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units. Stable −10% batch training time."
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1167,9 +1165,9 @@ msgstr "Kōmopolis"
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Steige zur Stadtphase auf, die mehr Einheiten, Gebäude und Technologien freischaltet. Verwaltungssitze +30 % Gebietsradius. Gebäude +7 Einnehmpunkteregeneration pro einquartierter Einheit. Arbeiter +10 % Metallsammelrate."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units. Workers +10% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1183,9 +1181,9 @@ msgstr "Xìan"
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit."
-msgstr "Steige zur Stadtphase auf, die mehr Einheiten, Gebäude und Technologien freischaltet. Verwaltungssitze +30 % Gebietsradius. Gebäude +7 Einnehmpunkteregeneration pro einquartierter Einheit."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_pers.jsondescription
 msgid ""
@@ -1197,9 +1195,9 @@ msgstr "Steige von einem kleinen Dorf zu einer lebhaften Stadt auf, bereit schne
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit. Stable −10% batch training time."
-msgstr "Steige zur Stadtphase auf, die mehr Einheiten, Gebäude und Technologien freischaltet. Verwaltungssitze +30 % Gebietsradius. Strukturen +7 Einnehmpunkteregeneration pro einquartierter Einheit. Ställe −10 % Gruppenausbildungszeit."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units. Stable −10% batch training time."
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"

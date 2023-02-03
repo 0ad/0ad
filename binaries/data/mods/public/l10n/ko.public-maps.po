@@ -4,7 +4,7 @@
 # project.
 # Translators:
 # 76407af6b051a571d67c2577de2183db_7380deb
-# JungHee Lee
+# Junghee Lee
 # Gu Hong Min
 # ks k
 # Muk Myung-Hee MyungHee
@@ -14,9 +14,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2022\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,7 +46,7 @@ msgstr "아프리카 초원"
 msgid ""
 "High Alpine mountains surrounding deep valleys strung with mountain streams "
 "and finger-like lakes."
-msgstr "깊은 골짜기를 둘러싸여 있는 높은 알프스 산맥은 산줄기와 손가락 같은 호수로 둘러싸여 있습니다."
+msgstr "계곡과 손가락 모양의 호수로 연결된 깊은 계곡을 둘러싼 높은 알프스 산맥입니다."
 
 #: maps/random/alpine_lakes.jsonsettings.Name
 msgid "Alpine Lakes"
@@ -54,17 +54,17 @@ msgstr "알파인 호수"
 
 #: maps/random/alpine_valley.jsonsettings.Description
 msgid "High Alpine mountains bordering deep valleys."
-msgstr "깊은 계곡을 경계로하는 고산지대."
+msgstr "깊은 계곡과 맞닿은 높은 알프스 산맥입니다."
 
 #: maps/random/alpine_valley.jsonsettings.Name
 msgid "Alpine Valley"
-msgstr "알프스 협곡"
+msgstr "알프스의 계곡"
 
 #: maps/random/ambush.jsonsettings.Description
 msgid ""
 "High bluffs overlook the terrain below. Bountiful resources await on the "
 "cliffs, but beware of enemies planning an ambush."
-msgstr "높은 벼랑에서 아래의 지형을 내려다 볼수 있습니다. 풍부한 자원이 벼랑에 기다리고 있지만, 매복을 계획하고 있는 적들에게는 주의 합니다."
+msgstr "높은 절벽이 아래의 지형을 내려다보고 있습니다. 절벽에는 풍부한 자원이 준비되어 있지만, 매복을 계획하는 적들을 조심해야 합니다."
 
 #: maps/random/ambush.jsonsettings.Name
 msgid "Ambush"
@@ -257,7 +257,7 @@ msgid ""
 "amongst themselves, but also beat back these ruthless invaders. Ultimately, "
 "the Boii were defeated by the rising power of the Dacians, hence leading to "
 "the reemergence of the Geto-Dacian Confederation under King Burebista."
-msgstr "플레이어들은 켈트 보이족에 의해 파노니아 침략 후 다뉴브 강둑을 따라 시작합니다. 이 땅에 대한 그들의 지배력을 공고히 하기위해, 나머지 외국 문화를 뿌리 뽑기 위해 켈트족의 지원군이 파견되어졌습니다. 플레이어들은 그들 사이에서 힘을 겨루어야할 뿐만 아니라 이러한 무자비한 침략자들을 물리쳐야합니다. 결국, 보이족은 다키아인의 상승하는 힘에 정복당했기때문에 부레비스타 왕의 치하에서 게토-다키아 연맹이 다시 출현하게 되었습니다."
+msgstr "플레이어들은 켈트족인 보이이 부족에 의해 파노니아 침략 후 다뉴브 강둑을 따라 시작합니다. 이 땅에 대한 그들의 지배력을 공고히 하기위해, 나머지 외국 문화를 뿌리 뽑기 위해 켈트족의 지원군이 파견되어졌습니다. 플레이어들은 그들 사이에서 힘을 겨루어야할 뿐만 아니라 이러한 무자비한 침략자들을 물리쳐야합니다. 결국, 보이족은 다키아인의 상승하는 힘에 정복당했기때문에 부레비스타 왕의 치하에서 게토-다키아 연맹이 다시 출현하게 되었습니다."
 
 #: maps/random/danubius.jsonsettings.Name
 msgid "Danubius"
@@ -342,7 +342,7 @@ msgstr "우리는 마른 땅을 찾아야 합니다. 우리 땅은 곧 물에 �
 
 #: maps/random/extinct_volcano_triggers.js:62
 msgid "The lakes start swallowing the land, we have to find shelter!"
-msgstr "호수가 땅을 삼키기 시작합니다. 피난처를 찾아야 합니다!"
+msgstr "호수들이 땅을 삼키기 시작합니다. 주거지를 찾아야 합니다!"
 
 #: maps/random/fields_of_meroe.jsonsettings.Description
 msgid ""
@@ -420,7 +420,7 @@ msgid ""
 "cliffs in the deep ocean. Small passages at the base of the cliffs make for "
 "tight fighting and easy fortification. Will you fight your way through the "
 "narrow passageways or take to the sea?"
-msgstr "플레이어들은 안전한 항구의 잔잔한 바다에서 약간의 가벼운 낚시 기회로 시작합니다. 많은 해산물들이 깊은 바다의 보호 절벽 너머에 있습니다. 절벽의 기슭에 있는 작은 통로는 격렬한 전투와 쉬운 요새화를 가능하게 합니다. 좁은 통로를 뚫고 싸우시겠습니까? 아니면 바다로 나가시겠습니까?"
+msgstr "플레이어들은 보호를 받는 항구의 잔잔한 바다에서 일부 가벼운 낚시 기회를 가지고 시작합니다. 깊은 바다의 보호 절벽 너머에는 풍부한 해산물이 있습니다. 절벽의 기슭에 있는 작은 통로는 격렬한 전투와 요새화를 용이하게 합니다. 좁은 통로를 통해 싸우시겠습니까, 아니면 바다로 나가시겠습니까?"
 
 #: maps/random/harbor.jsonsettings.Name
 msgid "Harbor"
@@ -489,7 +489,7 @@ msgstr "플레이어들은 주변에 많은 다른 플레이어들이 있는 동
 
 #: maps/random/islands.jsonsettings.Name
 msgid "Islands"
-msgstr "섬들"
+msgstr "군도"
 
 #: maps/random/jebel_barkal.jsonsettings.Description
 msgid ""
@@ -632,7 +632,7 @@ msgstr "플레이어들은 지도의 동쪽 부분에있는 작은 섬에서 시
 #: maps/random/migration.jsonsettings.Name
 #: maps/scenarios/migration.xml:Name:26
 msgid "Migration"
-msgstr "이주"
+msgstr "대이동"
 
 #: maps/random/neareastern_badlands.jsonsettings.Description
 msgid ""
@@ -860,7 +860,7 @@ msgid ""
 " early morning. The ground is full of gravel and rocks, but silver fir and "
 "spruce trees grow between them and provide shelter for deer and mountain "
 "goats."
-msgstr "알프스의 높은 정상 사이에 있는 계곡은 이른 아침 안개로 가득차 있습니다. 땅에는 자갈과 바위가 가득하지만, 그 사이로 은빛 전나무와 가문비나무가 자라고 사슴과 산양에게 쉼터를 제공합니다."
+msgstr "알프스의 높은 정상 사이에 있는 계곡은 이른 아침 안개로 가득차 있습니다. 땅에는 자갈과 바위가 가득하지만, 그 사이로 은빛 전나무와 가문비나무가 자라고 사슴과 산양에게 주거지를 제공합니다."
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Title
 msgctxt "biome definition"
@@ -973,7 +973,7 @@ msgstr "웅장하고 다양한 활엽수 숲으로 가는 길이있는 초원이
 #: maps/random/rmbiome/generic/temperate.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Temperate"
-msgstr "온난함"
+msgstr "온대"
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Description
 msgctxt "biome definition"
@@ -1098,7 +1098,7 @@ msgid ""
 "Teams start off with nearly adjacent civic centers, offering easy military "
 "and construction cooperation. With slivers of personal territory, teammates "
 "must rely on each other to defend their rear."
-msgstr "각 팀들은 가깝게 인접한 시민 회관에서 시작하여 군사 및 건설 협력을 쉽게 수행 할 수 있습니다. 각 사적인 영토의 길이가 길기 때문에 각 팀원들은 그들의 후방을 방어하기 위해 서로 의지해야합니다."
+msgstr "각 팀들은 가깝게 인접한 시민 회관에서 시작하여 군대 및 건설 협력을 쉽게 수행 할 수 있습니다. 각 사적인 영토의 길이가 길기 때문에 각 팀원들은 그들의 후방을 방어하기 위해 서로 의지해야합니다."
 
 #: maps/random/stronghold.jsonsettings.Name
 msgid "Stronghold"
@@ -1127,7 +1127,7 @@ msgstr "적들이 공격해옵니다!"
 #: maps/random/survivalofthefittest_triggers.js:289
 #, javascript-format
 msgid "%(player)s has been defeated (lost civic center)."
-msgstr "%(player)s 님이 패했습니다 (시민회관 잃음)."
+msgstr "%(player)s님이 패배했습니다 (시민회관 잃음)."
 
 #: maps/random/syria.jsonsettings.Description
 msgid "Players start in a plains with slightly rolling highlands."
@@ -1227,7 +1227,7 @@ msgstr "무작위 육지"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Description
 msgid "Choose a random naval landscape"
-msgstr "임의의 해상 풍경 선택"
+msgstr "임의의 해전 지형 선택"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Description
 msgid "A huge sea is dividing the map into two halves."
@@ -1235,7 +1235,7 @@ msgstr "거대한 바다가지도를 두 부분으로 나누고 있습니다."
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[0].Name
 msgid "Naval: Central Sea"
-msgstr "해군: 중부 해역"
+msgstr "해전: 중부 해역"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[1].Description
 msgid "Players are scattered across island chains and disconnected islands."
@@ -1243,7 +1243,7 @@ msgstr "플레이어들은 연결된 섬들과 단절된 섬들로 흩어져 있
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[1].Name
 msgid "Naval: Archipelago"
-msgstr "해군: 군도"
+msgstr "해전: 군도"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[2].Description
 msgid "A central lake with rivers possibly separating neighboring players."
@@ -1251,11 +1251,11 @@ msgstr "강이 흐르는 중앙 호수로 주변 플레이어들을 분리시킬
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Items[2].Name
 msgid "Naval: Lake and rivers"
-msgstr "해군: 호수와 강"
+msgstr "해전: 호수와 강"
 
 #: maps/random/unknown.jsonsettings.Landscapes[1].Name
 msgid "Random Naval"
-msgstr "무작위 해군"
+msgstr "무작위 해전"
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
@@ -1331,6 +1331,7 @@ msgstr "아카디아"
 #: maps/scenarios/walls.xml:PlayerData[0].Name:26
 #: maps/scenarios/walltest.xml:PlayerData[0].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[1].Name:39
 msgid "Player 1"
 msgstr "플레이어 1"
 
@@ -1355,6 +1356,7 @@ msgstr "플레이어 1"
 #: maps/scenarios/walls.xml:PlayerData[1].Name:26
 #: maps/scenarios/walltest.xml:PlayerData[1].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[2].Name:39
 msgid "Player 2"
 msgstr "플레이어 2"
 
@@ -1366,19 +1368,19 @@ msgstr "마실리아의 젊은 땅에서 식민지를 지원하거나 그리스�
 
 #: maps/scenarios/azure_coast_2p.xml:Name:26
 msgid "Azure Coast 2"
-msgstr "푸른 해안 2"
+msgstr "하늘빛 해안 2"
 
 #: maps/scenarios/azure_coast_2p.xml:PlayerData[0].Name:26
 msgid "Greeks"
-msgstr "그리스인들"
+msgstr "그리스인"
 
 #: maps/scenarios/azure_coast_2p.xml:PlayerData[1].Name:26
 msgid "Celts"
-msgstr "켈트족"
+msgstr "켈트인"
 
 #: maps/scenarios/azure_coast_4p.xml:Name:26
 msgid "Azure Coast 3"
-msgstr "푸른 해안 3"
+msgstr "하늘빛 해안 3"
 
 #: maps/scenarios/azure_coast_4p.xml:PlayerData[0].Name:26
 msgid "East"
@@ -1398,7 +1400,7 @@ msgstr "북"
 
 #: maps/scenarios/azure_coast_8p.xml:Name:38
 msgid "Azure Coast 1"
-msgstr "푸른 해안 1"
+msgstr "하늘빛 해안 1"
 
 #: maps/scenarios/azure_coast_8p.xml:PlayerData[0].Name:38
 msgid "Antipolis"
@@ -1436,7 +1438,7 @@ msgstr "베르구니"
 msgid ""
 "Rome battles against the Etruscan city of Veii for control of the Tiber "
 "River basin."
-msgstr "로마는 티베르 강 유역을 장악하기 위해 에트루리아 도시 베이와 싸우고 있습니다."
+msgstr "로마는 티베르 강 유역의 지배권을 놓고 에트루리아의 도시 베이를 상대로 싸우고 있습니다."
 
 #: maps/scenarios/battle_for_the_tiber.xml:Name:26
 msgid "Battle for the Tiber"
@@ -1457,7 +1459,7 @@ msgstr "갈리아 침략자"
 
 #: maps/scenarios/belgian_bog_night.xml:Description:38
 msgid "Two Celtic tribes face off across a large bog at night."
-msgstr "두 켈트 부족은 밤에 큰 늪지를 가로 질러 마주보고 있습니다."
+msgstr "두 켈트족 부족들은 밤에 큰 늪지를 가로 질러 마주보고 있습니다."
 
 #: maps/scenarios/belgian_bog_night.xml:Name:38
 msgid "Belgian Bog Night"
@@ -1670,7 +1672,7 @@ msgid ""
 "The Peloponnesian valley of Laconia, homeland of the Spartans.\n"
 "\n"
 "The Macedonians are encroaching into Spartan lands. After losing a pitched battle against the invaders, the Spartans must rebuild their army quickly before the Macedonians overrun the entire valley."
-msgstr "스파르타인의 고향인 라코니아의 펠로폰네소스 계곡.\n\n마케도니아인들이 스파르타의 영토를 잠식하고 있습니다. 침략자들에 대한 투쟁에서 패한 후, 스파르타인들은 마케도니아인들이 계곡 전체를 점령하기 전에 그들의 군대를 빨리 재건해야 합니다."
+msgstr "스파르타인의 고향인 라코니아의 펠로폰네소스 계곡입니다.\n\n마케도니아인들이 스파르타의 영토를 잠식하고 있습니다. 침략자들에 대한 투쟁에서 패한 후, 스파르타인들은 마케도니아인들이 계곡 전체를 점령하기 전에 그들의 군대를 빨리 재건해야 합니다."
 
 #: maps/scenarios/laconia.xml:Name:26
 msgid "Laconia"
@@ -1726,7 +1728,7 @@ msgstr "네 명의 플레이어가 광활한 나일강 삼각주를 뒤덮었습
 
 #: maps/scenarios/necropolis.xml:Name:38
 msgid "Necropolis"
-msgstr "네크로폴리스"
+msgstr "공동묘지"
 
 #: maps/scenarios/pathfinding_demo.xml:Description:38
 msgid "A map for testing unit movement algorithms."
@@ -1814,7 +1816,7 @@ msgstr "자원 데모"
 
 #: maps/scenarios/road_demo.xml:Description:26
 msgid "Demo map showcasing Temperate Road decals."
-msgstr "온대 도로 데칼을 보여주는 데모 지도."
+msgstr "온대 도로의 단순한 로고 부착을 보여주는 데모 지도입니다."
 
 #: maps/scenarios/road_demo.xml:Name:26
 msgid "Road Decals Demo"
@@ -1839,7 +1841,7 @@ msgstr "아우루스 만리우스 카피토리누스"
 
 #: maps/scenarios/sahel.xml:PlayerData[1].Name:38
 msgid "Hasdrubal the Fair"
-msgstr "공정한 하스드루발"
+msgstr "잘생긴 하스드루발"
 
 #: maps/scenarios/sahel.xml:PlayerData[2].Name:38
 msgid "Artaxshacha II"
@@ -2051,11 +2053,11 @@ msgstr "사바나 좁은 골짜기"
 msgid ""
 "The African serengeti has herds of animals criss crossing the plain. Mineral"
 " wealth is bountiful and wood is in full supply."
-msgstr "아프리카 세렝게티에는 수많은 동물들이 벌판을 가로지르고 있습니다. 광물과 목재는 충분합니다."
+msgstr "아프리카 세렌게티에는 수많은 동물들이 벌판을 가로지르고 있습니다. 광물과 목재는 충분합니다."
 
 #: maps/scenarios/serengeti.xml:Name:26
 msgid "Serengeti 1"
-msgstr "세렝게티  1"
+msgstr "세렌게티  1"
 
 #: maps/scenarios/serengeti.xml:PlayerData[1].Name:26
 msgid "Iberia"
@@ -2071,11 +2073,11 @@ msgstr "페르시아"
 
 #: maps/scenarios/ship_formations.xml:Description:26
 msgid "Ship formations mockup."
-msgstr "함선 대형 모형."
+msgstr "선박 대형 모형입니다."
 
 #: maps/scenarios/ship_formations.xml:Name:26
 msgid "Ship Formations"
-msgstr "함선 대형"
+msgstr "선박 대형"
 
 #: maps/scenarios/ship_formations.xml:PlayerData[0].Name:26
 msgid "Ships"
@@ -2101,7 +2103,7 @@ msgstr "시와 오아시스"
 
 #: maps/scenarios/temperate_map.xml:Name:26
 msgid "Base Temperate Map"
-msgstr "기본 온대 지도"
+msgstr "출발점 온대 지도"
 
 #: maps/scenarios/territory_demo.xml:Description:26
 msgid "A demo map showing the territory effects of each type of structure."
@@ -2125,7 +2127,7 @@ msgstr "기초 테스트 지도"
 msgid ""
 "The Celts invade Greece. Fight through the central valley or cut through the"
 " rich highlands in order to secure the lands around Delphi!"
-msgstr "켈트족이 그리스를 침략합니다. 델파이 주변의 땅을 확보하기 위해 중앙 계곡을 통해 싸우거나 풍부한 고지대를 통과해야 합니다!"
+msgstr "켈트인이 그리스를 침략합니다. 델파이 주변의 땅을 확보하기 위해 중앙 계곡을 통해 싸우거나 풍부한 고지대를 통과해야 합니다!"
 
 #: maps/scenarios/the_massacre_of_delphi.xml:Name:38
 msgid "Massacre of Delphi"
@@ -2138,11 +2140,11 @@ msgid ""
 "\"Beware such pride. The East has a way of swallowing men and their dreams.\"\n"
 "\n"
 "Will Alexander push his way through The Persian Gates and fulfill his destiny, or will Ariobarzanes defend the rugged ancient land of Persis against a foreign invader?"
-msgstr "\"동부로 가는 것은 언제나 그리스인의 꿈이었습니다.\"\n\n\"그런 자존심을 조심합니다. 동양은 인간과 꿈을 삼키는 방법이 있습니다.\"\n\n알렉산더가 페르시아 문단을 밀고 들어가 그의 운명을 완수할까요, 아니면 아리오바르자네스가 외국의 침략자에 맞서 페르시아의 거친 고대의 땅을 방어 할까요?"
+msgstr "\"동부로 가는 것은 언제나 그리스인의 꿈이었습니다.\"\n\n\"그런 자존심을 조심합니다. 동양은 인간과 꿈을 삼키는 방법이 있습니다.\"\n\n알렉산더는 페르시아 성문을 통해 그의 길을 밀고 들어가 그의 운명을 완수할 것인가, 아니면 아리오바르자네스는 외세의 침략자로부터 험준한 고대의 땅 페르시스를 방어할 것인가?"
 
 #: maps/scenarios/the_persian_gates.xml:Name:26
 msgid "The Persian Gates"
-msgstr "페르시아의 문들"
+msgstr "페르시아의 수문"
 
 #: maps/scenarios/the_persian_gates.xml:PlayerData[0].Name:26
 msgid "Alexandros Megas"
@@ -2168,7 +2170,7 @@ msgstr "로마인들은 세 번째이자 마지막 시간 동안 마케도니아
 
 #: maps/scenarios/third_macedonian_war.xml:Name:26
 msgid "Third Macedonian War"
-msgstr "세번째 마케도니아-로마 전쟁"
+msgstr "3차 마케도니아-로마 전쟁"
 
 #: maps/scenarios/third_macedonian_war.xml:PlayerData[0].Name:26
 msgid "Lucius Aemilius Paullus"
@@ -2349,12 +2351,12 @@ msgstr "우리는 군단병"
 msgid ""
 "%(_player_)s and their allies have captured all relics and will win in "
 "%(time)s."
-msgstr "%(_player_)s님과 그 동맹국들은 모든 유물을 획득했으며 %(time)s 후에 승리할 것입니다."
+msgstr "%(_player_)s님과 그 동맹국들은 모든 유물을 획득했으며 %(time)s 안에 승리할 것입니다."
 
 #: maps/scripts/CaptureTheRelic.js:145
 #, javascript-format
 msgid "%(_player_)s has captured all relics and will win in %(time)s."
-msgstr "%(_player_)s님이 모든 유물을 점령했으며 %(time)s 후에 승리할 것입니다."
+msgstr "%(_player_)s님이 모든 유물을 점령했으며 %(time)s 안에 승리할 것입니다."
 
 #: maps/scripts/CaptureTheRelic.js:156
 #, javascript-format
@@ -2387,7 +2389,7 @@ msgstr "%(player)s님이 패배했습니다 (모든 중요 유닛과 건축물 �
 #: maps/scripts/ConquestCivicCentres.js:5
 #, javascript-format
 msgid "%(player)s has been defeated (lost all civic centres)."
-msgstr "%(player)s 님이 패했습니다 (모든 시민회관 잃음)."
+msgstr "%(player)s님이 패배했습니다 (모든 시민회관 잃음)."
 
 #: maps/scripts/ConquestCivicCentres.js:9
 #, javascript-format
@@ -2426,17 +2428,17 @@ msgstr "%(player)s님이 패배했습니다 (영웅 잃음)."
 msgid ""
 "%(_player_)s owns a Wonder and %(_player_)s and their allies will win in "
 "%(time)s."
-msgstr "%(_player_)s님이 불가사의를 소유하고 있다면 %(_player_)s님과 그 동맹은 %(time)s 후에 승리할 것입니다."
+msgstr "%(_player_)s님이 불가사의를 소유하고 있으며 %(_player_)s님과 그 동맹국은 %(time)s 안에 승리할 것입니다."
 
 #: maps/scripts/WonderVictory.js:81
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and will win in %(time)s."
-msgstr "%(_player_)s님이 불가사의를 소유하고 있으며 %(time)s 후에 승리할 것입니다."
+msgstr "%(_player_)s님이 불가사의를 소유하고 있으며 %(time)s 안에 승리할 것입니다."
 
 #: maps/scripts/WonderVictory.js:92
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and you will win in %(time)s."
-msgstr "%(_player_)s님이 불가사의를 소유하고 있으며 %(time)s 후에 승리할 것입니다"
+msgstr "%(_player_)s님이 불가사의를 소유하고 있으며 당신은 %(time)s 안에 승리할 것입니다"
 
 #: maps/scripts/WonderVictory.js:104
 #, javascript-format
@@ -2487,11 +2489,11 @@ msgid ""
 "The high peaks and valleys of the Alps.\n"
 "\n"
 "Each player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range."
-msgstr "알프스의 높은 봉우리와 계곡.\n\n각 플레이어들은 안전한 녹색 계곡에 자리한 시합을 시작합니다. 그 사이에는 위험한 알프스 산맥이 있습니다."
+msgstr "알프스의 높은 봉우리와 계곡입니다.\n\n각 플레이어들은 안전한 녹색 계곡에 자리한 시합을 시작합니다. 그 사이에는 위험한 알프스 산맥이 있습니다."
 
 #: maps/skirmishes/alpine_valleys_2p.xml:Name:39
 msgid "Alpine Valleys (2)"
-msgstr "알프스 협곡 (2)"
+msgstr "알프스의 계곡 (2)"
 
 #: maps/skirmishes/atlas_valleys_8p.xml:Description:39
 msgid ""
@@ -2632,7 +2634,7 @@ msgstr "깊은 바위 협곡이 사막을 가르고 있습니다.\n\n각 플레�
 msgid "Death Canyon (2)"
 msgstr "죽음의 협곡 (2)"
 
-#: maps/skirmishes/deccan_plateau_2p.xml:Description:38
+#: maps/skirmishes/deccan_plateau_2p.xml:Description:39
 msgid ""
 "Two players square off across the heavily forested Deccan Plateau of central India.\n"
 "\n"
@@ -2641,9 +2643,9 @@ msgid ""
 "Virgin resources lie to the lowlands on either side of the plateau. The lowlands also offer opportunity for expansion and strategic maneuvering."
 msgstr "두 플레이어는 인도 중부의 숲이 우거진 데칸 고원을 가로질러 광장을 가로질러 광장을 장식합니다.\n\n각 플레이어들은 비어있는 농장과 창고로 시합을 시작합니다.\n\n개간되지 않은 자원은 고원 양쪽의 저지대에 있습니다. 낮은 지대는 또한 확장 및 전략적 기동을 위한 기회를 제공합니다."
 
-#: maps/skirmishes/deccan_plateau_2p.xml:Name:38
-msgid "Deccan Plateau (2)"
-msgstr "데칸 고원 (2)"
+#: maps/skirmishes/deccan_plateau_2p.xml:Name:39
+msgid "Deccan Plateau (2 players)"
+msgstr "데칸 고원 (2인용)"
 
 #: maps/skirmishes/dueling_cliffs_3pv3p.xml:Description:39
 msgid ""
@@ -2722,7 +2724,7 @@ msgid ""
 "Each player begins the match with a wooden palisade and some guard towers atop a low embankment.\n"
 "\n"
 "Watch out for Romans passing by!"
-msgstr "당신의 갈리아 전초기지를 당신의 위험한 이웃들의 공격으로부터 방어합니다!\n\n각 플레이어들은 낮은 제방 꼭대기에 있는 나무 울타리와 경비탑으로 시합을 시작합니다.\n\n지나가는 로마인들을 조심하세요!"
+msgstr "당신의 갈리아 전초기지를 당신의 위험한 이웃들의 공격으로부터 방어합니다!\n\n각 플레이어들은 낮은 제방 꼭대기에 있는 나무로 된 말뚝 울타리와 경비탑으로 시합을 시작합니다.\n\n지나가는 로마인들을 조심하세요!"
 
 #: maps/skirmishes/gallic_fields_3p.xml:Name:38
 msgid "Gallic Fields (3)"
@@ -2874,17 +2876,17 @@ msgstr "큰 오아시스는 각 플레이어의 거주 지역을 나누는 산�
 
 #: maps/skirmishes/median_oasis_2p.xml:Name:39
 msgid "Median Oasis (2)"
-msgstr "메디아 오아시스 (2)"
+msgstr "중앙에 있는 오아시스 (2)"
 
 #: maps/skirmishes/median_oasis_4p.xml:Name:38
 msgid "Median Oasis (4)"
-msgstr "메디아 오아시스 (4)"
+msgstr "중앙에 있는 오아시스 (4)"
 
 #: maps/skirmishes/mediterranean_cove_2p.xml:Description:38
 msgid ""
 "A sheltered natural harbour on the Mediterranean coast provides the "
 "resources for battle."
-msgstr "지중해 연안에 숨겨져있는 자연 항구는 전투 자원을 제공합니다."
+msgstr "지중해 연안의 보호를 받는 자연 항구는 전투를 위한 자원을 제공합니다."
 
 #: maps/skirmishes/mediterranean_cove_2p.xml:Name:38
 msgid "Mediterranean Coves (2)"
@@ -2967,7 +2969,7 @@ msgstr "오베드스카 보그 나이트 (4)"
 
 #: maps/skirmishes/oceanside_2p.xml:Description:39
 msgid "A Lush temperate biome along an ocean. "
-msgstr "바다를 따라 흐르는 무성한 온대 생물군계."
+msgstr "바다를 따라 흐르는 무성한 온대 생물군계입니다."
 
 #: maps/skirmishes/oceanside_2p.xml:Name:39
 msgid "Oceanside (2)"
@@ -3047,7 +3049,7 @@ msgid ""
 "The steppes of central Asia. A wide open grassland with few trees (about 90%"
 " fewer trees than on a temperate or Aegean map). Animal life is plentiful "
 "though, so take advantage of the hunting available. "
-msgstr "중앙 아시아의 대초원. 나무가 거의 없는 넓게 열린 초원 (온대 또는에게 해지도보다 나무 수가 약 90 % 적음). 그러나 살아 있는 동물은 풍부하므로 사냥을 이용할 수 있습니다."
+msgstr "중앙 아시아의 대초원. 나무가 거의 없는 넓게 열린 초원 (온대 또는 에게해 지도보다 나무 수가 약 90 % 적음). 그러나 살아 있는 동물은 풍부하므로 사냥을 이용할 수 있습니다."
 
 #: maps/skirmishes/scythia_4p.xml:Name:39
 msgid "Scythian Steppes (4)"
@@ -3123,11 +3125,11 @@ msgstr "팀 오아시스 (2v2)"
 
 #: maps/skirmishes/temperate_roadway_2p.xml:Description:39
 msgid "Temperate zone map with plentiful resources. Map Size: Small"
-msgstr "풍부한 자원으로 온화한 지역지도. 지도 크기: 작음"
+msgstr "자원이 풍부한 온대 지역 지도입니다. 지도 크기: 작음"
 
 #: maps/skirmishes/temperate_roadway_2p.xml:Name:39
 msgid "Temperate Roadway (2)"
-msgstr "차분한 도로 (2)"
+msgstr "온대 도로 (2)"
 
 #: maps/skirmishes/thessalian_plains_4p.xml:Description:38
 msgid ""

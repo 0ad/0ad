@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: David Sowa <isithere2@yahoo.com>, 2022\n"
+"Last-Translator: David Sowa <isithere2@yahoo.com>, 2023\n"
 "Language-Team: Asturian (https://www.transifex.com/wildfire-games/teams/17418/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,21 +21,21 @@ msgstr ""
 #: campaigns/new_maps.jsonDescription
 msgctxt "Campaign Template"
 msgid ""
-"Discover the new and improved maps in Alpha XXVI with a demo campaign, "
+"Discover the new and improved maps in Alpha XXVII with a demo campaign, "
 "taking you through all of them."
 msgstr ""
-"Discubri læs nuœvæs & melyores geographíæs de l Alpha XXVI cun una campaña "
-"demonstrativa que percuœrre todæs elhæs."
+"Discubri lɐs nuövɐs & melyores geographíɐs de l’Alpha XXVII cun una campaña "
+"demonstrativa que percuörre todɐs elhɐs."
 
 #: campaigns/new_maps.jsonName
 msgctxt "Campaign Template"
 msgid "Demo campaign - new maps"
-msgstr "Campaña demonstrativa - geographíæs nuœvæs"
+msgstr "Campaña demonstrativa - geographíɐs nuövɐs"
 
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
-msgstr "Deprehender a ẍogar a l 0 A.D."
+msgstr "Deprehender a jogar a 0 A.D."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
 msgctxt "Campaign Template"
@@ -46,10 +46,10 @@ msgid ""
 " fast at the start, be prepared to run through the initial bit several "
 "times."
 msgstr ""
-"N esti cursin vamus deprehender como intamar a ẍeitu. A l principio, lo maæs"
-" importante ye recaldar recursos lo maæs rápido possible para que lhuœgo "
-"atañas produzir mílites abondos. Advertencia: El cursin comiença per-rápido,"
-" sta-te preparadu pa repetillu variæs vezes."
+"N esti cursin vamus deprehender como intamar a jeitu. A l principio, lo más "
+"importante ye recaldar recursos lo más rápido possible para que lhuögo "
+"atañas produzir milicia abonda. Advertencia: El cursin comiença perrápido, "
+"sta-te preparadu pa repetí-llu variɐs vezes."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
@@ -59,22 +59,22 @@ msgstr "Percursu económicu"
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "N esti docime elementar vas deprehender a ẍogar a 0 A.D."
+msgstr "N esti tutorial elementar vas deprehender a jogar a 0 A.D."
 
 #: campaigns/tutorial.jsonLevels.introduction.Name
 msgctxt "Campaign Template"
 msgid "Introductory Tutorial"
-msgstr "Docime introductorio"
+msgstr "Tutorial introductorio"
 
 #: campaigns/tutorial.jsonName
 msgctxt "Campaign Template"
 msgid "Tutorial"
-msgstr "Docime"
+msgstr "Tutorial"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:155
 msgctxt "campaign status"
 msgid "Completed"
-msgstr "Per-fheʒo-se"
+msgstr "Perfezho-se"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:157
 msgctxt "campaign status"
@@ -100,7 +100,7 @@ msgstr "Tornar a l menú principal"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):62
 msgid "Saved Games"
-msgstr "Partidæs guardadæs"
+msgstr "Partidɐs guardadɐs"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
 msgid "Start Scenario"
@@ -122,14 +122,14 @@ msgstr "Stadu"
 
 #: gui/campaigns/load_modal/LoadModal.js:18
 msgid "file cannot be loaded"
-msgstr "Nun se pudo cargare l archivo"
+msgstr "Nun se pudo cargar l archivo"
 
 #: gui/campaigns/load_modal/LoadModal.js:104
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
 msgstr ""
-"¿Stas ciertu que quieres esmemorecere la instancia “%s”? Esto nun se puœde "
-"disfhazer."
+"¿Stas ciertu que quieres esmemorecer la instancia “%s”? Esto nun se puöde "
+"disfazher."
 
 #: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
@@ -150,7 +150,7 @@ msgstr "Cargare la campaña"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):20
 msgid "No ongoing campaigns."
-msgstr "Nun ha hi campañæs in cursu."
+msgstr "Nun ha hi campañɐs in cursu."
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
@@ -171,7 +171,7 @@ msgstr "Intamar una campaña"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run:"
-msgstr "Noma esta nuœva instancia, por favor:"
+msgstr "Noma esta nuöva instancia, por favor:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
@@ -184,7 +184,7 @@ msgstr "Nun s’escolyeu campaña dala."
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
 msgid "Campaigns"
-msgstr "Campañæs"
+msgstr "Campañɐs"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
 msgid "No Campaign selected"

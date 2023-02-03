@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2022-10-22 14:59+0000\n"
-"PO-Revision-Date: 2022-10-22 14:59+0000\n"
+"POT-Creation-Date: 2023-02-02 21:48+0000\n"
+"PO-Revision-Date: 2023-02-02 21:48+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -30,7 +30,7 @@ msgstr "Zusammenfassung"
 
 #, python-format
 msgid "Press %(hotkey)s to open the summary screen."
-msgstr "Appuyez sur %(hotkey)s pour ouvrir l'écran de résumé de partie."
+msgstr "Pressiona %(hotkey)s para abrir ou fechar o ecrã de estatísticas."
 
 msgid "Lobby"
 msgstr "Sala multijugador"
@@ -367,7 +367,7 @@ msgstr "Надіслати"
 
 msgctxt "chat input"
 msgid "Filter the chat history."
-msgstr "Penheirare la historia de læs conversæs."
+msgstr "Penheirare la historia de lɐs conversɐs."
 
 msgctxt "chat input"
 msgid "Select chat addressee."
@@ -437,7 +437,7 @@ msgid "Render Debug Mode Disabled"
 msgstr "Απεικόνηση Λειτουργίας Εντοπισμού Σφαλμάτων Απενεργοποιημένη"
 
 msgid "Render Debug Mode AO"
-msgstr "Modo de depuración de errores de renderizado AO"
+msgstr "Modo de depuração de render de oclusão do ambiente"
 
 msgid "Render Debug Mode Alpha"
 msgstr "Modo de depuración de errores de renderizado alfa"
@@ -584,7 +584,7 @@ msgstr ""
 msgctxt "Out-Of-Sync"
 msgid "Rejoining Multiplayer games with AIs is not supported yet!"
 msgstr ""
-"¡Inda nun sta sofhitado tornar a ẍunhisse a partidæs intre varios ẍogadores & agentes "
+"¡Inda nun sta sofitado tornar a junhí-se a partidɐs entre varios jogadores & agentes "
 "intelligentes!"
 
 msgctxt "Out-Of-Sync"
@@ -716,6 +716,9 @@ msgstr "%(hitpoints)s / %(maxHitpoints)s"
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
 msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
+msgid "Capture Points"
+msgstr "Capture Points"
+
 #, python-format
 msgid "%(experience)s %(current)s / %(required)s"
 msgstr "%(experience)s %(current)s / %(required)s"
@@ -765,7 +768,7 @@ msgid "%(label)s: %(details)s\n"
 msgstr "%(label)s : %(details)s\n"
 
 msgid "Garrison Size"
-msgstr "Tamaño do acuartelamento"
+msgstr "Tamaño de la guarnición"
 
 #, python-format
 msgid "%(label)s %(details)s\n"
@@ -855,7 +858,7 @@ msgstr "Kapacitet është i pamjaftueshëm per popullatën:"
 
 #, python-format
 msgid "%(population)s %(neededSlots)s"
-msgstr "%(population)s %(neededSlots)s"
+msgstr "%(population)s명 %(neededSlots)s"
 
 #, python-format
 msgid "%(number)s entity of class %(class)s"
@@ -979,7 +982,7 @@ msgstr[1] "Może zostać stworzone jeszcze tylko %(count)s razy."
 #, python-format
 msgid "Could only be trained once."
 msgid_plural "Could only be trained %(limit)s times."
-msgstr[0] "Ne pouvait être entrainé qu'une fois."
+msgstr[0] "Só podia ser treinado mais %(limit)s vez."
 msgstr[1] "Csak ennyiszer lehetett kiképezni: %(limit)s."
 
 msgid "Can be trained only once."
@@ -1026,7 +1029,7 @@ msgid "Shift-click"
 msgstr "Podržaním klávesu Shift a kliknutím"
 
 msgid "Health"
-msgstr "Tendûrûstî:"
+msgstr "Puntos de vida"
 
 msgid "Capture points"
 msgstr "Poentoj por kaptiĝi"
@@ -1052,7 +1055,7 @@ msgstr ""
 "jednotiek."
 
 msgid "Alpha XXVII: ———"
-msgstr "Alpha XXVII: ———"
+msgstr "Alpha XXVII : ———"
 
 #, python-format
 msgid ""
@@ -1080,7 +1083,7 @@ msgstr "По возрастанию"
 
 #, python-format
 msgid "%(playername)s: %(statValue)s"
-msgstr "%(playername)s : %(statValue)s"
+msgstr "%(playername)s님: %(statValue)s"
 
 #, python-format
 msgid "%(popCount)s/%(popLimit)s (%(popMax)s)"
@@ -1100,7 +1103,7 @@ msgid "Diplomacy"
 msgstr "Taidhleoireacht"
 
 msgid "Game Speed"
-msgstr "Velocidade de la partida"
+msgstr "Velocidá de la partida"
 
 msgid "Objectives"
 msgstr "Žaidimo tikslai"
@@ -1128,9 +1131,7 @@ msgstr "Продаване на %(resource)s"
 #, python-format
 msgctxt "buy action"
 msgid "+%(amount)s"
-msgstr ""
-"+%(amount)s\n"
-" "
+msgstr "+%(amount)s"
 
 #, python-format
 msgctxt "sell action"
@@ -1206,7 +1207,7 @@ msgstr[1] "%(numberOfLandTraders)s торговцев бездействует"
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s guarnição de um navio mercante comercial"
-msgstr[1] "%(numberGarrisoned)s refugiats en un vaixell mercant actiu"
+msgstr[1] "%(numberGarrisoned)s abellogados n un barcu mercante activu"
 
 #, python-format
 msgid "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant ship"
@@ -1276,7 +1277,7 @@ msgid ""
 "Right-click to cancel trade route."
 msgstr ""
 "Este é o mercado de origem da rota de comércio.\n"
-"Clique com o botão direito para cancelar a rota de comércio."
+"Clica com o botão direito para cancelar a rota de comércio."
 
 msgid "Origin trade market."
 msgstr "Origen del intercambio comercial."
@@ -1357,7 +1358,7 @@ msgstr ""
 "reparieren."
 
 msgid "Focus on Rally Point."
-msgstr "Infocar escontra l punto d’alcuœntru."
+msgstr "Centrer sur le point de ralliement."
 
 msgid "Back to Work"
 msgstr "Tillbaka till arbetet"

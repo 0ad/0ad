@@ -6,7 +6,7 @@
 # 76407af6b051a571d67c2577de2183db_7380deb
 # Aksidion Kreimben (programmer)
 # Asakura
-# JungHee Lee
+# Junghee Lee
 # 미워하지 않아
 # Gu Hong Min
 # Hn Dsu
@@ -23,9 +23,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2021-2022\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -189,7 +189,7 @@ msgstr "합의"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:23
 msgid "Minor Greek Polis"
-msgstr "작은 그리스 폴리스"
+msgstr "소규모 그리스 폴리스"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:24
 msgid "This is a minor Greek city."
@@ -205,11 +205,11 @@ msgstr "이것은 큰 그리스 도시입니다."
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
-msgstr "종교 성역"
+msgstr "종교의 성전"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
-msgstr "그리스 종교 안식처"
+msgstr "그리스 종교의 성전"
 
 #: simulation/templates/gaia/fauna_bear_black.xml:5
 #: simulation/templates/gaia/fauna_bear_brown.xml:5
@@ -369,7 +369,7 @@ msgstr "통나무"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:25
 msgid "African Bush Elephant"
-msgstr "아프리카 초원 코끼리"
+msgstr "아프리카 사바나 코끼리"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:26
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:12
@@ -629,13 +629,13 @@ msgstr "바나나"
 #: simulation/templates/gaia/fruit/berry_04.xml:4
 #: simulation/templates/gaia/fruit/berry_05.xml:4
 msgid "Berries"
-msgstr "열매들"
+msgstr "작은 열매"
 
 #: simulation/templates/gaia/fruit/date.xml:8
 #: simulation/templates/gaia/tree/date_palm.xml:4
 #: simulation/templates/gaia/tree/date_palm_dead.xml:4
 msgid "Date Palm"
-msgstr "대추야자 나무"
+msgstr "대추야자"
 
 #: simulation/templates/gaia/fruit/fig.xml:8
 msgid "Fig"
@@ -655,16 +655,16 @@ msgstr "이시스 컬트 이미지"
 
 #: simulation/templates/gaia/ruins/pyramid_great.xml:8
 msgid "Great Pyramid"
-msgstr "큰 피라미드"
+msgstr "대피라미드"
 
 #: simulation/templates/gaia/ruins/pyramid_minor.xml:8
 msgid "Minor Pyramid"
-msgstr "작은 피라미드"
+msgstr "피라미드"
 
 #: simulation/templates/gaia/ruins/standing_stone.xml:8
 #: simulation/templates/gaia/treasure/standing_stone.xml:8
 msgid "Celtic Standing Stone"
-msgstr "켈트 서있는 돌"
+msgstr "켈트족 선돌"
 
 #: simulation/templates/gaia/ruins/stone_statues_egyptian.xml:8
 msgid "Egyptian Statue"
@@ -705,19 +705,19 @@ msgstr "미완성된 그리스 사원"
 #: simulation/templates/gaia/treasure/food_crate.xml:8
 #: simulation/templates/gaia/treasure/food_jars.xml:8
 msgid "Food Treasure"
-msgstr "음식 보물"
+msgstr "귀중한 식량"
 
 #: simulation/templates/gaia/treasure/food_barrels_buried.xml:8
 msgid "Half-buried Barrels"
-msgstr "반쯤 묻은 원통"
+msgstr "반쯤 묻힌 통"
 
 #: simulation/templates/gaia/treasure/food_persian_big.xml:8
 msgid "Persian Food Stores"
-msgstr "페르시안 음식 저장고"
+msgstr "페르시아의 식량 저장고"
 
 #: simulation/templates/gaia/treasure/food_persian_small.xml:8
 msgid "Persian Food Treasure"
-msgstr "페르시안 음식 보물"
+msgstr "페르시아의 귀중한 식량"
 
 #: simulation/templates/gaia/treasure/golden_fleece.xml:8
 msgid "Golden Fleece"
@@ -729,11 +729,11 @@ msgstr "비밀 상자"
 
 #: simulation/templates/gaia/treasure/metal_persian_big.xml:8
 msgid "Persian Wares"
-msgstr "페르시아 상품"
+msgstr "페르시아의 상품"
 
 #: simulation/templates/gaia/treasure/metal_persian_small.xml:8
 msgid "Persian Rugs"
-msgstr "페르시아 양탄자들"
+msgstr "페르시아의 양탄자"
 
 #: simulation/templates/gaia/treasure/metal_weapons_small.xml:8
 msgid "Iron Weapons"
@@ -756,7 +756,7 @@ msgstr "난파선 화물"
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"
-msgstr "암석 보물"
+msgstr "귀중한 석재"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite.xml:4
 msgid "Cut Granite"
@@ -773,7 +773,7 @@ msgstr "사암 다듬기"
 
 #: simulation/templates/gaia/treasure/wood.xml:8
 msgid "Wood Treasure"
-msgstr "목재 보물"
+msgstr "귀중한 목재"
 
 #: simulation/templates/gaia/treasure/wood_lumber.xml:8
 msgid "Milled Lumber"
@@ -808,7 +808,7 @@ msgstr "반얀나무"
 #: simulation/templates/gaia/tree/baobab_3_mature.xml:8
 #: simulation/templates/gaia/tree/baobab_4_dead.xml:8
 msgid "Baobab"
-msgstr "바오밥나무"
+msgstr "바오밥"
 
 #: simulation/templates/gaia/tree/baobab_1_sapling.xml:4
 msgid "Baobab Sapling"
@@ -820,7 +820,7 @@ msgstr "어린 바오밥나무"
 
 #: simulation/templates/gaia/tree/bush_badlands.xml:4
 msgid "Hardy Bush"
-msgstr "거센 초원"
+msgstr "튼튼한 덤불"
 
 #: simulation/templates/gaia/tree/bush_mediterranean.xml:4
 msgid "Scrub"
@@ -848,7 +848,7 @@ msgstr "벚나무"
 #: simulation/templates/gaia/tree/cretan_date_palm_short.xml:4
 #: simulation/templates/gaia/tree/cretan_date_palm_tall.xml:4
 msgid "Cretan Date Palm"
-msgstr "크리탄 섬 대추야자 나무"
+msgstr "크레타 대추야자"
 
 #: simulation/templates/gaia/tree/cypress.xml:4
 #: simulation/templates/gaia/tree/cypress_wild.xml:4
@@ -901,7 +901,7 @@ msgstr "단풍"
 
 #: simulation/templates/gaia/tree/medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
-msgstr "지중해 야자나무"
+msgstr "지중해 부채야자"
 
 #: simulation/templates/gaia/tree/oak.xml:4
 #: simulation/templates/gaia/tree/oak_aut.xml:4
@@ -1019,25 +1019,46 @@ msgstr "사당"
 msgid "Trading Post"
 msgstr "교역소"
 
+#: simulation/templates/obstructors/movement_36x36.xml:9
+#: simulation/templates/obstructors/movement_8x36.xml:9
+#: simulation/templates/obstructors/movement_8x8.xml:9
+msgid "Movement Obstructor"
+msgstr "이동 방해물"
+
+#: simulation/templates/obstructors/movement_36x36.xml:11
+#: simulation/templates/obstructors/movement_8x36.xml:11
+#: simulation/templates/obstructors/movement_8x8.xml:11
+msgid "Placement obstructor to prevent movement and construction."
+msgstr "이동 및 건설을 방지하기 위한 배치 장애물입니다."
+
 #: simulation/templates/obstructors/placement.xml:10
 msgid "Obstructor"
 msgstr "장애물"
 
 #: simulation/templates/obstructors/placement.xml:12
+#: simulation/templates/obstructors/placement_36x36.xml:11
+#: simulation/templates/obstructors/placement_8x36.xml:11
+#: simulation/templates/obstructors/placement_8x8.xml:11
 msgid "Placement obstructor to prevent construction but not movement"
 msgstr "건설을 방해하지만 움직이지 않는 배치 장애물"
+
+#: simulation/templates/obstructors/placement_36x36.xml:9
+#: simulation/templates/obstructors/placement_8x36.xml:9
+#: simulation/templates/obstructors/placement_8x8.xml:9
+msgid "Placement Obstructor"
+msgstr "배치 방해물"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
 "for other civs"
-msgstr "인구수를 10명으로 만드는 것은 다른 문명에서는 삭제되었습니다"
+msgstr "문명화를 위해 인구 10명이 거주하는 집의 변화는, 다른 문명에서 삭제되었습니다"
 
 #: simulation/templates/skirmish/structures/default_house_5.xml:8
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
-msgstr "인구수를 5명으로 만드는 것은 다른 문명에서는 삭제되었습니다"
+msgstr "문명화를 위해 인구 5명이 거주하는 집의 변화는, 다른 문명에서 삭제되었습니다"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:5
 #: simulation/templates/special/formations/testudo.xml:5

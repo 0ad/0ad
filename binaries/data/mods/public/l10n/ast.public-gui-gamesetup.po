@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:48+0000\n"
-"Last-Translator: David Sowa <isithere2@yahoo.com>, 2017-2022\n"
+"Last-Translator: David Sowa <isithere2@yahoo.com>, 2017-2023\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,11 +24,11 @@ msgstr "Configuracion de l AI"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIConfigPage.xml:(caption):29
 msgid "OK"
-msgstr "Acceptar"
+msgstr "Aceitar"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:30
 msgid "AI will be disabled for this player."
-msgstr "La intelligencia d’esti agente vai star inactiva."
+msgstr "La intelligencia d’esti agente vai star dishabilitada."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:29
 msgid "AI Behavior"
@@ -36,7 +36,7 @@ msgstr "Actitude de l AI"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:32
 msgid "AI Difficulty"
-msgstr "Difficultade de l AI"
+msgstr "Difficultá de l AI"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:39
 msgctxt "ai"
@@ -75,7 +75,7 @@ msgstr "Geographía"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:28
 msgctxt "Match settings tab name"
 msgid "Player"
-msgstr "Ẍogador"
+msgstr "Jogador"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:40
 msgctxt "Match settings tab name"
@@ -89,7 +89,7 @@ msgstr "Configuracion de l AI: %(description)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:135
 msgid "Select player."
-msgstr "Escolyer un ẍogador."
+msgstr "Escolyer un jogador."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:222
 #, javascript-format
@@ -98,11 +98,11 @@ msgstr "AI: %(ai)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:257
 msgid "Unassigned"
-msgstr "Sin afhitar"
+msgstr "Sin afitar"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:90
 msgid "Choose the civilization for this player."
-msgstr "Escolyere la cultura d’esti ẍogador."
+msgstr "Escolyere la cultura d’esti jogador."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:93
 msgctxt "civilization"
@@ -111,7 +111,7 @@ msgstr "Casual"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:99
 msgid "Picks one civilization at random when the game starts."
-msgstr "Escuœlye una cultura casualmente a l intamare la partida."
+msgstr "Escuölye una cultura casualmente a l intamare la partida."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:48
 msgid "Pick a color."
@@ -119,7 +119,7 @@ msgstr "Escolyer un color."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:47
 msgid "Select player's team."
-msgstr "Escolyere l conẍuntu de l ẍogador."
+msgstr "Escolyere l conjuntu de l jogador."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:50
 msgctxt "team"
@@ -128,7 +128,7 @@ msgstr "Neguna"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):6
 msgid "Player Name"
-msgstr "Nome de l ẍogador"
+msgstr "Nome de l jogador"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):10
 msgid "Color"
@@ -136,7 +136,7 @@ msgstr "Color"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):14
 msgid "Player Placement"
-msgstr "Posicion de l ẍogador"
+msgstr "Posicion de l jogador"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):18
 msgid "Civilization"
@@ -144,32 +144,32 @@ msgstr "Cultura"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):25
 msgid "Team"
-msgstr "Conẍuntu"
+msgstr "Conjuntu"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:36
 msgid "Browse Maps"
-msgstr "Esqueirare læs geographíæs"
+msgstr "Esqueirare lɐs geographíɐs"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:39
 #, javascript-format
 msgid "Press %(hotkey)s to view the list of available maps."
-msgstr "Premi %(hotkey)s para vere læs geographíæs disponibles."
+msgstr "Premi %(hotkey)s para vere lɐs geographíɐs disponibles."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:26
 msgid "Allied View"
-msgstr "Vision comuñeira"
+msgstr "Vision alliada"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:30
 msgid "Toggle allied view (see what your allies see)."
-msgstr "Alternare la vision comuñeira (permitte vere lo que ven los comuñeiros)."
+msgstr "Alternare la vision alliada (permitte vere lo que ven los alliados)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
-msgstr "Trampæs"
+msgstr "Trampɐs"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:38
 msgid "Toggle the usability of cheats."
-msgstr "Alternare l usu de trampæs."
+msgstr "Alternar l usu de trampɐs."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -187,21 +187,21 @@ msgstr "Alternar “geographía explorada” (vere la geographía inicial)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:26
 msgid "Last Man Standing"
-msgstr "A vida ou muœrte"
+msgstr "A vida ou muörte"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:29
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr "Alternare la victoria automática de l postreiru ẍogador vivu ou los postreiros comuñeiros vivos."
+msgstr "Alternare la victoria automática de l postreiru jogador vivu ou los postreiros alliados vivos."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:30
 msgid "Teams Locked"
-msgstr "Conẍuntos fhitos"
+msgstr "Conjuntos fitos"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:33
 msgid "Toggle locked teams."
-msgstr "Alternare la fhitura de los conẍuntos."
+msgstr "Alternare la fitura de los conjuntos."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:25
 msgid "Nomad"
@@ -211,7 +211,7 @@ msgstr "Nómada"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "In modu Nómada, cada ẍogador intama cun un puñadu d’unidades & tien de buscar un lhogar afhaꞇyadiçu pa lhevantare la sua cildade. Aconselyæn-se læs induciæs."
+msgstr "In modu Nómada, cada jogador intama cun un puñadu d’unidades & tien de buscar un lhogar afalyadiçu pa lhevantare la suɐ cildade. Aconselyɐn-se lɐs induciɐs."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:27
 msgid "Rated Game"
@@ -223,11 +223,11 @@ msgstr "Alternare la qualificacion d’esta partida pa la classificacion general
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:27
 msgid "Hero Garrison"
-msgstr "Heroes ablogables"
+msgstr "Heroes abellogables"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:30
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "Alternare l ablogabilidade de los heroes."
+msgstr "Alternar l’abellogabilidá de los heroes."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
@@ -241,23 +241,23 @@ msgstr "Geographía revelada"
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:30
 msgid "Toggle revealed map (see everything)."
-msgstr "Alternar “geographía revelada” (vello todo)."
+msgstr "Alternar “geographía revelada” (vé-llo todo)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:26
 msgid "Disable Spies"
-msgstr "Disactuare los acesmadores"
+msgstr "Dishabilitare los acesmadores"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:29
 msgid "Disable spies during the game."
-msgstr "Fhaz que los acesmadores stean disactuados dementres la partida."
+msgstr "Faz que los acesmadores stean dishabilitados dementres la partida."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:25
 msgid "Disable Treasures"
-msgstr "Disactuare læs aꞇyalgæs"
+msgstr "Dishabilitare lɐs alyalgɐs"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:28
 msgid "Do not add treasures to the map."
-msgstr "Fhaz que nun habia aꞇyalgæs nela geographía."
+msgstr "Faz que nun habia alyalgɐs na geographía."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:25
 msgid "World Population"
@@ -267,7 +267,7 @@ msgstr "Poblacion global"
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr "Siñalada, la poblacion máxima vai partisse por egual intre todolos ẍogadores vivos."
+msgstr "Siñalada, la poblacion máxima vai partí-se por egual entre todolos jogadores vivos."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:54
 msgid "Biome"
@@ -288,11 +288,11 @@ msgstr "Escolyer casualmente un bioma."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:57
 msgid "Daytime"
-msgstr "Díe"
+msgstr "Díɐ"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:60
 msgid "Select whether the match takes place at daylight or night."
-msgstr "Escolyer si la partida succede pel díe ou pela nuœiꞇhe."
+msgstr "Escolyer si la partida succede pel díɐ ou pela nuöiꞇhe."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:63
 msgctxt "daytime selection"
@@ -302,15 +302,15 @@ msgstr "Casual"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:66
 msgctxt "daytime selection"
 msgid "Randomly pick a time of the day."
-msgstr "Escolyer casualmente una hora de l díe."
+msgstr "Escolyer casualmente una hora de l díɐ."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:61
 msgid "Game Speed"
-msgstr "Velocidade de la partida"
+msgstr "Velocidá de la partida"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:64
 msgid "Select game speed."
-msgstr "Escolyere la velocidade de la partida."
+msgstr "Escolyere la velocidá de la partida."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:25
 msgctxt "landscape selection"
@@ -328,7 +328,7 @@ msgstr "Ambiente"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:81
 msgid "Select one of the landscapes of this map."
-msgstr "Escolyere l ambiente geográphicu."
+msgstr "Escolyer l ambiente geográphicu."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapFilter.js:82
 msgid "Map Filter"
@@ -348,7 +348,7 @@ msgstr "Geographía"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:144
 msgid "Select a map to play on."
-msgstr "Escolyer una geographía nela que ẍogar."
+msgstr "Escolyer una geographía na que jogar."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:150
 msgctxt "map selection"
@@ -365,7 +365,7 @@ msgstr "Grandura geogr."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSize.js:42
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "Escolyere la grandura de la geographía. (Læs geographíæs maiores puœden affectar a l rendimiento)."
+msgstr "Escolyere la grandura de la geographía. (Lɐs geographíɐs mayores puöden affectar a l rendimiento)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapType.js:65
 msgid "Map Type"
@@ -377,31 +377,31 @@ msgstr "Escolyere l typu de geographía."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:33
 msgid "Number of Players"
-msgstr "Númeru de ẍogadores"
+msgstr "Númeru de jogadores"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:36
 msgid "Select number of players."
-msgstr "Escolyere l númeru de ẍogadores."
+msgstr "Escolyere l númeru de jogadores."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:52
 msgid "Population Cap"
-msgstr "Teiꞇho demográphico"
+msgstr "Teiꞇho de poblacion"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:55
 msgid "Select population limit."
-msgstr "Escolyere la capacidade máxima de la poblacion."
+msgstr "Escolyere la capacidá máxima de la poblacion."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:58
 msgctxt "population limit"
 msgid "Per Player"
-msgstr "Per ẍogador"
+msgstr "Per jogador"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:61
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "Advertencia: La efficiencia de l ẍuœgu puœde abalhicar si todolos ẍogadores %(players)s algamaren una poblacion de %(popCap)s."
+msgstr "Advertencia: La efficiencia de l juögu puöde abalhicar si todolos jogadores %(players)s algamaren una poblacion de %(popCap)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:50
 msgid "Starting Resources"
@@ -414,20 +414,20 @@ msgstr "Escolyere los recursos iniciales de la partida."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:56
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr "Quantidade inicial de cada recursu: %(resources)s."
+msgstr "Quantidá inicial de cada recursu: %(resources)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:59
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr "Per ẍogador"
+msgstr "Per jogador"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:53
 msgid "Team Placement"
-msgstr "Posicion conẍ."
+msgstr "Posicion conx."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:56
 msgid "Select one of the starting position patterns of this map."
-msgstr "Escolyer unu de los ẍeitos iniciales d’esta geographía."
+msgstr "Escolyer unu de los jeitos iniciales d’esta geographía."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:60
 msgctxt "team placement"
@@ -437,43 +437,43 @@ msgstr "Casual"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:61
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr "Escolyer casualmente l ẍeitu inicial de los conẍuntos."
+msgstr "Escolyer casualmente l jeitu inicial de los conjuntos."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:41
 msgid "Difficulty"
-msgstr "Difficultade"
+msgstr "Difficultá"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:44
 msgid "Select the difficulty of this scenario."
-msgstr "Escolyere la difficultade de la scena."
+msgstr "Escolyere la difficultá de la scena."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:47
 msgid "World Population Cap"
-msgstr "Teiꞇho demográphico global"
+msgstr "Teiꞇho de poblacion global"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:50
 msgid "Select world population limit."
-msgstr "Escolyere la capacidade máxima de la poblacion global."
+msgstr "Escolyere la capacidá máxima de la poblacion global."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/WorldPopulationCap.js:53
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if %(popCap)s population is "
 "reached."
-msgstr "Advertencia: La efficiencia de l ẍuœgu puœde abalhicar si s’algamar una poblacion de %(popCap)s."
+msgstr "Advertencia: La efficiencia de l juögu puöde abalhicar si s’algamar una poblacion de %(popCap)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:35
 msgid "Ceasefire"
-msgstr "Induciæs"
+msgstr "Induciɐs"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:38
 msgid "Set time where no attacks are possible."
-msgstr "Spacio de tiempu in que nun se puœde puñar."
+msgstr "Spacio de tiempu n que nun se puöde puñar."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:41
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr "Negunæs"
+msgstr "Negunɐs"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:44
 #, javascript-format
@@ -485,29 +485,29 @@ msgstr[1] "%(minutes)s minutos"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:38
 msgid "Relic Count"
-msgstr "Númeru de reliquiæs"
+msgstr "Númeru de reliquiɐs"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:41
 #, javascript-format
 msgid "%(number)s relic"
 msgid_plural "%(number)s relics"
 msgstr[0] "%(number)s reliquia"
-msgstr[1] "%(number)s reliquiæs"
+msgstr[1] "%(number)s reliquiɐs"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:44
 msgid ""
 "Total number of relics spawned on the map. Relic victory is most realistic "
 "with only one or two relics. With greater numbers, the relics are important "
 "to capture to receive aura bonuses."
-msgstr "El númeru total de reliquiæs iniciadæs nela geographía. Cumo condicion de victoria, una ou duæs reliquiæs son la cuœnta. De tres a riba, valen maæs pa læs ventalyæs q’apurren."
+msgstr "El númeru total de reliquiɐs iniciadɐs na geographía. Cumo condicion de victoria, una ou duɐs reliquiɐs son la cuönta. De trés a riba, valen más pa los beneficios q’apurren."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:38
 msgid "Relic Duration"
-msgstr "Muœra de reliquiæs"
+msgstr "Muöra de reliquiɐs"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:41
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr "Minutos hata algamare la victoria graciæs a reliquiæs."
+msgstr "Minutos ta que l jogador algame la victoria graciɐs a reliquiɐs."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:47
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:44
@@ -530,7 +530,7 @@ msgstr "Atrassu diluvial"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:41
 msgid "Set the time when the water will start to rise."
-msgstr "Afhitare l tiempu hata l impieçu de l inꞇyiente."
+msgstr "Afitare l tiempu ta l impieçu de l inçhiente."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/SeaLevelRiseTime.js:44
 #, javascript-format
@@ -542,11 +542,11 @@ msgstr[1] "%(minutes)s minutos"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:38
 msgid "Wonder Duration"
-msgstr "Muœra de millagros"
+msgstr "Muöra de millagros"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:41
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr "Minutos hata algamare la victoria graciæs a un millagro."
+msgstr "Minutos ta que l jogador algame la victoria graciɐs a un millagro."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -565,11 +565,11 @@ msgstr "Tornar a l menú principal."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Vere la Synopsis cultural / Árbore structural\nL últimu abiertu vai reabrisse in picando."
+msgstr "%(hotkey_civinfo)s / %(hotkey_structree)s: Vere la Synopsis cultural / Árbore structural\nL últimu abiertu vai reabrí-se n picando."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "Amostrare l antepar n una feniestra de diálogu."
+msgstr "Amostrar l antepar n una feniestra de diálogu."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:79
 msgid "I'm ready"
@@ -585,24 +585,24 @@ msgstr "¡Nun sto prontu!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:85
 msgid "State that you are ready to play."
-msgstr "Siñalar que stas prontu para ẍogar."
+msgstr "Siñalar que stas prontu para jogar."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:86
 msgid "Stay ready even when the game settings change."
-msgstr "Seguir prontu, inda que muden los aẍustes de la partida."
+msgstr "Seguir prontu, inda que muden los ajustes de la partida."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:87
 msgid "State that you are not ready to play."
-msgstr "Siñalar que nun stas prontu para ẍogar."
+msgstr "Siñalar que nun stas prontu para jogar."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:29
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr "Re-afhitare læs culturæs escolyidæs a l valor predefinidu (casual)."
+msgstr "Reafitare lɐs culturɐs escolyidɐs cul valor predefinidu (casual)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:29
 msgid "Reset all teams to the default."
-msgstr "Re-afhitar todolos conẍuntos a l valor predefinidu."
+msgstr "Reafitar todolos conjuntos cul valor predefinidu."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:65
 msgid "Start Game!"
@@ -610,22 +610,22 @@ msgstr "¡Intamare la partida!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:68
 msgid "Start a new game with the current settings."
-msgstr "Intamar una partida nuœva cun los aẍustes actuales."
+msgstr "Intamar una partida nuöva cun los ajustes actuales."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:71
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr "Intamar una partida nuœva cun los aẍustes actuales (quando todos stuvieren prontos)."
+msgstr "Intamar una partida nuöva cun los ajustes actuales (quando todos stuvieren prontos)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatInputPanel.js:55
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr "Premi %(hotkey)s para per-fhazer nomes de ẍogadores ou aẍustes automaticamente. "
+msgstr "Premi %(hotkey)s para perfazher nomes de jogadores ou ajustes automaticamente. "
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:27
 msgid "Unknown Player"
-msgstr "Ẍogador disconhocidu"
+msgstr "Jogador disconhocidu"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:47
 #, javascript-format
@@ -640,17 +640,17 @@ msgstr "%(username)s %(message)s"
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientConnection.js:27
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr "%(username)s ẍunhíu-se"
+msgstr "%(username)s junhiu-se"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientConnection.js:30
 #, javascript-format
 msgid "%(username)s has left"
-msgstr "%(username)s salíu"
+msgstr "%(username)s saliu"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientKicked.js:22
 #, javascript-format
 msgid "%(username)s has been kicked"
-msgstr "L hospedeiru espuʃou a %(username)s"
+msgstr "L hospedeiru espuxou a %(username)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientKicked.js:25
 #, javascript-format
@@ -669,7 +669,7 @@ msgstr "* ¡%(username)s sta prontu!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/GameSettingsChanged.js:22
 msgid "Game settings have been changed"
-msgstr "Los aẍustes de la partida mudarun"
+msgstr "Los ajustes de la partida mudarun"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatPanel.xml:(caption):9
 msgid "Send"
@@ -696,7 +696,7 @@ msgstr "HH:mm"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:40
 msgid "Cheats enabled."
-msgstr "Actuarun-se læs trampæs."
+msgstr "Habilitarun-se lɐs trampɐs."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:43
 msgid "Rated game."
@@ -713,7 +713,7 @@ msgstr "Nun s’escolyeu geographía dala"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
-msgstr "Pica para vere læs geographíæs disponibles."
+msgstr "Pica para vere lɐs geographíɐs disponibles."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/TipsPanel.xml:(caption):10
 msgid "Show this message in the future."
@@ -743,7 +743,7 @@ msgstr "Pon el nome d’un servidor válidu, por favor."
 #: gui/gamesetup_mp/gamesetup_mp.js:131
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr "El númeru de l puœrtu de l servidor tien de star intre %(min)s & %(max)s."
+msgstr "El númeru de l puörtu de l servidor tien de star entre %(min)s & %(max)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:150
 msgid "Connecting to server..."
@@ -755,7 +755,7 @@ msgstr "El servidor nun sta operando."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Password is invalid."
-msgstr "Essa ꞇyave ye inválida."
+msgstr "Essa lhave ye inválida."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:167
 msgid "You have been banned."
@@ -765,7 +765,7 @@ msgstr "Stas estornadu."
 msgid ""
 "Failed to get local IP of the server (it was assumed to be on the same "
 "network)."
-msgstr "Falhu a l obtenere l IP local de l servidor (suppõʃo-se que s’atopaba nela miesma rede)."
+msgstr "Falhu a l obtener l IP local de l servidor (suppõxo-se que s’atopaba na miesma rede)."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
@@ -787,11 +787,11 @@ msgstr "Anuncia de la rede: %(message)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:276
 msgid "Registering with server..."
-msgstr "Registrando-se in servidor..."
+msgstr "Registrando-se n servidor..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:282
 msgid "Game has already started, rejoining..."
-msgstr "La partida ja intamou, tornando a ẍunhisse..."
+msgstr "La partida ya intamou, tornando a junhí-se..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:361
 msgid "Game name already in use."
@@ -800,7 +800,7 @@ msgstr "Issi nomatu sta n usu."
 #: gui/gamesetup_mp/gamesetup_mp.js:376
 #, javascript-format
 msgid "Cannot host game: %(message)s."
-msgstr "Nun se puœde ahospedare la partida: %(message)s."
+msgstr "Nun se puöde ahospedare la partida: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:377 gui/gamesetup_mp/gamesetup_mp.js:406
 #: gui/gamesetup_mp/gamesetup_mp.js:435 gui/gamesetup_mp/gamesetup_mp.js:450
@@ -810,7 +810,7 @@ msgstr "Erru"
 #: gui/gamesetup_mp/gamesetup_mp.js:405 gui/gamesetup_mp/gamesetup_mp.js:449
 #, javascript-format
 msgid "Cannot join game: %(message)s."
-msgstr "Nun se puœde ẍunhir a la partida: %(message)s."
+msgstr "Nun se puöde junhir a la partida: %(message)s."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:464
 #, javascript-format
@@ -819,16 +819,16 @@ msgstr "Partida de %(playername)s"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
-msgstr "Varios ẍogadores"
+msgstr "Delhos jogadores"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):24
 msgid "Joining an existing game."
-msgstr "Ẍunhisse a una partida existente."
+msgstr "Junhí-se a una partida existente."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr "Nome de l ẍogador:"
+msgstr "Nome de l jogador:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"
@@ -837,7 +837,7 @@ msgstr "Nome hospedeiru ou IP de l serividor:"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):48
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):95
 msgid "Server Port:"
-msgstr "Puœrtu de l servidor:"
+msgstr "Puörtu de l servidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
 msgid "Set up your server to host."
@@ -849,11 +849,11 @@ msgstr "Nome de l servidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):112
 msgid "Server Password:"
-msgstr "Ꞇyave de l servidor:"
+msgstr "Lhave de l servidor:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
-msgstr "Usar STUN par’ orelhar fhogueiriles"
+msgstr "Usar STUN par’ orelhar fogueiriles"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):136
 msgid "Continue"
@@ -865,7 +865,7 @@ msgstr "Incaboxar"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):152
 msgid "Password:"
-msgstr "Ꞇyave d’accessu:"
+msgstr "Lhave d’accessu:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
 msgid "Confirm"
@@ -874,7 +874,7 @@ msgstr "Confimar"
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
 msgid "Leave blank to use the default port."
-msgstr "Deixa-llo vazío par’ usare l puœrtu predefinidu."
+msgstr "Deixa-llo vazío par’ usare l puörtu predefinidu."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):113
 msgid "Leave blank to not require it."
@@ -909,7 +909,7 @@ msgid ""
 "“Zeus \\[…] established his law: wisdom comes through suffering. \\[…] So "
 "men against their will learn to practice moderation. \\[…] Such grace is "
 "harsh and violent.” \\n— Aeschylus (“Agamemnon”, 176–183)"
-msgstr "“Zeus \\[…] ordena officialmente que pela passion la sapiencia s’algame. \\[…] Assí, a remoreira, \\[…] s’acuorre a la temprança. Miánica ye violenta la gracia de los démones.” \\n— Éschylu (“Agamemnon”, 176–183)"
+msgstr "“Zeus \\[…] ordena officialmente que pela passion la sapiencia s’algame. \\[…] Ãssí, a remoreira, \\[…] s’acuorre a la temprança. Miánica ye violenta la gracia de los démones.” \\n— Éschylu (“Agamemnon”, 176–183)"
 
 #: gui/text/quotes.txt:2
 msgid ""
@@ -921,7 +921,7 @@ msgstr "“A l aviesu de dote, \\[Helena] traxo a Ilio la ruina.” \\n— Ésch
 msgid ""
 "“In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.” \\n— Aeschylus (“Prometheus Bound”, 224–225)"
-msgstr "“In toda tyrannía ha hi d’algun modu infirmidade; non s’infhouta nelos amigos.” \\n— Éschylu (“Prometheu incadenadu”, 224–225)"
+msgstr "“In toda tyrannía ha hi d’algun modu infirmidade; non s’infouta nelos amigos.” \\n— Éschylu (“Prometheu incadenadu”, 224–225)"
 
 #: gui/text/quotes.txt:4
 msgid ""
@@ -933,7 +933,7 @@ msgstr "“El senescente tiempu insiña-llo todo.” \\n— Éschylu (“Prometh
 msgid ""
 "“His resolve is not to seem, but to be, the best.” \\n— Aeschylus (“Seven "
 "Against Thebes”, 592)"
-msgstr "“Non quier semelyare l melyor, ma sellu.” \\n— Éschylu (“Siete contra Thebas”, 592)"
+msgstr "“Non quier semelyare l melyor, ma sé-llu.” \\n— Éschylu (“Siete contra Thebas”, 592)"
 
 #: gui/text/quotes.txt:6
 msgid "“A prosperous fool is a grievous burden.” \\n— Aeschylus (fragment 383)"
@@ -949,46 +949,46 @@ msgstr "“A dieus rogando & cul maçu dando.” \\n— Esopu (“El carreteiru 
 msgid ""
 "“It is thrifty to prepare today for the wants of tomorrow.” \\n— Aesop (“The"
 " Ant and the Grasshopper”)"
-msgstr "“El lhabor de mañana huoi se mi fhaiga.” \\n— Esopu (“La fhormiga & la cantarielha”)"
+msgstr "“El lhabor de mañana huoi se mi faiga.” \\n— Esopu (“La formiga & la cantarielha”)"
 
 #: gui/text/quotes.txt:9
 msgid "“Union gives strength.” \\n— Aesop (“The Bundle of Sticks”)"
-msgstr "“Cun ajuda de vizinos, fhaigo yeu los mieus lhaborinos.” \\n— Esopu (“El fheiʃe”)"
+msgstr "“Cun adiuda de vizinos, faigo yeu los mieus lhaborinos.” \\n— Esopu (“El feixe”)"
 
 #: gui/text/quotes.txt:10
 msgid ""
 "“Never trust advice from a man in the throes of his own difficulty.” \\n— "
 "Aesop (“The Fox and the Goat”)"
-msgstr "“Mociquina, mociquina: de galantiador & coreẍa inꞇyena non t’infhoutes q’invenena.” \\n— Esopu (“La raposa & la cabra”)"
+msgstr "“Mociquina, mociquina: de galantiador & corexa inlhena non t’infoutes q’invenena.” \\n— Esopu (“La raposa & la cabra”)"
 
 #: gui/text/quotes.txt:11
 msgid ""
 "“Familiarity breeds contempt; acquaintance softens prejudices.” \\n— Aesop "
 "(“The Fox and the Lion”)"
-msgstr "“Mayæs val un amigu que pariente ne primu.” \\n— Esopu (“La raposa & el lheon”)"
+msgstr "“Mais val un amigu que pariente ne primu.” \\n— Esopu (“La raposa & el lheon”)"
 
 #: gui/text/quotes.txt:12
 msgid ""
 "“Self-conceit may lead to self-destruction.” \\n— Aesop (“The Frog and the "
 "Ox”)"
-msgstr "“El que cun señores anda, ꞇyora, que non canta.” \\n— Esopu (“La rana & el buœy”)"
+msgstr "“El que cun señores anda, lhora, que non canta.” \\n— Esopu (“La rana & el wöi”)"
 
 #: gui/text/quotes.txt:13
 msgid ""
 "“Slow and steady wins the race.” \\n— Aesop (“The Hare and the Tortoise”)"
-msgstr "“Contra mayæs priessa mayæs vagar.” \\n— Esopu (“La lhiebre & la tartuga”)"
+msgstr "“Contra mais priessa mais vagar.” \\n— Esopu (“La lhiebre & la tartuga”)"
 
 #: gui/text/quotes.txt:14
 msgid ""
 "“Better be wise by the misfortunes of others than by your own.” \\n— Aesop "
 "(“The Lion, the Ass, and the Fox Hunting”)"
-msgstr "“El que non oue conselyo non ꞇyega a vieꞇyu.” \\n— Esopu (“El lheon, el pulhin & la raposa”)"
+msgstr "“El que non oe conselyo non lhiega a vielyu.” \\n— Esopu (“El lheon, el pulhin & la raposa”)"
 
 #: gui/text/quotes.txt:15
 msgid ""
 "“Enemies' promises were made to be broken.” \\n— Aesop (“The Nurse and the "
 "Wolf”)"
-msgstr "“Ante casa de l que non reza, non lheixes l arca abierta.” \\n— Esopu (“L ama & el lhubu”)"
+msgstr "“Ante casa de l que non reza, non deixes l’arca abierta.” \\n— Esopu (“L’ama & el lhubu”)"
 
 #: gui/text/quotes.txt:16
 msgid "“Any excuse will serve a tyrant.” \\n— Aesop (“The Wolf and the Lamb”)"
@@ -1192,7 +1192,7 @@ msgid ""
 " an army with which I liberated the state, which was oppressed by the "
 "tyranny of a faction.” \\n— Augustus, in his autobiography (“Res Gestae Divi"
 " Augusti”, sec. 1)"
-msgstr "“A los dezienuove anhos d’edade, pola mia cuonta & riesgu, merquei un exércitu cun que lhiberei la república de la faccion gubernante que lla opprimía.” \\n— Augustu, nela autobiographía sua (“Res Gestae Divi Augusti”, secc. 1)"
+msgstr "“A los dezienuove anhos d’edade, pola mia cuonta & riesgu, merquei un exércitu cun que lhiberei la república de la faccion gubernante que lla opprimía.” \\n— Augustu, na autobiographía suɐ (“Res Gestae Divi Augusti”, secc. 1)"
 
 #: gui/text/quotes.txt:45
 msgid ""
@@ -1201,7 +1201,7 @@ msgid ""
 "foreign nations which could with safety be pardoned I preferred to save "
 "rather than to destroy.” \\n— Augustus, in his autobiography (“Res Gestae "
 "Divi Augusti”, sec. 3)"
-msgstr "“Bella terra et mari civilia externaque toto in orbe terrarum saepe gessi, victorque omnibus veniam petentibus civibus peperci. Externas gentes, quibus tuto ignosci potuit, conservare quam excidere malui.” \\n— Augustu, nela sua autobiographía (“Res Gestae Divi Augusti”, secc. 3)"
+msgstr "“Bella terra et mari civilia externaque toto in orbe terrarum saepe gessi, victorque omnibus veniam petentibus civibus peperci. Externas gentes, quibus tuto ignosci potuit, conservare quam excidere malui.” \\n— Augustu, na suɐ autobiographía (“Res Gestae Divi Augusti”, secc. 3)"
 
 #: gui/text/quotes.txt:46
 msgid ""
@@ -1438,7 +1438,7 @@ msgstr "«Apurriendo al fiyu un escudu ya camentándo-lly dicía: \"fiyu, o con 
 msgid ""
 "“I came, I saw, I conquered.” \\n— Caesar, after routing Pharnaces II of "
 "Pontus in the first assault (Plutarch, “Parallel Lives”, “Caesar”, sec. 50)"
-msgstr "“Vini, vi, vincí.” \\n— Caesar, in rompiendo a Pharnakes II de l Pontu nela primeira cometida (Plutarchu, “Vidæs parallelæs”, “Caesar”, secc. 50)"
+msgstr "“Vini, vi, vincí.” \\n— César, in rompiendo a Pharnakes II de l Pontu na primeira cometida (Plutarchu, “Vidɐs parallelɐs”, “Caesar”, secc. 50)"
 
 #: gui/text/quotes.txt:80
 msgid ""
@@ -1486,7 +1486,7 @@ msgid ""
 "“The die is cast.” \\n— Caesar, when crossing the Rubicon river with his "
 "legion into Italy, a capital offense that led to his civil war against "
 "Pompey (Suetonius, “The Lives of the Twelve Caesars”, 32)"
-msgstr "“Jacta alea esto.” \\n— Caesar, a l cruciare l riw Rubicon cun la sua legion, una oufiensa capital que lhevou a la guerra civil contra Pompeiu (Suetoniu, “De vita Caesarum”, 32)"
+msgstr "“Jacta alea esto.” \\n— César, a l cruciare l riw Rubicon cun la suɐ legion, una oufiensa capital que lhevou a la guerra civil contra Pompeiu (Suetoniu, “De vita Caesarum”, 32)"
 
 #: gui/text/quotes.txt:86
 msgid ""
@@ -1546,7 +1546,7 @@ msgstr "«La guerra yía'l pai de todo, el rei de todo: feixo tanto los dieuses 
 msgid ""
 "“You could not step twice into the same river.” \\n— Heraclitus (Plato, "
 "“Cratylus”, 402a)"
-msgstr "“Duas vuoltas nel meismu riw nun intrabas.” \\n— Heraclitu (Platon, “Crátylu”, 402a)"
+msgstr "“Duas vuoltas no meismu riw non intrabas.” \\n— Heraclitu (Platon, “Crátylu”, 402a)"
 
 #: gui/text/quotes.txt:95
 msgid ""
@@ -2186,7 +2186,7 @@ msgid ""
 "Tiberius Gracchus, advocating for land reform to the benefit of homeless and"
 " unemployed veterans whose lands had often been bought up while they were on"
 " campaign. (Plutarch, “Parallel Lives”, “Tiberius Gracchus”, 9.4–5)"
-msgstr "«Los fierucos qu'habitan Italia, cadagunu d'eḷḷos tien ḷḷuriga ou covareta qu'ocupar, pero los que ḷḷuitan ya muerren por Italia, comparten aire ya ḷḷuz, nada más. Sin casa nin raigaños, eḷḷos vense obligados a vagamundiar conos fiyos ya muyeres.»\\n— Tiberiu Gracu, abogando polos veteranos, que munches veces víen les tierres mercades entre qu'estaben en campaña (Plutarcu, «Vides paraleles», «Tiberiu Gracu», 9.4–5)"
+msgstr "«Los fierucos qu'habitan Italia, cadagunu d'eḷḷos tien ḷḷuriga ou covareta qu'ocupar, pero los que ḷḷuitan ya muerren por Italia, comparten aire ya ḷḷuz, nada más. Sin casa nin raigaños, eḷḷos vense angariyados a vagamundiar conos fiyos ya muyeres.»\\n— Tiberiu Gracu, abogando polos veteranos, que munches veces víen les tierres mercades entre qu'estaben en campaña (Plutarcu, «Vides paraleles», «Tiberiu Gracu», 9.4–5)"
 
 #: gui/text/quotes.txt:182
 msgid ""

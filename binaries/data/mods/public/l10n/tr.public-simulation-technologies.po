@@ -24,13 +24,14 @@
 # Tayfun Toprakcıoğlu
 # utkugun
 # Volkan Gezer
+# Yahya Şanverdi
 # yakup
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>, 2014-2017,2021-2022\n"
+"Last-Translator: Yahya Şanverdi, 2022\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -477,7 +478,7 @@ msgstr ""
 
 #: simulation/data/technologies/civil_engineering_02.jsontooltip
 msgid "All structures +20% health."
-msgstr ""
+msgstr "Tüm yapılar +20% sağlık"
 
 #: simulation/data/technologies/civil_service_01.jsongenericName
 msgid "Efficient Bureaucracy"
@@ -635,10 +636,13 @@ msgid "Chain Pump"
 msgstr "Zincirli su tulumbası"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsontooltip
+#: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
+#: simulation/data/technologies/gather_farming_plows.jsontooltip
 #: simulation/data/technologies/gather_farming_seed_drill.jsontooltip
+#: simulation/data/technologies/gather_farming_training.jsontooltip
 #: simulation/data/technologies/gather_farming_water_weeding.jsontooltip
-msgid "Workers +20% rice gather rate."
-msgstr ""
+msgid "Workers +20% grain gather rate."
+msgstr "İşçiler +%20 tahıl toplama oranı."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
@@ -647,12 +651,6 @@ msgstr "Çiftlikler için ilave besin çeşitleri."
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
 msgstr "Gübre"
-
-#: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
-#: simulation/data/technologies/gather_farming_plows.jsontooltip
-#: simulation/data/technologies/gather_farming_training.jsontooltip
-msgid "Workers +20% grain gather rate."
-msgstr "İşçiler +%20 tahıl toplama oranı."
 
 #: simulation/data/technologies/gather_farming_harvester.jsondescription
 msgid ""
@@ -1093,9 +1091,9 @@ msgstr "Megalopolis"
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Daha fazla varlık ve teknolojinin kilidini açan Şehir Aşamasına ilerleyin. Şehir Merkezleri +%50 bölge etkisi yarıçapı. Yapılar +9 işgal puanı, garnizondaki birim başına yenilenme oranı. İşçiler +% 10 metal toplama oranı. "
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units. Workers +10% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1110,9 +1108,9 @@ msgstr "Jùn"
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit."
-msgstr "Daha fazla varlık ve teknolojinin kilidini açan Şehir Aşamasına ilerleyin. Şehir Merkezleri +% 50 bölge etkisi yarıçapı. Yapılar +9 işgal puanı, garnizondaki birim başına yenilenme oranı. İşçiler +% 10 metal toplama oranı. "
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units."
+msgstr ""
 
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
@@ -1124,8 +1122,8 @@ msgstr "Hareketli bir kasabadan modern teknolojinin harikalarıyla dolu gerçek 
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +9 capture points "
-"regeneration rate per garrisoned unit. Stable −10% batch training time."
+"Centers +50% territory influence radius. Structures +1 capture points "
+"regeneration rate for garrisoned units. Stable −10% batch training time."
 msgstr ""
 
 #: simulation/data/technologies/phase_town.jsondescription
@@ -1165,9 +1163,9 @@ msgstr "Kōmopolis"
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit. Workers +10% metal gather rate."
-msgstr "Daha fazla varlık ve teknolojiye ulaşabilmek için Kasaba Aşamasına geç. Şehir Merkezleri +%30 etki alanı çapı. Yapılarda garnizonlu birim başına +7 ele geçirme puanı yenileme. İşçiler +%10 metal toplama oranı."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units. Workers +10% metal gather rate."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1181,9 +1179,9 @@ msgstr "Xìan"
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit."
-msgstr "Daha fazla varlık ve teknolojiye ulaşabilmek için Kasaba Aşamasına geç. Şehir Merkezleri +%30 etki alanı çapı. Yapılarda garnizonlu birim başına +7 ele geçirme puanı yenileme."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units."
+msgstr ""
 
 #: simulation/data/technologies/phase_town_pers.jsondescription
 msgid ""
@@ -1195,8 +1193,8 @@ msgstr "Küçük bir köyden, hızla genişlemeye hazır, hareketli bir kasabaya
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +7 capture points "
-"regeneration rate per garrisoned unit. Stable −10% batch training time."
+"Centers +30% territory influence radius. Structures +0.5 capture points "
+"regeneration rate for garrisoned units. Stable −10% batch training time."
 msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName

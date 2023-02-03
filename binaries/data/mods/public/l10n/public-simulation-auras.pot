@@ -1,12 +1,12 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2022-10-22 14:55+0000\n"
-"PO-Revision-Date: 2022-10-22 14:55+0000\n"
+"POT-Creation-Date: 2023-02-02 21:44+0000\n"
+"PO-Revision-Date: 2023-02-02 21:44+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -26,6 +26,32 @@ msgstr ""
 
 #: simulation/data/auras/structures/cart_super_dock_repair.json:auraName
 msgid "Dockyard Repairs"
+msgstr ""
+
+#: simulation/data/auras/structures/corral_garrison_large.json:auraDescription
+msgid "Garrison within the Corral to gain a slow trickle of +3 food."
+msgstr ""
+
+#: simulation/data/auras/structures/corral_garrison_large.json:auraName
+#: simulation/data/auras/structures/corral_garrison_medium.json:auraName
+#: simulation/data/auras/structures/corral_garrison_small.json:auraName
+msgid "Ranching and Corralling"
+msgstr ""
+
+#: simulation/data/auras/structures/corral_garrison_medium.json:auraDescription
+msgid "Garrison within the Corral to gain a slow trickle of +2 food."
+msgstr ""
+
+#: simulation/data/auras/structures/corral_garrison_small.json:auraDescription
+msgid "Garrison within the Corral to gain a slow trickle of +1 food."
+msgstr ""
+
+#: simulation/data/auras/structures/farmstead_60.json:auraDescription
+msgid "Gatherers +75% farming rate around a captured Farmstead."
+msgstr ""
+
+#: simulation/data/auras/structures/farmstead_60.json:auraName
+msgid "Farmland"
 msgstr ""
 
 #: simulation/data/auras/structures/iber_monument.json:auraDescription
@@ -126,11 +152,11 @@ msgid "Rigorous Training"
 msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.json:auraDescription
-msgid "Warships −25% construction time."
+msgid "Civic center technologies −50% research time and −30% cost."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.json:auraName
-msgid "Delian League"
+msgid "Democracy"
 msgstr ""
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.json:auraDescription
@@ -142,11 +168,11 @@ msgid "Druids"
 msgstr ""
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.json:auraDescription
-msgid "+10% international trade bonus."
+msgid "Mercenaries −50% train time."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.json:auraName
-msgid "Trademasters"
+msgid "Mercenary Transports"
 msgstr ""
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.json:auraDescription
@@ -200,11 +226,11 @@ msgid "Ashoka's Religious Support"
 msgstr ""
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.json:auraDescription
-msgid "Land Traders +15% trade gain."
+msgid "Barracks and Stables −20% wood and stone cost and build time."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.json:auraName
-msgid "The Royal Road"
+msgid "Training Regimes"
 msgstr ""
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.json:auraDescription
@@ -224,7 +250,7 @@ msgid "Conscription"
 msgstr ""
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.json:auraDescription
-msgid "Civil Centers −20% resource costs."
+msgid "Civil Centers and Colonies −20% resource cost and −30% construction time."
 msgstr ""
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.json:auraName
@@ -539,6 +565,16 @@ msgstr ""
 msgid "Iron Pelanors"
 msgstr ""
 
+#: simulation/data/auras/units/centurion.json:auraDescription
+msgid ""
+" Melee Soldiers +10% attack damage and all Soldiers −25% experience points for "
+"promotion."
+msgstr ""
+
+#: simulation/data/auras/units/centurion.json:auraName
+msgid "Combat Leadership"
+msgstr ""
+
 #: simulation/data/auras/units/han_minister_building.json:auraDescription
 msgid "Builders construct buildings +2% faster for every nearby Minister."
 msgstr ""
@@ -592,35 +628,37 @@ msgid "Peltast Reforms"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.json:auraDescription
-msgid "Builders +15% build rate."
+msgid ""
+"Soldiers, Ships, Siege Engines and Structures do not give loot, +50% Structure capture "
+"points."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.json:auraName
-msgid "Periclean Building Program"
+msgid "Periclean Defensive Strategy"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.json:auraDescription
-msgid "Temples −25% stone cost, +2 garrisoned heal rate."
+msgid "Technologies −10% resource costs, −50% research time."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.json:auraName
-msgid "Temple of Athena Nike"
+msgid "Scholarship and the Arts"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.json:auraDescription
-msgid "When garrisoned, the Ship has −30% batch training time and +50% movement speed."
+msgid "−50% metal cost, Ships −50% construction time, +15% move speed."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.json:auraName
-msgid "Naval Commander"
+msgid "Naval Preparation"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.json:auraDescription
-msgid "Ships −50% metal cost, −20% construction time."
+msgid "Walls and Palisades −50% resource costs and −20% construction time."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.json:auraName
-msgid "Naval Architect"
+msgid "Themistoclean Walls"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.json:auraDescription
@@ -843,18 +881,26 @@ msgid "Gift of Warships"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.json:auraDescription
-msgid "Structures +10% territory influence radius."
+msgid "Soldiers +10% attack damage, +15% movement speed."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.json:auraName
-msgid "Imperialism"
+msgid "Rapid Conquest"
 msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.json:auraDescription
-msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
+msgid "Enemy Soldiers, Structures −10% attack damage."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.json:auraName
+msgid "Undefeated"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_3.json:auraDescription
+msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_3.json:auraName
 msgid "Conqueror"
 msgstr ""
 

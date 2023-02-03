@@ -4,15 +4,15 @@
 # project.
 # Translators:
 # 76407af6b051a571d67c2577de2183db_7380deb
-# JungHee Lee
+# Junghee Lee
 # Gu Hong Min
 # ks k
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2022-11-04 08:09+0000\n"
 "PO-Revision-Date: 2014-09-12 20:06+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2021-2022\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,14 +20,44 @@ msgstr ""
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gui/common/functions_msgbox.js:44
+#: gui/colormixer/colormixer.js:24
+msgid "Color"
+msgstr "색상"
+
+#: gui/colormixer/colormixer.js:25
+msgid ""
+"Move the sliders to change the Red, Green and Blue components of the Color"
+msgstr "슬라이더를 이동하여 색상의 적색, 녹색 및 청색 구성 요소를 변경합니다"
+
+#: gui/colormixer/colormixer.js:90
+msgid "Red"
+msgstr "적색"
+
+#: gui/colormixer/colormixer.js:90
+msgid "Green"
+msgstr "녹색"
+
+#: gui/colormixer/colormixer.js:90
+msgid "Blue"
+msgstr "청색"
+
+#: gui/colormixer/colormixer.js:91
+msgid "Save"
+msgstr "저장하기"
+
+#: gui/colormixer/colormixer.js:91 gui/modio/modio.js:136
+#: gui/modmod/modmod.xml:(caption):197
+msgid "Cancel"
+msgstr "취소하기"
+
+#: gui/common/functions_msgbox.js:55
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait…"
 msgstr "%(url)s 을(를)\n 기존의 웹 브라우저로 열고 있습니다. 잠시만 기다려 주십시오…"
 
-#: gui/common/functions_msgbox.js:47
+#: gui/common/functions_msgbox.js:58
 msgid "Opening page"
 msgstr "페이지를 여는중"
 
@@ -239,10 +269,6 @@ msgstr "mod.io 인터페이스를 초기화하는 중입니다."
 msgid "Initializing"
 msgstr "초기화하는 중"
 
-#: gui/modio/modio.js:136 gui/modmod/modmod.xml:(caption):197
-msgid "Cancel"
-msgstr "취소"
-
 #: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
@@ -258,7 +284,7 @@ msgstr "업데이트 중"
 
 #: gui/modio/modio.js:249
 msgid "Cancel Update"
-msgstr "업데이트 취소"
+msgstr "업데이트 취소하기"
 
 #: gui/modio/modio.js:265
 #, javascript-format
@@ -271,7 +297,7 @@ msgstr "다운로드 중"
 
 #: gui/modio/modio.js:270
 msgid "Cancel Download"
-msgstr "다운로드 취소"
+msgstr "다운로드 취소하기"
 
 #. Translation: Mod file download indicator. Current size over expected final
 #. size, with
@@ -406,25 +432,25 @@ msgstr "mod.io 방문"
 msgid "This mod does not exist"
 msgstr "이 모드는 존재하지 않습니다"
 
-#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:449
+#: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
 msgid "Enable"
 msgstr "활성화"
 
-#: gui/modmod/modmod.js:168
+#: gui/modmod/modmod.js:167
 msgid "Dependencies not met"
 msgstr "종속성이 충족되지 않음"
 
-#: gui/modmod/modmod.js:450
+#: gui/modmod/modmod.js:449
 msgctxt "mod activation"
 msgid "Disable"
 msgstr "비활성화"
 
-#: gui/modmod/modmod.js:458
+#: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
 msgstr "선택된 모드가 없습니다."
 
-#: gui/modmod/modmod.js:461
+#: gui/modmod/modmod.js:460
 msgid "Enable at least 0ad mod"
 msgstr "0ad 모드만 활성화"
 
@@ -466,7 +492,7 @@ msgstr "모드 다운로드"
 
 #: gui/modmod/modmod.xml:(caption):212
 msgid "Save Configuration"
-msgstr "환경설정 저장"
+msgstr "환경설정 저장하기"
 
 #: gui/modmod/modmod.xml:(caption):217
 msgid "Save and Restart"

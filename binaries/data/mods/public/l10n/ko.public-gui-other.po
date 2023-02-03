@@ -5,7 +5,7 @@
 # Translators:
 # Adrián Chaves Fernández
 # Asakura
-# JungHee Lee
+# Junghee Lee
 # Cheung Hung
 # Gu Hong Min
 # jjj
@@ -20,9 +20,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2022\n"
+"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -102,35 +102,35 @@ msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 #: gui/common/gamedescription.js:90
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr "%(playerName)s (오프라인)"
+msgstr "%(playerName)s님 (오프라인)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:93
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr "%(playerName)s (오프라인, %(state)s)"
+msgstr "%(playerName)s님 (오프라인, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:100
 #, javascript-format
 msgid "%(playerName)s (%(civ)s)"
-msgstr "%(playerName)s (%(civ)s)"
+msgstr "%(playerName)s님 (%(civ)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:103
 #, javascript-format
 msgid "%(playerName)s (%(civ)s, %(state)s)"
-msgstr "%(playerName)s (%(civ)s, %(state)s)"
+msgstr "%(playerName)s님 (%(civ)s, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:107
 #, javascript-format
 msgid "%(playerName)s"
-msgstr "%(playerName)s"
+msgstr "%(playerName)s님"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -214,7 +214,7 @@ msgstr "영웅을 주둔시킬 수 있습니다."
 
 #: gui/common/gamedescription.js:244
 msgid "Exposed Heroes"
-msgstr "들어난 영웅들"
+msgstr "노출된 영웅들"
 
 #: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
@@ -266,13 +266,13 @@ msgstr "비활성화"
 
 #: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
-msgstr "처음 1분 동안 다른 플레이어는 중립을 유지합니다."
+msgstr "처음 1분 동안, 다른 플레이어들은 중립을 지킬 것입니다."
 
 #: gui/common/gamedescription.js:279
 #, javascript-format
 msgid "For the first %(min)s minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] "처음 %(min)s 분 동안은 다른 플레이어들이 중립을 지킬것입니다."
+msgstr[0] "처음 %(min)s분 동안, 다른 플레이어들은 중립을 지킬것입니다."
 
 #: gui/common/gamedescription.js:288
 msgctxt "Map Selection"
@@ -431,22 +431,22 @@ msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr "서버에 대한 연결이 (%(seconds)s 초) 동안 끊어짐"
+msgstr "서버와의 연결이 끊어졌습니다 (%(seconds)s초)"
 
 #: gui/common/network.js:22
 #, javascript-format
 msgid "%(player)s losing connection (%(seconds)ss)"
-msgstr "%(player)s 님의 연결이 (%(seconds)s 초) 끊어짐"
+msgstr "%(player)s님 연결이 끊겼습니다 (%(seconds)s초)"
 
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr "서버 연결 불량 (%(milliseconds)s 밀리초)"
+msgstr "서버와의 연결이 잘못되었습니다 (%(milliseconds)sms)"
 
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr "%(player)s에 대한 연결이 잘못되었습니다 (%(milliseconds)s 밀리초)"
+msgstr "%(player)s님과의 연결이 잘못되었습니다 (%(milliseconds)sms)"
 
 #: gui/common/network.js:66
 msgid ""
@@ -464,7 +464,7 @@ msgstr "잘못된 네트워크 프로토콜 버전."
 
 #: gui/common/network.js:69
 msgid "Game is loading, please try again later."
-msgstr "게임이 불러오는 중이므로 나중에 다시 시도합니다."
+msgstr "게임을 불러오는 중입니다. 나중에 다시 시도하십시오."
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
@@ -791,7 +791,7 @@ msgstr "%(name)s님을 차단합니다"
 #: gui/common/tooltips.js:287
 #, javascript-format
 msgid "%(name)s %(details)s"
-msgstr "%(name)s %(details)s"
+msgstr "%(name)s님 %(details)s"
 
 #: gui/common/tooltips.js:274
 #, javascript-format
@@ -811,7 +811,7 @@ msgstr "차단: %(blockPercentage)s%%, 기간 단축: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:305
 msgid "Garrison to fire arrows"
-msgstr "화살을 퍼붓는 주둔지"
+msgstr "화살을 발사할 주둔지"
 
 #: gui/common/tooltips.js:308 gui/common/tooltips.js:1056
 msgid "Interval:"
@@ -830,7 +830,7 @@ msgstr[0] "%(projectileCount)s %(projectileName)s"
 #: gui/common/tooltips.js:315
 msgid "arrow"
 msgid_plural "arrows"
-msgstr[0] "발의 화살이 발사됨"
+msgstr[0] "화살"
 
 #: gui/common/tooltips.js:318
 #, javascript-format
@@ -892,7 +892,7 @@ msgstr "%(damage)s %(damageType)s"
 #: gui/common/tooltips.js:385
 #, javascript-format
 msgid "%(amount)s %(name)s"
-msgstr "%(amount)s %(name)s"
+msgstr "%(amount)s %(name)s님"
 
 #: gui/common/tooltips.js:393
 #, javascript-format
@@ -930,7 +930,7 @@ msgstr "아니오"
 #: gui/common/tooltips.js:414
 #, javascript-format
 msgid "gives %(name)s"
-msgstr "%(name)s 주기"
+msgstr "%(name)s님 주기"
 
 #: gui/common/tooltips.js:447
 #, javascript-format
@@ -1065,13 +1065,13 @@ msgstr "남은 수리 시간:"
 msgid "Add another worker to speed up the repairs by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the repairs by %(second)s seconds."
-msgstr[0] "다른 일꾼을 추가하면 수리 속도를 %(second)s 초 향상합니다."
+msgstr[0] "다른 일꾼을 추가하여 수리 속도를 %(second)s초 단축합니다."
 
 #: gui/common/tooltips.js:658
 #, javascript-format
 msgid "Add a worker to finish the repairs in %(second)s second."
 msgid_plural "Add a worker to finish the repairs in %(second)s seconds."
-msgstr[0] "일꾼을 추가하면 %(second)s 초 이내에 수리를 마칩니다."
+msgstr[0] "일꾼을 추가하여 %(second)s초 안에 수리를 완료합니다."
 
 #: gui/common/tooltips.js:670
 msgid "Number of builders:"
@@ -1086,13 +1086,13 @@ msgstr "남은 건설 시간:"
 msgid "Add another worker to speed up the construction by %(second)s second."
 msgid_plural ""
 "Add another worker to speed up the construction by %(second)s seconds."
-msgstr[0] "다른 일꾼을 추가하면 건설 속도가 %(second)s초 빨라집니다."
+msgstr[0] "다른 일꾼을 추가하여 건설 속도를 %(second)s초 앞당깁니다."
 
 #: gui/common/tooltips.js:692
 #, javascript-format
 msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
-msgstr[0] "일꾼을 추가하면 %(second)s초 안에 건설을 마칠 수 있습니다."
+msgstr[0] "일꾼을 추가하여 %(second)s초 안에 건축물을 완성합니다."
 
 #: gui/common/tooltips.js:730 gui/common/tooltips.js:993
 #, javascript-format
@@ -1155,7 +1155,7 @@ msgstr "유지비:"
 #: gui/common/tooltips.js:912
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr "%(resourceIcon)s %(minimum)s to(번역확인할것) %(resourceIcon)s %(maximum)s"
+msgstr "%(resourceIcon)s %(minimum)s - %(resourceIcon)s %(maximum)s"
 
 #: gui/common/tooltips.js:941
 #, javascript-format
@@ -1274,7 +1274,7 @@ msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:1192
 msgid "Loot:"
-msgstr "이 유닛이 약탈 당했을때 보상:"
+msgstr "노획물:"
 
 #: gui/common/tooltips.js:1202
 #, javascript-format
@@ -1312,7 +1312,7 @@ msgstr "k"
 #: gui/credits/credits.js:83
 #, javascript-format
 msgid "%(nick)s — %(name)s"
-msgstr "%(nick)s — %(name)s"
+msgstr "%(nick)s — %(name)s님"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
@@ -1396,7 +1396,7 @@ msgstr "첼로"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
 msgid "Celtic harp"
-msgstr "켈트 하프"
+msgstr "켈트족 하프"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[6].Subtitle
 msgid "Didgeridoo"
@@ -1637,7 +1637,7 @@ msgstr "수락"
 #: gui/locale_advanced/locale_advanced.xml:(caption):65
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):51
 msgid "Cancel"
-msgstr "취소"
+msgstr "취소하기"
 
 #: gui/hotkeys/hotkeys.xml:(heading):39
 msgctxt "hotkey list"
@@ -1652,11 +1652,11 @@ msgstr "지도로 나타내기"
 #: gui/hotkeys/hotkeys.xml:(tooltip):49 gui/hotkeys/hotkeys.xml:(tooltip):102
 #: gui/options/options.xml:(tooltip):44
 msgid "Resets user settings to their game default"
-msgstr "사용자 설정을 다시 설정하고 기본값 복원"
+msgstr "사용자 설정을 게임 기본값으로 재설정"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):54 gui/options/options.xml:(tooltip):56
 msgid "Saves changes"
-msgstr "저장 변동사항"
+msgstr "변동사항 저장하기"
 
 #: gui/hotkeys/hotkeys.xml:(tooltip):59
 msgid "Unsaved changes will be lost"
@@ -2039,7 +2039,7 @@ msgstr "현재 대화 상자 / 팝업을 닫거나 취소합니다."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.name
 msgctxt "hotkey metadata"
 msgid "Close/Cancel"
-msgstr "닫기/취소"
+msgstr "닫기/취소하기"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
 msgctxt "hotkey metadata"
@@ -2116,32 +2116,32 @@ msgstr "일시중지 / 일시중지 해제"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.desc
 msgctxt "hotkey metadata"
 msgid "Save current profiler data to logs/profile.txt."
-msgstr "현재 프로파일러 데이터를 logs/profile.txt에 저장합니다."
+msgstr "현재 Profiler 데이터를 logs/profile.txt에 저장합니다."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.name
 msgctxt "hotkey metadata"
 msgid "Save profile"
-msgstr "프로필 저장"
+msgstr "프로필 저장하기"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the real-time profiler."
-msgstr "실시간 프로파일러를 전환합니다."
+msgstr "실시간 Profiler를 전환합니다."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler"
-msgstr "프로파일러 전환"
+msgstr "Profiler 전환"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle HTTP/GPU modes for new profiler."
-msgstr "새 프로파일러에 대한 HTTP/GPU 모드를 전환합니다."
+msgstr "새 Profiler에 대한 HTTP/GPU 모드를 전환합니다."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler2"
-msgstr "프로파일러2 전환"
+msgstr "Profiler2 전환"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
@@ -2191,7 +2191,7 @@ msgstr "커서 왼쪽에 있는 단어를 삭제합니다."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.name
 msgctxt "hotkey metadata"
 msgid "Delete before cursor"
-msgstr "커서 앞에서 삭제"
+msgstr "커서 앞에서 삭제하기"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.desc
 msgctxt "hotkey metadata"
@@ -2201,7 +2201,7 @@ msgstr "커서 오른쪽에 있는 단어를 삭제합니다."
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.name
 msgctxt "hotkey metadata"
 msgid "Delete after cursor"
-msgstr "커서 뒤에 삭제"
+msgstr "커서 뒤에 삭제하기"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.desc
 msgctxt "hotkey metadata"
@@ -2394,7 +2394,7 @@ msgstr "건물을 클릭할 때 주둔지로 변경합니다."
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.name
 msgctxt "hotkey metadata"
 msgid "Garrison"
-msgstr "탑승"
+msgstr "배치하기"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.desc
 msgctxt "hotkey metadata"
@@ -2681,32 +2681,32 @@ msgstr "기본 대형 전환"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.desc
 msgctxt "hotkey metadata"
 msgid "Unload garrisoned units when a building/mechanical unit is selected."
-msgstr "건물 / 기계장치 유닛이 선택되면 주둔한 유닛을 내립니다."
+msgstr "건물/기계장치 유닛이 선택되면 주둔 유닛들을 내보냅니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.name
 msgctxt "hotkey metadata"
 msgid "Unload"
-msgstr "내리기"
+msgstr "내보내기"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.desc
 msgctxt "hotkey metadata"
 msgid "Unload turreted units."
-msgstr "포탑에 탄 유닛을 내립니다."
+msgstr "포탑에 탄 유닛들을 내보냅니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.name
 msgctxt "hotkey metadata"
 msgid "Unload Turrets"
-msgstr "포탑 내리기"
+msgstr "포탑 내보내기"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to unload all units of type."
-msgstr "특정 유형의 모든 유닛을 보내기 위해 변경합니다."
+msgstr "특정 유형의 모든 유닛들을 내보내기 위해 변경합니다."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.name
 msgctxt "hotkey metadata"
 msgid "Unload unit type"
-msgstr "유닛 유형 언로드"
+msgstr "유닛 유형 내보내기"
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.desc
 msgctxt "hotkey metadata"
@@ -2918,7 +2918,7 @@ msgstr "저장된 게임을 삭제합니다 (저장하기/불러오기 창에서
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.name
 msgctxt "hotkey metadata"
 msgid "Delete saved game"
-msgstr "저장된 게임 삭제"
+msgstr "저장된 게임 삭제하기"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.desc
 msgctxt "hotkey metadata"
@@ -2928,7 +2928,7 @@ msgstr "저장된 게임을 삭제할 때 확인을 요청하지 않습니다."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.noconfirmation.name
 msgctxt "hotkey metadata"
 msgid "Delete without confirmation"
-msgstr "확인 없이 삭제"
+msgstr "확인 없이 삭제하기"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.desc
 msgctxt "hotkey metadata"
@@ -3072,7 +3072,7 @@ msgstr "모든 유닛을 선택 취소하고 건물 배치를 취소합니다."
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
 msgctxt "hotkey metadata"
 msgid "Cancel selection"
-msgstr "선택 취소"
+msgstr "선택 취소하기"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.desc
 msgctxt "hotkey metadata"
@@ -3427,22 +3427,22 @@ msgstr "다음 노는 일꾼 선택"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only military units to the selection."
-msgstr "선택 항목에 군인들 유닛만 추가합니다."
+msgstr "선택 항목에 군대 유닛들만 추가합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.militaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select military only"
-msgstr "군인만 선택"
+msgstr "군대만 선택하기"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.desc
 msgctxt "hotkey metadata"
 msgid "Add only non-military units to the selection."
-msgstr "선택 항목에 군인들이 아닌 유닛만 추가합니다."
+msgstr "선택 항목에 군대가 아닌 유닛들만 추가합니다."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.nonmilitaryonly.name
 msgctxt "hotkey metadata"
 msgid "Select non-military only"
-msgstr "군인이 아닌 것만 선택"
+msgstr "군대가 아닌 유닛만 선택하기"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.offscreen.desc
 msgctxt "hotkey metadata"
@@ -3501,11 +3501,11 @@ msgstr "\"%(label)s\""
 
 #: gui/loadgame/SavegameDeleter.js:53
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr "저장된 게임이 완전히 삭제됩니다, 삭제할까요?"
+msgstr "저장된 게임이 완전히 삭제됩니다, 삭제하시겠습니까?"
 
 #: gui/loadgame/SavegameDeleter.js:54
 msgid "DELETE"
-msgstr "삭제"
+msgstr "삭제하기"
 
 #: gui/loadgame/SavegameDetails.js:43
 #, javascript-format
@@ -3583,15 +3583,15 @@ msgstr "저장된 게임이 없습니다."
 #: gui/loadgame/load.xml:(caption):54
 #: gui/replaymenu/replay_menu.xml:(caption):234
 msgid "Delete"
-msgstr "삭제"
+msgstr "삭제하기"
 
 #: gui/loadgame/load.xml:(caption):64
 msgid "Filter compatible saved games"
-msgstr "호환 가능한 저장된 게임 필터"
+msgstr "호환 가능한 저장된 게임 필터링하기"
 
 #: gui/loadgame/load.xml:(caption):74
 msgid "Players:"
-msgstr "참가자들:"
+msgstr "플레이어들:"
 
 #: gui/loadgame/load.xml:(caption):78
 msgid "Played time:"
@@ -3651,7 +3651,7 @@ msgstr "장소:"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr "상급"
+msgstr "발달 단계 후기"
 
 #: gui/locale_advanced/locale_advanced.js:22
 #: gui/locale_advanced/locale_advanced.js:76
@@ -3717,15 +3717,15 @@ msgstr "기본값"
 
 #: gui/maps/MapFilters.js:92
 msgid "All maps except naval and demo maps."
-msgstr "해군 및 시연 지도를 제외한 모든 지도."
+msgstr "해전 및 데모 지도를 제외한 모든 지도."
 
 #: gui/maps/MapFilters.js:97
 msgid "Naval Maps"
-msgstr "해군 지도"
+msgstr "해전 지도"
 
 #: gui/maps/MapFilters.js:98
 msgid "Maps where ships are needed to reach the enemy."
-msgstr "적국에게 접근하기 위해 선박이 필요한 곳의 지도."
+msgstr "적에게 도달하기 위해 선박이 필요한 위치를 지도로 표시합니다."
 
 #: gui/maps/MapFilters.js:103
 msgid "Demo Maps"
@@ -3884,7 +3884,7 @@ msgstr "값: %(val)s (최소: %(min)s, 최대: %(max)s)"
 msgid ""
 "Resetting the options will erase your saved settings. Do you want to "
 "continue?"
-msgstr "옵션을 다시 설정하면 저장된 설정이 지워집니다. 계속하시겠습니까?"
+msgstr "옵션을 재설정하면 저장된 설정이 지워집니다. 계속하시겠습니까?"
 
 #: gui/options/options.js:412
 msgid "Some setting values are invalid! Are you sure you want to save them?"
@@ -4208,7 +4208,7 @@ msgstr "MSAA (2×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses two samples per pixel. Supported "
 "for GL3.3+."
-msgstr "느리지만 고품질 안티알리아싱은 픽셀당 개의 샘플을 사용합니다. GL3.3+에서 지원됩니다."
+msgstr "느리지만 고품질 안티앨리어싱은 픽셀당 개의 샘플을 사용합니다. GL3.3+에서 지원됩니다."
 
 #: gui/options/options.json[2].options[3].list[3].label
 msgid "MSAA (4×)"
@@ -4218,7 +4218,7 @@ msgstr "MSAA (4×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses four samples per pixel. Supported "
 "for GL3.3+."
-msgstr "느리지만 고품질 안티알리아싱은 픽셀당 4개의 샘플을 사용합니다. GL3.3+에서 지원됩니다."
+msgstr "느리지만 고품질 안티앨리어싱은 픽셀당 4개의 샘플을 사용합니다. GL3.3+에서 지원됩니다."
 
 #: gui/options/options.json[2].options[3].list[4].label
 msgid "MSAA (8×)"
@@ -4228,7 +4228,7 @@ msgstr "MSAA (8×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses eight samples per pixel. Supported"
 " for GL3.3+."
-msgstr "느리지만 고품질 안티알리아싱은 픽셀당 8개의 샘플을 사용합니다. GL3.3+에서 지원됩니다."
+msgstr "느리지만 고품질 안티앨리어싱은 픽셀당 8개의 샘플을 사용합니다. GL3.3+에서 지원됩니다."
 
 #: gui/options/options.json[2].options[3].list[5].label
 msgid "MSAA (16×)"
@@ -4238,7 +4238,7 @@ msgstr "MSAA (16×)"
 msgid ""
 "Slow, but high-quality antialiasing, uses sixteen samples per pixel. "
 "Supported for GL3.3+."
-msgstr "느리지만 고품질 안티알리아싱은 픽셀당 16개의 샘플을 사용합니다. GL3.3+에서 지원됩니다."
+msgstr "느리지만 고품질 안티앨리어싱은 픽셀당 16개의 샘플을 사용합니다. GL3.3+에서 지원됩니다."
 
 #: gui/options/options.json[2].options[3].tooltip
 msgid "Reduce aliasing effect on edges."
@@ -4368,13 +4368,13 @@ msgstr "OFF인 경우, 가능한 가장 낮은 설정을 사용하여 물을 렌
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][15].label
 msgid "High-quality water effects"
-msgstr "높은 품질의 물 효과"
+msgstr "고품질 물 효과"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][15].tooltip
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr "물, 해안파도 렌더링, 해안의 파도거품, 선박 노선 등에 고품질 효과를 활용합니다."
+msgstr "물, 연안의 파도, 해변의 거품 및 선박의 자취를 렌더링하는 데, 더 높은 품질의 효과를 사용합니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][16].label
 msgid "Water reflections"
@@ -4485,7 +4485,7 @@ msgstr "음악 음량"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[1].tooltip
 msgid "In game music gain."
-msgstr "게임 음악에서 조절합니다."
+msgstr "게임에서 배경음악을 조절합니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[2].label
 msgid "Ambient volume"
@@ -4493,7 +4493,7 @@ msgstr "배경 음량"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[2].tooltip
 msgid "In game ambient sound gain."
-msgstr "게임에서 배경 음 조절."
+msgstr "게임에서 주변 소리를 조절합니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[3].label
 msgid "Action volume"
@@ -4501,7 +4501,7 @@ msgstr "동작 음량"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[3].tooltip
 msgid "In game unit action sound gain."
-msgstr "게임에서 유닛 행동 소리 조절."
+msgstr "게임에서 유닛 동작 소리를 조절합니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[4].label
 msgid "UI volume"
@@ -4509,7 +4509,7 @@ msgstr "UI 음량"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[4].tooltip
 msgid "UI sound gain."
-msgstr "UI 소리를 조정합니다."
+msgstr "UI 소리를 조절합니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[5].label
 msgid "Nick notification"
@@ -4671,13 +4671,13 @@ msgstr "로비에 참여할 때 불러올 역 기록된 메시지 수입니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].label
 msgid "Game rating column"
-msgstr "게임 등급 줄"
+msgstr "게임 순위 칼럼"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
-msgstr "게임 목록의 열에 참여한 플레이어의 평균 등급을 표시합니다."
+msgstr "게임 목록의 열에 참여한 플레이어의 평균 순위을 표시합니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].label
 msgid "Network warnings"
@@ -4761,7 +4761,7 @@ msgstr "치료 범위 시각화"
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
-msgstr "선택한 유닛의 치료 범위를 표시합니다. (게임 중에 단축키를 사용하여 전환할 수도 있습니다.)"
+msgstr "선택한 유닛들의 치유 범위를 표시합니다. (게임 중에 단축키를 사용하여 전환할 수도 있습니다.)"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].label
 msgid "Rank icon above status bar"
@@ -4831,7 +4831,7 @@ msgstr "외교 색상: 중립"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[18].tooltip
 msgid "Color of neutral players when diplomacy colors are enabled."
-msgstr "외교 색상을 사용할때 중립적인 플레이어의 색상입니다."
+msgstr "외교 색상들이 활성화된 경우 중립 플레이어들의 색상입니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].label
 msgid "Diplomacy colors: enemy"
@@ -4955,7 +4955,7 @@ msgstr "플레어 화면표시 지속시간"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
-msgstr "미니맵의 플레어 마커가 표시되는 시간(초)입니다."
+msgstr "미니맵의 불꽃 마커가 표시되는 시간(초)입니다."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].label
 msgid "Minimap icons"
@@ -5176,7 +5176,7 @@ msgstr "캠페인 계속하기"
 #: gui/pregame/MainMenuItems.js:77 gui/pregame/MainMenuItems.js:111
 #: gui/pregame/MainMenuItems.js:127 gui/pregame/MainMenuItems.js:134
 msgid "Relive history through historical military campaigns."
-msgstr "역사적으로 유명한 호전적인 캠페인을 통해 역사를 다시 체험하세요."
+msgstr "역사적인 군사 작전을 통해 역사를 다시 체험하십시오."
 
 #: gui/pregame/MainMenuItems.js:85 gui/pregame/MainMenuItems.js:119
 msgid "Error opening campaign run:"
@@ -5224,7 +5224,7 @@ msgstr "멀티플레이어"
 
 #: gui/pregame/MainMenuItems.js:159
 msgid "Fight against one or more human players in a multiplayer game."
-msgstr "멀티플레이어 게임에서 한 명 이상의 인간 플레이어와 싸웁니다."
+msgstr "멀티플레이어 게임에서 한 명 이상의 인간 플레이어와 대결합니다."
 
 #. Translation: Join a game by specifying the host's IP address.
 #: gui/pregame/MainMenuItems.js:163
@@ -5357,8 +5357,8 @@ msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
 #: gui/pregame/ProjectInformation.js:18
-msgid "Alpha XXVI: Zhuangzi"
-msgstr "알파 XXVI: 장자"
+msgid "Alpha XXVII: ———"
+msgstr "알파 XXVII: ———"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5405,11 +5405,11 @@ msgstr "브라우저에서 자주묻는 질문 페이지를 방문하려면 클�
 
 #: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
-msgstr "게임 번역"
+msgstr "게임 번역하기"
 
 #: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "브라우저에서 0 A.D. 번역 페이지를 열려면 클릭합니다."
+msgstr "브라우저에서 0 A.D. 번역하기 페이지를 열려면 클릭합니다."
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
@@ -5519,7 +5519,7 @@ msgstr "\n     %(description)s"
 #: gui/reference/civinfo/CivInfoPage.js:102
 #, javascript-format
 msgid "• %(name)s %(info_icon)s%(description)s"
-msgstr "• %(name)s %(info_icon)s%(description)s"
+msgstr "• %(name)s님 %(info_icon)s%(description)s"
 
 #: gui/reference/civinfo/CivInfoPage.js:113
 #, javascript-format
@@ -5539,7 +5539,7 @@ msgstr "%(civilization)s의 역사"
 #: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:52
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] "문명 포상"
+msgstr[0] "문명 보너스"
 
 #: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
@@ -5632,7 +5632,7 @@ msgstr "훈련함:"
 #. structure can be upgradable to.
 #: gui/reference/common/tooltips.js:75
 msgid "Upgradable to:"
-msgstr "향상 대상:"
+msgstr "등급 상승 대상:"
 
 #: gui/reference/structree/Sections/Trainer/TrainerSection.js:70
 msgid "Trainer Units"
@@ -5684,7 +5684,7 @@ msgstr "이 다시보기를 영구적으로 삭제하시겠습니까?"
 
 #: gui/replaymenu/replay_actions.js:177
 msgid "Delete replay"
-msgstr "다시보기 삭제"
+msgstr "다시보기 삭제하기"
 
 #: gui/replaymenu/replay_filters.js:52
 msgctxt "datetime"
@@ -5923,7 +5923,7 @@ msgstr "국가 점수"
 
 #: gui/summary/layout.js:18
 msgid "Military score"
-msgstr "군사 점수"
+msgstr "무력 점수"
 
 #: gui/summary/layout.js:19
 msgid "Exploration score"
@@ -5951,7 +5951,7 @@ msgstr "전초기지"
 
 #: gui/summary/layout.js:38
 msgid "Military"
-msgstr "군사의"
+msgstr "군대"
 
 #: gui/summary/layout.js:39
 msgid "Fortresses"
@@ -6034,7 +6034,7 @@ msgstr "수집된 보물"
 
 #: gui/summary/layout.js:130
 msgid "Loot"
-msgstr "전리품"
+msgstr "노획물"
 
 #: gui/summary/layout.js:131
 msgid "Livestock bred"
@@ -6065,7 +6065,7 @@ msgstr " %(resourceFirstWord)s 교환함"
 
 #: gui/summary/layout.js:191
 msgid "Miscellaneous"
-msgstr "기타"
+msgstr "기타 등등"
 
 #: gui/summary/layout.js:194
 msgid "Kill / Death ratio"
@@ -6248,7 +6248,7 @@ msgstr "%(hotkey)s: 멀티플레이어 로비를 대화 상자 창으로 켜고 
 #: gui/summary/summary.js:556
 #, javascript-format
 msgid "Focus the %(name)s summary tab."
-msgstr "%(name)s 요약 탭에 초점을 맞춥니다."
+msgstr "%(name)s님 요약 탭에 초점을 맞춥니다."
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
@@ -6300,7 +6300,7 @@ msgstr "로마군 진영"
 msgid ""
 "Buildable in neutral or enemy territory. Good for building a secret base "
 "behind enemy lines or to consolidate gains within enemy territory."
-msgstr "중립 또는 적 영토에 지을수 있습니다. 적의 배후에 비밀 기지를 건설하거나 적의 영토 내의 이익을 강화하는데 적합합니다."
+msgstr "중립 또는 적 영토에 건설할 수 있습니다. 적의 배후에 비밀 기지를 건설하거나 적의 영토 내에서 승리를 굳히기에 좋습니다."
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct rams and train citizen soldiers."
@@ -6310,7 +6310,7 @@ msgstr "충차를 건설하고 시민 병사들을 훈련합니다."
 msgid ""
 "Garrison units to slowly heal them and protect the army camp from attacks "
 "and decay."
-msgstr "주둔지 유닛은 천천히 그들을 치유하고 공격과 부패로부터 군대 진영을 보호합니다."
+msgstr "천천히 그들을 치유하고 공격들과 쇠퇴로부터 군대 진영을 보호하기 위해 유닛들을 주둔시킵니다."
 
 #: gui/text/tips/autoqueue.txt:1
 msgid "AUTOQUEUE"
@@ -6336,7 +6336,7 @@ msgstr "모든 시민 군인을 훈련시킵니다. 일부 문명들은 정예�
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
-msgstr "유닛은 건물 내부에 주둔하는 동안 경험치를 얻습니다."
+msgstr "유닛들은 건물 내부에 주둔하는 동안 경험치를 얻습니다."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
@@ -6398,11 +6398,11 @@ msgstr "둘 다 대부분의 다른 정예들처럼 요새 대신 신전에서 �
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr "창병을 기병에 대항하여 중보병으로서 활용합니다. 기병을 공성 무기와 척후병에 대한 강한 공격으로 사용합니다."
+msgstr "기병을 상대로 중보병으로 창병을 사용합니다. 공성 무기와 척후병을 상대로 강력한 충격을 주기위해 기병을 사용합니다."
 
 #: gui/text/tips/carth_shipyard.txt:1
 msgid "CARTHAGINIAN NAVAL SHIPYARD"
-msgstr "카르타고인의 해군 조선소"
+msgstr "카르타고인의 수군 조선소"
 
 #: gui/text/tips/carth_shipyard.txt:2
 msgid "Special dock of the Carthaginians to construct warships."
@@ -6410,7 +6410,7 @@ msgstr "군선을 건조하기 위한 카르타고인들의 특별한 부두입�
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."
-msgstr "주둔지 선박은 천천히 수리하기 위해서 안에 있습니다"
+msgstr "천천히 선박들을 수리하기 위해 내부에 주둔시킵니다."
 
 #: gui/text/tips/carth_shipyard.txt:4
 msgid "Much stronger than other docks, but also more expensive."
@@ -6422,7 +6422,7 @@ msgstr "발석차"
 
 #: gui/text/tips/catapults.txt:2
 msgid "Ranged siege engines that are good against structures."
-msgstr "건축물에 적합한 원거리 공성 무기입니다."
+msgstr "건축물을 상대로 좋은 원거리 공성 무기입니다."
 
 #: gui/text/tips/catapults.txt:3
 msgid "Expensive and slow."
@@ -6445,11 +6445,11 @@ msgstr "기병 유닛을 훈련시키고 기병 특정 기술을 연구할 수 �
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
-msgstr "유닛은 구조 내부에서 수비하는 동안 경험을 쌓습니다."
+msgstr "유닛들은 건축물 내부에서 주둔하는 동안 경험치를 얻게 됩니다."
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
-msgstr "켈트 전투 바지선"
+msgstr "켈트족 전투 바지선"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "A medium trireme-class warship."
@@ -6465,7 +6465,7 @@ msgstr "최대 40기의 유닛을 운반할 수 있습니다."
 
 #: gui/text/tips/celtic_war_barge.txt:5
 msgid "Increases firepower with garrisoned infantry."
-msgstr "주둔한 보병으로 화력이 증가합니다."
+msgstr "주둔한 보병의 화력이 증가합니다."
 
 #: gui/text/tips/city_walls.txt:1
 msgid "CITY WALLS"
@@ -6499,7 +6499,7 @@ msgstr "광대한 범위의 영지를 요구합니다."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "Can be built in friendly and neutral territory."
-msgstr "동맹 영토나 중립지에 지을 수 있습니다."
+msgstr "동맹 영토나 중립 영토에 지을 수 있습니다."
 
 #: gui/text/tips/civic_centres.txt:5
 msgid ""
@@ -6630,7 +6630,7 @@ msgstr "일반적으로 문명의 가장 강력한 건축물이며 영웅을 훈
 
 #: gui/text/tips/fortress.txt:3
 msgid "Garrison soldiers inside to add more firepower to its defense."
-msgstr "그것을 방어하기 위해 내부에 주둔지 병사들을 배치하여 화력을 증강합니다."
+msgstr "방어에 더 많은 화력을 추가하기 위해 내부에 군인들을 주둔시킵니다."
 
 #: gui/text/tips/freehand_position.txt:1
 msgid "FREEHAND POSITION"
@@ -6639,7 +6639,7 @@ msgstr "자유로운 위치"
 #: gui/text/tips/freehand_position.txt:2
 msgid ""
 "Gain an advantage on the battleground by tactically positioning your units!"
-msgstr "전술적으로 유닛을 배치하여 전장에서 이점을 얻으십시오!"
+msgstr "당신의 유닛들을 전술적으로 배치하여 전장에서 우위를 점하십시오!"
 
 #: gui/text/tips/freehand_position.txt:3
 msgid ""
@@ -6707,7 +6707,7 @@ msgstr "이베리아의 화공선"
 msgid ""
 "The special Iberian fireship is very effective against other ships and "
 "buildings, but steadily loses health."
-msgstr "특별한 이베리아 화공선은 다른 선박과 건물에 매우 효과적이지만 꾸준히 내구력을 잃습니다."
+msgstr "특별한 이베리아 화공선은 다른 선박과 건물을 상대로 매우 효과적이지만, 꾸준히 내구력을 잃습니다."
 
 #: gui/text/tips/lighthouse.txt:1
 msgid "LIGHTHOUSE"
@@ -6744,13 +6744,13 @@ msgstr "쿠시인이 사용할 수 있는 특별한 건축물입니다."
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
 "The small pyramids improve the gathering rate of the workers around them."
-msgstr "작은 피라미드들은 그들 주위의 노동자들의 집결율을 개선합니다."
+msgstr "작은 피라미드들은 그들 주위의 노동자들의 집결율을 향상시킵니다."
 
 #: gui/text/tips/meroe_pyramids.txt:4
 msgid ""
 "The large pyramids increase the military capabilities of soldiers around "
 "them."
-msgstr "큰 피라미드는 그들 주위에 있는 병사들의 군사력을 증가시킵니다."
+msgstr "대형 피라미드는 주변 병사들의 군대 능력을 향상시킵니다."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
@@ -6758,7 +6758,7 @@ msgstr "전초 기지"
 
 #: gui/text/tips/outposts.txt:2
 msgid "Build in neutral or own territory."
-msgstr "중립 지역 또는 자신의 영역에 짓습니다."
+msgstr "중립 또는 자신의 영토에 짓습니다."
 
 #: gui/text/tips/outposts.txt:3
 msgid "Cheap and quickly built, but weak."
@@ -6768,11 +6768,11 @@ msgstr "싸고 빠르게 만들었지만 약합니다."
 msgid ""
 "Garrison infantry for extensive vision, and to prevent losing control of the"
 " outpost due to territory decay."
-msgstr "수비대 보병은 시야가 넓으며, 영토 붕괴로 인해 전초기지의 통제력을 상실하지 않도록 하기 위한 것입니다."
+msgstr "광범위한 시야를 제공하고, 영토 붕괴로 인한 전초 기지 통제력 상실을 방지하기 위해 보병을 주둔시킵니다."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
-msgstr "울타리"
+msgstr "말뚝 울타리 벽"
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
@@ -6784,7 +6784,7 @@ msgstr "대부분의 파벌은 부락 단계에서 접근할 수 있습니다."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
-msgstr "페르시아 건축"
+msgstr "페르시아 건축양식"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
@@ -6815,7 +6815,7 @@ msgstr "무겁게 무장하여 느려집니다. 공격력이 낮습니다."
 #: gui/text/tips/pikemen.txt:3
 msgid ""
 "Used against cavalry or against other melee infantry to pin them in place."
-msgstr "기병이나 다른 근접 보병에 대항하여 그들을 제자리에 대기시키기 위해 사용됩니다."
+msgstr "기병이나 다른 근접 보병을 상대로 그들을 제자리에 대기시키기 위해 사용됩니다."
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
@@ -6829,7 +6829,7 @@ msgstr "5단 노선"
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, and Seleucids."
-msgstr "가장 무거운 규격의 군선입니다. 사용 가능한 대상: 카르타고인, 프톨레마이오스인, 로마인, 셀레우코스인."
+msgstr "가장 큰 대형 규격 군선입니다. 사용 가능한 대상: 카르타고인, 프톨레마이오스인, 로마인, 셀레우코스인."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
@@ -6837,7 +6837,7 @@ msgstr "최대 50 유닛을 운반합니다."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid "Increases firepower with garrisoned catapults."
-msgstr "주둔지 발석차로 화력을 증가시킵니다."
+msgstr "주둔한 발석차의 화력이 증가합니다."
 
 #: gui/text/tips/resource_counter.txt:1
 msgid "RESOURCE COUNTER"
@@ -6971,7 +6971,7 @@ msgstr "그것의 아우라는 주변의 유닛들을 치료합니다."
 
 #: gui/text/tips/temples.txt:6
 msgid "Garrison wounded units inside for quicker healing."
-msgstr "더 빠른 치유를 위해 내부에 부상당한 부대를 주둔합니다."
+msgstr "더 빠른 치유를 위해 내부에 부상당한 유닛을 주둔시킵니다."
 
 #: gui/text/tips/territory_decay.txt:1
 msgid "TERRITORY DECAY"
@@ -6980,13 +6980,13 @@ msgstr "영토 붕괴"
 #: gui/text/tips/territory_decay.txt:2
 msgid ""
 "Decay happens when structures are not connected to an allied Civil Center."
-msgstr "건축물이 연합 시민 회관에 연결되어 있지 않을 때 붕괴가 일어납니다."
+msgstr "건축물이 동맹 시민 회관에 연결되어 있지 않을 때 붕괴가 일어납니다."
 
 #: gui/text/tips/territory_decay.txt:3
 msgid ""
 "The decay process can be slowed down or reversed by garrisoning some units "
 "in the structure."
-msgstr "건축물에 일부 유닛들이 주둔함으로써 붕괴 과정을 늦추거나 되돌릴 수 있습니다."
+msgstr "건축물에 일부 유닛들을 배치함으로써 붕괴 과정이 느려지거나 되돌릴 수 있습니다."
 
 #: gui/text/tips/territory_decay.txt:4
 msgid ""
@@ -7033,7 +7033,7 @@ msgstr "수송이나 전투에 좋습니다."
 
 #: gui/text/tips/triremes.txt:4
 msgid "Garrison troops aboard to increase fire power."
-msgstr "화력을 증강하기 위해 주둔지 병력을 탑승시킵니다."
+msgstr "화력을 증강하기 위해 배에 병력들을 주둔시킵니다."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
