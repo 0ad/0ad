@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-10-22 14:55+0000\n"
+"POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -39,6 +39,32 @@ msgstr "주둔한 선박의 내구력 회복 속도가 +10 증가합니다."
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
 msgstr "조선소 수리"
+
+#: simulation/data/auras/structures/corral_garrison_large.jsonauraDescription
+msgid "Garrison within the Corral to gain a slow trickle of +3 food."
+msgstr ""
+
+#: simulation/data/auras/structures/corral_garrison_large.jsonauraName
+#: simulation/data/auras/structures/corral_garrison_medium.jsonauraName
+#: simulation/data/auras/structures/corral_garrison_small.jsonauraName
+msgid "Ranching and Corralling"
+msgstr ""
+
+#: simulation/data/auras/structures/corral_garrison_medium.jsonauraDescription
+msgid "Garrison within the Corral to gain a slow trickle of +2 food."
+msgstr ""
+
+#: simulation/data/auras/structures/corral_garrison_small.jsonauraDescription
+msgid "Garrison within the Corral to gain a slow trickle of +1 food."
+msgstr ""
+
+#: simulation/data/auras/structures/farmstead_60.jsonauraDescription
+msgid "Gatherers +75% farming rate around a captured Farmstead."
+msgstr ""
+
+#: simulation/data/auras/structures/farmstead_60.jsonauraName
+msgid "Farmland"
+msgstr ""
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -143,12 +169,12 @@ msgid "Rigorous Training"
 msgstr "철저한 훈련"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
-msgid "Warships −25% construction time."
-msgstr "군선 건조 시간이 -25% 감소합니다."
+msgid "Civic center technologies −50% research time and −30% cost."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
-msgid "Delian League"
-msgstr "델로스 동맹"
+msgid "Democracy"
+msgstr ""
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
@@ -159,12 +185,12 @@ msgid "Druids"
 msgstr "드루이드"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
-msgid "+10% international trade bonus."
-msgstr "국제 교역 보너스가 +10% 증가합니다."
+msgid "Mercenaries −50% train time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
-msgid "Trademasters"
-msgstr "거상"
+msgid "Mercenary Transports"
+msgstr ""
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Forges −15% technology resource costs and research time."
@@ -217,12 +243,12 @@ msgid "Ashoka's Religious Support"
 msgstr "아소카의 종교적 지원"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
-msgid "Land Traders +15% trade gain."
-msgstr "육로 상인의 교역 이득이 +15% 증가합니다."
+msgid "Barracks and Stables −20% wood and stone cost and build time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
-msgid "The Royal Road"
-msgstr "왕도"
+msgid "Training Regimes"
+msgstr ""
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "+1.0 food trickle rate."
@@ -241,8 +267,9 @@ msgid "Conscription"
 msgstr "징병"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
-msgid "Civil Centers −20% resource costs."
-msgstr "시민회관 자원 비용이 -20% 감소합니다."
+msgid ""
+"Civil Centers and Colonies −20% resource cost and −30% construction time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -530,6 +557,16 @@ msgstr "평등을 더욱 뒷받침하기 위해 리쿠르고스는 펠라노르�
 msgid "Iron Pelanors"
 msgstr "철제 펠라노르스"
 
+#: simulation/data/auras/units/centurion.jsonauraDescription
+msgid ""
+" Melee Soldiers +10% attack damage and all Soldiers −25% experience points "
+"for promotion."
+msgstr ""
+
+#: simulation/data/auras/units/centurion.jsonauraName
+msgid "Combat Leadership"
+msgstr ""
+
 #: simulation/data/auras/units/han_minister_building.jsonauraDescription
 msgid "Builders construct buildings +2% faster for every nearby Minister."
 msgstr "건축가는 주변의 모든 관리만큼 건물을 +2% 더 빠르게 건설합니다."
@@ -585,38 +622,38 @@ msgid "Peltast Reforms"
 msgstr "작은 방패병 개혁"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
-msgid "Builders +15% build rate."
-msgstr "건축 유닛의 건설 속도가 +15% 증가합니다."
+msgid ""
+"Soldiers, Ships, Siege Engines and Structures do not give loot, +50% "
+"Structure capture points."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
-msgid "Periclean Building Program"
-msgstr "페리클레스의 건설 계획"
+msgid "Periclean Defensive Strategy"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
-msgid "Temples −25% stone cost, +2 garrisoned heal rate."
-msgstr "사원의 석재 비용이 -25% 감소하고, 주둔 치료율이 +2 증가합니다."
+msgid "Technologies −10% resource costs, −50% research time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
-msgid "Temple of Athena Nike"
-msgstr "아테나 니케의 신전"
+msgid "Scholarship and the Arts"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
-msgid ""
-"When garrisoned, the Ship has −30% batch training time and +50% movement "
-"speed."
-msgstr "주둔시, 선박의 일괄 훈련 시간이 -30% 감소하고 이동 속도가 +50% 증가합니다."
+msgid "−50% metal cost, Ships −50% construction time, +15% move speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
-msgid "Naval Commander"
-msgstr "수군 사령관"
+msgid "Naval Preparation"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
-msgid "Ships −50% metal cost, −20% construction time."
-msgstr "선박의 금속 비용이 -50% 감소하고, 건조 시간이 -20% 감소합니다."
+msgid "Walls and Palisades −50% resource costs and −20% construction time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
-msgid "Naval Architect"
-msgstr "조선 기술자"
+msgid "Themistoclean Walls"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid ""
@@ -843,18 +880,26 @@ msgid "Gift of Warships"
 msgstr "군선의 재능"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraDescription
-msgid "Structures +10% territory influence radius."
-msgstr "건축물의 영역 영향 반경이 +10% 증가합니다."
+msgid "Soldiers +10% attack damage, +15% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraName
-msgid "Imperialism"
-msgstr "제국주의"
+msgid "Rapid Conquest"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraDescription
+msgid "Enemy Soldiers, Structures −10% attack damage."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
+msgid "Undefeated"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_3.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
 msgstr "적 시민 회관의 점령 지점 주둔 회복률이 -50% 감소합니다."
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_3.jsonauraName
 msgid "Conqueror"
 msgstr "정복자"
 

@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-10-22 14:55+0000\n"
+"POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: adi_asa0007 <tanhaipasand007@gmail.com>, 2019\n"
 "Language-Team: Urdu (http://www.transifex.com/wildfire-games/0ad/language/ur/)\n"
@@ -32,6 +32,32 @@ msgstr "گیریسنڈ جہاز +10 صحت کی بحالی کی شرح"
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
 msgstr "بحری جہاز گودام کی مرمت  "
+
+#: simulation/data/auras/structures/corral_garrison_large.jsonauraDescription
+msgid "Garrison within the Corral to gain a slow trickle of +3 food."
+msgstr ""
+
+#: simulation/data/auras/structures/corral_garrison_large.jsonauraName
+#: simulation/data/auras/structures/corral_garrison_medium.jsonauraName
+#: simulation/data/auras/structures/corral_garrison_small.jsonauraName
+msgid "Ranching and Corralling"
+msgstr ""
+
+#: simulation/data/auras/structures/corral_garrison_medium.jsonauraDescription
+msgid "Garrison within the Corral to gain a slow trickle of +2 food."
+msgstr ""
+
+#: simulation/data/auras/structures/corral_garrison_small.jsonauraDescription
+msgid "Garrison within the Corral to gain a slow trickle of +1 food."
+msgstr ""
+
+#: simulation/data/auras/structures/farmstead_60.jsonauraDescription
+msgid "Gatherers +75% farming rate around a captured Farmstead."
+msgstr ""
+
+#: simulation/data/auras/structures/farmstead_60.jsonauraName
+msgid "Farmland"
+msgstr ""
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -136,12 +162,12 @@ msgid "Rigorous Training"
 msgstr "سخت تربیت"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
-msgid "Warships −25% construction time."
-msgstr "جنگی جہاز − 25 تعمیر کا وقت"
+msgid "Civic center technologies −50% research time and −30% cost."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
-msgid "Delian League"
-msgstr "ڈیلین لیگ"
+msgid "Democracy"
+msgstr ""
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
@@ -152,12 +178,12 @@ msgid "Druids"
 msgstr ""
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
-msgid "+10% international trade bonus."
-msgstr "+10 بین الاقوامی تجارتی بونس"
+msgid "Mercenaries −50% train time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
-msgid "Trademasters"
-msgstr "تجارتی ماسٹرز"
+msgid "Mercenary Transports"
+msgstr ""
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Forges −15% technology resource costs and research time."
@@ -210,12 +236,12 @@ msgid "Ashoka's Religious Support"
 msgstr "شوک کی مذہبی حمایت"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
-msgid "Land Traders +15% trade gain."
-msgstr "لینڈ ٹریڈرز +15 فیصد تجارتی فائدہ"
+msgid "Barracks and Stables −20% wood and stone cost and build time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
-msgid "The Royal Road"
-msgstr "شاہی سڑک"
+msgid "Training Regimes"
+msgstr ""
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "+1.0 food trickle rate."
@@ -234,8 +260,9 @@ msgid "Conscription"
 msgstr "تجویز"
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
-msgid "Civil Centers −20% resource costs."
-msgstr "سول مراکز −20 وسائل کے اخراجات"
+msgid ""
+"Civil Centers and Colonies −20% resource cost and −30% construction time."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -523,6 +550,16 @@ msgstr "مزدور +15 دھات جمع کرنے کی شرح"
 msgid "Iron Pelanors"
 msgstr "آئرن پیلنرز"
 
+#: simulation/data/auras/units/centurion.jsonauraDescription
+msgid ""
+" Melee Soldiers +10% attack damage and all Soldiers −25% experience points "
+"for promotion."
+msgstr ""
+
+#: simulation/data/auras/units/centurion.jsonauraName
+msgid "Combat Leadership"
+msgstr ""
+
 #: simulation/data/auras/units/han_minister_building.jsonauraDescription
 msgid "Builders construct buildings +2% faster for every nearby Minister."
 msgstr ""
@@ -578,38 +615,38 @@ msgid "Peltast Reforms"
 msgstr "پیلٹاسٹ ریفارمز"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraDescription
-msgid "Builders +15% build rate."
-msgstr "بلڈرز +15٪ بلڈ ریٹ"
+msgid ""
+"Soldiers, Ships, Siege Engines and Structures do not give loot, +50% "
+"Structure capture points."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
-msgid "Periclean Building Program"
-msgstr "پیرکلین بلڈنگ پروگرام"
+msgid "Periclean Defensive Strategy"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
-msgid "Temples −25% stone cost, +2 garrisoned heal rate."
-msgstr "مندر 25 پتھر کی لاگت ، +2 گیریسنڈ شفا کی شرح"
+msgid "Technologies −10% resource costs, −50% research time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
-msgid "Temple of Athena Nike"
-msgstr "ایتینا نائکی کا مندر"
+msgid "Scholarship and the Arts"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
-msgid ""
-"When garrisoned, the Ship has −30% batch training time and +50% movement "
-"speed."
+msgid "−50% metal cost, Ships −50% construction time, +15% move speed."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
-msgid "Naval Commander"
-msgstr " بحری سپّہ سالار"
+msgid "Naval Preparation"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
-msgid "Ships −50% metal cost, −20% construction time."
-msgstr "جہاز −50 دھاتی لاگت ، −20 تعمیراتی وقت"
+msgid "Walls and Palisades −50% resource costs and −20% construction time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
-msgid "Naval Architect"
-msgstr "ماہرِ تعمیرات"
+msgid "Themistoclean Walls"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid ""
@@ -836,18 +873,26 @@ msgid "Gift of Warships"
 msgstr "جنگی جہازوں کا تحفہ"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraDescription
-msgid "Structures +10% territory influence radius."
-msgstr "ڈھانچے +10 علاقہ رداس کو متاثر کرتا ہے"
+msgid "Soldiers +10% attack damage, +15% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraName
-msgid "Imperialism"
-msgstr "سامراجیت"
+msgid "Rapid Conquest"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraDescription
+msgid "Enemy Soldiers, Structures −10% attack damage."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
+msgid "Undefeated"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_3.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
 msgstr "دشمن سوک سینٹرز − 50 کیپچر پوائنٹس گیرسونڈ ری جنریشن ریٹ"
 
-#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
+#: simulation/data/auras/units/heroes/mace_hero_alexander_iii_3.jsonauraName
 msgid "Conqueror"
 msgstr "فاتح"
 

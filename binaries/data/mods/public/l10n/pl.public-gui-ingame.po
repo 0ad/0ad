@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -57,7 +57,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-10-22 14:55+0000\n"
+"POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
 "Last-Translator: Marcin S <dzidek1003@o2.pl>, 2016-2017,2021-2022\n"
 "Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
@@ -986,6 +986,10 @@ msgstr "%(hitpoints)s / %(maxHitpoints)s"
 msgid "%(capturePoints)s / %(maxCapturePoints)s"
 msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
+#: gui/session/selection_details.js:189
+msgid "Capture Points"
+msgstr ""
+
 #: gui/session/selection_details.js:202
 #, javascript-format
 msgid "%(experience)s %(current)s / %(required)s"
@@ -1015,9 +1019,9 @@ msgstr "%(amount)s / %(max)s"
 msgid "%(resource)s:"
 msgstr "%(resource)s:"
 
-#: gui/session/selection_details.js:262 gui/session/unit_actions.js:680
-#: gui/session/unit_actions.js:689 gui/session/unit_actions.js:707
-#: gui/session/unit_actions.js:1180
+#: gui/session/selection_details.js:262 gui/session/unit_actions.js:685
+#: gui/session/unit_actions.js:694 gui/session/unit_actions.js:712
+#: gui/session/unit_actions.js:1185
 #, javascript-format
 msgid "Gain: %(gain)s"
 msgstr "Zysk: %(gain)s"
@@ -1193,31 +1197,31 @@ msgstr "Nie można opracować w trakcie ulepszania."
 msgid "Cannot train while upgrading."
 msgstr "Nie można szkolić w trakcie ulepszania."
 
-#: gui/session/selection_panels.js:1142
+#: gui/session/selection_panels.js:1140
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr "Ulepsz do %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 
-#: gui/session/selection_panels.js:1148
+#: gui/session/selection_panels.js:1146
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr "Ulepsz do %(primaryName)s (%(secondaryName)s)."
 
-#: gui/session/selection_panels.js:1156
+#: gui/session/selection_panels.js:1154
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr "Ulepsz do %(primaryName)s. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1161
+#: gui/session/selection_panels.js:1159
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr "Ulepsz do %(primaryName)s."
 
-#: gui/session/selection_panels.js:1198
+#: gui/session/selection_panels.js:1196
 msgid "Cancel Upgrading"
 msgstr "Przerwij Aktualizowanie"
 
-#: gui/session/selection_panels.js:1213
+#: gui/session/selection_panels.js:1211
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."
@@ -1385,23 +1389,23 @@ msgid "Shift-click"
 msgstr "Shift-klik"
 
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):16
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):40
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):64
 msgid "Health"
 msgstr "Zdrowie"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):54
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):41
 msgid "Capture points"
 msgstr "Punkty za zdobycie"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):82
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):84
 msgid "Attack and Resistance"
 msgstr "Atak i obrona"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):97
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):99
 msgid "Experience"
 msgstr "Doświadczenie"
 
-#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):105
+#: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):107
 msgid "Rank"
 msgstr "Ranga"
 
@@ -1427,24 +1431,24 @@ msgid ""
 "Last opened will be reopened on click."
 msgstr "%(civ)s\n%(hotkey_civinfo)s/%(hotkey_structree)s: Włącz przegląd cywilizacji / drzewko budynków\nZostanie włączone ostatnio otwarte okno."
 
-#: gui/session/top_panel/CounterManager.js:101
+#: gui/session/top_panel/CounterManager.js:100
 #, javascript-format
 msgid "%(order)s: %(hotkey)s to change order."
 msgstr "%(order)s: %(hotkey)s by zmienić kolejność."
 
-#: gui/session/top_panel/CounterManager.js:105
+#: gui/session/top_panel/CounterManager.js:104
 msgid "Unordered"
 msgstr "Nieposortowane"
 
-#: gui/session/top_panel/CounterManager.js:107
+#: gui/session/top_panel/CounterManager.js:106
 msgid "Descending"
 msgstr "Malejąco"
 
-#: gui/session/top_panel/CounterManager.js:108
+#: gui/session/top_panel/CounterManager.js:107
 msgid "Ascending"
 msgstr "Rosnąco"
 
-#: gui/session/top_panel/CounterManager.js:133
+#: gui/session/top_panel/CounterManager.js:132
 #, javascript-format
 msgid "%(playername)s: %(statValue)s"
 msgstr "%(playername)s: %(statValue)s"
@@ -1702,52 +1706,52 @@ msgstr "Nie ma statków kupieckich."
 msgid "Ready"
 msgstr "Gotowy"
 
-#: gui/session/unit_actions.js:619
+#: gui/session/unit_actions.js:624
 msgid ""
 "This is the origin trade market.\n"
 "Right-click to cancel trade route."
 msgstr "To rynek docelowy.\nKliknij PPM, aby anulować szlak handlowy."
 
-#: gui/session/unit_actions.js:678
+#: gui/session/unit_actions.js:683
 msgid "Origin trade market."
 msgstr "Rynek początkowy "
 
-#: gui/session/unit_actions.js:688
+#: gui/session/unit_actions.js:693
 msgid "Destination trade market."
 msgstr "Rynek docelowy"
 
-#: gui/session/unit_actions.js:695
+#: gui/session/unit_actions.js:700
 msgid "Right-click to set as origin trade market"
 msgstr "Kliknij prawym przyciskiem myszy, aby ustawić rynek początkowy dla szlaku handlowego."
 
-#: gui/session/unit_actions.js:702 gui/session/unit_actions.js:1186
+#: gui/session/unit_actions.js:707 gui/session/unit_actions.js:1191
 msgid "This market is too close to the origin market."
 msgstr "Rynek znajduje się zbyt blisko głównego rynku."
 
-#: gui/session/unit_actions.js:706
+#: gui/session/unit_actions.js:711
 msgid "Right-click to set as destination trade market."
 msgstr "Kliknij prawym przyciskiem myszy, aby ustawić rynek docelowy dla szlaku handlowego."
 
-#: gui/session/unit_actions.js:771 gui/session/unit_actions.js:1118
+#: gui/session/unit_actions.js:776 gui/session/unit_actions.js:1123
 #, javascript-format
 msgid "Current turrets: %(occupied)s/%(capacity)s"
 msgstr "Aktualna liczba wież: %(occupied)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:837 gui/session/unit_actions.js:1101
+#: gui/session/unit_actions.js:842 gui/session/unit_actions.js:1106
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Stan garnizonu: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:1177
+#: gui/session/unit_actions.js:1182
 msgid "Right-click to establish a default route for new traders."
 msgstr "Kliknij prawym przyciskiem myszy, aby ustalić trasę domyślną dla nowych handlarzy."
 
-#: gui/session/unit_actions.js:1181
+#: gui/session/unit_actions.js:1186
 #, javascript-format
 msgid "Expected gain: %(gain)s"
 msgstr "Przewidywany zysk: %(gain)s"
 
-#: gui/session/unit_actions.js:1307
+#: gui/session/unit_actions.js:1312
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "Tej jednostki nie można kontrolować."
@@ -1755,116 +1759,116 @@ msgstr[1] "Tych jednostek nie można kontrolować."
 msgstr[2] "Tych jednostek nie można kontrolować."
 msgstr[3] "Tych jednostek nie można kontrolować."
 
-#: gui/session/unit_actions.js:1353
+#: gui/session/unit_actions.js:1358
 msgid "Unload All."
 msgstr "Rozładuj całkowicie."
 
-#: gui/session/unit_actions.js:1388
+#: gui/session/unit_actions.js:1393
 msgid "Unload Turrets."
 msgstr "Rozładuj wieże."
 
-#: gui/session/unit_actions.js:1408
+#: gui/session/unit_actions.js:1413
 msgid "Destroy the selected units or structures."
 msgstr "Zniszcz zaznaczone jednostki lub budowle."
 
-#: gui/session/unit_actions.js:1410
+#: gui/session/unit_actions.js:1415
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Użyj %(hotkey)s, aby anulować okno dialogowe."
 
-#: gui/session/unit_actions.js:1460
+#: gui/session/unit_actions.js:1465
 msgid "Abort the current order."
 msgstr "Przerwij aktualny rozkaz."
 
-#: gui/session/unit_actions.js:1481
+#: gui/session/unit_actions.js:1486
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
 msgstr "Wyślij zaznaczone jednostki do ataku w wybrane miejsce po zrzuceniu zasobów."
 
-#: gui/session/unit_actions.js:1503
+#: gui/session/unit_actions.js:1508
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "Rozkaż zaznaczonym jednostkom zabarykadować się w budowli lub jednostce."
 
-#: gui/session/unit_actions.js:1525
+#: gui/session/unit_actions.js:1530
 msgid "Order the selected units to occupy a turret point."
 msgstr "Rozkaż wybranym jednostkom zająć punkt wieży."
 
-#: gui/session/unit_actions.js:1547
+#: gui/session/unit_actions.js:1552
 msgid "Unload"
 msgstr "Usuń"
 
-#: gui/session/unit_actions.js:1567
+#: gui/session/unit_actions.js:1572
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "Rozkaż zaznaczonym jednostkom naprawić budynek, łódź lub machinę oblężniczą."
 
-#: gui/session/unit_actions.js:1588
+#: gui/session/unit_actions.js:1593
 msgid "Focus on Rally Point."
 msgstr "Ustaw kamerę na Miejsce Zbiórki."
 
-#: gui/session/unit_actions.js:1625
+#: gui/session/unit_actions.js:1630
 msgid "Back to Work"
 msgstr "Powrót do pracy"
 
-#: gui/session/unit_actions.js:1646
+#: gui/session/unit_actions.js:1651
 msgid "Order the selected units to guard a structure or unit."
 msgstr "Rozkaż zaznaczonym jednostkom chronić budynek lub jednostkę."
 
-#: gui/session/unit_actions.js:1666
+#: gui/session/unit_actions.js:1671
 msgid "Remove guard"
 msgstr "Usuń straż"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1685
+#: gui/session/unit_actions.js:1690
 msgid "Barter & Trade"
 msgstr "Wymiana i Handel"
 
-#: gui/session/unit_actions.js:1705
+#: gui/session/unit_actions.js:1710
 msgid "Patrol"
 msgstr "Patrol"
 
-#: gui/session/unit_actions.js:1706
+#: gui/session/unit_actions.js:1711
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "Zaatakuj wszystkie napotkane wrogie jednostki, pomijając budynki."
 
-#: gui/session/unit_actions.js:1734
+#: gui/session/unit_actions.js:1739
 msgid "Press to allow allies to use this dropsite"
 msgstr "Naciśnij, aby umożliwić sojusznikom aby skorzystali z tego terenu"
 
-#: gui/session/unit_actions.js:1739
+#: gui/session/unit_actions.js:1744
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Naciśnij, aby zabronić sojusznikom korzystanie z tego terenu"
 
-#: gui/session/unit_actions.js:1774
+#: gui/session/unit_actions.js:1779
 msgid "The use of this dropsite is prohibited"
 msgstr "Użycie tego terenu jest zabronione"
 
-#: gui/session/unit_actions.js:1780
+#: gui/session/unit_actions.js:1785
 msgid "Allies are allowed to use this dropsite."
 msgstr "Sojusznicy mogą korzystać z tego składowiska."
 
-#: gui/session/unit_actions.js:1781
+#: gui/session/unit_actions.js:1786
 msgid "You are allowed to use this dropsite"
 msgstr "Masz prawo do korzystania z tej zniżki"
 
-#: gui/session/unit_actions.js:1800
+#: gui/session/unit_actions.js:1805
 msgid "Activate auto-queue for selected structures."
 msgstr "Aktywuj auto-kolejkę dla zaznaczonych jednostek."
 
-#: gui/session/unit_actions.js:1820
+#: gui/session/unit_actions.js:1825
 msgid "Deactivate auto-queue for selected structures."
 msgstr "Dezaktywuj auto-kolejkę dla zaznaczonych jednostek."
 
-#: gui/session/unit_actions.js:1885
+#: gui/session/unit_actions.js:1890
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Jednostka musi być zabita, zanim będzie można ją zebrać"
 
-#: gui/session/unit_actions.js:1888
+#: gui/session/unit_actions.js:1893
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Nie możesz zniszczyć tej jednostki ponieważ posiadasz mniej niż połowę punktów zdobycia"
 
-#: gui/session/unit_actions.js:1891
+#: gui/session/unit_actions.js:1896
 msgid "This entity is undeletable"
 msgstr "Ta jednostka nie nadaje się do usunięcia"

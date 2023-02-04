@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-10-22 14:55+0000\n"
+"POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>, 2018-2019\n"
 "Language-Team: Irish (http://www.transifex.com/wildfire-games/0ad/language/ga/)\n"
@@ -244,11 +244,11 @@ msgstr "Torc Allta"
 msgid "Sus scrofa"
 msgstr "Sus scrofa"
 
-#: simulation/templates/gaia/fauna_camel.xml:11
+#: simulation/templates/gaia/fauna_camel.xml:14
 msgid "Dromedary"
 msgstr "Dromadaire"
 
-#: simulation/templates/gaia/fauna_camel.xml:12
+#: simulation/templates/gaia/fauna_camel.xml:15
 msgid "Camelus dromedarius"
 msgstr "Camelus dromedarius"
 
@@ -262,27 +262,27 @@ msgid "Bull"
 msgstr "Tarbh"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:26
-#: simulation/templates/gaia/fauna_cattle_cow.xml:18
+#: simulation/templates/gaia/fauna_cattle_cow.xml:21
 msgid "Bos taurus taurus"
 msgstr "Bos taurus taurus"
 
-#: simulation/templates/gaia/fauna_cattle_cow.xml:17
+#: simulation/templates/gaia/fauna_cattle_cow.xml:20
 msgid "Cow"
 msgstr "Bó"
 
-#: simulation/templates/gaia/fauna_cattle_sanga.xml:17
+#: simulation/templates/gaia/fauna_cattle_sanga.xml:20
 msgid "Sanga Cattle"
 msgstr "Eallach Sangach"
 
-#: simulation/templates/gaia/fauna_cattle_sanga.xml:18
+#: simulation/templates/gaia/fauna_cattle_sanga.xml:21
 msgid "Bos taurus africanus"
 msgstr "Bos taurus africanus"
 
-#: simulation/templates/gaia/fauna_cattle_zebu.xml:17
+#: simulation/templates/gaia/fauna_cattle_zebu.xml:20
 msgid "Zebu"
 msgstr "Séabú"
 
-#: simulation/templates/gaia/fauna_cattle_zebu.xml:18
+#: simulation/templates/gaia/fauna_cattle_zebu.xml:21
 msgid "Bos taurus indicus"
 msgstr "Bos taurus indicus"
 
@@ -423,11 +423,11 @@ msgstr "Giraffa camelopardalis"
 msgid "Juvenile Giraffe"
 msgstr "Sioráf Óg"
 
-#: simulation/templates/gaia/fauna_goat.xml:17
+#: simulation/templates/gaia/fauna_goat.xml:20
 msgid "Goat"
 msgstr "Gabhar"
 
-#: simulation/templates/gaia/fauna_goat.xml:18
+#: simulation/templates/gaia/fauna_goat.xml:21
 msgid "Capra aegagrus hircus"
 msgstr "Capra aegagrus hircus"
 
@@ -439,11 +439,11 @@ msgstr ""
 msgid "Hippopotamus amphibius"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_horse.xml:11
+#: simulation/templates/gaia/fauna_horse.xml:14
 msgid "Horse"
 msgstr "Capall"
 
-#: simulation/templates/gaia/fauna_horse.xml:12
+#: simulation/templates/gaia/fauna_horse.xml:15
 msgid "Equus ferus caballus"
 msgstr "Equus ferus caballus"
 
@@ -479,11 +479,11 @@ msgstr "Péacóg"
 msgid "Pavo cristatus"
 msgstr "Pavo cristatus"
 
-#: simulation/templates/gaia/fauna_pig.xml:17
+#: simulation/templates/gaia/fauna_pig.xml:20
 msgid "Pig"
 msgstr "Muc"
 
-#: simulation/templates/gaia/fauna_pig.xml:18
+#: simulation/templates/gaia/fauna_pig.xml:21
 msgid "Sus scrofa domesticus"
 msgstr "Sus scrofa domesticus"
 
@@ -524,11 +524,11 @@ msgstr "Siorc Bán Mór"
 msgid "Carcharodon carcharias"
 msgstr "Carcharodon carcharias"
 
-#: simulation/templates/gaia/fauna_sheep.xml:17
+#: simulation/templates/gaia/fauna_sheep.xml:20
 msgid "Sheep"
 msgstr "Caora"
 
-#: simulation/templates/gaia/fauna_sheep.xml:18
+#: simulation/templates/gaia/fauna_sheep.xml:21
 msgid "Ovis aries"
 msgstr "Ovis aries"
 
@@ -662,6 +662,10 @@ msgstr "Dealbh Chúiseach"
 #: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:9
 #: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:9
 #: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:9
+#: simulation/templates/gaia/ruins/stone_structure_farmstead.xml:9
+#: simulation/templates/gaia/ruins/stone_structure_house.xml:9
+#: simulation/templates/gaia/ruins/stone_structure_small.xml:9
+#: simulation/templates/gaia/ruins/stone_structure_tower.xml:9
 msgid "Stone Resource"
 msgstr ""
 
@@ -679,6 +683,22 @@ msgstr ""
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statue"
+msgstr ""
+
+#: simulation/templates/gaia/ruins/stone_structure_farmstead.xml:10
+msgid "Ruined Farmstead"
+msgstr ""
+
+#: simulation/templates/gaia/ruins/stone_structure_house.xml:10
+msgid "Ruined House"
+msgstr ""
+
+#: simulation/templates/gaia/ruins/stone_structure_small.xml:10
+msgid "Ruined Structure"
+msgstr ""
+
+#: simulation/templates/gaia/ruins/stone_structure_tower.xml:10
+msgid "Ruined Tower"
 msgstr ""
 
 #: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:8
@@ -997,6 +1017,8 @@ msgid "Mercenary"
 msgstr "Amhas"
 
 #: simulation/templates/mixins/shrine.xml:12
+#: simulation/templates/mixins/shrine.xml:13
+#: simulation/templates/mixins/shrine.xml:14
 msgid "Shrine"
 msgstr "Scrín"
 
@@ -1216,6 +1238,10 @@ msgstr "Struchtúr"
 msgid "Unit"
 msgstr "Aonad"
 
+#: simulation/templates/template_vision_revealer.xml:23
+msgid "Vision Revealer"
+msgstr ""
+
 #: simulation/templates/template_wallset.xml:9
 #: simulation/templates/template_wallset.xml:11
 msgid "Wall"
@@ -1223,4 +1249,36 @@ msgstr ""
 
 #: simulation/templates/template_wallset.xml:10
 msgid "Wall off an area."
+msgstr ""
+
+#: simulation/templates/vision_revealers/10_meters.xml:4
+msgid "Vision Revealer / 10 meters"
+msgstr ""
+
+#: simulation/templates/vision_revealers/15_meters.xml:4
+msgid "Vision Revealer / 15 meters"
+msgstr ""
+
+#: simulation/templates/vision_revealers/20_meters.xml:4
+msgid "Vision Revealer / 20 meters"
+msgstr ""
+
+#: simulation/templates/vision_revealers/25_meters.xml:4
+msgid "Vision Revealer / 25 meters"
+msgstr ""
+
+#: simulation/templates/vision_revealers/30_meters.xml:4
+msgid "Vision Revealer / 30 meters"
+msgstr ""
+
+#: simulation/templates/vision_revealers/40_meters.xml:4
+msgid "Vision Revealer / 40 meters"
+msgstr ""
+
+#: simulation/templates/vision_revealers/50_meters.xml:4
+msgid "Vision Revealer / 50 meters"
+msgstr ""
+
+#: simulation/templates/vision_revealers/60_meters.xml:4
+msgid "Vision Revealer / 60 meters"
 msgstr ""

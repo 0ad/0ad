@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-10-22 14:55+0000\n"
+"POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: David Sowa <isithere2@yahoo.com>, 2016-2023\n"
 "Language-Team: Asturian (http://www.transifex.com/wildfire-games/0ad/language/ast/)\n"
@@ -1104,7 +1104,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to collect the treasures at the center of the map before others do, and try to build your base up. The last player remaining will be the winner!"
-msgstr "[color=\"red\"]NOTA IMPORTANTE: L AI NUN OPERA N ESTA GEOGRAPHÍA[/color]\n\nDefendi la base de folɐs infinitɐs d’inimigos. Sé l primeiru n usare lɐs cildadanɐs pa recuperare lɐs alyalgɐs metanɐs la geographía & fai por disinvolvere la base. ¡L últimu jogador vivu ye l vincedor!"
+msgstr "[color=\"red\"]NOTA IMPORTANTE: L AI NUN OPERA N ESTA GEOGRAPHÍA[/color]\n\nDefendi la base de folɐs infinitɐs d’inimigos. Sé l primeiru n usar lɐs cildadanɐs pa recubrare lɐs alyalgɐs metanɐs la geographía & fai por disinvolver la base. ¡L últimu jogador vivu ye l vincedor!"
 
 #: maps/random/survivalofthefittest.jsonsettings.Name
 msgid "Survival of the Fittest"
@@ -1327,6 +1327,7 @@ msgstr "Arcadia"
 #: maps/scenarios/walltest.xml:PlayerData[0].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[1].Name:39
 msgid "Player 1"
 msgstr "Jogador 1"
 
@@ -1352,6 +1353,7 @@ msgstr "Jogador 1"
 #: maps/scenarios/walltest.xml:PlayerData[1].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[2].Name:39
 msgid "Player 2"
 msgstr "Jogador 2"
 
@@ -2181,7 +2183,7 @@ msgstr "Socios griegos"
 
 #: maps/scenarios/treasure_islands.js:9
 msgid "Collect the treasures before your enemy does! May the better win!"
-msgstr "¡Recupera lɐs alyalgɐs primeiro que l inimigu! ¡Que vença l melyor!"
+msgstr "¡Recobra lɐs alyalgɐs primeiro que l inimigu! ¡Que vença l melyor!"
 
 #: maps/scenarios/treasure_islands.js:28
 msgid "No winner yet, prepare for battle!"
@@ -2206,7 +2208,7 @@ msgstr "Alyalgɐs restantes para vincer: ¡%(remainingTreasures)s!"
 
 #: maps/scenarios/treasure_islands.js:79
 msgid "You have collected a treasure!"
-msgstr "¡Recuperɐsti una alyalga!"
+msgstr "¡Recubrɐsti una alyalga!"
 
 #: maps/scenarios/treasure_islands.js:91
 msgid "Defeat your enemy to win!"
@@ -2216,22 +2218,22 @@ msgstr "¡Apodera l inimigu para vincer!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (treasure collected)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (treasure collected)."
-msgstr[0] "%(lastPlayer)s vinceu (recuperou alyalgɐs)."
-msgstr[1] "%(players)s & %(lastPlayer)s vincierun (recuperarun alyalgɐs)."
+msgstr[0] "%(lastPlayer)s vinceu (recubrou alyalgɐs)."
+msgstr[1] "%(players)s & %(lastPlayer)s vincierun (recubrarun alyalgɐs)."
 
 #: maps/scenarios/treasure_islands.js:104
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (treasure collected)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (treasure collected)."
-msgstr[0] "%(lastPlayer)s sta apoderadu (alyalgɐs recuperadɐs)."
-msgstr[1] "%(players)s & %(lastPlayer)s stan apoderados (alyalgɐs recuperadɐs)."
+msgstr[0] "%(lastPlayer)s sta apoderadu (alyalgɐs recubradɐs)."
+msgstr[1] "%(players)s & %(lastPlayer)s stan apoderados (alyalgɐs recubradɐs)."
 
 #: maps/scenarios/treasure_islands.xml:Description:38
 msgid ""
 "Search treasures on small islands and on the water. Collect more treasures "
 "than your opponent to win."
-msgstr "Cata alyalgɐs nɐs islletɐs & nel mare. Quien recuperare más alyalgɐs ye l vincedor."
+msgstr "Cata alyalgɐs nɐs islletɐs & nel mare. Quien recubrare más alyalgɐs ye l vincedor."
 
 #: maps/scenarios/treasure_islands.xml:Name:38
 msgid "Treasure Islands"
@@ -2537,7 +2539,7 @@ msgid ""
 "Two players face off across a large bog somewhere in the Rhine lowlands.\n"
 "\n"
 "Wood is abundant, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful."
-msgstr "Dous jogadores incariɐn-se n una wölga grande alyuri pela baxada l Rhenu.\n\nLa madeira abonda, pero l metal & la piedra son abegosos d’atopar & extraher. Ha hi bien de cacia & panhadura."
+msgstr "Dous jogadores incariɐn-se n una wölga grande alyuri pela baxada l Rhenu.\n\nLa madeira abonda, pero l metal & la piedra son abegosos d’atopar & sacar. Ha hi bien de cacia & panhadura."
 
 #: maps/skirmishes/belgian_bog_2p.xml:Name:39
 msgid "Belgian Bog (2)"
@@ -2553,14 +2555,14 @@ msgstr "A Mediu-díɐ de l Sahara, Lhevante de l Nilu, queda una faça semi-ári
 msgid "Island of Meroë (2)"
 msgstr "Islla de Méroe (2)"
 
-#: maps/skirmishes/caspian_sea_2pv2p.xml:Description:38
+#: maps/skirmishes/caspian_sea_2pv2p.xml:Description:39
 msgid ""
 "Two teams face off across a long, very large saltwater lake.\n"
 "\n"
 "Fishing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits."
 msgstr "Dous conjuntos incariɐn-se n un lhongu & pergrande lhagu salguin.\n\nPuöde-se pescar nel lhaguaçu central. Pa de tras, la geographía sta bien fornida de piedra & metal."
 
-#: maps/skirmishes/caspian_sea_2pv2p.xml:Name:38
+#: maps/skirmishes/caspian_sea_2pv2p.xml:Name:39
 msgid "Caspian Sea (2v2)"
 msgstr "Mare Caspio (2-2)"
 
@@ -2706,7 +2708,7 @@ msgstr "Tierrɐs de lhabrantíu na Europa oriental."
 
 #: maps/skirmishes/farmland_2p.xml:Name:39
 msgid "Farmland (2)"
-msgstr "Sienra (2)"
+msgstr "Senra (2)"
 
 #: maps/skirmishes/forest_battle_4p.xml:Description:39
 msgid ""
@@ -2718,7 +2720,7 @@ msgstr "Una geographía sivana u todolos jogadores s’amarrɐn pol dominio de l
 msgid "Forest Battle (4)"
 msgstr "Amarraça silvana (4)"
 
-#: maps/skirmishes/gallic_fields_3p.xml:Description:38
+#: maps/skirmishes/gallic_fields_3p.xml:Description:39
 msgid ""
 "Defend your Gallic outpost against attacks from your treacherous neighbors!\n"
 "\n"
@@ -2727,7 +2729,7 @@ msgid ""
 "Watch out for Romans passing by!"
 msgstr "¡Defendi l puöstu gallu de lɐs incursiones de los vizinos traidores!\n\nCada jogador imprima la partida cun un varganal & unɐs torres in riba d’un sucu.\n\n¡Sta-te solherte de romanos!"
 
-#: maps/skirmishes/gallic_fields_3p.xml:Name:38
+#: maps/skirmishes/gallic_fields_3p.xml:Name:39
 msgid "Gallic Fields (3)"
 msgstr "Campos gallos (3)"
 
@@ -2739,14 +2741,14 @@ msgstr "Los outeiros de la Gallia central."
 msgid "Gallic Highlands (2)"
 msgstr "Gallia alta (2)"
 
-#: maps/skirmishes/gambia_river_3p.xml:Description:38
+#: maps/skirmishes/gambia_river_3p.xml:Description:39
 msgid ""
 "All players start on one bank of the river, with minimal harvestable metal. Across the Gambia River is a savanna with many deposits of metal to be claimed. \n"
 "\n"
 "(Warning: Large map. Good computer specs recommended)"
-msgstr "Todolos jogadores intamɐn a una veira de l riw, cun perpoucu metal par’ extraher. Alhen de l riw Gambia ha hi una savana alheirada de minerales.\n\n(Advertencia: Geographía grande. Aconselya-se usar un ordenador puxante)"
+msgstr "Todolos jogadores intamɐn a una veira de l riw, cun perpoucu metal para sacar. Alhen de l riw Gambia ha hi una savana alheirada de minerales.\n\n(Advertencia: Geographía grande. Aconselya-se usar un ordenador puxante)"
 
-#: maps/skirmishes/gambia_river_3p.xml:Name:38
+#: maps/skirmishes/gambia_river_3p.xml:Name:39
 msgid "Gambia River (3)"
 msgstr "Riw Gambia (3)"
 
@@ -2932,6 +2934,17 @@ msgstr "Un desierto egypicio dimidiado pol riw Nilu. Los recursos orgánicos ape
 #: maps/skirmishes/nile_river_4p.xml:Name:38
 msgid "Nile River (4)"
 msgstr "Riw Nilu (4)"
+
+#: maps/skirmishes/north_african_savanna_2p.xml:Description:39
+msgid ""
+"The Savanna is open and foreboding, chock full of animal, both huntable and hunter. \n"
+"\n"
+"Here we have an example of the two seasons prevelant on the savanna: The wet season and the dry season."
+msgstr ""
+
+#: maps/skirmishes/north_african_savanna_2p.xml:Name:39
+msgid "North African Savanna (2 players)"
+msgstr ""
 
 #: maps/skirmishes/northern_island_2p.xml:Description:39
 msgid ""
@@ -3234,15 +3247,15 @@ msgstr "El riw “Cháng Jiāng” na Çhina."
 msgid "Chang Jiang (2)"
 msgstr "Chang Jiang (2)"
 
-#: maps/skirmishes/zagros_mountains_2p.xml:Description:38
+#: maps/skirmishes/zagros_mountains_2p.xml:Description:39
 msgid ""
-"The mountains buffering the Persian homeland, straddling Persis, Susiana, and Media.\n"
+"The mountains buffering the Persian homeland, straddling Persis, Susiana, and Media. This map simulates the many valleys and choke points that criss cross the mountain range. \n"
 "\n"
-"Players start the match near the Persian Gulf in their own province with 1 free Temple. \n"
+"Players start the match nestled in their own province with 1 free Persian temple. Access to untapped resources and territories can be found through the rugged hinterlands, but is also chock full of dangerous animals, such as Asian bears and Caspian tigers.\n"
 "\n"
-"Access to untapped resources and territories can be found through the rugged hinterlands."
-msgstr "Los montes que scudɐn la patria persa, entre Persis, Susiana & Media.\n\nLos jogadores intamɐn la partida cerca de l golfu Pérsicu na suɐ propria provincia cun 1 templo.\n\nPuöden-se atopar recursos & territorios vírgenes pelɐs crespɐs tierrɐs interiores."
+"The central valley is wide open for expansion, with an unclaimed Civic Center, farms, and Trading Posts. Cliffs along the valley's edge may offer vantage points for defensive or offensive fortifications."
+msgstr ""
 
-#: maps/skirmishes/zagros_mountains_2p.xml:Name:38
-msgid "Zagros Mountains (2)"
-msgstr "Monte Zagrio (2)"
+#: maps/skirmishes/zagros_mountains_2p.xml:Name:39
+msgid "Zagros Mountains (2 players)"
+msgstr ""

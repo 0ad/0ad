@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -31,7 +31,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-10-22 14:55+0000\n"
+"POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2018,2020-2022\n"
 "Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
@@ -1349,6 +1349,7 @@ msgstr "Arcadia"
 #: maps/scenarios/walltest.xml:PlayerData[0].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[1].Name:39
 msgid "Player 1"
 msgstr "Jugador 1"
 
@@ -1374,6 +1375,7 @@ msgstr "Jugador 1"
 #: maps/scenarios/walltest.xml:PlayerData[1].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[2].Name:39
 msgid "Player 2"
 msgstr "Jugador 2"
 
@@ -2581,14 +2583,14 @@ msgstr "Sur del Sáhara, este del Nilo, yace una región semiárida que hoy en d
 msgid "Island of Meroë (2)"
 msgstr "Isla de Meroë (2)"
 
-#: maps/skirmishes/caspian_sea_2pv2p.xml:Description:38
+#: maps/skirmishes/caspian_sea_2pv2p.xml:Description:39
 msgid ""
 "Two teams face off across a long, very large saltwater lake.\n"
 "\n"
 "Fishing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits."
 msgstr "Dos equipos se enfrentan a lo largo de un gran lago salado.\n\nSe puede pescar en el lago central. El mapa está bien surtido con depósitos de piedra y metal."
 
-#: maps/skirmishes/caspian_sea_2pv2p.xml:Name:38
+#: maps/skirmishes/caspian_sea_2pv2p.xml:Name:39
 msgid "Caspian Sea (2v2)"
 msgstr "Mar Caspio (2v2)"
 
@@ -2746,7 +2748,7 @@ msgstr "Un mapa de combate forestal donde todos los jugadores luchan por el cont
 msgid "Forest Battle (4)"
 msgstr "Belicismo boscoso (4)"
 
-#: maps/skirmishes/gallic_fields_3p.xml:Description:38
+#: maps/skirmishes/gallic_fields_3p.xml:Description:39
 msgid ""
 "Defend your Gallic outpost against attacks from your treacherous neighbors!\n"
 "\n"
@@ -2755,7 +2757,7 @@ msgid ""
 "Watch out for Romans passing by!"
 msgstr "Defiende tu avanzada gala contra los ataques de tus traicioneros vecinos.\n\nCada jugador comienza la partida con una empalizada de madera y unas cuantas torres de vigilancia sobre un ligero terraplén.\n\n¡Cuidado con los romanos en las inmediaciones!"
 
-#: maps/skirmishes/gallic_fields_3p.xml:Name:38
+#: maps/skirmishes/gallic_fields_3p.xml:Name:39
 msgid "Gallic Fields (3)"
 msgstr "Campos galos (3)"
 
@@ -2767,14 +2769,14 @@ msgstr "Las tierras altas de la Galia central."
 msgid "Gallic Highlands (2)"
 msgstr "Tierras altas galas (2)"
 
-#: maps/skirmishes/gambia_river_3p.xml:Description:38
+#: maps/skirmishes/gambia_river_3p.xml:Description:39
 msgid ""
 "All players start on one bank of the river, with minimal harvestable metal. Across the Gambia River is a savanna with many deposits of metal to be claimed. \n"
 "\n"
 "(Warning: Large map. Good computer specs recommended)"
 msgstr "Todos los jugadores empiezan en una orilla del río, con una mínima cantidad de metal disponible. Cruzando el río Gambia se extiende la sabana con muchos depósitos de metal que poder explotar. \n\n(Atención: mapa grande. Se recomienda disponer de un equipo con especificaciones de alto rendimiento) "
 
-#: maps/skirmishes/gambia_river_3p.xml:Name:38
+#: maps/skirmishes/gambia_river_3p.xml:Name:39
 msgid "Gambia River (3)"
 msgstr "Río Gambia (3)"
 
@@ -2960,6 +2962,17 @@ msgstr "Un mapa del desierto egipcio dividido por el amplio río Nilo. Existen g
 #: maps/skirmishes/nile_river_4p.xml:Name:38
 msgid "Nile River (4)"
 msgstr "Rio Nilo (4)"
+
+#: maps/skirmishes/north_african_savanna_2p.xml:Description:39
+msgid ""
+"The Savanna is open and foreboding, chock full of animal, both huntable and hunter. \n"
+"\n"
+"Here we have an example of the two seasons prevelant on the savanna: The wet season and the dry season."
+msgstr ""
+
+#: maps/skirmishes/north_african_savanna_2p.xml:Name:39
+msgid "North African Savanna (2 players)"
+msgstr ""
 
 #: maps/skirmishes/northern_island_2p.xml:Description:39
 msgid ""
@@ -3262,15 +3275,15 @@ msgstr "El río Yangtsé en China."
 msgid "Chang Jiang (2)"
 msgstr "Chang Jiang (2)"
 
-#: maps/skirmishes/zagros_mountains_2p.xml:Description:38
+#: maps/skirmishes/zagros_mountains_2p.xml:Description:39
 msgid ""
-"The mountains buffering the Persian homeland, straddling Persis, Susiana, and Media.\n"
+"The mountains buffering the Persian homeland, straddling Persis, Susiana, and Media. This map simulates the many valleys and choke points that criss cross the mountain range. \n"
 "\n"
-"Players start the match near the Persian Gulf in their own province with 1 free Temple. \n"
+"Players start the match nestled in their own province with 1 free Persian temple. Access to untapped resources and territories can be found through the rugged hinterlands, but is also chock full of dangerous animals, such as Asian bears and Caspian tigers.\n"
 "\n"
-"Access to untapped resources and territories can be found through the rugged hinterlands."
-msgstr "Las cadenas montañosas que recorren el territorio persa entre Persis, Susiana, y Media.\n\nLos jugadores comienzan el enfrentamiento cerca del golfo pérsico en su propia provincia con 1 templo ya construido.\n\nEl acceso a los recursos naturales y territorios inexplorados se puede encontrar atravesando las agrestes zonas interiores."
+"The central valley is wide open for expansion, with an unclaimed Civic Center, farms, and Trading Posts. Cliffs along the valley's edge may offer vantage points for defensive or offensive fortifications."
+msgstr ""
 
-#: maps/skirmishes/zagros_mountains_2p.xml:Name:38
-msgid "Zagros Mountains (2)"
-msgstr "Montañas Zagros (2)"
+#: maps/skirmishes/zagros_mountains_2p.xml:Name:39
+msgid "Zagros Mountains (2 players)"
+msgstr ""

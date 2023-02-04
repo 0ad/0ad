@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -17,7 +17,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-10-22 14:55+0000\n"
+"POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2021-2022\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -72,14 +72,10 @@ msgstr "斯巴達教育"
 #: simulation/data/technologies/siege_pack_unpack.jsonrequirementsTooltip
 #: simulation/data/technologies/silk_road.jsonrequirementsTooltip
 #: simulation/data/technologies/silvershields.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_03.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_attack_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_ranged_03.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_resistance_hack_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_03.jsonrequirementsTooltip
-#: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsonrequirementsTooltip
 #: simulation/data/technologies/stable_batch_training.jsonrequirementsTooltip
 #: simulation/data/technologies/subterranean_aqueducts.jsonrequirementsTooltip
@@ -128,9 +124,13 @@ msgstr "箭術訓練"
 #: simulation/data/technologies/iphicratean_reforms.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_ranged_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_attack_ranged_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_hack_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_hack_02.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsonrequirementsTooltip
+#: simulation/data/technologies/soldier_resistance_pierce_02.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_crenellations.jsonrequirementsTooltip
 #: simulation/data/technologies/tower_range.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
@@ -444,8 +444,24 @@ msgid "Sun-dried Mud Bricks"
 msgstr "泥磚"
 
 #: simulation/data/technologies/civbonuses/ptol_structures.jsontooltip
-msgid "Houses and Economic Structures −40% wood cost and health."
-msgstr "房舍和經濟建築 -40% 木材成本和生命值。"
+msgid ""
+"Houses and Economic Structures −40% wood cost, health, and capture points as"
+" well as +50% build time."
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/sele_farms.jsondescription
+msgid ""
+"The Seleucid empire was located in a highly fertile region with productive "
+"soils. Farms are cheaper and faster to build,"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/sele_farms.jsongenericName
+msgid "Fertile Crescent"
+msgstr ""
+
+#: simulation/data/technologies/civbonuses/sele_farms.jsontooltip
+msgid "Farms −25% wood cost and −75% build time."
+msgstr ""
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
 msgid "Improved Construction"
@@ -512,8 +528,8 @@ msgid "Crossbow Training"
 msgstr "弩弓訓練"
 
 #: simulation/data/technologies/crossbow_training.jsontooltip
-msgid "Crossbow Infantry and Cavalry −20% train time."
-msgstr "弩步兵和騎兵 -20% 訓練時間。"
+msgid "Crossbow Infantry −20% train time."
+msgstr ""
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -1079,9 +1095,9 @@ msgstr "大都市帶"
 #: simulation/data/technologies/phase_city_athen.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +1 capture points "
+"Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units. Workers +10% metal gather rate."
-msgstr "發展到城市階段，解鎖更多單位、建築和科技。城鎮中心 +50% 領土影響半徑。駐紮單位使建築 +1 占領值恢復率。工人 +10% 金屬採集速率。"
+msgstr ""
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1096,9 +1112,9 @@ msgstr "郡"
 #: simulation/data/technologies/phase_city_generic.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +1 capture points "
+"Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units."
-msgstr "發展到城市階段，解鎖更多單位、建築和科技。城鎮中心 +50% 領土影響半徑。駐紮單位使建築 +1 占領值恢復率。"
+msgstr ""
 
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
@@ -1110,9 +1126,9 @@ msgstr "從繁華的大城市進展為一個名副其實的大都市，充滿著
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
-"Centers +50% territory influence radius. Structures +1 capture points "
+"Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units. Stable −10% batch training time."
-msgstr "發展到城市階段，解鎖更多單位、建築和科技。城鎮中心 +50% 領土影響半徑。駐紮單位使建築 +1 占領值恢復率。馬廄 -10% 批次訓練時間。"
+msgstr ""
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1151,9 +1167,9 @@ msgstr "科莫波利斯"
 #: simulation/data/technologies/phase_town_athen.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +0.5 capture points "
+"Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units. Workers +10% metal gather rate."
-msgstr "發展到鄉鎮階段，解鎖更多單位、建築和科技。城鎮中心 +30% 領土影響半徑。駐紮單位使建築 +0.5 占領值恢復率。工人 +10% 金屬採集速率。"
+msgstr ""
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1167,9 +1183,9 @@ msgstr "縣"
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +0.5 capture points "
+"Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units."
-msgstr "發展到鄉鎮階段，解鎖更多單位、建築和科技。城鎮中心 +30% 領土影響半徑。駐紮單位使建築 +0.5 占領值恢復率。"
+msgstr ""
 
 #: simulation/data/technologies/phase_town_pers.jsondescription
 msgid ""
@@ -1181,9 +1197,9 @@ msgstr "從小村莊進展為繁華的城鎮，準備好快速擴張。這就是
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
-"Centers +30% territory influence radius. Structures +0.5 capture points "
+"Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units. Stable −10% batch training time."
-msgstr "發展到鄉鎮階段，解鎖更多單位、建築和科技。城鎮中心 +30% 領土影響半徑。駐紮單位使建築 +0.5 占領值恢復率。馬廄 -10% 批次訓練時間。"
+msgstr ""
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1761,18 +1777,6 @@ msgid ""
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
 msgstr "高等和菁英單位 +20% 訓練時間，+25% 生命值，+0.7 占領力，+20% 戰利品與 -30% 採集速率；治療者 +5 治療力與 +3 治療範圍；近戰單位 +1 抗性與 +20% 攻擊傷害；遠程單位 -20% 發散。"
-
-#: simulation/data/technologies/unit_elephant_african.jsontooltip
-msgid ""
-"African Elephants −10% resource costs, training time, health, attack damage,"
-" and loot."
-msgstr "非洲象 -10% 資源成本、訓練時間、生命值、攻擊傷害和戰利品。"
-
-#: simulation/data/technologies/unit_elephant_indian.jsontooltip
-msgid ""
-"Indian Elephants +10% resource costs, training time, health, attack damage, "
-"and loot."
-msgstr "印度象 +10% 資源成本、訓練時間、生命值、攻擊傷害和戰利品。"
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""

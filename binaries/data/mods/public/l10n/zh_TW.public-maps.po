@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-10-22 14:55+0000\n"
+"POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022\n"
+"Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022-2023\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1337,6 +1337,7 @@ msgstr "阿卡迪亞"
 #: maps/scenarios/walltest.xml:PlayerData[0].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[1].Name:39
 msgid "Player 1"
 msgstr "玩家 1"
 
@@ -1362,6 +1363,7 @@ msgstr "玩家 1"
 #: maps/scenarios/walltest.xml:PlayerData[1].Name:26
 #: maps/skirmishes/acropolis_bay_2p.xml:PlayerData[2].Name:39
 #: maps/skirmishes/deccan_plateau_2p.xml:PlayerData[2].Name:39
+#: maps/skirmishes/zagros_mountains_2p.xml:PlayerData[2].Name:39
 msgid "Player 2"
 msgstr "玩家 2"
 
@@ -2557,14 +2559,14 @@ msgstr "撒哈拉以南，尼羅河以東，是一個半乾旱地區，今天被
 msgid "Island of Meroë (2)"
 msgstr "美羅埃島 (2)"
 
-#: maps/skirmishes/caspian_sea_2pv2p.xml:Description:38
+#: maps/skirmishes/caspian_sea_2pv2p.xml:Description:39
 msgid ""
 "Two teams face off across a long, very large saltwater lake.\n"
 "\n"
 "Fishing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits."
 msgstr "兩支隊伍在一個既長且大的鹹水湖的兩邊進行對抗。\n\n可以在湖的中央捕魚。此地圖也有相當豐富的石頭與金屬礦藏。"
 
-#: maps/skirmishes/caspian_sea_2pv2p.xml:Name:38
+#: maps/skirmishes/caspian_sea_2pv2p.xml:Name:39
 msgid "Caspian Sea (2v2)"
 msgstr "裏海 (2v2)"
 
@@ -2722,7 +2724,7 @@ msgstr "一個所有玩家都會爭奪地圖中央控制權的森林地圖。"
 msgid "Forest Battle (4)"
 msgstr "森林戰爭 (4)"
 
-#: maps/skirmishes/gallic_fields_3p.xml:Description:38
+#: maps/skirmishes/gallic_fields_3p.xml:Description:39
 msgid ""
 "Defend your Gallic outpost against attacks from your treacherous neighbors!\n"
 "\n"
@@ -2731,7 +2733,7 @@ msgid ""
 "Watch out for Romans passing by!"
 msgstr "保護您的高盧哨站不被您險惡的鄰居所攻擊！\n\n每個玩家皆以在一個低矮的路堤上的一組木柵欄及一些防禦塔開始遊戲。\n\n當心路過的羅馬人！"
 
-#: maps/skirmishes/gallic_fields_3p.xml:Name:38
+#: maps/skirmishes/gallic_fields_3p.xml:Name:39
 msgid "Gallic Fields (3)"
 msgstr "高盧原野 (3)"
 
@@ -2743,14 +2745,14 @@ msgstr "高盧中央的高地。"
 msgid "Gallic Highlands (2)"
 msgstr "高盧高地 (2)"
 
-#: maps/skirmishes/gambia_river_3p.xml:Description:38
+#: maps/skirmishes/gambia_river_3p.xml:Description:39
 msgid ""
 "All players start on one bank of the river, with minimal harvestable metal. Across the Gambia River is a savanna with many deposits of metal to be claimed. \n"
 "\n"
 "(Warning: Large map. Good computer specs recommended)"
 msgstr "所有玩家都在河的其中一邊開始遊戲，只有很少的金屬可供採集。甘比亞河的另一邊據稱是一片金屬礦藏豐富的熱帶草原。\n\n（警告：大型地圖。建議使用配備較好的電腦。）"
 
-#: maps/skirmishes/gambia_river_3p.xml:Name:38
+#: maps/skirmishes/gambia_river_3p.xml:Name:39
 msgid "Gambia River (3)"
 msgstr "甘比亞河 (3)"
 
@@ -2936,6 +2938,17 @@ msgstr "由寬廣的尼羅河平分的唉及沙漠地圖。有生命的資源都
 #: maps/skirmishes/nile_river_4p.xml:Name:38
 msgid "Nile River (4)"
 msgstr "尼羅河 (4)"
+
+#: maps/skirmishes/north_african_savanna_2p.xml:Description:39
+msgid ""
+"The Savanna is open and foreboding, chock full of animal, both huntable and hunter. \n"
+"\n"
+"Here we have an example of the two seasons prevelant on the savanna: The wet season and the dry season."
+msgstr "稀樹草原是開放且危機四伏的，充滿了動物，既可以獵殺也可以獵人。\n\n這裡我們有一個熱帶草原上普遍存在兩個季節的例子：雨季和旱季。"
+
+#: maps/skirmishes/north_african_savanna_2p.xml:Name:39
+msgid "North African Savanna (2 players)"
+msgstr "北非大草原 (2)"
 
 #: maps/skirmishes/northern_island_2p.xml:Description:39
 msgid ""
@@ -3238,15 +3251,15 @@ msgstr "中國的揚子江。"
 msgid "Chang Jiang (2)"
 msgstr "長江 (2)"
 
-#: maps/skirmishes/zagros_mountains_2p.xml:Description:38
+#: maps/skirmishes/zagros_mountains_2p.xml:Description:39
 msgid ""
-"The mountains buffering the Persian homeland, straddling Persis, Susiana, and Media.\n"
+"The mountains buffering the Persian homeland, straddling Persis, Susiana, and Media. This map simulates the many valleys and choke points that criss cross the mountain range. \n"
 "\n"
-"Players start the match near the Persian Gulf in their own province with 1 free Temple. \n"
+"Players start the match nestled in their own province with 1 free Persian temple. Access to untapped resources and territories can be found through the rugged hinterlands, but is also chock full of dangerous animals, such as Asian bears and Caspian tigers.\n"
 "\n"
-"Access to untapped resources and territories can be found through the rugged hinterlands."
-msgstr "這座山橫跨了波斯人的家園，包括了波斯、埃蘭、以及米底亞。\n\n玩家們在鄰近波斯灣的地方，以 1 座免費的神廟開始遊戲。\n\n崎嶇的內陸地區有著尚未被發現的資源及領土。"
+"The central valley is wide open for expansion, with an unclaimed Civic Center, farms, and Trading Posts. Cliffs along the valley's edge may offer vantage points for defensive or offensive fortifications."
+msgstr "緩衝波斯本土的山脈，橫跨波斯、蘇珊娜和米底亞。 這張地圖模擬了橫跨山脈的許多山谷和隘口。\n\n玩家在他們自己的領地開始比賽，擁有 1 個免費的波斯神廟。 通過崎嶇的腹地可以找到未開發的資源和領土，但也充滿了危險的動物，如亞洲熊和里海虎。\n\n中央山谷為擴張而敞開，擁有無人認領的城鎮中心、農場和貿易站。 山谷邊緣的懸崖可能為防禦或進攻工事提供有利位置。"
 
-#: maps/skirmishes/zagros_mountains_2p.xml:Name:38
-msgid "Zagros Mountains (2)"
+#: maps/skirmishes/zagros_mountains_2p.xml:Name:39
+msgid "Zagros Mountains (2 players)"
 msgstr "札格羅斯山脈 (2)"
