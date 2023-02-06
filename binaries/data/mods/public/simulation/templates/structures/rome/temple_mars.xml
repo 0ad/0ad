@@ -13,7 +13,7 @@
     <SpecificName>Aedēs Mārtiālis</SpecificName>
     <VisibleClasses datatype="tokens">-Town City TempleOfMars</VisibleClasses>
     <Requirements>
-      <Techs>phase_city</Techs>
+      <Techs datatype="tokens">-phase_town phase_city</Techs>
     </Requirements>
   </Identity>
   <Obstruction>

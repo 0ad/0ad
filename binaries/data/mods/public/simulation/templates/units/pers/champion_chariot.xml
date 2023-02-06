@@ -12,7 +12,7 @@
     <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
     <Icon>units/pers/chariot_archer.png</Icon>
     <Requirements>
-      <Techs>unlock_champion_chariots</Techs>
+      <Techs datatype="tokens">-unlock_champion_cavalry unlock_champion_chariots</Techs>
     </Requirements>
   </Identity>
   <VisualActor>

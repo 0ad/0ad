@@ -7,7 +7,7 @@
     <SpecificName>Hry pdty</SpecificName>
     <Icon>units/kush/champion_archer.png</Icon>
     <Requirements>
-      <Techs>unlock_champion_infantry</Techs>
+      <Techs datatype="tokens">-phase_city unlock_champion_infantry</Techs>
     </Requirements>
   </Identity>
   <VisualActor>

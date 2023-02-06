@@ -26,7 +26,7 @@
     <VisibleClasses datatype="tokens">-Village Town</VisibleClasses>
     <Icon>structures/apartment.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">-phase_village phase_town</Techs>
     </Requirements>
   </Identity>
   <Loot>

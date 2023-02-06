@@ -28,10 +28,11 @@
     <GenericName>Egyptian Mercenary Camp</GenericName>
     <SpecificName>Stratopedeia Misthophorōn</SpecificName>
     <Classes datatype="tokens">MercenaryCamp</Classes>
+    <VisibleClasses datatype="tokens">-Village Town</VisibleClasses>
     <Tooltip>Capture this structure to train mercenaries from Hellenistic Egypt.</Tooltip>
     <Icon>structures/military_settlement.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">-phase_village phase_town</Techs>
     </Requirements>
   </Identity>
   <Loot>

@@ -7,7 +7,7 @@
     <SelectionGroupName>units/maur/champion_infantry</SelectionGroupName>
     <Icon>units/maur/champion_maceman.png</Icon>
     <Requirements>
-      <Techs>unlock_champion_infantry</Techs>
+      <Techs datatype="tokens">-phase_city unlock_champion_infantry</Techs>
     </Requirements>
   </Identity>
   <VisualActor>

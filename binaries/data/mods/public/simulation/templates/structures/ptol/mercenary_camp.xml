@@ -30,7 +30,7 @@
     <Tooltip>Cheap Barracks-like structure that is buildable in neutral territory, but casts no territory influence. Train Mercenaries.</Tooltip>
     <Icon>structures/mercenary_camp.png</Icon>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">-phase_village phase_town</Techs>
     </Requirements>
   </Identity>
   <Loot>

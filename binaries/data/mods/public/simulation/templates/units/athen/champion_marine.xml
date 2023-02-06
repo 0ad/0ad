@@ -5,7 +5,7 @@
     <SpecificName>Epibátēs Athēnaîos</SpecificName>
     <Icon>units/athen/champion_marine.png</Icon>
     <Requirements>
-      <Techs>iphicratean_reforms</Techs>
+      <Techs datatype="tokens">-phase_city iphicratean_reforms</Techs>
     </Requirements>
   </Identity>
   <VisualActor>
