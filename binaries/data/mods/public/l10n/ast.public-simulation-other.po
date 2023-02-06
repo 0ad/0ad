@@ -45,7 +45,7 @@ msgstr "Vengo d’inviar un exércitu contra %(_player_)s."
 #: simulation/ai/petra/chatHelper.js:14
 #, javascript-format
 msgid "Let me regroup my army and I will then join you against %(_player_)s."
-msgstr "Ajunto la milicia & lhuögo vou cun ti contra %(_player_)s."
+msgstr "Ajunto la milicia & lluögo vou cun ti contra %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:15
 #, javascript-format
@@ -57,7 +57,7 @@ msgstr "Sto a terminare los intamos para puñar a %(_player_)s."
 msgid ""
 "Sorry, I do not have enough soldiers currently; but my next attack will "
 "target %(_player_)s."
-msgstr "Siento-llo, hagora miesmo mi faltɐn los soldados; mas lhuögo vou puñar a %(_player_)s."
+msgstr "Siento-llo, hagora miesmo mi faltɐn los soldados; mas lluögo vou puñar a %(_player_)s."
 
 #: simulation/ai/petra/chatHelper.js:19
 #, javascript-format
@@ -71,7 +71,7 @@ msgstr "Siento-llo, preciso reforciare la milicia; pero d’a reo vou puñar a %
 msgid ""
 "I cannot help you against %(_player_)s for the time being, I am planning to "
 "attack %(_player_2)s first."
-msgstr "Nun te puödo adiudar cun %(_player_)s indagora, ca cuönto puñar a %(_player_2)s."
+msgstr "Nun te puödo agabitar cun %(_player_)s indagora, ca cuönto puñar a %(_player_2)s."
 
 #: simulation/ai/petra/chatHelper.js:27
 #, javascript-format
@@ -113,7 +113,7 @@ msgstr "Si mi porrieres daqué %(resource)s, vou poder suplire la miɐ milicia."
 msgid ""
 "I have set up a new route with %(_player_)s. Trading will be profitable for "
 "all of us."
-msgstr "Sto acabante d’afitar una vía nuöva cun %(_player_)s. El commercio inriquecerá-nos a todos."
+msgstr "Sto acabante de stablicer una vía nuöva cun %(_player_)s. El commercio inriquecerá-nos a todos."
 
 #: simulation/ai/petra/chatHelper.js:40
 #, javascript-format
@@ -135,7 +135,7 @@ msgstr "%(_player_)s & yöu volviemunos imparciales."
 #: simulation/ai/petra/chatHelper.js:51
 #, javascript-format
 msgid "%(_player_)s and I are now enemies."
-msgstr "%(_player_)s & yöu imbelhemunos."
+msgstr "%(_player_)s & yöu imbellemunos."
 
 #: simulation/ai/petra/chatHelper.js:58
 #, javascript-format
@@ -147,7 +147,7 @@ msgstr "Nun puödo aceitar l’alliança, %(_player_)s."
 msgid ""
 "I will not be your ally, %(_player_)s. However, I will consider a neutrality"
 " pact."
-msgstr "Nun quiero alliame cun ti, %(_player_)s, pero ¿qui talu un pactu d’imparcialidá?"
+msgstr "Nun quiero alliame cun ti, %(_player_)s, pero ¿quei talu un pactu d’imparcialidá?"
 
 #: simulation/ai/petra/chatHelper.js:62
 #, javascript-format
@@ -359,20 +359,20 @@ msgstr "%(_player_)s, cumo nun respondiesti a la propuösta de paz, arretirei la
 msgid ""
 "My armies failed while defending my empire. Please honor our alliance and "
 "send help!"
-msgstr "Lɐs miɐs forciɐs falharun a l defende’ l imperio. ¡Por favor, cumpli cun l’alliança & invia adiuda!"
+msgstr "Lɐs miɐs forciɐs fallarun a l defende’ l imperio. ¡Por favor, cumpli cun l’alliança & acorri-nos!"
 
 #: simulation/ai/petra/chatHelper.js:140
 msgid ""
 "My empire regained its old strength, now it is time to seek revenge "
 "together!"
-msgstr "L imperio tien-se espelhido, ¡ya ye hora de vingá-nos!"
+msgstr "L imperio tien-se espellido, ¡ya ye hora de vingá-nos!"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra ye l AI predefinida de 0 A.D. Fai l favor d’informar de falhos a Wildfire Games (vere l vincelyu n menú principal).\n\nLa rapidez cun la que l AI obtien recursos & gananciɐs de l commercio depende de la suɐ difficultá, (Folgoso −58%, Perfácile −44%, Fácile −25%, Normal ±0%, Diffícile +25%, Perdiffícile +56%). Nɐs difficultades minores, tamien baxɐn los rhythmos de disinvolvemiento, de creacion & de construccion. D’arriendɐs, na difficultá “Folgoso” Petra nin s’inanta nin invade."
+msgstr "Petra ye l AI predefinida de 0 A.D. Fai l favor d’informar de fallos a Wildfire Games (vere l vincelyu n menú principal).\n\nLa rapidez cun la que l AI obtien recursos & gananciɐs de l commercio depende de la suɐ difficultá, (Folgoso −58%, Perfácile −44%, Fácile −25%, Normal ±0%, Diffícile +25%, Perdiffícile +56%). Nɐs difficultades minores, tamien baxɐn los rhythmos de disinvolvemiento, de creacion & de construccion. D’arriendɐs, na difficultá “Folgoso” Petra nin inanta nin invade."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -436,7 +436,7 @@ msgstr "alliado non adiacente"
 #: simulation/components/BuildRestrictions.js:208
 msgctxt "Territory type"
 msgid "neutral"
-msgstr "neutro"
+msgstr "abertal"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
@@ -475,8 +475,8 @@ msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
 msgid_plural ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr[0] "%(name)s: sta perlhonye d’un(a) %(category)s, ha star a %(distance)s metru de distancia"
-msgstr[1] "%(name)s: sta perlhonye d’un(a) %(category)s, ha star a %(distance)s metros de distancia"
+msgstr[0] "%(name)s: sta perllonye d’un(a) %(category)s, ha star a %(distance)s metru de distancia"
+msgstr[1] "%(name)s: sta perllonye d’un(a) %(category)s, ha star a %(distance)s metros de distancia"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
@@ -500,7 +500,7 @@ msgstr "alliado"
 #: simulation/components/BuildRestrictions.js:326
 msgctxt "Territory type list"
 msgid "neutral"
-msgstr "neutro"
+msgstr "abertal"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
@@ -578,7 +578,7 @@ msgstr "L ente sta-se anovando. Nun se puöde intamar la produccion."
 
 #: simulation/components/ProductionQueue.js:327
 msgid "The production queue is full."
-msgstr "La riestra de produccion sta lhena."
+msgstr "La riestra de produccion sta ḷḷena."
 
 #: simulation/components/ProductionQueue.js:450
 msgid "Could not auto-queue unit, de-activating."
@@ -652,7 +652,7 @@ msgstr "Pequenha"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr "Lɐs geographíɐs pequenhɐs prestɐn-se para duellos, des que se puöde lhegar cedo a l contrariu & ha hi daqué spacio par’ espurrí-se."
+msgstr "Lɐs geographíɐs pequenhɐs prestɐn-se para duellos, des que se puöde ḷḷegar cedo a l contrariu & ha hi daqué spacio par’ espurrí-se."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Normal"
@@ -668,7 +668,7 @@ msgstr "Lɐs geographíɐs d’esta grandura son afalyadiçɐs para dous jogador
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr "Esta ye la grandura ideal para 4 a 8 jogadores porque ha hi bien de spacio par’ espurrí-se & se lhega cedo a jogadores vizinos."
+msgstr "Esta ye la grandura ideal para 4 a 8 jogadores porque ha hi bien de spacio par’ espurrí-se & se ḷḷiega cedo a jogadores vizinos."
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
@@ -689,7 +689,7 @@ msgstr "Pergrande"
 msgid ""
 "Very large maps are not recommended as it takes very long to reach the enemy"
 " and the game performance can be reduced."
-msgstr "Nun s’aconselyɐn lɐs geographíɐs pergrandes des que te sitiɐn mui lhonye de l inimigu & puöden reduzire la efficiencia de l juögu."
+msgstr "Nun s’aconselyɐn lɐs geographíɐs pergrandes des que te sitiɐn mui llonye de l inimigu & puöden reduzire la efficiencia de l juögu."
 
 #: simulation/data/settings/map_sizes.jsonData[6].Name
 msgid "Giant"
@@ -825,11 +825,11 @@ msgstr "Annihilacion"
 
 #: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Description
 msgid "Defeat opponents by destroying all their fully built civic centers."
-msgstr "Apodera-se a l contrariu bastiando todolos sous foros perfeiꞇhos."
+msgstr "Apodera-se a l contrariu bastiando todɐlɐs suɐs plaçɐs perfeiꞇhɐs."
 
 #: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Title
 msgid "Conquest Civic Centers"
-msgstr "Annihilacion foros"
+msgstr "Annihilacion plaçɐs"
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
@@ -861,11 +861,11 @@ msgid ""
 "win the game. The timer will be reset when the Wonder is destroyed or "
 "captured. If the allied victory mode is enabled, the timer will also be "
 "reset when the alliances of the owner change."
-msgstr "Sé l primeiru n fazher—ou possiá-se de—un Millagro & calten-llo per un ciertu tiempu para vincer. El temporizador reafita-se a l bastiá-se ou possiá-se l Millagro. Si l modu victoria alliada sta habilitadu, tamien se reafita a l mudar d’alliança l donhu."
+msgstr "Sé l primeiru n fazher—ou possiá-se de—un Milhagro & calten-llo per un ciertu tiempu para vincer. El temporizador reafita-se a l bastiá-se ou possiá-se l Milhagro. Si l modu victoria alliada sta habilitadu, tamien se reafita a l mudar d’alliança l donhu."
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Title
 msgid "Wonder"
-msgstr "Millagros"
+msgstr "Milhagros"
 
 #: simulation/helpers/Cheat.js:57
 #, javascript-format
@@ -914,7 +914,7 @@ msgstr "Nun ye possible disoccupare la(s) unidá(des)."
 
 #: simulation/helpers/Commands.js:932
 msgid "Some unit(s) can't go back to work"
-msgstr "Daqué unidá(des) nun puöde(n) volver a l lhabor"
+msgstr "Daqué unidá(des) nun puöde(n) volver a l llabor"
 
 #: simulation/helpers/Commands.js:951
 #, javascript-format
