@@ -968,11 +968,18 @@ function getRequirementsTooltip(enabled, requirements, civ)
 		return "";
 
 	// Simple requirements (one tech) can be translated on the fly.
-	if ("Techs" in requirements && !requirements.Techs._string.includes(" "))
+	if ("Techs" in requirements && !requirements.Techs._string.includes(" ") &&
+			requirements.Techs._string[0] != "!")
 		return objectionFont(sprintf(translate("Requires %(technology)s"), {
 			"technology": getEntityNames(GetTechnologyData(requirements.Techs._string, civ))
 		}));
-	return objectionFont(translate(requirements.Tooltip));
+
+	// More complex ones need a tooltip.
+	if ("Tooltip" in requirements)
+		return objectionFont(translate(requirements.Tooltip));
+
+	warn("Complex requirements found, but no tooltip specified. More complex requirements can't be translated on the fly easily.")
+	return "";
 }
 
 /**
