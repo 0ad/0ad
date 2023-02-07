@@ -13,7 +13,7 @@
     <SpecificName>Bariogaisatos</SpecificName>
     <Icon>units/gaul/champion_fanatic.png</Icon>
     <Requirements>
-      <Techs datatype="tokens">phase_town</Techs>
+      <Techs datatype="tokens">-phase_city phase_town</Techs>
     </Requirements>
   </Identity>
   <Loot>

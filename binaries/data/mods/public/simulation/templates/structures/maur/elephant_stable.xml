@@ -6,7 +6,7 @@
     <Classes datatype="tokens">CivSpecific</Classes>
     <VisibleClasses datatype="tokens">-City Town</VisibleClasses>
     <Requirements>
-      <Techs>phase_town</Techs>
+      <Techs datatype="tokens">-phase_city phase_town</Techs>
     </Requirements>
   </Identity>
   <VisualActor>

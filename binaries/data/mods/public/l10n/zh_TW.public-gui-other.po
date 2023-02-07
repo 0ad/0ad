@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2021-2022\n"
+"Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2021-2023\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2351,12 +2351,12 @@ msgstr "武裝動員"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.capture.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to capture instead of another action (e.g. attack)."
-msgstr ""
+msgstr "占領而非其他動作（例如攻擊）的指示鍵。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.capture.name
 msgctxt "hotkey metadata"
 msgid "Force capture"
-msgstr ""
+msgstr "強制占領"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
 msgctxt "hotkey metadata"
@@ -4098,7 +4098,7 @@ msgstr "垂直同步"
 
 #: gui/options/options.json[1].options[6].tooltip
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr "使用垂直同步以修復螢幕撕裂。需要重新啟動遊戲"
+msgstr "使用垂直同步以修復螢幕撕裂。需要重新啟動遊戲。"
 
 #: gui/options/options.json[1].options[7].label
 msgid "FPS throttling in menus"
@@ -4187,11 +4187,11 @@ msgstr "傳統的 OpenGL 底層使用 ARB 著色器。需要重新啟動遊戲�
 
 #: gui/options/options.json[2].options[0].list[2].label
 msgid "Vulkan"
-msgstr ""
+msgstr "Vulkan"
 
 #: gui/options/options.json[2].options[0].list[2].tooltip
 msgid "Modern API, requires up-to-date drivers. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "現代的 API，需要最新的驅動程式。需要重新啟動遊戲。"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
@@ -5093,7 +5093,7 @@ msgstr "銳利化特效"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][8].tooltip
 msgid "Number of shader effects. REQUIRES GAME RESTART"
-msgstr "陰影效果的數量。需要重新啟動遊戲！"
+msgstr "陰影效果的數量。需要重新啟動遊戲。"
 
 #: gui/options/options.json[2].options[6].list[0][7].tooltip
 msgid ""

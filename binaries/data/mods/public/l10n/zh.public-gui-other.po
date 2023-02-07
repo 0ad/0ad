@@ -90,7 +90,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Wolfson Liu <wolfsonliu@foxmail.com>, 2020,2022\n"
+"Last-Translator: liu lizhi <xingzuo88@qq.com>, 2023\n"
 "Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2416,12 +2416,12 @@ msgstr "征兵"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.capture.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to capture instead of another action (e.g. attack)."
-msgstr ""
+msgstr "以“占领”替代其他动作(如“攻击”) 的指示键。"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.capture.name
 msgctxt "hotkey metadata"
 msgid "Force capture"
-msgstr ""
+msgstr "强制占领"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
 msgctxt "hotkey metadata"
@@ -4252,11 +4252,11 @@ msgstr "传统的 OpenGL 底层使用 ARB 着色器. 需重启游戏."
 
 #: gui/options/options.json[2].options[0].list[2].label
 msgid "Vulkan"
-msgstr ""
+msgstr "Vulkan"
 
 #: gui/options/options.json[2].options[0].list[2].tooltip
 msgid "Modern API, requires up-to-date drivers. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "新的API，需要最新的驱动，“重启后加载”。"
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
