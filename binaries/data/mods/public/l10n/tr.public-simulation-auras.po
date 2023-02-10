@@ -22,6 +22,7 @@
 # Ferhat Olçum
 # Günay Yılmaz
 # Hasan Baran Kırmızı
+# İlker Sezer
 # İrfan Sunay
 # Kemal Oktay Aktoğan
 # Muha Aliss
@@ -39,9 +40,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-02 21:44+0000\n"
+"POT-Creation-Date: 2023-02-06 08:09+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: Ahmet, 2022\n"
+"Last-Translator: İlker Sezer, 2023\n"
 "Language-Team: Turkish (http://www.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -73,7 +74,7 @@ msgstr ""
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraName
 #: simulation/data/auras/structures/corral_garrison_small.jsonauraName
 msgid "Ranching and Corralling"
-msgstr ""
+msgstr "Hayvancılık ve Savunma"
 
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +2 food."
@@ -89,7 +90,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraName
 msgid "Farmland"
-msgstr ""
+msgstr "Tarım Alanı"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -199,7 +200,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Democracy"
-msgstr ""
+msgstr "Demokrasi"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
@@ -273,7 +274,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "Training Regimes"
-msgstr ""
+msgstr "Antrenman Rejimleri"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "+1.0 food trickle rate."
@@ -584,13 +585,13 @@ msgstr "Demir Pelanorlar"
 
 #: simulation/data/auras/units/centurion.jsonauraDescription
 msgid ""
-" Melee Soldiers +10% attack damage and all Soldiers −25% experience points "
+"Melee Soldiers +10% attack damage and all Soldiers −25% experience points "
 "for promotion."
 msgstr ""
 
 #: simulation/data/auras/units/centurion.jsonauraName
 msgid "Combat Leadership"
-msgstr ""
+msgstr "Savaş Liderliği"
 
 #: simulation/data/auras/units/han_minister_building.jsonauraDescription
 msgid "Builders construct buildings +2% faster for every nearby Minister."
@@ -654,7 +655,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Defensive Strategy"
-msgstr ""
+msgstr "Perikles Savunma Stratejisi"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Technologies −10% resource costs, −50% research time."
@@ -662,7 +663,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Scholarship and the Arts"
-msgstr ""
+msgstr "Burs ve sanat"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid "−50% metal cost, Ships −50% construction time, +15% move speed."
@@ -918,7 +919,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
 msgid "Undefeated"
-msgstr ""
+msgstr "Yenilmez"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_3.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."

@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-02 21:44+0000\n"
+"POT-Creation-Date: 2023-02-06 08:09+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
 "Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -42,29 +42,29 @@ msgstr "조선소 수리"
 
 #: simulation/data/auras/structures/corral_garrison_large.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +3 food."
-msgstr ""
+msgstr "가축 우리 안에 배치하여 조금씩 +3의 식량을 얻습니다."
 
 #: simulation/data/auras/structures/corral_garrison_large.jsonauraName
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraName
 #: simulation/data/auras/structures/corral_garrison_small.jsonauraName
 msgid "Ranching and Corralling"
-msgstr ""
+msgstr "목장 운영 및 가축 몰아넣기"
 
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +2 food."
-msgstr ""
+msgstr "가축 우리 안에 배치하여 조금씩 +2의 식량을 얻습니다."
 
 #: simulation/data/auras/structures/corral_garrison_small.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +1 food."
-msgstr ""
+msgstr "가축 우리 안에 배치하여 조금씩 +1의 식량을 얻습니다."
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
 msgid "Gatherers +75% farming rate around a captured Farmstead."
-msgstr ""
+msgstr "채집꾼들은 점령한 농장 건물 주변에서 농사를 짓는 비율이 75% 증가합니다."
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraName
 msgid "Farmland"
-msgstr ""
+msgstr "농지"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -170,11 +170,11 @@ msgstr "철저한 훈련"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Civic center technologies −50% research time and −30% cost."
-msgstr ""
+msgstr "시민 회관 기술의 연구 시간이 -50%, 비용이 -30% 감소합니다."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Democracy"
-msgstr ""
+msgstr "민주주의"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
@@ -186,11 +186,11 @@ msgstr "드루이드"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Mercenaries −50% train time."
-msgstr ""
+msgstr "용병의 훈련 시간이 -50% 감소합니다 ."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Mercenary Transports"
-msgstr ""
+msgstr "용병 수송"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Forges −15% technology resource costs and research time."
@@ -244,11 +244,11 @@ msgstr "아소카의 종교적 지원"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Barracks and Stables −20% wood and stone cost and build time."
-msgstr ""
+msgstr "병영 및 사육장의 목재 및 석재 비용 및 건설 시간이 -20% 감소합니다."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "Training Regimes"
-msgstr ""
+msgstr "훈련 체제"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "+1.0 food trickle rate."
@@ -269,7 +269,7 @@ msgstr "징병"
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid ""
 "Civil Centers and Colonies −20% resource cost and −30% construction time."
-msgstr ""
+msgstr "시민 센터 및 식민지의 자원 비용이 -20%, 건축 시간이 -30% 감소합니다."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -295,7 +295,7 @@ msgstr "위협적인 소리"
 msgid ""
 "Solon instituted several economic reforms encouraging commerce and agriculture.\n"
 "Workers +15% gather speed."
-msgstr "솔론이 상업과 농업을 장려하는 몇 가지 국가 개혁을 도입합니다.\n일꾼의 수집 속도가 +15% 증가합니다."
+msgstr "솔론이 상업과 농업을 장려하는 몇 가지 경제 개혁을 도입합니다.\n일꾼의 수집 속도가 +15% 증가합니다."
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
@@ -309,7 +309,7 @@ msgstr "솔론은 새로운 무게와 척도의 시스템을 도입했고, 아�
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
-msgstr "국가 재산"
+msgstr "경제의 성쇠"
 
 #: simulation/data/auras/units/catafalques/brit_catafalque_1.jsonauraDescription
 msgid ""
@@ -559,13 +559,13 @@ msgstr "철제 펠라노르스"
 
 #: simulation/data/auras/units/centurion.jsonauraDescription
 msgid ""
-" Melee Soldiers +10% attack damage and all Soldiers −25% experience points "
+"Melee Soldiers +10% attack damage and all Soldiers −25% experience points "
 "for promotion."
-msgstr ""
+msgstr "근접 병사들의 공격 피해량이 +10% 증가하고, 모든 병사의 승급 경험치가 -25% 감소합니다."
 
 #: simulation/data/auras/units/centurion.jsonauraName
 msgid "Combat Leadership"
-msgstr ""
+msgstr "전투 통솔력"
 
 #: simulation/data/auras/units/han_minister_building.jsonauraDescription
 msgid "Builders construct buildings +2% faster for every nearby Minister."
@@ -625,35 +625,35 @@ msgstr "작은 방패병 개혁"
 msgid ""
 "Soldiers, Ships, Siege Engines and Structures do not give loot, +50% "
 "Structure capture points."
-msgstr ""
+msgstr "병사, 선박, 공성 무기 및 건축물은 노획물을 제공하지 않으며, 건축물 점령 포인트가 +50% 증가합니다."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Defensive Strategy"
-msgstr ""
+msgstr "페리클레스 수비 전략"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Technologies −10% resource costs, −50% research time."
-msgstr ""
+msgstr "기술의 자원 비용이 -10%, 연구 시간이 -50% 감소합니다."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Scholarship and the Arts"
-msgstr ""
+msgstr "학문과 예술"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid "−50% metal cost, Ships −50% construction time, +15% move speed."
-msgstr ""
+msgstr "금속 비용이 -50%, 선박의 건설 시간이 -50% 감소학, 이동 속도가 +15% 증가합니다."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Preparation"
-msgstr ""
+msgstr "해군 예비조사"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "Walls and Palisades −50% resource costs and −20% construction time."
-msgstr ""
+msgstr "성벽과 말뚝 울타리의 자원 비용이 -50%, 건설 시간이 -20% 감소합니다."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Themistoclean Walls"
-msgstr ""
+msgstr "테미스토클레스 성벽"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid ""
@@ -738,7 +738,7 @@ msgstr "켈트족 전쟁 군주"
 
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraName
 msgid "Preparation for War"
-msgstr "전쟁 준비"
+msgstr "전쟁을 위한 대비"
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_1.jsonauraDescription
 msgid "Soldiers −20% promotion experience."
@@ -881,19 +881,19 @@ msgstr "군선의 재능"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraDescription
 msgid "Soldiers +10% attack damage, +15% movement speed."
-msgstr ""
+msgstr "병사들의 공격력이 +10%, 이동 속도가 +15% 증가합니다."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraName
 msgid "Rapid Conquest"
-msgstr ""
+msgstr "신속한 정복"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraDescription
 msgid "Enemy Soldiers, Structures −10% attack damage."
-msgstr ""
+msgstr "적 병사들, 건축물의 공격 피해량이 -10% 감소합니다."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
 msgid "Undefeated"
-msgstr ""
+msgstr "무패"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_3.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
