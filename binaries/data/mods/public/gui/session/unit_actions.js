@@ -1203,7 +1203,15 @@ var g_UnitActions =
 			{
 				data.target = targetState.id;
 				data.command = "attack";
-				cursor = "action-attack";
+				if (targetState.hitpoints)
+					cursor = "action-attack";
+				else if (targetState.capturePoints)
+				{
+					cursor = "action-capture";
+					data.allowCapture = true;
+				}
+				else
+					return false;
 			}
 
 			return {
