@@ -360,15 +360,12 @@ Attack.prototype.GetAttackEffectsData = function(type, splash)
  */
 Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 {
-	let cmpFormation = Engine.QueryInterface(target, IID_Formation);
-	if (cmpFormation)
-	{
+	let types = this.GetAttackTypes();
+	if (Engine.QueryInterface(target, IID_Formation))
 		// TODO: Formation against formation needs review
-		let types = this.GetAttackTypes();
 		return g_AttackTypes.find(attack => types.indexOf(attack) != -1);
-	}
 
-	let cmpIdentity = Engine.QueryInterface(target, IID_Identity);
+	const cmpIdentity = Engine.QueryInterface(target, IID_Identity);
 	if (!cmpIdentity)
 		return undefined;
 
@@ -376,23 +373,22 @@ Attack.prototype.GetBestAttackAgainst = function(target, allowCapture)
 	if (this.template.Slaughter && cmpIdentity.HasClass("Domestic"))
 		return "Slaughter";
 
-	let types = this.GetAttackTypes().filter(type => this.CanAttack(target, [type]));
+	const targetClasses = cmpIdentity.GetClassesList();
+	const getPreferrence = attackType => {
+		let pref = 0;
+		if (MatchesClassList(targetClasses, this.GetPreferredClasses(attackType)))
+			pref += 2;
+		if (allowCapture ? attackType === "Capture" : attackType !== "Capture")
+			pref++;
+		return pref;
+	};
 
-	// Check whether the target is capturable and prefer that when it is allowed.
-	let captureIndex = types.indexOf("Capture");
-	if (captureIndex != -1)
-	{
-		if (allowCapture)
-			return "Capture";
-		types.splice(captureIndex, 1);
-	}
-
-	let targetClasses = cmpIdentity.GetClassesList();
-	let isPreferred = attackType => MatchesClassList(targetClasses, this.GetPreferredClasses(attackType));
-
-	return types.sort((a, b) =>
-		(types.indexOf(a) + (isPreferred(a) ? types.length : 0)) -
-		(types.indexOf(b) + (isPreferred(b) ? types.length : 0))).pop();
+	return types.filter(type => this.CanAttack(target, [type])).sort((a, b) => {
+		const prefA = getPreferrence(a);
+		const prefB = getPreferrence(b);
+		return (types.indexOf(a) + (prefA > 0 ? prefA + types.length : 0)) -
+			(types.indexOf(b) + (prefB > 0 ? prefB + types.length : 0))
+	}).pop();
 };
 
 Attack.prototype.CompareEntitiesByPreference = function(a, b)

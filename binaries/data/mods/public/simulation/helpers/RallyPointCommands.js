@@ -99,6 +99,7 @@ function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 				"type": "attack",
 				"entities": spawnedEnts,
 				"target": data[i].target,
+				"allowCapture": data[i].allowCapture,
 				"queued": true,
 			});
 			break;
