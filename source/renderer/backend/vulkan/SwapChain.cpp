@@ -128,12 +128,15 @@ std::unique_ptr<CSwapChain> CSwapChain::Create(
 	swapChainCreateInfo.surface = surface;
 	// minImageCount + 1 is to have a less chance for a presenter to wait.
 	// maxImageCount might be zero, it means it's unlimited.
+	const uint32_t maxImageCount = surfaceCapabilities.maxImageCount > 0
+		? surfaceCapabilities.maxImageCount
+		: std::numeric_limits<uint32_t>::max();
+	const uint32_t minImageCount = surfaceCapabilities.minImageCount < maxImageCount
+		? surfaceCapabilities.minImageCount + 1
+		: surfaceCapabilities.minImageCount;
 	swapChainCreateInfo.minImageCount =
 		Clamp<uint32_t>(NUMBER_OF_FRAMES_IN_FLIGHT,
-			surfaceCapabilities.minImageCount + 1,
-			surfaceCapabilities.maxImageCount > 0
-				? surfaceCapabilities.maxImageCount
-				: std::numeric_limits<uint32_t>::max());
+			minImageCount, maxImageCount);
 	swapChainCreateInfo.imageFormat = surfaceFormat.format;
 	swapChainCreateInfo.imageColorSpace = surfaceFormat.colorSpace;
 	swapChainCreateInfo.imageExtent.width = swapChainWidth;
