@@ -46,14 +46,26 @@ std::unique_ptr<CSwapChain> CSwapChain::Create(
 	CDevice* device, VkSurfaceKHR surface, int surfaceDrawableWidth, int surfaceDrawableHeight,
 	std::unique_ptr<CSwapChain> oldSwapChain)
 {
-	std::unique_ptr<CSwapChain> swapChain(new CSwapChain());
-	swapChain->m_Device = device;
-
 	VkPhysicalDevice physicalDevice = device->GetChoosenPhysicalDevice().device;
 	
 	VkSurfaceCapabilitiesKHR surfaceCapabilities{};
 	ENSURE_VK_SUCCESS(vkGetPhysicalDeviceSurfaceCapabilitiesKHR(
 		physicalDevice, surface, &surfaceCapabilities));
+
+	const uint32_t swapChainWidth = Clamp<uint32_t>(surfaceDrawableWidth,
+		surfaceCapabilities.minImageExtent.width,
+		surfaceCapabilities.maxImageExtent.width);
+	const uint32_t swapChainHeight = Clamp<uint32_t>(surfaceDrawableHeight,
+		surfaceCapabilities.minImageExtent.height,
+		surfaceCapabilities.maxImageExtent.height);
+
+	// Some drivers (for example NVIDIA on Windows during minimize) might
+	// return zeroes for both minImageExtent and maxImageExtent. It means we're
+	// not able to create any swapchain. Because we can't choose zeros (they're
+	// not allowed) and we can't choose values bigger than maxImageExtent
+	// (which are also zeroes in that case).
+	if (swapChainWidth == 0 || swapChainHeight == 0)
+		return nullptr;
 
 	std::vector<VkSurfaceFormatKHR> surfaceFormats;
 	uint32_t surfaceFormatCount = 0;
@@ -111,13 +123,6 @@ std::unique_ptr<CSwapChain> CSwapChain::Create(
 	}
 	const VkSurfaceFormatKHR& surfaceFormat = *surfaceFormatIt;
 
-	const uint32_t swapChainWidth = Clamp<int>(surfaceDrawableWidth,
-		surfaceCapabilities.minImageExtent.width,
-		surfaceCapabilities.maxImageExtent.width);
-	const uint32_t swapChainHeight = Clamp<int>(surfaceDrawableHeight,
-		surfaceCapabilities.minImageExtent.height,
-		surfaceCapabilities.maxImageExtent.height);
-
 	VkSwapchainCreateInfoKHR swapChainCreateInfo{};
 	swapChainCreateInfo.sType = VK_STRUCTURE_TYPE_SWAPCHAIN_CREATE_INFO_KHR;
 	swapChainCreateInfo.surface = surface;
@@ -170,6 +175,8 @@ std::unique_ptr<CSwapChain> CSwapChain::Create(
 	if (oldSwapChain)
 		swapChainCreateInfo.oldSwapchain = oldSwapChain->GetVkSwapchain();
 
+	std::unique_ptr<CSwapChain> swapChain(new CSwapChain());
+	swapChain->m_Device = device;
 	ENSURE_VK_SUCCESS(vkCreateSwapchainKHR(
 		device->GetVkDevice(), &swapChainCreateInfo, nullptr, &swapChain->m_SwapChain));
 
