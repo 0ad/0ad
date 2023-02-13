@@ -1048,7 +1048,7 @@ LIB_URL="https://releases.wildfiregames.com/libs/"
 
 mkdir -p "molten-vk"
 pushd "molten-vk" > /dev/null
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$MOLTENVK_VERSION" ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ "$(<.already-built)" != "$MOLTENVK_VERSION" ]] || [[ ! -e ../../../binaries/system/libMoltenVK.dylib ]]
 then
   INSTALL_DIR="../../../../binaries/system/"
   rm -f .already-built
