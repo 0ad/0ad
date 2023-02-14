@@ -30,6 +30,7 @@
 # Rafael Andrade
 # Rafael Monteiro
 # Renato Cirino
+# Rodrigo Zimmermann
 # Rui
 # Thiago Fontanari
 # Tiago
@@ -40,9 +41,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-06 08:09+0000\n"
+"POT-Creation-Date: 2023-02-10 08:10+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: lecalam, 2022\n"
+"Last-Translator: Rodrigo Zimmermann <rodrigo.zimmermann23@gmail.com>, 2023\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,29 +69,29 @@ msgstr "Reparos do Estaleiro"
 
 #: simulation/data/auras/structures/corral_garrison_large.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +3 food."
-msgstr ""
+msgstr "Guarnição dentro do Curral obtém um ganho em gotejamento de +3 de comida."
 
 #: simulation/data/auras/structures/corral_garrison_large.jsonauraName
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraName
 #: simulation/data/auras/structures/corral_garrison_small.jsonauraName
 msgid "Ranching and Corralling"
-msgstr ""
+msgstr "Pecuária e Encurralamento"
 
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +2 food."
-msgstr ""
+msgstr "Guarnição dentro do Curral para ganhar um pequeno gotejamento de +2 de comida."
 
 #: simulation/data/auras/structures/corral_garrison_small.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +1 food."
-msgstr ""
+msgstr "Guarnição dentro do Curral para ganhar um gotejamento de +1 de comida."
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
 msgid "Gatherers +75% farming rate around a captured Farmstead."
-msgstr ""
+msgstr "Coletores tem +75% de cultivo ao redor de uma chácara capturada."
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraName
 msgid "Farmland"
-msgstr ""
+msgstr "Terras Agrícolas"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -200,7 +201,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Democracy"
-msgstr ""
+msgstr "Democracia"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
@@ -274,7 +275,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "Training Regimes"
-msgstr ""
+msgstr "Regimes de Treinamento"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "+1.0 food trickle rate."
@@ -400,9 +401,9 @@ msgstr "Expansão Territorial"
 
 #: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraDescription
 msgid ""
-"The Music Bureau was charged directly, by the emperor to perform various tasks related to music, poetry, entertainment, or religious worship.\n"
-" Techcost −50%."
-msgstr "O Departamento de Música foi encarregado diretamente, pelo imperador, de realizar várias tarefas relacionadas à música, poesia, entretenimento ou culto religioso.\nCusto técnico -50%."
+"The Music Bureau was charged directly by Emperor Wu to perform various tasks related to music, poetry, entertainment, or religious worship.\n"
+"Technologies −50% resource cost and research time."
+msgstr ""
 
 #: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraName
 msgid "Imperial Music Bureau"
@@ -591,7 +592,7 @@ msgstr ""
 
 #: simulation/data/auras/units/centurion.jsonauraName
 msgid "Combat Leadership"
-msgstr ""
+msgstr "Liderança de Combate"
 
 #: simulation/data/auras/units/han_minister_building.jsonauraDescription
 msgid "Builders construct buildings +2% faster for every nearby Minister."
@@ -911,7 +912,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraName
 msgid "Rapid Conquest"
-msgstr ""
+msgstr "Conquista Rápida"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraDescription
 msgid "Enemy Soldiers, Structures −10% attack damage."
