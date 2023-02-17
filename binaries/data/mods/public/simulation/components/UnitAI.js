@@ -2419,6 +2419,11 @@ UnitAI.prototype.UnitFsmSpec = {
 			"APPROACHING": {
 				"enter": function() {
 					this.gatheringTarget = this.order.data.target;	// temporary, deleted in "leave".
+					if (this.CheckRange(this.order.data, IID_ResourceGatherer))
+					{
+						this.SetNextState("GATHERING");
+						return true;
+					}
 
 					// If we can't move, assume we'll fail any subsequent order
 					// and finish the order entirely to avoid an infinite loop.
@@ -2449,11 +2454,6 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.SetNextState("FINDINGNEWTARGET");
 						return true;
 					}
-					if (this.CheckRange(this.order.data, IID_ResourceGatherer))
-					{
-						this.SetNextState("GATHERING");
-						return true;
-					}
 					this.SetAnimationVariant("approach_" + this.order.data.type.specific);
 					return false;
 				},
@@ -2468,6 +2468,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				"leave": function() {
 					this.StopMoving();
+					this.SetDefaultAnimationVariant();
 
 					if (!this.gatheringTarget)
 						return;
@@ -2494,6 +2495,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				"leave": function() {
 					this.StopMoving();
+					this.SetDefaultAnimationVariant();
 				},
 
 				"MovementUpdate": function(msg) {
@@ -2523,13 +2525,13 @@ UnitAI.prototype.UnitFsmSpec = {
 					this.order.data.force = false;
 					this.order.data.autoharvest = true;
 
+					this.FaceTowardsTarget(this.order.data.target);
 					if (!cmpResourceGatherer.StartGathering(this.order.data.target, IID_UnitAI))
 					{
 						this.ProcessMessage("TargetInvalidated");
 						return true;
 					}
 
-					this.FaceTowardsTarget(this.order.data.target);
 					return false;
 				},
 
@@ -2666,7 +2668,6 @@ UnitAI.prototype.UnitFsmSpec = {
 						this.SetNextState("DROPPINGRESOURCES");
 						return true;
 					}
-					this.SetDefaultAnimationVariant();
 					this.SetNextState("APPROACHING");
 					return true;
 				},
@@ -2683,6 +2684,8 @@ UnitAI.prototype.UnitFsmSpec = {
 							cmpResourceGatherer.IsTargetInRange(this.order.data.target))
 						{
 							cmpResourceGatherer.CommitResources(this.order.data.target);
+							// Stop showing the carried resource animation.
+							this.SetDefaultAnimationVariant();
 							this.SetNextState("GATHER.APPROACHING");
 						}
 						else
@@ -2803,11 +2806,19 @@ UnitAI.prototype.UnitFsmSpec = {
 		"RETURNRESOURCE": {
 			"APPROACHING": {
 				"enter": function() {
+					if (this.CheckTargetRange(this.order.data.target, IID_ResourceGatherer))
+					{
+						this.SetNextState("DROPPINGRESOURCES");
+						return true;
+					}
+
 					if (!this.MoveTo(this.order.data, IID_ResourceGatherer))
 					{
 						this.FinishOrder();
 						return true;
 					}
+
+					this.SetDefaultAnimationVariant();
 					return false;
 				},
 
