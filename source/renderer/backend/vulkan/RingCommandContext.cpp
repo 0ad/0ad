@@ -122,6 +122,17 @@ void CRingCommandContext::Flush()
 	m_RingIndex = (m_RingIndex + 1) % m_Ring.size();
 }
 
+void CRingCommandContext::FlushAndWait()
+{
+	RingItem& item = m_Ring[m_RingIndex];
+	ENSURE(item.isBegan);
+
+	End();
+
+	item.handle = m_SubmitScheduler.Submit(item.commandBuffer);
+	WaitUntilFree(item);
+}
+
 void CRingCommandContext::ScheduleUpload(
 	CTexture* texture, const Format dataFormat,
 	const void* data, const size_t dataSize,

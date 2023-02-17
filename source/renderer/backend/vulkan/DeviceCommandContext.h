@@ -18,6 +18,7 @@
 #ifndef INCLUDED_RENDERER_VULKAN_DEVICECOMMANDCONTEXT
 #define INCLUDED_RENDERER_VULKAN_DEVICECOMMANDCONTEXT
 
+#include "ps/containers/StaticVector.h"
 #include "renderer/backend/IBuffer.h"
 #include "renderer/backend/IDeviceCommandContext.h"
 
@@ -51,7 +52,12 @@ public:
 
 	void SetGraphicsPipelineState(IGraphicsPipelineState* pipelineState) override;
 
-	void BlitFramebuffer(IFramebuffer* destinationFramebuffer, IFramebuffer* sourceFramebuffer) override;
+	void BlitFramebuffer(
+		IFramebuffer* destinationFramebuffer, IFramebuffer* sourceFramebuffer,
+		const Rect& destinationRegion, const Rect& sourceRegion,
+		const Sampler::Filter filter) override;
+	void ResolveFramebuffer(
+		IFramebuffer* destinationFramebuffer, IFramebuffer* sourceFramebuffer) override;
 
 	void ClearFramebuffer(const bool color, const bool depth, const bool stencil) override;
 	void BeginFramebufferPass(IFramebuffer* framebuffer) override;
@@ -170,6 +176,16 @@ private:
 
 	VkDescriptorPool m_UniformDescriptorPool = VK_NULL_HANDLE;
 	VkDescriptorSet m_UniformDescriptorSet = VK_NULL_HANDLE;
+
+	// Currently we support readbacks only from backbuffer.
+	struct QueuedReadback
+	{
+		uint32_t x = 0, y = 0;
+		uint32_t width = 0, height = 0;
+		// It's a responsibility of the caller to guarantee that data is valid.
+		void* data = nullptr;
+	};
+	PS::StaticVector<QueuedReadback, 2> m_QueuedReadbacks;
 };
 
 } // namespace Vulkan

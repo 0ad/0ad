@@ -62,6 +62,8 @@ public:
 		const AttachmentLoadOp depthStencilAttachmentLoadOp,
 		const AttachmentStoreOp depthStencilAttachmentStoreOp);
 
+	CTexture* GetCurrentBackbufferTexture();
+
 	CTexture* GetDepthTexture() { return m_DepthTexture.get(); }
 
 private:

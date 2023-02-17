@@ -640,6 +640,8 @@ CDevice::~CDevice()
 	// The order of destroying does matter to avoid use-after-free and validation
 	// layers complaints.
 
+	m_BackbufferReadbackTexture.reset();
+
 	m_SubmitScheduler.reset();
 
 	ProcessTextureToDestroyQueue(true);
@@ -927,6 +929,7 @@ std::unique_ptr<CRingCommandContext> CDevice::CreateRingCommandContext(const siz
 
 void CDevice::RecreateSwapChain()
 {
+	m_BackbufferReadbackTexture.reset();
 	int surfaceDrawableWidth = 0, surfaceDrawableHeight = 0;
 	SDL_Vulkan_GetDrawableSize(m_Window, &surfaceDrawableWidth, &surfaceDrawableHeight);
 	m_SwapChain = CSwapChain::Create(
@@ -996,6 +999,27 @@ void CDevice::ProcessTextureToDestroyQueue(const bool ignoreFrameID)
 		GetDescriptorManager().OnTextureDestroy(m_TextureToDestroyQueue.front().second);
 		m_TextureToDestroyQueue.pop();
 	}
+}
+
+CTexture* CDevice::GetCurrentBackbufferTexture()
+{
+	return IsSwapChainValid() ? m_SwapChain->GetCurrentBackbufferTexture() : nullptr;
+}
+
+CTexture* CDevice::GetOrCreateBackbufferReadbackTexture()
+{
+	if (!IsSwapChainValid())
+		return nullptr;
+	if (!m_BackbufferReadbackTexture)
+	{
+		CTexture* currentBackbufferTexture = m_SwapChain->GetCurrentBackbufferTexture();
+		m_BackbufferReadbackTexture = CTexture::CreateReadback(
+			this, "BackbufferReadback",
+			currentBackbufferTexture->GetFormat(),
+			currentBackbufferTexture->GetWidth(),
+			currentBackbufferTexture->GetHeight());
+	}
+	return m_BackbufferReadbackTexture.get();
 }
 
 std::unique_ptr<IDevice> CreateDevice(SDL_Window* window)

@@ -64,6 +64,12 @@ public:
 	void Flush();
 
 	/**
+	 * The same as Flush but also waits until it's completed. It means it
+	 * forces SubmitScheduler to submit all previously queued work to GPU.
+	 */
+	void FlushAndWait();
+
+	/**
 	 * Schedules uploads until next render pass or flush.
 	 * @note doesn't save a command buffer returned by GetCommandBuffer during
 	 * scheduling uploads, because it might be changed.

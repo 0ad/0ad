@@ -99,7 +99,12 @@ void CDeviceCommandContext::Flush()
 {
 }
 
-void CDeviceCommandContext::BlitFramebuffer(IFramebuffer*, IFramebuffer*)
+void CDeviceCommandContext::BlitFramebuffer(
+	IFramebuffer*, IFramebuffer*, const Rect&, const Rect&, const Sampler::Filter)
+{
+}
+
+void CDeviceCommandContext::ResolveFramebuffer(IFramebuffer*, IFramebuffer*)
 {
 }
 

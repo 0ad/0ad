@@ -57,7 +57,12 @@ public:
 
 	void SetGraphicsPipelineState(IGraphicsPipelineState* pipelineState) override;
 
-	void BlitFramebuffer(IFramebuffer* destinationFramebuffer, IFramebuffer* sourceFramebuffer) override;
+	void BlitFramebuffer(
+		IFramebuffer* sourceFramebuffer, IFramebuffer* destinationFramebuffer,
+		const Rect& sourceRegion, const Rect& destinationRegion,
+		const Sampler::Filter filter) override;
+	void ResolveFramebuffer(
+		IFramebuffer* sourceFramebuffer, IFramebuffer* destinationFramebuffer) override;
 
 	void BeginFramebufferPass(IFramebuffer* framebuffer) override;
 	void EndFramebufferPass() override;

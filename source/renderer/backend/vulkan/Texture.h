@@ -63,6 +63,13 @@ public:
 	VkImageAspectFlags GetAttachmentImageAspectMask() { return m_AttachmentImageAspectMask; }
 	VkImageAspectFlags GetSamplerImageAspectMask() { return m_SamplerImageAspectMask; }
 
+	/**
+	 * @return mapped data for readback textures else returns nullptr.
+	 */
+	void* GetMappedData() { return m_AllocationInfo.pMappedData; }
+
+	VkDeviceMemory GetDeviceMemory() { return m_AllocationInfo.deviceMemory; }
+
 	bool IsInitialized() const { return m_Initialized; }
 	void SetInitialized() { m_Initialized = true; }
 
@@ -91,6 +98,10 @@ private:
 		CDevice* device, const char* name, const VkImage image, const VkFormat format,
 		const VkImageUsageFlags usage, const uint32_t width, const uint32_t height);
 
+	static std::unique_ptr<CTexture> CreateReadback(
+		CDevice* device, const char* name, const Format format,
+		const uint32_t width, const uint32_t height);
+
 	Type m_Type = Type::TEXTURE_2D;
 	uint32_t m_Usage = 0;
 	Format m_Format = Format::UNDEFINED;
@@ -109,6 +120,7 @@ private:
 	VkSampler m_Sampler = VK_NULL_HANDLE;
 	bool m_IsCompareEnabled = false;
 	VmaAllocation m_Allocation{};
+	VmaAllocationInfo m_AllocationInfo{};
 
 	UID m_UID = 0;
 

@@ -806,7 +806,9 @@ void CDeviceCommandContext::SetGraphicsPipelineStateImpl(
 }
 
 void CDeviceCommandContext::BlitFramebuffer(
-	IFramebuffer* dstFramebuffer, IFramebuffer* srcFramebuffer)
+	IFramebuffer* srcFramebuffer, IFramebuffer* dstFramebuffer,
+	const Rect& sourceRegion, const Rect& destinationRegion,
+	const Sampler::Filter filter)
 {
 	ENSURE(!m_InsideFramebufferPass);
 	CFramebuffer* destinationFramebuffer = dstFramebuffer->As<CFramebuffer>();
@@ -814,6 +816,9 @@ void CDeviceCommandContext::BlitFramebuffer(
 #if CONFIG2_GLES
 	UNUSED2(destinationFramebuffer);
 	UNUSED2(sourceFramebuffer);
+	UNUSED2(destinationRegion);
+	UNUSED2(sourceRegion);
+	UNUSED2(filter);
 	debug_warn("CDeviceCommandContext::BlitFramebuffer is not implemented for GLES");
 #else
 	// Source framebuffer should not be backbuffer.
@@ -821,8 +826,34 @@ void CDeviceCommandContext::BlitFramebuffer(
 	ENSURE(destinationFramebuffer != sourceFramebuffer);
 	glBindFramebufferEXT(GL_READ_FRAMEBUFFER_EXT, sourceFramebuffer->GetHandle());
 	glBindFramebufferEXT(GL_DRAW_FRAMEBUFFER_EXT, destinationFramebuffer->GetHandle());
-	// TODO: add more check for internal formats. And currently we don't support
-	// scaling inside blit.
+	// TODO: add more check for internal formats.
+	glBlitFramebufferEXT(
+		sourceRegion.x, sourceRegion.y, sourceRegion.width, sourceRegion.height,
+		destinationRegion.x, destinationRegion.y, destinationRegion.width, destinationRegion.height,
+		(sourceFramebuffer->GetAttachmentMask() & destinationFramebuffer->GetAttachmentMask()),
+		filter == Sampler::Filter::LINEAR ? GL_LINEAR : GL_NEAREST);
+	ogl_WarnIfError();
+#endif
+}
+
+void CDeviceCommandContext::ResolveFramebuffer(
+	IFramebuffer* srcFramebuffer, IFramebuffer* dstFramebuffer)
+{
+	ENSURE(!m_InsideFramebufferPass);
+	CFramebuffer* destinationFramebuffer = dstFramebuffer->As<CFramebuffer>();
+	CFramebuffer* sourceFramebuffer = srcFramebuffer->As<CFramebuffer>();
+	ENSURE(destinationFramebuffer->GetWidth() == sourceFramebuffer->GetWidth());
+	ENSURE(destinationFramebuffer->GetHeight() == sourceFramebuffer->GetHeight());
+#if CONFIG2_GLES
+	UNUSED2(destinationFramebuffer);
+	UNUSED2(sourceFramebuffer);
+	debug_warn("CDeviceCommandContext::ResolveFramebuffer is not implemented for GLES");
+#else
+	// Source framebuffer should not be backbuffer.
+	ENSURE(sourceFramebuffer->GetHandle() != 0);
+	ENSURE(destinationFramebuffer != sourceFramebuffer);
+	glBindFramebufferEXT(GL_READ_FRAMEBUFFER_EXT, sourceFramebuffer->GetHandle());
+	glBindFramebufferEXT(GL_DRAW_FRAMEBUFFER_EXT, destinationFramebuffer->GetHandle());
 	glBlitFramebufferEXT(
 		0, 0, sourceFramebuffer->GetWidth(), sourceFramebuffer->GetHeight(),
 		0, 0, sourceFramebuffer->GetWidth(), sourceFramebuffer->GetHeight(),

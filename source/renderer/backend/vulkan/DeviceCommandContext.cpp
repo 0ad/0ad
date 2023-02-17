@@ -36,6 +36,7 @@
 
 #include <algorithm>
 #include <cstddef>
+#include <tuple>
 
 namespace Renderer
 {
@@ -81,6 +82,14 @@ SBaseImageState GetBaseImageState(CTexture* texture)
 			VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL,
 			VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT | VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT,
 			VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT | VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT};
+	}
+	// The only TRANSFER_DST usage means we can do only readbacks.
+	else if (texture->GetUsage() == ITexture::Usage::TRANSFER_DST)
+	{
+		return {
+			VK_IMAGE_LAYOUT_GENERAL,
+			VK_ACCESS_HOST_READ_BIT,
+			VK_PIPELINE_STAGE_HOST_BIT};
 	}
 	return {};
 }
@@ -129,6 +138,54 @@ private:
 	const VkAccessFlags m_AccessMask = 0;
 	const VkPipelineStageFlags m_StageMask = 0;
 };
+
+template<typename TransferOp>
+void TransferForEachFramebufferAttachmentPair(
+	CRingCommandContext& commandContext,
+	CFramebuffer* sourceFramebuffer, CFramebuffer* destinationFramebuffer,
+	TransferOp transferOp)
+{
+	const auto& sourceColorAttachments =
+		sourceFramebuffer->GetColorAttachments();
+	const auto& destinationColorAttachments =
+		destinationFramebuffer->GetColorAttachments();
+	ENSURE(sourceColorAttachments.size() == destinationColorAttachments.size());
+
+	for (CTexture* sourceColorAttachment : sourceColorAttachments)
+		ENSURE(sourceColorAttachment->GetUsage() & ITexture::Usage::TRANSFER_SRC);
+	for (CTexture* destinationColorAttachment : destinationColorAttachments)
+		ENSURE(destinationColorAttachment->GetUsage() & ITexture::Usage::TRANSFER_DST);
+
+	// TODO: combine barriers, reduce duplication, add depth.
+	ScopedImageLayoutTransition scopedColorAttachmentsTransition{
+		commandContext,
+		{sourceColorAttachments.begin(), sourceColorAttachments.end()},
+		VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
+		VK_ACCESS_TRANSFER_READ_BIT,
+		VK_PIPELINE_STAGE_TRANSFER_BIT};
+	ScopedImageLayoutTransition destinationColorAttachmentsTransition{
+		commandContext,
+		{destinationColorAttachments.begin(), destinationColorAttachments.end()},
+		VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
+		VK_ACCESS_TRANSFER_WRITE_BIT,
+		VK_PIPELINE_STAGE_TRANSFER_BIT};
+
+	for (CFramebuffer::ColorAttachments::size_type index = 0; index < destinationColorAttachments.size(); ++index)
+	{
+		CTexture* sourceColorAttachment = sourceColorAttachments[index];
+		CTexture* destinationColorAttachment = destinationColorAttachments[index];
+
+		transferOp(commandContext.GetCommandBuffer(), sourceColorAttachment, destinationColorAttachment);
+	}
+
+	if (sourceFramebuffer->GetDepthStencilAttachment() && destinationFramebuffer->GetDepthStencilAttachment())
+	{
+		transferOp(
+			commandContext.GetCommandBuffer(),
+			sourceFramebuffer->GetDepthStencilAttachment(),
+			destinationFramebuffer->GetDepthStencilAttachment());
+	}
+}
 
 } // anonymous namespace
 
@@ -344,107 +401,97 @@ void CDeviceCommandContext::SetGraphicsPipelineState(
 	m_IsPipelineStateDirty = true;
 }
 
-void CDeviceCommandContext::BlitFramebuffer(IFramebuffer* destinationFramebuffer, IFramebuffer* sourceFramebuffer)
+void CDeviceCommandContext::BlitFramebuffer(
+	IFramebuffer* sourceFramebuffer, IFramebuffer* destinationFramebuffer,
+	const Rect& sourceRegion, const Rect& destinationRegion,
+	const Sampler::Filter filter)
 {
 	ENSURE(!m_InsideFramebufferPass);
-	const auto& sourceColorAttachments =
-		sourceFramebuffer->As<CFramebuffer>()->GetColorAttachments();
-	const auto& destinationColorAttachments =
-		destinationFramebuffer->As<CFramebuffer>()->GetColorAttachments();
-	ENSURE(sourceColorAttachments.size() == destinationColorAttachments.size());
-	// TODO: account depth.
-	//ENSURE(
-	//	static_cast<bool>(sourceFramebuffer->As<CFramebuffer>()->GetDepthStencilAttachment()) ==
-	//		static_cast<bool>(destinationFramebuffer->As<CFramebuffer>()->GetDepthStencilAttachment()));
+	ENSURE(sourceRegion.x >= 0 && sourceRegion.x + sourceRegion.width <= static_cast<int32_t>(sourceFramebuffer->GetWidth()));
+	ENSURE(sourceRegion.y >= 0 && sourceRegion.y + sourceRegion.height <= static_cast<int32_t>(sourceFramebuffer->GetHeight()));
+	ENSURE(destinationRegion.x >= 0 && destinationRegion.x + destinationRegion.width <= static_cast<int32_t>(destinationFramebuffer->GetWidth()));
+	ENSURE(destinationRegion.y >= 0 && destinationRegion.y + destinationRegion.height <= static_cast<int32_t>(destinationFramebuffer->GetHeight()));
 
-	for (CTexture* sourceColorAttachment : sourceColorAttachments)
-	{
-		ENSURE(sourceColorAttachment->GetUsage() & ITexture::Usage::TRANSFER_SRC);
-	}
-	for (CTexture* destinationColorAttachment : destinationColorAttachments)
-	{
-		ENSURE(destinationColorAttachment->GetUsage() & ITexture::Usage::TRANSFER_DST);
-	}
-
-	// TODO: combine barriers, reduce duplication, add depth.
-	ScopedImageLayoutTransition scopedColorAttachmentsTransition{
+	TransferForEachFramebufferAttachmentPair(
 		*m_CommandContext,
-		{sourceColorAttachments.begin(), sourceColorAttachments.end()},
-		VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
-		VK_ACCESS_TRANSFER_READ_BIT,
-		VK_PIPELINE_STAGE_TRANSFER_BIT};
-	ScopedImageLayoutTransition destinationColorAttachmentsTransition{
-		*m_CommandContext,
-		{destinationColorAttachments.begin(), destinationColorAttachments.end()},
-		VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
-		VK_ACCESS_TRANSFER_WRITE_BIT,
-		VK_PIPELINE_STAGE_TRANSFER_BIT};
-
-	// TODO: split BlitFramebuffer into ResolveFramebuffer and BlitFramebuffer.
-	if (sourceFramebuffer->As<CFramebuffer>()->GetSampleCount() == 1)
-	{
-		// TODO: we need to check for VK_FORMAT_FEATURE_BLIT_*_BIT for used formats.
-		for (CFramebuffer::ColorAttachments::size_type index = 0; index < destinationColorAttachments.size(); ++index)
+		sourceFramebuffer->As<CFramebuffer>(), destinationFramebuffer->As<CFramebuffer>(),
+		[&sourceRegion, &destinationRegion, filter](
+			VkCommandBuffer commandBuffer, CTexture* sourceColorAttachment, CTexture* destinationColorAttachment)
 		{
-			CTexture* sourceColorAttachment = sourceColorAttachments[index];
-			CTexture* destinationColorAttachment = destinationColorAttachments[index];
+			// TODO: we need to check for VK_FORMAT_FEATURE_BLIT_*_BIT for used formats.
+
+			const bool isDepth = IsDepthFormat(sourceColorAttachment->GetFormat());
+			const VkImageAspectFlags aspectMask = isDepth ? VK_IMAGE_ASPECT_DEPTH_BIT : VK_IMAGE_ASPECT_COLOR_BIT;
 
 			VkImageBlit region{};
-			region.srcOffsets[1].x = sourceColorAttachment->GetWidth();
-			region.srcOffsets[1].y = sourceColorAttachment->GetHeight();
+			// Currently (0, 0) is the left-bottom corner (legacy from GL), so
+			// we need to adjust the regions.
+			const uint32_t sourceHeight = sourceColorAttachment->GetHeight();
+			const uint32_t destinationHeight = destinationColorAttachment->GetHeight();
+			region.srcOffsets[0].x = sourceRegion.x;
+			region.srcOffsets[0].y = sourceHeight - sourceRegion.y - sourceRegion.height;
+			region.dstOffsets[0].x = destinationRegion.x;
+			region.dstOffsets[0].y = destinationHeight - destinationRegion.y - destinationRegion.height;
+			region.srcOffsets[1].x = sourceRegion.x + sourceRegion.width;
+			region.srcOffsets[1].y = sourceHeight - sourceRegion.y;
 			region.srcOffsets[1].z = 1;
-			region.dstOffsets[1].x = destinationColorAttachment->GetWidth();
-			region.dstOffsets[1].y = destinationColorAttachment->GetHeight();
+			region.dstOffsets[1].x = destinationRegion.x + destinationRegion.width;
+			region.dstOffsets[1].y = destinationHeight - destinationRegion.y;
 			region.dstOffsets[1].z = 1;
-			region.srcSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+			region.srcSubresource.aspectMask = aspectMask;
 			region.srcSubresource.mipLevel = 0;
 			region.srcSubresource.baseArrayLayer = 0;
 			region.srcSubresource.layerCount = 1;
-			region.dstSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+			region.dstSubresource.aspectMask = aspectMask;
 			region.dstSubresource.mipLevel = 0;
 			region.dstSubresource.baseArrayLayer = 0;
 			region.dstSubresource.layerCount = 1;
 
-			ENSURE(sourceColorAttachment->GetImage() != VK_NULL_HANDLE);
-			ENSURE(destinationColorAttachment->GetImage() != VK_NULL_HANDLE);
 			vkCmdBlitImage(
-				m_CommandContext->GetCommandBuffer(),
+				commandBuffer,
 				sourceColorAttachment->GetImage(), VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
 				destinationColorAttachment->GetImage(), VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
-				1, &region, VK_FILTER_NEAREST);
-		}
-	}
-	else
-	{
-		ENSURE(sourceFramebuffer->As<CFramebuffer>()->GetSampleCount() > 1);
-		ENSURE(destinationFramebuffer->As<CFramebuffer>()->GetSampleCount() == 1);
-		ENSURE(sourceFramebuffer->As<CFramebuffer>()->GetWidth() == destinationFramebuffer->As<CFramebuffer>()->GetWidth());
-		ENSURE(sourceFramebuffer->As<CFramebuffer>()->GetHeight() == destinationFramebuffer->As<CFramebuffer>()->GetHeight());
-		for (CFramebuffer::ColorAttachments::size_type index = 0; index < destinationColorAttachments.size(); ++index)
+				1, &region, filter == Sampler::Filter::LINEAR ? VK_FILTER_LINEAR : VK_FILTER_NEAREST);
+		});
+}
+
+void CDeviceCommandContext::ResolveFramebuffer(
+	IFramebuffer* sourceFramebuffer, IFramebuffer* destinationFramebuffer)
+{
+	ENSURE(!m_InsideFramebufferPass);
+	ENSURE(sourceFramebuffer->As<CFramebuffer>()->GetSampleCount() > 1);
+	ENSURE(destinationFramebuffer->As<CFramebuffer>()->GetSampleCount() == 1);
+	ENSURE(sourceFramebuffer->As<CFramebuffer>()->GetWidth() == destinationFramebuffer->As<CFramebuffer>()->GetWidth());
+	ENSURE(sourceFramebuffer->As<CFramebuffer>()->GetHeight() == destinationFramebuffer->As<CFramebuffer>()->GetHeight());
+
+	TransferForEachFramebufferAttachmentPair(
+		*m_CommandContext,
+		sourceFramebuffer->As<CFramebuffer>(), destinationFramebuffer->As<CFramebuffer>(),
+		[](VkCommandBuffer commandBuffer, CTexture* sourceColorAttachment, CTexture* destinationColorAttachment)
 		{
-			CTexture* sourceColorAttachment = sourceColorAttachments[index];
-			CTexture* destinationColorAttachment = destinationColorAttachments[index];
+			ENSURE(sourceColorAttachment->GetFormat() == destinationColorAttachment->GetFormat());
+			ENSURE(!IsDepthFormat(sourceColorAttachment->GetFormat()));
+			const VkImageAspectFlags aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
 
 			VkImageResolve region{};
 			region.extent.width = sourceColorAttachment->GetWidth();
 			region.extent.height = sourceColorAttachment->GetHeight();
 			region.extent.depth = 1;
-			region.srcSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+			region.srcSubresource.aspectMask = aspectMask;
 			region.srcSubresource.mipLevel = 0;
 			region.srcSubresource.baseArrayLayer = 0;
 			region.srcSubresource.layerCount = 1;
-			region.dstSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+			region.dstSubresource.aspectMask = aspectMask;
 			region.dstSubresource.mipLevel = 0;
 			region.dstSubresource.baseArrayLayer = 0;
 			region.dstSubresource.layerCount = 1;
 
 			vkCmdResolveImage(
-				m_CommandContext->GetCommandBuffer(),
+				commandBuffer,
 				sourceColorAttachment->GetImage(), VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
 				destinationColorAttachment->GetImage(), VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
 				1, &region);
-		}
-	}
+		});
 }
 
 void CDeviceCommandContext::ClearFramebuffer(const bool color, const bool depth, const bool stencil)
@@ -626,12 +673,18 @@ void CDeviceCommandContext::ReadbackFramebufferSync(
 	const uint32_t x, const uint32_t y, const uint32_t width, const uint32_t height,
 	void* data)
 {
-	UNUSED2(x);
-	UNUSED2(y);
-	UNUSED2(width);
-	UNUSED2(height);
-	UNUSED2(data);
-	LOGERROR("Vulkan: framebuffer readback is not implemented yet.");
+	CTexture* texture = m_Device->GetCurrentBackbufferTexture();
+	if (!texture)
+	{
+		LOGERROR("Vulkan: backbuffer is unavailable.");
+		return;
+	}
+	if (!(texture->GetUsage() & ITexture::Usage::TRANSFER_SRC))
+	{
+		LOGERROR("Vulkan: backbuffer doesn't support readback.");
+		return;
+	}
+	m_QueuedReadbacks.emplace_back(x, y, width, height, data);
 }
 
 void CDeviceCommandContext::UploadTexture(ITexture* texture, const Format dataFormat,
@@ -922,8 +975,89 @@ void CDeviceCommandContext::Flush()
 
 	m_IsPipelineStateDirty = true;
 
-	m_PrependCommandContext->Flush();
-	m_CommandContext->Flush();
+	CTexture* backbufferReadbackTexture = m_QueuedReadbacks.empty()
+		? nullptr : m_Device->GetOrCreateBackbufferReadbackTexture();
+	const bool needsReadback = backbufferReadbackTexture;
+	if (needsReadback)
+	{
+		CTexture* backbufferTexture = m_Device->GetCurrentBackbufferTexture();
+
+		{
+		// We assume that the readback texture is in linear tiling.
+		ScopedImageLayoutTransition scopedBackbufferTransition{
+			*m_CommandContext,
+			{&backbufferTexture, 1},
+			VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
+			VK_ACCESS_TRANSFER_READ_BIT,
+			VK_PIPELINE_STAGE_TRANSFER_BIT};
+		ScopedImageLayoutTransition scopedReadbackBackbufferTransition{
+			*m_CommandContext,
+			{&backbufferReadbackTexture, 1},
+			VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
+			VK_ACCESS_TRANSFER_WRITE_BIT,
+			VK_PIPELINE_STAGE_TRANSFER_BIT};
+		VkImageCopy region{};
+		region.srcSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+		region.srcSubresource.layerCount = 1;
+		region.dstSubresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+		region.dstSubresource.layerCount = 1;
+		region.extent.width = backbufferTexture->GetWidth();
+		region.extent.height = backbufferTexture->GetHeight();
+		region.extent.depth = 1;
+		vkCmdCopyImage(
+			m_CommandContext->GetCommandBuffer(),
+			backbufferTexture->GetImage(), VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL,
+			backbufferReadbackTexture->GetImage(), VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
+			1, &region);
+		}
+
+		Utilities::SubmitMemoryBarrier(
+			m_CommandContext->GetCommandBuffer(),
+			VK_ACCESS_TRANSFER_WRITE_BIT, VK_ACCESS_HOST_READ_BIT,
+			VK_PIPELINE_STAGE_TRANSFER_BIT, VK_PIPELINE_STAGE_HOST_BIT);
+
+		m_PrependCommandContext->Flush();
+		m_CommandContext->FlushAndWait();
+
+		VkImageSubresource subresource{};
+		subresource.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+		VkSubresourceLayout subresourceLayout{};
+		vkGetImageSubresourceLayout(
+			m_Device->GetVkDevice(), backbufferReadbackTexture->GetImage(), &subresource, &subresourceLayout);
+
+		void* mappedData = backbufferReadbackTexture->GetMappedData();
+		ENSURE(mappedData);
+		const uint32_t height = backbufferReadbackTexture->GetHeight();
+		const auto [redOffset, greenOffset, blueOffset] = backbufferReadbackTexture->GetFormat() == Format::B8G8R8A8_UNORM
+			? std::make_tuple(2, 1, 0) : std::make_tuple(0, 1, 2);
+		for (const QueuedReadback& queuedReackback : m_QueuedReadbacks)
+		{
+			const std::byte* data = static_cast<const std::byte*>(mappedData);
+			// Currently the backbuffer (0, 0) is the left-bottom corner (legacy from GL).
+			data += subresourceLayout.offset + subresourceLayout.rowPitch * (height - queuedReackback.height - queuedReackback.y);
+			for (uint32_t y = 0; y < queuedReackback.height; ++y)
+			{
+				const std::byte* row = data;
+				for (uint32_t x = 0; x < queuedReackback.width; ++x)
+				{
+					const uint32_t sourceIndex = (queuedReackback.x + x) * 4;
+					const uint32_t destinationIndex = ((queuedReackback.height - y - 1) * queuedReackback.width + x) * 3;
+					std::byte* destinationPixelData = static_cast<std::byte*>(queuedReackback.data) + destinationIndex;
+					destinationPixelData[0] = row[sourceIndex + redOffset];
+					destinationPixelData[1] = row[sourceIndex + greenOffset];
+					destinationPixelData[2] = row[sourceIndex + blueOffset];
+				}
+				data += subresourceLayout.rowPitch;
+			}
+		}
+	}
+	else
+	{
+		m_PrependCommandContext->Flush();
+		m_CommandContext->Flush();
+	}
+
+	m_QueuedReadbacks.clear();
 }
 
 void CDeviceCommandContext::PreDraw()
