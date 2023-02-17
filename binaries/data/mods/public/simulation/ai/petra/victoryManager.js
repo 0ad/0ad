@@ -475,7 +475,7 @@ PETRA.VictoryManager.prototype.pickCriticalEntRetreatLocation = function(gameSta
 	{
 		const bestBasePos = bestBase.anchor.position();
 		criticalEnt.moveToRange(bestBasePos[0], bestBasePos[1],
-			0, gameState.getEntityById(bestBase.anchorId).obstructionRadius().max);
+			0, bestBase.anchor.obstructionRadius().max);
 	}
 };
 
