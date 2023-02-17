@@ -83,7 +83,8 @@ function Cheat(input)
 			const batch = new cmpTrainer.Item(input.templates[i % input.templates.length], 1, input.selected[0], null);
 			batch.player = owner;
 			batch.Finish();
-			// ToDo: If not able to spawn, cancel the batch.
+			if (!batch.IsFinished())
+				batch.Stop();
 		}
 		return;
 	}
