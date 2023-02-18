@@ -404,9 +404,17 @@ void CPostprocManager::BlitOutputFramebuffer(
 
 	GPU_SCOPED_LABEL(deviceCommandContext, "Copy postproc to backbuffer");
 
+	Renderer::Backend::IFramebuffer* source =
+		(m_WhichBuffer ? m_PingFramebuffer : m_PongFramebuffer).get();
+
 	// We blit to the backbuffer from the previous active buffer.
+	// We'll have upscaling/downscaling separately.
+	Renderer::Backend::IDeviceCommandContext::Rect region{};
+	region.width = std::min(source->GetWidth(), destination->GetWidth());
+	region.height = std::min(source->GetHeight(), destination->GetHeight());
 	deviceCommandContext->BlitFramebuffer(
-		destination, (m_WhichBuffer ? m_PingFramebuffer : m_PongFramebuffer).get());
+		source, destination, region, region,
+		Renderer::Backend::Sampler::Filter::NEAREST);
 }
 
 void CPostprocManager::ApplyEffect(
@@ -690,6 +698,6 @@ void CPostprocManager::ResolveMultisampleFramebuffer(
 		return;
 
 	GPU_SCOPED_LABEL(deviceCommandContext, "Resolve postproc multisample");
-	deviceCommandContext->BlitFramebuffer(
-		m_PingFramebuffer.get(), m_MultisampleFramebuffer.get());
+	deviceCommandContext->ResolveFramebuffer(
+		m_MultisampleFramebuffer.get(), m_PingFramebuffer.get());
 }

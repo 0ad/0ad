@@ -22,6 +22,7 @@
 #include "renderer/backend/Format.h"
 #include "renderer/backend/IDeviceObject.h"
 #include "renderer/backend/PipelineState.h"
+#include "renderer/backend/Sampler.h"
 
 #include <cstdint>
 #include <functional>
@@ -46,8 +47,30 @@ public:
 	 */
 	virtual void SetGraphicsPipelineState(IGraphicsPipelineState* pipelineState) = 0;
 
+	// TODO: maybe we should add a more common type, like CRectI.
+	struct Rect
+	{
+		int32_t x, y;
+		int32_t width, height;
+	};
+	/**
+	 * Copies source region into destination region automatically applying
+	 * compatible format conversion and scaling using a provided filter.
+	 * A backbuffer can't be a source.
+	 */
 	virtual void BlitFramebuffer(
-		IFramebuffer* destinationFramebuffer, IFramebuffer* sourceFramebuffer) = 0;
+		IFramebuffer* sourceFramebuffer, IFramebuffer* destinationFramebuffer,
+		const Rect& sourceRegion, const Rect& destinationRegion,
+		const Sampler::Filter filter) = 0;
+
+	/**
+	 * Resolves multisample source framebuffer attachments to destination
+	 * attachments. Source attachments should have a sample count > 1 and
+	 * destination attachments should have a sample count = 1.
+	 * A backbuffer can't be a source.
+	 */
+	virtual void ResolveFramebuffer(
+		IFramebuffer* sourceFramebuffer, IFramebuffer* destinationFramebuffer) = 0;
 
 	/**
 	 * Starts a framebuffer pass, performs attachment load operations.
@@ -68,6 +91,15 @@ public:
 	 */
 	virtual void ClearFramebuffer(const bool color, const bool depth, const bool stencil) = 0;
 
+	/**
+	 * Readbacks the current backbuffer to data in R8G8B8_UNORM format somewhen
+	 * between the function call and Flush (inclusively). Because of that the
+	 * data pointer should be valid in that time period and have enough space
+	 * to fit the readback result.
+	 * @note this operation is very slow and should not be used regularly.
+	 * TODO: ideally we should do readback on Present or even asynchronously
+	 * but a client doesn't support that yet.
+	 */
 	virtual void ReadbackFramebufferSync(
 		const uint32_t x, const uint32_t y, const uint32_t width, const uint32_t height,
 		void* data) = 0;
@@ -90,12 +122,6 @@ public:
 		IBuffer* buffer, const uint32_t dataOffset, const uint32_t dataSize,
 		const UploadBufferFunction& uploadFunction) = 0;
 
-	// TODO: maybe we should add a more common type, like CRectI.
-	struct Rect
-	{
-		int32_t x, y;
-		int32_t width, height;
-	};
 	virtual void SetScissors(const uint32_t scissorCount, const Rect* scissors) = 0;
 	virtual void SetViewports(const uint32_t viewportCount, const Rect* viewports) = 0;
 

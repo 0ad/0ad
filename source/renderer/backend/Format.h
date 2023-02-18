@@ -33,6 +33,7 @@ enum class Format
 	R8G8B8_UNORM,
 	R8G8B8A8_UNORM,
 	R8G8B8A8_UINT,
+	B8G8R8A8_UNORM,
 
 	// TODO: we need to drop legacy A8 and L8 formats as soon as we have proper
 	// channel swizzling.

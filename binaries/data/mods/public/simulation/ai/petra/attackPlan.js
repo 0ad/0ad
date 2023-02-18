@@ -1303,6 +1303,12 @@ PETRA.AttackPlan.prototype.update = function(gameState, events)
 	if (this.state == "transporting")
 		this.UpdateTransporting(gameState, events);
 
+	if (!this.position)
+	{
+		Engine.ProfileStop();
+		return this.unitCollection.length;
+	}
+
 	if (this.state == "walking" && !this.UpdateWalking(gameState, events))
 	{
 		Engine.ProfileStop();

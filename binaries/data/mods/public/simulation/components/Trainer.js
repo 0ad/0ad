@@ -199,6 +199,14 @@ Trainer.prototype.Item.prototype.Finish = function()
 		this.finished = true;
 };
 
+/**
+ * @return {boolean} -
+ */
+Trainer.prototype.Item.prototype.IsFinished = function()
+{
+	return !!this.finished;
+};
+
 /*
  * This function creates the entities and places them in world if possible
  * (some of these entities may be garrisoned directly if autogarrison, the others are spawned).
@@ -682,7 +690,7 @@ Trainer.prototype.Progress = function(id, allocatedTime)
 {
 	const item = this.queue.get(id);
 	const usedTime = item.Progress(allocatedTime);
-	if (item.finished)
+	if (item.IsFinished())
 		this.queue.delete(id);
 	return usedTime;
 };

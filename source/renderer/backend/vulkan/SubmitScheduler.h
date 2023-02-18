@@ -62,9 +62,9 @@ public:
 
 	uint32_t GetFrameID() const { return m_FrameID; }
 
-private:
 	void Flush();
 
+private:
 	CDevice* m_Device = nullptr;
 	VkQueue m_Queue = VK_NULL_HANDLE;
 

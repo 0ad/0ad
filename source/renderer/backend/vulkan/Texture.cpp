@@ -227,7 +227,12 @@ std::unique_ptr<CTexture> CTexture::WrapBackbufferImage(
 	std::unique_ptr<CTexture> texture(new CTexture());
 	texture->m_Device = device;
 
-	texture->m_Format = Format::UNDEFINED;
+	if (format == VK_FORMAT_R8G8B8A8_UNORM)
+		texture->m_Format = Format::R8G8B8A8_UNORM;
+	else if (format == VK_FORMAT_B8G8R8A8_UNORM)
+		texture->m_Format = Format::B8G8R8A8_UNORM;
+	else
+		texture->m_Format = Format::UNDEFINED;
 	texture->m_Type = Type::TEXTURE_2D;
 	if (usage & VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT)
 		texture->m_Usage |= Usage::COLOR_ATTACHMENT;
@@ -264,6 +269,69 @@ std::unique_ptr<CTexture> CTexture::WrapBackbufferImage(
 	ENSURE_VK_SUCCESS(vkCreateImageView(
 		device->GetVkDevice(), &imageViewCreateInfo, nullptr, &texture->m_AttachmentImageView));
 	device->SetObjectName(VK_OBJECT_TYPE_IMAGE_VIEW, texture->m_AttachmentImageView, name);
+
+	return texture;
+}
+
+// static
+std::unique_ptr<CTexture> CTexture::CreateReadback(
+	CDevice* device, const char* name, const Format format,
+	const uint32_t width, const uint32_t height)
+{
+	std::unique_ptr<CTexture> texture(new CTexture());
+	texture->m_Device = device;
+
+	texture->m_Format = format;
+	texture->m_Type = Type::TEXTURE_2D;
+	texture->m_Usage = Usage::TRANSFER_DST;
+	texture->m_Width = width;
+	texture->m_Height = height;
+	texture->m_MIPLevelCount = 1;
+	texture->m_SampleCount = 1;
+	texture->m_LayerCount = 1;
+	texture->m_VkFormat = Mapping::FromFormat(texture->m_Format);
+	texture->m_AttachmentImageAspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+	texture->m_SamplerImageAspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+
+	VkImageCreateInfo imageCreateInfo{};
+	imageCreateInfo.sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO;
+	imageCreateInfo.imageType = VK_IMAGE_TYPE_2D;
+	imageCreateInfo.extent.width = width;
+	imageCreateInfo.extent.height = height;
+	imageCreateInfo.extent.depth = 1;
+	imageCreateInfo.mipLevels = 1;
+	imageCreateInfo.arrayLayers = 1;
+	imageCreateInfo.format = texture->m_VkFormat;
+	imageCreateInfo.samples = Mapping::FromSampleCount(1);
+	imageCreateInfo.tiling = VK_IMAGE_TILING_LINEAR;
+	imageCreateInfo.usage = VK_IMAGE_USAGE_TRANSFER_DST_BIT;
+	imageCreateInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
+	imageCreateInfo.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+
+	VmaAllocationCreateInfo allocationCreateInfo{};
+	allocationCreateInfo.flags |= VMA_ALLOCATION_CREATE_HOST_ACCESS_RANDOM_BIT | VMA_ALLOCATION_CREATE_MAPPED_BIT;
+#ifndef NDEBUG
+	allocationCreateInfo.flags |= VMA_ALLOCATION_CREATE_USER_DATA_COPY_STRING_BIT;
+	allocationCreateInfo.pUserData = const_cast<char*>(name);
+#endif
+	allocationCreateInfo.requiredFlags = VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT;
+	allocationCreateInfo.usage = VMA_MEMORY_USAGE_AUTO_PREFER_HOST;
+	const VkResult createImageResult = vmaCreateImage(
+		device->GetVMAAllocator(), &imageCreateInfo, &allocationCreateInfo,
+		&texture->m_Image, &texture->m_Allocation, &texture->m_AllocationInfo);
+	if (createImageResult != VK_SUCCESS)
+	{
+		LOGERROR("Failed to create VkImage: %d", static_cast<int>(createImageResult));
+		return nullptr;
+	}
+
+	if (!texture->m_AllocationInfo.pMappedData)
+	{
+		LOGERROR("Failed to map readback image.");
+		return nullptr;
+	}
+
+	device->SetObjectName(VK_OBJECT_TYPE_IMAGE, texture->m_Image, name);
 
 	return texture;
 }

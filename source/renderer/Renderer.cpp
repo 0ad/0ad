@@ -488,7 +488,7 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 
 		Renderer::Backend::IFramebuffer* framebuffer = nullptr;
 
-		CPostprocManager& postprocManager = g_Renderer.GetPostprocManager();
+		CPostprocManager& postprocManager = GetPostprocManager();
 		if (postprocManager.IsEnabled())
 		{
 			// We have to update the post process manager with real near/far planes
@@ -515,8 +515,8 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 		m->deviceCommandContext->BeginFramebufferPass(framebuffer);
 
 		Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
-		viewportRect.width = framebuffer->GetWidth();
-		viewportRect.height = framebuffer->GetHeight();
+		viewportRect.width = m_Width;
+		viewportRect.height = m_Height;
 		m->deviceCommandContext->SetViewports(1, &viewportRect);
 
 		g_Game->GetView()->Render(m->deviceCommandContext.get());
@@ -542,8 +542,8 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 			m->deviceCommandContext->BeginFramebufferPass(backbuffer);
 
 			Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
-			viewportRect.width = backbuffer->GetWidth();
-			viewportRect.height = backbuffer->GetHeight();
+			viewportRect.width = m_Width;
+			viewportRect.height = m_Height;
 			m->deviceCommandContext->SetViewports(1, &viewportRect);
 		}
 
@@ -571,8 +571,8 @@ void CRenderer::RenderFrameImpl(const bool renderGUI, const bool renderLogger)
 		m->deviceCommandContext->BeginFramebufferPass(backbuffer);
 
 		Renderer::Backend::IDeviceCommandContext::Rect viewportRect{};
-		viewportRect.width = backbuffer->GetWidth();
-		viewportRect.height = backbuffer->GetHeight();
+		viewportRect.width = m_Width;
+		viewportRect.height = m_Height;
 		m->deviceCommandContext->SetViewports(1, &viewportRect);
 	}
 
@@ -757,7 +757,9 @@ void CRenderer::RenderBigScreenShot(const bool needsPresent)
 			// Adjust the camera to render the appropriate region
 			if (oldCamera.GetProjectionType() == CCamera::ProjectionType::PERSPECTIVE)
 			{
-				projection.SetPerspectiveTile(oldCamera.GetFOV(), aspectRatio, oldCamera.GetNearPlane(), oldCamera.GetFarPlane(), tiles, tileX, tileY);
+				projection.SetPerspectiveTile(
+					oldCamera.GetFOV(), aspectRatio, oldCamera.GetNearPlane(), oldCamera.GetFarPlane(),
+					tiles, tileX, tileY);
 			}
 			g_Game->GetView()->GetCamera()->SetProjection(projection);
 

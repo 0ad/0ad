@@ -159,6 +159,10 @@ public:
 
 	CDescriptorManager& GetDescriptorManager() { return *m_DescriptorManager; }
 
+	CTexture* GetCurrentBackbufferTexture();
+
+	CTexture* GetOrCreateBackbufferReadbackTexture();
+
 private:
 	CDevice();
 
@@ -194,6 +198,7 @@ private:
 	uint32_t m_GraphicsQueueFamilyIndex = std::numeric_limits<uint32_t>::max();
 
 	std::unique_ptr<CSwapChain> m_SwapChain;
+	std::unique_ptr<CTexture> m_BackbufferReadbackTexture;
 
 	uint32_t m_FrameID = 0;
 

@@ -371,6 +371,12 @@ CFramebuffer* CSwapChain::GetCurrentBackbuffer(
 	return it->second.get();
 }
 
+CTexture* CSwapChain::GetCurrentBackbufferTexture()
+{
+	ENSURE(m_CurrentImageIndex != std::numeric_limits<uint32_t>::max());
+	return m_Textures[m_CurrentImageIndex].get();
+}
+
 } // namespace Vulkan
 
 } // namespace Backend
