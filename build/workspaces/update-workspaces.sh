@@ -104,10 +104,12 @@ fi
 
 # Now run premake to create the makefiles
 
+cd ../premake
 premake_command="premake5"
+
 if [ "$with_system_premake5" = "false" ]; then
   # Build bundled premake
-  cd ../premake/premake5
+  cd premake5
   PREMAKE_BUILD_DIR=build/gmake2.unix
   # BSD and OS X need different Makefiles
   case "`uname -s`" in
@@ -123,12 +125,11 @@ if [ "$with_system_premake5" = "false" ]; then
   esac
   ${MAKE} -C $PREMAKE_BUILD_DIR ${JOBS} || die "Premake build failed"
 
+  cd ..
   premake_command="premake5/bin/release/premake5"
 fi
 
 echo
-
-cd ..
 
 # If we're in bash then make HOSTTYPE available to Premake, for primitive arch-detection
 export HOSTTYPE="$HOSTTYPE"
