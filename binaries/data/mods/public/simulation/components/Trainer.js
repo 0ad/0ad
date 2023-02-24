@@ -293,7 +293,7 @@ Trainer.prototype.Item.prototype.Spawn = function()
 		createdEnts.push(ent);
 	}
 
-	if (spawnedEnts.length && !autoGarrison && cmpRallyPoint)
+	if (spawnedEnts.length && cmpRallyPoint)
 		for (const com of GetRallyPointCommands(cmpRallyPoint, spawnedEnts))
 			ProcessCommand(this.player, com);
 
