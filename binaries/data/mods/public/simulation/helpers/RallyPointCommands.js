@@ -21,6 +21,8 @@ function GetRallyPointCommands(cmpRallyPoint, spawnedEnts)
 					command = "gather-near-position";
 				else if (command == "collect-treasure")
 					command = "collect-treasure-near-position";
+				else if (command == "attack")
+					command = "attack-walk";
 				else
 					command = "walk";
 			}
