@@ -109,8 +109,8 @@ function calculateTeamCounterDataHelper()
 		summaryAddObject(g_TeamHelperData[playerState.team].femaleCitizen, playerState.sequences.unitsTrained.FemaleCitizen);
 		summaryAddObject(g_TeamHelperData[playerState.team].worker, playerState.sequences.unitsTrained.Worker);
 
-		summaryAddObject(g_TeamHelperData[playerState.team].enemyUnitsKilled, playerState.sequences.enemyUnitsKilled.total);
-		summaryAddObject(g_TeamHelperData[playerState.team].unitsLost, playerState.sequences.unitsLost.total);
+		summaryAddObject(g_TeamHelperData[playerState.team].enemyUnitsKilled, playerState.sequences.enemyUnitsKilled.Unit);
+		summaryAddObject(g_TeamHelperData[playerState.team].unitsLost, playerState.sequences.unitsLost.Unit);
 
 		g_TeamHelperData[playerState.team].mapControl = playerState.sequences.teamPercentMapControlled;
 		g_TeamHelperData[playerState.team].mapControlPeak = playerState.sequences.teamPeakPercentMapControlled;
@@ -325,8 +325,8 @@ function calculateFeminization(playerState, index)
 function calculateKillDeathRatio(playerState, index)
 {
 	return calculateRatio(
-		playerState.sequences.enemyUnitsKilled.total[index],
-		playerState.sequences.unitsLost.total[index]);
+		playerState.sequences.enemyUnitsKilled.Unit[index],
+		playerState.sequences.unitsLost.Unit[index]);
 }
 
 function calculatePopulationCount(playerState, index)

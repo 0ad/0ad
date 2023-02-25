@@ -31,7 +31,7 @@ var getScorePanelsData = () => [
 		"label": translate("Structures"),
 		"headings": [
 			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
-			{ "identifier": "total", "caption": translate("Total"), "yStart": 34, "width": 105 },
+			{ "identifier": "Structure", "caption": translate("Total"), "yStart": 34, "width": 105 },
 			{ "identifier": "House", "caption": translate("Houses"), "yStart": 34, "width": 85 },
 			{ "identifier": "Economic", "caption": translate("Economic"), "yStart": 34, "width": 85 },
 			{ "identifier": "Outpost", "caption": translate("Outposts"), "yStart": 34, "width": 85 },
@@ -69,7 +69,7 @@ var getScorePanelsData = () => [
 		"label": translate("Units"),
 		"headings": [
 			{ "identifier": "playername", "caption": translate("Player name"), "yStart": 26, "width": 200 },
-			{ "identifier": "total", "caption": translate("Total"), "yStart": 34, "width": 105 },
+			{ "identifier": "Unit", "caption": translate("Total"), "yStart": 34, "width": 105 },
 			{ "identifier": "Infantry", "caption": translate("Infantry"), "yStart": 34, "width": 85 },
 			{ "identifier": "Worker", "caption": translate("Worker"), "yStart": 34, "width": 85 },
 			{ "identifier": "Cavalry", "caption": translate("Cavalry"), "yStart": 34, "width": 85 },

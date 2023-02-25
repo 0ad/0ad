@@ -182,17 +182,16 @@ StatisticsTracker.prototype.GetStatisticsJSON = function()
 
 /**
  * Increments counter associated with certain entity/counter and type of given entity.
- * @param cmpIdentity - the entity identity component.
+ * @param classes - The classes an entity has.
  * @param counter - the name of the counter to increment (e.g. "unitsTrained").
  * @param type - the type of the counter (e.g. "workers").
  */
-StatisticsTracker.prototype.CounterIncrement = function(cmpIdentity, counter, type)
+StatisticsTracker.prototype.CounterIncrement = function(classes, counter, type)
 {
-	var classes = cmpIdentity.GetClassesList();
 	if (!classes)
 		return;
 
-	if (classes.indexOf(type) != -1)
+	if (classes.includes(type))
 		++this[counter][type];
 };
 
@@ -202,27 +201,15 @@ StatisticsTracker.prototype.CounterIncrement = function(cmpIdentity, counter, ty
  */
 StatisticsTracker.prototype.IncreaseTrainedUnitsCounter = function(trainedUnit)
 {
-	let cmpUnitEntityIdentity = Engine.QueryInterface(trainedUnit, IID_Identity);
-
-	if (!cmpUnitEntityIdentity)
+	const classes = Engine.QueryInterface(trainedUnit, IID_Identity)?.GetClassesList();
+	if (!classes)
 		return;
 
-	let cmpCost = Engine.QueryInterface(trainedUnit, IID_Cost);
-	let costs = cmpCost && cmpCost.GetResourceCosts();
+	for (const type of this.unitsClasses)
+		this.CounterIncrement(classes, "unitsTrained", type);
 
-	for (let type of this.unitsClasses)
-		this.CounterIncrement(cmpUnitEntityIdentity, "unitsTrained", type);
-
-	if (!cmpUnitEntityIdentity.HasClass("Domestic"))
+	if (!classes.includes("Domestic"))
 		++this.unitsTrained.total;
-
-	if (cmpUnitEntityIdentity.HasClass("Domestic") && costs)
-	{
-		// Subtract costs for sheep/goats/pigs to get the net food gain/use for corralling
-		this.resourcesUsed.food -= costs.food;
-		this.resourcesGathered.food -= costs.food;
-	}
-
 };
 
 /**
@@ -231,118 +218,102 @@ StatisticsTracker.prototype.IncreaseTrainedUnitsCounter = function(trainedUnit)
  */
 StatisticsTracker.prototype.IncreaseConstructedBuildingsCounter = function(constructedBuilding)
 {
-	var cmpBuildingEntityIdentity = Engine.QueryInterface(constructedBuilding, IID_Identity);
-
-	if (!cmpBuildingEntityIdentity)
+	const classes = Engine.QueryInterface(constructedBuilding, IID_Identity)?.GetClassesList();
+	if (!classes)
 		return;
 
-	for (let type of this.buildingsClasses)
-		this.CounterIncrement(cmpBuildingEntityIdentity, "buildingsConstructed", type);
+	for (const type of this.buildingsClasses)
+		this.CounterIncrement(classes, "buildingsConstructed", type);
 
 	++this.buildingsConstructed.total;
 };
 
 StatisticsTracker.prototype.KilledEntity = function(targetEntity)
 {
-	var cmpTargetEntityIdentity = Engine.QueryInterface(targetEntity, IID_Identity);
+	const cmpTargetEntityIdentity = Engine.QueryInterface(targetEntity, IID_Identity);
 	if (!cmpTargetEntityIdentity)
 		return;
 
-	var cmpCost = Engine.QueryInterface(targetEntity, IID_Cost);
-	var costs = cmpCost && cmpCost.GetResourceCosts();
+	const classes = cmpTargetEntityIdentity.GetClassesList();
+	const costs = Engine.QueryInterface(targetEntity, IID_Cost)?.GetResourceCosts();
 
-	// Exclude gaia animals but not gaia soldiers.
 	if (cmpTargetEntityIdentity.HasClass("Unit") && !cmpTargetEntityIdentity.HasClass("Animal"))
 	{
-		for (let type of this.unitsClasses)
-			this.CounterIncrement(cmpTargetEntityIdentity, "enemyUnitsKilled", type);
-
-		++this.enemyUnitsKilled.total;
+		for (const type of this.unitsClasses)
+			this.CounterIncrement(classes, "enemyUnitsKilled", type);
 
 		if (costs)
-			for (let type in costs)
+			for (const type in costs)
 				this.enemyUnitsKilledValue += costs[type];
 	}
 
-	let cmpFoundation = Engine.QueryInterface(targetEntity, IID_Foundation);
-	if (cmpTargetEntityIdentity.HasClass("Structure") && !cmpFoundation)
+	if (cmpTargetEntityIdentity.HasClass("Structure") && !Engine.QueryInterface(targetEntity, IID_Foundation))
 	{
-		for (let type of this.buildingsClasses)
-			this.CounterIncrement(cmpTargetEntityIdentity, "enemyBuildingsDestroyed", type);
-
-		++this.enemyBuildingsDestroyed.total;
+		for (const type of this.buildingsClasses)
+			this.CounterIncrement(classes, "enemyBuildingsDestroyed", type);
 
 		if (costs)
-			for (let type in costs)
+			for (const type in costs)
 				this.enemyBuildingsDestroyedValue += costs[type];
 	}
 };
 
 StatisticsTracker.prototype.LostEntity = function(lostEntity)
 {
-	var cmpLostEntityIdentity = Engine.QueryInterface(lostEntity, IID_Identity);
+	const cmpLostEntityIdentity = Engine.QueryInterface(lostEntity, IID_Identity);
 	if (!cmpLostEntityIdentity)
 		return;
 
-	var cmpCost = Engine.QueryInterface(lostEntity, IID_Cost);
-	var costs = cmpCost && cmpCost.GetResourceCosts();
+	const classes = cmpLostEntityIdentity.GetClassesList();
+	const costs = Engine.QueryInterface(lostEntity, IID_Cost)?.GetResourceCosts();
 
 	if (cmpLostEntityIdentity.HasClass("Unit") && !cmpLostEntityIdentity.HasClass("Domestic"))
 	{
-		for (let type of this.unitsClasses)
-			this.CounterIncrement(cmpLostEntityIdentity, "unitsLost", type);
-
-		++this.unitsLost.total;
+		for (const type of this.unitsClasses)
+			this.CounterIncrement(classes, "unitsLost", type);
 
 		if (costs)
-			for (let type in costs)
+			for (const type in costs)
 				this.unitsLostValue += costs[type];
 	}
 
-	let cmpFoundation = Engine.QueryInterface(lostEntity, IID_Foundation);
-	if (cmpLostEntityIdentity.HasClass("Structure") && !cmpFoundation)
+	if (cmpLostEntityIdentity.HasClass("Structure") && !Engine.QueryInterface(lostEntity, IID_Foundation))
 	{
-		for (let type of this.buildingsClasses)
-			this.CounterIncrement(cmpLostEntityIdentity, "buildingsLost", type);
-
-		++this.buildingsLost.total;
+		for (const type of this.buildingsClasses)
+			this.CounterIncrement(classes, "buildingsLost", type);
 
 		if (costs)
-			for (let type in costs)
+			for (const type in costs)
 				this.buildingsLostValue += costs[type];
 	}
 };
 
 StatisticsTracker.prototype.CapturedEntity = function(capturedEntity)
 {
-	let cmpCapturedEntityIdentity = Engine.QueryInterface(capturedEntity, IID_Identity);
+	const cmpCapturedEntityIdentity = Engine.QueryInterface(capturedEntity, IID_Identity);
 	if (!cmpCapturedEntityIdentity)
 		return;
 
-	let cmpCost = Engine.QueryInterface(capturedEntity, IID_Cost);
-	let costs = cmpCost && cmpCost.GetResourceCosts();
+	const classes = cmpCapturedEntityIdentity.GetClassesList();
+	const costs = Engine.QueryInterface(capturedEntity, IID_Cost)?.GetResourceCosts();
 
 	if (cmpCapturedEntityIdentity.HasClass("Unit"))
 	{
-		for (let type of this.unitsClasses)
-			this.CounterIncrement(cmpCapturedEntityIdentity, "unitsCaptured", type);
-
-		++this.unitsCaptured.total;
+		for (const type of this.unitsClasses)
+			this.CounterIncrement(classes, "unitsCaptured", type);
 
 		if (costs)
-			for (let type in costs)
+			for (const type in costs)
 				this.unitsCapturedValue += costs[type];
 	}
 
 	if (cmpCapturedEntityIdentity.HasClass("Structure"))
 	{
-		for (let type of this.buildingsClasses)
-			this.CounterIncrement(cmpCapturedEntityIdentity, "buildingsCaptured", type);
-
-		++this.buildingsCaptured.total;
+		for (const type of this.buildingsClasses)
+			this.CounterIncrement(classes, "buildingsCaptured", type);
 
 		if (costs)
-			for (let type in costs)
+			for (const type in costs)
 				this.buildingsCapturedValue += costs[type];
 	}
 };
@@ -352,9 +323,7 @@ StatisticsTracker.prototype.CapturedEntity = function(capturedEntity)
  */
 StatisticsTracker.prototype.GetResourceCounts = function()
 {
-	let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
-	return cmpPlayer ?
-		cmpPlayer.GetResourceCounts() :
+	return Engine.QueryInterface(this.entity, IID_Player)?.GetResourceCounts() ??
 		Object.fromEntries(Resources.GetCodes().map(res => [res, 0]));
 };
 
