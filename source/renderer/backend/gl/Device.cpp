@@ -353,6 +353,9 @@ std::unique_ptr<IDevice> CDevice::Create(SDL_Window* window, const bool arb)
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	glEnable(GL_TEXTURE_2D);
+	// glEnable(GL_TEXTURE_2D) is deprecated and might trigger an error. But we
+	// still support pre 2.0 drivers pretending to support 2.0.
+	ogl_SquelchError(GL_INVALID_ENUM);
 
 	if (arb)
 	{
