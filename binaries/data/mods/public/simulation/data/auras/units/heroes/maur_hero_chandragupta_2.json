@@ -1,0 +1,12 @@
+{
+	"type": "global",
+	"affects": ["Elephant"],
+	"modifications": [
+		{ "value": "Attack/Melee/RepeatTime", "multiply": 0.85 },
+                { "value": "Attack/Ranged/RepeatTime", "multiply": 0.85 },
+                { "value": "UnitMotion/WalkSpeed", "multiply": 1.10 }
+	],
+	"auraName": "Elephant Corps",
+	"auraDescription": "Elephants +15% attack rate, +10% movement speed.",
+	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
+}
