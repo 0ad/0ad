@@ -3170,8 +3170,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				// If this building was e.g. a farm of ours, the entities that received
 				// the build command should start gathering from it
-				if ((oldData.force || oldData.autoharvest) && this.CanGather(msg.data.newentity) &&
-					Engine.QueryInterface(msg.data.newentity, IID_ResourceSupply).IsAvailableTo(this.entity))
+				if ((oldData.force || oldData.autoharvest) && this.CanGather(msg.data.newentity))
 				{
 					this.PerformGather(msg.data.newentity, true, false);
 					return;

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_elephant_melee">
+  <Auras datatype="tokens">
+    units/heroes/maur_hero_chandragupta_1
+    units/heroes/maur_hero_chandragupta_2
+  </Auras>
   <Identity>
     <Civ>maur</Civ>
     <GenericName>Chandragupta Maurya</GenericName>
