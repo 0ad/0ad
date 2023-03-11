@@ -543,6 +543,12 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window)
 	vulkanFunctions.vkCreateImage = vkCreateImage;
 	vulkanFunctions.vkDestroyImage = vkDestroyImage;
 	vulkanFunctions.vkCmdCopyBuffer = vkCmdCopyBuffer;
+	// Functions promoted to Vulkan 1.1.
+	vulkanFunctions.vkGetBufferMemoryRequirements2KHR = vkGetBufferMemoryRequirements2;
+	vulkanFunctions.vkGetImageMemoryRequirements2KHR = vkGetImageMemoryRequirements2;
+	vulkanFunctions.vkBindBufferMemory2KHR = vkBindBufferMemory2;
+	vulkanFunctions.vkBindImageMemory2KHR = vkBindImageMemory2;
+	vulkanFunctions.vkGetPhysicalDeviceMemoryProperties2KHR = vkGetPhysicalDeviceMemoryProperties2;
 
 	VmaAllocatorCreateInfo allocatorCreateInfo{};
 	allocatorCreateInfo.instance = device->m_Instance;
