@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@
 #include "graphics/TextureManager.h"
 #include "lib/rand.h"
 #include "ps/CLogger.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Game.h"
 #include "ps/World.h"
 #include "renderer/Renderer.h"
@@ -84,7 +85,12 @@ bool CObjectEntry::BuildVariation(const std::vector<const std::set<CStr>*>& comp
 		for (const CObjectBase::Samp& samp : m_Samplers)
 		{
 			CTextureProperties textureProps(samp.m_SamplerFile);
-			textureProps.SetAddressMode(Renderer::Backend::Sampler::AddressMode::CLAMP_TO_BORDER);
+			// TODO: replace all samplers by CLAMP_TO_EDGE after decals
+			// refactoring. Also we need to avoid custom border colors.
+			textureProps.SetAddressMode(
+				samp.m_SamplerName == str_baseTex
+					? Renderer::Backend::Sampler::AddressMode::CLAMP_TO_BORDER
+					: Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE);
 			CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 			// TODO: Should check which renderpath is selected and only preload the necessary textures.
 			texture->Prefetch();

@@ -114,7 +114,7 @@ void main()
     specCol = s.rgb;
     specular.a = s.a;
     specPow = effectSettings.y;
-    specular.rgb = sunColor * specCol * pow(max(0.0, dot(normalize(normal), v_half)), specPow);
+    specular.rgb = sunColor * specCol * pow(max(0.001, dot(normalize(normal), v_half)), specPow);
   #endif
 
   vec3 color = (texdiffuse * sundiffuse + specular.rgb) * getShadowOnLandscape() + texdiffuse * ambient;

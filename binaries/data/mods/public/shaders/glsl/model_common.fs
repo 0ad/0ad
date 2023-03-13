@@ -104,7 +104,7 @@ void main()
       specCol = specularColor;
       specPow = specularPower;
     #endif
-    specular.rgb = sunColor * specCol * pow(max(0.0, dot(normalize(normal), v_half)), specPow);
+    specular.rgb = sunColor * specCol * pow(max(0.001, dot(normalize(normal), v_half)), specPow);
   #endif
 
   #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_AO
