@@ -695,7 +695,7 @@ void CDevice::Report(const ScriptRequest& rq, JS::HandleValue settings)
 		ReportAvailablePhysicalDevice(m_AvailablePhysicalDevices[index], rq, device);
 		Script::SetPropertyInt(rq, availableDevices, index, device);
 	}
-	Script::SetProperty(rq, settings, "available_device", availableDevices);
+	Script::SetProperty(rq, settings, "available_devices", availableDevices);
 
 	Script::SetProperty(rq, settings, "instance_extensions", m_InstanceExtensions);
 	Script::SetProperty(rq, settings, "validation_layers", m_ValidationLayers);
