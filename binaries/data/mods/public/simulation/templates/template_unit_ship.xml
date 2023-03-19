@@ -32,7 +32,7 @@
     <Anchor>upright</Anchor>
     <Floating>true</Floating>
     <FloatDepth>0</FloatDepth>
-    <TurnRate>4</TurnRate>
+    <TurnRate>1.2</TurnRate>
   </Position>
   <Repairable>
     <RepairTimeRatio>4.0</RepairTimeRatio>
@@ -82,7 +82,7 @@
   </UnitAI>
   <UnitMotion>
     <PassabilityClass>ship</PassabilityClass>
-    <InstantTurnAngle>0.5</InstantTurnAngle>
+    <InstantTurnAngle>10</InstantTurnAngle>
     <Acceleration op="mul">0.15</Acceleration>
   </UnitMotion>
 </Entity>
