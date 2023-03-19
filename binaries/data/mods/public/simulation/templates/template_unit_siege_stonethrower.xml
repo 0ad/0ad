@@ -6,8 +6,8 @@
       <Damage>
         <Crush>350</Crush>
       </Damage>
-      <MaxRange>100</MaxRange>
-      <MinRange>40</MinRange>
+      <MaxRange>85</MaxRange>
+      <MinRange>26</MinRange>
       <PrepareTime>6000</PrepareTime>
       <RepeatTime>7000</RepeatTime>
       <Projectile>
@@ -67,6 +67,6 @@
     <Acceleration op="mul">0.8</Acceleration>
   </UnitMotion>
   <Vision>
-    <Range>115</Range>
+    <Range>120</Range>
   </Vision>
 </Entity>
