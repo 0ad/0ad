@@ -26,5 +26,9 @@ void main()
 	color *= getLOS(GET_DRAW_TEXTURE_2D(losTex), v_los);
 #endif
 
+#if !PASS_SHADOWS
 	OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(applyDebugColor(color, 1.0, texdiffuse.a, 0.0), texdiffuse.a));
+#else
+	OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(0.0, 0.0, 0.0, 1.0));
+#endif
 }
