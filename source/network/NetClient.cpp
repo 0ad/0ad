@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
 #include "NetClient.h"
 
 #include "NetClientTurnManager.h"
+#include "NetEnet.h"
 #include "NetMessage.h"
 #include "NetSession.h"
 
@@ -247,7 +248,7 @@ bool CNetClient::TryToConnect(const CStr& hostJID, bool localNetwork)
 	}
 
 	ENetAddress hostAddr{ ENET_HOST_ANY, ENET_PORT_ANY };
-	ENetHost* enetClient = enet_host_create(&hostAddr, 1, 1, 0, 0);
+	ENetHost* enetClient = PS::Enet::CreateHost(&hostAddr, 1, 1);
 
 	if (!enetClient)
 	{
