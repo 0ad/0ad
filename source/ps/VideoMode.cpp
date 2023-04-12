@@ -515,7 +515,14 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 	SDL_GetWindowSize(m_Window, &m_CurrentW, &m_CurrentH);
 	m_CurrentBPP = bpp;
 
-	if (fullscreen)
+	// #545: we need to constrain the window in fullscreen mode to avoid mouse
+	// "falling out" of the window in case of multiple displays.
+	bool mouseGrabInFullscreen = true;
+	CFG_GET_VAL("window.mousegrabinfullscreen", mouseGrabInFullscreen);
+	bool mouseGrabInWindowMode = false;
+	CFG_GET_VAL("window.mousegrabinwindowmode", mouseGrabInWindowMode);
+
+	if (fullscreen ? mouseGrabInFullscreen : mouseGrabInWindowMode)
 		SDL_SetWindowGrab(m_Window, SDL_TRUE);
 	else
 		SDL_SetWindowGrab(m_Window, SDL_FALSE);

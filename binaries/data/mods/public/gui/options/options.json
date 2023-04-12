@@ -176,6 +176,18 @@
 				"config": "gui.session.dragdelta",
 				"min": "1",
 				"max": "200"
+			},
+			{
+				"type": "boolean",
+				"label": "Mouse grab in fullscreen",
+				"tooltip": "Constrain mouse in the fullscreen mode to the window boundaries. It's used to avoid mouse going out of a display in case of multiple displays.",
+				"config": "window.mousegrabinfullscreen"
+			},
+			{
+				"type": "boolean",
+				"label": "Mouse grab in window mode",
+				"tooltip": "Constrain mouse in the window mode to the window boundaries.",
+				"config": "window.mousegrabinwindowmode"
 			}
 		]
 	},
