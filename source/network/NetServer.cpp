@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
 #include "NetServer.h"
 
 #include "NetClient.h"
+#include "NetEnet.h"
 #include "NetMessage.h"
 #include "NetSession.h"
 #include "NetServerTurnManager.h"
@@ -223,7 +224,7 @@ bool CNetServerWorker::SetupConnection(const u16 port)
 	addr.port = port;
 
 	// Create ENet server
-	m_Host = enet_host_create(&addr, MAX_CLIENTS, CHANNEL_COUNT, 0, 0);
+	m_Host = PS::Enet::CreateHost(&addr, MAX_CLIENTS, CHANNEL_COUNT);
 	if (!m_Host)
 	{
 		LOGERROR("Net server: enet_host_create failed");

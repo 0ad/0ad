@@ -71,5 +71,9 @@ void main()
 	t = 18.0 * max(0.0, 0.7 - v.y);
 	float alpha = 0.15 * waterDepth * (1.2 + t + fresnel);
 
+#if !PASS_SHADOWS
 	OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(applyDebugColor(color, 1.0, alpha, 0.0), alpha));
+#else
+	OUTPUT_FRAGMENT_SINGLE_COLOR(vec4(0.0, 0.0, 0.0, 1.0));
+#endif
 }

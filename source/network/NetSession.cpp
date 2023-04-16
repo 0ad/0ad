@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
 #include "NetSession.h"
 
 #include "NetClient.h"
+#include "NetEnet.h"
 #include "NetMessage.h"
 #include "NetServer.h"
 #include "NetStats.h"
@@ -60,12 +61,8 @@ bool CNetClientSession::Connect(const CStr& server, const u16 port, ENetHost* en
 	ENSURE(!m_Host);
 	ENSURE(!m_Server);
 
-	// Create ENet host
-	ENetHost* host;
-	if (enetClient != nullptr)
-		host = enetClient;
-	else
-		host = enet_host_create(NULL, 1, CHANNEL_COUNT, 0, 0);
+	// Create ENet host if necessary.
+	ENetHost* host = enetClient != nullptr ? enetClient : PS::Enet::CreateHost(nullptr, 1, CHANNEL_COUNT);
 
 	if (!host)
 		return false;

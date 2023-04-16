@@ -30,6 +30,7 @@
 #include "graphics/TerritoryTexture.h"
 #include "graphics/TextureManager.h"
 #include "lib/bits.h"
+#include "lib/code_generation.h"
 #include "lib/hash.h"
 #include "lib/timer.h"
 #include "maths/MathUtil.h"
@@ -676,7 +677,7 @@ void CMiniMapTexture::UpdateAndUploadEntities(
 					v.b = 255;
 					pingingVertices.push_back(v);
 				}
-				else
+				else if (m_EntitiesDrawn < MAX_ENTITIES_DRAWN)
 				{
 					AddEntity(v, attrColor, attrPos, entityRadius, m_UseInstancing);
 					++m_EntitiesDrawn;
@@ -767,9 +768,12 @@ void CMiniMapTexture::UpdateAndUploadEntities(
 	{
 		AddEntity(vertex, attrColor, attrPos, entityRadius, m_UseInstancing);
 		++m_EntitiesDrawn;
+		if (m_EntitiesDrawn == MAX_ENTITIES_DRAWN)
+			break;
 	}
 
-	ENSURE(m_EntitiesDrawn < MAX_ENTITIES_DRAWN);
+	if (m_EntitiesDrawn == MAX_ENTITIES_DRAWN)
+		ONCE(LOGERROR("Too many entities, some of them will be hidden on the minimap."));
 
 	if (!m_UseInstancing)
 	{
