@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -42,6 +42,10 @@
 #include "scriptinterface/JSON.h"
 #include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/StructuredClone.h"
+
+#include <boost/version.hpp>
+#include <fmt/format.h>
 
 // FreeType headers might have an include order.
 #include <ft2build.h>
@@ -51,12 +55,128 @@
 #include <fstream>
 #endif
 
+#if CONFIG2_NVTT
+#include "nvtt/nvtt.h"
+#endif
+
+#include <random>
 #include <sstream>
 #include <string>
 #include <thread>
 
-static void ReportSDL(const ScriptRequest& rq, JS::HandleValue settings);
-static void ReportFreeType(const ScriptRequest& rq, JS::HandleValue settings);
+namespace
+{
+
+class Reporter
+{
+public:
+	Reporter(const ScriptRequest& rq)
+		: m_Rq(rq), m_LibrarySettings(rq.cx)
+	{
+		Script::CreateObject(m_Rq, &m_LibrarySettings);
+	}
+
+	template<typename PropertyType>
+	Reporter& Add(const char* propertyName, const PropertyType& propertyValue)
+	{
+		Script::SetProperty(m_Rq, m_LibrarySettings, propertyName, propertyValue);
+		return *this;
+	}
+
+	JS::Value MakeReport()
+	{
+		return Script::DeepCopy(m_Rq, m_LibrarySettings);
+	}
+
+private:
+	const ScriptRequest& m_Rq;
+	JS::RootedValue m_LibrarySettings;
+};
+
+class LibraryReporter : public Reporter
+{
+public:
+	LibraryReporter(const ScriptRequest& rq, const char* name)
+		: Reporter(rq)
+	{
+		Add("name", name);
+	}
+};
+
+JS::Value MakeSDLReport(const ScriptRequest& rq)
+{
+	LibraryReporter reporter{rq, "sdl"};
+
+	SDL_version build, runtime;
+	SDL_VERSION(&build);
+
+	char version[16];
+	snprintf(version, ARRAY_SIZE(version), "%d.%d.%d", build.major, build.minor, build.patch);
+	reporter.Add("build_version", version);
+
+	SDL_GetVersion(&runtime);
+	snprintf(version, ARRAY_SIZE(version), "%d.%d.%d", runtime.major, runtime.minor, runtime.patch);
+	reporter.Add("runtime_version", version);
+
+	// This is null in atlas (and further the call triggers an assertion).
+	const char* backend = g_VideoMode.GetWindow() ? GetSDLSubsystem(g_VideoMode.GetWindow()) : "none";
+	reporter.Add("video_backend", backend ? backend : "unknown");
+
+	reporter.Add("display_count", SDL_GetNumVideoDisplays());
+
+	reporter.Add("cpu_count", SDL_GetCPUCount());
+	reporter.Add("system_ram", SDL_GetSystemRAM());
+
+	return reporter.MakeReport();
+}
+
+JS::Value MakeFreeTypeReport(const ScriptRequest& rq)
+{
+	FT_Library FTLibrary;
+
+	LibraryReporter libraryReporter{rq, "freetype"};
+	if (!FT_Init_FreeType(&FTLibrary))
+	{
+		FT_Int major, minor, patch;
+		FT_Library_Version(FTLibrary, &major, &minor, &patch);
+		FT_Done_FreeType(FTLibrary);
+		std::stringstream version;
+		version << major << "." << minor << "." << patch;
+		libraryReporter.Add("version", version.str());
+	}
+	else
+		libraryReporter.Add("version", "unavailable");
+	return libraryReporter.MakeReport();
+}
+
+void ReportLibraries(const ScriptRequest& rq, JS::HandleValue settings)
+{
+	JS::RootedValue librariesSettings(rq.cx);
+	Script::CreateArray(rq, &librariesSettings);
+	int libraryCount = 0;
+
+	auto appendLibrary = [&rq, &librariesSettings, &libraryCount](const JS::Value& librarySettings)
+	{
+		JS::RootedValue value(rq.cx, librarySettings);
+		Script::SetPropertyInt(rq, librariesSettings, libraryCount++, value);
+	};
+
+	appendLibrary(MakeSDLReport(rq));
+	appendLibrary(MakeFreeTypeReport(rq));
+
+	appendLibrary(LibraryReporter{rq, "boost"}.Add("version", BOOST_VERSION).MakeReport());
+	appendLibrary(LibraryReporter{rq, "fmt"}.Add("version", FMT_VERSION).MakeReport());
+#if CONFIG2_NVTT
+	appendLibrary(LibraryReporter{rq, "nvtt"}
+		.Add("build_version", NVTT_VERSION)
+		.Add("runtime_version", nvtt::version())
+		.MakeReport());
+#endif
+
+	Script::SetProperty(rq, settings, "libraries", librariesSettings);
+}
+
+} // anonymous namespace
 
 void SetDisableAudio(bool disabled)
 {
@@ -134,9 +254,8 @@ void RunHardwareDetection()
 		Script::SetProperty(rq, settings, "snd_drv_ver", g_SoundManager->GetOpenALVersion());
 	}
 #endif
-	ReportSDL(rq, settings);
 
-	ReportFreeType(rq, settings);
+	ReportLibraries(rq, settings);
 
 	JS::RootedValue backendDeviceSettings(rq.cx);
 	Script::CreateObject(rq, &backendDeviceSettings);
@@ -196,9 +315,10 @@ void RunHardwareDetection()
 	Script::SetProperty(rq, settings, "timer_resolution", timer_Resolution());
 
 	Script::SetProperty(rq, settings, "hardware_concurrency", std::thread::hardware_concurrency());
+	Script::SetProperty(rq, settings, "random_device_entropy", std::random_device{}.entropy());
 
 	// The version should be increased for every meaningful change.
-	const int reportVersion = 20;
+	const int reportVersion = 21;
 
 	// Send the same data to the reporting system
 	g_UserReporter.SubmitReport(
@@ -211,47 +331,3 @@ void RunHardwareDetection()
 	JS::RootedValue global(rq.cx, rq.globalValue());
 	ScriptFunction::CallVoid(rq, global, "RunHardwareDetection", settings);
 }
-
-static void ReportSDL(const ScriptRequest& rq, JS::HandleValue settings)
-{
-	SDL_version build, runtime;
-	SDL_VERSION(&build);
-
-	char version[16];
-	snprintf(version, ARRAY_SIZE(version), "%d.%d.%d", build.major, build.minor, build.patch);
-	Script::SetProperty(rq, settings, "sdl_build_version", version);
-
-	SDL_GetVersion(&runtime);
-	snprintf(version, ARRAY_SIZE(version), "%d.%d.%d", runtime.major, runtime.minor, runtime.patch);
-	Script::SetProperty(rq, settings, "sdl_runtime_version", version);
-
-	// This is null in atlas (and further the call triggers an assertion).
-	const char* backend = g_VideoMode.GetWindow() ? GetSDLSubsystem(g_VideoMode.GetWindow()) : "none";
-	Script::SetProperty(rq, settings, "sdl_video_backend", backend ? backend : "unknown");
-
-	Script::SetProperty(rq, settings, "sdl_display_count", SDL_GetNumVideoDisplays());
-
-	Script::SetProperty(rq, settings, "sdl_cpu_count", SDL_GetCPUCount());
-	Script::SetProperty(rq, settings, "sdl_system_ram", SDL_GetSystemRAM());
-}
-
-static void ReportFreeType(const ScriptRequest& rq, JS::HandleValue settings)
-{
-	FT_Library FTLibrary;
-	std::string FTSupport = "unsupported";
-	if (!FT_Init_FreeType(&FTLibrary))
-	{
-		FT_Int major, minor, patch;
-		FT_Library_Version(FTLibrary, &major, &minor, &patch);
-		FT_Done_FreeType(FTLibrary);
-		std::stringstream version;
-		version << major << "." << minor << "." << patch;
-		FTSupport = version.str();
-	}
-	else
-	{
-		FTSupport = "cantload";
-	}
-	Script::SetProperty(rq, settings, "freetype", FTSupport);
-}
-

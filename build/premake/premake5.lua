@@ -782,6 +782,9 @@ function setup_all_libs ()
 		"freetype",
 	}
 
+	if not _OPTIONS["without-nvtt"] then
+		table.insert(extern_libs, "nvtt")
+	end
 	if not _OPTIONS["without-audio"] then
 		table.insert(extern_libs, "openal")
 		table.insert(extern_libs, "vorbis")
