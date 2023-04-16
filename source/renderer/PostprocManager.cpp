@@ -570,9 +570,9 @@ void CPostprocManager::UpdateAntiAliasingTechnique()
 	// techinques strongly depend on the graphics pipeline.
 	// We might use enums in future though.
 	constexpr std::string_view msaaPrefix{"msaa"};
-	if (m_AAName == "fxaa")
+	if (m_AAName == str_fxaa.string())
 	{
-		m_AATech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern("fxaa"));
+		m_AATech = g_Renderer.GetShaderManager().LoadEffect(str_fxaa);
 	}
 	else if (m_AAName.size() > msaaPrefix.size() &&
 		std::string_view{m_AAName}.substr(0, msaaPrefix.size()) == msaaPrefix)

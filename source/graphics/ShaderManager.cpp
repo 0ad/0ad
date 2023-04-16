@@ -27,6 +27,7 @@
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/CStrIntern.h"
+#include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
 #include "ps/XML/Xeromyces.h"
@@ -160,7 +161,7 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 	// By default we assume that we have techinques for every dummy shader.
 	if (device->GetBackend() == Renderer::Backend::Backend::DUMMY)
 	{
-		CShaderProgramPtr shaderProgram = LoadProgram("dummy", tech->GetShaderDefines());
+		CShaderProgramPtr shaderProgram = LoadProgram(str_dummy.string(), tech->GetShaderDefines());
 		std::vector<CShaderPass> techPasses;
 		Renderer::Backend::SGraphicsPipelineStateDesc passPipelineStateDesc =
 			Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc();
