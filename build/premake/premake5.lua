@@ -782,6 +782,9 @@ function setup_all_libs ()
 		"freetype",
 	}
 
+	if not _OPTIONS["without-nvtt"] then
+		table.insert(extern_libs, "nvtt")
+	end
 	if not _OPTIONS["without-audio"] then
 		table.insert(extern_libs, "openal")
 		table.insert(extern_libs, "vorbis")
@@ -945,7 +948,11 @@ function setup_all_libs ()
 	end
 	setup_static_lib_project("gladwrapper", {}, used_extern_libs, { no_pch = 1 })
 	glad_path = libraries_source_dir.."glad/"
-	sysincludedirs { glad_path.."include" }
+	if externalincludedirs then
+		externalincludedirs { glad_path.."include" }
+	else
+		sysincludedirs { glad_path.."include" }
+	end
 	files { glad_path.."src/vulkan.cpp" }
 	if _OPTIONS["gles"] then
 		files { glad_path.."src/gles2.cpp" }

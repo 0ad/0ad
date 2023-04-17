@@ -1,5 +1,5 @@
 local m = {}
-m._VERSION = "1.1.1-dev"
+m._VERSION = "1.1.2-dev"
 
 m.additional_pc_path = nil
 m.static_link_libs = false
@@ -38,7 +38,17 @@ function m.add_includes(lib, alternative_cmd, alternative_flags)
 		end
 	end
 
-	sysincludedirs(dirs)
+	-- As of premake5-beta2, `sysincludedirs` has been deprecated in favour of
+	-- `externalincludedirs`, and continuing to use it causes warnings to be emitted.
+	-- We use `externalincludedirs` when available to prevent the warnings, falling back
+	-- to `sysincludedirs` when not to prevent breakage of the `--with-system-premake5`
+	-- build argument.
+	if externalincludedirs then
+		externalincludedirs(dirs)
+	else
+		sysincludedirs(dirs)
+	end
+
 	forceincludes(files)
 	buildoptions(options)
 end

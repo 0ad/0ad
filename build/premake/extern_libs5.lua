@@ -26,15 +26,33 @@ local function add_source_lib_paths(extern_lib)
 end
 
 local function add_default_include_paths(extern_lib)
-	sysincludedirs { libraries_dir .. extern_lib .. "/include" }
+	-- As of premake5-beta2, `sysincludedirs` has been deprecated in favour of
+	-- `externalincludedirs`, and continuing to use it causes warnings to be emitted.
+	--
+	-- We use `externalincludedirs` when available to prevent the warnings, falling back
+	-- to `sysincludedirs` when not to prevent breakage of the `--with-system-premake5`
+	-- build argument.
+	if externalincludedirs then
+		externalincludedirs { libraries_dir .. extern_lib .. "/include" }
+	else
+		sysincludedirs { libraries_dir .. extern_lib .. "/include" }
+	end
 end
 
 local function add_source_include_paths(extern_lib)
-	sysincludedirs { libraries_source_dir .. extern_lib .. "/include" }
+	if externalincludedirs then
+		externalincludedirs { libraries_source_dir .. extern_lib .. "/include" }
+	else
+		sysincludedirs { libraries_source_dir .. extern_lib .. "/include" }
+	end
 end
 
 local function add_third_party_include_paths(extern_lib)
-	sysincludedirs { third_party_source_dir .. extern_lib .. "/include" }
+	if externalincludedirs then
+		externalincludedirs { third_party_source_dir .. extern_lib .. "/include" }
+	else
+		sysincludedirs { third_party_source_dir .. extern_lib .. "/include" }
+	end
 end
 
 pkgconfig = require "pkgconfig"
@@ -198,7 +216,11 @@ extern_lib_defs = {
 			end
 			-- TODO: This actually applies to most libraries we use on BSDs, make this a global setting.
 			if os.istarget("bsd") then
-				sysincludedirs { "/usr/local/include" }
+				if externalincludedirs then
+					externalincludedirs { "/usr/local/include" }
+				else
+					sysincludedirs { "/usr/local/include" }
+				end
 			end
 		end,
 		link_settings = function()
@@ -228,7 +250,11 @@ extern_lib_defs = {
 	},
 	cxxtest = {
 		compile_settings = function()
-			sysincludedirs { libraries_source_dir .. "cxxtest-4.4" }
+			if externalincludedirs then
+				externalincludedirs { libraries_source_dir .. "cxxtest-4.4" }
+			else
+				sysincludedirs { libraries_source_dir .. "cxxtest-4.4" }
+			end
 		end,
 	},
 	enet = {
@@ -609,10 +635,18 @@ extern_lib_defs = {
 					include_dir = "include-unix"
 				end
 				filter "Debug"
-					sysincludedirs { libraries_source_dir.."spidermonkey/"..include_dir.."-debug" }
+					if externalincludedirs then
+						externalincludedirs { libraries_source_dir.."spidermonkey/"..include_dir.."-debug" }
+					else
+						sysincludedirs { libraries_source_dir.."spidermonkey/"..include_dir.."-debug" }
+					end
 					defines { "DEBUG" }
 				filter "Release"
-					sysincludedirs { libraries_source_dir.."spidermonkey/"..include_dir.."-release" }
+					if externalincludedirs then
+						externalincludedirs { libraries_source_dir.."spidermonkey/"..include_dir.."-release" }
+					else
+						sysincludedirs { libraries_source_dir.."spidermonkey/"..include_dir.."-release" }
+					end
 				filter { }
 			end
 		end,
