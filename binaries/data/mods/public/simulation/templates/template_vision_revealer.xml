@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity>
-  <Decay>
-    <Active>false</Active>
-    <SinkingAnim>false</SinkingAnim>
-    <DelayTime>0.0</DelayTime>
-    <SinkRate>100.0</SinkRate>
-    <SinkAccel>100</SinkAccel>
-  </Decay>
   <Footprint>
     <Square width="8" depth="8.0"/>
     <Height>7.0</Height>
@@ -15,36 +8,19 @@
     <Max>1</Max>
     <RegenRate>-1</RegenRate>
     <IdleRegenRate>0</IdleRegenRate>
-    <DeathType>corpse</DeathType>
+    <DeathType>vanish</DeathType>
     <Unhealable>true</Unhealable>
   </Health>
-  <Identity>
-    <Civ>gaia</Civ>
-    <GenericName>Vision Revealer</GenericName>
-    <Icon>technologies/spy_trader.png</Icon>
-    <Undeletable>false</Undeletable>
-  </Identity>
-  <Obstruction>
-    <Active>true</Active>
-    <BlockMovement>false</BlockMovement>
-    <BlockPathfinding>false</BlockPathfinding>
-    <BlockFoundation>false</BlockFoundation>
-    <BlockConstruction>false</BlockConstruction>
-    <DisableBlockMovement>false</DisableBlockMovement>
-    <DisableBlockPathfinding>false</DisableBlockPathfinding>
-    <DeleteUponConstruction>false</DeleteUponConstruction>
-    <Static width="8.0" depth="8.0"/>
-  </Obstruction>
-  <OverlayRenderer/>
   <Ownership/>
   <Position>
-    <Altitude>0</Altitude>
+    <Altitude>15</Altitude>
     <Anchor>upright</Anchor>
     <Floating>false</Floating>
     <FloatDepth>0</FloatDepth>
     <TurnRate>6</TurnRate>
   </Position>
   <Selectable>
+    <EditorOnly/>
     <Overlay>
       <Outline>
         <LineTexture>outline_border.png</LineTexture>
@@ -53,24 +29,16 @@
       </Outline>
     </Overlay>
   </Selectable>
-  <StatusBars>
-    <BarWidth>2.0</BarWidth>
-    <BarHeight>0.333</BarHeight>
-    <HeightOffset>5.0</HeightOffset>
-  </StatusBars>
   <Visibility>
     <RetainInFog>true</RetainInFog>
     <AlwaysVisible>false</AlwaysVisible>
     <Corpse>false</Corpse>
     <Preview>false</Preview>
   </Visibility>
-  <Vision>
-    <Range>1</Range>
-  </Vision>
   <VisualActor>
     <Actor>props/special/common/vision_revealer_01.xml</Actor>
     <SilhouetteDisplay>false</SilhouetteDisplay>
     <SilhouetteOccluder>true</SilhouetteOccluder>
-    <VisibleInAtlasOnly>false</VisibleInAtlasOnly>
+    <VisibleInAtlasOnly>true</VisibleInAtlasOnly>
   </VisualActor>
 </Entity>
