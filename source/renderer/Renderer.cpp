@@ -704,15 +704,20 @@ void CRenderer::RenderBigScreenShot(const bool needsPresent)
 		return;
 	}
 
+	if (g_xres < tileWidth && g_yres < tileHeight)
+	{
+		LOGWARNING(
+			"The window size is too small for a big screenshot, increase the"
+			" window size %dx%d or decrease the tile size %dx%d",
+			g_xres, g_yres, tileWidth, tileHeight);
+		return;
+	}
+
 	// get next available numbered filename
 	// note: %04d -> always 4 digits, so sorting by filename works correctly.
 	const VfsPath filenameFormat(L"screenshots/screenshot%04d.bmp");
 	VfsPath filename;
 	vfs::NextNumberedFilename(g_VFS, filenameFormat, g_NextScreenShotNumber, filename);
-
-	// Slightly ugly and inflexible: Always draw 640*480 tiles onto the screen, and
-	// hope the screen is actually large enough for that.
-	ENSURE(g_xres >= tileWidth && g_yres >= tileHeight);
 
 	const int imageWidth = tileWidth * tiles, imageHeight = tileHeight * tiles;
 	const int bpp = 24;
