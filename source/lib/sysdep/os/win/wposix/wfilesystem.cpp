@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -23,6 +23,7 @@
 #include "precompiled.h"
 #include "lib/sysdep/filesystem.h"
 
+#include "lib/debug.h"
 #include "lib/sysdep/cpu.h"	// cpu_CAS
 #include "lib/sysdep/os/win/wutil.h"	// StatusFromWin
 #include "lib/sysdep/os/win/wposix/waio.h"	// waio_reopen
@@ -102,8 +103,8 @@ static bool IsValidDirectory(const OsPath& path)
 	return true;
 }
 
-
-WDIR* wopendir(const OsPath& path)
+// Return owning pointer or nullptr on error.
+[[nodiscard]] WDIR* wopendir(const OsPath& path)
 {
 	WinScopedPreserveLastError s;
 
@@ -125,7 +126,9 @@ WDIR* wopendir(const OsPath& path)
 	d->hFind = FindFirstFileW(OsString(searchPath).c_str(), &d->findData);
 	if(d->hFind != INVALID_HANDLE_VALUE)
 		return d;	// success
-	if(GetLastError() == ERROR_NO_MORE_FILES)
+
+	const DWORD nativeError{GetLastError()};
+	if(nativeError == ERROR_NO_MORE_FILES)
 		return d;	// success, but directory is empty
 
 	Status status = StatusFromWin();
@@ -134,7 +137,13 @@ WDIR* wopendir(const OsPath& path)
 	// always copying the large WDIR or findData from a temporary)
 	wdir_free(d);
 
-	WARN_IF_ERR(status);
+	if(nativeError == ERROR_PATH_NOT_FOUND)
+		// TODO: This should be displayed to the user as a LOGWARNING when this code is moved to ps/
+		debug_printf("The path \"%s\" cannot be found. It is probably a dangling link "
+			"pointing to a non-existent path.\n", path.string8().c_str());
+	else
+		WARN_IF_ERR(status);
+
 	errno = ErrnoFromStatus(status);
 
 	return 0;

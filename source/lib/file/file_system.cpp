@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -26,6 +26,7 @@
 
 #include "precompiled.h"
 
+#include "lib/debug.h"
 #include "lib/file/file_system.h"
 
 #include "lib/sysdep/filesystem.h"
@@ -118,7 +119,17 @@ Status GetDirectoryEntries(const OsPath& path, CFileInfos* files, DirectoryNames
 		errno = 0;
 		const OsPath pathname = path / name;
 		if(wstat(pathname, &s) != 0)
+		{
+			if(errno == ENOENT)
+			{
+				// TODO: This should be displayed to the user as a LOGWARNING when this code is
+				// moved to ps/
+				debug_printf("The path \"%s\" cannot be found. It is probably a dangling link "
+					"pointing to a non-existent path.\n", pathname.string8().c_str());
+				continue;
+			}
 			WARN_RETURN(StatusFromErrno());
+		}
 #endif
 
 		if(files && S_ISREG(s.st_mode))
