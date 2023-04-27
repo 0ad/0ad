@@ -13,6 +13,8 @@ RUN apt-get -qq update && apt-get install -qqy --no-install-recommends \
 
 ENV SHELL /bin/bash
 RUN pip3 install setuptools wheel
-RUN pip3 install transifex-client lxml babel
+RUN pip3 install lxml babel
+RUN curl -o- https://raw.githubusercontent.com/transifex/cli/master/install.sh | bash
+RUN install tx /usr/bin/tx
 USER builder
 COPY --chown=builder transifexrc /home/builder/.transifexrc

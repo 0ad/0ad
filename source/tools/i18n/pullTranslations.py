@@ -29,7 +29,7 @@ def main():
                     path = os.path.join(root, folder)
                     os.chdir(path)
                     print(f"INFO: Starting to pull translations in {path}...")
-                    subprocess.run("tx pull -f")
+                    subprocess.run(["tx", "pull", "-f"])
 
 
 if __name__ == "__main__":
