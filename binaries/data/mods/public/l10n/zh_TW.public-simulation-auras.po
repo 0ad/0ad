@@ -23,10 +23,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-10 08:10+0000\n"
+"POT-Creation-Date: 2023-03-06 08:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022-2023\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
+"Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -925,7 +925,7 @@ msgstr "指揮官"
 msgid ""
 "Siege Engines +1 crush, hack, pierce resistance, +20% melee and ranged "
 "attack damage, +10% ranged attack range, +10% vision range."
-msgstr "攻城武器 +1 粉碎、劈砍、穿刺抗性、+20% 近戰與遠程攻擊傷害、+10% 遠程攻擊範圍、+10% 視野。"
+msgstr "攻城武器 +1 粉碎、劈砍、穿刺抗性，+20% 近戰與遠程攻擊傷害，+10% 遠程攻擊範圍，+10% 視野。"
 
 #: simulation/data/auras/units/heroes/mace_hero_demetrius_i.jsonauraName
 msgid "Besieger"
@@ -954,10 +954,8 @@ msgid "Buddhism"
 msgstr "佛教"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
-msgid ""
-"When garrisoned, the Structure's technologies have −20% resource cost and "
-"−50% research time."
-msgstr "駐紮的建築科技 -20% 資源成本並 -50% 研發時間。"
+msgid "All technologies have −20% resource cost and −30% research time."
+msgstr "所有科技 -20% 資源成本並 -30% 研發時間。"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
@@ -967,6 +965,24 @@ msgstr "教師"
 msgid "Regeneration"
 msgstr "回復"
 
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraDescription
+msgid ""
+"Soldiers +10% melee and ranged attack damage, +1 crush, hack, pierce "
+"resistance."
+msgstr "士兵 +10% 近戰與遠程攻擊傷害，+1 粉碎、劈砍、穿刺抗性。"
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraName
+msgid "Empire Maker"
+msgstr "帝國開拓者"
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraDescription
+msgid "Elephants +15% attack rate, +10% movement speed."
+msgstr "大象 +15% 攻擊速度，+10% 移動速度。"
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraName
+msgid "Elephant Corps"
+msgstr "象兵團"
+
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraDescription
 msgid ""
 "Cavalry +1 capture attack strength, +20% melee and ranged attack damage."
@@ -974,7 +990,7 @@ msgstr "騎兵 +1 占領力、+20% 近戰與遠程攻擊傷害。"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraName
 msgid "Forefront Leader"
-msgstr "前線領導者"
+msgstr "前線領袖"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius_i.jsonauraDescription
 msgid ""
@@ -983,7 +999,7 @@ msgstr "士兵、攻城武器、商人與貿易商船 +15% 移動速度。"
 
 #: simulation/data/auras/units/heroes/pers_hero_darius_i.jsonauraName
 msgid "Leadership"
-msgstr "領導"
+msgstr "領導力"
 
 #: simulation/data/auras/units/heroes/pers_hero_xerxes_i.jsonauraDescription
 msgid "Workers +15% build rate and gather speed."
@@ -1097,7 +1113,7 @@ msgstr "戰象指揮官"
 msgid ""
 "Citizen Infantry Javelineers +1 crush, hack, pierce resistance, +25% ranged "
 "attack pierce damage."
-msgstr "標槍公民步兵 +1 粉碎、劈砍、穿刺抗性、+25% 遠程攻擊穿刺傷害。"
+msgstr "標槍公民步兵 +1 粉碎、劈砍、穿刺抗性，+25% 遠程攻擊穿刺傷害。"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"

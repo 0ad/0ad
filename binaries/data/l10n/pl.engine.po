@@ -21,42 +21,42 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-01-07 08:19+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2013-06-22 12:54+0000\n"
 "Last-Translator: Marcin S <dzidek1003@o2.pl>, 2021\n"
-"Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
+"Language-Team: Polish (http://app.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pl\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: graphics/CameraController.cpp:657
+#: graphics/CameraController.cpp:659
 #, c-format
 msgid "Scroll speed increased to %.1f"
 msgstr "Szybkość przewijania zwiększona do %.1f"
 
-#: graphics/CameraController.cpp:663
+#: graphics/CameraController.cpp:665
 #, c-format
 msgid "Scroll speed decreased to %.1f"
 msgstr "Szybkość przewijania zmniejszona do %.1f"
 
-#: graphics/CameraController.cpp:670
+#: graphics/CameraController.cpp:672
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
 msgstr "Szybkość obracania zwiększona do X=%.3f, Y=%.3f"
 
-#: graphics/CameraController.cpp:677
+#: graphics/CameraController.cpp:679
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
 msgstr "Szybkość obracania zmniejszona do X=%.3f, Y=%.3f"
 
-#: graphics/CameraController.cpp:683
+#: graphics/CameraController.cpp:685
 #, c-format
 msgid "Zoom speed increased to %.1f"
 msgstr "Szybkość przybliżania zwiększona do %.1f"
 
-#: graphics/CameraController.cpp:689
+#: graphics/CameraController.cpp:691
 #, c-format
 msgid "Zoom speed decreased to %.1f"
 msgstr "Szybkość przybliżania zmniejszona do %.1f"
@@ -204,7 +204,7 @@ msgstr "Nie zapewniono wszystkich koniecznych informacji"
 msgid "Username already exists"
 msgstr "Nazwa użytkownika już istnieje"
 
-#: ps/Mod.cpp:82
+#: ps/Mod.cpp:93
 #, c-format
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
@@ -272,8 +272,8 @@ msgstr "Zapisano grę w '%s'"
 msgid "custom build"
 msgstr "własna kompilacja"
 
-#: renderer/Renderer.cpp:614 renderer/Renderer.cpp:617
-#: renderer/Renderer.cpp:754 renderer/Renderer.cpp:757
+#: renderer/Renderer.cpp:565 renderer/Renderer.cpp:568
+#: renderer/Renderer.cpp:680 renderer/Renderer.cpp:683
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Zrzut ekranu zapisany w '%s'"

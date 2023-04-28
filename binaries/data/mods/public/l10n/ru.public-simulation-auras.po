@@ -39,10 +39,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-10 08:10+0000\n"
+"POT-Creation-Date: 2023-03-06 08:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: w202mg w202mg, 2022\n"
-"Language-Team: Russian (http://www.transifex.com/wildfire-games/0ad/language/ru/)\n"
+"Last-Translator: Dire Avenger, 2022-2023\n"
+"Language-Team: Russian (http://app.transifex.com/wildfire-games/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -67,29 +67,29 @@ msgstr "Докование"
 
 #: simulation/data/auras/structures/corral_garrison_large.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +3 food."
-msgstr ""
+msgstr "Разместите в загоне, чтобы получить +3 к производству еды."
 
 #: simulation/data/auras/structures/corral_garrison_large.jsonauraName
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraName
 #: simulation/data/auras/structures/corral_garrison_small.jsonauraName
 msgid "Ranching and Corralling"
-msgstr ""
+msgstr "Животноводство и загоны"
 
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +2 food."
-msgstr ""
+msgstr "Разместите в загоне, чтобы получить +2 к производству еды."
 
 #: simulation/data/auras/structures/corral_garrison_small.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +1 food."
-msgstr ""
+msgstr "Разместите в загоне, чтобы получить +1 к производству еды."
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
 msgid "Gatherers +75% farming rate around a captured Farmstead."
-msgstr ""
+msgstr "Собиратели получают +75% к производству еды на захваченной ферме."
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraName
 msgid "Farmland"
-msgstr ""
+msgstr "Сельскохозяйственные угодья"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -195,11 +195,11 @@ msgstr "Строгая подготовка"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Civic center technologies −50% research time and −30% cost."
-msgstr ""
+msgstr "Технологии городского центра исследуются на 50% быстрее и стоят на 30% дешевле."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Democracy"
-msgstr ""
+msgstr "Демократия"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
@@ -211,11 +211,11 @@ msgstr "Друиды"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Mercenaries −50% train time."
-msgstr ""
+msgstr "Время обучения наёмников сокращается на 50%."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Mercenary Transports"
-msgstr ""
+msgstr "Транспортировка наемников"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Forges −15% technology resource costs and research time."
@@ -269,11 +269,11 @@ msgstr "Религиозная поддержка Ашоки"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Barracks and Stables −20% wood and stone cost and build time."
-msgstr ""
+msgstr "Конюшни и казармы строятся на 20% дешевле и быстрее "
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "Training Regimes"
-msgstr ""
+msgstr "Режимы обучения"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "+1.0 food trickle rate."
@@ -294,7 +294,7 @@ msgstr "Воинская повинность"
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid ""
 "Civil Centers and Colonies −20% resource cost and −30% construction time."
-msgstr ""
+msgstr "Городские центры и колонии строятся на 20% дешевле и  на 30% быстрее."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -401,7 +401,7 @@ msgstr "Расширение территории"
 msgid ""
 "The Music Bureau was charged directly by Emperor Wu to perform various tasks related to music, poetry, entertainment, or religious worship.\n"
 "Technologies −50% resource cost and research time."
-msgstr ""
+msgstr "Сам император Ву поручал Музыкальному бюро выполнять различные задачи, связанные с музыкой, поэзией, развлечениями и религиозным поклонением.\nСтоимость и время исследования технологий уменьшается на 50%"
 
 #: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraName
 msgid "Imperial Music Bureau"
@@ -586,11 +586,11 @@ msgstr "Железные пеланоры"
 msgid ""
 "Melee Soldiers +10% attack damage and all Soldiers −25% experience points "
 "for promotion."
-msgstr ""
+msgstr "Солдаты ближнего боя наносят на 10% больше урона, всем солдатам требуется на 25% меньше очков опыта для повышения."
 
 #: simulation/data/auras/units/centurion.jsonauraName
 msgid "Combat Leadership"
-msgstr ""
+msgstr "Боевое руководство"
 
 #: simulation/data/auras/units/han_minister_building.jsonauraDescription
 msgid "Builders construct buildings +2% faster for every nearby Minister."
@@ -650,35 +650,35 @@ msgstr "Реформирование пельтастов"
 msgid ""
 "Soldiers, Ships, Siege Engines and Structures do not give loot, +50% "
 "Structure capture points."
-msgstr ""
+msgstr "Солдаты, корабли, осадные машины и здания не будут разграблены при уничтожении, очки захвата зданий увеличены на 50%"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Defensive Strategy"
-msgstr ""
+msgstr "Оборонительная стратегия Периклина"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Technologies −10% resource costs, −50% research time."
-msgstr ""
+msgstr "Стоимость исследования технологий снижается на 10%, а время исследования на 50%."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Scholarship and the Arts"
-msgstr ""
+msgstr "Школы и искусство"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid "−50% metal cost, Ships −50% construction time, +15% move speed."
-msgstr ""
+msgstr "Строительство кораблей требует на 50% металла, время постройки уменьшается на 50%, а скорость перемещения кораблей увеличивается на 15%."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Preparation"
-msgstr ""
+msgstr "Военно-морская подготовка"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "Walls and Palisades −50% resource costs and −20% construction time."
-msgstr ""
+msgstr "Стены и частоколы строятся на 20% дешевле и  на 50% быстрее."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Themistoclean Walls"
-msgstr ""
+msgstr "Фемистоклевые стены"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid ""
@@ -906,19 +906,19 @@ msgstr "Корабельный дар"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraDescription
 msgid "Soldiers +10% attack damage, +15% movement speed."
-msgstr ""
+msgstr "Воины наносят на 10% больше урона и на 15% быстрее передвигаются"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraName
 msgid "Rapid Conquest"
-msgstr ""
+msgstr "Быстрое завоевание"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraDescription
 msgid "Enemy Soldiers, Structures −10% attack damage."
-msgstr ""
+msgstr "Урон вражеских солдат и зданий уменьшен на 10%"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
 msgid "Undefeated"
-msgstr ""
+msgstr "Непобедимый"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_3.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
@@ -970,10 +970,8 @@ msgid "Buddhism"
 msgstr "Буддизм"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
-msgid ""
-"When garrisoned, the Structure's technologies have −20% resource cost and "
-"−50% research time."
-msgstr "При наличии гарнизона здание проводит исследования технологий на 20% дешевле и на 50% быстрее."
+msgid "All technologies have −20% resource cost and −30% research time."
+msgstr "Стоимость исследования всех технологий снижается на 20%, а время исследования на 30%"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
@@ -982,6 +980,24 @@ msgstr "Учитель"
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
 msgstr "Целитель"
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraDescription
+msgid ""
+"Soldiers +10% melee and ranged attack damage, +1 crush, hack, pierce "
+"resistance."
+msgstr "Воины наносят на 10% больше урона в ближнем и дальнем бою, а так же получают +1 к защите от колющего, режущего и дробящего урона"
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraName
+msgid "Empire Maker"
+msgstr "Создатель империи"
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraDescription
+msgid "Elephants +15% attack rate, +10% movement speed."
+msgstr "Слоны атакуют на 15% быстрее и на 10% быстрее передвигаются."
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraName
+msgid "Elephant Corps"
+msgstr "Обучение боевых слонов"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraDescription
 msgid ""

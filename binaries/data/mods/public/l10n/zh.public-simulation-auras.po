@@ -35,6 +35,7 @@
 # liu lizhi
 # loms126
 # 李峰宇
+# Mengyao Su
 # Mysterelee
 # Nicolas Auvray
 # not_xx
@@ -80,10 +81,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-10 08:10+0000\n"
+"POT-Creation-Date: 2023-03-06 08:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: liu lizhi <xingzuo88@qq.com>, 2022-2023\n"
-"Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
+"Language-Team: Chinese (http://app.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -412,7 +413,7 @@ msgstr "骑兵长官"
 msgid ""
 "Warring with the Romans, Ambiorix realized the futility of open warfare and instead resorted to ambush tactics. The Gauls quickly learned where and when to execute surprise attacks.\n"
 "Soldiers +5% melee and ranged attack damage and −25% promotion experience."
-msgstr "与罗马人战斗中，安比奥里克斯意识到正面战争是徒劳，取而代之的是采取伏击战术. 高卢人很快就知道应在何时何地展开突袭.\n士兵的攻击 +5％，提升等级需要的经验 -25％ ."
+msgstr "与罗马人战斗中，安比奥里克斯意识到正面战争是徒劳，取而代之的是采取伏击战术. 高卢人很快就知道应在何时何地展开突袭.\n士兵的攻击 +5％，提升等级需要的经验 -25％ 。"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraName
 msgid "Ambush Slaughter"
@@ -482,7 +483,7 @@ msgstr "首位努比亚女王"
 msgid ""
 "As in all cultures, religion played a significant part in Kush. Shanakdakheto had the temple built around 160 BC as a symbol of the advancedness of Meroë.\n"
 "Temples +1 garrison heal rate."
-msgstr "和所有文明一样，宗教在麦罗埃帝国扮演了重要的角色。沙纳克达克特女王于公元前 160 年前后建造了这座神庙，象征着麦罗埃文明的先进。\n神庙周围驻军生命恢复速率 +1 ."
+msgstr "和所有文明一样，宗教在库什扮演了重要的角色。沙纳克达克特女王于公元前 160 年前后建造了这座神庙，象征着麦罗埃文明的先进。\n神庙周围驻军生命恢复速率 +1 。"
 
 #: simulation/data/auras/units/catafalques/kush_catafalque_2.jsonauraName
 msgid "Temple at Naqa"
@@ -1011,10 +1012,8 @@ msgid "Buddhism"
 msgstr "佛法"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
-msgid ""
-"When garrisoned, the Structure's technologies have −20% resource cost and "
-"−50% research time."
-msgstr "有驻军时，该建筑的技术研究成本 -20% ，研究时间 -50% ."
+msgid "All technologies have −20% resource cost and −30% research time."
+msgstr "全部科技研究成本 -20% ，研究用时 -30% ."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
@@ -1023,6 +1022,24 @@ msgstr "教师"
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
 msgstr "再生"
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraDescription
+msgid ""
+"Soldiers +10% melee and ranged attack damage, +1 crush, hack, pierce "
+"resistance."
+msgstr "士兵的远程及近战攻击 +10％，粉碎、砍削及穿刺全部 +1 。"
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraName
+msgid "Empire Maker"
+msgstr "帝国缔造者"
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraDescription
+msgid "Elephants +15% attack rate, +10% movement speed."
+msgstr "大象攻击 +15% ，移动速度 +10% 。"
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraName
+msgid "Elephant Corps"
+msgstr "大象军团"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraDescription
 msgid ""

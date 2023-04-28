@@ -5,6 +5,7 @@
 # Translators:
 # Nopar Despar
 # Abdallatif Sulaiman
+# Abdelrahman Essawy
 # ABDO SEED
 # abdul-rahman sawalmah
 # abidin toumi
@@ -21,13 +22,14 @@
 # 425467bb0c9da71484550c3c99a0865a_432023a
 # salama
 # صفا الفليج
+# ‫علي السادة (‪games power‬‏)‬‎
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-01-27 08:09+0000\n"
+"POT-Creation-Date: 2023-03-20 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: abidin toumi <abidin24@tutanota.com>, 2018,2021\n"
-"Language-Team: Arabic (http://www.transifex.com/wildfire-games/0ad/language/ar/)\n"
+"Last-Translator: Abdelrahman Essawy, 2023\n"
+"Language-Team: Arabic (http://app.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -199,7 +201,7 @@ msgstr ""
 #: simulation/templates/structures/sele/theater.xml:5
 #: simulation/templates/structures/spart/theater.xml:5
 msgid "Theatron"
-msgstr "ثياترون"
+msgstr "مسرح"
 
 #: simulation/templates/structures/athen/tower_artillery.xml:9
 #: simulation/templates/structures/athen/tower_bolt.xml:9
@@ -432,7 +434,7 @@ msgstr "ناميل"
 
 #: simulation/templates/structures/cart/embassy.xml:19
 msgid "Train Mercenaries."
-msgstr ""
+msgstr "استأجر مرتزقة."
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:17
 msgid "Celtic Embassy"
@@ -440,7 +442,7 @@ msgstr "سفارة كلتيّة"
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:18
 msgid "Train Celtic Mercenaries."
-msgstr ""
+msgstr "استأجر مرتزقة كلتيّين."
 
 #: simulation/templates/structures/cart/embassy_iberian.xml:10
 msgid "Iberian Embassy"
@@ -448,15 +450,15 @@ msgstr "سفارة أيبيريّة"
 
 #: simulation/templates/structures/cart/embassy_iberian.xml:11
 msgid "Train Iberian Mercenaries."
-msgstr ""
+msgstr "استأجر مرتزقة أيبيريّين."
 
 #: simulation/templates/structures/cart/embassy_italic.xml:17
 msgid "Italic Embassy"
-msgstr ""
+msgstr "السفارة الإيطاليّة"
 
 #: simulation/templates/structures/cart/embassy_italic.xml:18
 msgid "Train Italic Mercenaries."
-msgstr ""
+msgstr "استأجر مرتزقة إيطاليّين."
 
 #: simulation/templates/structures/cart/farmstead.xml:8
 msgid "Aḥuzāh"
@@ -622,7 +624,7 @@ msgstr "سياج حجريّ"
 
 #: simulation/templates/structures/gaul/assembly.xml:27
 msgid "Assembly of Princes"
-msgstr ""
+msgstr "مجلس الأمراء"
 
 #: simulation/templates/structures/gaul/assembly.xml:28
 msgid "Remogantion"
@@ -690,9 +692,9 @@ msgstr ""
 
 #: simulation/templates/structures/han/civil_centre.xml:33
 msgid ""
-"This greatly increases the health, capture resistance, and garrison capacity"
-" of this specific Civic Center. Unlock training of Heroes here and reduce "
-"its research and batch training times by half."
+"Enable training of heroes, reduce the batch training times and greatly "
+"increase the health, capture resistance and garrison capacity of this "
+"specific Civic Center."
 msgstr ""
 
 #: simulation/templates/structures/han/civil_centre_court.xml:17
@@ -731,7 +733,7 @@ msgstr ""
 
 #: simulation/templates/structures/han/defense_tower_great.xml:34
 msgid "GreatTower"
-msgstr ""
+msgstr "البرج العملاق"
 
 #: simulation/templates/structures/han/dock.xml:9
 msgid "Mǎtóu"
@@ -1289,7 +1291,7 @@ msgstr ""
 msgid "Stratopedeia Misthophorōn"
 msgstr ""
 
-#: simulation/templates/structures/merc_camp_egyptian.xml:31
+#: simulation/templates/structures/merc_camp_egyptian.xml:32
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
 msgstr "احتل هذا المبنى لتدرب مرتزقه من مصر الهيلنيه."
 
@@ -1392,7 +1394,7 @@ msgstr "دِيدَا"
 
 #: simulation/templates/structures/pers/hall.xml:23
 msgid "Gate of All Nations"
-msgstr ""
+msgstr "بوابة الى كل الدول"
 
 #: simulation/templates/structures/pers/hall.xml:24
 msgid "Duvarθi Visadahyu"
@@ -1400,7 +1402,7 @@ msgstr ""
 
 #: simulation/templates/structures/pers/hall.xml:25
 msgid "Hall"
-msgstr ""
+msgstr "القاعة"
 
 #: simulation/templates/structures/pers/house.xml:8
 msgid "Huvādā"
@@ -1527,7 +1529,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome/army_camp.xml:71
 msgid "Army Camp"
-msgstr ""
+msgstr "المعسكر"
 
 #: simulation/templates/structures/rome/army_camp.xml:72
 msgid "Castra"
@@ -1663,7 +1665,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome/temple_mars.xml:14
 msgid "TempleOfMars"
-msgstr ""
+msgstr "معبد المريخ"
 
 #: simulation/templates/structures/rome/temple_vesta.xml:18
 msgid "Temple of Vesta"
@@ -1838,7 +1840,7 @@ msgstr "ملجأ مؤقت للجنود. زيادة +5 في حد السكان."
 
 #: simulation/templates/structures/tent_bedouin.xml:35
 msgid "Bedouin Tent"
-msgstr ""
+msgstr "خيمة البدو"
 
 #: simulation/templates/structures/tent_desert.xml:35
 msgid "Desert Army Tent"
@@ -1947,6 +1949,7 @@ msgstr "رواق إغريقي معمد"
 #: simulation/templates/structures/han/ministry.xml:39
 #: simulation/templates/structures/iber/monument.xml:34
 #: simulation/templates/structures/maur/elephant_stable.xml:7
+#: simulation/templates/structures/merc_camp_egyptian.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:75
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
@@ -1998,7 +2001,7 @@ msgstr ""
 #: simulation/templates/template_structure_defensive_tower.xml:52
 #: simulation/templates/template_structure_defensive_tower.xml:53
 msgid "Tower"
-msgstr ""
+msgstr "برج"
 
 #: simulation/templates/template_structure_defensive_tower_artillery.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -2016,11 +2019,11 @@ msgstr ""
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Bolt"
-msgstr ""
+msgstr "سهم"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:51
 msgid "Bolt Tower"
-msgstr ""
+msgstr "برج الرماه"
 
 #: simulation/templates/template_structure_defensive_tower_bolt.xml:53
 msgid "BoltTower"
@@ -2047,7 +2050,7 @@ msgstr "دعمه بــالحجاره وطوره الى برج دفاعى."
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:30
 msgid "Stone Tower"
-msgstr ""
+msgstr "برج حجري"
 
 #: simulation/templates/template_structure_defensive_tower_stone.xml:33
 msgid "StoneTower"
@@ -2056,7 +2059,7 @@ msgstr "برج حجري"
 #: simulation/templates/template_structure_defensive_wall.xml:12
 #: simulation/templates/template_structure_defensive_wall.xml:15
 msgid "Wall"
-msgstr ""
+msgstr "الأسوار"
 
 #: simulation/templates/template_structure_defensive_wall.xml:14
 msgid "Wall off your town for a stout defense."
@@ -2075,7 +2078,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_defensive_wall_long.xml:17
 msgid "Can be converted into a Gate."
-msgstr ""
+msgstr "يمكن تحويله إلى بوابة"
 
 #: simulation/templates/template_structure_defensive_wall_tower.xml:22
 msgid "Wall Turret"
@@ -2100,7 +2103,7 @@ msgstr "مزرعة"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:28
 msgid "Research food gathering technologies."
-msgstr ""
+msgstr "ابحث عن تقنيات جمع الطعام."
 
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_economic_market.xml:28
@@ -2138,7 +2141,7 @@ msgstr "عسكريّ"
 #: simulation/templates/template_structure_military_arsenal.xml:25
 #: simulation/templates/template_structure_military_arsenal.xml:28
 msgid "Arsenal"
-msgstr ""
+msgstr "ترسانة"
 
 #: simulation/templates/template_structure_military_arsenal.xml:27
 msgid ""
@@ -2183,7 +2186,7 @@ msgstr ""
 #: simulation/templates/structures/cart/super_dock.xml:43
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Naval"
-msgstr ""
+msgstr "بحري"
 
 #: simulation/templates/template_structure_military_elephant_stable.xml:26
 msgid "Elephant Stable"
@@ -2195,7 +2198,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_military_elephant_stable.xml:29
 msgid "ElephantStable"
-msgstr ""
+msgstr "اسطبل الفيلة"
 
 #: simulation/templates/structures/cart/embassy.xml:18
 #: simulation/templates/template_structure_military_embassy.xml:22
@@ -2206,7 +2209,7 @@ msgstr "سفارة"
 #: simulation/templates/template_structure_military_forge.xml:22
 #: simulation/templates/template_structure_military_forge.xml:26
 msgid "Forge"
-msgstr ""
+msgstr "حداد"
 
 #: simulation/templates/template_structure_military_forge.xml:24
 msgid "Research attack damage and damage resistance technologies."
@@ -2224,11 +2227,11 @@ msgstr ""
 
 #: simulation/templates/template_structure_military_range.xml:22
 msgid "Practice Range"
-msgstr ""
+msgstr "مرمى التدريب"
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Train Ranged Infantry and research technologies."
-msgstr ""
+msgstr "درب الرماة وابحث عن التقنيات"
 
 #: simulation/templates/template_structure_military_range.xml:25
 msgid "Range"
@@ -2241,7 +2244,7 @@ msgstr "إسطبل"
 
 #: simulation/templates/template_structure_military_stable.xml:28
 msgid "Train Cavalry and research Cavalry technologies."
-msgstr ""
+msgstr "درب الفرسان وابحث عن تقنيات ركوب الخيل."
 
 #: simulation/templates/template_structure_resource.xml:4
 msgid "Resource Structure"

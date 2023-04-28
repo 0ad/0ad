@@ -88,10 +88,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-02 21:44+0000\n"
+"POT-Creation-Date: 2023-04-14 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: liu lizhi <xingzuo88@qq.com>, 2023\n"
-"Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
+"Language-Team: Chinese (http://app.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -473,7 +473,7 @@ msgstr "取消"
 #: gui/common/tooltips.js:675 gui/common/tooltips.js:681
 #: gui/common/tooltips.js:768 gui/common/tooltips.js:819
 #: gui/common/tooltips.js:840 gui/common/tooltips.js:864
-#: gui/common/tooltips.js:1198
+#: gui/common/tooltips.js:1205
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -616,8 +616,8 @@ msgstr "玩家 (%(num)s): %(users)s"
 #: gui/common/tooltips.js:423 gui/common/tooltips.js:437
 #: gui/common/tooltips.js:512 gui/common/tooltips.js:517
 #: gui/common/tooltips.js:574 gui/common/tooltips.js:635
-#: gui/common/tooltips.js:1029 gui/common/tooltips.js:1034
-#: gui/common/tooltips.js:1067 gui/common/tooltips.js:1163
+#: gui/common/tooltips.js:1036 gui/common/tooltips.js:1041
+#: gui/common/tooltips.js:1074 gui/common/tooltips.js:1170
 #: gui/loadgame/SavegameDetails.js:41 gui/reference/common/tooltips.js:13
 #: gui/replaymenu/replay_menu.js:284
 msgid ", "
@@ -784,7 +784,7 @@ msgid_plural "%(time)s %(second)s"
 msgstr[0] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:109 gui/common/tooltips.js:570
-#: gui/common/tooltips.js:1065
+#: gui/common/tooltips.js:1072
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "秒"
@@ -881,7 +881,7 @@ msgstr "封锁：%(blockPercentage)s%%，直到：%(durationReduction)s%%"
 msgid "Garrison to fire arrows"
 msgstr "驻军发射火箭"
 
-#: gui/common/tooltips.js:314 gui/common/tooltips.js:1063
+#: gui/common/tooltips.js:314 gui/common/tooltips.js:1070
 msgid "Interval:"
 msgstr "间隔："
 
@@ -931,7 +931,7 @@ msgstr "%(rangeLabel)s %(minRange)s to %(maxRange)s %(rangeUnit)s"
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
-#: gui/common/tooltips.js:362 gui/common/tooltips.js:1058
+#: gui/common/tooltips.js:362 gui/common/tooltips.js:1065
 msgid "Range:"
 msgstr "范围："
 
@@ -946,8 +946,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "米"
 
-#: gui/common/tooltips.js:370 gui/common/tooltips.js:1060
-#: gui/common/tooltips.js:1090
+#: gui/common/tooltips.js:370 gui/common/tooltips.js:1067
+#: gui/common/tooltips.js:1097
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "米"
@@ -1068,7 +1068,7 @@ msgstr "驻军上限"
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:567 gui/common/tooltips.js:1053
+#: gui/common/tooltips.js:567 gui/common/tooltips.js:1060
 msgid "Heal:"
 msgstr "治疗："
 
@@ -1162,7 +1162,7 @@ msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] "增加一个工人，%(second)s秒后完成。"
 
-#: gui/common/tooltips.js:736 gui/common/tooltips.js:1002
+#: gui/common/tooltips.js:736 gui/common/tooltips.js:1009
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
@@ -1246,133 +1246,133 @@ msgstr "%(label)s %(costs)s"
 msgid "Cost:"
 msgstr "成本："
 
-#: gui/common/tooltips.js:972
+#: gui/common/tooltips.js:973
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "需要 %(technology)s"
 
-#: gui/common/tooltips.js:986
+#: gui/common/tooltips.js:993
 #, javascript-format
 msgid "%(label)s %(bonus)s"
 msgstr "%(label)s %(bonus)s"
 
-#: gui/common/tooltips.js:987
+#: gui/common/tooltips.js:994
 msgid "Population Bonus:"
 msgstr "人口奖励："
 
-#: gui/common/tooltips.js:1006
+#: gui/common/tooltips.js:1013
 msgid "Insufficient resources:"
 msgstr "缺乏物资:"
 
-#: gui/common/tooltips.js:1022
+#: gui/common/tooltips.js:1029
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:1023
+#: gui/common/tooltips.js:1030
 msgid "Speed:"
 msgstr "速度:"
 
-#: gui/common/tooltips.js:1025 gui/common/tooltips.js:1030
-#: gui/common/tooltips.js:1035
+#: gui/common/tooltips.js:1032 gui/common/tooltips.js:1037
+#: gui/common/tooltips.js:1042
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:1027
+#: gui/common/tooltips.js:1034
 msgid "Walk"
 msgstr "步行"
 
-#: gui/common/tooltips.js:1032
+#: gui/common/tooltips.js:1039
 msgid "Run"
 msgstr "奔跑"
 
-#: gui/common/tooltips.js:1037
+#: gui/common/tooltips.js:1044
 msgid "Acceleration"
 msgstr "加速"
 
-#: gui/common/tooltips.js:1052 gui/common/tooltips.js:1057
-#: gui/common/tooltips.js:1062 gui/common/tooltips.js:1087
+#: gui/common/tooltips.js:1059 gui/common/tooltips.js:1064
+#: gui/common/tooltips.js:1069 gui/common/tooltips.js:1094
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:1055
+#: gui/common/tooltips.js:1062
 msgid "Health"
 msgid_plural "Health"
 msgstr[0] "生命值"
 
-#: gui/common/tooltips.js:1079
+#: gui/common/tooltips.js:1086
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:1080
+#: gui/common/tooltips.js:1087
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:1088
+#: gui/common/tooltips.js:1095
 msgctxt "aura"
 msgid "Range:"
 msgstr "范围: "
 
-#: gui/common/tooltips.js:1111 gui/common/tooltips.js:1139
+#: gui/common/tooltips.js:1118 gui/common/tooltips.js:1146
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
 msgstr "%(primaryName)s (%(secondaryName)s)"
 
-#: gui/common/tooltips.js:1115 gui/common/tooltips.js:1132
+#: gui/common/tooltips.js:1122 gui/common/tooltips.js:1139
 #, javascript-format
 msgid "%(primaryName)s"
 msgstr "%(primaryName)s"
 
-#: gui/common/tooltips.js:1162
+#: gui/common/tooltips.js:1169
 msgid "Classes:"
 msgstr "类型："
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the
 #. value.
-#: gui/common/tooltips.js:1189
+#: gui/common/tooltips.js:1196
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:1199
+#: gui/common/tooltips.js:1206
 msgid "Loot:"
 msgstr "战利品："
 
-#: gui/common/tooltips.js:1209
+#: gui/common/tooltips.js:1216
 #, javascript-format
 msgid "%(label)s %(icons)s"
 msgstr "%(label)s %(icons)s"
 
-#: gui/common/tooltips.js:1210
+#: gui/common/tooltips.js:1217
 msgid "Dropsite for:"
 msgstr "资源回收点："
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
 #. element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1218
+#: gui/common/tooltips.js:1225
 msgid "Right-click to view more information."
 msgstr "右击获取更多信息"
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
-#: gui/common/tooltips.js:1224
+#: gui/common/tooltips.js:1231
 msgid "Click to view more information."
 msgstr "单击以获取更多信息。"
 
-#: gui/common/tooltips.js:1233
+#: gui/common/tooltips.js:1240
 msgctxt "One letter abbreviation for million"
 msgid "M"
 msgstr "M"
 
-#: gui/common/tooltips.js:1236 gui/common/tooltips.js:1239
+#: gui/common/tooltips.js:1243 gui/common/tooltips.js:1246
 msgctxt "One letter abbreviation for thousand"
 msgid "k"
 msgstr "k"
@@ -4111,6 +4111,24 @@ msgid ""
 "Number of pixels the mouse can move before the action is considered a drag."
 msgstr "在被认为是拖动行为之前，鼠标能移动的像素数量。"
 
+#: gui/options/options.json[1].options[11].label
+msgid "Mouse grab in fullscreen"
+msgstr "全屏幕下鼠标抓取"
+
+#: gui/options/options.json[1].options[11].tooltip
+msgid ""
+"Constrain mouse in the fullscreen mode to the window boundaries. It's used "
+"to avoid mouse going out of a display in case of multiple displays."
+msgstr "全屏模式下，将鼠标限制在窗口范围内。多个显示器下，可避免鼠标跑到显示器外。"
+
+#: gui/options/options.json[1].options[12].label
+msgid "Mouse grab in window mode"
+msgstr "窗口模式鼠标抓取"
+
+#: gui/options/options.json[1].options[12].tooltip
+msgid "Constrain mouse in the window mode to the window boundaries."
+msgstr "窗口模式下，鼠标限制在窗口范围内。"
+
 #: gui/options/options.json[1].options[1].label
 #: gui/options/options.json[2].options[1].label
 msgid "Fog"
@@ -4615,7 +4633,7 @@ msgstr "当有人加入时，语音提示。"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].label
 msgid "Game Setup"
-msgstr "游戏"
+msgstr "游戏设置"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[0].label
 msgid "Enable game setting tips"
@@ -5889,7 +5907,7 @@ msgstr "筛选兼容的回放"
 
 #: gui/replaymenu/replay_menu.xml:(caption):216
 msgid "Spoiler"
-msgstr "捣乱者"
+msgstr "袭扰者"
 
 #: gui/replaymenu/replay_menu.xml:(caption):228
 msgid "Main Menu"
@@ -6147,7 +6165,7 @@ msgstr "贸易效率"
 #: gui/summary/layout.js:169
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
-msgstr "%(resourceFirstWord)s  改变"
+msgstr "%(resourceFirstWord)s  已交换"
 
 #: gui/summary/layout.js:191
 msgid "Miscellaneous"
@@ -6973,7 +6991,7 @@ msgstr "可以通过在放置地基的过程中按住快捷键来对齐建筑。
 
 #: gui/text/tips/snapping.txt:3
 msgid "Aligning structures allows to conserve space for future construction."
-msgstr "对齐建筑可以节省空间，以便将来利用。"
+msgstr "对齐建筑可以节省空间，以便未来城建规划。"
 
 #: gui/text/tips/snapping.txt:4
 msgid ""

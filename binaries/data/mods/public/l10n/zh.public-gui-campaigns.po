@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: liu lizhi <xingzuo88@qq.com>, 2022\n"
-"Language-Team: Chinese (https://www.transifex.com/wildfire-games/teams/17418/zh/)\n"
+"Last-Translator: liu lizhi <xingzuo88@qq.com>, 2023\n"
+"Language-Team: Chinese (https://app.transifex.com/wildfire-games/teams/17418/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -47,7 +47,7 @@ msgid ""
 "possible so you are able to build enough troops later. Warning: This is very"
 " fast at the start, be prepared to run through the initial bit several "
 "times."
-msgstr "本地图只是大略介绍，可教你尽快入门。游戏初期，要尽快收集物资，后期才能建起大军。提示：开局游戏进度很快，做好重复几次的准备。"
+msgstr "本地图只是大略介绍，可教你尽快入门。游戏初期，要尽快收集物资，后期才能建起大军。提示：开局游戏进度很快，做好重开几次的准备。"
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
@@ -82,7 +82,7 @@ msgstr "可用"
 #: gui/campaigns/default_menu/CampaignMenu.js:216
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr "加载战役%s：%s出错。"
+msgstr "加载战役%s：%s时出错。"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"

@@ -8,6 +8,7 @@
 # borg 2k
 # Carlo Emmanoel Tolla de Oliveira
 # Estevan Borges Martins
+# Geovå Ramalho dos Santos
 # Giovane Guerreiro
 # João Francisco Gauze Carrer
 # jose
@@ -28,10 +29,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-02 21:44+0000\n"
+"POT-Creation-Date: 2023-04-21 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: lecalam, 2022\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
+"Last-Translator: Geovå Ramalho dos Santos, 2023\n"
+"Language-Team: Portuguese (Brazil) (http://app.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -51,12 +52,12 @@ msgstr "Aplicar status"
 #: simulation/data/attack_effects/capture.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
-msgstr "Reduz os pontos de captura de um alvo."
+msgstr "Reduz pontos de captura de um alvo."
 
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
 msgid "Capture"
-msgstr "Captura"
+msgstr "Capturar"
 
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
@@ -329,7 +330,7 @@ msgstr "Crocodylus niloticus"
 
 #: simulation/templates/gaia/fauna_deer.xml:11
 msgid "Red Deer"
-msgstr "Veado-vermelho"
+msgstr "Veado Vermelho"
 
 #: simulation/templates/gaia/fauna_deer.xml:12
 msgid "Cervus elaphus"
@@ -707,19 +708,19 @@ msgstr "Estátua Romana"
 
 #: simulation/templates/gaia/ruins/stone_structure_farmstead.xml:10
 msgid "Ruined Farmstead"
-msgstr ""
+msgstr "Fazenda em Ruínas"
 
 #: simulation/templates/gaia/ruins/stone_structure_house.xml:10
 msgid "Ruined House"
-msgstr ""
+msgstr "Casa em Ruínas"
 
 #: simulation/templates/gaia/ruins/stone_structure_small.xml:10
 msgid "Ruined Structure"
-msgstr ""
+msgstr "Estrutura Arruinada"
 
 #: simulation/templates/gaia/ruins/stone_structure_tower.xml:10
 msgid "Ruined Tower"
-msgstr ""
+msgstr "Torre Arruinada"
 
 #: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:8
 msgid "Unfinished Greek Temple"
@@ -1050,13 +1051,13 @@ msgstr "Posto de Comércio"
 #: simulation/templates/obstructors/movement_8x36.xml:9
 #: simulation/templates/obstructors/movement_8x8.xml:9
 msgid "Movement Obstructor"
-msgstr ""
+msgstr "Obstrutor de Movimento"
 
 #: simulation/templates/obstructors/movement_36x36.xml:11
 #: simulation/templates/obstructors/movement_8x36.xml:11
 #: simulation/templates/obstructors/movement_8x8.xml:11
 msgid "Placement obstructor to prevent movement and construction."
-msgstr ""
+msgstr "Obstrutor de colocação para impedir o movimento e a construção."
 
 #: simulation/templates/obstructors/placement.xml:10
 msgid "Obstructor"
@@ -1073,7 +1074,7 @@ msgstr "Obstrutor de localização para impedir construção mas não movimento"
 #: simulation/templates/obstructors/placement_8x36.xml:9
 #: simulation/templates/obstructors/placement_8x8.xml:9
 msgid "Placement Obstructor"
-msgstr ""
+msgstr "Obstrutor de Posicionamento"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
@@ -1258,10 +1259,6 @@ msgstr "Estrutura"
 msgid "Unit"
 msgstr "Unidade"
 
-#: simulation/templates/template_vision_revealer.xml:23
-msgid "Vision Revealer"
-msgstr ""
-
 #: simulation/templates/template_wallset.xml:9
 #: simulation/templates/template_wallset.xml:11
 msgid "Wall"
@@ -1270,35 +1267,3 @@ msgstr "Muralha"
 #: simulation/templates/template_wallset.xml:10
 msgid "Wall off an area."
 msgstr "Cerque uma área por muros."
-
-#: simulation/templates/vision_revealers/10_meters.xml:4
-msgid "Vision Revealer / 10 meters"
-msgstr ""
-
-#: simulation/templates/vision_revealers/15_meters.xml:4
-msgid "Vision Revealer / 15 meters"
-msgstr ""
-
-#: simulation/templates/vision_revealers/20_meters.xml:4
-msgid "Vision Revealer / 20 meters"
-msgstr ""
-
-#: simulation/templates/vision_revealers/25_meters.xml:4
-msgid "Vision Revealer / 25 meters"
-msgstr ""
-
-#: simulation/templates/vision_revealers/30_meters.xml:4
-msgid "Vision Revealer / 30 meters"
-msgstr ""
-
-#: simulation/templates/vision_revealers/40_meters.xml:4
-msgid "Vision Revealer / 40 meters"
-msgstr ""
-
-#: simulation/templates/vision_revealers/50_meters.xml:4
-msgid "Vision Revealer / 50 meters"
-msgstr ""
-
-#: simulation/templates/vision_revealers/60_meters.xml:4
-msgid "Vision Revealer / 60 meters"
-msgstr ""

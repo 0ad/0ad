@@ -14,42 +14,42 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-01-07 08:19+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2013-06-22 12:54+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS, 2020-2021\n"
-"Language-Team: Greek (http://www.transifex.com/wildfire-games/0ad/language/el/)\n"
+"Language-Team: Greek (http://app.transifex.com/wildfire-games/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: graphics/CameraController.cpp:657
+#: graphics/CameraController.cpp:659
 #, c-format
 msgid "Scroll speed increased to %.1f"
 msgstr "Ταχύτητα κύλισης αυξήθηκε σε %.1f "
 
-#: graphics/CameraController.cpp:663
+#: graphics/CameraController.cpp:665
 #, c-format
 msgid "Scroll speed decreased to %.1f"
 msgstr "Ταχύτητα κύλισης μειώθηκε σε %.1f"
 
-#: graphics/CameraController.cpp:670
+#: graphics/CameraController.cpp:672
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
 msgstr "Ταχύτητα περιστροφής αυξήθηκε σε  X=%.3f, Y=%.3f"
 
-#: graphics/CameraController.cpp:677
+#: graphics/CameraController.cpp:679
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
 msgstr "Ταχύτητα περιστροφής μειώθηκε σε  X=%.3f, Y=%.3f"
 
-#: graphics/CameraController.cpp:683
+#: graphics/CameraController.cpp:685
 #, c-format
 msgid "Zoom speed increased to %.1f"
 msgstr "Ταχύτητα εστίασης αυξήθηκε σε %.1f"
 
-#: graphics/CameraController.cpp:689
+#: graphics/CameraController.cpp:691
 #, c-format
 msgid "Zoom speed decreased to %.1f"
 msgstr "Ταχύτητα εστίασης μειώθηκε σε %.1f"
@@ -197,7 +197,7 @@ msgstr "Δεν δόθηκαν όλες οι απαιτούμενες πληρο�
 msgid "Username already exists"
 msgstr "Το όνομα χρήστη υπάρχει ήδη"
 
-#: ps/Mod.cpp:82
+#: ps/Mod.cpp:93
 #, c-format
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
@@ -265,8 +265,8 @@ msgstr "Αποθήκευση παιχνιδιού στο  '%s'"
 msgid "custom build"
 msgstr "προσαρμοσμένη έκδοση"
 
-#: renderer/Renderer.cpp:614 renderer/Renderer.cpp:617
-#: renderer/Renderer.cpp:754 renderer/Renderer.cpp:757
+#: renderer/Renderer.cpp:565 renderer/Renderer.cpp:568
+#: renderer/Renderer.cpp:680 renderer/Renderer.cpp:683
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Το στιγμιότυπο οθόνης αποθηκέυτηκε στο '%s'"

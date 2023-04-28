@@ -13,7 +13,7 @@
 # MiroslavR
 # Ondrej K.
 # SuroX
-# Peto
+# Peto (wt-ts)
 # Radovan Stancel
 # Robert T
 # Roman Beňo
@@ -25,10 +25,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-01-27 08:09+0000\n"
+"POT-Creation-Date: 2023-03-20 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: Zuzana Miadoková, 2019,2021-2022\n"
-"Language-Team: Slovak (http://www.transifex.com/wildfire-games/0ad/language/sk/)\n"
+"Last-Translator: Zuzana Miadoková, 2019,2021-2023\n"
+"Language-Team: Slovak (http://app.transifex.com/wildfire-games/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -691,10 +691,10 @@ msgstr "Guān Shǔ"
 
 #: simulation/templates/structures/han/civil_centre.xml:33
 msgid ""
-"This greatly increases the health, capture resistance, and garrison capacity"
-" of this specific Civic Center. Unlock training of Heroes here and reduce "
-"its research and batch training times by half."
-msgstr "Výrazne zvyšuje zdravie, odolnosť voči prevzatiu a kapacitu posádky tohto špecifického občianskeho centra. Odomkni tu tréning hrdinov, zredukuj čas jeho výskumu a dĺžku skupinového tréningu o polovicu."
+"Enable training of heroes, reduce the batch training times and greatly "
+"increase the health, capture resistance and garrison capacity of this "
+"specific Civic Center."
+msgstr "Sprístupní tréning hrdinov, skráti dĺžku skupinového tréningu a značne zvýši zdravie, odolnosť voči obsadeniu a kapacitu posádky pre toto Občianske centrum."
 
 #: simulation/templates/structures/han/civil_centre_court.xml:17
 msgid "Imperial Court"
@@ -1290,7 +1290,7 @@ msgstr "Tábor egyptských žoldnierov"
 msgid "Stratopedeia Misthophorōn"
 msgstr "Stratopedeia Misthophorōn"
 
-#: simulation/templates/structures/merc_camp_egyptian.xml:31
+#: simulation/templates/structures/merc_camp_egyptian.xml:32
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
 msgstr "Obsaď túto budovu na trénovanie žoldnierov z Helenistického Egypta."
 
@@ -1948,6 +1948,7 @@ msgstr "Stoa"
 #: simulation/templates/structures/han/ministry.xml:39
 #: simulation/templates/structures/iber/monument.xml:34
 #: simulation/templates/structures/maur/elephant_stable.xml:7
+#: simulation/templates/structures/merc_camp_egyptian.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:75
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
@@ -2260,7 +2261,7 @@ msgstr "Ohrada pre dobytok"
 #: simulation/templates/template_structure_resource_corral.xml:28
 msgid ""
 "Raise Domestic Animals for food. Garrison animals to gain a trickle of food."
-msgstr ""
+msgstr "Chová domestikované zvieratá. Umiestni sem zvieratá pre pravidelný prírastok jedla."
 
 #: simulation/templates/template_structure_resource_field.xml:18
 #: simulation/templates/template_structure_resource_field.xml:20
@@ -2295,7 +2296,7 @@ msgstr "Otočný mlyn"
 msgid ""
 "Dropsite for harvested Food. Capture one of these to increase nearby food "
 "production."
-msgstr ""
+msgstr "Skladisko nazbieraného jedla. Obsaď takúto budovu pre zvýšenie produkcie jedla v jej blízkosti."
 
 #: simulation/templates/template_structure_special_theater.xml:25
 #: simulation/templates/template_structure_special_theater.xml:27

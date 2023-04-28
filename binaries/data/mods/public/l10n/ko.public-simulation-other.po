@@ -20,7 +20,7 @@ msgstr ""
 "POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
-"Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
+"Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -39,7 +39,7 @@ msgstr "%(_player_)s님을 상대로 대규모 군사 작전을 시작합니다.
 msgid ""
 "I have set up a huge army to crush %(_player_)s. Join me and you will have "
 "your share of the loot."
-msgstr "%(_player_)s님을 격파하기 위해 막대한 군대를 편성했습니다. 저희와 함께하면 그 노획물은 당신 몫이 될 것입니다."
+msgstr "%(_player_)s님을 진압하기 위해 막대한 군대를 편성했습니다. 저희와 함께하면 그 전리품은 당신 몫이 될 것입니다."
 
 #: simulation/ai/petra/chatHelper.js:7
 #, javascript-format
@@ -658,7 +658,7 @@ msgstr "소형"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr "소형 지도는 1v1 시합에 적합합니다. 참가자들이 확장할 공간이 있는 상태에서 신속하게 적군에게 접근할 수 있습니다."
+msgstr "소형 지도는 1대1 시합에 적합합니다. 참가자들이 확장할 공간이 있는 상태에서 신속하게 적군에게 접근할 수 있습니다."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Normal"
@@ -859,7 +859,7 @@ msgstr "영웅을 죽임으로써 상대를 물리칩니다."
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"
-msgstr "국왕 처형"
+msgstr "국왕 살해"
 
 #: simulation/data/settings/victory_conditions/wonder.jsonData.Description
 msgid ""
@@ -888,12 +888,12 @@ msgstr "(치트 - 모든 유닛 통제)"
 
 #: simulation/helpers/Commands.js:149
 msgid "(Cheat - reveal map)"
-msgstr "(치트 - 지도 공개)"
+msgstr "(치트 - 지도 밝히기)"
 
 #: simulation/helpers/Commands.js:461
 #, javascript-format
 msgid "%(player)s has resigned."
-msgstr "%(player)s님이 물러섰습니다."
+msgstr "%(player)s님이 항복했습니다."
 
 #: simulation/helpers/Commands.js:639
 msgid "(Cheat - promoted units)"

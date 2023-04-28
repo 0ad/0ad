@@ -17,16 +17,16 @@
 # red hare
 # sang gyu nam
 # 개발자무일푼
-# Takaki IEKURA
+# Taco Ekpa
 # Valtiel
 # YongNam Kim
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-02 21:44+0000\n"
+"POT-Creation-Date: 2023-04-21 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
-"Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
+"Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -71,7 +71,7 @@ msgstr "몽둥이나 짓밟는 것과 같은 순수한 힘에 의한 피해입�
 #: simulation/data/damage_types/crush.jsonname
 msgctxt "damage type"
 msgid "Crush"
-msgstr "때리기"
+msgstr "진압"
 
 #: simulation/data/damage_types/fire.jsondescription
 msgctxt "damage type"
@@ -103,7 +103,7 @@ msgstr "화살이나 창과 같은 뾰족한 물체로 인한 피해입니다."
 #: simulation/data/damage_types/pierce.jsonname
 msgctxt "damage type"
 msgid "Pierce"
-msgstr "뚫기"
+msgstr "찌르기"
 
 #: simulation/data/damage_types/poison.jsondescription
 msgctxt "damage type"
@@ -149,17 +149,17 @@ msgstr "중독됨"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
-msgstr "알렉산더 대왕의 군대입니다."
+msgstr "알렉산드로스 대왕의 군대입니다."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:25
 msgid "Army of Alexander the Great"
-msgstr "알렉산더 대왕의 군대"
+msgstr "알렉산드로스 대왕의 군대"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:26
 #: simulation/templates/campaigns/army_mace_standard.xml:21
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:26
 msgid "This is what an army would look like on the Strat Map."
-msgstr "이것은 시작 지도에서 군대의 모습입니다."
+msgstr "전략 지도에서 부대의 모습은 다음과 같습니다."
 
 #: simulation/templates/campaigns/army_mace_standard.xml:19
 msgid "Army of Macedonia"
@@ -378,7 +378,7 @@ msgstr "로소돈타 아프리카나"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:11
 msgid "African Bush Elephant Calf"
-msgstr "아프리카 덤불 새끼 코끼리"
+msgstr "아프리카 덤불 코끼리 새끼"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:25
 msgid "Asian Elephant"
@@ -391,7 +391,7 @@ msgstr "에레파스 막시무스"
 
 #: simulation/templates/gaia/fauna_elephant_asian_infant.xml:11
 msgid "Asian Elephant Calf"
-msgstr "아시아 새끼 코끼리"
+msgstr "아시아 코끼리 새끼"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:25
 msgid "African Forest Elephant"
@@ -725,7 +725,7 @@ msgstr "미완성된 그리스 사원"
 #: simulation/templates/gaia/treasure/food_crate.xml:8
 #: simulation/templates/gaia/treasure/food_jars.xml:8
 msgid "Food Treasure"
-msgstr "귀중한 식량"
+msgstr "식량 보물"
 
 #: simulation/templates/gaia/treasure/food_barrels_buried.xml:8
 msgid "Half-buried Barrels"
@@ -737,7 +737,7 @@ msgstr "페르시아의 식량 저장고"
 
 #: simulation/templates/gaia/treasure/food_persian_small.xml:8
 msgid "Persian Food Treasure"
-msgstr "페르시아의 귀중한 식량"
+msgstr "페르시아의 식량 보물"
 
 #: simulation/templates/gaia/treasure/golden_fleece.xml:8
 msgid "Golden Fleece"
@@ -776,7 +776,7 @@ msgstr "난파선 화물"
 
 #: simulation/templates/gaia/treasure/stone.xml:8
 msgid "Stone Treasure"
-msgstr "귀중한 석재"
+msgstr "석재 보물"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite.xml:4
 msgid "Cut Granite"
@@ -793,7 +793,7 @@ msgstr "사암 다듬기"
 
 #: simulation/templates/gaia/treasure/wood.xml:8
 msgid "Wood Treasure"
-msgstr "귀중한 목재"
+msgstr "목재 보물"
 
 #: simulation/templates/gaia/treasure/wood_lumber.xml:8
 msgid "Milled Lumber"
@@ -917,7 +917,7 @@ msgstr "맹그로브"
 #: simulation/templates/gaia/tree/maple.xml:4
 #: simulation/templates/gaia/tree/maple_autumn.xml:4
 msgid "Maple"
-msgstr "단풍"
+msgstr "단풍나무"
 
 #: simulation/templates/gaia/tree/medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -1085,7 +1085,7 @@ msgstr "문명화를 위해 인구 5명이 거주하는 집의 변화는, 다른
 #: simulation/templates/special/formations/anti_cavalry.xml:5
 #: simulation/templates/special/formations/testudo.xml:5
 msgid "Melee Infantry only, requires at least 16."
-msgstr "근접 보병만, 최소 16명이 필요합니다."
+msgstr "근접병만, 최소 16명이 필요합니다."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:25
 msgid "Anti Cavalry"
@@ -1153,7 +1153,7 @@ msgstr "교전대형"
 
 #: simulation/templates/special/formations/syntagma.xml:5
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr "단창보병만, 최소 16명이 필요합니다."
+msgstr "단창병만, 최소 16명이 필요합니다."
 
 #: simulation/templates/special/formations/syntagma.xml:29
 msgid "Syntagma"
@@ -1165,7 +1165,7 @@ msgstr "귀갑대형"
 
 #: simulation/templates/special/formations/wedge.xml:5
 msgid "Cavalry only, requires at least 6."
-msgstr "기병만, 최소 6명이 필요합니다."
+msgstr "기마병만, 최소 6명이 필요합니다."
 
 #: simulation/templates/special/formations/wedge.xml:16
 msgid "Wedge"
@@ -1198,7 +1198,7 @@ msgstr "과일나무"
 
 #: simulation/templates/template_gaia_fruit.xml:9
 msgid "Pick fruit for food."
-msgstr "식량을 위해 과일을 땁니다."
+msgstr "식량으로 과일을 조금씩 먹습니다."
 
 #: simulation/templates/template_gaia_ore.xml:8
 msgid "Metal Mine"
@@ -1227,7 +1227,7 @@ msgstr "유적"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 msgid "Demolish ruins for stone."
-msgstr "석재를 위해 폐허를 철거합니다."
+msgstr "폐허를 철거하여 석재를 얻습니다."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Treasure"
@@ -1253,10 +1253,6 @@ msgstr "건축물"
 msgid "Unit"
 msgstr "유닛"
 
-#: simulation/templates/template_vision_revealer.xml:23
-msgid "Vision Revealer"
-msgstr "시야 밝힘"
-
 #: simulation/templates/template_wallset.xml:9
 #: simulation/templates/template_wallset.xml:11
 msgid "Wall"
@@ -1265,35 +1261,3 @@ msgstr "벽"
 #: simulation/templates/template_wallset.xml:10
 msgid "Wall off an area."
 msgstr "한 지역을 벽으로 막으십시오."
-
-#: simulation/templates/vision_revealers/10_meters.xml:4
-msgid "Vision Revealer / 10 meters"
-msgstr "시야 밝힘 / 10미터"
-
-#: simulation/templates/vision_revealers/15_meters.xml:4
-msgid "Vision Revealer / 15 meters"
-msgstr "시야 밝힘 / 15미터"
-
-#: simulation/templates/vision_revealers/20_meters.xml:4
-msgid "Vision Revealer / 20 meters"
-msgstr "시야 밝힘 / 20미터"
-
-#: simulation/templates/vision_revealers/25_meters.xml:4
-msgid "Vision Revealer / 25 meters"
-msgstr "시야 밝힘 / 25미터"
-
-#: simulation/templates/vision_revealers/30_meters.xml:4
-msgid "Vision Revealer / 30 meters"
-msgstr "시야 밝힘 / 30미터"
-
-#: simulation/templates/vision_revealers/40_meters.xml:4
-msgid "Vision Revealer / 40 meters"
-msgstr "시야 밝힘 / 40미터"
-
-#: simulation/templates/vision_revealers/50_meters.xml:4
-msgid "Vision Revealer / 50 meters"
-msgstr "시야 밝힘 / 50미터"
-
-#: simulation/templates/vision_revealers/60_meters.xml:4
-msgid "Vision Revealer / 60 meters"
-msgstr "시야 밝힘 / 60미터"

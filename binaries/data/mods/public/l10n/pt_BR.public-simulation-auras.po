@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Aldo Leandro F
 # Alison Machado
 # Andrei Golemsky
 # borg 2k
@@ -10,6 +11,7 @@
 # Danlorenzi
 # Estevan Borges Martins
 # Filipe Oliveira
+# Geovå Ramalho dos Santos
 # Gustavo Oliveira
 # Hariston trabalhos
 # Heverton Silva Cruz
@@ -41,10 +43,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-10 08:10+0000\n"
+"POT-Creation-Date: 2023-03-06 08:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: Rodrigo Zimmermann <rodrigo.zimmermann23@gmail.com>, 2023\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
+"Last-Translator: Aldo Leandro F, 2023\n"
+"Language-Team: Portuguese (Brazil) (http://app.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -69,21 +71,21 @@ msgstr "Reparos do Estaleiro"
 
 #: simulation/data/auras/structures/corral_garrison_large.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +3 food."
-msgstr "Guarnição dentro do Curral obtém um ganho em gotejamento de +3 de comida."
+msgstr "Guarnição dentro do Curral obtém um fluxo lento de +3 de comida."
 
 #: simulation/data/auras/structures/corral_garrison_large.jsonauraName
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraName
 #: simulation/data/auras/structures/corral_garrison_small.jsonauraName
 msgid "Ranching and Corralling"
-msgstr "Pecuária e Encurralamento"
+msgstr "Pecuária e Confinamento."
 
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +2 food."
-msgstr "Guarnição dentro do Curral para ganhar um pequeno gotejamento de +2 de comida."
+msgstr "Guarnição dentro do Curral para obter um fluxo lento de +2 de comida."
 
 #: simulation/data/auras/structures/corral_garrison_small.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +1 food."
-msgstr "Guarnição dentro do Curral para ganhar um gotejamento de +1 de comida."
+msgstr "Guarnição dentro do Curral para obter um fluxo lento de +1 de comida."
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
 msgid "Gatherers +75% farming rate around a captured Farmstead."
@@ -171,7 +173,7 @@ msgstr "Helenização"
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraDescription
 msgid ""
 "Turreted Soldiers +3 crush, hack, pierce resistance and +20 vision range."
-msgstr "Soldados com torres +3 resistência a esmagar, hackear, perfurar e +20 de alcance de visão."
+msgstr "Soldados em torres tem +3 resistência a esmagamento, corte e perfuração e +20 de alcance de visão."
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
@@ -197,7 +199,7 @@ msgstr "Treinamento Rigoroso"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Civic center technologies −50% research time and −30% cost."
-msgstr ""
+msgstr "Tecnologias do centro cívico −50% tempo de pesquisa e −30% custo."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Democracy"
@@ -213,11 +215,11 @@ msgstr "Druidas"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Mercenaries −50% train time."
-msgstr ""
+msgstr "Mercenários −50% tempo de treinamento."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Mercenary Transports"
-msgstr ""
+msgstr "Transportes de mercenários"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Forges −15% technology resource costs and research time."
@@ -271,7 +273,7 @@ msgstr "Apoio Religioso de Ashoka"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Barracks and Stables −20% wood and stone cost and build time."
-msgstr ""
+msgstr "Casernas e estábulos −20% custo de madeira e pedra e tempo de construção."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "Training Regimes"
@@ -296,7 +298,7 @@ msgstr "Conscrição"
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid ""
 "Civil Centers and Colonies −20% resource cost and −30% construction time."
-msgstr ""
+msgstr "Centros cívicos e colónias −20% custo dos recursos e −30% tempo de construção."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -403,7 +405,7 @@ msgstr "Expansão Territorial"
 msgid ""
 "The Music Bureau was charged directly by Emperor Wu to perform various tasks related to music, poetry, entertainment, or religious worship.\n"
 "Technologies −50% resource cost and research time."
-msgstr ""
+msgstr "O departamento de música foi encarregado diretamente pelo Imperador Wu de executar várias tarefas relacionadas com música, poesia, entretenimento ou culto religioso.\nTecnologias −50% custo dos recursos e tempo a desenvolver."
 
 #: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraName
 msgid "Imperial Music Bureau"
@@ -588,7 +590,7 @@ msgstr "Pelanors de Ferro"
 msgid ""
 "Melee Soldiers +10% attack damage and all Soldiers −25% experience points "
 "for promotion."
-msgstr ""
+msgstr "Soldados de luta corpo a corpo +10% dano de ataque e todos os soldados −25% pontos de experiência para promoção."
 
 #: simulation/data/auras/units/centurion.jsonauraName
 msgid "Combat Leadership"
@@ -652,35 +654,35 @@ msgstr "Reformas na Infantaria Leve"
 msgid ""
 "Soldiers, Ships, Siege Engines and Structures do not give loot, +50% "
 "Structure capture points."
-msgstr ""
+msgstr "Soldados, barcos, máquinas de cerco não dão pilhagem, +50% pontos de captura da estrutura."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Defensive Strategy"
-msgstr ""
+msgstr "Estratégia defensiva de Péricles"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Technologies −10% resource costs, −50% research time."
-msgstr ""
+msgstr "Tecnologias −10% custos dos recursos, −50% tempo de desenvolver."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Scholarship and the Arts"
-msgstr ""
+msgstr "Bolsas de estudo e as artes"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid "−50% metal cost, Ships −50% construction time, +15% move speed."
-msgstr ""
+msgstr "−50% custo do metal, barcos −50% tempo de construção, +15% velocidade de movimentação."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Preparation"
-msgstr ""
+msgstr "Preparação naval"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "Walls and Palisades −50% resource costs and −20% construction time."
-msgstr ""
+msgstr "Muralhas e paliçadas −50% custos de recursos e −20% tempo de construção."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Themistoclean Walls"
-msgstr ""
+msgstr "Muralhas de Temístocles"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid ""
@@ -816,7 +818,7 @@ msgstr "Cavalaria inimiga -10% de dano de ataque corpo a corpo e à distância."
 msgid ""
 "When garrisoned, the Structure has +1 capture points garrison regeneration "
 "rate."
-msgstr ""
+msgstr "Quando guarnecida, a estrutura tem +2 regeneração de pontos de captura com guarnição."
 
 #: simulation/data/auras/units/heroes/hero_garrison.jsonauraName
 msgid "Inspired Defense"
@@ -908,7 +910,7 @@ msgstr "Presente de Navios de Guerra"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraDescription
 msgid "Soldiers +10% attack damage, +15% movement speed."
-msgstr ""
+msgstr "Soldados +10% dano de ataque, +15% velocidade de movimento."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraName
 msgid "Rapid Conquest"
@@ -916,11 +918,11 @@ msgstr "Conquista Rápida"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraDescription
 msgid "Enemy Soldiers, Structures −10% attack damage."
-msgstr ""
+msgstr "Soldados inimigos, estruturas −10% dano de ataque."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
 msgid "Undefeated"
-msgstr ""
+msgstr "Não derrotado"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_3.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
@@ -972,10 +974,8 @@ msgid "Buddhism"
 msgstr "Budismo"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
-msgid ""
-"When garrisoned, the Structure's technologies have −20% resource cost and "
-"−50% research time."
-msgstr "Quando guarnecidos, as tecnologias das Estruturas custam −20% de recursos e −50% de tempo de pesquisa."
+msgid "All technologies have −20% resource cost and −30% research time."
+msgstr "Todas as tecnologias −20% custos dos recursos, −30% tempo de desenvolver."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
@@ -984,6 +984,24 @@ msgstr "Professor"
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
 msgstr "Regeneração"
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraDescription
+msgid ""
+"Soldiers +10% melee and ranged attack damage, +1 crush, hack, pierce "
+"resistance."
+msgstr "Soldados têm +10% de dano de ataque à distancia e corpo-a-corpo e recebem +50% de recursos em saques."
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraName
+msgid "Empire Maker"
+msgstr "Criador de Impérios"
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraDescription
+msgid "Elephants +15% attack rate, +10% movement speed."
+msgstr "Soldados +15% dano de ataque, +10% velocidade de movimento."
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraName
+msgid "Elephant Corps"
+msgstr "Tropas de Elefantes"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraDescription
 msgid ""

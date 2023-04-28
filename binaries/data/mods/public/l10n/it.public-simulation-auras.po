@@ -30,6 +30,7 @@
 # Nescio
 # Michele Marongiu
 # Miguel Punzo
+# Nathan Giovannini3
 # Nicolas Benetton
 # Paolo Gianpaolo
 # pietro pietro
@@ -40,10 +41,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-10 08:10+0000\n"
+"POT-Creation-Date: 2023-03-06 08:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: Matteo Nigro, 2023\n"
-"Language-Team: Italian (http://www.transifex.com/wildfire-games/0ad/language/it/)\n"
+"Language-Team: Italian (http://app.transifex.com/wildfire-games/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -402,7 +403,7 @@ msgstr "Espansione territoriale"
 msgid ""
 "The Music Bureau was charged directly by Emperor Wu to perform various tasks related to music, poetry, entertainment, or religious worship.\n"
 "Technologies −50% resource cost and research time."
-msgstr ""
+msgstr "L'Ufficio della Musica era incaricato direttamente dall'imperatore Wu di svolgere vari compiti legati alla musica, alla poesia, all'intrattenimento o al culto religioso .\nTecnologie -50% di costo delle risorse e tempo di ricerca."
 
 #: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraName
 msgid "Imperial Music Bureau"
@@ -971,10 +972,8 @@ msgid "Buddhism"
 msgstr "Buddismo"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
-msgid ""
-"When garrisoned, the Structure's technologies have −20% resource cost and "
-"−50% research time."
-msgstr "−20% costi e −50% tempi di ricerca per le tecnologie per le strutture che presentano unità presidiate."
+msgid "All technologies have −20% resource cost and −30% research time."
+msgstr "Tutte le tecnologie hanno un costo di risorse del -20%  e un tempo di ricerca del -30%."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
@@ -983,6 +982,24 @@ msgstr "Maestro"
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
 msgstr "Rigenerazione"
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraDescription
+msgid ""
+"Soldiers +10% melee and ranged attack damage, +1 crush, hack, pierce "
+"resistance."
+msgstr "Soldati +10% danni da attacco in mischia e a distanza, +1 resistenza a frantumazione, colpire, trafiggere."
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraName
+msgid "Empire Maker"
+msgstr "Fautore dell'Impero"
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraDescription
+msgid "Elephants +15% attack rate, +10% movement speed."
+msgstr "Elefanti +15% velocità d'attacco, +10% velocità di movimento."
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraName
+msgid "Elephant Corps"
+msgstr "Corpo degli elefanti"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraDescription
 msgid ""

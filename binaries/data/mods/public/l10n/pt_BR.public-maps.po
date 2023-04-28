@@ -10,6 +10,8 @@
 # Cristiano M Magalhaes
 # Enzo enzinholo
 # Estevan Borges Martins
+# Felipe Nogueira
+# Geovå Ramalho dos Santos
 # Gustavo Moitinho
 # Igor Aleixo
 # Jhonatan Morfim
@@ -45,8 +47,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: Rodolfo Rizzo, 2023\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
+"Last-Translator: Geovå Ramalho dos Santos, 2023\n"
+"Language-Team: Portuguese (Brazil) (http://app.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -330,7 +332,7 @@ msgstr "Elefantina"
 msgid ""
 "A neighboring province has pledged alegiance to your rule. It's up to you to command them to victory.\n"
 "[color=\"yellow\"]Caution! If nomad mode is disabled, each player will start with two civic centers.[/color]"
-msgstr ""
+msgstr "Uma província vizinha jurou fidelidade ao seu governo. Cabe a você comandá-los para a vitória.\n[color=\"yellow\"]Cuidado! Se o modo nômade estiver desativado, cada jogador começará com dois centros cívicos.[/color]"
 
 #: maps/random/empire.jsonsettings.Name
 msgid "Empire"
@@ -380,7 +382,7 @@ msgid ""
 "making way for the semi-arid savannahs and small acacia forests dot the "
 "landscape. The area is rich in resources and the ever-present Nile brings "
 "life, but grave threats loom on the opposite riverbank."
-msgstr ""
+msgstr "A “Ilha de Meroë”, uma vasta península flanqueada pelos rios Nilo e Atbarah, formava o coração da antiga Kush. Onde os desertos agrestes começam a dar lugar às savanas semi-áridas e pequenas florestas de acácia pontilham a paisagem. A área é rica em recursos e o sempre presente Nilo traz vida, mas graves ameaças pairam na margem oposta do rio."
 
 #: maps/random/fields_of_meroe.jsonsettings.Name
 msgid "Fields of Meroë"
@@ -880,7 +882,7 @@ msgstr "Comece em uma região abençoada pelo clima mediterrâneo, uma terra que
 #: maps/random/rmbiome/generic/aegean.jsonDescription.Title
 msgctxt "biome definition"
 msgid "Aegean-Anatolian"
-msgstr ""
+msgstr "Egeu-Anatólio"
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Description
 msgctxt "biome definition"
@@ -916,7 +918,7 @@ msgid ""
 "irrevocably intertwined. The native beech and oak trees of this temperate "
 "zone display a multi-colored foliage while animals try to prepare for the "
 "approaching winter."
-msgstr ""
+msgstr "As primeiras folhas caíram. A paisagem é uma mistura deslumbrante de cores irrevogavelmente entrelaçadas. As faias e carvalhos nativos desta zona temperada exibem uma folhagem multicolorida enquanto os animais se preparam para o inverno que se aproxima."
 
 #: maps/random/rmbiome/generic/autumn.jsonDescription.Title
 msgctxt "biome definition"
@@ -956,7 +958,7 @@ msgid ""
 "A semi-desert area that boasts numerous clumps of date palms and acacia "
 "trees. Herds of camels roam the wild and the occasional gazelle jumps up in "
 "fright at being disturbed."
-msgstr ""
+msgstr "Uma zona semi-desértica com numerosos maciços de tamareiras e acácias. Manadas de camelos vagam pela selva e uma gazela ocasional pula de medo ao ser perturbada."
 
 #: maps/random/rmbiome/generic/sahara.jsonDescription.Title
 msgctxt "biome definition"
@@ -983,7 +985,7 @@ msgid ""
 "Wide grasslands stretching to the horizon, without any trees blocking the "
 "view. The Steppe is home to large herds of wild horses, which graze "
 "peacefully on the empty land, but flee quickly if you try to catch them."
-msgstr ""
+msgstr "Amplas pastagens que se estendem até o horizonte, sem árvores bloqueando a visão. A estepe é o lar de grandes manadas de cavalos selvagens, que pastam pacificamente no terreno baldio, mas fogem rapidamente se você tentar pegá-los."
 
 #: maps/random/rmbiome/generic/steppe.jsonDescription.Title
 msgctxt "biome definition"
@@ -1010,7 +1012,7 @@ msgid ""
 "Thick ice has formed on the gulf which is capable of withstanding any "
 "weight. All plants are covered in snow, but there are large herds of "
 "migrating deer who try to find some food under the snow."
-msgstr ""
+msgstr "Gelo espesso se formou no golfo, capaz de suportar qualquer peso. Todas as plantas estão cobertas de neve, mas há grandes manadas de veados migratórios que tentam encontrar comida sob a neve."
 
 #: maps/random/rmbiome/gulf_of_bothnia/frozen_lake.jsonDescription.Title
 msgctxt "biome definition"
@@ -1023,7 +1025,7 @@ msgid ""
 "A late spring breeze ripples through the conifer forests of the Gulf of "
 "Bothnia. At this time of the year the gulf offers great fishing "
 "opportunities."
-msgstr ""
+msgstr "Uma brisa do final da primavera ondula pelas florestas de coníferas do Golfo de Bótnia. Nesta época do ano, o golfo oferece ótimas oportunidades de pesca."
 
 #: maps/random/rmbiome/gulf_of_bothnia/late_spring.jsonDescription.Title
 #: maps/random/rmbiome/persian_highlands/spring.jsonDescription.Title
@@ -1036,7 +1038,7 @@ msgctxt "biome definition"
 msgid ""
 "Winter has set in, carpeting the land with its first snow, but the landscape"
 " is still dotted with colorful berry bushes."
-msgstr ""
+msgstr "O inverno chegou, cobrindo a terra com sua primeira neve, mas a paisagem ainda está pontilhada de arbustos de bagas coloridas."
 
 #: maps/random/rmbiome/gulf_of_bothnia/winter.jsonDescription.Title
 msgctxt "biome definition"
@@ -1984,11 +1986,11 @@ msgstr "Os Macedônios"
 
 #: maps/scenarios/sandbox_mauryas.xml:Description:39
 msgid "A simple map showcasing the Maurya civilization's assets in the game."
-msgstr ""
+msgstr "Um mapa simples mostrando os ativos da civilização Maurya no jogo."
 
 #: maps/scenarios/sandbox_mauryas.xml:Name:39
 msgid "Sandbox - The Maurya Indians"
-msgstr ""
+msgstr "Sandbox - Os índios Maurya"
 
 #: maps/scenarios/sandbox_persians.xml:Description:39
 msgid "A simple map showcasing the Persian civilization's assets in the game."
@@ -1996,7 +1998,7 @@ msgstr "Um mapa simples demonstrando as construções e unidades da civilizaçã
 
 #: maps/scenarios/sandbox_persians.xml:Name:39
 msgid "Sandbox - The Achaemenid Persians"
-msgstr ""
+msgstr "Sandbox - Os Persas Aquemênidas"
 
 #: maps/scenarios/sandbox_ptolemies.xml:Description:38
 #: maps/skirmishes/sporades_islands_2p.xml:Description:39
@@ -2040,7 +2042,7 @@ msgstr "Líbios"
 msgid ""
 "A simple map showcasing the Republican Roman civilization's assets in the "
 "game."
-msgstr ""
+msgstr "Um mapa simples mostrando os recursos da civilização romana republicana no jogo."
 
 #: maps/scenarios/sandbox_romans.xml:Name:39
 msgid "Sandbox - The Romans"
@@ -2064,7 +2066,7 @@ msgstr "Os Ptolomeus"
 
 #: maps/scenarios/sandbox_spartans.xml:Description:39
 msgid "A simple map showcasing the Spartan civilization's assets in the game."
-msgstr ""
+msgstr "Um mapa simples mostrando os recursos da civilização espartana no jogo."
 
 #: maps/scenarios/sandbox_spartans.xml:Name:39
 msgid "Sandbox - The Spartans"
@@ -2467,12 +2469,12 @@ msgstr "%(player)s foi derrotado (herói perdido)."
 msgid ""
 "%(_player_)s owns a Wonder and %(_player_)s and their allies will win in "
 "%(time)s."
-msgstr ""
+msgstr "%(_player_)s possui uma Maravilha e %(_player_)s e seus aliados vencerão em ."
 
 #: maps/scripts/WonderVictory.js:81
 #, javascript-format
 msgid "%(_player_)s owns a Wonder and will win in %(time)s."
-msgstr ""
+msgstr "%(_player_)s possui uma Maravilha e vencerá em %(time)s"
 
 #: maps/scripts/WonderVictory.js:92
 #, javascript-format
@@ -2487,24 +2489,24 @@ msgstr "Você possui uma Maravilha e você e seus aliados irão vencer em %(time
 #: maps/scripts/WonderVictory.js:105
 #, javascript-format
 msgid "You own a Wonder and will win in %(time)s."
-msgstr ""
+msgstr "Você possui uma Maravilha e vencerá em %(time)s."
 
 #: maps/scripts/WonderVictory.js:139
 #, javascript-format
 msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(lastPlayer)s venceram (vitória maravilhosa)"
+msgstr[1] "%(players)s e %(lastPlayer)s venceram (vitória maravilhosa)."
+msgstr[2] "%(players)s %(lastPlayer)s venceram (maravilhosa vitória)."
 
 #: maps/scripts/WonderVictory.js:143
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (wonder victory)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(lastPlayer)s foram derrotados (vitória maravilha)."
+msgstr[1] "%(players)s e %(lastPlayer)s foram derrotados (vitória maravilhosa)."
+msgstr[2] "%(players)s e %(lastPlayer)s  foram derrotados (vitória maravilhosa)."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:39
 msgid ""
@@ -2556,7 +2558,7 @@ msgid ""
 "South of the river are rich arable lands and plentiful wood and forage. North of the river lie a mountain range pierced by wide mountain passes and guarded by natural defensive positions.\n"
 "\n"
 "Within the mountains can be found riches as well as danger. The player who can exploit the mountainous area the best will have a significant advantage over their adversary."
-msgstr ""
+msgstr "Na terra oriental da Báctria fica o rico vale esculpido pelo rio Oxus.\n\nAo sul do rio há ricas terras aráveis e abundância de madeira e forragem. Ao norte do rio fica uma cordilheira perfurada por amplas passagens montanhosas e guardada por posições defensivas naturais.\n\nDentro das montanhas podem ser encontradas riquezas e também perigos. O jogador que melhor explorar a área montanhosa terá uma vantagem significativa sobre o adversário."
 
 #: maps/skirmishes/bactria_2p.xml:Name:39
 msgid "Bactriana (2)"
@@ -2641,7 +2643,7 @@ msgid ""
 "The ancient lake of Moeris near the Nile River in the Libyan Desert has been settled and used by the Egyptians since prehistoric times. \n"
 "\n"
 "The surrounding lands are dotted with ancient and new monuments and temples, while the lake itself is stocked full of Tilapia, ready for fishing.  "
-msgstr ""
+msgstr "O antigo lago de Moeris, perto do rio Nilo, no deserto da Líbia, foi colonizado e usado pelos egípcios desde os tempos pré-históricos.\n\nAs terras ao redor são pontilhadas de monumentos e templos antigos e novos, enquanto o próprio lago está repleto de tilápias, prontas para a pesca."
 
 #: maps/skirmishes/crocodilopolis_4p.xml:Name:39
 msgid "Crocodilopolis (4)"
@@ -2688,7 +2690,7 @@ msgstr "Dois jogadores se enfrentam através da floresta fortemente arborizada d
 
 #: maps/skirmishes/deccan_plateau_2p.xml:Name:39
 msgid "Deccan Plateau (2 players)"
-msgstr ""
+msgstr "Deccan Plateau (2 jogadores)"
 
 #: maps/skirmishes/dueling_cliffs_3pv3p.xml:Description:39
 msgid ""
@@ -2845,7 +2847,7 @@ msgid ""
 "The Hindu Kush mountains separate India from Bactria (modern day Afghanistan) and form a frontier between the Seleucid and Mauryan realms. This area was later under the control of the Greco-Bactrian and Indo-Greek kingdoms of the later Hellenistic period. \n"
 "\n"
 "The area is low on wood resources, but high on stone and metal. A trade route runs through the center of the map with Trade Depots that can be captured and used to gather resources via trade. "
-msgstr ""
+msgstr "As montanhas Hindu Kush separam a Índia da Báctria (atual Afeganistão) e formam uma fronteira entre os reinos selêucida e maurya. Esta área foi mais tarde sob o controle dos reinos greco-bactriano e indo-grego do período helenístico posterior.\n\nA área é pobre em recursos de madeira, mas rica em pedra e metal. Uma rota comercial passa pelo centro do mapa com depósitos comerciais que podem ser capturados e usados para coletar recursos por meio do comércio."
 
 #: maps/skirmishes/hindu_kush_2p.xml:Name:39
 msgid "Hindu Kush (2)"
@@ -2856,11 +2858,11 @@ msgid ""
 "The Hydaspes, aka Jhelum, River in the Punjab of India. Here was the site of"
 " the great battle between the Macedonian forces under Alexander the Great "
 "and the Indian forces of the king Porus of Paurava."
-msgstr ""
+msgstr "O Hydaspes, também conhecido como Jhelum, rio no Punjab da Índia. Aqui foi o local da grande batalha entre as forças macedônias sob Alexandre, o Grande, e as forças indianas do rei Porus de Paurava."
 
 #: maps/skirmishes/hydaspes_river_4p.xml:Name:39
 msgid "Hydaspes River (4)"
-msgstr ""
+msgstr "Rio Hidaspes (4)"
 
 #: maps/skirmishes/libyan_oases_4p.xml:Description:38
 msgid ""
@@ -2904,7 +2906,7 @@ msgid ""
 "Two of India's greatest empires, the Maurya Empire and Gupta Empire, originated in Magadha, a region in Northern India near the sacred River Ganges.\n"
 "\n"
 "This map was designed as a 1v1 map suitable for rated and tournament play."
-msgstr ""
+msgstr "Dois dos maiores impérios da Índia, o Império Maurya e o Império Gupta, originaram-se em Magadha, uma região no norte da Índia perto do sagrado rio Ganges.\n\nEste mapa foi projetado como um mapa 1v1 adequado para jogos classificados e torneios."
 
 #: maps/skirmishes/magadha_2p.xml:Name:39
 msgid "Magadha (2)"
@@ -2940,7 +2942,7 @@ msgid ""
 "Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
 "\n"
 "To the East lies a large bay with fishing opportunities. To the West is an unclaimed acropolis overlooking the Aegean Sea."
-msgstr ""
+msgstr "Cada jogador começa a partida no topo de um grande planalto plano, também conhecido como acrópole.\n\nA leste encontra-se uma grande baía com possibilidades de pesca. A oeste está uma acrópole não reclamada com vista para o Mar Egeu."
 
 #: maps/skirmishes/miletus_peninsula_2p.xml:Name:39
 msgid "Miletus Peninsula (2)"
@@ -2980,11 +2982,11 @@ msgid ""
 "The Savanna is open and foreboding, chock full of animal, both huntable and hunter. \n"
 "\n"
 "Here we have an example of the two seasons prevelant on the savanna: The wet season and the dry season."
-msgstr ""
+msgstr "A Savana é aberta e agourenta, repleta de animais, tanto caçáveis quanto caçadores.\n\nAqui temos um exemplo das duas estações predominantes na savana: A estação chuvosa e a estação seca."
 
 #: maps/skirmishes/north_african_savanna_2p.xml:Name:39
 msgid "North African Savanna (2 players)"
-msgstr ""
+msgstr "Savana do Norte da África (2 jogadores)"
 
 #: maps/skirmishes/northern_island_2p.xml:Description:39
 msgid ""
@@ -3056,7 +3058,7 @@ msgid ""
 "In the deep Sahara Desert of Africa lies an  area of rocky outcrops and small oases. \n"
 "\n"
 "Large stone quarries can be found in the cliffs, while wood and animal resources can be found near the oases dotting the landscape. Nearby fruiting Date Palms give an nice initial burst of food."
-msgstr ""
+msgstr "No profundo deserto do Saara, na África, encontra-se uma área de afloramentos rochosos e pequenos oásis.\n\nGrandes pedreiras podem ser encontradas nas falésias, enquanto madeira e recursos animais podem ser encontrados perto dos oásis que pontilham a paisagem. As tamareiras frutíferas próximas fornecem uma boa explosão inicial de comida."
 
 #: maps/skirmishes/saharan_oases_2p.xml:Name:39
 msgid "Saharan Oases (2)"
@@ -3103,11 +3105,11 @@ msgid ""
 "The steppes of central Asia. A wide open grassland with few trees (about 90%"
 " fewer trees than on a temperate or Aegean map). Animal life is plentiful "
 "though, so take advantage of the hunting available. "
-msgstr ""
+msgstr "As estepes da Ásia central. Um amplo campo aberto com poucas árvores (cerca de 90% menos árvores do que em um mapa temperado ou do Egeu). A vida animal é abundante, então aproveite a caça disponível."
 
 #: maps/skirmishes/scythia_4p.xml:Name:39
 msgid "Scythian Steppes (4)"
-msgstr ""
+msgstr "Estepes Citas (4)"
 
 #: maps/skirmishes/sicilia_2p.xml:Description:38
 msgid "The large Mediterranean island of Sicily is open for conquest."
@@ -3148,7 +3150,7 @@ msgstr "Uma terra árida com pouca madeira e alguns animais. Tesouros pontilham 
 
 #: maps/skirmishes/syria_2p.xml:Name:39
 msgid "Coele-Syria (2)"
-msgstr ""
+msgstr "Coele-Síria (2)"
 
 #: maps/skirmishes/tarim_basin_2p.xml:Description:39
 #: maps/skirmishes/tarim_basin_4p.xml:Description:39
@@ -3156,15 +3158,15 @@ msgid ""
 "A barren desert basin surrounded by mountainous valleys, the Tarim Basin is also called \"The Western Regions\" by the Han, and represents the furthest extent of their power.\n"
 "\n"
 "The basin itself is bereft of life  and offers little in the way of defensibility. The rugged mountain valleys harbor the only life, in the form of hearty shrub and tree species and some goats."
-msgstr ""
+msgstr "Uma bacia desértica estéril cercada por vales montanhosos, a Bacia de Tarim também é chamada de \"As Regiões Ocidentais\" pelos Han e representa a maior extensão de seu poder.\n\nA própria bacia é desprovida de vida e oferece pouco em termos de defesa. Os vales montanhosos escarpados abrigam a única vida, na forma de vigorosas espécies arbustivas e arbóreas e algumas cabras."
 
 #: maps/skirmishes/tarim_basin_2p.xml:Name:39
 msgid "Tarim Basin (2)"
-msgstr ""
+msgstr "Bacia do Tarim (2)"
 
 #: maps/skirmishes/tarim_basin_4p.xml:Name:39
 msgid "Tarim Basin (4)"
-msgstr ""
+msgstr "Bacia do Tarim (4)"
 
 #: maps/skirmishes/team_oasis_2pv2p.xml:Description:38
 msgid ""
@@ -3257,7 +3259,7 @@ msgid ""
 "Teams are set by the map script, but can be altered by the players in setup if they wish to play the map contrary to the scenario defined by the designer. In that case, the game host should set a ceasefire so that the players in the boats can land peacefully and attempt to find a suitable place to plant their first settlements.\n"
 "\n"
 "Assigned civilizations are merely suggestions, and the host should set starting resources to 1000 so that Civic Centers can be built at the start."
-msgstr ""
+msgstr "Estrangeiros estão invadindo a Britannia. Os britânicos nativos devem lutar contra uma enorme força de invasão inimiga para proteger sua terra natal para a próxima geração!\n\nO jogador 1 são os britânicos. Os jogadores de 2 a 5 são a força de invasão, guarnecidos a bordo de seus navios robustos no canal dos Penhascos Brancos de Dover.\n\nAs equipes são definidas pelo script do mapa, mas podem ser alteradas pelos jogadores na configuração, caso desejem jogar o mapa contrário ao cenário definido pelo designer. Nesse caso, o anfitrião do jogo deve estabelecer um cessar-fogo para que os jogadores nos barcos possam desembarcar pacificamente e tentar encontrar um local adequado para plantar seus primeiros assentamentos.\n\nAs civilizações atribuídas são apenas sugestões, e o anfitrião deve definir os recursos iniciais para 1000 para que os Centros Cívicos possam ser construídos no início."
 
 #: maps/skirmishes/white_cliffs_of_dover_5p.xml:Name:39
 msgid "White Cliffs of Dover (5)"
@@ -3294,8 +3296,8 @@ msgid ""
 "Players start the match nestled in their own province with 1 free Persian temple. Access to untapped resources and territories can be found through the rugged hinterlands, but is also chock full of dangerous animals, such as Asian bears and Caspian tigers.\n"
 "\n"
 "The central valley is wide open for expansion, with an unclaimed Civic Center, farms, and Trading Posts. Cliffs along the valley's edge may offer vantage points for defensive or offensive fortifications."
-msgstr ""
+msgstr "As montanhas protegendo a pátria persa, abrangendo Persis, Susiana e Media. Este mapa simula os muitos vales e pontos de estrangulamento que cruzam a cordilheira.\n\nOs jogadores começam a partida em sua própria província com 1 templo persa grátis. O acesso a recursos e territórios inexplorados pode ser encontrado no interior acidentado, mas também está repleto de animais perigosos, como ursos asiáticos e tigres do Cáspio.\n\nO vale central está aberto para expansão, com um Centro Cívico não reclamado, fazendas e Feitorias. As falésias ao longo da borda do vale podem oferecer pontos de vantagem para fortificações defensivas ou ofensivas."
 
 #: maps/skirmishes/zagros_mountains_2p.xml:Name:39
 msgid "Zagros Mountains (2 players)"
-msgstr ""
+msgstr "Montanhas Zagros (2 jogadores)"

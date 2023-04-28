@@ -15,10 +15,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-02 21:44+0000\n"
+"POT-Creation-Date: 2023-03-10 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2019,2021-2023\n"
-"Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
+"Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -91,7 +91,7 @@ msgstr "도시 단계에서 잠금해제합니다."
 
 #: simulation/data/technologies/agoge.jsontooltip
 msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr "정예 창보병의 체력이 +25% 증가하지만, 훈련 시간이 +5% 증가합니다."
+msgstr "전사 장창병의 체력이 +25% 증가하지만, 훈련 시간이 +5% 증가합니다."
 
 #: simulation/data/technologies/archer_attack_spread.jsondescription
 msgid "Encouraging soldiers to practice archery improves their accuracy."
@@ -258,7 +258,7 @@ msgstr "말 사육"
 
 #: simulation/data/technologies/cavalry_health.jsontooltip
 msgid "Cavalry +10% health."
-msgstr "기병의 체력이 +10% 증가합니다."
+msgstr "기마병의 체력이 +10% 증가합니다."
 
 #: simulation/data/technologies/cavalry_movement_speed.jsondescription
 msgid "Train your horses to move faster."
@@ -270,7 +270,7 @@ msgstr "경마"
 
 #: simulation/data/technologies/cavalry_movement_speed.jsontooltip
 msgid "Cavalry +10% walk speed."
-msgstr "기마의 보행 속도가 +10% 빨라집니다."
+msgstr "기마병의 보행 속도가 +10% 빨라집니다."
 
 #: simulation/data/technologies/civbonuses/cart_walls.jsondescription
 msgid ""
@@ -303,15 +303,15 @@ msgstr "건축물의 건설 시간이 -20%, 내구력이 -20%, 점령 포인트�
 msgid ""
 "The Gauls were well-known for their effective cavalry. Celtic mercenaries "
 "were in demand throughout the Mediterranean."
-msgstr "갈리아인은 효과적인 기병으로 유명했습니다. 켈트족 용병들은 지중해 전역에 걸쳐 수요가 있었습니다."
+msgstr "갈리아인은 효과적인 기마병으로 유명했습니다. 켈트족 용병들은 지중해 전역에 걸쳐 수요가 있었습니다."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsongenericName
 msgid "Superior Cavalry"
-msgstr "상급 기병"
+msgstr "상급자 기마병"
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsontooltip
 msgid "Cavalry +10% melee attack damage."
-msgstr "기병의 근접 공격 피해량이 +10% 증가합니다."
+msgstr "기마병의 근접 공격 피해량이 +10% 증가합니다."
 
 #: simulation/data/technologies/civbonuses/greek_structures.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
@@ -391,7 +391,7 @@ msgid ""
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr "마우리아 제국은 5백만 평방 킬로미터에 걸쳐 인구 6천만 명에 가까운 이전에 독립한 수십 개의 왕국을 포함했습니다. 마우리아 섭정들은 황제의 칭호를 가지고 있었고 60만 명의 보병, 9,000 마리의 코끼리, 8,000대의 전차, 그리고 30,000명의 기병으로 구성된 상비군을 지휘했고, 확실히 그 시대의 가장 큰 군대가 되었습니다."
+msgstr "마우리아 제국은 5백만 평방 킬로미터에 걸쳐 인구 6천만 명에 가까운 이전에 독립한 수십 개의 왕국을 포함했습니다. 마우리아 섭정들은 황제의 칭호를 가지고 있었고 60만 명의 보병, 9,000 마리의 코끼리, 8,000대의 전차, 그리고 30,000명의 기마병으로 구성된 상비군을 지휘했고, 확실히 그 시대의 가장 큰 군대가 되었습니다."
 
 #: simulation/data/technologies/civbonuses/maur_population.jsongenericName
 msgid "Emperor of Emperors"
@@ -423,7 +423,7 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr "페르시아인들은 전시 기간 동안 아케메네스 제국의 규모와 설립 방식으로 인해 많은 수의 보병을 징집할 수 있었고 또 징집했습니다. 일반적으로 페르시아 보병은 잘 훈련되었고 매우 끈기 있게 싸웠습니다. 하지만 보병은 서로가 서투른 근접 전투병들이었습니다. 또한 중추 부대를 제외하고 페르시아 보병은 상비군이 아니었습니다."
+msgstr "페르시아인들은 아케메네스 제국의 규모와 조직 방식 때문에 전쟁 중에 많은 보병을 동원할 수 있었고 실제로 그렇게 했습니다. 일반적으로 페르시아 보병은 잘 훈련되었고 매우 끈질기게 싸웠습니다. 하지만 백병전에 능숙하지 못했고, 근접전에는 취약했습니다. 또한 정예 연대를 제외하고 페르시아 보병은 상비군이 아니었습니다."
 
 #: simulation/data/technologies/civbonuses/pers_population.jsongenericName
 msgid "Great King's Levy"
@@ -450,8 +450,8 @@ msgstr "집 및 경제 시설의 목재 비용, 내구도, 점령 포인트가 -
 #: simulation/data/technologies/civbonuses/sele_farms.jsondescription
 msgid ""
 "The Seleucid empire was located in a highly fertile region with productive "
-"soils. Farms are cheaper and faster to build,"
-msgstr "셀레우코스 제국은 생산적인 토양을 가진 매우 비옥한 지역에 위치했습니다. 농장은 더 싸고 더 빨리 지을 수 있습니다."
+"soils. Farms are cheaper and faster to build."
+msgstr "셀레우코스 제국은 다작이 가능한 토질을 가진 비옥한 지역에 위치해 있었습니다. 농장은 더 저렴하고 빠르게 건설할 수 있습니다."
 
 #: simulation/data/technologies/civbonuses/sele_farms.jsongenericName
 msgid "Fertile Crescent"
@@ -527,7 +527,7 @@ msgstr "석궁 훈련"
 
 #: simulation/data/technologies/crossbow_training.jsontooltip
 msgid "Crossbow Infantry −20% train time."
-msgstr "석궁 보병의 훈련 시간이 -20% 감소합니다."
+msgstr "석궁병의 훈련 시간이 -20% 감소합니다."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -546,7 +546,7 @@ msgstr "말 수송"
 
 #: simulation/data/technologies/equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train Cavalry."
-msgstr "페니키아 3단노선은 기병을 훈련할 수 있는 능력을 얻습니다."
+msgstr "페니키아 3단노선은 기마병을 훈련할 수 있는 능력을 얻습니다."
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsondescription
 msgid "Salting allows to preserve fish longer."
@@ -558,7 +558,7 @@ msgstr "물고기를 소금에 절이기"
 
 #: simulation/data/technologies/fishing_boat_gather_capacity.jsontooltip
 msgid "Fishing Boats +20 food capacity."
-msgstr "고기잡이 배가 잡아들이는 물고기양이 +20 증가합니다."
+msgstr "낚싯배의 식량 수용력이 +20 증가합니다."
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsondescription
 msgid "Use nets to improve the productivity of fishing boats."
@@ -570,7 +570,7 @@ msgstr "물고기잡이 그물"
 
 #: simulation/data/technologies/fishing_boat_gather_rate.jsontooltip
 msgid "Fishing Boats +30% fish gather rate."
-msgstr "고기잡이 배가 잡아들이는 물고기양이 +30% 증가합니다."
+msgstr "낚싯배의 물고기 수확률이 +30% 증가합니다."
 
 #: simulation/data/technologies/garrison_heal.jsondescription
 msgid "Units regain health over time while garrisoned."
@@ -838,7 +838,7 @@ msgstr "일꾼의 과일 채집률이 +15% 증가합니다."
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing and vision range of all healers."
-msgstr "모든 치료사들의 치유와 시야 범위가 증가합니다."
+msgstr "모든 치유사들의 치유와 시야 범위가 증가합니다."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
@@ -855,7 +855,7 @@ msgstr "올림픽 판테온"
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +5 healing range."
-msgstr "치료사의 치유 범위가 +5 증가합니다."
+msgstr "치유사들의 치유 범위가 +5 증가합니다."
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
@@ -868,7 +868,7 @@ msgstr "아카데메이아"
 #: simulation/data/technologies/heal_rate.jsondescription
 #: simulation/data/technologies/heal_rate_2.jsondescription
 msgid "Increases the healing rate of all healers."
-msgstr "모든 치료사의 치유 속도가 증가합니다."
+msgstr "모든 치유사들의 치유 속도가 증가합니다."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -885,7 +885,7 @@ msgstr "스파지아"
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers −20% healing time."
-msgstr "치료사의 치료 시간이 −20% 감소합니다."
+msgstr "치유사들의 치유 시간이 −20% 감소합니다."
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
@@ -931,7 +931,7 @@ msgid ""
 "Beginning with Alexander, the Hellenistic monarchs founded many cities "
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
-msgstr "알렉산더를 시작으로 헬레니즘의 군주들은 그들의 제국 전체에 걸쳐 많은 도시를 세웠는데, 그리스 문화와 예술이 지방의 풍습과 어우러져 혼합된 헬레니즘 문명을 만들었습니다."
+msgstr "알렉산드로스를 시작으로 헬레니즘의 군주들은 그들의 제국 전체에 걸쳐 많은 도시를 세웠는데, 그리스 문화와 예술이 지방의 풍습과 어우러져 혼합된 헬레니즘 문명을 만들었습니다."
 
 #: simulation/data/technologies/hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -947,7 +947,7 @@ msgstr "중갑보병 병사들은 그리스 군대의 대부분을 구성했습�
 
 #: simulation/data/technologies/hoplite_tradition.jsongenericName
 msgid "Hoplite Tradition"
-msgstr "전통 장갑보병"
+msgstr "장갑보병 전통"
 
 #: simulation/data/technologies/hoplite_tradition.jsontooltip
 msgid "Hoplites −25% training time and −50% promotion experience."
@@ -957,7 +957,7 @@ msgstr "중갑보병의 훈련 시간이 -25% 및 진급 경험치가 -50% 감�
 msgid ""
 "The Achaemenids maintained a 10,000-strong elite corps, referred to as "
 "Athanatoi (“Immortals”) by Greek authors."
-msgstr "아케메네스는 그리스 작가들에 의해 아타나토이(“이모탈”)라고 불리는 10,000 명의 중추 군단을 유지했습니다."
+msgstr "아케메네스는 그리스 작가들에 의해 아타나토이(“이모탈”)라고 불리는 10,000 명의 정예 군단을 유지했습니다."
 
 #: simulation/data/technologies/immortals.jsongenericName
 msgid "Immortals"
@@ -989,7 +989,7 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr "아테네의 장성은 만만찮은 테미스토클레스의 후원하에 지어졌으며 도시에서 피레우스 항구까지 6km가 확장되었습니다. 이것은 도시의 보급로를 확보하고 적의 포위 공격 중에도 도시가 굶어 죽지 못하도록 막았습니다."
+msgstr "아테네의 긴 성벽은 책략가인 테미스토클레스의 후원하에 건설되었으며 도시에서 피레우스 항구까지 6km를 확장했습니다. 이를 통해 도시의 해상 보급로를 확보하고 적국의 포위 공격으로 도시가 굶어 죽는 것을 방지할 수 있었습니다."
 
 #: simulation/data/technologies/long_walls.jsongenericName
 msgid "Athenian Long Walls"
@@ -1016,7 +1016,7 @@ msgstr "니시오이"
 
 #: simulation/data/technologies/nisean_horses.jsontooltip
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
-msgstr "정예 창보병의 체력이 +20% 증가하지만, 훈련 시간이 +10% 증가합니다."
+msgstr "전사 기마 창병의 체력이 +20% 증가하지만, 훈련 시간이 +10% 증가합니다."
 
 #: simulation/data/technologies/outpost_vision.jsondescription
 msgid "Increases outpost vision."
@@ -1054,7 +1054,7 @@ msgstr "다프네의 퍼레이드"
 
 #: simulation/data/technologies/parade_of_daphne.jsontooltip
 msgid "Champions −20% training time."
-msgstr "정예병 훈련 시간이 −20% 줄어듭니다."
+msgstr "전사 훈련 시간이 −20% 줄어듭니다."
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
@@ -1273,7 +1273,7 @@ msgstr "개혁군"
 
 #: simulation/data/technologies/reformed_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
-msgstr "정예 검보병을 잠금해제합니다."
+msgstr "전사 검병을 잠금해제합니다."
 
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""
@@ -1325,7 +1325,7 @@ msgstr "상급 공성무기"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "Siege Engines +25% attack crush damage."
-msgstr "공성 무기의 격파 공격 피해량이 +25% 증가합니다."
+msgstr "공성 무기의 진압 공격 피해량이 +25% 증가합니다."
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy."
@@ -1388,7 +1388,7 @@ msgstr "상인의 국제 교역 보너스가 +20% 증가합니다."
 msgid ""
 "The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
 "the Macedonian army."
-msgstr "은색 방패 부대, 또는 아르기라스피다이는 마케도니아 군대의 중추 중보병 부대였습니다."
+msgstr "은색 방패 부대, 또는 아르기라스피다이는 마케도니아 군대의 정예 중갑 보병 부대였습니다."
 
 #: simulation/data/technologies/silvershields.jsongenericName
 msgid "Silver Shields Regiment"
@@ -1398,7 +1398,7 @@ msgstr "은색 방패 연대"
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr "방패지기 정예 보병을 은색 방패로 업그레이드하여 더 많은 부상과 공격 피해를 입힙니다."
+msgstr "방패지기 전사 보병을 은색 방패로 업그레이드하여 더 많은 부상과 공격 피해를 입힙니다."
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsondescription
 msgid ""
@@ -1454,19 +1454,19 @@ msgstr "병사들의 근접 공격 피해량이 +20% 증가합니다."
 msgid ""
 "Secret steel working techniques give sword blades distinctive and beautiful "
 "markings. Not only that, but the steel's hardness is unparalleled."
-msgstr "비밀 강철 작업 기법은 칼날에 독특하고 아름다운 자국이 나타납니다. 그뿐만 아니라 강철의 경도도 비교할 데가 없습니다."
+msgstr "비밀 강철 가공 기술로 칼날에 독특하고 아름다운 무늬를 새겨 넣었습니다. 뿐만 아니라 강철의 경도는 타의 추종을 불허합니다."
 
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsongenericName
 msgid "Steel Working"
-msgstr "강철 채굴장"
+msgstr "강철 가공"
 
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsonspecificName.iber
 msgid "Toledo Steel"
-msgstr "톨레도 철강"
+msgstr "톨레도 강철(스페인)"
 
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsonspecificName.maur
 msgid "Wootz Steel"
-msgstr "인도제 철강"
+msgstr "우츠 강철(인도)"
 
 #: simulation/data/technologies/soldier_attack_melee_03_variant.jsontooltip
 msgid ""
@@ -1531,7 +1531,7 @@ msgstr "스포라스"
 #: simulation/data/technologies/soldier_resistance_hack_01.jsontooltip
 #: simulation/data/technologies/soldier_resistance_hack_02.jsontooltip
 msgid "Soldiers +1 hack resistance."
-msgstr "병사들의 난도질 저항이 +1 증가합니다."
+msgstr "병사들의 난도질 방어력이 +1 증가합니다."
 
 #: simulation/data/technologies/soldier_resistance_hack_02.jsondescription
 msgid "Body armor made from laminated linen."
@@ -1559,7 +1559,7 @@ msgstr "미늘 갑옷"
 
 #: simulation/data/technologies/soldier_resistance_hack_03.jsontooltip
 msgid "Soldiers +2 hack resistance."
-msgstr "병사들의 난도질 저항이 +2 증가합니다."
+msgstr "병사들의 난도질 방어력이 +2 증가합니다."
 
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsondescription
 msgid ""
@@ -1574,7 +1574,7 @@ msgstr "나무 방패"
 #: simulation/data/technologies/soldier_resistance_pierce_01.jsontooltip
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsontooltip
 msgid "Soldiers +1 pierce resistance."
-msgstr "병사들의 관통 저항력이 +1 증가합니다."
+msgstr "병사들의 찌르기 방어력이 +1 증가합니다."
 
 #: simulation/data/technologies/soldier_resistance_pierce_02.jsondescription
 msgid "Strengthen shields with a metal rim or spine."
@@ -1594,7 +1594,7 @@ msgstr "향상된 방패 합금"
 
 #: simulation/data/technologies/soldier_resistance_pierce_03.jsontooltip
 msgid "Soldiers +2 pierce resistance."
-msgstr "병사들의 관통 저항력이 +2 증가합니다."
+msgstr "병사들의 찌르기 방어력이 +2 증가합니다."
 
 #: simulation/data/technologies/spy_counter.jsondescription
 msgid "Recruit a network of informants to watch over your people."
@@ -1612,7 +1612,7 @@ msgstr "뇌물로 유닛을 50 % 더 비싸게 만듭니다."
 msgid ""
 "Significantly increase training speed of cavalry by training them in large "
 "batches or squadrons."
-msgstr "기병을 대규모 무리 또는 편대에서 훈련시켜 기병의 훈련 속도를 크게 향상시킵니다."
+msgstr "기마병을 대규모 무리 또는 편대에서 훈련시켜 기마병의 훈련 속도를 크게 향상시킵니다."
 
 #: simulation/data/technologies/stable_batch_training.jsontooltip
 msgid "Stables −10% batch training time."
@@ -1640,11 +1640,11 @@ msgstr "얼음 저장고의 매초 조금씩 나오는 음식 속도가 +1 증�
 msgid ""
 "Crenellations on the battlements allow soldiers wider range of fire in "
 "defending a keep."
-msgstr "총안을 낸 흉벽에서 총안은 수비하는것을 유지하는중에 병사들이 더 넓은 공격범위를 허용합니다."
+msgstr "흉벽의 사구를 사용하면 병사들이 성채를 방어할 때 더 넓은 사격 범위를 확보할 수 있습니다."
 
 #: simulation/data/technologies/tower_crenellations.jsongenericName
 msgid "Crenellations"
-msgstr "총안"
+msgstr "사구"
 
 #: simulation/data/technologies/tower_crenellations.jsontooltip
 msgid "Sentry and Stone Towers +40% more arrows per garrisoned Soldier."
@@ -1766,7 +1766,7 @@ msgstr "전통군"
 
 #: simulation/data/technologies/traditional_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Pikeman."
-msgstr "정예 단창보병을 잠금해제합니다."
+msgstr "전사 단창병을 잠금해제합니다."
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
@@ -1774,7 +1774,7 @@ msgid ""
 "attack strength, +20% loot, and −30% gather speed; Healers +5 healing "
 "strength and +3 healing range; Melee units +1 resistance and +20% attack "
 "damage; Ranged units −20% spread."
-msgstr "상급 유닛들 및 엘리트 유닛들의 훈련 시간이 +20%, 체력이 +25%, 점령 공격력이 +0.7, 노획물이 +20% 증가하고, 수집 속도가 −30% 감소합니다; 치료사의 치유력이 +5, 치유 범위가 +3 증가합니다; 근접 유닛의 저항력이 +1, 공격 피해량이 +20% 증가합니다; 원거리 유닛의 전개가 -20% 감소합니다."
+msgstr "상급병 유닛들 및 정예병 유닛들의 훈련 시간이 +20%, 체력이 +25%, 점령 공격력이 +0.7, 전리품이 +20% 증가하고, 수집 속도가 −30% 감소합니다; 치유사들의 치유력이 +5, 치유 범위가 +3 증가합니다; 근접 유닛의 방어력이 +1, 공격 피해량이 +20% 증가합니다; 원거리 유닛의 전개가 -20% 감소합니다."
 
 #: simulation/data/technologies/unit_elite.jsontooltip
 msgid ""
@@ -1782,7 +1782,7 @@ msgid ""
 "+20% loot, and −30% gather speed; Healers +5 healing strength and +3 healing"
 " range; Melee units +1 resistance and +20% attack damage; Ranged units −20% "
 "spread."
-msgstr "엘리트 유닛의 훈련 시간이 +20%, 체력이 +25%, 점령 공격력이 +0.8, 노획물이 +20% 증가하고, 수집 속도가 −30% 감소합니다; 치료사의 치유력이 +5, 치유 범위가 +3 증가합니다; 근접 유닛의 저항력이 +1, 공격 피해량이 +20% 증가합니다; 원거리 유닛의 전개가 -20% 감소합니다."
+msgstr "정예병 유닛의 훈련 시간이 +20%, 체력이 +25%, 점령 공격력이 +0.8, 전리품이 +20% 증가하고, 수집 속도가 −30% 감소합니다; 치유사들의 치유력이 +5, 치유 범위가 +3 증가합니다; 근접 유닛의 방어력이 +1, 공격 피해량이 +20% 증가합니다; 원거리 유닛의 전개가 -20% 감소합니다."
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsondescription
 #: simulation/data/technologies/unlock_champion_chariots.jsondescription
@@ -1790,27 +1790,27 @@ msgstr "엘리트 유닛의 훈련 시간이 +20%, 체력이 +25%, 점령 공격
 msgid ""
 "Guard units (Champions) are professionals who wield the best weapons and "
 "have the best training."
-msgstr "호위 유닛(정예병)은 최고의 무기를 휘두르며 최고의 훈련을 받은 전문가입니다."
+msgstr "호위 유닛(전사)은 최고의 무기를 휘두르며 최고의 훈련을 받은 전문가입니다."
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsongenericName
 msgid "Unlock Champion Cavalry"
-msgstr "정예 기병 잠금해제"
+msgstr "전사 기마병 잠금해제"
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsontooltip
 msgid "Unlock Champion Cavalry at the Stable."
-msgstr "사육장에서 정예 기병의 잠금을 해제합니다."
+msgstr "사육장에서 전사 기마병의 잠금을 해제합니다."
 
 #: simulation/data/technologies/unlock_champion_chariots.jsongenericName
 msgid "Unlock Champion Chariots"
-msgstr "정예 전차 잠금해제"
+msgstr "전사 전차 잠금해제"
 
 #: simulation/data/technologies/unlock_champion_chariots.jsontooltip
 msgid "Unlock Champion Chariots at the Stable."
-msgstr "사육장에서 정예 전차의 잠금을 해제합니다."
+msgstr "사육장에서 전사 전차의 잠금을 해제합니다."
 
 #: simulation/data/technologies/unlock_champion_infantry.jsongenericName
 msgid "Unlock Champion Infantry"
-msgstr "정예 보병 잠금해제"
+msgstr "전사 보병 잠금해제"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.ptol
@@ -1823,7 +1823,7 @@ msgstr "레기오 코호로스"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsontooltip
 msgid "Unlock Champions Infantry at the Barracks."
-msgstr "병영에서 정예 보병의 잠금을 해제합니다."
+msgstr "병영에서 전사 보병의 잠금을 해제합니다."
 
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."
@@ -1918,7 +1918,7 @@ msgstr "불가사의는 더 많은 사람들이 당신의 문명으로 끌어다
 
 #: simulation/data/technologies/wonder_population_cap.jsongenericName
 msgid "Glorious Expansion"
-msgstr "명성 전파"
+msgstr "명성의 전개"
 
 #: simulation/data/technologies/wonder_population_cap.jsonspecificName.athen
 #: simulation/data/technologies/wonder_population_cap.jsonspecificName.mace
@@ -1932,4 +1932,4 @@ msgstr "페리스타시스"
 msgid ""
 "Enable the “Glorious Expansion” aura: +20% maximum population limit per "
 "Wonder owned."
-msgstr "“영광스러운 확장” 아우라 활성화: 불가사의 소유당 최대 인구수가 +20% 증가합니다."
+msgstr "“명성의 전개” 아우라 활성화: 불가사의 소유당 최대 인구수가 +20% 증가합니다."

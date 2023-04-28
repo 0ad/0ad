@@ -7,6 +7,7 @@
 # Andrei Cosma
 # Andy Bunea
 # Chris P
+# Dan Chiriac
 # Danila Catalin
 # 1215e59e201d40591278a5898ce04ad4_68d298a
 # Dominik Jastrzębski
@@ -32,10 +33,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-10 08:10+0000\n"
+"POT-Creation-Date: 2023-03-06 08:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: Dominik Jastrzębski, 2022-2023\n"
-"Language-Team: Romanian (http://www.transifex.com/wildfire-games/0ad/language/ro/)\n"
+"Last-Translator: Dan Chiriac, 2023\n"
+"Language-Team: Romanian (http://app.transifex.com/wildfire-games/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -60,7 +61,7 @@ msgstr "Reparații navale"
 
 #: simulation/data/auras/structures/corral_garrison_large.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +3 food."
-msgstr ""
+msgstr "Staționează în țarc ca să câștigi +3 la hrană."
 
 #: simulation/data/auras/structures/corral_garrison_large.jsonauraName
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraName
@@ -70,19 +71,19 @@ msgstr ""
 
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +2 food."
-msgstr ""
+msgstr "Staționează în țarc ca să câștigi +2 la hrană."
 
 #: simulation/data/auras/structures/corral_garrison_small.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +1 food."
-msgstr ""
+msgstr "Staționează în țarc ca să câștigi +1 la hrană."
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
 msgid "Gatherers +75% farming rate around a captured Farmstead."
-msgstr ""
+msgstr "Culegătorii au +75% rata de recoltare în jurul unei gospodării capturate."
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraName
 msgid "Farmland"
-msgstr ""
+msgstr "Fermă"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -166,13 +167,13 @@ msgstr "Soldați cu turnulețe +3 rezistență la strivire, tăiere, străpunger
 
 #: simulation/data/auras/structures/wall_garrisoned.jsonauraName
 msgid "Wall Protection"
-msgstr "Protecția zidului."
+msgstr "Protecție zid."
 
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraDescription
 msgid ""
 "+20% maximum population limit (requires the “Glorious Expansion” "
 "technology)."
-msgstr "+20% limita maximă a populației (necesită tehnologia “Glorious Expansion”)."
+msgstr "+20% limita maximă a populației (necesită tehnologia “Expansiune Glorioasă”)."
 
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
@@ -188,7 +189,7 @@ msgstr "Antrenament Riguros"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Civic center technologies −50% research time and −30% cost."
-msgstr ""
+msgstr "Tehnologile centrului civic -50% timp de cercetare și -30% cost."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Democracy"
@@ -204,7 +205,7 @@ msgstr "Druizi"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Mercenaries −50% train time."
-msgstr ""
+msgstr "Mercenari -50% timp de instruire."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Mercenary Transports"
@@ -216,7 +217,7 @@ msgstr "Forjează -15% costuri de resurse tehnologice și timp de cercetare."
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Products from Gaul"
-msgstr "Produse de Gaul"
+msgstr "Produse din Gaul"
 
 #: simulation/data/auras/teambonuses/han_player_teambonus.jsonauraDescription
 msgid "Allies +20% international trade bonus."
@@ -240,15 +241,15 @@ msgstr "Elefanți -20% costuri de resurse și timp de antrenament."
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
-msgstr "Elefanți Furnizori"
+msgstr "Furnizori de Elefanți"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
 msgid "Siege Weapons and Arsenals −25% resource costs and build time."
-msgstr ""
+msgstr "Arme de Asediu și Arsenale -25% cost de resurse și timp de construire."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Mechanical Innovation"
-msgstr "Inovația mecanic"
+msgstr "Inovația mecanică"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
@@ -378,13 +379,13 @@ msgstr "Când armata romană a rămas fără provizii de hrană, triburilor gali
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_2.jsonauraName
 msgid "Tribute to Rome"
-msgstr "Tributul Romei"
+msgstr "Tribut Romei"
 
 #: simulation/data/auras/units/catafalques/han_catafalque_1.jsonauraDescription
 msgid ""
 "At its height, the Empire's borders spanned from the Fergana Valley in the west, to Korea in the east, and to northern Vietnam in the south.\n"
 "Territory influence bonus +20%."
-msgstr ""
+msgstr "La apogeul său, granițele Imperiului se întindeau de la Valea Fergana în vest, până la Coreea în est și până la nordul Vietnamului în sud.\nBonus de influență a teritoriului +20%."
 
 #: simulation/data/auras/units/catafalques/han_catafalque_1.jsonauraName
 msgid "Territorial Expansion"
@@ -394,7 +395,7 @@ msgstr "Extindere teritorială"
 msgid ""
 "The Music Bureau was charged directly by Emperor Wu to perform various tasks related to music, poetry, entertainment, or religious worship.\n"
 "Technologies −50% resource cost and research time."
-msgstr ""
+msgstr "Biroul de Muzică a fost însărcinat direct de împăratul Wu să îndeplinească diverse sarcini legate de muzică, poezie, divertisment sau închinare religioasă.\nTehnologii −50% costul resurselor și timpul de cercetare."
 
 #: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraName
 msgid "Imperial Music Bureau"
@@ -454,7 +455,7 @@ msgstr "Prăduitorul de orașe"
 msgid ""
 "Allied with Rome, Philip reorganized the country's internal affairs and finances, leaving as a legacy reopened mines and a new currency.\n"
 "Gain a slow trickle of metal."
-msgstr ""
+msgstr "Aliat cu Roma, Filip a reorganizat afacerile interne și finanțele țării, lăsând ca moștenire minele redeschise și o nouă monedă.\nObțineți un venit lent de metal."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque_2.jsonauraName
 msgid "Financial Reorganization"
@@ -488,7 +489,7 @@ msgstr "De-a lungul domniei sale, o mare parte din averea lui Artaxerxe a fost c
 
 #: simulation/data/auras/units/catafalques/pers_catafalque.jsonauraName
 msgid "Great Builder"
-msgstr "Mare Construitor"
+msgstr "Mare Constructor"
 
 #: simulation/data/auras/units/catafalques/ptol_catafalque.jsonauraDescription
 msgid ""
@@ -579,7 +580,7 @@ msgstr " Pelanori de fier"
 msgid ""
 "Melee Soldiers +10% attack damage and all Soldiers −25% experience points "
 "for promotion."
-msgstr ""
+msgstr "Soldații corp la corp +10% daune la atac și toți soldații −25% puncte de experiență pentru promovare."
 
 #: simulation/data/auras/units/centurion.jsonauraName
 msgid "Combat Leadership"
@@ -587,7 +588,7 @@ msgstr ""
 
 #: simulation/data/auras/units/han_minister_building.jsonauraDescription
 msgid "Builders construct buildings +2% faster for every nearby Minister."
-msgstr ""
+msgstr "Constructorii construiesc clădiri cu +2% mai repede pentru fiecare preot din apropiere."
 
 #: simulation/data/auras/units/han_minister_building.jsonauraName
 msgid "Building Programs"
@@ -611,7 +612,7 @@ msgstr ""
 
 #: simulation/data/auras/units/han_minister_garrison_ministry.jsonauraName
 msgid "Nationalized Industries"
-msgstr "Naționalizarea industriilor"
+msgstr "Industrii Naționalizate"
 
 #: simulation/data/auras/units/han_minister_gathering.jsonauraDescription
 msgid "Gatherers +2% gathering rate for every nearby Minister."
@@ -963,10 +964,8 @@ msgid "Buddhism"
 msgstr "Budism"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
-msgid ""
-"When garrisoned, the Structure's technologies have −20% resource cost and "
-"−50% research time."
-msgstr "Atunci când se află în garnizoană, tehnologiile structurii au un cost al resurselor de -20% și un timp de cercetare de -50%."
+msgid "All technologies have −20% resource cost and −30% research time."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
@@ -975,6 +974,24 @@ msgstr "Profesor"
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
 msgstr "Regenerare"
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraDescription
+msgid ""
+"Soldiers +10% melee and ranged attack damage, +1 crush, hack, pierce "
+"resistance."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraName
+msgid "Empire Maker"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraDescription
+msgid "Elephants +15% attack rate, +10% movement speed."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraName
+msgid "Elephant Corps"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraDescription
 msgid ""
