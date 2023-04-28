@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# Copyright (C) 2022 Wildfire Games.
+# Copyright (C) 2023 Wildfire Games.
 # This file is part of 0 A.D.
 #
 # 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,7 +32,6 @@ from i18n_helper import l10nFolderName, transifexClientFolder, projectRootDirect
 
 def main():
     # Prepare some regexes.
-    commentMatch = re.compile('#.*')
     translatorMatch = re.compile("(# [^,<]*)(?: <.*>)?(?:, [0-9,-]{4,9})")
     lastTranslatorMatch = re.compile("(\"Last-Translator: [^,<]*)(?: <.*>)?( ?\\\\n\")")
 
@@ -45,7 +44,7 @@ def main():
                     for file in files:
                         usernames = []
                         reached = False
-                        for line in fileinput.input(file.replace("\\", "/"), inplace=1):
+                        for line in fileinput.input(file.replace("\\", "/"), inplace=True, encoding="utf-8"):
                             if reached:
                                 if line == "# \n":
                                    line = ""
