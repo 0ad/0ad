@@ -19,10 +19,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-10 08:10+0000\n"
+"POT-Creation-Date: 2023-03-06 08:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: Szabó Lambert, 2021-2022\n"
-"Language-Team: Hungarian (http://www.transifex.com/wildfire-games/0ad/language/hu/)\n"
+"Last-Translator: Szabó Lambert, 2021-2023\n"
+"Language-Team: Hungarian (http://app.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -69,7 +69,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraName
 msgid "Farmland"
-msgstr ""
+msgstr "Termőföld"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -175,11 +175,11 @@ msgstr "Szigorú kiképzés"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Civic center technologies −50% research time and −30% cost."
-msgstr ""
+msgstr "−50% kutatási idő és −30% nyersanyagigény a városházákban kutatható fejlesztéseknek"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Democracy"
-msgstr ""
+msgstr "Demokrácia"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
@@ -191,7 +191,7 @@ msgstr "Druidák"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Mercenaries −50% train time."
-msgstr ""
+msgstr "−50% kiképzési idő a zsoldosoknak"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Mercenary Transports"
@@ -249,7 +249,7 @@ msgstr "Asóka vallási támogatása"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Barracks and Stables −20% wood and stone cost and build time."
-msgstr ""
+msgstr "−20% fa- és kőigény, illetve −20% építési idő a kaszárnyáknak és az istállóknak"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "Training Regimes"
@@ -345,7 +345,7 @@ msgstr "A karthágói nehézlovasság vezetője Trebiában és Cannae-nál, ahol
 
 #: simulation/data/auras/units/catafalques/cart_catafalque.jsonauraName
 msgid "Commander of Heavy Cavalry"
-msgstr "Nehéz lovassági parancsnok"
+msgstr "A nehézlovasság parancsnoka"
 
 #: simulation/data/auras/units/catafalques/gaul_catafalque_1.jsonauraDescription
 msgid ""
@@ -638,7 +638,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Technologies −10% resource costs, −50% research time."
-msgstr ""
+msgstr "−10% nyersanyagigény és −50% kutatási idő minden fejlesztésnek"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Scholarship and the Arts"
@@ -646,7 +646,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid "−50% metal cost, Ships −50% construction time, +15% move speed."
-msgstr ""
+msgstr "−50% fémigény, −50% építési idő és +15% mozgási sebesség minden hajónak"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Preparation"
@@ -654,11 +654,11 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "Walls and Palisades −50% resource costs and −20% construction time."
-msgstr ""
+msgstr "−50% nyersanyagigény és −20% építési idő a falaknak és a palánkoknak"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Themistoclean Walls"
-msgstr ""
+msgstr "Themisztoklész-féle fal"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid ""
@@ -755,7 +755,7 @@ msgstr "Északi hadsereg"
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_2.jsonauraDescription
 msgid "Own and Allied Soldiers +25% vision range."
-msgstr ""
+msgstr "+25% látótávolság mind az általad, mind a szövetségeid által irányított katonáknak"
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_2.jsonauraName
 msgid "Southern Army"
@@ -886,7 +886,7 @@ msgstr "Hadihajók ajándéka"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraDescription
 msgid "Soldiers +10% attack damage, +15% movement speed."
-msgstr ""
+msgstr "+10% sebzés és +15% mozgási sebesség a katonáknak"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraName
 msgid "Rapid Conquest"
@@ -894,11 +894,11 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraDescription
 msgid "Enemy Soldiers, Structures −10% attack damage."
-msgstr ""
+msgstr "−10% sebzés az ellenség katonáinak és építményeinek"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
 msgid "Undefeated"
-msgstr ""
+msgstr "Veretlen"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_3.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
@@ -950,10 +950,8 @@ msgid "Buddhism"
 msgstr "Buddhizmus"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
-msgid ""
-"When garrisoned, the Structure's technologies have −20% resource cost and "
-"−50% research time."
-msgstr "Beszállásolva −20% nyersanyagköltség és −50% kutatási idő az épületfejlesztéseknél."
+msgid "All technologies have −20% resource cost and −30% research time."
+msgstr "−20% nyersanyagigény és −30% kutatási idő minden fejlesztésnek"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
@@ -962,6 +960,24 @@ msgstr "Tanár"
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
 msgstr "Regeneráció"
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraDescription
+msgid ""
+"Soldiers +10% melee and ranged attack damage, +1 crush, hack, pierce "
+"resistance."
+msgstr "+10% közelharci és távolsági sebzés, illetve +1 zúzással, vágással és szúrással szembeni ellenállás a katonáknak"
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraName
+msgid "Empire Maker"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraDescription
+msgid "Elephants +15% attack rate, +10% movement speed."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraName
+msgid "Elephant Corps"
+msgstr "Elefánthadtest"
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraDescription
 msgid ""

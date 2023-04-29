@@ -24,10 +24,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-01-27 08:09+0000\n"
+"POT-Creation-Date: 2023-03-20 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2021-2023\n"
-"Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
+"Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -117,7 +117,7 @@ msgstr "김나지온"
 
 #: simulation/templates/structures/athen/gymnasium.xml:24
 msgid "Train Champions."
-msgstr "정예병을 훈련합니다."
+msgstr "전사를 훈련합니다."
 
 #: simulation/templates/structures/athen/house.xml:5
 #: simulation/templates/structures/mace/house.xml:5
@@ -518,7 +518,7 @@ msgstr "마크다스"
 
 #: simulation/templates/structures/cart/temple.xml:10
 msgid "Train Healers and Champion Infantry and research healing technologies."
-msgstr "치료사와 정예 보병을 훈련하고 치유 기술을 연구합니다."
+msgstr "치유사들과 전사 보병을 훈련하고 치유 기술을 연구합니다."
 
 #: simulation/templates/structures/cart/tophet.xml:18
 msgid "Sacrificial Temple"
@@ -630,7 +630,7 @@ msgstr "레모간티온"
 
 #: simulation/templates/structures/gaul/assembly.xml:29
 msgid "Train Champion Trumpeters and Heroes."
-msgstr "정예 나팔수와 영웅을 훈련합니다."
+msgstr "전사 나팔수와 영웅을 훈련합니다."
 
 #: simulation/templates/structures/gaul/barracks.xml:18
 msgid "Coriosedlon"
@@ -670,7 +670,7 @@ msgstr "제국 학원"
 
 #: simulation/templates/structures/han/academy.xml:30
 msgid "Train Champions and research their technologies."
-msgstr "정예병을 훈련하고 기술을 연구합니다."
+msgstr "전사를 훈련하고 기술을 연구합니다."
 
 #: simulation/templates/structures/han/academy.xml:31
 msgid "Academy"
@@ -690,10 +690,10 @@ msgstr "관서"
 
 #: simulation/templates/structures/han/civil_centre.xml:33
 msgid ""
-"This greatly increases the health, capture resistance, and garrison capacity"
-" of this specific Civic Center. Unlock training of Heroes here and reduce "
-"its research and batch training times by half."
-msgstr "이것은 이 특정 시민 회관의 내구력, 점령 저항력 및 주둔지 수용력을 크게 증가시킵니다. 여기에서 영웅 훈련을 잠금 해제하고 연구 및 배치 훈련 시간을 절반으로 줄입니다."
+"Enable training of heroes, reduce the batch training times and greatly "
+"increase the health, capture resistance and garrison capacity of this "
+"specific Civic Center."
+msgstr "영웅 훈련을 활성화하고, 일괄 훈련 시간을 줄이며, 이 특정 시민 회관의 내구도, 점령 저항력, 주둔지 수용력을 크게 증가시킵니다."
 
 #: simulation/templates/structures/han/civil_centre_court.xml:17
 msgid "Imperial Court"
@@ -1100,7 +1100,7 @@ msgstr "페레-이페레메케"
 #: simulation/templates/structures/kush/temple.xml:10
 msgid ""
 "Train Healers and Apedemak Champions and research healing technologies."
-msgstr "치료사와 아페데막 정예병을 훈련하고 치유 기술을 연구합니다."
+msgstr "치유사들과 아페데막 전사를 훈련하고 치유 기술을 연구합니다."
 
 #: simulation/templates/structures/kush/temple.xml:11
 msgid "TempleOfApedemak"
@@ -1116,7 +1116,7 @@ msgstr "페레-임네"
 
 #: simulation/templates/structures/kush/temple_amun.xml:29
 msgid "Train Amun Champions and Elite Healers. Research healing technologies."
-msgstr "아문 정예병과 엘리트 치료사를 훈련하고, 치유 기술을 연구합니다."
+msgstr "아문 전사와 정예 치유사들을 훈련합니다. 치유 기술을 연구합니다."
 
 #: simulation/templates/structures/kush/temple_amun.xml:31
 msgid "TempleOfAmun"
@@ -1214,7 +1214,7 @@ msgstr "하르먀"
 
 #: simulation/templates/structures/maur/palace.xml:21
 msgid "Territory root. Train Maiden Guards and Heroes."
-msgstr "영토에 정착합니다. 처녀 경비병과 영웅을 훈련합니다."
+msgstr "영토에 정착합니다. 소녀 경비병과 영웅을 훈련합니다."
 
 #: simulation/templates/structures/maur/pillar_ashoka.xml:32
 msgid "Edict Pillar of Ashoka"
@@ -1289,7 +1289,7 @@ msgstr "이집트 용병 막사"
 msgid "Stratopedeia Misthophorōn"
 msgstr "스트라토페데디아 미스트호프호론"
 
-#: simulation/templates/structures/merc_camp_egyptian.xml:31
+#: simulation/templates/structures/merc_camp_egyptian.xml:32
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
 msgstr "헬레니즘 이집트에서 용병을 훈련하려면, 이 건축물을 점령합니다."
 
@@ -1346,7 +1346,7 @@ msgstr "아파다나"
 #: simulation/templates/structures/pers/apadana.xml:28
 #: simulation/templates/structures/spart/syssiton.xml:25
 msgid "Train Champions and Heroes."
-msgstr "정예병과 영웅을 훈련합니다."
+msgstr "전사와 영웅을 훈련합니다."
 
 #: simulation/templates/structures/pers/apartment_block.xml:12
 msgid "Apartment Block"
@@ -1537,7 +1537,7 @@ msgstr "카스트라"
 msgid ""
 "Build in neutral or enemy territory. Train Advanced Melee Infantry. "
 "Construct Rams. Garrison Soldiers for additional arrows."
-msgstr "중립 또는 적의 영토에 건설합니다. 상급 근접 보병을 훈련합니다. 충차를 건설합니다. 화살 공격이 추가된 병사들을 주둔시킵니다."
+msgstr "중립 또는 적의 영토에 건설합니다. 상급 근접병을 훈련합니다. 충차를 건설합니다. 화살 공격이 추가된 병사들을 주둔시킵니다."
 
 #: simulation/templates/structures/rome/army_camp.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:75
@@ -1947,6 +1947,7 @@ msgstr "스토아"
 #: simulation/templates/structures/han/ministry.xml:39
 #: simulation/templates/structures/iber/monument.xml:34
 #: simulation/templates/structures/maur/elephant_stable.xml:7
+#: simulation/templates/structures/merc_camp_egyptian.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:75
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
@@ -1963,7 +1964,7 @@ msgstr "사원"
 
 #: simulation/templates/template_structure_civic_temple.xml:31
 msgid "Train Healers and research healing technologies."
-msgstr "치료사를 훈련하고 치유 기술을 연구합니다."
+msgstr "치유사들을 훈련하고 치유 기술을 연구합니다."
 
 #: simulation/templates/template_structure_defensive.xml:4
 msgid "Defensive Structure"
@@ -2144,7 +2145,7 @@ msgstr "병기창"
 msgid ""
 "Train Champion Infantry Crossbowmen, construct Siege Engines, and research "
 "Siege Engine technologies."
-msgstr "정예 석궁보병을 훈련하고, 공성 전차를 만들며, 공성 전차 기술을 연구합니다."
+msgstr "전사 석궁병을 훈련하고, 공성 전차를 만들며, 공성 전차 기술을 연구합니다."
 
 #: simulation/templates/structures/gaul/assembly.xml:31
 #: simulation/templates/structures/han/academy.xml:31
@@ -2210,7 +2211,7 @@ msgstr "대장간"
 
 #: simulation/templates/template_structure_military_forge.xml:24
 msgid "Research attack damage and damage resistance technologies."
-msgstr "공격 피해 및 피해 저항 기술을 연구합니다."
+msgstr "공격 피해 및 피해 방어력 기술을 연구합니다."
 
 #: simulation/templates/template_structure_military_fortress.xml:30
 #: simulation/templates/template_structure_military_fortress.xml:65
@@ -2228,7 +2229,7 @@ msgstr "연습 범위"
 
 #: simulation/templates/template_structure_military_range.xml:24
 msgid "Train Ranged Infantry and research technologies."
-msgstr "원거리 보병과 연구 기술을 훈련합니다."
+msgstr "원거리병을 훈련하고 기술을 연구합니다."
 
 #: simulation/templates/template_structure_military_range.xml:25
 msgid "Range"
@@ -2241,7 +2242,7 @@ msgstr "사육장"
 
 #: simulation/templates/template_structure_military_stable.xml:28
 msgid "Train Cavalry and research Cavalry technologies."
-msgstr "기병을 훈련시키고 기병 기술을 연구합니다."
+msgstr "기마병을 훈련시키고 기마병 기술을 연구합니다."
 
 #: simulation/templates/template_structure_resource.xml:4
 msgid "Resource Structure"

@@ -24,7 +24,7 @@ msgstr ""
 "POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
-"Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
+"Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -46,7 +46,7 @@ msgstr "이 메뉴를 전환하려면 %(hotkey)s 키를 누르십시오."
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
-msgstr "대화"
+msgstr "채팅"
 
 #: gui/session/MenuButtons.js:53
 msgid "Save"
@@ -95,12 +95,12 @@ msgstr "게임을 일시정지 또는 다시 시작하려면 %(hotkey)s 키를 �
 
 #: gui/session/MenuButtons.js:237
 msgid "Resign"
-msgstr "기권하기"
+msgstr "항복하기"
 
 #: gui/session/MenuButtons.js:261
 #: gui/session/NetworkStatusOverlay.xml:(caption):9
 msgid "Exit"
-msgstr "끝내기"
+msgstr "나가기"
 
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
@@ -194,7 +194,7 @@ msgstr "적들"
 #: gui/session/chat/ChatAddressees.js:111
 msgctxt "chat message context"
 msgid "Enemy"
-msgstr "적"
+msgstr "적국"
 
 #: gui/session/chat/ChatAddressees.js:121
 msgctxt "chat addressee"
@@ -248,7 +248,7 @@ msgstr "동맹 대화"
 #: gui/session/chat/ChatHistory.js:113
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr "적 대화"
+msgstr "적 대화하기"
 
 #: gui/session/chat/ChatHistory.js:120
 msgctxt "chat history filter"
@@ -293,7 +293,7 @@ msgstr "%(hotkey)s 키를 눌러 동맹 대화창을 엽니다."
 #: gui/session/chat/ChatInput.js:48
 #, javascript-format
 msgid "Press %(hotkey)s to open the previously selected private chat."
-msgstr "이전에 선택한 비공개 대화를 열려면 %(hotkey)s 키를 누르십시오."
+msgstr "이전에 선택한 비공개 채팅을 열려면 %(hotkey)s 키를 누르십시오."
 
 #. Translation: A player that left the game joins again
 #: gui/session/chat/ChatMessageFormatNetwork.js:24
@@ -520,11 +520,11 @@ msgstr "선택 상태 화면표시"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:73
 msgid "Pathfinder overlay"
-msgstr "내비게이션 덧판 보이기"
+msgstr "길잡이 오버레이"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:86
 msgid "Hierarchical pathfinder overlay"
-msgstr "계층형 경로탐색 덧판 보이기"
+msgstr "계급에 따른 길잡이 오버레이"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:99
 msgid "Obstruction overlay"
@@ -548,7 +548,7 @@ msgstr "카메라 제한하기"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:169
 msgid "Reveal map"
-msgstr "지도 공개"
+msgstr "지도 밝히기"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:195
 msgid "Enable time warp"
@@ -627,7 +627,7 @@ msgstr "팀"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):24
 msgid "Theirs"
-msgstr "그들"
+msgstr "관계"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):27
 msgid "A"
@@ -639,7 +639,7 @@ msgstr "중립"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):35
 msgid "E"
-msgstr "적"
+msgstr "적국"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):39
 msgid "Tribute"
@@ -665,7 +665,7 @@ msgstr "외교 색상 변경"
 
 #: gui/session/diplomacy/playercontrols/AttackRequestButton.js:38
 msgid "Request your allies to attack this enemy"
-msgstr "동맹에게 이 적을 공격 요청"
+msgstr "동맹에게 이 적을 공격하도록 요청합니다"
 
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:75
 msgctxt "team"
@@ -685,7 +685,7 @@ msgstr "중립"
 #: gui/session/diplomacy/DiplomacyDialog.xml:(tooltip):36
 #: gui/session/diplomacy/playercontrols/DiplomacyPlayerText.js:84
 msgid "Enemy"
-msgstr "적"
+msgstr "적국"
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:139
 msgid ""
@@ -826,7 +826,7 @@ msgstr "머무르기"
 #: gui/session/message_box/QuitConfirmation.js:19
 #: gui/session/message_box/QuitConfirmationReplay.js:27
 msgid "Quit and View Summary"
-msgstr "종료 및 요약 보기"
+msgstr "종료하고 요약 보기"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:54
 msgid "VICTORIOUS!"
@@ -838,7 +838,7 @@ msgstr "졌습니다!"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:57
 msgid "Do you want to quit?"
-msgstr "그만하시겠습니까?"
+msgstr "종료하고 싶으신가요?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:33
 msgid ""
@@ -847,11 +847,11 @@ msgstr "종료하시겠습니까? 나가면 다른 모든 참가자들과의 연
 
 #: gui/session/message_box/QuitConfirmationMenu.js:47
 msgid "Are you sure you want to quit?"
-msgstr "정말 나가시겠습니까?"
+msgstr "정말 종료하시겠습니까?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:67
 msgid "Do you want to resign or will you return soon?"
-msgstr "항복 하시겠습니까? 아니면 다시 돌아오시겠습니까?"
+msgstr "항복 하시겠습니까, 아니면 곧 다시 복귀하시겠습니까?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:70
 msgid "I will return"
@@ -1034,7 +1034,7 @@ msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:486
 msgid "Loot:"
-msgstr "노획물:"
+msgstr "전리품:"
 
 #. Translation: Used in the trading gain tooltip
 #: gui/session/selection_details.js:547
@@ -1333,7 +1333,7 @@ msgstr "점령 포인트"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):84
 msgid "Attack and Resistance"
-msgstr "공격력 및 저항력"
+msgstr "공격력 및 방어력"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):99
 msgid "Experience"

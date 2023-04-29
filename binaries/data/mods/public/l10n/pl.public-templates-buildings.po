@@ -31,6 +31,7 @@
 # miragae
 # Night Shade
 # zyxist
+# Pomaranczarz
 # Przemysław Murach
 # Robert x
 # slodki12341
@@ -38,10 +39,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-01-27 08:09+0000\n"
+"POT-Creation-Date: 2023-03-20 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: Michał Dariusz Nowakowski, 2022\n"
-"Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
+"Last-Translator: Pomaranczarz, 2023\n"
+"Language-Team: Polish (http://app.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -704,10 +705,10 @@ msgstr "Guān Shǔ"
 
 #: simulation/templates/structures/han/civil_centre.xml:33
 msgid ""
-"This greatly increases the health, capture resistance, and garrison capacity"
-" of this specific Civic Center. Unlock training of Heroes here and reduce "
-"its research and batch training times by half."
-msgstr "Mocno zwiększa wytrzymałość, odporność na przejmowanie i rozmiar garnizonu tego Centrum Osady. Odblokowuje trenowanie bohaterów w budynku, redukuje czas badań oraz skraca czas szkolenie o połowę."
+"Enable training of heroes, reduce the batch training times and greatly "
+"increase the health, capture resistance and garrison capacity of this "
+"specific Civic Center."
+msgstr "Umożliwia szkolenie bohaterów, skraca czas szkolenia grup jednostek i znacząco zwiększa wytrzymałość, odporność przed przejęciem i rozmiar garnizonu tego Centrum osady."
 
 #: simulation/templates/structures/han/civil_centre_court.xml:17
 msgid "Imperial Court"
@@ -1303,7 +1304,7 @@ msgstr "Egipski obóz najemników"
 msgid "Stratopedeia Misthophorōn"
 msgstr "Stratopedeia Misthophorōn"
 
-#: simulation/templates/structures/merc_camp_egyptian.xml:31
+#: simulation/templates/structures/merc_camp_egyptian.xml:32
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
 msgstr "Przejmij ten budynek, aby szkolić najemników z hellenistycznego Egiptu."
 
@@ -1961,6 +1962,7 @@ msgstr "Stoa"
 #: simulation/templates/structures/han/ministry.xml:39
 #: simulation/templates/structures/iber/monument.xml:34
 #: simulation/templates/structures/maur/elephant_stable.xml:7
+#: simulation/templates/structures/merc_camp_egyptian.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:75
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
@@ -2273,7 +2275,7 @@ msgstr "Zagroda"
 #: simulation/templates/template_structure_resource_corral.xml:28
 msgid ""
 "Raise Domestic Animals for food. Garrison animals to gain a trickle of food."
-msgstr ""
+msgstr "Hoduj zwierzęta domowe na żywność. Garnizonuj zwierzęta, aby zyskać strużkę żywności."
 
 #: simulation/templates/template_structure_resource_field.xml:18
 #: simulation/templates/template_structure_resource_field.xml:20

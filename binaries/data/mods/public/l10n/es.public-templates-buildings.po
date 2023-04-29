@@ -35,10 +35,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-01-27 08:09+0000\n"
+"POT-Creation-Date: 2023-03-20 08:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2018,2020-2022\n"
-"Language-Team: Spanish (http://www.transifex.com/wildfire-games/0ad/language/es/)\n"
+"Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2018,2020-2023\n"
+"Language-Team: Spanish (http://app.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -701,10 +701,10 @@ msgstr "Guān Shǔ"
 
 #: simulation/templates/structures/han/civil_centre.xml:33
 msgid ""
-"This greatly increases the health, capture resistance, and garrison capacity"
-" of this specific Civic Center. Unlock training of Heroes here and reduce "
-"its research and batch training times by half."
-msgstr "Incrementa de forma considerable la resistencia, dificultad de captura y capacidad de este centro cívico. Desbloquea el adiestramiento de héroes y reduce el tiempo de investigación y reclutamiento a la mitad."
+"Enable training of heroes, reduce the batch training times and greatly "
+"increase the health, capture resistance and garrison capacity of this "
+"specific Civic Center."
+msgstr "Permite reclutar héroes, reduciendo el tiempo de producción en grupo y aumentando la salud, resistencia y capacidad de guarnición de este centro cívico."
 
 #: simulation/templates/structures/han/civil_centre_court.xml:17
 msgid "Imperial Court"
@@ -1300,7 +1300,7 @@ msgstr "Campamento de mercenarios egipcio"
 msgid "Stratopedeia Misthophorōn"
 msgstr "Stratopedeia Misthophorōn"
 
-#: simulation/templates/structures/merc_camp_egyptian.xml:31
+#: simulation/templates/structures/merc_camp_egyptian.xml:32
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
 msgstr "Captura esta estructura para reclutar mercenarios del Egipto heleno."
 
@@ -1958,6 +1958,7 @@ msgstr "Estoa"
 #: simulation/templates/structures/han/ministry.xml:39
 #: simulation/templates/structures/iber/monument.xml:34
 #: simulation/templates/structures/maur/elephant_stable.xml:7
+#: simulation/templates/structures/merc_camp_egyptian.xml:31
 #: simulation/templates/structures/rome/army_camp.xml:75
 #: simulation/templates/template_structure_civic_stoa.xml:30
 #: simulation/templates/template_structure_civic_temple.xml:32
@@ -2270,7 +2271,7 @@ msgstr "corral"
 #: simulation/templates/template_structure_resource_corral.xml:28
 msgid ""
 "Raise Domestic Animals for food. Garrison animals to gain a trickle of food."
-msgstr ""
+msgstr "Cría animales domésticos para comida. Resguarda animales para aumentar la tasa de comida."
 
 #: simulation/templates/template_structure_resource_field.xml:18
 #: simulation/templates/template_structure_resource_field.xml:20
@@ -2305,7 +2306,7 @@ msgstr "Molino rotatorio"
 msgid ""
 "Dropsite for harvested Food. Capture one of these to increase nearby food "
 "production."
-msgstr ""
+msgstr "Almacén para la comida recolectada. Captura uno de ellos para incrementar la producción de comida en la zona."
 
 #: simulation/templates/template_structure_special_theater.xml:25
 #: simulation/templates/template_structure_special_theater.xml:27

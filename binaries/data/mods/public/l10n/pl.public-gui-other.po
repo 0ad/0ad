@@ -21,6 +21,7 @@
 # Leszek Szary
 # Lukasz B
 # Marcin Malinowski
+# Marcin M.
 # Marcin S
 # Marek Opłotny
 # Michał Dariusz Nowakowski
@@ -31,6 +32,7 @@
 # Pawel Jarczak
 # Pawel
 # Piotr Lehmann
+# Pomaranczarz
 # Przemysław Murach
 # q
 # Adam Rabiega
@@ -47,10 +49,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-02 21:44+0000\n"
+"POT-Creation-Date: 2023-04-14 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Marcin S <dzidek1003@o2.pl>, 2016-2017,2020-2022\n"
-"Language-Team: Polish (http://www.transifex.com/wildfire-games/0ad/language/pl/)\n"
+"Last-Translator: Pomaranczarz, 2023\n"
+"Language-Team: Polish (http://app.transifex.com/wildfire-games/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -71,7 +73,7 @@ msgstr "%(userDesc)s - %(templateName)s"
 #: gui/common/color.js:179
 #, javascript-format
 msgid "Unassigned hotkey: %(hotkeyName)s"
-msgstr "Nie przypisany szybki przycisk: %(hotkeyName)s"
+msgstr "Nieprzypisany skrót klawiszowy: %(hotkeyName)s"
 
 #: gui/common/color.js:196
 #, javascript-format
@@ -444,7 +446,7 @@ msgstr "wyłączone"
 #: gui/common/tooltips.js:675 gui/common/tooltips.js:681
 #: gui/common/tooltips.js:768 gui/common/tooltips.js:819
 #: gui/common/tooltips.js:840 gui/common/tooltips.js:864
-#: gui/common/tooltips.js:1198
+#: gui/common/tooltips.js:1205
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -587,8 +589,8 @@ msgstr "Użytkownicy (%(num)s): %(users)s"
 #: gui/common/tooltips.js:423 gui/common/tooltips.js:437
 #: gui/common/tooltips.js:512 gui/common/tooltips.js:517
 #: gui/common/tooltips.js:574 gui/common/tooltips.js:635
-#: gui/common/tooltips.js:1029 gui/common/tooltips.js:1034
-#: gui/common/tooltips.js:1067 gui/common/tooltips.js:1163
+#: gui/common/tooltips.js:1036 gui/common/tooltips.js:1041
+#: gui/common/tooltips.js:1074 gui/common/tooltips.js:1170
 #: gui/loadgame/SavegameDetails.js:41 gui/reference/common/tooltips.js:13
 #: gui/replaymenu/replay_menu.js:284
 msgid ", "
@@ -758,7 +760,7 @@ msgstr[2] "%(time)s %(second)s"
 msgstr[3] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:109 gui/common/tooltips.js:570
-#: gui/common/tooltips.js:1065
+#: gui/common/tooltips.js:1072
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "sekunda"
@@ -858,7 +860,7 @@ msgstr "Blokuje: %(blockPercentage)s%%. Skrócenie czasu trwania: %(durationRedu
 msgid "Garrison to fire arrows"
 msgstr "Obsadź żołnierzami, by dokonać ostrzału."
 
-#: gui/common/tooltips.js:314 gui/common/tooltips.js:1063
+#: gui/common/tooltips.js:314 gui/common/tooltips.js:1070
 msgid "Interval:"
 msgstr "Okres:"
 
@@ -914,7 +916,7 @@ msgstr "%(rangeLabel)s %(minRange)s do %(maxRange)s %(rangeUnit)s"
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
-#: gui/common/tooltips.js:362 gui/common/tooltips.js:1058
+#: gui/common/tooltips.js:362 gui/common/tooltips.js:1065
 msgid "Range:"
 msgstr "Zasięg:"
 
@@ -929,8 +931,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "metrów"
 
-#: gui/common/tooltips.js:370 gui/common/tooltips.js:1060
-#: gui/common/tooltips.js:1090
+#: gui/common/tooltips.js:370 gui/common/tooltips.js:1067
+#: gui/common/tooltips.js:1097
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "metr"
@@ -1054,7 +1056,7 @@ msgstr "Limit garnizonu"
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:567 gui/common/tooltips.js:1053
+#: gui/common/tooltips.js:567 gui/common/tooltips.js:1060
 msgid "Heal:"
 msgstr "Ulecz:"
 
@@ -1160,7 +1162,7 @@ msgstr[1] "Dodaj robotnika by ukończyć naprawę w czasie %(second)s sekund."
 msgstr[2] "Dodaj robotnika by ukończyć naprawę w czasie %(second)s sekund."
 msgstr[3] "Dodaj robotnika by ukończyć naprawę w czasie %(second)s sekund."
 
-#: gui/common/tooltips.js:736 gui/common/tooltips.js:1002
+#: gui/common/tooltips.js:736 gui/common/tooltips.js:1009
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
@@ -1244,53 +1246,53 @@ msgstr "%(label)s %(costs)s"
 msgid "Cost:"
 msgstr "Koszt:"
 
-#: gui/common/tooltips.js:972
+#: gui/common/tooltips.js:973
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Wymaga %(technology)s"
 
-#: gui/common/tooltips.js:986
+#: gui/common/tooltips.js:993
 #, javascript-format
 msgid "%(label)s %(bonus)s"
 msgstr "%(label)s %(bonus)s"
 
-#: gui/common/tooltips.js:987
+#: gui/common/tooltips.js:994
 msgid "Population Bonus:"
 msgstr "Bonus populacyjny:"
 
-#: gui/common/tooltips.js:1006
+#: gui/common/tooltips.js:1013
 msgid "Insufficient resources:"
 msgstr "Niewystarczająca ilość zasobów:"
 
-#: gui/common/tooltips.js:1022
+#: gui/common/tooltips.js:1029
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:1023
+#: gui/common/tooltips.js:1030
 msgid "Speed:"
 msgstr "Szybkość:"
 
-#: gui/common/tooltips.js:1025 gui/common/tooltips.js:1030
-#: gui/common/tooltips.js:1035
+#: gui/common/tooltips.js:1032 gui/common/tooltips.js:1037
+#: gui/common/tooltips.js:1042
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:1027
+#: gui/common/tooltips.js:1034
 msgid "Walk"
 msgstr "Chód"
 
-#: gui/common/tooltips.js:1032
+#: gui/common/tooltips.js:1039
 msgid "Run"
 msgstr "Bieg"
 
-#: gui/common/tooltips.js:1037
+#: gui/common/tooltips.js:1044
 msgid "Acceleration"
 msgstr "Akceleracja"
 
-#: gui/common/tooltips.js:1052 gui/common/tooltips.js:1057
-#: gui/common/tooltips.js:1062 gui/common/tooltips.js:1087
+#: gui/common/tooltips.js:1059 gui/common/tooltips.js:1064
+#: gui/common/tooltips.js:1069 gui/common/tooltips.js:1094
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
@@ -1299,7 +1301,7 @@ msgstr[1] "%(label)s %(val)s %(unit)s"
 msgstr[2] "%(label)s %(val)s %(unit)s"
 msgstr[3] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:1055
+#: gui/common/tooltips.js:1062
 msgid "Health"
 msgid_plural "Health"
 msgstr[0] "Zdrowie"
@@ -1307,76 +1309,76 @@ msgstr[1] "Zdrowie"
 msgstr[2] "Zdrowia"
 msgstr[3] "Zdrowie"
 
-#: gui/common/tooltips.js:1079
+#: gui/common/tooltips.js:1086
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:1080
+#: gui/common/tooltips.js:1087
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:1088
+#: gui/common/tooltips.js:1095
 msgctxt "aura"
 msgid "Range:"
 msgstr "Zasięg:"
 
-#: gui/common/tooltips.js:1111 gui/common/tooltips.js:1139
+#: gui/common/tooltips.js:1118 gui/common/tooltips.js:1146
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
 msgstr "%(primaryName)s (%(secondaryName)s)"
 
-#: gui/common/tooltips.js:1115 gui/common/tooltips.js:1132
+#: gui/common/tooltips.js:1122 gui/common/tooltips.js:1139
 #, javascript-format
 msgid "%(primaryName)s"
 msgstr "%(primaryName)s"
 
-#: gui/common/tooltips.js:1162
+#: gui/common/tooltips.js:1169
 msgid "Classes:"
 msgstr "Klasy:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the
 #. value.
-#: gui/common/tooltips.js:1189
+#: gui/common/tooltips.js:1196
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:1199
+#: gui/common/tooltips.js:1206
 msgid "Loot:"
 msgstr "Łup:"
 
-#: gui/common/tooltips.js:1209
+#: gui/common/tooltips.js:1216
 #, javascript-format
 msgid "%(label)s %(icons)s"
 msgstr "%(label)s %(icons)s"
 
-#: gui/common/tooltips.js:1210
+#: gui/common/tooltips.js:1217
 msgid "Dropsite for:"
 msgstr "Punkt zbioru dla:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
 #. element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1218
+#: gui/common/tooltips.js:1225
 msgid "Right-click to view more information."
 msgstr "Kliknij PPM, aby wyświetlić więcej informacji."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
-#: gui/common/tooltips.js:1224
+#: gui/common/tooltips.js:1231
 msgid "Click to view more information."
 msgstr "Kliknij, aby wyświetlić więcej informacji."
 
-#: gui/common/tooltips.js:1233
+#: gui/common/tooltips.js:1240
 msgctxt "One letter abbreviation for million"
 msgid "M"
 msgstr "M"
 
-#: gui/common/tooltips.js:1236 gui/common/tooltips.js:1239
+#: gui/common/tooltips.js:1243 gui/common/tooltips.js:1246
 msgctxt "One letter abbreviation for thousand"
 msgid "k"
 msgstr "k"
@@ -2398,7 +2400,7 @@ msgstr "Powrót do pracy"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to train units in batches."
-msgstr ""
+msgstr "Modyfikator pozwalający na szkolenie jednostek w grupach."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.batchtrain.name
 msgctxt "hotkey metadata"
@@ -2441,22 +2443,22 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare while this hotkey is pressed."
-msgstr ""
+msgstr "Przytrzymaj, by zmienić kursor na flarę."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flare.name
 msgctxt "hotkey metadata"
 msgid "Flare (hold)"
-msgstr ""
+msgstr "Sygnał (przytrzymaj)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare. The hotkey can be released."
-msgstr ""
+msgstr "Wciśnij, by zmienić kursor na flarę. Nie musisz przetrzymywać klawiszy."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
 msgctxt "hotkey metadata"
 msgid "Flare (toggle)"
-msgstr ""
+msgstr "Sygnał (przełącz)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
@@ -4115,6 +4117,24 @@ msgid ""
 "Number of pixels the mouse can move before the action is considered a drag."
 msgstr ""
 
+#: gui/options/options.json[1].options[11].label
+msgid "Mouse grab in fullscreen"
+msgstr ""
+
+#: gui/options/options.json[1].options[11].tooltip
+msgid ""
+"Constrain mouse in the fullscreen mode to the window boundaries. It's used "
+"to avoid mouse going out of a display in case of multiple displays."
+msgstr ""
+
+#: gui/options/options.json[1].options[12].label
+msgid "Mouse grab in window mode"
+msgstr ""
+
+#: gui/options/options.json[1].options[12].tooltip
+msgid "Constrain mouse in the window mode to the window boundaries."
+msgstr ""
+
 #: gui/options/options.json[1].options[1].label
 #: gui/options/options.json[2].options[1].label
 msgid "Fog"
@@ -5037,7 +5057,7 @@ msgstr "Przewiń współczynnik grup"
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[2].tooltip
 msgid ""
 "Number of times you have to scroll to increase/decrease the batchsize by 1."
-msgstr "Ile razy trzeba przewinąć, aby zwiększyć / zmniejszyć wielkość partii 1."
+msgstr "Ile razy trzeba przewinąć, aby zwiększyć/zmniejszyć wielkość partii o 1."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].label
 msgid "Flare display duration"

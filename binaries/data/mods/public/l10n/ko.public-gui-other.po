@@ -16,14 +16,14 @@
 # Nicolas Auvray
 # sang gyu nam
 # Stanislas Dolcini
-# Takaki IEKURA
+# Taco Ekpa
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-02 21:44+0000\n"
+"POT-Creation-Date: 2023-04-14 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
-"Language-Team: Korean (http://www.transifex.com/wildfire-games/0ad/language/ko/)\n"
+"Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -238,7 +238,7 @@ msgstr "참가자들은 동맹을 맺고 동맹국과 선전포고를 할 수 �
 
 #: gui/common/gamedescription.js:262
 msgid "Last Man Standing"
-msgstr "최종 생존자"
+msgstr "마지막 생존자"
 
 #: gui/common/gamedescription.js:263
 msgid ""
@@ -365,7 +365,7 @@ msgstr "사용안함"
 #: gui/common/gamedescription.js:388
 msgctxt "treasures"
 msgid "As defined by the map."
-msgstr "지도에서 정의한 대로."
+msgstr "지도에 정의된 대로입니다."
 
 #: gui/common/gamedescription.js:392
 msgid "Explored Map"
@@ -373,7 +373,7 @@ msgstr "탐색된 지도"
 
 #: gui/common/gamedescription.js:397
 msgid "Revealed Map"
-msgstr "공개된 지도"
+msgstr "밝혀진 지도"
 
 #: gui/common/gamedescription.js:402
 msgid "Allied View"
@@ -405,7 +405,7 @@ msgstr "사용안함"
 #: gui/common/tooltips.js:675 gui/common/tooltips.js:681
 #: gui/common/tooltips.js:768 gui/common/tooltips.js:819
 #: gui/common/tooltips.js:840 gui/common/tooltips.js:864
-#: gui/common/tooltips.js:1198
+#: gui/common/tooltips.js:1205
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
@@ -548,8 +548,8 @@ msgstr "사용자 (%(num)s): %(users)s"
 #: gui/common/tooltips.js:423 gui/common/tooltips.js:437
 #: gui/common/tooltips.js:512 gui/common/tooltips.js:517
 #: gui/common/tooltips.js:574 gui/common/tooltips.js:635
-#: gui/common/tooltips.js:1029 gui/common/tooltips.js:1034
-#: gui/common/tooltips.js:1067 gui/common/tooltips.js:1163
+#: gui/common/tooltips.js:1036 gui/common/tooltips.js:1041
+#: gui/common/tooltips.js:1074 gui/common/tooltips.js:1170
 #: gui/loadgame/SavegameDetails.js:41 gui/reference/common/tooltips.js:13
 #: gui/replaymenu/replay_menu.js:284
 msgid ", "
@@ -716,7 +716,7 @@ msgid_plural "%(time)s %(second)s"
 msgstr[0] "%(time)s %(second)s"
 
 #: gui/common/tooltips.js:109 gui/common/tooltips.js:570
-#: gui/common/tooltips.js:1065
+#: gui/common/tooltips.js:1072
 msgid "second"
 msgid_plural "seconds"
 msgstr[0] "초"
@@ -753,7 +753,7 @@ msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:217
 msgid "Resistance:"
-msgstr "저항력:"
+msgstr "방어력:"
 
 #: gui/common/tooltips.js:228
 msgid "Damage:"
@@ -813,7 +813,7 @@ msgstr "차단: %(blockPercentage)s%%, 기간 단축: %(durationReduction)s%%"
 msgid "Garrison to fire arrows"
 msgstr "화살을 발사할 주둔지"
 
-#: gui/common/tooltips.js:314 gui/common/tooltips.js:1063
+#: gui/common/tooltips.js:314 gui/common/tooltips.js:1070
 msgid "Interval:"
 msgstr "간격:"
 
@@ -863,7 +863,7 @@ msgstr "%(rangeLabel)s %(minRange)s - %(maxRange)s %(rangeUnit)s"
 msgid "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 msgstr "%(rangeLabel)s %(maxRange)s %(rangeUnit)s"
 
-#: gui/common/tooltips.js:362 gui/common/tooltips.js:1058
+#: gui/common/tooltips.js:362 gui/common/tooltips.js:1065
 msgid "Range:"
 msgstr "범위:"
 
@@ -878,8 +878,8 @@ msgstr "+%(number)s"
 msgid "meters"
 msgstr "미터"
 
-#: gui/common/tooltips.js:370 gui/common/tooltips.js:1060
-#: gui/common/tooltips.js:1090
+#: gui/common/tooltips.js:370 gui/common/tooltips.js:1067
+#: gui/common/tooltips.js:1097
 msgid "meter"
 msgid_plural "meters"
 msgstr[0] "미터"
@@ -1000,7 +1000,7 @@ msgstr "주둔지 제한"
 msgid "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 msgstr "%(healRateLabel)s %(value)s %(health)s / %(second)s"
 
-#: gui/common/tooltips.js:567 gui/common/tooltips.js:1053
+#: gui/common/tooltips.js:567 gui/common/tooltips.js:1060
 msgid "Heal:"
 msgstr "회복:"
 
@@ -1040,7 +1040,7 @@ msgstr "%(label)s: %(value)s"
 
 #: gui/common/tooltips.js:622
 msgid "Projectile Limit"
-msgstr "발사체 한계"
+msgstr "발사 무기 제한"
 
 #: gui/common/tooltips.js:627
 msgctxt "projectiles"
@@ -1050,7 +1050,7 @@ msgstr "기본값"
 #: gui/common/tooltips.js:632
 msgctxt "projectiles"
 msgid "Per Unit"
-msgstr "/ 유닛"
+msgstr "각 유닛"
 
 #: gui/common/tooltips.js:642
 msgid "Number of repairers:"
@@ -1094,7 +1094,7 @@ msgid "Add a worker to finish the construction in %(second)s second."
 msgid_plural "Add a worker to finish the construction in %(second)s seconds."
 msgstr[0] "일꾼을 추가하여 %(second)s초 안에 건축물을 완성합니다."
 
-#: gui/common/tooltips.js:736 gui/common/tooltips.js:1002
+#: gui/common/tooltips.js:736 gui/common/tooltips.js:1009
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
@@ -1178,133 +1178,133 @@ msgstr "%(label)s %(costs)s"
 msgid "Cost:"
 msgstr "비용:"
 
-#: gui/common/tooltips.js:972
+#: gui/common/tooltips.js:973
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "%(technology)s 이(가) 필요합니다"
 
-#: gui/common/tooltips.js:986
+#: gui/common/tooltips.js:993
 #, javascript-format
 msgid "%(label)s %(bonus)s"
 msgstr "%(label)s %(bonus)s"
 
-#: gui/common/tooltips.js:987
+#: gui/common/tooltips.js:994
 msgid "Population Bonus:"
 msgstr "인구 보너스:"
 
-#: gui/common/tooltips.js:1006
+#: gui/common/tooltips.js:1013
 msgid "Insufficient resources:"
 msgstr "부족한 자원:"
 
-#: gui/common/tooltips.js:1022
+#: gui/common/tooltips.js:1029
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:1023
+#: gui/common/tooltips.js:1030
 msgid "Speed:"
 msgstr "이동 속도:"
 
-#: gui/common/tooltips.js:1025 gui/common/tooltips.js:1030
-#: gui/common/tooltips.js:1035
+#: gui/common/tooltips.js:1032 gui/common/tooltips.js:1037
+#: gui/common/tooltips.js:1042
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:1027
+#: gui/common/tooltips.js:1034
 msgid "Walk"
 msgstr "걷기"
 
-#: gui/common/tooltips.js:1032
+#: gui/common/tooltips.js:1039
 msgid "Run"
 msgstr "뛰기"
 
-#: gui/common/tooltips.js:1037
+#: gui/common/tooltips.js:1044
 msgid "Acceleration"
 msgstr "가속도"
 
-#: gui/common/tooltips.js:1052 gui/common/tooltips.js:1057
-#: gui/common/tooltips.js:1062 gui/common/tooltips.js:1087
+#: gui/common/tooltips.js:1059 gui/common/tooltips.js:1064
+#: gui/common/tooltips.js:1069 gui/common/tooltips.js:1094
 #, javascript-format
 msgid "%(label)s %(val)s %(unit)s"
 msgid_plural "%(label)s %(val)s %(unit)s"
 msgstr[0] "%(label)s %(val)s %(unit)s"
 
-#: gui/common/tooltips.js:1055
+#: gui/common/tooltips.js:1062
 msgid "Health"
 msgid_plural "Health"
 msgstr[0] "체력"
 
-#: gui/common/tooltips.js:1079
+#: gui/common/tooltips.js:1086
 #, javascript-format
 msgid "%(auralabel)s %(aurainfo)s"
 msgstr "%(auralabel)s %(aurainfo)s"
 
-#: gui/common/tooltips.js:1080
+#: gui/common/tooltips.js:1087
 #, javascript-format
 msgid "%(auraname)s:"
 msgstr "%(auraname)s:"
 
-#: gui/common/tooltips.js:1088
+#: gui/common/tooltips.js:1095
 msgctxt "aura"
 msgid "Range:"
 msgstr "범위:"
 
-#: gui/common/tooltips.js:1111 gui/common/tooltips.js:1139
+#: gui/common/tooltips.js:1118 gui/common/tooltips.js:1146
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
 msgstr "%(primaryName)s (%(secondaryName)s)"
 
-#: gui/common/tooltips.js:1115 gui/common/tooltips.js:1132
+#: gui/common/tooltips.js:1122 gui/common/tooltips.js:1139
 #, javascript-format
 msgid "%(primaryName)s"
 msgstr "%(primaryName)s"
 
-#: gui/common/tooltips.js:1162
+#: gui/common/tooltips.js:1169
 msgid "Classes:"
 msgstr "분류:"
 
 #. Translation: %(component) will be the icon for the loot type and %(loot)
 #. will be the
 #. value.
-#: gui/common/tooltips.js:1189
+#: gui/common/tooltips.js:1196
 #, javascript-format
 msgid "%(component)s %(loot)s"
 msgstr "%(component)s %(loot)s"
 
-#: gui/common/tooltips.js:1199
+#: gui/common/tooltips.js:1206
 msgid "Loot:"
-msgstr "노획물:"
+msgstr "전리품:"
 
-#: gui/common/tooltips.js:1209
+#: gui/common/tooltips.js:1216
 #, javascript-format
 msgid "%(label)s %(icons)s"
 msgstr "%(label)s %(icons)s"
 
-#: gui/common/tooltips.js:1210
+#: gui/common/tooltips.js:1217
 msgid "Dropsite for:"
 msgstr "회수 시설:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
 #. element will open the Template Details GUI page.
-#: gui/common/tooltips.js:1218
+#: gui/common/tooltips.js:1225
 msgid "Right-click to view more information."
 msgstr "자세한 정보를 보려면 마우스 오른쪽 버튼을 클릭합니다."
 
 #. Translation: Appears in a tooltip to indicate that clicking the
 #. corresponding GUI element
 #. will open the Template Details GUI page.
-#: gui/common/tooltips.js:1224
+#: gui/common/tooltips.js:1231
 msgid "Click to view more information."
 msgstr "클릭하면 더 많은 정보를 볼 수 있습니다."
 
-#: gui/common/tooltips.js:1233
+#: gui/common/tooltips.js:1240
 msgctxt "One letter abbreviation for million"
 msgid "M"
 msgstr "M"
 
-#: gui/common/tooltips.js:1236 gui/common/tooltips.js:1239
+#: gui/common/tooltips.js:1243 gui/common/tooltips.js:1246
 msgctxt "One letter abbreviation for thousand"
 msgid "k"
 msgstr "k"
@@ -1316,7 +1316,7 @@ msgstr "%(nick)s — %(name)s님"
 
 #: gui/credits/credits.xml:(caption):19
 msgid "0 A.D. Credits"
-msgstr "0 A.D. 제작자"
+msgstr "0 A.D. 제작진"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
@@ -1484,7 +1484,7 @@ msgstr "역사 참고"
 
 #: gui/credits/texts/maps.jsonContent[0].Title
 msgid "Map Making"
-msgstr "지도 만드는중"
+msgstr "지도 만드는 중"
 
 #: gui/credits/texts/maps.jsonContent[1].Title
 msgid "Random Map Scripts"
@@ -1500,7 +1500,7 @@ msgstr "프로그래밍 관리자"
 
 #: gui/credits/texts/programming.jsonContent[1].Subtitle
 msgid "Special thanks to"
-msgstr "특별한 도움을 주신 분들"
+msgstr "특별히 감사드리는 분들"
 
 #: gui/credits/texts/programming.jsonTitle
 msgid "Programming"
@@ -1524,7 +1524,7 @@ msgstr "설계 공동 지도자"
 
 #: gui/credits/texts/special.jsonContent[1].Title
 msgid "Special thanks to:"
-msgstr "특별한 도움을 주신 분들:"
+msgstr "특별히 감사드리는 분들:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
@@ -1536,7 +1536,7 @@ msgstr "이 프로젝트의 개발 중에 어떤 역사학자도 피해를 입�
 
 #: gui/credits/texts/special.jsonTitle
 msgid "Special Credits"
-msgstr "특별한 제작진"
+msgstr "각별한 제작진"
 
 #: gui/credits/texts/translators.jsonTitle
 msgid "Translators"
@@ -2086,12 +2086,12 @@ msgctxt "hotkey metadata"
 msgid ""
 "Custom hotkey to trigger exit-to-desktop. The native hotkeys (Alt+F4 / Cmd+Q"
 " / etc.) are always active."
-msgstr "데스크톱 종료 시 트리거할 사용자 지정 단축키입니다. 기본 단축키(Alt+F4 / Cmd+Q / 등)는 항상 활성 상태입니다."
+msgstr "바탕화면으로 나가기를 트리거하는 사용자 지정 단축키입니다. 기본 단축키(Alt+F4 / Cmd+Q / 등)는 항상 활성 상태입니다."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
 msgid "Custom exit to desktop"
-msgstr "바탕화면으로 커스텀 종료"
+msgstr "사용자 지정 바탕화면으로 나가기"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
 msgctxt "hotkey metadata"
@@ -2781,7 +2781,7 @@ msgstr "MP 로비 전환"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window and select the previous private chat partner."
-msgstr "대화 창을 전환하고 이전 개인 대화 파트너를 선택합니다."
+msgstr "대화 창을 전환하고 이전 비공개 채팅 파트너를 선택합니다."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.name
 msgctxt "hotkey metadata"
@@ -3727,7 +3727,7 @@ msgstr "기본값"
 
 #: gui/maps/MapFilters.js:92
 msgid "All maps except naval and demo maps."
-msgstr "해전 및 데모 지도를 제외한 모든 지도."
+msgstr "해상 및 데모 지도를 제외한 모든 지도입니다."
 
 #: gui/maps/MapFilters.js:97
 msgid "Naval Maps"
@@ -3739,11 +3739,11 @@ msgstr "적에게 도달하기 위해 선박이 필요한 위치를 지도로 �
 
 #: gui/maps/MapFilters.js:103
 msgid "Demo Maps"
-msgstr "시연용 지도"
+msgstr "데모 지도"
 
 #: gui/maps/MapFilters.js:104
 msgid "These maps are not playable but for demonstration purposes only."
-msgstr "이 지도는 놀 수 없지만, 시연용으로만 사용됩니다."
+msgstr "이 지도는 게임을 진행할 수 없으며 데모용으로만 제공됩니다."
 
 #: gui/maps/MapFilters.js:109
 msgid "New Maps"
@@ -3767,7 +3767,7 @@ msgstr "방아쇠 지도"
 
 #: gui/maps/MapFilters.js:122
 msgid "Maps that come with scripted events and potentially spawn enemy units."
-msgstr "스크립트가 적용된 사건이 있고 잠재적으로 적 유닛을 생성하는 지도입니다."
+msgstr "스크립트된 이벤트가 발생하고 적 유닛이 스폰될 가능성이 있는 맵입니다."
 
 #: gui/maps/MapFilters.js:127
 msgid "All Maps"
@@ -3775,7 +3775,7 @@ msgstr "모든 지도"
 
 #: gui/maps/MapFilters.js:128
 msgid "Every map of the chosen maptype."
-msgstr "선택한 지도 유형의 모든 지도."
+msgstr "선택한 지도 유형의 모든 지도입니다."
 
 #: gui/maps/mapbrowser/MapBrowser.xml:(caption):14
 msgid "Map Browser"
@@ -3818,7 +3818,7 @@ msgstr "지도 필터:"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):48
 msgid "Pick Random Map"
-msgstr "무작위 지도 선택"
+msgstr "무작위 지도 고르기"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):54
 msgctxt "map selection dialog"
@@ -3853,7 +3853,7 @@ msgstr "페이지: %(currentPage)s/%(maxPage)s"
 
 #: gui/maps/mapbrowser/grid/MapGridBrowser.js:60
 msgid "Pick a map at random."
-msgstr "무작위로 지도를 선택합니다."
+msgstr "무작위로 지도를 고릅니다."
 
 #: gui/options/options.js:109
 #, javascript-format
@@ -4042,6 +4042,24 @@ msgstr "마우스 드래그"
 msgid ""
 "Number of pixels the mouse can move before the action is considered a drag."
 msgstr "동작이 드래그로 간주되기 전에 마우스가 이동할 수 있는 픽셀 수입니다."
+
+#: gui/options/options.json[1].options[11].label
+msgid "Mouse grab in fullscreen"
+msgstr ""
+
+#: gui/options/options.json[1].options[11].tooltip
+msgid ""
+"Constrain mouse in the fullscreen mode to the window boundaries. It's used "
+"to avoid mouse going out of a display in case of multiple displays."
+msgstr ""
+
+#: gui/options/options.json[1].options[12].label
+msgid "Mouse grab in window mode"
+msgstr ""
+
+#: gui/options/options.json[1].options[12].tooltip
+msgid "Constrain mouse in the window mode to the window boundaries."
+msgstr ""
 
 #: gui/options/options.json[1].options[1].label
 #: gui/options/options.json[2].options[1].label
@@ -4853,7 +4871,7 @@ msgstr "외교 색상이 활성화된 경우 중립 참가자들의 색상입니
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].label
 msgid "Diplomacy colors: enemy"
-msgstr "외교 색상: 적군"
+msgstr "외교 색상: 적국"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[19].tooltip
 msgid "Color of enemies when diplomacy colors are enabled."
@@ -5356,19 +5374,19 @@ msgstr "제작진"
 
 #: gui/pregame/MainMenuItems.js:271
 msgid "Show the 0 A.D. credits."
-msgstr "0 A.D 제작에 참여하신 분들의 명단을 표시합니다."
+msgstr "0 A.D. 제작진을 표시합니다."
 
 #: gui/pregame/MainMenuItems.js:277
 msgid "Exit"
-msgstr "끝내기"
+msgstr "나가기"
 
 #: gui/pregame/MainMenuItems.js:278
 msgid "Exit the game."
-msgstr "게임을 끝냅니다."
+msgstr "게임을 나갑니다."
 
 #: gui/pregame/MainMenuItems.js:282
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr "0 A.D.를 그만하시겠습니까?"
+msgstr "0 A.D.를 종료하시겠습니까?"
 
 #: gui/pregame/ProjectInformation.js:6
 msgid "WILDFIRE GAMES"
@@ -6004,11 +6022,11 @@ msgstr "일꾼"
 
 #: gui/summary/layout.js:75
 msgid "Cavalry"
-msgstr "기병"
+msgstr "기마병"
 
 #: gui/summary/layout.js:76
 msgid "Champion"
-msgstr "정예병"
+msgstr "전사"
 
 #: gui/summary/layout.js:77
 msgid "Heroes"
@@ -6048,11 +6066,11 @@ msgstr "공물 \n(%(sent)s / %(received)s)"
 
 #: gui/summary/layout.js:129
 msgid "Treasures collected"
-msgstr "수집된 보물"
+msgstr "획득한 보물"
 
 #: gui/summary/layout.js:130
 msgid "Loot"
-msgstr "노획물"
+msgstr "전리품"
 
 #: gui/summary/layout.js:131
 msgid "Livestock bred"
@@ -6095,11 +6113,11 @@ msgstr "인구"
 
 #: gui/summary/layout.js:196
 msgid "Map control (peak)"
-msgstr "지도 제어 (봉우리)"
+msgstr "지도 제어 (최고조)"
 
 #: gui/summary/layout.js:197
 msgid "Map control (finish)"
-msgstr "지도 제어 (완료)"
+msgstr "지도 제어 (완성)"
 
 #: gui/summary/layout.js:198
 msgid "Map exploration"
@@ -6350,7 +6368,7 @@ msgstr "병영"
 msgid ""
 "Train all citizen soldiers. Some civilizations can unlock the training of "
 "champions as well."
-msgstr "모든 시민 군인을 훈련시킵니다. 일부 문명들은 정예병들의 훈련도 가능하게 할 수 있습니다."
+msgstr "모든 시민 군인을 훈련시킵니다. 일부 문명들은 전사들의 훈련도 가능하게 할 수 있습니다."
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
@@ -6388,7 +6406,7 @@ msgstr "전투견"
 
 #: gui/text/tips/briton_war_dog.txt:2
 msgid "A dog that the Britons can train at the cavalry stable."
-msgstr "브리튼인이 기병 마굿간에서 훈련할 수 있는 개입니다."
+msgstr "브리튼인이 기마병 마굿간에서 훈련할 수 있는 개입니다."
 
 #: gui/text/tips/briton_war_dog.txt:3
 msgid "Has low health, but is fast and will fearlessly attack enemies."
@@ -6404,19 +6422,19 @@ msgstr "카르타고인의 신성한 악대"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr "카르타고의 정예 창병과 정예 창기병 입니다."
+msgstr "카르타고의 전사 창병과 전사 기마 창병 입니다."
 
 #: gui/text/tips/carth_sacred_band.txt:3
 msgid ""
 "Both are trainable from the Temple, instead of the Fortress like most other "
 "champions."
-msgstr "둘 다 대부분의 다른 정예들처럼 요새 대신 신전에서 훈련할 수 있습니다."
+msgstr "둘 다 대부분의 다른 전사들처럼 요새 대신 신전에서 훈련할 수 있습니다."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as heavy"
 " shock against siege weapons and skirmishers."
-msgstr "기병을 상대로 중보병으로 창병을 사용합니다. 공성 무기와 척후병을 상대로 강력한 충격을 주기위해 기병을 사용합니다."
+msgstr "기마병을 상대로 중갑 보병으로 창병을 사용합니다. 공성 무기와 척후병을 상대로 강력한 충격을 주기위해 기마병을 사용합니다."
 
 #: gui/text/tips/carth_shipyard.txt:1
 msgid "CARTHAGINIAN NAVAL SHIPYARD"
@@ -6454,12 +6472,12 @@ msgstr "움직일 때는 수레에 넣고, 공격 할때는 전개되어 고정�
 
 #: gui/text/tips/cavalry_stable.txt:1
 msgid "CAVALRY STABLE"
-msgstr "기병 사육장"
+msgstr "기마병 사육장"
 
 #: gui/text/tips/cavalry_stable.txt:2
 msgid ""
 "Trains cavalry units and lets you research cavalry specific technologies."
-msgstr "기병 유닛을 훈련시키고 기병 특정 기술을 연구할 수 있습니다."
+msgstr "기마병 유닛을 훈련시키고 기마병 특정 기술을 연구할 수 있습니다."
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
@@ -6497,7 +6515,7 @@ msgstr "도시를 보호하는 데 도움이 되는 튼튼한 석재 성벽입�
 msgid ""
 "When your ranged infantry units are occupying the turrets, they have "
 "additional armor and can shoot at the enemy. "
-msgstr "원거리 보병 부대가 포탑을 점령하고 있을 때, 그들은 추가 갑옷을 가지고 있고 적을 향해 쏠 수 있습니다."
+msgstr "원거리병 부대가 포탑을 점령하고 있을 때, 그들은 추가 갑옷을 가지고 있고 적을 향해 쏠 수 있습니다."
 
 #: gui/text/tips/city_walls.txt:4
 msgid "Vulnerable to siege weapons like catapults, rams and war elephants."
@@ -6523,7 +6541,7 @@ msgstr "동맹 영토나 중립 영토에 지을 수 있습니다."
 msgid ""
 "Train citizens: female citizens, infantry citizen-soldiers, and cavalry "
 "citizen-soldiers."
-msgstr "여성 시민, 보병 시민 병사, 기병 시민 병사들의 시민을 훈련시킵니다."
+msgstr "여성 시민, 보병 시민 병사, 기마병 시민 병사들의 시민을 훈련시킵니다."
 
 #: gui/text/tips/default_formation.txt:1
 msgid "DEFAULT FORMATION"
@@ -6597,7 +6615,7 @@ msgstr "풍성한 수확을 위해 바다에서 물고기를 잡습니다."
 
 #: gui/text/tips/fishing.txt:3
 msgid "Fishing boats carry a large amount of food per trip."
-msgstr "낚시배는 출항 할때마다 많은 양의 식량을 운반합니다."
+msgstr "낚싯배는 한 번 운항할 때마다 많은 양의 식량을 실어 나릅니다."
 
 #: gui/text/tips/fishing.txt:4
 msgid "Fishing is faster than gathering food on fields."
@@ -6687,13 +6705,13 @@ msgstr "보병 시민 병사들은 광물을 더 빨리 채취합니다."
 
 #: gui/text/tips/gathering.txt:5
 msgid "Cavalry citizen-soldiers are faster gathering meat."
-msgstr "기병 시민 병사들은 고기를 더 빨리 수집합니다."
+msgstr "기마병 시민 병사들은 고기를 더 빨리 수집합니다."
 
 #: gui/text/tips/gathering.txt:6
 msgid ""
 "The higher the level of a citizen-soldier (advanced, elite), the better he "
 "fights, but the less efficient he is at gathering resources."
-msgstr "시민-병사 (상급, 엘리트) 수준이 높을수록 더 잘 싸울 수 있지만 자원 수집에는 효율성이 떨어집니다."
+msgstr "시민-병사 (상급병, 정예병) 수준이 높을수록 더 잘 싸울 수 있지만 자원 수집에는 효율성이 떨어집니다."
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
@@ -6833,7 +6851,7 @@ msgstr "무겁게 무장하여 느려집니다. 공격력이 낮습니다."
 #: gui/text/tips/pikemen.txt:3
 msgid ""
 "Used against cavalry or against other melee infantry to pin them in place."
-msgstr "기병이나 다른 근접 보병을 상대로 그들을 제자리에 대기시키기 위해 사용됩니다."
+msgstr "기마병이나 다른 근접병을 상대로 그들을 제자리에 대기시키기 위해 사용됩니다."
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
@@ -6879,7 +6897,7 @@ msgstr "사바나 생물군계"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "Generally flat, with a few watering holes and rocky outcrops."
-msgstr "일반적으로 평평하며, 몇 개의 물웅덩이와 암석 돌출부가 있습니다."
+msgstr "일반적으로 평평하며, 몇 개의 물웅덩이와 암석으로 된 바위가 있습니다."
 
 #: gui/text/tips/savanna_biome.txt:3
 msgid "Chock full of herd animals for plentiful hunting."
@@ -6919,17 +6937,17 @@ msgstr "스파르타인"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "Strongest infantry unit in the game."
-msgstr "게임에서 가장 강한 보병부대입니다."
+msgstr "게임에서 가장 강한 보병 유닛입니다."
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr "스파르타인들이 이용할 수 있는 정예 보병입니다."
+msgstr "스파르타인들이 이용할 수 있는 전사 보병입니다."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
 "Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr "그들을 적의 기병을 학살하거나 당신의 정규 보병을 지원하기 위한 충격력으로 사용합니다."
+msgstr "그들을 적의 기마병을 학살하거나 당신의 정규 보병을 지원하기 위한 충격력으로 사용합니다."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
@@ -6941,7 +6959,7 @@ msgstr "게임 내에서 모든 진영을 위한 기본 근접전 보병입니�
 
 #: gui/text/tips/spearmen.txt:3
 msgid "Used against cavalry for an attack bonus."
-msgstr "공격 보너스로 기병을 상대로 사용됩니다."
+msgstr "공격 보너스로 기마병을 상대로 사용됩니다."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "Decent hack attack make them good front line troops."
@@ -6951,7 +6969,7 @@ msgstr "적절한 난도질 공격은 그들을 좋은 최전선 부대로 만�
 msgid ""
 "They are countered by ranged units and swordsmen, so support your spearmen "
 "with slingers or cavalry."
-msgstr "그들은 원거리 공격 유닛과 검병에 의해 대응되므로, 투석병 또는 기병으로 창병을 지원합니다."
+msgstr "그들은 원거리 공격 유닛과 검병에 의해 대응되므로, 투석병 또는 기마병으로 창병을 지원합니다."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
@@ -6977,7 +6995,7 @@ msgstr "작은 도시 단계 건축물입니다."
 
 #: gui/text/tips/temples.txt:3
 msgid "Recruit Healers to heal your troops on the battlefield."
-msgstr "전장에서 병력을 치료할 치료사를 모집합니다."
+msgstr "전장에서 아군의 병력을 치유할 치유사들을 모집합니다."
 
 #: gui/text/tips/temples.txt:4
 msgid "Research healing technologies."
@@ -7081,11 +7099,11 @@ msgstr "해양 자원입니다."
 
 #: gui/text/tips/whales.txt:3
 msgid "2000 Food."
-msgstr "식량 2000."
+msgstr "식량 2000개."
 
 #: gui/text/tips/whales.txt:4
 msgid "Gatherable by Fishing Boats after the whale is killed."
-msgstr "고래가 죽은 후에 낚시배로 수집할 수 있습니다."
+msgstr "고래를 죽인 후 낚싯배에서 획득할 수 있습니다."
 
 #: gui/text/tips/whales.txt:5
 msgid "Roam around the oceans of the game and flee when attacked."

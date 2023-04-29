@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Aldo Leandro F
 # Álvaro Tavares de Oliveira
 # Andrei Golemsky
 # 8a9afb43fd95d08d43e4b3f29e8e204d_f74a2a3
@@ -15,6 +16,7 @@
 # Enzo enzinholo
 # Ernan
 # Estevan Borges Martins
+# Geovå Ramalho dos Santos
 # Guilherme Dias
 # Hariston trabalhos
 # Igor Aleixo
@@ -43,10 +45,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-02 21:44+0000\n"
+"POT-Creation-Date: 2023-03-10 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Lucas Liarte, 2023\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
+"Last-Translator: Aldo Leandro F, 2023\n"
+"Language-Team: Portuguese (Brazil) (http://app.transifex.com/wildfire-games/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -237,7 +239,7 @@ msgstr "Sūnzǐ BīngFǎ"
 
 #: simulation/data/technologies/art_of_war.jsontooltip
 msgid "All Citizen-Soldiers −20% required promotion experience."
-msgstr ""
+msgstr "Todos os Cidadãos-Soldados −20% de experiência de promoção necessária."
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid ""
@@ -473,25 +475,25 @@ msgstr "Tijolos de lama secos ao sol"
 msgid ""
 "Houses and Economic Structures −40% wood cost, health, and capture points as"
 " well as +50% build time."
-msgstr ""
+msgstr "Casas e estruturas econômicas −40% de custo de madeira, saúde e pontos de captura, bem como +50% de tempo de construção."
 
 #: simulation/data/technologies/civbonuses/sele_farms.jsondescription
 msgid ""
 "The Seleucid empire was located in a highly fertile region with productive "
-"soils. Farms are cheaper and faster to build,"
-msgstr ""
+"soils. Farms are cheaper and faster to build."
+msgstr "O império Selêucida está localizado região altamente fértil com solos produtivos. Fazendas são mais baratas e rápidas de se construir."
 
 #: simulation/data/technologies/civbonuses/sele_farms.jsongenericName
 msgid "Fertile Crescent"
-msgstr ""
+msgstr "Crescente Fértil"
 
 #: simulation/data/technologies/civbonuses/sele_farms.jsontooltip
 msgid "Farms −25% wood cost and −75% build time."
-msgstr ""
+msgstr "Fazendas -25% custo de madeira e -75% tempo de construção."
 
 #: simulation/data/technologies/civil_engineering_01.jsongenericName
 msgid "Improved Construction"
-msgstr ""
+msgstr "Construção Melhorada"
 
 #: simulation/data/technologies/civil_engineering_01.jsonspecificName.han
 #: simulation/data/technologies/civil_engineering_02.jsonspecificName.han
@@ -500,7 +502,7 @@ msgstr "Gōngchéng"
 
 #: simulation/data/technologies/civil_engineering_01.jsontooltip
 msgid "All structures −10% build time and −10% cost."
-msgstr ""
+msgstr "Todas as estruturas -10% de tempo de construção e -10% de custo."
 
 #: simulation/data/technologies/civil_engineering_02.jsongenericName
 msgid "Robust Architecture"
@@ -547,7 +549,7 @@ msgstr "Estruturas Cívicas -25% tempo de construção e custo de recursos."
 
 #: simulation/data/technologies/crossbow_training.jsondescription
 msgid "The Han had a penchant for using massed crossbowmen in battle."
-msgstr ""
+msgstr "O Han tinha uma tendência para usar besteiros em massa na batalha."
 
 #: simulation/data/technologies/crossbow_training.jsongenericName
 msgid "Crossbow Training"
@@ -555,7 +557,7 @@ msgstr "Treinamento de Besta"
 
 #: simulation/data/technologies/crossbow_training.jsontooltip
 msgid "Crossbow Infantry −20% train time."
-msgstr ""
+msgstr "Infantaria de Besta −20% de tempo de treinamento."
 
 #: simulation/data/technologies/equine_transports.jsondescription
 msgid ""
@@ -993,7 +995,7 @@ msgstr "Imortais"
 
 #: simulation/data/technologies/immortals.jsontooltip
 msgid "Immortals −50% training time."
-msgstr ""
+msgstr "Imortais -50% do tempo de treinamento."
 
 #: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
@@ -1123,7 +1125,7 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units. Workers +10% metal gather rate."
-msgstr ""
+msgstr "Avance para a Fase da Cidade, que desbloqueia mais entidades e tecnologias. Centros Cívicos +25% de raio de influência do território. Estruturas +1 taxa de regeneração de pontos de captura para unidades guarnecidas. Trabalhadores +10% taxa de coleta de metal."
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1140,21 +1142,21 @@ msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units."
-msgstr ""
+msgstr "Avance para a Fase da Cidade, que desbloqueia mais entidades e tecnologias. Centros Cívicos +25% de raio de influência do território. Estruturas +1 taxa de regeneração de pontos de captura para unidades guarnecidas."
 
 #: simulation/data/technologies/phase_city_pers.jsondescription
 msgid ""
 "Advances from a bustling town to a veritable metropolis, full of the wonders"
 " of modern technology. This is the Persian city phase, where stable training"
 " rates are decreased because of the 'Times of War' bonus."
-msgstr ""
+msgstr "Avança de uma cidade movimentada para uma verdadeira metrópole, repleta das maravilhas da tecnologia moderna. Esta é a fase da cidade persa, onde as taxas de treinamento estáveis são reduzidas por causa do bônus 'Tempos de Guerra'."
 
 #: simulation/data/technologies/phase_city_pers.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +1 capture points "
 "regeneration rate for garrisoned units. Stable −10% batch training time."
-msgstr ""
+msgstr "Avance para a Fase da Cidade, que desbloqueia mais entidades e tecnologias. Centros Cívicos +25% de raio de influência do território. Estruturas +1 taxa de regeneração de pontos de captura para unidades guarnecidas. Estável -10% de tempo de treinamento em lote."
 
 #: simulation/data/technologies/phase_town.jsondescription
 msgid ""
@@ -1195,7 +1197,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units. Workers +10% metal gather rate."
-msgstr ""
+msgstr "Avançar para Fase da Cidade, que desbloqueia mais entidades e tecnologias. Centros Cívicos +25% de raio de influência do território. Estruturas +0,5 taxa de regeneração de pontos de captura para unidades guarnecidas. Trabalhadores +10% taxa de coleta de metal."
 
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
@@ -1211,21 +1213,21 @@ msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units."
-msgstr ""
+msgstr "Avançar para Fase da Cidade, que desbloqueia mais entidades e tecnologias. Centros Cívicos +25% de raio de influência do território. Estruturas +0,5 taxa de regeneração de pontos de captura para unidades guarnecidas."
 
 #: simulation/data/technologies/phase_town_pers.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly. "
 "This is the Persian town phase, where stable training rates are decreased "
 "because of the 'Times of War' bonus."
-msgstr ""
+msgstr "Avança de uma pequena vila para uma cidade movimentada, pronta para se expandir rapidamente. Esta é a fase da cidade Persa, onde as taxas de treinamento estáveis são reduzidas por causa do bônus 'Tempos de Guerra'."
 
 #: simulation/data/technologies/phase_town_pers.jsontooltip
 msgid ""
 "Advance to Town Phase, which unlocks more entities and technologies. Civic "
 "Centers +25% territory influence radius. Structures +0.5 capture points "
 "regeneration rate for garrisoned units. Stable −10% batch training time."
-msgstr ""
+msgstr "Avance para a Fase da Cidade, que desbloqueia mais entidades e tecnologias. Centros Cívicos +25% de raio de influência do território. Estruturas +0,5 taxa de regeneração de pontos de captura para unidades guarnecidas. Estável -10% de tempo de treinamento em lote."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -1650,19 +1652,19 @@ msgstr "Estábulos -10% ao tempo de treinamento de grupos."
 msgid ""
 "Qanāt or Kārēz, a network of underground aqueducts connected to the yakhchal"
 " ice house."
-msgstr ""
+msgstr "Qanāt ou Kārēz, uma rede de aquedutos subterrâneos conectados à casa de gelo yakhchal."
 
 #: simulation/data/technologies/subterranean_aqueducts.jsongenericName
 msgid "Subterranean Aqueducts"
-msgstr ""
+msgstr "Aquedutos Subterrâneos"
 
 #: simulation/data/technologies/subterranean_aqueducts.jsonspecificName.pers
 msgid "Kārēz"
-msgstr ""
+msgstr "Kārēz"
 
 #: simulation/data/technologies/subterranean_aqueducts.jsontooltip
 msgid "Ice House +1 trickle food rate per second."
-msgstr ""
+msgstr "Casa de Gelo +1 taxa de gotejamento por segundo."
 
 #: simulation/data/technologies/tower_crenellations.jsondescription
 msgid ""

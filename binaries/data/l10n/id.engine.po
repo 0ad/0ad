@@ -15,42 +15,42 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-01-07 08:19+0000\n"
+"POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2013-06-22 12:54+0000\n"
 "Last-Translator: Aziz Rahmad <azayrahmad@gmail.com>, 2021\n"
-"Language-Team: Indonesian (http://www.transifex.com/wildfire-games/0ad/language/id/)\n"
+"Language-Team: Indonesian (http://app.transifex.com/wildfire-games/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: graphics/CameraController.cpp:657
+#: graphics/CameraController.cpp:659
 #, c-format
 msgid "Scroll speed increased to %.1f"
 msgstr "Kecepatan gulir bertambah menjadi %.1f"
 
-#: graphics/CameraController.cpp:663
+#: graphics/CameraController.cpp:665
 #, c-format
 msgid "Scroll speed decreased to %.1f"
 msgstr "Kecepatan gulir berkurang menjadi %.1f"
 
-#: graphics/CameraController.cpp:670
+#: graphics/CameraController.cpp:672
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
 msgstr "Kecepatan putar bertambah menjadi X=%.3f, Y=%.3f"
 
-#: graphics/CameraController.cpp:677
+#: graphics/CameraController.cpp:679
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
 msgstr "Kecepatan putar berkurang menjadi X=%.3f, Y=%.3f"
 
-#: graphics/CameraController.cpp:683
+#: graphics/CameraController.cpp:685
 #, c-format
 msgid "Zoom speed increased to %.1f"
 msgstr "Kecepatan pembesaran bertambah menjadi %.1f"
 
-#: graphics/CameraController.cpp:689
+#: graphics/CameraController.cpp:691
 #, c-format
 msgid "Zoom speed decreased to %.1f"
 msgstr "Kecepatan pembesaran berkurang menjadi %.1f"
@@ -198,7 +198,7 @@ msgstr "Tidak semua informasi yang dibutuhkan diberikan"
 msgid "Username already exists"
 msgstr "Nama pengguna sudah ada"
 
-#: ps/Mod.cpp:82
+#: ps/Mod.cpp:93
 #, c-format
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
@@ -266,8 +266,8 @@ msgstr "Permainan disimpan ke '%s'"
 msgid "custom build"
 msgstr "versi modifikasi"
 
-#: renderer/Renderer.cpp:614 renderer/Renderer.cpp:617
-#: renderer/Renderer.cpp:754 renderer/Renderer.cpp:757
+#: renderer/Renderer.cpp:565 renderer/Renderer.cpp:568
+#: renderer/Renderer.cpp:680 renderer/Renderer.cpp:683
 #, c-format
 msgid "Screenshot written to '%s'"
 msgstr "Tangkapan layar disimpan ke '%s'"

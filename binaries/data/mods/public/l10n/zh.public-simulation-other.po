@@ -22,7 +22,7 @@ msgstr ""
 "POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: liu lizhi <xingzuo88@qq.com>, 2022-2023\n"
-"Language-Team: Chinese (http://www.transifex.com/wildfire-games/0ad/language/zh/)\n"
+"Language-Team: Chinese (http://app.transifex.com/wildfire-games/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -268,7 +268,7 @@ msgstr " %(_player_)s， 在接受盟约前，我仍然期待着 %(_amount_)s %(
 msgid ""
 "%(_player_)s, if you do not send me part of the %(_amount_)s %(_resource_)s "
 "tribute soon, I will break off our negotiations."
-msgstr "%(_player_)s， 如果你不给我们 %(_amount_)s %(_resource_)s 的话，我们将拒绝谈判。"
+msgstr "%(_player_)s， 如果你不上贡 %(_amount_)s %(_resource_)s 的话，我们将拒绝谈判。"
 
 #: simulation/ai/petra/chatHelper.js:92
 #, javascript-format
@@ -313,7 +313,7 @@ msgstr "%(_player_)s，你要是能进贡%(_amount_)s %(_resource_)s ，我将�
 msgid ""
 "%(_player_)s, if you send me %(_amount_)s %(_resource_)s, I will accept a "
 "neutrality pact."
-msgstr "%(_player_)s ,要是给我 %(_amount_)s %(_resource_)s，我能接受中立条款。 "
+msgstr "%(_player_)s ，要是能给我 %(_amount_)s %(_resource_)s，我能接受中立条款。 "
 
 #: simulation/ai/petra/chatHelper.js:107
 #, javascript-format
@@ -878,7 +878,7 @@ msgstr "奇观"
 #: simulation/helpers/Cheat.js:57
 #, javascript-format
 msgid "%(player)s has been defeated (cheat)."
-msgstr "%(player)s 被击败(作弊)。"
+msgstr "%(player)s 被击败（作弊）。"
 
 #: simulation/helpers/Cheat.js:71
 msgid "You need to select a building that trains units."

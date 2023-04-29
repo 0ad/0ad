@@ -35,7 +35,7 @@ def main():
     translatorMatch = re.compile("(# [^,<]*)(?: <.*>)?(?:, [0-9,-]{4,9})")
     lastTranslatorMatch = re.compile("(\"Last-Translator: [^,<]*)(?: <.*>)?( ?\\\\n\")")
 
-    for root, folders, filenames in os.walk(projectRootDirectory):
+    for root, folders, _ in os.walk(projectRootDirectory):
         for folder in folders:
             if folder == l10nFolderName:
                 if os.path.exists(os.path.join(root, folder, transifexClientFolder)):
@@ -44,10 +44,10 @@ def main():
                     for file in files:
                         usernames = []
                         reached = False
-                        for line in fileinput.input(file.replace("\\", "/"), inplace=True, encoding="utf-8"):
+                        for line in fileinput.input(file.replace("\\", "/"), inplace=True):
                             if reached:
                                 if line == "# \n":
-                                   line = ""
+                                    line = ""
                                 m = translatorMatch.match(line)
                                 if m:
                                     if m.group(1) in usernames:

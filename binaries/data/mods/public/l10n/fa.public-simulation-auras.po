@@ -8,6 +8,7 @@
 # Alireza Rashidi
 # AmirRezaTM
 # *Sociologist Abedi*
+# arman arjmandi
 # Farshad A
 # hamed farri
 # Hessam Shahpouri
@@ -23,10 +24,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-10 08:10+0000\n"
+"POT-Creation-Date: 2023-03-06 08:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: Mostafa Jahandar, 2023\n"
-"Language-Team: Persian (http://www.transifex.com/wildfire-games/0ad/language/fa/)\n"
+"Last-Translator: arman arjmandi, 2023\n"
+"Language-Team: Persian (http://app.transifex.com/wildfire-games/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -35,7 +36,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "نرخ سلامت جنگ افزار +۳"
+msgstr "کشتی های محاصره +3% نرخ بازیابی سلامت"
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
@@ -69,11 +70,11 @@ msgstr ""
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
 msgid "Gatherers +75% farming rate around a captured Farmstead."
-msgstr ""
+msgstr "سرعت جمع آوری +75% اطراف زمین کشاوزی تصاحب شده"
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraName
 msgid "Farmland"
-msgstr ""
+msgstr "زمین کشاورزی"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -96,7 +97,7 @@ msgstr "میهن پرستی"
 msgid ""
 "Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack "
 "damage."
-msgstr "سربازان +1 درهم شکستن، هک کردن، مقاومت در برابر سوراخ کردن و + 10% غوغا و آسیب حمله در محدوده."
+msgstr "سربازان +1 نابود کردن، هک کردن، مقاومت در برابر شکافتن و +10% آسیب در حمله نزدیک و حمله از دور"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
@@ -163,7 +164,7 @@ msgstr "حفاظت دیوار"
 msgid ""
 "+20% maximum population limit (requires the “Glorious Expansion” "
 "technology)."
-msgstr "حداکثر +20٪ محدودیت جمعیت (به فناوری ” گسترش شکوهمند\"  نیاز دارد)."
+msgstr "حداکثر +20٪ محدودیت جمعیت (به فناوری \"گسترش شکوهمند\"  نیاز دارد)."
 
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
@@ -183,7 +184,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Democracy"
-msgstr ""
+msgstr "دموکراسی"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
@@ -195,11 +196,11 @@ msgstr "درویدها"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Mercenaries −50% train time."
-msgstr ""
+msgstr "مزدورها -50% زمان آموزش"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Mercenary Transports"
-msgstr ""
+msgstr "حمل و نقل مزدورها"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Forges −15% technology resource costs and research time."
@@ -235,7 +236,7 @@ msgstr "تامین کنندگان فیل"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
 msgid "Siege Weapons and Arsenals −25% resource costs and build time."
-msgstr "محاصره مهمات و زرادخانه ها -۲۵℅ خرج منابع و زمان ساخت"
+msgstr "سلاح های محاصره و زرادخانه ها -25% هزینه منابع و زمان ساخت"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Mechanical Innovation"
@@ -269,7 +270,7 @@ msgstr "سبد نان مدیترانه ای"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "Citizen Infantry −10% training time."
-msgstr "10%- کاهش زمان موردنیاز برای ساخت پیاده نظام"
+msgstr "-10% کاهش زمان موردنیاز برای ساخت پیاده نظام شهروند"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
@@ -286,7 +287,7 @@ msgstr "تتراپولیس سوری"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Citizen Infantry Spearmen +10% health."
-msgstr "10% افزایش سلامتی شهروندان نیزه دار "
+msgstr "+10% سلامتی نیزه دار  های پیاده نظام شهروند"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
@@ -304,7 +305,7 @@ msgstr "صدای ترسناک"
 msgid ""
 "Solon instituted several economic reforms encouraging commerce and agriculture.\n"
 "Workers +15% gather speed."
-msgstr "سولون اصلاحات اقتصادی بسیاری را طرح ریزی کرد و از کشاوزی و تجارت پشتیبانی کرد.\n +15% سرعت جمع کردن منابع برای کارگرها"
+msgstr "سولون اصلاحات اقتصادی بسیاری را طرح ریزی کرد و از کشاوزی و تجارت پشتیبانی کرد.\n +15% سرعت جمع کردن منابع برای کارگران"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_1.jsonauraName
 msgid "Economic Reforms"
@@ -314,7 +315,7 @@ msgstr "اصلاحات اقتصادی"
 msgid ""
 "Solon brought in a new system of weights and measures, fathers were encouraged to find trades for their sons.\n"
 "Economic technologies −10% resource costs."
-msgstr "سولون سیستم جدید وزن و اندازه گیری را راه اندازی کرد و پدران را تشویق می کرد که برای پسرانشان  کارهای تجاری جدید ایجاد کنند.\n -10% هزینه برای فناوریهای اقتصادی"
+msgstr "سولون سیستم جدید وزن و اندازه گیری را راه اندازی کرد و پدران را تشویق کرد که برای پسرانشان تجارت جدید ایجاد کنند.\n -10% هزینه برای فناوری های اقتصادی"
 
 #: simulation/data/auras/units/catafalques/athen_catafalque_2.jsonauraName
 msgid "Economic Fortune"
@@ -379,7 +380,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/han_catafalque_1.jsonauraName
 msgid "Territorial Expansion"
-msgstr ""
+msgstr "گسترش سرزمین"
 
 #: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraDescription
 msgid ""
@@ -449,7 +450,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/mace_catafalque_2.jsonauraName
 msgid "Financial Reorganization"
-msgstr ""
+msgstr "سازماندهی مجدد امور مالی"
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraDescription
 msgid ""
@@ -554,7 +555,7 @@ msgstr "اصلاحات نظامی لیکورگان"
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_2.jsonauraDescription
 msgid "Champion Infantry Spearmen −5% resource costs."
-msgstr ""
+msgstr "نیزه داران پیاده نظام قهرمان -5% هزینه منابع."
 
 #: simulation/data/auras/units/catafalques/spart_catafalque_3.jsonauraDescription
 msgid ""
@@ -574,11 +575,11 @@ msgstr ""
 
 #: simulation/data/auras/units/centurion.jsonauraName
 msgid "Combat Leadership"
-msgstr ""
+msgstr "رهبری مبارزه"
 
 #: simulation/data/auras/units/han_minister_building.jsonauraDescription
 msgid "Builders construct buildings +2% faster for every nearby Minister."
-msgstr ""
+msgstr "کارگر های ساختمانی به ازای هر وزیر نزدیک +2% سریعتر کار می کنند"
 
 #: simulation/data/auras/units/han_minister_building.jsonauraName
 msgid "Building Programs"
@@ -830,7 +831,7 @@ msgstr "بسیج نیروها"
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_1.jsonauraDescription
 msgid "Soldiers +20% movement speed."
-msgstr "20%+ سرعت راه رفتن سربازان"
+msgstr "+20% سرعت راه رفتن سربازان"
 
 #: simulation/data/auras/units/heroes/iber_hero_viriato_2.jsonauraDescription
 msgid "Soldiers and Siege Engines gain +100% resource loot."
@@ -937,7 +938,7 @@ msgstr "ظهور مقدونیه"
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus_i.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage, −15% health."
-msgstr "20%+ قدرت حمله از نزدیک و با فاصله ، 15%- کاهش سلامتی"
+msgstr "+20% قدرت حمله از نزدیک و حمله از دور ، -15% سلامتی"
 
 #: simulation/data/auras/units/heroes/mace_hero_pyrrhus_i.jsonauraName
 msgid "Pyrrhic Victory"
@@ -954,9 +955,7 @@ msgid "Buddhism"
 msgstr "مذهب بودا"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
-msgid ""
-"When garrisoned, the Structure's technologies have −20% resource cost and "
-"−50% research time."
+msgid "All technologies have −20% resource cost and −30% research time."
 msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
@@ -966,6 +965,24 @@ msgstr "معلم"
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
 msgid "Regeneration"
 msgstr "بازیابی"
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraDescription
+msgid ""
+"Soldiers +10% melee and ranged attack damage, +1 crush, hack, pierce "
+"resistance."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraName
+msgid "Empire Maker"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraDescription
+msgid "Elephants +15% attack rate, +10% movement speed."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraName
+msgid "Elephant Corps"
+msgstr ""
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraDescription
 msgid ""
@@ -1016,7 +1033,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraDescription
 msgid "Builders +10% build rate."
-msgstr "10%+ سرعت ساخت و ساز کارگران"
+msgstr "+10% سرعت ساخت و ساز کارگران"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_1.jsonauraName
 msgid "Patron of Construction"
