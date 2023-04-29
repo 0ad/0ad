@@ -18,6 +18,14 @@
 	</technique>
 
 	<technique>
+		<require context="PASS_REFLECTIONS"/>
+		<require shaders="spirv"/>
+		<pass shader="spirv/model_common">
+			<cull mode="FRONT"/>
+		</pass>
+	</technique>
+
+	<technique>
 		<require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
 		<require shaders="arb"/>
 		<pass shader="arb/model_solid">
@@ -29,6 +37,14 @@
 		<require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
 		<require shaders="glsl"/>
 		<pass shader="glsl/model_solid">
+			<color mask_red="FALSE" mask_green="FALSE" mask_blue="FALSE" mask_alpha="FALSE"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
+		<require shaders="spirv"/>
+		<pass shader="spirv/model_solid">
 			<color mask_red="FALSE" mask_green="FALSE" mask_blue="FALSE" mask_alpha="FALSE"/>
 		</pass>
 	</technique>
@@ -50,6 +66,14 @@
 		</pass>
 	</technique>
 
+	<technique>
+		<require context="MODE_WIREFRAME"/>
+		<require shaders="spirv"/>
+		<pass shader="spirv/model_common">
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
+
 
 	<technique>
 		<require context="MODE_WIREFRAME_SOLID"/>
@@ -63,6 +87,14 @@
 		<require context="MODE_WIREFRAME_SOLID"/>
 		<require shaders="glsl"/>
 		<pass shader="glsl/model_solid_player">
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require context="MODE_WIREFRAME_SOLID"/>
+		<require shaders="spirv"/>
+		<pass shader="spirv/model_solid_player">
 			<polygon mode="LINE"/>
 		</pass>
 	</technique>
@@ -82,6 +114,16 @@
 		<require context="MODE_SILHOUETTEDISPLAY"/>
 		<require shaders="glsl"/>
 		<pass shader="glsl/model_solid_player">
+			<depth func="gequal"/>
+			<stencil test="TRUE" compare="notequal" reference="1" mask_read="4294967295" pass="REPLACE"/>
+			<blend src="constant_alpha" dst="one_minus_constant_alpha" constant="0 0 0 191"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require context="MODE_SILHOUETTEDISPLAY"/>
+		<require shaders="spirv"/>
+		<pass shader="spirv/model_solid_player">
 			<depth func="gequal"/>
 			<stencil test="TRUE" compare="notequal" reference="1" mask_read="4294967295" pass="REPLACE"/>
 			<blend src="constant_alpha" dst="one_minus_constant_alpha" constant="0 0 0 191"/>
@@ -97,6 +139,11 @@
 	<technique>
 		<require shaders="glsl"/>
 		<pass shader="glsl/model_common"/>
+	</technique>
+
+	<technique>
+		<require shaders="spirv"/>
+		<pass shader="spirv/model_common"/>
 	</technique>
 
 </effect>

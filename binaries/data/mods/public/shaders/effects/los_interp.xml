@@ -8,4 +8,8 @@
         <require shaders="glsl"/>
         <pass shader="glsl/los_interp"/>
     </technique>
+    <technique>
+        <require shaders="spirv"/>
+        <pass shader="spirv/los_interp"/>
+    </technique>
 </effect>

@@ -17,6 +17,14 @@
 		</pass>
 	</technique>
 
+	<technique>
+		<require context="PASS_REFLECTIONS"/>
+		<require shaders="spirv"/>
+		<pass shader="spirv/terrain_base">
+			<cull mode="FRONT"/>
+		</pass>
+	</technique>
+
 
 	<technique>
 		<require shaders="arb"/>
@@ -34,6 +42,14 @@
 		</pass>
 	</technique>
 
+	<technique>
+		<require shaders="spirv"/>
+		<require context="MODE_WIREFRAME"/>
+		<pass shader="spirv/terrain_base">
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
+
 
 	<technique>
 		<require shaders="arb"/>
@@ -43,6 +59,11 @@
 	<technique>
 		<require shaders="glsl"/>
 		<pass shader="glsl/terrain_base"/>
+	</technique>
+
+	<technique>
+		<require shaders="spirv"/>
+		<pass shader="spirv/terrain_base"/>
 	</technique>
 
 </effect>

@@ -8,4 +8,8 @@
 		<require shaders="glsl"/>
 		<pass shader="glsl/dummy"/>
 	</technique>
+	<technique>
+		<require shaders="spirv"/>
+		<pass shader="spirv/dummy"/>
+	</technique>
 </effect>

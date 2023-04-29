@@ -11,4 +11,9 @@
         <pass shader="glsl/debug_overlay"/>
     </technique>
 
+    <technique>
+        <require shaders="spirv"/>
+        <pass shader="spirv/debug_overlay"/>
+    </technique>
+
 </effect>

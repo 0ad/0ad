@@ -8,4 +8,8 @@
         <require shaders="glsl"/>
         <pass shader="glsl/overlayline"/>
     </technique>
+    <technique>
+        <require shaders="spirv"/>
+        <pass shader="spirv/overlayline"/>
+    </technique>
 </effect>

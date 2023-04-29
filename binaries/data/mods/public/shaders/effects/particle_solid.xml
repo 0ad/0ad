@@ -17,6 +17,14 @@
 		</pass>
 	</technique>
 
+	<technique>
+		<require shaders="spirv"/>
+		<require context="MODE_WIREFRAME"/>
+		<pass shader="spirv/particle_solid">
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
+
 
 	<technique>
 		<require shaders="arb"/>
@@ -28,6 +36,13 @@
 	<technique>
 		<require shaders="glsl"/>
 		<pass shader="glsl/particle_solid">
+			<depth mask="false"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require shaders="spirv"/>
+		<pass shader="spirv/particle_solid">
 			<depth mask="false"/>
 		</pass>
 	</technique>

@@ -19,4 +19,13 @@
 		</pass>
 	</technique>
 
+	<technique>
+		<define name="DEBUG_TEXTURED" value="1"/>
+		<require shaders="spirv"/>
+		<pass shader="spirv/debug_overlay">
+			<depth test="FALSE" mask="false"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+		</pass>
+	</technique>
+
 </effect>

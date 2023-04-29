@@ -10,4 +10,14 @@
 			<depth test="FALSE" mask="false"/>
 		</pass>
 	</technique>
+	<technique>
+		<require shaders="spirv"/>
+		<pass shader="spirv/dof">
+			<define name="BLUR_FOV" value="3"/>
+			<depth test="FALSE" mask="false"/>
+		</pass>
+		<pass shader="spirv/hdr">
+			<depth test="FALSE" mask="false"/>
+		</pass>
+	</technique>
 </effect>

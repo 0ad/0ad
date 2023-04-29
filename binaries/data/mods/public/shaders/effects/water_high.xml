@@ -7,4 +7,12 @@
 			<blend src="src_alpha" dst="one_minus_src_alpha"/>
 		</pass>
 	</technique>
+
+	<technique>
+		<require shaders="spirv"/>
+		<pass shader="spirv/water_high">
+			<depth test="TRUE"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+		</pass>
+	</technique>
 </effect>

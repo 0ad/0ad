@@ -8,4 +8,11 @@
 		</pass>
 	</technique>
 
+	<technique>
+		<require shaders="spirv"/>
+		<pass shader="spirv/hdr">
+			<depth test="FALSE" mask="false"/>
+		</pass>
+	</technique>
+
 </effect>

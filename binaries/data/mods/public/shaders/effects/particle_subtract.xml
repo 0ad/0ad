@@ -17,4 +17,12 @@
 		</pass>
 	</technique>
 
+	<technique>
+		<require shaders="spirv"/>
+		<pass shader="spirv/particle">
+			<blend src="src_alpha" dst="one" op="REVERSE_SUBTRACT"/>
+			<depth mask="false"/>
+		</pass>
+	</technique>
+
 </effect>
