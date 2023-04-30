@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <effect>
-
 	<technique>
 		<require shaders="arb"/>
 		<pass shader="arb/canvas2d">
@@ -17,4 +16,11 @@
 		</pass>
 	</technique>
 
+	<technique>
+		<require shaders="spirv"/>
+		<pass shader="spirv/canvas2d">
+			<depth test="FALSE" mask="false"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+		</pass>
+	</technique>
 </effect>

@@ -11,6 +11,16 @@
         </pass>
     </technique>
     <technique>
+        <require shaders="spirv"/>
+        <sort_by_distance/>
+        <pass shader="spirv/model_waterfall">
+            <define name="USE_TRANSPARENT" value="1"/>
+            <define name="USE_INSTANCING" value="1"/>
+            <blend src="src_alpha" dst="one_minus_src_alpha"/>
+            <depth func="lequal" mask="true"/>
+        </pass>
+    </technique>
+    <technique>
         <require shaders="arb"/>
     </technique>
 </effect>

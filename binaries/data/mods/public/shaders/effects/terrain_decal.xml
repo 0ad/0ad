@@ -21,6 +21,16 @@
 		</pass>
 	</technique>
 
+	<technique>
+		<require context="PASS_REFLECTIONS"/>
+		<require shaders="spirv"/>
+		<pass shader="spirv/terrain_decal">
+			<depth mask="false"/>
+			<cull mode="FRONT"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+		</pass>
+	</technique>
+
 
 	<technique>
 		<require shaders="arb"/>
@@ -42,6 +52,16 @@
 		</pass>
 	</technique>
 
+	<technique>
+		<require shaders="spirv"/>
+		<require context="MODE_WIREFRAME"/>
+		<pass shader="spirv/terrain_decal">
+			<depth mask="false"/>
+			<polygon mode="LINE"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+		</pass>
+	</technique>
+
 
 	<technique>
 		<require shaders="arb"/>
@@ -54,6 +74,14 @@
 	<technique>
 		<require shaders="glsl"/>
 		<pass shader="glsl/terrain_decal">
+			<depth mask="false"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require shaders="spirv"/>
+		<pass shader="spirv/terrain_decal">
 			<depth mask="false"/>
 			<blend src="src_alpha" dst="one_minus_src_alpha"/>
 		</pass>

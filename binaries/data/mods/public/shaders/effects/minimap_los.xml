@@ -19,4 +19,13 @@
 		</pass>
 	</technique>
 
+	<technique>
+		<require shaders="spirv"/>
+		<define name="MINIMAP_LOS" value="1"/>
+		<pass shader="spirv/minimap">
+			<depth test="FALSE" mask="false"/>
+			<color mask_red="FALSE" mask_green="FALSE" mask_blue="FALSE" mask_alpha="TRUE"/>
+		</pass>
+	</technique>
+
 </effect>

@@ -23,6 +23,17 @@
 		</pass>
 	</technique>
 
+	<technique>
+		<require context="MODE_SHADOWCAST || MODE_SILHOUETTEOCCLUDER"/>
+		<require shaders="spirv"/>
+		<pass shader="spirv/model_solid_tex">
+			<define name="REQUIRE_ALPHA_GEQUAL" value="0.4"/>
+			<!-- Disable face-culling for two-sided models -->
+			<cull mode="NONE"/>
+			<color mask_red="FALSE" mask_green="FALSE" mask_blue="FALSE" mask_alpha="FALSE"/>
+		</pass>
+	</technique>
+
 	<!--
 		CRenderer::RenderSilhouettes skips alpha-blended models for
 		MODE_SILHOUETTEDISPLAY, so do a dummy non-blended behaviour here to
@@ -46,6 +57,15 @@
 		</pass>
 	</technique>
 
+	<technique>
+		<require context="MODE_SILHOUETTEDISPLAY"/>
+		<require shaders="spirv"/>
+		<pass shader="spirv/model_solid_player">
+			<depth func="gequal"/>
+			<stencil test="TRUE" compare="notequal" reference="1" mask_read="4294967295" pass="REPLACE"/>
+		</pass>
+	</technique>
+
 
 	<technique>
 		<require context="MODE_WIREFRAME_SOLID"/>
@@ -63,6 +83,14 @@
 		</pass>
 	</technique>
 
+	<technique>
+		<require context="MODE_WIREFRAME_SOLID"/>
+		<require shaders="spirv"/>
+		<pass shader="spirv/model_solid_player">
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
+
 
 	<technique>
 		<require context="MODE_WIREFRAME"/>
@@ -86,6 +114,17 @@
 			<polygon mode="LINE"/>
 		</pass>
 	</technique>
+	<technique>
+		<require context="MODE_WIREFRAME"/>
+		<require shaders="spirv"/>
+		<pass shader="spirv/model_common">
+			<define name="USE_TRANSPARENT" value="1"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+			<depth func="less" mask="false"/>
+			<cull mode="NONE"/>
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
 
 
 	<technique>
@@ -103,6 +142,16 @@
 		<require context="ALPHABLEND_PASS_OPAQUE"/>
 		<require shaders="glsl"/>
 		<pass shader="glsl/model_common">
+			<define name="USE_TRANSPARENT" value="1"/>
+			<define name="REQUIRE_ALPHA_GEQUAL" value="0.6375"/>
+			<cull mode="NONE"/>
+		</pass>
+	</technique>
+	<technique>
+		<require context="PASS_REFLECTIONS"/>
+		<require context="ALPHABLEND_PASS_OPAQUE"/>
+		<require shaders="spirv"/>
+		<pass shader="spirv/model_common">
 			<define name="USE_TRANSPARENT" value="1"/>
 			<define name="REQUIRE_ALPHA_GEQUAL" value="0.6375"/>
 			<cull mode="NONE"/>
@@ -134,6 +183,18 @@
 			<cull mode="NONE"/>
 		</pass>
 	</technique>
+	<technique>
+		<require context="PASS_REFLECTIONS"/>
+		<require context="ALPHABLEND_PASS_BLEND"/>
+		<require shaders="spirv"/>
+		<pass shader="spirv/model_common">
+			<define name="USE_TRANSPARENT" value="1"/>
+			<define name="REQUIRE_ALPHA_GEQUAL" value="0.05"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+			<depth func="less" mask="false"/>
+			<cull mode="NONE"/>
+		</pass>
+	</technique>
 
 
 	<technique>
@@ -149,6 +210,15 @@
 		<require context="ALPHABLEND_PASS_OPAQUE"/>
 		<require shaders="glsl"/>
 		<pass shader="glsl/model_common">
+			<define name="USE_TRANSPARENT" value="1"/>
+			<define name="REQUIRE_ALPHA_GEQUAL" value="0.6375"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require context="ALPHABLEND_PASS_OPAQUE"/>
+		<require shaders="spirv"/>
+		<pass shader="spirv/model_common">
 			<define name="USE_TRANSPARENT" value="1"/>
 			<define name="REQUIRE_ALPHA_GEQUAL" value="0.6375"/>
 		</pass>
@@ -171,6 +241,17 @@
 		<require context="ALPHABLEND_PASS_BLEND"/>
 		<require shaders="glsl"/>
 		<pass shader="glsl/model_common">
+			<define name="USE_TRANSPARENT" value="1"/>
+			<define name="REQUIRE_ALPHA_GEQUAL" value="0.05"/>
+			<blend src="src_alpha" dst="one_minus_src_alpha"/>
+			<depth func="less" mask="false"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require context="ALPHABLEND_PASS_BLEND"/>
+		<require shaders="spirv"/>
+		<pass shader="spirv/model_common">
 			<define name="USE_TRANSPARENT" value="1"/>
 			<define name="REQUIRE_ALPHA_GEQUAL" value="0.05"/>
 			<blend src="src_alpha" dst="one_minus_src_alpha"/>

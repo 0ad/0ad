@@ -15,4 +15,11 @@
 		</pass>
 	</technique>
 
+	<technique>
+		<require shaders="spirv"/>
+		<pass shader="spirv/minimap">
+			<depth test="FALSE" mask="false"/>
+		</pass>
+	</technique>
+
 </effect>

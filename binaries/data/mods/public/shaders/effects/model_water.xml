@@ -14,6 +14,19 @@
         </pass>
     </technique>
     <technique>
+        <require shaders="spirv"/>
+        <sort_by_distance/>
+        <pass shader="spirv/model_water">
+            <define name="USE_TRANSPARENT" value="1"/>
+            <define name="USE_SPECULAR" value="1"/>
+            <define name="USE_NORMAL_MAP" value="1"/>
+            <define name="USE_INSTANCING" value="1"/>
+            <define name="REQUIRE_ALPHA_GEQUAL" value="0.05"/>
+            <blend src="src_alpha" dst="one_minus_src_alpha"/>
+            <depth func="less" mask="true"/>
+        </pass>
+    </technique>
+    <technique>
         <require shaders="arb"/>
     </technique>
 </effect>

@@ -11,4 +11,9 @@
         <pass shader="glsl/solid"/>
     </technique>
 
+    <technique>
+        <require shaders="spirv"/>
+        <pass shader="spirv/solid"/>
+    </technique>
+
 </effect>

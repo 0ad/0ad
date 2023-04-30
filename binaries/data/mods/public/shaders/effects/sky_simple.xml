@@ -15,4 +15,11 @@
 		</pass>
 	</technique>
 
+	<technique>
+		<require shaders="spirv"/>
+		<pass shader="spirv/sky">
+			<depth mask="false"/>
+		</pass>
+	</technique>
+
 </effect>

@@ -6,4 +6,10 @@
 			<depth test="FALSE" mask="false"/>
 		</pass>
 	</technique>
+	<technique>
+		<require shaders="spirv"/>
+		<pass shader="spirv/cas">
+			<depth test="FALSE" mask="false"/>
+		</pass>
+	</technique>
 </effect>

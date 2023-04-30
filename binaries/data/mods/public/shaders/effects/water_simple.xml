@@ -19,6 +19,15 @@
 		</pass>
 	</technique>
 
+	<technique>
+		<require shaders="spirv"/>
+		<require context="MODE_WIREFRAME"/>
+		<pass shader="spirv/water_simple">
+			<depth test="TRUE"/>
+			<polygon mode="LINE"/>
+		</pass>
+	</technique>
+
 
 	<technique>
 		<require shaders="arb"/>
@@ -30,6 +39,13 @@
 	<technique>
 		<require shaders="glsl"/>
 		<pass shader="glsl/water_simple">
+			<depth test="TRUE"/>
+		</pass>
+	</technique>
+
+	<technique>
+		<require shaders="spirv"/>
+		<pass shader="spirv/water_simple">
 			<depth test="TRUE"/>
 		</pass>
 	</technique>

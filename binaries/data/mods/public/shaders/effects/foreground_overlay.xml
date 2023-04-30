@@ -11,4 +11,9 @@
 	<pass shader="glsl/foreground_overlay"/>
     </technique>
 
+    <technique>
+        <require shaders="spirv"/>
+	<pass shader="spirv/foreground_overlay"/>
+    </technique>
+
 </effect>
