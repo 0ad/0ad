@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-02 21:44+0000\n"
+"POT-Creation-Date: 2023-04-28 09:24+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
 "Last-Translator: Vladimirs Kuzmins, 2016\n"
 "Language-Team: Latvian (http://app.transifex.com/wildfire-games/0ad/language/lv/)\n"
@@ -1366,7 +1366,7 @@ msgid ""
 msgstr "Klikšķiniet vienību grupēšanas izvēle, dubultklikšķis vienību grupas parādīšanai un labais-klikšķis grupas izformēšanai."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "Alpha XXVII: ———"
+msgid "Alpha XXVII: Agni"
 msgstr ""
 
 #: gui/session/top_panel/CivIcon.js:80
@@ -1688,123 +1688,123 @@ msgstr "Labais-klikšķis, lai iestatītu noklusējuma ceļu jaunai tirdzniecīb
 msgid "Expected gain: %(gain)s"
 msgstr "Sagaidāmais ieguvums: %(gain)s"
 
-#: gui/session/unit_actions.js:1312
+#: gui/session/unit_actions.js:1320
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/session/unit_actions.js:1358
+#: gui/session/unit_actions.js:1366
 msgid "Unload All."
 msgstr "Izdzīt visus."
 
-#: gui/session/unit_actions.js:1393
+#: gui/session/unit_actions.js:1401
 msgid "Unload Turrets."
 msgstr ""
 
-#: gui/session/unit_actions.js:1413
+#: gui/session/unit_actions.js:1421
 msgid "Destroy the selected units or structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1415
+#: gui/session/unit_actions.js:1423
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Lietojiet %(hotkey)s, lai izvairītos no apstiprinājuma lodziņa."
 
-#: gui/session/unit_actions.js:1465
+#: gui/session/unit_actions.js:1473
 msgid "Abort the current order."
 msgstr "Pārtraukt pašreizējo pavēli."
 
-#: gui/session/unit_actions.js:1486
+#: gui/session/unit_actions.js:1494
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
 msgstr ""
 
-#: gui/session/unit_actions.js:1508
+#: gui/session/unit_actions.js:1516
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1530
+#: gui/session/unit_actions.js:1538
 msgid "Order the selected units to occupy a turret point."
 msgstr ""
 
-#: gui/session/unit_actions.js:1552
+#: gui/session/unit_actions.js:1560
 msgid "Unload"
 msgstr "Izlādēt"
 
-#: gui/session/unit_actions.js:1572
+#: gui/session/unit_actions.js:1580
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr ""
 
-#: gui/session/unit_actions.js:1593
+#: gui/session/unit_actions.js:1601
 msgid "Focus on Rally Point."
 msgstr "Parādīt satikšanās vietu."
 
-#: gui/session/unit_actions.js:1630
+#: gui/session/unit_actions.js:1638
 msgid "Back to Work"
 msgstr "Atpakaļ pie darba"
 
-#: gui/session/unit_actions.js:1651
+#: gui/session/unit_actions.js:1659
 msgid "Order the selected units to guard a structure or unit."
 msgstr ""
 
-#: gui/session/unit_actions.js:1671
+#: gui/session/unit_actions.js:1679
 msgid "Remove guard"
 msgstr "Noņemt apsardzi"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1690
+#: gui/session/unit_actions.js:1698
 msgid "Barter & Trade"
 msgstr ""
 
-#: gui/session/unit_actions.js:1710
+#: gui/session/unit_actions.js:1718
 msgid "Patrol"
 msgstr "Patrulēt"
 
-#: gui/session/unit_actions.js:1711
+#: gui/session/unit_actions.js:1719
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1739
+#: gui/session/unit_actions.js:1747
 msgid "Press to allow allies to use this dropsite"
 msgstr "Nospiediet, lai ļautu sabiedrotiem izmantot šo nodošanas punktu."
 
-#: gui/session/unit_actions.js:1744
+#: gui/session/unit_actions.js:1752
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Nospiediet, lai liegtu sabiedrotiem izmantot šo nodošanas punktu."
 
-#: gui/session/unit_actions.js:1779
+#: gui/session/unit_actions.js:1787
 msgid "The use of this dropsite is prohibited"
 msgstr "Šī nodošanas punkta lietošana ir aizliegta"
 
-#: gui/session/unit_actions.js:1785
+#: gui/session/unit_actions.js:1793
 msgid "Allies are allowed to use this dropsite."
 msgstr ""
 
-#: gui/session/unit_actions.js:1786
+#: gui/session/unit_actions.js:1794
 msgid "You are allowed to use this dropsite"
 msgstr "Jums ir atļauts izmantot šo nodošanas punktu"
 
-#: gui/session/unit_actions.js:1805
+#: gui/session/unit_actions.js:1813
 msgid "Activate auto-queue for selected structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1825
+#: gui/session/unit_actions.js:1833
 msgid "Deactivate auto-queue for selected structures."
 msgstr ""
 
-#: gui/session/unit_actions.js:1890
+#: gui/session/unit_actions.js:1898
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Vienība tika nogalināta pirms no tās varējā novākt"
 
-#: gui/session/unit_actions.js:1893
+#: gui/session/unit_actions.js:1901
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Jūs nevarat iznīcināt šo vienību, jo jums pieder mazāk par pusi no ieņemšanas punktiem"
 
-#: gui/session/unit_actions.js:1896
+#: gui/session/unit_actions.js:1904
 msgid "This entity is undeletable"
 msgstr "Šo vienību nevar izdzēst"

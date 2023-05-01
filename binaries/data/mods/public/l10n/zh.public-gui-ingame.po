@@ -48,7 +48,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-02 21:44+0000\n"
+"POT-Creation-Date: 2023-04-28 09:24+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
 "Last-Translator: liu lizhi <xingzuo88@qq.com>, 2022-2023\n"
 "Language-Team: Chinese (http://app.transifex.com/wildfire-games/0ad/language/zh/)\n"
@@ -1381,8 +1381,8 @@ msgid ""
 msgstr "单击选择群组，双击跟踪群组，右击解散群组。"
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "Alpha XXVII: ———"
-msgstr "内测版 27：———"
+msgid "Alpha XXVII: Agni"
+msgstr ""
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1685,121 +1685,121 @@ msgstr "右键单击为贸易者确定一条默认的路线"
 msgid "Expected gain: %(gain)s"
 msgstr "预期收益: %(gain)s"
 
-#: gui/session/unit_actions.js:1312
+#: gui/session/unit_actions.js:1320
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "它们不可被操控。"
 
-#: gui/session/unit_actions.js:1358
+#: gui/session/unit_actions.js:1366
 msgid "Unload All."
 msgstr "卸载全部。"
 
-#: gui/session/unit_actions.js:1393
+#: gui/session/unit_actions.js:1401
 msgid "Unload Turrets."
 msgstr "卸载防御塔。"
 
-#: gui/session/unit_actions.js:1413
+#: gui/session/unit_actions.js:1421
 msgid "Destroy the selected units or structures."
 msgstr "摧毁选定的单位或建筑。"
 
-#: gui/session/unit_actions.js:1415
+#: gui/session/unit_actions.js:1423
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "使用 %(hotkey)s 以忽略确认对话。"
 
-#: gui/session/unit_actions.js:1465
+#: gui/session/unit_actions.js:1473
 msgid "Abort the current order."
 msgstr "中止当前的命令。"
 
-#: gui/session/unit_actions.js:1486
+#: gui/session/unit_actions.js:1494
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
 msgstr "放置完资源后，让选取的单位到指定位置攻击。"
 
-#: gui/session/unit_actions.js:1508
+#: gui/session/unit_actions.js:1516
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "让选取的单位驻守于建筑物或单位内。"
 
-#: gui/session/unit_actions.js:1530
+#: gui/session/unit_actions.js:1538
 msgid "Order the selected units to occupy a turret point."
 msgstr "让选取的单位占领防御塔。"
 
-#: gui/session/unit_actions.js:1552
+#: gui/session/unit_actions.js:1560
 msgid "Unload"
 msgstr "卸载"
 
-#: gui/session/unit_actions.js:1572
+#: gui/session/unit_actions.js:1580
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "让所选单位修复建筑、船只或工程器械。"
 
-#: gui/session/unit_actions.js:1593
+#: gui/session/unit_actions.js:1601
 msgid "Focus on Rally Point."
 msgstr "关注集合点。"
 
-#: gui/session/unit_actions.js:1630
+#: gui/session/unit_actions.js:1638
 msgid "Back to Work"
 msgstr "返回工作"
 
-#: gui/session/unit_actions.js:1651
+#: gui/session/unit_actions.js:1659
 msgid "Order the selected units to guard a structure or unit."
 msgstr "让选取的单位守卫建筑物或单位。"
 
-#: gui/session/unit_actions.js:1671
+#: gui/session/unit_actions.js:1679
 msgid "Remove guard"
 msgstr "移除守卫"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1690
+#: gui/session/unit_actions.js:1698
 msgid "Barter & Trade"
 msgstr "贸易"
 
-#: gui/session/unit_actions.js:1710
+#: gui/session/unit_actions.js:1718
 msgid "Patrol"
 msgstr "巡逻"
 
-#: gui/session/unit_actions.js:1711
+#: gui/session/unit_actions.js:1719
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "攻击敌方所有的非建筑单位。"
 
-#: gui/session/unit_actions.js:1739
+#: gui/session/unit_actions.js:1747
 msgid "Press to allow allies to use this dropsite"
 msgstr "按下以允许盟友使用此资源回收点"
 
-#: gui/session/unit_actions.js:1744
+#: gui/session/unit_actions.js:1752
 msgid "Press to prevent allies from using this dropsite"
 msgstr "按下以防止盟友使用此资源回收点"
 
-#: gui/session/unit_actions.js:1779
+#: gui/session/unit_actions.js:1787
 msgid "The use of this dropsite is prohibited"
 msgstr "已禁止使用此资源回收点"
 
-#: gui/session/unit_actions.js:1785
+#: gui/session/unit_actions.js:1793
 msgid "Allies are allowed to use this dropsite."
 msgstr "允许盟友使用此资源回收点。"
 
-#: gui/session/unit_actions.js:1786
+#: gui/session/unit_actions.js:1794
 msgid "You are allowed to use this dropsite"
 msgstr "已允许你使用此资源回收点"
 
-#: gui/session/unit_actions.js:1805
+#: gui/session/unit_actions.js:1813
 msgid "Activate auto-queue for selected structures."
 msgstr "选定的建筑激活自动队列。"
 
-#: gui/session/unit_actions.js:1825
+#: gui/session/unit_actions.js:1833
 msgid "Deactivate auto-queue for selected structures."
 msgstr "选定的建筑取消自动队列。"
 
-#: gui/session/unit_actions.js:1890
+#: gui/session/unit_actions.js:1898
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "该独立存在的实体必须在其可以被搜集之前杀死"
 
-#: gui/session/unit_actions.js:1893
+#: gui/session/unit_actions.js:1901
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "你无法破坏此建筑，因为你的占领点数不到一半。"
 
-#: gui/session/unit_actions.js:1896
+#: gui/session/unit_actions.js:1904
 msgid "This entity is undeletable"
 msgstr "不可删除该实体。"

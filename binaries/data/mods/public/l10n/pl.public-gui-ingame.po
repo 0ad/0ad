@@ -57,7 +57,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-02 21:44+0000\n"
+"POT-Creation-Date: 2023-04-28 09:24+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
 "Last-Translator: Marcin S <dzidek1003@o2.pl>, 2016-2017,2021-2022\n"
 "Language-Team: Polish (http://app.transifex.com/wildfire-games/0ad/language/pl/)\n"
@@ -1420,8 +1420,8 @@ msgid ""
 msgstr "Kliknij, aby zaznaczyć zgrupowane jednostki. Kliknij dwa razy, aby przejść do zgrupowanych jednostek. Kliknij prawym przyciskiem myszy, aby rozwiązać grupę."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "Alpha XXVII: ———"
-msgstr "Alpha XXVII: ———"
+msgid "Alpha XXVII: Agni"
+msgstr ""
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1751,7 +1751,7 @@ msgstr "Kliknij prawym przyciskiem myszy, aby ustalić trasę domyślną dla now
 msgid "Expected gain: %(gain)s"
 msgstr "Przewidywany zysk: %(gain)s"
 
-#: gui/session/unit_actions.js:1312
+#: gui/session/unit_actions.js:1320
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "Tej jednostki nie można kontrolować."
@@ -1759,116 +1759,116 @@ msgstr[1] "Tych jednostek nie można kontrolować."
 msgstr[2] "Tych jednostek nie można kontrolować."
 msgstr[3] "Tych jednostek nie można kontrolować."
 
-#: gui/session/unit_actions.js:1358
+#: gui/session/unit_actions.js:1366
 msgid "Unload All."
 msgstr "Rozładuj całkowicie."
 
-#: gui/session/unit_actions.js:1393
+#: gui/session/unit_actions.js:1401
 msgid "Unload Turrets."
 msgstr "Rozładuj wieże."
 
-#: gui/session/unit_actions.js:1413
+#: gui/session/unit_actions.js:1421
 msgid "Destroy the selected units or structures."
 msgstr "Zniszcz zaznaczone jednostki lub budowle."
 
-#: gui/session/unit_actions.js:1415
+#: gui/session/unit_actions.js:1423
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Użyj %(hotkey)s, aby anulować okno dialogowe."
 
-#: gui/session/unit_actions.js:1465
+#: gui/session/unit_actions.js:1473
 msgid "Abort the current order."
 msgstr "Przerwij aktualny rozkaz."
 
-#: gui/session/unit_actions.js:1486
+#: gui/session/unit_actions.js:1494
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
 msgstr "Wyślij zaznaczone jednostki do ataku w wybrane miejsce po zrzuceniu zasobów."
 
-#: gui/session/unit_actions.js:1508
+#: gui/session/unit_actions.js:1516
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "Rozkaż zaznaczonym jednostkom zabarykadować się w budowli lub jednostce."
 
-#: gui/session/unit_actions.js:1530
+#: gui/session/unit_actions.js:1538
 msgid "Order the selected units to occupy a turret point."
 msgstr "Rozkaż wybranym jednostkom zająć punkt wieży."
 
-#: gui/session/unit_actions.js:1552
+#: gui/session/unit_actions.js:1560
 msgid "Unload"
 msgstr "Usuń"
 
-#: gui/session/unit_actions.js:1572
+#: gui/session/unit_actions.js:1580
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "Rozkaż zaznaczonym jednostkom naprawić budynek, łódź lub machinę oblężniczą."
 
-#: gui/session/unit_actions.js:1593
+#: gui/session/unit_actions.js:1601
 msgid "Focus on Rally Point."
 msgstr "Ustaw kamerę na Miejsce Zbiórki."
 
-#: gui/session/unit_actions.js:1630
+#: gui/session/unit_actions.js:1638
 msgid "Back to Work"
 msgstr "Powrót do pracy"
 
-#: gui/session/unit_actions.js:1651
+#: gui/session/unit_actions.js:1659
 msgid "Order the selected units to guard a structure or unit."
 msgstr "Rozkaż zaznaczonym jednostkom chronić budynek lub jednostkę."
 
-#: gui/session/unit_actions.js:1671
+#: gui/session/unit_actions.js:1679
 msgid "Remove guard"
 msgstr "Usuń straż"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1690
+#: gui/session/unit_actions.js:1698
 msgid "Barter & Trade"
 msgstr "Wymiana i Handel"
 
-#: gui/session/unit_actions.js:1710
+#: gui/session/unit_actions.js:1718
 msgid "Patrol"
 msgstr "Patrol"
 
-#: gui/session/unit_actions.js:1711
+#: gui/session/unit_actions.js:1719
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "Zaatakuj wszystkie napotkane wrogie jednostki, pomijając budynki."
 
-#: gui/session/unit_actions.js:1739
+#: gui/session/unit_actions.js:1747
 msgid "Press to allow allies to use this dropsite"
 msgstr "Naciśnij, aby umożliwić sojusznikom aby skorzystali z tego terenu"
 
-#: gui/session/unit_actions.js:1744
+#: gui/session/unit_actions.js:1752
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Naciśnij, aby zabronić sojusznikom korzystanie z tego terenu"
 
-#: gui/session/unit_actions.js:1779
+#: gui/session/unit_actions.js:1787
 msgid "The use of this dropsite is prohibited"
 msgstr "Użycie tego terenu jest zabronione"
 
-#: gui/session/unit_actions.js:1785
+#: gui/session/unit_actions.js:1793
 msgid "Allies are allowed to use this dropsite."
 msgstr "Sojusznicy mogą korzystać z tego składowiska."
 
-#: gui/session/unit_actions.js:1786
+#: gui/session/unit_actions.js:1794
 msgid "You are allowed to use this dropsite"
 msgstr "Masz prawo do korzystania z tej zniżki"
 
-#: gui/session/unit_actions.js:1805
+#: gui/session/unit_actions.js:1813
 msgid "Activate auto-queue for selected structures."
 msgstr "Aktywuj auto-kolejkę dla zaznaczonych jednostek."
 
-#: gui/session/unit_actions.js:1825
+#: gui/session/unit_actions.js:1833
 msgid "Deactivate auto-queue for selected structures."
 msgstr "Dezaktywuj auto-kolejkę dla zaznaczonych jednostek."
 
-#: gui/session/unit_actions.js:1890
+#: gui/session/unit_actions.js:1898
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Jednostka musi być zabita, zanim będzie można ją zebrać"
 
-#: gui/session/unit_actions.js:1893
+#: gui/session/unit_actions.js:1901
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "Nie możesz zniszczyć tej jednostki ponieważ posiadasz mniej niż połowę punktów zdobycia"
 
-#: gui/session/unit_actions.js:1896
+#: gui/session/unit_actions.js:1904
 msgid "This entity is undeletable"
 msgstr "Ta jednostka nie nadaje się do usunięcia"

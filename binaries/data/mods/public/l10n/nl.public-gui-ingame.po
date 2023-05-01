@@ -45,7 +45,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-02 21:44+0000\n"
+"POT-Creation-Date: 2023-04-28 09:24+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
 "Last-Translator: rollieoo, 2021-2023\n"
 "Language-Team: Dutch (http://app.transifex.com/wildfire-games/0ad/language/nl/)\n"
@@ -1388,8 +1388,8 @@ msgid ""
 msgstr "Klik om de groep eenheden te selecteren, dubbelklik om te focussen en rechts klikken om de groep te verwijderen."
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
-msgid "Alpha XXVII: ———"
-msgstr "Alpha XXVII: ———"
+msgid "Alpha XXVII: Agni"
+msgstr "Alpha XXVII: Agni"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1701,122 +1701,122 @@ msgstr "Rechts klikken om een standaard route in te stellen voor nieuwe handelaa
 msgid "Expected gain: %(gain)s"
 msgstr "Verwachtte winst: %(gain)s"
 
-#: gui/session/unit_actions.js:1312
+#: gui/session/unit_actions.js:1320
 msgid "This entity cannot be controlled."
 msgid_plural "These entities cannot be controlled."
 msgstr[0] "Deze entiteit kan niet worden bestuurd."
 msgstr[1] "Deze entiteiten kunnen niet worden bestuurd."
 
-#: gui/session/unit_actions.js:1358
+#: gui/session/unit_actions.js:1366
 msgid "Unload All."
 msgstr "Iedereen naar buiten sturen."
 
-#: gui/session/unit_actions.js:1393
+#: gui/session/unit_actions.js:1401
 msgid "Unload Turrets."
 msgstr "Toren leegmaken."
 
-#: gui/session/unit_actions.js:1413
+#: gui/session/unit_actions.js:1421
 msgid "Destroy the selected units or structures."
 msgstr "De geselecteerde eenheden of gebouwen vernietigen."
 
-#: gui/session/unit_actions.js:1415
+#: gui/session/unit_actions.js:1423
 #, javascript-format
 msgid "Use %(hotkey)s to avoid the confirmation dialog."
 msgstr "Gebruik %(hotkey)s om de bevestigingsdialoog te vermijden."
 
-#: gui/session/unit_actions.js:1465
+#: gui/session/unit_actions.js:1473
 msgid "Abort the current order."
 msgstr "De huidige taak stoppen."
 
-#: gui/session/unit_actions.js:1486
+#: gui/session/unit_actions.js:1494
 msgid ""
 "Send the selected units on attack move to the specified location after "
 "dropping resources."
 msgstr "Beveel de geselecteerde eenheden op aanvalstocht te gaan naar de aangewezen locatie nadat ze hun grondstoffen hebben afgeleverd."
 
-#: gui/session/unit_actions.js:1508
+#: gui/session/unit_actions.js:1516
 msgid "Order the selected units to garrison in a structure or unit."
 msgstr "Laat de geselecteerde eenheden een gebouw of eenheid bemannen."
 
-#: gui/session/unit_actions.js:1530
+#: gui/session/unit_actions.js:1538
 msgid "Order the selected units to occupy a turret point."
 msgstr "Laat de geselecteerde eenheden een toren bezetten."
 
-#: gui/session/unit_actions.js:1552
+#: gui/session/unit_actions.js:1560
 msgid "Unload"
 msgstr "Uitlaten"
 
-#: gui/session/unit_actions.js:1572
+#: gui/session/unit_actions.js:1580
 msgid "Order the selected units to repair a structure, ship, or siege engine."
 msgstr "Laat de geselecteerde eenheden een gebouw, schip of belegeringswerktuig repareren."
 
-#: gui/session/unit_actions.js:1593
+#: gui/session/unit_actions.js:1601
 msgid "Focus on Rally Point."
 msgstr "Ga naar verzamelpunt."
 
-#: gui/session/unit_actions.js:1630
+#: gui/session/unit_actions.js:1638
 msgid "Back to Work"
 msgstr "Terug aan het werk"
 
-#: gui/session/unit_actions.js:1651
+#: gui/session/unit_actions.js:1659
 msgid "Order the selected units to guard a structure or unit."
 msgstr "Laat de geselecteerde eenheden een gebouw of eenheid bewaken."
 
-#: gui/session/unit_actions.js:1671
+#: gui/session/unit_actions.js:1679
 msgid "Remove guard"
 msgstr "Bewaking verwijderen"
 
 #: gui/session/top_panel/IconButtons/TradeDialogButton.js:31
 #: gui/session/trade/TradeDialog.xml:(caption):9
-#: gui/session/unit_actions.js:1690
+#: gui/session/unit_actions.js:1698
 msgid "Barter & Trade"
 msgstr "Ruilen en handelen"
 
-#: gui/session/unit_actions.js:1710
+#: gui/session/unit_actions.js:1718
 msgid "Patrol"
 msgstr "Patrouilleren"
 
-#: gui/session/unit_actions.js:1711
+#: gui/session/unit_actions.js:1719
 msgid "Attack all encountered enemy units while avoiding structures."
 msgstr "Val alle vijandelijke eenheden aan maar vermijd gebouwen."
 
-#: gui/session/unit_actions.js:1739
+#: gui/session/unit_actions.js:1747
 msgid "Press to allow allies to use this dropsite"
 msgstr "Klik om bondgenoten toegang tot dit pakhuis te geven."
 
-#: gui/session/unit_actions.js:1744
+#: gui/session/unit_actions.js:1752
 msgid "Press to prevent allies from using this dropsite"
 msgstr "Klik om bondgenoten toegang tot dit pakhuis te ontzeggen."
 
-#: gui/session/unit_actions.js:1779
+#: gui/session/unit_actions.js:1787
 msgid "The use of this dropsite is prohibited"
 msgstr "U kunt dit pakhuis niet gebruiken."
 
-#: gui/session/unit_actions.js:1785
+#: gui/session/unit_actions.js:1793
 msgid "Allies are allowed to use this dropsite."
 msgstr "Bondgenoten mogen dit pakhuis gebruiken."
 
-#: gui/session/unit_actions.js:1786
+#: gui/session/unit_actions.js:1794
 msgid "You are allowed to use this dropsite"
 msgstr "U kan dit pakhuis gebruiken."
 
-#: gui/session/unit_actions.js:1805
+#: gui/session/unit_actions.js:1813
 msgid "Activate auto-queue for selected structures."
 msgstr "Wachtrij voor geselecteerde gebouwen aanzetten."
 
-#: gui/session/unit_actions.js:1825
+#: gui/session/unit_actions.js:1833
 msgid "Deactivate auto-queue for selected structures."
 msgstr "Wachtrij voor geselecteerde gebouwen uitzetten."
 
-#: gui/session/unit_actions.js:1890
+#: gui/session/unit_actions.js:1898
 msgid "The entity has to be killed before it can be gathered from"
 msgstr "Het dier moet gedood worden voordat er voedsel kan worden verzameld"
 
-#: gui/session/unit_actions.js:1893
+#: gui/session/unit_actions.js:1901
 msgid ""
 "You cannot destroy this entity as you own less than half the capture points"
 msgstr "U kunt dit niet vernietigen omdat u niet de meerderheid van de veroverpunten bezit."
 
-#: gui/session/unit_actions.js:1896
+#: gui/session/unit_actions.js:1904
 msgid "This entity is undeletable"
 msgstr "Deze entiteit kan niet worden verwijderd"
