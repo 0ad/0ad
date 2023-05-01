@@ -53,7 +53,7 @@
         <texture file="structural/ao/hele_house_c.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="4" name="Hellenes House d">
+    <variant frequency="4" name="Hellenes House D">
       <mesh>structural/hele_house_d.dae</mesh>
       <props>
         <prop actor="props/structures/hellenes/house_d_shields.xml" attachpoint="root"/>
@@ -67,7 +67,7 @@
         <texture file="structural/ao/hele_house_d.png" name="aoTex"/>
       </textures>
     </variant>
-    <variant frequency="4" name="Hellenes House 3">
+    <variant frequency="4" name="Hellenes House E">
       <mesh>structural/hele_house_e.dae</mesh>
       <props>
         <prop actor="props/structures/hellenes/house_e_shields.xml" attachpoint="root"/>
@@ -79,6 +79,14 @@
       <textures>
         <texture file="structural/ao/hele_house_e.png" name="aoTex"/>
       </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="ungarrisoned" frequency="1"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
+      </props>
     </variant>
   </group>
   <group>
