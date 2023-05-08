@@ -26,6 +26,7 @@ pipeline {
 	parameters {
 		string(name: 'BUNDLE_VERSION', defaultValue: '0.0.27dev', description: 'Bundle Version')
 		string(name: 'ENGINE_VERSION', defaultValue: '0.0.27', description: 'Engine Version')
+		string(name: 'SVN_REV', defaultValue: 'HEAD', description: 'For instance 21000')
 		booleanParam(name: 'ONLY_MOD', defaultValue: true, description: 'Only archive the mod mod.')
 		booleanParam(name: 'DO_GZIP', defaultValue: true, description: 'Create .gz unix tarballs as well as .xz')
 		booleanParam(name: 'FULL_REBUILD', defaultValue: true, description: 'Do a full rebuild (safer for release, slower).')
