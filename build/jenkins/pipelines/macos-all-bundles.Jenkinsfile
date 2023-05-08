@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,12 +24,13 @@ pipeline {
 	}
 
 	parameters {
-		string(name: 'BUNDLE_VERSION', defaultValue: '0.0.26dev', description: 'Bundle Version')
-		string(name: 'SVN_REV', defaultValue: 'HEAD', description: 'For instance 21000')
+		string(name: 'BUNDLE_VERSION', defaultValue: '0.0.27dev', description: 'Bundle Version')
+		string(name: 'ENGINE_VERSION', defaultValue: '0.0.27', description: 'Engine Version')
 		booleanParam(name: 'ONLY_MOD', defaultValue: true, description: 'Only archive the mod mod.')
 		booleanParam(name: 'DO_GZIP', defaultValue: true, description: 'Create .gz unix tarballs as well as .xz')
 		booleanParam(name: 'FULL_REBUILD', defaultValue: true, description: 'Do a full rebuild (safer for release, slower).')
 		booleanParam(name: 'WINDOWS_UNIX', defaultValue: true, description: 'Build windows and unix bundles.')
+		booleanParam(name: 'BUILD_SHADERS', defaultValue: true, description: 'Build the spir-v shaders (very slow).')
 	}
 
 	stages {
@@ -65,7 +66,7 @@ pipeline {
 		}
 		stage("Create archive data") {
 			steps {
-				sh "JOBS=\"-j\$(sysctl -n hw.ncpu)\" ONLY_MOD=${params.ONLY_MOD} source/tools/dist/build-archives.sh"
+				sh "JOBS=\"-j\$(sysctl -n hw.ncpu)\" ONLY_MOD=${params.ONLY_MOD} BUILD_SHADERS=${params.BUILD_SHADERS} ENGINE_VERSION=${params.ENGINE_VERSION} source/tools/dist/build-archives.sh"
 			}
 		}
 		stage("Create Mac Bundle") {
@@ -76,25 +77,25 @@ pipeline {
 		stage("Create Windows installer & *nix files") {
 			steps {
 				script {
-				    if(params.WINDOWS_UNIX)
-				    {
-	    				// The files created by the mac compilation need to be deleted
-        				sh "svn st {binaries/,build/} --no-ignore | cut -c 9- | xargs rm -rfv"
-        				// Hide the libraries folder.
-        				sh "mv libraries/ temp_libraries/"
-        				sh "svn revert libraries/ -R"
-        				// The generated tests use hardcoded paths so they must be deleted as well.
-        				sh 'python3 -c \"import glob; print(\\\" \\\".join(glob.glob(\\\"source/**/tests/**.cpp\\\", recursive=True)));\" | xargs rm -v'
-        				sh "svn revert build/ -R"
-    					try {
-    						// Then run the core object.
-    						sh "JOBS=\"-j\$(sysctl -n hw.ncpu)\" BUNDLE_VERSION=${params.BUNDLE_VERSION} DO_GZIP=${params.DO_GZIP} source/tools/dist/build-unix-win32.sh"
-    					} finally {
-    						// Un-hide the libraries.
-    						sh "rm -rfv libraries/"
-    						sh "mv temp_libraries/ libraries/"
-    					}		        
-				    }
+					if(params.WINDOWS_UNIX)
+					{
+						// The files created by the mac compilation need to be deleted
+						sh "svn st {binaries/,build/} --no-ignore | cut -c 9- | xargs rm -rfv"
+						// Hide the libraries folder.
+						sh "mv libraries/ temp_libraries/"
+						sh "svn revert libraries/ -R"
+						// The generated tests use hardcoded paths so they must be deleted as well.
+						sh 'python3 -c \"import glob; print(\\\" \\\".join(glob.glob(\\\"source/**/tests/**.cpp\\\", recursive=True)));\" | xargs rm -v'
+						sh "svn revert build/ -R"
+						try {
+							// Then run the core object.
+							sh "JOBS=\"-j\$(sysctl -n hw.ncpu)\" BUNDLE_VERSION=${params.BUNDLE_VERSION} DO_GZIP=${params.DO_GZIP} source/tools/dist/build-unix-win32.sh"
+						} finally {
+							// Un-hide the libraries.
+							sh "rm -rfv libraries/"
+							sh "mv temp_libraries/ libraries/"
+						}
+					}
 				}
 			}
 		}
