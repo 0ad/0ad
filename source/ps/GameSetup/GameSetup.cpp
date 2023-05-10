@@ -843,8 +843,12 @@ CParamNode GetTemplate(const std::string& templateName)
  *  "Alice" joins the match as player 2:
  * -autostart-client=127.0.0.1 -autostart-playername="Alice"
  * The players use the developer overlay to control players.
+ *
  * 2) Load Alpine Lakes random map with random seed, 2 players (Athens and Britons), and player 2 is PetraBot:
  * -autostart="random/alpine_lakes" -autostart-seed=-1 -autostart-players=2 -autostart-civ=1:athen -autostart-civ=2:brit -autostart-ai=2:petra
+ *
+ * 3) Observe the PetraBot on a triggerscript map:
+ * -autostart="random/jebel_barkal" -autostart-seed=-1 -autostart-players=2 -autostart-civ=1:athen -autostart-civ=2:brit -autostart-ai=1:petra -autostart-ai=2:petra -autostart-player=-1
  */
 bool Autostart(const CmdLineArgs& args)
 {

@@ -96,7 +96,7 @@
     <xsl:attribute name="id"><xsl:value-of select="@name"/></xsl:attribute>
 
     <h2><xsl:value-of select="$name"/></h2>
-    
+
     <xsl:if test=".//a:help">
       <p><xsl:value-of select=".//a:help"/></p>
     </xsl:if>
@@ -110,7 +110,7 @@
     </xsl:for-each>
 
     <xsl:apply-templates mode="components"/>
-   
+
     <div class="grammar-box">
       <h3>RELAX NG Grammar</h3>
       <pre class="grammar">
@@ -151,13 +151,32 @@
 </xsl:template>
 
 <!-- Component element description -->
-<xsl:template match="rng:element[@name]" mode="component">
-  <h3><code><xsl:value-of select="@name"/></code></h3>
-  <xsl:if test="parent::rng:optional">
-    <p><em>Optional.</em></p>
-  </xsl:if>
-  <xsl:if test="@a:help">
-    <p><xsl:value-of select="@a:help"/>.</p>
+<xsl:template match="rng:element|rng:zeroOrMore|rng:oneOrMore|rng:anyName" mode="component">
+  <xsl:if test="@a:help and count(.//a:example) = 0">
+    <xsl:choose>
+      <xsl:when test="normalize-space(@name)=''">
+        <xsl:variable name="path">
+          <xsl:call-template name="getPath">
+            <xsl:with-param name="node" select="."/>
+          </xsl:call-template>
+        </xsl:variable>
+        <h4><xsl:value-of select="$path"/></h4>
+      </xsl:when>
+      <xsl:otherwise>
+        <h3><code><xsl:value-of select="@name"/></code></h3>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:if test="parent::rng:optional">
+      <p><em>Optional.</em></p>
+    </xsl:if>
+    <xsl:choose>
+      <xsl:when test="substring(@a:help, string-length(@a:help))='.'">
+        <p><xsl:value-of select="@a:help"/></p>
+      </xsl:when>
+      <xsl:otherwise>
+        <p><xsl:value-of select="@a:help"/>.</p>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:if>
   <xsl:apply-templates mode="datatype"/>
   <xsl:apply-templates mode="component"/>
@@ -174,7 +193,7 @@
 <xsl:template match="text()" mode="component"/> <!-- ignore text inside the grammar -->
 
 <!-- Datatype description when all children are <value> -->
-<xsl:template match="rng:choice[count(./*[not(local-name() = 'value')]) = 0]" mode="datatype"> 
+<xsl:template match="rng:choice[count(./*[not(local-name() = 'value')]) = 0]" mode="datatype">
   <p><em>Value is one of:</em></p>
   <dl>
     <xsl:apply-templates mode="choice-values"/>
@@ -276,7 +295,13 @@
 <xsl:template match="a:*|@a:*" mode="literal"/>
 
 <xsl:template match="text()" mode="literal">
-  <xsl:value-of select="."/>
+  <xsl:choose>
+    <xsl:when test="normalize-space()=''">
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:value-of select="."/>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
 
 <xsl:template name="indent">
@@ -289,6 +314,41 @@
   </xsl:if>
 </xsl:template>
 
-
+<xsl:template name="getPath">
+  <xsl:param name="node" />
+  <xsl:variable name="maxDepth" select="1"/>
+  <xsl:choose>
+    <xsl:when test="not($node/..)">
+      <xsl:if test="$node/ancestor::*[position() > $maxDepth]">
+        <xsl:choose>
+          <xsl:when test="$node/@name">
+            <xsl:value-of select="concat($node/@name)" />
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="name($node)" />
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:if>
+    </xsl:when>
+    <xsl:otherwise>
+      <xsl:call-template name="getPath">
+        <xsl:with-param name="node" select="$node/.." />
+      </xsl:call-template>
+      <xsl:if test="$node/ancestor::*[position() > $maxDepth]">
+        <xsl:if test="$node/ancestor::*[position() > ($maxDepth + 1)]">
+          <xsl:text>.</xsl:text>
+        </xsl:if>
+        <xsl:choose>
+          <xsl:when test="$node/@name">
+            <xsl:value-of select="$node/@name" />
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="name($node)" />
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:if>
+    </xsl:otherwise>
+  </xsl:choose>
+</xsl:template>
 </xsl:stylesheet>
 
