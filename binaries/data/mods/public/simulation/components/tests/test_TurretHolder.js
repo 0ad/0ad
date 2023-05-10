@@ -1,7 +1,9 @@
 Engine.LoadHelperScript("Player.js");
 Engine.LoadComponentScript("interfaces/TurretHolder.js");
+Engine.LoadComponentScript("interfaces/Turretable.js");
 Engine.LoadComponentScript("interfaces/UnitAI.js");
 Engine.LoadComponentScript("TurretHolder.js");
+Engine.LoadComponentScript("Turretable.js");
 
 AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 	"GetPlayerByID": id => id
@@ -122,3 +124,100 @@ TS_ASSERT(cmpTurretHolder.OccupyTurretPoint(cavID, cmpTurretHolder.turretPoints[
 TS_ASSERT(cmpTurretHolder.LeaveTurretPoint(archerID));
 TS_ASSERT(!cmpTurretHolder.LeaveTurretPoint(cavID, false, cmpTurretHolder.turretPoints[1]));
 TS_ASSERT(cmpTurretHolder.LeaveTurretPoint(cavID, false, cmpTurretHolder.turretPoints[2]));
+
+// Incremental Turret creation.
+cmpTurretHolder = ConstructComponent(turretHolderID, "TurretHolder", {
+	"TurretPoints": {
+		"Turret": {
+			"X": "15.0",
+			"Y": "5.0",
+			"Z": "6.0",
+			"Template": "units/iber/cavalry_javelineer_c"
+		}
+	}
+});
+
+let spawned = 100;
+Engine.AddEntity = function() {
+	++spawned;
+	if(spawned > 101)
+	{
+		ConstructComponent(spawned, "Turretable", {});
+	}
+	if(spawned > 102)
+	{
+		AddMock(spawned, IID_Ownership, {
+			"GetOwner": () => player,
+			"SetOwner": () => {}
+		});
+	}
+	if(spawned > 103)
+	{
+		AddMock(spawned, IID_Position, {
+			"GetPosition": () => new Vector3D(4, 3, 25),
+			"GetRotation": () => new Vector3D(4, 0, 6),
+			"SetTurretParent": () => {},
+			"IsInWorld": () => true
+		});
+	}
+	return spawned;
+}
+
+const GetUpgradedTemplate = (_, template)  => template === "units/iber/cavalry_javelineer_b" ? "units/iber/cavalry_javelineer_a" : template;
+Engine.RegisterGlobal("GetUpgradedTemplate", GetUpgradedTemplate);
+cmpTurretHolder.OnOwnershipChanged({
+	"to": 1,
+	"from": INVALID_PLAYER
+});
+TS_ASSERT(!cmpTurretHolder.OccupiesTurretPoint(spawned));
+cmpTurretHolder.OnOwnershipChanged({
+	"to": 1,
+	"from": INVALID_PLAYER
+});
+TS_ASSERT(!cmpTurretHolder.OccupiesTurretPoint(spawned));
+cmpTurretHolder.OnOwnershipChanged({
+	"to": 1,
+	"from": INVALID_PLAYER
+});
+TS_ASSERT(!cmpTurretHolder.OccupiesTurretPoint(spawned));
+cmpTurretHolder.OnOwnershipChanged({
+	"to": 1,
+	"from": INVALID_PLAYER
+});
+TS_ASSERT(cmpTurretHolder.OccupiesTurretPoint(spawned));
+
+// Normal turret creation.
+Engine.AddEntity = function(t) {
+	++spawned;
+	// Check that we're using the upgraded template.
+	TS_ASSERT(t, "units/iber/cavalry_javelineer_a");
+	ConstructComponent(spawned, "Turretable", {});
+	AddMock(spawned, IID_Ownership, {
+		"GetOwner": () => player,
+		"SetOwner": () => {}
+	});
+	AddMock(spawned, IID_Position, {
+		"GetPosition": () => new Vector3D(4, 3, 25),
+		"GetRotation": () => new Vector3D(4, 0, 6),
+		"SetTurretParent": () => {},
+		"IsInWorld": () => true
+	});
+	return spawned;
+}
+
+cmpTurretHolder = ConstructComponent(turretHolderID, "TurretHolder", {
+	"TurretPoints": {
+		"Turret": {
+			"X": "15.0",
+			"Y": "5.0",
+			"Z": "6.0",
+			"Template": "units/iber/cavalry_javelineer_b"
+		}
+	}
+});
+
+cmpTurretHolder.OnOwnershipChanged({
+	"to": 1,
+	"from": INVALID_PLAYER
+});
+TS_ASSERT(cmpTurretHolder.OccupiesTurretPoint(spawned));

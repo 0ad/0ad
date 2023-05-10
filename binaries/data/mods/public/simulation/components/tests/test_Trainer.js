@@ -55,6 +55,16 @@ AddMock(entityID, IID_Identity, {
 	"GetCiv": () => "iber"
 });
 
+let GetUpgradedTemplate = (_, template) => template === "units/iber/cavalry_javelineer_b" ? "units/iber/cavalry_javelineer_a" : template;
+Engine.RegisterGlobal("GetUpgradedTemplate", GetUpgradedTemplate);
+cmpTrainer.CalculateEntitiesMap();
+TS_ASSERT_UNEVAL_EQUALS(
+	cmpTrainer.GetEntitiesList(),
+	["units/iber/cavalry_javelineer_a", "units/iber/infantry_swordsman_b", "units/iber/support_female_citizen"]
+);
+
+GetUpgradedTemplate = (_, template) => template;
+Engine.RegisterGlobal("GetUpgradedTemplate", GetUpgradedTemplate);
 cmpTrainer.CalculateEntitiesMap();
 TS_ASSERT_UNEVAL_EQUALS(
 	cmpTrainer.GetEntitiesList(),
