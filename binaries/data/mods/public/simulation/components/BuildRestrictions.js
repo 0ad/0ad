@@ -32,7 +32,7 @@ BuildRestrictions.prototype.Schema =
 			"</oneOrMore>" +
 		"</list>" +
 	"</element>" +
-	"<element name='Category' a:help='Specifies the category of this building, for satisfying special constraints. Choices include: Apadana, CivilCentre, Council, Embassy, Fortress, Gladiator, Hall, Hero, Juggernaut, Library, Lighthouse, Monument, Pillar, PyramidLarge, PyramidSmall, Stoa, TempleOfAmun, Theater, Tower, UniqueBuilding, WarDog, Wonder'>" +
+	"<element name='Category' a:help='Specifies the category of this building, for satisfying special constraints. Choices include: Academy, ArmyCamp, CivilCentre, Colony, Council, Dock, Embassy, Fortress, Gladiator, GreatTower, ImperialCourt, ImperialMinistry, Library, Lighthouse, Monument, Palace, Pillar, PyramidLarge, RotaryMill, Stoa, Structure, TempleOfAmun, TempleOfVesta, Theater, Tower, Wall, Wonder, Yakhchal'>" +
 		"<text/>" +
 	"</element>" +
 	"<optional>" +

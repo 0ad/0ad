@@ -91,8 +91,8 @@ function LoadPlayerSettings(settings, newPlayers)
 		{
 			let resourceCounts = cmpPlayer.GetResourceCounts();
 			let newResourceCounts = {};
-			for (let resouces in resourceCounts)
-				newResourceCounts[resouces] = settings.StartingResources;
+			for (let resources in resourceCounts)
+				newResourceCounts[resources] = settings.StartingResources;
 			cmpPlayer.SetResourceCounts(newResourceCounts);
 		}
 		else if (playerDefaults[i].Resources !== undefined)
