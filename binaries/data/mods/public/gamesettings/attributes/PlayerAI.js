@@ -48,7 +48,7 @@ GameSettings.prototype.Attributes.PlayerAI = class PlayerAI extends GameSetting
 			}
 			this.set(+i, {
 				"bot": pData[i].AI,
-				"difficulty": pData[i].AIDiff || +Engine.ConfigDB_GetValue("user", "gui.gamesetup.aidifficulty"),
+				"difficulty": pData[i].AIDiff ?? +Engine.ConfigDB_GetValue("user", "gui.gamesetup.aidifficulty"),
 				"behavior": pData[i].AIBehavior || Engine.ConfigDB_GetValue("user", "gui.gamesetup.aibehavior"),
 			});
 		}
