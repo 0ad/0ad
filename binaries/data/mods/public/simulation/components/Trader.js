@@ -4,7 +4,7 @@
 function Trader() {}
 
 Trader.prototype.Schema =
-	"<a:help>Lets the unit generate resouces while moving between markets (or docks in case of water trading).</a:help>" +
+	"<a:help>Lets the unit generate resources while moving between markets (or docks in case of water trading).</a:help>" +
 	"<a:example>" +
 		"<GainMultiplier>0.75</GainMultiplier>" +
 		"<GarrisonGainMultiplier>0.2</GarrisonGainMultiplier>" +

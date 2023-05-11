@@ -96,6 +96,21 @@ TriggerHelper.SetUnitFormation = function(playerID, entities, formation)
 };
 
 /**
+ * Creates a new unit taking into account possible 0 experience promotion.
+ * @param {number} owner Player id of the owner of the new units.
+ * @param {string} template Name of the template.
+ * @returns the created entity id.
+ */
+TriggerHelper.AddUpgradeTemplate = function(owner, template)
+{
+	const upgradedTemplate = GetUpgradedTemplate(owner, template);
+	if (upgradedTemplate !== template)
+		warn(`tried to spawn template '${template}' but upgraded template '${upgradedTemplate}' will be spawned instead. You might want to create a template that is not affected by this promotion.`);
+
+	return Engine.AddEntity(upgradedTemplate);
+};
+
+/**
  * Can be used to "force" a building/unit to spawn a group of entities.
  *
  * @param source Entity id of the point where they will be spawned from
@@ -121,7 +136,8 @@ TriggerHelper.SpawnUnits = function(source, template, count, owner)
 
 	for (let i = 0; i < count; ++i)
 	{
-		let ent = Engine.AddEntity(template);
+		const ent = this.AddUpgradeTemplate(owner, template);
+
 		let cmpEntPosition = Engine.QueryInterface(ent, IID_Position);
 		if (!cmpEntPosition)
 		{
@@ -178,7 +194,7 @@ TriggerHelper.SpawnGarrisonedUnits = function(entity, template, count, owner)
 
 	for (let i = 0; i < count; ++i)
 	{
-		let ent = Engine.AddEntity(template);
+		const ent = this.AddUpgradeTemplate(owner, template);
 
 		let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		if (cmpOwnership)
@@ -219,7 +235,7 @@ TriggerHelper.SpawnTurretedUnits = function(entity, template, count, owner)
 
 	for (let i = 0; i < count; ++i)
 	{
-		let ent = Engine.AddEntity(template);
+		const ent = this.AddUpgradeTemplate(owner, template);
 
 		let cmpOwnership = Engine.QueryInterface(ent, IID_Ownership);
 		if (cmpOwnership)

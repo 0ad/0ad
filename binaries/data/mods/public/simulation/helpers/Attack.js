@@ -27,7 +27,7 @@ const StatusEffectsSchema =
 					"</optional>" +
 					"<optional>" +
 						"<interleave>" +
-							"<element name='Interval' a:help='Interval between the occurances of the effect.'><ref name='nonNegativeDecimal'/></element>" +
+							"<element name='Interval' a:help='Interval between the occurrences of the effect.'><ref name='nonNegativeDecimal'/></element>" +
 							"<oneOrMore>" +
 								"<choice>" +
 									DirectEffectsSchema +
@@ -38,7 +38,7 @@ const StatusEffectsSchema =
 					"<optional>" +
 						ModificationsSchema +
 					"</optional>" +
-					"<element name='Stackability' a:help='Defines how this status effect stacks, i.e. how subsequent status effects of the same kind are handled. Choices are: “Ignore”, which means a new one is ignored, “Extend”, which means the duration of a new one is added to the already active status effect, “Replace”, which means the currently active status effect is removed and the new one is put in place and “Stack”, which means that the status effect can be added multiple times.'>" +
+					"<element name='Stackability' a:help='Defines how this status effect stacks, i.e. how subsequent status effects of the same kind are handled. Choices are: &#x201C;Ignore&#x201D;, which means a new one is ignored, &#x201C;Extend&#x201D;, which means the duration of a new one is added to the already active status effect, &#x201C;Replace&#x201D;, which means the currently active status effect is removed and the new one is put in place and &#x201C;Stack&#x201D;, which means that the status effect can be added multiple times.'>" +
 						"<choice>" +
 							"<value>Ignore</value>" +
 							"<value>Extend</value>" +

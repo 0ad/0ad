@@ -294,5 +294,30 @@ function TransferGarrisonedUnits(oldEnt, newEnt)
 	}
 }
 
+/**
+ * @param {number} playerId - the player id to check technologies for.
+ * @param {string} templateName - the original template name.
+ * @returns the upgraded template name if it exists else the original template.
+ */
+function GetUpgradedTemplate(playerId, templateName)
+{
+	const cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	let template = cmpTemplateManager.GetTemplate(templateName);
+	while (template && template.Promotion !== undefined)
+	{
+		const requiredXp = ApplyValueModificationsToTemplate(
+			"Promotion/RequiredXp",
+			+template.Promotion.RequiredXp,
+			playerId,
+			template);
+		if (requiredXp > 0)
+			break;
+		templateName = template.Promotion.Entity;
+		template = cmpTemplateManager.GetTemplate(templateName);
+	}
+	return templateName;
+};
+
+Engine.RegisterGlobal("GetUpgradedTemplate", GetUpgradedTemplate);
 Engine.RegisterGlobal("ChangeEntityTemplate", ChangeEntityTemplate);
 Engine.RegisterGlobal("ObstructionsBlockingTemplateChange", ObstructionsBlockingTemplateChange);

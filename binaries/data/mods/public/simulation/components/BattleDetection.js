@@ -1,7 +1,7 @@
 function BattleDetection() {}
 
 BattleDetection.prototype.Schema =
-	"<a:help>Detects the occurence of battles.</a:help>" +
+	"<a:help>Detects the occurrence of battles.</a:help>" +
 	"<a:example/>" +
 	"<element name='TimerInterval' a:help='Duration of one timer period. Interval over which damage should be recorded in milliseconds'>" +
 		"<data type='positiveInteger'/>" +

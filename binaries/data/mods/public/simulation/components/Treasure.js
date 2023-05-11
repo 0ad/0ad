@@ -43,7 +43,7 @@ Treasure.prototype.Resources = function()
 };
 
 /**
- * @return {number} - The time in miliseconds it takes to collect this treasure.
+ * @return {number} - The time in milliseconds it takes to collect this treasure.
  */
 Treasure.prototype.CollectionTime = function()
 {

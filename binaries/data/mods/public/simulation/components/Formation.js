@@ -27,7 +27,7 @@ Formation.prototype.Schema =
 		"<text/>" +
 	"</element>" +
 	"<optional>" +
-		"<element name='SortingOrder' a:help='The order of sorting. This defaults to an order where the formation is filled from the first row to the last, and each row from the center to the sides. Other possible sort orders are “fillFromTheSides”, where the most important units are on the sides of each row, and “fillToTheCenter”, where the most vulnerable units are in the center of the formation.'>" +
+	"<element name='SortingOrder' a:help='The order of sorting. This defaults to an order where the formation is filled from the first row to the last, and each row from the center to the sides. Other possible sort orders are &#x201C;fillFromTheSides&#x201D;, where the most important units are on the sides of each row, and &#x201C;fillToTheCenter&#x201D;, where the most vulnerable units are in the center of the formation.'>" +
 			"<text/>" +
 		"</element>" +
 	"</optional>" +
@@ -38,7 +38,7 @@ Formation.prototype.Schema =
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
 	"<optional>" +
-		"<element name='MinColumns' a:help='When possible, this number of colums will be created. Overriding the wanted width-to-depth ratio.'>" +
+		"<element name='MinColumns' a:help='When possible, this number of columns will be created. Overriding the wanted width-to-depth ratio.'>" +
 			"<data type='nonNegativeInteger'/>" +
 		"</element>" +
 	"</optional>" +
@@ -64,7 +64,7 @@ Formation.prototype.Schema =
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
 	"<element name='AnimationVariants' a:help='Give a list of animation variants to use for the particular formation members, based on their positions.'>" +
-		"<text a:help='example text: “1..1,1..-1:animationVariant1;2..2,1..-1;animationVariant2”, this will set animationVariant1 for the first row, and animation2 for the second row. The first part of the numbers (1..1 and 2..2) means the row range. Every row between (and including) those values will switch animationvariants. The second part of the numbers (1..-1) denote the columns inside those rows that will be affected. Note that in both cases, you can use -1 for the last row/column, -2 for the second to last, etc.'/>" +
+		"<text a:help='example text: &#x201C;1..1,1..-1:animationVariant1;2..2,1..-1;animationVariant2&#x201D;, this will set animationVariant1 for the first row, and animation2 for the second row. The first part of the numbers (1..1 and 2..2) means the row range. Every row between (and including) those values will switch animationvariants. The second part of the numbers (1..-1) denote the columns inside those rows that will be affected. Note that in both cases, you can use -1 for the last row/column, -2 for the second to last, etc.'/>" +
 	"</element>";
 
 // Distance at which we'll switch between column/box formations.

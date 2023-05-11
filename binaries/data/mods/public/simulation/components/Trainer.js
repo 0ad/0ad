@@ -554,39 +554,13 @@ Trainer.prototype.CalculateEntitiesMap = function()
 			return entMap;
 		}
 
-		token = this.GetUpgradedTemplate(token);
+		token = GetUpgradedTemplate(cmpPlayer.GetPlayerID(), token);
 		entMap.set(rawToken, token);
 		updateAllQueuedTemplate(rawToken, token);
 		return entMap;
 	}, new Map());
 
 	this.CalculateTrainCostMultiplier();
-};
-
-/*
- * Returns the upgraded template name if necessary.
- */
-Trainer.prototype.GetUpgradedTemplate = function(templateName)
-{
-	const cmpPlayer = QueryOwnerInterface(this.entity);
-	if (!cmpPlayer)
-		return templateName;
-
-	const cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	let template = cmpTemplateManager.GetTemplate(templateName);
-	while (template && template.Promotion !== undefined)
-	{
-		const requiredXp = ApplyValueModificationsToTemplate(
-		    "Promotion/RequiredXp",
-		    +template.Promotion.RequiredXp,
-		    cmpPlayer.GetPlayerID(),
-		    template);
-		if (requiredXp > 0)
-			break;
-		templateName = template.Promotion.Entity;
-		template = cmpTemplateManager.GetTemplate(templateName);
-	}
-	return templateName;
 };
 
 Trainer.prototype.CalculateTrainCostMultiplier = function()

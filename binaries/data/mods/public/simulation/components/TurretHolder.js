@@ -35,22 +35,21 @@ class TurretHolder
 	 */
 	CreateSubunit(turretPointName)
 	{
-		let turretPoint = this.TurretPointByName(turretPointName);
+		const turretPoint = this.TurretPointByName(turretPointName);
 		if (!turretPoint || turretPoint.entity ||
 			this.initTurrets?.has(turretPointName) ||
 			this.reservedTurrets?.has(turretPointName))
 			return false;
 
-		let ent = Engine.AddEntity(turretPoint.template);
+		const cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 
-		let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-		if (cmpOwnership)
-		{
-			let cmpEntOwnership = Engine.QueryInterface(ent, IID_Ownership);
-			cmpEntOwnership?.SetOwner(cmpOwnership.GetOwner());
-		}
+		const upgradedTemplate = GetUpgradedTemplate(cmpOwnership.GetOwner(), turretPoint.template);
+		const ent = Engine.AddEntity(upgradedTemplate);
 
-		let cmpTurretable = Engine.QueryInterface(ent, IID_Turretable);
+		const cmpEntOwnership = Engine.QueryInterface(ent, IID_Ownership);
+		cmpEntOwnership?.SetOwner(cmpOwnership.GetOwner());
+
+		const cmpTurretable = Engine.QueryInterface(ent, IID_Turretable);
 		return cmpTurretable?.OccupyTurret(this.entity, turretPoint.name, turretPoint.ejectable) || Engine.DestroyEntity(ent);
 	}
 
@@ -389,6 +388,7 @@ class TurretHolder
 			this.EjectOrKill(this.GetEntities());
 			return;
 		}
+
 		for (let point of this.turretPoints)
 		{
 			// If we were created, create any subunits now.

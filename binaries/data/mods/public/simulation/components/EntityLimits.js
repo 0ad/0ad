@@ -4,7 +4,7 @@ EntityLimits.prototype.Schema =
 	"<a:help>Specifies per category limits on number of entities (buildings or units) that can be created for each player</a:help>" +
 	"<a:example>" +
 		"<Limits>" +
-			"<Apadana>1</Apadana>" +
+			"<Palace>1</Palace>" +
 			"<Fortress>10</Fortress>" +
 			"<Hero>1</Hero>" +
 			"<Monument>5</Monument>" +
@@ -22,7 +22,7 @@ EntityLimits.prototype.Schema =
 			"</CivilCentre>" +
 		"</LimitRemovers>" +
 	"</a:example>" +
-	"<element name='Limits'>" +
+	"<element name='Limits' a:help='List of building/unit(s) requirements on which to apply a specific limit.'>" +
 		"<zeroOrMore>" +
 			"<element a:help='Specifies a category of building/unit on which to apply this limit. See BuildRestrictions/TrainingRestrictions for possible categories'>" +
 				"<anyName />" +
@@ -30,7 +30,7 @@ EntityLimits.prototype.Schema =
 			"</element>" +
 		"</zeroOrMore>" +
 	"</element>" +
-	"<element name='LimitChangers'>" +
+	"<element name='LimitChangers' a:help='List of building/unit(s) requirements that can change a specific limit.'>" +
 		"<zeroOrMore>" +
 			"<element a:help='Specifies a category of building/unit on which to apply this limit. See BuildRestrictions/TrainingRestrictions for possible categories'>" +
 				"<anyName />" +
@@ -43,7 +43,7 @@ EntityLimits.prototype.Schema =
 			"</element>" +
 		"</zeroOrMore>" +
 	"</element>" +
-	"<element name='LimitRemovers'>" +
+	"<element name='LimitRemovers' a:help='List of building/unit(s) requirements to lift a specific limit.'>" +
 		"<zeroOrMore>" +
 			"<element a:help='Specifies a category of building/unit on which to remove this limit. The limit will be removed if all the followings requirements are satisfied'>" +
 				"<anyName />" +

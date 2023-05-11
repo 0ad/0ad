@@ -5,7 +5,7 @@ ResourceTrickle.prototype.Schema =
 	"<element name='Rates' a:help='Trickle Rates'>" +
 		Resources.BuildSchema("nonNegativeDecimal") +
 	"</element>" +
-	"<element name='Interval' a:help='Number of miliseconds must pass for the player to gain the next trickle.'>" +
+	"<element name='Interval' a:help='Number of milliseconds must pass for the player to gain the next trickle.'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>";
 
