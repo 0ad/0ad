@@ -350,7 +350,7 @@ var g_Commands = {
 			// TODO: the AI API does not take promotion technologies into account for the list
 			// of trainable units (taken directly from the unit template). Here is a temporary fix.
 			if (data.cmpPlayer.IsAI())
-				templateName = cmpTrainer.GetUpgradedTemplate(cmd.template);
+				templateName = GetUpgradedTemplate(player, cmd.template);
 
 			if (cmpTrainer.CanTrain(templateName))
 				Engine.QueryInterface(ent, IID_ProductionQueue)?.AddItem(templateName, "unit", +cmd.count, cmd.metadata, cmd.pushFront);

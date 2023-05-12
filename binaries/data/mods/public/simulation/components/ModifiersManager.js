@@ -1,7 +1,7 @@
 function ModifiersManager() {}
 
 ModifiersManager.prototype.Schema =
-	"<empty/>";
+	"<a:component type='system'/><empty/>";
 
 ModifiersManager.prototype.Init = function()
 {
