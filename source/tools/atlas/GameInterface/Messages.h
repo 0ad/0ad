@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,12 +18,14 @@
 #ifndef INCLUDED_MESSAGES
 #define INCLUDED_MESSAGES
 
+#include <cstdint>
+#include <string>
+#include <vector>
+
+// Opens namespace AtlasMessage, closes it on second inclusion!
 #ifndef MESSAGES_SKIP_SETUP
 #include "MessagesSetup.h"
 #endif
-
-#include <vector>
-#include <string>
 
 // TODO: organisation, documentation, etc
 
