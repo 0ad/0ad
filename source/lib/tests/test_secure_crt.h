@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -139,7 +139,8 @@ class TestString_s : public CxxTest::TestSuite
 	static void TEST_CAT2(char* dst, size_t max_dst_chars, const char* src,
 		const char* dst_val, int expected_ret, const char* expected_dst)
 	{
-		strcpy(dst, dst_val);
+		if(dst)
+			strcpy(dst, dst_val);
 		int ret = strcat_s(dst, max_dst_chars, src);
 		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
@@ -149,7 +150,8 @@ class TestString_s : public CxxTest::TestSuite
 	static void TEST_NCAT(char* dst, size_t max_dst_chars, const char* src, size_t max_src_chars,
 		const char* dst_val, int expected_ret, const char* expected_dst)
 	{
-		strcpy(dst, dst_val);
+		if(dst)
+			strcpy(dst, dst_val);
 		int ret = strncat_s(dst, max_dst_chars, src, (max_src_chars));
 		TS_ASSERT_EQUALS(ret, expected_ret);
 		if(dst != 0)
@@ -295,28 +297,28 @@ public:
 	static void TEST_PRINTF(char* dst, size_t max_dst_chars, const char* dst_val,
 		int expected_ret, const char* expected_dst, const char* fmt, ...)
 	{
-		if (dst)
+		if(dst)
 			strcpy(dst, dst_val);
 		va_list ap;
 		va_start(ap, fmt);
 		int ret = vsprintf_s(dst, max_dst_chars, fmt, ap);
 		va_end(ap);
 		TS_ASSERT_EQUALS(ret, expected_ret);
-		if (dst)
+		if(dst)
 			TS_ASSERT_STR_EQUALS(dst, expected_dst);
 	}
 
 	static void TEST_WPRINTF(wchar_t* dst, size_t max_dst_chars, const wchar_t* dst_val,
 		int expected_ret, const wchar_t* expected_dst, const wchar_t* fmt, ...)
 	{
-		if (dst)
+		if(dst)
 			wcscpy(dst, dst_val);
 		va_list ap;
 		va_start(ap, fmt);
 		int ret = vswprintf_s(dst, max_dst_chars, fmt, ap);
 		va_end(ap);
 		TS_ASSERT_EQUALS(ret, expected_ret);
-		if (dst)
+		if(dst)
 			TS_ASSERT_WSTR_EQUALS(dst, expected_dst);
 	}
 
