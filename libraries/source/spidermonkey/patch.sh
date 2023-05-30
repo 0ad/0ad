@@ -53,3 +53,6 @@ if [ "$PYTHON_MINOR_VERSION" -ge 11 ];
 then
     patch -p1 < ../FixUnicodePython311.diff
 fi
+
+# fixed in SM102
+patch -p1 < ../FixClang16Build.diff

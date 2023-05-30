@@ -1,0 +1,24 @@
+From 8dd2ad66811d2d5c72599bd87a77345c254af23c Mon Sep 17 00:00:00 2001
+From: Ralph Sennhauser <ralph.sennhauser@gmail.com>
+Date: Mon, 15 May 2023 22:02:52 +0200
+Subject: [PATCH 1/1] Use default pass manager for clang
+
+---
+ build/moz.configure/flags.configure | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/build/moz.configure/flags.configure b/build/moz.configure/flags.configure
+index cc8ca1e6aada..40f4c7d905ec 100644
+--- a/build/moz.configure/flags.configure
++++ b/build/moz.configure/flags.configure
+@@ -36,6 +36,7 @@ option(
+     ubsan,
+ )
+ def new_pass_manager_flags(enabled, compiler, host, target, pgo, enable_fuzzing, ubsan):
++    return None
+     if host.os == "OSX":
+         # Some native Mac builds hang with the new pass manager. Given the
+         # inability to test in CI, don't take the risk of further breakage.
+-- 
+2.39.3
+
