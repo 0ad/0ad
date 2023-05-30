@@ -365,11 +365,17 @@ std::unique_ptr<IDevice> CDevice::Create(SDL_Window* window, const bool arb)
 #endif
 	}
 
+	// Some drivers might invalidate an incorrect surface which leads to artifacts.
+	bool enableFramebufferInvalidating = false;
+	CFG_GET_VAL("renderer.backend.gl.enableframebufferinvalidating", enableFramebufferInvalidating);
+	if (enableFramebufferInvalidating)
+	{
 #if CONFIG2_GLES
-	device->m_UseFramebufferInvalidating = ogl_HaveExtension("GL_EXT_discard_framebuffer");
+		device->m_UseFramebufferInvalidating = ogl_HaveExtension("GL_EXT_discard_framebuffer");
 #else
-	device->m_UseFramebufferInvalidating = !arb && ogl_HaveExtension("GL_ARB_invalidate_subdata");
+		device->m_UseFramebufferInvalidating = !arb && ogl_HaveExtension("GL_ARB_invalidate_subdata");
 #endif
+	}
 
 	Capabilities& capabilities = device->m_Capabilities;
 	capabilities.ARBShaders = !ogl_HaveExtensions(0, "GL_ARB_vertex_program", "GL_ARB_fragment_program", nullptr);
