@@ -12,7 +12,9 @@ VERTEX_INPUT_ATTRIBUTE(1, vec3, a_normal);
 VERTEX_INPUT_ATTRIBUTE(2, vec4, a_tangent);
 #endif
 VERTEX_INPUT_ATTRIBUTE(3, vec2, a_uv0);
+#if USE_AO
 VERTEX_INPUT_ATTRIBUTE(4, vec2, a_uv1);
+#endif
 #if USE_GPU_SKINNING
 VERTEX_INPUT_ATTRIBUTE(5, vec4, a_skinJoints);
 VERTEX_INPUT_ATTRIBUTE(6, vec4, a_skinWeights);
