@@ -201,8 +201,11 @@ VkPipeline CGraphicsPipelineState::GetOrCreatePipeline(
 	rasterizationStateCreateInfo.depthClampEnable = VK_FALSE;
 	rasterizationStateCreateInfo.rasterizerDiscardEnable = VK_FALSE;
 
+	const PolygonMode polygonMode =
+		m_Device->GetChoosenPhysicalDevice().features.fillModeNonSolid
+			? m_Desc.rasterizationState.polygonMode : PolygonMode::FILL;
 	rasterizationStateCreateInfo.polygonMode =
-		Mapping::FromPolygonMode(m_Desc.rasterizationState.polygonMode);
+		Mapping::FromPolygonMode(polygonMode);
 	rasterizationStateCreateInfo.cullMode =
 		Mapping::FromCullMode(m_Desc.rasterizationState.cullMode);
 	rasterizationStateCreateInfo.frontFace =
