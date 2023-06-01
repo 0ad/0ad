@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# berhudar
 # Ahmet
 # ali topçu
 # Atakan Karaçengel
@@ -42,7 +43,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-03-06 08:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>, 2016-2017,2022-2023\n"
+"Last-Translator: berhudar, 2023\n"
 "Language-Team: Turkish (http://app.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +57,7 @@ msgstr "Konuşlanan Kuşatma Makinelerine +3 sağlık yenilenme oranı."
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
-msgstr "Silah Deposu Tamiri"
+msgstr "Tophane Tamiri"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
@@ -64,37 +65,37 @@ msgstr "Konuşlanan Gemilere +10 yenilenme oranı."
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
-msgstr "Tersane Onarımı"
+msgstr "Tersane Onarımları"
 
 #: simulation/data/auras/structures/corral_garrison_large.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +3 food."
-msgstr ""
+msgstr "Yavaş bir +3 yiyecek eldesi için ağılı garnizonla."
 
 #: simulation/data/auras/structures/corral_garrison_large.jsonauraName
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraName
 #: simulation/data/auras/structures/corral_garrison_small.jsonauraName
 msgid "Ranching and Corralling"
-msgstr "Hayvancılık ve Savunma"
+msgstr "Çiftlik ve Hayvancılık"
 
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +2 food."
-msgstr ""
+msgstr "Yavaş bir +2 yiyecek eldesi için ağılı garnizonla."
 
 #: simulation/data/auras/structures/corral_garrison_small.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +1 food."
-msgstr ""
+msgstr "Yavaş bir +1 yiyecek eldesi için ağılı garnizonla."
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraDescription
 msgid "Gatherers +75% farming rate around a captured Farmstead."
-msgstr ""
+msgstr "Toplayıcılara ele geçirilmiş bir Çiftlik çevresinde +%75 çiftçilik oranı."
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraName
 msgid "Farmland"
-msgstr "Tarım Alanı"
+msgstr "Tarım Arazisi"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
-msgstr "Askerlere  +20% yakın dövüş ve menzilli saldırı hasarı."
+msgstr "Askerler +%20 yakın dövüş ve menzilli saldırı hasarı."
 
 #: simulation/data/auras/structures/iber_monument.jsonauraName
 msgid "Religious Fervor"
@@ -103,25 +104,25 @@ msgstr "Dini Coşku"
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraDescription
 #: simulation/data/auras/units/heroes/gaul_hero_viridomarus.jsonauraDescription
 msgid "Workers +15% gather speed."
-msgstr "İşçilere +15% toplama hızı."
+msgstr "İşçiler +15% toplama hızı."
 
 #: simulation/data/auras/structures/kush_pyramids_economic.jsonauraName
 msgid "Patriotism"
-msgstr "Yurtseverlik"
+msgstr "Vatanseverlik"
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraDescription
 msgid ""
 "Soldiers +1 crush, hack, pierce resistance and +10% melee and ranged attack "
 "damage."
-msgstr "Askerler +1 ezme, kesme, delme direnci ve +10% yakın dövüş ve menzilli saldırı hasarı."
+msgstr "Askerler +1 yıkım, darbe, delme direnci ve +%10 yakın dövüş ve menzilli saldırı hasarı."
 
 #: simulation/data/auras/structures/kush_pyramids_military.jsonauraName
 msgid "Exhortative Presence"
-msgstr "Motive edici varlık"
+msgstr "Motive Edici Varlık"
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraDescription
 msgid "Heroes −5% health."
-msgstr "Kahramanlara -%5 yaşam."
+msgstr "Kahramanlar -%5 sağlık."
 
 #: simulation/data/auras/structures/kush_temple_amun.jsonauraName
 msgid "Powerful Priesthood"
@@ -129,15 +130,15 @@ msgstr "Güçlü Rahiplik"
 
 #: simulation/data/auras/structures/library.jsonauraDescription
 msgid "Structures −15% technology resource costs and research time."
-msgstr "Binalar -%15 teknoloji, kaynak bedeli ve araştırma süresi."
+msgstr "Yapılar -%15 teknoloji kaynak maliyeti ve araştırma süresi."
 
 #: simulation/data/auras/structures/library.jsonauraName
 msgid "Centre of Scholarship"
-msgstr "Eğitim Merkezi"
+msgstr "Bilim Merkezi"
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraDescription
 msgid "Structures +50% capture points garrison regeneration rate."
-msgstr "Yapılara +50% ele geçirme puanları ve garnizon yenilenme oranı."
+msgstr "Yapılar +%50 ele geçirme puanı garnizon yenileme oranı."
 
 #: simulation/data/auras/structures/loyalty_regen.jsonauraName
 msgid "Loyalty"
@@ -145,7 +146,7 @@ msgstr "Sadakat"
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraDescription
 msgid "Traders +20% movement speed."
-msgstr "Tüccarlara +20% hareket hızı."
+msgstr "Tüccarlar +%20 hareket hızı."
 
 #: simulation/data/auras/structures/maur_pillar.jsonauraName
 msgid "Edict of Ashoka"
@@ -196,7 +197,7 @@ msgstr "Sıkı Eğitim"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Civic center technologies −50% research time and −30% cost."
-msgstr ""
+msgstr "Şehir merkezi teknolojileri -%50 araştırma süresi ve -%30 maliyet."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Democracy"
@@ -212,11 +213,11 @@ msgstr "Druidler"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Mercenaries −50% train time."
-msgstr ""
+msgstr "Paralı askerler -%50 eğitim süresi."
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Mercenary Transports"
-msgstr ""
+msgstr "Paralı Asker Transferleri"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Forges −15% technology resource costs and research time."
@@ -270,7 +271,7 @@ msgstr "Ashoka'nın Dini Desteği"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Barracks and Stables −20% wood and stone cost and build time."
-msgstr ""
+msgstr "Kışla ve Ahırlar -%20 odun ve taş maliyeti ve inşa süresi."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "Training Regimes"
@@ -278,7 +279,7 @@ msgstr "Antrenman Rejimleri"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "+1.0 food trickle rate."
-msgstr "+1.0 yiyecek damlama oranı"
+msgstr "+1.0 yiyecek eldesi oranı"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
@@ -295,7 +296,7 @@ msgstr "Zorunlu Hizmet"
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraDescription
 msgid ""
 "Civil Centers and Colonies −20% resource cost and −30% construction time."
-msgstr ""
+msgstr "Şehir Merkezleri ve Koloniler -%20 kaynak maliyeti ve -%30 inşaat süresi."
 
 #: simulation/data/auras/teambonuses/sele_player_teambonus.jsonauraName
 msgid "Syrian Tetrapolis"
@@ -402,7 +403,7 @@ msgstr "Bölgesel Genişleme"
 msgid ""
 "The Music Bureau was charged directly by Emperor Wu to perform various tasks related to music, poetry, entertainment, or religious worship.\n"
 "Technologies −50% resource cost and research time."
-msgstr ""
+msgstr "Müzik Bürosu, doğrudan İmparator Wu tarafından müzik, şiir, eğlence veya dini ibadetle ilgili çeşitli görevleri yerine getirmekle görevlendirildi.\nTeknolojiler -%50 kaynak maliyeti ve araştırma süresi."
 
 #: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraName
 msgid "Imperial Music Bureau"
@@ -462,7 +463,7 @@ msgstr "Şehirlerin Yağmalayıcısı"
 msgid ""
 "Allied with Rome, Philip reorganized the country's internal affairs and finances, leaving as a legacy reopened mines and a new currency.\n"
 "Gain a slow trickle of metal."
-msgstr "Roma ile müttefik olan Philip, ülkenin içişlerini ve maliyesini yeniden düzenledi ve miras olarak yeniden açılmış madenler ve yeni bir para birimi bıraktı.\nYavaş yavaş metal elde edebilirsin."
+msgstr "Roma ile müttefik olan Philip, ülkenin içişlerini ve maliyesini yeniden düzenledi ve miras olarak yeniden açılmış madenler ve yeni bir para birimi bıraktı.\nYavaş bir metal kazanımı elde et."
 
 #: simulation/data/auras/units/catafalques/mace_catafalque_2.jsonauraName
 msgid "Financial Reorganization"
@@ -587,7 +588,7 @@ msgstr "Demir Pelanorlar"
 msgid ""
 "Melee Soldiers +10% attack damage and all Soldiers −25% experience points "
 "for promotion."
-msgstr ""
+msgstr "Yakın Dövüşçü Askerler +%10 saldırı gücü ve tüm Askerler, terfi için -%25 deneyim puanı."
 
 #: simulation/data/auras/units/centurion.jsonauraName
 msgid "Combat Leadership"
@@ -651,7 +652,7 @@ msgstr "Peltast Reformları"
 msgid ""
 "Soldiers, Ships, Siege Engines and Structures do not give loot, +50% "
 "Structure capture points."
-msgstr ""
+msgstr "Askerler, Gemiler, Kuşatma Makineleri ve Yapılar (yok olduklarında düşmana) ganimet vermez, +%50 Yapı ele geçirme puanı."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_1.jsonauraName
 msgid "Periclean Defensive Strategy"
@@ -659,7 +660,7 @@ msgstr "Perikles Savunma Stratejisi"
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraDescription
 msgid "Technologies −10% resource costs, −50% research time."
-msgstr ""
+msgstr "Teknolojiler -%10 kaynak maliyeti, -%50 araştırma süresi."
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Scholarship and the Arts"
@@ -667,19 +668,19 @@ msgstr "Burs ve sanat"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid "−50% metal cost, Ships −50% construction time, +15% move speed."
-msgstr ""
+msgstr "-%50 metal maliyeti, Gemiler -%50 inşaat süresi, +%15 hareket hızı."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Preparation"
-msgstr ""
+msgstr "Donanma Hazırlığı"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "Walls and Palisades −50% resource costs and −20% construction time."
-msgstr ""
+msgstr "Duvarlar ve Çitler -%50 kaynak maliyeti ve -%20 inşaat süresi."
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraName
 msgid "Themistoclean Walls"
-msgstr ""
+msgstr "Themistoclean Duvarları"
 
 #: simulation/data/auras/units/heroes/brit_hero_boudicca.jsonauraDescription
 msgid ""
@@ -907,15 +908,15 @@ msgstr "Savaş Gemileri Ganimeti"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraDescription
 msgid "Soldiers +10% attack damage, +15% movement speed."
-msgstr ""
+msgstr "Askerler +%10 saldırı gücü, +%15 hareket hızı."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraName
 msgid "Rapid Conquest"
-msgstr ""
+msgstr "Hızlı Fetih"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraDescription
 msgid "Enemy Soldiers, Structures −10% attack damage."
-msgstr ""
+msgstr "Düşman Askerler, Yapılar -%10 saldırı gücü."
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
 msgid "Undefeated"
@@ -972,7 +973,7 @@ msgstr "Budizm"
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraDescription
 msgid "All technologies have −20% resource cost and −30% research time."
-msgstr ""
+msgstr "Tüm teknolojiler -%20 kaynak maliyeti ve -%30 araştırma süresine sahip."
 
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
@@ -986,15 +987,15 @@ msgstr "Yenilenme"
 msgid ""
 "Soldiers +10% melee and ranged attack damage, +1 crush, hack, pierce "
 "resistance."
-msgstr ""
+msgstr "Askerler +%10 yakın dövüş ve menzilli saldırı hasarı, +1 yıkım, darbe, delme direnci."
 
 #: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraName
 msgid "Empire Maker"
-msgstr ""
+msgstr "İmparatorluk Kurucu"
 
 #: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraDescription
 msgid "Elephants +15% attack rate, +10% movement speed."
-msgstr ""
+msgstr "Filler +%15 saldırı oranı, +%10 hareket hızı."
 
 #: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraName
 msgid "Elephant Corps"

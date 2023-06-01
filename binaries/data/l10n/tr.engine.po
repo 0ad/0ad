@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # Translators:
 # Abdullah Ilgaz
+# A
 # AMG
 # Cem Aktas
 # Doğu Kan
@@ -22,7 +23,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2013-06-22 12:54+0000\n"
-"Last-Translator: On Fi, 2021\n"
+"Last-Translator: A, 2023\n"
 "Language-Team: Turkish (http://app.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,32 +34,32 @@ msgstr ""
 #: graphics/CameraController.cpp:659
 #, c-format
 msgid "Scroll speed increased to %.1f"
-msgstr "Kaydırma hızı %1 arttırıldı."
+msgstr "Kaydırma hızı şuna yükseltildi %.1f"
 
 #: graphics/CameraController.cpp:665
 #, c-format
 msgid "Scroll speed decreased to %.1f"
-msgstr "Kaydrma hızı %1 azaltıldı."
+msgstr "Kaydırma hızı şuna düşürüldü %.1f"
 
 #: graphics/CameraController.cpp:672
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr "Döndürme hızı  X= %1, Y= %1 arttırıldı."
+msgstr "Döndürme hızı şuna yükseltildi X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:679
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr "Döndürme hızı X= %1, Y= %1 azaltıldı."
+msgstr "Döndürme hızı şuna düşürüldü X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:685
 #, c-format
 msgid "Zoom speed increased to %.1f"
-msgstr "Yakınlaştırma hızı %1 arttırıldı."
+msgstr "Yakınlaştırma hızı şuna yükseltildi %.1f"
 
 #: graphics/CameraController.cpp:691
 #, c-format
 msgid "Zoom speed decreased to %.1f"
-msgstr "Yakınlaştırma hızı %1 azaltıldı."
+msgstr "Yakınlaştırma hızı şuna düşürüldü %.1f"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
@@ -66,11 +67,11 @@ msgstr "Uzun dizgeler"
 
 #: lobby/XmppClient.cpp:1024
 msgid "unknown subtype (see logs)"
-msgstr "bilinmeyen alttür (kayıtlara bakın)"
+msgstr "bilinmeyen alt tür (kayıtlara bakın)"
 
 #: lobby/XmppClient.cpp:1355
 msgid "The certificate is not trusted."
-msgstr "Sertifikaya güvenilmiyor."
+msgstr "Sertifika güvenilir değil."
 
 #: lobby/XmppClient.cpp:1356
 msgid "The certificate hasn't got a known issuer."
@@ -90,7 +91,7 @@ msgstr "Sertifika henüz aktif değil."
 
 #: lobby/XmppClient.cpp:1360
 msgid "The certificate has not been issued for the peer connected to."
-msgstr "Sertifika, bağlı olan eş için verilmemiş."
+msgstr "Bağlı olan eş için sertifika verilmemiş."
 
 #: lobby/XmppClient.cpp:1361
 msgid "The certificate signer is not a certificate authority."
@@ -115,7 +116,7 @@ msgstr "Yasaklanmış"
 
 #: lobby/XmppClient.cpp:1392
 msgid "Internal server error"
-msgstr "Sunucu içi hata"
+msgstr "Dahili sunucu hatası"
 
 #: lobby/XmppClient.cpp:1396
 msgid "Not allowed"
@@ -123,7 +124,7 @@ msgstr "İzin verilmemektedir"
 
 #: lobby/XmppClient.cpp:1397
 msgid "Not authorized"
-msgstr "Yetkiniz yok"
+msgstr "Yetkili değil"
 
 #: lobby/XmppClient.cpp:1400
 msgid "Recipient temporarily unavailable"
@@ -143,49 +144,49 @@ msgstr "Bilinmeyen hata"
 
 #: lobby/XmppClient.cpp:1431
 msgid "Stream error"
-msgstr "Akış hatası"
+msgstr "Yayın hatası"
 
 #: lobby/XmppClient.cpp:1432
 msgid "The incoming stream version is unsupported"
-msgstr "Gelen akış sürümü desteklenmiyor."
+msgstr "Gelen yayın sürümü desteklenmiyor."
 
 #: lobby/XmppClient.cpp:1433
 msgid "The stream has been closed by the server"
-msgstr "Bu akış sunucu tarafından kapatıldı."
+msgstr "Yayın sunucu tarafından kapatıldı"
 
 #: lobby/XmppClient.cpp:1437
 msgid "An I/O error occurred"
-msgstr "Bir G/Ç hatası oluştu"
+msgstr "Bir G/Ç (Giriş/Çıkış) hatası oluştu"
 
 #: lobby/XmppClient.cpp:1439
 msgid "The connection was refused by the server"
-msgstr "Bu bağlantı sunucu tarafından reddedildi"
+msgstr "Bağlantı sunucu tarafından reddedildi"
 
 #: lobby/XmppClient.cpp:1440
 msgid "Resolving the server's hostname failed"
-msgstr "Sunucu isim hatası çözülüyor"
+msgstr "Sunucu isim hatası çözme başarısız oldu"
 
 #: lobby/XmppClient.cpp:1441
 msgid "This system is out of memory"
-msgstr "Sistem belleği yetersiz."
+msgstr "Sistem belleği yetersiz"
 
 #: lobby/XmppClient.cpp:1443
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr "Sunucu sertifikası onaylanamıyor veya bu TLS başarılı şekilde doğrulanamıyor"
+msgstr "Sunucunun sertifikası doğrulanamadı veya TLS anlaşması başarıyla tamamlanmadı"
 
 #: lobby/XmppClient.cpp:1444
 msgid "The server did not offer required TLS encryption"
-msgstr "Bu sunucu TLS şifreleme gerekliliklerini sunamıyor"
+msgstr "Sunucu gerekli TLS şifrelemesini sunmadı"
 
 #: lobby/XmppClient.cpp:1446
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr "Kimlik doğrulama başarısız oldu. Geçersiz şifre veya hesap yok"
+msgstr "Kimlik doğrulama başarısız oldu. Yanlış şifre veya hesap mevcut değil"
 
 #: lobby/XmppClient.cpp:1447
 msgid "The user or system requested a disconnect"
-msgstr "Bu kullanıcı veya sistem bağlantının kesilmesine ihtiyaç duyuyor"
+msgstr "Kullanıcı veya sistem bağlantı kesme talebinde bulundu"
 
 #: lobby/XmppClient.cpp:1448
 msgid "There is no active connection"
@@ -193,11 +194,11 @@ msgstr "Aktif bağlantı yok"
 
 #: lobby/XmppClient.cpp:1469
 msgid "Your account has been successfully registered"
-msgstr "Hesabın başarıyla kaydedildi"
+msgstr "Hesabınız başarıyla kaydedildi"
 
 #: lobby/XmppClient.cpp:1470
 msgid "Not all necessary information provided"
-msgstr "bütün önemli bilgi karşılanamadı"
+msgstr "Gerekli tüm bilgiler sağlanmadı"
 
 #: lobby/XmppClient.cpp:1471
 msgid "Username already exists"
@@ -208,17 +209,17 @@ msgstr "Kullanıcı adı zaten var"
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr "Sıkıştırılmış mod '%s' için harici mod.json yazılamadı. Mod yeniden kurulmalı."
+msgstr "%s sıkıştırılmış modu için harici mod.json yazılamadı. Mod yeniden kurulmalıdır."
 
 #: ps/ModIo.cpp:264
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr "Oyun ID'sini sorgulamaya başlarken hata oluştu. Hata: %s; %s."
+msgstr "Oyun kimliği için sorgulama başlatılırken hata oluştu. Hata: %s; %s."
 
 #: ps/ModIo.cpp:294
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr "Modları sorgulamaya başlarken hata oluştu. Hata: %s; %s."
+msgstr "Modlar için sorgulama başlatılırken hata oluştu. Hata: %s; %s."
 
 #: ps/ModIo.cpp:320
 #, c-format
@@ -228,44 +229,44 @@ msgstr "Mod dizini oluşturulamıyor: %s."
 #: ps/ModIo.cpp:345
 #, c-format
 msgid "Could not open temporary file for mod download: %s."
-msgstr "Mod yüklemesi için geçici dosya açılamıyor: %s."
+msgstr "Mod indirme için geçici dosya açılamadı: %s."
 
 #: ps/ModIo.cpp:355
 #, c-format
 msgid "Failed to start the download. Error: %s; %s."
-msgstr "Yüklemeyi başlatmada hata. Hata: %s; %s."
+msgstr "İndirme başlatılamadı. Hata: %s; %s."
 
 #: ps/ModIo.cpp:400
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr "Asenkron yükleme hatası: %s, %s."
+msgstr "Eş zamansız indirme hatası: %s, %s."
 
 #: ps/ModIo.cpp:428
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr "Yükleme hatası. Server cevabı: %s; %s."
+msgstr "İndirme hatası. Sunucunun dönütü: %s; %s."
 
 #: ps/ModIo.cpp:534
 msgid "Mismatched filesize."
-msgstr "Eşleşmeyen dosya boyutu."
+msgstr "Uyumsuz dosya boyutu."
 
 #: ps/ModIo.cpp:552
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr "Geçersiz dosya. md5 umduk %s, %s bulduk."
+msgstr "Geçersiz dosya. Beklenen md5 %s, alınan %s."
 
 #: ps/ModIo.cpp:567
 msgid "Failed to compute final hash."
-msgstr "Son HASH hesaplamasında hata."
+msgstr "Son 'hash' hesaplanamadı."
 
 #: ps/ModIo.cpp:573
 msgid "Failed to verify signature."
-msgstr "İmza doğrulamasında hata."
+msgstr "İmza doğrulanamadı."
 
 #: ps/SavedGame.cpp:142
 #, c-format
 msgid "Saved game to '%s'"
-msgstr "Oyun buraya kaydedildi: '%s'"
+msgstr "Oyun '%s' konumuna kaydedildi."
 
 #: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
@@ -275,4 +276,4 @@ msgstr "özel inşa"
 #: renderer/Renderer.cpp:680 renderer/Renderer.cpp:683
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr "Ekran görüntüsü buraya kaydedildi: '%s'"
+msgstr "Ekran görüntüsü buraya kaydedildi '%s'"

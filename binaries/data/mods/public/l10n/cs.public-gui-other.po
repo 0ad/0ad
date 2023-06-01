@@ -22,6 +22,7 @@
 # Warriog
 # Robin Kriebel
 # Roman Kalivoda
+# Stanislas Dolcini
 # Tomáš Matýs
 # Tomáš Weber
 # Tonda12
@@ -31,7 +32,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-04-28 09:24+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Marek Mojžíš <marek.moj@seznam.cz>, 2023\n"
+"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>, 2023\n"
 "Language-Team: Czech (http://app.transifex.com/wildfire-games/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3578,7 +3579,7 @@ msgstr "Pozměněné verze: %(mods)s"
 
 #: gui/loadgame/SavegameList.js:181
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr "dd. MM. rrrr hh:mm:ss"
+msgstr "dd. MM. yyyy HH:mm:ss"
 
 #: gui/loadgame/SavegameList.js:192
 #, javascript-format
@@ -5898,11 +5899,11 @@ msgstr "Hráči: %(numberOfPlayers)s"
 
 #: gui/replaymenu/replay_menu.js:309
 msgid "yyyy-MM-dd HH:mm"
-msgstr "rrrr-MM-dd HH:mm"
+msgstr "yyyy-MM-dd HH:mm"
 
 #: gui/replaymenu/replay_menu.js:339
 msgid "yyyy-MM"
-msgstr "rrrr-MM"
+msgstr "yyyy-MM"
 
 #: gui/replaymenu/replay_menu.xml:(caption):14
 msgid "Replay Games"

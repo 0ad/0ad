@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# A
 # ali topçu
 # AMG
 # Berke Güvenç
@@ -29,7 +30,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:50+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>, 2021,2023\n"
+"Last-Translator: A, 2023\n"
 "Language-Team: Turkish (http://app.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,13 +55,13 @@ msgstr "Sıra"
 #: gui/lobby/LobbyPage/GameList.xml:(heading):13
 #: gui/lobby/LobbyPage/PlayerList.xml:(heading):21
 msgid "Name"
-msgstr "İsim"
+msgstr "Ad"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):23
 #: gui/lobby/LobbyPage/GameList.xml:(heading):28
 #: gui/lobby/LobbyPage/PlayerList.xml:(heading):24
 msgid "Rating"
-msgstr "Derecelendirme"
+msgstr "Puan"
 
 #: gui/lobby/LobbyPage/AnnouncementHandler.js:18
 msgid "Notice"
@@ -68,7 +69,7 @@ msgstr "Bildirim"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:69
 msgid "Mark as Buddy"
-msgstr "Arkadaş olarak işaretle"
+msgstr "Arkadaş Olarak İşaretle"
 
 #: gui/lobby/LobbyPage/Buttons/BuddyButton.js:70
 msgid "Unmark as Buddy"
@@ -80,15 +81,15 @@ msgstr "Oyun Kur"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:40
 msgid "Your active mods do not match the mods of this game."
-msgstr "Aktif olan modunuz bu oyunun moduyla eşleşmiyor."
+msgstr "Aktif olan modlarınız bu oyunun modlarıyla eşleşmiyor."
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
 msgid "Do you want to switch to the mod selection page?"
-msgstr "Mod seçme sayfasına mı geçmek istiyorsunuz?"
+msgstr "Mod seçme sayfasına geçmek istiyor musunuz?"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
 msgid "Incompatible mods"
-msgstr "Uyumsuz mod"
+msgstr "Uyumsuz modlar"
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
 msgid "The game has already started. Do you want to join as observer?"
@@ -102,12 +103,12 @@ msgstr "Oyuna Katıl"
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):12
 #: gui/lobby/LobbyPage/Buttons/LeaderboardButton.js:9
 msgid "Leaderboard"
-msgstr "Lider tablosu"
+msgstr "Lider Tablosu"
 
 #: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):12
 msgid "Player Profile Lookup"
-msgstr "Oyuncu Profili Önizlemesi"
+msgstr "Oyuncu Profiline Bak"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
 msgctxt "previous page"
@@ -124,37 +125,37 @@ msgstr "Ana Menü"
 msgid ""
 "The command '%(cmd)s' is not supported. Try %(help)s to get more information"
 " about the supported commands."
-msgstr "'%(cmd)s' komutu desteklenmiyor. Desteklenen komutlar hakkında daha fazla bilgi edinmek için %(help)s'yi deneyin."
+msgstr "'%(cmd)s' komutu desteklenmiyor. Desteklenen komutlar hakkında daha fazla bilgi edinmek için %(help)s komutunu deneyin."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:45
 #, javascript-format
 msgid "The command '%(cmd)s' is restricted to moderators."
-msgstr "Bu '%(cmd)s' komutunu sadece yöneticiler kullanabilir."
+msgstr "'%(cmd)s' komutu yöneticilerle sınırlıdır."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:67
 #, javascript-format
 msgid "The command '%(cmd)s' requires at least one argument."
-msgstr "'%(cmd)s' komutu en az bir tartışma gerektirir."
+msgstr "'%(cmd)s' komutu en az bir bağımsız değişken gerektirir."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:88
 msgid "Set your state to 'Away'."
-msgstr "Durumunuzu uzakta olarak ayarlayın."
+msgstr "Durumunuzu 'Uzakta' olarak ayarlayın."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:95
 msgid "Set your state to 'Online'."
-msgstr "Durumunuzu çevirimiçi olarak ayarlayın."
+msgstr "Durumunuzu 'Müsait' olarak ayarlayın."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:102
 msgid "Kick a specified user from the lobby. Usage: /kick nick reason"
-msgstr "Lobiden bir oyuncuyu atmak istiyorsanız /kick nick yazarak oyuncuyu atabilirsiniz"
+msgstr "Lobiden belli bir oyuncuyu atın. Kullanımı: /kick oyucu adı"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:114
 msgid "Ban a specified user from the lobby. Usage: /ban nick reason"
-msgstr "Lobiden belirli bir kullanıcı yasaklanabilir. Kullanımı: /ban kullanıcı nedeni"
+msgstr "Lobiden belli bir oyuncuyu yasaklayın. Kullanımı: /ban oyuncu adı"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:126
 msgid "Show this help."
-msgstr "Yardım mesajını görüntüleyin."
+msgstr "Bu yardımı görüntüle."
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:129
 msgid "Chat commands:"
@@ -168,12 +169,12 @@ msgstr "%(command)s - %(description)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:147
 msgid "Send a chat message about yourself. Example: /me goes swimming."
-msgstr "Kendiniz hakkında bir sohbet mesajı gönderilebilir. Örneğin: /ben yüzmeye gidiyorum."
+msgstr "Kendiniz hakkında bir sohbet mesajı gönderin. Örneğin: /me yüzmeye gidiyorum."
 
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:150
 msgid "/me"
-msgstr "/ben"
+msgstr "/me"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:154
 msgid ""
@@ -184,7 +185,7 @@ msgstr "Metin sohbet mesajı olarak gönderilebilir (eğik çizgi ile başlasa b
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:157
 msgid "/say"
-msgstr "/konuş"
+msgstr "/say"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:161
 msgid "Clear all chat scrollback."
@@ -241,44 +242,44 @@ msgstr "Susturuldunuz."
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:108
 #, javascript-format
 msgid "%(nick)s has been muted."
-msgstr "%(nick)s sessize alındı."
+msgstr "%(nick)s susturuldu."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:112
 msgid "You are now a moderator."
-msgstr "Şimdi yöneticisin."
+msgstr "Şimdi bir yöneticisiniz."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:113
 #, javascript-format
 msgid "%(nick)s is now a moderator."
-msgstr "%(nick)s şimdi yönetici."
+msgstr "%(nick)s şimdi bir yönetici."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:118
 msgid "You have been unmuted."
-msgstr "Sesi açtınız."
+msgstr "Susturulmanız kalktı."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:119
 #, javascript-format
 msgid "%(nick)s has been unmuted."
-msgstr "%(nick)s sessize alındı."
+msgstr "%(nick)s susturulması kalktı."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:124
 msgid "You are not a moderator anymore."
-msgstr "Artık moderatör değilsiniz."
+msgstr "Artık bir yönetici değilsiniz."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:125
 #, javascript-format
 msgid "%(nick)s is not a moderator anymore."
-msgstr "%(nick)s artık yönetici değil."
+msgstr "%(nick)s artık bir yönetici değil."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:152
 #, javascript-format
 msgid "%(nick)s changed the lobby subject to:"
-msgstr "%(nick)s lobinin konusunu şuna çevirdi:"
+msgstr "%(nick)s lobinin konusunu şu şekilde değiştirdi:"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:153
 #, javascript-format
 msgid "%(nick)s deleted the lobby subject."
-msgstr "%(nick)s lobi konusun sildi."
+msgstr "%(nick)s lobi konusunu sildi."
 
 #. Translation: Chat status message
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageFormat.js:25
@@ -288,7 +289,7 @@ msgstr "== %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:55
 msgid "Connected."
-msgstr "Bağlanıldı."
+msgstr "Bağlandı."
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageEvents.js:56
 msgid "Disconnected."
@@ -372,7 +373,7 @@ msgstr "Sonsuz Oyun"
 msgid ""
 "You have some incompatible mods:\n"
 "%(details)s"
-msgstr "Bazı uyumsuz modların var:\n%(details)s"
+msgstr "Bazı uyumsuz modlarınız var:\n%(details)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:123
 msgid "This mod does not affect MP compatibility"
@@ -381,7 +382,7 @@ msgstr "Bu mod, MP uyumluluğunu etkilemez"
 #: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format
 msgid "Host: %(playername)s"
-msgstr "Ev Sahibi: %(playername)s"
+msgstr "Oluşturan: %(playername)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:144
 #, javascript-format
@@ -390,7 +391,7 @@ msgstr "Oyuncular: %(current)s/%(total)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:146
 msgid "Victory Conditions:"
-msgstr "Zafer Koşulları:"
+msgstr "Zafer Şartları:"
 
 #. Translation: Comma used to concatenate victory conditions
 #: gui/lobby/LobbyPage/GameDetails.js:149
@@ -409,7 +410,7 @@ msgstr "Modlar (uyumsuz):"
 #: gui/lobby/LobbyPage/GameDetails.js:156
 #, javascript-format
 msgid "Game started at %(time)s"
-msgstr "Oyunun kalan süre: %(time)s"
+msgstr "Oyunun başladığı zaman: %(time)s"
 
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
 #: gui/lobby/LobbyPage/GameDetails.js:158
@@ -430,7 +431,7 @@ msgstr "Harita Açıklaması:"
 
 #: gui/lobby/LobbyPage/GameList.xml:(heading):16
 msgid "Map Name"
-msgstr "Harita İsmi"
+msgstr "Harita Adı"
 
 #: gui/lobby/LobbyPage/GameList.xml:(heading):19
 msgctxt "map"
@@ -453,18 +454,18 @@ msgstr "Sadece açık oyunları göster"
 #: gui/lobby/LobbyPage/GameListFilters/MapSize.js:9
 msgctxt "map size"
 msgid "Any"
-msgstr "Herhangi bir"
+msgstr "Herhangi"
 
 #: gui/lobby/LobbyPage/GameListFilters/MapType.js:9
 #: gui/lobby/LobbyPage/GameListFilters/Rating.js:11
 msgctxt "map"
 msgid "Any"
-msgstr "Herhangi bir"
+msgstr "Herhangi"
 
 #: gui/lobby/LobbyPage/GameListFilters/PlayerCount.js:10
 msgctxt "player number"
 msgid "Any"
-msgstr "Herhangi bir"
+msgstr "Herhangi"
 
 #: gui/lobby/LobbyPage/GameListFilters/Rating.js:19
 #, javascript-format
@@ -514,11 +515,11 @@ msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/LobbyPage/PlayerList.js:197
 msgid "Online"
-msgstr "Çevirimiçi"
+msgstr "Müsait"
 
 #: gui/lobby/LobbyPage/PlayerList.js:203
 msgid "Away"
-msgstr "Dışarda"
+msgstr "Uzakta"
 
 #: gui/lobby/LobbyPage/PlayerList.js:209
 msgid "Busy"
@@ -539,11 +540,11 @@ msgstr "Durum"
 
 #: gui/lobby/LobbyPage/PlayerList.xml:(placeholder_text):4
 msgid "Search for Player"
-msgstr "Oyuncuyu Arayın"
+msgstr "Oyuncu Ara"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:106
 msgid "N/A"
-msgstr "Uygulanamaz"
+msgstr "Yok"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:112
 msgid "Moderator"
@@ -575,22 +576,22 @@ msgstr "Güncel Sıralama:"
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):12
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):34
 msgid "Highest Rating:"
-msgstr "En iyi Derece:"
+msgstr "En Yüksek Puan:"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):16
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):38
 msgid "Total Games:"
-msgstr "Tüm Oyunlar:"
+msgstr "Toplam Oyun:"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):20
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):42
 msgid "Wins:"
-msgstr "Zaferler:"
+msgstr "Galibiyet:"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):24
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):46
 msgid "Losses:"
-msgstr "Mağlubiyetler:"
+msgstr "Mağlubiyet:"
 
 #: gui/lobby/LobbyPage/ProfilePanel.xml:(caption):28
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):50
@@ -604,11 +605,11 @@ msgstr "Oyuncu \"%(nick)s\" bulunamadı."
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):16
 msgid "Enter playername:"
-msgstr "Oyuncu adını girin: "
+msgstr "Oyuncu adı girin: "
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):22
 msgid "View Profile"
-msgstr "Profil Görüntüle"
+msgstr "Profili Görüntüle"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):55
 msgid "Please enter a player name."
@@ -616,7 +617,7 @@ msgstr "Lütfen bir oyuncu adı girin."
 
 #: gui/prelobby/common/credentials/confirmpassword.xml:(caption):4
 msgid "Password again:"
-msgstr "Şifre tekrarı:"
+msgstr "Şifre tekrar:"
 
 #: gui/prelobby/common/credentials/credentials.js:5
 msgid "Please enter your username"
@@ -638,7 +639,7 @@ msgstr "Lütfen şifrenizi girin"
 
 #: gui/prelobby/common/credentials/credentials.js:23
 msgid "Please choose a longer password"
-msgstr "Lütfen uzun bir parola seçiniz"
+msgstr "Lütfen daha uzun bir şifre seçiniz"
 
 #: gui/prelobby/common/credentials/credentials.js:32
 msgid "Please enter your password again"
@@ -650,7 +651,7 @@ msgstr "Şifreler eşleşmiyor."
 
 #: gui/prelobby/common/credentials/credentials.js:54
 msgid "Are you sure you want to delete the password after connecting?"
-msgstr "Bağlandıktan sonra bu şifreyi silmek istediğinizden emin misiniz ?"
+msgstr "Bağlandıktan sonra bu şifreyi silmek istediğinizden emin misiniz?"
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):6
 msgid "Login:"
@@ -679,7 +680,7 @@ msgstr "İptal"
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy "
 "Policy[/font]"
-msgstr "[font=\"sans-bold-18\"]0 A.D. İmparatorluklar Etkin Çokoyunculu Lobi Gizlilik Politikası[/font]"
+msgstr "[font=\"sans-bold-18\"]0 A.D. İmparatorlukların Yükselişi Çok Oyunculu Lobi Gizlilik Politikası[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2020-12-24"
@@ -707,7 +708,7 @@ msgid ""
 "players, moderators and developers to identify players they met before, "
 "communicate about the game, coordinate matches and enables moderators to "
 "enforce the Terms of Use."
-msgstr "Benzersiz bir oyuncu adına sahip olmak, oyuncuların, moderatörlerin ve geliştiricilerin daha önce tanıştıkları oyuncuları tanımlamalarına, oyun hakkında iletişim kurmalarına, maçları koordine etmelerine ve moderatörlerin Kullanım Şartları uygulamasına olanak tanımak için bir derecelendirme elde etmek için bir gerekliliktir."
+msgstr "Eşsiz bir oyuncu adına sahip olmak, derecelendirme kazanmak, oyuncuların, yöneticilerin ve geliştiricilerin daha önce tanıştıkları oyuncuları belirlemelerine, oyun hakkında iletişim kurmalarına, maçları koordine etmelerine ve moderatörlerin Kullanım Koşullarını uygulamalarına izin vermek için bir gerekliliktir."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:9
 msgid ""
@@ -720,7 +721,7 @@ msgstr "Oyuncu adı takma ad olarak kullanılır. Oyuncuların kimliği (gerçek
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
-msgstr "[font=\"sans-bold-14\"]2. Parola[/font]"
+msgstr "[font=\"sans-bold-14\"]2. Şifre[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:12
 msgid ""
@@ -792,7 +793,7 @@ msgstr "Hangi oyuncuların Çok Oyunculu Lobi'ye bağlı olduğu ve hangi oyuna 
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
-msgstr "[font=\"sans-bold-14\"]5. Sohbet iletileri[/font]"
+msgstr "[font=\"sans-bold-14\"]5. Sohbet mesajları[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:27
 msgid ""
@@ -825,7 +826,7 @@ msgstr "3. Wildfire Games tartışılan konulardaki eğilimi, aktif topluluğun 
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:33
 msgid "[font=\"sans-bold-14\"]6. Match statistics[/font]"
-msgstr "[font=\"sans-bold-14\"]6. Maç İstatistikleri[/font]"
+msgstr "[font=\"sans-bold-14\"]6. Maç istatistikleri[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:34
 msgid ""
@@ -894,7 +895,7 @@ msgstr "Wildfire Games, bir kullanıcının yasal bir iddiayı yerine getirmesi 
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:48
 msgid "[font=\"sans-bold-16\"]Legal basis for the processing:[/font]"
-msgstr "[font=\"sans-bold-16\"] İlerleme için yasal dayanak: [/font]"
+msgstr "[font=\"sans-bold-16\"] İşleme için yasal dayanak: [/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:49
 msgid ""
@@ -1084,7 +1085,7 @@ msgstr "Wildfire Games gizlilik politikası hakkında daha fazla bilgi almak iç
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Service[/font]"
-msgstr "[font=\"sans-bold-18\"]0 A.D. İmparatorluklar Etkin Çokoyunculu Lobisi Kullanım Koşulları[/font]"
+msgstr "[font=\"sans-bold-18\"]0 A.D. İmparatorlukların Yükselişi Çok Oyunculu Lobi Hizmet Şartları[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-16"
@@ -1096,7 +1097,7 @@ msgid ""
 " by Wildfire Games that allows players to set up online multiplayer matches,"
 " discuss the game in a public chat room and gain a rating that reflects "
 "their skill."
-msgstr "0 A.D. Yükselen İmparatorluklar Çok Oyunculu Lobisi, Wildfire Games tarafından sağlanan, oyuncuların çevrimiçi çok oyunculu maçlar kurmalarına, oyunu herkese açık bir sohbet odasında tartışmalarına ve becerilerini yansıtan bir derecelendirme kazanmalarına olanak tanıyan çevrimiçi bir hizmettir."
+msgstr "0 A.D. İmparatorlukların Yükselişi Çok Oyunculu Lobisi, Wildfire Games tarafından sağlanan, oyuncuların çevrimiçi çok oyunculu maçlar kurmalarına, oyunu herkese açık bir sohbet odasında tartışmalarına ve becerilerini yansıtan bir derecelendirme kazanmalarına olanak tanıyan çevrimiçi bir hizmettir."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""
@@ -1114,7 +1115,7 @@ msgstr "Çokoyunculu lobisini kullanmak için en düşük yaş sınırı 13."
 msgid ""
 "[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree "
 "to:[/font]"
-msgstr "[font=\"sans-bold-14\"]Çok Oyunculu Lobide 0 AD kullanarak, şunları kabul ediyorsunuz:[/font]"
+msgstr "[font=\"sans-bold-14\"]0 A.D. Çok Oyunculu Lobisini kullanarak şunları kabul etmiş olursunuz:[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:11
 msgid " 1. Follow all usage policies."
@@ -1136,7 +1137,7 @@ msgstr "3. Hizmeti kullanmak kendi sorumluluğunuzdadır. Wildfire Games, kullan
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:15
 msgid "[font=\"sans-bold-14\"]Wildfire Games reserves the right to:[/font]"
-msgstr "[font=\"sans-bold-14\"]Wildfire Games haklarını saklı tuttuğu konular:[/font]"
+msgstr "[font=\"sans-bold-14\"]Wildfire Games şu hakları saklı tutar:[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:16
 msgid ""
@@ -1176,7 +1177,7 @@ msgstr "Şartların bir kısmı yasadışı veya başka türlü uygulanamaz olar
 msgid ""
 "[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Use[/font]"
-msgstr "[font=\"sans-bold-18\"]0 A.D. İmparatorluklar Etkin Çokoyunculu Lobi Kullanım Koşulları[/font]"
+msgstr "[font=\"sans-bold-18\"]0 A.D. İmparatorlukların Yükselişi Çok Oyunculu Lobi Kullanım Şartları[/font]"
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2022-09-01"
@@ -1258,35 +1259,35 @@ msgstr "Bir moderatör davranışınızın bu şartlarla tutarsız olduğunu tes
 
 #: gui/prelobby/common/terms/termslobby.js:9
 msgid "Terms of Service"
-msgstr "Hizmet koşulları"
+msgstr "Hizmet Şartları"
 
 #: gui/prelobby/common/terms/termslobby.js:10
 msgid "Please read and accept the Terms of Service."
-msgstr "Lütfen Hizmet Şartlarını okuyunuz ve kabul ediniz"
+msgstr "Lütfen Hizmet Şartlarını okuyunuz ve kabul ediniz."
 
 #: gui/prelobby/common/terms/termslobby.js:19
 msgid "Terms of Use"
-msgstr "Kullanım koşulları"
+msgstr "Kullanım Şartları"
 
 #: gui/prelobby/common/terms/termslobby.js:20
 msgid "Please read and accept the Terms of Use."
-msgstr "Lütfen Kullanım Şartlarını okuyunuz ve kabul ediniz"
+msgstr "Lütfen Kullanım Şartlarını okuyunuz ve kabul ediniz."
 
 #: gui/prelobby/common/terms/termslobby.js:29
 msgid "Privacy Policy"
-msgstr "Gizlilik İlkesi"
+msgstr "Gizlilik Politikası"
 
 #: gui/prelobby/common/terms/termslobby.js:30
 msgid "Please read and accept the Privacy Policy."
-msgstr "Lütfen Gizlilik İlkesini okuyunuz ve kabul ediniz"
+msgstr "Lütfen Gizlilik Politikasını okuyunuz ve kabul ediniz."
 
 #: gui/prelobby/entrance/entrance.xml:(caption):20
 msgid "Create a new account"
-msgstr "Yeni hesap oluştur"
+msgstr "Yeni bir hesap oluştur"
 
 #: gui/prelobby/entrance/entrance.xml:(caption):25
 msgid "Login to an existing account"
-msgstr "Varolan hesaba giriş yap"
+msgstr "Varolan bir hesaba giriş yap"
 
 #: gui/prelobby/login/login.js:5
 msgid "Connect"
@@ -1298,7 +1299,7 @@ msgstr "Bağlanıyor..."
 
 #: gui/prelobby/login/login.xml:(caption):13
 msgid "Connect to the game lobby"
-msgstr "Oyun bekleme salonuna bağlan"
+msgstr "Oyun lobisine bağlan"
 
 #: gui/prelobby/register/register.js:5
 msgid "Register"
@@ -1310,7 +1311,7 @@ msgstr "Kayıt olunuyor..."
 
 #: gui/prelobby/register/register.js:39
 msgid "Registered"
-msgstr "Kayıt olundu."
+msgstr "Kayıt olundu"
 
 #: gui/prelobby/register/register.xml:(caption):13
 msgid "Registration"
