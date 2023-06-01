@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # Abdullah Ilgaz
+# A
 # Ahmet Elgun
 # ali topçu
 # Barış Aydın
@@ -51,7 +52,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-04-28 09:24+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>, 2021,2023\n"
+"Last-Translator: A, 2023\n"
 "Language-Team: Turkish (http://app.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -128,7 +129,7 @@ msgstr "Teslim Ol"
 #: gui/session/MenuButtons.js:261
 #: gui/session/NetworkStatusOverlay.xml:(caption):9
 msgid "Exit"
-msgstr "Kaçma lan"
+msgstr "Çıkış"
 
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
@@ -454,17 +455,17 @@ msgstr "%(player)s artık %(player2)s ile tarafsız oldu."
 #: gui/session/chat/ChatMessageFormatSimulation.js:109
 #, javascript-format
 msgid "%(player)s is advancing to the %(phaseName)s."
-msgstr "%(player)s,  %(phaseName)s'a ilerliyor."
+msgstr "%(player)s %(phaseName)sna ilerliyor."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:111
 #, javascript-format
 msgid "The %(phaseName)s of %(player)s has been aborted."
-msgstr "%(player)s'nin %(phaseName)s'sı iptal edildi."
+msgstr "%(player)s %(phaseName)snı iptal etti."
 
 #: gui/session/chat/ChatMessageFormatSimulation.js:114
 #, javascript-format
 msgid "%(player)s has reached the %(phaseName)s."
-msgstr "%(player)s, %(phaseName)s'ye ulaştı."
+msgstr "%(player)s, %(phaseName)s'na ulaştı."
 
 #. Translation: This comma is used for separating first to penultimate
 #. elements in an
@@ -683,7 +684,7 @@ msgstr "Kapat"
 #, javascript-format
 msgctxt "ceasefire"
 msgid "Remaining ceasefire time: %(time)s."
-msgstr "Kalan ateşkes süresi: %(time)s"
+msgstr "Kalan ateşkes süresi: %(time)s."
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):85
 #: gui/session/diplomacy/DiplomacyDialogColorsButton.js:30
@@ -844,7 +845,7 @@ msgstr "Onay"
 
 #: gui/session/message_box/QuitConfirmation.js:9
 msgid "The game has finished, what do you want to do?"
-msgstr "Yeniden oynatma tamamladı, ne yapmak istiyorsun?"
+msgstr "Tekrar bitti, ne yapmak istiyorsunuz?"
 
 #. Translation: Shown in the Dialog that shows up when the game finishes
 #: gui/session/message_box/QuitConfirmation.js:15
@@ -899,7 +900,7 @@ msgstr "Onay"
 #: gui/session/message_box/QuitConfirmationReplay.js:17
 msgctxt "replayFinished"
 msgid "The replay has finished. What do you want to do?"
-msgstr "Yeniden oynatma tamamladı. Ne yapmak istiyorsun?"
+msgstr "Tekrar bitti. Ne yapmak istiyorsunuz?"
 
 #: gui/session/message_box/ResignConfirmation.js:6
 msgid "Are you sure you want to resign?"
@@ -1093,19 +1094,19 @@ msgstr "Alarmı sonlandır."
 
 #: gui/session/selection_panels.js:277
 msgid "Default formation is disabled."
-msgstr "Öntanımlı düzen devre dışı."
+msgstr "Varsayılan düzen devre dışı."
 
 #: gui/session/selection_panels.js:278
 msgid "Right-click to disable the default formation feature."
-msgstr "Öntanımlı düzen özelliğini devre dışı bırakmak için sağ tıklayın."
+msgstr "Varsayılan düzen özelliğini devre dışı bırakmak için sağ tıklayın."
 
 #: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
-msgstr "Bu, hareket emirleri için kullanılan öntanımlı düzendir."
+msgstr "Bu, hareket etmeyle ilgili emirler için kullanılan varsayılan düzendir."
 
 #: gui/session/selection_panels.js:282
 msgid "Right-click to set this as the default formation."
-msgstr "Bunu öntanımlı düzen olarak ayarlamak için sağ tıklayın."
+msgstr "Bunu varsayılan düzen olarak ayarlamak için sağ tıklayın."
 
 #: gui/session/selection_panels.js:338
 #, javascript-format
@@ -1401,7 +1402,7 @@ msgid ""
 "%(civ)s\n"
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(civ)s\n%(hotkey_civinfo)s/%(hotkey_structree)s: Uygarlığa Genel Bakış / Son açılan Yapı Ağacı tıklama ile yeniden açılacak."
+msgstr "%(civ)s\n%(hotkey_civinfo)s/%(hotkey_structree)s: Medeniyete Genel Bakış / Yapı Ağacı\nSon açılan tıklandığında yeniden açılacaktır."
 
 #: gui/session/top_panel/CounterManager.js:100
 #, javascript-format

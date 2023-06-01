@@ -11,15 +11,15 @@
 # Tuğberk Korkut
 # Günay Yılmaz
 # Volkan Sarıoğlu
-# rtacr
 # Cem Aktas
-# Paul Henry Newtman
+# rtacr
+# A
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2022-10-22 14:55+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: Paul Henry Newtman, 2022\n"
+"Last-Translator: A, 2023\n"
 "Language-Team: Turkish (https://app.transifex.com/wildfire-games/teams/17418/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,13 +33,13 @@ msgid ""
 "Discover the new and improved maps in Alpha XXVII with a demo campaign, "
 "taking you through all of them."
 msgstr ""
-"Yeni ve geliştirilmiş Alpha XXVII haritalarını keşfedin ve size bir tanıtım "
+"Yeni ve geliştirilmiş Alfa XXVII haritalarını keşfedin ve size bir tanıtım "
 "seferi ile hepsini göstersin. "
 
 #: campaigns/new_maps.jsonName
 msgctxt "Campaign Template"
 msgid "Demo campaign - new maps"
-msgstr "Tanıtım mücadelesi - yeni haritalar"
+msgstr "Deneme seferi - yeni haritalar"
 
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
@@ -94,11 +94,11 @@ msgstr "Mevcut"
 #: gui/campaigns/default_menu/CampaignMenu.js:216
 #, javascript-format
 msgid "Error loading campaign run %s: %s."
-msgstr "Kampanya turu %s:%s yükleme hatası"
+msgstr "Sefer yüklenirken hata oluştu %s: %s."
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):14
 msgid "Campaign Name"
-msgstr "Kampanya adı"
+msgstr "Sefer Adı"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):45
 msgid "No scenario selected"
@@ -106,7 +106,7 @@ msgstr "Senaryo seçilmedi"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):58
 msgid "Back to Main Menu"
-msgstr "Ana menuye dön"
+msgstr "Ana Menüye Dön"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):62
 msgid "Saved Games"
@@ -114,16 +114,16 @@ msgstr "Kaydedilmiş Oyunlar"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):66
 msgid "Start Scenario"
-msgstr "Senaryo başlat"
+msgstr "Senaryo Başlat"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(caption):69
 msgid "Resume Saved Game"
-msgstr "Kaydedilmiş oyunu başlat"
+msgstr "Kayıtlı Oyunu Devam Ettir"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):27
 msgctxt "campaignLevelList"
 msgid "Scenario Name"
-msgstr "Senaryo adı"
+msgstr "Senaryo Adı"
 
 #: gui/campaigns/default_menu/CampaignMenu.xml:(heading):31
 msgctxt "campaignLevelList"
@@ -137,7 +137,8 @@ msgstr "dosya yüklenemiyor"
 #: gui/campaigns/load_modal/LoadModal.js:104
 #, javascript-format
 msgid "Are you sure you want to delete run %s? This cannot be undone."
-msgstr "%s silmek istediğinizden emin misinz? Bu işlem geri alınamaz."
+msgstr ""
+"%s çalıştırmasını silmek istediğinizden emin misiniz? Bu geri alınamaz."
 
 #: gui/campaigns/load_modal/LoadModal.js:105
 msgid "Confirmation"
@@ -154,15 +155,15 @@ msgstr "Evet"
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):13
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):39
 msgid "Load Campaign"
-msgstr "Kampanyayı yükle"
+msgstr "Sefer Yükle"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):20
 msgid "No ongoing campaigns."
-msgstr "Devam eden kampanyalar yok."
+msgstr "Devam eden seferler yok."
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):24
 msgid "Name of selected run:"
-msgstr "Seçili turun adı;"
+msgstr "Seçilen çalıştırmanın adı:"
 
 #: gui/campaigns/load_modal/LoadModal.xml:(caption):31
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):23
@@ -175,28 +176,28 @@ msgstr "Sil"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
 msgid "Start a campaign"
-msgstr "Kampanya başlat"
+msgstr "Bir sefer başlat"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run:"
-msgstr "Lütfen yeni kampanyanın tur adını giriniz:"
+msgstr "Lütfen yeni seferinizin adını girin:"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
 msgid "Start Campaign"
-msgstr "Kampanya başlat"
+msgstr "Sefer Başlat"
 
 #: gui/campaigns/setup/CampaignSetupPage.js:40
 msgid "No campaign selected."
-msgstr "Kampanya seçilmedi."
+msgstr "Hiçbir bir sefer seçilmedi."
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):10
 msgid "Campaigns"
-msgstr "Kampanyalar"
+msgstr "Seferler"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):37
 msgid "No Campaign selected"
-msgstr "Kampanya seçilmedi."
+msgstr "Hiçbir Sefer seçilmedi"
 
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):50
 msgid "Main Menu"

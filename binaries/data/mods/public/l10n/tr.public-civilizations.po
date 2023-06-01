@@ -5,6 +5,7 @@
 # Translators:
 # Abdullah Ilgaz
 # Ender Türsen
+# A
 # AMG
 # Aathonaeax
 # ArmanH
@@ -50,7 +51,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>, 2014-2017,2022\n"
+"Last-Translator: A, 2023\n"
 "Language-Team: Turkish (http://app.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -453,7 +454,7 @@ msgstr "Başlangıç Duvarları"
 msgid ""
 "Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
 " +3 garrison capacity, and +1 default arrow count."
-msgstr "Taş Kuleler −% 50 odun maliyeti, +% 150 taş maliyeti, +% 33 inşa süresi, +% 60 sağlık, +3 garnizon kapasitesi ve +1 öntanımlı ok sayısı."
+msgstr "Taş Kuleler -%50 odun maliyeti, +%150 taş maliyeti, +%33 inşa süresi, +%60 sağlık, +3 garnizon kapasitesi ve +1 varsayılan ok sayısı."
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Massive Towers"
@@ -1016,7 +1017,7 @@ msgstr "Spartalı Kadınlar"
 
 #: simulation/templates/special/players/athen.xml:8
 msgid "Athenians"
-msgstr "Atinalılar"
+msgstr "Atina"
 
 #: simulation/templates/special/players/athen.xml:9
 msgid ""
@@ -1028,7 +1029,7 @@ msgstr "Batı medeniyetinin beşiği ve demokrasinin doğum yeri olan Atina, san
 
 #: simulation/templates/special/players/brit.xml:8
 msgid "Britons"
-msgstr "Britonlar"
+msgstr "Britanya"
 
 #: simulation/templates/special/players/brit.xml:9
 msgid ""
@@ -1040,7 +1041,7 @@ msgstr "Britanyalılar İngiliz Adaları'nın Kelt kabileleriydi. Savaş arabala
 
 #: simulation/templates/special/players/cart.xml:8
 msgid "Carthaginians"
-msgstr "Kartacalılar"
+msgstr "Kartaca"
 
 #: simulation/templates/special/players/cart.xml:9
 msgid ""
@@ -1058,7 +1059,7 @@ msgstr "Gaia"
 
 #: simulation/templates/special/players/gaul.xml:8
 msgid "Gauls"
-msgstr "Galyalılar"
+msgstr "Galya"
 
 #: simulation/templates/special/players/gaul.xml:9
 msgid ""
@@ -1086,7 +1087,7 @@ msgstr "Han hanedanligi (MÖ 206 - MS 220), Çin'in ikinci imparatorluk hanedan�
 
 #: simulation/templates/special/players/iber.xml:8
 msgid "Iberians"
-msgstr "İberyalılar"
+msgstr "İberya"
 
 #: simulation/templates/special/players/iber.xml:9
 msgid ""
@@ -1100,7 +1101,7 @@ msgstr "İberyalılar, güçlü geleneksel atçılık ve metal işçiliği ile b
 
 #: simulation/templates/special/players/kush.xml:8
 msgid "Kushites"
-msgstr "Kuşitler"
+msgstr "Kuş"
 
 #: simulation/templates/special/players/kush.xml:9
 msgid ""
@@ -1122,7 +1123,7 @@ msgstr "Kush Krallığı, şu anda Sudan Cumhuriyeti'nde olan Mavi Nil, Beyaz Ni
 
 #: simulation/templates/special/players/mace.xml:8
 msgid "Macedonians"
-msgstr "Makedonyalılar"
+msgstr "Makedonya"
 
 #: simulation/templates/special/players/mace.xml:9
 msgid ""
@@ -1135,7 +1136,7 @@ msgstr "Makedonya, Yunan yarımadasının kuzeydoğu kesiminde yer alan eski bir
 
 #: simulation/templates/special/players/maur.xml:8
 msgid "Mauryas"
-msgstr "Mauryalılar"
+msgstr "Maurya"
 
 #: simulation/templates/special/players/maur.xml:9
 msgid ""
@@ -1151,7 +1152,7 @@ msgstr "322'de B.C'de kuruldu. Chandragupta Maurya tarafından Mauryan İmparato
 
 #: simulation/templates/special/players/pers.xml:8
 msgid "Persians"
-msgstr "Persler"
+msgstr "Pers"
 
 #: simulation/templates/special/players/pers.xml:9
 msgid ""
@@ -1166,7 +1167,7 @@ msgstr "Achaemenid hanedanı tarafından yönetilen Pers İmparatorluğu, doğud
 
 #: simulation/templates/special/players/ptol.xml:16
 msgid "Ptolemies"
-msgstr "Ptolemaioslar"
+msgstr "Ptoleme"
 
 #: simulation/templates/special/players/ptol.xml:17
 msgid ""
@@ -1178,7 +1179,7 @@ msgstr "Ptolema hanedanı, Haçlılık döneminde Ptolema İmparatorluğunu Mıs
 
 #: simulation/templates/special/players/rome.xml:8
 msgid "Romans"
-msgstr "Romalılar"
+msgstr "Roma"
 
 #: simulation/templates/special/players/rome.xml:9
 msgid ""
@@ -1193,7 +1194,7 @@ msgstr "Romalılar antik dünyanın en büyük imparatorluklarından birini kont
 
 #: simulation/templates/special/players/sele.xml:16
 msgid "Seleucids"
-msgstr "Selevkoslar"
+msgstr "Selekos"
 
 #: simulation/templates/special/players/sele.xml:17
 msgid ""
@@ -1202,7 +1203,7 @@ msgstr "Bu Makedon-Yunan hanedanlığı İskender'in yönettiği en eski imparat
 
 #: simulation/templates/special/players/spart.xml:6
 msgid "Spartans"
-msgstr "Spartalılar"
+msgstr "Sparta"
 
 #: simulation/templates/special/players/spart.xml:7
 msgid ""

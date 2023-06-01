@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # Abdullah Ilgaz
+# A
 # ali topçu
 # Alp Eren
 # Aathonaeax
@@ -53,7 +54,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-09-12 09:35+0000\n"
 "PO-Revision-Date: 2014-06-19 17:48+0000\n"
-"Last-Translator: Stanislas Dolcini <stan@wildfiregames.com>, 2021,2023\n"
+"Last-Translator: A, 2023\n"
 "Language-Team: Turkish (http://app.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -145,7 +146,7 @@ msgstr "Atanmamış"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:90
 msgid "Choose the civilization for this player."
-msgstr "Bu oyuncu için uygarlık seçin."
+msgstr "Bu oyuncu için medeniyet seç."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:93
 msgctxt "civilization"
@@ -154,7 +155,7 @@ msgstr "Rastgele"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:99
 msgid "Picks one civilization at random when the game starts."
-msgstr "Oyuna başlarken rastgele bir uygarlık seç."
+msgstr "Oyuna başlarken rastgele bir medeniyet seç."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerColor.js:48
 msgid "Pick a color."
@@ -179,7 +180,7 @@ msgstr "Renk"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):14
 msgid "Player Placement"
-msgstr "Oyuncu Sıralaması"
+msgstr "Oyuncu Yerleştirmesi"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):18
 msgid "Civilization"
@@ -230,7 +231,7 @@ msgstr "Keşfedilmiş haritayı kapat (başlangıç haritasına dön)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:26
 msgid "Last Man Standing"
-msgstr "Son Kalan Kişi"
+msgstr "Son Hayatta Kalan"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:29
 msgid ""
@@ -240,11 +241,11 @@ msgstr "En son kalan oyuncu veya son kalan müttefikler kazanma şansını deği
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:30
 msgid "Teams Locked"
-msgstr "Takımlar Kilitli"
+msgstr "Kilitli Takımlar"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:33
 msgid "Toggle locked teams."
-msgstr "Takımları kilitle."
+msgstr "Takım kilidini aç/kapa."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:25
 msgid "Nomad"
@@ -258,11 +259,11 @@ msgstr "Göçebe modunda, oyuncular sadece kısıtlı sayıda birimle başlar ve
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:27
 msgid "Rated Game"
-msgstr "Oylanmış Oyun"
+msgstr "Puanlı Oyun"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:30
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "Eğer bu oyun liderlik tablosu için oylanacaksa seçimi değiştir."
+msgstr "Bu oyunun liderlik tablosu için puanlı olup olmayacağını seçin."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:27
 msgid "Hero Garrison"
@@ -444,15 +445,15 @@ msgstr "Oyuncu Başına"
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "Uyarı: Eğer tüm %(players)s sayıları %(popCap)s miktarına ulaşırsa performans sorunları yaşanabilir."
+msgstr "Uyarı: Eğer tüm %(players)s oyuncu %(popCap)s nüfusa olaşırsa performan sorunlarına neden olabilir."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:50
 msgid "Starting Resources"
-msgstr "Başlangıç Kaynakları"
+msgstr "Başlangıç Kaynağı"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:53
 msgid "Select the game's starting resources."
-msgstr "Oyunun başlangıç kaynaklarını seç."
+msgstr "Oyunun başlangıç kaynağı miktarını seç."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:56
 #, javascript-format
@@ -511,7 +512,7 @@ msgstr "Ateşkes"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:38
 msgid "Set time where no attacks are possible."
-msgstr "Zaman ayarlıda hiçbir saldırı mümkün değildir."
+msgstr "Hiçbir şekilde saldırıların olmayacağı zamanı ayarlayın."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:41
 msgctxt "ceasefire"
@@ -524,7 +525,7 @@ msgctxt "ceasefire"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s dakika"
-msgstr[1] "%(minutes)s dakikalar"
+msgstr[1] "%(minutes)s dakika"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicCount.js:38
 msgid "Relic Count"
@@ -559,7 +560,7 @@ msgctxt "victory duration"
 msgid "%(min)s minute"
 msgid_plural "%(min)s minutes"
 msgstr[0] "%(min)s dakika"
-msgstr[1] "%(min)s dakikalar"
+msgstr[1] "%(min)s dakika"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:50
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:47
@@ -581,7 +582,7 @@ msgctxt "sea level rise time"
 msgid "%(minutes)s minute"
 msgid_plural "%(minutes)s minutes"
 msgstr[0] "%(minutes)s dakika"
-msgstr[1] "%(minutes)s dakikalar"
+msgstr[1] "%(minutes)s dakika"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:38
 msgid "Wonder Duration"
@@ -589,7 +590,7 @@ msgstr "Harika Süresi"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:41
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr "Oyuncunun Dünya Harikası Zaferi'ni elde etmesine kalan dakikalar"
+msgstr "Oyuncunun Dünya Harikası Zaferi'ni elde etmesine kalan dakika"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -597,7 +598,7 @@ msgstr "Geri"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:39
 msgid "Return to the lobby."
-msgstr "Bekleme salonuna geri dön."
+msgstr "Lobiye geri dön."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:42
 msgid "Return to the main menu."
@@ -608,7 +609,7 @@ msgstr "Ana menüye dönün."
 msgid ""
 "%(hotkey_civinfo)s / %(hotkey_structree)s: View Civilization Overview / Structure Tree\n"
 "Last opened will be reopened on click."
-msgstr "%(hotkey_civinfo)s/%(hotkey_structree)s: Uygarlığa Genel Bakış / Son açılan Yapı Ağacı tıklama ile yeniden açılacak."
+msgstr "%(hotkey_civinfo)s/%(hotkey_structree)s: Medeniyete Genel Bakış / Yapı Ağacı\nSon açılan tıklandığında yeniden açılacaktır."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
@@ -641,7 +642,7 @@ msgstr "Oynamaya hazır olmadığını bildir."
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetCivsButton.js:29
 msgid ""
 "Reset any civilizations that have been selected to the default (random)."
-msgstr "Öntanımlı olarak seçilmiş tüm uygarlıkları yenileyin (rastgele)."
+msgstr "Seçilen medeniyetleri varsayılana (rastgele) sıfırlayın."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ResetTeamsButton.js:29
 msgid "Reset all teams to the default."
@@ -743,7 +744,7 @@ msgstr "Hileler aktif."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingWarning.js:43
 msgid "Rated game."
-msgstr "Oyun değerlendirmesi"
+msgstr "Puanlı oyun."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/GameSettingsTabs.js:74
 #, javascript-format
@@ -772,12 +773,12 @@ msgstr "Harita verisi yükleniyor. Lütfen bekleyin..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):17
 msgid "Match Setup"
-msgstr "Karşılaşma ayarla"
+msgstr "Karşılaşma Ayarla"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:59
 #, javascript-format
 msgid "%(name)s's game"
-msgstr "%(name)s'in oyunu"
+msgstr "%(name)s | "
 
 #: gui/gamesetup_mp/gamesetup_mp.js:123
 msgid "Please enter a valid server name."
@@ -858,7 +859,7 @@ msgstr "Oyuna giriş başarısız: %(message)s."
 #: gui/gamesetup_mp/gamesetup_mp.js:464
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr "%(playername)s'nin oyunu"
+msgstr "%(playername)s | "
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
@@ -884,7 +885,7 @@ msgstr "Sunucu Port:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
 msgid "Set up your server to host."
-msgstr "Sunucunu evsahibi olarak ayarla."
+msgstr "Sunucunu kurucu olarak ayarla."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
@@ -896,7 +897,7 @@ msgstr "Sunucu Şifresi:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):128
 msgid "Use STUN to work around firewalls"
-msgstr "Güvenlik duvarları etrafında çalışmak için STUN kullanın"
+msgstr "Güvenlik duvarlarını aşmak için STUN'u kullanın"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):136
 msgid "Continue"

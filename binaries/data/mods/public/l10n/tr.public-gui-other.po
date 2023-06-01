@@ -5,6 +5,7 @@
 # Translators:
 # 61stylo
 # Ender Türsen
+# A
 # ali topçu
 # Barış Aydın
 # Cem Aktas
@@ -35,7 +36,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-04-28 09:24+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>, 2014-2018,2021-2023\n"
+"Last-Translator: A, 2023\n"
 "Language-Team: Turkish (http://app.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -159,16 +160,16 @@ msgstr "Bilinmeyen Medeniyet"
 #: gui/common/gamedescription.js:137
 msgctxt "playerstate"
 msgid "defeated"
-msgstr "Yenildin"
+msgstr "yenildi"
 
 #: gui/common/gamedescription.js:138
 msgctxt "playerstate"
 msgid "won"
-msgstr "Zafer"
+msgstr "kazandı"
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
-msgstr "Takım yok"
+msgstr "Takım Yok"
 
 #: gui/common/gamedescription.js:160
 #, javascript-format
@@ -189,7 +190,7 @@ msgstr "%(team)s:\n%(playerDescriptions)s"
 msgid "Observer"
 msgid_plural "Observers"
 msgstr[0] "Gözlemci"
-msgstr[1] "Gözlemciler"
+msgstr[1] "İzleyiciler"
 
 #: gui/common/gamedescription.js:188
 msgctxt "victory condition"
@@ -218,7 +219,7 @@ msgstr[1] "Kutsal Emaneti Ele Geçir (%(min)s dakika)"
 
 #: gui/common/gamedescription.js:232
 msgid "Relic Count"
-msgstr "Kutsal Emanet Geri Sayımı"
+msgstr "Kutsal Emanet Sayısı"
 
 #: gui/common/gamedescription.js:239
 msgid "Hero Garrison"
@@ -234,11 +235,11 @@ msgstr "Korunmasız Kahramanlar"
 
 #: gui/common/gamedescription.js:245
 msgid "Heroes cannot be garrisoned and they are vulnerable to raids."
-msgstr "Kahramanlar binalara yerleştirilemez ve yağmalara açıktırlar."
+msgstr "Kahramanlar binalara yerleştirilemez ve saldırılara açıktırlar."
 
 #: gui/common/gamedescription.js:251
 msgid "Locked Teams"
-msgstr "Değiştirilemeyen Takımlar"
+msgstr "Kilitli Takımlar"
 
 #: gui/common/gamedescription.js:252
 msgid "Players can't change the initial teams."
@@ -254,7 +255,7 @@ msgstr "Oyuncular ittifak yapabilir ve müttetiklere de savaş açabilirler."
 
 #: gui/common/gamedescription.js:262
 msgid "Last Man Standing"
-msgstr "Kalan Son Kişi"
+msgstr "Son Hayatta Kalan"
 
 #: gui/common/gamedescription.js:263
 msgid ""
@@ -302,7 +303,7 @@ msgstr "Listeden rastgele bir harita seç."
 
 #: gui/common/gamedescription.js:294
 msgid "Map Name"
-msgstr "Harita İsmi"
+msgstr "Harita Adı"
 
 #: gui/common/gamedescription.js:300
 msgid "Map Description"
@@ -345,7 +346,7 @@ msgstr "Oyuncular Şehir Merkezi ile başlar."
 
 #: gui/common/gamedescription.js:349
 msgid "Starting Resources"
-msgstr "Başlangıç Kaynakları"
+msgstr "Başlangıç Kaynağı"
 
 #: gui/common/gamedescription.js:353
 msgctxt "starting resources"
@@ -408,7 +409,7 @@ msgstr "Bu maçın galibi belirlendiğinde, lobi puanı uyarlanır."
 
 #: gui/common/gamedescription.js:415 gui/common/gamedescription.js:420
 msgid "Rated game"
-msgstr "Değerlendirilmiş Oyun"
+msgstr "Puanlı oyun"
 
 #: gui/common/gamedescription.js:421 gui/common/gamedescription.js:428
 msgctxt "game setup option"
@@ -529,7 +530,7 @@ msgstr "ENet STUN istemcisi için kullanılmayan bir bağlantı noktası bulunam
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr ""
+msgstr "STUN uç noktası bulunamadı."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -670,7 +671,7 @@ msgstr "Bilinmeyen"
 #: gui/common/settings.js:364
 msgctxt "AI behavior"
 msgid "Default"
-msgstr "Öntanımlı"
+msgstr "Varsayılan"
 
 #: gui/common/settings.js:376
 msgctxt "map type"
@@ -680,7 +681,7 @@ msgstr "Bilinmeyen"
 #: gui/common/settings.js:388
 msgctxt "map size"
 msgid "Default"
-msgstr "Öntanımlı"
+msgstr "Varsayılan"
 
 #: gui/common/settings.js:403
 msgctxt "population capacity addendum"
@@ -1067,7 +1068,7 @@ msgstr "Cephane Limiti"
 #: gui/common/tooltips.js:627
 msgctxt "projectiles"
 msgid "Default"
-msgstr "Öntanımlı"
+msgstr "Varsayılan"
 
 #: gui/common/tooltips.js:632
 msgctxt "projectiles"
@@ -1239,11 +1240,11 @@ msgstr "%(speed)s %(movementType)s"
 
 #: gui/common/tooltips.js:1034
 msgid "Walk"
-msgstr "Yürü"
+msgstr "Yürüme"
 
 #: gui/common/tooltips.js:1039
 msgid "Run"
-msgstr "Koş"
+msgstr "Koşma"
 
 #: gui/common/tooltips.js:1044
 msgid "Acceleration"
@@ -1942,12 +1943,12 @@ msgstr "Yukarı döndür"
 msgctxt "hotkey metadata"
 msgid ""
 "Rotate camera counterclockwise around terrain - the effect depends on FPS."
-msgstr "Kamerayı arazide saat yönünün tersine çevirin - bu FPS 'e göre değişkenlik gösterir."
+msgstr "Kamerayı saat yönünün tersine çevirin - bu efekt FPS'ye bağlıdır."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain - the effect depends on FPS."
-msgstr "Kamerayı arazide saat yönününde çevirin - bu FPS 'e göre değişkenlik gösterir."
+msgstr "Kamerayı saat yönününde çevirin - bu efekt FPS'ye bağlıdır."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.desc
 msgctxt "hotkey metadata"
@@ -2376,12 +2377,12 @@ msgstr "Seferberlik çağrısı"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.capture.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to capture instead of another action (e.g. attack)."
-msgstr ""
+msgstr "Başka bir eylem (ör. saldırı) yerine ele geçirmek için değiştirici."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.capture.name
 msgctxt "hotkey metadata"
 msgid "Force capture"
-msgstr ""
+msgstr "Ele geçirmeye zorla"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.deselectgroup.desc
 msgctxt "hotkey metadata"
@@ -2407,12 +2408,12 @@ msgstr "İşaret fişeği (Basılı tut)"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.desc
 msgctxt "hotkey metadata"
 msgid "Set the cursor to Flare. The hotkey can be released."
-msgstr ""
+msgstr "İmleci Fişekleme olarak ayarlayın. Kısayol tuşu serbest bırakılabilir."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.flareactivate.name
 msgctxt "hotkey metadata"
 msgid "Flare (toggle)"
-msgstr ""
+msgstr "Fişekleme (Bas)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.fulltradeswap.desc
 msgctxt "hotkey metadata"
@@ -2427,7 +2428,7 @@ msgstr "Ticareti %100'e ayarla"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to garrison when clicking on building."
-msgstr ""
+msgstr "Binaya tıklandığında garnizonlamak için değiştirici."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.garrison.name
 msgctxt "hotkey metadata"
@@ -2437,7 +2438,7 @@ msgstr "Garnizon"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to escort/guard when clicking on unit/building."
-msgstr ""
+msgstr "Birime/binaya tıklandığında muhafızlık yapan değiştirici."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.guard.name
 msgctxt "hotkey metadata"
@@ -2457,17 +2458,17 @@ msgstr "Seçili birimleri imha et"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.desc
 msgctxt "hotkey metadata"
 msgid "Order an entity to leave a turret point."
-msgstr ""
+msgstr "Bir varlığın taret noktasından ayrılmasını emret."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.leaveturret.name
 msgctxt "hotkey metadata"
 msgid "Leave Turret Point"
-msgstr ""
+msgstr "Taret Noktasından Ayrıl"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to barter bunch of resources."
-msgstr ""
+msgstr "Bir sürü kaynağı toplu takas etmek için değiştirici."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.massbarter.name
 msgctxt "hotkey metadata"
@@ -2477,17 +2478,17 @@ msgstr "Toplu takas"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to tribute bunch of resources."
-msgstr ""
+msgstr "Bir sürü kaynağı toplu iletmek için değiştirici."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.masstribute.name
 msgctxt "hotkey metadata"
 msgid "Mass tribute"
-msgstr ""
+msgstr "Toplu iletme"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to move to a point instead of another action (e.g. gather)."
-msgstr ""
+msgstr "Başka bir eylem yerine bir noktaya gitmek için değiştirici (ör. toplama)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.move.name
 msgctxt "hotkey metadata"
@@ -2507,12 +2508,12 @@ msgstr "Onaylamadan yık"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to occupy a turret when clicking on a turret holder."
-msgstr ""
+msgstr "Bir taret tutucuya tıklandığında bir tareti işgal etmek için değiştirici."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.occupyturret.name
 msgctxt "hotkey metadata"
 msgid "Occupy Turret Point"
-msgstr ""
+msgstr "Taret Noktasını İşgal Et"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.orderone.desc
 msgctxt "hotkey metadata"
@@ -2527,7 +2528,7 @@ msgstr "Bir birim sipariş et"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to patrol a unit."
-msgstr ""
+msgstr "Bir birimi devriye gezdirmek için değiştirici."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.patrol.name
 msgctxt "hotkey metadata"
@@ -2542,17 +2543,17 @@ msgstr "Bu komutu yerine getirip bir önceki komuta dönmeyi sağlayan değişti
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.pushorderfront.name
 msgctxt "hotkey metadata"
 msgid "Push order in front"
-msgstr ""
+msgstr "Emri öne al"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to queue unit orders instead of replacing."
-msgstr ""
+msgstr "Geçmek yerine birim siparişlerini kuyruğa almak için değiştirici."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queue.name
 msgctxt "hotkey metadata"
 msgid "Queue order"
-msgstr ""
+msgstr "Emri sıraya al"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.1.desc
 msgctxt "hotkey metadata"
@@ -2637,27 +2638,27 @@ msgstr "8nci birimi sıraya koy"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.desc
 msgctxt "hotkey metadata"
 msgid "Turn off Auto-Queue for selected structures."
-msgstr ""
+msgstr "Seçilen yapılar için Otomatik Kuyruğa Almayı kapat."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueoff.name
 msgctxt "hotkey metadata"
 msgid "Deactivate auto-queue"
-msgstr ""
+msgstr "Otomatik kuruğa almayı devre dışı bırak"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.desc
 msgctxt "hotkey metadata"
 msgid "Turn on Auto-Queue for selected structures."
-msgstr ""
+msgstr "Seçilen yapılar için Otomatik Kuyruğa Almayı aç."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.queueunit.autoqueueon.name
 msgctxt "hotkey metadata"
 msgid "Activate auto-queue"
-msgstr ""
+msgstr "Otomatik kuyruğa almayı etkinleştir"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to repair when clicking on building/mechanical unit."
-msgstr ""
+msgstr "Bina/mekanik üniteye tıklandığında tamir eden değiştirici."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.repair.name
 msgctxt "hotkey metadata"
@@ -2677,7 +2678,7 @@ msgstr "Yapıyı saat yönünün tersine döndürün"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate building placement preview clockwise."
-msgstr ""
+msgstr "Bina yerleşimi önizlemesini saat yönünde döndür."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.rotate.cw.name
 msgctxt "hotkey metadata"
@@ -2692,7 +2693,7 @@ msgstr "Yeni yapıların mevcut yapılarla aynı hizada olmasını sağlayan de�
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.snaptoedges.name
 msgctxt "hotkey metadata"
 msgid "Toggle snap-to-edge"
-msgstr ""
+msgstr "Kenardan kenara bitiştirmeyi aç"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.stop.desc
 msgctxt "hotkey metadata"
@@ -2709,12 +2710,12 @@ msgctxt "hotkey metadata"
 msgid ""
 "Switch between null default formation and the last default formation used "
 "(defaults to 'box')."
-msgstr ""
+msgstr "Boş varsayılan (ordu) düzen ile kullanılan son varsayılan (ordu) düzen arasında geçiş yapın (varsayılan olarak 'kutu' şeklindedir)."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.toggledefaultformation.name
 msgctxt "hotkey metadata"
 msgid "Toggle default formation"
-msgstr ""
+msgstr "Varsayılan (ordu) düzene getir"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.desc
 msgctxt "hotkey metadata"
@@ -2739,32 +2740,32 @@ msgstr "Kuleleri boşalt"
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to unload all units of type."
-msgstr ""
+msgstr "Tüm (aynı) tür birimleri kaldıran değiştirici."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadtype.name
 msgctxt "hotkey metadata"
 msgid "Unload unit type"
-msgstr ""
+msgstr "Birim türünü boşalt"
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys for the in-game user interface."
-msgstr ""
+msgstr "Oyun içi kullanıcı arayüzü için kısayol tuşları."
 
 #: gui/hotkeys/spec/ingamegui.jsoncategories.ingamegui.name
 msgctxt "hotkey metadata"
 msgid "In-game GUI"
-msgstr "Oyun içi Grafik Arayüzü (GUI)"
+msgstr "Oyun içi Grafiksel Kullanıcı Arayüzü (GUI)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter."
-msgstr ""
+msgstr "Ateşkes sayacını aç."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.ceasefirecounter.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle ceasefire counter"
-msgstr "Ateşkes sayacını aç kapa"
+msgstr "Ateşkes sayacını aç"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.chat.desc
 msgctxt "hotkey metadata"
@@ -2779,7 +2780,7 @@ msgstr "Sohbeti aç/kapa"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the civilization info."
-msgstr ""
+msgstr "Medeniyet bilgisini aç."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
 msgctxt "hotkey metadata"
@@ -2794,7 +2795,7 @@ msgstr "\"Saniyedeki kare\" sayacını aç/kapa"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.fps.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle FPS counter"
-msgstr "FPS'i aç/kapa"
+msgstr "FPS aç/kapa"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.desc
 msgctxt "hotkey metadata"
@@ -2809,7 +2810,7 @@ msgstr "MP lobisini aç/kapa"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window and select the previous private chat partner."
-msgstr ""
+msgstr "Sohbet penceresini açın ve önceki özel sohbet muhatabını seçin."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.privatechat.name
 msgctxt "hotkey metadata"
@@ -2831,7 +2832,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Make a temporary save of the game that can be loaded with quickload. "
 "Quicksaving always overwrites the previous save."
-msgstr ""
+msgstr "Quickload ile yüklenebilen oyunu geçici olarak kaydedin. Hızlı kaydetme her zaman önceki kaydetmenin üzerine yazar."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.quicksave.name
 msgctxt "hotkey metadata"
@@ -2841,12 +2842,12 @@ msgstr "Hızlı kaydet"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle current display of computer time."
-msgstr ""
+msgstr "Bilgisayar saatini görüntüle."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.realtime.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle real-time overlay"
-msgstr ""
+msgstr "Gerçek zamanı göster"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.devcommands.toggle.desc
 msgctxt "hotkey metadata"
@@ -2866,7 +2867,7 @@ msgstr "Diplomasi renklerini aç/kapa."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.diplomacycolors.name
 msgctxt "hotkey metadata"
 msgid "Toggle diplomacy colors"
-msgstr ""
+msgstr "Diplomasi renklerini değiştir"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.barter.toggle.desc
 msgctxt "hotkey metadata"
@@ -2891,7 +2892,7 @@ msgstr "diplomasi aç/kapa"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game menu."
-msgstr ""
+msgstr "Oyun içi menüyü aç."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.menu.toggle.name
 msgctxt "hotkey metadata"
@@ -2901,7 +2902,7 @@ msgstr "Oyun-içi menüsünü aç/kapa."
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game objectives page."
-msgstr ""
+msgstr "Oyun içi hedefler sayfasını aç."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.objectives.toggle.name
 msgctxt "hotkey metadata"
@@ -2911,17 +2912,17 @@ msgstr "Hedefleri göster/gizle"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle visibility of the in-game user interface."
-msgstr ""
+msgstr "Oyun içi arayüzün görünebilirliğini aç/kapa."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle GUI visibility"
-msgstr "Arayüz'ün (GUI) görünülebilirliğini açma/kapama."
+msgstr "Grafiksel Kullanıcı Arayüzünün (GUI) görünülebilirliğini açma/kapama."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game tutorial panel."
-msgstr ""
+msgstr "Oyun içi eğitim panelini aç."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.gui.tutorial.toggle.name
 msgctxt "hotkey metadata"
@@ -2931,22 +2932,22 @@ msgstr "Öğreticiyi aç/kapat"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarded units."
-msgstr ""
+msgstr "Korunan birimlerin vurgulamasını değiştir."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarded.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarded highlight"
-msgstr ""
+msgstr "Korumalı vurgulamayı değiştir"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.desc
 msgctxt "hotkey metadata"
 msgid "Toggle highlight of guarding units."
-msgstr ""
+msgstr "Korunan birimlerin vurgulamasını değiştir."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.highlightguarding.name
 msgctxt "hotkey metadata"
 msgid "Toggle guarding highlight"
-msgstr ""
+msgstr "Korumalı vurgulamayı değiştir"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.savedgames.delete.desc
 msgctxt "hotkey metadata"
@@ -2973,7 +2974,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of status bars e.g. health indicator for all your "
 "buildings/units on the map (including unselected)."
-msgstr ""
+msgstr "Durum çubuklarının görüntüsünü değiştir, örn. haritadaki tüm binalarınız/birimlerinizin sağlık göstergesi (seçilmemiş olanlar da dahil)."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.showstatusbars.name
 msgctxt "hotkey metadata"
@@ -2988,28 +2989,28 @@ msgstr "Hızlı ileri alma modunu etkinleştirme. Etkinleştirilmiş bir zaman a
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.fastforward.name
 msgctxt "hotkey metadata"
 msgid "Fast-forward (timewarp)"
-msgstr ""
+msgstr "Hızlı ileri sarma (zaman atlama)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.desc
 msgctxt "hotkey metadata"
 msgid "Rewind time. Must have activated timewarp."
-msgstr ""
+msgstr "Zamanı geri sar. Zaman atlaması etkinleştirilmiş olmalı."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.timewarp.rewind.name
 msgctxt "hotkey metadata"
 msgid "Rewind (timewarp)"
-msgstr ""
+msgstr "Geri sarma (zaman atlama)"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Toggle display of attack range overlays of selected defensive structures."
-msgstr ""
+msgstr "Seçilen savunma yapılarının saldırı menzillerini göster."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleattackrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle attack ranges"
-msgstr ""
+msgstr "Saldırı menzillerini göster"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.desc
 msgctxt "hotkey metadata"
@@ -3020,12 +3021,12 @@ msgstr "Seçili birlik ve yapıların aura menzilini gösteren görselleri açma
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.toggleaurasrange.name
 msgctxt "hotkey metadata"
 msgid "Toggle aura ranges"
-msgstr ""
+msgstr "Aura menzillerini göster"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.desc
 msgctxt "hotkey metadata"
 msgid "Toggle display of heal range overlays of selected units."
-msgstr ""
+msgstr "Seçili birimlerin iyileştirme menzillerini göster."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.session.togglehealrange.name
 msgctxt "hotkey metadata"
@@ -3040,22 +3041,22 @@ msgstr "birim silüetlerini aç/kapa"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.silhouettes.name
 msgctxt "hotkey metadata"
 msgid "Toggle unit silhouettes"
-msgstr ""
+msgstr "Birim silüetlerini göster"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the structure tree."
-msgstr ""
+msgstr "Yapı ağacını göster."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.structree.name
 msgctxt "hotkey metadata"
 msgid "Toggle structure tree"
-msgstr ""
+msgstr "Yapı ağacını göster."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.desc
 msgctxt "hotkey metadata"
 msgid "Toggle in-game summary."
-msgstr ""
+msgstr "Oyun içi özeti göster."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.summary.name
 msgctxt "hotkey metadata"
@@ -3065,7 +3066,7 @@ msgstr "Özeti aç kapa"
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.desc
 msgctxt "hotkey metadata"
 msgid "Toggle chat window in team chat mode."
-msgstr ""
+msgstr "Sohbet penceresini takım sogbeti moduna getir."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.name
 msgctxt "hotkey metadata"
@@ -3085,7 +3086,7 @@ msgstr "Oyun süresi katmanını aç kapa"
 #: gui/hotkeys/spec/selection.jsoncategories.selection.desc
 msgctxt "hotkey metadata"
 msgid "Hotkeys relating to modifying unit selection."
-msgstr ""
+msgstr "Birim seçimini değiştirmekle ilgili kısayol tuşları."
 
 #: gui/hotkeys/spec/selection.jsoncategories.selection.name
 msgctxt "hotkey metadata"
@@ -3125,12 +3126,12 @@ msgstr "Kontrol Grubu 1'i ekle."
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.10.desc
 msgctxt "hotkey metadata"
 msgid "Add Control Group 10 to the current selection."
-msgstr ""
+msgstr "Mevcut seçime Kontrol Grubu 10'u ekleyin."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.10.name
 msgctxt "hotkey metadata"
 msgid "Add Control Group 10"
-msgstr ""
+msgstr "Kontrol Grubu 10'u ekleyin"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.2.desc
 msgctxt "hotkey metadata"
@@ -3225,12 +3226,12 @@ msgstr "Kontrol Grubu 1'i ayarla"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.10.desc
 msgctxt "hotkey metadata"
 msgid "Save current selection as Control Group 10."
-msgstr ""
+msgstr "Geçerli seçimi Kontrol Grubu 10 olarak kaydedin."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.10.name
 msgctxt "hotkey metadata"
 msgid "Set Control Group 10"
-msgstr ""
+msgstr "Kontrol Grubu 10'u Ayarla"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.save.2.desc
 msgctxt "hotkey metadata"
@@ -3325,12 +3326,12 @@ msgstr "Kontrol Grubu 1'i seç"
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.10.desc
 msgctxt "hotkey metadata"
 msgid "Change the current selection to Control Group 10."
-msgstr ""
+msgstr "Geçerli seçimi Kontrol Grubu 10 olarak değiştirin."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.10.name
 msgctxt "hotkey metadata"
 msgid "Select Control Group 10"
-msgstr ""
+msgstr "Kontrol Grubu 10'u seçin"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.select.2.desc
 msgctxt "hotkey metadata"
@@ -3505,7 +3506,7 @@ msgstr "Seçimden birimleri kaldır "
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to select units individually, opposed to per formation."
-msgstr ""
+msgstr "Dizilişi topyekün seçmek yerine birimleri tek tek seçen değiştirici."
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.singleselection.name
 msgctxt "hotkey metadata"
@@ -3552,7 +3553,7 @@ msgstr "Modlar: %(mods)s"
 
 #: gui/loadgame/SavegameList.js:181
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr "yyyy-AA-GG SS:dd:ss"
+msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/loadgame/SavegameList.js:192
 #, javascript-format
@@ -3666,7 +3667,7 @@ msgstr "Harita Türü"
 #: gui/replaymenu/replay_menu.xml:(heading):79
 msgctxt "replay"
 msgid "Map Name"
-msgstr "Harita İsmi"
+msgstr "Harita Adı"
 
 #: gui/loadgame/load.xml:(heading):39
 msgctxt "replay"
@@ -3751,7 +3752,7 @@ msgstr "Rasgele seçilen harita."
 
 #: gui/maps/MapFilters.js:91
 msgid "Default"
-msgstr "Öntanımlı"
+msgstr "Varsayılan"
 
 #: gui/maps/MapFilters.js:92
 msgid "All maps except naval and demo maps."
@@ -3783,11 +3784,11 @@ msgstr "Oyunun bu sürümünde yepyeni olan haritalar."
 
 #: gui/maps/MapFilters.js:115
 msgid "Best for MP"
-msgstr ""
+msgstr "MP (Çok Oyunculu) için en iyisi"
 
 #: gui/maps/MapFilters.js:116
 msgid "Maps that are recommended for Multiplayer play."
-msgstr ""
+msgstr "Çok Oyunculu oyun için önerilen haritalar."
 
 #: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
@@ -3910,7 +3911,7 @@ msgstr "En fazla: %(max)s"
 #, javascript-format
 msgid ""
 "Changes will be reverted in %(time)s seconds. Do you want to keep changes?"
-msgstr ""
+msgstr "Değişiklikler %(time)s saniye içinde geri alınacaktır. Değişiklikleri saklamak istiyor musunuz?"
 
 #: gui/options/options.js:206
 #, javascript-format
@@ -3972,7 +3973,7 @@ msgstr "Devre dışı bırakırsanız, karşılama ekranı her yeni sürüm mevc
 
 #: gui/options/options.json[0].options[4].label
 msgid "FPS overlay"
-msgstr "SBK göstergesi (FPS)"
+msgstr "FPS göstergesi"
 
 #: gui/options/options.json[0].options[4].tooltip
 msgid "Show frames per second in top right corner."
@@ -4000,11 +4001,11 @@ msgstr "Ateşkes zamanı gösteresi"
 
 #: gui/options/options.json[0].options[7].tooltip
 msgid "Always show the remaining ceasefire time."
-msgstr "Ateşkesin süresini daima gösterecek."
+msgstr "Daima kalan ateşkes süresini göster."
 
 #: gui/options/options.json[0].options[8].label
 msgid "Chat timestamp"
-msgstr "Konuşma zaman damgası"
+msgstr "Sohbet zamanı damgası"
 
 #: gui/options/options.json[0].options[8].tooltip
 msgid "Display the time at which a chat message was posted."
@@ -4016,7 +4017,7 @@ msgstr "Varlıkların adlandırılması. "
 
 #: gui/options/options.json[0].options[9].list[0].label
 msgid "Specific names first"
-msgstr "Önce belirli isimler "
+msgstr "Önce özel adlar"
 
 #: gui/options/options.json[0].options[9].list[0].tooltip
 msgid "Display specific names before generic names."
@@ -4024,7 +4025,7 @@ msgstr "Genel adlardan önce belirli adları görüntüleyin. "
 
 #: gui/options/options.json[0].options[9].list[1].label
 msgid "Generic names first"
-msgstr "Önce genel isimler "
+msgstr "Önce genel adlar"
 
 #: gui/options/options.json[0].options[9].list[1].tooltip
 msgid "Display generic names before specific names."
@@ -4032,7 +4033,7 @@ msgstr "Genel adları belirli adlardan önce görüntüleyin. "
 
 #: gui/options/options.json[0].options[9].list[2].label
 msgid "Only specific names"
-msgstr "Sadece belirli isimler "
+msgstr "Sadece özel adlar"
 
 #: gui/options/options.json[0].options[9].list[2].tooltip
 msgid "Display only specific names for entities."
@@ -4040,7 +4041,7 @@ msgstr "Varlıklar için yalnızca belirli adları görüntüleyin. "
 
 #: gui/options/options.json[0].options[9].list[3].label
 msgid "Only generic names"
-msgstr "Sadece jenerik isimler "
+msgstr "Sadece genel adlar"
 
 #: gui/options/options.json[0].options[9].list[3].tooltip
 msgid "Display only generic names for entities."
@@ -4064,30 +4065,30 @@ msgstr "0 A.D.'yi pencere modunda başlat."
 
 #: gui/options/options.json[1].options[10].label
 msgid "Mouse drag"
-msgstr ""
+msgstr "Fare sürükleme"
 
 #: gui/options/options.json[1].options[10].tooltip
 msgid ""
 "Number of pixels the mouse can move before the action is considered a drag."
-msgstr ""
+msgstr "Yapılan eylemin bir sürükleme olarak sayılamadan önce farenin hareket etmesi gereken piksel sayısı."
 
 #: gui/options/options.json[1].options[11].label
 msgid "Mouse grab in fullscreen"
-msgstr ""
+msgstr "Fareyi tam ekranda tut"
 
 #: gui/options/options.json[1].options[11].tooltip
 msgid ""
 "Constrain mouse in the fullscreen mode to the window boundaries. It's used "
 "to avoid mouse going out of a display in case of multiple displays."
-msgstr ""
+msgstr "Fareyi tam ekran modunda pencere sınırlarıyla sınırlayın. Birden fazla ekran olması durumunda farenin ekrandan çıkmasını önlemek için kullanılır."
 
 #: gui/options/options.json[1].options[12].label
 msgid "Mouse grab in window mode"
-msgstr ""
+msgstr "Fareyi pencere ekranında tut"
 
 #: gui/options/options.json[1].options[12].tooltip
 msgid "Constrain mouse in the window mode to the window boundaries."
-msgstr ""
+msgstr "Fareyi pencere modunda pencere sınırlarıyla sınırlayın."
 
 #: gui/options/options.json[1].options[1].label
 #: gui/options/options.json[2].options[1].label
@@ -4145,7 +4146,7 @@ msgstr "Ekran yırtılmasını önlemek için Vsync'i aktif hale getir. OYUNU YE
 
 #: gui/options/options.json[1].options[7].label
 msgid "FPS throttling in menus"
-msgstr "Menülerde SBK (FPS) azaltma"
+msgstr "Menülerde FPS azaltma"
 
 #: gui/options/options.json[1].options[7].tooltip
 msgid ""
@@ -4155,7 +4156,7 @@ msgstr "CPU'nun iş yükünü azaltmak için, tüm menülerdeki oluşturma freka
 
 #: gui/options/options.json[1].options[8].label
 msgid "FPS throttling in games"
-msgstr "Oyunlarda SBK (FPS) azaltma"
+msgstr "Oyunlarda FPS azaltma"
 
 #: gui/options/options.json[1].options[8].tooltip
 msgid ""
@@ -4166,7 +4167,7 @@ msgstr "CPU'nun iş yükünü azaltmak için, çalışan oyunları oynatma sıkl
 #: gui/options/options.json[1].options[9].label
 #: gui/options/options.json[1].options[9].tooltip
 msgid "GUI scale"
-msgstr "GUI ölçeği"
+msgstr "Grafiksel Kullanıcı Arayüzü (GUI) ölçeği"
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "75%"
@@ -4218,7 +4219,7 @@ msgstr "OpenGL"
 
 #: gui/options/options.json[2].options[0].list[0].tooltip
 msgid "Default OpenGL backend with GLSL. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "GLSL'li varsayılan OpenGL arka ucu. OYUNUN YENİDEN BAŞLATILMASI GEREKTİRİR"
 
 #: gui/options/options.json[2].options[0].list[1].label
 msgid "OpenGL ARB"
@@ -4226,11 +4227,11 @@ msgstr "OpenGL ARB"
 
 #: gui/options/options.json[2].options[0].list[1].tooltip
 msgid "Legacy OpenGL backend with ARB shaders. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "ARB gölgelendiricili eski OpenGL arka ucu. OYUNUN YENİDEN BAŞLATILMASI GEREKTİRİR"
 
 #: gui/options/options.json[2].options[0].list[2].label
 msgid "Vulkan"
-msgstr ""
+msgstr "Vulkan"
 
 #: gui/options/options.json[2].options[0].list[2].tooltip
 msgid "Modern API, requires up-to-date drivers. REQUIRES GAME RESTART"
@@ -4238,7 +4239,7 @@ msgstr "Modern API, güncel sürücüler gerektirir. OYUNUN YENİDEN BAŞLATILMA
 
 #: gui/options/options.json[2].options[0].tooltip
 msgid "Choose the renderer's backend. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "İşleyicinin arka ucunu seçin. OYUNUN YENİDEN BAŞLATILMASI GEREKTİRİR"
 
 #: gui/options/options.json[2].options[3].label
 msgid "Antialiasing"
@@ -4527,13 +4528,13 @@ msgstr "16x"
 msgid ""
 "Makes textures look better, especially terrain. If the anisotropic filter "
 "value is unsupported it will be set to the max supported value."
-msgstr ""
+msgstr "Dokuların, özellikle arazinin daha iyi görünmesini sağlar. Anizotropik filtre değeri desteklenmiyorsa, desteklenen maksimum değere ayarlanacaktır."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].tooltip
 msgid ""
 "Decrease texture quality making them blurrier but increases game "
 "performance."
-msgstr ""
+msgstr "Doku kalitesini düşürerek onları daha bulanık hale getir ancak oyun performansını artırır."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][3].options[0].label
 msgid "Master volume"
@@ -4622,7 +4623,7 @@ msgstr "Başka bir oyuna ev sahipliği yaparken hızlı yeniden kullanım için 
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].label
 msgid "Default AI difficulty"
-msgstr "Öntanımlı yapay zeka zorluğu"
+msgstr "Varsayılan yapay zeka zorluğu"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0].label._string
 msgctxt "Option for the AI difficulty."
@@ -4646,7 +4647,7 @@ msgstr "Orta"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].label
 msgid "Default AI behavior"
-msgstr "Öntanımlı yapay zeka davranışı"
+msgstr "Varsayılan yapay zeka davranışı"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].label._string
 msgctxt "Option for the AI difficulty."
@@ -4718,7 +4719,7 @@ msgstr "Ağ / Bekleme Odası"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].label
 msgid "TLS encryption"
-msgstr "TKG şifrelemesi (TLS)"
+msgstr "TLS şifrelemesi"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].tooltip
 msgid ""
@@ -4735,13 +4736,13 @@ msgstr "Lobiye katılırken yeniden yüklenecek mesaj sayısı."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].label
 msgid "Game rating column"
-msgstr "Oyun dereceleri sütunu"
+msgstr "Oyun puanı sütunu"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].tooltip
 msgid ""
 "Show the average rating of the participating players in a column of the "
 "gamelist."
-msgstr "Katılımcı oyuncuların ortalama oylarını oyun listesinin bir sütununa gösterin."
+msgstr "Katılan oyuncuların ortalama puanlarını oyun listesinin bir sütununda göster."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].label
 msgid "Network warnings"
@@ -4753,7 +4754,7 @@ msgstr "Çoklu oyunlar içinde hangi oyuncunun kötü bağlantılı  olduğunu g
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].label
 msgid "Late observer joins"
-msgstr "Geç izleyici katılır"
+msgstr "Geç kalan izleyici katılımı"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].tooltip
 msgid ""
@@ -4777,17 +4778,17 @@ msgstr "Gözlemciler için maksimum gecikme"
 msgid ""
 "When hosting, pause the game if observers are lagging more than this many "
 "turns. If set to -1, observers are ignored."
-msgstr ""
+msgstr "Oyun kurarken, izleyiciler bu sayıdan fazla gecikme süresine sahipse oyunu duraklatın. -1 olarak ayarlanırsa izleyiciler ihmal edilir."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].label
 msgid "(Observer) Speed up when lagging."
-msgstr ""
+msgstr "(İzleyici) Geride kaldığında hızlan."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].tooltip
 msgid ""
 "When observing a game, automatically speed up if you start lagging, to catch"
 " up with the live match."
-msgstr ""
+msgstr "Bir oyunu izlerken, gecikmeye başlarsanız canlı karşılaşmaya yetişmek için otomatik olarak hızlanın."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].tooltip
 msgid "These settings only affect the multiplayer."
@@ -4795,7 +4796,7 @@ msgstr "Bu ayarlar yalnızca çoklu oyuncuyu etkiler."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].label
 msgid "Game Session"
-msgstr "Oyun Oturumu"
+msgstr "Oyun Seansı"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[0].label
 msgid "Wounded unit health"
@@ -4984,7 +4985,7 @@ msgstr "Diğer siparişler mevcut oluşumları dağıtacak."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[1].label
 msgid "No override"
-msgstr ""
+msgstr "Geçersiz kılma yok"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[22].list[1].tooltip
 msgid "Units in formations stay in formations."
@@ -5002,7 +5003,7 @@ msgstr "Tabur tarzı dizilişler"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[23].tooltip
 msgid "Whether formations are selected as a whole."
-msgstr ""
+msgstr "Düzenin topyekün olarak seçilip seçilmediği."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[2].label
 msgid "Scroll batch increment ratio"
@@ -5015,11 +5016,11 @@ msgstr "Grup büyüklüğünü artırmak/azaltmak için gereken kaydırma sayıs
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].label
 msgid "Flare display duration"
-msgstr ""
+msgstr "Fişeğin görüntüleme süresi"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[3].tooltip
 msgid "How long the flare markers on the minimap are displayed in seconds."
-msgstr ""
+msgstr "Mini haritadaki fişek işaretinin kaç saniye görüntüleneceğinin süresi."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].label
 msgid "Minimap icons"
@@ -5027,7 +5028,7 @@ msgstr "Mini harita ikonu"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[4].tooltip
 msgid "Show special icons for some entities on the minimap."
-msgstr ""
+msgstr "Mini haritada bazı varlıkları özel simgelerle gösterin."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[5].label
 msgid "Chat notification attack"
@@ -5119,7 +5120,7 @@ msgstr "Sınırlı"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1].label.tooltip
 msgid "Entities will be less diverse."
-msgstr ""
+msgstr "Varlıklar daha az çeşitli olacaktır."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label._string
 msgctxt "Option for the meshes' amount of variety."
@@ -5128,7 +5129,7 @@ msgstr "Normal"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][1][2].label.tooltip
 msgid "Entities appearance is randomized normally."
-msgstr ""
+msgstr "Varlıkların görünümü normal olarak rastgele seçilir."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][8].label
 msgid "Shader effects"
@@ -5142,7 +5143,7 @@ msgstr "Gölgelendirici efektlerinin sayısı. OYUN YENİDEN BAŞLATILMASI GEREK
 msgid ""
 "Randomize the appearance of entities. Disabling gives a small performance "
 "improvement."
-msgstr ""
+msgstr "Varlıkların görünümünü rastgele hale getirin. Devre dışı bırakmak, küçük bir performans artışı sağlar."
 
 #: gui/options/options.json[2].options[6].tooltip
 msgid "Model quality setting."
@@ -5154,7 +5155,7 @@ msgstr "Daha fazla özel render ayarları."
 
 #: gui/options/options.xml:(caption):15
 msgid "Game Options"
-msgstr "Oyun Seçenekleri"
+msgstr "Oyun Ayarları"
 
 #: gui/options/options.xml:(caption):50
 msgid "Revert"
@@ -5170,7 +5171,7 @@ msgstr "Kaydedilmemiş değişiklikler sadece bu oturumu etkiler"
 
 #: gui/pregame/MainMenuItems.js:3
 msgid "Learn to Play"
-msgstr "Oynamasını Öğren"
+msgstr "Oynamayı Öğren"
 
 #: gui/pregame/MainMenuItems.js:4
 msgid ""
@@ -5210,16 +5211,16 @@ msgstr "%(hotkey)s: 0 A.D.'de öne çıkan medeniyetlerin yapı ağacına bak."
 #: gui/reference/civinfo/civinfo.xml:(caption):21
 #: gui/reference/common/Buttons/CivInfoButton.js:21
 msgid "Civilization Overview"
-msgstr "Uygarlığa Genel Bakış"
+msgstr "Medeniyete Genel Bakış"
 
 #: gui/pregame/MainMenuItems.js:49
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr "%(hotkey)s : 0 A.D.'deki uygarlıklar hakkında öğren."
+msgstr "%(hotkey)s : 0 A.D.'deki medeniyetler hakkında bilgi edinin."
 
 #: gui/pregame/MainMenuItems.js:60
 msgid "Catafalque Overview"
-msgstr "Katafalk Genel Bakış"
+msgstr "Katafalka Genel Bakış"
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
@@ -5244,11 +5245,11 @@ msgstr "Tarihi askeri seferler vasıtasıyla tarihi yeniden yaşayın."
 
 #: gui/pregame/MainMenuItems.js:85 gui/pregame/MainMenuItems.js:119
 msgid "Error opening campaign run:"
-msgstr ""
+msgstr "Sefer açılırken hata oluştu:"
 
 #: gui/pregame/MainMenuItems.js:92
 msgid "Single-player"
-msgstr "Tek oyunculu"
+msgstr "Tek Oyunculu"
 
 #: gui/pregame/MainMenuItems.js:93
 msgid "Start, load, or replay a single-player game."
@@ -5276,7 +5277,7 @@ msgstr "Kampanyatı yükle"
 
 #: gui/pregame/MainMenuItems.js:143 gui/pregame/MainMenuItems.js:193
 msgid "Replays"
-msgstr "Yeniden oynatma"
+msgstr "Tekrarlar"
 
 #: gui/pregame/MainMenuItems.js:144 gui/pregame/MainMenuItems.js:194
 msgid "Playback previous games."
@@ -5398,7 +5399,7 @@ msgstr "Hata"
 
 #: gui/pregame/MainMenuItems.js:270
 msgid "Credits"
-msgstr "Katkıda bulunanlar"
+msgstr "Katkıda Bulunanlar"
 
 #: gui/pregame/MainMenuItems.js:271
 msgid "Show the 0 A.D. credits."
@@ -5448,7 +5449,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr ""
+msgstr "0 A.D. IRC sohbetini tarayıcınızda açmak için tıklayın (0ad #webchat.quakenet.org'da). Her türlü görevi yapan gönüllüler tarafından yürütülür, sorunuzun yanıtlanması biraz zaman alabilir. Alternatif olarak, forumu kullanabilirsiniz (Web sitesine bakın)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5465,11 +5466,11 @@ msgstr "Sıkça Sorulan Sorular"
 
 #: gui/pregame/ProjectInformation.js:50
 msgid "Click to visit the Frequently Asked Questions page in your browser."
-msgstr ""
+msgstr "Tarayıcınızda Sıkça Sorulan Sorular sayfasını ziyaret etmek için tıklayın."
 
 #: gui/pregame/ProjectInformation.js:57
 msgid "Translate the Game"
-msgstr "Bu oyunu çevir "
+msgstr "Oyunu Çevirin"
 
 #: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
@@ -5486,7 +5487,7 @@ msgstr "Bağış yaparak proje masraflarına destek olun."
 #: gui/pregame/userreport/userreport.js:3
 msgctxt "UserReporter Terms and Conditions"
 msgid "Terms"
-msgstr "Koşullar"
+msgstr "Şartlar"
 
 #: gui/pregame/userreport/userreport.js:4
 msgid "Please read and accept the UserReporter Terms and Conditions."
@@ -5588,7 +5589,7 @@ msgstr "• %(name)s %(info_icon)s%(description)s"
 #: gui/reference/civinfo/CivInfoPage.js:110
 #, javascript-format
 msgid "%(hotkey)s: Close Civilization Overview."
-msgstr "Uygarlığa Genel Bakışı Kapaç"
+msgstr "%(hotkey)s: Medeniyete Genel Bakışı Kapat"
 
 #: gui/reference/civinfo/Sections/GameplaySection.js:30
 #, javascript-format
@@ -5604,7 +5605,7 @@ msgstr " %(civilization)sin tarihi"
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Uygarlık Ödülü"
-msgstr[1] "Uygarlık Bonusları"
+msgstr[1] "Medeniyet Bonusları"
 
 #: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
@@ -5633,7 +5634,7 @@ msgstr[1] "Özel Teknolojiler"
 #: gui/reference/common/Buttons/CivInfoButton.js:27
 #, javascript-format
 msgid "%(hotkey)s: Switch to Civilization Overview."
-msgstr "%(hotkey)s: Uygarlığa Genel Bakışa Geç."
+msgstr "%(hotkey)s: Medeniyete Genel Bakışa Geç."
 
 #: gui/reference/common/Buttons/StructreeButton.js:27
 #, javascript-format
@@ -5758,27 +5759,27 @@ msgstr "Tekrar oynatmayı sil"
 #: gui/replaymenu/replay_filters.js:52
 msgctxt "datetime"
 msgid "Any"
-msgstr "Herhangi bir"
+msgstr "Herhangi"
 
 #: gui/replaymenu/replay_filters.js:68
 msgctxt "map size"
 msgid "Any"
-msgstr "Herhangi bir"
+msgstr "Herhangi"
 
 #: gui/replaymenu/replay_filters.js:84
 msgctxt "map name"
 msgid "Any"
-msgstr "Herhangi bir"
+msgstr "Herhangi"
 
 #: gui/replaymenu/replay_filters.js:100
 msgctxt "population capacity"
 msgid "Any"
-msgstr "Herhangi bir"
+msgstr "Herhangi"
 
 #: gui/replaymenu/replay_filters.js:119
 msgctxt "duration"
 msgid "Any"
-msgstr "Herhangi bir"
+msgstr "Herhangi"
 
 #. Translation: Shorter duration than max minutes.
 #: gui/replaymenu/replay_filters.js:123
@@ -5813,7 +5814,7 @@ msgstr "Herhangi bir"
 #: gui/replaymenu/replay_filters.js:146
 msgctxt "replay filter"
 msgid "Single-player"
-msgstr "Tek oyunculu"
+msgstr "Tek Oyunculu"
 
 #: gui/replaymenu/replay_filters.js:147
 msgctxt "replay filter"
@@ -5827,15 +5828,15 @@ msgstr "Kampanyalar"
 
 #: gui/replaymenu/replay_filters.js:162
 msgid "Any victory condition"
-msgstr "Herhangi Bir Zafer Koşulu"
+msgstr "Herhangi bir zafer şartı"
 
 #: gui/replaymenu/replay_filters.js:175
 msgid "Rated and unrated games"
-msgstr "Oylanmış ve oylanmamış oyunlar"
+msgstr "Puanlı ve puansız oyunlar"
 
 #: gui/replaymenu/replay_filters.js:175
 msgid "Rated games"
-msgstr "Oylanmış oyunlar"
+msgstr "Puanlı oyunlar"
 
 #: gui/replaymenu/replay_filters.js:175
 msgid "Unrated games"
@@ -5858,15 +5859,15 @@ msgstr "Oyuncular:  %(numberOfPlayers)s"
 
 #: gui/replaymenu/replay_menu.js:309
 msgid "yyyy-MM-dd HH:mm"
-msgstr "yyyy-AA-gg SS:dd"
+msgstr "yyyy-MM-dd HH:mm"
 
 #: gui/replaymenu/replay_menu.js:339
 msgid "yyyy-MM"
-msgstr "yyyy-AA"
+msgstr "yyyy-MM"
 
 #: gui/replaymenu/replay_menu.xml:(caption):14
 msgid "Replay Games"
-msgstr "Yeniden oynatma Oyunlar"
+msgstr "Oyun Tekrarları"
 
 #: gui/replaymenu/replay_menu.xml:(caption):112
 msgid "Filter compatible replays"
@@ -5891,7 +5892,7 @@ msgstr "Özet"
 
 #: gui/replaymenu/replay_menu.xml:(caption):253
 msgid "Start Replay"
-msgstr "Yeniden oynatmayı başlat"
+msgstr "Tekrarı Başlat"
 
 #: gui/replaymenu/replay_menu.xml:(heading):75
 msgctxt "replay"
@@ -5915,11 +5916,11 @@ msgstr "Süre"
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr "Oyuncuyu Arayın"
+msgstr "Oyuncu Ara"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):98
 msgid "File path for the currently selected replay."
-msgstr ""
+msgstr "Seçili olan tekrarın dosya yolu."
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):241
 msgid "Rebuild the replay cache from scratch. Potentially slow!"
@@ -5938,7 +5939,7 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[imgleft=\"constructionIcon\"]This game is still in development. You may "
 "encounter bugs, and some features are not as fleshed out as we would like."
-msgstr ""
+msgstr "[imgleft=\"constructionIcon\"]Bu oyun hala geliştirilme aşamasındadır. Hatalarla karşılaşabilirsiniz ve bazı özellikler istediğimiz kadar ayrıntılı olmayabilir."
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid ""
@@ -5956,7 +5957,7 @@ msgstr "[imgleft=\"iconMap\"]0 A.D. Özgür Yazılımdır: geliştirilmesine kat
 msgid ""
 "If you want to help with art, sound, gameplay or programming, make sure to "
 "join our official forum."
-msgstr ""
+msgstr "Sanat, ses, oyun veya programlama konusunda yardım etmek istiyorsanız, resmi forumumuza katıldığınızdan emin olun."
 
 #: gui/splashscreen/splashscreen.xml:(caption):14
 msgid "Welcome!"
@@ -5976,7 +5977,7 @@ msgstr "Resmi Forum (web) "
 
 #: gui/summary/layout.js:13
 msgid "Score"
-msgstr "Puan"
+msgstr "Skor"
 
 #: gui/summary/layout.js:15 gui/summary/layout.js:33 gui/summary/layout.js:71
 #: gui/summary/layout.js:110 gui/summary/layout.js:161
@@ -6279,7 +6280,7 @@ msgstr "Geçerli Skorlar"
 
 #: gui/summary/summary.js:512
 msgid "Scores at the end of the game."
-msgstr "Oyunun sonundaki puanlar."
+msgstr "Oyun sonu skorları."
 
 #: gui/summary/summary.js:514
 msgid "You have been disconnected."
@@ -6319,7 +6320,7 @@ msgstr "%(hotkey)s: Çoklu Oyun Salonuna küçük ekranda geçiş yap."
 #: gui/summary/summary.js:556
 #, javascript-format
 msgid "Focus the %(name)s summary tab."
-msgstr ""
+msgstr "%(name)sözet sekmesini odakla."
 
 #: gui/summary/summary.xml:(caption):120
 msgctxt "summary chart"
@@ -6375,7 +6376,7 @@ msgstr "Tarafsız veya düşman topraklarında inşa edilebilir. Düşman hattı
 
 #: gui/text/tips/army_camp.txt:3
 msgid "Construct rams and train citizen soldiers."
-msgstr ""
+msgstr "Koçbaşları inşa edin ve vatandaş askerleri eğitin."
 
 #: gui/text/tips/army_camp.txt:4
 msgid ""
@@ -6389,11 +6390,11 @@ msgstr "OTOMATİK SIRA"
 
 #: gui/text/tips/autoqueue.txt:2
 msgid "Enable the autoqueue feature to automatically train units."
-msgstr ""
+msgstr "Birimleri otomatik olarak eğitmek için otomatik kuyruğa alma özelliğini etkinleştirin."
 
 #: gui/text/tips/autoqueue.txt:3
 msgid "Works as long as you have enough resources, then it will stop."
-msgstr ""
+msgstr "Yeterli kaynağınız olduğu sürece çalışır, sonra durur."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -6403,7 +6404,7 @@ msgstr "KIŞLA"
 msgid ""
 "Train all citizen soldiers. Some civilizations can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "Tüm vatandaş askerlerini eğitin. Bazı medeniyetler, şampiyon eğitme kilidini de açabilir."
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
@@ -6413,7 +6414,7 @@ msgstr "Birimler, binanın içine konuşlandırıldıklarında deneyim kazanırl
 msgid ""
 "Build one early to train citizen soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "Yerleşkenizi çağ atlatırken vatandaş askerlerini eğitmek için erkenden bir tane inşa edin."
 
 #: gui/text/tips/barracks.txt:5
 msgid "Build in a forward base to resupply your assault with fresh troops."
@@ -6421,19 +6422,19 @@ msgstr "Saldırılarını yeni askerlerle desteklemek için ileri bir üs inşa 
 
 #: gui/text/tips/biomes.txt:1
 msgid "BIOMES"
-msgstr ""
+msgstr "BİYOMLAR"
 
 #: gui/text/tips/biomes.txt:2
 msgid ""
 "Biomes can be used on some random maps and determine which region of the "
 "world the map represents."
-msgstr ""
+msgstr "Biyomlar, bazı rastgele haritalarda kullanılabilir ve haritanın dünyanın hangi bölgesini temsil ettiğini belirler."
 
 #: gui/text/tips/biomes.txt:3
 msgid ""
 "They influence the appearence of the maps and also the amount of resources "
 "that are available."
-msgstr ""
+msgstr "Haritaların görünümünü ve ayrıca mevcut kaynakların miktarını etkilerler."
 
 #: gui/text/tips/briton_war_dog.txt:1
 msgid "WAR DOG"
@@ -6441,15 +6442,15 @@ msgstr "SAVAŞ KÖPEĞİ"
 
 #: gui/text/tips/briton_war_dog.txt:2
 msgid "A dog that the Britons can train at the cavalry stable."
-msgstr ""
+msgstr "İngilizlerin süvari ahırında eğitebilecekleri bir köpek."
 
 #: gui/text/tips/briton_war_dog.txt:3
 msgid "Has low health, but is fast and will fearlessly attack enemies."
-msgstr ""
+msgstr "Sağlığı düşüktür, ancak hızlıdır ve düşmanlara korkusuzca saldırır."
 
 #: gui/text/tips/briton_war_dog.txt:4
 msgid "Use them as support in your army or for quick raids."
-msgstr ""
+msgstr "Bunları ordunuzda destek olarak veya ani baskınlar için kullanın."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -6477,15 +6478,15 @@ msgstr "KARTACALI GEMİ TERSHANESİ"
 
 #: gui/text/tips/carth_shipyard.txt:2
 msgid "Special dock of the Carthaginians to construct warships."
-msgstr ""
+msgstr "Savaş gemileri inşa etmek için Kartacalıların özel iskelesi."
 
 #: gui/text/tips/carth_shipyard.txt:3
 msgid "Garrison ships inside to slowly repair them."
-msgstr ""
+msgstr "Gemileri yavaşça onarmak için içeri konuşlandır."
 
 #: gui/text/tips/carth_shipyard.txt:4
 msgid "Much stronger than other docks, but also more expensive."
-msgstr ""
+msgstr "Diğer rıhtımlardan çok daha güçlü ama aynı zamanda daha pahalı."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -6512,11 +6513,11 @@ msgstr "SÜVARİ AHIRI"
 #: gui/text/tips/cavalry_stable.txt:2
 msgid ""
 "Trains cavalry units and lets you research cavalry specific technologies."
-msgstr ""
+msgstr "Süvari birimlerini eğitir ve süvarilere özgü teknolojileri araştırmanıza olanak sağlar."
 
 #: gui/text/tips/cavalry_stable.txt:3
 msgid "Units gain experience while garrisoned inside the structure."
-msgstr ""
+msgstr "Birimler yapının içinde konuşlanırken deneyim kazanır."
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -6544,7 +6545,7 @@ msgstr "ŞEHİR SURLARI"
 
 #: gui/text/tips/city_walls.txt:2
 msgid "Strong stone walls that help you protect your city."
-msgstr ""
+msgstr "Şehrinizi korumanıza yardımcı olan güçlü taş duvarlar."
 
 #: gui/text/tips/city_walls.txt:3
 msgid ""
@@ -6624,7 +6625,7 @@ msgstr "FİL AHIRI"
 #: gui/text/tips/elephant_stable.txt:2
 msgid ""
 "The structure is available to some civilizations to train elephant units."
-msgstr "Yapı, bazı uygarlıkların fil birimlerini eğitmesi için kullanılabilir. "
+msgstr "Bu yapı fil birimlerini eğitmek için bazı medeniyetler tarafından kullanılabilir."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES AND MERCENARY CAMPS"
@@ -6664,7 +6665,7 @@ msgstr "Dikkatli ol! Balık sonsuz bir kaynak değildir! Her ne kadar yavaş yav
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
-msgstr "Demirhane"
+msgstr "DEMİRCİ"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."
@@ -6798,11 +6799,11 @@ msgstr "HARİTA PARLAMASI "
 msgid ""
 "Use this feature to let your team know where on the map something important "
 "happens."
-msgstr ""
+msgstr "Takımınıza haritada önemli bir şeyin nerede olduğunu bildirmek için bu özelliği kullanın."
 
 #: gui/text/tips/map_flare.txt:3
 msgid "They will see the flare on their minimap."
-msgstr ""
+msgstr "Fişeği mini haritalarında görecekler."
 
 #: gui/text/tips/meroe_pyramids.txt:1
 msgid "PYRAMIDS OF MEROË"
@@ -6810,12 +6811,12 @@ msgstr "MEROE PİRAMİTLERİ"
 
 #: gui/text/tips/meroe_pyramids.txt:2
 msgid "Special structures available for the Kushites."
-msgstr ""
+msgstr "Kuşitliler için özel yapılar mevcut."
 
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
 "The small pyramids improve the gathering rate of the workers around them."
-msgstr ""
+msgstr "Küçük piramitler, işçiler onların etrafındayken (kaynak) toplama oranını artırır."
 
 #: gui/text/tips/meroe_pyramids.txt:4
 msgid ""
@@ -6924,7 +6925,7 @@ msgstr "Kaynak sayacı paneli o anda her bir kaynağın ne kadarına sahip oldu�
 msgid ""
 "The number below it shows you how many citizens are currently gathering "
 "them."
-msgstr ""
+msgstr "Aşağıdaki sayı size şu anda kaç vatandaşın onu topladığını gösterir."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -6948,7 +6949,7 @@ msgstr "Odun seyrek olma eğilimindedir, ancak yüksek verimli Baobab ağaçlar�
 
 #: gui/text/tips/snapping.txt:1
 msgid "SNAPPING"
-msgstr ""
+msgstr "BİTİŞTİRME"
 
 #: gui/text/tips/snapping.txt:2
 msgid ""
@@ -7073,7 +7074,7 @@ msgstr "TİYATRO"
 msgid ""
 "Special structures of the Hellenic civilizations to increase the size of "
 "your territory while you control it."
-msgstr ""
+msgstr "Helen medeniyetlerinin siz üzerinde hüküm sürerken bölgenizin boyutunu artırmak için sahip oldukları özel yapılar."
 
 #: gui/text/tips/treasure.txt:1
 msgid "TREASURES"
@@ -7082,13 +7083,13 @@ msgstr "HAZİNELER"
 #: gui/text/tips/treasure.txt:2
 msgid ""
 "Collectible chests and bare resources on land and shipwrecks on the shore."
-msgstr ""
+msgstr "Karada toplanabilir sandıklar ve sahipsiz kaynaklar ve kıyıda gemi enkazları."
 
 #: gui/text/tips/treasure.txt:3
 msgid ""
 "Provide you with a resource boost, so keep an eye out for them as you "
 "explore."
-msgstr ""
+msgstr "Size bir kaynak artışı sağlar, bu yüzden keşif yaparken onlara göz kulak olun."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
