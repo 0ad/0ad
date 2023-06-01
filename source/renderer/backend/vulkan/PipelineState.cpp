@@ -281,7 +281,8 @@ VkPipeline CGraphicsPipelineState::GetOrCreatePipeline(
 	// pDepthStencilState must be a not null pointer.
 	if (framebuffer->GetDepthStencilAttachment())
 		pipelineCreateInfo.pDepthStencilState = &depthStencilStateCreateInfo;
-	pipelineCreateInfo.pColorBlendState = &colorBlendStateCreateInfo;
+	if (!framebuffer->GetColorAttachments().empty())
+		pipelineCreateInfo.pColorBlendState = &colorBlendStateCreateInfo;
 	pipelineCreateInfo.pDynamicState = &dynamicStateCreateInfo;
 
 	pipelineCreateInfo.layout = shaderProgram->GetPipelineLayout();
