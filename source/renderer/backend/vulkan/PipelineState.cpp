@@ -201,8 +201,11 @@ VkPipeline CGraphicsPipelineState::GetOrCreatePipeline(
 	rasterizationStateCreateInfo.depthClampEnable = VK_FALSE;
 	rasterizationStateCreateInfo.rasterizerDiscardEnable = VK_FALSE;
 
+	const PolygonMode polygonMode =
+		m_Device->GetChoosenPhysicalDevice().features.fillModeNonSolid
+			? m_Desc.rasterizationState.polygonMode : PolygonMode::FILL;
 	rasterizationStateCreateInfo.polygonMode =
-		Mapping::FromPolygonMode(m_Desc.rasterizationState.polygonMode);
+		Mapping::FromPolygonMode(polygonMode);
 	rasterizationStateCreateInfo.cullMode =
 		Mapping::FromCullMode(m_Desc.rasterizationState.cullMode);
 	rasterizationStateCreateInfo.frontFace =
@@ -278,7 +281,8 @@ VkPipeline CGraphicsPipelineState::GetOrCreatePipeline(
 	// pDepthStencilState must be a not null pointer.
 	if (framebuffer->GetDepthStencilAttachment())
 		pipelineCreateInfo.pDepthStencilState = &depthStencilStateCreateInfo;
-	pipelineCreateInfo.pColorBlendState = &colorBlendStateCreateInfo;
+	if (!framebuffer->GetColorAttachments().empty())
+		pipelineCreateInfo.pColorBlendState = &colorBlendStateCreateInfo;
 	pipelineCreateInfo.pDynamicState = &dynamicStateCreateInfo;
 
 	pipelineCreateInfo.layout = shaderProgram->GetPipelineLayout();
