@@ -76,11 +76,11 @@ msgstr "Bu oyuncu için yapay zekâ devre dışı bırakılacak."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:29
 msgid "AI Behavior"
-msgstr "YZ Davranışı"
+msgstr "Yapay Zeka Davranışı"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIDifficulty.js:32
 msgid "AI Difficulty"
-msgstr "Yapay zeka zorluğu"
+msgstr "Yapay Zeka Zorluğu"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:39
 msgctxt "ai"
@@ -95,7 +95,7 @@ msgstr "Yapay Zeka Oyuncu"
 #, javascript-format
 msgctxt "Title for specific setting"
 msgid "%(setting)s:"
-msgstr "%(setting)s"
+msgstr "%(setting)s:"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlCheckbox.js:57
 msgid "Yes"
@@ -109,7 +109,7 @@ msgstr "Hayır"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlSlider.js:84
 msgctxt "settings value"
 msgid "Unknown"
-msgstr "Bilinmiyor"
+msgstr "Bilinmeyen"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:7
 msgctxt "Match settings tab name"
@@ -129,7 +129,7 @@ msgstr "Oyun Türü"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/AIConfigButton.js:32
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr "AI Yapılandırması: %(description)s"
+msgstr "Yapay Zeka Ayarı: %(description)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:135
 msgid "Select player."
@@ -138,7 +138,7 @@ msgstr "Oyuncu seç."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:222
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr "YZ: %(ai)s"
+msgstr "Yapay Zeka: %(ai)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:257
 msgid "Unassigned"
@@ -180,7 +180,7 @@ msgstr "Renk"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):14
 msgid "Player Placement"
-msgstr "Oyuncu Yerleştirmesi"
+msgstr "Oyuncu Yerleşimi"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):18
 msgid "Civilization"
@@ -192,7 +192,7 @@ msgstr "Takım"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:36
 msgid "Browse Maps"
-msgstr "Haritaları Araştır"
+msgstr "Haritalara Bak"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Buttons/MapBrowser.js:39
 #, javascript-format
@@ -205,7 +205,7 @@ msgstr "Müttefikli Görünüm"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/AlliedView.js:30
 msgid "Toggle allied view (see what your allies see)."
-msgstr "Müttefikli görünümü değiştir (müttefiklerinin neleri gördüğüne bak)"
+msgstr "Müttefikli görünümü aç (müttefiklerinin ne gördüğünü sen de gör)"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Cheats.js:35
 msgid "Cheats"
@@ -227,7 +227,7 @@ msgstr "Keşfedilmiş Harita"
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/ExploredMap.js:30
 msgid "Toggle explored map (see initial map)."
-msgstr "Keşfedilmiş haritayı kapat (başlangıç haritasına dön)."
+msgstr "Keşfedilmiş haritayı kapat (ilk haritaya dön)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LastManStanding.js:26
 msgid "Last Man Standing"
@@ -237,7 +237,7 @@ msgstr "Son Hayatta Kalan"
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr "En son kalan oyuncu veya son kalan müttefikler kazanma şansını değiştirin."
+msgstr "Kalan son oyuncunun mu yoksa son kalan müttefik grubunun mu kazanacağını değiştirin."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:30
 msgid "Teams Locked"
@@ -271,25 +271,25 @@ msgstr "Kahraman Garnizonu"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:30
 msgid "Toggle whether heroes can be garrisoned."
-msgstr "Kahramanın garnizon edilebilirliğini göster/gizle."
+msgstr "Kahramanların garnizon edilebilirliğini aç."
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:26
 msgid "Revealed Map"
-msgstr "Açılmış Harita"
+msgstr "Açığa Çıkmış Harita"
 
 #. Translation: Make sure to differentiate between the revealed map and
 #. explored map
 #. settings!
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RevealedMap.js:30
 msgid "Toggle revealed map (see everything)."
-msgstr "Açığa çıkarılan haritası değiştir(her şeyi gör)."
+msgstr "Haritayı açığa çıkar (her şeyi gör)."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:26
 msgid "Disable Spies"
-msgstr "Casusları devre dışı bırak:"
+msgstr "Casusları Devre Dışı Bırak"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Spies.js:29
 msgid "Disable spies during the game."
@@ -301,7 +301,7 @@ msgstr "Hazineleri Devre Dışı Bırak"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Treasures.js:28
 msgid "Do not add treasures to the map."
-msgstr "Haritaya hazine eklemeyin."
+msgstr "Hazineleri haritaya ekleme."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/WorldPopulation.js:25
 msgid "World Population"
@@ -311,7 +311,7 @@ msgstr "Dünya Nüfusu"
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr "İşaretlendiğinde, Nüfus Kapasitesini yaşayan oyuncular arasında eşit şekilde paylaştırır."
+msgstr "İşaretlendiğinde, Nüfus Kapasitesini ayakta kalan oyuncular arasında eşit şekilde paylaştırır."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:54
 msgid "Biome"
@@ -336,7 +336,7 @@ msgstr "Gündüz"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:60
 msgid "Select whether the match takes place at daylight or night."
-msgstr "Eşleşmenin gündüz veya gece olmasını seçiniz."
+msgstr "Karşılaşmanın gündüz mü gece olacağını seçin."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:63
 msgctxt "daytime selection"
@@ -425,7 +425,7 @@ msgstr "Oyuncu Sayısı"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:36
 msgid "Select number of players."
-msgstr "Oyuncu sayısı seç."
+msgstr "Oyuncu sayısını seçin."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:52
 msgid "Population Cap"
@@ -458,7 +458,7 @@ msgstr "Oyunun başlangıç kaynağı miktarını seç."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:56
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr "Her bir kaynağın baştaki miktari: %(resources)s"
+msgstr "Her kaynağın başlangıç miktarı: %(resources)s"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:59
 msgctxt "starting resources"
@@ -481,7 +481,7 @@ msgstr "Rastgele"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:61
 msgctxt "team placement"
 msgid "Select a random team placement pattern when starting the game."
-msgstr "Oyuna başlarken rastgele bir takım yerleştirme modeli seçin."
+msgstr "Oyuna başlarken rastgele bir takım yerleştirme şablonu seçin."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TriggerDifficulty.js:41
 msgid "Difficulty"
