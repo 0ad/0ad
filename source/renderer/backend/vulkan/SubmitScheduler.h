@@ -106,6 +106,10 @@ private:
 
 	std::unique_ptr<CRingCommandContext> m_AcquireCommandContext;
 	std::unique_ptr<CRingCommandContext> m_PresentCommandContext;
+
+	bool m_DebugWaitIdleBeforeAcquire = false;
+	bool m_DebugWaitIdleBeforePresent = false;
+	bool m_DebugWaitIdleAfterPresent = false;
 };
 
 } // namespace Vulkan

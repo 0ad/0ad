@@ -186,6 +186,8 @@ private:
 		void* data = nullptr;
 	};
 	PS::StaticVector<QueuedReadback, 2> m_QueuedReadbacks;
+
+	bool m_DebugBarrierAfterFramebufferPass = false;
 };
 
 } // namespace Vulkan

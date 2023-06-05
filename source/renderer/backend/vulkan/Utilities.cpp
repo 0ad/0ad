@@ -96,7 +96,7 @@ void SubmitImageMemoryBarrier(
 
 void SubmitBufferMemoryBarrier(
 	VkCommandBuffer commandBuffer, CBuffer* buffer,
-	const uint32_t offset, const uint32_t size,
+	const VkDeviceSize offset, const VkDeviceSize size,
 	const VkAccessFlags srcAccessMask, const VkAccessFlags dstAccessMask,
 	const VkPipelineStageFlags srcStageMask, const VkPipelineStageFlags dstStageMask)
 {
