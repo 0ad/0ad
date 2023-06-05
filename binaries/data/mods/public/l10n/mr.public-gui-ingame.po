@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# sabretou
 # shreyash kore
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-04-28 09:24+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
-"Last-Translator: shreyash kore, 2018\n"
+"Last-Translator: sabretou <sabretou@gmail.com>, 2023\n"
 "Language-Team: Marathi (http://app.transifex.com/wildfire-games/0ad/language/mr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
-msgstr ""
+msgstr "खेळाचा वेग निवडा"
 
 #: gui/session/Menu.js:41
 #, javascript-format
@@ -32,11 +33,11 @@ msgstr ""
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
-msgstr ""
+msgstr "चॅट"
 
 #: gui/session/MenuButtons.js:53
 msgid "Save"
-msgstr ""
+msgstr "सेव्ह"
 
 #: gui/session/MenuButtons.js:77
 msgid "Summary"
@@ -49,7 +50,7 @@ msgstr ""
 
 #: gui/session/MenuButtons.js:133
 msgid "Lobby"
-msgstr ""
+msgstr "लॉबी"
 
 #: gui/session/MenuButtons.js:142
 #, javascript-format
@@ -60,11 +61,11 @@ msgstr ""
 
 #: gui/session/MenuButtons.js:161
 msgid "Options"
-msgstr ""
+msgstr "पर्याय"
 
 #: gui/session/MenuButtons.js:185
 msgid "Hotkeys"
-msgstr ""
+msgstr "हॉटकी"
 
 #: gui/session/MenuButtons.js:220
 msgid "Resume"
@@ -81,12 +82,12 @@ msgstr ""
 
 #: gui/session/MenuButtons.js:237
 msgid "Resign"
-msgstr ""
+msgstr "राजीनामा"
 
 #: gui/session/MenuButtons.js:261
 #: gui/session/NetworkStatusOverlay.xml:(caption):9
 msgid "Exit"
-msgstr ""
+msgstr "सोडा"
 
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
@@ -134,11 +135,11 @@ msgstr ""
 #: gui/session/PauseOverlay.js:45
 #, javascript-format
 msgid "Paused by %(players)s"
-msgstr ""
+msgstr "%(players)s यांनी पॉझ केला"
 
 #: gui/session/PauseOverlay.xml:(caption):7
 msgid "Game Paused"
-msgstr ""
+msgstr "खेळ पॉझ केला आहे"
 
 #: gui/session/PauseOverlay.xml:(caption):11
 msgid "Click to Resume Game"
@@ -190,17 +191,17 @@ msgstr "निरीक्षक"
 #: gui/session/chat/ChatAddressees.js:122
 msgctxt "chat message context"
 msgid "Observer"
-msgstr ""
+msgstr "निरीक्षक"
 
 #: gui/session/chat/ChatAddressees.js:129
 msgctxt "chat message context"
 msgid "Private"
-msgstr ""
+msgstr "खाजगी"
 
 #: gui/session/chat/ChatHistory.js:56
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/session/chat/ChatHistory.js:68
 #, javascript-format
@@ -219,32 +220,32 @@ msgstr ""
 #: gui/session/chat/ChatHistory.js:94
 msgctxt "chat history filter"
 msgid "Chat messages"
-msgstr ""
+msgstr "चॅट संदेश"
 
 #: gui/session/chat/ChatHistory.js:99
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr ""
+msgstr "खेळाडू चॅट"
 
 #: gui/session/chat/ChatHistory.js:106
 msgctxt "chat history filter"
 msgid "Ally chat"
-msgstr ""
+msgstr "मित्र चॅट"
 
 #: gui/session/chat/ChatHistory.js:113
 msgctxt "chat history filter"
 msgid "Enemy chat"
-msgstr ""
+msgstr "शत्रू चॅट"
 
 #: gui/session/chat/ChatHistory.js:120
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "निरीक्षक चॅट"
 
 #: gui/session/chat/ChatHistory.js:127
 msgctxt "chat history filter"
 msgid "Private chat"
-msgstr ""
+msgstr "खाजगी चॅट"
 
 #: gui/session/chat/ChatHistory.js:132
 msgctxt "chat history filter"
@@ -259,22 +260,22 @@ msgstr ""
 #: gui/session/chat/ChatInput.js:36
 msgctxt "chat input"
 msgid "Type the message to send."
-msgstr ""
+msgstr "पाठवायचा संदेश टाइप करा."
 
 #: gui/session/chat/ChatInput.js:42
 #, javascript-format
 msgid "Press %(hotkey)s to open the public chat."
-msgstr ""
+msgstr "सार्वजनिक चॅट उघडायला %(hotkey)s दाबा."
 
 #: gui/session/chat/ChatInput.js:45
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "निरीक्षक चॅट उघडायला %(hotkey)s दाबा."
 
 #: gui/session/chat/ChatInput.js:46
 #, javascript-format
 msgid "Press %(hotkey)s to open the ally chat."
-msgstr ""
+msgstr "मित्र चॅट उघडायला %(hotkey)s दाबा."
 
 #: gui/session/chat/ChatInput.js:48
 #, javascript-format
@@ -285,18 +286,18 @@ msgstr ""
 #: gui/session/chat/ChatMessageFormatNetwork.js:24
 #, javascript-format
 msgid "%(player)s is starting to rejoin the game."
-msgstr ""
+msgstr "%(player)s हे खेळात पुन्हा सामील व्हायला लागले आहेत."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:26
 #, javascript-format
 msgid "%(player)s is starting to join the game."
-msgstr ""
+msgstr "%(player)s हे खेळात सामील व्हायला लागले आहेत."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:37
 #, javascript-format
 msgid "%(player)s has left the game."
-msgstr ""
+msgstr "%(player)s यांनी खेळ सोडला आहे."
 
 #: gui/session/chat/ChatMessageFormatNetwork.js:51
 #, javascript-format
@@ -312,13 +313,13 @@ msgstr "%(username)sकाढले गेले आहे"
 #: gui/session/chat/ChatMessageFormatNetwork.js:71
 #, javascript-format
 msgid "%(player)s has rejoined the game."
-msgstr ""
+msgstr "%(player)s हे खेळात पुन्हा सामील झाले आहेत."
 
 #. Translation: A player joins the game for the first time
 #: gui/session/chat/ChatMessageFormatNetwork.js:73
 #, javascript-format
 msgid "%(player)s has joined the game."
-msgstr "%(player)s खेळामध्ये सामील झाले आहे."
+msgstr "%(player)s हे खेळात सामील झाले आहे."
 
 #: gui/session/chat/ChatMessageFormatPlayer.js:62
 #, javascript-format
@@ -463,7 +464,7 @@ msgstr ""
 
 #: gui/session/chat/chat_window.xml:(caption):72
 msgid "Cancel"
-msgstr ""
+msgstr "रद्द करा"
 
 #: gui/session/chat/chat_window.xml:(caption):86
 msgctxt "chat"
@@ -593,39 +594,39 @@ msgstr ""
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
-msgstr ""
+msgstr "प्रश्न"
 
 #: gui/session/dialogs/yes_no.xml:(caption):15
 msgid "Yes or no?"
-msgstr ""
+msgstr "होय का नाही?"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):15
 msgid "Name"
-msgstr ""
+msgstr "नाव"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):18
 msgid "Civilization"
-msgstr ""
+msgstr "संस्कृती"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):21
 msgid "Team"
-msgstr ""
+msgstr "गट"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):24
 msgid "Theirs"
-msgstr ""
+msgstr "त्यांचा"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):27
 msgid "A"
-msgstr ""
+msgstr "मि."
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):31
 msgid "N"
-msgstr ""
+msgstr "त."
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):35
 msgid "E"
-msgstr ""
+msgstr "श."
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):39
 msgid "Tribute"
@@ -635,7 +636,7 @@ msgstr ""
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):43
 #: gui/session/trade/TradeDialog.xml:(caption):22
 msgid "Close"
-msgstr ""
+msgstr "बंद करा"
 
 #: gui/session/diplomacy/DiplomacyDialogCeasefireCounter.js:27
 #, javascript-format
@@ -808,7 +809,7 @@ msgstr ""
 #: gui/session/message_box/QuitConfirmation.js:15
 #: gui/session/message_box/QuitConfirmationReplay.js:23
 msgid "Stay"
-msgstr ""
+msgstr "थांबून राहा"
 
 #. Translation: Shown in the Dialog that shows up when the game finishes
 #: gui/session/message_box/QuitConfirmation.js:19
@@ -818,7 +819,7 @@ msgstr ""
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:54
 msgid "VICTORIOUS!"
-msgstr ""
+msgstr "विजयी!"
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:55
 msgid "DEFEATED!"
@@ -826,7 +827,7 @@ msgstr ""
 
 #: gui/session/message_box/QuitConfirmationDefeat.js:57
 msgid "Do you want to quit?"
-msgstr ""
+msgstr "तुम्हाला सोडून जायचं आहे का?"
 
 #: gui/session/message_box/QuitConfirmationMenu.js:33
 msgid ""
@@ -865,7 +866,7 @@ msgstr "आपल्याला राजीनामा द्यायचा 
 
 #: gui/session/messages.js:104
 msgid "You have won!"
-msgstr ""
+msgstr "तुम्ही जिंकलात!"
 
 #: gui/session/messages.js:105
 msgid "You have been defeated!"
@@ -879,7 +880,7 @@ msgstr ""
 #: gui/session/message_box/QuitConfirmationReplay.js:32
 #: gui/session/messages.js:411
 msgid "Quit"
-msgstr ""
+msgstr "सोडा"
 
 #: gui/session/messages.js:415
 msgid "Click when ready."
@@ -943,7 +944,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:203 gui/session/selection_details.js:209
 msgid "Experience:"
-msgstr ""
+msgstr "अनुभव:"
 
 #: gui/session/selection_details.js:208
 #, javascript-format
@@ -1008,7 +1009,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:477
 msgid "Carrying:"
-msgstr ""
+msgstr "हे नेत आहे:"
 
 #: gui/session/selection_details.js:480 gui/session/selection_details.js:489
 #, javascript-format
@@ -1178,17 +1179,17 @@ msgstr[1] ""
 #: gui/session/selection_panels_helpers.js:53
 msgctxt "stance"
 msgid "Violent"
-msgstr ""
+msgstr "हिंसक"
 
 #: gui/session/selection_panels_helpers.js:55
 msgctxt "stance"
 msgid "Aggressive"
-msgstr ""
+msgstr "आक्रमक"
 
 #: gui/session/selection_panels_helpers.js:57
 msgctxt "stance"
 msgid "Defensive"
-msgstr ""
+msgstr "सुरक्षात्मक"
 
 #: gui/session/selection_panels_helpers.js:59
 msgctxt "stance"
@@ -1321,7 +1322,7 @@ msgstr ""
 #: gui/session/selection_panels_left/garrison_panel.xml:(tooltip):16
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):64
 msgid "Health"
-msgstr ""
+msgstr "आरोग्य"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):41
 msgid "Capture points"
@@ -1333,7 +1334,7 @@ msgstr ""
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):99
 msgid "Experience"
-msgstr ""
+msgstr "अनुभव"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):107
 msgid "Rank"
@@ -1413,7 +1414,7 @@ msgstr ""
 
 #: gui/session/top_panel/IconButtons/GameSpeedButton.xml:(tooltip):9
 msgid "Game Speed"
-msgstr ""
+msgstr "खेळाची गती"
 
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):15
 #: gui/session/top_panel/IconButtons/ObjectivesDialogButton.js:23
@@ -1426,7 +1427,7 @@ msgstr ""
 
 #: gui/session/top_panel/PlayerViewControl.js:123
 msgid "Observer"
-msgstr ""
+msgstr "निरीक्षक"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(caption):17
 msgid "Observer Mode"
@@ -1439,12 +1440,12 @@ msgstr ""
 #: gui/session/trade/BarterButton.js:108
 #, javascript-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "%(resource)s विकत घ्या"
 
 #: gui/session/trade/BarterButton.js:109
 #, javascript-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "%(resource)s विकून टाका"
 
 #: gui/session/trade/BarterButton.js:110
 #, javascript-format
@@ -1464,11 +1465,11 @@ msgstr ""
 
 #: gui/session/trade/BarterPanel.xml:(caption):13
 msgid "Sell:"
-msgstr ""
+msgstr "विकून टाका:"
 
 #: gui/session/trade/BarterPanel.xml:(caption):17
 msgid "Buy:"
-msgstr ""
+msgstr "विकत घ्या:"
 
 #: gui/session/trade/BarterPanel.xml:(caption):21
 msgid "No Markets Available"
@@ -1499,7 +1500,7 @@ msgstr ""
 
 #: gui/session/trade/TradePanel.xml:(caption):5
 msgid "Trade"
-msgstr ""
+msgstr "व्यापार"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
@@ -1616,7 +1617,7 @@ msgstr "व्यापारी जहाज नाहीत."
 
 #: gui/session/tutorial_panel.xml:(caption):11
 msgid "Ready"
-msgstr ""
+msgstr "तयार"
 
 #: gui/session/unit_actions.js:624
 msgid ""
@@ -1718,7 +1719,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:1638
 msgid "Back to Work"
-msgstr ""
+msgstr "पुन्हा कामाला लागा"
 
 #: gui/session/unit_actions.js:1659
 msgid "Order the selected units to guard a structure or unit."
