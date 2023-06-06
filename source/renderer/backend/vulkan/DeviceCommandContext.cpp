@@ -22,6 +22,7 @@
 #include "lib/bits.h"
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
 #include "ps/containers/Span.h"
 #include "ps/containers/StaticVector.h"
 #include "renderer/backend/vulkan/Buffer.h"
@@ -276,6 +277,16 @@ void CDeviceCommandContext::CUploadRing::ExecuteUploads(
 	if (m_BlockOffset == 0)
 		return;
 
+	const VkPipelineStageFlags stageMask =
+		m_Type == IBuffer::Type::UNIFORM
+			? VK_PIPELINE_STAGE_VERTEX_SHADER_BIT | VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT
+			: VK_PIPELINE_STAGE_VERTEX_INPUT_BIT;
+
+	Utilities::SubmitBufferMemoryBarrier(
+		commandBuffer, m_Buffer.get(), 0, VK_WHOLE_SIZE,
+		VK_ACCESS_MEMORY_READ_BIT, VK_ACCESS_TRANSFER_WRITE_BIT,
+		stageMask, VK_PIPELINE_STAGE_TRANSFER_BIT);
+
 	VkBufferCopy region{};
 	region.srcOffset = m_BlockIndex * m_Capacity;
 	region.dstOffset = 0;
@@ -286,19 +297,10 @@ void CDeviceCommandContext::CUploadRing::ExecuteUploads(
 		m_StagingBuffer->GetVkBuffer(), m_Buffer->GetVkBuffer(),
 		1, &region);
 
-	VkMemoryBarrier memoryBarrier{};
-	memoryBarrier.sType = VK_STRUCTURE_TYPE_MEMORY_BARRIER;
-	memoryBarrier.srcAccessMask = VK_ACCESS_MEMORY_WRITE_BIT;
-	memoryBarrier.dstAccessMask = VK_ACCESS_MEMORY_READ_BIT;
-
-	const VkPipelineStageFlags dstStageMask =
-		m_Type == IBuffer::Type::UNIFORM
-			? VK_PIPELINE_STAGE_VERTEX_SHADER_BIT | VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT
-			: VK_PIPELINE_STAGE_VERTEX_INPUT_BIT;
-	vkCmdPipelineBarrier(
-		commandBuffer,
-		VK_PIPELINE_STAGE_TRANSFER_BIT, dstStageMask, 0,
-		1, &memoryBarrier, 0, nullptr, 0, nullptr);
+	Utilities::SubmitBufferMemoryBarrier(
+		commandBuffer, m_Buffer.get(), 0, VK_WHOLE_SIZE,
+		VK_ACCESS_TRANSFER_WRITE_BIT, VK_ACCESS_MEMORY_READ_BIT,
+		VK_PIPELINE_STAGE_TRANSFER_BIT, stageMask);
 
 	m_BlockIndex = (m_BlockIndex + 1) % NUMBER_OF_FRAMES_IN_FLIGHT;
 	m_BlockOffset = 0;
@@ -364,6 +366,10 @@ std::unique_ptr<IDeviceCommandContext> CDeviceCommandContext::Create(CDevice* de
 
 	vkUpdateDescriptorSets(
 		device->GetVkDevice(), 1, &writeDescriptorSet, 0, nullptr);
+
+	CFG_GET_VAL(
+		"renderer.backend.vulkan.debugbarrierafterframebufferpass",
+		deviceCommandContext->m_DebugBarrierAfterFramebufferPass);
 
 	return deviceCommandContext;
 }
@@ -667,6 +673,9 @@ void CDeviceCommandContext::EndFramebufferPass()
 	if (m_ShaderProgram)
 		m_ShaderProgram->Unbind();
 	m_ShaderProgram = nullptr;
+
+	if (m_DebugBarrierAfterFramebufferPass)
+		Utilities::SubmitDebugSyncMemoryBarrier(m_CommandContext->GetCommandBuffer());
 }
 
 void CDeviceCommandContext::ReadbackFramebufferSync(
@@ -894,7 +903,7 @@ void CDeviceCommandContext::SetTexture(const int32_t bindingSlot, ITexture* text
 
 	if (!m_Device->GetDescriptorManager().UseDescriptorIndexing())
 	{
-		// We can't bind textures which are used as color attachments.
+		// We can't bind textures which are used as attachments.
 		const auto& colorAttachments = m_Framebuffer->GetColorAttachments();
 		ENSURE(std::find(
 			colorAttachments.begin(), colorAttachments.end(), textureToBind) == colorAttachments.end());

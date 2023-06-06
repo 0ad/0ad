@@ -19,6 +19,7 @@
 
 #include "SubmitScheduler.h"
 
+#include "ps/ConfigDB.h"
 #include "renderer/backend/vulkan/Device.h"
 #include "renderer/backend/vulkan/RingCommandContext.h"
 #include "renderer/backend/vulkan/SwapChain.h"
@@ -66,6 +67,10 @@ CSubmitScheduler::CSubmitScheduler(
 		device, NUMBER_OF_FRAMES_IN_FLIGHT, queueFamilyIndex, *this);
 	m_PresentCommandContext = std::make_unique<CRingCommandContext>(
 		device, NUMBER_OF_FRAMES_IN_FLIGHT, queueFamilyIndex, *this);
+
+	CFG_GET_VAL("renderer.backend.vulkan.debugwaitidlebeforeacquire", m_DebugWaitIdleBeforeAcquire);
+	CFG_GET_VAL("renderer.backend.vulkan.debugwaitidlebeforepresent", m_DebugWaitIdleBeforePresent);
+	CFG_GET_VAL("renderer.backend.vulkan.debugwaitidleafterpresent", m_DebugWaitIdleAfterPresent);
 }
 
 CSubmitScheduler::~CSubmitScheduler()
@@ -88,6 +93,9 @@ CSubmitScheduler::~CSubmitScheduler()
 
 bool CSubmitScheduler::AcquireNextImage(CSwapChain& swapChain)
 {
+	if (m_DebugWaitIdleBeforeAcquire)
+		vkDeviceWaitIdle(m_Device->GetVkDevice());
+
 	FrameObject& frameObject = m_FrameObjects[m_FrameID % m_FrameObjects.size()];
 	if (!swapChain.AcquireNextImage(frameObject.acquireImageSemaphore))
 		return false;
@@ -106,7 +114,14 @@ void CSubmitScheduler::Present(CSwapChain& swapChain)
 	m_NextSubmitSignalSemaphore = frameObject.submitDone;
 	m_PresentCommandContext->Flush();
 	Flush();
+
+	if (m_DebugWaitIdleBeforePresent)
+		vkDeviceWaitIdle(m_Device->GetVkDevice());
+
 	swapChain.Present(frameObject.submitDone, m_Queue);
+
+	if (m_DebugWaitIdleAfterPresent)
+		vkDeviceWaitIdle(m_Device->GetVkDevice());
 }
 
 CSubmitScheduler::SubmitHandle CSubmitScheduler::Submit(VkCommandBuffer commandBuffer)
