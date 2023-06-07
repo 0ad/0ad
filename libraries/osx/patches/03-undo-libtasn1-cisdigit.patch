@@ -4,19 +4,19 @@
  #include <element.h>
  #include <limits.h>
  #include <intprops.h>
--#include <c-ctype.h>
+-#include "c-ctype.h"
  
  #ifdef DEBUG
  # define warn() fprintf(stderr, "%s: %d\n", __func__, __LINE__)
-@@ -353,7 +352,7 @@
-       p = &der[len_len];
-       for (i=0;i<(unsigned)(str_len-1);i++)
-          {
--           if (c_isdigit(p[i]) == 0)
-+           if (isdigit(p[i]) == 0)
-              {
-                if (type == ASN1_ETYPE_GENERALIZED_TIME)
-                  {
+@@ -355,7 +355,7 @@
+      p = &der[len_len];
+      for (i = 0; i < (unsigned) (str_len - 1); i++)
+	{
+-	  if (c_isdigit (p[i]) == 0)
++	  if (isdigit (p[i]) == 0)
+	    {
+	      if (type == ASN1_ETYPE_GENERALIZED_TIME)
+		{
 --- a/lib/minitasn1/element.c
 +++ b/lib/minitasn1/element.c
 @@ -30,7 +30,6 @@
@@ -105,13 +105,13 @@
 --- a/lib/minitasn1/int.h
 +++ b/lib/minitasn1/int.h
 @@ -29,6 +29,7 @@
- #include <string.h>
- #include <stdlib.h>
- #include <stdio.h>
-+#include <ctype.h>
- #include <stdint.h>
- 
- #ifdef HAVE_SYS_TYPES_H
+ # include <string.h>
+ # include <stdlib.h>
+ # include <stdio.h>
++# include <ctype.h>
+ # include <stdint.h>
+
+ # ifdef HAVE_SYS_TYPES_H
 --- a/lib/minitasn1/parser_aux.c
 +++ b/lib/minitasn1/parser_aux.c
 @@ -26,7 +26,6 @@

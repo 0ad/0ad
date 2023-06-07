@@ -37,10 +37,10 @@ OGG_VERSION="libogg-1.3.3"
 VORBIS_VERSION="libvorbis-1.3.7"
 # gloox requires GnuTLS, GnuTLS requires Nettle and GMP
 GMP_VERSION="gmp-6.2.1"
-NETTLE_VERSION="nettle-3.6"
+NETTLE_VERSION="nettle-3.9"
 # NOTE: remember to also update LIB_URL below when changing version
 GLOOX_VERSION="gloox-1.0.24"
-GNUTLS_VERSION="gnutls-3.6.15"
+GNUTLS_VERSION="gnutls-3.8.0"
 # OS X only includes part of ICU, and only the dylib
 # NOTE: remember to also update LIB_URL below when changing version
 ICU_VERSION="icu4c-69_1"
@@ -738,7 +738,7 @@ echo -e "Building GnuTLS..."
 LIB_VERSION="${GNUTLS_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION.tar.xz"
 LIB_DIRECTORY="$LIB_VERSION"
-LIB_URL="https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/"
+LIB_URL="https://www.gnupg.org/ftp/gcrypt/gnutls/v3.8/"
 
 mkdir -p gnutls
 pushd gnutls > /dev/null
@@ -775,6 +775,7 @@ then
           --with-included-unistring \
           --with-included-libtasn1 \
           --without-p11-kit \
+          --without-brotli \
           --disable-tests \
           --disable-guile \
           --disable-doc \
