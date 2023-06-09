@@ -4,7 +4,7 @@ function checkUsername(register)
 	if (!username)
 		return translate("Please enter your username");
 
-	if (register && (!username.match(/^[a-z0-9._-]*$/i) || username.length > 20))
+	if (register && !username.match(/^(?=.*[a-z])[a-z0-9._-]{3,20}$/i))
 		return translate("Invalid username");
 
 	return "";
