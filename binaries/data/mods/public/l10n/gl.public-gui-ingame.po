@@ -5,6 +5,7 @@
 # Translators:
 # Adrian Chaves
 # Adrián Chaves Fernández
+# Ismael Lires
 # mandruis
 # Nicolás Gómez
 # Nicolás S.
@@ -14,7 +15,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-04-28 09:24+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
-"Last-Translator: Xurxo Guerra Perez, 2022\n"
+"Last-Translator: Ismael Lires, 2023\n"
 "Language-Team: Galician (http://app.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -96,7 +97,7 @@ msgstr "Saír"
 #: gui/session/NetworkDelayOverlay.js:62
 #, javascript-format
 msgid "Delay to live stream: %(delay)ss"
-msgstr ""
+msgstr "Retraso para a transmisión en directo: %(delay)ss"
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
@@ -547,7 +548,7 @@ msgstr "Activar a velocidade endiañada."
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:214
 msgid "Activate Rejoin Test"
-msgstr ""
+msgstr "Activar a proba de reunión novamente"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:248
 msgid "Promote selected units"
@@ -555,35 +556,35 @@ msgstr "Ascender as unidades seleccionadas"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:269
 msgid "Enable culling"
-msgstr ""
+msgstr "Habilitar culling"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:287
 msgid "Lock cull camera"
-msgstr ""
+msgstr "Bloquear cámara de culling"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:305
 msgid "Display camera frustum"
-msgstr ""
+msgstr "Amosar cámara frustrum"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlCheckboxes.js:323
 msgid "Display shadows frustum"
-msgstr ""
+msgstr "Amosar o frustrum das sombras"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:22
 msgid "Render Debug Mode Disabled"
-msgstr ""
+msgstr "Modo de Depuración de Renderizado Desactivado"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:23
 msgid "Render Debug Mode AO"
-msgstr ""
+msgstr "Modo de Depuración de Renderizado AO"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:24
 msgid "Render Debug Mode Alpha"
-msgstr ""
+msgstr "Modo de Depuración de Renderizado Alfa"
 
 #: gui/session/developer_overlay/DeveloperOverlayControlDropDowns.js:25
 msgid "Render Debug Mode Custom"
-msgstr ""
+msgstr "Modo de Depuración de Renderizado Personalizado"
 
 #: gui/session/developer_overlay/TimeWarp.js:65
 msgid "Time warp mode"
@@ -939,7 +940,7 @@ msgstr "%(capturePoints)s / %(maxCapturePoints)s"
 
 #: gui/session/selection_details.js:189
 msgid "Capture Points"
-msgstr ""
+msgstr "Puntos de Capturado"
 
 #: gui/session/selection_details.js:202
 #, javascript-format
@@ -1060,7 +1061,7 @@ msgstr "A formación por defecto está deshabitada."
 
 #: gui/session/selection_panels.js:278
 msgid "Right-click to disable the default formation feature."
-msgstr ""
+msgstr "Clic dereito para desactivar a función de formación por defecto."
 
 #: gui/session/selection_panels.js:281
 msgid "This is the default formation, used for movement orders."
@@ -1110,7 +1111,7 @@ msgstr "Deixar de montar"
 
 #: gui/session/selection_panels.js:558
 msgid "The auto-queue will try to train this item later."
-msgstr ""
+msgstr "A cola automática intentará adestrar este elemento máis tarde."
 
 #: gui/session/selection_panels.js:561
 msgid "Insufficient population capacity:"
@@ -1356,7 +1357,7 @@ msgstr "Preme para seleccionar unidades agrupadas, prema dúas veces seguidas pa
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVII: Agni"
-msgstr ""
+msgstr "Alpha XXVII: Agni"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1680,7 +1681,7 @@ msgstr "Desaloxar a todos."
 
 #: gui/session/unit_actions.js:1401
 msgid "Unload Turrets."
-msgstr ""
+msgstr "Descargar torretas."
 
 #: gui/session/unit_actions.js:1421
 msgid "Destroy the selected units or structures."
@@ -1707,7 +1708,7 @@ msgstr "Ordenar ás unidades seleccionadas acuartelarse nunha estrutura ou unida
 
 #: gui/session/unit_actions.js:1538
 msgid "Order the selected units to occupy a turret point."
-msgstr ""
+msgstr "Ordeña ás unidades seleccionadas ocupar un punto da torreta."
 
 #: gui/session/unit_actions.js:1560
 msgid "Unload"
@@ -1761,7 +1762,7 @@ msgstr "O uso deste dropsite está prohibida"
 
 #: gui/session/unit_actions.js:1793
 msgid "Allies are allowed to use this dropsite."
-msgstr ""
+msgstr "Permite que os aliados utilicen este punto de entrega."
 
 #: gui/session/unit_actions.js:1794
 msgid "You are allowed to use this dropsite"
