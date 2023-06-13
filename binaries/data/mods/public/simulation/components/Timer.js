@@ -114,9 +114,10 @@ Timer.prototype.OnUpdate = function(msg)
 	// (We do this in two stages to avoid deleting from the timer list while
 	// we're in the middle of iterating through it)
 	let run = [];
-	for (let [id, timer] of this.timers)
+	this.timers.forEach((timer, id) => {
 		if (timer.time <= this.time)
 			run.push(id);
+	});
 
 	for (let id of run)
 	{
