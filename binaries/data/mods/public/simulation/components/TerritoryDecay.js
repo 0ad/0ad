@@ -131,7 +131,7 @@ TerritoryDecay.prototype.OnTerritoriesChanged = function(msg)
 		this.UpdateDecayState();
 };
 
-TerritoryDecay.prototype.OnTerritoryPositionChanged = function(msg)
+TerritoryDecay.prototype.OnPositionChanged = function(msg)
 {
 	if (this.territoryOwnership)
 		this.UpdateOwner();

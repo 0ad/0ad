@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -299,21 +299,6 @@ public:
 	bool inWorld;
 	CVector3D pos0;
 	CVector3D pos1;
-};
-
-/*Sent whenever the territory type (neutral,own,enemy) differs from the former type*/
-class CMessageTerritoryPositionChanged final : public CMessage
-{
-public:
-	DEFAULT_MESSAGE_IMPL(TerritoryPositionChanged)
-
-	CMessageTerritoryPositionChanged(entity_id_t entity, player_id_t newTerritory) :
-		entity(entity), newTerritory(newTerritory)
-	{
-	}
-
-	entity_id_t entity;
-	player_id_t newTerritory;
 };
 
 /**

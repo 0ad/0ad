@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -243,24 +243,6 @@ CMessage* CMessageInterpolatedPositionChanged::FromJSVal(const ScriptInterface& 
 {
 	LOGWARNING("CMessageInterpolatedPositionChanged::FromJSVal not implemented");
 	return NULL;
-}
-
-////////////////////////////////
-
-JS::Value CMessageTerritoryPositionChanged::ToJSVal(const ScriptInterface& scriptInterface) const
-{
-	TOJSVAL_SETUP();
-	SET_MSG_PROPERTY(entity);
-	SET_MSG_PROPERTY(newTerritory);
-	return JS::ObjectValue(*obj);
-}
-
-CMessage* CMessageTerritoryPositionChanged::FromJSVal(const ScriptInterface& scriptInterface, JS::HandleValue val)
-{
-	FROMJSVAL_SETUP();
-	GET_MSG_PROPERTY(entity_id_t, entity);
-	GET_MSG_PROPERTY(player_id_t, newTerritory);
-	return new CMessageTerritoryPositionChanged(entity, newTerritory);
 }
 
 ////////////////////////////////
