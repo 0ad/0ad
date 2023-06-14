@@ -7,7 +7,7 @@
       <props>
         <prop actor="props/units/heads/head_kush_nubian_red.xml" attachpoint="head"/>
         <prop actor="props/units/shields/kush_nubian_thureos.xml" attachpoint="shield"/>
-        <prop actor="props/units/weapons/spear.xml" attachpoint="weapon_R"/>
+        <prop actor="props/units/weapons/kush_spear.xml" attachpoint="weapon_R"/>
       </props>
     </variant>
   </group>
@@ -59,11 +59,13 @@
     <variant frequency="1" name="head-nubian">
       <props>
         <prop actor="props/units/heads/head_kush_nubian.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/kush_nubian_ostrich_feathers_b.xml" attachpoint="head"/>
       </props>
     </variant>
     <variant frequency="1" name="head-nubian-red">
       <props>
         <prop actor="props/units/heads/head_kush_nubian_red.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/kush_nubian_ostrich_feathers_b.xml" attachpoint="head"/>
       </props>
     </variant>
   </group>
