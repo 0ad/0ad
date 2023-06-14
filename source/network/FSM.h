@@ -30,7 +30,6 @@ class CFsmEvent;
 class CFsmTransition;
 class CFsm;
 
-using Condition = bool(void* pContext);
 using Action = bool(void* pContext, const CFsmEvent* pEvent);
 
 struct CallbackFunction
@@ -76,7 +75,7 @@ private:
 
 
 /**
- * An association of event, condition, action and next state.
+ * An association of event, action and next state.
  */
 class CFsmTransition
 {
@@ -92,13 +91,6 @@ public:
 	 * @param pContext data passed to the function.
 	 */
 	void RegisterAction(void* pAction, void* pContext);
-
-	/**
-	 * Registers a condition which will be evaluated when the transition occurs.
-	 * @param pCondition the predicate which will be executed.
-	 * @param pContext data passed to the predicate.
-	 */
-	void RegisterCondition(void* pCondition, void* pContext);
 
 	/**
 	 * Set event for which transition will occur.
@@ -128,17 +120,6 @@ public:
 		return m_Actions;
 	}
 
-	const CallbackList& GetConditions() const
-	{
-		return m_Conditions;
-	}
-
-	/**
-	 * Evaluates conditions for the transition.
-	 * @return whether all the conditions are true.
-	 */
-	bool ApplyConditions() const;
-
 	/**
 	 * Executes actions for the transition.
 	 * @note If there are no actions, assume true.
@@ -151,7 +132,6 @@ private:
 	unsigned int m_NextState;
 	CFsmEvent* m_Event;
 	CallbackList m_Actions;
-	CallbackList m_Conditions;
 };
 
 /**
@@ -180,7 +160,7 @@ public:
 	virtual void Setup();
 
 	/**
-	 * Clear event, action and condition lists and reset state machine.
+	 * Clear event, action lists and reset state machine.
 	 */
 	void Shutdown();
 

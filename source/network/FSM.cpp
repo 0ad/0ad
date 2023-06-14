@@ -43,7 +43,6 @@ CFsmTransition::CFsmTransition(unsigned int state)
 CFsmTransition::~CFsmTransition()
 {
 	m_Actions.clear();
-	m_Conditions.clear();
 }
 
 void CFsmTransition::RegisterAction(void* pAction, void* pContext)
@@ -57,17 +56,6 @@ void CFsmTransition::RegisterAction(void* pAction, void* pContext)
 	m_Actions.push_back(callback);
 }
 
-void CFsmTransition::RegisterCondition(void* pCondition, void* pContext)
-{
-	CallbackFunction callback;
-
-	// Add condition at the end of conditions list
-	callback.pFunction = pCondition;
-	callback.pContext = pContext;
-
-	m_Conditions.push_back(callback);
-}
-
 void CFsmTransition::SetEvent(CFsmEvent* pEvent)
 {
 	m_Event = pEvent;
@@ -76,24 +64,6 @@ void CFsmTransition::SetEvent(CFsmEvent* pEvent)
 void CFsmTransition::SetNextState(unsigned int nextState)
 {
 	m_NextState = nextState;
-}
-
-bool CFsmTransition::ApplyConditions() const
-{
-	bool eval = true;
-
-	CallbackList::const_iterator it = m_Conditions.begin();
-	for (; it != m_Conditions.end(); ++it)
-	{
-		if (it->pFunction)
-		{
-			// Evaluate condition
-			Condition* condition = reinterpret_cast<Condition*>(it->pFunction);
-			eval &= condition(it->pContext);
-		}
-	}
-
-	return eval;
 }
 
 bool CFsmTransition::RunActions() const
@@ -284,10 +254,6 @@ bool CFsm::Update(unsigned int eventType, void* pEventParam)
 		if (pEvent)
 			pEvent->SetParamRef(pEventParam);
 	}
-
-	// Valid transition?
-	if (!pTransition->ApplyConditions())
-		return false;
 
 	// Save the default state transition (actions might call SetNextState
 	// to override this)
