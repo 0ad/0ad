@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,12 +32,13 @@
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
+#include "ps/GameSetup/GameSetup.h"
 #include "ps/Loader.h"
 #include "ps/LoaderThunks.h"
 #include "ps/Profile.h"
 #include "ps/Replay.h"
 #include "ps/World.h"
-#include "ps/GameSetup/GameSetup.h"
+#include "ps/VideoMode.h"
 #include "renderer/Renderer.h"
 #include "renderer/SceneRenderer.h"
 #include "renderer/TimeManager.h"
@@ -70,7 +71,9 @@ const CStr CGame::EventNameSimulationUpdate = "SimulationUpdate";
 CGame::CGame(bool replayLog):
 	m_World(new CWorld(this)),
 	m_Simulation2(new CSimulation2(&m_World->GetUnitManager(), g_ScriptContext, m_World->GetTerrain())),
-	m_GameView(CRenderer::IsInitialised() ? new CGameView(this) : nullptr),
+	// TODO: we need to remove that global dependency. Maybe the game view
+	// should be created outside only if needed.
+	m_GameView(CRenderer::IsInitialised() ? new CGameView(g_VideoMode.GetBackendDevice(), this) : nullptr),
 	m_GameStarted(false),
 	m_Paused(false),
 	m_SimRate(1.0f),

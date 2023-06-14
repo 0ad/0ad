@@ -31,10 +31,7 @@
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
 #include "ps/XML/Xeromyces.h"
-#include "ps/VideoMode.h"
 #include "renderer/backend/IDevice.h"
-#include "renderer/Renderer.h"
-#include "renderer/RenderingOptions.h"
 
 #define USE_SHADER_XML_VALIDATION 1
 
@@ -48,7 +45,8 @@
 
 TIMER_ADD_CLIENT(tc_ShaderValidation);
 
-CShaderManager::CShaderManager()
+CShaderManager::CShaderManager(Renderer::Backend::IDevice* device)
+	: m_Device(device)
 {
 #if USE_SHADER_XML_VALIDATION
 	{
@@ -75,7 +73,7 @@ CShaderProgramPtr CShaderManager::LoadProgram(const CStr& name, const CShaderDef
 	if (it != m_ProgramCache.end())
 		return it->second;
 
-	CShaderProgramPtr program = CShaderProgram::Create(name, defines);
+	CShaderProgramPtr program = CShaderProgram::Create(m_Device, name, defines);
 	if (program)
 	{
 		for (const VfsPath& path : program->GetFileDependencies())
@@ -156,10 +154,8 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 	if (ret != PSRETURN_OK)
 		return false;
 
-	Renderer::Backend::IDevice* device = g_VideoMode.GetBackendDevice();
-
 	// By default we assume that we have techinques for every dummy shader.
-	if (device->GetBackend() == Renderer::Backend::Backend::DUMMY)
+	if (m_Device->GetBackend() == Renderer::Backend::Backend::DUMMY)
 	{
 		CShaderProgramPtr shaderProgram = LoadProgram(str_dummy.string(), tech->GetShaderDefines());
 		std::vector<CShaderPass> techPasses;
@@ -167,7 +163,7 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 			Renderer::Backend::MakeDefaultGraphicsPipelineStateDesc();
 		passPipelineStateDesc.shaderProgram = shaderProgram->GetBackendShaderProgram();
 		techPasses.emplace_back(
-			device->CreateGraphicsPipelineState(passPipelineStateDesc), shaderProgram);
+			m_Device->CreateGraphicsPipelineState(passPipelineStateDesc), shaderProgram);
 		tech->SetPasses(std::move(techPasses));
 		return true;
 	}
@@ -233,20 +229,20 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 			{
 				if (attrs.GetNamedItem(at_shaders) == "arb")
 				{
-					if (device->GetBackend() != Renderer::Backend::Backend::GL_ARB ||
-						!device->GetCapabilities().ARBShaders)
+					if (m_Device->GetBackend() != Renderer::Backend::Backend::GL_ARB ||
+						!m_Device->GetCapabilities().ARBShaders)
 					{
 						isUsable = false;
 					}
 				}
 				else if (attrs.GetNamedItem(at_shaders) == "glsl")
 				{
-					if (device->GetBackend() != Renderer::Backend::Backend::GL)
+					if (m_Device->GetBackend() != Renderer::Backend::Backend::GL)
 						isUsable = false;
 				}
 				else if (attrs.GetNamedItem(at_shaders) == "spirv")
 				{
-					if (device->GetBackend() != Renderer::Backend::Backend::VULKAN)
+					if (m_Device->GetBackend() != Renderer::Backend::Backend::VULKAN)
 						isUsable = false;
 				}
 				else if (!attrs.GetNamedItem(at_context).empty())
@@ -443,7 +439,7 @@ bool CShaderManager::LoadTechnique(CShaderTechniquePtr& tech)
 					tech->GetPipelineStateDescCallback()(passPipelineStateDesc);
 				passPipelineStateDesc.shaderProgram = shaderProgram->GetBackendShaderProgram();
 				techPasses.emplace_back(
-					device->CreateGraphicsPipelineState(passPipelineStateDesc), shaderProgram);
+					m_Device->CreateGraphicsPipelineState(passPipelineStateDesc), shaderProgram);
 			}
 		}
 	}

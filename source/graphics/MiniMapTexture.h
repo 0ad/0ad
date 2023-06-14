@@ -41,7 +41,7 @@ class CMiniMapTexture
 {
 	NONCOPYABLE(CMiniMapTexture);
 public:
-	CMiniMapTexture(CSimulation2& simulation);
+	CMiniMapTexture(Renderer::Backend::IDevice* device, CSimulation2& simulation);
 	~CMiniMapTexture();
 
 	/**

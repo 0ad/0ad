@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,7 +28,6 @@
 #include "lib/timer.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
-#include "ps/VideoMode.h"
 #include "ps/XML/Xeromyces.h"
 #include "renderer/backend/IDevice.h"
 #include "renderer/Renderer.h"
@@ -37,8 +36,8 @@
 #include <boost/algorithm/string.hpp>
 #include <vector>
 
-CTerrainTextureManager::CTerrainTextureManager()
-	: m_LastGroupIndex(0)
+CTerrainTextureManager::CTerrainTextureManager(Renderer::Backend::IDevice* device)
+	: m_Device(device)
 {
 	if (!VfsDirectoryExists(L"art/terrains/"))
 		return;
@@ -292,7 +291,7 @@ CTerrainTextureManager::LoadAlphaMap(const VfsPath& alphaMapType)
 	ignore_result(da_free(&da));
 #endif
 
-	result.m_CompositeAlphaMap = g_VideoMode.GetBackendDevice()->CreateTexture2D("CompositeAlphaMap",
+	result.m_CompositeAlphaMap = m_Device->CreateTexture2D("CompositeAlphaMap",
 		Renderer::Backend::ITexture::Usage::TRANSFER_DST |
 			Renderer::Backend::ITexture::Usage::SAMPLED,
 		Renderer::Backend::Format::A8_UNORM, totalWidth, totalHeight,

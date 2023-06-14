@@ -130,7 +130,7 @@ public:
 	float m_WindAngle;	// In which direction the water waves go.
 
 public:
-	WaterManager();
+	WaterManager(Renderer::Backend::IDevice* device);
 	~WaterManager();
 
 	void Initialize();
@@ -207,6 +207,9 @@ public:
 	 */
 	size_t GetCurrentTextureIndex(const double& period) const;
 	size_t GetNextTextureIndex(const double& period) const;
+
+private:
+	Renderer::Backend::IDevice* m_Device = nullptr;
 };
 
 

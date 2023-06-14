@@ -190,7 +190,7 @@ bool CMiniMapTexture::CellIconKeyEqual::operator()(
 		lhs.b == rhs.b;
 }
 
-CMiniMapTexture::CMiniMapTexture(CSimulation2& simulation)
+CMiniMapTexture::CMiniMapTexture(Renderer::Backend::IDevice* device, CSimulation2& simulation)
 	: m_Simulation(simulation), m_IndexArray(false),
 	m_VertexArray(Renderer::Backend::IBuffer::Type::VERTEX, true),
 	m_InstanceVertexArray(Renderer::Backend::IBuffer::Type::VERTEX, false)
@@ -252,7 +252,6 @@ CMiniMapTexture::CMiniMapTexture(CSimulation2& simulation)
 	}};
 	m_QuadVertexInputLayout = g_Renderer.GetVertexInputLayout(attributes);
 
-	Renderer::Backend::IDevice* device = g_VideoMode.GetBackendDevice();
 	m_Flipped = device->GetBackend() == Renderer::Backend::Backend::VULKAN;
 
 	const uint32_t stride = m_VertexArray.GetStride();

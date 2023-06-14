@@ -677,7 +677,7 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 	g_RenderingOptions.ReadConfigAndSetupHooks();
 
 	// create renderer
-	new CRenderer;
+	new CRenderer(g_VideoMode.GetBackendDevice());
 
 	InitInput();
 

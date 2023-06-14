@@ -243,6 +243,8 @@ class CRenderer::Internals
 {
 	NONCOPYABLE(Internals);
 public:
+	Renderer::Backend::IDevice* device;
+
 	std::unique_ptr<Renderer::Backend::IDeviceCommandContext> deviceCommandContext;
 
 	/// true if CRenderer::Open has been called
@@ -281,10 +283,12 @@ public:
 		std::vector<Renderer::Backend::SVertexAttributeFormat>,
 		std::unique_ptr<Renderer::Backend::IVertexInputLayout>, VertexAttributesHash> vertexInputLayouts;
 
-	Internals() :
+	Internals(Renderer::Backend::IDevice* device) :
+		device(device),
+		deviceCommandContext(device->CreateCommandContext()),
 		IsOpen(false), ShadersDirty(true), profileTable(g_Renderer.m_Stats),
-		deviceCommandContext(g_VideoMode.GetBackendDevice()->CreateCommandContext()),
-		textureManager(g_VFS, false, g_VideoMode.GetBackendDevice())
+		shaderManager(device), textureManager(g_VFS, false, device),
+		postprocManager(device), sceneRenderer(device)
 	{
 	}
 };
@@ -306,11 +310,11 @@ size_t CRenderer::Internals::VertexAttributesHash::operator()(
 	return seed;
 }
 
-CRenderer::CRenderer()
+CRenderer::CRenderer(Renderer::Backend::IDevice* device)
 {
 	TIMER(L"InitRenderer");
 
-	m = std::make_unique<Internals>();
+	m = std::make_unique<Internals>(device);
 
 	g_ProfileViewer.AddRootTable(&m->profileTable);
 
@@ -320,7 +324,7 @@ CRenderer::CRenderer()
 	m_Stats.Reset();
 
 	// Create terrain related stuff.
-	new CTerrainTextureManager;
+	new CTerrainTextureManager(device);
 
 	Open(g_xres, g_yres);
 
@@ -348,7 +352,7 @@ void CRenderer::ReloadShaders()
 {
 	ENSURE(m->IsOpen);
 
-	m->sceneRenderer.ReloadShaders();
+	m->sceneRenderer.ReloadShaders(m->device);
 	m->ShadersDirty = false;
 }
 
@@ -393,8 +397,8 @@ void CRenderer::SetRenderPath(RenderPath rp)
 
 	// Renderer has been opened, so validate the selected renderpath
 	const bool hasShadersSupport =
-		g_VideoMode.GetBackendDevice()->GetCapabilities().ARBShaders ||
-		g_VideoMode.GetBackendDevice()->GetBackend() != Renderer::Backend::Backend::GL_ARB;
+		m->device->GetCapabilities().ARBShaders ||
+		m->device->GetBackend() != Renderer::Backend::Backend::GL_ARB;
 	if (rp == RenderPath::DEFAULT)
 	{
 		if (hasShadersSupport)
@@ -443,7 +447,7 @@ void CRenderer::RenderFrame(const bool needsPresent)
 		if (needsPresent)
 		{
 			// In case of no acquired backbuffer we have nothing render to.
-			if (!g_VideoMode.GetBackendDevice()->AcquireNextBackbuffer())
+			if (!m->device->AcquireNextBackbuffer())
 				return;
 		}
 
@@ -458,7 +462,7 @@ void CRenderer::RenderFrame(const bool needsPresent)
 
 		m->deviceCommandContext->Flush();
 		if (needsPresent)
-			g_VideoMode.GetBackendDevice()->Present();
+			m->device->Present();
 	}
 }
 
@@ -651,7 +655,7 @@ void CRenderer::RenderScreenShot(const bool needsPresent)
 	const size_t width = static_cast<size_t>(g_xres), height = static_cast<size_t>(g_yres);
 	const size_t bpp = 24;
 
-	if (needsPresent && !g_VideoMode.GetBackendDevice()->AcquireNextBackbuffer())
+	if (needsPresent && !m->device->AcquireNextBackbuffer())
 		return;
 
 	// Hide log messages and re-render
@@ -669,7 +673,7 @@ void CRenderer::RenderScreenShot(const bool needsPresent)
 	m->deviceCommandContext->ReadbackFramebufferSync(0, 0, width, height, img);
 	m->deviceCommandContext->Flush();
 	if (needsPresent)
-		g_VideoMode.GetBackendDevice()->Present();
+		m->device->Present();
 
 	if (tex_write(&t, filename) == INFO::OK)
 	{
@@ -768,7 +772,7 @@ void CRenderer::RenderBigScreenShot(const bool needsPresent)
 			}
 			g_Game->GetView()->GetCamera()->SetProjection(projection);
 
-			if (!needsPresent || g_VideoMode.GetBackendDevice()->AcquireNextBackbuffer())
+			if (!needsPresent || m->device->AcquireNextBackbuffer())
 			{
 				RenderFrameImpl(false, false);
 
@@ -776,7 +780,7 @@ void CRenderer::RenderBigScreenShot(const bool needsPresent)
 				m->deviceCommandContext->Flush();
 
 				if (needsPresent)
-					g_VideoMode.GetBackendDevice()->Present();
+					m->device->Present();
 			}
 
 			// Copy the tile pixels into the main image
@@ -896,6 +900,6 @@ Renderer::Backend::IVertexInputLayout* CRenderer::GetVertexInputLayout(
 	const auto [it, inserted] = m->vertexInputLayouts.emplace(
 		std::vector<Renderer::Backend::SVertexAttributeFormat>{attributes.begin(), attributes.end()}, nullptr);
 	if (inserted)
-		it->second = g_VideoMode.GetBackendDevice()->CreateVertexInputLayout(attributes);
+		it->second = m->device->CreateVertexInputLayout(attributes);
 	return it->second.get();
 }

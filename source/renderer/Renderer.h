@@ -77,7 +77,7 @@ public:
 	};
 
 public:
-	CRenderer();
+	CRenderer(Renderer::Backend::IDevice* device);
 	~CRenderer();
 
 	// open up the renderer: performs any necessary initialisation

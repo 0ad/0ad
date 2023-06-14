@@ -38,7 +38,7 @@ struct ShadowMapInternals;
 class ShadowMap
 {
 public:
-	ShadowMap();
+	ShadowMap(Renderer::Backend::IDevice* device);
 	~ShadowMap();
 
 	/**

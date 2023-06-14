@@ -81,7 +81,7 @@ public:
 		ObjectManager(MeshManager, SkeletonAnimManager, Simulation2),
 		LOSTexture(Simulation2),
 		TerritoryTexture(Simulation2),
-		MiniMapTexture(Simulation2)
+		MiniMapTexture(g_VideoMode.GetBackendDevice(), Simulation2)
 	{
 		UnitManager.SetObjectManager(ObjectManager);
 	}

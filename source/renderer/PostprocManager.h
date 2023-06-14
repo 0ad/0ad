@@ -31,7 +31,7 @@
 class CPostprocManager
 {
 public:
-	CPostprocManager();
+	CPostprocManager(Renderer::Backend::IDevice* device);
 	~CPostprocManager();
 
 	// Returns true if the the manager can be used.
@@ -90,6 +90,8 @@ public:
 private:
 	void CreateMultisampleBuffer();
 	void DestroyMultisampleBuffer();
+
+	Renderer::Backend::IDevice* m_Device = nullptr;
 
 	std::unique_ptr<Renderer::Backend::IFramebuffer> m_CaptureFramebuffer;
 

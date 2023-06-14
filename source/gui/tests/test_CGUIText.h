@@ -57,7 +57,7 @@ public:
 		g_VideoMode.InitNonSDL();
 		g_VideoMode.CreateBackendDevice(false);
 		m_Viewer = new CProfileViewer;
-		m_Renderer = new CRenderer;
+		m_Renderer = new CRenderer(g_VideoMode.GetBackendDevice());
 	}
 
 	void tearDown()

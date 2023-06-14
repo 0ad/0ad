@@ -32,7 +32,6 @@
 #include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
-#include "ps/VideoMode.h"
 #include "renderer/backend/IDevice.h"
 #include "renderer/Renderer.h"
 #include "renderer/SceneRenderer.h"
@@ -121,7 +120,7 @@ void SkyManager::LoadAndUploadSkyTexturesIfNeeded(
 	}
 
 	std::unique_ptr<Renderer::Backend::ITexture> skyCubeMap =
-		g_VideoMode.GetBackendDevice()->CreateTexture("SkyCubeMap",
+		deviceCommandContext->GetDevice()->CreateTexture("SkyCubeMap",
 			Renderer::Backend::ITexture::Type::TEXTURE_CUBE,
 			Renderer::Backend::ITexture::Usage::TRANSFER_DST |
 				Renderer::Backend::ITexture::Usage::SAMPLED,
