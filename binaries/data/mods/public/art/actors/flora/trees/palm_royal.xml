@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Royal Palm">
+      <textures>
+        <texture file="gaia/palm_royal.png" name="baseTex"/>
+        <texture file="gaia/palm_areca_norm.png" name="normTex"/>
+        <texture file="gaia/palm_areca_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="2" name="Roystonea Regia A">
+      <mesh>gaia/tree_roystonea_regia_a.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Roystonea Regia B">
+      <mesh>gaia/tree_roystonea_regia_b.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Roystonea Regia C">
+      <mesh>gaia/tree_roystonea_regia_c.dae</mesh>
+    </variant>
+    <variant frequency="1" name="Roystonea Regia D">
+      <mesh>gaia/tree_roystonea_regia_d.dae</mesh>
+    </variant>
+  </group>
+  <material>basic_trans_wind_norm_spec.xml</material>
+</actor>

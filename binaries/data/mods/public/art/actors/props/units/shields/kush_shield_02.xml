@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Kushites Pointed Shield 02">
+      <mesh>props/shield/kush_shield_02.dae</mesh>
+      <textures>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="kush_hex_wicker_b_01">
+      <textures>
+        <texture file="props/shield/kush_hex_wicker_b_01.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush_hex_wicker_b_02">
+      <textures>
+        <texture file="props/shield/kush_hex_wicker_b_02.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush_hex_wicker_b_03">
+      <textures>
+        <texture file="props/shield/kush_hex_wicker_b_03.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant frequency="1" name="kush_hex_wicker_b_04">
+      <textures>
+        <texture file="props/shield/kush_hex_wicker_b_04.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>no_trans_norm_spec.xml</material>
+</actor>
