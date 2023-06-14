@@ -106,8 +106,8 @@ ModifiersManager.prototype.FetchModifiedProperty = function(classesList, propert
 		return originalValue;
 	// Flatten the list of modifications
 	let modifications = [];
-	modifs.forEach(item => { modifications = modifications.concat(item.value); });
-	return GetTechModifiedProperty(modifications, classesList, originalValue);
+	modifs.forEach(item => { modifications.push(item.value); });
+	return GetTechModifiedProperty(modifications.flat(), classesList, originalValue);
 };
 
 /**
@@ -142,22 +142,16 @@ ModifiersManager.prototype.Cache = function(classesList, propertyName, originalV
 ModifiersManager.prototype.ApplyModifiers = function(propertyName, originalValue, entity)
 {
 	let newValue = this.cachedValues.get(propertyName);
-	if (newValue)
+	if (newValue !== undefined)
 	{
 		newValue = newValue.get(entity);
-		if (newValue)
+		if (newValue !== undefined)
 		{
 			newValue = newValue.get(originalValue);
-			if (newValue)
+			if (newValue !== undefined)
 				return newValue;
 		}
 	}
-
-	// Get the entity ID of the player / owner of the entity, since we use that to store per-player modifiers
-	// (this prevents conflicts between player ID and entity ID).
-	let ownerEntity = QueryOwnerEntityID(entity);
-	if (ownerEntity == entity)
-		ownerEntity = null;
 
 	newValue = originalValue;
 
@@ -166,9 +160,14 @@ ModifiersManager.prototype.ApplyModifiers = function(propertyName, originalValue
 		return originalValue;
 	let classesList = cmpIdentity.GetClassesList();
 
+	// Get the entity ID of the player / owner of the entity, since we use that to store per-player modifiers
+	// (this prevents conflicts between player ID and entity ID).
+	let ownerPlayer = Engine.QueryInterface(entity, IID_Ownership)?.GetOwner();
+
 	// Apply player-wide modifiers before entity-local modifiers.
-	if (ownerEntity)
+	if (ownerPlayer !== undefined && ownerPlayer !== INVALID_PLAYER)
 	{
+		const ownerEntity = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetPlayerByID(ownerPlayer);
 		let pc = this.playerEntitiesCached.get(ownerEntity).get(propertyName);
 		if (!pc)
 			pc = this.playerEntitiesCached.get(ownerEntity).set(propertyName, new Set()).get(propertyName);
