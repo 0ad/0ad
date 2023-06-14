@@ -2,10 +2,10 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="1" name="Maur face c">
-      <mesh>props/new/head_mauryan_short_hair.dae</mesh>
+    <variant frequency="1" name="Base">
+      <mesh>props/new/head_beard_wide.dae</mesh>
       <textures>
-        <texture file="props/head/maur_face_c.png" name="baseTex"/>
+        <texture file="props/head/maur_hero_bindusara.png" name="baseTex"/>
         <texture file="default_norm.png" name="normTex"/>
         <texture file="null_black.dds" name="specTex"/>
       </textures>
