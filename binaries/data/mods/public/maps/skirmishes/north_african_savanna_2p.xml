@@ -15,12 +15,12 @@
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Color r="0.521569" g="0.321569" b="0.137255"/>
+				<Color r="0.490196" g="0.380392" b="0.168627"/>
 				<Tint r="0.313726" g="0.247059" b="0.137255"/>
 				<Height>42.5739</Height>
 				<Waviness>4.01367</Waviness>
-				<Murkiness>0.962891</Murkiness>
-				<WindAngle>0.233165</WindAngle>
+				<Murkiness>0.989258</Murkiness>
+				<WindAngle>0.859029</WindAngle>
 			</WaterBody>
 		</Water>
 		<Postproc>
@@ -32,7 +32,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="337.179" y="113.376" z="109.949"/>
+		<Position x="761.092" y="196.974" z="-58.9071"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -94,7 +94,7 @@
 			<Template>gaia/rock/savanna_large</Template>
 			<Player>0</Player>
 			<Position x="117.78716" z="579.26954"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="-2.39806"/>
 			<Actor seed="25976"/>
 		</Entity>
 		<Entity uid="26">
@@ -1615,180 +1615,6 @@
 			<Orientation y="-2.35206"/>
 			<Actor seed="58312"/>
 		</Entity>
-		<Entity uid="369">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="382.18305" z="420.37656"/>
-			<Orientation y="3.11934"/>
-			<Actor seed="2258"/>
-		</Entity>
-		<Entity uid="370">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="381.1456" z="412.81968"/>
-			<Orientation y="-2.65792"/>
-			<Actor seed="35766"/>
-		</Entity>
-		<Entity uid="371">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="377.38141" z="409.17212"/>
-			<Orientation y="-2.5021"/>
-			<Actor seed="7694"/>
-		</Entity>
-		<Entity uid="372">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="375.20978" z="404.90339"/>
-			<Orientation y="2.02347"/>
-			<Actor seed="7694"/>
-		</Entity>
-		<Entity uid="373">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="383.18339" z="404.92566"/>
-			<Orientation y="0.37194"/>
-			<Actor seed="7694"/>
-		</Entity>
-		<Entity uid="374">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="388.24946" z="422.98124"/>
-			<Orientation y="1.16666"/>
-			<Actor seed="7694"/>
-		</Entity>
-		<Entity uid="375">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="394.07145" z="423.08552"/>
-			<Orientation y="2.94578"/>
-			<Actor seed="7694"/>
-		</Entity>
-		<Entity uid="376">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="330.3021" z="327.6023"/>
-			<Orientation y="-2.02642"/>
-			<Actor seed="7694"/>
-		</Entity>
-		<Entity uid="377">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="317.11356" z="331.43879"/>
-			<Orientation y="-2.97213"/>
-			<Actor seed="15230"/>
-		</Entity>
-		<Entity uid="378">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="317.89811" z="327.39753"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="28731"/>
-		</Entity>
-		<Entity uid="379">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="320.92652" z="338.28553"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="28731"/>
-		</Entity>
-		<Entity uid="381">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="215.38834" z="335.30137"/>
-			<Orientation y="2.36799"/>
-			<Actor seed="6991"/>
-		</Entity>
-		<Entity uid="382">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="217.59696" z="334.46567"/>
-			<Orientation y="0.48551"/>
-			<Actor seed="6991"/>
-		</Entity>
-		<Entity uid="384">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="223.24418" z="331.63331"/>
-			<Orientation y="2.7087"/>
-			<Actor seed="6991"/>
-		</Entity>
-		<Entity uid="385">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="226.65323" z="325.18506"/>
-			<Orientation y="1.96172"/>
-			<Actor seed="6485"/>
-		</Entity>
-		<Entity uid="386">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="232.68512" z="327.45347"/>
-			<Orientation y="0.57404"/>
-			<Actor seed="6485"/>
-		</Entity>
-		<Entity uid="387">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="237.74256" z="333.91523"/>
-			<Orientation y="2.07369"/>
-			<Actor seed="6485"/>
-		</Entity>
-		<Entity uid="388">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="245.15961" z="329.56711"/>
-			<Orientation y="2.85035"/>
-			<Actor seed="6485"/>
-		</Entity>
-		<Entity uid="389">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="246.00095" z="327.21012"/>
-			<Orientation y="2.14623"/>
-			<Actor seed="6485"/>
-		</Entity>
-		<Entity uid="390">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="251.1584" z="327.08884"/>
-			<Orientation y="1.5708"/>
-			<Actor seed="6485"/>
-		</Entity>
-		<Entity uid="391">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="255.92624" z="327.08884"/>
-			<Orientation y="2.27413"/>
-			<Actor seed="6485"/>
-		</Entity>
-		<Entity uid="392">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="264.04435" z="320.92222"/>
-			<Orientation y="2.93752"/>
-			<Actor seed="1375"/>
-		</Entity>
-		<Entity uid="393">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="262.97468" z="328.06666"/>
-			<Orientation y="0.51699"/>
-			<Actor seed="1375"/>
-		</Entity>
-		<Entity uid="394">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="249.58198" z="320.60026"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="16340"/>
-		</Entity>
-		<Entity uid="395">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="244.7433" z="318.50489"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="16778"/>
-		</Entity>
-		<Entity uid="396">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="254.08646" z="323.57355"/>
-			<Orientation y="3.03692"/>
-			<Actor seed="16778"/>
-		</Entity>
-		<Entity uid="397">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="257.29746" z="316.49445"/>
-			<Orientation y="0.4234"/>
-			<Actor seed="16778"/>
-		</Entity>
-		<Entity uid="398">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="256.22297" z="320.92222"/>
-			<Orientation y="-2.09638"/>
-			<Actor seed="26715"/>
-		</Entity>
-		<Entity uid="410">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="309.09525" z="322.21598"/>
-			<Orientation y="-1.282"/>
-			<Actor seed="31084"/>
-		</Entity>
 		<Entity uid="411">
 			<Template>actor|props/flora/bush_medit_sm_dry.xml</Template>
 			<Position x="183.32404" z="385.41214"/>
@@ -2041,12 +1867,6 @@
 			<Orientation y="-1.44573"/>
 			<Actor seed="42854"/>
 		</Entity>
-		<Entity uid="713">
-			<Template>actor|flora/trees/acacia.xml</Template>
-			<Position x="208.24073" z="336.60743"/>
-			<Orientation y="1.14742"/>
-			<Actor seed="58455"/>
-		</Entity>
 		<Entity uid="714">
 			<Template>actor|flora/trees/acacia.xml</Template>
 			<Position x="403.1764" z="505.6933"/>
@@ -2157,156 +1977,6 @@
 			<Orientation y="2.35621"/>
 			<Actor seed="20762"/>
 		</Entity>
-		<Entity uid="732">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="236.9893" z="327.92454"/>
-			<Orientation y="-0.94333"/>
-			<Actor seed="41083"/>
-		</Entity>
-		<Entity uid="733">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="278.7068" z="318.83948"/>
-			<Orientation y="1.2047"/>
-			<Actor seed="16209"/>
-		</Entity>
-		<Entity uid="734">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="164.4531" z="379.01575"/>
-			<Orientation y="3.06688"/>
-			<Actor seed="55629"/>
-		</Entity>
-		<Entity uid="735">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="142.8284" z="531.14618"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="1982"/>
-		</Entity>
-		<Entity uid="736">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="154.40107" z="540.84058"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="51671"/>
-		</Entity>
-		<Entity uid="737">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="161.69285" z="564.12708"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="51671"/>
-		</Entity>
-		<Entity uid="738">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="171.92521" z="595.67164"/>
-			<Orientation y="2.15458"/>
-			<Actor seed="33811"/>
-		</Entity>
-		<Entity uid="739">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="193.71796" z="558.83362"/>
-			<Orientation y="2.86959"/>
-			<Actor seed="33811"/>
-		</Entity>
-		<Entity uid="740">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="230.77735" z="647.9466"/>
-			<Orientation y="2.97437"/>
-			<Actor seed="33811"/>
-		</Entity>
-		<Entity uid="741">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="378.43201" z="624.13575"/>
-			<Orientation y="-2.36094"/>
-			<Actor seed="59552"/>
-		</Entity>
-		<Entity uid="742">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="355.93064" z="595.99317"/>
-			<Orientation y="-2.8879"/>
-			<Actor seed="59552"/>
-		</Entity>
-		<Entity uid="743">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="387.00153" z="586.42975"/>
-			<Orientation y="0.95458"/>
-			<Actor seed="42684"/>
-		</Entity>
-		<Entity uid="744">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="467.12995" z="623.95557"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="42684"/>
-		</Entity>
-		<Entity uid="745">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="481.17682" z="623.95557"/>
-			<Orientation y="-2.487"/>
-			<Actor seed="42684"/>
-		</Entity>
-		<Entity uid="746">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="472.2085" z="599.5727"/>
-			<Orientation y="-3.12531"/>
-			<Actor seed="42684"/>
-		</Entity>
-		<Entity uid="747">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="70.63137" z="595.9015"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="42684"/>
-		</Entity>
-		<Entity uid="748">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="68.77131" z="592.17322"/>
-			<Orientation y="-3.04422"/>
-			<Actor seed="8261"/>
-		</Entity>
-		<Entity uid="749">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="61.34067" z="558.57557"/>
-			<Orientation y="3.0578"/>
-			<Actor seed="8261"/>
-		</Entity>
-		<Entity uid="750">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="74.70179" z="483.19877"/>
-			<Orientation y="2.53437"/>
-			<Actor seed="8261"/>
-		</Entity>
-		<Entity uid="751">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="99.47405" z="458.04441"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="42789"/>
-		</Entity>
-		<Entity uid="752">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="86.48615" z="518.15772"/>
-			<Orientation y="-0.39933"/>
-			<Actor seed="42789"/>
-		</Entity>
-		<Entity uid="753">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="65.37464" z="568.00318"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="42789"/>
-		</Entity>
-		<Entity uid="754">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="113.43714" z="566.92994"/>
-			<Orientation y="3.07094"/>
-			<Actor seed="42789"/>
-		</Entity>
-		<Entity uid="755">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="189.81128" z="381.79029"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="48289"/>
-		</Entity>
-		<Entity uid="756">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="190.83262" z="373.34366"/>
-			<Orientation y="-2.17923"/>
-			<Actor seed="56512"/>
-		</Entity>
 		<Entity uid="757">
 			<Template>actor|props/flora/bush_medit_sm_lush.xml</Template>
 			<Position x="384.29584" z="359.98774"/>
@@ -2363,7 +2033,7 @@
 		<Entity uid="801">
 			<Template>gaia/tree/bush_mediterranean</Template>
 			<Player>0</Player>
-			<Position x="207.038" z="305.77167"/>
+			<Position x="207.1702" z="305.88749"/>
 			<Orientation y="-1.74354"/>
 			<Actor seed="25610"/>
 		</Entity>
@@ -3707,7 +3377,7 @@
 		<Entity uid="993">
 			<Template>gaia/tree/date_palm_dead</Template>
 			<Player>0</Player>
-			<Position x="183.26331" z="366.91474"/>
+			<Position x="182.94001" z="367.51627"/>
 			<Orientation y="1.84882"/>
 			<Actor seed="62295"/>
 		</Entity>
@@ -6317,12 +5987,6 @@
 			<Orientation y="2.39615"/>
 			<Actor seed="19754"/>
 		</Entity>
-		<Entity uid="1411">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="833.57972" z="388.17508"/>
-			<Orientation y="2.02347"/>
-			<Actor seed="7694"/>
-		</Entity>
 		<Entity uid="1412">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
 			<Position x="760.09913" z="312.26938"/>
@@ -6484,12 +6148,6 @@
 			<Orientation y="2.35622"/>
 			<Actor seed="51971"/>
 		</Entity>
-		<Entity uid="1439">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="776.26807" z="310.66922"/>
-			<Orientation y="2.35622"/>
-			<Actor seed="28731"/>
-		</Entity>
 		<Entity uid="1440">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
 			<Position x="797.65528" z="324.47361"/>
@@ -6577,12 +6235,6 @@
 			<Position x="730.159" z="315.09116"/>
 			<Orientation y="2.35622"/>
 			<Actor seed="34088"/>
-		</Entity>
-		<Entity uid="1455">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="788.672" z="310.874"/>
-			<Orientation y="-2.02642"/>
-			<Actor seed="7694"/>
 		</Entity>
 		<Entity uid="1456">
 			<Template>gaia/tree/bush_mediterranean</Template>
@@ -6818,12 +6470,6 @@
 			<Orientation y="2.35622"/>
 			<Actor seed="36384"/>
 		</Entity>
-		<Entity uid="1494">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="533.07172" z="466.47046"/>
-			<Orientation y="2.53437"/>
-			<Actor seed="8261"/>
-		</Entity>
 		<Entity uid="1495">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="715.89814" z="316.03745"/>
@@ -6841,12 +6487,6 @@
 			<Position x="735.22986" z="311.95588"/>
 			<Orientation y="-2.82233"/>
 			<Actor seed="18773"/>
-		</Entity>
-		<Entity uid="1498">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="630.29517" z="578.94336"/>
-			<Orientation y="2.1546"/>
-			<Actor seed="33811"/>
 		</Entity>
 		<Entity uid="1499">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -6917,12 +6557,6 @@
 			<Orientation y="2.35622"/>
 			<Actor seed="54332"/>
 		</Entity>
-		<Entity uid="1510">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="930.57844" z="582.84437"/>
-			<Orientation y="-3.12531"/>
-			<Actor seed="42684"/>
-		</Entity>
 		<Entity uid="1511">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
 			<Position x="718.92334" z="341.81766"/>
@@ -6978,12 +6612,6 @@
 			<Position x="702.00556" z="337.11161"/>
 			<Orientation y="-1.70601"/>
 			<Actor seed="65403"/>
-		</Entity>
-		<Entity uid="1520">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="571.80707" z="550.20167"/>
-			<Orientation y="3.07094"/>
-			<Actor seed="42789"/>
 		</Entity>
 		<Entity uid="1521">
 			<Template>actor|props/flora/bush_desert_dry_a.xml</Template>
@@ -7494,24 +7122,6 @@
 			<Orientation y="0.43491"/>
 			<Actor seed="57986"/>
 		</Entity>
-		<Entity uid="1605">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="840.55298" z="403.64826"/>
-			<Orientation y="3.11934"/>
-			<Actor seed="2258"/>
-		</Entity>
-		<Entity uid="1606">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="622.823" z="362.28745"/>
-			<Orientation y="3.06688"/>
-			<Actor seed="55629"/>
-		</Entity>
-		<Entity uid="1607">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="835.75135" z="392.44382"/>
-			<Orientation y="-2.50211"/>
-			<Actor seed="7694"/>
-		</Entity>
 		<Entity uid="1608">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
 			<Position x="835.84992" z="430.83387"/>
@@ -7548,24 +7158,6 @@
 			<Position x="846.5503" z="417.37952"/>
 			<Orientation y="-0.11141"/>
 			<Actor seed="22155"/>
-		</Entity>
-		<Entity uid="1614">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="775.48353" z="314.71048"/>
-			<Orientation y="-2.97214"/>
-			<Actor seed="15230"/>
-		</Entity>
-		<Entity uid="1615">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="814.30054" z="579.2649"/>
-			<Orientation y="-2.8879"/>
-			<Actor seed="59552"/>
-		</Entity>
-		<Entity uid="1616">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="779.29645" z="321.55723"/>
-			<Orientation y="2.35622"/>
-			<Actor seed="28731"/>
 		</Entity>
 		<Entity uid="1617">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
@@ -7621,12 +7213,6 @@
 			<Position x="843.71778" z="408.24418"/>
 			<Orientation y="-4.32151"/>
 			<Actor seed="22155"/>
-		</Entity>
-		<Entity uid="1641">
-			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="767.46521" z="305.48768"/>
-			<Orientation y="-1.282"/>
-			<Actor seed="31084"/>
 		</Entity>
 		<Entity uid="1642">
 			<Template>actor|props/flora/grass_savanna.xml</Template>
@@ -9080,24 +8666,12 @@
 			<Orientation y="2.35622"/>
 			<Actor seed="20762"/>
 		</Entity>
-		<Entity uid="1873">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="695.35926" z="311.19623"/>
-			<Orientation y="-0.94333"/>
-			<Actor seed="41083"/>
-		</Entity>
 		<Entity uid="1874">
 			<Template>gaia/tree/bush_mediterranean</Template>
 			<Player>0</Player>
 			<Position x="539.99811" z="346.57718"/>
 			<Orientation y="-0.61194"/>
 			<Actor seed="7985"/>
-		</Entity>
-		<Entity uid="1875">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="737.07673" z="302.11118"/>
-			<Orientation y="1.2047"/>
-			<Actor seed="16209"/>
 		</Entity>
 		<Entity uid="1876">
 			<Template>gaia/tree/bush_mediterranean</Template>
@@ -9106,24 +8680,12 @@
 			<Orientation y="-1.29094"/>
 			<Actor seed="54032"/>
 		</Entity>
-		<Entity uid="1877">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="601.19837" z="514.41785"/>
-			<Orientation y="2.35622"/>
-			<Actor seed="1982"/>
-		</Entity>
 		<Entity uid="1878">
 			<Template>gaia/fauna_wildebeest</Template>
 			<Player>0</Player>
 			<Position x="638.92273" z="626.17688"/>
 			<Orientation y="2.35622"/>
 			<Actor seed="46783"/>
-		</Entity>
-		<Entity uid="1879">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="612.771" z="524.11231"/>
-			<Orientation y="2.35622"/>
-			<Actor seed="51671"/>
 		</Entity>
 		<Entity uid="1880">
 			<Template>gaia/tree/bush_mediterranean</Template>
@@ -9132,36 +8694,12 @@
 			<Orientation y="-1.70971"/>
 			<Actor seed="2828"/>
 		</Entity>
-		<Entity uid="1881">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="620.06281" z="547.39881"/>
-			<Orientation y="2.35622"/>
-			<Actor seed="51671"/>
-		</Entity>
-		<Entity uid="1882">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="652.0879" z="542.10535"/>
-			<Orientation y="2.86959"/>
-			<Actor seed="33811"/>
-		</Entity>
-		<Entity uid="1883">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="689.14728" z="631.21827"/>
-			<Orientation y="2.97437"/>
-			<Actor seed="33811"/>
-		</Entity>
 		<Entity uid="1884">
 			<Template>gaia/tree/bush_mediterranean</Template>
 			<Player>0</Player>
 			<Position x="492.13511" z="480.12244"/>
 			<Orientation y="2.35622"/>
 			<Actor seed="2828"/>
-		</Entity>
-		<Entity uid="1885">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="836.80195" z="607.40748"/>
-			<Orientation y="-2.36095"/>
-			<Actor seed="59552"/>
 		</Entity>
 		<Entity uid="1886">
 			<Template>gaia/fauna_wildebeest</Template>
@@ -9170,48 +8708,12 @@
 			<Orientation y="0.3031"/>
 			<Actor seed="46783"/>
 		</Entity>
-		<Entity uid="1887">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="845.37146" z="569.70142"/>
-			<Orientation y="0.95458"/>
-			<Actor seed="42684"/>
-		</Entity>
 		<Entity uid="1888">
 			<Template>gaia/fauna_wildebeest</Template>
 			<Player>0</Player>
 			<Position x="652.49524" z="627.54114"/>
 			<Orientation y="-2.33173"/>
 			<Actor seed="3297"/>
-		</Entity>
-		<Entity uid="1889">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="925.49988" z="607.2273"/>
-			<Orientation y="2.35622"/>
-			<Actor seed="42684"/>
-		</Entity>
-		<Entity uid="1890">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="939.54676" z="607.2273"/>
-			<Orientation y="-2.487"/>
-			<Actor seed="42684"/>
-		</Entity>
-		<Entity uid="1891">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="529.00135" z="579.17322"/>
-			<Orientation y="2.35622"/>
-			<Actor seed="42684"/>
-		</Entity>
-		<Entity uid="1892">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="527.14124" z="575.44495"/>
-			<Orientation y="-3.04422"/>
-			<Actor seed="8261"/>
-		</Entity>
-		<Entity uid="1893">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="519.71058" z="541.8473"/>
-			<Orientation y="3.05781"/>
-			<Actor seed="8261"/>
 		</Entity>
 		<Entity uid="1894">
 			<Template>gaia/fauna_wildebeest</Template>
@@ -9220,42 +8722,12 @@
 			<Orientation y="-0.45073"/>
 			<Actor seed="3297"/>
 		</Entity>
-		<Entity uid="1895">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="557.844" z="441.31611"/>
-			<Orientation y="2.35622"/>
-			<Actor seed="42789"/>
-		</Entity>
 		<Entity uid="1896">
 			<Template>gaia/fauna_wildebeest</Template>
 			<Player>0</Player>
 			<Position x="666.00025" z="614.16443"/>
 			<Orientation y="2.35622"/>
 			<Actor seed="6748"/>
-		</Entity>
-		<Entity uid="1897">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="544.85608" z="501.42942"/>
-			<Orientation y="-0.39933"/>
-			<Actor seed="42789"/>
-		</Entity>
-		<Entity uid="1898">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="523.74457" z="551.27491"/>
-			<Orientation y="2.35622"/>
-			<Actor seed="42789"/>
-		</Entity>
-		<Entity uid="1899">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="648.18122" z="365.06199"/>
-			<Orientation y="2.35622"/>
-			<Actor seed="48289"/>
-		</Entity>
-		<Entity uid="1900">
-			<Template>actor|flora/trees/acacia_bush_small.xml</Template>
-			<Position x="649.20258" z="356.61536"/>
-			<Orientation y="-2.17923"/>
-			<Actor seed="56512"/>
 		</Entity>
 		<Entity uid="1901">
 			<Template>actor|props/flora/bush_medit_sm_lush.xml</Template>
@@ -37228,7 +36700,7 @@
 		</Entity>
 		<Entity uid="6660">
 			<Template>actor|props/flora/grass_soft_large_tall.xml</Template>
-			<Position x="444.45463" z="888.43445"/>
+			<Position x="445.18339" z="884.65717"/>
 			<Orientation y="-2.56881"/>
 			<Actor seed="48469"/>
 		</Entity>
@@ -39701,71 +39173,71 @@
 		<Entity uid="7110">
 			<Template>gaia/fauna_crocodile_nile</Template>
 			<Player>0</Player>
-			<Position x="732.98066" z="160.77402"/>
-			<Orientation y="-2.15033"/>
+			<Position x="732.09754" z="161.5431"/>
+			<Orientation y="1.10631"/>
 			<Actor seed="30678"/>
 		</Entity>
 		<Entity uid="7111">
 			<Template>gaia/fauna_crocodile_nile</Template>
 			<Player>0</Player>
-			<Position x="728.10547" z="161.53086"/>
-			<Orientation y="-2.15404"/>
+			<Position x="727.29853" z="162.68769"/>
+			<Orientation y="1.16334"/>
 			<Actor seed="38324"/>
 		</Entity>
 		<Entity uid="7112">
 			<Template>gaia/fauna_crocodile_nile</Template>
 			<Player>0</Player>
-			<Position x="740.59144" z="167.92923"/>
-			<Orientation y="0.97454"/>
+			<Position x="740.25654" z="168.0662"/>
+			<Orientation y="1.14063"/>
 			<Actor seed="38324"/>
 		</Entity>
 		<Entity uid="7113">
 			<Template>gaia/fauna_crocodile_nile</Template>
 			<Player>0</Player>
-			<Position x="742.80622" z="161.47013"/>
-			<Orientation y="-3.3329"/>
+			<Position x="741.94727" z="161.45057"/>
+			<Orientation y="0.99743"/>
 			<Actor seed="47726"/>
 		</Entity>
 		<Entity uid="7114">
 			<Template>gaia/fauna_crocodile_nile</Template>
 			<Player>0</Player>
-			<Position x="752.24347" z="187.23255"/>
-			<Orientation y="-4.43876"/>
+			<Position x="753.4162" z="186.375"/>
+			<Orientation y="1.6791"/>
 			<Actor seed="47726"/>
 		</Entity>
 		<Entity uid="7115">
 			<Template>gaia/fauna_crocodile_nile</Template>
 			<Player>0</Player>
-			<Position x="736.17914" z="157.89954"/>
-			<Orientation y="-2.55404"/>
+			<Position x="735.05567" z="158.42185"/>
+			<Orientation y="1.0329"/>
 			<Actor seed="47726"/>
 		</Entity>
 		<Entity uid="7116">
 			<Template>gaia/fauna_crocodile_nile</Template>
 			<Player>0</Player>
-			<Position x="749.36426" z="157.11768"/>
-			<Orientation y="0.91929"/>
+			<Position x="748.13593" z="156.5872"/>
+			<Orientation y="0.84607"/>
 			<Actor seed="47726"/>
 		</Entity>
 		<Entity uid="7117">
 			<Template>gaia/fauna_crocodile_nile</Template>
 			<Player>0</Player>
-			<Position x="749.1374" z="160.42457"/>
-			<Orientation y="0.63903"/>
+			<Position x="748.17444" z="159.90162"/>
+			<Orientation y="0.89365"/>
 			<Actor seed="47726"/>
 		</Entity>
 		<Entity uid="7118">
 			<Template>gaia/fauna_crocodile_nile</Template>
 			<Player>0</Player>
-			<Position x="752.04578" z="166.88245"/>
-			<Orientation y="1.02013"/>
+			<Position x="751.5904" z="166.10602"/>
+			<Orientation y="0.96561"/>
 			<Actor seed="47726"/>
 		</Entity>
 		<Entity uid="7119">
 			<Template>gaia/fauna_crocodile_nile</Template>
 			<Player>0</Player>
-			<Position x="756.15961" z="171.6905"/>
-			<Orientation y="1.4453"/>
+			<Position x="756.07581" z="170.56937"/>
+			<Orientation y="1.01296"/>
 			<Actor seed="47726"/>
 		</Entity>
 		<Entity uid="7120">
@@ -40421,7 +39893,7 @@
 		</Entity>
 		<Entity uid="7219">
 			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
-			<Position x="182.69974" z="814.65333"/>
+			<Position x="185.0074" z="815.91022"/>
 			<Orientation y="3.05092"/>
 			<Actor seed="59732"/>
 		</Entity>

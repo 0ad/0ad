@@ -32,7 +32,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="722.669" y="96.1145" z="-6.96971"/>
+		<Position x="779.654" y="85.5548" z="892.267"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -43,6 +43,7 @@
   "Keywords": [],
   "Name": "Saharan Oases (2)",
   "PlayerData": [
+    null,
     {},
     {}
   ],
@@ -13059,7 +13060,7 @@
 		<Entity uid="3689">
 			<Template>gaia/tree/date_palm</Template>
 			<Player>0</Player>
-			<Position x="810.00855" z="984.47767"/>
+			<Position x="812.59247" z="985.9679"/>
 			<Orientation y="0.6388"/>
 			<Actor seed="6242"/>
 		</Entity>
@@ -14751,7 +14752,7 @@
 			<Template>gaia/ore/sahara_01</Template>
 			<Player>0</Player>
 			<Position x="719.78364" z="605.02283"/>
-			<Orientation y="6.63578"/>
+			<Orientation y="2.61046"/>
 			<Actor seed="9900"/>
 		</Entity>
 		<Entity uid="4077">
@@ -16633,18 +16634,6 @@
 			<Position x="910.58698" z="561.77393"/>
 			<Orientation y="0.32187"/>
 			<Actor seed="7982"/>
-		</Entity>
-		<Entity uid="4882">
-			<Template>actor|structures/tent_arab.xml</Template>
-			<Position x="605.95304" z="222.64722"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="19760"/>
-		</Entity>
-		<Entity uid="4886">
-			<Template>actor|structures/tent_big.xml</Template>
-			<Position x="806.79297" z="1002.00367"/>
-			<Orientation y="-3.06376"/>
-			<Actor seed="55586"/>
 		</Entity>
 		<Entity uid="4897">
 			<Template>actor|props/special/eyecandy/blocks_redstone_pile.xml</Template>
@@ -19493,8 +19482,8 @@
 		<Entity uid="5431">
 			<Template>gaia/tree/palm_tropical</Template>
 			<Player>0</Player>
-			<Position x="823.17573" z="997.77839"/>
-			<Orientation y="2.35621"/>
+			<Position x="826.7591" z="1001.43976"/>
+			<Orientation y="-2.17016"/>
 			<Actor seed="40432"/>
 		</Entity>
 		<Entity uid="5432">
@@ -22048,6 +22037,163 @@
 			<Position x="306.92826" z="312.481"/>
 			<Orientation y="4.65032"/>
 			<Actor seed="6398"/>
+		</Entity>
+		<Entity uid="5816">
+			<Template>gaia/tree/juniper_prickly</Template>
+			<Player>0</Player>
+			<Position x="400.43998" z="603.68647"/>
+			<Orientation y="0.71534"/>
+			<Actor seed="240"/>
+		</Entity>
+		<Entity uid="5817">
+			<Template>gaia/tree/juniper_prickly</Template>
+			<Player>0</Player>
+			<Position x="456.56934" z="566.72828"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="19351"/>
+		</Entity>
+		<Entity uid="5818">
+			<Template>gaia/tree/juniper_prickly</Template>
+			<Player>0</Player>
+			<Position x="488.42316" z="564.13105"/>
+			<Orientation y="-1.64477"/>
+			<Actor seed="50594"/>
+		</Entity>
+		<Entity uid="5819">
+			<Template>gaia/tree/juniper_prickly</Template>
+			<Player>0</Player>
+			<Position x="335.46821" z="662.72443"/>
+			<Orientation y="-0.98432"/>
+			<Actor seed="62890"/>
+		</Entity>
+		<Entity uid="5820">
+			<Template>gaia/tree/juniper_prickly</Template>
+			<Player>0</Player>
+			<Position x="154.36481" z="829.15662"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="19736"/>
+		</Entity>
+		<Entity uid="5821">
+			<Template>gaia/tree/juniper_prickly</Template>
+			<Player>0</Player>
+			<Position x="270.00092" z="870.08613"/>
+			<Orientation y="-0.39054"/>
+			<Actor seed="43821"/>
+		</Entity>
+		<Entity uid="5822">
+			<Template>gaia/tree/juniper_prickly</Template>
+			<Player>0</Player>
+			<Position x="248.00638" z="910.92786"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="14581"/>
+		</Entity>
+		<Entity uid="5823">
+			<Template>gaia/tree/juniper_prickly</Template>
+			<Player>0</Player>
+			<Position x="333.79938" z="809.45887"/>
+			<Orientation y="0.14998"/>
+			<Actor seed="41187"/>
+		</Entity>
+		<Entity uid="5824">
+			<Template>gaia/tree/juniper_prickly</Template>
+			<Player>0</Player>
+			<Position x="938.54084" z="456.27051"/>
+			<Orientation y="-2.19893"/>
+			<Actor seed="19732"/>
+		</Entity>
+		<Entity uid="5825">
+			<Template>gaia/tree/juniper_prickly</Template>
+			<Player>0</Player>
+			<Position x="942.47187" z="448.58243"/>
+			<Orientation y="1.1302"/>
+			<Actor seed="20686"/>
+		</Entity>
+		<Entity uid="5826">
+			<Template>gaia/tree/juniper_prickly</Template>
+			<Player>0</Player>
+			<Position x="983.11933" z="438.70402"/>
+			<Orientation y="1.24492"/>
+			<Actor seed="10346"/>
+		</Entity>
+		<Entity uid="5827">
+			<Template>gaia/tree/juniper_prickly</Template>
+			<Player>0</Player>
+			<Position x="877.8288" z="496.94413"/>
+			<Orientation y="1.24032"/>
+			<Actor seed="7242"/>
+		</Entity>
+		<Entity uid="5828">
+			<Template>gaia/tree/juniper_prickly</Template>
+			<Player>0</Player>
+			<Position x="831.84754" z="517.54352"/>
+			<Orientation y="-1.51903"/>
+			<Actor seed="45172"/>
+		</Entity>
+		<Entity uid="5829">
+			<Template>gaia/tree/juniper_prickly</Template>
+			<Player>0</Player>
+			<Position x="1006.07215" z="520.02753"/>
+			<Orientation y="1.11995"/>
+			<Actor seed="17949"/>
+		</Entity>
+		<Entity uid="5830">
+			<Template>gaia/tree/juniper_prickly</Template>
+			<Player>0</Player>
+			<Position x="920.00824" z="589.85877"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="51560"/>
+		</Entity>
+		<Entity uid="5831">
+			<Template>gaia/tree/juniper_prickly</Template>
+			<Player>0</Player>
+			<Position x="904.0896" z="671.88367"/>
+			<Orientation y="0.34478"/>
+			<Actor seed="53936"/>
+		</Entity>
+		<Entity uid="5832">
+			<Template>gaia/tree/juniper_prickly</Template>
+			<Player>0</Player>
+			<Position x="796.72187" z="350.49915"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="36260"/>
+		</Entity>
+		<Entity uid="5833">
+			<Template>actor|props/structures/decals/paving_tile_sahara_7x7_round.xml</Template>
+			<Position x="805.5564" z="324.73444"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="56288"/>
+		</Entity>
+		<Entity uid="5834">
+			<Template>actor|props/structures/decals/paving_tile_sahara_7x7_round.xml</Template>
+			<Position x="475.18165" z="939.10364"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="54499"/>
+		</Entity>
+		<Entity uid="5835">
+			<Template>actor|props/structures/decals/paving_tile_sahara_7x7_round.xml</Template>
+			<Position x="486.61228" z="944.9864"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="64109"/>
+		</Entity>
+		<Entity uid="5836">
+			<Template>actor|props/structures/decals/paving_tile_sahara_7x7_round.xml</Template>
+			<Position x="796.96174" z="328.21064"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="29374"/>
+		</Entity>
+		<Entity uid="5837">
+			<Template>structures/tent_bedouin</Template>
+			<Player>0</Player>
+			<Position x="807.72761" z="1002.79297"/>
+			<Orientation y="-0.67803"/>
+			<Actor seed="30489"/>
+		</Entity>
+		<Entity uid="5838">
+			<Template>structures/tent_desert</Template>
+			<Player>0</Player>
+			<Position x="603.31714" z="221.35795"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="30276"/>
 		</Entity>
 	</Entities>
 	<Paths/>
