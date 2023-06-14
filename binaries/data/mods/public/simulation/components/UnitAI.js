@@ -6438,7 +6438,15 @@ UnitAI.prototype.AttackEntitiesByPreference = function(ents)
 		if (!attackfilter(ent))
 			continue;
 		let pref = cmpAttack.GetPreference(ent);
-		if (pref === null || pref === undefined)
+		// If we match our best preference, we can try responding right away.
+		// This makes some common cases fast, like most soldiers having 'Human' as best preference,
+		// or ships having 'Ship'. And if there are no such targets, this doesn't do much more work.
+		if (pref === 0)
+		{
+			if (this.RespondToTargetedEntities([ent]))
+				return true;
+		}
+		else if (pref === null || pref === undefined)
 			entsWithoutPref.push(ent);
 		else if (!entsByPreferences[pref])
 		{
