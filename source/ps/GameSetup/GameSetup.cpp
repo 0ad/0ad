@@ -800,6 +800,7 @@ CParamNode GetTemplate(const std::string& templateName)
  *
  * -autostart="TYPEDIR/MAPNAME"    enables autostart and sets MAPNAME;
  *                                 TYPEDIR is skirmishes, scenarios, or random
+ * -autostart-biome=BIOME          sets BIOME for a random map
  * -autostart-seed=SEED            sets randomization seed value (default 0, use -1 for random)
  * -autostart-ai=PLAYER:AI         sets the AI for PLAYER (e.g. 2:petra)
  * -autostart-aidiff=PLAYER:DIFF   sets the DIFFiculty of PLAYER's AI
@@ -957,6 +958,12 @@ bool Autostart(const CmdLineArgs& args)
 		}
 
 		Script::SetProperty(rq, settings, "Size", mapSize);		// Random map size (in patches)
+
+		if (args.Has("autostart-biome"))
+		{
+			CStr biome = args.Get("autostart-biome");
+			Script::SetProperty(rq, settings, "Biome", biome);
+		}
 
 		// Get optional number of players (default 2)
 		size_t numPlayers = 2;
