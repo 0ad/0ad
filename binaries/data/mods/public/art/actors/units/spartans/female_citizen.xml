@@ -4,23 +4,49 @@
   <group>
     <variant>
       <mesh>skeletal/new/f_tunic_short.dae</mesh>
+      <textures>
+        <texture file="default_norm.png" name="normTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="head_female_dudette_a">
       <props>
-        <prop actor="props/units/heads/new/dudette_head.xml" attachpoint="head"/>
+        <prop actor="props/units/heads/new/head_female_dudette_a.xml" attachpoint="head"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="head_female_dudette_b">
+      <props>
+        <prop actor="props/units/heads/new/head_female_dudette_b.xml" attachpoint="head"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="head_female_dudette_c">
+      <props>
+        <prop actor="props/units/heads/new/head_female_dudette_c.xml" attachpoint="head"/>
+      </props>
+    </variant>
+    <variant frequency="1" name="head_female_e">
+      <props>
+        <prop actor="props/units/heads/new/head_female_e.xml" attachpoint="head"/>
       </props>
     </variant>
   </group>
   <group>
+    <variant frequency="1" name="tunic_female_01">
+      <textures>
+        <texture file="skeletal/spart/tunic_female_01.png" name="baseTex"/>
+        <texture file="skeletal/spart/female_02_spec.png" name="specTex"/>
+      </textures>
+    </variant>
     <variant frequency="1" name="female_01">
       <textures>
         <texture file="skeletal/spart/female_01.png" name="baseTex"/>
-        <texture file="default_norm.png" name="normTex"/>
         <texture file="skeletal/spart/female_01_spec.png" name="specTex"/>
       </textures>
     </variant>
     <variant frequency="1" name="female_02">
       <textures>
         <texture file="skeletal/spart/female_02.png" name="baseTex"/>
-        <texture file="default_norm.png" name="normTex"/>
         <texture file="skeletal/spart/female_02_spec.png" name="specTex"/>
       </textures>
     </variant>
@@ -28,7 +54,6 @@
       <mesh>skeletal/new/f_dress.dae</mesh>
       <textures>
         <texture file="skeletal/spart/female_03.png" name="baseTex"/>
-        <texture file="default_norm.png" name="normTex"/>
         <texture file="skeletal/spart/female_03_spec.png" name="specTex"/>
       </textures>
     </variant>
