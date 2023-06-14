@@ -8,25 +8,19 @@
         <animation file="mechanical/waypoint_flag_idle.dae" name="Idle" speed="30"/>
       </animations>
       <mesh>props/waypoint_flag.dae</mesh>
+      <textures>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant name="kush">
+    <variant name="athen">
       <textures>
-        <texture file="props/banner_kushites.png" name="baseTex"/>
+        <texture file="props/banner_athenians.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="hele">
-      <textures>
-        <texture file="props/banner_greek.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant name="pers">
-      <textures>
-        <texture file="props/banner_persian.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant name="celt">
+    <variant name="brit">
       <textures>
         <texture file="props/banner_celt.png" name="baseTex"/>
       </textures>
@@ -36,32 +30,7 @@
         <texture file="props/banner_carthage.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="iber">
-      <textures>
-        <texture file="props/banner_iberians.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant name="rome">
-      <textures>
-        <texture file="props/banner_romans.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant name="spart">
-      <textures>
-        <texture file="props/banner_spartans.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant name="mace">
-      <textures>
-        <texture file="props/banner_macedonians.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant name="athen">
-      <textures>
-        <texture file="props/banner_greek.png" name="baseTex"/>
-      </textures>
-    </variant>
-    <variant name="brit">
+    <variant name="celt">
       <textures>
         <texture file="props/banner_celt.png" name="baseTex"/>
       </textures>
@@ -71,9 +40,39 @@
         <texture file="props/banner_celt.png" name="baseTex"/>
       </textures>
     </variant>
+    <variant name="han">
+      <textures>
+        <texture file="props/banner_han.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="hele">
+      <textures>
+        <texture file="props/banner_greek.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="iber">
+      <textures>
+        <texture file="props/banner_iberians.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="kush">
+      <textures>
+        <texture file="props/banner_kushites.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="mace">
+      <textures>
+        <texture file="props/banner_macedonians.png" name="baseTex"/>
+      </textures>
+    </variant>
     <variant name="maur">
       <textures>
         <texture file="props/banner_mauryas.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="pers">
+      <textures>
+        <texture file="props/banner_persian.png" name="baseTex"/>
       </textures>
     </variant>
     <variant name="ptol">
@@ -81,22 +80,19 @@
         <texture file="props/banner_ptolemies.png" name="baseTex"/>
       </textures>
     </variant>
+    <variant name="rome">
+      <textures>
+        <texture file="props/banner_romans.png" name="baseTex"/>
+      </textures>
+    </variant>
     <variant name="sele">
       <textures>
         <texture file="props/banner_seleucids.png" name="baseTex"/>
       </textures>
     </variant>
-    <variant name="han">
+    <variant name="spart">
       <textures>
-        <texture file="props/banner_han.png" name="baseTex"/>
-      </textures>
-    </variant>
-  </group>
-  <group>
-    <variant>
-      <textures>
-        <texture file="default_norm.png" name="normTex"/>
-        <texture file="null_black.dds" name="specTex"/>
+        <texture file="props/banner_spartans.png" name="baseTex"/>
       </textures>
     </variant>
   </group>
