@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant name="Mauryan Royal Palace" frequency="1" file="structures/defensive_building.xml">
+      <mesh>structural/maur_palace_large.dae</mesh>
+      <props>
+        <prop actor="props/structures/mauryas/ashoka_pillar.xml" attachpoint="ashokapillar1"/>
+        <prop actor="props/structures/mauryas/ashoka_pillar.xml" attachpoint="ashokapillar2"/>
+        <prop actor="props/structures/mauryas/stupa_gate.xml" attachpoint="stupagate"/>
+        <prop actor="props/flora/shrub_tropic_plant_flower.xml" attachpoint="flower_1"/>
+        <prop actor="props/flora/shrub_tropic_plant_flower.xml" attachpoint="flower_2"/>
+        <prop actor="props/flora/shrub_tropic_plant_flower.xml" attachpoint="flower_3"/>
+        <prop actor="props/flora/shrub_tropic_plant_flower.xml" attachpoint="flower_4"/>
+        <prop actor="props/flora/shrub_tropic_plant_flower.xml" attachpoint="flower_5"/>
+        <prop actor="props/flora/shrub_tropic_plant_flower.xml" attachpoint="flower_6"/>
+        <prop actor="props/flora/shrub_tropic_plant_flower.xml" attachpoint="flower_7"/>
+        <prop actor="props/flora/shrub_tropic_plant_flower.xml" attachpoint="flower_8"/>
+        <prop actor="props/flora/shrub_tropic_plant_flower.xml" attachpoint="flower_9"/>
+        <prop actor="props/flora/shrub_tropic_plant_flower.xml" attachpoint="flower_10"/>
+        <prop actor="props/flora/shrub_tropic_plant_flower.xml" attachpoint="flower_11"/>
+        <prop actor="props/flora/shrub_tropic_plant_flower.xml" attachpoint="flower_12"/>
+        <prop actor="props/flora/shrub_tropic_plant_flower.xml" attachpoint="flower_13"/>
+        <prop actor="props/flora/shrub_tropic_plant_flower.xml" attachpoint="flower_14"/>
+      </props>
+      <textures>
+        <texture file="structural/maur_struct.png" name="baseTex"/>
+        <texture file="structural/maur_struct_spec.png" name="specTex"/>
+        <texture file="structural/maur_struct_norm.png" name="normTex"/>
+        <texture file="structural/ao/maur_palace_ao.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="ungarrisoned" frequency="1"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_maur.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant name="alive" frequency="1"/>
+    <variant file="structures/destruction_large.xml"/>
+  </group>
+  <material>player_trans_ao_parallax_spec.xml</material>
+</actor>

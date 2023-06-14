@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
+  <BuildRestrictions>
+    <Category>Palace</Category>
+    <Distance>
+      <FromClass>CivicCenter</FromClass>
+      <MaxDistance>60</MaxDistance>
+    </Distance>
+  </BuildRestrictions>
   <Cost>
     <BuildTime>200</BuildTime>
     <Resources>
@@ -8,29 +15,34 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="40.0" depth="16.0"/>
-    <Height>5.0</Height>
+    <Square width="28" depth="28.0"/>
+    <Height>10.0</Height>
   </Footprint>
-  <Health>
-    <Max>2000</Max>
-  </Health>
   <Identity>
     <Civ>maur</Civ>
     <GenericName>Palace</GenericName>
     <SpecificName>Harmya</SpecificName>
-    <Tooltip>Territory root. Train Maiden Guards and Heroes.</Tooltip>
-    <Classes datatype="tokens">ConquestCritical CivSpecific</Classes>
-    <VisibleClasses datatype="tokens">Palace</VisibleClasses>
-    <Icon>gaia/special_stoa.png</Icon>
+    <Classes datatype="tokens">ConquestCritical CivSpecific Harmya</Classes>
+    <VisibleClasses datatype="tokens">
+	  Palace
+	</VisibleClasses>
+    <Icon>structures/stoa.png</Icon>
+    <Tooltip>Train Heroes and their Poison Maiden Guards. Territory root.</Tooltip>
   </Identity>
   <Loot>
     <stone>40</stone>
     <metal>40</metal>
   </Loot>
   <Obstruction>
-    <Static width="36.0" depth="12.0"/>
+    <Static width="26.0" depth="26.0"/>
   </Obstruction>
   <ProductionQueue/>
+  <Researcher>
+    <Technologies datatype="tokens">
+      unlock_spies
+      spy_counter
+    </Technologies>
+  </Researcher>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_broch.xml</select>
@@ -39,7 +51,7 @@
   </Sound>
   <TerritoryInfluence>
     <Root>true</Root>
-    <Radius>48</Radius>
+    <Radius>38</Radius>
     <Weight>40000</Weight>
   </TerritoryInfluence>
   <Trainer>
@@ -52,11 +64,8 @@
       units/{civ}/hero_ashoka
     </Entities>
   </Trainer>
-  <Vision>
-    <Range>40</Range>
-  </Vision>
   <VisualActor>
-    <Actor>structures/mauryas/misc_structure_01.xml</Actor>
-    <FoundationActor>structures/fndn_9x4.xml</FoundationActor>
+    <FoundationActor>structures/fndn_8x8.xml</FoundationActor>
+    <Actor>structures/mauryas/palace.xml</Actor>
   </VisualActor>
 </Entity>
