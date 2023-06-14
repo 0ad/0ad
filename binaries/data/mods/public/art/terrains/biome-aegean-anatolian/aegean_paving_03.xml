@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<terrain>
+	<textures>
+		<texture name="baseTex" file="types/aegean_anatolia/paving_03.png"/>
+		<texture name="normTex" file="types/aegean_anatolia/paving_03_norm.png"/>
+		<texture name="specTex" file="types/aegean_anatolia/paving_03_spec.png"/>
+	</textures>
+	<props size="18.0"/>
+	<material>terrain_norm_spec.xml</material>
+</terrain>
