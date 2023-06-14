@@ -2,12 +2,30 @@
 <actor version="1">
   <castshadow/>
   <group>
-    <variant frequency="100" name="rome merchant sail">
+    <variant frequency="1" name="Base">
       <mesh>structural/rome_merch_ship_sails.dae</mesh>
+      <textures>
+        <texture file="props/ptol_sail_norm.png" name="normTex"/>
+        <texture file="props/sail_spec_1.png" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
-    <variant frequency="100" file="others/ships/rome_sail_01.xml" name="Laurel SQPR"/>
+    <variant name="sail_stripes_1">
+      <textures>
+        <texture file="props/sail_stripes_1.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="sail_stripes_2">
+      <textures>
+        <texture file="props/sail_stripes_2.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="sail_stripes_3">
+      <textures>
+        <texture file="props/kart_merchant_sail_a.png" name="baseTex"/>
+      </textures>
+    </variant>
   </group>
   <material>player_trans_norm_spec.xml</material>
 </actor>

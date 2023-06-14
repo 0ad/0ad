@@ -5,9 +5,20 @@
     <variant frequency="1" name="Ptolemaic sail">
       <mesh>structural/ptol_ship_quinquereme_sails.dae</mesh>
       <textures>
-       <texture file="props/ptol_sail.png" name="baseTex"/>
        <texture file="props/ptol_sail_norm.png" name="normTex"/>
-       <texture file="props/sail_spec_1.png" name="specTex"/>
+       <texture file="props/ptol_sail_spec.png" name="specTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant name="sail_egytian_eagle">
+      <textures>
+       <texture file="props/ptol_sail.png" name="baseTex"/>
+      </textures>
+    </variant>
+    <variant name="sail_ptolemaic_eagle">
+      <textures>
+       <texture file="props/ptol_sail_eagle.png" name="baseTex"/>
       </textures>
     </variant>
   </group>

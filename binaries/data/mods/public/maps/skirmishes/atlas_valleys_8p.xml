@@ -2,11 +2,11 @@
 
 <Scenario version="7">
 	<Environment>
-		<SkySet>sunny</SkySet>
-		<SunColor r="0.94902" g="0.929412" b="0.803922"/>
-		<SunElevation angle="0.395767"/>
-		<SunRotation angle="-2.90751"/>
-		<AmbientColor r="0.419608" g="0.384314" b="0.258824"/>
+		<SkySet>desert</SkySet>
+		<SunColor r="1.19922" g="1.07695" b="0.827697"/>
+		<SunElevation angle="0.61666"/>
+		<SunRotation angle="-1.54625"/>
+		<AmbientColor r="0.282353" g="0.364706" b="0.513726"/>
 		<Fog>
 			<FogFactor>0.000771484</FogFactor>
 			<FogThickness>0.211426</FogThickness>
@@ -15,25 +15,25 @@
 		<Water>
 			<WaterBody>
 				<Type>clap</Type>
-				<Color r="0" g="0.501961" b="0.25098"/>
-				<Tint r="0.458824" g="0.74902" b="0.564706"/>
+				<Color r="0.313726" g="0.247059" b="0.137255"/>
+				<Tint r="0.313726" g="0.247059" b="0.137255"/>
 				<Height>19.9</Height>
 				<Waviness>0</Waviness>
-				<Murkiness>0.894531</Murkiness>
+				<Murkiness>0.916016</Murkiness>
 				<WindAngle>0</WindAngle>
 			</WaterBody>
 		</Water>
 		<Postproc>
 			<Brightness>0.0195313</Brightness>
-			<Contrast>1.18555</Contrast>
-			<Saturation>0.880859</Saturation>
+			<Contrast>1.03125</Contrast>
+			<Saturation>1.01758</Saturation>
 			<Bloom>0.156641</Bloom>
-			<PostEffect>default</PostEffect>
+			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="1008.77" y="214.012" z="248.414"/>
-		<Rotation angle="-1.60691"/>
+		<Position x="432.57" y="151.093" z="1069.84"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -43,6 +43,7 @@
   "Keywords": [],
   "Name": "Atlas Valleys (8)",
   "PlayerData": [
+    null,
     {},
     {},
     {},
@@ -1634,120 +1635,6 @@
 			<Orientation y="2.35621"/>
 			<Actor seed="8016"/>
 		</Entity>
-		<Entity uid="5725">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="735.62897" z="491.37232"/>
-			<Orientation y="1.03077"/>
-			<Actor seed="17640"/>
-		</Entity>
-		<Entity uid="5726">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="736.38013" z="492.45548"/>
-			<Orientation y="0.13022"/>
-			<Actor seed="33488"/>
-		</Entity>
-		<Entity uid="5727">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="736.49946" z="496.90406"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="41324"/>
-		</Entity>
-		<Entity uid="5728">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="735.48835" z="501.40543"/>
-			<Orientation y="1.15381"/>
-			<Actor seed="36722"/>
-		</Entity>
-		<Entity uid="5729">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="715.84803" z="521.4823"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="61234"/>
-		</Entity>
-		<Entity uid="5730">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="720.96692" z="519.95862"/>
-			<Orientation y="2.08562"/>
-			<Actor seed="48222"/>
-		</Entity>
-		<Entity uid="5731">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="725.02515" z="519.97327"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="53746"/>
-		</Entity>
-		<Entity uid="5732">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="728.61176" z="520.40137"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="53964"/>
-		</Entity>
-		<Entity uid="5733">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="729.71235" z="516.19288"/>
-			<Orientation y="1.26415"/>
-			<Actor seed="24798"/>
-		</Entity>
-		<Entity uid="5734">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="732.16126" z="512.21943"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="33968"/>
-		</Entity>
-		<Entity uid="5735">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="732.20215" z="501.54145"/>
-			<Orientation y="-0.16428"/>
-			<Actor seed="44938"/>
-		</Entity>
-		<Entity uid="5736">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="734.0453" z="505.4928"/>
-			<Orientation y="-0.53301"/>
-			<Actor seed="60130"/>
-		</Entity>
-		<Entity uid="5737">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="704.2096" z="504.34128"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="46552"/>
-		</Entity>
-		<Entity uid="5738">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="707.31238" z="504.01655"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="39188"/>
-		</Entity>
-		<Entity uid="5739">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="715.57221" z="510.59391"/>
-			<Orientation y="2.19332"/>
-			<Actor seed="29142"/>
-		</Entity>
-		<Entity uid="5740">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="712.52881" z="506.9174"/>
-			<Orientation y="2.64768"/>
-			<Actor seed="23484"/>
-		</Entity>
-		<Entity uid="5741">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="719.4875" z="498.33698"/>
-			<Orientation y="2.22611"/>
-			<Actor seed="60512"/>
-		</Entity>
-		<Entity uid="5742">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="725.80427" z="505.82285"/>
-			<Orientation y="0.74407"/>
-			<Actor seed="52942"/>
-		</Entity>
-		<Entity uid="5743">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="716.33771" z="499.7374"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="27740"/>
-		</Entity>
 		<Entity uid="5745">
 			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="718.68195" z="502.11918"/>
@@ -2589,194 +2476,194 @@
 			<Actor seed="63552"/>
 		</Entity>
 		<Entity uid="5911">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="799.26197" z="358.58051"/>
 			<Orientation y="2.37526"/>
 			<Actor seed="21292"/>
 		</Entity>
 		<Entity uid="5912">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="802.11957" z="359.3082"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="34172"/>
 		</Entity>
 		<Entity uid="5913">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="806.50501" z="362.27561"/>
 			<Orientation y="2.68047"/>
 			<Actor seed="40292"/>
 		</Entity>
 		<Entity uid="5914">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="809.39533" z="363.41749"/>
 			<Orientation y="1.25028"/>
 			<Actor seed="27266"/>
 		</Entity>
 		<Entity uid="5915">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="810.65705" z="362.37168"/>
 			<Orientation y="-0.57383"/>
 			<Actor seed="57478"/>
 		</Entity>
 		<Entity uid="5916">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="806.63752" z="359.94724"/>
 			<Orientation y="-2.14475"/>
 			<Actor seed="4798"/>
 		</Entity>
 		<Entity uid="5917">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="797.39478" z="354.6251"/>
 			<Orientation y="-2.57134"/>
 			<Actor seed="47664"/>
 		</Entity>
 		<Entity uid="5918">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="795.99354" z="351.20224"/>
 			<Orientation y="3.07503"/>
 			<Actor seed="39138"/>
 		</Entity>
 		<Entity uid="5919">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="794.8589" z="347.78595"/>
 			<Orientation y="3.07299"/>
 			<Actor seed="20364"/>
 		</Entity>
 		<Entity uid="5920">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="794.18268" z="344.16611"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="15794"/>
 		</Entity>
 		<Entity uid="5921">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="794.38044" z="339.67795"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="40378"/>
 		</Entity>
 		<Entity uid="5922">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="797.26075" z="338.54236"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="23446"/>
 		</Entity>
 		<Entity uid="5923">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="801.0926" z="356.36808"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="61432"/>
 		</Entity>
 		<Entity uid="5924">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="804.41163" z="356.91471"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="4430"/>
 		</Entity>
 		<Entity uid="5925">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="798.94751" z="353.06434"/>
 			<Orientation y="2.10918"/>
 			<Actor seed="47290"/>
 		</Entity>
 		<Entity uid="5926">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="797.44013" z="349.07734"/>
 			<Orientation y="-2.99308"/>
 			<Actor seed="11158"/>
 		</Entity>
 		<Entity uid="5927">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="797.04438" z="345.31055"/>
 			<Orientation y="-3.13561"/>
 			<Actor seed="30086"/>
 		</Entity>
 		<Entity uid="5928">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="797.2898" z="341.61725"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="38534"/>
 		</Entity>
 		<Entity uid="5929">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="801.01832" z="353.07923"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="1020"/>
 		</Entity>
 		<Entity uid="5930">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="808.0929" z="358.46052"/>
 			<Orientation y="2.66601"/>
 			<Actor seed="25492"/>
 		</Entity>
 		<Entity uid="5931">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="810.48237" z="359.43577"/>
 			<Orientation y="0.96262"/>
 			<Actor seed="32950"/>
 		</Entity>
 		<Entity uid="5932">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="813.84308" z="363.03959"/>
 			<Orientation y="0.96433"/>
 			<Actor seed="23016"/>
 		</Entity>
 		<Entity uid="5933">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="815.16315" z="361.96964"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="3952"/>
 		</Entity>
 		<Entity uid="5934">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="801.67475" z="352.2457"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="26150"/>
 		</Entity>
 		<Entity uid="5935">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="806.90674" z="356.21537"/>
 			<Orientation y="2.50626"/>
 			<Actor seed="13774"/>
 		</Entity>
 		<Entity uid="5936">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="810.66547" z="357.62092"/>
 			<Orientation y="2.60737"/>
 			<Actor seed="17320"/>
 		</Entity>
 		<Entity uid="5937">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="815.89814" z="360.67481"/>
 			<Orientation y="2.72831"/>
 			<Actor seed="63740"/>
 		</Entity>
 		<Entity uid="5938">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="798.68012" z="346.13804"/>
 			<Orientation y="1.56446"/>
 			<Actor seed="48194"/>
 		</Entity>
 		<Entity uid="5939">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="800.23023" z="339.03534"/>
 			<Orientation y="1.39722"/>
 			<Actor seed="51460"/>
 		</Entity>
 		<Entity uid="5940">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="821.02033" z="361.39039"/>
 			<Orientation y="3.0127"/>
 			<Actor seed="7654"/>
 		</Entity>
 		<Entity uid="5942">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="799.63166" z="332.35492"/>
 			<Orientation y="1.42484"/>
@@ -2819,7 +2706,7 @@
 			<Actor seed="54974"/>
 		</Entity>
 		<Entity uid="5951">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="815.69141" z="344.4109"/>
 			<Orientation y="0.8733"/>
@@ -3875,24 +3762,6 @@
 			<Orientation y="2.35621"/>
 			<Actor seed="40488"/>
 		</Entity>
-		<Entity uid="6128">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="594.66211" z="476.3375"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="56340"/>
-		</Entity>
-		<Entity uid="6129">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="598.06965" z="470.978"/>
-			<Orientation y="-0.8493"/>
-			<Actor seed="17062"/>
-		</Entity>
-		<Entity uid="6130">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="597.92396" z="450.74631"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="36948"/>
-		</Entity>
 		<Entity uid="6131">
 			<Template>actor|geology/stone_savanna_cubic.xml</Template>
 			<Position x="594.86445" z="446.75019"/>
@@ -3929,227 +3798,17 @@
 			<Orientation y="3.03672"/>
 			<Actor seed="38090"/>
 		</Entity>
-		<Entity uid="6137">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="617.25007" z="402.34717"/>
-			<Orientation y="2.9973"/>
-			<Actor seed="29038"/>
-		</Entity>
-		<Entity uid="6138">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="622.77308" z="403.64301"/>
-			<Orientation y="1.66028"/>
-			<Actor seed="40524"/>
-		</Entity>
 		<Entity uid="6139">
 			<Template>actor|geology/stone_savanna_cubic.xml</Template>
 			<Position x="620.83228" z="407.0074"/>
 			<Orientation y="-0.2102"/>
 			<Actor seed="5162"/>
 		</Entity>
-		<Entity uid="6140">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="641.99738" z="408.7663"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="45056"/>
-		</Entity>
-		<Entity uid="6141">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="645.52991" z="411.3589"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="30226"/>
-		</Entity>
-		<Entity uid="6142">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="640.50275" z="413.07175"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="5690"/>
-		</Entity>
-		<Entity uid="6143">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="648.49488" z="415.22019"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="32902"/>
-		</Entity>
-		<Entity uid="6144">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="647.5409" z="411.89142"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="31674"/>
-		</Entity>
-		<Entity uid="6145">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="643.29548" z="416.61866"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="3256"/>
-		</Entity>
-		<Entity uid="6146">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="650.87427" z="418.34617"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="48970"/>
-		</Entity>
-		<Entity uid="6147">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="652.54773" z="421.52622"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="11984"/>
-		</Entity>
-		<Entity uid="6148">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="647.8191" z="421.62046"/>
-			<Orientation y="-1.75351"/>
-			<Actor seed="41712"/>
-		</Entity>
-		<Entity uid="6149">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="650.54712" z="420.10407"/>
-			<Orientation y="2.19375"/>
-			<Actor seed="30050"/>
-		</Entity>
-		<Entity uid="6150">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="654.3589" z="422.29905"/>
-			<Orientation y="-1.50971"/>
-			<Actor seed="36092"/>
-		</Entity>
-		<Entity uid="6151">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="655.28486" z="420.88315"/>
-			<Orientation y="-0.98584"/>
-			<Actor seed="50998"/>
-		</Entity>
-		<Entity uid="6152">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="657.20588" z="424.2837"/>
-			<Orientation y="-1.39811"/>
-			<Actor seed="35786"/>
-		</Entity>
-		<Entity uid="6153">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="659.22364" z="426.64426"/>
-			<Orientation y="0.22889"/>
-			<Actor seed="33064"/>
-		</Entity>
 		<Entity uid="6154">
 			<Template>actor|geology/stone_savanna_weathered.xml</Template>
 			<Position x="661.58497" z="429.5832"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="33056"/>
-		</Entity>
-		<Entity uid="6155">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="658.5459" z="423.48386"/>
-			<Orientation y="1.87821"/>
-			<Actor seed="25832"/>
-		</Entity>
-		<Entity uid="6156">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="638.7884" z="409.92283"/>
-			<Orientation y="-1.60074"/>
-			<Actor seed="730"/>
-		</Entity>
-		<Entity uid="6157">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="640.45765" z="405.46848"/>
-			<Orientation y="-2.3287"/>
-			<Actor seed="61444"/>
-		</Entity>
-		<Entity uid="6158">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="636.31464" z="405.90357"/>
-			<Orientation y="-1.36586"/>
-			<Actor seed="27370"/>
-		</Entity>
-		<Entity uid="6159">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="644.5287" z="406.34238"/>
-			<Orientation y="2.41797"/>
-			<Actor seed="60652"/>
-		</Entity>
-		<Entity uid="6160">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="642.47168" z="402.77433"/>
-			<Orientation y="0.49962"/>
-			<Actor seed="57650"/>
-		</Entity>
-		<Entity uid="6161">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="637.38373" z="400.17746"/>
-			<Orientation y="0.75527"/>
-			<Actor seed="7768"/>
-		</Entity>
-		<Entity uid="6162">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="632.77881" z="403.42618"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="65114"/>
-		</Entity>
-		<Entity uid="6163">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="629.53388" z="402.68012"/>
-			<Orientation y="-1.90464"/>
-			<Actor seed="26588"/>
-		</Entity>
-		<Entity uid="6164">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="634.10773" z="408.2508"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="7962"/>
-		</Entity>
-		<Entity uid="6165">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="627.92017" z="397.11753"/>
-			<Orientation y="1.41112"/>
-			<Actor seed="27888"/>
-		</Entity>
-		<Entity uid="6166">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="593.53272" z="471.78937"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="48166"/>
-		</Entity>
-		<Entity uid="6167">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="591.49115" z="473.22242"/>
-			<Orientation y="-1.53432"/>
-			<Actor seed="59964"/>
-		</Entity>
-		<Entity uid="6168">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="601.22956" z="472.20948"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="15150"/>
-		</Entity>
-		<Entity uid="6169">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="601.37708" z="474.57724"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="43922"/>
-		</Entity>
-		<Entity uid="6170">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="605.7696" z="470.62504"/>
-			<Orientation y="2.86696"/>
-			<Actor seed="53790"/>
-		</Entity>
-		<Entity uid="6171">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="608.79017" z="469.99231"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="37686"/>
-		</Entity>
-		<Entity uid="6172">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="606.77137" z="473.435"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="24080"/>
-		</Entity>
-		<Entity uid="6173">
-			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="596.84656" z="477.72681"/>
-			<Orientation y="-1.70591"/>
-			<Actor seed="19968"/>
 		</Entity>
 		<Entity uid="6174">
 			<Template>actor|geology/stone_savanna_weathered.xml</Template>
@@ -7111,78 +6770,78 @@
 		<Entity uid="6673">
 			<Template>skirmish/units/special_starting_unit</Template>
 			<Player>8</Player>
-			<Position x="219.34357" z="629.5655"/>
-			<Orientation y="4.23417"/>
+			<Position x="228.94773" z="666.71253"/>
+			<Orientation y="-0.6739"/>
 			<Actor seed="21182"/>
 		</Entity>
 		<Entity uid="6674">
 			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>8</Player>
-			<Position x="231.10575" z="625.98212"/>
-			<Orientation y="4.55236"/>
+			<Position x="227.71949" z="654.4781"/>
+			<Orientation y="-0.3557"/>
 			<Actor seed="44538"/>
 		</Entity>
 		<Entity uid="6675">
 			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>8</Player>
-			<Position x="225.02533" z="640.20484"/>
-			<Orientation y="4.15888"/>
+			<Position x="240.48868" z="663.20759"/>
+			<Orientation y="-0.74918"/>
 			<Actor seed="10452"/>
 		</Entity>
 		<Entity uid="6676">
 			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>8</Player>
-			<Position x="229.23356" z="630.66608"/>
-			<Orientation y="4.44115"/>
+			<Position x="231.95008" z="657.22522"/>
+			<Orientation y="-0.46691"/>
 			<Actor seed="2766"/>
 		</Entity>
 		<Entity uid="6677">
 			<Template>skirmish/units/default_infantry_ranged_b</Template>
 			<Player>8</Player>
-			<Position x="253.80243" z="622.55207"/>
-			<Orientation y="2.58735"/>
+			<Position x="228.76746" z="631.54761"/>
+			<Orientation y="-2.32071"/>
 			<Actor seed="13266"/>
 		</Entity>
 		<Entity uid="6678">
 			<Template>skirmish/structures/default_civil_centre</Template>
 			<Player>8</Player>
-			<Position x="248.12192" z="642.22327"/>
-			<Orientation y="1.1076"/>
+			<Position x="246.95896" z="640.94416"/>
+			<Orientation y="-3.80047"/>
 			<Actor seed="12168"/>
 		</Entity>
 		<Entity uid="6679">
 			<Template>skirmish/units/default_cavalry</Template>
 			<Player>8</Player>
-			<Position x="274.17975" z="653.03071"/>
-			<Orientation y="1.03115"/>
+			<Position x="262.62623" z="617.48462"/>
+			<Orientation y="-3.87691"/>
 			<Actor seed="37012"/>
 		</Entity>
 		<Entity uid="6680">
 			<Template>skirmish/units/default_infantry_melee_b</Template>
 			<Player>8</Player>
-			<Position x="237.98203" z="659.47773"/>
-			<Orientation y="-0.53586"/>
+			<Position x="261.91282" z="654.24506"/>
+			<Orientation y="-5.44391"/>
 			<Actor seed="23640"/>
 		</Entity>
 		<Entity uid="6681">
 			<Template>skirmish/units/default_infantry_melee_b</Template>
 			<Player>8</Player>
-			<Position x="244.31605" z="662.03138"/>
-			<Orientation y="-0.65307"/>
+			<Position x="265.64917" z="648.52839"/>
+			<Orientation y="-5.56112"/>
 			<Actor seed="39232"/>
 		</Entity>
 		<Entity uid="6682">
 			<Template>skirmish/units/default_infantry_ranged_b</Template>
 			<Player>8</Player>
-			<Position x="257.89472" z="624.56934"/>
-			<Orientation y="2.7167"/>
+			<Position x="231.54184" z="627.9256"/>
+			<Orientation y="-2.19137"/>
 			<Actor seed="15284"/>
 		</Entity>
 		<Entity uid="6683">
 			<Template>skirmish/units/default_support_female_citizen</Template>
 			<Player>8</Player>
-			<Position x="226.59031" z="635.83149"/>
-			<Orientation y="4.28306"/>
+			<Position x="236.50306" z="660.82227"/>
+			<Orientation y="-0.625"/>
 			<Actor seed="33820"/>
 		</Entity>
 		<Entity uid="6684">
@@ -9039,84 +8698,6 @@
 			<Orientation y="-0.45136"/>
 			<Obstruction group="6929" group2="6933"/>
 			<Actor seed="23104"/>
-		</Entity>
-		<Entity uid="6947">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="547.25678" z="459.53855"/>
-			<Orientation y="2.93361"/>
-			<Actor seed="54168"/>
-		</Entity>
-		<Entity uid="6948">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="540.29822" z="459.21756"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="614"/>
-		</Entity>
-		<Entity uid="6949">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="534.20685" z="457.85004"/>
-			<Orientation y="2.47988"/>
-			<Actor seed="48350"/>
-		</Entity>
-		<Entity uid="6950">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="531.01337" z="451.18085"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="38696"/>
-		</Entity>
-		<Entity uid="6951">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="526.11561" z="449.0583"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="53264"/>
-		</Entity>
-		<Entity uid="6952">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="522.89911" z="452.93903"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="40810"/>
-		</Entity>
-		<Entity uid="6954">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="521.35261" z="458.66157"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="50064"/>
-		</Entity>
-		<Entity uid="6955">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="551.81733" z="462.0301"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="65401"/>
-		</Entity>
-		<Entity uid="6956">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="555.49341" z="467.68677"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="54410"/>
-		</Entity>
-		<Entity uid="6957">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="557.34882" z="474.6244"/>
-			<Orientation y="-2.18598"/>
-			<Actor seed="47232"/>
-		</Entity>
-		<Entity uid="6958">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="514.56641" z="472.18754"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="29682"/>
-		</Entity>
-		<Entity uid="6959">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="483.04615" z="510.45374"/>
-			<Orientation y="1.91416"/>
-			<Actor seed="55556"/>
-		</Entity>
-		<Entity uid="6960">
-			<Template>actor|geology/stone_savanna_cubic.xml</Template>
-			<Position x="481.59574" z="504.22361"/>
-			<Orientation y="1.49825"/>
-			<Actor seed="64384"/>
 		</Entity>
 		<Entity uid="6961">
 			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
@@ -11987,7 +11568,7 @@
 		</Entity>
 		<Entity uid="7435">
 			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
-			<Position x="771.73694" z="67.41894"/>
+			<Position x="771.58204" z="66.90499"/>
 			<Orientation y="2.00808"/>
 			<Actor seed="61382"/>
 		</Entity>
@@ -12155,8 +11736,8 @@
 		</Entity>
 		<Entity uid="7463">
 			<Template>actor|geology/stone_savanna_weathered.xml</Template>
-			<Position x="768.08741" z="67.64344"/>
-			<Orientation y="2.35621"/>
+			<Position x="767.05457" z="66.39095"/>
+			<Orientation y="-2.79247"/>
 			<Actor seed="46238"/>
 		</Entity>
 		<Entity uid="7465">
@@ -16573,355 +16154,355 @@
 			<Actor seed="56590"/>
 		</Entity>
 		<Entity uid="8276">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="688.22974" z="454.61805"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="18102"/>
 		</Entity>
 		<Entity uid="8277">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="675.82703" z="468.53849"/>
 			<Orientation y="-1.09917"/>
 			<Actor seed="54252"/>
 		</Entity>
 		<Entity uid="8278">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="713.02265" z="439.04957"/>
 			<Orientation y="-0.41817"/>
 			<Actor seed="14428"/>
 		</Entity>
 		<Entity uid="8279">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="690.11371" z="465.43921"/>
 			<Orientation y="0.49096"/>
 			<Actor seed="574"/>
 		</Entity>
 		<Entity uid="8281">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="673.98908" z="478.52594"/>
 			<Orientation y="-0.00022"/>
 			<Actor seed="19074"/>
 		</Entity>
 		<Entity uid="8282">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="664.4123" z="469.16095"/>
 			<Orientation y="2.18384"/>
 			<Actor seed="30194"/>
 		</Entity>
 		<Entity uid="8283">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="667.62342" z="489.85325"/>
 			<Orientation y="2.71622"/>
 			<Actor seed="53236"/>
 		</Entity>
 		<Entity uid="8284">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="704.70301" z="444.08582"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="13736"/>
 		</Entity>
 		<Entity uid="8285">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="703.95545" z="446.62021"/>
 			<Orientation y="-0.01606"/>
 			<Actor seed="54154"/>
 		</Entity>
 		<Entity uid="8286">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="703.21534" z="448.78696"/>
 			<Orientation y="-0.38604"/>
 			<Actor seed="3210"/>
 		</Entity>
 		<Entity uid="8287">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="700.09247" z="450.91712"/>
 			<Orientation y="-1.17014"/>
 			<Actor seed="58236"/>
 		</Entity>
 		<Entity uid="8288">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="695.69574" z="453.44263"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="11060"/>
 		</Entity>
 		<Entity uid="8289">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="692.78455" z="444.65748"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="30532"/>
 		</Entity>
 		<Entity uid="8290">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="697.89496" z="447.48899"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="3778"/>
 		</Entity>
 		<Entity uid="8291">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="701.05848" z="443.7198"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="42258"/>
 		</Entity>
 		<Entity uid="8292">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="708.02479" z="443.977"/>
 			<Orientation y="-0.17425"/>
 			<Actor seed="56362"/>
 		</Entity>
 		<Entity uid="8293">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="707.22284" z="446.75434"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="38832"/>
 		</Entity>
 		<Entity uid="8294">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="705.68885" z="448.5524"/>
 			<Orientation y="-1.23537"/>
 			<Actor seed="54804"/>
 		</Entity>
 		<Entity uid="8295">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="709.82203" z="445.17023"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="36324"/>
 		</Entity>
 		<Entity uid="8296">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="705.7035" z="441.24857"/>
 			<Orientation y="1.46093"/>
 			<Actor seed="15338"/>
 		</Entity>
 		<Entity uid="8297">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="708.51966" z="438.1969"/>
 			<Orientation y="1.21621"/>
 			<Actor seed="42578"/>
 		</Entity>
 		<Entity uid="8298">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="711.6355" z="438.04102"/>
 			<Orientation y="-3.09321"/>
 			<Actor seed="43790"/>
 		</Entity>
 		<Entity uid="8299">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="664.06098" z="503.16654"/>
 			<Orientation y="0.25072"/>
 			<Actor seed="27868"/>
 		</Entity>
 		<Entity uid="8300">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="665.3816" z="508.04252"/>
 			<Orientation y="0.24883"/>
 			<Actor seed="25554"/>
 		</Entity>
 		<Entity uid="8301">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="671.91895" z="511.34809"/>
 			<Orientation y="1.27018"/>
 			<Actor seed="17580"/>
 		</Entity>
 		<Entity uid="8302">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="651.21595" z="458.98633"/>
 			<Orientation y="-2.25496"/>
 			<Actor seed="24646"/>
 		</Entity>
 		<Entity uid="8303">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="654.32453" z="460.16456"/>
 			<Orientation y="-2.68143"/>
 			<Actor seed="9430"/>
 		</Entity>
 		<Entity uid="8304">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="659.81006" z="464.74384"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="7018"/>
 		</Entity>
 		<Entity uid="8305">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="650.6529" z="478.57914"/>
 			<Orientation y="-1.01761"/>
 			<Actor seed="19402"/>
 		</Entity>
 		<Entity uid="8306">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="668.45203" z="477.32877"/>
 			<Orientation y="1.05205"/>
 			<Actor seed="23490"/>
 		</Entity>
 		<Entity uid="8307">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="695.75501" z="476.9138"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="12398"/>
 		</Entity>
 		<Entity uid="8308">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="716.88721" z="456.77063"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="27914"/>
 		</Entity>
 		<Entity uid="8309">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="715.08136" z="454.76041"/>
 			<Orientation y="0.2711"/>
 			<Actor seed="44608"/>
 		</Entity>
 		<Entity uid="8310">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="713.58765" z="453.03254"/>
 			<Orientation y="1.21091"/>
 			<Actor seed="4312"/>
 		</Entity>
 		<Entity uid="8311">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="711.46283" z="449.42334"/>
 			<Orientation y="1.33851"/>
 			<Actor seed="54330"/>
 		</Entity>
 		<Entity uid="8312">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="720.4549" z="428.87052"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="12032"/>
 		</Entity>
 		<Entity uid="8313">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="669.01941" z="509.5087"/>
 			<Orientation y="-1.053"/>
 			<Actor seed="31938"/>
 		</Entity>
 		<Entity uid="8314">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="697.47132" z="463.3376"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="4762"/>
 		</Entity>
 		<Entity uid="8315">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="726.78876" z="423.47971"/>
 			<Orientation y="-1.39696"/>
 			<Actor seed="34722"/>
 		</Entity>
 		<Entity uid="8316">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1099.32801" z="160.25477"/>
 			<Orientation y="2.7355"/>
 			<Actor seed="54554"/>
 		</Entity>
 		<Entity uid="8317">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1105.11634" z="147.66572"/>
 			<Orientation y="2.36057"/>
 			<Actor seed="26304"/>
 		</Entity>
 		<Entity uid="8318">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1106.94605" z="170.0182"/>
 			<Orientation y="-1.71058"/>
 			<Actor seed="39964"/>
 		</Entity>
 		<Entity uid="8319">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1095.94996" z="178.30549"/>
 			<Orientation y="-0.0969"/>
 			<Actor seed="65412"/>
 		</Entity>
 		<Entity uid="8320">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1091.45826" z="203.43531"/>
 			<Orientation y="-0.39123"/>
 			<Actor seed="958"/>
 		</Entity>
 		<Entity uid="8321">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1102.6797" z="179.40467"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="16658"/>
 		</Entity>
 		<Entity uid="8322">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1107.245" z="161.90287"/>
 			<Orientation y="-2.66587"/>
 			<Actor seed="43770"/>
 		</Entity>
 		<Entity uid="8323">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1088.97938" z="191.83875"/>
 			<Orientation y="2.8927"/>
 			<Actor seed="34804"/>
 		</Entity>
 		<Entity uid="8324">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1083.85499" z="226.57804"/>
 			<Orientation y="2.57367"/>
 			<Actor seed="40910"/>
 		</Entity>
 		<Entity uid="8325">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1107.7417" z="182.21287"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="59812"/>
 		</Entity>
 		<Entity uid="8326">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1101.10804" z="173.16086"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="15730"/>
 		</Entity>
 		<Entity uid="8327">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1110.41297" z="186.76047"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="17570"/>
 		</Entity>
 		<Entity uid="8328">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1083.02332" z="217.62107"/>
 			<Orientation y="-1.1439"/>
 			<Actor seed="17314"/>
 		</Entity>
 		<Entity uid="8329">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1082.68177" z="205.61185"/>
 			<Orientation y="2.6956"/>
 			<Actor seed="13270"/>
 		</Entity>
 		<Entity uid="8330">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1081.43885" z="197.87995"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="39666"/>
 		</Entity>
 		<Entity uid="8331">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1076.47022" z="218.13166"/>
 			<Orientation y="-2.06826"/>
 			<Actor seed="16474"/>
 		</Entity>
 		<Entity uid="8332">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1077.62366" z="222.73285"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="47696"/>
 		</Entity>
 		<Entity uid="8333">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1071.06873" z="211.89393"/>
 			<Orientation y="-2.66797"/>
 			<Actor seed="40644"/>
 		</Entity>
 		<Entity uid="8334">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1081.58753" z="247.62739"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="51146"/>
 		</Entity>
 		<Entity uid="8335">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1120.87647" z="132.17649"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="57706"/>
@@ -25507,7 +25088,7 @@
 		</Entity>
 		<Entity uid="9787">
 			<Template>actor|props/flora/bush_juniper_prickly.xml</Template>
-			<Position x="699.20228" z="543.46711"/>
+			<Position x="701.69172" z="442.05079"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="58824"/>
 		</Entity>
@@ -44001,1811 +43582,1811 @@
 			<Actor seed="65377"/>
 		</Entity>
 		<Entity uid="12669">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="640.07245" z="356.1706"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="54664"/>
 		</Entity>
 		<Entity uid="12670">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="638.42896" z="360.62974"/>
 			<Orientation y="-1.00951"/>
 			<Actor seed="40094"/>
 		</Entity>
 		<Entity uid="12671">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="634.32471" z="365.14942"/>
 			<Orientation y="-1.14602"/>
 			<Actor seed="35926"/>
 		</Entity>
 		<Entity uid="12672">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="630.95331" z="367.82343"/>
 			<Orientation y="-1.26877"/>
 			<Actor seed="54174"/>
 		</Entity>
 		<Entity uid="12673">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="626.97425" z="370.41135"/>
 			<Orientation y="-1.58275"/>
 			<Actor seed="35410"/>
 		</Entity>
 		<Entity uid="12674">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="622.83234" z="370.59052"/>
 			<Orientation y="-1.71177"/>
 			<Actor seed="53498"/>
 		</Entity>
 		<Entity uid="12675">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="617.65937" z="370.36243"/>
 			<Orientation y="-1.829"/>
 			<Actor seed="2960"/>
 		</Entity>
 		<Entity uid="12676">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="641.29633" z="352.93659"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="50054"/>
 		</Entity>
 		<Entity uid="12677">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="642.22193" z="348.10434"/>
 			<Orientation y="-2.3843"/>
 			<Actor seed="10844"/>
 		</Entity>
 		<Entity uid="12678">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="640.91419" z="343.03461"/>
 			<Orientation y="-2.12871"/>
 			<Actor seed="30740"/>
 		</Entity>
 		<Entity uid="12679">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="643.16639" z="351.92557"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="64802"/>
 		</Entity>
 		<Entity uid="12680">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="639.62397" z="336.30561"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="50348"/>
 		</Entity>
 		<Entity uid="12681">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="640.74024" z="338.68213"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="1486"/>
 		</Entity>
 		<Entity uid="12682">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="637.6717" z="332.0182"/>
 			<Orientation y="-2.41874"/>
 			<Actor seed="10122"/>
 		</Entity>
 		<Entity uid="12683">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="635.44782" z="331.00684"/>
 			<Orientation y="-2.10225"/>
 			<Actor seed="36306"/>
 		</Entity>
 		<Entity uid="12684">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="632.08075" z="327.57398"/>
 			<Orientation y="-2.04743"/>
 			<Actor seed="2022"/>
 		</Entity>
 		<Entity uid="12685">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="629.4911" z="326.2909"/>
 			<Orientation y="-2.06368"/>
 			<Actor seed="58568"/>
 		</Entity>
 		<Entity uid="12686">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="623.96174" z="324.77442"/>
 			<Orientation y="-1.5531"/>
 			<Actor seed="63268"/>
 		</Entity>
 		<Entity uid="12687">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="618.40625" z="324.1839"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="42472"/>
 		</Entity>
 		<Entity uid="12688">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="622.95447" z="367.46958"/>
 			<Orientation y="-1.77964"/>
 			<Actor seed="50550"/>
 		</Entity>
 		<Entity uid="12689">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="632.95728" z="363.17972"/>
 			<Orientation y="2.51607"/>
 			<Actor seed="52002"/>
 		</Entity>
 		<Entity uid="12690">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="612.90033" z="366.26319"/>
 			<Orientation y="-2.10404"/>
 			<Actor seed="21882"/>
 		</Entity>
 		<Entity uid="12700">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="359.20081" z="722.71692"/>
 			<Orientation y="2.78904"/>
 			<Actor seed="13874"/>
 		</Entity>
 		<Entity uid="12701">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="358.55771" z="705.21692"/>
 			<Orientation y="-2.46598"/>
 			<Actor seed="8400"/>
 		</Entity>
 		<Entity uid="12702">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="348.63465" z="694.46448"/>
 			<Orientation y="-2.30076"/>
 			<Actor seed="4394"/>
 		</Entity>
 		<Entity uid="12703">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="349.45038" z="730.41858"/>
 			<Orientation y="-1.39072"/>
 			<Actor seed="1246"/>
 		</Entity>
 		<Entity uid="12704">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="332.57526" z="730.03467"/>
 			<Orientation y="-2.20795"/>
 			<Actor seed="56164"/>
 		</Entity>
 		<Entity uid="12705">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="336.36847" z="685.08198"/>
 			<Orientation y="-1.76676"/>
 			<Actor seed="49990"/>
 		</Entity>
 		<Entity uid="12706">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="357.95456" z="711.5141"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="1866"/>
 		</Entity>
 		<Entity uid="12707">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="353.3166" z="706.80524"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="22130"/>
 		</Entity>
 		<Entity uid="12708">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="348.70704" z="700.04108"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="57760"/>
 		</Entity>
 		<Entity uid="12709">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="346.49817" z="697.6355"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="31502"/>
 		</Entity>
 		<Entity uid="12710">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="353.71448" z="725.10584"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="36676"/>
 		</Entity>
 		<Entity uid="12711">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="322.0817" z="724.11518"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="31998"/>
 		</Entity>
 		<Entity uid="12712">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="318.81354" z="722.68476"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="20766"/>
 		</Entity>
 		<Entity uid="12713">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="314.76902" z="721.8194"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="10166"/>
 		</Entity>
 		<Entity uid="12714">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="324.32117" z="731.22761"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="43620"/>
 		</Entity>
 		<Entity uid="12715">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="320.71949" z="734.15601"/>
 			<Orientation y="-1.5033"/>
 			<Actor seed="37078"/>
 		</Entity>
 		<Entity uid="12716">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="317.3625" z="869.45484"/>
 			<Orientation y="0.69066"/>
 			<Actor seed="35912"/>
 		</Entity>
 		<Entity uid="12717">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="301.90348" z="860.76899"/>
 			<Orientation y="1.65963"/>
 			<Actor seed="5264"/>
 		</Entity>
 		<Entity uid="12718">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="291.05683" z="867.8595"/>
 			<Orientation y="2.59934"/>
 			<Actor seed="1478"/>
 		</Entity>
 		<Entity uid="12719">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="281.88978" z="880.61255"/>
 			<Orientation y="-3.0675"/>
 			<Actor seed="8674"/>
 		</Entity>
 		<Entity uid="12720">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="285.51752" z="893.48255"/>
 			<Orientation y="-2.68931"/>
 			<Actor seed="54438"/>
 		</Entity>
 		<Entity uid="12721">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="296.54017" z="865.45429"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="4494"/>
 		</Entity>
 		<Entity uid="12722">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="298.4882" z="867.10962"/>
 			<Orientation y="-0.94468"/>
 			<Actor seed="7752"/>
 		</Entity>
 		<Entity uid="12723">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="295.3531" z="869.15442"/>
 			<Orientation y="-0.62056"/>
 			<Actor seed="34114"/>
 		</Entity>
 		<Entity uid="12724">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="286.90006" z="879.73786"/>
 			<Orientation y="-0.26526"/>
 			<Actor seed="37316"/>
 		</Entity>
 		<Entity uid="12725">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="287.1786" z="885.43946"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="27974"/>
 		</Entity>
 		<Entity uid="12726">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="289.16633" z="889.60151"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="1922"/>
 		</Entity>
 		<Entity uid="12727">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="308.01606" z="864.42231"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="34848"/>
 		</Entity>
 		<Entity uid="12728">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="302.4658" z="867.20966"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="29658"/>
 		</Entity>
 		<Entity uid="12729">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="323.2028" z="879.5948"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="32188"/>
 		</Entity>
 		<Entity uid="12730">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="322.33341" z="882.2074"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="19910"/>
 		</Entity>
 		<Entity uid="12731">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="321.95313" z="885.91157"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="38388"/>
 		</Entity>
 		<Entity uid="12732">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="294.10538" z="903.28943"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="36958"/>
 		</Entity>
 		<Entity uid="12733">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="541.7472" z="1155.56885"/>
 			<Orientation y="-0.25881"/>
 			<Actor seed="59480"/>
 		</Entity>
 		<Entity uid="12734">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="538.93146" z="1171.7129"/>
 			<Orientation y="-0.01516"/>
 			<Actor seed="23332"/>
 		</Entity>
 		<Entity uid="12735">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="544.67658" z="1184.9131"/>
 			<Orientation y="0.61374"/>
 			<Actor seed="35480"/>
 		</Entity>
 		<Entity uid="12736">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="548.14197" z="1142.54175"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="53018"/>
 		</Entity>
 		<Entity uid="12737">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="560.39063" z="1130.13123"/>
 			<Orientation y="-1.29241"/>
 			<Actor seed="51682"/>
 		</Entity>
 		<Entity uid="12738">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="575.54505" z="1130.64368"/>
 			<Orientation y="-2.23075"/>
 			<Actor seed="15864"/>
 		</Entity>
 		<Entity uid="12739">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="587.35224" z="1139.2356"/>
 			<Orientation y="-2.60967"/>
 			<Actor seed="64580"/>
 		</Entity>
 		<Entity uid="12740">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="598.91657" z="1155.12183"/>
 			<Orientation y="-2.43732"/>
 			<Actor seed="6678"/>
 		</Entity>
 		<Entity uid="12741">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="549.08667" z="1148.09217"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="18576"/>
 		</Entity>
 		<Entity uid="12742">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="546.04834" z="1155.42469"/>
 			<Orientation y="2.37725"/>
 			<Actor seed="34216"/>
 		</Entity>
 		<Entity uid="12743">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="546.66016" z="1162.17676"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="63722"/>
 		</Entity>
 		<Entity uid="12744">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="552.9466" z="1194.68116"/>
 			<Orientation y="1.76305"/>
 			<Actor seed="52340"/>
 		</Entity>
 		<Entity uid="12745">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="559.45582" z="1197.56019"/>
 			<Orientation y="2.54052"/>
 			<Actor seed="17224"/>
 		</Entity>
 		<Entity uid="12746">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="603.82947" z="1167.23304"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="7758"/>
 		</Entity>
 		<Entity uid="12747">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1331.64332" z="1066.44263"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="36768"/>
 		</Entity>
 		<Entity uid="12748">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1337.54126" z="1050.81092"/>
 			<Orientation y="3.05214"/>
 			<Actor seed="9304"/>
 		</Entity>
 		<Entity uid="12749">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1316.5" z="1071.02002"/>
 			<Orientation y="1.21927"/>
 			<Actor seed="17984"/>
 		</Entity>
 		<Entity uid="12750">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1307.0918" z="1061.09302"/>
 			<Orientation y="0.42397"/>
 			<Actor seed="55608"/>
 		</Entity>
 		<Entity uid="12751">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1197.26331" z="1286.44251"/>
 			<Orientation y="2.90224"/>
 			<Actor seed="60324"/>
 		</Entity>
 		<Entity uid="12752">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1193.51575" z="1274.46277"/>
 			<Orientation y="-2.43203"/>
 			<Actor seed="45632"/>
 		</Entity>
 		<Entity uid="12753">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1189.76441" z="1294.45911"/>
 			<Orientation y="1.4962"/>
 			<Actor seed="50486"/>
 		</Entity>
 		<Entity uid="12754">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1190.7865" z="1295.8866"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="50644"/>
 		</Entity>
 		<Entity uid="12755">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1195.72352" z="1275.36976"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="17184"/>
 		</Entity>
 		<Entity uid="12756">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1194.11097" z="1273.13086"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="19130"/>
 		</Entity>
 		<Entity uid="12757">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1193.90833" z="1285.74793"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="47706"/>
 		</Entity>
 		<Entity uid="12758">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1182.44874" z="1266.28565"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="18832"/>
 		</Entity>
 		<Entity uid="12759">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1177.32361" z="1296.82557"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="11648"/>
 		</Entity>
 		<Entity uid="12760">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1358.83814" z="467.86381"/>
 			<Orientation y="2.73003"/>
 			<Actor seed="45310"/>
 		</Entity>
 		<Entity uid="12761">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1354.33228" z="455.28022"/>
 			<Orientation y="-2.25219"/>
 			<Actor seed="3804"/>
 		</Entity>
 		<Entity uid="12762">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1349.5901" z="476.79926"/>
 			<Orientation y="1.54998"/>
 			<Actor seed="32280"/>
 		</Entity>
 		<Entity uid="12763">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="559.90485" z="1140.11219"/>
 			<Orientation y="0.5803"/>
 			<Actor seed="59900"/>
 		</Entity>
 		<Entity uid="12764">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="555.485" z="1145.84522"/>
 			<Orientation y="0.8062"/>
 			<Actor seed="17714"/>
 		</Entity>
 		<Entity uid="12765">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="552.1457" z="1152.29163"/>
 			<Orientation y="1.05483"/>
 			<Actor seed="15722"/>
 		</Entity>
 		<Entity uid="12766">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="550.62336" z="1160.50696"/>
 			<Orientation y="1.38814"/>
 			<Actor seed="10758"/>
 		</Entity>
 		<Entity uid="12767">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="547.00953" z="1165.8899"/>
 			<Orientation y="1.37877"/>
 			<Actor seed="35790"/>
 		</Entity>
 		<Entity uid="12768">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="545.97223" z="1172.73206"/>
 			<Orientation y="1.60611"/>
 			<Actor seed="31110"/>
 		</Entity>
 		<Entity uid="12769">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="549.38166" z="1180.01868"/>
 			<Orientation y="2.031"/>
 			<Actor seed="22912"/>
 		</Entity>
 		<Entity uid="12770">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="554.86646" z="1185.67322"/>
 			<Orientation y="2.28977"/>
 			<Actor seed="38672"/>
 		</Entity>
 		<Entity uid="12771">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="565.71412" z="1136.77002"/>
 			<Orientation y="0.36605"/>
 			<Actor seed="15174"/>
 		</Entity>
 		<Entity uid="12772">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="573.21534" z="1136.75599"/>
 			<Orientation y="-0.11084"/>
 			<Actor seed="55250"/>
 		</Entity>
 		<Entity uid="12773">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="581.30494" z="1143.72974"/>
 			<Orientation y="-0.35517"/>
 			<Actor seed="1800"/>
 		</Entity>
 		<Entity uid="12774">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="587.48823" z="1149.63196"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="2488"/>
 		</Entity>
 		<Entity uid="12775">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="592.2923" z="1157.33521"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="62482"/>
 		</Entity>
 		<Entity uid="12776">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="596.96589" z="1164.56202"/>
 			<Orientation y="-1.21789"/>
 			<Actor seed="62370"/>
 		</Entity>
 		<Entity uid="12777">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="574.55243" z="1158.22718"/>
 			<Orientation y="-1.01565"/>
 			<Actor seed="30588"/>
 		</Entity>
 		<Entity uid="12778">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="568.80103" z="1162.95411"/>
 			<Orientation y="-1.05587"/>
 			<Actor seed="43310"/>
 		</Entity>
 		<Entity uid="12783">
-			<Template>gaia/rock/badlands_large</Template>
+			<Template>gaia/rock/savanna_large</Template>
 			<Player>0</Player>
 			<Position x="1182.05286" z="1282.16785"/>
 			<Orientation y="-2.63794"/>
 			<Actor seed="19282"/>
 		</Entity>
 		<Entity uid="12784">
-			<Template>gaia/rock/badlands_large</Template>
+			<Template>gaia/rock/savanna_large</Template>
 			<Player>0</Player>
 			<Position x="1319.70313" z="1054.36414"/>
 			<Orientation y="-2.55134"/>
 			<Actor seed="33896"/>
 		</Entity>
 		<Entity uid="12785">
-			<Template>gaia/rock/badlands_large</Template>
+			<Template>gaia/rock/savanna_large</Template>
 			<Player>0</Player>
 			<Position x="1346.68506" z="465.21009"/>
 			<Orientation y="-2.0785"/>
 			<Actor seed="23388"/>
 		</Entity>
 		<Entity uid="12786">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="613.09717" z="362.3321"/>
 			<Orientation y="3.03988"/>
 			<Actor seed="1872"/>
 		</Entity>
 		<Entity uid="12787">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="620.85944" z="362.8011"/>
 			<Orientation y="3.0595"/>
 			<Actor seed="58560"/>
 		</Entity>
 		<Entity uid="12788">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="627.32361" z="361.19837"/>
 			<Orientation y="-2.79195"/>
 			<Actor seed="30976"/>
 		</Entity>
 		<Entity uid="12789">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="633.20435" z="356.08954"/>
 			<Orientation y="-2.17428"/>
 			<Actor seed="42470"/>
 		</Entity>
 		<Entity uid="12790">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="636.37702" z="349.94574"/>
 			<Orientation y="-1.86194"/>
 			<Actor seed="37934"/>
 		</Entity>
 		<Entity uid="12791">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="633.54944" z="341.71622"/>
 			<Orientation y="-1.02123"/>
 			<Actor seed="21710"/>
 		</Entity>
 		<Entity uid="12792">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="627.89454" z="335.79651"/>
 			<Orientation y="-0.69021"/>
 			<Actor seed="12634"/>
 		</Entity>
 		<Entity uid="12793">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="622.95936" z="330.5077"/>
 			<Orientation y="-0.68624"/>
 			<Actor seed="32200"/>
 		</Entity>
 		<Entity uid="12794">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
-			<Position x="348.82096" z="720.84803"/>
+			<Position x="345.45194" z="725.78657"/>
 			<Orientation y="-2.12906"/>
 			<Actor seed="47662"/>
 		</Entity>
 		<Entity uid="12795">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
-			<Position x="350.23346" z="713.30481"/>
+			<Position x="355.5672" z="714.73633"/>
 			<Orientation y="-1.65276"/>
 			<Actor seed="51282"/>
 		</Entity>
 		<Entity uid="12796">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
-			<Position x="346.6944" z="706.32813"/>
+			<Position x="348.47532" z="706.9256"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="23242"/>
 		</Entity>
 		<Entity uid="12797">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="341.4521" z="700.70057"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="55318"/>
 		</Entity>
 		<Entity uid="12798">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="336.7866" z="696.17872"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="65523"/>
 		</Entity>
 		<Entity uid="12799">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="328.681" z="694.53254"/>
 			<Orientation y="-0.43702"/>
 			<Actor seed="28544"/>
 		</Entity>
 		<Entity uid="12800">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="320.43989" z="693.15735"/>
 			<Orientation y="-0.3994"/>
 			<Actor seed="38982"/>
 		</Entity>
 		<Entity uid="12801">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
-			<Position x="343.72895" z="725.443"/>
+			<Position x="337.85892" z="726.85578"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="45320"/>
 		</Entity>
 		<Entity uid="12802">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
-			<Position x="332.22114" z="721.44294"/>
+			<Position x="331.61405" z="725.19831"/>
 			<Orientation y="2.9008"/>
 			<Actor seed="16744"/>
 		</Entity>
 		<Entity uid="12804">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
-			<Position x="326.57032" z="719.76252"/>
+			<Position x="325.32895" z="722.89844"/>
 			<Orientation y="3.06122"/>
 			<Actor seed="53348"/>
 		</Entity>
 		<Entity uid="12806">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
-			<Position x="319.42191" z="717.19715"/>
+			<Position x="319.77872" z="723.05268"/>
 			<Orientation y="-3.10656"/>
 			<Actor seed="35806"/>
 		</Entity>
 		<Entity uid="12807">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
-			<Position x="312.482" z="717.0943"/>
+			<Position x="313.05271" z="725.8819"/>
 			<Orientation y="-2.72634"/>
 			<Actor seed="24636"/>
 		</Entity>
 		<Entity uid="12808">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="290.5825" z="880.82557"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="47646"/>
 		</Entity>
 		<Entity uid="12809">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="294.586" z="875.62916"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="48798"/>
 		</Entity>
 		<Entity uid="12810">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="300.78861" z="870.37867"/>
 			<Orientation y="0.3804"/>
 			<Actor seed="53642"/>
 		</Entity>
 		<Entity uid="12811">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="308.61744" z="868.83991"/>
 			<Orientation y="-0.07969"/>
 			<Actor seed="45808"/>
 		</Entity>
 		<Entity uid="12812">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="315.22663" z="873.8772"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="52766"/>
 		</Entity>
 		<Entity uid="12813">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="318.78248" z="880.35547"/>
 			<Orientation y="-1.14254"/>
 			<Actor seed="38092"/>
 		</Entity>
 		<Entity uid="12814">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="318.63605" z="889.4803"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="29942"/>
 		</Entity>
 		<Entity uid="12815">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="292.01172" z="889.1659"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="16706"/>
 		</Entity>
 		<Entity uid="12816">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="294.43287" z="896.83509"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="63972"/>
 		</Entity>
 		<Entity uid="12817">
-			<Template>gaia/rock/desert_cut</Template>
+			<Template>gaia/rock/india_cut</Template>
 			<Player>0</Player>
 			<Position x="299.79136" z="901.92963"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="52160"/>
 		</Entity>
 		<Entity uid="12818">
-			<Template>gaia/ore/badlands_large</Template>
+			<Template>gaia/ore/savanna_01</Template>
 			<Player>0</Player>
 			<Position x="612.62183" z="1130.47217"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="45246"/>
 		</Entity>
 		<Entity uid="12819">
-			<Template>gaia/ore/badlands_large</Template>
+			<Template>gaia/ore/savanna_01</Template>
 			<Player>0</Player>
 			<Position x="791.44446" z="1367.14893"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="45492"/>
 		</Entity>
 		<Entity uid="12820">
-			<Template>gaia/ore/badlands_large</Template>
+			<Template>gaia/ore/savanna_01</Template>
 			<Player>0</Player>
 			<Position x="885.40668" z="1110.81617"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="49380"/>
 		</Entity>
 		<Entity uid="12821">
-			<Template>gaia/ore/badlands_large</Template>
+			<Template>gaia/ore/savanna_01</Template>
 			<Player>0</Player>
 			<Position x="1202.07544" z="1157.95887"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="41598"/>
 		</Entity>
 		<Entity uid="12822">
-			<Template>gaia/ore/badlands_large</Template>
+			<Template>gaia/ore/savanna_01</Template>
 			<Player>0</Player>
 			<Position x="1161.17615" z="865.6092"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="32784"/>
 		</Entity>
 		<Entity uid="12824">
-			<Template>gaia/ore/badlands_large</Template>
+			<Template>gaia/ore/savanna_01</Template>
 			<Player>0</Player>
 			<Position x="1459.1886" z="862.44385"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="21030"/>
 		</Entity>
 		<Entity uid="12825">
-			<Template>gaia/ore/badlands_large</Template>
+			<Template>gaia/ore/savanna_01</Template>
 			<Player>0</Player>
 			<Position x="1167.29676" z="331.95395"/>
 			<Orientation y="-2.36348"/>
 			<Actor seed="22670"/>
 		</Entity>
 		<Entity uid="12826">
-			<Template>gaia/ore/badlands_large</Template>
+			<Template>gaia/ore/savanna_01</Template>
 			<Player>0</Player>
 			<Position x="1003.15424" z="539.66913"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="9468"/>
 		</Entity>
 		<Entity uid="12827">
-			<Template>gaia/ore/badlands_large</Template>
+			<Template>gaia/ore/savanna_01</Template>
 			<Player>0</Player>
 			<Position x="870.71479" z="92.81487"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="61930"/>
 		</Entity>
 		<Entity uid="12828">
-			<Template>gaia/ore/badlands_large</Template>
+			<Template>gaia/ore/savanna_01</Template>
 			<Player>0</Player>
 			<Position x="317.13355" z="302.69016"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="3548"/>
 		</Entity>
 		<Entity uid="12829">
-			<Template>gaia/ore/badlands_large</Template>
+			<Template>gaia/ore/savanna_01</Template>
 			<Player>0</Player>
 			<Position x="349.00101" z="544.1313"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="26034"/>
 		</Entity>
 		<Entity uid="12830">
-			<Template>gaia/ore/badlands_large</Template>
+			<Template>gaia/ore/savanna_01</Template>
 			<Player>0</Player>
 			<Position x="87.31043" z="654.83765"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="1.71465"/>
 			<Actor seed="16260"/>
 		</Entity>
 		<Entity uid="12831">
-			<Template>gaia/ore/badlands_large</Template>
+			<Template>gaia/ore/savanna_01</Template>
 			<Player>0</Player>
 			<Position x="177.81507" z="1112.06714"/>
 			<Orientation y="2.26491"/>
 			<Actor seed="57578"/>
 		</Entity>
 		<Entity uid="12832">
-			<Template>gaia/ore/badlands_large</Template>
+			<Template>gaia/ore/savanna_01</Template>
 			<Player>0</Player>
 			<Position x="376.30588" z="1291.76734"/>
 			<Orientation y="2.63193"/>
 			<Actor seed="30602"/>
 		</Entity>
 		<Entity uid="12833">
-			<Template>gaia/ore/badlands_large</Template>
+			<Template>gaia/ore/savanna_01</Template>
 			<Player>0</Player>
 			<Position x="423.0811" z="853.4928"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="44312"/>
 		</Entity>
 		<Entity uid="12834">
-			<Template>gaia/ore/badlands_large</Template>
+			<Template>gaia/ore/savanna_01</Template>
 			<Player>0</Player>
 			<Position x="612.56678" z="705.73102"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="25222"/>
 		</Entity>
 		<Entity uid="12835">
-			<Template>gaia/ore/badlands_large</Template>
+			<Template>gaia/ore/savanna_01</Template>
 			<Player>0</Player>
 			<Position x="623.96784" z="532.66413"/>
 			<Orientation y="-1.18026"/>
 			<Actor seed="63700"/>
 		</Entity>
 		<Entity uid="12836">
-			<Template>gaia/ore/badlands_large</Template>
+			<Template>gaia/ore/savanna_01</Template>
 			<Player>0</Player>
 			<Position x="465.76688" z="634.29816"/>
 			<Orientation y="2.5353"/>
 			<Actor seed="26504"/>
 		</Entity>
 		<Entity uid="12837">
-			<Template>gaia/rock/badlands_large</Template>
+			<Template>gaia/rock/savanna_large</Template>
 			<Player>0</Player>
 			<Position x="1217.39393" z="204.65845"/>
-			<Orientation y="2.35621"/>
+			<Orientation y="-2.43673"/>
 			<Actor seed="62772"/>
 		</Entity>
 		<Entity uid="12838">
-			<Template>gaia/rock/badlands_large</Template>
+			<Template>gaia/rock/savanna_large</Template>
 			<Player>0</Player>
 			<Position x="1487.1648" z="612.52332"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="19252"/>
 		</Entity>
 		<Entity uid="12839">
-			<Template>gaia/rock/badlands_large</Template>
+			<Template>gaia/rock/savanna_large</Template>
 			<Player>0</Player>
 			<Position x="1078.41321" z="1071.09864"/>
 			<Orientation y="-1.7121"/>
 			<Actor seed="1632"/>
 		</Entity>
 		<Entity uid="12840">
-			<Template>gaia/rock/badlands_large</Template>
+			<Template>gaia/rock/savanna_large</Template>
 			<Player>0</Player>
 			<Position x="897.73664" z="938.85413"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="18484"/>
 		</Entity>
 		<Entity uid="12841">
-			<Template>gaia/rock/badlands_large</Template>
+			<Template>gaia/rock/savanna_large</Template>
 			<Player>0</Player>
 			<Position x="484.279" z="1061.60132"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="43026"/>
 		</Entity>
 		<Entity uid="12842">
-			<Template>gaia/rock/badlands_large</Template>
+			<Template>gaia/rock/savanna_large</Template>
 			<Player>0</Player>
 			<Position x="60.7707" z="887.33979"/>
-			<Orientation y="0.54641"/>
+			<Orientation y="-0.35224"/>
 			<Actor seed="6738"/>
 		</Entity>
 		<Entity uid="12843">
-			<Template>gaia/rock/badlands_large</Template>
+			<Template>gaia/rock/savanna_large</Template>
 			<Player>0</Player>
 			<Position x="389.48612" z="224.16117"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="34916"/>
 		</Entity>
 		<Entity uid="12844">
-			<Template>gaia/rock/badlands_large</Template>
+			<Template>gaia/rock/savanna_large</Template>
 			<Player>0</Player>
 			<Position x="1202.84742" z="764.83814"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="160"/>
 		</Entity>
 		<Entity uid="12845">
-			<Template>gaia/rock/badlands_large</Template>
+			<Template>gaia/rock/savanna_large</Template>
 			<Player>0</Player>
 			<Position x="1008.7381" z="971.20905"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="40432"/>
 		</Entity>
 		<Entity uid="12846">
-			<Template>actor|geology/stone_desert_badlands_cubic_weathered.xml</Template>
+			<Template>actor|geology/stone_savanna_cubic_weathered.xml</Template>
 			<Position x="968.39313" z="720.5586"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="62320"/>
 		</Entity>
 		<Entity uid="12847">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="951.0298" z="741.59314"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="63242"/>
 		</Entity>
 		<Entity uid="12848">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="940.33863" z="754.34894"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="55434"/>
 		</Entity>
 		<Entity uid="12849">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="941.9496" z="717.34553"/>
 			<Orientation y="-0.71856"/>
 			<Actor seed="46994"/>
 		</Entity>
 		<Entity uid="12850">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="932.05396" z="733.6183"/>
 			<Orientation y="-0.77616"/>
 			<Actor seed="62402"/>
 		</Entity>
 		<Entity uid="12851">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="914.35657" z="720.14704"/>
 			<Orientation y="-0.79775"/>
 			<Actor seed="1976"/>
 		</Entity>
 		<Entity uid="12852">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="924.18158" z="706.99744"/>
 			<Orientation y="2.8507"/>
 			<Actor seed="62764"/>
 		</Entity>
 		<Entity uid="12853">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="895.97516" z="710.32386"/>
 			<Orientation y="2.32444"/>
 			<Actor seed="43052"/>
 		</Entity>
 		<Entity uid="12854">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="882.98237" z="718.3985"/>
 			<Orientation y="-1.24852"/>
 			<Actor seed="46838"/>
 		</Entity>
 		<Entity uid="12855">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="863.79664" z="724.28504"/>
 			<Orientation y="-0.9536"/>
 			<Actor seed="50588"/>
 		</Entity>
 		<Entity uid="12856">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="851.81684" z="698.48633"/>
 			<Orientation y="-0.59171"/>
 			<Actor seed="20864"/>
 		</Entity>
 		<Entity uid="12857">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="839.74384" z="713.01996"/>
 			<Orientation y="2.53261"/>
 			<Actor seed="52156"/>
 		</Entity>
 		<Entity uid="12858">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="829.2569" z="728.58106"/>
 			<Orientation y="2.44678"/>
 			<Actor seed="45864"/>
 		</Entity>
 		<Entity uid="12859">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="816.034" z="744.63642"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="27362"/>
 		</Entity>
 		<Entity uid="12860">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="792.96308" z="771.28205"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="10394"/>
 		</Entity>
 		<Entity uid="12861">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="777.0121" z="787.61994"/>
 			<Orientation y="2.30842"/>
 			<Actor seed="13344"/>
 		</Entity>
 		<Entity uid="12862">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="904.25483" z="701.72358"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="53394"/>
 		</Entity>
 		<Entity uid="12863">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="906.26966" z="703.94526"/>
 			<Orientation y="-2.6705"/>
 			<Actor seed="56074"/>
 		</Entity>
 		<Entity uid="12864">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="907.1413" z="700.11585"/>
 			<Orientation y="-2.42757"/>
 			<Actor seed="31954"/>
 		</Entity>
 		<Entity uid="12865">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="854.77753" z="685.21888"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="53198"/>
 		</Entity>
 		<Entity uid="12866">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="857.19245" z="682.25019"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="14900"/>
 		</Entity>
 		<Entity uid="12867">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="862.32447" z="674.77912"/>
 			<Orientation y="-0.5117"/>
 			<Actor seed="11224"/>
 		</Entity>
 		<Entity uid="12868">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="864.40632" z="676.0456"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="13264"/>
 		</Entity>
 		<Entity uid="12869">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="839.55402" z="719.39032"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="46876"/>
 		</Entity>
 		<Entity uid="12870">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="854.76117" z="733.09534"/>
 			<Orientation y="-0.54371"/>
 			<Actor seed="17910"/>
 		</Entity>
 		<Entity uid="12871">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="965.94636" z="725.18836"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="4118"/>
 		</Entity>
 		<Entity uid="12872">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="963.0813" z="728.95881"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="35590"/>
 		</Entity>
 		<Entity uid="12873">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="957.95215" z="733.53296"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="22054"/>
 		</Entity>
 		<Entity uid="12874">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="908.45832" z="729.92115"/>
 			<Orientation y="1.68528"/>
 			<Actor seed="26968"/>
 		</Entity>
 		<Entity uid="12875">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="883.80896" z="724.35547"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="55526"/>
 		</Entity>
 		<Entity uid="12876">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="872.8761" z="725.08637"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="64048"/>
 		</Entity>
 		<Entity uid="12877">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="766.86597" z="795.3924"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="33874"/>
 		</Entity>
 		<Entity uid="12878">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="759.75812" z="831.53144"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="57938"/>
 		</Entity>
 		<Entity uid="12879">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="910.99555" z="695.82453"/>
 			<Orientation y="-2.59893"/>
 			<Actor seed="0"/>
 		</Entity>
 		<Entity uid="12880">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="912.51587" z="693.13221"/>
 			<Orientation y="2.176"/>
 			<Actor seed="63820"/>
 		</Entity>
 		<Entity uid="12881">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="914.60224" z="689.23719"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="43594"/>
 		</Entity>
 		<Entity uid="12882">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="920.93647" z="679.42408"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="34046"/>
 		</Entity>
 		<Entity uid="12883">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="920.00586" z="681.88721"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="24246"/>
 		</Entity>
 		<Entity uid="12884">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="910.1792" z="705.55695"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="31610"/>
 		</Entity>
 		<Entity uid="12885">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="912.31434" z="706.5033"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="61776"/>
 		</Entity>
 		<Entity uid="12886">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="918.2298" z="710.47681"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="19902"/>
 		</Entity>
 		<Entity uid="12887">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="918.0735" z="695.48755"/>
 			<Orientation y="-1.94727"/>
 			<Actor seed="6020"/>
 		</Entity>
 		<Entity uid="12888">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="800.97059" z="759.15162"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="21094"/>
 		</Entity>
 		<Entity uid="12889">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="591.97846" z="1046.5984"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="47358"/>
 		</Entity>
 		<Entity uid="12890">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="593.29151" z="1042.27747"/>
 			<Orientation y="0.14075"/>
 			<Actor seed="8162"/>
 		</Entity>
 		<Entity uid="12891">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="596.49524" z="1042.03675"/>
 			<Orientation y="2.47802"/>
 			<Actor seed="64024"/>
 		</Entity>
 		<Entity uid="12892">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="597.74177" z="1038.04297"/>
 			<Orientation y="-3.036"/>
 			<Actor seed="8754"/>
 		</Entity>
 		<Entity uid="12893">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="600.96973" z="1034.55005"/>
 			<Orientation y="2.86446"/>
 			<Actor seed="23438"/>
 		</Entity>
 		<Entity uid="12894">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="599.63257" z="1036.14905"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="39124"/>
 		</Entity>
 		<Entity uid="12895">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="606.72669" z="1034.06092"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="43470"/>
 		</Entity>
 		<Entity uid="12896">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="589.38917" z="1050.07361"/>
 			<Orientation y="-1.42772"/>
 			<Actor seed="3546"/>
 		</Entity>
 		<Entity uid="12897">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="584.36329" z="1049.78846"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="51370"/>
 		</Entity>
 		<Entity uid="12898">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="576.61219" z="1056.20398"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="24514"/>
 		</Entity>
 		<Entity uid="12900">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="340.7323" z="1308.78858"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="29572"/>
 		</Entity>
 		<Entity uid="12902">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="321.41031" z="1303.8401"/>
 			<Orientation y="1.47898"/>
 			<Actor seed="45736"/>
 		</Entity>
 		<Entity uid="12903">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="339.56626" z="1354.66321"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="48978"/>
 		</Entity>
 		<Entity uid="12904">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1503.03418" z="746.29126"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="57646"/>
 		</Entity>
 		<Entity uid="12905">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1517.48108" z="735.67554"/>
 			<Orientation y="2.19936"/>
 			<Actor seed="54942"/>
 		</Entity>
 		<Entity uid="12906">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1475.97107" z="770.1324"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="21398"/>
 		</Entity>
 		<Entity uid="12907">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1490.8573" z="755.66474"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="56210"/>
 		</Entity>
 		<Entity uid="12908">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1482.28431" z="766.7563"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="31126"/>
 		</Entity>
 		<Entity uid="12909">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1490.04664" z="758.10175"/>
 			<Orientation y="-1.49491"/>
 			<Actor seed="40200"/>
 		</Entity>
 		<Entity uid="12910">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1461.64954" z="781.80311"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="52252"/>
 		</Entity>
 		<Entity uid="12911">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1451.11353" z="797.24451"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="15602"/>
 		</Entity>
 		<Entity uid="12912">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="970.72193" z="717.58552"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="4376"/>
 		</Entity>
 		<Entity uid="12913">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="910.75422" z="732.23096"/>
 			<Orientation y="-0.13964"/>
 			<Actor seed="15888"/>
 		</Entity>
 		<Entity uid="12914">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="907.15052" z="736.26862"/>
 			<Orientation y="-0.50307"/>
 			<Actor seed="58064"/>
 		</Entity>
 		<Entity uid="12915">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="349.39542" z="1350.03443"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="31230"/>
 		</Entity>
 		<Entity uid="12916">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="355.03858" z="1345.97181"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="35598"/>
 		</Entity>
 		<Entity uid="12917">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1513.04969" z="734.82465"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="8044"/>
 		</Entity>
 		<Entity uid="12918">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1313.79542" z="1146.5016"/>
 			<Orientation y="2.45148"/>
 			<Actor seed="56308"/>
 		</Entity>
 		<Entity uid="12919">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1321.5199" z="1139.9015"/>
 			<Orientation y="2.67269"/>
 			<Actor seed="24404"/>
 		</Entity>
 		<Entity uid="12920">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1304.72107" z="1158.52259"/>
 			<Orientation y="2.49958"/>
 			<Actor seed="24224"/>
 		</Entity>
 		<Entity uid="12921">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1295.38294" z="1179.06946"/>
 			<Orientation y="2.61864"/>
 			<Actor seed="47192"/>
 		</Entity>
 		<Entity uid="12922">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1287.76014" z="1199.60328"/>
 			<Orientation y="-0.43053"/>
 			<Actor seed="18614"/>
 		</Entity>
 		<Entity uid="12924">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1283.00855" z="1189.25355"/>
 			<Orientation y="-2.59408"/>
 			<Actor seed="52948"/>
 		</Entity>
 		<Entity uid="12925">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1285.96375" z="1189.76038"/>
 			<Orientation y="0.57404"/>
 			<Actor seed="61320"/>
 		</Entity>
 		<Entity uid="12926">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1287.13587" z="1194.3849"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="10742"/>
 		</Entity>
 		<Entity uid="12927">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1274.06348" z="1185.34327"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="2878"/>
 		</Entity>
 		<Entity uid="12928">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1270.55506" z="1186.19178"/>
 			<Orientation y="0.20876"/>
 			<Actor seed="46866"/>
 		</Entity>
 		<Entity uid="12929">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1283.44922" z="1211.81592"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="16494"/>
 		</Entity>
 		<Entity uid="12930">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1327.47669" z="1126.94715"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="2616"/>
 		</Entity>
 		<Entity uid="12931">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1331.98243" z="1118.891"/>
 			<Orientation y="-0.48952"/>
 			<Actor seed="54830"/>
 		</Entity>
 		<Entity uid="12932">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1328.2068" z="1122.39222"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="26028"/>
 		</Entity>
 		<Entity uid="12933">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="591.92756" z="1051.76893"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="3816"/>
 		</Entity>
 		<Entity uid="12934">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="337.41306" z="1296.51575"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="63088"/>
 		</Entity>
 		<Entity uid="12935">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="340.15229" z="1300.33875"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="22278"/>
 		</Entity>
 		<Entity uid="12936">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="342.44114" z="1296.76282"/>
 			<Orientation y="-1.37177"/>
 			<Actor seed="11540"/>
 		</Entity>
 		<Entity uid="12937">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="348.32447" z="1295.82898"/>
 			<Orientation y="-2.4976"/>
 			<Actor seed="35672"/>
 		</Entity>
 		<Entity uid="12938">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="403.99036" z="725.36731"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="9320"/>
 		</Entity>
 		<Entity uid="12939">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="424.65131" z="704.0207"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="46218"/>
 		</Entity>
 		<Entity uid="12940">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="391.28904" z="744.4452"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="65186"/>
 		</Entity>
 		<Entity uid="12941">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="413.69471" z="716.32068"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="31626"/>
 		</Entity>
 		<Entity uid="12942">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="416.0428" z="712.67798"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="47856"/>
 		</Entity>
 		<Entity uid="12943">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="384.9402" z="738.02253"/>
 			<Orientation y="2.78736"/>
 			<Actor seed="3312"/>
 		</Entity>
 		<Entity uid="12944">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="387.82975" z="733.73218"/>
 			<Orientation y="2.63146"/>
 			<Actor seed="6466"/>
 		</Entity>
 		<Entity uid="12945">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="390.23386" z="731.41327"/>
 			<Orientation y="2.35528"/>
 			<Actor seed="54452"/>
 		</Entity>
 		<Entity uid="12946">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="393.65085" z="730.1836"/>
 			<Orientation y="-1.51194"/>
 			<Actor seed="51972"/>
 		</Entity>
 		<Entity uid="12947">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="383.90229" z="742.12641"/>
 			<Orientation y="1.96409"/>
 			<Actor seed="36998"/>
 		</Entity>
 		<Entity uid="12948">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="379.18802" z="752.06373"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="24458"/>
 		</Entity>
 		<Entity uid="12949">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="429.70362" z="753.07367"/>
 			<Orientation y="1.57885"/>
 			<Actor seed="51508"/>
 		</Entity>
 		<Entity uid="12950">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="311.37015" z="806.82514"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="59382"/>
 		</Entity>
 		<Entity uid="12951">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="311.8134" z="804.49695"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="22746"/>
 		</Entity>
 		<Entity uid="12952">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="314.70771" z="804.49573"/>
 			<Orientation y="2.03003"/>
 			<Actor seed="32144"/>
 		</Entity>
 		<Entity uid="12953">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="317.56156" z="802.72968"/>
 			<Orientation y="2.20559"/>
 			<Actor seed="36010"/>
 		</Entity>
 		<Entity uid="12954">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="315.30903" z="808.17072"/>
 			<Orientation y="2.4515"/>
 			<Actor seed="48516"/>
 		</Entity>
 		<Entity uid="12956">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="305.44712" z="809.84961"/>
 			<Orientation y="-1.5223"/>
 			<Actor seed="43416"/>
 		</Entity>
 		<Entity uid="12958">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="293.40723" z="812.25043"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="53544"/>
 		</Entity>
 		<Entity uid="12959">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="431.72321" z="704.64087"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="5190"/>
 		</Entity>
 		<Entity uid="12960">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="414.26127" z="720.8968"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="47028"/>
 		</Entity>
 		<Entity uid="12961">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="109.36323" z="495.44925"/>
 			<Orientation y="-0.95736"/>
 			<Actor seed="21970"/>
 		</Entity>
 		<Entity uid="12962">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="127.85761" z="486.92359"/>
 			<Orientation y="2.18429"/>
 			<Actor seed="3534"/>
 		</Entity>
 		<Entity uid="12963">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="86.93903" z="541.39997"/>
 			<Orientation y="2.66105"/>
 			<Actor seed="26848"/>
 		</Entity>
 		<Entity uid="12964">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="139.87226" z="482.48923"/>
 			<Orientation y="2.06916"/>
 			<Actor seed="24988"/>
 		</Entity>
 		<Entity uid="12965">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="147.97095" z="478.08472"/>
 			<Orientation y="2.09252"/>
 			<Actor seed="31488"/>
 		</Entity>
 		<Entity uid="12966">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="158.13993" z="475.47666"/>
 			<Orientation y="1.85633"/>
 			<Actor seed="8828"/>
 		</Entity>
 		<Entity uid="12967">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="57.40784" z="565.47925"/>
 			<Orientation y="2.13404"/>
 			<Actor seed="53734"/>
 		</Entity>
 		<Entity uid="12968">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="71.3618" z="557.8943"/>
 			<Orientation y="2.2704"/>
 			<Actor seed="53096"/>
 		</Entity>
 		<Entity uid="12969">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="93.25275" z="531.29065"/>
 			<Orientation y="-0.31737"/>
 			<Actor seed="15234"/>
 		</Entity>
 		<Entity uid="12970">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="108.36106" z="501.9535"/>
 			<Orientation y="0.212"/>
 			<Actor seed="45498"/>
 		</Entity>
 		<Entity uid="12972">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="99.7912" z="509.77921"/>
 			<Orientation y="2.55903"/>
 			<Actor seed="44484"/>
 		</Entity>
 		<Entity uid="12973">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="85.98917" z="550.32136"/>
 			<Orientation y="3.08283"/>
 			<Actor seed="26226"/>
 		</Entity>
 		<Entity uid="12974">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1420.19385" z="465.65803"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="52144"/>
 		</Entity>
 		<Entity uid="12975">
-			<Template>actor|geology/stone_desert_badlands_furrowed_cliff.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed_cliff.xml</Template>
 			<Position x="1429.28772" z="458.09894"/>
 			<Orientation y="-0.27805"/>
 			<Actor seed="55256"/>
 		</Entity>
 		<Entity uid="12976">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1424.85865" z="469.53675"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="5776"/>
 		</Entity>
 		<Entity uid="12977">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1418.13074" z="474.14994"/>
 			<Orientation y="-1.85167"/>
 			<Actor seed="12170"/>
 		</Entity>
 		<Entity uid="12978">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1407.64026" z="473.60541"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="12260"/>
 		</Entity>
 		<Entity uid="12980">
-			<Template>actor|geology/stone_desert_badlands_furrowed.xml</Template>
+			<Template>actor|geology/stone_savanna_furrowed.xml</Template>
 			<Position x="1432.5448" z="475.18903"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="48204"/>

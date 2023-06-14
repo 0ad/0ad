@@ -5,13 +5,13 @@
     <variant frequency="1" name="Wonder Main Struct">
       <mesh>structural/gaul_wonder.dae</mesh>
       <props>
+        <prop actor="props/structures/decals/dirt_stonehenge.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/wonder_roof.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/wonder_walls.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/wonder_bones.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/wonder_nature.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/wonder_fence.xml" attachpoint="fence_01" maxheight="20" minheight="-20"/>
         <prop actor="props/structures/gauls/wonder_amphorae.xml" attachpoint="root"/>
-        <prop actor="props/structures/decals/dirt_gaul_wonder.xml" attachpoint="root"/>
         <prop actor="fauna/sheep1.xml" attachpoint="sheep_01" maxheight="20" minheight="-20"/>
         <prop actor="fauna/sheep1.xml" attachpoint="sheep_02" maxheight="20" minheight="-20"/>
         <prop actor="fauna/sheep1.xml" attachpoint="sheep_03" maxheight="20" minheight="-20"/>
@@ -31,7 +31,7 @@
         <prop actor="props/structures/gauls/wonder_cauldron.xml" attachpoint="cauldron_02" maxheight="20" minheight="-20"/>
         <prop actor="structures/gauls/cult_statue.xml" attachpoint="statue_01" maxheight="20" minheight="-20"/>
         <prop actor="props/structures/gauls/theater_standard_boar.xml" attachpoint="standard_01" maxheight="20" minheight="-20"/>
-        <prop actor="props/structures/gauls/theater_standard_boar.xml" attachpoint="standard_02" maxheight="20" minheight="-20"/>
+        <prop actor="props/structures/gauls/theater_standard_raven.xml" attachpoint="standard_02" maxheight="20" minheight="-20"/>
       </props>
       <textures>
         <texture file="structural/celt_struct.dds" name="baseTex"/>

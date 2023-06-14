@@ -2,38 +2,38 @@
 
 <Scenario version="7">
 	<Environment>
-		<SkySet>stratus</SkySet>
-		<SunColor r="0.894118" g="0.803922" b="0.494118"/>
-		<SunElevation angle="0.846758"/>
-		<SunRotation angle="-0.294524"/>
-		<AmbientColor r="0.329412" g="0.419608" b="0.501961"/>
+		<SkySet>sunny</SkySet>
+		<SunColor r="1.02312" g="0.902753" b="0.698129"/>
+		<SunElevation angle="0.730175"/>
+		<SunRotation angle="-0.909753"/>
+		<AmbientColor r="0.356863" g="0.356863" b="0.356863"/>
 		<Fog>
-			<FogFactor>0.000996094</FogFactor>
-			<FogThickness>0.141602</FogThickness>
-			<FogColor r="0.8" g="0.87451" b="0.882353"/>
+			<FogFactor>0.00195313</FogFactor>
+			<FogThickness>0.0351563</FogThickness>
+			<FogColor r="0.839216" g="0.866667" b="0.882353"/>
 		</Fog>
 		<Water>
 			<WaterBody>
 				<Type>lake</Type>
-				<Color r="0.121569" g="0.247059" b="0.376471"/>
-				<Tint r="0.0431373" g="0.956863" b="0.847059"/>
+				<Color r="0.176471" g="0.329412" b="0.447059"/>
+				<Tint r="0.258824" g="1" b="0.682353"/>
 				<Height>37.0361</Height>
-				<Waviness>10</Waviness>
-				<Murkiness>0.608398</Murkiness>
-				<WindAngle>0</WindAngle>
+				<Waviness>5.25391</Waviness>
+				<Murkiness>0.808594</Murkiness>
+				<WindAngle>1.20878</WindAngle>
 			</WaterBody>
 		</Water>
 		<Postproc>
-			<Brightness>0</Brightness>
-			<Contrast>0.945313</Contrast>
-			<Saturation>0.765625</Saturation>
-			<Bloom>0.15</Bloom>
+			<Brightness>-0.015625</Brightness>
+			<Contrast>0.984375</Contrast>
+			<Saturation>0.757813</Saturation>
+			<Bloom>0.160156</Bloom>
 			<PostEffect>hdr</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="1520.98" y="114.969" z="1861.13"/>
-		<Rotation angle="-0.639332"/>
+		<Position x="431.622" y="147.027" z="1077.31"/>
+		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
@@ -43,6 +43,7 @@
   "Keywords": [],
   "Name": "Corinthian Isthmus (4)",
   "PlayerData": [
+    null,
     {},
     {},
     {},
@@ -7559,7 +7560,7 @@
 			<Player>0</Player>
 			<Position x="2453.41163" z="1732.57667"/>
 			<Orientation y="2.35621"/>
-			<Obstruction group="3047"/>
+			<Obstruction group="3047" group2="3033"/>
 		</Entity>
 		<Entity uid="3034">
 			<Template>structures/palisades_straight</Template>
@@ -7695,7 +7696,7 @@
 			<Player>0</Player>
 			<Position x="2496.73804" z="1751.29822"/>
 			<Orientation y="2.8894"/>
-			<Obstruction group="3058"/>
+			<Obstruction group="3058" group2="3056"/>
 		</Entity>
 		<Entity uid="3058">
 			<Template>structures/palisades_tower</Template>
@@ -60415,6 +60416,78 @@
 			<Position x="1483.24183" z="1913.26954"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="28042"/>
+		</Entity>
+		<Entity uid="12046">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="749.94184" z="749.29017"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="14761"/>
+		</Entity>
+		<Entity uid="12047">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="267.02378" z="1128.88855"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="36924"/>
+		</Entity>
+		<Entity uid="12048">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="657.10566" z="1648.25855"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="58749"/>
+		</Entity>
+		<Entity uid="12049">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="780.76319" z="2218.23926"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="58900"/>
+		</Entity>
+		<Entity uid="12050">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1475.0503" z="2354.13331"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="64603"/>
+		</Entity>
+		<Entity uid="12051">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="2158.8379" z="1438.34827"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="40378"/>
+		</Entity>
+		<Entity uid="12052">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="2540.7146" z="1349.03614"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="63423"/>
+		</Entity>
+		<Entity uid="12053">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="2382.98194" z="956.0713"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="37219"/>
+		</Entity>
+		<Entity uid="12054">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1911.49927" z="541.81635"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="53270"/>
+		</Entity>
+		<Entity uid="12055">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1327.73414" z="416.31586"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="37214"/>
+		</Entity>
+		<Entity uid="12056">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1570.61438" z="1043.0365"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="27212"/>
+		</Entity>
+		<Entity uid="12057">
+			<Template>actor|particle/cloud.xml</Template>
+			<Position x="1235.70081" z="1559.36915"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="1791"/>
 		</Entity>
 	</Entities>
 	<Paths/>

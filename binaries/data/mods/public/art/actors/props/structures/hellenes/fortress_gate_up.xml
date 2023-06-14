@@ -5,12 +5,12 @@
     <variant>
       <mesh>props/hele_fortress_up_gate.dae</mesh>
       <textures>
-<texture file="props/hele_gate.png" name="baseTex"/>
-<texture file="props/hele_gate_norm.png" name="normTex"/>
-<texture file="props/hele_gate_spec.png" name="specTex"/>
-<texture file="structural/ao/hele_fortress.png" name="aoTex"/>
-</textures>
+        <texture file="props/hele_gate.png" name="baseTex"/>
+        <texture file="props/hele_gate_norm.png" name="normTex"/>
+        <texture file="props/hele_gate_spec.png" name="specTex"/>
+        <texture file="structural/ao/hele_fortress.png" name="aoTex"/>
+      </textures>
     </variant>
   </group>
-<material>player_trans_ao_parallax_spec.xml</material>
+  <material>player_trans_ao_parallax_spec.xml</material>
 </actor>

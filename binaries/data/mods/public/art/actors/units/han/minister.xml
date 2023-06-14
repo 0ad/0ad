@@ -9,6 +9,10 @@
         <prop actor="props/units/helmets/han_hairbun.xml" attachpoint="helmet"/>
         <prop actor="props/units/weapons/sheath/han_jian_sheath_left_a.xml" attachpoint="sheath_L"/>
       </props>
+      <textures>
+        <texture file="default_norm.png" name="normTex"/>
+        <texture file="null_black.dds" name="specTex"/>
+      </textures>
     </variant>
   </group>
   <group>
@@ -21,14 +25,6 @@
     <variant file="biped/attack_slaughter.xml"/>
     <variant file="biped/gather_praise.xml"/>
     <variant file="biped/death_infantry.xml"/>
-  </group>
-  <group>
-    <variant>
-      <textures>
-        <texture file="default_norm.png" name="normTex"/>
-        <texture file="null_black.dds" name="specTex"/>
-      </textures>
-    </variant>
   </group>
   <material>player_trans_norm_spec.xml</material>
 </actor>

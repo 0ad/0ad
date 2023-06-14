@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure">
+  <Capturable disable=""/>
+  <Footprint>
+    <Square width="3.0" depth="3.0"/>
+    <Height>4.0</Height>
+  </Footprint>
+  <Health>
+    <Max>220</Max>
+  </Health>
+  <Identity>
+    <GenericName>Stone Fence</GenericName>
+    <SpecificName>Stone Fence</SpecificName>
+    <Icon>structures/wall.png</Icon>
+  </Identity>
+  <Loot>
+    <stone>5</stone>
+  </Loot>
+  <Obstruction>
+    <Static width="2.0" depth="2.0"/>
+  </Obstruction>
+  <ProductionQueue disable=""/>
+  <Researcher disable=""/>
+  <StatusBars>
+    <HeightOffset>6.0</HeightOffset>
+  </StatusBars>
+  <Trainer disable=""/>
+  <VisualActor>
+    <Actor>props/special/eyecandy/fence_stone_stub.xml</Actor>
+  </VisualActor>
+</Entity>

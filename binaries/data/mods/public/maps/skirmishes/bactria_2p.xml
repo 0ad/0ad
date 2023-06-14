@@ -32,7 +32,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="204.845" y="123.278" z="178.045"/>
+		<Position x="603.488" y="145.398" z="84.9313"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -43,6 +43,7 @@
   "Keywords": [],
   "Name": "Bactriana (2)",
   "PlayerData": [
+    null,
     {},
     {}
   ],
@@ -7299,7 +7300,7 @@
 		<Entity uid="1177">
 			<Template>gaia/fauna_goat</Template>
 			<Player>1</Player>
-			<Position x="444.89106" z="319.6847"/>
+			<Position x="440.8155" z="313.44916"/>
 			<Orientation y="-1.35296"/>
 			<Actor seed="47522"/>
 		</Entity>
@@ -18811,8 +18812,8 @@
 		<Entity uid="3084">
 			<Template>gaia/rock/temperate_large_03</Template>
 			<Player>0</Player>
-			<Position x="329.09675" z="803.52149"/>
-			<Orientation y="-1.44735"/>
+			<Position x="324.22297" z="800.74628"/>
+			<Orientation y="4.52904"/>
 			<Actor seed="42238"/>
 		</Entity>
 		<Entity uid="3085">
@@ -18966,6 +18967,20 @@
 			<Position x="946.16462" z="392.551"/>
 			<Orientation y="0.48517"/>
 			<Actor seed="23978"/>
+		</Entity>
+		<Entity uid="3107">
+			<Template>structures/farmstead_middle_eastern</Template>
+			<Player>0</Player>
+			<Position x="765.16016" z="260.724"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="14400"/>
+		</Entity>
+		<Entity uid="3108">
+			<Template>structures/farmstead_middle_eastern</Template>
+			<Player>0</Player>
+			<Position x="443.3759" z="329.88147"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="28762"/>
 		</Entity>
 	</Entities>
 	<Paths/>

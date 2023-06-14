@@ -24,7 +24,6 @@
 #include "simulation2/serialization/SerializedTypes.h"
 
 #include "ICmpTerrain.h"
-#include "ICmpTerritoryManager.h"
 #include "ICmpVisual.h"
 #include "ICmpWaterManager.h"
 
@@ -89,8 +88,6 @@ public:
 	// when the entity is a turret, only m_RotY is used, and this is the rotation
 	// relative to the parent entity
 	entity_angle_t m_RotX, m_RotY, m_RotZ;
-
-	player_id_t m_Territory;
 
 	entity_id_t m_TurretParent;
 	CFixedVector3D m_TurretPosition;
@@ -161,7 +158,6 @@ public:
 		m_RotX = m_RotY = m_RotZ = entity_angle_t::FromInt(0);
 		m_InterpolatedRotX = m_InterpolatedRotY = m_InterpolatedRotZ = 0.f;
 		m_LastInterpolatedRotX = m_LastInterpolatedRotZ = 0.f;
-		m_Territory = INVALID_PLAYER;
 
 		m_TurretParent = INVALID_ENTITY;
 		m_TurretPosition = CFixedVector3D();
@@ -187,7 +183,7 @@ public:
 			serialize.NumberFixed_Unbounded("last y diff", m_LastYDifference);
 			serialize.NumberFixed_Unbounded("last z", m_LastZ);
 		}
-		serialize.NumberI32_Unbounded("territory", m_Territory);
+
 		serialize.NumberFixed_Unbounded("rot x", m_RotX);
 		serialize.NumberFixed_Unbounded("rot y", m_RotY);
 		serialize.NumberFixed_Unbounded("rot z", m_RotZ);
@@ -246,7 +242,7 @@ public:
 			deserialize.NumberFixed_Unbounded("last y diff", m_LastYDifference);
 			deserialize.NumberFixed_Unbounded("last z", m_LastZ);
 		}
-		deserialize.NumberI32_Unbounded("territory", m_Territory);
+
 		deserialize.NumberFixed_Unbounded("rot x", m_RotX);
 		deserialize.NumberFixed_Unbounded("rot y", m_RotY);
 		deserialize.NumberFixed_Unbounded("rot z", m_RotZ);
@@ -839,29 +835,6 @@ public:
 			m_LastZ = m_Z;
 			m_LastYDifference = entity_pos_t::Zero();
 
-
-			// warn when a position change also causes a territory change under the entity
-			if (m_InWorld)
-			{
-				player_id_t newTerritory;
-				CmpPtr<ICmpTerritoryManager> cmpTerritoryManager(GetSystemEntity());
-				if (cmpTerritoryManager)
-					newTerritory = cmpTerritoryManager->GetOwner(m_X, m_Z);
-				else
-					newTerritory = INVALID_PLAYER;
-				if (newTerritory != m_Territory)
-				{
-					m_Territory = newTerritory;
-					CMessageTerritoryPositionChanged posMsg(GetEntityId(), m_Territory);
-					GetSimContext().GetComponentManager().PostMessage(GetEntityId(), posMsg);
-				}
-			}
-			else if (m_Territory != INVALID_PLAYER)
-			{
-				m_Territory = INVALID_PLAYER;
-				CMessageTerritoryPositionChanged posMsg(GetEntityId(), m_Territory);
-				GetSimContext().GetComponentManager().PostMessage(GetEntityId(), posMsg);
-			}
 			break;
 		}
 		case MT_TerrainChanged:

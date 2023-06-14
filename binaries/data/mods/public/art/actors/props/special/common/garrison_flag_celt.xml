@@ -3,10 +3,10 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="celt flag 1">
+      <mesh>props/garrison_flag.dae</mesh>
       <animations>
         <animation file="mechanical/garrison_flag_idle.dae" name="Idle" speed="30"/>
       </animations>
-      <mesh>props/garrison_flag.dae</mesh>
       <textures>
         <texture file="props/garrison_celt_1.png" name="baseTex"/>
         <texture file="default_norm.png" name="normTex"/>
