@@ -120,6 +120,13 @@ ScriptContext::ScriptContext(int contextSize, int heapGrowthBytesGCTrigger):
 	JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_ION_ENABLE, 1);
 	JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_BASELINE_ENABLE, 1);
 
+	// Turn off Spectre mitigations - this is a huge speedup on JS code, particularly JS -> C++ calls.
+	JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_SPECTRE_JIT_TO_CXX_CALLS, 0);
+	JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_SPECTRE_INDEX_MASKING, 0);
+	JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_SPECTRE_VALUE_MASKING, 0);
+	JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_SPECTRE_STRING_MITIGATIONS, 0);
+	JS_SetGlobalJitCompilerOption(m_cx, JSJITCOMPILER_SPECTRE_OBJECT_MITIGATIONS, 0);
+
 	JS::ContextOptionsRef(m_cx).setStrictMode(true);
 
 	ScriptEngine::GetSingleton().RegisterContext(m_cx);
