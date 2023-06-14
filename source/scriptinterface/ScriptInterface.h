@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -117,7 +117,6 @@ public:
 	static T* ObjectFromCBData(const ScriptRequest& rq)
 	{
 		static_assert(!std::is_same_v<void, T>);
-		ScriptInterface::CmptPrivate::GetCBData(rq.cx);
 		return static_cast<T*>(ObjectFromCBData<void>(rq));
 	}
 
