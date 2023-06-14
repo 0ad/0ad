@@ -521,10 +521,11 @@ public:
 		return true;
 	}
 
-	void UpdateGameState(const Script::StructuredClone& gameState)
+	void UpdateGameState(JS::HandleValue gameState)
 	{
 		ENSURE(m_CommandsComputed);
-		m_GameState = gameState;
+		m_GameState.reset();
+		m_GameState.init(ScriptRequest(m_ScriptInterface).cx, gameState);
 	}
 
 	void UpdatePathfinder(const Grid<NavcellData>& passabilityMap, bool globallyDirty, const Grid<u8>& dirtinessGrid, bool justDeserialized,
@@ -797,12 +798,10 @@ private:
 	{
 		// Deserialize the game state, to pass to the AI's HandleMessage
 		ScriptRequest rq(m_ScriptInterface);
-		JS::RootedValue state(rq.cx);
 		{
 			PROFILE3("AI compute read state");
-			Script::ReadStructuredClone(rq, m_GameState, &state);
-			Script::SetProperty(rq, state, "passabilityMap", m_PassabilityMapVal, true);
-			Script::SetProperty(rq, state, "territoryMap", m_TerritoryMapVal, true);
+			Script::SetProperty(rq, m_GameState, "passabilityMap", m_PassabilityMapVal, true);
+			Script::SetProperty(rq, m_GameState, "territoryMap", m_TerritoryMapVal, true);
 		}
 
 		// It would be nice to do
@@ -815,7 +814,7 @@ private:
 		if (m_HasSharedComponent)
 		{
 			PROFILE3("AI run shared component");
-			ScriptFunction::CallVoid(rq, m_SharedAIObj, "onUpdate", state);
+			ScriptFunction::CallVoid(rq, m_SharedAIObj, "onUpdate", m_GameState);
 		}
 
 		for (size_t i = 0; i < m_Players.size(); ++i)
@@ -825,9 +824,9 @@ private:
 			PROFILE2_ATTR("script: %ls", m_Players[i]->m_AIName.c_str());
 
 			if (m_HasSharedComponent && m_Players[i]->m_UseSharedComponent)
-				m_Players[i]->Run(state, m_Players[i]->m_Player, m_SharedAIObj);
+				m_Players[i]->Run(m_GameState, m_Players[i]->m_Player, m_SharedAIObj);
 			else
-				m_Players[i]->Run(state, m_Players[i]->m_Player);
+				m_Players[i]->Run(m_GameState, m_Players[i]->m_Player);
 		}
 	}
 
@@ -847,7 +846,7 @@ private:
 
 	std::set<std::wstring> m_LoadedModules;
 
-	Script::StructuredClone m_GameState;
+	JS::PersistentRootedValue m_GameState;
 	Grid<NavcellData> m_PassabilityMap;
 	JS::PersistentRootedValue m_PassabilityMapVal;
 	Grid<u8> m_TerritoryMap;
@@ -1003,7 +1002,7 @@ public:
 		LoadPathfinderClasses(state); // add the pathfinding classes to it
 
 		// Update the game state
-		m_Worker.UpdateGameState(Script::WriteStructuredClone(rq, state));
+		m_Worker.UpdateGameState(state);
 
 		// Update the pathfinding data
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
