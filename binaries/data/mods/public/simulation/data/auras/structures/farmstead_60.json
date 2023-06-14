@@ -1,7 +1,7 @@
 {
 	"type": "range",
 	"radius": 60,
-	"affects": ["Gatherer"],
+	"affects": ["Gatherer", "Field"],
 	"modifications": [
 		{ "value": "ResourceGatherer/Rates/food.grain", "multiply": 1.75 }
 	],
