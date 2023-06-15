@@ -171,6 +171,7 @@ function TestFormationExiting(mode)
 	AddMock(unit, IID_UnitMotion, {
 		"GetWalkSpeed": () => 1,
 		"GetAcceleration": () => 1,
+		"SetSpeedMultiplier": () => {},
 		"MoveToFormationOffset": (target, x, z) => {},
 		"MoveToTargetRange": (target, min, max) => true,
 		"SetMemberOfFormation": () => {},
@@ -359,6 +360,7 @@ function TestMoveIntoFormationWhileAttacking()
 		AddMock(unit + i, IID_UnitMotion, {
 			"GetWalkSpeed": () => 1,
 			"GetAcceleration": () => 1,
+			"SetSpeedMultiplier": () => {},
 			"MoveToFormationOffset": (target, x, z) => {},
 			"MoveToTargetRange": (target, min, max) => true,
 			"SetMemberOfFormation": () => {},
