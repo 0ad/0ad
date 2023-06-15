@@ -29,7 +29,6 @@
 #include "ps/CStrInternStatic.h"
 #include "ps/Filesystem.h"
 #include "ps/Game.h"
-#include "ps/VideoMode.h"
 #include "ps/World.h"
 #include "renderer/backend/IDevice.h"
 #include "renderer/Renderer.h"
@@ -82,9 +81,10 @@ void DrawFullscreenQuad(
 
 } // anonymous namespace
 
-CPostprocManager::CPostprocManager()
-	: m_IsInitialized(false), m_PostProcEffect(L"default"), m_WhichBuffer(true),
-	m_Sharpness(0.3f), m_UsingMultisampleBuffer(false), m_MultisampleCount(0)
+CPostprocManager::CPostprocManager(Renderer::Backend::IDevice* device)
+	: m_Device(device), m_IsInitialized(false), m_PostProcEffect(L"default"),
+	m_WhichBuffer(true), m_Sharpness(0.3f), m_UsingMultisampleBuffer(false),
+	m_MultisampleCount(0)
 {
 }
 
@@ -95,14 +95,13 @@ CPostprocManager::~CPostprocManager()
 
 bool CPostprocManager::IsEnabled() const
 {
-	Renderer::Backend::IDevice* device = g_VideoMode.GetBackendDevice();
 	const bool isDepthStencilFormatPresent =
-		device->GetPreferredDepthStencilFormat(
+		m_Device->GetPreferredDepthStencilFormat(
 			Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT, true, true)
 				!= Renderer::Backend::Format::UNDEFINED;
 	return
 		g_RenderingOptions.GetPostProc() &&
-		device->GetBackend() != Renderer::Backend::Backend::GL_ARB &&
+		m_Device->GetBackend() != Renderer::Backend::Backend::GL_ARB &&
 		isDepthStencilFormatPresent;
 }
 
@@ -145,7 +144,7 @@ void CPostprocManager::Initialize()
 	}};
 	m_VertexInputLayout = g_Renderer.GetVertexInputLayout(attributes);
 
-	const uint32_t maxSamples = g_VideoMode.GetBackendDevice()->GetCapabilities().maxSampleCount;
+	const uint32_t maxSamples = m_Device->GetCapabilities().maxSampleCount;
 	const uint32_t possibleSampleCounts[] = {2, 4, 8, 16};
 	std::copy_if(
 		std::begin(possibleSampleCounts), std::end(possibleSampleCounts),
@@ -182,10 +181,8 @@ void CPostprocManager::RecreateBuffers()
 {
 	Cleanup();
 
-	Renderer::Backend::IDevice* backendDevice = g_VideoMode.GetBackendDevice();
-
 	#define GEN_BUFFER_RGBA(name, w, h) \
-		name = backendDevice->CreateTexture2D( \
+		name = m_Device->CreateTexture2D( \
 			"PostProc" #name, \
 			Renderer::Backend::ITexture::Usage::SAMPLED | \
 				Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT | \
@@ -215,7 +212,7 @@ void CPostprocManager::RecreateBuffers()
 			colorAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::LOAD;
 			colorAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
 			colorAttachment.clearColor = CColor{0.0f, 0.0f, 0.0f, 0.0f};
-			step.framebuffer = backendDevice->CreateFramebuffer(
+			step.framebuffer = m_Device->CreateFramebuffer(
 				"BlurScaleSteoFramebuffer", &colorAttachment, nullptr);
 		}
 		width /= 2;
@@ -225,10 +222,10 @@ void CPostprocManager::RecreateBuffers()
 	#undef GEN_BUFFER_RGBA
 
 	// Allocate the Depth/Stencil texture.
-	m_DepthTex = backendDevice->CreateTexture2D("PostProcDepthTexture",
+	m_DepthTex = m_Device->CreateTexture2D("PostProcDepthTexture",
 		Renderer::Backend::ITexture::Usage::SAMPLED |
 			Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
-		backendDevice->GetPreferredDepthStencilFormat(
+		m_Device->GetPreferredDepthStencilFormat(
 			Renderer::Backend::ITexture::Usage::SAMPLED |
 				Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
 			true, true),
@@ -249,17 +246,17 @@ void CPostprocManager::RecreateBuffers()
 	depthStencilAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::CLEAR;
 	depthStencilAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
 
-	m_CaptureFramebuffer = backendDevice->CreateFramebuffer("PostprocCaptureFramebuffer",
+	m_CaptureFramebuffer = m_Device->CreateFramebuffer("PostprocCaptureFramebuffer",
 		&colorAttachment, &depthStencilAttachment);
 
 	colorAttachment.texture = m_ColorTex1.get();
 	colorAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::LOAD;
 	colorAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
-	m_PingFramebuffer = backendDevice->CreateFramebuffer("PostprocPingFramebuffer",
+	m_PingFramebuffer = m_Device->CreateFramebuffer("PostprocPingFramebuffer",
 		&colorAttachment, nullptr);
 
 	colorAttachment.texture = m_ColorTex2.get();
-	m_PongFramebuffer = backendDevice->CreateFramebuffer("PostprocPongFramebuffer",
+	m_PongFramebuffer = m_Device->CreateFramebuffer("PostprocPongFramebuffer",
 		&colorAttachment, nullptr);
 
 	if (!m_CaptureFramebuffer || !m_PingFramebuffer || !m_PongFramebuffer)
@@ -479,7 +476,7 @@ void CPostprocManager::ApplyPostproc(
 
 	// Don't do anything if we are using the default effect and no AA.
 	const bool hasEffects = m_PostProcEffect != L"default";
-	const bool hasARB = g_VideoMode.GetBackendDevice()->GetBackend() == Renderer::Backend::Backend::GL_ARB;
+	const bool hasARB = m_Device->GetBackend() == Renderer::Backend::Backend::GL_ARB;
 	const bool hasAA = m_AATech && !hasARB;
 	const bool hasSharp = m_SharpTech && !hasARB;
 	if (!hasEffects && !hasAA && !hasSharp)
@@ -549,8 +546,7 @@ void CPostprocManager::SetPostEffect(const CStrW& name)
 
 void CPostprocManager::UpdateAntiAliasingTechnique()
 {
-	Renderer::Backend::IDevice* device = g_VideoMode.GetBackendDevice();
-	if (device->GetBackend() == Renderer::Backend::Backend::GL_ARB || !m_IsInitialized)
+	if (m_Device->GetBackend() == Renderer::Backend::Backend::GL_ARB || !m_IsInitialized)
 		return;
 
 	CStr newAAName;
@@ -580,7 +576,7 @@ void CPostprocManager::UpdateAntiAliasingTechnique()
 		// We don't want to enable MSAA in Atlas, because it uses wxWidgets and its canvas.
 		if (g_AtlasGameLoop && g_AtlasGameLoop->running)
 			return;
-		if (!device->GetCapabilities().multisampling || m_AllowedSampleCounts.empty())
+		if (!m_Device->GetCapabilities().multisampling || m_AllowedSampleCounts.empty())
 		{
 			LOGWARNING("MSAA is unsupported.");
 			return;
@@ -590,7 +586,7 @@ void CPostprocManager::UpdateAntiAliasingTechnique()
 		if (std::find(std::begin(m_AllowedSampleCounts), std::end(m_AllowedSampleCounts), m_MultisampleCount) ==
 		        std::end(m_AllowedSampleCounts))
 		{
-			m_MultisampleCount = std::min(4u, device->GetCapabilities().maxSampleCount);
+			m_MultisampleCount = std::min(4u, m_Device->GetCapabilities().maxSampleCount);
 			LOGWARNING("Wrong MSAA sample count: %s.", m_AAName.EscapeToPrintableASCII().c_str());
 		}
 		m_UsingMultisampleBuffer = true;
@@ -600,7 +596,7 @@ void CPostprocManager::UpdateAntiAliasingTechnique()
 
 void CPostprocManager::UpdateSharpeningTechnique()
 {
-	if (g_VideoMode.GetBackendDevice()->GetBackend() == Renderer::Backend::Backend::GL_ARB || !m_IsInitialized)
+	if (m_Device->GetBackend() == Renderer::Backend::Backend::GL_ARB || !m_IsInitialized)
 		return;
 
 	CStr newSharpName;
@@ -629,9 +625,7 @@ void CPostprocManager::SetDepthBufferClipPlanes(float nearPlane, float farPlane)
 
 void CPostprocManager::CreateMultisampleBuffer()
 {
-	Renderer::Backend::IDevice* backendDevice = g_VideoMode.GetBackendDevice();
-
-	m_MultisampleColorTex = backendDevice->CreateTexture("PostProcColorMS",
+	m_MultisampleColorTex = m_Device->CreateTexture("PostProcColorMS",
 		Renderer::Backend::ITexture::Type::TEXTURE_2D_MULTISAMPLE,
 		Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT |
 			Renderer::Backend::ITexture::Usage::TRANSFER_SRC,
@@ -641,11 +635,11 @@ void CPostprocManager::CreateMultisampleBuffer()
 			Renderer::Backend::Sampler::AddressMode::CLAMP_TO_EDGE), 1, m_MultisampleCount);
 
 	// Allocate the Depth/Stencil texture.
-	m_MultisampleDepthTex = backendDevice->CreateTexture("PostProcDepthMS",
+	m_MultisampleDepthTex = m_Device->CreateTexture("PostProcDepthMS",
 		Renderer::Backend::ITexture::Type::TEXTURE_2D_MULTISAMPLE,
 		Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT |
 			Renderer::Backend::ITexture::Usage::TRANSFER_SRC,
-		backendDevice->GetPreferredDepthStencilFormat(
+		m_Device->GetPreferredDepthStencilFormat(
 			Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT |
 				Renderer::Backend::ITexture::Usage::TRANSFER_SRC,
 			true, true),
@@ -666,7 +660,7 @@ void CPostprocManager::CreateMultisampleBuffer()
 	depthStencilAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::CLEAR;
 	depthStencilAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
 
-	m_MultisampleFramebuffer = backendDevice->CreateFramebuffer(
+	m_MultisampleFramebuffer = m_Device->CreateFramebuffer(
 		"PostprocMultisampleFramebuffer", &colorAttachment, &depthStencilAttachment);
 
 	if (!m_MultisampleFramebuffer)

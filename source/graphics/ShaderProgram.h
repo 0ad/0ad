@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,7 +35,8 @@ class CShaderProgram
 	NONCOPYABLE(CShaderProgram);
 
 public:
-	static CShaderProgramPtr Create(const CStr& name, const CShaderDefines& defines);
+	static CShaderProgramPtr Create(
+		Renderer::Backend::IDevice* device, const CStr& name, const CShaderDefines& defines);
 
 	void Reload();
 
@@ -46,8 +47,10 @@ public:
 	// TODO: add reloadable handles.
 
 protected:
-	CShaderProgram(const CStr& name, const CShaderDefines& defines);
+	CShaderProgram(
+		Renderer::Backend::IDevice* device, const CStr& name, const CShaderDefines& defines);
 
+	Renderer::Backend::IDevice* m_Device = nullptr;
 	CStr m_Name;
 	CShaderDefines m_Defines;
 	std::unique_ptr<Renderer::Backend::IShaderProgram> m_BackendShaderProgram;

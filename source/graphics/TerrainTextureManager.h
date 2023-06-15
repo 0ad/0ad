@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -94,7 +94,7 @@ public:
 	using TerrainAlphaMap = std::map<VfsPath, TerrainAlpha>;
 
 	// constructor, destructor
-	CTerrainTextureManager();
+	CTerrainTextureManager(Renderer::Backend::IDevice* device);
 	~CTerrainTextureManager();
 
 	// Find all XML's in the directory (with subdirs) and try to load them as
@@ -124,6 +124,8 @@ public:
 	void UploadResourcesIfNeeded(Renderer::Backend::IDeviceCommandContext* deviceCommandContext);
 
 private:
+	Renderer::Backend::IDevice* m_Device = nullptr;
+
 	// All texture entries created by this class, for easy freeing now that
 	// textures may be in several STextureType's
 	std::vector<CTerrainTextureEntry*> m_TextureEntries;
@@ -132,7 +134,7 @@ private:
 
 	TerrainAlphaMap m_TerrainAlphas;
 
-	size_t m_LastGroupIndex;
+	size_t m_LastGroupIndex = 0;
 
 	// A way to separate file loading and uploading to GPU to not stall uploading.
 	// Once we get a properly threaded loading we might optimize that.

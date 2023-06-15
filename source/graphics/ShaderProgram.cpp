@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,18 +19,19 @@
 
 #include "ShaderProgram.h"
 
-#include "ps/VideoMode.h"
 #include "renderer/backend/IDevice.h"
 
-CShaderProgram::CShaderProgram(const CStr& name, const CShaderDefines& defines)
-	: m_Name(name), m_Defines(defines)
+CShaderProgram::CShaderProgram(
+	Renderer::Backend::IDevice* device, const CStr& name, const CShaderDefines& defines)
+	: m_Device(device), m_Name(name), m_Defines(defines)
 {
 }
 
 // static
-CShaderProgramPtr CShaderProgram::Create(const CStr& name, const CShaderDefines& defines)
+CShaderProgramPtr CShaderProgram::Create(
+	Renderer::Backend::IDevice* device, const CStr& name, const CShaderDefines& defines)
 {
-	CShaderProgramPtr shaderProgram(new CShaderProgram(name, defines));
+	CShaderProgramPtr shaderProgram(new CShaderProgram(device, name, defines));
 	shaderProgram->Reload();
 	return shaderProgram->m_BackendShaderProgram ? shaderProgram : nullptr;
 }
@@ -38,7 +39,7 @@ CShaderProgramPtr CShaderProgram::Create(const CStr& name, const CShaderDefines&
 void CShaderProgram::Reload()
 {
 	std::unique_ptr<Renderer::Backend::IShaderProgram> backendShaderProgram =
-		g_VideoMode.GetBackendDevice()->CreateShaderProgram(m_Name, m_Defines);
+		m_Device->CreateShaderProgram(m_Name, m_Defines);
 	if (backendShaderProgram)
 		m_BackendShaderProgram = std::move(backendShaderProgram);
 }

@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -67,13 +67,13 @@ class CGameViewImpl
 {
 	NONCOPYABLE(CGameViewImpl);
 public:
-	CGameViewImpl(CGame* game)
+	CGameViewImpl(Renderer::Backend::IDevice* device, CGame* game)
 		: Game(game),
 		ColladaManager(g_VFS), MeshManager(ColladaManager), SkeletonAnimManager(ColladaManager),
 		ObjectManager(MeshManager, SkeletonAnimManager, *game->GetSimulation2()),
 		LOSTexture(*game->GetSimulation2()),
 		TerritoryTexture(*game->GetSimulation2()),
-		MiniMapTexture(*game->GetSimulation2()),
+		MiniMapTexture(device, *game->GetSimulation2()),
 		ViewCamera(),
 		CullCamera(),
 		LockCullCamera(false),
@@ -158,8 +158,8 @@ void CGameView::SetConstrainCameraEnabled(bool enabled)
 
 #undef IMPLEMENT_BOOLEAN_SETTING
 
-CGameView::CGameView(CGame *pGame):
-	m(new CGameViewImpl(pGame))
+CGameView::CGameView(Renderer::Backend::IDevice* device, CGame *pGame):
+	m(new CGameViewImpl(device, pGame))
 {
 	m->CullCamera = m->ViewCamera;
 	g_Renderer.GetSceneRenderer().SetSceneCamera(m->ViewCamera, m->CullCamera);

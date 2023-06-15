@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -101,7 +101,6 @@ constexpr u8 KNOWN_IMPERFECT_PATH_RESET_COUNTDOWN = 12;
  * However, too high means units will look idle for a long time when they are failing to move.
  * TODO: if UnitMotion could send differentiated "unreachable" and "currently stuck" failing messages,
  * this could probably be lowered.
- * TODO: when unit pushing is implemented, this number can probably be lowered.
  */
 constexpr u8 MAX_FAILED_MOVEMENTS = 35;
 
@@ -1658,8 +1657,6 @@ bool CCmpUnitMotion::ComputeGoal(PathGoal& out, const MoveRequest& moveRequest) 
 	CmpPtr<ICmpObstructionManager> cmpObstructionManager(GetSystemEntity());
 	ENSURE(cmpObstructionManager);
 
-	entity_pos_t distance = cmpObstructionManager->DistanceBetweenShapes(obstruction, targetObstruction);
-
 	out.x = targetObstruction.x;
 	out.z = targetObstruction.z;
 	out.hw = targetObstruction.hw;
@@ -1675,6 +1672,8 @@ bool CCmpUnitMotion::ComputeGoal(PathGoal& out, const MoveRequest& moveRequest) 
 		out.type = PathGoal::POINT;
 		return true;
 	}
+
+	entity_pos_t distance = cmpObstructionManager->DistanceBetweenShapes(obstruction, targetObstruction);
 
 	entity_pos_t circleRadius = CFixedVector2D(targetObstruction.hw, targetObstruction.hh).Length();
 

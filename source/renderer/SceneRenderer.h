@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -65,7 +65,7 @@ public:
 		CULL_MAX
 	};
 
-	CSceneRenderer();
+	CSceneRenderer(Renderer::Backend::IDevice* device);
 	~CSceneRenderer();
 
 	void Initialize();
@@ -195,7 +195,7 @@ public:
 	 */
 	void ResetState();
 
-	void ReloadShaders();
+	void ReloadShaders(Renderer::Backend::IDevice* device);
 
 protected:
 	void Submit(CPatch* patch) override;

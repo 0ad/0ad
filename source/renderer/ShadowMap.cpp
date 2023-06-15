@@ -32,7 +32,6 @@
 #include "ps/ConfigDB.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/Profile.h"
-#include "ps/VideoMode.h"
 #include "renderer/backend/IDevice.h"
 #include "renderer/backend/ITexture.h"
 #include "renderer/DebugRenderer.h"
@@ -57,6 +56,8 @@ constexpr float DEFAULT_CASCADE_DISTANCE_RATIO = 1.7f;
  */
 struct ShadowMapInternals
 {
+	Renderer::Backend::IDevice* Device = nullptr;
+
 	std::unique_ptr<Renderer::Backend::IFramebuffer> Framebuffer;
 	std::unique_ptr<Renderer::Backend::ITexture> Texture;
 
@@ -124,7 +125,7 @@ void ShadowMapInternals::UpdateCascadesParameters()
 	CascadeCount = 1;
 	CFG_GET_VAL("shadowscascadecount", CascadeCount);
 
-	if (CascadeCount < 1 || CascadeCount > MAX_CASCADE_COUNT || g_VideoMode.GetBackendDevice()->GetBackend() == Renderer::Backend::Backend::GL_ARB)
+	if (CascadeCount < 1 || CascadeCount > MAX_CASCADE_COUNT || Device->GetBackend() == Renderer::Backend::Backend::GL_ARB)
 		CascadeCount = 1;
 
 	ShadowsCoverMap = false;
@@ -183,9 +184,10 @@ void CalculateBoundsForCascade(
 	bbaa->Expand(insets);
 }
 
-ShadowMap::ShadowMap()
+ShadowMap::ShadowMap(Renderer::Backend::IDevice* device)
 {
 	m = new ShadowMapInternals;
+	m->Device = device;
 	m->Framebuffer = 0;
 	m->Width = 0;
 	m->Height = 0;
@@ -460,7 +462,7 @@ void ShadowMapInternals::CalculateShadowMatrices(const int cascade)
 	lightToTex._34 = -shadowRenderBound[0].Z * texscalez;
 	lightToTex._44 = 1.0;
 
-	if (g_VideoMode.GetBackendDevice()->GetBackend() == Renderer::Backend::Backend::VULKAN)
+	if (Device->GetBackend() == Renderer::Backend::Backend::VULKAN)
 	{
 		CMatrix3D flip;
 		flip.SetIdentity();
@@ -479,8 +481,6 @@ void ShadowMapInternals::CreateTexture()
 	Framebuffer.reset();
 	Texture.reset();
 	DummyTexture.reset();
-
-	Renderer::Backend::IDevice* backendDevice = g_VideoMode.GetBackendDevice();
 
 	CFG_GET_VAL("shadowquality", QualityLevel);
 
@@ -508,7 +508,7 @@ void ShadowMapInternals::CreateTexture()
 
 	// Clamp to the maximum texture size.
 	shadowMapSize = std::min(
-		shadowMapSize, static_cast<int>(backendDevice->GetCapabilities().maxTextureSize));
+		shadowMapSize, static_cast<int>(Device->GetCapabilities().maxTextureSize));
 
 	Width = Height = shadowMapSize;
 
@@ -529,7 +529,7 @@ void ShadowMapInternals::CreateTexture()
 	case 32: formatName = "Format::D32_SFLOAT"; backendFormat = Renderer::Backend::Format::D32_SFLOAT; break;
 	default:
 		formatName = "Default";
-		backendFormat = backendDevice->GetPreferredDepthStencilFormat(
+		backendFormat = Device->GetPreferredDepthStencilFormat(
 			Renderer::Backend::ITexture::Usage::SAMPLED |
 				Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
 			true, false);
@@ -543,7 +543,7 @@ void ShadowMapInternals::CreateTexture()
 
 	if (g_RenderingOptions.GetShadowAlphaFix())
 	{
-		DummyTexture = backendDevice->CreateTexture2D("ShadowMapDummy",
+		DummyTexture = Device->CreateTexture2D("ShadowMapDummy",
 			Renderer::Backend::ITexture::Usage::COLOR_ATTACHMENT,
 			Renderer::Backend::Format::R8G8B8A8_UNORM, Width, Height,
 			Renderer::Backend::Sampler::MakeDefaultSampler(
@@ -566,7 +566,7 @@ void ShadowMapInternals::CreateTexture()
 	samplerDesc.compareEnabled = true;
 	samplerDesc.compareOp = Renderer::Backend::CompareOp::LESS_OR_EQUAL;
 
-	Texture = backendDevice->CreateTexture2D("ShadowMapDepth",
+	Texture = Device->CreateTexture2D("ShadowMapDepth",
 		Renderer::Backend::ITexture::Usage::SAMPLED |
 			Renderer::Backend::ITexture::Usage::DEPTH_STENCIL_ATTACHMENT,
 		backendFormat, Width, Height, samplerDesc);
@@ -587,7 +587,7 @@ void ShadowMapInternals::CreateTexture()
 	depthStencilAttachment.loadOp = Renderer::Backend::AttachmentLoadOp::CLEAR;
 	depthStencilAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
 
-	Framebuffer = backendDevice->CreateFramebuffer("ShadowMapFramebuffer",
+	Framebuffer = Device->CreateFramebuffer("ShadowMapFramebuffer",
 		useDummyTexture ? &colorAttachment : nullptr, &depthStencilAttachment);
 	if (!Framebuffer)
 	{

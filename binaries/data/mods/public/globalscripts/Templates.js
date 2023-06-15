@@ -86,16 +86,16 @@ function MatchesClassList(classes, match)
 	if (!match || !classes)
 		return undefined;
 	// Transform the string to an array
-	if (typeof match == "string")
+	if (typeof match === "string")
 		match = match.split(/\s+/);
 
 	for (let sublist of match)
 	{
 		// If the elements are still strings, split them by space or by '+'
-		if (typeof sublist == "string")
+		if (typeof sublist === "string")
 			sublist = sublist.split(/[+\s]+/);
-		if (sublist.every(c => (c[0] == "!" && classes.indexOf(c.substr(1)) == -1) ||
-		                       (c[0] != "!" && classes.indexOf(c) != -1)))
+		if (sublist.every(c => (c[0] === "!" && classes.indexOf(c.substr(1)) === -1) ||
+		                       (c[0] !== "!" && classes.indexOf(c) !== -1)))
 			return true;
 	}
 
