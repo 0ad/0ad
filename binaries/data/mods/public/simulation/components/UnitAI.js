@@ -1928,7 +1928,6 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				"leave": function(msg) {
 					this.StopMoving();
-					this.ResetSpeedMultiplier();
 					this.StopTimer();
 					this.SetDefaultAnimationVariant();
 				},
@@ -1999,7 +1998,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 				this.PlaySound("panic");
 
-				this.SetSpeedMultiplier(this.GetRunMultiplier());
+				this.Run();
 				return false;
 			},
 
@@ -2024,7 +2023,6 @@ UnitAI.prototype.UnitFsmSpec = {
 			},
 
 			"leave": function() {
-				this.ResetSpeedMultiplier();
 				this.StopMoving();
 			},
 
@@ -2302,16 +2300,14 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (!this.formationAnimationVariant)
 						this.SetAnimationVariant("combat");
 
-					var cmpUnitAI = Engine.QueryInterface(this.order.data.target, IID_UnitAI);
-					if (cmpUnitAI && cmpUnitAI.IsFleeing())
-						this.SetSpeedMultiplier(this.GetRunMultiplier());
+					if (Engine.QueryInterface(this.order.data.target, IID_UnitAI)?.IsFleeing())
+						this.Run();
 
 					this.StartTimer(1000, 1000);
 					return false;
 				},
 
 				"leave": function() {
-					this.ResetSpeedMultiplier();
 					this.StopMoving();
 					this.StopTimer();
 				},
@@ -4647,9 +4643,12 @@ UnitAI.prototype.SetAnimationSync = function(actiontime, repeattime)
 
 UnitAI.prototype.StopMoving = function()
 {
-	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	if (cmpUnitMotion)
-		cmpUnitMotion.StopMoving();
+	const cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
+	if (!cmpUnitMotion)
+		return;
+
+	cmpUnitMotion.StopMoving();
+	cmpUnitMotion.SetSpeedMultiplier(1);
 };
 
 /**
@@ -6139,20 +6138,19 @@ UnitAI.prototype.GetStanceName = function()
 };
 
 /*
- * Make the unit walk at its normal pace.
+ * Make the unit run.
  */
-UnitAI.prototype.ResetSpeedMultiplier = function()
+UnitAI.prototype.Run = function()
 {
-	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	if (cmpUnitMotion)
-		cmpUnitMotion.SetSpeedMultiplier(1);
+	this.SetSpeedMultiplier(this.GetRunMultiplier());
 };
 
+/**
+ * @param {number} speed - The multiplier to set the speed to.
+ */
 UnitAI.prototype.SetSpeedMultiplier = function(speed)
 {
-	let cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
-	if (cmpUnitMotion)
-		cmpUnitMotion.SetSpeedMultiplier(speed);
+	Engine.QueryInterface(this.entity, IID_UnitMotion)?.SetSpeedMultiplier(speed);
 };
 
 /**
