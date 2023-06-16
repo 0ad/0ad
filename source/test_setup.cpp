@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,10 +29,6 @@
 #include "lib/self_test.h"
 #include <cxxtest/GlobalFixture.h>
 
-#if OS_WIN
-#include "lib/sysdep/os/win/wdbg_heap.h"
-#endif
-
 #include "lib/timer.h"
 #include "lib/sysdep/sysdep.h"
 #include "ps/Profiler2.h"
@@ -46,12 +42,6 @@ class LeakReporter : public CxxTest::GlobalFixture
 {
 	virtual bool tearDownWorld()
 	{
-		// Enable leak reporting on exit.
-		// (This is done in tearDownWorld so that it doesn't report 'leaks'
-		// if the program is aborted before finishing cleanly.)
-#if OS_WIN
-		wdbg_heap_Enable(true);
-#endif
 		return true;
 	}
 
