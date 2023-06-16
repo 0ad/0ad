@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
-  <BuildRestrictions>
-    <Category>Palace</Category>
-    <Distance>
-      <FromClass>CivicCenter</FromClass>
-      <MaxDistance>60</MaxDistance>
-    </Distance>
-  </BuildRestrictions>
   <Cost>
     <BuildTime>200</BuildTime>
     <Resources>
@@ -15,14 +8,21 @@
     </Resources>
   </Cost>
   <Footprint>
-    <Square width="28" depth="28.0"/>
+    <Square width="30" depth="30.0"/>
     <Height>10.0</Height>
   </Footprint>
+  <Health>
+    <Max>3000</Max>
+    <SpawnEntityOnDeath>decay|rubble/rubble_maur_cc</SpawnEntityOnDeath>
+  </Health>
   <Identity>
     <Civ>maur</Civ>
     <GenericName>Palace</GenericName>
     <SpecificName>Harmya</SpecificName>
-    <Classes datatype="tokens">ConquestCritical CivSpecific Harmya</Classes>
+    <Classes datatype="tokens">
+      ConquestCritical
+      CivSpecific
+    </Classes>
     <VisibleClasses datatype="tokens">
 	  Palace
 	</VisibleClasses>
@@ -64,6 +64,9 @@
       units/{civ}/hero_ashoka
     </Entities>
   </Trainer>
+  <Vision>
+    <Range>32</Range>
+  </Vision>
   <VisualActor>
     <FoundationActor>structures/fndn_8x8.xml</FoundationActor>
     <Actor>structures/mauryas/palace.xml</Actor>
