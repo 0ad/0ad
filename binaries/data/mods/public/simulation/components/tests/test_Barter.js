@@ -144,10 +144,6 @@ AddMock(playerEnt, IID_Player, {
 });
 cmpBarter.ExchangeResources(playerID, "wood", "stone", 100);
 
-// It seems useless to try to activate the timer if we don't barter any resources.
-TS_ASSERT_EQUALS(cmpBarter.restoreTimer, 7);
-TS_ASSERT(timerActivated);
-
 TS_ASSERT_UNEVAL_EQUALS(cmpBarter.priceDifferences, { "wood": 0, "stone": 0, "metal": 0 });
 
 DeleteMock(playerEnt, IID_Player);
