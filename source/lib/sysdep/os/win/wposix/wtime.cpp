@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -31,8 +31,6 @@
 #include "lib/sysdep/os/win/wposix/wposix_internal.h"
 
 #include <ctime>
-
-WINIT_REGISTER_MAIN_INIT(wtime_Init);	// whrt -> wtime
 
 // NT system time and FILETIME are hectonanoseconds since Jan. 1, 1601 UTC.
 // SYSTEMTIME is a struct containing month, year, etc.
@@ -75,19 +73,6 @@ time_t wtime_utc_filetime_to_time_t(FILETIME* ft)
 
 
 //-----------------------------------------------------------------------------
-
-// system clock at startup [nanoseconds since POSIX epoch]
-// note: the HRT starts at 0; any increase by the time we get here
-// just makes our notion of the start time more accurate)
-static i64 stInitial_ns;
-
-static void LatchInitialSystemTime()
-{
-	FILETIME ft;
-	GetSystemTimeAsFileTime(&ft);
-	const u64 hns = u64_from_FILETIME(&ft);
-	stInitial_ns = (hns - posix_epoch_hns) * 100;
-}
 
 static size_t MsFromTimespec(const timespec& ts)
 {
@@ -568,13 +553,4 @@ strptime (const char *buf, const char *format, struct tm *timeptr)
 		}
 	}
 	return (char *)buf;
-}
-
-
-//-----------------------------------------------------------------------------
-
-static Status wtime_Init()
-{
-	LatchInitialSystemTime();
-	return INFO::OK;
 }

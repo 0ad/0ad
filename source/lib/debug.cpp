@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -29,10 +29,6 @@
 #include "lib/sysdep/cpu.h"	// cpu_CAS
 #include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/vm.h"
-
-#if OS_WIN
-# include "lib/sysdep/os/win/wdbg_heap.h"
-#endif
 
 #include <cstdarg>
 #include <cstring>
@@ -403,12 +399,6 @@ static ErrorReaction PerformErrorReaction(ErrorReactionInternal er, size_t flags
 	case ERI_EXIT:
 		isExiting = 1;	// see declaration
 		COMPILER_FENCE;
-
-#if OS_WIN
-		// prevent (slow) heap reporting since we're exiting abnormally and
-		// thus probably leaking like a sieve.
-		wdbg_heap_Enable(false);
-#endif
 
 		exit(EXIT_FAILURE);
 
