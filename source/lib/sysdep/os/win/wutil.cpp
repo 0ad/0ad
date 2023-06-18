@@ -256,31 +256,6 @@ static void FreeDirectories()
 }
 
 //-----------------------------------------------------------------------------
-// memory
-
-static void EnableLowFragmentationHeap()
-{
-	if(IsDebuggerPresent())
-	{
-		// and the debug heap isn't explicitly disabled,
-		char* var = getenv("_NO_DEBUG_HEAP");
-		if(!var || var[0] != '1')
-			return;	// we can't enable the LFH
-	}
-
-#if WINVER >= 0x0501
-	WUTIL_FUNC(pHeapSetInformation, BOOL, (HANDLE, HEAP_INFORMATION_CLASS, void*, size_t));
-	WUTIL_IMPORT_KERNEL32(HeapSetInformation, pHeapSetInformation);
-	if(pHeapSetInformation)
-	{
-		ULONG flags = 2;	// enable LFH
-		pHeapSetInformation(GetProcessHeap(), HeapCompatibilityInformation, &flags, sizeof(flags));
-	}
-#endif	// #if WINVER >= 0x0501
-}
-
-
-//-----------------------------------------------------------------------------
 
 Status wutil_SetPrivilege(const wchar_t* privilege, bool enable)
 {
@@ -392,8 +367,6 @@ void wutil_EnableHiDPIOnWindows()
 static Status wutil_Init()
 {
 	InitLocks();
-
-	EnableLowFragmentationHeap();
 
 	GetDirectories();
 
