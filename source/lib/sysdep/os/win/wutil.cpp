@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -281,69 +281,6 @@ static void EnableLowFragmentationHeap()
 
 
 //-----------------------------------------------------------------------------
-// Wow64
-
-// Wow64 'helpfully' redirects all 32-bit apps' accesses of
-// %windir%\\system32\\drivers to %windir%\\system32\\drivers\\SysWOW64.
-// that's bad, because the actual drivers are not in the subdirectory. to
-// work around this, provide for temporarily disabling redirection.
-
-static WUTIL_FUNC(pIsWow64Process, BOOL, (HANDLE, PBOOL));
-static WUTIL_FUNC(pWow64DisableWow64FsRedirection, BOOL, (PVOID*));
-static WUTIL_FUNC(pWow64RevertWow64FsRedirection, BOOL, (PVOID));
-
-static bool isWow64;
-
-static void ImportWow64Functions()
-{
-	WUTIL_IMPORT_KERNEL32(IsWow64Process, pIsWow64Process);
-	WUTIL_IMPORT_KERNEL32(Wow64DisableWow64FsRedirection, pWow64DisableWow64FsRedirection);
-	WUTIL_IMPORT_KERNEL32(Wow64RevertWow64FsRedirection, pWow64RevertWow64FsRedirection);
-}
-
-static void DetectWow64()
-{
-	// function not found => running on 32-bit Windows
-	if(!pIsWow64Process)
-	{
-		isWow64 = false;
-		return;
-	}
-
-	BOOL isWow64Process = FALSE;
-	const BOOL ok = pIsWow64Process(GetCurrentProcess(), &isWow64Process);
-	WARN_IF_FALSE(ok);
-	isWow64 = (isWow64Process == TRUE);
-}
-
-bool wutil_IsWow64()
-{
-	return isWow64;
-}
-
-
-WinScopedDisableWow64Redirection::WinScopedDisableWow64Redirection()
-{
-	// note: don't just check if the function pointers are valid. 32-bit
-	// Vista includes them but isn't running Wow64, so calling the functions
-	// would fail. since we have to check if actually on Wow64, there's no
-	// more need to verify the pointers (their existence is implied).
-	if(!wutil_IsWow64())
-		return;
-	const BOOL ok = pWow64DisableWow64FsRedirection(&m_wasRedirectionEnabled);
-	WARN_IF_FALSE(ok);
-}
-
-WinScopedDisableWow64Redirection::~WinScopedDisableWow64Redirection()
-{
-	if(!wutil_IsWow64())
-		return;
-	const BOOL ok = pWow64RevertWow64FsRedirection(m_wasRedirectionEnabled);
-	WARN_IF_FALSE(ok);
-}
-
-
-//-----------------------------------------------------------------------------
 
 Status wutil_SetPrivilege(const wchar_t* privilege, bool enable)
 {
@@ -459,9 +396,6 @@ static Status wutil_Init()
 	EnableLowFragmentationHeap();
 
 	GetDirectories();
-
-	ImportWow64Functions();
-	DetectWow64();
 
 	return INFO::OK;
 }
