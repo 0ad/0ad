@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -62,10 +62,7 @@ MapGeneratorInterruptCallback(JSContext* UNUSED(cx))
 
 CMapGeneratorWorker::CMapGeneratorWorker(ScriptInterface* scriptInterface) :
 	m_ScriptInterface(scriptInterface)
-{
-	// If something happens before we initialize, that's a failure
-	m_Progress = -1;
-}
+{}
 
 CMapGeneratorWorker::~CMapGeneratorWorker()
 {
@@ -78,7 +75,7 @@ void CMapGeneratorWorker::Initialize(const VfsPath& scriptFile, const std::strin
 	std::lock_guard<std::mutex> lock(m_WorkerMutex);
 
 	// Set progress to positive value
-	m_Progress = 1;
+	m_Progress.store(1);
 	m_ScriptPath = scriptFile;
 	m_Settings = settings;
 
@@ -94,11 +91,10 @@ void CMapGeneratorWorker::Initialize(const VfsPath& scriptFile, const std::strin
 		m_ScriptInterface = new ScriptInterface("Engine", "MapGenerator", mapgenContext);
 
 		// Run map generation scripts
-		if (!Run() || m_Progress > 0)
+		if (!Run() || m_Progress.load() > 0)
 		{
 			// Don't leave progress in an unknown state, if generator failed, set it to -1
-			std::lock_guard<std::mutex> lock(m_WorkerMutex);
-			m_Progress = -1;
+			m_Progress.store(-1);
 		}
 
 		SAFE_DELETE(m_ScriptInterface);
@@ -210,10 +206,9 @@ void CMapGeneratorWorker::RegisterScriptFunctions_MapGenerator()
 #undef REGISTER_MAPGEN_FUNC
 #undef REGISTER_MAPGEN_FUNC_NAME
 
-int CMapGeneratorWorker::GetProgress()
+int CMapGeneratorWorker::GetProgress() const
 {
-	std::lock_guard<std::mutex> lock(m_WorkerMutex);
-	return m_Progress;
+	return m_Progress.load();
 }
 
 double CMapGeneratorWorker::GetMicroseconds()
@@ -229,21 +224,23 @@ Script::StructuredClone CMapGeneratorWorker::GetResults()
 
 void CMapGeneratorWorker::ExportMap(JS::HandleValue data)
 {
-	// Copy results
-	std::lock_guard<std::mutex> lock(m_WorkerMutex);
-	m_MapData = Script::WriteStructuredClone(ScriptRequest(m_ScriptInterface), data);
-	m_Progress = 0;
+	{
+		// Copy results
+		std::lock_guard<std::mutex> lock(m_WorkerMutex);
+		m_MapData = Script::WriteStructuredClone(ScriptRequest(m_ScriptInterface), data);
+	}
+	m_Progress.store(0);
 }
 
 void CMapGeneratorWorker::SetProgress(int progress)
 {
-	// Copy data
-	std::lock_guard<std::mutex> lock(m_WorkerMutex);
-
-	if (progress >= m_Progress)
-		m_Progress = progress;
+	// When the task is started, `m_Progress` is only mutated by this thread.
+	const int currentProgress = m_Progress.load();
+	if (progress >= currentProgress)
+		m_Progress.store(progress);
 	else
-		LOGWARNING("The random map script tried to reduce the loading progress from %d to %d", m_Progress, progress);
+		LOGWARNING("The random map script tried to reduce the loading progress from %d to %d",
+			currentProgress, progress);
 }
 
 CParamNode CMapGeneratorWorker::GetTemplate(const std::string& templateName)
@@ -413,7 +410,7 @@ void CMapGenerator::GenerateMap(const VfsPath& scriptFile, const std::string& se
 	m_Worker->Initialize(scriptFile, settings);
 }
 
-int CMapGenerator::GetProgress()
+int CMapGenerator::GetProgress() const
 {
 	return m_Worker->GetProgress();
 }

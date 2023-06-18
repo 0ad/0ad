@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #include "ps/TemplateLoader.h"
 #include "scriptinterface/StructuredClone.h"
 
+#include <atomic>
 #include <boost/random/linear_congruential.hpp>
 #include <mutex>
 #include <set>
@@ -57,7 +58,7 @@ public:
 	 *
 	 * @return Progress percentage 1-100 if active, 0 when finished, or -1 on error
 	 */
-	int GetProgress();
+	int GetProgress() const;
 
 	/**
 	 * Get random map data, according to this format:
@@ -100,7 +101,7 @@ public:
 	 *
 	 * @return Progress percentage 1-100 if active, 0 when finished, or -1 on error
 	 */
-	int GetProgress();
+	int GetProgress() const;
 
 	/**
 	 * Get random map data, according to this format:
@@ -198,8 +199,10 @@ private:
 
 	/**
 	 * Current map generation progress.
+	 * Initialize to `-1`. If something happens before we start, that's a
+	 * failure.
 	 */
-	int m_Progress;
+	std::atomic<int> m_Progress{-1};
 
 	/**
 	 * Provides the script context.
