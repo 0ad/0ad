@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -39,7 +39,6 @@
 #include "lib/sysdep/numa.h"
 #include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64::ApicId
 #include "lib/sysdep/arch/x86_x64/apic.h"	// ProcessorFromApicId
-#include "lib/sysdep/os/win/wversion.h"
 #include "lib/sysdep/os/win/winit.h"
 WINIT_REGISTER_CRITICAL_INIT(wvm_Init);
 
@@ -180,18 +179,6 @@ static bool ShouldUseLargePages(size_t allocationSize, DWORD allocationType, Pag
 		// a previous attempt already took too long.
 		if(largePageAllocationTookTooLong)
 			return false;
-
-		// pre-Vista Windows OSes attempt to cope with page fragmentation by
-		// trimming the working set of all processes, thus swapping them out,
-		// and waiting for contiguous regions to appear. this is terribly
-		// slow (multiple seconds), hence the following heuristic:
-		if(wversion_Number() < WVERSION_VISTA)
-		{
-			// if there's not plenty of free memory, then memory is surely
-			// already fragmented.
-			if(os_cpu_MemoryAvailable() < 2000)	// 2 GB
-				return false;
-		}
 	}
 
 	return true;
