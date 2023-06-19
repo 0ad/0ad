@@ -6,6 +6,7 @@
 # Adrian Chaves
 # Adrián Chaves Fernández
 # Chema Fernández
+# Ismael Lires
 # mandruis
 # Nicolas Auvray
 # Nicolás S.
@@ -15,7 +16,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-01-13 08:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Nicolás S. <nicogomfor@gmail.com>, 2022-2023\n"
+"Last-Translator: Ismael Lires, 2023\n"
 "Language-Team: Galician (http://app.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,7 +45,7 @@ msgid ""
 " In windowed mode, you can resize the window. If the game runs too slowly, "
 "you can change some settings in the options window: try disabling the “High-"
 "quality water effects” and “Shadows” options."
-msgstr "Pode cambiar entre os modos a pantalla completa e de xanela mediante Alt + Intro. No modo de xanela, pode cambiar o tamaño da xanela. Se a partida vai demasiado lenta, pode cambiar algunhas opcións na xanela de configuración: probe a desactivar as opcións de «Efectos da auga de alta calidade» e «Sombras»."
+msgstr "Podes cambiar entre o modo pantalla completa e o modo xanela premendo Alt + Enter. No modo xanela, podes redimensionar a xanela. Se o xogo se executa demasiado lento, podes cambiar algúns axustes na xanela de opcións: intenta desactivar as opcións “Efectos de auga de alta calidade” e “Sombras”."
 
 #: gui/manual/intro.txt:7
 msgid "[font=\"sans-bold-16\"]Playing the game[font=\"sans-14\"]"
@@ -56,7 +57,7 @@ msgid ""
 "time strategy (RTS) games. There are currently a lot of missing features and"
 " poorly-balanced stats – you will probably have to wait until a beta release"
 " for it to work well."
-msgstr "Os controis e a forma de xogar debería resultarlle familiar a calquera afeito a xogos de estratexia en tempo real tradicionais. Nestes momentos faltan moitas funcionalidades e as estatísticas aínda non están ben equilibradas; terás que agardar ata a versión final para que todo funcione de maneira óptima."
+msgstr "Os controis e a xogabilidade deberían ser familiares para os xogadores de xogos de estratexia en tempo real (RTS) tradicionais. Actualmente hai moitas funcións que faltan e estatísticas mal equilibradas – probablemente terás que esperar ata unha versión beta para que funcione correctamente."
 
 #: gui/manual/intro.txt:10
 msgid "Basic controls (by default):"
@@ -86,7 +87,7 @@ msgstr "• Ctrl + teclas de frechas, ou Maiús + roda do rato, para rotar a vis
 msgid ""
 "• Mouse wheel, or “hotkey.camera.zoom.in” and “hotkey.camera.zoom.out” keys,"
 " to zoom"
-msgstr "• A roda do rato, ou as teclas «hotkey.camera.zoom.in» (atallo.cámara.facer.zoom) e «hotkey.camera.zoom.out» (atallo.cámara.facer.zoom) para facer zoom."
+msgstr "• A roda do rato, ou as teclas “hotkey.camera.zoom.in” e “hotkey.camera.zoom.out” para facer zoom."
 
 #: gui/manual/intro.txt:18
 msgid "[font=\"sans-bold-16\"]Modes[font=\"sans-14\"]"
@@ -102,7 +103,7 @@ msgid ""
 "game or against one or more computer players (AI). The default AI (Petra) is"
 " under development and may not always be up to date on the new features, but"
 " you can play the game with or against it nonetheless."
-msgstr "• [font=\"sans-bold-14\"]Un xogador[font=\"sans-14\"] – xogar unha partida de xogo libre ou contra un ou máis opoñentes da intelixencia artificial. A intelixencia artificial predetermina (Petra) está en desenvolvemento e pode non estar sempre preparadas para usar as funcionalidades máis novas, pero pode probar a xogar contra ou con ela igualmente."
+msgstr "• [font=\"sans-bold-14\"]Un xogador[font=\"sans-14\"] – Xoga un xogo de sandbox ou contra un ou máis xogadores de ordenador (IA). A IA predeterminada (Petra) está en desenvolvemento e pode que non estea sempre actualizada coas novas funcións, pero podes xogar o xogo con ela ou contra ela de todos modos."
 
 #: gui/manual/intro.txt:21
 msgid ""
@@ -116,7 +117,7 @@ msgid ""
 " The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc. to allow this. Other players can then select “Join game” "
 "and enter the host's IP address."
-msgstr "Para preparar unha partida de varios xogadores, un dos xogadores debe seleccionar a opción «Aloxar unha partida». O xogo emprega o porto UDP 20595, así que o anfitrión debe configurar o NAT ou a devasa para permitir usar este porto. O resto dos xogadores poden seleccionar «Unirse a unha partida» e introducir o enderezo IP do anfitrión."
+msgstr "Para preparar unha partida de varios xogadores, un dos xogadores debe seleccionar a opción “Aloxar unha partida”. O xogo emprega o porto UDP 20595, así que o anfitrión debe configurar o NAT ou a devasa para permitir usar este porto. O resto dos xogadores poden seleccionar «Unirse a unha partida» e introducir o enderezo IP do anfitrión."
 
 #: gui/manual/intro.txt:25
 msgid "[font=\"sans-bold-16\"]Game setup[font=\"sans-14\"]"
@@ -155,7 +156,7 @@ msgid ""
 "over land and demo maps are maps used for testing purposes (generally not "
 "useful to play on). The “All Maps” filter shows all maps together in one "
 "list."
-msgstr ""
+msgstr "A continuación, os mapas poden ser filtrados aínda máis. Os mapas predeterminados xeralmente son xogables. Os mapas navais son aqueles nos que non se pode chegar a todos os oponentes por terra e os mapas de demostración son mapas utilizados con fins de proba (xeralmente non útiles para xogar). O filtro “Todos os Mapas” mostra todos os mapas nunha única lista."
 
 #: gui/manual/intro.txt:35
 msgid ""
@@ -164,11 +165,11 @@ msgid ""
 "controls which player (decides where you start on the map etc.). The options"
 " are either a human player, an AI or no player at all (the opponent will "
 "just be idle)."
-msgstr ""
+msgstr "Finalmente, cambia as opcións. Para mapas aleatorios, isto inclúe o número de xogadores, o tamaño do mapa, etc. Para escenarios, só podes seleccionar quen controla a cada xogador (decide onde comezas no mapa, etc.). As opcións son xogador humano, IA ou ningún xogador (o oponente simplemente estará inactivo)."
 
 #: gui/manual/intro.txt:37
 msgid "When you are ready to start, click the “Start game” button."
-msgstr "En canto esteas listo para comezar, preme o botón de  «Comezar a partida»."
+msgstr "En canto esteas listo para comezar, preme o botón de  “Comezar a partida”."
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-bold-16\"]Hotkeys[font=\"sans-14\"]"
@@ -178,7 +179,7 @@ msgstr "[font=\"sans-bold-16\"]Atallos do teclado:[font=\"sans-14\"]"
 msgid ""
 "You may change hotkeys in [font=\"sans-bold-14\"]Options > "
 "Hotkeys[font=\"sans-14\"] to suit your liking."
-msgstr ""
+msgstr "Pode cambiar as teclas de atallo en [font=\"sans-bold-14\"]Opcions > Hotkeys[font=\"sans-14\"] para axustar aos teus gustos."
 
 #: gui/manual/intro.txt:42
 msgid "[font=\"sans-bold-14\"]Program-wide[font=\"sans-14\"]"
@@ -187,7 +188,7 @@ msgstr ""
 #: gui/manual/intro.txt:43
 msgid ""
 "  hotkey.exit – Immediately close the game, without asking for confirmation"
-msgstr ""
+msgstr "  hotkey.exit – Cerrar inmediatamente o xogo, sin acadar confirmación"
 
 #: gui/manual/intro.txt:44
 msgid "  hotkey.togglefullscreen – Toggle between fullscreen and windowed"
@@ -195,11 +196,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:45
 msgid "  hotkey.console.toggle – Toggle console"
-msgstr ""
+msgstr " hotkey.console.toggle – Alternar Consola"
 
 #: gui/manual/intro.txt:46
 msgid "  hotkey.fps.toggle – Toggle frame counter (FPS)"
-msgstr ""
+msgstr "  hotkey.fps.toggle – Alternar contador de frames (FPS)"
 
 #: gui/manual/intro.txt:47
 msgid ""
@@ -210,7 +211,7 @@ msgstr ""
 #: gui/manual/intro.txt:48
 msgid ""
 "  hotkey.profile.save – Save current profiler data to “logs/profile.txt”"
-msgstr ""
+msgstr "  hotkey.profile.save – Gardar os datos actuais do perfil en “logs/profile.txt”"
 
 #: gui/manual/intro.txt:49
 msgid ""
@@ -228,11 +229,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:51
 msgid "  hotkey.tab.next – Switch to the next tab"
-msgstr ""
+msgstr " hotkey.tab.next – Cambiar a seguinte pestana"
 
 #: gui/manual/intro.txt:52
 msgid "  hotkey.tab.prev – Switch to the previous tab"
-msgstr ""
+msgstr "  hotkey.tab.prev – Cambiar a pestana previa"
 
 #: gui/manual/intro.txt:54
 msgid "[font=\"sans-bold-14\"]In Game[font=\"sans-14\"]"
@@ -264,15 +265,15 @@ msgstr ""
 
 #: gui/manual/intro.txt:59
 msgid "  hotkey.quicksave – Quicksave"
-msgstr ""
+msgstr "  hotkey.quicksave – Gardado rápido"
 
 #: gui/manual/intro.txt:60
 msgid "  hotkey.quickload – Quickload"
-msgstr ""
+msgstr "  hotkey.quickload – Carga rápida"
 
 #: gui/manual/intro.txt:61
 msgid "  hotkey.session.gui.menu.toggle – Toggle menu"
-msgstr ""
+msgstr "  hotkey.session.gui.menu.toggle – Menu para alternar"
 
 #: gui/manual/intro.txt:62
 msgid "  hotkey.timeelapsedcounter.toggle – Toggle time elapsed counter"
@@ -284,11 +285,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:64
 msgid "  hotkey.confirm – Open chat or send message"
-msgstr ""
+msgstr "  hotkey.confirm – Abrir chat ou enviar mensaxe"
 
 #: gui/manual/intro.txt:65
 msgid "  hotkey.teamchat – Send team chat"
-msgstr ""
+msgstr "  hotkey.teamchat – Enviar chat grupal"
 
 #: gui/manual/intro.txt:66
 msgid ""
@@ -298,7 +299,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:67
 msgid "  hotkey.pause – Pause or resume the game"
-msgstr ""
+msgstr "  hotkey.pause – Pause ou continúe o xogo"
 
 #: gui/manual/intro.txt:68
 msgid ""
@@ -606,7 +607,7 @@ msgid ""
 "  hotkey.wireframe – Toggle wireframe mode (press once to get wireframes "
 "overlaid over the textured models, twice to get just the wireframes colored "
 "by the textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr " hotkey.wireframe – Alternar o modo de estrutura de arame (preme unha vez para obter estruturas de arame superpostas aos modelos texturizados, dúas veces para obter só as estruturas de arame coloreadas polas texturas, tres veces para volver ao modo normal texturizado)"
 
 #: gui/manual/intro.txt:127
 msgid ""
@@ -708,7 +709,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:148
 msgid "  hotkey.camera.pan – Keep pressed and move the mouse to pan"
-msgstr ""
+msgstr "hotkey.camera.pan – Mantén premido e move o rato para desprazarte lateralmente"
 
 #: gui/manual/intro.txt:150
 msgid "[font=\"sans-bold-14\"]During Structure Placement[font=\"sans-14\"]"
@@ -731,17 +732,17 @@ msgstr ""
 
 #: gui/manual/intro.txt:155
 msgid "[font=\"sans-bold-14\"]When loading a saved game[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Ao cargar partida de xogo gardado[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:156
 msgid "  hotkey.cancel – Cancel"
-msgstr ""
+msgstr "  hotkey.cancel – Cancelar"
 
 #: gui/manual/intro.txt:157
 msgid ""
 "  hotkey.session.savedgames.delete – Delete the selected saved game, ask for"
 " confirmation"
-msgstr ""
+msgstr "  hotkey.session.savedgames.delete – Suprimir o xogo gardado, solicite confirmación"
 
 #: gui/manual/intro.txt:158
 msgid ""

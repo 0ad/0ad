@@ -1,5 +1,5 @@
 # Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
+# Copyright (C) 2023 Wildfire Games
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2023-06-16 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: Zuzana Miadoková, 2019,2021-2022\n"
 "Language-Team: Slovak (http://app.transifex.com/wildfire-games/0ad/language/sk/)\n"
@@ -30,64 +30,52 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);\n"
 
 #: simulation/data/civs/athen.jsonAINames[0]
-msgid "Themistocles"
-msgstr "Temistokles"
+msgid "Cimon"
+msgstr "Kimón"
 
 #: simulation/data/civs/athen.jsonAINames[10]
-msgid "Cleon"
-msgstr "Kleón"
-
-#: simulation/data/civs/athen.jsonAINames[11]
-msgid "Cleophon"
-msgstr "Kleofón"
-
-#: simulation/data/civs/athen.jsonAINames[12]
 msgid "Thrasybulus"
 msgstr "Thrasybulus"
 
-#: simulation/data/civs/athen.jsonAINames[13]
-msgid "Iphicrates"
-msgstr "Iphikrates"
-
-#: simulation/data/civs/athen.jsonAINames[14]
+#: simulation/data/civs/athen.jsonAINames[11]
 msgid "Demosthenes"
 msgstr "Demostenes"
 
 #: simulation/data/civs/athen.jsonAINames[1]
-msgid "Pericles"
-msgstr "Perikles"
-
-#: simulation/data/civs/athen.jsonAINames[2]
-msgid "Cimon"
-msgstr "Kimón"
-
-#: simulation/data/civs/athen.jsonAINames[3]
 msgid "Aristides"
 msgstr "Aristides"
 
-#: simulation/data/civs/athen.jsonAINames[4]
+#: simulation/data/civs/athen.jsonAINames[2]
 msgid "Xenophon"
 msgstr "Xenofón"
 
-#: simulation/data/civs/athen.jsonAINames[5]
+#: simulation/data/civs/athen.jsonAINames[3]
 msgid "Hippias"
 msgstr "Hippias"
 
-#: simulation/data/civs/athen.jsonAINames[6]
+#: simulation/data/civs/athen.jsonAINames[4]
 msgid "Cleisthenes"
 msgstr "Kleistenes"
 
-#: simulation/data/civs/athen.jsonAINames[7]
+#: simulation/data/civs/athen.jsonAINames[5]
 msgid "Thucydides"
 msgstr "Thoukydides"
 
-#: simulation/data/civs/athen.jsonAINames[8]
+#: simulation/data/civs/athen.jsonAINames[6]
 msgid "Alcibiades"
 msgstr "Alkibiadés"
 
-#: simulation/data/civs/athen.jsonAINames[9]
+#: simulation/data/civs/athen.jsonAINames[7]
 msgid "Miltiades"
 msgstr "Miltiadés"
+
+#: simulation/data/civs/athen.jsonAINames[8]
+msgid "Cleon"
+msgstr "Kleón"
+
+#: simulation/data/civs/athen.jsonAINames[9]
+msgid "Cleophon"
+msgstr "Kleofón"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
 msgid "Workers +10% metal gather rate per phase advance."
@@ -104,112 +92,88 @@ msgid "Silver Owls"
 msgstr "Strieborné sovy"
 
 #: simulation/data/civs/brit.jsonAINames[0]
-msgid "Karatakos"
-msgstr "Karatakos"
-
-#: simulation/data/civs/brit.jsonAINames[10]
-msgid "Vosenius"
-msgstr "Vosenius"
-
-#: simulation/data/civs/brit.jsonAINames[1]
-msgid "Kunobelinos"
-msgstr "Kunobelinos"
-
-#: simulation/data/civs/brit.jsonAINames[2]
-msgid "Boudicca"
-msgstr "Boudica"
-
-#: simulation/data/civs/brit.jsonAINames[3]
 msgid "Prasutagus"
 msgstr "Prasutagus"
 
-#: simulation/data/civs/brit.jsonAINames[4]
+#: simulation/data/civs/brit.jsonAINames[1]
 msgid "Venutius"
 msgstr "Venutius"
 
-#: simulation/data/civs/brit.jsonAINames[5]
+#: simulation/data/civs/brit.jsonAINames[2]
 msgid "Cogidubnus"
 msgstr "Cogidubnus"
 
-#: simulation/data/civs/brit.jsonAINames[6]
+#: simulation/data/civs/brit.jsonAINames[3]
 msgid "Commius"
 msgstr "Commius"
 
-#: simulation/data/civs/brit.jsonAINames[7]
+#: simulation/data/civs/brit.jsonAINames[4]
 msgid "Comux"
 msgstr "Comux"
 
-#: simulation/data/civs/brit.jsonAINames[8]
+#: simulation/data/civs/brit.jsonAINames[5]
 msgid "Adminius"
 msgstr "Adminius"
 
-#: simulation/data/civs/brit.jsonAINames[9]
+#: simulation/data/civs/brit.jsonAINames[6]
 msgid "Dubnovellaunus"
 msgstr "Dubnovellaunus"
 
+#: simulation/data/civs/brit.jsonAINames[7]
+msgid "Vosenius"
+msgstr "Vosenius"
+
 #: simulation/data/civs/cart.jsonAINames[0]
-msgid "Hannibal Barca"
-msgstr "Hannibal Barkas"
+msgid "Hasdrubal Barca"
+msgstr "Hasdrubal Bakas"
 
 #: simulation/data/civs/cart.jsonAINames[10]
-msgid "Hampsicora"
-msgstr "Hampsicora"
-
-#: simulation/data/civs/cart.jsonAINames[11]
-msgid "Hannibal Gisco"
-msgstr "Hannibal Gisco"
-
-#: simulation/data/civs/cart.jsonAINames[12]
-msgid "Dido"
-msgstr "Dido"
-
-#: simulation/data/civs/cart.jsonAINames[13]
 msgid "Xanthippus"
 msgstr "Xantipus"
 
-#: simulation/data/civs/cart.jsonAINames[14]
+#: simulation/data/civs/cart.jsonAINames[11]
 msgid "Himilco Phameas"
 msgstr "Himilco Phameas"
 
-#: simulation/data/civs/cart.jsonAINames[15]
+#: simulation/data/civs/cart.jsonAINames[12]
 msgid "Hasdrubal the Boetharch"
 msgstr "Hasdrubal Boetharch"
 
 #: simulation/data/civs/cart.jsonAINames[1]
-msgid "Hamilcar Barca"
-msgstr "Hamilkar Barkas"
-
-#: simulation/data/civs/cart.jsonAINames[2]
-msgid "Hasdrubal Barca"
-msgstr "Hasdrubal Bakas"
-
-#: simulation/data/civs/cart.jsonAINames[3]
 msgid "Hasdrubal Gisco"
 msgstr "Hasdrubal Gisko"
 
-#: simulation/data/civs/cart.jsonAINames[4]
+#: simulation/data/civs/cart.jsonAINames[2]
 msgid "Hanno the Elder"
 msgstr "Hanno Starší"
 
-#: simulation/data/civs/cart.jsonAINames[5]
-msgid "Maharbal"
-msgstr "Maharbal"
-
-#: simulation/data/civs/cart.jsonAINames[6]
+#: simulation/data/civs/cart.jsonAINames[3]
 msgid "Mago Barca"
 msgstr "Mago Barkas"
 
-#: simulation/data/civs/cart.jsonAINames[7]
+#: simulation/data/civs/cart.jsonAINames[4]
 msgid "Hasdrubal the Fair"
 msgstr "Hasdrubal Krásny"
 
-#: simulation/data/civs/cart.jsonAINames[8]
+#: simulation/data/civs/cart.jsonAINames[5]
 msgid "Hanno the Great"
 msgstr "Hanno Veľký"
 
-#: simulation/data/civs/cart.jsonAINames[9]
+#: simulation/data/civs/cart.jsonAINames[6]
 msgid "Himilco"
 msgstr "Himilco"
+
+#: simulation/data/civs/cart.jsonAINames[7]
+msgid "Hampsicora"
+msgstr "Hampsicora"
+
+#: simulation/data/civs/cart.jsonAINames[8]
+msgid "Hannibal Gisco"
+msgstr "Hannibal Gisco"
+
+#: simulation/data/civs/cart.jsonAINames[9]
+msgid "Dido"
+msgstr "Dido"
 
 #: simulation/data/civs/cart.jsonCivBonuses[0].Description
 msgid "Merchant Ships +25% trade gain."
@@ -228,42 +192,30 @@ msgid "Desirable Products"
 msgstr "Požadované produkty"
 
 #: simulation/data/civs/gaul.jsonAINames[0]
-msgid "Viridomarus"
-msgstr "Viridomarus"
-
-#: simulation/data/civs/gaul.jsonAINames[1]
-msgid "Brennus"
-msgstr "Brennus"
-
-#: simulation/data/civs/gaul.jsonAINames[2]
 msgid "Cativolcus"
 msgstr "Cativolcus"
 
-#: simulation/data/civs/gaul.jsonAINames[3]
+#: simulation/data/civs/gaul.jsonAINames[1]
 msgid "Cingetorix"
 msgstr "Cingetorix"
 
-#: simulation/data/civs/gaul.jsonAINames[4]
-msgid "Vercingetorix"
-msgstr "Vercingetorix"
-
-#: simulation/data/civs/gaul.jsonAINames[5]
+#: simulation/data/civs/gaul.jsonAINames[2]
 msgid "Divico"
 msgstr "Divico"
 
-#: simulation/data/civs/gaul.jsonAINames[6]
+#: simulation/data/civs/gaul.jsonAINames[3]
 msgid "Ambiorix"
 msgstr "Ambiorix"
 
-#: simulation/data/civs/gaul.jsonAINames[7]
+#: simulation/data/civs/gaul.jsonAINames[4]
 msgid "Liscus"
 msgstr "Liscus"
 
-#: simulation/data/civs/gaul.jsonAINames[8]
+#: simulation/data/civs/gaul.jsonAINames[5]
 msgid "Valetiacus"
 msgstr "Valetiacus"
 
-#: simulation/data/civs/gaul.jsonAINames[9]
+#: simulation/data/civs/gaul.jsonAINames[6]
 msgid "Viridovix"
 msgstr "Viridovix"
 
@@ -377,31 +329,18 @@ msgid "Liu Shi"
 msgstr "Liou Ši"
 
 #: simulation/data/civs/iber.jsonAINames[0]
-#: simulation/data/civs/iber.jsonAINames[1]
-msgid "Viriato"
-msgstr "Viriato"
-
-#: simulation/data/civs/iber.jsonAINames[2]
-msgid "Karos"
-msgstr "Karos"
-
-#: simulation/data/civs/iber.jsonAINames[3]
-msgid "Indibil"
-msgstr "Indibil"
-
-#: simulation/data/civs/iber.jsonAINames[4]
 msgid "Audax"
 msgstr "Audax"
 
-#: simulation/data/civs/iber.jsonAINames[5]
+#: simulation/data/civs/iber.jsonAINames[1]
 msgid "Ditalcus"
 msgstr "Ditalcus"
 
-#: simulation/data/civs/iber.jsonAINames[6]
+#: simulation/data/civs/iber.jsonAINames[2]
 msgid "Minurus"
 msgstr "Minurus"
 
-#: simulation/data/civs/iber.jsonAINames[7]
+#: simulation/data/civs/iber.jsonAINames[3]
 msgid "Tautalus"
 msgstr "Tautalos"
 
@@ -439,14 +378,10 @@ msgid "Malewiebamani"
 msgstr "Malewiebamani"
 
 #: simulation/data/civs/kush.jsonAINames[11]
-msgid "Harsiotef"
-msgstr "Harsiotef"
-
-#: simulation/data/civs/kush.jsonAINames[12]
 msgid "Shanakdakhete"
 msgstr "Shanakdakhete"
 
-#: simulation/data/civs/kush.jsonAINames[13]
+#: simulation/data/civs/kush.jsonAINames[12]
 msgid "Amanishakheto"
 msgstr "Amanishakheto"
 
@@ -497,141 +432,113 @@ msgid "Large Rams"
 msgstr "Veľké baranidlá"
 
 #: simulation/data/civs/mace.jsonAINames[0]
-msgid "Alexander the Great"
-msgstr "Alexander Veľký"
+msgid "Antipater"
+msgstr "Antipatros"
 
 #: simulation/data/civs/mace.jsonAINames[10]
-msgid "Perseus"
-msgstr "Perseus"
-
-#: simulation/data/civs/mace.jsonAINames[11]
-msgid "Craterus"
-msgstr "Krateros"
-
-#: simulation/data/civs/mace.jsonAINames[12]
 msgid "Meleager"
 msgstr "Meleager"
 
 #: simulation/data/civs/mace.jsonAINames[1]
-msgid "Philip II"
-msgstr "Filip II."
-
-#: simulation/data/civs/mace.jsonAINames[2]
-msgid "Antipater"
-msgstr "Antipatros"
-
-#: simulation/data/civs/mace.jsonAINames[3]
 msgid "Philip IV"
 msgstr "Filip IV."
 
-#: simulation/data/civs/mace.jsonAINames[4]
-#: simulation/data/civs/spart.jsonAINames[5]
+#: simulation/data/civs/mace.jsonAINames[2]
+#: simulation/data/civs/spart.jsonAINames[3]
 msgid "Lysander"
 msgstr "Lysandros"
 
-#: simulation/data/civs/mace.jsonAINames[5]
+#: simulation/data/civs/mace.jsonAINames[3]
 msgid "Lysimachus"
 msgstr "Lysimachus"
 
-#: simulation/data/civs/mace.jsonAINames[6]
+#: simulation/data/civs/mace.jsonAINames[4]
 msgid "Pyrrhus of Epirus"
 msgstr "Pyrrhos Epirský"
 
-#: simulation/data/civs/mace.jsonAINames[7]
+#: simulation/data/civs/mace.jsonAINames[5]
 msgid "Antigonus II Gonatas"
 msgstr "Antigonos II Gonatas"
 
-#: simulation/data/civs/mace.jsonAINames[8]
+#: simulation/data/civs/mace.jsonAINames[6]
 msgid "Demetrius II Aetolicus"
 msgstr "Demetrius II Aetolicus"
 
-#: simulation/data/civs/mace.jsonAINames[9]
+#: simulation/data/civs/mace.jsonAINames[7]
 msgid "Philip V"
 msgstr "Filip V"
 
-#: simulation/data/civs/maur.jsonAINames[0]
-msgid "Chandragupta Maurya"
-msgstr "Čandragupta Maurja"
+#: simulation/data/civs/mace.jsonAINames[8]
+msgid "Perseus"
+msgstr "Perseus"
 
-#: simulation/data/civs/maur.jsonAINames[1]
+#: simulation/data/civs/mace.jsonAINames[9]
+msgid "Craterus"
+msgstr "Krateros"
+
+#: simulation/data/civs/maur.jsonAINames[0]
 msgid "Bindusara Maurya"
 msgstr "Bindusara Maurja"
 
-#: simulation/data/civs/maur.jsonAINames[2]
-msgid "Ashoka the Great"
-msgstr "Ašóka Veľký"
-
-#: simulation/data/civs/maur.jsonAINames[3]
+#: simulation/data/civs/maur.jsonAINames[1]
 msgid "Dasharatha Maurya"
 msgstr "Dašaratha Maurya"
 
-#: simulation/data/civs/maur.jsonAINames[4]
+#: simulation/data/civs/maur.jsonAINames[2]
 msgid "Samprati Maurya"
 msgstr "Samprati Maurja"
 
-#: simulation/data/civs/maur.jsonAINames[5]
+#: simulation/data/civs/maur.jsonAINames[3]
 msgid "Shalishuka Maurya"
 msgstr "Šališuka Maurya"
 
-#: simulation/data/civs/maur.jsonAINames[6]
+#: simulation/data/civs/maur.jsonAINames[4]
 msgid "Devavarman Maurya"
 msgstr "Devavarman Maurja"
 
-#: simulation/data/civs/maur.jsonAINames[7]
+#: simulation/data/civs/maur.jsonAINames[5]
 msgid "Shatadhanvan Maurya"
 msgstr "Šatadhanvan Maurya"
 
-#: simulation/data/civs/maur.jsonAINames[8]
+#: simulation/data/civs/maur.jsonAINames[6]
 msgid "Brihadratha Maurya"
 msgstr "Brihadratha Maurja"
 
 #: simulation/data/civs/pers.jsonAINames[0]
-msgid "Kurush II the Great"
-msgstr "Kurush II Veľký"
-
-#: simulation/data/civs/pers.jsonAINames[10]
-msgid "Haxamanish"
-msgstr "Haxamanish"
-
-#: simulation/data/civs/pers.jsonAINames[11]
-msgid "Xsayarsa II"
-msgstr "Xsayarsa II"
-
-#: simulation/data/civs/pers.jsonAINames[1]
-msgid "Darayavahush I"
-msgstr "Darayavahush I"
-
-#: simulation/data/civs/pers.jsonAINames[2]
 msgid "Cambyses II"
 msgstr "Cambyses II"
 
-#: simulation/data/civs/pers.jsonAINames[3]
+#: simulation/data/civs/pers.jsonAINames[1]
 msgid "Bardiya"
 msgstr "Bardiya"
 
-#: simulation/data/civs/pers.jsonAINames[4]
-msgid "Xsayarsa I"
-msgstr "Xsayarsa I"
-
-#: simulation/data/civs/pers.jsonAINames[5]
+#: simulation/data/civs/pers.jsonAINames[2]
 msgid "Artaxshacha I"
 msgstr "Artaxshacha I"
 
-#: simulation/data/civs/pers.jsonAINames[6]
+#: simulation/data/civs/pers.jsonAINames[3]
 msgid "Darayavahush II"
 msgstr "Darayavahush II"
 
-#: simulation/data/civs/pers.jsonAINames[7]
+#: simulation/data/civs/pers.jsonAINames[4]
 msgid "Darayavahush III"
 msgstr "Darayavahush III"
 
-#: simulation/data/civs/pers.jsonAINames[8]
+#: simulation/data/civs/pers.jsonAINames[5]
 msgid "Artaxshacha II"
 msgstr "Artachšačá II"
 
-#: simulation/data/civs/pers.jsonAINames[9]
+#: simulation/data/civs/pers.jsonAINames[6]
 msgid "Artaxshacha III"
 msgstr "Artaxshacha III"
+
+#: simulation/data/civs/pers.jsonAINames[7]
+msgid "Haxamanish"
+msgstr "Haxamanish"
+
+#: simulation/data/civs/pers.jsonAINames[8]
+msgid "Xsayarsa II"
+msgstr "Xsayarsa II"
 
 #: simulation/data/civs/pers.jsonCivBonuses[0].Description
 msgid "Land Traders +25% trade gain."
@@ -654,80 +561,72 @@ msgid "Time of War"
 msgstr "Čas vojny"
 
 #: simulation/data/civs/ptol.jsonAINames[0]
-msgid "Ptolemy Soter"
-msgstr "Ptolemaios Sótér"
+msgid "Ptolemy Philadelphus"
+msgstr "Ptolemaios Filadelfos"
 
 #: simulation/data/civs/ptol.jsonAINames[10]
-msgid "Ptolemy Neos Philopater"
-msgstr "Ptolemaios Neos Filopatór"
-
-#: simulation/data/civs/ptol.jsonAINames[11]
-msgid "Berenice Philopater"
-msgstr "Bereniké Filopatór"
-
-#: simulation/data/civs/ptol.jsonAINames[12]
 msgid "Cleopatra Tryphaena"
 msgstr "Kleopatra Tryfaina"
 
-#: simulation/data/civs/ptol.jsonAINames[13]
+#: simulation/data/civs/ptol.jsonAINames[11]
 msgid "Berenice Epiphaneia"
 msgstr "Bereniké Epifaneia"
 
-#: simulation/data/civs/ptol.jsonAINames[14]
+#: simulation/data/civs/ptol.jsonAINames[12]
 msgid "Cleopatra Philopater"
 msgstr "Kleopatra Filopatór"
 
-#: simulation/data/civs/ptol.jsonAINames[15]
+#: simulation/data/civs/ptol.jsonAINames[13]
 msgid "Cleopatra Selene"
 msgstr "Kleopatra Seléné"
 
-#: simulation/data/civs/ptol.jsonAINames[16]
+#: simulation/data/civs/ptol.jsonAINames[14]
 msgid "Cleopatra II Philometora Soteira"
 msgstr "Kleopatra II. Filométór Sóteira"
 
-#: simulation/data/civs/ptol.jsonAINames[17]
+#: simulation/data/civs/ptol.jsonAINames[15]
 msgid "Arsinoe IV"
 msgstr "Arsinoé IV."
 
-#: simulation/data/civs/ptol.jsonAINames[18]
+#: simulation/data/civs/ptol.jsonAINames[16]
 msgid "Arsinoe II"
 msgstr "Arsinoé II."
 
 #: simulation/data/civs/ptol.jsonAINames[1]
-msgid "Ptolemy Philadelphus"
-msgstr "Ptolemaios Filadelfos"
-
-#: simulation/data/civs/ptol.jsonAINames[2]
 msgid "Ptolemy Epigone"
 msgstr "Ptolemaios Epigonos"
 
-#: simulation/data/civs/ptol.jsonAINames[3]
+#: simulation/data/civs/ptol.jsonAINames[2]
 msgid "Ptolemy Eurgetes"
 msgstr "Ptolemaios Euergetés"
 
-#: simulation/data/civs/ptol.jsonAINames[4]
-msgid "Ptolemy Philopater"
-msgstr "Ptolemaios Filopatór"
-
-#: simulation/data/civs/ptol.jsonAINames[5]
+#: simulation/data/civs/ptol.jsonAINames[3]
 msgid "Ptolemy Epiphanes"
 msgstr "Ptolemaios Epifanés"
 
-#: simulation/data/civs/ptol.jsonAINames[6]
+#: simulation/data/civs/ptol.jsonAINames[4]
 msgid "Ptolemy Philometor"
 msgstr "Ptolemaios Filométór"
 
-#: simulation/data/civs/ptol.jsonAINames[7]
+#: simulation/data/civs/ptol.jsonAINames[5]
 msgid "Ptolemy Eupator"
 msgstr "Ptolemaios Eupatór"
 
-#: simulation/data/civs/ptol.jsonAINames[8]
+#: simulation/data/civs/ptol.jsonAINames[6]
 msgid "Ptolemy Alexander"
 msgstr "Ptolemaios Alexander"
 
-#: simulation/data/civs/ptol.jsonAINames[9]
+#: simulation/data/civs/ptol.jsonAINames[7]
 msgid "Ptolemy Neos Dionysos"
 msgstr "Ptolemaios Neos Dyonýsos"
+
+#: simulation/data/civs/ptol.jsonAINames[8]
+msgid "Ptolemy Neos Philopater"
+msgstr "Ptolemaios Neos Filopatór"
+
+#: simulation/data/civs/ptol.jsonAINames[9]
+msgid "Berenice Philopater"
+msgstr "Bereniké Filopatór"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid "Bolt Shooters −33% attack damage and −33% attack time."
@@ -742,18 +641,14 @@ msgid "Lucius Junius Brutus"
 msgstr "Lucius Junius Brutus"
 
 #: simulation/data/civs/rome.jsonAINames[10]
-msgid "Publius Sempronius Tuditanus"
-msgstr "Publius Sempronius Tuditanus"
-
-#: simulation/data/civs/rome.jsonAINames[11]
 msgid "Marcus Cornelius Cethegus"
 msgstr "Marcus Cornelius Cethegus"
 
-#: simulation/data/civs/rome.jsonAINames[12]
+#: simulation/data/civs/rome.jsonAINames[11]
 msgid "Quintus Caecilius Metellus Pius"
 msgstr "Quintus Caecilius Metellus Pius"
 
-#: simulation/data/civs/rome.jsonAINames[13]
+#: simulation/data/civs/rome.jsonAINames[12]
 msgid "Marcus Licinius Crassus"
 msgstr "Marcus Licinius Crassus"
 
@@ -790,8 +685,8 @@ msgid "Aulus Manlius Capitolinus"
 msgstr "Aulus Manlius Capitolinus"
 
 #: simulation/data/civs/rome.jsonAINames[9]
-msgid "Publius Cornelius Scipio Africanus"
-msgstr "Publius Cornelius Scipio Africanus"
+msgid "Publius Sempronius Tuditanus"
+msgstr "Publius Sempronius Tuditanus"
 
 #: simulation/data/civs/rome.jsonCivBonuses[0].Description
 msgid "Roman Legionaries can form a Testudo."
@@ -817,165 +712,145 @@ msgid "Legionary Engineers"
 msgstr "Legionárski inžinieri"
 
 #: simulation/data/civs/sele.jsonAINames[0]
-msgid "Seleucus I Nicator"
-msgstr "Seleukos I. Nikator"
-
-#: simulation/data/civs/sele.jsonAINames[10]
-msgid "Alexander I Balas"
-msgstr "Alexander I. Balás"
-
-#: simulation/data/civs/sele.jsonAINames[11]
-#: simulation/data/civs/sele.jsonAINames[15]
-msgid "Demetrius II Nicator"
-msgstr "Démétrios II. Níkátor"
-
-#: simulation/data/civs/sele.jsonAINames[12]
-msgid "Antiochus VI Dionysus"
-msgstr "Antiochos VI. Dionýsos"
-
-#: simulation/data/civs/sele.jsonAINames[13]
-msgid "Diodotus Tryphon"
-msgstr "Diodotos Tryfón"
-
-#: simulation/data/civs/sele.jsonAINames[14]
-msgid "Antiochus VII Sidetes"
-msgstr "Antiochos VII. Sidetés"
-
-#: simulation/data/civs/sele.jsonAINames[16]
-msgid "Alexander II Zabinas"
-msgstr "Alexander II. Zabinás"
-
-#: simulation/data/civs/sele.jsonAINames[17]
-msgid "Cleopatra Thea"
-msgstr "Kleopatra Thea"
-
-#: simulation/data/civs/sele.jsonAINames[18]
-msgid "Seleucus V Philometor"
-msgstr "Seleukos V. Filométór"
-
-#: simulation/data/civs/sele.jsonAINames[19]
-msgid "Antiochus VIII Grypus"
-msgstr "Antiochos VIII. Grypus"
-
-#: simulation/data/civs/sele.jsonAINames[1]
 msgid "Antiochus I Soter"
 msgstr "Antiochos I. Sotér"
 
-#: simulation/data/civs/sele.jsonAINames[20]
+#: simulation/data/civs/sele.jsonAINames[10]
+msgid "Diodotus Tryphon"
+msgstr "Diodotos Tryfón"
+
+#: simulation/data/civs/sele.jsonAINames[11]
+msgid "Antiochus VII Sidetes"
+msgstr "Antiochos VII. Sidetés"
+
+#: simulation/data/civs/sele.jsonAINames[13]
+msgid "Alexander II Zabinas"
+msgstr "Alexander II. Zabinás"
+
+#: simulation/data/civs/sele.jsonAINames[14]
+msgid "Cleopatra Thea"
+msgstr "Kleopatra Thea"
+
+#: simulation/data/civs/sele.jsonAINames[15]
+msgid "Seleucus V Philometor"
+msgstr "Seleukos V. Filométór"
+
+#: simulation/data/civs/sele.jsonAINames[16]
+msgid "Antiochus VIII Grypus"
+msgstr "Antiochos VIII. Grypus"
+
+#: simulation/data/civs/sele.jsonAINames[17]
 msgid "Antiochus IX Cyzicenus"
 msgstr "Antiochos IX. Cyzicenus"
 
-#: simulation/data/civs/sele.jsonAINames[21]
+#: simulation/data/civs/sele.jsonAINames[18]
 msgid "Seleucus VI Epiphanes"
 msgstr "Seleukos VI. Epifanés"
 
-#: simulation/data/civs/sele.jsonAINames[22]
+#: simulation/data/civs/sele.jsonAINames[19]
 msgid "Antiochus X Eusebes"
 msgstr "Antiochos X. Eusebés"
 
-#: simulation/data/civs/sele.jsonAINames[23]
+#: simulation/data/civs/sele.jsonAINames[1]
+msgid "Antiochus II Theos"
+msgstr "Antiochos II. Theós"
+
+#: simulation/data/civs/sele.jsonAINames[20]
 msgid "Demetrius III Eucaerus"
 msgstr "Démétrios III. Eukaréus"
 
-#: simulation/data/civs/sele.jsonAINames[24]
+#: simulation/data/civs/sele.jsonAINames[21]
 msgid "Antiochus XI Epiphanes"
 msgstr "Antiochos XI. Epifanés"
 
-#: simulation/data/civs/sele.jsonAINames[25]
+#: simulation/data/civs/sele.jsonAINames[22]
 msgid "Philip I Philadelphus"
 msgstr "Filip I. Filadelfos"
 
-#: simulation/data/civs/sele.jsonAINames[26]
+#: simulation/data/civs/sele.jsonAINames[23]
 msgid "Antiochus XII Dionysus"
 msgstr "Antiochos XII. Dionýsos"
 
-#: simulation/data/civs/sele.jsonAINames[27]
+#: simulation/data/civs/sele.jsonAINames[24]
 msgid "Seleucus VII Kybiosaktes"
 msgstr "Seleukos VII. Kybiosaktes"
 
-#: simulation/data/civs/sele.jsonAINames[28]
+#: simulation/data/civs/sele.jsonAINames[25]
 msgid "Antiochus XIII Asiaticus"
 msgstr "Antiochos XIII. Ázijský"
 
-#: simulation/data/civs/sele.jsonAINames[29]
+#: simulation/data/civs/sele.jsonAINames[26]
 msgid "Philip II Philoromaeus"
 msgstr "Filip II. Filorhómaios"
 
 #: simulation/data/civs/sele.jsonAINames[2]
-msgid "Antiochus II Theos"
-msgstr "Antiochos II. Theós"
-
-#: simulation/data/civs/sele.jsonAINames[3]
 msgid "Seleucus II Callinicus"
 msgstr "Seleukos II. Kallinikos"
 
-#: simulation/data/civs/sele.jsonAINames[4]
+#: simulation/data/civs/sele.jsonAINames[3]
 msgid "Seleucus III Ceraunus"
 msgstr "Seleukos III. Keraunos"
 
-#: simulation/data/civs/sele.jsonAINames[5]
-msgid "Antiochus III Megas"
-msgstr "Antiochos III. Veľký"
-
-#: simulation/data/civs/sele.jsonAINames[6]
+#: simulation/data/civs/sele.jsonAINames[4]
 msgid "Seleucus IV Philopator"
 msgstr "Seleukos IV. Filopatór"
 
-#: simulation/data/civs/sele.jsonAINames[7]
-msgid "Antiochus IV Epiphanes"
-msgstr "Antiochos IV. Epifanés"
-
-#: simulation/data/civs/sele.jsonAINames[8]
+#: simulation/data/civs/sele.jsonAINames[5]
 msgid "Antiochus V Eupator"
 msgstr "Antiochos V. Eupatór"
 
-#: simulation/data/civs/sele.jsonAINames[9]
+#: simulation/data/civs/sele.jsonAINames[6]
 msgid "Demetrius I Soter"
 msgstr "Démétrios I. Sótér "
 
+#: simulation/data/civs/sele.jsonAINames[7]
+msgid "Alexander I Balas"
+msgstr "Alexander I. Balás"
+
+#: simulation/data/civs/sele.jsonAINames[12]
+#: simulation/data/civs/sele.jsonAINames[8]
+msgid "Demetrius II Nicator"
+msgstr "Démétrios II. Níkátor"
+
+#: simulation/data/civs/sele.jsonAINames[9]
+msgid "Antiochus VI Dionysus"
+msgstr "Antiochos VI. Dionýsos"
+
 #: simulation/data/civs/spart.jsonAINames[0]
-msgid "Leonidas"
-msgstr "Leónidas"
-
-#: simulation/data/civs/spart.jsonAINames[10]
-msgid "Eucleidas"
-msgstr "Eukleidás"
-
-#: simulation/data/civs/spart.jsonAINames[11]
-msgid "Agesipolis"
-msgstr "Agésipolis"
-
-#: simulation/data/civs/spart.jsonAINames[1]
 msgid "Dienekes"
 msgstr "Diénekés"
 
+#: simulation/data/civs/spart.jsonAINames[1]
+msgid "Agis II"
+msgstr ""
+
 #: simulation/data/civs/spart.jsonAINames[2]
-msgid "Brasidas"
-msgstr "Brásidás"
-
-#: simulation/data/civs/spart.jsonAINames[3]
-msgid "Agis"
-msgstr "Agis"
-
-#: simulation/data/civs/spart.jsonAINames[4]
 msgid "Archidamus"
 msgstr "Archidámos"
 
-#: simulation/data/civs/spart.jsonAINames[6]
+#: simulation/data/civs/spart.jsonAINames[4]
 msgid "Pausanias"
 msgstr "Pausaniás"
 
-#: simulation/data/civs/spart.jsonAINames[7]
+#: simulation/data/civs/spart.jsonAINames[5]
 msgid "Agesilaus"
 msgstr "Agésiláos"
 
-#: simulation/data/civs/spart.jsonAINames[8]
+#: simulation/data/civs/spart.jsonAINames[6]
 msgid "Echestratus"
 msgstr "Echestratos"
 
-#: simulation/data/civs/spart.jsonAINames[9]
+#: simulation/data/civs/spart.jsonAINames[7]
 msgid "Eurycrates"
 msgstr "Eurykrates"
+
+#: simulation/data/civs/spart.jsonAINames[8]
+msgid "Eucleidas"
+msgstr "Eukleidás"
+
+#: simulation/data/civs/spart.jsonAINames[9]
+msgid "Agesipolis"
+msgstr "Agésipolis"
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Female Citizens +40% health and +50% melee attack hack damage."

@@ -5,6 +5,7 @@
 # Translators:
 # Adrian Chaves
 # Adrián Chaves Fernández
+# Ismael Lires
 # mandruis
 # Nicolás Gómez
 # Nicolás S.
@@ -14,7 +15,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-04-28 09:24+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Nicolás S. <nicogomfor@gmail.com>, 2022-2023\n"
+"Last-Translator: Ismael Lires, 2023\n"
 "Language-Team: Galician (http://app.transifex.com/wildfire-games/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -492,11 +493,11 @@ msgstr "Erro: O servidor non puido escoller un identificador de cliente único."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
-msgstr ""
+msgstr "Error: Os comandos do cliente estaban preparados para un cambio inesperado do xogo."
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
-msgstr ""
+msgstr "Erro: O cliente simulou unha volta de xogo inesperada."
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
@@ -504,11 +505,11 @@ msgstr "A contrasinal é inválida"
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
-msgstr ""
+msgstr "Non se puido atopar un porto sen usar para o cliente STUN enet."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr ""
+msgstr "Non se puido atopar o punto final STUN."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -610,7 +611,7 @@ msgstr "Escaramuza"
 msgid ""
 "A map with a predefined landscape and number of players. Freely select the "
 "other game settings."
-msgstr ""
+msgstr "Un mapa con un paisaxe predefinido e un número de xogadores. Selecciona libremente os outros axustes do xogo."
 
 #: gui/common/settings.js:183
 msgctxt "map"
@@ -678,22 +679,22 @@ msgstr "Condición de vitoria descoñecida"
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab right."
-msgstr ""
+msgstr "Scroll down or use %(hotkey)s to move a tab right."
 
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab left."
-msgstr ""
+msgstr "Scroll up or use %(hotkey)s to move a tab left."
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab down."
-msgstr ""
+msgstr "Desprázate cara abaixo ou usa %(hotkey)s para mover unha pestana cara abaixo."
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab up."
-msgstr ""
+msgstr "Desprázate cara arriba ou usa %(hotkey)s para mover unha pestana cara arriba."
 
 #: gui/common/tooltips.js:64
 #, javascript-format
@@ -778,7 +779,7 @@ msgstr "Capturar"
 
 #: gui/common/tooltips.js:268
 msgid "Status Effects:"
-msgstr ""
+msgstr "Efecto de Estado:"
 
 #: gui/common/tooltips.js:273
 #, javascript-format
@@ -799,17 +800,17 @@ msgstr "Redución da duración: %(durationReduction)s%%"
 #: gui/common/tooltips.js:288
 #, javascript-format
 msgid "Blocks: %(blockPercentage)s%%"
-msgstr "Bloquea: %(blockPercentage)s%%"
+msgstr "Bloqueos: %(blockPercentage)s%%"
 
 #: gui/common/tooltips.js:295
 #, javascript-format
 msgid ""
 "Blocks: %(blockPercentage)s%%, Duration reduction: %(durationReduction)s%%"
-msgstr ""
+msgstr "Bloqueos: %(blockPercentage)s%%, Redución de duración: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:311
 msgid "Garrison to fire arrows"
-msgstr ""
+msgstr "Guarnecer para lanzar frechas"
 
 #: gui/common/tooltips.js:314 gui/common/tooltips.js:1070
 msgid "Interval:"
@@ -898,7 +899,7 @@ msgstr "%(amount)s %(name)s"
 #: gui/common/tooltips.js:399
 #, javascript-format
 msgid "%(splashShape)s Splash"
-msgstr ""
+msgstr "%(splashShape)s Salpicadura"
 
 #: gui/common/tooltips.js:402
 #, javascript-format
@@ -975,12 +976,12 @@ msgstr "(extende)"
 #: gui/common/tooltips.js:543
 msgctxt "status effect stackability"
 msgid "(replaces)"
-msgstr ""
+msgstr "(reemplaza)"
 
 #: gui/common/tooltips.js:545
 msgctxt "status effect stackability"
 msgid "(stacks)"
-msgstr ""
+msgstr "(apila)"
 
 #: gui/common/tooltips.js:547
 #, javascript-format
@@ -1153,7 +1154,7 @@ msgstr "%(resources)s / %(time)s"
 
 #: gui/common/tooltips.js:865
 msgid "Upkeep:"
-msgstr ""
+msgstr "Mantemento:"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
@@ -1226,7 +1227,7 @@ msgstr "correndo"
 
 #: gui/common/tooltips.js:1044
 msgid "Acceleration"
-msgstr ""
+msgstr "Aceleración"
 
 #: gui/common/tooltips.js:1059 gui/common/tooltips.js:1064
 #: gui/common/tooltips.js:1069 gui/common/tooltips.js:1094
@@ -1290,7 +1291,7 @@ msgstr "%(label)s %(icons)s"
 
 #: gui/common/tooltips.js:1217
 msgid "Dropsite for:"
-msgstr ""
+msgstr "Lugar de depósito para:"
 
 #. Translation: Appears in a tooltip to indicate that right-clicking the
 #. corresponding GUI
@@ -1347,11 +1348,11 @@ msgstr "Xestor de sons"
 
 #: gui/credits/texts/audio.jsonContent[0].Content[1].Subtitle
 msgid "Lead Composer"
-msgstr ""
+msgstr "Compositor principal"
 
 #: gui/credits/texts/audio.jsonContent[0].Title
 msgid "Audio managers"
-msgstr ""
+msgstr "Xestor de Audio"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[10].Subtitle
 msgid "Frame drum, darbuka, riq, toms"
@@ -1359,19 +1360,19 @@ msgstr "Tambor de marco, darbuka, riq e timbais"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[11].Subtitle
 msgid "Guitar"
-msgstr ""
+msgstr "Guitarra"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[12].Subtitle
 msgid "Handpan"
-msgstr ""
+msgstr "Tixola"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[13].Subtitle
 msgid "Harp"
-msgstr ""
+msgstr "Arpa"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[14].Subtitle
 msgid "Shruti Box"
-msgstr ""
+msgstr "Caixa Shruti"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[15].Subtitle
 msgid "Tin whistles"
@@ -1395,11 +1396,11 @@ msgstr "Música adicional"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[3].Subtitle
 msgid "Cajon"
-msgstr ""
+msgstr "Caixón"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[4].Subtitle
 msgid "Cello"
-msgstr ""
+msgstr "Violoncelo"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[5].Subtitle
 msgid "Celtic harp"
@@ -1415,7 +1416,7 @@ msgstr "Djembé"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[8].Subtitle
 msgid "Dulcimer"
-msgstr ""
+msgstr "Dulcémele"
 
 #: gui/credits/texts/audio.jsonContent[1].Content[9].Subtitle
 msgid "Flute"
@@ -1440,7 +1441,7 @@ msgstr "Latín"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[2].Subtitle
 msgid "Napatan"
-msgstr ""
+msgstr "Napatán"
 
 #: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
 msgid "Persian"
@@ -1452,7 +1453,7 @@ msgstr "Voces"
 
 #: gui/credits/texts/audio.jsonTitle
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: gui/credits/texts/balancing.jsonContent[0].Subtitle
 #: gui/credits/texts/history.jsonContent[0].Subtitle
@@ -1461,7 +1462,7 @@ msgstr "Líder"
 
 #: gui/credits/texts/balancing.jsonTitle
 msgid "Balancing"
-msgstr ""
+msgstr "Balanceo"
 
 #: gui/credits/texts/community.jsonTitle
 msgid "Community and Management"
@@ -1596,7 +1597,7 @@ msgstr "Todos os atallos do teclado dispoñibles."
 msgid ""
 "Reset all hotkeys to default values?\n"
 "WARNING: this cannot be reversed."
-msgstr ""
+msgstr "Restablecer todas as teclas de atallo aos valores predeterminados?\nADVERTENCIA: isto non se pode desfacer."
 
 #: gui/hotkeys/HotkeysPage.js:157 gui/pregame/MainMenuItems.js:259
 #: gui/pregame/MainMenuItems.js:283
@@ -1605,7 +1606,7 @@ msgstr "Confirmación"
 
 #: gui/hotkeys/HotkeysPage.js:198
 msgid "No tooltip available."
-msgstr ""
+msgstr "Non hai ningunha descrición dispoñible."
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -1632,7 +1633,7 @@ msgstr "Descrición do atallo de teclado"
 msgid ""
 "Click on any mapping to modify it.\\n You may have up to 4 different "
 "hotkeys."
-msgstr ""
+msgstr "Fai clic nalgunha asignación para modificala.\\n Podes ter ata 4 teclas de atallo diferentes."
 
 #: gui/hotkeys/hotkeys.xml:(caption):106 gui/locale/locale.xml:(caption):46
 #: gui/locale_advanced/locale_advanced.xml:(caption):75
@@ -1698,17 +1699,17 @@ msgstr "Cámara"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.desc
 msgctxt "hotkey metadata"
 msgid "Scroll backwards or rotate down."
-msgstr ""
+msgstr "Desprázate cara atrás ou rota cara abaixo."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate down"
-msgstr ""
+msgstr "Desprázate cara abaixo ou rota cara abaixo."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.desc
 msgctxt "hotkey metadata"
 msgid "Follow the first unit in the selection."
-msgstr ""
+msgstr "Segue a primeira unidade na selección."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.name
 msgctxt "hotkey metadata"
@@ -1718,127 +1719,127 @@ msgstr "Seguir unidade"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 1 (see “Set camera jump 1”)."
-msgstr ""
+msgstr "Saltar a posición 1 da cámara (ver “Establece salto de cámara 1”)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.1.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 1"
-msgstr ""
+msgstr "Salta a cámara 1"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 2 (see “Set camera jump 2”)."
-msgstr ""
+msgstr "Saltar a posición 2 da cámara (ver “Establece salto de cámara 2”)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.2.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 2"
-msgstr ""
+msgstr "Salta a cámara 2"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 3 (see “Set camera jump 3”)."
-msgstr ""
+msgstr "Saltar a posición 3 da cámara (ver “Establece salto de cámara 3”)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.3.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 3"
-msgstr ""
+msgstr "Salta a cámara 3"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.desc
 msgctxt "hotkey metadata"
 msgid "Jump to camera position 4 (see “Set camera jump 4”)."
-msgstr ""
+msgstr "Saltar a posición 4 da cámara (ver “Establece salto de cámara 4”)."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.4.name
 msgctxt "hotkey metadata"
 msgid "Jump to camera 4"
-msgstr ""
+msgstr "Salta a cámara 4"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 1."
-msgstr ""
+msgstr "Establece salto de cámara a posición 1."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.1.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 1"
-msgstr ""
+msgstr "Establece salto de cámara 1"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 2."
-msgstr ""
+msgstr "Establece salto de cámara a posición 2."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.2.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 2"
-msgstr ""
+msgstr "Establece salto de cámara 2"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 3."
-msgstr ""
+msgstr "Establece salto de cámara a posición 3."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.3.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 3"
-msgstr ""
+msgstr "Establece salto de cámara 3"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.desc
 msgctxt "hotkey metadata"
 msgid "Set camera jump position 4."
-msgstr ""
+msgstr "Establece salto de cámara a posición 4."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.jump.set.4.name
 msgctxt "hotkey metadata"
 msgid "Set camera jump 4"
-msgstr ""
+msgstr "Establece salto de cámara 4"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.desc
 msgctxt "hotkey metadata"
 msgid "Focus the camera on the position of the last attack notification."
-msgstr ""
+msgstr "Concentra a cámara na posición da última notificación de ataque."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.lastattackfocus.name
 msgctxt "hotkey metadata"
 msgid "Focus on last attack notification"
-msgstr ""
+msgstr "Concentrarse na última notificación de ataque."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate left."
-msgstr ""
+msgstr "Desprázate ou rota cara á esquerda."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate left"
-msgstr ""
+msgstr "Desprázate/Rota á esquerda"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.desc
 msgctxt "hotkey metadata"
 msgid "Enable scrolling by moving the mouse."
-msgstr ""
+msgstr "Habilitar desprazamento ao mover o rato."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.name
 msgctxt "hotkey metadata"
 msgid "Pan camera"
-msgstr ""
+msgstr "Desprazar a cámara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.desc
 msgctxt "hotkey metadata"
 msgid "Focus the camera on the rally point of the selected building."
-msgstr ""
+msgstr "Concentra a cámara no punto de reunión do edificio seleccionado."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rallypointfocus.name
 msgctxt "hotkey metadata"
 msgid "Focus on rallypoint"
-msgstr ""
+msgstr "Concentrarse no punto de reunión"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.desc
 msgctxt "hotkey metadata"
 msgid "Reset camera rotation to default."
-msgstr ""
+msgstr "Restablece a rotación da cámara por defecto."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.reset.name
 msgctxt "hotkey metadata"
@@ -1848,180 +1849,180 @@ msgstr "Reiniciar cámara"
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.desc
 msgctxt "hotkey metadata"
 msgid "Scroll or rotate right."
-msgstr ""
+msgstr "Desprázate ou rota cara á dereita."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate right"
-msgstr ""
+msgstr "Desprázate/Rota á dereita"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera counterclockwise around terrain."
-msgstr ""
+msgstr "Rotar a cámara no sentido contrario ás agullas do reloxo ao redor do terreo."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.name
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.name
 msgctxt "hotkey metadata"
 msgid "Rotate counterclockwise"
-msgstr ""
+msgstr "Rotar no sentido contrario ás agullas do reloxo"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain."
-msgstr ""
+msgstr "Rotar a cámara no sentido das agullas do reloxo ao redor do terreo."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.cw.name
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.name
 msgctxt "hotkey metadata"
 msgid "Rotate clockwise"
-msgstr ""
+msgstr "Rotar no sentido das agullas do reloxo"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera to look downwards."
-msgstr ""
+msgstr "Rotar a cámara para mirar cara abaixo."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.down.name
 msgctxt "hotkey metadata"
 msgid "Rotate Down"
-msgstr ""
+msgstr "Rota cara abaixo"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera rotation speed."
-msgstr ""
+msgstr "Reducir a velocidade de rotación da cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease rotation speed"
-msgstr ""
+msgstr "Reducir a velocidade de rotación"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera rotation speed."
-msgstr ""
+msgstr "Aumentar a velocidade de rotación da cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase rotation speed"
-msgstr ""
+msgstr "Aumentar a velocidade de rotación"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera to look upwards."
-msgstr ""
+msgstr "Rota cámara para hacia arriba."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.up.name
 msgctxt "hotkey metadata"
 msgid "Rotate up"
-msgstr ""
+msgstr "Rota cara arriba"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.ccw.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Rotate camera counterclockwise around terrain - the effect depends on FPS."
-msgstr ""
+msgstr "Gira a cámara no sentido antihorario ao redor do terreo - o efecto depende dos FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.wheel.cw.desc
 msgctxt "hotkey metadata"
 msgid "Rotate camera clockwise around terrain - the effect depends on FPS."
-msgstr ""
+msgstr "Gira a cámara no sentido horario ao redor do terreo - o efecto depende dos FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera scroll speed."
-msgstr ""
+msgstr "Reducir a velocidade de desprazamento da cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease scroll speed"
-msgstr ""
+msgstr "Reducir a velocidade de desprazamento"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera scroll speed."
-msgstr ""
+msgstr "Incrementar a velocidade de desprazamento da cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.scroll.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase scroll speed"
-msgstr ""
+msgstr "Incrementar velocidade de desprazamento."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.desc
 msgctxt "hotkey metadata"
 msgid "Scroll forwards or rotate up."
-msgstr ""
+msgstr "Desprázate cara adiante ou rota cara arriba."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate up"
-msgstr ""
+msgstr "Desprazar/Rotar cara arriba"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in."
-msgstr ""
+msgstr "Achegar a cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in"
-msgstr ""
+msgstr "Achegar cámara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out."
-msgstr ""
+msgstr "Afastar a cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.out.name
 msgctxt "hotkey metadata"
 msgid "Zoom out"
-msgstr ""
+msgstr "Afastar cámara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.desc
 msgctxt "hotkey metadata"
 msgid "Decrease camera zoom speed."
-msgstr ""
+msgstr "Reducir a velocidade de achegado da cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.decrease.name
 msgctxt "hotkey metadata"
 msgid "Decrease zoom speed"
-msgstr ""
+msgstr "Reducir a velocidade de achegado da cámara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.desc
 msgctxt "hotkey metadata"
 msgid "Increase camera zoom speed."
-msgstr ""
+msgstr "Incrementar a velocidade de achegado da cámara."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.speed.increase.name
 msgctxt "hotkey metadata"
 msgid "Increase zoom speed"
-msgstr ""
+msgstr "Incrementar a velocidade de achegado da cámara"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera in - the effect depends on FPS."
-msgstr ""
+msgstr "Achegar a cámara - o efecto depende nos FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.in.name
 msgctxt "hotkey metadata"
 msgid "Zoom in (step-by-step)"
-msgstr ""
+msgstr "Achegar a cámara (paso a paso)"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.desc
 msgctxt "hotkey metadata"
 msgid "Zoom camera out - the effect depends on FPS."
-msgstr ""
+msgstr "Afastar a cámara - o efecto depende nos FPS."
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.wheel.out.name
 msgctxt "hotkey metadata"
 msgid "Zoom out (step-by-step)"
-msgstr ""
+msgstr "Afastar a cámara (paso a paso)"
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.desc
 msgctxt "hotkey metadata"
 msgid "General hotkeys."
-msgstr ""
+msgstr "Teclas de atallo xerais."
 
 #: gui/hotkeys/spec/engine.jsoncategories.general.name
 msgctxt "hotkey metadata"
@@ -2031,27 +2032,27 @@ msgstr "Xeral"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.desc
 msgctxt "hotkey metadata"
 msgid "Take large BMP screenshot."
-msgstr ""
+msgstr "Tomar unha captura de pantalla en formato BMP de gran tamaño."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.bigscreenshot.name
 msgctxt "hotkey metadata"
 msgid "Big screenshot"
-msgstr ""
+msgstr "Gran captura de pantalla"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.desc
 msgctxt "hotkey metadata"
 msgid "Close or cancel the current dialog box/popup."
-msgstr ""
+msgstr "Pecha ou cancela o cadro de diálogo/popup actual."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cancel.name
 msgctxt "hotkey metadata"
 msgid "Close/Cancel"
-msgstr ""
+msgstr "Pechar/Cancelar"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.desc
 msgctxt "hotkey metadata"
 msgid "Confirm the current command."
-msgstr ""
+msgstr "Confirme o comando actual."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.name
 msgctxt "hotkey metadata"
@@ -2061,12 +2062,12 @@ msgstr "Confirmar"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the console."
-msgstr ""
+msgstr "Alterna a Consola."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle Console"
-msgstr ""
+msgstr "Alterna Consola."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.desc
 msgctxt "hotkey metadata"
@@ -2076,79 +2077,79 @@ msgstr "Copiar ao portapapeis"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.copy.name
 msgctxt "hotkey metadata"
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Copiar ao Portapapeis. "
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.desc
 msgctxt "hotkey metadata"
 msgid "Cut selected text and copy to the clipboard."
-msgstr ""
+msgstr "Cortar texto seleccionado e copiar ao Portapapeis."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.cut.name
 msgctxt "hotkey metadata"
 msgid "Cut to clipboard"
-msgstr ""
+msgstr "Cortar ao Portapapeis."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.desc
 msgctxt "hotkey metadata"
 msgid ""
 "Custom hotkey to trigger exit-to-desktop. The native hotkeys (Alt+F4 / Cmd+Q"
 " / etc.) are always active."
-msgstr ""
+msgstr "Tecla de atallo personalizada para saír ao escritorio. As teclas de atallo nativas (Alt+F4 / Cmd+Q / etc.) están sempre activas."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
 msgid "Custom exit to desktop"
-msgstr ""
+msgstr "Saída Personalizada ao escritorio."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.desc
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard."
-msgstr ""
+msgstr "Pegar dende o Portapapeis."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.paste.name
 msgctxt "hotkey metadata"
 msgid "Paste from clipboard"
-msgstr ""
+msgstr "Pegar dende o Portapapeis"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause the game."
-msgstr ""
+msgstr "Pausar/Continuar o xogo."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.name
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause"
-msgstr ""
+msgstr "Pausar/Continuar"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.desc
 msgctxt "hotkey metadata"
 msgid "Save current profiler data to logs/profile.txt."
-msgstr ""
+msgstr "Gardar os datos actuais do perfil en logs/profile.txt."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.name
 msgctxt "hotkey metadata"
 msgid "Save profile"
-msgstr ""
+msgstr "Gardar perfil"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the real-time profiler."
-msgstr ""
+msgstr "Alternar o perfilador en tempo real."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler"
-msgstr ""
+msgstr "Alternar perfilador"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.desc
 msgctxt "hotkey metadata"
 msgid "Toggle HTTP/GPU modes for new profiler."
-msgstr ""
+msgstr "Alternar modos HTTP/GPU para o novo perfilador."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile2.toggle.name
 msgctxt "hotkey metadata"
 msgid "Toggle profiler2"
-msgstr ""
+msgstr "Alternar perfilador2"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.desc
 msgctxt "hotkey metadata"
@@ -2158,22 +2159,22 @@ msgstr "Facer unha captura de pantalla PNG"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.name
 msgctxt "hotkey metadata"
 msgid "Screenshot"
-msgstr ""
+msgstr "Captura de pantalla"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.desc
 msgctxt "hotkey metadata"
 msgid "Toggle product/company watermark for official screenshots."
-msgstr ""
+msgstr "Alternar a marca de auga de produto/empresa para capturas de pantalla oficiais."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.screenshot.watermark.name
 msgctxt "hotkey metadata"
 msgid "Toggle watermark"
-msgstr ""
+msgstr "Alternar marca de auga"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.desc
 msgctxt "hotkey metadata"
 msgid "Show the next tab."
-msgstr ""
+msgstr "Mostrar a próxima pestana."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.next.name
 msgctxt "hotkey metadata"
@@ -2183,42 +2184,42 @@ msgstr "Seguinte xanela"
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.desc
 msgctxt "hotkey metadata"
 msgid "Show the previous tab."
-msgstr ""
+msgstr "Mostrar a pestana previa."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.tab.prev.name
 msgctxt "hotkey metadata"
 msgid "Previous tab"
-msgstr ""
+msgstr "Pestana previa"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the left of cursor."
-msgstr ""
+msgstr "Eliminar a palabra á esquerda do cursor."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.left.name
 msgctxt "hotkey metadata"
 msgid "Delete before cursor"
-msgstr ""
+msgstr "Eliminar antes do cursor"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.desc
 msgctxt "hotkey metadata"
 msgid "Delete word to the right of cursor."
-msgstr ""
+msgstr "Eliminar palabra á dereita do cursor."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.delete.right.name
 msgctxt "hotkey metadata"
 msgid "Delete after cursor"
-msgstr ""
+msgstr "Eliminar despois do cursor."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.desc
 msgctxt "hotkey metadata"
 msgid "Move cursor to start of word to the left of cursor."
-msgstr ""
+msgstr "Mover o cursor ao comenzo dunha palabra á esquerda do cursor."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.left.name
 msgctxt "hotkey metadata"
 msgid "Move cursor to left word"
-msgstr ""
+msgstr "Mover o cursor á esquerda dunha palabra."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.text.move.right.desc
 msgctxt "hotkey metadata"

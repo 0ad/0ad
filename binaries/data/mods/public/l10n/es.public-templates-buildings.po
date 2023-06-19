@@ -16,6 +16,7 @@
 # Geovanny Navarro
 # Ghenadi Avricenco
 # hola jaaj
+# Ismael Lires
 # Jesús Asenjo
 # jhonny fernando montoya giraldo
 # Juan Jaramillo
@@ -35,9 +36,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-03-20 08:08+0000\n"
+"POT-Creation-Date: 2023-06-16 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2018,2020-2023\n"
+"Last-Translator: Ismael Lires, 2023\n"
 "Language-Team: Spanish (http://app.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -580,6 +581,12 @@ msgstr "Columna dórica"
 msgid "Fallen Doric Column"
 msgstr "Columna dórica abatida"
 
+#: simulation/templates/structures/farmstead_desert.xml:10
+#: simulation/templates/structures/farmstead_saharan.xml:10
+#: simulation/templates/structures/kush/farmstead.xml:9
+msgid "snwt"
+msgstr "snwt"
+
 #: simulation/templates/structures/farmstead_field_wheat.xml:7
 #: simulation/templates/structures/generic_field.xml:8
 msgid "Wheat Field"
@@ -622,12 +629,31 @@ msgstr "valla"
 msgid "Long Wooden Fence"
 msgstr "valla alta de madera"
 
+#: simulation/templates/structures/fence_rock_long.xml:12
+#: simulation/templates/structures/fence_rock_long.xml:13
+#: simulation/templates/structures/fence_rock_medium.xml:12
+#: simulation/templates/structures/fence_rock_medium.xml:13
+#: simulation/templates/structures/fence_rock_short.xml:12
+#: simulation/templates/structures/fence_rock_short.xml:13
+#: simulation/templates/structures/fence_rock_stub.xml:12
+#: simulation/templates/structures/fence_rock_stub.xml:13
+msgid "Rock Fence"
+msgstr "Muro de Piedra"
+
 #: simulation/templates/structures/fence_short.xml:15
 msgid "Short Wooden Fence"
 msgstr "valla baja de madera"
 
 #: simulation/templates/structures/fence_stone.xml:14
 #: simulation/templates/structures/fence_stone.xml:15
+#: simulation/templates/structures/fence_stone_long.xml:12
+#: simulation/templates/structures/fence_stone_long.xml:13
+#: simulation/templates/structures/fence_stone_medium.xml:12
+#: simulation/templates/structures/fence_stone_medium.xml:13
+#: simulation/templates/structures/fence_stone_short.xml:12
+#: simulation/templates/structures/fence_stone_short.xml:13
+#: simulation/templates/structures/fence_stone_stub.xml:12
+#: simulation/templates/structures/fence_stone_stub.xml:13
 msgid "Stone Fence"
 msgstr "muro de piedra"
 
@@ -1027,10 +1053,6 @@ msgstr "Mryt"
 msgid "Ỉḥ Abu"
 msgstr "Ỉḥ Abu"
 
-#: simulation/templates/structures/kush/farmstead.xml:9
-msgid "snwt"
-msgstr "snwt"
-
 #: simulation/templates/structures/kush/field.xml:5
 msgid "sht"
 msgstr "sht"
@@ -1211,21 +1233,25 @@ msgstr "Vipana"
 msgid "Uparaksana"
 msgstr "Uparaksana"
 
-#: simulation/templates/structures/maur/palace.xml:19
+#: simulation/templates/structures/maur/palace.xml:6
+msgid "CivicCenter"
+msgstr "Centro Cívico"
+
 #: simulation/templates/structures/maur/palace.xml:23
+#: simulation/templates/structures/maur/palace.xml:26
 #: simulation/templates/structures/pers/apadana.xml:30
 #: simulation/templates/structures/pers/tacara.xml:23
 #: simulation/templates/structures/pers/tacara.xml:26
 msgid "Palace"
 msgstr "palacio"
 
-#: simulation/templates/structures/maur/palace.xml:20
+#: simulation/templates/structures/maur/palace.xml:24
 msgid "Harmya"
 msgstr "Harmya"
 
-#: simulation/templates/structures/maur/palace.xml:21
-msgid "Territory root. Train Maiden Guards and Heroes."
-msgstr "Territorio base. Recluta guardianes y héroes."
+#: simulation/templates/structures/maur/palace.xml:30
+msgid "Train Heroes and their Poison Maiden Guards. Territory root."
+msgstr ""
 
 #: simulation/templates/structures/maur/pillar_ashoka.xml:32
 msgid "Edict Pillar of Ashoka"
@@ -1730,6 +1756,10 @@ msgstr "Columnata"
 #: simulation/templates/structures/sele_colonnade.xml:13
 msgid "Corinthian Colonnade"
 msgstr "Columnata corintia"
+
+#: simulation/templates/structures/shrine_celtic.xml:9
+msgid "Henge"
+msgstr "Foso"
 
 #: simulation/templates/structures/shrine_chinese.xml:9
 msgid "Bǎotǎ"

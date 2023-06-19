@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-03-20 08:08+0000\n"
+"POT-Creation-Date: 2023-06-16 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>, 2021-2023\n"
 "Language-Team: English (United Kingdom) (http://app.transifex.com/wildfire-games/0ad/language/en_GB/)\n"
@@ -558,6 +558,12 @@ msgstr "Doric Column"
 msgid "Fallen Doric Column"
 msgstr "Fallen Doric Column"
 
+#: simulation/templates/structures/farmstead_desert.xml:10
+#: simulation/templates/structures/farmstead_saharan.xml:10
+#: simulation/templates/structures/kush/farmstead.xml:9
+msgid "snwt"
+msgstr "snwt"
+
 #: simulation/templates/structures/farmstead_field_wheat.xml:7
 #: simulation/templates/structures/generic_field.xml:8
 msgid "Wheat Field"
@@ -600,12 +606,31 @@ msgstr "Fence"
 msgid "Long Wooden Fence"
 msgstr "Long Wooden Fence"
 
+#: simulation/templates/structures/fence_rock_long.xml:12
+#: simulation/templates/structures/fence_rock_long.xml:13
+#: simulation/templates/structures/fence_rock_medium.xml:12
+#: simulation/templates/structures/fence_rock_medium.xml:13
+#: simulation/templates/structures/fence_rock_short.xml:12
+#: simulation/templates/structures/fence_rock_short.xml:13
+#: simulation/templates/structures/fence_rock_stub.xml:12
+#: simulation/templates/structures/fence_rock_stub.xml:13
+msgid "Rock Fence"
+msgstr "Rock Fence"
+
 #: simulation/templates/structures/fence_short.xml:15
 msgid "Short Wooden Fence"
 msgstr "Short Wooden Fence"
 
 #: simulation/templates/structures/fence_stone.xml:14
 #: simulation/templates/structures/fence_stone.xml:15
+#: simulation/templates/structures/fence_stone_long.xml:12
+#: simulation/templates/structures/fence_stone_long.xml:13
+#: simulation/templates/structures/fence_stone_medium.xml:12
+#: simulation/templates/structures/fence_stone_medium.xml:13
+#: simulation/templates/structures/fence_stone_short.xml:12
+#: simulation/templates/structures/fence_stone_short.xml:13
+#: simulation/templates/structures/fence_stone_stub.xml:12
+#: simulation/templates/structures/fence_stone_stub.xml:13
 msgid "Stone Fence"
 msgstr "Stone Fence"
 
@@ -1005,10 +1030,6 @@ msgstr "Mryt"
 msgid "Ỉḥ Abu"
 msgstr "Ỉḥ Abu"
 
-#: simulation/templates/structures/kush/farmstead.xml:9
-msgid "snwt"
-msgstr "snwt"
-
 #: simulation/templates/structures/kush/field.xml:5
 msgid "sht"
 msgstr "sht"
@@ -1189,21 +1210,25 @@ msgstr "Vipana"
 msgid "Uparaksana"
 msgstr "Uparaksana"
 
-#: simulation/templates/structures/maur/palace.xml:19
+#: simulation/templates/structures/maur/palace.xml:6
+msgid "CivicCenter"
+msgstr "CivicCentre"
+
 #: simulation/templates/structures/maur/palace.xml:23
+#: simulation/templates/structures/maur/palace.xml:26
 #: simulation/templates/structures/pers/apadana.xml:30
 #: simulation/templates/structures/pers/tacara.xml:23
 #: simulation/templates/structures/pers/tacara.xml:26
 msgid "Palace"
 msgstr "Palace"
 
-#: simulation/templates/structures/maur/palace.xml:20
+#: simulation/templates/structures/maur/palace.xml:24
 msgid "Harmya"
 msgstr "Harmya"
 
-#: simulation/templates/structures/maur/palace.xml:21
-msgid "Territory root. Train Maiden Guards and Heroes."
-msgstr "Territory root. Train Maiden Guards and Heroes."
+#: simulation/templates/structures/maur/palace.xml:30
+msgid "Train Heroes and their Poison Maiden Guards. Territory root."
+msgstr "Train Heroes and their Poison Maiden Guards. Territory root."
 
 #: simulation/templates/structures/maur/pillar_ashoka.xml:32
 msgid "Edict Pillar of Ashoka"
@@ -1708,6 +1733,10 @@ msgstr "Colonnade"
 #: simulation/templates/structures/sele_colonnade.xml:13
 msgid "Corinthian Colonnade"
 msgstr "Corinthian Colonnade"
+
+#: simulation/templates/structures/shrine_celtic.xml:9
+msgid "Henge"
+msgstr "Henge"
 
 #: simulation/templates/structures/shrine_chinese.xml:9
 msgid "Bǎotǎ"
