@@ -34,8 +34,6 @@
 #include "scriptinterface/ScriptRequest.h"
 
 #if OS_WIN
-#include "lib/sysdep/os/win/wgfx.h"
-
 // We can't include wutil directly because GL headers conflict with Windows
 // until we use a proper GL loader.
 extern void* wutil_GetAppHDC();
@@ -104,25 +102,8 @@ std::string GetVersionImpl()
 
 std::string GetDriverInformationImpl()
 {
-	const std::string version = GetVersionImpl();
-
-	std::string driverInfo;
-#if OS_WIN
-	driverInfo = CStrW(wgfx_DriverInfo()).ToUTF8();
-	if (driverInfo.empty())
-#endif
-	{
-		if (!version.empty())
-		{
-			// Add "OpenGL" to differentiate this from the real driver version
-			// (returned by platform-specific detect routines).
-			driverInfo = std::string("OpenGL ") + version;
-		}
-	}
-
-	if (driverInfo.empty())
-		return version;
-	return version + " " + driverInfo;
+	// Usually GL_VERSION contains both OpenGL and driver versions.
+	return reinterpret_cast<const char*>(glGetString(GL_VERSION));
 }
 
 std::vector<std::string> GetExtensionsImpl()
