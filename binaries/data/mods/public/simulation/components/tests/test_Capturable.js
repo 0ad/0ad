@@ -2,6 +2,7 @@ Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/Auras.js");
 Engine.LoadComponentScript("interfaces/Capturable.js");
+Engine.LoadComponentScript("interfaces/Diplomacy.js");
 Engine.LoadComponentScript("interfaces/GarrisonHolder.js");
 Engine.LoadComponentScript("interfaces/StatisticsTracker.js");
 Engine.LoadComponentScript("interfaces/ModifiersManager.js");
@@ -48,19 +49,19 @@ function testCapturable(testData, test_function)
 		"Activate": () => {}
 	});
 
-	AddMock(10, IID_Player, {
+	AddMock(10, IID_Diplomacy, {
 		"IsEnemy": id => id != 0
 	});
 
-	AddMock(11, IID_Player, {
+	AddMock(11, IID_Diplomacy, {
 		"IsEnemy": id => id != 1 && id != 2
 	});
 
-	AddMock(12, IID_Player, {
+	AddMock(12, IID_Diplomacy, {
 		"IsEnemy": id => id != 1 && id != 2
 	});
 
-	AddMock(13, IID_Player, {
+	AddMock(13, IID_Diplomacy, {
 		"IsEnemy": id => id != 3
 	});
 

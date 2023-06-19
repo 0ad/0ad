@@ -1,6 +1,7 @@
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/Auras.js");
+Engine.LoadComponentScript("interfaces/Diplomacy.js");
 Engine.LoadComponentScript("interfaces/RangeOverlayManager.js");
 Engine.LoadComponentScript("interfaces/TechnologyManager.js");
 Engine.LoadComponentScript("interfaces/ModifiersManager.js");
@@ -52,17 +53,23 @@ function testAuras(name, test_function)
 	});
 
 	AddMock(playerEnt[1], IID_Player, {
-		"IsAlly": id => id == playerID[1] || id == playerID[2],
-		"IsEnemy": id => id != playerID[1] || id != playerID[2],
 		"GetPlayerID": () => playerID[1],
 		"IsDefeated": () => playerDefeated[1]
 	});
 
-	AddMock(playerEnt[2], IID_Player, {
+	AddMock(playerEnt[1], IID_Diplomacy, {
 		"IsAlly": id => id == playerID[1] || id == playerID[2],
 		"IsEnemy": id => id != playerID[1] || id != playerID[2],
+	});
+
+	AddMock(playerEnt[2], IID_Player, {
 		"GetPlayerID": () => playerID[2],
 		"IsDefeated": () => playerDefeated[2]
+	});
+
+	AddMock(playerEnt[2], IID_Diplomacy, {
+		"IsAlly": id => id == playerID[1] || id == playerID[2],
+		"IsEnemy": id => id != playerID[1] || id != playerID[2],
 	});
 
 	AddMock(targetEnt, IID_Identity, {

@@ -107,9 +107,9 @@ function LoadPlayerSettings(settings, newPlayers)
 		// If diplomacy explicitly defined, use that; otherwise use teams.
 		const diplomacy = getPlayerSetting(i, "Diplomacy");
 		if (diplomacy !== undefined)
-			cmpPlayer.SetDiplomacy(diplomacy);
+			QueryPlayerIDInterface(i, IID_Diplomacy).SetDiplomacy(diplomacy);
 		else
-			cmpPlayer.SetTeam(getPlayerSetting(i, "Team") ?? -1);
+			QueryPlayerIDInterface(i, IID_Diplomacy).ChangeTeam(getPlayerSetting(i, "Team") ?? -1);
 
 		const formations = getPlayerSetting(i, "Formations");
 		if (formations)
@@ -120,11 +120,11 @@ function LoadPlayerSettings(settings, newPlayers)
 			cmpPlayer.SetStartingCamera(startCam.Position, startCam.Rotation);
 	}
 
-	// NOTE: We need to do the team locking here, as otherwise
-	// SetTeam can't ally the players.
+	// NOTE: We need to do the team locking here, as
+	// otherwise we can't ally the players above.
 	if (settings.LockTeams)
 		for (let i = 0; i < numPlayers; ++i)
-			QueryPlayerIDInterface(i).SetLockTeams(true);
+			QueryPlayerIDInterface(i, IID_Diplomacy).LockTeam();
 }
 
 function GetPlayerTemplateName(civ)
@@ -232,21 +232,8 @@ function IsOwnedByMutualAllyOfEntity(entity, target)
 
 function IsOwnedByEntityHelper(entity, target, check)
 {
-	// Figure out which player controls us
-	let owner = 0;
-	let cmpOwnership = Engine.QueryInterface(entity, IID_Ownership);
-	if (cmpOwnership)
-		owner = cmpOwnership.GetOwner();
-
-	// Figure out which player controls the target entity
-	let targetOwner = 0;
-	let cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
-	if (cmpOwnershipTarget)
-		targetOwner = cmpOwnershipTarget.GetOwner();
-
-	let cmpPlayer = QueryPlayerIDInterface(owner);
-
-	return cmpPlayer && cmpPlayer[check](targetOwner);
+	const owner = Engine.QueryInterface(entity, IID_Ownership)?.GetOwner() || 0;
+	return IsOwnedByHelper(owner, target, check);
 }
 
 /**
@@ -288,14 +275,9 @@ function IsOwnedByEnemyOfPlayer(player, target)
 
 function IsOwnedByHelper(player, target, check)
 {
-	let targetOwner = 0;
-	let cmpOwnershipTarget = Engine.QueryInterface(target, IID_Ownership);
-	if (cmpOwnershipTarget)
-		targetOwner = cmpOwnershipTarget.GetOwner();
-
-	let cmpPlayer = QueryPlayerIDInterface(player);
-
-	return cmpPlayer && cmpPlayer[check](targetOwner);
+	const targetOwner = Engine.QueryInterface(target, IID_Ownership)?.GetOwner() || 0;
+	const cmpDiplomacy = QueryPlayerIDInterface(player, IID_Diplomacy);
+	return cmpDiplomacy && cmpDiplomacy[check](targetOwner);
 }
 
 Engine.RegisterGlobal("LoadPlayerSettings", LoadPlayerSettings);

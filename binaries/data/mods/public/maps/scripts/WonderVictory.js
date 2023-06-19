@@ -36,7 +36,7 @@ Trigger.prototype.WonderVictoryDiplomacyChanged = function(data)
 
 		let owner = this.wonderVictoryMessages[ent].playerID;
 		let otherPlayer = owner == data.player ? data.otherPlayer : data.player;
-		let newAllies = new Set(QueryPlayerIDInterface(owner).GetPlayersByDiplomacy("IsExclusiveMutualAlly"));
+		let newAllies = new Set(QueryPlayerIDInterface(owner, IID_Diplomacy).GetPlayersByDiplomacy("IsExclusiveMutualAlly"));
 		if (newAllies.has(otherPlayer) && !this.wonderVictoryMessages[ent].allies.has(otherPlayer) ||
 		    !newAllies.has(otherPlayer) && this.wonderVictoryMessages[ent].allies.has(otherPlayer))
 		{
@@ -53,7 +53,7 @@ Trigger.prototype.WonderVictoryStartTimer = function(ent, player)
 {
 	let cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
 	let allies = cmpEndGameManager.GetAlliedVictory() ?
-		QueryPlayerIDInterface(player).GetPlayersByDiplomacy("IsExclusiveMutualAlly") : [];
+		QueryPlayerIDInterface(player, IID_Diplomacy).GetPlayersByDiplomacy("IsExclusiveMutualAlly") : [];
 
 	let others = [-1];
 	for (let playerID = 1; playerID < TriggerHelper.GetNumberOfPlayers(); ++playerID)

@@ -16,6 +16,7 @@ Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("Position.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/DelayedDamage.js");
+Engine.LoadComponentScript("interfaces/Diplomacy.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/Loot.js");
 Engine.LoadComponentScript("interfaces/Promotion.js");
@@ -77,7 +78,7 @@ function Test_Generic()
 		"direction": new Vector3D(1, 0, 0)
 	};
 
-	AddMock(atkPlayerEntity, IID_Player, {
+	AddMock(atkPlayerEntity, IID_Diplomacy, {
 		"GetEnemies": () => [targetOwner]
 	});
 
@@ -161,7 +162,7 @@ function Test_Generic()
 	TestDamage();
 
 	atkPlayerEntity = 1;
-	AddMock(atkPlayerEntity, IID_Player, {
+	AddMock(atkPlayerEntity, IID_Diplomacy, {
 		"GetEnemies": () => [2, 3]
 	});
 	TS_ASSERT_UNEVAL_EQUALS(AttackHelper.GetPlayersToDamage(atkPlayerEntity, true), [0, 1, 2, 3, 4]);
@@ -199,7 +200,7 @@ function TestLinearSplashDamage()
 
 	let hitEnts = new Set();
 
-	AddMock(attackerOwner, IID_Player, {
+	AddMock(attackerOwner, IID_Diplomacy, {
 		"GetEnemies": () => [2]
 	});
 
@@ -295,7 +296,7 @@ function TestCircularSplashDamage()
 		return 1 - r * r / (radius * radius);
 	};
 
-	AddMock(attackerOwner, IID_Player, {
+	AddMock(attackerOwner, IID_Diplomacy, {
 		"GetEnemies": () => [2]
 	});
 
@@ -474,7 +475,7 @@ function Test_MissileHit()
 		"IsInWorld": () => true,
 	});
 
-	AddMock(10, IID_Player, {
+	AddMock(10, IID_Diplomacy, {
 		"GetEnemies": () => [2]
 	});
 

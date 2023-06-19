@@ -11,7 +11,7 @@ DiplomacyDialogPlayerControl.prototype.StanceButtonManager = class
 
 	update(playerInactive)
 	{
-		let hidden = playerInactive || GetSimState().ceasefireActive || g_Players[g_ViewedPlayer].teamsLocked;
+		let hidden = playerInactive || GetSimState().ceasefireActive || g_Players[g_ViewedPlayer].teamLocked;
 
 		for (let button of this.buttons)
 			button.update(hidden);

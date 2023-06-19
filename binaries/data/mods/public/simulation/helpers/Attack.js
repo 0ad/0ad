@@ -218,7 +218,7 @@ AttackHelper.prototype.GetTotalAttackEffects = function(target, effectData, effe
 AttackHelper.prototype.GetPlayersToDamage = function(attackerOwner, friendlyFire)
 {
 	if (!friendlyFire)
-		return QueryPlayerIDInterface(attackerOwner).GetEnemies();
+		return QueryPlayerIDInterface(attackerOwner, IID_Diplomacy).GetEnemies();
 
 	return Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetAllPlayers();
 };

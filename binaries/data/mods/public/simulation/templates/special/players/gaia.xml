@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity>
+  <Diplomacy>
+    <SharedLosTech/>
+    <SharedDropsitesTech/>
+  </Diplomacy>
   <Identity>
     <Civ>gaia</Civ>
     <GenericName>Gaia</GenericName>
@@ -7,8 +11,6 @@
     <Undeletable>true</Undeletable>
   </Identity>
   <Player>
-    <SharedLosTech/>
-    <SharedDropsitesTech/>
     <SpyCostMultiplier>1.0</SpyCostMultiplier>
     <BarterMultiplier>
       <Buy>

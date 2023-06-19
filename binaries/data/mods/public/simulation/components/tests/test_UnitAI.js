@@ -5,6 +5,7 @@ Engine.LoadComponentScript("interfaces/Auras.js");
 Engine.LoadComponentScript("interfaces/Builder.js");
 Engine.LoadComponentScript("interfaces/BuildingAI.js");
 Engine.LoadComponentScript("interfaces/Capturable.js");
+Engine.LoadComponentScript("interfaces/Diplomacy.js");
 Engine.LoadComponentScript("interfaces/Garrisonable.js");
 Engine.LoadComponentScript("interfaces/Resistance.js");
 Engine.LoadComponentScript("interfaces/Formation.js");
@@ -144,7 +145,7 @@ function TestFormationExiting(mode)
 		"GetNumPlayers": function() { return 2; },
 	});
 
-	AddMock(playerEntity, IID_Player, {
+	AddMock(playerEntity, IID_Diplomacy, {
 		"IsAlly": function() { return false; },
 		"IsEnemy": function() { return true; },
 		"GetEnemies": function() { return [2]; },
@@ -327,7 +328,7 @@ function TestMoveIntoFormationWhileAttacking()
 		"IsInTargetRange": (ent, target, min, max) => true
 	});
 
-	AddMock(playerEntity, IID_Player, {
+	AddMock(playerEntity, IID_Diplomacy, {
 		"IsAlly": function() { return false; },
 		"IsEnemy": function() { return true; },
 		"GetEnemies": function() { return [2]; },

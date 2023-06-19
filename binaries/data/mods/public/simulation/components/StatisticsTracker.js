@@ -416,24 +416,26 @@ StatisticsTracker.prototype.GetPercentMapExplored = function()
  */
 StatisticsTracker.prototype.GetTeamPercentMapExplored = function()
 {
-	let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
-	if (!cmpPlayer)
+	const cmpDiplomacy = Engine.QueryInterface(this.entity, IID_Diplomacy);
+	if (!cmpDiplomacy)
 		return 0;
 
-	let team = cmpPlayer.GetTeam();
-	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	const team = cmpDiplomacy.GetTeam();
+	const cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	// If teams are not locked, this statistic won't be displayed, so don't bother computing
-	if (team == -1 || !cmpPlayer.GetLockTeams())
-		return cmpRangeManager.GetPercentMapExplored(cmpPlayer.GetPlayerID());
-
-	let teamPlayers = [];
-	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
-	for (let i = 1; i < numPlayers; ++i)
+	if (team == -1 || !cmpDiplomacy.IsTeamLocked())
 	{
-		let cmpOtherPlayer = QueryPlayerIDInterface(i);
-		if (cmpOtherPlayer && cmpOtherPlayer.GetTeam() == team)
-			teamPlayers.push(i);
+		const cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+		if (!cmpPlayer)
+			return 0;
+		return cmpRangeManager.GetPercentMapExplored(cmpPlayer.GetPlayerID());
 	}
+
+	const teamPlayers = [];
+	const numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+	for (let i = 1; i < numPlayers; ++i)
+		if (QueryPlayerIDInterface(i, IID_Diplomacy)?.GetTeam() === team)
+			teamPlayers.push(i);
 
 	return cmpRangeManager.GetUnionPercentMapExplored(teamPlayers);
 };
@@ -449,23 +451,25 @@ StatisticsTracker.prototype.GetPercentMapControlled = function()
 
 StatisticsTracker.prototype.GetTeamPercentMapControlled = function()
 {
-	let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
-	if (!cmpPlayer)
+	const cmpDiplomacy = Engine.QueryInterface(this.entity, IID_Diplomacy);
+	if (!cmpDiplomacy)
 		return 0;
 
-	let team = cmpPlayer.GetTeam();
-	let cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
-	if (team == -1 || !cmpPlayer.GetLockTeams())
+	const team = cmpDiplomacy.GetTeam();
+	const cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
+	if (team === -1 || !cmpDiplomacy.IsTeamLocked())
+	{
+		let cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+		if (!cmpPlayer)
+			return 0;
 		return cmpTerritoryManager.GetTerritoryPercentage(cmpPlayer.GetPlayerID());
+	}
 
 	let teamPercent = 0;
-	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
+	const numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 	for (let i = 1; i < numPlayers; ++i)
-	{
-		let cmpOtherPlayer = QueryPlayerIDInterface(i);
-		if (cmpOtherPlayer && cmpOtherPlayer.GetTeam() == team)
+		if (QueryPlayerIDInterface(i, IID_Diplomacy)?.GetTeam() === team)
 			teamPercent += cmpTerritoryManager.GetTerritoryPercentage(i);
-	}
 
 	return teamPercent;
 };

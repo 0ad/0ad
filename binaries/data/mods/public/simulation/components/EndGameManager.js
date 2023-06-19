@@ -66,7 +66,7 @@ EndGameManager.prototype.MarkPlayerAndAlliesAsWon = function(playerID, victorySt
 
 	let winningPlayers = [playerID];
 	if (this.alliedVictory)
-		winningPlayers = cmpPlayer.GetMutualAllies(playerID).filter(
+		winningPlayers = QueryPlayerIDInterface(playerID, IID_Diplomacy).GetMutualAllies(playerID).filter(
 			player => QueryPlayerIDInterface(player).IsActive());
 
 	this.MarkPlayersAsWon(winningPlayers, victoryString, defeatString);
@@ -148,7 +148,7 @@ EndGameManager.prototype.AlliedVictoryCheck = function()
 		if (!cmpPlayer.IsActive())
 			continue;
 
-		if (allies.length && !cmpPlayer.IsMutualAlly(allies[0]))
+		if (allies.length && !QueryPlayerIDInterface(playerID, IID_Diplomacy).IsMutualAlly(allies[0]))
 			return;
 
 		allies.push(playerID);

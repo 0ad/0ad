@@ -1,6 +1,7 @@
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("Position.js");
+Engine.LoadComponentScript("interfaces/Diplomacy.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/Turretable.js");
 Engine.LoadComponentScript("interfaces/TurretHolder.js");
@@ -47,16 +48,14 @@ AddMock(holder, IID_Ownership, {
 	"GetOwner": () => player
 });
 
-AddMock(player, IID_Player, {
+AddMock(player, IID_Diplomacy, {
 	"IsAlly": id => id != enemyPlayer,
 	"IsMutualAlly": id => id != enemyPlayer,
-	"GetPlayerID": () => player
 });
 
-AddMock(friendlyPlayer, IID_Player, {
+AddMock(friendlyPlayer, IID_Diplomacy, {
 	"IsAlly": id => true,
 	"IsMutualAlly": id => true,
-	"GetPlayerID": () => friendlyPlayer
 });
 
 AddMock(SYSTEM_ENTITY, IID_PlayerManager, {

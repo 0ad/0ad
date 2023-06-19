@@ -3764,12 +3764,11 @@ UnitAI.prototype.SetupLOSRangeQuery = function(enable = true)
 		this.losRangeQuery = undefined;
 	}
 
-	let cmpPlayer = QueryOwnerInterface(this.entity);
-	// If we are being destructed (owner == -1), creating a range query is pointless.
-	if (!cmpPlayer)
+	const cmpDiplomacy = QueryOwnerInterface(this.entity, IID_Diplomacy);
+	if (!cmpDiplomacy)
 		return;
 
-	let players = cmpPlayer.GetEnemies();
+	const players = cmpDiplomacy.GetEnemies();
 	if (!players.length)
 		return;
 
@@ -3798,13 +3797,12 @@ UnitAI.prototype.SetupHealRangeQuery = function(enable = true)
 		this.losHealRangeQuery = undefined;
 	}
 
-	let cmpPlayer = QueryOwnerInterface(this.entity);
-	// If we are being destructed (owner == -1), creating a range query is pointless.
-	if (!cmpPlayer)
+	const cmpDiplomacy = QueryOwnerInterface(this.entity, IID_Diplomacy);
+	if (!cmpDiplomacy)
 		return;
 
-	let players = cmpPlayer.GetAllies();
-	let range = this.GetQueryRange(IID_Heal);
+	const players = cmpDiplomacy.GetAllies();
+	const range = this.GetQueryRange(IID_Heal);
 
 	// Do not compensate for entity sizes: LOS doesn't, and UnitAI relies on that.
 	this.losHealRangeQuery = cmpRangeManager.CreateActiveQuery(this.entity,
@@ -3830,13 +3828,12 @@ UnitAI.prototype.SetupAttackRangeQuery = function(enable = true)
 		this.losAttackRangeQuery = undefined;
 	}
 
-	let cmpPlayer = QueryOwnerInterface(this.entity);
-	// If we are being destructed (owner == -1), creating a range query is pointless.
-	if (!cmpPlayer)
+	const cmpDiplomacy = QueryOwnerInterface(this.entity, IID_Diplomacy);
+	if (!cmpDiplomacy)
 		return;
 
 	// TODO: How to handle neutral players - Special query to attack military only?
-	let players = cmpPlayer.GetEnemies();
+	const players = cmpDiplomacy.GetEnemies();
 	if (!players.length)
 		return;
 
@@ -4470,8 +4467,8 @@ UnitAI.prototype.FindNearestDropsite = function(genericType)
 	let maxDifference = 40;
 
 	let owner = cmpOwnership.GetOwner();
-	let cmpPlayer = QueryOwnerInterface(this.entity);
-	let players = cmpPlayer && cmpPlayer.HasSharedDropsites() ? cmpPlayer.GetMutualAllies() : [owner];
+	let cmpDiplomacy = QueryOwnerInterface(this.entity, IID_Diplomacy);
+	let players = cmpDiplomacy && cmpDiplomacy.HasSharedDropsites() ? cmpDiplomacy.GetMutualAllies() : [owner];
 	let nearestDropsites = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager).ExecuteQuery(this.entity, 0, -1, players, IID_ResourceDropsite, false);
 
 	let isShip = Engine.QueryInterface(this.entity, IID_Identity).HasClass("Ship");

@@ -72,7 +72,7 @@ Gate.prototype.SetupRangeQuery = function(owner)
 		cmpRangeManager.DestroyActiveQuery(this.unitsQuery);
 
 	// Only allied units can make the gate open.
-	var players = QueryPlayerIDInterface(owner).GetAllies();
+	const players = QueryPlayerIDInterface(owner, IID_Diplomacy).GetAllies();
 
 	var range = this.GetPassRange();
 	if (range > 0)

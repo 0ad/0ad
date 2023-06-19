@@ -270,6 +270,7 @@ Attack.prototype.CanAttack = function(target, wantedTypes)
 	const entityOwner = cmpEntityPlayer.GetPlayerID();
 	const targetOwner = cmpTargetPlayer.GetPlayerID();
 	const cmpCapturable = QueryMiragedInterface(target, IID_Capturable);
+	const cmpDiplomacy = QueryPlayerIDInterface(entityOwner, IID_Diplomacy);
 
 	// Check if the relative height difference is larger than the attack range
 	// If the relative height is bigger, it means they will never be able to
@@ -278,7 +279,7 @@ Attack.prototype.CanAttack = function(target, wantedTypes)
 
 	for (const type of types)
 	{
-		if (type != "Capture" && (!cmpEntityPlayer.IsEnemy(targetOwner) || !cmpHealth || !cmpHealth.GetHitpoints()))
+		if (type != "Capture" && (!cmpDiplomacy?.IsEnemy(targetOwner) || !cmpHealth || !cmpHealth.GetHitpoints()))
 			continue;
 
 		if (type == "Capture" && (!cmpCapturable || !cmpCapturable.CanCapture(entityOwner)))

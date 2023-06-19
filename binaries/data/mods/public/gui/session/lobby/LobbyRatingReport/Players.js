@@ -9,7 +9,7 @@ LobbyRatingReport.prototype.Players = class
 			"playerStates": playerStates.map(playerState => playerState.state).join(",") + ",",
 			"civs": playerStates.map(playerState => playerState.civ).join(",") + ",",
 			"teams": playerStates.map(playerState => playerState.team).join(",") + ",",
-			"teamsLocked": String(playerStates.every(playerState => playerState.teamsLocked))
+			"teamsLocked": String(playerStates.every(playerState => playerState.teamLocked))
 		});
 	}
 };

@@ -391,7 +391,7 @@ function updatePlayerData()
 				"a": playerState.color.a * 255
 			},
 			"team": playerState.team,
-			"teamsLocked": playerState.teamsLocked,
+			"teamLocked": playerState.teamLocked,
 			"cheatsEnabled": playerState.cheatsEnabled,
 			"state": playerState.state,
 			"isAlly": playerState.isAlly,

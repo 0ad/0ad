@@ -111,11 +111,11 @@ BuildingAI.prototype.SetupRangeQuery = function()
 		this.enemyUnitsQuery = undefined;
 	}
 
-	var cmpPlayer = QueryOwnerInterface(this.entity);
-	if (!cmpPlayer)
+	const cmpDiplomacy = QueryOwnerInterface(this.entity, IID_Diplomacy);
+	if (!cmpDiplomacy)
 		return;
 
-	var enemies = cmpPlayer.GetEnemies();
+	const enemies = cmpDiplomacy.GetEnemies();
 	// Remove gaia.
 	if (enemies.length && enemies[0] == 0)
 		enemies.shift();
@@ -148,8 +148,7 @@ BuildingAI.prototype.SetupGaiaRangeQuery = function()
 		this.gaiaUnitsQuery = undefined;
 	}
 
-	var cmpPlayer = QueryOwnerInterface(this.entity);
-	if (!cmpPlayer || !cmpPlayer.IsEnemy(0))
+	if (!QueryOwnerInterface(this.entity, IID_Diplomacy)?.IsEnemy(0))
 		return;
 
 	const range = cmpAttack.GetRange(attackType);

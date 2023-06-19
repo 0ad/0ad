@@ -88,28 +88,29 @@ var g_Commands = {
 
 	"diplomacy": function(player, cmd, data)
 	{
-		let cmpCeasefireManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager);
-		if (data.cmpPlayer.GetLockTeams() ||
-		        cmpCeasefireManager && cmpCeasefireManager.IsCeasefireActive())
+		if (Engine.QueryInterface(SYSTEM_ENTITY, IID_CeasefireManager).IsCeasefireActive())
+			return;
+
+		const cmpDiplomacy = QueryPlayerIDInterface(player, IID_Diplomacy);
+		if (!cmpDiplomacy || cmpDiplomacy.IsTeamLocked())
 			return;
 
 		switch(cmd.to)
 		{
 		case "ally":
-			data.cmpPlayer.SetAlly(cmd.player);
+			cmpDiplomacy.Ally(cmd.player);
 			break;
 		case "neutral":
-			data.cmpPlayer.SetNeutral(cmd.player);
+			cmpDiplomacy.SetNeutral(cmd.player);
 			break;
 		case "enemy":
-			data.cmpPlayer.SetEnemy(cmd.player);
+			cmpDiplomacy.SetEnemy(cmd.player);
 			break;
 		default:
 			warn("Invalid command: Could not set "+player+" diplomacy status of player "+cmd.player+" to "+cmd.to);
 		}
 
-		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGuiInterface.PushNotification({
+		Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface).PushNotification({
 			"type": "diplomacy",
 			"players": [player],
 			"targetPlayer": cmd.player,

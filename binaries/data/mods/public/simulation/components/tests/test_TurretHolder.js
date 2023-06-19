@@ -1,4 +1,5 @@
 Engine.LoadHelperScript("Player.js");
+Engine.LoadComponentScript("interfaces/Diplomacy.js");
 Engine.LoadComponentScript("interfaces/TurretHolder.js");
 Engine.LoadComponentScript("interfaces/Turretable.js");
 Engine.LoadComponentScript("interfaces/UnitAI.js");
@@ -38,16 +39,14 @@ for (let entity of entitiesToTest)
 	});
 }
 
-AddMock(player, IID_Player, {
+AddMock(player, IID_Diplomacy, {
 	"IsAlly": id => id != enemyPlayer,
 	"IsMutualAlly": id => id != enemyPlayer,
-	"GetPlayerID": () => player
 });
 
-AddMock(alliedPlayer, IID_Player, {
+AddMock(alliedPlayer, IID_Diplomacy, {
 	"IsAlly": id => true,
 	"IsMutualAlly": id => true,
-	"GetPlayerID": () => alliedPlayer
 });
 
 let cmpTurretHolder = ConstructComponent(turretHolderID, "TurretHolder", {

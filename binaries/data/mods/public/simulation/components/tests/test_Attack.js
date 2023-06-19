@@ -26,6 +26,7 @@ Engine.LoadHelperScript("Player.js");
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadComponentScript("interfaces/Auras.js");
 Engine.LoadComponentScript("interfaces/Capturable.js");
+Engine.LoadComponentScript("interfaces/Diplomacy.js");
 Engine.LoadComponentScript("interfaces/ModifiersManager.js");
 Engine.LoadComponentScript("interfaces/Formation.js");
 Engine.LoadComponentScript("interfaces/Health.js");
@@ -45,6 +46,9 @@ function attackComponentTest(defenderClass, isEnemy, test_function)
 
 	AddMock(playerEnt1, IID_Player, {
 		"GetPlayerID": () => 1,
+	});
+
+	AddMock(playerEnt1, IID_Diplomacy, {
 		"IsEnemy": () => isEnemy
 	});
 

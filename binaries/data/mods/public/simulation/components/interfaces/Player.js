@@ -1,10 +1,4 @@
 /**
- * Message of the form { "player": number, "otherPlayer": number }
- * sent from Player component when diplomacy changed for one player or between two players.
- */
-Engine.RegisterMessageType("DiplomacyChanged");
-
-/**
  * Message of the form {}
  * sent from Player component.
  */
