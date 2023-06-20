@@ -1,4 +1,4 @@
-/* Copyright (C) 2018 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -39,17 +39,6 @@
 #include "lib/external_libraries/dbghelp.h"
 #include "lib/sysdep/os/win/wdbg.h"
 #include "lib/sysdep/os/win/wutil.h"
-#include "lib/sysdep/os/win/winit.h"
-
-WINIT_REGISTER_CRITICAL_INIT(wdbg_sym_Init);
-
-static WUTIL_FUNC(pRtlCaptureContext, VOID, (PCONTEXT));
-
-static Status wdbg_sym_Init()
-{
-	WUTIL_IMPORT_KERNEL32(RtlCaptureContext, pRtlCaptureContext);
-	return INFO::OK;
-}
 
 
 //----------------------------------------------------------------------------
@@ -271,14 +260,11 @@ Status debug_CaptureContext(void* pcontext)
 	//   note: it used to be common practice to query the current thread
 	//   context, but WinXP SP2 and above require it be suspended.
 
-	if(!pRtlCaptureContext)
-		return ERR::NOT_SUPPORTED;	// NOWARN
-
 	CONTEXT* context = (CONTEXT*)pcontext;
 	cassert(sizeof(CONTEXT) <= DEBUG_CONTEXT_SIZE);
 	memset(context, 0, sizeof(CONTEXT));
 	context->ContextFlags = CONTEXT_FULL;
-	pRtlCaptureContext(context);
+	RtlCaptureContext(context);
 	return INFO::OK;
 }
 
