@@ -1,6 +1,7 @@
 Engine.LoadHelperScript("Player.js");
 Engine.LoadComponentScript("interfaces/Builder.js");
 Engine.LoadComponentScript("interfaces/Cost.js");
+Engine.LoadComponentScript("interfaces/Diplomacy.js");
 Engine.LoadComponentScript("interfaces/Foundation.js");
 Engine.LoadComponentScript("interfaces/Health.js");
 Engine.LoadComponentScript("interfaces/Repairable.js");
@@ -110,7 +111,7 @@ function testBuildingFoundation()
 		"Entities": { "_string": "" }
 	});
 
-	AddMock(playerEntityID, IID_Player, {
+	AddMock(playerEntityID, IID_Diplomacy, {
 		"IsAlly": (p) => p == playerId
 	});
 
@@ -140,7 +141,7 @@ testBuildingFoundation();
 
 function testRepairing()
 {
-	AddMock(playerEntityID, IID_Player, {
+	AddMock(playerEntityID, IID_Diplomacy, {
 		"IsAlly": (p) => p == playerId
 	});
 

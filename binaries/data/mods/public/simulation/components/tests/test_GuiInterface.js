@@ -7,6 +7,7 @@ Engine.LoadComponentScript("interfaces/Builder.js");
 Engine.LoadComponentScript("interfaces/Capturable.js");
 Engine.LoadComponentScript("interfaces/CeasefireManager.js");
 Engine.LoadComponentScript("interfaces/DeathDamage.js");
+Engine.LoadComponentScript("interfaces/Diplomacy.js");
 Engine.LoadComponentScript("interfaces/EndGameManager.js");
 Engine.LoadComponentScript("interfaces/EntityLimits.js");
 Engine.LoadComponentScript("interfaces/Formation.js");
@@ -111,20 +112,23 @@ AddMock(100, IID_Player, {
 	"GetPanelEntities": function() { return []; },
 	"IsTrainingBlocked": function() { return false; },
 	"GetState": function() { return "active"; },
-	"GetTeam": function() { return -1; },
-	"GetLockTeams": function() { return false; },
 	"GetCheatsEnabled": function() { return false; },
-	"GetDiplomacy": function() { return [-1, 1]; },
-	"IsAlly": function() { return false; },
-	"IsMutualAlly": function() { return false; },
-	"IsNeutral": function() { return false; },
-	"IsEnemy": function() { return true; },
 	"GetDisabledTemplates": function() { return {}; },
 	"GetDisabledTechnologies": function() { return {}; },
 	"CanBarter": function() { return false; },
-	"GetSpyCostMultiplier": function() { return 1; },
-	"HasSharedDropsites": function() { return false; },
-	"HasSharedLos": function() { return false; }
+	"GetSpyCostMultiplier": function() { return 1; }
+});
+
+AddMock(100, IID_Diplomacy, {
+	"GetTeam": () => -1,
+	"IsTeamLocked": () => false,
+	"GetDiplomacy": () => [-1, 1],
+	"IsAlly": () => false,
+	"IsMutualAlly": () => false,
+	"IsNeutral": () => false,
+	"IsEnemy": () => true,
+	"HasSharedDropsites": () => false,
+	"HasSharedLos": () => false,
 });
 
 AddMock(100, IID_Identity, {
@@ -204,20 +208,23 @@ AddMock(101, IID_Player, {
 	"GetPanelEntities": function() { return []; },
 	"IsTrainingBlocked": function() { return false; },
 	"GetState": function() { return "active"; },
-	"GetTeam": function() { return -1; },
-	"GetLockTeams": function() {return false; },
 	"GetCheatsEnabled": function() { return false; },
-	"GetDiplomacy": function() { return [-1, 1]; },
-	"IsAlly": function() { return true; },
-	"IsMutualAlly": function() {return false; },
-	"IsNeutral": function() { return false; },
-	"IsEnemy": function() { return false; },
 	"GetDisabledTemplates": function() { return {}; },
 	"GetDisabledTechnologies": function() { return {}; },
 	"CanBarter": function() { return false; },
 	"GetSpyCostMultiplier": function() { return 1; },
-	"HasSharedDropsites": function() { return false; },
-	"HasSharedLos": function() { return false; }
+});
+
+AddMock(101, IID_Diplomacy, {
+	"GetTeam": () => -1,
+	"IsTeamLocked": () => false,
+	"GetDiplomacy": () => [-1, 1],
+	"IsAlly": () => true,
+	"IsMutualAlly": () => false,
+	"IsNeutral": () => false,
+	"IsEnemy": () => false,
+	"HasSharedDropsites": () => false,
+	"HasSharedLos": () => false,
 });
 
 AddMock(101, IID_Identity, {
@@ -305,7 +312,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			"trainingBlocked": false,
 			"state": "active",
 			"team": -1,
-			"teamsLocked": false,
+			"teamLocked": false,
 			"cheatsEnabled": false,
 			"disabledTemplates": {},
 			"disabledTechnologies": {},
@@ -356,7 +363,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			"trainingBlocked": false,
 			"state": "active",
 			"team": -1,
-			"teamsLocked": false,
+			"teamLocked": false,
 			"cheatsEnabled": false,
 			"disabledTemplates": {},
 			"disabledTechnologies": {},
@@ -417,7 +424,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			"trainingBlocked": false,
 			"state": "active",
 			"team": -1,
-			"teamsLocked": false,
+			"teamLocked": false,
 			"cheatsEnabled": false,
 			"disabledTemplates": {},
 			"disabledTechnologies": {},
@@ -491,7 +498,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			"trainingBlocked": false,
 			"state": "active",
 			"team": -1,
-			"teamsLocked": false,
+			"teamLocked": false,
 			"cheatsEnabled": false,
 			"disabledTemplates": {},
 			"disabledTechnologies": {},

@@ -83,8 +83,8 @@ Capturable.prototype.Reduce = function(amount, playerID)
 	if (!cmpOwnership || cmpOwnership.GetOwner() == INVALID_PLAYER)
 		return 0;
 
-	let cmpPlayerSource = QueryPlayerIDInterface(playerID);
-	if (!cmpPlayerSource)
+	const cmpDiplomacySource = QueryPlayerIDInterface(playerID, IID_Diplomacy);
+	if (!cmpDiplomacySource)
 		return 0;
 
 	// Before changing the value, activate Fogging if necessary to hide changes.
@@ -92,7 +92,7 @@ Capturable.prototype.Reduce = function(amount, playerID)
 	if (cmpFogging)
 		cmpFogging.Activate();
 
-	let numberOfEnemies = this.capturePoints.filter((v, i) => v > 0 && cmpPlayerSource.IsEnemy(i)).length;
+	let numberOfEnemies = this.capturePoints.filter((v, i) => v > 0 && cmpDiplomacySource.IsEnemy(i)).length;
 
 	if (numberOfEnemies == 0)
 		return 0;
@@ -105,7 +105,7 @@ Capturable.prototype.Reduce = function(amount, playerID)
 		numberOfEnemies = 0;
 		for (let i in this.capturePoints)
 		{
-			if (!this.capturePoints[i] || !cmpPlayerSource.IsEnemy(i))
+			if (!this.capturePoints[i] || !cmpDiplomacySource.IsEnemy(i))
 				continue;
 			if (this.capturePoints[i] > distributedAmount)
 			{
@@ -138,14 +138,14 @@ Capturable.prototype.Reduce = function(amount, playerID)
  */
 Capturable.prototype.CanCapture = function(playerID)
 {
-	let cmpPlayerSource = QueryPlayerIDInterface(playerID);
+	const cmpDiplomacySource = QueryPlayerIDInterface(playerID, IID_Diplomacy);
 
-	if (!cmpPlayerSource)
-		warn(playerID + " has no player component defined on its id.");
+	if (!cmpDiplomacySource)
+		warn(playerID + " has no diplomacy component defined on its id.");
 	let capturePoints = this.GetCapturePoints();
 	let sourceEnemyCapturePoints = 0;
 	for (let i in this.GetCapturePoints())
-		if (cmpPlayerSource.IsEnemy(i))
+		if (cmpDiplomacySource.IsEnemy(i))
 			sourceEnemyCapturePoints += capturePoints[i];
 	return sourceEnemyCapturePoints > 0;
 };

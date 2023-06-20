@@ -1,5 +1,6 @@
 Engine.LoadHelperScript("ValueModification.js");
 Engine.LoadHelperScript("Player.js");
+Engine.LoadComponentScript("interfaces/Diplomacy.js");
 Engine.LoadComponentScript("interfaces/Formation.js");
 Engine.LoadComponentScript("interfaces/Heal.js");
 Engine.LoadComponentScript("interfaces/Health.js");
@@ -39,11 +40,11 @@ AddMock(SYSTEM_ENTITY, IID_PlayerManager, {
 	"GetPlayerByID": () => player
 });
 
-AddMock(player, IID_Player, {
+AddMock(player, IID_Diplomacy, {
 	"IsAlly": (p) => p == player
 });
 
-AddMock(otherPlayer, IID_Player, {
+AddMock(otherPlayer, IID_Diplomacy, {
 	"IsAlly": (p) => p == player
 });
 

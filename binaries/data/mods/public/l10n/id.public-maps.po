@@ -16,7 +16,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-02 21:44+0000\n"
+"POT-Creation-Date: 2023-06-16 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: nurhakam, 2023\n"
 "Language-Team: Indonesian (http://app.transifex.com/wildfire-games/0ad/language/id/)\n"
@@ -1041,7 +1041,7 @@ msgid "Each players starts near a lush oasis in a large, desolate desert."
 msgstr "Pemain mulai di dekat oase subur di gurun besar yang terpencil."
 
 #: maps/random/saharan_oases.jsonsettings.Name
-#: maps/scenarios/saharan_oases.xml:Name:26
+#: maps/scenarios/saharan_oases.xml:Name:39
 msgid "Saharan Oases"
 msgstr "Oase Sahara"
 
@@ -1322,7 +1322,7 @@ msgstr "Arkadia"
 #: maps/scenarios/migration.xml:PlayerData[0].Name:26
 #: maps/scenarios/necropolis.xml:PlayerData[0].Name:38
 #: maps/scenarios/reservoir.xml:PlayerData[0].Name:26
-#: maps/scenarios/saharan_oases.xml:PlayerData[0].Name:26
+#: maps/scenarios/saharan_oases.xml:PlayerData[1].Name:39
 #: maps/scenarios/sandbox_britons.xml:PlayerData[1].Name:39
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[1].Name:39
 #: maps/scenarios/sandbox_iberians.xml:PlayerData[0].Name:38
@@ -1348,7 +1348,7 @@ msgstr "Pemain 1"
 #: maps/scenarios/laconia.xml:PlayerData[1].Name:26
 #: maps/scenarios/migration.xml:PlayerData[1].Name:26
 #: maps/scenarios/necropolis.xml:PlayerData[1].Name:38
-#: maps/scenarios/saharan_oases.xml:PlayerData[1].Name:26
+#: maps/scenarios/saharan_oases.xml:PlayerData[2].Name:39
 #: maps/scenarios/sandbox_britons.xml:PlayerData[2].Name:39
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[2].Name:39
 #: maps/scenarios/sandbox_iberians.xml:PlayerData[1].Name:38
@@ -1498,13 +1498,13 @@ msgid "Delian League"
 msgstr "Liga Delos"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[1].Name:38
-#: maps/scenarios/peloponnese.xml:PlayerData[3].Name:38
+#: maps/scenarios/peloponnese.xml:PlayerData[4].Name:39
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[1].Name:39
 msgid "Thebes"
 msgstr "Thebes"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[2].Name:38
-#: maps/scenarios/peloponnese.xml:PlayerData[5].Name:38
+#: maps/scenarios/peloponnese.xml:PlayerData[6].Name:39
 msgid "Thessaly"
 msgstr "Thessalia"
 
@@ -1592,7 +1592,7 @@ msgstr "Pasukan Penyerang"
 #: maps/scenarios/gold_rush.xml:PlayerData[2].Name:26
 #: maps/scenarios/migration.xml:PlayerData[2].Name:26
 #: maps/scenarios/necropolis.xml:PlayerData[2].Name:38
-#: maps/scenarios/saharan_oases.xml:PlayerData[2].Name:26
+#: maps/scenarios/saharan_oases.xml:PlayerData[3].Name:39
 #: maps/scenarios/sandbox_britons.xml:PlayerData[3].Name:39
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[3].Name:39
 #: maps/scenarios/siwa_oasis.xml:PlayerData[2].Name:26
@@ -1631,7 +1631,7 @@ msgstr "Oase Cepat"
 #: maps/scenarios/fast_oasis.xml:PlayerData[3].Name:26
 #: maps/scenarios/gold_rush.xml:PlayerData[3].Name:26
 #: maps/scenarios/necropolis.xml:PlayerData[3].Name:38
-#: maps/scenarios/saharan_oases.xml:PlayerData[3].Name:26
+#: maps/scenarios/saharan_oases.xml:PlayerData[4].Name:39
 #: maps/scenarios/siwa_oasis.xml:PlayerData[3].Name:26
 msgid "Player 4"
 msgstr "Pemain 4"
@@ -1752,27 +1752,27 @@ msgstr "Peta uji coba pergerakan dan properti lingkungan dari pencari jalur A*."
 msgid "Pathfinding Terrain Demo"
 msgstr "Demo Pencarian Jalur Medan"
 
-#: maps/scenarios/peloponnese.xml:Description:38
+#: maps/scenarios/peloponnese.xml:Description:39
 msgid "A real-world map of the Greek homeland."
 msgstr "Peta dunia asli dari tanah air Yunani."
 
-#: maps/scenarios/peloponnese.xml:Name:38
+#: maps/scenarios/peloponnese.xml:Name:39
 msgid "Peloponnesian Wars"
 msgstr "Perang Peloponnesos"
 
-#: maps/scenarios/peloponnese.xml:PlayerData[0].Name:38
+#: maps/scenarios/peloponnese.xml:PlayerData[1].Name:39
 msgid "Athens"
 msgstr "Athena"
 
-#: maps/scenarios/peloponnese.xml:PlayerData[1].Name:38
+#: maps/scenarios/peloponnese.xml:PlayerData[2].Name:39
 msgid "Sparta"
 msgstr "Sparta"
 
-#: maps/scenarios/peloponnese.xml:PlayerData[2].Name:38
+#: maps/scenarios/peloponnese.xml:PlayerData[3].Name:39
 msgid "Elis"
 msgstr "Elis"
 
-#: maps/scenarios/peloponnese.xml:PlayerData[4].Name:38
+#: maps/scenarios/peloponnese.xml:PlayerData[5].Name:39
 msgid "Corinth"
 msgstr "Korintus"
 
@@ -1826,7 +1826,7 @@ msgstr "Peta demo yang menampilkan decal Jalan Beriklim Sedang."
 msgid "Road Decals Demo"
 msgstr "Demo Decal Jalan"
 
-#: maps/scenarios/saharan_oases.xml:Description:26
+#: maps/scenarios/saharan_oases.xml:Description:39
 msgid ""
 "A desert biome map where each player has founded their colony at their own "
 "lush oasis. The rest of the map is generally wide-open and barren."
@@ -2499,6 +2499,27 @@ msgstr "Puncak dan lembah tinggi dari Pegunungan Alpen.\n\nSetiap pemain memulai
 msgid "Alpine Valleys (2)"
 msgstr "Lembah Alpen (2)"
 
+#: maps/skirmishes/arabian_oases_2p.xml:Description:39
+msgid ""
+"An old favorite. An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
+"\n"
+"This represents the Arabian Desert, South of Mesopotamia."
+msgstr ""
+
+#: maps/skirmishes/arabian_oases_2p.xml:Name:39
+msgid "Arabian Oases (2 players)"
+msgstr ""
+
+#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[0].Name:39
+#: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[1].Name:39
+msgid "Northeast Player"
+msgstr ""
+
+#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[2].Name:39
+msgid "Southwest Player"
+msgstr ""
+
 #: maps/skirmishes/atlas_valleys_8p.xml:Description:39
 msgid ""
 "Skirmish high in the Atlas mountains, where snowcapped mountains loom over "
@@ -2648,8 +2669,8 @@ msgid ""
 msgstr "Dua pemain bertarung di pepohonan Dataran Tinggi Dekkan di India Tengah.\n\nSetiap pemain memulai pertandingan dengan sebuah lumbung dan gudang gratis.\n\nSumberdaya tak terjamah berada di dataran rendah di kedua sisi dataran tinggi. Dataran rendah juga memberikan kesempatan untuk memperluas wilayah dan manuver strategis."
 
 #: maps/skirmishes/deccan_plateau_2p.xml:Name:39
-msgid "Deccan Plateau (2 players)"
-msgstr ""
+msgid "Deccan Plateau (2)"
+msgstr "Dataran Tinggi Dekkan (2)"
 
 #: maps/skirmishes/dueling_cliffs_3pv3p.xml:Description:39
 msgid ""
@@ -2834,18 +2855,16 @@ msgstr "Peta gurun datar yang terbuka lebar dan datar terbelah di tengah oleh du
 msgid "Libyan Oases (4)"
 msgstr "Oase Libya (4)"
 
-#: maps/skirmishes/libyan_oasis_2p.xml:Description:38
+#: maps/skirmishes/libyan_oasis_2p.xml:Description:39
 msgid ""
 "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis.\n"
 "\n"
-"This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt.\n"
-"\n"
-"Iberians do not receive their circuit walls here. Instead, all factions receive four free Stone Towers."
-msgstr "Favorit lama. Peta gurun datar yang terbuka lebar dan datar dibelah di tengah oleh oasis yang subur.\n\nPeta ini mewakili Gurun Libya, bagian dari Gurun Sahara, sebelah Barat Sungai Nil di Mesir.\n\nBangsa Iberia tidak mendapat tembok melingkar mereka di sini. Sebagai gantinya, semua kubu menerima empat Menara Batu gratis."
+"This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt."
+msgstr ""
 
-#: maps/skirmishes/libyan_oasis_2p.xml:Name:38
-msgid "Libyan Oasis (2)"
-msgstr "Oase Libya (2)"
+#: maps/skirmishes/libyan_oasis_2p.xml:Name:39
+msgid "Libyan Oasis (2 players)"
+msgstr ""
 
 #: maps/skirmishes/lorraine_plain_2p.xml:Description:39
 msgid ""
@@ -3070,11 +3089,11 @@ msgstr "Stepa di Asia tengah. Padang rumput terbuka dengan sedikit pohon (sekita
 msgid "Scythian Steppes (4)"
 msgstr "Stepa Skithia (4)"
 
-#: maps/skirmishes/sicilia_2p.xml:Description:38
+#: maps/skirmishes/sicilia_2p.xml:Description:39
 msgid "The large Mediterranean island of Sicily is open for conquest."
 msgstr "Pulau Mediterania yang besar di Sisilia terbuka untuk perebutan."
 
-#: maps/skirmishes/sicilia_2p.xml:Name:38
+#: maps/skirmishes/sicilia_2p.xml:Name:39
 msgid "Sicilia (2)"
 msgstr "Sisilia (2)"
 

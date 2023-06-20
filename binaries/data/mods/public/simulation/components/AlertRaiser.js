@@ -37,8 +37,8 @@ AlertRaiser.prototype.RaiseAlert = function()
 		return;
 
 	let owner = cmpOwnership.GetOwner();
-	let cmpPlayer = QueryOwnerInterface(this.entity);
-	let mutualAllies = cmpPlayer ? cmpPlayer.GetMutualAllies() : [owner];
+	const cmpDiplomacy = QueryPlayerIDInterface(owner, IID_Diplomacy);
+	const mutualAllies = cmpDiplomacy ? cmpDiplomacy.GetMutualAllies() : [owner];
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 
 	// Store the number of available garrison spots so that units don't try to garrison in buildings that will be full
@@ -98,8 +98,8 @@ AlertRaiser.prototype.EndOfAlert = function()
 		return;
 
 	let owner = cmpOwnership.GetOwner();
-	let cmpPlayer = QueryOwnerInterface(this.entity);
-	let mutualAllies = cmpPlayer ? cmpPlayer.GetMutualAllies() : [owner];
+	const cmpDiplomacy = QueryPlayerIDInterface(owner, IID_Diplomacy);
+	const mutualAllies = cmpDiplomacy ? cmpDiplomacy.GetMutualAllies() : [owner];
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 
 	// Units that are not garrisoned should go back to work

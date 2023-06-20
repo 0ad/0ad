@@ -181,10 +181,10 @@ Trader.prototype.CanTrade = function(target)
 		!(cmpTraderIdentity.HasClass("Ship") && cmpTargetMarket.HasType("naval")))
 		return false;
 
-	let cmpTraderPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	let cmpTraderDiplomacy = QueryOwnerInterface(this.entity, IID_Diplomacy);
 	let cmpTargetPlayer = QueryOwnerInterface(target, IID_Player);
 
-	return cmpTraderPlayer && cmpTargetPlayer && !cmpTraderPlayer.IsEnemy(cmpTargetPlayer.GetPlayerID());
+	return cmpTraderPlayer && cmpTargetPlayer && !cmpTraderDiplomacy.IsEnemy(cmpTargetPlayer.GetPlayerID());
 };
 
 Trader.prototype.AddResources = function(ent, gain)

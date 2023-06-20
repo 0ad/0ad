@@ -13,6 +13,10 @@
     <AlertnessPeaceThreshold>0</AlertnessPeaceThreshold>
     <AlertnessMax>8</AlertnessMax>
   </BattleDetection>
+  <Diplomacy>
+    <SharedLosTech>unlock_shared_los</SharedLosTech>
+    <SharedDropsitesTech>unlock_shared_dropsites</SharedDropsitesTech>
+  </Diplomacy>
   <EntityLimits>
     <Limits>
       <Animal>50</Animal>
@@ -70,8 +74,6 @@
         <metal>1.0</metal>
       </Sell>
     </BarterMultiplier>
-    <SharedLosTech>unlock_shared_los</SharedLosTech>
-    <SharedDropsitesTech>unlock_shared_dropsites</SharedDropsitesTech>
     <SpyCostMultiplier>1.0</SpyCostMultiplier>
     <Formations datatype="tokens">
       special/formations/null

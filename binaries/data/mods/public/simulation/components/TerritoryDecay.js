@@ -35,6 +35,11 @@ TerritoryDecay.prototype.IsConnected = function()
 	if (!cmpPlayer)
 		return true;// something without ownership can't decay
 
+	const playerID = cmpPlayer.GetPlayerID();
+	const cmpDiplomacy = QueryPlayerIDInterface(playerID, IID_Diplomacy);
+	if (!cmpDiplomacy)
+		return true;
+
 	const decayTerritory = ApplyValueModificationsToEntity("TerritoryDecay/Territory", this.template.Territory, this.entity);
 
 	var cmpTerritoryManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TerritoryManager);
@@ -43,11 +48,11 @@ TerritoryDecay.prototype.IsConnected = function()
 	if (tileOwner == 0)
 	{
 		this.connectedNeighbours[0] = 1;
-		return cmpPlayer.GetPlayerID() == 0 || decayTerritory.indexOf("neutral") === -1;
+		return playerID == 0 || decayTerritory.indexOf("neutral") === -1;
 	}
 
 	var tileConnected = cmpTerritoryManager.IsConnected(pos.x, pos.y);
-	if (tileConnected && !cmpPlayer.IsMutualAlly(tileOwner))
+	if (tileConnected && !cmpDiplomacy.IsMutualAlly(tileOwner))
 	{
 		this.connectedNeighbours[tileOwner] = 1;
 		return decayTerritory.indexOf("enemy") === -1;
@@ -58,7 +63,7 @@ TerritoryDecay.prototype.IsConnected = function()
 
 	// Special-case: if the tile is unconnected, non-own territory, decay towards gaia.
 	// TODO: this is not great, see #4749
-	if (cmpPlayer.GetPlayerID() != tileOwner)
+	if (playerID != tileOwner)
 	{
 		this.connectedNeighbours[0] = 1;
 		return false;
@@ -68,7 +73,7 @@ TerritoryDecay.prototype.IsConnected = function()
 
 	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 	for (var i = 1; i < numPlayers; ++i)
-		if (this.connectedNeighbours[i] > 0 && cmpPlayer.IsMutualAlly(i))
+		if (this.connectedNeighbours[i] > 0 && cmpDiplomacy.IsMutualAlly(i))
 		{
 			// don't decay if connected to a connected ally; disable blinking
 			cmpTerritoryManager.SetTerritoryBlinking(pos.x, pos.y, false);

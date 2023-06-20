@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-04-21 07:09+0000\n"
+"POT-Creation-Date: 2023-06-16 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022-2023\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -838,6 +838,10 @@ msgstr "耐寒灌木"
 msgid "Scrub"
 msgstr "灌木叢"
 
+#: simulation/templates/gaia/tree/bush_mediterranean_dry.xml:4
+msgid "Dry Scrub"
+msgstr "乾燥灌木叢"
+
 #: simulation/templates/gaia/tree/carob.xml:4
 msgid "Carob"
 msgstr "角豆"
@@ -952,6 +956,10 @@ msgstr "埃及棕櫚"
 #: simulation/templates/gaia/tree/palm_palmyra.xml:4
 msgid "Palmyra Palm"
 msgstr "糖棕"
+
+#: simulation/templates/gaia/tree/palm_royal.xml:4
+msgid "Royal Palm"
+msgstr "皇家棕櫚"
 
 #: simulation/templates/gaia/tree/palm_tropic.xml:4
 msgid "Palm"
@@ -1252,4 +1260,4 @@ msgstr "牆"
 
 #: simulation/templates/template_wallset.xml:10
 msgid "Wall off an area."
-msgstr "圍起一塊區域。"
+msgstr "用牆圍起一塊區域。"

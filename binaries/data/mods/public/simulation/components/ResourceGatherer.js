@@ -373,12 +373,17 @@ ResourceGatherer.prototype.CanReturnResource = function(target, checkCarriedReso
 			return false;
 	}
 
-	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (cmpOwnership && IsOwnedByPlayer(cmpOwnership.GetOwner(), target))
+	const cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	if (!cmpOwnership)
+		return false;
+
+	const playerID = cmpOwnership.GetOwner();
+	if (IsOwnedByPlayer(playerID, target))
 		return true;
-	let cmpPlayer = QueryOwnerInterface(this.entity);
-	return cmpPlayer && cmpPlayer.HasSharedDropsites() && cmpResourceDropsite.IsShared() &&
-	       cmpOwnership && IsOwnedByMutualAllyOfPlayer(cmpOwnership.GetOwner(), target);
+
+	return QueryPlayerIDInterface(playerID, IID_Diplomacy)?.HasSharedDropsites() &&
+			cmpResourceDropsite.IsShared() &&
+			IsOwnedByMutualAllyOfPlayer(playerID, target);
 };
 
 /**

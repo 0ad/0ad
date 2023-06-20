@@ -17,12 +17,6 @@ Player.prototype.Schema =
 		"</attribute>" +
 		"<text/>" +
 	"</element>" +
-	"<element name='SharedLosTech' a:help='Allies will share los when this technology is researched. Leave empty to never share LOS.'>" +
-		"<text/>" +
-	"</element>" +
-	"<element name='SharedDropsitesTech' a:help='Allies will share dropsites when this technology is researched. Leave empty to never share dropsites.'>" +
-		"<text/>" +
-	"</element>" +
 	"<element name='SpyCostMultiplier'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>";
@@ -32,9 +26,6 @@ Player.prototype.STATE_ACTIVE = "active";
 Player.prototype.STATE_DEFEATED = "defeated";
 Player.prototype.STATE_WON = "won";
 
-/**
- * Don't serialize diplomacyColor or displayDiplomacyColor since they're modified by the GUI.
- */
 Player.prototype.Serialize = function()
 {
 	let state = {};
@@ -42,8 +33,8 @@ Player.prototype.Serialize = function()
 		if (this.hasOwnProperty(key))
 			state[key] = this[key];
 
-	state.diplomacyColor = undefined;
-	state.displayDiplomacyColor = false;
+	// Modified by GUI, so don't serialise.
+	delete state.displayDiplomacyColor;
 	return state;
 };
 
@@ -62,8 +53,6 @@ Player.prototype.Init = function()
 {
 	this.playerID = undefined;
 	this.color = undefined;
-	this.diplomacyColor = undefined;
-	this.displayDiplomacyColor = false;
 	this.popUsed = 0; // Population of units owned or trained by this player.
 	this.popBonuses = 0; // Sum of population bonuses of player's entities.
 	this.maxPop = 300; // Maximum population.
@@ -71,11 +60,7 @@ Player.prototype.Init = function()
 	this.resourceCount = {};
 	this.resourceGatherers = {};
 	this.tradingGoods = []; // Goods for next trade-route and its probabilities * 100.
-	this.team = -1;	// Team number of the player, players on the same team will always have ally diplomatic status. Also this is useful for team emblems, scoring, etc.
-	this.teamsLocked = false;
 	this.state = this.STATE_ACTIVE;
-	this.diplomacy = [];	// Array of diplomatic stances for this player with respect to other players (including gaia and self).
-	this.sharedDropsites = false;
 	this.formations = this.template.Formations._string.split(" ");
 	this.startCam = undefined;
 	this.controlAllUnits = false;
@@ -134,11 +119,6 @@ Player.prototype.SetColor = function(r, g, b)
 		});
 };
 
-Player.prototype.SetDiplomacyColor = function(color)
-{
-	this.diplomacyColor = { "r": color.r / 255, "g": color.g / 255, "b": color.b / 255, "a": 1 };
-};
-
 Player.prototype.SetDisplayDiplomacyColor = function(displayDiplomacyColor)
 {
 	this.displayDiplomacyColor = displayDiplomacyColor;
@@ -151,7 +131,7 @@ Player.prototype.GetColor = function()
 
 Player.prototype.GetDisplayedColor = function()
 {
-	return this.displayDiplomacyColor ? this.diplomacyColor : this.color;
+	return this.displayDiplomacyColor ? Engine.QueryInterface(this.entity, IID_Diplomacy).GetColor() : this.color;
 };
 
 // Try reserving num population slots. Returns 0 on success or number of missing slots otherwise.
@@ -543,101 +523,6 @@ Player.prototype.SetState = function(newState, message)
 	Engine.PostMessage(this.entity, won ? MT_PlayerWon : MT_PlayerDefeated, { "playerId": this.playerID });
 };
 
-Player.prototype.GetTeam = function()
-{
-	return this.team;
-};
-
-Player.prototype.SetTeam = function(team)
-{
-	if (this.teamsLocked)
-		return;
-
-	this.team = team;
-
-	// Set all team members as allies.
-	if (this.team != -1)
-	{
-		let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
-		for (let i = 0; i < numPlayers; ++i)
-		{
-			let cmpPlayer = QueryPlayerIDInterface(i);
-			if (this.team != cmpPlayer.GetTeam())
-				continue;
-
-			this.SetAlly(i);
-			cmpPlayer.SetAlly(this.playerID);
-		}
-	}
-
-	Engine.BroadcastMessage(MT_DiplomacyChanged, {
-		"player": this.playerID,
-		"otherPlayer": null
-	});
-};
-
-Player.prototype.SetLockTeams = function(value)
-{
-	this.teamsLocked = value;
-};
-
-Player.prototype.GetLockTeams = function()
-{
-	return this.teamsLocked;
-};
-
-Player.prototype.GetDiplomacy = function()
-{
-	return this.diplomacy.slice();
-};
-
-Player.prototype.SetDiplomacy = function(dipl)
-{
-	this.diplomacy = dipl.slice();
-
-	Engine.BroadcastMessage(MT_DiplomacyChanged, {
-		"player": this.playerID,
-		"otherPlayer": null
-	});
-};
-
-Player.prototype.SetDiplomacyIndex = function(idx, value)
-{
-	let cmpPlayer = QueryPlayerIDInterface(idx);
-	if (!cmpPlayer)
-		return;
-
-	if (!this.IsActive() || !cmpPlayer.IsActive())
-		return;
-
-	this.diplomacy[idx] = value;
-
-	Engine.BroadcastMessage(MT_DiplomacyChanged, {
-		"player": this.playerID,
-		"otherPlayer": cmpPlayer.GetPlayerID()
-	});
-
-	// Mutual worsening of relations.
-	if (cmpPlayer.diplomacy[this.playerID] > value)
-		cmpPlayer.SetDiplomacyIndex(this.playerID, value);
-};
-
-Player.prototype.UpdateSharedLos = function()
-{
-	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-	let cmpTechnologyManager = Engine.QueryInterface(this.entity, IID_TechnologyManager);
-	if (!cmpRangeManager || !cmpTechnologyManager)
-		return;
-
-	if (!cmpTechnologyManager.IsTechnologyResearched(this.template.SharedLosTech))
-	{
-		cmpRangeManager.SetSharedLos(this.playerID, [this.playerID]);
-		return;
-	}
-
-	cmpRangeManager.SetSharedLos(this.playerID, this.GetMutualAllies());
-};
-
 Player.prototype.GetFormations = function()
 {
 	return this.formations;
@@ -668,16 +553,6 @@ Player.prototype.HasStartingCamera = function()
 	return this.startCam !== undefined;
 };
 
-Player.prototype.HasSharedLos = function()
-{
-	let cmpTechnologyManager = Engine.QueryInterface(this.entity, IID_TechnologyManager);
-	return cmpTechnologyManager && cmpTechnologyManager.IsTechnologyResearched(this.template.SharedLosTech);
-};
-Player.prototype.HasSharedDropsites = function()
-{
-	return this.sharedDropsites;
-};
-
 Player.prototype.SetControlAllUnits = function(c)
 {
 	this.controlAllUnits = c;
@@ -696,94 +571,6 @@ Player.prototype.SetAI = function(flag)
 Player.prototype.IsAI = function()
 {
 	return this.isAI;
-};
-
-Player.prototype.GetPlayersByDiplomacy = function(func)
-{
-	let players = [];
-	for (let i = 0; i < this.diplomacy.length; ++i)
-		if (this[func](i))
-			players.push(i);
-	return players;
-};
-
-Player.prototype.SetAlly = function(id)
-{
-	this.SetDiplomacyIndex(id, 1);
-};
-
-/**
- * Check if given player is our ally.
- */
-Player.prototype.IsAlly = function(id)
-{
-	return this.diplomacy[id] > 0;
-};
-
-Player.prototype.GetAllies = function()
-{
-	return this.GetPlayersByDiplomacy("IsAlly");
-};
-
-/**
- * Check if given player is our ally excluding ourself
- */
-Player.prototype.IsExclusiveAlly = function(id)
-{
-	return this.playerID != id && this.IsAlly(id);
-};
-
-/**
- * Check if given player is our ally, and we are its ally
- */
-Player.prototype.IsMutualAlly = function(id)
-{
-	let cmpPlayer = QueryPlayerIDInterface(id);
-	return this.IsAlly(id) && cmpPlayer && cmpPlayer.IsAlly(this.playerID);
-};
-
-Player.prototype.GetMutualAllies = function()
-{
-	return this.GetPlayersByDiplomacy("IsMutualAlly");
-};
-
-/**
- * Check if given player is our ally, and we are its ally, excluding ourself
- */
-Player.prototype.IsExclusiveMutualAlly = function(id)
-{
-	return this.playerID != id && this.IsMutualAlly(id);
-};
-
-Player.prototype.SetEnemy = function(id)
-{
-	this.SetDiplomacyIndex(id, -1);
-};
-
-/**
- * Check if given player is our enemy
- */
-Player.prototype.IsEnemy = function(id)
-{
-	return this.diplomacy[id] < 0;
-};
-
-Player.prototype.GetEnemies = function()
-{
-	return this.GetPlayersByDiplomacy("IsEnemy");
-};
-
-Player.prototype.SetNeutral = function(id)
-{
-	this.SetDiplomacyIndex(id, 0);
-};
-
-/**
- * Check if given player is neutral
- */
-Player.prototype.IsNeutral = function(id)
-{
-	return this.diplomacy[id] == 0;
 };
 
 /**
@@ -839,19 +626,6 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 		if (cmpIdentity.HasClass("Barter") && !Engine.QueryInterface(msg.entity, IID_Foundation))
 			this.barterEntities.push(msg.entity);
 	}
-};
-
-Player.prototype.OnResearchFinished = function(msg)
-{
-	if (msg.tech == this.template.SharedLosTech)
-		this.UpdateSharedLos();
-	else if (msg.tech == this.template.SharedDropsitesTech)
-		this.sharedDropsites = true;
-};
-
-Player.prototype.OnDiplomacyChanged = function()
-{
-	this.UpdateSharedLos();
 };
 
 Player.prototype.OnValueModification = function(msg)
@@ -983,7 +757,7 @@ Player.prototype.OnGlobalPlayerDefeated = function(msg)
 	if (!cmpSound)
 		return;
 
-	const soundGroup = cmpSound.GetSoundGroup(this.playerID === msg.playerId ? "defeated" : this.IsAlly(msg.playerId) ? "defeated_ally" : this.HasWon() ? "won" : "defeated_enemy");
+	const soundGroup = cmpSound.GetSoundGroup(this.playerID === msg.playerId ? "defeated" : Engine.QueryInterface(this.entity, IID_Diplomacy).IsAlly(msg.playerId) ? "defeated_ally" : this.HasWon() ? "won" : "defeated_enemy");
 	if (soundGroup)
 		Engine.QueryInterface(SYSTEM_ENTITY, IID_SoundManager).PlaySoundGroupForPlayer(soundGroup, this.playerID);
 };

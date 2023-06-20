@@ -3,6 +3,8 @@ function GuiInterface() {}
 GuiInterface.prototype.Schema =
 	"<a:component type='system'/><empty/>";
 
+GuiInterface.prototype.WHITE = { "r": 1, "g": 1, "b": 1 };
+
 GuiInterface.prototype.Serialize = function()
 {
 	// This component isn't network-synchronized for the biggest part,
@@ -66,6 +68,7 @@ GuiInterface.prototype.GetSimulationState = function()
 		const cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
 		const cmpPlayerEntityLimits = Engine.QueryInterface(playerEnt, IID_EntityLimits);
 		const cmpIdentity = Engine.QueryInterface(playerEnt, IID_Identity);
+		const cmpDiplomacy = Engine.QueryInterface(playerEnt, IID_Diplomacy);
 
 		// Work out which phase we are in.
 		let phase = "";
@@ -87,10 +90,10 @@ GuiInterface.prototype.GetSimulationState = function()
 
 		for (let j = 0; j < numPlayers; ++j)
 		{
-			allies[j] = cmpPlayer.IsAlly(j);
-			mutualAllies[j] = cmpPlayer.IsMutualAlly(j);
-			neutrals[j] = cmpPlayer.IsNeutral(j);
-			enemies[j] = cmpPlayer.IsEnemy(j);
+			allies[j] = cmpDiplomacy.IsAlly(j);
+			mutualAllies[j] = cmpDiplomacy.IsMutualAlly(j);
+			neutrals[j] = cmpDiplomacy.IsNeutral(j);
+			enemies[j] = cmpDiplomacy.IsEnemy(j);
 		}
 
 		ret.players.push({
@@ -107,13 +110,13 @@ GuiInterface.prototype.GetSimulationState = function()
 			"resourceGatherers": cmpPlayer.GetResourceGatherers(),
 			"trainingBlocked": cmpPlayer.IsTrainingBlocked(),
 			"state": cmpPlayer.GetState(),
-			"team": cmpPlayer.GetTeam(),
-			"teamsLocked": cmpPlayer.GetLockTeams(),
+			"team": cmpDiplomacy.GetTeam(),
+			"teamLocked": cmpDiplomacy.IsTeamLocked(),
 			"cheatsEnabled": cmpPlayer.GetCheatsEnabled(),
 			"disabledTemplates": cmpPlayer.GetDisabledTemplates(),
 			"disabledTechnologies": cmpPlayer.GetDisabledTechnologies(),
-			"hasSharedDropsites": cmpPlayer.HasSharedDropsites(),
-			"hasSharedLos": cmpPlayer.HasSharedLos(),
+			"hasSharedDropsites": cmpDiplomacy.HasSharedDropsites(),
+			"hasSharedLos": cmpDiplomacy.HasSharedLos(),
 			"spyCostMultiplier": cmpPlayer.GetSpyCostMultiplier(),
 			"phase": phase,
 			"isAlly": allies,
@@ -910,13 +913,13 @@ GuiInterface.prototype.UpdateDisplayedPlayerColors = function(player, data)
 	let numPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetNumPlayers();
 	for (let i = 1; i < numPlayers; ++i)
 	{
-		let cmpPlayer = QueryPlayerIDInterface(i, IID_Player);
-		if (!cmpPlayer)
+		const cmpDiplomacy = QueryPlayerIDInterface(i, IID_Diplomacy);
+		if (!cmpDiplomacy)
 			continue;
 
-		cmpPlayer.SetDisplayDiplomacyColor(data.displayDiplomacyColors);
+		QueryPlayerIDInterface(i, IID_Player).SetDisplayDiplomacyColor(data.displayDiplomacyColors);
 		if (data.displayDiplomacyColors)
-			cmpPlayer.SetDiplomacyColor(data.displayedPlayerColors[i]);
+			cmpDiplomacy.SetDiplomacyColor(data.displayedPlayerColors[i]);
 
 		updateEntityColor(data.showAllStatusBars && (i == player || player == -1) ?
 			[IID_Minimap, IID_RangeOverlayRenderer, IID_RallyPointRenderer, IID_StatusBars] :
@@ -947,10 +950,7 @@ GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
 		let color = playerColors[owner];
 		if (!color)
 		{
-			color = { "r": 1, "g": 1, "b": 1 };
-			let cmpPlayer = QueryPlayerIDInterface(owner);
-			if (cmpPlayer)
-				color = cmpPlayer.GetDisplayedColor();
+			color = QueryPlayerIDInterface(owner, IID_Player)?.GetDisplayedColor() || this.WHITE;
 			playerColors[owner] = color;
 		}
 

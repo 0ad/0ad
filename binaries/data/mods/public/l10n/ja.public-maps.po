@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-02 21:44+0000\n"
+"POT-Creation-Date: 2023-06-16 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
 "Last-Translator: Photon “PHN” man, 2021\n"
 "Language-Team: Japanese (http://app.transifex.com/wildfire-games/0ad/language/ja/)\n"
@@ -1038,7 +1038,7 @@ msgid "Each players starts near a lush oasis in a large, desolate desert."
 msgstr "各プレイヤーは、大きく荒涼とした砂漠にある青々としたオアシスのほとりから開始します。"
 
 #: maps/random/saharan_oases.jsonsettings.Name
-#: maps/scenarios/saharan_oases.xml:Name:26
+#: maps/scenarios/saharan_oases.xml:Name:39
 msgid "Saharan Oases"
 msgstr "サハラのオアシス"
 
@@ -1319,7 +1319,7 @@ msgstr "アルカディア"
 #: maps/scenarios/migration.xml:PlayerData[0].Name:26
 #: maps/scenarios/necropolis.xml:PlayerData[0].Name:38
 #: maps/scenarios/reservoir.xml:PlayerData[0].Name:26
-#: maps/scenarios/saharan_oases.xml:PlayerData[0].Name:26
+#: maps/scenarios/saharan_oases.xml:PlayerData[1].Name:39
 #: maps/scenarios/sandbox_britons.xml:PlayerData[1].Name:39
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[1].Name:39
 #: maps/scenarios/sandbox_iberians.xml:PlayerData[0].Name:38
@@ -1345,7 +1345,7 @@ msgstr "プレイヤー 1"
 #: maps/scenarios/laconia.xml:PlayerData[1].Name:26
 #: maps/scenarios/migration.xml:PlayerData[1].Name:26
 #: maps/scenarios/necropolis.xml:PlayerData[1].Name:38
-#: maps/scenarios/saharan_oases.xml:PlayerData[1].Name:26
+#: maps/scenarios/saharan_oases.xml:PlayerData[2].Name:39
 #: maps/scenarios/sandbox_britons.xml:PlayerData[2].Name:39
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[2].Name:39
 #: maps/scenarios/sandbox_iberians.xml:PlayerData[1].Name:38
@@ -1495,13 +1495,13 @@ msgid "Delian League"
 msgstr "デロス同盟"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[1].Name:38
-#: maps/scenarios/peloponnese.xml:PlayerData[3].Name:38
+#: maps/scenarios/peloponnese.xml:PlayerData[4].Name:39
 #: maps/skirmishes/egypt_3pv3p.xml:PlayerData[1].Name:39
 msgid "Thebes"
 msgstr "テーバイ"
 
 #: maps/scenarios/campaign_test_map.xml:PlayerData[2].Name:38
-#: maps/scenarios/peloponnese.xml:PlayerData[5].Name:38
+#: maps/scenarios/peloponnese.xml:PlayerData[6].Name:39
 msgid "Thessaly"
 msgstr "テッサリア"
 
@@ -1589,7 +1589,7 @@ msgstr "侵略軍"
 #: maps/scenarios/gold_rush.xml:PlayerData[2].Name:26
 #: maps/scenarios/migration.xml:PlayerData[2].Name:26
 #: maps/scenarios/necropolis.xml:PlayerData[2].Name:38
-#: maps/scenarios/saharan_oases.xml:PlayerData[2].Name:26
+#: maps/scenarios/saharan_oases.xml:PlayerData[3].Name:39
 #: maps/scenarios/sandbox_britons.xml:PlayerData[3].Name:39
 #: maps/scenarios/sandbox_gauls.xml:PlayerData[3].Name:39
 #: maps/scenarios/siwa_oasis.xml:PlayerData[2].Name:26
@@ -1628,7 +1628,7 @@ msgstr "ファスト・オアシス"
 #: maps/scenarios/fast_oasis.xml:PlayerData[3].Name:26
 #: maps/scenarios/gold_rush.xml:PlayerData[3].Name:26
 #: maps/scenarios/necropolis.xml:PlayerData[3].Name:38
-#: maps/scenarios/saharan_oases.xml:PlayerData[3].Name:26
+#: maps/scenarios/saharan_oases.xml:PlayerData[4].Name:39
 #: maps/scenarios/siwa_oasis.xml:PlayerData[3].Name:26
 msgid "Player 4"
 msgstr "プレイヤー 4"
@@ -1749,27 +1749,27 @@ msgstr " A* パスファインダーにおける移動コストと地形属性�
 msgid "Pathfinding Terrain Demo"
 msgstr "地形パスファインディング･デモ"
 
-#: maps/scenarios/peloponnese.xml:Description:38
+#: maps/scenarios/peloponnese.xml:Description:39
 msgid "A real-world map of the Greek homeland."
 msgstr "ギリシア本国の現実世界マップ"
 
-#: maps/scenarios/peloponnese.xml:Name:38
+#: maps/scenarios/peloponnese.xml:Name:39
 msgid "Peloponnesian Wars"
 msgstr " ペロポネソス戦争"
 
-#: maps/scenarios/peloponnese.xml:PlayerData[0].Name:38
+#: maps/scenarios/peloponnese.xml:PlayerData[1].Name:39
 msgid "Athens"
 msgstr "アテナイ"
 
-#: maps/scenarios/peloponnese.xml:PlayerData[1].Name:38
+#: maps/scenarios/peloponnese.xml:PlayerData[2].Name:39
 msgid "Sparta"
 msgstr "スパルタ"
 
-#: maps/scenarios/peloponnese.xml:PlayerData[2].Name:38
+#: maps/scenarios/peloponnese.xml:PlayerData[3].Name:39
 msgid "Elis"
 msgstr "イリア"
 
-#: maps/scenarios/peloponnese.xml:PlayerData[4].Name:38
+#: maps/scenarios/peloponnese.xml:PlayerData[5].Name:39
 msgid "Corinth"
 msgstr "コリント"
 
@@ -1823,7 +1823,7 @@ msgstr "温帯の路面表現の見本のデモマップです。"
 msgid "Road Decals Demo"
 msgstr "ロードデカールデモ"
 
-#: maps/scenarios/saharan_oases.xml:Description:26
+#: maps/scenarios/saharan_oases.xml:Description:39
 msgid ""
 "A desert biome map where each player has founded their colony at their own "
 "lush oasis. The rest of the map is generally wide-open and barren."
@@ -2496,6 +2496,27 @@ msgstr "アルプスの高い頂きと渓谷です。\n\n各プレイヤーは�
 msgid "Alpine Valleys (2)"
 msgstr "アルパイン渓谷 (2)"
 
+#: maps/skirmishes/arabian_oases_2p.xml:Description:39
+msgid ""
+"An old favorite. An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
+"\n"
+"This represents the Arabian Desert, South of Mesopotamia."
+msgstr ""
+
+#: maps/skirmishes/arabian_oases_2p.xml:Name:39
+msgid "Arabian Oases (2 players)"
+msgstr ""
+
+#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[0].Name:39
+#: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[1].Name:39
+msgid "Northeast Player"
+msgstr ""
+
+#: maps/skirmishes/arabian_oases_2p.xml:PlayerData[1].Name:39
+#: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[2].Name:39
+msgid "Southwest Player"
+msgstr ""
+
 #: maps/skirmishes/atlas_valleys_8p.xml:Description:39
 msgid ""
 "Skirmish high in the Atlas mountains, where snowcapped mountains loom over "
@@ -2645,8 +2666,8 @@ msgid ""
 msgstr "2プレイヤーが密林生い茂る中央インドのデカン高原を挟んでにらみ合っています。\n\n各プレイヤーは納屋と倉庫付きで対戦を開始します。\n\n手つかずの資源が高原の両側の低地に眠っています。低地はまた拡大と戦略的作戦行動の舞台でもあります。"
 
 #: maps/skirmishes/deccan_plateau_2p.xml:Name:39
-msgid "Deccan Plateau (2 players)"
-msgstr ""
+msgid "Deccan Plateau (2)"
+msgstr "デカン高原 (2)"
 
 #: maps/skirmishes/dueling_cliffs_3pv3p.xml:Description:39
 msgid ""
@@ -2831,18 +2852,16 @@ msgstr "別の広く開けた、平坦な砂漠マップで、2つの青々と�
 msgid "Libyan Oases (4)"
 msgstr "リビアのオアシス (4)"
 
-#: maps/skirmishes/libyan_oasis_2p.xml:Description:38
+#: maps/skirmishes/libyan_oasis_2p.xml:Description:39
 msgid ""
 "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis.\n"
 "\n"
-"This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt.\n"
-"\n"
-"Iberians do not receive their circuit walls here. Instead, all factions receive four free Stone Towers."
-msgstr "昔からのお気に入りです。広くて平らな砂漠のマップの中央には、緑豊かなオアシスがあります。\n\nこれはエジプトのナイル川の西にあるサハラ砂漠の一部、リビア砂漠を表しています。\n\nイベリア人は壁がありませんが、代わりにすべての文明が無償で4つの石の塔を持っています。"
+"This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt."
+msgstr ""
 
-#: maps/skirmishes/libyan_oasis_2p.xml:Name:38
-msgid "Libyan Oasis (2)"
-msgstr "リビアのオアシス (2)"
+#: maps/skirmishes/libyan_oasis_2p.xml:Name:39
+msgid "Libyan Oasis (2 players)"
+msgstr ""
 
 #: maps/skirmishes/lorraine_plain_2p.xml:Description:39
 msgid ""
@@ -3067,11 +3086,11 @@ msgstr "中央アジアの大草原。木々が少なく（温帯やエーゲ海
 msgid "Scythian Steppes (4)"
 msgstr "スキタイ草原 (4)"
 
-#: maps/skirmishes/sicilia_2p.xml:Description:38
+#: maps/skirmishes/sicilia_2p.xml:Description:39
 msgid "The large Mediterranean island of Sicily is open for conquest."
 msgstr "大きな地中海の島であるシチリアが開かれ、征服の時が来ました。"
 
-#: maps/skirmishes/sicilia_2p.xml:Name:38
+#: maps/skirmishes/sicilia_2p.xml:Name:39
 msgid "Sicilia (2)"
 msgstr "シチリア (2)"
 

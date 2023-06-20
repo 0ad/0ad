@@ -67,7 +67,7 @@ Trigger.prototype.CheckCaptureTheRelicCountdown = function()
 	}
 
 	let winningPlayers = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager).GetAlliedVictory() ?
-		activePlayers.filter(playerID => relicOwners.every(owner => QueryPlayerIDInterface(playerID).IsMutualAlly(owner))) :
+		activePlayers.filter(playerID => relicOwners.every(owner => QueryPlayerIDInterface(playerID, IID_Diplomacy).IsMutualAlly(owner))) :
 		[relicOwners[0]];
 
 	// All relicOwners should be mutually allied

@@ -17,18 +17,17 @@ PlayerManager.prototype.AddPlayer = function(templateName)
 {
 	const ent = Engine.AddEntity(templateName);
 	const id = this.playerEntities.length;
-	const cmpPlayer = Engine.QueryInterface(ent, IID_Player);
-	cmpPlayer.SetPlayerID(id);
+	Engine.QueryInterface(ent, IID_Player).SetPlayerID(id);
 	this.playerEntities.push(ent);
 
 	const newDiplo = [];
 	for (let i = 0; i < id; i++)
 	{
-		Engine.QueryInterface(this.GetPlayerByID(i), IID_Player).diplomacy[id] = -1;
+		Engine.QueryInterface(this.GetPlayerByID(i), IID_Diplomacy).diplomacy[id] = -1;
 		newDiplo[i] = -1;
 	}
 	newDiplo[id] = 1;
-	cmpPlayer.SetDiplomacy(newDiplo);
+	Engine.QueryInterface(ent, IID_Diplomacy).SetDiplomacy(newDiplo);
 
 	Engine.BroadcastMessage(MT_PlayerEntityChanged, {
 		"player": id,
@@ -61,7 +60,7 @@ PlayerManager.prototype.ReplacePlayerTemplate = function(id, newTemplateName)
 	this.playerEntities[id] = ent;
 
 	newCmpPlayer.SetColor(oldCmpPlayer.GetColor());
-	newCmpPlayer.SetDiplomacy(oldCmpPlayer.GetDiplomacy());
+	Engine.QueryInterface(ent, IID_Diplomacy).SetDiplomacy(Engine.QueryInterface(oldent, IID_Diplomacy).GetDiplomacy());
 
 	Engine.BroadcastMessage(MT_PlayerEntityChanged, {
 		"player": id,

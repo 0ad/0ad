@@ -123,6 +123,10 @@ Auras.prototype.CalculateAffectedPlayers = function(name)
 	if (!cmpPlayer || cmpPlayer.IsDefeated())
 		return;
 
+	const playerID = cmpPlayer.GetPlayerID();
+	const cmpDiplomacy = Engine.QueryInterface(this.entity, IID_Diplomacy) ??
+		QueryPlayerIDInterface(playerID, IID_Diplomacy);
+
 	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	for (let i of cmpPlayerManager.GetAllPlayers())
 	{
@@ -130,7 +134,7 @@ Auras.prototype.CalculateAffectedPlayers = function(name)
 		if (!cmpAffectedPlayer || cmpAffectedPlayer.IsDefeated())
 			continue;
 
-		if (affectedPlayers.some(p => p == "Player" ? cmpPlayer.GetPlayerID() == i : cmpPlayer["Is" + p](i)))
+		if (affectedPlayers.some(p => p == "Player" ? playerID == i : cmpDiplomacy["Is" + p](i)))
 			this.affectedPlayers[name].push(i);
 	}
 };

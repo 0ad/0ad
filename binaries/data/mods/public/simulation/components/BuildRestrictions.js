@@ -175,11 +175,16 @@ BuildRestrictions.prototype.CheckPlacement = function()
 	if (!cmpTerritoryManager || !cmpPosition || !cmpPosition.IsInWorld())
 		return result;	// Fail
 
+	const playerID = cmpPlayer.GetPlayerID();
+	const cmpDiplomacy = QueryPlayerIDInterface(playerID, IID_Diplomacy);
+	if (!cmpDiplomacy)
+		return result;
+
 	var pos = cmpPosition.GetPosition2D();
 	var tileOwner = cmpTerritoryManager.GetOwner(pos.x, pos.y);
 	var isConnected = !cmpTerritoryManager.IsTerritoryBlinking(pos.x, pos.y);
-	var isOwn = tileOwner == cmpPlayer.GetPlayerID();
-	var isMutualAlly = cmpPlayer.IsExclusiveMutualAlly(tileOwner);
+	var isOwn = tileOwner == playerID;
+	var isMutualAlly = cmpDiplomacy.IsExclusiveMutualAlly(tileOwner);
 	var isNeutral = tileOwner == 0;
 
 	var invalidTerritory = "";
