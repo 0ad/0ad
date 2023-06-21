@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -234,10 +234,9 @@ private:
 		if (!JS_ValueToObject(rq.cx, val, &obj) || !obj)
 			return false;
 
-		// Check that the named function actually exists, to avoid ugly JS error reports
-		// when calling an undefined value
-		bool found;
-		if (!JS_HasProperty(rq.cx, obj, name, &found) || !found)
+		// Fetch the property explicitly - this avoids converting the arguments if it doesn't exist.
+		JS::RootedValue func(rq.cx);
+		if (!JS_GetProperty(rq.cx, obj, name, &func) || func.isUndefined())
 			return false;
 
 		JS::RootedValueVector argv(rq.cx);
@@ -246,11 +245,11 @@ private:
 
 		bool success;
 		if constexpr (std::is_same_v<R, JS::MutableHandleValue>)
-			success = JS_CallFunctionName(rq.cx, obj, name, argv, ret);
+			success = JS_CallFunctionValue(rq.cx, obj, func, argv, ret);
 		else
 		{
 			JS::RootedValue jsRet(rq.cx);
-			success = JS_CallFunctionName(rq.cx, obj, name, argv, &jsRet);
+			success = JS_CallFunctionValue(rq.cx, obj, func, argv, &jsRet);
 			if constexpr (!std::is_same_v<R, IgnoreResult_t>)
 			{
 				if (success)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -514,9 +514,20 @@ struct SquareSort
 	SquareSort(CFixedVector2D src) : src(src) { }
 	bool operator()(const Square& a, const Square& b) const
 	{
-		if ((a.p0 - src).CompareLength(b.p0 - src) < 0)
-			return true;
-		return false;
+		return (a.p0 - src).CompareLength(b.p0 - src) < 0;
+	}
+};
+
+/**
+ * Functor for sorting unaligned edges by approximate proximity to a fixed point.
+ */
+struct UnalignedEdgesSort
+{
+	CFixedVector2D src;
+	UnalignedEdgesSort(CFixedVector2D src) : src(src) { }
+	bool operator()(const Edge& a, const Edge& b) const
+	{
+		return (a.p0 - src).CompareLength(b.p0 - src) < 0;
 	}
 };
 
@@ -710,6 +721,17 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 	// Since we are just measuring Euclidean distance the heuristic is admissible,
 	// so we never have to re-examine a node once it's been moved to the closed set.
 
+	// Add a weight, as we vastly prefer speed to optimality.
+	// In general, if we're running the vertex pathfinder,
+	// it's that we're already in a suboptimal case on a meta level.
+	// The path found will be at most this many times worse than the optimal path, which is likely OK.
+	fixed heuristicWeight = fixed::FromInt(1);
+	// If we have a lot of edges to check, relax the constraint more.
+	if (m_Edges.size() > 100 || m_EdgeSquares.size() > 100)
+		heuristicWeight = heuristicWeight.MulDiv(fixed::FromInt(5), fixed::FromInt(3));
+	else
+		heuristicWeight = heuristicWeight.MulDiv(fixed::FromInt(4), fixed::FromInt(3));
+
 	// To save time in common cases, we don't precompute a graph of valid edges between vertexes;
 	// we do it lazily instead. When the search algorithm reaches a vertex, we examine every other
 	// vertex and see if we can reach it without hitting any collision edges, and ignore the ones
@@ -749,6 +771,12 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 		m_EdgesBottom.clear();
 		m_EdgesTop.clear();
 		SplitAAEdges(m_Vertexes[curr.id].p, m_Edges, m_EdgeSquares, m_EdgesUnaligned, m_EdgesLeft, m_EdgesRight, m_EdgesBottom, m_EdgesTop);
+
+		// Do the same partial sort for unaligned edges, which helps in e.g. forests.
+		// (Higher values because here we need ot account for all 4 edges,
+		// and checking for non-aligned visibility is very slow so it's likely worth it).
+		if (m_EdgesUnaligned.size() > 28)
+			std::partial_sort(m_EdgesUnaligned.begin(), m_EdgesUnaligned.begin() + 28, m_EdgesUnaligned.end(), UnalignedEdgesSort(m_Vertexes[curr.id].p));
 
 		// Check the lines to every other vertex
 		for (size_t n = 0; n < m_Vertexes.size(); ++n)
@@ -807,7 +835,7 @@ WaypointPath VertexPathfinder::ComputeShortPath(const ShortPathRequest& request,
 					// Add it to the open list:
 					m_Vertexes[n].status = Vertex::OPEN;
 					m_Vertexes[n].g = g;
-					m_Vertexes[n].h = request.goal.DistanceToPoint(npos);
+					m_Vertexes[n].h = request.goal.DistanceToPoint(npos).Multiply(heuristicWeight);
 					m_Vertexes[n].pred = curr.id;
 
 					if (n == GOAL_VERTEX_ID)
