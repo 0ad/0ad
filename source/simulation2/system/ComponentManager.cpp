@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -43,10 +43,10 @@ public:
 	virtual int GetType() const { return mtid; }
 	virtual const char* GetScriptHandlerName() const { return handlerName.c_str(); }
 	virtual const char* GetScriptGlobalHandlerName() const { return globalHandlerName.c_str(); }
-	virtual JS::Value ToJSVal(const ScriptInterface& UNUSED(scriptInterface)) const { return msg.get(); }
+	virtual JS::Value ToJSVal(const ScriptRequest& UNUSED(rq)) const { return msg.get(); }
 
-	CMessageScripted(const ScriptInterface& scriptInterface, int mtid, const std::string& name, JS::HandleValue msg) :
-		mtid(mtid), handlerName("On" + name), globalHandlerName("OnGlobal" + name), msg(scriptInterface.GetGeneralJSContext(), msg)
+	CMessageScripted(const ScriptRequest& rq, int mtid, const std::string& name, JS::HandleValue msg) :
+		mtid(mtid), handlerName("On" + name), globalHandlerName("OnGlobal" + name), msg(rq.cx, msg)
 	{
 	}
 
@@ -429,13 +429,14 @@ CMessage* CComponentManager::ConstructMessage(int mtid, JS::HandleValue data)
 	if (mtid == MT__Invalid || mtid > (int)m_MessageTypeIdsByName.size()) // (IDs start at 1 so use '>' here)
 		LOGERROR("PostMessage with invalid message type ID '%d'", mtid);
 
+	ScriptRequest rq(m_ScriptInterface);
 	if (mtid < MT__LastNative)
 	{
-		return CMessageFromJSVal(mtid, m_ScriptInterface, data);
+		return CMessageFromJSVal(mtid, rq, data);
 	}
 	else
 	{
-		return new CMessageScripted(m_ScriptInterface, mtid, m_MessageTypeNamesById[mtid], data);
+		return new CMessageScripted(rq, mtid, m_MessageTypeNamesById[mtid], data);
 	}
 }
 
