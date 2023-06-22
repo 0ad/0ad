@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -52,7 +52,7 @@ void CComponentTypeScript::HandleMessage(const CMessage& msg, bool global)
 
 	const char* name = global ? msg.GetScriptGlobalHandlerName() : msg.GetScriptHandlerName();
 
-	JS::RootedValue msgVal(rq.cx, msg.ToJSValCached(m_ScriptInterface));
+	JS::RootedValue msgVal(rq.cx, msg.ToJSValCached(rq));
 
 	if (!ScriptFunction::CallVoid(rq, m_Instance, name, msgVal))
 		LOGERROR("Script message handler %s failed", name);
