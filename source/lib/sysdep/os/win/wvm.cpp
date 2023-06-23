@@ -28,69 +28,18 @@
 #include "precompiled.h"
 #include "lib/sysdep/vm.h"
 
-#include "lib/sysdep/os/win/wutil.h"
-#include <excpt.h>
-
-#include "lib/timer.h"
-#include "lib/bits.h"	// round_down
 #include "lib/alignment.h"	// CACHE_ALIGNED
+#include "lib/bits.h"	// round_down
 #include "lib/module_init.h"
 #include "lib/sysdep/cpu.h"    // cpu_AtomicAdd
 #include "lib/sysdep/numa.h"
-#include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64::ApicId
-#include "lib/sysdep/arch/x86_x64/apic.h"	// ProcessorFromApicId
-#include "lib/sysdep/os/win/winit.h"
-WINIT_REGISTER_CRITICAL_INIT(wvm_Init);
+#include "lib/sysdep/os/win/wutil.h"
+#include "lib/timer.h"
 
+#include <excpt.h>
 
-//-----------------------------------------------------------------------------
-// functions not supported by 32-bit Windows XP
-
-static WUTIL_FUNC(pGetCurrentProcessorNumber, DWORD, (VOID));
-static WUTIL_FUNC(pGetNumaProcessorNode, BOOL, (UCHAR, PUCHAR));
-static WUTIL_FUNC(pVirtualAllocExNuma, LPVOID, (HANDLE, LPVOID, SIZE_T, DWORD, DWORD, DWORD));
-
-static DWORD WINAPI EmulateGetCurrentProcessorNumber(VOID)
+namespace vm
 {
-	const ApicId apicId = GetApicId();
-	const DWORD processor = (DWORD)ProcessorFromApicId(apicId);
-	ASSERT(processor < os_cpu_MaxProcessors);
-	return processor;
-}
-
-static BOOL WINAPI EmulateGetNumaProcessorNode(UCHAR UNUSED(processor), PUCHAR node)
-{
-	// given that the system doesn't support GetNumaProcessorNode,
-	// it will also lack VirtualAllocExNuma, so the node value we assign
-	// is ignored by EmulateVirtualAllocExNuma.
-	*node = 0;
-	return TRUE;
-}
-
-static LPVOID WINAPI EmulateVirtualAllocExNuma(HANDLE UNUSED(hProcess), LPVOID p, SIZE_T size, DWORD allocationType, DWORD protect, DWORD UNUSED(node))
-{
-	return VirtualAlloc(p, size, allocationType, protect);
-}
-
-
-static Status wvm_Init()
-{
-	WUTIL_IMPORT_KERNEL32(GetCurrentProcessorNumber, pGetCurrentProcessorNumber);
-	WUTIL_IMPORT_KERNEL32(GetNumaProcessorNode, pGetNumaProcessorNode);
-	WUTIL_IMPORT_KERNEL32(VirtualAllocExNuma, pVirtualAllocExNuma);
-
-	if(!pGetCurrentProcessorNumber)
-		pGetCurrentProcessorNumber = &EmulateGetCurrentProcessorNumber;
-	if(!pGetNumaProcessorNode)
-		pGetNumaProcessorNode = &EmulateGetNumaProcessorNode;
-	if(!pVirtualAllocExNuma)
-		pVirtualAllocExNuma = &EmulateVirtualAllocExNuma;
-
-	return INFO::OK;
-}
-
-
-namespace vm {
 
 
 //-----------------------------------------------------------------------------
@@ -192,8 +141,8 @@ static void* AllocateLargeOrSmallPages(uintptr_t address, size_t size, DWORD all
 	const DWORD protect = MemoryProtectionFromPosix(prot);
 
 	UCHAR node;
-	const DWORD processor = pGetCurrentProcessorNumber();
-	WARN_IF_FALSE(pGetNumaProcessorNode((UCHAR)processor, &node));
+	const DWORD processor = GetCurrentProcessorNumber();
+	WARN_IF_FALSE(GetNumaProcessorNode((UCHAR)processor, &node));
 
 	if(ShouldUseLargePages(size, allocationType, pageType))
 	{
@@ -205,7 +154,7 @@ static void* AllocateLargeOrSmallPages(uintptr_t address, size_t size, DWORD all
 		// undertaken before we even try. these aren't authoritative, so we
 		// at least prevent future attempts if it takes too long.
 		const double startTime = timer_Time(); COMPILER_FENCE;
-		void* largePages = pVirtualAllocExNuma(hProcess, LPVOID(alignedAddress), alignedSize, allocationType|MEM_LARGE_PAGES, protect, node);
+		void* largePages = VirtualAllocExNuma(hProcess, LPVOID(alignedAddress), alignedSize, allocationType|MEM_LARGE_PAGES, protect, node);
 		const double elapsedTime = timer_Time() - startTime; COMPILER_FENCE;
 		if(elapsedTime > 0.5)
 			largePageAllocationTookTooLong = true;	// avoid large pages next time
@@ -218,7 +167,7 @@ static void* AllocateLargeOrSmallPages(uintptr_t address, size_t size, DWORD all
 	}
 
 	// try (again) with regular pages
-	void* smallPages = pVirtualAllocExNuma(hProcess, LPVOID(address), size, allocationType, protect, node);
+	void* smallPages = VirtualAllocExNuma(hProcess, LPVOID(address), size, allocationType, protect, node);
 	if(smallPages)
 	{
 		if((allocationType & MEM_COMMIT) != 0)
