@@ -684,12 +684,12 @@ PETRA.DefenseManager.prototype.checkEvents = function(gameState, events)
 			{
 				let unitAIState = target.unitAIState();
 				let unitAIStateOrder = unitAIState ? unitAIState.split(".")[1] : "";
-				if (unitAIStateOrder == "COMBAT" && (currentTarget == attacker.id() ||
+				if (unitAIStateOrder === "COMBAT" && (currentTarget.id() === attacker.id() ||
 					!currentTarget.hasClasses(["Structure", "Support"])))
 					continue;
-				if (unitAIStateOrder == "REPAIR" && currentTarget.hasDefensiveFire())
+				if (unitAIStateOrder === "REPAIR" && currentTarget.hasDefensiveFire())
 					continue;
-				if (unitAIStateOrder == "COMBAT" && !PETRA.isSiegeUnit(currentTarget) &&
+				if (unitAIStateOrder === "COMBAT" && !PETRA.isSiegeUnit(currentTarget) &&
 				    gameState.ai.HQ.capturableTargets.has(orderData[0].target))
 				{
 					// Take the nearest unit also attacking this structure to help us.
