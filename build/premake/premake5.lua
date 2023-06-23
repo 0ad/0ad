@@ -1079,10 +1079,9 @@ function setup_main_exe ()
 
 			-- see wstartup.h
 			"/INCLUDE:_wstartup_InitAndRegisterShutdown",
-
-			-- allow manual unload of delay-loaded DLLs
-			"/DELAY:UNLOAD",
 		}
+
+		links { "delayimp" }
 
 		-- allow the executable to use more than 2GB of RAM.
 		-- this should not be enabled during development, so that memory issues are easily spotted.
