@@ -134,7 +134,7 @@ Diplomacy.prototype.GetDiplomacy = function()
 Diplomacy.prototype.SetDiplomacy = function(dipl)
 {
 	const playerID = Engine.QueryInterface(this.entity, IID_Player)?.GetPlayerID();
-	if (!playerID)
+	if (playerID === undefined)
 		return
 
 	this.diplomacy = dipl.slice();
@@ -227,7 +227,7 @@ Diplomacy.prototype.IsExclusiveAlly = function(id)
 Diplomacy.prototype.IsMutualAlly = function(id)
 {
 	const playerID = Engine.QueryInterface(this.entity, IID_Player)?.GetPlayerID();
-	return this.IsAlly(id) && playerID && QueryPlayerIDInterface(id, IID_Diplomacy)?.IsAlly(playerID);
+	return playerID !== undefined && this.IsAlly(id) && QueryPlayerIDInterface(id, IID_Diplomacy)?.IsAlly(playerID);
 };
 
 /**
@@ -246,7 +246,7 @@ Diplomacy.prototype.GetMutualAllies = function()
 Diplomacy.prototype.IsExclusiveMutualAlly = function(id)
 {
 	const playerID = Engine.QueryInterface(this.entity, IID_Player)?.GetPlayerID();
-	return playerID && playerID !== id && this.IsMutualAlly(id);
+	return playerID !== id && this.IsMutualAlly(id);
 };
 
 /**
@@ -313,7 +313,7 @@ Diplomacy.prototype.HasSharedLos = function()
 Diplomacy.prototype.UpdateSharedLos = function()
 {
 	const playerID = Engine.QueryInterface(this.entity, IID_Player).GetPlayerID();
-	if (!playerID)
+	if (playerID === undefined)
 		return;
 
 	Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager)?.
