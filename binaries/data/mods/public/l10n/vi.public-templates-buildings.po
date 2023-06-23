@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Hoàng Văn Khải
 # M1nkd3
 # Nghĩa Cipher
 # Nguyen Dinh Phuoc Duc
@@ -10,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-06-16 07:08+0000\n"
+"POT-Creation-Date: 2023-06-19 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: Nghĩa Cipher, 2022\n"
+"Last-Translator: Hoàng Văn Khải, 2023\n"
 "Language-Team: Vietnamese (http://app.transifex.com/wildfire-games/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -279,7 +280,7 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Train Citizens, construct Ships, and "
 "research technologies. Garrison Soldiers for additional arrows."
-msgstr ""
+msgstr "Xây dựng trên một bờ biển trong lãnh thổ riêng, trung lập hoặc đồng minh. Giành được những vùng lãnh thổ rộng lớn. Nền tảng lãnh thổ. Đào tạo Công dân, đóng Tàu và nghiên cứu công nghệ. Lính đồn trú để có thêm mũi tên."
 
 #: simulation/templates/structures/brit/defense_tower.xml:9
 #: simulation/templates/structures/brit/sentry_tower.xml:5
@@ -418,7 +419,7 @@ msgstr "Namel"
 
 #: simulation/templates/structures/cart/embassy.xml:19
 msgid "Train Mercenaries."
-msgstr ""
+msgstr "Đào tạo Lính đánh thuê"
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:17
 msgid "Celtic Embassy"
@@ -426,7 +427,7 @@ msgstr "Sứ quán Celt"
 
 #: simulation/templates/structures/cart/embassy_celtic.xml:18
 msgid "Train Celtic Mercenaries."
-msgstr ""
+msgstr "Đào tạo Lính đánh thuê Celtic."
 
 #: simulation/templates/structures/cart/embassy_iberian.xml:10
 msgid "Iberian Embassy"
@@ -492,7 +493,7 @@ msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Acquire large "
 "tracts of territory. Territory root. Construct Warships and research "
 "technologies."
-msgstr ""
+msgstr "Xây dựng trên một bờ biển trong lãnh thổ của chính mình, trung lập hoặc đồng minh. Giành được những vùng lãnh thổ rộng lớn. Nền tảng lãnh thổ. Đào tạo Công dân, đóng Tàu chiến và nghiên cứu công nghệ."
 
 #: simulation/templates/structures/cart/super_dock.xml:43
 msgid "Shipyard"
@@ -504,11 +505,11 @@ msgstr "Maqdaš"
 
 #: simulation/templates/structures/cart/temple.xml:10
 msgid "Train Healers and Champion Infantry and research healing technologies."
-msgstr ""
+msgstr "Đào tạo Dược sư và Bộ binh Tinh nhuệ và nghiên cứu các công nghệ trị thương."
 
 #: simulation/templates/structures/cart/tophet.xml:18
 msgid "Sacrificial Temple"
-msgstr "Đền Sacrificial"
+msgstr "Đền Hiến tế"
 
 #: simulation/templates/structures/cart/tophet.xml:19
 msgid "Tophet"
@@ -564,7 +565,7 @@ msgstr "snwt"
 #: simulation/templates/structures/farmstead_field_wheat.xml:7
 #: simulation/templates/structures/generic_field.xml:8
 msgid "Wheat Field"
-msgstr "Ruộng lúa mì"
+msgstr "Đồng lúa mì"
 
 #: simulation/templates/structures/athen/farmstead.xml:11
 #: simulation/templates/structures/farmstead_greek.xml:8
@@ -582,7 +583,7 @@ msgstr "Kantu"
 
 #: simulation/templates/structures/farmstead_italian.xml:8
 msgid "Villa"
-msgstr ""
+msgstr "Biệt thự"
 
 #: simulation/templates/structures/farmstead_middle_eastern.xml:9
 #: simulation/templates/structures/pers/farmstead.xml:8
@@ -612,7 +613,7 @@ msgstr "Hàng rào gỗ dài"
 #: simulation/templates/structures/fence_rock_stub.xml:12
 #: simulation/templates/structures/fence_rock_stub.xml:13
 msgid "Rock Fence"
-msgstr ""
+msgstr "Hàng rào Đá"
 
 #: simulation/templates/structures/fence_short.xml:15
 msgid "Short Wooden Fence"
@@ -673,144 +674,144 @@ msgstr "Celicnon"
 
 #: simulation/templates/structures/han/academy.xml:27
 msgid "Imperial Academy"
-msgstr ""
+msgstr "Học viện Hoàng gia"
 
 #: simulation/templates/structures/han/academy.xml:28
 msgid "Dìguó Xuéyuàn"
-msgstr ""
+msgstr "Đế Quốc Học Viện"
 
 #: simulation/templates/structures/han/academy.xml:30
 msgid "Train Champions and research their technologies."
-msgstr ""
+msgstr "Đào tạo Quân tinh nhuệ và nghiên cứu công nghệ liên quan."
 
 #: simulation/templates/structures/han/academy.xml:31
 msgid "Academy"
-msgstr ""
+msgstr "Học viện"
 
 #: simulation/templates/structures/han/arsenal.xml:8
 msgid "Bīnggōng Chǎng"
-msgstr ""
+msgstr "Binh Công Xưởng"
 
 #: simulation/templates/structures/han/barracks.xml:12
 msgid "Jūn Yíng"
-msgstr ""
+msgstr "Quan Doanh"
 
 #: simulation/templates/structures/han/civil_centre.xml:12
 msgid "Guān Shǔ"
-msgstr ""
+msgstr "Quan Thự"
 
 #: simulation/templates/structures/han/civil_centre.xml:33
 msgid ""
 "Enable training of heroes, reduce the batch training times and greatly "
 "increase the health, capture resistance and garrison capacity of this "
 "specific Civic Center."
-msgstr ""
+msgstr "Cho phép đào tạo các anh hùng, giảm thời gian đào tạo hàng loạt và tăng đáng kể lượng máu, chống cự chiếm đóng và khả năng đồn trú của Trung tâm Hành chính này."
 
 #: simulation/templates/structures/han/civil_centre_court.xml:17
 msgid "Imperial Court"
-msgstr ""
+msgstr "Triều Đình"
 
 #: simulation/templates/structures/han/civil_centre_court.xml:18
 msgid "Cháotíng"
-msgstr ""
+msgstr "Triều Đình"
 
 #: simulation/templates/structures/han/civil_centre_court.xml:19
 msgid "ImperialCourt"
-msgstr ""
+msgstr "TriềuĐình"
 
 #: simulation/templates/structures/han/corral.xml:12
 msgid "Xù Lán"
-msgstr ""
+msgstr "Súc Lan"
 
 #: simulation/templates/structures/han/defense_tower.xml:12
 msgid "Fángyù Tǎ"
-msgstr ""
+msgstr "Phòng Ngự Tháp"
 
 #: simulation/templates/structures/han/defense_tower.xml:23
 msgid ""
 "This tower has greater range, greater attack, greater health, and is twice "
 "as difficult to capture."
-msgstr ""
+msgstr "Tòa tháp này có phạm vi lớn hơn, sức tấn công lớn hơn, máu lớn hơn và khó chiếm gấp đôi."
 
 #: simulation/templates/structures/han/defense_tower_great.xml:31
 msgid "Great Tower"
-msgstr ""
+msgstr "Tháp Lớn"
 
 #: simulation/templates/structures/han/defense_tower_great.xml:32
 msgid "Dà Fángyù Tǎ"
-msgstr ""
+msgstr "Đại Phòng Ngự Tháp"
 
 #: simulation/templates/structures/han/defense_tower_great.xml:34
 msgid "GreatTower"
-msgstr ""
+msgstr "ThápLớn"
 
 #: simulation/templates/structures/han/dock.xml:9
 msgid "Mǎtóu"
-msgstr ""
+msgstr "Mã Đầu"
 
 #: simulation/templates/structures/han/farmstead.xml:17
 msgid "Nóng Shè"
-msgstr ""
+msgstr "Nông Xá"
 
 #: simulation/templates/structures/han/field.xml:15
 msgid "Dàotián"
-msgstr ""
+msgstr "Đạo Điền"
 
 #: simulation/templates/structures/han/field.xml:16
 msgid "Rice Paddy"
-msgstr ""
+msgstr "Ruộng Lúa"
 
 #: simulation/templates/structures/han/field_grain.xml:5
 msgid "Tián"
-msgstr ""
+msgstr "Điền"
 
 #: simulation/templates/structures/han/forge.xml:12
 msgid "Duànzào Chǎng"
-msgstr ""
+msgstr "Đoàn Tạo Xưởng"
 
 #: simulation/templates/structures/han/fortress.xml:12
 #: simulation/templates/structures/han/fortress_old.xml:12
 msgid "Bǎolěi"
-msgstr ""
+msgstr "Bảo Lũy"
 
 #: simulation/templates/structures/han/house.xml:12
 msgid "Mín Jū"
-msgstr ""
+msgstr "Dân Cư"
 
 #: simulation/templates/structures/han/laozigate.xml:21
 #: simulation/templates/structures/han/laozigate.xml:24
 msgid "LaoziGate"
-msgstr ""
+msgstr "CổngLãoTử"
 
 #: simulation/templates/structures/han/laozigate.xml:22
 msgid "Lǎozǐ Mén"
-msgstr ""
+msgstr "Lão Tử Môn"
 
 #: simulation/templates/structures/han/market.xml:9
 msgid "Jíshì"
-msgstr ""
+msgstr "Tập Thị"
 
 #: simulation/templates/structures/han/ministry.xml:36
 msgid "Imperial Ministry"
-msgstr ""
+msgstr "Bộ Hoàng gia"
 
 #: simulation/templates/structures/han/ministry.xml:37
 msgid "Gōngdiàn"
-msgstr ""
+msgstr "Cung Điện"
 
 #: simulation/templates/structures/han/ministry.xml:39
 msgid "ImperialMinistry"
-msgstr ""
+msgstr "BộHoàngGia"
 
 #: simulation/templates/structures/han/ministry.xml:40
 msgid ""
 "Train the Nine Ministers. Territory root. Research a powerful suite of "
 "Administrative technologies."
-msgstr ""
+msgstr "Đào tạo Cửu Khanh. Nền tảng lãnh thổ. Nghiên cứu một bộ Công nghệ quản lý mạnh mẽ."
 
 #: simulation/templates/structures/han/outpost.xml:5
 msgid "Wànglóu"
-msgstr ""
+msgstr "Vọng Lâu"
 
 #: simulation/templates/structures/han/palisades_curve.xml:10
 #: simulation/templates/structures/han/palisades_long.xml:4
@@ -818,57 +819,57 @@ msgstr ""
 #: simulation/templates/structures/han/palisades_short.xml:4
 #: simulation/templates/structures/han/wallset_palisade.xml:5
 msgid "Bamboo Stockade"
-msgstr ""
+msgstr "Hàng rào Tre"
 
 #: simulation/templates/structures/han/palisades_gate.xml:4
 msgid "Bamboo Stockade Gate"
-msgstr ""
+msgstr "Cổng Hàng rào Tre"
 
 #: simulation/templates/structures/han/palisades_tower.xml:4
 msgid "Bamboo Stockade Tower"
-msgstr ""
+msgstr "Tháp Hàng rào Tre"
 
 #: simulation/templates/structures/han/range.xml:12
 msgid "Bǎ Chǎng"
-msgstr ""
+msgstr "Bá Trường"
 
 #: simulation/templates/structures/han/sentry_tower.xml:5
 msgid "Shào Tǎ"
-msgstr ""
+msgstr "Sáo Tháp"
 
 #: simulation/templates/structures/han/stable.xml:12
 msgid "Mǎ Jiù"
-msgstr ""
+msgstr "Mã Cứu"
 
 #: simulation/templates/structures/han/storehouse.xml:17
 msgid "Cāngkù"
-msgstr ""
+msgstr "Thương Khố"
 
 #: simulation/templates/structures/han/temple.xml:12
 msgid "Sìmiào"
-msgstr ""
+msgstr "Tự Miếu"
 
 #: simulation/templates/structures/han/wall_gate.xml:9
 msgid "Chéng Mén"
-msgstr ""
+msgstr "Thành Môn"
 
 #: simulation/templates/structures/han/wall_long.xml:9
 #: simulation/templates/structures/han/wall_medium.xml:9
 #: simulation/templates/structures/han/wall_short.xml:9
 msgid "Chéng Yuán"
-msgstr ""
+msgstr "Thành Viên"
 
 #: simulation/templates/structures/han/wall_tower.xml:9
 msgid "Chéng Lóu"
-msgstr ""
+msgstr "Thành Lâu"
 
 #: simulation/templates/structures/han/wallset_stone.xml:5
 msgid "Yōng"
-msgstr ""
+msgstr "Dong"
 
 #: simulation/templates/structures/han/wonder.xml:12
 msgid "Míngtáng Bìyōng"
-msgstr ""
+msgstr "Minh Đường Bích Dung"
 
 #: simulation/templates/structures/hellenic_epic_temple.xml:23
 msgid "Epic Temple"
@@ -880,7 +881,7 @@ msgstr "Naos Parthenos"
 
 #: simulation/templates/structures/hellenic_epic_temple.xml:25
 msgid "Garrison units to heal them at a quick rate."
-msgstr ""
+msgstr "Đồn trú để trị thương với tốc độ nhanh chóng."
 
 #: simulation/templates/structures/hellenic_propylaea.xml:20
 msgid "Portico"
@@ -941,7 +942,7 @@ msgstr "Arruga"
 
 #: simulation/templates/structures/iber/monument.xml:31
 msgid "Revered Monument"
-msgstr ""
+msgstr "Đài tưởng niệm Tôn kính"
 
 #: simulation/templates/structures/iber/monument.xml:32
 msgid "Gur Oroigarri"
@@ -950,7 +951,7 @@ msgstr "Gur Oroigarri"
 #: simulation/templates/structures/iber/monument.xml:9
 #: simulation/templates/structures/iber/monument.xml:34
 msgid "Monument"
-msgstr ""
+msgstr "Đài tưởng niệm"
 
 #: simulation/templates/structures/iber/storehouse.xml:5
 msgid "Ola"
@@ -981,7 +982,7 @@ msgstr "Cổng thành Ishtar của Babylon"
 
 #: simulation/templates/structures/ishtar_gate.xml:26
 msgid "Territory root."
-msgstr ""
+msgstr "Nền tảng lãnh thổ."
 
 #: simulation/templates/structures/kush/arsenal.xml:5
 msgid "Pr-ỉwn n ms"
@@ -993,19 +994,19 @@ msgstr "pr-msʿyw"
 
 #: simulation/templates/structures/kush/camp_blemmye.xml:22
 msgid "Blemmye Camp"
-msgstr ""
+msgstr "Trại Blemmyae"
 
 #: simulation/templates/structures/kush/camp_blemmye.xml:23
 msgid "Train Blemmye Mercenaries."
-msgstr ""
+msgstr "Đào tạo Lính đánh thuê Blemmyae."
 
 #: simulation/templates/structures/kush/camp_noba.xml:22
 msgid "Noba Village"
-msgstr ""
+msgstr "Làng Noba"
 
 #: simulation/templates/structures/kush/camp_noba.xml:23
 msgid "Train Noba Mercenaries."
-msgstr ""
+msgstr "Đào tạo Lính đánh thuê Noba."
 
 #: simulation/templates/structures/kush/civil_centre.xml:9
 msgid "Pr-nsw"
@@ -1107,15 +1108,15 @@ msgstr "Pr-ʿIprmk"
 #: simulation/templates/structures/kush/temple.xml:10
 msgid ""
 "Train Healers and Apedemak Champions and research healing technologies."
-msgstr ""
+msgstr "Đào tạo Dược sư và Quân tinh nhuệ Apedemak và nghiên cứu công nghệ trị thương."
 
 #: simulation/templates/structures/kush/temple.xml:11
 msgid "TempleOfApedemak"
-msgstr ""
+msgstr "NgôiĐềnApedemak"
 
 #: simulation/templates/structures/kush/temple_amun.xml:27
 msgid "Grand Temple of Amun"
-msgstr ""
+msgstr "Đại Đền Amun"
 
 #: simulation/templates/structures/kush/temple_amun.xml:28
 msgid "Pr-ʿImn"
@@ -1123,11 +1124,11 @@ msgstr "Pr-ʿImn"
 
 #: simulation/templates/structures/kush/temple_amun.xml:29
 msgid "Train Amun Champions and Elite Healers. Research healing technologies."
-msgstr ""
+msgstr "Đào tạo Quân tinh nhuệ và Dược sư Ưu tú. Nghiên cứu công nghệ trị thương."
 
 #: simulation/templates/structures/kush/temple_amun.xml:31
 msgid "TempleOfAmun"
-msgstr ""
+msgstr "NgôiĐềnAmun"
 
 #: simulation/templates/structures/kush/wall_gate.xml:9
 msgid "ʿryt"
@@ -1156,7 +1157,7 @@ msgstr "Bibliothēkē"
 
 #: simulation/templates/structures/mace/wonder.xml:9
 msgid "Anaktoron ton Aigai"
-msgstr ""
+msgstr "Anaktoron ton Aigai"
 
 #: simulation/templates/structures/maur/barracks.xml:15
 msgid "Sainyavasa"
@@ -1207,11 +1208,7 @@ msgstr "Vipana"
 msgid "Uparaksana"
 msgstr "Uparaksana"
 
-#: simulation/templates/structures/maur/palace.xml:6
-msgid "CivicCenter"
-msgstr ""
-
-#: simulation/templates/structures/maur/palace.xml:23
+#: simulation/templates/structures/maur/palace.xml:20
 #: simulation/templates/structures/maur/palace.xml:26
 #: simulation/templates/structures/pers/apadana.xml:30
 #: simulation/templates/structures/pers/tacara.xml:23
@@ -1219,13 +1216,13 @@ msgstr ""
 msgid "Palace"
 msgstr "Palace"
 
-#: simulation/templates/structures/maur/palace.xml:24
+#: simulation/templates/structures/maur/palace.xml:21
 msgid "Harmya"
 msgstr "Harmya"
 
 #: simulation/templates/structures/maur/palace.xml:30
 msgid "Train Heroes and their Poison Maiden Guards. Territory root."
-msgstr ""
+msgstr "Đào tạo Anh hùng và các Vệ binh Thiếu nữ Độc của họ. Nền tảng lãnh thổ."
 
 #: simulation/templates/structures/maur/pillar_ashoka.xml:32
 msgid "Edict Pillar of Ashoka"
@@ -1238,7 +1235,7 @@ msgstr "Śāsana Stambha Aśokā"
 #: simulation/templates/structures/maur/pillar_ashoka.xml:9
 #: simulation/templates/structures/maur/pillar_ashoka.xml:35
 msgid "Pillar"
-msgstr ""
+msgstr "Trụ cột"
 
 #: simulation/templates/structures/maur/storehouse.xml:5
 msgid "Khalla"
@@ -1250,14 +1247,14 @@ msgstr "Devalaya"
 
 #: simulation/templates/structures/maur/tower_double.xml:16
 msgid "Rampart Tower"
-msgstr ""
+msgstr "Tháp Lũy"
 
 #: simulation/templates/structures/maur/tower_double.xml:18
 msgid ""
 "Higher health tower with ramparts for up to 16 archers. Visibly garrisoned "
 "archers recieve a range and armor bonus. Only archers can garrison. Needs "
 "the murder holes tech to protect its foot."
-msgstr ""
+msgstr "Tháp nhiều máu hơn với lũy chứa đến 16 xạ thủ. Các xạ thủ đồn trú rõ ràng được cải thiện tầm và giáp. Chỉ xạ thủ mới có thể đồn trú. Cần công nghệ lỗ giết người để bảo vệ chân."
 
 #: simulation/templates/structures/maur/wall_gate.xml:15
 msgid "Dwara"
@@ -1280,7 +1277,7 @@ msgstr "Stupa Đại đế"
 
 #: simulation/templates/structures/mausoleum.xml:8
 msgid "Mausoleum at Halicarnassus"
-msgstr ""
+msgstr "Lăng ở Halicarnassus"
 
 #: simulation/templates/structures/mausoleum.xml:9
 msgid "Mausōleion"
@@ -1289,16 +1286,16 @@ msgstr "Mausōleion"
 #: simulation/templates/structures/merc_camp_egyptian.xml:6
 #: simulation/templates/structures/ptol/mercenary_camp.xml:6
 msgid "MercenaryCamp"
-msgstr ""
+msgstr "TrạiLínhĐánhThuê"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:28
 msgid "Egyptian Mercenary Camp"
-msgstr ""
+msgstr "Lính đánh thuê Ai Cập"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 #: simulation/templates/structures/ptol/mercenary_camp.xml:28
 msgid "Stratopedeia Misthophorōn"
-msgstr ""
+msgstr "Stratopedeia Misthophorōn"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:32
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
@@ -1306,11 +1303,11 @@ msgstr "Kiểm soát công trình này để huấn luyện lính đánh thuê t
 
 #: simulation/templates/structures/obelisk.xml:11
 msgid "Obelisk"
-msgstr ""
+msgstr "Bút tháp"
 
 #: simulation/templates/structures/obelisk.xml:12
 msgid "Egyptian Obelisk"
-msgstr ""
+msgstr "Bút tháp Ai Cập"
 
 #: simulation/templates/structures/palisades_fort.xml:9
 msgid "Wooden Tower"
@@ -1332,23 +1329,23 @@ msgstr "Có thể chuyển đổi thành Cổng rào."
 
 #: simulation/templates/structures/palisades_spike_angle.xml:17
 msgid "Angle Spike"
-msgstr ""
+msgstr "Gai Góc"
 
 #: simulation/templates/structures/palisades_spikes_small.xml:17
 msgid "Small Spikes"
-msgstr ""
+msgstr "Gai Nhỏ"
 
 #: simulation/templates/structures/palisades_spikes_tall.xml:17
 msgid "Tall Spikes"
-msgstr ""
+msgstr "Gai Cao"
 
 #: simulation/templates/structures/palisades_watchtower.xml:14
 msgid "Watchtower"
-msgstr ""
+msgstr "Tháp canh"
 
 #: simulation/templates/structures/pers/apadana.xml:26
 msgid "Throne Hall"
-msgstr ""
+msgstr "Sảnh Ngai vàng"
 
 #: simulation/templates/structures/pers/apadana.xml:27
 msgid "Apadāna"
@@ -1357,11 +1354,11 @@ msgstr "Apadāna"
 #: simulation/templates/structures/pers/apadana.xml:28
 #: simulation/templates/structures/spart/syssiton.xml:25
 msgid "Train Champions and Heroes."
-msgstr ""
+msgstr "Đào tạo Quân tinh nhuệ và Anh hùng."
 
 #: simulation/templates/structures/pers/apartment_block.xml:12
 msgid "Apartment Block"
-msgstr ""
+msgstr "Chung cư"
 
 #: simulation/templates/structures/pers/barracks.xml:5
 msgid "Padgan"
@@ -1369,7 +1366,7 @@ msgstr "Padgan"
 
 #: simulation/templates/structures/pers/civil_centre.xml:8
 msgid "Provincial Governor"
-msgstr ""
+msgstr "Tỉnh Trưởng"
 
 #: simulation/templates/structures/pers/civil_centre.xml:9
 msgid "Xšaçapāvan"
@@ -1403,7 +1400,7 @@ msgstr "Didā"
 
 #: simulation/templates/structures/pers/hall.xml:23
 msgid "Gate of All Nations"
-msgstr ""
+msgstr "Cổng của Tất cả các Quốc gia"
 
 #: simulation/templates/structures/pers/hall.xml:24
 msgid "Duvarθi Visadahyu"
@@ -1411,7 +1408,7 @@ msgstr "Duvarθi Visadahyu"
 
 #: simulation/templates/structures/pers/hall.xml:25
 msgid "Hall"
-msgstr ""
+msgstr "Sảnh"
 
 #: simulation/templates/structures/pers/house.xml:8
 msgid "Huvādā"
@@ -1424,15 +1421,15 @@ msgstr "Inn"
 
 #: simulation/templates/structures/pers/ice_house.xml:25
 msgid "Ice House"
-msgstr ""
+msgstr "Nhà Băng"
 
 #: simulation/templates/structures/pers/ice_house.xml:26
 msgid "Yakhchāl"
-msgstr ""
+msgstr "Yakhchāl"
 
 #: simulation/templates/structures/pers/ice_house.xml:27
 msgid "IceHouse"
-msgstr ""
+msgstr "NhàBăng"
 
 #: simulation/templates/structures/pers/market.xml:12
 msgid "Ardatašta"
@@ -1471,7 +1468,7 @@ msgstr "Para"
 
 #: simulation/templates/structures/pers/warehouse.xml:12
 msgid "Warehouse"
-msgstr ""
+msgstr "Kho"
 
 #: simulation/templates/structures/pers/wonder.xml:9
 msgid "Hanging Gardens of Babylon"
@@ -1489,17 +1486,17 @@ msgstr "Hải đăng"
 
 #: simulation/templates/structures/ptol/lighthouse.xml:26
 msgid "Pharos"
-msgstr ""
+msgstr "Pharos"
 
 #: simulation/templates/structures/ptol/lighthouse.xml:27
 msgid ""
 "Build upon a shoreline in own, neutral, or allied territory. Very large "
 "vision range."
-msgstr ""
+msgstr "Xây dựng trên một bờ biển trong lãnh thổ riêng, trung lập hoặc đồng minh. Tầm nhìn rất lớn."
 
 #: simulation/templates/structures/ptol/mercenary_camp.xml:27
 msgid "Mercenary Camp"
-msgstr ""
+msgstr "Trại Lính đánh thuê"
 
 #: simulation/templates/structures/ptol/mercenary_camp.xml:30
 msgid ""
@@ -1737,7 +1734,7 @@ msgstr ""
 
 #: simulation/templates/structures/shrine_chinese.xml:9
 msgid "Bǎotǎ"
-msgstr ""
+msgstr "Bảo Tháp"
 
 #: simulation/templates/structures/shrine_egyptian.xml:5
 #: simulation/templates/structures/shrine_kushite.xml:5
@@ -2154,7 +2151,7 @@ msgstr "Quân sự"
 #: simulation/templates/template_structure_military_arsenal.xml:25
 #: simulation/templates/template_structure_military_arsenal.xml:28
 msgid "Arsenal"
-msgstr "Xưởng chế tạo"
+msgstr "Kho vũ khí"
 
 #: simulation/templates/template_structure_military_arsenal.xml:27
 msgid ""
@@ -2261,7 +2258,7 @@ msgstr "Đào tạo Kỵ binh và nghiên cứu các công nghệ liên quan."
 
 #: simulation/templates/template_structure_resource.xml:4
 msgid "Resource Structure"
-msgstr "Cấu trúc tài nguyên"
+msgstr "Công trình khai thác"
 
 #: simulation/templates/template_structure_resource.xml:5
 msgid "Resource"
@@ -2280,7 +2277,7 @@ msgstr ""
 #: simulation/templates/template_structure_resource_field.xml:18
 #: simulation/templates/template_structure_resource_field.xml:20
 msgid "Field"
-msgstr "Đồng ruộng"
+msgstr "Cánh đồng"
 
 #: simulation/templates/template_structure_resource_field.xml:21
 msgid ""
