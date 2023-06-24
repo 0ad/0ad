@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Hoàng Văn Khải
 # Quan Nguyen
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-02-02 21:44+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Quan Nguyen <ngquanwork3799@gmail.com>, 2021\n"
+"Last-Translator: Hoàng Văn Khải, 2023\n"
 "Language-Team: Vietnamese (http://app.transifex.com/wildfire-games/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -371,7 +372,7 @@ msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr ""
+msgstr "Petra là bot AI mặc định của 0 A.D. Làm ơn báo lỗi tới Wildfire Games (xem liên kết trên menu chính).\n\nTốc độ thu thập tài nguyên của AI và lợi ích thương mại phụ thuộc vào độ khó (Sandbox -58%, Rất Dễ -44%, Dễ -25%, Trung Bình ±0%, Khó +25%, Rất Khó +56%). Những mức dễ nhất còn có tốc độ nghiên cứu, đào tạo, và xây dựng chậm hơn. Thêm vào đó, mức Sandbox không mở rộng hay tấn công."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -740,7 +741,7 @@ msgstr ""
 #: simulation/data/settings/starting_resources.jsonData[2].Title
 msgctxt "startingResources"
 msgid "Medium"
-msgstr ""
+msgstr "Trung bình"
 
 #: simulation/data/settings/starting_resources.jsonData[3].Title
 msgctxt "startingResources"
@@ -759,7 +760,7 @@ msgstr ""
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Title
 msgid "Very Easy"
-msgstr ""
+msgstr "Rất Dễ"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
 msgid "Choose this difficulty if you are discovering 0 A.D."
@@ -793,7 +794,7 @@ msgstr ""
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Title
 msgid "Very Hard"
-msgstr "Rất khó"
+msgstr "Rất Khó"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[4].Tooltip
 msgid "Choose this difficulty if you do not mind being swept out."
@@ -813,15 +814,15 @@ msgstr ""
 msgid ""
 "Defeat opponents by killing all their units and destroying all their "
 "structures."
-msgstr ""
+msgstr "Đánh bại đối thủ bằng cách tận diệt tất cả các công trình và phá hủy hết tất cả các công trình của họ."
 
 #: simulation/data/settings/victory_conditions/conquest.jsonData.Title
 msgid "Conquest"
-msgstr ""
+msgstr "Chinh phục"
 
 #: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Description
 msgid "Defeat opponents by destroying all their fully built civic centers."
-msgstr ""
+msgstr "Đánh bại đối thủ bằng cách phá hủy hết tất cả các trung tâm dân sự đã hoàn thành của họ."
 
 #: simulation/data/settings/victory_conditions/conquest_civic_centers.jsonData.Title
 msgid "Conquest Civic Centers"
@@ -829,7 +830,7 @@ msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Description
 msgid "Defeat opponents by destroying all their structures."
-msgstr ""
+msgstr "Đánh bại đối thủ bằng cách phá hủy hết tất cả các công trình của họ."
 
 #: simulation/data/settings/victory_conditions/conquest_structures.jsonData.Title
 msgid "Conquest Structures"
@@ -837,7 +838,7 @@ msgstr ""
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Description
 msgid "Defeat opponents by killing all their units."
-msgstr ""
+msgstr "Đánh bại đối thủ bằng cách tận diệt tất cả các đơn vị của họ."
 
 #: simulation/data/settings/victory_conditions/conquest_units.jsonData.Title
 msgid "Conquest Units"
@@ -845,7 +846,7 @@ msgstr ""
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Description
 msgid "Defeat opponents by killing their hero."
-msgstr ""
+msgstr "Đánh bại đối thủ bằng cách tiêu diệt anh hùng của họ."
 
 #: simulation/data/settings/victory_conditions/regicide.jsonData.Title
 msgid "Regicide"

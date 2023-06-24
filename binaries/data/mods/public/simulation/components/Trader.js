@@ -167,24 +167,23 @@ Trader.prototype.HasBothMarkets = function()
 
 Trader.prototype.CanTrade = function(target)
 {
-	let cmpTraderIdentity = Engine.QueryInterface(this.entity, IID_Identity);
-
-	let cmpTargetMarket = QueryMiragedInterface(target, IID_Market);
+	const cmpTargetMarket = QueryMiragedInterface(target, IID_Market);
 	if (!cmpTargetMarket)
 		return false;
 
-	let cmpTargetFoundation = Engine.QueryInterface(target, IID_Foundation);
+	const cmpTargetFoundation = Engine.QueryInterface(target, IID_Foundation);
 	if (cmpTargetFoundation)
 		return false;
 
+	const cmpTraderIdentity = Engine.QueryInterface(this.entity, IID_Identity);
 	if (!(cmpTraderIdentity.HasClass("Organic") && cmpTargetMarket.HasType("land")) &&
 		!(cmpTraderIdentity.HasClass("Ship") && cmpTargetMarket.HasType("naval")))
 		return false;
 
-	let cmpTraderDiplomacy = QueryOwnerInterface(this.entity, IID_Diplomacy);
-	let cmpTargetPlayer = QueryOwnerInterface(target, IID_Player);
+	const cmpTraderDiplomacy = QueryOwnerInterface(this.entity, IID_Diplomacy);
+	const cmpTargetPlayer = QueryOwnerInterface(target, IID_Player);
 
-	return cmpTraderPlayer && cmpTargetPlayer && !cmpTraderDiplomacy.IsEnemy(cmpTargetPlayer.GetPlayerID());
+	return cmpTraderDiplomacy && cmpTargetPlayer && !cmpTraderDiplomacy.IsEnemy(cmpTargetPlayer.GetPlayerID());
 };
 
 Trader.prototype.AddResources = function(ent, gain)
