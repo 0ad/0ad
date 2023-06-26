@@ -43,9 +43,6 @@ WINIT_REGISTER_EARLY_INIT(wutil_Init);
 WINIT_REGISTER_LATE_SHUTDOWN(wutil_Shutdown);
 
 
-// Defined in ps/Pyrogenesis.h
-extern const char* main_window_name;
-
 //-----------------------------------------------------------------------------
 // safe allocator
 
