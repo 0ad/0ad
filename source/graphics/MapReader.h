@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -73,9 +73,6 @@ private:
 	// UnpackCinema: unpack the cinematic tracks from the input stream
 	int UnpackCinema();
 
-	// UnpackMap: unpack the given data from the raw data stream into local variables
-	int UnpackMap();
-
 	// ApplyData: take all the input data, and rebuild the scene from it
 	int ApplyData();
 	int ApplyTerrainData();
@@ -90,7 +87,7 @@ private:
 	int LoadRMSettings();
 
 	// Generate random map
-	int GenerateMap();
+	int GenerateMap(const CStrW& scriptFile);
 
 	// Parse script data into terrain
 	int ParseTerrain();
@@ -119,7 +116,6 @@ private:
 	CStrW m_Script;
 
 	// random map data
-	CStrW m_ScriptFile;
 	JS::PersistentRootedValue m_ScriptSettings;
 	JS::PersistentRootedValue m_MapData;
 

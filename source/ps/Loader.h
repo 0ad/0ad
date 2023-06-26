@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,6 +21,7 @@
 #ifndef INCLUDED_LOADER
 #define INCLUDED_LOADER
 
+#include <functional>
 #include <wchar.h>
 
 /*
@@ -84,12 +85,9 @@ Intended Use
 
 Replace the InitEverything() function with the following:
   LDR_BeginRegistering();
-  LDR_Register(..) for each sub-function (*)
+  LDR_Register(..) for each sub-function
   LDR_EndRegistering();
 Then in the main loop, call LDR_ProgressiveLoad().
-
-* RegMemFun from LoaderThunks.h may be used instead; it takes care of
-registering member functions, which would otherwise be messy.
 
 */
 
@@ -105,7 +103,7 @@ extern void LDR_BeginRegistering();
 
 
 // callback function of a task; performs the actual work.
-// it receives a param (see below) and the exact time remaining [s].
+// it receives the time remaining [s].
 //
 // return semantics:
 // - if the entire task was successfully completed, return 0;
@@ -116,18 +114,16 @@ extern void LDR_BeginRegistering();
 //   != 0, or it's treated as "finished")
 // - on failure, return a negative error code or 'warning' (see above);
 //   LDR_ProgressiveLoad will abort immediately and return that.
-typedef int (*LoadFunc)(std::shared_ptr<void> param, double time_left);
+using LoadFunc = std::function<int(double)>;
 
 // register a task (later processed in FIFO order).
 // <func>: function that will perform the actual work; see LoadFunc.
-// <param>: (optional) parameter/persistent state.
 // <description>: user-visible description of the current task, e.g.
 //   "Loading Textures".
 // <estimated_duration_ms>: used to calculate progress, and when checking
 //   whether there is enough of the time budget left to process this task
 //   (reduces timeslice overruns, making the main loop more responsive).
-extern void LDR_Register(LoadFunc func, std::shared_ptr<void> param, const wchar_t* description,
-	int estimated_duration_ms);
+void LDR_Register(LoadFunc func, const wchar_t* description, int estimated_duration_ms);
 
 
 // call when finished registering tasks; subsequent calls to

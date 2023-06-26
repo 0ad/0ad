@@ -32,7 +32,6 @@
 #include "maths/MathUtil.h"
 #include "ps/CLogger.h"
 #include "ps/Loader.h"
-#include "ps/LoaderThunks.h"
 #include "ps/World.h"
 #include "ps/XML/Xeromyces.h"
 #include "renderer/PostprocManager.h"
@@ -123,31 +122,58 @@ void CMapReader::LoadMap(const VfsPath& pathname, const ScriptContext& cx,  JS::
 
 	// load map or script settings script
 	if (settings.isUndefined())
-		RegMemFun(this, &CMapReader::LoadScriptSettings, L"CMapReader::LoadScriptSettings", 50);
+		LDR_Register([this](const double)
+		{
+			return LoadScriptSettings();
+		}, L"CMapReader::LoadScriptSettings", 50);
 	else
-		RegMemFun(this, &CMapReader::LoadRMSettings, L"CMapReader::LoadRMSettings", 50);
+		LDR_Register([this](const double)
+		{
+			return LoadRMSettings();
+		}, L"CMapReader::LoadRMSettings", 50);
 
 	// load player settings script (must be done before reading map)
-	RegMemFun(this, &CMapReader::LoadPlayerSettings, L"CMapReader::LoadPlayerSettings", 50);
+	LDR_Register([this](const double)
+	{
+		return LoadPlayerSettings();
+	}, L"CMapReader::LoadPlayerSettings", 50);
 
 	// unpack the data
 	if (!only_xml)
-		RegMemFun(this, &CMapReader::UnpackMap, L"CMapReader::UnpackMap", 1200);
+		LDR_Register([this](const double)
+		{
+			return UnpackTerrain();
+		}, L"CMapReader::UnpackMap", 1200);
 
 	// read the corresponding XML file
-	RegMemFun(this, &CMapReader::ReadXML, L"CMapReader::ReadXML", 50);
+	LDR_Register([this](const double)
+	{
+		return ReadXML();
+	}, L"CMapReader::ReadXML", 50);
 
 	// apply terrain data to the world
-	RegMemFun(this, &CMapReader::ApplyTerrainData, L"CMapReader::ApplyTerrainData", 5);
+	LDR_Register([this](const double)
+	{
+		return ApplyTerrainData();
+	}, L"CMapReader::ApplyTerrainData", 5);
 
 	// read entities
-	RegMemFun(this, &CMapReader::ReadXMLEntities, L"CMapReader::ReadXMLEntities", 5800);
+	LDR_Register([this](const double)
+	{
+		return ReadXMLEntities();
+	}, L"CMapReader::ReadXMLEntities", 5800);
 
 	// apply misc data to the world
-	RegMemFun(this, &CMapReader::ApplyData, L"CMapReader::ApplyData", 5);
+	LDR_Register([this](const double)
+	{
+		return ApplyData();
+	}, L"CMapReader::ApplyData", 5);
 
 	// load map settings script (must be done after reading map)
-	RegMemFun(this, &CMapReader::LoadMapSettings, L"CMapReader::LoadMapSettings", 5);
+	LDR_Register([this](const double)
+	{
+		return LoadMapSettings();
+	}, L"CMapReader::LoadMapSettings", 5);
 }
 
 // LoadRandomMap: try to load the map data; reinitialise the scene to new data if successful
@@ -156,7 +182,6 @@ void CMapReader::LoadRandomMap(const CStrW& scriptFile, const ScriptContext& cx,
 						 CLightEnv *pLightEnv_, CGameView *pGameView_, CCinemaManager* pCinema_, CTriggerManager* pTrigMan_, CPostprocManager* pPostproc_,
 						 CSimulation2 *pSimulation2_, int playerID_)
 {
-	m_ScriptFile = scriptFile;
 	pSimulation2 = pSimulation2_;
 	pSimContext = pSimulation2 ? &pSimulation2->GetSimContext() : NULL;
 	m_ScriptSettings.init(cx.GetGeneralJSContext(), settings);
@@ -179,40 +204,64 @@ void CMapReader::LoadRandomMap(const CStrW& scriptFile, const ScriptContext& cx,
 	only_xml = false;
 
 	// copy random map settings (before entity creation)
-	RegMemFun(this, &CMapReader::LoadRMSettings, L"CMapReader::LoadRMSettings", 50);
+	LDR_Register([this](const double)
+	{
+		return LoadRMSettings();
+	}, L"CMapReader::LoadRMSettings", 50);
 
 	// load player settings script (must be done before reading map)
-	RegMemFun(this, &CMapReader::LoadPlayerSettings, L"CMapReader::LoadPlayerSettings", 50);
+	LDR_Register([this](const double)
+	{
+		return LoadPlayerSettings();
+	}, L"CMapReader::LoadPlayerSettings", 50);
 
 	// load map generator with random map script
-	RegMemFun(this, &CMapReader::GenerateMap, L"CMapReader::GenerateMap", 20000);
+	LDR_Register([this, scriptFile](const double)
+	{
+		return GenerateMap(scriptFile);
+	}, L"CMapReader::GenerateMap", 20000);
 
 	// parse RMS results into terrain structure
-	RegMemFun(this, &CMapReader::ParseTerrain, L"CMapReader::ParseTerrain", 500);
+	LDR_Register([this](const double)
+	{
+		return ParseTerrain();
+	}, L"CMapReader::ParseTerrain", 500);
 
 	// parse RMS results into environment settings
-	RegMemFun(this, &CMapReader::ParseEnvironment, L"CMapReader::ParseEnvironment", 5);
+	LDR_Register([this](const double)
+	{
+		return ParseEnvironment();
+	}, L"CMapReader::ParseEnvironment", 5);
 
 	// parse RMS results into camera settings
-	RegMemFun(this, &CMapReader::ParseCamera, L"CMapReader::ParseCamera", 5);
+	LDR_Register([this](const double)
+	{
+		return ParseCamera();
+	}, L"CMapReader::ParseCamera", 5);
 
 	// apply terrain data to the world
-	RegMemFun(this, &CMapReader::ApplyTerrainData, L"CMapReader::ApplyTerrainData", 5);
+	LDR_Register([this](const double)
+	{
+		return ApplyTerrainData();
+	}, L"CMapReader::ApplyTerrainData", 5);
 
 	// parse RMS results into entities
-	RegMemFun(this, &CMapReader::ParseEntities, L"CMapReader::ParseEntities", 1000);
+	LDR_Register([this](const double)
+	{
+		return ParseEntities();
+	}, L"CMapReader::ParseEntities", 1000);
 
 	// apply misc data to the world
-	RegMemFun(this, &CMapReader::ApplyData, L"CMapReader::ApplyData", 5);
+	LDR_Register([this](const double)
+	{
+		return ApplyData();
+	}, L"CMapReader::ApplyData", 5);
 
 	// load map settings script (must be done after reading map)
-	RegMemFun(this, &CMapReader::LoadMapSettings, L"CMapReader::LoadMapSettings", 5);
-}
-
-// UnpackMap: unpack the given data from the raw data stream into local variables
-int CMapReader::UnpackMap()
-{
-	return UnpackTerrain();
+	LDR_Register([this](const double)
+	{
+		return LoadMapSettings();
+	}, L"CMapReader::LoadMapSettings", 5);
 }
 
 // UnpackTerrain: unpack the terrain from the end of the input data stream
@@ -1271,7 +1320,7 @@ int CMapReader::LoadRMSettings()
 	return 0;
 }
 
-int CMapReader::GenerateMap()
+int CMapReader::GenerateMap(const CStrW& scriptFile)
 {
 	ScriptRequest rq(pSimulation2->GetScriptInterface());
 
@@ -1282,8 +1331,8 @@ int CMapReader::GenerateMap()
 
 		VfsPath scriptPath;
 
-		if (m_ScriptFile.length())
-			scriptPath = L"maps/random/"+m_ScriptFile;
+		if (scriptFile.length())
+			scriptPath = L"maps/random/" + scriptFile;
 
 		// Stringify settings to pass across threads
 		std::string scriptSettings = Script::StringifyJSON(rq, &m_ScriptSettings);

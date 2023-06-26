@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -211,8 +211,7 @@ private:
 
 	std::vector<CColor> m_PlayerColors;
 
-	int LoadInitialState();
-	std::string m_InitialSavedState; // valid between RegisterInit and LoadInitialState
+	int LoadInitialState(const std::string& savedState);
 	bool m_IsSavedGame; // true if loading a saved game; false for a new game
 
 	int LoadVisualReplayData();
