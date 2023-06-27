@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,7 +26,6 @@
 #include "lib/timer.h"
 #include "CStr.h"
 #include "Loader.h"
-#include "LoaderThunks.h"
 
 
 // set by LDR_EndRegistering; may be 0 during development when
@@ -63,24 +62,27 @@ struct LoadRequest
 
 	LoadFunc func;
 
-	// MemFun_t<T> instance
-	std::shared_ptr<void> param;
-
 	// Translatable string shown to the player.
 	CStrW description;
 
 	int estimated_duration_ms;
 
 	// LDR_Register gets these as parameters; pack everything together.
-	LoadRequest(LoadFunc func_, std::shared_ptr<void> param_, const wchar_t* desc_, int ms_)
-		: func(func_), param(param_), description(desc_),
-		  estimated_duration_ms(ms_)
+	LoadRequest(LoadFunc func_, const wchar_t* desc_, int ms_)
+		: func(func_), description(desc_), estimated_duration_ms(ms_)
 	{
 	}
 };
 
 typedef std::deque<LoadRequest> LoadRequests;
 static LoadRequests load_requests;
+
+// Returns true if the return code indicates that the `LoadRequest` didn't
+// finish and should be reinvoked in the next frame.
+static bool ldr_was_interrupted(const int ret)
+{
+	return 0 < ret && ret <= 100;
+}
 
 // call before starting to register load requests.
 // this routine is provided so we can prevent 2 simultaneous load operations,
@@ -103,13 +105,11 @@ void LDR_BeginRegistering()
 // <estimated_duration_ms>: used to calculate progress, and when checking
 //   whether there is enough of the time budget left to process this task
 //   (reduces timeslice overruns, making the main loop more responsive).
-void LDR_Register(LoadFunc func, std::shared_ptr<void> param, const wchar_t* description,
-	int estimated_duration_ms)
+void LDR_Register(LoadFunc func, const wchar_t* description, int estimatedDurationMs)
 {
 	ENSURE(state == REGISTERING);	// must be called between LDR_(Begin|End)Register
 
-	const LoadRequest lr(func, param, description, estimated_duration_ms);
-	load_requests.push_back(lr);
+	load_requests.emplace_back(std::move(func), description, estimatedDurationMs);
 }
 
 
@@ -214,7 +214,7 @@ Status LDR_ProgressiveLoad(double time_budget, wchar_t* description, size_t max_
 
 		// call this task's function and bill elapsed time.
 		const double t0 = timer_Time();
-		int status = lr.func(lr.param, time_left);
+		const int status = lr.func(time_left);
 		const bool timed_out = ldr_was_interrupted(status);
 		const double elapsed_time = timer_Time() - t0;
 		time_left -= elapsed_time;

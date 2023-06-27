@@ -43,7 +43,6 @@ public:
 	void SetViewport(const SViewPort& vp);
 
 	void RegisterInit();
-	int Initialize();
 
 	/**
 	 * Updates all the view information (i.e. rotate camera, scroll, whatever). This will *not* change any

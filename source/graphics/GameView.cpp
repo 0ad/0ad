@@ -49,7 +49,6 @@
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
 #include "ps/Loader.h"
-#include "ps/LoaderThunks.h"
 #include "ps/Profile.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/TouchInput.h"
@@ -207,18 +206,19 @@ CMiniMapTexture& CGameView::GetMiniMapTexture()
 	return m->MiniMapTexture;
 }
 
-int CGameView::Initialize()
-{
-	m->CameraController->LoadConfig();
-	return 0;
-}
-
 void CGameView::RegisterInit()
 {
 	// CGameView init
-	RegMemFun(this, &CGameView::Initialize, L"CGameView init", 1);
+	LDR_Register([this](const double)
+	{
+		m->CameraController->LoadConfig();
+		return 0;
+	}, L"CGameView init", 1);
 
-	RegMemFun(g_TexMan.GetSingletonPtr(), &CTerrainTextureManager::LoadTerrainTextures, L"LoadTerrainTextures", 60);
+	LDR_Register([](const double)
+	{
+		return g_TexMan.LoadTerrainTextures();
+	}, L"LoadTerrainTextures", 60);
 }
 
 void CGameView::BeginFrame()

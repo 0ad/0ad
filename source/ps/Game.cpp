@@ -34,7 +34,6 @@
 #include "ps/CStr.h"
 #include "ps/GameSetup/GameSetup.h"
 #include "ps/Loader.h"
-#include "ps/LoaderThunks.h"
 #include "ps/Profile.h"
 #include "ps/Replay.h"
 #include "ps/World.h"
@@ -215,7 +214,6 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 	const ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
 	ScriptRequest rq(scriptInterface);
 
-	m_InitialSavedState = savedState;
 	m_IsSavedGame = !savedState.empty();
 
 	m_Simulation2->SetInitAttributes(attribs);
@@ -234,7 +232,10 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 
 	LDR_BeginRegistering();
 
-	RegMemFun(m_Simulation2, &CSimulation2::ProgressiveLoad, L"Simulation init", 1000);
+	LDR_Register([this](const double)
+	{
+		return m_Simulation2->ProgressiveLoad();
+	}, L"Simulation init", 1000);
 
 	// RC, 040804 - GameView needs to be initialized before World, otherwise GameView initialization
 	// overwrites anything stored in the map file that gets loaded by CWorld::Initialize with default
@@ -265,26 +266,31 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 		m_World->RegisterInit(mapFile, *scriptInterface.GetContext(), settings, m_PlayerID);
 	}
 	if (m_GameView)
-		RegMemFun(&g_Renderer.GetSceneRenderer().GetWaterManager(), &WaterManager::LoadWaterTextures, L"LoadWaterTextures", 80);
+		LDR_Register([&waterManager = g_Renderer.GetSceneRenderer().GetWaterManager()](const double)
+		{
+			return waterManager.LoadWaterTextures();
+		}, L"LoadWaterTextures", 80);
 
 	if (m_IsSavedGame)
-		RegMemFun(this, &CGame::LoadInitialState, L"Loading game", 1000);
+		LDR_Register([this, savedState](const double)
+		{
+			return LoadInitialState(savedState);
+		}, L"Loading game", 1000);
 
 	if (m_IsVisualReplay)
-		RegMemFun(this, &CGame::LoadVisualReplayData, L"Loading visual replay data", 1000);
+		LDR_Register([this](const double)
+		{
+			return LoadVisualReplayData();
+		}, L"Loading visual replay data", 1000);
 
 	LDR_EndRegistering();
 }
 
-int CGame::LoadInitialState()
+int CGame::LoadInitialState(const std::string& savedState)
 {
 	ENSURE(m_IsSavedGame);
-	ENSURE(!m_InitialSavedState.empty());
 
-	std::string state;
-	m_InitialSavedState.swap(state); // deletes the original to save a bit of memory
-
-	std::stringstream stream(state);
+	std::stringstream stream(savedState);
 
 	bool ok = m_Simulation2->DeserializeState(stream);
 	if (!ok)
