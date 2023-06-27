@@ -264,6 +264,43 @@ std::tuple<GLenum, GLenum, GLint> GetElementTypeAndCountFromString(const CStr& s
 }
 #endif // !CONFIG2_GLES
 
+bool CompileGLSL(GLuint shader, const VfsPath& file, const CStr& code)
+{
+	const char* codeString = code.c_str();
+	GLint codeLength = code.length();
+	glShaderSource(shader, 1, &codeString, &codeLength);
+
+	ogl_WarnIfError();
+
+	glCompileShader(shader);
+
+	GLint ok = 0;
+	glGetShaderiv(shader, GL_COMPILE_STATUS, &ok);
+
+	GLint length = 0;
+	glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
+
+	// Apparently sometimes GL_INFO_LOG_LENGTH is incorrectly reported as 0
+	// (http://code.google.com/p/android/issues/detail?id=9953)
+	if (!ok && length == 0)
+		length = 4096;
+
+	if (length > 1)
+	{
+		std::unique_ptr<char[]> infolog = std::make_unique<char[]>(length);
+		glGetShaderInfoLog(shader, length, nullptr, infolog.get());
+
+		if (ok)
+			LOGMESSAGE("Info when compiling shader '%s':\n%s", file.string8(), infolog);
+		else
+			LOGERROR("Failed to compile shader '%s':\n%s", file.string8(), infolog);
+	}
+
+	ogl_WarnIfError();
+
+	return ok;
+}
+
 } // anonymous namespace
 
 IDevice* CVertexInputLayout::GetDevice()
@@ -657,10 +694,10 @@ public:
 		m_Device->GetActiveCommandContext()->SetGraphicsPipelineState(
 			MakeDefaultGraphicsPipelineStateDesc());
 
-		if (!Compile(m_VertexShader, vertexFilePath, vertexCode))
+		if (!CompileGLSL(m_VertexShader, vertexFilePath, vertexCode))
 			return;
 
-		if (!Compile(m_FragmentShader, fragmentFilePath, fragmentCode))
+		if (!CompileGLSL(m_FragmentShader, fragmentFilePath, fragmentCode))
 			return;
 
 		if (!Link(vertexFilePath, fragmentFilePath))
@@ -674,45 +711,6 @@ public:
 
 		glDeleteShader(m_VertexShader);
 		glDeleteShader(m_FragmentShader);
-	}
-
-	bool Compile(GLuint shader, const VfsPath& file, const CStr& code)
-	{
-		const char* code_string = code.c_str();
-		GLint code_length = code.length();
-		glShaderSource(shader, 1, &code_string, &code_length);
-
-		ogl_WarnIfError();
-
-		glCompileShader(shader);
-
-		GLint ok = 0;
-		glGetShaderiv(shader, GL_COMPILE_STATUS, &ok);
-
-		GLint length = 0;
-		glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
-
-		// Apparently sometimes GL_INFO_LOG_LENGTH is incorrectly reported as 0
-		// (http://code.google.com/p/android/issues/detail?id=9953)
-		if (!ok && length == 0)
-			length = 4096;
-
-		if (length > 1)
-		{
-			char* infolog = new char[length];
-			glGetShaderInfoLog(shader, length, NULL, infolog);
-
-			if (ok)
-				LOGMESSAGE("Info when compiling shader '%s':\n%s", file.string8(), infolog);
-			else
-				LOGERROR("Failed to compile shader '%s':\n%s", file.string8(), infolog);
-
-			delete[] infolog;
-		}
-
-		ogl_WarnIfError();
-
-		return ok;
 	}
 
 	bool Link(const VfsPath& vertexFilePath, const VfsPath& fragmentFilePath)
