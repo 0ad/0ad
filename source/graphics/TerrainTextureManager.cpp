@@ -33,7 +33,6 @@
 #include "renderer/Renderer.h"
 
 #include <algorithm>
-#include <boost/algorithm/string.hpp>
 #include <vector>
 
 CTerrainTextureManager::CTerrainTextureManager(Renderer::Backend::IDevice* device)

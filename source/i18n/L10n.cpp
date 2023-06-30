@@ -33,8 +33,7 @@
 #include "ps/Filesystem.h"
 #include "ps/GameSetup/GameSetup.h"
 
-#include <boost/algorithm/string.hpp>
-#include <boost/concept_check.hpp>
+#include <boost/algorithm/string/predicate.hpp>
 #include <sstream>
 #include <string>
 
