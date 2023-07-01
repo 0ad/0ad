@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -40,7 +40,8 @@
 #include "lib/sysdep/os/win/wutil.h"
 
 #if CONFIG_ENABLE_BOOST
-# include <boost/algorithm/string.hpp>
+# include <boost/algorithm/string/classification.hpp>
+# include <boost/algorithm/string/split.hpp>
 #endif
 
 #include <string_view>

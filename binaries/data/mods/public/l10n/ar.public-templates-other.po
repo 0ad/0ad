@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# ahmed t
 # Eslam obeidat
 # ibrahim mahfod ghamdi
 # 425467bb0c9da71484550c3c99a0865a_432023a
@@ -12,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-06-16 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: Eslam obeidat <islamobidat92@gmail.com>, 2018\n"
+"Last-Translator: ahmed t, 2023\n"
 "Language-Team: Arabic (http://app.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,12 +29,12 @@ msgstr ""
 #: simulation/data/attack_effects/applystatus.jsonname
 msgctxt "effect caused by an attack"
 msgid "Apply Status"
-msgstr ""
+msgstr "Apply Status"
 
 #: simulation/data/attack_effects/capture.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
-msgstr ""
+msgstr "Reduces capture points of a target."
 
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
@@ -43,17 +44,17 @@ msgstr "سيطرة"
 #: simulation/data/attack_effects/damage.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces the health of a target."
-msgstr ""
+msgstr "Reduces the health of a target."
 
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
 msgid "Damage"
-msgstr ""
+msgstr "Damage"
 
 #: simulation/data/damage_types/crush.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr ""
+msgstr "Damage caused by sheer force, like with a club or by trampling."
 
 #: simulation/data/damage_types/crush.jsonname
 msgctxt "damage type"
@@ -75,7 +76,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
-msgstr ""
+msgstr "Damage caused by sharp objects cutting or chopping, like with a sword or an axe."
 
 #: simulation/data/damage_types/hack.jsonname
 msgctxt "damage type"
@@ -85,7 +86,7 @@ msgstr "تقطيع"
 #: simulation/data/damage_types/pierce.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr ""
+msgstr "Damage caused by sharp pointy objects, like arrows or spears."
 
 #: simulation/data/damage_types/pierce.jsonname
 msgctxt "damage type"
@@ -97,7 +98,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by venomous or poisoned objects, like a snake or a poisoned "
 "weapon."
-msgstr ""
+msgstr "Damage caused by venomous or poisoned objects, like a snake or a poisoned weapon."
 
 #: simulation/data/damage_types/poison.jsonname
 msgctxt "damage type"
@@ -112,12 +113,12 @@ msgstr ""
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is burning."
-msgstr ""
+msgstr "This unit is burning."
 
 #: simulation/data/status_effects/burning.jsonstatusName
 msgctxt "status effect"
 msgid "Burning"
-msgstr ""
+msgstr "Burning"
 
 #: simulation/data/status_effects/poisoned.jsonapplierTooltip
 msgctxt "status effect"
@@ -127,7 +128,7 @@ msgstr ""
 #: simulation/data/status_effects/poisoned.jsonreceiverTooltip
 msgctxt "status effect"
 msgid "This unit is poisoned."
-msgstr ""
+msgstr "This unit is poisoned."
 
 #: simulation/data/status_effects/poisoned.jsonstatusName
 msgctxt "status effect"
@@ -257,7 +258,7 @@ msgstr ""
 #: simulation/templates/gaia/fauna_cattle_bull.xml:5
 msgctxt "Name of an attack, usually the weapon."
 msgid "Horns"
-msgstr ""
+msgstr "Horns"
 
 #: simulation/templates/gaia/fauna_cattle_bull.xml:25
 msgid "Bull"
@@ -638,7 +639,7 @@ msgstr "عمود دوريسي"
 
 #: simulation/templates/gaia/ruins/metal_statue_isis.xml:9
 msgid "Isis Cult Image"
-msgstr ""
+msgstr "Isis Cult Image"
 
 #: simulation/templates/gaia/ruins/pyramid_great.xml:8
 msgid "Great Pyramid"
@@ -655,7 +656,7 @@ msgstr "حجر كلتي الصامد"
 
 #: simulation/templates/gaia/ruins/stone_statues_egyptian.xml:8
 msgid "Egyptian Statue"
-msgstr ""
+msgstr "Egyptian Statue"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite.xml:8
 msgid "Kushite Statue"
@@ -669,7 +670,7 @@ msgstr "تمثال الكوشيت"
 #: simulation/templates/gaia/ruins/stone_structure_small.xml:9
 #: simulation/templates/gaia/ruins/stone_structure_tower.xml:9
 msgid "Stone Resource"
-msgstr ""
+msgstr "Stone Resource"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:10
 msgid "Kushite Bird Statue"
@@ -677,7 +678,7 @@ msgstr ""
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:10
 msgid "Apademak Lion Statue"
-msgstr ""
+msgstr "Apademak Lion Statue"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:10
 msgid "Ammon-Ra Ram Statue"
@@ -685,23 +686,23 @@ msgstr ""
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statue"
-msgstr ""
+msgstr "Roman Statue"
 
 #: simulation/templates/gaia/ruins/stone_structure_farmstead.xml:10
 msgid "Ruined Farmstead"
-msgstr ""
+msgstr "Ruined Farmstead"
 
 #: simulation/templates/gaia/ruins/stone_structure_house.xml:10
 msgid "Ruined House"
-msgstr ""
+msgstr "Ruined House"
 
 #: simulation/templates/gaia/ruins/stone_structure_small.xml:10
 msgid "Ruined Structure"
-msgstr ""
+msgstr "Ruined Structure"
 
 #: simulation/templates/gaia/ruins/stone_structure_tower.xml:10
 msgid "Ruined Tower"
-msgstr ""
+msgstr "Ruined Tower"
 
 #: simulation/templates/gaia/ruins/unfinished_greek_temple.xml:8
 msgid "Unfinished Greek Temple"
@@ -767,11 +768,11 @@ msgstr "كنز أحجار"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite.xml:4
 msgid "Cut Granite"
-msgstr ""
+msgstr "Cut Granite"
 
 #: simulation/templates/gaia/treasure/stone_pile_granite_large.xml:8
 msgid "Cut Stone"
-msgstr ""
+msgstr "Cut Stone"
 
 #: simulation/templates/gaia/treasure/stone_pile_red.xml:8
 #: simulation/templates/gaia/treasure/stone_pile_sandstone.xml:4
@@ -792,7 +793,7 @@ msgstr ""
 
 #: simulation/templates/gaia/tree/acacia_large.xml:4
 msgid "Ancient Acacia"
-msgstr ""
+msgstr "Ancient Acacia"
 
 #: simulation/templates/gaia/tree/aleppo_pine.xml:4
 msgid "Aleppo Pine"
@@ -831,11 +832,11 @@ msgstr "الشجيرات الكثيفة"
 
 #: simulation/templates/gaia/tree/bush_mediterranean.xml:4
 msgid "Scrub"
-msgstr ""
+msgstr "Scrub"
 
 #: simulation/templates/gaia/tree/bush_mediterranean_dry.xml:4
 msgid "Dry Scrub"
-msgstr ""
+msgstr "Dry Scrub"
 
 #: simulation/templates/gaia/tree/carob.xml:4
 msgid "Carob"
@@ -853,7 +854,7 @@ msgstr ""
 
 #: simulation/templates/gaia/tree/cherry_blossom.xml:4
 msgid "Cherry Blossom"
-msgstr ""
+msgstr "Cherry Blossom"
 
 #: simulation/templates/gaia/tree/cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/tree/cretan_date_palm_short.xml:4
@@ -954,7 +955,7 @@ msgstr ""
 
 #: simulation/templates/gaia/tree/palm_royal.xml:4
 msgid "Royal Palm"
-msgstr ""
+msgstr "Royal Palm"
 
 #: simulation/templates/gaia/tree/palm_tropic.xml:4
 msgid "Palm"
@@ -1016,7 +1017,7 @@ msgstr ""
 
 #: simulation/templates/mixins/builder.xml:41
 msgid "Builder"
-msgstr ""
+msgstr "Builder"
 
 #: simulation/templates/mixins/bush.xml:4
 msgid "Bush"
@@ -1034,36 +1035,36 @@ msgstr "ضريح"
 
 #: simulation/templates/mixins/trading_post.xml:8
 msgid "Trading Post"
-msgstr ""
+msgstr "Trading Post"
 
 #: simulation/templates/obstructors/movement_36x36.xml:9
 #: simulation/templates/obstructors/movement_8x36.xml:9
 #: simulation/templates/obstructors/movement_8x8.xml:9
 msgid "Movement Obstructor"
-msgstr ""
+msgstr "Movement Obstructor"
 
 #: simulation/templates/obstructors/movement_36x36.xml:11
 #: simulation/templates/obstructors/movement_8x36.xml:11
 #: simulation/templates/obstructors/movement_8x8.xml:11
 msgid "Placement obstructor to prevent movement and construction."
-msgstr ""
+msgstr "Placement obstructor to prevent movement and construction."
 
 #: simulation/templates/obstructors/placement.xml:10
 msgid "Obstructor"
-msgstr ""
+msgstr "Obstructor"
 
 #: simulation/templates/obstructors/placement.xml:12
 #: simulation/templates/obstructors/placement_36x36.xml:11
 #: simulation/templates/obstructors/placement_8x36.xml:11
 #: simulation/templates/obstructors/placement_8x8.xml:11
 msgid "Placement obstructor to prevent construction but not movement"
-msgstr ""
+msgstr "Placement obstructor to prevent construction but not movement"
 
 #: simulation/templates/obstructors/placement_36x36.xml:9
 #: simulation/templates/obstructors/placement_8x36.xml:9
 #: simulation/templates/obstructors/placement_8x8.xml:9
 msgid "Placement Obstructor"
-msgstr ""
+msgstr "Placement Obstructor"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""

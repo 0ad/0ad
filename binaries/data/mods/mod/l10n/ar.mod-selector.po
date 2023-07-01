@@ -4,6 +4,7 @@
 # project.
 # Translators:
 # abdul-rahman sawalmah
+# ahmed t
 # Eslam obeidat
 # ibrahim mahfod ghamdi
 # nitro361
@@ -13,7 +14,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2022-11-04 08:09+0000\n"
 "PO-Revision-Date: 2014-09-12 20:06+0000\n"
-"Last-Translator: ibrahim mahfod ghamdi <barho0om_55@hotmail.com>, 2018\n"
+"Last-Translator: ahmed t, 2023\n"
 "Language-Team: Arabic (http://app.transifex.com/wildfire-games/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,19 +29,19 @@ msgstr "اللون"
 #: gui/colormixer/colormixer.js:25
 msgid ""
 "Move the sliders to change the Red, Green and Blue components of the Color"
-msgstr ""
+msgstr "Move the sliders to change the Red, Green and Blue components of the Color"
 
 #: gui/colormixer/colormixer.js:90
 msgid "Red"
-msgstr ""
+msgstr "Red"
 
 #: gui/colormixer/colormixer.js:90
 msgid "Green"
-msgstr ""
+msgstr "Green"
 
 #: gui/colormixer/colormixer.js:90
 msgid "Blue"
-msgstr ""
+msgstr "Blue"
 
 #: gui/colormixer/colormixer.js:91
 msgid "Save"
@@ -130,7 +131,7 @@ msgstr "النّشطة: %(mods)s"
 msgid ""
 "[font=\"sans-bold-20\"]You tried to start the game with incompatible or "
 "missing mods![/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"]You tried to start the game with incompatible or missing mods![/font]"
 
 #: gui/incompatible_mods/incompatible_mods.txt:2
 msgid "[font=\"sans-16\"]"
@@ -140,17 +141,17 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "Solve the compatibility issue by disabling invalid mods or enabling required"
 " dependencies. You can then save & start the game."
-msgstr ""
+msgstr "Solve the compatibility issue by disabling invalid mods or enabling required dependencies. You can then save & start the game."
 
 #: gui/incompatible_mods/incompatible_mods.txt:5
 msgid ""
 "Incompatible mods will appear in red in the list of enabled mods (bottom "
 "panel). Dependencies can be added by enabling them in the upper panel."
-msgstr ""
+msgstr "Incompatible mods will appear in red in the list of enabled mods (bottom panel). Dependencies can be added by enabling them in the upper panel."
 
 #: gui/incompatible_mods/incompatible_mods.txt:6
 msgid "[/font]"
-msgstr ""
+msgstr "[/font]"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):12
 msgid "Incompatible mods"
@@ -431,7 +432,7 @@ msgstr ""
 
 #: gui/modmod/modmod.js:67
 msgid "This mod does not exist"
-msgstr ""
+msgstr "This mod does not exist"
 
 #: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
@@ -440,7 +441,7 @@ msgstr "فعّل"
 
 #: gui/modmod/modmod.js:167
 msgid "Dependencies not met"
-msgstr ""
+msgstr "Dependencies not met"
 
 #: gui/modmod/modmod.js:449
 msgctxt "mod activation"
@@ -453,7 +454,7 @@ msgstr "لم تحدّد أيّ تعديل."
 
 #: gui/modmod/modmod.js:460
 msgid "Enable at least 0ad mod"
-msgstr ""
+msgstr "Enable at least 0ad mod"
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
@@ -497,7 +498,7 @@ msgstr "احفظ الضّبط"
 
 #: gui/modmod/modmod.xml:(caption):217
 msgid "Save and Restart"
-msgstr ""
+msgstr "Save and Restart"
 
 #: gui/modmod/modmod.xml:(heading):96 gui/modmod/modmod.xml:(heading):137
 msgid "(Folder)"
@@ -517,7 +518,7 @@ msgid ""
 "overwrite settings of mods loaded earlier. It is advisable to have more "
 "complex mods loaded last. Use the arrows on the right to change the loading "
 "order."
-msgstr ""
+msgstr "Enabled mods are loaded from top to bottom. Mods loaded later might overwrite settings of mods loaded earlier. It is advisable to have more complex mods loaded last. Use the arrows on the right to change the loading order."
 
 #: gui/modmod/modmod.xml:(tooltip):161 gui/modmod/modmod.xml:(tooltip):175
 msgid ""

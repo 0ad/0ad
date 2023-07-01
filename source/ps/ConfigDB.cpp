@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,7 +25,7 @@
 #include "ps/CStr.h"
 #include "ps/Filesystem.h"
 
-#include <boost/algorithm/string.hpp>
+#include <boost/algorithm/string/predicate.hpp>
 #include <mutex>
 #include <unordered_set>
 

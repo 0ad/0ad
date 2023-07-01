@@ -291,9 +291,9 @@ bool CompileGLSL(GLuint shader, const VfsPath& file, const CStr& code)
 		glGetShaderInfoLog(shader, length, nullptr, infolog.get());
 
 		if (ok)
-			LOGMESSAGE("Info when compiling shader '%s':\n%s", file.string8(), infolog);
+			LOGMESSAGE("Info when compiling shader '%s':\n%s", file.string8(), infolog.get());
 		else
-			LOGERROR("Failed to compile shader '%s':\n%s", file.string8(), infolog);
+			LOGERROR("Failed to compile shader '%s':\n%s", file.string8(), infolog.get());
 	}
 
 	ogl_WarnIfError();

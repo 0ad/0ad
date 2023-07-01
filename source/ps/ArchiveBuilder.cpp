@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,7 +27,7 @@
 #include "ps/XML/Xeromyces.h"
 #include "renderer/backend/dummy/Device.h"
 
-#include <boost/algorithm/string.hpp>
+#include <boost/algorithm/string/predicate.hpp>
 
 CArchiveBuilder::CArchiveBuilder(const OsPath& mod, const OsPath& tempdir) :
 	m_TempDir(tempdir), m_NumBaseMods(0)
