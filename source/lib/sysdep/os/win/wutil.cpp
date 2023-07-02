@@ -162,15 +162,9 @@ Status StatusFromWin()
 // directories
 
 // (NB: wutil_Init is called before static ctors => use placement new)
-static OsPath* executablePath;
 static OsPath* localAppdataPath;
 static OsPath* roamingAppdataPath;
 static OsPath* personalPath;
-
-const OsPath& wutil_ExecutablePath()
-{
-	return *executablePath;
-}
 
 const OsPath& wutil_LocalAppdataPath()
 {
@@ -208,9 +202,6 @@ static void GetDirectories()
 {
 	WinScopedPreserveLastError s;
 
-	// executable's directory
-	executablePath = new(wutil_Allocate(sizeof(OsPath))) OsPath(sys_ExecutablePathname().Parent());
-
 	// roaming application data
 	roamingAppdataPath = GetFolderPath(CSIDL_APPDATA);
 
@@ -224,8 +215,6 @@ static void GetDirectories()
 
 static void FreeDirectories()
 {
-	executablePath->~OsPath();
-	wutil_Free(executablePath);
 	localAppdataPath->~OsPath();
 	wutil_Free(localAppdataPath);
 	roamingAppdataPath->~OsPath();

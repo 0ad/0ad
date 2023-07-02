@@ -156,7 +156,6 @@ extern Status StatusFromWin();
 //-----------------------------------------------------------------------------
 // directories
 
-extern const OsPath& wutil_ExecutablePath();
 extern const OsPath& wutil_LocalAppdataPath();
 extern const OsPath& wutil_RoamingAppdataPath();
 extern const OsPath& wutil_PersonalPath();
