@@ -162,16 +162,10 @@ Status StatusFromWin()
 // directories
 
 // (NB: wutil_Init is called before static ctors => use placement new)
-static OsPath* systemPath;
 static OsPath* executablePath;
 static OsPath* localAppdataPath;
 static OsPath* roamingAppdataPath;
 static OsPath* personalPath;
-
-const OsPath& wutil_SystemPath()
-{
-	return *systemPath;
-}
 
 const OsPath& wutil_ExecutablePath()
 {
@@ -214,16 +208,6 @@ static void GetDirectories()
 {
 	WinScopedPreserveLastError s;
 
-	// system directory
-	{
-		const UINT length = GetSystemDirectoryW(0, 0);
-		ENSURE(length != 0);
-		std::wstring path(length, '\0');
-		const UINT charsWritten = GetSystemDirectoryW(&path[0], length);
-		ENSURE(charsWritten == length-1);
-		systemPath = new(wutil_Allocate(sizeof(OsPath))) OsPath(path);
-	}
-
 	// executable's directory
 	executablePath = new(wutil_Allocate(sizeof(OsPath))) OsPath(sys_ExecutablePathname().Parent());
 
@@ -240,8 +224,6 @@ static void GetDirectories()
 
 static void FreeDirectories()
 {
-	systemPath->~OsPath();
-	wutil_Free(systemPath);
 	executablePath->~OsPath();
 	wutil_Free(executablePath);
 	localAppdataPath->~OsPath();
