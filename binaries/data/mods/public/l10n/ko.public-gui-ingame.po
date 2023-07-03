@@ -121,11 +121,11 @@ msgstr "서버와 연결이 끊겼습니다."
 
 #: gui/session/NetworkStatusOverlay.js:42
 msgid "Waiting for players to connect:"
-msgstr "참가자들 연결 대기 중:"
+msgstr "플레이어들 연결 대기 중:"
 
 #: gui/session/NetworkStatusOverlay.js:43
 msgid "Synchronizing gameplay with other players…"
-msgstr "다른 참가자들과 게임 방식 동기화 중…"
+msgstr "다른 플레이어들과 게임 방식 동기화 중…"
 
 #: gui/session/NetworkStatusOverlay.js:47
 msgctxt "Separator for a list of client loading messages"
@@ -238,7 +238,7 @@ msgstr "대화 내용"
 #: gui/session/chat/ChatHistory.js:99
 msgctxt "chat history filter"
 msgid "Players chat"
-msgstr "참가자들 대화"
+msgstr "플레이어들 대화"
 
 #: gui/session/chat/ChatHistory.js:106
 msgctxt "chat history filter"
@@ -691,7 +691,7 @@ msgstr "적국"
 msgid ""
 "Bribe a random unit from this player and share its vision during a limited "
 "period."
-msgstr "이 참가자로부터 아무 유닛을 획득하고 제한된 기간 동안 시야를 공유합니다."
+msgstr "이 플레이어로부터 아무 유닛을 획득하고 제한된 기간 동안 시야를 공유합니다."
 
 #: gui/session/diplomacy/playercontrols/SpyRequestButton.js:142
 msgid "A failed bribe will cost you:"
@@ -757,7 +757,7 @@ msgstr "%(turn)s 턴에서 동기화 오류가 발생했습니다."
 #, javascript-format
 msgctxt "Out-Of-Sync"
 msgid "Players: %(players)s"
-msgstr "참가자들: %(players)s"
+msgstr "플레이어들: %(players)s"
 
 #: gui/session/message_box/OutOfSyncNetwork.js:24
 msgctxt "Out-Of-Sync"
@@ -777,7 +777,7 @@ msgstr "인공지능과 멀티플레이어에 다시 참가하는 것은 아직 
 #: gui/session/message_box/OutOfSyncNetwork.js:34
 msgctxt "Out-Of-Sync"
 msgid "Ensure all players use the same mods."
-msgstr "모든 참가자들이 동일한 모드를 사용하는지 확인하십시오."
+msgstr "모든 플레이어들이 동일한 모드를 사용하는지 확인하십시오."
 
 #: gui/session/message_box/OutOfSyncNetwork.js:35
 msgctxt "Out-Of-Sync"
@@ -843,7 +843,7 @@ msgstr "종료하고 싶으신가요?"
 #: gui/session/message_box/QuitConfirmationMenu.js:33
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "종료하시겠습니까? 나가면 다른 모든 참가자들과의 연결이 끊어집니다."
+msgstr "종료하시겠습니까? 나가면 다른 모든 플레이어들과의 연결이 끊어집니다."
 
 #: gui/session/message_box/QuitConfirmationMenu.js:47
 msgid "Are you sure you want to quit?"
@@ -903,7 +903,7 @@ msgstr "지시를 따르십시오."
 
 #: gui/session/messages.js:544
 msgid "Unknown Player"
-msgstr "알 수 없는 참가자"
+msgstr "알 수 없는 플레이어"
 
 #: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
@@ -1089,7 +1089,7 @@ msgstr "하나를 내보내려면 한 번 클릭합니다.이 유형을 모두 �
 #: gui/session/selection_panels.js:341 gui/session/selection_panels.js:919
 #, javascript-format
 msgid "Player: %(playername)s"
-msgstr "참가자: %(playername)s님"
+msgstr "플레이어: %(playername)s님"
 
 #: gui/session/selection_panels.js:377
 msgid "Lock Gate"
@@ -1408,7 +1408,7 @@ msgstr "채집꾼들: 현재"
 #: gui/session/top_panel/FollowPlayer.xml:(tooltip):11
 msgctxt "observer mode"
 msgid "Follow Player"
-msgstr "참가자 따라가기"
+msgstr "플레이어 따라가기"
 
 #: gui/session/diplomacy/DiplomacyDialog.xml:(caption):10
 #: gui/session/top_panel/IconButtons/DiplomacyDialogButton.js:29
@@ -1438,7 +1438,7 @@ msgstr "관찰자 모드"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(tooltip):13
 msgid "Choose player to view"
-msgstr "보려는 참가자 선택"
+msgstr "보려는 플레이어 선택"
 
 #: gui/session/trade/BarterButton.js:108
 #, javascript-format
