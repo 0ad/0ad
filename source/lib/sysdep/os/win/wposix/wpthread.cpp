@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -35,36 +35,45 @@
 #include "lib/sysdep/os/win/wposix/wposix_internal.h"
 #include "lib/sysdep/os/win/wposix/wtime.h"			// timespec
 #include "lib/sysdep/os/win/wseh.h"		// wseh_ExceptionFilter
-#include "lib/sysdep/os/win/winit.h"
 
-WINIT_REGISTER_CRITICAL_INIT(wpthread_Init);
+namespace
+{
 
-
-static HANDLE HANDLE_from_pthread(pthread_t p)
+HANDLE HANDLE_from_pthread(pthread_t p)
 {
 	return (HANDLE)((char*)0 + p);
 }
 
-static pthread_t pthread_from_HANDLE(HANDLE h)
+pthread_t pthread_from_HANDLE(HANDLE h)
 {
 	return (pthread_t)(uintptr_t)h;
 }
 
-
-//-----------------------------------------------------------------------------
-// misc
-//-----------------------------------------------------------------------------
-
-// non-pseudo handle so that pthread_self value is unique for each thread
-static __declspec(thread) HANDLE hCurrentThread;
-
-static void NotifyCurrentThread()
+HANDLE GenerateCurrentThreadUniqueHandle()
 {
+	// Non-pseudo handle so that pthread_self value is unique for each thread.
+	// We can't use GetCurrentThread because it returns the same special
+	// constant for each thread. According to:
+	// https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-getcurrentthread
+	//   The function cannot be used by one thread to create a handle that can
+	//   be used by other threads to refer to the first thread. The handle is
+	//   always interpreted as referring to the thread that is using it. A
+	//   thread can create a "real" handle to itself that can be used by other
+	//   threads, or inherited by other processes, by specifying the pseudo
+	//   handle as the source handle in a call to the DuplicateHandle function.
+	HANDLE handle;
 	// (we leave it to the OS to clean these up at process exit - threads are not created often)
-	WARN_IF_FALSE(DuplicateHandle(GetCurrentProcess(), GetCurrentThread(), GetCurrentProcess(), &hCurrentThread, 0, FALSE, DUPLICATE_SAME_ACCESS));
+	WARN_IF_FALSE(DuplicateHandle(GetCurrentProcess(), GetCurrentThread(), GetCurrentProcess(), &handle, 0, FALSE, DUPLICATE_SAME_ACCESS));
+	return handle;
 }
 
+HANDLE GetCurrentThreadUniqueHandle()
+{
+	thread_local HANDLE handle = GenerateCurrentThreadUniqueHandle();
+	return handle;
+}
 
+} // anonymous namespace
 
 int pthread_equal(pthread_t t1, pthread_t t2)
 {
@@ -73,7 +82,7 @@ int pthread_equal(pthread_t t1, pthread_t t2)
 
 pthread_t pthread_self()
 {
-	return pthread_from_HANDLE(hCurrentThread);
+	return pthread_from_HANDLE(GetCurrentThreadUniqueHandle());
 }
 
 
@@ -550,8 +559,6 @@ static unsigned __stdcall thread_start(void* param)
 	void* arg            = func_and_arg->arg;
 	wutil_Free(param);
 
-	NotifyCurrentThread();
-
 	void* ret = 0;
 	__try
 	{
@@ -630,11 +637,4 @@ int pthread_join(pthread_t thread, void** value_ptr)
 
 	CloseHandle(hThread);
 	return 0;
-}
-
-
-static Status wpthread_Init()
-{
-	NotifyCurrentThread();
-	return INFO::OK;
 }
