@@ -92,7 +92,7 @@ msgstr "순위표"
 #: gui/lobby/LobbyPage/Buttons/ProfileButton.js:9
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):12
 msgid "Player Profile Lookup"
-msgstr "참가자 프로필 조회"
+msgstr "플레이어 프로필 조회"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
 msgctxt "previous page"
@@ -371,7 +371,7 @@ msgstr "호스트: %(playername)s"
 #: gui/lobby/LobbyPage/GameDetails.js:144
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
-msgstr "참가자들: %(current)s/%(total)s"
+msgstr "플레이어들: %(current)s/%(total)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:146
 msgid "Victory Conditions:"
@@ -429,7 +429,7 @@ msgstr "종류"
 
 #: gui/lobby/LobbyPage/GameList.xml:(heading):25
 msgid "Players"
-msgstr "참가자들"
+msgstr "플레이어들"
 
 #: gui/lobby/LobbyPage/GameListFilters.xml:(caption):7
 msgid "Show only open games"
@@ -524,7 +524,7 @@ msgstr "상태"
 
 #: gui/lobby/LobbyPage/PlayerList.xml:(placeholder_text):4
 msgid "Search for Player"
-msgstr "참가자 검색"
+msgstr "플레이어 검색"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:106
 msgid "N/A"
@@ -536,11 +536,11 @@ msgstr "방장"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:113
 msgid "Player"
-msgstr "참가자"
+msgstr "플레이어"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:114
 msgid "Muted Player"
-msgstr "음소거 참가자"
+msgstr "음소거 플레이어"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:120
 msgctxt "Used for an undefined winning rate"
@@ -585,11 +585,11 @@ msgstr "승률:"
 #: gui/lobby/ProfilePage/ProfilePage.js:86
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr "%(nick)s참가자를 찾을 수 없습니다."
+msgstr "%(nick)s플레이어를 찾을 수 없습니다."
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):16
 msgid "Enter playername:"
-msgstr "참가자 이름 입력:"
+msgstr "플레이어 이름 입력:"
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):22
 msgid "View Profile"
@@ -678,13 +678,13 @@ msgstr "[font=\"sans-bold-16\"]Wildfire Games에서 처리한 개인 데이타 �
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:6
 msgid "[font=\"sans-bold-14\"]1. Player name[/font]"
-msgstr "[font=\"sans-bold-14\"]1. 참가자 이름[/font]"
+msgstr "[font=\"sans-bold-14\"]1. 플레이어 이름[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:7
 msgid ""
 "The player is identified by a name that the player chooses at the time of "
 "registration."
-msgstr "참가자는 등록 당시 참가자가 선택한 이름으로 식별됩니다."
+msgstr "플레이어는 등록 당시 플레이어가 선택한 이름으로 식별됩니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:8
 msgid ""
@@ -692,7 +692,7 @@ msgid ""
 "players, moderators and developers to identify players they met before, "
 "communicate about the game, coordinate matches and enables moderators to "
 "enforce the Terms of Use."
-msgstr "고유한 참가자 이름을 갖는 것은 순위을 얻고, 참가자들, 방장들 및 개발자들이 이전에 만났던 참가자들을 식별하고, 게임에 대해 소통하며, 시합을 조율하고, 방장이 사용 약관을 시행할 수 있도록 하기 위한 요건입니다."
+msgstr "고유한 플레이어 이름을 갖는 것은 순위을 얻고, 플레이어들, 방장들 및 개발자들이 이전에 만났던 플레이어들을 식별하고, 게임에 대해 소통하며, 시합을 조율하고, 방장이 사용 약관을 시행할 수 있도록 하기 위한 요건입니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:9
 msgid ""
@@ -701,7 +701,7 @@ msgid ""
 " information (such as the real name) was disclosed on the Lobby Chat, other "
 "services of Wildfire Games or elsewhere in the public, or when the IP "
 "address is used to bring criminal proceedings."
-msgstr "참가자 이름은 가명으로 사용됩니다. 참가자들의 신원(자연인)은 로비 채팅, Wildfire Games의 다른 서비스 또는 일반인의 다른 서비스에 개인 식별 가능 정보(본명 등)가 공개되었거나 IP 주소가 범죄 수속을 위해 사용되는 경우를 제외하고는 Wildfire Games에 알려지지 않았습니다."
+msgstr "플레이어 이름은 가명으로 사용됩니다. 플레이어들의 신원(자연인)은 로비 채팅, Wildfire Games의 다른 서비스 또는 일반인의 다른 서비스에 개인 식별 가능 정보(본명 등)가 공개되었거나 IP 주소가 범죄 수속을 위해 사용되는 경우를 제외하고는 Wildfire Games에 알려지지 않았습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
@@ -711,7 +711,7 @@ msgstr "[font=\"sans-bold-14\"]2. 비밀번호[/font]"
 msgid ""
 "A player is authenticated using a password that the player chooses at the "
 "time of registration."
-msgstr "참가자는 등록시 참가자가 선택한 비밀번호를 사용하여 인증됩니다."
+msgstr "플레이어는 등록시 플레이어가 선택한 비밀번호를 사용하여 인증됩니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:13
 msgid ""
@@ -729,14 +729,14 @@ msgid ""
 "When a player hosts a match in the Multiplayer Lobby, the IP address of that"
 " player is sent to every player who is online, so that other players can "
 "join that game."
-msgstr "참가자들이 멀티플레이어 로비에서 시합을 주최하면 해당 참가자의 IP 주소가 온라인 상태인 모든 참가자에게 전송되므로 다른 참가자들이 게임에 참가할 수 있습니다."
+msgstr "플레이어들이 멀티플레이어 로비에서 시합을 주최하면 해당 플레이어의 IP 주소가 온라인 상태인 모든 플레이어에게 전송되므로 다른 플레이어들이 게임에 참가할 수 있습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:17
 msgid ""
 "Wildfire Games stores players IP addresses and may infer publicly available "
 "geolocation and internet service provider data (for example \"geolite2\") "
 "from the IP address in order to:"
-msgstr "Wildfire Games는 참가자들의 IP 주소를 저장하고 IP 주소에서 공개적으로 사용 가능한 위치 정보 및 인터넷 서비스 공급자 데이타 (예: \"geolite2\")를 다음과 같이 유추할 수 있습니다:"
+msgstr "Wildfire Games는 플레이어들의 IP 주소를 저장하고 IP 주소에서 공개적으로 사용 가능한 위치 정보 및 인터넷 서비스 공급자 데이타 (예: \"geolite2\")를 다음과 같이 유추할 수 있습니다:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:18
 msgid ""
@@ -773,7 +773,7 @@ msgstr "[font=\"sans-bold-14\"]4. 온라인 참여[/font]"
 msgid ""
 "Which players are currently connected to the Multiplayer Lobby and which "
 "match they joined is shown to all online players."
-msgstr "어떤 참가자들이 현재 멀티플레이어 로비에 연결되어 있고 어떤 시합에 참가했는지 모든 온라인 참가자들에게 표시됩니다."
+msgstr "어떤 플레이어들이 현재 멀티플레이어 로비에 연결되어 있고 어떤 시합에 참가했는지 모든 온라인 플레이어들에게 표시됩니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
@@ -783,7 +783,7 @@ msgstr "[font=\"sans-bold-14\"]5. 대화 내용[/font]"
 msgid ""
 "The Multiplayer Lobby features a public chat room that enables players to "
 "discuss the game and organize multiplayer matches."
-msgstr "멀티플레이어 로비는 참가자들이 게임에 대해 토론하고 멀티플레이어 게임을 구성할 수 있는 공개 채팅방을 제공합니다."
+msgstr "멀티플레이어 로비는 플레이어들이 게임에 대해 토론하고 멀티플레이어 게임을 구성할 수 있는 공개 채팅방을 제공합니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:28
 msgid ""
@@ -799,7 +799,7 @@ msgstr " 1. 방장은 대화 내용을 화면에 표시하여 이용 약관을 �
 msgid ""
 " 2. Wildfire Games may address or resolve bug reports, balancing issues or "
 "feature proposals indicated by players in the chat room."
-msgstr " 2. Wildfire Games는 버그 보고서를 처리하거나 대화방의 참가자들이 지정한 문제점이나 기능 제안을 조정할 수 있습니다."
+msgstr " 2. Wildfire Games는 버그 보고서를 처리하거나 대화방의 플레이어들이 지정한 문제점이나 기능 제안을 조정할 수 있습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:31
 msgid ""
@@ -816,13 +816,13 @@ msgstr "[font=\"sans-bold-14\"]6. 시합 통계[/font]"
 msgid ""
 "Players can gain a rating on the Multiplayer Lobby that reflects their skill"
 " at the game."
-msgstr "참가자들은 멀티플레이어 로비에서 자신의 게임 실력을 반영한 순위를 받을 수 있습니다."
+msgstr "플레이어들은 멀티플레이어 로비에서 자신의 게임 실력을 반영한 순위를 받을 수 있습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:35
 msgid ""
 "The rating of all players is published by Wildfire Games and allows players "
 "to focus on competitive or balanced matchmaking if they wish to."
-msgstr "모든 참가자들의 순위는 Wildfire Games에서 게시하며 참가자들이 원하는 경우 경쟁 또는 균형잡힌 대전표 짜기에 집중할 수 있습니다."
+msgstr "모든 플레이어들의 순위는 Wildfire Games에서 게시하며 플레이어들이 원하는 경우 경쟁 또는 균형잡힌 대전표 짜기에 집중할 수 있습니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:36
 msgid ""
@@ -830,7 +830,7 @@ msgid ""
 "number of units trained, resources gathered and the winner of the match) to "
 "Wildfire Games, so that Wildfire Games can adapt the players ratings based "
 "on these statistics."
-msgstr "등급이 지정된 시합중에 참가자들은 게임 관련 데이터(훈련된 유닛 수, 수집된 자원 및 시합 우승자 등)를 Wildfire Games에 전송하여 이러한 통계를 기반으로 참가자의 순위를 조정할 수 있도록 합니다."
+msgstr "등급이 지정된 시합중에 플레이어들은 게임 관련 데이터(훈련된 유닛 수, 수집된 자원 및 시합 우승자 등)를 Wildfire Games에 전송하여 이러한 통계를 기반으로 플레이어의 순위를 조정할 수 있도록 합니다."
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:37
 msgid "Wildfire Games stores match statistics to:"
@@ -1081,7 +1081,7 @@ msgid ""
 " by Wildfire Games that allows players to set up online multiplayer matches,"
 " discuss the game in a public chat room and gain a rating that reflects "
 "their skill."
-msgstr "0 A.D. 떠오르는 제국 멀티플레이어 로비는 참가자들이 온라인 멀티플레이어 시합을 설정하고, 공개 채팅방에서 게임에 대해 토론하고 자신의 기술을 반영하는 등급을 얻을 수 있도록 Wildfire Games에서 제공하는 온라인 서비스입니다."
+msgstr "0 A.D. 떠오르는 제국 멀티플레이어 로비는 플레이어들이 온라인 멀티플레이어 시합을 설정하고, 공개 채팅방에서 게임에 대해 토론하고 자신의 기술을 반영하는 등급을 얻을 수 있도록 Wildfire Games에서 제공하는 온라인 서비스입니다."
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""

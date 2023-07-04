@@ -42,7 +42,7 @@ msgstr "확인"
 
 #: gui/gamesetup/Pages/AIConfigPage/AIDescription.js:30
 msgid "AI will be disabled for this player."
-msgstr "이 참가자에 대해 인공지능이 비활성화됩니다."
+msgstr "이 플레이어에 대해 인공지능이 비활성화됩니다."
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AIBehavior.js:29
 msgid "AI Behavior"
@@ -59,7 +59,7 @@ msgstr "없음"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:44
 msgid "AI Player"
-msgstr "인공지능 참가자"
+msgstr "인공지능 플레이어"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:142
 #, javascript-format
@@ -89,7 +89,7 @@ msgstr "지도"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:28
 msgctxt "Match settings tab name"
 msgid "Player"
-msgstr "참가자"
+msgstr "플레이어"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:40
 msgctxt "Match settings tab name"
@@ -103,7 +103,7 @@ msgstr "인공지능 환경설정: %(description)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:135
 msgid "Select player."
-msgstr "참가자를 선택합니다."
+msgstr "플레이어를 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:222
 #, javascript-format
@@ -116,7 +116,7 @@ msgstr "지정되지 않음"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:90
 msgid "Choose the civilization for this player."
-msgstr "이 참가자의 문명을 선택합니다."
+msgstr "이 플레이어의 문명을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:93
 msgctxt "civilization"
@@ -133,7 +133,7 @@ msgstr "색상을 고릅니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:47
 msgid "Select player's team."
-msgstr "참가자의 팀을 선택합니다."
+msgstr "플레이어의 팀을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerTeam.js:50
 msgctxt "team"
@@ -142,7 +142,7 @@ msgstr "없음"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):6
 msgid "Player Name"
-msgstr "참가자 이름"
+msgstr "플레이어 이름"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):10
 msgid "Color"
@@ -150,7 +150,7 @@ msgstr "색상"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):14
 msgid "Player Placement"
-msgstr "참가자 배치"
+msgstr "플레이어 배치"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/PlayersPanel.xml:(caption):18
 msgid "Civilization"
@@ -207,7 +207,7 @@ msgstr "마지막 생존자"
 msgid ""
 "Toggle whether the last remaining player or the last remaining set of allies"
 " wins."
-msgstr "마지막 남은 참가자 또는 마지막 남은 동맹군의 승리 여부를 전환합니다."
+msgstr "마지막 남은 플레이어 또는 마지막 남은 동맹군의 승리 여부를 전환합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/LockedTeams.js:30
 msgid "Teams Locked"
@@ -225,7 +225,7 @@ msgstr "유목민"
 msgid ""
 "In Nomad mode, players start with only few units and have to find a suitable"
 " place to build their city. Ceasefire is recommended."
-msgstr "유목민 모드에서 참가자들은 소수 유닛으로 시작하여 도시 건설에 적합한 장소를 찾아야 합니다. 휴전을 권장합니다."
+msgstr "유목민 모드에서 플레이어들은 소수 유닛으로 시작하여 도시 건설에 적합한 장소를 찾아야 합니다. 휴전을 권장합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Rating.js:27
 msgid "Rated Game"
@@ -281,7 +281,7 @@ msgstr "세계 인구"
 msgid ""
 "When checked the Population Cap will be evenly distributed over all living "
 "players."
-msgstr "이 항목을 선택하면 인구 한도가 살아있는 모든 참가자들에게 고르게 분배됩니다."
+msgstr "이 항목을 선택하면 인구 한도가 살아있는 모든 플레이어들에게 고르게 분배됩니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:54
 msgid "Biome"
@@ -391,11 +391,11 @@ msgstr "지도 유형을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:33
 msgid "Number of Players"
-msgstr "참가자들 인원"
+msgstr "플레이어들 인원"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PlayerCount.js:36
 msgid "Select number of players."
-msgstr "참가자들의 인원을 선택합니다."
+msgstr "플레이어들의 인원을 선택합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:52
 msgid "Population Cap"
@@ -408,14 +408,14 @@ msgstr "인구 제한을 선택하세요."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:58
 msgctxt "population limit"
 msgid "Per Player"
-msgstr "/ 참가자"
+msgstr "/ 플레이어"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/PopulationCap.js:61
 #, javascript-format
 msgid ""
 "Warning: There might be performance issues if all %(players)s players reach "
 "%(popCap)s population."
-msgstr "경고: %(players)s의 모든 참가자들이 %(popCap)s명의 인구에 도달하면 성능 문제가 발생할 수 있습니다."
+msgstr "경고: %(players)s의 모든 플레이어들이 %(popCap)s명의 인구에 도달하면 성능 문제가 발생할 수 있습니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:50
 msgid "Starting Resources"
@@ -433,7 +433,7 @@ msgstr "각 자원의 초기 양: %(resources)s."
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:59
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr "/ 참가자"
+msgstr "/ 플레이어"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:53
 msgid "Team Placement"
@@ -519,7 +519,7 @@ msgstr "유물 지속시간"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:41
 msgid "Minutes until the player has achieved Relic Victory."
-msgstr "참가자가 유물 승리를 획득 할 때까지의 시간."
+msgstr "플레이어가 유물 승리를 획득 할 때까지의 시간."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/RelicDuration.js:47
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:44
@@ -556,7 +556,7 @@ msgstr "불가사의 지속시간"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/WonderDuration.js:41
 msgid "Minutes until the player has achieved Wonder Victory"
-msgstr "참가자가 불가사의 승리를 달성할 때까지의 시간"
+msgstr "플레이어가 불가사의 승리를 달성할 때까지의 시간"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
@@ -579,7 +579,7 @@ msgstr "%(hotkey_civinfo)s/ %(hotkey_structree)s: 문명 개요 / 건축물 도�
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/LobbyButton.js:19
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr "대화 창에 멀티 참가자 로비를 표시합니다."
+msgstr "대화 창에 멀티 플레이어 로비를 표시합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:79
 msgid "I'm ready"
@@ -626,16 +626,16 @@ msgstr "현재 설정으로 새로운 게임을 시작합니다."
 msgid ""
 "Start a new game with the current settings (disabled until all players are "
 "ready)."
-msgstr "현재 설정으로 새로운 게임을 시작합니다 (모든 참가자들이 준비될 때까지 사용안함)."
+msgstr "현재 설정으로 새로운 게임을 시작합니다 (모든 플레이어들이 준비될 때까지 사용안함)."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatInputPanel.js:55
 #, javascript-format
 msgid "Press %(hotkey)s to autocomplete player names or settings."
-msgstr "%(hotkey)s 키를 누르면 참가자 이름이나 설정이 자동 완성합니다."
+msgstr "%(hotkey)s 키를 누르면 플레이어 이름이나 설정이 자동 완성합니다."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:27
 msgid "Unknown Player"
-msgstr "알 수 없는 참가자"
+msgstr "알 수 없는 플레이어"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:47
 #, javascript-format
@@ -838,7 +838,7 @@ msgstr "기존 게임에 참여합니다."
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):28
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):70
 msgid "Player Name:"
-msgstr "참가자 이름:"
+msgstr "플레이어 이름:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):38
 msgid "Server Hostname or IP:"

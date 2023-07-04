@@ -530,11 +530,11 @@ msgstr "당신은 지금 공격할 수 있습니다!"
 #, javascript-format
 msgid "%(lastPlayer)s has won (last player alive)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (last players alive)."
-msgstr[0] "%(players)s님과 %(lastPlayer)s님이 승리했습니다 (마지막 참가자들 생존)."
+msgstr[0] "%(players)s님과 %(lastPlayer)s님이 승리했습니다 (마지막 플레이어들 생존)."
 
 #: simulation/components/EndGameManager.js:177
 msgid "Last remaining player wins."
-msgstr "마지막으로 남은 참가자가 승리 합니다."
+msgstr "마지막으로 남은 플레이어가 승리 합니다."
 
 #: simulation/components/EntityLimits.js:195
 #, javascript-format
@@ -658,7 +658,7 @@ msgstr "소형"
 msgid ""
 "Small maps are suitable for 1v1 matches, as players can reach the enemy "
 "quickly while still having some room to expand."
-msgstr "소형 지도는 1대1 시합에 적합합니다. 참가자들이 확장할 공간이 있는 상태에서 신속하게 적군에게 접근할 수 있습니다."
+msgstr "소형 지도는 1대1 시합에 적합합니다. 플레이어들이 확장할 공간이 있는 상태에서 신속하게 적군에게 접근할 수 있습니다."
 
 #: simulation/data/settings/map_sizes.jsonData[2].Name
 msgid "Normal"
@@ -668,13 +668,13 @@ msgstr "표준"
 msgid ""
 "This map size provides plenty of space for two players, but even eight "
 "players fit."
-msgstr "이 지도의 크기는 2명의 참가자들을 위한 충분한 공간을 제공하지만, 8명의 참가자들도 적합합니다."
+msgstr "이 지도의 크기는 2명의 플레이어들을 위한 충분한 공간을 제공하지만, 8명의 플레이어들도 적합합니다."
 
 #: simulation/data/settings/map_sizes.jsonData[3].Tooltip
 msgid ""
 "This is the ideal mapsize for 4 to 8 players, because there is plenty of "
 "space to expand while the neighbors are quickly reachable."
-msgstr "4~8명의 참가자들이 사용할 수 있는 이상적인 지도입니다. 이웃이 빠르게 접근하는 동안, 확장 가능한 공간이 충분하기 때문입니다."
+msgstr "4~8명의 플레이어들이 사용할 수 있는 이상적인 지도입니다. 이웃이 빠르게 접근하는 동안, 확장 가능한 공간이 충분하기 때문입니다."
 
 #: simulation/data/settings/map_sizes.jsonData[4].Name
 msgid "Large"
@@ -707,35 +707,35 @@ msgstr "대지의 여신"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
-msgstr "참가자 1"
+msgstr "플레이어 1"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[2].Name
 msgid "Player 2"
-msgstr "참가자 2"
+msgstr "플레이어 2"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[3].Name
 msgid "Player 3"
-msgstr "참가자 3"
+msgstr "플레이어 3"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[4].Name
 msgid "Player 4"
-msgstr "참가자 4"
+msgstr "플레이어 4"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[5].Name
 msgid "Player 5"
-msgstr "참가자 5"
+msgstr "플레이어 5"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[6].Name
 msgid "Player 6"
-msgstr "참가자 6"
+msgstr "플레이어 6"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[7].Name
 msgid "Player 7"
-msgstr "참가자 7"
+msgstr "플레이어 7"
 
 #: simulation/data/settings/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
-msgstr "참가자 8"
+msgstr "플레이어 8"
 
 #: simulation/data/settings/starting_resources.jsonData[0].Title
 msgctxt "startingResources"
