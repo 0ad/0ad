@@ -1478,6 +1478,8 @@ function setup_tests()
 		-- Enables console for the TEST project on Windows
 		linkoptions { "/SUBSYSTEM:CONSOLE" }
 
+		links { "delayimp" }
+
 		project_add_manifest()
 
 	elseif os.istarget("linux") or os.istarget("bsd") then
