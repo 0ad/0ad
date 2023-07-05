@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -209,7 +209,7 @@ std::wstring FileDescription(const VfsFile& file)
 	wcsftime(timestamp, ARRAY_SIZE(timestamp), L"%a %b %d %H:%M:%S %Y", localtime(&mtime));
 
 	wchar_t buf[200];
-	swprintf_s(buf, ARRAY_SIZE(buf), L"(%c; %6lu; %ls) %ls", file.Loader()->LocationCode(), (unsigned long)file.Size(), timestamp, file.Name().string().c_str());
+	swprintf_s(buf, ARRAY_SIZE(buf), L"(%lc; %6lu; %ls) %ls", file.Loader()->LocationCode(), (unsigned long)file.Size(), timestamp, file.Name().string().c_str());
 	return buf;
 }
 
