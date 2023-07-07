@@ -22,7 +22,6 @@
 #include "graphics/MapIO.h"
 #include "graphics/Patch.h"
 #include "graphics/Terrain.h"
-#include "lib/external_libraries/libsdl.h"
 #include "lib/status.h"
 #include "lib/timer.h"
 #include "lib/file/vfs/vfs_path.h"
@@ -33,10 +32,11 @@
 #include "ps/TaskManager.h"
 #include "ps/scripting/JSInterface_VFS.h"
 #include "scriptinterface/FunctionWrapper.h"
+#include "scriptinterface/JSON.h"
+#include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptConversions.h"
 #include "scriptinterface/ScriptInterface.h"
-#include "scriptinterface/JSON.h"
 #include "simulation2/helpers/MapEdgeTiles.h"
 
 #include <string>

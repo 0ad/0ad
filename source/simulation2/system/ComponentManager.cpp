@@ -25,6 +25,7 @@
 #include "ps/Profile.h"
 #include "ps/scripting/JSInterface_VFS.h"
 #include "scriptinterface/FunctionWrapper.h"
+#include "scriptinterface/Object.h"
 #include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/MessageTypes.h"
 #include "simulation2/system/DynamicSubscription.h"

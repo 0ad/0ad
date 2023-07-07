@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,20 +19,6 @@
 
 #include "Simulation2.h"
 
-#include "scriptinterface/FunctionWrapper.h"
-#include "scriptinterface/ScriptContext.h"
-#include "scriptinterface/ScriptInterface.h"
-#include "scriptinterface/JSON.h"
-#include "scriptinterface/StructuredClone.h"
-
-#include "simulation2/MessageTypes.h"
-#include "simulation2/system/ComponentManager.h"
-#include "simulation2/system/ParamNode.h"
-#include "simulation2/system/SimContext.h"
-#include "simulation2/components/ICmpAIManager.h"
-#include "simulation2/components/ICmpCommandQueue.h"
-#include "simulation2/components/ICmpTemplateManager.h"
-
 #include "graphics/MapReader.h"
 #include "graphics/Terrain.h"
 #include "lib/timer.h"
@@ -46,6 +32,19 @@
 #include "ps/Pyrogenesis.h"
 #include "ps/Util.h"
 #include "ps/XML/Xeromyces.h"
+#include "scriptinterface/FunctionWrapper.h"
+#include "scriptinterface/JSON.h"
+#include "scriptinterface/Object.h"
+#include "scriptinterface/ScriptContext.h"
+#include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/StructuredClone.h"
+#include "simulation2/MessageTypes.h"
+#include "simulation2/system/ComponentManager.h"
+#include "simulation2/system/ParamNode.h"
+#include "simulation2/system/SimContext.h"
+#include "simulation2/components/ICmpAIManager.h"
+#include "simulation2/components/ICmpCommandQueue.h"
+#include "simulation2/components/ICmpTemplateManager.h"
 
 #include <fstream>
 #include <iomanip>

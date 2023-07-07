@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@
 #include "ps/VideoMode.h"
 #include "ps/XML/Xeromyces.h"
 #include "scriptinterface/FunctionWrapper.h"
+#include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptContext.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/StructuredClone.h"
