@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,6 +30,7 @@
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
 #include "ps/CLogger.h"
+#include "ps/containers/Span.h"
 #include "ps/CStrInternStatic.h"
 #include "ps/Profile.h"
 #include "renderer/MikktspaceWrap.h"
@@ -341,8 +342,7 @@ struct SMRMaterialBucketKeyHash
 struct SMRTechBucket
 {
 	CShaderTechniquePtr tech;
-	CModel** models;
-	size_t numModels;
+	PS::span<CModel*> models;
 
 	// Model list is stored as pointers, not as a std::vector,
 	// so that sorting lists of this struct is fast
@@ -517,7 +517,7 @@ void ShaderModelRenderer::Render(
 				std::sort(it->second.begin(), it->second.end(), SMRBatchModel());
 
 				// Add a tech bucket pointing at this model list
-				SMRTechBucket techBucket = { tech, &it->second[0], it->second.size() };
+				SMRTechBucket techBucket{tech, it->second};
 				techBuckets.push_back(techBucket);
 			}
 		}
@@ -561,7 +561,8 @@ void ShaderModelRenderer::Render(
 				if (techIdx != currentTechIdx)
 				{
 					// Start of a new run - push the old run into a new tech bucket
-					SMRTechBucket techBucket = { sortByDistTechs[currentTechIdx], &sortByDistModels[start], end - start };
+					SMRTechBucket techBucket{sortByDistTechs[currentTechIdx],
+						{sortByDistModels.data() + start, end - start}};
 					techBuckets.push_back(techBucket);
 					start = end;
 					currentTechIdx = techIdx;
@@ -569,7 +570,8 @@ void ShaderModelRenderer::Render(
 			}
 
 			// Add the tech bucket for the final run
-			SMRTechBucket techBucket = { sortByDistTechs[currentTechIdx], &sortByDistModels[start], sortByDistItems.size() - start };
+			SMRTechBucket techBucket{sortByDistTechs[currentTechIdx],
+				{sortByDistModels.data() + start, sortByDistItems.size() - start}};
 			techBuckets.push_back(techBucket);
 		}
 	}
@@ -639,12 +641,8 @@ void ShaderModelRenderer::Render(
 
 				for (size_t idx = idxTechStart; idx < idxTechEnd; ++idx)
 				{
-					CModel** models = techBuckets[idx].models;
-					size_t numModels = techBuckets[idx].numModels;
-					for (size_t i = 0; i < numModels; ++i)
+					for (CModel* model : techBuckets[idx].models)
 					{
-						CModel* model = models[i];
-
 						if (flags && !(model->GetFlags() & flags))
 							continue;
 
