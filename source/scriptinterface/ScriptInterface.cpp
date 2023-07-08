@@ -17,18 +17,19 @@
 
 #include "precompiled.h"
 
-#include "FunctionWrapper.h"
-#include "ScriptContext.h"
-#include "ScriptExtraHeaders.h"
 #include "ScriptInterface.h"
-#include "ScriptStats.h"
-#include "StructuredClone.h"
 
 #include "lib/debug.h"
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
+#include "scriptinterface/FunctionWrapper.h"
+#include "scriptinterface/Object.h"
+#include "scriptinterface/ScriptContext.h"
+#include "scriptinterface/ScriptExtraHeaders.h"
+#include "scriptinterface/ScriptStats.h"
+#include "scriptinterface/StructuredClone.h"
 
 #include <map>
 #include <string>

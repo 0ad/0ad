@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,12 +19,12 @@
 
 #include "ICmpAIManager.h"
 
-#include "simulation2/system/InterfaceScripted.h"
-#include "scriptinterface/ScriptExtraHeaders.h"
-#include "scriptinterface/JSON.h"
-
 #include "lib/file/vfs/vfs_util.h"
 #include "ps/Filesystem.h"
+#include "simulation2/system/InterfaceScripted.h"
+#include "scriptinterface/JSON.h"
+#include "scriptinterface/Object.h"
+#include "scriptinterface/ScriptExtraHeaders.h"
 
 #include <boost/filesystem.hpp>
 

@@ -24,6 +24,7 @@
 #include "gui/ObjectBases/IGUIObject.h"
 #include "ps/CLogger.h"
 #include "scriptinterface/FunctionWrapper.h"
+#include "scriptinterface/Object.h"
 #include "scriptinterface/ScriptExtraHeaders.h"
 #include "scriptinterface/ScriptRequest.h"
 

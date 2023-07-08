@@ -18,7 +18,6 @@
 #ifndef INCLUDED_FUNCTIONWRAPPER
 #define INCLUDED_FUNCTIONWRAPPER
 
-#include "Object.h"
 #include "ScriptConversions.h"
 #include "ScriptExceptions.h"
 #include "ScriptRequest.h"
@@ -36,7 +35,8 @@ class ScriptInterface;
  * and they are default-constructible (TODO: that can probably changed).
  * (This could be a namespace, but I like being able to specify public/private).
  */
-class ScriptFunction {
+class ScriptFunction
+{
 private:
 	ScriptFunction() = delete;
 	ScriptFunction(const ScriptFunction&) = delete;
