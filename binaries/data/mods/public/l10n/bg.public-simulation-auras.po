@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-03-06 08:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: Hellioob <stefan7202@abv.bg>, 2022\n"
+"Last-Translator: Hellioob <stefan7202@abv.bg>, 2022-2023\n"
 "Language-Team: Bulgarian (http://app.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,7 +44,7 @@ msgstr ""
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraName
 #: simulation/data/auras/structures/corral_garrison_small.jsonauraName
 msgid "Ranching and Corralling"
-msgstr ""
+msgstr "Животновъдство и Добитък"
 
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +2 food."
@@ -60,7 +60,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraName
 msgid "Farmland"
-msgstr ""
+msgstr "Земеделска земя"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -150,7 +150,7 @@ msgstr "Защитна стена"
 msgid ""
 "+20% maximum population limit (requires the “Glorious Expansion” "
 "technology)."
-msgstr ""
+msgstr "+20% максимално население (изисква технологията „Славно разрастване“)"
 
 #: simulation/data/auras/structures/wonder_population_cap.jsonauraName
 msgid "Glorious Expansion"
@@ -158,7 +158,7 @@ msgstr "Славно разрастване"
 
 #: simulation/data/auras/structures/xp_trickle.jsonauraDescription
 msgid "Units gain experience while garrisoned inside the building."
-msgstr ""
+msgstr "Единиците трупат опит докато са на гарнизон в постройки."
 
 #: simulation/data/auras/structures/xp_trickle.jsonauraName
 msgid "Rigorous Training"
@@ -166,15 +166,15 @@ msgstr "Усилена тренировка"
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraDescription
 msgid "Civic center technologies −50% research time and −30% cost."
-msgstr ""
+msgstr "Проучванията в селищния център се извършват 50% по-бързо и струват 30% по-малко."
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Democracy"
-msgstr ""
+msgstr "Демокрация"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
-msgstr ""
+msgstr "Стойността за обучаване на лечители е намалена на 20%"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraName
 msgid "Druids"
@@ -182,31 +182,31 @@ msgstr "Друиди"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraDescription
 msgid "Mercenaries −50% train time."
-msgstr ""
+msgstr "-50% време за обучение за наемници"
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Mercenary Transports"
-msgstr ""
+msgstr "Транспорт на наемници"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Forges −15% technology resource costs and research time."
-msgstr ""
+msgstr "Проучванията в ковачницата изразходват 15% по-малко ресурси и време."
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraName
 msgid "Products from Gaul"
-msgstr ""
+msgstr "Продукти от Гали"
 
 #: simulation/data/auras/teambonuses/han_player_teambonus.jsonauraDescription
 msgid "Allies +20% international trade bonus."
-msgstr ""
+msgstr "Съюзниците получават 20% бонус към международната търговия."
 
 #: simulation/data/auras/teambonuses/han_player_teambonus.jsonauraName
 msgid "Silk Road"
-msgstr ""
+msgstr "Пътя на коприната"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Citizen Javelineers −10% resource costs."
-msgstr ""
+msgstr "-10% цена за граждански копиенохвъргач."
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraName
 msgid "Saripeko"
@@ -214,7 +214,7 @@ msgstr "Сарипеко"
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraDescription
 msgid "Elephants −20% resource costs and training time."
-msgstr ""
+msgstr "−20% време и ресурси за обучаване на Слонове."
 
 #: simulation/data/auras/teambonuses/kush_player_teambonus.jsonauraName
 msgid "Elephant Suppliers"
@@ -222,17 +222,17 @@ msgstr "Доставчици на слонове"
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraDescription
 msgid "Siege Weapons and Arsenals −25% resource costs and build time."
-msgstr ""
+msgstr "−25% цена и време за строеж на обсадни оръжи и арсенали."
 
 #: simulation/data/auras/teambonuses/mace_player_teambonus.jsonauraName
 msgid "Mechanical Innovation"
-msgstr ""
+msgstr "Иновационни обсадни оръжия"
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraDescription
 msgid ""
 "Temples −50% resource costs and building time; Temple technologies −50% "
 "resource costs and research time."
-msgstr ""
+msgstr "Времето за проучване и цената на храмовете и технологиите в тях се намаляват с 50%."
 
 #: simulation/data/auras/teambonuses/maur_player_teambonus.jsonauraName
 msgid "Ashoka's Religious Support"
@@ -240,15 +240,15 @@ msgstr "Религиозната подкрепа на Ашока"
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraDescription
 msgid "Barracks and Stables −20% wood and stone cost and build time."
-msgstr ""
+msgstr "Бараки и Конюшни −20% по-малко дървесина, камъни и време за строеж."
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "Training Regimes"
-msgstr ""
+msgstr "Режими на обучение"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "+1.0 food trickle rate."
-msgstr ""
+msgstr "Периодично получаване на храна с +1.0"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraName
 msgid "Breadbasket of the Mediterranean"
@@ -256,7 +256,7 @@ msgstr "Житницата на Средиземноморието"
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraDescription
 msgid "Citizen Infantry −10% training time."
-msgstr ""
+msgstr "−10% време за обучение за Граждани-пехотинци."
 
 #: simulation/data/auras/teambonuses/rome_player_teambonus.jsonauraName
 msgid "Conscription"
