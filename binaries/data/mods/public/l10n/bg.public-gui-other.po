@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-04-28 09:24+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Любомир Василев, 2021\n"
+"Last-Translator: Любомир Василев, 2021,2023\n"
 "Language-Team: Bulgarian (http://app.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4332,7 +4332,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][1].label._string
 msgctxt "Option for the meshes' level of detail."
 msgid "Medium"
-msgstr "Среден"
+msgstr "Средно"
 
 #: gui/options/options.json[2].options[6].list[0][1].label.tooltip
 msgid "Average quality and average performance."
@@ -4372,7 +4372,7 @@ msgstr "Ниско"
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1].label._string
 msgctxt "Option for the shadow quality."
 msgid "Medium"
-msgstr "Среден"
+msgstr "Средно"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][11].label
 msgid "Filtering"
@@ -4460,7 +4460,7 @@ msgstr "Ниско"
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1].label._string
 msgctxt "Option for the texture quality."
 msgid "Medium"
-msgstr "Среден"
+msgstr "Средно"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19].list[0][1].label.tooltip
 msgid "Medium"
@@ -4622,11 +4622,11 @@ msgstr "Лесно"
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3].label._string
 msgctxt "Option for the AI difficulty."
 msgid "Medium"
-msgstr "Среден"
+msgstr "Средно"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].label
 msgid "Default AI behavior"
-msgstr ""
+msgstr "Поведение на ИИ по подразбиране"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].label._string
 msgctxt "Option for the AI difficulty."
@@ -4660,7 +4660,7 @@ msgstr "Много трудно"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].label
 msgid "Assign players"
-msgstr ""
+msgstr "Назначаване на играчите"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[0].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[0].label
@@ -4669,7 +4669,7 @@ msgstr "Всички"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[0].tooltip
 msgid "Players joining the match will be assigned if there is a free slot."
-msgstr ""
+msgstr "Играчите, които се присъединяват към мача, ще бъдат назначени, ако има свободно място."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[1].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[1].label
@@ -4698,12 +4698,12 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].label
 msgid "TLS encryption"
-msgstr ""
+msgstr "Шифроване чрез TLS"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr "Защитаване на процеса на вписване и всички други данни обменяни с чакалнята чрез криптиране TLS."
+msgstr "Защитаване на процеса на вписване и всички други данни обменяни с чакалнята чрез шифроване чрез TLS."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[1].label
 msgid "Chat backlog"
@@ -4715,7 +4715,7 @@ msgstr "Брой запазени съобщения, които да бъдат
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].label
 msgid "Game rating column"
-msgstr ""
+msgstr "Колона с ранговете"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[2].tooltip
 msgid ""
@@ -4725,7 +4725,7 @@ msgstr "Показване на приблизителен ранг на уча�
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].label
 msgid "Network warnings"
-msgstr ""
+msgstr "Мрежови предупреждения"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
@@ -4733,7 +4733,7 @@ msgstr "Показва кой играч има лоша връзка в мре�
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].label
 msgid "Late observer joins"
-msgstr ""
+msgstr "Закъснели наблюдатели"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].tooltip
 msgid ""
@@ -4743,7 +4743,7 @@ msgstr "Позволяване на всички или само на прият
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[5].label
 msgid "Observer limit"
-msgstr ""
+msgstr "Ограничение на наблюдателите"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[5].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
@@ -4775,11 +4775,11 @@ msgstr "Тези настройки са само за мрежовите игр
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].label
 msgid "Game Session"
-msgstr ""
+msgstr "Игрална сесия"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[0].label
 msgid "Wounded unit health"
-msgstr ""
+msgstr "Здраве на ранените единици"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[0].tooltip
 msgid ""
@@ -4789,23 +4789,23 @@ msgstr "Клавишната комбинация за ранените един
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].label
 msgid "Aura range visualization"
-msgstr ""
+msgstr "Показване на обхвата на аурите"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[10].tooltip
 msgid ""
 "Display the range of auras of selected units and structures. (It can also be"
 " toggled with the hotkey during a game)."
-msgstr ""
+msgstr "Показване на обхвата на аурите на избраните единици и сгради. (Това може да бъде превключено с клавишна комбинация и по време на игра.)"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].label
 msgid "Heal range visualization"
-msgstr ""
+msgstr "Показване на обхвата на лечение"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[11].tooltip
 msgid ""
 "Display the healing range of selected units. (It can also be toggled with "
 "the hotkey during a game)."
-msgstr ""
+msgstr "Показване на обхвата лечение на избраните единици. (Това може да бъде превключено с клавишна комбинация и по време на игра)"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[12].label
 msgid "Rank icon above status bar"
@@ -4825,12 +4825,12 @@ msgstr "Показване на лента за опита над всяка и�
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].label
 msgid "Detailed tooltips"
-msgstr ""
+msgstr "Подробни подсказки"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[14].tooltip
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing structures."
-msgstr ""
+msgstr "Показване на подробни подсказки при посочване на единиците в сградите за обучаване."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[15].label
 msgid "Sort resources and population tooltip"
@@ -6387,7 +6387,7 @@ msgstr ""
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
-msgstr ""
+msgstr "Единиците трупат опит докато са на гарнизон в постройки."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
