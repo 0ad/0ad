@@ -24,6 +24,7 @@
 #include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
 #include "ps/CLogger.h"
+#include "ps/containers/StaticVector.h"
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
 #include "ps/XML/Xeromyces.h"
@@ -39,6 +40,7 @@
 
 #include <algorithm>
 #include <map>
+#include <tuple>
 #include <unordered_map>
 
 namespace Renderer
@@ -630,7 +632,7 @@ class CShaderProgramGLSL final : public CShaderProgram
 public:
 	CShaderProgramGLSL(
 		CDevice* device, const CStr& name,
-		const VfsPath& path, const VfsPath& vertexFilePath, const VfsPath& fragmentFilePath,
+		const VfsPath& programPath, PS::span<const std::tuple<VfsPath, GLenum>> shaderStages,
 		const CShaderDefines& defines,
 		const std::map<CStrIntern, int>& vertexAttribs,
 		int streamflags) :
@@ -643,64 +645,59 @@ public:
 		std::sort(m_ActiveVertexAttributes.begin(), m_ActiveVertexAttributes.end());
 
 		m_Program = 0;
-		m_VertexShader = glCreateShader(GL_VERTEX_SHADER);
-		m_FragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-		m_FileDependencies = {path, vertexFilePath, fragmentFilePath};
-
-#if !CONFIG2_GLES
-		if (m_Device->GetCapabilities().debugLabels)
-		{
-			glObjectLabel(GL_SHADER, m_VertexShader, -1, vertexFilePath.string8().c_str());
-			glObjectLabel(GL_SHADER, m_FragmentShader, -1, fragmentFilePath.string8().c_str());
-		}
-#endif
-
-		std::vector<VfsPath> newFileDependencies = {path, vertexFilePath, fragmentFilePath};
-
-		CStr vertexCode;
-		if (!PreprocessShaderFile(false, defines, vertexFilePath, "STAGE_VERTEX", vertexCode, newFileDependencies))
-			return;
-		CStr fragmentCode;
-		if (!PreprocessShaderFile(false, defines, fragmentFilePath, "STAGE_FRAGMENT", fragmentCode, newFileDependencies))
-			return;
-
-		m_FileDependencies = std::move(newFileDependencies);
-
-		if (vertexCode.empty())
-		{
-			LOGERROR("Failed to preprocess vertex shader: '%s'", vertexFilePath.string8());
-			return;
-		}
-		if (fragmentCode.empty())
-		{
-			LOGERROR("Failed to preprocess fragment shader: '%s'", fragmentFilePath.string8());
-			return;
-		}
-
-#if CONFIG2_GLES
-		// Ugly hack to replace desktop GLSL 1.10/1.20 with GLSL ES 1.00,
-		// and also to set default float precision for fragment shaders
-		vertexCode.Replace("#version 110\n", "#version 100\nprecision highp float;\n");
-		vertexCode.Replace("#version 110\r\n", "#version 100\nprecision highp float;\n");
-		vertexCode.Replace("#version 120\n", "#version 100\nprecision highp float;\n");
-		vertexCode.Replace("#version 120\r\n", "#version 100\nprecision highp float;\n");
-		fragmentCode.Replace("#version 110\n", "#version 100\nprecision highp float;\n");
-		fragmentCode.Replace("#version 110\r\n", "#version 100\nprecision highp float;\n");
-		fragmentCode.Replace("#version 120\n", "#version 100\nprecision highp float;\n");
-		fragmentCode.Replace("#version 120\r\n", "#version 100\nprecision highp float;\n");
-#endif
+		m_FileDependencies = {programPath};
+		for (const auto& [path, type] : shaderStages)
+			m_FileDependencies.emplace_back(path);
 
 		// TODO: replace by scoped bind.
 		m_Device->GetActiveCommandContext()->SetGraphicsPipelineState(
 			MakeDefaultGraphicsPipelineStateDesc());
 
-		if (!CompileGLSL(m_VertexShader, vertexFilePath, vertexCode))
-			return;
+		std::vector<VfsPath> newFileDependencies = {programPath};
+		for (const auto& [path, type] : shaderStages)
+		{
+			GLuint shader = glCreateShader(type);
+			newFileDependencies.emplace_back(path);
+#if !CONFIG2_GLES
+			if (m_Device->GetCapabilities().debugLabels)
+				glObjectLabel(GL_SHADER, shader, -1, path.string8().c_str());
+#endif
+			m_ShaderStages.emplace_back(type, shader);
+			const char* stageDefine = "STAGE_UNDEFINED";
+			switch (type)
+			{
+			case GL_VERTEX_SHADER:
+				stageDefine = "STAGE_VERTEX";
+				break;
+			case GL_FRAGMENT_SHADER:
+				stageDefine = "STAGE_FRAGMENT";
+				break;
+			default:
+				break;
+			}
+			CStr source;
+			if (!PreprocessShaderFile(false, defines, path, stageDefine, source, newFileDependencies))
+				return;
+			if (source.empty())
+			{
+				LOGERROR("Failed to preprocess shader: '%s'", path.string8());
+				return;
+			}
+#if CONFIG2_GLES
+			// Ugly hack to replace desktop GLSL 1.10/1.20 with GLSL ES 1.00,
+			// and also to set default float precision for fragment shaders
+			source.Replace("#version 110\n", "#version 100\nprecision highp float;\n");
+			source.Replace("#version 110\r\n", "#version 100\nprecision highp float;\n");
+			source.Replace("#version 120\n", "#version 100\nprecision highp float;\n");
+			source.Replace("#version 120\r\n", "#version 100\nprecision highp float;\n");
+#endif
+			if (!CompileGLSL(shader, path, source))
+				return;
+		}
 
-		if (!CompileGLSL(m_FragmentShader, fragmentFilePath, fragmentCode))
-			return;
+		m_FileDependencies = std::move(newFileDependencies);
 
-		if (!Link(vertexFilePath, fragmentFilePath))
+		if (!Link(programPath))
 			return;
 	}
 
@@ -709,11 +706,11 @@ public:
 		if (m_Program)
 			glDeleteProgram(m_Program);
 
-		glDeleteShader(m_VertexShader);
-		glDeleteShader(m_FragmentShader);
+		for (ShaderStage& stage : m_ShaderStages)
+			glDeleteShader(stage.shader);
 	}
 
-	bool Link(const VfsPath& vertexFilePath, const VfsPath& fragmentFilePath)
+	bool Link(const VfsPath& path)
 	{
 		ENSURE(!m_Program);
 		m_Program = glCreateProgram();
@@ -725,10 +722,11 @@ public:
 		}
 #endif
 
-		glAttachShader(m_Program, m_VertexShader);
-		ogl_WarnIfError();
-		glAttachShader(m_Program, m_FragmentShader);
-		ogl_WarnIfError();
+		for (ShaderStage& stage : m_ShaderStages)
+		{
+			glAttachShader(m_Program, stage.shader);
+			ogl_WarnIfError();
+		}
 
 		// Set up the attribute bindings explicitly, since apparently drivers
 		// don't always pick the most efficient bindings automatically,
@@ -753,9 +751,9 @@ public:
 			glGetProgramInfoLog(m_Program, length, NULL, infolog);
 
 			if (ok)
-				LOGMESSAGE("Info when linking program '%s'+'%s':\n%s", vertexFilePath.string8(), fragmentFilePath.string8(), infolog);
+				LOGMESSAGE("Info when linking program '%s':\n%s", path.string8(), infolog);
 			else
-				LOGERROR("Failed to link program '%s'+'%s':\n%s", vertexFilePath.string8(), fragmentFilePath.string8(), infolog);
+				LOGERROR("Failed to link program '%s':\n%s", path.string8(), infolog);
 
 			delete[] infolog;
 		}
@@ -1126,6 +1124,12 @@ public:
 	}
 
 private:
+	struct ShaderStage
+	{
+		GLenum type;
+		GLuint shader;
+	};
+
 	CDevice* m_Device = nullptr;
 
 	CStr m_Name;
@@ -1136,7 +1140,8 @@ private:
 	std::vector<int> m_ActiveVertexAttributes;
 
 	GLuint m_Program;
-	GLuint m_VertexShader, m_FragmentShader;
+	// 5 = max(compute, vertex + tesselation (control + evaluation) + geometry + fragment).
+	PS::StaticVector<ShaderStage, 5> m_ShaderStages;
 
 	struct BindingSlot
 	{
@@ -1306,8 +1311,10 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(CDevice* device, const CS
 
 	if (isGLSL)
 	{
+		const std::array<std::tuple<VfsPath, GLenum>, 2> shaderStages{{
+			{vertexFile, GL_VERTEX_SHADER}, {fragmentFile, GL_FRAGMENT_SHADER}}};
 		return std::make_unique<CShaderProgramGLSL>(
-			device, name, xmlFilename, vertexFile, fragmentFile, defines,
+			device, name, xmlFilename, shaderStages, defines,
 			vertexAttribs, streamFlags);
 	}
 	else
