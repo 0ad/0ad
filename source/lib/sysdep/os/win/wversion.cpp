@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -24,19 +24,40 @@
 #include "lib/sysdep/os/win/wversion.h"
 
 #include "lib/sysdep/os/win/win.h"
-#include "lib/sysdep/os/win/winit.h"
 
 #include <sstream>
 
-WINIT_REGISTER_EARLY_INIT(wversion_Init);
-
-
-static wchar_t windowsVersionString[20];
-static size_t windowsVersion;	// see WVERSION_*
-
-
 const char* wversion_Family()
 {
+	size_t windowsVersion = 0;
+	// note: don't use GetVersion[Ex] because it gives the version of the
+	// emulated OS when running an app with compatibility shims enabled.
+	HKEY hKey;
+	if(RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", 0, KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS)
+	{
+		wchar_t windowsVersionString[32];
+		DWORD size = sizeof(windowsVersionString);
+		UNUSED2(RegQueryValueExW(hKey, L"CurrentVersion", 0, 0, reinterpret_cast<LPBYTE>(windowsVersionString), &size));
+
+		unsigned major = 0, minor = 0;
+		// ICC 11.1.082 generates incorrect code for the following:
+		// const int ret = swscanf_s(windowsVersionString, L"%u.%u", &major, &minor);
+		std::wstringstream ss(windowsVersionString);
+		ss >> major;
+		wchar_t dot;
+		ss >> dot;
+		ENSURE(dot == '.');
+		ss >> minor;
+
+		ENSURE(4 <= major && major <= 0xFF);
+		ENSURE(minor <= 0xFF);
+		windowsVersion = (major << 8) | minor;
+
+		RegCloseKey(hKey);
+	}
+	else
+		DEBUG_WARN_ERR(ERR::LOGIC);
+
 	ENSURE(windowsVersion != 0);
 	switch(windowsVersion)
 	{
@@ -59,50 +80,4 @@ const char* wversion_Family()
 	default:
 		return "Windows";
 	}
-}
-
-
-const wchar_t* wversion_String()
-{
-	ENSURE(windowsVersionString[0] != '\0');
-	return windowsVersionString;
-}
-
-size_t wversion_Number()
-{
-	ENSURE(windowsVersion != 0);
-	return windowsVersion;
-}
-
-
-static Status wversion_Init()
-{
-	// note: don't use GetVersion[Ex] because it gives the version of the
-	// emulated OS when running an app with compatibility shims enabled.
-	HKEY hKey;
-	if(RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion", 0, KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS)
-	{
-		DWORD size = sizeof(windowsVersionString);
-		(void)RegQueryValueExW(hKey, L"CurrentVersion", 0, 0, (LPBYTE)windowsVersionString, &size);
-
-		unsigned major = 0, minor = 0;
-		// ICC 11.1.082 generates incorrect code for the following:
-		// const int ret = swscanf_s(windowsVersionString, L"%u.%u", &major, &minor);
-		std::wstringstream ss(windowsVersionString);
-		ss >> major;
-		wchar_t dot;
-		ss >> dot;
-		ENSURE(dot == '.');
-		ss >> minor;
-
-		ENSURE(4 <= major && major <= 0xFF);
-		ENSURE(minor <= 0xFF);
-		windowsVersion = (major << 8) | minor;
-
-		RegCloseKey(hKey);
-	}
-	else
-		DEBUG_WARN_ERR(ERR::LOGIC);
-
-	return INFO::OK;
 }
