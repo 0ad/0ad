@@ -1410,16 +1410,22 @@ function setup_tests()
 		runner = "XmlPrinter"
 	end
 
-	local includefiles = {
+	local include_files = {
 		-- Precompiled headers - the header is added to all generated .cpp files
 		-- note that the header isn't actually precompiled here, only #included
 		-- so that the build stage can use it as a precompiled header.
 		"precompiled.h",
-		-- This is required to build against SDL 2.0.4 on Windows.
-		"lib/external_libraries/libsdl.h",
 	}
+	local test_root_include_files = {
+		"precompiled.h",
+	}
+	if os.istarget("windows") then
+		-- This is required to build against SDL 2.0.12 (starting from 2.0.4) on Windows.
+		-- Refs #3138
+		table.insert(test_root_include_files, "lib/external_libraries/libsdl.h")
+	end
 
-	cxxtest.init(source_root, true, runner, includefiles)
+	cxxtest.init(source_root, true, runner, include_files, test_root_include_files)
 
 	local target_type = get_main_project_target_type()
 	project_create("test", target_type)
