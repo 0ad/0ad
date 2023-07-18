@@ -31,21 +31,26 @@ int GLAD_GL_VERSION_1_4 = 0;
 int GLAD_GL_VERSION_1_5 = 0;
 int GLAD_GL_VERSION_2_0 = 0;
 int GLAD_GL_VERSION_2_1 = 0;
+int GLAD_GL_ARB_compute_shader = 0;
 int GLAD_GL_ARB_draw_buffers = 0;
 int GLAD_GL_ARB_draw_instanced = 0;
 int GLAD_GL_ARB_fragment_program = 0;
 int GLAD_GL_ARB_fragment_shader = 0;
 int GLAD_GL_ARB_framebuffer_object = 0;
+int GLAD_GL_ARB_framebuffer_sRGB = 0;
 int GLAD_GL_ARB_geometry_shader4 = 0;
 int GLAD_GL_ARB_instanced_arrays = 0;
 int GLAD_GL_ARB_invalidate_subdata = 0;
 int GLAD_GL_ARB_map_buffer_range = 0;
 int GLAD_GL_ARB_multitexture = 0;
 int GLAD_GL_ARB_occlusion_query = 0;
+int GLAD_GL_ARB_shader_image_load_store = 0;
 int GLAD_GL_ARB_shader_objects = 0;
 int GLAD_GL_ARB_shading_language_100 = 0;
 int GLAD_GL_ARB_sync = 0;
 int GLAD_GL_ARB_texture_compression = 0;
+int GLAD_GL_ARB_texture_compression_bptc = 0;
+int GLAD_GL_ARB_texture_float = 0;
 int GLAD_GL_ARB_texture_multisample = 0;
 int GLAD_GL_ARB_texture_rectangle = 0;
 int GLAD_GL_ARB_timer_query = 0;
@@ -65,6 +70,7 @@ int GLAD_GL_EXT_texture_array = 0;
 int GLAD_GL_EXT_texture_compression_s3tc = 0;
 int GLAD_GL_EXT_texture_filter_anisotropic = 0;
 int GLAD_GL_EXT_texture_lod_bias = 0;
+int GLAD_GL_EXT_texture_sRGB = 0;
 int GLAD_GL_EXT_transform_feedback = 0;
 int GLAD_GL_KHR_debug = 0;
 
@@ -92,6 +98,7 @@ PFNGLBINDBUFFERRANGEEXTPROC glad_glBindBufferRangeEXT = NULL;
 PFNGLBINDFRAGDATALOCATIONEXTPROC glad_glBindFragDataLocationEXT = NULL;
 PFNGLBINDFRAMEBUFFERPROC glad_glBindFramebuffer = NULL;
 PFNGLBINDFRAMEBUFFEREXTPROC glad_glBindFramebufferEXT = NULL;
+PFNGLBINDIMAGETEXTUREPROC glad_glBindImageTexture = NULL;
 PFNGLBINDPROGRAMARBPROC glad_glBindProgramARB = NULL;
 PFNGLBINDRENDERBUFFERPROC glad_glBindRenderbuffer = NULL;
 PFNGLBINDRENDERBUFFEREXTPROC glad_glBindRenderbufferEXT = NULL;
@@ -211,6 +218,8 @@ PFNGLDISABLEPROC glad_glDisable = NULL;
 PFNGLDISABLECLIENTSTATEPROC glad_glDisableClientState = NULL;
 PFNGLDISABLEVERTEXATTRIBARRAYPROC glad_glDisableVertexAttribArray = NULL;
 PFNGLDISABLEVERTEXATTRIBARRAYARBPROC glad_glDisableVertexAttribArrayARB = NULL;
+PFNGLDISPATCHCOMPUTEPROC glad_glDispatchCompute = NULL;
+PFNGLDISPATCHCOMPUTEINDIRECTPROC glad_glDispatchComputeIndirect = NULL;
 PFNGLDRAWARRAYSPROC glad_glDrawArrays = NULL;
 PFNGLDRAWARRAYSINSTANCEDARBPROC glad_glDrawArraysInstancedARB = NULL;
 PFNGLDRAWBUFFERPROC glad_glDrawBuffer = NULL;
@@ -457,6 +466,7 @@ PFNGLMATERIALFVPROC glad_glMaterialfv = NULL;
 PFNGLMATERIALIPROC glad_glMateriali = NULL;
 PFNGLMATERIALIVPROC glad_glMaterialiv = NULL;
 PFNGLMATRIXMODEPROC glad_glMatrixMode = NULL;
+PFNGLMEMORYBARRIERPROC glad_glMemoryBarrier = NULL;
 PFNGLMULTMATRIXDPROC glad_glMultMatrixd = NULL;
 PFNGLMULTMATRIXFPROC glad_glMultMatrixf = NULL;
 PFNGLMULTTRANSPOSEMATRIXDPROC glad_glMultTransposeMatrixd = NULL;
@@ -1486,6 +1496,11 @@ static void glad_gl_load_GL_VERSION_2_1( GLADuserptrloadfunc load, void* userptr
     glad_glUniformMatrix4x2fv = (PFNGLUNIFORMMATRIX4X2FVPROC) load(userptr, "glUniformMatrix4x2fv");
     glad_glUniformMatrix4x3fv = (PFNGLUNIFORMMATRIX4X3FVPROC) load(userptr, "glUniformMatrix4x3fv");
 }
+static void glad_gl_load_GL_ARB_compute_shader( GLADuserptrloadfunc load, void* userptr) {
+    if(!GLAD_GL_ARB_compute_shader) return;
+    glad_glDispatchCompute = (PFNGLDISPATCHCOMPUTEPROC) load(userptr, "glDispatchCompute");
+    glad_glDispatchComputeIndirect = (PFNGLDISPATCHCOMPUTEINDIRECTPROC) load(userptr, "glDispatchComputeIndirect");
+}
 static void glad_gl_load_GL_ARB_draw_buffers( GLADuserptrloadfunc load, void* userptr) {
     if(!GLAD_GL_ARB_draw_buffers) return;
     glad_glDrawBuffersARB = (PFNGLDRAWBUFFERSARBPROC) load(userptr, "glDrawBuffersARB");
@@ -1612,6 +1627,11 @@ static void glad_gl_load_GL_ARB_occlusion_query( GLADuserptrloadfunc load, void*
     glad_glGetQueryObjectuivARB = (PFNGLGETQUERYOBJECTUIVARBPROC) load(userptr, "glGetQueryObjectuivARB");
     glad_glGetQueryivARB = (PFNGLGETQUERYIVARBPROC) load(userptr, "glGetQueryivARB");
     glad_glIsQueryARB = (PFNGLISQUERYARBPROC) load(userptr, "glIsQueryARB");
+}
+static void glad_gl_load_GL_ARB_shader_image_load_store( GLADuserptrloadfunc load, void* userptr) {
+    if(!GLAD_GL_ARB_shader_image_load_store) return;
+    glad_glBindImageTexture = (PFNGLBINDIMAGETEXTUREPROC) load(userptr, "glBindImageTexture");
+    glad_glMemoryBarrier = (PFNGLMEMORYBARRIERPROC) load(userptr, "glMemoryBarrier");
 }
 static void glad_gl_load_GL_ARB_shader_objects( GLADuserptrloadfunc load, void* userptr) {
     if(!GLAD_GL_ARB_shader_objects) return;
@@ -2028,21 +2048,26 @@ static int glad_gl_find_extensions_gl( int version) {
     char **exts_i = NULL;
     if (!glad_gl_get_extensions(version, &exts, &num_exts_i, &exts_i)) return 0;
 
+    GLAD_GL_ARB_compute_shader = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_compute_shader");
     GLAD_GL_ARB_draw_buffers = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_draw_buffers");
     GLAD_GL_ARB_draw_instanced = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_draw_instanced");
     GLAD_GL_ARB_fragment_program = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_fragment_program");
     GLAD_GL_ARB_fragment_shader = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_fragment_shader");
     GLAD_GL_ARB_framebuffer_object = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_framebuffer_object");
+    GLAD_GL_ARB_framebuffer_sRGB = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_framebuffer_sRGB");
     GLAD_GL_ARB_geometry_shader4 = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_geometry_shader4");
     GLAD_GL_ARB_instanced_arrays = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_instanced_arrays");
     GLAD_GL_ARB_invalidate_subdata = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_invalidate_subdata");
     GLAD_GL_ARB_map_buffer_range = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_map_buffer_range");
     GLAD_GL_ARB_multitexture = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_multitexture");
     GLAD_GL_ARB_occlusion_query = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_occlusion_query");
+    GLAD_GL_ARB_shader_image_load_store = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_shader_image_load_store");
     GLAD_GL_ARB_shader_objects = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_shader_objects");
     GLAD_GL_ARB_shading_language_100 = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_shading_language_100");
     GLAD_GL_ARB_sync = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_sync");
     GLAD_GL_ARB_texture_compression = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_texture_compression");
+    GLAD_GL_ARB_texture_compression_bptc = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_texture_compression_bptc");
+    GLAD_GL_ARB_texture_float = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_texture_float");
     GLAD_GL_ARB_texture_multisample = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_texture_multisample");
     GLAD_GL_ARB_texture_rectangle = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_texture_rectangle");
     GLAD_GL_ARB_timer_query = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_ARB_timer_query");
@@ -2062,6 +2087,7 @@ static int glad_gl_find_extensions_gl( int version) {
     GLAD_GL_EXT_texture_compression_s3tc = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_texture_compression_s3tc");
     GLAD_GL_EXT_texture_filter_anisotropic = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_texture_filter_anisotropic");
     GLAD_GL_EXT_texture_lod_bias = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_texture_lod_bias");
+    GLAD_GL_EXT_texture_sRGB = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_texture_sRGB");
     GLAD_GL_EXT_transform_feedback = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_EXT_transform_feedback");
     GLAD_GL_KHR_debug = glad_gl_has_extension(version, exts, num_exts_i, exts_i, "GL_KHR_debug");
 
@@ -2124,6 +2150,7 @@ int gladLoadGLUserPtr( GLADuserptrloadfunc load, void *userptr) {
     glad_gl_load_GL_VERSION_2_1(load, userptr);
 
     if (!glad_gl_find_extensions_gl(version)) return 0;
+    glad_gl_load_GL_ARB_compute_shader(load, userptr);
     glad_gl_load_GL_ARB_draw_buffers(load, userptr);
     glad_gl_load_GL_ARB_draw_instanced(load, userptr);
     glad_gl_load_GL_ARB_fragment_program(load, userptr);
@@ -2134,6 +2161,7 @@ int gladLoadGLUserPtr( GLADuserptrloadfunc load, void *userptr) {
     glad_gl_load_GL_ARB_map_buffer_range(load, userptr);
     glad_gl_load_GL_ARB_multitexture(load, userptr);
     glad_gl_load_GL_ARB_occlusion_query(load, userptr);
+    glad_gl_load_GL_ARB_shader_image_load_store(load, userptr);
     glad_gl_load_GL_ARB_shader_objects(load, userptr);
     glad_gl_load_GL_ARB_sync(load, userptr);
     glad_gl_load_GL_ARB_texture_compression(load, userptr);
