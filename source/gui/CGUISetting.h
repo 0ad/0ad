@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -51,7 +51,9 @@ public:
 	virtual void ToJSVal(const ScriptRequest& rq, JS::MutableHandleValue value) = 0;
 
 protected:
-	IGUISetting(IGUISetting&& o);
+	IGUISetting(IGUISetting&& other);
+	IGUISetting& operator=(IGUISetting&& other) = delete;
+
 	virtual ~IGUISetting() = default;
 
 	virtual bool DoFromString(const CStrW& value) = 0;
@@ -67,12 +69,18 @@ protected:
 	/**
 	 * Return the name of the setting, from JS.
 	 */
-	virtual CStr GetName() const = 0;
+	const CStr& GetName() const
+	{
+		return m_Name;
+	}
 
 	/**
 	 * The object that stores this setting.
 	 */
-	IGUIObject& m_pObject;
+	IGUIObject& m_Object;
+
+private:
+	CStr m_Name;
 };
 
 /**
@@ -85,11 +93,12 @@ class CGUISimpleSetting : public IGUISetting
 {
 public:
 	template<typename... Args>
-	CGUISimpleSetting(IGUIObject* pObject, const CStr& Name, Args&&... args)
-		: IGUISetting(Name, pObject), m_Name(Name), m_Setting(args...)
+	CGUISimpleSetting(IGUIObject* pObject, const CStr& name, Args&&... args)
+		: IGUISetting(name, pObject), m_Setting(args...)
 	{}
 	NONCOPYABLE(CGUISimpleSetting);
-	MOVABLE(CGUISimpleSetting);
+	CGUISimpleSetting(CGUISimpleSetting&&) = default;
+	CGUISimpleSetting& operator=(CGUISimpleSetting&&) = delete;
 
 	operator const T&() const { return m_Setting; }
 	const T& operator*() const { return m_Setting; }
@@ -106,20 +115,14 @@ public:
 	void Set(T value, bool sendMessage)
 	{
 		m_Setting = std::move(value);
-		OnSettingChange(m_Name, sendMessage);
+		OnSettingChange(GetName(), sendMessage);
 	}
 
 protected:
-	CStr GetName() const override
-	{
-		return m_Name;
-	}
-
 	bool DoFromString(const CStrW& value) override;
 	bool DoFromJSVal(const ScriptRequest& rq, JS::HandleValue value) override;
 	void ToJSVal(const ScriptRequest& rq, JS::MutableHandleValue value) override;
 
-	const CStr m_Name;
 	T m_Setting;
 };
 

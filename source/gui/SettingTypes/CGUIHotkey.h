@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,7 +34,8 @@ public:
 	CGUIHotkey(IGUIObject* pObject, const CStr& Name) : CGUISimpleSetting<CStr>(pObject, Name)
 	{}
 	NONCOPYABLE(CGUIHotkey);
-	MOVABLE(CGUIHotkey);
+	CGUIHotkey(CGUIHotkey&&) = default;
+	CGUIHotkey& operator=(CGUIHotkey&&) = delete;
 
 	bool DoFromString(const CStrW& value) override;
 	bool DoFromJSVal(const ScriptRequest& rq, JS::HandleValue value) override;
