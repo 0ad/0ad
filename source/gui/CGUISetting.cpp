@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,18 +20,25 @@
 #include "CGUISetting.h"
 
 #include "gui/CGUI.h"
+#include "gui/CGUISprite.h"
 #include "gui/ObjectBases/IGUIObject.h"
+#include "gui/SettingTypes/CGUIList.h"
+#include "gui/SettingTypes/CGUISeries.h"
+#include "gui/SettingTypes/CGUISize.h"
+#include "gui/SettingTypes/CGUIString.h"
+#include "gui/SettingTypes/EAlign.h"
 #include "ps/CLogger.h"
+#include "ps/CStr.h"
 #include "scriptinterface/ScriptConversions.h"
 
-IGUISetting::IGUISetting(const CStr& name, IGUIObject* owner) : m_pObject(*owner)
+IGUISetting::IGUISetting(const CStr& name, IGUIObject* owner) : m_Object(*owner), m_Name(name)
 {
-	m_pObject.RegisterSetting(name, this);
+	m_Object.RegisterSetting(m_Name, this);
 }
 
-IGUISetting::IGUISetting(IGUISetting&& o) : m_pObject(o.m_pObject)
+IGUISetting::IGUISetting(IGUISetting&& other) : m_Object(other.m_Object), m_Name(other.m_Name)
 {
-	m_pObject.ReregisterSetting(o.GetName(), this);
+	m_Object.ReregisterSetting(m_Name, this);
 }
 
 bool IGUISetting::FromString(const CStrW& value, const bool sendMessage)
@@ -57,13 +64,13 @@ bool IGUISetting::FromJSVal(const ScriptRequest& rq, JS::HandleValue value, cons
 
 void IGUISetting::OnSettingChange(const CStr& setting, bool sendMessage)
 {
-	m_pObject.SettingChanged(setting, sendMessage);
+	m_Object.SettingChanged(setting, sendMessage);
 }
 
 template<typename T>
 bool CGUISimpleSetting<T>::DoFromString(const CStrW& value)
 {
-	return CGUI::ParseString<T>(&m_pObject.GetGUI(), value, m_Setting);
+	return CGUI::ParseString<T>(&m_Object.GetGUI(), value, m_Setting);
 };
 
 template<>
@@ -75,7 +82,7 @@ bool CGUISimpleSetting<CGUIColor>::DoFromJSVal(const ScriptRequest& rq, JS::Hand
 		if (!Script::FromJSVal(rq, value, name))
 			return false;
 
-		if (!m_Setting.ParseString(m_pObject.GetGUI(), name))
+		if (!m_Setting.ParseString(m_Object.GetGUI(), name))
 		{
 			LOGERROR("Invalid color '%s'", name.c_str());
 			return false;
@@ -108,23 +115,16 @@ TYPE(i32)
 TYPE(u32)
 TYPE(float)
 TYPE(CVector2D)
-#include "ps/CStr.h"
 TYPE(CStr)
 TYPE(CStrW)
 // TODO: make these inherit from CGUISimpleSetting directly.
-#include "gui/SettingTypes/CGUISize.h"
 TYPE(CGUISize)
 TYPE(CGUIColor)
-#include "gui/CGUISprite.h"
 TYPE(CGUISpriteInstance)
-#include "gui/SettingTypes/CGUIString.h"
 TYPE(CGUIString)
-#include "gui/SettingTypes/EAlign.h"
 TYPE(EAlign)
 TYPE(EVAlign)
-#include "gui/SettingTypes/CGUIList.h"
 TYPE(CGUIList)
-#include "gui/SettingTypes/CGUISeries.h"
 TYPE(CGUISeries)
 
 #undef TYPE

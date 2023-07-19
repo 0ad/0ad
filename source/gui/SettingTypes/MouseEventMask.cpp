@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,7 +36,7 @@ class IGUISetting;
 
 namespace
 {
-	const std::string MOUSE_EVENT_MASK = "mouse_event_mask";
+	const CStr MOUSE_EVENT_MASK = "mouse_event_mask";
 }
 
 class CGUIMouseEventMask::Impl
@@ -65,11 +65,6 @@ bool CGUIMouseEventMask::DoFromJSVal(const ScriptRequest& rq, JS::HandleValue va
 	if (!Script::FromJSVal(rq, value, spec))
 		return false;
 	return DoFromString(spec);
-}
-
-CStr CGUIMouseEventMask::GetName() const
-{
-	return MOUSE_EVENT_MASK;
 }
 
 bool CGUIMouseEventMask::IsMouseOver(const CVector2D& mousePos, const CRect& objectSize) const

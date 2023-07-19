@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -51,8 +51,8 @@ CDropDown::CDropDown(CGUI& pGUI)
 	  m_Sprite2Disabled(this, "sprite2_disabled"),
 	  m_TextColorDisabled(this, "textcolor_disabled")
 	  // Add these in CList! And implement TODO
-	  //RegisterSetting("textcolor_over");
-	  //RegisterSetting("textcolor_pressed");
+	  //m_TextColorOver("textcolor_over");
+	  //m_TextColorPressed("textcolor_pressed");
 {
 	m_ScrollBar.Set(true, true);
 }

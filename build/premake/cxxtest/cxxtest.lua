@@ -5,6 +5,7 @@ m.exepath = nil
 m.rootfile = nil
 m.runner = "ErrorPrinter"
 m.options = ""
+m.rootoptions = ""
 
 -- Premake module for CxxTest support (http://cxxtest.com/).
 -- The module can be used for generating a root file (that contains the entrypoint
@@ -18,13 +19,18 @@ end
 -- Pass all the necessary options to cxxtest (see http://cxxtest.com/guide.html)
 -- for a reference of available options, that should eventually be implemented in
 -- this module.
-function m.init(source_root, have_std, runner, includes)
+function m.init(source_root, have_std, runner, includes, root_includes)
 
 	m.rootfile = source_root.."test_root.cpp"
 	m.runner = runner
 
 	if m.have_std then
 		m.options = m.options.." --have-std"
+	end
+
+	m.rootoptions = m.options
+	for _,includefile in ipairs(root_includes) do
+		m.rootoptions = m.rootoptions.." --include="..includefile
 	end
 
 	for _,includefile in ipairs(includes) do
@@ -40,7 +46,7 @@ function m.init(source_root, have_std, runner, includes)
 		-- Note: this command is not silent and clutters the output
 		-- Reported upstream: https://github.com/premake/premake-core/issues/954
 		prebuildmessage 'Generating test root file'
-		prebuildcommands { m.exepath.." --root "..m.options.." --runner="..m.runner.." -o "..path.getabsolute(m.rootfile) }
+		prebuildcommands { m.exepath.." --root "..m.rootoptions.." --runner="..m.runner.." -o "..path.getabsolute(m.rootfile) }
 		buildoutputs { m.rootfile }
 	end
 end
@@ -54,7 +60,7 @@ function m.configure_project(hdrfiles)
 		dependson { "cxxtestroot" }
 	else
 		prebuildmessage 'Generating test root file'
-		prebuildcommands { m.exepath.." --root "..m.options.." --runner="..m.runner.." -o "..path.getabsolute(m.rootfile) }
+		prebuildcommands { m.exepath.." --root "..m.rootoptions.." --runner="..m.runner.." -o "..path.getabsolute(m.rootfile) }
 	end
 
 	-- Add headers

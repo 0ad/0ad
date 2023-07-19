@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,18 +25,18 @@
 
 bool CGUIHotkey::DoFromString(const CStrW& value)
 {
-	m_pObject.GetGUI().UnsetObjectHotkey(&m_pObject, m_Setting);
+	m_Object.GetGUI().UnsetObjectHotkey(&m_Object, m_Setting);
 	m_Setting = value.ToUTF8();
-	m_pObject.GetGUI().SetObjectHotkey(&m_pObject, m_Setting);
+	m_Object.GetGUI().SetObjectHotkey(&m_Object, m_Setting);
 	return true;
 }
 
 bool CGUIHotkey::DoFromJSVal(const ScriptRequest& rq, JS::HandleValue value)
 {
-	m_pObject.GetGUI().UnsetObjectHotkey(&m_pObject, m_Setting);
+	m_Object.GetGUI().UnsetObjectHotkey(&m_Object, m_Setting);
 	if (!Script::FromJSVal(rq, value, m_Setting))
 		return false;
-	m_pObject.GetGUI().SetObjectHotkey(&m_pObject, m_Setting);
+	m_Object.GetGUI().SetObjectHotkey(&m_Object, m_Setting);
 	return true;
 }
 

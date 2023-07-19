@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,7 +41,11 @@ class ScriptRequest;
 class CGUIMouseEventMask : public IGUISetting
 {
 public:
+	NONCOPYABLE(CGUIMouseEventMask);
+
 	CGUIMouseEventMask(IGUIObject* owner);
+	CGUIMouseEventMask(CGUIMouseEventMask&&) = default;
+	CGUIMouseEventMask& operator=(CGUIMouseEventMask&&) = delete;
 	~CGUIMouseEventMask();
 
 	/**
@@ -60,7 +64,6 @@ public:
 protected:
 	bool DoFromString(const CStrW& value) override;
 	bool DoFromJSVal(const ScriptRequest& rq, JS::HandleValue value) override;
-	CStr GetName() const override;
 
 	std::string m_Spec;
 	std::unique_ptr<Impl> m_Impl;

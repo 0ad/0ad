@@ -34,7 +34,9 @@ public:
 	{}
 	// Avoid copying the strings.
 	NONCOPYABLE(COListColumn);
-	MOVABLE(COListColumn);
+	COListColumn(COListColumn&&) = default;
+	COListColumn& operator=(COListColumn&&) = delete;
+
 	CGUIColor m_TextColor;
 	CStr m_Id;
 	float m_Width;

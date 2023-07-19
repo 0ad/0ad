@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,8 +24,6 @@
 #include "ps/CStr.h"
 
 class Tex;
-
-void WriteSystemInfo();
 
 const wchar_t* ErrorString(int err);
 

@@ -639,7 +639,7 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 			throw PSERROR_System_VmodeFailed(); // abort startup
 	}
 
-	RunHardwareDetection();
+	RunHardwareDetection(!g_Quickstart, g_VideoMode.GetBackendDevice());
 
 	// Optionally start profiler GPU timings automatically
 	// (By default it's only enabled by a hotkey, for performance/compatibility)
@@ -647,13 +647,6 @@ void InitGraphics(const CmdLineArgs& args, int flags, const std::vector<CStr>& i
 	CFG_GET_VAL("profiler2.autoenable", profilerGPUEnable);
 	if (profilerGPUEnable)
 		g_Profiler2.EnableGPU();
-
-	if(!g_Quickstart)
-	{
-		WriteSystemInfo();
-		// note: no longer vfs_display here. it's dog-slow due to unbuffered
-		// file output and very rarely needed.
-	}
 
 	if(g_DisableAudio)
 		ISoundManager::SetEnabled(false);

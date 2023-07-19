@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -23,11 +23,6 @@
 #ifndef INCLUDED_WVERSION
 #define INCLUDED_WVERSION
 
-/**
- * @return CurrentVersion string from registry
- **/
-extern const wchar_t* wversion_String();
-
 // (same format as WINVER)
 const size_t WVERSION_2K    = 0x0500;
 const size_t WVERSION_XP    = 0x0501;
@@ -39,13 +34,8 @@ const size_t WVERSION_8_1   = 0x0603;
 const size_t WVERSION_10    = 0x0604;
 
 /**
- * @return one of the above WVERSION* values
- **/
-size_t wversion_Number();
-
-/**
  * @return short textual representation of the version
  **/
-extern const char* wversion_Family();
+const char* wversion_Family();
 
 #endif	// #ifndef INCLUDED_WVERSION

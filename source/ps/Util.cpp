@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,113 +19,11 @@
 
 #include "ps/Util.h"
 
-#include "graphics/GameView.h"
 #include "lib/allocators/shared_ptr.h"
-#include "lib/posix/posix_utsname.h"
-#include "lib/sysdep/cpu.h"
-#include "lib/sysdep/os_cpu.h"
-#include "lib/sysdep/smbios.h"
-#include "lib/sysdep/sysdep.h"	// sys_OpenFile
 #include "lib/tex/tex.h"
-#include "lib/timer.h"
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
-#include "ps/GameSetup/Config.h"
-#include "ps/GameSetup/GameSetup.h"
 #include "ps/Pyrogenesis.h"
-#include "ps/VideoMode.h"
-#include "renderer/backend/IDevice.h"
-
-#if CONFIG2_AUDIO
-#include "soundmanager/SoundManager.h"
-#endif
-
-#include <iomanip>
-#include <sstream>
-
-void WriteSystemInfo()
-{
-	TIMER(L"write_sys_info");
-	struct utsname un;
-	uname(&un);
-
-	OsPath pathname = psLogDir()/"system_info.txt";
-	FILE* f = sys_OpenFile(pathname, "w");
-	if(!f)
-		return;
-
-	// current timestamp (redundant WRT OS timestamp, but that is not
-	// visible when people are posting this file's contents online)
-	{
-	wchar_t timestampBuf[100] = {'\0'};
-	time_t seconds;
-	time(&seconds);
-	struct tm* t = gmtime(&seconds);
-	const size_t charsWritten = wcsftime(timestampBuf, ARRAY_SIZE(timestampBuf), L"(generated %Y-%m-%d %H:%M:%S UTC)", t);
-	ENSURE(charsWritten != 0);
-	fprintf(f, "%ls\n\n", timestampBuf);
-	}
-
-	// OS
-	fprintf(f, "OS             : %s %s (%s)\n", un.sysname, un.release, un.version);
-
-	// CPU
-	fprintf(f, "CPU            : %s, %s", un.machine, cpu_IdentifierString());
-	double cpuClock = os_cpu_ClockFrequency();	// query OS (may fail)
-#if ARCH_X86_X64
-	if(cpuClock <= 0.0)
-		cpuClock = x86_x64::ClockFrequency();	// measure (takes a few ms)
-#endif
-	if(cpuClock > 0.0)
-	{
-		if(cpuClock < 1e9)
-			fprintf(f, ", %.2f MHz\n", cpuClock*1e-6);
-		else
-			fprintf(f, ", %.2f GHz\n", cpuClock*1e-9);
-	}
-	else
-		fprintf(f, "\n");
-
-	// memory
-	fprintf(f, "Memory         : %u MiB; %u MiB free\n", (unsigned)os_cpu_MemorySize(), (unsigned)os_cpu_MemoryAvailable());
-
-	// graphics
-	fprintf(f, "Video Card     : %s\n", g_VideoMode.GetBackendDevice()->GetName().c_str());
-	fprintf(f, "Video Driver   : %s\n", g_VideoMode.GetBackendDevice()->GetDriverInformation().c_str());
-	fprintf(f, "Video Mode     : %dx%d:%d\n", g_VideoMode.GetXRes(), g_VideoMode.GetYRes(), g_VideoMode.GetBPP());
-
-#if CONFIG2_AUDIO
-	if (g_SoundManager)
-	{
-		fprintf(f, "Sound Card     : %s\n", g_SoundManager->GetSoundCardNames().c_str());
-		fprintf(f, "Sound Drivers  : %s\n", g_SoundManager->GetOpenALVersion().c_str());
-	}
-	else if(g_DisableAudio)
-		fprintf(f, "Sound          : Game was ran without audio\n");
-	else
-		fprintf(f, "Sound          : No audio device was found\n");
-#else
-	fprintf(f, "Sound          : Game was compiled without audio\n");
-#endif
-
-	// OpenGL extensions (write them last, since it's a lot of text)
-	fprintf(f, "\nBackend Extensions:\n");
-	if (g_VideoMode.GetBackendDevice()->GetExtensions().empty())
-		fprintf(f, "{unknown}\n");
-	else
-		for (const std::string& extension : g_VideoMode.GetBackendDevice()->GetExtensions())
-			fprintf(f, "%s\n", extension.c_str());
-
-	// System Management BIOS (even more text than OpenGL extensions)
-	std::string smbios = SMBIOS::StringizeStructures(SMBIOS::GetStructures());
-	fprintf(f, "\nSMBIOS: \n%s\n", smbios.c_str());
-
-	fclose(f);
-	f = 0;
-
-	debug_printf("FILES| Hardware details written to '%s'\n", pathname.string8().c_str());
-}
-
 
 // not thread-safe!
 static const wchar_t* HardcodedErrorString(int err)
