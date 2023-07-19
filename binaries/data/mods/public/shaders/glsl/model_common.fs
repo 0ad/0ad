@@ -78,7 +78,7 @@ void main()
     texdiffuse *= mix(objectColor, vec3(1.0, 1.0, 1.0), tex.a);
   #endif
 
-  #if USE_SPECULAR || USE_SPECULAR_MAP || USE_NORMAL_MAP
+  #if USE_SPECULAR_MAP || USE_NORMAL_MAP
     vec3 normal = normalize(v_normal.xyz);
   #endif
 
@@ -90,18 +90,11 @@ void main()
   #endif
 
   vec4 specular = vec4(0.0);
-  #if USE_SPECULAR || USE_SPECULAR_MAP
-    vec3 specCol;
-    float specPow;
-    #if USE_SPECULAR_MAP
-      vec4 s = SAMPLE_2D(GET_DRAW_TEXTURE_2D(specTex), coord);
-      specCol = s.rgb;
-      specular.a = s.a;
-      specPow = effectSettings.y;
-    #else
-      specCol = specularColor;
-      specPow = specularPower;
-    #endif
+  #if USE_SPECULAR_MAP
+    vec4 s = SAMPLE_2D(GET_DRAW_TEXTURE_2D(specTex), coord);
+    vec3 specCol = s.rgb;
+    specular.a = s.a;
+    float specPow = effectSettings.y;
     specular.rgb = sunColor * specCol * pow(max(0.001, dot(normalize(normal), v_half)), specPow);
   #endif
 

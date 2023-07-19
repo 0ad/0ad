@@ -96,7 +96,7 @@ void main()
 
   OUTPUT_VERTEX_POSITION(transform * position);
 
-  #if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX
+  #if USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX
     v_normal.xyz = normal;
 
     #if (USE_INSTANCING || USE_GPU_SKINNING) && (USE_NORMAL_MAP || USE_PARALLAX)
@@ -107,9 +107,9 @@ void main()
       v_lighting.w = bitangent.z;
     #endif
 
-    #if USE_SPECULAR || USE_SPECULAR_MAP || USE_PARALLAX
+    #if USE_SPECULAR_MAP || USE_PARALLAX
       vec3 eyeVec = cameraPos.xyz - position.xyz;
-      #if USE_SPECULAR || USE_SPECULAR_MAP
+      #if USE_SPECULAR_MAP
         vec3 sunVec = -sunDir;
         v_half = normalize(sunVec + normalize(eyeVec));
       #endif
