@@ -6,6 +6,7 @@
 #include "common/fog.h"
 #include "common/fragment.h"
 #include "common/los_fragment.h"
+#include "common/shading.h"
 #include "common/shadows_fragment.h"
 
 void main()
@@ -78,15 +79,12 @@ void main()
   #endif
 
   #if USE_SPECULAR || USE_SPECULAR_MAP || USE_NORMAL_MAP
-    vec3 normal = v_normal.xyz;
+    vec3 normal = normalize(v_normal.xyz);
   #endif
 
   #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_NORMAL_MAP
-    vec3 ntex = SAMPLE_2D(GET_DRAW_TEXTURE_2D(normTex), coord).rgb * 2.0 - 1.0;
-    ntex.y = -ntex.y;
-    normal = normalize(tbn * ntex);
-    vec3 bumplight = max(dot(-sunDir, normal), 0.0) * sunColor;
-    vec3 sundiffuse = (bumplight - v_lighting.rgb) * effectSettings.x + v_lighting.rgb;
+    normal = calculateNormal(normal, SAMPLE_2D(GET_DRAW_TEXTURE_2D(normTex), coord).rgb, tbn, effectSettings.x);
+    vec3 sundiffuse = max(dot(-sunDir, normal), 0.0) * sunColor;
   #else
     vec3 sundiffuse = v_lighting.rgb;
   #endif
@@ -113,8 +111,7 @@ void main()
     float ao = 1.0;
   #endif
 
-  vec3 ambientColor = texdiffuse * ambient * ao;
-  vec3 color = (texdiffuse * sundiffuse + specular.rgb) * getShadow() + ambientColor;
+  vec3 color = calculateShading(texdiffuse, sundiffuse, specular.rgb, ambient, getShadow(), ao);
 
   #if USE_SPECULAR_MAP && USE_SELF_LIGHT
     color = mix(texdiffuse, color, specular.a);
