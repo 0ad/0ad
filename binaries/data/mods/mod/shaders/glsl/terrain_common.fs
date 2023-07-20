@@ -6,6 +6,7 @@
 #include "common/fog.h"
 #include "common/fragment.h"
 #include "common/los_fragment.h"
+#include "common/shading.h"
 #include "common/shadows_fragment.h"
 
 #if USE_TRIPLANAR
@@ -91,13 +92,12 @@ void main()
     float sign = v_tangent.w;
     mat3 tbn = mat3(v_tangent.xyz, v_bitangent * -sign, v_normal);
     #if USE_TRIPLANAR
-      vec3 ntex = triplanarNormals(GET_DRAW_TEXTURE_2D(normTex), v_tex).rgb * 2.0 - 1.0;
+      vec3 ntex = triplanarNormals(GET_DRAW_TEXTURE_2D(normTex), v_tex).rgb;
     #else
-      vec3 ntex = SAMPLE_2D(GET_DRAW_TEXTURE_2D(normTex), v_tex).rgb * 2.0 - 1.0;
+      vec3 ntex = SAMPLE_2D(GET_DRAW_TEXTURE_2D(normTex), v_tex).rgb;
     #endif
-    normal = normalize(tbn * ntex);
-    vec3 bumplight = max(dot(-sunDir, normal), 0.0) * sunColor;
-    vec3 sundiffuse = (bumplight - v_lighting.rgb) * effectSettings.x + v_lighting.rgb;
+    normal = calculateNormal(normal, ntex, tbn, effectSettings.x);
+    vec3 sundiffuse = max(dot(-sunDir, normal), 0.0) * sunColor;
   #else
     vec3 sundiffuse = v_lighting;
   #endif
@@ -117,7 +117,7 @@ void main()
     specular.rgb = sunColor * specCol * pow(max(0.001, dot(normalize(normal), v_half)), specPow);
   #endif
 
-  vec3 color = (texdiffuse * sundiffuse + specular.rgb) * getShadowOnLandscape() + texdiffuse * ambient;
+  vec3 color = calculateShading(texdiffuse, sundiffuse, specular.rgb, ambient, getShadowOnLandscape(), 1.0);
 
   #if USE_SPECULAR_MAP && USE_SELF_LIGHT
     color = mix(texdiffuse, color, specular.a);

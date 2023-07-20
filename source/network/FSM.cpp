@@ -35,26 +35,10 @@ void CFsmEvent::SetParamRef(void* pParam)
 	m_Param = pParam;
 }
 
-CFsmTransition::CFsmTransition(unsigned int state)
-{
-	m_CurrState = state;
-}
-
-CFsmTransition::~CFsmTransition()
-{
-	m_Actions.clear();
-}
-
-void CFsmTransition::RegisterAction(void* pAction, void* pContext)
-{
-	CallbackFunction callback;
-
-	// Add action at the end of actions list
-	callback.pFunction = pAction;
-	callback.pContext = pContext;
-
-	m_Actions.push_back(callback);
-}
+CFsmTransition::CFsmTransition(const unsigned int state, const CallbackFunction action)
+	: m_CurrState{state},
+	m_Action{action}
+{}
 
 void CFsmTransition::SetEvent(CFsmEvent* pEvent)
 {
@@ -66,22 +50,10 @@ void CFsmTransition::SetNextState(unsigned int nextState)
 	m_NextState = nextState;
 }
 
-bool CFsmTransition::RunActions() const
+bool CFsmTransition::RunAction() const
 {
-	bool result = true;
-
-	CallbackList::const_iterator it = m_Actions.begin();
-	for (; it != m_Actions.end(); ++it)
-	{
-		if (it->pFunction)
-		{
-			// Run action
-			Action* action = reinterpret_cast<Action*>(it->pFunction);
-			result &= action(it->pContext, m_Event);
-		}
-	}
-
-	return result;
+	return !m_Action.pFunction ||
+		reinterpret_cast<Action*>(m_Action.pFunction)(m_Action.pContext, m_Event);
 }
 
 CFsm::CFsm()
@@ -150,7 +122,8 @@ CFsmEvent* CFsm::AddEvent(unsigned int eventType)
 	return pEvent;
 }
 
-CFsmTransition* CFsm::AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState )
+CFsmTransition* CFsm::AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState,
+	void* pAction /* = nullptr */, void* pContext /* = nullptr*/)
 {
 	// Make sure we store the current state
 	AddState(state);
@@ -164,7 +137,7 @@ CFsmTransition* CFsm::AddTransition(unsigned int state, unsigned int eventType, 
 		return nullptr;
 
 	// Create new transition
-	CFsmTransition* pNewTransition = new CFsmTransition(state);
+	CFsmTransition* pNewTransition = new CFsmTransition(state, {pAction, pContext});
 
 	// Setup new transition
 	pNewTransition->SetEvent(pEvent);
@@ -174,20 +147,6 @@ CFsmTransition* CFsm::AddTransition(unsigned int state, unsigned int eventType, 
 	m_Transitions.push_back(pNewTransition);
 
 	return pNewTransition;
-}
-
-CFsmTransition* CFsm::AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState,
-	void* pAction, void* pContext)
-{
-	CFsmTransition* pTransition = AddTransition(state, eventType, nextState);
-	if (!pTransition)
-		return nullptr;
-
-	// If action specified, register it
-	if (pAction)
-		pTransition->RegisterAction(pAction, pContext);
-
-	return pTransition;
 }
 
 CFsmTransition* CFsm::GetTransition(unsigned int state, unsigned int eventType) const
@@ -259,7 +218,7 @@ bool CFsm::Update(unsigned int eventType, void* pEventParam)
 	// to override this)
 	SetNextState(pTransition->GetNextState());
 
-	if (!pTransition->RunActions())
+	if (!pTransition->RunAction())
 		return false;
 
 	SetCurrState(GetNextState());

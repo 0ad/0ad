@@ -34,14 +34,13 @@ using Action = bool(void* pContext, const CFsmEvent* pEvent);
 
 struct CallbackFunction
 {
-	void* pFunction;
-	void* pContext;
+	void* pFunction{nullptr};
+	void* pContext{nullptr};
 };
 
 using StateSet = std::set<unsigned int>;
 using EventMap = std::map<unsigned int, CFsmEvent*>;
 using TransitionList = std::vector<CFsmTransition*>;
-using CallbackList = std::vector<CallbackFunction>;
 
 /**
  * Represents a signal in the state machine that a change has occurred.
@@ -81,16 +80,10 @@ class CFsmTransition
 {
 	NONCOPYABLE(CFsmTransition);
 public:
-
-	CFsmTransition(unsigned int state);
-	~CFsmTransition();
-
 	/**
-	 * Registers an action that will be executed when the transition occurs.
-	 * @param pAction the function which will be executed.
-	 * @param pContext data passed to the function.
+	 * @param action Object executed upon transition.
 	 */
-	void RegisterAction(void* pAction, void* pContext);
+	CFsmTransition(const unsigned int state, const CallbackFunction action);
 
 	/**
 	 * Set event for which transition will occur.
@@ -115,23 +108,23 @@ public:
 		return m_CurrState;
 	}
 
-	const CallbackList& GetActions() const
+	CallbackFunction GetAction() const
 	{
-		return m_Actions;
+		return m_Action;
 	}
 
 	/**
-	 * Executes actions for the transition.
-	 * @note If there are no actions, assume true.
-	 * @return whether all the actions returned true.
+	 * Executes action for the transition.
+	 * @note If there are no action, assume true.
+	 * @return whether the action returned true.
 	 */
-	bool RunActions() const;
+	bool RunAction() const;
 
 private:
 	unsigned int m_CurrState;
 	unsigned int m_NextState;
 	CFsmEvent* m_Event;
-	CallbackList m_Actions;
+	CallbackFunction m_Action;
 };
 
 /**
@@ -160,7 +153,7 @@ public:
 	virtual void Setup();
 
 	/**
-	 * Clear event, action lists and reset state machine.
+	 * Clear event, transition lists and reset state machine.
 	 */
 	void Shutdown();
 
@@ -181,14 +174,8 @@ public:
 	 * Adds a new transistion to the state machine.
 	 * @return a pointer to the new transition.
 	 */
-	CFsmTransition* AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState );
-
-	/**
-	 * Adds a new transition to the state machine.
-	 * @return a pointer to the new transition.
-	 */
 	CFsmTransition* AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState,
-		 void* pAction, void* pContext);
+		void* pAction = nullptr, void* pContext = nullptr);
 
 	/**
 	 * Looks up the transition given the state, event and next state to transition to.
