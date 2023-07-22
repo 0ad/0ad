@@ -1,0 +1,9 @@
+{
+	"type": "garrisonedUnits",
+	"affects": ["Hero"],
+	"modifications": [
+		{ "value": "Health/RegenRate", "add": 6 }
+	],
+	"auraName": "Officer Accommodation",
+	"auraDescription": "Garrisoned Heroes +6 health regeneration rate."
+}

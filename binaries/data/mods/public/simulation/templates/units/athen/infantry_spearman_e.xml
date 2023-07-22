@@ -3,7 +3,9 @@
   <Identity>
     <Rank>Elite</Rank>
   </Identity>
-  <Promotion disable=""/>
+  <Promotion>
+    <Entity>units/athen/champion_infantry</Entity>
+  </Promotion>
   <VisualActor>
     <Actor>units/athenians/infantry_spearman_e.xml</Actor>
   </VisualActor>

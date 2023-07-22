@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="civ/athen|merc_inf|template_unit_infantry_ranged_archer">
+  <Identity>
+    <SelectionGroupName>units/athen/infantry_marine_archer_b</SelectionGroupName>
+    <GenericName>Cretan Mercenary Archer</GenericName>
+    <SpecificName>Toxótēs Krētikós</SpecificName>
+    <Icon>units/mace/infantry_archer.png</Icon>
+    <Requirements>
+      <Techs datatype="tokens">phase_town</Techs>
+    </Requirements>
+  </Identity>
+  <Promotion>
+    <Entity>units/athen/infantry_archer_a</Entity>
+  </Promotion>
+  <VisualActor>
+    <Actor>units/athenians/infantry_archer_b.xml</Actor>
+  </VisualActor>
+</Entity>

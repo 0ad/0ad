@@ -1,0 +1,23 @@
+{
+	"genericName": "Pheidian Workshop",
+	"description": "Pheidias was a Greek sculptor, painter and architect, who lived in the 5th century BC, and is commonly regarded as one of the greatest of all sculptors of Classical Greece: Phidias' Statue of Zeus at Olympia was one of the Seven Wonders of the Ancient World. Phidias designed the statues of the goddess Athena on the Athenian Acropolis, namely the Athena Parthenos inside the Parthenon and the Athena Promachos, a colossal bronze statue of Athena which stood between it and the Propylaea, a monumental gateway that served as the entrance to the Acropolis in Athens.",
+	"cost": {
+		"stone": 300
+	},
+	"requirements": {
+		"all": [
+			{"tech": "phase_town"}, 
+			{"civ": "athen"}
+		]
+	},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "vestals.png",
+	"researchTime": 40,
+	"tooltip": "Temples and Wonder −50% stone cost and build time.",
+	"modifications": [
+		{ "value": "Cost/BuildTime", "multiply": 0.5},
+		{ "value": "Cost/Resources/stone", "multiply": 0.5}
+	],
+	"affects": ["Temple", "Wonder"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

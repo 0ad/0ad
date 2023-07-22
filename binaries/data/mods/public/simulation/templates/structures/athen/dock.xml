@@ -14,10 +14,14 @@
   <Obstruction>
     <Static width="22.0" depth="26.0"/>
   </Obstruction>
+  <Researcher>
+    <Technologies datatype="tokens">
+      arsenal_philon
+    </Technologies>
+  </Researcher>
   <Trainer>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">
-      units/{civ}/infantry_marine_archer_b
       units/{civ}/champion_marine
     </Entities>
   </Trainer>

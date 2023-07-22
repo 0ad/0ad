@@ -1,0 +1,12 @@
+{
+	"type": "range",
+	"radius": 35,
+	"affects": ["Healer"],
+	"affectedPlayers": ["MutualAlly"],
+	"modifications": [
+		{ "value": "Heal/Health", "add": 2.0 }
+	],
+	"auraName": "Medicine Father",
+	"auraDescription": "Own and Allied Healers +2 heal health.",
+	"overlayIcon": "art/textures/ui/session/auras/heal.png"
+}

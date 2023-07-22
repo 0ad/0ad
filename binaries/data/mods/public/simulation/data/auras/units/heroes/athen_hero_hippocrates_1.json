@@ -1,0 +1,11 @@
+{
+	"type": "range",
+	"radius": 35,
+	"affects": ["Human"],
+	"modifications": [
+		{ "value": "Health/RegenRate", "add": 0.5 }
+	],
+	"auraName": "Regeneration",
+	"auraDescription": "Humans +0.5 health regeneration rate.",
+	"overlayIcon": "art/textures/ui/session/auras/heal.png"
+}
