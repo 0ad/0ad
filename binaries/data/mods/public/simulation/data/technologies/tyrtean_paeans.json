@@ -1,0 +1,23 @@
+{
+	"genericName": "Tyrtean Paeans",
+	"description": "Paeans were battle hymns that were sung by the Hoplites when they charged the enemy lines. One of the first known Paeans was composed by Tirteus, a warrior poet of Sparta, during the First Messenian War.",
+	"cost": {
+		"food": 200,
+		"metal": 200
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_town" },
+			{ "civ": "spart" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "walk.png",
+	"researchTime": 50,
+	"tooltip": "Champion Hoplites +10% movement speed.",
+	"modifications": [
+		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.1 }
+	],
+	"affects": ["Champion Melee Infantry !Hero"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

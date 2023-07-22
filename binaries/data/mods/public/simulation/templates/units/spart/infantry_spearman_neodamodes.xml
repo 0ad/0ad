@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="hoplite|template_unit_infantry_melee_spearman">
+  <Builder disable=""/>
+  <Cost>
+    <Resources>
+      <food>30</food>
+      <wood>0</wood>
+      <metal>20</metal>
+    </Resources>
+  </Cost>
+  <Identity>
+    <Civ>spart</Civ>
+    <Lang>greek</Lang>
+    <SelectionGroupName>units/spart/infantry_spearman_neodamodes</SelectionGroupName>
+    <GenericName>Neodamodes Hoplite</GenericName>
+    <SpecificName>Neodamōdeis</SpecificName>
+    <Icon>units/spart/infantry_spearman_neodamodes.png</Icon>
+    <VisibleClasses datatype="tokens">-Builder -Worker</VisibleClasses>
+    <Requirements>
+      <Techs datatype="tokens">unlock_neodamodes</Techs>
+    </Requirements>
+  </Identity>
+  <Loot>
+    <food>3</food>
+    <wood>0</wood>
+    <metal>2</metal>
+  </Loot>
+  <ResourceGatherer disable=""/>
+  <Promotion disable=""/>
+  <VisualActor>
+    <Actor>units/spartans/infantry_spearman_neodamodes.xml</Actor>
+  </VisualActor>
+</Entity>

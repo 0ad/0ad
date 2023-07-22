@@ -24,8 +24,11 @@
     <SpecificName>Syssition</SpecificName>
     <Tooltip>Train Champions and Heroes.</Tooltip>
     <Classes datatype="tokens">ConquestCritical CivSpecific</Classes>
-    <VisibleClasses datatype="tokens">Syssiton</VisibleClasses>
+    <VisibleClasses datatype="tokens">-City Village Syssiton</VisibleClasses>
     <Icon>structures/syssition.png</Icon>
+    <Requirements>
+      <Techs datatype="tokens">-phase_city phase_village</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <stone>40</stone>
@@ -35,11 +38,6 @@
     <Static width="15.0" depth="25.0"/>
   </Obstruction>
   <ProductionQueue/>
-  <Researcher>
-    <Technologies datatype="tokens">
-      agoge
-    </Technologies>
-  </Researcher>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_gymnasium.xml</select>

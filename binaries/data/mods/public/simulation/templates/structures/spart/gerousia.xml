@@ -21,10 +21,13 @@
     <Civ>spart</Civ>
     <GenericName>Spartan Senate</GenericName>
     <SpecificName>Gerousia</SpecificName>
-    <Tooltip>Train Heroes.</Tooltip>
+    <Tooltip>Research technologies.</Tooltip>
     <Classes datatype="tokens">ConquestCritical</Classes>
-    <VisibleClasses datatype="tokens">Council</VisibleClasses>
+    <VisibleClasses datatype="tokens">-City Town Council</VisibleClasses>
     <Icon>structures/tholos.png</Icon>
+    <Requirements>
+      <Techs datatype="tokens">-phase_city phase_town</Techs>
+    </Requirements>
   </Identity>
   <Loot>
     <stone>20</stone>
@@ -34,6 +37,14 @@
     <Static width="20.0" depth="20.0"/>
   </Obstruction>
   <ProductionQueue/>
+  <Researcher>
+    <Technologies datatype="tokens">
+      agoge
+      krypteia
+      tyrtean_paeans
+      unlock_neodamodes
+    </Technologies>
+  </Researcher>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_tholos.xml</select>
@@ -45,12 +56,6 @@
     <Radius>38</Radius>
     <Weight>40000</Weight>
   </TerritoryInfluence>
-  <Trainer>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}/hero_leonidas
-    </Entities>
-  </Trainer>
   <Vision>
     <Range>40</Range>
   </Vision>

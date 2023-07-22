@@ -1,0 +1,22 @@
+{
+	"genericName": "Helot Economy",
+	"description": "Helots were the servants of Greece. Unlike slaves, helots were owned by the state, which managed economic production. Helots must give a reasonable portion of their harvest to support a warrior and his family or widow.",
+	"cost": {
+		"food": 200,
+		"wood": 200
+	},
+	"requirements": {
+		"all": [
+			{ "civ": "spart" }
+		]
+	},
+	"icon": "sickle_2.png",
+	"researchTime": 40,
+	"tooltip": "Infantry Javelineers +100% grain gather rate, but −10% ranged attack pierce damage.",
+	"modifications": [
+		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 0.9 },
+		{ "value": "ResourceGatherer/Rates/food.grain", "multiply": 2 }
+	],
+	"affects": ["Infantry Javelineer"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}
