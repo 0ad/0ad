@@ -857,7 +857,8 @@ GuiInterface.prototype.GetFormationInfoFromTemplate = function(player, data)
 
 	return {
 		"name": template.Identity.GenericName,
-		"tooltip": template.Formation.DisabledTooltip || "",
+		"tooltip": template.Identity.Tooltip || "",
+		"disabledTooltip": template.Formation.DisabledTooltip || "",
 		"icon": template.Identity.Icon
 	};
 };

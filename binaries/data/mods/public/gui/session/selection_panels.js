@@ -270,6 +270,8 @@ g_SelectionPanels.Formation = {
 
 		let formationInfo = g_FormationsInfo.get(data.item);
 		let tooltip = translate(formationInfo.name);
+		if (formationInfo.tooltip)
+			tooltip += "\n" + bodyFont(translate(formationInfo.tooltip));
 
 		let isDefaultFormation = g_AutoFormation.isDefault(data.item);
 		if (data.item === NULL_FORMATION)
@@ -281,8 +283,8 @@ g_SelectionPanels.Formation = {
 				translate("This is the default formation, used for movement orders.") :
 				translate("Right-click to set this as the default formation."));
 
-		if (!formationOk && formationInfo.tooltip)
-			tooltip += "\n" + objectionFont(translate(formationInfo.tooltip));
+		if (!formationOk && formationInfo.disabledTooltip)
+			tooltip += "\n" + objectionFont(translate(formationInfo.disabledTooltip));
 		data.button.tooltip = tooltip;
 
 		data.button.enabled = formationOk && controlsPlayer(data.player);
