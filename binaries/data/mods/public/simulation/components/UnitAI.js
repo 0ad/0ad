@@ -4645,7 +4645,10 @@ UnitAI.prototype.StopMoving = function()
 		return;
 
 	cmpUnitMotion.StopMoving();
-	cmpUnitMotion.SetSpeedMultiplier(1);
+
+	// Formations misuse the speed multiplier for adapting its walk speed to their members.
+	if (!this.IsFormationController())
+		cmpUnitMotion.SetSpeedMultiplier(1);
 };
 
 /**
