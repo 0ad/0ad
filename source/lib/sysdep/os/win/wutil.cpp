@@ -161,29 +161,10 @@ Status StatusFromWin()
 //-----------------------------------------------------------------------------
 // directories
 
-// (NB: wutil_Init is called before static ctors => use placement new)
-static OsPath* localAppdataPath;
-static OsPath* roamingAppdataPath;
-static OsPath* personalPath;
-
-const OsPath& wutil_LocalAppdataPath()
-{
-	return *localAppdataPath;
-}
-
-const OsPath& wutil_RoamingAppdataPath()
-{
-	return *roamingAppdataPath;
-}
-
-const OsPath& wutil_PersonalPath()
-{
-	return *personalPath;
-}
-
 // Helper to avoid duplicating this setup
-static OsPath* GetFolderPath(int csidl)
+static OsPath GetFolderPath(int csidl)
 {
+	WinScopedPreserveLastError s;
 	HWND hwnd = 0;	// ignored unless a dial-up connection is needed to access the folder
 	HANDLE token = 0;
 	wchar_t path[MAX_PATH];	// mandated by SHGetFolderPathW
@@ -193,34 +174,27 @@ static OsPath* GetFolderPath(int csidl)
 		debug_printf("SHGetFolderPathW failed with HRESULT = 0x%08lx for csidl = 0x%04x\n", ret, csidl);
 		debug_warn("SHGetFolderPathW failed (see debug output)");
 	}
-	if(GetLastError() == ERROR_NO_TOKEN)	// avoid polluting last error
+	if (GetLastError() == ERROR_NO_TOKEN)	// avoid polluting last error
 		SetLastError(0);
-	return new(wutil_Allocate(sizeof(OsPath))) OsPath(path);
+	return OsPath(path);
 }
 
-static void GetDirectories()
+OsPath wutil_LocalAppdataPath()
 {
-	WinScopedPreserveLastError s;
-
-	// roaming application data
-	roamingAppdataPath = GetFolderPath(CSIDL_APPDATA);
-
-	// local application data
-	localAppdataPath = GetFolderPath(CSIDL_LOCAL_APPDATA);
-
-	// my documents
-	personalPath = GetFolderPath(CSIDL_PERSONAL);
+	// Local application data.
+	return GetFolderPath(CSIDL_LOCAL_APPDATA);
 }
 
-
-static void FreeDirectories()
+OsPath wutil_RoamingAppdataPath()
 {
-	localAppdataPath->~OsPath();
-	wutil_Free(localAppdataPath);
-	roamingAppdataPath->~OsPath();
-	wutil_Free(roamingAppdataPath);
-	personalPath->~OsPath();
-	wutil_Free(personalPath);
+	// Roaming application data.
+	return GetFolderPath(CSIDL_APPDATA);
+}
+
+OsPath wutil_PersonalPath()
+{
+	// My documents.
+	return GetFolderPath(CSIDL_PERSONAL);
 }
 
 //-----------------------------------------------------------------------------
@@ -336,8 +310,6 @@ static Status wutil_Init()
 {
 	InitLocks();
 
-	GetDirectories();
-
 	return INFO::OK;
 }
 
@@ -345,8 +317,6 @@ static Status wutil_Init()
 static Status wutil_Shutdown()
 {
 	ShutdownLocks();
-
-	FreeDirectories();
 
 	return INFO::OK;
 }
