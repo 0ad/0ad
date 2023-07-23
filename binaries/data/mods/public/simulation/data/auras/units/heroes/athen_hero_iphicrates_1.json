@@ -1,12 +1,12 @@
 {
-	"type": "formation",
+	"type": "range",
+	"radius": 40,
 	"affects": ["Soldier"],
 	"modifications": [
-		{ "value": "Resistance/Entity/Damage/Hack", "add": 3 },
-		{ "value": "Resistance/Entity/Damage/Pierce", "add": 3 },
-		{ "value": "Resistance/Entity/Damage/Crush", "add": 3 },
-		{ "value": "UnitMotion/WalkSpeed", "multiply": 1.15 }
+		{ "value": "Resistance/Entity/Damage/Hack", "add": 2 },
+		{ "value": "Resistance/Entity/Damage/Pierce", "add": 2 },
+		{ "value": "Resistance/Entity/Damage/Crush", "add": 2 }
 	],
 	"auraName": "Formation Reforms",
-	"auraDescription": "Soldiers in his formation +3 crush, hack, pierce resistance, +15% movement speed."
+	"auraDescription": "Soldiers +2 crush, hack, pierce resistance."
 }

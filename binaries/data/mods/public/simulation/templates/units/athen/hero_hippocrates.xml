@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_hero_healer">
+  <Auras datatype="tokens">
+    units/heroes/athen_hero_hippocrates_1
+    units/heroes/athen_hero_hippocrates_2
+  </Auras>
+  <Health>
+    <Max>600</Max>
+  </Health>
+  <Identity>
+    <Civ>athen</Civ>
+    <GenericName>Hippocrates</GenericName>
+    <SpecificName>Hippocrates</SpecificName>
+    <Icon>units/athen/hero_hippocrates.png</Icon>
+    <Requirements>
+      <Techs datatype="tokens">-phase_city phase_town</Techs>
+    </Requirements>
+  </Identity>
+  <VisualActor>
+    <Actor>units/athenians/hero_healer_hippocrates.xml</Actor>
+  </VisualActor>
+</Entity>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="units/spart/champion_infantry_spear">
+  <Attack>
+    <Melee>
+      <Damage>
+        <Hack op="mul">1.2</Hack>
+        <Pierce op="mul">1.2</Pierce>
+      </Damage>
+    </Melee>
+  </Attack>
+  <Health>
+    <Max op="mul">1.2</Max>
+  </Health>
+  <Identity>
+    <GenericName>Spartan Olympic Hoplite</GenericName>
+    <Icon>units/spart/champion_infantry_olympian.png</Icon>
+  </Identity>
+  <Promotion disable=""/>
+  <VisualActor>
+    <Actor>units/spartans/infantry_spearman_c_olympian.xml</Actor>
+  </VisualActor>
+</Entity>

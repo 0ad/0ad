@@ -1,0 +1,24 @@
+{
+	"genericName": "Krypteia",
+	"description": "Krypteia was an Agoge rite of passage, during which soldiers learned how to camouflage themselves and gained combat experience. The Spartans declared war on the Helots annually, with no problem or guilt in murdering them. During this initiation, the youths slept during the day and roamed at night, murdering any Helot they encountered along the way.",
+	"cost": {
+		"food": 200,
+		"metal": 200
+	},
+	"requirements": {
+		"all": [
+			{ "tech": "phase_town" },
+			{ "civ": "spart" }
+		]
+	},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "skull_swords.png",
+	"researchTime": 50,
+	"tooltip": "Champion Hoplites +10% melee attack damage, but Citizen Infantry Javelineers +30% training time.",
+	"modifications": [
+		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.1, "affects": "Champion" },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.1, "affects": "Champion" },
+		{ "value": "Cost/BuildTime", "multiply": 1.3, "affects": "Citizen Infantry Javelineer" }
+	],
+    "soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

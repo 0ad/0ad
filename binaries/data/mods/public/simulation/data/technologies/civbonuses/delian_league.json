@@ -1,0 +1,16 @@
+{
+        "genericName": "Delian League",
+        "autoResearch": true,
+        "description": "Shortly after the great naval victories at Salamis and Mykale, the Greek city-states instituted the so-called Delian League in 478 BC, whose purpose was to push the Persians out of the Aegean region. The allied states contributed ships and money, while the Athenians offered their entire navy.",
+        "requirements": {
+                "any": [
+                        { "civ": "athen" }
+                ]
+        },
+        "icon": "trihemiolia.png",
+        "tooltip": "Ships construct 25% faster.",
+        "modifications": [
+                { "value": "Cost/BuildTime", "multiply": 0.75 }
+        ],
+        "affects": ["Ship"]
+}

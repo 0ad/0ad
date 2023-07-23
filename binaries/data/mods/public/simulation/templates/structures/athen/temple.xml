@@ -11,6 +11,11 @@
   <Obstruction>
     <Static width="17.5" depth="27"/>
   </Obstruction>
+  <Trainer>
+    <Entities datatype="tokens">
+      units/{civ}/hero_hippocrates
+    </Entities>
+  </Trainer>
   <VisualActor>
     <Actor>structures/athenians/temple.xml</Actor>
     <FoundationActor>structures/fndn_5x7_temple.xml</FoundationActor>

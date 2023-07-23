@@ -312,7 +312,7 @@ Diplomacy.prototype.HasSharedLos = function()
 
 Diplomacy.prototype.UpdateSharedLos = function()
 {
-	const playerID = Engine.QueryInterface(this.entity, IID_Player).GetPlayerID();
+	const playerID = Engine.QueryInterface(this.entity, IID_Player)?.GetPlayerID();
 	if (playerID === undefined)
 		return;
 

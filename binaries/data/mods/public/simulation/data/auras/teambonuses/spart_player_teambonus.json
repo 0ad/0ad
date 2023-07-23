@@ -1,10 +1,13 @@
 {
 	"type": "global",
-	"affects": ["Citizen Infantry Spearman"],
+	"affects": ["Hero"],
 	"affectedPlayers": ["MutualAlly"],
 	"modifications": [
-		{ "value": "Health/Max", "multiply": 1.1 }
+		{ "value": "Cost/Resources/food", "replace": 0 },
+		{ "value": "Cost/Resources/wood", "replace": 0 },
+		{ "value": "Cost/Resources/stone", "replace": 0 },
+		{ "value": "Cost/Resources/metal", "replace": 0 }
 	],
 	"auraName": "Peloponnesian League",
-	"auraDescription": "Citizen Infantry Spearmen +10% health."
+	"auraDescription": "Heroes are trained for free."
 }
