@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2023-07-21 07:18+0000\n"
-"PO-Revision-Date: 2023-07-21 07:18+0000\n"
+"POT-Creation-Date: 2023-07-24 07:18+0000\n"
+"PO-Revision-Date: 2023-07-24 07:18+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -24,10 +24,8 @@ msgid "Unlocked in City Phase."
 msgstr "A nagyvárosi szakaszban válik elérhetővé."
 
 #, python-format
-msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr ""
-"Kampioen infanterie speervechters krijgen +25% gezondheid, maar kosten +5% meer "
-"rekruteringstijd."
+msgid "Champion Hoplites +25% health, but +5% training time."
+msgstr "Champion Hoplites +25% health, but +5% training time."
 
 msgid "Encouraging soldiers to practice archery improves their accuracy."
 msgstr ""
@@ -87,6 +85,19 @@ msgid "Structures +25% health and capture points, but also +20% build time."
 msgstr ""
 "Buannaichidh na togalaichean +25% de shlàinte is puingean glacaidh ach bheir e +20% a "
 "bharrachd de dh’ùine cuideachd."
+
+msgid ""
+"The arsenal was mainly used as a warehouse for materials and instruments for the "
+"equipment of warships."
+msgstr ""
+"The arsenal was mainly used as a warehouse for materials and instruments for the "
+"equipment of warships."
+
+msgid "Arsenal of Philon"
+msgstr "Arsenal of Philon"
+
+msgid "Warships +1 health/second self-repair rate."
+msgstr "Warships +1 health/second self-repair rate."
 
 msgid ""
 "This famous and most important work of the Seven Military Classics teaches Han "
@@ -186,6 +197,24 @@ msgid "Structures −20% build time, −20% health, and −20% capture points."
 msgstr ""
 "Gheibh togalaichean −20% air an ùine togail, −20% air an slàinte agus –20% de phuingean"
 " glacaidh."
+
+msgid ""
+"Shortly after the great naval victories at Salamis and Mykale, the Greek city-states "
+"instituted the so-called Delian League in 478 BC, whose purpose was to push the "
+"Persians out of the Aegean region. The allied states contributed ships and money, while"
+" the Athenians offered their entire navy."
+msgstr ""
+"Shortly after the great naval victories at Salamis and Mykale, the Greek city-states "
+"instituted the so-called Delian League in 478 BC, whose purpose was to push the "
+"Persians out of the Aegean region. The allied states contributed ships and money, while"
+" the Athenians offered their entire navy."
+
+msgid "Delian League"
+msgstr "Delian League"
+
+#, python-format
+msgid "Ships construct 25% faster."
+msgstr "Ships construct 25% faster."
 
 msgid ""
 "The Gauls were well-known for their effective cavalry. Celtic mercenaries were in "
@@ -735,6 +764,22 @@ msgstr ""
 "Городские центры получают +100% к прочности и очкам захвата, а также удваивают базовое "
 "количество выпускаемых ими стрел."
 
+msgid ""
+"Helots were the servants of Greece. Unlike slaves, helots were owned by the state, "
+"which managed economic production. Helots must give a reasonable portion of their "
+"harvest to support a warrior and his family or widow."
+msgstr ""
+"Helots were the servants of Greece. Unlike slaves, helots were owned by the state, "
+"which managed economic production. Helots must give a reasonable portion of their "
+"harvest to support a warrior and his family or widow."
+
+msgid "Helot Economy"
+msgstr "Helot Economy"
+
+#, python-format
+msgid "Infantry Javelineers +100% grain gather rate, but −10% ranged attack pierce damage."
+msgstr "Infantry Javelineers +100% grain gather rate, but −10% ranged attack pierce damage."
+
 msgid "Hoplite soldiers constituted most of the armies of Greece."
 msgstr "Bhiodh a’ mhòrchuid dhe na saighdearan sna feachdan Greugach ’nan hoplaidean."
 
@@ -759,21 +804,37 @@ msgstr "Lèintean-crios neo-bhàsmhor"
 msgid "Immortals −50% training time."
 msgstr "Время обучения бессмертных сокращается на 50%."
 
-msgid ""
-"Athenian gymnasium, docks and triremes can train Marines (Epibates Athenaikos) and "
-"Cretan Mercenary Archers (Toxotes Kretikos)."
-msgstr ""
-"Se puede reclutar infantería de marina (Epibates Athenaikos) y arqueros mercenarios "
-"cretensenes (Toxotes Kretikos) en el Gymnasion ateniense, en el muelle y en los "
-"trirremes.  "
+msgid "Athenian gymnasium, docks and triremes can train Marines (Epibates Athenaikos)."
+msgstr "Athenian gymnasium, docks and triremes can train Marines (Epibates Athenaikos)."
 
 msgid "Iphicratean Reforms"
 msgstr "Ath-leasachaidhean Iphiocratas"
 
-msgid "Athenian Gymnasia, Docks and Triremes can train Marines and Cretan Mercenary Archers."
+msgid "Athenian Gymnasia, Docks and Triremes can train Marines."
+msgstr "Athenian Gymnasia, Docks and Triremes can train Marines."
+
+msgid ""
+"Krypteia was an Agoge rite of passage, during which soldiers learned how to camouflage "
+"themselves and gained combat experience. The Spartans declared war on the Helots "
+"annually, with no problem or guilt in murdering them. During this initiation, the "
+"youths slept during the day and roamed at night, murdering any Helot they encountered "
+"along the way."
 msgstr ""
-"Ateenalaisissa gymnasioissa, telakoilla ja triremeillä voidaan kouluttaa merijalkaväen "
-"sotilaita ja kreetalaisia palkkasoturijousimiehiä."
+"Krypteia was an Agoge rite of passage, during which soldiers learned how to camouflage "
+"themselves and gained combat experience. The Spartans declared war on the Helots "
+"annually, with no problem or guilt in murdering them. During this initiation, the "
+"youths slept during the day and roamed at night, murdering any Helot they encountered "
+"along the way."
+
+msgid "Krypteia"
+msgstr "Krypteia"
+
+msgid ""
+"Champion Hoplites +10% melee attack damage, but Citizen Infantry Javelineers +30% "
+"training time."
+msgstr ""
+"Champion Hoplites +10% melee attack damage, but Citizen Infantry Javelineers +30% "
+"training time."
 
 msgid ""
 "The Long Walls of Athens were constructed under the auspices of the wily Themistocles "
@@ -812,6 +873,20 @@ msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
 msgstr ""
 "Els llancers campions de cavalleria guanyen un 20% de salut, però triguen un 10% més a "
 "reclutar-se."
+
+msgid ""
+"In ancient Athens, ostracism was the process by which any citizen, including political "
+"leaders, could be expelled from the city-state for 10 years."
+msgstr ""
+"In ancient Athens, ostracism was the process by which any citizen, including political "
+"leaders, could be expelled from the city-state for 10 years."
+
+msgid "Ostracism"
+msgstr "Ostracism"
+
+#, python-format
+msgid "Citizen soldiers +5% health, but Heroes −40% health."
+msgstr "Citizen soldiers +5% health, but Heroes −40% health."
 
 msgid "Increases outpost vision."
 msgstr "Aumenta el alcance de visión de los puestos de avanzada."
@@ -992,6 +1067,30 @@ msgstr ""
 
 msgid "Village Phase"
 msgstr "Pazenn ar C'hêriadennoù ."
+
+msgid ""
+"Pheidias was a Greek sculptor, painter and architect, who lived in the 5th century BC, "
+"and is commonly regarded as one of the greatest of all sculptors of Classical Greece: "
+"Phidias' Statue of Zeus at Olympia was one of the Seven Wonders of the Ancient World. "
+"Phidias designed the statues of the goddess Athena on the Athenian Acropolis, namely "
+"the Athena Parthenos inside the Parthenon and the Athena Promachos, a colossal bronze "
+"statue of Athena which stood between it and the Propylaea, a monumental gateway that "
+"served as the entrance to the Acropolis in Athens."
+msgstr ""
+"Pheidias was a Greek sculptor, painter and architect, who lived in the 5th century BC, "
+"and is commonly regarded as one of the greatest of all sculptors of Classical Greece: "
+"Phidias' Statue of Zeus at Olympia was one of the Seven Wonders of the Ancient World. "
+"Phidias designed the statues of the goddess Athena on the Athenian Acropolis, namely "
+"the Athena Parthenos inside the Parthenon and the Athena Promachos, a colossal bronze "
+"statue of Athena which stood between it and the Propylaea, a monumental gateway that "
+"served as the entrance to the Acropolis in Athens."
+
+msgid "Pheidian Workshop"
+msgstr "Pheidian Workshop"
+
+#, python-format
+msgid "Temples and Wonder −50% stone cost and build time."
+msgstr "Temples and Wonder −50% stone cost and build time."
 
 msgid "Poison Arrows"
 msgstr "Flèches empoisonnées"
@@ -1448,6 +1547,21 @@ msgstr "Esercito Tradizionale"
 msgid "Unlock the Champion Infantry Pikeman."
 msgstr "Ξεκλειδώστε τους Πρωταθλητές Πεζικού  Ακοντιστές."
 
+msgid ""
+"Paeans were battle hymns that were sung by the Hoplites when they charged the enemy "
+"lines. One of the first known Paeans was composed by Tirteus, a warrior poet of Sparta,"
+" during the First Messenian War."
+msgstr ""
+"Paeans were battle hymns that were sung by the Hoplites when they charged the enemy "
+"lines. One of the first known Paeans was composed by Tirteus, a warrior poet of Sparta,"
+" during the First Messenian War."
+
+msgid "Tyrtean Paeans"
+msgstr "Tyrtean Paeans"
+
+msgid "Champion Hoplites +10% movement speed."
+msgstr "Champion Hoplites +10% movement speed."
+
 #, python-format
 msgid ""
 "Advanced and Elite units +20% training time, +25% health, +0.7 capture attack strength,"
@@ -1519,6 +1633,19 @@ msgstr "Bogini Bona Dea"
 
 msgid "Unlock the ability to train women from houses."
 msgstr "Thoir a’ ghlas far a’ chomais gus boireannaich oideachadh sna taighean."
+
+msgid ""
+"In ancient Sparta, the Helots who were freed by the state in reward for military "
+"service were known as Neodamodes."
+msgstr ""
+"In ancient Sparta, the Helots who were freed by the state in reward for military "
+"service were known as Neodamodes."
+
+msgid "Unlock Neodamodes"
+msgstr "Unlock Neodamodes"
+
+msgid "Unlock the ability to train Spearman Neodamodes at the Barracks."
+msgstr "Unlock the ability to train Spearman Neodamodes at the Barracks."
 
 msgid ""
 "The extension of trade leads to the permanent establishment of storekeepers and their "
