@@ -29,13 +29,13 @@ class TestFSM : public CxxTest::TestSuite
 	};
 
 	template<size_t N>
-	static bool editGlobal(void* state, const CFsmEvent*)
+	static bool IncrementGlobal(void* state, const CFsmEvent*)
 	{
 		++std::get<N>(reinterpret_cast<FSMGlobalState*>(state)->occurCount);
 		return true;
 	}
 
-	static bool editParam(void*, CFsmEvent* event)
+	static bool IncrementParam(void*, CFsmEvent* event)
 	{
 		++*reinterpret_cast<size_t*>(event->GetParamRef());
 		return true;
@@ -43,16 +43,16 @@ class TestFSM : public CxxTest::TestSuite
 
 	enum class State : unsigned int
 	{
-		zero,
-		one,
-		two
+		ZERO,
+		ONE,
+		TWO
 	};
 
 	enum class Instruction : unsigned int
 	{
-		toZero,
-		toOne,
-		toTwo
+		TO_ZERO,
+		TO_ONE,
+		TO_TWO
 	};
 
 public:
@@ -73,7 +73,7 @@ public:
 			// state one
 			const auto cond = await nextInstruction();
 
-			if (cond == instruction::toOne)
+			if (cond == instruction::TO_ONE)
 			{
 				//state two
 				await nextInstruction();
@@ -81,42 +81,42 @@ public:
 		}
 		*/
 
-		FSMObject.AddTransition(static_cast<unsigned int>(State::zero),
-			static_cast<unsigned int>(Instruction::toOne), static_cast<unsigned int>(State::one),
-			reinterpret_cast<void*>(&editGlobal<1>), static_cast<void*>(&globalState));
-		FSMObject.AddTransition(static_cast<unsigned int>(State::one),
-			static_cast<unsigned int>(Instruction::toTwo), static_cast<unsigned int>(State::two),
-			reinterpret_cast<void*>(&editGlobal<2>), static_cast<void*>(&globalState));
-		FSMObject.AddTransition(static_cast<unsigned int>(State::one),
-			static_cast<unsigned int>(Instruction::toZero), static_cast<unsigned int>(State::zero),
-			reinterpret_cast<void*>(&editGlobal<0>), static_cast<void*>(&globalState));
-		FSMObject.AddTransition(static_cast<unsigned int>(State::two),
-			static_cast<unsigned int>(Instruction::toZero), static_cast<unsigned int>(State::zero),
-			reinterpret_cast<void*>(&editGlobal<0>), static_cast<void*>(&globalState));
+		FSMObject.AddTransition(static_cast<unsigned int>(State::ZERO),
+			static_cast<unsigned int>(Instruction::TO_ONE), static_cast<unsigned int>(State::ONE),
+			reinterpret_cast<void*>(&IncrementGlobal<1>), static_cast<void*>(&globalState));
+		FSMObject.AddTransition(static_cast<unsigned int>(State::ONE),
+			static_cast<unsigned int>(Instruction::TO_TWO), static_cast<unsigned int>(State::TWO),
+			reinterpret_cast<void*>(&IncrementGlobal<2>), static_cast<void*>(&globalState));
+		FSMObject.AddTransition(static_cast<unsigned int>(State::ONE),
+			static_cast<unsigned int>(Instruction::TO_ZERO), static_cast<unsigned int>(State::ZERO),
+			reinterpret_cast<void*>(&IncrementGlobal<0>), static_cast<void*>(&globalState));
+		FSMObject.AddTransition(static_cast<unsigned int>(State::TWO),
+			static_cast<unsigned int>(Instruction::TO_ZERO), static_cast<unsigned int>(State::ZERO),
+			reinterpret_cast<void*>(&IncrementGlobal<0>), static_cast<void*>(&globalState));
 
-		FSMObject.SetFirstState(static_cast<unsigned int>(State::zero));
+		FSMObject.SetFirstState(static_cast<unsigned int>(State::ZERO));
 
-		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::toOne), nullptr));
+		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::TO_ONE), nullptr));
 		TS_ASSERT_EQUALS(std::get<1>(globalState.occurCount), 1);
-		TS_ASSERT_EQUALS(FSMObject.GetCurrState(), static_cast<unsigned int>(State::one));
+		TS_ASSERT_EQUALS(FSMObject.GetCurrState(), static_cast<unsigned int>(State::ONE));
 
-		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::toTwo), nullptr));
-		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::toZero), nullptr));
-		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::toOne), nullptr));
-		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::toZero), nullptr));
-		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::toOne), nullptr));
-		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::toZero), nullptr));
+		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::TO_TWO), nullptr));
+		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::TO_ZERO), nullptr));
+		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::TO_ONE), nullptr));
+		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::TO_ZERO), nullptr));
+		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::TO_ONE), nullptr));
+		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::TO_ZERO), nullptr));
 		TS_ASSERT_EQUALS(std::get<0>(globalState.occurCount), 3);
 		TS_ASSERT_EQUALS(std::get<1>(globalState.occurCount), 3);
 		TS_ASSERT_EQUALS(std::get<2>(globalState.occurCount), 1);
 
 		// Some transitions do not exist.
-		TS_ASSERT(!FSMObject.Update(static_cast<unsigned int>(Instruction::toZero), nullptr));
-		TS_ASSERT(!FSMObject.Update(static_cast<unsigned int>(Instruction::toTwo), nullptr));
-		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::toOne), nullptr));
-		TS_ASSERT(!FSMObject.Update(static_cast<unsigned int>(Instruction::toOne), nullptr));
-		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::toTwo), nullptr));
-		TS_ASSERT(!FSMObject.Update(static_cast<unsigned int>(Instruction::toTwo), nullptr));
+		TS_ASSERT(!FSMObject.Update(static_cast<unsigned int>(Instruction::TO_ZERO), nullptr));
+		TS_ASSERT(!FSMObject.Update(static_cast<unsigned int>(Instruction::TO_TWO), nullptr));
+		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::TO_ONE), nullptr));
+		TS_ASSERT(!FSMObject.Update(static_cast<unsigned int>(Instruction::TO_ONE), nullptr));
+		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::TO_TWO), nullptr));
+		TS_ASSERT(!FSMObject.Update(static_cast<unsigned int>(Instruction::TO_TWO), nullptr));
 		TS_ASSERT_EQUALS(std::get<0>(globalState.occurCount), 3);
 		TS_ASSERT_EQUALS(std::get<1>(globalState.occurCount), 4);
 		TS_ASSERT_EQUALS(std::get<2>(globalState.occurCount), 2);
@@ -128,33 +128,33 @@ public:
 		CFsm FSMObject;
 
 		// Equal to the FSM in test_global.
-		FSMObject.AddTransition(static_cast<unsigned int>(State::zero),
-			static_cast<unsigned int>(Instruction::toOne), static_cast<unsigned int>(State::one),
-			reinterpret_cast<void*>(&editParam), nullptr);
-		FSMObject.AddTransition(static_cast<unsigned int>(State::one),
-			static_cast<unsigned int>(Instruction::toTwo), static_cast<unsigned int>(State::two),
-			reinterpret_cast<void*>(&editParam), nullptr);
-		FSMObject.AddTransition(static_cast<unsigned int>(State::one),
-			static_cast<unsigned int>(Instruction::toZero), static_cast<unsigned int>(State::zero),
-			reinterpret_cast<void*>(&editParam), nullptr);
-		FSMObject.AddTransition(static_cast<unsigned int>(State::two),
-			static_cast<unsigned int>(Instruction::toZero), static_cast<unsigned int>(State::zero),
-			reinterpret_cast<void*>(&editParam), nullptr);
+		FSMObject.AddTransition(static_cast<unsigned int>(State::ZERO),
+			static_cast<unsigned int>(Instruction::TO_ONE), static_cast<unsigned int>(State::ONE),
+			reinterpret_cast<void*>(&IncrementParam), nullptr);
+		FSMObject.AddTransition(static_cast<unsigned int>(State::ONE),
+			static_cast<unsigned int>(Instruction::TO_TWO), static_cast<unsigned int>(State::TWO),
+			reinterpret_cast<void*>(&IncrementParam), nullptr);
+		FSMObject.AddTransition(static_cast<unsigned int>(State::ONE),
+			static_cast<unsigned int>(Instruction::TO_ZERO), static_cast<unsigned int>(State::ZERO),
+			reinterpret_cast<void*>(&IncrementParam), nullptr);
+		FSMObject.AddTransition(static_cast<unsigned int>(State::TWO),
+			static_cast<unsigned int>(Instruction::TO_ZERO), static_cast<unsigned int>(State::ZERO),
+			reinterpret_cast<void*>(&IncrementParam), nullptr);
 
-		FSMObject.SetFirstState(static_cast<unsigned int>(State::zero));
+		FSMObject.SetFirstState(static_cast<unsigned int>(State::ZERO));
 
 		// Some transitions do not exist.
-		TS_ASSERT(!FSMObject.Update(static_cast<unsigned int>(Instruction::toZero),
+		TS_ASSERT(!FSMObject.Update(static_cast<unsigned int>(Instruction::TO_ZERO),
 			static_cast<void*>(&std::get<0>(globalState.occurCount))));
-		TS_ASSERT(!FSMObject.Update(static_cast<unsigned int>(Instruction::toTwo),
+		TS_ASSERT(!FSMObject.Update(static_cast<unsigned int>(Instruction::TO_TWO),
 			static_cast<void*>(&std::get<2>(globalState.occurCount))));
-		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::toOne),
+		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::TO_ONE),
 			static_cast<void*>(&std::get<1>(globalState.occurCount))));
-		TS_ASSERT(!FSMObject.Update(static_cast<unsigned int>(Instruction::toOne),
+		TS_ASSERT(!FSMObject.Update(static_cast<unsigned int>(Instruction::TO_ONE),
 			static_cast<void*>(&std::get<1>(globalState.occurCount))));
-		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::toTwo),
+		TS_ASSERT(FSMObject.Update(static_cast<unsigned int>(Instruction::TO_TWO),
 			static_cast<void*>(&std::get<2>(globalState.occurCount))));
-		TS_ASSERT(!FSMObject.Update(static_cast<unsigned int>(Instruction::toTwo),
+		TS_ASSERT(!FSMObject.Update(static_cast<unsigned int>(Instruction::TO_TWO),
 			static_cast<void*>(&std::get<2>(globalState.occurCount))));
 		TS_ASSERT_EQUALS(std::get<0>(globalState.occurCount), 0);
 		TS_ASSERT_EQUALS(std::get<1>(globalState.occurCount), 1);
