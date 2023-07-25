@@ -52,8 +52,7 @@ void CFsmTransition::SetNextState(unsigned int nextState)
 
 bool CFsmTransition::RunAction() const
 {
-	return !m_Action.pFunction ||
-		reinterpret_cast<Action*>(m_Action.pFunction)(m_Action.pContext, m_Event);
+	return !m_Action.pFunction || m_Action.pFunction(m_Action.pContext, m_Event);
 }
 
 CFsm::CFsm()
@@ -123,7 +122,7 @@ CFsmEvent* CFsm::AddEvent(unsigned int eventType)
 }
 
 CFsmTransition* CFsm::AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState,
-	void* pAction /* = nullptr */, void* pContext /* = nullptr*/)
+	Action* pAction /* = nullptr */, void* pContext /* = nullptr*/)
 {
 	// Make sure we store the current state
 	AddState(state);

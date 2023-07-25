@@ -100,57 +100,57 @@ CNetClient::CNetClient(CGame* game) :
 	JS_AddExtraGCRootsTracer(GetScriptInterface().GetGeneralJSContext(), CNetClient::Trace, this);
 
 	// Set up transitions for session
-	AddTransition(NCS_UNCONNECTED, (uint)NMT_CONNECT_COMPLETE, NCS_CONNECT, (void*)&OnConnect, context);
+	AddTransition(NCS_UNCONNECTED, (uint)NMT_CONNECT_COMPLETE, NCS_CONNECT, &OnConnect, context);
 
-	AddTransition(NCS_CONNECT, (uint)NMT_SERVER_HANDSHAKE, NCS_HANDSHAKE, (void*)&OnHandshake, context);
+	AddTransition(NCS_CONNECT, (uint)NMT_SERVER_HANDSHAKE, NCS_HANDSHAKE, &OnHandshake, context);
 
-	AddTransition(NCS_HANDSHAKE, (uint)NMT_SERVER_HANDSHAKE_RESPONSE, NCS_AUTHENTICATE, (void*)&OnHandshakeResponse, context);
+	AddTransition(NCS_HANDSHAKE, (uint)NMT_SERVER_HANDSHAKE_RESPONSE, NCS_AUTHENTICATE, &OnHandshakeResponse, context);
 
-	AddTransition(NCS_AUTHENTICATE, (uint)NMT_AUTHENTICATE, NCS_AUTHENTICATE, (void*)&OnAuthenticateRequest, context);
-	AddTransition(NCS_AUTHENTICATE, (uint)NMT_AUTHENTICATE_RESULT, NCS_PREGAME, (void*)&OnAuthenticate, context);
+	AddTransition(NCS_AUTHENTICATE, (uint)NMT_AUTHENTICATE, NCS_AUTHENTICATE, &OnAuthenticateRequest, context);
+	AddTransition(NCS_AUTHENTICATE, (uint)NMT_AUTHENTICATE_RESULT, NCS_PREGAME, &OnAuthenticate, context);
 
-	AddTransition(NCS_PREGAME, (uint)NMT_CHAT, NCS_PREGAME, (void*)&OnChat, context);
-	AddTransition(NCS_PREGAME, (uint)NMT_READY, NCS_PREGAME, (void*)&OnReady, context);
-	AddTransition(NCS_PREGAME, (uint)NMT_GAME_SETUP, NCS_PREGAME, (void*)&OnGameSetup, context);
-	AddTransition(NCS_PREGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_PREGAME, (void*)&OnPlayerAssignment, context);
-	AddTransition(NCS_PREGAME, (uint)NMT_KICKED, NCS_PREGAME, (void*)&OnKicked, context);
-	AddTransition(NCS_PREGAME, (uint)NMT_CLIENT_TIMEOUT, NCS_PREGAME, (void*)&OnClientTimeout, context);
-	AddTransition(NCS_PREGAME, (uint)NMT_CLIENT_PERFORMANCE, NCS_PREGAME, (void*)&OnClientPerformance, context);
-	AddTransition(NCS_PREGAME, (uint)NMT_GAME_START, NCS_LOADING, (void*)&OnGameStart, context);
-	AddTransition(NCS_PREGAME, (uint)NMT_JOIN_SYNC_START, NCS_JOIN_SYNCING, (void*)&OnJoinSyncStart, context);
+	AddTransition(NCS_PREGAME, (uint)NMT_CHAT, NCS_PREGAME, &OnChat, context);
+	AddTransition(NCS_PREGAME, (uint)NMT_READY, NCS_PREGAME, &OnReady, context);
+	AddTransition(NCS_PREGAME, (uint)NMT_GAME_SETUP, NCS_PREGAME, &OnGameSetup, context);
+	AddTransition(NCS_PREGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_PREGAME, &OnPlayerAssignment, context);
+	AddTransition(NCS_PREGAME, (uint)NMT_KICKED, NCS_PREGAME, &OnKicked, context);
+	AddTransition(NCS_PREGAME, (uint)NMT_CLIENT_TIMEOUT, NCS_PREGAME, &OnClientTimeout, context);
+	AddTransition(NCS_PREGAME, (uint)NMT_CLIENT_PERFORMANCE, NCS_PREGAME, &OnClientPerformance, context);
+	AddTransition(NCS_PREGAME, (uint)NMT_GAME_START, NCS_LOADING, &OnGameStart, context);
+	AddTransition(NCS_PREGAME, (uint)NMT_JOIN_SYNC_START, NCS_JOIN_SYNCING, &OnJoinSyncStart, context);
 
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_CHAT, NCS_JOIN_SYNCING, (void*)&OnChat, context);
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_GAME_SETUP, NCS_JOIN_SYNCING, (void*)&OnGameSetup, context);
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_PLAYER_ASSIGNMENT, NCS_JOIN_SYNCING, (void*)&OnPlayerAssignment, context);
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_KICKED, NCS_JOIN_SYNCING, (void*)&OnKicked, context);
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_CLIENT_TIMEOUT, NCS_JOIN_SYNCING, (void*)&OnClientTimeout, context);
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_CLIENT_PERFORMANCE, NCS_JOIN_SYNCING, (void*)&OnClientPerformance, context);
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_GAME_START, NCS_JOIN_SYNCING, (void*)&OnGameStart, context);
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_SIMULATION_COMMAND, NCS_JOIN_SYNCING, (void*)&OnInGame, context);
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_END_COMMAND_BATCH, NCS_JOIN_SYNCING, (void*)&OnJoinSyncEndCommandBatch, context);
-	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_LOADED_GAME, NCS_INGAME, (void*)&OnLoadedGame, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_CHAT, NCS_JOIN_SYNCING, &OnChat, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_GAME_SETUP, NCS_JOIN_SYNCING, &OnGameSetup, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_PLAYER_ASSIGNMENT, NCS_JOIN_SYNCING, &OnPlayerAssignment, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_KICKED, NCS_JOIN_SYNCING, &OnKicked, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_CLIENT_TIMEOUT, NCS_JOIN_SYNCING, &OnClientTimeout, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_CLIENT_PERFORMANCE, NCS_JOIN_SYNCING, &OnClientPerformance, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_GAME_START, NCS_JOIN_SYNCING, &OnGameStart, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_SIMULATION_COMMAND, NCS_JOIN_SYNCING, &OnInGame, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_END_COMMAND_BATCH, NCS_JOIN_SYNCING, &OnJoinSyncEndCommandBatch, context);
+	AddTransition(NCS_JOIN_SYNCING, (uint)NMT_LOADED_GAME, NCS_INGAME, &OnLoadedGame, context);
 
-	AddTransition(NCS_LOADING, (uint)NMT_CHAT, NCS_LOADING, (void*)&OnChat, context);
-	AddTransition(NCS_LOADING, (uint)NMT_GAME_SETUP, NCS_LOADING, (void*)&OnGameSetup, context);
-	AddTransition(NCS_LOADING, (uint)NMT_PLAYER_ASSIGNMENT, NCS_LOADING, (void*)&OnPlayerAssignment, context);
-	AddTransition(NCS_LOADING, (uint)NMT_KICKED, NCS_LOADING, (void*)&OnKicked, context);
-	AddTransition(NCS_LOADING, (uint)NMT_CLIENT_TIMEOUT, NCS_LOADING, (void*)&OnClientTimeout, context);
-	AddTransition(NCS_LOADING, (uint)NMT_CLIENT_PERFORMANCE, NCS_LOADING, (void*)&OnClientPerformance, context);
-	AddTransition(NCS_LOADING, (uint)NMT_CLIENTS_LOADING, NCS_LOADING, (void*)&OnClientsLoading, context);
-	AddTransition(NCS_LOADING, (uint)NMT_LOADED_GAME, NCS_INGAME, (void*)&OnLoadedGame, context);
+	AddTransition(NCS_LOADING, (uint)NMT_CHAT, NCS_LOADING, &OnChat, context);
+	AddTransition(NCS_LOADING, (uint)NMT_GAME_SETUP, NCS_LOADING, &OnGameSetup, context);
+	AddTransition(NCS_LOADING, (uint)NMT_PLAYER_ASSIGNMENT, NCS_LOADING, &OnPlayerAssignment, context);
+	AddTransition(NCS_LOADING, (uint)NMT_KICKED, NCS_LOADING, &OnKicked, context);
+	AddTransition(NCS_LOADING, (uint)NMT_CLIENT_TIMEOUT, NCS_LOADING, &OnClientTimeout, context);
+	AddTransition(NCS_LOADING, (uint)NMT_CLIENT_PERFORMANCE, NCS_LOADING, &OnClientPerformance, context);
+	AddTransition(NCS_LOADING, (uint)NMT_CLIENTS_LOADING, NCS_LOADING, &OnClientsLoading, context);
+	AddTransition(NCS_LOADING, (uint)NMT_LOADED_GAME, NCS_INGAME, &OnLoadedGame, context);
 
-	AddTransition(NCS_INGAME, (uint)NMT_REJOINED, NCS_INGAME, (void*)&OnRejoined, context);
-	AddTransition(NCS_INGAME, (uint)NMT_KICKED, NCS_INGAME, (void*)&OnKicked, context);
-	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_TIMEOUT, NCS_INGAME, (void*)&OnClientTimeout, context);
-	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_PERFORMANCE, NCS_INGAME, (void*)&OnClientPerformance, context);
-	AddTransition(NCS_INGAME, (uint)NMT_CLIENTS_LOADING, NCS_INGAME, (void*)&OnClientsLoading, context);
-	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_PAUSED, NCS_INGAME, (void*)&OnClientPaused, context);
-	AddTransition(NCS_INGAME, (uint)NMT_CHAT, NCS_INGAME, (void*)&OnChat, context);
-	AddTransition(NCS_INGAME, (uint)NMT_GAME_SETUP, NCS_INGAME, (void*)&OnGameSetup, context);
-	AddTransition(NCS_INGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_INGAME, (void*)&OnPlayerAssignment, context);
-	AddTransition(NCS_INGAME, (uint)NMT_SIMULATION_COMMAND, NCS_INGAME, (void*)&OnInGame, context);
-	AddTransition(NCS_INGAME, (uint)NMT_SYNC_ERROR, NCS_INGAME, (void*)&OnInGame, context);
-	AddTransition(NCS_INGAME, (uint)NMT_END_COMMAND_BATCH, NCS_INGAME, (void*)&OnInGame, context);
+	AddTransition(NCS_INGAME, (uint)NMT_REJOINED, NCS_INGAME, &OnRejoined, context);
+	AddTransition(NCS_INGAME, (uint)NMT_KICKED, NCS_INGAME, &OnKicked, context);
+	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_TIMEOUT, NCS_INGAME, &OnClientTimeout, context);
+	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_PERFORMANCE, NCS_INGAME, &OnClientPerformance, context);
+	AddTransition(NCS_INGAME, (uint)NMT_CLIENTS_LOADING, NCS_INGAME, &OnClientsLoading, context);
+	AddTransition(NCS_INGAME, (uint)NMT_CLIENT_PAUSED, NCS_INGAME, &OnClientPaused, context);
+	AddTransition(NCS_INGAME, (uint)NMT_CHAT, NCS_INGAME, &OnChat, context);
+	AddTransition(NCS_INGAME, (uint)NMT_GAME_SETUP, NCS_INGAME, &OnGameSetup, context);
+	AddTransition(NCS_INGAME, (uint)NMT_PLAYER_ASSIGNMENT, NCS_INGAME, &OnPlayerAssignment, context);
+	AddTransition(NCS_INGAME, (uint)NMT_SIMULATION_COMMAND, NCS_INGAME, &OnInGame, context);
+	AddTransition(NCS_INGAME, (uint)NMT_SYNC_ERROR, NCS_INGAME, &OnInGame, context);
+	AddTransition(NCS_INGAME, (uint)NMT_END_COMMAND_BATCH, NCS_INGAME, &OnInGame, context);
 
 	// Set first state
 	SetFirstState(NCS_UNCONNECTED);
