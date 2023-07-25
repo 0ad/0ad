@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2023-06-16 07:08+0000\n"
-"PO-Revision-Date: 2023-06-16 07:08+0000\n"
+"POT-Creation-Date: 2023-07-24 07:08+0000\n"
+"PO-Revision-Date: 2023-07-24 07:08+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -839,6 +839,21 @@ msgstr ""
 msgid "Spartan Women"
 msgstr ""
 
+#: simulation/data/civs/spart.json:CivBonuses[1].Description
+msgid "Champion Hoplites are available in village phase."
+msgstr ""
+
+#: simulation/data/civs/spart.json:CivBonuses[1].History
+msgid ""
+"Under the constitution written by the mythical lawgiver Lycurgus, the institution of "
+"the Agoge was established, where Spartans were trained from the age of 6 to be superior"
+" warriors in defense of the Spartan state."
+msgstr ""
+
+#: simulation/data/civs/spart.json:CivBonuses[1].Name
+msgid "Laws of Lycurgus"
+msgstr ""
+
 #: simulation/templates/special/players/athen.xml:8
 msgid "Athenians"
 msgstr ""
@@ -877,7 +892,7 @@ msgid ""
 "breached."
 msgstr ""
 
-#: simulation/templates/special/players/gaia.xml:5
+#: simulation/templates/special/players/gaia.xml:9
 msgid "Gaia"
 msgstr ""
 
