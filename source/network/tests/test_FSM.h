@@ -29,7 +29,7 @@ class TestFSM : public CxxTest::TestSuite
 	};
 
 	template<size_t N>
-	static bool IncrementGlobal(void* state, const CFsmEvent*)
+	static bool IncrementGlobal(void* state, CFsmEvent*)
 	{
 		++std::get<N>(reinterpret_cast<FSMGlobalState*>(state)->occurCount);
 		return true;
@@ -83,16 +83,16 @@ public:
 
 		FSMObject.AddTransition(static_cast<unsigned int>(State::ZERO),
 			static_cast<unsigned int>(Instruction::TO_ONE), static_cast<unsigned int>(State::ONE),
-			reinterpret_cast<void*>(&IncrementGlobal<1>), static_cast<void*>(&globalState));
+			&IncrementGlobal<1>, static_cast<void*>(&globalState));
 		FSMObject.AddTransition(static_cast<unsigned int>(State::ONE),
 			static_cast<unsigned int>(Instruction::TO_TWO), static_cast<unsigned int>(State::TWO),
-			reinterpret_cast<void*>(&IncrementGlobal<2>), static_cast<void*>(&globalState));
+			&IncrementGlobal<2>, static_cast<void*>(&globalState));
 		FSMObject.AddTransition(static_cast<unsigned int>(State::ONE),
 			static_cast<unsigned int>(Instruction::TO_ZERO), static_cast<unsigned int>(State::ZERO),
-			reinterpret_cast<void*>(&IncrementGlobal<0>), static_cast<void*>(&globalState));
+			&IncrementGlobal<0>, static_cast<void*>(&globalState));
 		FSMObject.AddTransition(static_cast<unsigned int>(State::TWO),
 			static_cast<unsigned int>(Instruction::TO_ZERO), static_cast<unsigned int>(State::ZERO),
-			reinterpret_cast<void*>(&IncrementGlobal<0>), static_cast<void*>(&globalState));
+			&IncrementGlobal<0>, static_cast<void*>(&globalState));
 
 		FSMObject.SetFirstState(static_cast<unsigned int>(State::ZERO));
 
@@ -130,16 +130,16 @@ public:
 		// Equal to the FSM in test_global.
 		FSMObject.AddTransition(static_cast<unsigned int>(State::ZERO),
 			static_cast<unsigned int>(Instruction::TO_ONE), static_cast<unsigned int>(State::ONE),
-			reinterpret_cast<void*>(&IncrementParam), nullptr);
+			&IncrementParam, nullptr);
 		FSMObject.AddTransition(static_cast<unsigned int>(State::ONE),
 			static_cast<unsigned int>(Instruction::TO_TWO), static_cast<unsigned int>(State::TWO),
-			reinterpret_cast<void*>(&IncrementParam), nullptr);
+			&IncrementParam, nullptr);
 		FSMObject.AddTransition(static_cast<unsigned int>(State::ONE),
 			static_cast<unsigned int>(Instruction::TO_ZERO), static_cast<unsigned int>(State::ZERO),
-			reinterpret_cast<void*>(&IncrementParam), nullptr);
+			&IncrementParam, nullptr);
 		FSMObject.AddTransition(static_cast<unsigned int>(State::TWO),
 			static_cast<unsigned int>(Instruction::TO_ZERO), static_cast<unsigned int>(State::ZERO),
-			reinterpret_cast<void*>(&IncrementParam), nullptr);
+			&IncrementParam, nullptr);
 
 		FSMObject.SetFirstState(static_cast<unsigned int>(State::ZERO));
 

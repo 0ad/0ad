@@ -103,6 +103,7 @@ VkSampler CSamplerManager::GetOrCreateSampler(
 	samplerCreateInfo.addressModeU = Mapping::FromAddressMode(samplerDesc.addressModeU);
 	samplerCreateInfo.addressModeV = Mapping::FromAddressMode(samplerDesc.addressModeV);
 	samplerCreateInfo.addressModeW = Mapping::FromAddressMode(samplerDesc.addressModeW);
+	samplerCreateInfo.mipLodBias = samplerDesc.mipLODBias;
 	if (samplerDesc.anisotropyEnabled && m_Device->GetCapabilities().anisotropicFiltering)
 	{
 		samplerCreateInfo.anisotropyEnable = VK_TRUE;

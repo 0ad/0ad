@@ -30,11 +30,11 @@ class CFsmEvent;
 class CFsmTransition;
 class CFsm;
 
-using Action = bool(void* pContext, const CFsmEvent* pEvent);
+using Action = bool(void* pContext, CFsmEvent* pEvent);
 
 struct CallbackFunction
 {
-	void* pFunction{nullptr};
+	Action* pFunction{nullptr};
 	void* pContext{nullptr};
 };
 
@@ -175,7 +175,7 @@ public:
 	 * @return a pointer to the new transition.
 	 */
 	CFsmTransition* AddTransition(unsigned int state, unsigned int eventType, unsigned int nextState,
-		void* pAction = nullptr, void* pContext = nullptr);
+		Action* pAction = nullptr, void* pContext = nullptr);
 
 	/**
 	 * Looks up the transition given the state, event and next state to transition to.
