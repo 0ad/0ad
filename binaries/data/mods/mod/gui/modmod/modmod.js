@@ -7,7 +7,7 @@
  *	{
  *		"name": "0ad",
  *		"version": "0.0.27",
- *		"label": "0 A.D. - Empires Ascendant",
+ *		"label": "0 A.D. - Empires Ascendant",
  *		"url": "https://wildfiregames.com/",
  *		"description": "A free, open-source, historical RTS game.",
  *		"dependencies": []

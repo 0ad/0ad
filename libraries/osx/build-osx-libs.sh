@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Script for acquiring and building OS X dependencies for 0 A.D.
+# Script for acquiring and building OS X dependencies for 0 A.D.
 #
 # The script checks whether a source tarball exists for each
 # dependency, if not it will download the correct version from

@@ -1,7 +1,7 @@
 FROM debian:buster
 
 RUN useradd -ms /bin/bash --uid 1006 builder
-# 0 A.D. dependencies.
+# 0 A.D. dependencies.
 ARG DEBIAN_FRONTEND=noninteractive
 ARG DEBCONF_NOWARNINGS="yes"
 RUN apt-get -qqy update && apt-get install -qqy \

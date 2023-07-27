@@ -113,7 +113,7 @@ static ErrorReactionInternal try_gui_display_error(const wchar_t* text, bool man
 	char* const argv[] = {
 		strdup(cmd),
 		strdup("-geometry"), strdup("x500"), // set height so the box will always be very visible
-		strdup("-title"), strdup("0 A.D. message"), // TODO: maybe shouldn't hard-code app name
+		strdup("-title"), strdup("0 A.D. message"), // TODO: maybe shouldn't hard-code app name
 		strdup("-buttons"), strdup(buttons),
 		strdup("-default"), strdup(defaultButton),
 		strdup(message.c_str()),

@@ -36,12 +36,12 @@ class SavegameLoader
 
 		if (!sameEngineVersion)
 			if (metadata.engine_version)
-				message += sprintf(translate("This savegame needs 0 A.D. version %(requiredVersion)s, while you are running version %(currentVersion)s."), {
+				message += sprintf(translate("This savegame needs 0 A.D. version %(requiredVersion)s, while you are running version %(currentVersion)s."), {
 					"requiredVersion": metadata.engine_version,
 					"currentVersion": engineInfo.engine_version
 				}) + "\n";
 			else
-				message += translate("This savegame needs an older version of 0 A.D.") + "\n";
+				message += translate("This savegame needs an older version of 0 A.D.") + "\n";
 
 		if (!sameMods)
 		{

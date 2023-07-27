@@ -2,7 +2,7 @@ const g_ValidTestMods = {
 	"public": {
 		"name": "0ad",
 		"version": "0.0.23",
-		"label": "0 A.D. Empires Ascendant",
+		"label": "0 A.D. Empires Ascendant",
 		"url": "https://play0ad.com",
 		"description": "A free, open-source, historical RTS game.",
 		"dependencies": []
@@ -10,15 +10,15 @@ const g_ValidTestMods = {
 	"tm": {
 		"name": "Terra_Magna",
 		"version": "0.0.22",
-		"label": "0 A.D. Terra Magna",
+		"label": "0 A.D. Terra Magna",
 		"url": "https://forum.wildfiregames.com",
-		"description": "Adds various civilizations to 0 A.D.",
+		"description": "Adds various civilizations to 0 A.D.",
 		"dependencies": ["0ad"]
 	},
 	"mil": {
 		"name": "millenniumad",
 		"version": "0.0.22",
-		"label": "0 A.D. Medieval Extension",
+		"label": "0 A.D. Medieval Extension",
 		"url": "https://forum.wildfiregames.com",
 		"description": "Adds medieval content like civilizations + maps.",
 		"dependencies": ["0ad=0.0.23"]

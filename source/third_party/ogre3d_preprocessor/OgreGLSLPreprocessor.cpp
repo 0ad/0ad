@@ -1,6 +1,6 @@
 /*
  * This source file originally came from OGRE v1.12.3 - http://www.ogre3d.org/
- * with some tweaks as part of 0 A.D.
+ * with some tweaks as part of 0 A.D.
  * All changes are released under the original license, as follows:
  */
 

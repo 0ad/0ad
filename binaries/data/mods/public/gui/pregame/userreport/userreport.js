@@ -78,11 +78,11 @@ function updateUserReportStatus()
 
 	Engine.GetGUIObjectByName("userReportText").caption =
 		Engine.IsUserReportEnabled() ?
-			setStringTags(translate("Thank you for helping improve 0 A.D.!"), { "font": "sans-bold-16" }) + "\n\n" +
+			setStringTags(translate("Thank you for helping improve 0 A.D.!"), { "font": "sans-bold-16" }) + "\n\n" +
 			translate("Feedback is currently enabled.") + "\n" +
 			sprintf(translate("Status: %(status)s."), {
 				"status": g_UserReportStatusFormat[statusData[0]] ? g_UserReportStatusFormat[statusData[0]](statusData) : translate("unknown")
 			}) :
-			setStringTags(translate("Help improve 0 A.D.!"), { "font": "sans-bold-16" }) + "\n\n" +
+			setStringTags(translate("Help improve 0 A.D.!"), { "font": "sans-bold-16" }) + "\n\n" +
 			translate("You can automatically send us feedback that can help us fix bugs, and improve performance and compatibility.");
 }

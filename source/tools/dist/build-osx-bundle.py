@@ -79,7 +79,7 @@ print("Copying non-archived game data")
 shutil.copytree("binaries/data/config", BUNDLE_RESOURCES + "/data/config")
 shutil.copytree("binaries/data/l10n", BUNDLE_RESOURCES + "/data/l10n")
 shutil.copytree("binaries/data/tools", BUNDLE_RESOURCES + "/data/tools")
-# Remove the dev.cfg file or 0 A.D. will assume it's running a dev copy.
+# Remove the dev.cfg file or 0 A.D. will assume it's running a dev copy.
 os.unlink(BUNDLE_RESOURCES + "/data/config/dev.cfg")
 
 shutil.copy("build/resources/0ad.icns", BUNDLE_RESOURCES)
