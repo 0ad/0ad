@@ -65,7 +65,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-06-16 07:08+0000\n"
+"POT-Creation-Date: 2023-07-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: Ismael Lires, 2023\n"
 "Language-Team: Spanish (http://app.transifex.com/wildfire-games/0ad/language/es/)\n"
@@ -906,6 +906,21 @@ msgstr "Ciudadanas (Salud: +40%; Daño por corte en ataques cuerpo a cuerpo: +50
 msgid "Spartan Women"
 msgstr "Espartanas"
 
+#: simulation/data/civs/spart.jsonCivBonuses[1].Description
+msgid "Champion Hoplites are available in village phase."
+msgstr ""
+
+#: simulation/data/civs/spart.jsonCivBonuses[1].History
+msgid ""
+"Under the constitution written by the mythical lawgiver Lycurgus, the "
+"institution of the Agoge was established, where Spartans were trained from "
+"the age of 6 to be superior warriors in defense of the Spartan state."
+msgstr ""
+
+#: simulation/data/civs/spart.jsonCivBonuses[1].Name
+msgid "Laws of Lycurgus"
+msgstr "Leyes de Licurgo"
+
 #: simulation/templates/special/players/athen.xml:8
 msgid "Athenians"
 msgstr "Atenienses"
@@ -944,7 +959,7 @@ msgid ""
 "and had defensive walls so strong, they were never breached."
 msgstr "Cartago, una ciudad-estado ubicada en la actual Túnez, fue una fuerza formidable del Mediterráneo occidental, llegando a extenderse por gran parte del norte de África y la actual España en el tercer siglo antes de Cristo.  Los marineros de Cartago estuvieron entre los más fieros contendientes de los mares, y fueron maestros del comercio naval. Desplegaron elefantes de guerra en los campos de batalla para infundir miedo en el enemigo, y tenían murallas defensivas tan robustas que nunca fueron traspasadas."
 
-#: simulation/templates/special/players/gaia.xml:5
+#: simulation/templates/special/players/gaia.xml:9
 msgid "Gaia"
 msgstr "Gaia"
 

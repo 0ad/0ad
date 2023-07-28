@@ -19,9 +19,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-06-16 07:08+0000\n"
+"POT-Creation-Date: 2023-07-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Last-Translator: Galip Dede, 2023\n"
+"Last-Translator: yakup <mutouk@yandex.ru>, 2014-2017,2021-2023\n"
 "Language-Team: Turkish (http://app.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1095,9 +1095,17 @@ msgstr "Sadece Yakın Piyade, en az 16 tane gerektirir."
 msgid "Anti Cavalry"
 msgstr "Anti Süvari"
 
+#: simulation/templates/special/formations/anti_cavalry.xml:26
+msgid "Square formation of Melee Infantry to fight Cavalry."
+msgstr "Süvari ile savaşmak için Yakın Piyadenin kare düzeni."
+
 #: simulation/templates/special/formations/battle_line.xml:13
 msgid "Battle Line"
 msgstr "Savaş Hattı"
+
+#: simulation/templates/special/formations/battle_line.xml:15
+msgid "Common formation for frontal attacks."
+msgstr "Önden saldırılar için ortak oluşum."
 
 #: simulation/templates/special/formations/box.xml:5
 msgid "Requires at least 4 Soldiers or Siege engines."
@@ -1107,13 +1115,25 @@ msgstr "En az 4 Asker ya da Kuşatma Makinesi gerektirir."
 msgid "Box"
 msgstr "Kutu"
 
+#: simulation/templates/special/formations/box.xml:14
+msgid "Square formation to protect all sides."
+msgstr "Her tarafı korumak için kare oluşumu."
+
 #: simulation/templates/special/formations/column_closed.xml:10
 msgid "Forced March"
 msgstr "Zorunlu Yürüyüş"
 
+#: simulation/templates/special/formations/column_closed.xml:12
+msgid "Closed column formation for risky movements."
+msgstr "Riskli hareketler için kapalı kolon oluşumu."
+
 #: simulation/templates/special/formations/column_open.xml:10
 msgid "Column Open"
 msgstr "Açık Sütun"
+
+#: simulation/templates/special/formations/column_open.xml:12
+msgid "Dispersed formation for open field crossings."
+msgstr "Açık alan geçişleri için dağınık oluşum."
 
 #: simulation/templates/special/formations/flank.xml:5
 msgid "Requires at least 8 Soldiers or Siege engines."
@@ -1123,13 +1143,25 @@ msgstr "Requires at least 8 Soldiers or Siege engines."
 msgid "Flank"
 msgstr "Kanat"
 
+#: simulation/templates/special/formations/flank.xml:13
+msgid "Formation to protect the sides or surprise attack the enemy flank."
+msgstr "Tarafları korumak için oluşum veya düşman kanadına sürpriz saldırı."
+
 #: simulation/templates/special/formations/line_closed.xml:9
 msgid "Close Order"
 msgstr "Kapalı Düzen"
 
+#: simulation/templates/special/formations/line_closed.xml:11
+msgid "Flexible closed line formation."
+msgstr "Esnek kapalı hat oluşumu."
+
 #: simulation/templates/special/formations/line_open.xml:11
 msgid "Open Order"
 msgstr "Açık Düzen"
+
+#: simulation/templates/special/formations/line_open.xml:13
+msgid "Dispersed formation for open field combat."
+msgstr "Açık alan savaşı için dağınık oluşum."
 
 #: simulation/templates/special/formations/null.xml:7
 msgid "None"
@@ -1143,6 +1175,10 @@ msgstr "Sadece Ağır Mızraklı Piyade en az 10 gerektirir."
 msgid "Phalanx"
 msgstr "Falanks"
 
+#: simulation/templates/special/formations/phalanx.xml:25
+msgid "Compact formation of Infantry Hoplites creating a shield wall."
+msgstr "Bir kalkan duvarı oluşturan Piyade Hoplitlerinin kompakt oluşumu."
+
 #: simulation/templates/special/formations/scatter.xml:8
 msgid "Scatter"
 msgstr "Dağınık"
@@ -1155,6 +1191,10 @@ msgstr "Sadece Menzilli Askerler, en az 2 tane gerektirir."
 msgid "Skirmish"
 msgstr "Çatışma"
 
+#: simulation/templates/special/formations/skirmish.xml:16
+msgid "Dispersed formation for reconnaissance, ambushes or hit-and-run."
+msgstr "Keşif, pusu veya vur-kaç için dağınık oluşum."
+
 #: simulation/templates/special/formations/syntagma.xml:5
 msgid "Infantry Pikemen only, requires at least 16."
 msgstr "Sadece Piyade Kargıcılar için en az 16 tane gerekir."
@@ -1163,9 +1203,17 @@ msgstr "Sadece Piyade Kargıcılar için en az 16 tane gerekir."
 msgid "Syntagma"
 msgstr "Sintagma"
 
+#: simulation/templates/special/formations/syntagma.xml:31
+msgid "Compact formation of Infantry Pikemen creating a defensive wall."
+msgstr "Bir savunma duvarı oluşturan Piyade Mızrakçılarının kompakt oluşumu."
+
 #: simulation/templates/special/formations/testudo.xml:70
 msgid "Testudo"
 msgstr "Kaplumbağa Düzeni"
+
+#: simulation/templates/special/formations/testudo.xml:72
+msgid "Compact formation of Melee Infantry creating a shield shell."
+msgstr "Bir kalkan kabuğu oluşturan Yakın Dövüş Piyadelerinin kompakt oluşumu."
 
 #: simulation/templates/special/formations/wedge.xml:5
 msgid "Cavalry only, requires at least 6."
@@ -1174,6 +1222,10 @@ msgstr "Sadece süvari en az 6 gerektirir."
 #: simulation/templates/special/formations/wedge.xml:16
 msgid "Wedge"
 msgstr "Kama"
+
+#: simulation/templates/special/formations/wedge.xml:18
+msgid "Triangular Cavalry formation to break through enemy lines."
+msgstr "Düşman hatlarını yarıp geçmek için Üçgen Süvari düzeni."
 
 #: simulation/templates/special/spy.xml:16
 msgid "Spy"

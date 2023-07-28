@@ -34,7 +34,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-06-16 07:08+0000\n"
+"POT-Creation-Date: 2023-07-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: LOUKAS SKOUROLIAKOS, 2020-2021\n"
 "Language-Team: Greek (http://app.transifex.com/wildfire-games/0ad/language/el/)\n"
@@ -875,6 +875,21 @@ msgstr "Πολίτες Γυναίκες +40% υγεία και 50% ζημιά α
 msgid "Spartan Women"
 msgstr "Σπαρτιάτισσες Γυναίκες"
 
+#: simulation/data/civs/spart.jsonCivBonuses[1].Description
+msgid "Champion Hoplites are available in village phase."
+msgstr ""
+
+#: simulation/data/civs/spart.jsonCivBonuses[1].History
+msgid ""
+"Under the constitution written by the mythical lawgiver Lycurgus, the "
+"institution of the Agoge was established, where Spartans were trained from "
+"the age of 6 to be superior warriors in defense of the Spartan state."
+msgstr ""
+
+#: simulation/data/civs/spart.jsonCivBonuses[1].Name
+msgid "Laws of Lycurgus"
+msgstr "Ρήτρα του Λυκούργου"
+
 #: simulation/templates/special/players/athen.xml:8
 msgid "Athenians"
 msgstr "Αθηναίοι"
@@ -913,7 +928,7 @@ msgid ""
 "and had defensive walls so strong, they were never breached."
 msgstr "Η Καρχηδόνα, ήταν μια πόλη-κράτος στη σύγχρονη Τυνησία, ήταν μια τρομερή δύναμη στη δυτική Μεσόγειο, τελικά κατέλαβε μεγάλο μέρος της Βόρειας Αφρικής και της σύγχρονης Ισπανίας στο τρίτο π.Χ. αιώνα. Οι ναυτικοί της Καρχηδόνας ήταν μεταξύ των πιο δύσκολων αντιπάλων στην ανοικτή θάλασσα και αυθεντία στο εμπορικό ναυτικό. Παράτασσαν Πολεμικούς Ελέφαντες με πυργίσκους στο πεδίο της μάχης κάνοντας τρομακτική εντύπωση και είχαν αμυντικά τείχη τόσο ισχυρά, που ποτέ δεν είχαν παραβιαστεί."
 
-#: simulation/templates/special/players/gaia.xml:5
+#: simulation/templates/special/players/gaia.xml:9
 msgid "Gaia"
 msgstr "Γαία"
 

@@ -56,7 +56,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-06-16 07:08+0000\n"
+"POT-Creation-Date: 2023-07-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: Vladislav Belov, 2016,2022\n"
 "Language-Team: Russian (http://app.transifex.com/wildfire-games/0ad/language/ru/)\n"
@@ -897,6 +897,21 @@ msgstr "Женщины получают на 40% больше здоровья �
 msgid "Spartan Women"
 msgstr "Спартанки"
 
+#: simulation/data/civs/spart.jsonCivBonuses[1].Description
+msgid "Champion Hoplites are available in village phase."
+msgstr ""
+
+#: simulation/data/civs/spart.jsonCivBonuses[1].History
+msgid ""
+"Under the constitution written by the mythical lawgiver Lycurgus, the "
+"institution of the Agoge was established, where Spartans were trained from "
+"the age of 6 to be superior warriors in defense of the Spartan state."
+msgstr ""
+
+#: simulation/data/civs/spart.jsonCivBonuses[1].Name
+msgid "Laws of Lycurgus"
+msgstr "Законы Ликурга"
+
 #: simulation/templates/special/players/athen.xml:8
 msgid "Athenians"
 msgstr "Афиняне"
@@ -935,7 +950,7 @@ msgid ""
 "and had defensive walls so strong, they were never breached."
 msgstr "Карфаген, город-государство на территории современного Туниса, был грозной силой в западном Средиземноморье, захватившей большую часть северной Африки и современной Испании в третьем веке до н.э. Карфагенские мореходы слыли одними из опаснейших противников в открытом море и были искушены в морской торговле. Они начали использовать боевых слонов с башенками в бою для устрашения врагов, а их стены были настолько крепки, что никому не удалось проломить их."
 
-#: simulation/templates/special/players/gaia.xml:5
+#: simulation/templates/special/players/gaia.xml:9
 msgid "Gaia"
 msgstr "Гея"
 
