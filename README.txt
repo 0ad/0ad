@@ -1,7 +1,7 @@
- 0 A.D. Introductory Information
+ 0 A.D. Introductory Information
 =================================
 
-0 A.D. (pronounced "zero ey-dee") is a free, open-source, cross-platform
+0 A.D. (pronounced "zero ey-dee") is a free, open-source, cross-platform
 real-time strategy game of ancient warfare.
 
 This is currently an incomplete, under-development version of the game.

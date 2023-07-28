@@ -8,14 +8,14 @@ exactly the same version or if it's another minor release that does not
 change the behaviour of the scripts executed by SpiderMonkey. Also it's
 crucial that "--enable-gcgenerational" was used for building the system
 provided libraries and that exact stack rooting was not disabled.
-Using different settings for compiling SpiderMonkey and 0 A.D.
+Using different settings for compiling SpiderMonkey and 0 A.D.
 causes incompatibilities on the ABI (binary) level and can lead to
 crashes at runtime!
 
 
 Building on Linux:
 ------------------
-To build SpiderMonkey for use in 0 A.D. on Linux, just run build.sh.
+To build SpiderMonkey for use in 0 A.D. on Linux, just run build.sh.
 
 
 Building on Mac OS X:

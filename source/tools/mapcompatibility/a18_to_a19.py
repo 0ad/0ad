@@ -28,7 +28,7 @@ import os
 import struct
 import sys
 
-parser = argparse.ArgumentParser(description="Convert maps compatible with 0 A.D. version Alpha XVIII (A18) to maps compatible with version Alpha XIX (A19), or the other way around.")
+parser = argparse.ArgumentParser(description="Convert maps compatible with 0 A.D. version Alpha XVIII (A18) to maps compatible with version Alpha XIX (A19), or the other way around.")
 
 parser.add_argument("--reverse", action="store_true", help="Make an A19 map compatible with A18 (note that conversion will fail if mountains are too high)")
 parser.add_argument("--no-version-bump", action="store_true", help="Don't change the version number of the map")

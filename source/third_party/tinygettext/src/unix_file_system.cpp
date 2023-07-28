@@ -1,5 +1,5 @@
 /*
- * Slightly modified version by Wildfire Games, for 0 A.D to support macOS 10.13
+ * Slightly modified version by Wildfire Games, for 0 A.D.to support macOS 10.13
  */
 // tinygettext - A gettext replacement that works directly on .po files
 // Copyright (c) 2009 Ingo Ruhnke <grumbel@gmail.com>

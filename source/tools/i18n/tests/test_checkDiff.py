@@ -78,7 +78,7 @@ Index: binaries/data/l10n/bar.engine.po
 +# dabene1408 <holledau1@gmx.de>, 2020
  msgid ""
  msgstr ""
- "Project-Id-Version: 0 A.D.\n"
+ "Project-Id-Version: 0 A.D.\n"
  "POT-Creation-Date: 2020-05-22 07:08+0000\n"
  "PO-Revision-Date: 2020-06-22 16:38+0000\n"
 -"Last-Translator: Benedikt Wagner <holledau1@gmx.de>\n"

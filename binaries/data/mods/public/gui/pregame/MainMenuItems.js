@@ -5,7 +5,7 @@ var g_MainMenuItems = [
 		"submenu": [
 			{
 				"caption": translate("Manual"),
-				"tooltip": translate("Open the 0 A.D. Game Manual."),
+				"tooltip": translate("Open the 0 A.D. Game Manual."),
 				"onPress": () => {
 					Engine.PushGuiPage("page_manual.xml");
 				}
@@ -34,7 +34,7 @@ var g_MainMenuItems = [
 			},
 			{
 				"caption": translate("Structure Tree"),
-				"tooltip": colorizeHotkey(translate("%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."), "structree"),
+				"tooltip": colorizeHotkey(translate("%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."), "structree"),
 				"hotkey": "structree",
 				"onPress": () => {
 					let callback = data => {
@@ -46,7 +46,7 @@ var g_MainMenuItems = [
 			},
 			{
 				"caption": translate("Civilization Overview"),
-				"tooltip": colorizeHotkey(translate("%(hotkey)s: Learn about the civilizations featured in 0 A.D."), "civinfo"),
+				"tooltip": colorizeHotkey(translate("%(hotkey)s: Learn about the civilizations featured in 0 A.D."), "civinfo"),
 				"hotkey": "civinfo",
 				"onPress": () => {
 					let callback = data => {
@@ -58,14 +58,14 @@ var g_MainMenuItems = [
 			},
 			{
 				"caption": translate("Catafalque Overview"),
-				"tooltip": translate("Compare the bonuses of catafalques featured in 0 A.D."),
+				"tooltip": translate("Compare the bonuses of catafalques featured in 0 A.D."),
 				"onPress": () => {
 					Engine.PushGuiPage("page_catafalque.xml");
 				}
 			},
 			{
 				"caption": translate("Map Overview"),
-				"tooltip": translate("View the different maps featured in 0 A.D."),
+				"tooltip": translate("View the different maps featured in 0 A.D."),
 				"onPress": () => {
 					Engine.PushGuiPage("page_mapbrowser.xml");
 				},
@@ -255,7 +255,7 @@ var g_MainMenuItems = [
 			if (Engine.AtlasIsAvailable())
 				messageBox(
 					400, 200,
-					translate("Are you sure you want to quit 0 A.D. and open the Scenario Editor?"),
+					translate("Are you sure you want to quit 0 A.D. and open the Scenario Editor?"),
 					translate("Confirmation"),
 					[translate("No"), translate("Yes")],
 					[null, Engine.RestartInAtlas]);
@@ -268,7 +268,7 @@ var g_MainMenuItems = [
 	},
 	{
 		"caption": translate("Credits"),
-		"tooltip": translate("Show the 0 A.D. credits."),
+		"tooltip": translate("Show the 0 A.D. credits."),
 		"onPress": () => {
 			Engine.PushGuiPage("page_credits.xml");
 		}
@@ -279,7 +279,7 @@ var g_MainMenuItems = [
 		"onPress": () => {
 			messageBox(
 				400, 200,
-				translate("Are you sure you want to quit 0 A.D.?"),
+				translate("Are you sure you want to quit 0 A.D.?"),
 				translate("Confirmation"),
 				[translate("No"), translate("Yes")],
 				[null, Engine.Exit]);

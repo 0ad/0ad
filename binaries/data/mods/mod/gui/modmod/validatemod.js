@@ -17,7 +17,7 @@ const g_ModProperties = {
 		"type": "object",
 		"validate": validateDependencies
 	},
-	// example: "0 A.D. - Empires Ascendant"
+	// example: "0 A.D. - Empires Ascendant"
 	"label": {
 		"required": true,
 		"type": "string",

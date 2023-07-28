@@ -477,7 +477,7 @@ ResourceGatherer.prototype.OnValueModification = function(msg)
 	if (msg.component != "ResourceGatherer")
 		return;
 
-	// NB: at the moment, 0 A.D. always uses the fast path, the other is mod support.
+	// NB: at the moment, 0 A.D. always uses the fast path, the other is mod support.
 	if (msg.valueNames.length === 1)
 	{
 		if (msg.valueNames[0].indexOf("Capacities") !== -1)

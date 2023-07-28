@@ -1,18 +1,18 @@
 /* Copyright (C) 2022 Wildfire Games.
- * This file is part of 0 A.D.
+ * This file is part of 0 A.D.
  *
- * 0 A.D. is free software: you can redistribute it and/or modify
+ * 0 A.D. is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
  * (at your option) any later version.
  *
- * 0 A.D. is distributed in the hope that it will be useful,
+ * 0 A.D. is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
+ * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "precompiled.h"
@@ -109,7 +109,7 @@ void StartNetworkHost(const ScriptRequest& rq, const CStrW& playerName, const u1
 		CStr hostJID = g_XmppClient->GetJID();
 
 		/**
-		 * Password security - we want 0 A.D. to protect players from malicious hosts. We assume that clients
+		 * Password security - we want 0 A.D. to protect players from malicious hosts. We assume that clients
 		 * might mistakenly send a personal password instead of the game password (e.g. enter their mail account's password on autopilot).
 		 * Malicious dedicated servers might be set up to farm these failed logins and possibly obtain user credentials.
 		 * Therefore, we hash the passwords on the client side before sending them to the server.

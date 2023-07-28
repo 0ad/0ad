@@ -128,7 +128,7 @@ sub generate_text
 	my $feed_url = $c->config->{output}{feed_url};
 	my $out = <<EOF;
 <!DOCTYPE html>
-<title>0 A.D. Revision Log</title>
+<title>0 A.D. Revision Log</title>
 <style>
 body {
   color: #fff;
@@ -181,7 +181,7 @@ sub generate_feed
 	my $feed_url = $c->config->{output}{feed_url};
 
 	my $feed = new XML::Atom::SimpleFeed(
-		title => "0 A.D. Revision Log",
+		title => "0 A.D. Revision Log",
 		link => "http://play0ad.com/",
 		link => { rel => 'self', href => $feed_url },
 		id => "urn:uuid:" . $uid_gen->create_from_name_str('WFG SVN feed', 'feed'),
