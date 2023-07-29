@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-06-16 07:08+0000\n"
+"POT-Creation-Date: 2023-07-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022-2023\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -864,6 +864,21 @@ msgstr "女性公民 +40% 生命值且 +50% 近戰攻擊劈砍傷害。"
 msgid "Spartan Women"
 msgstr "斯巴達女性"
 
+#: simulation/data/civs/spart.jsonCivBonuses[1].Description
+msgid "Champion Hoplites are available in village phase."
+msgstr "鬥士重裝步兵在村莊階段即可使用。"
+
+#: simulation/data/civs/spart.jsonCivBonuses[1].History
+msgid ""
+"Under the constitution written by the mythical lawgiver Lycurgus, the "
+"institution of the Agoge was established, where Spartans were trained from "
+"the age of 6 to be superior warriors in defense of the Spartan state."
+msgstr "根據被賦予神權的來古格士所制定的法律，因而確立了斯巴達的教育制度，斯巴達人從 6 歲開始就會被訓練為勇猛的戰士以防衛斯巴達人的領土。"
+
+#: simulation/data/civs/spart.jsonCivBonuses[1].Name
+msgid "Laws of Lycurgus"
+msgstr "來古格士律法"
+
 #: simulation/templates/special/players/athen.xml:8
 msgid "Athenians"
 msgstr "雅典人"
@@ -902,7 +917,7 @@ msgid ""
 "and had defensive walls so strong, they were never breached."
 msgstr "迦太基是個城邦，位於今日的突尼西亞，曾是地中海西部的強大勢力，在西元前三世紀最終掌控北非及現今西班牙的大部分。迦太基水手們在公海上有著最強悍的競爭力，同時也精通海上貿易。他們在戰場上部署塔戰象震懾敵人，還擁有固若金湯的城牆。"
 
-#: simulation/templates/special/players/gaia.xml:5
+#: simulation/templates/special/players/gaia.xml:9
 msgid "Gaia"
 msgstr "大地之母"
 

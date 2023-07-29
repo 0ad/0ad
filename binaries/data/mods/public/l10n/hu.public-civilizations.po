@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-06-16 07:08+0000\n"
+"POT-Creation-Date: 2023-07-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: Szabó Lambert, 2021-2023\n"
 "Language-Team: Hungarian (http://app.transifex.com/wildfire-games/0ad/language/hu/)\n"
@@ -867,6 +867,21 @@ msgstr "Női polgároknak +40% életerő és +50% vágási sebzés közelharcban
 msgid "Spartan Women"
 msgstr "Spártai nők"
 
+#: simulation/data/civs/spart.jsonCivBonuses[1].Description
+msgid "Champion Hoplites are available in village phase."
+msgstr ""
+
+#: simulation/data/civs/spart.jsonCivBonuses[1].History
+msgid ""
+"Under the constitution written by the mythical lawgiver Lycurgus, the "
+"institution of the Agoge was established, where Spartans were trained from "
+"the age of 6 to be superior warriors in defense of the Spartan state."
+msgstr ""
+
+#: simulation/data/civs/spart.jsonCivBonuses[1].Name
+msgid "Laws of Lycurgus"
+msgstr "Lükurgosz törvényei"
+
 #: simulation/templates/special/players/athen.xml:8
 msgid "Athenians"
 msgstr "Athéniak"
@@ -905,7 +920,7 @@ msgid ""
 "and had defensive walls so strong, they were never breached."
 msgstr "Hajdanán a mai Tunézia területén található Karthágó egy elrettentő erővel bíró városállam volt a nyugati Mediterráneumban, amely i.e. 3. században uralma alá hajtotta Észak-Afrika és a mai Spanyolország területének nagy részét. Karthágó hajósai a nyílt tengerek legvadabb szereplői, valamint a tengeri kereskedelem mesterei voltak. A harcmezőkön félelmetes hatást keltettek a tornyos harci elefántjaikkal, és olyan erős védelmi falakat emeltek, hogy senki sem tudott áttörni rajtuk."
 
-#: simulation/templates/special/players/gaia.xml:5
+#: simulation/templates/special/players/gaia.xml:9
 msgid "Gaia"
 msgstr "Gaia"
 

@@ -29,7 +29,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-03-06 08:08+0000\n"
+"POT-Creation-Date: 2023-07-24 07:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: Marcin S <dzidek1003@o2.pl>, 2016-2017,2019,2021-2023\n"
 "Language-Team: Polish (http://app.transifex.com/wildfire-games/0ad/language/pl/)\n"
@@ -46,6 +46,14 @@ msgstr "Machiny oblężnicze w garnizonie otrzymują +3 do prędkości leczenia.
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
 msgstr "Naprawy arsenału"
+
+#: simulation/data/auras/structures/athen_prytaneion_hero_heal.jsonauraDescription
+msgid "Garrisoned Heroes +6 health regeneration rate."
+msgstr ""
+
+#: simulation/data/auras/structures/athen_prytaneion_hero_heal.jsonauraName
+msgid "Officer Accommodation"
+msgstr ""
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
@@ -291,8 +299,8 @@ msgid "Syrian Tetrapolis"
 msgstr "Syryjski Tetrapolis "
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
-msgid "Citizen Infantry Spearmen +10% health."
-msgstr "Włócznicy mają 10% więcej zdrowia."
+msgid "Heroes are trained for free."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
@@ -618,11 +626,26 @@ msgstr "Zbieracze +2% tempa zbierania za każdego pobliskiego Ministra."
 msgid "Minister over the Masses"
 msgstr "Minister Pospólstwa"
 
+#: simulation/data/auras/units/heroes/athen_hero_hippocrates_1.jsonauraDescription
+msgid "Humans +0.5 health regeneration rate."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/athen_hero_hippocrates_1.jsonauraName
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
+msgid "Regeneration"
+msgstr "Aura regeneracji"
+
+#: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraDescription
+msgid "Own and Allied Healers +2 heal health."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraName
+msgid "Medicine Father"
+msgstr ""
+
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
-msgid ""
-"Soldiers in his formation +3 crush, hack, pierce resistance, +15% movement "
-"speed."
-msgstr "Wojownicy w jego formacji otrzymują +3 do obrony przed obrażeniami obuchowymi, kłutymi i siecznymi oraz +15% szybkości ruchu."
+msgid "Soldiers +2 crush, hack, pierce resistance."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
@@ -655,8 +678,8 @@ msgid "Scholarship and the Arts"
 msgstr "Nauka i Sztuka"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
-msgid "−50% metal cost, Ships −50% construction time, +15% move speed."
-msgstr "-50% koszty metalu, Statki -50% czasu budowy, +15% prędkości ruchu."
+msgid "Ships −50% metal cost, construction time, and +15% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Preparation"
@@ -966,10 +989,6 @@ msgstr "Wszystkie technologie -20% kosztu zasobów i -30% czasu badania."
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
 msgstr "Aura nauczyciela"
-
-#: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
-msgid "Regeneration"
-msgstr "Aura regeneracji"
 
 #: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraDescription
 msgid ""

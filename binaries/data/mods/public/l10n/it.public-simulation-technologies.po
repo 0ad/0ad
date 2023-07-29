@@ -34,7 +34,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-03-10 08:09+0000\n"
+"POT-Creation-Date: 2023-07-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Matteo Nigro, 2023\n"
 "Language-Team: Italian (http://app.transifex.com/wildfire-games/0ad/language/it/)\n"
@@ -55,6 +55,7 @@ msgid "The Agoge"
 msgstr "L'Agoghé"
 
 #: simulation/data/technologies/agoge.jsonrequirementsTooltip
+#: simulation/data/technologies/arsenal_philon.jsonrequirementsTooltip
 #: simulation/data/technologies/art_of_war.jsonrequirementsTooltip
 #: simulation/data/technologies/attack_soldiers_will.jsonrequirementsTooltip
 #: simulation/data/technologies/barracks_batch_training.jsonrequirementsTooltip
@@ -74,6 +75,7 @@ msgstr "L'Agoghé"
 #: simulation/data/technologies/immortals.jsonrequirementsTooltip
 #: simulation/data/technologies/long_walls.jsonrequirementsTooltip
 #: simulation/data/technologies/nisean_horses.jsonrequirementsTooltip
+#: simulation/data/technologies/ostracism.jsonrequirementsTooltip
 #: simulation/data/technologies/parade_of_daphne.jsonrequirementsTooltip
 #: simulation/data/technologies/poison_arrows.jsonrequirementsTooltip
 #: simulation/data/technologies/poison_blades.jsonrequirementsTooltip
@@ -103,14 +105,15 @@ msgstr "L'Agoghé"
 #: simulation/data/technologies/unlock_champion_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_chariots.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_champion_infantry.jsonrequirementsTooltip
+#: simulation/data/technologies/unlock_neodamodes.jsonrequirementsTooltip
 #: simulation/data/technologies/unlock_spies.jsonrequirementsTooltip
 #: simulation/data/technologies/wonder_population_cap.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
 msgstr "Sbloccata nella Fase Città"
 
 #: simulation/data/technologies/agoge.jsontooltip
-msgid "Champion Infantry Spearmen +25% health, but +5% training time."
-msgstr "Campioni Fanteria Lancieri +25% di salute, ma +5% di tempo di addestramento."
+msgid "Champion Hoplites +25% health, but +5% training time."
+msgstr "Campione degli opliti +25% di salute, ma +5% di tempo di allenamento."
 
 #: simulation/data/technologies/archer_attack_spread.jsondescription
 msgid "Encouraging soldiers to practice archery improves their accuracy."
@@ -139,6 +142,8 @@ msgstr "Addestramento Arceri"
 #: simulation/data/technologies/heal_rate.jsonrequirementsTooltip
 #: simulation/data/technologies/hoplite_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/iphicratean_reforms.jsonrequirementsTooltip
+#: simulation/data/technologies/krypteia.jsonrequirementsTooltip
+#: simulation/data/technologies/pheidian_workshop.jsonrequirementsTooltip
 #: simulation/data/technologies/pop_house_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_01.jsonrequirementsTooltip
 #: simulation/data/technologies/soldier_attack_melee_02.jsonrequirementsTooltip
@@ -153,6 +158,7 @@ msgstr "Addestramento Arceri"
 #: simulation/data/technologies/trade_commercial_treaty.jsonrequirementsTooltip
 #: simulation/data/technologies/trade_gain_01.jsonrequirementsTooltip
 #: simulation/data/technologies/trader_health.jsonrequirementsTooltip
+#: simulation/data/technologies/tyrtean_paeans.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
 msgstr "Sbloccata nella Fase Cittadina."
 
@@ -210,6 +216,20 @@ msgstr "Architettura Persiana"
 #: simulation/data/technologies/architecture_pers.jsontooltip
 msgid "Structures +25% health and capture points, but also +20% build time."
 msgstr "Strutture +25% di salute e punti di cattura, ma anche +20% di tempo di costruzione."
+
+#: simulation/data/technologies/arsenal_philon.jsondescription
+msgid ""
+"The arsenal was mainly used as a warehouse for materials and instruments for"
+" the equipment of warships."
+msgstr "L'arsenale era utilizzato principalmente come magazzino di materiali e strumenti per l'equipaggiamento delle navi da guerra."
+
+#: simulation/data/technologies/arsenal_philon.jsongenericName
+msgid "Arsenal of Philon"
+msgstr "Arsenale di Filone"
+
+#: simulation/data/technologies/arsenal_philon.jsontooltip
+msgid "Warships +1 health/second self-repair rate."
+msgstr "Navi da guerra +1 salute/secondo tasso di autoriparazione."
 
 #: simulation/data/technologies/art_of_war.jsondescription
 msgid ""
@@ -317,6 +337,22 @@ msgstr "Costruzione in legno"
 #: simulation/data/technologies/civbonuses/celt_structures.jsontooltip
 msgid "Structures −20% build time, −20% health, and −20% capture points."
 msgstr "Strutture −20% di tempo di costruzione, −20% di salute e −20% di punti cattura."
+
+#: simulation/data/technologies/civbonuses/delian_league.jsondescription
+msgid ""
+"Shortly after the great naval victories at Salamis and Mykale, the Greek "
+"city-states instituted the so-called Delian League in 478 BC, whose purpose "
+"was to push the Persians out of the Aegean region. The allied states "
+"contributed ships and money, while the Athenians offered their entire navy."
+msgstr "Poco dopo le grandi vittorie navali di Salamina e Micale, nel 478 a.C. le città-stato greche istituirono la cosiddetta Lega Delia, il cui scopo era spingere i Persiani fuori dalla regione dell'Egeo. Gli Stati alleati contribuirono con navi e denaro, mentre gli Ateniesi offrirono la loro intera flotta."
+
+#: simulation/data/technologies/civbonuses/delian_league.jsongenericName
+msgid "Delian League"
+msgstr "Lega di Delo"
+
+#: simulation/data/technologies/civbonuses/delian_league.jsontooltip
+msgid "Ships construct 25% faster."
+msgstr "Le navi vengono costruite il 25% più velocemente."
 
 #: simulation/data/technologies/civbonuses/gaul_cavalry.jsondescription
 msgid ""
@@ -960,6 +996,23 @@ msgstr "Metropoli Ellenistiche"
 msgid "Civic Centers +100% health and capture points, double default arrows."
 msgstr "Centri città +100% vita e punti cattura, raddoppia le frecce"
 
+#: simulation/data/technologies/helot_economy.jsondescription
+msgid ""
+"Helots were the servants of Greece. Unlike slaves, helots were owned by the "
+"state, which managed economic production. Helots must give a reasonable "
+"portion of their harvest to support a warrior and his family or widow."
+msgstr "Gli Eloti erano i servi della Grecia. A differenza degli schiavi, gli Eloti erano di proprietà dello Stato, che gestiva la produzione economica. Gli Eloti dovevano dare una parte ragionevole del loro raccolto per sostenere un guerriero e la sua famiglia o la sua vedova."
+
+#: simulation/data/technologies/helot_economy.jsongenericName
+msgid "Helot Economy"
+msgstr "Economia Elota"
+
+#: simulation/data/technologies/helot_economy.jsontooltip
+msgid ""
+"Infantry Javelineers +100% grain gather rate, but −10% ranged attack pierce "
+"damage."
+msgstr "Giavellottisti +100% di velocità di raccolta del grano, ma -10% di danni da perforazione negli attacchi a distanza."
+
 #: simulation/data/technologies/hoplite_tradition.jsondescription
 msgid "Hoplite soldiers constituted most of the armies of Greece."
 msgstr "L'Oplita costituiva la maggior parte degli eserciti della Grecia."
@@ -989,18 +1042,35 @@ msgstr "Immortali -50% di tempo d'addestramento."
 #: simulation/data/technologies/iphicratean_reforms.jsondescription
 msgid ""
 "Athenian gymnasium, docks and triremes can train Marines (Epibates "
-"Athenaikos) and Cretan Mercenary Archers (Toxotes Kretikos)."
-msgstr "Il Gymnasium, i porti e le triremi ateniesi possono addestrare Marinai (Epibates Athenaikos) e Arcieri Cretesi Mercenari (Toxotes Kretikos)."
+"Athenaikos)."
+msgstr "Il ginnasio ateniese, le banchine e le triremi possono addestrare i marines (Epibates Athenaikos)."
 
 #: simulation/data/technologies/iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
 msgstr "Riforma di Ificrate"
 
 #: simulation/data/technologies/iphicratean_reforms.jsontooltip
+msgid "Athenian Gymnasia, Docks and Triremes can train Marines."
+msgstr "I ginnasi ateniesi, i bacini e le Triremi possono addestrare Marines."
+
+#: simulation/data/technologies/krypteia.jsondescription
 msgid ""
-"Athenian Gymnasia, Docks and Triremes can train Marines and Cretan Mercenary"
-" Archers."
-msgstr "Il Gymnasium, i Porti e le Triremi ateniesi possono addestrare Marinai e Arcieri Cretesi Mercenari."
+"Krypteia was an Agoge rite of passage, during which soldiers learned how to "
+"camouflage themselves and gained combat experience. The Spartans declared "
+"war on the Helots annually, with no problem or guilt in murdering them. "
+"During this initiation, the youths slept during the day and roamed at night,"
+" murdering any Helot they encountered along the way."
+msgstr "La krypteia era un rito di passaggio di Agoge, durante il quale i soldati imparavano a mimetizzarsi e acquisivano esperienza di combattimento. Gli Spartani dichiaravano guerra agli Eloti ogni anno, senza alcun problema o senso di colpa nell'ucciderli. Durante questa iniziazione, i giovani dormivano di giorno e vagavano di notte, uccidendo tutti gli Eloti che incontravano lungo il cammino."
+
+#: simulation/data/technologies/krypteia.jsongenericName
+msgid "Krypteia"
+msgstr "Krypteia"
+
+#: simulation/data/technologies/krypteia.jsontooltip
+msgid ""
+"Champion Hoplites +10% melee attack damage, but Citizen Infantry Javelineers"
+" +30% training time."
+msgstr "Campione degli opliti +10% di danni da attacco in mischia, ma Cittadini Giavellottisti +30% di tempo di allenamento."
 
 #: simulation/data/technologies/long_walls.jsondescription
 msgid ""
@@ -1036,6 +1106,20 @@ msgstr "Nisioi"
 #: simulation/data/technologies/nisean_horses.jsontooltip
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
 msgstr "Picchieri Cavalieri Campioni +20% salute, ma +10% tempo di addestramento."
+
+#: simulation/data/technologies/ostracism.jsondescription
+msgid ""
+"In ancient Athens, ostracism was the process by which any citizen, including"
+" political leaders, could be expelled from the city-state for 10 years."
+msgstr "Nell'antica Atene, l'ostracismo era il processo attraverso il quale qualsiasi cittadino, compresi i leader politici, poteva essere espulso dalla città-stato per 10 anni."
+
+#: simulation/data/technologies/ostracism.jsongenericName
+msgid "Ostracism"
+msgstr "Ostracismo"
+
+#: simulation/data/technologies/ostracism.jsontooltip
+msgid "Citizen soldiers +5% health, but Heroes −40% health."
+msgstr "Cittadini soldati +5% di salute, ma Eroi -40% di salute."
 
 #: simulation/data/technologies/outpost_vision.jsondescription
 msgid "Increases outpost vision."
@@ -1221,6 +1305,26 @@ msgstr "Avanza alla Fase Cittadina, che sblocca più entità e tecnologie. Centr
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
 msgstr "Fase Villaggio"
+
+#: simulation/data/technologies/pheidian_workshop.jsondescription
+msgid ""
+"Pheidias was a Greek sculptor, painter and architect, who lived in the 5th "
+"century BC, and is commonly regarded as one of the greatest of all sculptors"
+" of Classical Greece: Phidias' Statue of Zeus at Olympia was one of the "
+"Seven Wonders of the Ancient World. Phidias designed the statues of the "
+"goddess Athena on the Athenian Acropolis, namely the Athena Parthenos inside"
+" the Parthenon and the Athena Promachos, a colossal bronze statue of Athena "
+"which stood between it and the Propylaea, a monumental gateway that served "
+"as the entrance to the Acropolis in Athens."
+msgstr "Fidia era uno scultore, pittore e architetto greco vissuto nel V secolo a.C. ed è comunemente considerato uno dei più grandi scultori della Grecia classica: La statua di Zeus di Fidia a Olimpia è una delle sette meraviglie del mondo antico. Fidia progettò le statue della dea Atena sull'Acropoli ateniese, in particolare l'Atena Parthenos all'interno del Partenone e l'Atena Promachos, una colossale statua di bronzo di Atena che si trovava tra il Partenone e i Propilei, una porta monumentale che fungeva da ingresso all'Acropoli di Atene."
+
+#: simulation/data/technologies/pheidian_workshop.jsongenericName
+msgid "Pheidian Workshop"
+msgstr "Officina Fidiana"
+
+#: simulation/data/technologies/pheidian_workshop.jsontooltip
+msgid "Temples and Wonder −50% stone cost and build time."
+msgstr "Templi e Meraviglie -50% di costo della pietra e tempo di costruzione."
 
 #: simulation/data/technologies/poison_arrows.jsongenericName
 msgid "Poison Arrows"
@@ -1787,6 +1891,21 @@ msgstr "Esercito Tradizionale"
 msgid "Unlock the Champion Infantry Pikeman."
 msgstr "Sblocca il Campione Fanteria Picchiere."
 
+#: simulation/data/technologies/tyrtean_paeans.jsondescription
+msgid ""
+"Paeans were battle hymns that were sung by the Hoplites when they charged "
+"the enemy lines. One of the first known Paeans was composed by Tirteus, a "
+"warrior poet of Sparta, during the First Messenian War."
+msgstr "I Paeani erano inni di battaglia che venivano cantati dagli opliti quando attaccavano le linee nemiche. Uno dei primi Paeani conosciuti fu composto da Tirteo, un poeta guerriero di Sparta, durante la prima guerra Messenica."
+
+#: simulation/data/technologies/tyrtean_paeans.jsongenericName
+msgid "Tyrtean Paeans"
+msgstr "I Peàna di Tirteo"
+
+#: simulation/data/technologies/tyrtean_paeans.jsontooltip
+msgid "Champion Hoplites +10% movement speed."
+msgstr "Campione degli opliti +10% di velocità di movimento."
+
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
 "Advanced and Elite units +20% training time, +25% health, +0.7 capture "
@@ -1867,6 +1986,20 @@ msgstr "Bona Dea"
 #: simulation/data/technologies/unlock_females_house.jsontooltip
 msgid "Unlock the ability to train women from houses."
 msgstr "Sblocca la capacità di formare le donne dalle case."
+
+#: simulation/data/technologies/unlock_neodamodes.jsondescription
+msgid ""
+"In ancient Sparta, the Helots who were freed by the state in reward for "
+"military service were known as Neodamodes."
+msgstr "Nell'antica Sparta, gli Eloti che venivano liberati dallo Stato come ricompensa per il servizio militare erano conosciuti come Neodamodi."
+
+#: simulation/data/technologies/unlock_neodamodes.jsongenericName
+msgid "Unlock Neodamodes"
+msgstr "Sblocca Neodamodi"
+
+#: simulation/data/technologies/unlock_neodamodes.jsontooltip
+msgid "Unlock the ability to train Spearman Neodamodes at the Barracks."
+msgstr "Sblocca la capacità di addestrare Lancieri Neodamodi nella Caserma."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsondescription
 msgid ""

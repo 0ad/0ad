@@ -19,7 +19,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-06-16 07:08+0000\n"
+"POT-Creation-Date: 2023-07-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: Matti Tuhola, 2021-2022\n"
 "Language-Team: Finnish (http://app.transifex.com/wildfire-games/0ad/language/fi/)\n"
@@ -860,6 +860,21 @@ msgstr "Naispuolisille kansalaisille +40 % terveyttä ja +50 % lähitaistelun ha
 msgid "Spartan Women"
 msgstr "Spartalaiset naiset"
 
+#: simulation/data/civs/spart.jsonCivBonuses[1].Description
+msgid "Champion Hoplites are available in village phase."
+msgstr ""
+
+#: simulation/data/civs/spart.jsonCivBonuses[1].History
+msgid ""
+"Under the constitution written by the mythical lawgiver Lycurgus, the "
+"institution of the Agoge was established, where Spartans were trained from "
+"the age of 6 to be superior warriors in defense of the Spartan state."
+msgstr ""
+
+#: simulation/data/civs/spart.jsonCivBonuses[1].Name
+msgid "Laws of Lycurgus"
+msgstr "Lykurgoksen lait"
+
 #: simulation/templates/special/players/athen.xml:8
 msgid "Athenians"
 msgstr "Ateenalaiset"
@@ -898,7 +913,7 @@ msgid ""
 "and had defensive walls so strong, they were never breached."
 msgstr "Karthago, kaupunkivaltio nykyisessä Tunisiassa, oli merkittävä voima läntisellä Välimerellä, ja se valtasi lopulta suuren osan Pohjois-Afrikkaa ja nykyistä Espanjaa kolmannella vuosisadalla eaa. Karthagon merimiehet olivat aavan meren kovimpia taistelijoita ja merikaupan mestareita. He käyttivät taistelukentällä pelottavan tehokkaasti tornimaisia sotaelefantteja, ja heillä oli niin vahvat puolustusmuurit, ettei niitä koskaan murrettu."
 
-#: simulation/templates/special/players/gaia.xml:5
+#: simulation/templates/special/players/gaia.xml:9
 msgid "Gaia"
 msgstr "Gaia"
 

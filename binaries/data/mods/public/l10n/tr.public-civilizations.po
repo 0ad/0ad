@@ -50,9 +50,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-06-16 07:08+0000\n"
+"POT-Creation-Date: 2023-07-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
-"Last-Translator: Galip Dede, 2023\n"
+"Last-Translator: yakup <mutouk@yandex.ru>, 2014-2017,2022-2023\n"
 "Language-Team: Turkish (http://app.transifex.com/wildfire-games/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -891,6 +891,21 @@ msgstr "Kadın Vatandaşlar +% 40 sağlık ve +% 50 yakın muharebe saldırısı
 msgid "Spartan Women"
 msgstr "Spartalı Kadınlar"
 
+#: simulation/data/civs/spart.jsonCivBonuses[1].Description
+msgid "Champion Hoplites are available in village phase."
+msgstr ""
+
+#: simulation/data/civs/spart.jsonCivBonuses[1].History
+msgid ""
+"Under the constitution written by the mythical lawgiver Lycurgus, the "
+"institution of the Agoge was established, where Spartans were trained from "
+"the age of 6 to be superior warriors in defense of the Spartan state."
+msgstr "Efsanevi kanun koyucu Lycurgus tarafından yazılan anayasaya göre, Spartalıların 6 yaşından itibaren Sparta devletini savunmak için üstün savaşçılar olarak eğitildikleri Agoge kurumu kuruldu."
+
+#: simulation/data/civs/spart.jsonCivBonuses[1].Name
+msgid "Laws of Lycurgus"
+msgstr "Likurgus Yasaları"
+
 #: simulation/templates/special/players/athen.xml:8
 msgid "Athenians"
 msgstr "Atina"
@@ -929,7 +944,7 @@ msgid ""
 "and had defensive walls so strong, they were never breached."
 msgstr "Günümüz Tunus'unda bir şehir devleti olan Kartaca, batı Akdeniz'in zorlu bir gücü olup, M.Ö. 3. yüzyılda Kuzey Afrika ve günümüz İspanya'sının çoğunu ele geçirdi. Kartaca denizcileri, açık denizlerde en sert yarışmacılar ve deniz ticaretinin ustaları arasındaydı. Savaş meydanlarına korkunç bir etki yaratmak için kule savunma filleri yerleştirdiler ve savunma duvarları çok güçlüydi, hiçbir zaman ihlal edilmedi."
 
-#: simulation/templates/special/players/gaia.xml:5
+#: simulation/templates/special/players/gaia.xml:9
 msgid "Gaia"
 msgstr "Gaia"
 

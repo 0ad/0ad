@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-06-16 07:08+0000\n"
+"POT-Creation-Date: 2023-07-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022-2023\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -1091,9 +1091,17 @@ msgstr "僅限近戰步兵，需要至少 16 名。"
 msgid "Anti Cavalry"
 msgstr "反騎兵"
 
+#: simulation/templates/special/formations/anti_cavalry.xml:26
+msgid "Square formation of Melee Infantry to fight Cavalry."
+msgstr "近戰步兵的方陣陣型，用於對抗騎兵。"
+
 #: simulation/templates/special/formations/battle_line.xml:13
 msgid "Battle Line"
 msgstr "線式戰陣"
+
+#: simulation/templates/special/formations/battle_line.xml:15
+msgid "Common formation for frontal attacks."
+msgstr "常見的陣型，用於正面攻擊。"
 
 #: simulation/templates/special/formations/box.xml:5
 msgid "Requires at least 4 Soldiers or Siege engines."
@@ -1103,13 +1111,25 @@ msgstr "需要至少 4 名士兵或攻城武器。"
 msgid "Box"
 msgstr "方陣"
 
+#: simulation/templates/special/formations/box.xml:14
+msgid "Square formation to protect all sides."
+msgstr "方陣陣型，用於防衛所有方向。"
+
 #: simulation/templates/special/formations/column_closed.xml:10
 msgid "Forced March"
 msgstr "強行軍"
 
+#: simulation/templates/special/formations/column_closed.xml:12
+msgid "Closed column formation for risky movements."
+msgstr "緊湊的列陣型，用於高風險的移動。"
+
 #: simulation/templates/special/formations/column_open.xml:10
 msgid "Column Open"
 msgstr "開放縱隊"
+
+#: simulation/templates/special/formations/column_open.xml:12
+msgid "Dispersed formation for open field crossings."
+msgstr "分散陣型，用於開闊場地的路口。"
 
 #: simulation/templates/special/formations/flank.xml:5
 msgid "Requires at least 8 Soldiers or Siege engines."
@@ -1119,13 +1139,25 @@ msgstr "需要至少 8 名士兵或攻城武器。"
 msgid "Flank"
 msgstr "翼陣"
 
+#: simulation/templates/special/formations/flank.xml:13
+msgid "Formation to protect the sides or surprise attack the enemy flank."
+msgstr "保護側面或敵人突然攻擊側翼的陣型。"
+
 #: simulation/templates/special/formations/line_closed.xml:9
 msgid "Close Order"
 msgstr "密陣"
 
+#: simulation/templates/special/formations/line_closed.xml:11
+msgid "Flexible closed line formation."
+msgstr "靈活緊湊的直線陣型。"
+
 #: simulation/templates/special/formations/line_open.xml:11
 msgid "Open Order"
 msgstr "疏陣"
+
+#: simulation/templates/special/formations/line_open.xml:13
+msgid "Dispersed formation for open field combat."
+msgstr "分散陣型，用於開闊場地的對戰。"
 
 #: simulation/templates/special/formations/null.xml:7
 msgid "None"
@@ -1139,6 +1171,10 @@ msgstr "僅限重裝步兵，需要至少 10 名。"
 msgid "Phalanx"
 msgstr "希臘方陣"
 
+#: simulation/templates/special/formations/phalanx.xml:25
+msgid "Compact formation of Infantry Hoplites creating a shield wall."
+msgstr "重裝步兵的壓縮陣型，用於形成盾牆。"
+
 #: simulation/templates/special/formations/scatter.xml:8
 msgid "Scatter"
 msgstr "分散"
@@ -1151,6 +1187,10 @@ msgstr "僅限遠程士兵，需要至少 2 名。"
 msgid "Skirmish"
 msgstr "散陣"
 
+#: simulation/templates/special/formations/skirmish.xml:16
+msgid "Dispersed formation for reconnaissance, ambushes or hit-and-run."
+msgstr "分散陣型，用於偵察、伏擊或打帶跑。"
+
 #: simulation/templates/special/formations/syntagma.xml:5
 msgid "Infantry Pikemen only, requires at least 16."
 msgstr "僅限長槍步兵，需要至少 16 名。"
@@ -1159,9 +1199,17 @@ msgstr "僅限長槍步兵，需要至少 16 名。"
 msgid "Syntagma"
 msgstr "馬其頓方陣"
 
+#: simulation/templates/special/formations/syntagma.xml:31
+msgid "Compact formation of Infantry Pikemen creating a defensive wall."
+msgstr "長槍步兵的壓縮陣型，用於形成防禦牆。"
+
 #: simulation/templates/special/formations/testudo.xml:70
 msgid "Testudo"
 msgstr "龜甲陣"
+
+#: simulation/templates/special/formations/testudo.xml:72
+msgid "Compact formation of Melee Infantry creating a shield shell."
+msgstr "近戰步兵的壓縮陣型，用於形成盾外殼。"
 
 #: simulation/templates/special/formations/wedge.xml:5
 msgid "Cavalry only, requires at least 6."
@@ -1170,6 +1218,10 @@ msgstr "僅限騎兵，需要至少 6 名。"
 #: simulation/templates/special/formations/wedge.xml:16
 msgid "Wedge"
 msgstr "錐形陣"
+
+#: simulation/templates/special/formations/wedge.xml:18
+msgid "Triangular Cavalry formation to break through enemy lines."
+msgstr "三角騎兵陣型，用於衝破敵人陣線。"
 
 #: simulation/templates/special/spy.xml:16
 msgid "Spy"

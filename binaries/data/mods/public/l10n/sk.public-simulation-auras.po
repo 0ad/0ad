@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-03-06 08:08+0000\n"
+"POT-Creation-Date: 2023-07-24 07:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: Zuzana Miadoková, 2019,2021-2023\n"
 "Language-Team: Slovak (http://app.transifex.com/wildfire-games/0ad/language/sk/)\n"
@@ -37,6 +37,14 @@ msgstr "Obliehacie stroje s posádkou +3 rýchlosť obnovania zdravia."
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
 msgstr "Oprava zbroje"
+
+#: simulation/data/auras/structures/athen_prytaneion_hero_heal.jsonauraDescription
+msgid "Garrisoned Heroes +6 health regeneration rate."
+msgstr ""
+
+#: simulation/data/auras/structures/athen_prytaneion_hero_heal.jsonauraName
+msgid "Officer Accommodation"
+msgstr ""
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
@@ -282,8 +290,8 @@ msgid "Syrian Tetrapolis"
 msgstr "Sýrske štvormestie"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
-msgid "Citizen Infantry Spearmen +10% health."
-msgstr "Občianski pechotní kopijníci +10% zdravia."
+msgid "Heroes are trained for free."
+msgstr ""
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
@@ -609,11 +617,26 @@ msgstr "Zberači +2% rýchlosť zberu za každého ministra v blízkosti."
 msgid "Minister over the Masses"
 msgstr "Minister nad masami"
 
+#: simulation/data/auras/units/heroes/athen_hero_hippocrates_1.jsonauraDescription
+msgid "Humans +0.5 health regeneration rate."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/athen_hero_hippocrates_1.jsonauraName
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
+msgid "Regeneration"
+msgstr "Regenerácia"
+
+#: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraDescription
+msgid "Own and Allied Healers +2 heal health."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraName
+msgid "Medicine Father"
+msgstr ""
+
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
-msgid ""
-"Soldiers in his formation +3 crush, hack, pierce resistance, +15% movement "
-"speed."
-msgstr "Vojaci vo formácii +3 drvivej, sečnej a bodnej odolnosti, +15% rýchlosti pohybu."
+msgid "Soldiers +2 crush, hack, pierce resistance."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
@@ -646,8 +669,8 @@ msgid "Scholarship and the Arts"
 msgstr "Učenie a umenie"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
-msgid "−50% metal cost, Ships −50% construction time, +15% move speed."
-msgstr "−50% ceny železa, lode −50% doby stavby, +15% rýchlosť pohybu."
+msgid "Ships −50% metal cost, construction time, and +15% movement speed."
+msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Preparation"
@@ -957,10 +980,6 @@ msgstr ""
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_1.jsonauraName
 msgid "Teacher"
 msgstr "Učiteľ"
-
-#: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
-msgid "Regeneration"
-msgstr "Regenerácia"
 
 #: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraDescription
 msgid ""

@@ -26,7 +26,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-06-16 07:08+0000\n"
+"POT-Creation-Date: 2023-07-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:54+0000\n"
 "Last-Translator: BL4NKY, 2023\n"
 "Language-Team: German (http://app.transifex.com/wildfire-games/0ad/language/de/)\n"
@@ -1102,9 +1102,17 @@ msgstr "Nur für Nahkampfinfanterie, erfordert mindestens 16."
 msgid "Anti Cavalry"
 msgstr "Gegen Kavallerie"
 
+#: simulation/templates/special/formations/anti_cavalry.xml:26
+msgid "Square formation of Melee Infantry to fight Cavalry."
+msgstr ""
+
 #: simulation/templates/special/formations/battle_line.xml:13
 msgid "Battle Line"
 msgstr "Gefechtslinie"
+
+#: simulation/templates/special/formations/battle_line.xml:15
+msgid "Common formation for frontal attacks."
+msgstr ""
 
 #: simulation/templates/special/formations/box.xml:5
 msgid "Requires at least 4 Soldiers or Siege engines."
@@ -1114,13 +1122,25 @@ msgstr "Benötigt mindestens 4 Soldaten oder Belagerungswaffen."
 msgid "Box"
 msgstr "Kasten"
 
+#: simulation/templates/special/formations/box.xml:14
+msgid "Square formation to protect all sides."
+msgstr ""
+
 #: simulation/templates/special/formations/column_closed.xml:10
 msgid "Forced March"
 msgstr "Zwangsmarsch"
 
+#: simulation/templates/special/formations/column_closed.xml:12
+msgid "Closed column formation for risky movements."
+msgstr ""
+
 #: simulation/templates/special/formations/column_open.xml:10
 msgid "Column Open"
 msgstr "Offene Kolonnenformation"
+
+#: simulation/templates/special/formations/column_open.xml:12
+msgid "Dispersed formation for open field crossings."
+msgstr ""
 
 #: simulation/templates/special/formations/flank.xml:5
 msgid "Requires at least 8 Soldiers or Siege engines."
@@ -1130,13 +1150,25 @@ msgstr "Benötigt mindestens 8 Soldaten oder Belagerungswaffen."
 msgid "Flank"
 msgstr "Flankenformation"
 
+#: simulation/templates/special/formations/flank.xml:13
+msgid "Formation to protect the sides or surprise attack the enemy flank."
+msgstr ""
+
 #: simulation/templates/special/formations/line_closed.xml:9
 msgid "Close Order"
 msgstr "Geschlossene Schlachtordnung"
 
+#: simulation/templates/special/formations/line_closed.xml:11
+msgid "Flexible closed line formation."
+msgstr ""
+
 #: simulation/templates/special/formations/line_open.xml:11
 msgid "Open Order"
 msgstr "Geöffnete Schlachtordnung"
+
+#: simulation/templates/special/formations/line_open.xml:13
+msgid "Dispersed formation for open field combat."
+msgstr ""
 
 #: simulation/templates/special/formations/null.xml:7
 msgid "None"
@@ -1150,6 +1182,10 @@ msgstr "Nur Hopliten, erfordert mindestens 10."
 msgid "Phalanx"
 msgstr "Phalanx"
 
+#: simulation/templates/special/formations/phalanx.xml:25
+msgid "Compact formation of Infantry Hoplites creating a shield wall."
+msgstr ""
+
 #: simulation/templates/special/formations/scatter.xml:8
 msgid "Scatter"
 msgstr "Lose Formation"
@@ -1162,6 +1198,10 @@ msgstr "Nur Fernkämpfer, erfordert mindestens 2."
 msgid "Skirmish"
 msgstr "Lockere Formation"
 
+#: simulation/templates/special/formations/skirmish.xml:16
+msgid "Dispersed formation for reconnaissance, ambushes or hit-and-run."
+msgstr ""
+
 #: simulation/templates/special/formations/syntagma.xml:5
 msgid "Infantry Pikemen only, requires at least 16."
 msgstr "Nur Pikeniere, erfordert mindestens 16."
@@ -1170,9 +1210,17 @@ msgstr "Nur Pikeniere, erfordert mindestens 16."
 msgid "Syntagma"
 msgstr "Syntagma"
 
+#: simulation/templates/special/formations/syntagma.xml:31
+msgid "Compact formation of Infantry Pikemen creating a defensive wall."
+msgstr ""
+
 #: simulation/templates/special/formations/testudo.xml:70
 msgid "Testudo"
 msgstr "Testudo"
+
+#: simulation/templates/special/formations/testudo.xml:72
+msgid "Compact formation of Melee Infantry creating a shield shell."
+msgstr ""
 
 #: simulation/templates/special/formations/wedge.xml:5
 msgid "Cavalry only, requires at least 6."
@@ -1181,6 +1229,10 @@ msgstr "Nur Kavallerie, erfordert mindestens 6."
 #: simulation/templates/special/formations/wedge.xml:16
 msgid "Wedge"
 msgstr "Keil"
+
+#: simulation/templates/special/formations/wedge.xml:18
+msgid "Triangular Cavalry formation to break through enemy lines."
+msgstr ""
 
 #: simulation/templates/special/spy.xml:16
 msgid "Spy"

@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-06-16 07:08+0000\n"
+"POT-Creation-Date: 2023-07-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: liu lizhi <xingzuo88@qq.com>, 2022\n"
 "Language-Team: Chinese (Literary) (http://app.transifex.com/wildfire-games/0ad/language/lzh/)\n"
@@ -848,6 +848,21 @@ msgstr "妇之气血益四成，近战益力五成。"
 msgid "Spartan Women"
 msgstr "性情刚烈"
 
+#: simulation/data/civs/spart.jsonCivBonuses[1].Description
+msgid "Champion Hoplites are available in village phase."
+msgstr ""
+
+#: simulation/data/civs/spart.jsonCivBonuses[1].History
+msgid ""
+"Under the constitution written by the mythical lawgiver Lycurgus, the "
+"institution of the Agoge was established, where Spartans were trained from "
+"the age of 6 to be superior warriors in defense of the Spartan state."
+msgstr ""
+
+#: simulation/data/civs/spart.jsonCivBonuses[1].Name
+msgid "Laws of Lycurgus"
+msgstr ""
+
 #: simulation/templates/special/players/athen.xml:8
 msgid "Athenians"
 msgstr "雅典"
@@ -886,7 +901,7 @@ msgid ""
 "and had defensive walls so strong, they were never breached."
 msgstr "迦太基城，地今突尼斯，西地中海之一雄。肆行海上，往来水贸。训战象、筑厚墙，皆其所长也。"
 
-#: simulation/templates/special/players/gaia.xml:5
+#: simulation/templates/special/players/gaia.xml:9
 msgid "Gaia"
 msgstr "造物"
 

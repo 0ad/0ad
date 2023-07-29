@@ -42,7 +42,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-06-16 07:08+0000\n"
+"POT-Creation-Date: 2023-07-24 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: Matteo Nigro, 2023\n"
 "Language-Team: Italian (http://app.transifex.com/wildfire-games/0ad/language/it/)\n"
@@ -883,6 +883,21 @@ msgstr "Cittadini Femminili +40% salute e +50% danno fendente in mischia."
 msgid "Spartan Women"
 msgstr "Donne Spartane"
 
+#: simulation/data/civs/spart.jsonCivBonuses[1].Description
+msgid "Champion Hoplites are available in village phase."
+msgstr "Gli opliti campioni sono disponibili nella fase del villaggio."
+
+#: simulation/data/civs/spart.jsonCivBonuses[1].History
+msgid ""
+"Under the constitution written by the mythical lawgiver Lycurgus, the "
+"institution of the Agoge was established, where Spartans were trained from "
+"the age of 6 to be superior warriors in defense of the Spartan state."
+msgstr "In base alla costituzione scritta dal mitico legislatore Licurgo, fu istituita l'Agoge, dove gli spartani venivano addestrati fin dall'età di 6 anni per essere guerrieri superiori in difesa dello stato spartano."
+
+#: simulation/data/civs/spart.jsonCivBonuses[1].Name
+msgid "Laws of Lycurgus"
+msgstr "Leggi di Licurgo"
+
 #: simulation/templates/special/players/athen.xml:8
 msgid "Athenians"
 msgstr "Ateniesi"
@@ -921,7 +936,7 @@ msgid ""
 "and had defensive walls so strong, they were never breached."
 msgstr "Cartagine, una città-stato nell'attuale Tunisia, era una forza formidabile nel Mediterraneo occidentale, giungendo ad avere il controllo di gran parte dell'Africa settentrionale e della moderna Spagna nel terzo secolo a.C. I marinai di Cartagine furono tra i contendenti più agguerriti del mare aperto, e maestri del commercio navale. Erano soliti dispiegare elefanti da guerra sul campo di battaglia per avere un impatto terrificante sul nemico, e costruirono mura difensive così robuste che non vennero mai violate."
 
-#: simulation/templates/special/players/gaia.xml:5
+#: simulation/templates/special/players/gaia.xml:9
 msgid "Gaia"
 msgstr "Gaia"
 

@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-03-06 08:08+0000\n"
+"POT-Creation-Date: 2023-07-24 07:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022-2023\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -40,6 +40,14 @@ msgstr "駐紮的攻城武器 +3 生命值恢復率。"
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
 msgstr "兵工廠維修"
+
+#: simulation/data/auras/structures/athen_prytaneion_hero_heal.jsonauraDescription
+msgid "Garrisoned Heroes +6 health regeneration rate."
+msgstr "駐紮的英雄 +6 生命值恢復率。"
+
+#: simulation/data/auras/structures/athen_prytaneion_hero_heal.jsonauraName
+msgid "Officer Accommodation"
+msgstr "軍官住宿"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
@@ -285,8 +293,8 @@ msgid "Syrian Tetrapolis"
 msgstr "敘利亞四城"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
-msgid "Citizen Infantry Spearmen +10% health."
-msgstr "公民矛步兵 +10% 生命值。"
+msgid "Heroes are trained for free."
+msgstr "英雄可以免費訓練。"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
@@ -612,11 +620,26 @@ msgstr "附近每位官吏的採集者 +2% 採集速率。"
 msgid "Minister over the Masses"
 msgstr "司徒"
 
+#: simulation/data/auras/units/heroes/athen_hero_hippocrates_1.jsonauraDescription
+msgid "Humans +0.5 health regeneration rate."
+msgstr "人 +0.5 生命值恢復率。"
+
+#: simulation/data/auras/units/heroes/athen_hero_hippocrates_1.jsonauraName
+#: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
+msgid "Regeneration"
+msgstr "回復"
+
+#: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraDescription
+msgid "Own and Allied Healers +2 heal health."
+msgstr "自己和同盟的治療者 +2 治療生命值。"
+
+#: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraName
+msgid "Medicine Father"
+msgstr "醫學之父"
+
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
-msgid ""
-"Soldiers in his formation +3 crush, hack, pierce resistance, +15% movement "
-"speed."
-msgstr "在他陣型中的士兵 +3 粉碎、劈砍、穿刺抗性，+15% 移動速度。"
+msgid "Soldiers +2 crush, hack, pierce resistance."
+msgstr "士兵 +2 粉碎、劈砍、穿刺抗性。"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraName
 msgid "Formation Reforms"
@@ -649,8 +672,8 @@ msgid "Scholarship and the Arts"
 msgstr "獎學金和藝術"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
-msgid "−50% metal cost, Ships −50% construction time, +15% move speed."
-msgstr "-50% 金屬成本，船隻 -50% 建造時間，+15% 移動速度。"
+msgid "Ships −50% metal cost, construction time, and +15% movement speed."
+msgstr "船隻 -50% 金屬成本、建造時間，並 +15% 移動速度。"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Preparation"
@@ -687,7 +710,7 @@ msgstr "游擊隊長"
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraDescription
 #: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraDescription
 msgid "Humans +0.8 health regeneration rate."
-msgstr "人 +0.8 生命值恢復速率。"
+msgstr "人 +0.8 生命值恢復率。"
 
 #: simulation/data/auras/units/heroes/brit_hero_cunobelin.jsonauraName
 msgid "Britannorum Rex"
@@ -961,10 +984,6 @@ msgstr "所有科技 -20% 資源成本並 -30% 研發時間。"
 msgid "Teacher"
 msgstr "教師"
 
-#: simulation/data/auras/units/heroes/maur_hero_chanakya_2.jsonauraName
-msgid "Regeneration"
-msgstr "回復"
-
 #: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraDescription
 msgid ""
 "Soldiers +10% melee and ranged attack damage, +1 crush, hack, pierce "
@@ -1113,7 +1132,7 @@ msgstr "戰象指揮官"
 msgid ""
 "Citizen Infantry Javelineers +1 crush, hack, pierce resistance, +25% ranged "
 "attack pierce damage."
-msgstr "標槍公民步兵 +1 粉碎、劈砍、穿刺抗性，+25% 遠程攻擊穿刺傷害。"
+msgstr "公民標槍步兵 +1 粉碎、劈砍、穿刺抗性，+25% 遠程攻擊穿刺傷害。"
 
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraName
 msgid "Helot Reforms"
