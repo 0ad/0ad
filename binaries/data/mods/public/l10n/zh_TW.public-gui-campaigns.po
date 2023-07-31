@@ -1,6 +1,6 @@
-# Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright (C) 2023 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 # Cheng-Chia Tseng
@@ -12,10 +12,10 @@
 # Yuan Chang
 msgid ""
 msgstr ""
-"Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2022-10-22 14:55+0000\n"
+"Project-Id-Version: 0 A.D. — Empires Ascendant\n"
+"POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022\n"
+"Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2023\n"
 "Language-Team: Chinese (Taiwan) (https://app.transifex.com/wildfire-games/teams/17418/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,8 +37,8 @@ msgstr "示範戰役 - 新地圖"
 
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
-msgid "Learn how to play 0 A.D."
-msgstr "學習如何玩 0 A.D."
+msgid "Learn how to play 0 A.D."
+msgstr "學習如何玩 0 A.D."
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
 msgctxt "Campaign Template"
@@ -58,8 +58,8 @@ msgstr "經濟演練"
 
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
-msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "這是讓您上手 0 A.D. 的基礎教程。"
+msgid "This is a basic tutorial to get you started playing 0 A.D."
+msgstr "這是協助你開始遊玩 0 A.D. 的基礎教程。"
 
 #: campaigns/tutorial.jsonLevels.introduction.Name
 msgctxt "Campaign Template"
@@ -197,7 +197,7 @@ msgctxt "campaignsetup"
 msgid "Name"
 msgstr "名稱"
 
-#: gui/common/campaigns/CampaignRun.js:117
+#: gui/common/campaigns/CampaignRun.js:115
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr "%(userDesc)s - %(templateName)s"

@@ -1,6 +1,6 @@
-# Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright (C) 2023 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 # Martin Schilliger
@@ -8,8 +8,8 @@
 # xtother90
 msgid ""
 msgstr ""
-"Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"Project-Id-Version: 0 A.D. — Empires Ascendant\n"
+"POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2018-10-14 18:34+0000\n"
 "Last-Translator: xtother90, 2022\n"
 "Language-Team: German (https://app.transifex.com/wildfire-games/teams/17418/de/)\n"
@@ -21,27 +21,21 @@ msgstr ""
 
 #: gui/userreport/Terms_and_Conditions.txt:1
 msgid ""
-"[font=\"sans-bold-18\"]0 A.D. Empires Ascendant UserReporter Terms and "
+"[font=\"sans-bold-18\"]0 A.D. Empires Ascendant UserReporter Terms and "
 "Conditions[/font]"
 msgstr ""
-"[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Nutzungsbedingungen der "
-"Mehrspieler-Lobby[/font]"
 
 #: gui/userreport/Terms_and_Conditions.txt:3
-msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-16"
-msgstr "[font=\"sans-bold-14\"]Datum des Dokuments:[/font] 16.10.2018"
+msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2023-07-27"
+msgstr ""
 
 #: gui/userreport/Terms_and_Conditions.txt:5
 msgid ""
-"The 0 A.D. UserReporter is a tool that allows you, the 0 A.D. player, to "
+"The 0 A.D. UserReporter is a tool that allows you, the 0 A.D. player, to "
 "automatically upload hardware- and software-system details in order to help "
 "Wildfire Games and community developers to improve the performance and "
-"compatibility of 0 A.D."
+"compatibility of 0 A.D."
 msgstr ""
-"Der 0 A.D. UserReporter gibt dir als 0 A.D. Spieler die Möglichkeit, "
-"automatisch Hardware- und Software-Details hochzuladen. Mit diesen Daten "
-"hilfst du Wildfire Games und den Community-Entwicklern, Leistung und "
-"Kompatibilität von 0 A.D. zu verbessern."
 
 #: gui/userreport/Terms_and_Conditions.txt:7
 msgid "[font=\"sans-bold-14\"]Purpose of the UserReport:[/font]"
@@ -51,20 +45,14 @@ msgstr "[font=\"sans-bold-14\"]Zweck des UserReports:[/font]"
 msgid ""
 "The UserReports indicate which system features (for example CPU instruction "
 "sets and OpenGL capabilities) are widely supported by the computer systems "
-"of 0 A.D. players."
+"of 0 A.D. players."
 msgstr ""
-"Die Berichte des UserReports zeigen auf, welche Systemkonfigurationen (z.B. "
-"CPU-Befehlssatz oder OpenGL-Fähigkeiten) unter den 0 A.D.-Spielern weit "
-"verbreitet sind."
 
 #: gui/userreport/Terms_and_Conditions.txt:9
 msgid ""
-"This allows developers to decide which 0 A.D. program code is safe to use "
+"This allows developers to decide which 0 A.D. program code is safe to use "
 "and which optimizations are most feasible to implement next."
 msgstr ""
-"Dies gibt den Entwicklern die Möglichkeit, zu entscheiden, welcher 0 A.D. "
-"Programmcode sicher genutzt werden kann und welche Optimierungen als "
-"Nächstes implementiert werden können."
 
 #: gui/userreport/Terms_and_Conditions.txt:10
 msgid ""
@@ -98,9 +86,8 @@ msgstr ""
 
 #: gui/userreport/Terms_and_Conditions.txt:15
 msgid ""
-" 3. Application Details, for example the 0 A.D. version and build number."
+" 3. Application Details, for example the 0 A.D. version and build number."
 msgstr ""
-"3. Programmdetails, beispielsweise die Versions- und Buildnummer von 0 A.D."
 
 #: gui/userreport/Terms_and_Conditions.txt:16
 msgid ""
@@ -112,13 +99,10 @@ msgstr ""
 
 #: gui/userreport/Terms_and_Conditions.txt:17
 msgid ""
-"    The UserID enables developers to count how many 0 A.D. players use a "
+"    The UserID enables developers to count how many 0 A.D. players use a "
 "specific set of hardware or system software without allowing them to "
 "attribute the data to any person."
 msgstr ""
-"Die UserID ermöglicht den Entwicklern, die Anzahl der 0 A.D. Spieler zu "
-"bestimmen, die eine spezifische Hardware bzw. Software-Konfiguration nutzen,"
-" ohne die Möglichkeit, die Daten einer bestimmten Person zuzuordnen."
 
 #: gui/userreport/Terms_and_Conditions.txt:18
 msgid ""
@@ -153,12 +137,9 @@ msgstr "[font=\"sans-bold-14\"]Wildfire Games behält sich das Recht vor:[/font]
 #: gui/userreport/Terms_and_Conditions.txt:24
 msgid ""
 " 1. Publish UserReport data, excluding the UserID pseudonym, so that "
-"community developers may help contribute to 0 A.D. development using this "
+"community developers may help contribute to 0 A.D. development using this "
 "data (GDPR 4.5)."
 msgstr ""
-"1. UserReport-Daten zu veröffentlichen, damit Community-Entwickler unter "
-"Verwendung dieser Daten zur Entwicklung von 0 A.D. beitragen können (DSGVO "
-"4.5)."
 
 #: gui/userreport/Terms_and_Conditions.txt:25
 msgid ""
@@ -252,10 +233,8 @@ msgstr ""
 #: gui/userreport/Terms_and_Conditions.txt:39
 msgid ""
 "    The UserID pseudonym can be found in the user.cfg file of the "
-"configuration folder of 0 A.D."
+"configuration folder of 0 A.D."
 msgstr ""
-"Das UserID-Pseudonym kann in der user.cfg-Datei im Konfigurationsordner von "
-"0 A.D. gefunden werden."
 
 #: gui/userreport/Terms_and_Conditions.txt:40
 msgid "    The current configuration folder is %(configPath)s."
@@ -264,10 +243,8 @@ msgstr "Der aktuelle Konfigurationsordner ist %(configPath)s."
 #: gui/userreport/Terms_and_Conditions.txt:41
 msgid ""
 "    The user obtains a machine-readable and human-readable copy of the "
-"UserReport data in the logs folder of 0 A.D. (GDPR 20)."
+"UserReport data in the logs folder of 0 A.D. (GDPR 20)."
 msgstr ""
-"Der Benutzer bekommt eine maschinenlesbare und menschenlesbare Kopie der "
-"UserReport-Daten im Log-Ordner von 0 A.D. (DSGVO 20)."
 
 #: gui/userreport/Terms_and_Conditions.txt:42
 msgid "    The data can be reviewed before the UserReporter is enabled."
@@ -302,13 +279,9 @@ msgstr ""
 #: gui/userreport/Terms_and_Conditions.txt:47
 msgid ""
 " 4. Right to erasure of your UserReports if they are not relevant to the "
-"development of 0 A.D., if the data was processed unlawfully or if the user "
+"development of 0 A.D., if the data was processed unlawfully or if the user "
 "objects to the processing and has overriding legitimate grounds (GDPR 17)."
 msgstr ""
-"4. Das Recht, dass deine UserReports gelöscht werden, wenn sie nicht "
-"relevant für die Entwicklung von 0 A.D. sind, wenn die Daten widerrechtlich "
-"verarbeitet wurden oder wenn der Benutzer der Verarbeitung widerspricht und "
-"übergeordnete gesetzmäßige Gründe hat (DSGVO 17)."
 
 #: gui/userreport/Terms_and_Conditions.txt:48
 msgid ""
@@ -362,11 +335,9 @@ msgstr ""
 
 #: gui/userreport/Terms_and_Conditions.txt:55
 msgid ""
-" 2. Wildfire Games has legitimate interests in the development of 0 A.D and "
+" 2. Wildfire Games has legitimate interests in the development of 0 A.D.and "
 "protection against cyberattacks (GDPR 6.1.f)."
 msgstr ""
-"2. Wildfire Games hat ein berechtigtes Interesse an der Entwicklung von 0 "
-"A.D. und dem Schutz vor Cyberangriffen (DSGVO 6.1.f)."
 
 #: gui/userreport/Terms_and_Conditions.txt:56
 msgid ""

@@ -1,6 +1,6 @@
-# Translation template for 0 A.D. — Empires Ascendant.
+# Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2023 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 # Balázs Meskó
@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-02 21:44+0000\n"
+"POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Szabó Lambert, 2021-2022\n"
 "Language-Team: Hungarian (http://app.transifex.com/wildfire-games/0ad/language/hu/)\n"
@@ -375,10 +375,10 @@ msgstr ""
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
-"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
+"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Petra a 0 A.D. alapértelmezett MI botja. Kérjük jelentsd a hibákat a Wildfire Games-nek (lásd a hivatkozást a főmenüben).\n\nA MI nyersanyag begyűjtési sebessége és kereskedelmi haszna a nehézségi szinttől függ (Homokozó: –58%, Nagyon könnyű: –44%, Könnyű: –25%, Közepes: ±0%, Nehéz: +25%, Nagyon nehéz: +56%). A könnyebb szinteken lassabb a kutatási, a kiképzési és az építési sebesség. Továbbá, a Homokozó szinten nem terjeszkedik és nem támad."
+msgstr ""
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -407,7 +407,7 @@ msgstr "%(name)s nem építhető érvénytelen talajra"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:190
+#: simulation/components/BuildRestrictions.js:195
 msgctxt "Territory type"
 msgid "own"
 msgstr "saját"
@@ -415,7 +415,7 @@ msgstr "saját"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:193
+#: simulation/components/BuildRestrictions.js:198
 msgctxt "Territory type"
 msgid "unconnected own"
 msgstr "saját. nem összekötött"
@@ -423,7 +423,7 @@ msgstr "saját. nem összekötött"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:199
+#: simulation/components/BuildRestrictions.js:204
 msgctxt "Territory type"
 msgid "allied"
 msgstr "szövetséges"
@@ -431,7 +431,7 @@ msgstr "szövetséges"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:202
+#: simulation/components/BuildRestrictions.js:207
 msgctxt "Territory type"
 msgid "unconnected allied"
 msgstr "saját, összekötött"
@@ -439,7 +439,7 @@ msgstr "saját, összekötött"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:208
+#: simulation/components/BuildRestrictions.js:213
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "semleges"
@@ -447,24 +447,24 @@ msgstr "semleges"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:215
+#: simulation/components/BuildRestrictions.js:220
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "ellenséges"
 
-#: simulation/components/BuildRestrictions.js:220
+#: simulation/components/BuildRestrictions.js:225
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "%(name)s nem építhető %(territoryType)s területre. Érvényes területek: %(validTerritories)s"
 
-#: simulation/components/BuildRestrictions.js:234
+#: simulation/components/BuildRestrictions.js:239
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "%(name)s csak érvényes partvonalra építhető"
 
-#: simulation/components/BuildRestrictions.js:261
+#: simulation/components/BuildRestrictions.js:266
 #, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meter "
@@ -475,7 +475,7 @@ msgid_plural ""
 msgstr[0] "%(name)s és %(category)s túl közel vannak egymáshoz, legalább%(distance)s méter távolság kell legyen közöttük"
 msgstr[1] "%(name)s és %(category)s túl közel vannak egymáshoz, legalább%(distance)s méter távolság kell legyen közöttük"
 
-#: simulation/components/BuildRestrictions.js:282
+#: simulation/components/BuildRestrictions.js:287
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
@@ -487,7 +487,7 @@ msgstr[1] "%(name)s és %(category)s túl messze vannak egymástól, legfeljebb 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
 #. own, ally".
-#: simulation/components/BuildRestrictions.js:322
+#: simulation/components/BuildRestrictions.js:327
 msgctxt "Territory type list"
 msgid "own"
 msgstr "saját"
@@ -495,7 +495,7 @@ msgstr "saját"
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
 #. own, ally".
-#: simulation/components/BuildRestrictions.js:324
+#: simulation/components/BuildRestrictions.js:329
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "szövetséges"
@@ -503,7 +503,7 @@ msgstr "szövetséges"
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
 #. own, ally".
-#: simulation/components/BuildRestrictions.js:326
+#: simulation/components/BuildRestrictions.js:331
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "semleges"
@@ -511,7 +511,7 @@ msgstr "semleges"
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
 #. own, ally".
-#: simulation/components/BuildRestrictions.js:328
+#: simulation/components/BuildRestrictions.js:333
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "ellenséges"
@@ -551,26 +551,26 @@ msgstr "%(category)s kiképzési korlátja elérve: %(limit)s"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s korlátja elérve: %(limit)s"
 
-#: simulation/components/Player.js:328
+#: simulation/components/Player.js:308
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Nincs elegendő nyersanyag - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:330
+#: simulation/components/Player.js:310
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Nincs elegendő nyersanyag - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:332
+#: simulation/components/Player.js:312
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Nincs elegendő nyersanyag - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:334
+#: simulation/components/Player.js:314
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -590,7 +590,7 @@ msgstr "A termelési sor tele van."
 msgid "Could not auto-queue unit, de-activating."
 msgstr "Az egység nem állítható be az automatikus sorba, deaktiválás."
 
-#: simulation/components/Trainer.js:313
+#: simulation/components/Trainer.js:321
 msgid "Can't find free space to spawn trained units."
 msgstr "Nem találni szabad helyet a kiképzett egységek elhelyezéséhez."
 
@@ -772,8 +772,8 @@ msgid "Very Easy"
 msgstr "Nagyon könnyű"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
-msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr "Válaszd ezt a nehézségi fokozatot, ha még csak felfedezed a 0 A.D.-t."
+msgid "Choose this difficulty if you are discovering 0 A.D."
+msgstr ""
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -790,8 +790,8 @@ msgstr "Közepes"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
-"Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr "Válaszd ezt a nehézségi szintet, ha már tapasztalt vagy a 0 A.D.-ban."
+"Choose this difficulty if you have already a good experience with 0 A.D."
+msgstr ""
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Title
 msgid "Hard"
@@ -882,51 +882,51 @@ msgstr "%(player)s vesztett (csalás)."
 msgid "You need to select a building that trains units."
 msgstr "Ki kell választanod egy épületet, amely egységeket képez ki."
 
-#: simulation/helpers/Commands.js:134
+#: simulation/helpers/Commands.js:135
 msgid "(Cheat - control all units)"
 msgstr "(Csalás - összes egység irányítása)"
 
-#: simulation/helpers/Commands.js:149
+#: simulation/helpers/Commands.js:150
 msgid "(Cheat - reveal map)"
 msgstr "(Csalás - térkép felfedése)"
 
-#: simulation/helpers/Commands.js:461
+#: simulation/helpers/Commands.js:462
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "%(player)s feladta."
 
-#: simulation/helpers/Commands.js:639
+#: simulation/helpers/Commands.js:640
 msgid "(Cheat - promoted units)"
 msgstr "(Csalás - előléptetett egységek)"
 
-#: simulation/helpers/Commands.js:760
+#: simulation/helpers/Commands.js:761
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Nem fejleszthető, mivel a távolsági követelmények nincsenek ellenőrizve, vagy a terep akadályozza."
 
-#: simulation/helpers/Commands.js:802
+#: simulation/helpers/Commands.js:803
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "%(_player_)s ellen támadást kértek."
 
-#: simulation/helpers/Commands.js:841
+#: simulation/helpers/Commands.js:842
 msgid "There are no bribable units"
 msgstr "Nincsenek lefizethető egységek."
 
-#: simulation/helpers/Commands.js:918
+#: simulation/helpers/Commands.js:919
 msgid "Unable to unload unit(s)."
 msgstr "Nem lehet kiküldeni az egység(ek)et."
 
-#: simulation/helpers/Commands.js:932
+#: simulation/helpers/Commands.js:933
 msgid "Some unit(s) can't go back to work"
 msgstr "Néhány egység nem tud visszamenni dolgozni"
 
-#: simulation/helpers/Commands.js:951
+#: simulation/helpers/Commands.js:952
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr "A(z) %(unit)s nem irányítható."
 
-#: simulation/helpers/Commands.js:1202
+#: simulation/helpers/Commands.js:1203
 msgid "The building's technology requirements are not met."
 msgstr "Az épület technológiai követelményei nincsenek teljesítve."

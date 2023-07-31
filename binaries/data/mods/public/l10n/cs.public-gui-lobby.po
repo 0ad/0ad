@@ -1,6 +1,6 @@
-# Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright (C) 2023 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 # Cyril Chudáček
@@ -20,7 +20,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2022-09-12 09:35+0000\n"
+"POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:50+0000\n"
 "Last-Translator: fri, 2014-2018,2021,2023\n"
 "Language-Team: Czech (http://app.transifex.com/wildfire-games/0ad/language/cs/)\n"
@@ -71,24 +71,24 @@ msgstr "Odznačit kamaráda"
 msgid "Host Game"
 msgstr "Pořádat hru"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:40
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
 msgid "Your active mods do not match the mods of this game."
 msgstr "Vaše aktivní pozměněné verze neodpovídají úpravám této hry."
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
 msgid "Do you want to switch to the mod selection page?"
 msgstr "Chcete přejít na stránku výběru upravených verzí?"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:43
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:45
 msgid "Incompatible mods"
 msgstr "Nekompatibilní úpravy"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:52
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
 msgid "The game has already started. Do you want to join as observer?"
 msgstr "Hra již začala. Chcete se připojit jako pozorovatel?"
 
 #. Translation: Join the game currently selected in the list.
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:104
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:106
 msgid "Join Game"
 msgstr "Připojit se ke hře"
 
@@ -323,21 +323,21 @@ msgstr "VYHOZEN"
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
 msgstr "Byl jste odpojen ze zájmové skupiny. Přejete si znovu se připojit?"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:53
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:55
 #: gui/lobby/LobbyPage/ConnectionHandler.js:62
 #: gui/prelobby/common/credentials/credentials.js:55
 msgid "Confirmation"
 msgstr "Potvrzení"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:46
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:56
 #: gui/lobby/LobbyPage/ConnectionHandler.js:63
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "No"
 msgstr "Ne"
 
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
-#: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:46
+#: gui/lobby/LobbyPage/Buttons/JoinButton.js:56
 #: gui/lobby/LobbyPage/ConnectionHandler.js:63
 #: gui/prelobby/common/credentials/credentials.js:56
 msgid "Yes"
@@ -670,13 +670,15 @@ msgstr "Zrušit"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:1
 msgid ""
-"[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy "
+"[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Privacy "
 "Policy[/font]"
-msgstr "[font=\"sans-bold-18\"] Zásady ochrany osobních údajů hry pro více hráčů jedné zájmové skupiny ve hře 0 A.D. Empires Ascendant[/font]"
+msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:3
-msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2020-12-24"
-msgstr "[font=\"sans-bold-14\"]Datum dokumentu:[/font] 2020-12-24"
+#: gui/prelobby/common/terms/Terms_of_Service.txt:3
+#: gui/prelobby/common/terms/Terms_of_Use.txt:3
+msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2023-07-27"
+msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:5
 msgid ""
@@ -898,10 +900,10 @@ msgstr "1. Zpracování je nezbytné pro výkon služby stanovené v podmínkác
 #: gui/prelobby/common/terms/Privacy_Policy.txt:50
 msgid ""
 "2. Wildfire Games has legitimate interests in providing the Multiplayer "
-"Lobby, in the development and improvement of 0 A.D. and the Multiplayer "
+"Lobby, in the development and improvement of 0 A.D. and the Multiplayer "
 "Lobby, in enforcing the Terms of Use and in the protection against "
 "cyberattacks (GDPR 6.1.f)."
-msgstr "2. Wildfire Games má oprávněné zájmy na poskytování Hry pro více hráčů, na vývoji a vylepšování hry 0 A.D. a Hry pro více hráčů, na prosazování Podmínek užití a na ochraně před kybernetickými útoky (GDPR 6.1.f)."
+msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:51
 msgid ""
@@ -1075,28 +1077,24 @@ msgstr "Další informace o zásadách ochrany soukromí Wildfire Games naleznet
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:1
 msgid ""
-"[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
+"[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Service[/font]"
-msgstr "[font=\"sans-bold-18\"]Podmínky užití služby hry pro více hráčů jedné zájmové skupiny ve hře 0 A.D. Empires Ascendant[/font]"
-
-#: gui/prelobby/common/terms/Terms_of_Service.txt:3
-msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2018-10-16"
-msgstr "[font=\"sans-bold-14\"]Datum dokumentu:[/font] 2018-10-16"
+msgstr ""
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:5
 msgid ""
-"The 0 A.D. Empires Ascendant Multiplayer Lobby is an online service provided"
+"The 0 A.D. Empires Ascendant Multiplayer Lobby is an online service provided"
 " by Wildfire Games that allows players to set up online multiplayer matches,"
 " discuss the game in a public chat room and gain a rating that reflects "
 "their skill."
-msgstr "The 0 A.D. Empires Ascendant Multiplayer Lobby je online služba poskytovaná Wildfire Games, která umožňuje hráčům nastavit internetové zápasy pro více hráčů, diskutovat o hře ve veřejné chatovací místnosti a získat hodnocení, které odráží jejich dovednosti."
+msgstr ""
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:7
 msgid ""
 "Due to the subject matter of historic warfare, description and depiction of "
-"violence and the language on the Multiplayer Lobby, 0 A.D. and the "
+"violence and the language on the Multiplayer Lobby, 0 A.D. and the "
 "Multiplayer Lobby are not directed to young children (COPPA §312.2)."
-msgstr "Vzhledem k předmětu historické války, popisu a vyobrazení násilí a jazyka ve hře pro více hráčů není hra 0 A.D. a hra pro více hráčů zaměřena na malé děti (COPPA §312.2)."
+msgstr ""
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:8
 msgid "The minimum age to use the Multiplayer Lobby is 13."
@@ -1105,9 +1103,9 @@ msgstr "Nejnižší věk pro používání zájmové herní skupiny pro více hr
 #: gui/prelobby/common/terms/Terms_of_Service.txt:10
 #: gui/prelobby/common/terms/Terms_of_Use.txt:5
 msgid ""
-"[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree "
+"[font=\"sans-bold-14\"]By using the 0 A.D. Multiplayer Lobby, you agree "
 "to:[/font]"
-msgstr "[font=\"sans-bold-14\"]Užíváním zájmové herní skupiny pro více hráčů souhlasíte s tím, že:[/font]"
+msgstr ""
 
 #: gui/prelobby/common/terms/Terms_of_Service.txt:11
 msgid " 1. Follow all usage policies."
@@ -1167,12 +1165,8 @@ msgstr "Pokud jsou části podmínek považovány za nezákonné nebo jinak nevy
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:1
 msgid ""
-"[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
+"[font=\"sans-bold-18\"]0 A.D. Empires Ascendant Multiplayer Lobby Terms of "
 "Use[/font]"
-msgstr "[font=\"sans-bold-18\"]Podmínky užití hry pro více hráčů sdružených v zájmové skupině ve hře 0 A.D. Empires Ascendant[/font]"
-
-#: gui/prelobby/common/terms/Terms_of_Use.txt:3
-msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2022-09-01"
 msgstr ""
 
 #: gui/prelobby/common/terms/Terms_of_Use.txt:6

@@ -1,6 +1,6 @@
-# Translation template for 0 A.D. — Empires Ascendant.
+# Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2023 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 # Adrián Chaves Fernández
@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-04-28 09:24+0000\n"
+"POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2021-2023\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -1318,8 +1318,8 @@ msgid "%(nick)s — %(name)s"
 msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
-msgid "0 A.D. Credits"
-msgstr "0 A.D. 感謝名單"
+msgid "0 A.D. Credits"
+msgstr "0 A.D. 製作人員"
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
@@ -1514,8 +1514,8 @@ msgid "In Memoriam"
 msgstr "紀念"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
-msgid "0 A.D. Founder"
-msgstr "0 A.D. 創始者"
+msgid "0 A.D. Founder"
+msgstr "0 A.D. 創始人"
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
@@ -1530,8 +1530,8 @@ msgid "Special thanks to:"
 msgstr "特別感謝："
 
 #: gui/credits/texts/special.jsonContent[2].Title
-msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr "並感謝整個讓 0 A.D. 變為可能的社群。"
+msgid "And thanks to the entire community for making 0 A.D. possible."
+msgstr "以及感謝讓 0 A.D. 成真的整個社群。"
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -3546,13 +3546,13 @@ msgstr "載入"
 #: gui/loadgame/SavegameLoader.js:39
 #, javascript-format
 msgid ""
-"This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
+"This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr "這個存檔需要 0 A.D. 版本 %(requiredVersion)s，然而您執行的是 %(currentVersion)s。"
+msgstr "這個存檔需要 0 A.D. 版本 %(requiredVersion)s，然而您執行的是 %(currentVersion)s。"
 
 #: gui/loadgame/SavegameLoader.js:44
-msgid "This savegame needs an older version of 0 A.D."
-msgstr "這個存檔需要較舊版本的 0 A.D.。"
+msgid "This savegame needs an older version of 0 A.D."
+msgstr "這個存檔需要較舊版本的 0 A.D.。"
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
@@ -4034,8 +4034,8 @@ msgid "Windowed mode"
 msgstr "視窗模式"
 
 #: gui/options/options.json[1].options[0].tooltip
-msgid "Start 0 A.D. in a window."
-msgstr "以視窗模式啟動 0 A.D.。"
+msgid "Start 0 A.D. in a window."
+msgstr "以視窗模式啟動 0 A.D.。"
 
 #: gui/options/options.json[1].options[10].label
 msgid "Mouse drag"
@@ -5158,8 +5158,8 @@ msgid "Manual"
 msgstr "手冊"
 
 #: gui/pregame/MainMenuItems.js:8
-msgid "Open the 0 A.D. Game Manual."
-msgstr "開啟 0 A.D. 遊戲手冊。"
+msgid "Open the 0 A.D. Game Manual."
+msgstr "開啟 0 A.D. 遊戲手冊。"
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
@@ -5178,8 +5178,8 @@ msgstr "科技樹"
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid ""
-"%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr "%(hotkey)s：觀看 0 A.D. 的文明科技樹特色。"
+"%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
+msgstr "%(hotkey)s：觀看 0 A.D. 的文明科技樹特色。"
 
 #: gui/pregame/MainMenuItems.js:48
 #: gui/reference/civinfo/civinfo.xml:(caption):21
@@ -5189,24 +5189,24 @@ msgstr "文明總覽"
 
 #: gui/pregame/MainMenuItems.js:49
 #, javascript-format
-msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr "%(hotkey)s：學習在 0 A.D. 中文明的特色。"
+msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
+msgstr "%(hotkey)s：學習在 0 A.D. 中文明的特色。"
 
 #: gui/pregame/MainMenuItems.js:60
 msgid "Catafalque Overview"
 msgstr "靈柩總覽"
 
 #: gui/pregame/MainMenuItems.js:61
-msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr "比較 0 A.D. 中靈柩的加成。"
+msgid "Compare the bonuses of catafalques featured in 0 A.D."
+msgstr "比較 0 A.D. 中靈柩的加成。"
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Map Overview"
 msgstr "地圖總覽"
 
 #: gui/pregame/MainMenuItems.js:68
-msgid "View the different maps featured in 0 A.D."
-msgstr "查看 0 A.D. 中不同的地圖。"
+msgid "View the different maps featured in 0 A.D."
+msgstr "查看 0 A.D. 中不同的地圖。"
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Continue Campaign"
@@ -5358,8 +5358,8 @@ msgid ""
 msgstr "在新視窗中開啟地圖劇情編輯器。您可以利用命令列執行遊戲並在其後加上 \"-editor\" 的參數以較可靠的方式執行編輯器。"
 
 #: gui/pregame/MainMenuItems.js:258
-msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr "你確定要退出 0 A.D. 並打開劇情編輯器嗎？"
+msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
+msgstr "你確定要退出 0 A.D. 並打開劇情編輯器嗎？"
 
 #: gui/pregame/MainMenuItems.js:265
 msgid ""
@@ -5376,8 +5376,8 @@ msgid "Credits"
 msgstr "銘謝"
 
 #: gui/pregame/MainMenuItems.js:271
-msgid "Show the 0 A.D. credits."
-msgstr "顯示 0 A.D. 感謝名單。"
+msgid "Show the 0 A.D. credits."
+msgstr "顯示 0 A.D. 感謝名單。"
 
 #: gui/pregame/MainMenuItems.js:277
 msgid "Exit"
@@ -5388,8 +5388,8 @@ msgid "Exit the game."
 msgstr "結束遊戲。"
 
 #: gui/pregame/MainMenuItems.js:282
-msgid "Are you sure you want to quit 0 A.D.?"
-msgstr "您確定要退出 0 A.D. 嗎？"
+msgid "Are you sure you want to quit 0 A.D.?"
+msgstr "您確定要退出 0 A.D. 嗎？"
 
 #: gui/pregame/ProjectInformation.js:6
 msgid "WILDFIRE GAMES"
@@ -5419,19 +5419,19 @@ msgstr "聊天"
 
 #: gui/pregame/ProjectInformation.js:34
 msgid ""
-"Click to open the 0 A.D. IRC chat in your browser (#0ad on "
+"Click to open the 0 A.D. IRC chat in your browser (#0ad on "
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr "點擊在瀏覽器中打開 0 A.D. IRC 聊天 (#0ad 於 webchat.quakenet.org)。它由執行各種任務的志願者負責，可能需要一段時間才能回答您的問題。或者，您可以使用論壇（請參閱網站）。"
+msgstr "點擊在瀏覽器中打開 0 A.D. IRC 聊天 (#0ad 於 webchat.quakenet.org)。它由執行各種任務的志願者負責，可能需要一段時間才能回答您的問題。或者，您可以使用論壇（請參閱網站）。"
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
 msgstr "回報漏洞"
 
 #: gui/pregame/ProjectInformation.js:42
-msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr "點擊以造訪 0 A.D. Trac 回報漏洞、當機或錯誤。"
+msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
+msgstr "點擊以造訪 0 A.D. Trac 回報漏洞、當機或錯誤。"
 
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
@@ -5447,8 +5447,8 @@ msgid "Translate the Game"
 msgstr "翻譯本遊戲"
 
 #: gui/pregame/ProjectInformation.js:58
-msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "點擊以在您的瀏覽器中開啟 0 A.D. 的翻譯頁面。"
+msgid "Click to open the 0 A.D. translate page in your browser."
+msgstr "點擊以在您的瀏覽器中開啟 0 A.D. 的翻譯頁面。"
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
@@ -5505,8 +5505,8 @@ msgid "Enable Feedback"
 msgstr "啟用回饋"
 
 #: gui/pregame/userreport/userreport.js:81
-msgid "Thank you for helping improve 0 A.D.!"
-msgstr "感謝您幫助我們改善 0 A.D.！"
+msgid "Thank you for helping improve 0 A.D.!"
+msgstr "感謝您幫助我們改善 0 A.D.！"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
@@ -5522,8 +5522,8 @@ msgid "unknown"
 msgstr "未知"
 
 #: gui/pregame/userreport/userreport.js:86
-msgid "Help improve 0 A.D.!"
-msgstr "幫忙改善 0 A.D.！"
+msgid "Help improve 0 A.D.!"
+msgstr "幫忙改善 0 A.D.！"
 
 #: gui/pregame/userreport/userreport.js:87
 msgid ""
@@ -5895,8 +5895,8 @@ msgstr "重建重播快取。可能會比較慢！"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
-"[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr "[font=\"sans-bold-20\"]  感謝您安裝 0 A.D. 帝國崛起！"
+"[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
+msgstr "[font=\"sans-bold-20\"]  感謝您安裝 0 A.D. 帝國崛起！"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -5916,9 +5916,9 @@ msgstr "[imgleft=\"iconLag\"]遊戲過程可能會有效能上的問題，尤其
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
-"[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
+"[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr "[imgleft=\"iconMap\"]0 A.D. 是一個自由軟體：您可以參與它的開發。"
+msgstr "[imgleft=\"iconMap\"]0 A.D. 是一個自由軟體：您可以參與它的開發。"
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""

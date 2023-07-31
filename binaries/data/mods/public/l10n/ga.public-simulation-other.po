@@ -1,6 +1,6 @@
-# Translation template for 0 A.D. — Empires Ascendant.
+# Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2023 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 # Brian Mac Giolla Mhuire
@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-02-02 21:44+0000\n"
+"POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Brian Mac Giolla Mhuire <brian@oireas.com>, 2018-2019\n"
 "Language-Team: Irish (http://app.transifex.com/wildfire-games/0ad/language/ga/)\n"
@@ -369,10 +369,10 @@ msgstr ""
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
-"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
+"Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the link in the main menu).\n"
 "\n"
 "The AI's resource gathering rate and trade gain depend on the difficulty level (Sandbox −58%, Very Easy −44%, Easy −25%, Medium ±0%, Hard +25%, Very Hard +56%). The easiest levels also have a slower research, training, and building rate. In addition, the Sandbox level does not expand nor attack."
-msgstr "Is bota réamhshocraithe í Petra de chuid 0 A.D. Tuairiscigh deacrachtaí go Wildfire Games le do thoil (féic ar an nasc sa phríomhroghchlár).\n\nFaigh an tIS bónas/pionós ar a ráta bailithe agus  méadú trádála (-58% i mBosca Gainimh, -44% in An-Éasca, -25% in Éasca, ±0% i Meánach, +25% i nDeacair, +56% in An-Deacair). Tá rátaí táirgeachta is tógála níos lú acu freisin. Ní ionsaíonn an tIS i mBosca Gainimh agus ní mhéadaíonn sé a chríocha."
+msgstr ""
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -401,7 +401,7 @@ msgstr "Ní féidir le %(name)s a thógáil ar talamh neamhbhailí"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:190
+#: simulation/components/BuildRestrictions.js:195
 msgctxt "Territory type"
 msgid "own"
 msgstr "tusa féin"
@@ -409,7 +409,7 @@ msgstr "tusa féin"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:193
+#: simulation/components/BuildRestrictions.js:198
 msgctxt "Territory type"
 msgid "unconnected own"
 msgstr "tusa féin neamhcheangailte"
@@ -417,7 +417,7 @@ msgstr "tusa féin neamhcheangailte"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:199
+#: simulation/components/BuildRestrictions.js:204
 msgctxt "Territory type"
 msgid "allied"
 msgstr "comhghuaillithe"
@@ -425,7 +425,7 @@ msgstr "comhghuaillithe"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:202
+#: simulation/components/BuildRestrictions.js:207
 msgctxt "Territory type"
 msgid "unconnected allied"
 msgstr "comghuaillithe neamhcheangailte"
@@ -433,7 +433,7 @@ msgstr "comghuaillithe neamhcheangailte"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:208
+#: simulation/components/BuildRestrictions.js:213
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "neodrach"
@@ -441,24 +441,24 @@ msgstr "neodrach"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House
 #. cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:215
+#: simulation/components/BuildRestrictions.js:220
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "naimhde"
 
-#: simulation/components/BuildRestrictions.js:220
+#: simulation/components/BuildRestrictions.js:225
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "Ní féidir le %(name)s a thógáil i grcíocha %(territoryType)s. Críocha bailí: %(validTerritories)s"
 
-#: simulation/components/BuildRestrictions.js:234
+#: simulation/components/BuildRestrictions.js:239
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "Is gá le %(name)s a thógáil ar cósta bailí"
 
-#: simulation/components/BuildRestrictions.js:261
+#: simulation/components/BuildRestrictions.js:266
 #, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meter "
@@ -472,7 +472,7 @@ msgstr[2] "Tá %(name)s róghar le %(category)s, is gá leis a bheidh %(distance
 msgstr[3] "Tá %(name)s róghar le %(category)s, is gá leis a bheidh %(distance)s méadair ar shiúl"
 msgstr[4] "Tá %(name)s róghar le %(category)s, is gá leis a bheidh %(distance)s méadair ar shiúl"
 
-#: simulation/components/BuildRestrictions.js:282
+#: simulation/components/BuildRestrictions.js:287
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meter"
@@ -487,7 +487,7 @@ msgstr[4] "Tá %(name)s rófhada le %(category)s, is gá leis a bheidh taobh ist
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
 #. own, ally".
-#: simulation/components/BuildRestrictions.js:322
+#: simulation/components/BuildRestrictions.js:327
 msgctxt "Territory type list"
 msgid "own"
 msgstr "tusa féin"
@@ -495,7 +495,7 @@ msgstr "tusa féin"
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
 #. own, ally".
-#: simulation/components/BuildRestrictions.js:324
+#: simulation/components/BuildRestrictions.js:329
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "comhghuaillithe"
@@ -503,7 +503,7 @@ msgstr "comhghuaillithe"
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
 #. own, ally".
-#: simulation/components/BuildRestrictions.js:326
+#: simulation/components/BuildRestrictions.js:331
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "neodrach"
@@ -511,7 +511,7 @@ msgstr "neodrach"
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories:
 #. own, ally".
-#: simulation/components/BuildRestrictions.js:328
+#: simulation/components/BuildRestrictions.js:333
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "naimhde"
@@ -554,26 +554,26 @@ msgstr "Tá an teorainn traenála %(limit)s do %(category)s bainte amach"
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "Tá an teorainn %(limit)s do %(category)s bainte amach"
 
-#: simulation/components/Player.js:328
+#: simulation/components/Player.js:308
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Acmhainní easnamhacha - %(resourceAmount1)s %(resourceType1)s"
 
-#: simulation/components/Player.js:330
+#: simulation/components/Player.js:310
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Acmhainní easnamhacha - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
-#: simulation/components/Player.js:332
+#: simulation/components/Player.js:312
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Acmhainní easnamhacha - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
-#: simulation/components/Player.js:334
+#: simulation/components/Player.js:314
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -593,7 +593,7 @@ msgstr ".Tá an scuaine táirgthe ró-lán."
 msgid "Could not auto-queue unit, de-activating."
 msgstr ""
 
-#: simulation/components/Trainer.js:313
+#: simulation/components/Trainer.js:321
 msgid "Can't find free space to spawn trained units."
 msgstr ""
 
@@ -775,8 +775,8 @@ msgid "Very Easy"
 msgstr "An-Éasca"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[0].Tooltip
-msgid "Choose this difficulty if you are discovering 0 A.D."
-msgstr "Roghnaigh an deacracht seo má tá tú ag faigh amach ar 0 A.D."
+msgid "Choose this difficulty if you are discovering 0 A.D."
+msgstr ""
 
 #: simulation/data/settings/trigger_difficulties.jsonData[1].Title
 msgid "Easy"
@@ -793,8 +793,8 @@ msgstr "Meán"
 
 #: simulation/data/settings/trigger_difficulties.jsonData[2].Tooltip
 msgid ""
-"Choose this difficulty if you have already a good experience with 0 A.D."
-msgstr "Roghnaigh an deacracht seo má tá taithí mhaith agat fós le 0 A.D."
+"Choose this difficulty if you have already a good experience with 0 A.D."
+msgstr ""
 
 #: simulation/data/settings/trigger_difficulties.jsonData[3].Title
 msgid "Hard"
@@ -885,51 +885,51 @@ msgstr "Tá %(player)s cloíte (feall)."
 msgid "You need to select a building that trains units."
 msgstr "Tá ort foirgneamh a roghnú d'aonaid a thraenáil."
 
-#: simulation/helpers/Commands.js:134
+#: simulation/helpers/Commands.js:135
 msgid "(Cheat - control all units)"
 msgstr "(Feall - cuir na haonaid uile faoi smacht)"
 
-#: simulation/helpers/Commands.js:149
+#: simulation/helpers/Commands.js:150
 msgid "(Cheat - reveal map)"
 msgstr "(Feall - léirigh léarscáil)"
 
-#: simulation/helpers/Commands.js:461
+#: simulation/helpers/Commands.js:462
 #, javascript-format
 msgid "%(player)s has resigned."
 msgstr "Éirí %(player)s as"
 
-#: simulation/helpers/Commands.js:639
+#: simulation/helpers/Commands.js:640
 msgid "(Cheat - promoted units)"
 msgstr "(Feall - aonaid ardaithe)"
 
-#: simulation/helpers/Commands.js:760
+#: simulation/helpers/Commands.js:761
 msgid ""
 "Cannot upgrade as distance requirements are not verified or terrain is "
 "obstructed."
 msgstr "Ní féidir le huasghradú a dhéanamh mar níl riachtanais an fhaid ina mbailí nó tá baic ar an dtalamh seo."
 
-#: simulation/helpers/Commands.js:802
+#: simulation/helpers/Commands.js:803
 #, javascript-format
 msgid "Attack against %(_player_)s requested."
 msgstr "Tá ionsaí ar %(_player_)s faoi iarratas."
 
-#: simulation/helpers/Commands.js:841
+#: simulation/helpers/Commands.js:842
 msgid "There are no bribable units"
 msgstr "Níl aon aonad sobhreabtha ann"
 
-#: simulation/helpers/Commands.js:918
+#: simulation/helpers/Commands.js:919
 msgid "Unable to unload unit(s)."
 msgstr ""
 
-#: simulation/helpers/Commands.js:932
+#: simulation/helpers/Commands.js:933
 msgid "Some unit(s) can't go back to work"
 msgstr "Ní féidir le roinnt aona(i)d a chur ag obair"
 
-#: simulation/helpers/Commands.js:951
+#: simulation/helpers/Commands.js:952
 #, javascript-format
 msgid "%(unit)s can't be controlled."
 msgstr ""
 
-#: simulation/helpers/Commands.js:1202
+#: simulation/helpers/Commands.js:1203
 msgid "The building's technology requirements are not met."
 msgstr "Ní bhailí iad riachtanais teicneolaíochta an fhoirgnimh seo."
