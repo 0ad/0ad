@@ -1,6 +1,6 @@
-# Translation template for 0 A.D. — Empires Ascendant.
+# Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2023 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 # Adrian Chaves
@@ -13,7 +13,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-04-28 09:24+0000\n"
+"POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: Ismael Lires, 2023\n"
 "Language-Team: Galician (http://app.transifex.com/wildfire-games/0ad/language/gl/)\n"
@@ -1323,8 +1323,8 @@ msgid "%(nick)s — %(name)s"
 msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
-msgid "0 A.D. Credits"
-msgstr "Créditos do 0 A.D."
+msgid "0 A.D. Credits"
+msgstr ""
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
@@ -1519,8 +1519,8 @@ msgid "In Memoriam"
 msgstr "En memoria de"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
-msgid "0 A.D. Founder"
-msgstr "Fundador de 0 A.D."
+msgid "0 A.D. Founder"
+msgstr ""
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
@@ -1535,8 +1535,8 @@ msgid "Special thanks to:"
 msgstr "Un agradecemento especial a:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
-msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr "E grazas a toda a comunidade por facer 0 A.D. posíbel."
+msgid "And thanks to the entire community for making 0 A.D. possible."
+msgstr ""
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -3551,13 +3551,13 @@ msgstr "Cargar"
 #: gui/loadgame/SavegameLoader.js:39
 #, javascript-format
 msgid ""
-"This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
+"This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr "Esta partida gardada require a versión %(requiredVersion)s de 0 A.D. A versión que está a executar é a %(currentVersion)s."
+msgstr ""
 
 #: gui/loadgame/SavegameLoader.js:44
-msgid "This savegame needs an older version of 0 A.D."
-msgstr "Esta partida gardada require unha versión anterior de 0 A.D."
+msgid "This savegame needs an older version of 0 A.D."
+msgstr ""
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
@@ -4039,8 +4039,8 @@ msgid "Windowed mode"
 msgstr "Modo xanela"
 
 #: gui/options/options.json[1].options[0].tooltip
-msgid "Start 0 A.D. in a window."
-msgstr "Iniciar 0 A.D. nunha xanela."
+msgid "Start 0 A.D. in a window."
+msgstr ""
 
 #: gui/options/options.json[1].options[10].label
 msgid "Mouse drag"
@@ -5163,8 +5163,8 @@ msgid "Manual"
 msgstr "Manual"
 
 #: gui/pregame/MainMenuItems.js:8
-msgid "Open the 0 A.D. Game Manual."
-msgstr "Abrir o manual de 0 A.D."
+msgid "Open the 0 A.D. Game Manual."
+msgstr ""
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
@@ -5183,8 +5183,8 @@ msgstr "Árbore de estruturas"
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid ""
-"%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr "%(hotkey)s: Ver a árbore de estruturas das civilizacións de 0 A.D."
+"%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
+msgstr ""
 
 #: gui/pregame/MainMenuItems.js:48
 #: gui/reference/civinfo/civinfo.xml:(caption):21
@@ -5194,7 +5194,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:49
 #, javascript-format
-msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
+msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
 msgstr ""
 
 #: gui/pregame/MainMenuItems.js:60
@@ -5202,7 +5202,7 @@ msgid "Catafalque Overview"
 msgstr ""
 
 #: gui/pregame/MainMenuItems.js:61
-msgid "Compare the bonuses of catafalques featured in 0 A.D."
+msgid "Compare the bonuses of catafalques featured in 0 A.D."
 msgstr ""
 
 #: gui/pregame/MainMenuItems.js:67
@@ -5210,7 +5210,7 @@ msgid "Map Overview"
 msgstr ""
 
 #: gui/pregame/MainMenuItems.js:68
-msgid "View the different maps featured in 0 A.D."
+msgid "View the different maps featured in 0 A.D."
 msgstr ""
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
@@ -5363,8 +5363,8 @@ msgid ""
 msgstr "Abrir o editor de escenarios Atlas nunha nova xanela. Tamén pode abrilo executando o xogo co parámetro «-editor» na liña de ordes."
 
 #: gui/pregame/MainMenuItems.js:258
-msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr "Estás seguro de que queres saír de 0 A.D. e abrir o editor de escenarios?"
+msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
+msgstr ""
 
 #: gui/pregame/MainMenuItems.js:265
 msgid ""
@@ -5381,7 +5381,7 @@ msgid "Credits"
 msgstr "Créditos"
 
 #: gui/pregame/MainMenuItems.js:271
-msgid "Show the 0 A.D. credits."
+msgid "Show the 0 A.D. credits."
 msgstr ""
 
 #: gui/pregame/MainMenuItems.js:277
@@ -5393,8 +5393,8 @@ msgid "Exit the game."
 msgstr ""
 
 #: gui/pregame/MainMenuItems.js:282
-msgid "Are you sure you want to quit 0 A.D.?"
-msgstr "Estás seguro de que queres saír de 0 A.D.?"
+msgid "Are you sure you want to quit 0 A.D.?"
+msgstr ""
 
 #: gui/pregame/ProjectInformation.js:6
 msgid "WILDFIRE GAMES"
@@ -5424,7 +5424,7 @@ msgstr "Conversa"
 
 #: gui/pregame/ProjectInformation.js:34
 msgid ""
-"Click to open the 0 A.D. IRC chat in your browser (#0ad on "
+"Click to open the 0 A.D. IRC chat in your browser (#0ad on "
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
@@ -5435,8 +5435,8 @@ msgid "Report a Bug"
 msgstr "Informar dun erro"
 
 #: gui/pregame/ProjectInformation.js:42
-msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr "Visitar o sitio Trac de 0 A.D., no que poderás informar dun erro, fallo ou quebra."
+msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
+msgstr ""
 
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
@@ -5452,8 +5452,8 @@ msgid "Translate the Game"
 msgstr "Traducir o xogo"
 
 #: gui/pregame/ProjectInformation.js:58
-msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "Preme para abrir a páxina de tradución de 0 A.D. no navegador web predeterminado."
+msgid "Click to open the 0 A.D. translate page in your browser."
+msgstr ""
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
@@ -5510,8 +5510,8 @@ msgid "Enable Feedback"
 msgstr "Activar o envío"
 
 #: gui/pregame/userreport/userreport.js:81
-msgid "Thank you for helping improve 0 A.D.!"
-msgstr "Grazas por axudar a mellorar 0 A.D.!"
+msgid "Thank you for helping improve 0 A.D.!"
+msgstr ""
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
@@ -5527,8 +5527,8 @@ msgid "unknown"
 msgstr "descoñecido"
 
 #: gui/pregame/userreport/userreport.js:86
-msgid "Help improve 0 A.D.!"
-msgstr "Axuda a mellorar 0 A.D.!"
+msgid "Help improve 0 A.D.!"
+msgstr ""
 
 #: gui/pregame/userreport/userreport.js:87
 msgid ""
@@ -5907,8 +5907,8 @@ msgstr "Construír de novo a caché da repetición desde cero. Pode ser lento!"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
-"[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr "[font=\"sans-bold-20\"]  Grazas por instalar «0 A.D. Empires Ascendant»!"
+"[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -5928,9 +5928,9 @@ msgstr "[imgleft=\"iconLag\"] O xogo pode sufrir problemas de rendemento, especi
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
-"[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
+"[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr "[imgleft=\"iconMap\"]0 A.D. é Software Libre: podes participar no seu desenvolvemento."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""

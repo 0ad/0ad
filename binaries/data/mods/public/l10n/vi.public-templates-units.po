@@ -1,11 +1,11 @@
-# Translation template for 0 A.D. — Empires Ascendant.
+# Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2023 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
-# Christopher Wilson
+# Christian Marcus
 # DUC PHM
-# Hoàng Văn Khải
+# Khải
 # Nghĩa Cipher
 # Nguyen Dinh Phuoc Duc
 # M1nkd3
@@ -13,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-24 07:08+0000\n"
+"POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:55+0000\n"
-"Last-Translator: Hoàng Văn Khải, 2023\n"
+"Last-Translator: Christian Marcus <mrsovietduck@gmail.com>, 2023\n"
 "Language-Team: Vietnamese (http://app.transifex.com/wildfire-games/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +49,7 @@ msgstr "Chiếm lấy"
 #: simulation/templates/template_unit_support_female_citizen.xml:14
 msgctxt "Name of an attack, usually the weapon."
 msgid "Slaughter"
-msgstr "Tàn sát"
+msgstr "Thảm Sát"
 
 #: simulation/templates/template_unit_cavalry.xml:33
 #: simulation/templates/template_unit_cavalry.xml:36
@@ -64,7 +64,7 @@ msgstr "Kỵ binh"
 #: simulation/templates/template_unit_support_healer.xml:30
 msgctxt "Rank"
 msgid "Basic"
-msgstr "Cơ sở"
+msgstr "Cấp Thấp"
 
 #: simulation/templates/template_unit_cavalry.xml:36
 #: simulation/templates/template_unit_champion.xml:14
@@ -72,18 +72,18 @@ msgstr "Cơ sở"
 #: simulation/templates/template_unit_hero.xml:25
 #: simulation/templates/template_unit_infantry.xml:37
 msgid "Soldier"
-msgstr "Binh lính"
+msgstr "Binh Lính"
 
 #: simulation/templates/template_unit_cavalry.xml:36
 #: simulation/templates/template_unit_elephant.xml:11
 #: simulation/templates/template_unit_infantry.xml:37
 #: simulation/templates/template_unit_support_female_citizen.xml:38
 msgid "Citizen"
-msgstr "Công dân"
+msgstr "Công Dân"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:7
 msgid "Melee Cavalry"
-msgstr "Kỵ binh cận chiến"
+msgstr "Kỵ Binh Cận Chiến"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:8
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:20
@@ -112,7 +112,7 @@ msgstr "Kỵ binh cận chiến"
 #: simulation/templates/template_unit_ship_fire.xml:42
 #: simulation/templates/template_unit_siege_ram.xml:41
 msgid "Melee"
-msgstr "Cận chiến"
+msgstr "Cận Chiến"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:5
@@ -136,7 +136,7 @@ msgstr "Kỵ binh rìu"
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:23
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:24
 msgid "Axeman"
-msgstr "Lính rìu"
+msgstr "Rìu Binh"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:5
@@ -150,7 +150,7 @@ msgstr "Chuỳ"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:21
 msgid "Cavalry Maceman"
-msgstr "Kỵ binh chuỳ"
+msgstr "Kỵ Chùy"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:22
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:20
@@ -159,7 +159,7 @@ msgstr "Kỵ binh chuỳ"
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:17
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:22
 msgid "Maceman"
-msgstr "Lính chuỳ"
+msgstr "Chùy Binh"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:5
@@ -269,7 +269,7 @@ msgstr "Xạ thủ"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:29
 msgid "Cavalry Archer"
-msgstr "Kỵ binh Xạ thủ"
+msgstr "Kỵ Xạ"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:5
@@ -315,7 +315,7 @@ msgstr "Kỵ binh ném lao"
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:24
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:29
 msgid "Javelineer"
-msgstr "Lính ném lao"
+msgstr "Thủ Tiễn Quân"
 
 #: simulation/templates/template_unit_champion.xml:14
 msgid "Champion"
@@ -323,7 +323,7 @@ msgstr "Tinh nhuệ"
 
 #: simulation/templates/template_unit_champion.xml:15
 msgid "Champion Unit"
-msgstr "Đơn vị tinh nhuệ"
+msgstr "Lính Tinh Nhuệ\n"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:21
 msgid "Champion Cavalry"
@@ -456,7 +456,7 @@ msgstr "Lính Thổi Kèn Hiệu"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:28
 msgid "Champion Infantry Trumpeter"
-msgstr ""
+msgstr "Lính Thổi Kèn Giục Quân"
 
 #: simulation/templates/template_unit_dog.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -756,11 +756,11 @@ msgstr ""
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:52
 msgid "BoltShooter"
-msgstr ""
+msgstr "Máy Bắn Tên"
 
 #: simulation/templates/template_unit_siege_boltshooter.xml:53
 msgid "Bolt Shooter"
-msgstr ""
+msgstr "Máy Bắn Tên"
 
 #: simulation/templates/template_unit_siege_flamethrower.xml:46
 msgid "Flamethrower"
@@ -1172,7 +1172,7 @@ msgstr "Toxótēs Krētikós"
 
 #: simulation/templates/units/athen/infantry_javelineer_b.xml:5
 msgid "Thracian Peltast"
-msgstr ""
+msgstr "Thủ Tiễn Quân Thracia"
 
 #: simulation/templates/units/athen/infantry_javelineer_b.xml:6
 msgid "Peltastḗs Thrâx"
@@ -1295,7 +1295,7 @@ msgstr "Marcacos"
 
 #: simulation/templates/units/brit/cavalry_javelineer_b.xml:7
 msgid "Raiding Cavalry"
-msgstr ""
+msgstr "Kỵ Binh Xung Kích\n"
 
 #: simulation/templates/units/brit/cavalry_swordsman_b.xml:6
 #: simulation/templates/units/gaul/cavalry_swordsman_b.xml:6
@@ -1542,7 +1542,7 @@ msgstr "Sǝḫīr Kidōn"
 
 #: simulation/templates/units/cart/infantry_slinger_iber_b.xml:13
 msgid "Balearic Slinger"
-msgstr ""
+msgstr "Lính Quăng Đá Baleares"
 
 #: simulation/templates/units/cart/infantry_slinger_iber_b.xml:14
 msgid "Qallāʿ Ibušimi"
@@ -1550,7 +1550,7 @@ msgstr "Qallāʿ Ibušimi"
 
 #: simulation/templates/units/cart/infantry_spearman_b.xml:14
 msgid "Libyan Spearman"
-msgstr ""
+msgstr "Giáo Binh Li-Bi"
 
 #: simulation/templates/units/cart/infantry_spearman_b.xml:15
 msgid "Sǝḫīr Ḥanīt"
@@ -1638,7 +1638,7 @@ msgstr ""
 
 #: simulation/templates/units/gaul/champion_cavalry.xml:5
 msgid "Gallic Noble Cavalry"
-msgstr ""
+msgstr "Kỵ Binh Quý Tộc người Gaul"
 
 #: simulation/templates/units/gaul/champion_cavalry.xml:6
 msgid "Uerouicos"
@@ -1646,7 +1646,7 @@ msgstr "Uerouicos"
 
 #: simulation/templates/units/gaul/champion_fanatic.xml:12
 msgid "Naked Fanatic"
-msgstr ""
+msgstr "Chiến Binh Cuồng Tín Khỏa Thân"
 
 #: simulation/templates/units/gaul/champion_fanatic.xml:13
 msgid "Bariogaisatos"
@@ -2197,7 +2197,7 @@ msgstr "Rhomphaiaphoros"
 
 #: simulation/templates/units/mace/hero_alexander_iii.xml:22
 msgid "Alexander III the Great"
-msgstr ""
+msgstr "Alexander Đại Đế"
 
 #: simulation/templates/units/mace/hero_alexander_iii.xml:23
 msgid "Alexandros ho Megas"
@@ -2315,7 +2315,7 @@ msgstr "Aśvārohagaṇaḥ"
 
 #: simulation/templates/units/maur/champion_chariot.xml:9
 msgid "War Chariot"
-msgstr ""
+msgstr "Chiến Xa"
 
 #: simulation/templates/units/maur/champion_chariot.xml:10
 msgid "Rath"
@@ -2487,7 +2487,7 @@ msgstr "Thōrakitēs"
 
 #: simulation/templates/units/merc_thureophoros.xml:5
 msgid "Heavy Skirmisher"
-msgstr ""
+msgstr "Thủ Tiễn Quân Hạng Nặng"
 
 #: simulation/templates/units/merc_thureophoros.xml:6
 msgid "Thyreophoros"
@@ -2511,7 +2511,7 @@ msgstr "Artaxšaçā"
 
 #: simulation/templates/units/pers/cavalry_archer_b.xml:7
 msgid "Parthian Horse Archer"
-msgstr ""
+msgstr "Kỵ Xạ xứ Parthia"
 
 #: simulation/templates/units/pers/cavalry_archer_b.xml:8
 msgid "Asabāra Parθava"
@@ -2579,7 +2579,7 @@ msgstr "Anušiya"
 #: simulation/templates/units/pers/champion_infantry.xml:11
 #: simulation/templates/units/pers/champion_infantry_archer_upgrade.xml:11
 msgid "Immortal"
-msgstr ""
+msgstr "Bất Tử Binh"
 
 #: simulation/templates/units/pers/champion_infantry.xml:25
 msgid "Switch to using the bow and arrow."
@@ -2832,7 +2832,7 @@ msgstr "Thureophóros Akrobolistḗs"
 
 #: simulation/templates/units/ptol/infantry_pikeman_b.xml:12
 msgid "Egyptian Pikeman"
-msgstr ""
+msgstr "Thương Binh Ai Cập"
 
 #: simulation/templates/units/ptol/infantry_pikeman_b.xml:13
 msgid "Phalaggomákhimos"
@@ -2848,7 +2848,7 @@ msgstr "Hebraikós Sphendonḗtēs"
 
 #: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:12
 msgid "Mercenary Thureos Spearman"
-msgstr ""
+msgstr "Lính Đánh Thuê Giáo xứ Thureo "
 
 #: simulation/templates/units/ptol/infantry_spearman_merc_b.xml:13
 msgid "Thureophóros Misthophóros"

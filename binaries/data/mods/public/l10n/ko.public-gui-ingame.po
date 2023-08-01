@@ -1,6 +1,6 @@
-# Translation template for 0 A.D. — Empires Ascendant.
+# Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2023 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 # 76407af6b051a571d67c2577de2183db_7380deb
@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-04-28 09:24+0000\n"
+"POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:49+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -159,7 +159,7 @@ msgid "Click to Resume Game"
 msgstr "게임을 이어하려면 클릭"
 
 #: gui/session/ResearchProgress.js:117 gui/session/selection_details.js:273
-#: gui/session/selection_details.js:291 gui/session/selection_panels.js:588
+#: gui/session/selection_details.js:291 gui/session/selection_panels.js:590
 msgctxt "countdown format"
 msgid "m:ss"
 msgstr "m:ss"
@@ -167,7 +167,7 @@ msgstr "m:ss"
 #. Translation: String displayed when the research is paused. E.g. by being
 #. garrisoned or
 #. when not the first item in the queue.
-#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:602
+#: gui/session/ResearchProgress.js:120 gui/session/selection_panels.js:604
 msgid "This item is paused."
 msgstr "이 항목은 일시중지되었습니다."
 
@@ -1061,122 +1061,122 @@ msgstr "비상 상황!"
 msgid "End of alert."
 msgstr "경보 종료."
 
-#: gui/session/selection_panels.js:277
+#: gui/session/selection_panels.js:279
 msgid "Default formation is disabled."
 msgstr "기본 대형이 비활성화되었습니다."
 
-#: gui/session/selection_panels.js:278
+#: gui/session/selection_panels.js:280
 msgid "Right-click to disable the default formation feature."
 msgstr "기본 대형 기능을 비활성화하려면 마우스 오른쪽 버튼을 클릭합니다."
 
-#: gui/session/selection_panels.js:281
+#: gui/session/selection_panels.js:283
 msgid "This is the default formation, used for movement orders."
 msgstr "이것은 이동 명령에 사용되는 기본 대형입니다."
 
-#: gui/session/selection_panels.js:282
+#: gui/session/selection_panels.js:284
 msgid "Right-click to set this as the default formation."
 msgstr "이를 기본 대형으로 지정하려면 마우스 오른쪽 버튼을 클릭합니다."
 
-#: gui/session/selection_panels.js:338
+#: gui/session/selection_panels.js:340
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "%(name)s님을 밖으로 내보냅니다"
 
-#: gui/session/selection_panels.js:339
+#: gui/session/selection_panels.js:341
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "하나를 내보내려면 한 번 클릭합니다.이 유형을 모두 내보내려면 Shift 키를 누른 상태에서 클릭합니다."
 
-#: gui/session/selection_panels.js:341 gui/session/selection_panels.js:919
+#: gui/session/selection_panels.js:343 gui/session/selection_panels.js:921
 #, javascript-format
 msgid "Player: %(playername)s"
 msgstr "플레이어: %(playername)s님"
 
-#: gui/session/selection_panels.js:377
+#: gui/session/selection_panels.js:379
 msgid "Lock Gate"
 msgstr "성문 잠그기"
 
-#: gui/session/selection_panels.js:383
+#: gui/session/selection_panels.js:385
 msgid "Unlock Gate"
 msgstr "성문 잠금해제"
 
-#: gui/session/selection_panels.js:434
+#: gui/session/selection_panels.js:436
 msgid "Pack"
 msgstr "짐싸기"
 
-#: gui/session/selection_panels.js:442
+#: gui/session/selection_panels.js:444
 msgid "Unpack"
 msgstr "짐풀기"
 
-#: gui/session/selection_panels.js:450
+#: gui/session/selection_panels.js:452
 msgid "Cancel Packing"
 msgstr "짐싸기 취소"
 
-#: gui/session/selection_panels.js:458
+#: gui/session/selection_panels.js:460
 msgid "Cancel Unpacking"
 msgstr "짐풀기 취소"
 
-#: gui/session/selection_panels.js:558
+#: gui/session/selection_panels.js:560
 msgid "The auto-queue will try to train this item later."
 msgstr "자동 대기열이 나중에 이 항목을 학습하려고 시도합니다."
 
-#: gui/session/selection_panels.js:561
+#: gui/session/selection_panels.js:563
 msgid "Insufficient population capacity:"
 msgstr "불충분한 인구 수용력:"
 
-#: gui/session/selection_panels.js:562
+#: gui/session/selection_panels.js:564
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s명 %(neededSlots)s"
 
-#: gui/session/selection_panels.js:784
+#: gui/session/selection_panels.js:786
 #, javascript-format
 msgid "%(number)s entity of class %(class)s"
 msgid_plural "%(number)s entities of class %(class)s"
 msgstr[0] "%(class)s 계급의 %(number)s개 개체들"
 
-#: gui/session/selection_panels.js:790
+#: gui/session/selection_panels.js:792
 #, javascript-format
 msgid "Remaining: %(entityCounts)s"
 msgstr "남음: %(entityCounts)s"
 
-#: gui/session/selection_panels.js:791
+#: gui/session/selection_panels.js:793
 msgctxt "Separator for a list of entity counts"
 msgid ", "
 msgstr ", "
 
-#: gui/session/selection_panels.js:843
+#: gui/session/selection_panels.js:845
 msgid "Cannot research while upgrading."
 msgstr "판올림하는 동안에는 연구할 수 없습니다."
 
-#: gui/session/selection_panels.js:1073
+#: gui/session/selection_panels.js:1075
 msgid "Cannot train while upgrading."
 msgstr "판올림하는 동안에는 훈련할 수 없습니다."
 
-#: gui/session/selection_panels.js:1140
+#: gui/session/selection_panels.js:1142
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s). %(tooltip)s"
 msgstr "%(primaryName)s님으로 갱신합니다 (%(secondaryName)s). %(tooltip)s"
 
-#: gui/session/selection_panels.js:1146
+#: gui/session/selection_panels.js:1148
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s (%(secondaryName)s)."
 msgstr "%(primaryName)s님으로 갱신합니다 (%(secondaryName)s)."
 
-#: gui/session/selection_panels.js:1154
+#: gui/session/selection_panels.js:1156
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s. %(tooltip)s"
 msgstr "%(primaryName)s님으로 갱신합니다. %(tooltip)s"
 
-#: gui/session/selection_panels.js:1159
+#: gui/session/selection_panels.js:1161
 #, javascript-format
 msgid "Upgrade to a %(primaryName)s."
 msgstr "%(primaryName)s님으로 갱신합니다."
 
-#: gui/session/selection_panels.js:1196
+#: gui/session/selection_panels.js:1198
 msgid "Cancel Upgrading"
 msgstr "업그레이드 취소하기"
 
-#: gui/session/selection_panels.js:1211
+#: gui/session/selection_panels.js:1213
 msgid ""
 "Cannot upgrade when the entity is training, researching or already "
 "upgrading."

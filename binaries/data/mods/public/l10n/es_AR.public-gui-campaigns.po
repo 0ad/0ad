@@ -1,6 +1,6 @@
-# Translation template for 0 A.D. — Empires Ascendant.
-# Copyright (C) 2022 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright (C) 2023 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 # Sebastian Garcia
@@ -8,13 +8,12 @@
 # Alan Ponce
 # Franco Falleti
 # Javier Mora
-# Facundo Abiega
 # Lucio Oliveto
 # Gabriel Sarthou
 msgid ""
 msgstr ""
-"Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2022-10-22 14:55+0000\n"
+"Project-Id-Version: 0 A.D. — Empires Ascendant\n"
+"POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
 "Last-Translator: Gabriel Sarthou, 2022\n"
 "Language-Team: Spanish (Argentina) (https://app.transifex.com/wildfire-games/teams/17418/es_AR/)\n"
@@ -40,8 +39,8 @@ msgstr "Campaña demo - nuevos escenarios"
 
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
-msgid "Learn how to play 0 A.D."
-msgstr "Aprende como jugar 0 A.D."
+msgid "Learn how to play 0 A.D."
+msgstr ""
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
 msgctxt "Campaign Template"
@@ -65,8 +64,8 @@ msgstr "Tutorial de economía"
 
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
-msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr "Este es el tutorial básico para que comiences a jugar 0 A.D."
+msgid "This is a basic tutorial to get you started playing 0 A.D."
+msgstr ""
 
 #: campaigns/tutorial.jsonLevels.introduction.Name
 msgctxt "Campaign Template"
@@ -204,7 +203,7 @@ msgctxt "campaignsetup"
 msgid "Name"
 msgstr "Nombre"
 
-#: gui/common/campaigns/CampaignRun.js:117
+#: gui/common/campaigns/CampaignRun.js:115
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
 msgstr "%(userDesc)s - %(templateName)s"

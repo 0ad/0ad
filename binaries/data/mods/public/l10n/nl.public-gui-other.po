@@ -1,6 +1,6 @@
-# Translation template for 0 A.D. — Empires Ascendant.
+# Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2023 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 # Anique van Berne
@@ -37,7 +37,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-04-28 09:24+0000\n"
+"POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
 "Last-Translator: rollieoo, 2021-2023\n"
 "Language-Team: Dutch (http://app.transifex.com/wildfire-games/0ad/language/nl/)\n"
@@ -1347,8 +1347,8 @@ msgid "%(nick)s — %(name)s"
 msgstr "%(nick)s — %(name)s"
 
 #: gui/credits/credits.xml:(caption):19
-msgid "0 A.D. Credits"
-msgstr "0 A.D. credits"
+msgid "0 A.D. Credits"
+msgstr ""
 
 #: gui/credits/texts/art.jsonContent[0].Title
 msgid "Art lead"
@@ -1543,8 +1543,8 @@ msgid "In Memoriam"
 msgstr "In Memoriam"
 
 #: gui/credits/texts/special.jsonContent[1].Content[0].Subtitle
-msgid "0 A.D. Founder"
-msgstr "0 A.D. oprichter"
+msgid "0 A.D. Founder"
+msgstr ""
 
 #: gui/credits/texts/special.jsonContent[1].Content[1].Subtitle
 msgid "Project Leaders"
@@ -1559,8 +1559,8 @@ msgid "Special thanks to:"
 msgstr "Extra dank voor:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
-msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr "En bedankt aan de hele 0 A.D. gemeenschap om dit project mogelijk te maken."
+msgid "And thanks to the entire community for making 0 A.D. possible."
+msgstr ""
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -3575,13 +3575,13 @@ msgstr "Laad"
 #: gui/loadgame/SavegameLoader.js:39
 #, javascript-format
 msgid ""
-"This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
+"This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr "Dit opgeslagen spel vereist 0 A.D. versie %(requiredVersion)s, terwijl u werkt op versie %(currentVersion)s."
+msgstr ""
 
 #: gui/loadgame/SavegameLoader.js:44
-msgid "This savegame needs an older version of 0 A.D."
-msgstr "Dit opgeslagen spel vereist een oudere versie van 0 A.D."
+msgid "This savegame needs an older version of 0 A.D."
+msgstr ""
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
@@ -4063,8 +4063,8 @@ msgid "Windowed mode"
 msgstr "Venstermodus"
 
 #: gui/options/options.json[1].options[0].tooltip
-msgid "Start 0 A.D. in a window."
-msgstr "Start 0 A.D. in een venster."
+msgid "Start 0 A.D. in a window."
+msgstr ""
 
 #: gui/options/options.json[1].options[10].label
 msgid "Mouse drag"
@@ -5187,8 +5187,8 @@ msgid "Manual"
 msgstr "Handleiding"
 
 #: gui/pregame/MainMenuItems.js:8
-msgid "Open the 0 A.D. Game Manual."
-msgstr "De handleiding voor 0 A.D openen."
+msgid "Open the 0 A.D. Game Manual."
+msgstr ""
 
 #: gui/pregame/MainMenuItems.js:14
 msgid "Tutorial"
@@ -5207,8 +5207,8 @@ msgstr "Structuurboom"
 #: gui/pregame/MainMenuItems.js:37
 #, javascript-format
 msgid ""
-"%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr "%(hotkey)s: Toon de structuurboom van beschavingen in 0 A.D."
+"%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
+msgstr ""
 
 #: gui/pregame/MainMenuItems.js:48
 #: gui/reference/civinfo/civinfo.xml:(caption):21
@@ -5218,24 +5218,24 @@ msgstr "Beschavingsoverzicht"
 
 #: gui/pregame/MainMenuItems.js:49
 #, javascript-format
-msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr "%(hotkey)s: Leer over de beschavingen van 0 A.D."
+msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
+msgstr ""
 
 #: gui/pregame/MainMenuItems.js:60
 msgid "Catafalque Overview"
 msgstr "Katafalk-overzicht"
 
 #: gui/pregame/MainMenuItems.js:61
-msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr "Vergelijk de bonussen in de katafalken die in 0 A.D. voorkomen."
+msgid "Compare the bonuses of catafalques featured in 0 A.D."
+msgstr ""
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Map Overview"
 msgstr "Kaartenoverzicht"
 
 #: gui/pregame/MainMenuItems.js:68
-msgid "View the different maps featured in 0 A.D."
-msgstr "Bekijk de verschillende kaarten van 0.A.D."
+msgid "View the different maps featured in 0 A.D."
+msgstr ""
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Continue Campaign"
@@ -5387,8 +5387,8 @@ msgid ""
 msgstr "De Atlas-scenariobewerker openen in een nieuw venster. U kan dit ook starten met de opdrachtpromt-optie \"-editor\" voor een meer betrouwbare manier."
 
 #: gui/pregame/MainMenuItems.js:258
-msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr "Weet u zeker dat u 0 A.D. wil stoppen en de scenariobewerker wil openen?"
+msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
+msgstr ""
 
 #: gui/pregame/MainMenuItems.js:265
 msgid ""
@@ -5405,8 +5405,8 @@ msgid "Credits"
 msgstr "Credits"
 
 #: gui/pregame/MainMenuItems.js:271
-msgid "Show the 0 A.D. credits."
-msgstr "De credits voor 0 A.D tonen."
+msgid "Show the 0 A.D. credits."
+msgstr ""
 
 #: gui/pregame/MainMenuItems.js:277
 msgid "Exit"
@@ -5417,8 +5417,8 @@ msgid "Exit the game."
 msgstr "Verlaat het spel."
 
 #: gui/pregame/MainMenuItems.js:282
-msgid "Are you sure you want to quit 0 A.D.?"
-msgstr "Weet u zeker dat u 0 A.D. af wilt sluiten?"
+msgid "Are you sure you want to quit 0 A.D.?"
+msgstr ""
 
 #: gui/pregame/ProjectInformation.js:6
 msgid "WILDFIRE GAMES"
@@ -5448,19 +5448,19 @@ msgstr "Chat"
 
 #: gui/pregame/ProjectInformation.js:34
 msgid ""
-"Click to open the 0 A.D. IRC chat in your browser (#0ad on "
+"Click to open the 0 A.D. IRC chat in your browser (#0ad on "
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr "Klik om de 0 A.D. IRC chat te openen in uw browser (#0ad op webchat.quakenet.org). Deze wordt gerund door vrijwilligers die allerlei taken uitvoeren, het kan een tijdje duren vooraleer uw vraag beantwoord wordt. Als alternatief kunt u ook het forum gebruiken (zie Website)."
+msgstr ""
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
 msgstr "Een probleem melden"
 
 #: gui/pregame/ProjectInformation.js:42
-msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr "Klik om de 0 A.D. Trac pagina te bezoeken en zo een bug, crash of ander probleem te melden."
+msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
+msgstr ""
 
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
@@ -5476,8 +5476,8 @@ msgid "Translate the Game"
 msgstr "Het spel vertalen"
 
 #: gui/pregame/ProjectInformation.js:58
-msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr "Klik om de 0 A.D. vertaalpagina te openen in uw browser."
+msgid "Click to open the 0 A.D. translate page in your browser."
+msgstr ""
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
@@ -5534,8 +5534,8 @@ msgid "Enable Feedback"
 msgstr "Feedback inschakelen"
 
 #: gui/pregame/userreport/userreport.js:81
-msgid "Thank you for helping improve 0 A.D.!"
-msgstr "Bedankt dat u helpt 0 A.D. te verbeteren!"
+msgid "Thank you for helping improve 0 A.D.!"
+msgstr ""
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
@@ -5551,8 +5551,8 @@ msgid "unknown"
 msgstr "onbekend"
 
 #: gui/pregame/userreport/userreport.js:86
-msgid "Help improve 0 A.D.!"
-msgstr "Help om 0 A.D. te verbeteren!"
+msgid "Help improve 0 A.D.!"
+msgstr ""
 
 #: gui/pregame/userreport/userreport.js:87
 msgid ""
@@ -5931,8 +5931,8 @@ msgstr "Bouw de herhalingscache helemaal opnieuw op. Dit kan lang duren."
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
-"[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr "[font=\"sans-bold-20\"]Bedankt voor het installeren van 0 A.D. Empires Ascendant!"
+"[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -5952,9 +5952,9 @@ msgstr "[imgleft=\"iconLag\"]Het spel kan prestatie problemen hebben, in het bij
 
 #: gui/splashscreen/splashscreen.txt:8
 msgid ""
-"[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
+"[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr "[imgleft=\"iconMap\"]0 A.D. is freeware: u kunt bijdragen aan de ontwikkeling ervan."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
