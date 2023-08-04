@@ -1,8 +1,9 @@
-# Translation template for 0 A.D. — Empires Ascendant.
+# Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2023 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Ansh Mishra
 # Faraaz Madni
 # Mangat Ram
 # opn game
@@ -12,9 +13,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-24 07:08+0000\n"
+"POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: Ritwik Raghav, 2022\n"
+"Last-Translator: Ansh Mishra, 2023\n"
 "Language-Team: Hindi (http://app.transifex.com/wildfire-games/0ad/language/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +25,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraDescription
 msgid "Garrisoned Siege Engines +3 health regeneration rate."
-msgstr "अंदर रखे घेराबंदी उपकरणों का +३ के दर से स्वास्थ्य सुधार होता है"
+msgstr "अंदर रखे घेराबंदी उपकरणों का +3 के दर से स्वास्थ्य सुधार होता है"
 
 #: simulation/data/auras/structures/arsenal_repair.jsonauraName
 msgid "Arsenal Repairs"
@@ -32,15 +33,15 @@ msgstr "शस्त्रागार की मरम्मत"
 
 #: simulation/data/auras/structures/athen_prytaneion_hero_heal.jsonauraDescription
 msgid "Garrisoned Heroes +6 health regeneration rate."
-msgstr ""
+msgstr "अंदर गए वीरों का +6 के दर से स्वास्थ्य सुधार होता है"
 
 #: simulation/data/auras/structures/athen_prytaneion_hero_heal.jsonauraName
 msgid "Officer Accommodation"
-msgstr ""
+msgstr "अधिकारी आवास"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraDescription
 msgid "Garrisoned Ships +10 health regeneration rate."
-msgstr "अंदर रखी नौकाओं का +१० के दर से स्वास्थ्य सुधार होता है"
+msgstr "अंदर रखी नौकाओं का +10 के दर से स्वास्थ्य सुधार होता है"
 
 #: simulation/data/auras/structures/cart_super_dock_repair.jsonauraName
 msgid "Dockyard Repairs"
@@ -54,7 +55,7 @@ msgstr ""
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraName
 #: simulation/data/auras/structures/corral_garrison_small.jsonauraName
 msgid "Ranching and Corralling"
-msgstr ""
+msgstr "पशुपालन और बाड़े में करना"
 
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +2 food."
@@ -70,7 +71,7 @@ msgstr ""
 
 #: simulation/data/auras/structures/farmstead_60.jsonauraName
 msgid "Farmland"
-msgstr ""
+msgstr "खेत"
 
 #: simulation/data/auras/structures/iber_monument.jsonauraDescription
 msgid "Soldiers +20% melee and ranged attack damage."
@@ -180,7 +181,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/athen_player_teambonus.jsonauraName
 msgid "Democracy"
-msgstr ""
+msgstr "प्रजातंत्र"
 
 #: simulation/data/auras/teambonuses/brit_player_teambonus.jsonauraDescription
 msgid "Healers −20% resource costs."
@@ -196,7 +197,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/cart_player_teambonus.jsonauraName
 msgid "Mercenary Transports"
-msgstr ""
+msgstr "भृतक परिवाहन"
 
 #: simulation/data/auras/teambonuses/gaul_player_teambonus.jsonauraDescription
 msgid "Forges −15% technology resource costs and research time."
@@ -212,7 +213,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/han_player_teambonus.jsonauraName
 msgid "Silk Road"
-msgstr ""
+msgstr "रेशमी मार्ग"
 
 #: simulation/data/auras/teambonuses/iber_player_teambonus.jsonauraDescription
 msgid "Citizen Javelineers −10% resource costs."
@@ -254,7 +255,7 @@ msgstr ""
 
 #: simulation/data/auras/teambonuses/pers_player_teambonus.jsonauraName
 msgid "Training Regimes"
-msgstr ""
+msgstr "प्रशिक्षण व्यवस्थाएँ"
 
 #: simulation/data/auras/teambonuses/ptol_player_teambonus.jsonauraDescription
 msgid "+1.0 food trickle rate."
@@ -283,7 +284,7 @@ msgstr "सीरियाई टेट्रापोलिस"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraDescription
 msgid "Heroes are trained for free."
-msgstr ""
+msgstr "वीरों को निःशुल्क प्रशिक्षित किया जाता है।"
 
 #: simulation/data/auras/teambonuses/spart_player_teambonus.jsonauraName
 msgid "Peloponnesian League"
@@ -386,7 +387,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/han_catafalque_2.jsonauraName
 msgid "Imperial Music Bureau"
-msgstr ""
+msgstr "इंपीरियल संगीत ब्यूरो"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraDescription
 msgid ""
@@ -396,7 +397,7 @@ msgstr "अपने भाई इंडिबिल के साथ मिल�
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_1.jsonauraName
 msgid "Mercenary Commander"
-msgstr "भाड़े के सैनिकों का सेनापति"
+msgstr "भृतक सेनाध्यक्ष"
 
 #: simulation/data/auras/units/catafalques/iber_catafalque_2.jsonauraDescription
 msgid ""
@@ -446,7 +447,7 @@ msgstr ""
 
 #: simulation/data/auras/units/catafalques/mace_catafalque_2.jsonauraName
 msgid "Financial Reorganization"
-msgstr ""
+msgstr "वित्तीय पुनर्गठन"
 
 #: simulation/data/auras/units/catafalques/maur_catafalque_1.jsonauraDescription
 msgid ""
@@ -624,7 +625,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_hippocrates_2.jsonauraName
 msgid "Medicine Father"
-msgstr ""
+msgstr "औषधि पिता"
 
 #: simulation/data/auras/units/heroes/athen_hero_iphicrates_1.jsonauraDescription
 msgid "Soldiers +2 crush, hack, pierce resistance."
@@ -658,7 +659,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_pericles_2.jsonauraName
 msgid "Scholarship and the Arts"
-msgstr ""
+msgstr "छात्रवृत्ति और कला"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraDescription
 msgid "Ships −50% metal cost, construction time, and +15% movement speed."
@@ -666,7 +667,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_1.jsonauraName
 msgid "Naval Preparation"
-msgstr ""
+msgstr "नौसेना तैयारी"
 
 #: simulation/data/auras/units/heroes/athen_hero_themistocles_2.jsonauraDescription
 msgid "Walls and Palisades −50% resource costs and −20% construction time."
@@ -767,7 +768,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_1.jsonauraName
 msgid "Northern Army"
-msgstr ""
+msgstr "उत्तरी सेना"
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_2.jsonauraDescription
 msgid "Own and Allied Soldiers +25% vision range."
@@ -775,7 +776,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/han_hero_han_xin_2.jsonauraName
 msgid "Southern Army"
-msgstr ""
+msgstr "दक्षिणी सेना"
 
 #: simulation/data/auras/units/heroes/han_hero_liu_bang_1.jsonauraDescription
 msgid "Walls +10 health regeneration rate."
@@ -906,7 +907,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_1.jsonauraName
 msgid "Rapid Conquest"
-msgstr ""
+msgstr "तीव्र विजय"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraDescription
 msgid "Enemy Soldiers, Structures −10% attack damage."
@@ -914,7 +915,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_2.jsonauraName
 msgid "Undefeated"
-msgstr ""
+msgstr "अपराजित"
 
 #: simulation/data/auras/units/heroes/mace_hero_alexander_iii_3.jsonauraDescription
 msgid "Enemy Civic Centres −50% capture points garrisoned regeneration rate."
@@ -981,7 +982,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_chandragupta_1.jsonauraName
 msgid "Empire Maker"
-msgstr ""
+msgstr "साम्राज्य निर्माता"
 
 #: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraDescription
 msgid "Elephants +15% attack rate, +10% movement speed."
@@ -989,7 +990,7 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/maur_hero_chandragupta_2.jsonauraName
 msgid "Elephant Corps"
-msgstr ""
+msgstr "हाथी दल\n "
 
 #: simulation/data/auras/units/heroes/pers_hero_cyrus_ii.jsonauraDescription
 msgid ""
@@ -1052,7 +1053,7 @@ msgstr "वेतन-भोगी -३५% संसाधन लागत।"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_i_2.jsonauraName
 msgid "Mercenary Patron"
-msgstr "किराये का संरक्षक"
+msgstr "भृतक संरक्षक"
 
 #: simulation/data/auras/units/heroes/ptol_hero_ptolemy_iv.jsonauraDescription
 msgid "Pikemen +40% health."
