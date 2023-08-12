@@ -1,6 +1,6 @@
-# Translation template for 0 A.D. — Empires Ascendant.
+# Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2023 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 # 이민학
@@ -15,7 +15,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-24 07:08+0000\n"
+"POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
 "Last-Translator: Junghee Lee <daemul72@gmail.com>, 2019,2021-2023\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
@@ -94,7 +94,7 @@ msgstr "도시 단계에서 잠금해제합니다."
 
 #: simulation/data/technologies/agoge.jsontooltip
 msgid "Champion Hoplites +25% health, but +5% training time."
-msgstr ""
+msgstr "챔피언 장갑보병의 체력이 +25% 증가하지만, 훈련 시간이 +5% 증가합니다."
 
 #: simulation/data/technologies/archer_attack_spread.jsondescription
 msgid "Encouraging soldiers to practice archery improves their accuracy."
@@ -202,15 +202,15 @@ msgstr "건축물은 내구력과 점령 포인트가 +25% 증가하지만, 건�
 msgid ""
 "The arsenal was mainly used as a warehouse for materials and instruments for"
 " the equipment of warships."
-msgstr ""
+msgstr "무기고는 주로 군선 장비에 필요한 재료와 도구를 보관하는 창고로 사용되었습니다."
 
 #: simulation/data/technologies/arsenal_philon.jsongenericName
 msgid "Arsenal of Philon"
-msgstr ""
+msgstr "필론의 무기고"
 
 #: simulation/data/technologies/arsenal_philon.jsontooltip
 msgid "Warships +1 health/second self-repair rate."
-msgstr ""
+msgstr "군선의 초당 자체 수리 속도가 +1 증가합니다."
 
 #: simulation/data/technologies/art_of_war.jsondescription
 msgid ""
@@ -325,11 +325,11 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 BC, whose purpose "
 "was to push the Persians out of the Aegean region. The allied states "
 "contributed ships and money, while the Athenians offered their entire navy."
-msgstr ""
+msgstr "살라미스와 미칼레 해전에서 대승을 거둔 직후, 그리스 도시 국가들은 페르시아를 에게해 지역에서 몰아내기 위해 기원전 478년에 이른바 델로스 동맹을 결성했습니다. 동맹국들은 배와 돈을 제공했고, 아테네인들은 그들의 해군 전체를 제공했습니다."
 
 #: simulation/data/technologies/civbonuses/delian_league.jsongenericName
 msgid "Delian League"
-msgstr ""
+msgstr "델로스 동맹"
 
 #: simulation/data/technologies/civbonuses/delian_league.jsontooltip
 msgid "Ships construct 25% faster."
@@ -393,11 +393,11 @@ msgstr "도시 성벽의 내구력이 +50% 증가합니다."
 
 #: simulation/data/technologies/civbonuses/mace_storehouse.jsondescription
 msgid "The Macedonian economy relied greatly on their vast natural resources."
-msgstr "마케도니아 국은 그들의 광대한 천연자원에 크게 의존했습니다."
+msgstr "마케도니아 경제상태는 그들의 광대한 천연자원에 크게 의존했습니다."
 
 #: simulation/data/technologies/civbonuses/mace_storehouse.jsongenericName
 msgid "Resource-Rich Economy"
-msgstr "자원이 풍부한 국가"
+msgstr "자원이 풍부한 경제상태"
 
 #: simulation/data/technologies/civbonuses/mace_storehouse.jsontooltip
 msgid "Storehouse technologies −100% research time."
@@ -982,17 +982,17 @@ msgid ""
 "Helots were the servants of Greece. Unlike slaves, helots were owned by the "
 "state, which managed economic production. Helots must give a reasonable "
 "portion of their harvest to support a warrior and his family or widow."
-msgstr ""
+msgstr "헬롯은 그리스의 농노였습니다. 노예와 달리 헬롯은 국가가 소유하고 경제 생산을 관리했습니다. 헬롯은 전사와 그의 가족 또는 미망인을 부양하기 위해 수확물의 일정 부분을 바쳐야 했습니다."
 
 #: simulation/data/technologies/helot_economy.jsongenericName
 msgid "Helot Economy"
-msgstr ""
+msgstr "헬롯 경제상태"
 
 #: simulation/data/technologies/helot_economy.jsontooltip
 msgid ""
 "Infantry Javelineers +100% grain gather rate, but −10% ranged attack pierce "
 "damage."
-msgstr ""
+msgstr "투창병의 채집 속도가 +100% 증가하지만, 원거리 공격 관통 피해량이 −10% 감소합니다."
 
 #: simulation/data/technologies/hoplite_tradition.jsondescription
 msgid "Hoplite soldiers constituted most of the armies of Greece."
@@ -1024,7 +1024,7 @@ msgstr "이모탈의 훈련시간이 -50% 감소합니다."
 msgid ""
 "Athenian gymnasium, docks and triremes can train Marines (Epibates "
 "Athenaikos)."
-msgstr ""
+msgstr "아테네의 연무장, 부두 및 3단노선은 해병들(에피바테스 아테나이코스)을 훈련시킬 수 있습니다."
 
 #: simulation/data/technologies/iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
@@ -1045,13 +1045,13 @@ msgstr ""
 
 #: simulation/data/technologies/krypteia.jsongenericName
 msgid "Krypteia"
-msgstr ""
+msgstr "크립테이아"
 
 #: simulation/data/technologies/krypteia.jsontooltip
 msgid ""
 "Champion Hoplites +10% melee attack damage, but Citizen Infantry Javelineers"
 " +30% training time."
-msgstr ""
+msgstr "챔피언 장갑보병의 근접 공격력이 +10% 증가하지만, 시민 투창병의 훈련 시간이 +30% 증가합니다."
 
 #: simulation/data/technologies/long_walls.jsondescription
 msgid ""
@@ -1086,7 +1086,7 @@ msgstr "니시오이"
 
 #: simulation/data/technologies/nisean_horses.jsontooltip
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
-msgstr "전사 기마 창병의 체력이 +20% 증가하지만, 훈련 시간이 +10% 증가합니다."
+msgstr "챔피언 기마 창병의 체력이 +20% 증가하지만, 훈련 시간이 +10% 증가합니다."
 
 #: simulation/data/technologies/ostracism.jsondescription
 msgid ""
@@ -1096,7 +1096,7 @@ msgstr ""
 
 #: simulation/data/technologies/ostracism.jsongenericName
 msgid "Ostracism"
-msgstr ""
+msgstr "오스트라시즘(도편추방제)"
 
 #: simulation/data/technologies/ostracism.jsontooltip
 msgid "Citizen soldiers +5% health, but Heroes −40% health."
@@ -1138,7 +1138,7 @@ msgstr "다프네의 퍼레이드"
 
 #: simulation/data/technologies/parade_of_daphne.jsontooltip
 msgid "Champions −20% training time."
-msgstr "전사 훈련 시간이 −20% 줄어듭니다."
+msgstr "챔피언 훈련 시간이 −20% 줄어듭니다."
 
 #: simulation/data/technologies/phase_city.jsondescription
 msgid ""
@@ -1301,7 +1301,7 @@ msgstr ""
 
 #: simulation/data/technologies/pheidian_workshop.jsongenericName
 msgid "Pheidian Workshop"
-msgstr ""
+msgstr "페이디아 작업장"
 
 #: simulation/data/technologies/pheidian_workshop.jsontooltip
 msgid "Temples and Wonder −50% stone cost and build time."
@@ -1377,7 +1377,7 @@ msgstr "개혁군"
 
 #: simulation/data/technologies/reformed_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Swordsman."
-msgstr "전사 검병을 잠금해제합니다."
+msgstr "챔피언 검병을 잠금해제합니다."
 
 #: simulation/data/technologies/ship_cost_time.jsondescription
 msgid ""
@@ -1502,7 +1502,7 @@ msgstr "은색 방패 연대"
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with more health "
 "and attack damage."
-msgstr "방패지기 전사 보병을 은색 방패로 업그레이드하여 더 많은 부상과 공격 피해를 입힙니다."
+msgstr "방패를 든 챔피언 보병을 은빛 방패로 업그레이드하면, 체력과 공격력이 증가합니다."
 
 #: simulation/data/technologies/soldier_attack_melee_01.jsondescription
 msgid ""
@@ -1870,7 +1870,7 @@ msgstr "전통군"
 
 #: simulation/data/technologies/traditional_army_sele.jsontooltip
 msgid "Unlock the Champion Infantry Pikeman."
-msgstr "전사 단창병을 잠금해제합니다."
+msgstr "챔피언 단창병을 잠금해제합니다."
 
 #: simulation/data/technologies/tyrtean_paeans.jsondescription
 msgid ""
@@ -1885,7 +1885,7 @@ msgstr "티르탄 파에안스"
 
 #: simulation/data/technologies/tyrtean_paeans.jsontooltip
 msgid "Champion Hoplites +10% movement speed."
-msgstr ""
+msgstr "챔피언 장갑보병의 이동 속도가 +10% 증가합니다."
 
 #: simulation/data/technologies/unit_advanced.jsontooltip
 msgid ""
@@ -1909,27 +1909,27 @@ msgstr "정예병 유닛의 훈련 시간이 +20%, 체력이 +25%, 점령 공격
 msgid ""
 "Guard units (Champions) are professionals who wield the best weapons and "
 "have the best training."
-msgstr "호위 유닛(전사)은 최고의 무기를 휘두르며 최고의 훈련을 받은 전문가입니다."
+msgstr "호위 유닛(챔피언)은 최고의 무기를 휘두르며 최고의 훈련을 받은 전문가입니다."
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsongenericName
 msgid "Unlock Champion Cavalry"
-msgstr "전사 기마병 잠금해제"
+msgstr "챔피언 기마병 잠금해제"
 
 #: simulation/data/technologies/unlock_champion_cavalry.jsontooltip
 msgid "Unlock Champion Cavalry at the Stable."
-msgstr "사육장에서 전사 기마병의 잠금을 해제합니다."
+msgstr "사육장에서 챔피언 기마병의 잠금을 해제합니다."
 
 #: simulation/data/technologies/unlock_champion_chariots.jsongenericName
 msgid "Unlock Champion Chariots"
-msgstr "전사 전차 잠금해제"
+msgstr "챔피언 전차병 잠금해제"
 
 #: simulation/data/technologies/unlock_champion_chariots.jsontooltip
 msgid "Unlock Champion Chariots at the Stable."
-msgstr "사육장에서 전사 전차의 잠금을 해제합니다."
+msgstr "사육장에서 챔피언 전차병의 잠금을 해제합니다."
 
 #: simulation/data/technologies/unlock_champion_infantry.jsongenericName
 msgid "Unlock Champion Infantry"
-msgstr "전사 보병 잠금해제"
+msgstr "챔피언 보병 잠금해제"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.mace
 #: simulation/data/technologies/unlock_champion_infantry.jsonspecificName.ptol
@@ -1942,7 +1942,7 @@ msgstr "레기오 코호로스"
 
 #: simulation/data/technologies/unlock_champion_infantry.jsontooltip
 msgid "Unlock Champions Infantry at the Barracks."
-msgstr "병영에서 전사 보병의 잠금을 해제합니다."
+msgstr "병영에서 챔피언 보병의 잠금을 해제합니다."
 
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."
@@ -1972,15 +1972,15 @@ msgstr "집에서 여성을 훈련시키는 능력을 잠금해제합니다."
 msgid ""
 "In ancient Sparta, the Helots who were freed by the state in reward for "
 "military service were known as Neodamodes."
-msgstr ""
+msgstr "고대 스파르타에서는 군 복무에 대한 보상으로 국가로부터 풀려난 헬롯을 네오다모데스라고 불렀습니다."
 
 #: simulation/data/technologies/unlock_neodamodes.jsongenericName
 msgid "Unlock Neodamodes"
-msgstr ""
+msgstr "네오다모데스 잠금 해제"
 
 #: simulation/data/technologies/unlock_neodamodes.jsontooltip
 msgid "Unlock the ability to train Spearman Neodamodes at the Barracks."
-msgstr ""
+msgstr "병영에서 네오다모데스 창병을 훈련하기 위한 능력을 잠금 해제합니다."
 
 #: simulation/data/technologies/unlock_shared_dropsites.jsondescription
 msgid ""
