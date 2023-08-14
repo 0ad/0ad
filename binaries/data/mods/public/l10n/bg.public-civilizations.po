@@ -1,22 +1,22 @@
-# Translation template for 0 A.D. — Empires Ascendant.
+# Translation template for 0 A.D. — Empires Ascendant.
 # Copyright (C) 2023 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
 # Daniel Ignatov
 # George Gbr
+# Hellioob
 # iron4o
 # Yordan Grigorov (yoreei)
 # Любомир Василев
 # Nerwitz Panzerfizt
 # radochrist
-# Hellioob
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-24 07:08+0000\n"
+"POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
-"Last-Translator: Hellioob <stefan7202@abv.bg>, 2022\n"
+"Last-Translator: Любомир Василев, 2023\n"
 "Language-Team: Bulgarian (http://app.transifex.com/wildfire-games/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,7 +74,7 @@ msgstr "Клеофонт"
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].Description
 msgid "Workers +10% metal gather rate per phase advance."
-msgstr "Скоростта на работниците при събиране на метал се увеличава с +10%."
+msgstr "Работници: +10% скорост на събиране на метал при всяко преминаване към следваща фаза."
 
 #: simulation/data/civs/athen.jsonCivBonuses[0].History
 msgid ""
@@ -341,7 +341,7 @@ msgstr "Тантал"
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].Description
 msgid "Iberians start with City Walls around their base on most maps."
-msgstr "Иберите започват с предварителни градски стени около себе си на повечето карти."
+msgstr "Иберите започват с изградени градски стени около базата си на повечето карти."
 
 #: simulation/data/civs/iber.jsonCivBonuses[0].History
 msgid ""
@@ -358,7 +358,7 @@ msgstr "Начални стени"
 msgid ""
 "Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
 " +3 garrison capacity, and +1 default arrow count."
-msgstr "Каменните кули струват −50% по-малко дървесина, +150% повече камъни, +33% повече време за строеж, +60% здравина, +3 допълнителен гарнизон и +1 повече брой стрели."
+msgstr "Каменни кули: -50% дърво, +150% камъни, +33% време за строеж, +60% здраве, +3 капацитет за гарнизон и +1 стандартен брой стрели."
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Massive Towers"
@@ -419,7 +419,7 @@ msgstr "Насалса"
 #: simulation/data/civs/kush.jsonCivBonuses[0].Description
 #: simulation/data/civs/pers.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage and +2 garrison capacity."
-msgstr "Тараните нанасят +20% повече щети и побира +2 допълнителни единици."
+msgstr "Тарани: +20% щети и+2 капацитет за гарнизон."
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Name
 #: simulation/data/civs/pers.jsonCivBonuses[1].Name
@@ -545,15 +545,15 @@ msgstr "Дарикс"
 
 #: simulation/data/civs/pers.jsonCivBonuses[2].Description
 msgid "Stable −10% batch training time per phase advance."
-msgstr ""
+msgstr "Конюшня: −10% време за обучаване на партиди при всяко преминаване към следваща фаза."
 
 #: simulation/data/civs/pers.jsonCivBonuses[2].History
 msgid "The Persians were known for their large cavalry contingent"
-msgstr ""
+msgstr "Персите са били известни с многобройната си конница"
 
 #: simulation/data/civs/pers.jsonCivBonuses[2].Name
 msgid "Time of War"
-msgstr ""
+msgstr "Военно време"
 
 #: simulation/data/civs/ptol.jsonAINames[0]
 msgid "Ptolemy Philadelphus"
@@ -625,7 +625,7 @@ msgstr "Береника Филопатор"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid "Bolt Shooters −33% attack damage and −33% attack time."
-msgstr "Стрелометите нанасят −33% по-малко щети, но презареждат с 33% по-малко време."
+msgstr "Стреломети: -33% щети и -33% време за презареждане."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Polybolos"
@@ -700,7 +700,7 @@ msgstr "Формация „костенурка“"
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
-msgstr "Тараните нанасят +20% повече щети. Хвърляч на камъни нанася +10% повече щети."
+msgstr "Тарани: +20% щети. Хвърлячи на камъни: +10% щети."
 
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Legionary Engineers"
@@ -817,7 +817,7 @@ msgstr "Диенекий"
 
 #: simulation/data/civs/spart.jsonAINames[1]
 msgid "Agis II"
-msgstr ""
+msgstr "Агис II"
 
 #: simulation/data/civs/spart.jsonAINames[2]
 msgid "Archidamus"
@@ -849,7 +849,7 @@ msgstr "Агесиполид"
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Description
 msgid "Female Citizens +40% health and +50% melee attack hack damage."
-msgstr "+40% повече здраве за градските жени и нанасят +50% повече щети при близък бой."
+msgstr "Жени: +40% здраве и +50% разсичащи щети при близък бой."
 
 #: simulation/data/civs/spart.jsonCivBonuses[0].Name
 msgid "Spartan Women"
@@ -857,14 +857,14 @@ msgstr "Спартанки"
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].Description
 msgid "Champion Hoplites are available in village phase."
-msgstr ""
+msgstr "Гвардейските хоплити са достъпни в Селската фаза."
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].History
 msgid ""
 "Under the constitution written by the mythical lawgiver Lycurgus, the "
 "institution of the Agoge was established, where Spartans were trained from "
 "the age of 6 to be superior warriors in defense of the Spartan state."
-msgstr ""
+msgstr "Спартанското възпитание било установено от конституцията, написана от митичния законодател Ликург. Според нея, спартанците трябвало да бъдат обучавани от 6-годишни да бъдат изключителни во̀ини, за да защитават Спарта."
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].Name
 msgid "Laws of Lycurgus"
@@ -938,7 +938,7 @@ msgid ""
 "The core of the Han empire was around the Wei River, and the Han capital was"
 " Chang'an, very close to the Qin capital Xianyang (both are now part of "
 "Xi'an, Shaanxi)."
-msgstr "Династията Хан ( 206 г. пр.н.е. до 220 г.) е втората императорска династия на Китай, предшествена от династията Цин (221 до 206 пр.н.е.) и последван от трите царства ( 220 до 280 г.). Периодът Хан е смятан за златен век в китайската история и постига значителен напредък в науката и изкуството. Ядрото на империята Хан се намираше около река Уей и нейната столица Чанан, близо до Сиенян столицата на Цин (и двете са част от Сиан, Шънси)."
+msgstr "Династията Хан (206г. пр.н.е. – 220г. сл.н.е.) е втората императорска династия на Китай, предшествана от династията Цин (221г. – 206.г пр.н.е.) и последвана от периода на Трите царства (220г. – 280г. сл.н.е.). Периодът на династията Хан е смятан за златен век в китайската история – тогава Китай постига значителен напредък в науката и изкуството. Ядрото на империята Хан се намира около река Уей, а столица е град Чанан, много близо до Сиенян – столицата на Цин (днес и двете са част от Сиан, Шънси)."
 
 #: simulation/templates/special/players/iber.xml:8
 msgid "Iberians"
