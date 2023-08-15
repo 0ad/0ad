@@ -22,32 +22,32 @@ msgstr ""
 #: graphics/CameraController.cpp:659
 #, c-format
 msgid "Scroll speed increased to %.1f"
-msgstr ""
+msgstr "Скоростта на превъртането е увеличена на %.1f"
 
 #: graphics/CameraController.cpp:665
 #, c-format
 msgid "Scroll speed decreased to %.1f"
-msgstr ""
+msgstr "Скоростта на превъртането е намалена на %.1f"
 
 #: graphics/CameraController.cpp:672
 #, c-format
 msgid "Rotate speed increased to X=%.3f, Y=%.3f"
-msgstr ""
+msgstr "Скоростта на въртенето е увеличена на X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:679
 #, c-format
 msgid "Rotate speed decreased to X=%.3f, Y=%.3f"
-msgstr ""
+msgstr "Скоростта на въртенето е намалена на X=%.3f, Y=%.3f"
 
 #: graphics/CameraController.cpp:685
 #, c-format
 msgid "Zoom speed increased to %.1f"
-msgstr ""
+msgstr "Скоростта на приближаването е увеличена на %.1f"
 
 #: graphics/CameraController.cpp:691
 #, c-format
 msgid "Zoom speed decreased to %.1f"
-msgstr ""
+msgstr "Скоростта на приближаването е намалена на %.1f"
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
@@ -59,31 +59,31 @@ msgstr "неизвестен подтип (вижте журналите)"
 
 #: lobby/XmppClient.cpp:1355
 msgid "The certificate is not trusted."
-msgstr ""
+msgstr "Сертификатът не е доверен."
 
 #: lobby/XmppClient.cpp:1356
 msgid "The certificate hasn't got a known issuer."
-msgstr ""
+msgstr "Издателят на сертификата е непознат."
 
 #: lobby/XmppClient.cpp:1357
 msgid "The certificate has been revoked."
-msgstr ""
+msgstr "Сертификатът е анулиран."
 
 #: lobby/XmppClient.cpp:1358
 msgid "The certificate has expired."
-msgstr ""
+msgstr "Сертификатът е изтекъл."
 
 #: lobby/XmppClient.cpp:1359
 msgid "The certificate is not yet active."
-msgstr ""
+msgstr "Сертификатът все още не е активен."
 
 #: lobby/XmppClient.cpp:1360
 msgid "The certificate has not been issued for the peer connected to."
-msgstr ""
+msgstr "Сертификатът не е издаден за връзката, с която е свързан."
 
 #: lobby/XmppClient.cpp:1361
 msgid "The certificate signer is not a certificate authority."
-msgstr ""
+msgstr "Сертификатът не е подписан от достоверен източник."
 
 #: lobby/XmppClient.cpp:1383 lobby/XmppClient.cpp:1427
 #: lobby/XmppClient.cpp:1466
@@ -197,7 +197,7 @@ msgstr "Потребителското име вече съществува"
 msgid ""
 "Could not write external mod.json for zipped mod '%s'. The mod should be "
 "reinstalled."
-msgstr ""
+msgstr "Външният файл „mod.json“ за архивираната модификация „%s“ не може да бъде записан. Модификацията трябва да бъде преинсталирана."
 
 #: ps/ModIo.cpp:264
 #, c-format

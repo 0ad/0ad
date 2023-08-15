@@ -74,15 +74,15 @@ Index: binaries/data/l10n/bar.engine.po
  # This file is distributed under the same license as the Pyrogenesis project.
  #
  # Translators:
--# Benedikt Wagner <holledau1@gmx.de>, 2020
-+# dabene1408 <holledau1@gmx.de>, 2020
+ # foo <foo@wfg.com>, 2020
+ # bar <bar@wfg.com>, 2020
  msgid ""
  msgstr ""
  "Project-Id-Version: 0 A.D.\n"
  "POT-Creation-Date: 2020-05-22 07:08+0000\n"
  "PO-Revision-Date: 2020-06-22 16:38+0000\n"
--"Last-Translator: Benedikt Wagner <holledau1@gmx.de>\n"
-+"Last-Translator: dabene1408 <holledau1@gmx.de>\n"
+-"Last-Translator: foo <foo@wildfiregames.com>\n"
++"Last-Translator: bar <bar@wildfiregames.com>\n"
  "Language-Team: Bavarian (http://www.transifex.com/wildfire-games/0ad/language/bar/)\n"
  "MIME-Version: 1.0\n"
  "Content-Type: text/plain; charset=UTF-8\n"
@@ -90,16 +90,17 @@ Index: binaries/data/l10n/bar.engine.po
 ]
 
 PATCHES_EXPECT_REVERT = [
-    [],
-    ["binaries/data/l10n/en_GB.engine.po"],
-    ["binaries/data/l10n/en_GB.engine.po", "binaries/data/l10n/en_GB_3.engine.po"],
-    ["binaries/data/l10n/bar.engine.po"]
+    set(),
+    {"binaries/data/l10n/en_GB.engine.po"},
+    {"binaries/data/l10n/en_GB.engine.po", "binaries/data/l10n/en_GB_3.engine.po"},
+    {"binaries/data/l10n/bar.engine.po"}
 ]
 
 @pytest.fixture(params=zip(PATCHES, PATCHES_EXPECT_REVERT))
 def patch(request):
-    return [io.StringIO(request.param[0]), set(request.param[1])]
+    return [io.StringIO(request.param[0]), request.param[1]]
 
 
 def test_checkdiff(patch):
-    assert check_diff(patch[0]) == patch[1]
+    # Compare in sets since ordering might not be preserved.
+    assert set(check_diff(patch[0])) == patch[1]
