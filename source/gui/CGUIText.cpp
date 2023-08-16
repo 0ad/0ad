@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,11 +26,9 @@
 #include "gui/ObjectBases/IGUIObject.h"
 #include "gui/SettingTypes/CGUIString.h"
 #include "ps/CStrInternStatic.h"
-#include "ps/VideoMode.h"
-#include "renderer/backend/IDeviceCommandContext.h"
-#include "renderer/Renderer.h"
 
-#include <math.h>
+#include <cmath>
+#include <optional>
 
 extern int g_xres, g_yres;
 
@@ -450,29 +448,13 @@ bool CGUIText::AssembleCalls(
 
 void CGUIText::Draw(CGUI& pGUI, CCanvas2D& canvas, const CGUIColor& DefaultColor, const CVector2D& pos, CRect clipping) const
 {
-	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
-		g_Renderer.GetDeviceCommandContext();
-
 	const bool isClipped = clipping != CRect();
+	std::optional<CCanvas2D::ScopedScissor> scopedScissor;
 	if (isClipped)
 	{
-		// Make clipping rect as small as possible to prevent rounding errors
-		clipping.top = std::ceil(clipping.top);
-		clipping.bottom = std::floor(clipping.bottom);
-		clipping.left = std::ceil(clipping.left);
-		clipping.right = std::floor(clipping.right);
-
 		if (clipping.GetWidth() <= 0.0f || clipping.GetHeight() <= 0.0f)
 			return;
-
-		const float scale = g_VideoMode.GetScale();
-		Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
-		scissorRect.x = std::ceil(clipping.left * scale);
-		scissorRect.y = std::ceil(g_yres - clipping.bottom * scale);
-		scissorRect.width = std::floor(clipping.GetWidth() * scale);
-		scissorRect.height = std::floor(clipping.GetHeight() * scale);
-		// TODO: move scissors to CCanvas2D.
-		deviceCommandContext->SetScissors(1, &scissorRect);
+		scopedScissor.emplace(canvas, clipping);
 	}
 
 	CTextRenderer textRenderer;
@@ -494,7 +476,4 @@ void CGUIText::Draw(CGUI& pGUI, CCanvas2D& canvas, const CGUIColor& DefaultColor
 
 	for (const SSpriteCall& sc : m_SpriteCalls)
 		pGUI.DrawSprite(sc.m_Sprite, canvas, sc.m_Area + pos);
-
-	if (isClipped)
-		deviceCommandContext->SetScissors(0, nullptr);
 }

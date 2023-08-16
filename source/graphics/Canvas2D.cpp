@@ -25,6 +25,7 @@
 #include "graphics/TextureManager.h"
 #include "maths/Rect.h"
 #include "maths/Vector2D.h"
+#include "ps/containers/StaticVector.h"
 #include "ps/CStrInternStatic.h"
 #include "renderer/Renderer.h"
 
@@ -159,6 +160,22 @@ public:
 		return transform;
 	}
 
+	void ApplyScissors()
+	{
+		if (!Scissors.empty())
+		{
+			CRect rect = Scissors.back();
+			Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
+			scissorRect.x = std::ceil(rect.left * Scale);
+			scissorRect.y = std::ceil(static_cast<float>(HeightInPixels) - rect.bottom * Scale);
+			scissorRect.width = std::floor(rect.GetWidth() * Scale);
+			scissorRect.height = std::floor(rect.GetHeight() * Scale);
+			DeviceCommandContext->SetScissors(1, &scissorRect);
+		}
+		else
+			DeviceCommandContext->SetScissors(0, nullptr);
+	}
+
 	uint32_t WidthInPixels = 1;
 	uint32_t HeightInPixels = 1;
 	float Scale = 1.0f;
@@ -173,6 +190,8 @@ public:
 	// We assume that the shader can't be destroyed while it's bound. So these
 	// bindings remain valid while the shader is alive.
 	SBindingSlots BindingSlots;
+
+	PS::StaticVector<CRect, 4> Scissors;
 };
 
 CCanvas2D::CCanvas2D(
@@ -186,6 +205,7 @@ CCanvas2D::CCanvas2D(
 CCanvas2D::~CCanvas2D()
 {
 	Flush();
+	ENSURE(m->Scissors.empty());
 }
 
 void CCanvas2D::DrawLine(const std::vector<CVector2D>& points, const float width, const CColor& color)
@@ -446,6 +466,20 @@ void CCanvas2D::DrawText(CTextRenderer& textRenderer)
 
 	textRenderer.Render(
 		m->DeviceCommandContext, m->Tech->GetShader(), m->TransformScale, m->Translation);
+}
+
+void CCanvas2D::PushScissor(const CRect& scissor)
+{
+	ENSURE(!m->Scissors.full());
+	m->Scissors.emplace_back(scissor);
+	m->ApplyScissors();
+}
+
+void CCanvas2D::PopScissor()
+{
+	ENSURE(!m->Scissors.empty());
+	m->Scissors.pop_back();
+	m->ApplyScissors();
 }
 
 void CCanvas2D::Flush()

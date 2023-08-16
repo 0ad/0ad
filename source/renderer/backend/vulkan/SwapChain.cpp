@@ -188,11 +188,21 @@ std::unique_ptr<CSwapChain> CSwapChain::Create(
 	device->SetObjectName(VK_OBJECT_TYPE_SWAPCHAIN_KHR, swapChain->m_SwapChain, nameBuffer);
 
 	uint32_t imageCount = 0;
-	ENSURE_VK_SUCCESS(vkGetSwapchainImagesKHR(
-		device->GetVkDevice(), swapChain->m_SwapChain, &imageCount, nullptr));
-	swapChain->m_Images.resize(imageCount);
-	ENSURE_VK_SUCCESS(vkGetSwapchainImagesKHR(
-		device->GetVkDevice(), swapChain->m_SwapChain, &imageCount, swapChain->m_Images.data()));
+	VkResult getSwapchainImagesResult = VK_INCOMPLETE;
+	do
+	{
+		getSwapchainImagesResult = vkGetSwapchainImagesKHR(
+			device->GetVkDevice(), swapChain->m_SwapChain, &imageCount, nullptr);
+		if (getSwapchainImagesResult == VK_SUCCESS && imageCount > 0)
+		{
+			swapChain->m_Images.resize(imageCount);
+			getSwapchainImagesResult = vkGetSwapchainImagesKHR(
+				device->GetVkDevice(), swapChain->m_SwapChain, &imageCount, swapChain->m_Images.data());
+		}
+	} while (getSwapchainImagesResult == VK_INCOMPLETE);
+	LOGMESSAGE("SwapChain image count: %u (min: %u)", imageCount, swapChainCreateInfo.minImageCount);
+	ENSURE_VK_SUCCESS(getSwapchainImagesResult);
+	ENSURE(imageCount > 0);
 
 	swapChain->m_DepthTexture = CTexture::Create(
 		device, "SwapChainDepthTexture", ITexture::Type::TEXTURE_2D,

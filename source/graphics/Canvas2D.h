@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -90,7 +90,37 @@ public:
 	void DrawText(CTextRenderer& textRenderer);
 
 	/**
-	 * Unbinds all binded resources and clears caches. Frequent calls might
+	 * Adds the scissor rect to a scissor stack. The only top scissor is
+	 * applied. It's recommended to use as few nested scissors as possible.
+	 */
+	void PushScissor(const CRect& scissor);
+
+	/**
+	 * Removes the top scissor rect from a scissor stack. The stack must not be
+	 * empty.
+	 */
+	void PopScissor();
+
+	class ScopedScissor
+	{
+	public:
+		ScopedScissor(CCanvas2D& canvas, const CRect& scissor)
+			: m_Canvas(canvas)
+		{
+			m_Canvas.PushScissor(scissor);
+		}
+
+		~ScopedScissor()
+		{
+			m_Canvas.PopScissor();
+		}
+
+	private:
+		CCanvas2D& m_Canvas;
+	};
+
+	/**
+	 * Unbinds all bound resources and clears caches. Frequent calls might
 	 * affect performance. Useful to call a custom rendering code.
 	 */
 	void Flush();

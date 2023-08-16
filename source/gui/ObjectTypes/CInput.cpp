@@ -31,9 +31,6 @@
 #include "ps/GameSetup/Config.h"
 #include "ps/Globals.h"
 #include "ps/Hotkey.h"
-#include "ps/VideoMode.h"
-#include "renderer/backend/IDeviceCommandContext.h"
-#include "renderer/Renderer.h"
 
 #include <sstream>
 
@@ -1488,9 +1485,6 @@ void CInput::DrawContent(CCanvas2D& canvas)
 
 void CInput::Draw(CCanvas2D& canvas)
 {
-	Renderer::Backend::IDeviceCommandContext* deviceCommandContext =
-		g_Renderer.GetDeviceCommandContext();
-
 	// We'll have to setup clipping manually, since we're doing the rendering manually.
 	CRect cliparea(m_CachedActualSize);
 
@@ -1513,20 +1507,11 @@ void CInput::Draw(CCanvas2D& canvas)
 	{
 		if (cliparea.GetWidth() <= 0.0f || cliparea.GetHeight() <= 0.0f)
 			return;
-		const float scale = g_VideoMode.GetScale();
-		Renderer::Backend::IDeviceCommandContext::Rect scissorRect;
-		scissorRect.x = cliparea.left * scale;
-		scissorRect.y = g_yres - cliparea.bottom * scale;
-		scissorRect.width = cliparea.GetWidth() * scale;
-		scissorRect.height = cliparea.GetHeight() * scale;
-		// TODO: move scissors to CCanvas2D.
-		deviceCommandContext->SetScissors(1, &scissorRect);
+		CCanvas2D::ScopedScissor scopedScissor(canvas, cliparea);
+		DrawContent(canvas);
 	}
-
-	DrawContent(canvas);
-
-	if (isClipped)
-		deviceCommandContext->SetScissors(0, nullptr);
+	else
+		DrawContent(canvas);
 
 	if (m_Caption->empty() && !m_PlaceholderText->GetRawString().empty())
 		DrawPlaceholderText(canvas, cliparea);
