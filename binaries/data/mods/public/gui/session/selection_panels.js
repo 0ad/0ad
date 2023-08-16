@@ -330,7 +330,7 @@ g_SelectionPanels.Garrison = {
 			unloadTemplate(template.selectionGroupName || entState.template, entState.player);
 		};
 
-		data.countDisplay.caption = data.item.ents.length || "";
+		data.countDisplay.caption = data.item.ents.length > 1 ? data.item.ents.length : "";
 
 		let canUngarrison = controlsPlayer(data.player) || controlsPlayer(entState.player);
 
@@ -926,7 +926,7 @@ g_SelectionPanels.Selection = {
 		data.guiSelection.sprite = "color:" + g_DiplomacyColors.getPlayerColor(unitOwner, 160);
 		data.guiSelection.hidden = !g_IsObserver;
 
-		data.countDisplay.caption = data.item.ents.length || "";
+		data.countDisplay.caption = data.item.ents.length > 1 ? data.item.ents.length : "";
 
 		data.button.onPress = function() {
 			if (Engine.HotkeyIsPressed("session.deselectgroup"))
