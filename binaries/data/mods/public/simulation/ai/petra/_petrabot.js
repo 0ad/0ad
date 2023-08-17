@@ -88,7 +88,7 @@ PETRA.PetraBot.prototype.CustomInit = function(gameState)
 
 PETRA.PetraBot.prototype.OnUpdate = function(sharedScript)
 {
-	if (this.gameFinished)
+	if (this.gameFinished || this.gameState.playerData.state == "defeated")
 		return;
 
 	for (let i in this.events)
