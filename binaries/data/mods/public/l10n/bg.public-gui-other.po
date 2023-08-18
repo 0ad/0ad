@@ -33,7 +33,7 @@ msgstr "Кадри/сек: %(fps)4s"
 #: gui/common/campaigns/CampaignRun.js:115
 #, javascript-format
 msgid "%(userDesc)s - %(templateName)s"
-msgstr "%(userDesc)s - %(templateName)s"
+msgstr "%(userDesc)s — %(templateName)s"
 
 #: gui/common/color.js:179
 #, javascript-format
@@ -263,13 +263,13 @@ msgstr "изключено"
 
 #: gui/common/gamedescription.js:278
 msgid "For the first minute, other players will stay neutral."
-msgstr "През първата минута, другите играчи ще бъдат неутрални."
+msgstr "През първата минута другите играчи ще бъдат неутрални."
 
 #: gui/common/gamedescription.js:279
 #, javascript-format
 msgid "For the first %(min)s minute, other players will stay neutral."
 msgid_plural "For the first %(min)s minutes, other players will stay neutral."
-msgstr[0] ""
+msgstr[0] "През първата %(min)s минута другите играчи ще бъдат неутрални."
 msgstr[1] "През първите %(min)s минути другите играчи ще бъдат неутрални."
 
 #: gui/common/gamedescription.js:288
@@ -349,7 +349,7 @@ msgstr "На играч"
 
 #: gui/common/gamedescription.js:377
 msgid "World Population Cap"
-msgstr "Лимит на световна популация"
+msgstr "Максимално население на света"
 
 #: gui/common/gamedescription.js:385
 msgid "Treasures"
@@ -490,27 +490,27 @@ msgstr "Защитеното удостоверяване в чакалнята 
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr "Грешка: Сървърът не успя да разпредели уникален клиентски идентификатор."
+msgstr "Грешка: сървърът не успя да създаде уникален клиентски идентификатор."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
-msgstr "Грешка: Клиентските команди бяха подготвени за неочакван ход."
+msgstr "Грешка: клиентските команди бяха подготвени за неочакван ход в играта."
 
 #: gui/common/network.js:78
 msgid "Error: Client simulated an unexpected game turn."
-msgstr "Грешка: клиентът симулира неочакван ход."
+msgstr "Грешка: клиентът симулира неочакван ход в играта."
 
 #: gui/common/network.js:79
 msgid "Password is invalid."
-msgstr "Паролата е невалидна."
+msgstr "Паролата е неправилна."
 
 #: gui/common/network.js:80
 msgid "Could not find an unused port for the enet STUN client."
-msgstr "Не може да се открие свободен външен порт за клиент STUN."
+msgstr "Не може да бъде намерен свободен порт за клиента (STUN)."
 
 #: gui/common/network.js:81
 msgid "Could not find the STUN endpoint."
-msgstr "Не може да бъде открито крайното устройство посредством STUN."
+msgstr "Не може да бъде намерен крайният адрес посредством STUN."
 
 #: gui/common/network.js:84
 #, javascript-format
@@ -680,22 +680,22 @@ msgstr "Неизвестно условие за победа"
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab right."
-msgstr "Превъртете надолу или използвайте %(hotkey)s, за да преместите раздела надясно."
+msgstr "Превъртете надолу или използвайте %(hotkey)s, за да се придвижите към раздела вдясно."
 
 #: gui/common/tab_buttons.js:65
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab left."
-msgstr "Превъртете надолу или използвайте %(hotkey)s, за да преместите раздела наляво."
+msgstr "Превъртете надолу или използвайте %(hotkey)s, за да се придвижите към раздела вляво."
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll down or use %(hotkey)s to move a tab down."
-msgstr "Превъртете надолу или използвайте %(hotkey)s, за да преместите раздела надолу."
+msgstr "Превъртете надолу или използвайте %(hotkey)s, за да се придвижите към раздела надолу."
 
 #: gui/common/tab_buttons.js:66
 #, javascript-format
 msgid "Scroll up or use %(hotkey)s to move a tab up."
-msgstr "Превъртете надолу или използвайте %(hotkey)s, за да преместите раздела нагоре."
+msgstr "Превъртете надолу или използвайте %(hotkey)s, за да се придвижите към раздела нагоре."
 
 #: gui/common/tooltips.js:64
 #, javascript-format
@@ -753,7 +753,7 @@ msgstr "%(label)s\n%(details)s"
 
 #: gui/common/tooltips.js:217
 msgid "Resistance:"
-msgstr "Защита:"
+msgstr "Устойчивост:"
 
 #: gui/common/tooltips.js:228
 msgid "Damage:"
@@ -2095,7 +2095,7 @@ msgctxt "hotkey metadata"
 msgid ""
 "Custom hotkey to trigger exit-to-desktop. The native hotkeys (Alt+F4 / Cmd+Q"
 " / etc.) are always active."
-msgstr ""
+msgstr "Персонализирана комбинация за изход към работния плот. Стандартната комбинация (Alt+F4 / Cmd+Q / т.н.) също може да се ползва по всяко време."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.exit.name
 msgctxt "hotkey metadata"
@@ -2295,22 +2295,22 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove when clicking on a point."
-msgstr ""
+msgstr "Модификатор за нападателен ход при щракване върху точка."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmove.name
 msgctxt "hotkey metadata"
 msgid "Attack Move"
-msgstr ""
+msgstr "Нападателен ход"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.desc
 msgctxt "hotkey metadata"
 msgid "Modifier to attackmove targeting only units when clicking on a point."
-msgstr ""
+msgstr "Модификатор за нападателен ход при щракване върху точка, но да бъдат нападани само единици."
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.attackmoveUnit.name
 msgctxt "hotkey metadata"
 msgid "Attack Move (unit only)"
-msgstr ""
+msgstr "Нападателен ход (само единици)"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.autorallypoint.desc
 msgctxt "hotkey metadata"
@@ -2760,7 +2760,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.desc
 msgctxt "hotkey metadata"
 msgid "Toggle the civilization info."
-msgstr ""
+msgstr "Превключване на информацията за цивилизацията."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.civinfo.name
 msgctxt "hotkey metadata"
@@ -4403,7 +4403,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].label
 msgid "Water effects"
-msgstr ""
+msgstr "Водни ефекти"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][14].tooltip
 msgid ""
@@ -4413,7 +4413,7 @@ msgstr "Когато е изключено, ще се използват най-
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][15].label
 msgid "High-quality water effects"
-msgstr ""
+msgstr "Висококачествени водни ефекти"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][15].tooltip
 msgid ""
@@ -6561,7 +6561,7 @@ msgstr "Обучават граждани: жени, пехотни гражда
 
 #: gui/text/tips/default_formation.txt:1
 msgid "DEFAULT FORMATION"
-msgstr ""
+msgstr "СТАНДАРТНА ФОРМАЦИЯ"
 
 #: gui/text/tips/default_formation.txt:2
 msgid ""

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:50+0000\n"
-"Last-Translator: Timur Seber <seber.tatsoft@gmail.com>, 2021\n"
+"Last-Translator: Timur Seber <seber.tatsoft@gmail.com>, 2021,2023\n"
 "Language-Team: Tatar (http://app.transifex.com/wildfire-games/0ad/language/tt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -197,17 +197,17 @@ msgstr "(%(private)s) %(message)s"
 
 #: gui/lobby/LobbyPage/Chat/ChatPanel.xml:(caption):12
 msgid "Send"
-msgstr ""
+msgstr "Җибәрү"
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:47
 #, javascript-format
 msgid "%(nick)s has joined."
-msgstr ""
+msgstr "%(nick)s кушылды."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:48
 #, javascript-format
 msgid "%(nick)s has left."
-msgstr ""
+msgstr "%(nick)s китте."
 
 #: gui/lobby/LobbyPage/Chat/StatusMessages/StatusMessageEvents.js:70
 #, javascript-format
@@ -277,7 +277,7 @@ msgstr ""
 #. Translation: Caption for system notifications shown in the chat panel
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:25
 msgid "System:"
-msgstr ""
+msgstr "Система:"
 
 #: gui/lobby/LobbyPage/Chat/SystemMessages/SystemMessageFormat.js:32
 #, javascript-format
@@ -304,7 +304,7 @@ msgstr ""
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:45
 msgid "KICKED"
-msgstr ""
+msgstr "ЧЫГАРЫЛГАН"
 
 #: gui/lobby/LobbyPage/ConnectionHandler.js:61
 msgid "You have been disconnected from the lobby. Do you want to reconnect?"
@@ -375,7 +375,7 @@ msgstr ""
 #. Translation: Comma used to concatenate victory conditions
 #: gui/lobby/LobbyPage/GameDetails.js:149
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/lobby/LobbyPage/GameDetails.js:151
 msgid "Mods:"
@@ -394,7 +394,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/Chat/TimestampWrapper.js:33
 #: gui/lobby/LobbyPage/GameDetails.js:158
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #: gui/lobby/LobbyPage/GameDetails.js:160
 msgid "Map Type:"
@@ -638,7 +638,7 @@ msgstr ""
 
 #: gui/prelobby/common/credentials/credentials.xml:(caption):15
 msgid "Password:"
-msgstr ""
+msgstr "Серсүз:"
 
 #: gui/prelobby/common/credentials/rememberpassword.xml:(caption):7
 msgid "Remember Password"
@@ -665,7 +665,7 @@ msgstr ""
 #: gui/prelobby/common/terms/Terms_of_Service.txt:3
 #: gui/prelobby/common/terms/Terms_of_Use.txt:3
 msgid "[font=\"sans-bold-14\"]Document Date:[/font] 2023-07-27"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Документ датасы:[/font] 27.07.2023"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:5
 msgid ""

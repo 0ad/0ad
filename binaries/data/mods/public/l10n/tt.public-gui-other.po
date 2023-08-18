@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Timur Seber <seber.tatsoft@gmail.com>, 2021\n"
+"Last-Translator: Timur Seber <seber.tatsoft@gmail.com>, 2021,2023\n"
 "Language-Team: Tatar (http://app.transifex.com/wildfire-games/0ad/language/tt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -527,7 +527,7 @@ msgstr ""
 #: gui/common/network.js:163
 #, javascript-format
 msgid "Users (%(num)s): %(users)s"
-msgstr ""
+msgstr "Кулланучылар (%(num)s): %(users)s"
 
 #: gui/common/network.js:164 gui/common/tooltips.js:75
 #: gui/common/tooltips.js:240 gui/common/tooltips.js:301
@@ -540,7 +540,7 @@ msgstr ""
 #: gui/loadgame/SavegameDetails.js:41 gui/reference/common/tooltips.js:13
 #: gui/replaymenu/replay_menu.js:284
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/common/settings.js:116
 msgctxt "aiDiff"
@@ -1113,7 +1113,7 @@ msgstr ""
 #. resource.
 #: gui/common/tooltips.js:794 gui/summary/summary.js:120
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/common/tooltips.js:820
 msgid "Reward:"
@@ -1261,7 +1261,7 @@ msgstr "%(component)s %(loot)s"
 
 #: gui/common/tooltips.js:1206
 msgid "Loot:"
-msgstr ""
+msgstr "Табыш:"
 
 #: gui/common/tooltips.js:1216
 #, javascript-format
@@ -1593,7 +1593,7 @@ msgstr ""
 
 #: gui/hotkeys/hotkeys.xml:(caption):24
 msgid "Filter:"
-msgstr ""
+msgstr "Фильтр:"
 
 #: gui/hotkeys/hotkeys.xml:(caption):48 gui/hotkeys/hotkeys.xml:(caption):101
 #: gui/options/options.xml:(caption):44
@@ -3069,7 +3069,7 @@ msgstr ""
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.cancel.name
 msgctxt "hotkey metadata"
 msgid "Cancel selection"
-msgstr ""
+msgstr "Сайлаудан баш тарту"
 
 #: gui/hotkeys/spec/selection.jsonmapped_hotkeys.selection.selection.group.add.1.desc
 msgctxt "hotkey metadata"
@@ -3563,7 +3563,7 @@ msgstr ""
 #: gui/hotkeys/hotkeys.xml:(caption):53 gui/loadgame/SavegameWriter.js:16
 #: gui/options/options.xml:(caption):56
 msgid "Save"
-msgstr ""
+msgstr "Саклау"
 
 #: gui/loadgame/SavegameWriter.js:52
 msgid "Saved game will be permanently overwritten, are you sure?"
@@ -3788,7 +3788,7 @@ msgstr ""
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):15
 msgctxt "zoom in"
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: gui/maps/mapbrowser/controls/MapBrowserControls.xml:(caption):18
 msgctxt "zoom out"
@@ -4129,35 +4129,35 @@ msgstr ""
 
 #: gui/options/options.json[1].options[9].list[0].label
 msgid "75%"
-msgstr ""
+msgstr "75%"
 
 #: gui/options/options.json[1].options[9].list[1].label
 msgid "100%"
-msgstr ""
+msgstr "100%"
 
 #: gui/options/options.json[1].options[9].list[2].label
 msgid "125%"
-msgstr ""
+msgstr "125%"
 
 #: gui/options/options.json[1].options[9].list[3].label
 msgid "150%"
-msgstr ""
+msgstr "150%"
 
 #: gui/options/options.json[1].options[9].list[4].label
 msgid "175%"
-msgstr ""
+msgstr "175%"
 
 #: gui/options/options.json[1].options[9].list[5].label
 msgid "200%"
-msgstr ""
+msgstr "200%"
 
 #: gui/options/options.json[1].options[9].list[6].label
 msgid "225%"
-msgstr ""
+msgstr "225%"
 
 #: gui/options/options.json[1].options[9].list[7].label
 msgid "250%"
-msgstr ""
+msgstr "250%"
 
 #: gui/options/options.json[1].tooltip
 msgid "Set the balance between performance and visual appearance."
@@ -5353,7 +5353,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:266 gui/replaymenu/replay_actions.js:126
 msgid "Error"
-msgstr ""
+msgstr "Хата"
 
 #: gui/pregame/MainMenuItems.js:270
 msgid "Credits"
@@ -5365,11 +5365,11 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:277
 msgid "Exit"
-msgstr ""
+msgstr "Чыгу"
 
 #: gui/pregame/MainMenuItems.js:278
 msgid "Exit the game."
-msgstr ""
+msgstr "Уеннан чыгу."
 
 #: gui/pregame/MainMenuItems.js:282
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -5806,7 +5806,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.js:285
 #, javascript-format
 msgid "Players: %(numberOfPlayers)s"
-msgstr ""
+msgstr "Уенчылар: %(numberOfPlayers)s"
 
 #: gui/replaymenu/replay_menu.js:309
 msgid "yyyy-MM-dd HH:mm"
@@ -6057,7 +6057,7 @@ msgstr ""
 
 #: gui/summary/layout.js:130
 msgid "Loot"
-msgstr ""
+msgstr "Табыш"
 
 #: gui/summary/layout.js:131
 msgid "Livestock bred"
@@ -6219,7 +6219,7 @@ msgstr ""
 #: gui/summary/summary.js:234
 msgctxt "Player listing"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/summary/summary.js:340
 msgid "Time elapsed"
@@ -6571,7 +6571,7 @@ msgstr ""
 
 #: gui/text/tips/elephant_stable.txt:1
 msgid "ELEPHANT STABLE"
-msgstr ""
+msgstr "ФИЛ АБЗАРЫ"
 
 #: gui/text/tips/elephant_stable.txt:2
 msgid ""
@@ -7060,7 +7060,7 @@ msgstr ""
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
-msgstr ""
+msgstr "СУГЫШ ФИЛЛӘРЕ"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "Huge beasts from Africa and India, trained for war."
