@@ -42,7 +42,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-08-18 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: Matteo Nigro, 2023\n"
 "Language-Team: Italian (http://app.transifex.com/wildfire-games/0ad/language/it/)\n"
@@ -113,6 +113,20 @@ msgstr "Le miniere di Laurium in Attica rifornivano Atene con una grande quantit
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
 msgstr "Civette d'Argento"
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].Description
+msgid "Elite Hoplites can promote to Champion Spearmen."
+msgstr "Gli Opliti d'élite possono essere promossi a Lancieri Campioni."
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].History
+msgid ""
+"The best of the hoplites were chosen to form a group of elite professional "
+"soldiers."
+msgstr "I migliori tra gli opliti furono scelti per formare un gruppo di soldati professionisti d'élite."
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].Name
+msgid "Epilektoi Infantry"
+msgstr "Fanteria Epilektoi"
 
 #: simulation/data/civs/brit.jsonAINames[0]
 msgid "Prasutagus"
@@ -734,6 +748,20 @@ msgstr "Arieti +20% danno d'attacco. Catapulte +10% danno d'attacco."
 msgid "Legionary Engineers"
 msgstr "Ingegneri Legionari"
 
+#: simulation/data/civs/rome.jsonCivBonuses[2].Description
+msgid "Promote Elite Rank Spearmen or Swordsmen to Champion Centurions."
+msgstr "Promuovere Lancieri o Spadaccini di rango Elite a Centurioni Campioni."
+
+#: simulation/data/civs/rome.jsonCivBonuses[2].History
+msgid ""
+"Centurions were the officers responsible for a centuria, a group of 100 "
+"soldiers."
+msgstr "I centurioni erano gli ufficiali responsabili di una centuria, un gruppo di 100 soldati."
+
+#: simulation/data/civs/rome.jsonCivBonuses[2].Name
+msgid "Centurions"
+msgstr "Centurioni"
+
 #: simulation/data/civs/sele.jsonAINames[0]
 msgid "Antiochus I Soter"
 msgstr "Antioco I Sotere"
@@ -884,8 +912,10 @@ msgid "Spartan Women"
 msgstr "Donne Spartane"
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].Description
-msgid "Champion Hoplites are available in village phase."
-msgstr "Gli opliti campioni sono disponibili nella fase del villaggio."
+msgid ""
+"Champion Hoplites are available in village phase, and can promote to highly "
+"experienced Olympic Champions."
+msgstr "Gli Opliti Campioni sono disponibili nella fase del villaggio e possono essere promossi a Campioni Olimpici di grande esperienza."
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].History
 msgid ""

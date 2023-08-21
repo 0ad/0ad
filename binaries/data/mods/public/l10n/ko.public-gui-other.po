@@ -5,7 +5,7 @@
 # Translators:
 # Adrián Chaves Fernández
 # Asakura
-# Junghee Lee
+# JungHee Lee
 # Cheung Hung
 # Gu Hong Min
 # jjj
@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:51+0000\n"
-"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2022-2023\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2021-2023\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1528,7 +1528,7 @@ msgstr "특별히 감사드리는 분들:"
 
 #: gui/credits/texts/special.jsonContent[2].Title
 msgid "And thanks to the entire community for making 0 A.D. possible."
-msgstr ""
+msgstr "그리고 0 A.D.를 가능하게 해준 전체 커뮤니티에 감사드립니다."
 
 #: gui/credits/texts/special.jsonContent[3].Title
 msgid "No historians were harmed during the development of this project."
@@ -3545,11 +3545,11 @@ msgstr "불러오기"
 msgid ""
 "This savegame needs 0 A.D. version %(requiredVersion)s, while you are "
 "running version %(currentVersion)s."
-msgstr ""
+msgstr "이 저장게임은 당신이 %(currentVersion)s 버전을 실행하는 동안, 0 A.D. %(requiredVersion)s 버전이 필요합니다."
 
 #: gui/loadgame/SavegameLoader.js:44
 msgid "This savegame needs an older version of 0 A.D."
-msgstr ""
+msgstr "이 저장게임에는 이전 버전의 0 A.D.가 필요합니다."
 
 #: gui/loadgame/SavegameLoader.js:51
 msgid "This savegame needs a different sequence of mods:"
@@ -5176,7 +5176,7 @@ msgstr "건축물 도감"
 #, javascript-format
 msgid ""
 "%(hotkey)s: View the structure tree of civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: 0 A.D.에 등장하는 문명의 구조 트리 보기"
 
 #: gui/pregame/MainMenuItems.js:48
 #: gui/reference/civinfo/civinfo.xml:(caption):21
@@ -5187,7 +5187,7 @@ msgstr "문명 개요"
 #: gui/pregame/MainMenuItems.js:49
 #, javascript-format
 msgid "%(hotkey)s: Learn about the civilizations featured in 0 A.D."
-msgstr ""
+msgstr "%(hotkey)s: 0 A.D.에 등장하는 문명에 대해 알아보세요."
 
 #: gui/pregame/MainMenuItems.js:60
 msgid "Catafalque Overview"
@@ -5195,7 +5195,7 @@ msgstr "영구대 개요"
 
 #: gui/pregame/MainMenuItems.js:61
 msgid "Compare the bonuses of catafalques featured in 0 A.D."
-msgstr ""
+msgstr "0 A.D에 등장한 영구대의 보너스를 비교합니다."
 
 #: gui/pregame/MainMenuItems.js:67
 msgid "Map Overview"
@@ -5203,7 +5203,7 @@ msgstr "지도 개요"
 
 #: gui/pregame/MainMenuItems.js:68
 msgid "View the different maps featured in 0 A.D."
-msgstr ""
+msgstr "0 A.D.에 등장하는 다양한 지도를 봅니다."
 
 #: gui/pregame/MainMenuItems.js:76 gui/pregame/MainMenuItems.js:110
 msgid "Continue Campaign"
@@ -5356,7 +5356,7 @@ msgstr "새로운 창에서 아틀라스 시나리오 편집기를 엽니다. �
 
 #: gui/pregame/MainMenuItems.js:258
 msgid "Are you sure you want to quit 0 A.D. and open the Scenario Editor?"
-msgstr ""
+msgstr "0 A.D.를 종료하고 시나리오 편집기를 여시겠습니까?"
 
 #: gui/pregame/MainMenuItems.js:265
 msgid ""
@@ -5420,7 +5420,7 @@ msgid ""
 "webchat.quakenet.org). It is run by volunteers who do all sorts of tasks, it"
 " may take a while to get your question answered. Alternatively, you can use "
 "the forum (see Website)."
-msgstr ""
+msgstr "브라우저에서 0 A.D. IRC 채팅을 열려면 클릭하세요(webchat.quakenet.org의 #0ad). 모든 종류의 작업을 수행하는 자원 봉사자가 운영하므로 질문에 대한 답변을 받는 데 시간이 걸릴 수 있습니다. 또는 포럼을 사용할 수 있습니다(웹 사이트 참조)."
 
 #: gui/pregame/ProjectInformation.js:41
 msgid "Report a Bug"
@@ -5428,7 +5428,7 @@ msgstr "버그 신고"
 
 #: gui/pregame/ProjectInformation.js:42
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "0 A.D. Trac을 클릭하여 버그, 충돌 또는 오류를 보고합니다."
 
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
@@ -5445,7 +5445,7 @@ msgstr "게임 번역하기"
 
 #: gui/pregame/ProjectInformation.js:58
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "사용자의 브라우저에서 0 A.D. 번역하기 페이지를 열려면 클릭합니다."
 
 #: gui/pregame/ProjectInformation.js:65
 msgid "Donate"
@@ -5503,7 +5503,7 @@ msgstr "피드백 사용"
 
 #: gui/pregame/userreport/userreport.js:81
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr ""
+msgstr "0 A.D.를 개선하는데 도움을 주셔서 감사합니다!"
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
@@ -5915,7 +5915,7 @@ msgstr "[imgleft=\"iconLag\"]이 게임은 특히 큰 지도와 많은 유닛을
 msgid ""
 "[imgleft=\"iconMap\"]0 A.D. is Free Software: you can participate in its "
 "development."
-msgstr ""
+msgstr "[imgleft=\"iconMap\"]0 A.D.는 자유 소프트웨어입니다: 당신은 개발에 참여할 수 있습니다."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""

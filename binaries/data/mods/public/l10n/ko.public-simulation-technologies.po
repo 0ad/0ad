@@ -4,7 +4,7 @@
 # project.
 # Translators:
 # 이민학
-# Junghee Lee
+# JungHee Lee
 # moolow
 # Gu Hong Min
 # Hong Won Gi
@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-08-18 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:53+0000\n"
-"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2019,2021-2023\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2019,2021-2023\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1003,8 +1003,9 @@ msgid "Hoplite Tradition"
 msgstr "장갑보병 전통"
 
 #: simulation/data/technologies/hoplite_tradition.jsontooltip
-msgid "Hoplites −25% training time and −50% promotion experience."
-msgstr "중갑보병의 훈련 시간이 -25% 및 진급 경험치가 -50% 감소합니다."
+msgid ""
+"Hoplites −25% training time, −50% promotion experience, and +10% health."
+msgstr "장갑보병의 훈련 시간이 -25%, 진급 경험치가 -50% 감소하고, 체력이 +10% 증가합니다."
 
 #: simulation/data/technologies/immortals.jsondescription
 msgid ""
@@ -1032,7 +1033,7 @@ msgstr "이피크라티셰 개혁"
 
 #: simulation/data/technologies/iphicratean_reforms.jsontooltip
 msgid "Athenian Gymnasia, Docks and Triremes can train Marines."
-msgstr ""
+msgstr "아테네의 연무장, 부두 및 3단노선은 해병들을 훈련시킬 수 있습니다."
 
 #: simulation/data/technologies/krypteia.jsondescription
 msgid ""
@@ -1041,7 +1042,7 @@ msgid ""
 "war on the Helots annually, with no problem or guilt in murdering them. "
 "During this initiation, the youths slept during the day and roamed at night,"
 " murdering any Helot they encountered along the way."
-msgstr ""
+msgstr "크립테이아는 아고게의 통과의례로, 병사들은 이 기간 동안 위장하는 법을 배우고 전투 경험을 쌓았습니다. 스파르타인들은 해마다 헬롯족을 상대로 전쟁을 선포했고, 헬롯족을 죽이는 데 아무런 문제나 죄책감도 느끼지 않았습니다. 이 의식이 진행되는 동안 청소년들은 낮에는 잠을 자고 밤에는 배회하며 길을 가다 마주치는 모든 헬롯을 살해했습니다."
 
 #: simulation/data/technologies/krypteia.jsongenericName
 msgid "Krypteia"
@@ -1092,7 +1093,7 @@ msgstr "챔피언 기마 창병의 체력이 +20% 증가하지만, 훈련 시간
 msgid ""
 "In ancient Athens, ostracism was the process by which any citizen, including"
 " political leaders, could be expelled from the city-state for 10 years."
-msgstr ""
+msgstr "고대 아테네에서 배척은 정치 지도자를 포함한 모든 시민을 10년 동안 도시 국가로부터 추방하는 절차였습니다."
 
 #: simulation/data/technologies/ostracism.jsongenericName
 msgid "Ostracism"
@@ -1100,7 +1101,7 @@ msgstr "오스트라시즘(도편추방제)"
 
 #: simulation/data/technologies/ostracism.jsontooltip
 msgid "Citizen soldiers +5% health, but Heroes −40% health."
-msgstr ""
+msgstr "시민 병사들의 체력이 +5% 증가하지만, 영웅들의 체력이 -40% 감소합니다."
 
 #: simulation/data/technologies/outpost_vision.jsondescription
 msgid "Increases outpost vision."
@@ -1297,7 +1298,7 @@ msgid ""
 " the Parthenon and the Athena Promachos, a colossal bronze statue of Athena "
 "which stood between it and the Propylaea, a monumental gateway that served "
 "as the entrance to the Acropolis in Athens."
-msgstr ""
+msgstr "피디아스는 기원전 5세기에 살았던 그리스의 조각가이자 화가, 건축가로서 고전 그리스 조각가 중 가장 위대한 조각가 중 한 명으로 평가받고 있습니다: 올림피아에 있는 피디아스의 제우스상은 고대 세계 7대 불가사의 중 하나였습니다. 피디아스는 아테네 아크로폴리스에 있는 아테나 여신상, 즉 파르테논 신전 내부의 아테나 파르테노스 신상과 아테네 아크로폴리스의 입구 역할을 하는 기념비적인 관문인 프로필레아 사이에 서 있는 거대한 아테나 청동상인 아테나 프로마코스 신상을 디자인했습니다."
 
 #: simulation/data/technologies/pheidian_workshop.jsongenericName
 msgid "Pheidian Workshop"
@@ -1305,7 +1306,7 @@ msgstr "페이디아 작업장"
 
 #: simulation/data/technologies/pheidian_workshop.jsontooltip
 msgid "Temples and Wonder −50% stone cost and build time."
-msgstr ""
+msgstr "사원및 불가사의의 석재 비용 및 건설 시간이 -50% 감소합니다."
 
 #: simulation/data/technologies/poison_arrows.jsongenericName
 msgid "Poison Arrows"
@@ -1877,7 +1878,7 @@ msgid ""
 "Paeans were battle hymns that were sung by the Hoplites when they charged "
 "the enemy lines. One of the first known Paeans was composed by Tirteus, a "
 "warrior poet of Sparta, during the First Messenian War."
-msgstr ""
+msgstr "파에안은 장갑보병이 적진을 돌격할 때 부르던 군가를 말합니다. 최초로 알려진 파에안 중 한 사람인 스파르타의 전사 시인 티르테우스가 1차 메시아 전쟁 중에 작곡한 것입니다."
 
 #: simulation/data/technologies/tyrtean_paeans.jsongenericName
 msgid "Tyrtean Paeans"

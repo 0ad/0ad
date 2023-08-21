@@ -23,7 +23,7 @@ msgstr ""
 
 #: gui/session/GameSpeedControl.xml:(tooltip):11
 msgid "Choose game speed"
-msgstr ""
+msgstr "Уен тизлеген сайлау"
 
 #: gui/session/Menu.js:41
 #, javascript-format
@@ -32,7 +32,7 @@ msgstr ""
 
 #: gui/session/MenuButtons.js:32
 msgid "Chat"
-msgstr ""
+msgstr "Чат"
 
 #: gui/session/MenuButtons.js:53
 msgid "Save"
@@ -49,7 +49,7 @@ msgstr ""
 
 #: gui/session/MenuButtons.js:133
 msgid "Lobby"
-msgstr ""
+msgstr "Бүлмә"
 
 #: gui/session/MenuButtons.js:142
 #, javascript-format
@@ -68,7 +68,7 @@ msgstr ""
 
 #: gui/session/MenuButtons.js:220
 msgid "Resume"
-msgstr ""
+msgstr "Дәвам итү"
 
 #: gui/session/MenuButtons.js:220
 msgid "Pause"
@@ -81,7 +81,7 @@ msgstr ""
 
 #: gui/session/MenuButtons.js:237
 msgid "Resign"
-msgstr ""
+msgstr "Бирелү"
 
 #: gui/session/MenuButtons.js:261
 #: gui/session/NetworkStatusOverlay.xml:(caption):9
@@ -95,15 +95,15 @@ msgstr ""
 
 #: gui/session/NetworkStatusOverlay.js:38
 msgid "Connection to the server has been authenticated."
-msgstr ""
+msgstr "Серверга тоташу расланган."
 
 #: gui/session/NetworkStatusOverlay.js:39
 msgid "Connected to the server."
-msgstr ""
+msgstr "Серверга тоташкан."
 
 #: gui/session/NetworkStatusOverlay.js:40
 msgid "Connection to the server has been lost."
-msgstr ""
+msgstr "Серверга тоташу югалды."
 
 #: gui/session/NetworkStatusOverlay.js:42
 msgid "Waiting for players to connect:"
@@ -185,12 +185,12 @@ msgstr "Дошман"
 #: gui/session/chat/ChatAddressees.js:121
 msgctxt "chat addressee"
 msgid "Observers"
-msgstr ""
+msgstr "Тамашачылар"
 
 #: gui/session/chat/ChatAddressees.js:122
 msgctxt "chat message context"
 msgid "Observer"
-msgstr "Күзәтүче"
+msgstr "Тамашачы"
 
 #: gui/session/chat/ChatAddressees.js:129
 msgctxt "chat message context"
@@ -239,7 +239,7 @@ msgstr ""
 #: gui/session/chat/ChatHistory.js:120
 msgctxt "chat history filter"
 msgid "Observer chat"
-msgstr ""
+msgstr "Тамашачылар чаты"
 
 #: gui/session/chat/ChatHistory.js:127
 msgctxt "chat history filter"
@@ -269,7 +269,7 @@ msgstr ""
 #: gui/session/chat/ChatInput.js:45
 #, javascript-format
 msgid "Press %(hotkey)s to open the observer chat."
-msgstr ""
+msgstr "Тамашачы чатын ачу өчен %(hotkey)s басыгыз."
 
 #: gui/session/chat/ChatInput.js:46
 #, javascript-format
@@ -693,7 +693,7 @@ msgstr "x"
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr ""
+msgstr "%(playerName)s уенчысына %(resourceAmount)s %(resourceType)s бирү. %(greaterAmount)s җибәрү өчен Shift + чирттерү."
 
 #: gui/session/input.js:191
 #, javascript-format
@@ -889,7 +889,7 @@ msgstr ""
 
 #: gui/session/messages.js:544
 msgid "Unknown Player"
-msgstr ""
+msgstr "Билгесез уенчы"
 
 #: gui/session/minimap/MiniMapFlareButton.js:35
 msgid "Send a flare to your allies"
@@ -913,7 +913,7 @@ msgstr ""
 #: gui/session/chat/ChatAddressees.js:79 gui/session/selection_details.js:78
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
-msgstr ""
+msgstr "\\[ЧЕЛТӘРГӘ ТОТАШМАГАН] %(player)s"
 
 #: gui/session/selection_details.js:84
 #, javascript-format
@@ -1083,7 +1083,7 @@ msgstr ""
 
 #: gui/session/selection_panels.js:385
 msgid "Unlock Gate"
-msgstr ""
+msgstr "Капканы ачу"
 
 #: gui/session/selection_panels.js:436
 msgid "Pack"
@@ -1341,7 +1341,7 @@ msgstr ""
 
 #: gui/session/top_panel/BuildLabel.xml:(caption):6
 msgid "Alpha XXVII: Agni"
-msgstr ""
+msgstr "Alpha XXVII: Agni"
 
 #: gui/session/top_panel/CivIcon.js:80
 #, javascript-format
@@ -1384,7 +1384,7 @@ msgstr "%(popCount)s/%(popLimit)s (%(popMax)s)"
 
 #: gui/session/top_panel/CounterPopulation.js:63
 msgid "Population: current/limit (max)"
-msgstr ""
+msgstr "Халык: агымдагы/чик (макс.)"
 
 #: gui/session/top_panel/CounterPopulation.js:70
 msgid "Gatherers: current"
@@ -1403,7 +1403,7 @@ msgstr ""
 
 #: gui/session/top_panel/IconButtons/GameSpeedButton.xml:(tooltip):9
 msgid "Game Speed"
-msgstr ""
+msgstr "Уен тизлеге"
 
 #: gui/session/objectives/ObjectivesDialog.xml:(caption):15
 #: gui/session/top_panel/IconButtons/ObjectivesDialogButton.js:23
@@ -1416,11 +1416,11 @@ msgstr "Меню"
 
 #: gui/session/top_panel/PlayerViewControl.js:123
 msgid "Observer"
-msgstr "Күзәтүче"
+msgstr "Тамашачы"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(caption):17
 msgid "Observer Mode"
-msgstr ""
+msgstr "Тамашачы режим"
 
 #: gui/session/top_panel/PlayerViewControl.xml:(tooltip):13
 msgid "Choose player to view"
@@ -1493,7 +1493,7 @@ msgstr "Сәүдә"
 
 #: gui/session/trade/TradePanel.xml:(caption):14
 msgid "Resources:"
-msgstr ""
+msgstr "Ресурслар:"
 
 #: gui/session/trade/TraderStatusTextLand.js:15
 #, javascript-format

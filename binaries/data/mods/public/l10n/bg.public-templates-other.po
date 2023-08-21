@@ -29,12 +29,12 @@ msgstr "Различни ефекти (за време)"
 #: simulation/data/attack_effects/applystatus.jsonname
 msgctxt "effect caused by an attack"
 msgid "Apply Status"
-msgstr "Прилага състояние"
+msgstr "Прилагане на състояние"
 
 #: simulation/data/attack_effects/capture.jsondescription
 msgctxt "effect caused by an attack"
 msgid "Reduces capture points of a target."
-msgstr "Намалява точките за завладяване на целта."
+msgstr "Намалява пленителните точки на целта."
 
 #: simulation/data/attack_effects/capture.jsonname
 msgctxt "effect caused by an attack"
@@ -49,12 +49,12 @@ msgstr "Намаля здравето на целта."
 #: simulation/data/attack_effects/damage.jsonname
 msgctxt "effect caused by an attack"
 msgid "Damage"
-msgstr "Вреда"
+msgstr "Щети"
 
 #: simulation/data/damage_types/crush.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sheer force, like with a club or by trampling."
-msgstr "Поражение, предизвикано от груба сила, като бухалка или потъпкване."
+msgstr "Щети, причинени от груба сила, напр. от бухалка или чрез стъпкване."
 
 #: simulation/data/damage_types/crush.jsonname
 msgctxt "damage type"
@@ -64,7 +64,7 @@ msgstr "Разбиване"
 #: simulation/data/damage_types/fire.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by burning objects, like a torch or a flaming arrow."
-msgstr "Поражение, предизвикано от горящи предмети, като факла или огнена стрела."
+msgstr "Щети, причинени от горящи предмети, напр. от факла или огнена стрела."
 
 #: simulation/data/damage_types/fire.jsonname
 msgctxt "damage type"
@@ -76,7 +76,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by sharp objects cutting or chopping, like with a sword or an "
 "axe."
-msgstr "Поражение, предизвикано от остри режещи или разсичащи предмети, като от меч или брадва."
+msgstr "Щети, причинени от остри режещи или разсичащи предмети, напр. от меч или брадва."
 
 #: simulation/data/damage_types/hack.jsonname
 msgctxt "damage type"
@@ -86,7 +86,7 @@ msgstr "Разсичане"
 #: simulation/data/damage_types/pierce.jsondescription
 msgctxt "damage type"
 msgid "Damage caused by sharp pointy objects, like arrows or spears."
-msgstr "Поражение, предизвикано от пронизващи предмети, като стрели или копия."
+msgstr "Щети, причинени от пронизващи предмети, напр. стрели или копия."
 
 #: simulation/data/damage_types/pierce.jsonname
 msgctxt "damage type"
@@ -98,7 +98,7 @@ msgctxt "damage type"
 msgid ""
 "Damage caused by venomous or poisoned objects, like a snake or a poisoned "
 "weapon."
-msgstr "Поражение, предизвикано от токсични или отровни предмети, като змии или отровено оръжие."
+msgstr "Щети, причинени от отровни неща, напр. змии или намазано с отрова оръжие."
 
 #: simulation/data/damage_types/poison.jsonname
 msgctxt "damage type"
@@ -108,7 +108,7 @@ msgstr "Отрова"
 #: simulation/data/status_effects/burning.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes fire damage."
-msgstr "Тази единица нанася огнена вреда."
+msgstr "Тази единица нанася огнени щети."
 
 #: simulation/data/status_effects/burning.jsonreceiverTooltip
 msgctxt "status effect"
@@ -118,12 +118,12 @@ msgstr "Тази единица гори."
 #: simulation/data/status_effects/burning.jsonstatusName
 msgctxt "status effect"
 msgid "Burning"
-msgstr "Гори"
+msgstr "Горящ"
 
 #: simulation/data/status_effects/poisoned.jsonapplierTooltip
 msgctxt "status effect"
 msgid "This unit causes poison damage."
-msgstr "Тази единица нанася отровна вреда."
+msgstr "Тази единица нанася отровни щети."
 
 #: simulation/data/status_effects/poisoned.jsonreceiverTooltip
 msgctxt "status effect"
@@ -133,7 +133,7 @@ msgstr "Тази единица е отровена."
 #: simulation/data/status_effects/poisoned.jsonstatusName
 msgctxt "status effect"
 msgid "Poisoned"
-msgstr "Отровена"
+msgstr "Отровен"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:24
 msgid "Army of Alexander the Great."
@@ -674,15 +674,15 @@ msgstr "Камък"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_bird.xml:10
 msgid "Kushite Bird Statue"
-msgstr "Кушутска статуя на птица"
+msgstr "Кушитска статуя на птица"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_lion.xml:10
 msgid "Apademak Lion Statue"
-msgstr "Ападемакска статуя на лъв"
+msgstr "Статуя на лъва на Апедемак"
 
 #: simulation/templates/gaia/ruins/stone_statues_kushite_ram.xml:10
 msgid "Ammon-Ra Ram Statue"
-msgstr "Статуя на овен на Амон-Ра"
+msgstr "Статуя на овена на Амон-Ре"
 
 #: simulation/templates/gaia/ruins/stone_statues_roman.xml:8
 msgid "Roman Statue"
@@ -777,7 +777,7 @@ msgstr "Изсечен камък"
 #: simulation/templates/gaia/treasure/stone_pile_red.xml:8
 #: simulation/templates/gaia/treasure/stone_pile_sandstone.xml:4
 msgid "Cut Sandstone"
-msgstr "Изсечен минер"
+msgstr "Изсечен пясъчник"
 
 #: simulation/templates/gaia/treasure/wood.xml:8
 msgid "Wood Treasure"
@@ -785,15 +785,15 @@ msgstr "Дървено съкровище"
 
 #: simulation/templates/gaia/treasure/wood_lumber.xml:8
 msgid "Milled Lumber"
-msgstr "Преработено дърво"
+msgstr "Смляна дървесина"
 
 #: simulation/templates/gaia/tree/acacia.xml:4
 msgid "Acacia"
-msgstr "Арация"
+msgstr "Акация"
 
 #: simulation/templates/gaia/tree/acacia_large.xml:4
 msgid "Ancient Acacia"
-msgstr "Древна Арация"
+msgstr "Древна акация"
 
 #: simulation/templates/gaia/tree/aleppo_pine.xml:4
 msgid "Aleppo Pine"
@@ -935,7 +935,7 @@ msgstr "Унгарски дъб"
 
 #: simulation/templates/gaia/tree/oak_large.xml:4
 msgid "Large Oak"
-msgstr "Едър дъб"
+msgstr "Голям дъб"
 
 #: simulation/templates/gaia/tree/olive.xml:7
 msgid "Olive"
@@ -978,7 +978,7 @@ msgstr "Черен бор"
 #: simulation/templates/gaia/tree/pine_maritime.xml:4
 #: simulation/templates/gaia/tree/pine_maritime_short.xml:4
 msgid "Maritime Pine"
-msgstr "Приморски бор"
+msgstr "Крайморски бор"
 
 #: simulation/templates/gaia/tree/poplar.xml:4
 #: simulation/templates/gaia/tree/poplar_dead.xml:4
@@ -1001,7 +1001,7 @@ msgstr "Задушаващ фикус"
 
 #: simulation/templates/gaia/tree/tamarix.xml:4
 msgid "Tamarix"
-msgstr "Вечнозелен храст"
+msgstr "Ракитовица"
 
 #: simulation/templates/gaia/tree/teak.xml:8
 msgid "Teak"

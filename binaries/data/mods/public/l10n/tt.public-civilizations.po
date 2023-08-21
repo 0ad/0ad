@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant
 # project.
 # Translators:
+# Timur Seber
 # Ural Ishmukhametov
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-08-18 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
-"Last-Translator: Ural Ishmukhametov, 2022\n"
+"Last-Translator: Timur Seber <seber.tatsoft@gmail.com>, 2023\n"
 "Language-Team: Tatar (http://app.transifex.com/wildfire-games/0ad/language/tt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -78,6 +79,20 @@ msgstr "Аттикадагы Лаврион мәгъдәнлекләре көм�
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
 msgstr "Көмеш ябалаклар"
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].Description
+msgid "Elite Hoplites can promote to Champion Spearmen."
+msgstr ""
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].History
+msgid ""
+"The best of the hoplites were chosen to form a group of elite professional "
+"soldiers."
+msgstr ""
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].Name
+msgid "Epilektoi Infantry"
+msgstr "Гоплит җәяүле гаскәри"
 
 #: simulation/data/civs/brit.jsonAINames[0]
 msgid "Prasutagus"
@@ -699,6 +714,20 @@ msgstr "Стена җимерә торган кораллар 20%-ка күбр�
 msgid "Legionary Engineers"
 msgstr "Легион инженерлары"
 
+#: simulation/data/civs/rome.jsonCivBonuses[2].Description
+msgid "Promote Elite Rank Spearmen or Swordsmen to Champion Centurions."
+msgstr ""
+
+#: simulation/data/civs/rome.jsonCivBonuses[2].History
+msgid ""
+"Centurions were the officers responsible for a centuria, a group of 100 "
+"soldiers."
+msgstr ""
+
+#: simulation/data/civs/rome.jsonCivBonuses[2].Name
+msgid "Centurions"
+msgstr ""
+
 #: simulation/data/civs/sele.jsonAINames[0]
 msgid "Antiochus I Soter"
 msgstr "Антиох I-нче Сотер"
@@ -849,7 +878,9 @@ msgid "Spartan Women"
 msgstr "Спарта хатынлары"
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].Description
-msgid "Champion Hoplites are available in village phase."
+msgid ""
+"Champion Hoplites are available in village phase, and can promote to highly "
+"experienced Olympic Champions."
 msgstr ""
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].History

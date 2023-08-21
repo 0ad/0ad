@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2023-08-18 07:19+0000\n"
-"PO-Revision-Date: 2023-08-18 07:19+0000\n"
+"POT-Creation-Date: 2023-08-21 07:19+0000\n"
+"PO-Revision-Date: 2023-08-21 07:19+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -57,11 +57,11 @@ msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 
 #, python-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr "%(playerName)s (ΕΚΤΟΣ ΣΥΝΔΕΣΗΣ)"
+msgstr "%(playerName)s (ЧЕЛТӘРГӘ ТОТАШМАГАН)"
 
 #, python-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr "%(playerName)s (ΕΚΤΟΣ ΣΥΝΔΕΣΗΣ, %(state)s)"
+msgstr "%(playerName)s (ЧЕЛТӘРГӘ ТОТАШМАГАН, %(state)s)"
 
 #, python-format
 msgid "%(playerName)s (%(civ)s)"
@@ -600,7 +600,7 @@ msgid "Capture"
 msgstr "Bi dest xistin"
 
 msgid "Status Effects:"
-msgstr "Effectos nel stadu:"
+msgstr "Ефекти на състоянието:"
 
 #, python-format
 msgid "Blocks %(name)s"
@@ -876,7 +876,7 @@ msgstr "Náklady na vydržiavanie:"
 
 #, python-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr "Entre %(minimum)s %(resourceIcon)s e %(maximum)s %(resourceIcon)s."
+msgstr "%(resourceIcon)s %(minimum)s белән %(resourceIcon)s %(maximum)s арасында"
 
 #, python-format
 msgid "Walls:  %(costs)s"
@@ -4815,7 +4815,7 @@ msgid "Units"
 msgstr "Đơn vị quân"
 
 msgid "Infantry"
-msgstr "Pėstininkai"
+msgstr "Җәяүле гаскәри"
 
 msgid "Worker"
 msgstr "Traballadores"

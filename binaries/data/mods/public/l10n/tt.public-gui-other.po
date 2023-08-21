@@ -54,7 +54,7 @@ msgstr "Гея"
 #: gui/common/functions_utility.js:280
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr ""
+msgstr "Чыгарылыш: %(buildDate)s (%(revision)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -89,14 +89,14 @@ msgstr "%(playerName)s (%(AIdescription)s, %(state)s)"
 #: gui/common/gamedescription.js:90
 #, javascript-format
 msgid "%(playerName)s (OFFLINE)"
-msgstr ""
+msgstr "%(playerName)s (ЧЕЛТӘРГӘ ТОТАШМАГАН)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
 #: gui/common/gamedescription.js:93
 #, javascript-format
 msgid "%(playerName)s (OFFLINE, %(state)s)"
-msgstr ""
+msgstr "%(playerName)s (ЧЕЛТӘРГӘ ТОТАШМАГАН, %(state)s)"
 
 #. Translation: Describe a player in a selected game, f.e. in the replay- or
 #. savegame menu
@@ -162,7 +162,7 @@ msgstr "%(team)s:\n%(playerDescriptions)s"
 #: gui/common/gamedescription.js:171
 msgid "Observer"
 msgid_plural "Observers"
-msgstr[0] ""
+msgstr[0] "Тамашачылар"
 
 #: gui/common/gamedescription.js:188
 msgctxt "victory condition"
@@ -193,7 +193,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:239
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Батыр гаринзоны"
 
 #: gui/common/gamedescription.js:240
 msgid "Heroes can be garrisoned."
@@ -245,7 +245,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:273
 msgid "Ceasefire"
-msgstr ""
+msgstr "Вакытлы солых"
 
 #: gui/common/gamedescription.js:276 gui/pregame/userreport/userreport.js:26
 msgid "disabled"
@@ -315,7 +315,7 @@ msgstr ""
 
 #: gui/common/gamedescription.js:349
 msgid "Starting Resources"
-msgstr ""
+msgstr "Башлангыч ресурслар"
 
 #: gui/common/gamedescription.js:353
 msgctxt "starting resources"
@@ -418,7 +418,7 @@ msgstr "%(AIdifficulty)s %(AIbehavior)s %(AIname)s"
 #: gui/common/network.js:17
 #, javascript-format
 msgid "Losing connection to server (%(seconds)ss)"
-msgstr ""
+msgstr "Серверга тоташуны югалту (%(seconds)sс)"
 
 #: gui/common/network.js:22
 #, javascript-format
@@ -428,7 +428,7 @@ msgstr ""
 #: gui/common/network.js:28
 #, javascript-format
 msgid "Bad connection to server (%(milliseconds)sms)"
-msgstr ""
+msgstr "Серверга начар тоташу (%(milliseconds)s мс)"
 
 #: gui/common/network.js:33
 #, javascript-format
@@ -455,7 +455,7 @@ msgstr ""
 
 #: gui/common/network.js:70
 msgid "Game has already started, no observers allowed."
-msgstr ""
+msgstr "Уен инде башланды, бер тамашачы да рөхсәт итмәде."
 
 #: gui/common/network.js:71
 msgid "You have been kicked."
@@ -471,7 +471,7 @@ msgstr ""
 
 #: gui/common/network.js:74
 msgid "Server full."
-msgstr ""
+msgstr "Сервер тулы."
 
 #: gui/common/network.js:75
 msgid "Secure lobby authentication failed. Join via lobby."
@@ -479,7 +479,7 @@ msgstr ""
 
 #: gui/common/network.js:76
 msgid "Error: Server failed to allocate a unique client identifier."
-msgstr ""
+msgstr "Хата: Сервер уникаль клиент идентификаторын бүлеп бирә алмады."
 
 #: gui/common/network.js:77
 msgid "Error: Client commands were ready for an unexpected game turn."
@@ -508,11 +508,11 @@ msgstr ""
 
 #: gui/common/network.js:98
 msgid "Lost connection to the server."
-msgstr ""
+msgstr "Серверга тоташу югалды."
 
 #: gui/common/network.js:99
 msgid "Failed to connect to the server."
-msgstr ""
+msgstr "Серверга тоташа алмады."
 
 #: gui/common/network.js:101
 msgid "Disconnected"
@@ -575,7 +575,7 @@ msgstr ""
 #: gui/common/settings.js:147
 msgctxt "aiBehavior"
 msgid "Random"
-msgstr ""
+msgstr "Очраклы"
 
 #: gui/common/settings.js:152
 msgctxt "aiBehavior"
@@ -606,7 +606,7 @@ msgstr ""
 #: gui/common/settings.js:183
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Очраклы"
 
 #: gui/common/settings.js:184
 msgid ""
@@ -630,12 +630,12 @@ msgstr ""
 #: gui/common/settings.js:342
 msgctxt "AI name"
 msgid "Unknown"
-msgstr ""
+msgstr "Билгесез"
 
 #: gui/common/settings.js:353
 msgctxt "AI difficulty"
 msgid "Unknown"
-msgstr ""
+msgstr "Билгесез"
 
 #: gui/common/settings.js:364
 msgctxt "AI behavior"
@@ -645,7 +645,7 @@ msgstr ""
 #: gui/common/settings.js:376
 msgctxt "map type"
 msgid "Unknown"
-msgstr ""
+msgstr "Билгесез"
 
 #: gui/common/settings.js:388
 msgctxt "map size"
@@ -660,7 +660,7 @@ msgstr ""
 #: gui/common/settings.js:404 gui/common/settings.js:408
 msgctxt "population capacity"
 msgid "Unknown"
-msgstr ""
+msgstr "Билгесез"
 
 #: gui/common/settings.js:420
 msgid "Unknown Victory Condition"
@@ -932,7 +932,7 @@ msgstr "%(attackLabel)s: %(effects)s, %(range)s, %(rate)s%(statusEffects)s%(spla
 
 #: gui/common/tooltips.js:483
 msgid "Attack:"
-msgstr ""
+msgstr "Һөҗүм:"
 
 #: gui/common/tooltips.js:510
 #, javascript-format
@@ -1106,7 +1106,7 @@ msgstr "%(label)s %(component)s %(amount)s"
 
 #: gui/common/tooltips.js:791
 msgid "Resource Supply:"
-msgstr ""
+msgstr "Ресурс тәэминаты:"
 
 #. Translation: Marks that a resource supply entity has an unending, infinite,
 #. supply of its
@@ -1126,7 +1126,7 @@ msgstr "%(resourceIcon)s %(reward)s"
 
 #: gui/common/tooltips.js:841
 msgid "Resource Trickle:"
-msgstr ""
+msgstr "Ресурс кереме:"
 
 #: gui/common/tooltips.js:842 gui/common/tooltips.js:866
 #, javascript-format
@@ -1142,7 +1142,7 @@ msgstr ""
 #: gui/common/tooltips.js:918
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(minimum)s белән %(resourceIcon)s %(maximum)s арасында"
 
 #: gui/common/tooltips.js:947
 #, javascript-format
@@ -1152,7 +1152,7 @@ msgstr ""
 #: gui/common/tooltips.js:948
 #, javascript-format
 msgid "Towers:  %(costs)s"
-msgstr ""
+msgstr "Манаралар:  %(costs)s"
 
 #. Translation: Label in tooltip showing cost of a unit, structure or
 #. technology.
@@ -1168,7 +1168,7 @@ msgstr ""
 #: gui/common/tooltips.js:973
 #, javascript-format
 msgid "Requires %(technology)s"
-msgstr ""
+msgstr "%(technology)s таләп итә"
 
 #: gui/common/tooltips.js:993
 #, javascript-format
@@ -1181,7 +1181,7 @@ msgstr ""
 
 #: gui/common/tooltips.js:1013
 msgid "Insufficient resources:"
-msgstr ""
+msgstr "Җитәрлек булмаган ресурслар:"
 
 #: gui/common/tooltips.js:1029
 #, javascript-format
@@ -1683,7 +1683,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.down.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate down"
-msgstr ""
+msgstr "Аска әйләндерү/борып кую"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.follow.desc
 msgctxt "hotkey metadata"
@@ -1793,7 +1793,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.left.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate left"
-msgstr ""
+msgstr "Сулга әйләндерү/борып кую"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.pan.desc
 msgctxt "hotkey metadata"
@@ -1833,7 +1833,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.right.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate right"
-msgstr ""
+msgstr "Уңга әйләндерү/борып кую"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.rotate.ccw.desc
 msgctxt "hotkey metadata"
@@ -1936,7 +1936,7 @@ msgstr ""
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.up.name
 msgctxt "hotkey metadata"
 msgid "Scroll/Rotate up"
-msgstr ""
+msgstr "Өскә әйләндерү/борып кую"
 
 #: gui/hotkeys/spec/camera.jsonmapped_hotkeys.camera.camera.zoom.in.desc
 msgctxt "hotkey metadata"
@@ -2036,7 +2036,7 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.confirm.name
 msgctxt "hotkey metadata"
 msgid "Confirm"
-msgstr ""
+msgstr "Раслау"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.console.toggle.desc
 msgctxt "hotkey metadata"
@@ -2093,12 +2093,12 @@ msgstr ""
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.desc
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause the game."
-msgstr ""
+msgstr "Уенны туктату/дәвам итү."
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.pause.name
 msgctxt "hotkey metadata"
 msgid "Pause/Unpause"
-msgstr ""
+msgstr "Туктату/Дәвам итү"
 
 #: gui/hotkeys/spec/engine.jsonmapped_hotkeys.general.profile.save.desc
 msgctxt "hotkey metadata"
@@ -3507,7 +3507,7 @@ msgstr ""
 #: gui/loadgame/SavegameDetails.js:43
 #, javascript-format
 msgid "Mods: %(mods)s"
-msgstr ""
+msgstr "Модлар: %(mods)s"
 
 #: gui/loadgame/SavegameList.js:181
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -3614,7 +3614,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(heading):71
 msgctxt "replay"
 msgid "Date / Time"
-msgstr ""
+msgstr "Дата / Вакыт"
 
 #: gui/loadgame/load.xml:(heading):31
 msgctxt "replay"
@@ -3702,7 +3702,7 @@ msgstr ""
 #: gui/maps/MapCache.js:59 gui/maps/mapbrowser/grid/MapGridBrowser.js:59
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Очраклы"
 
 #: gui/maps/MapCache.js:66
 msgid "A randomly selected map."
@@ -3901,7 +3901,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
-msgstr ""
+msgstr "Бер уенчы матчларында сезгә ничек мөрәҗәгать итәргә телисез."
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
@@ -3909,7 +3909,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr ""
+msgstr "Зур уенчы матчларында ничек мөрәҗәгать ителергә телисез (бүлмәдән читтә)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
@@ -4572,7 +4572,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[2].label
 msgid "Persist match settings"
-msgstr ""
+msgstr "Каршы тору көйләүләрен дәвам итү"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[2].tooltip
 msgid ""
@@ -4614,7 +4614,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[0].label
 msgid "Random"
-msgstr ""
+msgstr "Очраклы"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[1].label
 msgid "Balanced"
@@ -4682,7 +4682,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[0].tooltip
 msgid ""
 "Protect login and data exchanged with the lobby server using TLS encryption."
-msgstr ""
+msgstr "Керү һәм бүлмә серверы белән алмашылган мәгълүматны TLS шифрлау ярдәмендә саклау."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[1].label
 msgid "Chat backlog"
@@ -4712,25 +4712,25 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].label
 msgid "Late observer joins"
-msgstr ""
+msgstr "Соңга калган тамашачы кушыла"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].tooltip
 msgid ""
 "Allow everybody or buddies only to join the game as observer after it "
 "started."
-msgstr ""
+msgstr "Барысына да, дусларга да уен башланганнан соң тамашачы булып кушылырга рөхсәт итү."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[5].label
 msgid "Observer limit"
-msgstr ""
+msgstr "Тамашачы чиге"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[5].tooltip
 msgid "Prevent further observers from joining if the limit is reached."
-msgstr ""
+msgstr "Чиктән артканда тамашачылар кушылырга рөхсәт итмәү."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[6].label
 msgid "Max lag for observers"
-msgstr ""
+msgstr "Тамашачылар өчен максималь тоткарлану"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[6].tooltip
 msgid ""
@@ -4740,7 +4740,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].label
 msgid "(Observer) Speed up when lagging."
-msgstr ""
+msgstr "(Тамашачы) Тоткарлаганда тизләтү."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[7].tooltip
 msgid ""
@@ -5013,7 +5013,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[7].tooltip
 msgid ""
 "Show a chat notification to observers when a player bartered resources."
-msgstr ""
+msgstr "Уенчылар ресурсларны алмаштырганда тамашачыларга чатдагы хәбәрен күрсәтү."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].options[8].label
 msgid "Chat notification phase"
@@ -5215,7 +5215,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:96
 msgid "Matches"
-msgstr ""
+msgstr "Каршы торулар"
 
 #: gui/pregame/MainMenuItems.js:97
 msgid "Start a new single-player game."
@@ -5381,7 +5381,7 @@ msgstr ""
 
 #: gui/pregame/ProjectInformation.js:18
 msgid "Alpha XXVII: Agni"
-msgstr ""
+msgstr "Alpha XXVII: Agni"
 
 #: gui/pregame/ProjectInformation.js:19
 msgid ""
@@ -5399,7 +5399,7 @@ msgstr ""
 
 #: gui/pregame/ProjectInformation.js:33
 msgid "Chat"
-msgstr ""
+msgstr "Чат"
 
 #: gui/pregame/ProjectInformation.js:34
 msgid ""
@@ -5415,7 +5415,7 @@ msgstr ""
 
 #: gui/pregame/ProjectInformation.js:42
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Хата яки сафтан чыгу турында хәбәр итү өчен 0A.D. Trac сылтамасына басып зыярат итегез."
 
 #: gui/pregame/ProjectInformation.js:49
 msgctxt "Frequently Asked Questions"
@@ -5459,7 +5459,7 @@ msgstr ""
 #: gui/pregame/userreport/userreport.js:28
 #: gui/pregame/userreport/userreport.js:29
 msgid "connecting to server"
-msgstr ""
+msgstr "серверга тоташу"
 
 #: gui/pregame/userreport/userreport.js:30
 #, javascript-format
@@ -5473,12 +5473,12 @@ msgstr ""
 #: gui/pregame/userreport/userreport.js:34
 #, javascript-format
 msgid "upload failed (%(errorCode)s)"
-msgstr ""
+msgstr "йөкләү уңышсыз (%(errorCode)s)"
 
 #: gui/pregame/userreport/userreport.js:37
 #, javascript-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr ""
+msgstr "йөкләү уңышсыз (%(errorMessage)s)"
 
 #: gui/pregame/userreport/userreport.js:61
 msgid "Disable Feedback"
@@ -5572,7 +5572,7 @@ msgstr[0] ""
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
 msgid_plural "Heroes"
-msgstr[0] ""
+msgstr[0] "Батырлар"
 
 #: gui/reference/civinfo/Sections/Subsections/StructuresSubsection.js:29
 msgid "Specific Structure"
@@ -5691,7 +5691,7 @@ msgstr ""
 #: gui/replaymenu/replay_actions.js:97
 #, javascript-format
 msgid "Required version: %(version)s"
-msgstr ""
+msgstr "Кирәкле версия: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:100
 msgid "Incompatible replay"
@@ -5993,7 +5993,7 @@ msgstr ""
 msgid ""
 "Structure Statistics (%(constructed)s / %(destroyed)s / %(captured)s / "
 "%(lost)s)"
-msgstr ""
+msgstr "Бина статистикасы (%(constructed)s / %(destroyed)s / %(captured)s / %(lost)s)"
 
 #: gui/summary/layout.js:69
 msgid "Units"
@@ -6001,7 +6001,7 @@ msgstr ""
 
 #: gui/summary/layout.js:73
 msgid "Infantry"
-msgstr ""
+msgstr "Җәяүле гаскәри"
 
 #: gui/summary/layout.js:74
 msgid "Worker"
@@ -6013,11 +6013,11 @@ msgstr ""
 
 #: gui/summary/layout.js:76
 msgid "Champion"
-msgstr ""
+msgstr "Олан"
 
 #: gui/summary/layout.js:77
 msgid "Heroes"
-msgstr ""
+msgstr "Батырлар"
 
 #: gui/summary/layout.js:78
 msgid "Siege"
@@ -6034,11 +6034,11 @@ msgstr ""
 #: gui/summary/layout.js:84
 #, javascript-format
 msgid "Unit Statistics (%(trained)s / %(killed)s / %(lost)s)"
-msgstr ""
+msgstr "Берәмлек статистикасы (%(trained)s / %(killed)s / %(lost)s)"
 
 #: gui/summary/layout.js:108
 msgid "Resources"
-msgstr ""
+msgstr "Ресурслар"
 
 #: gui/summary/layout.js:120
 msgid "Tributes"
@@ -6066,7 +6066,7 @@ msgstr ""
 #: gui/summary/layout.js:135
 #, javascript-format
 msgid "Resource Statistics (%(gathered)s / %(used)s)"
-msgstr ""
+msgstr "Ресурс cтатистикасы (%(gathered)s / %(used)s)"
 
 #: gui/summary/layout.js:159
 msgid "Market"
@@ -6084,7 +6084,7 @@ msgstr ""
 #: gui/summary/layout.js:169
 #, javascript-format
 msgid "%(resourceFirstWord)s exchanged"
-msgstr ""
+msgstr "%(resourceFirstWord)s алышынды"
 
 #: gui/summary/layout.js:191
 msgid "Miscellaneous"
@@ -6298,7 +6298,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:(caption):192
 msgid "Continue"
-msgstr ""
+msgstr "Дәвам итү"
 
 #: gui/summary/summary.xml:(tooltip):126
 msgctxt "summary chart"
@@ -6552,7 +6552,7 @@ msgstr ""
 
 #: gui/text/tips/defense_towers.txt:1
 msgid "DEFENSE TOWERS"
-msgstr ""
+msgstr "САКЛАУ МАНАРАЛАРЫ"
 
 #: gui/text/tips/defense_towers.txt:2
 msgid "Strong watchtowers, which help you defend your position."
@@ -6676,7 +6676,7 @@ msgstr ""
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
-msgstr ""
+msgstr "РЕСУРС ҖЫЮ"
 
 #: gui/text/tips/gathering.txt:2
 msgid "Use citizen-soldiers and female citizens to gather resources."
@@ -6702,7 +6702,7 @@ msgstr ""
 
 #: gui/text/tips/heroes.txt:1
 msgid "HEROES"
-msgstr ""
+msgstr "БАТЫРЛАР"
 
 #: gui/text/tips/heroes.txt:2
 msgid ""
@@ -6864,7 +6864,7 @@ msgstr ""
 
 #: gui/text/tips/resource_counter.txt:1
 msgid "RESOURCE COUNTER"
-msgstr ""
+msgstr "РЕСУРС САНАГЫЧЫ"
 
 #: gui/text/tips/resource_counter.txt:2
 msgid ""
@@ -7082,7 +7082,7 @@ msgstr ""
 
 #: gui/text/tips/whales.txt:2
 msgid "An oceanic resource."
-msgstr ""
+msgstr "Океан ресурсы."
 
 #: gui/text/tips/whales.txt:3
 msgid "2000 Food."
@@ -7230,7 +7230,7 @@ msgstr ""
 
 #: simulation/data/resources/stone.jsondescription
 msgid "Mine from rocks, stone quarries or ruins."
-msgstr ""
+msgstr "Таш кыялардан, таш чыгарулардан һәм хәрабәләрдән алыгыз."
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -7252,7 +7252,7 @@ msgstr "Таш"
 #: simulation/data/resources/stone.jsonsubtypes.rock
 msgctxt "firstWord"
 msgid "Rock"
-msgstr ""
+msgstr "Кыя"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase
@@ -7260,7 +7260,7 @@ msgstr ""
 #: simulation/data/resources/stone.jsonsubtypes.rock
 msgctxt "withinSentence"
 msgid "Rock"
-msgstr ""
+msgstr "Кыя"
 
 #: simulation/data/resources/wood.jsondescription
 msgid "Cut down from trees or groves."

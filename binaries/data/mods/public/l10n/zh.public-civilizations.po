@@ -34,7 +34,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-08-18 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: liu lizhi <xingzuo88@qq.com>, 2022-2023\n"
 "Language-Team: Chinese (http://app.transifex.com/wildfire-games/0ad/language/zh/)\n"
@@ -105,6 +105,20 @@ msgstr "从阿提卡的劳雷恩银矿上，雅典采集了大量的银矿，并
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
 msgstr "鸮纹银币"
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].Description
+msgid "Elite Hoplites can promote to Champion Spearmen."
+msgstr ""
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].History
+msgid ""
+"The best of the hoplites were chosen to form a group of elite professional "
+"soldiers."
+msgstr ""
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].Name
+msgid "Epilektoi Infantry"
+msgstr ""
 
 #: simulation/data/civs/brit.jsonAINames[0]
 msgid "Prasutagus"
@@ -726,6 +740,20 @@ msgstr "攻城锤攻击 +20％， 投石兵攻击 +10％ ."
 msgid "Legionary Engineers"
 msgstr "军团工程师"
 
+#: simulation/data/civs/rome.jsonCivBonuses[2].Description
+msgid "Promote Elite Rank Spearmen or Swordsmen to Champion Centurions."
+msgstr ""
+
+#: simulation/data/civs/rome.jsonCivBonuses[2].History
+msgid ""
+"Centurions were the officers responsible for a centuria, a group of 100 "
+"soldiers."
+msgstr ""
+
+#: simulation/data/civs/rome.jsonCivBonuses[2].Name
+msgid "Centurions"
+msgstr ""
+
 #: simulation/data/civs/sele.jsonAINames[0]
 msgid "Antiochus I Soter"
 msgstr "安条克一世（救星）"
@@ -876,7 +904,9 @@ msgid "Spartan Women"
 msgstr "性情刚烈"
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].Description
-msgid "Champion Hoplites are available in village phase."
+msgid ""
+"Champion Hoplites are available in village phase, and can promote to highly "
+"experienced Olympic Champions."
 msgstr ""
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].History

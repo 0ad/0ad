@@ -65,7 +65,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-08-18 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2018,2020-2023\n"
 "Language-Team: Spanish (http://app.transifex.com/wildfire-games/0ad/language/es/)\n"
@@ -136,6 +136,20 @@ msgstr "Las minas de Laureion en Ática bendecían a los atenienses con un mar d
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
 msgstr "Búhos de plata"
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].Description
+msgid "Elite Hoplites can promote to Champion Spearmen."
+msgstr ""
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].History
+msgid ""
+"The best of the hoplites were chosen to form a group of elite professional "
+"soldiers."
+msgstr ""
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].Name
+msgid "Epilektoi Infantry"
+msgstr ""
 
 #: simulation/data/civs/brit.jsonAINames[0]
 msgid "Prasutagus"
@@ -757,6 +771,20 @@ msgstr "Arietes (Daño: +20%). Catapultas (Daño: +10%)."
 msgid "Legionary Engineers"
 msgstr "Ingenieros legionarios"
 
+#: simulation/data/civs/rome.jsonCivBonuses[2].Description
+msgid "Promote Elite Rank Spearmen or Swordsmen to Champion Centurions."
+msgstr ""
+
+#: simulation/data/civs/rome.jsonCivBonuses[2].History
+msgid ""
+"Centurions were the officers responsible for a centuria, a group of 100 "
+"soldiers."
+msgstr ""
+
+#: simulation/data/civs/rome.jsonCivBonuses[2].Name
+msgid "Centurions"
+msgstr ""
+
 #: simulation/data/civs/sele.jsonAINames[0]
 msgid "Antiochus I Soter"
 msgstr "Antíoco I Sóter"
@@ -907,8 +935,10 @@ msgid "Spartan Women"
 msgstr "Espartanas"
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].Description
-msgid "Champion Hoplites are available in village phase."
-msgstr "Los hoplitas de élite están disponibles en la fase inicial."
+msgid ""
+"Champion Hoplites are available in village phase, and can promote to highly "
+"experienced Olympic Champions."
+msgstr ""
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].History
 msgid ""

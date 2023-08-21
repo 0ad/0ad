@@ -44,7 +44,7 @@ msgstr "Юк"
 
 #: gui/gamesetup/Pages/AIConfigPage/Controls/AISelection.js:44
 msgid "AI Player"
-msgstr ""
+msgstr "ЯИ уенчысы"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControl.js:142
 #, javascript-format
@@ -64,17 +64,17 @@ msgstr "Юк"
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingControlSlider.js:84
 msgctxt "settings value"
 msgid "Unknown"
-msgstr ""
+msgstr "Билгесез"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:7
 msgctxt "Match settings tab name"
 msgid "Map"
-msgstr ""
+msgstr "Карта"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:28
 msgctxt "Match settings tab name"
 msgid "Player"
-msgstr ""
+msgstr "Уенчы"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/GameSettingsLayout.js:40
 msgctxt "Match settings tab name"
@@ -84,7 +84,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/AIConfigButton.js:32
 #, javascript-format
 msgid "Configure AI: %(description)s."
-msgstr ""
+msgstr "Ясалма интеллектны көйләү: %(description)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerAssignment.js:135
 msgid "Select player."
@@ -106,7 +106,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:93
 msgctxt "civilization"
 msgid "Random"
-msgstr ""
+msgstr "Очраклы"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/PerPlayer/Dropdowns/PlayerCiv.js:99
 msgid "Picks one civilization at random when the game starts."
@@ -204,7 +204,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:25
 msgid "Nomad"
-msgstr ""
+msgstr "Күчмәче"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/Nomad.js:28
 msgid ""
@@ -222,7 +222,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:27
 msgid "Hero Garrison"
-msgstr ""
+msgstr "Батыр гаринзоны"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Checkboxes/RegicideGarrison.js:30
 msgid "Toggle whether heroes can be garrisoned."
@@ -270,7 +270,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:54
 msgid "Biome"
-msgstr ""
+msgstr "Биом"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:60
 msgid "Select the flora and fauna."
@@ -279,7 +279,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:63
 msgctxt "biome"
 msgid "Random"
-msgstr ""
+msgstr "Очраклы"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Biome.js:66
 msgid "Pick a biome at random."
@@ -287,16 +287,16 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:57
 msgid "Daytime"
-msgstr ""
+msgstr "Көндезге вакыт"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:60
 msgid "Select whether the match takes place at daylight or night."
-msgstr ""
+msgstr "Каршы торуның көндез яки төн булачагын сайлагыз."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:63
 msgctxt "daytime selection"
 msgid "Random"
-msgstr ""
+msgstr "Очраклы"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Daytime.js:66
 msgctxt "daytime selection"
@@ -305,16 +305,16 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:61
 msgid "Game Speed"
-msgstr ""
+msgstr "Уен тизлеге"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/GameSpeed.js:64
 msgid "Select game speed."
-msgstr ""
+msgstr "Уен тизлеген сайлау."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:25
 msgctxt "landscape selection"
 msgid "Random"
-msgstr ""
+msgstr "Очраклы"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/Landscape.js:26
 msgctxt "landscape selection"
@@ -339,11 +339,11 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:26
 msgid "Map"
-msgstr ""
+msgstr "Карта"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:141
 msgid "Select Map"
-msgstr ""
+msgstr "Картаны сайлау"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:144
 msgid "Select a map to play on."
@@ -352,7 +352,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:150
 msgctxt "map selection"
 msgid "Random"
-msgstr ""
+msgstr "Очраклы"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/MapSelection.js:153
 msgid "Pick any of the given maps at random."
@@ -404,16 +404,16 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:50
 msgid "Starting Resources"
-msgstr ""
+msgstr "Башлангыч ресурслар"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:53
 msgid "Select the game's starting resources."
-msgstr ""
+msgstr "Уенның башлангыч ресурслар күләмен сайлагыз."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:56
 #, javascript-format
 msgid "Initial amount of each resource: %(resources)s."
-msgstr ""
+msgstr "Һәр ресурсның башлангыч күләме: %(resources)s."
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/StartingResources.js:59
 msgctxt "starting resources"
@@ -431,7 +431,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:60
 msgctxt "team placement"
 msgid "Random"
-msgstr ""
+msgstr "Очраклы"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Dropdowns/TeamPlacement.js:61
 msgctxt "team placement"
@@ -463,7 +463,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:35
 msgid "Ceasefire"
-msgstr ""
+msgstr "Вакытлы солых"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:38
 msgid "Set time where no attacks are possible."
@@ -472,7 +472,7 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:41
 msgctxt "ceasefire"
 msgid "No ceasefire"
-msgstr ""
+msgstr "Вакытлы солых юк"
 
 #: gui/gamesetup/Pages/GameSetupPage/GameSettings/Single/Sliders/Ceasefire.js:44
 #, javascript-format
@@ -545,15 +545,15 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:36
 msgid "Back"
-msgstr ""
+msgstr "Кирегә"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:39
 msgid "Return to the lobby."
-msgstr ""
+msgstr "Бүлмәгә кайту."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CancelButton.js:42
 msgid "Return to the main menu."
-msgstr ""
+msgstr "Төп менюга кайту."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/CivInfoButton.js:48
 #, javascript-format
@@ -568,15 +568,15 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:79
 msgid "I'm ready"
-msgstr ""
+msgstr "Мин әзер"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:80
 msgid "Stay ready"
-msgstr ""
+msgstr "Әзер булыгыз"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:81
 msgid "I'm not ready!"
-msgstr ""
+msgstr "Мин әзер түгел!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/ReadyButton.js:85
 msgid "State that you are ready to play."
@@ -601,7 +601,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:65
 msgid "Start Game!"
-msgstr ""
+msgstr "Уенны башлау!"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Buttons/StartGameButton.js:68
 msgid "Start a new game with the current settings."
@@ -620,7 +620,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:27
 msgid "Unknown Player"
-msgstr ""
+msgstr "Билгесез уенчы"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientChat.js:47
 #, javascript-format
@@ -655,12 +655,12 @@ msgstr ""
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientReady.js:28
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "* %(username)s әзер түгел."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/ClientReady.js:29
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "* %(username)s әзер."
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/Chat/ChatMessages/GameSettingsChanged.js:22
 msgid "Game settings have been changed"
@@ -704,7 +704,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:27
 msgid "No selected map"
-msgstr ""
+msgstr "Сайланган карта юк"
 
 #: gui/gamesetup/Pages/GameSetupPage/Panels/MapPreview.js:47
 msgid "Click to view the list of available maps."
@@ -716,7 +716,7 @@ msgstr ""
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):7
 msgid "Loading"
-msgstr ""
+msgstr "Йөкләнә"
 
 #: gui/gamesetup/Pages/LoadingPage/LoadingPage.xml:(caption):11
 msgid "Loading map data. Please wait…"
@@ -724,29 +724,29 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):17
 msgid "Match Setup"
-msgstr ""
+msgstr "Каршы торуны урнаштыру"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:59
 #, javascript-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "%(name)s уены"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:123
 msgid "Please enter a valid server name."
-msgstr ""
+msgstr "Зинһар, дөрес сервер исемен кертегез."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:131
 #, javascript-format
 msgid "Server port number must be between %(min)s and %(max)s."
-msgstr ""
+msgstr "Сервер порт номеры %(min)s белән %(max)s арасында булырга тиеш."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:150
 msgid "Connecting to server..."
-msgstr ""
+msgstr "Серверга тоташу..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:165
 msgid "Server is not running."
-msgstr ""
+msgstr "Сервер эшләми."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:166
 msgid "Password is invalid."
@@ -760,20 +760,20 @@ msgstr ""
 msgid ""
 "Failed to get local IP of the server (it was assumed to be on the same "
 "network)."
-msgstr ""
+msgstr "Серверның локаль IP-адресын ала алмады (бер үк челтәрдә булырга тиеш дип уйланылды)."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:171
 #, javascript-format
 msgid "\\[Invalid value %(reason)s]"
-msgstr ""
+msgstr "\\[Яраксыз берәмлек %(reason)s]"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:179
 msgid "Failed to connect to the server."
-msgstr ""
+msgstr "Серверга тоташа алмады."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:181
 msgid "Connection failed"
-msgstr ""
+msgstr "Бәйләнеш уңышсыз булды"
 
 #: gui/gamesetup_mp/gamesetup_mp.js:193
 #, javascript-format
@@ -782,7 +782,7 @@ msgstr ""
 
 #: gui/gamesetup_mp/gamesetup_mp.js:276
 msgid "Registering with server..."
-msgstr ""
+msgstr "Серверда теркәлү..."
 
 #: gui/gamesetup_mp/gamesetup_mp.js:282
 msgid "Game has already started, rejoining..."
@@ -810,7 +810,7 @@ msgstr ""
 #: gui/gamesetup_mp/gamesetup_mp.js:465
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "%(playername)s уены"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):18
 msgid "Multiplayer"
@@ -836,7 +836,7 @@ msgstr "Сервер порты:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):65
 msgid "Set up your server to host."
-msgstr ""
+msgstr "Уен ясау өчен сервер урнаштыру."
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):83
 msgid "Server Name:"
@@ -852,7 +852,7 @@ msgstr ""
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):136
 msgid "Continue"
-msgstr ""
+msgstr "Дәвам итү"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):141
 msgid "Cancel"
@@ -864,7 +864,7 @@ msgstr "Серсүз:"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(caption):162
 msgid "Confirm"
-msgstr ""
+msgstr "Раслау"
 
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):52
 #: gui/gamesetup_mp/gamesetup_mp.xml:(tooltip):99
@@ -892,12 +892,12 @@ msgstr "• %(tiptext)s"
 #: gui/loading/TitleDisplay.js:15
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "\"%(map)s\" әзерләнә"
 
 #: gui/loading/TitleDisplay.js:17
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "\"%(map)s\" йөкләнә"
 
 #: gui/text/quotes.txt:1
 msgid ""

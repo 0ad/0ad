@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-08-18 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022-2023\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -94,6 +94,20 @@ msgstr "阿提卡地區勞里厄姆的礦場提供了雅典豐裕的銀，鑄造
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
 msgstr "銀鴞"
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].Description
+msgid "Elite Hoplites can promote to Champion Spearmen."
+msgstr "菁英重裝步兵可以晉升為鬥士矛兵。"
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].History
+msgid ""
+"The best of the hoplites were chosen to form a group of elite professional "
+"soldiers."
+msgstr "最厲害的重裝步兵可以被選為菁英職業士兵。"
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].Name
+msgid "Epilektoi Infantry"
+msgstr "埃皮萊托步兵"
 
 #: simulation/data/civs/brit.jsonAINames[0]
 msgid "Prasutagus"
@@ -715,6 +729,20 @@ msgstr "衝撞車 +20% 攻擊傷害。投石機 +10% 攻擊傷害。"
 msgid "Legionary Engineers"
 msgstr "軍團士兵工程師"
 
+#: simulation/data/civs/rome.jsonCivBonuses[2].Description
+msgid "Promote Elite Rank Spearmen or Swordsmen to Champion Centurions."
+msgstr "晉升菁英等級矛兵或劍兵成為鬥士百夫長。"
+
+#: simulation/data/civs/rome.jsonCivBonuses[2].History
+msgid ""
+"Centurions were the officers responsible for a centuria, a group of 100 "
+"soldiers."
+msgstr "百夫長是負責百人隊的軍官，100 名一組的士兵。"
+
+#: simulation/data/civs/rome.jsonCivBonuses[2].Name
+msgid "Centurions"
+msgstr "百夫長"
+
 #: simulation/data/civs/sele.jsonAINames[0]
 msgid "Antiochus I Soter"
 msgstr "救世主　安條克一世"
@@ -865,8 +893,10 @@ msgid "Spartan Women"
 msgstr "斯巴達女性"
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].Description
-msgid "Champion Hoplites are available in village phase."
-msgstr "鬥士重裝步兵在村莊階段即可使用。"
+msgid ""
+"Champion Hoplites are available in village phase, and can promote to highly "
+"experienced Olympic Champions."
+msgstr "鬥士重裝步兵在村莊階段可用，並能晉升成經驗豐富奧林匹克鬥士。"
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].History
 msgid ""

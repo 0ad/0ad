@@ -114,13 +114,13 @@ msgstr ", "
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Required: %(mods)s"
-msgstr ""
+msgstr "Кирәкле: %(mods)s"
 
 #: gui/common/mod.js:41
 #, javascript-format
 msgctxt "Mod comparison"
 msgid "Active: %(mods)s"
-msgstr ""
+msgstr "Актив: %(mods)s"
 
 #: gui/incompatible_mods/incompatible_mods.txt:1
 msgid ""
@@ -146,7 +146,7 @@ msgstr ""
 
 #: gui/incompatible_mods/incompatible_mods.txt:6
 msgid "[/font]"
-msgstr ""
+msgstr "[/font]"
 
 #: gui/incompatible_mods/incompatible_mods.xml:(caption):12
 msgid "Incompatible mods"
@@ -205,7 +205,7 @@ msgstr ""
 #: gui/modio/modio.js:83
 msgctxt "mod.io error message"
 msgid "Initialization Error"
-msgstr ""
+msgstr "Әзерләү хатасы"
 
 #: gui/modio/modio.js:84 gui/modio/modio.js:95 gui/modio/modio.js:106
 msgid "Retry"
@@ -228,7 +228,7 @@ msgstr ""
 #: gui/modio/modio.js:94
 msgctxt "mod.io error message"
 msgid "Fetch Error"
-msgstr ""
+msgstr "Сайлап алу хатасы"
 
 #: gui/modio/modio.js:102
 #, javascript-format
@@ -242,7 +242,7 @@ msgstr ""
 #: gui/modio/modio.js:105
 msgctxt "mod.io error message"
 msgid "Download Error"
-msgstr ""
+msgstr "Йөкләп алу хатасы"
 
 #: gui/modio/modio.js:113
 #, javascript-format
@@ -251,25 +251,25 @@ msgid ""
 "File verification error.\n"
 "\n"
 "%(technicalDetails)s"
-msgstr ""
+msgstr "Файлны раслау хатасы.\n\n%(technicalDetails)s"
 
 #: gui/modio/modio.js:116
 msgctxt "mod.io error message"
 msgid "Verification Error"
-msgstr ""
+msgstr "Раслау хатасы"
 
 #: gui/modio/modio.js:133
 msgid "Initializing mod.io interface."
-msgstr ""
+msgstr "mod.io интерфейсын әзерләү."
 
 #: gui/modio/modio.js:134
 msgid "Initializing"
-msgstr ""
+msgstr "Әзерләү"
 
 #: gui/modio/modio.js:223
 #, javascript-format
 msgid "Invalid mod: %(error)s"
-msgstr ""
+msgstr "Яраксыз мод: %(error)s"
 
 #: gui/modio/modio.js:246
 msgid "Fetching and updating list of available mods."
@@ -286,11 +286,11 @@ msgstr ""
 #: gui/modio/modio.js:265
 #, javascript-format
 msgid "Downloading “%(modname)s”"
-msgstr ""
+msgstr "\"%(map)s\" йөкләп алу"
 
 #: gui/modio/modio.js:268
 msgid "Downloading"
-msgstr ""
+msgstr "Йөкләп алу"
 
 #: gui/modio/modio.js:270
 msgid "Cancel Download"
@@ -327,11 +327,11 @@ msgstr "%(number)s %(unit)s/сек"
 
 #: gui/modio/modio.xml:(caption):18
 msgid "mod.io Mods"
-msgstr ""
+msgstr "mod.io Модлары"
 
 #: gui/modio/modio.xml:(caption):25 gui/modmod/modmod.xml:(caption):70
 msgid "Available Mods"
-msgstr ""
+msgstr "Мөмкин булган модлар"
 
 #: gui/modio/modio.xml:(caption):82
 msgid "Filter valid mods"
@@ -339,7 +339,7 @@ msgstr ""
 
 #: gui/modio/modio.xml:(caption):88
 msgid "Back"
-msgstr ""
+msgstr "Кирегә"
 
 #: gui/modio/modio.xml:(caption):93
 msgid "Refresh List"
@@ -362,7 +362,7 @@ msgstr ""
 #: gui/modio/modio.xml:(heading):60 gui/modmod/modmod.xml:(heading):99
 #: gui/modmod/modmod.xml:(heading):140
 msgid "Mod Label"
-msgstr ""
+msgstr "Мод тамгасы"
 
 #: gui/modio/modio.xml:(heading):63
 msgid "File Size"
@@ -419,15 +419,15 @@ msgstr "Ябу"
 
 #: gui/modmod/help/help.xml:(caption):25
 msgid "Modding Guide"
-msgstr ""
+msgstr "Моддинг кулланмасы"
 
 #: gui/modmod/help/help.xml:(caption):29
 msgid "Visit mod.io"
-msgstr ""
+msgstr "mod.io сайтын зыярат итү"
 
 #: gui/modmod/modmod.js:67
 msgid "This mod does not exist"
-msgstr ""
+msgstr "Бу мод юк"
 
 #: gui/modmod/modmod.js:152 gui/modmod/modmod.js:448
 msgctxt "mod activation"
@@ -445,7 +445,7 @@ msgstr ""
 
 #: gui/modmod/modmod.js:457
 msgid "No mod has been selected."
-msgstr ""
+msgstr "Мод сайланмады."
 
 #: gui/modmod/modmod.js:460
 msgid "Enable at least 0ad mod"
@@ -453,7 +453,7 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):12
 msgid "Modifications"
-msgstr ""
+msgstr "Үзгәрешләр"
 
 #: gui/modmod/modmod.xml:(caption):37
 msgid "Negate"
@@ -469,7 +469,7 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):114
 msgid "Enabled Mods"
-msgstr ""
+msgstr "Модлар кабызылды"
 
 #: gui/modmod/modmod.xml:(caption):183
 msgid "Visit Website"
@@ -485,7 +485,7 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):207
 msgid "Download Mods"
-msgstr ""
+msgstr "Модларны йөкләп алу"
 
 #: gui/modmod/modmod.xml:(caption):212
 msgid "Save Configuration"
@@ -527,11 +527,11 @@ msgstr ""
 
 #: gui/modmod/modmodio.js:12
 msgid "mod.io Terms"
-msgstr ""
+msgstr "mod.io Куллану Шартлары"
 
 #: gui/modmod/modmodio.js:16
 msgid "mod.io Privacy Policy"
-msgstr ""
+msgstr "mod.io Хосуйсыйлык Сәясәте"
 
 #: gui/msgbox/msgbox.js:25 gui/timedconfirmation/timedconfirmation.js:46
 msgid "OK"

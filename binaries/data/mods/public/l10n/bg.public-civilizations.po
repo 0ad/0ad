@@ -14,7 +14,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-08-18 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: Любомир Василев, 2023\n"
 "Language-Team: Bulgarian (http://app.transifex.com/wildfire-games/0ad/language/bg/)\n"
@@ -85,6 +85,20 @@ msgstr "Мините в Лавриум в Атика осигурили на А�
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
 msgstr "Сребърни сови"
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].Description
+msgid "Elite Hoplites can promote to Champion Spearmen."
+msgstr ""
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].History
+msgid ""
+"The best of the hoplites were chosen to form a group of elite professional "
+"soldiers."
+msgstr ""
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].Name
+msgid "Epilektoi Infantry"
+msgstr ""
 
 #: simulation/data/civs/brit.jsonAINames[0]
 msgid "Prasutagus"
@@ -358,7 +372,7 @@ msgstr "Начални стени"
 msgid ""
 "Stone Towers −50% wood cost, +150% stone cost, +33% build time, +60% health,"
 " +3 garrison capacity, and +1 default arrow count."
-msgstr "Каменни кули: -50% дърво, +150% камъни, +33% време за строеж, +60% здраве, +3 капацитет за гарнизон и +1 стандартен брой стрели."
+msgstr "Каменни кули: –50% дърво, +150% камъни, +33% време за строеж, +60% здраве, +3 капацитет за гарнизон и +1 стандартен брой стрели."
 
 #: simulation/data/civs/iber.jsonCivBonuses[1].Name
 msgid "Massive Towers"
@@ -419,7 +433,7 @@ msgstr "Насалса"
 #: simulation/data/civs/kush.jsonCivBonuses[0].Description
 #: simulation/data/civs/pers.jsonCivBonuses[1].Description
 msgid "Battering Rams +20% attack damage and +2 garrison capacity."
-msgstr "Тарани: +20% щети и+2 капацитет за гарнизон."
+msgstr "Тарани: +20% щети и +2 капацитет за гарнизон."
 
 #: simulation/data/civs/kush.jsonCivBonuses[0].Name
 #: simulation/data/civs/pers.jsonCivBonuses[1].Name
@@ -625,7 +639,7 @@ msgstr "Береника Филопатор"
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Description
 msgid "Bolt Shooters −33% attack damage and −33% attack time."
-msgstr "Стреломети: -33% щети и -33% време за презареждане."
+msgstr "Стреломети: –33% щети и –33% време за презареждане."
 
 #: simulation/data/civs/ptol.jsonCivBonuses[0].Name
 msgid "Polybolos"
@@ -705,6 +719,20 @@ msgstr "Тарани: +20% щети. Хвърлячи на камъни: +10% щ
 #: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Legionary Engineers"
 msgstr "Инженери-легионери"
+
+#: simulation/data/civs/rome.jsonCivBonuses[2].Description
+msgid "Promote Elite Rank Spearmen or Swordsmen to Champion Centurions."
+msgstr ""
+
+#: simulation/data/civs/rome.jsonCivBonuses[2].History
+msgid ""
+"Centurions were the officers responsible for a centuria, a group of 100 "
+"soldiers."
+msgstr ""
+
+#: simulation/data/civs/rome.jsonCivBonuses[2].Name
+msgid "Centurions"
+msgstr ""
 
 #: simulation/data/civs/sele.jsonAINames[0]
 msgid "Antiochus I Soter"
@@ -856,8 +884,10 @@ msgid "Spartan Women"
 msgstr "Спартанки"
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].Description
-msgid "Champion Hoplites are available in village phase."
-msgstr "Гвардейските хоплити са достъпни в Селската фаза."
+msgid ""
+"Champion Hoplites are available in village phase, and can promote to highly "
+"experienced Olympic Champions."
+msgstr ""
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].History
 msgid ""
