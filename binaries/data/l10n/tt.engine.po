@@ -48,31 +48,31 @@ msgstr ""
 
 #: i18n/L10n.cpp:308
 msgid "Long strings"
-msgstr ""
+msgstr "Озын юллар"
 
 #: lobby/XmppClient.cpp:1024
 msgid "unknown subtype (see logs)"
-msgstr ""
+msgstr "билгесез эчке тип (логларны карыйсыз)"
 
 #: lobby/XmppClient.cpp:1355
 msgid "The certificate is not trusted."
-msgstr ""
+msgstr "Сертификат ышанычлы түгел."
 
 #: lobby/XmppClient.cpp:1356
 msgid "The certificate hasn't got a known issuer."
-msgstr ""
+msgstr "Сертификат бастыручы билгеле түгел."
 
 #: lobby/XmppClient.cpp:1357
 msgid "The certificate has been revoked."
-msgstr ""
+msgstr "Сертификат юкка чыгарылды."
 
 #: lobby/XmppClient.cpp:1358
 msgid "The certificate has expired."
-msgstr ""
+msgstr "Сертификатның вакыты чыккан."
 
 #: lobby/XmppClient.cpp:1359
 msgid "The certificate is not yet active."
-msgstr ""
+msgstr "Сертификат әле актив түгел."
 
 #: lobby/XmppClient.cpp:1360
 msgid "The certificate has not been issued for the peer connected to."
@@ -93,23 +93,23 @@ msgstr "Хата юк"
 
 #: lobby/XmppClient.cpp:1388
 msgid "Player already logged in"
-msgstr ""
+msgstr "Уенчы керде инде"
 
 #: lobby/XmppClient.cpp:1390
 msgid "Forbidden"
-msgstr ""
+msgstr "Тыелган"
 
 #: lobby/XmppClient.cpp:1392
 msgid "Internal server error"
-msgstr ""
+msgstr "Эчке сервер хатасы"
 
 #: lobby/XmppClient.cpp:1396
 msgid "Not allowed"
-msgstr ""
+msgstr "Рөхсәт ителмәгән"
 
 #: lobby/XmppClient.cpp:1397
 msgid "Not authorized"
-msgstr ""
+msgstr "Рөхсәт бирмәгән"
 
 #: lobby/XmppClient.cpp:1400
 msgid "Recipient temporarily unavailable"
@@ -117,11 +117,11 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1402
 msgid "Registration required"
-msgstr ""
+msgstr "Теркәлү кирәк"
 
 #: lobby/XmppClient.cpp:1406
 msgid "Service unavailable"
-msgstr ""
+msgstr "Хезмәт мөмкин түгел"
 
 #: lobby/XmppClient.cpp:1411 lobby/XmppClient.cpp:1450
 msgid "Unknown error"
@@ -129,7 +129,7 @@ msgstr "Билгесез хата"
 
 #: lobby/XmppClient.cpp:1431
 msgid "Stream error"
-msgstr ""
+msgstr "Тапшыру хатасы"
 
 #: lobby/XmppClient.cpp:1432
 msgid "The incoming stream version is unsupported"
@@ -137,57 +137,57 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1433
 msgid "The stream has been closed by the server"
-msgstr ""
+msgstr "Сервер тоташуны ябылды"
 
 #: lobby/XmppClient.cpp:1437
 msgid "An I/O error occurred"
-msgstr ""
+msgstr "Кертү/Чыгару хатасы килеп чыкты"
 
 #: lobby/XmppClient.cpp:1439
 msgid "The connection was refused by the server"
-msgstr ""
+msgstr "Сервер тоташуны кире какты"
 
 #: lobby/XmppClient.cpp:1440
 msgid "Resolving the server's hostname failed"
-msgstr ""
+msgstr "Серверның исемен алу уңышсыз булды"
 
 #: lobby/XmppClient.cpp:1441
 msgid "This system is out of memory"
-msgstr ""
+msgstr "Бу системадагы буш хәтер юк"
 
 #: lobby/XmppClient.cpp:1443
 msgid ""
 "The server's certificate could not be verified or the TLS handshake did not "
 "complete successfully"
-msgstr ""
+msgstr "Сервер сертификатын раслап булмады яки шифрланган тоташуны башлау уңышлы тәмамланып булмады."
 
 #: lobby/XmppClient.cpp:1444
 msgid "The server did not offer required TLS encryption"
-msgstr ""
+msgstr "Сервер кирәкле TLS шифрлау тәкъдим итмәде"
 
 #: lobby/XmppClient.cpp:1446
 msgid "Authentication failed. Incorrect password or account does not exist"
-msgstr ""
+msgstr "Аутентификация уңышсыз тәмамланды. Хаталы серсүз яки хисап язмасы юк"
 
 #: lobby/XmppClient.cpp:1447
 msgid "The user or system requested a disconnect"
-msgstr ""
+msgstr "Кулланучы яки система тоташуны өзүне сорады"
 
 #: lobby/XmppClient.cpp:1448
 msgid "There is no active connection"
-msgstr ""
+msgstr "Актив тоташу юк"
 
 #: lobby/XmppClient.cpp:1469
 msgid "Your account has been successfully registered"
-msgstr ""
+msgstr "Хисап язмагыз уңышлы теркәлде"
 
 #: lobby/XmppClient.cpp:1470
 msgid "Not all necessary information provided"
-msgstr ""
+msgstr "Барлык кирәкле мәгълүматлар да бирелмәгән"
 
 #: lobby/XmppClient.cpp:1471
 msgid "Username already exists"
-msgstr ""
+msgstr "Кулланучының исеме инде бар"
 
 #: ps/Mod.cpp:93
 #, c-format
@@ -199,12 +199,12 @@ msgstr ""
 #: ps/ModIo.cpp:264
 #, c-format
 msgid "Failure while starting querying for game id. Error: %s; %s."
-msgstr ""
+msgstr "Уен идентификаторын таләп иткәндә тоткарлык килеп чыкты. Хата: %s; %s."
 
 #: ps/ModIo.cpp:294
 #, c-format
 msgid "Failure while starting querying for mods. Error: %s; %s."
-msgstr ""
+msgstr "Модларны таләп иткәндә тоткарлык килеп чыкты. Хата: %s; %s."
 
 #: ps/ModIo.cpp:320
 #, c-format
@@ -224,29 +224,29 @@ msgstr "Йөкләүне башлап җибәрә алмады. Хата: %s; %
 #: ps/ModIo.cpp:400
 #, c-format
 msgid "Asynchronous download failure: %s, %s."
-msgstr ""
+msgstr "Асинхрон йөкләп алу тоткарлыгы: %s, %s."
 
 #: ps/ModIo.cpp:428
 #, c-format
 msgid "Download failure. Server response: %s; %s."
-msgstr ""
+msgstr "Йөкләп алу тоткарлыгы. Серверның җавабы: %s; %s."
 
 #: ps/ModIo.cpp:534
 msgid "Mismatched filesize."
-msgstr ""
+msgstr "Туры килмәгән файл зурлыгы."
 
 #: ps/ModIo.cpp:552
 #, c-format
 msgid "Invalid file. Expected md5 %s, got %s."
-msgstr ""
+msgstr "Яраксыз файл. md5 %s көтелгән иде, ләкин %s алды."
 
 #: ps/ModIo.cpp:567
 msgid "Failed to compute final hash."
-msgstr ""
+msgstr "Соңгы хешне исәпли алмады."
 
 #: ps/ModIo.cpp:573
 msgid "Failed to verify signature."
-msgstr ""
+msgstr "Имзаны раслый алмады."
 
 #: ps/SavedGame.cpp:142
 #, c-format
@@ -255,7 +255,7 @@ msgstr "Уен '%s'-га сакланды"
 
 #: ps/scripting/JSInterface_Debug.cpp:87
 msgid "custom build"
-msgstr ""
+msgstr "шәхси төзелеш"
 
 #: renderer/Renderer.cpp:565 renderer/Renderer.cpp:568
 #: renderer/Renderer.cpp:680 renderer/Renderer.cpp:683

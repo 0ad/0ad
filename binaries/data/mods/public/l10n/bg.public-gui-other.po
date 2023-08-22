@@ -780,7 +780,7 @@ msgstr "Превземане"
 
 #: gui/common/tooltips.js:268
 msgid "Status Effects:"
-msgstr "Статуса влияе на:"
+msgstr "Ефекти на състоянието:"
 
 #: gui/common/tooltips.js:273
 #, javascript-format
@@ -796,7 +796,7 @@ msgstr "%(name)s %(details)s"
 #: gui/common/tooltips.js:280
 #, javascript-format
 msgid "Duration reduction: %(durationReduction)s%%"
-msgstr "Скъсена продължителност: %(durationReduction)s%%"
+msgstr "Намалено времетраене: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:288
 #, javascript-format
@@ -807,11 +807,11 @@ msgstr "Блокира: %(blockPercentage)s%%"
 #, javascript-format
 msgid ""
 "Blocks: %(blockPercentage)s%%, Duration reduction: %(durationReduction)s%%"
-msgstr "Блокира: %(blockPercentage)s%%, скъсена продължителност: %(durationReduction)s%%"
+msgstr "Блокира: %(blockPercentage)s%%, намалено времетраене: %(durationReduction)s%%"
 
 #: gui/common/tooltips.js:311
 msgid "Garrison to fire arrows"
-msgstr "Гарнизон ще стреля със стрели"
+msgstr "Поставете гарнизон, който да стреля със стрели"
 
 #: gui/common/tooltips.js:314 gui/common/tooltips.js:1070
 msgid "Interval:"
@@ -825,8 +825,8 @@ msgstr "Скорост:"
 #, javascript-format
 msgid "%(projectileCount)s %(projectileName)s"
 msgid_plural "%(projectileCount)s %(projectileName)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(projectileCount)s %(projectileName)s"
+msgstr[1] "%(projectileCount)s %(projectileName)s"
 
 #: gui/common/tooltips.js:321
 msgid "arrow"
@@ -1193,7 +1193,7 @@ msgstr "Изисква %(technology)s"
 #: gui/common/tooltips.js:993
 #, javascript-format
 msgid "%(label)s %(bonus)s"
-msgstr ""
+msgstr "%(label)s %(bonus)s"
 
 #: gui/common/tooltips.js:994
 msgid "Population Bonus:"
@@ -1228,7 +1228,7 @@ msgstr "Бягане"
 
 #: gui/common/tooltips.js:1044
 msgid "Acceleration"
-msgstr ""
+msgstr "Ускорение"
 
 #: gui/common/tooltips.js:1059 gui/common/tooltips.js:1064
 #: gui/common/tooltips.js:1069 gui/common/tooltips.js:1094
@@ -1262,12 +1262,12 @@ msgstr "Обхват:"
 #: gui/common/tooltips.js:1118 gui/common/tooltips.js:1146
 #, javascript-format
 msgid "%(primaryName)s (%(secondaryName)s)"
-msgstr ""
+msgstr "%(primaryName)s (%(secondaryName)s)"
 
 #: gui/common/tooltips.js:1122 gui/common/tooltips.js:1139
 #, javascript-format
 msgid "%(primaryName)s"
-msgstr ""
+msgstr "%(primaryName)s"
 
 #: gui/common/tooltips.js:1169
 msgid "Classes:"
@@ -3566,7 +3566,7 @@ msgstr "Тази запазена игра се нуждае от друга п�
 
 #: gui/loadgame/SavegameLoader.js:55
 msgid "Do you still want to proceed?"
-msgstr "Все още ли желаете да продължите?"
+msgstr "Все още ли искате да продължите?"
 
 #: gui/loadgame/SavegameLoader.js:60 gui/options/options.js:187
 #: gui/options/options.js:361 gui/options/options.js:426
@@ -4636,7 +4636,7 @@ msgstr "Трудно"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[0].label
 msgid "Random"
-msgstr "Случаен"
+msgstr "Случайно"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[1].label
 msgid "Balanced"
@@ -4644,7 +4644,7 @@ msgstr "Балансирано"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[2].label
 msgid "Aggressive"
-msgstr "Агресивен"
+msgstr "Агресивно"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][4].list[3].label
 msgid "Defensive"
@@ -5516,7 +5516,7 @@ msgstr ""
 
 #: gui/pregame/userreport/userreport.js:82
 msgid "Feedback is currently enabled."
-msgstr "Обратната връзка е включена."
+msgstr "Изпращането на информация е включено."
 
 #: gui/pregame/userreport/userreport.js:83
 #, javascript-format
@@ -5535,7 +5535,7 @@ msgstr ""
 msgid ""
 "You can automatically send us feedback that can help us fix bugs, and "
 "improve performance and compatibility."
-msgstr "Можете автоматично да ни изпращате обратна връзка; това ще ни помогне да отстраняваме проблеми и подобряваме производителността и съвместимостта."
+msgstr "Можете да ни изпращате автоматична информация, която да ни помогне в поправянето на грешки и подобряването на производителността и съвместимостта."
 
 #: gui/reference/catafalque/CatafalquePage.js:41
 #, javascript-format
@@ -6388,7 +6388,7 @@ msgstr ""
 
 #: gui/text/tips/barracks.txt:3 gui/text/tips/elephant_stable.txt:3
 msgid "Units gain experience while garrisoned inside the building."
-msgstr "Единиците трупат опит докато са на гарнизон в постройки."
+msgstr "Единиците трупат опит докато са поставени на гарнизон в сградата."
 
 #: gui/text/tips/barracks.txt:4
 msgid ""
@@ -6645,7 +6645,7 @@ msgstr ""
 
 #: gui/text/tips/forge.txt:1
 msgid "FORGE"
-msgstr ""
+msgstr "КОВАЧНИЦА"
 
 #: gui/text/tips/forge.txt:2
 msgid "Research structure for all factions."

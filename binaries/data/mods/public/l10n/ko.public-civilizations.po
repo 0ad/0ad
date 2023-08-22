@@ -4,7 +4,7 @@
 # project.
 # Translators:
 # 76407af6b051a571d67c2577de2183db_7380deb
-# Junghee Lee
+# JungHee Lee
 # Gu Hong Min
 # moolow
 # jasonkimik
@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-08-18 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
-"Last-Translator: Junghee Lee <daemul72@gmail.com>, 2020-2023\n"
+"Last-Translator: JungHee Lee <daemul72@gmail.com>, 2020-2023\n"
 "Language-Team: Korean (http://app.transifex.com/wildfire-games/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -89,6 +89,20 @@ msgstr "아티카 지방의 라우리온 광산에서 생산하는 은은 아테
 #: simulation/data/civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
 msgstr "올빼미 은화"
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].Description
+msgid "Elite Hoplites can promote to Champion Spearmen."
+msgstr "정예장갑보병은 챔피언 창병으로 승급할 수 있습니다."
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].History
+msgid ""
+"The best of the hoplites were chosen to form a group of elite professional "
+"soldiers."
+msgstr "장갑보병중 최고의 정예 전문 병사의 그룹을 구성하도록 선택되었습니다."
+
+#: simulation/data/civs/athen.jsonCivBonuses[1].Name
+msgid "Epilektoi Infantry"
+msgstr "에필렉토이 보병"
 
 #: simulation/data/civs/brit.jsonAINames[0]
 msgid "Prasutagus"
@@ -710,6 +724,20 @@ msgstr "충차의 공격 피해량이 +20%, 투석기의 공격 피해량이 +10
 msgid "Legionary Engineers"
 msgstr "군단 수리공"
 
+#: simulation/data/civs/rome.jsonCivBonuses[2].Description
+msgid "Promote Elite Rank Spearmen or Swordsmen to Champion Centurions."
+msgstr "정예 등급 창병 또는 검병을 챔피언 백부장으로 승급합니다."
+
+#: simulation/data/civs/rome.jsonCivBonuses[2].History
+msgid ""
+"Centurions were the officers responsible for a centuria, a group of 100 "
+"soldiers."
+msgstr "백부장은 100명의 병사로 이루어진 부대인 센츄리아를 책임지는 장교였습니다."
+
+#: simulation/data/civs/rome.jsonCivBonuses[2].Name
+msgid "Centurions"
+msgstr "백부장"
+
 #: simulation/data/civs/sele.jsonAINames[0]
 msgid "Antiochus I Soter"
 msgstr "안티오코스 1세 소테르"
@@ -860,8 +888,10 @@ msgid "Spartan Women"
 msgstr "스파르타 여성"
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].Description
-msgid "Champion Hoplites are available in village phase."
-msgstr "챔피언 장갑보병은 부락 단계에서 획득할 수 있습니다."
+msgid ""
+"Champion Hoplites are available in village phase, and can promote to highly "
+"experienced Olympic Champions."
+msgstr "챔피언 장갑보병은 부락 단계에서 사용할 수 있으며 고도로 숙련된 올림픽 챔피언으로 승급할 수 있습니다."
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].History
 msgid ""

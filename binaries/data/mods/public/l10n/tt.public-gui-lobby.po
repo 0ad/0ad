@@ -20,11 +20,11 @@ msgstr ""
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):28
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):61
 msgid "Back"
-msgstr ""
+msgstr "Кирегә"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(caption):32
 msgid "Update"
-msgstr ""
+msgstr "Яңарту"
 
 #: gui/lobby/LeaderboardPage/LeaderboardPage.xml:(heading):17
 msgid "Rank"
@@ -60,7 +60,7 @@ msgstr ""
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:42
 msgid "Your active mods do not match the mods of this game."
-msgstr ""
+msgstr "Актив модларыгыз бу уен модларына туры килми."
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:44
 msgid "Do you want to switch to the mod selection page?"
@@ -72,7 +72,7 @@ msgstr ""
 
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:54
 msgid "The game has already started. Do you want to join as observer?"
-msgstr ""
+msgstr "Уен инде башланды. Сез тамашачы булып кушылырга телисезме?"
 
 #. Translation: Join the game currently selected in the list.
 #: gui/lobby/LobbyPage/Buttons/JoinButton.js:106
@@ -92,7 +92,7 @@ msgstr ""
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:15
 msgctxt "previous page"
 msgid "Back"
-msgstr ""
+msgstr "Кирегә"
 
 #: gui/lobby/LobbyPage/Buttons/QuitButton.js:16
 msgctxt "previous page"
@@ -153,7 +153,7 @@ msgstr ""
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:150
 msgid "/me"
-msgstr ""
+msgstr "/me"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:154
 msgid ""
@@ -164,7 +164,7 @@ msgstr ""
 #. Translation: Chat command
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:157
 msgid "/say"
-msgstr ""
+msgstr "/say"
 
 #: gui/lobby/LobbyPage/Chat/ChatCommandHandler.js:161
 msgid "Clear all chat scrollback."
@@ -361,12 +361,12 @@ msgstr ""
 #: gui/lobby/LobbyPage/GameDetails.js:142
 #, javascript-format
 msgid "Host: %(playername)s"
-msgstr ""
+msgstr "Хост: %(playername)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:144
 #, javascript-format
 msgid "Players: %(current)s/%(total)s"
-msgstr ""
+msgstr "Уенчылар: %(current)s/%(total)s"
 
 #: gui/lobby/LobbyPage/GameDetails.js:146
 msgid "Victory Conditions:"
@@ -379,11 +379,11 @@ msgstr ", "
 
 #: gui/lobby/LobbyPage/GameDetails.js:151
 msgid "Mods:"
-msgstr ""
+msgstr "Модлар:"
 
 #: gui/lobby/LobbyPage/GameDetails.js:153
 msgid "Mods (incompatible):"
-msgstr ""
+msgstr "Модлар (ярашмаган):"
 
 #. Translation: %(time)s is the hour and minute here.
 #: gui/lobby/LobbyPage/GameDetails.js:156
@@ -480,7 +480,7 @@ msgstr ""
 #, javascript-format
 msgctxt "lobby kick"
 msgid "Reason: %(reason)s"
-msgstr ""
+msgstr "Сәбәп: %(reason)s"
 
 #: gui/lobby/LobbyPage/LobbyPage.xml:(caption):13
 #: gui/prelobby/entrance/entrance.xml:(caption):14
@@ -506,12 +506,12 @@ msgstr ""
 
 #: gui/lobby/LobbyPage/PlayerList.js:215
 msgid "Offline"
-msgstr ""
+msgstr "Челтәргә тоташмаган"
 
 #: gui/lobby/LobbyPage/PlayerList.js:221
 msgctxt "lobby presence"
 msgid "Unknown"
-msgstr ""
+msgstr "Билгесез"
 
 #: gui/lobby/LobbyPage/PlayerList.xml:(heading):18
 msgid "Status"
@@ -523,15 +523,15 @@ msgstr ""
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:106
 msgid "N/A"
-msgstr ""
+msgstr "Бирелмәгән"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:112
 msgid "Moderator"
-msgstr ""
+msgstr "Модератор"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:113
 msgid "Player"
-msgstr ""
+msgstr "Уенчы"
 
 #: gui/lobby/LobbyPage/ProfilePanel.js:114
 msgid "Muted Player"
@@ -580,7 +580,7 @@ msgstr ""
 #: gui/lobby/ProfilePage/ProfilePage.js:86
 #, javascript-format
 msgid "Player \"%(nick)s\" not found."
-msgstr ""
+msgstr "Уенчы \"%(nick)s\" табылмады."
 
 #: gui/lobby/ProfilePage/ProfilePage.xml:(caption):16
 msgid "Enter playername:"
@@ -626,7 +626,7 @@ msgstr ""
 
 #: gui/prelobby/common/credentials/credentials.js:36
 msgid "Passwords do not match"
-msgstr ""
+msgstr "Серсүзләр туры килми"
 
 #: gui/prelobby/common/credentials/credentials.js:54
 msgid "Are you sure you want to delete the password after connecting?"
@@ -675,7 +675,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:6
 msgid "[font=\"sans-bold-14\"]1. Player name[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]1. Уенчы исеме[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:7
 msgid ""
@@ -702,7 +702,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:11
 msgid "[font=\"sans-bold-14\"]2. Password[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]2. Серсүз[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:12
 msgid ""
@@ -719,7 +719,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:15
 msgid "[font=\"sans-bold-14\"]3. IP address[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]3. IP-адресы[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:16
 msgid ""
@@ -764,7 +764,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:23
 msgid "[font=\"sans-bold-14\"]4. Online presence[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]4. Челтәргә тоташкан булу[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:24
 msgid ""
@@ -774,7 +774,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:26
 msgid "[font=\"sans-bold-14\"]5. Chat messages[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]5. Чат хәбәрләре[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:27
 msgid ""
@@ -807,7 +807,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:33
 msgid "[font=\"sans-bold-14\"]6. Match statistics[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]6. Бәрелеш статистикасы[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:34
 msgid ""
@@ -831,7 +831,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:37
 msgid "Wildfire Games stores match statistics to:"
-msgstr ""
+msgstr "Wildfire Games уен статистикасын түбәндәге саклый:"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:38
 msgid ""
@@ -901,7 +901,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:53
 msgid "[font=\"sans-bold-16\"]User rights:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Кулланучы хокуклары:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:54
 msgid ""
@@ -960,7 +960,7 @@ msgstr ""
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:65
 msgid "[font=\"sans-bold-16\"]Wildfire Games obligations:[/font]"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Wildfire Games йөкләмәсе:[/font]"
 
 #: gui/prelobby/common/terms/Privacy_Policy.txt:66
 msgid ""
