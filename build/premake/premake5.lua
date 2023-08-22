@@ -1076,9 +1076,6 @@ function setup_main_exe ()
 		linkoptions {
 			-- wraps main thread in a __try block(see wseh.cpp). replace with mainCRTStartup if that's undesired.
 			"/ENTRY:wseh_EntryPoint",
-
-			-- see wstartup.h
-			"/INCLUDE:_wstartup_InitAndRegisterShutdown",
 		}
 
 		links { "delayimp" }
@@ -1479,8 +1476,6 @@ function setup_tests()
 		-- from "lowlevel" static lib; must be added here to be linked in
 		files { source_root.."lib/sysdep/os/win/error_dialog.rc" }
 
-		-- see wstartup.h
-		linkoptions { "/INCLUDE:_wstartup_InitAndRegisterShutdown" }
 		-- Enables console for the TEST project on Windows
 		linkoptions { "/SUBSYSTEM:CONSOLE" }
 

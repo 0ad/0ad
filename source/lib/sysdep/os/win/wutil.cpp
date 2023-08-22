@@ -31,16 +31,11 @@
 #include "lib/sysdep/sysdep.h"
 #include "lib/sysdep/os/win/win.h"
 #include "lib/sysdep/os/win/wdbg.h"	// wdbg_assert
-#include "lib/sysdep/os/win/winit.h"
 
 #include <shlobj.h>	// SHGetFolderPath
 
 #include <SDL_loadso.h>
 #include <SDL_syswm.h>
-
-
-WINIT_REGISTER_EARLY_INIT(wutil_Init);
-WINIT_REGISTER_LATE_SHUTDOWN(wutil_Shutdown);
 
 
 //-----------------------------------------------------------------------------
@@ -306,7 +301,7 @@ void wutil_EnableHiDPIOnWindows()
 
 //-----------------------------------------------------------------------------
 
-static Status wutil_Init()
+Status wutil_Init()
 {
 	InitLocks();
 
@@ -314,7 +309,7 @@ static Status wutil_Init()
 }
 
 
-static Status wutil_Shutdown()
+Status wutil_Shutdown()
 {
 	ShutdownLocks();
 

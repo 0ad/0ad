@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -100,6 +100,13 @@ that of Atlas depending on commandline parameters.
 #endif
 
 #if OS_WIN
+// Forward declarations to avoid including Windows dependent headers.
+Status waio_Shutdown();
+Status wdir_watch_Init();
+Status wdir_watch_Shutdown();
+Status wutil_Init();
+Status wutil_Shutdown();
+
 // We don't want to include Windows.h as it might mess up the rest
 // of the file so we just define DWORD as done in Windef.h.
 #ifndef DWORD
@@ -734,6 +741,11 @@ extern "C" int main(int argc, char* argv[])
 	}
 #endif // OS_UNIX
 
+#if OS_WIN
+	wutil_Init();
+	wdir_watch_Init();
+#endif
+
 	EarlyInit();	// must come at beginning of main
 
 	// static_cast is ok, argc is never negative.
@@ -741,6 +753,14 @@ extern "C" int main(int argc, char* argv[])
 
 	// Shut down profiler initialised by EarlyInit
 	g_Profiler2.Shutdown();
+
+#if OS_WIN
+	// All calls to Windows specific functions have to happen before the following
+	// shutdowns.
+	wdir_watch_Shutdown();
+	waio_Shutdown();
+	wutil_Shutdown();
+#endif
 
 	return EXIT_SUCCESS;
 }
