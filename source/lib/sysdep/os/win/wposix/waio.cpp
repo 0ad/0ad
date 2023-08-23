@@ -1,4 +1,4 @@
-/* Copyright (C) 2020 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -39,12 +39,9 @@
 #include "lib/sysdep/filesystem.h"	// O_DIRECT
 #include "lib/sysdep/os/win/wutil.h"	// wutil_SetPrivilege
 #include "lib/sysdep/os/win/wiocp.h"
-#include "lib/sysdep/os/win/winit.h"
 #include "lib/sysdep/os/win/wposix/crt_posix.h"	// _get_osfhandle
 
 #include <ctime>
-
-WINIT_REGISTER_MAIN_SHUTDOWN(waio_Shutdown);
 
 // (dynamic linking preserves compatibility with previous Windows versions)
 static WUTIL_FUNC(pSetFileCompletionNotificationModes, BOOL, (HANDLE, UCHAR));
@@ -392,7 +389,7 @@ static Status waio_Init()
 }
 
 
-static Status waio_Shutdown()
+Status waio_Shutdown()
 {
 	if(waio_initState == 0)	// we were never initialized
 		return INFO::OK;

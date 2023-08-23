@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -24,7 +24,6 @@
 #define INCLUDED_WPOSIX_INTERNAL
 
 #include "lib/sysdep/os/win/win.h"
-#include "lib/sysdep/os/win/winit.h"
 #include "lib/sysdep/os/win/wutil.h"
 
 // cast intptr_t to HANDLE; centralized for easier changing, e.g. avoiding

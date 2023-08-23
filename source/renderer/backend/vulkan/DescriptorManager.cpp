@@ -168,7 +168,7 @@ CDescriptorManager::SingleTypePool& CDescriptorManager::GetSingleTypePool(
 		constexpr uint32_t maxSets = 16384;
 
 		VkDescriptorPoolSize descriptorPoolSize{};
-		descriptorPoolSize.type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
+		descriptorPoolSize.type = type;
 		descriptorPoolSize.descriptorCount = maxSets * size;
 
 		VkDescriptorPoolCreateInfo descriptorPoolCreateInfo{};
@@ -260,7 +260,11 @@ VkDescriptorSet CDescriptorManager::GetSingleTypeDescritorSet(
 		for (CTexture* texture : textures)
 		{
 			if (!texture)
+			{
+				// We can use a default texture only for read-only bindings.
+				ENSURE(type == VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER || type == VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE);
 				texture = m_ErrorTexture->As<CTexture>();
+			}
 			ENSURE(texture->GetUsage() & ITexture::Usage::SAMPLED);
 
 			VkDescriptorImageInfo descriptorImageInfo{};

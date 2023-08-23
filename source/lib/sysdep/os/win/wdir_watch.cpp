@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -30,13 +30,8 @@
 #include "lib/allocators/shared_ptr.h"
 #include "lib/path.h"	// path_is_subpath
 #include "lib/sysdep/os/win/win.h"
-#include "lib/sysdep/os/win/winit.h"
 #include "lib/sysdep/os/win/wutil.h"
 #include "lib/sysdep/os/win/wiocp.h"
-
-
-WINIT_REGISTER_MAIN_INIT(wdir_watch_Init);
-WINIT_REGISTER_MAIN_SHUTDOWN(wdir_watch_Shutdown);
 
 
 //-----------------------------------------------------------------------------
@@ -370,13 +365,13 @@ Status dir_watch_Poll(DirWatchNotifications& notifications)
 
 //-----------------------------------------------------------------------------
 
-static Status wdir_watch_Init()
+Status wdir_watch_Init()
 {
 	s_dirWatchManager = new DirWatchManager;
 	return INFO::OK;
 }
 
-static Status wdir_watch_Shutdown()
+Status wdir_watch_Shutdown()
 {
 	SAFE_DELETE(s_dirWatchManager);
 	return INFO::OK;
