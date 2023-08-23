@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -83,7 +83,7 @@ JS::Value GetHotkeyMap(const ScriptRequest& rq)
 			std::vector<std::string> keymap;
 			if (key.first != UNUSED_HOTKEY_CODE)
 				keymap.push_back(FindScancodeName(static_cast<SDL_Scancode>(key.first)));
-			for (const SKey& secondary_key : mapping.requires)
+			for (const SKey& secondary_key : mapping.required)
 				keymap.push_back(FindScancodeName(static_cast<SDL_Scancode>(secondary_key.code)));
 			// If keymap is empty (== unused) or size 1, push the combination.
 			// Otherwise, all permutations of the combination will exist, so pick one using an arbitrary order.
@@ -149,7 +149,7 @@ JS::Value GetConflicts(const ScriptRequest& rq, JS::HandleValue combination)
 	// since we at least have one matching key.
 	for (const SHotkeyMapping& keymap : it->second)
 	{
-		std::set<SKey> match(keymap.requires.begin(), keymap.requires.end());
+		std::set<SKey> match(keymap.required.begin(), keymap.required.end());
 		if (codes == match)
 			conflicts.emplace_back(keymap.name);
 	}
