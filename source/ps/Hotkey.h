@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -63,7 +63,7 @@ struct SHotkeyMapping
 {
 	CStr name; // name of the hotkey
 	SKey primary; // the primary key
-	std::vector<SKey> requires; // list of non-primary keys that must also be active
+	std::vector<SKey> required; // list of non-primary keys that must also be active
 };
 
 typedef std::vector<SHotkeyMapping> KeyMapping;

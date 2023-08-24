@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -124,7 +124,7 @@ static void LoadConfigBindings(CConfigDB& configDB)
 
 				for (itKey2 = keyCombination.begin(); itKey2 != keyCombination.end(); ++itKey2)
 					if (itKey != itKey2) // Push any auxiliary keys
-						bindCode.requires.push_back(*itKey2);
+						bindCode.required.push_back(*itKey2);
 
 				g_HotkeyMap[itKey->code].push_back(bindCode);
 			}
@@ -320,7 +320,7 @@ InReaction HotkeyInputPrepHandler(const SDL_Event_* ev)
 				continue;
 
 			bool accept = true;
-			for (const SKey& k : hotkey.requires)
+			for (const SKey& k : hotkey.required)
 			{
 				accept = isPressed(k);
 				if (!accept)
@@ -330,14 +330,14 @@ InReaction HotkeyInputPrepHandler(const SDL_Event_* ev)
 				continue;
 
 			// Check if this is an equally precise or more precise match
-			if (hotkey.requires.size() + 1 >= closestMapMatch)
+			if (hotkey.required.size() + 1 >= closestMapMatch)
 			{
 				// Check if more precise
-				if (hotkey.requires.size() + 1 > closestMapMatch)
+				if (hotkey.required.size() + 1 > closestMapMatch)
 				{
 					// Throw away the old less-precise matches
 					newPressedHotkeys.clear();
-					closestMapMatch = hotkey.requires.size() + 1;
+					closestMapMatch = hotkey.required.size() + 1;
 				}
 				newPressedHotkeys.emplace_back(&hotkey, isReleasedKey);
 			}
@@ -372,7 +372,7 @@ InReaction HotkeyInputActualHandler(const SDL_Event_* ev)
 				std::find_if(newPressedHotkeys.begin(), newPressedHotkeys.end(),
 							 [&hotkey](const PressedHotkey& v){ return v.mapping->name == hotkey.mapping->name; })->retriggered = hotkey.retriggered;
 			// If the already-pressed hotkey has a lower specificity than the new hotkey(s), de-activate it.
-			else if (hotkey.mapping->requires.size() + 1 < closestMapMatch)
+			else if (hotkey.mapping->required.size() + 1 < closestMapMatch)
 			{
 				releasedHotkeys.emplace_back(hotkey.mapping->name.c_str(), hotkey.retriggered);
 				continue;
@@ -381,7 +381,7 @@ InReaction HotkeyInputActualHandler(const SDL_Event_* ev)
 			// Check that the hotkey still matches all active keys.
 			bool accept = isPressed(hotkey.mapping->primary);
 			if (accept)
-				for (const SKey& k : hotkey.mapping->requires)
+				for (const SKey& k : hotkey.mapping->required)
 				{
 					accept = isPressed(k);
 					if (!accept)
@@ -394,9 +394,9 @@ InReaction HotkeyInputActualHandler(const SDL_Event_* ev)
 				// If this hotkey has higher specificity than the new hotkeys we wanted to trigger/retrigger,
 				// then discard this new addition(s). This works because at any given time, all hotkeys
 				// active must have the same specificity.
-				if (hotkey.mapping->requires.size() + 1 > closestMapMatch)
+				if (hotkey.mapping->required.size() + 1 > closestMapMatch)
 				{
-					closestMapMatch = hotkey.mapping->requires.size() + 1;
+					closestMapMatch = hotkey.mapping->required.size() + 1;
 					newPressedHotkeys.clear();
 					newPressedHotkeys.emplace_back(hotkey.mapping, hotkey.retriggered);
 				}

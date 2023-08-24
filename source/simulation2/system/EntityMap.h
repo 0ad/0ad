@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -70,8 +70,14 @@ public:
 	}
 
 	// Iterators
-	template<class U> struct _iter : public std::iterator<std::forward_iterator_tag, U>
+	template<class U> struct _iter
 	{
+		using iterator_category = std::forward_iterator_tag;
+		using value_type = U;
+		using difference_type = std::ptrdiff_t;
+		using pointer = U*;
+		using reference = U&;
+
 		U* val;
 		inline _iter(U* init) : val(init) {}
 		inline U& operator*() { return *val; }
