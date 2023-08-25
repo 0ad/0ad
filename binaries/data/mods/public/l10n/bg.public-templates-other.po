@@ -1081,7 +1081,7 @@ msgstr "Превръща се в къща, осигуряваща 5 населе
 #: simulation/templates/special/formations/anti_cavalry.xml:5
 #: simulation/templates/special/formations/testudo.xml:5
 msgid "Melee Infantry only, requires at least 16."
-msgstr "Единствено пехота за близък бой, изисква поне 16-то ниво."
+msgstr "Само за близкобойна пехота. Необходими са поне 16 единици."
 
 #: simulation/templates/special/formations/anti_cavalry.xml:25
 msgid "Anti Cavalry"
@@ -1089,7 +1089,7 @@ msgstr "Анти-конница"
 
 #: simulation/templates/special/formations/anti_cavalry.xml:26
 msgid "Square formation of Melee Infantry to fight Cavalry."
-msgstr "Кубична формация за близкобойна пехота, която противостои на конници."
+msgstr "Квадратна формация за близкобойната пехота, за сблъсък срещу конница."
 
 #: simulation/templates/special/formations/battle_line.xml:13
 msgid "Battle Line"
@@ -1097,11 +1097,11 @@ msgstr "Боева линия"
 
 #: simulation/templates/special/formations/battle_line.xml:15
 msgid "Common formation for frontal attacks."
-msgstr "Обичайна формация за фронтални атаки."
+msgstr "Обикновена формация за фронтални атаки."
 
 #: simulation/templates/special/formations/box.xml:5
 msgid "Requires at least 4 Soldiers or Siege engines."
-msgstr "Изисква поне 4-ма войника или обсадни оръдия."
+msgstr "Необходими са поне 4-ма во̀ини или обсадни машини."
 
 #: simulation/templates/special/formations/box.xml:12
 msgid "Box"
@@ -1117,7 +1117,7 @@ msgstr "Пресилен марш"
 
 #: simulation/templates/special/formations/column_closed.xml:12
 msgid "Closed column formation for risky movements."
-msgstr "Затворена формация по колони за рисковани придвижвания."
+msgstr "Затворена колонна формация за рисковани придвижвания."
 
 #: simulation/templates/special/formations/column_open.xml:10
 msgid "Column Open"
@@ -1129,7 +1129,7 @@ msgstr "Разпръсната формация за прекосяване на
 
 #: simulation/templates/special/formations/flank.xml:5
 msgid "Requires at least 8 Soldiers or Siege engines."
-msgstr "Изисква поне 8 войника или обсадни оръдия."
+msgstr "Необходими са поне 8 во̀ини или обсадни машини."
 
 #: simulation/templates/special/formations/flank.xml:11
 msgid "Flank"
@@ -1137,7 +1137,7 @@ msgstr "Фланг"
 
 #: simulation/templates/special/formations/flank.xml:13
 msgid "Formation to protect the sides or surprise attack the enemy flank."
-msgstr "Формация за защита на страните или за изненадваща атака над вражеския фланг."
+msgstr "Формация за странична защита или за изненадващо нападение по вражеския фланг."
 
 #: simulation/templates/special/formations/line_closed.xml:9
 msgid "Close Order"
@@ -1153,7 +1153,7 @@ msgstr "Отворена подредба"
 
 #: simulation/templates/special/formations/line_open.xml:13
 msgid "Dispersed formation for open field combat."
-msgstr "Разпръсната формация за борба по отворени пространства."
+msgstr "Разпръсната формация за битка в отворени пространства."
 
 #: simulation/templates/special/formations/null.xml:7
 msgid "None"
@@ -1161,7 +1161,7 @@ msgstr "Без"
 
 #: simulation/templates/special/formations/phalanx.xml:5
 msgid "Infantry Hoplites only, requires at least 10."
-msgstr "Само за хоплити, изисква поне 10-то ниво."
+msgstr "Само за хоплити,. Необходими са поне 10 единици."
 
 #: simulation/templates/special/formations/phalanx.xml:23
 msgid "Phalanx"
@@ -1169,7 +1169,7 @@ msgstr "Фаланга"
 
 #: simulation/templates/special/formations/phalanx.xml:25
 msgid "Compact formation of Infantry Hoplites creating a shield wall."
-msgstr "Сбита формация от хоплити, които създават стена от щитове."
+msgstr "Сбита формация от пехотни хоплити, които създават стена от щитове."
 
 #: simulation/templates/special/formations/scatter.xml:8
 msgid "Scatter"
@@ -1177,7 +1177,7 @@ msgstr "Разпръсване"
 
 #: simulation/templates/special/formations/skirmish.xml:4
 msgid "Ranged Soldiers only, requires at least 2."
-msgstr "Само за далекобойни войници, поне на 2-ро ниво."
+msgstr "Само за далекобойни во̀ини. Необходими са поне 2 единици."
 
 #: simulation/templates/special/formations/skirmish.xml:14
 msgid "Skirmish"
@@ -1185,11 +1185,11 @@ msgstr "Стрелкова"
 
 #: simulation/templates/special/formations/skirmish.xml:16
 msgid "Dispersed formation for reconnaissance, ambushes or hit-and-run."
-msgstr "Разпръсната формация, използвана за разузнаване, нападения и удар-бягане."
+msgstr "Разпръсната формация, използвана за разузнаване, нападения от засада или светкавични удари и измъкване."
 
 #: simulation/templates/special/formations/syntagma.xml:5
 msgid "Infantry Pikemen only, requires at least 16."
-msgstr "Само за пиконосци, поне на 16-то ниво."
+msgstr "Само за пехотни пиконосци. Необходими са поне 16 единици."
 
 #: simulation/templates/special/formations/syntagma.xml:29
 msgid "Syntagma"
@@ -1197,7 +1197,7 @@ msgstr "Синтагма"
 
 #: simulation/templates/special/formations/syntagma.xml:31
 msgid "Compact formation of Infantry Pikemen creating a defensive wall."
-msgstr "Сбита формация от пиконосци, които създават отбранителна стена."
+msgstr "Сбита формация от пехотни пиконосци, които създават защитна стена."
 
 #: simulation/templates/special/formations/testudo.xml:70
 msgid "Testudo"
@@ -1205,11 +1205,11 @@ msgstr "Костенурка"
 
 #: simulation/templates/special/formations/testudo.xml:72
 msgid "Compact formation of Melee Infantry creating a shield shell."
-msgstr "Сбита формация от бойци, които създават защитна черупка."
+msgstr "Сбита формация от близкобойни пехотинци, които създават обвивка от щитове."
 
 #: simulation/templates/special/formations/wedge.xml:5
 msgid "Cavalry only, requires at least 6."
-msgstr "Само за конници, поне на 6-то ниво."
+msgstr "Само за конници. Необходими са поне 6 единици."
 
 #: simulation/templates/special/formations/wedge.xml:16
 msgid "Wedge"
@@ -1217,7 +1217,7 @@ msgstr "Клин"
 
 #: simulation/templates/special/formations/wedge.xml:18
 msgid "Triangular Cavalry formation to break through enemy lines."
-msgstr "Триъгълна конна формация за пробиване на вражеската линия."
+msgstr "Триъгълна конна формация за пробиване на вражеските редици."
 
 #: simulation/templates/special/spy.xml:16
 msgid "Spy"
@@ -1225,7 +1225,7 @@ msgstr "Шпионин"
 
 #: simulation/templates/template_formation.xml:15
 msgid "Requires at least 2 Soldiers or Siege Engines."
-msgstr "Нужни са поне двама войника или обсадни оръдия."
+msgstr "Необходими са поне двама во̀ини или обсадни машини."
 
 #: simulation/templates/template_gaia.xml:7
 msgid "Gaia"
@@ -1238,7 +1238,7 @@ msgstr "Риба"
 
 #: simulation/templates/template_gaia_fish.xml:10
 msgid "Catch fish for food."
-msgstr "Риболов за храна."
+msgstr "Хващане на риба за храна."
 
 #: simulation/templates/template_gaia_fruit.xml:8
 msgid "Fruit"
@@ -1267,7 +1267,7 @@ msgstr "Каменна кариера"
 
 #: simulation/templates/template_gaia_rock.xml:9
 msgid "Quarry rock for stone."
-msgstr "Добив на камъни чрез дялане."
+msgstr "Добиване на камъни чрез открито разбиване на скали."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Ruins"
@@ -1291,7 +1291,7 @@ msgstr "Дърво"
 
 #: simulation/templates/template_gaia_tree.xml:9
 msgid "Chop trees for wood."
-msgstr "Сечене на дървета за дърво."
+msgstr "Сечене на дървета за дървесина."
 
 #: simulation/templates/template_structure.xml:46
 msgid "Structure"
@@ -1308,4 +1308,4 @@ msgstr "Стена"
 
 #: simulation/templates/template_wallset.xml:10
 msgid "Wall off an area."
-msgstr "Ограждане на дадено пространство."
+msgstr "Ограждане на определено пространство."

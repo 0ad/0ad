@@ -142,12 +142,12 @@ msgstr ""
 
 #: gui/common/gamedescription.js:159
 msgid "No Team"
-msgstr ""
+msgstr "Төркем юк"
 
 #: gui/common/gamedescription.js:160
 #, javascript-format
 msgid "Team %(team)s"
-msgstr ""
+msgstr "Төркем %(team)s"
 
 #. Translation: Describe players of one team in a selected game, f.e. in the
 #. replay- or
@@ -178,7 +178,7 @@ msgstr ""
 msgctxt "victory condition"
 msgid "Wonder (%(min)s minute)"
 msgid_plural "Wonder (%(min)s minutes)"
-msgstr[0] ""
+msgstr[0] "Могҗиза (%(min)s минут)"
 
 #: gui/common/gamedescription.js:216
 #, javascript-format
@@ -209,11 +209,11 @@ msgstr ""
 
 #: gui/common/gamedescription.js:251
 msgid "Locked Teams"
-msgstr ""
+msgstr "Билгеләнгән төркемнәр"
 
 #: gui/common/gamedescription.js:252
 msgid "Players can't change the initial teams."
-msgstr ""
+msgstr "Уенчылар башлангыч төркемнәрне үзгәртә алмыйлар."
 
 #: gui/common/gamedescription.js:256
 msgid "Diplomacy"
@@ -320,7 +320,7 @@ msgstr "Башлангыч ресурслар"
 #: gui/common/gamedescription.js:353
 msgctxt "starting resources"
 msgid "Per Player"
-msgstr ""
+msgstr "Бер уенчыга"
 
 #: gui/common/gamedescription.js:354
 #, javascript-format
@@ -334,7 +334,7 @@ msgstr ""
 #: gui/common/gamedescription.js:369
 msgctxt "population limit"
 msgid "Per Player"
-msgstr ""
+msgstr "Бер уенчыга"
 
 #: gui/common/gamedescription.js:377
 msgid "World Population Cap"
@@ -2758,7 +2758,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.desc
 msgctxt "hotkey metadata"
 msgid "Show the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "Диалог тәрәзәсендә Күп уенчылы Бүлмән күрсәтегез."
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.lobby.name
 msgctxt "hotkey metadata"
@@ -3029,7 +3029,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.teamchat.name
 msgctxt "hotkey metadata"
 msgid "Toggle team chat"
-msgstr ""
+msgstr "Төркем чатын күрсәтү/яшерү"
 
 #: gui/hotkeys/spec/ingamegui.jsonmapped_hotkeys.ingamegui.timeelapsedcounter.toggle.desc
 msgctxt "hotkey metadata"
@@ -3588,7 +3588,7 @@ msgstr ""
 
 #: gui/loadgame/load.xml:(caption):74
 msgid "Players:"
-msgstr ""
+msgstr "Уенчылар:"
 
 #: gui/loadgame/load.xml:(caption):78
 msgid "Played time:"
@@ -3746,7 +3746,7 @@ msgstr ""
 
 #: gui/maps/MapFilters.js:116
 msgid "Maps that are recommended for Multiplayer play."
-msgstr ""
+msgstr "Күп уенчылы уйнау өчен тәкъдим ителгән карталар."
 
 #: gui/maps/MapFilters.js:121
 msgid "Trigger Maps"
@@ -3897,7 +3897,7 @@ msgstr ""
 
 #: gui/options/options.json[0].options[0].label
 msgid "Player name (single-player)"
-msgstr ""
+msgstr "Уенчы исеме (ялгыз уенчылы)"
 
 #: gui/options/options.json[0].options[0].tooltip
 msgid "How you want to be addressed in single-player matches."
@@ -3905,11 +3905,11 @@ msgstr "Бер уенчы матчларында сезгә ничек мөрә�
 
 #: gui/options/options.json[0].options[1].label
 msgid "Player name (multiplayer)"
-msgstr ""
+msgstr "Уенчы исеме (күп уенчылы)"
 
 #: gui/options/options.json[0].options[1].tooltip
 msgid "How you want to be addressed in multiplayer matches (except lobby)."
-msgstr "Зур уенчы матчларында ничек мөрәҗәгать ителергә телисез (бүлмәдән читтә)."
+msgstr "Күп уенчы матчларында ничек мөрәҗәгать ителергә телисез (бүлмәдән читтә)."
 
 #: gui/options/options.json[0].options[2].label
 msgid "Background pause"
@@ -4225,7 +4225,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[3].list[2].label
 msgid "MSAA (2×)"
-msgstr ""
+msgstr "MSAA (2×)"
 
 #: gui/options/options.json[2].options[3].list[2].tooltip
 msgid ""
@@ -4235,7 +4235,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[3].list[3].label
 msgid "MSAA (4×)"
-msgstr ""
+msgstr "MSAA (4×)"
 
 #: gui/options/options.json[2].options[3].list[3].tooltip
 msgid ""
@@ -4245,7 +4245,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[3].list[4].label
 msgid "MSAA (8×)"
-msgstr ""
+msgstr "MSAA (8×)"
 
 #: gui/options/options.json[2].options[3].list[4].tooltip
 msgid ""
@@ -4255,7 +4255,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[3].list[5].label
 msgid "MSAA (16×)"
-msgstr ""
+msgstr "MSAA (16×)"
 
 #: gui/options/options.json[2].options[3].list[5].tooltip
 msgid ""
@@ -4639,7 +4639,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].label
 msgid "Assign players"
-msgstr ""
+msgstr "Уенчылар билгеләү"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][2][3][5].list[0].label
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].list[0].label
@@ -4708,7 +4708,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[3].tooltip
 msgid "Show which player has a bad connection in multiplayer games."
-msgstr ""
+msgstr "Күп уенчы уеннарында кайсы уенчының бәйләнеше начар икәнен күрсәтегез."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].options[4].label
 msgid "Late observer joins"
@@ -4750,7 +4750,7 @@ msgstr ""
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][5].tooltip
 msgid "These settings only affect the multiplayer."
-msgstr ""
+msgstr "Бу көйләүләр күп уенчыга гына кагыла."
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1][6].label
 msgid "Game Session"
@@ -5207,7 +5207,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:92
 msgid "Single-player"
-msgstr ""
+msgstr "Ялгыз уенчылы"
 
 #: gui/pregame/MainMenuItems.js:93
 msgid "Start, load, or replay a single-player game."
@@ -5219,7 +5219,7 @@ msgstr "Каршы торулар"
 
 #: gui/pregame/MainMenuItems.js:97
 msgid "Start a new single-player game."
-msgstr ""
+msgstr "Яңа ялгыз уенчылы уен башлау."
 
 #: gui/pregame/MainMenuItems.js:104
 msgid "Load a saved game."
@@ -5243,11 +5243,11 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:158
 msgid "Multiplayer"
-msgstr ""
+msgstr "Күп уенчылы"
 
 #: gui/pregame/MainMenuItems.js:159
 msgid "Fight against one or more human players in a multiplayer game."
-msgstr ""
+msgstr "Күп уенчылы уенында бер яки берничә кеше уенчыларына каршы көрәшегез."
 
 #. Translation: Join a game by specifying the host's IP address.
 #: gui/pregame/MainMenuItems.js:163
@@ -5256,7 +5256,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:164
 msgid "Joining an existing multiplayer game."
-msgstr ""
+msgstr "Мөмкин булган күп уенчылы уенына кушылу."
 
 #: gui/pregame/MainMenuItems.js:172
 msgid "Host Game"
@@ -5264,7 +5264,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:173
 msgid "Host a multiplayer game."
-msgstr ""
+msgstr "Күп уенчылы уен ясау."
 
 #: gui/pregame/MainMenuItems.js:181
 msgid "Game Lobby"
@@ -5279,7 +5279,7 @@ msgstr ""
 
 #: gui/pregame/MainMenuItems.js:184
 msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
-msgstr ""
+msgstr "Күп уенчылы Бүлмән эшләтеп җибәрү \\[ТӨЗЕЛЕШТӘ СҮНДЕРЕЛДЕ]"
 
 #: gui/pregame/MainMenuItems.js:208
 msgid "Settings"
@@ -5567,7 +5567,7 @@ msgstr[0] ""
 #: gui/reference/civinfo/Sections/Subsections/BonusesSubsection.js:55
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
+msgstr[0] "Төркем бонуслары"
 
 #: gui/reference/civinfo/Sections/Subsections/HeroesSubsection.js:29
 msgid "Hero"
@@ -5765,12 +5765,12 @@ msgstr ""
 #: gui/replaymenu/replay_filters.js:146
 msgctxt "replay filter"
 msgid "Single-player"
-msgstr ""
+msgstr "Ялгыз уенчылы"
 
 #: gui/replaymenu/replay_filters.js:147
 msgctxt "replay filter"
 msgid "Multiplayer"
-msgstr ""
+msgstr "Күп уенчылы"
 
 #: gui/replaymenu/replay_filters.js:148
 msgctxt "replay filter"
@@ -5848,7 +5848,7 @@ msgstr ""
 #: gui/replaymenu/replay_menu.xml:(heading):75
 msgctxt "replay"
 msgid "Players"
-msgstr ""
+msgstr "Уенчылар"
 
 #: gui/replaymenu/replay_menu.xml:(heading):83
 msgctxt "replay"
@@ -5867,7 +5867,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_menu.xml:(placeholder_text):32
 msgid "Search for Player"
-msgstr ""
+msgstr "Уенчы эзләү"
 
 #: gui/replaymenu/replay_menu.xml:(tooltip):98
 msgid "File path for the currently selected replay."
@@ -5880,7 +5880,7 @@ msgstr ""
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr ""
+msgstr "[font=\"sans-bold-20\"]  \"0 A.D. Күтәрелә барган империяләр\" урнаштырган өчен рәхмәт!!"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -5934,7 +5934,7 @@ msgstr ""
 #: gui/summary/layout.js:110 gui/summary/layout.js:161
 #: gui/summary/layout.js:193 gui/summary/summary.xml:(caption):70
 msgid "Player name"
-msgstr ""
+msgstr "Уенчы исеме"
 
 #: gui/summary/layout.js:16
 msgid "Total score"
@@ -6135,7 +6135,7 @@ msgstr ""
 
 #: gui/summary/layout.js:377
 msgid "Team total"
-msgstr ""
+msgstr "Төркем барлыгы"
 
 #: gui/summary/summary.js:30
 msgid "Trained"
@@ -6266,7 +6266,7 @@ msgstr "%(mapName)s - %(mapType)s"
 #: gui/summary/summary.js:544
 #, javascript-format
 msgid "%(hotkey)s: Toggle the multiplayer lobby in a dialog window."
-msgstr ""
+msgstr "%(hotkey)s: Диалог тәрәзәсендә күп уенчылы бүлмән күчерегез."
 
 #: gui/summary/summary.js:556
 #, javascript-format
@@ -6290,7 +6290,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:(caption):167
 msgid "Group by team"
-msgstr ""
+msgstr "Төркемләп туплау"
 
 #: gui/summary/summary.xml:(caption):187
 msgid "Watch Replay"
