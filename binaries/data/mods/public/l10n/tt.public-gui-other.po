@@ -433,7 +433,7 @@ msgstr "Серверга начар тоташу (%(milliseconds)s мс)"
 #: gui/common/network.js:33
 #, javascript-format
 msgid "Bad connection to %(player)s (%(milliseconds)sms)"
-msgstr ""
+msgstr "%(player)s уенчыга начар бәйләнеш (%(milliseconds)sмс)"
 
 #: gui/common/network.js:66
 msgid ""
@@ -504,7 +504,7 @@ msgstr ""
 #: gui/common/network.js:84
 #, javascript-format
 msgid "\\[Invalid value %(id)s]"
-msgstr ""
+msgstr "\\[Хаталы кыйммәт %(id)s]"
 
 #: gui/common/network.js:98
 msgid "Lost connection to the server."
@@ -545,7 +545,7 @@ msgstr ", "
 #: gui/common/settings.js:116
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "Ком савыты"
 
 #: gui/common/settings.js:120
 msgctxt "aiDiff"
@@ -1424,7 +1424,7 @@ msgstr ""
 
 #: gui/credits/texts/audio.jsonContent[3].Content[3].Subtitle
 msgid "Persian"
-msgstr ""
+msgstr "Фарсы"
 
 #: gui/credits/texts/audio.jsonContent[3].Title
 msgid "Voices"
@@ -1570,7 +1570,7 @@ msgstr ""
 
 #: gui/hotkeys/HotkeysPage.js:109
 msgid "All available hotkeys."
-msgstr ""
+msgstr "Барлык мөмкин булган кайнар төймәләр."
 
 #: gui/hotkeys/HotkeysPage.js:156
 msgid ""
@@ -1585,7 +1585,7 @@ msgstr "Раслау"
 
 #: gui/hotkeys/HotkeysPage.js:198
 msgid "No tooltip available."
-msgstr ""
+msgstr "Бер киңәш тә юк."
 
 #: gui/hotkeys/hotkeys.xml:(caption):18
 msgid "Category:"
@@ -2683,7 +2683,7 @@ msgstr ""
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unload.name
 msgctxt "hotkey metadata"
 msgid "Unload"
-msgstr ""
+msgstr "Бушату"
 
 #: gui/hotkeys/spec/ingame.jsonmapped_hotkeys.ingame.session.unloadturrets.desc
 msgctxt "hotkey metadata"
@@ -4586,7 +4586,7 @@ msgstr ""
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0].label._string
 msgctxt "Option for the AI difficulty."
 msgid "Sandbox"
-msgstr ""
+msgstr "Ком савыты"
 
 #: gui/options/options.json[2].options[6].list[0][7].list[0][10].list[0][1][19][4].options[3].list[0][1].label._string
 msgctxt "Option for the AI difficulty."
@@ -5686,7 +5686,7 @@ msgstr ""
 #: gui/replaymenu/replay_actions.js:96
 #, javascript-format
 msgid "Your version: %(version)s"
-msgstr ""
+msgstr "Версиягез: %(version)s"
 
 #: gui/replaymenu/replay_actions.js:97
 #, javascript-format
@@ -5699,7 +5699,7 @@ msgstr ""
 
 #: gui/replaymenu/replay_actions.js:126
 msgid "No summary data available."
-msgstr ""
+msgstr "Нәтиҗә мәгълүмат мөмкин булмаган."
 
 #: gui/replaymenu/replay_actions.js:175
 msgid "Are you sure you want to delete this replay permanently?"
@@ -6480,7 +6480,7 @@ msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:3
 msgid "Available to Britons, Gauls, and Iberians."
-msgstr ""
+msgstr "Аны Бриттлар, Галлар һәм Ибериянлар куллана алалар."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "Can transport up to 40 units."
@@ -6762,7 +6762,7 @@ msgstr ""
 
 #: gui/text/tips/meroe_pyramids.txt:2
 msgid "Special structures available for the Kushites."
-msgstr ""
+msgstr "Кушитлар өчен махсус биналары ачык."
 
 #: gui/text/tips/meroe_pyramids.txt:3
 msgid ""
@@ -6799,7 +6799,7 @@ msgstr ""
 
 #: gui/text/tips/palisades.txt:2
 msgid "A quick, cheap wooden wall available to all factions."
-msgstr ""
+msgstr "Барлык мәдәниятлердә кулланыла торган тизторгызылган, арзан агач стенасы,"
 
 #: gui/text/tips/palisades.txt:3
 msgid "Most factions have access to them in Village Phase."
@@ -6807,11 +6807,11 @@ msgstr ""
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
-msgstr ""
+msgstr "ФАРСЫ АРХИТЕКТУРА"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "Special technology for the Persians."
-msgstr ""
+msgstr "Фарсылар өчен махсус технология."
 
 #: gui/text/tips/persian_architecture.txt:3
 msgid "Structures +25% health."
@@ -6842,7 +6842,7 @@ msgstr ""
 
 #: gui/text/tips/pikemen.txt:4
 msgid "Available to: Kushites, Macedonians, Ptolemies, and Seleucids."
-msgstr ""
+msgstr "Аны Кушитлар, Македонлар, Птолемейлар һәм Селевкидлар куллана алалар."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "QUINQUEREME"
@@ -6852,7 +6852,7 @@ msgstr ""
 msgid ""
 "The heaviest standard warship. Available to: Carthaginians, Ptolemies, "
 "Romans, and Seleucids."
-msgstr ""
+msgstr "Иң авыр хәрби кораб. Аны Карфагенлар, Птолемейлар, Римлянлар һәм Селевкидлар куллана алалар."
 
 #: gui/text/tips/quinquereme.txt:3
 msgid "Transports up to 50 units."
@@ -6928,7 +6928,7 @@ msgstr ""
 
 #: gui/text/tips/spartan_hoplites.txt:3
 msgid "Champion Infantry available to the Spartans."
-msgstr ""
+msgstr "Спартаннар өчен олан җәяүле гаскәри ачык."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid ""
@@ -7074,7 +7074,7 @@ msgstr ""
 msgid ""
 "Available to: Carthaginians, Kushites, Mauryas, Persians, Ptolemies, and "
 "Seleucids."
-msgstr ""
+msgstr "Аны Карфагенлар, Кушитлар, Маурьялар,  Фарсылар, Птолемейлар һәм Селевкидлар куллана алалар."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
