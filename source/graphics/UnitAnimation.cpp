@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,11 +48,6 @@ CUnitAnimation::CUnitAnimation(entity_id_t ent, CModel* model, CObjectEntry* obj
 	  m_Speed(1.f), m_SyncRepeatTime(0.f), m_OriginalSpeed(1.f), m_Desync(0.f)
 {
 	ReloadUnit(model, object);
-}
-
-void CUnitAnimation::SetEntityID(entity_id_t ent)
-{
-	m_Entity = ent;
 }
 
 void CUnitAnimation::AddModel(CModel* model, const CObjectEntry* object)

@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,11 +18,11 @@
 #ifndef INCLUDED_UNIT
 #define INCLUDED_UNIT
 
-#include <map>
-#include <set>
-
 #include "ps/CStr.h"
 #include "simulation2/system/Entity.h"	// entity_id_t
+
+#include <map>
+#include <set>
 
 class CActorDef;
 class CModelAbstract;
@@ -38,15 +38,14 @@ class CUnit
 	NONCOPYABLE(CUnit);
 private:
 	// Private constructor. Needs complete list of selections for the variation.
-	CUnit(CObjectManager& objectManager, const CActorDef& actor, uint32_t seed);
+	CUnit(CObjectManager& objectManager, const CActorDef& actor, const entity_id_t id, const uint32_t seed);
 
 public:
 	// Attempt to create a unit with the given actor.
 	// If specific selections are wanted, call SetEntitySelection or SetActorSelections after creation.
 	// Returns NULL on failure.
-	static CUnit* Create(const CStrW& actorName, uint32_t seed, CObjectManager& objectManager);
+	static CUnit* Create(const CStrW& actorName, const entity_id_t id, const uint32_t seed, CObjectManager& objectManager);
 
-	// destructor
 	~CUnit();
 
 	// get unit's template object
@@ -71,7 +70,6 @@ public:
 	// persistently despite saving/loading maps. Default for new units is -1; should
 	// usually be set to CUnitManager::GetNewID() after creation.
 	entity_id_t GetID() const { return m_ID; }
-	void SetID(entity_id_t id);
 
 	const std::set<CStr>& GetActorSelections() const { return m_ActorSelections; }
 

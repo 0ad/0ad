@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -15,19 +15,13 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/*
- * Container that owns all units
- */
-
 #include "precompiled.h"
 
-#include <float.h>
-
-#include "Model.h"
-#include "UnitManager.h"
-#include "Unit.h"
-#include "ObjectManager.h"
-#include "ObjectEntry.h"
+#include "graphics/Model.h"
+#include "graphics/ObjectEntry.h"
+#include "graphics/ObjectManager.h"
+#include "graphics/Unit.h"
+#include "graphics/UnitManager.h"
 #include "ps/Game.h"
 #include "ps/World.h"
 
@@ -87,12 +81,12 @@ void CUnitManager::DeleteAll()
 
 ///////////////////////////////////////////////////////////////////////////////
 // CreateUnit: create a new unit and add it to the world
-CUnit* CUnitManager::CreateUnit(const CStrW& actorName, uint32_t seed)
+CUnit* CUnitManager::CreateUnit(const CStrW& actorName, const entity_id_t id, const uint32_t seed)
 {
 	if (! m_ObjectManager)
 		return NULL;
 
-	CUnit* unit = CUnit::Create(actorName, seed, *m_ObjectManager);
+	CUnit* unit = CUnit::Create(actorName, id, seed, *m_ObjectManager);
 	if (unit)
 		AddUnit(unit);
 	return unit;

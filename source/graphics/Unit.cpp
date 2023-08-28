@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,18 +18,18 @@
 #include "precompiled.h"
 
 #include "Unit.h"
-#include "Model.h"
-#include "ObjectBase.h"
-#include "ObjectEntry.h"
-#include "ObjectManager.h"
-#include "SkeletonAnim.h"
-#include "SkeletonAnimDef.h"
-#include "UnitAnimation.h"
 
+#include "graphics/Model.h"
+#include "graphics/ObjectBase.h"
+#include "graphics/ObjectEntry.h"
+#include "graphics/ObjectManager.h"
+#include "graphics/SkeletonAnim.h"
+#include "graphics/SkeletonAnimDef.h"
+#include "graphics/UnitAnimation.h"
 #include "ps/CLogger.h"
 
-CUnit::CUnit(CObjectManager& objectManager, const CActorDef& actor, uint32_t seed)
-: m_ID(INVALID_ENTITY), m_ObjectManager(objectManager), m_Actor(actor), m_Seed(seed), m_Animation(nullptr)
+CUnit::CUnit(CObjectManager& objectManager, const CActorDef& actor, const entity_id_t id, const uint32_t seed)
+	: m_ObjectManager(objectManager), m_Actor(actor), m_ID(id), m_Seed(seed), m_Animation(nullptr)
 {
 	/**
 	 * When entity selections change, we might end up with a different layout in terms of variants/groups,
@@ -48,13 +48,13 @@ CUnit::~CUnit()
 	delete m_Model;
 }
 
-CUnit* CUnit::Create(const CStrW& actorName, uint32_t seed, CObjectManager& objectManager)
+CUnit* CUnit::Create(const CStrW& actorName, const entity_id_t id, const uint32_t seed, CObjectManager& objectManager)
 {
 	auto [success, actor] = objectManager.FindActorDef(actorName);
 	
 	UNUSED2(success);
 
-	CUnit* unit = new CUnit(objectManager, actor, seed);
+	CUnit* unit = new CUnit(objectManager, actor, id, seed);
 	if (!unit->m_Model)
 	{
 		delete unit;
@@ -67,13 +67,6 @@ void CUnit::UpdateModel(float frameTime)
 {
 	if (m_Animation)
 		m_Animation->Update(frameTime*1000.0f);
-}
-
-void CUnit::SetID(entity_id_t id)
-{
-	m_ID = id;
-	if (m_Animation)
-		m_Animation->SetEntityID(id);
 }
 
 void CUnit::SetEntitySelection(const CStr& key, const CStr& selection)
