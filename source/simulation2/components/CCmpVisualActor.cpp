@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -591,7 +591,7 @@ void CCmpVisualActor::InitModel()
 	std::wstring actorName = m_ActorName;
 	if (actorName.find(L".xml") == std::wstring::npos)
 		actorName += L".xml";
-	m_Unit = GetSimContext().GetUnitManager().CreateUnit(actorName, GetActorSeed());
+	m_Unit = GetSimContext().GetUnitManager().CreateUnit(actorName, GetEntityId(), GetActorSeed());
 	if (!m_Unit)
 		return;
 
@@ -620,8 +620,6 @@ void CCmpVisualActor::InitModel()
 		else if (model.ToCModelDecal())
 			model.ToCModelDecal()->RemoveShadows();
 	}
-
-	m_Unit->SetID(GetEntityId());
 
 	bool floating = m_Unit->GetObject().m_Base->m_Properties.m_FloatOnWater;
 	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());

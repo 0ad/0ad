@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -202,7 +202,7 @@ uint32_t CCmpProjectileManager::LaunchProjectile(CFixedVector3D launchPoint, CFi
 
 	projectile.origin = launchPoint;
 
-	projectile.unit = GetSimContext().GetUnitManager().CreateUnit(actorName, m_ActorSeed++);
+	projectile.unit = GetSimContext().GetUnitManager().CreateUnit(actorName, INVALID_ENTITY, m_ActorSeed++);
 	if (!projectile.unit) // The error will have already been logged
 		return currentId;
 
@@ -301,7 +301,7 @@ void CCmpProjectileManager::Interpolate(float frameTime)
 			quat.ToMatrix(transform);
 			transform.Translate(m_Projectiles[i].pos);
 
-			CUnit* unit = GetSimContext().GetUnitManager().CreateUnit(m_Projectiles[i].impactActorName, m_ActorSeed++);
+			CUnit* unit = GetSimContext().GetUnitManager().CreateUnit(m_Projectiles[i].impactActorName, INVALID_ENTITY, m_ActorSeed++);
 			unit->GetModel().SetTransform(transform);
 
 			ProjectileImpactAnimation projectileImpactAnimation;

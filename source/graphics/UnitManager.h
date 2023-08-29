@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,7 @@
 #define INCLUDED_UNITMANAGER
 
 #include "ps/CStrForward.h"
+#include "simulation2/system/Entity.h"
 
 #include <vector>
 #include <set>
@@ -49,7 +50,7 @@ public:
 	void DeleteAll();
 
 	// creates a new unit and adds it to the world
-	CUnit* CreateUnit(const CStrW& actorName, uint32_t seed);
+	CUnit* CreateUnit(const CStrW& actorName, const entity_id_t id, const uint32_t seed);
 
 	// return the units
 	const std::vector<CUnit*>& GetUnits() const { return m_Units; }
@@ -69,4 +70,4 @@ private:
 	CObjectManager* m_ObjectManager;
 };
 
-#endif
+#endif // INCLUDED_UNITMANAGER

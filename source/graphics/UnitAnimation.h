@@ -1,4 +1,4 @@
-/* Copyright (C) 2021 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,7 +19,6 @@
 #define INCLUDED_UNITANIMATION
 
 #include "ps/CStr.h"
-
 #include "simulation2/system/Entity.h"
 
 #include <vector>
@@ -42,12 +41,6 @@ public:
 	 * Construct for a given unit, defaulting to the "idle" animation.
 	 */
 	CUnitAnimation(entity_id_t ent, CModel* model, CObjectEntry* object);
-
-	/**
-	 * Change the entity ID associated with this animation
-	 * (currently used for playing locational sound effects).
-	 */
-	void SetEntityID(entity_id_t ent);
 
 	/**
 	 * Start playing an animation.
