@@ -100,15 +100,15 @@ msgstr "A nagyvárosi szakaszban válik elérhetővé."
 
 #: simulation/data/technologies/agoge.jsontooltip
 msgid "Champion Hoplites +25% health, but +5% training time."
-msgstr ""
+msgstr "+25% életerő, viszont +5% kiképzési idő a bajnok hoplitáknak"
 
 #: simulation/data/technologies/archer_attack_spread.jsondescription
 msgid "Encouraging soldiers to practice archery improves their accuracy."
-msgstr "A katonák íjászkodásra való ösztönzése növeli a lövésük pontosságát."
+msgstr "Íjászkodásra való ösztönzésükkel a katonák lövései pontosabbá válnak."
 
 #: simulation/data/technologies/archer_attack_spread.jsongenericName
 msgid "Archery Training"
-msgstr "Íjász képzése"
+msgstr "Íjászgyakorat"
 
 #: simulation/data/technologies/archer_attack_spread.jsonrequirementsTooltip
 #: simulation/data/technologies/architecture_kush.jsonrequirementsTooltip
@@ -151,7 +151,7 @@ msgstr "A városi szakaszban válik elérhetővé."
 
 #: simulation/data/technologies/archer_attack_spread.jsontooltip
 msgid "Archers −20% ranged attack spread."
-msgstr "−20% szórás íjászoknak"
+msgstr "−20% szórás az íjászoknak"
 
 #: simulation/data/technologies/archery_tradition.jsondescription
 msgid ""
@@ -208,15 +208,15 @@ msgstr "+25% életerő és foglalási pont, viszont +20% építési idő az ép�
 msgid ""
 "The arsenal was mainly used as a warehouse for materials and instruments for"
 " the equipment of warships."
-msgstr ""
+msgstr "E fegyvertárat a hadihajók felszereléséhez szükséges alapanyagok és eszközök tárolására használták elsősorban."
 
 #: simulation/data/technologies/arsenal_philon.jsongenericName
 msgid "Arsenal of Philon"
-msgstr ""
+msgstr "Philón fegyvertára"
 
 #: simulation/data/technologies/arsenal_philon.jsontooltip
 msgid "Warships +1 health/second self-repair rate."
-msgstr ""
+msgstr "+1 életerőnyi önjavítás másodpercenként a hadihajóknak"
 
 #: simulation/data/technologies/art_of_war.jsondescription
 msgid ""
@@ -371,7 +371,7 @@ msgstr "+10% életerő és +10% foglalási pont az építményeknek"
 msgid ""
 "By uniting China under one emperor, the Han Dynasty ruled over 40 million "
 "people, one of the largest empires of antiquity by population."
-msgstr ""
+msgstr "Kína egyesítésével több, mint 40 millió ember került a Han-dinasztia uralma alá; birodalmuk – népességét tekintve – az ókori világ egyik legnagyobbikának volt mondható."
 
 #: simulation/data/technologies/civbonuses/han_population.jsongenericName
 msgid "Federated States"
@@ -673,7 +673,7 @@ msgstr "Talicska"
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsondescription
 msgid "Install a chain pump for improved irrigation."
-msgstr ""
+msgstr "Egy láncos vízemelő telepítésével hatékonyabbá tehető az öntözés."
 
 #: simulation/data/technologies/gather_farming_chain_pump.jsongenericName
 msgid "Chain Pump"
@@ -958,15 +958,15 @@ msgstr "+100% életerő a női polgároknak"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Organic units will slowly regenerate health over time when idle."
-msgstr "A szerves egységek életereje lassan regenerálódni fog az idő múlásával tétlenség közben."
+msgstr "Amikor épp tétlenek, a szerves egységek életereje szép lassan elkezd majd visszatöltődni."
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
-msgstr "Csatatéri gyógyszer"
+msgstr "Harctéri orvoslás"
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Idle Organic units +0.5 health regeneration rate."
-msgstr "+0,5 életerő regenerációs sebesség a tétlen élő egységeknél."
+msgstr "+0,5 életerő-visszatöltődés a tétlen szerves egységeknek"
 
 #: simulation/data/technologies/hellenistic_metropolis.jsondescription
 msgid ""
@@ -998,7 +998,7 @@ msgstr ""
 msgid ""
 "Infantry Javelineers +100% grain gather rate, but −10% ranged attack pierce "
 "damage."
-msgstr ""
+msgstr "+100% gabonagyűjtési sebesség, viszont −10% távolsági szúrósebzés a gyalogos gerelyeseknek"
 
 #: simulation/data/technologies/hoplite_tradition.jsondescription
 msgid "Hoplite soldiers constituted most of the armies of Greece."
@@ -1085,11 +1085,11 @@ msgstr "A mára kihalt niszaiai lófajta az ókor egyik legnagyobb és legerőse
 
 #: simulation/data/technologies/nisean_horses.jsongenericName
 msgid "Nisean War Horses"
-msgstr "Niszaiai harci lovak"
+msgstr "Nészaioni harci lovak"
 
 #: simulation/data/technologies/nisean_horses.jsonspecificName.sele
 msgid "Nisioi"
-msgstr "Nisioi"
+msgstr "Niszaioi"
 
 #: simulation/data/technologies/nisean_horses.jsontooltip
 msgid "Champion Cavalry Spearmen +20% health, but +10% training time."
