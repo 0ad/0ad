@@ -24,7 +24,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2014-06-19 17:52+0000\n"
-"Last-Translator: Szabó Lambert, 2021-2022\n"
+"Last-Translator: Szabó Lambert, 2021-2023\n"
 "Language-Team: Hungarian (http://app.transifex.com/wildfire-games/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -167,7 +167,7 @@ msgstr "A botswanai Afrika a nedves évszak alatt: egy föld, amely néhány het
 
 #: maps/random/botswanan_haven.jsonsettings.Name
 msgid "Botswanan Haven"
-msgstr "Botswanai Menedék"
+msgstr "Botswanai menedék"
 
 #: maps/random/caledonian_meadows.jsonsettings.Description
 msgid ""
@@ -868,7 +868,7 @@ msgid ""
 " early morning. The ground is full of gravel and rocks, but silver fir and "
 "spruce trees grow between them and provide shelter for deer and mountain "
 "goats."
-msgstr ""
+msgstr "Sűrű köd ül korán reggel a magas csúcsok közt, lenn, az Alpok völgyein. A földet sziklák, kavicsok borítják, ám állnak azon jegenye- s lucfenyők is, melyek menedéket nyújtanak a szarvasoknak és a hegyi kecskéknek."
 
 #: maps/random/rmbiome/generic/alpine.jsonDescription.Title
 msgctxt "biome definition"
@@ -1926,7 +1926,7 @@ msgstr "Homokozó - a gallok"
 
 #: maps/scenarios/sandbox_han.xml:Description:39
 msgid "A simple map showcasing the Han civilization's assets in the game."
-msgstr ""
+msgstr "Egy egyszerű térkép, mely felvonultatja a han kínaiak összes játékbéli egységét és építményét."
 
 #: maps/scenarios/sandbox_han.xml:Name:39
 msgid "Sandbox - The Han"
@@ -1942,7 +1942,7 @@ msgstr "Homokozó - az ibériaiak"
 
 #: maps/scenarios/sandbox_kushites.xml:Description:39
 msgid "A simple map showcasing the Kushite civilization's assets in the game."
-msgstr ""
+msgstr "Egy egyszerű térkép, mely felvonultatja a kusiták összes játékbéli egységét és építményét."
 
 #: maps/scenarios/sandbox_kushites.xml:Name:39
 msgid "Sandbox - The Kushites"
@@ -1963,7 +1963,7 @@ msgstr "A makedónok"
 
 #: maps/scenarios/sandbox_mauryas.xml:Description:39
 msgid "A simple map showcasing the Maurya civilization's assets in the game."
-msgstr ""
+msgstr "Egy egyszerű térkép, mely felvonultatja a maurják összes játékbéli egységét és építményét."
 
 #: maps/scenarios/sandbox_mauryas.xml:Name:39
 msgid "Sandbox - The Maurya Indians"
@@ -1971,7 +1971,7 @@ msgstr ""
 
 #: maps/scenarios/sandbox_persians.xml:Description:39
 msgid "A simple map showcasing the Persian civilization's assets in the game."
-msgstr ""
+msgstr "Egy egyszerű térkép, mely felvonultatja a perzsák összes játékbéli egységét és építményét."
 
 #: maps/scenarios/sandbox_persians.xml:Name:39
 msgid "Sandbox - The Achaemenid Persians"
@@ -2019,7 +2019,7 @@ msgstr "Líbiaiak"
 msgid ""
 "A simple map showcasing the Republican Roman civilization's assets in the "
 "game."
-msgstr ""
+msgstr "Egy egyszerű térkép, mely felvonultatja a köztársaságbéli rómaiak összes játékbéli egységét és építményét."
 
 #: maps/scenarios/sandbox_romans.xml:Name:39
 msgid "Sandbox - The Romans"
@@ -2043,7 +2043,7 @@ msgstr "A ptolemaioszok"
 
 #: maps/scenarios/sandbox_spartans.xml:Description:39
 msgid "A simple map showcasing the Spartan civilization's assets in the game."
-msgstr ""
+msgstr "Egy egyszerű térkép, mely felvonultatja a spártaiak összes játékbéli egységét és építményét."
 
 #: maps/scenarios/sandbox_spartans.xml:Name:39
 msgid "Sandbox - The Spartans"
@@ -2378,22 +2378,22 @@ msgstr ""
 #: maps/scripts/CaptureTheRelic.js:157
 #, javascript-format
 msgid "You have captured all relics and will win in %(time)s."
-msgstr "Sikerült az összes ereklyét megszerezned, így %(time)sen belül nyerni fogsz."
+msgstr "Sikerült minden ereklyét megszerezned, így bizonyos időn belül (%(time)s) győzedelmeskedni fogsz."
 
 #: maps/scripts/CaptureTheRelic.js:171
 #, javascript-format
 msgid "%(lastPlayer)s has won (Capture the Relic)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (Capture the Relic)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s győzedelmeskedett (sikerült minden ereklyét megszereznie)."
+msgstr[1] "%(players)s és %(lastPlayer)s győzedelmeskedtek (sikerült minden ereklyét megszerezniük)."
 
 #: maps/scripts/CaptureTheRelic.js:175
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (Capture the Relic)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (Capture the Relic)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s legyőzetett (az ellenfélnek sikerült minden ereklyét megszereznie)."
+msgstr[1] "%(players)s és %(lastPlayer)s legyőzettek (az ellenfélnek sikerült minden ereklyét megszereznie)."
 
 #: maps/scripts/Conquest.js:5
 #, javascript-format
@@ -2468,16 +2468,16 @@ msgstr "Birtokolsz egy csodát, így bizonyos időn belül (%(time)s) nyerni fog
 #, javascript-format
 msgid "%(lastPlayer)s has won (wonder victory)."
 msgid_plural "%(players)s and %(lastPlayer)s have won (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s győzedelmeskedett (kellő ideig birtokolt egy csodát)."
+msgstr[1] "%(players)s és %(lastPlayer)s győzedelmeskedtek (kellő ideig birtokoltak egy csodát)."
 
 #: maps/scripts/WonderVictory.js:143
 #, javascript-format
 msgid "%(lastPlayer)s has been defeated (wonder victory)."
 msgid_plural ""
 "%(players)s and %(lastPlayer)s have been defeated (wonder victory)."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(lastPlayer)s legyőzetett (az ellenfél kellő ideig birtokolt egy csodát)."
+msgstr[1] "%(players)s és %(lastPlayer)s legyőzettek (az ellenfél kellő ideig birtokolt egy csodát)."
 
 #: maps/skirmishes/acropolis_bay_2p.xml:Description:39
 msgid ""
@@ -2516,21 +2516,21 @@ msgid ""
 "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
 "\n"
 "This represents the Arabian Desert, South of Mesopotamia."
-msgstr ""
+msgstr "Egy régi kedvenc. Az amúgy teljesen nyílt és lapos sivatagi térkép közepét mintegy átlyukasztja két buja növényzettel övezett oázis.\n\nEz a térkép az Arab-sivatagot kívánja megjeleníteni, mely Mezopotámiától délre található."
 
 #: maps/skirmishes/arabian_oases_2p.xml:Name:39
 msgid "Arabian Oases (2 players)"
-msgstr ""
+msgstr "Arab oázisok (2)"
 
 #: maps/skirmishes/arabian_oases_2p.xml:PlayerData[0].Name:39
 #: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[1].Name:39
 msgid "Northeast Player"
-msgstr ""
+msgstr "Északkeleti játékos"
 
 #: maps/skirmishes/arabian_oases_2p.xml:PlayerData[1].Name:39
 #: maps/skirmishes/libyan_oasis_2p.xml:PlayerData[2].Name:39
 msgid "Southwest Player"
-msgstr ""
+msgstr "Délnyugati játékos"
 
 #: maps/skirmishes/atlas_valleys_8p.xml:Description:39
 msgid ""
@@ -2583,7 +2583,7 @@ msgstr "Belga mocsár (2)"
 msgid ""
 "South of the Sahara, East of the Nile, lies a semi-arid region today known "
 "as the Butana Steppe."
-msgstr "A Szaharától délre, a Nílustól keletre, fekszik egy félszáraz régió, amely ma Butána sztyepp néven ismert."
+msgstr "A Szaharától délre s a Nílustól keletre található egy félszáraz régió, amely ma Butána-síkság néven ismert."
 
 #: maps/skirmishes/butana_steppe_2p.xml:Name:39
 msgid "Island of Meroë (2)"
@@ -2609,7 +2609,7 @@ msgstr ""
 
 #: maps/skirmishes/cisalpine_winter_2p.xml:Name:39
 msgid "Cisalpine Winter (2)"
-msgstr ""
+msgstr "Ciszalpin tél (2)"
 
 #: maps/skirmishes/corinthian_isthmus_2p.xml:Name:39
 msgid "Corinthian Isthmus (2)"
@@ -2861,7 +2861,7 @@ msgid ""
 "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
 "\n"
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt."
-msgstr "Egy egyébként határtalan, sík, sivatagi térképet középen két buja oázis lyukaszt át.\n\nEz a Líbiai-sivatagot jelenti, a Szahara részét, a Nílustól nyugatra."
+msgstr "Az amúgy teljesen nyílt és lapos sivatagi térkép közepét mintegy átlyukasztja két buja növényzettel övezett oázis.\n\nEz a térkép a Líbiai-sivatagot kívánja megjeleníteni, mely a Szahara részét képezi, s mely a Nílus egyiptomi szakaszától nyugatra található."
 
 #: maps/skirmishes/libyan_oases_4p.xml:Name:38
 msgid "Libyan Oases (4)"
@@ -2872,11 +2872,11 @@ msgid ""
 "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis.\n"
 "\n"
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt."
-msgstr ""
+msgstr "Egy régi kedvenc. Az amúgy teljesen nyílt és lapos sivatagi térkép közepét mintegy átlyukasztja egy buja növényzettel övezett oázis.\n\nEz a térkép a Líbiai-sivatagot kívánja megjeleníteni, mely a Szahara részét képezi, s mely a Nílus egyiptomi szakaszától nyugatra található."
 
 #: maps/skirmishes/libyan_oasis_2p.xml:Name:39
 msgid "Libyan Oasis (2 players)"
-msgstr ""
+msgstr "Líbiai oázis (2)"
 
 #: maps/skirmishes/lorraine_plain_2p.xml:Description:39
 msgid ""

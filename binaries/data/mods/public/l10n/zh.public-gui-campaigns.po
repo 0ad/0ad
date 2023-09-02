@@ -9,12 +9,13 @@
 # Vince Luo
 # ma xiaoming
 # liu lizhi
+# Ziming Li
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "POT-Creation-Date: 2023-07-28 07:09+0000\n"
 "PO-Revision-Date: 2021-04-23 16:19+0000\n"
-"Last-Translator: liu lizhi <xingzuo88@qq.com>, 2023\n"
+"Last-Translator: Ziming Li, 2023\n"
 "Language-Team: Chinese (https://app.transifex.com/wildfire-games/teams/17418/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +28,7 @@ msgctxt "Campaign Template"
 msgid ""
 "Discover the new and improved maps in Alpha XXVII with a demo campaign, "
 "taking you through all of them."
-msgstr "通过一场演示战役，来探索内测版27里的新地图及优化的旧地图，帮助玩家纵览全部地图。"
+msgstr "通过一场演示战役，来探索Alpha27版本里的新地图及优化的旧地图，帮助玩家纵览全部地图。"
 
 #: campaigns/new_maps.jsonName
 msgctxt "Campaign Template"
@@ -37,7 +38,7 @@ msgstr "演示战役 - 新地图"
 #: campaigns/tutorial.jsonDescription
 msgctxt "Campaign Template"
 msgid "Learn how to play 0 A.D."
-msgstr ""
+msgstr "0 A.D.游戏入门"
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Description
 msgctxt "Campaign Template"
@@ -47,7 +48,8 @@ msgid ""
 "possible so you are able to build enough troops later. Warning: This is very"
 " fast at the start, be prepared to run through the initial bit several "
 "times."
-msgstr "本地图只是大略介绍，可教你尽快入门。游戏初期，要尽快收集物资，后期才能建起大军。提示：开局游戏进度很快，做好重开几次的准备。"
+msgstr ""
+"本地图只是大略介绍，可教你尽快游戏入门。游戏初期，最重要的事是尽快采集资源，这样之后才能建起足够的部队。警告：游戏开局的速度很快，做好重开几次的准备。"
 
 #: campaigns/tutorial.jsonLevels.eco_walkthrough.Name
 msgctxt "Campaign Template"
@@ -57,17 +59,17 @@ msgstr "经济攻略"
 #: campaigns/tutorial.jsonLevels.introduction.Description
 msgctxt "Campaign Template"
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
+msgstr "这是帮助你开始玩0 A.D.的基础教程。"
 
 #: campaigns/tutorial.jsonLevels.introduction.Name
 msgctxt "Campaign Template"
 msgid "Introductory Tutorial"
-msgstr "介绍"
+msgstr "入门教程"
 
 #: campaigns/tutorial.jsonName
 msgctxt "Campaign Template"
 msgid "Tutorial"
-msgstr "教学任务"
+msgstr "教程"
 
 #: gui/campaigns/default_menu/CampaignMenu.js:155
 msgctxt "campaign status"
@@ -163,7 +165,7 @@ msgstr "删除"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):12
 msgid "Start a campaign"
-msgstr "开始对战"
+msgstr "开始战役"
 
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):16
 msgid "Please enter the name of your new campaign run:"
@@ -172,7 +174,7 @@ msgstr "请输入新战役名："
 #: gui/campaigns/new_modal/NewCampaignModal.xml:(caption):27
 #: gui/campaigns/setup/CampaignSetupPage.xml:(caption):55
 msgid "Start Campaign"
-msgstr "开始对战"
+msgstr "开始战役"
 
 #: gui/campaigns/setup/CampaignSetupPage.js:40
 msgid "No campaign selected."

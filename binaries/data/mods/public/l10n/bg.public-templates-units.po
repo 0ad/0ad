@@ -127,7 +127,7 @@ msgstr "Брадва"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:23
 msgid "Cavalry Axeman"
-msgstr "Конник с брадва"
+msgstr "Конен брадвар"
 
 #: simulation/templates/template_unit_cavalry_melee_axeman.xml:24
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:20
@@ -137,7 +137,7 @@ msgstr "Конник с брадва"
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:23
 #: simulation/templates/template_unit_infantry_melee_axeman.xml:24
 msgid "Axeman"
-msgstr "Войник с брадва"
+msgstr "Брадвар"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:5
@@ -151,7 +151,7 @@ msgstr "Боздуган"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:21
 msgid "Cavalry Maceman"
-msgstr "Конник с боздуган"
+msgstr "Конен боздуганчик"
 
 #: simulation/templates/template_unit_cavalry_melee_maceman.xml:22
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:20
@@ -160,7 +160,7 @@ msgstr "Конник с боздуган"
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:17
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:22
 msgid "Maceman"
-msgstr "Боздуганар"
+msgstr "Боздуганчик"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:5
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:5
@@ -179,7 +179,7 @@ msgstr "Конен копиеносец"
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:27
 msgid "Counters: 2× vs Cavalry."
-msgstr "Противостои: 2х с/у конница."
+msgstr "Ефикасност: 2× срещу конница."
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:28
@@ -284,7 +284,7 @@ msgstr "Арбалет"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:28
 msgid "Cavalry Crossbowman"
-msgstr "Конник с арбалет"
+msgstr "Конен арбалетчик"
 
 #: simulation/templates/template_unit_cavalry_ranged_crossbowman.xml:29
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:24
@@ -307,7 +307,7 @@ msgstr "Метателно копие"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:28
 msgid "Cavalry Javelineer"
-msgstr "Конник с дротик"
+msgstr "Конен копихвъргач"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelineer.xml:29
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:24
@@ -316,7 +316,7 @@ msgstr "Конник с дротик"
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:24
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:29
 msgid "Javelineer"
-msgstr "Дротчик"
+msgstr "Копихвъргач"
 
 #: simulation/templates/template_unit_champion.xml:14
 msgid "Champion"
@@ -332,23 +332,23 @@ msgstr "Гвардейска конница"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:24
 msgid "Champion Cavalry Archer"
-msgstr "Конник първенец с лък"
+msgstr "Гвардейски конен стрелец"
 
 #: simulation/templates/template_unit_champion_cavalry_axeman.xml:21
 msgid "Champion Cavalry Axeman"
-msgstr "Първенец конник с брадва"
+msgstr "Гвардейски конен брадвар"
 
 #: simulation/templates/template_unit_champion_cavalry_crossbowman.xml:23
 msgid "Champion Cavalry Crossbowman"
-msgstr "Първенец-арбалетчик на кон"
+msgstr "Гвардейски конен арбалетчик"
 
 #: simulation/templates/template_unit_champion_cavalry_javelineer.xml:23
 msgid "Champion Cavalry Javelineer"
-msgstr "Първенец дротчик на кон"
+msgstr "Гвардейски конен копихвъргач"
 
 #: simulation/templates/template_unit_champion_cavalry_maceman.xml:19
 msgid "Champion Cavalry Maceman"
-msgstr "Първенец конник с боздуган"
+msgstr "Гвардейски конен боздуганчик"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:26
 msgid "Champion Cavalry Spearman"
@@ -402,19 +402,19 @@ msgstr "Гвардейски стрелец"
 
 #: simulation/templates/template_unit_champion_infantry_axeman.xml:21
 msgid "Champion Axeman"
-msgstr "Първенец с брадва"
+msgstr "Гвардейски брадвар"
 
 #: simulation/templates/template_unit_champion_infantry_crossbowman.xml:26
 msgid "Champion Infantry Crossbowman"
-msgstr " Първенец-арбалетчик"
+msgstr "Гвардейски пехотен арбалетчик"
 
 #: simulation/templates/template_unit_champion_infantry_javelineer.xml:26
 msgid "Champion Infantry Javelineer"
-msgstr "Първенец-дротчик"
+msgstr "Гвардейски пехотен копихвъргач"
 
 #: simulation/templates/template_unit_champion_infantry_maceman.xml:19
 msgid "Champion Infantry Maceman"
-msgstr "Първенец с боздуган"
+msgstr "Гвардейски пехотен боздуганчик"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:5
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:5
@@ -434,7 +434,7 @@ msgstr "Гвардейски пиконосец"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:29
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:29
 msgid "Counters: 3× vs Cavalry."
-msgstr "Противостои: 3х с/у конница."
+msgstr "Ефикасност: 3× срещу конница."
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:28
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
@@ -453,11 +453,11 @@ msgstr "Гвардейски мечоносец"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:27
 msgid "Trumpeter"
-msgstr "Тромпетчик"
+msgstr "Тромпетист"
 
 #: simulation/templates/template_unit_champion_infantry_trumpeter.xml:28
 msgid "Champion Infantry Trumpeter"
-msgstr "Първенец тромпетчик"
+msgstr "Гвардейски пехотен тромпетист"
 
 #: simulation/templates/template_unit_dog.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -470,7 +470,7 @@ msgstr "Бойно куче"
 
 #: simulation/templates/template_unit_dog.xml:32
 msgid "Cannot attack Structures, Ships, or Siege Engines."
-msgstr "Не може да атакува сгради, кораби, нито обсадни оръдия."
+msgstr "Не може да атакува сгради, кораби и обсадни машини."
 
 #: simulation/templates/template_unit_dog.xml:34
 msgid "Dog"
@@ -525,19 +525,19 @@ msgstr "Геройски конен стрелец"
 
 #: simulation/templates/template_unit_hero_cavalry_axeman.xml:18
 msgid "Hero Cavalry Axeman"
-msgstr "Героичен конник с брадва"
+msgstr "Геройски конен брадвар"
 
 #: simulation/templates/template_unit_hero_cavalry_crossbowman.xml:23
 msgid "Hero Cavalry Crossbowman"
-msgstr "Героичен конник с арбалет"
+msgstr "Геройски конен арбалетчик"
 
 #: simulation/templates/template_unit_hero_cavalry_javelineer.xml:23
 msgid "Hero Cavalry Javelineer"
-msgstr "Героичен дротчик на кон"
+msgstr "Геройски конен копихвъргач"
 
 #: simulation/templates/template_unit_hero_cavalry_maceman.xml:16
 msgid "Hero Cavalry Maceman"
-msgstr "Героичен конник с боздуган"
+msgstr "Геройски конен боздуганчик"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:23
 msgid "Hero Cavalry Spearman"
@@ -545,7 +545,7 @@ msgstr "Геройски конен копиеносец"
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:24
 msgid "Counters: 1.75× vs Cavalry."
-msgstr "Противостои: 1.75х с/у конница."
+msgstr "Ефикасност: 1,75× срещу конница."
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:23
 msgid "Hero Cavalry Swordsman"
@@ -553,7 +553,7 @@ msgstr "Геройски конен мечоносец"
 
 #: simulation/templates/template_unit_hero_elephant_melee.xml:39
 msgid "Hero Elephant"
-msgstr "Героичен слон"
+msgstr "Геройски слон"
 
 #: simulation/templates/template_unit_hero_healer.xml:27
 #: simulation/templates/template_unit_support.xml:5
@@ -573,19 +573,19 @@ msgstr "Геройски стрелец"
 
 #: simulation/templates/template_unit_hero_infantry_axeman.xml:18
 msgid "Hero Axeman"
-msgstr "Герой с брадва"
+msgstr "Геройски брадвар"
 
 #: simulation/templates/template_unit_hero_infantry_crossbowman.xml:23
 msgid "Hero Infantry Crossbowman"
-msgstr "Герой с арбалет"
+msgstr "Геройски пехотен арбалетчик"
 
 #: simulation/templates/template_unit_hero_infantry_javelineer.xml:23
 msgid "Hero Infantry Javelineer"
-msgstr "Герой с дротик"
+msgstr "Геройски пехотен копихвъргач"
 
 #: simulation/templates/template_unit_hero_infantry_maceman.xml:16
 msgid "Hero Infantry Maceman"
-msgstr "Герой с боздуган"
+msgstr "Геройски пехотен боздуганчик"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:23
 msgid "Hero Pikeman"
@@ -611,15 +611,15 @@ msgstr "Близкобоен пехотинец"
 
 #: simulation/templates/template_unit_infantry_melee_maceman.xml:21
 msgid "Infantry Maceman"
-msgstr "Боздуганчик"
+msgstr "Пехотен боздуганчик"
 
 #: simulation/templates/template_unit_infantry_ranged_crossbowman.xml:28
 msgid "Infantry Crossbowman"
-msgstr "Арбалетчик"
+msgstr "Пехотен арбалетчик"
 
 #: simulation/templates/template_unit_infantry_ranged_javelineer.xml:28
 msgid "Infantry Javelineer"
-msgstr "Дротчик"
+msgstr "Пехотен копихвъргач"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:5
 msgctxt "Name of an attack, usually the weapon."
@@ -648,7 +648,7 @@ msgstr "Огнен кораб"
 
 #: simulation/templates/template_unit_ship_fire.xml:41
 msgid "Unrepairable. Gradually loses health. Can only attack Ships."
-msgstr "Непоправим. Постепенно губи живот. Може да напада единствено кораби."
+msgstr "Не може да се поправя. Постепенно губи здраве. Може да напада единствено кораби."
 
 #: simulation/templates/template_unit_ship_fire.xml:42
 msgid "Fireship"
@@ -675,7 +675,7 @@ msgstr "Ловете риба във водата за храна."
 
 #: simulation/templates/template_unit_ship_fishing.xml:32
 msgid "FishingBoat"
-msgstr "Рибарскалодка"
+msgstr "Рибарска лодка"
 
 #: simulation/templates/template_unit_ship_merchant.xml:17
 msgid "Merchantman"
@@ -708,7 +708,7 @@ msgstr "Лек военен кораб"
 msgid ""
 "Garrison units for transport and to increase firepower. Deals triple damage "
 "against Ships."
-msgstr "Качете войници на борда за транспорт и увеличена огнева мощ. Нанася на тройна вреда на кораби."
+msgstr "Качете единици на борда за превоз и увеличаване на огневата мощ. Нанася три пъти повече щети срещу кораби."
 
 #: simulation/templates/template_unit_ship_warship_heavy.xml:5
 #: simulation/templates/template_unit_siege_stonethrower.xml:5
@@ -2206,7 +2206,7 @@ msgstr ""
 
 #: simulation/templates/units/mace/hero_alexander_iii.xml:24
 msgid "Counters: 1.2× vs Heroes."
-msgstr "Противостои: 1.2х с/у герои."
+msgstr "Ефикасност: 1,2× срещу герои."
 
 #: simulation/templates/units/mace/hero_craterus.xml:14
 msgid "Craterus"
@@ -2512,7 +2512,7 @@ msgstr ""
 
 #: simulation/templates/units/pers/cavalry_archer_b.xml:7
 msgid "Parthian Horse Archer"
-msgstr "Партийски стрелец на кон"
+msgstr "Партийски конен стрелец"
 
 #: simulation/templates/units/pers/cavalry_archer_b.xml:8
 msgid "Asabāra Parθava"
