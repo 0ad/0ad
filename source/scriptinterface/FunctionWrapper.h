@@ -24,6 +24,7 @@
 
 #include <tuple>
 #include <type_traits>
+#include <utility>
 
 class ScriptInterface;
 
@@ -86,10 +87,10 @@ private:
 	 * DoConvertFromJS takes a type, a JS argument, and converts.
 	 * The type T must be default constructible (except for HandleValue, which is handled specially).
 	 * (possible) TODO: this could probably be changed if FromJSVal had a different signature.
-	 * @param went_ok - true if the conversion succeeded and went_ok was true before, false otherwise.
+	 * @param wentOk - true if the conversion succeeded and wentOk was true before, false otherwise.
 	 */
 	template<size_t idx, typename T>
-	static std::tuple<T> DoConvertFromJS(const ScriptRequest& rq, JS::CallArgs& args, bool& went_ok)
+	static T DoConvertFromJS(const ScriptRequest& rq, JS::CallArgs& args, bool& wentOk)
 	{
 		// No need to convert JS values.
 		if constexpr (std::is_same_v<T, JS::HandleValue>)
@@ -97,12 +98,12 @@ private:
 			// Default-construct values that aren't passed by JS.
 			// TODO: this should perhaps be removed, as it's distinct from C++ default values and kind of tricky.
 			if (idx >= args.length())
-				return std::forward_as_tuple(JS::UndefinedHandleValue);
+				return JS::UndefinedHandleValue;
 			else
 			{
 				// GCC (at least < 9) & VS17 prints warnings if arguments are not used in some constexpr branch.
-				UNUSED2(rq); UNUSED2(args); UNUSED2(went_ok);
-				return std::forward_as_tuple(args[idx]); // This passes the null handle value if idx is beyond the length of args.
+				UNUSED2(rq); UNUSED2(args); UNUSED2(wentOk);
+				return args[idx]; // This passes the null handle value if idx is beyond the length of args.
 			}
 		}
 		else
@@ -110,73 +111,57 @@ private:
 			// Default-construct values that aren't passed by JS.
 			// TODO: this should perhaps be removed, as it's distinct from C++ default values and kind of tricky.
 			if (idx >= args.length())
-				return std::forward_as_tuple(T{});
+				return {};
 			else
 			{
 				T ret;
-				went_ok &= Script::FromJSVal<T>(rq, args[idx], ret);
-				return std::forward_as_tuple(ret);
+				wentOk &= Script::FromJSVal<T>(rq, args[idx], ret);
+				return ret;
 			}
 		}
 	}
 
 	/**
-	 * Recursive wrapper: calls DoConvertFromJS for type T and recurses.
+	 * Wrapper: calls DoConvertFromJS for each element in T.
 	 */
-	template<size_t idx, typename T, typename V, typename ...Types>
-	static std::tuple<T, V, Types...> DoConvertFromJS(const ScriptRequest& rq, JS::CallArgs& args, bool& went_ok)
+	template<typename... T, size_t... idx>
+	static std::tuple<T...> DoConvertFromJS(std::index_sequence<idx...>, const ScriptRequest& rq,
+		JS::CallArgs& args, bool& wentOk)
 	{
-		return std::tuple_cat(DoConvertFromJS<idx, T>(rq, args, went_ok), DoConvertFromJS<idx + 1, V, Types...>(rq, args, went_ok));
+		return {DoConvertFromJS<idx, T>(rq, args, wentOk)...};
 	}
 
 	/**
-	 * ConvertFromJS is a wrapper around DoConvertFromJS, and serves to:
-	 *  - unwrap the tuple types as a parameter pack
-	 *  - handle specific cases for the first argument (ScriptRequest, ...).
+	 * ConvertFromJS is a wrapper around DoConvertFromJS, and handles specific cases for the
+	 * first argument (ScriptRequest, ...).
 	 *
 	 * Trick: to unpack the types of the tuple as a parameter pack, we deduce them from the function signature.
 	 * To do that, we want the tuple in the arguments, but we don't want to actually have to default-instantiate,
 	 * so we'll pass a nullptr that's static_cast to what we want.
 	 */
 	template<typename ...Types>
-	static std::tuple<Types...> ConvertFromJS(const ScriptRequest& rq, JS::CallArgs& args, bool& went_ok, std::tuple<Types...>*)
+	static std::tuple<Types...> ConvertFromJS(const ScriptRequest& rq, JS::CallArgs& args, bool& wentOk,
+		std::tuple<Types...>*)
 	{
-		if constexpr (sizeof...(Types) == 0)
-		{
-			// GCC (at least < 9) & VS17 prints warnings if arguments are not used in some constexpr branch.
-			UNUSED2(rq); UNUSED2(args); UNUSED2(went_ok);
-			return {};
-		}
-		else
-			return DoConvertFromJS<0, Types...>(rq, args, went_ok);
+		return DoConvertFromJS<Types...>(std::index_sequence_for<Types...>(), rq, args, wentOk);
 	}
 
 	// Overloads for ScriptRequest& first argument.
 	template<typename ...Types>
-	static std::tuple<const ScriptRequest&, Types...> ConvertFromJS(const ScriptRequest& rq, JS::CallArgs& args, bool& went_ok, std::tuple<const ScriptRequest&, Types...>*)
+	static std::tuple<const ScriptRequest&, Types...> ConvertFromJS(const ScriptRequest& rq,
+		JS::CallArgs& args, bool& wentOk, std::tuple<const ScriptRequest&, Types...>*)
 	{
-		if constexpr (sizeof...(Types) == 0)
-		{
-			// GCC (at least < 9) & VS17 prints warnings if arguments are not used in some constexpr branch.
-			UNUSED2(args); UNUSED2(went_ok);
-			return std::forward_as_tuple(rq);
-		}
-		else
-			return std::tuple_cat(std::forward_as_tuple(rq), DoConvertFromJS<0, Types...>(rq, args, went_ok));
+		return std::tuple_cat(std::tie(rq), DoConvertFromJS<Types...>(
+			std::index_sequence_for<Types...>(), rq, args, wentOk));
 	}
 
 	// Overloads for ScriptInterface& first argument.
 	template<typename ...Types>
-	static std::tuple<const ScriptInterface&, Types...> ConvertFromJS(const ScriptRequest& rq, JS::CallArgs& args, bool& went_ok, std::tuple<const ScriptInterface&, Types...>*)
+	static std::tuple<const ScriptInterface&, Types...> ConvertFromJS(const ScriptRequest& rq,
+		JS::CallArgs& args, bool& wentOk, std::tuple<const ScriptInterface&, Types...>*)
 	{
-		if constexpr (sizeof...(Types) == 0)
-		{
-			// GCC (at least < 9) & VS17 prints warnings if arguments are not used in some constexpr branch.
-			UNUSED2(rq); UNUSED2(args); UNUSED2(went_ok);
-			return std::forward_as_tuple(rq.GetScriptInterface());
-		}
-		else
-			return std::tuple_cat(std::forward_as_tuple(rq.GetScriptInterface()), DoConvertFromJS<0, Types...>(rq, args, went_ok));
+		return std::tuple_cat(std::tie(rq.GetScriptInterface()),
+			DoConvertFromJS<Types...>(std::index_sequence_for<Types...>(), rq, args, wentOk));
 	}
 
 	///////////////////////////////////////////////////////////////////////////
@@ -205,20 +190,17 @@ private:
 	static inline IgnoreResult_t IgnoreResult;
 
 	/**
-	 * Recursive helper to call AssignOrToJSVal
+	 * Converts any number of arguments to a `JS::MutableHandleValueVector`.
+	 * If `idx` is empty this function does nothing. For that case there is a
+	 * `[[maybe_unused]]` on `argv`. GCC would issue a
+	 * "-Wunused-but-set-parameter" warning.
+	 * For references like `rq` this warning isn't issued.
 	 */
-	template<int i, typename T, typename... Ts>
-	static void AssignOrToJSValHelper(const ScriptRequest& rq, JS::MutableHandleValueVector argv, const T& a, const Ts&... params)
+	template<typename... Types, size_t... idx>
+	static void ToJSValVector(std::index_sequence<idx...>, const ScriptRequest& rq,
+		[[maybe_unused]] JS::MutableHandleValueVector argv, const Types&... params)
 	{
-		Script::ToJSVal(rq, argv[i], a);
-		AssignOrToJSValHelper<i+1>(rq, argv, params...);
-	}
-
-	template<int i, typename... Ts>
-	static void AssignOrToJSValHelper(const ScriptRequest& UNUSED(rq), JS::MutableHandleValueVector UNUSED(argv))
-	{
-		static_assert(sizeof...(Ts) == 0);
-		// Nop, for terminating the template recursion.
+		(Script::ToJSVal(rq, argv[idx], params), ...);
 	}
 
 	/**
@@ -241,7 +223,7 @@ private:
 
 		JS::RootedValueVector argv(rq.cx);
 		ignore_result(argv.resize(sizeof...(Args)));
-		AssignOrToJSValHelper<0>(rq, &argv, args...);
+		ToJSValVector(std::index_sequence_for<Args...>{}, rq, &argv, args...);
 
 		bool success;
 		if constexpr (std::is_same_v<R, JS::MutableHandleValue>)
@@ -314,9 +296,10 @@ public:
 #pragma GCC diagnostic pop
 #endif
 
-		bool went_ok = true;
-		typename args_info<decltype(callable)>::arg_types outs = ConvertFromJS(rq, args, went_ok, static_cast<typename args_info<decltype(callable)>::arg_types*>(nullptr));
-		if (!went_ok)
+		bool wentOk = true;
+		typename args_info<decltype(callable)>::arg_types outs = ConvertFromJS(rq, args, wentOk,
+			static_cast<typename args_info<decltype(callable)>::arg_types*>(nullptr));
+		if (!wentOk)
 			return false;
 
 		/**
