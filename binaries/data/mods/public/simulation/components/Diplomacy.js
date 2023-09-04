@@ -18,7 +18,7 @@ Diplomacy.prototype.SerializableAttributes = [
 Diplomacy.prototype.Serialize = function()
 {
 	const state = {};
-	for (const key in this.SerializableAttributes)
+	for (const key of this.SerializableAttributes)
 		if (this.hasOwnProperty(key))
 			state[key] = this[key];
 
@@ -27,8 +27,9 @@ Diplomacy.prototype.Serialize = function()
 
 Diplomacy.prototype.Deserialize = function(state)
 {
-	for (const prop in state)
-		this[prop] = state[prop];
+	for (const att of this.SerializableAttributes)
+		if (att in state)
+			this[att] = state[att];
 };
 
 Diplomacy.prototype.Init = function()

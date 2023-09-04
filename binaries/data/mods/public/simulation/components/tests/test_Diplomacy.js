@@ -77,3 +77,8 @@ diplo = [1, 1, 0];
 cmpDiplomacy.SetDiplomacy(diplo);
 diplo[1] = -1;
 TS_ASSERT(cmpDiplomacy.IsAlly(1));
+
+
+// (De)serialisation preserves relations.
+const deserialisedCmp = SerializationCycle(cmpDiplomacy);
+TS_ASSERT(deserialisedCmp.IsAlly(1));
