@@ -213,10 +213,10 @@ void CPostprocManager::RecreateBuffers()
 			colorAttachment.storeOp = Renderer::Backend::AttachmentStoreOp::STORE;
 			colorAttachment.clearColor = CColor{0.0f, 0.0f, 0.0f, 0.0f};
 			step.framebuffer = m_Device->CreateFramebuffer(
-				"BlurScaleSteoFramebuffer", &colorAttachment, nullptr);
+				"BlurScaleStepFramebuffer", &colorAttachment, nullptr);
 		}
-		width /= 2;
-		height /= 2;
+		width = std::max(1u, width / 2);
+		height = std::max(1u, height / 2);
 	}
 
 	#undef GEN_BUFFER_RGBA
