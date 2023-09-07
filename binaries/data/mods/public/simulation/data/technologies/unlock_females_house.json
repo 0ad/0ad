@@ -14,7 +14,12 @@
 		"wood": 100,
 		"metal": 100
 	},
-	"requirements": { "tech": "phase_village" },
+	"requirements": {
+		"all": [
+			{ "tech": "phase_village" },
+			{ "notciv": "rome" }
+		]
+	},
 	"icon": "wives_festival.png",
 	"researchTime": 60,
 	"tooltip": "Unlock the ability to train women from houses.",
