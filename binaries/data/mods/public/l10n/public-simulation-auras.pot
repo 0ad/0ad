@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
-"PO-Revision-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-09-08 07:08+0000\n"
+"PO-Revision-Date: 2023-09-08 07:08+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -1115,6 +1115,23 @@ msgstr ""
 msgid "Zooiarchos"
 msgstr ""
 
+#: simulation/data/auras/units/heroes/spart_hero_agis_1.json:auraDescription
+msgid "Soldiers −25% metal cost, and training time."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/spart_hero_agis_1.json:auraName
+msgid "Great Revolt"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/spart_hero_agis_2.json:auraDescription
+msgid "Agis +50% health."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/spart_hero_agis_2.json:auraName
+#: simulation/data/auras/units/heroes/spart_hero_leonidas.json:auraName
+msgid "Last Stand"
+msgstr ""
+
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.json:auraDescription
 msgid ""
 "Citizen Infantry Javelineers +1 crush, hack, pierce resistance, +25% ranged attack "
@@ -1127,9 +1144,5 @@ msgstr ""
 
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.json:auraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
-msgstr ""
-
-#: simulation/data/auras/units/heroes/spart_hero_leonidas.json:auraName
-msgid "Last Stand"
 msgstr ""
 
