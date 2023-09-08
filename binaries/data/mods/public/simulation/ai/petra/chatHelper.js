@@ -1,11 +1,13 @@
 PETRA.launchAttackMessages = {
 	"hugeAttack": [
 		markForTranslation("I am starting a massive military campaign against %(_player_)s, come and join me."),
-		markForTranslation("I have set up a huge army to crush %(_player_)s. Join me and you will have your share of the loot.")
+		markForTranslation("I have set up a huge army to crush %(_player_)s. Join me and you will have your share of the loot."),
+		markForTranslation("I am launching an unprecedented attack against %(_player_)s. Bring your armies and we may soon win this war.")
 	],
 	"other": [
 		markForTranslation("I am launching an attack against %(_player_)s."),
-		markForTranslation("I have just sent an army against %(_player_)s.")
+		markForTranslation("I have just sent an army against %(_player_)s."),
+		markForTranslation("I am sending an army against %(_player_)s.")
 	]
 };
 
@@ -55,7 +57,9 @@ PETRA.newDiplomacyMessages = {
 PETRA.answerDiplomacyRequestMessages = {
 	"ally": {
 		"decline": [
-			markForTranslation("I cannot accept your offer to become allies, %(_player_)s.")
+			markForTranslation("I cannot accept your offer to become allies, %(_player_)s."),
+			markForTranslation("I must decline your offer of alliance, %(_player_)s."),
+			markForTranslation("An alliance with you is not in my best interest, %(_player_)s.")
 		],
 		"declineSuggestNeutral": [
 			markForTranslation("I will not be your ally, %(_player_)s. However, I will consider a neutrality pact."),
@@ -134,10 +138,13 @@ PETRA.sendDiplomacyRequestMessages = {
 
 PETRA.emergencyMessages = {
 	"enter": [
-		markForTranslation("My armies failed while defending my empire. Please honor our alliance and send help!")
+		markForTranslation("My armies failed while defending my empire. Please honor our alliance and send help!"),
+		markForTranslation("My humble armies feel weak and tired. My civilization depends on our alliance, please send help!"),
+		markForTranslation("I need your help. Please do not let my armies fall!")
 	],
 	"exit": [
-		markForTranslation("My empire regained its old strength, now it is time to seek revenge together!")
+		markForTranslation("My empire regained its old strength, now it is time to seek revenge together!"),
+		markForTranslation("My civilization raised from the ashes. Now my armies feel stronger and eager to fight for our alliance.")
 	]
 };
 
