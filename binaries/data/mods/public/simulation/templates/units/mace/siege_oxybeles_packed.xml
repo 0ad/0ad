@@ -4,6 +4,9 @@
     <Civ>mace</Civ>
     <SpecificName>Oxybelḗs</SpecificName>
     <Icon>units/hele/siege_oxybeles_packed.png</Icon>
+    <Requirements>
+      <Techs datatype="tokens">-phase_city phase_town</Techs>
+    </Requirements>
   </Identity>
   <Pack>
     <Entity>units/mace/siege_oxybeles_unpacked</Entity>
