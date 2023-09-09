@@ -4,7 +4,7 @@
     <Ranged>
       <AttackName>Stone</AttackName>
       <Damage>
-        <Crush>300</Crush>
+        <Crush>225</Crush>
       </Damage>
       <MaxRange>85</MaxRange>
       <MinRange>26</MinRange>
@@ -23,6 +23,14 @@
         <LineTextureMask>outline_border_mask.png</LineTextureMask>
         <LineThickness>0.175</LineThickness>
       </RangeOverlay>
+      <Splash>
+        <Shape>Circular</Shape>
+        <Range>1</Range>
+        <FriendlyFire>false</FriendlyFire>
+        <Damage>
+          <Crush>75</Crush>
+        </Damage>
+      </Splash>
     </Ranged>
   </Attack>
   <BuildingAI>
