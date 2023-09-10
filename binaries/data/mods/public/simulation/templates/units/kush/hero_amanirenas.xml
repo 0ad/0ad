@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_hero_cavalry_archer">
+<Entity parent="chariot|template_unit_hero_cavalry_archer">
   <Auras datatype="tokens">
     units/heroes/kush_hero_amanirenas
   </Auras>
@@ -13,7 +13,6 @@
     <Phenotype>female</Phenotype>
     <GenericName>Amanirenas</GenericName>
     <SpecificName>Amnirense qore li kdwe li</SpecificName>
-    <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
     <Icon>units/kush/hero_amanirenas.png</Icon>
   </Identity>
   <Selectable>

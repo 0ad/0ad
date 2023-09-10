@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_champion_cavalry_archer">
+<Entity parent="chariot|template_unit_champion_cavalry_archer">
   <Footprint replace="">
     <Square width="11.0" depth="11.0"/>
     <Height>6.0</Height>
@@ -9,7 +9,6 @@
     <Lang>persian</Lang>
     <GenericName>Babylonian Scythed Chariot</GenericName>
     <SpecificName>Raθa Bābiruviya</SpecificName>
-    <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
     <Icon>units/pers/chariot_archer.png</Icon>
     <Requirements>
       <Techs datatype="tokens">-unlock_champion_cavalry unlock_champion_chariots</Techs>

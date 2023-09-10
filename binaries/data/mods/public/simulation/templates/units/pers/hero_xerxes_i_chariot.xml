@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_hero_cavalry_archer">
+<Entity parent="chariot|template_unit_hero_cavalry_archer">
   <Auras datatype="tokens">
     units/heroes/pers_hero_xerxes_i
   </Auras>
@@ -12,7 +12,6 @@
     <Lang>persian</Lang>
     <GenericName>Xerxes I</GenericName>
     <SpecificName>Xšayāršā</SpecificName>
-    <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
     <Icon>units/pers/hero_xerxes.png</Icon>
   </Identity>
   <Selectable>
