@@ -25,7 +25,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-09-08 07:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: rollieoo, 2022-2023\n"
 "Language-Team: Dutch (http://app.transifex.com/wildfire-games/0ad/language/nl/)\n"
@@ -1130,6 +1130,23 @@ msgstr "Kampioensolifanten +20% schade bij mêlee aanval en +20% snelheid."
 msgid "Zooiarchos"
 msgstr "Zooiarchos"
 
+#: simulation/data/auras/units/heroes/spart_hero_agis_1.jsonauraDescription
+msgid "Soldiers −25% metal cost, and training time."
+msgstr "Soldaten kosten -25% minder metaal en rekruteringstijd."
+
+#: simulation/data/auras/units/heroes/spart_hero_agis_1.jsonauraName
+msgid "Great Revolt"
+msgstr "De grote opstand"
+
+#: simulation/data/auras/units/heroes/spart_hero_agis_2.jsonauraDescription
+msgid "Agis +50% health."
+msgstr "Agis +50% gezondheid."
+
+#: simulation/data/auras/units/heroes/spart_hero_agis_2.jsonauraName
+#: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
+msgid "Last Stand"
+msgstr "Laatst Overlevende"
+
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid ""
 "Citizen Infantry Javelineers +1 crush, hack, pierce resistance, +25% ranged "
@@ -1143,7 +1160,3 @@ msgstr "Helotenhervormingen"
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
 msgstr "Speervechters +1 veroveren, +25% mêlee aanval."
-
-#: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
-msgid "Last Stand"
-msgstr "Laatst Overlevende"

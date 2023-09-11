@@ -36,7 +36,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-08-18 07:08+0000\n"
+"POT-Creation-Date: 2023-09-08 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: rollieoo, 2022-2023\n"
 "Language-Team: Dutch (http://app.transifex.com/wildfire-games/0ad/language/nl/)\n"
@@ -720,39 +720,52 @@ msgid "Publius Sempronius Tuditanus"
 msgstr "Publius Sempronius Tuditanus"
 
 #: simulation/data/civs/rome.jsonCivBonuses[0].Description
+msgid ""
+"Women train from houses without the need to research Fertility Festival."
+msgstr "Rekruteer vrouwen vanuit huizen zonder het Vruchtbaarheidsfeest te hoeven ontwikkelen."
+
+#: simulation/data/civs/rome.jsonCivBonuses[0].History
+msgid "Rome was one of the most populous cities in the ancient world."
+msgstr "Rome was een van de meest dichtst bevolkte steden in de oudheid."
+
+#: simulation/data/civs/rome.jsonCivBonuses[0].Name
+msgid "Fertility"
+msgstr "Vruchtbaarheid"
+
+#: simulation/data/civs/rome.jsonCivBonuses[1].Description
 msgid "Roman Legionaries can form a Testudo."
 msgstr "Romeinse Legionairs kunnen een Testudo vormen."
 
-#: simulation/data/civs/rome.jsonCivBonuses[0].History
+#: simulation/data/civs/rome.jsonCivBonuses[1].History
 msgid ""
 "The Romans commonly used the Testudo or 'turtle' formation for defense: "
 "Legionaries were formed into hollow squares with twelve men on each side, "
 "standing so close together that their shields overlapped like fish scales."
 msgstr "De Romeinen gebruikten vaak de Testudo of \"schildpad formatie'' als verdediging. Legionairs namen plaats in holle vierkanten met twaalf man langs elke zijde. Ze stonden dicht genoeg bij elkaar zodat de schilden overlapten als visschubben."
 
-#: simulation/data/civs/rome.jsonCivBonuses[0].Name
+#: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Testudo Formation"
 msgstr "Testudo Formatie"
 
-#: simulation/data/civs/rome.jsonCivBonuses[1].Description
+#: simulation/data/civs/rome.jsonCivBonuses[2].Description
 msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
 msgstr "Stormrammen +20% aanvalsschade. Steenwerpers +10% aanvalsschade."
 
-#: simulation/data/civs/rome.jsonCivBonuses[1].Name
+#: simulation/data/civs/rome.jsonCivBonuses[2].Name
 msgid "Legionary Engineers"
 msgstr "Legionair ingenieurs"
 
-#: simulation/data/civs/rome.jsonCivBonuses[2].Description
+#: simulation/data/civs/rome.jsonCivBonuses[3].Description
 msgid "Promote Elite Rank Spearmen or Swordsmen to Champion Centurions."
 msgstr "Bevorder Elite Speervechters of Zwaardvechters tot Kampioen Centurion."
 
-#: simulation/data/civs/rome.jsonCivBonuses[2].History
+#: simulation/data/civs/rome.jsonCivBonuses[3].History
 msgid ""
 "Centurions were the officers responsible for a centuria, a group of 100 "
 "soldiers."
 msgstr "Centurions waren de officieren die verantwoordelijk waren voor een centuria, een groep van 100 soldaten."
 
-#: simulation/data/civs/rome.jsonCivBonuses[2].Name
+#: simulation/data/civs/rome.jsonCivBonuses[3].Name
 msgid "Centurions"
 msgstr "Centurions"
 
@@ -916,7 +929,7 @@ msgid ""
 "Under the constitution written by the mythical lawgiver Lycurgus, the "
 "institution of the Agoge was established, where Spartans were trained from "
 "the age of 6 to be superior warriors in defense of the Spartan state."
-msgstr "Onder de wetten geschreven door de mythische wetgever Lygurcus, werd het instituut van de Agoge opgericht. Daar werden Spartanen vanaf zesjarige leeftijd getraind en kreeg de Spartaanse staat zijn superieure krijgers."
+msgstr "Onder de wetten geschreven door de mythische wetgever Lygurcus werd het instituut van de Agoge opgericht. Daar werden Spartanen vanaf zesjarige leeftijd getraind en kreeg de Spartaanse staat zijn superieure krijgers."
 
 #: simulation/data/civs/spart.jsonCivBonuses[1].Name
 msgid "Laws of Lycurgus"
