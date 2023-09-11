@@ -1,0 +1,16 @@
+{
+	"type": "range",
+	"radius": 10,
+	"affects": ["Soldier"],
+	"modifications": [
+		{ "value": "Attack/Melee/Damage/Hack", "multiply": 1.05 },
+		{ "value": "Attack/Melee/Damage/Pierce", "multiply": 1.05 },
+		{ "value": "Attack/Melee/Damage/Crush", "multiply": 1.05 },
+		{ "value": "Attack/Ranged/Damage/Hack", "multiply": 1.05 },
+		{ "value": "Attack/Ranged/Damage/Pierce", "multiply": 1.05 },
+		{ "value": "Attack/Ranged/Damage/Crush", "multiply": 1.05 }
+	],
+	"auraName": "Deas Celtica",
+	"auraDescription": "Soldiers +5% attack damage.",
+	"overlayIcon": "art/textures/ui/session/auras/attack_bonus.png"
+}

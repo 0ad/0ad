@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Entity>
+  <Cost>
+    <BuildTime op="mul">1.2</BuildTime>
+    <Resources>
+      <food op="mul_round">1.2</food>
+      <wood op="mul_round">1.25</wood>
+      <stone op="mul_round">1.2</stone>
+      <metal op="mul_round">1.2</metal>
+    </Resources>
+  </Cost>
+  <Health>
+    <Max op="mul">1.25</Max>
+  </Health>
+  <Identity>
+    <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
+  </Identity>
+  <Loot>
+    <food op="mul_round">1.2</food>
+    <wood op="mul_round">1.2</wood>
+    <stone op="mul_round">1.2</stone>
+    <metal op="mul_round">1.2</metal>
+    <xp op="mul_round">1.2</xp>
+  </Loot>
+  <Position>
+    <TurnRate>5</TurnRate>
+  </Position>
+  <Resistance>
+    <Entity>
+      <Damage>
+        <Hack op="add">-2</Hack>
+        <Pierce op="add">2</Pierce>
+      </Damage>
+    </Entity>
+  </Resistance>
+  <ResourceGatherer disable=""/>
+  <UnitMotion>
+    <WalkSpeed op="mul_round">1.1</WalkSpeed>
+    <PassabilityClass>large</PassabilityClass>
+    <Acceleration op="mul">0.5</Acceleration>
+    <Weight op="mul">3.0</Weight>
+  </UnitMotion>
+</Entity>

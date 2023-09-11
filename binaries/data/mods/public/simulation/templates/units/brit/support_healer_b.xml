@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support_healer">
+  <Auras datatype="tokens">
+    units/celtic_healer
+  </Auras>
   <Identity>
     <Civ>brit</Civ>
     <GenericName>Druid</GenericName>

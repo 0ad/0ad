@@ -1,59 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_structure_special">
+<Entity>
   <Auras datatype="tokens">
     structures/farmstead_60
   </Auras>
-  <BuildRestrictions>
-    <Territory>own neutral</Territory>
-    <Category>RotaryMill</Category>
-  </BuildRestrictions>
   <Capturable>
     <CapturePoints>500</CapturePoints>
     <RegenRate>0</RegenRate>
     <GarrisonRegenRate>3</GarrisonRegenRate>
   </Capturable>
-  <Cost>
-    <BuildTime>100</BuildTime>
-    <Resources>
-      <food>0</food>
-      <wood>200</wood>
-      <stone>100</stone>
-      <metal>0</metal>
-    </Resources>
-  </Cost>
   <Footprint replace="">
     <Circle radius="10.0"/>
     <Height>6.0</Height>
   </Footprint>
-  <GarrisonHolder disable=""/>
   <Health disable=""/>
   <Identity>
-    <Civ>gaia</Civ>
-    <GenericName>Farmstead</GenericName>
+    <GenericName>Rotary Mill</GenericName>
     <SpecificName>Rotary Mill</SpecificName>
-    <VisibleClasses datatype="tokens">Farmstead</VisibleClasses>
-    <Classes datatype="tokens">
+    <VisibleClasses datatype="tokens">
 	  RotaryMill
-	</Classes>
+	</VisibleClasses>
     <Tooltip>Dropsite for harvested Food. Capture one of these to increase nearby food production.</Tooltip>
     <Icon>structures/rotarymill.png</Icon>
+    <Undeletable>true</Undeletable>
   </Identity>
-  <Loot>
-    <xp>100</xp>
-    <food>100</food>
-  </Loot>
   <Minimap>
-    <Type>structure</Type>
     <Icon size="16.0">other.png</Icon>
   </Minimap>
   <Obstruction>
     <Static width="16.0" depth="16.0"/>
   </Obstruction>
-  <RallyPoint disable=""/>
-  <ResourceDropsite>
-    <Types>food</Types>
-    <Sharable>true</Sharable>
-  </ResourceDropsite>
+  <Researcher disable=""/>
+  <Resistance replace=""/>
   <Selectable>
     <Overlay>
       <Outline>
@@ -79,7 +56,6 @@
     <Range>30</Range>
   </Vision>
   <VisualActor>
-    <Actor>structures/celts/special.xml</Actor>
-    <FoundationActor>structures/fndn_6x6.xml</FoundationActor>
+    <FoundationActor>structures/fndn_5x5.xml</FoundationActor>
   </VisualActor>
 </Entity>

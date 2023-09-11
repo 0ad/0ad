@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_hero_cavalry_crossbowman">
+<Entity parent="chariot|template_unit_hero_cavalry_crossbowman">
   <Auras datatype="tokens">
     units/heroes/han_hero_wei_qing_1
     units/heroes/han_hero_wei_qing_2
@@ -18,7 +18,6 @@
   <Identity>
     <Civ>han</Civ>
     <SpecificName>Wèi Qīng</SpecificName>
-    <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
     <Icon>units/han/hero_wei_qing.png</Icon>
   </Identity>
   <VisualActor>

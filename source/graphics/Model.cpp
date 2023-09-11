@@ -1,4 +1,4 @@
-/* Copyright (C) 2022 Wildfire Games.
+/* Copyright (C) 2023 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -297,12 +297,15 @@ void CModel::ValidatePosition()
 		objectHeight = cmpTerrain->GetExactGroundLevel(objTranslation.X, objTranslation.Z);
 
 	// Object height is incorrect for floating objects. We use water height instead.
-	CmpPtr<ICmpWaterManager> cmpWaterManager(m_Simulation, SYSTEM_ENTITY);
-	if (cmpWaterManager)
+	if (m_Flags & MODELFLAG_FLOATONWATER)
 	{
-		float waterHeight = cmpWaterManager->GetExactWaterLevel(objTranslation.X, objTranslation.Z);
-		if (waterHeight >= objectHeight && m_Flags & MODELFLAG_FLOATONWATER)
-			objectHeight = waterHeight;
+		CmpPtr<ICmpWaterManager> cmpWaterManager(m_Simulation, SYSTEM_ENTITY);
+		if (cmpWaterManager)
+		{
+			const float waterHeight = cmpWaterManager->GetExactWaterLevel(objTranslation.X, objTranslation.Z);
+			if (waterHeight >= objectHeight)
+				objectHeight = waterHeight;
+		}
 	}
 
 	// re-position and validate all props
