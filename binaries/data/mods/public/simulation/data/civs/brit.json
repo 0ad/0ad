@@ -35,7 +35,13 @@
 			"Type": "peace"
 		}
 	],
-	"CivBonuses": [],
+	"CivBonuses": [
+		{
+			"Name": "Deas Celtica",
+			"History": "Celtic religion and druidry inspired their warlike mindset.",
+			"Description": "Druids increase attack rates of soldiers near them by 5%."
+		}
+	],
 	"WallSets": [
 		"structures/wallset_palisade",
 		"structures/brit/wallset_stone"
