@@ -1,12 +1,12 @@
 {
 	"type": "range",
 	"radius": 60,
-	"affects": ["Gatherer", "Field"],
+	"affects": ["Worker", "Field"],
 	"modifications": [
 		{ "value": "ResourceGatherer/Rates/food.grain", "multiply": 1.75 }
 	],
 	"auraName": "Farmland",
-	"auraDescription": "Gatherers +75% farming rate around a captured Farmstead.",
+	"auraDescription": "Workers +75% grain gather rate around a captured Rotary Mill.",
 	"overlayIcon": "art/textures/ui/session/auras/farm_bonus.png",
 	"rangeOverlay" : {
 		"lineTexture": "outline_border.png",
