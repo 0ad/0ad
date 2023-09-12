@@ -23,7 +23,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-09-08 07:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
 "Last-Translator: Yuan Chang <daan0014119@gmail.com>, 2022-2023\n"
 "Language-Team: Chinese (Taiwan) (http://app.transifex.com/wildfire-games/0ad/language/zh_TW/)\n"
@@ -1128,6 +1128,23 @@ msgstr "鬥士戰象 +20% 近戰攻擊傷害、+20% 移動速度。"
 msgid "Zooiarchos"
 msgstr "戰象指揮官"
 
+#: simulation/data/auras/units/heroes/spart_hero_agis_1.jsonauraDescription
+msgid "Soldiers −25% metal cost, and training time."
+msgstr "士兵 -25% 金屬成本和訓練時間。"
+
+#: simulation/data/auras/units/heroes/spart_hero_agis_1.jsonauraName
+msgid "Great Revolt"
+msgstr "大起義"
+
+#: simulation/data/auras/units/heroes/spart_hero_agis_2.jsonauraDescription
+msgid "Agis +50% health."
+msgstr "阿基斯 +50% 生命值。"
+
+#: simulation/data/auras/units/heroes/spart_hero_agis_2.jsonauraName
+#: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
+msgid "Last Stand"
+msgstr "背水一戰"
+
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid ""
 "Citizen Infantry Javelineers +1 crush, hack, pierce resistance, +25% ranged "
@@ -1141,7 +1158,3 @@ msgstr "黑勞士改革"
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
 msgstr "矛兵 +1 占領力、+25% 近戰攻擊傷害。"
-
-#: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
-msgid "Last Stand"
-msgstr "背水一戰"

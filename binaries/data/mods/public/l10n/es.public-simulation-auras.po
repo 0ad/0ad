@@ -12,6 +12,7 @@
 # Antonio Vazquez
 # Borja Ruiz
 # Camilo Zuluaga
+# Carlos Ferreiro
 # Dionisio Adrian Farias Coss
 # The_Gipsy
 # Esteban A. Mina
@@ -40,9 +41,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-07-28 07:09+0000\n"
+"POT-Creation-Date: 2023-09-08 07:08+0000\n"
 "PO-Revision-Date: 2016-05-21 09:22+0000\n"
-"Last-Translator: Rodrigo Vegas Sánchez-Ferrero, 2018,2020-2023\n"
+"Last-Translator: Carlos Ferreiro, 2023\n"
 "Language-Team: Spanish (http://app.transifex.com/wildfire-games/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,7 +77,7 @@ msgstr "Reparaciones en astilleros"
 
 #: simulation/data/auras/structures/corral_garrison_large.jsonauraDescription
 msgid "Garrison within the Corral to gain a slow trickle of +3 food."
-msgstr "Guarnece dentro del corral para aumentar +3 la producción de comida."
+msgstr "Acuartela unidades dentro del corral para aumentar +3 la producción de comida."
 
 #: simulation/data/auras/structures/corral_garrison_large.jsonauraName
 #: simulation/data/auras/structures/corral_garrison_medium.jsonauraName
@@ -1145,6 +1146,23 @@ msgstr "Elefantes de élite (Daño cuerpo a cuerpo: +20%; Velocidad: +20%)."
 msgid "Zooiarchos"
 msgstr "Comandante de elefantes"
 
+#: simulation/data/auras/units/heroes/spart_hero_agis_1.jsonauraDescription
+msgid "Soldiers −25% metal cost, and training time."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/spart_hero_agis_1.jsonauraName
+msgid "Great Revolt"
+msgstr ""
+
+#: simulation/data/auras/units/heroes/spart_hero_agis_2.jsonauraDescription
+msgid "Agis +50% health."
+msgstr ""
+
+#: simulation/data/auras/units/heroes/spart_hero_agis_2.jsonauraName
+#: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
+msgid "Last Stand"
+msgstr "Último superviviente"
+
 #: simulation/data/auras/units/heroes/spart_hero_brasidas.jsonauraDescription
 msgid ""
 "Citizen Infantry Javelineers +1 crush, hack, pierce resistance, +25% ranged "
@@ -1158,7 +1176,3 @@ msgstr "Reformas ilotas"
 #: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraDescription
 msgid "Spearmen +1 capture attack strength, +25% melee attack damage."
 msgstr "Lanceros (Fuerza de captura: +1; Daño cuerpo a cuerpo: +25%)."
-
-#: simulation/data/auras/units/heroes/spart_hero_leonidas.jsonauraName
-msgid "Last Stand"
-msgstr "Último superviviente"

@@ -56,7 +56,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-08-18 07:08+0000\n"
+"POT-Creation-Date: 2023-09-08 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: Vladislav Belov, 2016,2022\n"
 "Language-Team: Russian (http://app.transifex.com/wildfire-games/0ad/language/ru/)\n"
@@ -740,39 +740,52 @@ msgid "Publius Sempronius Tuditanus"
 msgstr "Публий Семпроний Тудитан"
 
 #: simulation/data/civs/rome.jsonCivBonuses[0].Description
+msgid ""
+"Women train from houses without the need to research Fertility Festival."
+msgstr ""
+
+#: simulation/data/civs/rome.jsonCivBonuses[0].History
+msgid "Rome was one of the most populous cities in the ancient world."
+msgstr ""
+
+#: simulation/data/civs/rome.jsonCivBonuses[0].Name
+msgid "Fertility"
+msgstr ""
+
+#: simulation/data/civs/rome.jsonCivBonuses[1].Description
 msgid "Roman Legionaries can form a Testudo."
 msgstr "Римские легионеры могут построиться черепахой"
 
-#: simulation/data/civs/rome.jsonCivBonuses[0].History
+#: simulation/data/civs/rome.jsonCivBonuses[1].History
 msgid ""
 "The Romans commonly used the Testudo or 'turtle' formation for defense: "
 "Legionaries were formed into hollow squares with twelve men on each side, "
 "standing so close together that their shields overlapped like fish scales."
 msgstr "Римляне обычно использовали «черепаху» для обороны: легионеры строились полыми квадратами со сторонами по двенадцать человек, стоя так тесно, что их щиты накладывались как рыбья чешуя."
 
-#: simulation/data/civs/rome.jsonCivBonuses[0].Name
+#: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Testudo Formation"
 msgstr "Боевой порядок «черепаха»"
 
-#: simulation/data/civs/rome.jsonCivBonuses[1].Description
+#: simulation/data/civs/rome.jsonCivBonuses[2].Description
 msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
 msgstr "Стенобитные орудия наносят на 20% больше разрушений. Камнемёты наносят на 10% больше разрушений."
 
-#: simulation/data/civs/rome.jsonCivBonuses[1].Name
+#: simulation/data/civs/rome.jsonCivBonuses[2].Name
 msgid "Legionary Engineers"
 msgstr "Легионные инженеры"
 
-#: simulation/data/civs/rome.jsonCivBonuses[2].Description
+#: simulation/data/civs/rome.jsonCivBonuses[3].Description
 msgid "Promote Elite Rank Spearmen or Swordsmen to Champion Centurions."
 msgstr ""
 
-#: simulation/data/civs/rome.jsonCivBonuses[2].History
+#: simulation/data/civs/rome.jsonCivBonuses[3].History
 msgid ""
 "Centurions were the officers responsible for a centuria, a group of 100 "
 "soldiers."
 msgstr ""
 
-#: simulation/data/civs/rome.jsonCivBonuses[2].Name
+#: simulation/data/civs/rome.jsonCivBonuses[3].Name
 msgid "Centurions"
 msgstr ""
 

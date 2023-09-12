@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-08-18 07:08+0000\n"
+"POT-Creation-Date: 2023-09-08 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: liu lizhi <xingzuo88@qq.com>, 2022\n"
 "Language-Team: Chinese (Literary) (http://app.transifex.com/wildfire-games/0ad/language/lzh/)\n"
@@ -691,39 +691,52 @@ msgid "Publius Sempronius Tuditanus"
 msgstr "普布利乌斯·科尔内利乌斯·西庇阿"
 
 #: simulation/data/civs/rome.jsonCivBonuses[0].Description
+msgid ""
+"Women train from houses without the need to research Fertility Festival."
+msgstr ""
+
+#: simulation/data/civs/rome.jsonCivBonuses[0].History
+msgid "Rome was one of the most populous cities in the ancient world."
+msgstr ""
+
+#: simulation/data/civs/rome.jsonCivBonuses[0].Name
+msgid "Fertility"
+msgstr ""
+
+#: simulation/data/civs/rome.jsonCivBonuses[1].Description
 msgid "Roman Legionaries can form a Testudo."
 msgstr "罗马近战之士可结龟型阵。"
 
-#: simulation/data/civs/rome.jsonCivBonuses[0].History
+#: simulation/data/civs/rome.jsonCivBonuses[1].History
 msgid ""
 "The Romans commonly used the Testudo or 'turtle' formation for defense: "
 "Legionaries were formed into hollow squares with twelve men on each side, "
 "standing so close together that their shields overlapped like fish scales."
 msgstr "罗马善结龟形阵以御敌，其法为行伍作中空方形，各边有卒十二紧连，层盾如鳞。"
 
-#: simulation/data/civs/rome.jsonCivBonuses[0].Name
+#: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Testudo Formation"
 msgstr "龟形阵"
 
-#: simulation/data/civs/rome.jsonCivBonuses[1].Description
+#: simulation/data/civs/rome.jsonCivBonuses[2].Description
 msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
 msgstr "攻城锤力益二成， 投石兵力益一成。"
 
-#: simulation/data/civs/rome.jsonCivBonuses[1].Name
+#: simulation/data/civs/rome.jsonCivBonuses[2].Name
 msgid "Legionary Engineers"
 msgstr "奇技之材"
 
-#: simulation/data/civs/rome.jsonCivBonuses[2].Description
+#: simulation/data/civs/rome.jsonCivBonuses[3].Description
 msgid "Promote Elite Rank Spearmen or Swordsmen to Champion Centurions."
 msgstr ""
 
-#: simulation/data/civs/rome.jsonCivBonuses[2].History
+#: simulation/data/civs/rome.jsonCivBonuses[3].History
 msgid ""
 "Centurions were the officers responsible for a centuria, a group of 100 "
 "soldiers."
 msgstr ""
 
-#: simulation/data/civs/rome.jsonCivBonuses[2].Name
+#: simulation/data/civs/rome.jsonCivBonuses[3].Name
 msgid "Centurions"
 msgstr ""
 

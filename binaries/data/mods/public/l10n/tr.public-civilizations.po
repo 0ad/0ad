@@ -50,7 +50,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2023-08-18 07:08+0000\n"
+"POT-Creation-Date: 2023-09-08 07:08+0000\n"
 "PO-Revision-Date: 2014-06-19 17:44+0000\n"
 "Last-Translator: yakup <mutouk@yandex.ru>, 2014-2017,2022-2023\n"
 "Language-Team: Turkish (http://app.transifex.com/wildfire-games/0ad/language/tr/)\n"
@@ -734,39 +734,52 @@ msgid "Publius Sempronius Tuditanus"
 msgstr "Publius Sempronius Tuditanus"
 
 #: simulation/data/civs/rome.jsonCivBonuses[0].Description
+msgid ""
+"Women train from houses without the need to research Fertility Festival."
+msgstr ""
+
+#: simulation/data/civs/rome.jsonCivBonuses[0].History
+msgid "Rome was one of the most populous cities in the ancient world."
+msgstr "Roma, antik dünyanın en kalabalık şehirlerinden biriydi."
+
+#: simulation/data/civs/rome.jsonCivBonuses[0].Name
+msgid "Fertility"
+msgstr "Doğurganlık"
+
+#: simulation/data/civs/rome.jsonCivBonuses[1].Description
 msgid "Roman Legionaries can form a Testudo."
 msgstr "Romalı Lejyonerler bir Testudo oluşturabilir."
 
-#: simulation/data/civs/rome.jsonCivBonuses[0].History
+#: simulation/data/civs/rome.jsonCivBonuses[1].History
 msgid ""
 "The Romans commonly used the Testudo or 'turtle' formation for defense: "
 "Legionaries were formed into hollow squares with twelve men on each side, "
 "standing so close together that their shields overlapped like fish scales."
 msgstr "Romalılar yaygın olarak Testudo'yu ya da 'kaplumbağa' formasını savunma için kullandı: Lejyonerler, kalkanlarının balık terazileri gibi çakıştığına çok yakın birbirlerine ayakta duran, on iki adamla boşluklu meydanlara yerleştirildi."
 
-#: simulation/data/civs/rome.jsonCivBonuses[0].Name
+#: simulation/data/civs/rome.jsonCivBonuses[1].Name
 msgid "Testudo Formation"
 msgstr "Kaplumbağa Düzeni"
 
-#: simulation/data/civs/rome.jsonCivBonuses[1].Description
+#: simulation/data/civs/rome.jsonCivBonuses[2].Description
 msgid "Battering Rams +20% attack damage. Stone Throwers +10% attack damage."
 msgstr "Koçbaşları +% 20 saldırı gücü. Taş atıcılar +% 10 saldırı gücü."
 
-#: simulation/data/civs/rome.jsonCivBonuses[1].Name
+#: simulation/data/civs/rome.jsonCivBonuses[2].Name
 msgid "Legionary Engineers"
 msgstr "Lejyon Muhendisleri"
 
-#: simulation/data/civs/rome.jsonCivBonuses[2].Description
+#: simulation/data/civs/rome.jsonCivBonuses[3].Description
 msgid "Promote Elite Rank Spearmen or Swordsmen to Champion Centurions."
 msgstr ""
 
-#: simulation/data/civs/rome.jsonCivBonuses[2].History
+#: simulation/data/civs/rome.jsonCivBonuses[3].History
 msgid ""
 "Centurions were the officers responsible for a centuria, a group of 100 "
 "soldiers."
 msgstr ""
 
-#: simulation/data/civs/rome.jsonCivBonuses[2].Name
+#: simulation/data/civs/rome.jsonCivBonuses[3].Name
 msgid "Centurions"
 msgstr ""
 

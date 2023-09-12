@@ -2,8 +2,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: None\n"
-"POT-Creation-Date: 2023-08-21 07:19+0000\n"
-"PO-Revision-Date: 2023-08-21 07:19+0000\n"
+"POT-Creation-Date: 2023-09-11 07:19+0000\n"
+"PO-Revision-Date: 2023-09-11 07:19+0000\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -24,12 +24,24 @@ msgstr ""
 "saya dan awak akan mendapat sebahagian dari hasil rampasan perang kelak."
 
 #, python-format
+msgid ""
+"I am launching an unprecedented attack against %(_player_)s. Bring your armies and we "
+"may soon win this war."
+msgstr ""
+"I am launching an unprecedented attack against %(_player_)s. Bring your armies and we "
+"may soon win this war."
+
+#, python-format
 msgid "I am launching an attack against %(_player_)s."
 msgstr "Olen aloittamassa hyökkäystä pelaajaa %(_player_)s vastaan."
 
 #, python-format
 msgid "I have just sent an army against %(_player_)s."
 msgstr "Saya baru sahaja mengerah askar saya menentang %(_player_)s."
+
+#, python-format
+msgid "I am sending an army against %(_player_)s."
+msgstr "I am sending an army against %(_player_)s."
 
 #, python-format
 msgid "Let me regroup my army and I will then join you against %(_player_)s."
@@ -130,6 +142,14 @@ msgstr "Tha %(_player_)s ’s mi fhìn ’nar nàimhdean a-nis."
 #, python-format
 msgid "I cannot accept your offer to become allies, %(_player_)s."
 msgstr "Ní féidir liom a ghlacadh le do thairiscint a bheith inar gcomhghuaillí, a %(_player_)s."
+
+#, python-format
+msgid "I must decline your offer of alliance, %(_player_)s."
+msgstr "I must decline your offer of alliance, %(_player_)s."
+
+#, python-format
+msgid "An alliance with you is not in my best interest, %(_player_)s."
+msgstr "An alliance with you is not in my best interest, %(_player_)s."
 
 #, python-format
 msgid "I will not be your ally, %(_player_)s. However, I will consider a neutrality pact."
@@ -353,10 +373,27 @@ msgstr ""
 "Meine Truppen haben bei der Verteidigung meines Reiches versagt. Bitte berücksichtige "
 "unser Bündniss und schick uns Hilfe!"
 
+msgid ""
+"My humble armies feel weak and tired. My civilization depends on our alliance, please "
+"send help!"
+msgstr ""
+"My humble armies feel weak and tired. My civilization depends on our alliance, please "
+"send help!"
+
+msgid "I need your help. Please do not let my armies fall!"
+msgstr "I need your help. Please do not let my armies fall!"
+
 msgid "My empire regained its old strength, now it is time to seek revenge together!"
 msgstr ""
 "Mijn imperium heeft zijn oude kracht herwonnen. Nu is het moment aangebroken om tezamen"
 " revanche te nemen!"
+
+msgid ""
+"My civilization raised from the ashes. Now my armies feel stronger and eager to fight "
+"for our alliance."
+msgstr ""
+"My civilization raised from the ashes. Now my armies feel stronger and eager to fight "
+"for our alliance."
 
 msgid ""
 "Petra is the default 0 A.D. AI bot. Please report issues to Wildfire Games (see the "
