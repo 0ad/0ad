@@ -20,6 +20,7 @@
 #include "Buffer.h"
 
 #include "renderer/backend/vulkan/Device.h"
+#include "renderer/backend/vulkan/Utilities.h"
 
 namespace Renderer
 {
@@ -87,7 +88,7 @@ std::unique_ptr<CBuffer> CBuffer::Create(
 		&buffer->m_Buffer, &buffer->m_Allocation, &buffer->m_AllocationInfo);
 	if (createBufferResult != VK_SUCCESS)
 	{
-		LOGERROR("Failed to create VkBuffer: %d", static_cast<int>(createBufferResult));
+		LOGERROR("Failed to create VkBuffer: %d (%s)", static_cast<int>(createBufferResult), Utilities::GetVkResultName(createBufferResult));
 		return nullptr;
 	}
 

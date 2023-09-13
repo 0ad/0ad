@@ -276,7 +276,8 @@ bool CSwapChain::AcquireNextImage(VkSemaphore acquireImageSemaphore)
 			m_IsValid = false;
 		else if (acquireResult != VK_SUBOPTIMAL_KHR)
 		{
-			LOGERROR("Acquire result: %d", static_cast<int>(acquireResult));
+			LOGERROR("Acquire result: %d (%s)",
+				static_cast<int>(acquireResult), Utilities::GetVkResultName(acquireResult));
 			debug_warn("Unknown acquire error.");
 		}
 	}
@@ -339,7 +340,8 @@ void CSwapChain::Present(VkSemaphore submitDone, VkQueue queue)
 			m_IsValid = false;
 		else if (presentResult != VK_SUBOPTIMAL_KHR)
 		{
-			LOGERROR("Present result: %d", static_cast<int>(presentResult));
+			LOGERROR("Present result: %d (%s)",
+				static_cast<int>(presentResult), Utilities::GetVkResultName(presentResult));
 			debug_warn("Unknown present error.");
 		}
 	}

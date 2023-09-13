@@ -302,7 +302,8 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window)
 		else if (createInstanceResult == VK_ERROR_LAYER_NOT_PRESENT)
 			LOGERROR("Can't create Vulkan instance: layer not present.");
 		else
-			LOGERROR("Unknown error during Vulkan instance creation: %d", static_cast<int>(createInstanceResult));
+			LOGERROR("Unknown error during Vulkan instance creation: %d (%s)",
+				static_cast<int>(createInstanceResult), Utilities::GetVkResultName(createInstanceResult));
 		return nullptr;
 	}
 
@@ -518,8 +519,8 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window)
 		else if (createDeviceResult == VK_ERROR_EXTENSION_NOT_PRESENT)
 			LOGERROR("Can't create Vulkan device: extension not present.");
 		else
-			LOGERROR("Unknown error during Vulkan device creation: %d",
-				static_cast<int>(createDeviceResult));
+			LOGERROR("Unknown error during Vulkan device creation: %d (%s)",
+				static_cast<int>(createDeviceResult), Utilities::GetVkResultName(createDeviceResult));
 		return nullptr;
 	}
 
@@ -560,8 +561,8 @@ std::unique_ptr<CDevice> CDevice::Create(SDL_Window* window)
 		vmaCreateAllocator(&allocatorCreateInfo, &device->m_VMAAllocator);
 	if (createVMAAllocatorResult != VK_SUCCESS)
 	{
-		LOGERROR("Failed to create VMA allocator: %d",
-			static_cast<int>(createDeviceResult));
+		LOGERROR("Failed to create VMA allocator: %d (%s)",
+			static_cast<int>(createVMAAllocatorResult), Utilities::GetVkResultName(createVMAAllocatorResult));
 		return nullptr;
 	}
 

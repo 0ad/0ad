@@ -28,7 +28,7 @@
 		const VkResult result = (EXPR); \
 		if (result != VK_SUCCESS) \
 		{ \
-			LOGERROR(#EXPR " returned %d instead of VK_SUCCESS", static_cast<int>(result)); \
+			LOGERROR(#EXPR " returned %d (%s) instead of VK_SUCCESS", static_cast<int>(result), Utilities::GetVkResultName(result)); \
 			ENSURE(false && #EXPR); \
 		} \
 	} while (0)
@@ -79,6 +79,8 @@ void SubmitPipelineBarrier(
 	const VkPipelineStageFlags srcStageMask, const VkPipelineStageFlags dstStageMask);
 
 void SubmitDebugSyncMemoryBarrier(VkCommandBuffer commandBuffer);
+
+const char* GetVkResultName(const VkResult result);
 
 } // namespace Utilities
 

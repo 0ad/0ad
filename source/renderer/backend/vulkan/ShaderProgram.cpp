@@ -29,6 +29,7 @@
 #include "renderer/backend/vulkan/DescriptorManager.h"
 #include "renderer/backend/vulkan/Device.h"
 #include "renderer/backend/vulkan/Texture.h"
+#include "renderer/backend/vulkan/Utilities.h"
 
 #include <algorithm>
 #include <limits>
@@ -63,9 +64,11 @@ VkShaderModule CreateShaderModule(CDevice* device, const VfsPath& path)
 	createInfo.pCode = reinterpret_cast<const uint32_t*>(file.GetBuffer());
 
 	VkShaderModule shaderModule;
-	if (vkCreateShaderModule(device->GetVkDevice(), &createInfo, nullptr, &shaderModule) != VK_SUCCESS)
+	const VkResult result = vkCreateShaderModule(device->GetVkDevice(), &createInfo, nullptr, &shaderModule);
+	if (result != VK_SUCCESS)
 	{
-		LOGERROR("Failed to create shader module from file: '%s'", path.string8());
+		LOGERROR("Failed to create shader module from file: '%s' %d (%s)",
+			path.string8(), static_cast<int>(result), Utilities::GetVkResultName(result));
 		return VK_NULL_HANDLE;
 	}
 	device->SetObjectName(VK_OBJECT_TYPE_SHADER_MODULE, shaderModule, path.string8().c_str());
@@ -491,7 +494,8 @@ std::unique_ptr<CShaderProgram> CShaderProgram::Create(
 		&shaderProgram->m_PipelineLayout);
 	if (result != VK_SUCCESS)
 	{
-		LOGERROR("Failed to create a pipeline layout: %d", static_cast<int>(result));
+		LOGERROR("Failed to create a pipeline layout: %d (%s)",
+			static_cast<int>(result), Utilities::GetVkResultName(result));
 		return nullptr;
 	}
 
